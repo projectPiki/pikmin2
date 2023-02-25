@@ -5,34 +5,40 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804999F0: # unused? three zero floats?
+.obj lbl_804999F0, local # unused? three zero floats?
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj lbl_804999F0
 .balign 4
-lbl_804999FC:
+.obj lbl_804999FC, local
 	.asciz "PSGame.h"
+.endobj lbl_804999FC
 .balign 4
-lbl_80499A08:
+.obj lbl_80499A08, local
 	.asciz "P2Assert"
+.endobj lbl_80499A08
 .balign 4
-lbl_80499A14:
+.obj lbl_80499A14, local
 	.asciz "PSScene.h"
+.endobj lbl_80499A14
 .balign 4
-lbl_80499A20:
+.obj lbl_80499A20, local
 	.asciz "section.cpp"
+.endobj lbl_80499A20
 .balign 4
-lbl_80499A2C:
+.obj lbl_80499A2C, local
 	.asciz "no Display manager.\n"
+.endobj lbl_80499A2C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__7Section
-__vt__7Section:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__7Section, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__7SectionFv
@@ -51,24 +57,28 @@ __vt__7Section:
 	.4byte 0
 	.4byte 0
 	.4byte isFinishable__7SectionFv
-.global __vt__8ISection
-__vt__8ISection:
+.endobj __vt__7Section
+.obj __vt__8ISection, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8ISectionFv
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj __vt__8ISection
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 .balign 8
-sPlayTime:
+.obj sPlayTime, local
 	.skip 0x8
+.endobj sPlayTime
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -110,13 +120,12 @@ sPlayTime:
 .endif
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__7SectionFv
-init__7SectionFv:
+.fn init__7SectionFv, global
 /* 80423770 004206B0  4E 80 00 20 */	blr 
+.endfn init__7SectionFv
 
 .if version == 1
-.global __ct__7SectionFP10JFWDisplayP7JKRHeapb
-__ct__7SectionFP10JFWDisplayP7JKRHeapb:
+.fn __ct__7SectionFP10JFWDisplayP7JKRHeapb, global
 /* 804237F0 00420730  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804237F4 00420734  7C 08 02 A6 */	mflr r0
 /* 804237F8 00420738  90 01 00 34 */	stw r0, 0x34(r1)
@@ -262,9 +271,9 @@ __ct__7SectionFP10JFWDisplayP7JKRHeapb:
 /* 80423A08 00420948  7C 08 03 A6 */	mtlr r0
 /* 80423A0C 0042094C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80423A10 00420950  4E 80 00 20 */	blr 
+.endfn __ct__7SectionFP10JFWDisplayP7JKRHeapb
 .else
-.global __ct__7SectionFP10JFWDisplayP7JKRHeapb
-__ct__7SectionFP10JFWDisplayP7JKRHeapb:
+.fn __ct__7SectionFP10JFWDisplayP7JKRHeapb, global
 /* 80423774 004206B4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80423778 004206B8  7C 08 02 A6 */	mflr r0
 /* 8042377C 004206BC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -387,10 +396,10 @@ __ct__7SectionFP10JFWDisplayP7JKRHeapb:
 /* 80423938 00420878  7C 08 03 A6 */	mtlr r0
 /* 8042393C 0042087C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80423940 00420880  4E 80 00 20 */	blr 
+.endfn __ct__7SectionFP10JFWDisplayP7JKRHeapb
 .endif
 
-.global __dt__8ISectionFv
-__dt__8ISectionFv: #weak function
+.fn __dt__8ISectionFv, weak
 /* 80423944 00420884  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423948 00420888  7C 08 02 A6 */	mflr r0
 /* 8042394C 0042088C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -416,9 +425,9 @@ __dt__8ISectionFv: #weak function
 /* 80423998 004208D8  7C 08 03 A6 */	mtlr r0
 /* 8042399C 004208DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804239A0 004208E0  4E 80 00 20 */	blr 
+.endfn __dt__8ISectionFv
 
-.global __dt__7SectionFv
-__dt__7SectionFv:
+.fn __dt__7SectionFv, global
 /* 804239A4 004208E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804239A8 004208E8  7C 08 02 A6 */	mflr r0
 /* 804239AC 004208EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -496,11 +505,10 @@ __dt__7SectionFv:
 /* 80423AB8 004209F8  7C 08 03 A6 */	mtlr r0
 /* 80423ABC 004209FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80423AC0 00420A00  4E 80 00 20 */	blr 
-
+.endfn __dt__7SectionFv
 
 .if version == 1
-.global run__7SectionFv
-run__7SectionFv:
+.fn run__7SectionFv, global
 /* 80423B94 00420AD4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80423B98 00420AD8  7C 08 02 A6 */	mflr r0
 /* 80423B9C 00420ADC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -869,9 +877,9 @@ run__7SectionFv:
 /* 804240E0 00421020  7C 08 03 A6 */	mtlr r0
 /* 804240E4 00421024  38 21 00 40 */	addi r1, r1, 0x40
 /* 804240E8 00421028  4E 80 00 20 */	blr 
+.endfn run__7SectionFv
 .else
-.global run__7SectionFv
-run__7SectionFv:
+.fn run__7SectionFv, global
 /* 80423AC4 00420A04  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80423AC8 00420A08  7C 08 02 A6 */	mflr r0
 /* 80423ACC 00420A0C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1196,10 +1204,10 @@ run__7SectionFv:
 /* 80423F70 00420EB0  7C 08 03 A6 */	mtlr r0
 /* 80423F74 00420EB4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80423F78 00420EB8  4E 80 00 20 */	blr 
+.endfn run__7SectionFv
 .endif
 
-.global exit__7SectionFv
-exit__7SectionFv:
+.fn exit__7SectionFv, global
 /* 80423F7C 00420EBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423F80 00420EC0  7C 08 02 A6 */	mflr r0
 /* 80423F84 00420EC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1220,9 +1228,9 @@ exit__7SectionFv:
 /* 80423FC0 00420F00  7C 08 03 A6 */	mtlr r0
 /* 80423FC4 00420F04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423FC8 00420F08  4E 80 00 20 */	blr 
+.endfn exit__7SectionFv
 
-.global beginFrame__7SectionFv
-beginFrame__7SectionFv: #weak function
+.fn beginFrame__7SectionFv, weak
 /* 80423FCC 00420F0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423FD0 00420F10  7C 08 02 A6 */	mflr r0
 /* 80423FD4 00420F14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1232,9 +1240,9 @@ beginFrame__7SectionFv: #weak function
 /* 80423FE4 00420F24  7C 08 03 A6 */	mtlr r0
 /* 80423FE8 00420F28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423FEC 00420F2C  4E 80 00 20 */	blr 
+.endfn beginFrame__7SectionFv
 
-.global endFrame__7SectionFv
-endFrame__7SectionFv: #weak function
+.fn endFrame__7SectionFv, weak
 /* 80423FF0 00420F30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423FF4 00420F34  7C 08 02 A6 */	mflr r0
 /* 80423FF8 00420F38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1244,9 +1252,9 @@ endFrame__7SectionFv: #weak function
 /* 80424008 00420F48  7C 08 03 A6 */	mtlr r0
 /* 8042400C 00420F4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424010 00420F50  4E 80 00 20 */	blr 
+.endfn endFrame__7SectionFv
 
-.global beginRender__7SectionFv
-beginRender__7SectionFv: #weak function
+.fn beginRender__7SectionFv, weak
 /* 80424014 00420F54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80424018 00420F58  7C 08 02 A6 */	mflr r0
 /* 8042401C 00420F5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1256,9 +1264,9 @@ beginRender__7SectionFv: #weak function
 /* 8042402C 00420F6C  7C 08 03 A6 */	mtlr r0
 /* 80424030 00420F70  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424034 00420F74  4E 80 00 20 */	blr 
+.endfn beginRender__7SectionFv
 
-.global endRender__7SectionFv
-endRender__7SectionFv: #weak function
+.fn endRender__7SectionFv, weak
 /* 80424038 00420F78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042403C 00420F7C  7C 08 02 A6 */	mflr r0
 /* 80424040 00420F80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1276,9 +1284,9 @@ endRender__7SectionFv: #weak function
 /* 8042406C 00420FAC  7C 08 03 A6 */	mtlr r0
 /* 80424070 00420FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80424074 00420FB4  4E 80 00 20 */	blr 
+.endfn endRender__7SectionFv
 
-.global update__7SectionFv
-update__7SectionFv:
+.fn update__7SectionFv, global
 /* 80424078 00420FB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042407C 00420FBC  7C 08 02 A6 */	mflr r0
 /* 80424080 00420FC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1312,9 +1320,9 @@ update__7SectionFv:
 /* 804240E8 00421028  7C 08 03 A6 */	mtlr r0
 /* 804240EC 0042102C  38 21 00 10 */	addi r1, r1, 0x10
 /* 804240F0 00421030  4E 80 00 20 */	blr 
+.endfn update__7SectionFv
 
-.global draw__7SectionFR8Graphics
-draw__7SectionFR8Graphics:
+.fn draw__7SectionFR8Graphics, global
 /* 804240F4 00421034  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804240F8 00421038  7C 08 02 A6 */	mflr r0
 /* 804240FC 0042103C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1339,9 +1347,9 @@ draw__7SectionFR8Graphics:
 /* 80424144 00421084  7C 08 03 A6 */	mtlr r0
 /* 80424148 00421088  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042414C 0042108C  4E 80 00 20 */	blr 
+.endfn draw__7SectionFR8Graphics
 
-.global __sinit_section_cpp
-__sinit_section_cpp: #static initializer
+.fn __sinit_section_cpp, local
 /* 80424150 00421090  3C 60 80 00 */	lis r3, 0x800000F8@ha
 /* 80424154 00421094  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80424158 00421098  80 03 00 F8 */	lwz r0, 0x800000F8@l(r3)
@@ -1363,3 +1371,4 @@ __sinit_section_cpp: #static initializer
 /* 80424198 004210D8  90 0D 9B 00 */	stw r0, sPlayTime@sda21(r13)
 /* 8042419C 004210DC  90 8D 9B 04 */	stw r4, (sPlayTime+4)@sda21(r13)
 /* 804241A0 004210E0  4E 80 00 20 */	blr 
+.endfn __sinit_section_cpp

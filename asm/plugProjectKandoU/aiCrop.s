@@ -1,31 +1,37 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80480D40:
+.obj lbl_80480D40, local
 	.asciz "actBreakWall"
+.endobj lbl_80480D40
 .balign 4
-lbl_80480D50:
+.obj lbl_80480D50, local
 	.asciz "ActCropArg"
+.endobj lbl_80480D50
 .balign 4
-lbl_80480D5C:
+.obj lbl_80480D5C, local
 	.asciz "aiCrop.cpp"
+.endobj lbl_80480D5C
 .balign 4
-lbl_80480D68:
+.obj lbl_80480D68, local
 	.asciz "P2Assert"
+.endobj lbl_80480D68
 .balign 4
-lbl_80480D74:
+.obj lbl_80480D74, local
 	.asciz "ActionArg"
+.endobj lbl_80480D74
 .balign 4
-lbl_80480D80:
+.obj lbl_80480D80, local
 	.asciz "StickAttackActionArg"
+.endobj lbl_80480D80
 .balign 4
-lbl_80480D98:
+.obj lbl_80480D98, local
 	.asciz "GotoPosActionArg"
+.endobj lbl_80480D98
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q26PikiAI7ActCrop
-__vt__Q26PikiAI7ActCrop:
+.obj __vt__Q26PikiAI7ActCrop, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI7ActCropFPQ26PikiAI9ActionArg
@@ -45,48 +51,63 @@ __vt__Q26PikiAI7ActCrop:
 	.4byte 0
 	.4byte 0
 	.4byte "@64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent"
+.endobj __vt__Q26PikiAI7ActCrop
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519940:
+.obj lbl_80519940, local
 	.asciz "Crop"
+.endobj lbl_80519940
 .balign 4
-lbl_80519948:
+.obj lbl_80519948, local
 	.float 0.0
-lbl_8051994C:
+.endobj lbl_80519948
+.obj lbl_8051994C, local
 	.float 1.0
-lbl_80519950:
+.endobj lbl_8051994C
+.obj lbl_80519950, local
 	.float 25.0
-lbl_80519954:
+.endobj lbl_80519950
+.obj lbl_80519954, local
 	.float 2.0
-lbl_80519958:
+.endobj lbl_80519954
+.obj lbl_80519958, local
 	.float 20.0
-lbl_8051995C:
+.endobj lbl_80519958
+.obj lbl_8051995C, local
 	.float 32768.0
-lbl_80519960: #tau
+.endobj lbl_8051995C
+.obj lbl_80519960, local # tau
 	.float 6.2831855
+.endobj lbl_80519960
 .balign 8
-lbl_80519968:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80519970:
+.obj lbl_80519968, local
+	.8byte 0x4330000080000000
+.endobj lbl_80519968
+.obj lbl_80519970, local
 	.float 40.0
-lbl_80519974:
+.endobj lbl_80519970
+.obj lbl_80519974, local
 	.float 325.9493
-lbl_80519978:
+.endobj lbl_80519974
+.obj lbl_80519978, local
 	.float -325.9493
-lbl_8051997C:
+.endobj lbl_80519978
+.obj lbl_8051997C, local
 	.float 200.0
-lbl_80519980:
+.endobj lbl_8051997C
+.obj lbl_80519980, local
 	.float 0.9
-lbl_80519984:
+.endobj lbl_80519980
+.obj lbl_80519984, local
 	.float -0.9
-lbl_80519988:
+.endobj lbl_80519984
+.obj lbl_80519988, local
 	.float 10.0
+.endobj lbl_80519988
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q26PikiAI7ActCropFPQ24Game4Piki
-__ct__Q26PikiAI7ActCropFPQ24Game4Piki:
+.fn __ct__Q26PikiAI7ActCropFPQ24Game4Piki, global
 /* 801E3E50 001E0D90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E3E54 001E0D94  7C 08 02 A6 */	mflr r0
 /* 801E3E58 001E0D98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -143,9 +164,9 @@ __ct__Q26PikiAI7ActCropFPQ24Game4Piki:
 /* 801E3F18 001E0E58  7C 08 03 A6 */	mtlr r0
 /* 801E3F1C 001E0E5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3F20 001E0E60  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI7ActCropFPQ24Game4Piki
 
-.global init__Q26PikiAI7ActCropFPQ26PikiAI9ActionArg
-init__Q26PikiAI7ActCropFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI7ActCropFPQ26PikiAI9ActionArg, global
 /* 801E3F24 001E0E64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E3F28 001E0E68  7C 08 02 A6 */	mflr r0
 /* 801E3F2C 001E0E6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -216,9 +237,9 @@ init__Q26PikiAI7ActCropFPQ26PikiAI9ActionArg:
 /* 801E4020 001E0F60  7C 08 03 A6 */	mtlr r0
 /* 801E4024 001E0F64  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E4028 001E0F68  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI7ActCropFPQ26PikiAI9ActionArg
 
-.global execClimb__Q26PikiAI7ActCropFv
-execClimb__Q26PikiAI7ActCropFv:
+.fn execClimb__Q26PikiAI7ActCropFv, global
 /* 801E402C 001E0F6C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 801E4030 001E0F70  7C 08 02 A6 */	mflr r0
 /* 801E4034 001E0F74  90 01 00 64 */	stw r0, 0x64(r1)
@@ -408,9 +429,9 @@ execClimb__Q26PikiAI7ActCropFv:
 /* 801E42E8 001E1228  7C 08 03 A6 */	mtlr r0
 /* 801E42EC 001E122C  38 21 00 60 */	addi r1, r1, 0x60
 /* 801E42F0 001E1230  4E 80 00 20 */	blr 
+.endfn execClimb__Q26PikiAI7ActCropFv
 
-.global initGoto__Q26PikiAI7ActCropFv
-initGoto__Q26PikiAI7ActCropFv:
+.fn initGoto__Q26PikiAI7ActCropFv, global
 /* 801E42F4 001E1234  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E42F8 001E1238  7C 08 02 A6 */	mflr r0
 /* 801E42FC 001E123C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -449,9 +470,9 @@ initGoto__Q26PikiAI7ActCropFv:
 /* 801E4380 001E12C0  7C 08 03 A6 */	mtlr r0
 /* 801E4384 001E12C4  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E4388 001E12C8  4E 80 00 20 */	blr 
+.endfn initGoto__Q26PikiAI7ActCropFv
 
-.global initAttack__Q26PikiAI7ActCropFv
-initAttack__Q26PikiAI7ActCropFv:
+.fn initAttack__Q26PikiAI7ActCropFv, global
 /* 801E438C 001E12CC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E4390 001E12D0  7C 08 02 A6 */	mflr r0
 /* 801E4394 001E12D4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -516,9 +537,9 @@ initAttack__Q26PikiAI7ActCropFv:
 /* 801E447C 001E13BC  7C 08 03 A6 */	mtlr r0
 /* 801E4480 001E13C0  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E4484 001E13C4  4E 80 00 20 */	blr 
+.endfn initAttack__Q26PikiAI7ActCropFv
 
-.global exec__Q26PikiAI7ActCropFv
-exec__Q26PikiAI7ActCropFv:
+.fn exec__Q26PikiAI7ActCropFv, global
 /* 801E4488 001E13C8  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 801E448C 001E13CC  7C 08 02 A6 */	mflr r0
 /* 801E4490 001E13D0  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -969,9 +990,9 @@ exec__Q26PikiAI7ActCropFv:
 /* 801E4B28 001E1A68  7C 08 03 A6 */	mtlr r0
 /* 801E4B2C 001E1A6C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 801E4B30 001E1A70  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI7ActCropFv
 
-.global cleanup__Q26PikiAI7ActCropFv
-cleanup__Q26PikiAI7ActCropFv:
+.fn cleanup__Q26PikiAI7ActCropFv, global
 /* 801E4B34 001E1A74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E4B38 001E1A78  7C 08 02 A6 */	mflr r0
 /* 801E4B3C 001E1A7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -988,24 +1009,25 @@ cleanup__Q26PikiAI7ActCropFv:
 /* 801E4B68 001E1AA8  7C 08 03 A6 */	mtlr r0
 /* 801E4B6C 001E1AAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E4B70 001E1AB0  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI7ActCropFv
 
-.global collisionCallback__Q26PikiAI7ActCropFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q26PikiAI7ActCropFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q26PikiAI7ActCropFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 801E4B74 001E1AB4  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q26PikiAI7ActCropFPQ24Game4PikiRQ24Game9CollEvent
 
-.global onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent
-onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent, global
 /* 801E4B78 001E1AB8  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent
 
-.global getNextAIType__Q26PikiAI7ActCropFv
-getNextAIType__Q26PikiAI7ActCropFv:
+.fn getNextAIType__Q26PikiAI7ActCropFv, weak
 /* 801E4B7C 001E1ABC  38 60 00 01 */	li r3, 1
 /* 801E4B80 001E1AC0  4E 80 00 20 */	blr 
+.endfn getNextAIType__Q26PikiAI7ActCropFv
 
-.global "@64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent"
-"@64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent":
+.fn "@64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent", weak
 /* 801E4B84 001E1AC4  39 60 00 04 */	li r11, 4
 /* 801E4B88 001E1AC8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801E4B8C 001E1ACC  7C 63 5A 14 */	add r3, r3, r11
 /* 801E4B90 001E1AD0  38 63 FF C0 */	addi r3, r3, -64
 /* 801E4B94 001E1AD4  4B FF FF E4 */	b onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent
+.endfn "@64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent"

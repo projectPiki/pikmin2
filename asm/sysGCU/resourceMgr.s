@@ -22,25 +22,27 @@
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804EC3D8:
+.obj lbl_804EC3D8, local
 	.4byte 0x00000000
 	.4byte 0x0000001C
 	.4byte 0x00000000
-lbl_804EC3E4:
+.endobj lbl_804EC3D8
+.obj lbl_804EC3E4, local
 	.4byte 0x00000000
 	.4byte 0x00000020
 	.4byte 0x00000000
-lbl_804EC3F0:
+.endobj lbl_804EC3E4
+.obj lbl_804EC3F0, local
 	.4byte 0x00000000
 	.4byte 0x00000024
 	.4byte 0x00000000
-.global __vt__Q28Resource3Mgr
-__vt__Q28Resource3Mgr:
+.endobj lbl_804EC3F0
+.obj __vt__Q28Resource3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte drawDump__Q28Resource3MgrFR8Graphicsii
-.global __vt__Q28Resource10MgrCommand
-__vt__Q28Resource10MgrCommand:
+.endobj __vt__Q28Resource3Mgr
+.obj __vt__Q28Resource10MgrCommand, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Resource10MgrCommandFv
@@ -51,16 +53,14 @@ __vt__Q28Resource10MgrCommand:
 	.4byte memoryCallBackFunc__Q28Resource10MgrCommandFv
 	.4byte dvdLoadCallBackFunc__Q28Resource10MgrCommandFv
 	.4byte aramLoadCallBackFunc__Q28Resource10MgrCommandFv
-.global "__vt__33Delegate<Q28Resource10MgrCommand>"
-"__vt__33Delegate<Q28Resource10MgrCommand>":
+.endobj __vt__Q28Resource10MgrCommand
+.obj "__vt__33Delegate<Q28Resource10MgrCommand>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__33Delegate<Q28Resource10MgrCommand>Fv"
-	.4byte 0
-	.4byte 0
-	.4byte 0
-.global __vt__Q28Resource4Node
-__vt__Q28Resource4Node:
+.endobj "__vt__33Delegate<Q28Resource10MgrCommand>"
+	.skip 0xC # Golly, I hate data pooling. -Epoch
+.obj __vt__Q28Resource4Node, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Resource4NodeFv
@@ -68,10 +68,10 @@ __vt__Q28Resource4Node:
 	.4byte 0
 	.4byte 0
 	.4byte "@24@__dt__Q28Resource4NodeFv"
+.endobj __vt__Q28Resource4Node
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q28Resource4NodeFv
-__dt__Q28Resource4NodeFv:
+.fn __dt__Q28Resource4NodeFv, global
 /* 804330D8 00430018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804330DC 0043001C  7C 08 02 A6 */	mflr r0
 /* 804330E0 00430020  90 01 00 14 */	stw r0, 0x14(r1)
@@ -130,9 +130,9 @@ __dt__Q28Resource4NodeFv:
 /* 804331A8 004300E8  7C 08 03 A6 */	mtlr r0
 /* 804331AC 004300EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804331B0 004300F0  4E 80 00 20 */	blr 
+.endfn __dt__Q28Resource4NodeFv
 
-.global __ct__Q28Resource10MgrCommandFPc
-__ct__Q28Resource10MgrCommandFPc:
+.fn __ct__Q28Resource10MgrCommandFPc, global
 /* 804331B4 004300F4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 804331B8 004300F8  7C 08 02 A6 */	mflr r0
 /* 804331BC 004300FC  3C A0 80 4F */	lis r5, __vt__5CNode@ha
@@ -211,9 +211,9 @@ __ct__Q28Resource10MgrCommandFPc:
 /* 804332E0 00430220  7C 08 03 A6 */	mtlr r0
 /* 804332E4 00430224  38 21 00 40 */	addi r1, r1, 0x40
 /* 804332E8 00430228  4E 80 00 20 */	blr 
+.endfn __ct__Q28Resource10MgrCommandFPc
 
-.global __dt__Q28Resource10MgrCommandFv
-__dt__Q28Resource10MgrCommandFv:
+.fn __dt__Q28Resource10MgrCommandFv, global
 /* 804332EC 0043022C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804332F0 00430230  7C 08 02 A6 */	mflr r0
 /* 804332F4 00430234  90 01 00 14 */	stw r0, 0x14(r1)
@@ -263,9 +263,9 @@ __dt__Q28Resource10MgrCommandFv:
 /* 80433398 004302D8  7C 08 03 A6 */	mtlr r0
 /* 8043339C 004302DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804333A0 004302E0  4E 80 00 20 */	blr 
+.endfn __dt__Q28Resource10MgrCommandFv
 
-.global becomeCurrentHeap__Q28Resource10MgrCommandFv
-becomeCurrentHeap__Q28Resource10MgrCommandFv:
+.fn becomeCurrentHeap__Q28Resource10MgrCommandFv, global
 /* 804333A4 004302E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804333A8 004302E8  7C 08 02 A6 */	mflr r0
 /* 804333AC 004302EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -295,9 +295,9 @@ becomeCurrentHeap__Q28Resource10MgrCommandFv:
 /* 80433408 00430348  7C 08 03 A6 */	mtlr r0
 /* 8043340C 0043034C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80433410 00430350  4E 80 00 20 */	blr 
+.endfn becomeCurrentHeap__Q28Resource10MgrCommandFv
 
-.global releaseCurrentHeap__Q28Resource10MgrCommandFv
-releaseCurrentHeap__Q28Resource10MgrCommandFv:
+.fn releaseCurrentHeap__Q28Resource10MgrCommandFv, global
 /* 80433414 00430354  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80433418 00430358  7C 08 02 A6 */	mflr r0
 /* 8043341C 0043035C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -334,15 +334,15 @@ releaseCurrentHeap__Q28Resource10MgrCommandFv:
 /* 80433490 004303D0  7C 08 03 A6 */	mtlr r0
 /* 80433494 004303D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80433498 004303D8  4E 80 00 20 */	blr 
+.endfn releaseCurrentHeap__Q28Resource10MgrCommandFv
 
-.global getResource__Q28Resource10MgrCommandFv
-getResource__Q28Resource10MgrCommandFv:
+.fn getResource__Q28Resource10MgrCommandFv, global
 /* 8043349C 004303DC  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 804334A0 004303E0  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 804334A4 004303E4  4E 80 00 20 */	blr 
+.endfn getResource__Q28Resource10MgrCommandFv
 
-.global setModeInvalid__Q28Resource10MgrCommandFv
-setModeInvalid__Q28Resource10MgrCommandFv:
+.fn setModeInvalid__Q28Resource10MgrCommandFv, global
 /* 804334A8 004303E8  38 80 FF FF */	li r4, -1
 /* 804334AC 004303EC  38 00 00 00 */	li r0, 0
 /* 804334B0 004303F0  90 83 00 30 */	stw r4, 0x30(r3)
@@ -350,9 +350,9 @@ setModeInvalid__Q28Resource10MgrCommandFv:
 /* 804334B8 004303F8  98 03 00 34 */	stb r0, 0x34(r3)
 /* 804334BC 004303FC  90 03 00 B0 */	stw r0, 0xb0(r3)
 /* 804334C0 00430400  4E 80 00 20 */	blr 
+.endfn setModeInvalid__Q28Resource10MgrCommandFv
 
-.global memoryCallBackFunc__Q28Resource10MgrCommandFv
-memoryCallBackFunc__Q28Resource10MgrCommandFv:
+.fn memoryCallBackFunc__Q28Resource10MgrCommandFv, global
 /* 804334C4 00430404  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804334C8 00430408  7C 08 02 A6 */	mflr r0
 /* 804334CC 0043040C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -371,9 +371,9 @@ memoryCallBackFunc__Q28Resource10MgrCommandFv:
 /* 80433500 00430440  7C 08 03 A6 */	mtlr r0
 /* 80433504 00430444  38 21 00 10 */	addi r1, r1, 0x10
 /* 80433508 00430448  4E 80 00 20 */	blr 
+.endfn memoryCallBackFunc__Q28Resource10MgrCommandFv
 
-.global aramLoadCallBackFunc__Q28Resource10MgrCommandFv
-aramLoadCallBackFunc__Q28Resource10MgrCommandFv:
+.fn aramLoadCallBackFunc__Q28Resource10MgrCommandFv, global
 /* 8043350C 0043044C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80433510 00430450  7C 08 02 A6 */	mflr r0
 /* 80433514 00430454  90 01 00 24 */	stw r0, 0x24(r1)
@@ -412,9 +412,9 @@ aramLoadCallBackFunc__Q28Resource10MgrCommandFv:
 /* 80433594 004304D4  7C 08 03 A6 */	mtlr r0
 /* 80433598 004304D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043359C 004304DC  4E 80 00 20 */	blr 
+.endfn aramLoadCallBackFunc__Q28Resource10MgrCommandFv
 
-.global dvdLoadCallBackFunc__Q28Resource10MgrCommandFv
-dvdLoadCallBackFunc__Q28Resource10MgrCommandFv:
+.fn dvdLoadCallBackFunc__Q28Resource10MgrCommandFv, global
 /* 804335A0 004304E0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804335A4 004304E4  7C 08 02 A6 */	mflr r0
 /* 804335A8 004304E8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -465,9 +465,9 @@ dvdLoadCallBackFunc__Q28Resource10MgrCommandFv:
 /* 80433650 00430590  7C 08 03 A6 */	mtlr r0
 /* 80433654 00430594  38 21 00 30 */	addi r1, r1, 0x30
 /* 80433658 00430598  4E 80 00 20 */	blr 
+.endfn dvdLoadCallBackFunc__Q28Resource10MgrCommandFv
 
-.global userCallBackInvoke__Q28Resource10MgrCommandFv
-userCallBackInvoke__Q28Resource10MgrCommandFv:
+.fn userCallBackInvoke__Q28Resource10MgrCommandFv, global
 /* 8043365C 0043059C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80433660 004305A0  7C 08 02 A6 */	mflr r0
 /* 80433664 004305A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -498,9 +498,9 @@ userCallBackInvoke__Q28Resource10MgrCommandFv:
 /* 804336C4 00430604  7C 08 03 A6 */	mtlr r0
 /* 804336C8 00430608  38 21 00 10 */	addi r1, r1, 0x10
 /* 804336CC 0043060C  4E 80 00 20 */	blr 
+.endfn userCallBackInvoke__Q28Resource10MgrCommandFv
 
-.global __ct__Q28Resource3MgrFP7JKRHeapUl
-__ct__Q28Resource3MgrFP7JKRHeapUl:
+.fn __ct__Q28Resource3MgrFP7JKRHeapUl, global
 /* 804336D0 00430610  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804336D4 00430614  7C 08 02 A6 */	mflr r0
 /* 804336D8 00430618  3C C0 80 4F */	lis r6, __vt__Q28Resource3Mgr@ha
@@ -570,13 +570,13 @@ __ct__Q28Resource3MgrFP7JKRHeapUl:
 /* 804337D0 00430710  7C 08 03 A6 */	mtlr r0
 /* 804337D4 00430714  38 21 00 20 */	addi r1, r1, 0x20
 /* 804337D8 00430718  4E 80 00 20 */	blr 
+.endfn __ct__Q28Resource3MgrFP7JKRHeapUl
 
-.global drawDump__Q28Resource3MgrFR8Graphicsii
-drawDump__Q28Resource3MgrFR8Graphicsii:
+.fn drawDump__Q28Resource3MgrFR8Graphicsii, global
 /* 804337DC 0043071C  4E 80 00 20 */	blr 
+.endfn drawDump__Q28Resource3MgrFR8Graphicsii
 
-.global createNewNode__Q28Resource3MgrFPCc
-createNewNode__Q28Resource3MgrFPCc:
+.fn createNewNode__Q28Resource3MgrFPCc, global
 /* 804337E0 00430720  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 804337E4 00430724  7C 08 02 A6 */	mflr r0
 /* 804337E8 00430728  90 01 01 34 */	stw r0, 0x134(r1)
@@ -695,9 +695,9 @@ createNewNode__Q28Resource3MgrFPCc:
 /* 80433988 004308C8  7C 08 03 A6 */	mtlr r0
 /* 8043398C 004308CC  38 21 01 30 */	addi r1, r1, 0x130
 /* 80433990 004308D0  4E 80 00 20 */	blr 
+.endfn createNewNode__Q28Resource3MgrFPCc
 
-.global loadResource__Q28Resource3MgrFPQ28Resource10MgrCommandPCcb
-loadResource__Q28Resource3MgrFPQ28Resource10MgrCommandPCcb:
+.fn loadResource__Q28Resource3MgrFPQ28Resource10MgrCommandPCcb, global
 /* 80433994 004308D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80433998 004308D8  7C 08 02 A6 */	mflr r0
 /* 8043399C 004308DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -804,9 +804,9 @@ loadResource__Q28Resource3MgrFPQ28Resource10MgrCommandPCcb:
 /* 80433B10 00430A50  7C 08 03 A6 */	mtlr r0
 /* 80433B14 00430A54  38 21 00 20 */	addi r1, r1, 0x20
 /* 80433B18 00430A58  4E 80 00 20 */	blr 
+.endfn loadResource__Q28Resource3MgrFPQ28Resource10MgrCommandPCcb
 
-.global destroy__Q28Resource3MgrFPQ28Resource10MgrCommand
-destroy__Q28Resource3MgrFPQ28Resource10MgrCommand:
+.fn destroy__Q28Resource3MgrFPQ28Resource10MgrCommand, global
 /* 80433B1C 00430A5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80433B20 00430A60  7C 08 02 A6 */	mflr r0
 /* 80433B24 00430A64  38 60 00 00 */	li r3, 0
@@ -837,9 +837,9 @@ destroy__Q28Resource3MgrFPQ28Resource10MgrCommand:
 /* 80433B80 00430AC0  7C 08 03 A6 */	mtlr r0
 /* 80433B84 00430AC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80433B88 00430AC8  4E 80 00 20 */	blr 
+.endfn destroy__Q28Resource3MgrFPQ28Resource10MgrCommand
 
-.global destroyAll__Q28Resource3MgrFv
-destroyAll__Q28Resource3MgrFv:
+.fn destroyAll__Q28Resource3MgrFv, global
 /* 80433B8C 00430ACC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80433B90 00430AD0  7C 08 02 A6 */	mflr r0
 /* 80433B94 00430AD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -868,9 +868,9 @@ destroyAll__Q28Resource3MgrFv:
 /* 80433BE4 00430B24  7C 08 03 A6 */	mtlr r0
 /* 80433BE8 00430B28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80433BEC 00430B2C  4E 80 00 20 */	blr 
+.endfn destroyAll__Q28Resource3MgrFv
 
-.global sync__Q28Resource3MgrFPQ28Resource10MgrCommandb
-sync__Q28Resource3MgrFPQ28Resource10MgrCommandb:
+.fn sync__Q28Resource3MgrFPQ28Resource10MgrCommandb, global
 /* 80433BF0 00430B30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80433BF4 00430B34  7C 08 02 A6 */	mflr r0
 /* 80433BF8 00430B38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1012,9 +1012,9 @@ sync__Q28Resource3MgrFPQ28Resource10MgrCommandb:
 /* 80433DC4 00430D04  7C 08 03 A6 */	mtlr r0
 /* 80433DC8 00430D08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80433DCC 00430D0C  4E 80 00 20 */	blr 
+.endfn sync__Q28Resource3MgrFPQ28Resource10MgrCommandb
 
-.global delFinishCommand__Q28Resource3MgrFv
-delFinishCommand__Q28Resource3MgrFv:
+.fn delFinishCommand__Q28Resource3MgrFv, global
 /* 80433DD0 00430D10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80433DD4 00430D14  7C 08 02 A6 */	mflr r0
 /* 80433DD8 00430D18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1104,9 +1104,9 @@ delFinishCommand__Q28Resource3MgrFv:
 /* 80433EF4 00430E34  7C 08 03 A6 */	mtlr r0
 /* 80433EF8 00430E38  38 21 00 20 */	addi r1, r1, 0x20
 /* 80433EFC 00430E3C  4E 80 00 20 */	blr 
+.endfn delFinishCommand__Q28Resource3MgrFv
 
-.global searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand
-searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand:
+.fn searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand, global
 /* 80433F00 00430E40  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 80433F04 00430E44  38 60 00 00 */	li r3, 0
 /* 80433F08 00430E48  48 00 00 1C */	b .L_80433F24
@@ -1122,9 +1122,9 @@ searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand:
 /* 80433F24 00430E64  28 05 00 00 */	cmplwi r5, 0
 /* 80433F28 00430E68  40 82 FF E4 */	bne .L_80433F0C
 /* 80433F2C 00430E6C  4E 80 00 20 */	blr 
+.endfn searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand
 
-.global "invoke__33Delegate<Q28Resource10MgrCommand>Fv"
-"invoke__33Delegate<Q28Resource10MgrCommand>Fv": #weak function
+.fn "invoke__33Delegate<Q28Resource10MgrCommand>Fv", weak
 /* 80433F30 00430E70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80433F34 00430E74  7C 08 02 A6 */	mflr r0
 /* 80433F38 00430E78  7C 64 1B 78 */	mr r4, r3
@@ -1137,13 +1137,14 @@ searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand:
 /* 80433F54 00430E94  7C 08 03 A6 */	mtlr r0
 /* 80433F58 00430E98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80433F5C 00430E9C  4E 80 00 20 */	blr 
+.endfn "invoke__33Delegate<Q28Resource10MgrCommand>Fv"
 
-.global "@24@__dt__Q28Resource4NodeFv"
-"@24@__dt__Q28Resource4NodeFv": #weak function
+.fn "@24@__dt__Q28Resource4NodeFv", weak
 /* 80433F60 00430EA0  38 63 FF E8 */	addi r3, r3, -24
 /* 80433F64 00430EA4  4B FF F1 74 */	b __dt__Q28Resource4NodeFv
+.endfn "@24@__dt__Q28Resource4NodeFv"
 
-.global "@24@__dt__Q28Resource10MgrCommandFv"
-"@24@__dt__Q28Resource10MgrCommandFv": #weak function
+.fn "@24@__dt__Q28Resource10MgrCommandFv", weak
 /* 80433F68 00430EA8  38 63 FF E8 */	addi r3, r3, -24
 /* 80433F6C 00430EAC  4B FF F3 80 */	b __dt__Q28Resource10MgrCommandFv
+.endfn "@24@__dt__Q28Resource10MgrCommandFv"

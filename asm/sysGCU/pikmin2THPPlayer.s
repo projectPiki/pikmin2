@@ -192,6 +192,7 @@ lbl_8049B620:
 	.4byte 0x00000000
 	.4byte 0x0000000B
 .endif
+.balign 4
 lbl_8049B6F0:
 	.asciz "THPPlayer"
 .balign 4
@@ -242,12 +243,12 @@ lbl_8049B830:
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804ED4C0:
+.obj lbl_804ED4C0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadResource__Q24Game9THPPlayerFv
-.global __vt__Q24Game9THPPlayer
-__vt__Q24Game9THPPlayer:
+.endobj lbl_804ED4C0
+.obj __vt__Q24Game9THPPlayer, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game9THPPlayerFv
@@ -259,11 +260,12 @@ __vt__Q24Game9THPPlayer:
 	.4byte draw__Q24Game9THPPlayerFR8Graphics
 	.4byte draw__Q24Game9THPPlayerFR8GraphicsllUlUl
 	.4byte draw__Q24Game9THPPlayerFR8Graphicsllf
-.global "__vt__27Delegate<Q24Game9THPPlayer>"
-"__vt__27Delegate<Q24Game9THPPlayer>":
+.endobj __vt__Q24Game9THPPlayer
+.obj "__vt__27Delegate<Q24Game9THPPlayer>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__27Delegate<Q24Game9THPPlayer>Fv"
+.endobj "__vt__27Delegate<Q24Game9THPPlayer>"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

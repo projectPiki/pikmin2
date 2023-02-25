@@ -5,21 +5,25 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80499F10:
+.obj lbl_80499F10, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80499F10
 .balign 4
-lbl_80499F1C:
+.obj lbl_80499F1C, local
 	.asciz "moviePlayer"
+.endobj lbl_80499F1C
 .balign 4
-lbl_80499F28:
+.obj lbl_80499F28, local
 	.asciz "moviePlayer.cpp"
+.endobj lbl_80499F28
 .balign 4
-lbl_80499F38:
+.obj lbl_80499F38, local
 	.asciz "P2Assert"
+.endobj lbl_80499F38
 .balign 4
-lbl_80499F44: # Shift-JIS
+.obj lbl_80499F44, local # Shift-JIS
 	.4byte 0x2A2A2A2A
 	.4byte 0x2A2A2A20
 	.4byte 0x819A834C
@@ -30,23 +34,29 @@ lbl_80499F44: # Shift-JIS
 	.4byte 0x82F182E6
 	.4byte 0x81608149
 	.4byte 0x81490A00
+.endobj lbl_80499F44
 .balign 4
-lbl_80499F6C:
+.obj lbl_80499F6C, local
 	.asciz "/user/Mukki/movie/%s/demo.stb"
+.endobj lbl_80499F6C
 .balign 4
-lbl_80499F8C:
+.obj lbl_80499F8C, local
 	.asciz "/user/Mukki/movie/%s/demo.szs"
+.endobj lbl_80499F8C
 .balign 4
-lbl_80499FAC:
+.obj lbl_80499FAC, local
 	.asciz "moviePl:play"
+.endobj lbl_80499FAC
 .balign 4
-lbl_80499FBC:
+.obj lbl_80499FBC, local
 	.asciz "The Bikkuri\n"
+.endobj lbl_80499FBC
 .balign 4
-lbl_80499FCC:
+.obj lbl_80499FCC, local
 	.asciz "[QUE_FAILED] %s\n"
+.endobj lbl_80499FCC
 .balign 4
-lbl_80499FE0: # Shift-JIS
+.obj lbl_80499FE0, local # Shift-JIS
 	.4byte 0x20834C83
 	.4byte 0x85815B82
 	.4byte 0xC982C882
@@ -55,22 +65,27 @@ lbl_80499FE0: # Shift-JIS
 	.4byte 0xBC815B81
 	.4byte 0x5B28545E
 	.4byte 0x54290A00
+.endobj lbl_80499FE0
 .balign 4
-lbl_8049A000:
+.obj lbl_8049A000, local
 	.asciz "ObjectSystem"
+.endobj lbl_8049A000
 .balign 4
-lbl_8049A010:
+.obj lbl_8049A010, local
 	.asciz "movieResource"
+.endobj lbl_8049A010
 .balign 4
-lbl_8049A020:
+.obj lbl_8049A020, local
 	.asciz "demo.stb"
+.endobj lbl_8049A020
 .balign 4
-lbl_8049A02C: # Shift-JIS
+.obj lbl_8049A02C, local # Shift-JIS
 	.4byte 0x82DC82C0
 	.4byte 0x82A98297
 	.2byte 0x0A00
+.endobj lbl_8049A02C
 .balign 4
-lbl_8049A038: # Shift-JIS
+.obj lbl_8049A038, local # Shift-JIS
 	.4byte 0x64656D6F
 	.4byte 0x2E737A73
 	.4byte 0x2082AA82
@@ -79,14 +94,17 @@ lbl_8049A038: # Shift-JIS
 	.4byte 0xDF82BE82
 	.4byte 0xE682970A
 	.byte 0
+.endobj lbl_8049A038
 .balign 4
-lbl_8049A058:
+.obj lbl_8049A058, local
 	.asciz "resource open failed!\n"
+.endobj lbl_8049A058
 .balign 4
-lbl_8049A070:
+.obj lbl_8049A070, local
 	.asciz "JStudio::TParse"
+.endobj lbl_8049A070
 .balign 4
-lbl_8049A080: # Shift-JIS
+.obj lbl_8049A080, local # Shift-JIS
 	.4byte 0x8366815B
 	.4byte 0x835E82F0
 	.4byte 0x89F08EDF
@@ -94,51 +112,65 @@ lbl_8049A080: # Shift-JIS
 	.4byte 0x82DC82B5
 	.4byte 0x82A582F1
 	.2byte 0x0A00
+.endobj lbl_8049A080
 .balign 4
-lbl_8049A09C:
+.obj lbl_8049A09C, local
 	.asciz "moviePl:loaddone"
+.endobj lbl_8049A09C
 .balign 4
-lbl_8049A0B0:
+.obj lbl_8049A0B0, local
 	.asciz "moviePl:donecall"
+.endobj lbl_8049A0B0
 .balign 4
-lbl_8049A0C4:
+.obj lbl_8049A0C4, local
 	.asciz "curr=%d init=%d free invalid\n"
+.endobj lbl_8049A0C4
 .balign 4
-lbl_8049A0E4:
+.obj lbl_8049A0E4, local
 	.asciz "MyCamera"
+.endobj lbl_8049A0E4
 .balign 4
-lbl_8049A0F0:
+.obj lbl_8049A0F0, local
 	.asciz "moviePl:unsuspend"
+.endobj lbl_8049A0F0
 .balign 4
-lbl_8049A104:
+.obj lbl_8049A104, local
 	.asciz "moviePl:g33/susp"
+.endobj lbl_8049A104
 .balign 4
-lbl_8049A118:
+.obj lbl_8049A118, local
 	.asciz "moviePl:skip"
+.endobj lbl_8049A118
 .balign 4
-lbl_8049A128:
+.obj lbl_8049A128, local
 	.asciz "<suspend>"
+.endobj lbl_8049A128
 .balign 4
-lbl_8049A134:
+.obj lbl_8049A134, local
 	.asciz "frame %4d"
+.endobj lbl_8049A134
 .balign 4
-lbl_8049A140:
+.obj lbl_8049A140, local
 	.asciz "use  %.1fK"
+.endobj lbl_8049A140
 .balign 4
-lbl_8049A14C:
+.obj lbl_8049A14C, local
 	.asciz "heap %.1fK"
+.endobj lbl_8049A14C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804EBFBC:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804EBFBC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadResource__Q24Game11MoviePlayerFv
-lbl_804EBFC8:
+.endobj lbl_804EBFBC
+.obj lbl_804EBFC8, local
 	.4byte .L_8042D6B0
 	.4byte .L_8042D6B8
 	.4byte .L_8042D734
@@ -147,24 +179,25 @@ lbl_804EBFC8:
 	.4byte .L_8042D8AC
 	.4byte .L_8042D8B8
 	.4byte .L_8042DB64
-.global __vt__Q24Game12MovieContext
-__vt__Q24Game12MovieContext:
+.endobj lbl_804EBFC8
+.obj __vt__Q24Game12MovieContext, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game12MovieContextFv
 	.4byte getChildCount__5CNodeFv
 	.4byte getChild__Q24Game12MovieContextFv
 	.4byte getNext__Q24Game12MovieContextFv
-.global "__vt__30Delegate<Q24Game11MoviePlayer>"
-"__vt__30Delegate<Q24Game11MoviePlayer>":
+.endobj __vt__Q24Game12MovieContext
+.obj "__vt__30Delegate<Q24Game11MoviePlayer>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__30Delegate<Q24Game11MoviePlayer>Fv"
-.global __vt__Q24Game11MoviePlayer
-__vt__Q24Game11MoviePlayer:
+.endobj "__vt__30Delegate<Q24Game11MoviePlayer>"
+.obj __vt__Q24Game11MoviePlayer, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game11MoviePlayerFv
+.endobj __vt__Q24Game11MoviePlayer
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -252,8 +285,7 @@ __vt__Q24Game11MoviePlayer:
 .endobj lbl_80520670
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game11MoviePlayerFv
-__ct__Q24Game11MoviePlayerFv:
+.fn __ct__Q24Game11MoviePlayerFv, global
 /* 8042C700 00429640  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042C704 00429644  7C 08 02 A6 */	mflr r0
 /* 8042C708 00429648  90 01 00 24 */	stw r0, 0x24(r1)
@@ -339,9 +371,9 @@ __ct__Q24Game11MoviePlayerFv:
 /* 8042C844 00429784  7C 08 03 A6 */	mtlr r0
 /* 8042C848 00429788  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042C84C 0042978C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11MoviePlayerFv
 
-.global __dt__Q24Game12MovieContextFv
-__dt__Q24Game12MovieContextFv:
+.fn __dt__Q24Game12MovieContextFv, weak
 /* 8042C850 00429790  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C854 00429794  7C 08 02 A6 */	mflr r0
 /* 8042C858 00429798  90 01 00 14 */	stw r0, 0x14(r1)
@@ -367,9 +399,9 @@ __dt__Q24Game12MovieContextFv:
 /* 8042C8A4 004297E4  7C 08 03 A6 */	mtlr r0
 /* 8042C8A8 004297E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C8AC 004297EC  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game12MovieContextFv
 
-.global reset__Q24Game11MoviePlayerFv
-reset__Q24Game11MoviePlayerFv:
+.fn reset__Q24Game11MoviePlayerFv, global
 /* 8042C8B0 004297F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C8B4 004297F4  7C 08 02 A6 */	mflr r0
 /* 8042C8B8 004297F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -382,9 +414,9 @@ reset__Q24Game11MoviePlayerFv:
 /* 8042C8D0 00429810  7C 08 03 A6 */	mtlr r0
 /* 8042C8D4 00429814  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C8D8 00429818  4E 80 00 20 */	blr 
+.endfn reset__Q24Game11MoviePlayerFv
 
-.global getActiveOrima__Q24Game11MoviePlayerFv
-getActiveOrima__Q24Game11MoviePlayerFv:
+.fn getActiveOrima__Q24Game11MoviePlayerFv, global
 /* 8042C8DC 0042981C  80 03 01 9C */	lwz r0, 0x19c(r3)
 /* 8042C8E0 00429820  28 00 00 00 */	cmplwi r0, 0
 /* 8042C8E4 00429824  41 82 00 0C */	beq .L_8042C8F0
@@ -393,9 +425,9 @@ getActiveOrima__Q24Game11MoviePlayerFv:
 .L_8042C8F0:
 /* 8042C8F0 00429830  80 63 01 8C */	lwz r3, 0x18c(r3)
 /* 8042C8F4 00429834  4E 80 00 20 */	blr 
+.endfn getActiveOrima__Q24Game11MoviePlayerFv
 
-.global getActiveGameCamera__Q24Game11MoviePlayerFv
-getActiveGameCamera__Q24Game11MoviePlayerFv:
+.fn getActiveGameCamera__Q24Game11MoviePlayerFv, global
 /* 8042C8F8 00429838  80 03 01 A0 */	lwz r0, 0x1a0(r3)
 /* 8042C8FC 0042983C  28 00 00 00 */	cmplwi r0, 0
 /* 8042C900 00429840  41 82 00 0C */	beq .L_8042C90C
@@ -404,9 +436,9 @@ getActiveGameCamera__Q24Game11MoviePlayerFv:
 .L_8042C90C:
 /* 8042C90C 0042984C  80 63 01 90 */	lwz r3, 0x190(r3)
 /* 8042C910 00429850  4E 80 00 20 */	blr 
+.endfn getActiveGameCamera__Q24Game11MoviePlayerFv
 
-.global allocMovieHeap__Q24Game11MoviePlayerFUl
-allocMovieHeap__Q24Game11MoviePlayerFUl:
+.fn allocMovieHeap__Q24Game11MoviePlayerFUl, global
 /* 8042C914 00429854  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042C918 00429858  7C 08 02 A6 */	mflr r0
 /* 8042C91C 0042985C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -456,9 +488,9 @@ allocMovieHeap__Q24Game11MoviePlayerFUl:
 /* 8042C9C4 00429904  7C 08 03 A6 */	mtlr r0
 /* 8042C9C8 00429908  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042C9CC 0042990C  4E 80 00 20 */	blr 
+.endfn allocMovieHeap__Q24Game11MoviePlayerFUl
 
-.global play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg:
+.fn play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg, global
 /* 8042C9D0 00429910  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042C9D4 00429914  7C 08 02 A6 */	mflr r0
 /* 8042C9D8 00429918  90 01 00 14 */	stw r0, 0x14(r1)
@@ -485,9 +517,9 @@ play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg:
 /* 8042CA24 00429964  7C 08 03 A6 */	mtlr r0
 /* 8042CA28 00429968  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042CA2C 0042996C  4E 80 00 20 */	blr 
+.endfn play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
 
-.global play__Q24Game11MoviePlayerFPQ24Game11MovieConfigRQ24Game12MoviePlayArgb
-play__Q24Game11MoviePlayerFPQ24Game11MovieConfigRQ24Game12MoviePlayArgb:
+.fn play__Q24Game11MoviePlayerFPQ24Game11MovieConfigRQ24Game12MoviePlayArgb, global
 /* 8042CA30 00429970  94 21 FB E0 */	stwu r1, -0x420(r1)
 /* 8042CA34 00429974  7C 08 02 A6 */	mflr r0
 /* 8042CA38 00429978  3C E0 80 4A */	lis r7, lbl_80499F10@ha
@@ -710,9 +742,9 @@ play__Q24Game11MoviePlayerFPQ24Game11MovieConfigRQ24Game12MoviePlayArgb:
 /* 8042CD60 00429CA0  7C 08 03 A6 */	mtlr r0
 /* 8042CD64 00429CA4  38 21 04 20 */	addi r1, r1, 0x420
 /* 8042CD68 00429CA8  4E 80 00 20 */	blr 
+.endfn play__Q24Game11MoviePlayerFPQ24Game11MovieConfigRQ24Game12MoviePlayArgb
 
-.global findConfig__Q24Game11MoviePlayerFPcPc
-findConfig__Q24Game11MoviePlayerFPcPc:
+.fn findConfig__Q24Game11MoviePlayerFPcPc, global
 /* 8042CD6C 00429CAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042CD70 00429CB0  7C 08 02 A6 */	mflr r0
 /* 8042CD74 00429CB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -722,9 +754,9 @@ findConfig__Q24Game11MoviePlayerFPcPc:
 /* 8042CD84 00429CC4  7C 08 03 A6 */	mtlr r0
 /* 8042CD88 00429CC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042CD8C 00429CCC  4E 80 00 20 */	blr 
+.endfn findConfig__Q24Game11MoviePlayerFPcPc
 
-.global __ct__Q24Game12MovieContextFv
-__ct__Q24Game12MovieContextFv:
+.fn __ct__Q24Game12MovieContextFv, global
 /* 8042CD90 00429CD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042CD94 00429CD4  7C 08 02 A6 */	mflr r0
 /* 8042CD98 00429CD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -769,9 +801,9 @@ __ct__Q24Game12MovieContextFv:
 /* 8042CE34 00429D74  7C 08 03 A6 */	mtlr r0
 /* 8042CE38 00429D78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042CE3C 00429D7C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12MovieContextFv
 
-.global allocContexts__Q24Game11MoviePlayerFv
-allocContexts__Q24Game11MoviePlayerFv:
+.fn allocContexts__Q24Game11MoviePlayerFv, global
 /* 8042CE40 00429D80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042CE44 00429D84  7C 08 02 A6 */	mflr r0
 /* 8042CE48 00429D88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -811,9 +843,9 @@ allocContexts__Q24Game11MoviePlayerFv:
 /* 8042CED0 00429E10  7C 08 03 A6 */	mtlr r0
 /* 8042CED4 00429E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042CED8 00429E18  4E 80 00 20 */	blr 
+.endfn allocContexts__Q24Game11MoviePlayerFv
 
-.global clearContexts__Q24Game11MoviePlayerFv
-clearContexts__Q24Game11MoviePlayerFv:
+.fn clearContexts__Q24Game11MoviePlayerFv, global
 /* 8042CEDC 00429E1C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042CEE0 00429E20  7C 08 02 A6 */	mflr r0
 /* 8042CEE4 00429E24  90 01 00 24 */	stw r0, 0x24(r1)
@@ -859,9 +891,9 @@ clearContexts__Q24Game11MoviePlayerFv:
 /* 8042CF7C 00429EBC  7C 08 03 A6 */	mtlr r0
 /* 8042CF80 00429EC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042CF84 00429EC4  4E 80 00 20 */	blr 
+.endfn clearContexts__Q24Game11MoviePlayerFv
 
-.global clearSuspendedDemo__Q24Game11MoviePlayerFv
-clearSuspendedDemo__Q24Game11MoviePlayerFv:
+.fn clearSuspendedDemo__Q24Game11MoviePlayerFv, global
 /* 8042CF88 00429EC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042CF8C 00429ECC  7C 08 02 A6 */	mflr r0
 /* 8042CF90 00429ED0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -907,9 +939,9 @@ clearSuspendedDemo__Q24Game11MoviePlayerFv:
 /* 8042D028 00429F68  7C 08 03 A6 */	mtlr r0
 /* 8042D02C 00429F6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042D030 00429F70  4E 80 00 20 */	blr 
+.endfn clearSuspendedDemo__Q24Game11MoviePlayerFv
 
-.global getNewContext__Q24Game11MoviePlayerFv
-getNewContext__Q24Game11MoviePlayerFv:
+.fn getNewContext__Q24Game11MoviePlayerFv, global
 /* 8042D034 00429F74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042D038 00429F78  7C 08 02 A6 */	mflr r0
 /* 8042D03C 00429F7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -938,14 +970,14 @@ getNewContext__Q24Game11MoviePlayerFv:
 /* 8042D094 00429FD4  7C 08 03 A6 */	mtlr r0
 /* 8042D098 00429FD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042D09C 00429FDC  4E 80 00 20 */	blr 
+.endfn getNewContext__Q24Game11MoviePlayerFv
 
-.global getChild__Q24Game12MovieContextFv
-getChild__Q24Game12MovieContextFv:
+.fn getChild__Q24Game12MovieContextFv, weak
 /* 8042D0A0 00429FE0  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8042D0A4 00429FE4  4E 80 00 20 */	blr 
+.endfn getChild__Q24Game12MovieContextFv
 
-.global setContext__Q24Game11MoviePlayerFPQ24Game12MovieContextPQ24Game11MovieConfigRQ24Game12MoviePlayArg
-setContext__Q24Game11MoviePlayerFPQ24Game12MovieContextPQ24Game11MovieConfigRQ24Game12MoviePlayArg:
+.fn setContext__Q24Game11MoviePlayerFPQ24Game12MovieContextPQ24Game11MovieConfigRQ24Game12MoviePlayArg, global
 /* 8042D0A8 00429FE8  90 A4 00 4C */	stw r5, 0x4c(r4)
 /* 8042D0AC 00429FEC  80 03 01 8C */	lwz r0, 0x18c(r3)
 /* 8042D0B0 00429FF0  90 04 00 50 */	stw r0, 0x50(r4)
@@ -980,9 +1012,9 @@ setContext__Q24Game11MoviePlayerFPQ24Game12MovieContextPQ24Game11MovieConfigRQ24
 /* 8042D124 0042A064  80 06 00 30 */	lwz r0, 0x30(r6)
 /* 8042D128 0042A068  90 04 00 48 */	stw r0, 0x48(r4)
 /* 8042D12C 0042A06C  4E 80 00 20 */	blr 
+.endfn setContext__Q24Game11MoviePlayerFPQ24Game12MovieContextPQ24Game11MovieConfigRQ24Game12MoviePlayArg
 
-.global loadResource__Q24Game11MoviePlayerFv
-loadResource__Q24Game11MoviePlayerFv:
+.fn loadResource__Q24Game11MoviePlayerFv, global
 /* 8042D130 0042A070  94 21 FD B0 */	stwu r1, -0x250(r1)
 /* 8042D134 0042A074  7C 08 02 A6 */	mflr r0
 /* 8042D138 0042A078  90 01 02 54 */	stw r0, 0x254(r1)
@@ -1287,9 +1319,9 @@ loadResource__Q24Game11MoviePlayerFv:
 /* 8042D59C 0042A4DC  7C 08 03 A6 */	mtlr r0
 /* 8042D5A0 0042A4E0  38 21 02 50 */	addi r1, r1, 0x250
 /* 8042D5A4 0042A4E4  4E 80 00 20 */	blr 
+.endfn loadResource__Q24Game11MoviePlayerFv
 
-.global parse__Q24Game11MoviePlayerFb
-parse__Q24Game11MoviePlayerFb:
+.fn parse__Q24Game11MoviePlayerFb, global
 /* 8042D5A8 0042A4E8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8042D5AC 0042A4EC  7C 08 02 A6 */	mflr r0
 /* 8042D5B0 0042A4F0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1341,9 +1373,9 @@ parse__Q24Game11MoviePlayerFb:
 /* 8042D65C 0042A59C  7C 08 03 A6 */	mtlr r0
 /* 8042D660 0042A5A0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8042D664 0042A5A4  4E 80 00 20 */	blr 
+.endfn parse__Q24Game11MoviePlayerFb
 
-.global update__Q24Game11MoviePlayerFP10ControllerP10Controller
-update__Q24Game11MoviePlayerFP10ControllerP10Controller:
+.fn update__Q24Game11MoviePlayerFP10ControllerP10Controller, global
 /* 8042D668 0042A5A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042D66C 0042A5AC  7C 08 02 A6 */	mflr r0
 /* 8042D670 0042A5B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1895,9 +1927,9 @@ update__Q24Game11MoviePlayerFP10ControllerP10Controller:
 /* 8042DE20 0042AD60  7C 08 03 A6 */	mtlr r0
 /* 8042DE24 0042AD64  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042DE28 0042AD68  4E 80 00 20 */	blr 
+.endfn update__Q24Game11MoviePlayerFP10ControllerP10Controller
 
-.global update__Q25P2JME8TControlFP10ControllerP10Controller
-update__Q25P2JME8TControlFP10ControllerP10Controller:
+.fn update__Q25P2JME8TControlFP10ControllerP10Controller, weak
 /* 8042DE2C 0042AD6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042DE30 0042AD70  7C 08 02 A6 */	mflr r0
 /* 8042DE34 0042AD74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1909,9 +1941,9 @@ update__Q25P2JME8TControlFP10ControllerP10Controller:
 /* 8042DE4C 0042AD8C  7C 08 03 A6 */	mtlr r0
 /* 8042DE50 0042AD90  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042DE54 0042AD94  4E 80 00 20 */	blr 
+.endfn update__Q25P2JME8TControlFP10ControllerP10Controller
 
-.global draw__Q24Game11MoviePlayerFR8Graphics
-draw__Q24Game11MoviePlayerFR8Graphics:
+.fn draw__Q24Game11MoviePlayerFR8Graphics, global
 /* 8042DE58 0042AD98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042DE5C 0042AD9C  7C 08 02 A6 */	mflr r0
 /* 8042DE60 0042ADA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1943,9 +1975,9 @@ draw__Q24Game11MoviePlayerFR8Graphics:
 /* 8042DEC4 0042AE04  7C 08 03 A6 */	mtlr r0
 /* 8042DEC8 0042AE08  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042DECC 0042AE0C  4E 80 00 20 */	blr 
+.endfn draw__Q24Game11MoviePlayerFR8Graphics
 
-.global start__Q24Game11MoviePlayerFP6Camera
-start__Q24Game11MoviePlayerFP6Camera:
+.fn start__Q24Game11MoviePlayerFP6Camera, global
 /* 8042DED0 0042AE10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042DED4 0042AE14  7C 08 02 A6 */	mflr r0
 /* 8042DED8 0042AE18  28 04 00 00 */	cmplwi r4, 0
@@ -1977,9 +2009,9 @@ start__Q24Game11MoviePlayerFP6Camera:
 /* 8042DF38 0042AE78  7C 08 03 A6 */	mtlr r0
 /* 8042DF3C 0042AE7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042DF40 0042AE80  4E 80 00 20 */	blr 
+.endfn start__Q24Game11MoviePlayerFP6Camera
 
-.global stop__Q24Game11MoviePlayerFv
-stop__Q24Game11MoviePlayerFv:
+.fn stop__Q24Game11MoviePlayerFv, global
 /* 8042DF44 0042AE84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042DF48 0042AE88  7C 08 02 A6 */	mflr r0
 /* 8042DF4C 0042AE8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2057,9 +2089,9 @@ stop__Q24Game11MoviePlayerFv:
 /* 8042E058 0042AF98  7C 08 03 A6 */	mtlr r0
 /* 8042E05C 0042AF9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042E060 0042AFA0  4E 80 00 20 */	blr 
+.endfn stop__Q24Game11MoviePlayerFv
 
-.global setCamera__Q24Game11MoviePlayerFP6Camera
-setCamera__Q24Game11MoviePlayerFP6Camera:
+.fn setCamera__Q24Game11MoviePlayerFP6Camera, global
 /* 8042E064 0042AFA4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8042E068 0042AFA8  7C 08 02 A6 */	mflr r0
 /* 8042E06C 0042AFAC  38 A0 00 03 */	li r5, 3
@@ -2282,9 +2314,9 @@ setCamera__Q24Game11MoviePlayerFP6Camera:
 /* 8042E37C 0042B2BC  7C 08 03 A6 */	mtlr r0
 /* 8042E380 0042B2C0  38 21 00 60 */	addi r1, r1, 0x60
 /* 8042E384 0042B2C4  4E 80 00 20 */	blr 
+.endfn setCamera__Q24Game11MoviePlayerFP6Camera
 
-.global unsuspend__Q24Game11MoviePlayerFlb
-unsuspend__Q24Game11MoviePlayerFlb:
+.fn unsuspend__Q24Game11MoviePlayerFlb, global
 /* 8042E388 0042B2C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042E38C 0042B2CC  7C 08 02 A6 */	mflr r0
 /* 8042E390 0042B2D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2343,9 +2375,9 @@ unsuspend__Q24Game11MoviePlayerFlb:
 /* 8042E44C 0042B38C  7C 08 03 A6 */	mtlr r0
 /* 8042E450 0042B390  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042E454 0042B394  4E 80 00 20 */	blr 
+.endfn unsuspend__Q24Game11MoviePlayerFlb
 
-.global resetFrame__Q24Game11MoviePlayerFv
-resetFrame__Q24Game11MoviePlayerFv:
+.fn resetFrame__Q24Game11MoviePlayerFv, global
 /* 8042E458 0042B398  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8042E45C 0042B39C  7C 08 02 A6 */	mflr r0
 /* 8042E460 0042B3A0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2398,9 +2430,9 @@ resetFrame__Q24Game11MoviePlayerFv:
 /* 8042E510 0042B450  7C 08 03 A6 */	mtlr r0
 /* 8042E514 0042B454  38 21 00 30 */	addi r1, r1, 0x30
 /* 8042E518 0042B458  4E 80 00 20 */	blr 
+.endfn resetFrame__Q24Game11MoviePlayerFv
 
-.global "setTransform__Q24Game11MoviePlayerFR10Vector3<f>f"
-"setTransform__Q24Game11MoviePlayerFR10Vector3<f>f":
+.fn "setTransform__Q24Game11MoviePlayerFR10Vector3<f>f", global
 /* 8042E51C 0042B45C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042E520 0042B460  7C 08 02 A6 */	mflr r0
 /* 8042E524 0042B464  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2440,9 +2472,9 @@ resetFrame__Q24Game11MoviePlayerFv:
 /* 8042E5AC 0042B4EC  7C 08 03 A6 */	mtlr r0
 /* 8042E5B0 0042B4F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042E5B4 0042B4F4  4E 80 00 20 */	blr 
+.endfn "setTransform__Q24Game11MoviePlayerFR10Vector3<f>f"
 
-.global isPlaying__Q24Game11MoviePlayerFPc
-isPlaying__Q24Game11MoviePlayerFPc:
+.fn isPlaying__Q24Game11MoviePlayerFPc, global
 /* 8042E5B8 0042B4F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042E5BC 0042B4FC  7C 08 02 A6 */	mflr r0
 /* 8042E5C0 0042B500  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2458,9 +2490,9 @@ isPlaying__Q24Game11MoviePlayerFPc:
 /* 8042E5E0 0042B520  7C 08 03 A6 */	mtlr r0
 /* 8042E5E4 0042B524  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042E5E8 0042B528  4E 80 00 20 */	blr 
+.endfn isPlaying__Q24Game11MoviePlayerFPc
 
-.global drawLoading__Q24Game11MoviePlayerFR8Graphics
-drawLoading__Q24Game11MoviePlayerFR8Graphics:
+.fn drawLoading__Q24Game11MoviePlayerFR8Graphics, global
 /* 8042E5EC 0042B52C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8042E5F0 0042B530  7C 08 02 A6 */	mflr r0
 /* 8042E5F4 0042B534  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2548,9 +2580,9 @@ drawLoading__Q24Game11MoviePlayerFR8Graphics:
 /* 8042E728 0042B668  7C 08 03 A6 */	mtlr r0
 /* 8042E72C 0042B66C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8042E730 0042B670  4E 80 00 20 */	blr 
+.endfn drawLoading__Q24Game11MoviePlayerFR8Graphics
 
-.global skip__Q24Game11MoviePlayerFv
-skip__Q24Game11MoviePlayerFv:
+.fn skip__Q24Game11MoviePlayerFv, global
 /* 8042E734 0042B674  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8042E738 0042B678  7C 08 02 A6 */	mflr r0
 /* 8042E73C 0042B67C  C0 02 22 F4 */	lfs f0, lbl_80520654@sda21(r2)
@@ -2620,14 +2652,14 @@ skip__Q24Game11MoviePlayerFv:
 /* 8042E830 0042B770  7C 08 03 A6 */	mtlr r0
 /* 8042E834 0042B774  38 21 00 40 */	addi r1, r1, 0x40
 /* 8042E838 0042B778  4E 80 00 20 */	blr 
+.endfn skip__Q24Game11MoviePlayerFv
 
-.global getNext__Q24Game12MovieContextFv
-getNext__Q24Game12MovieContextFv: # weak function
+.fn getNext__Q24Game12MovieContextFv, weak
 /* 8042E83C 0042B77C  80 63 00 04 */	lwz r3, 4(r3)
 /* 8042E840 0042B780  4E 80 00 20 */	blr 
+.endfn getNext__Q24Game12MovieContextFv
 
-.global __dt__Q24Game11MoviePlayerFv
-__dt__Q24Game11MoviePlayerFv: # weak function
+.fn __dt__Q24Game11MoviePlayerFv, weak
 /* 8042E844 0042B784  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042E848 0042B788  7C 08 02 A6 */	mflr r0
 /* 8042E84C 0042B78C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2681,9 +2713,9 @@ __dt__Q24Game11MoviePlayerFv: # weak function
 /* 8042E8FC 0042B83C  7C 08 03 A6 */	mtlr r0
 /* 8042E900 0042B840  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042E904 0042B844  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game11MoviePlayerFv
 
-.global "invoke__30Delegate<Q24Game11MoviePlayer>Fv"
-"invoke__30Delegate<Q24Game11MoviePlayer>Fv":
+.fn "invoke__30Delegate<Q24Game11MoviePlayer>Fv", weak
 /* 8042E908 0042B848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042E90C 0042B84C  7C 08 02 A6 */	mflr r0
 /* 8042E910 0042B850  7C 64 1B 78 */	mr r4, r3
@@ -2696,8 +2728,9 @@ __dt__Q24Game11MoviePlayerFv: # weak function
 /* 8042E92C 0042B86C  7C 08 03 A6 */	mtlr r0
 /* 8042E930 0042B870  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042E934 0042B874  4E 80 00 20 */	blr 
+.endfn "invoke__30Delegate<Q24Game11MoviePlayer>Fv"
 
-__sinit_moviePlayer_cpp: # static initializer
+.fn __sinit_moviePlayer_cpp, local
 /* 8042E938 0042B878  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8042E93C 0042B87C  38 00 FF FF */	li r0, -1
 /* 8042E940 0042B880  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2708,3 +2741,4 @@ __sinit_moviePlayer_cpp: # static initializer
 /* 8042E954 0042B894  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8042E958 0042B898  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8042E95C 0042B89C  4E 80 00 20 */	blr 
+.endfn __sinit_moviePlayer_cpp

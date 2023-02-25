@@ -5,64 +5,74 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80499C58:
+.obj lbl_80499C58, local
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj lbl_80499C58
 .balign 4
-lbl_80499C64:
+.obj lbl_80499C64, local
 	.asciz "sysShape"
+.endobj lbl_80499C64
 .balign 4
-lbl_80499C70:
+.obj lbl_80499C70, local
 	.asciz "sysShape.cpp"
+.endobj lbl_80499C70
 .balign 4
-lbl_80499C80:
+.obj lbl_80499C80, local
 	.asciz "go to hell !\n"
+.endobj lbl_80499C80
 .balign 4
-lbl_80499C90:
+.obj lbl_80499C90, local
 	.asciz "ExMotionErr::setFrameByKeyType(%d)\n"
+.endobj lbl_80499C90
 .balign 4
-lbl_80499CB4:
+.obj lbl_80499CB4, local
 	.asciz "mismatch LOOP_START - LOOP_END\n"
+.endobj lbl_80499CB4
 .balign 4
-lbl_80499CD4:
+.obj lbl_80499CD4, local
 	.asciz "BlendAnimator : at least 1 motion is required!\n"
+.endobj lbl_80499CD4
 .balign 4
-lbl_80499D04:
+.obj lbl_80499D04, local
 	.asciz "P2Assert"
+.endobj lbl_80499D04
 .balign 4
-lbl_80499D10:
+.obj lbl_80499D10, local
 	.asciz "reached eof\n"
+.endobj lbl_80499D10
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q28SysShape8AnimInfo
-__vt__Q28SysShape8AnimInfo:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q28SysShape8AnimInfo, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28SysShape8AnimInfoFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q28SysShape7AnimMgr
-__vt__Q28SysShape7AnimMgr:
+.endobj __vt__Q28SysShape8AnimInfo
+.obj __vt__Q28SysShape7AnimMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28SysShape7AnimMgrFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q28SysShape13BlendAnimator
-__vt__Q28SysShape13BlendAnimator:
+.endobj __vt__Q28SysShape7AnimMgr
+.obj __vt__Q28SysShape13BlendAnimator, global
 	.4byte 0
 	.4byte 0
 	.4byte getCalc__Q28SysShape13BlendAnimatorFv
-.global __vt__Q28SysShape8Animator
-__vt__Q28SysShape8Animator:
+.endobj __vt__Q28SysShape13BlendAnimator
+.obj __vt__Q28SysShape8Animator, global
 	.4byte 0
 	.4byte 0
 	.4byte getCalc__Q28SysShape8AnimatorFv
 	.4byte animate__Q28SysShape8AnimatorFf
+.endobj __vt__Q28SysShape8Animator
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -98,8 +108,7 @@ __vt__Q28SysShape8Animator:
 .endobj lbl_80520540
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global clearAnimatorAll__Q28SysShape5ModelFv
-clearAnimatorAll__Q28SysShape5ModelFv:
+.fn clearAnimatorAll__Q28SysShape5ModelFv, global
 /* 80428C50 00425B90  38 C0 00 00 */	li r6, 0
 /* 80428C54 00425B94  38 A0 00 00 */	li r5, 0
 /* 80428C58 00425B98  48 00 00 20 */	b .L_80428C78
@@ -116,9 +125,9 @@ clearAnimatorAll__Q28SysShape5ModelFv:
 /* 80428C7C 00425BBC  7C 06 00 00 */	cmpw r6, r0
 /* 80428C80 00425BC0  41 80 FF DC */	blt .L_80428C5C
 /* 80428C84 00425BC4  4E 80 00 20 */	blr 
+.endfn clearAnimatorAll__Q28SysShape5ModelFv
 
-.global startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener:
+.fn startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener, global
 /* 80428C88 00425BC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80428C8C 00425BCC  7C 08 02 A6 */	mflr r0
 /* 80428C90 00425BD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -176,9 +185,9 @@ startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener:
 /* 80428D44 00425C84  7C 08 03 A6 */	mtlr r0
 /* 80428D48 00425C88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80428D4C 00425C8C  4E 80 00 20 */	blr 
+.endfn startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
 
-.global startExAnim__Q28SysShape8AnimatorFPQ28SysShape8AnimInfo
-startExAnim__Q28SysShape8AnimatorFPQ28SysShape8AnimInfo:
+.fn startExAnim__Q28SysShape8AnimatorFPQ28SysShape8AnimInfo, global
 /* 80428D50 00425C90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80428D54 00425C94  7C 08 02 A6 */	mflr r0
 /* 80428D58 00425C98  C0 02 21 C8 */	lfs f0, lbl_80520528@sda21(r2)
@@ -206,14 +215,14 @@ startExAnim__Q28SysShape8AnimatorFPQ28SysShape8AnimInfo:
 /* 80428DAC 00425CEC  7C 08 03 A6 */	mtlr r0
 /* 80428DB0 00425CF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80428DB4 00425CF4  4E 80 00 20 */	blr 
+.endfn startExAnim__Q28SysShape8AnimatorFPQ28SysShape8AnimInfo
 
-.global assertValid__Q28SysShape8AnimatorFPQ28SysShape5Model
-assertValid__Q28SysShape8AnimatorFPQ28SysShape5Model:
+.fn assertValid__Q28SysShape8AnimatorFPQ28SysShape5Model, global
 /* 80428DB8 00425CF8  38 60 00 01 */	li r3, 1
 /* 80428DBC 00425CFC  4E 80 00 20 */	blr 
+.endfn assertValid__Q28SysShape8AnimatorFPQ28SysShape5Model
 
-.global setCurrFrame__Q28SysShape8AnimatorFf
-setCurrFrame__Q28SysShape8AnimatorFf:
+.fn setCurrFrame__Q28SysShape8AnimatorFf, global
 /* 80428DC0 00425D00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80428DC4 00425D04  7C 08 02 A6 */	mflr r0
 /* 80428DC8 00425D08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -230,9 +239,9 @@ setCurrFrame__Q28SysShape8AnimatorFf:
 /* 80428DF4 00425D34  7C 08 03 A6 */	mtlr r0
 /* 80428DF8 00425D38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80428DFC 00425D3C  4E 80 00 20 */	blr 
+.endfn setCurrFrame__Q28SysShape8AnimatorFf
 
-.global setFrameByKeyType__Q28SysShape8AnimatorFUl
-setFrameByKeyType__Q28SysShape8AnimatorFUl:
+.fn setFrameByKeyType__Q28SysShape8AnimatorFUl, global
 /* 80428E00 00425D40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80428E04 00425D44  7C 08 02 A6 */	mflr r0
 /* 80428E08 00425D48  90 01 00 24 */	stw r0, 0x24(r1)
@@ -300,9 +309,9 @@ setFrameByKeyType__Q28SysShape8AnimatorFUl:
 /* 80428EF4 00425E34  7C 08 03 A6 */	mtlr r0
 /* 80428EF8 00425E38  38 21 00 20 */	addi r1, r1, 0x20
 /* 80428EFC 00425E3C  4E 80 00 20 */	blr 
+.endfn setFrameByKeyType__Q28SysShape8AnimatorFUl
 
-.global setLastFrame__Q28SysShape8AnimatorFv
-setLastFrame__Q28SysShape8AnimatorFv:
+.fn setLastFrame__Q28SysShape8AnimatorFv, global
 /* 80428F00 00425E40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80428F04 00425E44  7C 08 02 A6 */	mflr r0
 /* 80428F08 00425E48  90 01 00 24 */	stw r0, 0x24(r1)
@@ -334,9 +343,9 @@ setLastFrame__Q28SysShape8AnimatorFv:
 /* 80428F6C 00425EAC  7C 08 03 A6 */	mtlr r0
 /* 80428F70 00425EB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80428F74 00425EB4  4E 80 00 20 */	blr 
+.endfn setLastFrame__Q28SysShape8AnimatorFv
 
-.global animate__Q28SysShape8AnimatorFf
-animate__Q28SysShape8AnimatorFf:
+.fn animate__Q28SysShape8AnimatorFf, global
 /* 80428F78 00425EB8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80428F7C 00425EBC  7C 08 02 A6 */	mflr r0
 /* 80428F80 00425EC0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -519,9 +528,9 @@ animate__Q28SysShape8AnimatorFf:
 /* 80429218 00426158  7C 08 03 A6 */	mtlr r0
 /* 8042921C 0042615C  38 21 00 50 */	addi r1, r1, 0x50
 /* 80429220 00426160  4E 80 00 20 */	blr 
+.endfn animate__Q28SysShape8AnimatorFf
 
-.global __ct__Q28SysShape13BlendAnimatorFv
-__ct__Q28SysShape13BlendAnimatorFv:
+.fn __ct__Q28SysShape13BlendAnimatorFv, global
 /* 80429224 00426164  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80429228 00426168  7C 08 02 A6 */	mflr r0
 /* 8042922C 0042616C  3C 80 80 4B */	lis r4, __vt__Q28SysShape12BaseAnimator@ha
@@ -554,9 +563,9 @@ __ct__Q28SysShape13BlendAnimatorFv:
 /* 80429298 004261D8  7C 08 03 A6 */	mtlr r0
 /* 8042929C 004261DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804292A0 004261E0  4E 80 00 20 */	blr 
+.endfn __ct__Q28SysShape13BlendAnimatorFv
 
-.global setAnimMgr__Q28SysShape13BlendAnimatorFPQ28SysShape7AnimMgr
-setAnimMgr__Q28SysShape13BlendAnimatorFPQ28SysShape7AnimMgr:
+.fn setAnimMgr__Q28SysShape13BlendAnimatorFPQ28SysShape7AnimMgr, global
 /* 804292A4 004261E4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804292A8 004261E8  7C 08 02 A6 */	mflr r0
 /* 804292AC 004261EC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -653,9 +662,9 @@ setAnimMgr__Q28SysShape13BlendAnimatorFPQ28SysShape7AnimMgr:
 /* 804293EC 0042632C  7C 08 03 A6 */	mtlr r0
 /* 804293F0 00426330  38 21 00 30 */	addi r1, r1, 0x30
 /* 804293F4 00426334  4E 80 00 20 */	blr 
+.endfn setAnimMgr__Q28SysShape13BlendAnimatorFPQ28SysShape7AnimMgr
 
-.global startBlend__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener
-startBlend__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener:
+.fn startBlend__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener, global
 /* 804293F8 00426338  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804293FC 0042633C  7C 08 02 A6 */	mflr r0
 /* 80429400 00426340  90 01 00 24 */	stw r0, 0x24(r1)
@@ -749,18 +758,18 @@ startBlend__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfPQ28SysShape1
 /* 80429548 00426488  7C 08 03 A6 */	mtlr r0
 /* 8042954C 0042648C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80429550 00426490  4E 80 00 20 */	blr 
+.endfn startBlend__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener
 
-.global endBlend__Q28SysShape13BlendAnimatorFv
-endBlend__Q28SysShape13BlendAnimatorFv:
+.fn endBlend__Q28SysShape13BlendAnimatorFv, global
 /* 80429554 00426494  38 00 00 00 */	li r0, 0
 /* 80429558 00426498  C0 02 21 C8 */	lfs f0, lbl_80520528@sda21(r2)
 /* 8042955C 0042649C  98 03 00 48 */	stb r0, 0x48(r3)
 /* 80429560 004264A0  98 03 00 49 */	stb r0, 0x49(r3)
 /* 80429564 004264A4  D0 03 00 3C */	stfs f0, 0x3c(r3)
 /* 80429568 004264A8  4E 80 00 20 */	blr 
+.endfn endBlend__Q28SysShape13BlendAnimatorFv
 
-.global animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff
-animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff:
+.fn animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff, global
 /* 8042956C 004264AC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80429570 004264B0  7C 08 02 A6 */	mflr r0
 /* 80429574 004264B4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -928,9 +937,9 @@ animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff:
 /* 804297D8 00426718  7C 08 03 A6 */	mtlr r0
 /* 804297DC 0042671C  38 21 00 60 */	addi r1, r1, 0x60
 /* 804297E0 00426720  4E 80 00 20 */	blr 
+.endfn animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff
 
-.global getCalc__Q28SysShape13BlendAnimatorFv
-getCalc__Q28SysShape13BlendAnimatorFv:
+.fn getCalc__Q28SysShape13BlendAnimatorFv, global
 /* 804297E4 00426724  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804297E8 00426728  7C 08 02 A6 */	mflr r0
 /* 804297EC 0042672C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -949,9 +958,9 @@ getCalc__Q28SysShape13BlendAnimatorFv:
 /* 80429818 00426758  7C 08 03 A6 */	mtlr r0
 /* 8042981C 0042675C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80429820 00426760  4E 80 00 20 */	blr 
+.endfn getCalc__Q28SysShape13BlendAnimatorFv
 
-.global init__Q28SysShape5JointFUsPQ28SysShape5ModelP8J3DJoint
-init__Q28SysShape5JointFUsPQ28SysShape5ModelP8J3DJoint:
+.fn init__Q28SysShape5JointFUsPQ28SysShape5ModelP8J3DJoint, global
 /* 80429824 00426764  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80429828 00426768  7C 08 02 A6 */	mflr r0
 /* 8042982C 0042676C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -983,9 +992,9 @@ init__Q28SysShape5JointFUsPQ28SysShape5ModelP8J3DJoint:
 /* 80429894 004267D4  7C 08 03 A6 */	mtlr r0
 /* 80429898 004267D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042989C 004267DC  4E 80 00 20 */	blr 
+.endfn init__Q28SysShape5JointFUsPQ28SysShape5ModelP8J3DJoint
 
-.global getWorldMatrix__Q28SysShape5JointFv
-getWorldMatrix__Q28SysShape5JointFv:
+.fn getWorldMatrix__Q28SysShape5JointFv, global
 /* 804298A0 004267E0  80 83 00 34 */	lwz r4, 0x34(r3)
 /* 804298A4 004267E4  A0 03 00 38 */	lhz r0, 0x38(r3)
 /* 804298A8 004267E8  80 64 00 08 */	lwz r3, 8(r4)
@@ -994,9 +1003,9 @@ getWorldMatrix__Q28SysShape5JointFv:
 /* 804298B4 004267F4  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 804298B8 004267F8  7C 63 02 14 */	add r3, r3, r0
 /* 804298BC 004267FC  4E 80 00 20 */	blr 
+.endfn getWorldMatrix__Q28SysShape5JointFv
 
-.global getLowestAnimKey__Q28SysShape8AnimInfoFf
-getLowestAnimKey__Q28SysShape8AnimInfoFf:
+.fn getLowestAnimKey__Q28SysShape8AnimInfoFf global
 /* 804298C0 00426800  FC 00 08 1E */	fctiwz f0, f1
 /* 804298C4 00426804  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804298C8 00426808  C0 42 21 E0 */	lfs f2, lbl_80520540@sda21(r2)
@@ -1027,9 +1036,9 @@ getLowestAnimKey__Q28SysShape8AnimInfoFf:
 /* 80429920 00426860  40 82 FF C8 */	bne .L_804298E8
 /* 80429924 00426864  38 21 00 10 */	addi r1, r1, 0x10
 /* 80429928 00426868  4E 80 00 20 */	blr 
+.endfn getLowestAnimKey__Q28SysShape8AnimInfoFf
 
-.global getLastLoopStart__Q28SysShape8AnimInfoFPQ28SysShape8KeyEvent
-getLastLoopStart__Q28SysShape8AnimInfoFPQ28SysShape8KeyEvent:
+.fn getLastLoopStart__Q28SysShape8AnimInfoFPQ28SysShape8KeyEvent, global
 /* 8042992C 0042686C  80 64 00 08 */	lwz r3, 8(r4)
 /* 80429930 00426870  48 00 00 14 */	b .L_80429944
 .L_80429934:
@@ -1042,9 +1051,9 @@ getLastLoopStart__Q28SysShape8AnimInfoFPQ28SysShape8KeyEvent:
 /* 80429948 00426888  40 82 FF EC */	bne .L_80429934
 /* 8042994C 0042688C  38 60 00 00 */	li r3, 0
 /* 80429950 00426890  4E 80 00 20 */	blr 
+.endfn getLastLoopStart__Q28SysShape8AnimInfoFPQ28SysShape8KeyEvent
 
-.global getAnimKeyByType__Q28SysShape8AnimInfoFUl
-getAnimKeyByType__Q28SysShape8AnimInfoFUl:
+.fn getAnimKeyByType__Q28SysShape8AnimInfoFUl, global
 /* 80429954 00426894  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 80429958 00426898  48 00 00 14 */	b .L_8042996C
 .L_8042995C:
@@ -1057,9 +1066,9 @@ getAnimKeyByType__Q28SysShape8AnimInfoFUl:
 /* 80429970 004268B0  40 82 FF EC */	bne .L_8042995C
 /* 80429974 004268B4  38 60 00 00 */	li r3, 0
 /* 80429978 004268B8  4E 80 00 20 */	blr 
+.endfn getAnimKeyByType__Q28SysShape8AnimInfoFUl
 
-.global read__Q28SysShape8AnimInfoFR6Stream
-read__Q28SysShape8AnimInfoFR6Stream:
+.fn read__Q28SysShape8AnimInfoFR6Stream, global
 /* 8042997C 004268BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80429980 004268C0  7C 08 02 A6 */	mflr r0
 /* 80429984 004268C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1068,9 +1077,9 @@ read__Q28SysShape8AnimInfoFR6Stream:
 /* 80429990 004268D0  7C 08 03 A6 */	mtlr r0
 /* 80429994 004268D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80429998 004268D8  4E 80 00 20 */	blr 
+.endfn read__Q28SysShape8AnimInfoFR6Stream
 
-.global readEditor__Q28SysShape8AnimInfoFR6Stream
-readEditor__Q28SysShape8AnimInfoFR6Stream:
+.fn readEditor__Q28SysShape8AnimInfoFR6Stream, global
 /* 8042999C 004268DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804299A0 004268E0  7C 08 02 A6 */	mflr r0
 /* 804299A4 004268E4  38 A0 00 00 */	li r5, 0
@@ -1142,9 +1151,9 @@ readEditor__Q28SysShape8AnimInfoFR6Stream:
 /* 80429A9C 004269DC  7C 08 03 A6 */	mtlr r0
 /* 80429AA0 004269E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80429AA4 004269E4  4E 80 00 20 */	blr 
+.endfn readEditor__Q28SysShape8AnimInfoFR6Stream
 
-.global load__Q28SysShape7AnimMgrFPcP12J3DModelDataP13JKRFileLoader
-load__Q28SysShape7AnimMgrFPcP12J3DModelDataP13JKRFileLoader:
+.fn load__Q28SysShape7AnimMgrFPcP12J3DModelDataP13JKRFileLoader, global
 /* 80429AA8 004269E8  94 21 FB B0 */	stwu r1, -0x450(r1)
 /* 80429AAC 004269EC  7C 08 02 A6 */	mflr r0
 /* 80429AB0 004269F0  38 C0 00 00 */	li r6, 0
@@ -1228,9 +1237,9 @@ load__Q28SysShape7AnimMgrFPcP12J3DModelDataP13JKRFileLoader:
 /* 80429BD8 00426B18  7C 08 03 A6 */	mtlr r0
 /* 80429BDC 00426B1C  38 21 04 50 */	addi r1, r1, 0x450
 /* 80429BE0 00426B20  4E 80 00 20 */	blr 
+.endfn load__Q28SysShape7AnimMgrFPcP12J3DModelDataP13JKRFileLoader
 
-.global __dt__Q28SysShape8AnimInfoFv
-__dt__Q28SysShape8AnimInfoFv:
+.fn __dt__Q28SysShape8AnimInfoFv, weak
 /* 80429BE4 00426B24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80429BE8 00426B28  7C 08 02 A6 */	mflr r0
 /* 80429BEC 00426B2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1266,9 +1275,9 @@ __dt__Q28SysShape8AnimInfoFv:
 /* 80429C5C 00426B9C  7C 08 03 A6 */	mtlr r0
 /* 80429C60 00426BA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80429C64 00426BA4  4E 80 00 20 */	blr 
+.endfn __dt__Q28SysShape8AnimInfoFv
 
-.global dump__Q28SysShape7AnimMgrFv
-dump__Q28SysShape7AnimMgrFv:
+.fn dump__Q28SysShape7AnimMgrFv, global
 /* 80429C68 00426BA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80429C6C 00426BAC  7C 08 02 A6 */	mflr r0
 /* 80429C70 00426BB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1307,9 +1316,9 @@ dump__Q28SysShape7AnimMgrFv:
 /* 80429CDC 00426C1C  7C 08 03 A6 */	mtlr r0
 /* 80429CE0 00426C20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80429CE4 00426C24  4E 80 00 20 */	blr 
+.endfn dump__Q28SysShape7AnimMgrFv
 
-.global __dt__Q28SysShape7AnimMgrFv
-__dt__Q28SysShape7AnimMgrFv:
+.fn __dt__Q28SysShape7AnimMgrFv, weak
 /* 80429CE8 00426C28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80429CEC 00426C2C  7C 08 02 A6 */	mflr r0
 /* 80429CF0 00426C30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1353,8 +1362,9 @@ __dt__Q28SysShape7AnimMgrFv:
 /* 80429D7C 00426CBC  7C 08 03 A6 */	mtlr r0
 /* 80429D80 00426CC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80429D84 00426CC4  4E 80 00 20 */	blr 
+.endfn __dt__Q28SysShape7AnimMgrFv
 
-__sinit_sysShape_cpp: # static initializer
+.fn __sinit_sysShape_cpp, local
 /* 80429D88 00426CC8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80429D8C 00426CCC  38 00 FF FF */	li r0, -1
 /* 80429D90 00426CD0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1365,3 +1375,4 @@ __sinit_sysShape_cpp: # static initializer
 /* 80429DA4 00426CE4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80429DA8 00426CE8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80429DAC 00426CEC  4E 80 00 20 */	blr 
+.endfn __sinit_sysShape_cpp

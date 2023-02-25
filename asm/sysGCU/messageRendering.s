@@ -16,7 +16,7 @@
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
 # array of eleven TColor[2]
-"cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@":
+.obj "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@", local
 	.4byte 0xFFFFFFFF
 	.4byte 0x00A60000
 	.4byte 0xFFFFFFFF
@@ -39,7 +39,8 @@
 	.4byte 0x888888FF
 	.4byte 0xE1E1E1FF
 	.4byte 0x888888FF
-lbl_804ECA90:
+.endobj "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@"
+.obj lbl_804ECA90, local
 	.4byte .L_8043A50C
 	.4byte .L_8043A518
 	.4byte .L_8043A544
@@ -48,8 +49,8 @@ lbl_804ECA90:
 	.4byte .L_8043AB48
 	.4byte .L_8043AB74
 	.4byte .L_8043AB80
-.global __vt__Q25P2JME19TRenderingProcessor
-__vt__Q25P2JME19TRenderingProcessor:
+.endobj lbl_804ECA90
+.obj __vt__Q25P2JME19TRenderingProcessor, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q25P2JME19TRenderingProcessorFv
@@ -83,8 +84,8 @@ __vt__Q25P2JME19TRenderingProcessor:
 	.4byte doDrawRuby__Q25P2JME19TRenderingProcessorFffffib
 	.4byte doDrawLetter__Q25P2JME19TRenderingProcessorFffffib
 	.4byte doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv
-.global __vt__Q25P2JME23TRenderingProcessorBase
-__vt__Q25P2JME23TRenderingProcessorBase:
+.endobj __vt__Q25P2JME19TRenderingProcessor
+.obj __vt__Q25P2JME23TRenderingProcessorBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q25P2JME23TRenderingProcessorBaseFv
@@ -111,6 +112,7 @@ __vt__Q25P2JME23TRenderingProcessorBase:
 	.4byte tagColorEX__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
 	.4byte tagControl__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
 	.4byte tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
+.endobj __vt__Q25P2JME23TRenderingProcessorBase
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8

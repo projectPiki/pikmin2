@@ -5,19 +5,23 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804997C8:
+.obj lbl_804997C8, local
 	.asciz "system.cpp"
+.endobj lbl_804997C8
 .balign 4
-lbl_804997D4:
+.obj lbl_804997D4, local
 	.asciz "Memory Alloc Error!\n%x (size %d) align(%d)\nRestTotal=%d\nRestFree =%d\n"
+.endobj lbl_804997D4
 .balign 4
-lbl_8049981C:
+.obj lbl_8049981C, local
 	.asciz "%s in \"%s\" on line %d\n"
+.endobj lbl_8049981C
 .balign 4
-lbl_80499834:
+.obj lbl_80499834, local
 	.asciz "%s in \"%s\" on\n line %d\n"
+.endobj lbl_80499834
 .balign 4
-lbl_8049984C:
+.obj lbl_8049984C, local
 	.short 0x0100
 	.short 0x0200
 	.short 0x0400
@@ -29,23 +33,28 @@ lbl_8049984C:
 	.short 0x0002
 	.short 0x0010
 	.short 0x0000
+.endobj lbl_8049984C
 .balign 4
-lbl_80499864:
+.obj lbl_80499864, local
 	.asciz "--- Game debug information ---\n"
+.endobj lbl_80499864
 .balign 4
-lbl_80499884: #Shift-JIS
+.obj lbl_80499884, local # Shift-JIS
 	.4byte 0x83528393
 	.4byte 0x835C815B
 	.4byte 0x838B82AA
 	.4byte 0x82A082E8
 	.4byte 0x82DC82B9
 	.4byte 0x82F10A00
+.endobj lbl_80499884
 .balign 4
-lbl_8049989C:
+.obj lbl_8049989C, local
 	.asciz "aramStrm"
+.endobj lbl_8049989C
 .balign 4
-lbl_804998A8:
+.obj lbl_804998A8, local
 	.asciz "cpuLockCount %d retraceCount %d\n"
+.endobj lbl_804998A8
 .balign 4
 lbl_804998CC:
 	.asciz "system/retrace"
@@ -206,23 +215,25 @@ __vt__Q23PSM7Factory:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-sUseABXCommand:
+.obj sUseABXCommand, local
 	.byte 0x01
+.endobj sUseABXCommand
 .balign 4
-cMapFileName:
+.obj cMapFileName, local
 	.4byte lbl_804998E8
+.endobj cMapFileName
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mRenderMode__6System
-mRenderMode__6System:
+.obj mRenderMode__6System, global
 	.skip 0x4
-.global sys
-sys:
+.endobj mRenderMode__6System
+.obj sys, global
 	.skip 0x4
-.global sVerifyArg__6System
-sVerifyArg__6System:
+.endobj sys
+.obj sVerifyArg__6System, global
 	.skip 0x8
+.endobj sVerifyArg__6System
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

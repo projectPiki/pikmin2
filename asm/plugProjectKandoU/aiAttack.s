@@ -119,8 +119,7 @@
 .endobj lbl_80519098
 .balign 8
 .obj lbl_805190A0, local
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .endobj lbl_805190A0
 .obj lbl_805190A8, local
 	.float 10.0

@@ -5,22 +5,27 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049A6E0:
+.obj lbl_8049A6E0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8049A6E0
 .balign 4
-lbl_8049A6EC:
+.obj lbl_8049A6EC, local
 	.asciz "movieMessage"
+.endobj lbl_8049A6EC
 .balign 4
-lbl_8049A6FC:
+.obj lbl_8049A6FC, local
 	.asciz "movieMessage.cpp"
+.endobj lbl_8049A6FC
 .balign 4
-lbl_8049A710:
+.obj lbl_8049A710, local
 	.asciz "P2Assert"
+.endobj lbl_8049A710
 .balign 4
-lbl_8049A71C:
+.obj lbl_8049A71C, local
 	.asciz "anim/pod.btp"
+.endobj lbl_8049A71C
 .balign 4
 lbl_8049A72C:
 	.asciz "anim/pod.bck"

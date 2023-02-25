@@ -47,67 +47,87 @@ lbl_constructor:
 	.asciz "/message/mesRes_spa.szs"
 .endobj lbl_8049A9A0
 .balign 4
-lbl_8049A9B8:
+.obj lbl_8049A9B8, local
 	.asciz "a_btn.bti"
+.endobj lbl_8049A9B8
 .balign 4
-lbl_8049A9C4:
+.obj lbl_8049A9C4, local
 	.asciz "b_btn.bti"
+.endobj lbl_8049A9C4
 .balign 4
-lbl_8049A9D0:
+.obj lbl_8049A9D0, local
 	.asciz "c_btn.bti"
+.endobj lbl_8049A9D0
 .balign 4
-lbl_8049A9DC:
+.obj lbl_8049A9DC, local
 	.asciz "x_btn.bti"
+.endobj lbl_8049A9DC
 .balign 4
-lbl_8049A9E8:
+.obj lbl_8049A9E8, local
 	.asciz "y_btn.bti"
+.endobj lbl_8049A9E8
 .balign 4
-lbl_8049A9F4:
+.obj lbl_8049A9F4, local
 	.asciz "z_btn.bti"
+.endobj lbl_8049A9F4
 .balign 4
-lbl_8049AA00:
+.obj lbl_8049AA00, local
 	.asciz "l_btn.bti"
+.endobj lbl_8049AA00
 .balign 4
-lbl_8049AA0C:
+.obj lbl_8049AA0C, local
 	.asciz "r_btn.bti"
+.endobj lbl_8049AA0C
 .balign 4
-lbl_8049AA18:
+.obj lbl_8049AA18, local
 	.asciz "3d_btn.bti"
+.endobj lbl_8049AA18
 .balign 4
-lbl_8049AA24:
+.obj lbl_8049AA24, local
 	.asciz "st_btn.bti"
+.endobj lbl_8049AA24
 .balign 4
-lbl_8049AA30:
+.obj lbl_8049AA30, local
 	.asciz "t_btn.bti"
+.endobj lbl_8049AA30
 .balign 4
-lbl_8049AA3C:
+.obj lbl_8049AA3C, local
 	.asciz "messageMgr.cpp"
+.endobj lbl_8049AA3C
 .balign 4
-lbl_8049AA4C:
+.obj lbl_8049AA4C, local
 	.asciz "P2Assert"
+.endobj lbl_8049AA4C
 .balign 4
-lbl_8049AA58:
+.obj lbl_8049AA58, local
 	.asciz "MessageMgr"
+.endobj lbl_8049AA58
 .balign 4
-lbl_8049AA64:
+.obj lbl_8049AA64, local
 	.asciz "font res"
+.endobj lbl_8049AA64
 .balign 4
-lbl_8049AA70:
+.obj lbl_8049AA70, local
 	.asciz "pikmin2main.bfn"
+.endobj lbl_8049AA70
 .balign 4
-lbl_8049AA80:
+.obj lbl_8049AA80, local
 	.asciz "pikmin2.bmg"
+.endobj lbl_8049AA80
 .balign 4
-lbl_8049AA8C:
+.obj lbl_8049AA8C, local
 	.asciz "pikmin2.bmc"
+.endobj lbl_8049AA8C
 .balign 4
-lbl_8049AA98:
+.obj lbl_8049AA98, local
 	.asciz "/user/Yamashita/arc/gameTex.szs"
+.endobj lbl_8049AA98
 .balign 4
-lbl_8049AAB8:
+.obj lbl_8049AAB8, local
 	.asciz "cacheFont"
+.endobj lbl_8049AAB8
 .balign 4
-lbl_8049AAC4: # Shift-JIS
+.obj lbl_8049AAC4, local # Shift-JIS
 	.4byte 0x0982A082
 	.4byte 0xA282A482
 	.4byte 0xA682A882
@@ -149,15 +169,17 @@ lbl_8049AAC4: # Shift-JIS
 	.4byte 0x83848386
 	.4byte 0x8388838F
 	.4byte 0x83930900
+.endobj lbl_8049AAC4
 .balign 4
-lbl_8049AB68: # Shift-JIS
+.obj lbl_8049AB68, local # Shift-JIS
 	.4byte 0x83818362
 	.4byte 0x835A815B
 	.4byte 0x835782CC
 	.4byte 0x8370815B
 	.4byte 0x83580000
+.endobj lbl_8049AB68
 .balign 4
-lbl_8049AB7C: # Shift-JIS
+.obj lbl_8049AB7C, local # Shift-JIS
 	.4byte 0x83818362
 	.4byte 0x835A815B
 	.4byte 0x8357834A
@@ -165,6 +187,7 @@ lbl_8049AB7C: # Shift-JIS
 	.4byte 0x82CC8370
 	.4byte 0x815B8358
 	.byte 0
+.endobj lbl_8049AB7C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -237,8 +260,7 @@ lbl_8049AB7C: # Shift-JIS
 .endobj lbl_805208A0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__Q25P2JME3MgrFP10JKRExpHeap
-create__Q25P2JME3MgrFP10JKRExpHeap:
+.fn create__Q25P2JME3MgrFP10JKRExpHeap, global
 /* 80437EAC 00434DEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80437EB0 00434DF0  7C 08 02 A6 */	mflr r0
 /* 80437EB4 00434DF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -256,9 +278,9 @@ create__Q25P2JME3MgrFP10JKRExpHeap:
 /* 80437EE0 00434E20  7C 08 03 A6 */	mtlr r0
 /* 80437EE4 00434E24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80437EE8 00434E28  4E 80 00 20 */	blr 
+.endfn create__Q25P2JME3MgrFP10JKRExpHeap
 
-.global __ct__Q25P2JME3MgrFP10JKRExpHeap
-__ct__Q25P2JME3MgrFP10JKRExpHeap:
+.fn __ct__Q25P2JME3MgrFP10JKRExpHeap, global
 /* 80437EEC 00434E2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80437EF0 00434E30  7C 08 02 A6 */	mflr r0
 /* 80437EF4 00434E34  3C A0 80 4A */	lis r5, lbl_8049A8D0@ha
@@ -352,9 +374,9 @@ __ct__Q25P2JME3MgrFP10JKRExpHeap:
 /* 80438050 00434F90  7C 08 03 A6 */	mtlr r0
 /* 80438054 00434F94  38 21 00 20 */	addi r1, r1, 0x20
 /* 80438058 00434F98  4E 80 00 20 */	blr 
+.endfn __ct__Q25P2JME3MgrFP10JKRExpHeap
 
-.global __dt__Q25P2JME3MgrFv
-__dt__Q25P2JME3MgrFv:
+.fn __dt__Q25P2JME3MgrFv, global
 /* 8043805C 00434F9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80438060 00434FA0  7C 08 02 A6 */	mflr r0
 /* 80438064 00434FA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -382,9 +404,9 @@ __dt__Q25P2JME3MgrFv:
 /* 804380B8 00434FF8  7C 08 03 A6 */	mtlr r0
 /* 804380BC 00434FFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804380C0 00435000  4E 80 00 20 */	blr 
+.endfn __dt__Q25P2JME3MgrFv
 
-.global setupMessage__Q25P2JME3MgrFv
-setupMessage__Q25P2JME3MgrFv:
+.fn setupMessage__Q25P2JME3MgrFv, global
 /* 804380C4 00435004  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804380C8 00435008  7C 08 02 A6 */	mflr r0
 /* 804380CC 0043500C  3C 80 80 4F */	lis r4, sMesResName__5P2JME@ha
@@ -452,9 +474,9 @@ setupMessage__Q25P2JME3MgrFv:
 /* 804381B8 004350F8  7C 08 03 A6 */	mtlr r0
 /* 804381BC 004350FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 804381C0 00435100  4E 80 00 20 */	blr 
+.endfn setupMessage__Q25P2JME3MgrFv
 
-.global setupTex__Q25P2JME3MgrFv
-setupTex__Q25P2JME3MgrFv:
+.fn setupTex__Q25P2JME3MgrFv, global
 /* 804381C4 00435104  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804381C8 00435108  7C 08 02 A6 */	mflr r0
 /* 804381CC 0043510C  3C 80 80 4A */	lis r4, lbl_8049A8D0@ha
@@ -521,9 +543,9 @@ setupTex__Q25P2JME3MgrFv:
 /* 804382B0 004351F0  7C 08 03 A6 */	mtlr r0
 /* 804382B4 004351F4  38 21 00 30 */	addi r1, r1, 0x30
 /* 804382B8 004351F8  4E 80 00 20 */	blr 
+.endfn setupTex__Q25P2JME3MgrFv
 
-.global setupFont__Q25P2JME3MgrFPCcP10JKRExpHeap
-setupFont__Q25P2JME3MgrFPCcP10JKRExpHeap:
+.fn setupFont__Q25P2JME3MgrFPCcP10JKRExpHeap, global
 /* 804382BC 004351FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804382C0 00435200  7C 08 02 A6 */	mflr r0
 /* 804382C4 00435204  3C E0 80 4A */	lis r7, lbl_8049A8D0@ha
@@ -679,9 +701,9 @@ setupFont__Q25P2JME3MgrFPCcP10JKRExpHeap:
 /* 804384F8 00435438  7C 08 03 A6 */	mtlr r0
 /* 804384FC 0043543C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80438500 00435440  4E 80 00 20 */	blr 
+.endfn setupFont__Q25P2JME3MgrFPCcP10JKRExpHeap
 
-.global createImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi
-createImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi:
+.fn createImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi, global
 /* 80438504 00435444  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80438508 00435448  7C 08 02 A6 */	mflr r0
 /* 8043850C 0043544C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -795,9 +817,9 @@ createImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi:
 /* 804386A0 004355E0  7C 08 03 A6 */	mtlr r0
 /* 804386A4 004355E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 804386A8 004355E8  4E 80 00 20 */	blr 
+.endfn createImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi
 
-.global setImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDiP10JUTTexture
-setImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDiP10JUTTexture:
+.fn setImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDiP10JUTTexture, global
 /* 804386AC 004355EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804386B0 004355F0  7C 08 02 A6 */	mflr r0
 /* 804386B4 004355F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -850,9 +872,9 @@ setImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDiP10JUTTexture:
 /* 80438764 004356A4  7C 08 03 A6 */	mtlr r0
 /* 80438768 004356A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043876C 004356AC  4E 80 00 20 */	blr 
+.endfn setImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDiP10JUTTexture
 
-.global getImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi
-getImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi:
+.fn getImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi, global
 /* 80438770 004356B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80438774 004356B4  7C 08 02 A6 */	mflr r0
 /* 80438778 004356B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -902,9 +924,9 @@ getImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi:
 /* 8043881C 0043575C  7C 08 03 A6 */	mtlr r0
 /* 80438820 00435760  38 21 00 20 */	addi r1, r1, 0x20
 /* 80438824 00435764  4E 80 00 20 */	blr 
+.endfn getImage__Q25P2JME3MgrFQ35P2JME10ImageGroup3EIDi
 
-.global setupMessageResource__Q25P2JME3MgrFP10JKRArchivePCc
-setupMessageResource__Q25P2JME3MgrFP10JKRArchivePCc:
+.fn setupMessageResource__Q25P2JME3MgrFP10JKRArchivePCc, global
 /* 80438828 00435768  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8043882C 0043576C  7C 08 02 A6 */	mflr r0
 /* 80438830 00435770  3C C0 80 4A */	lis r6, lbl_8049A8D0@ha
@@ -972,9 +994,9 @@ setupMessageResource__Q25P2JME3MgrFP10JKRArchivePCc:
 /* 80438920 00435860  7C 08 03 A6 */	mtlr r0
 /* 80438924 00435864  38 21 00 30 */	addi r1, r1, 0x30
 /* 80438928 00435868  4E 80 00 20 */	blr 
+.endfn setupMessageResource__Q25P2JME3MgrFP10JKRArchivePCc
 
-.global setupColor__Q25P2JME3MgrFP10JKRArchivePCc
-setupColor__Q25P2JME3MgrFP10JKRArchivePCc:
+.fn setupColor__Q25P2JME3MgrFP10JKRArchivePCc, global
 /* 8043892C 0043586C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80438930 00435870  7C 08 02 A6 */	mflr r0
 /* 80438934 00435874  3C C0 80 4A */	lis r6, lbl_8049A8D0@ha
@@ -1033,8 +1055,9 @@ setupColor__Q25P2JME3MgrFP10JKRArchivePCc:
 /* 80438A00 00435940  7C 08 03 A6 */	mtlr r0
 /* 80438A04 00435944  38 21 00 30 */	addi r1, r1, 0x30
 /* 80438A08 00435948  4E 80 00 20 */	blr 
+.endfn setupColor__Q25P2JME3MgrFP10JKRArchivePCc
 
-__sinit_messageMgr_cpp: # static initializer
+.fn __sinit_messageMgr_cpp, local
 /* 80438A0C 0043594C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80438A10 00435950  38 00 FF FF */	li r0, -1
 /* 80438A14 00435954  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1045,3 +1068,4 @@ __sinit_messageMgr_cpp: # static initializer
 /* 80438A28 00435968  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80438A2C 0043596C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80438A30 00435970  4E 80 00 20 */	blr 
+.endfn __sinit_messageMgr_cpp

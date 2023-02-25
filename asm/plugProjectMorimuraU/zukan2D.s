@@ -44,7 +44,7 @@ lbl_constructor:
 	.8byte 0x00546D656E753039
 .endobj lbl_80492568
 .balign 8
-lbl_804925B8: # table of 120 u64 (char[8]?) elements
+.obj lbl_804925B8, local # table of 120 u64 (char[8]?) elements
 	.ascii "Pn00_0_1"
 	.ascii "Pn00_1_1"
 	.ascii "Pn00_2_1"
@@ -165,125 +165,92 @@ lbl_804925B8: # table of 120 u64 (char[8]?) elements
 	.8byte 0x506D6530395F3030
 	.8byte 0x506D6530395F3031
 	.8byte 0x506D6530395F3032
-	.4byte 0x7730385F
-	.4byte 0x34385F67
-	.4byte 0x72612E62
-	.4byte 0x74690000
-lbl_80492988:
-	.4byte 0x74696D67
-	.4byte 0x2F666C6F
-	.4byte 0x7765725F
-	.4byte 0x69636F6E
-	.4byte 0x2E627469
-	.4byte 0x00000000
-lbl_804929A0:
-	.4byte 0x656E656D
-	.4byte 0x795A756B
-	.4byte 0x616E0000
-	.4byte 0x00000000
+.endobj lbl_804925B8
+.balign 4
+.obj lbl_80492978, local
+	.asciz "w08_48_gra.bti"
+.endobj lbl_80492978
+.balign 4
+.obj lbl_80492988, local
+	.asciz "timg/flower_icon.bti"
+.endobj lbl_80492988
+.balign 4
+.obj lbl_804929A0, local
+	.asciz "enemyZukan"
+.endobj lbl_804929A0
+.balign 8
+.obj lbl_804929B0, local
 	.8byte 0x00313330315F3030
 	.8byte 0x00313331305F3030
+.endobj lbl_804929B0
+.balign 8
+.obj lbl_804929C0, local
 	.8byte 0x00313830315F3030
 	.8byte 0x00313831305F3030
+.endobj lbl_804929C0
+.balign 8
+.obj lbl_804929D0, local
 	.8byte 0x00313730315F3030
 	.8byte 0x00313731305F3030
-	.4byte 0x73657420
-	.4byte 0x44656275
-	.4byte 0x67486561
-	.4byte 0x70506172
-	.4byte 0x656E742E
-	.4byte 0x206D6169
-	.4byte 0x6C20746F
-	.4byte 0x206D6F72
-	.4byte 0x696D756E
-	.4byte 0x2E0A0000
-	.4byte 0x6E65775F
-	.4byte 0x73656962
-	.4byte 0x7574757A
-	.4byte 0x756B616E
-	.4byte 0x5F6D6169
-	.4byte 0x6E2E626C
-	.4byte 0x6F000000
-	.4byte 0x6E65775F
-	.4byte 0x73656962
-	.4byte 0x7574757A
-	.4byte 0x756B616E
-	.4byte 0x5F6D6169
-	.4byte 0x6E2E6263
-	.4byte 0x6B000000
-	.4byte 0x6E65775F
-	.4byte 0x73656962
-	.4byte 0x7574757A
-	.4byte 0x756B616E
-	.4byte 0x5F6D6169
-	.4byte 0x6E2E6270
-	.4byte 0x6B000000
-	.4byte 0x6E65775F
-	.4byte 0x73656962
-	.4byte 0x7574757A
-	.4byte 0x756B616E
-	.4byte 0x5F62672E
-	.4byte 0x626C6F00
-	.4byte 0x6E65775F
-	.4byte 0x73656962
-	.4byte 0x7574757A
-	.4byte 0x756B616E
-	.4byte 0x5F656666
-	.4byte 0x6563742E
-	.4byte 0x626C6F00
-	.4byte 0x6E65775F
-	.4byte 0x73656962
-	.4byte 0x7574757A
-	.4byte 0x756B616E
-	.4byte 0x5F656666
-	.4byte 0x6563742E
-	.4byte 0x62746B00
-	.4byte 0x6E65775F
-	.4byte 0x73656962
-	.4byte 0x7574757A
-	.4byte 0x756B616E
-	.4byte 0x5F6C6973
-	.4byte 0x742E626C
-	.4byte 0x6F000000
-	.4byte 0x6E65775F
-	.4byte 0x73656962
-	.4byte 0x7574757A
-	.4byte 0x756B616E
-	.4byte 0x5F73756A
-	.4byte 0x692E626C
-	.4byte 0x6F000000
-	.4byte 0x7A756B61
-	.4byte 0x6E5F6D65
-	.4byte 0x73735F77
-	.4byte 0x696E646F
-	.4byte 0x772E626C
-	.4byte 0x6F000000
-	.4byte 0x7A756B61
-	.4byte 0x6E5F6D65
-	.4byte 0x73735F77
-	.4byte 0x696E646F
-	.4byte 0x772E6263
-	.4byte 0x6B000000
-	.4byte 0x7A756B61
-	.4byte 0x6E5F6D65
-	.4byte 0x73735F77
-	.4byte 0x696E646F
-	.4byte 0x772E6270
-	.4byte 0x6B000000
-	.4byte 0x6E65775F
-	.4byte 0x73656962
-	.4byte 0x7574757A
-	.4byte 0x756B616E
-	.4byte 0x5F79616A
-	.4byte 0x69727573
-	.4byte 0x68692E62
-	.4byte 0x6C6F0000
-lbl_80492B4C:
-	.4byte 0x70726963
-	.4byte 0x65202825
-	.4byte 0x6429203D
-	.4byte 0x2025640A
-	.4byte 0x00000000
+.endobj lbl_804929D0
+.balign 4
+.obj lbl_804929E0, local
+	.asciz "set DebugHeapParent. mail to morimun.\n"
+.endobj lbl_804929E0
+.balign 4
+.obj lbl_80492A08, local
+	.asciz "new_seibutuzukan_main.blo"
+.endobj lbl_80492A08
+.balign 4
+.obj lbl_80492A24, local
+	.asciz "new_seibutuzukan_main.bck"
+.endobj lbl_80492A24
+.balign 4
+.obj lbl_80492A40, local
+	.asciz "new_seibutuzukan_main.bpk"
+.endobj lbl_80492A40
+.balign 4
+.obj lbl_80492A5C, local
+	.asciz "new_seibutuzukan_bg.blo"
+.endobj lbl_80492A5C
+.balign 4
+.obj lbl_80492A74, local
+	.asciz "new_seibutuzukan_effect.blo"
+.endobj lbl_80492A74
+.balign 4
+.obj lbl_80492A90, local
+	.asciz "new_seibutuzukan_effect.btk"
+.endobj lbl_80492A90
+.balign 4
+.obj lbl_80492AAC, local
+	.asciz "new_seibutuzukan_list.blo"
+.endobj lbl_80492AAC
+.balign 4
+.obj lbl_80492AC8, local
+	.asciz "new_seibutuzukan_suji.blo"
+.endobj lbl_80492AC8
+.balign 4
+.obj lbl_80492AE4, local
+	.asciz "zukan_mess_window.blo"
+.endobj lbl_80492AE4
+.balign 4
+.obj lbl_80492AFC, local
+	.asciz "zukan_mess_window.bck"
+.endobj lbl_80492AFC
+.balign 4
+.obj lbl_80492B14, local
+	.asciz "zukan_mess_window.bpk"
+.endobj lbl_80492B14
+.balign 4
+.obj lbl_80492B2C, local
+	.asciz "new_seibutuzukan_yajirushi.blo"
+.endobj lbl_80492B2C
+.balign 4
+.obj lbl_80492B4C, local
+	.asciz "price (%d) = %d\n"
+.endobj lbl_80492B4C
+.balign 8
+.obj lbl_80492B60, local
 	.8byte 0x00546D656E753132
 	.8byte 0x00546D656E753133
 	.8byte 0x00546D656E753030
@@ -298,6 +265,9 @@ lbl_80492B4C:
 	.8byte 0x00546D656E753039
 	.8byte 0x00546D656E753130
 	.8byte 0x00546D656E753131
+.endobj lbl_80492B60
+.balign 8
+.obj lbl_80492BD0, local
 	.8byte 0x506E31325F305F31
 	.8byte 0x506E31325F315F31
 	.8byte 0x506E31325F325F31
@@ -466,107 +436,94 @@ lbl_80492B4C:
 	.8byte 0x506D6531315F3030
 	.8byte 0x506D6531315F3031
 	.8byte 0x506D6531315F3032
-lbl_80493110:
-	.asciz "endWindow"
+.endobj lbl_80492BD0
 .balign 4
-lbl_8049311C:
-	.4byte 0x6974656D
-	.4byte 0x5A756B61
-	.4byte 0x6E000000
+.obj lbl_80493110, local
+	.asciz "endWindow"
+.endobj lbl_80493110
+.balign 4
+.obj lbl_8049311C, local
+	.asciz "itemZukan"
+.endobj lbl_8049311C
+.balign 8
+.obj lbl_80493128, local
 	.8byte 0x00303130315F3030
 	.8byte 0x00303131305F3030
 	.8byte 0x00303230305F3030
+.endobj lbl_80493128
+.balign 8
+.obj lbl_80493140, local
 	.8byte 0x00303430315F3030
 	.8byte 0x00303431305F3030
 	.8byte 0x00303530305F3030
+.endobj lbl_80493140
+.balign 8
+.obj lbl_80493158, local
 	.8byte 0x00303730315F3030
 	.8byte 0x00303731305F3030
 	.8byte 0x00303830305F3030
+.endobj lbl_80493158
+.balign 8
+.obj lbl_80493170, local
 	.8byte 0x00313433315F3030
 	.8byte 0x00313434305F3030
-	.4byte 0x74696D67
-	.4byte 0x2F6F6C69
-	.4byte 0x6D61725F
-	.4byte 0x69636F6E
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x6E65775F
-	.4byte 0x6F74616B
-	.4byte 0x6172617A
-	.4byte 0x756B616E
-	.4byte 0x5F6C6973
-	.4byte 0x742E626C
-	.4byte 0x6F000000
-	.4byte 0x6E65775F
-	.4byte 0x6F74616B
-	.4byte 0x6172617A
-	.4byte 0x756B616E
-	.4byte 0x5F6D6169
-	.4byte 0x6E2E626C
-	.4byte 0x6F000000
-	.4byte 0x6E65775F
-	.4byte 0x6F74616B
-	.4byte 0x6172617A
-	.4byte 0x756B616E
-	.4byte 0x5F6D6169
-	.4byte 0x6E2E6263
-	.4byte 0x6B000000
-	.4byte 0x6E65775F
-	.4byte 0x6F74616B
-	.4byte 0x6172617A
-	.4byte 0x756B616E
-	.4byte 0x5F6D6169
-	.4byte 0x6E2E6270
-	.4byte 0x6B000000
-	.4byte 0x6E65775F
-	.4byte 0x6F74616B
-	.4byte 0x6172617A
-	.4byte 0x756B616E
-	.4byte 0x5F62672E
-	.4byte 0x626C6F00
-	.4byte 0x6E65775F
-	.4byte 0x6F74616B
-	.4byte 0x6172617A
-	.4byte 0x756B616E
-	.4byte 0x5F656666
-	.4byte 0x6563742E
-	.4byte 0x626C6F00
-	.4byte 0x6E65775F
-	.4byte 0x6F74616B
-	.4byte 0x6172617A
-	.4byte 0x756B616E
-	.4byte 0x5F656666
-	.4byte 0x6563742E
-	.4byte 0x62746B00
-	.4byte 0x6E65775F
-	.4byte 0x6F74616B
-	.4byte 0x6172617A
-	.4byte 0x756B616E
-	.4byte 0x5F79616A
-	.4byte 0x69727573
-	.4byte 0x692E626C
-	.4byte 0x6F000000
-	.4byte 0x6E65775F
-	.4byte 0x6F74616B
-	.4byte 0x6172617A
-	.4byte 0x756B616E
-	.4byte 0x5F6D6169
-	.4byte 0x6E5F7375
-	.4byte 0x6A692E62
-	.4byte 0x6C6F0000
-	.4byte 0x77656967
-	.4byte 0x68742028
-	.4byte 0x25642920
-	.4byte 0x3D202564
-	.4byte 0x0A000000
-lbl_804932AC:
+.endobj lbl_80493170
+.balign 4
+.obj lbl_80493180, local
+	.asciz "timg/olimar_icon.bti"
+.endobj lbl_80493180
+.balign 4
+.obj lbl_80493198, local
+	.asciz "new_otakarazukan_list.blo"
+.endobj lbl_80493198
+.balign 4
+.obj lbl_804931B4, local
+	.asciz "new_otakarazukan_main.blo"
+.endobj lbl_804931B4
+.balign 4
+.obj lbl_804931D0, local
+	.asciz "new_otakarazukan_main.bck"
+.endobj lbl_804931D0
+.balign 4
+.obj lbl_804931EC, local
+	.asciz "new_otakarazukan_main.bpk"
+.endobj lbl_804931EC
+.balign 4
+.obj lbl_80493208, local
+	.asciz "new_otakarazukan_bg.blo"
+.endobj lbl_80493208
+.balign 4
+.obj lbl_80493220, local
+	.asciz "new_otakarazukan_effect.blo"
+.endobj lbl_80493220
+.balign 4
+.obj lbl_8049323C, local
+	.asciz "new_otakarazukan_effect.btk"
+.endobj lbl_8049323C
+.balign 4
+.obj lbl_80493258, local
+	.asciz "new_otakarazukan_yajirusi.blo"
+.endobj lbl_80493258
+.balign 4
+.obj lbl_80493278, local
+	.asciz "new_otakarazukan_main_suji.blo"
+.endobj lbl_80493278
+.balign 4
+.obj lbl_80493298, local
+	.asciz "weight (%d) = %d\n"
+.endobj lbl_80493298
+.balign 4
+.obj lbl_804932AC, local
 	.asciz "res_itemZukan.szs"
+.endobj lbl_804932AC
 .balign 4
-lbl_804932C0:
+.obj lbl_804932C0, local
 	.asciz "screenObj.h"
+.endobj lbl_804932C0
 .balign 4
-lbl_804932CC:
+.obj lbl_804932CC, local
 	.asciz "res_enemyZukan.szs"
+.endobj lbl_804932CC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -602,8 +559,7 @@ lbl_804932CC:
 	.4byte 196	# Explorer's Friend Series
 	.4byte 201	# Titan Dweevil Series
 .endobj mCategoryArray__Q28Morimura10TItemZukan
-.global eIDInfo__8Morimura
-eIDInfo__8Morimura:
+.obj eIDInfo__8Morimura, global
 	.4byte 0x00000000
 	.4byte 0x00000002
 	.4byte 0x00000001
@@ -766,7 +722,8 @@ eIDInfo__8Morimura:
 	.4byte 0x0000005E
 	.4byte 0x0000004D
 	.4byte 0x00000063
-lbl_804E3C20:
+.endobj eIDInfo__8Morimura
+.obj lbl_804E3C20, local
 	.4byte .L_80376438
 	.4byte .L_803764C8
 	.4byte .L_803764C8
@@ -840,15 +797,15 @@ lbl_804E3C20:
 	.4byte .L_803764C8
 	.4byte .L_80376438
 	.4byte .L_80376438
-.global __vt__Q28Morimura12TZukanWindow
-__vt__Q28Morimura12TZukanWindow:
+.endobj lbl_804E3C20
+.obj __vt__Q28Morimura12TZukanWindow, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura12TZukanWindowFPCcUl
 	.4byte update__Q28Morimura12TZukanWindowFv
 	.4byte draw__Q28Morimura12TZukanWindowFR8GraphicsP13J2DPerspGraph
-.global __vt__Q28Morimura18TCallbackScrollMsg
-__vt__Q28Morimura18TCallbackScrollMsg:
+.endobj __vt__Q28Morimura12TZukanWindow
+.obj __vt__Q28Morimura18TCallbackScrollMsg, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura18TCallbackScrollMsgFv
@@ -856,8 +813,8 @@ __vt__Q28Morimura18TCallbackScrollMsg:
 	.4byte update__Q28Morimura18TCallbackScrollMsgFv
 	.4byte draw__Q28Morimura18TCallbackScrollMsgFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q28Morimura18TCallbackScrollMsgFv
-.global __vt__Q28Morimura11TDItemScene
-__vt__Q28Morimura11TDItemScene:
+.endobj __vt__Q28Morimura18TCallbackScrollMsg
+.obj __vt__Q28Morimura11TDItemScene, global
 	.4byte 0
 	.4byte 0
 	.4byte getSceneType__Q28Morimura11TDItemSceneFv
@@ -878,16 +835,16 @@ __vt__Q28Morimura11TDItemScene:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
-.global __vt__Q25efx2d14T2DChangesmoke
-__vt__Q25efx2d14T2DChangesmoke:
+.endobj __vt__Q28Morimura11TDItemScene
+.obj __vt__Q25efx2d14T2DChangesmoke, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d8TSimple1FPQ25efx2d3Arg
 	.4byte kill__Q25efx2d8TSimple1Fv
 	.4byte fade__Q25efx2d8TSimple1Fv
 	.4byte setGroup__Q25efx2d5TBaseFUc
-.global __vt__Q28Morimura10TItemZukan
-__vt__Q28Morimura10TItemZukan:
+.endobj __vt__Q25efx2d14T2DChangesmoke
+.obj __vt__Q28Morimura10TItemZukan, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura10TItemZukanFv
@@ -947,8 +904,8 @@ __vt__Q28Morimura10TItemZukan:
 	.4byte openConfirmWindow__Q28Morimura10TItemZukanFv
 	.4byte isNewSupply__Q28Morimura10TItemZukanFib
 	.4byte isPanelExist__Q28Morimura10TItemZukanFv
-.global __vt__Q28Morimura12TDEnemyScene
-__vt__Q28Morimura12TDEnemyScene:
+.endobj __vt__Q28Morimura10TItemZukan
+.obj __vt__Q28Morimura12TDEnemyScene, global
 	.4byte 0
 	.4byte 0
 	.4byte getSceneType__Q28Morimura12TDEnemySceneFv
@@ -969,8 +926,8 @@ __vt__Q28Morimura12TDEnemyScene:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
-.global __vt__Q28Morimura9THIOScene
-__vt__Q28Morimura9THIOScene:
+.endobj __vt__Q28Morimura12TDEnemyScene
+.obj __vt__Q28Morimura9THIOScene, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -991,8 +948,8 @@ __vt__Q28Morimura9THIOScene:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
-.global __vt__Q28Morimura11TEnemyZukan
-__vt__Q28Morimura11TEnemyZukan:
+.endobj __vt__Q28Morimura9THIOScene
+.obj __vt__Q28Morimura11TEnemyZukan, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura11TEnemyZukanFv
@@ -1052,8 +1009,8 @@ __vt__Q28Morimura11TEnemyZukan:
 	.4byte openConfirmWindow__Q28Morimura11TEnemyZukanFv
 	.4byte isNewSupply__Q28Morimura11TEnemyZukanFib
 	.4byte isPanelExist__Q28Morimura11TEnemyZukanFv
-.global __vt__Q28Morimura10TZukanBase
-__vt__Q28Morimura10TZukanBase:
+.endobj __vt__Q28Morimura11TEnemyZukan
+.obj __vt__Q28Morimura10TZukanBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura10TZukanBaseFv
@@ -1113,6 +1070,7 @@ __vt__Q28Morimura10TZukanBase:
 	.4byte 0
 	.4byte 0
 	.4byte isPanelExist__Q28Morimura10TZukanBaseFv
+.endobj __vt__Q28Morimura10TZukanBase
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # zukan2D.cpp
@@ -1120,106 +1078,109 @@ __vt__Q28Morimura10TZukanBase:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mRequestTimerMax__Q28Morimura10TZukanBase
-mRequestTimerMax__Q28Morimura10TZukanBase:
+.obj mRequestTimerMax__Q28Morimura10TZukanBase, global
 	.2byte 0xA
-.global mIconMove__Q28Morimura10TZukanBase
-mIconMove__Q28Morimura10TZukanBase:
+.endobj mRequestTimerMax__Q28Morimura10TZukanBase
+.obj mIconMove__Q28Morimura10TZukanBase, global
 	.byte 0x1
+.endobj mIconMove__Q28Morimura10TZukanBase
 .balign 4
-.global mLineSpace__Q28Morimura10TZukanBase
-mLineSpace__Q28Morimura10TZukanBase:
+.obj mLineSpace__Q28Morimura10TZukanBase, global
 	.float 48.0
-.global mWarpRadius__Q28Morimura10TZukanBase
-mWarpRadius__Q28Morimura10TZukanBase:
+.endobj mLineSpace__Q28Morimura10TZukanBase
+.obj mWarpRadius__Q28Morimura10TZukanBase, global
 	.float 15.0
-.global mScrollValueCoe__Q28Morimura10TZukanBase
-mScrollValueCoe__Q28Morimura10TZukanBase:
+.endobj mWarpRadius__Q28Morimura10TZukanBase
+.obj mScrollValueCoe__Q28Morimura10TZukanBase, global
 	.float 3.5
-.global mScrollSpeedCoe__Q28Morimura10TZukanBase
-mScrollSpeedCoe__Q28Morimura10TZukanBase:
+.endobj mScrollValueCoe__Q28Morimura10TZukanBase
+.obj mScrollSpeedCoe__Q28Morimura10TZukanBase, global
 	.float 0.08
-.global mNewScale__Q28Morimura10TZukanBase
-mNewScale__Q28Morimura10TZukanBase:
+.endobj mScrollSpeedCoe__Q28Morimura10TZukanBase
+.obj mNewScale__Q28Morimura10TZukanBase, global
 	.float 0.7
-.global mPodIconOffsetX__Q28Morimura10TZukanBase
-mPodIconOffsetX__Q28Morimura10TZukanBase:
+.endobj mNewScale__Q28Morimura10TZukanBase
+.obj mPodIconOffsetX__Q28Morimura10TZukanBase, global
 	.float 480.0
-.global mLargeCategoryScale__Q28Morimura10TZukanBase
-mLargeCategoryScale__Q28Morimura10TZukanBase:
+.endobj mPodIconOffsetX__Q28Morimura10TZukanBase
+.obj mLargeCategoryScale__Q28Morimura10TZukanBase, global
 	.float 2.0
-.global mCategoryAlphaRate__Q28Morimura10TZukanBase
-mCategoryAlphaRate__Q28Morimura10TZukanBase:
+.endobj mLargeCategoryScale__Q28Morimura10TZukanBase
+.obj mCategoryAlphaRate__Q28Morimura10TZukanBase, global
 	.float 0.6
-.global mDrawLineType__Q28Morimura10TZukanBase
-mDrawLineType__Q28Morimura10TZukanBase:
+.endobj mCategoryAlphaRate__Q28Morimura10TZukanBase
+.obj mDrawLineType__Q28Morimura10TZukanBase, global
 	.byte 0x2
+.endobj mDrawLineType__Q28Morimura10TZukanBase
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global mShowAllObjects__Q28Morimura10TZukanBase
-mShowAllObjects__Q28Morimura10TZukanBase:
+.endobj gfNAN___Q24Game5P2JST
+.obj mShowAllObjects__Q28Morimura10TZukanBase, global
 	.skip 0x1
-.global mAllNewSupply__Q28Morimura10TZukanBase
-mAllNewSupply__Q28Morimura10TZukanBase:
+.endobj mShowAllObjects__Q28Morimura10TZukanBase
+.obj mAllNewSupply__Q28Morimura10TZukanBase, global
 	.skip 0x1
-.global mZukanShortenTest__Q28Morimura10TZukanBase
-mZukanShortenTest__Q28Morimura10TZukanBase:
+.endobj mAllNewSupply__Q28Morimura10TZukanBase
+.obj mZukanShortenTest__Q28Morimura10TZukanBase, global
 	.skip 0x1
-.global mZukanCategoryTest__Q28Morimura10TZukanBase
-mZukanCategoryTest__Q28Morimura10TZukanBase:
+.endobj mZukanShortenTest__Q28Morimura10TZukanBase
+.obj mZukanCategoryTest__Q28Morimura10TZukanBase, global
 	.skip 0x1
-.global mRandShowRate__Q28Morimura10TZukanBase
-mRandShowRate__Q28Morimura10TZukanBase:
+.endobj mZukanCategoryTest__Q28Morimura10TZukanBase
+.balign 4
+.obj mRandShowRate__Q28Morimura10TZukanBase, global
 	.skip 0x4
-.global mNewOffset__Q28Morimura10TZukanBase
-mNewOffset__Q28Morimura10TZukanBase:
+.endobj mRandShowRate__Q28Morimura10TZukanBase
+.obj mNewOffset__Q28Morimura10TZukanBase, global
 	.skip 0x8
-.global mLargeNewOffset__Q28Morimura10TZukanBase
-mLargeNewOffset__Q28Morimura10TZukanBase:
+.endobj mNewOffset__Q28Morimura10TZukanBase
+.obj mLargeNewOffset__Q28Morimura10TZukanBase, global
 	.skip 0x8
-.global mNewColor0__Q28Morimura10TZukanBase
-mNewColor0__Q28Morimura10TZukanBase:
+.endobj mLargeNewOffset__Q28Morimura10TZukanBase
+.obj mNewColor0__Q28Morimura10TZukanBase, global
 	.skip 0x4
-.global mNewColor1__Q28Morimura10TZukanBase
-mNewColor1__Q28Morimura10TZukanBase:
+.endobj mNewColor0__Q28Morimura10TZukanBase
+.obj mNewColor1__Q28Morimura10TZukanBase, global
 	.skip 0x4
-.global mCategoryScale__Q28Morimura10TZukanBase
-mCategoryScale__Q28Morimura10TZukanBase:
+.endobj mNewColor1__Q28Morimura10TZukanBase
+.obj mCategoryScale__Q28Morimura10TZukanBase, global
 	.skip 0x8
-.global mCategoryColor0w__Q28Morimura10TZukanBase
-mCategoryColor0w__Q28Morimura10TZukanBase:
+.endobj mCategoryScale__Q28Morimura10TZukanBase
+.obj mCategoryColor0w__Q28Morimura10TZukanBase, global
 	.skip 0x4
-.global mCategoryColor0b__Q28Morimura10TZukanBase
-mCategoryColor0b__Q28Morimura10TZukanBase:
+.endobj mCategoryColor0w__Q28Morimura10TZukanBase
+.obj mCategoryColor0b__Q28Morimura10TZukanBase, global
 	.skip 0x4
-.global mCategoryColor1w__Q28Morimura10TZukanBase
-mCategoryColor1w__Q28Morimura10TZukanBase:
+.endobj mCategoryColor0b__Q28Morimura10TZukanBase
+.obj mCategoryColor1w__Q28Morimura10TZukanBase, global
 	.skip 0x4
-.global mCategoryColor1b__Q28Morimura10TZukanBase
-mCategoryColor1b__Q28Morimura10TZukanBase:
+.endobj mCategoryColor1w__Q28Morimura10TZukanBase
+.obj mCategoryColor1b__Q28Morimura10TZukanBase, global
 	.skip 0x4
-.global mDebugHeapParent__Q28Morimura10TZukanBase
-mDebugHeapParent__Q28Morimura10TZukanBase:
+.endobj mCategoryColor1b__Q28Morimura10TZukanBase
+.obj mDebugHeapParent__Q28Morimura10TZukanBase, global
 	.skip 0x4
-.global mDebugHeap__Q28Morimura10TZukanBase
-mDebugHeap__Q28Morimura10TZukanBase:
+.endobj mDebugHeapParent__Q28Morimura10TZukanBase
+.obj mDebugHeap__Q28Morimura10TZukanBase, global
 	.skip 0x4
+.endobj mDebugHeap__Q28Morimura10TZukanBase
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .obj lbl_8051EB20, local
-	.4byte 0x00000000
+	.float 0.0
 .endobj lbl_8051EB20
 .obj lbl_8051EB24, local
 	.float 1.0
 .endobj lbl_8051EB24
 .obj lbl_8051EB28, local
-	.4byte 0x3CA3D70A
+	.float 0.02
 .endobj lbl_8051EB28
 .obj lbl_8051EB2C, local
 	.float 0.5
@@ -1228,7 +1189,7 @@ mDebugHeap__Q28Morimura10TZukanBase:
 	.float 0.25
 .endobj lbl_8051EB30
 .obj lbl_8051EB34, local
-	.4byte 0xC3960000
+	.float -300.0
 .endobj lbl_8051EB34
 .obj lbl_8051EB38, local
 	.float 0.1
@@ -1240,28 +1201,28 @@ mDebugHeap__Q28Morimura10TZukanBase:
 	.float 0.3
 .endobj lbl_8051EB40
 .obj lbl_8051EB44, local
-	.4byte 0x40A00000
+	.float 5.0
 .endobj lbl_8051EB44
 .obj lbl_8051EB48, local
-	.4byte 0x40200000
+	.float 2.5
 .endobj lbl_8051EB48
 .obj lbl_8051EB4C, local
 	.float 2.0
 .endobj lbl_8051EB4C
 .obj lbl_8051EB50, local
-	.4byte 0x3F99999A
+	.float 1.2
 .endobj lbl_8051EB50
 .obj lbl_8051EB54, local
-	.4byte 0x3E4CCCCD
+	.float 0.2
 .endobj lbl_8051EB54
 .obj lbl_8051EB58, local
-	.4byte 0x41C80000
+	.float 25.0
 .endobj lbl_8051EB58
 .obj lbl_8051EB5C, local
-	.4byte 0x3F666666
+	.float 0.9
 .endobj lbl_8051EB5C
 .obj lbl_8051EB60, local
-	.4byte 0x40400000
+	.float 3.0
 .endobj lbl_8051EB60
 .obj lbl_8051EB64, local
 	.float -0.5
@@ -1270,13 +1231,13 @@ mDebugHeap__Q28Morimura10TZukanBase:
 	.float -1.0
 .endobj lbl_8051EB68
 .obj lbl_8051EB6C, local
-	.4byte 0x3EB33333
+	.float 0.35
 .endobj lbl_8051EB6C
 .obj lbl_8051EB70, local
-	.4byte 0x437F0000
+	.float 255.0
 .endobj lbl_8051EB70
 .obj lbl_8051EB74, local
-	.4byte 0x3F19999A
+	.float 0.6
 .endobj lbl_8051EB74
 .obj lbl_8051EB78, local
 	.float 0.05
@@ -1286,109 +1247,108 @@ mDebugHeap__Q28Morimura10TZukanBase:
 	.8byte 0x4330000080000000
 .endobj lbl_8051EB80
 .obj lbl_8051EB88, local
-	.4byte 0x42F00000
+	.float 120.0
 .endobj lbl_8051EB88
 .balign 8
 .obj lbl_8051EB90, local
 	.8byte 0x4330000000000000
 .endobj lbl_8051EB90
 .obj lbl_8051EB98, local
-	.4byte 0x41200000
+	.float 10.0
 .endobj lbl_8051EB98
 .obj lbl_8051EB9C, local
-	.4byte 0x41A00000
+	.float 20.0
 .endobj lbl_8051EB9C
-.obj lbl_8051EBA0, local
-	.4byte 0x40C90FDB
+.obj lbl_8051EBA0, local # tau
+	.float 6.2831855
 .endobj lbl_8051EBA0
 .obj lbl_8051EBA4, local
-	.4byte 0x3F59999A
+	.float 0.85
 .endobj lbl_8051EBA4
 .obj lbl_8051EBA8, local
-	.4byte 0xC3A2F983
+	.float -325.9493
 .endobj lbl_8051EBA8
 .obj lbl_8051EBAC, local
-	.4byte 0x43A2F983
+	.float 325.9493
 .endobj lbl_8051EBAC
 .obj lbl_8051EBB0, local
-	.4byte 0x42780000
+	.float 62.0
 .endobj lbl_8051EBB0
 .obj lbl_8051EBB4, local
-	.4byte 0x47000000
+	.float 32768.0
 .endobj lbl_8051EBB4
 .obj lbl_8051EBB8, local
-	.4byte 0x3F8CCCCD
+	.float 1.1
 .endobj lbl_8051EBB8
 .obj lbl_8051EBBC, local
-	.4byte 0x3F7D70A4
+	.float 0.99
 .endobj lbl_8051EBBC
 .obj lbl_8051EBC0, local
-	.4byte 0x3FC00000
+	.float 1.5
 .endobj lbl_8051EBC0
 .obj lbl_8051EBC4, local
-	.4byte 0x42480000
+	.float 50.0
 .endobj lbl_8051EBC4
 .obj lbl_8051EBC8, local
-	.4byte 0x447A0000
+	.float 1000.0
 .endobj lbl_8051EBC8
 .obj lbl_8051EBCC, local
-	.4byte 0x47C35000
+	.float 100000.0
 .endobj lbl_8051EBCC
 .obj lbl_8051EBD0, local
-	.4byte 0x41F00000
+	.float 30.0
 .endobj lbl_8051EBD0
 .obj lbl_8051EBD4, local
-	.4byte 0x3FA00000
+	.float 1.25
 .endobj lbl_8051EBD4
 .obj lbl_8051EBD8, local
-	.4byte 0x43160000
+	.float 150.0
 .endobj lbl_8051EBD8
 .obj lbl_8051EBDC, local
-	.4byte 0x41000000
+	.float 8.0
 .endobj lbl_8051EBDC
 .obj lbl_8051EBE0, local
-	.4byte 0x42400000
+	.float 48.0
 .endobj lbl_8051EBE0
 .obj lbl_8051EBE4, local
-	.4byte 0x41700000
+	.float 15.0
 .endobj lbl_8051EBE4
 .obj lbl_8051EBE8, local
-	.4byte 0x44200000
+	.float 640.0
 .endobj lbl_8051EBE8
 .obj lbl_8051EBEC, local
-	.4byte 0x43F00000
+	.float 480.0
 .endobj lbl_8051EBEC
 .obj lbl_8051EBF0, local
-	.4byte 0x41400000
+	.float 12.0
 .endobj lbl_8051EBF0
 .obj lbl_8051EBF4, local
-	.4byte 0x42C80000
+	.float 100.0
 .endobj lbl_8051EBF4
 .obj lbl_8051EBF8, local
-	.4byte 0x42AC0000
+	.float 86.0
 .endobj lbl_8051EBF8
 .obj lbl_8051EBFC, local
-	.4byte 0x41500000
+	.float 13.0
 .endobj lbl_8051EBFC
 .obj lbl_8051EC00, local
 	.float 0.15
 .endobj lbl_8051EC00
 .obj lbl_8051EC04, local
-	.4byte 0xC1480000
+	.float -12.5
 .endobj lbl_8051EC04
 .obj lbl_8051EC08, local
-	.4byte 0xC1F00000
+	.float -30.0
 .endobj lbl_8051EC08
 .obj lbl_8051EC0C, local
-	.4byte 0x3FA66666
+	.float 1.3
 .endobj lbl_8051EC0C
 .obj lbl_8051EC10, local
-	.4byte 0x3F933333
+	.float 1.15
 .endobj lbl_8051EC10
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28Morimura10TZukanBaseFPc
-__ct__Q28Morimura10TZukanBaseFPc:
+.fn __ct__Q28Morimura10TZukanBaseFPc, global
 /* 80370C08 0036DB48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80370C0C 0036DB4C  7C 08 02 A6 */	mflr r0
 /* 80370C10 0036DB50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1518,9 +1478,9 @@ __ct__Q28Morimura10TZukanBaseFPc:
 /* 80370E00 0036DD40  7C 08 03 A6 */	mtlr r0
 /* 80370E04 0036DD44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80370E08 0036DD48  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura10TZukanBaseFPc
 
-.global __dt__Q28Morimura11TScrollListFv
-__dt__Q28Morimura11TScrollListFv:
+.fn __dt__Q28Morimura11TScrollListFv, weak
 /* 80370E0C 0036DD4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80370E10 0036DD50  7C 08 02 A6 */	mflr r0
 /* 80370E14 0036DD54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1572,9 +1532,9 @@ __dt__Q28Morimura11TScrollListFv:
 /* 80370EC4 0036DE04  7C 08 03 A6 */	mtlr r0
 /* 80370EC8 0036DE08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80370ECC 0036DE0C  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura11TScrollListFv
 
-.global __dt__Q28Morimura10TZukanBaseFv
-__dt__Q28Morimura10TZukanBaseFv:
+.fn __dt__Q28Morimura10TZukanBaseFv, global
 /* 80370ED0 0036DE10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80370ED4 0036DE14  7C 08 02 A6 */	mflr r0
 /* 80370ED8 0036DE18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1641,9 +1601,9 @@ __dt__Q28Morimura10TZukanBaseFv:
 /* 80370FC0 0036DF00  7C 08 03 A6 */	mtlr r0
 /* 80370FC4 0036DF04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80370FC8 0036DF08  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura10TZukanBaseFv
 
-.global doCreate__Q28Morimura10TZukanBaseFP10JKRArchive
-doCreate__Q28Morimura10TZukanBaseFP10JKRArchive:
+.fn doCreate__Q28Morimura10TZukanBaseFP10JKRArchive, global
 /* 80370FCC 0036DF0C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80370FD0 0036DF10  7C 08 02 A6 */	mflr r0
 /* 80370FD4 0036DF14  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2246,9 +2206,9 @@ doCreate__Q28Morimura10TZukanBaseFP10JKRArchive:
 /* 803718CC 0036E80C  7C 08 03 A6 */	mtlr r0
 /* 803718D0 0036E810  38 21 00 40 */	addi r1, r1, 0x40
 /* 803718D4 0036E814  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura10TZukanBaseFP10JKRArchive
 
-.global doUpdate__Q28Morimura10TZukanBaseFv
-doUpdate__Q28Morimura10TZukanBaseFv:
+.fn doUpdate__Q28Morimura10TZukanBaseFv, global
 /* 803718D8 0036E818  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 803718DC 0036E81C  7C 08 02 A6 */	mflr r0
 /* 803718E0 0036E820  90 01 00 84 */	stw r0, 0x84(r1)
@@ -3323,14 +3283,14 @@ doUpdate__Q28Morimura10TZukanBaseFv:
 /* 80372894 0036F7D4  7C 08 03 A6 */	mtlr r0
 /* 80372898 0036F7D8  38 21 00 80 */	addi r1, r1, 0x80
 /* 8037289C 0036F7DC  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura10TZukanBaseFv
 
-.global isListShow__Q28Morimura11TScrollListFi
-isListShow__Q28Morimura11TScrollListFi:
+.fn isListShow__Q28Morimura11TScrollListFi, weak
 /* 803728A0 0036F7E0  38 60 00 01 */	li r3, 1
 /* 803728A4 0036F7E4  4E 80 00 20 */	blr 
+.endfn isListShow__Q28Morimura11TScrollListFi
 
-.global updateButtonAlpha__Q28Morimura10TZukanBaseFUc
-updateButtonAlpha__Q28Morimura10TZukanBaseFUc:
+.fn updateButtonAlpha__Q28Morimura10TZukanBaseFUc, global
 /* 803728A8 0036F7E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803728AC 0036F7EC  7C 08 02 A6 */	mflr r0
 /* 803728B0 0036F7F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3522,14 +3482,14 @@ updateButtonAlpha__Q28Morimura10TZukanBaseFUc:
 /* 80372B54 0036FA94  7C 08 03 A6 */	mtlr r0
 /* 80372B58 0036FA98  38 21 00 20 */	addi r1, r1, 0x20
 /* 80372B5C 0036FA9C  4E 80 00 20 */	blr 
+.endfn updateButtonAlpha__Q28Morimura10TZukanBaseFUc
 
-.global isComplete__Q28Morimura10TZukanBaseFv
-isComplete__Q28Morimura10TZukanBaseFv:
+.fn isComplete__Q28Morimura10TZukanBaseFv, weak
 /* 80372B60 0036FAA0  88 63 02 28 */	lbz r3, 0x228(r3)
 /* 80372B64 0036FAA4  4E 80 00 20 */	blr 
+.endfn isComplete__Q28Morimura10TZukanBaseFv
 
-.global doDraw__Q28Morimura10TZukanBaseFR8Graphics
-doDraw__Q28Morimura10TZukanBaseFR8Graphics:
+.fn doDraw__Q28Morimura10TZukanBaseFR8Graphics, global
 /* 80372B68 0036FAA8  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 80372B6C 0036FAAC  7C 08 02 A6 */	mflr r0
 /* 80372B70 0036FAB0  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -4001,22 +3961,22 @@ doDraw__Q28Morimura10TZukanBaseFR8Graphics:
 /* 80373270 003701B0  7C 08 03 A6 */	mtlr r0
 /* 80373274 003701B4  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80373278 003701B8  4E 80 00 20 */	blr 
+.endfn doDraw__Q28Morimura10TZukanBaseFR8Graphics
 
-.global doDemoDraw__Q28Morimura10TZukanBaseFR8Graphics
-doDemoDraw__Q28Morimura10TZukanBaseFR8Graphics:
+.fn doDemoDraw__Q28Morimura10TZukanBaseFR8Graphics, weak
 /* 8037327C 003701BC  4E 80 00 20 */	blr 
+.endfn doDemoDraw__Q28Morimura10TZukanBaseFR8Graphics
 
-.global doUpdateFadeoutFinish__Q28Morimura10TZukanBaseFv
-doUpdateFadeoutFinish__Q28Morimura10TZukanBaseFv:
+.fn doUpdateFadeoutFinish__Q28Morimura10TZukanBaseFv, global
 /* 80373280 003701C0  80 03 01 98 */	lwz r0, 0x198(r3)
 /* 80373284 003701C4  2C 00 00 02 */	cmpwi r0, 2
 /* 80373288 003701C8  4C 82 00 20 */	bnelr 
 /* 8037328C 003701CC  38 00 00 03 */	li r0, 3
 /* 80373290 003701D0  90 03 01 98 */	stw r0, 0x198(r3)
 /* 80373294 003701D4  4E 80 00 20 */	blr 
+.endfn doUpdateFadeoutFinish__Q28Morimura10TZukanBaseFv
 
-.global indexPaneInit__Q28Morimura10TZukanBaseFP9J2DScreen
-indexPaneInit__Q28Morimura10TZukanBaseFP9J2DScreen:
+.fn indexPaneInit__Q28Morimura10TZukanBaseFP9J2DScreen, global
 /* 80373298 003701D8  94 21 FB 90 */	stwu r1, -0x470(r1)
 /* 8037329C 003701DC  7C 08 02 A6 */	mflr r0
 /* 803732A0 003701E0  3C A0 80 49 */	lis r5, lbl_80492520@ha
@@ -4392,9 +4352,9 @@ indexPaneInit__Q28Morimura10TZukanBaseFP9J2DScreen:
 /* 80373804 00370744  7C 08 03 A6 */	mtlr r0
 /* 80373808 00370748  38 21 04 70 */	addi r1, r1, 0x470
 /* 8037380C 0037074C  4E 80 00 20 */	blr 
+.endfn indexPaneInit__Q28Morimura10TZukanBaseFP9J2DScreen
 
-.global paneInit__Q28Morimura10TZukanBaseFv
-paneInit__Q28Morimura10TZukanBaseFv:
+.fn paneInit__Q28Morimura10TZukanBaseFv, global
 /* 80373810 00370750  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80373814 00370754  7C 08 02 A6 */	mflr r0
 /* 80373818 00370758  3C 80 54 74 */	lis r4, 0x5474656B@ha
@@ -4551,9 +4511,9 @@ paneInit__Q28Morimura10TZukanBaseFv:
 /* 80373A5C 0037099C  7C 08 03 A6 */	mtlr r0
 /* 80373A60 003709A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80373A64 003709A4  4E 80 00 20 */	blr 
+.endfn paneInit__Q28Morimura10TZukanBaseFv
 
-.global changePaneInfo__Q28Morimura10TZukanBaseFv
-changePaneInfo__Q28Morimura10TZukanBaseFv:
+.fn changePaneInfo__Q28Morimura10TZukanBaseFv, global
 /* 80373A68 003709A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80373A6C 003709AC  7C 08 02 A6 */	mflr r0
 /* 80373A70 003709B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4607,9 +4567,9 @@ changePaneInfo__Q28Morimura10TZukanBaseFv:
 /* 80373B24 00370A64  7C 08 03 A6 */	mtlr r0
 /* 80373B28 00370A68  38 21 00 10 */	addi r1, r1, 0x10
 /* 80373B2C 00370A6C  4E 80 00 20 */	blr 
+.endfn changePaneInfo__Q28Morimura10TZukanBaseFv
 
-.global changeName__Q28Morimura10TZukanBaseFv
-changeName__Q28Morimura10TZukanBaseFv:
+.fn changeName__Q28Morimura10TZukanBaseFv, global
 /* 80373B30 00370A70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80373B34 00370A74  7C 08 02 A6 */	mflr r0
 /* 80373B38 00370A78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4654,9 +4614,9 @@ changeName__Q28Morimura10TZukanBaseFv:
 /* 80373BCC 00370B0C  7C 08 03 A6 */	mtlr r0
 /* 80373BD0 00370B10  38 21 00 20 */	addi r1, r1, 0x20
 /* 80373BD4 00370B14  4E 80 00 20 */	blr 
+.endfn changeName__Q28Morimura10TZukanBaseFv
 
-.global doUpdateIn__Q28Morimura10TZukanBaseFv
-doUpdateIn__Q28Morimura10TZukanBaseFv:
+.fn doUpdateIn__Q28Morimura10TZukanBaseFv, global
 /* 80373BD8 00370B18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80373BDC 00370B1C  7C 08 02 A6 */	mflr r0
 /* 80373BE0 00370B20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4682,9 +4642,9 @@ doUpdateIn__Q28Morimura10TZukanBaseFv:
 /* 80373C28 00370B68  7C 08 03 A6 */	mtlr r0
 /* 80373C2C 00370B6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80373C30 00370B70  4E 80 00 20 */	blr 
+.endfn doUpdateIn__Q28Morimura10TZukanBaseFv
 
-.global doUpdateOut__Q28Morimura10TZukanBaseFv
-doUpdateOut__Q28Morimura10TZukanBaseFv:
+.fn doUpdateOut__Q28Morimura10TZukanBaseFv, global
 /* 80373C34 00370B74  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80373C38 00370B78  7C 08 02 A6 */	mflr r0
 /* 80373C3C 00370B7C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -5115,9 +5075,9 @@ doUpdateOut__Q28Morimura10TZukanBaseFv:
 /* 80374258 00371198  7C 08 03 A6 */	mtlr r0
 /* 8037425C 0037119C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80374260 003711A0  4E 80 00 20 */	blr 
+.endfn doUpdateOut__Q28Morimura10TZukanBaseFv
 
-.global doPushXButton__Q28Morimura10TZukanBaseFv
-doPushXButton__Q28Morimura10TZukanBaseFv:
+.fn doPushXButton__Q28Morimura10TZukanBaseFv, global
 /* 80374264 003711A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80374268 003711A8  7C 08 02 A6 */	mflr r0
 /* 8037426C 003711AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5190,9 +5150,9 @@ doPushXButton__Q28Morimura10TZukanBaseFv:
 /* 8037436C 003712AC  7C 08 03 A6 */	mtlr r0
 /* 80374370 003712B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80374374 003712B4  4E 80 00 20 */	blr 
+.endfn doPushXButton__Q28Morimura10TZukanBaseFv
 
-.global doPushYButton__Q28Morimura10TZukanBaseFv
-doPushYButton__Q28Morimura10TZukanBaseFv:
+.fn doPushYButton__Q28Morimura10TZukanBaseFv, global
 /* 80374378 003712B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037437C 003712BC  7C 08 02 A6 */	mflr r0
 /* 80374380 003712C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5272,9 +5232,9 @@ doPushYButton__Q28Morimura10TZukanBaseFv:
 /* 8037449C 003713DC  7C 08 03 A6 */	mtlr r0
 /* 803744A0 003713E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803744A4 003713E4  4E 80 00 20 */	blr 
+.endfn doPushYButton__Q28Morimura10TZukanBaseFv
 
-.global doPushBButton__Q28Morimura10TZukanBaseFv
-doPushBButton__Q28Morimura10TZukanBaseFv:
+.fn doPushBButton__Q28Morimura10TZukanBaseFv, global
 /* 803744A8 003713E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803744AC 003713EC  7C 08 02 A6 */	mflr r0
 /* 803744B0 003713F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5322,9 +5282,9 @@ doPushBButton__Q28Morimura10TZukanBaseFv:
 /* 8037454C 0037148C  7C 08 03 A6 */	mtlr r0
 /* 80374550 00371490  38 21 00 10 */	addi r1, r1, 0x10
 /* 80374554 00371494  4E 80 00 20 */	blr 
+.endfn doPushBButton__Q28Morimura10TZukanBaseFv
 
-.global setShortenIndex__Q28Morimura10TZukanBaseFiib
-setShortenIndex__Q28Morimura10TZukanBaseFiib:
+.fn setShortenIndex__Q28Morimura10TZukanBaseFiib, global
 /* 80374558 00371498  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8037455C 0037149C  7C 08 02 A6 */	mflr r0
 /* 80374560 003714A0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -5481,9 +5441,9 @@ setShortenIndex__Q28Morimura10TZukanBaseFiib:
 /* 80374790 003716D0  7C 08 03 A6 */	mtlr r0
 /* 80374794 003716D4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80374798 003716D8  4E 80 00 20 */	blr 
+.endfn setShortenIndex__Q28Morimura10TZukanBaseFiib
 
-.global windowOpenClose__Q28Morimura10TZukanBaseFUx
-windowOpenClose__Q28Morimura10TZukanBaseFUx:
+.fn windowOpenClose__Q28Morimura10TZukanBaseFUx, global
 /* 8037479C 003716DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803747A0 003716E0  7C 08 02 A6 */	mflr r0
 /* 803747A4 003716E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5520,9 +5480,9 @@ windowOpenClose__Q28Morimura10TZukanBaseFUx:
 /* 80374818 00371758  7C 08 03 A6 */	mtlr r0
 /* 8037481C 0037175C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80374820 00371760  4E 80 00 20 */	blr 
+.endfn windowOpenClose__Q28Morimura10TZukanBaseFUx
 
-.global isPanelExist__Q28Morimura10TZukanBaseFv
-isPanelExist__Q28Morimura10TZukanBaseFv:
+.fn isPanelExist__Q28Morimura10TZukanBaseFv, global
 /* 80374824 00371764  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80374828 00371768  7C 08 02 A6 */	mflr r0
 /* 8037482C 0037176C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5552,24 +5512,24 @@ isPanelExist__Q28Morimura10TZukanBaseFv:
 /* 8037488C 003717CC  7C 08 03 A6 */	mtlr r0
 /* 80374890 003717D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80374894 003717D4  4E 80 00 20 */	blr 
+.endfn isPanelExist__Q28Morimura10TZukanBaseFv
 
-.global requireRequest__Q28Morimura10TZukanBaseFv
-requireRequest__Q28Morimura10TZukanBaseFv:
+.fn requireRequest__Q28Morimura10TZukanBaseFv, global
 /* 80374898 003717D8  38 80 00 01 */	li r4, 1
 /* 8037489C 003717DC  38 00 00 00 */	li r0, 0
 /* 803748A0 003717E0  98 83 02 18 */	stb r4, 0x218(r3)
 /* 803748A4 003717E4  90 03 02 20 */	stw r0, 0x220(r3)
 /* 803748A8 003717E8  98 03 02 17 */	stb r0, 0x217(r3)
 /* 803748AC 003717EC  4E 80 00 20 */	blr 
+.endfn requireRequest__Q28Morimura10TZukanBaseFv
 
-.global requireEffectOff__Q28Morimura10TZukanBaseFv
-requireEffectOff__Q28Morimura10TZukanBaseFv:
+.fn requireEffectOff__Q28Morimura10TZukanBaseFv, global
 /* 803748B0 003717F0  38 00 00 01 */	li r0, 1
 /* 803748B4 003717F4  98 03 02 17 */	stb r0, 0x217(r3)
 /* 803748B8 003717F8  4E 80 00 20 */	blr 
+.endfn requireEffectOff__Q28Morimura10TZukanBaseFv
 
-.global isEnlargedWindow__Q28Morimura10TZukanBaseFv
-isEnlargedWindow__Q28Morimura10TZukanBaseFv:
+.fn isEnlargedWindow__Q28Morimura10TZukanBaseFv, global
 /* 803748BC 003717FC  88 03 02 44 */	lbz r0, 0x244(r3)
 /* 803748C0 00371800  28 00 00 00 */	cmplwi r0, 0
 /* 803748C4 00371804  41 82 00 0C */	beq .L_803748D0
@@ -5578,9 +5538,9 @@ isEnlargedWindow__Q28Morimura10TZukanBaseFv:
 .L_803748D0:
 /* 803748D0 00371810  88 63 02 16 */	lbz r3, 0x216(r3)
 /* 803748D4 00371814  4E 80 00 20 */	blr 
+.endfn isEnlargedWindow__Q28Morimura10TZukanBaseFv
 
-.global isMemoWindow__Q28Morimura10TZukanBaseFv
-isMemoWindow__Q28Morimura10TZukanBaseFv:
+.fn isMemoWindow__Q28Morimura10TZukanBaseFv, global
 /* 803748D8 00371818  80 63 00 DC */	lwz r3, 0xdc(r3)
 /* 803748DC 0037181C  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 803748E0 00371820  2C 00 00 00 */	cmpwi r0, 0
@@ -5590,16 +5550,16 @@ isMemoWindow__Q28Morimura10TZukanBaseFv:
 .L_803748F0:
 /* 803748F0 00371830  38 60 00 00 */	li r3, 0
 /* 803748F4 00371834  4E 80 00 20 */	blr 
+.endfn isMemoWindow__Q28Morimura10TZukanBaseFv
 
-.global checkRequest__Q28Morimura10TZukanBaseFRi
-checkRequest__Q28Morimura10TZukanBaseFRi:
+.fn checkRequest__Q28Morimura10TZukanBaseFRi, global
 /* 803748F8 00371838  80 03 01 9C */	lwz r0, 0x19c(r3)
 /* 803748FC 0037183C  90 04 00 00 */	stw r0, 0(r4)
 /* 80374900 00371840  80 63 01 98 */	lwz r3, 0x198(r3)
 /* 80374904 00371844  4E 80 00 20 */	blr 
+.endfn checkRequest__Q28Morimura10TZukanBaseFRi
 
-.global getCurrSelectId__Q28Morimura10TZukanBaseFv
-getCurrSelectId__Q28Morimura10TZukanBaseFv:
+.fn getCurrSelectId__Q28Morimura10TZukanBaseFv, global
 /* 80374908 00371848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037490C 0037184C  7C 08 02 A6 */	mflr r0
 /* 80374910 00371850  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5628,9 +5588,9 @@ getCurrSelectId__Q28Morimura10TZukanBaseFv:
 /* 80374964 003718A4  7C 08 03 A6 */	mtlr r0
 /* 80374968 003718A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037496C 003718AC  4E 80 00 20 */	blr 
+.endfn getCurrSelectId__Q28Morimura10TZukanBaseFv
 
-.global getTexInfo__Q28Morimura10TZukanBaseFi
-getTexInfo__Q28Morimura10TZukanBaseFi:
+.fn getTexInfo__Q28Morimura10TZukanBaseFi, global
 /* 80374970 003718B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80374974 003718B4  7C 08 02 A6 */	mflr r0
 /* 80374978 003718B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5707,9 +5667,9 @@ getTexInfo__Q28Morimura10TZukanBaseFi:
 /* 80374A88 003719C8  7C 08 03 A6 */	mtlr r0
 /* 80374A8C 003719CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80374A90 003719D0  4E 80 00 20 */	blr 
+.endfn getTexInfo__Q28Morimura10TZukanBaseFi
 
-.global __dt__Q28Morimura11TEnemyZukanFv
-__dt__Q28Morimura11TEnemyZukanFv:
+.fn __dt__Q28Morimura11TEnemyZukanFv, global
 /* 80374A94 003719D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80374A98 003719D8  7C 08 02 A6 */	mflr r0
 /* 80374A9C 003719DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5786,9 +5746,9 @@ __dt__Q28Morimura11TEnemyZukanFv:
 /* 80374BAC 00371AEC  7C 08 03 A6 */	mtlr r0
 /* 80374BB0 00371AF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80374BB4 00371AF4  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura11TEnemyZukanFv
 
-.global doCreate__Q28Morimura11TEnemyZukanFP10JKRArchive
-doCreate__Q28Morimura11TEnemyZukanFP10JKRArchive:
+.fn doCreate__Q28Morimura11TEnemyZukanFP10JKRArchive, global
 /* 80374BB8 00371AF8  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80374BBC 00371AFC  7C 08 02 A6 */	mflr r0
 /* 80374BC0 00371B00  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -7367,9 +7327,9 @@ doCreate__Q28Morimura11TEnemyZukanFP10JKRArchive:
 /* 803762E0 00373220  7C 08 03 A6 */	mtlr r0
 /* 803762E4 00373224  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 803762E8 00373228  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura11TEnemyZukanFP10JKRArchive
 
-.global init__Q28Morimura15TScaleUpCounterFP9J2DScreenUxUxUxPUlb
-init__Q28Morimura15TScaleUpCounterFP9J2DScreenUxUxUxPUlb:
+.fn init__Q28Morimura15TScaleUpCounterFP9J2DScreenUxUxUxPUlb, weak
 /* 803762EC 0037322C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803762F0 00373230  7C 08 02 A6 */	mflr r0
 /* 803762F4 00373234  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7387,14 +7347,14 @@ init__Q28Morimura15TScaleUpCounterFP9J2DScreenUxUxUxPUlb:
 /* 80376324 00373264  7C 08 03 A6 */	mtlr r0
 /* 80376328 00373268  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037632C 0037326C  4E 80 00 20 */	blr 
+.endfn init__Q28Morimura15TScaleUpCounterFP9J2DScreenUxUxUxPUlb
 
-.global getIdMax__Q28Morimura11TEnemyZukanFv
-getIdMax__Q28Morimura11TEnemyZukanFv:
+.fn getIdMax__Q28Morimura11TEnemyZukanFv, weak
 /* 80376330 00373270  38 60 00 51 */	li r3, 0x51
 /* 80376334 00373274  4E 80 00 20 */	blr 
+.endfn getIdMax__Q28Morimura11TEnemyZukanFv
 
-.global setDetail__Q28Morimura11TEnemyZukanFv
-setDetail__Q28Morimura11TEnemyZukanFv:
+.fn setDetail__Q28Morimura11TEnemyZukanFv, global
 /* 80376338 00373278  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037633C 0037327C  7C 08 02 A6 */	mflr r0
 /* 80376340 00373280  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7520,9 +7480,9 @@ setDetail__Q28Morimura11TEnemyZukanFv:
 /* 80376504 00373444  7C 08 03 A6 */	mtlr r0
 /* 80376508 00373448  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037650C 0037344C  4E 80 00 20 */	blr 
+.endfn setDetail__Q28Morimura11TEnemyZukanFv
 
-.global setShortenIndex__Q28Morimura11TEnemyZukanFiib
-setShortenIndex__Q28Morimura11TEnemyZukanFiib:
+.fn setShortenIndex__Q28Morimura11TEnemyZukanFiib, global
 /* 80376510 00373450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80376514 00373454  7C 08 02 A6 */	mflr r0
 /* 80376518 00373458  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7542,9 +7502,9 @@ setShortenIndex__Q28Morimura11TEnemyZukanFiib:
 /* 8037654C 0037348C  7C 08 03 A6 */	mtlr r0
 /* 80376550 00373490  38 21 00 10 */	addi r1, r1, 0x10
 /* 80376554 00373494  4E 80 00 20 */	blr 
+.endfn setShortenIndex__Q28Morimura11TEnemyZukanFiib
 
-.global isListShow__Q28Morimura11TEnemyZukanFi
-isListShow__Q28Morimura11TEnemyZukanFi:
+.fn isListShow__Q28Morimura11TEnemyZukanFi, global
 /* 80376558 00373498  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037655C 0037349C  7C 08 02 A6 */	mflr r0
 /* 80376560 003734A0  2C 04 00 00 */	cmpwi r4, 0
@@ -7608,9 +7568,9 @@ isListShow__Q28Morimura11TEnemyZukanFi:
 /* 80376624 00373564  7C 08 03 A6 */	mtlr r0
 /* 80376628 00373568  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037662C 0037356C  4E 80 00 20 */	blr 
+.endfn isListShow__Q28Morimura11TEnemyZukanFi
 
-.global indexPaneInit__Q28Morimura11TEnemyZukanFP9J2DScreen
-indexPaneInit__Q28Morimura11TEnemyZukanFP9J2DScreen:
+.fn indexPaneInit__Q28Morimura11TEnemyZukanFP9J2DScreen, global
 /* 80376630 00373570  94 21 F9 F0 */	stwu r1, -0x610(r1)
 /* 80376634 00373574  7C 08 02 A6 */	mflr r0
 /* 80376638 00373578  38 C0 00 0E */	li r6, 0xe
@@ -8101,9 +8061,9 @@ indexPaneInit__Q28Morimura11TEnemyZukanFP9J2DScreen:
 /* 80376D3C 00373C7C  7C 08 03 A6 */	mtlr r0
 /* 80376D40 00373C80  38 21 06 10 */	addi r1, r1, 0x610
 /* 80376D44 00373C84  4E 80 00 20 */	blr 
+.endfn indexPaneInit__Q28Morimura11TEnemyZukanFP9J2DScreen
 
-.global getUpdateIndex__Q28Morimura11TEnemyZukanFRib
-getUpdateIndex__Q28Morimura11TEnemyZukanFRib:
+.fn getUpdateIndex__Q28Morimura11TEnemyZukanFRib, global
 /* 80376D48 00373C88  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80376D4C 00373C8C  7C 08 02 A6 */	mflr r0
 /* 80376D50 00373C90  90 01 00 34 */	stw r0, 0x34(r1)
@@ -8778,9 +8738,9 @@ getUpdateIndex__Q28Morimura11TEnemyZukanFRib:
 /* 803776AC 003745EC  7C 08 03 A6 */	mtlr r0
 /* 803776B0 003745F0  38 21 00 30 */	addi r1, r1, 0x30
 /* 803776B4 003745F4  4E 80 00 20 */	blr 
+.endfn getUpdateIndex__Q28Morimura11TEnemyZukanFRib
 
-.global getNameID__Q28Morimura11TEnemyZukanFi
-getNameID__Q28Morimura11TEnemyZukanFi:
+.fn getNameID__Q28Morimura11TEnemyZukanFi, global
 /* 803776B8 003745F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803776BC 003745FC  7C 08 02 A6 */	mflr r0
 /* 803776C0 00374600  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8790,9 +8750,9 @@ getNameID__Q28Morimura11TEnemyZukanFi:
 /* 803776D0 00374610  7C 08 03 A6 */	mtlr r0
 /* 803776D4 00374614  38 21 00 10 */	addi r1, r1, 0x10
 /* 803776D8 00374618  4E 80 00 20 */	blr 
+.endfn getNameID__Q28Morimura11TEnemyZukanFi
 
-.global getXMsgID__Q28Morimura11TEnemyZukanFi
-getXMsgID__Q28Morimura11TEnemyZukanFi:
+.fn getXMsgID__Q28Morimura11TEnemyZukanFi, global
 /* 803776DC 0037461C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803776E0 00374620  7C 08 02 A6 */	mflr r0
 /* 803776E4 00374624  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8802,9 +8762,9 @@ getXMsgID__Q28Morimura11TEnemyZukanFi:
 /* 803776F4 00374634  7C 08 03 A6 */	mtlr r0
 /* 803776F8 00374638  38 21 00 10 */	addi r1, r1, 0x10
 /* 803776FC 0037463C  4E 80 00 20 */	blr 
+.endfn getXMsgID__Q28Morimura11TEnemyZukanFi
 
-.global getYMsgID__Q28Morimura11TEnemyZukanFi
-getYMsgID__Q28Morimura11TEnemyZukanFi:
+.fn getYMsgID__Q28Morimura11TEnemyZukanFi, global
 /* 80377700 00374640  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377704 00374644  7C 08 02 A6 */	mflr r0
 /* 80377708 00374648  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8814,9 +8774,9 @@ getYMsgID__Q28Morimura11TEnemyZukanFi:
 /* 80377718 00374658  7C 08 03 A6 */	mtlr r0
 /* 8037771C 0037465C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377720 00374660  4E 80 00 20 */	blr 
+.endfn getYMsgID__Q28Morimura11TEnemyZukanFi
 
-.global getModelIndex__Q28Morimura11TEnemyZukanFi
-getModelIndex__Q28Morimura11TEnemyZukanFi:
+.fn getModelIndex__Q28Morimura11TEnemyZukanFi, global
 /* 80377724 00374664  3C 60 80 4E */	lis r3, eIDInfo__8Morimura@ha
 /* 80377728 00374668  38 00 00 51 */	li r0, 0x51
 /* 8037772C 0037466C  38 63 39 98 */	addi r3, r3, eIDInfo__8Morimura@l
@@ -8840,9 +8800,9 @@ getModelIndex__Q28Morimura11TEnemyZukanFi:
 .L_8037776C:
 /* 8037776C 003746AC  80 63 00 04 */	lwz r3, 4(r3)
 /* 80377770 003746B0  4E 80 00 20 */	blr 
+.endfn getModelIndex__Q28Morimura11TEnemyZukanFi
 
-.global setXWindow__Q28Morimura11TEnemyZukanFv
-setXWindow__Q28Morimura11TEnemyZukanFv:
+.fn setXWindow__Q28Morimura11TEnemyZukanFv, global
 /* 80377774 003746B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377778 003746B8  7C 08 02 A6 */	mflr r0
 /* 8037777C 003746BC  38 80 18 36 */	li r4, 0x1836
@@ -8867,9 +8827,9 @@ setXWindow__Q28Morimura11TEnemyZukanFv:
 /* 803777C8 00374708  7C 08 03 A6 */	mtlr r0
 /* 803777CC 0037470C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803777D0 00374710  4E 80 00 20 */	blr 
+.endfn setXWindow__Q28Morimura11TEnemyZukanFv
 
-.global setYWindow__Q28Morimura11TEnemyZukanFv
-setYWindow__Q28Morimura11TEnemyZukanFv:
+.fn setYWindow__Q28Morimura11TEnemyZukanFv, global
 /* 803777D4 00374714  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803777D8 00374718  7C 08 02 A6 */	mflr r0
 /* 803777DC 0037471C  38 80 18 37 */	li r4, 0x1837
@@ -8894,9 +8854,9 @@ setYWindow__Q28Morimura11TEnemyZukanFv:
 /* 80377828 00374768  7C 08 03 A6 */	mtlr r0
 /* 8037782C 0037476C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377830 00374770  4E 80 00 20 */	blr 
+.endfn setYWindow__Q28Morimura11TEnemyZukanFv
 
-.global isOpenConfirmWindow__Q28Morimura11TEnemyZukanFv
-isOpenConfirmWindow__Q28Morimura11TEnemyZukanFv:
+.fn isOpenConfirmWindow__Q28Morimura11TEnemyZukanFv, global
 /* 80377834 00374774  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377838 00374778  7C 08 02 A6 */	mflr r0
 /* 8037783C 0037477C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8910,9 +8870,9 @@ isOpenConfirmWindow__Q28Morimura11TEnemyZukanFv:
 /* 8037785C 0037479C  7C 08 03 A6 */	mtlr r0
 /* 80377860 003747A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377864 003747A4  4E 80 00 20 */	blr 
+.endfn isOpenConfirmWindow__Q28Morimura11TEnemyZukanFv
 
-.global isNewSupply__Q28Morimura11TEnemyZukanFib
-isNewSupply__Q28Morimura11TEnemyZukanFib:
+.fn isNewSupply__Q28Morimura11TEnemyZukanFib, global
 /* 80377868 003747A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037786C 003747AC  7C 08 02 A6 */	mflr r0
 /* 80377870 003747B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8985,9 +8945,9 @@ isNewSupply__Q28Morimura11TEnemyZukanFib:
 /* 80377958 00374898  7C 08 03 A6 */	mtlr r0
 /* 8037795C 0037489C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377960 003748A0  4E 80 00 20 */	blr 
+.endfn isNewSupply__Q28Morimura11TEnemyZukanFib
 
-.global isPanelExist__Q28Morimura11TEnemyZukanFv
-isPanelExist__Q28Morimura11TEnemyZukanFv:
+.fn isPanelExist__Q28Morimura11TEnemyZukanFv, global
 /* 80377964 003748A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377968 003748A8  7C 08 02 A6 */	mflr r0
 /* 8037796C 003748AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9050,9 +9010,9 @@ isPanelExist__Q28Morimura11TEnemyZukanFv:
 /* 80377A3C 0037497C  7C 08 03 A6 */	mtlr r0
 /* 80377A40 00374980  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377A44 00374984  4E 80 00 20 */	blr 
+.endfn isPanelExist__Q28Morimura11TEnemyZukanFv
 
-.global openConfirmWindow__Q28Morimura11TEnemyZukanFv
-openConfirmWindow__Q28Morimura11TEnemyZukanFv:
+.fn openConfirmWindow__Q28Morimura11TEnemyZukanFv, global
 /* 80377A48 00374988  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377A4C 0037498C  7C 08 02 A6 */	mflr r0
 /* 80377A50 00374990  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9072,9 +9032,9 @@ openConfirmWindow__Q28Morimura11TEnemyZukanFv:
 /* 80377A88 003749C8  7C 08 03 A6 */	mtlr r0
 /* 80377A8C 003749CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377A90 003749D0  4E 80 00 20 */	blr 
+.endfn openConfirmWindow__Q28Morimura11TEnemyZukanFv
 
-.global getPrice__Q28Morimura11TEnemyZukanFi
-getPrice__Q28Morimura11TEnemyZukanFi:
+.fn getPrice__Q28Morimura11TEnemyZukanFi, global
 /* 80377A94 003749D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80377A98 003749D8  7C 08 02 A6 */	mflr r0
 /* 80377A9C 003749DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9160,9 +9120,9 @@ getPrice__Q28Morimura11TEnemyZukanFi:
 /* 80377BBC 00374AFC  7C 08 03 A6 */	mtlr r0
 /* 80377BC0 00374B00  38 21 00 20 */	addi r1, r1, 0x20
 /* 80377BC4 00374B04  4E 80 00 20 */	blr 
+.endfn getPrice__Q28Morimura11TEnemyZukanFi
 
-.global getDefeatNum__Q28Morimura11TEnemyZukanFi
-getDefeatNum__Q28Morimura11TEnemyZukanFi:
+.fn getDefeatNum__Q28Morimura11TEnemyZukanFi, global
 /* 80377BC8 00374B08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377BCC 00374B0C  7C 08 02 A6 */	mflr r0
 /* 80377BD0 00374B10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9233,9 +9193,9 @@ getDefeatNum__Q28Morimura11TEnemyZukanFi:
 /* 80377CB4 00374BF4  7C 08 03 A6 */	mtlr r0
 /* 80377CB8 00374BF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377CBC 00374BFC  4E 80 00 20 */	blr 
+.endfn getDefeatNum__Q28Morimura11TEnemyZukanFi
 
-.global getKilledNum__Q28Morimura11TEnemyZukanFi
-getKilledNum__Q28Morimura11TEnemyZukanFi:
+.fn getKilledNum__Q28Morimura11TEnemyZukanFi, global
 /* 80377CC0 00374C00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377CC4 00374C04  7C 08 02 A6 */	mflr r0
 /* 80377CC8 00374C08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9319,9 +9279,9 @@ getKilledNum__Q28Morimura11TEnemyZukanFi:
 /* 80377DE0 00374D20  7C 08 03 A6 */	mtlr r0
 /* 80377DE4 00374D24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377DE8 00374D28  4E 80 00 20 */	blr 
+.endfn getKilledNum__Q28Morimura11TEnemyZukanFi
 
-.global __ct__Q28Morimura12TDEnemySceneFv
-__ct__Q28Morimura12TDEnemySceneFv:
+.fn __ct__Q28Morimura12TDEnemySceneFv, global
 /* 80377DEC 00374D2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377DF0 00374D30  7C 08 02 A6 */	mflr r0
 /* 80377DF4 00374D34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9343,9 +9303,9 @@ __ct__Q28Morimura12TDEnemySceneFv:
 /* 80377E34 00374D74  7C 08 03 A6 */	mtlr r0
 /* 80377E38 00374D78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377E3C 00374D7C  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura12TDEnemySceneFv
 
-.global doCreateObj__Q28Morimura12TDEnemySceneFP10JKRArchive
-doCreateObj__Q28Morimura12TDEnemySceneFP10JKRArchive:
+.fn doCreateObj__Q28Morimura12TDEnemySceneFP10JKRArchive, global
 /* 80377E40 00374D80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80377E44 00374D84  7C 08 02 A6 */	mflr r0
 /* 80377E48 00374D88  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9403,9 +9363,9 @@ doCreateObj__Q28Morimura12TDEnemySceneFP10JKRArchive:
 /* 80377F10 00374E50  7C 08 03 A6 */	mtlr r0
 /* 80377F14 00374E54  38 21 00 20 */	addi r1, r1, 0x20
 /* 80377F18 00374E58  4E 80 00 20 */	blr 
+.endfn doCreateObj__Q28Morimura12TDEnemySceneFP10JKRArchive
 
-.global doStart__Q28Morimura12TDEnemySceneFPQ26Screen13StartSceneArg
-doStart__Q28Morimura12TDEnemySceneFPQ26Screen13StartSceneArg:
+.fn doStart__Q28Morimura12TDEnemySceneFPQ26Screen13StartSceneArg, global
 /* 80377F1C 00374E5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377F20 00374E60  7C 08 02 A6 */	mflr r0
 /* 80377F24 00374E64  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9419,9 +9379,9 @@ doStart__Q28Morimura12TDEnemySceneFPQ26Screen13StartSceneArg:
 /* 80377F44 00374E84  7C 08 03 A6 */	mtlr r0
 /* 80377F48 00374E88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80377F4C 00374E8C  4E 80 00 20 */	blr 
+.endfn doStart__Q28Morimura12TDEnemySceneFPQ26Screen13StartSceneArg
 
-.global isAppearConfirmWindow__Q28Morimura12TDEnemySceneFv
-isAppearConfirmWindow__Q28Morimura12TDEnemySceneFv:
+.fn isAppearConfirmWindow__Q28Morimura12TDEnemySceneFv, global
 /* 80377F50 00374E90  80 63 02 24 */	lwz r3, 0x224(r3)
 /* 80377F54 00374E94  28 03 00 00 */	cmplwi r3, 0
 /* 80377F58 00374E98  41 82 00 18 */	beq .L_80377F70
@@ -9433,9 +9393,9 @@ isAppearConfirmWindow__Q28Morimura12TDEnemySceneFv:
 .L_80377F70:
 /* 80377F70 00374EB0  38 60 00 00 */	li r3, 0
 /* 80377F74 00374EB4  4E 80 00 20 */	blr 
+.endfn isAppearConfirmWindow__Q28Morimura12TDEnemySceneFv
 
-.global __dt__Q28Morimura10TItemZukanFv
-__dt__Q28Morimura10TItemZukanFv:
+.fn __dt__Q28Morimura10TItemZukanFv, global
 /* 80377F78 00374EB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80377F7C 00374EBC  7C 08 02 A6 */	mflr r0
 /* 80377F80 00374EC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9512,9 +9472,9 @@ __dt__Q28Morimura10TItemZukanFv:
 /* 80378090 00374FD0  7C 08 03 A6 */	mtlr r0
 /* 80378094 00374FD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80378098 00374FD8  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura10TItemZukanFv
 
-.global doUpdate__Q28Morimura10TItemZukanFv
-doUpdate__Q28Morimura10TItemZukanFv:
+.fn doUpdate__Q28Morimura10TItemZukanFv, global
 /* 8037809C 00374FDC  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 803780A0 00374FE0  7C 08 02 A6 */	mflr r0
 /* 803780A4 00374FE4  90 01 00 94 */	stw r0, 0x94(r1)
@@ -9801,9 +9761,9 @@ doUpdate__Q28Morimura10TItemZukanFv:
 /* 803784B4 003753F4  7C 08 03 A6 */	mtlr r0
 /* 803784B8 003753F8  38 21 00 90 */	addi r1, r1, 0x90
 /* 803784BC 003753FC  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura10TItemZukanFv
 
-.global demoSet__Q28Morimura10TItemZukanFv
-demoSet__Q28Morimura10TItemZukanFv:
+.fn demoSet__Q28Morimura10TItemZukanFv, global
 /* 803784C0 00375400  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803784C4 00375404  7C 08 02 A6 */	mflr r0
 /* 803784C8 00375408  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9848,9 +9808,9 @@ demoSet__Q28Morimura10TItemZukanFv:
 /* 8037855C 0037549C  7C 08 03 A6 */	mtlr r0
 /* 80378560 003754A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80378564 003754A4  4E 80 00 20 */	blr 
+.endfn demoSet__Q28Morimura10TItemZukanFv
 
-.global setShortenIndex__Q28Morimura10TItemZukanFiib
-setShortenIndex__Q28Morimura10TItemZukanFiib:
+.fn setShortenIndex__Q28Morimura10TItemZukanFiib, global
 /* 80378568 003754A8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8037856C 003754AC  7C 08 02 A6 */	mflr r0
 /* 80378570 003754B0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -10153,16 +10113,16 @@ setShortenIndex__Q28Morimura10TItemZukanFiib:
 /* 803789B8 003758F8  7C 08 03 A6 */	mtlr r0
 /* 803789BC 003758FC  38 21 00 40 */	addi r1, r1, 0x40
 /* 803789C0 00375900  4E 80 00 20 */	blr 
+.endfn setShortenIndex__Q28Morimura10TItemZukanFiib
 
-.global getCategoryColorId__Q28Morimura10TItemZukanFi
-getCategoryColorId__Q28Morimura10TItemZukanFi:
+.fn getCategoryColorId__Q28Morimura10TItemZukanFi, weak
 /* 803789C4 00375904  54 80 10 3A */	slwi r0, r4, 2
 /* 803789C8 00375908  7C 63 02 14 */	add r3, r3, r0
 /* 803789CC 0037590C  80 63 03 40 */	lwz r3, 0x340(r3)
 /* 803789D0 00375910  4E 80 00 20 */	blr 
+.endfn getCategoryColorId__Q28Morimura10TItemZukanFi
 
-.global doUpdateOut__Q28Morimura10TItemZukanFv
-doUpdateOut__Q28Morimura10TItemZukanFv:
+.fn doUpdateOut__Q28Morimura10TItemZukanFv, global
 /* 803789D4 00375914  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 803789D8 00375918  7C 08 02 A6 */	mflr r0
 /* 803789DC 0037591C  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -10359,9 +10319,9 @@ doUpdateOut__Q28Morimura10TItemZukanFv:
 /* 80378C9C 00375BDC  7C 08 03 A6 */	mtlr r0
 /* 80378CA0 00375BE0  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80378CA4 00375BE4  4E 80 00 20 */	blr 
+.endfn doUpdateOut__Q28Morimura10TItemZukanFv
 
-.global getUpdateIndex__Q28Morimura10TItemZukanFRib
-getUpdateIndex__Q28Morimura10TItemZukanFRib:
+.fn getUpdateIndex__Q28Morimura10TItemZukanFRib, global
 /* 80378CA8 00375BE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80378CAC 00375BEC  7C 08 02 A6 */	mflr r0
 /* 80378CB0 00375BF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10415,9 +10375,9 @@ getUpdateIndex__Q28Morimura10TItemZukanFRib:
 /* 80378D5C 00375C9C  7C 08 03 A6 */	mtlr r0
 /* 80378D60 00375CA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80378D64 00375CA4  4E 80 00 20 */	blr 
+.endfn getUpdateIndex__Q28Morimura10TItemZukanFRib
 
-.global getNameID__Q28Morimura10TItemZukanFi
-getNameID__Q28Morimura10TItemZukanFi:
+.fn getNameID__Q28Morimura10TItemZukanFi, global
 /* 80378D68 00375CA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80378D6C 00375CAC  7C 08 02 A6 */	mflr r0
 /* 80378D70 00375CB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10433,9 +10393,9 @@ getNameID__Q28Morimura10TItemZukanFi:
 /* 80378D98 00375CD8  7C 08 03 A6 */	mtlr r0
 /* 80378D9C 00375CDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80378DA0 00375CE0  4E 80 00 20 */	blr 
+.endfn getNameID__Q28Morimura10TItemZukanFi
 
-.global getXMsgID__Q28Morimura10TItemZukanFi
-getXMsgID__Q28Morimura10TItemZukanFi:
+.fn getXMsgID__Q28Morimura10TItemZukanFi, global
 /* 80378DA4 00375CE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80378DA8 00375CE8  7C 08 02 A6 */	mflr r0
 /* 80378DAC 00375CEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10451,9 +10411,9 @@ getXMsgID__Q28Morimura10TItemZukanFi:
 /* 80378DD4 00375D14  7C 08 03 A6 */	mtlr r0
 /* 80378DD8 00375D18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80378DDC 00375D1C  4E 80 00 20 */	blr 
+.endfn getXMsgID__Q28Morimura10TItemZukanFi
 
-.global getYMsgID__Q28Morimura10TItemZukanFi
-getYMsgID__Q28Morimura10TItemZukanFi:
+.fn getYMsgID__Q28Morimura10TItemZukanFi, global
 /* 80378DE0 00375D20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80378DE4 00375D24  7C 08 02 A6 */	mflr r0
 /* 80378DE8 00375D28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10469,9 +10429,9 @@ getYMsgID__Q28Morimura10TItemZukanFi:
 /* 80378E10 00375D50  7C 08 03 A6 */	mtlr r0
 /* 80378E14 00375D54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80378E18 00375D58  4E 80 00 20 */	blr 
+.endfn getYMsgID__Q28Morimura10TItemZukanFi
 
-.global getModelIndex__Q28Morimura10TItemZukanFi
-getModelIndex__Q28Morimura10TItemZukanFi:
+.fn getModelIndex__Q28Morimura10TItemZukanFi, global
 /* 80378E1C 00375D5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80378E20 00375D60  7C 08 02 A6 */	mflr r0
 /* 80378E24 00375D64  2C 04 00 00 */	cmpwi r4, 0
@@ -10487,9 +10447,9 @@ getModelIndex__Q28Morimura10TItemZukanFi:
 /* 80378E44 00375D84  7C 08 03 A6 */	mtlr r0
 /* 80378E48 00375D88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80378E4C 00375D8C  4E 80 00 20 */	blr 
+.endfn getModelIndex__Q28Morimura10TItemZukanFi
 
-.global getIdMax__Q28Morimura10TItemZukanFv
-getIdMax__Q28Morimura10TItemZukanFv:
+.fn getIdMax__Q28Morimura10TItemZukanFv, global
 /* 80378E50 00375D90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80378E54 00375D94  7C 08 02 A6 */	mflr r0
 /* 80378E58 00375D98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10498,10 +10458,10 @@ getIdMax__Q28Morimura10TItemZukanFv:
 /* 80378E64 00375DA4  7C 08 03 A6 */	mtlr r0
 /* 80378E68 00375DA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80378E6C 00375DAC  4E 80 00 20 */	blr 
+.endfn getIdMax__Q28Morimura10TItemZukanFv
 
 .if version == 1
-.global doCreate__Q28Morimura10TItemZukanFP10JKRArchive
-doCreate__Q28Morimura10TItemZukanFP10JKRArchive:
+.fn doCreate__Q28Morimura10TItemZukanFP10JKRArchive, global
 /* 80378E70 00375DB0  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80378E74 00375DB4  7C 08 02 A6 */	mflr r0
 /* 80378E78 00375DB8  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -12041,9 +12001,9 @@ doCreate__Q28Morimura10TItemZukanFP10JKRArchive:
 /* 8037A4F4 00377434  7C 08 03 A6 */	mtlr r0
 /* 8037A4F8 00377438  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 8037A4FC 0037743C  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura10TItemZukanFP10JKRArchive
 .else
-.global doCreate__Q28Morimura10TItemZukanFP10JKRArchive
-doCreate__Q28Morimura10TItemZukanFP10JKRArchive:
+.fn doCreate__Q28Morimura10TItemZukanFP10JKRArchive, global
 /* 80378E70 00375DB0  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80378E74 00375DB4  7C 08 02 A6 */	mflr r0
 /* 80378E78 00375DB8  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -13583,10 +13543,10 @@ doCreate__Q28Morimura10TItemZukanFP10JKRArchive:
 /* 8037A4F4 00377434  7C 08 03 A6 */	mtlr r0
 /* 8037A4F8 00377438  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 8037A4FC 0037743C  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura10TItemZukanFP10JKRArchive
 .endif
 
-.global doDemoDraw__Q28Morimura10TItemZukanFR8Graphics
-doDemoDraw__Q28Morimura10TItemZukanFR8Graphics:
+.fn doDemoDraw__Q28Morimura10TItemZukanFR8Graphics, global
 /* 8037A500 00377440  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 8037A504 00377444  7C 08 02 A6 */	mflr r0
 /* 8037A508 00377448  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -14090,10 +14050,10 @@ doDemoDraw__Q28Morimura10TItemZukanFR8Graphics:
 /* 8037ACA8 00377BE8  7C 08 03 A6 */	mtlr r0
 /* 8037ACAC 00377BEC  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 8037ACB0 00377BF0  4E 80 00 20 */	blr 
+.endfn doDemoDraw__Q28Morimura10TItemZukanFR8Graphics
 
 .if version == 1
-.global setDetail__Q28Morimura10TItemZukanFv
-setDetail__Q28Morimura10TItemZukanFv:
+.fn setDetail__Q28Morimura10TItemZukanFv, global
 /* 8037ACB4 00377BF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037ACB8 00377BF8  7C 08 02 A6 */	mflr r0
 /* 8037ACBC 00377BFC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14192,9 +14152,9 @@ setDetail__Q28Morimura10TItemZukanFv:
 /* 8037AE18 00377D58  7C 08 03 A6 */	mtlr r0
 /* 8037AE1C 00377D5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037AE20 00377D60  4E 80 00 20 */	blr 
+.endfn setDetail__Q28Morimura10TItemZukanFv
 .else
-.global setDetail__Q28Morimura10TItemZukanFv
-setDetail__Q28Morimura10TItemZukanFv:
+.fn setDetail__Q28Morimura10TItemZukanFv, global
 /* 8037ACB4 00377BF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037ACB8 00377BF8  7C 08 02 A6 */	mflr r0
 /* 8037ACBC 00377BFC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14293,10 +14253,10 @@ setDetail__Q28Morimura10TItemZukanFv:
 /* 8037AE18 00377D58  7C 08 03 A6 */	mtlr r0
 /* 8037AE1C 00377D5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037AE20 00377D60  4E 80 00 20 */	blr 
+.endfn setDetail__Q28Morimura10TItemZukanFv
 .endif
 
-.global isComplete__Q28Morimura10TItemZukanFv
-isComplete__Q28Morimura10TItemZukanFv:
+.fn isComplete__Q28Morimura10TItemZukanFv, global
 /* 8037AE24 00377D64  88 03 02 41 */	lbz r0, 0x241(r3)
 /* 8037AE28 00377D68  28 00 00 00 */	cmplwi r0, 0
 /* 8037AE2C 00377D6C  41 82 00 80 */	beq .L_8037AEAC
@@ -14337,9 +14297,9 @@ isComplete__Q28Morimura10TItemZukanFv:
 .L_8037AEAC:
 /* 8037AEAC 00377DEC  38 60 00 01 */	li r3, 1
 /* 8037AEB0 00377DF0  4E 80 00 20 */	blr 
+.endfn isComplete__Q28Morimura10TItemZukanFv
 
-.global isListShow__Q28Morimura10TItemZukanFi
-isListShow__Q28Morimura10TItemZukanFi:
+.fn isListShow__Q28Morimura10TItemZukanFi, global
 /* 8037AEB4 00377DF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037AEB8 00377DF8  7C 08 02 A6 */	mflr r0
 /* 8037AEBC 00377DFC  2C 04 00 00 */	cmpwi r4, 0
@@ -14377,9 +14337,9 @@ isListShow__Q28Morimura10TItemZukanFi:
 /* 8037AF28 00377E68  7C 08 03 A6 */	mtlr r0
 /* 8037AF2C 00377E6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037AF30 00377E70  4E 80 00 20 */	blr 
+.endfn isListShow__Q28Morimura10TItemZukanFi
 
-.global setXWindow__Q28Morimura10TItemZukanFv
-setXWindow__Q28Morimura10TItemZukanFv:
+.fn setXWindow__Q28Morimura10TItemZukanFv, global
 /* 8037AF34 00377E74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037AF38 00377E78  7C 08 02 A6 */	mflr r0
 /* 8037AF3C 00377E7C  C0 02 07 C0 */	lfs f0, lbl_8051EB20@sda21(r2)
@@ -14407,9 +14367,9 @@ setXWindow__Q28Morimura10TItemZukanFv:
 /* 8037AF94 00377ED4  7C 08 03 A6 */	mtlr r0
 /* 8037AF98 00377ED8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037AF9C 00377EDC  4E 80 00 20 */	blr 
+.endfn setXWindow__Q28Morimura10TItemZukanFv
 
-.global setYWindow__Q28Morimura10TItemZukanFv
-setYWindow__Q28Morimura10TItemZukanFv:
+.fn setYWindow__Q28Morimura10TItemZukanFv, global
 /* 8037AFA0 00377EE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037AFA4 00377EE4  7C 08 02 A6 */	mflr r0
 /* 8037AFA8 00377EE8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14454,9 +14414,9 @@ setYWindow__Q28Morimura10TItemZukanFv:
 /* 8037B03C 00377F7C  7C 08 03 A6 */	mtlr r0
 /* 8037B040 00377F80  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037B044 00377F84  4E 80 00 20 */	blr 
+.endfn setYWindow__Q28Morimura10TItemZukanFv
 
-.global getPrice__Q28Morimura10TItemZukanFi
-getPrice__Q28Morimura10TItemZukanFi:
+.fn getPrice__Q28Morimura10TItemZukanFi, global
 /* 8037B048 00377F88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037B04C 00377F8C  7C 08 02 A6 */	mflr r0
 /* 8037B050 00377F90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14509,9 +14469,9 @@ getPrice__Q28Morimura10TItemZukanFi:
 /* 8037B0FC 0037803C  7C 08 03 A6 */	mtlr r0
 /* 8037B100 00378040  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037B104 00378044  4E 80 00 20 */	blr 
+.endfn getPrice__Q28Morimura10TItemZukanFi
 
-.global getWeight__Q28Morimura10TItemZukanFi
-getWeight__Q28Morimura10TItemZukanFi:
+.fn getWeight__Q28Morimura10TItemZukanFi, global
 /* 8037B108 00378048  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037B10C 0037804C  7C 08 02 A6 */	mflr r0
 /* 8037B110 00378050  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14566,9 +14526,9 @@ getWeight__Q28Morimura10TItemZukanFi:
 /* 8037B1C4 00378104  7C 08 03 A6 */	mtlr r0
 /* 8037B1C8 00378108  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037B1CC 0037810C  4E 80 00 20 */	blr 
+.endfn getWeight__Q28Morimura10TItemZukanFi
 
-.global isNewSupply__Q28Morimura10TItemZukanFib
-isNewSupply__Q28Morimura10TItemZukanFib:
+.fn isNewSupply__Q28Morimura10TItemZukanFib, global
 /* 8037B1D0 00378110  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B1D4 00378114  7C 08 02 A6 */	mflr r0
 /* 8037B1D8 00378118  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14612,9 +14572,9 @@ isNewSupply__Q28Morimura10TItemZukanFib:
 /* 8037B25C 0037819C  7C 08 03 A6 */	mtlr r0
 /* 8037B260 003781A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B264 003781A4  4E 80 00 20 */	blr 
+.endfn isNewSupply__Q28Morimura10TItemZukanFib
 
-.global isPanelExist__Q28Morimura10TItemZukanFv
-isPanelExist__Q28Morimura10TItemZukanFv:
+.fn isPanelExist__Q28Morimura10TItemZukanFv, global
 /* 8037B268 003781A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B26C 003781AC  7C 08 02 A6 */	mflr r0
 /* 8037B270 003781B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14669,9 +14629,9 @@ isPanelExist__Q28Morimura10TItemZukanFv:
 /* 8037B320 00378260  7C 08 03 A6 */	mtlr r0
 /* 8037B324 00378264  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B328 00378268  4E 80 00 20 */	blr 
+.endfn isPanelExist__Q28Morimura10TItemZukanFv
 
-.global isOpenConfirmWindow__Q28Morimura10TItemZukanFv
-isOpenConfirmWindow__Q28Morimura10TItemZukanFv:
+.fn isOpenConfirmWindow__Q28Morimura10TItemZukanFv, global
 /* 8037B32C 0037826C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B330 00378270  7C 08 02 A6 */	mflr r0
 /* 8037B334 00378274  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14685,9 +14645,9 @@ isOpenConfirmWindow__Q28Morimura10TItemZukanFv:
 /* 8037B354 00378294  7C 08 03 A6 */	mtlr r0
 /* 8037B358 00378298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B35C 0037829C  4E 80 00 20 */	blr 
+.endfn isOpenConfirmWindow__Q28Morimura10TItemZukanFv
 
-.global openConfirmWindow__Q28Morimura10TItemZukanFv
-openConfirmWindow__Q28Morimura10TItemZukanFv:
+.fn openConfirmWindow__Q28Morimura10TItemZukanFv, global
 /* 8037B360 003782A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B364 003782A4  7C 08 02 A6 */	mflr r0
 /* 8037B368 003782A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14707,9 +14667,9 @@ openConfirmWindow__Q28Morimura10TItemZukanFv:
 /* 8037B3A0 003782E0  7C 08 03 A6 */	mtlr r0
 /* 8037B3A4 003782E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B3A8 003782E8  4E 80 00 20 */	blr 
+.endfn openConfirmWindow__Q28Morimura10TItemZukanFv
 
-.global __ct__Q28Morimura11TDItemSceneFv
-__ct__Q28Morimura11TDItemSceneFv:
+.fn __ct__Q28Morimura11TDItemSceneFv, global
 /* 8037B3AC 003782EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B3B0 003782F0  7C 08 02 A6 */	mflr r0
 /* 8037B3B4 003782F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14731,9 +14691,9 @@ __ct__Q28Morimura11TDItemSceneFv:
 /* 8037B3F4 00378334  7C 08 03 A6 */	mtlr r0
 /* 8037B3F8 00378338  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B3FC 0037833C  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura11TDItemSceneFv
 
-.global doCreateObj__Q28Morimura11TDItemSceneFP10JKRArchive
-doCreateObj__Q28Morimura11TDItemSceneFP10JKRArchive:
+.fn doCreateObj__Q28Morimura11TDItemSceneFP10JKRArchive, global
 /* 8037B400 00378340  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037B404 00378344  7C 08 02 A6 */	mflr r0
 /* 8037B408 00378348  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14850,9 +14810,9 @@ doCreateObj__Q28Morimura11TDItemSceneFP10JKRArchive:
 /* 8037B5BC 003784FC  7C 08 03 A6 */	mtlr r0
 /* 8037B5C0 00378500  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037B5C4 00378504  4E 80 00 20 */	blr 
+.endfn doCreateObj__Q28Morimura11TDItemSceneFP10JKRArchive
 
-.global doStart__Q28Morimura11TDItemSceneFPQ26Screen13StartSceneArg
-doStart__Q28Morimura11TDItemSceneFPQ26Screen13StartSceneArg:
+.fn doStart__Q28Morimura11TDItemSceneFPQ26Screen13StartSceneArg, global
 /* 8037B5C8 00378508  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B5CC 0037850C  7C 08 02 A6 */	mflr r0
 /* 8037B5D0 00378510  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14866,9 +14826,9 @@ doStart__Q28Morimura11TDItemSceneFPQ26Screen13StartSceneArg:
 /* 8037B5F0 00378530  7C 08 03 A6 */	mtlr r0
 /* 8037B5F4 00378534  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B5F8 00378538  4E 80 00 20 */	blr 
+.endfn doStart__Q28Morimura11TDItemSceneFPQ26Screen13StartSceneArg
 
-.global isAppearConfirmWindow__Q28Morimura11TDItemSceneFv
-isAppearConfirmWindow__Q28Morimura11TDItemSceneFv:
+.fn isAppearConfirmWindow__Q28Morimura11TDItemSceneFv, global
 /* 8037B5FC 0037853C  80 63 02 24 */	lwz r3, 0x224(r3)
 /* 8037B600 00378540  28 03 00 00 */	cmplwi r3, 0
 /* 8037B604 00378544  41 82 00 18 */	beq .L_8037B61C
@@ -14880,9 +14840,9 @@ isAppearConfirmWindow__Q28Morimura11TDItemSceneFv:
 .L_8037B61C:
 /* 8037B61C 0037855C  38 60 00 00 */	li r3, 0
 /* 8037B620 00378560  4E 80 00 20 */	blr 
+.endfn isAppearConfirmWindow__Q28Morimura11TDItemSceneFv
 
-.global __ct__Q28Morimura18TCallbackScrollMsgFv
-__ct__Q28Morimura18TCallbackScrollMsgFv:
+.fn __ct__Q28Morimura18TCallbackScrollMsgFv, global
 /* 8037B624 00378564  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B628 00378568  7C 08 02 A6 */	mflr r0
 /* 8037B62C 0037856C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14916,10 +14876,10 @@ __ct__Q28Morimura18TCallbackScrollMsgFv:
 /* 8037B698 003785D8  7C 08 03 A6 */	mtlr r0
 /* 8037B69C 003785DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B6A0 003785E0  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura18TCallbackScrollMsgFv
 
 .if version == 1
-.global doInit__Q28Morimura18TCallbackScrollMsgFv
-doInit__Q28Morimura18TCallbackScrollMsgFv:
+.fn doInit__Q28Morimura18TCallbackScrollMsgFv, global
 /* 8037B6A4 003785E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B6A8 003785E8  7C 08 02 A6 */	mflr r0
 /* 8037B6AC 003785EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14949,9 +14909,9 @@ doInit__Q28Morimura18TCallbackScrollMsgFv:
 /* 8037B708 00378648  7C 08 03 A6 */	mtlr r0
 /* 8037B70C 0037864C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B710 00378650  4E 80 00 20 */	blr 
+.endfn doInit__Q28Morimura18TCallbackScrollMsgFv
 .else
-.global doInit__Q28Morimura18TCallbackScrollMsgFv
-doInit__Q28Morimura18TCallbackScrollMsgFv:
+.fn doInit__Q28Morimura18TCallbackScrollMsgFv, global
 /* 8037B6A4 003785E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B6A8 003785E8  7C 08 02 A6 */	mflr r0
 /* 8037B6AC 003785EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14981,10 +14941,10 @@ doInit__Q28Morimura18TCallbackScrollMsgFv:
 /* 8037B708 00378648  7C 08 03 A6 */	mtlr r0
 /* 8037B70C 0037864C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B710 00378650  4E 80 00 20 */	blr 
+.endfn doInit__Q28Morimura18TCallbackScrollMsgFv
 .endif
 
-.global update__Q28Morimura18TCallbackScrollMsgFv
-update__Q28Morimura18TCallbackScrollMsgFv:
+.fn update__Q28Morimura18TCallbackScrollMsgFv, global
 /* 8037B714 00378654  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B718 00378658  7C 08 02 A6 */	mflr r0
 /* 8037B71C 0037865C  38 80 00 00 */	li r4, 0
@@ -14999,9 +14959,9 @@ update__Q28Morimura18TCallbackScrollMsgFv:
 /* 8037B740 00378680  7C 08 03 A6 */	mtlr r0
 /* 8037B744 00378684  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B748 00378688  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura18TCallbackScrollMsgFv
 
-.global reset__Q28Morimura18TCallbackScrollMsgFv
-reset__Q28Morimura18TCallbackScrollMsgFv:
+.fn reset__Q28Morimura18TCallbackScrollMsgFv, global
 /* 8037B74C 0037868C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B750 00378690  7C 08 02 A6 */	mflr r0
 /* 8037B754 00378694  C0 02 08 3C */	lfs f0, lbl_8051EB9C@sda21(r2)
@@ -15053,9 +15013,9 @@ reset__Q28Morimura18TCallbackScrollMsgFv:
 /* 8037B808 00378748  7C 08 03 A6 */	mtlr r0
 /* 8037B80C 0037874C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B810 00378750  4E 80 00 20 */	blr 
+.endfn reset__Q28Morimura18TCallbackScrollMsgFv
 
-.global scroll__Q28Morimura18TCallbackScrollMsgFf
-scroll__Q28Morimura18TCallbackScrollMsgFf:
+.fn scroll__Q28Morimura18TCallbackScrollMsgFf, global
 /* 8037B814 00378754  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B818 00378758  7C 08 02 A6 */	mflr r0
 /* 8037B81C 0037875C  C0 02 07 E4 */	lfs f0, lbl_8051EB44@sda21(r2)
@@ -15069,9 +15029,9 @@ scroll__Q28Morimura18TCallbackScrollMsgFf:
 /* 8037B83C 0037877C  7C 08 03 A6 */	mtlr r0
 /* 8037B840 00378780  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B844 00378784  4E 80 00 20 */	blr 
+.endfn scroll__Q28Morimura18TCallbackScrollMsgFf
 
-.global draw__Q28Morimura18TCallbackScrollMsgFR8GraphicsR14J2DGrafContext
-draw__Q28Morimura18TCallbackScrollMsgFR8GraphicsR14J2DGrafContext:
+.fn draw__Q28Morimura18TCallbackScrollMsgFR8GraphicsR14J2DGrafContext, global
 /* 8037B848 00378788  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B84C 0037878C  7C 08 02 A6 */	mflr r0
 /* 8037B850 00378790  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15091,9 +15051,9 @@ draw__Q28Morimura18TCallbackScrollMsgFR8GraphicsR14J2DGrafContext:
 /* 8037B884 003787C4  7C 08 03 A6 */	mtlr r0
 /* 8037B888 003787C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B88C 003787CC  4E 80 00 20 */	blr 
+.endfn draw__Q28Morimura18TCallbackScrollMsgFR8GraphicsR14J2DGrafContext
 
-.global getPosRate__Q28Morimura18TCallbackScrollMsgFv
-getPosRate__Q28Morimura18TCallbackScrollMsgFv:
+.fn getPosRate__Q28Morimura18TCallbackScrollMsgFv, global
 /* 8037B890 003787D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B894 003787D4  7C 08 02 A6 */	mflr r0
 /* 8037B898 003787D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15103,9 +15063,9 @@ getPosRate__Q28Morimura18TCallbackScrollMsgFv:
 /* 8037B8A8 003787E8  7C 08 03 A6 */	mtlr r0
 /* 8037B8AC 003787EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B8B0 003787F0  4E 80 00 20 */	blr 
+.endfn getPosRate__Q28Morimura18TCallbackScrollMsgFv
 
-.global __ct__Q28Morimura12TZukanWindowFP10JKRArchivei
-__ct__Q28Morimura12TZukanWindowFP10JKRArchivei:
+.fn __ct__Q28Morimura12TZukanWindowFP10JKRArchivei, global
 /* 8037B8B4 003787F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037B8B8 003787F8  7C 08 02 A6 */	mflr r0
 /* 8037B8BC 003787FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15138,10 +15098,10 @@ __ct__Q28Morimura12TZukanWindowFP10JKRArchivei:
 /* 8037B928 00378868  7C 08 03 A6 */	mtlr r0
 /* 8037B92C 0037886C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037B930 00378870  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura12TZukanWindowFP10JKRArchivei
 
 .if version == 1
-.global create__Q28Morimura12TZukanWindowFPCcUl
-create__Q28Morimura12TZukanWindowFPCcUl:
+.fn create__Q28Morimura12TZukanWindowFPCcUl, global
 /* 8037B934 00378874  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8037B938 00378878  7C 08 02 A6 */	mflr r0
 /* 8037B93C 0037887C  3C C0 80 49 */	lis r6, lbl_80492520@ha
@@ -15489,9 +15449,9 @@ create__Q28Morimura12TZukanWindowFPCcUl:
 /* 8037BE60 00378DA0  7C 08 03 A6 */	mtlr r0
 /* 8037BE64 00378DA4  38 21 00 40 */	addi r1, r1, 0x40
 /* 8037BE68 00378DA8  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura12TZukanWindowFPCcUl
 .else
-.global create__Q28Morimura12TZukanWindowFPCcUl
-create__Q28Morimura12TZukanWindowFPCcUl:
+.fn create__Q28Morimura12TZukanWindowFPCcUl, global
 /* 8037B934 00378874  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8037B938 00378878  7C 08 02 A6 */	mflr r0
 /* 8037B93C 0037887C  3C C0 80 49 */	lis r6, lbl_80492520@ha
@@ -15839,10 +15799,10 @@ create__Q28Morimura12TZukanWindowFPCcUl:
 /* 8037BE60 00378DA0  7C 08 03 A6 */	mtlr r0
 /* 8037BE64 00378DA4  38 21 00 40 */	addi r1, r1, 0x40
 /* 8037BE68 00378DA8  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura12TZukanWindowFPCcUl
 .endif
 
-.global update__Q28Morimura12TZukanWindowFv
-update__Q28Morimura12TZukanWindowFv:
+.fn update__Q28Morimura12TZukanWindowFv, global
 /* 8037BE6C 00378DAC  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8037BE70 00378DB0  7C 08 02 A6 */	mflr r0
 /* 8037BE74 00378DB4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -16087,9 +16047,9 @@ update__Q28Morimura12TZukanWindowFv:
 /* 8037C1F0 00379130  7C 08 03 A6 */	mtlr r0
 /* 8037C1F4 00379134  38 21 00 70 */	addi r1, r1, 0x70
 /* 8037C1F8 00379138  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura12TZukanWindowFv
 
-.global draw__Q28Morimura12TZukanWindowFR8GraphicsP13J2DPerspGraph
-draw__Q28Morimura12TZukanWindowFR8GraphicsP13J2DPerspGraph:
+.fn draw__Q28Morimura12TZukanWindowFR8GraphicsP13J2DPerspGraph, global
 /* 8037C1FC 0037913C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C200 00379140  7C 08 02 A6 */	mflr r0
 /* 8037C204 00379144  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16102,9 +16062,9 @@ draw__Q28Morimura12TZukanWindowFR8GraphicsP13J2DPerspGraph:
 /* 8037C21C 0037915C  7C 08 03 A6 */	mtlr r0
 /* 8037C220 00379160  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C224 00379164  4E 80 00 20 */	blr 
+.endfn draw__Q28Morimura12TZukanWindowFR8GraphicsP13J2DPerspGraph
 
-.global windowOpen__Q28Morimura12TZukanWindowFv
-windowOpen__Q28Morimura12TZukanWindowFv:
+.fn windowOpen__Q28Morimura12TZukanWindowFv, global
 /* 8037C228 00379168  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C22C 0037916C  7C 08 02 A6 */	mflr r0
 /* 8037C230 00379170  C0 02 07 C0 */	lfs f0, lbl_8051EB20@sda21(r2)
@@ -16166,9 +16126,9 @@ windowOpen__Q28Morimura12TZukanWindowFv:
 /* 8037C30C 0037924C  7C 08 03 A6 */	mtlr r0
 /* 8037C310 00379250  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C314 00379254  4E 80 00 20 */	blr 
+.endfn windowOpen__Q28Morimura12TZukanWindowFv
 
-.global windowClose__Q28Morimura12TZukanWindowFv
-windowClose__Q28Morimura12TZukanWindowFv:
+.fn windowClose__Q28Morimura12TZukanWindowFv, global
 /* 8037C318 00379258  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 8037C31C 0037925C  2C 00 00 02 */	cmpwi r0, 2
 /* 8037C320 00379260  41 82 00 0C */	beq .L_8037C32C
@@ -16183,9 +16143,9 @@ windowClose__Q28Morimura12TZukanWindowFv:
 /* 8037C33C 0037927C  38 00 00 03 */	li r0, 3
 /* 8037C340 00379280  90 03 00 20 */	stw r0, 0x20(r3)
 /* 8037C344 00379284  4E 80 00 20 */	blr 
+.endfn windowClose__Q28Morimura12TZukanWindowFv
 
-.global msgScroll__Q28Morimura12TZukanWindowFf
-msgScroll__Q28Morimura12TZukanWindowFf:
+.fn msgScroll__Q28Morimura12TZukanWindowFf, global
 /* 8037C348 00379288  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C34C 0037928C  7C 08 02 A6 */	mflr r0
 /* 8037C350 00379290  C0 02 07 E4 */	lfs f0, lbl_8051EB44@sda21(r2)
@@ -16200,9 +16160,9 @@ msgScroll__Q28Morimura12TZukanWindowFf:
 /* 8037C374 003792B4  7C 08 03 A6 */	mtlr r0
 /* 8037C378 003792B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C37C 003792BC  4E 80 00 20 */	blr 
+.endfn msgScroll__Q28Morimura12TZukanWindowFf
 
-.global getPosRate__Q28Morimura12TZukanWindowFv
-getPosRate__Q28Morimura12TZukanWindowFv:
+.fn getPosRate__Q28Morimura12TZukanWindowFv, global
 /* 8037C380 003792C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C384 003792C4  7C 08 02 A6 */	mflr r0
 /* 8037C388 003792C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16215,9 +16175,9 @@ getPosRate__Q28Morimura12TZukanWindowFv:
 /* 8037C3A4 003792E4  7C 08 03 A6 */	mtlr r0
 /* 8037C3A8 003792E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C3AC 003792EC  4E 80 00 20 */	blr 
+.endfn getPosRate__Q28Morimura12TZukanWindowFv
 
-.global setWindowColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10
-setWindowColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10:
+.fn setWindowColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10, global
 /* 8037C3B0 003792F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C3B4 003792F4  7C 08 02 A6 */	mflr r0
 /* 8037C3B8 003792F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16245,9 +16205,9 @@ setWindowColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10:
 /* 8037C410 00379350  7C 08 03 A6 */	mtlr r0
 /* 8037C414 00379354  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C418 00379358  4E 80 00 20 */	blr 
+.endfn setWindowColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10
 
-.global setIconColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10R13J2DGXColorS10
-setIconColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10R13J2DGXColorS10:
+.fn setIconColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10R13J2DGXColorS10, global
 /* 8037C41C 0037935C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037C420 00379360  7C 08 02 A6 */	mflr r0
 /* 8037C424 00379364  90 01 00 24 */	stw r0, 0x24(r1)
@@ -16308,10 +16268,10 @@ setIconColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10R13J2DGXColorS10:
 /* 8037C500 00379440  7C 08 03 A6 */	mtlr r0
 /* 8037C504 00379444  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037C508 00379448  4E 80 00 20 */	blr 
+.endfn setIconColor__Q28Morimura12TZukanWindowFR13J2DGXColorS10R13J2DGXColorS10
 
 .if version == 1
-.global onIcon__Q28Morimura12TZukanWindowFi
-onIcon__Q28Morimura12TZukanWindowFi:
+.fn onIcon__Q28Morimura12TZukanWindowFi, global
 /* 8037C50C 0037944C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C510 00379450  7C 08 02 A6 */	mflr r0
 /* 8037C514 00379454  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16349,9 +16309,9 @@ onIcon__Q28Morimura12TZukanWindowFi:
 /* 8037C58C 003794CC  7C 08 03 A6 */	mtlr r0
 /* 8037C590 003794D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C594 003794D4  4E 80 00 20 */	blr 
+.endfn onIcon__Q28Morimura12TZukanWindowFi
 .else
-.global onIcon__Q28Morimura12TZukanWindowFi
-onIcon__Q28Morimura12TZukanWindowFi:
+.fn onIcon__Q28Morimura12TZukanWindowFi, global
 /* 8037C50C 0037944C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C510 00379450  7C 08 02 A6 */	mflr r0
 /* 8037C514 00379454  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16389,10 +16349,10 @@ onIcon__Q28Morimura12TZukanWindowFi:
 /* 8037C58C 003794CC  7C 08 03 A6 */	mtlr r0
 /* 8037C590 003794D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C594 003794D4  4E 80 00 20 */	blr 
+.endfn onIcon__Q28Morimura12TZukanWindowFi
 .endif
 
-.global moveIcon__Q28Morimura12TZukanWindowFf
-moveIcon__Q28Morimura12TZukanWindowFf:
+.fn moveIcon__Q28Morimura12TZukanWindowFf, global
 /* 8037C598 003794D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037C59C 003794DC  7C 08 02 A6 */	mflr r0
 /* 8037C5A0 003794E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -16451,9 +16411,9 @@ moveIcon__Q28Morimura12TZukanWindowFf:
 /* 8037C660 003795A0  7C 08 03 A6 */	mtlr r0
 /* 8037C664 003795A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037C668 003795A8  4E 80 00 20 */	blr 
+.endfn moveIcon__Q28Morimura12TZukanWindowFf
 
-.global changeIconTexture__Q28Morimura12TZukanWindowFiP7ResTIMG
-changeIconTexture__Q28Morimura12TZukanWindowFiP7ResTIMG:
+.fn changeIconTexture__Q28Morimura12TZukanWindowFiP7ResTIMG, global
 /* 8037C66C 003795AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C670 003795B0  7C 08 02 A6 */	mflr r0
 /* 8037C674 003795B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16470,9 +16430,9 @@ changeIconTexture__Q28Morimura12TZukanWindowFiP7ResTIMG:
 /* 8037C6A0 003795E0  7C 08 03 A6 */	mtlr r0
 /* 8037C6A4 003795E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C6A8 003795E8  4E 80 00 20 */	blr 
+.endfn changeIconTexture__Q28Morimura12TZukanWindowFiP7ResTIMG
 
-.global __dt__Q28Morimura18TCallbackScrollMsgFv
-__dt__Q28Morimura18TCallbackScrollMsgFv:
+.fn __dt__Q28Morimura18TCallbackScrollMsgFv, weak
 /* 8037C6AC 003795EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C6B0 003795F0  7C 08 02 A6 */	mflr r0
 /* 8037C6B4 003795F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16511,33 +16471,33 @@ __dt__Q28Morimura18TCallbackScrollMsgFv:
 /* 8037C730 00379670  7C 08 03 A6 */	mtlr r0
 /* 8037C734 00379674  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C738 00379678  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura18TCallbackScrollMsgFv
 
-.global getResName__Q28Morimura11TDItemSceneCFv
-getResName__Q28Morimura11TDItemSceneCFv:
+.fn getResName__Q28Morimura11TDItemSceneCFv, weak
 /* 8037C73C 0037967C  3C 60 80 49 */	lis r3, lbl_804932AC@ha
 /* 8037C740 00379680  38 63 32 AC */	addi r3, r3, lbl_804932AC@l
 /* 8037C744 00379684  4E 80 00 20 */	blr 
+.endfn getResName__Q28Morimura11TDItemSceneCFv
 
-.global getSceneType__Q28Morimura11TDItemSceneFv
-getSceneType__Q28Morimura11TDItemSceneFv:
+.fn getSceneType__Q28Morimura11TDItemSceneFv, weak
 /* 8037C748 00379688  38 60 27 35 */	li r3, 0x2735
 /* 8037C74C 0037968C  4E 80 00 20 */	blr 
+.endfn getSceneType__Q28Morimura11TDItemSceneFv
 
-.global getOwnerID__Q28Morimura11TDItemSceneFv
-getOwnerID__Q28Morimura11TDItemSceneFv:
+.fn getOwnerID__Q28Morimura11TDItemSceneFv, weak
 /* 8037C750 00379690  3C 60 4D 52 */	lis r3, 0x4D524D52@ha
 /* 8037C754 00379694  38 63 4D 52 */	addi r3, r3, 0x4D524D52@l
 /* 8037C758 00379698  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q28Morimura11TDItemSceneFv
 
-.global getMemberID__Q28Morimura11TDItemSceneFv
-getMemberID__Q28Morimura11TDItemSceneFv:
+.fn getMemberID__Q28Morimura11TDItemSceneFv, weak
 /* 8037C75C 0037969C  3C 80 49 54 */	lis r4, 0x4954454D@ha
 /* 8037C760 003796A0  38 60 00 44 */	li r3, 0x44
 /* 8037C764 003796A4  38 84 45 4D */	addi r4, r4, 0x4954454D@l
 /* 8037C768 003796A8  4E 80 00 20 */	blr 
+.endfn getMemberID__Q28Morimura11TDItemSceneFv
 
-.global getDispMemberBase__Q28Morimura10TItemZukanFv
-getDispMemberBase__Q28Morimura10TItemZukanFv:
+.fn getDispMemberBase__Q28Morimura10TItemZukanFv, weak
 /* 8037C76C 003796AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C770 003796B0  7C 08 02 A6 */	mflr r0
 /* 8037C774 003796B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16553,22 +16513,22 @@ getDispMemberBase__Q28Morimura10TItemZukanFv:
 /* 8037C794 003796D4  7C 08 03 A6 */	mtlr r0
 /* 8037C798 003796D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C79C 003796DC  4E 80 00 20 */	blr 
+.endfn getDispMemberBase__Q28Morimura10TItemZukanFv
 
-.global getDispDataZukan__Q28Morimura10TItemZukanFv
-getDispDataZukan__Q28Morimura10TItemZukanFv:
+.fn getDispDataZukan__Q28Morimura10TItemZukanFv, weak
 /* 8037C7A0 003796E0  80 63 02 48 */	lwz r3, 0x248(r3)
 /* 8037C7A4 003796E4  4E 80 00 20 */	blr 
+.endfn getDispDataZukan__Q28Morimura10TItemZukanFv
 
-.global doUpdateFadeinFinish__Q28Morimura10TZukanBaseFv
-doUpdateFadeinFinish__Q28Morimura10TZukanBaseFv:
+.fn doUpdateFadeinFinish__Q28Morimura10TZukanBaseFv, weak
 /* 8037C7A8 003796E8  38 00 00 01 */	li r0, 1
 /* 8037C7AC 003796EC  98 03 00 45 */	stb r0, 0x45(r3)
 /* 8037C7B0 003796F0  80 63 01 30 */	lwz r3, 0x130(r3)
 /* 8037C7B4 003796F4  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 8037C7B8 003796F8  4E 80 00 20 */	blr 
+.endfn doUpdateFadeinFinish__Q28Morimura10TZukanBaseFv
 
-.global doUpdateFadeout__Q28Morimura10TZukanBaseFv
-doUpdateFadeout__Q28Morimura10TZukanBaseFv:
+.fn doUpdateFadeout__Q28Morimura10TZukanBaseFv, weak
 /* 8037C7BC 003796FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C7C0 00379700  7C 08 02 A6 */	mflr r0
 /* 8037C7C4 00379704  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16579,41 +16539,41 @@ doUpdateFadeout__Q28Morimura10TZukanBaseFv:
 /* 8037C7D8 00379718  7C 08 03 A6 */	mtlr r0
 /* 8037C7DC 0037971C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C7E0 00379720  4E 80 00 20 */	blr 
+.endfn doUpdateFadeout__Q28Morimura10TZukanBaseFv
 
-.global changeTextTevBlock__Q28Morimura11TScrollListFi
-changeTextTevBlock__Q28Morimura11TScrollListFi:
+.fn changeTextTevBlock__Q28Morimura11TScrollListFi, weak
 /* 8037C7E4 00379724  4E 80 00 20 */	blr 
+.endfn changeTextTevBlock__Q28Morimura11TScrollListFi
 
-.global setPaneCharacter__Q28Morimura11TScrollListFi
-setPaneCharacter__Q28Morimura11TScrollListFi:
+.fn setPaneCharacter__Q28Morimura11TScrollListFi, weak
 /* 8037C7E8 00379728  4E 80 00 20 */	blr 
+.endfn setPaneCharacter__Q28Morimura11TScrollListFi
 
-.global getResName__Q28Morimura12TDEnemySceneCFv
-getResName__Q28Morimura12TDEnemySceneCFv:
+.fn getResName__Q28Morimura12TDEnemySceneCFv, weak
 /* 8037C7EC 0037972C  3C 60 80 49 */	lis r3, lbl_804932CC@ha
 /* 8037C7F0 00379730  38 63 32 CC */	addi r3, r3, lbl_804932CC@l
 /* 8037C7F4 00379734  4E 80 00 20 */	blr 
+.endfn getResName__Q28Morimura12TDEnemySceneCFv
 
-.global getSceneType__Q28Morimura12TDEnemySceneFv
-getSceneType__Q28Morimura12TDEnemySceneFv:
+.fn getSceneType__Q28Morimura12TDEnemySceneFv, weak
 /* 8037C7F8 00379738  38 60 27 34 */	li r3, 0x2734
 /* 8037C7FC 0037973C  4E 80 00 20 */	blr 
+.endfn getSceneType__Q28Morimura12TDEnemySceneFv
 
-.global getOwnerID__Q28Morimura12TDEnemySceneFv
-getOwnerID__Q28Morimura12TDEnemySceneFv:
+.fn getOwnerID__Q28Morimura12TDEnemySceneFv, weak
 /* 8037C800 00379740  3C 60 4D 52 */	lis r3, 0x4D524D52@ha
 /* 8037C804 00379744  38 63 4D 52 */	addi r3, r3, 0x4D524D52@l
 /* 8037C808 00379748  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q28Morimura12TDEnemySceneFv
 
-.global getMemberID__Q28Morimura12TDEnemySceneFv
-getMemberID__Q28Morimura12TDEnemySceneFv:
+.fn getMemberID__Q28Morimura12TDEnemySceneFv, weak
 /* 8037C80C 0037974C  3C 80 4E 45 */	lis r4, 0x4E454D59@ha
 /* 8037C810 00379750  38 60 44 45 */	li r3, 0x4445
 /* 8037C814 00379754  38 84 4D 59 */	addi r4, r4, 0x4E454D59@l
 /* 8037C818 00379758  4E 80 00 20 */	blr 
+.endfn getMemberID__Q28Morimura12TDEnemySceneFv
 
-.global getDispMemberBase__Q28Morimura11TEnemyZukanFv
-getDispMemberBase__Q28Morimura11TEnemyZukanFv:
+.fn getDispMemberBase__Q28Morimura11TEnemyZukanFv, weak
 /* 8037C81C 0037975C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8037C820 00379760  7C 08 02 A6 */	mflr r0
 /* 8037C824 00379764  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16629,18 +16589,19 @@ getDispMemberBase__Q28Morimura11TEnemyZukanFv:
 /* 8037C844 00379784  7C 08 03 A6 */	mtlr r0
 /* 8037C848 00379788  38 21 00 10 */	addi r1, r1, 0x10
 /* 8037C84C 0037978C  4E 80 00 20 */	blr 
+.endfn getDispMemberBase__Q28Morimura11TEnemyZukanFv
 
-.global getDispDataZukan__Q28Morimura11TEnemyZukanFv
-getDispDataZukan__Q28Morimura11TEnemyZukanFv:
+.fn getDispDataZukan__Q28Morimura11TEnemyZukanFv, weak
 /* 8037C850 00379790  80 63 02 48 */	lwz r3, 0x248(r3)
 /* 8037C854 00379794  4E 80 00 20 */	blr 
+.endfn getDispDataZukan__Q28Morimura11TEnemyZukanFv
 
-.global getCategoryColorId__Q28Morimura10TZukanBaseFi
-getCategoryColorId__Q28Morimura10TZukanBaseFi:
+.fn getCategoryColorId__Q28Morimura10TZukanBaseFi, weak
 /* 8037C858 00379798  38 60 00 00 */	li r3, 0
 /* 8037C85C 0037979C  4E 80 00 20 */	blr 
+.endfn getCategoryColorId__Q28Morimura10TZukanBaseFi
 
-__sinit_zukan2D_cpp: # static initializer
+.fn __sinit_zukan2D_cpp, local
 /* 8037C860 003797A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037C864 003797A4  3C 60 80 51 */	lis r3, __float_nan@ha
 /* 8037C868 003797A8  39 43 48 B0 */	addi r10, r3, __float_nan@l
@@ -16718,18 +16679,19 @@ __sinit_zukan2D_cpp: # static initializer
 /* 8037C988 003798C8  D1 4D 98 F4 */	stfs f10, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8037C98C 003798CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037C990 003798D0  4E 80 00 20 */	blr 
+.endfn __sinit_zukan2D_cpp
 
-.global "@24@__dt__Q28Morimura10TZukanBaseFv"
-"@24@__dt__Q28Morimura10TZukanBaseFv":
+.fn "@24@__dt__Q28Morimura10TZukanBaseFv", weak
 /* 8037C994 003798D4  38 63 FF E8 */	addi r3, r3, -24
 /* 8037C998 003798D8  4B FF 45 38 */	b __dt__Q28Morimura10TZukanBaseFv
+.endfn "@24@__dt__Q28Morimura10TZukanBaseFv"
 
-.global "@24@__dt__Q28Morimura11TEnemyZukanFv"
-"@24@__dt__Q28Morimura11TEnemyZukanFv":
+.fn "@24@__dt__Q28Morimura11TEnemyZukanFv", weak
 /* 8037C99C 003798DC  38 63 FF E8 */	addi r3, r3, -24
 /* 8037C9A0 003798E0  4B FF 80 F4 */	b __dt__Q28Morimura11TEnemyZukanFv
+.endfn "@24@__dt__Q28Morimura11TEnemyZukanFv"
 
-.global "@24@__dt__Q28Morimura10TItemZukanFv"
-"@24@__dt__Q28Morimura10TItemZukanFv":
+.fn "@24@__dt__Q28Morimura10TItemZukanFv", weak
 /* 8037C9A4 003798E4  38 63 FF E8 */	addi r3, r3, -24
 /* 8037C9A8 003798E8  4B FF B5 D0 */	b __dt__Q28Morimura10TItemZukanFv
+.endfn "@24@__dt__Q28Morimura10TItemZukanFv"

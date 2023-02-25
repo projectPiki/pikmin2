@@ -45,13 +45,15 @@ lbl_constructor:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global cullCount__Q28SysShape5Model
-cullCount__Q28SysShape5Model:
+.endobj gfNAN___Q24Game5P2JST
+.obj cullCount__Q28SysShape5Model, global
 	.skip 0x4
+.endobj cullCount__Q28SysShape5Model
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -73,8 +75,7 @@ cullCount__Q28SysShape5Model:
 .endobj lbl_8052091C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
-__ct__Q28SysShape5ModelFP12J3DModelDataUlUl:
+.fn __ct__Q28SysShape5ModelFP12J3DModelDataUlUl, global
 /* 8043E1D8 0043B118  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043E1DC 0043B11C  7C 08 02 A6 */	mflr r0
 /* 8043E1E0 0043B120  3C E0 80 4C */	lis r7, __vt__Q28SysShape9MtxObject@ha
@@ -125,9 +126,9 @@ __ct__Q28SysShape5ModelFP12J3DModelDataUlUl:
 /* 8043E290 0043B1D0  7C 08 03 A6 */	mtlr r0
 /* 8043E294 0043B1D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043E298 0043B1D8  4E 80 00 20 */	blr 
+.endfn __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
 
-.global enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
-enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai:
+.fn enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai, global
 /* 8043E29C 0043B1DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043E2A0 0043B1E0  7C 08 02 A6 */	mflr r0
 /* 8043E2A4 0043B1E4  2C 04 00 01 */	cmpwi r4, 1
@@ -229,9 +230,9 @@ enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai:
 /* 8043E40C 0043B34C  7C 08 03 A6 */	mtlr r0
 /* 8043E410 0043B350  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043E414 0043B354  4E 80 00 20 */	blr 
+.endfn enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
 
-.global enableMaterialAnim__Q28SysShape5ModelFi
-enableMaterialAnim__Q28SysShape5ModelFi:
+.fn enableMaterialAnim__Q28SysShape5ModelFi, global
 /* 8043E418 0043B358  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043E41C 0043B35C  7C 08 02 A6 */	mflr r0
 /* 8043E420 0043B360  2C 04 00 01 */	cmpwi r4, 1
@@ -331,9 +332,9 @@ enableMaterialAnim__Q28SysShape5ModelFi:
 /* 8043E580 0043B4C0  7C 08 03 A6 */	mtlr r0
 /* 8043E584 0043B4C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043E588 0043B4C8  4E 80 00 20 */	blr 
+.endfn enableMaterialAnim__Q28SysShape5ModelFi
 
-.global getMatrix__Q28SysShape5ModelFi
-getMatrix__Q28SysShape5ModelFi:
+.fn getMatrix__Q28SysShape5ModelFi, global
 /* 8043E58C 0043B4CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043E590 0043B4D0  7C 08 02 A6 */	mflr r0
 /* 8043E594 0043B4D4  2C 04 FF FF */	cmpwi r4, -1
@@ -355,9 +356,9 @@ getMatrix__Q28SysShape5ModelFi:
 /* 8043E5C8 0043B508  7C 08 03 A6 */	mtlr r0
 /* 8043E5CC 0043B50C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043E5D0 0043B510  4E 80 00 20 */	blr 
+.endfn getMatrix__Q28SysShape5ModelFi
 
-.global getRoughBoundingRadius__Q28SysShape5ModelFv
-getRoughBoundingRadius__Q28SysShape5ModelFv:
+.fn getRoughBoundingRadius__Q28SysShape5ModelFv, global
 /* 8043E5D4 0043B514  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043E5D8 0043B518  7C 08 02 A6 */	mflr r0
 /* 8043E5DC 0043B51C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -457,9 +458,9 @@ getRoughBoundingRadius__Q28SysShape5ModelFv:
 /* 8043E724 0043B664  7C 08 03 A6 */	mtlr r0
 /* 8043E728 0043B668  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043E72C 0043B66C  4E 80 00 20 */	blr 
+.endfn getRoughBoundingRadius__Q28SysShape5ModelFv
 
-.global getRoughCenter__Q28SysShape5ModelFv
-getRoughCenter__Q28SysShape5ModelFv:
+.fn getRoughCenter__Q28SysShape5ModelFv, global
 /* 8043E730 0043B670  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8043E734 0043B674  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 8043E738 0043B678  F3 E1 00 58 */	psq_st f31, 88(r1), 0, qr0
@@ -561,9 +562,9 @@ getRoughCenter__Q28SysShape5ModelFv:
 /* 8043E898 0043B7D8  CB 61 00 10 */	lfd f27, 0x10(r1)
 /* 8043E89C 0043B7DC  38 21 00 60 */	addi r1, r1, 0x60
 /* 8043E8A0 0043B7E0  4E 80 00 20 */	blr 
+.endfn getRoughCenter__Q28SysShape5ModelFv
 
-.global isVisible__Q28SysShape5ModelFRQ23Sys6Sphere
-isVisible__Q28SysShape5ModelFRQ23Sys6Sphere:
+.fn isVisible__Q28SysShape5ModelFRQ23Sys6Sphere, global
 /* 8043E8A4 0043B7E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043E8A8 0043B7E8  7C 08 02 A6 */	mflr r0
 /* 8043E8AC 0043B7EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -606,9 +607,9 @@ isVisible__Q28SysShape5ModelFRQ23Sys6Sphere:
 /* 8043E930 0043B870  7C 08 03 A6 */	mtlr r0
 /* 8043E934 0043B874  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043E938 0043B878  4E 80 00 20 */	blr 
+.endfn isVisible__Q28SysShape5ModelFRQ23Sys6Sphere
 
-.global jointVisible__Q28SysShape5ModelFbi
-jointVisible__Q28SysShape5ModelFbi:
+.fn jointVisible__Q28SysShape5ModelFbi, global
 /* 8043E93C 0043B87C  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 8043E940 0043B880  41 82 00 40 */	beq .L_8043E980
 /* 8043E944 0043B884  80 63 00 08 */	lwz r3, 8(r3)
@@ -646,9 +647,9 @@ jointVisible__Q28SysShape5ModelFbi:
 /* 8043E9B0 0043B8F0  28 04 00 00 */	cmplwi r4, 0
 /* 8043E9B4 0043B8F4  40 82 FF E8 */	bne .L_8043E99C
 /* 8043E9B8 0043B8F8  4E 80 00 20 */	blr 
+.endfn jointVisible__Q28SysShape5ModelFbi
 
-.global hide__Q28SysShape5ModelFv
-hide__Q28SysShape5ModelFv:
+.fn hide__Q28SysShape5ModelFv, global
 /* 8043E9BC 0043B8FC  38 A0 00 00 */	li r5, 0
 /* 8043E9C0 0043B900  48 00 00 40 */	b .L_8043EA00
 .L_8043E9C4:
@@ -675,9 +676,9 @@ hide__Q28SysShape5ModelFv:
 /* 8043EA08 0043B948  7C 04 00 00 */	cmpw r4, r0
 /* 8043EA0C 0043B94C  41 80 FF B8 */	blt .L_8043E9C4
 /* 8043EA10 0043B950  4E 80 00 20 */	blr 
+.endfn hide__Q28SysShape5ModelFv
 
-.global show__Q28SysShape5ModelFv
-show__Q28SysShape5ModelFv:
+.fn show__Q28SysShape5ModelFv, global
 /* 8043EA14 0043B954  38 A0 00 00 */	li r5, 0
 /* 8043EA18 0043B958  48 00 00 40 */	b .L_8043EA58
 .L_8043EA1C:
@@ -704,9 +705,9 @@ show__Q28SysShape5ModelFv:
 /* 8043EA60 0043B9A0  7C 04 00 00 */	cmpw r4, r0
 /* 8043EA64 0043B9A4  41 80 FF B8 */	blt .L_8043EA1C
 /* 8043EA68 0043B9A8  4E 80 00 20 */	blr 
+.endfn show__Q28SysShape5ModelFv
 
-.global hidePackets__Q28SysShape5ModelFv
-hidePackets__Q28SysShape5ModelFv:
+.fn hidePackets__Q28SysShape5ModelFv, global
 /* 8043EA6C 0043B9AC  38 E0 00 00 */	li r7, 0
 /* 8043EA70 0043B9B0  48 00 00 24 */	b .L_8043EA94
 .L_8043EA74:
@@ -726,9 +727,9 @@ hidePackets__Q28SysShape5ModelFv:
 /* 8043EAA4 0043B9E4  7C 04 00 40 */	cmplw r4, r0
 /* 8043EAA8 0043B9E8  41 80 FF CC */	blt .L_8043EA74
 /* 8043EAAC 0043B9EC  4E 80 00 20 */	blr 
+.endfn hidePackets__Q28SysShape5ModelFv
 
-.global showPackets__Q28SysShape5ModelFv
-showPackets__Q28SysShape5ModelFv:
+.fn showPackets__Q28SysShape5ModelFv, global
 /* 8043EAB0 0043B9F0  38 E0 00 00 */	li r7, 0
 /* 8043EAB4 0043B9F4  48 00 00 24 */	b .L_8043EAD8
 .L_8043EAB8:
@@ -748,9 +749,9 @@ showPackets__Q28SysShape5ModelFv:
 /* 8043EAE8 0043BA28  7C 04 00 40 */	cmplw r4, r0
 /* 8043EAEC 0043BA2C  41 80 FF CC */	blt .L_8043EAB8
 /* 8043EAF0 0043BA30  4E 80 00 20 */	blr 
+.endfn showPackets__Q28SysShape5ModelFv
 
-.global initJoints__Q28SysShape5ModelFv
-initJoints__Q28SysShape5ModelFv:
+.fn initJoints__Q28SysShape5ModelFv, global
 /* 8043EAF4 0043BA34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043EAF8 0043BA38  7C 08 02 A6 */	mflr r0
 /* 8043EAFC 0043BA3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -800,9 +801,9 @@ initJoints__Q28SysShape5ModelFv:
 /* 8043EBA4 0043BAE4  7C 08 03 A6 */	mtlr r0
 /* 8043EBA8 0043BAE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043EBAC 0043BAEC  4E 80 00 20 */	blr 
+.endfn initJoints__Q28SysShape5ModelFv
 
-.global __dt__Q28SysShape5JointFv
-__dt__Q28SysShape5JointFv:
+.fn __dt__Q28SysShape5JointFv, weak
 /* 8043EBB0 0043BAF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043EBB4 0043BAF4  7C 08 02 A6 */	mflr r0
 /* 8043EBB8 0043BAF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -828,9 +829,9 @@ __dt__Q28SysShape5JointFv:
 /* 8043EC04 0043BB44  7C 08 03 A6 */	mtlr r0
 /* 8043EC08 0043BB48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043EC0C 0043BB4C  4E 80 00 20 */	blr 
+.endfn __dt__Q28SysShape5JointFv
 
-.global __ct__Q28SysShape5JointFv
-__ct__Q28SysShape5JointFv:
+.fn __ct__Q28SysShape5JointFv, weak
 /* 8043EC10 0043BB50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043EC14 0043BB54  7C 08 02 A6 */	mflr r0
 /* 8043EC18 0043BB58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -854,9 +855,9 @@ __ct__Q28SysShape5JointFv:
 /* 8043EC60 0043BBA0  7C 08 03 A6 */	mtlr r0
 /* 8043EC64 0043BBA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043EC68 0043BBA8  4E 80 00 20 */	blr 
+.endfn __ct__Q28SysShape5JointFv
 
-.global initJointsRec__Q28SysShape5ModelFiPQ28SysShape5Joint
-initJointsRec__Q28SysShape5ModelFiPQ28SysShape5Joint:
+.fn initJointsRec__Q28SysShape5ModelFiPQ28SysShape5Joint, global
 /* 8043EC6C 0043BBAC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8043EC70 0043BBB0  7C 08 02 A6 */	mflr r0
 /* 8043EC74 0043BBB4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1069,24 +1070,24 @@ initJointsRec__Q28SysShape5ModelFiPQ28SysShape5Joint:
 /* 8043EF90 0043BED0  7C 08 03 A6 */	mtlr r0
 /* 8043EF94 0043BED4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8043EF98 0043BED8  4E 80 00 20 */	blr 
+.endfn initJointsRec__Q28SysShape5ModelFiPQ28SysShape5Joint
 
-.global getJntNo__8J3DJointCFv
-getJntNo__8J3DJointCFv:
+.fn getJntNo__8J3DJointCFv, weak
 /* 8043EF9C 0043BEDC  A0 63 00 14 */	lhz r3, 0x14(r3)
 /* 8043EFA0 0043BEE0  4E 80 00 20 */	blr 
+.endfn getJntNo__8J3DJointCFv
 
-.global getYounger__8J3DJointFv
-getYounger__8J3DJointFv:
+.fn getYounger__8J3DJointFv, weak
 /* 8043EFA4 0043BEE4  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8043EFA8 0043BEE8  4E 80 00 20 */	blr 
+.endfn getYounger__8J3DJointFv
 
-.global getChild__8J3DJointFv
-getChild__8J3DJointFv:
+.fn getChild__8J3DJointFv, weak
 /* 8043EFAC 0043BEEC  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8043EFB0 0043BEF0  4E 80 00 20 */	blr 
+.endfn getChild__8J3DJointFv
 
-.global getJointIndex__Q28SysShape5ModelFPc
-getJointIndex__Q28SysShape5ModelFPc:
+.fn getJointIndex__Q28SysShape5ModelFPc, global
 /* 8043EFB4 0043BEF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043EFB8 0043BEF8  7C 08 02 A6 */	mflr r0
 /* 8043EFBC 0043BEFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1099,9 +1100,9 @@ getJointIndex__Q28SysShape5ModelFPc:
 /* 8043EFD8 0043BF18  7C 08 03 A6 */	mtlr r0
 /* 8043EFDC 0043BF1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043EFE0 0043BF20  4E 80 00 20 */	blr 
+.endfn getJointIndex__Q28SysShape5ModelFPc
 
-.global getJoint__Q28SysShape5ModelFPc
-getJoint__Q28SysShape5ModelFPc:
+.fn getJoint__Q28SysShape5ModelFPc, global
 /* 8043EFE4 0043BF24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043EFE8 0043BF28  7C 08 02 A6 */	mflr r0
 /* 8043EFEC 0043BF2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1127,21 +1128,21 @@ getJoint__Q28SysShape5ModelFPc:
 /* 8043F034 0043BF74  7C 08 03 A6 */	mtlr r0
 /* 8043F038 0043BF78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043F03C 0043BF7C  4E 80 00 20 */	blr 
+.endfn getJoint__Q28SysShape5ModelFPc
 
-.global setViewCalcModeImm__Q28SysShape5ModelFv
-setViewCalcModeImm__Q28SysShape5ModelFv:
+.fn setViewCalcModeImm__Q28SysShape5ModelFv, global
 /* 8043F040 0043BF80  38 00 00 00 */	li r0, 0
 /* 8043F044 0043BF84  98 0D 86 80 */	stb r0, viewCalcMode__Q28SysShape5Model@sda21(r13)
 /* 8043F048 0043BF88  4E 80 00 20 */	blr 
+.endfn setViewCalcModeImm__Q28SysShape5ModelFv
 
-.global setViewCalcModeInd__Q28SysShape5ModelFv
-setViewCalcModeInd__Q28SysShape5ModelFv:
+.fn setViewCalcModeInd__Q28SysShape5ModelFv, global
 /* 8043F04C 0043BF8C  38 00 00 01 */	li r0, 1
 /* 8043F050 0043BF90  98 0D 86 80 */	stb r0, viewCalcMode__Q28SysShape5Model@sda21(r13)
 /* 8043F054 0043BF94  4E 80 00 20 */	blr 
+.endfn setViewCalcModeInd__Q28SysShape5ModelFv
 
-.global viewCalc__Q28SysShape5ModelFv
-viewCalc__Q28SysShape5ModelFv:
+.fn viewCalc__Q28SysShape5ModelFv, global
 /* 8043F058 0043BF98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043F05C 0043BF9C  7C 08 02 A6 */	mflr r0
 /* 8043F060 0043BFA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1171,9 +1172,9 @@ viewCalc__Q28SysShape5ModelFv:
 /* 8043F0B4 0043BFF4  7C 08 03 A6 */	mtlr r0
 /* 8043F0B8 0043BFF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043F0BC 0043BFFC  4E 80 00 20 */	blr 
+.endfn viewCalc__Q28SysShape5ModelFv
 
-.global setCurrentViewNo__Q28SysShape5ModelFUl
-setCurrentViewNo__Q28SysShape5ModelFUl:
+.fn setCurrentViewNo__Q28SysShape5ModelFUl, global
 /* 8043F0C0 0043C000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043F0C4 0043C004  7C 08 02 A6 */	mflr r0
 /* 8043F0C8 0043C008  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1194,27 +1195,27 @@ setCurrentViewNo__Q28SysShape5ModelFUl:
 /* 8043F100 0043C040  7C 08 03 A6 */	mtlr r0
 /* 8043F104 0043C044  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043F108 0043C048  4E 80 00 20 */	blr 
+.endfn setCurrentViewNo__Q28SysShape5ModelFUl
 
-.global isMtxImmediate__Q28SysShape5ModelFv
-isMtxImmediate__Q28SysShape5ModelFv:
+.fn isMtxImmediate__Q28SysShape5ModelFv, global
 /* 8043F10C 0043C04C  80 63 00 08 */	lwz r3, 8(r3)
 /* 8043F110 0043C050  80 63 00 04 */	lwz r3, 4(r3)
 /* 8043F114 0043C054  80 03 00 08 */	lwz r0, 8(r3)
 /* 8043F118 0043C058  54 03 E7 FE */	rlwinm r3, r0, 0x1c, 0x1f, 0x1f
 /* 8043F11C 0043C05C  4E 80 00 20 */	blr 
+.endfn isMtxImmediate__Q28SysShape5ModelFv
 
-.global isModel__Q28SysShape5ModelFv
-isModel__Q28SysShape5ModelFv: # weak function
+.fn isModel__Q28SysShape5ModelFv, weak
 /* 8043F120 0043C060  38 60 00 01 */	li r3, 1
 /* 8043F124 0043C064  4E 80 00 20 */	blr 
+.endfn isModel__Q28SysShape5ModelFv
 
-.global isVisible__Q28SysShape5ModelFv
-isVisible__Q28SysShape5ModelFv: # weak function
+.fn isVisible__Q28SysShape5ModelFv, weak
 /* 8043F128 0043C068  88 63 00 06 */	lbz r3, 6(r3)
 /* 8043F12C 0043C06C  4E 80 00 20 */	blr 
+.endfn isVisible__Q28SysShape5ModelFv
 
-.global jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint
-jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint: # weak function
+.fn jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint, weak
 /* 8043F130 0043C070  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043F134 0043C074  7C 08 02 A6 */	mflr r0
 /* 8043F138 0043C078  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1227,8 +1228,9 @@ jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint: # weak function
 /* 8043F154 0043C094  7C 08 03 A6 */	mtlr r0
 /* 8043F158 0043C098  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043F15C 0043C09C  4E 80 00 20 */	blr 
+.endfn jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint
 
-__sinit_sysShapeModel_cpp: # static initializer
+.fn __sinit_sysShapeModel_cpp, local
 /* 8043F160 0043C0A0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8043F164 0043C0A4  38 00 FF FF */	li r0, -1
 /* 8043F168 0043C0A8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1239,3 +1241,4 @@ __sinit_sysShapeModel_cpp: # static initializer
 /* 8043F17C 0043C0BC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8043F180 0043C0C0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8043F184 0043C0C4  4E 80 00 20 */	blr 
+.endfn __sinit_sysShapeModel_cpp

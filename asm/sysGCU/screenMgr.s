@@ -5,18 +5,23 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049B8C8:
+.obj lbl_8049B8C8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_8049B8D4:
+.endobj lbl_8049B8C8
+.balign 4
+.obj lbl_8049B8D4, local
 	.asciz "screenMgr.cpp"
+.endobj lbl_8049B8D4
 .balign 4
-lbl_8049B8E4:
+.obj lbl_8049B8E4, local
 	.asciz "P2Assert"
+.endobj lbl_8049B8E4
 .balign 4
-lbl_8049B8F0:
+.obj lbl_8049B8F0, local
 	.asciz "dispMember[%s] Size over. \n %d max:%d"
+.endobj lbl_8049B8F0
 .balign 4
 lbl_8049B918:
 	.asciz "SetScene"
