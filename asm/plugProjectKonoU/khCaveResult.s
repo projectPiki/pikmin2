@@ -227,6 +227,7 @@ lbl_constructor:
 .endobj lbl_80520000
 .obj lbl_80520004, local
 	.float 360.0
+.endobj lbl_80520004
 .obj lbl_80520008, local
 	.float 65536.0
 .endobj lbl_80520008

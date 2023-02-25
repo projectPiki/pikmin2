@@ -588,86 +588,124 @@ lbl_constructor:
 .obj lbl_805200D8, local
 	.float 404.0
 .endobj lbl_805200D8
-lbl_805200DC:
+.obj lbl_805200DC, local
 	.float 2.5
-lbl_805200E0:
+.endobj lbl_805200DC
+.obj lbl_805200E0, local
 	.float 35.0
-lbl_805200E4:
+.endobj lbl_805200E0
+.obj lbl_805200E4, local
 	.float 0.3
-lbl_805200E8:
+.endobj lbl_805200E4
+.obj lbl_805200E8, local
 	.float 30.0
-lbl_805200EC:
+.endobj lbl_805200E8
+.obj lbl_805200EC, local
 	.float 409.0
-lbl_805200F0:
+.endobj lbl_805200EC
+.obj lbl_805200F0, local
 	.float 349.0
-lbl_805200F4:
+.endobj lbl_805200F0
+.obj lbl_805200F4, local
 	.float 344.0
-lbl_805200F8:
+.endobj lbl_805200F4
+.obj lbl_805200F8, local
 	.float 0.02
-lbl_805200FC:
+.endobj lbl_805200F8
+.obj lbl_805200FC, local
 	.float 0.1
+.endobj lbl_805200FC
 .balign 4
-lbl_80520100:
+.obj lbl_80520100, local
 	.asciz ""
+.endobj lbl_80520100
 .balign 4
-lbl_80520104:
+.obj lbl_80520104, local
 	.asciz "failed"
+.endobj lbl_80520104
 .balign 4
-lbl_8052010C:
+.obj lbl_8052010C, local
 	.asciz "error"
+.endobj lbl_8052010C
 .balign 4
-lbl_80520114:
+.obj lbl_80520114, local
 	.float 32768.0
-lbl_80520118:
+.endobj lbl_80520114
+.obj lbl_80520118, local
 	.float 32.0
-lbl_8052011C:
+.endobj lbl_80520118
+.obj lbl_8052011C, local
 	.float 109.0
-lbl_80520120:
+.endobj lbl_8052011C
+.obj lbl_80520120, local
 	.float 149.0
-lbl_80520124:
+.endobj lbl_80520120
+.obj lbl_80520124, local
 	.float 169.0
-lbl_80520128:
+.endobj lbl_80520124
+.obj lbl_80520128, local
 	.float 205.0
-lbl_8052012C:
+.endobj lbl_80520128
+.obj lbl_8052012C, local
 	.float 264.0
-lbl_80520130:
+.endobj lbl_8052012C
+.obj lbl_80520130, local
 	.float 299.0
-lbl_80520134:
+.endobj lbl_80520130
+.obj lbl_80520134, local
 	.float 59.0
-lbl_80520138:
+.endobj lbl_80520134
+.obj lbl_80520138, local
 	.float 116.0
-lbl_8052013C:
+.endobj lbl_80520138
+.obj lbl_8052013C, local
 	.float 145.0
-lbl_80520140:
+.endobj lbl_8052013C
+.obj lbl_80520140, local
 	.float 170.0
-lbl_80520144:
+.endobj lbl_80520140
+.obj lbl_80520144, local
 	.float 270.0
-lbl_80520148:
+.endobj lbl_80520144
+.obj lbl_80520148, local
 	.float 29.0
-lbl_8052014C:
+.endobj lbl_80520148
+.obj lbl_8052014C, local
 	.float 202.0
-lbl_80520150:
+.endobj lbl_8052014C
+.obj lbl_80520150, local
 	.float -1.0
-lbl_80520154:
+.endobj lbl_80520150
+.obj lbl_80520154, local
 	.float 100.0
-lbl_80520158:
+.endobj lbl_80520154
+.obj lbl_80520158, local
 	.float 0.25
-lbl_8052015C:
+.endobj lbl_80520158
+.obj lbl_8052015C, local
 	.float -8.0
-lbl_80520160:
+.endobj lbl_8052015C
+.obj lbl_80520160, local
 	.float 23.0
-lbl_80520164:
+.endobj lbl_80520160
+.obj lbl_80520164, local
 	.float 0.899
-lbl_80520168:
+.endobj lbl_80520164
+.obj lbl_80520168, local
 	.float 0.889
-lbl_8052016C:
+.endobj lbl_80520168
+.obj lbl_8052016C, local
 	.float 0.336
-lbl_80520170:
+.endobj lbl_8052016C
+.obj lbl_80520170, local
 	.float 0.433
-lbl_80520174:
+.endobj lbl_80520170
+.obj lbl_80520174, local
 	.float 0.4
-lbl_80520178:
+.endobj lbl_80520174
+.obj lbl_80520178, local
 	.float 0.68
+.endobj lbl_80520178
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 .obj lbl_80520EC8, local

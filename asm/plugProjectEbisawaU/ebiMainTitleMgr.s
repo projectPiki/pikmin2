@@ -88,6 +88,7 @@ lbl_constructor:
 .endobj kFadeOutTime__Q23ebi13TMainTitleMgr
 .obj lbl_8051FE14, local
 	.float 5.0
+.endobj lbl_8051FE14
 .obj lbl_8051FE18, local
 	.float 0.0
 .endobj lbl_8051FE18
