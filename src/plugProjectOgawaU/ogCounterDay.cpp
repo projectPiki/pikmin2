@@ -1,6 +1,7 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/ogScreen.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

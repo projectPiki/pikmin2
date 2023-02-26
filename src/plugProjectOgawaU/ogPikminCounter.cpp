@@ -1,6 +1,7 @@
 #include "og/Screen/PikminCounter.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/callbackNodes.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

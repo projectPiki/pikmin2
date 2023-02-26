@@ -6,6 +6,7 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "System.h"
 #include "og/Sound.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

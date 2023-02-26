@@ -3614,8 +3614,8 @@ Vector3f ActPathMove::crGetPoint(int idx)
 		return _24;
 	}
 
+	// breadbug crash happens in this loop.
 	Game::PathNode* currPathNode = _48;
-
 	for (int i = 0; i < idx; i++) {
 		currPathNode = currPathNode->mNext;
 	}

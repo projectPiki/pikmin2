@@ -2,6 +2,7 @@
 #include "og/Screen/StickAnimMgr.h"
 #include "og/Screen/anime.h"
 #include "og/Screen/ogScreen.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

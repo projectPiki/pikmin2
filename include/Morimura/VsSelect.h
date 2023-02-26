@@ -7,6 +7,7 @@
 #include "Morimura/Window.h"
 #include "Morimura/mrUtil.h"
 #include "Morimura/ScrollList.h"
+#include "trig.h"
 
 namespace Game {
 struct Vs2D_TitleInfo;

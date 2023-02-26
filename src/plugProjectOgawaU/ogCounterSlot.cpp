@@ -4,6 +4,7 @@
 #include "og/Screen/ogScreen.h"
 #include "Dolphin/rand.h"
 #include "Dolphin/math.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

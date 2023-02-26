@@ -4,6 +4,7 @@
 #include "og/Sound.h"
 #include "og/newScreen/ogUtil.h"
 #include "efx2d/T2DSprayset.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

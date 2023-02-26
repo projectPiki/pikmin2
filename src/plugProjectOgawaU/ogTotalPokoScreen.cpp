@@ -4,6 +4,7 @@
 #include "og/Screen/TotalPokoScreen.h"
 #include "og/Sound.h"
 #include "System.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

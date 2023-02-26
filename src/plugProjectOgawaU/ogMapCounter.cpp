@@ -1,5 +1,6 @@
 #include "og/Screen/MapCounter.h"
 #include "og/Screen/callbackNodes.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

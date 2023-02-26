@@ -2,6 +2,7 @@
 #include "og/Screen/callbackNodes.h"
 #include "System.h"
 #include "og/Sound.h"
+#include "trig.h"
 #include "nans.h"
 
 namespace og {

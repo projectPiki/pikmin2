@@ -2,6 +2,7 @@
 #include "og/Screen/ogScreen.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "Graphics.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

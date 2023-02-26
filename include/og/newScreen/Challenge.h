@@ -7,6 +7,7 @@
 #include "og/Screen/ScaleMgr.h"
 #include "og/Screen/DopingScreen.h"
 #include "og/Screen/callbackNodes.h"
+#include "trig.h"
 #include "BitFlag.h"
 
 namespace og {

@@ -2,6 +2,7 @@
 #include "System.h"
 #include "Vector3.h"
 #include "og/Screen/ogScreen.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

@@ -7,6 +7,7 @@
 #include "System.h"
 #include "TParticle2dMgr.h"
 #include "Dolphin/rand.h"
+#include "trig.h"
 
 namespace og {
 namespace newScreen {

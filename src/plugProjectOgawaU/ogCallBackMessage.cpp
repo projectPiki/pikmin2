@@ -2,6 +2,7 @@
 #include "og/Screen/callbackNodes.h"
 #include "og/ogLib2D.h"
 #include "og/Screen/ogScreen.h"
+#include "trig.h"
 
 inline u64 J2DPane::getTagName() const { return mTag; }
 

@@ -2,6 +2,7 @@
 #include "og/Screen/ScaleMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "JSystem/JKernel/JKRArchive.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

@@ -2,6 +2,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "og/Screen/callbackNodes.h"
+#include "trig.h"
 
 const char* og::Screen::SujiTex32[11] = { "0_32.bti", "1_32.bti", "2_32.bti", "3_32.bti", "4_32.bti", "5_32.bti",
 	                                      "6_32.bti", "7_32.bti", "8_32.bti", "9_32.bti", "h_32.bti" };

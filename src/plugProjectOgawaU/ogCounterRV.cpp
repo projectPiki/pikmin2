@@ -3,6 +3,7 @@
 #include "og/Sound.h"
 #include "Dolphin/math.h"
 #include "Dolphin/rand.h"
+#include "trig.h"
 
 namespace og {
 namespace Screen {

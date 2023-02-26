@@ -6,6 +6,7 @@
 #include "og/Screen/callbackNodes.h"
 #include "og/Sound.h"
 #include "og/newScreen/WorldMapInfoWindow.h"
+#include "trig.h"
 #include "System.h"
 
 /*

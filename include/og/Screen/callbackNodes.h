@@ -7,7 +7,6 @@
 #include "og/Screen/AngleMgr.h"
 #include "P2DScreen.h"
 #include "SoundID.h"
-#include "trig.h"
 
 struct LifeGauge;
 

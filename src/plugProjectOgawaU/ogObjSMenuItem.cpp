@@ -3,6 +3,7 @@
 #include "og/Screen/anime.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Sound.h"
+#include "trig.h"
 
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 

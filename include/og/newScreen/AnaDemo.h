@@ -5,6 +5,7 @@
 #include "og/Screen/anime.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/MenuMgr.h"
+#include "trig.h"
 
 namespace P2DScreen {
 struct Mgr_tuning;

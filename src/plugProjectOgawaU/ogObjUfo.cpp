@@ -6,6 +6,7 @@
 #include "Controller.h"
 #include "og/Sound.h"
 #include "System.h"
+#include "trig.h"
 
 namespace og {
 namespace newScreen {

@@ -6,6 +6,7 @@
 #include "types.h"
 #include "Morimura/Bases.h"
 #include "Morimura/Window.h"
+#include "trig.h"
 
 namespace Morimura {
 
