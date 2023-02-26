@@ -5,14 +5,13 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_
-__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_:
+.obj __vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_, global
 	.4byte 0
 	.4byte 0
 	.4byte __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor
 	.4byte __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv
-.global __vt__Q214JStudio_JStage14TAdaptor_light
-__vt__Q214JStudio_JStage14TAdaptor_light:
+.endobj __vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_
+.obj __vt__Q214JStudio_JStage14TAdaptor_light, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q214JStudio_JStage14TAdaptor_lightFv
@@ -23,6 +22,7 @@ __vt__Q214JStudio_JStage14TAdaptor_light:
 	.4byte adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCvUlPCvUl
 	.4byte adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
+.endobj __vt__Q214JStudio_JStage14TAdaptor_light
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -37,25 +37,30 @@ __vt__Q214JStudio_JStage14TAdaptor_light:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516480:
+.obj lbl_80516480, local
 	.float 0.0
+.endobj lbl_80516480
 .balign 8
-lbl_80516488:
+.obj lbl_80516488, local
 	.double 0.5
+.endobj lbl_80516488
 .balign 8
-lbl_80516490:
+.obj lbl_80516490, local
 	.double 3.0
+.endobj lbl_80516490
 .balign 8
-lbl_80516498:
+.obj lbl_80516498, local
 	.double 0.0
-lbl_805164A0:
+.endobj lbl_80516498
+.obj lbl_805164A0, local
 	.float 57.29578
-lbl_805164A4:
+.endobj lbl_805164A0
+.obj lbl_805164A4, local
 	.float 0.017453292
+.endobj lbl_805164A4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight
-__ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight:
+.fn __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight, global
 /* 800113C8 0000E308  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800113CC 0000E30C  7C 08 02 A6 */	mflr r0
 /* 800113D0 0000E310  3C C0 80 4A */	lis r6, __vt__Q27JStudio8TAdaptor@ha
@@ -98,9 +103,9 @@ __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight:
 /* 80011464 0000E3A4  7C 08 03 A6 */	mtlr r0
 /* 80011468 0000E3A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001146C 0000E3AC  4E 80 00 20 */	blr 
+.endfn __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight
 
-.global __dt__Q214JStudio_JStage14TAdaptor_lightFv
-__dt__Q214JStudio_JStage14TAdaptor_lightFv:
+.fn __dt__Q214JStudio_JStage14TAdaptor_lightFv, global
 /* 80011470 0000E3B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80011474 0000E3B4  7C 08 02 A6 */	mflr r0
 /* 80011478 0000E3B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -132,9 +137,9 @@ __dt__Q214JStudio_JStage14TAdaptor_lightFv:
 /* 800114DC 0000E41C  7C 08 03 A6 */	mtlr r0
 /* 800114E0 0000E420  38 21 00 10 */	addi r1, r1, 0x10
 /* 800114E4 0000E424  4E 80 00 20 */	blr 
+.endfn __dt__Q214JStudio_JStage14TAdaptor_lightFv
 
-.global adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
-adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject:
+.fn adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject, global
 /* 800114E8 0000E428  3C 80 80 50 */	lis r4, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
 /* 800114EC 0000E42C  38 04 6A 8C */	addi r0, r4, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l
 /* 800114F0 0000E430  7C 05 03 78 */	mr r5, r0
@@ -157,9 +162,9 @@ adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject:
 /* 80011524 0000E464  2C 00 FF FF */	cmpwi r0, -1
 /* 80011528 0000E468  40 82 FF D0 */	bne .L_800114F8
 /* 8001152C 0000E46C  4E 80 00 20 */	blr 
+.endfn adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
 
-.global adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
-adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject:
+.fn adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject, global
 /* 80011530 0000E470  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80011534 0000E474  7C 08 02 A6 */	mflr r0
 /* 80011538 0000E478  90 01 00 94 */	stw r0, 0x94(r1)
@@ -342,9 +347,9 @@ adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject:
 /* 800117D0 0000E710  7C 08 03 A6 */	mtlr r0
 /* 800117D4 0000E714  38 21 00 90 */	addi r1, r1, 0x90
 /* 800117D8 0000E718  4E 80 00 20 */	blr 
+.endfn adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
 
-.global adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
-adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject:
+.fn adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject, global
 /* 800117DC 0000E71C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800117E0 0000E720  7C 08 02 A6 */	mflr r0
 /* 800117E4 0000E724  90 01 00 14 */	stw r0, 0x14(r1)
@@ -366,9 +371,9 @@ adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject:
 /* 80011824 0000E764  7C 08 03 A6 */	mtlr r0
 /* 80011828 0000E768  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001182C 0000E76C  4E 80 00 20 */	blr 
+.endfn adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
 
-.global adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectUl
-adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectUl:
+.fn adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectUl, global
 /* 80011830 0000E770  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80011834 0000E774  7C 08 02 A6 */	mflr r0
 /* 80011838 0000E778  90 01 00 94 */	stw r0, 0x94(r1)
@@ -488,9 +493,9 @@ adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectUl:
 /* 800119EC 0000E92C  7C 08 03 A6 */	mtlr r0
 /* 800119F0 0000E930  38 21 00 90 */	addi r1, r1, 0x90
 /* 800119F4 0000E934  4E 80 00 20 */	blr 
+.endfn adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectUl
 
-.global adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCvUlPCvUl
-adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCvUlPCvUl:
+.fn adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCvUlPCvUl, global
 /* 800119F8 0000E938  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800119FC 0000E93C  7C 08 02 A6 */	mflr r0
 /* 80011A00 0000E940  7C A4 2B 78 */	mr r4, r5
@@ -504,9 +509,9 @@ adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCvUlPCv
 /* 80011A20 0000E960  7C 08 03 A6 */	mtlr r0
 /* 80011A24 0000E964  38 21 00 10 */	addi r1, r1, 0x10
 /* 80011A28 0000E968  4E 80 00 20 */	blr 
+.endfn adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCvUlPCvUl
 
-.global adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80011A2C 0000E96C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80011A30 0000E970  7C 08 02 A6 */	mflr r0
 /* 80011A34 0000E974  2C 04 00 02 */	cmpwi r4, 2
@@ -544,9 +549,9 @@ adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperat
 /* 80011A98 0000E9D8  7C 08 03 A6 */	mtlr r0
 /* 80011A9C 0000E9DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80011AA0 0000E9E0  4E 80 00 20 */	blr 
+.endfn adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80011AA4 0000E9E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80011AA8 0000E9E8  7C 08 02 A6 */	mflr r0
 /* 80011AAC 0000E9EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -556,15 +561,15 @@ adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperati
 /* 80011ABC 0000E9FC  7C 08 03 A6 */	mtlr r0
 /* 80011AC0 0000EA00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80011AC4 0000EA04  4E 80 00 20 */	blr 
+.endfn adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
 
-.global __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor
-__cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor:
+.fn __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor, global
 /* 80011AC8 0000EA08  80 03 00 08 */	lwz r0, 8(r3)
 /* 80011ACC 0000EA0C  90 04 01 18 */	stw r0, 0x118(r4)
 /* 80011AD0 0000EA10  4E 80 00 20 */	blr 
+.endfn __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor
 
-.global __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv
-__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv:
+.fn __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv, weak
 /* 80011AD4 0000EA14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80011AD8 0000EA18  7C 08 02 A6 */	mflr r0
 /* 80011ADC 0000EA1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -590,8 +595,9 @@ __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv:
 /* 80011B28 0000EA68  7C 08 03 A6 */	mtlr r0
 /* 80011B2C 0000EA6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80011B30 0000EA70  4E 80 00 20 */	blr 
+.endfn __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv
 
-"__sinit_object-light_cpp": # static initializer
+.obj "__sinit_object-light_cpp", local
 /* 80011B34 0000EA74  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80011B38 0000EA78  7C 08 02 A6 */	mflr r0
 /* 80011B3C 0000EA7C  3C 80 80 4A */	lis r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
@@ -758,3 +764,4 @@ __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv:
 /* 80011DC0 0000ED00  7C 08 03 A6 */	mtlr r0
 /* 80011DC4 0000ED04  38 21 00 60 */	addi r1, r1, 0x60
 /* 80011DC8 0000ED08  4E 80 00 20 */	blr 
+.endfn "__sinit_object-light_cpp"

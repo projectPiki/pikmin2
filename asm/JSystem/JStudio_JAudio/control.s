@@ -1,16 +1,15 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q214JStudio_JAudio13TCreateObject
-__vt__Q214JStudio_JAudio13TCreateObject:
+.obj __vt__Q214JStudio_JAudio13TCreateObject, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q214JStudio_JAudio13TCreateObjectFv
 	.4byte create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+.endobj __vt__Q214JStudio_JAudio13TCreateObject
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem"
-"createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem":
+.fn "createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem", local
 /* 80015C44 00012B84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80015C48 00012B88  7C 08 02 A6 */	mflr r0
 /* 80015C4C 00012B8C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -68,9 +67,9 @@ __vt__Q214JStudio_JAudio13TCreateObject:
 /* 80015D04 00012C44  7C 08 03 A6 */	mtlr r0
 /* 80015D08 00012C48  38 21 00 20 */	addi r1, r1, 0x20
 /* 80015D0C 00012C4C  4E 80 00 20 */	blr 
+.endfn "createObject_SOUND_JAI___Q214JStudio_JAudio21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem"
 
-.global __dt__Q214JStudio_JAudio13TCreateObjectFv
-__dt__Q214JStudio_JAudio13TCreateObjectFv:
+.fn __dt__Q214JStudio_JAudio13TCreateObjectFv, global
 /* 80015D10 00012C50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80015D14 00012C54  7C 08 02 A6 */	mflr r0
 /* 80015D18 00012C58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -96,9 +95,9 @@ __dt__Q214JStudio_JAudio13TCreateObjectFv:
 /* 80015D64 00012CA4  7C 08 03 A6 */	mtlr r0
 /* 80015D68 00012CA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015D6C 00012CAC  4E 80 00 20 */	blr 
+.endfn __dt__Q214JStudio_JAudio13TCreateObjectFv
 
-.global create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
-create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object:
+.fn create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object, global
 /* 80015D70 00012CB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80015D74 00012CB4  7C 08 02 A6 */	mflr r0
 /* 80015D78 00012CB8  80 E5 00 00 */	lwz r7, 0(r5)
@@ -133,3 +132,4 @@ create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4d
 /* 80015DDC 00012D1C  7C 08 03 A6 */	mtlr r0
 /* 80015DE0 00012D20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015DE4 00012D24  4E 80 00 20 */	blr 
+.endfn create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object

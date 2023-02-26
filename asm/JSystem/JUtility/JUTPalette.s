@@ -1,15 +1,16 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80474150:
+.obj lbl_80474150, local
 	.asciz "JUTPalette.cpp"
+.endobj lbl_80474150
 .balign 4
-lbl_80474160:
+.obj lbl_80474160, local
 	.asciz "JUTTexture: TLUT is NULL\n"
+.endobj lbl_80474160
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT:
+.fn storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT, global
 /* 8002EEC4 0002BE04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002EEC8 0002BE08  7C 08 02 A6 */	mflr r0
 /* 8002EECC 0002BE0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -49,9 +50,9 @@ storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT:
 /* 8002EF50 0002BE90  7C 08 03 A6 */	mtlr r0
 /* 8002EF54 0002BE94  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002EF58 0002BE98  4E 80 00 20 */	blr 
+.endfn storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
 
-.global storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
-storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv:
+.fn storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv, global
 /* 8002EF5C 0002BE9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002EF60 0002BEA0  7C 08 02 A6 */	mflr r0
 /* 8002EF64 0002BEA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -68,9 +69,9 @@ storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv:
 /* 8002EF90 0002BED0  7C 08 03 A6 */	mtlr r0
 /* 8002EF94 0002BED4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002EF98 0002BED8  4E 80 00 20 */	blr 
+.endfn storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
 
-.global load__10JUTPaletteFv
-load__10JUTPaletteFv:
+.fn load__10JUTPaletteFv, global
 /* 8002EF9C 0002BEDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002EFA0 0002BEE0  7C 08 02 A6 */	mflr r0
 /* 8002EFA4 0002BEE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -89,3 +90,4 @@ load__10JUTPaletteFv:
 /* 8002EFD4 0002BF14  7C 08 03 A6 */	mtlr r0
 /* 8002EFD8 0002BF18  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002EFDC 0002BF1C  4E 80 00 20 */	blr 
+.endfn load__10JUTPaletteFv

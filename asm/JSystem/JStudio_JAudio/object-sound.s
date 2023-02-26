@@ -5,34 +5,38 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_8049F910:
+.obj lbl_8049F910, local
 	.4byte 0x00000000
 	.4byte 0x00000080
 	.4byte 0x00000010
-lbl_8049F91C:
+.endobj lbl_8049F910
+.obj lbl_8049F91C, local
 	.4byte 0x00000000
 	.4byte 0x00000084
 	.4byte 0x00000010
-lbl_8049F928:
+.endobj lbl_8049F91C
+.obj lbl_8049F928, local
 	.4byte 0x00000000
 	.4byte 0x00000088
 	.4byte 0x00000010
-lbl_8049F934:
+.endobj lbl_8049F928
+.obj lbl_8049F934, local
 	.4byte 0x00000000
 	.4byte 0x00000044
 	.4byte 0x00000010
-lbl_8049F940:
+.endobj lbl_8049F934
+.obj lbl_8049F940, local
 	.4byte 0x00000000
 	.4byte 0x0000008C
 	.4byte 0x00000010
-.global __vt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_
-__vt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_:
+.endobj lbl_8049F940
+.obj __vt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_, global
 	.4byte 0
 	.4byte 0
 	.4byte __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor
 	.4byte __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv
-.global __vt__Q214JStudio_JAudio14TAdaptor_sound
-__vt__Q214JStudio_JAudio14TAdaptor_sound:
+.endobj __vt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_
+.obj __vt__Q214JStudio_JAudio14TAdaptor_sound, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q214JStudio_JAudio14TAdaptor_soundFv
@@ -50,6 +54,7 @@ __vt__Q214JStudio_JAudio14TAdaptor_sound:
 	.4byte adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+.endobj __vt__Q214JStudio_JAudio14TAdaptor_sound
 # not part of the vtable. not sure what causes these null bytes.
 	.4byte 0
 	.4byte 0
@@ -88,17 +93,18 @@ __vt__Q214JStudio_JAudio14TAdaptor_sound:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-init$1257:
+.obj init$1257, local
 	.skip 0x1
+.endobj init$1257
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805164B0:
+.obj lbl_805164B0, local
 	.float 0.0
+.endobj lbl_805164B0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem
-__ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem:
+.fn __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem, global
 /* 80014FD8 00011F18  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80014FDC 00011F1C  7C 08 02 A6 */	mflr r0
 /* 80014FE0 00011F20  3C C0 80 4A */	lis r6, __vt__Q27JStudio8TAdaptor@ha
@@ -149,9 +155,9 @@ __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem:
 /* 80015094 00011FD4  7C 08 03 A6 */	mtlr r0
 /* 80015098 00011FD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001509C 00011FDC  4E 80 00 20 */	blr 
+.endfn __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem
 
-.global __dt__Q214JStudio_JAudio14TAdaptor_soundFv
-__dt__Q214JStudio_JAudio14TAdaptor_soundFv:
+.fn __dt__Q214JStudio_JAudio14TAdaptor_soundFv, global
 /* 800150A0 00011FE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800150A4 00011FE4  7C 08 02 A6 */	mflr r0
 /* 800150A8 00011FE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -187,9 +193,9 @@ __dt__Q214JStudio_JAudio14TAdaptor_soundFv:
 /* 80015118 00012058  7C 08 03 A6 */	mtlr r0
 /* 8001511C 0001205C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015120 00012060  4E 80 00 20 */	blr 
+.endfn __dt__Q214JStudio_JAudio14TAdaptor_soundFv
 
-.global adaptor_do_prepare__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject
-adaptor_do_prepare__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject:
+.fn adaptor_do_prepare__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject, global
 /* 80015124 00012064  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80015128 00012068  7C 08 02 A6 */	mflr r0
 /* 8001512C 0001206C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -246,9 +252,9 @@ adaptor_do_prepare__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject:
 /* 800151E4 00012124  7C 08 03 A6 */	mtlr r0
 /* 800151E8 00012128  38 21 00 10 */	addi r1, r1, 0x10
 /* 800151EC 0001212C  4E 80 00 20 */	blr 
+.endfn adaptor_do_prepare__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject
 
-.global adaptor_do_end__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject
-adaptor_do_end__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject:
+.fn adaptor_do_end__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject, global
 /* 800151F0 00012130  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800151F4 00012134  7C 08 02 A6 */	mflr r0
 /* 800151F8 00012138  3C 80 C0 00 */	lis r4, 0xC0000C00@ha
@@ -272,9 +278,9 @@ adaptor_do_end__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject:
 /* 8001523C 0001217C  7C 08 03 A6 */	mtlr r0
 /* 80015240 00012180  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015244 00012184  4E 80 00 20 */	blr 
+.endfn adaptor_do_end__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject
 
-.global adaptor_do_update__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObjectUl
-adaptor_do_update__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObjectUl:
+.fn adaptor_do_update__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObjectUl, global
 /* 80015248 00012188  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8001524C 0001218C  7C 08 02 A6 */	mflr r0
 /* 80015250 00012190  3C A0 80 47 */	lis r5, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@ha
@@ -366,9 +372,9 @@ adaptor_do_update__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObjectUl:
 /* 80015388 000122C8  7C 08 03 A6 */	mtlr r0
 /* 8001538C 000122CC  38 21 00 60 */	addi r1, r1, 0x60
 /* 80015390 000122D0  4E 80 00 20 */	blr 
+.endfn adaptor_do_update__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObjectUl
 
-.global adaptor_do_SOUND__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_SOUND__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_SOUND__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80015394 000122D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80015398 000122D8  7C 08 02 A6 */	mflr r0
 /* 8001539C 000122DC  2C 04 00 19 */	cmpwi r4, 0x19
@@ -413,9 +419,9 @@ adaptor_do_SOUND__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperatio
 /* 8001542C 0001236C  7C 08 03 A6 */	mtlr r0
 /* 80015430 00012370  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015434 00012374  4E 80 00 20 */	blr 
+.endfn adaptor_do_SOUND__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_BEGIN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_BEGIN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_BEGIN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80015438 00012378  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001543C 0001237C  7C 08 02 A6 */	mflr r0
 /* 80015440 00012380  2C 04 00 01 */	cmpwi r4, 1
@@ -430,9 +436,9 @@ adaptor_do_BEGIN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperatio
 /* 8001545C 0001239C  7C 08 03 A6 */	mtlr r0
 /* 80015460 000123A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015464 000123A4  4E 80 00 20 */	blr 
+.endfn adaptor_do_BEGIN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_BEGIN_FADE_IN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_BEGIN_FADE_IN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_BEGIN_FADE_IN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80015468 000123A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001546C 000123AC  7C 08 02 A6 */	mflr r0
 /* 80015470 000123B0  2C 04 00 02 */	cmpwi r4, 2
@@ -453,9 +459,9 @@ adaptor_do_BEGIN_FADE_IN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TE
 /* 800154A4 000123E4  7C 08 03 A6 */	mtlr r0
 /* 800154A8 000123E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800154AC 000123EC  4E 80 00 20 */	blr 
+.endfn adaptor_do_BEGIN_FADE_IN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_END__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_END__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_END__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 800154B0 000123F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800154B4 000123F4  7C 08 02 A6 */	mflr r0
 /* 800154B8 000123F8  2C 04 00 01 */	cmpwi r4, 1
@@ -470,9 +476,9 @@ adaptor_do_END__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationD
 /* 800154D4 00012414  7C 08 03 A6 */	mtlr r0
 /* 800154D8 00012418  38 21 00 10 */	addi r1, r1, 0x10
 /* 800154DC 0001241C  4E 80 00 20 */	blr 
+.endfn adaptor_do_END__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_END_FADE_OUT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_END_FADE_OUT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_END_FADE_OUT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 800154E0 00012420  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800154E4 00012424  7C 08 02 A6 */	mflr r0
 /* 800154E8 00012428  2C 04 00 02 */	cmpwi r4, 2
@@ -493,9 +499,9 @@ adaptor_do_END_FADE_OUT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEO
 /* 8001551C 0001245C  7C 08 03 A6 */	mtlr r0
 /* 80015520 00012460  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015524 00012464  4E 80 00 20 */	blr 
+.endfn adaptor_do_END_FADE_OUT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_PARENT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_PARENT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_PARENT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80015528 00012468  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001552C 0001246C  7C 08 02 A6 */	mflr r0
 /* 80015530 00012470  2C 04 00 18 */	cmpwi r4, 0x18
@@ -524,9 +530,9 @@ adaptor_do_PARENT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperati
 /* 80015584 000124C4  7C 08 03 A6 */	mtlr r0
 /* 80015588 000124C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001558C 000124CC  4E 80 00 20 */	blr 
+.endfn adaptor_do_PARENT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80015590 000124D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80015594 000124D4  7C 08 02 A6 */	mflr r0
 /* 80015598 000124D8  2C 04 00 19 */	cmpwi r4, 0x19
@@ -562,9 +568,9 @@ adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOp
 /* 80015604 00012544  7C 08 03 A6 */	mtlr r0
 /* 80015608 00012548  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001560C 0001254C  4E 80 00 20 */	blr 
+.endfn adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80015610 00012550  2C 04 00 02 */	cmpwi r4, 2
 /* 80015614 00012554  4C 82 00 20 */	bnelr 
 /* 80015618 00012558  80 85 00 00 */	lwz r4, 0(r5)
@@ -573,9 +579,9 @@ adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TE
 /* 80015624 00012564  54 00 0F FE */	srwi r0, r0, 0x1f
 /* 80015628 00012568  98 03 01 04 */	stb r0, 0x104(r3)
 /* 8001562C 0001256C  4E 80 00 20 */	blr 
+.endfn adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80015630 00012570  2C 04 00 02 */	cmpwi r4, 2
 /* 80015634 00012574  4C 82 00 20 */	bnelr 
 /* 80015638 00012578  80 85 00 00 */	lwz r4, 0(r5)
@@ -586,9 +592,9 @@ adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperat
 /* 8001564C 0001258C  38 03 00 EC */	addi r0, r3, 0xec
 /* 80015650 00012590  90 03 00 E8 */	stw r0, 0xe8(r3)
 /* 80015654 00012594  4E 80 00 20 */	blr 
+.endfn adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 
-.global __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor
-__cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor:
+.fn __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor, global
 /* 80015658 00012598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001565C 0001259C  7C 08 02 A6 */	mflr r0
 /* 80015660 000125A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -606,9 +612,9 @@ __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor:
 /* 8001568C 000125CC  7C 08 03 A6 */	mtlr r0
 /* 80015690 000125D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015694 000125D4  4E 80 00 20 */	blr 
+.endfn __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor
 
-.global beginSound_fadeIn___Q214JStudio_JAudio14TAdaptor_soundFUl
-beginSound_fadeIn___Q214JStudio_JAudio14TAdaptor_soundFUl:
+.fn beginSound_fadeIn___Q214JStudio_JAudio14TAdaptor_soundFUl, global
 /* 80015698 000125D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001569C 000125DC  7C 08 02 A6 */	mflr r0
 /* 800156A0 000125E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -667,9 +673,9 @@ beginSound_fadeIn___Q214JStudio_JAudio14TAdaptor_soundFUl:
 /* 80015764 000126A4  7C 08 03 A6 */	mtlr r0
 /* 80015768 000126A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001576C 000126AC  4E 80 00 20 */	blr 
+.endfn beginSound_fadeIn___Q214JStudio_JAudio14TAdaptor_soundFUl
 
-.global endSound_fadeOut___Q214JStudio_JAudio14TAdaptor_soundFUl
-endSound_fadeOut___Q214JStudio_JAudio14TAdaptor_soundFUl:
+.fn endSound_fadeOut___Q214JStudio_JAudio14TAdaptor_soundFUl, global
 /* 80015770 000126B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80015774 000126B4  7C 08 02 A6 */	mflr r0
 /* 80015778 000126B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -691,9 +697,9 @@ endSound_fadeOut___Q214JStudio_JAudio14TAdaptor_soundFUl:
 /* 800157B4 000126F4  7C 08 03 A6 */	mtlr r0
 /* 800157B8 000126F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800157BC 000126FC  4E 80 00 20 */	blr 
+.endfn endSound_fadeOut___Q214JStudio_JAudio14TAdaptor_soundFUl
 
-.global __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv
-__dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv:
+.fn __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv, weak
 /* 800157C0 00012700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800157C4 00012704  7C 08 02 A6 */	mflr r0
 /* 800157C8 00012708  90 01 00 14 */	stw r0, 0x14(r1)
@@ -719,9 +725,9 @@ __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv:
 /* 80015814 00012754  7C 08 03 A6 */	mtlr r0
 /* 80015818 00012758  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001581C 0001275C  4E 80 00 20 */	blr 
+.endfn __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv
 
-.global "prepareSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
-"prepareSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc":
+.fn "prepareSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc", weak
 /* 80015820 00012760  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80015824 00012764  7C 08 02 A6 */	mflr r0
 /* 80015828 00012768  90 01 00 14 */	stw r0, 0x14(r1)
@@ -742,9 +748,9 @@ __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv:
 /* 80015860 000127A0  7C 08 03 A6 */	mtlr r0
 /* 80015864 000127A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80015868 000127A8  4E 80 00 20 */	blr 
+.endfn "prepareSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
 
-.global "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
-"startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc":
+.fn "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc", weak
 /* 8001586C 000127AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80015870 000127B0  7C 08 02 A6 */	mflr r0
 /* 80015874 000127B4  28 06 00 00 */	cmplwi r6, 0
@@ -772,9 +778,9 @@ __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv:
 /* 800158C0 00012800  7C 08 03 A6 */	mtlr r0
 /* 800158C4 00012804  38 21 00 20 */	addi r1, r1, 0x20
 /* 800158C8 00012808  4E 80 00 20 */	blr 
+.endfn "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
 
-.global "startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc"
-"startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc":
+.fn "startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc", weak
 /* 800158CC 0001280C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800158D0 00012810  7C 08 02 A6 */	mflr r0
 /* 800158D4 00012814  90 01 00 24 */	stw r0, 0x24(r1)
@@ -802,8 +808,9 @@ __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv:
 /* 80015928 00012868  7C 08 03 A6 */	mtlr r0
 /* 8001592C 0001286C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80015930 00012870  4E 80 00 20 */	blr 
+.endfn "startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc"
 
-"__sinit_object-sound_cpp": # static initializer
+.fn "__sinit_object-sound_cpp", local
 /* 80015934 00012874  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80015938 00012878  7C 08 02 A6 */	mflr r0
 /* 8001593C 0001287C  3C 80 80 4A */	lis r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
@@ -1000,3 +1007,4 @@ __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv:
 /* 80015C38 00012B78  7C 08 03 A6 */	mtlr r0
 /* 80015C3C 00012B7C  38 21 00 90 */	addi r1, r1, 0x90
 /* 80015C40 00012B80  4E 80 00 20 */	blr 
+.endfn "__sinit_object-sound_cpp"

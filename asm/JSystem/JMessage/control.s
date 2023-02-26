@@ -1,16 +1,14 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q28JMessage8TControl
-__vt__Q28JMessage8TControl:
+.obj __vt__Q28JMessage8TControl, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28JMessage8TControlFv
-	.4byte 0
+.endobj __vt__Q28JMessage8TControl
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q28JMessage8TControlFv
-__ct__Q28JMessage8TControlFv:
+.fn __ct__Q28JMessage8TControlFv, global
 /* 800083A4 000052E4  3C A0 80 4A */	lis r5, __vt__Q28JMessage8TControl@ha
 /* 800083A8 000052E8  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 800083AC 000052EC  38 05 E4 58 */	addi r0, r5, __vt__Q28JMessage8TControl@l
@@ -28,9 +26,9 @@ __ct__Q28JMessage8TControlFv:
 /* 800083DC 0000531C  90 A3 00 20 */	stw r5, 0x20(r3)
 /* 800083E0 00005320  90 A3 00 24 */	stw r5, 0x24(r3)
 /* 800083E4 00005324  4E 80 00 20 */	blr 
+.endfn __ct__Q28JMessage8TControlFv
 
-.global __dt__Q28JMessage8TControlFv
-__dt__Q28JMessage8TControlFv:
+.fn __dt__Q28JMessage8TControlFv, global
 /* 800083E8 00005328  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800083EC 0000532C  7C 08 02 A6 */	mflr r0
 /* 800083F0 00005330  90 01 00 14 */	stw r0, 0x14(r1)
@@ -50,9 +48,9 @@ __dt__Q28JMessage8TControlFv:
 /* 80008424 00005364  7C 08 03 A6 */	mtlr r0
 /* 80008428 00005368  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000842C 0000536C  4E 80 00 20 */	blr 
+.endfn __dt__Q28JMessage8TControlFv
 
-.global reset__Q28JMessage8TControlFv
-reset__Q28JMessage8TControlFv:
+.fn reset__Q28JMessage8TControlFv, global
 /* 80008430 00005370  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008434 00005374  7C 08 02 A6 */	mflr r0
 /* 80008438 00005378  90 01 00 14 */	stw r0, 0x14(r1)
@@ -81,9 +79,9 @@ reset__Q28JMessage8TControlFv:
 /* 8000848C 000053CC  7C 08 03 A6 */	mtlr r0
 /* 80008490 000053D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008494 000053D4  4E 80 00 20 */	blr 
+.endfn reset__Q28JMessage8TControlFv
 
-.global update__Q28JMessage8TControlFv
-update__Q28JMessage8TControlFv:
+.fn update__Q28JMessage8TControlFv, global
 /* 80008498 000053D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000849C 000053DC  7C 08 02 A6 */	mflr r0
 /* 800084A0 000053E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -122,9 +120,9 @@ update__Q28JMessage8TControlFv:
 /* 80008514 00005454  7C 08 03 A6 */	mtlr r0
 /* 80008518 00005458  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000851C 0000545C  4E 80 00 20 */	blr 
+.endfn update__Q28JMessage8TControlFv
 
-.global render__Q28JMessage8TControlFv
-render__Q28JMessage8TControlFv:
+.fn render__Q28JMessage8TControlFv, global
 /* 80008520 00005460  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80008524 00005464  7C 08 02 A6 */	mflr r0
 /* 80008528 00005468  90 01 00 24 */	stw r0, 0x24(r1)
@@ -218,9 +216,9 @@ render__Q28JMessage8TControlFv:
 /* 80008670 000055B0  7C 08 03 A6 */	mtlr r0
 /* 80008674 000055B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80008678 000055B8  4E 80 00 20 */	blr 
+.endfn render__Q28JMessage8TControlFv
 
-.global setMessageCode__Q28JMessage8TControlFUsUs
-setMessageCode__Q28JMessage8TControlFUsUs:
+.fn setMessageCode__Q28JMessage8TControlFUsUs, global
 /* 8000867C 000055BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80008680 000055C0  7C 08 02 A6 */	mflr r0
 /* 80008684 000055C4  7C A6 2B 78 */	mr r6, r5
@@ -282,9 +280,9 @@ setMessageCode__Q28JMessage8TControlFUsUs:
 /* 8000874C 0000568C  7C 08 03 A6 */	mtlr r0
 /* 80008750 00005690  38 21 00 20 */	addi r1, r1, 0x20
 /* 80008754 00005694  4E 80 00 20 */	blr 
+.endfn setMessageCode__Q28JMessage8TControlFUsUs
 
-.global setMessageID__Q28JMessage8TControlFUlUlPb
-setMessageID__Q28JMessage8TControlFUlUlPb:
+.fn setMessageID__Q28JMessage8TControlFUlUlPb, global
 /* 80008758 00005698  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8000875C 0000569C  7C 08 02 A6 */	mflr r0
 /* 80008760 000056A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -355,9 +353,9 @@ setMessageID__Q28JMessage8TControlFUlUlPb:
 /* 80008848 00005788  7C 08 03 A6 */	mtlr r0
 /* 8000884C 0000578C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80008850 00005790  4E 80 00 20 */	blr 
+.endfn setMessageID__Q28JMessage8TControlFUlUlPb
 
-.global setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
-setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs:
+.fn setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs, global
 /* 80008854 00005794  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80008858 00005798  7C 08 02 A6 */	mflr r0
 /* 8000885C 0000579C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -421,3 +419,4 @@ setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs:
 /* 80008930 00005870  7C 08 03 A6 */	mtlr r0
 /* 80008934 00005874  38 21 00 20 */	addi r1, r1, 0x20
 /* 80008938 00005878  4E 80 00 20 */	blr 
+.endfn setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs

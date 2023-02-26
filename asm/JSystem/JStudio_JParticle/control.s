@@ -1,16 +1,15 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q217JStudio_JParticle13TCreateObject
-__vt__Q217JStudio_JParticle13TCreateObject:
+.obj __vt__Q217JStudio_JParticle13TCreateObject, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q217JStudio_JParticle13TCreateObjectFv
 	.4byte create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+.endobj __vt__Q217JStudio_JParticle13TCreateObject
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "createObject_PARTICLE_JPA___Q217JStudio_JParticle21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem"
-"createObject_PARTICLE_JPA___Q217JStudio_JParticle21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem":
+.fn "createObject_PARTICLE_JPA___Q217JStudio_JParticle21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem", local
 /* 80006220 00003160  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80006224 00003164  7C 08 02 A6 */	mflr r0
 /* 80006228 00003168  90 01 00 24 */	stw r0, 0x24(r1)
@@ -68,9 +67,9 @@ __vt__Q217JStudio_JParticle13TCreateObject:
 /* 800062E0 00003220  7C 08 03 A6 */	mtlr r0
 /* 800062E4 00003224  38 21 00 20 */	addi r1, r1, 0x20
 /* 800062E8 00003228  4E 80 00 20 */	blr 
+.endfn "createObject_PARTICLE_JPA___Q217JStudio_JParticle21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem"
 
-.global __dt__Q217JStudio_JParticle13TCreateObjectFv
-__dt__Q217JStudio_JParticle13TCreateObjectFv:
+.fn __dt__Q217JStudio_JParticle13TCreateObjectFv, global
 /* 800062EC 0000322C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800062F0 00003230  7C 08 02 A6 */	mflr r0
 /* 800062F4 00003234  90 01 00 14 */	stw r0, 0x14(r1)
@@ -96,9 +95,9 @@ __dt__Q217JStudio_JParticle13TCreateObjectFv:
 /* 80006340 00003280  7C 08 03 A6 */	mtlr r0
 /* 80006344 00003284  38 21 00 10 */	addi r1, r1, 0x10
 /* 80006348 00003288  4E 80 00 20 */	blr 
+.endfn __dt__Q217JStudio_JParticle13TCreateObjectFv
 
-.global create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
-create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object:
+.fn create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object, global
 /* 8000634C 0000328C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80006350 00003290  7C 08 02 A6 */	mflr r0
 /* 80006354 00003294  80 E5 00 00 */	lwz r7, 0(r5)
@@ -133,3 +132,4 @@ create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3st
 /* 800063B8 000032F8  7C 08 03 A6 */	mtlr r0
 /* 800063BC 000032FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800063C0 00003300  4E 80 00 20 */	blr 
+.endfn create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object

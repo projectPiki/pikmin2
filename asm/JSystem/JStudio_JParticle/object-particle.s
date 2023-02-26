@@ -1,15 +1,15 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804732E0: # first rodata entry of the DOL
+.obj lbl_804732E0, local # first rodata entry of the DOL
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_804732E0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_
-__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_:
+.obj __vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv
@@ -17,8 +17,8 @@ __vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_:
 	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-.global __vt__Q217JStudio_JParticle17TAdaptor_particle
-__vt__Q217JStudio_JParticle17TAdaptor_particle:
+.endobj __vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_
+.obj __vt__Q217JStudio_JParticle17TAdaptor_particle, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q217JStudio_JParticle17TAdaptor_particleFv
@@ -35,8 +35,8 @@ __vt__Q217JStudio_JParticle17TAdaptor_particle:
 	.4byte adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
-.global __vt__18JPAEmitterCallBack
-__vt__18JPAEmitterCallBack:
+.endobj __vt__Q217JStudio_JParticle17TAdaptor_particle
+.obj __vt__18JPAEmitterCallBack, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -44,8 +44,8 @@ __vt__18JPAEmitterCallBack:
 	.4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-.global __vt__Q27JStudio17TAdaptor_particle
-__vt__Q27JStudio17TAdaptor_particle:
+.endobj __vt__18JPAEmitterCallBack
+.obj __vt__Q27JStudio17TAdaptor_particle, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -62,43 +62,51 @@ __vt__Q27JStudio17TAdaptor_particle:
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj __vt__Q27JStudio17TAdaptor_particle
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .lcomm aoData$1232, 0x90, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-init$1233:
+.obj init$1233, local
 	.skip 0x1
+.endobj init$1233
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516360:
+.obj lbl_80516360, local
 	.float 0.0
-lbl_80516364:
+.endobj lbl_80516360
+.obj lbl_80516364, local
 	.float 1.0
-lbl_80516368:
+.endobj lbl_80516364
+.obj lbl_80516368, local
 	.float 255.0
+.endobj lbl_80516368
 .balign 8
-lbl_80516370:
+.obj lbl_80516370, local
 	.double 1.0
+.endobj lbl_80516370
 .balign 8
-lbl_80516378:
+.obj lbl_80516378, local
 	.double 65536.0
+.endobj lbl_80516378
 .balign 8
-lbl_80516380:
+.obj lbl_80516380, local
 	.double 360.0
+.endobj lbl_80516380
 .balign 8
-lbl_80516388:
+.obj lbl_80516388, local
 	.double 255.0
+.endobj lbl_80516388
 .balign 8
-lbl_80516390:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80516390, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516390
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7TSystem
-__ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7TSystem:
+.fn __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7TSystem, global
 /* 800056C0 00002600  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800056C4 00002604  7C 08 02 A6 */	mflr r0
 /* 800056C8 00002608  3C C0 80 4A */	lis r6, __vt__Q27JStudio8TAdaptor@ha
@@ -157,9 +165,9 @@ __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7T
 /* 8000579C 000026DC  7C 08 03 A6 */	mtlr r0
 /* 800057A0 000026E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800057A4 000026E4  4E 80 00 20 */	blr 
+.endfn __ct__Q217JStudio_JParticle17TAdaptor_particleFP17JPAEmitterManagerPCQ26JStage7TSystem
 
-.global __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv
-__dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv:
+.fn __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv, weak
 /* 800057A8 000026E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800057AC 000026EC  7C 08 02 A6 */	mflr r0
 /* 800057B0 000026F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -185,18 +193,18 @@ __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv:
 /* 800057FC 0000273C  7C 08 03 A6 */	mtlr r0
 /* 80005800 00002740  38 21 00 10 */	addi r1, r1, 0x10
 /* 80005804 00002744  4E 80 00 20 */	blr 
+.endfn __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv
 
-.global __ct__Q27JStudio14TVariableValueFv
-__ct__Q27JStudio14TVariableValueFv:
+.fn __ct__Q27JStudio14TVariableValueFv, weak
 /* 80005808 00002748  38 80 00 00 */	li r4, 0
 /* 8000580C 0000274C  38 0D 87 10 */	addi r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
 /* 80005810 00002750  90 83 00 04 */	stw r4, 4(r3)
 /* 80005814 00002754  90 83 00 08 */	stw r4, 8(r3)
 /* 80005818 00002758  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8000581C 0000275C  4E 80 00 20 */	blr 
+.endfn __ct__Q27JStudio14TVariableValueFv
 
-.global __dt__Q217JStudio_JParticle17TAdaptor_particleFv
-__dt__Q217JStudio_JParticle17TAdaptor_particleFv:
+.fn __dt__Q217JStudio_JParticle17TAdaptor_particleFv, global
 /* 80005820 00002760  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80005824 00002764  7C 08 02 A6 */	mflr r0
 /* 80005828 00002768  90 01 00 14 */	stw r0, 0x14(r1)
@@ -238,9 +246,9 @@ __dt__Q217JStudio_JParticle17TAdaptor_particleFv:
 /* 800058AC 000027EC  7C 08 03 A6 */	mtlr r0
 /* 800058B0 000027F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800058B4 000027F4  4E 80 00 20 */	blr 
+.endfn __dt__Q217JStudio_JParticle17TAdaptor_particleFv
 
-.global adaptor_do_prepare__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject
-adaptor_do_prepare__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject:
+.fn adaptor_do_prepare__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject, global
 /* 800058B8 000027F8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800058BC 000027FC  7C 08 02 A6 */	mflr r0
 /* 800058C0 00002800  90 01 00 34 */	stw r0, 0x34(r1)
@@ -323,13 +331,13 @@ adaptor_do_prepare__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObjec
 /* 800059F0 00002930  7C 08 03 A6 */	mtlr r0
 /* 800059F4 00002934  38 21 00 30 */	addi r1, r1, 0x30
 /* 800059F8 00002938  4E 80 00 20 */	blr 
+.endfn adaptor_do_prepare__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject
 
-.global adaptor_do_end__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject
-adaptor_do_end__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject:
+.fn adaptor_do_end__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject, global
 /* 800059FC 0000293C  4E 80 00 20 */	blr 
+.endfn adaptor_do_end__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject
 
-.global adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObjectUl
-adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObjectUl:
+.fn adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObjectUl, global
 /* 80005A00 00002940  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80005A04 00002944  7C 08 02 A6 */	mflr r0
 /* 80005A08 00002948  90 01 00 14 */	stw r0, 0x14(r1)
@@ -379,9 +387,9 @@ adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject
 /* 80005AA4 000029E4  7C 08 03 A6 */	mtlr r0
 /* 80005AA8 000029E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80005AAC 000029EC  4E 80 00 20 */	blr 
+.endfn adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObjectUl
 
-.global adaptor_do_BEGIN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_BEGIN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_BEGIN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80005AB0 000029F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80005AB4 000029F4  7C 08 02 A6 */	mflr r0
 /* 80005AB8 000029F8  2C 04 00 01 */	cmpwi r4, 1
@@ -396,9 +404,9 @@ adaptor_do_BEGIN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOp
 /* 80005AD4 00002A14  7C 08 03 A6 */	mtlr r0
 /* 80005AD8 00002A18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80005ADC 00002A1C  4E 80 00 20 */	blr 
+.endfn adaptor_do_BEGIN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_BEGIN_FADE_IN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_BEGIN_FADE_IN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_BEGIN_FADE_IN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80005AE0 00002A20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80005AE4 00002A24  7C 08 02 A6 */	mflr r0
 /* 80005AE8 00002A28  2C 04 00 02 */	cmpwi r4, 2
@@ -419,9 +427,9 @@ adaptor_do_BEGIN_FADE_IN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4da
 /* 80005B1C 00002A5C  7C 08 03 A6 */	mtlr r0
 /* 80005B20 00002A60  38 21 00 10 */	addi r1, r1, 0x10
 /* 80005B24 00002A64  4E 80 00 20 */	blr 
+.endfn adaptor_do_BEGIN_FADE_IN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_END__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_END__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_END__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80005B28 00002A68  2C 04 00 01 */	cmpwi r4, 1
 /* 80005B2C 00002A6C  4C 82 00 20 */	bnelr 
 /* 80005B30 00002A70  80 83 01 78 */	lwz r4, 0x178(r3)
@@ -433,9 +441,9 @@ adaptor_do_END__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOper
 /* 80005B48 00002A88  90 64 00 F4 */	stw r3, 0xf4(r4)
 /* 80005B4C 00002A8C  90 04 00 24 */	stw r0, 0x24(r4)
 /* 80005B50 00002A90  4E 80 00 20 */	blr 
+.endfn adaptor_do_END__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_END_FADE_OUT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_END_FADE_OUT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_END_FADE_OUT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80005B54 00002A94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80005B58 00002A98  7C 08 02 A6 */	mflr r0
 /* 80005B5C 00002A9C  2C 04 00 02 */	cmpwi r4, 2
@@ -456,17 +464,17 @@ adaptor_do_END_FADE_OUT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4dat
 /* 80005B90 00002AD0  7C 08 03 A6 */	mtlr r0
 /* 80005B94 00002AD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80005B98 00002AD8  4E 80 00 20 */	blr 
+.endfn adaptor_do_END_FADE_OUT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_PARTICLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_PARTICLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_PARTICLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80005B9C 00002ADC  2C 04 00 19 */	cmpwi r4, 0x19
 /* 80005BA0 00002AE0  4C 82 00 20 */	bnelr 
 /* 80005BA4 00002AE4  80 05 00 00 */	lwz r0, 0(r5)
 /* 80005BA8 00002AE8  90 03 01 88 */	stw r0, 0x188(r3)
 /* 80005BAC 00002AEC  4E 80 00 20 */	blr 
+.endfn adaptor_do_PARTICLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80005BB0 00002AF0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80005BB4 00002AF4  7C 08 02 A6 */	mflr r0
 /* 80005BB8 00002AF8  2C 04 00 18 */	cmpwi r4, 0x18
@@ -495,9 +503,9 @@ adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEO
 /* 80005C0C 00002B4C  7C 08 03 A6 */	mtlr r0
 /* 80005C10 00002B50  38 21 00 20 */	addi r1, r1, 0x20
 /* 80005C14 00002B54  4E 80 00 20 */	blr 
+.endfn adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80005C18 00002B58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80005C1C 00002B5C  7C 08 02 A6 */	mflr r0
 /* 80005C20 00002B60  2C 04 00 19 */	cmpwi r4, 0x19
@@ -533,9 +541,9 @@ adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data
 /* 80005C8C 00002BCC  7C 08 03 A6 */	mtlr r0
 /* 80005C90 00002BD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80005C94 00002BD4  4E 80 00 20 */	blr 
+.endfn adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
-adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80005C98 00002BD8  2C 04 00 02 */	cmpwi r4, 2
 /* 80005C9C 00002BDC  4C 82 00 20 */	bnelr 
 /* 80005CA0 00002BE0  80 85 00 00 */	lwz r4, 0(r5)
@@ -544,9 +552,9 @@ adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4da
 /* 80005CAC 00002BEC  54 00 0F FE */	srwi r0, r0, 0x1f
 /* 80005CB0 00002BF0  98 03 01 A4 */	stb r0, 0x1a4(r3)
 /* 80005CB4 00002BF4  4E 80 00 20 */	blr 
+.endfn adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
 
-.global execute__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_FP14JPABaseEmitter
-execute__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_FP14JPABaseEmitter:
+.fn execute__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_FP14JPABaseEmitter, global
 /* 80005CB8 00002BF8  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80005CBC 00002BFC  7C 08 02 A6 */	mflr r0
 /* 80005CC0 00002C00  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -775,9 +783,9 @@ execute__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_FP14JPABaseEmitt
 /* 80006008 00002F48  7C 08 03 A6 */	mtlr r0
 /* 8000600C 00002F4C  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80006010 00002F50  4E 80 00 20 */	blr 
+.endfn execute__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_FP14JPABaseEmitter
 
-.global beginParticle_fadeIn___Q217JStudio_JParticle17TAdaptor_particleFUl
-beginParticle_fadeIn___Q217JStudio_JParticle17TAdaptor_particleFUl:
+.fn beginParticle_fadeIn___Q217JStudio_JParticle17TAdaptor_particleFUl, global
 /* 80006014 00002F54  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80006018 00002F58  7C 08 02 A6 */	mflr r0
 /* 8000601C 00002F5C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -838,9 +846,9 @@ beginParticle_fadeIn___Q217JStudio_JParticle17TAdaptor_particleFUl:
 /* 800060EC 0000302C  7C 08 03 A6 */	mtlr r0
 /* 800060F0 00003030  38 21 00 30 */	addi r1, r1, 0x30
 /* 800060F4 00003034  4E 80 00 20 */	blr 
+.endfn beginParticle_fadeIn___Q217JStudio_JParticle17TAdaptor_particleFUl
 
-.global endParticle_fadeOut___Q217JStudio_JParticle17TAdaptor_particleFUl
-endParticle_fadeOut___Q217JStudio_JParticle17TAdaptor_particleFUl:
+.fn endParticle_fadeOut___Q217JStudio_JParticle17TAdaptor_particleFUl, global
 /* 800060F8 00003038  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800060FC 0000303C  7C 08 02 A6 */	mflr r0
 /* 80006100 00003040  90 01 00 34 */	stw r0, 0x34(r1)
@@ -918,19 +926,20 @@ endParticle_fadeOut___Q217JStudio_JParticle17TAdaptor_particleFUl:
 /* 80006204 00003144  7C 08 03 A6 */	mtlr r0
 /* 80006208 00003148  38 21 00 30 */	addi r1, r1, 0x30
 /* 8000620C 0000314C  4E 80 00 20 */	blr 
+.endfn endParticle_fadeOut___Q217JStudio_JParticle17TAdaptor_particleFUl
 
-.global executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter:
+.fn executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter, weak
 /* 80006210 00003150  4E 80 00 20 */	blr 
+.endfn executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 
-.global draw__18JPAEmitterCallBackFP14JPABaseEmitter
-draw__18JPAEmitterCallBackFP14JPABaseEmitter:
+.fn draw__18JPAEmitterCallBackFP14JPABaseEmitter, weak
 /* 80006214 00003154  4E 80 00 20 */	blr 
+.endfn draw__18JPAEmitterCallBackFP14JPABaseEmitter
 
-.global drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter:
+.fn drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter, weak
 /* 80006218 00003158  4E 80 00 20 */	blr 
+.endfn drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 
-.global execute__18JPAEmitterCallBackFP14JPABaseEmitter
-execute__18JPAEmitterCallBackFP14JPABaseEmitter:
+.fn execute__18JPAEmitterCallBackFP14JPABaseEmitter, weak
 /* 8000621C 0000315C  4E 80 00 20 */	blr 
+.endfn execute__18JPAEmitterCallBackFP14JPABaseEmitter

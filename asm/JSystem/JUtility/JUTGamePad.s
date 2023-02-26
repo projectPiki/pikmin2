@@ -105,8 +105,7 @@ lbl_80516660:
 	.float 150.0
 .balign 8
 lbl_80516668:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_80516670:
 	.float 0.0
 .balign 8

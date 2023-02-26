@@ -1,21 +1,20 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sManager__6JUTXfb
-sManager__6JUTXfb:
+.obj sManager__6JUTXfb, global
 	.skip 0x4
+.endobj sManager__6JUTXfb
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global clearIndex__6JUTXfbFv
-clearIndex__6JUTXfbFv:
+.fn clearIndex__6JUTXfbFv, global
 /* 80033CFC 00030C3C  38 00 FF FF */	li r0, -1
 /* 80033D00 00030C40  B0 03 00 14 */	sth r0, 0x14(r3)
 /* 80033D04 00030C44  B0 03 00 16 */	sth r0, 0x16(r3)
 /* 80033D08 00030C48  B0 03 00 18 */	sth r0, 0x18(r3)
 /* 80033D0C 00030C4C  4E 80 00 20 */	blr 
+.endfn clearIndex__6JUTXfbFv
 
-.global createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber
-createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber:
+.fn createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber, global
 /* 80033D10 00030C50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80033D14 00030C54  7C 08 02 A6 */	mflr r0
 /* 80033D18 00030C58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -60,9 +59,9 @@ createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber:
 /* 80033DAC 00030CEC  7C 08 03 A6 */	mtlr r0
 /* 80033DB0 00030CF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80033DB4 00030CF4  4E 80 00 20 */	blr 
+.endfn createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber
 
-.global destroyManager__6JUTXfbFv
-destroyManager__6JUTXfbFv:
+.fn destroyManager__6JUTXfbFv, global
 /* 80033DB8 00030CF8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80033DBC 00030CFC  7C 08 02 A6 */	mflr r0
 /* 80033DC0 00030D00  90 01 00 24 */	stw r0, 0x24(r1)
@@ -102,9 +101,9 @@ destroyManager__6JUTXfbFv:
 /* 80033E3C 00030D7C  7C 08 03 A6 */	mtlr r0
 /* 80033E40 00030D80  38 21 00 20 */	addi r1, r1, 0x20
 /* 80033E44 00030D84  4E 80 00 20 */	blr 
+.endfn destroyManager__6JUTXfbFv
 
-.global initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber
-initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber:
+.fn initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber, global
 /* 80033E48 00030D88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80033E4C 00030D8C  7C 08 02 A6 */	mflr r0
 /* 80033E50 00030D90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -168,9 +167,9 @@ initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber:
 /* 80033F24 00030E64  7C 08 03 A6 */	mtlr r0
 /* 80033F28 00030E68  38 21 00 20 */	addi r1, r1, 0x20
 /* 80033F2C 00030E6C  4E 80 00 20 */	blr 
+.endfn initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber
 
-.global accumeXfbSize__6JUTXfbFv
-accumeXfbSize__6JUTXfbFv:
+.fn accumeXfbSize__6JUTXfbFv, global
 /* 80033F30 00030E70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033F34 00030E74  7C 08 02 A6 */	mflr r0
 /* 80033F38 00030E78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -196,3 +195,4 @@ accumeXfbSize__6JUTXfbFv:
 /* 80033F88 00030EC8  7C 08 03 A6 */	mtlr r0
 /* 80033F8C 00030ECC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033F90 00030ED0  4E 80 00 20 */	blr 
+.endfn accumeXfbSize__6JUTXfbFv

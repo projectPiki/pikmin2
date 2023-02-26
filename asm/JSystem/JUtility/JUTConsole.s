@@ -35,12 +35,10 @@ lbl_80516580:
 	.float 4.0
 .balign 8
 lbl_80516588:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 .balign 8
 lbl_80516590:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .balign 4
 lbl_80516598:
 	.asciz "%s"

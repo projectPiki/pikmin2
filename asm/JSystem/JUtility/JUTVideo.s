@@ -6,7 +6,6 @@ __vt__8JUTVideo:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8JUTVideoFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

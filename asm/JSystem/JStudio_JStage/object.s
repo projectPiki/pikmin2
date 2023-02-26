@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
-transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl:
+.fn transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl, global
 /* 80011DCC 0000ED0C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80011DD0 0000ED10  7C 08 02 A6 */	mflr r0
 /* 80011DD4 0000ED14  28 05 00 00 */	cmplwi r5, 0
@@ -44,9 +43,9 @@ transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTrans
 /* 80011E58 0000ED98  7C 08 03 A6 */	mtlr r0
 /* 80011E5C 0000ED9C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80011E60 0000EDA0  4E 80 00 20 */	blr 
+.endfn transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
 
-.global transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
-transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl:
+.fn transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl, global
 /* 80011E64 0000EDA4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80011E68 0000EDA8  7C 08 02 A6 */	mflr r0
 /* 80011E6C 0000EDAC  28 05 00 00 */	cmplwi r5, 0
@@ -88,9 +87,9 @@ transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTrans
 /* 80011EF0 0000EE30  7C 08 03 A6 */	mtlr r0
 /* 80011EF4 0000EE34  38 21 00 70 */	addi r1, r1, 0x70
 /* 80011EF8 0000EE38  4E 80 00 20 */	blr 
+.endfn transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
 
-.global transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
-transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl:
+.fn transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl, global
 /* 80011EFC 0000EE3C  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80011F00 0000EE40  7C 08 02 A6 */	mflr r0
 /* 80011F04 0000EE44  28 05 00 00 */	cmplwi r5, 0
@@ -135,9 +134,9 @@ transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTrans
 /* 80011F94 0000EED4  7C 08 03 A6 */	mtlr r0
 /* 80011F98 0000EED8  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80011F9C 0000EEDC  4E 80 00 20 */	blr 
+.endfn transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
 
-.global transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
-transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl:
+.fn transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl, global
 /* 80011FA0 0000EEE0  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80011FA4 0000EEE4  7C 08 02 A6 */	mflr r0
 /* 80011FA8 0000EEE8  28 05 00 00 */	cmplwi r5, 0
@@ -182,9 +181,9 @@ transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTrans
 /* 80012038 0000EF78  7C 08 03 A6 */	mtlr r0
 /* 8001203C 0000EF7C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80012040 0000EF80  4E 80 00 20 */	blr 
+.endfn transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
 
-.global adaptor_data___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectPCvUlPCvUl
-adaptor_data___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectPCvUlPCvUl:
+.fn adaptor_data___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectPCvUlPCvUl, global
 /* 80012044 0000EF84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80012048 0000EF88  7C 08 02 A6 */	mflr r0
 /* 8001204C 0000EF8C  28 05 00 00 */	cmplwi r5, 0
@@ -205,9 +204,9 @@ adaptor_data___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectPCvUlPCvUl
 /* 80012080 0000EFC0  7C 08 03 A6 */	mtlr r0
 /* 80012084 0000EFC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80012088 0000EFC8  4E 80 00 20 */	blr 
+.endfn adaptor_data___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectPCvUlPCvUl
 
-.global adaptor_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TSystemPCc
-adaptor_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TSystemPCc:
+.fn adaptor_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TSystemPCc, global
 /* 8001208C 0000EFCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80012090 0000EFD0  7C 08 02 A6 */	mflr r0
 /* 80012094 0000EFD4  7C 85 23 78 */	mr r5, r4
@@ -229,9 +228,9 @@ adaptor_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TSystem
 /* 800120CC 0000F00C  7C 08 03 A6 */	mtlr r0
 /* 800120D0 0000F010  38 21 00 10 */	addi r1, r1, 0x10
 /* 800120D4 0000F014  4E 80 00 20 */	blr 
+.endfn adaptor_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TSystemPCc
 
-.global adaptor_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc
-adaptor_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc:
+.fn adaptor_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc, global
 /* 800120D8 0000F018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800120DC 0000F01C  7C 08 02 A6 */	mflr r0
 /* 800120E0 0000F020  90 01 00 14 */	stw r0, 0x14(r1)
@@ -243,9 +242,9 @@ adaptor_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TOb
 /* 800120F8 0000F038  7C 08 03 A6 */	mtlr r0
 /* 800120FC 0000F03C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80012100 0000F040  4E 80 00 20 */	blr 
+.endfn adaptor_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc
 
-.global adaptor_ENABLE___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectQ37JStudio4data15TEOperationDataPCvUl
-adaptor_ENABLE___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_ENABLE___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectQ37JStudio4data15TEOperationDataPCvUl, global
 /* 80012104 0000F044  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80012108 0000F048  7C 08 02 A6 */	mflr r0
 /* 8001210C 0000F04C  2C 04 00 02 */	cmpwi r4, 2
@@ -286,3 +285,4 @@ adaptor_ENABLE___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectQ37JStud
 /* 8001218C 0000F0CC  7C 08 03 A6 */	mtlr r0
 /* 80012190 0000F0D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80012194 0000F0D4  4E 80 00 20 */	blr 
+.endfn adaptor_ENABLE___Q214JStudio_JStage16TAdaptor_object_FPQ26JStage7TObjectQ37JStudio4data15TEOperationDataPCvUl

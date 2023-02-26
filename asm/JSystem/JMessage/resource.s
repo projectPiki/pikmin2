@@ -1,52 +1,50 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global sapfnIsLeadByte___Q28JMessage18TResourceContainer
-sapfnIsLeadByte___Q28JMessage18TResourceContainer:
+.obj sapfnIsLeadByte___Q28JMessage18TResourceContainer, global
 	.4byte 0x00000000
 	.4byte isLeadByte_1Byte__7JUTFontFi
 	.4byte isLeadByte_2Byte__7JUTFontFi
 	.4byte isLeadByte_ShiftJIS__7JUTFontFi
-.global __vt__Q28JMessage12TParse_color
-__vt__Q28JMessage12TParse_color:
+.endobj sapfnIsLeadByte___Q28JMessage18TResourceContainer
+.obj __vt__Q28JMessage12TParse_color, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28JMessage12TParse_colorFv
 	.4byte parseHeader_next__Q28JMessage12TParse_colorFPPCvPUlUl
 	.4byte parseBlock_next__Q28JMessage12TParse_colorFPPCvPUlUl
-.global __vt__Q28JMessage6TParse
-__vt__Q28JMessage6TParse:
+.endobj __vt__Q28JMessage12TParse_color
+.obj __vt__Q28JMessage6TParse, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28JMessage6TParseFv
 	.4byte parseHeader_next__Q28JMessage6TParseFPPCvPUlUl
 	.4byte parseBlock_next__Q28JMessage6TParseFPPCvPUlUl
-.global __vt__Q37JGadget6binary19TParse_header_block
-__vt__Q37JGadget6binary19TParse_header_block:
+.endobj __vt__Q28JMessage6TParse
+.obj __vt__Q37JGadget6binary19TParse_header_block, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q38JMessage18TResourceContainer10TCResource
-__vt__Q38JMessage18TResourceContainer10TCResource:
+.endobj __vt__Q37JGadget6binary19TParse_header_block
+.obj __vt__Q38JMessage18TResourceContainer10TCResource, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q38JMessage18TResourceContainer10TCResourceFv
 	.4byte Do_create__Q38JMessage18TResourceContainer10TCResourceFv
 	.4byte Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource
-.global "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"
-"__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>":
+.endobj __vt__Q38JMessage18TResourceContainer10TCResource
+.obj "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>", weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
-	.4byte 0
+.endobj "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb
-toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb:
+.fn toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb, global
 /* 800063C4 00003304  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800063C8 00003308  7C 08 02 A6 */	mflr r0
 /* 800063CC 0000330C  80 E3 00 18 */	lwz r7, 0x18(r3)
@@ -194,9 +192,9 @@ toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb:
 /* 8000659C 000034DC  7C 08 03 A6 */	mtlr r0
 /* 800065A0 000034E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800065A4 000034E4  4E 80 00 20 */	blr 
+.endfn toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb
 
-.global __dt__Q38JMessage18TResourceContainer10TCResourceFv
-__dt__Q38JMessage18TResourceContainer10TCResourceFv:
+.fn __dt__Q38JMessage18TResourceContainer10TCResourceFv, global
 /* 800065A8 000034E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800065AC 000034EC  7C 08 02 A6 */	mflr r0
 /* 800065B0 000034F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -228,9 +226,9 @@ __dt__Q38JMessage18TResourceContainer10TCResourceFv:
 /* 80006610 00003550  7C 08 03 A6 */	mtlr r0
 /* 80006614 00003554  38 21 00 10 */	addi r1, r1, 0x10
 /* 80006618 00003558  4E 80 00 20 */	blr 
+.endfn __dt__Q38JMessage18TResourceContainer10TCResourceFv
 
-.global Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs
-Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs:
+.fn Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs, global
 /* 8000661C 0000355C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80006620 00003560  84 03 00 04 */	lwzu r0, 4(r3)
 /* 80006624 00003564  90 61 00 24 */	stw r3, 0x24(r1)
@@ -268,9 +266,9 @@ Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs:
 .L_80006698:
 /* 80006698 000035D8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8000669C 000035DC  4E 80 00 20 */	blr 
+.endfn Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs
 
-.global Do_create__Q38JMessage18TResourceContainer10TCResourceFv
-Do_create__Q38JMessage18TResourceContainer10TCResourceFv:
+.fn Do_create__Q38JMessage18TResourceContainer10TCResourceFv, global
 /* 800066A0 000035E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800066A4 000035E4  7C 08 02 A6 */	mflr r0
 /* 800066A8 000035E8  38 60 00 1C */	li r3, 0x1c
@@ -291,9 +289,9 @@ Do_create__Q38JMessage18TResourceContainer10TCResourceFv:
 /* 800066E0 00003620  7C 08 03 A6 */	mtlr r0
 /* 800066E4 00003624  38 21 00 10 */	addi r1, r1, 0x10
 /* 800066E8 00003628  4E 80 00 20 */	blr 
+.endfn Do_create__Q38JMessage18TResourceContainer10TCResourceFv
 
-.global Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource
-Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource:
+.fn Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource, global
 /* 800066EC 0000362C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800066F0 00003630  7C 08 02 A6 */	mflr r0
 /* 800066F4 00003634  7C 83 23 78 */	mr r3, r4
@@ -303,9 +301,9 @@ Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource:
 /* 80006704 00003644  7C 08 03 A6 */	mtlr r0
 /* 80006708 00003648  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000670C 0000364C  4E 80 00 20 */	blr 
+.endfn Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource
 
-.global __ct__Q28JMessage18TResourceContainerFv
-__ct__Q28JMessage18TResourceContainerFv:
+.fn __ct__Q28JMessage18TResourceContainerFv, global
 /* 80006710 00003650  38 E0 00 00 */	li r7, 0
 /* 80006714 00003654  3C A0 80 4A */	lis r5, "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@ha
 /* 80006718 00003658  98 E3 00 00 */	stb r7, 0(r3)
@@ -324,19 +322,19 @@ __ct__Q28JMessage18TResourceContainerFv:
 /* 8000674C 0000368C  90 E3 00 18 */	stw r7, 0x18(r3)
 /* 80006750 00003690  90 E3 00 1C */	stw r7, 0x1c(r3)
 /* 80006754 00003694  4E 80 00 20 */	blr 
+.endfn __ct__Q28JMessage18TResourceContainerFv
 
-.global isLeadByte_1Byte__7JUTFontFi
-isLeadByte_1Byte__7JUTFontFi:
+.fn isLeadByte_1Byte__7JUTFontFi, weak
 /* 80006758 00003698  38 60 00 00 */	li r3, 0
 /* 8000675C 0000369C  4E 80 00 20 */	blr 
+.endfn isLeadByte_1Byte__7JUTFontFi
 
-.global isLeadByte_2Byte__7JUTFontFi
-isLeadByte_2Byte__7JUTFontFi:
+.fn isLeadByte_2Byte__7JUTFontFi, weak
 /* 80006760 000036A0  38 60 00 01 */	li r3, 1
 /* 80006764 000036A4  4E 80 00 20 */	blr 
+.endfn isLeadByte_2Byte__7JUTFontFi
 
-.global isLeadByte_ShiftJIS__7JUTFontFi
-isLeadByte_ShiftJIS__7JUTFontFi:
+.fn isLeadByte_ShiftJIS__7JUTFontFi, weak
 /* 80006768 000036A8  2C 03 00 81 */	cmpwi r3, 0x81
 /* 8000676C 000036AC  38 00 00 00 */	li r0, 0
 /* 80006770 000036B0  41 80 00 0C */	blt .L_8000677C
@@ -352,9 +350,9 @@ isLeadByte_ShiftJIS__7JUTFontFi:
 .L_80006790:
 /* 80006790 000036D0  7C 03 03 78 */	mr r3, r0
 /* 80006794 000036D4  4E 80 00 20 */	blr 
+.endfn isLeadByte_ShiftJIS__7JUTFontFi
 
-.global __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer
-__ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer:
+.fn __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer, global
 /* 80006798 000036D8  3C C0 80 4A */	lis r6, __vt__Q37JGadget6binary19TParse_header_block@ha
 /* 8000679C 000036DC  3C A0 80 4A */	lis r5, __vt__Q28JMessage6TParse@ha
 /* 800067A0 000036E0  38 C6 E3 20 */	addi r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
@@ -365,9 +363,9 @@ __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer:
 /* 800067B4 000036F4  90 83 00 04 */	stw r4, 4(r3)
 /* 800067B8 000036F8  90 03 00 08 */	stw r0, 8(r3)
 /* 800067BC 000036FC  4E 80 00 20 */	blr 
+.endfn __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer
 
-.global __dt__Q28JMessage6TParseFv
-__dt__Q28JMessage6TParseFv:
+.fn __dt__Q28JMessage6TParseFv, global
 /* 800067C0 00003700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800067C4 00003704  7C 08 02 A6 */	mflr r0
 /* 800067C8 00003708  90 01 00 14 */	stw r0, 0x14(r1)
@@ -393,9 +391,9 @@ __dt__Q28JMessage6TParseFv:
 /* 80006814 00003754  7C 08 03 A6 */	mtlr r0
 /* 80006818 00003758  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000681C 0000375C  4E 80 00 20 */	blr 
+.endfn __dt__Q28JMessage6TParseFv
 
-.global parseHeader_next__Q28JMessage6TParseFPPCvPUlUl
-parseHeader_next__Q28JMessage6TParseFPPCvPUlUl:
+.fn parseHeader_next__Q28JMessage6TParseFPPCvPUlUl, global
 /* 80006820 00003760  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80006824 00003764  7C 08 02 A6 */	mflr r0
 /* 80006828 00003768  90 01 00 44 */	stw r0, 0x44(r1)
@@ -506,9 +504,9 @@ parseHeader_next__Q28JMessage6TParseFPPCvPUlUl:
 /* 800069A0 000038E0  7C 08 03 A6 */	mtlr r0
 /* 800069A4 000038E4  38 21 00 40 */	addi r1, r1, 0x40
 /* 800069A8 000038E8  4E 80 00 20 */	blr 
+.endfn parseHeader_next__Q28JMessage6TParseFPPCvPUlUl
 
-.global parseBlock_next__Q28JMessage6TParseFPPCvPUlUl
-parseBlock_next__Q28JMessage6TParseFPPCvPUlUl:
+.fn parseBlock_next__Q28JMessage6TParseFPPCvPUlUl, global
 /* 800069AC 000038EC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800069B0 000038F0  7C 08 02 A6 */	mflr r0
 /* 800069B4 000038F4  3C E0 4D 49 */	lis r7, 0x4D494431@ha
@@ -615,9 +613,9 @@ parseBlock_next__Q28JMessage6TParseFPPCvPUlUl:
 /* 80006B1C 00003A5C  7C 08 03 A6 */	mtlr r0
 /* 80006B20 00003A60  38 21 00 30 */	addi r1, r1, 0x30
 /* 80006B24 00003A64  4E 80 00 20 */	blr 
+.endfn parseBlock_next__Q28JMessage6TParseFPPCvPUlUl
 
-.global __ct__Q28JMessage12TParse_colorFPQ28JMessage18TResourceContainer
-__ct__Q28JMessage12TParse_colorFPQ28JMessage18TResourceContainer:
+.fn __ct__Q28JMessage12TParse_colorFPQ28JMessage18TResourceContainer, global
 /* 80006B28 00003A68  3C C0 80 4A */	lis r6, __vt__Q37JGadget6binary19TParse_header_block@ha
 /* 80006B2C 00003A6C  3C A0 80 4A */	lis r5, __vt__Q28JMessage12TParse_color@ha
 /* 80006B30 00003A70  38 C6 E3 20 */	addi r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
@@ -626,9 +624,9 @@ __ct__Q28JMessage12TParse_colorFPQ28JMessage18TResourceContainer:
 /* 80006B3C 00003A7C  90 03 00 00 */	stw r0, 0(r3)
 /* 80006B40 00003A80  90 83 00 04 */	stw r4, 4(r3)
 /* 80006B44 00003A84  4E 80 00 20 */	blr 
+.endfn __ct__Q28JMessage12TParse_colorFPQ28JMessage18TResourceContainer
 
-.global __dt__Q28JMessage12TParse_colorFv
-__dt__Q28JMessage12TParse_colorFv:
+.fn __dt__Q28JMessage12TParse_colorFv, global
 /* 80006B48 00003A88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80006B4C 00003A8C  7C 08 02 A6 */	mflr r0
 /* 80006B50 00003A90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -654,9 +652,9 @@ __dt__Q28JMessage12TParse_colorFv:
 /* 80006B9C 00003ADC  7C 08 03 A6 */	mtlr r0
 /* 80006BA0 00003AE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80006BA4 00003AE4  4E 80 00 20 */	blr 
+.endfn __dt__Q28JMessage12TParse_colorFv
 
-.global parseHeader_next__Q28JMessage12TParse_colorFPPCvPUlUl
-parseHeader_next__Q28JMessage12TParse_colorFPPCvPUlUl:
+.fn parseHeader_next__Q28JMessage12TParse_colorFPPCvPUlUl, global
 /* 80006BA8 00003AE8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80006BAC 00003AEC  7C 08 02 A6 */	mflr r0
 /* 80006BB0 00003AF0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -708,9 +706,9 @@ parseHeader_next__Q28JMessage12TParse_colorFPPCvPUlUl:
 /* 80006C58 00003B98  7C 08 03 A6 */	mtlr r0
 /* 80006C5C 00003B9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80006C60 00003BA0  4E 80 00 20 */	blr 
+.endfn parseHeader_next__Q28JMessage12TParse_colorFPPCvPUlUl
 
-.global parseBlock_next__Q28JMessage12TParse_colorFPPCvPUlUl
-parseBlock_next__Q28JMessage12TParse_colorFPPCvPUlUl:
+.fn parseBlock_next__Q28JMessage12TParse_colorFPPCvPUlUl, global
 /* 80006C64 00003BA4  81 04 00 00 */	lwz r8, 0(r4)
 /* 80006C68 00003BA8  3C E0 43 4C */	lis r7, 0x434C5431@ha
 /* 80006C6C 00003BAC  38 07 54 31 */	addi r0, r7, 0x434C5431@l
@@ -735,9 +733,9 @@ parseBlock_next__Q28JMessage12TParse_colorFPPCvPUlUl:
 .L_80006CB0:
 /* 80006CB0 00003BF0  38 60 00 01 */	li r3, 1
 /* 80006CB4 00003BF4  4E 80 00 20 */	blr 
+.endfn parseBlock_next__Q28JMessage12TParse_colorFPPCvPUlUl
 
-.global "lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl"
-"lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl":
+.fn "lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl", weak
 /* 80006CB8 00003BF8  7C 03 20 50 */	subf r0, r3, r4
 /* 80006CBC 00003BFC  80 A5 00 00 */	lwz r5, 0(r5)
 /* 80006CC0 00003C00  7C 00 16 70 */	srawi r0, r0, 2
@@ -762,3 +760,4 @@ parseBlock_next__Q28JMessage12TParse_colorFPPCvPUlUl:
 /* 80006D00 00003C40  2C 04 00 00 */	cmpwi r4, 0
 /* 80006D04 00003C44  41 81 FF C8 */	bgt .L_80006CCC
 /* 80006D08 00003C48  4E 80 00 20 */	blr 
+.endfn "lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl"

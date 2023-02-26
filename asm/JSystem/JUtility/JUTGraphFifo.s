@@ -16,6 +16,7 @@ sInitiated__12JUTGraphFifo:
 .global sCurrentFifo__12JUTGraphFifo
 sCurrentFifo__12JUTGraphFifo:
 	.skip 0x4
+.balign 4
 .global mGpStatus__12JUTGraphFifo
 mGpStatus__12JUTGraphFifo:
 	.skip 0x5
