@@ -811,7 +811,7 @@ struct ActPathMove : public Action {
 	void execMove();
 	void execMoveGuru();
 	void getWayPoint(int);
-	void crGetPoint(int);
+	Vector3f crGetPoint(int);
 	void contextCheck(int);
 	void crGetRadius(int);
 	void crInit();

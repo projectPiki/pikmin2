@@ -9,6 +9,9 @@
 #include "Game/MapMgr.h"
 #include "nans.h"
 
+static const int unusedAiPrimArray[] = { 0, 0, 0 };
+static const char unusedAiPrimName[] = "aiPrimitives";
+
 namespace PikiAI {
 
 /*
@@ -77,8 +80,12 @@ ActApproachPos::ActApproachPos(Game::Piki* p)
  */
 void ActApproachPos::init(ActionArg* actionArg)
 {
+	bool strCheck                     = false;
 	ApproachPosActionArg* approachArg = static_cast<ApproachPosActionArg*>(actionArg);
-	bool strCheck                     = approachArg && strcmp("ApproachPosActionArg", approachArg->getName()) != 0;
+
+	if (approachArg && !(strcmp("ApproachPosActionArg", approachArg->getName()) == 0)) {
+		strCheck = true;
+	}
 
 	P2ASSERTLINE(424, strCheck);
 
@@ -3596,8 +3603,41 @@ lbl_8019A218:
  * Address:	8019A228
  * Size:	00018C
  */
-void ActPathMove::crGetPoint(int)
+Vector3f ActPathMove::crGetPoint(int idx)
 {
+	Game::WayPoint* currWayPoint;
+	if (idx < 0) {
+		return _A4;
+	}
+
+	if (idx >= _4C) {
+		return _24;
+	}
+
+	Game::PathNode* currPathNode = _48;
+
+	for (int i = 0; i < idx; i++) {
+		currPathNode = currPathNode->mNext;
+	}
+
+	if (currPathNode) {
+		Game::RouteMgr* routeMgr = Game::mapMgr->mRouteMgr;
+		currWayPoint             = routeMgr->getWayPoint(currPathNode->mWpIndex);
+	} else {
+		currWayPoint = nullptr;
+	}
+
+	if (!currWayPoint) {
+		return Vector3f::zero;
+	}
+
+	Vector3f diff   = currWayPoint->mPosition - _24;
+	Vector3f result = _24;
+	if (diff.x * diff.x + diff.y * diff.y + diff.z * diff.z > 0.0f) {
+		result = _24;
+	}
+
+	return result;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
