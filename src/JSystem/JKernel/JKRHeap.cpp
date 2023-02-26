@@ -443,38 +443,10 @@ void JKRHeap::free(void* memory)
  */
 void JKRHeap::callAllDisposer()
 {
-	JSUPtrLink* link;
-	while (link = mDisposerList.mHead, link) {
-		// delete (JKRHeap*)link->mValue);
-		INVOKE_VIRT_DTOR((JKRHeap*)link->mValue, -1);
+	JSUListIterator<JKRDisposer> iterator;
+	while (iterator = mDisposerList.getFirst(), iterator != mDisposerList.getEnd()) {
+		iterator->~JKRDisposer();
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  b         .loc_0x30
-
-	.loc_0x18:
-	  lwz       r3, 0x0(r3)
-	  li        r4, -0x1
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x30:
-	  lwz       r3, 0x5C(r31)
-	  cmplwi    r3, 0
-	  bne+      .loc_0x18
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*

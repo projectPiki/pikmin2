@@ -98,7 +98,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command)
 		bufferSize = (bufferSize) ? bufferSize : 0x8000;
 
 		if (heap) {
-			buffer                   = (u8*)heap->JKRHeap::JKRAllocFromHeap(bufferSize, -0x20);
+			buffer                   = (u8*)JKRAllocFromHeap(heap, bufferSize, -0x20);
 			command->mTransferBuffer = buffer;
 		} else {
 			buffer                   = (u8*)JKRAllocFromSysHeap(bufferSize, -0x20);
