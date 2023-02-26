@@ -616,12 +616,12 @@ int JKRExpHeap::do_resize(void* ptr, u32 size)
         unlock();
         return -1;
     }
-    u32 newSize = ALIGN_NEXT(size, 4);
-    if (newSize == block->mAllocatedSpace) {
+    size = ALIGN_NEXT(size, 4);
+    if (size == block->mAllocatedSpace) {
         unlock();
-        return newSize;
+        return size;
     }
-    if (newSize > block->mAllocatedSpace) {
+    if (size > block->mAllocatedSpace) {
         CMemBlock* foundBlock = nullptr;
         for (CMemBlock* freeBlock = mHead; freeBlock;
              freeBlock = freeBlock->mNext) {
@@ -634,23 +634,23 @@ int JKRExpHeap::do_resize(void* ptr, u32 size)
             unlock();
             return -1;
         }
-        if (newSize > block->mAllocatedSpace + sizeof(CMemBlock) + foundBlock->mAllocatedSpace) {
+        if (size > block->mAllocatedSpace + sizeof(CMemBlock) + foundBlock->mAllocatedSpace) {
             unlock();
             return -1;
         }
         removeFreeBlock(foundBlock);
         block->mAllocatedSpace += foundBlock->mAllocatedSpace + sizeof(CMemBlock);
-        if (block->mAllocatedSpace - newSize > sizeof(CMemBlock)) {
+        if (block->mAllocatedSpace - size > sizeof(CMemBlock)) {
             CMemBlock* newBlock =
-                block->allocFore(newSize, block->mGroupID, block->mFlags, 0, 0);
+                block->allocFore(size, block->mGroupID, block->mFlags, 0, 0);
             if (newBlock) {
                 recycleFreeBlock(newBlock);
             }
         }
     } else {
-        if (block->mAllocatedSpace - newSize > sizeof(CMemBlock)) {
+        if (block->mAllocatedSpace - size > sizeof(CMemBlock)) {
             CMemBlock* freeBlock =
-                block->allocFore(newSize, block->mGroupID, block->mFlags, 0, 0);
+                block->allocFore(size, block->mGroupID, block->mFlags, 0, 0);
             if (freeBlock) {
                 recycleFreeBlock(freeBlock);
             }
