@@ -443,11 +443,10 @@ void JKRHeap::free(void* memory)
  */
 void JKRHeap::callAllDisposer()
 {
-    JSUListIterator<JKRDisposer> iterator;
-    while (iterator = mDisposerList.getFirst(), iterator != mDisposerList.getEnd())
-    {
-        iterator->~JKRDisposer();
-    }
+	JSUListIterator<JKRDisposer> iterator;
+	while (iterator = mDisposerList.getFirst(), iterator != mDisposerList.getEnd()) {
+		iterator->~JKRDisposer();
+	}
 }
 
 /*

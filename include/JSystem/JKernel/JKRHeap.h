@@ -13,64 +13,69 @@ struct JKRHeap : public JKRDisposer {
 		HEAPALLOC_Unk1 = 1,
 	};
 
-    struct TState
-    { // NB: this struct doesn't agree with TP's struct
-        struct TLocation
-        {
-            TLocation() : _00(nullptr), _04(-1)
-            {
-            }
+	struct TState { // NB: this struct doesn't agree with TP's struct
+		struct TLocation {
+			TLocation()
+			    : _00(nullptr)
+			    , _04(-1)
+			{
+			}
 
-            void *_00; // _00
-            int _04;   // _04
-        };
+			void* _00; // _00
+			int _04;   // _04
+		};
 
-        struct TArgument
-        {
-            TArgument(const JKRHeap *heap, u32 p2, bool p3)
-                : mHeap((heap) ? heap : JKRHeap::sCurrentHeap), mId(p2), mIsCompareOnDestructed(p3)
-            {
-            }
+		struct TArgument {
+			TArgument(const JKRHeap* heap, u32 p2, bool p3)
+			    : mHeap((heap) ? heap : JKRHeap::sCurrentHeap)
+			    , mId(p2)
+			    , mIsCompareOnDestructed(p3)
+			{
+			}
 
-            const JKRHeap *mHeap;        // _00
-            u32 mId;                     // _04
-            bool mIsCompareOnDestructed; // _08
-        };
+			const JKRHeap* mHeap;        // _00
+			u32 mId;                     // _04
+			bool mIsCompareOnDestructed; // _08
+		};
 
-        TState(const JKRHeap *heap, u32 id, bool isCompareOnDestructed)
-            : mUsedSize(0), mCheckCode(0), mArgument(heap, id, isCompareOnDestructed)
-        {
-            mArgument.mHeap->state_register(this, mArgument.mId);
-        }
+		TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
+		    : mUsedSize(0)
+		    , mCheckCode(0)
+		    , mArgument(heap, id, isCompareOnDestructed)
+		{
+			mArgument.mHeap->state_register(this, mArgument.mId);
+		}
 
-        TState(JKRHeap *heap)
-            : mUsedSize(0), mCheckCode(0), mArgument(heap, 0xFFFFFFFF, true)
-        {
-        }
+		TState(JKRHeap* heap)
+		    : mUsedSize(0)
+		    , mCheckCode(0)
+		    , mArgument(heap, 0xFFFFFFFF, true)
+		{
+		}
 
-        ~TState();
-        //void dump() const { mArgument.mHeap->state_dump(this); }
-        bool isVerbose() { return bVerbose_; };
-        bool isCompareOnDestructed() const { return mArgument.mIsCompareOnDestructed; };
-        u32 getUsedSize() const { return mUsedSize; }
-        u32 getCheckCode() const { return mCheckCode; }
-        const JKRHeap *getHeap() const { return mArgument.mHeap; }
-        u32 getId() const { return mArgument.mId; }
+		~TState();
+		// void dump() const { mArgument.mHeap->state_dump(this); }
+		bool isVerbose() { return bVerbose_; };
+		bool isCompareOnDestructed() const { return mArgument.mIsCompareOnDestructed; };
+		u32 getUsedSize() const { return mUsedSize; }
+		u32 getCheckCode() const { return mCheckCode; }
+		const JKRHeap* getHeap() const { return mArgument.mHeap; }
+		u32 getId() const { return mArgument.mId; }
 
-        // unused/inlined:
-        TState(const JKRHeap::TState::TArgument &arg, const JKRHeap::TState::TLocation &location);
-        TState(const JKRHeap::TState &other, bool p2);
-        TState(const JKRHeap::TState &other, const JKRHeap::TState::TLocation &location, bool p3);
+		// unused/inlined:
+		TState(const JKRHeap::TState::TArgument& arg, const JKRHeap::TState::TLocation& location);
+		TState(const JKRHeap::TState& other, bool p2);
+		TState(const JKRHeap::TState& other, const JKRHeap::TState::TLocation& location, bool p3);
 
-        static bool bVerbose_;
+		static bool bVerbose_;
 
-        u32 mUsedSize;       // _00
-        u32 mCheckCode;      // _04, plausibly TLocation when combined with _00
-        u32 mBuf;            // _08
-        u8 _0C[0x4];         // _0C
-        TArgument mArgument; // _10
-        TLocation mLocation; // _1C
-    };
+		u32 mUsedSize;       // _00
+		u32 mCheckCode;      // _04, plausibly TLocation when combined with _00
+		u32 mBuf;            // _08
+		u8 _0C[0x4];         // _0C
+		TArgument mArgument; // _10
+		TLocation mLocation; // _1C
+	};
 
 	JKRHeap(void*, u32, JKRHeap*, bool);
 
@@ -96,7 +101,7 @@ struct JKRHeap : public JKRDisposer {
 	virtual u8 do_getCurrentGroupId();                              // _50 (weak)
 	virtual void state_register(TState*, u32) const;                // _54
 	virtual bool state_compare(const TState&, const TState&) const; // _58
-	virtual void state_dump(const TState*) const;                   // _5C
+	virtual void state_dump(const TState&) const;                   // _5C
 	/////////////// VTABLE END
 
 	/////////////// METHODS
@@ -120,7 +125,7 @@ struct JKRHeap : public JKRDisposer {
 	void dispose();
 
 	// Inlined/fabricated
-	//inline void* JKRAllocFromHeap(u32 size, int alignment) { return JKRHeap::alloc(size, alignment, this); }
+	// inline void* JKRAllocFromHeap(u32 size, int alignment) { return JKRHeap::alloc(size, alignment, this); }
 	void setDebugFill(bool debugFill) { mFillFlag = debugFill; }
 	bool getDebugFill() const { return mFillFlag; }
 
@@ -142,16 +147,11 @@ struct JKRHeap : public JKRDisposer {
 		return parent->getObject();
 	}
 
-	    // TState related
-    static void setState_u32ID_(TState * state, u32 id) {
-        state->mArgument.mId = id;
-    }
-    static void setState_uUsedSize_(TState *state, u32 usedSize)
-    {
-        state->mUsedSize = usedSize;
-    }
-    static void setState_u32CheckCode_(TState * state, u32 checkCode) { state->mCheckCode = checkCode; }
-    static u32 getState_buf_(TState * state) { return state->mBuf; } // might instead be a pointer to a next state?
+	// TState related
+	static void setState_u32ID_(TState* state, u32 id) { state->mArgument.mId = id; }
+	static void setState_uUsedSize_(TState* state, u32 usedSize) { state->mUsedSize = usedSize; }
+	static void setState_u32CheckCode_(TState* state, u32 checkCode) { state->mCheckCode = checkCode; }
+	static u32 getState_buf_(TState* state) { return state->mBuf; } // might instead be a pointer to a next state?
 
 	JSUTree<JKRHeap>& getHeapTree() { return mTree; }
 	void appendDisposer(JKRDisposer* disposer) { mDisposerList.append(&disposer->mLink); }
@@ -242,7 +242,7 @@ struct JKRExpHeap : public JKRHeap {
 	JKRExpHeap(void*, u32, JKRHeap*, bool);
 
 	virtual ~JKRExpHeap();                                          // _08
-	virtual u32 getHeapType();                                      // _10 (weak)
+	virtual u32 getHeapType() { return 'EXPH'; }                    // _10 (weak)
 	virtual bool check();                                           // _14
 	virtual bool dump_sort();                                       // _18
 	virtual bool dump();                                            // _1C
@@ -258,14 +258,14 @@ struct JKRExpHeap : public JKRHeap {
 	virtual void* do_getMaxFreeBlock();                             // _44
 	virtual u32 do_getTotalFreeSize();                              // _48
 	virtual u8 do_changeGroupID(u8);                                // _4C
-	virtual u8 do_getCurrentGroupId();                              // _50 (weak)
+	virtual u8 do_getCurrentGroupId() { return mCurrentGroupID; }   // _50 (weak)
 	virtual void state_register(TState*, u32) const;                // _54
 	virtual bool state_compare(const TState&, const TState&) const; // _58
 
 	void* allocFromHead(u32, int);
 	void* allocFromHead(u32);
-	void * allocFromTail(u32, int);
-	void * allocFromTail(u32);
+	void* allocFromTail(u32, int);
+	void* allocFromTail(u32);
 	void appendUsedList(CMemBlock*);
 	static JKRExpHeap* create(u32, JKRHeap*, bool);
 	static JKRExpHeap* createRoot(int, bool);
@@ -282,12 +282,12 @@ struct JKRExpHeap : public JKRHeap {
 	CMemBlock* getHeadUsedList() const { return mHeadUsedList; }
 	void setAllocationMode(EAllocMode mode) { mCurrentAllocMode = mode; }
 
-	    static s32 getUsedSize_(JKRExpHeap *expHeap)
-    {
-        // s32 totalFreeSize = expHeap->getTotalFreeSize();
-        return expHeap->mHeapSize - expHeap->getTotalFreeSize();
-    }
-    static u32 getState_(TState *state) { return getState_buf_(state); } // might instead be a pointer to a next state?
+	static s32 getUsedSize_(JKRExpHeap* expHeap)
+	{
+		// s32 totalFreeSize = expHeap->getTotalFreeSize();
+		return expHeap->mHeapSize - expHeap->getTotalFreeSize();
+	}
+	static u32 getState_(TState* state) { return getState_buf_(state); } // might instead be a pointer to a next state?
 
 	// _00     = VTBL
 	// _00-_6C = JKRHeap
@@ -364,7 +364,7 @@ inline void JKRFreeToSysHeap(void* ptr)
 
 inline void i_JKRFree(void* ptr) { JKRHeap::free(ptr, nullptr); }
 
-inline void JKRFree(void * pBuf) { JKRHeap::free(pBuf, nullptr); } // official inline
+inline void JKRFree(void* pBuf) { JKRHeap::free(pBuf, nullptr); } // official inline
 
 inline JKRHeap* JKRGetSystemHeap() { return JKRHeap::getSystemHeap(); }
 
