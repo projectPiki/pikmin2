@@ -5,121 +5,155 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8049B100:
+.obj lbl_8049B100, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8049B100
 .balign 4
-lbl_8049B10C:
+.obj lbl_8049B10C, local
 	.asciz "titleSection"
+.endobj lbl_8049B10C
 .balign 4
-lbl_8049B11C:
+.obj lbl_8049B11C, local
 	.asciz "PSGame.h"
+.endobj lbl_8049B11C
 .balign 4
-lbl_8049B128:
+.obj lbl_8049B128, local
 	.asciz "P2Assert"
+.endobj lbl_8049B128
 .balign 4
-lbl_8049B134:
+.obj lbl_8049B134, local
 	.asciz "titleSection.cpp"
+.endobj lbl_8049B134
 .balign 4
-lbl_8049B148:
+.obj lbl_8049B148, local
 	.asciz "game2DMgr::reset error\n"
+.endobj lbl_8049B148
 .balign 4
-lbl_8049B160:
+.obj lbl_8049B160, local
 	.asciz "titleSection::loadResident"
+.endobj lbl_8049B160
 .balign 4
-lbl_8049B17C:
+.obj lbl_8049B17C, local
 	.asciz "/user/Kando/piki/pikis.szs"
+.endobj lbl_8049B17C
 .balign 4
-lbl_8049B198:
+.obj lbl_8049B198, local
 	.asciz "%s : mount failed !!\n"
+.endobj lbl_8049B198
 .balign 4
-lbl_8049B1B0:
+.obj lbl_8049B1B0, local
 	.asciz "user/Kando/onyon/arc.szs"
+.endobj lbl_8049B1B0
 .balign 4
-lbl_8049B1CC:
+.obj lbl_8049B1CC, local
 	.asciz "TitleSection::init"
+.endobj lbl_8049B1CC
 .balign 4
-lbl_8049B1E0:
+.obj lbl_8049B1E0, local
 	.asciz "JMANewSinTable"
+.endobj lbl_8049B1E0
 .balign 4
-lbl_8049B1F0: # Shift-JIS
+.obj lbl_8049B1F0, local # Shift-JIS
 	.4byte 0x835E8343
 	.4byte 0x8367838B
 	.4byte 0x835A834E
 	.4byte 0x83568387
 	.4byte 0x83930000
+.endobj lbl_8049B1F0
 .balign 4
-lbl_8049B204:
+.obj lbl_8049B204, local
 	.asciz "frameBuffer"
+.endobj lbl_8049B204
 .balign 4
-lbl_8049B210:
+.obj lbl_8049B210, local
 	.asciz "PSCommon.h"
+.endobj lbl_8049B210
 .balign 4
-lbl_8049B21C:
+.obj lbl_8049B21C, local
 	.asciz "code size           %dKB\n"
+.endobj lbl_8049B21C
 .balign 4
-lbl_8049B238:
+.obj lbl_8049B238, local
 	.asciz "GameSystemHeap Free %dKB\n"
+.endobj lbl_8049B238
 .balign 4
-lbl_8049B254:
+.obj lbl_8049B254, local
 	.asciz "PSScene.h"
+.endobj lbl_8049B254
 .balign 4
-lbl_8049B260:
+.obj lbl_8049B260, local
 	.asciz "TitleSection::loadResource"
+.endobj lbl_8049B260
 .balign 4
-lbl_8049B27C:
+.obj lbl_8049B27C, local
 	.asciz "TParticle2dMgr"
+.endobj lbl_8049B27C
 .balign 4
-lbl_8049B28C:
+.obj lbl_8049B28C, local
 	.asciz "user/Ebisawa/effect/eff2d_game2d.jpc"
+.endobj lbl_8049B28C
 .balign 4
-lbl_8049B2B4:
+.obj lbl_8049B2B4, local
 	.asciz "titleMgr"
+.endobj lbl_8049B2B4
 .balign 4
-lbl_8049B2C0:
+.obj lbl_8049B2C0, local
 	.asciz "optionMgr"
+.endobj lbl_8049B2C0
 .balign 4
-lbl_8049B2CC:
+.obj lbl_8049B2CC, local
 	.asciz "hiscoreTexture"
+.endobj lbl_8049B2CC
 .balign 4
-lbl_8049B2DC:
+.obj lbl_8049B2DC, local
 	.asciz "res_hiscoreTexture.szs"
+.endobj lbl_8049B2DC
 .balign 4
-lbl_8049B2F4:
+.obj lbl_8049B2F4, local
 	.asciz "arcName = %s\n"
+.endobj lbl_8049B2F4
 .balign 4
-lbl_8049B304:
+.obj lbl_8049B304, local
 	.asciz "omakeMgr"
+.endobj lbl_8049B304
 .balign 4
-lbl_8049B310:
+.obj lbl_8049B310, local
 	.asciz "TitleDummySection::loadResource"
+.endobj lbl_8049B310
 .balign 4
-lbl_8049B330:
+.obj lbl_8049B330, local
 	.asciz "/user/Yamashita/testResource/tex"
+.endobj lbl_8049B330
 .balign 4
-lbl_8049B354:
+.obj lbl_8049B354, local
 	.asciz "titlelogo.bti"
+.endobj lbl_8049B354
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804ED1B4:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804ED1B4, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadResident__Q25Title7SectionFv
-lbl_804ED1C0:
+.endobj lbl_804ED1B4
+.obj lbl_804ED1C0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte menuCancel__Q25Title7SectionFR4Menu
-lbl_804ED1CC:
+.endobj lbl_804ED1C0
+.obj lbl_804ED1CC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte menuSelect__Q25Title7SectionFR4Menu
-lbl_804ED1D8:
+.endobj lbl_804ED1CC
+.obj lbl_804ED1D8, local
 	.4byte .L_8044B290
 	.4byte .L_8044AF78
 	.4byte .L_8044AF84
@@ -127,11 +161,13 @@ lbl_804ED1D8:
 	.4byte .L_8044AF9C
 	.4byte .L_8044B088
 	.4byte .L_8044B1B4
-lbl_804ED1F4:
+.endobj lbl_804ED1D8
+.obj lbl_804ED1F4, local
 	.4byte 0x00000000
 	.4byte 0x00000050
 	.4byte 0x00000000
-lbl_804ED200:
+.endobj lbl_804ED1F4
+.obj lbl_804ED200, local
 	.4byte .L_8044C208
 	.4byte .L_8044C214
 	.4byte .L_8044C220
@@ -144,24 +180,24 @@ lbl_804ED200:
 	.4byte .L_8044C274
 	.4byte .L_8044C280
 	.4byte .L_8044C28C
-.global "__vt__34Delegate1<Q25Title7Section,R4Menu>"
-"__vt__34Delegate1<Q25Title7Section,R4Menu>":
+.endobj lbl_804ED200
+.obj "__vt__34Delegate1<Q25Title7Section,R4Menu>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__34Delegate1<Q25Title7Section,R4Menu>FR4Menu"
-.global "__vt__18IDelegate1<R4Menu>"
-"__vt__18IDelegate1<R4Menu>":
+.endobj "__vt__34Delegate1<Q25Title7Section,R4Menu>"
+.obj "__vt__18IDelegate1<R4Menu>", weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__11HIORootNode
-__vt__11HIORootNode:
+.endobj "__vt__18IDelegate1<R4Menu>"
+.obj __vt__11HIORootNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11HIORootNodeFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q25Title7Section
-__vt__Q25Title7Section:
+.endobj __vt__11HIORootNode
+.obj __vt__Q25Title7Section, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q25Title7SectionFv
@@ -183,15 +219,16 @@ __vt__Q25Title7Section:
 	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
 	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
 	.4byte loadResource__Q25Title7SectionFv
-.global "__vt__26Delegate<Q25Title7Section>"
-"__vt__26Delegate<Q25Title7Section>":
+.endobj __vt__Q25Title7Section
+.obj "__vt__26Delegate<Q25Title7Section>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__26Delegate<Q25Title7Section>Fv"
+.endobj "__vt__26Delegate<Q25Title7Section>"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-"sMovieIndex__26@unnamed@titleSection_cpp@":
+.obj "sMovieIndex__26@unnamed@titleSection_cpp@", local
 	.byte 0x0
 	.byte 0x2
 	.byte 0x4
@@ -199,8 +236,10 @@ __vt__Q25Title7Section:
 	.byte 0x03
 	.byte 0x0B
 	.byte 0x0B
-"sSeasonIndex__26@unnamed@titleSection_cpp@":
+.endobj "sMovieIndex__26@unnamed@titleSection_cpp@"
+.obj "sSeasonIndex__26@unnamed@titleSection_cpp@", local
 	.byte 0xFF
+.endobj "sSeasonIndex__26@unnamed@titleSection_cpp@"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -239,8 +278,7 @@ __vt__Q25Title7Section:
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
-.global __ct__Q25Title7SectionFP7JKRHeap
-__ct__Q25Title7SectionFP7JKRHeap:
+.fn __ct__Q25Title7SectionFP7JKRHeap, global
 /* 8044A03C 00446F7C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044A040 00446F80  7C 08 02 A6 */	mflr r0
 /* 8044A044 00446F84  90 01 00 24 */	stw r0, 0x24(r1)
@@ -302,9 +340,9 @@ __ct__Q25Title7SectionFP7JKRHeap:
 /* 8044A120 00447060  7C 08 03 A6 */	mtlr r0
 /* 8044A124 00447064  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044A128 00447068  4E 80 00 20 */	blr 
+.endfn __ct__Q25Title7SectionFP7JKRHeap
 .else
-.global __ct__Q25Title7SectionFP7JKRHeap
-__ct__Q25Title7SectionFP7JKRHeap:
+.fn __ct__Q25Title7SectionFP7JKRHeap, global
 /* 8044A03C 00446F7C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044A040 00446F80  7C 08 02 A6 */	mflr r0
 /* 8044A044 00446F84  90 01 00 24 */	stw r0, 0x24(r1)
@@ -366,10 +404,10 @@ __ct__Q25Title7SectionFP7JKRHeap:
 /* 8044A120 00447060  7C 08 03 A6 */	mtlr r0
 /* 8044A124 00447064  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044A128 00447068  4E 80 00 20 */	blr 
+.endfn __ct__Q25Title7SectionFP7JKRHeap
 .endif
 
-.global __dt__Q33ebi5Omake4TMgrFv
-__dt__Q33ebi5Omake4TMgrFv:
+.fn __dt__Q33ebi5Omake4TMgrFv, weak
 /* 8044A12C 0044706C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044A130 00447070  7C 08 02 A6 */	mflr r0
 /* 8044A134 00447074  90 01 00 14 */	stw r0, 0x14(r1)
@@ -399,9 +437,9 @@ __dt__Q33ebi5Omake4TMgrFv:
 /* 8044A190 004470D0  7C 08 03 A6 */	mtlr r0
 /* 8044A194 004470D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044A198 004470D8  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi5Omake4TMgrFv
 
-.global __dt__Q33ebi6Option4TMgrFv
-__dt__Q33ebi6Option4TMgrFv:
+.fn __dt__Q33ebi6Option4TMgrFv, weak
 /* 8044A19C 004470DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044A1A0 004470E0  7C 08 02 A6 */	mflr r0
 /* 8044A1A4 004470E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -424,9 +462,9 @@ __dt__Q33ebi6Option4TMgrFv:
 /* 8044A1E4 00447124  7C 08 03 A6 */	mtlr r0
 /* 8044A1E8 00447128  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044A1EC 0044712C  4E 80 00 20 */	blr 
+.endfn __dt__Q33ebi6Option4TMgrFv
 
-.global __dt__Q23ebi13TMainTitleMgrFv
-__dt__Q23ebi13TMainTitleMgrFv:
+.fn __dt__Q23ebi13TMainTitleMgrFv, weak
 /* 8044A1F0 00447130  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044A1F4 00447134  7C 08 02 A6 */	mflr r0
 /* 8044A1F8 00447138  90 01 00 14 */	stw r0, 0x14(r1)
@@ -591,10 +629,10 @@ __dt__Q23ebi13TMainTitleMgrFv:
 /* 8044A454 00447394  7C 08 03 A6 */	mtlr r0
 /* 8044A458 00447398  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044A45C 0044739C  4E 80 00 20 */	blr 
+.endfn __dt__Q23ebi13TMainTitleMgrFv
 
 .if version == 1
-.global __dt__Q25Title7SectionFv
-__dt__Q25Title7SectionFv:
+.fn __dt__Q25Title7SectionFv, global
 /* 8044A460 004473A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044A464 004473A4  7C 08 02 A6 */	mflr r0
 /* 8044A468 004473A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -638,9 +676,9 @@ __dt__Q25Title7SectionFv:
 /* 8044A4F8 00447438  7C 08 03 A6 */	mtlr r0
 /* 8044A4FC 0044743C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044A500 00447440  4E 80 00 20 */	blr 
+.endfn __dt__Q25Title7SectionFv
 .else
-.global __dt__Q25Title7SectionFv
-__dt__Q25Title7SectionFv:
+.fn __dt__Q25Title7SectionFv, global
 /* 8044A460 004473A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044A464 004473A4  7C 08 02 A6 */	mflr r0
 /* 8044A468 004473A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -684,11 +722,11 @@ __dt__Q25Title7SectionFv:
 /* 8044A4F8 00447438  7C 08 03 A6 */	mtlr r0
 /* 8044A4FC 0044743C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044A500 00447440  4E 80 00 20 */	blr 
+.endfn __dt__Q25Title7SectionFv
 .endif
 
 .if version == 1
-.global doExit__Q25Title7SectionFv
-doExit__Q25Title7SectionFv:
+.fn doExit__Q25Title7SectionFv, global
 /* 8044A504 00447444  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044A508 00447448  7C 08 02 A6 */	mflr r0
 /* 8044A50C 0044744C  3C 80 80 4A */	lis r4, lbl_8049B100@ha
@@ -741,9 +779,9 @@ doExit__Q25Title7SectionFv:
 /* 8044A5BC 004474FC  7C 08 03 A6 */	mtlr r0
 /* 8044A5C0 00447500  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044A5C4 00447504  4E 80 00 20 */	blr 
+.endfn doExit__Q25Title7SectionFv
 .else
-.global doExit__Q25Title7SectionFv
-doExit__Q25Title7SectionFv:
+.fn doExit__Q25Title7SectionFv, global
 /* 8044A504 00447444  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044A508 00447448  7C 08 02 A6 */	mflr r0
 /* 8044A50C 0044744C  3C 80 80 4A */	lis r4, lbl_8049B100@ha
@@ -796,11 +834,11 @@ doExit__Q25Title7SectionFv:
 /* 8044A5BC 004474FC  7C 08 03 A6 */	mtlr r0
 /* 8044A5C0 00447500  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044A5C4 00447504  4E 80 00 20 */	blr 
+.endfn doExit__Q25Title7SectionFv
 .endif
 
 .if version == 1
-.global loadResident__Q25Title7SectionFv
-loadResident__Q25Title7SectionFv:
+.fn loadResident__Q25Title7SectionFv, global
 /* 8044A5C8 00447508  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044A5CC 0044750C  7C 08 02 A6 */	mflr r0
 /* 8044A5D0 00447510  3C 60 80 4A */	lis r3, lbl_8049B100@ha
@@ -869,9 +907,9 @@ loadResident__Q25Title7SectionFv:
 /* 8044A6C0 00447600  7C 08 03 A6 */	mtlr r0
 /* 8044A6C4 00447604  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044A6C8 00447608  4E 80 00 20 */	blr 
+.endfn loadResident__Q25Title7SectionFv
 .else
-.global loadResident__Q25Title7SectionFv
-loadResident__Q25Title7SectionFv:
+.fn loadResident__Q25Title7SectionFv, global
 /* 8044A5C8 00447508  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044A5CC 0044750C  7C 08 02 A6 */	mflr r0
 /* 8044A5D0 00447510  3C 60 80 4A */	lis r3, lbl_8049B100@ha
@@ -940,11 +978,11 @@ loadResident__Q25Title7SectionFv:
 /* 8044A6C0 00447600  7C 08 03 A6 */	mtlr r0
 /* 8044A6C4 00447604  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044A6C8 00447608  4E 80 00 20 */	blr 
+.endfn loadResident__Q25Title7SectionFv
 .endif
 
 .if version == 1
-.global init__Q25Title7SectionFv
-init__Q25Title7SectionFv:
+.fn init__Q25Title7SectionFv, global
 /* 8044A6CC 0044760C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8044A6D0 00447610  7C 08 02 A6 */	mflr r0
 /* 8044A6D4 00447614  3C 80 80 4A */	lis r4, lbl_8049B100@ha
@@ -1231,9 +1269,9 @@ init__Q25Title7SectionFv:
 /* 8044AAF4 00447A34  7C 08 03 A6 */	mtlr r0
 /* 8044AAF8 00447A38  38 21 00 50 */	addi r1, r1, 0x50
 /* 8044AAFC 00447A3C  4E 80 00 20 */	blr 
+.endfn init__Q25Title7SectionFv
 .else
-.global init__Q25Title7SectionFv
-init__Q25Title7SectionFv:
+.fn init__Q25Title7SectionFv, global
 /* 8044A6CC 0044760C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8044A6D0 00447610  7C 08 02 A6 */	mflr r0
 /* 8044A6D4 00447614  3C 80 80 4A */	lis r4, lbl_8049B100@ha
@@ -1520,10 +1558,10 @@ init__Q25Title7SectionFv:
 /* 8044AAF4 00447A34  7C 08 03 A6 */	mtlr r0
 /* 8044AAF8 00447A38  38 21 00 50 */	addi r1, r1, 0x50
 /* 8044AAFC 00447A3C  4E 80 00 20 */	blr 
+.endfn init__Q25Title7SectionFv
 .endif
 
-.global menuCancel__Q25Title7SectionFR4Menu
-menuCancel__Q25Title7SectionFR4Menu:
+.fn menuCancel__Q25Title7SectionFR4Menu, global
 /* 8044AB00 00447A40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044AB04 00447A44  7C 08 02 A6 */	mflr r0
 /* 8044AB08 00447A48  38 80 18 01 */	li r4, 0x1801
@@ -1535,9 +1573,9 @@ menuCancel__Q25Title7SectionFR4Menu:
 /* 8044AB20 00447A60  7C 08 03 A6 */	mtlr r0
 /* 8044AB24 00447A64  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044AB28 00447A68  4E 80 00 20 */	blr 
+.endfn menuCancel__Q25Title7SectionFR4Menu
 
-.global menuSelect__Q25Title7SectionFR4Menu
-menuSelect__Q25Title7SectionFR4Menu:
+.fn menuSelect__Q25Title7SectionFR4Menu, global
 /* 8044AB2C 00447A6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044AB30 00447A70  7C 08 02 A6 */	mflr r0
 /* 8044AB34 00447A74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1561,10 +1599,10 @@ menuSelect__Q25Title7SectionFR4Menu:
 /* 8044AB74 00447AB4  7C 08 03 A6 */	mtlr r0
 /* 8044AB78 00447AB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044AB7C 00447ABC  4E 80 00 20 */	blr 
+.endfn menuSelect__Q25Title7SectionFR4Menu
 
 .if version == 1
-.global doDraw__Q25Title7SectionFR8Graphics
-doDraw__Q25Title7SectionFR8Graphics:
+.fn doDraw__Q25Title7SectionFR8Graphics, global
 /* 8044AB80 00447AC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044AB84 00447AC4  7C 08 02 A6 */	mflr r0
 /* 8044AB88 00447AC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1640,9 +1678,9 @@ doDraw__Q25Title7SectionFR8Graphics:
 /* 8044AC84 00447BC4  7C 08 03 A6 */	mtlr r0
 /* 8044AC88 00447BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044AC8C 00447BCC  4E 80 00 20 */	blr 
+.endfn doDraw__Q25Title7SectionFR8Graphics
 .else
-.global doDraw__Q25Title7SectionFR8Graphics
-doDraw__Q25Title7SectionFR8Graphics:
+.fn doDraw__Q25Title7SectionFR8Graphics, global
 /* 8044AB80 00447AC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044AB84 00447AC4  7C 08 02 A6 */	mflr r0
 /* 8044AB88 00447AC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1718,11 +1756,11 @@ doDraw__Q25Title7SectionFR8Graphics:
 /* 8044AC84 00447BC4  7C 08 03 A6 */	mtlr r0
 /* 8044AC88 00447BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044AC8C 00447BCC  4E 80 00 20 */	blr 
+.endfn doDraw__Q25Title7SectionFR8Graphics
 .endif
 
 .if version == 1
-.global doUpdateMainTitle__Q25Title7SectionFv
-doUpdateMainTitle__Q25Title7SectionFv:
+.fn doUpdateMainTitle__Q25Title7SectionFv, global
 /* 8044AC90 00447BD0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044AC94 00447BD4  7C 08 02 A6 */	mflr r0
 /* 8044AC98 00447BD8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2183,9 +2221,9 @@ doUpdateMainTitle__Q25Title7SectionFv:
 /* 8044B30C 0044824C  7C 08 03 A6 */	mtlr r0
 /* 8044B310 00448250  38 21 00 30 */	addi r1, r1, 0x30
 /* 8044B314 00448254  4E 80 00 20 */	blr 
+.endfn doUpdateMainTitle__Q25Title7SectionFv
 .else
-.global doUpdateMainTitle__Q25Title7SectionFv
-doUpdateMainTitle__Q25Title7SectionFv:
+.fn doUpdateMainTitle__Q25Title7SectionFv, global
 /* 8044AC90 00447BD0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044AC94 00447BD4  7C 08 02 A6 */	mflr r0
 /* 8044AC98 00447BD8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2646,11 +2684,11 @@ doUpdateMainTitle__Q25Title7SectionFv:
 /* 8044B30C 0044824C  7C 08 03 A6 */	mtlr r0
 /* 8044B310 00448250  38 21 00 30 */	addi r1, r1, 0x30
 /* 8044B314 00448254  4E 80 00 20 */	blr 
+.endfn doUpdateMainTitle__Q25Title7SectionFv
 .endif
 
 .if version == 1
-.global doUpdateOmake__Q25Title7SectionFv
-doUpdateOmake__Q25Title7SectionFv:
+.fn doUpdateOmake__Q25Title7SectionFv, global
 /* 8044B318 00448258  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044B31C 0044825C  7C 08 02 A6 */	mflr r0
 /* 8044B320 00448260  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2988,9 +3026,9 @@ doUpdateOmake__Q25Title7SectionFv:
 /* 8044B7D4 00448714  7C 08 03 A6 */	mtlr r0
 /* 8044B7D8 00448718  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044B7DC 0044871C  4E 80 00 20 */	blr 
+.endfn doUpdateOmake__Q25Title7SectionFv
 .else
-.global doUpdateOmake__Q25Title7SectionFv
-doUpdateOmake__Q25Title7SectionFv:
+.fn doUpdateOmake__Q25Title7SectionFv, global
 /* 8044B318 00448258  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044B31C 0044825C  7C 08 02 A6 */	mflr r0
 /* 8044B320 00448260  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3328,10 +3366,10 @@ doUpdateOmake__Q25Title7SectionFv:
 /* 8044B7D4 00448714  7C 08 03 A6 */	mtlr r0
 /* 8044B7D8 00448718  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044B7DC 0044871C  4E 80 00 20 */	blr 
+.endfn doUpdateOmake__Q25Title7SectionFv
 .endif
 
-.global run__Q25Title7SectionFv
-run__Q25Title7SectionFv:
+.fn run__Q25Title7SectionFv, global
 /* 8044B7E0 00448720  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044B7E4 00448724  7C 08 02 A6 */	mflr r0
 /* 8044B7E8 00448728  3C 80 80 51 */	lis r4, gGameConfig__4Game@ha
@@ -3403,10 +3441,10 @@ run__Q25Title7SectionFv:
 /* 8044B8DC 0044881C  7C 08 03 A6 */	mtlr r0
 /* 8044B8E0 00448820  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044B8E4 00448824  4E 80 00 20 */	blr 
+.endfn run__Q25Title7SectionFv
 
 .if version == 1
-.global doUpdate__Q25Title7SectionFv
-doUpdate__Q25Title7SectionFv:
+.fn doUpdate__Q25Title7SectionFv, global
 /* 8044B8E8 00448828  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044B8EC 0044882C  7C 08 02 A6 */	mflr r0
 /* 8044B8F0 00448830  3C A0 80 4A */	lis r5, lbl_8049B100@ha
@@ -3809,9 +3847,9 @@ doUpdate__Q25Title7SectionFv:
 /* 8044BE94 00448DD4  7C 08 03 A6 */	mtlr r0
 /* 8044BE98 00448DD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044BE9C 00448DDC  4E 80 00 20 */	blr 
+.endfn doUpdate__Q25Title7SectionFv
 .else
-.global doUpdate__Q25Title7SectionFv
-doUpdate__Q25Title7SectionFv:
+.fn doUpdate__Q25Title7SectionFv, global
 /* 8044B8E8 00448828  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044B8EC 0044882C  7C 08 02 A6 */	mflr r0
 /* 8044B8F0 00448830  3C A0 80 4A */	lis r5, lbl_8049B100@ha
@@ -4214,11 +4252,11 @@ doUpdate__Q25Title7SectionFv:
 /* 8044BE94 00448DD4  7C 08 03 A6 */	mtlr r0
 /* 8044BE98 00448DD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044BE9C 00448DDC  4E 80 00 20 */	blr 
+.endfn doUpdate__Q25Title7SectionFv
 .endif
 
 .if version == 1
-.global isFinishable__Q25Title7SectionFv
-isFinishable__Q25Title7SectionFv:
+.fn isFinishable__Q25Title7SectionFv, global
 /* 8044BEA0 00448DE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044BEA4 00448DE4  7C 08 02 A6 */	mflr r0
 /* 8044BEA8 00448DE8  38 80 00 00 */	li r4, 0
@@ -4235,9 +4273,9 @@ isFinishable__Q25Title7SectionFv:
 /* 8044BED4 00448E14  7C 08 03 A6 */	mtlr r0
 /* 8044BED8 00448E18  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044BEDC 00448E1C  4E 80 00 20 */	blr 
+.endfn isFinishable__Q25Title7SectionFv
 .else
-.global isFinishable__Q25Title7SectionFv
-isFinishable__Q25Title7SectionFv:
+.fn isFinishable__Q25Title7SectionFv, global
 /* 8044BEA0 00448DE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044BEA4 00448DE4  7C 08 02 A6 */	mflr r0
 /* 8044BEA8 00448DE8  38 80 00 00 */	li r4, 0
@@ -4254,11 +4292,11 @@ isFinishable__Q25Title7SectionFv:
 /* 8044BED4 00448E14  7C 08 03 A6 */	mtlr r0
 /* 8044BED8 00448E18  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044BEDC 00448E1C  4E 80 00 20 */	blr 
+.endfn isFinishable__Q25Title7SectionFv
 .endif
 
 .if version == 1
-.global doLoadingStart__Q25Title7SectionFv
-doLoadingStart__Q25Title7SectionFv:
+.fn doLoadingStart__Q25Title7SectionFv, global
 /* 8044BEE0 00448E20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044BEE4 00448E24  7C 08 02 A6 */	mflr r0
 /* 8044BEE8 00448E28  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4295,9 +4333,9 @@ doLoadingStart__Q25Title7SectionFv:
 /* 8044BF60 00448EA0  7C 08 03 A6 */	mtlr r0
 /* 8044BF64 00448EA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044BF68 00448EA8  4E 80 00 20 */	blr 
+.endfn doLoadingStart__Q25Title7SectionFv
 .else
-.global doLoadingStart__Q25Title7SectionFv
-doLoadingStart__Q25Title7SectionFv:
+.fn doLoadingStart__Q25Title7SectionFv, global
 /* 8044BEE0 00448E20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044BEE4 00448E24  7C 08 02 A6 */	mflr r0
 /* 8044BEE8 00448E28  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4334,11 +4372,11 @@ doLoadingStart__Q25Title7SectionFv:
 /* 8044BF60 00448EA0  7C 08 03 A6 */	mtlr r0
 /* 8044BF64 00448EA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044BF68 00448EA8  4E 80 00 20 */	blr 
+.endfn doLoadingStart__Q25Title7SectionFv
 .endif
 
 .if version == 1
-.global doLoading__Q25Title7SectionFv
-doLoading__Q25Title7SectionFv:
+.fn doLoading__Q25Title7SectionFv, global
 /* 8044BF6C 00448EAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044BF70 00448EB0  7C 08 02 A6 */	mflr r0
 /* 8044BF74 00448EB4  3C 80 80 4A */	lis r4, lbl_8049B100@ha
@@ -4402,9 +4440,9 @@ doLoading__Q25Title7SectionFv:
 /* 8044C04C 00448F8C  7C 08 03 A6 */	mtlr r0
 /* 8044C050 00448F90  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044C054 00448F94  4E 80 00 20 */	blr 
+.endfn doLoading__Q25Title7SectionFv
 .else
-.global doLoading__Q25Title7SectionFv
-doLoading__Q25Title7SectionFv:
+.fn doLoading__Q25Title7SectionFv, global
 /* 8044BF6C 00448EAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044BF70 00448EB0  7C 08 02 A6 */	mflr r0
 /* 8044BF74 00448EB4  3C 80 80 4A */	lis r4, lbl_8049B100@ha
@@ -4468,11 +4506,11 @@ doLoading__Q25Title7SectionFv:
 /* 8044C04C 00448F8C  7C 08 03 A6 */	mtlr r0
 /* 8044C050 00448F90  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044C054 00448F94  4E 80 00 20 */	blr 
+.endfn doLoading__Q25Title7SectionFv
 .endif
 
 .if version == 1
-.global loadResource__Q25Title7SectionFv
-loadResource__Q25Title7SectionFv:
+.fn loadResource__Q25Title7SectionFv, global
 /* 8044C058 00448F98  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8044C05C 00448F9C  7C 08 02 A6 */	mflr r0
 /* 8044C060 00448FA0  3C 80 80 4A */	lis r4, lbl_8049B100@ha
@@ -4737,9 +4775,9 @@ loadResource__Q25Title7SectionFv:
 /* 8044C414 00449354  7C 08 03 A6 */	mtlr r0
 /* 8044C418 00449358  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8044C41C 0044935C  4E 80 00 20 */	blr 
+.endfn loadResource__Q25Title7SectionFv
 .else
-.global loadResource__Q25Title7SectionFv
-loadResource__Q25Title7SectionFv:
+.fn loadResource__Q25Title7SectionFv, global
 /* 8044C058 00448F98  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8044C05C 00448F9C  7C 08 02 A6 */	mflr r0
 /* 8044C060 00448FA0  3C 80 80 4A */	lis r4, lbl_8049B100@ha
@@ -5004,15 +5042,15 @@ loadResource__Q25Title7SectionFv:
 /* 8044C414 00449354  7C 08 03 A6 */	mtlr r0
 /* 8044C418 00449358  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8044C41C 0044935C  4E 80 00 20 */	blr 
+.endfn loadResource__Q25Title7SectionFv
 .endif
 
-.global forceReset__Q25Title7SectionFv
-forceReset__Q25Title7SectionFv:
+.fn forceReset__Q25Title7SectionFv, weak
 /* 8044C420 00449360  38 60 00 00 */	li r3, 0
 /* 8044C424 00449364  4E 80 00 20 */	blr 
+.endfn forceReset__Q25Title7SectionFv
 
-.global __dt__11HIORootNodeFv
-__dt__11HIORootNodeFv:
+.fn __dt__11HIORootNodeFv, weak
 /* 8044C428 00449368  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044C42C 0044936C  7C 08 02 A6 */	mflr r0
 /* 8044C430 00449370  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5043,9 +5081,9 @@ __dt__11HIORootNodeFv:
 /* 8044C48C 004493CC  7C 08 03 A6 */	mtlr r0
 /* 8044C490 004493D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044C494 004493D4  4E 80 00 20 */	blr 
+.endfn __dt__11HIORootNodeFv
 
-.global "invoke__34Delegate1<Q25Title7Section,R4Menu>FR4Menu"
-"invoke__34Delegate1<Q25Title7Section,R4Menu>FR4Menu":
+.fn "invoke__34Delegate1<Q25Title7Section,R4Menu>FR4Menu", weak
 /* 8044C498 004493D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044C49C 004493DC  7C 08 02 A6 */	mflr r0
 /* 8044C4A0 004493E0  7C 65 1B 78 */	mr r5, r3
@@ -5058,9 +5096,9 @@ __dt__11HIORootNodeFv:
 /* 8044C4BC 004493FC  7C 08 03 A6 */	mtlr r0
 /* 8044C4C0 00449400  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044C4C4 00449404  4E 80 00 20 */	blr 
+.endfn "invoke__34Delegate1<Q25Title7Section,R4Menu>FR4Menu"
 
-.global "invoke__26Delegate<Q25Title7Section>Fv"
-"invoke__26Delegate<Q25Title7Section>Fv":
+.fn "invoke__26Delegate<Q25Title7Section>Fv", weak
 /* 8044C4C8 00449408  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044C4CC 0044940C  7C 08 02 A6 */	mflr r0
 /* 8044C4D0 00449410  7C 64 1B 78 */	mr r4, r3
@@ -5073,8 +5111,9 @@ __dt__11HIORootNodeFv:
 /* 8044C4EC 0044942C  7C 08 03 A6 */	mtlr r0
 /* 8044C4F0 00449430  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044C4F4 00449434  4E 80 00 20 */	blr 
+.endfn "invoke__26Delegate<Q25Title7Section>Fv"
 
-__sinit_titleSection_cpp: # static initializer
+.fn __sinit_titleSection_cpp, local
 /* 8044C4F8 00449438  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8044C4FC 0044943C  38 00 FF FF */	li r0, -1
 /* 8044C500 00449440  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -5085,3 +5124,4 @@ __sinit_titleSection_cpp: # static initializer
 /* 8044C514 00449454  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8044C518 00449458  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8044C51C 0044945C  4E 80 00 20 */	blr 
+.endfn __sinit_titleSection_cpp

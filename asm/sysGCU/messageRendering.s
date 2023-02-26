@@ -15,7 +15,7 @@
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-# array of eleven TColor[2]
+# array of 11 TColor[2]
 .obj "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@", local
 	.4byte 0xFFFFFFFF
 	.4byte 0x00A60000
@@ -154,8 +154,7 @@
 .endobj lbl_805208E4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference
-__ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference:
+.fn __ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference, global
 /* 804391F0 00436130  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804391F4 00436134  7C 08 02 A6 */	mflr r0
 /* 804391F8 00436138  90 01 00 14 */	stw r0, 0x14(r1)
@@ -171,9 +170,9 @@ __ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference:
 /* 80439220 00436160  7C 08 03 A6 */	mtlr r0
 /* 80439224 00436164  38 21 00 10 */	addi r1, r1, 0x10
 /* 80439228 00436168  4E 80 00 20 */	blr 
+.endfn __ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference
 
-.global do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl
-do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl:
+.fn do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl, global
 /* 8043922C 0043616C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80439230 00436170  7C 08 02 A6 */	mflr r0
 /* 80439234 00436174  54 87 86 3E */	rlwinm r7, r4, 0x10, 0x18, 0x1f
@@ -280,49 +279,49 @@ do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl:
 /* 80439394 004362D4  7C 08 03 A6 */	mtlr r0
 /* 80439398 004362D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043939C 004362DC  4E 80 00 20 */	blr 
+.endfn do_tag__Q25P2JME23TRenderingProcessorBaseFUlPCvUl
 
-.global tagFont__Q25P2JME23TRenderingProcessorBaseFPCvUl
-tagFont__Q25P2JME23TRenderingProcessorBaseFPCvUl:
+.fn tagFont__Q25P2JME23TRenderingProcessorBaseFPCvUl, weak
 /* 804393A0 004362E0  38 60 00 01 */	li r3, 1
 /* 804393A4 004362E4  4E 80 00 20 */	blr 
+.endfn tagFont__Q25P2JME23TRenderingProcessorBaseFPCvUl
 
-.global tagRuby__Q25P2JME23TRenderingProcessorBaseFPCvUl
-tagRuby__Q25P2JME23TRenderingProcessorBaseFPCvUl:
+.fn tagRuby__Q25P2JME23TRenderingProcessorBaseFPCvUl, weak
 /* 804393A8 004362E8  38 60 00 01 */	li r3, 1
 /* 804393AC 004362EC  4E 80 00 20 */	blr 
+.endfn tagRuby__Q25P2JME23TRenderingProcessorBaseFPCvUl
 
-.global tagSize__Q25P2JME23TRenderingProcessorBaseFPCvUl
-tagSize__Q25P2JME23TRenderingProcessorBaseFPCvUl:
+.fn tagSize__Q25P2JME23TRenderingProcessorBaseFPCvUl, weak
 /* 804393B0 004362F0  38 60 00 01 */	li r3, 1
 /* 804393B4 004362F4  4E 80 00 20 */	blr 
+.endfn tagSize__Q25P2JME23TRenderingProcessorBaseFPCvUl
 
-.global tagColor__Q25P2JME23TRenderingProcessorBaseFPCvUl
-tagColor__Q25P2JME23TRenderingProcessorBaseFPCvUl:
+.fn tagColor__Q25P2JME23TRenderingProcessorBaseFPCvUl, weak
 /* 804393B8 004362F8  38 60 00 01 */	li r3, 1
 /* 804393BC 004362FC  4E 80 00 20 */	blr 
+.endfn tagColor__Q25P2JME23TRenderingProcessorBaseFPCvUl
 
-.global tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
-tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl:
+.fn tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl, weak
 /* 804393C0 00436300  38 60 00 01 */	li r3, 1
 /* 804393C4 00436304  4E 80 00 20 */	blr 
+.endfn tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
 
-.global tagControl__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
-tagControl__Q25P2JME23TRenderingProcessorBaseFUsPCvUl:
+.fn tagControl__Q25P2JME23TRenderingProcessorBaseFUsPCvUl, weak
 /* 804393C8 00436308  38 60 00 01 */	li r3, 1
 /* 804393CC 0043630C  4E 80 00 20 */	blr 
+.endfn tagControl__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
 
-.global tagColorEX__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
-tagColorEX__Q25P2JME23TRenderingProcessorBaseFUsPCvUl:
+.fn tagColorEX__Q25P2JME23TRenderingProcessorBaseFUsPCvUl, weak
 /* 804393D0 00436310  38 60 00 01 */	li r3, 1
 /* 804393D4 00436314  4E 80 00 20 */	blr 
+.endfn tagColorEX__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
 
-.global tagImage__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
-tagImage__Q25P2JME23TRenderingProcessorBaseFUsPCvUl:
+.fn tagImage__Q25P2JME23TRenderingProcessorBaseFUsPCvUl, weak
 /* 804393D8 00436318  38 60 00 01 */	li r3, 1
 /* 804393DC 0043631C  4E 80 00 20 */	blr 
+.endfn tagImage__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
 
-.global __ct__Q25P2JME19TRenderingProcessorFPCQ28JMessage10TReference
-__ct__Q25P2JME19TRenderingProcessorFPCQ28JMessage10TReference:
+.fn __ct__Q25P2JME19TRenderingProcessorFPCQ28JMessage10TReference, global
 /* 804393E0 00436320  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804393E4 00436324  7C 08 02 A6 */	mflr r0
 /* 804393E8 00436328  90 01 00 14 */	stw r0, 0x14(r1)
@@ -457,9 +456,9 @@ __ct__Q25P2JME19TRenderingProcessorFPCQ28JMessage10TReference:
 /* 804395EC 0043652C  7C 08 03 A6 */	mtlr r0
 /* 804395F0 00436530  38 21 00 10 */	addi r1, r1, 0x10
 /* 804395F4 00436534  4E 80 00 20 */	blr 
+.endfn __ct__Q25P2JME19TRenderingProcessorFPCQ28JMessage10TReference
 
-.global __dt__Q25P2JME23TRenderingProcessorBaseFv
-__dt__Q25P2JME23TRenderingProcessorBaseFv:
+.fn __dt__Q25P2JME23TRenderingProcessorBaseFv, weak
 /* 804395F8 00436538  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804395FC 0043653C  7C 08 02 A6 */	mflr r0
 /* 80439600 00436540  90 01 00 14 */	stw r0, 0x14(r1)
@@ -485,9 +484,9 @@ __dt__Q25P2JME23TRenderingProcessorBaseFv:
 /* 8043964C 0043658C  7C 08 03 A6 */	mtlr r0
 /* 80439650 00436590  38 21 00 10 */	addi r1, r1, 0x10
 /* 80439654 00436594  4E 80 00 20 */	blr 
+.endfn __dt__Q25P2JME23TRenderingProcessorBaseFv
 
-.global do_begin__Q25P2JME19TRenderingProcessorFPCvPCc
-do_begin__Q25P2JME19TRenderingProcessorFPCvPCc:
+.fn do_begin__Q25P2JME19TRenderingProcessorFPCvPCc, global
 /* 80439658 00436598  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043965C 0043659C  7C 08 02 A6 */	mflr r0
 /* 80439660 004365A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -546,9 +545,9 @@ do_begin__Q25P2JME19TRenderingProcessorFPCvPCc:
 /* 80439734 00436674  7C 08 03 A6 */	mtlr r0
 /* 80439738 00436678  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043973C 0043667C  4E 80 00 20 */	blr 
+.endfn do_begin__Q25P2JME19TRenderingProcessorFPCvPCc
 
-.global setDrawLocate__Q25P2JME19TRenderingProcessorFv
-setDrawLocate__Q25P2JME19TRenderingProcessorFv:
+.fn setDrawLocate__Q25P2JME19TRenderingProcessorFv, weak
 /* 80439740 00436680  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80439744 00436684  7C 08 02 A6 */	mflr r0
 /* 80439748 00436688  90 01 00 64 */	stw r0, 0x64(r1)
@@ -796,9 +795,9 @@ setDrawLocate__Q25P2JME19TRenderingProcessorFv:
 /* 80439AE4 00436A24  7C 08 03 A6 */	mtlr r0
 /* 80439AE8 00436A28  38 21 00 60 */	addi r1, r1, 0x60
 /* 80439AEC 00436A2C  4E 80 00 20 */	blr 
+.endfn setDrawLocate__Q25P2JME19TRenderingProcessorFv
 
-.global newParagraph__Q25P2JME19TRenderingProcessorFv
-newParagraph__Q25P2JME19TRenderingProcessorFv:
+.fn newParagraph__Q25P2JME19TRenderingProcessorFv, global
 /* 80439AF0 00436A30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80439AF4 00436A34  7C 08 02 A6 */	mflr r0
 /* 80439AF8 00436A38  3C 80 80 4A */	lis r4, lbl_8049ABE8@ha
@@ -857,9 +856,9 @@ newParagraph__Q25P2JME19TRenderingProcessorFv:
 /* 80439BC0 00436B00  7C 08 03 A6 */	mtlr r0
 /* 80439BC4 00436B04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80439BC8 00436B08  4E 80 00 20 */	blr 
+.endfn newParagraph__Q25P2JME19TRenderingProcessorFv
 
-.global do_character__Q25P2JME19TRenderingProcessorFi
-do_character__Q25P2JME19TRenderingProcessorFi:
+.fn do_character__Q25P2JME19TRenderingProcessorFi, global
 /* 80439BCC 00436B0C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80439BD0 00436B10  7C 08 02 A6 */	mflr r0
 /* 80439BD4 00436B14  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1076,9 +1075,9 @@ do_character__Q25P2JME19TRenderingProcessorFi:
 /* 80439EDC 00436E1C  7C 08 03 A6 */	mtlr r0
 /* 80439EE0 00436E20  38 21 00 40 */	addi r1, r1, 0x40
 /* 80439EE4 00436E24  4E 80 00 20 */	blr 
+.endfn do_character__Q25P2JME19TRenderingProcessorFi
 
-.global do_select_begin__Q25P2JME19TRenderingProcessorFUl
-do_select_begin__Q25P2JME19TRenderingProcessorFUl:
+.fn do_select_begin__Q25P2JME19TRenderingProcessorFUl, global
 /* 80439EE8 00436E28  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80439EEC 00436E2C  7C 08 02 A6 */	mflr r0
 /* 80439EF0 00436E30  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1125,9 +1124,9 @@ do_select_begin__Q25P2JME19TRenderingProcessorFUl:
 /* 80439F94 00436ED4  7C 08 03 A6 */	mtlr r0
 /* 80439F98 00436ED8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80439F9C 00436EDC  4E 80 00 20 */	blr 
+.endfn do_select_begin__Q25P2JME19TRenderingProcessorFUl
 
-.global do_select_end__Q25P2JME19TRenderingProcessorFv
-do_select_end__Q25P2JME19TRenderingProcessorFv:
+.fn do_select_end__Q25P2JME19TRenderingProcessorFv, global
 /* 80439FA0 00436EE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80439FA4 00436EE4  7C 08 02 A6 */	mflr r0
 /* 80439FA8 00436EE8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1155,9 +1154,9 @@ do_select_end__Q25P2JME19TRenderingProcessorFv:
 /* 8043A000 00436F40  7C 08 03 A6 */	mtlr r0
 /* 8043A004 00436F44  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043A008 00436F48  4E 80 00 20 */	blr 
+.endfn do_select_end__Q25P2JME19TRenderingProcessorFv
 
-.global do_select_separate__Q25P2JME19TRenderingProcessorFv
-do_select_separate__Q25P2JME19TRenderingProcessorFv:
+.fn do_select_separate__Q25P2JME19TRenderingProcessorFv, global
 /* 8043A00C 00436F4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043A010 00436F50  7C 08 02 A6 */	mflr r0
 /* 8043A014 00436F54  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1205,9 +1204,9 @@ do_select_separate__Q25P2JME19TRenderingProcessorFv:
 /* 8043A0BC 00436FFC  7C 08 03 A6 */	mtlr r0
 /* 8043A0C0 00437000  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043A0C4 00437004  4E 80 00 20 */	blr 
+.endfn do_select_separate__Q25P2JME19TRenderingProcessorFv
 
-.global do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl
-do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl:
+.fn do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl, global
 /* 8043A0C8 00437008  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043A0CC 0043700C  7C 08 02 A6 */	mflr r0
 /* 8043A0D0 00437010  38 E0 00 00 */	li r7, 0
@@ -1314,14 +1313,14 @@ do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl:
 /* 8043A230 00437170  7C 08 03 A6 */	mtlr r0
 /* 8043A234 00437174  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043A238 00437178  4E 80 00 20 */	blr 
+.endfn do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl
 
-.global do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl
-do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl:
+.fn do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl, global
 /* 8043A23C 0043717C  38 60 00 00 */	li r3, 0
 /* 8043A240 00437180  4E 80 00 20 */	blr 
+.endfn do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl
 
-.global tagColor__Q25P2JME19TRenderingProcessorFPCvUl
-tagColor__Q25P2JME19TRenderingProcessorFPCvUl:
+.fn tagColor__Q25P2JME19TRenderingProcessorFPCvUl, global
 /* 8043A244 00437184  88 84 00 00 */	lbz r4, 0(r4)
 /* 8043A248 00437188  28 04 00 00 */	cmplwi r4, 0
 /* 8043A24C 0043718C  40 82 00 10 */	bne .L_8043A25C
@@ -1335,9 +1334,9 @@ tagColor__Q25P2JME19TRenderingProcessorFPCvUl:
 .L_8043A268:
 /* 8043A268 004371A8  38 60 00 01 */	li r3, 1
 /* 8043A26C 004371AC  4E 80 00 20 */	blr 
+.endfn tagColor__Q25P2JME19TRenderingProcessorFPCvUl
 
-.global tagSize__Q25P2JME19TRenderingProcessorFPCvUl
-tagSize__Q25P2JME19TRenderingProcessorFPCvUl:
+.fn tagSize__Q25P2JME19TRenderingProcessorFPCvUl, global
 /* 8043A270 004371B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043A274 004371B4  3C 00 43 30 */	lis r0, 0x4330
 /* 8043A278 004371B8  A0 84 00 00 */	lhz r4, 0(r4)
@@ -1353,9 +1352,9 @@ tagSize__Q25P2JME19TRenderingProcessorFPCvUl:
 /* 8043A2A0 004371E0  38 60 00 01 */	li r3, 1
 /* 8043A2A4 004371E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043A2A8 004371E8  4E 80 00 20 */	blr 
+.endfn tagSize__Q25P2JME19TRenderingProcessorFPCvUl
 
-.global tagRuby__Q25P2JME19TRenderingProcessorFPCvUl
-tagRuby__Q25P2JME19TRenderingProcessorFPCvUl:
+.fn tagRuby__Q25P2JME19TRenderingProcessorFPCvUl, global
 /* 8043A2AC 004371EC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8043A2B0 004371F0  7C 08 02 A6 */	mflr r0
 /* 8043A2B4 004371F4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1449,14 +1448,14 @@ tagRuby__Q25P2JME19TRenderingProcessorFPCvUl:
 /* 8043A404 00437344  7C 08 03 A6 */	mtlr r0
 /* 8043A408 00437348  38 21 00 30 */	addi r1, r1, 0x30
 /* 8043A40C 0043734C  4E 80 00 20 */	blr 
+.endfn tagRuby__Q25P2JME19TRenderingProcessorFPCvUl
 
-.global tagFont__Q25P2JME19TRenderingProcessorFPCvUl
-tagFont__Q25P2JME19TRenderingProcessorFPCvUl:
+.fn tagFont__Q25P2JME19TRenderingProcessorFPCvUl, global
 /* 8043A410 00437350  38 60 00 01 */	li r3, 1
 /* 8043A414 00437354  4E 80 00 20 */	blr 
+.endfn tagFont__Q25P2JME19TRenderingProcessorFPCvUl
 
-.global tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl
-tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl:
+.fn tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl, global
 /* 8043A418 00437358  54 80 04 3F */	clrlwi. r0, r4, 0x10
 /* 8043A41C 0043735C  41 82 00 08 */	beq .L_8043A424
 /* 8043A420 00437360  48 00 00 14 */	b .L_8043A434
@@ -1468,9 +1467,9 @@ tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl:
 .L_8043A434:
 /* 8043A434 00437374  38 60 00 01 */	li r3, 1
 /* 8043A438 00437378  4E 80 00 20 */	blr 
+.endfn tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl
 
-.global tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl
-tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl:
+.fn tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl, global
 /* 8043A43C 0043737C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043A440 00437380  7C 08 02 A6 */	mflr r0
 /* 8043A444 00437384  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1502,17 +1501,17 @@ tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl:
 /* 8043A49C 004373DC  7C 08 03 A6 */	mtlr r0
 /* 8043A4A0 004373E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043A4A4 004373E4  4E 80 00 20 */	blr 
+.endfn tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl
 
-.global doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv
-doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv:
+.fn doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv, weak
 /* 8043A4A8 004373E8  80 03 00 8C */	lwz r0, 0x8c(r3)
 /* 8043A4AC 004373EC  64 00 10 00 */	oris r0, r0, 0x1000
 /* 8043A4B0 004373F0  90 03 00 8C */	stw r0, 0x8c(r3)
 /* 8043A4B4 004373F4  38 60 00 01 */	li r3, 1
 /* 8043A4B8 004373F8  4E 80 00 20 */	blr 
+.endfn doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv
 
-.global tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl
-tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl:
+.fn tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl, global
 /* 8043A4BC 004373FC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8043A4C0 00437400  7C 08 02 A6 */	mflr r0
 /* 8043A4C4 00437404  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1989,9 +1988,9 @@ tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl:
 /* 8043ABCC 00437B0C  7C 08 03 A6 */	mtlr r0
 /* 8043ABD0 00437B10  38 21 00 60 */	addi r1, r1, 0x60
 /* 8043ABD4 00437B14  4E 80 00 20 */	blr 
+.endfn tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl
 
-.global initRuby__Q25P2JME19TRenderingProcessorFv
-initRuby__Q25P2JME19TRenderingProcessorFv:
+.fn initRuby__Q25P2JME19TRenderingProcessorFv, global
 /* 8043ABD8 00437B18  38 00 00 00 */	li r0, 0
 /* 8043ABDC 00437B1C  98 03 00 F2 */	stb r0, 0xf2(r3)
 /* 8043ABE0 00437B20  90 03 00 F4 */	stw r0, 0xf4(r3)
@@ -1999,9 +1998,9 @@ initRuby__Q25P2JME19TRenderingProcessorFv:
 /* 8043ABE8 00437B28  80 63 01 00 */	lwz r3, 0x100(r3)
 /* 8043ABEC 00437B2C  98 03 00 00 */	stb r0, 0(r3)
 /* 8043ABF0 00437B30  4E 80 00 20 */	blr 
+.endfn initRuby__Q25P2JME19TRenderingProcessorFv
 
-.global drawRuby__Q25P2JME19TRenderingProcessorFv
-drawRuby__Q25P2JME19TRenderingProcessorFv:
+.fn drawRuby__Q25P2JME19TRenderingProcessorFv, global
 /* 8043ABF4 00437B34  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 8043ABF8 00437B38  7C 08 02 A6 */	mflr r0
 /* 8043ABFC 00437B3C  90 01 01 14 */	stw r0, 0x114(r1)
@@ -2230,9 +2229,9 @@ drawRuby__Q25P2JME19TRenderingProcessorFv:
 /* 8043AF48 00437E88  7C 08 03 A6 */	mtlr r0
 /* 8043AF4C 00437E8C  38 21 01 10 */	addi r1, r1, 0x110
 /* 8043AF50 00437E90  4E 80 00 20 */	blr 
+.endfn drawRuby__Q25P2JME19TRenderingProcessorFv
 
-.global tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl
-tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl:
+.fn tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl, global
 /* 8043AF54 00437E94  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8043AF58 00437E98  7C 08 02 A6 */	mflr r0
 /* 8043AF5C 00437E9C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2524,9 +2523,9 @@ tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl:
 /* 8043B380 004382C0  7C 08 03 A6 */	mtlr r0
 /* 8043B384 004382C4  38 21 00 70 */	addi r1, r1, 0x70
 /* 8043B388 004382C8  4E 80 00 20 */	blr 
+.endfn tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl
 
-.global doDrawLetter__Q25P2JME19TRenderingProcessorFffffib
-doDrawLetter__Q25P2JME19TRenderingProcessorFffffib:
+.fn doDrawLetter__Q25P2JME19TRenderingProcessorFffffib, global
 /* 8043B38C 004382CC  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8043B390 004382D0  7C 08 02 A6 */	mflr r0
 /* 8043B394 004382D4  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -2823,9 +2822,9 @@ doDrawLetter__Q25P2JME19TRenderingProcessorFffffib:
 /* 8043B7C0 00438700  7C 08 03 A6 */	mtlr r0
 /* 8043B7C4 00438704  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 8043B7C8 00438708  4E 80 00 20 */	blr 
+.endfn doDrawLetter__Q25P2JME19TRenderingProcessorFffffib
 
-.global doDrawRuby__Q25P2JME19TRenderingProcessorFffffib
-doDrawRuby__Q25P2JME19TRenderingProcessorFffffib:
+.fn doDrawRuby__Q25P2JME19TRenderingProcessorFffffib, global
 /* 8043B7CC 0043870C  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 8043B7D0 00438710  7C 08 02 A6 */	mflr r0
 /* 8043B7D4 00438714  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -3005,9 +3004,9 @@ doDrawRuby__Q25P2JME19TRenderingProcessorFffffib:
 /* 8043BA5C 0043899C  7C 08 03 A6 */	mtlr r0
 /* 8043BA60 004389A0  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 8043BA64 004389A4  4E 80 00 20 */	blr 
+.endfn doDrawRuby__Q25P2JME19TRenderingProcessorFffffib
 
-.global doDrawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff
-doDrawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff:
+.fn doDrawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff, global
 /* 8043BA68 004389A8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8043BA6C 004389AC  7C 08 02 A6 */	mflr r0
 /* 8043BA70 004389B0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3037,9 +3036,9 @@ doDrawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff:
 /* 8043BAD0 00438A10  7C 08 03 A6 */	mtlr r0
 /* 8043BAD4 00438A14  38 21 00 30 */	addi r1, r1, 0x30
 /* 8043BAD8 00438A18  4E 80 00 20 */	blr 
+.endfn doDrawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff
 
-.global setImageGX__Q25P2JME19TRenderingProcessorFv
-setImageGX__Q25P2JME19TRenderingProcessorFv:
+.fn setImageGX__Q25P2JME19TRenderingProcessorFv, global
 /* 8043BADC 00438A1C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043BAE0 00438A20  7C 08 02 A6 */	mflr r0
 /* 8043BAE4 00438A24  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3247,9 +3246,9 @@ setImageGX__Q25P2JME19TRenderingProcessorFv:
 /* 8043BE04 00438D44  7C 08 03 A6 */	mtlr r0
 /* 8043BE08 00438D48  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043BE0C 00438D4C  4E 80 00 20 */	blr 
+.endfn setImageGX__Q25P2JME19TRenderingProcessorFv
 
-.global drawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff
-drawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff:
+.fn drawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff, global
 /* 8043BE10 00438D50  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 8043BE14 00438D54  7C 08 02 A6 */	mflr r0
 /* 8043BE18 00438D58  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -3591,16 +3590,16 @@ drawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff:
 /* 8043C2F8 00439238  7C 08 03 A6 */	mtlr r0
 /* 8043C2FC 0043923C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 8043C300 00439240  4E 80 00 20 */	blr 
+.endfn drawImage__Q25P2JME19TRenderingProcessorFP10JUTTextureffff
 
-.global reset__Q25P2JME19TRenderingProcessorFv
-reset__Q25P2JME19TRenderingProcessorFv:
+.fn reset__Q25P2JME19TRenderingProcessorFv, global
 /* 8043C304 00439244  C0 02 25 60 */	lfs f0, lbl_805208C0@sda21(r2)
 /* 8043C308 00439248  D0 03 00 54 */	stfs f0, 0x54(r3)
 /* 8043C30C 0043924C  D0 03 00 58 */	stfs f0, 0x58(r3)
 /* 8043C310 00439250  4E 80 00 20 */	blr 
+.endfn reset__Q25P2JME19TRenderingProcessorFv
 
-.global calcWidth__Q25P2JME19TRenderingProcessorFP7JUTFontifb
-calcWidth__Q25P2JME19TRenderingProcessorFP7JUTFontifb:
+.fn calcWidth__Q25P2JME19TRenderingProcessorFP7JUTFontifb, global
 /* 8043C314 00439254  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8043C318 00439258  7C 08 02 A6 */	mflr r0
 /* 8043C31C 0043925C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3678,9 +3677,9 @@ calcWidth__Q25P2JME19TRenderingProcessorFP7JUTFontifb:
 /* 8043C430 00439370  7C 08 03 A6 */	mtlr r0
 /* 8043C434 00439374  38 21 00 40 */	addi r1, r1, 0x40
 /* 8043C438 00439378  4E 80 00 20 */	blr 
+.endfn calcWidth__Q25P2JME19TRenderingProcessorFP7JUTFontifb
 
-.global setLineWidth__Q25P2JME19TRenderingProcessorFv
-setLineWidth__Q25P2JME19TRenderingProcessorFv:
+.fn setLineWidth__Q25P2JME19TRenderingProcessorFv, global
 /* 8043C43C 0043937C  80 03 00 8C */	lwz r0, 0x8c(r3)
 /* 8043C440 00439380  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8043C444 00439384  4D 82 00 20 */	beqlr 
@@ -3690,9 +3689,9 @@ setLineWidth__Q25P2JME19TRenderingProcessorFv:
 /* 8043C454 00439394  54 00 10 3A */	slwi r0, r0, 2
 /* 8043C458 00439398  7C 03 05 2E */	stfsx f0, r3, r0
 /* 8043C45C 0043939C  4E 80 00 20 */	blr 
+.endfn setLineWidth__Q25P2JME19TRenderingProcessorFv
 
-.global resetLineWidth__Q25P2JME19TRenderingProcessorFv
-resetLineWidth__Q25P2JME19TRenderingProcessorFv:
+.fn resetLineWidth__Q25P2JME19TRenderingProcessorFv, global
 /* 8043C460 004393A0  38 00 00 04 */	li r0, 4
 /* 8043C464 004393A4  C0 02 25 60 */	lfs f0, lbl_805208C0@sda21(r2)
 /* 8043C468 004393A8  39 60 00 00 */	li r11, 0
@@ -3748,9 +3747,9 @@ resetLineWidth__Q25P2JME19TRenderingProcessorFv:
 /* 8043C52C 0043946C  7C 04 05 2E */	stfsx f0, r4, r0
 /* 8043C530 00439470  42 00 FF 40 */	bdnz .L_8043C470
 /* 8043C534 00439474  4E 80 00 20 */	blr 
+.endfn resetLineWidth__Q25P2JME19TRenderingProcessorFv
 
-.global setOnePageLine__Q25P2JME19TRenderingProcessorFv
-setOnePageLine__Q25P2JME19TRenderingProcessorFv:
+.fn setOnePageLine__Q25P2JME19TRenderingProcessorFv, global
 /* 8043C538 00439478  80 03 00 8C */	lwz r0, 0x8c(r3)
 /* 8043C53C 0043947C  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8043C540 00439480  4D 82 00 20 */	beqlr 
@@ -3770,9 +3769,9 @@ setOnePageLine__Q25P2JME19TRenderingProcessorFv:
 /* 8043C56C 004394AC  7C 05 00 00 */	cmpw r5, r0
 /* 8043C570 004394B0  41 80 FF DC */	blt .L_8043C54C
 /* 8043C574 004394B4  4E 80 00 20 */	blr 
+.endfn setOnePageLine__Q25P2JME19TRenderingProcessorFv
 
-.global resetOnePageLine__Q25P2JME19TRenderingProcessorFv
-resetOnePageLine__Q25P2JME19TRenderingProcessorFv:
+.fn resetOnePageLine__Q25P2JME19TRenderingProcessorFv, global
 /* 8043C578 004394B8  38 00 00 04 */	li r0, 4
 /* 8043C57C 004394BC  39 80 00 00 */	li r12, 0
 /* 8043C580 004394C0  7C 09 03 A6 */	mtctr r0
@@ -3828,9 +3827,9 @@ resetOnePageLine__Q25P2JME19TRenderingProcessorFv:
 /* 8043C644 00439584  7D 64 01 AE */	stbx r11, r4, r0
 /* 8043C648 00439588  42 00 FF 3C */	bdnz .L_8043C584
 /* 8043C64C 0043958C  4E 80 00 20 */	blr 
+.endfn resetOnePageLine__Q25P2JME19TRenderingProcessorFv
 
-.global setPageInfo__Q25P2JME19TRenderingProcessorFv
-setPageInfo__Q25P2JME19TRenderingProcessorFv:
+.fn setPageInfo__Q25P2JME19TRenderingProcessorFv, global
 /* 8043C650 00439590  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043C654 00439594  7C 08 02 A6 */	mflr r0
 /* 8043C658 00439598  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3868,9 +3867,9 @@ setPageInfo__Q25P2JME19TRenderingProcessorFv:
 /* 8043C6D0 00439610  7C 08 03 A6 */	mtlr r0
 /* 8043C6D4 00439614  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043C6D8 00439618  4E 80 00 20 */	blr 
+.endfn setPageInfo__Q25P2JME19TRenderingProcessorFv
 
-.global preProcCode__Q25P2JME19TRenderingProcessorFUi
-preProcCode__Q25P2JME19TRenderingProcessorFUi:
+.fn preProcCode__Q25P2JME19TRenderingProcessorFUi, global
 /* 8043C6DC 0043961C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043C6E0 00439620  7C 08 02 A6 */	mflr r0
 /* 8043C6E4 00439624  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3879,9 +3878,9 @@ preProcCode__Q25P2JME19TRenderingProcessorFUi:
 /* 8043C6F0 00439630  7C 08 03 A6 */	mtlr r0
 /* 8043C6F4 00439634  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043C6F8 00439638  4E 80 00 20 */	blr 
+.endfn preProcCode__Q25P2JME19TRenderingProcessorFUi
 
-.global preProcID__Q25P2JME19TRenderingProcessorFUiUi
-preProcID__Q25P2JME19TRenderingProcessorFUiUi:
+.fn preProcID__Q25P2JME19TRenderingProcessorFUiUi, global
 /* 8043C6FC 0043963C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043C700 00439640  7C 08 02 A6 */	mflr r0
 /* 8043C704 00439644  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3890,9 +3889,9 @@ preProcID__Q25P2JME19TRenderingProcessorFUiUi:
 /* 8043C710 00439650  7C 08 03 A6 */	mtlr r0
 /* 8043C714 00439654  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043C718 00439658  4E 80 00 20 */	blr 
+.endfn preProcID__Q25P2JME19TRenderingProcessorFUiUi
 
-.global preProcCenteringCode__Q25P2JME19TRenderingProcessorFUi
-preProcCenteringCode__Q25P2JME19TRenderingProcessorFUi:
+.fn preProcCenteringCode__Q25P2JME19TRenderingProcessorFUi, global
 /* 8043C71C 0043965C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043C720 00439660  7C 08 02 A6 */	mflr r0
 /* 8043C724 00439664  39 40 00 00 */	li r10, 0
@@ -4134,9 +4133,9 @@ preProcCenteringCode__Q25P2JME19TRenderingProcessorFUi:
 /* 8043CAAC 004399EC  7C 08 03 A6 */	mtlr r0
 /* 8043CAB0 004399F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043CAB4 004399F4  4E 80 00 20 */	blr 
+.endfn preProcCenteringCode__Q25P2JME19TRenderingProcessorFUi
 
-.global preProcCenteringID__Q25P2JME19TRenderingProcessorFUiUi
-preProcCenteringID__Q25P2JME19TRenderingProcessorFUiUi:
+.fn preProcCenteringID__Q25P2JME19TRenderingProcessorFUiUi, global
 /* 8043CAB8 004399F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8043CABC 004399FC  7C 08 02 A6 */	mflr r0
 /* 8043CAC0 00439A00  39 40 00 00 */	li r10, 0
@@ -4382,14 +4381,14 @@ preProcCenteringID__Q25P2JME19TRenderingProcessorFUiUi:
 /* 8043CE58 00439D98  7C 08 03 A6 */	mtlr r0
 /* 8043CE5C 00439D9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8043CE60 00439DA0  4E 80 00 20 */	blr 
+.endfn preProcCenteringID__Q25P2JME19TRenderingProcessorFUiUi
 
-.global setFont__Q25P2JME19TRenderingProcessorFP7JUTFont
-setFont__Q25P2JME19TRenderingProcessorFP7JUTFont:
+.fn setFont__Q25P2JME19TRenderingProcessorFP7JUTFont, global
 /* 8043CE64 00439DA4  90 83 00 4C */	stw r4, 0x4c(r3)
 /* 8043CE68 00439DA8  4E 80 00 20 */	blr 
+.endfn setFont__Q25P2JME19TRenderingProcessorFP7JUTFont
 
-.global setTextBoxInfo__Q25P2JME19TRenderingProcessorFP7J2DPane
-setTextBoxInfo__Q25P2JME19TRenderingProcessorFP7J2DPane:
+.fn setTextBoxInfo__Q25P2JME19TRenderingProcessorFP7J2DPane, global
 /* 8043CE6C 00439DAC  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8043CE70 00439DB0  7C 08 02 A6 */	mflr r0
 /* 8043CE74 00439DB4  90 01 00 94 */	stw r0, 0x94(r1)
@@ -4676,9 +4675,9 @@ setTextBoxInfo__Q25P2JME19TRenderingProcessorFP7J2DPane:
 /* 8043D2AC 0043A1EC  7C 08 03 A6 */	mtlr r0
 /* 8043D2B0 0043A1F0  38 21 00 90 */	addi r1, r1, 0x90
 /* 8043D2B4 0043A1F4  4E 80 00 20 */	blr 
+.endfn setTextBoxInfo__Q25P2JME19TRenderingProcessorFP7J2DPane
 
-.global __dt__Q25P2JME19TRenderingProcessorFv
-__dt__Q25P2JME19TRenderingProcessorFv:
+.fn __dt__Q25P2JME19TRenderingProcessorFv, weak
 /* 8043D2B8 0043A1F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043D2BC 0043A1FC  7C 08 02 A6 */	mflr r0
 /* 8043D2C0 0043A200  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4709,7 +4708,8 @@ __dt__Q25P2JME19TRenderingProcessorFv:
 /* 8043D31C 0043A25C  7C 08 03 A6 */	mtlr r0
 /* 8043D320 0043A260  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043D324 0043A264  4E 80 00 20 */	blr 
+.endfn __dt__Q25P2JME19TRenderingProcessorFv
 
-.global do_character__Q25P2JME23TRenderingProcessorBaseFi
-do_character__Q25P2JME23TRenderingProcessorBaseFi:
+.fn do_character__Q25P2JME23TRenderingProcessorBaseFi, weak
 /* 8043D328 0043A268  4E 80 00 20 */	blr 
+.endfn do_character__Q25P2JME23TRenderingProcessorBaseFi

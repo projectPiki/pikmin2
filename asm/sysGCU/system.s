@@ -56,66 +56,85 @@ lbl_constructor:
 	.asciz "cpuLockCount %d retraceCount %d\n"
 .endobj lbl_804998A8
 .balign 4
-lbl_804998CC:
+.obj lbl_804998CC, local
 	.asciz "system/retrace"
+.endobj lbl_804998CC
 .balign 4
-lbl_804998DC:
+.obj lbl_804998DC, local
 	.asciz "CPU LOCKED!"
+.endobj lbl_804998DC
 .balign 4
-lbl_804998E8:
+.obj lbl_804998E8, local
 	.asciz "/pikmin2UP.map"
+.endobj lbl_804998E8
 .balign 4
-lbl_804998F8:
+.obj lbl_804998F8, local
 	.asciz "construct"
+.endobj lbl_804998F8
 .balign 4
-lbl_80499904:
+.obj lbl_80499904, local
 	.asciz "DvdThread"
+.endobj lbl_80499904
 .balign 4
-lbl_80499910:
+.obj lbl_80499910, local
 	.asciz "SysTimers"
+.endobj lbl_80499910
 .balign 4
-lbl_8049991C:
+.obj lbl_8049991C, local
 	.asciz "ResetManager"
+.endobj lbl_8049991C
 .balign 4
-lbl_8049992C:
+.obj lbl_8049992C, local
 	.asciz "ResourceMgr2D"
+.endobj lbl_8049992C
 .balign 4
-lbl_8049993C:
+.obj lbl_8049993C, local
 	.asciz "P2Assert"
+.endobj lbl_8049993C
 .balign 4
-lbl_80499948:
+.obj lbl_80499948, local
 	.asciz "constructWithDvdAccess1st"
+.endobj lbl_80499948
 .balign 4
-lbl_80499964:
+.obj lbl_80499964, local
 	.asciz "gameConfig.ini"
+.endobj lbl_80499964
 .balign 4
-lbl_80499974:
+.obj lbl_80499974, local
 	.asciz "constructWithDvdAccess2nd"
+.endobj lbl_80499974
 .balign 4
-lbl_80499990:
+.obj lbl_80499990, local
 	.asciz "P2JME::Mgr"
+.endobj lbl_80499990
 .balign 4
-lbl_8049999C:
+.obj lbl_8049999C, local
 	.asciz "SoundSystem"
+.endobj lbl_8049999C
 .balign 4
-lbl_804999A8:
+.obj lbl_804999A8, local
 	.asciz "/AudioRes"
+.endobj lbl_804999A8
 .balign 4
-lbl_804999B4:
+.obj lbl_804999B4, local
 	.asciz "PSound.aaf"
+.endobj lbl_804999B4
 .balign 4
-lbl_804999C0:
+.obj lbl_804999C0, local
 	.asciz "PSGame.h"
+.endobj lbl_804999C0
 .balign 4
-lbl_804999CC:
+.obj lbl_804999CC, local
 	.asciz "unknown renderMode:%d \n"
+.endobj lbl_804999CC
 .balign 4
-lbl_804999E4:
+.obj lbl_804999E4, local
 	.asciz "no display"
+.endobj lbl_804999E4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-localNtsc608x448IntDfProg:
+.obj localNtsc608x448IntDfProg, local
 	.4byte 0x00000002
 	.4byte 0x026001C0
 	.4byte 0x01C0001B
@@ -131,7 +150,8 @@ localNtsc608x448IntDfProg:
 	.4byte 0x06060000
 	.4byte 0x15161500
 	.4byte 0x00000000
-localNtsc608x448IntDf:
+.endobj localNtsc608x448IntDfProg
+.obj localNtsc608x448IntDf, local
 	.4byte 0x00000000
 	.4byte 0x026001C0
 	.4byte 0x01C0001B
@@ -147,7 +167,8 @@ localNtsc608x448IntDf:
 	.4byte 0x06060707
 	.4byte 0x0C0C0C07
 	.4byte 0x07000000
-localPal608x448IntDf:
+.endobj localNtsc608x448IntDf
+.obj localPal608x448IntDf, local
 	.4byte 0x00000004
 	.4byte 0x026001C0
 	.4byte 0x021A0019
@@ -163,7 +184,8 @@ localPal608x448IntDf:
 	.4byte 0x06060707
 	.4byte 0x0C0C0C07
 	.4byte 0x07000000
-localPal60608x448IntDf:
+.endobj localPal608x448IntDf
+.obj localPal60608x448IntDf, local
 	.4byte 0x00000014
 	.4byte 0x026001C0
 	.4byte 0x01C0001B
@@ -179,35 +201,39 @@ localPal60608x448IntDf:
 	.4byte 0x06060707
 	.4byte 0x0C0C0C07
 	.4byte 0x07000000
-sRenderModeTable:
+.endobj localPal60608x448IntDf
+.obj sRenderModeTable, local
 	.4byte localNtsc608x448IntDf
 	.4byte localNtsc608x448IntDfProg
 	.4byte localPal608x448IntDf
 	.4byte localPal60608x448IntDf
-lbl_804EBB40:
+.endobj sRenderModeTable
+.obj lbl_804EBB40, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte constructWithDvdAccessFirst__6SystemFv
-lbl_804EBB4C:
+.endobj lbl_804EBB40
+.obj lbl_804EBB4C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte constructWithDvdAccessSecond__6SystemFv
-.global __vt__9AppThread
-__vt__9AppThread:
+.endobj lbl_804EBB4C
+.obj __vt__9AppThread, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__9AppThreadFv
 	.4byte run__9JKRThreadFv
-.global "__vt__17Delegate<6System>"
-"__vt__17Delegate<6System>":
+.endobj __vt__9AppThread
+.obj "__vt__17Delegate<6System>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__17Delegate<6System>Fv"
-.global __vt__Q23PSM7Factory
-__vt__Q23PSM7Factory:
+.endobj "__vt__17Delegate<6System>"
+.obj __vt__Q23PSM7Factory, weak
 	.4byte 0
 	.4byte 0
 	.4byte newSceneMgr__Q23PSM7FactoryFv
+.endobj __vt__Q23PSM7Factory
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -272,7 +298,7 @@ __vt__Q23PSM7Factory:
 .endobj lbl_80520438
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-Pikmin2DefaultMemoryErrorRoutine__FPvUli: #local function
+.fn Pikmin2DefaultMemoryErrorRoutine__FPvUli, local
 /* 80421EC4 0041EE04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80421EC8 0041EE08  7C 08 02 A6 */	mflr r0
 /* 80421ECC 0041EE0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -313,8 +339,9 @@ Pikmin2DefaultMemoryErrorRoutine__FPvUli: #local function
 /* 80421F58 0041EE98  7C 08 03 A6 */	mtlr r0
 /* 80421F5C 0041EE9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80421F60 0041EEA0  4E 80 00 20 */	blr 
+.endfn Pikmin2DefaultMemoryErrorRoutine__FPvUli
 
-kando_panic_f__FbPCciPCce: # local function
+.fn kando_panic_f__FbPCciPCce, local
 /* 80421F64 0041EEA4  94 21 FB A0 */	stwu r1, -0x460(r1)
 /* 80421F68 0041EEA8  7C 08 02 A6 */	mflr r0
 /* 80421F6C 0041EEAC  90 01 04 64 */	stw r0, 0x464(r1)
@@ -418,8 +445,9 @@ kando_panic_f__FbPCciPCce: # local function
 /* 804220E0 0041F020  7C 08 03 A6 */	mtlr r0
 /* 804220E4 0041F024  38 21 04 60 */	addi r1, r1, 0x460
 /* 804220E8 0041F028  4E 80 00 20 */	blr 
+.endfn kando_panic_f__FbPCciPCce
 
-preUserCallback__FUsP9OSContextUlUl: # local function
+.fn preUserCallback__FUsP9OSContextUlUl, local
 /* 804220EC 0041F02C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 804220F0 0041F030  7C 08 02 A6 */	mflr r0
 /* 804220F4 0041F034  3C 80 80 4A */	lis r4, lbl_804997C8@ha
@@ -494,9 +522,9 @@ preUserCallback__FUsP9OSContextUlUl: # local function
 /* 804221F8 0041F138  7C 08 03 A6 */	mtlr r0
 /* 804221FC 0041F13C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80422200 0041F140  4E 80 00 20 */	blr 
+.endfn preUserCallback__FUsP9OSContextUlUl
 
-.global myTask__FPv
-myTask__FPv:
+.fn myTask__FPv, global
 /* 80422204 0041F144  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422208 0041F148  7C 08 02 A6 */	mflr r0
 /* 8042220C 0041F14C  7C 64 1B 78 */	mr r4, r3
@@ -508,9 +536,9 @@ myTask__FPv:
 /* 80422224 0041F164  7C 08 03 A6 */	mtlr r0
 /* 80422228 0041F168  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042222C 0041F16C  4E 80 00 20 */	blr 
+.endfn myTask__FPv
 
-.global __ct__Q26System20FragmentationCheckerFPcb
-__ct__Q26System20FragmentationCheckerFPcb:
+.fn __ct__Q26System20FragmentationCheckerFPcb, global
 /* 80422230 0041F170  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422234 0041F174  7C 08 02 A6 */	mflr r0
 /* 80422238 0041F178  90 01 00 14 */	stw r0, 0x14(r1)
@@ -532,9 +560,9 @@ __ct__Q26System20FragmentationCheckerFPcb:
 /* 80422278 0041F1B8  7C 08 03 A6 */	mtlr r0
 /* 8042227C 0041F1BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422280 0041F1C0  4E 80 00 20 */	blr 
+.endfn __ct__Q26System20FragmentationCheckerFPcb
 
-.global __dt__Q26System20FragmentationCheckerFv
-__dt__Q26System20FragmentationCheckerFv:
+.fn __dt__Q26System20FragmentationCheckerFv, global
 /* 80422284 0041F1C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422288 0041F1C8  7C 08 02 A6 */	mflr r0
 /* 8042228C 0041F1CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -559,9 +587,9 @@ __dt__Q26System20FragmentationCheckerFv:
 /* 804222D4 0041F214  7C 08 03 A6 */	mtlr r0
 /* 804222D8 0041F218  38 21 00 10 */	addi r1, r1, 0x10
 /* 804222DC 0041F21C  4E 80 00 20 */	blr 
+.endfn __dt__Q26System20FragmentationCheckerFv
 
-.global assert_fragmentation__6SystemFPc
-assert_fragmentation__6SystemFPc:
+.fn assert_fragmentation__6SystemFPc, global
 /* 804222E0 0041F220  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804222E4 0041F224  7C 08 02 A6 */	mflr r0
 /* 804222E8 0041F228  90 01 00 14 */	stw r0, 0x14(r1)
@@ -577,25 +605,25 @@ assert_fragmentation__6SystemFPc:
 /* 80422310 0041F250  7C 08 03 A6 */	mtlr r0
 /* 80422314 0041F254  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422318 0041F258  4E 80 00 20 */	blr 
+.endfn assert_fragmentation__6SystemFPc
 
-.global enableCPULockDetector__6SystemFi
-enableCPULockDetector__6SystemFi:
+.fn enableCPULockDetector__6SystemFi, global
 /* 8042231C 0041F25C  38 00 00 00 */	li r0, 0
 /* 80422320 0041F260  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 80422324 0041F264  90 83 00 20 */	stw r4, 0x20(r3)
 /* 80422328 0041F268  4E 80 00 20 */	blr 
+.endfn enableCPULockDetector__6SystemFi
 
-.global disableCPULockDetector__6SystemFv
-disableCPULockDetector__6SystemFv:
+.fn disableCPULockDetector__6SystemFv, global
 /* 8042232C 0041F26C  80 83 00 20 */	lwz r4, 0x20(r3)
 /* 80422330 0041F270  38 00 00 00 */	li r0, 0
 /* 80422334 0041F274  90 03 00 20 */	stw r0, 0x20(r3)
 /* 80422338 0041F278  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 8042233C 0041F27C  7C 83 23 78 */	mr r3, r4
 /* 80422340 0041F280  4E 80 00 20 */	blr 
+.endfn disableCPULockDetector__6SystemFv
 
-.global retraceCallback__FUl
-retraceCallback__FUl:
+.fn retraceCallback__FUl, global
 /* 80422344 0041F284  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422348 0041F288  7C 08 02 A6 */	mflr r0
 /* 8042234C 0041F28C  3C 60 80 4A */	lis r3, lbl_804997C8@ha
@@ -639,9 +667,9 @@ retraceCallback__FUl:
 /* 804223DC 0041F31C  7C 08 03 A6 */	mtlr r0
 /* 804223E0 0041F320  38 21 00 10 */	addi r1, r1, 0x10
 /* 804223E4 0041F324  4E 80 00 20 */	blr 
+.endfn retraceCallback__FUl
 
-.global __ct__6SystemFv
-__ct__6SystemFv:
+.fn __ct__6SystemFv, global
 /* 804223E8 0041F328  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804223EC 0041F32C  7C 08 02 A6 */	mflr r0
 /* 804223F0 0041F330  C0 22 20 A8 */	lfs f1, lbl_80520408@sda21(r2)
@@ -714,9 +742,9 @@ __ct__6SystemFv:
 /* 804224F8 0041F438  7C 08 03 A6 */	mtlr r0
 /* 804224FC 0041F43C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422500 0041F440  4E 80 00 20 */	blr 
+.endfn __ct__6SystemFv
 
-.global construct__6SystemFv
-construct__6SystemFv:
+.fn construct__6SystemFv, global
 /* 80422504 0041F444  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422508 0041F448  7C 08 02 A6 */	mflr r0
 /* 8042250C 0041F44C  3C 80 80 4A */	lis r4, lbl_804997C8@ha
@@ -857,9 +885,9 @@ construct__6SystemFv:
 /* 8042270C 0041F64C  7C 08 03 A6 */	mtlr r0
 /* 80422710 0041F650  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422714 0041F654  4E 80 00 20 */	blr 
+.endfn construct__6SystemFv
 
-.global constructWithDvdAccessFirst__6SystemFv
-constructWithDvdAccessFirst__6SystemFv:
+.fn constructWithDvdAccessFirst__6SystemFv, global
 /* 80422718 0041F658  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042271C 0041F65C  7C 08 02 A6 */	mflr r0
 /* 80422720 0041F660  3C 80 80 4A */	lis r4, lbl_804997C8@ha
@@ -919,9 +947,9 @@ constructWithDvdAccessFirst__6SystemFv:
 /* 804227F4 0041F734  7C 08 03 A6 */	mtlr r0
 /* 804227F8 0041F738  38 21 00 20 */	addi r1, r1, 0x20
 /* 804227FC 0041F73C  4E 80 00 20 */	blr 
+.endfn constructWithDvdAccessFirst__6SystemFv
 
-.global constructWithDvdAccessSecond__6SystemFv
-constructWithDvdAccessSecond__6SystemFv:
+.fn constructWithDvdAccessSecond__6SystemFv, global
 /* 80422800 0041F740  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80422804 0041F744  7C 08 02 A6 */	mflr r0
 /* 80422808 0041F748  3C 80 80 4A */	lis r4, lbl_804997C8@ha
@@ -996,9 +1024,9 @@ constructWithDvdAccessSecond__6SystemFv:
 /* 80422914 0041F854  7C 08 03 A6 */	mtlr r0
 /* 80422918 0041F858  38 21 00 20 */	addi r1, r1, 0x20
 /* 8042291C 0041F85C  4E 80 00 20 */	blr 
+.endfn constructWithDvdAccessSecond__6SystemFv
 
-.global createRomFont__6SystemFP7JKRHeap
-createRomFont__6SystemFP7JKRHeap:
+.fn createRomFont__6SystemFP7JKRHeap, global
 /* 80422920 0041F860  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422924 0041F864  7C 08 02 A6 */	mflr r0
 /* 80422928 0041F868  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1021,9 +1049,9 @@ createRomFont__6SystemFP7JKRHeap:
 /* 80422968 0041F8A8  7C 08 03 A6 */	mtlr r0
 /* 8042296C 0041F8AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422970 0041F8B0  4E 80 00 20 */	blr 
+.endfn createRomFont__6SystemFP7JKRHeap
 
-.global destroyRomFont__6SystemFv
-destroyRomFont__6SystemFv:
+.fn destroyRomFont__6SystemFv, global
 /* 80422974 0041F8B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422978 0041F8B8  7C 08 02 A6 */	mflr r0
 /* 8042297C 0041F8BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1045,9 +1073,9 @@ destroyRomFont__6SystemFv:
 /* 804229B8 0041F8F8  7C 08 03 A6 */	mtlr r0
 /* 804229BC 0041F8FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804229C0 0041F900  4E 80 00 20 */	blr 
+.endfn destroyRomFont__6SystemFv
 
-.global createSoundSystem__6SystemFv
-createSoundSystem__6SystemFv:
+.fn createSoundSystem__6SystemFv, global
 /* 804229C4 0041F904  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804229C8 0041F908  7C 08 02 A6 */	mflr r0
 /* 804229CC 0041F90C  3C 80 80 4A */	lis r4, lbl_804997C8@ha
@@ -1164,9 +1192,9 @@ createSoundSystem__6SystemFv:
 /* 80422B70 0041FAB0  7C 08 03 A6 */	mtlr r0
 /* 80422B74 0041FAB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80422B78 0041FAB8  4E 80 00 20 */	blr 
+.endfn createSoundSystem__6SystemFv
 
-.global loadSoundResource__6SystemFv
-loadSoundResource__6SystemFv:
+.fn loadSoundResource__6SystemFv, global
 /* 80422B7C 0041FABC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80422B80 0041FAC0  7C 08 02 A6 */	mflr r0
 /* 80422B84 0041FAC4  3C 60 80 4A */	lis r3, lbl_804997C8@ha
@@ -1228,9 +1256,9 @@ loadSoundResource__6SystemFv:
 /* 80422C58 0041FB98  7C 08 03 A6 */	mtlr r0
 /* 80422C5C 0041FB9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80422C60 0041FBA0  4E 80 00 20 */	blr 
+.endfn loadSoundResource__6SystemFv
 
-.global initialize__6SystemFv
-initialize__6SystemFv:
+.fn initialize__6SystemFv, global
 /* 80422C64 0041FBA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422C68 0041FBA8  7C 08 02 A6 */	mflr r0
 /* 80422C6C 0041FBAC  3C A0 80 70 */	lis r5, 0x80700000@ha
@@ -1295,9 +1323,9 @@ initialize__6SystemFv:
 /* 80422D50 0041FC90  7C 08 03 A6 */	mtlr r0
 /* 80422D54 0041FC94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422D58 0041FC98  4E 80 00 20 */	blr 
+.endfn initialize__6SystemFv
 
-.global loadResourceFirst__6SystemFv
-loadResourceFirst__6SystemFv:
+.fn loadResourceFirst__6SystemFv, global
 /* 80422D5C 0041FC9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80422D60 0041FCA0  7C 08 02 A6 */	mflr r0
 /* 80422D64 0041FCA4  38 A0 00 00 */	li r5, 0
@@ -1336,9 +1364,9 @@ loadResourceFirst__6SystemFv:
 /* 80422DE4 0041FD24  7C 08 03 A6 */	mtlr r0
 /* 80422DE8 0041FD28  38 21 00 20 */	addi r1, r1, 0x20
 /* 80422DEC 0041FD2C  4E 80 00 20 */	blr 
+.endfn loadResourceFirst__6SystemFv
 
-.global loadResourceSecond__6SystemFv
-loadResourceSecond__6SystemFv:
+.fn loadResourceSecond__6SystemFv, global
 /* 80422DF0 0041FD30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80422DF4 0041FD34  7C 08 02 A6 */	mflr r0
 /* 80422DF8 0041FD38  38 A0 00 00 */	li r5, 0
@@ -1377,9 +1405,9 @@ loadResourceSecond__6SystemFv:
 /* 80422E78 0041FDB8  7C 08 03 A6 */	mtlr r0
 /* 80422E7C 0041FDBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80422E80 0041FDC0  4E 80 00 20 */	blr 
+.endfn loadResourceSecond__6SystemFv
 
-.global run__6SystemFv
-run__6SystemFv:
+.fn run__6SystemFv, global
 /* 80422E84 0041FDC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422E88 0041FDC8  7C 08 02 A6 */	mflr r0
 /* 80422E8C 0041FDCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1393,9 +1421,9 @@ run__6SystemFv:
 /* 80422EAC 0041FDEC  7C 08 03 A6 */	mtlr r0
 /* 80422EB0 0041FDF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422EB4 0041FDF4  4E 80 00 20 */	blr 
+.endfn run__6SystemFv
 
-.global getTime__6SystemFv
-getTime__6SystemFv:
+.fn getTime__6SystemFv, global
 /* 80422EB8 0041FDF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422EBC 0041FDFC  7C 08 02 A6 */	mflr r0
 /* 80422EC0 0041FE00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1418,28 +1446,28 @@ getTime__6SystemFv:
 /* 80422F04 0041FE44  7C 08 03 A6 */	mtlr r0
 /* 80422F08 0041FE48  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422F0C 0041FE4C  4E 80 00 20 */	blr 
+.endfn getTime__6SystemFv
 
-.global clearOptionBlockSaveFlag__6SystemFv
-clearOptionBlockSaveFlag__6SystemFv:
+.fn clearOptionBlockSaveFlag__6SystemFv, global
 /* 80422F10 0041FE50  80 63 00 60 */	lwz r3, 0x60(r3)
 /* 80422F14 0041FE54  38 00 00 00 */	li r0, 0
 /* 80422F18 0041FE58  98 03 00 42 */	stb r0, 0x42(r3)
 /* 80422F1C 0041FE5C  4E 80 00 20 */	blr 
+.endfn clearOptionBlockSaveFlag__6SystemFv
 
-.global setOptionBlockSaveFlag__6SystemFv
-setOptionBlockSaveFlag__6SystemFv:
+.fn setOptionBlockSaveFlag__6SystemFv, global
 /* 80422F20 0041FE60  80 63 00 60 */	lwz r3, 0x60(r3)
 /* 80422F24 0041FE64  38 00 00 01 */	li r0, 1
 /* 80422F28 0041FE68  98 03 00 42 */	stb r0, 0x42(r3)
 /* 80422F2C 0041FE6C  4E 80 00 20 */	blr 
+.endfn setOptionBlockSaveFlag__6SystemFv
 
-.global getPlayCommonData__6SystemFv
-getPlayCommonData__6SystemFv:
+.fn getPlayCommonData__6SystemFv, global
 /* 80422F30 0041FE70  80 63 00 60 */	lwz r3, 0x60(r3)
 /* 80422F34 0041FE74  4E 80 00 20 */	blr 
+.endfn getPlayCommonData__6SystemFv
 
-.global dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate:
+.fn dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate, global
 /* 80422F38 0041FE78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422F3C 0041FE7C  7C 08 02 A6 */	mflr r0
 /* 80422F40 0041FE80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1463,9 +1491,9 @@ dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate:
 /* 80422F84 0041FEC4  7C 08 03 A6 */	mtlr r0
 /* 80422F88 0041FEC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422F8C 0041FECC  4E 80 00 20 */	blr 
+.endfn dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
 
-.global deleteThreads__6SystemFv
-deleteThreads__6SystemFv:
+.fn deleteThreads__6SystemFv, global
 /* 80422F90 0041FED0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422F94 0041FED4  7C 08 02 A6 */	mflr r0
 /* 80422F98 0041FED8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1489,9 +1517,9 @@ deleteThreads__6SystemFv:
 /* 80422FD8 0041FF18  7C 08 03 A6 */	mtlr r0
 /* 80422FDC 0041FF1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80422FE0 0041FF20  4E 80 00 20 */	blr 
+.endfn deleteThreads__6SystemFv
 
-.global __dt__9DvdThreadFv
-__dt__9DvdThreadFv: #weak function
+.fn __dt__9DvdThreadFv, weak
 /* 80422FE4 0041FF24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422FE8 0041FF28  7C 08 02 A6 */	mflr r0
 /* 80422FEC 0041FF2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1530,16 +1558,16 @@ __dt__9DvdThreadFv: #weak function
 /* 80423064 0041FFA4  7C 08 03 A6 */	mtlr r0
 /* 80423068 0041FFA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042306C 0041FFAC  4E 80 00 20 */	blr 
+.endfn __dt__9DvdThreadFv
 
-.global setCurrentDisplay__6SystemFP10JFWDisplay
-setCurrentDisplay__6SystemFP10JFWDisplay:
+.fn setCurrentDisplay__6SystemFP10JFWDisplay, global
 /* 80423070 0041FFB0  80 03 00 4C */	lwz r0, 0x4c(r3)
 /* 80423074 0041FFB4  90 83 00 4C */	stw r4, 0x4c(r3)
 /* 80423078 0041FFB8  7C 03 03 78 */	mr r3, r0
 /* 8042307C 0041FFBC  4E 80 00 20 */	blr 
+.endfn setCurrentDisplay__6SystemFP10JFWDisplay
 
-.global clearCurrentDisplay__6SystemFP10JFWDisplay
-clearCurrentDisplay__6SystemFP10JFWDisplay:
+.fn clearCurrentDisplay__6SystemFP10JFWDisplay, global
 /* 80423080 0041FFC0  80 03 00 4C */	lwz r0, 0x4c(r3)
 /* 80423084 0041FFC4  7C 00 20 40 */	cmplw r0, r4
 /* 80423088 0041FFC8  40 82 00 0C */	bne .L_80423094
@@ -1548,9 +1576,9 @@ clearCurrentDisplay__6SystemFP10JFWDisplay:
 .L_80423094:
 /* 80423094 0041FFD4  38 60 00 00 */	li r3, 0
 /* 80423098 0041FFD8  4E 80 00 20 */	blr 
+.endfn clearCurrentDisplay__6SystemFP10JFWDisplay
 
-.global beginFrame__6SystemFv
-beginFrame__6SystemFv:
+.fn beginFrame__6SystemFv, global
 /* 8042309C 0041FFDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804230A0 0041FFE0  7C 08 02 A6 */	mflr r0
 /* 804230A4 0041FFE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1566,9 +1594,9 @@ beginFrame__6SystemFv:
 /* 804230CC 0042000C  7C 08 03 A6 */	mtlr r0
 /* 804230D0 00420010  38 21 00 10 */	addi r1, r1, 0x10
 /* 804230D4 00420014  4E 80 00 20 */	blr 
+.endfn beginFrame__6SystemFv
 
-.global endFrame__6SystemFv
-endFrame__6SystemFv:
+.fn endFrame__6SystemFv, global
 /* 804230D8 00420018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804230DC 0042001C  7C 08 02 A6 */	mflr r0
 /* 804230E0 00420020  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1593,9 +1621,9 @@ endFrame__6SystemFv:
 /* 80423128 00420068  7C 08 03 A6 */	mtlr r0
 /* 8042312C 0042006C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423130 00420070  4E 80 00 20 */	blr 
+.endfn endFrame__6SystemFv
 
-.global beginRender__6SystemFv
-beginRender__6SystemFv:
+.fn beginRender__6SystemFv, global
 /* 80423134 00420074  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423138 00420078  7C 08 02 A6 */	mflr r0
 /* 8042313C 0042007C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1614,9 +1642,9 @@ beginRender__6SystemFv:
 /* 80423170 004200B0  7C 08 03 A6 */	mtlr r0
 /* 80423174 004200B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423178 004200B8  4E 80 00 20 */	blr 
+.endfn beginRender__6SystemFv
 
-.global endRender__6SystemFv
-endRender__6SystemFv:
+.fn endRender__6SystemFv, global
 /* 8042317C 004200BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423180 004200C0  7C 08 02 A6 */	mflr r0
 /* 80423184 004200C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1656,25 +1684,25 @@ endRender__6SystemFv:
 /* 80423208 00420148  7C 08 03 A6 */	mtlr r0
 /* 8042320C 0042014C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423210 00420150  4E 80 00 20 */	blr 
+.endfn endRender__6SystemFv
 
-.global setRenderMode__6SystemFQ26System11ERenderMode
-setRenderMode__6SystemFQ26System11ERenderMode:
+.fn setRenderMode__6SystemFQ26System11ERenderMode, global
 /* 80423214 00420154  80 0D 9A E8 */	lwz r0, mRenderMode__6System@sda21(r13)
 /* 80423218 00420158  90 6D 9A E8 */	stw r3, mRenderMode__6System@sda21(r13)
 /* 8042321C 0042015C  7C 03 03 78 */	mr r3, r0
 /* 80423220 00420160  4E 80 00 20 */	blr 
+.endfn setRenderMode__6SystemFQ26System11ERenderMode
 
-.global getRenderModeObj__6SystemFv
-getRenderModeObj__6SystemFv:
+.fn getRenderModeObj__6SystemFv, global
 /* 80423224 00420164  80 0D 9A E8 */	lwz r0, mRenderMode__6System@sda21(r13)
 /* 80423228 00420168  3C 60 80 4F */	lis r3, sRenderModeTable@ha
 /* 8042322C 0042016C  38 63 BB 30 */	addi r3, r3, sRenderModeTable@l
 /* 80423230 00420170  54 00 10 3A */	slwi r0, r0, 2
 /* 80423234 00420174  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80423238 00420178  4E 80 00 20 */	blr 
+.endfn getRenderModeObj__6SystemFv
 
-.global changeRenderMode__6SystemFQ26System11ERenderMode
-changeRenderMode__6SystemFQ26System11ERenderMode:
+.fn changeRenderMode__6SystemFQ26System11ERenderMode, global
 /* 8042323C 0042017C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80423240 00420180  7C 08 02 A6 */	mflr r0
 /* 80423244 00420184  3C A0 80 4A */	lis r5, lbl_804997C8@ha
@@ -1756,30 +1784,30 @@ changeRenderMode__6SystemFQ26System11ERenderMode:
 /* 80423350 00420290  7C 08 03 A6 */	mtlr r0
 /* 80423354 00420294  38 21 00 20 */	addi r1, r1, 0x20
 /* 80423358 00420298  4E 80 00 20 */	blr 
+.endfn changeRenderMode__6SystemFQ26System11ERenderMode
 
-.global heapStatusStart__6SystemFPcP7JKRHeap
-heapStatusStart__6SystemFPcP7JKRHeap:
+.fn heapStatusStart__6SystemFPcP7JKRHeap, global
 /* 8042335C 0042029C  38 60 00 00 */	li r3, 0
 /* 80423360 004202A0  4E 80 00 20 */	blr 
+.endfn heapStatusStart__6SystemFPcP7JKRHeap
 
-.global heapStatusEnd__6SystemFPc
-heapStatusEnd__6SystemFPc:
+.fn heapStatusEnd__6SystemFPc, global
 /* 80423364 004202A4  4E 80 00 20 */	blr 
+.endfn heapStatusEnd__6SystemFPc
 
-.global heapStatusDump__6SystemFb
-heapStatusDump__6SystemFb:
+.fn heapStatusDump__6SystemFb, global
 /* 80423368 004202A8  4E 80 00 20 */	blr 
+.endfn heapStatusDump__6SystemFb
 
-.global heapStatusIndividual__6SystemFv
-heapStatusIndividual__6SystemFv:
+.fn heapStatusIndividual__6SystemFv, global
 /* 8042336C 004202AC  4E 80 00 20 */	blr 
+.endfn heapStatusIndividual__6SystemFv
 
-.global heapStatusNormal__6SystemFv
-heapStatusNormal__6SystemFv:
+.fn heapStatusNormal__6SystemFv, global
 /* 80423370 004202B0  4E 80 00 20 */	blr 
+.endfn heapStatusNormal__6SystemFv
 
-.global resetOn__6SystemFb
-resetOn__6SystemFb:
+.fn resetOn__6SystemFb, global
 /* 80423374 004202B4  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 80423378 004202B8  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 8042337C 004202BC  80 03 00 0C */	lwz r0, 0xc(r3)
@@ -1790,42 +1818,42 @@ resetOn__6SystemFb:
 /* 80423390 004202D0  60 00 00 08 */	ori r0, r0, 8
 /* 80423394 004202D4  90 03 00 0C */	stw r0, 0xc(r3)
 /* 80423398 004202D8  4E 80 00 20 */	blr 
+.endfn resetOn__6SystemFb
 
-.global resetPermissionOn__6SystemFv
-resetPermissionOn__6SystemFv:
+.fn resetPermissionOn__6SystemFv, global
 /* 8042339C 004202DC  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 804233A0 004202E0  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 804233A4 004202E4  64 00 10 00 */	oris r0, r0, 0x1000
 /* 804233A8 004202E8  90 03 00 0C */	stw r0, 0xc(r3)
 /* 804233AC 004202EC  4E 80 00 20 */	blr 
+.endfn resetPermissionOn__6SystemFv
 
-.global isResetActive__6SystemFv
-isResetActive__6SystemFv:
+.fn isResetActive__6SystemFv, global
 /* 804233B0 004202F0  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 804233B4 004202F4  80 63 00 04 */	lwz r3, 4(r3)
 /* 804233B8 004202F8  7C 03 00 D0 */	neg r0, r3
 /* 804233BC 004202FC  7C 00 1B 78 */	or r0, r0, r3
 /* 804233C0 00420300  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 804233C4 00420304  4E 80 00 20 */	blr 
+.endfn isResetActive__6SystemFv
 
-.global activeGP__6SystemFv
-activeGP__6SystemFv:
+.fn activeGP__6SystemFv, global
 /* 804233C8 00420308  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 804233CC 0042030C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 804233D0 00420310  60 00 00 02 */	ori r0, r0, 2
 /* 804233D4 00420314  90 03 00 0C */	stw r0, 0xc(r3)
 /* 804233D8 00420318  4E 80 00 20 */	blr 
+.endfn activeGP__6SystemFv
 
-.global inactiveGP__6SystemFv
-inactiveGP__6SystemFv:
+.fn inactiveGP__6SystemFv, global
 /* 804233DC 0042031C  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 804233E0 00420320  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 804233E4 00420324  54 00 07 FA */	rlwinm r0, r0, 0, 0x1f, 0x1d
 /* 804233E8 00420328  90 03 00 0C */	stw r0, 0xc(r3)
 /* 804233EC 0042032C  4E 80 00 20 */	blr 
+.endfn inactiveGP__6SystemFv
 
-.global isDvdErrorOccured__6SystemFv
-isDvdErrorOccured__6SystemFv:
+.fn isDvdErrorOccured__6SystemFv, global
 /* 804233F0 00420330  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804233F4 00420334  7C 08 02 A6 */	mflr r0
 /* 804233F8 00420338  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1835,9 +1863,9 @@ isDvdErrorOccured__6SystemFv:
 /* 80423408 00420348  7C 08 03 A6 */	mtlr r0
 /* 8042340C 0042034C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423410 00420350  4E 80 00 20 */	blr 
+.endfn isDvdErrorOccured__6SystemFv
 
-.global initCurrentHeapMutex__6SystemFv
-initCurrentHeapMutex__6SystemFv:
+.fn initCurrentHeapMutex__6SystemFv, global
 /* 80423414 00420354  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423418 00420358  7C 08 02 A6 */	mflr r0
 /* 8042341C 0042035C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1851,9 +1879,9 @@ initCurrentHeapMutex__6SystemFv:
 /* 8042343C 0042037C  7C 08 03 A6 */	mtlr r0
 /* 80423440 00420380  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423444 00420384  4E 80 00 20 */	blr 
+.endfn initCurrentHeapMutex__6SystemFv
 
-.global startChangeCurrentHeap__6SystemFP7JKRHeap
-startChangeCurrentHeap__6SystemFP7JKRHeap:
+.fn startChangeCurrentHeap__6SystemFP7JKRHeap, global
 /* 80423448 00420388  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042344C 0042038C  7C 08 02 A6 */	mflr r0
 /* 80423450 00420390  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1883,9 +1911,9 @@ startChangeCurrentHeap__6SystemFP7JKRHeap:
 /* 804234AC 004203EC  7C 08 03 A6 */	mtlr r0
 /* 804234B0 004203F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 804234B4 004203F4  4E 80 00 20 */	blr 
+.endfn startChangeCurrentHeap__6SystemFP7JKRHeap
 
-.global endChangeCurrentHeap__6SystemFv
-endChangeCurrentHeap__6SystemFv:
+.fn endChangeCurrentHeap__6SystemFv, global
 /* 804234B8 004203F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804234BC 004203FC  7C 08 02 A6 */	mflr r0
 /* 804234C0 00420400  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1913,21 +1941,21 @@ endChangeCurrentHeap__6SystemFv:
 /* 80423514 00420454  7C 08 03 A6 */	mtlr r0
 /* 80423518 00420458  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042351C 0042045C  4E 80 00 20 */	blr 
+.endfn endChangeCurrentHeap__6SystemFv
 
-.global addGenNode__6SystemFP5CNode
-addGenNode__6SystemFP5CNode:
+.fn addGenNode__6SystemFP5CNode, global
 /* 80423520 00420460  4E 80 00 20 */	blr 
+.endfn addGenNode__6SystemFP5CNode
 
-.global initGenNode__6SystemFv
-initGenNode__6SystemFv:
+.fn initGenNode__6SystemFv, global
 /* 80423524 00420464  4E 80 00 20 */	blr 
+.endfn initGenNode__6SystemFv
 
-.global refreshGenNode__6SystemFv
-refreshGenNode__6SystemFv:
+.fn refreshGenNode__6SystemFv, global
 /* 80423528 00420468  4E 80 00 20 */	blr 
+.endfn refreshGenNode__6SystemFv
 
-.global setFrameRate__6SystemFi
-setFrameRate__6SystemFi:
+.fn setFrameRate__6SystemFi, global
 /* 8042352C 0042046C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80423530 00420470  7C 08 02 A6 */	mflr r0
 /* 80423534 00420474  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1969,14 +1997,14 @@ setFrameRate__6SystemFi:
 /* 804235C0 00420500  7C 08 03 A6 */	mtlr r0
 /* 804235C4 00420504  38 21 00 20 */	addi r1, r1, 0x20
 /* 804235C8 00420508  4E 80 00 20 */	blr 
+.endfn setFrameRate__6SystemFi
 
-.global getCurrentSection__11ISectionMgrFv
-getCurrentSection__11ISectionMgrFv: # weak function
+.fn getCurrentSection__11ISectionMgrFv, weak
 /* 804235CC 0042050C  38 60 00 00 */	li r3, 0
 /* 804235D0 00420510  4E 80 00 20 */	blr 
+.endfn getCurrentSection__11ISectionMgrFv
 
-.global dvdLoadSyncNoBlock__6SystemFP16DvdThreadCommand
-dvdLoadSyncNoBlock__6SystemFP16DvdThreadCommand:
+.fn dvdLoadSyncNoBlock__6SystemFP16DvdThreadCommand, global
 /* 804235D4 00420514  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804235D8 00420518  7C 08 02 A6 */	mflr r0
 /* 804235DC 0042051C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2004,9 +2032,9 @@ dvdLoadSyncNoBlock__6SystemFP16DvdThreadCommand:
 /* 80423628 00420568  7C 08 03 A6 */	mtlr r0
 /* 8042362C 0042056C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423630 00420570  4E 80 00 20 */	blr 
+.endfn dvdLoadSyncNoBlock__6SystemFP16DvdThreadCommand
 
-.global dvdLoadSyncAllNoBlock__6SystemFv
-dvdLoadSyncAllNoBlock__6SystemFv:
+.fn dvdLoadSyncAllNoBlock__6SystemFv, global
 /* 80423634 00420574  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423638 00420578  7C 08 02 A6 */	mflr r0
 /* 8042363C 0042057C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2033,9 +2061,9 @@ dvdLoadSyncAllNoBlock__6SystemFv:
 /* 80423684 004205C4  7C 08 03 A6 */	mtlr r0
 /* 80423688 004205C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042368C 004205CC  4E 80 00 20 */	blr 
+.endfn dvdLoadSyncAllNoBlock__6SystemFv
 
-.global __dt__9AppThreadFv
-__dt__9AppThreadFv: # weak function
+.fn __dt__9AppThreadFv, weak
 /* 80423690 004205D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423694 004205D4  7C 08 02 A6 */	mflr r0
 /* 80423698 004205D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2061,9 +2089,9 @@ __dt__9AppThreadFv: # weak function
 /* 804236E4 00420624  7C 08 03 A6 */	mtlr r0
 /* 804236E8 00420628  38 21 00 10 */	addi r1, r1, 0x10
 /* 804236EC 0042062C  4E 80 00 20 */	blr 
+.endfn __dt__9AppThreadFv
 
-.global newSceneMgr__Q23PSM7FactoryFv
-newSceneMgr__Q23PSM7FactoryFv: # weak function
+.fn newSceneMgr__Q23PSM7FactoryFv, weak
 /* 804236F0 00420630  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804236F4 00420634  7C 08 02 A6 */	mflr r0
 /* 804236F8 00420638  38 60 00 14 */	li r3, 0x14
@@ -2079,9 +2107,9 @@ newSceneMgr__Q23PSM7FactoryFv: # weak function
 /* 8042371C 0042065C  7C 08 03 A6 */	mtlr r0
 /* 80423720 00420660  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423724 00420664  4E 80 00 20 */	blr 
+.endfn newSceneMgr__Q23PSM7FactoryFv
 
-.global "invoke__17Delegate<6System>Fv"
-"invoke__17Delegate<6System>Fv": # weak function
+.fn "invoke__17Delegate<6System>Fv", weak
 /* 80423728 00420668  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042372C 0042066C  7C 08 02 A6 */	mflr r0
 /* 80423730 00420670  7C 64 1B 78 */	mr r4, r3
@@ -2094,6 +2122,7 @@ newSceneMgr__Q23PSM7FactoryFv: # weak function
 /* 8042374C 0042068C  7C 08 03 A6 */	mtlr r0
 /* 80423750 00420690  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423754 00420694  4E 80 00 20 */	blr 
+.endfn "invoke__17Delegate<6System>Fv"
 
 .fn __sinit_system_cpp, local
 /* 80423758 00420698  38 80 00 01 */	li r4, 1

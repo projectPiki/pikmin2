@@ -23,25 +23,31 @@ lbl_constructor:
 	.asciz "dispMember[%s] Size over. \n %d max:%d"
 .endobj lbl_8049B8F0
 .balign 4
-lbl_8049B918:
+.obj lbl_8049B918, local
 	.asciz "SetScene"
+.endobj lbl_8049B918
 .balign 4
-lbl_8049B924:
+.obj lbl_8049B924, local
 	.asciz "StartScene"
+.endobj lbl_8049B924
 .balign 4
-lbl_8049B930:
+.obj lbl_8049B930, local
 	.asciz "EndScene"
+.endobj lbl_8049B930
 .balign 4
-lbl_8049B93C:
+.obj lbl_8049B93C, local
 	.asciz "can't reset. owner[%s]  member[%s]\n"
+.endobj lbl_8049B93C
 .balign 4
-lbl_8049B960:
+.obj lbl_8049B960, local
 	.asciz "can't startScene.\n owner[%s] member[%s]\n"
+.endobj lbl_8049B960
 .balign 4
-lbl_8049B98C:
+.obj lbl_8049B98C, local
 	.asciz "screen command buffer is empty.\n"
+.endobj lbl_8049B98C
 .balign 4
-lbl_8049B9B0: # Shift-JIS
+.obj lbl_8049B9B0, local # Shift-JIS
 	.4byte 0x81798347
 	.4byte 0x8389815B
 	.4byte 0x817A8352
@@ -52,22 +58,27 @@ lbl_8049B9B0: # Shift-JIS
 	.4byte 0x91AB82E8
 	.4byte 0x82DC82B9
 	.4byte 0x82F10A00
+.endobj lbl_8049B9B0
 .balign 4
-lbl_8049B9D8:
+.obj lbl_8049B9D8, local
 	.asciz "Mismatch arg. current scene:%d arg:%d\n"
+.endobj lbl_8049B9D8
 .balign 4
-lbl_8049BA00: # Shift-JIS
+.obj lbl_8049BA00, local # Shift-JIS
 	.4byte 0x8356815B
 	.4byte 0x839382CC
 	.4byte 0x90B690AC
 	.4byte 0x82C98EB8
 	.4byte 0x94730000
+.endobj lbl_8049BA00
 .balign 4
-lbl_8049BA14:
+.obj lbl_8049BA14, local
 	.asciz "can't create New SceneInfoList.\n"
+.endobj lbl_8049BA14
 .balign 4
-lbl_8049BA38:
+.obj lbl_8049BA38, local
 	.asciz "to   [%s] [%s]\nfrom [%s] [%s]\n"
+.endobj lbl_8049BA38
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
@@ -122,8 +133,7 @@ lbl_8049BA38:
 .endobj lbl_80520B80
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q26Screen13SceneInfoListFv
-__ct__Q26Screen13SceneInfoListFv:
+.fn __ct__Q26Screen13SceneInfoListFv, global
 /* 80452300 0044F240  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80452304 0044F244  7C 08 02 A6 */	mflr r0
 /* 80452308 0044F248  90 01 00 14 */	stw r0, 0x14(r1)
@@ -145,9 +155,9 @@ __ct__Q26Screen13SceneInfoListFv:
 /* 80452348 0044F288  7C 08 03 A6 */	mtlr r0
 /* 8045234C 0044F28C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80452350 0044F290  4E 80 00 20 */	blr 
+.endfn __ct__Q26Screen13SceneInfoListFv
 
-.global __ct__Q26Screen3MgrFv
-__ct__Q26Screen3MgrFv:
+.fn __ct__Q26Screen3MgrFv, global
 /* 80452354 0044F294  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80452358 0044F298  7C 08 02 A6 */	mflr r0
 /* 8045235C 0044F29C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -266,9 +276,9 @@ __ct__Q26Screen3MgrFv:
 /* 80452514 0044F454  7C 08 03 A6 */	mtlr r0
 /* 80452518 0044F458  38 21 00 20 */	addi r1, r1, 0x20
 /* 8045251C 0044F45C  4E 80 00 20 */	blr 
+.endfn __ct__Q26Screen3MgrFv
 
-.global __dt__Q26Screen13SceneInfoListFv
-__dt__Q26Screen13SceneInfoListFv:
+.fn __dt__Q26Screen13SceneInfoListFv, weak
 /* 80452520 0044F460  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80452524 0044F464  7C 08 02 A6 */	mflr r0
 /* 80452528 0044F468  90 01 00 14 */	stw r0, 0x14(r1)
@@ -294,9 +304,9 @@ __dt__Q26Screen13SceneInfoListFv:
 /* 80452574 0044F4B4  7C 08 03 A6 */	mtlr r0
 /* 80452578 0044F4B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045257C 0044F4BC  4E 80 00 20 */	blr 
+.endfn __dt__Q26Screen13SceneInfoListFv
 
-.global init__Q26Screen3MgrFv
-init__Q26Screen3MgrFv:
+.fn init__Q26Screen3MgrFv, global
 /* 80452580 0044F4C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80452584 0044F4C4  7C 08 02 A6 */	mflr r0
 /* 80452588 0044F4C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -326,9 +336,9 @@ init__Q26Screen3MgrFv:
 /* 804525E4 0044F524  7C 08 03 A6 */	mtlr r0
 /* 804525E8 0044F528  38 21 00 10 */	addi r1, r1, 0x10
 /* 804525EC 0044F52C  4E 80 00 20 */	blr 
+.endfn init__Q26Screen3MgrFv
 
-.global reset__Q26Screen3MgrFv
-reset__Q26Screen3MgrFv:
+.fn reset__Q26Screen3MgrFv, global
 /* 804525F0 0044F530  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 804525F4 0044F534  7C 08 02 A6 */	mflr r0
 /* 804525F8 0044F538  90 01 00 34 */	stw r0, 0x34(r1)
@@ -396,9 +406,9 @@ reset__Q26Screen3MgrFv:
 /* 804526E0 0044F620  7C 08 03 A6 */	mtlr r0
 /* 804526E4 0044F624  38 21 00 30 */	addi r1, r1, 0x30
 /* 804526E8 0044F628  4E 80 00 20 */	blr 
+.endfn reset__Q26Screen3MgrFv
 
-.global startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg
-startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg:
+.fn startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg, global
 /* 804526EC 0044F62C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 804526F0 0044F630  7C 08 02 A6 */	mflr r0
 /* 804526F4 0044F634  3C A0 80 4A */	lis r5, lbl_8049B8C8@ha
@@ -532,9 +542,9 @@ startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg:
 /* 804528C8 0044F808  7C 08 03 A6 */	mtlr r0
 /* 804528CC 0044F80C  38 21 00 40 */	addi r1, r1, 0x40
 /* 804528D0 0044F810  4E 80 00 20 */	blr 
+.endfn startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg
 
-.global endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg
-endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg:
+.fn endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg, global
 /* 804528D4 0044F814  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804528D8 0044F818  7C 08 02 A6 */	mflr r0
 /* 804528DC 0044F81C  3C A0 80 4A */	lis r5, lbl_8049B8C8@ha
@@ -645,14 +655,14 @@ endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg:
 /* 80452A54 0044F994  7C 08 03 A6 */	mtlr r0
 /* 80452A58 0044F998  38 21 00 20 */	addi r1, r1, 0x20
 /* 80452A5C 0044F99C  4E 80 00 20 */	blr 
+.endfn endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg
 
-.global getCurrentCommand__Q26Screen3MgrFv
-getCurrentCommand__Q26Screen3MgrFv:
+.fn getCurrentCommand__Q26Screen3MgrFv, global
 /* 80452A60 0044F9A0  80 63 00 3C */	lwz r3, 0x3c(r3)
 /* 80452A64 0044F9A4  4E 80 00 20 */	blr 
+.endfn getCurrentCommand__Q26Screen3MgrFv
 
-.global getNewCommand__Q26Screen3MgrFv
-getNewCommand__Q26Screen3MgrFv:
+.fn getNewCommand__Q26Screen3MgrFv, global
 /* 80452A68 0044F9A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80452A6C 0044F9AC  7C 08 02 A6 */	mflr r0
 /* 80452A70 0044F9B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -698,9 +708,9 @@ getNewCommand__Q26Screen3MgrFv:
 /* 80452B04 0044FA44  7C 08 03 A6 */	mtlr r0
 /* 80452B08 0044FA48  38 21 00 20 */	addi r1, r1, 0x20
 /* 80452B0C 0044FA4C  4E 80 00 20 */	blr 
+.endfn getNewCommand__Q26Screen3MgrFv
 
-.global releaseCommand__Q26Screen3MgrFPQ26Screen10MgrCommand
-releaseCommand__Q26Screen3MgrFPQ26Screen10MgrCommand:
+.fn releaseCommand__Q26Screen3MgrFPQ26Screen10MgrCommand, global
 /* 80452B10 0044FA50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80452B14 0044FA54  7C 08 02 A6 */	mflr r0
 /* 80452B18 0044FA58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -723,9 +733,9 @@ releaseCommand__Q26Screen3MgrFPQ26Screen10MgrCommand:
 /* 80452B5C 0044FA9C  7C 08 03 A6 */	mtlr r0
 /* 80452B60 0044FAA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80452B64 0044FAA4  4E 80 00 20 */	blr 
+.endfn releaseCommand__Q26Screen3MgrFPQ26Screen10MgrCommand
 
-.global update__Q26Screen3MgrFv
-update__Q26Screen3MgrFv:
+.fn update__Q26Screen3MgrFv, global
 /* 80452B68 0044FAA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80452B6C 0044FAAC  7C 08 02 A6 */	mflr r0
 /* 80452B70 0044FAB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -924,9 +934,9 @@ update__Q26Screen3MgrFv:
 /* 80452E34 0044FD74  7C 08 03 A6 */	mtlr r0
 /* 80452E38 0044FD78  38 21 00 20 */	addi r1, r1, 0x20
 /* 80452E3C 0044FD7C  4E 80 00 20 */	blr 
+.endfn update__Q26Screen3MgrFv
 
-.global draw__Q26Screen3MgrFR8Graphics
-draw__Q26Screen3MgrFR8Graphics:
+.fn draw__Q26Screen3MgrFR8Graphics, global
 /* 80452E40 0044FD80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80452E44 0044FD84  7C 08 02 A6 */	mflr r0
 /* 80452E48 0044FD88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -975,18 +985,18 @@ draw__Q26Screen3MgrFR8Graphics:
 /* 80452EE8 0044FE28  7C 08 03 A6 */	mtlr r0
 /* 80452EEC 0044FE2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80452EF0 0044FE30  4E 80 00 20 */	blr 
+.endfn draw__Q26Screen3MgrFR8Graphics
 
-.global drawBG__Q26Screen3MgrFR8Graphics
-drawBG__Q26Screen3MgrFR8Graphics:
+.fn drawBG__Q26Screen3MgrFR8Graphics, weak
 /* 80452EF4 0044FE34  4E 80 00 20 */	blr 
+.endfn drawBG__Q26Screen3MgrFR8Graphics
 
-.global doGetSceneBase__Q26Screen3MgrFl
-doGetSceneBase__Q26Screen3MgrFl:
+.fn doGetSceneBase__Q26Screen3MgrFl, global
 /* 80452EF8 0044FE38  38 60 00 00 */	li r3, 0
 /* 80452EFC 0044FE3C  4E 80 00 20 */	blr 
+.endfn doGetSceneBase__Q26Screen3MgrFl
 
-.global clearBackupSceneInfo__Q26Screen3MgrFv
-clearBackupSceneInfo__Q26Screen3MgrFv:
+.fn clearBackupSceneInfo__Q26Screen3MgrFv, global
 /* 80452F00 0044FE40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80452F04 0044FE44  7C 08 02 A6 */	mflr r0
 /* 80452F08 0044FE48  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1019,9 +1029,9 @@ clearBackupSceneInfo__Q26Screen3MgrFv:
 /* 80452F6C 0044FEAC  7C 08 03 A6 */	mtlr r0
 /* 80452F70 0044FEB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80452F74 0044FEB4  4E 80 00 20 */	blr 
+.endfn clearBackupSceneInfo__Q26Screen3MgrFv
 
-.global changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc
-changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc:
+.fn changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc, global
 /* 80452F78 0044FEB8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80452F7C 0044FEBC  7C 08 02 A6 */	mflr r0
 /* 80452F80 0044FEC0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1180,9 +1190,9 @@ changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc:
 /* 804531B8 004500F8  7C 08 03 A6 */	mtlr r0
 /* 804531BC 004500FC  38 21 00 30 */	addi r1, r1, 0x30
 /* 804531C0 00450100  4E 80 00 20 */	blr 
+.endfn changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc
 
-.global setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg
-setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg:
+.fn setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg, global
 /* 804531C4 00450104  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 804531C8 00450108  7C 08 02 A6 */	mflr r0
 /* 804531CC 0045010C  3C A0 80 4A */	lis r5, lbl_8049B8C8@ha
@@ -1573,9 +1583,9 @@ setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg:
 /* 80453750 00450690  7C 08 03 A6 */	mtlr r0
 /* 80453754 00450694  38 21 00 40 */	addi r1, r1, 0x40
 /* 80453758 00450698  4E 80 00 20 */	blr 
+.endfn setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg
 
-.global isCurrentSceneLoading__Q26Screen3MgrFv
-isCurrentSceneLoading__Q26Screen3MgrFv:
+.fn isCurrentSceneLoading__Q26Screen3MgrFv, global
 /* 8045375C 0045069C  80 83 00 1C */	lwz r4, 0x1c(r3)
 /* 80453760 004506A0  38 60 00 00 */	li r3, 0
 /* 80453764 004506A4  28 04 00 00 */	cmplwi r4, 0
@@ -1585,9 +1595,9 @@ isCurrentSceneLoading__Q26Screen3MgrFv:
 /* 80453774 004506B4  4C 82 00 20 */	bnelr 
 /* 80453778 004506B8  38 60 00 01 */	li r3, 1
 /* 8045377C 004506BC  4E 80 00 20 */	blr 
+.endfn isCurrentSceneLoading__Q26Screen3MgrFv
 
-.global copyDispMember__Q26Screen3MgrFPUcPUc
-copyDispMember__Q26Screen3MgrFPUcPUc:
+.fn copyDispMember__Q26Screen3MgrFPUcPUc, global
 /* 80453780 004506C0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80453784 004506C4  7C 08 02 A6 */	mflr r0
 /* 80453788 004506C8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1679,9 +1689,9 @@ copyDispMember__Q26Screen3MgrFPUcPUc:
 /* 804538D4 00450814  7C 08 03 A6 */	mtlr r0
 /* 804538D8 00450818  38 21 00 50 */	addi r1, r1, 0x50
 /* 804538DC 0045081C  4E 80 00 20 */	blr 
+.endfn copyDispMember__Q26Screen3MgrFPUcPUc
 
-.global setDispMember__Q26Screen3MgrFPQ32og6Screen14DispMemberBase
-setDispMember__Q26Screen3MgrFPQ32og6Screen14DispMemberBase:
+.fn setDispMember__Q26Screen3MgrFPQ32og6Screen14DispMemberBase, global
 /* 804538E0 00450820  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804538E4 00450824  7C 08 02 A6 */	mflr r0
 /* 804538E8 00450828  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1697,9 +1707,9 @@ setDispMember__Q26Screen3MgrFPQ32og6Screen14DispMemberBase:
 /* 80453908 00450848  7C 08 03 A6 */	mtlr r0
 /* 8045390C 0045084C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80453910 00450850  4E 80 00 20 */	blr 
+.endfn setDispMember__Q26Screen3MgrFPQ32og6Screen14DispMemberBase
 
-.global getDispMember__Q26Screen3MgrFv
-getDispMember__Q26Screen3MgrFv:
+.fn getDispMember__Q26Screen3MgrFv, global
 /* 80453914 00450854  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80453918 00450858  28 03 00 00 */	cmplwi r3, 0
 /* 8045391C 0045085C  41 82 00 0C */	beq .L_80453928
@@ -1708,9 +1718,9 @@ getDispMember__Q26Screen3MgrFv:
 .L_80453928:
 /* 80453928 00450868  38 60 00 00 */	li r3, 0
 /* 8045392C 0045086C  4E 80 00 20 */	blr 
+.endfn getDispMember__Q26Screen3MgrFv
 
-.global getSceneType__Q26Screen3MgrFv
-getSceneType__Q26Screen3MgrFv:
+.fn getSceneType__Q26Screen3MgrFv, global
 /* 80453930 00450870  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80453934 00450874  7C 08 02 A6 */	mflr r0
 /* 80453938 00450878  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1729,9 +1739,9 @@ getSceneType__Q26Screen3MgrFv:
 /* 80453964 004508A4  7C 08 03 A6 */	mtlr r0
 /* 80453968 004508A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045396C 004508AC  4E 80 00 20 */	blr 
+.endfn getSceneType__Q26Screen3MgrFv
 
-.global isSceneFinish__Q26Screen3MgrFv
-isSceneFinish__Q26Screen3MgrFv:
+.fn isSceneFinish__Q26Screen3MgrFv, global
 /* 80453970 004508B0  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80453974 004508B4  28 03 00 00 */	cmplwi r3, 0
 /* 80453978 004508B8  41 82 00 18 */	beq .L_80453990
@@ -1743,9 +1753,9 @@ isSceneFinish__Q26Screen3MgrFv:
 .L_80453990:
 /* 80453990 004508D0  38 60 00 01 */	li r3, 1
 /* 80453994 004508D4  4E 80 00 20 */	blr 
+.endfn isSceneFinish__Q26Screen3MgrFv
 
-.global getSceneFinishState__Q26Screen3MgrFv
-getSceneFinishState__Q26Screen3MgrFv:
+.fn getSceneFinishState__Q26Screen3MgrFv, global
 /* 80453998 004508D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045399C 004508DC  7C 08 02 A6 */	mflr r0
 /* 804539A0 004508E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1761,9 +1771,9 @@ getSceneFinishState__Q26Screen3MgrFv:
 /* 804539C4 00450904  7C 08 03 A6 */	mtlr r0
 /* 804539C8 00450908  38 21 00 10 */	addi r1, r1, 0x10
 /* 804539CC 0045090C  4E 80 00 20 */	blr 
+.endfn getSceneFinishState__Q26Screen3MgrFv
 
-.global setGamePad__Q26Screen3MgrFP10Controller
-setGamePad__Q26Screen3MgrFP10Controller:
+.fn setGamePad__Q26Screen3MgrFP10Controller, global
 /* 804539D0 00450910  90 83 00 20 */	stw r4, 0x20(r3)
 /* 804539D4 00450914  80 83 00 1C */	lwz r4, 0x1c(r3)
 /* 804539D8 00450918  28 04 00 00 */	cmplwi r4, 0
@@ -1771,9 +1781,9 @@ setGamePad__Q26Screen3MgrFP10Controller:
 /* 804539E0 00450920  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 804539E4 00450924  90 04 01 04 */	stw r0, 0x104(r4)
 /* 804539E8 00450928  4E 80 00 20 */	blr 
+.endfn setGamePad__Q26Screen3MgrFP10Controller
 
-.global setBackupScene__Q26Screen3MgrFv
-setBackupScene__Q26Screen3MgrFv:
+.fn setBackupScene__Q26Screen3MgrFv, global
 /* 804539EC 0045092C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804539F0 00450930  7C 08 02 A6 */	mflr r0
 /* 804539F4 00450934  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1789,9 +1799,9 @@ setBackupScene__Q26Screen3MgrFv:
 /* 80453A14 00450954  7C 08 03 A6 */	mtlr r0
 /* 80453A18 00450958  38 21 00 10 */	addi r1, r1, 0x10
 /* 80453A1C 0045095C  4E 80 00 20 */	blr 
+.endfn setBackupScene__Q26Screen3MgrFv
 
-.global isAnyReservation__Q26Screen3MgrCFv
-isAnyReservation__Q26Screen3MgrCFv:
+.fn isAnyReservation__Q26Screen3MgrCFv, global
 /* 80453A20 00450960  80 63 00 3C */	lwz r3, 0x3c(r3)
 /* 80453A24 00450964  48 00 00 24 */	b .L_80453A48
 .L_80453A28:
@@ -1810,9 +1820,9 @@ isAnyReservation__Q26Screen3MgrCFv:
 /* 80453A4C 0045098C  40 82 FF DC */	bne .L_80453A28
 /* 80453A50 00450990  38 60 00 00 */	li r3, 0
 /* 80453A54 00450994  4E 80 00 20 */	blr 
+.endfn isAnyReservation__Q26Screen3MgrCFv
 
-.global __dt__Q26Screen10MgrCommandFv
-__dt__Q26Screen10MgrCommandFv:
+.fn __dt__Q26Screen10MgrCommandFv, weak
 /* 80453A58 00450998  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80453A5C 0045099C  7C 08 02 A6 */	mflr r0
 /* 80453A60 004509A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1840,8 +1850,9 @@ __dt__Q26Screen10MgrCommandFv:
 /* 80453AB4 004509F4  7C 08 03 A6 */	mtlr r0
 /* 80453AB8 004509F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80453ABC 004509FC  4E 80 00 20 */	blr 
+.endfn __dt__Q26Screen10MgrCommandFv
 
-__sinit_screenMgr_cpp: # static initializer
+.fn __sinit_screenMgr_cpp, local
 /* 80453AC0 00450A00  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80453AC4 00450A04  38 00 FF FF */	li r0, -1
 /* 80453AC8 00450A08  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1852,3 +1863,4 @@ __sinit_screenMgr_cpp: # static initializer
 /* 80453ADC 00450A1C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80453AE0 00450A20  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80453AE4 00450A24  4E 80 00 20 */	blr 
+.endfn __sinit_screenMgr_cpp

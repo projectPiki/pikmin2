@@ -27,47 +27,58 @@ lbl_constructor:
 	.asciz "anim/pod.btp"
 .endobj lbl_8049A71C
 .balign 4
-lbl_8049A72C:
+.obj lbl_8049A72C, local
 	.asciz "anim/pod.bck"
+.endobj lbl_8049A72C
 .balign 4
-lbl_8049A73C:
+.obj lbl_8049A73C, local
 	.asciz "anim/pod.bpk"
+.endobj lbl_8049A73C
 .balign 4
-lbl_8049A74C:
+.obj lbl_8049A74C, local
 	.asciz "mg_window.blo"
+.endobj lbl_8049A74C
 .balign 4
-lbl_8049A75C:
+.obj lbl_8049A75C, local
 	.asciz "P2JME::Movie::TControl::onInit"
+.endobj lbl_8049A75C
 .balign 4
-lbl_8049A77C:
+.obj lbl_8049A77C, local
 	.asciz "PMT_onInit_arc"
+.endobj lbl_8049A77C
 .balign 4
-lbl_8049A78C:
+.obj lbl_8049A78C, local
 	.asciz "new_screen/cmn/message_window.szs"
+.endobj lbl_8049A78C
 .balign 4
-lbl_8049A7B0:
+.obj lbl_8049A7B0, local
 	.asciz "new_screen/cmn/gold_pod_for_message_window.szs"
+.endobj lbl_8049A7B0
 .balign 4
-lbl_8049A7E0:
+.obj lbl_8049A7E0, local
 	.asciz "new_screen/cmn/pod_for_message_window.szs"
+.endobj lbl_8049A7E0
 .balign 4
-lbl_8049A80C:
+.obj lbl_8049A80C, local
 	.asciz "%s is not found.\n"
+.endobj lbl_8049A80C
 .balign 4
-lbl_8049A820:
+.obj lbl_8049A820, local
 	.asciz "PMT_onInit_initRenderingProcessor"
+.endobj lbl_8049A820
 .balign 4
-lbl_8049A844:
+.obj lbl_8049A844, local
 	.asciz "messageObj.h"
+.endobj lbl_8049A844
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q35P2JME5Movie8TControl
-__vt__Q35P2JME5Movie8TControl:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q35P2JME5Movie8TControl, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME5Movie8TControlFv
@@ -86,8 +97,8 @@ __vt__Q35P2JME5Movie8TControl:
 	.4byte createResourceContainer__Q25P2JME8TControlFv
 	.4byte createSequenceProcessor__Q35P2JME6Window8TControlFv
 	.4byte createRenderingProcessor__Q35P2JME6Window8TControlFv
-.global __vt__Q35P2JME5Movie19MessageWindowScreen
-__vt__Q35P2JME5Movie19MessageWindowScreen:
+.endobj __vt__Q35P2JME5Movie8TControl
+.obj __vt__Q35P2JME5Movie19MessageWindowScreen, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME5Movie19MessageWindowScreenFv
@@ -128,8 +139,8 @@ __vt__Q35P2JME5Movie19MessageWindowScreen:
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
 	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
-.global __vt__Q35P2JME5Movie13PodIconScreen
-__vt__Q35P2JME5Movie13PodIconScreen:
+.endobj __vt__Q35P2JME5Movie19MessageWindowScreen
+.obj __vt__Q35P2JME5Movie13PodIconScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME5Movie13PodIconScreenFv
@@ -170,8 +181,8 @@ __vt__Q35P2JME5Movie13PodIconScreen:
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
 	.4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
-.global __vt__Q35P2JME5Movie8AbtnPane
-__vt__Q35P2JME5Movie8AbtnPane:
+.endobj __vt__Q35P2JME5Movie13PodIconScreen
+.obj __vt__Q35P2JME5Movie8AbtnPane, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME5Movie8AbtnPaneFv
@@ -179,8 +190,8 @@ __vt__Q35P2JME5Movie8AbtnPane:
 	.4byte update__Q35P2JME5Movie8AbtnPaneFv
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q35P2JME5Movie8AbtnPaneFv
-.global __vt__Q35P2JME5Movie10WindowPane
-__vt__Q35P2JME5Movie10WindowPane:
+.endobj __vt__Q35P2JME5Movie8AbtnPane
+.obj __vt__Q35P2JME5Movie10WindowPane, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q35P2JME5Movie10WindowPaneFv
@@ -188,6 +199,7 @@ __vt__Q35P2JME5Movie10WindowPane:
 	.4byte update__Q35P2JME5Movie10WindowPaneFv
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q35P2JME5Movie10WindowPaneFv
+.endobj __vt__Q35P2JME5Movie10WindowPane
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -314,8 +326,7 @@ __vt__Q35P2JME5Movie10WindowPane:
 .endobj lbl_80520854
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global doInit__Q35P2JME5Movie10WindowPaneFv
-doInit__Q35P2JME5Movie10WindowPaneFv:
+.fn doInit__Q35P2JME5Movie10WindowPaneFv, global
 /* 80434F5C 00431E9C  80 83 00 18 */	lwz r4, 0x18(r3)
 /* 80434F60 00431EA0  C0 02 24 58 */	lfs f0, lbl_805207B8@sda21(r2)
 /* 80434F64 00431EA4  C0 44 00 D8 */	lfs f2, 0xd8(r4)
@@ -324,9 +335,9 @@ doInit__Q35P2JME5Movie10WindowPaneFv:
 /* 80434F70 00431EB0  D0 43 00 2C */	stfs f2, 0x2c(r3)
 /* 80434F74 00431EB4  D0 03 00 30 */	stfs f0, 0x30(r3)
 /* 80434F78 00431EB8  4E 80 00 20 */	blr 
+.endfn doInit__Q35P2JME5Movie10WindowPaneFv
 
-.global update__Q35P2JME5Movie10WindowPaneFv
-update__Q35P2JME5Movie10WindowPaneFv:
+.fn update__Q35P2JME5Movie10WindowPaneFv, global
 /* 80434F7C 00431EBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80434F80 00431EC0  7C 08 02 A6 */	mflr r0
 /* 80434F84 00431EC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -425,9 +436,9 @@ update__Q35P2JME5Movie10WindowPaneFv:
 /* 804350D4 00432014  7C 08 03 A6 */	mtlr r0
 /* 804350D8 00432018  38 21 00 10 */	addi r1, r1, 0x10
 /* 804350DC 0043201C  4E 80 00 20 */	blr 
+.endfn update__Q35P2JME5Movie10WindowPaneFv
 
-.global moveWindow__Q35P2JME5Movie10WindowPaneFb
-moveWindow__Q35P2JME5Movie10WindowPaneFb:
+.fn moveWindow__Q35P2JME5Movie10WindowPaneFb, global
 /* 804350E0 00432020  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 804350E4 00432024  7C 08 02 A6 */	mflr r0
 /* 804350E8 00432028  90 01 00 54 */	stw r0, 0x54(r1)
@@ -591,9 +602,9 @@ moveWindow__Q35P2JME5Movie10WindowPaneFb:
 /* 8043534C 0043228C  7C 08 03 A6 */	mtlr r0
 /* 80435350 00432290  38 21 00 50 */	addi r1, r1, 0x50
 /* 80435354 00432294  4E 80 00 20 */	blr 
+.endfn moveWindow__Q35P2JME5Movie10WindowPaneFb
 
-.global open__Q35P2JME5Movie10WindowPaneFf
-open__Q35P2JME5Movie10WindowPaneFf:
+.fn open__Q35P2JME5Movie10WindowPaneFf, global
 /* 80435358 00432298  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043535C 0043229C  7C 08 02 A6 */	mflr r0
 /* 80435360 004322A0  C0 42 24 58 */	lfs f2, lbl_805207B8@sda21(r2)
@@ -612,9 +623,9 @@ open__Q35P2JME5Movie10WindowPaneFf:
 /* 80435394 004322D4  7C 08 03 A6 */	mtlr r0
 /* 80435398 004322D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043539C 004322DC  4E 80 00 20 */	blr 
+.endfn open__Q35P2JME5Movie10WindowPaneFf
 
-.global doInit__Q35P2JME5Movie8AbtnPaneFv
-doInit__Q35P2JME5Movie8AbtnPaneFv:
+.fn doInit__Q35P2JME5Movie8AbtnPaneFv, global
 /* 804353A0 004322E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804353A4 004322E4  7C 08 02 A6 */	mflr r0
 /* 804353A8 004322E8  38 80 00 00 */	li r4, 0
@@ -636,9 +647,9 @@ doInit__Q35P2JME5Movie8AbtnPaneFv:
 /* 804353E8 00432328  7C 08 03 A6 */	mtlr r0
 /* 804353EC 0043232C  38 21 00 10 */	addi r1, r1, 0x10
 /* 804353F0 00432330  4E 80 00 20 */	blr 
+.endfn doInit__Q35P2JME5Movie8AbtnPaneFv
 
-.global update__Q35P2JME5Movie8AbtnPaneFv
-update__Q35P2JME5Movie8AbtnPaneFv:
+.fn update__Q35P2JME5Movie8AbtnPaneFv, global
 /* 804353F4 00432334  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804353F8 00432338  7C 08 02 A6 */	mflr r0
 /* 804353FC 0043233C  C0 42 24 A0 */	lfs f2, lbl_80520800@sda21(r2)
@@ -738,9 +749,9 @@ update__Q35P2JME5Movie8AbtnPaneFv:
 /* 80435558 00432498  7C 08 03 A6 */	mtlr r0
 /* 8043555C 0043249C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80435560 004324A0  4E 80 00 20 */	blr 
+.endfn update__Q35P2JME5Movie8AbtnPaneFv
 
-.global update__Q35P2JME5Movie13PodIconScreenFv
-update__Q35P2JME5Movie13PodIconScreenFv:
+.fn update__Q35P2JME5Movie13PodIconScreenFv, global
 /* 80435564 004324A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80435568 004324A8  7C 08 02 A6 */	mflr r0
 /* 8043556C 004324AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1029,9 +1040,9 @@ update__Q35P2JME5Movie13PodIconScreenFv:
 /* 80435990 004328D0  7C 08 03 A6 */	mtlr r0
 /* 80435994 004328D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80435998 004328D8  4E 80 00 20 */	blr 
+.endfn update__Q35P2JME5Movie13PodIconScreenFv
 
-.global __ct__Q35P2JME5Movie8TControlFv
-__ct__Q35P2JME5Movie8TControlFv:
+.fn __ct__Q35P2JME5Movie8TControlFv, global
 /* 8043599C 004328DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804359A0 004328E0  7C 08 02 A6 */	mflr r0
 /* 804359A4 004328E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1064,9 +1075,9 @@ __ct__Q35P2JME5Movie8TControlFv:
 /* 80435A10 00432950  7C 08 03 A6 */	mtlr r0
 /* 80435A14 00432954  38 21 00 10 */	addi r1, r1, 0x10
 /* 80435A18 00432958  4E 80 00 20 */	blr 
+.endfn __ct__Q35P2JME5Movie8TControlFv
 
-.global __dt__Q35P2JME6Window8TControlFv
-__dt__Q35P2JME6Window8TControlFv:
+.fn __dt__Q35P2JME6Window8TControlFv, weak
 /* 80435A1C 0043295C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80435A20 00432960  7C 08 02 A6 */	mflr r0
 /* 80435A24 00432964  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1097,9 +1108,9 @@ __dt__Q35P2JME6Window8TControlFv:
 /* 80435A80 004329C0  7C 08 03 A6 */	mtlr r0
 /* 80435A84 004329C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80435A88 004329C8  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME6Window8TControlFv
 
-.global onInit__Q35P2JME5Movie8TControlFv
-onInit__Q35P2JME5Movie8TControlFv:
+.fn onInit__Q35P2JME5Movie8TControlFv, global
 /* 80435A8C 004329CC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80435A90 004329D0  7C 08 02 A6 */	mflr r0
 /* 80435A94 004329D4  3C 80 80 4A */	lis r4, lbl_8049A6E0@ha
@@ -1617,9 +1628,9 @@ onInit__Q35P2JME5Movie8TControlFv:
 /* 80436230 00433170  7C 08 03 A6 */	mtlr r0
 /* 80436234 00433174  38 21 00 40 */	addi r1, r1, 0x40
 /* 80436238 00433178  4E 80 00 20 */	blr 
+.endfn onInit__Q35P2JME5Movie8TControlFv
 
-.global reset__Q35P2JME5Movie8TControlFv
-reset__Q35P2JME5Movie8TControlFv:
+.fn reset__Q35P2JME5Movie8TControlFv, global
 /* 8043623C 0043317C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436240 00433180  7C 08 02 A6 */	mflr r0
 /* 80436244 00433184  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1634,9 +1645,9 @@ reset__Q35P2JME5Movie8TControlFv:
 /* 80436268 004331A8  7C 08 03 A6 */	mtlr r0
 /* 8043626C 004331AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436270 004331B0  4E 80 00 20 */	blr 
+.endfn reset__Q35P2JME5Movie8TControlFv
 
-.global setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag
-setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag:
+.fn setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag, global
 /* 80436274 004331B4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80436278 004331B8  7C 08 02 A6 */	mflr r0
 /* 8043627C 004331BC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1966,9 +1977,9 @@ setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag:
 /* 80436748 00433688  7C 08 03 A6 */	mtlr r0
 /* 8043674C 0043368C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80436750 00433690  4E 80 00 20 */	blr 
+.endfn setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag
 
-.global open__Q35P2JME5Movie19MessageWindowScreenFf
-open__Q35P2JME5Movie19MessageWindowScreenFf:
+.fn open__Q35P2JME5Movie19MessageWindowScreenFf, weak
 /* 80436754 00433694  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436758 00433698  7C 08 02 A6 */	mflr r0
 /* 8043675C 0043369C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1978,9 +1989,9 @@ open__Q35P2JME5Movie19MessageWindowScreenFf:
 /* 8043676C 004336AC  7C 08 03 A6 */	mtlr r0
 /* 80436770 004336B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436774 004336B4  4E 80 00 20 */	blr 
+.endfn open__Q35P2JME5Movie19MessageWindowScreenFf
 
-.global update__Q35P2JME5Movie8TControlFP10ControllerP10Controller
-update__Q35P2JME5Movie8TControlFP10ControllerP10Controller:
+.fn update__Q35P2JME5Movie8TControlFP10ControllerP10Controller, global
 /* 80436778 004336B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043677C 004336BC  7C 08 02 A6 */	mflr r0
 /* 80436780 004336C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2134,9 +2145,9 @@ update__Q35P2JME5Movie8TControlFP10ControllerP10Controller:
 /* 80436994 004338D4  7C 08 03 A6 */	mtlr r0
 /* 80436998 004338D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043699C 004338DC  4E 80 00 20 */	blr 
+.endfn update__Q35P2JME5Movie8TControlFP10ControllerP10Controller
 
-.global draw__Q35P2JME5Movie8TControlFR8Graphics
-draw__Q35P2JME5Movie8TControlFR8Graphics:
+.fn draw__Q35P2JME5Movie8TControlFR8Graphics, global
 /* 804369A0 004338E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804369A4 004338E4  7C 08 02 A6 */	mflr r0
 /* 804369A8 004338E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2190,9 +2201,9 @@ draw__Q35P2JME5Movie8TControlFR8Graphics:
 /* 80436A60 004339A0  7C 08 03 A6 */	mtlr r0
 /* 80436A64 004339A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80436A68 004339A8  4E 80 00 20 */	blr 
+.endfn draw__Q35P2JME5Movie8TControlFR8Graphics
 
-.global __dt__Q35P2JME5Movie8TControlFv
-__dt__Q35P2JME5Movie8TControlFv:
+.fn __dt__Q35P2JME5Movie8TControlFv, weak
 /* 80436A6C 004339AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436A70 004339B0  7C 08 02 A6 */	mflr r0
 /* 80436A74 004339B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2227,9 +2238,9 @@ __dt__Q35P2JME5Movie8TControlFv:
 /* 80436AE0 00433A20  7C 08 03 A6 */	mtlr r0
 /* 80436AE4 00433A24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436AE8 00433A28  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME5Movie8TControlFv
 
-.global draw__Q35P2JME6Window8TControlFPA4_fPA4_f
-draw__Q35P2JME6Window8TControlFPA4_fPA4_f:
+.fn draw__Q35P2JME6Window8TControlFPA4_fPA4_f, weak
 /* 80436AEC 00433A2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436AF0 00433A30  7C 08 02 A6 */	mflr r0
 /* 80436AF4 00433A34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2238,9 +2249,9 @@ draw__Q35P2JME6Window8TControlFPA4_fPA4_f:
 /* 80436B00 00433A40  7C 08 03 A6 */	mtlr r0
 /* 80436B04 00433A44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436B08 00433A48  4E 80 00 20 */	blr 
+.endfn draw__Q35P2JME6Window8TControlFPA4_fPA4_f
 
-.global createRenderingProcessor__Q35P2JME6Window8TControlFv
-createRenderingProcessor__Q35P2JME6Window8TControlFv:
+.fn createRenderingProcessor__Q35P2JME6Window8TControlFv, weak
 /* 80436B0C 00433A4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436B10 00433A50  7C 08 02 A6 */	mflr r0
 /* 80436B14 00433A54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2274,9 +2285,9 @@ createRenderingProcessor__Q35P2JME6Window8TControlFv:
 /* 80436B7C 00433ABC  7C 08 03 A6 */	mtlr r0
 /* 80436B80 00433AC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436B84 00433AC4  4E 80 00 20 */	blr 
+.endfn createRenderingProcessor__Q35P2JME6Window8TControlFv
 
-.global createSequenceProcessor__Q35P2JME6Window8TControlFv
-createSequenceProcessor__Q35P2JME6Window8TControlFv:
+.fn createSequenceProcessor__Q35P2JME6Window8TControlFv, weak
 /* 80436B88 00433AC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436B8C 00433ACC  7C 08 02 A6 */	mflr r0
 /* 80436B90 00433AD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2311,9 +2322,9 @@ createSequenceProcessor__Q35P2JME6Window8TControlFv:
 /* 80436BFC 00433B3C  7C 08 03 A6 */	mtlr r0
 /* 80436C00 00433B40  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436C04 00433B44  4E 80 00 20 */	blr 
+.endfn createSequenceProcessor__Q35P2JME6Window8TControlFv
 
-.global setMessageID__Q25P2JME8TControlFUx
-setMessageID__Q25P2JME8TControlFUx:
+.fn setMessageID__Q25P2JME8TControlFUx, weak
 /* 80436C08 00433B48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436C0C 00433B4C  7C 08 02 A6 */	mflr r0
 /* 80436C10 00433B50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2328,23 +2339,23 @@ setMessageID__Q25P2JME8TControlFUx:
 /* 80436C34 00433B74  7C 08 03 A6 */	mtlr r0
 /* 80436C38 00433B78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436C3C 00433B7C  4E 80 00 20 */	blr 
+.endfn setMessageID__Q25P2JME8TControlFUx
 
-.global createReference__Q25P2JME8TControlFv
-createReference__Q25P2JME8TControlFv:
+.fn createReference__Q25P2JME8TControlFv, weak
 /* 80436C40 00433B80  80 8D 9B D8 */	lwz r4, gP2JMEMgr@sda21(r13)
 /* 80436C44 00433B84  80 04 00 34 */	lwz r0, 0x34(r4)
 /* 80436C48 00433B88  90 03 00 38 */	stw r0, 0x38(r3)
 /* 80436C4C 00433B8C  4E 80 00 20 */	blr 
+.endfn createReference__Q25P2JME8TControlFv
 
-.global createResourceContainer__Q25P2JME8TControlFv
-createResourceContainer__Q25P2JME8TControlFv:
+.fn createResourceContainer__Q25P2JME8TControlFv, weak
 /* 80436C50 00433B90  80 8D 9B D8 */	lwz r4, gP2JMEMgr@sda21(r13)
 /* 80436C54 00433B94  80 04 00 30 */	lwz r0, 0x30(r4)
 /* 80436C58 00433B98  90 03 00 44 */	stw r0, 0x44(r3)
 /* 80436C5C 00433B9C  4E 80 00 20 */	blr 
+.endfn createResourceContainer__Q25P2JME8TControlFv
 
-.global __dt__Q35P2JME5Movie19MessageWindowScreenFv
-__dt__Q35P2JME5Movie19MessageWindowScreenFv:
+.fn __dt__Q35P2JME5Movie19MessageWindowScreenFv, weak
 /* 80436C60 00433BA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436C64 00433BA4  7C 08 02 A6 */	mflr r0
 /* 80436C68 00433BA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2389,9 +2400,9 @@ __dt__Q35P2JME5Movie19MessageWindowScreenFv:
 /* 80436CF8 00433C38  7C 08 03 A6 */	mtlr r0
 /* 80436CFC 00433C3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436D00 00433C40  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME5Movie19MessageWindowScreenFv
 
-.global __dt__Q35P2JME5Movie13PodIconScreenFv
-__dt__Q35P2JME5Movie13PodIconScreenFv:
+.fn __dt__Q35P2JME5Movie13PodIconScreenFv, weak
 /* 80436D04 00433C44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436D08 00433C48  7C 08 02 A6 */	mflr r0
 /* 80436D0C 00433C4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2436,9 +2447,9 @@ __dt__Q35P2JME5Movie13PodIconScreenFv:
 /* 80436D9C 00433CDC  7C 08 03 A6 */	mtlr r0
 /* 80436DA0 00433CE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436DA4 00433CE4  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME5Movie13PodIconScreenFv
 
-.global __dt__Q35P2JME5Movie8AbtnPaneFv
-__dt__Q35P2JME5Movie8AbtnPaneFv:
+.fn __dt__Q35P2JME5Movie8AbtnPaneFv, weak
 /* 80436DA8 00433CE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436DAC 00433CEC  7C 08 02 A6 */	mflr r0
 /* 80436DB0 00433CF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2473,9 +2484,9 @@ __dt__Q35P2JME5Movie8AbtnPaneFv:
 /* 80436E1C 00433D5C  7C 08 03 A6 */	mtlr r0
 /* 80436E20 00433D60  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436E24 00433D64  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME5Movie8AbtnPaneFv
 
-.global __dt__Q35P2JME5Movie10WindowPaneFv
-__dt__Q35P2JME5Movie10WindowPaneFv:
+.fn __dt__Q35P2JME5Movie10WindowPaneFv, weak
 /* 80436E28 00433D68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80436E2C 00433D6C  7C 08 02 A6 */	mflr r0
 /* 80436E30 00433D70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2510,8 +2521,9 @@ __dt__Q35P2JME5Movie10WindowPaneFv:
 /* 80436E9C 00433DDC  7C 08 03 A6 */	mtlr r0
 /* 80436EA0 00433DE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436EA4 00433DE4  4E 80 00 20 */	blr 
+.endfn __dt__Q35P2JME5Movie10WindowPaneFv
 
-__sinit_movieMessage_cpp: # static initializer
+.fn __sinit_movieMessage_cpp, local
 /* 80436EA8 00433DE8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80436EAC 00433DEC  38 00 FF FF */	li r0, -1
 /* 80436EB0 00433DF0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2522,3 +2534,4 @@ __sinit_movieMessage_cpp: # static initializer
 /* 80436EC4 00433E04  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80436EC8 00433E08  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80436ECC 00433E0C  4E 80 00 20 */	blr 
+.endfn __sinit_movieMessage_cpp
