@@ -1,315 +1,18 @@
 #include "types.h"
-#include "nans.h"
 #include "Game/IllustratedBook.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_singleGS_ZukanParms_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047C358
-    lbl_8047C358:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_8047C364
-    lbl_8047C364:
-        .4byte 0x73696E67
-        .4byte 0x6C654753
-        .4byte 0x5F5A756B
-        .4byte 0x616E5061
-        .4byte 0x726D732E
-        .4byte 0x63707000
-    .global lbl_8047C37C
-    lbl_8047C37C:
-        .4byte 0x496C6C65
-        .4byte 0x67616C20
-        .4byte 0x736C6F74
-        .4byte 0x2E0A0000
-        .4byte 0x506F7369
-        .4byte 0x74696F6E
-        .4byte 0x5061726D
-        .4byte 0x73000000
-        .4byte 0x8F6F8CBB
-        .4byte 0x88CA9275
-        .4byte 0x81408298
-        .4byte 0x00000000
-        .4byte 0x8F6F8CBB
-        .4byte 0x88CA9275
-        .4byte 0x81408299
-        .4byte 0x00000000
-        .4byte 0x8F6F8CBB
-        .4byte 0x88CA9275
-        .4byte 0x8140829A
-        .4byte 0x00000000
-        .4byte 0x8F6F8CBB
-        .4byte 0x8FEA8F8A
-        .4byte 0x96BC0000
-        .4byte 0x8F6F8CBB
-        .4byte 0x88CA9275
-        .4byte 0x838A8358
-        .4byte 0x83670000
-    .global lbl_8047C3E8
-    lbl_8047C3E8:
-        .4byte 0x656E656D
-        .4byte 0x79506172
-        .4byte 0x6D730000
-    .global lbl_8047C3F4
-    lbl_8047C3F4:
-        .4byte 0x8F6F8CBB
-        .4byte 0x94CD88CD
-        .4byte 0x00000000
-        .4byte 0x63616D65
-        .4byte 0x72615061
-        .4byte 0x726D7300
-        .4byte 0x8D8282B3
-        .4byte 0x81408F89
-        .4byte 0x8AFA926C
-        .4byte 0x00000000
-        .4byte 0x8D8282B3
-        .4byte 0x81408DC5
-        .4byte 0x8FAC926C
-        .4byte 0x00000000
-        .4byte 0x8D8282B3
-        .4byte 0x81408DC5
-        .4byte 0x91E5926C
-        .4byte 0x00000000
-        .4byte 0x83498374
-        .4byte 0x835A8362
-        .4byte 0x83678140
-        .4byte 0x82980000
-        .4byte 0x83498374
-        .4byte 0x835A8362
-        .4byte 0x83678140
-        .4byte 0x82990000
-        .4byte 0x83498374
-        .4byte 0x835A8362
-        .4byte 0x83678140
-        .4byte 0x829A0000
-        .4byte 0x89E68A70
-        .4byte 0x81408F89
-        .4byte 0x8AFA926C
-        .4byte 0x00000000
-        .4byte 0x89E68A70
-        .4byte 0x81408DC5
-        .4byte 0x8FAC926C
-        .4byte 0x00000000
-        .4byte 0x89E68A70
-        .4byte 0x81408DC5
-        .4byte 0x91E5926C
-        .4byte 0x00000000
-        .4byte 0x89F1935D
-        .4byte 0x81408F89
-        .4byte 0x8AFA926C
-        .4byte 0x00000000
-        .4byte 0x83498374
-        .4byte 0x835A8362
-        .4byte 0x83678298
-        .4byte 0x00000000
-        .4byte 0x83498374
-        .4byte 0x835A8362
-        .4byte 0x83678299
-        .4byte 0x00000000
-        .4byte 0x83498374
-        .4byte 0x835A8362
-        .4byte 0x8367829A
-        .4byte 0x00000000
-        .4byte 0x82A895F3
-        .4byte 0x907D8AD3
-        .4byte 0x00000000
-        .4byte 0x907D8AD3
-        .4byte 0x90DD92E8
-        .4byte 0x00000000
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x73657474
-        .4byte 0x696E672E
-        .4byte 0x696E6900
-        .4byte 0x6C6F6164
-        .4byte 0x20657272
-        .4byte 0x6F722E5B
-        .4byte 0x25735D0A
-        .4byte 0x00000000
-        .4byte 0x6E6F2066
-        .4byte 0x696C654E
-        .4byte 0x616D6500
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804AF9C8
-    lbl_804AF9C8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game15IllustratedBook5Parms
-    __vt__Q34Game15IllustratedBook5Parms:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook5ParmsFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game15IllustratedBook5ParmsFR6Stream
-    .global __vt__Q34Game15IllustratedBook13ItemModeParms
-    __vt__Q34Game15IllustratedBook13ItemModeParms:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook13ItemModeParmsFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game15IllustratedBook13ItemModeParmsFR6Stream
-    .global __vt__Q34Game15IllustratedBook9ItemParms
-    __vt__Q34Game15IllustratedBook9ItemParms:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook9ItemParmsFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game15IllustratedBook9ItemParmsFR6Stream
-    .global __vt__Q34Game15IllustratedBook14EnemyModeParms
-    __vt__Q34Game15IllustratedBook14EnemyModeParms:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook14EnemyModeParmsFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game15IllustratedBook14EnemyModeParmsFR6Stream
-    .global __vt__Q34Game15IllustratedBook10EnemyParms
-    __vt__Q34Game15IllustratedBook10EnemyParms:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook10EnemyParmsFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game15IllustratedBook10EnemyParmsFR6Stream
-    .global __vt__Q34Game15IllustratedBook11CameraParms
-    __vt__Q34Game15IllustratedBook11CameraParms:
-        .4byte 0
-        .4byte 0
-        .4byte read__Q34Game15IllustratedBook11CameraParmsFR6Stream
-    .global __vt__Q34Game15IllustratedBook17PositionParmsList
-    __vt__Q34Game15IllustratedBook17PositionParmsList:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook17PositionParmsListFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game15IllustratedBook17PositionParmsListFR6Stream
-    .global __vt__Q34Game15IllustratedBook13PositionParms
-    __vt__Q34Game15IllustratedBook13PositionParms:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook13PositionParmsFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game15IllustratedBook13PositionParmsFR6Stream
-    .global __vt__Q34Game15IllustratedBook12ColorSetting
-    __vt__Q34Game15IllustratedBook12ColorSetting:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game15IllustratedBook12ColorSettingFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game15IllustratedBook12ColorSettingFR6Stream
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805158C8
-    lbl_805158C8:
-        .skip 0x4
-    .global lbl_805158CC
-    lbl_805158CC:
-        .skip 0x4
-    .global sZukanState__Q34Game15IllustratedBook5Parms
-    sZukanState__Q34Game15IllustratedBook5Parms:
-        .skip 0x4
-    .global sCamera__Q34Game15IllustratedBook5Parms
-    sCamera__Q34Game15IllustratedBook5Parms:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80518150
-    lbl_80518150:
-        .4byte 0x904690DD
-        .4byte 0x92E80000
-    .global lbl_80518158
-    lbl_80518158:
-        .float 0.5
-    .global lbl_8051815C
-    lbl_8051815C:
-        .4byte 0x40000000
-    .global lbl_80518160
-    lbl_80518160:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80518168
-    lbl_80518168:
-        .4byte 0x00000000
-    .global lbl_8051816C
-    lbl_8051816C:
-        .4byte 0xC61C4000
-    .global lbl_80518170
-    lbl_80518170:
-        .4byte 0x461C4000
-    .global lbl_80518174
-    lbl_80518174:
-        .4byte 0x00000000
-    .global lbl_80518178
-    lbl_80518178:
-        .4byte 0x91E582AB
-        .4byte 0x82B30000
-    .global lbl_80518180
-    lbl_80518180:
-        .4byte 0x41200000
-    .global lbl_80518184
-    lbl_80518184:
-        .4byte 0x447A0000
-    .global lbl_80518188
-    lbl_80518188:
-        .4byte 0x8F6F8CBB
-        .4byte 0x90940000
-    .global lbl_80518190
-    lbl_80518190:
-        .4byte 0x94BC8C61
-        .4byte 0x00000000
-    .global lbl_80518198
-    lbl_80518198:
-        .4byte 0x43AF0000
-    .global lbl_8051819C
-    lbl_8051819C:
-        .4byte 0x44FA0000
-    .global lbl_805181A0
-    lbl_805181A0:
-        .4byte 0x43FA0000
-    .global lbl_805181A4
-    lbl_805181A4:
-        .4byte 0x442F0000
-    .global lbl_805181A8
-    lbl_805181A8:
-        .4byte 0xC3FA0000
-    .global lbl_805181AC
-    lbl_805181AC:
-        .4byte 0x41F00000
-    .global lbl_805181B0
-    lbl_805181B0:
-        .4byte 0x42B40000
-    .global lbl_805181B4
-    lbl_805181B4:
-        .float 0.1
-    .global lbl_805181B8
-    lbl_805181B8:
-        .4byte 0x43B40000
-    .global lbl_805181BC
-    lbl_805181BC:
-        .4byte 0x9347907D
-        .4byte 0x8AD30000
-    .global lbl_805181C4
-    lbl_805181C4:
-        .4byte 0x90DD92E8
-        .4byte 0x00000000
-        .4byte 0x00000000
-*/
+#include "nans.h"
 
 namespace Game {
+namespace IllustratedBook {
+
+static const int unusedIllustratedBookArray[] = { 0, 0, 0 };
 
 /*
  * --INFO--
  * Address:	80130B9C
  * Size:	0001D0
  */
-IllustratedBook::ColorSetting::ColorSetting()
+ColorSetting::ColorSetting()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -431,23 +134,12 @@ IllustratedBook::ColorSetting::ColorSetting()
 	*/
 }
 
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	80130D6C
- * Size:	000004
- */
-Color4::Color4() { }
-
-namespace Game {
-
 /*
  * --INFO--
  * Address:	80130D70
  * Size:	000098
  */
-void IllustratedBook::ColorSetting::read(Stream&)
+void ColorSetting::read(Stream&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -500,7 +192,7 @@ lbl_80130DCC:
  * Address:	80130E08
  * Size:	0008CC
  */
-void IllustratedBook::ColorSetting::update()
+void ColorSetting::update()
 {
 	/*
 	stwu     r1, -0x1a0(r1)
@@ -1092,7 +784,7 @@ lbl_801316B4:
  * Address:	801316D4
  * Size:	000148
  */
-IllustratedBook::PositionParms::PositionParms()
+PositionParms::PositionParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1185,7 +877,7 @@ IllustratedBook::PositionParms::PositionParms()
  * Address:	8013181C
  * Size:	000050
  */
-void IllustratedBook::PositionParms::read(Stream&)
+void PositionParms::read(Stream&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1216,7 +908,7 @@ void IllustratedBook::PositionParms::read(Stream&)
  * Address:	8013186C
  * Size:	000060
  */
-IllustratedBook::PositionParms::~PositionParms()
+PositionParms::~PositionParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1253,7 +945,7 @@ lbl_801318B0:
  * Address:	801318CC
  * Size:	000068
  */
-void IllustratedBook::PositionParmsList::read(Stream&)
+void PositionParmsList::read(Stream&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1292,7 +984,7 @@ lbl_801318F0:
  * Address:	80131934
  * Size:	000020
  */
-void IllustratedBook::CameraParms::read(Stream&)
+void CameraParms::read(Stream&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1311,7 +1003,7 @@ void IllustratedBook::CameraParms::read(Stream&)
  * Address:	80131954
  * Size:	000130
  */
-IllustratedBook::EnemyParms::EnemyParms()
+EnemyParms::EnemyParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1398,7 +1090,7 @@ IllustratedBook::EnemyParms::EnemyParms()
  * Address:	80131A84
  * Size:	000040
  */
-IllustratedBook::CameraParms::CameraParms()
+CameraParms::CameraParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1422,208 +1114,10 @@ IllustratedBook::CameraParms::CameraParms()
 
 /*
  * --INFO--
- * Address:	80131AC4
- * Size:	0002E4
- */
-IllustratedBook::CameraParms::Parms::Parms()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	lis      r4, lbl_8047C358@ha
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_8047C358@l
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_80131AF4
-	addi     r0, r30, 0x1c4
-	stw      r0, 0(r30)
-
-lbl_80131AF4:
-	li       r0, 0
-	lis      r5, 0x66303030@ha
-	stw      r0, 4(r30)
-	addi     r0, r31, 0xa8
-	mr       r4, r30
-	addi     r3, r30, 0xc
-	stw      r0, 8(r30)
-	addi     r5, r5, 0x66303030@l
-	addi     r6, r2, lbl_80518190@sda21
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303031@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80518198@sda21(r2)
-	stw      r0, 0xc(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80518168@sda21(r2)
-	addi     r3, r30, 0x34
-	stfs     f0, 0x24(r30)
-	addi     r5, r5, 0x66303031@l
-	lfs      f0, lbl_8051819C@sda21(r2)
-	addi     r6, r31, 0xb4
-	stfs     f1, 0x2c(r30)
-	stfs     f0, 0x30(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303032@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805181A0@sda21(r2)
-	stw      r0, 0x34(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80518168@sda21(r2)
-	addi     r3, r30, 0x5c
-	stfs     f0, 0x4c(r30)
-	addi     r5, r5, 0x66303032@l
-	lfs      f0, lbl_80518184@sda21(r2)
-	addi     r6, r31, 0xc4
-	stfs     f1, 0x54(r30)
-	stfs     f0, 0x58(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303033@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_80518168@sda21(r2)
-	stw      r0, 0x5c(r30)
-	mr       r4, r30
-	lfs      f0, lbl_80518184@sda21(r2)
-	addi     r3, r30, 0x84
-	stfs     f1, 0x74(r30)
-	addi     r5, r5, 0x66303033@l
-	addi     r6, r31, 0xd4
-	stfs     f1, 0x7c(r30)
-	stfs     f0, 0x80(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303034@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805181A4@sda21(r2)
-	stw      r0, 0x84(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80518168@sda21(r2)
-	addi     r3, r30, 0xac
-	stfs     f0, 0x9c(r30)
-	addi     r5, r5, 0x66303034@l
-	lfs      f0, lbl_80518184@sda21(r2)
-	addi     r6, r31, 0xe4
-	stfs     f1, 0xa4(r30)
-	stfs     f0, 0xa8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303035@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80518168@sda21(r2)
-	stw      r0, 0xac(r30)
-	mr       r4, r30
-	lfs      f1, lbl_805181A8@sda21(r2)
-	addi     r3, r30, 0xd4
-	stfs     f0, 0xc4(r30)
-	addi     r5, r5, 0x66303035@l
-	lfs      f0, lbl_805181A0@sda21(r2)
-	addi     r6, r31, 0xf4
-	stfs     f1, 0xcc(r30)
-	stfs     f0, 0xd0(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303036@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80518168@sda21(r2)
-	stw      r0, 0xd4(r30)
-	mr       r4, r30
-	lfs      f1, lbl_805181A8@sda21(r2)
-	addi     r3, r30, 0xfc
-	stfs     f0, 0xec(r30)
-	addi     r5, r5, 0x66303036@l
-	lfs      f0, lbl_805181A0@sda21(r2)
-	addi     r6, r31, 0x104
-	stfs     f1, 0xf4(r30)
-	stfs     f0, 0xf8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303039@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80518168@sda21(r2)
-	stw      r0, 0xfc(r30)
-	mr       r4, r30
-	lfs      f1, lbl_805181A8@sda21(r2)
-	addi     r3, r30, 0x124
-	stfs     f0, 0x114(r30)
-	addi     r5, r5, 0x66303039@l
-	lfs      f0, lbl_805181A0@sda21(r2)
-	addi     r6, r31, 0x114
-	stfs     f1, 0x11c(r30)
-	stfs     f0, 0x120(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303037@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805181AC@sda21(r2)
-	stw      r0, 0x124(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80518168@sda21(r2)
-	addi     r3, r30, 0x14c
-	stfs     f0, 0x13c(r30)
-	addi     r5, r5, 0x66303037@l
-	lfs      f0, lbl_805181B0@sda21(r2)
-	addi     r6, r31, 0x124
-	stfs     f1, 0x144(r30)
-	stfs     f0, 0x148(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303038@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805181B4@sda21(r2)
-	stw      r0, 0x14c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80518168@sda21(r2)
-	addi     r3, r30, 0x174
-	stfs     f0, 0x164(r30)
-	addi     r5, r5, 0x66303038@l
-	lfs      f0, lbl_805181B0@sda21(r2)
-	addi     r6, r31, 0x134
-	stfs     f1, 0x16c(r30)
-	stfs     f0, 0x170(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66303130@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_805181B0@sda21(r2)
-	stw      r0, 0x174(r30)
-	mr       r4, r30
-	lfs      f0, lbl_80518168@sda21(r2)
-	addi     r3, r30, 0x19c
-	stfs     f1, 0x18c(r30)
-	addi     r5, r5, 0x66303130@l
-	addi     r6, r31, 0x144
-	stfs     f0, 0x194(r30)
-	stfs     f1, 0x198(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lfs      f1, lbl_80518168@sda21(r2)
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805181B8@sda21(r2)
-	stw      r0, 0x19c(r30)
-	mr       r3, r30
-	stfs     f1, 0x1b4(r30)
-	stfs     f1, 0x1bc(r30)
-	stfs     f0, 0x1c0(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	80131DA8
  * Size:	000064
  */
-void IllustratedBook::EnemyParms::read(Stream&)
+void EnemyParms::read(Stream&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1659,7 +1153,7 @@ void IllustratedBook::EnemyParms::read(Stream&)
  * Address:	80131E0C
  * Size:	000060
  */
-IllustratedBook::EnemyParms::~EnemyParms()
+EnemyParms::~EnemyParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1696,7 +1190,7 @@ lbl_80131E50:
  * Address:	80131E6C
  * Size:	000084
  */
-void IllustratedBook::EnemyModeParms::read(Stream&)
+void EnemyModeParms::read(Stream&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1744,7 +1238,7 @@ lbl_80131EC8:
  * Address:	80131EF0
  * Size:	000148
  */
-IllustratedBook::ItemParms::ItemParms()
+ItemParms::ItemParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1837,7 +1331,7 @@ IllustratedBook::ItemParms::ItemParms()
  * Address:	80132038
  * Size:	000064
  */
-void IllustratedBook::ItemParms::read(Stream&)
+void ItemParms::read(Stream&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1873,7 +1367,7 @@ void IllustratedBook::ItemParms::read(Stream&)
  * Address:	8013209C
  * Size:	000060
  */
-IllustratedBook::ItemParms::~ItemParms()
+ItemParms::~ItemParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1910,7 +1404,7 @@ lbl_801320E0:
  * Address:	801320FC
  * Size:	000080
  */
-void IllustratedBook::ItemModeParms::read(Stream&)
+void ItemModeParms::read(Stream&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1957,7 +1451,7 @@ lbl_80132150:
  * Address:	8013217C
  * Size:	00029C
  */
-IllustratedBook::Parms::Parms()
+Parms::Parms()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2143,7 +1637,7 @@ lbl_801323C0:
  * Address:	80132418
  * Size:	000060
  */
-IllustratedBook::ItemModeParms::~ItemModeParms()
+ItemModeParms::~ItemModeParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2180,7 +1674,7 @@ lbl_8013245C:
  * Address:	80132478
  * Size:	00007C
  */
-IllustratedBook::EnemyModeParms::~EnemyModeParms()
+EnemyModeParms::~EnemyModeParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2224,7 +1718,7 @@ lbl_801324D8:
  * Address:	801324F4
  * Size:	00007C
  */
-IllustratedBook::PositionParmsList::~PositionParmsList()
+PositionParmsList::~PositionParmsList()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2268,7 +1762,7 @@ lbl_80132554:
  * Address:	80132570
  * Size:	000060
  */
-IllustratedBook::ColorSetting::~ColorSetting()
+ColorSetting::~ColorSetting()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2305,7 +1799,7 @@ lbl_801325B4:
  * Address:	801325D0
  * Size:	000090
  */
-void IllustratedBook::Parms::read(Stream&)
+void Parms::read(Stream&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2352,7 +1846,7 @@ void IllustratedBook::Parms::read(Stream&)
  * Address:	80132660
  * Size:	0000D0
  */
-void IllustratedBook::Parms::loadFile(JKRArchive*)
+void Parms::loadFile(JKRArchive*)
 {
 	/*
 	stwu     r1, -0x440(r1)
@@ -2421,7 +1915,7 @@ lbl_801326FC:
  * Address:	80132730
  * Size:	000114
  */
-IllustratedBook::Parms::~Parms()
+Parms::~Parms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2505,5 +1999,5 @@ lbl_80132828:
 	blr
 	*/
 }
-
+} // namespace IllustratedBook
 } // namespace Game
