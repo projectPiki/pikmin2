@@ -12,13 +12,8 @@ namespace Game {
  */
 TimeMgr::TimeMgr()
     : CNode("タイムマネージャ")
+    , mSpeedFactor(1.0f)
 {
-	mSpeedFactor = 1.0f;
-	u8* flagPtr  = (u8*)&mFlags;
-	flagPtr[0]   = 0;
-	flagPtr[1]   = 0;
-	flagPtr[2]   = 0;
-	flagPtr[3]   = 0;
 	init();
 }
 
@@ -29,17 +24,17 @@ TimeMgr::TimeMgr()
  */
 void TimeMgr::init()
 {
-	_220                = TIMEMGR_DAY_HOURS - mParms.parms.mEveningEndTime.mValue + mParms.parms.mMorningStartTime.mValue;
-	mEarlyMorningLength = mParms.parms.mMidMorningTime.mValue - mParms.parms.mMorningStartTime.mValue;
-	mMidMorningLength   = mParms.parms.mMorningEndTime.mValue - mParms.parms.mMidMorningTime.mValue;
-	mMiddayLength       = mParms.parms.mEveningStartTime.mValue - mParms.parms.mMorningEndTime.mValue;
-	mEarlyEveningLength = mParms.parms.mMidEveningStartTime.mValue - mParms.parms.mEveningStartTime.mValue;
-	mLateEveningLength  = mParms.parms.mEveningEndTime.mValue - mParms.parms.mMidEveningEndTime.mValue;
-	mDayLengthHours     = mParms.parms.mDayEndTime.mValue - mParms.parms.mDayStartTime.mValue;
-	mSunRatio           = TIMEMGR_DAY_HOURS - mDayLengthHours;
+	mNightLength        = TIMEMGR_DAY_HOURS - mParms.mParms.mEveningEndTime.mValue + mParms.mParms.mMorningStartTime.mValue;
+	mEarlyMorningLength = mParms.mParms.mMidMorningTime.mValue - mParms.mParms.mMorningStartTime.mValue;
+	mMidMorningLength   = mParms.mParms.mMorningEndTime.mValue - mParms.mParms.mMidMorningTime.mValue;
+	mMiddayLength       = mParms.mParms.mEveningStartTime.mValue - mParms.mParms.mMorningEndTime.mValue;
+	mEarlyEveningLength = mParms.mParms.mMidEveningStartTime.mValue - mParms.mParms.mEveningStartTime.mValue;
+	mLateEveningLength  = mParms.mParms.mEveningEndTime.mValue - mParms.mParms.mMidEveningEndTime.mValue;
+	mGameDayLength      = mParms.mParms.mDayEndTime.mValue - mParms.mParms.mDayStartTime.mValue;
+	mGameNightLength    = TIMEMGR_DAY_HOURS - mGameDayLength;
 	mDayCount           = 0;
 
-	setTime(mParms.parms.mDayStartTime.mValue);
+	setTime(mParms.mParms.mDayStartTime.mValue);
 }
 
 /*
@@ -50,7 +45,7 @@ void TimeMgr::init()
 void TimeMgr::setTime(f32 time)
 {
 	mCurrentTimeOfDay = time;
-	mCurrentHour      = (mCurrentTimeOfDay / TIMEMGR_DAY_HOURS) * mParms.parms.mDayLengthSeconds.mValue;
+	mCurrentRealTime  = (mCurrentTimeOfDay / TIMEMGR_DAY_HOURS) * mParms.mParms.mDayLengthSeconds.mValue;
 
 	updateSlot();
 }
@@ -62,8 +57,8 @@ void TimeMgr::setTime(f32 time)
  */
 void TimeMgr::setStartTime()
 {
-	mCurrentTimeOfDay = mParms.parms.mDayStartTime.mValue;
-	mCurrentHour      = (mCurrentTimeOfDay / TIMEMGR_DAY_HOURS) * mParms.parms.mDayLengthSeconds.mValue;
+	mCurrentTimeOfDay = mParms.mParms.mDayStartTime.mValue;
+	mCurrentRealTime  = (mCurrentTimeOfDay / TIMEMGR_DAY_HOURS) * mParms.mParms.mDayLengthSeconds.mValue;
 
 	updateSlot();
 }
@@ -75,8 +70,8 @@ void TimeMgr::setStartTime()
  */
 void TimeMgr::setEndTime()
 {
-	mCurrentTimeOfDay = mParms.parms.mDayEndTime.mValue;
-	mCurrentHour      = (mCurrentTimeOfDay / TIMEMGR_DAY_HOURS) * mParms.parms.mDayLengthSeconds.mValue;
+	mCurrentTimeOfDay = mParms.mParms.mDayEndTime.mValue;
+	mCurrentRealTime  = (mCurrentTimeOfDay / TIMEMGR_DAY_HOURS) * mParms.mParms.mDayLengthSeconds.mValue;
 
 	updateSlot();
 }
@@ -89,50 +84,62 @@ void TimeMgr::setEndTime()
 #pragma dont_inline on
 void TimeMgr::updateSlot()
 {
-	if ((mCurrentTimeOfDay < mParms.parms.mMorningStartTime.mValue) || mCurrentTimeOfDay >= mParms.parms.mEveningEndTime.mValue) {
-		mSlotPosition = 0;
+	// NIGHT
+	if ((mCurrentTimeOfDay < mParms.mParms.mMorningStartTime.mValue) || mCurrentTimeOfDay >= mParms.mParms.mEveningEndTime.mValue) {
+		mLightSetting = SUNTIME_Night;
 
+		// linear increase from 0 to 1 as night goes from 7pm to 5:15am
 		f32 time = mCurrentTimeOfDay;
-		if (mCurrentTimeOfDay < mParms.parms.mMorningStartTime.mValue) {
+		if (mCurrentTimeOfDay < mParms.mParms.mMorningStartTime.mValue) {
 			time += TIMEMGR_DAY_HOURS;
 		}
 
-		_214 = (time - mParms.parms.mEveningEndTime.mValue) / _220;
+		mLightSettingRatio = (time - mParms.mParms.mEveningEndTime.mValue) / mNightLength;
 		return;
 	}
 
-	if (mCurrentTimeOfDay < mParms.parms.mMorningEndTime.mValue) {
-		mSlotPosition = 1;
+	// MORNING
+	if (mCurrentTimeOfDay < mParms.mParms.mMorningEndTime.mValue) {
+		mLightSetting = SUNTIME_Morning;
 
-		if (mCurrentTimeOfDay < mParms.parms.mMidMorningTime.mValue) {
-			_214 = (0.5f * (mCurrentTimeOfDay - mParms.parms.mMorningStartTime.mValue)) / mEarlyMorningLength;
+		// linear increase from 0 to 0.5 as morning goes from 5:15am to 7am (slower)
+		if (mCurrentTimeOfDay < mParms.mParms.mMidMorningTime.mValue) {
+			mLightSettingRatio = (0.5f * (mCurrentTimeOfDay - mParms.mParms.mMorningStartTime.mValue)) / mEarlyMorningLength;
 			return;
 		}
 
-		_214 = 0.5f + ((0.5f * (mCurrentTimeOfDay - mParms.parms.mMidMorningTime.mValue)) / mMidMorningLength);
+		// linear increase from 0.5 to 1 as morning goes from 7am to 8am (faster)
+		mLightSettingRatio = 0.5f + ((0.5f * (mCurrentTimeOfDay - mParms.mParms.mMidMorningTime.mValue)) / mMidMorningLength);
 		return;
 	}
 
-	if (mCurrentTimeOfDay < mParms.parms.mEveningStartTime.mValue) {
-		mSlotPosition = 2;
-		_214          = (mCurrentTimeOfDay - mParms.parms.mMorningEndTime.mValue) / mMiddayLength;
+	// NOON
+	if (mCurrentTimeOfDay < mParms.mParms.mEveningStartTime.mValue) {
+		mLightSetting = SUNTIME_Noon;
+
+		// linear increase from 0 to 1 as day goes from 8am to 3pm
+		mLightSettingRatio = (mCurrentTimeOfDay - mParms.mParms.mMorningEndTime.mValue) / mMiddayLength;
 		return;
 	}
 
-	if (mCurrentTimeOfDay < mParms.parms.mEveningEndTime.mValue) {
-		mSlotPosition = 3;
+	// EVENING
+	if (mCurrentTimeOfDay < mParms.mParms.mEveningEndTime.mValue) {
+		mLightSetting = SUNTIME_Evening;
 
-		if (mCurrentTimeOfDay < mParms.parms.mMidEveningStartTime.mValue) {
-			_214 = (0.5f * (mCurrentTimeOfDay - mParms.parms.mEveningStartTime.mValue)) / mEarlyEveningLength;
+		// linear increase from 0 to 0.5 as evening goes from 3pm to 3:30pm (fast)
+		if (mCurrentTimeOfDay < mParms.mParms.mMidEveningStartTime.mValue) {
+			mLightSettingRatio = (0.5f * (mCurrentTimeOfDay - mParms.mParms.mEveningStartTime.mValue)) / mEarlyEveningLength;
 			return;
 		}
 
-		if (mCurrentTimeOfDay < mParms.parms.mMidEveningEndTime.mValue) {
-			_214 = 0.5f;
+		// steady at 0.5 as evening goes from 3:30pm to 6:30pm
+		if (mCurrentTimeOfDay < mParms.mParms.mMidEveningEndTime.mValue) {
+			mLightSettingRatio = 0.5f;
 			return;
 		}
 
-		_214 = 0.5f + ((0.5f * (mCurrentTimeOfDay - mParms.parms.mMidEveningEndTime.mValue)) / mLateEveningLength);
+		// linear increase from 0.5 to 1 as evening goes from 6:30pm to 7pm (fast), i.e. during countdown
+		mLightSettingRatio = 0.5f + ((0.5f * (mCurrentTimeOfDay - mParms.mParms.mMidEveningEndTime.mValue)) / mLateEveningLength);
 	}
 }
 #pragma dont_inline reset
@@ -144,16 +151,17 @@ void TimeMgr::updateSlot()
  */
 f32 TimeMgr::getSunGaugeRatio()
 {
-	if (mCurrentTimeOfDay >= mParms.parms.mDayStartTime.mValue && mCurrentTimeOfDay < mParms.parms.mDayEndTime.mValue) {
-		return (mCurrentTimeOfDay - mParms.parms.mDayStartTime.mValue) / mDayLengthHours;
+	// if we're during gameplay time, make sun gauge appropriate ratio between 0 and 1 (0 at 7am landing, 1 at 7pm liftoff)
+	if (mCurrentTimeOfDay >= mParms.mParms.mDayStartTime.mValue && mCurrentTimeOfDay < mParms.mParms.mDayEndTime.mValue) {
+		return (mCurrentTimeOfDay - mParms.mParms.mDayStartTime.mValue) / mGameDayLength;
 	}
 
+	// we're (somehow) during unplayable time, make sun gauge appropriate ratio between 0 and 1 (0 at 7pm liftoff, 1 at 7am landing)
 	f32 time = mCurrentTimeOfDay;
-	if (mCurrentTimeOfDay < mParms.parms.mDayStartTime.mValue) {
+	if (mCurrentTimeOfDay < mParms.mParms.mDayStartTime.mValue) {
 		time += TIMEMGR_DAY_HOURS;
 	}
-
-	return 1.0f - ((time - mParms.parms.mDayEndTime.mValue) / mSunRatio);
+	return 1.0f - ((time - mParms.mParms.mDayEndTime.mValue) / mGameNightLength);
 }
 
 /*
@@ -163,14 +171,14 @@ f32 TimeMgr::getSunGaugeRatio()
  */
 void TimeMgr::update()
 {
-	if (!(mFlags & TIMEMGR_FLAG_STOPPED)) {
-		mCurrentHour += mSpeedFactor * sys->mDeltaTime;
+	if (!isFlag(TIMEFLAG_Stopped)) {
+		mCurrentRealTime += mSpeedFactor * sys->mDeltaTime;
 
-		if (mCurrentHour > mParms.parms.mDayLengthSeconds.mValue) {
-			mCurrentHour -= mParms.parms.mDayLengthSeconds.mValue;
+		if (mCurrentRealTime > mParms.mParms.mDayLengthSeconds.mValue) {
+			mCurrentRealTime -= mParms.mParms.mDayLengthSeconds.mValue;
 		}
 
-		mCurrentTimeOfDay = TIMEMGR_DAY_HOURS * (mCurrentHour / mParms.parms.mDayLengthSeconds.mValue);
+		mCurrentTimeOfDay = TIMEMGR_DAY_HOURS * (mCurrentRealTime / mParms.mParms.mDayLengthSeconds.mValue);
 
 		updateSlot();
 	}
@@ -181,7 +189,7 @@ void TimeMgr::update()
  * Address:	80127398
  * Size:	000018
  */
-bool TimeMgr::isDayOver() { return mCurrentTimeOfDay > mParms.parms.mDayEndTime.mValue; }
+bool TimeMgr::isDayOver() { return mCurrentTimeOfDay > mParms.mParms.mDayEndTime.mValue; }
 
 /*
  * --INFO--
@@ -190,7 +198,7 @@ bool TimeMgr::isDayOver() { return mCurrentTimeOfDay > mParms.parms.mDayEndTime.
  */
 bool TimeMgr::isDayTime()
 {
-	return mCurrentTimeOfDay > mParms.parms.mDayStartTime.mValue && mCurrentTimeOfDay <= mParms.parms.mDayEndTime.mValue;
+	return mCurrentTimeOfDay > mParms.mParms.mDayStartTime.mValue && mCurrentTimeOfDay <= mParms.mParms.mDayEndTime.mValue;
 }
 
 /*
@@ -200,8 +208,8 @@ bool TimeMgr::isDayTime()
  */
 f32 TimeMgr::getRealDayTime()
 {
-	return mParms.parms.mDayLengthSeconds.mValue
-	     * ((mParms.parms.mDayEndTime.mValue - mParms.parms.mDayStartTime.mValue) / TIMEMGR_DAY_HOURS);
+	return mParms.mParms.mDayLengthSeconds.mValue
+	     * ((mParms.mParms.mDayEndTime.mValue - mParms.mParms.mDayStartTime.mValue) / TIMEMGR_DAY_HOURS);
 }
 
 /*
@@ -211,21 +219,8 @@ f32 TimeMgr::getRealDayTime()
  */
 void TimeMgr::loadSettingFile(char* filename)
 {
-	loadAndRead(&mParms.parms, filename, JKRHeap::sSystemHeap);
-
-	_220                = TIMEMGR_DAY_HOURS - mParms.parms.mEveningEndTime.mValue + mParms.parms.mMorningStartTime.mValue;
-	mEarlyMorningLength = mParms.parms.mMidMorningTime.mValue - mParms.parms.mMorningStartTime.mValue;
-	mMidMorningLength   = mParms.parms.mMorningEndTime.mValue - mParms.parms.mMidMorningTime.mValue;
-	mMiddayLength       = mParms.parms.mEveningStartTime.mValue - mParms.parms.mMorningEndTime.mValue;
-	mEarlyEveningLength = mParms.parms.mMidEveningStartTime.mValue - mParms.parms.mEveningStartTime.mValue;
-	mLateEveningLength  = mParms.parms.mEveningEndTime.mValue - mParms.parms.mMidEveningEndTime.mValue;
-	mDayLengthHours     = mParms.parms.mDayEndTime.mValue - mParms.parms.mDayStartTime.mValue;
-	mSunRatio           = TIMEMGR_DAY_HOURS - mDayLengthHours;
-	mDayCount           = 0;
-	mCurrentTimeOfDay   = mParms.parms.mDayStartTime.mValue;
-	mCurrentHour        = mCurrentTimeOfDay / TIMEMGR_DAY_HOURS * mParms.parms.mDayLengthSeconds.mValue;
-
-	updateSlot();
+	loadAndRead(&mParms.mParms, filename, JKRHeap::sSystemHeap);
+	init();
 }
 
 } // namespace Game

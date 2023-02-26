@@ -1935,9 +1935,9 @@ bool Game2DMgr::checkDayEnd(f32 min) const
 
 	Game::TimeMgr* mgr = Game::gameSystem->mTimeMgr;
 	f32 ratio          = mgr->getSunGaugeRatio();
-	f32 factor         = mgr->mParms.parms.mDayStartTime;
+	f32 factor         = mgr->mParms.mParms.mDayStartTime;
 	return ((1.0f - ratio)
-	        / (1.0f - ((mgr->mParms.parms.mCountdownTime.mValue - factor) / (mgr->mParms.parms.mDayEndTime.mValue - factor))))
+	        / (1.0f - ((mgr->mParms.mParms.mCountdownTime.mValue - factor) / (mgr->mParms.mParms.mDayEndTime.mValue - factor))))
 	     < min;
 }
 

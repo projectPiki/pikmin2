@@ -34,15 +34,15 @@ struct Ground : public ::Screen::SceneBase {
 
 	~Ground(); // unused/inlined
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isDrawInDemo() const;                      // _18 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual void doUpdateActive();                          // _2C
-	virtual bool doStart(::Screen::StartSceneArg*);         // _3C
+	virtual const char* getResName() const { return "res_ground.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_GROUND; }           // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }            // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_GROUND; }      // _10 (weak)
+	virtual bool isDrawInDemo() const { return false; }                 // _18 (weak)
+	virtual void doCreateObj(JKRArchive*);                              // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);             // _24
+	virtual void doUpdateActive();                                      // _2C
+	virtual bool doStart(::Screen::StartSceneArg*);                     // _3C
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase

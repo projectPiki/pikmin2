@@ -98,6 +98,14 @@ struct GameFogSetting {
 		mSettings.read(stream);
 		mFogParms.read(stream);
 	}
+
+	inline void getColor(Color4& color)
+	{
+		color.r = *mSettings.mRed();
+		color.g = *mSettings.mGreen();
+		color.b = *mSettings.mBlue();
+		color.a = *mSettings.mAlpha();
+	}
 };
 
 struct GameLightAmbientSetting : public GameLightSettingBase {
@@ -143,6 +151,14 @@ struct GameShadowSetting {
 	virtual void read(Stream& stream) // _08 (weak)
 	{
 		mSettings.read(stream);
+	}
+
+	inline void getColor(Color4& color)
+	{
+		color.r = *mSettings.mRed();
+		color.g = *mSettings.mGreen();
+		color.b = *mSettings.mBlue();
+		color.a = *mSettings.mAlpha();
 	}
 };
 

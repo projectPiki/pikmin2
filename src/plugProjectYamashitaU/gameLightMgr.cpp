@@ -10,33 +10,35 @@
 namespace Game {
 
 template <class T>
-T complement(T, T, T);
+T complement(T start, T end, T ratio);
 
 static const int unusedGameLightArray[] = { 0, 0, 0 };
 static const char unusedGameLightName[] = "gameLightMgr";
+
+#define COMPLEMENT(src, dest, proportion) (proportion) * ((f32)(dest) - (f32)(src)) + (f32)(src)
+
+#define ADJUST_BY_HALF(val) ((val) >= 0.0f) ? (val) + 0.5f : (val)-0.5f
+
+#define CAP_AT(val, limit) ((val) > (limit)) ? (limit) : (val)
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0001FC
  */
-void calcLightColor(Color4* lightColor, Color4& color1, Color4& color2, f32 scale)
+void calcLightColor(Color4* lightColor, Color4& destColor, Color4& srcColor, f32 ratio)
 {
-	f32 tempRed   = scale * ((f32)color1.r - (f32)color2.r) + (f32)color2.r;
-	lightColor->r = (tempRed >= 0.0f) ? tempRed + 0.5f : tempRed - 0.5f;
+	lightColor->r = ADJUST_BY_HALF(COMPLEMENT(srcColor.r, destColor.r, ratio));
 
-	f32 tempGreen = scale * ((f32)color1.g - (f32)color2.g) + (f32)color2.g;
-	lightColor->g = (tempGreen >= 0.0f) ? tempGreen + 0.5f : tempGreen - 0.5f;
+	lightColor->g = ADJUST_BY_HALF(COMPLEMENT(srcColor.g, destColor.g, ratio));
 
-	f32 tempBlue  = scale * ((f32)color1.b - (f32)color2.b) + (f32)color2.b;
-	lightColor->b = (tempBlue >= 0.0f) ? tempBlue + 0.5f : tempBlue - 0.5f;
+	lightColor->b = ADJUST_BY_HALF(COMPLEMENT(srcColor.b, destColor.b, ratio));
 
-	f32 tempAlpha = scale * ((f32)(color1.a) - (f32)color2.a) + (f32)color2.a;
-	lightColor->a = (tempAlpha >= 0.0f) ? tempAlpha + 0.5f : tempAlpha - 0.5f;
+	lightColor->a = ADJUST_BY_HALF(COMPLEMENT(srcColor.a, destColor.a, ratio));
 }
 
 namespace {
-const char* GameLightMgrSettinglabel[5] = {
+const char* GameLightMgrSettinglabel[SUNTIME_Count] = {
 	"夜",     // 'night'
 	"朝",     // 'morning'
 	"昼",     // 'noon'
@@ -62,8 +64,8 @@ GameLightTimeSetting::GameLightTimeSetting()
  */
 void GameLightTimeSetting::read(Stream& stream)
 {
-	mDiffuseLight1.read(stream);
-	mDiffuseLight2.read(stream);
+	mMainLight.read(stream);
+	mSubLight.read(stream);
 	mSpecLight.read(stream);
 	mAmbientLight.read(stream);
 	mFog.read(stream);
@@ -78,7 +80,7 @@ void GameLightTimeSetting::read(Stream& stream)
 GameLightSunSetting::GameLightSunSetting(char* name)
     : CNode(name)
 {
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < SUNTIME_Count; i++) {
 		mLightTimes[i].mName = GameLightMgrSettinglabel[i];
 		add(&mLightTimes[i]);
 	}
@@ -92,7 +94,7 @@ GameLightSunSetting::GameLightSunSetting(char* name)
 void GameLightSunSetting::read(Stream& stream)
 {
 	mMoveParms.read(stream);
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < SUNTIME_Count; i++) {
 		mLightTimes[i].read(stream);
 	}
 }
@@ -115,8 +117,8 @@ GameLightSpotSetting::GameLightSpotSetting(char* name)
 void GameLightSpotSetting::read(Stream& stream)
 {
 	mMoveParms.read(stream);
-	mSpotLight1.read(stream);
-	mSpotLight2.read(stream);
+	mMainLight.read(stream);
+	mSubLight.read(stream);
 	mSpecLight.read(stream);
 	mAmbientLight.read(stream);
 	mFog.read(stream);
@@ -188,9 +190,9 @@ void GameLightMgrSetting::read(Stream& stream)
  * Address:	8011E388
  * Size:	0001E0
  */
-void GameLightMgrSetting::readOldVersion(ID32 id, Stream& stream)
+void GameLightMgrSetting::readOldVersion(ID32 version, Stream& stream)
 {
-	switch (id.getID()) {
+	switch (version.getID()) {
 	case '0000':
 		mIsCave = stream.readByte();
 		if (!mIsCave) {
@@ -201,7 +203,7 @@ void GameLightMgrSetting::readOldVersion(ID32 id, Stream& stream)
 		break;
 
 	default:
-		JUT_PANICLINE(427, "Unknown version [%08x]", id.getID());
+		JUT_PANICLINE(427, "Unknown version [%08x]", version.getID());
 	}
 }
 
@@ -209,17 +211,22 @@ void GameLightEventNode::start(GameLightEventArg& eventArg)
 {
 	mEventFlag     = eventArg.mEventFlag;
 	mLightTypeFlag = eventArg.mLightTypeFlag;
-	_1C            = eventArg._04;
-	_20            = eventArg._08;
-	_24            = eventArg._0C;
-	_28            = eventArg._10;
-	_2C            = eventArg._14;
-	_30            = eventArg._18;
-	_34            = eventArg._1C;
-	_38            = eventArg._20;
-	_3C            = eventArg._24;
-	_40            = 0.0f;
-	_4C            = 1;
+
+	mRedScale   = eventArg.mRedScale;
+	mGreenScale = eventArg.mGreenScale;
+	mBlueScale  = eventArg.mBlueScale;
+
+	mGrowTime = eventArg.mGrowTime;
+	mFadeTime = eventArg.mFadeTime;
+
+	mNearZ = eventArg.mNearZ;
+	mFarZ  = eventArg.mFarZ;
+
+	mPosition = eventArg.mPosition;
+	mRange    = eventArg.mRange;
+
+	mStateTimer = 0.0f;
+	mState      = LIGHTSTATE_Grow;
 }
 
 /*
@@ -231,54 +238,58 @@ bool GameLightEventNode::update(GameLightMgr* lightMgr)
 {
 	bool result = false;
 
-	switch (_4C) {
-	case 1:
-		_40 += sys->mDeltaTime;
-		if (_40 > _28) {
-			_40 = _28;
-			_44 = 1.0f;
+	switch (mState) {
+	case LIGHTSTATE_Grow:
+		mStateTimer += sys->mDeltaTime;
+		if (mStateTimer > mGrowTime) {
+			mStateTimer = mGrowTime;
+			mColorRatio = 1.0f;
+
 		} else {
-			_44 = _40 / _28;
+			mColorRatio = mStateTimer / mGrowTime;
 		}
 
-		if (_44 == 1.0f) {
-			_40 = 0.0f;
-			_4C = 2;
+		if (mColorRatio == 1.0f) {
+			mStateTimer = 0.0f;
+			mState      = LIGHTSTATE_Steady;
 		}
 
 		updateCommon(lightMgr, true);
 		break;
 
-	case 2:
-		_40 += sys->mDeltaTime;
-		if (_40 > 4.0f) {
-			_40 = 0.0f;
+	case LIGHTSTATE_Steady:
+		mStateTimer += sys->mDeltaTime;
+		if (mStateTimer > 4.0f) {
+			mStateTimer = 0.0f;
 		}
 
-		_44 = 0.9f + 0.1f * pikmin2_cosf(TAU * _40 / 4);
+		mColorRatio = 0.9f + 0.1f * pikmin2_cosf(TAU * mStateTimer / 4);
 
-		if (mEventFlag & 1) {
+		if (isEvent(LIGHTEVENT_Unk1)) {
 			updateCommon(lightMgr, true);
-			_48 = _44;
-			_40 = 0.0f;
-			_4C = 3;
+			mPeakRatio  = mColorRatio;
+			mStateTimer = 0.0f;
+			mState      = LIGHTSTATE_Fade;
+
 		} else {
 			updateCommon(lightMgr, true);
 		}
 		break;
 
-	case 3:
-		_40 += sys->mDeltaTime;
-		if (_40 > _2C) {
-			_40 = _2C;
-			_44 = 0.0f;
+	case LIGHTSTATE_Fade:
+		mStateTimer += sys->mDeltaTime;
+		if (mStateTimer > mFadeTime) {
+			mStateTimer = mFadeTime;
+			mColorRatio = 0.0f;
+
 		} else {
-			_44 = _48 * (1.0f - (_40 / _2C));
+			mColorRatio = mPeakRatio * (1.0f - (mStateTimer / mFadeTime));
 		}
 
 		updateCommon(lightMgr, false);
-		if (_44 == 0.0f) {
-			_4C    = 0;
+
+		if (mColorRatio == 0.0f) {
+			mState = LIGHTSTATE_Inactive;
 			result = true;
 		}
 		break;
@@ -296,25 +307,26 @@ void GameLightEventNode::updateCommon(GameLightMgr* lightMgr, bool check)
 {
 	f32 val = -1.0f;
 	if (check) {
-		if (mEventFlag & 0x8 && _38 && _3C > 0.0f) {
+		if (isEvent(LIGHTEVENT_Unk4) && mPosition && mRange > 0.0f) {
 			PlayCamera* camera = lightMgr->mCamera;
 			if (camera) {
 				Vector3f cameraPos = camera->getPosition();
-				val                = 1.0f - (pikmin2_sqrtf(sqrDistance(*_38, cameraPos)) / _3C);
+
+				val = 1.0f - (pikmin2_sqrtf(sqrDistance(*mPosition, cameraPos)) / mRange);
 				if (val < 0.0f) {
 					val = 0.0f;
 				}
 			}
 		}
 
-		_44 = 0.5f * (1.0f - pikmin2_cosf(PI * _44));
+		mColorRatio = 0.5f * (1.0f - pikmin2_cosf(PI * mColorRatio));
 
 		if (val >= 0.0f) {
 			f32 val2 = 0.0f;
 			if (val >= 0.0f) {
 				val2 = val;
 			}
-			_44 *= val2;
+			mColorRatio *= val2;
 		}
 	}
 
@@ -349,8 +361,8 @@ void GameLightEventNode::updateCommon(GameLightMgr* lightMgr, bool check)
 		calcColor(&color);
 		lightMgr->mFogMgr->setColor(color);
 
-		lightMgr->mFogMgr->mNearZ = complement<f32>(lightMgr->mFogMgr->mNearZ, _30, _44);
-		lightMgr->mFogMgr->mFarZ  = complement<f32>(lightMgr->mFogMgr->mFarZ, _34, _44);
+		lightMgr->mFogMgr->mNearZ = complement<f32>(lightMgr->mFogMgr->mNearZ, mNearZ, mColorRatio);
+		lightMgr->mFogMgr->mFarZ  = complement<f32>(lightMgr->mFogMgr->mFarZ, mFarZ, mColorRatio);
 	}
 
 	if (isLightType(LIGHTTYPE_Shadow)) {
@@ -368,50 +380,22 @@ void GameLightEventNode::updateCommon(GameLightMgr* lightMgr, bool check)
 void GameLightEventNode::calcColor(Color4* color)
 {
 	Color4 tempColor;
-	if (mEventFlag & 0x2) {
-		f32 redF   = _1C * color->r;
-		f32 greenF = _20 * color->g;
-		f32 blueF  = _24 * color->b;
+	if (isEvent(LIGHTEVENT_Unk2)) {
+		f32 redF   = mRedScale * color->r;
+		f32 greenF = mGreenScale * color->g;
+		f32 blueF  = mBlueScale * color->b;
 
-		f32 limitR = (redF > 255.0f) ? 255.0f : redF;
-		f32 limitR2;
-		if (limitR >= 0.0f) {
-			limitR2 = ((redF > 255.0f) ? 255.0f : redF) + 0.5f;
-		} else {
-			limitR2 = ((redF > 255.0f) ? 255.0f : redF) - 0.5f;
-		}
-		tempColor.r = (int)limitR2;
-
-		f32 limitG = (greenF > 255.0f) ? 255.0f : greenF;
-		f32 limitG2;
-		if (limitG >= 0.0f) {
-			limitG2 = ((greenF > 255.0f) ? 255.0f : greenF) + 0.5f;
-		} else {
-			limitG2 = ((greenF > 255.0f) ? 255.0f : greenF) - 0.5f;
-		}
-		tempColor.g = (int)limitG2;
-
-		f32 limitB = (blueF > 255.0f) ? 255.0f : blueF;
-		f32 limitB2;
-		if (limitB >= 0.0f) {
-			limitB2 = ((blueF > 255.0f) ? 255.0f : blueF) + 0.5f;
-		} else {
-			limitB2 = ((blueF > 255.0f) ? 255.0f : blueF) - 0.5f;
-		}
-		tempColor.b = (int)limitB2;
+		tempColor.r = (int)(ADJUST_BY_HALF(CAP_AT(redF, 255.0f)));
+		tempColor.g = (int)(ADJUST_BY_HALF(CAP_AT(greenF, 255.0f)));
+		tempColor.b = (int)(ADJUST_BY_HALF(CAP_AT(blueF, 255.0f)));
 
 	} else {
-		f32 limitR  = (_1C >= 0.0f) ? _1C + 0.5f : _1C - 0.5f;
-		tempColor.r = (int)limitR;
-
-		f32 limitG  = (_20 >= 0.0f) ? _20 + 0.5f : _20 - 0.5f;
-		tempColor.g = (int)limitG;
-
-		f32 limitB  = (_24 >= 0.0f) ? _24 + 0.5f : _24 - 0.5f;
-		tempColor.b = (int)limitB;
+		tempColor.r = (int)(ADJUST_BY_HALF(mRedScale));
+		tempColor.g = (int)(ADJUST_BY_HALF(mGreenScale));
+		tempColor.b = (int)(ADJUST_BY_HALF(mBlueScale));
 	}
 
-	calcLightColor(color, tempColor, *color, _44);
+	calcLightColor(color, tempColor, *color, mColorRatio);
 }
 
 /*
@@ -419,47 +403,53 @@ void GameLightEventNode::calcColor(Color4* color)
  * Address:	8011EF3C
  * Size:	000310
  */
-GameLightMgr::GameLightMgr(char* p1)
-    : LightMgr(p1)
+GameLightMgr::GameLightMgr(char* name)
+    : LightMgr(name)
     , mTimeMgr(nullptr)
     , mCamera(nullptr)
-    , _2340(0.0f)
+    , mSunColorRatio(0.0f)
     , mShadowColor(0, 0, 0, 160)
 {
-	_238C[0] = Vector3f::zero;
-	_238C[1] = Vector3f::zero;
+	mViewPosition[0] = Vector3f::zero;
+	mViewPosition[1] = Vector3f::zero;
 
 	start();
 
+	// setup main light
 	mMainLight             = new LightObj("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(255, 255, 255, 255)); // 'main light'
 	mMainLight->mSpotFn    = GX_SP_OFF;
 	mMainLight->mElevation = Vector3f(0.0f, -1.0f, 0.0f);
 	registLightObj(mMainLight);
 
+	// setup sub light
 	mSubLight             = new LightObj("サブライト", GX_LIGHT1, TYPE_2, JUtility::TColor(128, 64, 64, 255)); // 'sub light'
 	mSubLight->mSpotFn    = GX_SP_OFF;
 	mSubLight->mElevation = Vector3f(0.0f, 1.0f, 0.0f);
 	registLightObj(mSubLight);
 
+	// setup specular light
 	mSpecLight          = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_4, JUtility::TColor(255, 255, 255, 255)); // 'specular light'
 	mSpecLight->mKScale = 40.0f;
 	registLightObj(mSpecLight);
 
+	// setup fog
 	mFogMgr        = new FogMgr;
 	mFogMgr->mType = GX_FOG_LINEAR;
 	add(mFogMgr);
+
+	// setup shadow
 	if (shadowMgr) {
 		shadowMgr->setShadowColor(&mShadowColor);
 	}
 
 	add(&mSettings);
 
+	// setup event nodes
 	mEventNodes = new GameLightEventNode[10];
-	_235C.clearRelations();
-	_2374.clearRelations();
-
+	mRootActiveNodes.clearRelations();
+	mRootInactiveNodes.clearRelations();
 	for (u32 i = 0; i < 10; i++) {
-		_2374.add(&mEventNodes[i]);
+		mRootInactiveNodes.add(&mEventNodes[i]);
 	}
 }
 
@@ -472,9 +462,9 @@ void GameLightMgr::start()
 {
 	mFlags.clear();
 	setFlag(GAMELIGHT_Unk1);
-	_2340 = 0.0f;
-	_2350 = 0.0f;
-	_2354 = 0.0f;
+	mSunColorRatio     = 0.0f;
+	mStellarIncrement  = 0.0f;
+	mStellarColorRatio = 0.0f;
 }
 
 /*
@@ -484,12 +474,12 @@ void GameLightMgr::start()
  */
 GameLightEventNode* GameLightMgr::createEventLight(GameLightEventArg& eventArg)
 {
-	GameLightEventNode* eventNode = static_cast<GameLightEventNode*>(_2374.mChild);
+	GameLightEventNode* eventNode = static_cast<GameLightEventNode*>(mRootInactiveNodes.mChild);
 
 	if (eventNode) {
 		eventNode->start(eventArg);
 		eventNode->del();
-		_235C.add(eventNode);
+		mRootActiveNodes.add(eventNode);
 	}
 
 	return eventNode;
@@ -518,214 +508,139 @@ void GameLightMgr::loadParm(Stream& stream)
 void GameLightMgr::calcSetting(GameLightTimeSetting* time1, GameLightTimeSetting* time2, GameLightTimeSetting* time3)
 {
 	Color4 lightColor;
-	if (mTimeMgr->_214 < 0.5f) {
-		_2340 = 2.0f * mTimeMgr->_214;
+	// 0-0.5 = first 'half' of setting, so use color 1 -> color 2
+	if (mTimeMgr->mLightSettingRatio < 0.5f) {
+		mSunColorRatio = 2.0f * mTimeMgr->mLightSettingRatio;
 
 		// Main light
-		Color4 color1diff1;
-		color1diff1.r = *time1->mDiffuseLight1.mSettings.mRed();
-		color1diff1.g = *time1->mDiffuseLight1.mSettings.mGreen();
-		color1diff1.b = *time1->mDiffuseLight1.mSettings.mBlue();
-		color1diff1.a = *time1->mDiffuseLight1.mSettings.mAlpha();
+		Color4 color1main;
+		Color4 color2main;
 
-		Color4 color2diff1;
-		color2diff1.r = *time2->mDiffuseLight1.mSettings.mRed();
-		color2diff1.g = *time2->mDiffuseLight1.mSettings.mGreen();
-		color2diff1.b = *time2->mDiffuseLight1.mSettings.mBlue();
-		color2diff1.a = *time2->mDiffuseLight1.mSettings.mAlpha();
+		time1->mMainLight.getColor(color1main);
+		time2->mMainLight.getColor(color2main);
 
-		calcLightColor(&lightColor, color2diff1, color1diff1, _2340);
+		calcLightColor(&lightColor, color2main, color1main, mSunColorRatio);
 		mMainLight->setColor(lightColor);
 
 		// Sub light
-		Color4 color1diff2;
-		color1diff2.r = *time1->mDiffuseLight2.mSettings.mRed();
-		color1diff2.g = *time1->mDiffuseLight2.mSettings.mGreen();
-		color1diff2.b = *time1->mDiffuseLight2.mSettings.mBlue();
-		color1diff2.a = *time1->mDiffuseLight2.mSettings.mAlpha();
+		Color4 color1sub;
+		Color4 color2sub;
 
-		Color4 color2diff2;
-		color2diff2.r = *time2->mDiffuseLight2.mSettings.mRed();
-		color2diff2.g = *time2->mDiffuseLight2.mSettings.mGreen();
-		color2diff2.b = *time2->mDiffuseLight2.mSettings.mBlue();
-		color2diff2.a = *time2->mDiffuseLight2.mSettings.mAlpha();
+		time1->mSubLight.getColor(color1sub);
+		time2->mSubLight.getColor(color2sub);
 
-		calcLightColor(&lightColor, color2diff2, color1diff2, _2340);
+		calcLightColor(&lightColor, color2sub, color1sub, mSunColorRatio);
 		mSubLight->setColor(lightColor);
 
 		// Specular light
 		Color4 color1spec;
-		color1spec.r = *time1->mSpecLight.mSettings.mRed();
-		color1spec.g = *time1->mSpecLight.mSettings.mGreen();
-		color1spec.b = *time1->mSpecLight.mSettings.mBlue();
-		color1spec.a = *time1->mSpecLight.mSettings.mAlpha();
-
 		Color4 color2spec;
-		color2spec.r = *time2->mSpecLight.mSettings.mRed();
-		color2spec.g = *time2->mSpecLight.mSettings.mGreen();
-		color2spec.b = *time2->mSpecLight.mSettings.mBlue();
-		color2spec.a = *time2->mSpecLight.mSettings.mAlpha();
 
-		calcLightColor(&lightColor, color2spec, color1spec, _2340);
+		time1->mSpecLight.getColor(color1spec);
+		time2->mSpecLight.getColor(color2spec);
+
+		calcLightColor(&lightColor, color2spec, color1spec, mSunColorRatio);
 		mSpecLight->setColor(lightColor);
 
 		// Ambient light
 		Color4 color1amb;
-		color1amb.r = *time1->mAmbientLight.mSettings.mRed();
-		color1amb.g = *time1->mAmbientLight.mSettings.mGreen();
-		color1amb.b = *time1->mAmbientLight.mSettings.mBlue();
-		color1amb.a = *time1->mAmbientLight.mSettings.mAlpha();
-
 		Color4 color2amb;
-		color2amb.r = *time2->mAmbientLight.mSettings.mRed();
-		color2amb.g = *time2->mAmbientLight.mSettings.mGreen();
-		color2amb.b = *time2->mAmbientLight.mSettings.mBlue();
-		color2amb.a = *time2->mAmbientLight.mSettings.mAlpha();
 
-		calcLightColor(&lightColor, color2amb, color1amb, _2340);
+		time1->mAmbientLight.getColor(color1amb);
+		time2->mAmbientLight.getColor(color2amb);
+
+		calcLightColor(&lightColor, color2amb, color1amb, mSunColorRatio);
 		mAmbientLight.mColor = lightColor;
 
 		// Fog
 		Color4 color1fog;
-		color1fog.r = *time1->mFog.mSettings.mRed();
-		color1fog.g = *time1->mFog.mSettings.mGreen();
-		color1fog.b = *time1->mFog.mSettings.mBlue();
-		color1fog.a = *time1->mFog.mSettings.mAlpha();
-
 		Color4 color2fog;
-		color2fog.r = *time2->mFog.mSettings.mRed();
-		color2fog.g = *time2->mFog.mSettings.mGreen();
-		color2fog.b = *time2->mFog.mSettings.mBlue();
-		color2fog.a = *time2->mFog.mSettings.mAlpha();
 
-		calcLightColor(&lightColor, color2fog, color1fog, _2340);
+		time1->mFog.getColor(color1fog);
+		time2->mFog.getColor(color2fog);
+
+		calcLightColor(&lightColor, color2fog, color1fog, mSunColorRatio);
 
 		mFogMgr->setColor(lightColor);
 
-		mFogMgr->mNearZ
-		    = _2340 * (time2->mFog.mFogParms.mStartZ.mValue - time1->mFog.mFogParms.mStartZ.mValue) + time1->mFog.mFogParms.mStartZ.mValue;
-		mFogMgr->mFarZ
-		    = _2340 * (time2->mFog.mFogParms.mEndZ.mValue - time1->mFog.mFogParms.mEndZ.mValue) + time1->mFog.mFogParms.mEndZ.mValue;
+		mFogMgr->mNearZ = COMPLEMENT(time1->mFog.mFogParms.mStartZ.mValue, time2->mFog.mFogParms.mStartZ.mValue, mSunColorRatio);
+		mFogMgr->mFarZ  = COMPLEMENT(time1->mFog.mFogParms.mEndZ.mValue, time2->mFog.mFogParms.mEndZ.mValue, mSunColorRatio);
 
 		// Shadow
 		Color4 color1shadow;
-		color1shadow.r = *time1->mShadow.mSettings.mRed();
-		color1shadow.g = *time1->mShadow.mSettings.mGreen();
-		color1shadow.b = *time1->mShadow.mSettings.mBlue();
-		color1shadow.a = *time1->mShadow.mSettings.mAlpha();
-
 		Color4 color2shadow;
-		color2shadow.r = *time2->mShadow.mSettings.mRed();
-		color2shadow.g = *time2->mShadow.mSettings.mGreen();
-		color2shadow.b = *time2->mShadow.mSettings.mBlue();
-		color2shadow.a = *time2->mShadow.mSettings.mAlpha();
 
-		calcLightColor(&mShadowColor, color2shadow, color1shadow, _2340);
+		time1->mShadow.getColor(color1shadow);
+		time2->mShadow.getColor(color2shadow);
+
+		calcLightColor(&mShadowColor, color2shadow, color1shadow, mSunColorRatio);
 
 	} else {
-		_2340 = 2.0f * (mTimeMgr->_214 - 0.5f);
+		// second 'half' of setting, so use color 2 -> color 3
+		mSunColorRatio = 2.0f * (mTimeMgr->mLightSettingRatio - 0.5f);
 
 		// Main light
-		Color4 color1diff1;
-		color1diff1.r = *time2->mDiffuseLight1.mSettings.mRed();
-		color1diff1.g = *time2->mDiffuseLight1.mSettings.mGreen();
-		color1diff1.b = *time2->mDiffuseLight1.mSettings.mBlue();
-		color1diff1.a = *time2->mDiffuseLight1.mSettings.mAlpha();
+		Color4 color1main;
+		Color4 color2main;
 
-		Color4 color2diff1;
-		color2diff1.r = *time3->mDiffuseLight1.mSettings.mRed();
-		color2diff1.g = *time3->mDiffuseLight1.mSettings.mGreen();
-		color2diff1.b = *time3->mDiffuseLight1.mSettings.mBlue();
-		color2diff1.a = *time3->mDiffuseLight1.mSettings.mAlpha();
+		time2->mMainLight.getColor(color1main);
+		time3->mMainLight.getColor(color2main);
 
-		// there is a SUPER MINOR regswap going on in here for some reason
-		calcLightColor(&lightColor, color2diff1, color1diff1, _2340);
+		calcLightColor(&lightColor, color2main, color1main, mSunColorRatio);
 		mMainLight->setColor(lightColor);
 
 		// Sub light
-		Color4 color1diff2;
-		color1diff2.r = *time2->mDiffuseLight2.mSettings.mRed();
-		color1diff2.g = *time2->mDiffuseLight2.mSettings.mGreen();
-		color1diff2.b = *time2->mDiffuseLight2.mSettings.mBlue();
-		color1diff2.a = *time2->mDiffuseLight2.mSettings.mAlpha();
+		Color4 color1sub;
+		Color4 color2sub;
 
-		Color4 color2diff2;
-		color2diff2.r = *time3->mDiffuseLight2.mSettings.mRed();
-		color2diff2.g = *time3->mDiffuseLight2.mSettings.mGreen();
-		color2diff2.b = *time3->mDiffuseLight2.mSettings.mBlue();
-		color2diff2.a = *time3->mDiffuseLight2.mSettings.mAlpha();
+		time2->mSubLight.getColor(color1sub);
+		time3->mSubLight.getColor(color2sub);
 
-		calcLightColor(&lightColor, color2diff2, color1diff2, _2340);
+		calcLightColor(&lightColor, color2sub, color1sub, mSunColorRatio);
 		mSubLight->setColor(lightColor);
 
 		// Specular light
 		Color4 color1spec;
-		color1spec.r = *time2->mSpecLight.mSettings.mRed();
-		color1spec.g = *time2->mSpecLight.mSettings.mGreen();
-		color1spec.b = *time2->mSpecLight.mSettings.mBlue();
-		color1spec.a = *time2->mSpecLight.mSettings.mAlpha();
-
 		Color4 color2spec;
-		color2spec.r = *time3->mSpecLight.mSettings.mRed();
-		color2spec.g = *time3->mSpecLight.mSettings.mGreen();
-		color2spec.b = *time3->mSpecLight.mSettings.mBlue();
-		color2spec.a = *time3->mSpecLight.mSettings.mAlpha();
 
-		calcLightColor(&lightColor, color2spec, color1spec, _2340);
+		time2->mSpecLight.getColor(color1spec);
+		time3->mSpecLight.getColor(color2spec);
+
+		calcLightColor(&lightColor, color2spec, color1spec, mSunColorRatio);
 		mSpecLight->setColor(lightColor);
 
 		// Ambient light
 		Color4 color1amb;
-		color1amb.r = *time2->mAmbientLight.mSettings.mRed();
-		color1amb.g = *time2->mAmbientLight.mSettings.mGreen();
-		color1amb.b = *time2->mAmbientLight.mSettings.mBlue();
-		color1amb.a = *time2->mAmbientLight.mSettings.mAlpha();
-
 		Color4 color2amb;
-		color2amb.r = *time3->mAmbientLight.mSettings.mRed();
-		color2amb.g = *time3->mAmbientLight.mSettings.mGreen();
-		color2amb.b = *time3->mAmbientLight.mSettings.mBlue();
-		color2amb.a = *time3->mAmbientLight.mSettings.mAlpha();
 
-		calcLightColor(&lightColor, color2amb, color1amb, _2340);
+		time2->mAmbientLight.getColor(color1amb);
+		time3->mAmbientLight.getColor(color2amb);
+
+		calcLightColor(&lightColor, color2amb, color1amb, mSunColorRatio);
 		mAmbientLight.mColor = lightColor;
 
 		// Fog
 		Color4 color1fog;
-		color1fog.r = *time2->mFog.mSettings.mRed();
-		color1fog.g = *time2->mFog.mSettings.mGreen();
-		color1fog.b = *time2->mFog.mSettings.mBlue();
-		color1fog.a = *time2->mFog.mSettings.mAlpha();
-
 		Color4 color2fog;
-		color2fog.r = *time3->mFog.mSettings.mRed();
-		color2fog.g = *time3->mFog.mSettings.mGreen();
-		color2fog.b = *time3->mFog.mSettings.mBlue();
-		color2fog.a = *time3->mFog.mSettings.mAlpha();
 
-		calcLightColor(&lightColor, color2fog, color1fog, _2340);
+		time2->mFog.getColor(color1fog);
+		time3->mFog.getColor(color2fog);
+
+		calcLightColor(&lightColor, color2fog, color1fog, mSunColorRatio);
 
 		mFogMgr->setColor(lightColor);
 
-		mFogMgr->mNearZ
-		    = _2340 * (time3->mFog.mFogParms.mStartZ.mValue - time2->mFog.mFogParms.mStartZ.mValue) + time2->mFog.mFogParms.mStartZ.mValue;
-		mFogMgr->mFarZ
-		    = _2340 * (time3->mFog.mFogParms.mEndZ.mValue - time2->mFog.mFogParms.mEndZ.mValue) + time2->mFog.mFogParms.mEndZ.mValue;
+		mFogMgr->mNearZ = COMPLEMENT(time2->mFog.mFogParms.mStartZ.mValue, time3->mFog.mFogParms.mStartZ.mValue, mSunColorRatio);
+		mFogMgr->mFarZ  = COMPLEMENT(time2->mFog.mFogParms.mEndZ.mValue, time3->mFog.mFogParms.mEndZ.mValue, mSunColorRatio);
 
 		// Shadow
 		Color4 color1shadow;
-		color1shadow.r = *time2->mShadow.mSettings.mRed();
-		color1shadow.g = *time2->mShadow.mSettings.mGreen();
-		color1shadow.b = *time2->mShadow.mSettings.mBlue();
-		color1shadow.a = *time2->mShadow.mSettings.mAlpha();
-
 		Color4 color2shadow;
-		color2shadow.r = *time3->mShadow.mSettings.mRed();
-		color2shadow.g = *time3->mShadow.mSettings.mGreen();
-		color2shadow.b = *time3->mShadow.mSettings.mBlue();
-		color2shadow.a = *time3->mShadow.mSettings.mAlpha();
 
-		calcLightColor(&mShadowColor, color2shadow, color1shadow, _2340);
+		time2->mShadow.getColor(color1shadow);
+		time3->mShadow.getColor(color2shadow);
+
+		calcLightColor(&mShadowColor, color2shadow, color1shadow, mSunColorRatio);
 	}
 	/*
 	.loc_0x0:
@@ -2658,14 +2573,21 @@ void GameLightMgr::calcSetting(GameLightTimeSetting* time1, GameLightTimeSetting
 void GameLightMgr::updateSunType()
 {
 	if (mTimeMgr) {
-		switch (mTimeMgr->mSlotPosition) {
-		case 0:
-			calcSetting(&mSettings.mSunLight.mLightTimes[0], &mSettings.mSunLight.mLightTimes[0], &mSettings.mSunLight.mLightTimes[0]);
+		switch (mTimeMgr->mLightSetting) {
+		case SUNTIME_Night:
+			// night -> night -> night, linearly (lol)
+			calcSetting(&mSettings.mSunLight.mLightTimes[SUNTIME_Night], &mSettings.mSunLight.mLightTimes[SUNTIME_Night],
+			            &mSettings.mSunLight.mLightTimes[SUNTIME_Night]);
 			break;
-		case 1:
-			calcSetting(&mSettings.mSunLight.mLightTimes[0], &mSettings.mSunLight.mLightTimes[1], &mSettings.mSunLight.mLightTimes[2]);
+
+		case SUNTIME_Morning:
+			// night -> morning (over 1.75 hrs), morning -> noon (over 1 hr)
+			calcSetting(&mSettings.mSunLight.mLightTimes[SUNTIME_Night], &mSettings.mSunLight.mLightTimes[SUNTIME_Morning],
+			            &mSettings.mSunLight.mLightTimes[SUNTIME_Noon]);
 			break;
-		case 2:
+
+		case SUNTIME_Noon:
+			// if we're past in-game 'noon' (1pm lol) and certain flag isn't set, create event light
 			if (mTimeMgr->mCurrentTimeOfDay > 13.0f && !isFlag(GAMELIGHT_Unk2)) {
 				// this isn't loading correctly
 				GameLightEventArg eventArg;
@@ -2673,13 +2595,21 @@ void GameLightMgr::updateSunType()
 				setFlag(GAMELIGHT_Unk2);
 			}
 
-			calcSetting(&mSettings.mSunLight.mLightTimes[2], &mSettings.mSunLight.mLightTimes[2], &mSettings.mSunLight.mLightTimes[2]);
+			// noon -> noon -> noon, linearly (lol)
+			calcSetting(&mSettings.mSunLight.mLightTimes[SUNTIME_Noon], &mSettings.mSunLight.mLightTimes[SUNTIME_Noon],
+			            &mSettings.mSunLight.mLightTimes[SUNTIME_Noon]);
 			break;
-		case 3:
-			calcSetting(&mSettings.mSunLight.mLightTimes[2], &mSettings.mSunLight.mLightTimes[3], &mSettings.mSunLight.mLightTimes[0]);
+
+		case SUNTIME_Evening:
+			// noon -> evening (over 0.5 hrs), evening -> evening (3 hrs), evening -> night (over 0.5 hrs)
+			calcSetting(&mSettings.mSunLight.mLightTimes[SUNTIME_Noon], &mSettings.mSunLight.mLightTimes[SUNTIME_Evening],
+			            &mSettings.mSunLight.mLightTimes[SUNTIME_Night]);
 			break;
-		case 4:
-			calcSetting(&mSettings.mSunLight.mLightTimes[4], &mSettings.mSunLight.mLightTimes[4], &mSettings.mSunLight.mLightTimes[4]);
+
+		case SUNTIME_Demo:
+			// demo -> demo -> demo
+			calcSetting(&mSettings.mSunLight.mLightTimes[SUNTIME_Demo], &mSettings.mSunLight.mLightTimes[SUNTIME_Demo],
+			            &mSettings.mSunLight.mLightTimes[SUNTIME_Demo]);
 			break;
 		}
 	}
@@ -2844,112 +2774,81 @@ void GameLightMgr::updateSpotType()
 	Color4 lightColor;
 
 	if (playData->mOlimarData->hasItem(OlimarData::ODII_StellarOrb)) {
-		_2350 += 0.01f;
-		if (_2350 > 1.0f) {
-			_2350 = 1.0f;
+		mStellarIncrement += 0.01f;
+		if (mStellarIncrement > 1.0f) {
+			mStellarIncrement = 1.0f;
 		}
+
 	} else {
-		_2350 -= 0.01f;
-		if (_2350 < 0.0f) {
-			_2350 = 0.0f;
+		mStellarIncrement -= 0.01f;
+		if (mStellarIncrement < 0.0f) {
+			mStellarIncrement = 0.0f;
 		}
 	}
 
-	_2354 = 0.5f * (1.0f - pikmin2_cosf(PI * _2350));
+	mStellarColorRatio = 0.5f * (1.0f - pikmin2_cosf(PI * mStellarIncrement));
 
 	// Main light
-	Color4 color1spot1;
-	color1spot1.r = *mSettings.mRegularSpotLight.mSpotLight1.mSettings.mRed();
-	color1spot1.g = *mSettings.mRegularSpotLight.mSpotLight1.mSettings.mGreen();
-	color1spot1.b = *mSettings.mRegularSpotLight.mSpotLight1.mSettings.mBlue();
-	color1spot1.a = *mSettings.mRegularSpotLight.mSpotLight1.mSettings.mAlpha();
+	Color4 color1main;
+	Color4 color2main;
 
-	Color4 color2spot1;
-	color2spot1.r = *mSettings.mStellarSpotLight.mSpotLight1.mSettings.mRed();
-	color2spot1.g = *mSettings.mStellarSpotLight.mSpotLight1.mSettings.mGreen();
-	color2spot1.b = *mSettings.mStellarSpotLight.mSpotLight1.mSettings.mBlue();
-	color2spot1.a = *mSettings.mStellarSpotLight.mSpotLight1.mSettings.mAlpha();
+	mSettings.mRegularSpotLight.mMainLight.getColor(color1main);
+	mSettings.mStellarSpotLight.mMainLight.getColor(color2main);
 
-	calcLightColor(&lightColor, color2spot1, color1spot1, _2354);
+	calcLightColor(&lightColor, color2main, color1main, mStellarColorRatio);
 	mMainLight->setColor(lightColor);
 
-	mMainLight->mCutoffAngle = complement<f32>(mSettings.mRegularSpotLight.mSpotLight1.mSpotParms.mCutOff.mValue,
-	                                           mSettings.mStellarSpotLight.mSpotLight1.mSpotParms.mCutOff.mValue, _2354);
+	mMainLight->mCutoffAngle = complement<f32>(mSettings.mRegularSpotLight.mMainLight.mSpotParms.mCutOff.mValue,
+	                                           mSettings.mStellarSpotLight.mMainLight.mSpotParms.mCutOff.mValue, mStellarColorRatio);
 
 	// Sub light
-	Color4 color1spot2;
-	color1spot2.r = *mSettings.mRegularSpotLight.mSpotLight2.mSettings.mRed();
-	color1spot2.g = *mSettings.mRegularSpotLight.mSpotLight2.mSettings.mGreen();
-	color1spot2.b = *mSettings.mRegularSpotLight.mSpotLight2.mSettings.mBlue();
-	color1spot2.a = *mSettings.mRegularSpotLight.mSpotLight2.mSettings.mAlpha();
+	Color4 color1sub;
+	Color4 color2sub;
 
-	Color4 color2spot2;
-	color2spot2.r = *mSettings.mStellarSpotLight.mSpotLight2.mSettings.mRed();
-	color2spot2.g = *mSettings.mStellarSpotLight.mSpotLight2.mSettings.mGreen();
-	color2spot2.b = *mSettings.mStellarSpotLight.mSpotLight2.mSettings.mBlue();
-	color2spot2.a = *mSettings.mStellarSpotLight.mSpotLight2.mSettings.mAlpha();
+	mSettings.mRegularSpotLight.mSubLight.getColor(color1sub);
+	mSettings.mStellarSpotLight.mSubLight.getColor(color2sub);
 
-	calcLightColor(&lightColor, color2spot2, color1spot2, _2354);
+	calcLightColor(&lightColor, color2sub, color1sub, mStellarColorRatio);
 	mSubLight->setColor(lightColor);
 
 	// Sub light
 	Color4 color1spec;
-	color1spec.r = *mSettings.mRegularSpotLight.mSpecLight.mSettings.mRed();
-	color1spec.g = *mSettings.mRegularSpotLight.mSpecLight.mSettings.mGreen();
-	color1spec.b = *mSettings.mRegularSpotLight.mSpecLight.mSettings.mBlue();
-	color1spec.a = *mSettings.mRegularSpotLight.mSpecLight.mSettings.mAlpha();
-
 	Color4 color2spec;
-	color2spec.r = *mSettings.mStellarSpotLight.mSpecLight.mSettings.mRed();
-	color2spec.g = *mSettings.mStellarSpotLight.mSpecLight.mSettings.mGreen();
-	color2spec.b = *mSettings.mStellarSpotLight.mSpecLight.mSettings.mBlue();
-	color2spec.a = *mSettings.mStellarSpotLight.mSpecLight.mSettings.mAlpha();
 
-	calcLightColor(&lightColor, color2spec, color1spec, _2354);
+	mSettings.mRegularSpotLight.mSpecLight.getColor(color1spec);
+	mSettings.mStellarSpotLight.mSpecLight.getColor(color2spec);
+
+	calcLightColor(&lightColor, color2spec, color1spec, mStellarColorRatio);
 	mSpecLight->setColor(lightColor);
 
+	// Ambient light
 	Color4 color1amb;
-	color1amb.r = *mSettings.mRegularSpotLight.mAmbientLight.mSettings.mRed();
-	color1amb.g = *mSettings.mRegularSpotLight.mAmbientLight.mSettings.mGreen();
-	color1amb.b = *mSettings.mRegularSpotLight.mAmbientLight.mSettings.mBlue();
-	color1amb.a = *mSettings.mRegularSpotLight.mAmbientLight.mSettings.mAlpha();
-
 	Color4 color2amb;
-	color2amb.r = *mSettings.mStellarSpotLight.mAmbientLight.mSettings.mRed();
-	color2amb.g = *mSettings.mStellarSpotLight.mAmbientLight.mSettings.mGreen();
-	color2amb.b = *mSettings.mStellarSpotLight.mAmbientLight.mSettings.mBlue();
-	color2amb.a = *mSettings.mStellarSpotLight.mAmbientLight.mSettings.mAlpha();
 
-	calcLightColor(&lightColor, color2amb, color1amb, _2354);
+	mSettings.mRegularSpotLight.mAmbientLight.getColor(color1amb);
+	mSettings.mStellarSpotLight.mAmbientLight.getColor(color2amb);
+
+	calcLightColor(&lightColor, color2amb, color1amb, mStellarColorRatio);
 	mAmbientLight.mColor = lightColor;
 
 	// Fog
 	Color4 color1fog;
-	color1fog.r = *mSettings.mRegularSpotLight.mFog.mSettings.mRed();
-	color1fog.g = *mSettings.mRegularSpotLight.mFog.mSettings.mGreen();
-	color1fog.b = *mSettings.mRegularSpotLight.mFog.mSettings.mBlue();
-	color1fog.a = *mSettings.mRegularSpotLight.mFog.mSettings.mAlpha();
-
 	Color4 color2fog;
-	color2fog.r = *mSettings.mStellarSpotLight.mFog.mSettings.mRed();
-	color2fog.g = *mSettings.mStellarSpotLight.mFog.mSettings.mGreen();
-	color2fog.b = *mSettings.mStellarSpotLight.mFog.mSettings.mBlue();
-	color2fog.a = *mSettings.mStellarSpotLight.mFog.mSettings.mAlpha();
 
-	calcLightColor(&lightColor, color2fog, color1fog, _2354);
+	mSettings.mRegularSpotLight.mFog.getColor(color1fog);
+	mSettings.mStellarSpotLight.mFog.getColor(color2fog);
+
+	calcLightColor(&lightColor, color2fog, color1fog, mStellarColorRatio);
 
 	mFogMgr->setColor(lightColor);
 
 	mFogMgr->mNearZ = complement<f32>(mSettings.mRegularSpotLight.mFog.mFogParms.mStartZ.mValue,
-	                                  mSettings.mStellarSpotLight.mFog.mFogParms.mStartZ.mValue, _2354);
+	                                  mSettings.mStellarSpotLight.mFog.mFogParms.mStartZ.mValue, mStellarColorRatio);
 	mFogMgr->mFarZ  = complement<f32>(mSettings.mRegularSpotLight.mFog.mFogParms.mEndZ.mValue,
-                                     mSettings.mStellarSpotLight.mFog.mFogParms.mEndZ.mValue, _2354);
+                                     mSettings.mStellarSpotLight.mFog.mFogParms.mEndZ.mValue, mStellarColorRatio);
 
 	// Shadow
-	mShadowColor.r = mSettings.mStellarSpotLight.mShadow.mSettings.mRed.mValue;
-	mShadowColor.g = mSettings.mStellarSpotLight.mShadow.mSettings.mGreen.mValue;
-	mShadowColor.b = mSettings.mStellarSpotLight.mShadow.mSettings.mBlue.mValue;
-	mShadowColor.a = mSettings.mStellarSpotLight.mShadow.mSettings.mAlpha.mValue;
+	mSettings.mStellarSpotLight.mShadow.getColor(mShadowColor);
 }
 
 /*
@@ -2965,14 +2864,14 @@ void GameLightMgr::update()
 		updateSpotType();
 	}
 
-	GameLightEventNode* eventNode = static_cast<GameLightEventNode*>(_235C.mChild);
+	GameLightEventNode* eventNode = static_cast<GameLightEventNode*>(mRootActiveNodes.mChild);
 	while (eventNode) {
 		GameLightEventNode* nextNode = static_cast<GameLightEventNode*>(eventNode->mNext);
 		eventNode->update(this);
 
-		if (!eventNode->_4C) {
+		if (eventNode->mState == GameLightEventNode::LIGHTSTATE_Inactive) {
 			eventNode->del();
-			_2374.add(eventNode);
+			mRootInactiveNodes.add(eventNode);
 		}
 		eventNode = nextNode;
 	}
@@ -3027,30 +2926,30 @@ void GameLightMgr::updatePosition(Viewport* viewport)
 
 	} else {
 		mMainLight->mSpotFn      = GX_SP_COS2;
-		mMainLight->mCutoffAngle = complement<f32>(mSettings.mRegularSpotLight.mSpotLight1.mSpotParms.mCutOff.mValue,
-		                                           mSettings.mStellarSpotLight.mSpotLight1.mSpotParms.mCutOff.mValue, _2354);
+		mMainLight->mCutoffAngle = complement<f32>(mSettings.mRegularSpotLight.mMainLight.mSpotParms.mCutOff.mValue,
+		                                           mSettings.mStellarSpotLight.mMainLight.mSpotParms.mCutOff.mValue, mStellarColorRatio);
 		mSubLight->mSpotFn       = GX_SP_COS2;
-		mSubLight->mCutoffAngle  = complement<f32>(mSettings.mRegularSpotLight.mSpotLight2.mSpotParms.mCutOff.mValue,
-                                                  mSettings.mStellarSpotLight.mSpotLight2.mSpotParms.mCutOff.mValue, _2354);
+		mSubLight->mCutoffAngle  = complement<f32>(mSettings.mRegularSpotLight.mSubLight.mSpotParms.mCutOff.mValue,
+                                                  mSettings.mStellarSpotLight.mSubLight.mSpotParms.mCutOff.mValue, mStellarColorRatio);
 
 		int viewportID = viewport->mVpId;
 		if (viewportID < 0 || viewportID > 1) {
 			JUT_PANICLINE(1287, "illegal vp-id (%d)\n", viewportID);
 		}
 
-		f32 val = complement<f32>(mSettings.mRegularSpotLight.mMoveParms.mDistance.mValue,
-		                          mSettings.mStellarSpotLight.mMoveParms.mDistance.mValue, _2354);
+		f32 heightOffset = complement<f32>(mSettings.mRegularSpotLight.mMoveParms.mDistance.mValue,
+		                                   mSettings.mStellarSpotLight.mMoveParms.mDistance.mValue, mStellarColorRatio);
 
-		getViewportPos(lightPos, viewportID);
-		lightPos.y += val;
+		getViewPos(lightPos, viewportID);
+		lightPos.y += heightOffset;
 
 		mMainLight->mPosition = lightPos;
 		mSpecLight->mPosition = lightPos;
 
-		lightPos.y -= 2.0f * val;
+		lightPos.y -= 2.0f * heightOffset;
 		mSubLight->mPosition = lightPos;
 
-		_238C[viewportID] = viewport->mCamera->getLookAtPosition();
+		mViewPosition[viewportID] = viewport->mCamera->getLookAtPosition();
 	}
 }
 
@@ -3060,9 +2959,9 @@ void GameLightMgr::updatePosition(Viewport* viewport)
  * Size:	00000C
  */
 template <class T>
-T complement(T p1, T p2, T p3)
+T complement(T start, T end, T ratio)
 {
-	return p3 * (p2 - p1) + p1;
+	return ratio * (end - start) + start;
 }
 
 } // namespace Game

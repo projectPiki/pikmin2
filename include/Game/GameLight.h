@@ -6,6 +6,7 @@
 #include "CNode.h"
 #include "Game/GameLightSetting.h"
 #include "id32.h"
+#include "Game/TimeMgr.h"
 
 struct Color4;
 
@@ -39,23 +40,23 @@ struct GameLightEventArg {
 		mLightTypeFlag = 0;
 		setLightType(LIGHTTYPE_Main);
 		setEvent(LIGHTEVENT_Unk1);
-		_10 = 0.5f;
-		_04 = 1.5f;
-		_08 = 1.5f;
-		_0C = 1.5f;
-		_14 = 2.0f;
-		_18 = 0.0f;
-		_1C = 1024.0f;
-		_20 = nullptr;
-		_24 = 500.0f;
+		mGrowTime   = 0.5f;
+		mRedScale   = 1.5f;
+		mGreenScale = 1.5f;
+		mBlueScale  = 1.5f;
+		mFadeTime   = 2.0f;
+		mNearZ      = 0.0f;
+		mFarZ       = 1024.0f;
+		mPosition   = nullptr;
+		mRange      = 500.0f;
 
 		setLightType(LIGHTTYPE_Main);
-		_10 = 3.0f;
-		_14 = 3.0f;
+		mGrowTime = 3.0f;
+		mFadeTime = 3.0f;
 		setEvent(LIGHTEVENT_Unk2);
-		_04 = 1.25f;
-		_08 = 1.25f;
-		_0C = 1.25f;
+		mRedScale   = 1.25f;
+		mGreenScale = 1.25f;
+		mBlueScale  = 1.25f;
 	}
 
 	inline void setEvent(u32 flag) { mEventFlag |= flag; }
@@ -77,20 +78,27 @@ struct GameLightEventArg {
 	// 	_0C = 1.25f;
 	// }
 
-	u8 mEventFlag;     // _00
-	u8 mLightTypeFlag; // _01
-	f32 _04;           // _04
-	f32 _08;           // _08
-	f32 _0C;           // _0C
-	f32 _10;           // _10, start time?
-	f32 _14;           // _14, end time?
-	f32 _18;           // _18, start Z?
-	f32 _1C;           // _1C, end Z?
-	Vector3f* _20;     // _20, unknown
-	f32 _24;           // _24, distance?
+	u8 mEventFlag;       // _00
+	u8 mLightTypeFlag;   // _01
+	f32 mRedScale;       // _04
+	f32 mGreenScale;     // _08
+	f32 mBlueScale;      // _0C
+	f32 mGrowTime;       // _10
+	f32 mFadeTime;       // _14
+	f32 mNearZ;          // _18
+	f32 mFarZ;           // _1C
+	Vector3f* mPosition; // _20
+	f32 mRange;          // _24
 };
 
 struct GameLightEventNode : public CNode {
+	enum StateID {
+		LIGHTSTATE_Inactive = 0,
+		LIGHTSTATE_Grow     = 1,
+		LIGHTSTATE_Steady   = 2,
+		LIGHTSTATE_Fade     = 3,
+	};
+
 	GameLightEventNode()
 	    : CNode("no_name") // lol.
 	    , mEventFlag(0)
@@ -100,15 +108,15 @@ struct GameLightEventNode : public CNode {
 		setEvent(LIGHTEVENT_Unk1 | LIGHTEVENT_Unk2);
 		mLightTypeFlag = 0;
 		setLightType(LIGHTTYPE_Main);
-		_1C = 1.5f;
-		_20 = 1.5f;
-		_24 = 1.5f;
-		_28 = 0.5f;
-		_2C = 2.0f;
-		_30 = 0.0f;
-		_34 = 1024.0f;
-		_38 = nullptr;
-		_3C = 500.0f;
+		mRedScale   = 1.5f;
+		mGreenScale = 1.5f;
+		mBlueScale  = 1.5f;
+		mGrowTime   = 0.5f;
+		mFadeTime   = 2.0f;
+		mNearZ      = 0.0f;
+		mFarZ       = 1024.0f;
+		mPosition   = nullptr;
+		mRange      = 500.0f;
 	}
 
 	// virtual ~GameLightEventNode() { } // _08 (weak)
@@ -129,21 +137,21 @@ struct GameLightEventNode : public CNode {
 
 	// _00      = VTBL
 	// _00-_18  = CNode
-	u8 mEventFlag;     // _18
-	u8 mLightTypeFlag; // _19
-	f32 _1C;           // _1C, color 1 scale?
-	f32 _20;           // _20, color 2 scale?
-	f32 _24;           // _24, color 3 scale?
-	f32 _28;           // _28
-	f32 _2C;           // _2C
-	f32 _30;           // _30, nearZ?
-	f32 _34;           // _34, farZ?
-	Vector3f* _38;     // _38
-	f32 _3C;           // _3C
-	f32 _40;           // _40, timer?
-	f32 _44;           // _44, angle?
-	f32 _48;           // _48
-	int _4C;           // _4C
+	u8 mEventFlag;       // _18
+	u8 mLightTypeFlag;   // _19
+	f32 mRedScale;       // _1C
+	f32 mGreenScale;     // _20
+	f32 mBlueScale;      // _24
+	f32 mGrowTime;       // _28
+	f32 mFadeTime;       // _2C
+	f32 mNearZ;          // _30, nearZ?
+	f32 mFarZ;           // _34, farZ?
+	Vector3f* mPosition; // _38
+	f32 mRange;          // _3C
+	f32 mStateTimer;     // _40
+	f32 mColorRatio;     // _44
+	f32 mPeakRatio;      // _48, ratio from steady state to begin fade from
+	int mState;          // _4C
 };
 
 struct GameLightSpotSetting : public CNode {
@@ -166,8 +174,8 @@ struct GameLightSpotSetting : public CNode {
 	// _00     = VTBL
 	// _00-_18 = CNode
 	MoveParms mMoveParms;                  // _18
-	GameSpotLightSetting mSpotLight1;      // _50
-	GameSpotLightSetting mSpotLight2;      // _13C
+	GameSpotLightSetting mMainLight;       // _50
+	GameSpotLightSetting mSubLight;        // _13C
 	GameSpecLightSetting mSpecLight;       // _228
 	GameLightAmbientSetting mAmbientLight; // _2DC
 	GameFogSetting mFog;                   // _390
@@ -182,12 +190,12 @@ struct GameLightTimeSetting : public CNode {
 	// unused/inlined but required
 	void read(Stream& stream);
 
-	GameDiffuseLightSetting mDiffuseLight1; // _18
-	GameDiffuseLightSetting mDiffuseLight2; // _CC
-	GameSpecLightSetting mSpecLight;        // _180
-	GameLightAmbientSetting mAmbientLight;  // _234
-	GameFogSetting mFog;                    // _2E8
-	GameShadowSetting mShadow;              // _3FC
+	GameDiffuseLightSetting mMainLight;    // _18
+	GameDiffuseLightSetting mSubLight;     // _CC
+	GameSpecLightSetting mSpecLight;       // _180
+	GameLightAmbientSetting mAmbientLight; // _234
+	GameFogSetting mFog;                   // _2E8
+	GameShadowSetting mShadow;             // _3FC
 };
 
 struct GameLightSunSetting : public CNode {
@@ -215,7 +223,7 @@ struct GameLightSunSetting : public CNode {
 	// _00     = VTBL
 	// _00-_18 = CNode
 	MoveParms mMoveParms;                // _18
-	GameLightTimeSetting mLightTimes[5]; // _A0, 0=night, 1=morning, 2=noon, 3=evening, 4=demo
+	GameLightTimeSetting mLightTimes[5]; // _A0, see SunLightTimes enum
 };
 
 struct GameLightMgrSetting : public CNode {
@@ -260,7 +268,7 @@ struct GameLightMgr : public LightMgr {
 	void updateEventLight();
 	void updatePosition(Viewport*);
 
-	inline void getViewportPos(Vector3f& pos, int i) { pos = _238C[i]; }
+	inline void getViewPos(Vector3f& pos, int i) { pos = mViewPosition[i]; }
 
 	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
 	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
@@ -274,16 +282,16 @@ struct GameLightMgr : public LightMgr {
 	GameLightMgrSetting mSettings;   // _5C
 	TimeMgr* mTimeMgr;               // _2338
 	PlayCamera* mCamera;             // _233C
-	f32 _2340;                       // _2340
+	f32 mSunColorRatio;              // _2340, 0=color 1 for time setting, 1=color 2 for time setting
 	FogMgr* mFogMgr;                 // _2344
 	Color4 mShadowColor;             // _2348
 	BitFlag<u16> mFlags;             // _234C
-	f32 _2350;                       // _2350, parm ratio?
-	f32 _2354;                       // _2354, cos ratio?
-	GameLightEventNode* mEventNodes; // _2358, array of 10?
-	CNode _235C;                     // _235C
-	CNode _2374;                     // _2374
-	Vector3f _238C[2];               // _238C
+	f32 mStellarIncrement;           // _2350, ticker that increases when stellar orb is gained (0->1 in increments of 0.01 per frame)
+	f32 mStellarColorRatio;          // _2354, how much stellar orb 'color' to mix in, sinusoidally 0->1
+	GameLightEventNode* mEventNodes; // _2358, array of 10
+	CNode mRootActiveNodes;          // _235C, holds GameLightEventNodes that are 'active' (state 1-3)
+	CNode mRootInactiveNodes;        // _2374, holds GameLightEventNodes that are 'inactive' (state 0)
+	Vector3f mViewPosition[2];       // _238C, indexed by viewport ID
 };
 } // namespace Game
 

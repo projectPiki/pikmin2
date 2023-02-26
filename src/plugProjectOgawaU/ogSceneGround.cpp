@@ -90,9 +90,9 @@ void Ground::doUpdateActive()
 		f32 sunRatio           = timemgr->getSunGaugeRatio();
 
 		f32 totalTime, startTime, countTime;
-		startTime = timemgr->mParms.parms.mDayStartTime.mValue;
-		countTime = timemgr->mParms.parms.mCountdownTime.mValue - startTime;
-		totalTime = timemgr->mParms.parms.mDayEndTime.mValue - startTime;
+		startTime = timemgr->mParms.mParms.mDayStartTime.mValue;
+		countTime = timemgr->mParms.mParms.mCountdownTime.mValue - startTime;
+		totalTime = timemgr->mParms.mParms.mDayEndTime.mValue - startTime;
 
 		og::Screen::DispMemberGround* disp = static_cast<og::Screen::DispMemberGround*>(mDispMember);
 		disp->mDayEndCount.mCurrSunRatio   = sunRatio;
@@ -115,7 +115,7 @@ void Ground::doUpdateActive()
 			}
 		}
 
-		f32 startWarningDayRatio     = (timemgr->mParms.parms.mSundownAlertTime.mValue - startTime) / totalTime;
+		f32 startWarningDayRatio     = (timemgr->mParms.mParms.mSundownAlertTime.mValue - startTime) / totalTime;
 		disp->mHurryUp.mDuration     = startWarningDayRatio;
 		disp->mHurryUp.mCurrSunRatio = sunRatio;
 		if (sunRatio >= startWarningDayRatio) {
@@ -155,39 +155,5 @@ void Ground::doUpdateActive()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8030DE80
- * Size:	00000C
- */
-const char* Ground::getResName() const { return "res_ground.szs"; }
-
-/*
- * --INFO--
- * Address:	8030DE8C
- * Size:	000008
- */
-SceneType Ground::getSceneType() { return SCENE_GROUND; }
-
-/*
- * --INFO--
- * Address:	8030DE94
- * Size:	00000C
- */
-ScreenOwnerID Ground::getOwnerID() { return OWNER_OGA; }
-
-/*
- * --INFO--
- * Address:	8030DEA0
- * Size:	000010
- */
-ScreenMemberID Ground::getMemberID() { return MEMBER_GROUND; }
-
-/*
- * --INFO--
- * Address:	8030DEB0
- * Size:	000008
- */
-bool Ground::isDrawInDemo() const { return false; }
 } // namespace newScreen
 } // namespace og
