@@ -227,78 +227,110 @@ __vt__Q26PikiAI10ActGotoPos:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518F60:
+.obj lbl_80518F60, local
 	.float 0.0
-lbl_80518F64:
+.endobj lbl_80518F60
+.obj lbl_80518F64, local
 	.float 1.0
-lbl_80518F68:
+.endobj lbl_80518F64
+.obj lbl_80518F68, local
 	.float 20.0
-lbl_80518F6C:
+.endobj lbl_80518F68
+.obj lbl_80518F6C, local
 	.float -0.5
-lbl_80518F70:
+.endobj lbl_80518F6C
+.obj lbl_80518F70, local
 	.float 6.0
-lbl_80518F74:
+.endobj lbl_80518F70
+.obj lbl_80518F74, local
 	.float 0.01
-lbl_80518F78:
+.endobj lbl_80518F74
+.obj lbl_80518F78, local
 	.float 0.5
-lbl_80518F7C: # pi/10
+.endobj lbl_80518F78
+.obj lbl_80518F7C, local # pi/10
 	.float 0.31415927
-lbl_80518F80:
+.endobj lbl_80518F7C
+.obj lbl_80518F80, local
 	.float 10.0
-lbl_80518F84:
+.endobj lbl_80518F80
+.obj lbl_80518F84, local
 	.float 0.2
-lbl_80518F88:
+.endobj lbl_80518F84
+.obj lbl_80518F88, local
 	.float 3.0
-lbl_80518F8C:
+.endobj lbl_80518F88
+.obj lbl_80518F8C, local
 	.float 40.0
-lbl_80518F90:
+.endobj lbl_80518F8C
+.obj lbl_80518F90, local
 	.float -1.0
-lbl_80518F94: # pi
+.endobj lbl_80518F90
+.obj lbl_80518F94, local # pi
 	.float 3.1415927
-lbl_80518F98:
+.endobj lbl_80518F94
+.obj lbl_80518F98, local
 	.float 1023.5
-lbl_80518F9C: # pi/2
+.endobj lbl_80518F98
+.obj lbl_80518F9C, local # pi/2
 	.float 1.5707964
-lbl_80518FA0:
+.endobj lbl_80518F9C
+.obj lbl_80518FA0, local
 	.float 100.0
+.endobj lbl_80518FA0
 .balign 8
-lbl_80518FA8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80518FA8, local
+	.8byte 0x4330000080000000
+.endobj lbl_80518FA8
 .balign 4
-lbl_80518FB0:
+.obj lbl_80518FB0, local
 	.asciz "..."
-lbl_80518FB4:
+.endobj lbl_80518FB0
+.obj lbl_80518FB4, local
 	.float 160.0
-lbl_80518FB8: # tau
+.endobj lbl_80518FB4
+.obj lbl_80518FB8, local # tau
 	.float 6.2831855
-lbl_80518FBC:
+.endobj lbl_80518FB8
+.obj lbl_80518FBC, local
 	.float 325.9493
-lbl_80518FC0:
+.endobj lbl_80518FBC
+.obj lbl_80518FC0, local
 	.float -325.9493
-lbl_80518FC4:
+.endobj lbl_80518FC0
+.obj lbl_80518FC4, local
 	.float 700.0
-lbl_80518FC8:
+.endobj lbl_80518FC4
+.obj lbl_80518FC8, local
 	.float 50.0
-lbl_80518FCC:
+.endobj lbl_80518FC8
+.obj lbl_80518FCC, local
 	.float 0.3
-lbl_80518FD0:
+.endobj lbl_80518FCC
+.obj lbl_80518FD0, local
 	.float 2.0
-lbl_80518FD4:
+.endobj lbl_80518FD0
+.obj lbl_80518FD4, local
 	.float 130.0
-lbl_80518FD8:
+.endobj lbl_80518FD4
+.obj lbl_80518FD8, local
 	.float 32768.0
-lbl_80518FDC:
+.endobj lbl_80518FD8
+.obj lbl_80518FDC, local
 	.float 5.0
-lbl_80518FE0:
+.endobj lbl_80518FDC
+.obj lbl_80518FE0, local
 	.float 0.6
+.endobj lbl_80518FE0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki

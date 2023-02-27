@@ -1,51 +1,60 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047F338:
+.obj lbl_8047F338, local
 	.asciz "actTransport"
+.endobj lbl_8047F338
 .balign 4
-lbl_8047F348:
+.obj lbl_8047F348, local
 	.4byte lbl_805190D0
 	.4byte lbl_805190D8
 	.4byte lbl_805190E0
-lbl_8047F354:
+.endobj lbl_8047F348
+.obj lbl_8047F354, local
 	.asciz "CARRY %s"
+.endobj lbl_8047F354
 .balign 4
-lbl_8047F360:
+.obj lbl_8047F360, local
 	.asciz "ActTransportArg"
+.endobj lbl_8047F360
 .balign 4
-lbl_8047F370:
+.obj lbl_8047F370, local
 	.asciz "aiTransport.cpp"
+.endobj lbl_8047F370
 .balign 4
-lbl_8047F380:
+.obj lbl_8047F380, local
 	.asciz "P2Assert"
+.endobj lbl_8047F380
 .balign 4
-lbl_8047F38C:
+.obj lbl_8047F38C, local
 	.asciz "ActionArg"
+.endobj lbl_8047F38C
 .balign 4
-lbl_8047F398:
+.obj lbl_8047F398, local
 	.asciz "Creature"
+.endobj lbl_8047F398
 .balign 4
-lbl_8047F3A4:
+.obj lbl_8047F3A4, local
 	.asciz "PathMoveArg"
+.endobj lbl_8047F3A4
 .balign 4
-lbl_8047F3B0:
+.obj lbl_8047F3B0, local
 	.asciz "GotoSlotArg"
+.endobj lbl_8047F3B0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q26PikiAI11PathMoveArg
-__vt__Q26PikiAI11PathMoveArg:
+.obj __vt__Q26PikiAI11PathMoveArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI11PathMoveArgFv
-.global __vt__Q26PikiAI11GotoSlotArg
-__vt__Q26PikiAI11GotoSlotArg:
+.endobj __vt__Q26PikiAI11PathMoveArg
+.obj __vt__Q26PikiAI11GotoSlotArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI11GotoSlotArgFv
-.global __vt__Q26PikiAI12ActTransport
-__vt__Q26PikiAI12ActTransport:
+.endobj __vt__Q26PikiAI11GotoSlotArg
+.obj __vt__Q26PikiAI12ActTransport, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI12ActTransportFPQ26PikiAI9ActionArg
@@ -65,39 +74,48 @@ __vt__Q26PikiAI12ActTransport:
 	.4byte 0
 	.4byte 0
 	.4byte "@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent"
+.endobj __vt__Q26PikiAI12ActTransport
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805190D0:
+.obj lbl_805190D0, local
 	.asciz "SLOT"
+.endobj lbl_805190D0
 .balign 4
-lbl_805190D8:
+.obj lbl_805190D8, local
 	.asciz "LIFT"
+.endobj lbl_805190D8
 .balign 4
-lbl_805190E0:
+.obj lbl_805190E0, local
 	.asciz "MOVE"
+.endobj lbl_805190E0
 .balign 4
-lbl_805190E8:
+.obj lbl_805190E8, local
 	.asciz "Carry"
+.endobj lbl_805190E8
 .balign 4
-lbl_805190F0:
+.obj lbl_805190F0, local
 	.float 0.0
-lbl_805190F4:
+.endobj lbl_805190F0
+.obj lbl_805190F4, local
 	.float 32768.0
-lbl_805190F8:
+.endobj lbl_805190F4
+.obj lbl_805190F8, local
 	.float 5.0
-lbl_805190FC:
+.endobj lbl_805190F8
+.obj lbl_805190FC, local
 	.float 3.0
+.endobj lbl_805190FC
 .balign 8
-lbl_80519100:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80519108:
+.obj lbl_80519100, local
+	.8byte 0x4330000080000000
+.endobj lbl_80519100
+.obj lbl_80519108, local
 	.float 11.0
+.endobj lbl_80519108
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getInfo__Q26PikiAI12ActTransportFPc
-getInfo__Q26PikiAI12ActTransportFPc:
+.fn getInfo__Q26PikiAI12ActTransportFPc, global
 /* 801A1914 0019E854  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A1918 0019E858  7C 08 02 A6 */	mflr r0
 /* 801A191C 0019E85C  3C A0 80 48 */	lis r5, lbl_8047F348@ha
@@ -123,9 +141,9 @@ getInfo__Q26PikiAI12ActTransportFPc:
 /* 801A196C 0019E8AC  7C 08 03 A6 */	mtlr r0
 /* 801A1970 0019E8B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A1974 0019E8B4  4E 80 00 20 */	blr 
+.endfn getInfo__Q26PikiAI12ActTransportFPc
 
-.global __ct__Q26PikiAI12ActTransportFPQ24Game4Piki
-__ct__Q26PikiAI12ActTransportFPQ24Game4Piki:
+.fn __ct__Q26PikiAI12ActTransportFPQ24Game4Piki, global
 /* 801A1978 0019E8B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A197C 0019E8BC  7C 08 02 A6 */	mflr r0
 /* 801A1980 0019E8C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -181,9 +199,9 @@ __ct__Q26PikiAI12ActTransportFPQ24Game4Piki:
 /* 801A1A3C 0019E97C  7C 08 03 A6 */	mtlr r0
 /* 801A1A40 0019E980  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A1A44 0019E984  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI12ActTransportFPQ24Game4Piki
 
-.global init__Q26PikiAI12ActTransportFPQ26PikiAI9ActionArg
-init__Q26PikiAI12ActTransportFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI12ActTransportFPQ26PikiAI9ActionArg, global
 /* 801A1A48 0019E988  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801A1A4C 0019E98C  7C 08 02 A6 */	mflr r0
 /* 801A1A50 0019E990  3C A0 80 51 */	lis r5, workPikis__Q24Game8GameStat@ha
@@ -281,9 +299,9 @@ init__Q26PikiAI12ActTransportFPQ26PikiAI9ActionArg:
 /* 801A1BB8 0019EAF8  7C 08 03 A6 */	mtlr r0
 /* 801A1BBC 0019EAFC  38 21 00 30 */	addi r1, r1, 0x30
 /* 801A1BC0 0019EB00  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI12ActTransportFPQ26PikiAI9ActionArg
 
-.global emotion_success__Q26PikiAI12ActTransportFv
-emotion_success__Q26PikiAI12ActTransportFv:
+.fn emotion_success__Q26PikiAI12ActTransportFv, global
 /* 801A1BC4 0019EB04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A1BC8 0019EB08  7C 08 02 A6 */	mflr r0
 /* 801A1BCC 0019EB0C  38 A0 00 13 */	li r5, 0x13
@@ -301,13 +319,13 @@ emotion_success__Q26PikiAI12ActTransportFv:
 /* 801A1BFC 0019EB3C  7C 08 03 A6 */	mtlr r0
 /* 801A1C00 0019EB40  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A1C04 0019EB44  4E 80 00 20 */	blr 
+.endfn emotion_success__Q26PikiAI12ActTransportFv
 
-.global emotion_fail__Q26PikiAI12ActTransportFv
-emotion_fail__Q26PikiAI12ActTransportFv:
+.fn emotion_fail__Q26PikiAI12ActTransportFv, global
 /* 801A1C08 0019EB48  4E 80 00 20 */	blr 
+.endfn emotion_fail__Q26PikiAI12ActTransportFv
 
-.global exec__Q26PikiAI12ActTransportFv
-exec__Q26PikiAI12ActTransportFv:
+.fn exec__Q26PikiAI12ActTransportFv, global
 /* 801A1C0C 0019EB4C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801A1C10 0019EB50  7C 08 02 A6 */	mflr r0
 /* 801A1C14 0019EB54  90 01 00 44 */	stw r0, 0x44(r1)
@@ -579,9 +597,9 @@ exec__Q26PikiAI12ActTransportFv:
 /* 801A1FE8 0019EF28  7C 08 03 A6 */	mtlr r0
 /* 801A1FEC 0019EF2C  38 21 00 40 */	addi r1, r1, 0x40
 /* 801A1FF0 0019EF30  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI12ActTransportFv
 
-.global cleanup__Q26PikiAI12ActTransportFv
-cleanup__Q26PikiAI12ActTransportFv:
+.fn cleanup__Q26PikiAI12ActTransportFv, global
 /* 801A1FF4 0019EF34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A1FF8 0019EF38  7C 08 02 A6 */	mflr r0
 /* 801A1FFC 0019EF3C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -613,9 +631,9 @@ cleanup__Q26PikiAI12ActTransportFv:
 /* 801A2060 0019EFA0  7C 08 03 A6 */	mtlr r0
 /* 801A2064 0019EFA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A2068 0019EFA8  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI12ActTransportFv
 
-.global onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent
-onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent, global
 /* 801A206C 0019EFAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A2070 0019EFB0  7C 08 02 A6 */	mflr r0
 /* 801A2074 0019EFB4  38 A0 00 00 */	li r5, 0
@@ -694,9 +712,9 @@ onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent:
 /* 801A217C 0019F0BC  7C 08 03 A6 */	mtlr r0
 /* 801A2180 0019F0C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A2184 0019F0C4  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent
 
-.global isStickLeader__Q26PikiAI12ActTransportFv
-isStickLeader__Q26PikiAI12ActTransportFv:
+.fn isStickLeader__Q26PikiAI12ActTransportFv, global
 /* 801A2188 0019F0C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A218C 0019F0CC  7C 08 02 A6 */	mflr r0
 /* 801A2190 0019F0D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -742,9 +760,9 @@ isStickLeader__Q26PikiAI12ActTransportFv:
 /* 801A2218 0019F158  7C 08 03 A6 */	mtlr r0
 /* 801A221C 0019F15C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A2220 0019F160  4E 80 00 20 */	blr 
+.endfn isStickLeader__Q26PikiAI12ActTransportFv
 
-.global initLift__Q26PikiAI12ActTransportFv
-initLift__Q26PikiAI12ActTransportFv:
+.fn initLift__Q26PikiAI12ActTransportFv, global
 /* 801A2224 0019F164  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A2228 0019F168  7C 08 02 A6 */	mflr r0
 /* 801A222C 0019F16C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -793,9 +811,9 @@ initLift__Q26PikiAI12ActTransportFv:
 /* 801A22D4 0019F214  7C 08 03 A6 */	mtlr r0
 /* 801A22D8 0019F218  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A22DC 0019F21C  4E 80 00 20 */	blr 
+.endfn initLift__Q26PikiAI12ActTransportFv
 
-.global execLift__Q26PikiAI12ActTransportFv
-execLift__Q26PikiAI12ActTransportFv:
+.fn execLift__Q26PikiAI12ActTransportFv, global
 /* 801A22E0 0019F220  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 801A22E4 0019F224  7C 08 02 A6 */	mflr r0
 /* 801A22E8 0019F228  38 80 00 28 */	li r4, 0x28
@@ -1077,23 +1095,24 @@ execLift__Q26PikiAI12ActTransportFv:
 /* 801A26E8 0019F628  7C 08 03 A6 */	mtlr r0
 /* 801A26EC 0019F62C  38 21 00 60 */	addi r1, r1, 0x60
 /* 801A26F0 0019F630  4E 80 00 20 */	blr 
+.endfn execLift__Q26PikiAI12ActTransportFv
 
-.global getName__Q26PikiAI11PathMoveArgFv
-getName__Q26PikiAI11PathMoveArgFv:
+.fn getName__Q26PikiAI11PathMoveArgFv, weak
 /* 801A26F4 0019F634  3C 60 80 48 */	lis r3, lbl_8047F3A4@ha
 /* 801A26F8 0019F638  38 63 F3 A4 */	addi r3, r3, lbl_8047F3A4@l
 /* 801A26FC 0019F63C  4E 80 00 20 */	blr 
+.endfn getName__Q26PikiAI11PathMoveArgFv
 
-.global getName__Q26PikiAI11GotoSlotArgFv
-getName__Q26PikiAI11GotoSlotArgFv:
+.fn getName__Q26PikiAI11GotoSlotArgFv, weak
 /* 801A2700 0019F640  3C 60 80 48 */	lis r3, lbl_8047F3B0@ha
 /* 801A2704 0019F644  38 63 F3 B0 */	addi r3, r3, lbl_8047F3B0@l
 /* 801A2708 0019F648  4E 80 00 20 */	blr 
+.endfn getName__Q26PikiAI11GotoSlotArgFv
 
-.global "@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent"
-"@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent":
+.fn "@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent", weak
 /* 801A270C 0019F64C  39 60 00 04 */	li r11, 4
 /* 801A2710 0019F650  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801A2714 0019F654  7C 63 5A 14 */	add r3, r3, r11
 /* 801A2718 0019F658  38 63 FF C4 */	addi r3, r3, -60
 /* 801A271C 0019F65C  4B FF F9 50 */	b onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent
+.endfn "@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent"
