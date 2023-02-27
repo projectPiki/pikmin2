@@ -6,6 +6,7 @@
 #include "Game/PikiContainer.h"
 #include "Game/TekiStat.h"
 #include "Game/gameStages.h"
+#include "Game/gameGeneratorCache.h"
 #include "id32.h"
 #include "kh/khDayEndResult.h"
 
@@ -370,11 +371,49 @@ struct PlayData : public CNode {
 
 	inline PelletFirstMemory* getZukanStat() { return mZukanStat; }
 
+	inline void writeSprayCounts(Stream& output, char* textBuffer)
+	{
+		for (int i = 0; i < 2; i++) {
+			output.textWriteTab(output.mTabCount);
+			output.writeInt(mSprayCount[i]);
+			sprintf(textBuffer, "\t# dope[%d]\r\n", i);
+			output.textWriteText(textBuffer);
+		}
+	}
+
+	inline void writeBerryCounts(Stream& output, char* textBuffer)
+	{
+		for (int i = 0; i < 2; i++) {
+			output.textWriteTab(output.mTabCount);
+			output.writeInt(mBerryCount[i]);
+			sprintf(textBuffer, "\t# dope-ŽÀ[%d]\r\n", i); // 'dope-berry'
+			output.textWriteText(textBuffer);
+		}
+	}
+
+	inline void readSprayCounts(Stream& input)
+	{
+		for (int i = 0; i < 2; i++) {
+			mSprayCount[i] = input.readInt();
+		}
+	}
+
+	inline void readBerryCounts(Stream& input)
+	{
+		for (int i = 0; i < 2; i++) {
+			mBerryCount[i] = input.readInt();
+		}
+	}
+
+	inline int getDataSize(Stream& stream, int streamStartPos)
+	{
+		return stream.getStreamDistance(streamStartPos) + generatorCache->getHeapUsedSize();
+	}
+
 	bool _18;                               // _18
 	u8 mLoadType;                           // _19, see SaveFlags enum
 	u32 _1C;                                // _1C
 	u8 mDeadNaviID;                         // _20
-	u8 _21[3];                              // _21
 	f32 mNaviLifeMax[2];                    // _24
 	u8 mHasContainerFlags;                  // _2C
 	u8 mHasBootContainerFlags;              // _2D

@@ -2516,13 +2516,16 @@ int PlayData::getOtakaraNum_Course_CaveID(int courseIndex, ID32& caveID)
 		int id           = info->getCaveIndex_FromID(caveID);
 		if (id != -1) {
 			if (id >= 0 && id < ota->mCaveCount) {
-				return ota->mOtakaraCountsOld[id];
+				return (u8)ota->mOtakaraCountsOld[id];
 			}
+		} else {
+			goto mistake; // mistake?
 		}
 		return -1;
 	} else {
 		JUT_PANICLINE(1727, "course index error:%d (getOtakaraNum_*)\n", courseIndex);
 	}
+mistake:
 	return -1;
 	/*
 	stwu     r1, -0x20(r1)

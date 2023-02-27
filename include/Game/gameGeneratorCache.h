@@ -57,6 +57,8 @@ struct GeneratorCache {
 	void updateUseList();
 	void write(Stream&);
 
+	inline int getHeapUsedSize() const { return mHeapSize - mFreeSize; }
+
 	CourseCache _00;      // _00
 	CourseCache _3C;      // _3C
 	CourseCache* _78;     // _78

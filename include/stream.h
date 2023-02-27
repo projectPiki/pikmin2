@@ -81,6 +81,8 @@ struct Stream {
 		}
 	}
 
+	inline int getStreamDistance(int startPos) const { return mPosition - startPos; }
+
 	int mEndian;                      // _04
 	int mPosition;                    // _08
 	int mMode;                        // _0C
