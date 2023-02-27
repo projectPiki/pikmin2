@@ -10,14 +10,16 @@ namespace JStudio_JMessage {
 struct TCreateObject_base : JStudio::TCreateObject {
 	virtual ~TCreateObject_base() = 0;                                                                       // _08
 	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
-	virtual void find(const JStudio::stb::data::TParse_TBlock_object&) = 0;                                  // _10
+	virtual JMessage::TControl* find(const JStudio::stb::data::TParse_TBlock_object&) = 0;                   // _10
 };
 } // namespace JStudio_JMessage
 
 namespace JStudio_JMessage {
 struct TCreateObject : public TCreateObject_base {
-	virtual ~TCreateObject();                                           // _08
-	virtual void find(const JStudio::stb::data::TParse_TBlock_object&); // _10
+	virtual ~TCreateObject();                                                          // _08
+	virtual JMessage::TControl* find(const JStudio::stb::data::TParse_TBlock_object&); // _10
+
+	JMessage::TControl* mControl; // _0C
 };
 
 struct TAdaptor_message : public JStudio::TAdaptor_message {
