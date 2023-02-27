@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive
-getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive:
+.fn getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive, global
 /* 80032478 0002F3B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003247C 0002F3BC  7C 08 02 A6 */	mflr r0
 /* 80032480 0002F3C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -51,9 +50,9 @@ getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive:
 /* 80032524 0002F464  7C 08 03 A6 */	mtlr r0
 /* 80032528 0002F468  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003252C 0002F46C  4E 80 00 20 */	blr 
+.endfn getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive
 
-.global getResource__15JUTResReferenceFPCvUlP10JKRArchive
-getResource__15JUTResReferenceFPCvUlP10JKRArchive:
+.fn getResource__15JUTResReferenceFPCvUlP10JKRArchive, global
 /* 80032530 0002F470  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80032534 0002F474  7C 08 02 A6 */	mflr r0
 /* 80032538 0002F478  90 01 00 24 */	stw r0, 0x24(r1)
@@ -98,9 +97,9 @@ getResource__15JUTResReferenceFPCvUlP10JKRArchive:
 /* 800325C8 0002F508  7C 08 03 A6 */	mtlr r0
 /* 800325CC 0002F50C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800325D0 0002F510  4E 80 00 20 */	blr 
+.endfn getResource__15JUTResReferenceFPCvUlP10JKRArchive
 
-.global getResource__15JUTResReferenceFUlP10JKRArchive
-getResource__15JUTResReferenceFUlP10JKRArchive:
+.fn getResource__15JUTResReferenceFUlP10JKRArchive, global
 /* 800325D4 0002F514  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800325D8 0002F518  7C 08 02 A6 */	mflr r0
 /* 800325DC 0002F51C  7C 66 1B 78 */	mr r6, r3
@@ -136,3 +135,4 @@ getResource__15JUTResReferenceFUlP10JKRArchive:
 /* 80032640 0002F580  7C 08 03 A6 */	mtlr r0
 /* 80032644 0002F584  38 21 00 10 */	addi r1, r1, 0x10
 /* 80032648 0002F588  4E 80 00 20 */	blr 
+.endfn getResource__15JUTResReferenceFUlP10JKRArchive

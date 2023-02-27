@@ -57,7 +57,6 @@ __vt__12JUTCacheFont:
 	.4byte isLeadByte__10JUTResFontCFi
 	.4byte loadImage__12JUTCacheFontFi11_GXTexMapID
 	.4byte setBlock__12JUTCacheFontFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

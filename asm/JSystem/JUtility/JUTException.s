@@ -5,29 +5,37 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80473C18:
+.obj lbl_80473C18, local
 	.asciz "SYSTEM RESET"
+.endobj lbl_80473C18
 .balign 4
-lbl_80473C28:
+.obj lbl_80473C28, local
 	.asciz "MACHINE CHECK"
+.endobj lbl_80473C28
 .balign 4
-lbl_80473C38:
+.obj lbl_80473C38, local
 	.asciz "EXTERNAL INTERRUPT"
+.endobj lbl_80473C38
 .balign 4
-lbl_80473C4C:
+.obj lbl_80473C4C, local
 	.asciz "ALIGNMENT"
+.endobj lbl_80473C4C
 .balign 4
-lbl_80473C58:
+.obj lbl_80473C58, local
 	.asciz "FLOATING POINT"
+.endobj lbl_80473C58
 .balign 4
-lbl_80473C68:
+.obj lbl_80473C68, local
 	.asciz "DECREMENTER"
+.endobj lbl_80473C68
 .balign 4
-lbl_80473C74:
+.obj lbl_80473C74, local
 	.asciz "SYSTEM CALL"
+.endobj lbl_80473C74
 .balign 4
-lbl_80473C80:
+.obj lbl_80473C80, local
 	.asciz "PERFORMACE MONITOR"
+.endobj lbl_80473C80
 .balign 4
 lbl_80473C94:
 	.asciz "BREAK POINT"

@@ -1,23 +1,25 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sDebugPrint__10JUTDbPrint
-sDebugPrint__10JUTDbPrint:
+.obj sDebugPrint__10JUTDbPrint, global
 	.skip 0x4
+.endobj sDebugPrint__10JUTDbPrint
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805165A0:
+.obj lbl_805165A0, local
 	.float -1.0
-lbl_805165A4:
+.endobj lbl_805165A0
+.obj lbl_805165A4, local
 	.float 1.0
+.endobj lbl_805165A4
 .balign 8
-lbl_805165A8:
+.obj lbl_805165A8, local
 	.8byte 0x4330000080000000
+.endobj lbl_805165A8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global start__10JUTDbPrintFP7JUTFontP7JKRHeap
-start__10JUTDbPrintFP7JUTFontP7JKRHeap:
+.fn start__10JUTDbPrintFP7JUTFontP7JKRHeap, global
 /* 800294D4 00026414  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800294D8 00026418  7C 08 02 A6 */	mflr r0
 /* 800294DC 0002641C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -66,9 +68,9 @@ start__10JUTDbPrintFP7JUTFontP7JKRHeap:
 /* 80029574 000264B4  7C 08 03 A6 */	mtlr r0
 /* 80029578 000264B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002957C 000264BC  4E 80 00 20 */	blr 
+.endfn start__10JUTDbPrintFP7JUTFontP7JKRHeap
 
-.global changeFont__10JUTDbPrintFP7JUTFont
-changeFont__10JUTDbPrintFP7JUTFont:
+.fn changeFont__10JUTDbPrintFP7JUTFont, global
 /* 80029580 000264C0  28 04 00 00 */	cmplwi r4, 0
 /* 80029584 000264C4  80 03 00 04 */	lwz r0, 4(r3)
 /* 80029588 000264C8  41 82 00 08 */	beq .L_80029590
@@ -76,9 +78,9 @@ changeFont__10JUTDbPrintFP7JUTFont:
 .L_80029590:
 /* 80029590 000264D0  7C 03 03 78 */	mr r3, r0
 /* 80029594 000264D4  4E 80 00 20 */	blr 
+.endfn changeFont__10JUTDbPrintFP7JUTFont
 
-.global flush__10JUTDbPrintFv
-flush__10JUTDbPrintFv:
+.fn flush__10JUTDbPrintFv, global
 /* 80029598 000264D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002959C 000264DC  7C 08 02 A6 */	mflr r0
 /* 800295A0 000264E0  38 80 00 00 */	li r4, 0
@@ -93,9 +95,9 @@ flush__10JUTDbPrintFv:
 /* 800295C4 00026504  7C 08 03 A6 */	mtlr r0
 /* 800295C8 00026508  38 21 00 10 */	addi r1, r1, 0x10
 /* 800295CC 0002650C  4E 80 00 20 */	blr 
+.endfn flush__10JUTDbPrintFv
 
-.global flush__10JUTDbPrintFiiii
-flush__10JUTDbPrintFiiii:
+.fn flush__10JUTDbPrintFiiii, global
 /* 800295D0 00026510  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 800295D4 00026514  7C 08 02 A6 */	mflr r0
 /* 800295D8 00026518  90 01 01 14 */	stw r0, 0x114(r1)
@@ -194,9 +196,9 @@ flush__10JUTDbPrintFiiii:
 /* 80029738 00026678  7C 08 03 A6 */	mtlr r0
 /* 8002973C 0002667C  38 21 01 10 */	addi r1, r1, 0x110
 /* 80029740 00026680  4E 80 00 20 */	blr 
+.endfn flush__10JUTDbPrintFiiii
 
-.global drawString__10JUTDbPrintFiiiPCUc
-drawString__10JUTDbPrintFiiiPCUc:
+.fn drawString__10JUTDbPrintFiiiPCUc, global
 /* 80029744 00026684  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80029748 00026688  7C 08 02 A6 */	mflr r0
 /* 8002974C 0002668C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -255,3 +257,4 @@ drawString__10JUTDbPrintFiiiPCUc:
 /* 80029820 00026760  7C 08 03 A6 */	mtlr r0
 /* 80029824 00026764  38 21 00 50 */	addi r1, r1, 0x50
 /* 80029828 00026768  4E 80 00 20 */	blr 
+.endfn drawString__10JUTDbPrintFiiiPCUc

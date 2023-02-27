@@ -1,29 +1,28 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__12JUTGraphFifo
-__vt__12JUTGraphFifo:
+.obj __vt__12JUTGraphFifo, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JUTGraphFifoFv
+.endobj __vt__12JUTGraphFifo
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sInitiated__12JUTGraphFifo
-sInitiated__12JUTGraphFifo:
+.obj sInitiated__12JUTGraphFifo, global
 	.skip 0x1
+.endobj sInitiated__12JUTGraphFifo
 .balign 4
-.global sCurrentFifo__12JUTGraphFifo
-sCurrentFifo__12JUTGraphFifo:
+.obj sCurrentFifo__12JUTGraphFifo, global
 	.skip 0x4
+.endobj sCurrentFifo__12JUTGraphFifo
 .balign 4
-.global mGpStatus__12JUTGraphFifo
-mGpStatus__12JUTGraphFifo:
+.obj mGpStatus__12JUTGraphFifo, global
 	.skip 0x5
+.endobj mGpStatus__12JUTGraphFifo
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__12JUTGraphFifoFUl
-__ct__12JUTGraphFifoFUl:
+.fn __ct__12JUTGraphFifoFUl, global
 /* 8002EB34 0002BA74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002EB38 0002BA78  7C 08 02 A6 */	mflr r0
 /* 8002EB3C 0002BA7C  3C A0 80 4A */	lis r5, __vt__12JUTGraphFifo@ha
@@ -81,9 +80,9 @@ __ct__12JUTGraphFifoFUl:
 /* 8002EC04 0002BB44  7C 08 03 A6 */	mtlr r0
 /* 8002EC08 0002BB48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002EC0C 0002BB4C  4E 80 00 20 */	blr 
+.endfn __ct__12JUTGraphFifoFUl
 
-.global __dt__12JUTGraphFifoFv
-__dt__12JUTGraphFifoFv:
+.fn __dt__12JUTGraphFifoFv, global
 /* 8002EC10 0002BB50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002EC14 0002BB54  7C 08 02 A6 */	mflr r0
 /* 8002EC18 0002BB58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -134,3 +133,4 @@ __dt__12JUTGraphFifoFv:
 /* 8002ECC0 0002BC00  7C 08 03 A6 */	mtlr r0
 /* 8002ECC4 0002BC04  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002ECC8 0002BC08  4E 80 00 20 */	blr 
+.endfn __dt__12JUTGraphFifoFv

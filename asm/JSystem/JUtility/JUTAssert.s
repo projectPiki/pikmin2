@@ -6,33 +6,38 @@
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-"sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@": # local object
+.obj "sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@", local
 	.byte 1
+.endobj "sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-"sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@": # local object
+.obj "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@", local
 	.skip 0x4
+.endobj "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516550:
+.obj lbl_80516550, local
 	.float 30.0
-lbl_80516554:
+.endobj lbl_80516550
+.obj lbl_80516554, local
 	.float 36.0
-lbl_80516558:
+.endobj lbl_80516554
+.obj lbl_80516558, local
 	.float 54.0
+.endobj lbl_80516558
 .balign 8
-lbl_80516560:
+.obj lbl_80516560, local
 	.8byte 0x4330000080000000
+.endobj lbl_80516560
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__12JUTAssertionFv
-create__12JUTAssertionFv:
+.fn create__12JUTAssertionFv, global
 /* 80027DC0 00024D00  4E 80 00 20 */	blr 
+.endfn create__12JUTAssertionFv
 
-.global flushMessage__12JUTAssertionFv
-flushMessage__12JUTAssertionFv:
+.fn flushMessage__12JUTAssertionFv, global
 /* 80027DC4 00024D04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80027DC8 00024D08  7C 08 02 A6 */	mflr r0
 /* 80027DCC 00024D0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -96,9 +101,9 @@ flushMessage__12JUTAssertionFv:
 /* 80027EA4 00024DE4  7C 08 03 A6 */	mtlr r0
 /* 80027EA8 00024DE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80027EAC 00024DEC  4E 80 00 20 */	blr 
+.endfn flushMessage__12JUTAssertionFv
 
-.global flushMessage_dbPrint__12JUTAssertionFv
-flushMessage_dbPrint__12JUTAssertionFv:
+.fn flushMessage_dbPrint__12JUTAssertionFv, global
 /* 80027EB0 00024DF0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80027EB4 00024DF4  7C 08 02 A6 */	mflr r0
 /* 80027EB8 00024DF8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -236,12 +241,13 @@ flushMessage_dbPrint__12JUTAssertionFv:
 /* 800280B8 00024FF8  7C 08 03 A6 */	mtlr r0
 /* 800280BC 00024FFC  38 21 00 50 */	addi r1, r1, 0x50
 /* 800280C0 00025000  4E 80 00 20 */	blr 
+.endfn flushMessage_dbPrint__12JUTAssertionFv
 
-.global setMessageCount__12JUTAssertionFi
-setMessageCount__12JUTAssertionFi:
+.fn setMessageCount__12JUTAssertionFi, global
 /* 800280C4 00025004  7C 03 00 D0 */	neg r0, r3
 /* 800280C8 00025008  7C 60 03 38 */	orc r0, r3, r0
 /* 800280CC 0002500C  7C 00 FE 70 */	srawi r0, r0, 0x1f
 /* 800280D0 00025010  7C 60 00 78 */	andc r0, r3, r0
 /* 800280D4 00025014  90 0D 88 68 */	stw r0, "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"@sda21(r13)
 /* 800280D8 00025018  4E 80 00 20 */	blr 
+.endfn setMessageCount__12JUTAssertionFi

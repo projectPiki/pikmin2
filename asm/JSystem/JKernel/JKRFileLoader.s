@@ -5,8 +5,7 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13JKRFileLoader
-__vt__13JKRFileLoader:
+.obj __vt__13JKRFileLoader, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13JKRFileLoaderFv
@@ -22,6 +21,7 @@ __vt__13JKRFileLoader:
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj __vt__13JKRFileLoader
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -31,23 +31,24 @@ __vt__13JKRFileLoader:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-rootPath$2747:
+.obj rootPath$2747, local
 	.asciz "/"
+.endobj rootPath$2747
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sCurrentVolume__13JKRFileLoader
-sCurrentVolume__13JKRFileLoader:
+.obj sCurrentVolume__13JKRFileLoader, global
 	.skip 0x4
+.endobj sCurrentVolume__13JKRFileLoader
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516528:
+.obj lbl_80516528, local
 	.asciz "/"
+.endobj lbl_80516528
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__13JKRFileLoaderFv
-__ct__13JKRFileLoaderFv:
+.fn __ct__13JKRFileLoaderFv, global
 /* 80022E98 0001FDD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022E9C 0001FDDC  7C 08 02 A6 */	mflr r0
 /* 80022EA0 0001FDE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -70,9 +71,9 @@ __ct__13JKRFileLoaderFv:
 /* 80022EE4 0001FE24  7C 08 03 A6 */	mtlr r0
 /* 80022EE8 0001FE28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022EEC 0001FE2C  4E 80 00 20 */	blr 
+.endfn __ct__13JKRFileLoaderFv
 
-.global __dt__13JKRFileLoaderFv
-__dt__13JKRFileLoaderFv:
+.fn __dt__13JKRFileLoaderFv, global
 /* 80022EF0 0001FE30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022EF4 0001FE34  7C 08 02 A6 */	mflr r0
 /* 80022EF8 0001FE38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -111,9 +112,9 @@ __dt__13JKRFileLoaderFv:
 /* 80022F70 0001FEB0  7C 08 03 A6 */	mtlr r0
 /* 80022F74 0001FEB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022F78 0001FEB8  4E 80 00 20 */	blr 
+.endfn __dt__13JKRFileLoaderFv
 
-.global unmount__13JKRFileLoaderFv
-unmount__13JKRFileLoaderFv:
+.fn unmount__13JKRFileLoaderFv, global
 /* 80022F7C 0001FEBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022F80 0001FEC0  7C 08 02 A6 */	mflr r0
 /* 80022F84 0001FEC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -135,9 +136,9 @@ unmount__13JKRFileLoaderFv:
 /* 80022FC0 0001FF00  7C 08 03 A6 */	mtlr r0
 /* 80022FC4 0001FF04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022FC8 0001FF08  4E 80 00 20 */	blr 
+.endfn unmount__13JKRFileLoaderFv
 
-.global getGlbResource__13JKRFileLoaderFPCc
-getGlbResource__13JKRFileLoaderFPCc:
+.fn getGlbResource__13JKRFileLoaderFPCc, global
 /* 80022FCC 0001FF0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022FD0 0001FF10  7C 08 02 A6 */	mflr r0
 /* 80022FD4 0001FF14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -159,9 +160,9 @@ getGlbResource__13JKRFileLoaderFPCc:
 /* 8002300C 0001FF4C  7C 08 03 A6 */	mtlr r0
 /* 80023010 0001FF50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023014 0001FF54  4E 80 00 20 */	blr 
+.endfn getGlbResource__13JKRFileLoaderFPCc
 
-.global getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader:
+.fn getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader, global
 /* 80023018 0001FF58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002301C 0001FF5C  7C 08 02 A6 */	mflr r0
 /* 80023020 0001FF60  28 04 00 00 */	cmplwi r4, 0
@@ -204,9 +205,9 @@ getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader:
 /* 800230A4 0001FFE4  7C 08 03 A6 */	mtlr r0
 /* 800230A8 0001FFE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800230AC 0001FFEC  4E 80 00 20 */	blr 
+.endfn getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 
-.global findVolume__13JKRFileLoaderFPPCc
-findVolume__13JKRFileLoaderFPPCc:
+.fn findVolume__13JKRFileLoaderFPPCc, global
 /* 800230B0 0001FFF0  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 800230B4 0001FFF4  7C 08 02 A6 */	mflr r0
 /* 800230B8 0001FFF8  90 01 01 24 */	stw r0, 0x124(r1)
@@ -247,9 +248,9 @@ findVolume__13JKRFileLoaderFPPCc:
 /* 80023130 00020070  7C 08 03 A6 */	mtlr r0
 /* 80023134 00020074  38 21 01 20 */	addi r1, r1, 0x120
 /* 80023138 00020078  4E 80 00 20 */	blr 
+.endfn findVolume__13JKRFileLoaderFPPCc
 
-.global fetchVolumeName__13JKRFileLoaderFPclPCc
-fetchVolumeName__13JKRFileLoaderFPclPCc:
+.fn fetchVolumeName__13JKRFileLoaderFPclPCc, global
 /* 8002313C 0002007C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80023140 00020080  7C 08 02 A6 */	mflr r0
 /* 80023144 00020084  90 01 00 24 */	stw r0, 0x24(r1)
@@ -315,6 +316,7 @@ fetchVolumeName__13JKRFileLoaderFPclPCc:
 /* 80023210 00020150  7C 08 03 A6 */	mtlr r0
 /* 80023214 00020154  38 21 00 20 */	addi r1, r1, 0x20
 /* 80023218 00020158  4E 80 00 20 */	blr 
+.endfn fetchVolumeName__13JKRFileLoaderFPclPCc
 
 .fn __sinit_JKRFileLoader_cpp, local
 /* 8002321C 0002015C  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -336,8 +338,7 @@ fetchVolumeName__13JKRFileLoaderFPclPCc:
 /* 8002325C 0002019C  4E 80 00 20 */	blr 
 .endfn __sinit_JKRFileLoader_cpp
 
-.global "__dt__24JSUList<13JKRFileLoader>Fv"
-"__dt__24JSUList<13JKRFileLoader>Fv":
+.fn "__dt__24JSUList<13JKRFileLoader>Fv", weak
 /* 80023260 000201A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023264 000201A4  7C 08 02 A6 */	mflr r0
 /* 80023268 000201A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -360,3 +361,4 @@ fetchVolumeName__13JKRFileLoaderFPclPCc:
 /* 800232A8 000201E8  7C 08 03 A6 */	mtlr r0
 /* 800232AC 000201EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800232B0 000201F0  4E 80 00 20 */	blr 
+.endfn "__dt__24JSUList<13JKRFileLoader>Fv"
