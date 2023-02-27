@@ -64,7 +64,7 @@ LIBS = [
         "host": True,
         "objects": [
             ["JSystem/JStudio_JMessage/object-message", True],
-            "JSystem/JStudio_JMessage/control",
+            ["JSystem/JStudio_JMessage/control", True],
         ],
     },
     {
