@@ -141,6 +141,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_BlackMan       = 99,  // Waterwraith
     EnemyID_UmiMushiBase   = 100, // Bloyster base (crashes)
     EnemyID_UmiMushiBlind  = 101, // Toady Bloyster
+    EnemyID_COUNT,
 };
 EEnemyTypeID mEnemyID; // _00
 u8 mCount;    // _04

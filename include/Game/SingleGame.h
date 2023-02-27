@@ -522,10 +522,11 @@ struct ZukanState : public State {
 	void execModeChange(SingleGameSection*, CMode);
 	unknown execPellet(SingleGameSection*);
 	unknown execTeki(SingleGameSection*);
-	PelletConfig* getCurrentPelletConfig(int);
-	int getMaxPelletID();
 	void setMode(CMode);
 	void startWipe(f32);
+
+	static int getMaxPelletID();
+	static PelletConfig* getCurrentPelletConfig(int);
 
 	// Unused/inlined:
 	unknown startTekiMode(bool);

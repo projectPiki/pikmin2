@@ -127,7 +127,10 @@ struct CameraParms {
 		Parm<f32> mInitialRotation;  // _19C, f010
 	};
 
-	CameraParms();
+	CameraParms()
+	    : mParms()
+	{
+	}
 
 	// _1C8 = VTBL
 	Parms mParms; // _00
@@ -138,18 +141,18 @@ struct CameraParms {
 struct ColorSetting : public CNode {
 	ColorSetting();
 
-	virtual ~ColorSetting();    // _08 (weak)
+	virtual ~ColorSetting() { } // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	void update();
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Color4 _18[10];       // _18
-	Color4 _40[5];        // _40
-	JUtility::TColor _54; // _54
-	JUtility::TColor _58; // _58
-	JUtility::TColor _5C; // _5C
+	Color4 _18[5][2]; // _18
+	Color4 _40[5];    // _40
+	Color4 _54;       // _54
+	Color4 _58;       // _58
+	Color4 _5C;       // _5C
 };
 
 struct DebugParms : public CNode {
@@ -163,28 +166,35 @@ struct DebugParms : public CNode {
 
 struct PositionParms : public CNode {
 	struct Parms : public Parameters {
-		inline Parms();
+		inline Parms()
+		    : Parameters(nullptr, "PositionParms")
+		    , mAppearPosX(this, 'f000', "出現位置　ｘ", 0.0f, -10000.0f, 10000.0f) // 'appearance position X'
+		    , mAppearPosY(this, 'f001', "出現位置　ｙ", 0.0f, -10000.0f, 10000.0f) // 'appearance position Y'
+		    , mAppearPosZ(this, 'f002', "出現位置　ｚ", 0.0f, -10000.0f, 10000.0f) // 'appearance position Z'
+		{
+		}
 
-		Parm<f32> _24; // _24, somethingX?
-		Parm<f32> _4C; // _4C, somethingY?
-		Parm<f32> _74; // _74, somethingZ?
+		Parm<f32> mAppearPosX; // _24, f000
+		Parm<f32> mAppearPosY; // _4C, f001
+		Parm<f32> mAppearPosZ; // _74, f002
 	};
 
 	PositionParms();
 
-	virtual ~PositionParms();   // _08 (weak)
-	virtual void read(Stream&); // _10
+	virtual ~PositionParms() { } // _08 (weak)
+	virtual void read(Stream&);  // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	Parms mParms; // _18
-	u8 _A0[0x20]; // _A0, unknown
+	Parms mParms;          // _18
+	char mEnemyName[0x20]; // _A0
 };
 
 struct PositionParmsList : public CNode {
+	PositionParmsList();
 
-	virtual ~PositionParmsList(); // _08 (weak)
-	virtual void read(Stream&);   // _10
+	virtual ~PositionParmsList() { } // _08 (weak)
+	virtual void read(Stream&);      // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -193,29 +203,37 @@ struct PositionParmsList : public CNode {
 
 struct EnemyParms : public CNode {
 	struct Parms : public Parameters {
-		inline Parms(); // probably
+		inline Parms()
+		    : Parameters(nullptr, "enemyParms")
+		    , mSize(this, 'f001', "大きさ", 10.0f, 0.0f, 1000.0f)         // 'size'
+		    , mAppearRange(this, 'f000', "出現範囲", 0.0f, 0.0f, 1000.0f) // 'occurence range'
+		    , mAppearNum(this, 'i000', "出現数", 1, 1, 99)
+		{
+		}
 
-		Parm<f32> mF001; // _24
-		Parm<f32> mF002; // _4C
-		Parm<int> mI001; // _74
+		Parm<f32> mSize;        // _24, f001
+		Parm<f32> mAppearRange; // _4C, f000
+		Parm<int> mAppearNum;   // _74, i000
 	};
 
 	EnemyParms();
 
-	virtual ~EnemyParms();      // _08 (weak)
+	virtual ~EnemyParms() { }   // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode
 	Parms mParms;                     // _18
-	u8 _A0[0x4];                      // _A0, unknown
+	u8 _A0;                           // _A0
 	CameraParms mCameraParms;         // _A4
 	PositionParmsList* mPosParmsList; // _270
 };
 
 struct EnemyModeParms : public CNode {
-	virtual ~EnemyModeParms();  // _08 (weak)
-	virtual void read(Stream&); // _10
+	EnemyModeParms(PositionParmsList* list);
+
+	virtual ~EnemyModeParms() { } // _08 (weak)
+	virtual void read(Stream&);   // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -224,30 +242,38 @@ struct EnemyModeParms : public CNode {
 
 struct ItemParms : public CNode {
 	struct Parms : public Parameters {
-		inline Parms(); // probably
+		inline Parms()
+		    : Parameters(nullptr, "enemyParms")
+		    , mOffsetX(this, 'f000', "オフセットｘ", 0.0f, -10000.0f, 10000.0f)
+		    , mOffsetY(this, 'f001', "オフセットｙ", 0.0f, -10000.0f, 10000.0f)
+		    , mOffsetZ(this, 'f002', "オフセットｚ", 0.0f, -10000.0f, 10000.0f)
+		{
+		}
 
-		Parm<f32> mF000; // _24
-		Parm<f32> mF001; // _4C
-		Parm<f32> mF002; // _74
+		Parm<f32> mOffsetX; // _24, f000
+		Parm<f32> mOffsetY; // _4C, f001
+		Parm<f32> mOffsetZ; // _74, f002
 	};
 
 	ItemParms();
 
-	virtual ~ItemParms();       // _08 (weak)
+	virtual ~ItemParms() { }    // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode
 	Parms mParms;                     // _18
-	u8 _A0[0x4];                      // _A0, unknown
+	u8 _A0;                           // _A0
 	CameraParms mCameraParms;         // _A4
 	PositionParmsList* mPosParmsList; // _270
 	int mIndex;                       // _274
 };
 
 struct ItemModeParms : public CNode {
-	virtual ~ItemModeParms();   // _08 (weak)
-	virtual void read(Stream&); // _10
+	ItemModeParms(PositionParmsList*);
+
+	virtual ~ItemModeParms() { } // _08 (weak)
+	virtual void read(Stream&);  // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -258,17 +284,17 @@ struct ItemModeParms : public CNode {
 struct Parms : public CNode {
 	Parms();
 
-	virtual ~Parms();           // _08 (weak)
+	virtual ~Parms() { }        // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	void loadFile(JKRArchive*);
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	ColorSetting mColorSetting;       // _18
-	PositionParmsList mPositionParms; // _78
-	EnemyModeParms mEnemyParms;       // _810
-	ItemModeParms mItemParms;         // _10260
+	ColorSetting mColorSetting;      // _18
+	PositionParmsList mPosParmsList; // _78
+	EnemyModeParms mEnemyParms;      // _810
+	ItemModeParms mItemParms;        // _10260
 };
 } // namespace IllustratedBook
 } // namespace Game
