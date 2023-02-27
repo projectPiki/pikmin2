@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q27JGadget13TNodeLinkListFv
-__dt__Q27JGadget13TNodeLinkListFv:
+.fn __dt__Q27JGadget13TNodeLinkListFv, global
 /* 800272E4 00024224  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800272E8 00024228  7C 08 02 A6 */	mflr r0
 /* 800272EC 0002422C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -19,9 +18,9 @@ __dt__Q27JGadget13TNodeLinkListFv:
 /* 80027314 00024254  7C 08 03 A6 */	mtlr r0
 /* 80027318 00024258  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002731C 0002425C  4E 80 00 20 */	blr 
+.endfn __dt__Q27JGadget13TNodeLinkListFv
 
-.global Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode:
+.fn Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode, global
 /* 80027320 00024260  80 A5 00 00 */	lwz r5, 0(r5)
 /* 80027324 00024264  80 E5 00 04 */	lwz r7, 4(r5)
 /* 80027328 00024268  90 A6 00 00 */	stw r5, 0(r6)
@@ -33,9 +32,9 @@ Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget1
 /* 80027340 00024280  90 04 00 00 */	stw r0, 0(r4)
 /* 80027344 00024284  90 C3 00 00 */	stw r6, 0(r3)
 /* 80027348 00024288  4E 80 00 20 */	blr 
+.endfn Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
 
-.global Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
-Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode:
+.fn Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode, global
 /* 8002734C 0002428C  80 C5 00 00 */	lwz r6, 0(r5)
 /* 80027350 00024290  80 A5 00 04 */	lwz r5, 4(r5)
 /* 80027354 00024294  90 A6 00 04 */	stw r5, 4(r6)
@@ -45,9 +44,9 @@ Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode:
 /* 80027364 000242A4  90 04 00 00 */	stw r0, 0(r4)
 /* 80027368 000242A8  90 C3 00 00 */	stw r6, 0(r3)
 /* 8002736C 000242AC  4E 80 00 20 */	blr 
+.endfn Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
 
-.global Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
-Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode:
+.fn Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode, global
 /* 80027370 000242B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80027374 000242B4  7C 08 02 A6 */	mflr r0
 /* 80027378 000242B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -59,9 +58,9 @@ Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode:
 /* 80027390 000242D0  7C 08 03 A6 */	mtlr r0
 /* 80027394 000242D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80027398 000242D8  4E 80 00 20 */	blr 
+.endfn Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
 
-.global "remove_if<Q37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>>__Q27JGadget13TNodeLinkListFQ37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>"
-"remove_if<Q37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>>__Q27JGadget13TNodeLinkListFQ37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>":
+.fn "remove_if<Q37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>>__Q27JGadget13TNodeLinkListFQ37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>", local
 /* 8002739C 000242DC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800273A0 000242E0  38 A0 00 00 */	li r5, 0
 /* 800273A4 000242E4  80 C4 00 00 */	lwz r6, 0(r4)
@@ -123,3 +122,4 @@ Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode:
 /* 80027478 000243B8  40 82 FF 5C */	bne .L_800273D4
 /* 8002747C 000243BC  38 21 00 50 */	addi r1, r1, 0x50
 /* 80027480 000243C0  4E 80 00 20 */	blr 
+.endfn "remove_if<Q37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>>__Q27JGadget13TNodeLinkListFQ37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>"

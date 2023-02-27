@@ -1,13 +1,12 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global extend_default__Q27JGadget6vectorFUlUlUl
-extend_default__Q27JGadget6vectorFUlUlUl:
+.fn extend_default__Q27JGadget6vectorFUlUlUl, global
 /* 8002766C 000245AC  54 83 08 3C */	slwi r3, r4, 1
 /* 80027670 000245B0  4E 80 00 20 */	blr 
+.endfn extend_default__Q27JGadget6vectorFUlUlUl
 
-.global "__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>"
-"__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>":
+.fn "__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>", global
 /* 80027674 000245B4  88 04 00 00 */	lbz r0, 0(r4)
 /* 80027678 000245B8  38 A0 00 00 */	li r5, 0
 /* 8002767C 000245BC  3C 80 80 02 */	lis r4, extend_default__Q27JGadget6vectorFUlUlUl@ha
@@ -19,9 +18,9 @@ extend_default__Q27JGadget6vectorFUlUlUl:
 /* 80027694 000245D4  90 A3 00 0C */	stw r5, 0xc(r3)
 /* 80027698 000245D8  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8002769C 000245DC  4E 80 00 20 */	blr 
+.endfn "__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>"
 
-.global "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUlRCPv"
-"insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUlRCPv":
+.fn "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUlRCPv", weak
 /* 800276A0 000245E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800276A4 000245E4  7C 08 02 A6 */	mflr r0
 /* 800276A8 000245E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -55,9 +54,9 @@ extend_default__Q27JGadget6vectorFUlUlUl:
 /* 8002770C 0002464C  7C 08 03 A6 */	mtlr r0
 /* 80027710 00024650  38 21 00 20 */	addi r1, r1, 0x20
 /* 80027714 00024654  4E 80 00 20 */	blr 
+.endfn "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUlRCPv"
 
-.global "Insert_raw__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUl"
-"Insert_raw__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUl":
+.fn "Insert_raw__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUl", weak
 /* 80027718 00024658  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8002771C 0002465C  7C 08 02 A6 */	mflr r0
 /* 80027720 00024660  90 01 00 34 */	stw r0, 0x34(r1)
@@ -378,9 +377,9 @@ extend_default__Q27JGadget6vectorFUlUlUl:
 /* 80027B7C 00024ABC  7C 08 03 A6 */	mtlr r0
 /* 80027B80 00024AC0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80027B84 00024AC4  4E 80 00 20 */	blr 
+.endfn "Insert_raw__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvUl"
 
-.global __dt__Q27JGadget20TVector_pointer_voidFv
-__dt__Q27JGadget20TVector_pointer_voidFv:
+.fn __dt__Q27JGadget20TVector_pointer_voidFv, global
 /* 80027B88 00024AC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80027B8C 00024ACC  7C 08 02 A6 */	mflr r0
 /* 80027B90 00024AD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -455,9 +454,9 @@ __dt__Q27JGadget20TVector_pointer_voidFv:
 /* 80027C84 00024BC4  7C 08 03 A6 */	mtlr r0
 /* 80027C88 00024BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80027C8C 00024BCC  4E 80 00 20 */	blr 
+.endfn __dt__Q27JGadget20TVector_pointer_voidFv
 
-.global insert__Q27JGadget20TVector_pointer_voidFPPvRCPv
-insert__Q27JGadget20TVector_pointer_voidFPPvRCPv:
+.fn insert__Q27JGadget20TVector_pointer_voidFPPvRCPv, global
 /* 80027C90 00024BD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80027C94 00024BD4  7C 08 02 A6 */	mflr r0
 /* 80027C98 00024BD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -466,9 +465,9 @@ insert__Q27JGadget20TVector_pointer_voidFPPvRCPv:
 /* 80027CA4 00024BE4  7C 08 03 A6 */	mtlr r0
 /* 80027CA8 00024BE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80027CAC 00024BEC  4E 80 00 20 */	blr 
+.endfn insert__Q27JGadget20TVector_pointer_voidFPPvRCPv
 
-.global "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvRCPv"
-"insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvRCPv":
+.fn "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvRCPv", weak
 /* 80027CB0 00024BF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80027CB4 00024BF4  7C 08 02 A6 */	mflr r0
 /* 80027CB8 00024BF8  7C A6 2B 78 */	mr r6, r5
@@ -491,9 +490,9 @@ insert__Q27JGadget20TVector_pointer_voidFPPvRCPv:
 /* 80027CFC 00024C3C  7C 08 03 A6 */	mtlr r0
 /* 80027D00 00024C40  38 21 00 10 */	addi r1, r1, 0x10
 /* 80027D04 00024C44  4E 80 00 20 */	blr 
+.endfn "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvRCPv"
 
-.global erase__Q27JGadget20TVector_pointer_voidFPPvPPv
-erase__Q27JGadget20TVector_pointer_voidFPPvPPv:
+.fn erase__Q27JGadget20TVector_pointer_voidFPPvPPv, global
 /* 80027D08 00024C48  80 E3 00 08 */	lwz r7, 8(r3)
 /* 80027D0C 00024C4C  38 C7 00 03 */	addi r6, r7, 3
 /* 80027D10 00024C50  7C 05 38 40 */	cmplw r5, r7
@@ -546,3 +545,4 @@ erase__Q27JGadget20TVector_pointer_voidFPPvPPv:
 /* 80027DB4 00024CF4  90 E3 00 08 */	stw r7, 8(r3)
 /* 80027DB8 00024CF8  7C 83 23 78 */	mr r3, r4
 /* 80027DBC 00024CFC  4E 80 00 20 */	blr 
+.endfn erase__Q27JGadget20TVector_pointer_voidFPPvPPv

@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit
-parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit:
+.fn parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit, global
 /* 80027128 00024068  28 06 00 00 */	cmplwi r6, 0
 /* 8002712C 0002406C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80027130 00024070  7C 68 1B 78 */	mr r8, r3
@@ -32,9 +31,9 @@ parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary
 .L_80027188:
 /* 80027188 000240C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002718C 000240CC  4E 80 00 20 */	blr 
+.endfn parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit
 
-.global __dt__Q37JGadget6binary19TParse_header_blockFv
-__dt__Q37JGadget6binary19TParse_header_blockFv:
+.fn __dt__Q37JGadget6binary19TParse_header_blockFv, global
 /* 80027190 000240D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80027194 000240D4  7C 08 02 A6 */	mflr r0
 /* 80027198 000240D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -54,9 +53,9 @@ __dt__Q37JGadget6binary19TParse_header_blockFv:
 /* 800271CC 0002410C  7C 08 03 A6 */	mtlr r0
 /* 800271D0 00024110  38 21 00 10 */	addi r1, r1, 0x10
 /* 800271D4 00024114  4E 80 00 20 */	blr 
+.endfn __dt__Q37JGadget6binary19TParse_header_blockFv
 
-.global parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
-parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl:
+.fn parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl, global
 /* 800271D8 00024118  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800271DC 0002411C  7C 08 02 A6 */	mflr r0
 /* 800271E0 00024120  90 01 00 34 */	stw r0, 0x34(r1)
@@ -133,3 +132,4 @@ parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl:
 /* 800272D8 00024218  7C 08 03 A6 */	mtlr r0
 /* 800272DC 0002421C  38 21 00 30 */	addi r1, r1, 0x30
 /* 800272E0 00024220  4E 80 00 20 */	blr 
+.endfn parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl

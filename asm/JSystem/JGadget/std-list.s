@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "__ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<Pv>"
-"__ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<Pv>":
+.fn "__ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<Pv>", global
 /* 80027484 000243C4  88 04 00 00 */	lbz r0, 0(r4)
 /* 80027488 000243C8  38 80 00 00 */	li r4, 0
 /* 8002748C 000243CC  98 03 00 00 */	stb r0, 0(r3)
@@ -11,9 +10,9 @@
 /* 80027498 000243D8  90 03 00 08 */	stw r0, 8(r3)
 /* 8002749C 000243DC  90 03 00 0C */	stw r0, 0xc(r3)
 /* 800274A0 000243E0  4E 80 00 20 */	blr 
+.endfn "__ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<Pv>"
 
-.global __dt__Q27JGadget18TList_pointer_voidFv
-__dt__Q27JGadget18TList_pointer_voidFv:
+.fn __dt__Q27JGadget18TList_pointer_voidFv, global
 /* 800274A4 000243E4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800274A8 000243E8  7C 08 02 A6 */	mflr r0
 /* 800274AC 000243EC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -66,9 +65,9 @@ __dt__Q27JGadget18TList_pointer_voidFv:
 /* 80027558 00024498  7C 08 03 A6 */	mtlr r0
 /* 8002755C 0002449C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80027560 000244A0  4E 80 00 20 */	blr 
+.endfn __dt__Q27JGadget18TList_pointer_voidFv
 
-.global "insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iteratorRCPv"
-"insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iteratorRCPv":
+.fn "insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iteratorRCPv", global
 /* 80027564 000244A4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80027568 000244A8  7C 08 02 A6 */	mflr r0
 /* 8002756C 000244AC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -111,9 +110,9 @@ __dt__Q27JGadget18TList_pointer_voidFv:
 /* 800275F0 00024530  7C 08 03 A6 */	mtlr r0
 /* 800275F4 00024534  38 21 00 30 */	addi r1, r1, 0x30
 /* 800275F8 00024538  4E 80 00 20 */	blr 
+.endfn "insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iteratorRCPv"
 
-.global "erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iterator"
-"erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iterator":
+.fn "erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iterator", global
 /* 800275FC 0002453C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80027600 00024540  7C 08 02 A6 */	mflr r0
 /* 80027604 00024544  80 A5 00 00 */	lwz r5, 0(r5)
@@ -142,3 +141,4 @@ __dt__Q27JGadget18TList_pointer_voidFv:
 /* 80027660 000245A0  7C 08 03 A6 */	mtlr r0
 /* 80027664 000245A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80027668 000245A8  4E 80 00 20 */	blr 
+.endfn "erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<Pv,Q27JGadget14TAllocator<Pv>>8iterator"
