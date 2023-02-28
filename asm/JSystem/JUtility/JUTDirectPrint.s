@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global sAsciiTable__14JUTDirectPrint
-sAsciiTable__14JUTDirectPrint:
+.obj sAsciiTable__14JUTDirectPrint, global
 	.4byte 0x7A7A7A7A
 	.4byte 0x7A7A7A7A
 	.4byte 0x7AFDFE7A
@@ -35,8 +34,9 @@ sAsciiTable__14JUTDirectPrint:
 	.4byte 0x90919293
 	.4byte 0x94959676
 	.4byte 0x7778797A
-.global sFontData__14JUTDirectPrint
-sFontData__14JUTDirectPrint:
+.endobj sAsciiTable__14JUTDirectPrint
+.balign 4
+.obj sFontData__14JUTDirectPrint, global
 	.4byte 0x70871C30
 	.4byte 0x8988A250
 	.4byte 0x88808290
@@ -101,8 +101,9 @@ sFontData__14JUTDirectPrint:
 	.4byte 0x00022200
 	.4byte 0x20800020
 	.4byte 0x00000000
-.global sFontData2__14JUTDirectPrint
-sFontData2__14JUTDirectPrint:
+.endobj sFontData__14JUTDirectPrint
+.balign 4
+.obj sFontData2__14JUTDirectPrint, global
 	.4byte 0x51421820
 	.4byte 0x53E7A420
 	.4byte 0x014A2C40
@@ -180,74 +181,73 @@ sFontData2__14JUTDirectPrint:
 	.4byte 0x20000000
 	.4byte 0x40000000
 	.4byte 0xF8000000
-.global twiceBit$379
-twiceBit$379:
+.endobj sFontData2__14JUTDirectPrint
+.balign 4
+.obj twiceBit$379, local
 	.4byte 0x00000000
 	.4byte 0x00000003
 	.4byte 0x0000000C
 	.4byte 0x0000000F
-	.4byte 0x00000000
+.endobj twiceBit$379
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sDirectPrint__14JUTDirectPrint
-sDirectPrint__14JUTDirectPrint:
-	.skip 0x8
+.obj sDirectPrint__14JUTDirectPrint, global
+	.skip 0x4
+.endobj sDirectPrint__14JUTDirectPrint
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805165B0
-lbl_805165B0:
-	.4byte 0x25730000
-	.4byte 0x00000000
-.global lbl_805165B8
-lbl_805165B8:
-	.4byte 0x40600000
-	.4byte 0x00000000
-.global lbl_805165C0
-lbl_805165C0:
-	.4byte 0x3FDC1893
-	.4byte 0x74BC6A7F
-.global lbl_805165C8
-lbl_805165C8:
-	.4byte 0xBFC2F1A9
-	.4byte 0xFBE76C8B
-.global lbl_805165D0
-lbl_805165D0:
-	.4byte 0x3FD29FBE
-	.4byte 0x76C8B439
-.global lbl_805165D8
-lbl_805165D8:
-	.4byte 0x3FD78D4F
-	.4byte 0xDF3B645A
-.global lbl_805165E0
-lbl_805165E0:
-	.4byte 0x3FB22D0E
-	.4byte 0x56041893
-.global lbl_805165E8
-lbl_805165E8:
-	.4byte 0x40300000
-	.4byte 0x00000000
-.global lbl_805165F0
-lbl_805165F0:
-	.4byte 0x3FB91687
-	.4byte 0x2B020C4A
-.global lbl_805165F8
-lbl_805165F8:
-	.4byte 0x3FD072B0
-	.4byte 0x20C49BA6
-.global lbl_80516600
-lbl_80516600:
-	.4byte 0x3FE020C4
-	.4byte 0x9BA5E354
-.global lbl_80516608
-lbl_80516608:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_805165B0, local
+	.asciz "%s"
+.endobj lbl_805165B0
+.balign 8
+.obj lbl_805165B8, local
+	.double 128.0
+.endobj lbl_805165B8
+.balign 8
+.obj lbl_805165C0, local
+	.double 0.439
+.endobj lbl_805165C0
+.balign 8
+.obj lbl_805165C8, local
+	.double -0.148
+.endobj lbl_805165C8
+.balign 8
+.obj lbl_805165D0, local
+	.double 0.291
+.endobj lbl_805165D0
+.balign 8
+.obj lbl_805165D8, local
+	.double 0.368
+.endobj lbl_805165D8
+.balign 8
+.obj lbl_805165E0, local
+	.double 0.071
+.endobj lbl_805165E0
+.balign 8
+.obj lbl_805165E8, local
+	.double 16.0
+.endobj lbl_805165E8
+.balign 8
+.obj lbl_805165F0, local
+	.double 0.098
+.endobj lbl_805165F0
+.balign 8
+.obj lbl_805165F8, local
+	.double 0.257
+.endobj lbl_805165F8
+.balign 8
+.obj lbl_80516600, local
+	.double 0.504
+.endobj lbl_80516600
+.balign 8
+.obj lbl_80516608, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516608
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global start__14JUTDirectPrintFv
-start__14JUTDirectPrintFv:
+.fn start__14JUTDirectPrintFv, global
 /* 80029BCC 00026B0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80029BD0 00026B10  7C 08 02 A6 */	mflr r0
 /* 80029BD4 00026B14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -279,9 +279,9 @@ start__14JUTDirectPrintFv:
 /* 80029C34 00026B74  7C 08 03 A6 */	mtlr r0
 /* 80029C38 00026B78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80029C3C 00026B7C  4E 80 00 20 */	blr 
+.endfn start__14JUTDirectPrintFv
 
-.global erase__14JUTDirectPrintFiiii
-erase__14JUTDirectPrintFiiii:
+.fn erase__14JUTDirectPrintFiiii, global
 /* 80029C40 00026B80  80 03 00 00 */	lwz r0, 0(r3)
 /* 80029C44 00026B84  28 00 00 00 */	cmplwi r0, 0
 /* 80029C48 00026B88  4D 82 00 20 */	beqlr 
@@ -352,9 +352,9 @@ erase__14JUTDirectPrintFiiii:
 /* 80029D2C 00026C6C  7C 0A 38 00 */	cmpw r10, r7
 /* 80029D30 00026C70  41 80 FF 68 */	blt .L_80029C98
 /* 80029D34 00026C74  4E 80 00 20 */	blr 
+.endfn erase__14JUTDirectPrintFiiii
 
-.global drawChar__14JUTDirectPrintFiii
-drawChar__14JUTDirectPrintFiii:
+.fn drawChar__14JUTDirectPrintFiii, global
 /* 80029D38 00026C78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80029D3C 00026C7C  3C E0 80 4A */	lis r7, sAsciiTable__14JUTDirectPrint@ha
 /* 80029D40 00026C80  2C 06 00 64 */	cmpwi r6, 0x64
@@ -529,9 +529,9 @@ drawChar__14JUTDirectPrintFiii:
 /* 80029F80 00026EC0  BB 61 00 0C */	lmw r27, 0xc(r1)
 /* 80029F84 00026EC4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80029F88 00026EC8  4E 80 00 20 */	blr 
+.endfn drawChar__14JUTDirectPrintFiii
 
-.global changeFrameBuffer__14JUTDirectPrintFPvUsUs
-changeFrameBuffer__14JUTDirectPrintFPvUsUs:
+.fn changeFrameBuffer__14JUTDirectPrintFPvUsUs, global
 /* 80029F8C 00026ECC  90 83 00 00 */	stw r4, 0(r3)
 /* 80029F90 00026ED0  38 05 00 0F */	addi r0, r5, 0xf
 /* 80029F94 00026ED4  54 00 04 36 */	rlwinm r0, r0, 0, 0x10, 0x1b
@@ -545,9 +545,9 @@ changeFrameBuffer__14JUTDirectPrintFPvUsUs:
 /* 80029FB4 00026EF4  54 00 08 3C */	slwi r0, r0, 1
 /* 80029FB8 00026EF8  90 03 00 0C */	stw r0, 0xc(r3)
 /* 80029FBC 00026EFC  4E 80 00 20 */	blr 
+.endfn changeFrameBuffer__14JUTDirectPrintFPvUsUs
 
-.global drawString__14JUTDirectPrintFUsUsPc
-drawString__14JUTDirectPrintFUsUsPc:
+.fn drawString__14JUTDirectPrintFUsUsPc, global
 /* 80029FC0 00026F00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80029FC4 00026F04  7C 08 02 A6 */	mflr r0
 /* 80029FC8 00026F08  7C C7 33 78 */	mr r7, r6
@@ -559,9 +559,9 @@ drawString__14JUTDirectPrintFUsUsPc:
 /* 80029FE0 00026F20  7C 08 03 A6 */	mtlr r0
 /* 80029FE4 00026F24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80029FE8 00026F28  4E 80 00 20 */	blr 
+.endfn drawString__14JUTDirectPrintFUsUsPc
 
-.global drawString_f__14JUTDirectPrintFUsUsPCce
-drawString_f__14JUTDirectPrintFUsUsPCce:
+.fn drawString_f__14JUTDirectPrintFUsUsPCce, global
 /* 80029FEC 00026F2C  94 21 FE 60 */	stwu r1, -0x1a0(r1)
 /* 80029FF0 00026F30  7C 08 02 A6 */	mflr r0
 /* 80029FF4 00026F34  90 01 01 A4 */	stw r0, 0x1a4(r1)
@@ -664,9 +664,9 @@ drawString_f__14JUTDirectPrintFUsUsPCce:
 /* 8002A154 00027094  7C 08 03 A6 */	mtlr r0
 /* 8002A158 00027098  38 21 01 A0 */	addi r1, r1, 0x1a0
 /* 8002A15C 0002709C  4E 80 00 20 */	blr 
+.endfn drawString_f__14JUTDirectPrintFUsUsPCce
 
-.global setCharColor__14JUTDirectPrintFQ28JUtility6TColor
-setCharColor__14JUTDirectPrintFQ28JUtility6TColor:
+.fn setCharColor__14JUTDirectPrintFQ28JUtility6TColor, global
 /* 8002A160 000270A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002A164 000270A4  7C 08 02 A6 */	mflr r0
 /* 8002A168 000270A8  7C 86 23 78 */	mr r6, r4
@@ -679,9 +679,9 @@ setCharColor__14JUTDirectPrintFQ28JUtility6TColor:
 /* 8002A184 000270C4  7C 08 03 A6 */	mtlr r0
 /* 8002A188 000270C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002A18C 000270CC  4E 80 00 20 */	blr 
+.endfn setCharColor__14JUTDirectPrintFQ28JUtility6TColor
 
-.global setCharColor__14JUTDirectPrintFUcUcUc
-setCharColor__14JUTDirectPrintFUcUcUc:
+.fn setCharColor__14JUTDirectPrintFUcUcUc, global
 /* 8002A190 000270D0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8002A194 000270D4  54 A0 06 3E */	clrlwi r0, r5, 0x18
 /* 8002A198 000270D8  3D 00 43 30 */	lis r8, 0x4330
@@ -777,3 +777,4 @@ setCharColor__14JUTDirectPrintFUcUcUc:
 /* 8002A300 00027240  B0 03 00 28 */	sth r0, 0x28(r3)
 /* 8002A304 00027244  38 21 00 70 */	addi r1, r1, 0x70
 /* 8002A308 00027248  4E 80 00 20 */	blr 
+.endfn setCharColor__14JUTDirectPrintFUcUcUc

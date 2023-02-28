@@ -1,20 +1,23 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516708:
-	.4byte 0x3E000000
-lbl_8051670C:
-	.4byte 0x42C80000
+.obj lbl_80516708, local
+	.float 0.125
+.endobj lbl_80516708
+.obj lbl_8051670C, local
+	.float 100.0
+.endobj lbl_8051670C
 .balign 8
-lbl_80516710:
+.obj lbl_80516710, local
 	.8byte 0x4330000000000000
+.endobj lbl_80516710
 .balign 8
-lbl_80516718:
+.obj lbl_80516718, local
 	.8byte 0x4330000080000000
+.endobj lbl_80516718
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__10JUTTextureFii9_GXTexFmt
-__ct__10JUTTextureFii9_GXTexFmt:
+.fn __ct__10JUTTextureFii9_GXTexFmt, global
 /* 80032F1C 0002FE5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80032F20 0002FE60  7C 08 02 A6 */	mflr r0
 /* 80032F24 0002FE64  38 E0 00 01 */	li r7, 1
@@ -76,9 +79,9 @@ __ct__10JUTTextureFii9_GXTexFmt:
 /* 80033004 0002FF44  7C 08 03 A6 */	mtlr r0
 /* 80033008 0002FF48  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003300C 0002FF4C  4E 80 00 20 */	blr 
+.endfn __ct__10JUTTextureFii9_GXTexFmt
 
-.global __dt__10JUTTextureFv
-__dt__10JUTTextureFv:
+.fn __dt__10JUTTextureFv, global
 /* 80033010 0002FF50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033014 0002FF54  7C 08 02 A6 */	mflr r0
 /* 80033018 0002FF58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -111,9 +114,9 @@ __dt__10JUTTextureFv:
 /* 80033078 0002FFB8  7C 08 03 A6 */	mtlr r0
 /* 8003307C 0002FFBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033080 0002FFC0  4E 80 00 20 */	blr 
+.endfn __dt__10JUTTextureFv
 
-.global storeTIMG__10JUTTextureFPC7ResTIMGUc
-storeTIMG__10JUTTextureFPC7ResTIMGUc:
+.fn storeTIMG__10JUTTextureFPC7ResTIMGUc, global
 /* 80033084 0002FFC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80033088 0002FFC8  7C 08 02 A6 */	mflr r0
 /* 8003308C 0002FFCC  28 04 00 00 */	cmplwi r4, 0
@@ -230,9 +233,9 @@ storeTIMG__10JUTTextureFPC7ResTIMGUc:
 /* 80033224 00030164  7C 08 03 A6 */	mtlr r0
 /* 80033228 00030168  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003322C 0003016C  4E 80 00 20 */	blr 
+.endfn storeTIMG__10JUTTextureFPC7ResTIMGUc
 
-.global storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
-storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette:
+.fn storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette, global
 /* 80033230 00030170  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033234 00030174  7C 08 02 A6 */	mflr r0
 /* 80033238 00030178  28 05 00 00 */	cmplwi r5, 0
@@ -248,9 +251,9 @@ storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette:
 /* 80033258 00030198  7C 08 03 A6 */	mtlr r0
 /* 8003325C 0003019C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033260 000301A0  4E 80 00 20 */	blr 
+.endfn storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
 
-.global storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut
-storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut:
+.fn storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut, global
 /* 80033264 000301A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80033268 000301A8  7C 08 02 A6 */	mflr r0
 /* 8003326C 000301AC  28 04 00 00 */	cmplwi r4, 0
@@ -333,9 +336,9 @@ storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut:
 /* 80033390 000302D0  7C 08 03 A6 */	mtlr r0
 /* 80033394 000302D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80033398 000302D8  4E 80 00 20 */	blr 
+.endfn storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut
 
-.global attachPalette__10JUTTextureFP10JUTPalette
-attachPalette__10JUTTextureFP10JUTPalette:
+.fn attachPalette__10JUTTextureFP10JUTPalette, global
 /* 8003339C 000302DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800333A0 000302E0  7C 08 02 A6 */	mflr r0
 /* 800333A4 000302E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -361,9 +364,9 @@ attachPalette__10JUTTextureFP10JUTPalette:
 /* 800333E8 00030328  7C 08 03 A6 */	mtlr r0
 /* 800333EC 0003032C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800333F0 00030330  4E 80 00 20 */	blr 
+.endfn attachPalette__10JUTTextureFP10JUTPalette
 
-.global init__10JUTTextureFv
-init__10JUTTextureFv:
+.fn init__10JUTTextureFv, global
 /* 800333F4 00030334  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800333F8 00030338  7C 08 02 A6 */	mflr r0
 /* 800333FC 0003033C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -386,9 +389,9 @@ init__10JUTTextureFv:
 /* 80033438 00030378  7C 08 03 A6 */	mtlr r0
 /* 8003343C 0003037C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033440 00030380  4E 80 00 20 */	blr 
+.endfn init__10JUTTextureFv
 
-.global initTexObj__10JUTTextureFv
-initTexObj__10JUTTextureFv:
+.fn initTexObj__10JUTTextureFv, global
 /* 80033444 00030384  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80033448 00030388  7C 08 02 A6 */	mflr r0
 /* 8003344C 0003038C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -450,9 +453,9 @@ initTexObj__10JUTTextureFv:
 /* 80033528 00030468  7C 08 03 A6 */	mtlr r0
 /* 8003352C 0003046C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80033530 00030470  4E 80 00 20 */	blr 
+.endfn initTexObj__10JUTTextureFv
 
-.global initTexObj__10JUTTextureF7_GXTlut
-initTexObj__10JUTTextureF7_GXTlut:
+.fn initTexObj__10JUTTextureF7_GXTlut, global
 /* 80033534 00030474  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80033538 00030478  7C 08 02 A6 */	mflr r0
 /* 8003353C 0003047C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -517,9 +520,9 @@ initTexObj__10JUTTextureF7_GXTlut:
 /* 80033624 00030564  7C 08 03 A6 */	mtlr r0
 /* 80033628 00030568  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003362C 0003056C  4E 80 00 20 */	blr 
+.endfn initTexObj__10JUTTextureF7_GXTlut
 
-.global load__10JUTTextureF11_GXTexMapID
-load__10JUTTextureF11_GXTexMapID:
+.fn load__10JUTTextureF11_GXTexMapID, global
 /* 80033630 00030570  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033634 00030574  7C 08 02 A6 */	mflr r0
 /* 80033638 00030578  90 01 00 14 */	stw r0, 0x14(r1)
@@ -541,9 +544,9 @@ load__10JUTTextureF11_GXTexMapID:
 /* 80033674 000305B4  7C 08 03 A6 */	mtlr r0
 /* 80033678 000305B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003367C 000305BC  4E 80 00 20 */	blr 
+.endfn load__10JUTTextureF11_GXTexMapID
 
-.global capture__10JUTTextureFii9_GXTexFmtbUc
-capture__10JUTTextureFii9_GXTexFmtbUc:
+.fn capture__10JUTTextureFii9_GXTexFmtbUc, global
 /* 80033680 000305C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80033684 000305C4  7C 08 02 A6 */	mflr r0
 /* 80033688 000305C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -596,3 +599,4 @@ capture__10JUTTextureFii9_GXTexFmtbUc:
 /* 80033738 00030678  7C 08 03 A6 */	mtlr r0
 /* 8003373C 0003067C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80033740 00030680  4E 80 00 20 */	blr 
+.endfn capture__10JUTTextureFii9_GXTexFmtbUc

@@ -37,148 +37,193 @@ lbl_constructor:
 	.asciz "PERFORMACE MONITOR"
 .endobj lbl_80473C80
 .balign 4
-lbl_80473C94:
+.obj lbl_80473C94, local
 	.asciz "BREAK POINT"
+.endobj lbl_80473C94
 .balign 4
-lbl_80473CA0:
+.obj lbl_80473CA0, local
 	.asciz "SYSTEM INTERRUPT"
+.endobj lbl_80473CA0
 .balign 4
-lbl_80473CB4:
+.obj lbl_80473CB4, local
 	.asciz "THERMAL INTERRUPT"
+.endobj lbl_80473CB4
 .balign 4
-lbl_80473CC8:
+.obj lbl_80473CC8, local
 	.asciz "PROTECTION"
+.endobj lbl_80473CC8
 .balign 4
-lbl_80473CD4:
+.obj lbl_80473CD4, local
 	.asciz "%s in \"%s\" on line %d\n"
+.endobj lbl_80473CD4
 .balign 4
-lbl_80473CEC:
+.obj lbl_80473CEC, local
 	.asciz "F%02d: Nan      "
+.endobj lbl_80473CEC
 .balign 4
-lbl_80473D00:
+.obj lbl_80473D00, local
 	.asciz "F%02d:+Inf     "
+.endobj lbl_80473D00
 .balign 4
-lbl_80473D10:
+.obj lbl_80473D10, local
 	.asciz "F%02d:-Inf     "
+.endobj lbl_80473D10
 .balign 4
-lbl_80473D20:
+.obj lbl_80473D20, local
 	.asciz "F%02d: 0.0      "
+.endobj lbl_80473D20
 .balign 4
-lbl_80473D34:
+.obj lbl_80473D34, local
 	.asciz "F%02d:%+.3E"
+.endobj lbl_80473D34
 .balign 4
-lbl_80473D40:
+.obj lbl_80473D40, local
 	.asciz "-------------------------------- FPR\n"
+.endobj lbl_80473D40
 .balign 4
-lbl_80473D68:
+.obj lbl_80473D68, local
 	.asciz "-------------------------------- TRACE\n"
+.endobj lbl_80473D68
 .balign 4
-lbl_80473D90:
+.obj lbl_80473D90, local
 	.asciz "Address:   BackChain   LR save\n"
+.endobj lbl_80473D90
 .balign 4
-lbl_80473DB0:
+.obj lbl_80473DB0, local
 	.asciz "Suppress trace.\n"
+.endobj lbl_80473DB0
 .balign 4
-lbl_80473DC4:
+.obj lbl_80473DC4, local
 	.asciz "%08X:  %08X    %08X\n"
+.endobj lbl_80473DC4
 .balign 4
-lbl_80473DDC:
+.obj lbl_80473DDC, local
 	.asciz "CONTEXT:%08XH  (%s EXCEPTION)\n"
+.endobj lbl_80473DDC
 .balign 4
-lbl_80473DFC:
+.obj lbl_80473DFC, local
 	.asciz "CONTEXT:%08XH\n"
+.endobj lbl_80473DFC
 .balign 4
-lbl_80473E0C:
+.obj lbl_80473E0C, local
 	.asciz " FPE: Invalid operation\n"
+.endobj lbl_80473E0C
 .balign 4
-lbl_80473E28:
+.obj lbl_80473E28, local
 	.asciz " Infinity - Infinity\n"
+.endobj lbl_80473E28
 .balign 4
-lbl_80473E40:
+.obj lbl_80473E40, local
 	.asciz " Infinity / Infinity\n"
+.endobj lbl_80473E40
 .balign 4
-lbl_80473E58:
+.obj lbl_80473E58, local
 	.asciz " Infinity * 0\n"
+.endobj lbl_80473E58
 .balign 4
-lbl_80473E68:
+.obj lbl_80473E68, local
 	.asciz " Invalid compare\n"
+.endobj lbl_80473E68
 .balign 4
-lbl_80473E7C:
+.obj lbl_80473E7C, local
 	.asciz " Software request\n"
+.endobj lbl_80473E7C
 .balign 4
-lbl_80473E90:
+.obj lbl_80473E90, local
 	.asciz " Invalid square root\n"
+.endobj lbl_80473E90
 .balign 4
-lbl_80473EA8:
+.obj lbl_80473EA8, local
 	.asciz " Invalid integer convert\n"
+.endobj lbl_80473EA8
 .balign 4
-lbl_80473EC4:
+.obj lbl_80473EC4, local
 	.asciz " FPE: Overflow\n"
+.endobj lbl_80473EC4
 .balign 4
-lbl_80473ED4:
+.obj lbl_80473ED4, local
 	.asciz " FPE: Underflow\n"
+.endobj lbl_80473ED4
 .balign 4
-lbl_80473EE8:
+.obj lbl_80473EE8, local
 	.asciz " FPE: Zero division\n"
+.endobj lbl_80473EE8
 .balign 4
-lbl_80473F00:
+.obj lbl_80473F00, local
 	.asciz " FPE: Inexact result\n"
+.endobj lbl_80473F00
 .balign 4
-lbl_80473F18:
+.obj lbl_80473F18, local
 	.asciz "SRR0:   %08XH   SRR1:%08XH\n"
+.endobj lbl_80473F18
 .balign 4
-lbl_80473F34:
+.obj lbl_80473F34, local
 	.asciz "DSISR:  %08XH   DAR: %08XH\n"
+.endobj lbl_80473F34
 .balign 4
-lbl_80473F50:
+.obj lbl_80473F50, local
 	.asciz "-------------------------------- GPR\n"
+.endobj lbl_80473F50
 .balign 4
-lbl_80473F78:
+.obj lbl_80473F78, local
 	.asciz "R%02d:%08XH  R%02d:%08XH  R%02d:%08XH\n"
+.endobj lbl_80473F78
 .balign 4
-lbl_80473FA0:
+.obj lbl_80473FA0, local
 	.asciz "R%02d:%08XH  R%02d:%08XH\n"
+.endobj lbl_80473FA0
 .balign 4
-lbl_80473FBC:
+.obj lbl_80473FBC, local
 	.asciz "%s %s:%x section:%d\n"
+.endobj lbl_80473FBC
 .balign 4
-lbl_80473FD4:
+.obj lbl_80473FD4, local
 	.asciz "-------------------------------- GPRMAP\n"
+.endobj lbl_80473FD4
 .balign 4
-lbl_80474000:
+.obj lbl_80474000, local
 	.asciz "R%02d: %08XH"
+.endobj lbl_80474000
 .balign 4
-lbl_80474010:
+.obj lbl_80474010, local
 	.asciz "  no information\n"
+.endobj lbl_80474010
 .balign 4
-lbl_80474024:
+.obj lbl_80474024, local
 	.asciz "  no register which seem to address.\n"
+.endobj lbl_80474024
 .balign 4
-lbl_8047404C:
+.obj lbl_8047404C, local
 	.asciz "-------------------------------- SRR0MAP\n"
+.endobj lbl_8047404C
 .balign 4
-lbl_80474078:
+.obj lbl_80474078, local
 	.asciz "SRR0: %08XH"
+.endobj lbl_80474078
 .balign 4
-lbl_80474084:
+.obj lbl_80474084, local
 	.asciz " MSR:%08XH\t FPSCR:%08XH\n"
+.endobj lbl_80474084
 .balign 4
-lbl_804740A0:
+.obj lbl_804740A0, local
 	.asciz "******** EXCEPTION OCCURRED! ********\nFrameMemory:%XH\n"
+.endobj lbl_804740A0
 .balign 4
-lbl_804740D8:
+.obj lbl_804740D8, local
 	.asciz "******** USER HALT ********\nFrameMemory:%XH\n"
+.endobj lbl_804740D8
 .balign 4
-lbl_80474108:
+.obj lbl_80474108, local
 	.asciz "--------------------------------\n"
+.endobj lbl_80474108
 .balign 4
-lbl_8047412C:
+.obj lbl_8047412C, local
 	.asciz "  [%08X]: .%s [%08X: %XH]\n  %s\n"
+.endobj lbl_8047412C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global sMessageQueue__12JUTException
-sMessageQueue__12JUTException:
+.obj sMessageQueue__12JUTException, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -187,7 +232,9 @@ sMessageQueue__12JUTException:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-c3bcnt: # local object
+.endobj sMessageQueue__12JUTException
+.balign 8
+.obj c3bcnt, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -196,8 +243,9 @@ c3bcnt: # local object
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global sCpuExpName__12JUTException
-sCpuExpName__12JUTException:
+.endobj c3bcnt
+.balign 4
+.obj sCpuExpName__12JUTException, global
 	.4byte lbl_80473C18
 	.4byte lbl_80473C28
 	.4byte lbl_80516610
@@ -215,12 +263,14 @@ sCpuExpName__12JUTException:
 	.4byte lbl_80473CB4
 	.4byte lbl_80473CC8
 	.4byte lbl_80473C58
-.global __vt__12JUTException
-__vt__12JUTException:
+.endobj sCpuExpName__12JUTException
+.balign 4
+.obj __vt__12JUTException, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JUTExceptionFv
 	.4byte run__12JUTExceptionFv
+.endobj __vt__12JUTException
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .lcomm exCallbackObject, 0x14, 4
@@ -231,80 +281,92 @@ __vt__12JUTException:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sMessageBuffer__12JUTException
-sMessageBuffer__12JUTException:
+.obj sMessageBuffer__12JUTException, global
 	.4byte 0
+.endobj sMessageBuffer__12JUTException
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sErrorManager__12JUTException
-sErrorManager__12JUTException:
+.obj sErrorManager__12JUTException, global
 	.skip 0x4
-.global sPreUserCallback__12JUTException
-sPreUserCallback__12JUTException:
+.endobj sErrorManager__12JUTException
+.obj sPreUserCallback__12JUTException, global
 	.skip 0x4
-.global sPostUserCallback__12JUTException
-sPostUserCallback__12JUTException:
+.endobj sPreUserCallback__12JUTException
+.obj sPostUserCallback__12JUTException, global
 	.skip 0x4
-.global sConsoleBuffer__12JUTException
-sConsoleBuffer__12JUTException:
+.endobj sPostUserCallback__12JUTException
+.obj sConsoleBuffer__12JUTException, global
 	.skip 0x4
-.global sConsoleBufferSize__12JUTException
-sConsoleBufferSize__12JUTException:
+.endobj sConsoleBuffer__12JUTException
+.obj sConsoleBufferSize__12JUTException, global
 	.skip 0x4
-.global sConsole__12JUTException
-sConsole__12JUTException:
+.endobj sConsoleBufferSize__12JUTException
+.obj sConsole__12JUTException, global
 	.skip 0x4
-.global msr__12JUTException
-msr__12JUTException:
+.endobj sConsole__12JUTException
+.obj msr__12JUTException, global
 	.skip 0x4
-.global fpscr__12JUTException
-fpscr__12JUTException:
+.endobj msr__12JUTException
+.obj fpscr__12JUTException, global
 	.skip 0x4
+.endobj fpscr__12JUTException
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516610:
+.obj lbl_80516610, local
 	.asciz "DSI"
+.endobj lbl_80516610
 .balign 4
-lbl_80516614:
+.obj lbl_80516614, local
 	.asciz "ISI"
+.endobj lbl_80516614
 .balign 4
-lbl_80516618:
+.obj lbl_80516618, local
 	.asciz "PROGRAM"
+.endobj lbl_80516618
 .balign 4
-lbl_80516620:
+.obj lbl_80516620, local
 	.asciz "TRACE"
+.endobj lbl_80516620
 .balign 4
-lbl_80516628:
+.obj lbl_80516628, local
 	.float 0.0
+.endobj lbl_80516628
 .balign 4
-lbl_8051662C:
+.obj lbl_8051662C, local
 	.asciz " "
+.endobj lbl_8051662C
 .balign 4
-lbl_80516630:
+.obj lbl_80516630, local
 	.asciz "\n"
+.endobj lbl_80516630
 .balign 4
-lbl_80516634:
+.obj lbl_80516634, local
 	.asciz " SNaN\n"
+.endobj lbl_80516634
 .balign 4
-lbl_8051663C:
+.obj lbl_8051663C, local
 	.asciz " 0 / 0\n"
+.endobj lbl_8051663C
 .balign 4
-lbl_80516644:
+.obj lbl_80516644, local
 	.asciz ""
+.endobj lbl_80516644
 .balign 4
-lbl_80516648:
+.obj lbl_80516648, local
 	.asciz ".map"
+.endobj lbl_80516648
 .balign 4
-lbl_80516650:
+.obj lbl_80516650, local
 	.float 10.0
-lbl_80516654:
+.endobj lbl_80516650
+.obj lbl_80516654, local
 	.float 6.0
+.endobj lbl_80516654
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__12JUTExceptionFP14JUTDirectPrint
-create__12JUTExceptionFP14JUTDirectPrint:
+.fn create__12JUTExceptionFP14JUTDirectPrint, global
 /* 8002A30C 0002724C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002A310 00027250  7C 08 02 A6 */	mflr r0
 /* 8002A314 00027254  90 01 00 14 */	stw r0, 0x14(r1)
@@ -375,9 +437,9 @@ create__12JUTExceptionFP14JUTDirectPrint:
 /* 8002A410 00027350  7C 08 03 A6 */	mtlr r0
 /* 8002A414 00027354  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002A418 00027358  4E 80 00 20 */	blr 
+.endfn create__12JUTExceptionFP14JUTDirectPrint
 
-.global run__12JUTExceptionFv
-run__12JUTExceptionFv:
+.fn run__12JUTExceptionFv, global
 /* 8002A41C 0002735C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8002A420 00027360  7C 08 02 A6 */	mflr r0
 /* 8002A424 00027364  90 01 00 34 */	stw r0, 0x34(r1)
@@ -454,9 +516,9 @@ run__12JUTExceptionFv:
 /* 8002A530 00027470  7F 27 CB 78 */	mr r7, r25
 /* 8002A534 00027474  48 00 1C 0D */	bl printContext__12JUTExceptionFUsP9OSContextUlUl
 /* 8002A538 00027478  4B FF FF 24 */	b .L_8002A45C
+.endfn run__12JUTExceptionFv
 
-.global errorHandler__12JUTExceptionFUsP9OSContextUlUl
-errorHandler__12JUTExceptionFUsP9OSContextUlUl:
+.fn errorHandler__12JUTExceptionFUsP9OSContextUlUl, global
 /* 8002A53C 0002747C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002A540 00027480  7C 08 02 A6 */	mflr r0
 /* 8002A544 00027484  90 01 00 24 */	stw r0, 0x24(r1)
@@ -523,9 +585,9 @@ errorHandler__12JUTExceptionFUsP9OSContextUlUl:
 /* 8002A634 00027574  7C 08 03 A6 */	mtlr r0
 /* 8002A638 00027578  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002A63C 0002757C  4E 80 00 20 */	blr 
+.endfn errorHandler__12JUTExceptionFUsP9OSContextUlUl
 
-.global panic_f__12JUTExceptionFPCciPCce
-panic_f__12JUTExceptionFPCciPCce:
+.fn panic_f__12JUTExceptionFPCciPCce, global
 /* 8002A640 00027580  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 8002A644 00027584  7C 08 02 A6 */	mflr r0
 /* 8002A648 00027588  90 01 01 94 */	stw r0, 0x194(r1)
@@ -635,9 +697,9 @@ panic_f__12JUTExceptionFPCciPCce:
 /* 8002A7D4 00027714  7C 08 03 A6 */	mtlr r0
 /* 8002A7D8 00027718  38 21 01 90 */	addi r1, r1, 0x190
 /* 8002A7DC 0002771C  4E 80 00 20 */	blr 
+.endfn panic_f__12JUTExceptionFPCciPCce
 
-.global setFPException__12JUTExceptionFUl
-setFPException__12JUTExceptionFUl:
+.fn setFPException__12JUTExceptionFUl, global
 /* 8002A7E0 00027720  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002A7E4 00027724  7C 08 02 A6 */	mflr r0
 /* 8002A7E8 00027728  28 03 00 00 */	cmplwi r3, 0
@@ -658,9 +720,9 @@ setFPException__12JUTExceptionFUl:
 /* 8002A81C 0002775C  7C 08 03 A6 */	mtlr r0
 /* 8002A820 00027760  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002A824 00027764  4E 80 00 20 */	blr 
+.endfn setFPException__12JUTExceptionFUl
 
-.global showFloat__12JUTExceptionFP9OSContext
-showFloat__12JUTExceptionFP9OSContext:
+.fn showFloat__12JUTExceptionFP9OSContext, global
 /* 8002A828 00027768  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8002A82C 0002776C  7C 08 02 A6 */	mflr r0
 /* 8002A830 00027770  3C A0 80 47 */	lis r5, lbl_80473C18@ha
@@ -1224,9 +1286,9 @@ showFloat__12JUTExceptionFP9OSContext:
 /* 8002AF8C 00027ECC  7C 08 03 A6 */	mtlr r0
 /* 8002AF90 00027ED0  38 21 00 60 */	addi r1, r1, 0x60
 /* 8002AF94 00027ED4  4E 80 00 20 */	blr 
+.endfn showFloat__12JUTExceptionFP9OSContext
 
-.global showStack__12JUTExceptionFP9OSContext
-showStack__12JUTExceptionFP9OSContext:
+.fn showStack__12JUTExceptionFP9OSContext, global
 /* 8002AF98 00027ED8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002AF9C 00027EDC  7C 08 02 A6 */	mflr r0
 /* 8002AFA0 00027EE0  3C 80 80 47 */	lis r4, lbl_80473C18@ha
@@ -1294,9 +1356,9 @@ showStack__12JUTExceptionFP9OSContext:
 /* 8002B088 00027FC8  7C 08 03 A6 */	mtlr r0
 /* 8002B08C 00027FCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002B090 00027FD0  4E 80 00 20 */	blr 
+.endfn showStack__12JUTExceptionFP9OSContext
 
-.global showMainInfo__12JUTExceptionFUsP9OSContextUlUl
-showMainInfo__12JUTExceptionFUsP9OSContextUlUl:
+.fn showMainInfo__12JUTExceptionFUsP9OSContextUlUl, global
 /* 8002B094 00027FD4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002B098 00027FD8  7C 08 02 A6 */	mflr r0
 /* 8002B09C 00027FDC  3D 00 80 47 */	lis r8, lbl_80473C18@ha
@@ -1458,9 +1520,9 @@ showMainInfo__12JUTExceptionFUsP9OSContextUlUl:
 /* 8002B2CC 0002820C  7C 08 03 A6 */	mtlr r0
 /* 8002B2D0 00028210  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002B2D4 00028214  4E 80 00 20 */	blr 
+.endfn showMainInfo__12JUTExceptionFUsP9OSContextUlUl
 
-.global showMapInfo_subroutine__12JUTExceptionFUlb
-showMapInfo_subroutine__12JUTExceptionFUlb:
+.fn showMapInfo_subroutine__12JUTExceptionFUlb, global
 /* 8002B2D8 00028218  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 8002B2DC 0002821C  7C 08 02 A6 */	mflr r0
 /* 8002B2E0 00028220  90 01 01 64 */	stw r0, 0x164(r1)
@@ -1637,9 +1699,9 @@ showMapInfo_subroutine__12JUTExceptionFUlb:
 /* 8002B524 00028464  7C 08 03 A6 */	mtlr r0
 /* 8002B528 00028468  38 21 01 60 */	addi r1, r1, 0x160
 /* 8002B52C 0002846C  4E 80 00 20 */	blr 
+.endfn showMapInfo_subroutine__12JUTExceptionFUlb
 
-.global showGPRMap__12JUTExceptionFP9OSContext
-showGPRMap__12JUTExceptionFP9OSContext:
+.fn showGPRMap__12JUTExceptionFP9OSContext, global
 /* 8002B530 00028470  94 21 FE 90 */	stwu r1, -0x170(r1)
 /* 8002B534 00028474  7C 08 02 A6 */	mflr r0
 /* 8002B538 00028478  3C A0 80 47 */	lis r5, lbl_80473C18@ha
@@ -1858,9 +1920,9 @@ showGPRMap__12JUTExceptionFP9OSContext:
 /* 8002B818 00028758  7C 08 03 A6 */	mtlr r0
 /* 8002B81C 0002875C  38 21 01 70 */	addi r1, r1, 0x170
 /* 8002B820 00028760  4E 80 00 20 */	blr 
+.endfn showGPRMap__12JUTExceptionFP9OSContext
 
-.global printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl
-printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl:
+.fn printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl, global
 /* 8002B824 00028764  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 8002B828 00028768  7C 08 02 A6 */	mflr r0
 /* 8002B82C 0002876C  2C 04 00 03 */	cmpwi r4, 3
@@ -2130,9 +2192,9 @@ printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl:
 /* 8002BBC4 00028B04  7C 08 03 A6 */	mtlr r0
 /* 8002BBC8 00028B08  38 21 01 60 */	addi r1, r1, 0x160
 /* 8002BBCC 00028B0C  4E 80 00 20 */	blr 
+.endfn printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl
 
-.global readPad__12JUTExceptionFPUlPUl
-readPad__12JUTExceptionFPUlPUl:
+.fn readPad__12JUTExceptionFPUlPUl, global
 /* 8002BBD0 00028B10  94 21 FC 60 */	stwu r1, -0x3a0(r1)
 /* 8002BBD4 00028B14  7C 08 02 A6 */	mflr r0
 /* 8002BBD8 00028B18  90 01 03 A4 */	stw r0, 0x3a4(r1)
@@ -2521,9 +2583,9 @@ readPad__12JUTExceptionFPUlPUl:
 /* 8002C134 00029074  7C 08 03 A6 */	mtlr r0
 /* 8002C138 00029078  38 21 03 A0 */	addi r1, r1, 0x3a0
 /* 8002C13C 0002907C  4E 80 00 20 */	blr 
+.endfn readPad__12JUTExceptionFPUlPUl
 
-.global printContext__12JUTExceptionFUsP9OSContextUlUl
-printContext__12JUTExceptionFUsP9OSContextUlUl:
+.fn printContext__12JUTExceptionFUsP9OSContextUlUl, global
 /* 8002C140 00029080  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8002C144 00029084  7C 08 02 A6 */	mflr r0
 /* 8002C148 00029088  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2871,9 +2933,9 @@ printContext__12JUTExceptionFUsP9OSContextUlUl:
 /* 8002C618 00029558  7C 08 03 A6 */	mtlr r0
 /* 8002C61C 0002955C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8002C620 00029560  4E 80 00 20 */	blr 
+.endfn printContext__12JUTExceptionFUsP9OSContextUlUl
 
-.global waitTime__12JUTExceptionFl
-waitTime__12JUTExceptionFl:
+.fn waitTime__12JUTExceptionFl, global
 /* 8002C624 00029564  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002C628 00029568  7C 08 02 A6 */	mflr r0
 /* 8002C62C 0002956C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2910,9 +2972,9 @@ waitTime__12JUTExceptionFl:
 /* 8002C6A0 000295E0  7C 08 03 A6 */	mtlr r0
 /* 8002C6A4 000295E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002C6A8 000295E8  4E 80 00 20 */	blr 
+.endfn waitTime__12JUTExceptionFl
 
-.global createFB__12JUTExceptionFv
-createFB__12JUTExceptionFv:
+.fn createFB__12JUTExceptionFv, global
 /* 8002C6AC 000295EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002C6B0 000295F0  7C 08 02 A6 */	mflr r0
 /* 8002C6B4 000295F4  3C 80 80 4B */	lis r4, GXNtsc480Int@ha
@@ -2977,16 +3039,16 @@ createFB__12JUTExceptionFv:
 /* 8002C794 000296D4  7C 08 03 A6 */	mtlr r0
 /* 8002C798 000296D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002C79C 000296DC  4E 80 00 20 */	blr 
+.endfn createFB__12JUTExceptionFv
 
-.global setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v
-setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v:
+.fn setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v, global
 /* 8002C7A0 000296E0  80 0D 88 94 */	lwz r0, sPreUserCallback__12JUTException@sda21(r13)
 /* 8002C7A4 000296E4  90 6D 88 94 */	stw r3, sPreUserCallback__12JUTException@sda21(r13)
 /* 8002C7A8 000296E8  7C 03 03 78 */	mr r3, r0
 /* 8002C7AC 000296EC  4E 80 00 20 */	blr 
+.endfn setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v
 
-.global appendMapFile__12JUTExceptionFPCc
-appendMapFile__12JUTExceptionFPCc:
+.fn appendMapFile__12JUTExceptionFPCc, global
 /* 8002C7B0 000296F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002C7B4 000296F4  7C 08 02 A6 */	mflr r0
 /* 8002C7B8 000296F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3028,9 +3090,9 @@ appendMapFile__12JUTExceptionFPCc:
 /* 8002C838 00029778  7C 08 03 A6 */	mtlr r0
 /* 8002C83C 0002977C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002C840 00029780  4E 80 00 20 */	blr 
+.endfn appendMapFile__12JUTExceptionFPCc
 
-.global queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb
-queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb:
+.fn queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb, global
 /* 8002C844 00029784  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8002C848 00029788  7C 08 02 A6 */	mflr r0
 /* 8002C84C 0002978C  28 03 00 00 */	cmplwi r3, 0
@@ -3090,9 +3152,9 @@ queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb:
 /* 8002C918 00029858  7C 08 03 A6 */	mtlr r0
 /* 8002C91C 0002985C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8002C920 00029860  4E 80 00 20 */	blr 
+.endfn queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb
 
-.global queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb
-queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb:
+.fn queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb, global
 /* 8002C924 00029864  94 21 F5 30 */	stwu r1, -0xad0(r1)
 /* 8002C928 00029868  7C 08 02 A6 */	mflr r0
 /* 8002C92C 0002986C  90 01 0A D4 */	stw r0, 0xad4(r1)
@@ -3324,9 +3386,9 @@ queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb:
 /* 8002CC54 00029B94  7C 08 03 A6 */	mtlr r0
 /* 8002CC58 00029B98  38 21 0A D0 */	addi r1, r1, 0xad0
 /* 8002CC5C 00029B9C  4E 80 00 20 */	blr 
+.endfn queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb
 
-.global createConsole__12JUTExceptionFPvUl
-createConsole__12JUTExceptionFPvUl:
+.fn createConsole__12JUTExceptionFPvUl, global
 /* 8002CC60 00029BA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CC64 00029BA4  7C 08 02 A6 */	mflr r0
 /* 8002CC68 00029BA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3386,9 +3448,9 @@ createConsole__12JUTExceptionFPvUl:
 /* 8002CD34 00029C74  7C 08 03 A6 */	mtlr r0
 /* 8002CD38 00029C78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002CD3C 00029C7C  4E 80 00 20 */	blr 
+.endfn createConsole__12JUTExceptionFPvUl
 
-.global __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl
-__ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl:
+.fn __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl, global
 /* 8002CD40 00029C80  90 83 00 00 */	stw r4, 0(r3)
 /* 8002CD44 00029C84  38 80 00 01 */	li r4, 1
 /* 8002CD48 00029C88  38 00 00 00 */	li r0, 0
@@ -3397,9 +3459,9 @@ __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl:
 /* 8002CD54 00029C94  B0 A3 00 0E */	sth r5, 0xe(r3)
 /* 8002CD58 00029C98  98 03 00 10 */	stb r0, 0x10(r3)
 /* 8002CD5C 00029C9C  4E 80 00 20 */	blr 
+.endfn __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl
 
-.global __dt__12JUTExceptionFv
-__dt__12JUTExceptionFv: # weak function
+.fn __dt__12JUTExceptionFv, weak
 /* 8002CD60 00029CA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CD64 00029CA4  7C 08 02 A6 */	mflr r0
 /* 8002CD68 00029CA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3425,6 +3487,7 @@ __dt__12JUTExceptionFv: # weak function
 /* 8002CDB4 00029CF4  7C 08 03 A6 */	mtlr r0
 /* 8002CDB8 00029CF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002CDBC 00029CFC  4E 80 00 20 */	blr 
+.endfn __dt__12JUTExceptionFv
 
 .fn __sinit_JUTException_cpp, local
 /* 8002CDC0 00029D00  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -3447,8 +3510,7 @@ __dt__12JUTExceptionFv: # weak function
 /* 8002CE04 00029D44  4E 80 00 20 */	blr 
 .endfn __sinit_JUTException_cpp
 
-.global "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"
-"__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv": # weak function
+.fn "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv", weak
 /* 8002CE08 00029D48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CE0C 00029D4C  7C 08 02 A6 */	mflr r0
 /* 8002CE10 00029D50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3471,3 +3533,4 @@ __dt__12JUTExceptionFv: # weak function
 /* 8002CE50 00029D90  7C 08 03 A6 */	mtlr r0
 /* 8002CE54 00029D94  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002CE58 00029D98  4E 80 00 20 */	blr 
+.endfn "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"

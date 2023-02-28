@@ -1,43 +1,25 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80478420
-lbl_80478420:
-	.4byte 0x4A555443
-	.4byte 0x61636865
-	.4byte 0x466F6E74
-	.4byte 0x3A20556E
-	.4byte 0x6B6E6F77
-	.4byte 0x6E206461
-	.4byte 0x74612062
-	.4byte 0x6C6F636B
-	.4byte 0x0A000000
-	.4byte 0x4A555443
-	.4byte 0x61636865
-	.4byte 0x466F6E74
-	.4byte 0x2E637070
-	.4byte 0x00000000
-	.4byte 0x74726F75
-	.4byte 0x626C6520
-	.4byte 0x6F636375
-	.4byte 0x72726564
-	.4byte 0x20696E20
-	.4byte 0x4A4B524D
-	.4byte 0x61696E52
-	.4byte 0x616D546F
-	.4byte 0x4172616D
-	.4byte 0x2E000000
-	.4byte 0x556E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x64617461
-	.4byte 0x20626C6F
-	.4byte 0x636B0A00
-	.4byte 0x00000000
+.obj lbl_80478420, local
+	.asciz "JUTCacheFont: Unknown data block\n"
+.endobj lbl_80478420
+.balign 4
+.obj lbl_80478444, local
+	.asciz "JUTCacheFont.cpp"
+.endobj lbl_80478444
+.balign 4
+.obj lbl_80478458, local
+	.asciz "trouble occurred in JKRMainRamToAram."
+.endobj lbl_80478458
+.balign 4
+.obj lbl_80478480, local
+	.asciz "Unknown data block\n"
+.endobj lbl_80478480
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__12JUTCacheFont
-__vt__12JUTCacheFont:
+.obj __vt__12JUTCacheFont, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JUTCacheFontFv
@@ -57,17 +39,20 @@ __vt__12JUTCacheFont:
 	.4byte isLeadByte__10JUTResFontCFi
 	.4byte loadImage__12JUTCacheFontFi11_GXTexMapID
 	.4byte setBlock__12JUTCacheFontFv
+.endobj __vt__12JUTCacheFont
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516720:
-	.4byte 0x25730000
-lbl_80516724:
+.obj lbl_80516720, local
+	.asciz "%s"
+.endobj lbl_80516720
+.balign 4
+.obj lbl_80516724, local
 	.float 0.0
+.endobj lbl_80516724
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap
-__ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap:
+.fn __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap, global
 /* 80033F94 00030ED4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80033F98 00030ED8  7C 08 02 A6 */	mflr r0
 /* 80033F9C 00030EDC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -104,9 +89,9 @@ __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap:
 /* 80034018 00030F58  7C 08 03 A6 */	mtlr r0
 /* 8003401C 00030F5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80034020 00030F60  4E 80 00 20 */	blr 
+.endfn __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap
 
-.global __dt__12JUTCacheFontFv
-__dt__12JUTCacheFontFv:
+.fn __dt__12JUTCacheFontFv, global
 /* 80034024 00030F64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80034028 00030F68  7C 08 02 A6 */	mflr r0
 /* 8003402C 00030F6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -146,9 +131,9 @@ __dt__12JUTCacheFontFv:
 /* 800340AC 00030FEC  7C 08 03 A6 */	mtlr r0
 /* 800340B0 00030FF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800340B4 00030FF4  4E 80 00 20 */	blr 
+.endfn __dt__12JUTCacheFontFv
 
-.global deleteMemBlocks_CacheFont__12JUTCacheFontFv
-deleteMemBlocks_CacheFont__12JUTCacheFontFv:
+.fn deleteMemBlocks_CacheFont__12JUTCacheFontFv, global
 /* 800340B8 00030FF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800340BC 00030FFC  7C 08 02 A6 */	mflr r0
 /* 800340C0 00031000  90 01 00 14 */	stw r0, 0x14(r1)
@@ -184,9 +169,9 @@ deleteMemBlocks_CacheFont__12JUTCacheFontFv:
 /* 80034130 00031070  7C 08 03 A6 */	mtlr r0
 /* 80034134 00031074  38 21 00 10 */	addi r1, r1, 0x10
 /* 80034138 00031078  4E 80 00 20 */	blr 
+.endfn deleteMemBlocks_CacheFont__12JUTCacheFontFv
 
-.global initialize_state__12JUTCacheFontFv
-initialize_state__12JUTCacheFontFv:
+.fn initialize_state__12JUTCacheFontFv, global
 /* 8003413C 0003107C  38 00 00 00 */	li r0, 0
 /* 80034140 00031080  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 80034144 00031084  90 03 00 90 */	stw r0, 0x90(r3)
@@ -202,9 +187,9 @@ initialize_state__12JUTCacheFontFv:
 /* 8003416C 000310AC  90 03 00 9C */	stw r0, 0x9c(r3)
 /* 80034170 000310B0  90 03 00 A0 */	stw r0, 0xa0(r3)
 /* 80034174 000310B4  4E 80 00 20 */	blr 
+.endfn initialize_state__12JUTCacheFontFv
 
-.global getMemorySize__12JUTCacheFontFPC7ResFONTPUsPUlPUsPUlPUsPUlPUl
-getMemorySize__12JUTCacheFontFPC7ResFONTPUsPUlPUsPUlPUsPUlPUl:
+.fn getMemorySize__12JUTCacheFontFPC7ResFONTPUsPUlPUsPUlPUsPUlPUl, global
 /* 80034178 000310B8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8003417C 000310BC  7C 08 02 A6 */	mflr r0
 /* 80034180 000310C0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -320,9 +305,9 @@ getMemorySize__12JUTCacheFontFPC7ResFONTPUsPUlPUsPUlPUsPUlPUl:
 /* 800342F4 00031234  7C 08 03 A6 */	mtlr r0
 /* 800342F8 00031238  38 21 00 50 */	addi r1, r1, 0x50
 /* 800342FC 0003123C  4E 80 00 20 */	blr 
+.endfn getMemorySize__12JUTCacheFontFPC7ResFONTPUsPUlPUsPUlPUsPUlPUl
 
-.global initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap
-initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap:
+.fn initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap, global
 /* 80034300 00031240  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80034304 00031244  7C 08 02 A6 */	mflr r0
 /* 80034308 00031248  90 01 00 14 */	stw r0, 0x14(r1)
@@ -372,9 +357,9 @@ initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap:
 /* 800343A8 000312E8  7C 08 03 A6 */	mtlr r0
 /* 800343AC 000312EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800343B0 000312F0  4E 80 00 20 */	blr 
+.endfn initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap
 
-.global internal_initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap
-internal_initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap:
+.fn internal_initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap, global
 /* 800343B4 000312F4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800343B8 000312F8  7C 08 02 A6 */	mflr r0
 /* 800343BC 000312FC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -478,9 +463,9 @@ internal_initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap:
 /* 8003452C 0003146C  7C 08 03 A6 */	mtlr r0
 /* 80034530 00031470  38 21 00 30 */	addi r1, r1, 0x30
 /* 80034534 00031474  4E 80 00 20 */	blr 
+.endfn internal_initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap
 
-.global allocArea__12JUTCacheFontFPvUlP7JKRHeap
-allocArea__12JUTCacheFontFPvUlP7JKRHeap:
+.fn allocArea__12JUTCacheFontFPvUlP7JKRHeap, global
 /* 80034538 00031478  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003453C 0003147C  7C 08 02 A6 */	mflr r0
 /* 80034540 00031480  90 01 00 24 */	stw r0, 0x24(r1)
@@ -604,9 +589,9 @@ allocArea__12JUTCacheFontFPvUlP7JKRHeap:
 /* 800346F0 00031630  7C 08 03 A6 */	mtlr r0
 /* 800346F4 00031634  38 21 00 20 */	addi r1, r1, 0x20
 /* 800346F8 00031638  4E 80 00 20 */	blr 
+.endfn allocArea__12JUTCacheFontFPvUlP7JKRHeap
 
-.global allocArray__12JUTCacheFontFP7JKRHeap
-allocArray__12JUTCacheFontFP7JKRHeap:
+.fn allocArray__12JUTCacheFontFP7JKRHeap, global
 /* 800346FC 0003163C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80034700 00031640  7C 08 02 A6 */	mflr r0
 /* 80034704 00031644  38 A0 00 00 */	li r5, 0
@@ -672,9 +657,9 @@ allocArray__12JUTCacheFontFP7JKRHeap:
 /* 800347D8 00031718  7C 08 03 A6 */	mtlr r0
 /* 800347DC 0003171C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800347E0 00031720  4E 80 00 20 */	blr 
+.endfn allocArray__12JUTCacheFontFP7JKRHeap
 
-.global setBlock__12JUTCacheFontFv
-setBlock__12JUTCacheFontFv:
+.fn setBlock__12JUTCacheFontFv, global
 /* 800347E4 00031724  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800347E8 00031728  7C 08 02 A6 */	mflr r0
 /* 800347EC 0003172C  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
@@ -819,9 +804,9 @@ setBlock__12JUTCacheFontFv:
 /* 800349E8 00031928  7C 08 03 A6 */	mtlr r0
 /* 800349EC 0003192C  38 21 00 40 */	addi r1, r1, 0x40
 /* 800349F0 00031930  4E 80 00 20 */	blr 
+.endfn setBlock__12JUTCacheFontFv
 
-.global loadImage__12JUTCacheFontFi11_GXTexMapID
-loadImage__12JUTCacheFontFi11_GXTexMapID:
+.fn loadImage__12JUTCacheFontFi11_GXTexMapID, global
 /* 800349F4 00031934  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800349F8 00031938  7C 08 02 A6 */	mflr r0
 /* 800349FC 0003193C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -870,9 +855,9 @@ loadImage__12JUTCacheFontFi11_GXTexMapID:
 /* 80034AA4 000319E4  7C 08 03 A6 */	mtlr r0
 /* 80034AA8 000319E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80034AAC 000319EC  4E 80 00 20 */	blr 
+.endfn loadImage__12JUTCacheFontFi11_GXTexMapID
 
-.global loadCache_char_subroutine__12JUTCacheFontFPib
-loadCache_char_subroutine__12JUTCacheFontFPib:
+.fn loadCache_char_subroutine__12JUTCacheFontFPib, global
 /* 80034AB0 000319F0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80034AB4 000319F4  7C 08 02 A6 */	mflr r0
 /* 80034AB8 000319F8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1057,9 +1042,9 @@ loadCache_char_subroutine__12JUTCacheFontFPib:
 /* 80034D3C 00031C7C  7C 08 03 A6 */	mtlr r0
 /* 80034D40 00031C80  38 21 00 30 */	addi r1, r1, 0x30
 /* 80034D44 00031C84  4E 80 00 20 */	blr 
+.endfn loadCache_char_subroutine__12JUTCacheFontFPib
 
-.global loadCache_string__12JUTCacheFontFPCcb
-loadCache_string__12JUTCacheFontFPCcb:
+.fn loadCache_string__12JUTCacheFontFPCcb, global
 /* 80034D48 00031C88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80034D4C 00031C8C  7C 08 02 A6 */	mflr r0
 /* 80034D50 00031C90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1115,9 +1100,9 @@ loadCache_string__12JUTCacheFontFPCcb:
 /* 80034E04 00031D44  7C 08 03 A6 */	mtlr r0
 /* 80034E08 00031D48  38 21 00 20 */	addi r1, r1, 0x20
 /* 80034E0C 00031D4C  4E 80 00 20 */	blr 
+.endfn loadCache_string__12JUTCacheFontFPCcb
 
-.global invalidiateAllCache__12JUTCacheFontFv
-invalidiateAllCache__12JUTCacheFontFv:
+.fn invalidiateAllCache__12JUTCacheFontFv, global
 /* 80034E10 00031D50  80 A3 00 90 */	lwz r5, 0x90(r3)
 /* 80034E14 00031D54  38 C0 00 00 */	li r6, 0
 /* 80034E18 00031D58  48 00 00 50 */	b .L_80034E68
@@ -1158,9 +1143,9 @@ invalidiateAllCache__12JUTCacheFontFv:
 /* 80034E8C 00031DCC  90 03 00 9C */	stw r0, 0x9c(r3)
 /* 80034E90 00031DD0  90 03 00 A0 */	stw r0, 0xa0(r3)
 /* 80034E94 00031DD4  4E 80 00 20 */	blr 
+.endfn invalidiateAllCache__12JUTCacheFontFv
 
-.global unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo
-unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo:
+.fn unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo, global
 /* 80034E98 00031DD8  80 A4 00 00 */	lwz r5, 0(r4)
 /* 80034E9C 00031DDC  28 05 00 00 */	cmplwi r5, 0
 /* 80034EA0 00031DE0  40 82 00 10 */	bne .L_80034EB0
@@ -1181,9 +1166,9 @@ unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo:
 /* 80034ED0 00031E10  80 04 00 00 */	lwz r0, 0(r4)
 /* 80034ED4 00031E14  90 05 00 00 */	stw r0, 0(r5)
 /* 80034ED8 00031E18  4E 80 00 20 */	blr 
+.endfn unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo
 
-.global prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo
-prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo:
+.fn prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo, global
 /* 80034EDC 00031E1C  80 A3 00 9C */	lwz r5, 0x9c(r3)
 /* 80034EE0 00031E20  38 00 00 00 */	li r0, 0
 /* 80034EE4 00031E24  90 83 00 9C */	stw r4, 0x9c(r3)
@@ -1196,3 +1181,4 @@ prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo:
 .L_80034F00:
 /* 80034F00 00031E40  90 85 00 00 */	stw r4, 0(r5)
 /* 80034F04 00031E44  4E 80 00 20 */	blr 
+.endfn prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo

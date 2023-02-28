@@ -56,8 +56,7 @@
 .endobj lbl_80516598
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__10JUTConsoleFUiUiP7JKRHeap
-create__10JUTConsoleFUiUiP7JKRHeap:
+.fn create__10JUTConsoleFUiUiP7JKRHeap, global
 /* 800280DC 0002501C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800280E0 00025020  7C 08 02 A6 */	mflr r0
 /* 800280E4 00025024  90 01 00 24 */	stw r0, 0x24(r1)
@@ -93,9 +92,9 @@ create__10JUTConsoleFUiUiP7JKRHeap:
 /* 80028158 00025098  7C 08 03 A6 */	mtlr r0
 /* 8002815C 0002509C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80028160 000250A0  4E 80 00 20 */	blr 
+.endfn create__10JUTConsoleFUiUiP7JKRHeap
 
-.global create__10JUTConsoleFUiPvUl
-create__10JUTConsoleFUiPvUl:
+.fn create__10JUTConsoleFUiPvUl, global
 /* 80028164 000250A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80028168 000250A8  7C 08 02 A6 */	mflr r0
 /* 8002816C 000250AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -135,9 +134,9 @@ create__10JUTConsoleFUiPvUl:
 /* 800281F0 00025130  7C 08 03 A6 */	mtlr r0
 /* 800281F4 00025134  38 21 00 20 */	addi r1, r1, 0x20
 /* 800281F8 00025138  4E 80 00 20 */	blr 
+.endfn create__10JUTConsoleFUiPvUl
 
-.global __ct__10JUTConsoleFUiUib
-__ct__10JUTConsoleFUiUib:
+.fn __ct__10JUTConsoleFUiUib, global
 /* 800281FC 0002513C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80028200 00025140  7C 08 02 A6 */	mflr r0
 /* 80028204 00025144  90 01 00 24 */	stw r0, 0x24(r1)
@@ -203,9 +202,9 @@ __ct__10JUTConsoleFUiUib:
 /* 800282F0 00025230  7C 08 03 A6 */	mtlr r0
 /* 800282F4 00025234  38 21 00 20 */	addi r1, r1, 0x20
 /* 800282F8 00025238  4E 80 00 20 */	blr 
+.endfn __ct__10JUTConsoleFUiUib
 
-.global __dt__10JUTConsoleFv
-__dt__10JUTConsoleFv:
+.fn __dt__10JUTConsoleFv, global
 /* 800282FC 0002523C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80028300 00025240  7C 08 02 A6 */	mflr r0
 /* 80028304 00025244  90 01 00 14 */	stw r0, 0x14(r1)
@@ -235,23 +234,23 @@ __dt__10JUTConsoleFv:
 /* 80028360 000252A0  7C 08 03 A6 */	mtlr r0
 /* 80028364 000252A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80028368 000252A8  4E 80 00 20 */	blr 
+.endfn __dt__10JUTConsoleFv
 
-.global getObjectSizeFromBufferSize__10JUTConsoleFUiUi
-getObjectSizeFromBufferSize__10JUTConsoleFUiUi:
+.fn getObjectSizeFromBufferSize__10JUTConsoleFUiUi, global
 /* 8002836C 000252AC  38 03 00 02 */	addi r0, r3, 2
 /* 80028370 000252B0  7C 60 21 D6 */	mullw r3, r0, r4
 /* 80028374 000252B4  38 63 00 6C */	addi r3, r3, 0x6c
 /* 80028378 000252B8  4E 80 00 20 */	blr 
+.endfn getObjectSizeFromBufferSize__10JUTConsoleFUiUi
 
-.global getLineFromObjectSize__10JUTConsoleFUlUi
-getLineFromObjectSize__10JUTConsoleFUlUi:
+.fn getLineFromObjectSize__10JUTConsoleFUlUi, global
 /* 8002837C 000252BC  38 63 FF 94 */	addi r3, r3, -108
 /* 80028380 000252C0  38 04 00 02 */	addi r0, r4, 2
 /* 80028384 000252C4  7C 63 03 96 */	divwu r3, r3, r0
 /* 80028388 000252C8  4E 80 00 20 */	blr 
+.endfn getLineFromObjectSize__10JUTConsoleFUlUi
 
-.global clear__10JUTConsoleFv
-clear__10JUTConsoleFv:
+.fn clear__10JUTConsoleFv, global
 /* 8002838C 000252CC  38 C0 00 00 */	li r6, 0
 /* 80028390 000252D0  38 E0 00 00 */	li r7, 0
 /* 80028394 000252D4  90 C3 00 30 */	stw r6, 0x30(r3)
@@ -277,9 +276,9 @@ clear__10JUTConsoleFv:
 /* 800283DC 0002531C  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 800283E0 00025320  98 03 00 01 */	stb r0, 1(r3)
 /* 800283E4 00025324  4E 80 00 20 */	blr 
+.endfn clear__10JUTConsoleFv
 
-.global doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType
-doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType:
+.fn doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType, global
 /* 800283E8 00025328  94 21 FD 50 */	stwu r1, -0x2b0(r1)
 /* 800283EC 0002532C  7C 08 02 A6 */	mflr r0
 /* 800283F0 00025330  90 01 02 B4 */	stw r0, 0x2b4(r1)
@@ -639,9 +638,9 @@ doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType:
 /* 80028938 00025878  7C 08 03 A6 */	mtlr r0
 /* 8002893C 0002587C  38 21 02 B0 */	addi r1, r1, 0x2b0
 /* 80028940 00025880  4E 80 00 20 */	blr 
+.endfn doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType
 
-.global __dt__13J2DOrthoGraphFv
-__dt__13J2DOrthoGraphFv:
+.fn __dt__13J2DOrthoGraphFv, weak
 /* 80028944 00025884  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80028948 00025888  7C 08 02 A6 */	mflr r0
 /* 8002894C 0002588C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -667,9 +666,9 @@ __dt__13J2DOrthoGraphFv:
 /* 80028994 000258D4  7C 08 03 A6 */	mtlr r0
 /* 80028998 000258D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002899C 000258DC  4E 80 00 20 */	blr 
+.endfn __dt__13J2DOrthoGraphFv
 
-.global print_f__10JUTConsoleFPCce
-print_f__10JUTConsoleFPCce:
+.fn print_f__10JUTConsoleFPCce, global
 /* 800289A0 000258E0  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 800289A4 000258E4  7C 08 02 A6 */	mflr r0
 /* 800289A8 000258E8  90 01 00 84 */	stw r0, 0x84(r1)
@@ -706,9 +705,9 @@ print_f__10JUTConsoleFPCce:
 /* 80028A20 00025960  7C 08 03 A6 */	mtlr r0
 /* 80028A24 00025964  38 21 00 80 */	addi r1, r1, 0x80
 /* 80028A28 00025968  4E 80 00 20 */	blr 
+.endfn print_f__10JUTConsoleFPCce
 
-.global print__10JUTConsoleFPCc
-print__10JUTConsoleFPCc:
+.fn print__10JUTConsoleFPCc, global
 /* 80028A2C 0002596C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80028A30 00025970  7C 08 02 A6 */	mflr r0
 /* 80028A34 00025974  90 01 00 24 */	stw r0, 0x24(r1)
@@ -918,9 +917,9 @@ print__10JUTConsoleFPCc:
 /* 80028D20 00025C60  7C 08 03 A6 */	mtlr r0
 /* 80028D24 00025C64  38 21 00 20 */	addi r1, r1, 0x20
 /* 80028D28 00025C68  4E 80 00 20 */	blr 
+.endfn print__10JUTConsoleFPCc
 
-.global JUTConsole_print_f_va_
-JUTConsole_print_f_va_:
+.fn JUTConsole_print_f_va_, global
 /* 80028D2C 00025C6C  94 21 FB F0 */	stwu r1, -0x410(r1)
 /* 80028D30 00025C70  7C 08 02 A6 */	mflr r0
 /* 80028D34 00025C74  7C A6 2B 78 */	mr r6, r5
@@ -939,9 +938,9 @@ JUTConsole_print_f_va_:
 /* 80028D68 00025CA8  7C 08 03 A6 */	mtlr r0
 /* 80028D6C 00025CAC  38 21 04 10 */	addi r1, r1, 0x410
 /* 80028D70 00025CB0  4E 80 00 20 */	blr 
+.endfn JUTConsole_print_f_va_
 
-.global scroll__10JUTConsoleFi
-scroll__10JUTConsoleFi:
+.fn scroll__10JUTConsoleFi, global
 /* 80028D74 00025CB4  2C 04 00 00 */	cmpwi r4, 0
 /* 80028D78 00025CB8  40 80 00 34 */	bge .L_80028DAC
 /* 80028D7C 00025CBC  80 A3 00 34 */	lwz r5, 0x34(r3)
@@ -1007,9 +1006,9 @@ scroll__10JUTConsoleFi:
 /* 80028E44 00025D84  7C 04 00 50 */	subf r0, r4, r0
 /* 80028E48 00025D88  90 03 00 30 */	stw r0, 0x30(r3)
 /* 80028E4C 00025D8C  4E 80 00 20 */	blr 
+.endfn scroll__10JUTConsoleFi
 
-.global getUsedLine__10JUTConsoleCFv
-getUsedLine__10JUTConsoleCFv:
+.fn getUsedLine__10JUTConsoleCFv, global
 /* 80028E50 00025D90  80 83 00 34 */	lwz r4, 0x34(r3)
 /* 80028E54 00025D94  80 03 00 38 */	lwz r0, 0x38(r3)
 /* 80028E58 00025D98  7C 84 00 51 */	subf. r4, r4, r0
@@ -1020,9 +1019,9 @@ getUsedLine__10JUTConsoleCFv:
 /* 80028E68 00025DA8  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 80028E6C 00025DAC  7C 64 02 14 */	add r3, r4, r0
 /* 80028E70 00025DB0  4E 80 00 20 */	blr 
+.endfn getUsedLine__10JUTConsoleCFv
 
-.global getLineOffset__10JUTConsoleCFv
-getLineOffset__10JUTConsoleCFv:
+.fn getLineOffset__10JUTConsoleCFv, global
 /* 80028E74 00025DB4  80 83 00 34 */	lwz r4, 0x34(r3)
 /* 80028E78 00025DB8  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 80028E7C 00025DBC  7C 84 00 51 */	subf. r4, r4, r0
@@ -1033,9 +1032,9 @@ getLineOffset__10JUTConsoleCFv:
 /* 80028E8C 00025DCC  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 80028E90 00025DD0  7C 64 02 14 */	add r3, r4, r0
 /* 80028E94 00025DD4  4E 80 00 20 */	blr 
+.endfn getLineOffset__10JUTConsoleCFv
 
-.global createManager__17JUTConsoleManagerFP7JKRHeap
-createManager__17JUTConsoleManagerFP7JKRHeap:
+.fn createManager__17JUTConsoleManagerFP7JKRHeap, global
 /* 80028E98 00025DD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80028E9C 00025DDC  7C 08 02 A6 */	mflr r0
 /* 80028EA0 00025DE0  28 03 00 00 */	cmplwi r3, 0
@@ -1064,9 +1063,9 @@ createManager__17JUTConsoleManagerFP7JKRHeap:
 /* 80028EF4 00025E34  7C 08 03 A6 */	mtlr r0
 /* 80028EF8 00025E38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80028EFC 00025E3C  4E 80 00 20 */	blr 
+.endfn createManager__17JUTConsoleManagerFP7JKRHeap
 
-.global appendConsole__17JUTConsoleManagerFP10JUTConsole
-appendConsole__17JUTConsoleManagerFP10JUTConsole:
+.fn appendConsole__17JUTConsoleManagerFP10JUTConsole, global
 /* 80028F00 00025E40  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80028F04 00025E44  7C 08 02 A6 */	mflr r0
 /* 80028F08 00025E48  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1096,9 +1095,9 @@ appendConsole__17JUTConsoleManagerFP10JUTConsole:
 /* 80028F64 00025EA4  7C 08 03 A6 */	mtlr r0
 /* 80028F68 00025EA8  38 21 00 30 */	addi r1, r1, 0x30
 /* 80028F6C 00025EAC  4E 80 00 20 */	blr 
+.endfn appendConsole__17JUTConsoleManagerFP10JUTConsole
 
-.global removeConsole__17JUTConsoleManagerFP10JUTConsole
-removeConsole__17JUTConsoleManagerFP10JUTConsole:
+.fn removeConsole__17JUTConsoleManagerFP10JUTConsole, global
 /* 80028F70 00025EB0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80028F74 00025EB4  7C 08 02 A6 */	mflr r0
 /* 80028F78 00025EB8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1155,9 +1154,9 @@ removeConsole__17JUTConsoleManagerFP10JUTConsole:
 /* 8002902C 00025F6C  7C 08 03 A6 */	mtlr r0
 /* 80029030 00025F70  38 21 00 20 */	addi r1, r1, 0x20
 /* 80029034 00025F74  4E 80 00 20 */	blr 
+.endfn removeConsole__17JUTConsoleManagerFP10JUTConsole
 
-.global draw__17JUTConsoleManagerCFv
-draw__17JUTConsoleManagerCFv:
+.fn draw__17JUTConsoleManagerCFv, global
 /* 80029038 00025F78  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8002903C 00025F7C  7C 08 02 A6 */	mflr r0
 /* 80029040 00025F80  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1213,9 +1212,9 @@ draw__17JUTConsoleManagerCFv:
 /* 800290F8 00026038  7C 08 03 A6 */	mtlr r0
 /* 800290FC 0002603C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80029100 00026040  4E 80 00 20 */	blr 
+.endfn draw__17JUTConsoleManagerCFv
 
-.global drawDirect__17JUTConsoleManagerCFb
-drawDirect__17JUTConsoleManagerCFb:
+.fn drawDirect__17JUTConsoleManagerCFb, global
 /* 80029104 00026044  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80029108 00026048  7C 08 02 A6 */	mflr r0
 /* 8002910C 0002604C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1250,9 +1249,9 @@ drawDirect__17JUTConsoleManagerCFb:
 /* 80029174 000260B4  7C 08 03 A6 */	mtlr r0
 /* 80029178 000260B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002917C 000260BC  4E 80 00 20 */	blr 
+.endfn drawDirect__17JUTConsoleManagerCFb
 
-.global setDirectConsole__17JUTConsoleManagerFP10JUTConsole
-setDirectConsole__17JUTConsoleManagerFP10JUTConsole:
+.fn setDirectConsole__17JUTConsoleManagerFP10JUTConsole, global
 /* 80029180 000260C0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80029184 000260C4  7C 08 02 A6 */	mflr r0
 /* 80029188 000260C8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1334,29 +1333,29 @@ setDirectConsole__17JUTConsoleManagerFP10JUTConsole:
 /* 80029298 000261D8  7C 08 03 A6 */	mtlr r0
 /* 8002929C 000261DC  38 21 00 40 */	addi r1, r1, 0x40
 /* 800292A0 000261E0  4E 80 00 20 */	blr 
+.endfn setDirectConsole__17JUTConsoleManagerFP10JUTConsole
 
-.global JUTSetReportConsole
-JUTSetReportConsole:
+.fn JUTSetReportConsole, global
 /* 800292A4 000261E4  90 6D 88 74 */	stw r3, sReportConsole@sda21(r13)
 /* 800292A8 000261E8  4E 80 00 20 */	blr 
+.endfn JUTSetReportConsole
 
-.global JUTGetReportConsole
-JUTGetReportConsole:
+.fn JUTGetReportConsole, global
 /* 800292AC 000261EC  80 6D 88 74 */	lwz r3, sReportConsole@sda21(r13)
 /* 800292B0 000261F0  4E 80 00 20 */	blr 
+.endfn JUTGetReportConsole
 
-.global JUTSetWarningConsole
-JUTSetWarningConsole:
+.fn JUTSetWarningConsole, global
 /* 800292B4 000261F4  90 6D 88 78 */	stw r3, sWarningConsole@sda21(r13)
 /* 800292B8 000261F8  4E 80 00 20 */	blr 
+.endfn JUTSetWarningConsole
 
-.global JUTGetWarningConsole
-JUTGetWarningConsole:
+.fn JUTGetWarningConsole, global
 /* 800292BC 000261FC  80 6D 88 78 */	lwz r3, sWarningConsole@sda21(r13)
 /* 800292C0 00026200  4E 80 00 20 */	blr 
+.endfn JUTGetWarningConsole
 
-.global JUTReportConsole_f
-JUTReportConsole_f:
+.fn JUTReportConsole_f, global
 /* 800292C4 00026204  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 800292C8 00026208  7C 08 02 A6 */	mflr r0
 /* 800292CC 0002620C  90 01 01 84 */	stw r0, 0x184(r1)
@@ -1415,9 +1414,9 @@ JUTReportConsole_f:
 /* 80029394 000262D4  7C 08 03 A6 */	mtlr r0
 /* 80029398 000262D8  38 21 01 80 */	addi r1, r1, 0x180
 /* 8002939C 000262DC  4E 80 00 20 */	blr 
+.endfn JUTReportConsole_f
 
-.global JUTReportConsole
-JUTReportConsole:
+.fn JUTReportConsole, global
 /* 800293A0 000262E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800293A4 000262E4  7C 08 02 A6 */	mflr r0
 /* 800293A8 000262E8  7C 64 1B 78 */	mr r4, r3
@@ -1429,9 +1428,9 @@ JUTReportConsole:
 /* 800293C0 00026300  7C 08 03 A6 */	mtlr r0
 /* 800293C4 00026304  38 21 00 10 */	addi r1, r1, 0x10
 /* 800293C8 00026308  4E 80 00 20 */	blr 
+.endfn JUTReportConsole
 
-.global JUTWarningConsole_f
-JUTWarningConsole_f:
+.fn JUTWarningConsole_f, global
 /* 800293CC 0002630C  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 800293D0 00026310  7C 08 02 A6 */	mflr r0
 /* 800293D4 00026314  90 01 01 84 */	stw r0, 0x184(r1)
@@ -1490,9 +1489,9 @@ JUTWarningConsole_f:
 /* 8002949C 000263DC  7C 08 03 A6 */	mtlr r0
 /* 800294A0 000263E0  38 21 01 80 */	addi r1, r1, 0x180
 /* 800294A4 000263E4  4E 80 00 20 */	blr 
+.endfn JUTWarningConsole_f
 
-.global JUTWarningConsole
-JUTWarningConsole:
+.fn JUTWarningConsole, global
 /* 800294A8 000263E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800294AC 000263EC  7C 08 02 A6 */	mflr r0
 /* 800294B0 000263F0  7C 64 1B 78 */	mr r4, r3
@@ -1504,3 +1503,4 @@ JUTWarningConsole:
 /* 800294C8 00026408  7C 08 03 A6 */	mtlr r0
 /* 800294CC 0002640C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800294D0 00026410  4E 80 00 20 */	blr 
+.endfn JUTWarningConsole

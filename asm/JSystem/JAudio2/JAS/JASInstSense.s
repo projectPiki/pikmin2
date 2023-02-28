@@ -1,33 +1,31 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__12JASInstSense
-__vt__12JASInstSense:
+.obj __vt__12JASInstSense, global
 	.4byte 0
 	.4byte 0
 	.4byte getY__12JASInstSenseCFii
-	.4byte 0
+.endobj __vt__12JASInstSense
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516CF8
-lbl_80516CF8:
-	.4byte 0x42FE0000
-.global lbl_80516CFC
-lbl_80516CFC:
+.obj lbl_80516CF8, local
+	.float 127.0
+.endobj lbl_80516CF8
+.obj lbl_80516CFC, local
 	.float 1.0
-.global lbl_80516D00
-lbl_80516D00:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_80516D08
-lbl_80516D08:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.endobj lbl_80516CFC
+.balign 8
+.obj lbl_80516D00, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516D00
+.balign 8
+.obj lbl_80516D08, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516D08
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getY__12JASInstSenseCFii
-getY__12JASInstSenseCFii:
+.fn getY__12JASInstSenseCFii, global
 /* 8009B58C 000984CC  88 03 00 08 */	lbz r0, 8(r3)
 /* 8009B590 000984D0  38 E0 00 00 */	li r7, 0
 /* 8009B594 000984D4  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -108,11 +106,12 @@ getY__12JASInstSenseCFii:
 .L_8009B6A8:
 /* 8009B6A8 000985E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8009B6AC 000985EC  4E 80 00 20 */	blr 
+.endfn getY__12JASInstSenseCFii
 
-.global setParams__12JASInstSenseFiiff
-setParams__12JASInstSenseFiiff:
+.fn setParams__12JASInstSenseFiiff, global
 /* 8009B6B0 000985F0  98 83 00 08 */	stb r4, 8(r3)
 /* 8009B6B4 000985F4  98 A3 00 09 */	stb r5, 9(r3)
 /* 8009B6B8 000985F8  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 8009B6BC 000985FC  D0 43 00 10 */	stfs f2, 0x10(r3)
 /* 8009B6C0 00098600  4E 80 00 20 */	blr 
+.endfn setParams__12JASInstSenseFiiff

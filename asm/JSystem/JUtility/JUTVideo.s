@@ -1,36 +1,38 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__8JUTVideo
-__vt__8JUTVideo:
+.obj __vt__8JUTVideo, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8JUTVideoFv
+.endobj __vt__8JUTVideo
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sManager__8JUTVideo
-sManager__8JUTVideo:
+.obj sManager__8JUTVideo, global
 	.skip 0x4
-.global sVideoLastTick__8JUTVideo
-sVideoLastTick__8JUTVideo:
+.endobj sManager__8JUTVideo
+.balign 4
+.obj sVideoLastTick__8JUTVideo, global
 	.skip 0x4
-.global sVideoInterval__8JUTVideo
-sVideoInterval__8JUTVideo:
+.endobj sVideoLastTick__8JUTVideo
+.balign 4
+.obj sVideoInterval__8JUTVideo, global
 	.skip 0x4
-.global sDrawWaiting
-sDrawWaiting:
+.endobj sVideoInterval__8JUTVideo
+.obj sDrawWaiting, global
+	.skip 0x1
+.endobj sDrawWaiting
+.balign 4
+.obj frameBuffer$2452, local
 	.skip 0x4
-.global frameBuffer$2452
-frameBuffer$2452:
-	.skip 0x4
-.global init$2453
-init$2453:
-	.skip 0x4
+.endobj frameBuffer$2452
+.obj init$2453, local
+	.skip 0x1
+.endobj init$2453
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global createManager__8JUTVideoFPC16_GXRenderModeObj
-createManager__8JUTVideoFPC16_GXRenderModeObj:
+.fn createManager__8JUTVideoFPC16_GXRenderModeObj, global
 /* 80033744 00030684  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033748 00030688  7C 08 02 A6 */	mflr r0
 /* 8003374C 0003068C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -55,9 +57,9 @@ createManager__8JUTVideoFPC16_GXRenderModeObj:
 /* 80033790 000306D0  7C 08 03 A6 */	mtlr r0
 /* 80033794 000306D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033798 000306D8  4E 80 00 20 */	blr 
+.endfn createManager__8JUTVideoFPC16_GXRenderModeObj
 
-.global destroyManager__8JUTVideoFv
-destroyManager__8JUTVideoFv:
+.fn destroyManager__8JUTVideoFv, global
 /* 8003379C 000306DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800337A0 000306E0  7C 08 02 A6 */	mflr r0
 /* 800337A4 000306E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -78,9 +80,9 @@ destroyManager__8JUTVideoFv:
 /* 800337D8 00030718  7C 08 03 A6 */	mtlr r0
 /* 800337DC 0003071C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800337E0 00030720  4E 80 00 20 */	blr 
+.endfn destroyManager__8JUTVideoFv
 
-.global __ct__8JUTVideoFPC16_GXRenderModeObj
-__ct__8JUTVideoFPC16_GXRenderModeObj:
+.fn __ct__8JUTVideoFPC16_GXRenderModeObj, global
 /* 800337E4 00030724  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800337E8 00030728  7C 08 02 A6 */	mflr r0
 /* 800337EC 0003072C  3C A0 80 4A */	lis r5, __vt__8JUTVideo@ha
@@ -142,9 +144,9 @@ __ct__8JUTVideoFPC16_GXRenderModeObj:
 /* 800338CC 0003080C  7C 08 03 A6 */	mtlr r0
 /* 800338D0 00030810  38 21 00 10 */	addi r1, r1, 0x10
 /* 800338D4 00030814  4E 80 00 20 */	blr 
+.endfn __ct__8JUTVideoFPC16_GXRenderModeObj
 
-.global __dt__8JUTVideoFv
-__dt__8JUTVideoFv:
+.fn __dt__8JUTVideoFv, global
 /* 800338D8 00030818  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800338DC 0003081C  7C 08 02 A6 */	mflr r0
 /* 800338E0 00030820  90 01 00 14 */	stw r0, 0x14(r1)
@@ -172,9 +174,9 @@ __dt__8JUTVideoFv:
 /* 80033934 00030874  7C 08 03 A6 */	mtlr r0
 /* 80033938 00030878  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003393C 0003087C  4E 80 00 20 */	blr 
+.endfn __dt__8JUTVideoFv
 
-.global preRetraceProc__8JUTVideoFUl
-preRetraceProc__8JUTVideoFUl:
+.fn preRetraceProc__8JUTVideoFUl, global
 /* 80033940 00030880  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033944 00030884  7C 08 02 A6 */	mflr r0
 /* 80033948 00030888  90 01 00 14 */	stw r0, 0x14(r1)
@@ -334,9 +336,9 @@ preRetraceProc__8JUTVideoFUl:
 /* 80033B5C 00030A9C  7C 08 03 A6 */	mtlr r0
 /* 80033B60 00030AA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033B64 00030AA4  4E 80 00 20 */	blr 
+.endfn preRetraceProc__8JUTVideoFUl
 
-.global drawDoneStart__8JUTVideoFv
-drawDoneStart__8JUTVideoFv:
+.fn drawDoneStart__8JUTVideoFv, global
 /* 80033B68 00030AA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033B6C 00030AAC  7C 08 02 A6 */	mflr r0
 /* 80033B70 00030AB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -347,15 +349,15 @@ drawDoneStart__8JUTVideoFv:
 /* 80033B84 00030AC4  7C 08 03 A6 */	mtlr r0
 /* 80033B88 00030AC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033B8C 00030ACC  4E 80 00 20 */	blr 
+.endfn drawDoneStart__8JUTVideoFv
 
-.global dummyNoDrawWait__8JUTVideoFv
-dummyNoDrawWait__8JUTVideoFv:
+.fn dummyNoDrawWait__8JUTVideoFv, global
 /* 80033B90 00030AD0  38 00 00 00 */	li r0, 0
 /* 80033B94 00030AD4  98 0D 89 2C */	stb r0, sDrawWaiting@sda21(r13)
 /* 80033B98 00030AD8  4E 80 00 20 */	blr 
+.endfn dummyNoDrawWait__8JUTVideoFv
 
-.global drawDoneCallback__8JUTVideoFv
-drawDoneCallback__8JUTVideoFv:
+.fn drawDoneCallback__8JUTVideoFv, global
 /* 80033B9C 00030ADC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033BA0 00030AE0  7C 08 02 A6 */	mflr r0
 /* 80033BA4 00030AE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -394,9 +396,9 @@ drawDoneCallback__8JUTVideoFv:
 /* 80033C18 00030B58  7C 08 03 A6 */	mtlr r0
 /* 80033C1C 00030B5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033C20 00030B60  4E 80 00 20 */	blr 
+.endfn drawDoneCallback__8JUTVideoFv
 
-.global postRetraceProc__8JUTVideoFUl
-postRetraceProc__8JUTVideoFUl:
+.fn postRetraceProc__8JUTVideoFUl, global
 /* 80033C24 00030B64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033C28 00030B68  7C 08 02 A6 */	mflr r0
 /* 80033C2C 00030B6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -417,9 +419,9 @@ postRetraceProc__8JUTVideoFUl:
 /* 80033C64 00030BA4  7C 08 03 A6 */	mtlr r0
 /* 80033C68 00030BA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033C6C 00030BAC  4E 80 00 20 */	blr 
+.endfn postRetraceProc__8JUTVideoFUl
 
-.global setRenderMode__8JUTVideoFPC16_GXRenderModeObj
-setRenderMode__8JUTVideoFPC16_GXRenderModeObj:
+.fn setRenderMode__8JUTVideoFPC16_GXRenderModeObj, global
 /* 80033C70 00030BB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033C74 00030BB4  7C 08 02 A6 */	mflr r0
 /* 80033C78 00030BB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -452,14 +454,15 @@ setRenderMode__8JUTVideoFPC16_GXRenderModeObj:
 /* 80033CDC 00030C1C  7C 08 03 A6 */	mtlr r0
 /* 80033CE0 00030C20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80033CE4 00030C24  4E 80 00 20 */	blr 
+.endfn setRenderMode__8JUTVideoFPC16_GXRenderModeObj
 
-.global waitRetraceIfNeed__8JUTVideoFv
-waitRetraceIfNeed__8JUTVideoFv:
+.fn waitRetraceIfNeed__8JUTVideoFv, global
 /* 80033CE8 00030C28  4E 80 00 20 */	blr 
+.endfn waitRetraceIfNeed__8JUTVideoFv
 
-.global setPostRetraceCallback__8JUTVideoFPFUl_v
-setPostRetraceCallback__8JUTVideoFPFUl_v:
+.fn setPostRetraceCallback__8JUTVideoFPFUl_v, global
 /* 80033CEC 00030C2C  80 03 00 28 */	lwz r0, 0x28(r3)
 /* 80033CF0 00030C30  90 83 00 28 */	stw r4, 0x28(r3)
 /* 80033CF4 00030C34  7C 03 03 78 */	mr r3, r0
 /* 80033CF8 00030C38  4E 80 00 20 */	blr 
+.endfn setPostRetraceCallback__8JUTVideoFPFUl_v
