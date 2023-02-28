@@ -1,16 +1,16 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@": # local object
+.obj "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@", local
 	.4byte extrapolateParameter_raw__Q27JStudio13functionvalueFdd
 	.4byte extrapolateParameter_repeat__Q27JStudio13functionvalueFdd
 	.4byte extrapolateParameter_turn__Q27JStudio13functionvalueFdd
 	.4byte extrapolateParameter_clamp__Q27JStudio13functionvalueFdd
+.endobj "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q27JStudio22TFunctionValue_hermite
-__vt__Q27JStudio22TFunctionValue_hermite:
+.obj __vt__Q27JStudio22TFunctionValue_hermite, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio22TFunctionValue_hermiteFv
@@ -19,8 +19,8 @@ __vt__Q27JStudio22TFunctionValue_hermite:
 	.4byte initialize__Q27JStudio22TFunctionValue_hermiteFv
 	.4byte prepare__Q27JStudio22TFunctionValue_hermiteFv
 	.4byte getValue__Q27JStudio22TFunctionValue_hermiteFd
-.global __vt__Q27JStudio29TFunctionValue_list_parameter
-__vt__Q27JStudio29TFunctionValue_list_parameter:
+.endobj __vt__Q27JStudio22TFunctionValue_hermite
+.obj __vt__Q27JStudio29TFunctionValue_list_parameter, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio29TFunctionValue_list_parameterFv
@@ -29,8 +29,8 @@ __vt__Q27JStudio29TFunctionValue_list_parameter:
 	.4byte initialize__Q27JStudio29TFunctionValue_list_parameterFv
 	.4byte prepare__Q27JStudio29TFunctionValue_list_parameterFv
 	.4byte getValue__Q27JStudio29TFunctionValue_list_parameterFd
-.global __vt__Q27JStudio19TFunctionValue_list
-__vt__Q27JStudio19TFunctionValue_list:
+.endobj __vt__Q27JStudio29TFunctionValue_list_parameter
+.obj __vt__Q27JStudio19TFunctionValue_list, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio19TFunctionValue_listFv
@@ -39,8 +39,8 @@ __vt__Q27JStudio19TFunctionValue_list:
 	.4byte initialize__Q27JStudio19TFunctionValue_listFv
 	.4byte prepare__Q27JStudio19TFunctionValue_listFv
 	.4byte getValue__Q27JStudio19TFunctionValue_listFd
-.global __vt__Q27JStudio25TFunctionValue_transition
-__vt__Q27JStudio25TFunctionValue_transition:
+.endobj __vt__Q27JStudio19TFunctionValue_list
+.obj __vt__Q27JStudio25TFunctionValue_transition, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio25TFunctionValue_transitionFv
@@ -49,8 +49,8 @@ __vt__Q27JStudio25TFunctionValue_transition:
 	.4byte initialize__Q27JStudio25TFunctionValue_transitionFv
 	.4byte prepare__Q27JStudio25TFunctionValue_transitionFv
 	.4byte getValue__Q27JStudio25TFunctionValue_transitionFd
-.global __vt__Q27JStudio23TFunctionValue_constant
-__vt__Q27JStudio23TFunctionValue_constant:
+.endobj __vt__Q27JStudio25TFunctionValue_transition
+.obj __vt__Q27JStudio23TFunctionValue_constant, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio23TFunctionValue_constantFv
@@ -59,8 +59,8 @@ __vt__Q27JStudio23TFunctionValue_constant:
 	.4byte initialize__Q27JStudio23TFunctionValue_constantFv
 	.4byte prepare__Q27JStudio23TFunctionValue_constantFv
 	.4byte getValue__Q27JStudio23TFunctionValue_constantFd
-.global __vt__Q27JStudio24TFunctionValue_composite
-__vt__Q27JStudio24TFunctionValue_composite:
+.endobj __vt__Q27JStudio23TFunctionValue_constant
+.obj __vt__Q27JStudio24TFunctionValue_composite, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio24TFunctionValue_compositeFv
@@ -69,8 +69,8 @@ __vt__Q27JStudio24TFunctionValue_composite:
 	.4byte initialize__Q27JStudio24TFunctionValue_compositeFv
 	.4byte prepare__Q27JStudio24TFunctionValue_compositeFv
 	.4byte getValue__Q27JStudio24TFunctionValue_compositeFd
-.global __vt__Q27JStudio14TFunctionValue
-__vt__Q27JStudio14TFunctionValue:
+.endobj __vt__Q27JStudio24TFunctionValue_composite
+.obj __vt__Q27JStudio14TFunctionValue, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -79,52 +79,55 @@ __vt__Q27JStudio14TFunctionValue:
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj __vt__Q27JStudio14TFunctionValue
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80514D88:
+.obj lbl_80514D88, local
 	.skip 0x1
+.endobj lbl_80514D88
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805163A0:
+.obj lbl_805163A0, local
 	.double 0.0
+.endobj lbl_805163A0
 .balign 8
-lbl_805163A8:
-	.4byte 0x3FF00000
-	.4byte 0x00000000
+.obj lbl_805163A8, local
+	.double 1.0
+.endobj lbl_805163A8
 .balign 8
-lbl_805163B0:
-	.4byte 0x40080000
-	.4byte 0x00000000
+.obj lbl_805163B0, local
+	.double 3.0
+.endobj lbl_805163B0
 .balign 8
-lbl_805163B8:
-	.4byte 0xC0000000
-	.4byte 0x00000000
+.obj lbl_805163B8, local
+	.double -2.0
+.endobj lbl_805163B8
 .balign 8
-lbl_805163C0:
-	.4byte 0x3FC55555
-	.4byte 0x55555555
+.obj lbl_805163C0, local
+	.double 0.16666666666666666
+.endobj lbl_805163C0
 .balign 8
-lbl_805163C8:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
+.obj lbl_805163C8, local
+	.double 0.5
+.endobj lbl_805163C8
 .balign 8
-lbl_805163D0:
-	.4byte 0x3FE55555
-	.4byte 0x55555555
+.obj lbl_805163D0, local
+	.double 0.6666666666666666
+.endobj lbl_805163D0
 .balign 8
-lbl_805163D8:
-	.4byte 0x40000000
-	.4byte 0x00000000
+.obj lbl_805163D8, local
+	.double 2.0
+.endobj lbl_805163D8
 .balign 8
-lbl_805163E0:
-	.4byte 0xBFF00000
-	.4byte 0x00000000
+.obj lbl_805163E0, local
+	.double -1.0
+.endobj lbl_805163E0
 .balign 8
-lbl_805163E8:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_805163E8, local
+	.8byte 0x4330000000000000
+.endobj lbl_805163E8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global extrapolateParameter_raw__Q27JStudio13functionvalueFdd

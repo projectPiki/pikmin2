@@ -5,145 +5,160 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor
-sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor:
+.obj sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor, global
 	.4byte 0x00000003
 	.4byte 0x00000004
 	.4byte 0x00000005
-.global sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor
-sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor:
+.endobj sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor
+.obj sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor, global
 	.4byte 0x00000006
 	.4byte 0x00000007
 	.4byte 0x00000008
-.global sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor
-sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor:
+.endobj sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor
+.obj sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor, global
 	.4byte 0x00000009
 	.4byte 0x0000000A
 	.4byte 0x0000000B
-.global sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight
-sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight:
+.endobj sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor
+.obj sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight, global
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
-.global sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight
-sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight:
+.endobj sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight
+.obj sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight, global
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000003
-.global sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera
-sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera:
+.endobj sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight
+.obj sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera, global
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
-.global sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera
-sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera:
+.endobj sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera
+.obj sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera, global
 	.4byte 0x00000003
 	.4byte 0x00000004
 	.4byte 0x00000005
-.global sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog
-sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog:
+.endobj sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera
+.obj sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog, global
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
-.global sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog
-sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog:
-	.4byte 0x00000000
-	.4byte 0x00000001
-	.4byte 0x00000002
-	.4byte 0x00000003
-.global sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light
-sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light:
-	.4byte 0x00000000
-	.4byte 0x00000001
-	.4byte 0x00000002
-.global sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light
-sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light:
+.endobj sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog
+.obj sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog, global
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000003
-.global sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light
-sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light:
+.endobj sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog
+.obj sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light, global
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+.endobj sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light
+.obj sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light, global
+	.4byte 0x00000000
+	.4byte 0x00000001
+	.4byte 0x00000002
+	.4byte 0x00000003
+.endobj sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light
+.obj sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light, global
 	.4byte 0x00000004
 	.4byte 0x00000005
 	.4byte 0x00000006
-.global sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light
-sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light:
+.endobj sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light
+.obj sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light, global
 	.4byte 0x00000007
 	.4byte 0x00000008
 	.4byte 0x00000009
-.global sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle
-sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle:
+.endobj sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light
+.obj sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle, global
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
-.global sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle
-sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle:
+.endobj sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle
+.obj sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle, global
 	.4byte 0x00000003
 	.4byte 0x00000004
 	.4byte 0x00000005
-.global sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle
-sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle:
+.endobj sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle
+.obj sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle, global
 	.4byte 0x00000006
 	.4byte 0x00000007
 	.4byte 0x00000008
-.global sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle
-sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle:
+.endobj sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle
+.obj sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle, global
 	.4byte 0x00000009
 	.4byte 0x0000000A
 	.4byte 0x0000000B
-.global sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle
-sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle:
+.endobj sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle
+.obj sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle, global
 	.4byte 0x00000009
 	.4byte 0x0000000A
 	.4byte 0x0000000B
 	.4byte 0x0000000C
-.global sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle
-sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle:
+.endobj sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle
+.obj sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle, global
 	.4byte 0x00000009
 	.4byte 0x0000000A
 	.4byte 0x0000000B
-.global sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle
-sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle:
+.endobj sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle
+.obj sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle, global
 	.4byte 0x00000009
 	.4byte 0x0000000A
 	.4byte 0x0000000B
 	.4byte 0x0000000C
-.global sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound
-sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound:
+.endobj sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle
+.obj sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound, global
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
+.endobj sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_8049E698:
+.obj lbl_8049E698, local
 	.4byte 0x00000000
 	.4byte 0x00000028
 	.4byte 0x00000000
+.endobj lbl_8049E698
+.obj lbl_8049E6A4, local
 	.4byte 0x00000000
 	.4byte 0x00000038
 	.4byte 0x00000000
+.endobj lbl_8049E6A4
+.obj lbl_8049E6B0, local
 	.4byte 0x00000000
 	.4byte 0x00000028
 	.4byte 0x00000000
+.endobj lbl_8049E6B0
+.obj lbl_8049E6BC, local
 	.4byte 0x00000000
 	.4byte 0x00000038
 	.4byte 0x00000000
+.endobj lbl_8049E6BC
+.obj lbl_8049E6C8, local
 	.4byte 0x00000000
 	.4byte 0x00000020
 	.4byte 0x00000000
+.endobj lbl_8049E6C8
+.obj lbl_8049E6D4, local
 	.4byte 0x00000000
 	.4byte 0x0000003C
 	.4byte 0x00000000
+.endobj lbl_8049E6D4
+.obj lbl_8049E6E0, local
 	.4byte 0x00000000
 	.4byte 0x0000003C
 	.4byte 0x00000000
+.endobj lbl_8049E6E0
+.obj lbl_8049E6EC, local
 	.4byte 0x00000000
 	.4byte 0x00000040
 	.4byte 0x00000000
-lbl_8049E6F8:
+.endobj lbl_8049E6EC
+.obj lbl_8049E6F8, local
 	.4byte .L_8000D254
 	.4byte .L_8000D204
 	.4byte .L_8000D214
@@ -163,43 +178,68 @@ lbl_8049E6F8:
 	.4byte .L_8000D234
 	.4byte .L_8000D254
 	.4byte .L_8000D244
+.endobj lbl_8049E6F8
+.obj lbl_8049E744, local
 	.4byte 0x00000000
 	.4byte 0x0000003C
 	.4byte 0x00000000
+.endobj lbl_8049E744
+.obj lbl_8049E750, local
 	.4byte 0x00000000
 	.4byte 0x00000040
 	.4byte 0x00000000
+.endobj lbl_8049E750
+.obj lbl_8049E75C, local
 	.4byte 0x00000000
 	.4byte 0x00000044
 	.4byte 0x00000000
+.endobj lbl_8049E75C
+.obj lbl_8049E768, local
 	.4byte 0x00000000
 	.4byte 0x00000048
 	.4byte 0x00000000
+.endobj lbl_8049E768
+.obj lbl_8049E774, local
 	.4byte 0x00000000
 	.4byte 0x0000004C
 	.4byte 0x00000000
+.endobj lbl_8049E774
+.obj lbl_8049E780, local
 	.4byte 0x00000000
 	.4byte 0x00000020
 	.4byte 0x00000000
+.endobj lbl_8049E780
+.obj lbl_8049E78C, local
 	.4byte 0x00000000
 	.4byte 0x00000024
 	.4byte 0x00000000
+.endobj lbl_8049E78C
+.obj lbl_8049E798, local
 	.4byte 0x00000000
 	.4byte 0x00000028
 	.4byte 0x00000000
+.endobj lbl_8049E798
+.obj lbl_8049E7A4, local
 	.4byte 0x00000000
 	.4byte 0x0000002C
 	.4byte 0x00000000
+.endobj lbl_8049E7A4
+.obj lbl_8049E7B0, local
 	.4byte 0x00000000
 	.4byte 0x00000030
 	.4byte 0x00000000
+.endobj lbl_8049E7B0
+.obj lbl_8049E7BC, local
 	.4byte 0x00000000
 	.4byte 0x00000034
 	.4byte 0x00000000
+.endobj lbl_8049E7BC
+.obj lbl_8049E7C8, local
 	.4byte 0x00000000
 	.4byte 0x00000038
 	.4byte 0x00000000
-lbl_8049E7D4:
+.endobj lbl_8049E7C8
+.obj lbl_8049E7D4, local
 	.4byte .L_8000DCF8
 	.4byte .L_8000DCAC
 	.4byte .L_8000DCB8
@@ -219,7 +259,8 @@ lbl_8049E7D4:
 	.4byte .L_8000DCD0
 	.4byte .L_8000DCF8
 	.4byte .L_8000DCDC
-lbl_8049E820:
+.endobj lbl_8049E7D4
+.obj lbl_8049E820, local
 	.4byte .L_8000DC48
 	.4byte .L_8000DBF8
 	.4byte .L_8000DC04
@@ -239,7 +280,8 @@ lbl_8049E820:
 	.4byte .L_8000DC1C
 	.4byte .L_8000DC48
 	.4byte .L_8000DC28
-lbl_8049E86C:
+.endobj lbl_8049E820
+.obj lbl_8049E86C, local
 	.4byte .L_8000DB54
 	.4byte .L_8000DB5C
 	.4byte .L_8000DB64
@@ -313,7 +355,8 @@ lbl_8049E86C:
 	.4byte .L_8000DBC0
 	.4byte .L_8000DBC0
 	.4byte .L_8000DAC4
-lbl_8049E990:
+.endobj lbl_8049E86C
+.obj lbl_8049E990, local
 	.4byte .L_8000DFA4
 	.4byte .L_8000DF58
 	.4byte .L_8000DF64
@@ -333,28 +376,43 @@ lbl_8049E990:
 	.4byte .L_8000DF7C
 	.4byte .L_8000DFA4
 	.4byte .L_8000DF88
+.endobj lbl_8049E990
+.obj lbl_8049E9DC, local
 	.4byte 0x00000000
 	.4byte 0x00000020
 	.4byte 0x00000000
+.endobj lbl_8049E9DC
+.obj lbl_8049E9E8, local
 	.4byte 0x00000000
 	.4byte 0x00000024
 	.4byte 0x00000000
+.endobj lbl_8049E9E8
+.obj lbl_8049E9F4, local
 	.4byte 0x00000000
 	.4byte 0x00000028
 	.4byte 0x00000000
+.endobj lbl_8049E9F4
+.obj lbl_8049EA00, local
 	.4byte 0x00000000
 	.4byte 0x0000002C
 	.4byte 0x00000000
+.endobj lbl_8049EA00
+.obj lbl_8049EA0C, local
 	.4byte 0x00000000
 	.4byte 0x00000030
 	.4byte 0x00000000
+.endobj lbl_8049EA0C
+.obj lbl_8049EA18, local
 	.4byte 0x00000000
 	.4byte 0x00000034
 	.4byte 0x00000000
+.endobj lbl_8049EA18
+.obj lbl_8049EA24, local
 	.4byte 0x00000000
 	.4byte 0x00000038
 	.4byte 0x00000000
-lbl_8049EA30:
+.endobj lbl_8049EA24
+.obj lbl_8049EA30, local
 	.4byte .L_8000E434
 	.4byte .L_8000E3E8
 	.4byte .L_8000E3F4
@@ -374,7 +432,8 @@ lbl_8049EA30:
 	.4byte .L_8000E40C
 	.4byte .L_8000E434
 	.4byte .L_8000E418
-lbl_8049EA7C:
+.endobj lbl_8049EA30
+.obj lbl_8049EA7C, local
 	.4byte .L_8000E384
 	.4byte .L_8000E334
 	.4byte .L_8000E340
@@ -394,7 +453,8 @@ lbl_8049EA7C:
 	.4byte .L_8000E358
 	.4byte .L_8000E384
 	.4byte .L_8000E364
-lbl_8049EAC8:
+.endobj lbl_8049EA7C
+.obj lbl_8049EAC8, local
 	.4byte .L_8000E278
 	.4byte .L_8000E280
 	.4byte .L_8000E288
@@ -459,7 +519,8 @@ lbl_8049EAC8:
 	.4byte .L_8000E214
 	.4byte .L_8000E230
 	.4byte .L_8000E24C
-lbl_8049EBC8:
+.endobj lbl_8049EAC8
+.obj lbl_8049EBC8, local
 	.4byte .L_8000E6EC
 	.4byte .L_8000E6A0
 	.4byte .L_8000E6AC
@@ -479,7 +540,8 @@ lbl_8049EBC8:
 	.4byte .L_8000E6C4
 	.4byte .L_8000E6EC
 	.4byte .L_8000E6D0
-lbl_8049EC14:
+.endobj lbl_8049EBC8
+.obj lbl_8049EC14, local
 	.4byte .L_8000E618
 	.4byte .L_8000E620
 	.4byte .L_8000E628
@@ -497,15 +559,18 @@ lbl_8049EC14:
 	.4byte .L_8000E638
 	.4byte .L_8000E640
 	.4byte .L_8000E670
-lbl_8049EC58:
+.endobj lbl_8049EC14
+.obj lbl_8049EC58, local
 	.4byte 0x00000000
 	.4byte 0x00000020
 	.4byte 0x00000000
-lbl_8049EC64:
+.endobj lbl_8049EC58
+.obj lbl_8049EC64, local
 	.4byte 0x00000000
 	.4byte 0x00000024
 	.4byte 0x00000000
-lbl_8049EC70:
+.endobj lbl_8049EC64
+.obj lbl_8049EC70, local
 	.4byte .L_8000EAFC
 	.4byte .L_8000EAB0
 	.4byte .L_8000EABC
@@ -525,7 +590,8 @@ lbl_8049EC70:
 	.4byte .L_8000EAD4
 	.4byte .L_8000EAFC
 	.4byte .L_8000EAE0
-lbl_8049ECBC:
+.endobj lbl_8049EC70
+.obj lbl_8049ECBC, local
 	.4byte .L_8000EA54
 	.4byte .L_8000EA04
 	.4byte .L_8000EA10
@@ -545,7 +611,8 @@ lbl_8049ECBC:
 	.4byte .L_8000EA28
 	.4byte .L_8000EA54
 	.4byte .L_8000EA34
-lbl_8049ED08:
+.endobj lbl_8049ECBC
+.obj lbl_8049ED08, local
 	.4byte .L_8000E950
 	.4byte .L_8000E958
 	.4byte .L_8000E960
@@ -581,35 +648,53 @@ lbl_8049ED08:
 	.4byte .L_8000E9CC
 	.4byte .L_8000E8DC
 	.4byte .L_8000E90C
-lbl_8049ED94:
+.endobj lbl_8049ED08
+.obj lbl_8049ED94, local
 	.4byte 0x00000000
 	.4byte 0x00000020
 	.4byte 0x00000000
+.endobj lbl_8049ED94
+.obj lbl_8049EDA0, local
 	.4byte 0x00000000
 	.4byte 0x00000020
 	.4byte 0x00000000
+.endobj lbl_8049EDA0
+.obj lbl_8049EDAC, local
 	.4byte 0x00000000
 	.4byte 0x00000024
 	.4byte 0x00000000
+.endobj lbl_8049EDAC
+.obj lbl_8049EDB8, local
 	.4byte 0x00000000
 	.4byte 0x00000028
 	.4byte 0x00000000
+.endobj lbl_8049EDB8
+.obj lbl_8049EDC4, local
 	.4byte 0x00000000
 	.4byte 0x0000002C
 	.4byte 0x00000000
+.endobj lbl_8049EDC4
+.obj lbl_8049EDD0, local
 	.4byte 0x00000000
 	.4byte 0x00000030
 	.4byte 0x00000000
+.endobj lbl_8049EDD0
+.obj lbl_8049EDDC, local
 	.4byte 0x00000000
 	.4byte 0x00000034
 	.4byte 0x00000000
+.endobj lbl_8049EDDC
+.obj lbl_8049EDE8, local
 	.4byte 0x00000000
 	.4byte 0x00000038
 	.4byte 0x00000000
+.endobj lbl_8049EDE8
+.obj lbl_8049EDF4, local
 	.4byte 0x00000000
 	.4byte 0x0000003C
 	.4byte 0x00000000
-lbl_8049EE00:
+.endobj lbl_8049EDF4
+.obj lbl_8049EE00, local
 	.4byte .L_8000F144
 	.4byte .L_8000F0F8
 	.4byte .L_8000F104
@@ -629,7 +714,8 @@ lbl_8049EE00:
 	.4byte .L_8000F11C
 	.4byte .L_8000F144
 	.4byte .L_8000F128
-lbl_8049EE4C:
+.endobj lbl_8049EE00
+.obj lbl_8049EE4C, local
 	.4byte .L_8000F09C
 	.4byte .L_8000F04C
 	.4byte .L_8000F058
@@ -649,7 +735,8 @@ lbl_8049EE4C:
 	.4byte .L_8000F070
 	.4byte .L_8000F09C
 	.4byte .L_8000F07C
-lbl_8049EE98:
+.endobj lbl_8049EE4C
+.obj lbl_8049EE98, local
 	.4byte .L_8000EF38
 	.4byte .L_8000EF40
 	.4byte .L_8000EF48
@@ -722,34 +809,53 @@ lbl_8049EE98:
 	.4byte .L_8000F014
 	.4byte .L_8000EE68
 	.4byte .L_8000EEA0
+.endobj lbl_8049EE98
+.obj lbl_8049EFB8, local
 	.4byte 0x00000000
 	.4byte 0x00000020
 	.4byte 0x00000000
+.endobj lbl_8049EFB8
+.obj lbl_8049EFC4, local
 	.4byte 0x00000000
 	.4byte 0x00000024
 	.4byte 0x00000000
+.endobj lbl_8049EFC4
+.obj lbl_8049EFD0, local
 	.4byte 0x00000000
 	.4byte 0x00000028
 	.4byte 0x00000000
+.endobj lbl_8049EFD0
+.obj lbl_8049EFDC, local
 	.4byte 0x00000000
 	.4byte 0x0000002C
 	.4byte 0x00000000
+.endobj lbl_8049EFDC
+.obj lbl_8049EFE8, local
 	.4byte 0x00000000
 	.4byte 0x00000030
 	.4byte 0x00000000
+.endobj lbl_8049EFE8
+.obj lbl_8049EFF4, local
 	.4byte 0x00000000
 	.4byte 0x00000034
 	.4byte 0x00000000
+.endobj lbl_8049EFF4
+.obj lbl_8049F000, local
 	.4byte 0x00000000
 	.4byte 0x00000038
 	.4byte 0x00000000
+.endobj lbl_8049F000
+.obj lbl_8049F00C, local
 	.4byte 0x00000000
 	.4byte 0x0000003C
 	.4byte 0x00000000
+.endobj lbl_8049F00C
+.obj lbl_8049F018, local
 	.4byte 0x00000000
 	.4byte 0x00000040
 	.4byte 0x00000000
-lbl_8049F024:
+.endobj lbl_8049F018
+.obj lbl_8049F024, local
 	.4byte .L_8000F5F4
 	.4byte .L_8000F5A8
 	.4byte .L_8000F5B4
@@ -769,7 +875,8 @@ lbl_8049F024:
 	.4byte .L_8000F5CC
 	.4byte .L_8000F5F4
 	.4byte .L_8000F5D8
-lbl_8049F070:
+.endobj lbl_8049F024
+.obj lbl_8049F070, local
 	.4byte .L_8000F544
 	.4byte .L_8000F4F4
 	.4byte .L_8000F500
@@ -789,7 +896,8 @@ lbl_8049F070:
 	.4byte .L_8000F518
 	.4byte .L_8000F544
 	.4byte .L_8000F524
-lbl_8049F0BC:
+.endobj lbl_8049F070
+.obj lbl_8049F0BC, local
 	.4byte .L_8000F46C
 	.4byte .L_8000F474
 	.4byte .L_8000F47C
@@ -850,8 +958,8 @@ lbl_8049F0BC:
 	.4byte .L_8000F4BC
 	.4byte .L_8000F36C
 	.4byte .L_8000F3A4
-.global __vt__Q27JStudio13TObject_sound
-__vt__Q27JStudio13TObject_sound:
+.endobj lbl_8049F0BC
+.obj __vt__Q27JStudio13TObject_sound, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio13TObject_soundFv
@@ -860,8 +968,8 @@ __vt__Q27JStudio13TObject_sound:
 	.4byte do_paragraph__Q27JStudio13TObject_soundFUlPCvUl
 	.4byte do_wait__Q27JStudio7TObjectFUl
 	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-.global __vt__Q27JStudio14TAdaptor_sound
-__vt__Q27JStudio14TAdaptor_sound:
+.endobj __vt__Q27JStudio13TObject_sound
+.obj __vt__Q27JStudio14TAdaptor_sound, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -879,8 +987,8 @@ __vt__Q27JStudio14TAdaptor_sound:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q27JStudio16TObject_particle
-__vt__Q27JStudio16TObject_particle:
+.endobj __vt__Q27JStudio14TAdaptor_sound
+.obj __vt__Q27JStudio16TObject_particle, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio16TObject_particleFv
@@ -889,6 +997,8 @@ __vt__Q27JStudio16TObject_particle:
 	.4byte do_paragraph__Q27JStudio16TObject_particleFUlPCvUl
 	.4byte do_wait__Q27JStudio7TObjectFUl
 	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+.endobj __vt__Q27JStudio16TObject_particle
+# not part of any vtable
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -905,8 +1015,7 @@ __vt__Q27JStudio16TObject_particle:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q27JStudio15TObject_message
-__vt__Q27JStudio15TObject_message:
+.obj __vt__Q27JStudio15TObject_message, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio15TObject_messageFv
@@ -915,8 +1024,8 @@ __vt__Q27JStudio15TObject_message:
 	.4byte do_paragraph__Q27JStudio15TObject_messageFUlPCvUl
 	.4byte do_wait__Q27JStudio7TObjectFUl
 	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-.global __vt__Q27JStudio16TAdaptor_message
-__vt__Q27JStudio16TAdaptor_message:
+.endobj __vt__Q27JStudio15TObject_message
+.obj __vt__Q27JStudio16TAdaptor_message, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -926,8 +1035,8 @@ __vt__Q27JStudio16TAdaptor_message:
 	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
 	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
 	.4byte 0
-.global __vt__Q27JStudio13TObject_light
-__vt__Q27JStudio13TObject_light:
+.endobj __vt__Q27JStudio16TAdaptor_message
+.obj __vt__Q27JStudio13TObject_light, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio13TObject_lightFv
@@ -936,8 +1045,8 @@ __vt__Q27JStudio13TObject_light:
 	.4byte do_paragraph__Q27JStudio13TObject_lightFUlPCvUl
 	.4byte do_wait__Q27JStudio7TObjectFUl
 	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-.global __vt__Q27JStudio14TAdaptor_light
-__vt__Q27JStudio14TAdaptor_light:
+.endobj __vt__Q27JStudio13TObject_light
+.obj __vt__Q27JStudio14TAdaptor_light, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -948,8 +1057,8 @@ __vt__Q27JStudio14TAdaptor_light:
 	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
 	.4byte 0
 	.4byte 0
-.global __vt__Q27JStudio11TObject_fog
-__vt__Q27JStudio11TObject_fog:
+.endobj __vt__Q27JStudio14TAdaptor_light
+.obj __vt__Q27JStudio11TObject_fog, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio11TObject_fogFv
@@ -958,8 +1067,8 @@ __vt__Q27JStudio11TObject_fog:
 	.4byte do_paragraph__Q27JStudio11TObject_fogFUlPCvUl
 	.4byte do_wait__Q27JStudio7TObjectFUl
 	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-.global __vt__Q27JStudio12TAdaptor_fog
-__vt__Q27JStudio12TAdaptor_fog:
+.endobj __vt__Q27JStudio11TObject_fog
+.obj __vt__Q27JStudio12TAdaptor_fog, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -968,8 +1077,8 @@ __vt__Q27JStudio12TAdaptor_fog:
 	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
 	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
 	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
-.global __vt__Q27JStudio14TObject_camera
-__vt__Q27JStudio14TObject_camera:
+.endobj __vt__Q27JStudio12TAdaptor_fog
+.obj __vt__Q27JStudio14TObject_camera, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio14TObject_cameraFv
@@ -978,8 +1087,8 @@ __vt__Q27JStudio14TObject_camera:
 	.4byte do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl
 	.4byte do_wait__Q27JStudio7TObjectFUl
 	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-.global __vt__Q27JStudio15TAdaptor_camera
-__vt__Q27JStudio15TAdaptor_camera:
+.endobj __vt__Q27JStudio14TObject_camera
+.obj __vt__Q27JStudio15TAdaptor_camera, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -995,8 +1104,8 @@ __vt__Q27JStudio15TAdaptor_camera:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q27JStudio20TObject_ambientLight
-__vt__Q27JStudio20TObject_ambientLight:
+.endobj __vt__Q27JStudio15TAdaptor_camera
+.obj __vt__Q27JStudio20TObject_ambientLight, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio20TObject_ambientLightFv
@@ -1005,8 +1114,8 @@ __vt__Q27JStudio20TObject_ambientLight:
 	.4byte do_paragraph__Q27JStudio20TObject_ambientLightFUlPCvUl
 	.4byte do_wait__Q27JStudio7TObjectFUl
 	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-.global __vt__Q27JStudio21TAdaptor_ambientLight
-__vt__Q27JStudio21TAdaptor_ambientLight:
+.endobj __vt__Q27JStudio20TObject_ambientLight
+.obj __vt__Q27JStudio21TAdaptor_ambientLight, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -1015,8 +1124,8 @@ __vt__Q27JStudio21TAdaptor_ambientLight:
 	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
 	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
 	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
-.global __vt__Q27JStudio13TObject_actor
-__vt__Q27JStudio13TObject_actor:
+.endobj __vt__Q27JStudio21TAdaptor_ambientLight
+.obj __vt__Q27JStudio13TObject_actor, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio13TObject_actorFv
@@ -1025,8 +1134,8 @@ __vt__Q27JStudio13TObject_actor:
 	.4byte do_paragraph__Q27JStudio13TObject_actorFUlPCvUl
 	.4byte do_wait__Q27JStudio7TObjectFUl
 	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-.global __vt__Q27JStudio14TAdaptor_actor
-__vt__Q27JStudio14TAdaptor_actor:
+.endobj __vt__Q27JStudio13TObject_actor
+.obj __vt__Q27JStudio14TAdaptor_actor, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -1047,8 +1156,8 @@ __vt__Q27JStudio14TAdaptor_actor:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q27JStudio7TObject
-__vt__Q27JStudio7TObject:
+.endobj __vt__Q27JStudio14TAdaptor_actor
+.obj __vt__Q27JStudio7TObject, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -1057,8 +1166,8 @@ __vt__Q27JStudio7TObject:
 	.4byte 0
 	.4byte do_wait__Q27JStudio7TObjectFUl
 	.4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
-.global __vt__Q27JStudio8TAdaptor
-__vt__Q27JStudio8TAdaptor:
+.endobj __vt__Q27JStudio7TObject
+.obj __vt__Q27JStudio8TAdaptor, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -1067,97 +1176,104 @@ __vt__Q27JStudio8TAdaptor:
 	.4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
 	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
 	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
-.global __vt__Q37JStudio14TVariableValue13TOutput_none_
-__vt__Q37JStudio14TVariableValue13TOutput_none_:
+.endobj __vt__Q27JStudio8TAdaptor
+.obj __vt__Q37JStudio14TVariableValue13TOutput_none_, global
 	.4byte 0
 	.4byte 0
 	.4byte __cl__Q37JStudio14TVariableValue13TOutput_none_CFfPQ27JStudio8TAdaptor
 	.4byte __dt__Q37JStudio14TVariableValue13TOutput_none_Fv
-.global __vt__Q37JStudio14TVariableValue7TOutput
-__vt__Q37JStudio14TVariableValue7TOutput:
+.endobj __vt__Q37JStudio14TVariableValue13TOutput_none_
+.obj __vt__Q37JStudio14TVariableValue7TOutput, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
-lbl_8049F4A8:
+.endobj __vt__Q37JStudio14TVariableValue7TOutput
+.obj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>", weak
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"
-lbl_8049F4B8:
+.endobj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>"
+.obj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>", weak
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>Fv"
-lbl_8049F4C8:
+.endobj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>"
+.obj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>", weak
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>Fv"
-lbl_8049F4D8:
+.endobj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>"
+.obj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>", weak
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"
-lbl_8049F4E8:
+.endobj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>"
+.obj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>", weak
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"
+.endobj "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>"
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-lbl_804EFCB0:
-	.skip 0xC
-"soovv_actor_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
-	.skip 0x1C
-"soovv_actor_RELATION_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
-	.skip 0x1C
-"soovv_camera_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
-	.skip 0x1C
-"soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
-	.skip 0x1C
-"soovv_light_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
-	.skip 0x1C
-"soovv_particle_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
-	.skip 0x1C
-"soovv_sound_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
-	.skip 0x1C
-"soovv_sound_LOCATED___Q27JStudio28@unnamed@jstudio_object_cpp@":
-	.skip 0x20
+.lcomm lbl_804EFCB0, 0xC, 4
+.lcomm "soovv_actor_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@", 0x10, 4
+.lcomm lbl_804EFCCC, 0xC, 4
+.lcomm "soovv_actor_RELATION_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@", 0x10, 4
+.lcomm lbl_804EFCE8, 0xC, 4
+.lcomm "soovv_camera_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@", 0x10, 4
+.lcomm lbl_804EFD04, 0xC, 4
+.lcomm "soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@", 0x10, 4
+.lcomm lbl_804EFD20, 0xC, 4
+.lcomm "soovv_light_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@", 0x10, 4
+.lcomm lbl_804EFD3C, 0xC, 4
+.lcomm "soovv_particle_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@", 0x10, 4
+.lcomm lbl_804EFD58, 0xC, 4
+.lcomm "soovv_sound_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@", 0x10, 4
+.lcomm lbl_804EFD74, 0xC, 4
+.lcomm "soovv_sound_LOCATED___Q27JStudio28@unnamed@jstudio_object_cpp@", 0x10, 4
+.lcomm lbl_804EFD90, 0xC, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global soOutput_none___Q27JStudio14TVariableValue
-soOutput_none___Q27JStudio14TVariableValue:
+.obj soOutput_none___Q27JStudio14TVariableValue, global
 	.skip 4
+.endobj soOutput_none___Q27JStudio14TVariableValue
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516408:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80516410:
-	.4byte 0x00000000
-lbl_80516414:
-	.4byte 0x437F0000
-.global sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera
-sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera:
+.obj lbl_80516408, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516408
+.obj lbl_80516410, local
+	.float 0.0
+.endobj lbl_80516410
+.obj lbl_80516414, local
+	.float 255.0
+.endobj lbl_80516414
+.obj sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera, global
 	.4byte 0x00000008
 	.4byte 0x00000009
-.global sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog
-sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog:
+.endobj sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera
+.obj sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog, global
 	.4byte 0x00000004
 	.4byte 0x00000005
-.global sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light
-sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light:
+.endobj sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog
+.obj sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light, global
 	.4byte 0x0000000A
 	.4byte 0x0000000B
-lbl_80516430:
+.endobj sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light
+.obj lbl_80516430, local
 	.float 0.5
+.endobj lbl_80516430
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q37JStudio14TVariableValue7TOutputFv
-__dt__Q37JStudio14TVariableValue7TOutputFv:
+.fn __dt__Q37JStudio14TVariableValue7TOutputFv, global
 /* 8000D068 00009FA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000D06C 00009FAC  7C 08 02 A6 */	mflr r0
 /* 8000D070 00009FB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1177,17 +1293,17 @@ __dt__Q37JStudio14TVariableValue7TOutputFv:
 /* 8000D0A4 00009FE4  7C 08 03 A6 */	mtlr r0
 /* 8000D0A8 00009FE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D0AC 00009FEC  4E 80 00 20 */	blr 
+.endfn __dt__Q37JStudio14TVariableValue7TOutputFv
 
-.global update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued
-update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued:
+.fn update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued, global
 /* 8000D0B0 00009FF0  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 8000D0B4 00009FF4  38 00 00 00 */	li r0, 0
 /* 8000D0B8 00009FF8  D0 03 00 00 */	stfs f0, 0(r3)
 /* 8000D0BC 00009FFC  90 03 00 08 */	stw r0, 8(r3)
 /* 8000D0C0 0000A000  4E 80 00 20 */	blr 
+.endfn update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued
 
-.global update_time___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued
-update_time___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued:
+.fn update_time___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued, global
 /* 8000D0C4 0000A004  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000D0C8 0000A008  3C 00 43 30 */	lis r0, 0x4330
 /* 8000D0CC 0000A00C  C8 42 80 A8 */	lfd f2, lbl_80516408@sda21(r2)
@@ -1203,9 +1319,9 @@ update_time___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued:
 /* 8000D0F4 0000A034  D0 03 00 00 */	stfs f0, 0(r3)
 /* 8000D0F8 0000A038  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D0FC 0000A03C  4E 80 00 20 */	blr 
+.endfn update_time___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued
 
-.global update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued
-update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued:
+.fn update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued, global
 /* 8000D100 0000A040  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8000D104 0000A044  7C 08 02 A6 */	mflr r0
 /* 8000D108 0000A048  C8 42 80 A8 */	lfd f2, lbl_80516408@sda21(r2)
@@ -1231,9 +1347,9 @@ update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued:
 /* 8000D158 0000A098  7C 08 03 A6 */	mtlr r0
 /* 8000D15C 0000A09C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8000D160 0000A0A0  4E 80 00 20 */	blr 
+.endfn update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued
 
-.global __dt__Q37JStudio14TVariableValue13TOutput_none_Fv
-__dt__Q37JStudio14TVariableValue13TOutput_none_Fv:
+.fn __dt__Q37JStudio14TVariableValue13TOutput_none_Fv, global
 /* 8000D164 0000A0A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000D168 0000A0A8  7C 08 02 A6 */	mflr r0
 /* 8000D16C 0000A0AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1259,33 +1375,33 @@ __dt__Q37JStudio14TVariableValue13TOutput_none_Fv:
 /* 8000D1B4 0000A0F4  7C 08 03 A6 */	mtlr r0
 /* 8000D1B8 0000A0F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D1BC 0000A0FC  4E 80 00 20 */	blr 
+.endfn __dt__Q37JStudio14TVariableValue13TOutput_none_Fv
 
-.global __cl__Q37JStudio14TVariableValue13TOutput_none_CFfPQ27JStudio8TAdaptor
-__cl__Q37JStudio14TVariableValue13TOutput_none_CFfPQ27JStudio8TAdaptor:
+.fn __cl__Q37JStudio14TVariableValue13TOutput_none_CFfPQ27JStudio8TAdaptor, global
 /* 8000D1C0 0000A100  4E 80 00 20 */	blr 
+.endfn __cl__Q37JStudio14TVariableValue13TOutput_none_CFfPQ27JStudio8TAdaptor
 
-.global adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject:
+.fn adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject, global
 /* 8000D1C4 0000A104  4E 80 00 20 */	blr 
+.endfn adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
 
-.global adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject:
+.fn adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject, global
 /* 8000D1C8 0000A108  4E 80 00 20 */	blr 
+.endfn adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
 
-.global adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
-adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject:
+.fn adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject, global
 /* 8000D1CC 0000A10C  4E 80 00 20 */	blr 
+.endfn adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
 
-.global adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
-adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl:
+.fn adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl, global
 /* 8000D1D0 0000A110  4E 80 00 20 */	blr 
+.endfn adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
 
-.global adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
-adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl:
+.fn adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl, global
 /* 8000D1D4 0000A114  4E 80 00 20 */	blr 
+.endfn adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
 
-.global adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio7TObjectUlQ37JStudio4data15TEOperationDataPCvUl
-adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio7TObjectUlQ37JStudio4data15TEOperationDataPCvUl:
+.fn adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio7TObjectUlQ37JStudio4data15TEOperationDataPCvUl, global
 /* 8000D1D8 0000A118  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000D1DC 0000A11C  7C 08 02 A6 */	mflr r0
 /* 8000D1E0 0000A120  28 06 00 12 */	cmplwi r6, 0x12
@@ -1334,9 +1450,9 @@ adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio7TObjectUlQ37JStudio4da
 /* 8000D26C 0000A1AC  7C 08 03 A6 */	mtlr r0
 /* 8000D270 0000A1B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D274 0000A1B4  4E 80 00 20 */	blr 
+.endfn adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio7TObjectUlQ37JStudio4data15TEOperationDataPCvUl
 
-.global adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate
-adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate:
+.fn adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate, global
 /* 8000D278 0000A1B8  3C A0 80 01 */	lis r5, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
 /* 8000D27C 0000A1BC  38 C5 D0 B0 */	addi r6, r5, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
 /* 8000D280 0000A1C0  38 A0 00 00 */	li r5, 0
@@ -1356,9 +1472,9 @@ adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27T
 /* 8000D2B0 0000A1F0  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8000D2B4 0000A1F4  40 82 FF D4 */	bne .L_8000D288
 /* 8000D2B8 0000A1F8  4E 80 00 20 */	blr 
+.endfn adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate
 
-.global adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
-adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec:
+.fn adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec, global
 /* 8000D2BC 0000A1FC  80 04 00 00 */	lwz r0, 0(r4)
 /* 8000D2C0 0000A200  3C E0 80 01 */	lis r7, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
 /* 8000D2C4 0000A204  80 C4 00 04 */	lwz r6, 4(r4)
@@ -1387,9 +1503,9 @@ adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec:
 /* 8000D320 0000A260  90 E3 00 04 */	stw r7, 4(r3)
 /* 8000D324 0000A264  D0 43 00 0C */	stfs f2, 0xc(r3)
 /* 8000D328 0000A268  4E 80 00 20 */	blr 
+.endfn adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
 
-.global adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
-adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl:
+.fn adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl, global
 /* 8000D32C 0000A26C  80 05 00 00 */	lwz r0, 0(r5)
 /* 8000D330 0000A270  80 C5 00 04 */	lwz r6, 4(r5)
 /* 8000D334 0000A274  1C E0 00 14 */	mulli r7, r0, 0x14
@@ -1404,9 +1520,9 @@ adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl:
 /* 8000D358 0000A298  7C 08 04 2E */	lfsx f0, r8, r0
 /* 8000D35C 0000A29C  D0 04 00 08 */	stfs f0, 8(r4)
 /* 8000D360 0000A2A0  4E 80 00 20 */	blr 
+.endfn adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 
-.global adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor
-adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor:
+.fn adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor, global
 /* 8000D364 0000A2A4  80 04 00 00 */	lwz r0, 0(r4)
 /* 8000D368 0000A2A8  3C C0 80 01 */	lis r6, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
 /* 8000D36C 0000A2AC  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -1463,9 +1579,9 @@ adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor:
 /* 8000D438 0000A378  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 8000D43C 0000A37C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8000D440 0000A380  4E 80 00 20 */	blr 
+.endfn adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor
 
-.global adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl
-adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl:
+.fn adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl, global
 /* 8000D444 0000A384  80 05 00 00 */	lwz r0, 0(r5)
 /* 8000D448 0000A388  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000D44C 0000A38C  1C 00 00 14 */	mulli r0, r0, 0x14
@@ -1561,18 +1677,18 @@ adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl:
 /* 8000D584 0000A4C4  98 04 00 03 */	stb r0, 3(r4)
 /* 8000D588 0000A4C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D58C 0000A4CC  4E 80 00 20 */	blr 
+.endfn adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl
 
-.global adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
-adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl:
+.fn adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl, global
 /* 8000D590 0000A4D0  1C 85 00 14 */	mulli r4, r5, 0x14
 /* 8000D594 0000A4D4  80 63 00 04 */	lwz r3, 4(r3)
 /* 8000D598 0000A4D8  38 A0 00 00 */	li r5, 0
 /* 8000D59C 0000A4DC  38 04 00 08 */	addi r0, r4, 8
 /* 8000D5A0 0000A4E0  7C A3 01 2E */	stwx r5, r3, r0
 /* 8000D5A4 0000A4E4  4E 80 00 20 */	blr 
+.endfn adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
 
-.global adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
-adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl:
+.fn adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl, global
 /* 8000D5A8 0000A4E8  1C 85 00 14 */	mulli r4, r5, 0x14
 /* 8000D5AC 0000A4EC  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8000D5B0 0000A4F0  3C 60 80 01 */	lis r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
@@ -1584,9 +1700,9 @@ adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ2
 /* 8000D5C8 0000A508  90 04 00 04 */	stw r0, 4(r4)
 /* 8000D5CC 0000A50C  D0 04 00 0C */	stfs f0, 0xc(r4)
 /* 8000D5D0 0000A510  4E 80 00 20 */	blr 
+.endfn adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
 
-.global adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
-adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl:
+.fn adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl, global
 /* 8000D5D4 0000A514  1C 85 00 14 */	mulli r4, r5, 0x14
 /* 8000D5D8 0000A518  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8000D5DC 0000A51C  3C 60 80 01 */	lis r3, update_time___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
@@ -1598,9 +1714,9 @@ adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStu
 /* 8000D5F4 0000A534  90 04 00 04 */	stw r0, 4(r4)
 /* 8000D5F8 0000A538  D0 04 00 0C */	stfs f0, 0xc(r4)
 /* 8000D5FC 0000A53C  4E 80 00 20 */	blr 
+.endfn adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
 
-.global adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
-adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl:
+.fn adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl, global
 /* 8000D600 0000A540  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000D604 0000A544  7C 08 02 A6 */	mflr r0
 /* 8000D608 0000A548  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1631,9 +1747,9 @@ adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27
 /* 8000D664 0000A5A4  7C 08 03 A6 */	mtlr r0
 /* 8000D668 0000A5A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D66C 0000A5AC  4E 80 00 20 */	blr 
+.endfn adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
 
-.global adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
-adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl:
+.fn adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl, global
 /* 8000D670 0000A5B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000D674 0000A5B4  7C 08 02 A6 */	mflr r0
 /* 8000D678 0000A5B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1663,9 +1779,9 @@ adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ2
 /* 8000D6D0 0000A610  7C 08 03 A6 */	mtlr r0
 /* 8000D6D4 0000A614  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D6D8 0000A618  4E 80 00 20 */	blr 
+.endfn adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl
 
-.global do_begin__Q27JStudio7TObjectFv
-do_begin__Q27JStudio7TObjectFv:
+.fn do_begin__Q27JStudio7TObjectFv, global
 /* 8000D6DC 0000A61C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000D6E0 0000A620  7C 08 02 A6 */	mflr r0
 /* 8000D6E4 0000A624  7C 64 1B 78 */	mr r4, r3
@@ -1682,6 +1798,7 @@ do_begin__Q27JStudio7TObjectFv:
 /* 8000D70C 0000A64C  7C 08 03 A6 */	mtlr r0
 /* 8000D710 0000A650  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D714 0000A654  4E 80 00 20 */	blr 
+.endfn do_begin__Q27JStudio7TObjectFv
 
 .global do_end__Q27JStudio7TObjectFv
 do_end__Q27JStudio7TObjectFv:
@@ -4495,11 +4612,11 @@ __dt__Q27JStudio13TObject_actorFv:
 "__sinit_jstudio-object_cpp":
 /* 8000FB6C 0000CAAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000FB70 0000CAB0  7C 08 02 A6 */	mflr r0
-/* 8000FB74 0000CAB4  3C A0 80 4A */	lis r5, lbl_8049F4E8@ha
+/* 8000FB74 0000CAB4  3C A0 80 4A */	lis r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>"@ha
 /* 8000FB78 0000CAB8  3C 60 80 4A */	lis r3, lbl_8049E698@ha
 /* 8000FB7C 0000CABC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8000FB80 0000CAC0  3C 80 80 4F */	lis r4, lbl_804EFCB0@ha
-/* 8000FB84 0000CAC4  39 05 F4 E8 */	addi r8, r5, lbl_8049F4E8@l
+/* 8000FB84 0000CAC4  39 05 F4 E8 */	addi r8, r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>"@l
 /* 8000FB88 0000CAC8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000FB8C 0000CACC  3B E4 FC B0 */	addi r31, r4, lbl_804EFCB0@l
 /* 8000FB90 0000CAD0  3C 80 80 01 */	lis r4, "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"@ha
@@ -4520,11 +4637,11 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FBCC 0000CB0C  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8000FBD0 0000CB10  48 0B 1B 31 */	bl __register_global_object
 /* 8000FBD4 0000CB14  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8000FBD8 0000CB18  3C A0 80 4A */	lis r5, lbl_8049F4E8@ha
+/* 8000FBD8 0000CB18  3C A0 80 4A */	lis r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>"@ha
 /* 8000FBDC 0000CB1C  38 03 F4 98 */	addi r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 8000FBE0 0000CB20  3C 80 80 01 */	lis r4, "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"@ha
 /* 8000FBE4 0000CB24  90 1F 00 28 */	stw r0, 0x28(r31)
-/* 8000FBE8 0000CB28  38 A5 F4 E8 */	addi r5, r5, lbl_8049F4E8@l
+/* 8000FBE8 0000CB28  38 A5 F4 E8 */	addi r5, r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>"@l
 /* 8000FBEC 0000CB2C  80 FE 00 0C */	lwz r7, 0xc(r30)
 /* 8000FBF0 0000CB30  38 7F 00 28 */	addi r3, r31, 0x28
 /* 8000FBF4 0000CB34  80 DE 00 10 */	lwz r6, 0x10(r30)
@@ -4537,11 +4654,11 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FC10 0000CB50  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8000FC14 0000CB54  48 0B 1A ED */	bl __register_global_object
 /* 8000FC18 0000CB58  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8000FC1C 0000CB5C  3C A0 80 4A */	lis r5, lbl_8049F4D8@ha
+/* 8000FC1C 0000CB5C  3C A0 80 4A */	lis r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>"@ha
 /* 8000FC20 0000CB60  38 03 F4 98 */	addi r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 8000FC24 0000CB64  3C 80 80 01 */	lis r4, "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"@ha
 /* 8000FC28 0000CB68  90 1F 00 44 */	stw r0, 0x44(r31)
-/* 8000FC2C 0000CB6C  38 A5 F4 D8 */	addi r5, r5, lbl_8049F4D8@l
+/* 8000FC2C 0000CB6C  38 A5 F4 D8 */	addi r5, r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>"@l
 /* 8000FC30 0000CB70  80 FE 00 18 */	lwz r7, 0x18(r30)
 /* 8000FC34 0000CB74  38 7F 00 44 */	addi r3, r31, 0x44
 /* 8000FC38 0000CB78  80 DE 00 1C */	lwz r6, 0x1c(r30)
@@ -4554,11 +4671,11 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FC54 0000CB94  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8000FC58 0000CB98  48 0B 1A A9 */	bl __register_global_object
 /* 8000FC5C 0000CB9C  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8000FC60 0000CBA0  3C A0 80 4A */	lis r5, lbl_8049F4D8@ha
+/* 8000FC60 0000CBA0  3C A0 80 4A */	lis r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>"@ha
 /* 8000FC64 0000CBA4  38 03 F4 98 */	addi r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 8000FC68 0000CBA8  3C 80 80 01 */	lis r4, "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"@ha
 /* 8000FC6C 0000CBAC  90 1F 00 60 */	stw r0, 0x60(r31)
-/* 8000FC70 0000CBB0  38 A5 F4 D8 */	addi r5, r5, lbl_8049F4D8@l
+/* 8000FC70 0000CBB0  38 A5 F4 D8 */	addi r5, r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>"@l
 /* 8000FC74 0000CBB4  80 FE 00 24 */	lwz r7, 0x24(r30)
 /* 8000FC78 0000CBB8  38 7F 00 60 */	addi r3, r31, 0x60
 /* 8000FC7C 0000CBBC  80 DE 00 28 */	lwz r6, 0x28(r30)
@@ -4571,11 +4688,11 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FC98 0000CBD8  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8000FC9C 0000CBDC  48 0B 1A 65 */	bl __register_global_object
 /* 8000FCA0 0000CBE0  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8000FCA4 0000CBE4  3C A0 80 4A */	lis r5, lbl_8049F4C8@ha
+/* 8000FCA4 0000CBE4  3C A0 80 4A */	lis r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>"@ha
 /* 8000FCA8 0000CBE8  38 03 F4 98 */	addi r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 8000FCAC 0000CBEC  3C 80 80 01 */	lis r4, "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>Fv"@ha
 /* 8000FCB0 0000CBF0  90 1F 00 7C */	stw r0, 0x7c(r31)
-/* 8000FCB4 0000CBF4  38 A5 F4 C8 */	addi r5, r5, lbl_8049F4C8@l
+/* 8000FCB4 0000CBF4  38 A5 F4 C8 */	addi r5, r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>"@l
 /* 8000FCB8 0000CBF8  80 FE 00 30 */	lwz r7, 0x30(r30)
 /* 8000FCBC 0000CBFC  38 7F 00 7C */	addi r3, r31, 0x7c
 /* 8000FCC0 0000CC00  80 DE 00 34 */	lwz r6, 0x34(r30)
@@ -4588,11 +4705,11 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FCDC 0000CC1C  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8000FCE0 0000CC20  48 0B 1A 21 */	bl __register_global_object
 /* 8000FCE4 0000CC24  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8000FCE8 0000CC28  3C A0 80 4A */	lis r5, lbl_8049F4B8@ha
+/* 8000FCE8 0000CC28  3C A0 80 4A */	lis r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>"@ha
 /* 8000FCEC 0000CC2C  38 03 F4 98 */	addi r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 8000FCF0 0000CC30  3C 80 80 01 */	lis r4, "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>Fv"@ha
 /* 8000FCF4 0000CC34  90 1F 00 98 */	stw r0, 0x98(r31)
-/* 8000FCF8 0000CC38  38 A5 F4 B8 */	addi r5, r5, lbl_8049F4B8@l
+/* 8000FCF8 0000CC38  38 A5 F4 B8 */	addi r5, r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>"@l
 /* 8000FCFC 0000CC3C  80 FE 00 3C */	lwz r7, 0x3c(r30)
 /* 8000FD00 0000CC40  38 7F 00 98 */	addi r3, r31, 0x98
 /* 8000FD04 0000CC44  80 DE 00 40 */	lwz r6, 0x40(r30)
@@ -4605,11 +4722,11 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FD20 0000CC60  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8000FD24 0000CC64  48 0B 19 DD */	bl __register_global_object
 /* 8000FD28 0000CC68  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8000FD2C 0000CC6C  3C A0 80 4A */	lis r5, lbl_8049F4A8@ha
+/* 8000FD2C 0000CC6C  3C A0 80 4A */	lis r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>"@ha
 /* 8000FD30 0000CC70  38 03 F4 98 */	addi r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 8000FD34 0000CC74  3C 80 80 01 */	lis r4, "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"@ha
 /* 8000FD38 0000CC78  90 1F 00 B4 */	stw r0, 0xb4(r31)
-/* 8000FD3C 0000CC7C  38 A5 F4 A8 */	addi r5, r5, lbl_8049F4A8@l
+/* 8000FD3C 0000CC7C  38 A5 F4 A8 */	addi r5, r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>"@l
 /* 8000FD40 0000CC80  80 FE 00 48 */	lwz r7, 0x48(r30)
 /* 8000FD44 0000CC84  38 7F 00 B4 */	addi r3, r31, 0xb4
 /* 8000FD48 0000CC88  80 DE 00 4C */	lwz r6, 0x4c(r30)
@@ -4622,11 +4739,11 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FD64 0000CCA4  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8000FD68 0000CCA8  48 0B 19 99 */	bl __register_global_object
 /* 8000FD6C 0000CCAC  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8000FD70 0000CCB0  3C A0 80 4A */	lis r5, lbl_8049F4A8@ha
+/* 8000FD70 0000CCB0  3C A0 80 4A */	lis r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>"@ha
 /* 8000FD74 0000CCB4  38 03 F4 98 */	addi r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
 /* 8000FD78 0000CCB8  3C 80 80 01 */	lis r4, "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"@ha
 /* 8000FD7C 0000CCBC  90 1F 00 D0 */	stw r0, 0xd0(r31)
-/* 8000FD80 0000CCC0  38 A5 F4 A8 */	addi r5, r5, lbl_8049F4A8@l
+/* 8000FD80 0000CCC0  38 A5 F4 A8 */	addi r5, r5, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>"@l
 /* 8000FD84 0000CCC4  80 FE 00 54 */	lwz r7, 0x54(r30)
 /* 8000FD88 0000CCC8  38 7F 00 D0 */	addi r3, r31, 0xd0
 /* 8000FD8C 0000CCCC  80 DE 00 58 */	lwz r6, 0x58(r30)
@@ -4663,8 +4780,8 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FDFC 0000CD3C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000FE00 0000CD40  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000FE04 0000CD44  41 82 00 30 */	beq .L_8000FE34
-/* 8000FE08 0000CD48  3C 60 80 4A */	lis r3, lbl_8049F4A8@ha
-/* 8000FE0C 0000CD4C  38 03 F4 A8 */	addi r0, r3, lbl_8049F4A8@l
+/* 8000FE08 0000CD48  3C 60 80 4A */	lis r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>"@ha
+/* 8000FE0C 0000CD4C  38 03 F4 A8 */	addi r0, r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>"@l
 /* 8000FE10 0000CD50  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000FE14 0000CD54  41 82 00 10 */	beq .L_8000FE24
 /* 8000FE18 0000CD58  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
@@ -4691,8 +4808,8 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FE58 0000CD98  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000FE5C 0000CD9C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000FE60 0000CDA0  41 82 00 30 */	beq .L_8000FE90
-/* 8000FE64 0000CDA4  3C 60 80 4A */	lis r3, lbl_8049F4B8@ha
-/* 8000FE68 0000CDA8  38 03 F4 B8 */	addi r0, r3, lbl_8049F4B8@l
+/* 8000FE64 0000CDA4  3C 60 80 4A */	lis r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>"@ha
+/* 8000FE68 0000CDA8  38 03 F4 B8 */	addi r0, r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>"@l
 /* 8000FE6C 0000CDAC  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000FE70 0000CDB0  41 82 00 10 */	beq .L_8000FE80
 /* 8000FE74 0000CDB4  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
@@ -4719,8 +4836,8 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FEB4 0000CDF4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000FEB8 0000CDF8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000FEBC 0000CDFC  41 82 00 30 */	beq .L_8000FEEC
-/* 8000FEC0 0000CE00  3C 60 80 4A */	lis r3, lbl_8049F4C8@ha
-/* 8000FEC4 0000CE04  38 03 F4 C8 */	addi r0, r3, lbl_8049F4C8@l
+/* 8000FEC0 0000CE00  3C 60 80 4A */	lis r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>"@ha
+/* 8000FEC4 0000CE04  38 03 F4 C8 */	addi r0, r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>"@l
 /* 8000FEC8 0000CE08  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000FECC 0000CE0C  41 82 00 10 */	beq .L_8000FEDC
 /* 8000FED0 0000CE10  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
@@ -4747,8 +4864,8 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FF10 0000CE50  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000FF14 0000CE54  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000FF18 0000CE58  41 82 00 30 */	beq .L_8000FF48
-/* 8000FF1C 0000CE5C  3C 60 80 4A */	lis r3, lbl_8049F4D8@ha
-/* 8000FF20 0000CE60  38 03 F4 D8 */	addi r0, r3, lbl_8049F4D8@l
+/* 8000FF1C 0000CE5C  3C 60 80 4A */	lis r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>"@ha
+/* 8000FF20 0000CE60  38 03 F4 D8 */	addi r0, r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>"@l
 /* 8000FF24 0000CE64  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000FF28 0000CE68  41 82 00 10 */	beq .L_8000FF38
 /* 8000FF2C 0000CE6C  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
@@ -4775,8 +4892,8 @@ __dt__Q27JStudio13TObject_actorFv:
 /* 8000FF6C 0000CEAC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000FF70 0000CEB0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000FF74 0000CEB4  41 82 00 30 */	beq .L_8000FFA4
-/* 8000FF78 0000CEB8  3C 60 80 4A */	lis r3, lbl_8049F4E8@ha
-/* 8000FF7C 0000CEBC  38 03 F4 E8 */	addi r0, r3, lbl_8049F4E8@l
+/* 8000FF78 0000CEB8  3C 60 80 4A */	lis r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>"@ha
+/* 8000FF7C 0000CEBC  38 03 F4 E8 */	addi r0, r3, "__vt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>"@l
 /* 8000FF80 0000CEC0  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000FF84 0000CEC4  41 82 00 10 */	beq .L_8000FF94
 /* 8000FF88 0000CEC8  3C 60 80 4A */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha

@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData
-isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData:
+.fn isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData, global
 /* 80010188 0000D0C8  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8001018C 0000D0CC  80 04 00 04 */	lwz r0, 4(r4)
 /* 80010190 0000D0D0  7C 05 00 40 */	cmplw r5, r0
@@ -74,3 +73,4 @@ isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6objec
 .L_80010270:
 /* 80010270 0000D1B0  38 60 00 01 */	li r3, 1
 /* 80010274 0000D1B4  4E 80 00 20 */	blr 
+.endfn isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData

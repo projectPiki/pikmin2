@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13JAIAnimeSound
-__vt__13JAIAnimeSound:
+.obj __vt__13JAIAnimeSound, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13JAIAnimeSoundFv
@@ -21,33 +20,39 @@ __vt__13JAIAnimeSound:
 	.4byte playActorAnimSound__13JAIAnimeSoundFPQ27JAInter5ActorfUc
 	.4byte startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc
 	.4byte setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+.endobj __vt__13JAIAnimeSound
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516ED8:
+.obj lbl_80516ED8, local
 	.float 0.0
-lbl_80516EDC:
+.endobj lbl_80516ED8
+.obj lbl_80516EDC, local
 	.float -1.0
-lbl_80516EE0:
+.endobj lbl_80516EDC
+.obj lbl_80516EE0, local
 	.float 127.0
-lbl_80516EE4:
+.endobj lbl_80516EE0
+.obj lbl_80516EE4, local
 	.float 1.0
-lbl_80516EE8:
+.endobj lbl_80516EE4
+.obj lbl_80516EE8, local
 	.float 0.03125
+.endobj lbl_80516EE8
 .balign 8
-lbl_80516EF0:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80516EF0, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516EF0
 .balign 8
-lbl_80516EF8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80516F00:
+.obj lbl_80516EF8, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516EF8
+.obj lbl_80516F00, local
 	.float 2.0
+.endobj lbl_80516F00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global handleStop__13JAIAnimeSoundFUcUl
-handleStop__13JAIAnimeSoundFUcUl:
+.fn handleStop__13JAIAnimeSoundFUcUl, global
 /* 800AB0EC 000A802C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AB0F0 000A8030  7C 08 02 A6 */	mflr r0
 /* 800AB0F4 000A8034  54 88 06 3E */	clrlwi r8, r4, 0x18
@@ -63,9 +68,9 @@ handleStop__13JAIAnimeSoundFUcUl:
 /* 800AB11C 000A805C  7C 08 03 A6 */	mtlr r0
 /* 800AB120 000A8060  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AB124 000A8064  4E 80 00 20 */	blr 
+.endfn handleStop__13JAIAnimeSoundFUcUl
 
-.global __ct__13JAIAnimeSoundFP3VecP7JKRHeapUc
-__ct__13JAIAnimeSoundFP3VecP7JKRHeapUc:
+.fn __ct__13JAIAnimeSoundFP3VecP7JKRHeapUc, global
 /* 800AB128 000A8068  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AB12C 000A806C  7C 08 02 A6 */	mflr r0
 /* 800AB130 000A8070  90 01 00 24 */	stw r0, 0x24(r1)
@@ -172,9 +177,9 @@ __ct__13JAIAnimeSoundFP3VecP7JKRHeapUc:
 /* 800AB2A4 000A81E4  7C 08 03 A6 */	mtlr r0
 /* 800AB2A8 000A81E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AB2AC 000A81EC  4E 80 00 20 */	blr 
+.endfn __ct__13JAIAnimeSoundFP3VecP7JKRHeapUc
 
-.global initActorAnimSound__13JAIAnimeSoundFP17JAIAnimeSoundDataUlff
-initActorAnimSound__13JAIAnimeSoundFP17JAIAnimeSoundDataUlff:
+.fn initActorAnimSound__13JAIAnimeSoundFP17JAIAnimeSoundDataUlff, global
 /* 800AB2B0 000A81F0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800AB2B4 000A81F4  7C 08 02 A6 */	mflr r0
 /* 800AB2B8 000A81F8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -284,9 +289,9 @@ initActorAnimSound__13JAIAnimeSoundFP17JAIAnimeSoundDataUlff:
 /* 800AB438 000A8378  7C 08 03 A6 */	mtlr r0
 /* 800AB43C 000A837C  38 21 00 30 */	addi r1, r1, 0x30
 /* 800AB440 000A8380  4E 80 00 20 */	blr 
+.endfn initActorAnimSound__13JAIAnimeSoundFP17JAIAnimeSoundDataUlff
 
-.global checkLoopStartCount__13JAIAnimeSoundFf
-checkLoopStartCount__13JAIAnimeSoundFf:
+.fn checkLoopStartCount__13JAIAnimeSoundFf, global
 /* 800AB444 000A8384  80 A3 00 78 */	lwz r5, 0x78(r3)
 /* 800AB448 000A8388  38 60 00 00 */	li r3, 0
 /* 800AB44C 000A838C  38 80 00 00 */	li r4, 0
@@ -304,9 +309,9 @@ checkLoopStartCount__13JAIAnimeSoundFf:
 /* 800AB478 000A83B8  38 63 00 01 */	addi r3, r3, 1
 /* 800AB47C 000A83BC  42 00 FF E4 */	bdnz .L_800AB460
 /* 800AB480 000A83C0  4E 80 00 20 */	blr 
+.endfn checkLoopStartCount__13JAIAnimeSoundFf
 
-.global checkLoopEndCount__13JAIAnimeSoundFf
-checkLoopEndCount__13JAIAnimeSoundFf:
+.fn checkLoopEndCount__13JAIAnimeSoundFf, global
 /* 800AB484 000A83C4  80 A3 00 78 */	lwz r5, 0x78(r3)
 /* 800AB488 000A83C8  38 60 00 00 */	li r3, 0
 /* 800AB48C 000A83CC  38 80 00 00 */	li r4, 0
@@ -327,9 +332,9 @@ checkLoopEndCount__13JAIAnimeSoundFf:
 /* 800AB4C0 000A8400  4C 82 00 20 */	bnelr 
 /* 800AB4C4 000A8404  7C C3 33 78 */	mr r3, r6
 /* 800AB4C8 000A8408  4E 80 00 20 */	blr 
+.endfn checkLoopEndCount__13JAIAnimeSoundFf
 
-.global setAnimSoundActor__13JAIAnimeSoundFPQ27JAInter5ActorffUc
-setAnimSoundActor__13JAIAnimeSoundFPQ27JAInter5ActorffUc:
+.fn setAnimSoundActor__13JAIAnimeSoundFPQ27JAInter5ActorffUc, global
 /* 800AB4CC 000A840C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800AB4D0 000A8410  7C 08 02 A6 */	mflr r0
 /* 800AB4D4 000A8414  90 01 00 54 */	stw r0, 0x54(r1)
@@ -685,9 +690,9 @@ setAnimSoundActor__13JAIAnimeSoundFPQ27JAInter5ActorffUc:
 /* 800AB9C4 000A8904  7C 08 03 A6 */	mtlr r0
 /* 800AB9C8 000A8908  38 21 00 50 */	addi r1, r1, 0x50
 /* 800AB9CC 000A890C  4E 80 00 20 */	blr 
+.endfn setAnimSoundActor__13JAIAnimeSoundFPQ27JAInter5ActorffUc
 
-.global playActorAnimSound__13JAIAnimeSoundFPQ27JAInter5ActorfUc
-playActorAnimSound__13JAIAnimeSoundFPQ27JAInter5ActorfUc:
+.fn playActorAnimSound__13JAIAnimeSoundFPQ27JAInter5ActorfUc, global
 /* 800AB9D0 000A8910  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800AB9D4 000A8914  7C 08 02 A6 */	mflr r0
 /* 800AB9D8 000A8918  90 01 00 54 */	stw r0, 0x54(r1)
@@ -859,9 +864,9 @@ playActorAnimSound__13JAIAnimeSoundFPQ27JAInter5ActorfUc:
 /* 800ABC44 000A8B84  7C 08 03 A6 */	mtlr r0
 /* 800ABC48 000A8B88  38 21 00 50 */	addi r1, r1, 0x50
 /* 800ABC4C 000A8B8C  4E 80 00 20 */	blr 
+.endfn playActorAnimSound__13JAIAnimeSoundFPQ27JAInter5ActorfUc
 
-.global startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc
-startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc:
+.fn startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc, global
 /* 800ABC50 000A8B90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ABC54 000A8B94  7C 08 02 A6 */	mflr r0
 /* 800ABC58 000A8B98  7C E8 3B 78 */	mr r8, r7
@@ -882,9 +887,9 @@ startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc:
 /* 800ABC90 000A8BD0  7C 08 03 A6 */	mtlr r0
 /* 800ABC94 000A8BD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ABC98 000A8BD8  4E 80 00 20 */	blr 
+.endfn startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc
 
-.global setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
-setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf:
+.fn setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf, global
 /* 800ABC9C 000A8BDC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800ABCA0 000A8BE0  7C 08 02 A6 */	mflr r0
 /* 800ABCA4 000A8BE4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -967,9 +972,9 @@ setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf:
 /* 800ABDCC 000A8D0C  7C 08 03 A6 */	mtlr r0
 /* 800ABDD0 000A8D10  38 21 00 30 */	addi r1, r1, 0x30
 /* 800ABDD4 000A8D14  4E 80 00 20 */	blr 
+.endfn setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
 
-.global __dt__13JAIAnimeSoundFv
-__dt__13JAIAnimeSoundFv:
+.fn __dt__13JAIAnimeSoundFv, weak
 /* 800ABDD8 000A8D18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ABDDC 000A8D1C  7C 08 02 A6 */	mflr r0
 /* 800ABDE0 000A8D20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -995,9 +1000,10 @@ __dt__13JAIAnimeSoundFv:
 /* 800ABE2C 000A8D6C  7C 08 03 A6 */	mtlr r0
 /* 800ABE30 000A8D70  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ABE34 000A8D74  4E 80 00 20 */	blr 
+.endfn __dt__13JAIAnimeSoundFv
 
-.global enable__Q27JAInter10ObjectBaseFv
-enable__Q27JAInter10ObjectBaseFv:
+.fn enable__Q27JAInter10ObjectBaseFv, weak
 /* 800ABE38 000A8D78  38 00 00 01 */	li r0, 1
 /* 800ABE3C 000A8D7C  98 03 00 18 */	stb r0, 0x18(r3)
 /* 800ABE40 000A8D80  4E 80 00 20 */	blr 
+.endfn enable__Q27JAInter10ObjectBaseFv

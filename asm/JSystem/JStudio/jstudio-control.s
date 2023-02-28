@@ -1,15 +1,15 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80473340:
+.obj lbl_80473340, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80473340
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q27JStudio6TParse
-__vt__Q27JStudio6TParse:
+.obj __vt__Q27JStudio6TParse, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio6TParseFv
@@ -18,35 +18,37 @@ __vt__Q27JStudio6TParse:
 	.4byte parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
 	.4byte parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
 	.4byte parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl
-.global __vt__Q27JStudio8TFactory
-__vt__Q27JStudio8TFactory:
+.endobj __vt__Q27JStudio6TParse
+.obj __vt__Q27JStudio8TFactory, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio8TFactoryFv
 	.4byte create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object
 	.4byte destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
-.global __vt__Q27JStudio13TCreateObject
-__vt__Q27JStudio13TCreateObject:
+.endobj __vt__Q27JStudio8TFactory
+.obj __vt__Q27JStudio13TCreateObject, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q27JStudio8TControl
-__vt__Q27JStudio8TControl:
+.endobj __vt__Q27JStudio13TCreateObject
+.obj __vt__Q27JStudio8TControl, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JStudio8TControlFv
+.endobj __vt__Q27JStudio8TControl
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805163F8:
+.obj lbl_805163F8, local
 	.float 0.0
-lbl_805163FC:
+.endobj lbl_805163F8
+.obj lbl_805163FC, local
 	.float 0.017453292
+.endobj lbl_805163FC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q27JStudio8TControlFv
-__ct__Q27JStudio8TControlFv:
+.fn __ct__Q27JStudio8TControlFv, global
 /* 8000CAA4 000099E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8000CAA8 000099E8  7C 08 02 A6 */	mflr r0
 /* 8000CAAC 000099EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -83,9 +85,9 @@ __ct__Q27JStudio8TControlFv:
 /* 8000CB28 00009A68  7C 08 03 A6 */	mtlr r0
 /* 8000CB2C 00009A6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8000CB30 00009A70  4E 80 00 20 */	blr 
+.endfn __ct__Q27JStudio8TControlFv
 
-.global __dt__Q27JStudio8TControlFv
-__dt__Q27JStudio8TControlFv:
+.fn __dt__Q27JStudio8TControlFv, global
 /* 8000CB34 00009A74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000CB38 00009A78  7C 08 02 A6 */	mflr r0
 /* 8000CB3C 00009A7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -115,9 +117,9 @@ __dt__Q27JStudio8TControlFv:
 /* 8000CB98 00009AD8  7C 08 03 A6 */	mtlr r0
 /* 8000CB9C 00009ADC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000CBA0 00009AE0  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio8TControlFv
 
-.global transformOnSet_setOrigin__Q27JStudio8TControlFRC3Vecf
-transformOnSet_setOrigin__Q27JStudio8TControlFRC3Vecf:
+.fn transformOnSet_setOrigin__Q27JStudio8TControlFRC3Vecf, global
 /* 8000CBA4 00009AE4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8000CBA8 00009AE8  7C 08 02 A6 */	mflr r0
 /* 8000CBAC 00009AEC  C0 44 00 00 */	lfs f2, 0(r4)
@@ -150,9 +152,9 @@ transformOnSet_setOrigin__Q27JStudio8TControlFRC3Vecf:
 /* 8000CC18 00009B58  7C 08 03 A6 */	mtlr r0
 /* 8000CC1C 00009B5C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8000CC20 00009B60  4E 80 00 20 */	blr 
+.endfn transformOnSet_setOrigin__Q27JStudio8TControlFRC3Vecf
 
-.global transformOnGet_setOrigin__Q27JStudio8TControlFRC3Vecf
-transformOnGet_setOrigin__Q27JStudio8TControlFRC3Vecf:
+.fn transformOnGet_setOrigin__Q27JStudio8TControlFRC3Vecf, global
 /* 8000CC24 00009B64  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8000CC28 00009B68  7C 08 02 A6 */	mflr r0
 /* 8000CC2C 00009B6C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -190,9 +192,9 @@ transformOnGet_setOrigin__Q27JStudio8TControlFRC3Vecf:
 /* 8000CCAC 00009BEC  7C 08 03 A6 */	mtlr r0
 /* 8000CCB0 00009BF0  38 21 00 80 */	addi r1, r1, 0x80
 /* 8000CCB4 00009BF4  4E 80 00 20 */	blr 
+.endfn transformOnGet_setOrigin__Q27JStudio8TControlFRC3Vecf
 
-.global __dt__Q27JStudio13TCreateObjectFv
-__dt__Q27JStudio13TCreateObjectFv:
+.fn __dt__Q27JStudio13TCreateObjectFv, global
 /* 8000CCB8 00009BF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000CCBC 00009BFC  7C 08 02 A6 */	mflr r0
 /* 8000CCC0 00009C00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -212,9 +214,9 @@ __dt__Q27JStudio13TCreateObjectFv:
 /* 8000CCF4 00009C34  7C 08 03 A6 */	mtlr r0
 /* 8000CCF8 00009C38  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000CCFC 00009C3C  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio13TCreateObjectFv
 
-.global __dt__Q27JStudio8TFactoryFv
-__dt__Q27JStudio8TFactoryFv:
+.fn __dt__Q27JStudio8TFactoryFv, global
 /* 8000CD00 00009C40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000CD04 00009C44  7C 08 02 A6 */	mflr r0
 /* 8000CD08 00009C48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -250,9 +252,9 @@ __dt__Q27JStudio8TFactoryFv:
 /* 8000CD78 00009CB8  7C 08 03 A6 */	mtlr r0
 /* 8000CD7C 00009CBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000CD80 00009CC0  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio8TFactoryFv
 
-.global appendCreateObject__Q27JStudio8TFactoryFPQ27JStudio13TCreateObject
-appendCreateObject__Q27JStudio8TFactoryFPQ27JStudio13TCreateObject:
+.fn appendCreateObject__Q27JStudio8TFactoryFPQ27JStudio13TCreateObject, global
 /* 8000CD84 00009CC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8000CD88 00009CC8  7C 08 02 A6 */	mflr r0
 /* 8000CD8C 00009CCC  7C 65 1B 78 */	mr r5, r3
@@ -273,9 +275,9 @@ appendCreateObject__Q27JStudio8TFactoryFPQ27JStudio13TCreateObject:
 /* 8000CDC8 00009D08  7C 08 03 A6 */	mtlr r0
 /* 8000CDCC 00009D0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8000CDD0 00009D10  4E 80 00 20 */	blr 
+.endfn appendCreateObject__Q27JStudio8TFactoryFPQ27JStudio13TCreateObject
 
-.global create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object
-create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object:
+.fn create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object, global
 /* 8000CDD4 00009D14  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8000CDD8 00009D18  7C 08 02 A6 */	mflr r0
 /* 8000CDDC 00009D1C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -324,9 +326,9 @@ create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object:
 /* 8000CE7C 00009DBC  7C 08 03 A6 */	mtlr r0
 /* 8000CE80 00009DC0  38 21 00 50 */	addi r1, r1, 0x50
 /* 8000CE84 00009DC4  4E 80 00 20 */	blr 
+.endfn create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object
 
-.global __ct__Q27JStudio6TParseFPQ27JStudio8TControl
-__ct__Q27JStudio6TParseFPQ27JStudio8TControl:
+.fn __ct__Q27JStudio6TParseFPQ27JStudio8TControl, global
 /* 8000CE88 00009DC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000CE8C 00009DCC  7C 08 02 A6 */	mflr r0
 /* 8000CE90 00009DD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -348,9 +350,9 @@ __ct__Q27JStudio6TParseFPQ27JStudio8TControl:
 /* 8000CED0 00009E10  7C 08 03 A6 */	mtlr r0
 /* 8000CED4 00009E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000CED8 00009E18  4E 80 00 20 */	blr 
+.endfn __ct__Q27JStudio6TParseFPQ27JStudio8TControl
 
-.global __dt__Q27JStudio6TParseFv
-__dt__Q27JStudio6TParseFv:
+.fn __dt__Q27JStudio6TParseFv, global
 /* 8000CEDC 00009E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000CEE0 00009E20  7C 08 02 A6 */	mflr r0
 /* 8000CEE4 00009E24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -380,9 +382,9 @@ __dt__Q27JStudio6TParseFv:
 /* 8000CF40 00009E80  7C 08 03 A6 */	mtlr r0
 /* 8000CF44 00009E84  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000CF48 00009E88  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio6TParseFv
 
-.global parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
-parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl:
+.fn parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl, global
 /* 8000CF4C 00009E8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000CF50 00009E90  7C 08 02 A6 */	mflr r0
 /* 8000CF54 00009E94  80 64 00 00 */	lwz r3, 0(r4)
@@ -416,9 +418,9 @@ parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl:
 /* 8000CFB8 00009EF8  7C 08 03 A6 */	mtlr r0
 /* 8000CFBC 00009EFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000CFC0 00009F00  4E 80 00 20 */	blr 
+.endfn parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
 
-.global parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
-parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl:
+.fn parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl, global
 /* 8000CFC4 00009F04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000CFC8 00009F08  7C 08 02 A6 */	mflr r0
 /* 8000CFCC 00009F0C  80 E4 00 00 */	lwz r7, 0(r4)
@@ -439,9 +441,9 @@ parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl:
 /* 8000CFFC 00009F3C  7C 08 03 A6 */	mtlr r0
 /* 8000D000 00009F40  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D004 00009F44  4E 80 00 20 */	blr 
+.endfn parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
 
-.global parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
-parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl:
+.fn parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl, global
 /* 8000D008 00009F48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000D00C 00009F4C  7C 08 02 A6 */	mflr r0
 /* 8000D010 00009F50  80 84 00 00 */	lwz r4, 0(r4)
@@ -469,3 +471,4 @@ parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl:
 /* 8000D05C 00009F9C  7C 08 03 A6 */	mtlr r0
 /* 8000D060 00009FA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000D064 00009FA4  4E 80 00 20 */	blr 
+.endfn parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl

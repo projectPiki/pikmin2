@@ -1,31 +1,38 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516448:
+.obj lbl_80516448, local
 	.float 0.017453292
-lbl_8051644C:
+.endobj lbl_80516448
+.obj lbl_8051644C, local
 	.float 0.0
+.endobj lbl_8051644C
 .balign 8
-lbl_80516450:
+.obj lbl_80516450, local
 	.double 0.0
+.endobj lbl_80516450
 .balign 8
-lbl_80516458:
+.obj lbl_80516458, local
 	.double 1.0
-lbl_80516460:
+.endobj lbl_80516458
+.obj lbl_80516460, local
 	.float 32.0
+.endobj lbl_80516460
 .balign 8
-lbl_80516468:
+.obj lbl_80516468, local
 	.double -1.5707963267948966
+.endobj lbl_80516468
 .balign 8
-lbl_80516470:
+.obj lbl_80516470, local
 	.double 1.5707963267948966
+.endobj lbl_80516470
 .balign 8
-lbl_80516478:
+.obj lbl_80516478, local
 	.double 57.29577951308232
+.endobj lbl_80516478
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec
-getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec:
+.fn getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec, global
 /* 80010FC4 0000DF04  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 80010FC8 0000DF08  7C 08 02 A6 */	mflr r0
 /* 80010FCC 0000DF0C  90 01 01 14 */	stw r0, 0x114(r1)
@@ -134,9 +141,9 @@ getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec:
 /* 80011168 0000E0A8  7C 08 03 A6 */	mtlr r0
 /* 8001116C 0000E0AC  38 21 01 10 */	addi r1, r1, 0x110
 /* 80011170 0000E0B0  4E 80 00 20 */	blr 
+.endfn getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec
 
-.global getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf
-getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf:
+.fn getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf, global
 /* 80011174 0000E0B4  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80011178 0000E0B8  7C 08 02 A6 */	mflr r0
 /* 8001117C 0000E0BC  90 01 00 84 */	stw r0, 0x84(r1)
@@ -292,3 +299,4 @@ getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf:
 /* 800113BC 0000E2FC  7C 08 03 A6 */	mtlr r0
 /* 800113C0 0000E300  38 21 00 80 */	addi r1, r1, 0x80
 /* 800113C4 0000E304  4E 80 00 20 */	blr 
+.endfn getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf

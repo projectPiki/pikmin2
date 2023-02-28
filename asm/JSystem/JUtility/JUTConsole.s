@@ -1,47 +1,59 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__10JUTConsole
-__vt__10JUTConsole:
+.obj __vt__10JUTConsole, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__10JUTConsoleFv
+.endobj __vt__10JUTConsole
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sManager__17JUTConsoleManager
-sManager__17JUTConsoleManager:
+.obj sManager__17JUTConsoleManager, global
 	.skip 0x4
-sReportConsole: # local object
+.endobj sManager__17JUTConsoleManager
+.obj sReportConsole, local
 	.skip 0x4
-sWarningConsole: # local object
+.endobj sReportConsole
+.obj sWarningConsole, local
 	.skip 0x4
+.endobj sWarningConsole
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516568:
+.obj lbl_80516568, local
 	.float 2.0
-lbl_8051656C:
+.endobj lbl_80516568
+.obj lbl_8051656C, local
 	.float 0.0
-lbl_80516570:
+.endobj lbl_8051656C
+.obj lbl_80516570, local
 	.float 640.0
-lbl_80516574:
+.endobj lbl_80516570
+.obj lbl_80516574, local
 	.float 480.0
-lbl_80516578:
+.endobj lbl_80516574
+.obj lbl_80516578, local
 	.float -1.0
-lbl_8051657C:
+.endobj lbl_80516578
+.obj lbl_8051657C, local
 	.float 1.0
-lbl_80516580:
+.endobj lbl_8051657C
+.obj lbl_80516580, local
 	.float 4.0
+.endobj lbl_80516580
 .balign 8
-lbl_80516588:
+.obj lbl_80516588, local
 	.8byte 0x4330000000000000
+.endobj lbl_80516588
 .balign 8
-lbl_80516590:
+.obj lbl_80516590, local
 	.8byte 0x4330000080000000
+.endobj lbl_80516590
 .balign 4
-lbl_80516598:
+.obj lbl_80516598, local
 	.asciz "%s"
+.endobj lbl_80516598
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__10JUTConsoleFUiUiP7JKRHeap
