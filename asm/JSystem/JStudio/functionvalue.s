@@ -130,12 +130,11 @@
 .endobj lbl_805163E8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global extrapolateParameter_raw__Q27JStudio13functionvalueFdd
-extrapolateParameter_raw__Q27JStudio13functionvalueFdd: # weak function
+.fn extrapolateParameter_raw__Q27JStudio13functionvalueFdd, weak
 /* 80008A80 000059C0  4E 80 00 20 */	blr 
+.endfn extrapolateParameter_raw__Q27JStudio13functionvalueFdd
 
-.global extrapolateParameter_repeat__Q27JStudio13functionvalueFdd
-extrapolateParameter_repeat__Q27JStudio13functionvalueFdd: # weak function
+.fn extrapolateParameter_repeat__Q27JStudio13functionvalueFdd, weak
 /* 80008A84 000059C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008A88 000059C8  7C 08 02 A6 */	mflr r0
 /* 80008A8C 000059CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -152,9 +151,9 @@ extrapolateParameter_repeat__Q27JStudio13functionvalueFdd: # weak function
 /* 80008AB4 000059F4  7C 08 03 A6 */	mtlr r0
 /* 80008AB8 000059F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008ABC 000059FC  4E 80 00 20 */	blr 
+.endfn extrapolateParameter_repeat__Q27JStudio13functionvalueFdd
 
-.global extrapolateParameter_clamp__Q27JStudio13functionvalueFdd
-extrapolateParameter_clamp__Q27JStudio13functionvalueFdd:
+.fn extrapolateParameter_clamp__Q27JStudio13functionvalueFdd, weak
 /* 80008AC0 00005A00  C8 02 80 40 */	lfd f0, lbl_805163A0@sda21(r2)
 /* 80008AC4 00005A04  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80008AC8 00005A08  4C 40 13 82 */	cror 2, 0, 2
@@ -167,9 +166,9 @@ extrapolateParameter_clamp__Q27JStudio13functionvalueFdd:
 /* 80008AE0 00005A20  4C 82 00 20 */	bnelr 
 /* 80008AE4 00005A24  FC 20 10 90 */	fmr f1, f2
 /* 80008AE8 00005A28  4E 80 00 20 */	blr 
+.endfn extrapolateParameter_clamp__Q27JStudio13functionvalueFdd
 
-.global toFunction_outside__Q27JStudio14TFunctionValueFi
-toFunction_outside__Q27JStudio14TFunctionValueFi:
+.fn toFunction_outside__Q27JStudio14TFunctionValueFi, global
 /* 80008AEC 00005A2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008AF0 00005A30  38 00 00 00 */	li r0, 0
 /* 80008AF4 00005A34  28 03 00 04 */	cmplwi r3, 4
@@ -190,9 +189,9 @@ toFunction_outside__Q27JStudio14TFunctionValueFi:
 .L_80008B2C:
 /* 80008B2C 00005A6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008B30 00005A70  4E 80 00 20 */	blr 
+.endfn toFunction_outside__Q27JStudio14TFunctionValueFi
 
-.global __dt__Q27JStudio14TFunctionValueFv
-__dt__Q27JStudio14TFunctionValueFv:
+.fn __dt__Q27JStudio14TFunctionValueFv, global
 /* 80008B34 00005A74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008B38 00005A78  7C 08 02 A6 */	mflr r0
 /* 80008B3C 00005A7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -212,9 +211,9 @@ __dt__Q27JStudio14TFunctionValueFv:
 /* 80008B70 00005AB0  7C 08 03 A6 */	mtlr r0
 /* 80008B74 00005AB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008B78 00005AB8  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio14TFunctionValueFv
 
-.global extrapolateParameter_turn__Q27JStudio13functionvalueFdd
-extrapolateParameter_turn__Q27JStudio13functionvalueFdd:
+.fn extrapolateParameter_turn__Q27JStudio13functionvalueFdd, global
 /* 80008B7C 00005ABC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80008B80 00005AC0  7C 08 02 A6 */	mflr r0
 /* 80008B84 00005AC4  C8 02 80 78 */	lfd f0, lbl_805163D8@sda21(r2)
@@ -241,17 +240,17 @@ extrapolateParameter_turn__Q27JStudio13functionvalueFdd:
 /* 80008BD0 00005B10  7C 08 03 A6 */	mtlr r0
 /* 80008BD4 00005B14  38 21 00 20 */	addi r1, r1, 0x20
 /* 80008BD8 00005B18  4E 80 00 20 */	blr 
+.endfn extrapolateParameter_turn__Q27JStudio13functionvalueFdd
 
-.global range_set__Q27JStudio29TFunctionValueAttribute_rangeFdd
-range_set__Q27JStudio29TFunctionValueAttribute_rangeFdd:
+.fn range_set__Q27JStudio29TFunctionValueAttribute_rangeFdd, global
 /* 80008BDC 00005B1C  D8 23 00 00 */	stfd f1, 0(r3)
 /* 80008BE0 00005B20  FC 02 08 28 */	fsub f0, f2, f1
 /* 80008BE4 00005B24  D8 43 00 08 */	stfd f2, 8(r3)
 /* 80008BE8 00005B28  D8 03 00 10 */	stfd f0, 0x10(r3)
 /* 80008BEC 00005B2C  4E 80 00 20 */	blr 
+.endfn range_set__Q27JStudio29TFunctionValueAttribute_rangeFdd
 
-.global __ct__Q27JStudio24TFunctionValue_compositeFv
-__ct__Q27JStudio24TFunctionValue_compositeFv:
+.fn __ct__Q27JStudio24TFunctionValue_compositeFv, global
 /* 80008BF0 00005B30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80008BF4 00005B34  7C 08 02 A6 */	mflr r0
 /* 80008BF8 00005B38  3C 80 80 4A */	lis r4, __vt__Q27JStudio14TFunctionValue@ha
@@ -277,14 +276,14 @@ __ct__Q27JStudio24TFunctionValue_compositeFv:
 /* 80008C48 00005B88  7C 08 03 A6 */	mtlr r0
 /* 80008C4C 00005B8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80008C50 00005B90  4E 80 00 20 */	blr 
+.endfn __ct__Q27JStudio24TFunctionValue_compositeFv
 
-.global getType__Q27JStudio24TFunctionValue_compositeCFv
-getType__Q27JStudio24TFunctionValue_compositeCFv:
+.fn getType__Q27JStudio24TFunctionValue_compositeCFv, global
 /* 80008C54 00005B94  38 60 00 01 */	li r3, 1
 /* 80008C58 00005B98  4E 80 00 20 */	blr 
+.endfn getType__Q27JStudio24TFunctionValue_compositeCFv
 
-.global getAttributeSet__Q27JStudio24TFunctionValue_compositeFv
-getAttributeSet__Q27JStudio24TFunctionValue_compositeFv:
+.fn getAttributeSet__Q27JStudio24TFunctionValue_compositeFv, global
 /* 80008C5C 00005B9C  28 04 00 00 */	cmplwi r4, 0
 /* 80008C60 00005BA0  41 82 00 08 */	beq .L_80008C68
 /* 80008C64 00005BA4  38 84 00 04 */	addi r4, r4, 4
@@ -294,9 +293,9 @@ getAttributeSet__Q27JStudio24TFunctionValue_compositeFv:
 /* 80008C70 00005BB0  90 03 00 04 */	stw r0, 4(r3)
 /* 80008C74 00005BB4  90 03 00 08 */	stw r0, 8(r3)
 /* 80008C78 00005BB8  4E 80 00 20 */	blr 
+.endfn getAttributeSet__Q27JStudio24TFunctionValue_compositeFv
 
-.global initialize__Q27JStudio24TFunctionValue_compositeFv
-initialize__Q27JStudio24TFunctionValue_compositeFv:
+.fn initialize__Q27JStudio24TFunctionValue_compositeFv, global
 /* 80008C7C 00005BBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80008C80 00005BC0  7C 08 02 A6 */	mflr r0
 /* 80008C84 00005BC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -316,13 +315,13 @@ initialize__Q27JStudio24TFunctionValue_compositeFv:
 /* 80008CBC 00005BFC  7C 08 03 A6 */	mtlr r0
 /* 80008CC0 00005C00  38 21 00 20 */	addi r1, r1, 0x20
 /* 80008CC4 00005C04  4E 80 00 20 */	blr 
+.endfn initialize__Q27JStudio24TFunctionValue_compositeFv
 
-.global prepare__Q27JStudio24TFunctionValue_compositeFv
-prepare__Q27JStudio24TFunctionValue_compositeFv:
+.fn prepare__Q27JStudio24TFunctionValue_compositeFv, global
 /* 80008CC8 00005C08  4E 80 00 20 */	blr 
+.endfn prepare__Q27JStudio24TFunctionValue_compositeFv
 
-.global getValue__Q27JStudio24TFunctionValue_compositeFd
-getValue__Q27JStudio24TFunctionValue_compositeFd:
+.fn getValue__Q27JStudio24TFunctionValue_compositeFd, global
 /* 80008CCC 00005C0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008CD0 00005C10  7C 08 02 A6 */	mflr r0
 /* 80008CD4 00005C14  7C 64 1B 78 */	mr r4, r3
@@ -336,9 +335,9 @@ getValue__Q27JStudio24TFunctionValue_compositeFd:
 /* 80008CF4 00005C34  7C 08 03 A6 */	mtlr r0
 /* 80008CF8 00005C38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008CFC 00005C3C  4E 80 00 20 */	blr 
+.endfn getValue__Q27JStudio24TFunctionValue_compositeFd
 
-.global "composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.fn "composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad", global
 /* 80008D00 00005C40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008D04 00005C44  7C 08 02 A6 */	mflr r0
 /* 80008D08 00005C48  80 A3 00 04 */	lwz r5, 4(r3)
@@ -370,9 +369,9 @@ getValue__Q27JStudio24TFunctionValue_compositeFd:
 /* 80008D60 00005CA0  7C 08 03 A6 */	mtlr r0
 /* 80008D64 00005CA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008D68 00005CA8  4E 80 00 20 */	blr 
+.endfn "composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
 
-.global "composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.fn "composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad", global
 /* 80008D6C 00005CAC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80008D70 00005CB0  7C 08 02 A6 */	mflr r0
 /* 80008D74 00005CB4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -475,9 +474,9 @@ getValue__Q27JStudio24TFunctionValue_compositeFd:
 /* 80008ECC 00005E0C  7C 08 03 A6 */	mtlr r0
 /* 80008ED0 00005E10  38 21 00 40 */	addi r1, r1, 0x40
 /* 80008ED4 00005E14  4E 80 00 20 */	blr 
+.endfn "composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
 
-.global "composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.fn "composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad", global
 /* 80008ED8 00005E18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008EDC 00005E1C  7C 08 02 A6 */	mflr r0
 /* 80008EE0 00005E20  C8 04 00 00 */	lfd f0, 0(r4)
@@ -506,9 +505,9 @@ getValue__Q27JStudio24TFunctionValue_compositeFd:
 /* 80008F34 00005E74  7C 08 03 A6 */	mtlr r0
 /* 80008F38 00005E78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80008F3C 00005E7C  4E 80 00 20 */	blr 
+.endfn "composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
 
-.global "composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.fn "composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad", global
 /* 80008F40 00005E80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80008F44 00005E84  7C 08 02 A6 */	mflr r0
 /* 80008F48 00005E88  80 A3 00 08 */	lwz r5, 8(r3)
@@ -544,9 +543,9 @@ getValue__Q27JStudio24TFunctionValue_compositeFd:
 /* 80008FB8 00005EF8  7C 08 03 A6 */	mtlr r0
 /* 80008FBC 00005EFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80008FC0 00005F00  4E 80 00 20 */	blr 
+.endfn "composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
 
-.global "composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.fn "composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad", global
 /* 80008FC4 00005F04  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80008FC8 00005F08  7C 08 02 A6 */	mflr r0
 /* 80008FCC 00005F0C  80 A3 00 04 */	lwz r5, 4(r3)
@@ -611,9 +610,9 @@ getValue__Q27JStudio24TFunctionValue_compositeFd:
 /* 800090A0 00005FE0  7C 08 03 A6 */	mtlr r0
 /* 800090A4 00005FE4  38 21 00 30 */	addi r1, r1, 0x30
 /* 800090A8 00005FE8  4E 80 00 20 */	blr 
+.endfn "composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
 
-.global "composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.fn "composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad", global
 /* 800090AC 00005FEC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800090B0 00005FF0  7C 08 02 A6 */	mflr r0
 /* 800090B4 00005FF4  80 A3 00 08 */	lwz r5, 8(r3)
@@ -649,9 +648,9 @@ getValue__Q27JStudio24TFunctionValue_compositeFd:
 /* 80009124 00006064  7C 08 03 A6 */	mtlr r0
 /* 80009128 00006068  38 21 00 20 */	addi r1, r1, 0x20
 /* 8000912C 0000606C  4E 80 00 20 */	blr 
+.endfn "composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
 
-.global "composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
-"composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad":
+.fn "composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad", global
 /* 80009130 00006070  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80009134 00006074  7C 08 02 A6 */	mflr r0
 /* 80009138 00006078  80 A3 00 04 */	lwz r5, 4(r3)
@@ -716,9 +715,9 @@ getValue__Q27JStudio24TFunctionValue_compositeFd:
 /* 8000920C 0000614C  7C 08 03 A6 */	mtlr r0
 /* 80009210 00006150  38 21 00 30 */	addi r1, r1, 0x30
 /* 80009214 00006154  4E 80 00 20 */	blr 
+.endfn "composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
 
-.global __ct__Q27JStudio23TFunctionValue_constantFv
-__ct__Q27JStudio23TFunctionValue_constantFv:
+.fn __ct__Q27JStudio23TFunctionValue_constantFv, global
 /* 80009218 00006158  3C C0 80 4A */	lis r6, __vt__Q27JStudio14TFunctionValue@ha
 /* 8000921C 0000615C  3C A0 80 4A */	lis r5, __vt__Q27JStudio23TFunctionValue_constant@ha
 /* 80009220 00006160  38 C6 E5 28 */	addi r6, r6, __vt__Q27JStudio14TFunctionValue@l
@@ -729,38 +728,38 @@ __ct__Q27JStudio23TFunctionValue_constantFv:
 /* 80009234 00006174  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 80009238 00006178  D8 03 00 08 */	stfd f0, 8(r3)
 /* 8000923C 0000617C  4E 80 00 20 */	blr 
+.endfn __ct__Q27JStudio23TFunctionValue_constantFv
 
-.global getType__Q27JStudio23TFunctionValue_constantCFv
-getType__Q27JStudio23TFunctionValue_constantCFv:
+.fn getType__Q27JStudio23TFunctionValue_constantCFv, global
 /* 80009240 00006180  38 60 00 02 */	li r3, 2
 /* 80009244 00006184  4E 80 00 20 */	blr 
+.endfn getType__Q27JStudio23TFunctionValue_constantCFv
 
-.global getAttributeSet__Q27JStudio23TFunctionValue_constantFv
-getAttributeSet__Q27JStudio23TFunctionValue_constantFv:
+.fn getAttributeSet__Q27JStudio23TFunctionValue_constantFv, global
 /* 80009248 00006188  38 00 00 00 */	li r0, 0
 /* 8000924C 0000618C  90 03 00 00 */	stw r0, 0(r3)
 /* 80009250 00006190  90 03 00 04 */	stw r0, 4(r3)
 /* 80009254 00006194  90 03 00 08 */	stw r0, 8(r3)
 /* 80009258 00006198  4E 80 00 20 */	blr 
+.endfn getAttributeSet__Q27JStudio23TFunctionValue_constantFv
 
-.global initialize__Q27JStudio23TFunctionValue_constantFv
-initialize__Q27JStudio23TFunctionValue_constantFv:
+.fn initialize__Q27JStudio23TFunctionValue_constantFv, global
 /* 8000925C 0000619C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80009260 000061A0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 80009264 000061A4  D8 03 00 08 */	stfd f0, 8(r3)
 /* 80009268 000061A8  4E 80 00 20 */	blr 
+.endfn initialize__Q27JStudio23TFunctionValue_constantFv
 
-.global prepare__Q27JStudio23TFunctionValue_constantFv
-prepare__Q27JStudio23TFunctionValue_constantFv:
+.fn prepare__Q27JStudio23TFunctionValue_constantFv, global
 /* 8000926C 000061AC  4E 80 00 20 */	blr 
+.endfn prepare__Q27JStudio23TFunctionValue_constantFv
 
-.global getValue__Q27JStudio23TFunctionValue_constantFd
-getValue__Q27JStudio23TFunctionValue_constantFd:
+.fn getValue__Q27JStudio23TFunctionValue_constantFd, global
 /* 80009270 000061B0  C8 23 00 08 */	lfd f1, 8(r3)
 /* 80009274 000061B4  4E 80 00 20 */	blr 
+.endfn getValue__Q27JStudio23TFunctionValue_constantFd
 
-.global __ct__Q27JStudio25TFunctionValue_transitionFv
-__ct__Q27JStudio25TFunctionValue_transitionFv:
+.fn __ct__Q27JStudio25TFunctionValue_transitionFv, global
 /* 80009278 000061B8  3C C0 80 4A */	lis r6, __vt__Q27JStudio14TFunctionValue@ha
 /* 8000927C 000061BC  3C A0 80 51 */	lis r5, __float_nan@ha
 /* 80009280 000061C0  38 06 E5 28 */	addi r0, r6, __vt__Q27JStudio14TFunctionValue@l
@@ -790,14 +789,14 @@ __ct__Q27JStudio25TFunctionValue_transitionFv:
 /* 800092E0 00006220  C8 03 00 48 */	lfd f0, 0x48(r3)
 /* 800092E4 00006224  D8 03 00 50 */	stfd f0, 0x50(r3)
 /* 800092E8 00006228  4E 80 00 20 */	blr 
+.endfn __ct__Q27JStudio25TFunctionValue_transitionFv
 
-.global getType__Q27JStudio25TFunctionValue_transitionCFv
-getType__Q27JStudio25TFunctionValue_transitionCFv:
+.fn getType__Q27JStudio25TFunctionValue_transitionCFv, global
 /* 800092EC 0000622C  38 60 00 03 */	li r3, 3
 /* 800092F0 00006230  4E 80 00 20 */	blr 
+.endfn getType__Q27JStudio25TFunctionValue_transitionCFv
 
-.global getAttributeSet__Q27JStudio25TFunctionValue_transitionFv
-getAttributeSet__Q27JStudio25TFunctionValue_transitionFv:
+.fn getAttributeSet__Q27JStudio25TFunctionValue_transitionFv, global
 /* 800092F4 00006234  28 04 00 00 */	cmplwi r4, 0
 /* 800092F8 00006238  7C 85 23 78 */	mr r5, r4
 /* 800092FC 0000623C  41 82 00 08 */	beq .L_80009304
@@ -812,9 +811,9 @@ getAttributeSet__Q27JStudio25TFunctionValue_transitionFv:
 /* 80009318 00006258  90 83 00 04 */	stw r4, 4(r3)
 /* 8000931C 0000625C  90 A3 00 08 */	stw r5, 8(r3)
 /* 80009320 00006260  4E 80 00 20 */	blr 
+.endfn getAttributeSet__Q27JStudio25TFunctionValue_transitionFv
 
-.global initialize__Q27JStudio25TFunctionValue_transitionFv
-initialize__Q27JStudio25TFunctionValue_transitionFv:
+.fn initialize__Q27JStudio25TFunctionValue_transitionFv, global
 /* 80009324 00006264  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80009328 00006268  C4 04 48 B0 */	lfsu f0, __float_nan@l(r4)
 /* 8000932C 0000626C  38 00 00 00 */	li r0, 0
@@ -833,9 +832,9 @@ initialize__Q27JStudio25TFunctionValue_transitionFv:
 /* 80009360 000062A0  C8 03 00 48 */	lfd f0, 0x48(r3)
 /* 80009364 000062A4  D8 03 00 50 */	stfd f0, 0x50(r3)
 /* 80009368 000062A8  4E 80 00 20 */	blr 
+.endfn initialize__Q27JStudio25TFunctionValue_transitionFv
 
-.global prepare__Q27JStudio25TFunctionValue_transitionFv
-prepare__Q27JStudio25TFunctionValue_transitionFv:
+.fn prepare__Q27JStudio25TFunctionValue_transitionFv, global
 /* 8000936C 000062AC  88 03 00 20 */	lbz r0, 0x20(r3)
 /* 80009370 000062B0  7C 00 07 74 */	extsb r0, r0
 /* 80009374 000062B4  2C 00 00 02 */	cmpwi r0, 2
@@ -884,9 +883,9 @@ prepare__Q27JStudio25TFunctionValue_transitionFv:
 /* 80009408 00006348  D8 23 00 28 */	stfd f1, 0x28(r3)
 /* 8000940C 0000634C  D8 03 00 30 */	stfd f0, 0x30(r3)
 /* 80009410 00006350  4E 80 00 20 */	blr 
+.endfn prepare__Q27JStudio25TFunctionValue_transitionFv
 
-.global getValue__Q27JStudio25TFunctionValue_transitionFd
-getValue__Q27JStudio25TFunctionValue_transitionFd:
+.fn getValue__Q27JStudio25TFunctionValue_transitionFd, global
 /* 80009414 00006354  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80009418 00006358  7C 08 02 A6 */	mflr r0
 /* 8000941C 0000635C  C8 02 80 40 */	lfd f0, lbl_805163A0@sda21(r2)
@@ -1055,9 +1054,9 @@ getValue__Q27JStudio25TFunctionValue_transitionFd:
 /* 80009658 00006598  7C 08 03 A6 */	mtlr r0
 /* 8000965C 0000659C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80009660 000065A0  4E 80 00 20 */	blr 
+.endfn getValue__Q27JStudio25TFunctionValue_transitionFd
 
-.global __ct__Q27JStudio19TFunctionValue_listFv
-__ct__Q27JStudio19TFunctionValue_listFv:
+.fn __ct__Q27JStudio19TFunctionValue_listFv, global
 /* 80009664 000065A4  3C C0 80 4A */	lis r6, __vt__Q27JStudio14TFunctionValue@ha
 /* 80009668 000065A8  3C A0 80 51 */	lis r5, __float_nan@ha
 /* 8000966C 000065AC  38 06 E5 28 */	addi r0, r6, __vt__Q27JStudio14TFunctionValue@l
@@ -1088,14 +1087,14 @@ __ct__Q27JStudio19TFunctionValue_listFv:
 /* 800096D0 00006610  D8 03 00 50 */	stfd f0, 0x50(r3)
 /* 800096D4 00006614  90 A3 00 58 */	stw r5, 0x58(r3)
 /* 800096D8 00006618  4E 80 00 20 */	blr 
+.endfn __ct__Q27JStudio19TFunctionValue_listFv
 
-.global getType__Q27JStudio19TFunctionValue_listCFv
-getType__Q27JStudio19TFunctionValue_listCFv:
+.fn getType__Q27JStudio19TFunctionValue_listCFv, global
 /* 800096DC 0000661C  38 60 00 04 */	li r3, 4
 /* 800096E0 00006620  4E 80 00 20 */	blr 
+.endfn getType__Q27JStudio19TFunctionValue_listCFv
 
-.global getAttributeSet__Q27JStudio19TFunctionValue_listFv
-getAttributeSet__Q27JStudio19TFunctionValue_listFv:
+.fn getAttributeSet__Q27JStudio19TFunctionValue_listFv, global
 /* 800096E4 00006624  28 04 00 00 */	cmplwi r4, 0
 /* 800096E8 00006628  7C 85 23 78 */	mr r5, r4
 /* 800096EC 0000662C  41 82 00 08 */	beq .L_800096F4
@@ -1110,9 +1109,9 @@ getAttributeSet__Q27JStudio19TFunctionValue_listFv:
 /* 80009708 00006648  90 83 00 04 */	stw r4, 4(r3)
 /* 8000970C 0000664C  90 A3 00 08 */	stw r5, 8(r3)
 /* 80009710 00006650  4E 80 00 20 */	blr 
+.endfn getAttributeSet__Q27JStudio19TFunctionValue_listFv
 
-.global initialize__Q27JStudio19TFunctionValue_listFv
-initialize__Q27JStudio19TFunctionValue_listFv:
+.fn initialize__Q27JStudio19TFunctionValue_listFv, global
 /* 80009714 00006654  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80009718 00006658  C4 04 48 B0 */	lfsu f0, __float_nan@l(r4)
 /* 8000971C 0000665C  38 00 00 00 */	li r0, 0
@@ -1132,9 +1131,9 @@ initialize__Q27JStudio19TFunctionValue_listFv:
 /* 80009754 00006694  D8 03 00 50 */	stfd f0, 0x50(r3)
 /* 80009758 00006698  90 03 00 58 */	stw r0, 0x58(r3)
 /* 8000975C 0000669C  4E 80 00 20 */	blr 
+.endfn initialize__Q27JStudio19TFunctionValue_listFv
 
-.global prepare__Q27JStudio19TFunctionValue_listFv
-prepare__Q27JStudio19TFunctionValue_listFv:
+.fn prepare__Q27JStudio19TFunctionValue_listFv, global
 /* 80009760 000066A0  88 03 00 20 */	lbz r0, 0x20(r3)
 /* 80009764 000066A4  7C 00 07 74 */	extsb r0, r0
 /* 80009768 000066A8  2C 00 00 02 */	cmpwi r0, 2
@@ -1221,9 +1220,9 @@ prepare__Q27JStudio19TFunctionValue_listFv:
 /* 8000987C 000067BC  38 04 9D CC */	addi r0, r4, update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@l
 /* 80009880 000067C0  90 03 00 58 */	stw r0, 0x58(r3)
 /* 80009884 000067C4  4E 80 00 20 */	blr 
+.endfn prepare__Q27JStudio19TFunctionValue_listFv
 
-.global getValue__Q27JStudio19TFunctionValue_listFd
-getValue__Q27JStudio19TFunctionValue_listFd:
+.fn getValue__Q27JStudio19TFunctionValue_listFd, global
 /* 80009888 000067C8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8000988C 000067CC  7C 08 02 A6 */	mflr r0
 /* 80009890 000067D0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1596,17 +1595,17 @@ getValue__Q27JStudio19TFunctionValue_listFd:
 /* 80009DAC 00006CEC  7C 08 03 A6 */	mtlr r0
 /* 80009DB0 00006CF0  38 21 00 70 */	addi r1, r1, 0x70
 /* 80009DB4 00006CF4  4E 80 00 20 */	blr 
+.endfn getValue__Q27JStudio19TFunctionValue_listFd
 
-.global update_INTERPOLATE_NONE___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
-update_INTERPOLATE_NONE___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_:
+.fn update_INTERPOLATE_NONE___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_, global
 /* 80009DB8 00006CF8  80 04 00 10 */	lwz r0, 0x10(r4)
 /* 80009DBC 00006CFC  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 80009DC0 00006D00  54 00 10 3A */	slwi r0, r0, 2
 /* 80009DC4 00006D04  7C 23 04 2E */	lfsx f1, r3, r0
 /* 80009DC8 00006D08  4E 80 00 20 */	blr 
+.endfn update_INTERPOLATE_NONE___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
 
-.global update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
-update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_:
+.fn update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_, global
 /* 80009DCC 00006D0C  80 04 00 10 */	lwz r0, 0x10(r4)
 /* 80009DD0 00006D10  80 A3 00 44 */	lwz r5, 0x44(r3)
 /* 80009DD4 00006D14  54 00 10 3A */	slwi r0, r0, 2
@@ -1619,9 +1618,9 @@ update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunct
 /* 80009DF0 00006D30  FC 22 18 28 */	fsub f1, f2, f3
 /* 80009DF4 00006D34  FC 21 18 3A */	fmadd f1, f1, f0, f3
 /* 80009DF8 00006D38  4E 80 00 20 */	blr 
+.endfn update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
 
-.global update_INTERPOLATE_PLATEAU___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
-update_INTERPOLATE_PLATEAU___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_:
+.fn update_INTERPOLATE_PLATEAU___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_, global
 /* 80009DFC 00006D3C  C8 84 00 08 */	lfd f4, 8(r4)
 /* 80009E00 00006D40  C8 C2 80 48 */	lfd f6, lbl_805163A8@sda21(r2)
 /* 80009E04 00006D44  C8 24 00 00 */	lfd f1, 0(r4)
@@ -1653,9 +1652,9 @@ update_INTERPOLATE_PLATEAU___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunc
 /* 80009E6C 00006DAC  FC 03 01 3A */	fmadd f0, f3, f4, f0
 /* 80009E70 00006DB0  FC 21 01 3A */	fmadd f1, f1, f4, f0
 /* 80009E74 00006DB4  4E 80 00 20 */	blr 
+.endfn update_INTERPOLATE_PLATEAU___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
 
-.global update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
-update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_:
+.fn update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_, global
 /* 80009E78 00006DB8  80 C4 00 10 */	lwz r6, 0x10(r4)
 /* 80009E7C 00006DBC  80 E3 00 44 */	lwz r7, 0x44(r3)
 /* 80009E80 00006DC0  54 C0 10 3A */	slwi r0, r6, 2
@@ -1704,9 +1703,9 @@ update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio19TFunctionValue_listFRCQ27JStu
 /* 80009F20 00006E60  FC 26 20 BA */	fmadd f1, f6, f2, f4
 /* 80009F24 00006E64  FC 21 02 7A */	fmadd f1, f1, f9, f0
 /* 80009F28 00006E68  4E 80 00 20 */	blr 
+.endfn update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
 
-.global __ct__Q27JStudio29TFunctionValue_list_parameterFv
-__ct__Q27JStudio29TFunctionValue_list_parameterFv:
+.fn __ct__Q27JStudio29TFunctionValue_list_parameterFv, global
 /* 80009F2C 00006E6C  3C C0 80 4A */	lis r6, __vt__Q27JStudio14TFunctionValue@ha
 /* 80009F30 00006E70  3C A0 80 51 */	lis r5, __float_nan@ha
 /* 80009F34 00006E74  38 06 E5 28 */	addi r0, r6, __vt__Q27JStudio14TFunctionValue@l
@@ -1740,14 +1739,14 @@ __ct__Q27JStudio29TFunctionValue_list_parameterFv:
 /* 80009FA4 00006EE4  90 03 00 54 */	stw r0, 0x54(r3)
 /* 80009FA8 00006EE8  90 A3 00 58 */	stw r5, 0x58(r3)
 /* 80009FAC 00006EEC  4E 80 00 20 */	blr 
+.endfn __ct__Q27JStudio29TFunctionValue_list_parameterFv
 
-.global getType__Q27JStudio29TFunctionValue_list_parameterCFv
-getType__Q27JStudio29TFunctionValue_list_parameterCFv:
+.fn getType__Q27JStudio29TFunctionValue_list_parameterCFv, global
 /* 80009FB0 00006EF0  38 60 00 05 */	li r3, 5
 /* 80009FB4 00006EF4  4E 80 00 20 */	blr 
+.endfn getType__Q27JStudio29TFunctionValue_list_parameterCFv
 
-.global getAttributeSet__Q27JStudio29TFunctionValue_list_parameterFv
-getAttributeSet__Q27JStudio29TFunctionValue_list_parameterFv:
+.fn getAttributeSet__Q27JStudio29TFunctionValue_list_parameterFv, global
 /* 80009FB8 00006EF8  28 04 00 00 */	cmplwi r4, 0
 /* 80009FBC 00006EFC  7C 85 23 78 */	mr r5, r4
 /* 80009FC0 00006F00  41 82 00 08 */	beq .L_80009FC8
@@ -1762,9 +1761,9 @@ getAttributeSet__Q27JStudio29TFunctionValue_list_parameterFv:
 /* 80009FDC 00006F1C  90 83 00 04 */	stw r4, 4(r3)
 /* 80009FE0 00006F20  90 A3 00 08 */	stw r5, 8(r3)
 /* 80009FE4 00006F24  4E 80 00 20 */	blr 
+.endfn getAttributeSet__Q27JStudio29TFunctionValue_list_parameterFv
 
-.global data_set__Q27JStudio29TFunctionValue_list_parameterFPCfUl
-data_set__Q27JStudio29TFunctionValue_list_parameterFPCfUl:
+.fn data_set__Q27JStudio29TFunctionValue_list_parameterFPCfUl, global
 /* 80009FE8 00006F28  90 83 00 44 */	stw r4, 0x44(r3)
 /* 80009FEC 00006F2C  90 A3 00 48 */	stw r5, 0x48(r3)
 /* 80009FF0 00006F30  80 03 00 44 */	lwz r0, 0x44(r3)
@@ -1777,9 +1776,9 @@ data_set__Q27JStudio29TFunctionValue_list_parameterFPCfUl:
 /* 8000A00C 00006F4C  80 03 00 4C */	lwz r0, 0x4c(r3)
 /* 8000A010 00006F50  90 03 00 54 */	stw r0, 0x54(r3)
 /* 8000A014 00006F54  4E 80 00 20 */	blr 
+.endfn data_set__Q27JStudio29TFunctionValue_list_parameterFPCfUl
 
-.global initialize__Q27JStudio29TFunctionValue_list_parameterFv
-initialize__Q27JStudio29TFunctionValue_list_parameterFv:
+.fn initialize__Q27JStudio29TFunctionValue_list_parameterFv, global
 /* 8000A018 00006F58  3C A0 80 51 */	lis r5, __float_nan@ha
 /* 8000A01C 00006F5C  38 80 00 00 */	li r4, 0
 /* 8000A020 00006F60  C0 05 48 B0 */	lfs f0, __float_nan@l(r5)
@@ -1802,9 +1801,9 @@ initialize__Q27JStudio29TFunctionValue_list_parameterFv:
 /* 8000A064 00006FA4  90 03 00 54 */	stw r0, 0x54(r3)
 /* 8000A068 00006FA8  90 83 00 58 */	stw r4, 0x58(r3)
 /* 8000A06C 00006FAC  4E 80 00 20 */	blr 
+.endfn initialize__Q27JStudio29TFunctionValue_list_parameterFv
 
-.global prepare__Q27JStudio29TFunctionValue_list_parameterFv
-prepare__Q27JStudio29TFunctionValue_list_parameterFv:
+.fn prepare__Q27JStudio29TFunctionValue_list_parameterFv, global
 /* 8000A070 00006FB0  88 03 00 20 */	lbz r0, 0x20(r3)
 /* 8000A074 00006FB4  7C 00 07 74 */	extsb r0, r0
 /* 8000A078 00006FB8  2C 00 00 02 */	cmpwi r0, 2
@@ -1891,9 +1890,9 @@ prepare__Q27JStudio29TFunctionValue_list_parameterFv:
 /* 8000A18C 000070CC  38 04 A9 64 */	addi r0, r4, update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
 /* 8000A190 000070D0  90 03 00 58 */	stw r0, 0x58(r3)
 /* 8000A194 000070D4  4E 80 00 20 */	blr 
+.endfn prepare__Q27JStudio29TFunctionValue_list_parameterFv
 
-.global getValue__Q27JStudio29TFunctionValue_list_parameterFd
-getValue__Q27JStudio29TFunctionValue_list_parameterFd:
+.fn getValue__Q27JStudio29TFunctionValue_list_parameterFd, global
 /* 8000A198 000070D8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8000A19C 000070DC  7C 08 02 A6 */	mflr r0
 /* 8000A1A0 000070E0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2268,9 +2267,9 @@ getValue__Q27JStudio29TFunctionValue_list_parameterFd:
 /* 8000A6C4 00007604  7C 08 03 A6 */	mtlr r0
 /* 8000A6C8 00007608  38 21 00 70 */	addi r1, r1, 0x70
 /* 8000A6CC 0000760C  4E 80 00 20 */	blr 
+.endfn getValue__Q27JStudio29TFunctionValue_list_parameterFd
 
-.global "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd"
-"findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd":
+.fn "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd", local
 /* 8000A6D0 00007610  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8000A6D4 00007614  7C 08 02 A6 */	mflr r0
 /* 8000A6D8 00007618  81 06 00 00 */	lwz r8, 0(r6)
@@ -2294,9 +2293,9 @@ getValue__Q27JStudio29TFunctionValue_list_parameterFd:
 /* 8000A720 00007660  7C 08 03 A6 */	mtlr r0
 /* 8000A724 00007664  38 21 00 30 */	addi r1, r1, 0x30
 /* 8000A728 00007668  4E 80 00 20 */	blr 
+.endfn "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd"
 
-.global "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>"
-"findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>":
+.fn "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>", local
 /* 8000A72C 0000766C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8000A730 00007670  7C 08 02 A6 */	mflr r0
 /* 8000A734 00007674  81 26 00 00 */	lwz r9, 0(r6)
@@ -2449,15 +2448,15 @@ getValue__Q27JStudio29TFunctionValue_list_parameterFd:
 /* 8000A94C 0000788C  7C 08 03 A6 */	mtlr r0
 /* 8000A950 00007890  38 21 00 60 */	addi r1, r1, 0x60
 /* 8000A954 00007894  4E 80 00 20 */	blr 
+.endfn "findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>"
 
-.global update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
-update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd:
+.fn update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd, global
 /* 8000A958 00007898  80 63 00 54 */	lwz r3, 0x54(r3)
 /* 8000A95C 0000789C  C0 23 FF FC */	lfs f1, -4(r3)
 /* 8000A960 000078A0  4E 80 00 20 */	blr 
+.endfn update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
 
-.global update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
-update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd:
+.fn update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd, global
 /* 8000A964 000078A4  80 63 00 54 */	lwz r3, 0x54(r3)
 /* 8000A968 000078A8  C0 63 FF F8 */	lfs f3, -8(r3)
 /* 8000A96C 000078AC  C0 83 FF FC */	lfs f4, -4(r3)
@@ -2470,9 +2469,9 @@ update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStud
 /* 8000A988 000078C8  FC 01 00 24 */	fdiv f0, f1, f0
 /* 8000A98C 000078CC  FC 24 00 2A */	fadd f1, f4, f0
 /* 8000A990 000078D0  4E 80 00 20 */	blr 
+.endfn update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
 
-.global update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
-update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd:
+.fn update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd, global
 /* 8000A994 000078D4  80 63 00 54 */	lwz r3, 0x54(r3)
 /* 8000A998 000078D8  C8 C2 80 48 */	lfd f6, lbl_805163A8@sda21(r2)
 /* 8000A99C 000078DC  C0 43 FF F8 */	lfs f2, -8(r3)
@@ -2500,9 +2499,9 @@ update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStu
 /* 8000A9F4 00007934  FC 03 01 3A */	fmadd f0, f3, f4, f0
 /* 8000A9F8 00007938  FC 21 01 3A */	fmadd f1, f1, f4, f0
 /* 8000A9FC 0000793C  4E 80 00 20 */	blr 
+.endfn update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
 
-.global update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
-update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd:
+.fn update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd, global
 /* 8000AA00 00007940  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8000AA04 00007944  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 8000AA08 00007948  F3 E1 00 58 */	psq_st f31, 88(r1), 0, qr0
@@ -2671,9 +2670,9 @@ update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameter
 /* 8000AC54 00007B94  CB 61 00 10 */	lfd f27, 0x10(r1)
 /* 8000AC58 00007B98  38 21 00 60 */	addi r1, r1, 0x60
 /* 8000AC5C 00007B9C  4E 80 00 20 */	blr 
+.endfn update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
 
-.global __ct__Q27JStudio22TFunctionValue_hermiteFv
-__ct__Q27JStudio22TFunctionValue_hermiteFv:
+.fn __ct__Q27JStudio22TFunctionValue_hermiteFv, global
 /* 8000AC60 00007BA0  3C C0 80 4A */	lis r6, __vt__Q27JStudio14TFunctionValue@ha
 /* 8000AC64 00007BA4  3C A0 80 51 */	lis r5, __float_nan@ha
 /* 8000AC68 00007BA8  38 06 E5 28 */	addi r0, r6, __vt__Q27JStudio14TFunctionValue@l
@@ -2712,14 +2711,14 @@ __ct__Q27JStudio22TFunctionValue_hermiteFv:
 /* 8000ACEC 00007C2C  80 03 00 50 */	lwz r0, 0x50(r3)
 /* 8000ACF0 00007C30  90 03 00 60 */	stw r0, 0x60(r3)
 /* 8000ACF4 00007C34  4E 80 00 20 */	blr 
+.endfn __ct__Q27JStudio22TFunctionValue_hermiteFv
 
-.global getType__Q27JStudio22TFunctionValue_hermiteCFv
-getType__Q27JStudio22TFunctionValue_hermiteCFv:
+.fn getType__Q27JStudio22TFunctionValue_hermiteCFv, global
 /* 8000ACF8 00007C38  38 60 00 06 */	li r3, 6
 /* 8000ACFC 00007C3C  4E 80 00 20 */	blr 
+.endfn getType__Q27JStudio22TFunctionValue_hermiteCFv
 
-.global getAttributeSet__Q27JStudio22TFunctionValue_hermiteFv
-getAttributeSet__Q27JStudio22TFunctionValue_hermiteFv:
+.fn getAttributeSet__Q27JStudio22TFunctionValue_hermiteFv, global
 /* 8000AD00 00007C40  28 04 00 00 */	cmplwi r4, 0
 /* 8000AD04 00007C44  41 82 00 08 */	beq .L_8000AD0C
 /* 8000AD08 00007C48  38 84 00 08 */	addi r4, r4, 8
@@ -2729,9 +2728,9 @@ getAttributeSet__Q27JStudio22TFunctionValue_hermiteFv:
 /* 8000AD14 00007C54  90 83 00 04 */	stw r4, 4(r3)
 /* 8000AD18 00007C58  90 03 00 08 */	stw r0, 8(r3)
 /* 8000AD1C 00007C5C  4E 80 00 20 */	blr 
+.endfn getAttributeSet__Q27JStudio22TFunctionValue_hermiteFv
 
-.global data_set__Q27JStudio22TFunctionValue_hermiteFPCfUlUl
-data_set__Q27JStudio22TFunctionValue_hermiteFPCfUlUl:
+.fn data_set__Q27JStudio22TFunctionValue_hermiteFPCfUlUl, global
 /* 8000AD20 00007C60  90 83 00 40 */	stw r4, 0x40(r3)
 /* 8000AD24 00007C64  90 A3 00 44 */	stw r5, 0x44(r3)
 /* 8000AD28 00007C68  90 C3 00 48 */	stw r6, 0x48(r3)
@@ -2752,9 +2751,9 @@ data_set__Q27JStudio22TFunctionValue_hermiteFPCfUlUl:
 /* 8000AD64 00007CA4  80 03 00 50 */	lwz r0, 0x50(r3)
 /* 8000AD68 00007CA8  90 03 00 60 */	stw r0, 0x60(r3)
 /* 8000AD6C 00007CAC  4E 80 00 20 */	blr 
+.endfn data_set__Q27JStudio22TFunctionValue_hermiteFPCfUlUl
 
-.global initialize__Q27JStudio22TFunctionValue_hermiteFv
-initialize__Q27JStudio22TFunctionValue_hermiteFv:
+.fn initialize__Q27JStudio22TFunctionValue_hermiteFv, global
 /* 8000AD70 00007CB0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8000AD74 00007CB4  38 00 00 00 */	li r0, 0
 /* 8000AD78 00007CB8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2782,9 +2781,9 @@ initialize__Q27JStudio22TFunctionValue_hermiteFv:
 /* 8000ADD0 00007D10  80 03 00 50 */	lwz r0, 0x50(r3)
 /* 8000ADD4 00007D14  90 03 00 60 */	stw r0, 0x60(r3)
 /* 8000ADD8 00007D18  4E 80 00 20 */	blr 
+.endfn initialize__Q27JStudio22TFunctionValue_hermiteFv
 
-.global prepare__Q27JStudio22TFunctionValue_hermiteFv
-prepare__Q27JStudio22TFunctionValue_hermiteFv:
+.fn prepare__Q27JStudio22TFunctionValue_hermiteFv, global
 /* 8000ADDC 00007D1C  88 03 00 20 */	lbz r0, 0x20(r3)
 /* 8000ADE0 00007D20  7C 00 07 74 */	extsb r0, r0
 /* 8000ADE4 00007D24  2C 00 00 02 */	cmpwi r0, 2
@@ -2833,9 +2832,9 @@ prepare__Q27JStudio22TFunctionValue_hermiteFv:
 /* 8000AE78 00007DB8  D8 23 00 28 */	stfd f1, 0x28(r3)
 /* 8000AE7C 00007DBC  D8 03 00 30 */	stfd f0, 0x30(r3)
 /* 8000AE80 00007DC0  4E 80 00 20 */	blr 
+.endfn prepare__Q27JStudio22TFunctionValue_hermiteFv
 
-.global getValue__Q27JStudio22TFunctionValue_hermiteFd
-getValue__Q27JStudio22TFunctionValue_hermiteFd:
+.fn getValue__Q27JStudio22TFunctionValue_hermiteFd, global
 /* 8000AE84 00007DC4  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8000AE88 00007DC8  7C 08 02 A6 */	mflr r0
 /* 8000AE8C 00007DCC  90 01 00 84 */	stw r0, 0x84(r1)
@@ -3248,9 +3247,9 @@ getValue__Q27JStudio22TFunctionValue_hermiteFd:
 /* 8000B448 00008388  7C 08 03 A6 */	mtlr r0
 /* 8000B44C 0000838C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8000B450 00008390  4E 80 00 20 */	blr 
+.endfn getValue__Q27JStudio22TFunctionValue_hermiteFd
 
-.global "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd"
-"findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd":
+.fn "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd", local
 /* 8000B454 00008394  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8000B458 00008398  7C 08 02 A6 */	mflr r0
 /* 8000B45C 0000839C  81 86 00 04 */	lwz r12, 4(r6)
@@ -3284,9 +3283,9 @@ getValue__Q27JStudio22TFunctionValue_hermiteFd:
 /* 8000B4CC 0000840C  7C 08 03 A6 */	mtlr r0
 /* 8000B4D0 00008410  38 21 00 40 */	addi r1, r1, 0x40
 /* 8000B4D4 00008414  4E 80 00 20 */	blr 
+.endfn "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd"
 
-.global "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>"
-"findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>":
+.fn "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>", local
 /* 8000B4D8 00008418  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8000B4DC 0000841C  7C 08 02 A6 */	mflr r0
 /* 8000B4E0 00008420  81 26 00 00 */	lwz r9, 0(r6)
@@ -3485,9 +3484,9 @@ getValue__Q27JStudio22TFunctionValue_hermiteFd:
 /* 8000B7B0 000086F0  7C 08 03 A6 */	mtlr r0
 /* 8000B7B4 000086F4  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8000B7B8 000086F8  4E 80 00 20 */	blr 
+.endfn "findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>"
 
-.global __dt__Q27JStudio22TFunctionValue_hermiteFv
-__dt__Q27JStudio22TFunctionValue_hermiteFv:
+.fn __dt__Q27JStudio22TFunctionValue_hermiteFv, weak
 /* 8000B7BC 000086FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000B7C0 00008700  7C 08 02 A6 */	mflr r0
 /* 8000B7C4 00008704  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3513,9 +3512,9 @@ __dt__Q27JStudio22TFunctionValue_hermiteFv:
 /* 8000B80C 0000874C  7C 08 03 A6 */	mtlr r0
 /* 8000B810 00008750  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000B814 00008754  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio22TFunctionValue_hermiteFv
 
-.global __dt__Q27JStudio29TFunctionValue_list_parameterFv
-__dt__Q27JStudio29TFunctionValue_list_parameterFv:
+.fn __dt__Q27JStudio29TFunctionValue_list_parameterFv, weak
 /* 8000B818 00008758  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000B81C 0000875C  7C 08 02 A6 */	mflr r0
 /* 8000B820 00008760  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3541,9 +3540,9 @@ __dt__Q27JStudio29TFunctionValue_list_parameterFv:
 /* 8000B868 000087A8  7C 08 03 A6 */	mtlr r0
 /* 8000B86C 000087AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000B870 000087B0  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio29TFunctionValue_list_parameterFv
 
-.global __dt__Q27JStudio19TFunctionValue_listFv
-__dt__Q27JStudio19TFunctionValue_listFv:
+.fn __dt__Q27JStudio19TFunctionValue_listFv, weak
 /* 8000B874 000087B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000B878 000087B8  7C 08 02 A6 */	mflr r0
 /* 8000B87C 000087BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3569,9 +3568,9 @@ __dt__Q27JStudio19TFunctionValue_listFv:
 /* 8000B8C4 00008804  7C 08 03 A6 */	mtlr r0
 /* 8000B8C8 00008808  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000B8CC 0000880C  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio19TFunctionValue_listFv
 
-.global __dt__Q27JStudio25TFunctionValue_transitionFv
-__dt__Q27JStudio25TFunctionValue_transitionFv:
+.fn __dt__Q27JStudio25TFunctionValue_transitionFv, weak
 /* 8000B8D0 00008810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000B8D4 00008814  7C 08 02 A6 */	mflr r0
 /* 8000B8D8 00008818  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3597,9 +3596,9 @@ __dt__Q27JStudio25TFunctionValue_transitionFv:
 /* 8000B920 00008860  7C 08 03 A6 */	mtlr r0
 /* 8000B924 00008864  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000B928 00008868  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio25TFunctionValue_transitionFv
 
-.global __dt__Q27JStudio23TFunctionValue_constantFv
-__dt__Q27JStudio23TFunctionValue_constantFv:
+.fn __dt__Q27JStudio23TFunctionValue_constantFv, weak
 /* 8000B92C 0000886C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000B930 00008870  7C 08 02 A6 */	mflr r0
 /* 8000B934 00008874  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3625,9 +3624,9 @@ __dt__Q27JStudio23TFunctionValue_constantFv:
 /* 8000B97C 000088BC  7C 08 03 A6 */	mtlr r0
 /* 8000B980 000088C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000B984 000088C4  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio23TFunctionValue_constantFv
 
-.global __dt__Q27JStudio24TFunctionValue_compositeFv
-__dt__Q27JStudio24TFunctionValue_compositeFv:
+.fn __dt__Q27JStudio24TFunctionValue_compositeFv, weak
 /* 8000B988 000088C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000B98C 000088CC  7C 08 02 A6 */	mflr r0
 /* 8000B990 000088D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3665,9 +3664,9 @@ __dt__Q27JStudio24TFunctionValue_compositeFv:
 /* 8000BA04 00008944  7C 08 03 A6 */	mtlr r0
 /* 8000BA08 00008948  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000BA0C 0000894C  4E 80 00 20 */	blr 
+.endfn __dt__Q27JStudio24TFunctionValue_compositeFv
 
-.global "upper_bound<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>"
-"upper_bound<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>":
+.fn "upper_bound<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>", weak
 /* 8000BA10 00008950  80 05 00 00 */	lwz r0, 0(r5)
 /* 8000BA14 00008954  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000BA18 00008958  80 A4 00 00 */	lwz r5, 0(r4)
@@ -3703,9 +3702,9 @@ __dt__Q27JStudio24TFunctionValue_compositeFv:
 /* 8000BA84 000089C4  90 03 00 00 */	stw r0, 0(r3)
 /* 8000BA88 000089C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000BA8C 000089CC  4E 80 00 20 */	blr 
+.endfn "upper_bound<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCdQ23std7less<d>"
 
-.global "upper_bound<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>"
-"upper_bound<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>":
+.fn "upper_bound<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>", weak
 /* 8000BA90 000089D0  81 25 00 00 */	lwz r9, 0(r5)
 /* 8000BA94 000089D4  80 E4 00 00 */	lwz r7, 0(r4)
 /* 8000BA98 000089D8  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -3755,3 +3754,4 @@ __dt__Q27JStudio24TFunctionValue_compositeFv:
 /* 8000BB3C 00008A7C  90 03 00 04 */	stw r0, 4(r3)
 /* 8000BB40 00008A80  38 21 00 20 */	addi r1, r1, 0x20
 /* 8000BB44 00008A84  4E 80 00 20 */	blr 
+.endfn "upper_bound<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d,Q23std7less<d>>__3stdFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCdQ23std7less<d>"
