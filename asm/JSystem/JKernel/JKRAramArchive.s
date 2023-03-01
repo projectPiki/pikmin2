@@ -1,26 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473510
-lbl_80473510:
-	.4byte 0x4A4B5241
-	.4byte 0x72616D41
-	.4byte 0x72636869
-	.4byte 0x76652E63
-	.4byte 0x70700000
-.global lbl_80473524
-lbl_80473524:
-	.4byte 0x3A3A3A3F
-	.4byte 0x3F3F2062
-	.4byte 0x61642073
-	.4byte 0x65717565
-	.4byte 0x6E63650A
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj lbl_80473510, local
+	.asciz "JKRAramArchive.cpp"
+.endobj lbl_80473510
+.balign 4
+.obj lbl_80473524, local
+	.asciz ":::??? bad sequence\n"
+.endobj lbl_80473524
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__7JKRFile
-__vt__7JKRFile:
+.obj __vt__7JKRFile, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__7JKRFileFv
@@ -29,8 +20,8 @@ __vt__7JKRFile:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__14JKRAramArchive
-__vt__14JKRAramArchive:
+.endobj __vt__7JKRFile
+.obj __vt__14JKRAramArchive, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14JKRAramArchiveFv
@@ -51,10 +42,10 @@ __vt__14JKRAramArchive:
 	.4byte fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
 	.4byte setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
 	.4byte getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
+.endobj __vt__14JKRAramArchive
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection
-__ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection:
+.fn __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection, global
 /* 80018958 00015898  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001895C 0001589C  7C 08 02 A6 */	mflr r0
 /* 80018960 000158A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -101,9 +92,9 @@ __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection:
 /* 800189FC 0001593C  7C 08 03 A6 */	mtlr r0
 /* 80018A00 00015940  38 21 00 20 */	addi r1, r1, 0x20
 /* 80018A04 00015944  4E 80 00 20 */	blr 
+.endfn __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection
 
-.global __dt__14JKRAramArchiveFv
-__dt__14JKRAramArchiveFv:
+.fn __dt__14JKRAramArchiveFv, global
 /* 80018A08 00015948  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80018A0C 0001594C  7C 08 02 A6 */	mflr r0
 /* 80018A10 00015950  90 01 00 24 */	stw r0, 0x24(r1)
@@ -197,9 +188,9 @@ __dt__14JKRAramArchiveFv:
 /* 80018B4C 00015A8C  7C 08 03 A6 */	mtlr r0
 /* 80018B50 00015A90  38 21 00 20 */	addi r1, r1, 0x20
 /* 80018B54 00015A94  4E 80 00 20 */	blr 
+.endfn __dt__14JKRAramArchiveFv
 
-.global __dt__7JKRFileFv
-__dt__7JKRFileFv:
+.fn __dt__7JKRFileFv, weak
 /* 80018B58 00015A98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018B5C 00015A9C  7C 08 02 A6 */	mflr r0
 /* 80018B60 00015AA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -225,9 +216,9 @@ __dt__7JKRFileFv:
 /* 80018BAC 00015AEC  7C 08 03 A6 */	mtlr r0
 /* 80018BB0 00015AF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80018BB4 00015AF4  4E 80 00 20 */	blr 
+.endfn __dt__7JKRFileFv
 
-.global open__14JKRAramArchiveFl
-open__14JKRAramArchiveFl:
+.fn open__14JKRAramArchiveFl, global
 /* 80018BB8 00015AF8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80018BBC 00015AFC  7C 08 02 A6 */	mflr r0
 /* 80018BC0 00015B00  38 A0 FF FC */	li r5, -4
@@ -452,9 +443,9 @@ open__14JKRAramArchiveFl:
 /* 80018EE0 00015E20  7C 08 03 A6 */	mtlr r0
 /* 80018EE4 00015E24  38 21 00 30 */	addi r1, r1, 0x30
 /* 80018EE8 00015E28  4E 80 00 20 */	blr 
+.endfn open__14JKRAramArchiveFl
 
-.global fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl
-fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl:
+.fn fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl, global
 /* 80018EEC 00015E2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80018EF0 00015E30  7C 08 02 A6 */	mflr r0
 /* 80018EF4 00015E34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -537,9 +528,9 @@ fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl:
 /* 80019004 00015F44  7C 08 03 A6 */	mtlr r0
 /* 80019008 00015F48  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001900C 00015F4C  4E 80 00 20 */	blr 
+.endfn fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl
 
-.global fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
-fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl:
+.fn fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl, global
 /* 80019010 00015F50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80019014 00015F54  7C 08 02 A6 */	mflr r0
 /* 80019018 00015F58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -611,9 +602,9 @@ fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl:
 /* 800190FC 0001603C  7C 08 03 A6 */	mtlr r0
 /* 80019100 00016040  38 21 00 20 */	addi r1, r1, 0x20
 /* 80019104 00016044  4E 80 00 20 */	blr 
+.endfn fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
 
-.global fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli
-fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli:
+.fn fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli, global
 /* 80019108 00016048  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001910C 0001604C  7C 08 02 A6 */	mflr r0
 /* 80019110 00016050  2C 07 00 00 */	cmpwi r7, 0
@@ -666,9 +657,9 @@ fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli:
 /* 800191B8 000160F8  7C 08 03 A6 */	mtlr r0
 /* 800191BC 000160FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800191C0 00016100  4E 80 00 20 */	blr 
+.endfn fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli
 
-.global fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc
-fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc:
+.fn fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc, global
 /* 800191C4 00016104  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800191C8 00016108  7C 08 02 A6 */	mflr r0
 /* 800191CC 0001610C  2C 06 00 00 */	cmpwi r6, 0
@@ -756,9 +747,9 @@ fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc:
 /* 80019304 00016244  7C 08 03 A6 */	mtlr r0
 /* 80019308 00016248  38 21 00 70 */	addi r1, r1, 0x70
 /* 8001930C 0001624C  4E 80 00 20 */	blr 
+.endfn fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc
 
-.global getExpandedResSize__14JKRAramArchiveCFPCv
-getExpandedResSize__14JKRAramArchiveCFPCv:
+.fn getExpandedResSize__14JKRAramArchiveCFPCv, global
 /* 80019310 00016250  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80019314 00016254  7C 08 02 A6 */	mflr r0
 /* 80019318 00016258  90 01 00 64 */	stw r0, 0x64(r1)
@@ -841,3 +832,4 @@ getExpandedResSize__14JKRAramArchiveCFPCv:
 /* 80019438 00016378  7C 08 03 A6 */	mtlr r0
 /* 8001943C 0001637C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80019440 00016380  4E 80 00 20 */	blr 
+.endfn getExpandedResSize__14JKRAramArchiveCFPCv

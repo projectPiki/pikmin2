@@ -1,41 +1,45 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473AA8
-lbl_80473AA8:
+.obj lbl_80473AA8, local
 	.asciz "allocFromHead: cannot alloc memory (0x%x byte).\n"
-	.skip 3
-.global lbl_80473ADC
-lbl_80473ADC:
+.endobj lbl_80473AA8
+.balign 4
+.obj lbl_80473ADC, local
 	.asciz "allocFromTail: cannot alloc memory (0x%x byte).\n"
-	.skip 3
-.global lbl_80473B10
-lbl_80473B10:
+.endobj lbl_80473ADC
+.balign 4
+.obj lbl_80473B10, local
 	.asciz "free: cannot free memory block (%08x)\n"
-	.skip 1
-.global lbl_80473B38
-lbl_80473B38:
+.endobj lbl_80473B10
+.balign 4
+.obj lbl_80473B38, local
 	.asciz "resize: cannot resize memory block (%08x: %d)\n"
-	.skip 1
-.global lbl_80473B68
-lbl_80473B68:
+.endobj lbl_80473B38
+.balign 4
+.obj lbl_80473B68, local
 	.asciz "getSize: cannot get memory block size (%08x)\n"
-	.skip 2
-.global lbl_80473B98
-lbl_80473B98:
+.endobj lbl_80473B68
+.balign 4
+.obj lbl_80473B98, local
 	.asciz "check: bad total memory block size (%08X, %08X)\n"
-	.skip 3
+.endobj lbl_80473B98
+.balign 4
+.obj lbl_80473BCC, local
 	.asciz "head %08x: %08x\n"
-	.skip 3
+.endobj lbl_80473BCC
+.balign 4
+.obj lbl_80473BE0, local
 	.asciz "tail %08x: %08x\n"
-	.skip 3
+.endobj lbl_80473BE0
+.balign 4
+.obj lbl_80473BF4, local
 	.asciz "%d / %d bytes (%6.2f%%) used\n"
-	.skip 2
+.endobj lbl_80473BF4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__12JKRSolidHeap
-__vt__12JKRSolidHeap:
+.obj __vt__12JKRSolidHeap, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JKRSolidHeapFv
@@ -60,25 +64,24 @@ __vt__12JKRSolidHeap:
 	.4byte state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl
 	.4byte state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
 	.4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
+.endobj __vt__12JKRSolidHeap
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516538
-lbl_80516538:
-	.4byte 0x42C80000
-	.4byte 0x00000000
-.global lbl_80516540
-lbl_80516540:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_80516548
-lbl_80516548:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80516538, local
+	.float 100.0
+.endobj lbl_80516538
+.balign 8
+.obj lbl_80516540, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516540
+.balign 8
+.obj lbl_80516548, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516548
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__12JKRSolidHeapFUlP7JKRHeapb
-create__12JKRSolidHeapFUlP7JKRHeapb:
+.fn create__12JKRSolidHeapFUlP7JKRHeapb, global
 /* 80024D70 00021CB0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80024D74 00021CB4  7C 08 02 A6 */	mflr r0
 /* 80024D78 00021CB8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -130,9 +133,9 @@ create__12JKRSolidHeapFUlP7JKRHeapb:
 /* 80024E18 00021D58  7C 08 03 A6 */	mtlr r0
 /* 80024E1C 00021D5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80024E20 00021D60  4E 80 00 20 */	blr 
+.endfn create__12JKRSolidHeapFUlP7JKRHeapb
 
-.global do_destroy__12JKRSolidHeapFv
-do_destroy__12JKRSolidHeapFv:
+.fn do_destroy__12JKRSolidHeapFv, global
 /* 80024E24 00021D64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80024E28 00021D68  7C 08 02 A6 */	mflr r0
 /* 80024E2C 00021D6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -158,9 +161,9 @@ do_destroy__12JKRSolidHeapFv:
 /* 80024E78 00021DB8  7C 08 03 A6 */	mtlr r0
 /* 80024E7C 00021DBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80024E80 00021DC0  4E 80 00 20 */	blr 
+.endfn do_destroy__12JKRSolidHeapFv
 
-.global __ct__12JKRSolidHeapFPvUlP7JKRHeapb
-__ct__12JKRSolidHeapFPvUlP7JKRHeapb:
+.fn __ct__12JKRSolidHeapFPvUlP7JKRHeapb, global
 /* 80024E84 00021DC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80024E88 00021DC8  7C 08 02 A6 */	mflr r0
 /* 80024E8C 00021DCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -184,9 +187,9 @@ __ct__12JKRSolidHeapFPvUlP7JKRHeapb:
 /* 80024ED4 00021E14  7C 08 03 A6 */	mtlr r0
 /* 80024ED8 00021E18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80024EDC 00021E1C  4E 80 00 20 */	blr 
+.endfn __ct__12JKRSolidHeapFPvUlP7JKRHeapb
 
-.global __dt__12JKRSolidHeapFv
-__dt__12JKRSolidHeapFv:
+.fn __dt__12JKRSolidHeapFv, global
 /* 80024EE0 00021E20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80024EE4 00021E24  7C 08 02 A6 */	mflr r0
 /* 80024EE8 00021E28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -214,9 +217,9 @@ __dt__12JKRSolidHeapFv:
 /* 80024F3C 00021E7C  7C 08 03 A6 */	mtlr r0
 /* 80024F40 00021E80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80024F44 00021E84  4E 80 00 20 */	blr 
+.endfn __dt__12JKRSolidHeapFv
 
-.global adjustSize__12JKRSolidHeapFv
-adjustSize__12JKRSolidHeapFv:
+.fn adjustSize__12JKRSolidHeapFv, global
 /* 80024F48 00021E88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80024F4C 00021E8C  7C 08 02 A6 */	mflr r0
 /* 80024F50 00021E90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -269,9 +272,9 @@ adjustSize__12JKRSolidHeapFv:
 /* 80025000 00021F40  7C 08 03 A6 */	mtlr r0
 /* 80025004 00021F44  38 21 00 20 */	addi r1, r1, 0x20
 /* 80025008 00021F48  4E 80 00 20 */	blr 
+.endfn adjustSize__12JKRSolidHeapFv
 
-.global do_alloc__12JKRSolidHeapFUli
-do_alloc__12JKRSolidHeapFUli:
+.fn do_alloc__12JKRSolidHeapFUli, global
 /* 8002500C 00021F4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80025010 00021F50  7C 08 02 A6 */	mflr r0
 /* 80025014 00021F54  90 01 00 24 */	stw r0, 0x24(r1)
@@ -321,9 +324,9 @@ do_alloc__12JKRSolidHeapFUli:
 /* 800250B0 00021FF0  7C 08 03 A6 */	mtlr r0
 /* 800250B4 00021FF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800250B8 00021FF8  4E 80 00 20 */	blr 
+.endfn do_alloc__12JKRSolidHeapFUli
 
-.global allocFromHead__12JKRSolidHeapFUli
-allocFromHead__12JKRSolidHeapFUli:
+.fn allocFromHead__12JKRSolidHeapFUli, global
 /* 800250BC 00021FFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800250C0 00022000  7C 08 02 A6 */	mflr r0
 /* 800250C4 00022004  38 C4 00 03 */	addi r6, r4, 3
@@ -380,9 +383,9 @@ allocFromHead__12JKRSolidHeapFUli:
 /* 80025188 000220C8  7C 08 03 A6 */	mtlr r0
 /* 8002518C 000220CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80025190 000220D0  4E 80 00 20 */	blr 
+.endfn allocFromHead__12JKRSolidHeapFUli
 
-.global allocFromTail__12JKRSolidHeapFUli
-allocFromTail__12JKRSolidHeapFUli:
+.fn allocFromTail__12JKRSolidHeapFUli, global
 /* 80025194 000220D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80025198 000220D8  7C 08 02 A6 */	mflr r0
 /* 8002519C 000220DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -437,9 +440,9 @@ allocFromTail__12JKRSolidHeapFUli:
 /* 80025258 00022198  7C 08 03 A6 */	mtlr r0
 /* 8002525C 0002219C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80025260 000221A0  4E 80 00 20 */	blr 
+.endfn allocFromTail__12JKRSolidHeapFUli
 
-.global do_free__12JKRSolidHeapFPv
-do_free__12JKRSolidHeapFPv:
+.fn do_free__12JKRSolidHeapFPv, global
 /* 80025264 000221A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80025268 000221A8  7C 08 02 A6 */	mflr r0
 /* 8002526C 000221AC  3C 60 80 47 */	lis r3, lbl_80473B10@ha
@@ -451,9 +454,9 @@ do_free__12JKRSolidHeapFPv:
 /* 80025284 000221C4  7C 08 03 A6 */	mtlr r0
 /* 80025288 000221C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002528C 000221CC  4E 80 00 20 */	blr 
+.endfn do_free__12JKRSolidHeapFPv
 
-.global do_freeAll__12JKRSolidHeapFv
-do_freeAll__12JKRSolidHeapFv:
+.fn do_freeAll__12JKRSolidHeapFv, global
 /* 80025290 000221D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80025294 000221D4  7C 08 02 A6 */	mflr r0
 /* 80025298 000221D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -478,9 +481,9 @@ do_freeAll__12JKRSolidHeapFv:
 /* 800252E4 00022224  7C 08 03 A6 */	mtlr r0
 /* 800252E8 00022228  38 21 00 10 */	addi r1, r1, 0x10
 /* 800252EC 0002222C  4E 80 00 20 */	blr 
+.endfn do_freeAll__12JKRSolidHeapFv
 
-.global do_freeTail__12JKRSolidHeapFv
-do_freeTail__12JKRSolidHeapFv:
+.fn do_freeTail__12JKRSolidHeapFv, global
 /* 800252F0 00022230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800252F4 00022234  7C 08 02 A6 */	mflr r0
 /* 800252F8 00022238  90 01 00 14 */	stw r0, 0x14(r1)
@@ -519,13 +522,13 @@ do_freeTail__12JKRSolidHeapFv:
 /* 80025370 000222B0  7C 08 03 A6 */	mtlr r0
 /* 80025374 000222B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80025378 000222B8  4E 80 00 20 */	blr 
+.endfn do_freeTail__12JKRSolidHeapFv
 
-.global do_fillFreeArea__12JKRSolidHeapFv
-do_fillFreeArea__12JKRSolidHeapFv:
+.fn do_fillFreeArea__12JKRSolidHeapFv, global
 /* 8002537C 000222BC  4E 80 00 20 */	blr 
+.endfn do_fillFreeArea__12JKRSolidHeapFv
 
-.global do_resize__12JKRSolidHeapFPvUl
-do_resize__12JKRSolidHeapFPvUl:
+.fn do_resize__12JKRSolidHeapFPvUl, global
 /* 80025380 000222C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80025384 000222C4  7C 08 02 A6 */	mflr r0
 /* 80025388 000222C8  3C 60 80 47 */	lis r3, lbl_80473B38@ha
@@ -538,9 +541,9 @@ do_resize__12JKRSolidHeapFPvUl:
 /* 800253A4 000222E4  7C 08 03 A6 */	mtlr r0
 /* 800253A8 000222E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800253AC 000222EC  4E 80 00 20 */	blr 
+.endfn do_resize__12JKRSolidHeapFPvUl
 
-.global do_getSize__12JKRSolidHeapFPv
-do_getSize__12JKRSolidHeapFPv:
+.fn do_getSize__12JKRSolidHeapFPv, global
 /* 800253B0 000222F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800253B4 000222F4  7C 08 02 A6 */	mflr r0
 /* 800253B8 000222F8  3C 60 80 47 */	lis r3, lbl_80473B68@ha
@@ -553,9 +556,9 @@ do_getSize__12JKRSolidHeapFPv:
 /* 800253D4 00022314  7C 08 03 A6 */	mtlr r0
 /* 800253D8 00022318  38 21 00 10 */	addi r1, r1, 0x10
 /* 800253DC 0002231C  4E 80 00 20 */	blr 
+.endfn do_getSize__12JKRSolidHeapFPv
 
-.global check__12JKRSolidHeapFv
-check__12JKRSolidHeapFv:
+.fn check__12JKRSolidHeapFv, global
 /* 800253E0 00022320  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800253E4 00022324  7C 08 02 A6 */	mflr r0
 /* 800253E8 00022328  90 01 00 14 */	stw r0, 0x14(r1)
@@ -592,9 +595,9 @@ check__12JKRSolidHeapFv:
 /* 80025460 000223A0  7C 08 03 A6 */	mtlr r0
 /* 80025464 000223A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80025468 000223A8  4E 80 00 20 */	blr 
+.endfn check__12JKRSolidHeapFv
 
-.global dump__12JKRSolidHeapFv
-dump__12JKRSolidHeapFv:
+.fn dump__12JKRSolidHeapFv, global
 /* 8002546C 000223AC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80025470 000223B0  7C 08 02 A6 */	mflr r0
 /* 80025474 000223B4  3C 80 80 47 */	lis r4, lbl_80473AA8@ha
@@ -660,9 +663,9 @@ dump__12JKRSolidHeapFv:
 /* 80025564 000224A4  7C 08 03 A6 */	mtlr r0
 /* 80025568 000224A8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8002556C 000224AC  4E 80 00 20 */	blr 
+.endfn dump__12JKRSolidHeapFv
 
-.global state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl
-state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl:
+.fn state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl, global
 /* 80025570 000224B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80025574 000224B4  7C 08 02 A6 */	mflr r0
 /* 80025578 000224B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -686,9 +689,9 @@ state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl:
 /* 800255C0 00022500  7C 08 03 A6 */	mtlr r0
 /* 800255C4 00022504  38 21 00 10 */	addi r1, r1, 0x10
 /* 800255C8 00022508  4E 80 00 20 */	blr 
+.endfn state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl
 
-.global state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
-state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState:
+.fn state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState, global
 /* 800255CC 0002250C  80 C4 00 04 */	lwz r6, 4(r4)
 /* 800255D0 00022510  38 60 00 01 */	li r3, 1
 /* 800255D4 00022514  80 05 00 04 */	lwz r0, 4(r5)
@@ -702,25 +705,25 @@ state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState:
 /* 800255F0 00022530  4D 82 00 20 */	beqlr 
 /* 800255F4 00022534  38 60 00 00 */	li r3, 0
 /* 800255F8 00022538  4E 80 00 20 */	blr 
+.endfn state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
 
-.global getHeapType__12JKRSolidHeapFv
-getHeapType__12JKRSolidHeapFv:
+.fn getHeapType__12JKRSolidHeapFv, weak
 /* 800255FC 0002253C  3C 60 53 4C */	lis r3, 0x534C4944@ha
 /* 80025600 00022540  38 63 49 44 */	addi r3, r3, 0x534C4944@l
 /* 80025604 00022544  4E 80 00 20 */	blr 
+.endfn getHeapType__12JKRSolidHeapFv
 
-.global do_getFreeSize__12JKRSolidHeapFv
-do_getFreeSize__12JKRSolidHeapFv:
+.fn do_getFreeSize__12JKRSolidHeapFv, weak
 /* 80025608 00022548  80 63 00 6C */	lwz r3, 0x6c(r3)
 /* 8002560C 0002254C  4E 80 00 20 */	blr 
+.endfn do_getFreeSize__12JKRSolidHeapFv
 
-.global do_getMaxFreeBlock__12JKRSolidHeapFv
-do_getMaxFreeBlock__12JKRSolidHeapFv:
+.fn do_getMaxFreeBlock__12JKRSolidHeapFv, weak
 /* 80025610 00022550  80 63 00 70 */	lwz r3, 0x70(r3)
 /* 80025614 00022554  4E 80 00 20 */	blr 
+.endfn do_getMaxFreeBlock__12JKRSolidHeapFv
 
-.global do_getTotalFreeSize__12JKRSolidHeapFv
-do_getTotalFreeSize__12JKRSolidHeapFv:
+.fn do_getTotalFreeSize__12JKRSolidHeapFv, weak
 /* 80025618 00022558  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002561C 0002255C  7C 08 02 A6 */	mflr r0
 /* 80025620 00022560  90 01 00 14 */	stw r0, 0x14(r1)
@@ -729,3 +732,4 @@ do_getTotalFreeSize__12JKRSolidHeapFv:
 /* 8002562C 0002256C  7C 08 03 A6 */	mtlr r0
 /* 80025630 00022570  38 21 00 10 */	addi r1, r1, 0x10
 /* 80025634 00022574  4E 80 00 20 */	blr 
+.endfn do_getTotalFreeSize__12JKRSolidHeapFv

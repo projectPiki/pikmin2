@@ -12,57 +12,74 @@ lbl_constructor:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global errorRetry__16JKRDvdAramRipper
-errorRetry__16JKRDvdAramRipper:
+.obj errorRetry__16JKRDvdAramRipper, global
 	.byte 0x01
+.endobj errorRetry__16JKRDvdAramRipper
 .balign 4
-.global sSZSBufferSize__16JKRDvdAramRipper
-sSZSBufferSize__16JKRDvdAramRipper:
+.obj sSZSBufferSize__16JKRDvdAramRipper, global
 	.4byte 0x00000400
+.endobj sSZSBufferSize__16JKRDvdAramRipper
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-szpBuf:
+.obj szpBuf, local
 	.skip 0x4
-szpEnd:
+.endobj szpBuf
+.obj szpEnd, local
 	.skip 0x4
-refBuf:
+.endobj szpEnd
+.obj refBuf, local
 	.skip 0x4
-refEnd:
+.endobj refBuf
+.obj refEnd, local
 	.skip 0x4
-refCurrent:
+.endobj refEnd
+.obj refCurrent, local
 	.skip 0x4
-dmaBuf:
+.endobj refCurrent
+.obj dmaBuf, local
 	.skip 0x4
-dmaEnd:
+.endobj dmaBuf
+.obj dmaEnd, local
 	.skip 0x4
-dmaCurrent:
+.endobj dmaEnd
+.obj dmaCurrent, local
 	.skip 0x4
-srcOffset:
+.endobj dmaCurrent
+.obj srcOffset, local
 	.skip 0x4
-transLeft:
+.endobj srcOffset
+.obj transLeft, local
 	.skip 0x4
-srcLimit:
+.endobj transLeft
+.obj srcLimit, local
 	.skip 0x4
-srcFile:
+.endobj srcLimit
+.obj srcFile, local
 	.skip 0x4
-fileOffset:
+.endobj srcFile
+.obj fileOffset, local
 	.skip 0x4
-readCount:
+.endobj fileOffset
+.obj readCount, local
 	.skip 0x4
-maxDest:
+.endobj readCount
+.obj maxDest, local
 	.skip 0x4
-isInitMutex:
+.endobj maxDest
+.obj isInitMutex, local
 	.skip 0x1
+.endobj isInitMutex
 .balign 4
-tsPtr:
+.obj tsPtr, local
 	.skip 0x4
-tsArea:
+.endobj tsPtr
+.obj tsArea, local
 	.skip 0x4
+.endobj tsArea
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
-loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl:
+.fn loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl, global
 /* 8001D6F0 0001A630  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 8001D6F4 0001A634  7C 08 02 A6 */	mflr r0
 /* 8001D6F8 0001A638  90 01 01 24 */	stw r0, 0x124(r1)
@@ -104,9 +121,9 @@ loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl:
 /* 8001D780 0001A6C0  7C 08 03 A6 */	mtlr r0
 /* 8001D784 0001A6C4  38 21 01 20 */	addi r1, r1, 0x120
 /* 8001D788 0001A6C8  4E 80 00 20 */	blr 
+.endfn loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
 
-.global loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl
-loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl:
+.fn loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl, global
 /* 8001D78C 0001A6CC  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 8001D790 0001A6D0  7C 08 02 A6 */	mflr r0
 /* 8001D794 0001A6D4  90 01 01 24 */	stw r0, 0x124(r1)
@@ -148,9 +165,9 @@ loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl:
 /* 8001D81C 0001A75C  7C 08 03 A6 */	mtlr r0
 /* 8001D820 0001A760  38 21 01 20 */	addi r1, r1, 0x120
 /* 8001D824 0001A764  4E 80 00 20 */	blr 
+.endfn loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl
 
-.global loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl
-loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl:
+.fn loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl, global
 /* 8001D828 0001A768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001D82C 0001A76C  7C 08 02 A6 */	mflr r0
 /* 8001D830 0001A770  7D 09 43 78 */	mr r9, r8
@@ -195,9 +212,9 @@ loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl:
 /* 8001D8C0 0001A800  7C 08 03 A6 */	mtlr r0
 /* 8001D8C4 0001A804  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001D8C8 0001A808  4E 80 00 20 */	blr 
+.endfn loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl
 
-.global loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl
-loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl:
+.fn loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl, global
 /* 8001D8CC 0001A80C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8001D8D0 0001A810  7C 08 02 A6 */	mflr r0
 /* 8001D8D4 0001A814  90 01 00 34 */	stw r0, 0x34(r1)
@@ -244,9 +261,9 @@ loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlP
 /* 8001D96C 0001A8AC  7C 08 03 A6 */	mtlr r0
 /* 8001D970 0001A8B0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8001D974 0001A8B4  4E 80 00 20 */	blr 
+.endfn loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl
 
-.global callCommand_Async__16JKRDvdAramRipperFP12JKRADCommand
-callCommand_Async__16JKRDvdAramRipperFP12JKRADCommand:
+.fn callCommand_Async__16JKRDvdAramRipperFP12JKRADCommand, global
 /* 8001D978 0001A8B8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8001D97C 0001A8BC  7C 08 02 A6 */	mflr r0
 /* 8001D980 0001A8C0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -483,9 +500,9 @@ callCommand_Async__16JKRDvdAramRipperFP12JKRADCommand:
 /* 8001DCBC 0001ABFC  7C 08 03 A6 */	mtlr r0
 /* 8001DCC0 0001AC00  38 21 00 70 */	addi r1, r1, 0x70
 /* 8001DCC4 0001AC04  4E 80 00 20 */	blr 
+.endfn callCommand_Async__16JKRDvdAramRipperFP12JKRADCommand
 
-.global __dt__18JSUFileInputStreamFv
-__dt__18JSUFileInputStreamFv:
+.fn __dt__18JSUFileInputStreamFv, weak
 /* 8001DCC8 0001AC08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001DCCC 0001AC0C  7C 08 02 A6 */	mflr r0
 /* 8001DCD0 0001AC10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -516,9 +533,9 @@ __dt__18JSUFileInputStreamFv:
 /* 8001DD2C 0001AC6C  7C 08 03 A6 */	mtlr r0
 /* 8001DD30 0001AC70  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001DD34 0001AC74  4E 80 00 20 */	blr 
+.endfn __dt__18JSUFileInputStreamFv
 
-.global syncAram__16JKRDvdAramRipperFP12JKRADCommandi
-syncAram__16JKRDvdAramRipperFP12JKRADCommandi:
+.fn syncAram__16JKRDvdAramRipperFP12JKRADCommandi, global
 /* 8001DD38 0001AC78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001DD3C 0001AC7C  7C 08 02 A6 */	mflr r0
 /* 8001DD40 0001AC80  90 01 00 24 */	stw r0, 0x24(r1)
@@ -579,9 +596,9 @@ syncAram__16JKRDvdAramRipperFP12JKRADCommandi:
 /* 8001DE0C 0001AD4C  7C 08 03 A6 */	mtlr r0
 /* 8001DE10 0001AD50  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001DE14 0001AD54  4E 80 00 20 */	blr 
+.endfn syncAram__16JKRDvdAramRipperFP12JKRADCommandi
 
-.global __ct__12JKRADCommandFv
-__ct__12JKRADCommandFv:
+.fn __ct__12JKRADCommandFv, global
 /* 8001DE18 0001AD58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001DE1C 0001AD5C  7C 08 02 A6 */	mflr r0
 /* 8001DE20 0001AD60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -598,9 +615,9 @@ __ct__12JKRADCommandFv:
 /* 8001DE4C 0001AD8C  7C 08 03 A6 */	mtlr r0
 /* 8001DE50 0001AD90  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001DE54 0001AD94  4E 80 00 20 */	blr 
+.endfn __ct__12JKRADCommandFv
 
-.global __dt__12JKRADCommandFv
-__dt__12JKRADCommandFv:
+.fn __dt__12JKRADCommandFv, global
 /* 8001DE58 0001AD98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001DE5C 0001AD9C  7C 08 02 A6 */	mflr r0
 /* 8001DE60 0001ADA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -639,9 +656,9 @@ __dt__12JKRADCommandFv:
 /* 8001DED8 0001AE18  7C 08 03 A6 */	mtlr r0
 /* 8001DEDC 0001AE1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001DEE0 0001AE20  4E 80 00 20 */	blr 
+.endfn __dt__12JKRADCommandFv
 
-.global JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl
-JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl:
+.fn JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl, global
 /* 8001DEE4 0001AE24  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8001DEE8 0001AE28  7C 08 02 A6 */	mflr r0
 /* 8001DEEC 0001AE2C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -713,7 +730,7 @@ JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl:
 /* 8001DFE8 0001AF28  90 6D 87 C0 */	stw r3, tsPtr@sda21(r13)
 /* 8001DFEC 0001AF2C  38 00 00 00 */	li r0, 0
 /* 8001DFF0 0001AF30  90 03 00 00 */	stw r0, 0(r3)
-/* 8001DFF4 0001AF34  48 00 02 E9 */	bl firstSrcData__Fv1
+/* 8001DFF4 0001AF34  48 00 02 E9 */	bl firstSrcData__Fv
 /* 8001DFF8 0001AF38  28 03 00 00 */	cmplwi r3, 0
 /* 8001DFFC 0001AF3C  41 82 00 14 */	beq .L_8001E010
 /* 8001E000 0001AF40  7F 44 D3 78 */	mr r4, r26
@@ -741,9 +758,9 @@ JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl:
 /* 8001E050 0001AF90  7C 08 03 A6 */	mtlr r0
 /* 8001E054 0001AF94  38 21 00 30 */	addi r1, r1, 0x30
 /* 8001E058 0001AF98  4E 80 00 20 */	blr 
+.endfn JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl
 
-.global decompSZS_subroutine__FPUcUl
-decompSZS_subroutine__FPUcUl:
+.fn decompSZS_subroutine__FPUcUl, local
 /* 8001E05C 0001AF9C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8001E060 0001AFA0  7C 08 02 A6 */	mflr r0
 /* 8001E064 0001AFA4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -790,7 +807,7 @@ decompSZS_subroutine__FPUcUl:
 /* 8001E0F8 0001B038  28 00 00 00 */	cmplwi r0, 0
 /* 8001E0FC 0001B03C  41 82 00 10 */	beq .L_8001E10C
 /* 8001E100 0001B040  7E E3 BB 78 */	mr r3, r23
-/* 8001E104 0001B044  48 00 02 8D */	bl nextSrcData__FPUc1
+/* 8001E104 0001B044  48 00 02 8D */	bl nextSrcData__FPUc
 /* 8001E108 0001B048  7C 77 1B 78 */	mr r23, r3
 .L_8001E10C:
 /* 8001E10C 0001B04C  8B 97 00 00 */	lbz r28, 0(r23)
@@ -924,9 +941,9 @@ decompSZS_subroutine__FPUcUl:
 /* 8001E2D0 0001B210  7C 08 03 A6 */	mtlr r0
 /* 8001E2D4 0001B214  38 21 00 30 */	addi r1, r1, 0x30
 /* 8001E2D8 0001B218  4E 80 00 20 */	blr 
+.endfn decompSZS_subroutine__FPUcUl
 
-.global firstSrcData__Fv1
-firstSrcData__Fv1:
+.fn firstSrcData__Fv, local
 /* 8001E2DC 0001B21C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001E2E0 0001B220  7C 08 02 A6 */	mflr r0
 /* 8001E2E4 0001B224  90 01 00 14 */	stw r0, 0x14(r1)
@@ -976,9 +993,9 @@ firstSrcData__Fv1:
 /* 8001E384 0001B2C4  7C 08 03 A6 */	mtlr r0
 /* 8001E388 0001B2C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001E38C 0001B2CC  4E 80 00 20 */	blr 
+.endfn firstSrcData__Fv
 
-.global nextSrcData__FPUc1
-nextSrcData__FPUc1:
+.fn nextSrcData__FPUc, local
 /* 8001E390 0001B2D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001E394 0001B2D4  7C 08 02 A6 */	mflr r0
 /* 8001E398 0001B2D8  7C 64 1B 78 */	mr r4, r3
@@ -1045,9 +1062,9 @@ nextSrcData__FPUc1:
 /* 8001E470 0001B3B0  7C 08 03 A6 */	mtlr r0
 /* 8001E474 0001B3B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001E478 0001B3B8  4E 80 00 20 */	blr 
+.endfn nextSrcData__FPUc
 
-.global dmaBufferFlush__FUl
-dmaBufferFlush__FUl:
+.fn dmaBufferFlush__FUl, local
 /* 8001E47C 0001B3BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001E480 0001B3C0  7C 08 02 A6 */	mflr r0
 /* 8001E484 0001B3C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1076,6 +1093,7 @@ dmaBufferFlush__FUl:
 /* 8001E4D8 0001B418  7C 08 03 A6 */	mtlr r0
 /* 8001E4DC 0001B41C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001E4E0 0001B420  4E 80 00 20 */	blr 
+.endfn dmaBufferFlush__FUl
 
 .fn __sinit_JKRDvdAramRipper_cpp, local
 /* 8001E4E4 0001B424  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -1097,8 +1115,7 @@ dmaBufferFlush__FUl:
 /* 8001E524 0001B464  4E 80 00 20 */	blr 
 .endfn __sinit_JKRDvdAramRipper_cpp
 
-.global "__dt__23JSUList<12JKRADCommand>Fv"
-"__dt__23JSUList<12JKRADCommand>Fv":
+.fn "__dt__23JSUList<12JKRADCommand>Fv", weak
 /* 8001E528 0001B468  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001E52C 0001B46C  7C 08 02 A6 */	mflr r0
 /* 8001E530 0001B470  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1121,3 +1138,4 @@ dmaBufferFlush__FUl:
 /* 8001E570 0001B4B0  7C 08 03 A6 */	mtlr r0
 /* 8001E574 0001B4B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001E578 0001B4B8  4E 80 00 20 */	blr 
+.endfn "__dt__23JSUList<12JKRADCommand>Fv"

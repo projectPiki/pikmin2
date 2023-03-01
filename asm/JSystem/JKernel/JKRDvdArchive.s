@@ -1,35 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473630
-lbl_80473630:
-	.4byte 0x4A4B5244
-	.4byte 0x76644172
-	.4byte 0x63686976
-	.4byte 0x652E6370
-	.4byte 0x70000000
-	.4byte 0x536F7272
-	.4byte 0x792C206E
-	.4byte 0x6F742070
-	.4byte 0x72657061
-	.4byte 0x72656420
-	.4byte 0x666F7220
-	.4byte 0x535A5020
-	.4byte 0x61726368
-	.4byte 0x6976652E
-	.4byte 0x0A000000
-	.4byte 0x3A3A3A3F
-	.4byte 0x3F3F2062
-	.4byte 0x61642073
-	.4byte 0x65717565
-	.4byte 0x6E63650A
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj lbl_80473630, local
+	.asciz "JKRDvdArchive.cpp"
+.endobj lbl_80473630
+.balign 4
+.obj lbl_80473644, local
+	.asciz "Sorry, not prepared for SZP archive.\n"
+.endobj lbl_80473644
+.balign 4
+.obj lbl_8047366C, local
+	.asciz ":::??? bad sequence\n"
+.endobj lbl_8047366C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13JKRDvdArchive
-__vt__13JKRDvdArchive:
+.obj __vt__13JKRDvdArchive, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13JKRDvdArchiveFv
@@ -50,10 +36,10 @@ __vt__13JKRDvdArchive:
 	.4byte fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
 	.4byte setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
 	.4byte getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
+.endobj __vt__13JKRDvdArchive
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection
-__ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection:
+.fn __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection, global
 /* 8001E57C 0001B4BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001E580 0001B4C0  7C 08 02 A6 */	mflr r0
 /* 8001E584 0001B4C4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -100,9 +86,9 @@ __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection:
 /* 8001E620 0001B560  7C 08 03 A6 */	mtlr r0
 /* 8001E624 0001B564  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001E628 0001B568  4E 80 00 20 */	blr 
+.endfn __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection
 
-.global __dt__13JKRDvdArchiveFv
-__dt__13JKRDvdArchiveFv:
+.fn __dt__13JKRDvdArchiveFv, global
 /* 8001E62C 0001B56C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001E630 0001B570  7C 08 02 A6 */	mflr r0
 /* 8001E634 0001B574  90 01 00 24 */	stw r0, 0x24(r1)
@@ -186,9 +172,9 @@ __dt__13JKRDvdArchiveFv:
 /* 8001E74C 0001B68C  7C 08 03 A6 */	mtlr r0
 /* 8001E750 0001B690  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001E754 0001B694  4E 80 00 20 */	blr 
+.endfn __dt__13JKRDvdArchiveFv
 
-.global open__13JKRDvdArchiveFl
-open__13JKRDvdArchiveFl:
+.fn open__13JKRDvdArchiveFl, global
 /* 8001E758 0001B698  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001E75C 0001B69C  7C 08 02 A6 */	mflr r0
 /* 8001E760 0001B6A0  38 A0 00 00 */	li r5, 0
@@ -375,9 +361,9 @@ open__13JKRDvdArchiveFl:
 /* 8001E9F8 0001B938  7C 08 03 A6 */	mtlr r0
 /* 8001E9FC 0001B93C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001EA00 0001B940  4E 80 00 20 */	blr 
+.endfn open__13JKRDvdArchiveFl
 
-.global fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl
-fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl:
+.fn fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl, global
 /* 8001EA04 0001B944  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001EA08 0001B948  7C 08 02 A6 */	mflr r0
 /* 8001EA0C 0001B94C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -461,9 +447,9 @@ fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl:
 /* 8001EB20 0001BA60  7C 08 03 A6 */	mtlr r0
 /* 8001EB24 0001BA64  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001EB28 0001BA68  4E 80 00 20 */	blr 
+.endfn fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl
 
-.global fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
-fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl:
+.fn fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl, global
 /* 8001EB2C 0001BA6C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001EB30 0001BA70  7C 08 02 A6 */	mflr r0
 /* 8001EB34 0001BA74  7C 69 1B 78 */	mr r9, r3
@@ -535,9 +521,9 @@ fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl:
 /* 8001EC1C 0001BB5C  7C 08 03 A6 */	mtlr r0
 /* 8001EC20 0001BB60  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001EC24 0001BB64  4E 80 00 20 */	blr 
+.endfn fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
 
-.global fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii
-fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii:
+.fn fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii, global
 /* 8001EC28 0001BB68  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8001EC2C 0001BB6C  7C 08 02 A6 */	mflr r0
 /* 8001EC30 0001BB70  2C 09 00 01 */	cmpwi r9, 1
@@ -677,9 +663,9 @@ fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii:
 /* 8001EE1C 0001BD5C  7C 08 03 A6 */	mtlr r0
 /* 8001EE20 0001BD60  38 21 00 70 */	addi r1, r1, 0x70
 /* 8001EE24 0001BD64  4E 80 00 20 */	blr 
+.endfn fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii
 
-.global fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc
-fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc:
+.fn fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc, global
 /* 8001EE28 0001BD68  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8001EE2C 0001BD6C  7C 08 02 A6 */	mflr r0
 /* 8001EE30 0001BD70  2C 08 00 01 */	cmpwi r8, 1
@@ -823,9 +809,9 @@ fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc:
 /* 8001F038 0001BF78  7C 08 03 A6 */	mtlr r0
 /* 8001F03C 0001BF7C  38 21 00 70 */	addi r1, r1, 0x70
 /* 8001F040 0001BF80  4E 80 00 20 */	blr 
+.endfn fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc
 
-.global getExpandedResSize__13JKRDvdArchiveCFPCv
-getExpandedResSize__13JKRDvdArchiveCFPCv:
+.fn getExpandedResSize__13JKRDvdArchiveCFPCv, global
 /* 8001F044 0001BF84  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8001F048 0001BF88  7C 08 02 A6 */	mflr r0
 /* 8001F04C 0001BF8C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -912,3 +898,4 @@ getExpandedResSize__13JKRDvdArchiveCFPCv:
 /* 8001F17C 0001C0BC  7C 08 03 A6 */	mtlr r0
 /* 8001F180 0001C0C0  38 21 00 60 */	addi r1, r1, 0x60
 /* 8001F184 0001C0C4  4E 80 00 20 */	blr 
+.endfn getExpandedResSize__13JKRDvdArchiveCFPCv

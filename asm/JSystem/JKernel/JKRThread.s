@@ -5,18 +5,18 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__7JKRTask
-__vt__7JKRTask:
+.obj __vt__7JKRTask, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__7JKRTaskFv
 	.4byte run__7JKRTaskFv
-.global __vt__9JKRThread
-__vt__9JKRThread:
+.endobj __vt__7JKRTask
+.obj __vt__9JKRThread, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__9JKRThreadFv
 	.4byte run__9JKRThreadFv
+.endobj __vt__9JKRThread
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -28,20 +28,19 @@ __vt__9JKRThread:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sManager__15JKRThreadSwitch
-sManager__15JKRThreadSwitch:
+.obj sManager__15JKRThreadSwitch, global
 	.skip 0x4
-.global sTotalCount__15JKRThreadSwitch
-sTotalCount__15JKRThreadSwitch:
+.endobj sManager__15JKRThreadSwitch
+.obj sTotalCount__15JKRThreadSwitch, global
 	.skip 0x4
+.endobj sTotalCount__15JKRThreadSwitch
 .balign 8
-.global sTotalStart__15JKRThreadSwitch
-sTotalStart__15JKRThreadSwitch:
+.obj sTotalStart__15JKRThreadSwitch, global
 	.skip 0x8
+.endobj sTotalStart__15JKRThreadSwitch
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__9JKRThreadFUlii
-__ct__9JKRThreadFUlii:
+.fn __ct__9JKRThreadFUlii, global
 /* 80025638 00022578  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002563C 0002257C  7C 08 02 A6 */	mflr r0
 /* 80025640 00022580  90 01 00 24 */	stw r0, 0x24(r1)
@@ -89,9 +88,9 @@ __ct__9JKRThreadFUlii:
 /* 800256E4 00022624  7C 08 03 A6 */	mtlr r0
 /* 800256E8 00022628  38 21 00 20 */	addi r1, r1, 0x20
 /* 800256EC 0002262C  4E 80 00 20 */	blr 
+.endfn __ct__9JKRThreadFUlii
 
-.global __ct__9JKRThreadFP7JKRHeapUlii
-__ct__9JKRThreadFP7JKRHeapUlii:
+.fn __ct__9JKRThreadFP7JKRHeapUlii, global
 /* 800256F0 00022630  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800256F4 00022634  7C 08 02 A6 */	mflr r0
 /* 800256F8 00022638  90 01 00 24 */	stw r0, 0x24(r1)
@@ -133,9 +132,9 @@ __ct__9JKRThreadFP7JKRHeapUlii:
 /* 80025784 000226C4  7C 08 03 A6 */	mtlr r0
 /* 80025788 000226C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002578C 000226CC  4E 80 00 20 */	blr 
+.endfn __ct__9JKRThreadFP7JKRHeapUlii
 
-.global __ct__9JKRThreadFP8OSThreadi
-__ct__9JKRThreadFP8OSThreadi:
+.fn __ct__9JKRThreadFP8OSThreadi, global
 /* 80025790 000226D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80025794 000226D4  7C 08 02 A6 */	mflr r0
 /* 80025798 000226D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -178,9 +177,9 @@ __ct__9JKRThreadFP8OSThreadi:
 /* 8002582C 0002276C  7C 08 03 A6 */	mtlr r0
 /* 80025830 00022770  38 21 00 20 */	addi r1, r1, 0x20
 /* 80025834 00022774  4E 80 00 20 */	blr 
+.endfn __ct__9JKRThreadFP8OSThreadi
 
-.global __dt__9JKRThreadFv
-__dt__9JKRThreadFv:
+.fn __dt__9JKRThreadFv, global
 /* 80025838 00022778  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002583C 0002277C  7C 08 02 A6 */	mflr r0
 /* 80025840 00022780  90 01 00 14 */	stw r0, 0x14(r1)
@@ -239,9 +238,9 @@ __dt__9JKRThreadFv:
 /* 80025904 00022844  7C 08 03 A6 */	mtlr r0
 /* 80025908 00022848  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002590C 0002284C  4E 80 00 20 */	blr 
+.endfn __dt__9JKRThreadFv
 
-.global setCommon_mesgQueue__9JKRThreadFP7JKRHeapi
-setCommon_mesgQueue__9JKRThreadFP7JKRHeapi:
+.fn setCommon_mesgQueue__9JKRThreadFP7JKRHeapi, global
 /* 80025910 00022850  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80025914 00022854  7C 08 02 A6 */	mflr r0
 /* 80025918 00022858  90 01 00 14 */	stw r0, 0x14(r1)
@@ -270,9 +269,9 @@ setCommon_mesgQueue__9JKRThreadFP7JKRHeapi:
 /* 80025974 000228B4  7C 08 03 A6 */	mtlr r0
 /* 80025978 000228B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002597C 000228BC  4E 80 00 20 */	blr 
+.endfn setCommon_mesgQueue__9JKRThreadFP7JKRHeapi
 
-.global setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli
-setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli:
+.fn setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli, global
 /* 80025980 000228C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80025984 000228C4  7C 08 02 A6 */	mflr r0
 /* 80025988 000228C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -309,9 +308,9 @@ setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli:
 /* 80025A04 00022944  7C 08 03 A6 */	mtlr r0
 /* 80025A08 00022948  38 21 00 10 */	addi r1, r1, 0x10
 /* 80025A0C 0002294C  4E 80 00 20 */	blr 
+.endfn setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli
 
-.global start__9JKRThreadFPv
-start__9JKRThreadFPv:
+.fn start__9JKRThreadFPv, global
 /* 80025A10 00022950  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80025A14 00022954  7C 08 02 A6 */	mflr r0
 /* 80025A18 00022958  90 01 00 14 */	stw r0, 0x14(r1)
@@ -323,14 +322,14 @@ start__9JKRThreadFPv:
 /* 80025A30 00022970  7C 08 03 A6 */	mtlr r0
 /* 80025A34 00022974  38 21 00 10 */	addi r1, r1, 0x10
 /* 80025A38 00022978  4E 80 00 20 */	blr 
+.endfn start__9JKRThreadFPv
 
-.global run__9JKRThreadFv
-run__9JKRThreadFv:
+.fn run__9JKRThreadFv, weak
 /* 80025A3C 0002297C  38 60 00 00 */	li r3, 0
 /* 80025A40 00022980  4E 80 00 20 */	blr 
+.endfn run__9JKRThreadFv
 
-.global loopProc__15JKRThreadSwitchFv
-loopProc__15JKRThreadSwitchFv:
+.fn loopProc__15JKRThreadSwitchFv, global
 /* 80025A44 00022984  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80025A48 00022988  7C 08 02 A6 */	mflr r0
 /* 80025A4C 0002298C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -439,9 +438,9 @@ loopProc__15JKRThreadSwitchFv:
 /* 80025BBC 00022AFC  7C 08 03 A6 */	mtlr r0
 /* 80025BC0 00022B00  38 21 00 20 */	addi r1, r1, 0x20
 /* 80025BC4 00022B04  4E 80 00 20 */	blr 
+.endfn loopProc__15JKRThreadSwitchFv
 
-.global __dt__7JKRTaskFv
-__dt__7JKRTaskFv:
+.fn __dt__7JKRTaskFv, global
 /* 80025BC8 00022B08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80025BCC 00022B0C  7C 08 02 A6 */	mflr r0
 /* 80025BD0 00022B10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -516,9 +515,9 @@ __dt__7JKRTaskFv:
 /* 80025CCC 00022C0C  7C 08 03 A6 */	mtlr r0
 /* 80025CD0 00022C10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80025CD4 00022C14  4E 80 00 20 */	blr 
+.endfn __dt__7JKRTaskFv
 
-.global create__7JKRTaskFiiUlP7JKRHeap
-create__7JKRTaskFiiUlP7JKRHeap:
+.fn create__7JKRTaskFiiUlP7JKRHeap, global
 /* 80025CD8 00022C18  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80025CDC 00022C1C  7C 08 02 A6 */	mflr r0
 /* 80025CE0 00022C20  90 01 00 24 */	stw r0, 0x24(r1)
@@ -699,9 +698,9 @@ create__7JKRTaskFiiUlP7JKRHeap:
 /* 80025F70 00022EB0  7C 08 03 A6 */	mtlr r0
 /* 80025F74 00022EB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80025F78 00022EB8  4E 80 00 20 */	blr 
+.endfn create__7JKRTaskFiiUlP7JKRHeap
 
-.global run__7JKRTaskFv
-run__7JKRTaskFv:
+.fn run__7JKRTaskFv, global
 /* 80025F7C 00022EBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80025F80 00022EC0  7C 08 02 A6 */	mflr r0
 /* 80025F84 00022EC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -743,9 +742,9 @@ run__7JKRTaskFv:
 .L_80026010:
 /* 80026010 00022F50  93 FE 00 00 */	stw r31, 0(r30)
 /* 80026014 00022F54  4B FF FF B8 */	b .L_80025FCC
+.endfn run__7JKRTaskFv
 
-.global request__7JKRTaskFPFPv_vPvPv
-request__7JKRTaskFPFPv_vPvPv:
+.fn request__7JKRTaskFPFPv_vPvPv, global
 /* 80026018 00022F58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002601C 00022F5C  7C 08 02 A6 */	mflr r0
 /* 80026020 00022F60  38 E0 00 00 */	li r7, 0
@@ -796,6 +795,7 @@ request__7JKRTaskFPFPv_vPvPv:
 /* 800260BC 00022FFC  7C 08 03 A6 */	mtlr r0
 /* 800260C0 00023000  38 21 00 10 */	addi r1, r1, 0x10
 /* 800260C4 00023004  4E 80 00 20 */	blr 
+.endfn request__7JKRTaskFPFPv_vPvPv
 
 .fn __sinit_JKRThread_cpp, local
 /* 800260C8 00023008  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -828,8 +828,7 @@ request__7JKRTaskFPFPv_vPvPv:
 /* 80026134 00023074  4E 80 00 20 */	blr 
 .endfn __sinit_JKRThread_cpp
 
-.global "__dt__17JSUList<7JKRTask>Fv"
-"__dt__17JSUList<7JKRTask>Fv":
+.fn "__dt__17JSUList<7JKRTask>Fv", weak
 /* 80026138 00023078  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002613C 0002307C  7C 08 02 A6 */	mflr r0
 /* 80026140 00023080  90 01 00 14 */	stw r0, 0x14(r1)
@@ -852,9 +851,9 @@ request__7JKRTaskFPFPv_vPvPv:
 /* 80026180 000230C0  7C 08 03 A6 */	mtlr r0
 /* 80026184 000230C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80026188 000230C8  4E 80 00 20 */	blr 
+.endfn "__dt__17JSUList<7JKRTask>Fv"
 
-.global "__dt__19JSUList<9JKRThread>Fv"
-"__dt__19JSUList<9JKRThread>Fv":
+.fn "__dt__19JSUList<9JKRThread>Fv", weak
 /* 8002618C 000230CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80026190 000230D0  7C 08 02 A6 */	mflr r0
 /* 80026194 000230D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -877,3 +876,4 @@ request__7JKRTaskFPFPv_vPvPv:
 /* 800261D4 00023114  7C 08 03 A6 */	mtlr r0
 /* 800261D8 00023118  38 21 00 10 */	addi r1, r1, 0x10
 /* 800261DC 0002311C  4E 80 00 20 */	blr 
+.endfn "__dt__19JSUList<9JKRThread>Fv"

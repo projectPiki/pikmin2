@@ -5,20 +5,25 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80473540:
+.obj lbl_80473540, local
 	.asciz "direction = %x\n"
+.endobj lbl_80473540
 .balign 4
-lbl_80473550:
+.obj lbl_80473550, local
 	.asciz "source = %x\n"
+.endobj lbl_80473550
 .balign 4
-lbl_80473560:
+.obj lbl_80473560, local
 	.asciz "destination = %x\n"
+.endobj lbl_80473560
 .balign 4
-lbl_80473574:
+.obj lbl_80473574, local
 	.asciz "length = %x\n"
+.endobj lbl_80473574
 .balign 4
-lbl_80473584:
+.obj lbl_80473584, local
 	.asciz "JKRAramPiece.cpp"
+.endobj lbl_80473584
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -29,12 +34,12 @@ lbl_80473584:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805164D8:
+.obj lbl_805164D8, local
 	.asciz "Abort."
+.endobj lbl_805164D8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global sendCommand__12JKRAramPieceFP12JKRAMCommand
-sendCommand__12JKRAramPieceFP12JKRAMCommand:
+.fn sendCommand__12JKRAramPieceFP12JKRAMCommand, global
 /* 80019AD8 00016A18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019ADC 00016A1C  7C 08 02 A6 */	mflr r0
 /* 80019AE0 00016A20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -43,9 +48,9 @@ sendCommand__12JKRAramPieceFP12JKRAMCommand:
 /* 80019AEC 00016A2C  7C 08 03 A6 */	mtlr r0
 /* 80019AF0 00016A30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019AF4 00016A34  4E 80 00 20 */	blr 
+.endfn sendCommand__12JKRAramPieceFP12JKRAMCommand
 
-.global orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock
-orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock:
+.fn orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock, global
 /* 80019AF8 00016A38  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80019AFC 00016A3C  7C 08 02 A6 */	mflr r0
 /* 80019B00 00016A40  3D 00 80 50 */	lis r8, mMutex__12JKRAramPiece@ha
@@ -157,9 +162,9 @@ orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock:
 /* 80019C98 00016BD8  7C 08 03 A6 */	mtlr r0
 /* 80019C9C 00016BDC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80019CA0 00016BE0  4E 80 00 20 */	blr 
+.endfn orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock
 
-.global startDMA__12JKRAramPieceFP12JKRAMCommand
-startDMA__12JKRAramPieceFP12JKRAMCommand:
+.fn startDMA__12JKRAramPieceFP12JKRAMCommand, global
 /* 80019CA4 00016BE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019CA8 00016BE8  7C 08 02 A6 */	mflr r0
 /* 80019CAC 00016BEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -192,9 +197,9 @@ startDMA__12JKRAramPieceFP12JKRAMCommand:
 /* 80019D10 00016C50  7C 08 03 A6 */	mtlr r0
 /* 80019D14 00016C54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019D18 00016C58  4E 80 00 20 */	blr 
+.endfn startDMA__12JKRAramPieceFP12JKRAMCommand
 
-.global doneDMA__12JKRAramPieceFUl
-doneDMA__12JKRAramPieceFUl:
+.fn doneDMA__12JKRAramPieceFUl, global
 /* 80019D1C 00016C5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019D20 00016C60  7C 08 02 A6 */	mflr r0
 /* 80019D24 00016C64  90 01 00 14 */	stw r0, 0x14(r1)
@@ -242,9 +247,9 @@ doneDMA__12JKRAramPieceFUl:
 /* 80019DB8 00016CF8  7C 08 03 A6 */	mtlr r0
 /* 80019DBC 00016CFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019DC0 00016D00  4E 80 00 20 */	blr 
+.endfn doneDMA__12JKRAramPieceFUl
 
-.global __ct__12JKRAMCommandFv
-__ct__12JKRAMCommandFv:
+.fn __ct__12JKRAMCommandFv, global
 /* 80019DC4 00016D04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019DC8 00016D08  7C 08 02 A6 */	mflr r0
 /* 80019DCC 00016D0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -273,9 +278,9 @@ __ct__12JKRAMCommandFv:
 /* 80019E28 00016D68  7C 08 03 A6 */	mtlr r0
 /* 80019E2C 00016D6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019E30 00016D70  4E 80 00 20 */	blr 
+.endfn __ct__12JKRAMCommandFv
 
-.global __dt__12JKRAMCommandFv
-__dt__12JKRAMCommandFv:
+.fn __dt__12JKRAMCommandFv, global
 /* 80019E34 00016D74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019E38 00016D78  7C 08 02 A6 */	mflr r0
 /* 80019E3C 00016D7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -324,6 +329,7 @@ __dt__12JKRAMCommandFv:
 /* 80019ED0 00016E10  7C 08 03 A6 */	mtlr r0
 /* 80019ED4 00016E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019ED8 00016E18  4E 80 00 20 */	blr 
+.endfn __dt__12JKRAMCommandFv
 
 .fn __sinit_JKRAramPiece_cpp, local
 /* 80019EDC 00016E1C  94 21 FF F0 */	stwu r1, -0x10(r1)

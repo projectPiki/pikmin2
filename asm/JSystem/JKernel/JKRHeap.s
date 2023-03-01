@@ -1,14 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473A68
-lbl_80473A68:
+.obj lbl_80473A68, local
 	.asciz "JKRHeap.cpp"
+.endobj lbl_80473A68
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__7JKRHeap
-__vt__7JKRHeap:
+.obj __vt__7JKRHeap, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__7JKRHeapFv
@@ -33,58 +32,59 @@ __vt__7JKRHeap:
 	.4byte state_register__7JKRHeapCFPQ27JKRHeap6TStateUl
 	.4byte state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
 	.4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
+.endobj __vt__7JKRHeap
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sDefaultFillFlag__7JKRHeap
-sDefaultFillFlag__7JKRHeap:
+.obj sDefaultFillFlag__7JKRHeap, global
 	.byte 1
+.endobj sDefaultFillFlag__7JKRHeap
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sSystemHeap__7JKRHeap
-sSystemHeap__7JKRHeap:
+.obj sSystemHeap__7JKRHeap, global
 	.skip 0x4
-.global sCurrentHeap__7JKRHeap
-sCurrentHeap__7JKRHeap:
+.endobj sSystemHeap__7JKRHeap
+.obj sCurrentHeap__7JKRHeap, global
 	.skip 0x4
-.global sRootHeap__7JKRHeap
-sRootHeap__7JKRHeap:
+.endobj sCurrentHeap__7JKRHeap
+.obj sRootHeap__7JKRHeap, global
 	.skip 0x4
-.global mErrorHandler__7JKRHeap
-mErrorHandler__7JKRHeap:
+.endobj sRootHeap__7JKRHeap
+.obj mErrorHandler__7JKRHeap, global
 	.skip 0x4
-.global sDefaultFillCheckFlag__7JKRHeap
-sDefaultFillCheckFlag__7JKRHeap:
+.endobj mErrorHandler__7JKRHeap
+.obj sDefaultFillCheckFlag__7JKRHeap, global
 	.skip 0x1
+.endobj sDefaultFillCheckFlag__7JKRHeap
 .balign 4
-.global mCodeStart__7JKRHeap
-mCodeStart__7JKRHeap:
+.obj mCodeStart__7JKRHeap, global
 	.skip 0x4
-.global mCodeEnd__7JKRHeap
-mCodeEnd__7JKRHeap:
+.endobj mCodeStart__7JKRHeap
+.obj mCodeEnd__7JKRHeap, global
 	.skip 0x4
-.global mUserRamStart__7JKRHeap
-mUserRamStart__7JKRHeap:
+.endobj mCodeEnd__7JKRHeap
+.obj mUserRamStart__7JKRHeap, global
 	.skip 0x4
-.global mUserRamEnd__7JKRHeap
-mUserRamEnd__7JKRHeap:
+.endobj mUserRamStart__7JKRHeap
+.obj mUserRamEnd__7JKRHeap, global
 	.skip 0x4
-.global mMemorySize__7JKRHeap
-mMemorySize__7JKRHeap:
+.endobj mUserRamEnd__7JKRHeap
+.obj mMemorySize__7JKRHeap, global
 	.skip 0x4
-.global bVerbose___Q27JKRHeap6TState
-bVerbose___Q27JKRHeap6TState:
+.endobj mMemorySize__7JKRHeap
+.obj bVerbose___Q27JKRHeap6TState, global
 	.skip 0x1
+.endobj bVerbose___Q27JKRHeap6TState
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516530:
+.obj lbl_80516530, local
 	.asciz "abort\n"
+.endobj lbl_80516530
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__7JKRHeapFPvUlP7JKRHeapb
-__ct__7JKRHeapFPvUlP7JKRHeapb:
+.fn __ct__7JKRHeapFPvUlP7JKRHeapb, global
 /* 800232B4 000201F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800232B8 000201F8  7C 08 02 A6 */	mflr r0
 /* 800232BC 000201FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -163,9 +163,9 @@ __ct__7JKRHeapFPvUlP7JKRHeapb:
 /* 800233CC 0002030C  7C 08 03 A6 */	mtlr r0
 /* 800233D0 00020310  38 21 00 20 */	addi r1, r1, 0x20
 /* 800233D4 00020314  4E 80 00 20 */	blr 
+.endfn __ct__7JKRHeapFPvUlP7JKRHeapb
 
-.global __dt__7JKRHeapFv
-__dt__7JKRHeapFv:
+.fn __dt__7JKRHeapFv, global
 /* 800233D8 00020318  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800233DC 0002031C  7C 08 02 A6 */	mflr r0
 /* 800233E0 00020320  90 01 00 14 */	stw r0, 0x14(r1)
@@ -247,9 +247,9 @@ __dt__7JKRHeapFv:
 /* 800234E0 00020420  7C 08 03 A6 */	mtlr r0
 /* 800234E4 00020424  38 21 00 10 */	addi r1, r1, 0x10
 /* 800234E8 00020428  4E 80 00 20 */	blr 
+.endfn __dt__7JKRHeapFv
 
-.global initArena__7JKRHeapFPPcPUli
-initArena__7JKRHeapFPPcPUli:
+.fn initArena__7JKRHeapFPPcPUli, global
 /* 800234EC 0002042C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800234F0 00020430  7C 08 02 A6 */	mflr r0
 /* 800234F4 00020434  90 01 00 24 */	stw r0, 0x24(r1)
@@ -294,23 +294,23 @@ initArena__7JKRHeapFPPcPUli:
 /* 80023588 000204C8  7C 08 03 A6 */	mtlr r0
 /* 8002358C 000204CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80023590 000204D0  4E 80 00 20 */	blr 
+.endfn initArena__7JKRHeapFPPcPUli
 
-.global becomeSystemHeap__7JKRHeapFv
-becomeSystemHeap__7JKRHeapFv:
+.fn becomeSystemHeap__7JKRHeapFv, global
 /* 80023594 000204D4  80 0D 88 28 */	lwz r0, sSystemHeap__7JKRHeap@sda21(r13)
 /* 80023598 000204D8  90 6D 88 28 */	stw r3, sSystemHeap__7JKRHeap@sda21(r13)
 /* 8002359C 000204DC  7C 03 03 78 */	mr r3, r0
 /* 800235A0 000204E0  4E 80 00 20 */	blr 
+.endfn becomeSystemHeap__7JKRHeapFv
 
-.global becomeCurrentHeap__7JKRHeapFv
-becomeCurrentHeap__7JKRHeapFv:
+.fn becomeCurrentHeap__7JKRHeapFv, global
 /* 800235A4 000204E4  80 0D 88 2C */	lwz r0, sCurrentHeap__7JKRHeap@sda21(r13)
 /* 800235A8 000204E8  90 6D 88 2C */	stw r3, sCurrentHeap__7JKRHeap@sda21(r13)
 /* 800235AC 000204EC  7C 03 03 78 */	mr r3, r0
 /* 800235B0 000204F0  4E 80 00 20 */	blr 
+.endfn becomeCurrentHeap__7JKRHeapFv
 
-.global destroy__7JKRHeapFv
-destroy__7JKRHeapFv:
+.fn destroy__7JKRHeapFv, global
 /* 800235B4 000204F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800235B8 000204F8  7C 08 02 A6 */	mflr r0
 /* 800235BC 000204FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -322,9 +322,9 @@ destroy__7JKRHeapFv:
 /* 800235D4 00020514  7C 08 03 A6 */	mtlr r0
 /* 800235D8 00020518  38 21 00 10 */	addi r1, r1, 0x10
 /* 800235DC 0002051C  4E 80 00 20 */	blr 
+.endfn destroy__7JKRHeapFv
 
-.global alloc__7JKRHeapFUliP7JKRHeap
-alloc__7JKRHeapFUliP7JKRHeap:
+.fn alloc__7JKRHeapFUliP7JKRHeap, global
 /* 800235E0 00020520  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800235E4 00020524  7C 08 02 A6 */	mflr r0
 /* 800235E8 00020528  28 05 00 00 */	cmplwi r5, 0
@@ -352,9 +352,9 @@ alloc__7JKRHeapFUliP7JKRHeap:
 /* 80023634 00020574  7C 08 03 A6 */	mtlr r0
 /* 80023638 00020578  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002363C 0002057C  4E 80 00 20 */	blr 
+.endfn alloc__7JKRHeapFUliP7JKRHeap
 
-.global alloc__7JKRHeapFUli
-alloc__7JKRHeapFUli:
+.fn alloc__7JKRHeapFUli, global
 /* 80023640 00020580  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023644 00020584  7C 08 02 A6 */	mflr r0
 /* 80023648 00020588  90 01 00 14 */	stw r0, 0x14(r1)
@@ -366,9 +366,9 @@ alloc__7JKRHeapFUli:
 /* 80023660 000205A0  7C 08 03 A6 */	mtlr r0
 /* 80023664 000205A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023668 000205A8  4E 80 00 20 */	blr 
+.endfn alloc__7JKRHeapFUli
 
-.global free__7JKRHeapFPvP7JKRHeap
-free__7JKRHeapFPvP7JKRHeap:
+.fn free__7JKRHeapFPvP7JKRHeap, global
 /* 8002366C 000205AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023670 000205B0  7C 08 02 A6 */	mflr r0
 /* 80023674 000205B4  28 04 00 00 */	cmplwi r4, 0
@@ -389,9 +389,9 @@ free__7JKRHeapFPvP7JKRHeap:
 /* 800236A8 000205E8  7C 08 03 A6 */	mtlr r0
 /* 800236AC 000205EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800236B0 000205F0  4E 80 00 20 */	blr 
+.endfn free__7JKRHeapFPvP7JKRHeap
 
-.global free__7JKRHeapFPv
-free__7JKRHeapFPv:
+.fn free__7JKRHeapFPv, global
 /* 800236B4 000205F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800236B8 000205F8  7C 08 02 A6 */	mflr r0
 /* 800236BC 000205FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -403,9 +403,9 @@ free__7JKRHeapFPv:
 /* 800236D4 00020614  7C 08 03 A6 */	mtlr r0
 /* 800236D8 00020618  38 21 00 10 */	addi r1, r1, 0x10
 /* 800236DC 0002061C  4E 80 00 20 */	blr 
+.endfn free__7JKRHeapFPv
 
-.global callAllDisposer__7JKRHeapFv
-callAllDisposer__7JKRHeapFv:
+.fn callAllDisposer__7JKRHeapFv, global
 /* 800236E0 00020620  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800236E4 00020624  7C 08 02 A6 */	mflr r0
 /* 800236E8 00020628  90 01 00 14 */	stw r0, 0x14(r1)
@@ -428,9 +428,9 @@ callAllDisposer__7JKRHeapFv:
 /* 80023724 00020664  7C 08 03 A6 */	mtlr r0
 /* 80023728 00020668  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002372C 0002066C  4E 80 00 20 */	blr 
+.endfn callAllDisposer__7JKRHeapFv
 
-.global freeAll__7JKRHeapFv
-freeAll__7JKRHeapFv:
+.fn freeAll__7JKRHeapFv, global
 /* 80023730 00020670  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023734 00020674  7C 08 02 A6 */	mflr r0
 /* 80023738 00020678  90 01 00 14 */	stw r0, 0x14(r1)
@@ -442,9 +442,9 @@ freeAll__7JKRHeapFv:
 /* 80023750 00020690  7C 08 03 A6 */	mtlr r0
 /* 80023754 00020694  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023758 00020698  4E 80 00 20 */	blr 
+.endfn freeAll__7JKRHeapFv
 
-.global freeTail__7JKRHeapFv
-freeTail__7JKRHeapFv:
+.fn freeTail__7JKRHeapFv, global
 /* 8002375C 0002069C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023760 000206A0  7C 08 02 A6 */	mflr r0
 /* 80023764 000206A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -456,9 +456,9 @@ freeTail__7JKRHeapFv:
 /* 8002377C 000206BC  7C 08 03 A6 */	mtlr r0
 /* 80023780 000206C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023784 000206C4  4E 80 00 20 */	blr 
+.endfn freeTail__7JKRHeapFv
 
-.global resize__7JKRHeapFPvUl
-resize__7JKRHeapFPvUl:
+.fn resize__7JKRHeapFPvUl, global
 /* 80023788 000206C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002378C 000206CC  7C 08 02 A6 */	mflr r0
 /* 80023790 000206D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -470,9 +470,9 @@ resize__7JKRHeapFPvUl:
 /* 800237A8 000206E8  7C 08 03 A6 */	mtlr r0
 /* 800237AC 000206EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800237B0 000206F0  4E 80 00 20 */	blr 
+.endfn resize__7JKRHeapFPvUl
 
-.global getFreeSize__7JKRHeapFv
-getFreeSize__7JKRHeapFv:
+.fn getFreeSize__7JKRHeapFv, global
 /* 800237B4 000206F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800237B8 000206F8  7C 08 02 A6 */	mflr r0
 /* 800237BC 000206FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -484,9 +484,9 @@ getFreeSize__7JKRHeapFv:
 /* 800237D4 00020714  7C 08 03 A6 */	mtlr r0
 /* 800237D8 00020718  38 21 00 10 */	addi r1, r1, 0x10
 /* 800237DC 0002071C  4E 80 00 20 */	blr 
+.endfn getFreeSize__7JKRHeapFv
 
-.global getTotalFreeSize__7JKRHeapFv
-getTotalFreeSize__7JKRHeapFv:
+.fn getTotalFreeSize__7JKRHeapFv, global
 /* 800237E0 00020720  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800237E4 00020724  7C 08 02 A6 */	mflr r0
 /* 800237E8 00020728  90 01 00 14 */	stw r0, 0x14(r1)
@@ -498,9 +498,9 @@ getTotalFreeSize__7JKRHeapFv:
 /* 80023800 00020740  7C 08 03 A6 */	mtlr r0
 /* 80023804 00020744  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023808 00020748  4E 80 00 20 */	blr 
+.endfn getTotalFreeSize__7JKRHeapFv
 
-.global changeGroupID__7JKRHeapFUc
-changeGroupID__7JKRHeapFUc:
+.fn changeGroupID__7JKRHeapFUc, global
 /* 8002380C 0002074C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023810 00020750  7C 08 02 A6 */	mflr r0
 /* 80023814 00020754  90 01 00 14 */	stw r0, 0x14(r1)
@@ -512,14 +512,14 @@ changeGroupID__7JKRHeapFUc:
 /* 8002382C 0002076C  7C 08 03 A6 */	mtlr r0
 /* 80023830 00020770  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023834 00020774  4E 80 00 20 */	blr 
+.endfn changeGroupID__7JKRHeapFUc
 
-.global do_changeGroupID__7JKRHeapFUc
-do_changeGroupID__7JKRHeapFUc:
+.fn do_changeGroupID__7JKRHeapFUc, weak
 /* 80023838 00020778  38 60 00 00 */	li r3, 0
 /* 8002383C 0002077C  4E 80 00 20 */	blr 
+.endfn do_changeGroupID__7JKRHeapFUc
 
-.global getCurrentGroupId__7JKRHeapFv
-getCurrentGroupId__7JKRHeapFv:
+.fn getCurrentGroupId__7JKRHeapFv, global
 /* 80023840 00020780  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023844 00020784  7C 08 02 A6 */	mflr r0
 /* 80023848 00020788  90 01 00 14 */	stw r0, 0x14(r1)
@@ -531,14 +531,14 @@ getCurrentGroupId__7JKRHeapFv:
 /* 80023860 000207A0  7C 08 03 A6 */	mtlr r0
 /* 80023864 000207A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023868 000207A8  4E 80 00 20 */	blr 
+.endfn getCurrentGroupId__7JKRHeapFv
 
-.global do_getCurrentGroupId__7JKRHeapFv
-do_getCurrentGroupId__7JKRHeapFv:
+.fn do_getCurrentGroupId__7JKRHeapFv, weak
 /* 8002386C 000207AC  38 60 00 00 */	li r3, 0
 /* 80023870 000207B0  4E 80 00 20 */	blr 
+.endfn do_getCurrentGroupId__7JKRHeapFv
 
-.global getMaxAllocatableSize__7JKRHeapFi
-getMaxAllocatableSize__7JKRHeapFi:
+.fn getMaxAllocatableSize__7JKRHeapFi, global
 /* 80023874 000207B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80023878 000207B8  7C 08 02 A6 */	mflr r0
 /* 8002387C 000207BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -571,9 +571,9 @@ getMaxAllocatableSize__7JKRHeapFi:
 /* 800238E8 00020828  7C 08 03 A6 */	mtlr r0
 /* 800238EC 0002082C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800238F0 00020830  4E 80 00 20 */	blr 
+.endfn getMaxAllocatableSize__7JKRHeapFi
 
-.global findFromRoot__7JKRHeapFPv
-findFromRoot__7JKRHeapFPv:
+.fn findFromRoot__7JKRHeapFPv, global
 /* 800238F4 00020834  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800238F8 00020838  7C 08 02 A6 */	mflr r0
 /* 800238FC 0002083C  7C 64 1B 78 */	mr r4, r3
@@ -591,9 +591,9 @@ findFromRoot__7JKRHeapFPv:
 /* 80023924 00020864  7C 08 03 A6 */	mtlr r0
 /* 80023928 00020868  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002392C 0002086C  4E 80 00 20 */	blr 
+.endfn findFromRoot__7JKRHeapFPv
 
-.global find__7JKRHeapCFPv
-find__7JKRHeapCFPv:
+.fn find__7JKRHeapCFPv, global
 /* 80023930 00020870  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80023934 00020874  7C 08 02 A6 */	mflr r0
 /* 80023938 00020878  90 01 00 44 */	stw r0, 0x44(r1)
@@ -781,31 +781,31 @@ find__7JKRHeapCFPv:
 /* 80023B94 00020AD4  7C 08 03 A6 */	mtlr r0
 /* 80023B98 00020AD8  38 21 00 40 */	addi r1, r1, 0x40
 /* 80023B9C 00020ADC  4E 80 00 20 */	blr 
+.endfn find__7JKRHeapCFPv
 
-.global "getNextChild__17JSUTree<7JKRHeap>CFv"
-"getNextChild__17JSUTree<7JKRHeap>CFv":
+.fn "getNextChild__17JSUTree<7JKRHeap>CFv", weak
 /* 80023BA0 00020AE0  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 80023BA4 00020AE4  28 03 00 00 */	cmplwi r3, 0
 /* 80023BA8 00020AE8  4D 82 00 20 */	beqlr 
 /* 80023BAC 00020AEC  38 63 FF F4 */	addi r3, r3, -12
 /* 80023BB0 00020AF0  4E 80 00 20 */	blr 
+.endfn "getNextChild__17JSUTree<7JKRHeap>CFv"
 
-.global "__ne__25JSUTreeIterator<7JKRHeap>CFPC17JSUTree<7JKRHeap>"
-"__ne__25JSUTreeIterator<7JKRHeap>CFPC17JSUTree<7JKRHeap>":
+.fn "__ne__25JSUTreeIterator<7JKRHeap>CFPC17JSUTree<7JKRHeap>", weak
 /* 80023BB4 00020AF4  80 03 00 00 */	lwz r0, 0(r3)
 /* 80023BB8 00020AF8  7C 60 20 50 */	subf r3, r0, r4
 /* 80023BBC 00020AFC  7C 04 00 50 */	subf r0, r4, r0
 /* 80023BC0 00020B00  7C 60 03 78 */	or r0, r3, r0
 /* 80023BC4 00020B04  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80023BC8 00020B08  4E 80 00 20 */	blr 
+.endfn "__ne__25JSUTreeIterator<7JKRHeap>CFPC17JSUTree<7JKRHeap>"
 
-.global "getEndChild__17JSUTree<7JKRHeap>CFv"
-"getEndChild__17JSUTree<7JKRHeap>CFv":
+.fn "getEndChild__17JSUTree<7JKRHeap>CFv", weak
 /* 80023BCC 00020B0C  38 60 00 00 */	li r3, 0
 /* 80023BD0 00020B10  4E 80 00 20 */	blr 
+.endfn "getEndChild__17JSUTree<7JKRHeap>CFv"
 
-.global "__pp__25JSUTreeIterator<7JKRHeap>Fv"
-"__pp__25JSUTreeIterator<7JKRHeap>Fv":
+.fn "__pp__25JSUTreeIterator<7JKRHeap>Fv", weak
 /* 80023BD4 00020B14  80 83 00 00 */	lwz r4, 0(r3)
 /* 80023BD8 00020B18  80 84 00 18 */	lwz r4, 0x18(r4)
 /* 80023BDC 00020B1C  28 04 00 00 */	cmplwi r4, 0
@@ -814,38 +814,38 @@ find__7JKRHeapCFPv:
 .L_80023BE8:
 /* 80023BE8 00020B28  90 83 00 00 */	stw r4, 0(r3)
 /* 80023BEC 00020B2C  4E 80 00 20 */	blr 
+.endfn "__pp__25JSUTreeIterator<7JKRHeap>Fv"
 
-.global "__rf__25JSUTreeIterator<7JKRHeap>CFv"
-"__rf__25JSUTreeIterator<7JKRHeap>CFv":
+.fn "__rf__25JSUTreeIterator<7JKRHeap>CFv", weak
 /* 80023BF0 00020B30  80 63 00 00 */	lwz r3, 0(r3)
 /* 80023BF4 00020B34  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80023BF8 00020B38  4E 80 00 20 */	blr 
+.endfn "__rf__25JSUTreeIterator<7JKRHeap>CFv"
 
-.global "__ct__25JSUTreeIterator<7JKRHeap>FP17JSUTree<7JKRHeap>"
-"__ct__25JSUTreeIterator<7JKRHeap>FP17JSUTree<7JKRHeap>":
+.fn "__ct__25JSUTreeIterator<7JKRHeap>FP17JSUTree<7JKRHeap>", weak
 /* 80023BFC 00020B3C  90 83 00 00 */	stw r4, 0(r3)
 /* 80023C00 00020B40  4E 80 00 20 */	blr 
+.endfn "__ct__25JSUTreeIterator<7JKRHeap>FP17JSUTree<7JKRHeap>"
 
-.global "getNumChildren__17JSUTree<7JKRHeap>CFv"
-"getNumChildren__17JSUTree<7JKRHeap>CFv":
+.fn "getNumChildren__17JSUTree<7JKRHeap>CFv", weak
 /* 80023C04 00020B44  80 63 00 08 */	lwz r3, 8(r3)
 /* 80023C08 00020B48  4E 80 00 20 */	blr 
+.endfn "getNumChildren__17JSUTree<7JKRHeap>CFv"
 
-.global "getFirstChild__17JSUTree<7JKRHeap>CFv"
-"getFirstChild__17JSUTree<7JKRHeap>CFv":
+.fn "getFirstChild__17JSUTree<7JKRHeap>CFv", weak
 /* 80023C0C 00020B4C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80023C10 00020B50  28 03 00 00 */	cmplwi r3, 0
 /* 80023C14 00020B54  4D 82 00 20 */	beqlr 
 /* 80023C18 00020B58  38 63 FF F4 */	addi r3, r3, -12
 /* 80023C1C 00020B5C  4E 80 00 20 */	blr 
+.endfn "getFirstChild__17JSUTree<7JKRHeap>CFv"
 
-.global getFirstLink__10JSUPtrListCFv
-getFirstLink__10JSUPtrListCFv:
+.fn getFirstLink__10JSUPtrListCFv, weak
 /* 80023C20 00020B60  80 63 00 00 */	lwz r3, 0(r3)
 /* 80023C24 00020B64  4E 80 00 20 */	blr 
+.endfn getFirstLink__10JSUPtrListCFv
 
-.global dispose__7JKRHeapFPvUl
-dispose__7JKRHeapFPvUl:
+.fn dispose__7JKRHeapFPvUl, global
 /* 80023C28 00020B68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80023C2C 00020B6C  7C 08 02 A6 */	mflr r0
 /* 80023C30 00020B70  90 01 00 24 */	stw r0, 0x24(r1)
@@ -892,9 +892,9 @@ dispose__7JKRHeapFPvUl:
 /* 80023CC4 00020C04  7C 08 03 A6 */	mtlr r0
 /* 80023CC8 00020C08  38 21 00 20 */	addi r1, r1, 0x20
 /* 80023CCC 00020C0C  4E 80 00 20 */	blr 
+.endfn dispose__7JKRHeapFPvUl
 
-.global dispose__7JKRHeapFPvPv
-dispose__7JKRHeapFPvPv:
+.fn dispose__7JKRHeapFPvPv, global
 /* 80023CD0 00020C10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80023CD4 00020C14  7C 08 02 A6 */	mflr r0
 /* 80023CD8 00020C18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -940,9 +940,9 @@ dispose__7JKRHeapFPvPv:
 /* 80023D68 00020CA8  7C 08 03 A6 */	mtlr r0
 /* 80023D6C 00020CAC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80023D70 00020CB0  4E 80 00 20 */	blr 
+.endfn dispose__7JKRHeapFPvPv
 
-.global dispose__7JKRHeapFv
-dispose__7JKRHeapFv:
+.fn dispose__7JKRHeapFv, global
 /* 80023D74 00020CB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023D78 00020CB8  7C 08 02 A6 */	mflr r0
 /* 80023D7C 00020CBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -965,9 +965,9 @@ dispose__7JKRHeapFv:
 /* 80023DB8 00020CF8  7C 08 03 A6 */	mtlr r0
 /* 80023DBC 00020CFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023DC0 00020D00  4E 80 00 20 */	blr 
+.endfn dispose__7JKRHeapFv
 
-.global copyMemory__7JKRHeapFPvPvUl
-copyMemory__7JKRHeapFPvPvUl:
+.fn copyMemory__7JKRHeapFPvPvUl, global
 /* 80023DC4 00020D04  38 05 00 03 */	addi r0, r5, 3
 /* 80023DC8 00020D08  54 00 F0 BF */	rlwinm. r0, r0, 0x1e, 2, 0x1f
 /* 80023DCC 00020D0C  7C 05 03 78 */	mr r5, r0
@@ -1006,9 +1006,9 @@ copyMemory__7JKRHeapFPvPvUl:
 /* 80023E44 00020D84  38 63 00 04 */	addi r3, r3, 4
 /* 80023E48 00020D88  42 00 FF F0 */	bdnz .L_80023E38
 /* 80023E4C 00020D8C  4E 80 00 20 */	blr 
+.endfn copyMemory__7JKRHeapFPvPvUl
 
-.global JKRDefaultMemoryErrorRoutine__FPvUli
-JKRDefaultMemoryErrorRoutine__FPvUli:
+.fn JKRDefaultMemoryErrorRoutine__FPvUli, local
 /* 80023E50 00020D90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023E54 00020D94  7C 08 02 A6 */	mflr r0
 /* 80023E58 00020D98  3C 60 80 47 */	lis r3, lbl_80473A68@ha
@@ -1022,9 +1022,9 @@ JKRDefaultMemoryErrorRoutine__FPvUli:
 /* 80023E78 00020DB8  7C 08 03 A6 */	mtlr r0
 /* 80023E7C 00020DBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023E80 00020DC0  4E 80 00 20 */	blr 
+.endfn JKRDefaultMemoryErrorRoutine__FPvUli
 
-.global setErrorHandler__7JKRHeapFPFPvUli_v
-setErrorHandler__7JKRHeapFPFPvUli_v:
+.fn setErrorHandler__7JKRHeapFPFPvUli_v, global
 /* 80023E84 00020DC4  28 03 00 00 */	cmplwi r3, 0
 /* 80023E88 00020DC8  80 0D 88 34 */	lwz r0, mErrorHandler__7JKRHeap@sda21(r13)
 /* 80023E8C 00020DCC  40 82 00 0C */	bne .L_80023E98
@@ -1034,9 +1034,9 @@ setErrorHandler__7JKRHeapFPFPvUli_v:
 /* 80023E98 00020DD8  90 6D 88 34 */	stw r3, mErrorHandler__7JKRHeap@sda21(r13)
 /* 80023E9C 00020DDC  7C 03 03 78 */	mr r3, r0
 /* 80023EA0 00020DE0  4E 80 00 20 */	blr 
+.endfn setErrorHandler__7JKRHeapFPFPvUli_v
 
-.global __nw__FUl
-__nw__FUl:
+.fn __nw__FUl, global
 /* 80023EA4 00020DE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023EA8 00020DE8  7C 08 02 A6 */	mflr r0
 /* 80023EAC 00020DEC  7C 64 1B 78 */	mr r4, r3
@@ -1058,9 +1058,9 @@ __nw__FUl:
 /* 80023EE4 00020E24  7C 08 03 A6 */	mtlr r0
 /* 80023EE8 00020E28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023EEC 00020E2C  4E 80 00 20 */	blr 
+.endfn __nw__FUl
 
-.global __nw__FUli
-__nw__FUli:
+.fn __nw__FUli, global
 /* 80023EF0 00020E30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023EF4 00020E34  7C 08 02 A6 */	mflr r0
 /* 80023EF8 00020E38  7C 66 1B 78 */	mr r6, r3
@@ -1083,9 +1083,9 @@ __nw__FUli:
 /* 80023F34 00020E74  7C 08 03 A6 */	mtlr r0
 /* 80023F38 00020E78  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023F3C 00020E7C  4E 80 00 20 */	blr 
+.endfn __nw__FUli
 
-.global __nw__FUlP7JKRHeapi
-__nw__FUlP7JKRHeapi:
+.fn __nw__FUlP7JKRHeapi, global
 /* 80023F40 00020E80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023F44 00020E84  7C 08 02 A6 */	mflr r0
 /* 80023F48 00020E88  28 04 00 00 */	cmplwi r4, 0
@@ -1116,9 +1116,9 @@ __nw__FUlP7JKRHeapi:
 /* 80023FA0 00020EE0  7C 08 03 A6 */	mtlr r0
 /* 80023FA4 00020EE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023FA8 00020EE8  4E 80 00 20 */	blr 
+.endfn __nw__FUlP7JKRHeapi
 
-.global __nwa__FUl
-__nwa__FUl:
+.fn __nwa__FUl, global
 /* 80023FAC 00020EEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023FB0 00020EF0  7C 08 02 A6 */	mflr r0
 /* 80023FB4 00020EF4  7C 64 1B 78 */	mr r4, r3
@@ -1140,9 +1140,9 @@ __nwa__FUl:
 /* 80023FEC 00020F2C  7C 08 03 A6 */	mtlr r0
 /* 80023FF0 00020F30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80023FF4 00020F34  4E 80 00 20 */	blr 
+.endfn __nwa__FUl
 
-.global __nwa__FUli
-__nwa__FUli:
+.fn __nwa__FUli, global
 /* 80023FF8 00020F38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023FFC 00020F3C  7C 08 02 A6 */	mflr r0
 /* 80024000 00020F40  7C 66 1B 78 */	mr r6, r3
@@ -1165,9 +1165,9 @@ __nwa__FUli:
 /* 8002403C 00020F7C  7C 08 03 A6 */	mtlr r0
 /* 80024040 00020F80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80024044 00020F84  4E 80 00 20 */	blr 
+.endfn __nwa__FUli
 
-.global __nwa__FUlP7JKRHeapi
-__nwa__FUlP7JKRHeapi:
+.fn __nwa__FUlP7JKRHeapi, global
 /* 80024048 00020F88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002404C 00020F8C  7C 08 02 A6 */	mflr r0
 /* 80024050 00020F90  28 04 00 00 */	cmplwi r4, 0
@@ -1198,9 +1198,9 @@ __nwa__FUlP7JKRHeapi:
 /* 800240A8 00020FE8  7C 08 03 A6 */	mtlr r0
 /* 800240AC 00020FEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800240B0 00020FF0  4E 80 00 20 */	blr 
+.endfn __nwa__FUlP7JKRHeapi
 
-.global __dl__FPv
-__dl__FPv:
+.fn __dl__FPv, global
 /* 800240B4 00020FF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800240B8 00020FF8  7C 08 02 A6 */	mflr r0
 /* 800240BC 00020FFC  38 80 00 00 */	li r4, 0
@@ -1210,9 +1210,9 @@ __dl__FPv:
 /* 800240CC 0002100C  7C 08 03 A6 */	mtlr r0
 /* 800240D0 00021010  38 21 00 10 */	addi r1, r1, 0x10
 /* 800240D4 00021014  4E 80 00 20 */	blr 
+.endfn __dl__FPv
 
-.global __dla__FPv
-__dla__FPv:
+.fn __dla__FPv, global
 /* 800240D8 00021018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800240DC 0002101C  7C 08 02 A6 */	mflr r0
 /* 800240E0 00021020  38 80 00 00 */	li r4, 0
@@ -1222,9 +1222,9 @@ __dla__FPv:
 /* 800240F0 00021030  7C 08 03 A6 */	mtlr r0
 /* 800240F4 00021034  38 21 00 10 */	addi r1, r1, 0x10
 /* 800240F8 00021038  4E 80 00 20 */	blr 
+.endfn __dla__FPv
 
-.global __dt__Q27JKRHeap6TStateFv
-__dt__Q27JKRHeap6TStateFv:
+.fn __dt__Q27JKRHeap6TStateFv, global
 /* 800240FC 0002103C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80024100 00021040  7C 08 02 A6 */	mflr r0
 /* 80024104 00021044  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1516,9 +1516,9 @@ __dt__Q27JKRHeap6TStateFv:
 /* 80024504 00021444  7C 08 03 A6 */	mtlr r0
 /* 80024508 00021448  38 21 00 90 */	addi r1, r1, 0x90
 /* 8002450C 0002144C  4E 80 00 20 */	blr 
+.endfn __dt__Q27JKRHeap6TStateFv
 
-.global dump__Q27JKRHeap6TStateCFv
-dump__Q27JKRHeap6TStateCFv:
+.fn dump__Q27JKRHeap6TStateCFv, weak
 /* 80024510 00021450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80024514 00021454  7C 08 02 A6 */	mflr r0
 /* 80024518 00021458  7C 64 1B 78 */	mr r4, r3
@@ -1532,14 +1532,14 @@ dump__Q27JKRHeap6TStateCFv:
 /* 80024538 00021478  7C 08 03 A6 */	mtlr r0
 /* 8002453C 0002147C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80024540 00021480  4E 80 00 20 */	blr 
+.endfn dump__Q27JKRHeap6TStateCFv
 
-.global isVerbose__Q27JKRHeap6TStateFv
-isVerbose__Q27JKRHeap6TStateFv:
+.fn isVerbose__Q27JKRHeap6TStateFv, weak
 /* 80024544 00021484  88 6D 88 50 */	lbz r3, bVerbose___Q27JKRHeap6TState@sda21(r13)
 /* 80024548 00021488  4E 80 00 20 */	blr 
+.endfn isVerbose__Q27JKRHeap6TStateFv
 
-.global __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb
-__ct__Q27JKRHeap6TStateFPC7JKRHeapUlb:
+.fn __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb, weak
 /* 8002454C 0002148C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80024550 00021490  7C 08 02 A6 */	mflr r0
 /* 80024554 00021494  28 04 00 00 */	cmplwi r4, 0
@@ -1574,22 +1574,22 @@ __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb:
 /* 800245C0 00021500  7C 08 03 A6 */	mtlr r0
 /* 800245C4 00021504  38 21 00 10 */	addi r1, r1, 0x10
 /* 800245C8 00021508  4E 80 00 20 */	blr 
+.endfn __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb
 
-.global isCompareOnDestructed__Q27JKRHeap6TStateCFv
-isCompareOnDestructed__Q27JKRHeap6TStateCFv:
+.fn isCompareOnDestructed__Q27JKRHeap6TStateCFv, weak
 /* 800245CC 0002150C  88 63 00 18 */	lbz r3, 0x18(r3)
 /* 800245D0 00021510  4E 80 00 20 */	blr 
+.endfn isCompareOnDestructed__Q27JKRHeap6TStateCFv
 
-.global __ct__Q37JKRHeap6TState9TLocationFv
-__ct__Q37JKRHeap6TState9TLocationFv:
+.fn __ct__Q37JKRHeap6TState9TLocationFv, weak
 /* 800245D4 00021514  38 80 00 00 */	li r4, 0
 /* 800245D8 00021518  38 00 FF FF */	li r0, -1
 /* 800245DC 0002151C  90 83 00 00 */	stw r4, 0(r3)
 /* 800245E0 00021520  90 03 00 04 */	stw r0, 4(r3)
 /* 800245E4 00021524  4E 80 00 20 */	blr 
+.endfn __ct__Q37JKRHeap6TState9TLocationFv
 
-.global __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb
-__ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb:
+.fn __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb, weak
 /* 800245E8 00021528  28 04 00 00 */	cmplwi r4, 0
 /* 800245EC 0002152C  41 82 00 08 */	beq .L_800245F4
 /* 800245F0 00021530  48 00 00 08 */	b .L_800245F8
@@ -1600,39 +1600,40 @@ __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb:
 /* 800245FC 0002153C  90 A3 00 04 */	stw r5, 4(r3)
 /* 80024600 00021540  98 C3 00 08 */	stb r6, 8(r3)
 /* 80024604 00021544  4E 80 00 20 */	blr 
+.endfn __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb
 
-.global getHeap__Q27JKRHeap6TStateCFv
-getHeap__Q27JKRHeap6TStateCFv:
+.fn getHeap__Q27JKRHeap6TStateCFv, weak
 /* 80024608 00021548  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8002460C 0002154C  4E 80 00 20 */	blr 
+.endfn getHeap__Q27JKRHeap6TStateCFv
 
-.global getId__Q27JKRHeap6TStateCFv
-getId__Q27JKRHeap6TStateCFv:
+.fn getId__Q27JKRHeap6TStateCFv, weak
 /* 80024610 00021550  80 63 00 14 */	lwz r3, 0x14(r3)
 /* 80024614 00021554  4E 80 00 20 */	blr 
+.endfn getId__Q27JKRHeap6TStateCFv
 
-.global state_register__7JKRHeapCFPQ27JKRHeap6TStateUl
-state_register__7JKRHeapCFPQ27JKRHeap6TStateUl:
+.fn state_register__7JKRHeapCFPQ27JKRHeap6TStateUl, global
 /* 80024618 00021558  4E 80 00 20 */	blr 
+.endfn state_register__7JKRHeapCFPQ27JKRHeap6TStateUl
 
-.global state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
-state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState:
+.fn state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState, global
 /* 8002461C 0002155C  80 64 00 04 */	lwz r3, 4(r4)
 /* 80024620 00021560  80 05 00 04 */	lwz r0, 4(r5)
 /* 80024624 00021564  7C 03 00 50 */	subf r0, r3, r0
 /* 80024628 00021568  7C 00 00 34 */	cntlzw r0, r0
 /* 8002462C 0002156C  54 03 D9 7E */	srwi r3, r0, 5
 /* 80024630 00021570  4E 80 00 20 */	blr 
+.endfn state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
 
-.global state_dumpDifference__7JKRHeapFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
-state_dumpDifference__7JKRHeapFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState:
+.fn state_dumpDifference__7JKRHeapFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState, global
 /* 80024634 00021574  4E 80 00 20 */	blr 
+.endfn state_dumpDifference__7JKRHeapFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
 
-.global state_dump__7JKRHeapCFRCQ27JKRHeap6TState
-state_dump__7JKRHeapCFRCQ27JKRHeap6TState:
+.fn state_dump__7JKRHeapCFRCQ27JKRHeap6TState, global
 /* 80024638 00021578  4E 80 00 20 */	blr 
+.endfn state_dump__7JKRHeapCFRCQ27JKRHeap6TState
 
-.global dump_sort__7JKRHeapFv
-dump_sort__7JKRHeapFv:
+.fn dump_sort__7JKRHeapFv, weak
 /* 8002463C 0002157C  38 60 00 01 */	li r3, 1
 /* 80024640 00021580  4E 80 00 20 */	blr 
+.endfn dump_sort__7JKRHeapFv

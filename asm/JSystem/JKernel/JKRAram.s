@@ -5,28 +5,31 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80473480:
+.obj lbl_80473480, local
 	.asciz "JKRAram.cpp"
+.endobj lbl_80473480
 .balign 4
-lbl_8047348C:
+.obj lbl_8047348C, local
 	.asciz ":::address not 32Byte aligned."
+.endobj lbl_8047348C
 .balign 4
-lbl_804734AC:
+.obj lbl_804734AC, local
 	.asciz ":::Bad Aram Block specified.\n"
+.endobj lbl_804734AC
 .balign 4
-lbl_804734CC:
+.obj lbl_804734CC, local
 	.asciz "---------------- BAD SYNC. you'd set callback, but now call sync.\n"
+.endobj lbl_804734CC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global sMessageBuffer__7JKRAram
-sMessageBuffer__7JKRAram:
+.obj sMessageBuffer__7JKRAram, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global sMessageQueue__7JKRAram
-sMessageQueue__7JKRAram:
+.endobj sMessageBuffer__7JKRAram
+.obj sMessageQueue__7JKRAram, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -35,12 +38,13 @@ sMessageQueue__7JKRAram:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global __vt__7JKRAram
-__vt__7JKRAram:
+.endobj sMessageQueue__7JKRAram
+.obj __vt__7JKRAram, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__7JKRAramFv
 	.4byte run__7JKRAramFv
+.endobj __vt__7JKRAram
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .lcomm lbl_804EFEF8, 0xC, 4
@@ -50,55 +54,69 @@ __vt__7JKRAram:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sSZSBufferSize__7JKRAram
-sSZSBufferSize__7JKRAram:
+.obj sSZSBufferSize__7JKRAram, global
 	.4byte 0x00000400
+.endobj sSZSBufferSize__7JKRAram
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sAramObject__7JKRAram
-sAramObject__7JKRAram:
+.obj sAramObject__7JKRAram, global
 	.skip 0x4
-szpBuf:
+.endobj sAramObject__7JKRAram
+.obj szpBuf, local
 	.skip 0x4
-szpEnd:
+.endobj szpBuf
+.obj szpEnd, local
 	.skip 0x4
-refBuf:
+.endobj szpEnd
+.obj refBuf, local
 	.skip 0x4
-refEnd:
+.endobj refBuf
+.obj refEnd, local
 	.skip 0x4
-refCurrent:
+.endobj refEnd
+.obj refCurrent, local
 	.skip 0x4
-srcOffset:
+.endobj refCurrent
+.obj srcOffset, local
 	.skip 0x4
-transLeft:
+.endobj srcOffset
+.obj transLeft, local
 	.skip 0x4
-srcLimit:
+.endobj transLeft
+.obj srcLimit, local
 	.skip 0x4
-srcAddress:
+.endobj srcLimit
+.obj srcAddress, local
 	.skip 0x4
-fileOffset:
+.endobj srcAddress
+.obj fileOffset, local
 	.skip 0x4
-readCount:
+.endobj fileOffset
+.obj readCount, local
 	.skip 0x4
-maxDest:
+.endobj readCount
+.obj maxDest, local
 	.skip 0x4
-isInitMutex:
+.endobj maxDest
+.obj isInitMutex, local
 	.skip 0x1
+.endobj isInitMutex
 .balign 4
-tsPtr:
+.obj tsPtr, local
 	.skip 0x4
-tsArea:
+.endobj tsPtr
+.obj tsArea, local
 	.skip 0x4
+.endobj tsArea
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 8
-lbl_805164D0:
+.obj lbl_805164D0, local
 	.asciz "%s"
+.endobj lbl_805164D0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__7JKRAramFUlUllll
-create__7JKRAramFUlUllll:
+.fn create__7JKRAramFUlUllll, global
 /* 80017A10 00014950  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80017A14 00014954  7C 08 02 A6 */	mflr r0
 /* 80017A18 00014958  90 01 00 24 */	stw r0, 0x24(r1)
@@ -138,9 +156,9 @@ create__7JKRAramFUlUllll:
 /* 80017A98 000149D8  7C 08 03 A6 */	mtlr r0
 /* 80017A9C 000149DC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80017AA0 000149E0  4E 80 00 20 */	blr 
+.endfn create__7JKRAramFUlUllll
 
-.global __ct__7JKRAramFUlUll
-__ct__7JKRAramFUlUll:
+.fn __ct__7JKRAramFUlUll, global
 /* 80017AA4 000149E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80017AA8 000149E8  7C 08 02 A6 */	mflr r0
 /* 80017AAC 000149EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -217,9 +235,9 @@ __ct__7JKRAramFUlUll:
 /* 80017BB4 00014AF4  7C 08 03 A6 */	mtlr r0
 /* 80017BB8 00014AF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80017BBC 00014AFC  4E 80 00 20 */	blr 
+.endfn __ct__7JKRAramFUlUll
 
-.global __dt__7JKRAramFv
-__dt__7JKRAramFv:
+.fn __dt__7JKRAramFv, global
 /* 80017BC0 00014B00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80017BC4 00014B04  7C 08 02 A6 */	mflr r0
 /* 80017BC8 00014B08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -258,9 +276,9 @@ __dt__7JKRAramFv:
 /* 80017C44 00014B84  7C 08 03 A6 */	mtlr r0
 /* 80017C48 00014B88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80017C4C 00014B8C  4E 80 00 20 */	blr 
+.endfn __dt__7JKRAramFv
 
-.global run__7JKRAramFv
-run__7JKRAramFv:
+.fn run__7JKRAramFv, global
 /* 80017C50 00014B90  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80017C54 00014B94  7C 08 02 A6 */	mflr r0
 /* 80017C58 00014B98  3C 60 80 4A */	lis r3, sMessageQueue__7JKRAram@ha
@@ -291,9 +309,9 @@ run__7JKRAramFv:
 /* 80017CB4 00014BF4  7F A3 EB 78 */	mr r3, r29
 /* 80017CB8 00014BF8  48 00 1F ED */	bl startDMA__12JKRAramPieceFP12JKRAMCommand
 /* 80017CBC 00014BFC  4B FF FF CC */	b .L_80017C88
+.endfn run__7JKRAramFv
 
-.global mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl
-mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl:
+.fn mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl, global
 /* 80017CC0 00014C00  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80017CC4 00014C04  7C 08 02 A6 */	mflr r0
 /* 80017CC8 00014C08  90 01 00 34 */	stw r0, 0x34(r1)
@@ -481,9 +499,9 @@ mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl:
 /* 80017F40 00014E80  7C 08 03 A6 */	mtlr r0
 /* 80017F44 00014E84  38 21 00 30 */	addi r1, r1, 0x30
 /* 80017F48 00014E88  4E 80 00 20 */	blr 
+.endfn mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl
 
-.global aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl
-aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl:
+.fn aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl, global
 /* 80017F4C 00014E8C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80017F50 00014E90  7C 08 02 A6 */	mflr r0
 /* 80017F54 00014E94  90 01 00 74 */	stw r0, 0x74(r1)
@@ -687,9 +705,9 @@ aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl:
 /* 8001821C 0001515C  7C 08 03 A6 */	mtlr r0
 /* 80018220 00015160  38 21 00 70 */	addi r1, r1, 0x70
 /* 80018224 00015164  4E 80 00 20 */	blr 
+.endfn aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl
 
-.global aramToMainRam__7JKRAramFP12JKRAramBlockPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl
-aramToMainRam__7JKRAramFP12JKRAramBlockPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl:
+.fn aramToMainRam__7JKRAramFP12JKRAramBlockPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl, global
 /* 80018228 00015168  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8001822C 0001516C  7C 08 02 A6 */	mflr r0
 /* 80018230 00015170  3D 60 80 47 */	lis r11, lbl_80473480@ha
@@ -764,9 +782,9 @@ aramToMainRam__7JKRAramFP12JKRAramBlockPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl:
 /* 80018328 00015268  7C 08 03 A6 */	mtlr r0
 /* 8001832C 0001526C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80018330 00015270  4E 80 00 20 */	blr 
+.endfn aramToMainRam__7JKRAramFP12JKRAramBlockPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl
 
-.global JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl
-JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl:
+.fn JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl, global
 /* 80018334 00015274  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80018338 00015278  7C 08 02 A6 */	mflr r0
 /* 8001833C 0001527C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -864,8 +882,9 @@ JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl:
 /* 80018490 000153D0  7C 08 03 A6 */	mtlr r0
 /* 80018494 000153D4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80018498 000153D8  4E 80 00 20 */	blr 
+.endfn JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl
 
-decompSZS_subroutine__FPUcPUc: # local function
+.fn decompSZS_subroutine__FPUcPUc, local
 /* 8001849C 000153DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800184A0 000153E0  7C 08 02 A6 */	mflr r0
 /* 800184A4 000153E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1059,9 +1078,9 @@ decompSZS_subroutine__FPUcPUc: # local function
 /* 80018738 00015678  7C 08 03 A6 */	mtlr r0
 /* 8001873C 0001567C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80018740 00015680  4E 80 00 20 */	blr 
+.endfn decompSZS_subroutine__FPUcPUc
 
-.global firstSrcData__Fv
-firstSrcData__Fv:
+.fn firstSrcData__Fv, local
 /* 80018744 00015684  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018748 00015688  7C 08 02 A6 */	mflr r0
 /* 8001874C 0001568C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1105,9 +1124,9 @@ firstSrcData__Fv:
 /* 800187DC 0001571C  7C 08 03 A6 */	mtlr r0
 /* 800187E0 00015720  38 21 00 10 */	addi r1, r1, 0x10
 /* 800187E4 00015724  4E 80 00 20 */	blr 
+.endfn firstSrcData__Fv
 
-.global nextSrcData__FPUc
-nextSrcData__FPUc:
+.fn nextSrcData__FPUc, local
 /* 800187E8 00015728  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800187EC 0001572C  7C 08 02 A6 */	mflr r0
 /* 800187F0 00015730  7C 64 1B 78 */	mr r4, r3
@@ -1166,6 +1185,7 @@ nextSrcData__FPUc:
 /* 800188B4 000157F4  7C 08 03 A6 */	mtlr r0
 /* 800188B8 000157F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800188BC 000157FC  4E 80 00 20 */	blr 
+.endfn nextSrcData__FPUc
 
 .fn __sinit_JKRAram_cpp, local
 /* 800188C0 00015800  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -1187,8 +1207,7 @@ nextSrcData__FPUc:
 /* 80018900 00015840  4E 80 00 20 */	blr 
 .endfn __sinit_JKRAram_cpp
 
-.global "__dt__23JSUList<12JKRAMCommand>Fv"
-"__dt__23JSUList<12JKRAMCommand>Fv":
+.fn "__dt__23JSUList<12JKRAMCommand>Fv", weak
 /* 80018904 00015844  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018908 00015848  7C 08 02 A6 */	mflr r0
 /* 8001890C 0001584C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1211,3 +1230,4 @@ nextSrcData__FPUc:
 /* 8001894C 0001588C  7C 08 03 A6 */	mtlr r0
 /* 80018950 00015890  38 21 00 10 */	addi r1, r1, 0x10
 /* 80018954 00015894  4E 80 00 20 */	blr 
+.endfn "__dt__23JSUList<12JKRAMCommand>Fv"

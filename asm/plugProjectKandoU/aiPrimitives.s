@@ -5,63 +5,80 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047F070:
+.obj lbl_8047F070, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047F070
 .balign 4
-lbl_8047F07C:
+.obj lbl_8047F07C, local
 	.asciz "aiPrimitives"
+.endobj lbl_8047F07C
 .balign 4
-lbl_8047F08C:
+.obj lbl_8047F08C, local
 	.asciz "ApproachPosActionArg"
+.endobj lbl_8047F08C
 .balign 4
-lbl_8047F0A4:
+.obj lbl_8047F0A4, local
 	.asciz "aiPrimitives.cpp"
+.endobj lbl_8047F0A4
 .balign 4
-lbl_8047F0B8:
+.obj lbl_8047F0B8, local
 	.asciz "P2Assert"
+.endobj lbl_8047F0B8
 .balign 4
-lbl_8047F0C4:
+.obj lbl_8047F0C4, local
 	.asciz "ActionArg"
+.endobj lbl_8047F0C4
 .balign 4
-lbl_8047F0D0:
+.obj lbl_8047F0D0, local
 	.asciz "GotoSlotArg"
+.endobj lbl_8047F0D0
 .balign 4
-lbl_8047F0DC:
+.obj lbl_8047F0DC, local
 	.asciz "PathMoveArg"
+.endobj lbl_8047F0DC
 .balign 4
-lbl_8047F0E8:
+.obj lbl_8047F0E8, local
 	.asciz "zannen !\n"
+.endobj lbl_8047F0E8
 .balign 4
-lbl_8047F0F4:
+.obj lbl_8047F0F4, local
 	.asciz "start==0"
+.endobj lbl_8047F0F4
 .balign 4
-lbl_8047F100:
+.obj lbl_8047F100, local
 	.asciz "newgoal == 0"
+.endobj lbl_8047F100
 .balign 4
-lbl_8047F110:
+.obj lbl_8047F110, local
 	.asciz "%d->%d->...->%d"
+.endobj lbl_8047F110
 .balign 4
-lbl_8047F120:
+.obj lbl_8047F120, local
 	.asciz "no handle %d\n"
+.endobj lbl_8047F120
 .balign 4
-lbl_8047F130:
+.obj lbl_8047F130, local
 	.asciz "max is 0 [%s]\n"
+.endobj lbl_8047F130
 .balign 4
-lbl_8047F140:
+.obj lbl_8047F140, local
 	.asciz "StickAttackActionArg"
+.endobj lbl_8047F140
 .balign 4
-lbl_8047F158:
+.obj lbl_8047F158, local
 	.asciz "GatherActionArg"
+.endobj lbl_8047F158
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804B4AB4:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804B4AB4, local
 	.4byte .L_8019C100
 	.4byte .L_8019C42C
 	.4byte .L_8019C338
@@ -70,8 +87,8 @@ lbl_804B4AB4:
 	.4byte .L_8019C614
 	.4byte .L_8019C694
 	.4byte .L_8019C100
-.global __vt__Q26PikiAI20ActFollowVectorField
-__vt__Q26PikiAI20ActFollowVectorField:
+.endobj lbl_804B4AB4
+.obj __vt__Q26PikiAI20ActFollowVectorField, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI20ActFollowVectorFieldFPQ26PikiAI9ActionArg
@@ -87,8 +104,8 @@ __vt__Q26PikiAI20ActFollowVectorField:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
-.global __vt__Q26PikiAI9ActGather
-__vt__Q26PikiAI9ActGather:
+.endobj __vt__Q26PikiAI20ActFollowVectorField
+.obj __vt__Q26PikiAI9ActGather, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI9ActGatherFPQ26PikiAI9ActionArg
@@ -104,8 +121,8 @@ __vt__Q26PikiAI9ActGather:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
-.global __vt__Q26PikiAI8ActClimb
-__vt__Q26PikiAI8ActClimb:
+.endobj __vt__Q26PikiAI9ActGather
+.obj __vt__Q26PikiAI8ActClimb, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI8ActClimbFPQ26PikiAI9ActionArg
@@ -121,22 +138,22 @@ __vt__Q26PikiAI8ActClimb:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
-.global __vt__Q23efx10PikiDamage
-__vt__Q23efx10PikiDamage:
+.endobj __vt__Q26PikiAI8ActClimb
+.obj __vt__Q23efx10PikiDamage, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx11TPkAttackDP
-__vt__Q23efx11TPkAttackDP:
+.endobj __vt__Q23efx10PikiDamage
+.obj __vt__Q23efx11TPkAttackDP, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q26PikiAI14ActStickAttack
-__vt__Q26PikiAI14ActStickAttack:
+.endobj __vt__Q23efx11TPkAttackDP
+.obj __vt__Q26PikiAI14ActStickAttack, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI14ActStickAttackFPQ26PikiAI9ActionArg
@@ -156,8 +173,8 @@ __vt__Q26PikiAI14ActStickAttack:
 	.4byte 0
 	.4byte 0
 	.4byte "@36@4@onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent"
-.global __vt__Q26PikiAI11ActPathMove
-__vt__Q26PikiAI11ActPathMove:
+.endobj __vt__Q26PikiAI14ActStickAttack
+.obj __vt__Q26PikiAI11ActPathMove, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI11ActPathMoveFPQ26PikiAI9ActionArg
@@ -173,8 +190,8 @@ __vt__Q26PikiAI11ActPathMove:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
-.global __vt__Q26PikiAI11ActGotoSlot
-__vt__Q26PikiAI11ActGotoSlot:
+.endobj __vt__Q26PikiAI11ActPathMove
+.obj __vt__Q26PikiAI11ActGotoSlot, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI11ActGotoSlotFPQ26PikiAI9ActionArg
@@ -190,8 +207,8 @@ __vt__Q26PikiAI11ActGotoSlot:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
-.global __vt__Q26PikiAI14ActApproachPos
-__vt__Q26PikiAI14ActApproachPos:
+.endobj __vt__Q26PikiAI11ActGotoSlot
+.obj __vt__Q26PikiAI14ActApproachPos, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI14ActApproachPosFPQ26PikiAI9ActionArg
@@ -207,8 +224,8 @@ __vt__Q26PikiAI14ActApproachPos:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
-.global __vt__Q26PikiAI10ActGotoPos
-__vt__Q26PikiAI10ActGotoPos:
+.endobj __vt__Q26PikiAI14ActApproachPos
+.obj __vt__Q26PikiAI10ActGotoPos, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI10ActGotoPosFPQ26PikiAI9ActionArg
@@ -224,6 +241,7 @@ __vt__Q26PikiAI10ActGotoPos:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
+.endobj __vt__Q26PikiAI10ActGotoPos
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -295,6 +313,7 @@ __vt__Q26PikiAI10ActGotoPos:
 .obj lbl_80518FB0, local
 	.asciz "..."
 .endobj lbl_80518FB0
+.balign 4
 .obj lbl_80518FB4, local
 	.float 160.0
 .endobj lbl_80518FB4
@@ -333,8 +352,7 @@ __vt__Q26PikiAI10ActGotoPos:
 .endobj lbl_80518FE0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki
-__ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki:
+.fn __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki, global
 /* 801972DC 0019421C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801972E0 00194220  7C 08 02 A6 */	mflr r0
 /* 801972E4 00194224  90 01 00 14 */	stw r0, 0x14(r1)
@@ -350,9 +368,9 @@ __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki:
 /* 8019730C 0019424C  7C 08 03 A6 */	mtlr r0
 /* 80197310 00194250  38 21 00 10 */	addi r1, r1, 0x10
 /* 80197314 00194254  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki
 
-.global init__Q26PikiAI10ActGotoPosFPQ26PikiAI9ActionArg
-init__Q26PikiAI10ActGotoPosFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI10ActGotoPosFPQ26PikiAI9ActionArg, global
 /* 80197318 00194258  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019731C 0019425C  7C 08 02 A6 */	mflr r0
 /* 80197320 00194260  38 A0 00 1E */	li r5, 0x1e
@@ -383,9 +401,9 @@ init__Q26PikiAI10ActGotoPosFPQ26PikiAI9ActionArg:
 /* 80197384 001942C4  7C 08 03 A6 */	mtlr r0
 /* 80197388 001942C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019738C 001942CC  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI10ActGotoPosFPQ26PikiAI9ActionArg
 
-.global exec__Q26PikiAI10ActGotoPosFv
-exec__Q26PikiAI10ActGotoPosFv:
+.fn exec__Q26PikiAI10ActGotoPosFv, global
 /* 80197390 001942D0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80197394 001942D4  7C 08 02 A6 */	mflr r0
 /* 80197398 001942D8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -463,13 +481,13 @@ exec__Q26PikiAI10ActGotoPosFv:
 /* 801974A0 001943E0  7C 08 03 A6 */	mtlr r0
 /* 801974A4 001943E4  38 21 00 30 */	addi r1, r1, 0x30
 /* 801974A8 001943E8  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI10ActGotoPosFv
 
-.global cleanup__Q26PikiAI10ActGotoPosFv
-cleanup__Q26PikiAI10ActGotoPosFv:
+.fn cleanup__Q26PikiAI10ActGotoPosFv, global
 /* 801974AC 001943EC  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI10ActGotoPosFv
 
-.global __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki
-__ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki:
+.fn __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki, global
 /* 801974B0 001943F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801974B4 001943F4  7C 08 02 A6 */	mflr r0
 /* 801974B8 001943F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -485,9 +503,9 @@ __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki:
 /* 801974E0 00194420  7C 08 03 A6 */	mtlr r0
 /* 801974E4 00194424  38 21 00 10 */	addi r1, r1, 0x10
 /* 801974E8 00194428  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki
 
-.global init__Q26PikiAI14ActApproachPosFPQ26PikiAI9ActionArg
-init__Q26PikiAI14ActApproachPosFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI14ActApproachPosFPQ26PikiAI9ActionArg, global
 /* 801974EC 0019442C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801974F0 00194430  7C 08 02 A6 */	mflr r0
 /* 801974F4 00194434  90 01 00 24 */	stw r0, 0x24(r1)
@@ -555,9 +573,9 @@ init__Q26PikiAI14ActApproachPosFPQ26PikiAI9ActionArg:
 /* 801975E4 00194524  7C 08 03 A6 */	mtlr r0
 /* 801975E8 00194528  38 21 00 20 */	addi r1, r1, 0x20
 /* 801975EC 0019452C  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI14ActApproachPosFPQ26PikiAI9ActionArg
 
-.global exec__Q26PikiAI14ActApproachPosFv
-exec__Q26PikiAI14ActApproachPosFv:
+.fn exec__Q26PikiAI14ActApproachPosFv, global
 /* 801975F0 00194530  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 801975F4 00194534  7C 08 02 A6 */	mflr r0
 /* 801975F8 00194538  90 01 00 64 */	stw r0, 0x64(r1)
@@ -775,9 +793,9 @@ exec__Q26PikiAI14ActApproachPosFv:
 /* 8019790C 0019484C  7C 08 03 A6 */	mtlr r0
 /* 80197910 00194850  38 21 00 60 */	addi r1, r1, 0x60
 /* 80197914 00194854  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI14ActApproachPosFv
 
-.global cleanup__Q26PikiAI14ActApproachPosFv
-cleanup__Q26PikiAI14ActApproachPosFv:
+.fn cleanup__Q26PikiAI14ActApproachPosFv, global
 /* 80197918 00194858  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019791C 0019485C  7C 08 02 A6 */	mflr r0
 /* 80197920 00194860  38 80 00 01 */	li r4, 1
@@ -791,9 +809,9 @@ cleanup__Q26PikiAI14ActApproachPosFv:
 /* 80197940 00194880  7C 08 03 A6 */	mtlr r0
 /* 80197944 00194884  38 21 00 10 */	addi r1, r1, 0x10
 /* 80197948 00194888  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI14ActApproachPosFv
 
-.global __ct__Q26PikiAI11ActGotoSlotFPQ24Game4Piki
-__ct__Q26PikiAI11ActGotoSlotFPQ24Game4Piki:
+.fn __ct__Q26PikiAI11ActGotoSlotFPQ24Game4Piki, global
 /* 8019794C 0019488C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80197950 00194890  7C 08 02 A6 */	mflr r0
 /* 80197954 00194894  90 01 00 14 */	stw r0, 0x14(r1)
@@ -809,9 +827,9 @@ __ct__Q26PikiAI11ActGotoSlotFPQ24Game4Piki:
 /* 8019797C 001948BC  7C 08 03 A6 */	mtlr r0
 /* 80197980 001948C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80197984 001948C4  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI11ActGotoSlotFPQ24Game4Piki
 
-.global init__Q26PikiAI11ActGotoSlotFPQ26PikiAI9ActionArg
-init__Q26PikiAI11ActGotoSlotFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI11ActGotoSlotFPQ26PikiAI9ActionArg, global
 /* 80197988 001948C8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8019798C 001948CC  7C 08 02 A6 */	mflr r0
 /* 80197990 001948D0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -916,26 +934,26 @@ init__Q26PikiAI11ActGotoSlotFPQ26PikiAI9ActionArg:
 /* 80197B08 00194A48  7C 08 03 A6 */	mtlr r0
 /* 80197B0C 00194A4C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80197B10 00194A50  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI11ActGotoSlotFPQ26PikiAI9ActionArg
 
-.global "wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>"
-"wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>":
+.fn "wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>", global
 /* 80197B14 00194A54  88 83 00 1C */	lbz r4, 0x1c(r3)
 /* 80197B18 00194A58  28 04 00 64 */	cmplwi r4, 0x64
 /* 80197B1C 00194A5C  4C 80 00 20 */	bgelr 
 /* 80197B20 00194A60  38 04 00 01 */	addi r0, r4, 1
 /* 80197B24 00194A64  98 03 00 1C */	stb r0, 0x1c(r3)
 /* 80197B28 00194A68  4E 80 00 20 */	blr 
+.endfn "wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3<f>"
 
-.global resetTimers__Q26PikiAI11ActGotoSlotFv
-resetTimers__Q26PikiAI11ActGotoSlotFv:
+.fn resetTimers__Q26PikiAI11ActGotoSlotFv, global
 /* 80197B2C 00194A6C  38 00 00 00 */	li r0, 0
 /* 80197B30 00194A70  C0 02 AC 28 */	lfs f0, lbl_80518F88@sda21(r2)
 /* 80197B34 00194A74  90 03 00 14 */	stw r0, 0x14(r3)
 /* 80197B38 00194A78  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 80197B3C 00194A7C  4E 80 00 20 */	blr 
+.endfn resetTimers__Q26PikiAI11ActGotoSlotFv
 
-.global exec__Q26PikiAI11ActGotoSlotFv
-exec__Q26PikiAI11ActGotoSlotFv:
+.fn exec__Q26PikiAI11ActGotoSlotFv, global
 /* 80197B40 00194A80  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 80197B44 00194A84  7C 08 02 A6 */	mflr r0
 /* 80197B48 00194A88  90 01 01 34 */	stw r0, 0x134(r1)
@@ -1666,13 +1684,13 @@ exec__Q26PikiAI11ActGotoSlotFv:
 /* 801985C8 00195508  7C 08 03 A6 */	mtlr r0
 /* 801985CC 0019550C  38 21 01 30 */	addi r1, r1, 0x130
 /* 801985D0 00195510  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI11ActGotoSlotFv
 
-.global cleanup__Q26PikiAI11ActGotoSlotFv
-cleanup__Q26PikiAI11ActGotoSlotFv:
+.fn cleanup__Q26PikiAI11ActGotoSlotFv, global
 /* 801985D4 00195514  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI11ActGotoSlotFv
 
-.global __ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki
-__ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki:
+.fn __ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki, global
 /* 801985D8 00195518  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801985DC 0019551C  7C 08 02 A6 */	mflr r0
 /* 801985E0 00195520  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1705,9 +1723,9 @@ __ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki:
 /* 80198648 00195588  7C 08 03 A6 */	mtlr r0
 /* 8019864C 0019558C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80198650 00195590  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI11ActPathMoveFPQ24Game4Piki
 
-.global init__Q26PikiAI11ActPathMoveFPQ26PikiAI9ActionArg
-init__Q26PikiAI11ActPathMoveFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI11ActPathMoveFPQ26PikiAI9ActionArg, global
 /* 80198654 00195594  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80198658 00195598  7C 08 02 A6 */	mflr r0
 /* 8019865C 0019559C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1823,9 +1841,9 @@ init__Q26PikiAI11ActPathMoveFPQ26PikiAI9ActionArg:
 /* 80198804 00195744  7C 08 03 A6 */	mtlr r0
 /* 80198808 00195748  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019880C 0019574C  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI11ActPathMoveFPQ26PikiAI9ActionArg
 
-.global initPathfinding__Q26PikiAI11ActPathMoveFb
-initPathfinding__Q26PikiAI11ActPathMoveFb:
+.fn initPathfinding__Q26PikiAI11ActPathMoveFb, global
 /* 80198810 00195750  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80198814 00195754  7C 08 02 A6 */	mflr r0
 /* 80198818 00195758  90 01 00 84 */	stw r0, 0x84(r1)
@@ -2079,9 +2097,9 @@ initPathfinding__Q26PikiAI11ActPathMoveFb:
 /* 80198BB0 00195AF0  7C 08 03 A6 */	mtlr r0
 /* 80198BB4 00195AF4  38 21 00 80 */	addi r1, r1, 0x80
 /* 80198BB8 00195AF8  4E 80 00 20 */	blr 
+.endfn initPathfinding__Q26PikiAI11ActPathMoveFb
 
-.global decideGoal__Q26PikiAI11ActPathMoveFv
-decideGoal__Q26PikiAI11ActPathMoveFv:
+.fn decideGoal__Q26PikiAI11ActPathMoveFv, global
 /* 80198BBC 00195AFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80198BC0 00195B00  7C 08 02 A6 */	mflr r0
 /* 80198BC4 00195B04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2106,9 +2124,9 @@ decideGoal__Q26PikiAI11ActPathMoveFv:
 /* 80198C0C 00195B4C  7C 08 03 A6 */	mtlr r0
 /* 80198C10 00195B50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80198C14 00195B54  4E 80 00 20 */	blr 
+.endfn decideGoal__Q26PikiAI11ActPathMoveFv
 
-.global exec__Q26PikiAI11ActPathMoveFv
-exec__Q26PikiAI11ActPathMoveFv:
+.fn exec__Q26PikiAI11ActPathMoveFv, global
 /* 80198C18 00195B58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80198C1C 00195B5C  7C 08 02 A6 */	mflr r0
 /* 80198C20 00195B60  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2190,9 +2208,9 @@ exec__Q26PikiAI11ActPathMoveFv:
 /* 80198D28 00195C68  7C 08 03 A6 */	mtlr r0
 /* 80198D2C 00195C6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80198D30 00195C70  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI11ActPathMoveFv
 
-.global execPathfinding__Q26PikiAI11ActPathMoveFv
-execPathfinding__Q26PikiAI11ActPathMoveFv:
+.fn execPathfinding__Q26PikiAI11ActPathMoveFv, global
 /* 80198D34 00195C74  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 80198D38 00195C78  7C 08 02 A6 */	mflr r0
 /* 80198D3C 00195C7C  90 01 01 34 */	stw r0, 0x134(r1)
@@ -2382,9 +2400,9 @@ execPathfinding__Q26PikiAI11ActPathMoveFv:
 /* 80198FD8 00195F18  7C 08 03 A6 */	mtlr r0
 /* 80198FDC 00195F1C  38 21 01 30 */	addi r1, r1, 0x130
 /* 80198FE0 00195F20  4E 80 00 20 */	blr 
+.endfn execPathfinding__Q26PikiAI11ActPathMoveFv
 
-.global execMoveGoal__Q26PikiAI11ActPathMoveFv
-execMoveGoal__Q26PikiAI11ActPathMoveFv:
+.fn execMoveGoal__Q26PikiAI11ActPathMoveFv, global
 /* 80198FE4 00195F24  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80198FE8 00195F28  7C 08 02 A6 */	mflr r0
 /* 80198FEC 00195F2C  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -2840,9 +2858,9 @@ execMoveGoal__Q26PikiAI11ActPathMoveFv:
 /* 80199680 001965C0  7C 08 03 A6 */	mtlr r0
 /* 80199684 001965C4  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 80199688 001965C8  4E 80 00 20 */	blr 
+.endfn execMoveGoal__Q26PikiAI11ActPathMoveFv
 
-.global isAllBlue__Q26PikiAI11ActPathMoveFv
-isAllBlue__Q26PikiAI11ActPathMoveFv:
+.fn isAllBlue__Q26PikiAI11ActPathMoveFv, global
 /* 8019968C 001965CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80199690 001965D0  7C 08 02 A6 */	mflr r0
 /* 80199694 001965D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2885,9 +2903,9 @@ isAllBlue__Q26PikiAI11ActPathMoveFv:
 /* 8019971C 0019665C  7C 08 03 A6 */	mtlr r0
 /* 80199720 00196660  38 21 00 10 */	addi r1, r1, 0x10
 /* 80199724 00196664  4E 80 00 20 */	blr 
+.endfn isAllBlue__Q26PikiAI11ActPathMoveFv
 
-.global "carry__Q26PikiAI11ActPathMoveFR10Vector3<f>"
-"carry__Q26PikiAI11ActPathMoveFR10Vector3<f>":
+.fn "carry__Q26PikiAI11ActPathMoveFR10Vector3<f>", global
 /* 80199728 00196668  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019972C 0019666C  7C 08 02 A6 */	mflr r0
 /* 80199730 00196670  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2931,9 +2949,9 @@ isAllBlue__Q26PikiAI11ActPathMoveFv:
 /* 801997C4 00196704  7C 08 03 A6 */	mtlr r0
 /* 801997C8 00196708  38 21 00 20 */	addi r1, r1, 0x20
 /* 801997CC 0019670C  4E 80 00 20 */	blr 
+.endfn "carry__Q26PikiAI11ActPathMoveFR10Vector3<f>"
 
-.global execMove__Q26PikiAI11ActPathMoveFv
-execMove__Q26PikiAI11ActPathMoveFv:
+.fn execMove__Q26PikiAI11ActPathMoveFv, global
 /* 801997D0 00196710  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801997D4 00196714  7C 08 02 A6 */	mflr r0
 /* 801997D8 00196718  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3216,9 +3234,9 @@ execMove__Q26PikiAI11ActPathMoveFv:
 /* 80199BEC 00196B2C  7C 08 03 A6 */	mtlr r0
 /* 80199BF0 00196B30  38 21 00 70 */	addi r1, r1, 0x70
 /* 80199BF4 00196B34  4E 80 00 20 */	blr 
+.endfn execMove__Q26PikiAI11ActPathMoveFv
 
-.global cleanup__Q26PikiAI11ActPathMoveFv
-cleanup__Q26PikiAI11ActPathMoveFv:
+.fn cleanup__Q26PikiAI11ActPathMoveFv, global
 /* 80199BF8 00196B38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80199BFC 00196B3C  7C 08 02 A6 */	mflr r0
 /* 80199C00 00196B40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3257,9 +3275,9 @@ cleanup__Q26PikiAI11ActPathMoveFv:
 /* 80199C7C 00196BBC  7C 08 03 A6 */	mtlr r0
 /* 80199C80 00196BC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80199C84 00196BC4  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI11ActPathMoveFv
 
-.global execMoveGuru__Q26PikiAI11ActPathMoveFv
-execMoveGuru__Q26PikiAI11ActPathMoveFv:
+.fn execMoveGuru__Q26PikiAI11ActPathMoveFv, global
 /* 80199C88 00196BC8  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80199C8C 00196BCC  7C 08 02 A6 */	mflr r0
 /* 80199C90 00196BD0  90 01 00 84 */	stw r0, 0x84(r1)
@@ -3598,9 +3616,9 @@ execMoveGuru__Q26PikiAI11ActPathMoveFv:
 /* 8019A164 001970A4  7C 08 03 A6 */	mtlr r0
 /* 8019A168 001970A8  38 21 00 80 */	addi r1, r1, 0x80
 /* 8019A16C 001970AC  4E 80 00 20 */	blr 
+.endfn execMoveGuru__Q26PikiAI11ActPathMoveFv
 
-.global getWayPoint__Q26PikiAI11ActPathMoveFi
-getWayPoint__Q26PikiAI11ActPathMoveFi:
+.fn getWayPoint__Q26PikiAI11ActPathMoveFi, global
 /* 8019A170 001970B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019A174 001970B4  7C 08 02 A6 */	mflr r0
 /* 8019A178 001970B8  2C 04 00 00 */	cmpwi r4, 0
@@ -3653,9 +3671,9 @@ getWayPoint__Q26PikiAI11ActPathMoveFi:
 /* 8019A21C 0019715C  7C 08 03 A6 */	mtlr r0
 /* 8019A220 00197160  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019A224 00197164  4E 80 00 20 */	blr 
+.endfn getWayPoint__Q26PikiAI11ActPathMoveFi
 
-.global crGetPoint__Q26PikiAI11ActPathMoveFi
-crGetPoint__Q26PikiAI11ActPathMoveFi:
+.fn crGetPoint__Q26PikiAI11ActPathMoveFi, global
 /* 8019A228 00197168  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019A22C 0019716C  7C 08 02 A6 */	mflr r0
 /* 8019A230 00197170  2C 05 00 00 */	cmpwi r5, 0
@@ -3765,9 +3783,9 @@ crGetPoint__Q26PikiAI11ActPathMoveFi:
 /* 8019A3A8 001972E8  7C 08 03 A6 */	mtlr r0
 /* 8019A3AC 001972EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019A3B0 001972F0  4E 80 00 20 */	blr 
+.endfn crGetPoint__Q26PikiAI11ActPathMoveFi
 
-.global contextCheck__Q26PikiAI11ActPathMoveFi
-contextCheck__Q26PikiAI11ActPathMoveFi:
+.fn contextCheck__Q26PikiAI11ActPathMoveFi, global
 /* 8019A3B4 001972F4  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 8019A3B8 001972F8  7C 08 02 A6 */	mflr r0
 /* 8019A3BC 001972FC  90 01 01 04 */	stw r0, 0x104(r1)
@@ -4028,9 +4046,9 @@ contextCheck__Q26PikiAI11ActPathMoveFi:
 /* 8019A76C 001976AC  7C 08 03 A6 */	mtlr r0
 /* 8019A770 001976B0  38 21 01 00 */	addi r1, r1, 0x100
 /* 8019A774 001976B4  4E 80 00 20 */	blr 
+.endfn contextCheck__Q26PikiAI11ActPathMoveFi
 
-.global crGetRadius__Q26PikiAI11ActPathMoveFi
-crGetRadius__Q26PikiAI11ActPathMoveFi:
+.fn crGetRadius__Q26PikiAI11ActPathMoveFi, global
 /* 8019A778 001976B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019A77C 001976BC  7C 08 02 A6 */	mflr r0
 /* 8019A780 001976C0  2C 04 00 00 */	cmpwi r4, 0
@@ -4119,9 +4137,9 @@ crGetRadius__Q26PikiAI11ActPathMoveFi:
 /* 8019A8A0 001977E0  7C 08 03 A6 */	mtlr r0
 /* 8019A8A4 001977E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019A8A8 001977E8  4E 80 00 20 */	blr 
+.endfn crGetRadius__Q26PikiAI11ActPathMoveFi
 
-.global crInit__Q26PikiAI11ActPathMoveFv
-crInit__Q26PikiAI11ActPathMoveFv:
+.fn crInit__Q26PikiAI11ActPathMoveFv, global
 /* 8019A8AC 001977EC  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 8019A8B0 001977F0  7C 08 02 A6 */	mflr r0
 /* 8019A8B4 001977F4  90 01 01 84 */	stw r0, 0x184(r1)
@@ -4630,9 +4648,9 @@ crInit__Q26PikiAI11ActPathMoveFv:
 /* 8019AFD8 00197F18  7C 08 03 A6 */	mtlr r0
 /* 8019AFDC 00197F1C  38 21 01 80 */	addi r1, r1, 0x180
 /* 8019AFE0 00197F20  4E 80 00 20 */	blr 
+.endfn crInit__Q26PikiAI11ActPathMoveFv
 
-.global crMakeRefs__Q26PikiAI11ActPathMoveFv
-crMakeRefs__Q26PikiAI11ActPathMoveFv:
+.fn crMakeRefs__Q26PikiAI11ActPathMoveFv, global
 /* 8019AFE4 00197F24  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8019AFE8 00197F28  7C 08 02 A6 */	mflr r0
 /* 8019AFEC 00197F2C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4666,9 +4684,9 @@ crMakeRefs__Q26PikiAI11ActPathMoveFv:
 /* 8019B058 00197F98  7C 08 03 A6 */	mtlr r0
 /* 8019B05C 00197F9C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019B060 00197FA0  4E 80 00 20 */	blr 
+.endfn crMakeRefs__Q26PikiAI11ActPathMoveFv
 
-.global crMove__Q26PikiAI11ActPathMoveFv
-crMove__Q26PikiAI11ActPathMoveFv:
+.fn crMove__Q26PikiAI11ActPathMoveFv, global
 /* 8019B064 00197FA4  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 8019B068 00197FA8  7C 08 02 A6 */	mflr r0
 /* 8019B06C 00197FAC  90 01 01 34 */	stw r0, 0x134(r1)
@@ -5548,9 +5566,9 @@ crMove__Q26PikiAI11ActPathMoveFv:
 /* 8019BCAC 00198BEC  7C 08 03 A6 */	mtlr r0
 /* 8019BCB0 00198BF0  38 21 01 30 */	addi r1, r1, 0x130
 /* 8019BCB4 00198BF4  4E 80 00 20 */	blr 
+.endfn crMove__Q26PikiAI11ActPathMoveFv
 
-.global __ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki
-__ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki:
+.fn __ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki, global
 /* 8019BCB8 00198BF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019BCBC 00198BFC  7C 08 02 A6 */	mflr r0
 /* 8019BCC0 00198C00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5583,9 +5601,9 @@ __ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki:
 /* 8019BD28 00198C68  7C 08 03 A6 */	mtlr r0
 /* 8019BD2C 00198C6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019BD30 00198C70  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki
 
-.global init__Q26PikiAI14ActStickAttackFPQ26PikiAI9ActionArg
-init__Q26PikiAI14ActStickAttackFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI14ActStickAttackFPQ26PikiAI9ActionArg, global
 /* 8019BD34 00198C74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019BD38 00198C78  7C 08 02 A6 */	mflr r0
 /* 8019BD3C 00198C7C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5720,9 +5738,9 @@ init__Q26PikiAI14ActStickAttackFPQ26PikiAI9ActionArg:
 /* 8019BF18 00198E58  7C 08 03 A6 */	mtlr r0
 /* 8019BF1C 00198E5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019BF20 00198E60  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI14ActStickAttackFPQ26PikiAI9ActionArg
 
-.global exec__Q26PikiAI14ActStickAttackFv
-exec__Q26PikiAI14ActStickAttackFv:
+.fn exec__Q26PikiAI14ActStickAttackFv, global
 /* 8019BF24 00198E64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019BF28 00198E68  7C 08 02 A6 */	mflr r0
 /* 8019BF2C 00198E6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5820,9 +5838,9 @@ exec__Q26PikiAI14ActStickAttackFv:
 /* 8019C07C 00198FBC  7C 08 03 A6 */	mtlr r0
 /* 8019C080 00198FC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019C084 00198FC4  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI14ActStickAttackFv
 
-.global createEfx__Q26PikiAI14ActStickAttackFv
-createEfx__Q26PikiAI14ActStickAttackFv:
+.fn createEfx__Q26PikiAI14ActStickAttackFv, global
 /* 8019C088 00198FC8  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 8019C08C 00198FCC  7C 08 02 A6 */	mflr r0
 /* 8019C090 00198FD0  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -6244,9 +6262,9 @@ createEfx__Q26PikiAI14ActStickAttackFv:
 /* 8019C6CC 0019960C  7C 08 03 A6 */	mtlr r0
 /* 8019C6D0 00199610  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 8019C6D4 00199614  4E 80 00 20 */	blr 
+.endfn createEfx__Q26PikiAI14ActStickAttackFv
 
-.global onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent
-onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent, global
 /* 8019C6D8 00199618  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019C6DC 0019961C  7C 08 02 A6 */	mflr r0
 /* 8019C6E0 00199620  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6286,9 +6304,9 @@ onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent:
 /* 8019C74C 0019968C  7C 08 03 A6 */	mtlr r0
 /* 8019C750 00199690  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019C754 00199694  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent
 
-.global cleanup__Q26PikiAI14ActStickAttackFv
-cleanup__Q26PikiAI14ActStickAttackFv:
+.fn cleanup__Q26PikiAI14ActStickAttackFv, global
 /* 8019C758 00199698  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019C75C 0019969C  7C 08 02 A6 */	mflr r0
 /* 8019C760 001996A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6298,9 +6316,9 @@ cleanup__Q26PikiAI14ActStickAttackFv:
 /* 8019C770 001996B0  7C 08 03 A6 */	mtlr r0
 /* 8019C774 001996B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019C778 001996B8  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI14ActStickAttackFv
 
-.global __ct__Q26PikiAI8ActClimbFPQ24Game4Piki
-__ct__Q26PikiAI8ActClimbFPQ24Game4Piki:
+.fn __ct__Q26PikiAI8ActClimbFPQ24Game4Piki, global
 /* 8019C77C 001996BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019C780 001996C0  7C 08 02 A6 */	mflr r0
 /* 8019C784 001996C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6316,9 +6334,9 @@ __ct__Q26PikiAI8ActClimbFPQ24Game4Piki:
 /* 8019C7AC 001996EC  7C 08 03 A6 */	mtlr r0
 /* 8019C7B0 001996F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019C7B4 001996F4  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI8ActClimbFPQ24Game4Piki
 
-.global init__Q26PikiAI8ActClimbFPQ26PikiAI9ActionArg
-init__Q26PikiAI8ActClimbFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI8ActClimbFPQ26PikiAI9ActionArg, global
 /* 8019C7B8 001996F8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8019C7BC 001996FC  7C 08 02 A6 */	mflr r0
 /* 8019C7C0 00199700  38 A0 00 14 */	li r5, 0x14
@@ -6384,9 +6402,9 @@ init__Q26PikiAI8ActClimbFPQ26PikiAI9ActionArg:
 /* 8019C8AC 001997EC  7C 08 03 A6 */	mtlr r0
 /* 8019C8B0 001997F0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019C8B4 001997F4  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI8ActClimbFPQ26PikiAI9ActionArg
 
-.global exec__Q26PikiAI8ActClimbFv
-exec__Q26PikiAI8ActClimbFv:
+.fn exec__Q26PikiAI8ActClimbFv, global
 /* 8019C8B8 001997F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019C8BC 001997FC  7C 08 02 A6 */	mflr r0
 /* 8019C8C0 00199800  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6448,13 +6466,13 @@ exec__Q26PikiAI8ActClimbFv:
 /* 8019C990 001998D0  7C 08 03 A6 */	mtlr r0
 /* 8019C994 001998D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019C998 001998D8  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI8ActClimbFv
 
-.global cleanup__Q26PikiAI8ActClimbFv
-cleanup__Q26PikiAI8ActClimbFv:
+.fn cleanup__Q26PikiAI8ActClimbFv, global
 /* 8019C99C 001998DC  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI8ActClimbFv
 
-.global __ct__Q26PikiAI9ActGatherFPQ24Game4Piki
-__ct__Q26PikiAI9ActGatherFPQ24Game4Piki:
+.fn __ct__Q26PikiAI9ActGatherFPQ24Game4Piki, global
 /* 8019C9A0 001998E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019C9A4 001998E4  7C 08 02 A6 */	mflr r0
 /* 8019C9A8 001998E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6470,9 +6488,9 @@ __ct__Q26PikiAI9ActGatherFPQ24Game4Piki:
 /* 8019C9D0 00199910  7C 08 03 A6 */	mtlr r0
 /* 8019C9D4 00199914  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019C9D8 00199918  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI9ActGatherFPQ24Game4Piki
 
-.global init__Q26PikiAI9ActGatherFPQ26PikiAI9ActionArg
-init__Q26PikiAI9ActGatherFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI9ActGatherFPQ26PikiAI9ActionArg, global
 /* 8019C9DC 0019991C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019C9E0 00199920  7C 08 02 A6 */	mflr r0
 /* 8019C9E4 00199924  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6530,9 +6548,9 @@ init__Q26PikiAI9ActGatherFPQ26PikiAI9ActionArg:
 /* 8019CAB0 001999F0  7C 08 03 A6 */	mtlr r0
 /* 8019CAB4 001999F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019CAB8 001999F8  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI9ActGatherFPQ26PikiAI9ActionArg
 
-.global exec__Q26PikiAI9ActGatherFv
-exec__Q26PikiAI9ActGatherFv:
+.fn exec__Q26PikiAI9ActGatherFv, global
 /* 8019CABC 001999FC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8019CAC0 00199A00  7C 08 02 A6 */	mflr r0
 /* 8019CAC4 00199A04  90 01 00 34 */	stw r0, 0x34(r1)
@@ -6625,13 +6643,13 @@ exec__Q26PikiAI9ActGatherFv:
 /* 8019CC04 00199B44  7C 08 03 A6 */	mtlr r0
 /* 8019CC08 00199B48  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019CC0C 00199B4C  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI9ActGatherFv
 
-.global cleanup__Q26PikiAI9ActGatherFv
-cleanup__Q26PikiAI9ActGatherFv:
+.fn cleanup__Q26PikiAI9ActGatherFv, global
 /* 8019CC10 00199B50  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI9ActGatherFv
 
-.global __ct__Q26PikiAI20ActFollowVectorFieldFPQ24Game4Piki
-__ct__Q26PikiAI20ActFollowVectorFieldFPQ24Game4Piki:
+.fn __ct__Q26PikiAI20ActFollowVectorFieldFPQ24Game4Piki, global
 /* 8019CC14 00199B54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019CC18 00199B58  7C 08 02 A6 */	mflr r0
 /* 8019CC1C 00199B5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6647,9 +6665,9 @@ __ct__Q26PikiAI20ActFollowVectorFieldFPQ24Game4Piki:
 /* 8019CC44 00199B84  7C 08 03 A6 */	mtlr r0
 /* 8019CC48 00199B88  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019CC4C 00199B8C  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI20ActFollowVectorFieldFPQ24Game4Piki
 
-.global init__Q26PikiAI20ActFollowVectorFieldFPQ26PikiAI9ActionArg
-init__Q26PikiAI20ActFollowVectorFieldFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI20ActFollowVectorFieldFPQ26PikiAI9ActionArg, global
 /* 8019CC50 00199B90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019CC54 00199B94  7C 08 02 A6 */	mflr r0
 /* 8019CC58 00199B98  38 A0 00 1E */	li r5, 0x1e
@@ -6674,9 +6692,9 @@ init__Q26PikiAI20ActFollowVectorFieldFPQ26PikiAI9ActionArg:
 /* 8019CCA4 00199BE4  7C 08 03 A6 */	mtlr r0
 /* 8019CCA8 00199BE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019CCAC 00199BEC  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI20ActFollowVectorFieldFPQ26PikiAI9ActionArg
 
-.global exec__Q26PikiAI20ActFollowVectorFieldFv
-exec__Q26PikiAI20ActFollowVectorFieldFv:
+.fn exec__Q26PikiAI20ActFollowVectorFieldFv, global
 /* 8019CCB0 00199BF0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8019CCB4 00199BF4  7C 08 02 A6 */	mflr r0
 /* 8019CCB8 00199BF8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -6711,12 +6729,13 @@ exec__Q26PikiAI20ActFollowVectorFieldFv:
 /* 8019CD24 00199C64  7C 08 03 A6 */	mtlr r0
 /* 8019CD28 00199C68  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019CD2C 00199C6C  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI20ActFollowVectorFieldFv
 
-.global cleanup__Q26PikiAI20ActFollowVectorFieldFv
-cleanup__Q26PikiAI20ActFollowVectorFieldFv:
+.fn cleanup__Q26PikiAI20ActFollowVectorFieldFv, global
 /* 8019CD30 00199C70  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI20ActFollowVectorFieldFv
 
-__sinit_aiPrimitives_cpp: # static initializer
+.fn __sinit_aiPrimitives_cpp, local
 /* 8019CD34 00199C74  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8019CD38 00199C78  38 00 FF FF */	li r0, -1
 /* 8019CD3C 00199C7C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -6727,11 +6746,12 @@ __sinit_aiPrimitives_cpp: # static initializer
 /* 8019CD50 00199C90  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8019CD54 00199C94  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8019CD58 00199C98  4E 80 00 20 */	blr 
+.endfn __sinit_aiPrimitives_cpp
 
-.global "@36@4@onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent"
-"@36@4@onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent":
+.fn "@36@4@onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent", weak
 /* 8019CD5C 00199C9C  39 60 00 04 */	li r11, 4
 /* 8019CD60 00199CA0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8019CD64 00199CA4  7C 63 5A 14 */	add r3, r3, r11
 /* 8019CD68 00199CA8  38 63 FF DC */	addi r3, r3, -36
 /* 8019CD6C 00199CAC  4B FF F9 6C */	b onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent
+.endfn "@36@4@onKeyEvent__Q26PikiAI14ActStickAttackFRCQ28SysShape8KeyEvent"

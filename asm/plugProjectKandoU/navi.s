@@ -103,54 +103,53 @@ lbl_constructor:
 	.4byte 0
 	.4byte getName__Q26PikiAI9ActionArgFv
 .endobj __vt__Q26PikiAI9ActionArg
-.global __vt__Q24Game13NaviDamageArg
-__vt__Q24Game13NaviDamageArg:
+.obj __vt__Q24Game13NaviDamageArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q24Game13NaviDamageArgFv
-.global "__vt__23Iterator<Q24Game5Onyon>"
-"__vt__23Iterator<Q24Game5Onyon>":
+.endobj __vt__Q24Game13NaviDamageArg
+.obj "__vt__23Iterator<Q24Game5Onyon>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__23Iterator<Q24Game5Onyon>Fv"
 	.4byte "next__23Iterator<Q24Game5Onyon>Fv"
 	.4byte "isDone__23Iterator<Q24Game5Onyon>Fv"
 	.4byte "__ml__23Iterator<Q24Game5Onyon>Fv"
-.global "__vt__26Iterator<Q24Game8BaseItem>"
-"__vt__26Iterator<Q24Game8BaseItem>":
+.endobj "__vt__23Iterator<Q24Game5Onyon>"
+.obj "__vt__26Iterator<Q24Game8BaseItem>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__26Iterator<Q24Game8BaseItem>Fv"
 	.4byte "next__26Iterator<Q24Game8BaseItem>Fv"
 	.4byte "isDone__26Iterator<Q24Game8BaseItem>Fv"
 	.4byte "__ml__26Iterator<Q24Game8BaseItem>Fv"
-.global "__vt__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>"
-"__vt__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>":
+.endobj "__vt__26Iterator<Q24Game8BaseItem>"
+.obj "__vt__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>FPQ24Game10CellObject"
-.global "__vt__32IDelegate1<PQ24Game10CellObject>"
-"__vt__32IDelegate1<PQ24Game10CellObject>":
+.endobj "__vt__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>"
+.obj "__vt__32IDelegate1<PQ24Game10CellObject>", weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q24Game11GameMessage
-__vt__Q24Game11GameMessage:
+.endobj "__vt__32IDelegate1<PQ24Game10CellObject>"
+.obj __vt__Q24Game11GameMessage, weak
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
 	.4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
 	.4byte actVs__Q24Game11GameMessageFPQ24Game13VsGameSection
-.global "__vt__36Iterator<Q34Game12ItemPikihead4Item>"
-"__vt__36Iterator<Q34Game12ItemPikihead4Item>":
+.endobj __vt__Q24Game11GameMessage
+.obj "__vt__36Iterator<Q34Game12ItemPikihead4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__36Iterator<Q34Game12ItemPikihead4Item>Fv"
 	.4byte "next__36Iterator<Q34Game12ItemPikihead4Item>Fv"
 	.4byte "isDone__36Iterator<Q34Game12ItemPikihead4Item>Fv"
 	.4byte "__ml__36Iterator<Q34Game12ItemPikihead4Item>Fv"
-.global __vt__Q24Game4Navi
-__vt__Q24Game4Navi:
+.endobj "__vt__36Iterator<Q34Game12ItemPikihead4Item>"
+.obj __vt__Q24Game4Navi, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game4NaviFv
@@ -303,14 +302,14 @@ __vt__Q24Game4Navi:
 	.4byte viewStartCarryMotion__Q24Game10PelletViewFv
 	.4byte viewOnPelletKilled__Q24Game10PelletViewFv
 	.4byte "@784@12@viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>"
-.global __vt__Q23efx15ContextChasePos
-__vt__Q23efx15ContextChasePos:
+.endobj __vt__Q24Game4Navi
+.obj __vt__Q23efx15ContextChasePos, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23efx15ContextChasePosFv
 	.4byte getChildCount__5CNodeFv
-.global "__vt__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>"
-"__vt__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>":
+.endobj __vt__Q23efx15ContextChasePos
+.obj "__vt__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
@@ -318,8 +317,8 @@ __vt__Q23efx15ContextChasePos:
 	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx10TChaseMtx2
-__vt__Q23efx10TChaseMtx2:
+.endobj "__vt__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>"
+.obj __vt__Q23efx10TChaseMtx2, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
@@ -327,8 +326,8 @@ __vt__Q23efx10TChaseMtx2:
 	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-.global "__vt__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>"
-"__vt__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>":
+.endobj __vt__Q23efx10TChaseMtx2
+.obj "__vt__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>FPQ23efx3Arg"
@@ -336,8 +335,8 @@ __vt__Q23efx10TChaseMtx2:
 	.4byte "fade__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 	.4byte "startDemoDrawOff__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 	.4byte "endDemoDrawOn__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
-.global __vt__Q23efx11TChaseMtxT2
-__vt__Q23efx11TChaseMtxT2:
+.endobj "__vt__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>"
+.obj __vt__Q23efx11TChaseMtxT2, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>FPQ23efx3Arg"
@@ -345,8 +344,8 @@ __vt__Q23efx11TChaseMtxT2:
 	.4byte "fade__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 	.4byte "startDemoDrawOff__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 	.4byte "endDemoDrawOn__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
-.global __vt__Q23efx12TOrimadamage
-__vt__Q23efx12TOrimadamage:
+.endobj __vt__Q23efx11TChaseMtxT2
+.obj __vt__Q23efx12TOrimadamage, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>FPQ23efx3Arg"
@@ -354,14 +353,14 @@ __vt__Q23efx12TOrimadamage:
 	.4byte "fade__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 	.4byte "startDemoDrawOff__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
 	.4byte "endDemoDrawOn__Q23efx31TSyncGroup2<Q23efx10TChaseMtxT>Fv"
-.global __vt__Q23efx7Context
-__vt__Q23efx7Context:
+.endobj __vt__Q23efx12TOrimadamage
+.obj __vt__Q23efx7Context, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q23efx7ContextFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q23efx12TFueactBiri2
-__vt__Q23efx12TFueactBiri2:
+.endobj __vt__Q23efx7Context
+.obj __vt__Q23efx12TFueactBiri2, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -381,8 +380,8 @@ __vt__Q23efx12TFueactBiri2:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TFueactBiri2Fv
-.global __vt__Q23efx12TFueactBiri1
-__vt__Q23efx12TFueactBiri1:
+.endobj __vt__Q23efx12TFueactBiri2
+.obj __vt__Q23efx12TFueactBiri1, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -402,21 +401,22 @@ __vt__Q23efx12TFueactBiri1:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TFueactBiri1Fv
-.global __vt__Q23efx7TFueact
-__vt__Q23efx7TFueact:
+.endobj __vt__Q23efx12TFueactBiri1
+.obj __vt__Q23efx7TFueact, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx7TFueactFPQ23efx3Arg
 	.4byte forceKill__Q23efx7TFueactFv
 	.4byte fade__Q23efx7TFueactFv
-.global "__vt__Q24Game26StateMachine<Q24Game4Navi>"
-"__vt__Q24Game26StateMachine<Q24Game4Navi>":
+.endobj __vt__Q23efx7TFueact
+.obj "__vt__Q24Game26StateMachine<Q24Game4Navi>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
 	.4byte "start__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
 	.4byte "exec__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
 	.4byte "transit__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+.endobj "__vt__Q24Game26StateMachine<Q24Game4Navi>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -576,8 +576,7 @@ __vt__Q23efx7TFueact:
 .endobj lbl_80518408
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam
-getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam:
+.fn getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam, global
 /* 8013F6D4 0013C614  C0 03 02 0C */	lfs f0, 0x20c(r3)
 /* 8013F6D8 0013C618  C0 82 9F E8 */	lfs f4, lbl_80518348@sda21(r2)
 /* 8013F6DC 0013C61C  D0 04 00 00 */	stfs f0, 0(r4)
@@ -598,9 +597,9 @@ getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam:
 /* 8013F718 0013C658  D0 04 00 10 */	stfs f0, 0x10(r4)
 /* 8013F71C 0013C65C  D0 24 00 14 */	stfs f1, 0x14(r4)
 /* 8013F720 0013C660  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q24Game4NaviFRQ24Game11ShadowParam
 
-.global getLODSphere__Q24Game4NaviFRQ23Sys6Sphere
-getLODSphere__Q24Game4NaviFRQ23Sys6Sphere:
+.fn getLODSphere__Q24Game4NaviFRQ23Sys6Sphere, global
 /* 8013F724 0013C664  C0 02 9F FC */	lfs f0, lbl_8051835C@sda21(r2)
 /* 8013F728 0013C668  D0 04 00 0C */	stfs f0, 0xc(r4)
 /* 8013F72C 0013C66C  C0 03 02 18 */	lfs f0, 0x218(r3)
@@ -610,9 +609,9 @@ getLODSphere__Q24Game4NaviFRQ23Sys6Sphere:
 /* 8013F73C 0013C67C  C0 03 02 20 */	lfs f0, 0x220(r3)
 /* 8013F740 0013C680  D0 04 00 08 */	stfs f0, 8(r4)
 /* 8013F744 0013C684  4E 80 00 20 */	blr 
+.endfn getLODSphere__Q24Game4NaviFRQ23Sys6Sphere
 
-.global __ct__Q24Game4NaviFv
-__ct__Q24Game4NaviFv:
+.fn __ct__Q24Game4NaviFv, global
 /* 8013F748 0013C688  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013F74C 0013C68C  7C 08 02 A6 */	mflr r0
 /* 8013F750 0013C690  90 01 00 14 */	stw r0, 0x14(r1)
@@ -751,9 +750,9 @@ __ct__Q24Game4NaviFv:
 /* 8013F944 0013C884  7C 08 03 A6 */	mtlr r0
 /* 8013F948 0013C888  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013F94C 0013C88C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game4NaviFv
 
-.global __ct__Q23efx11TNaviEffectFv
-__ct__Q23efx11TNaviEffectFv:
+.fn __ct__Q23efx11TNaviEffectFv, weak
 /* 8013F950 0013C890  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8013F954 0013C894  7C 08 02 A6 */	mflr r0
 /* 8013F958 0013C898  3C 80 80 14 */	lis r4, __ct__Q23efx15ContextChasePosFv@ha
@@ -926,9 +925,9 @@ __ct__Q23efx11TNaviEffectFv:
 /* 8013FBF4 0013CB34  7C 08 03 A6 */	mtlr r0
 /* 8013FBF8 0013CB38  38 21 00 40 */	addi r1, r1, 0x40
 /* 8013FBFC 0013CB3C  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx11TNaviEffectFv
 
-.global __dt__Q23efx10TChaseMtxTFv
-__dt__Q23efx10TChaseMtxTFv:
+.fn __dt__Q23efx10TChaseMtxTFv, weak
 /* 8013FC00 0013CB40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013FC04 0013CB44  7C 08 02 A6 */	mflr r0
 /* 8013FC08 0013CB48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -964,9 +963,9 @@ __dt__Q23efx10TChaseMtxTFv:
 /* 8013FC78 0013CBB8  7C 08 03 A6 */	mtlr r0
 /* 8013FC7C 0013CBBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013FC80 0013CBC0  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx10TChaseMtxTFv
 
-.global __ct__Q23efx7ContextFv
-__ct__Q23efx7ContextFv:
+.fn __ct__Q23efx7ContextFv, weak
 /* 8013FC84 0013CBC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013FC88 0013CBC8  7C 08 02 A6 */	mflr r0
 /* 8013FC8C 0013CBCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -987,9 +986,9 @@ __ct__Q23efx7ContextFv:
 /* 8013FCC8 0013CC08  7C 08 03 A6 */	mtlr r0
 /* 8013FCCC 0013CC0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013FCD0 0013CC10  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx7ContextFv
 
-.global __dt__Q23efx11TOneEmitterFv
-__dt__Q23efx11TOneEmitterFv:
+.fn __dt__Q23efx11TOneEmitterFv, weak
 /* 8013FCD4 0013CC14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013FCD8 0013CC18  7C 08 02 A6 */	mflr r0
 /* 8013FCDC 0013CC1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1027,9 +1026,9 @@ __dt__Q23efx11TOneEmitterFv:
 /* 8013FD54 0013CC94  7C 08 03 A6 */	mtlr r0
 /* 8013FD58 0013CC98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013FD5C 0013CC9C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx11TOneEmitterFv
 
-.global __dt__Q23efx7ContextFv
-__dt__Q23efx7ContextFv:
+.fn __dt__Q23efx7ContextFv, weak
 /* 8013FD60 0013CCA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013FD64 0013CCA4  7C 08 02 A6 */	mflr r0
 /* 8013FD68 0013CCA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1055,9 +1054,9 @@ __dt__Q23efx7ContextFv:
 /* 8013FDB4 0013CCF4  7C 08 03 A6 */	mtlr r0
 /* 8013FDB8 0013CCF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013FDBC 0013CCFC  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx7ContextFv
 
-.global __dt__Q23efx12TFueactBiri2Fv
-__dt__Q23efx12TFueactBiri2Fv:
+.fn __dt__Q23efx12TFueactBiri2Fv, weak
 /* 8013FDC0 0013CD00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013FDC4 0013CD04  7C 08 02 A6 */	mflr r0
 /* 8013FDC8 0013CD08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1099,9 +1098,9 @@ __dt__Q23efx12TFueactBiri2Fv:
 /* 8013FE50 0013CD90  7C 08 03 A6 */	mtlr r0
 /* 8013FE54 0013CD94  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013FE58 0013CD98  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TFueactBiri2Fv
 
-.global __dt__Q23efx12TFueactBiri1Fv
-__dt__Q23efx12TFueactBiri1Fv:
+.fn __dt__Q23efx12TFueactBiri1Fv, weak
 /* 8013FE5C 0013CD9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013FE60 0013CDA0  7C 08 02 A6 */	mflr r0
 /* 8013FE64 0013CDA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1143,9 +1142,9 @@ __dt__Q23efx12TFueactBiri1Fv:
 /* 8013FEEC 0013CE2C  7C 08 03 A6 */	mtlr r0
 /* 8013FEF0 0013CE30  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013FEF4 0013CE34  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TFueactBiri1Fv
 
-.global __dt__Q23efx15TFueactBiriBaseFv
-__dt__Q23efx15TFueactBiriBaseFv:
+.fn __dt__Q23efx15TFueactBiriBaseFv, weak
 /* 8013FEF8 0013CE38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013FEFC 0013CE3C  7C 08 02 A6 */	mflr r0
 /* 8013FF00 0013CE40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1181,9 +1180,9 @@ __dt__Q23efx15TFueactBiriBaseFv:
 /* 8013FF70 0013CEB0  7C 08 03 A6 */	mtlr r0
 /* 8013FF74 0013CEB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013FF78 0013CEB8  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx15TFueactBiriBaseFv
 
-.global __dt__Q23efx13TFueactCircleFv
-__dt__Q23efx13TFueactCircleFv:
+.fn __dt__Q23efx13TFueactCircleFv, weak
 /* 8013FF7C 0013CEBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013FF80 0013CEC0  7C 08 02 A6 */	mflr r0
 /* 8013FF84 0013CEC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1217,9 +1216,9 @@ __dt__Q23efx13TFueactCircleFv:
 /* 8013FFF0 0013CF30  7C 08 03 A6 */	mtlr r0
 /* 8013FFF4 0013CF34  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013FFF8 0013CF38  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx13TFueactCircleFv
 
-.global __dt__Q23efx15ContextChasePosFv
-__dt__Q23efx15ContextChasePosFv:
+.fn __dt__Q23efx15ContextChasePosFv, weak
 /* 8013FFFC 0013CF3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140000 0013CF40  7C 08 02 A6 */	mflr r0
 /* 80140004 0013CF44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1245,9 +1244,9 @@ __dt__Q23efx15ContextChasePosFv:
 /* 80140050 0013CF90  7C 08 03 A6 */	mtlr r0
 /* 80140054 0013CF94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140058 0013CF98  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx15ContextChasePosFv
 
-.global __ct__Q23efx15ContextChasePosFv
-__ct__Q23efx15ContextChasePosFv:
+.fn __ct__Q23efx15ContextChasePosFv, weak
 /* 8014005C 0013CF9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140060 0013CFA0  7C 08 02 A6 */	mflr r0
 /* 80140064 0013CFA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1269,9 +1268,9 @@ __ct__Q23efx15ContextChasePosFv:
 /* 801400A4 0013CFE4  7C 08 03 A6 */	mtlr r0
 /* 801400A8 0013CFE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801400AC 0013CFEC  4E 80 00 20 */	blr 
+.endfn __ct__Q23efx15ContextChasePosFv
 
-.global onInit__Q24Game4NaviFPQ24Game15CreatureInitArg
-onInit__Q24Game4NaviFPQ24Game15CreatureInitArg:
+.fn onInit__Q24Game4NaviFPQ24Game15CreatureInitArg, global
 /* 801400B0 0013CFF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801400B4 0013CFF4  7C 08 02 A6 */	mflr r0
 /* 801400B8 0013CFF8  3C 80 80 48 */	lis r4, lbl_8047C788@ha
@@ -1439,14 +1438,14 @@ onInit__Q24Game4NaviFPQ24Game15CreatureInitArg:
 /* 80140334 0013D274  7C 08 03 A6 */	mtlr r0
 /* 80140338 0013D278  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014033C 0013D27C  4E 80 00 20 */	blr 
+.endfn onInit__Q24Game4NaviFPQ24Game15CreatureInitArg
 
-.global getCreatureID__Q24Game4NaviFv
-getCreatureID__Q24Game4NaviFv:
+.fn getCreatureID__Q24Game4NaviFv, weak
 /* 80140340 0013D280  A0 63 02 DC */	lhz r3, 0x2dc(r3)
 /* 80140344 0013D284  4E 80 00 20 */	blr 
+.endfn getCreatureID__Q24Game4NaviFv
 
-.global "start__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
-"start__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg":
+.fn "start__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg", weak
 /* 80140348 0013D288  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014034C 0013D28C  7C 08 02 A6 */	mflr r0
 /* 80140350 0013D290  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1460,9 +1459,9 @@ getCreatureID__Q24Game4NaviFv:
 /* 80140370 0013D2B0  7C 08 03 A6 */	mtlr r0
 /* 80140374 0013D2B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140378 0013D2B8  4E 80 00 20 */	blr 
+.endfn "start__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
 
-.global "onSetPosition__Q24Game4NaviFR10Vector3<f>"
-"onSetPosition__Q24Game4NaviFR10Vector3<f>":
+.fn "onSetPosition__Q24Game4NaviFR10Vector3<f>", global
 /* 8014037C 0013D2BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140380 0013D2C0  7C 08 02 A6 */	mflr r0
 /* 80140384 0013D2C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1499,9 +1498,9 @@ getCreatureID__Q24Game4NaviFv:
 /* 801403F8 0013D338  7C 08 03 A6 */	mtlr r0
 /* 801403FC 0013D33C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140400 0013D340  4E 80 00 20 */	blr 
+.endfn "onSetPosition__Q24Game4NaviFR10Vector3<f>"
 
-.global onKill__Q24Game4NaviFPQ24Game15CreatureKillArg
-onKill__Q24Game4NaviFPQ24Game15CreatureKillArg:
+.fn onKill__Q24Game4NaviFPQ24Game15CreatureKillArg, global
 /* 80140404 0013D344  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140408 0013D348  7C 08 02 A6 */	mflr r0
 /* 8014040C 0013D34C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1518,9 +1517,9 @@ onKill__Q24Game4NaviFPQ24Game15CreatureKillArg:
 /* 80140438 0013D378  7C 08 03 A6 */	mtlr r0
 /* 8014043C 0013D37C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140440 0013D380  4E 80 00 20 */	blr 
+.endfn onKill__Q24Game4NaviFPQ24Game15CreatureKillArg
 
-.global onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent, global
 /* 80140444 0013D384  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80140448 0013D388  7C 08 02 A6 */	mflr r0
 /* 8014044C 0013D38C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1578,13 +1577,13 @@ onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent:
 /* 8014050C 0013D44C  7C 08 03 A6 */	mtlr r0
 /* 80140510 0013D450  38 21 00 20 */	addi r1, r1, 0x20
 /* 80140514 0013D454  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent
 
-.global onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent, weak
 /* 80140518 0013D458  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
 
-.global getPosition__Q24Game4NaviFv
-getPosition__Q24Game4NaviFv:
+.fn getPosition__Q24Game4NaviFv, global
 /* 8014051C 0013D45C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140520 0013D460  7C 08 02 A6 */	mflr r0
 /* 80140524 0013D464  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1619,9 +1618,9 @@ getPosition__Q24Game4NaviFv:
 /* 80140590 0013D4D0  7C 08 03 A6 */	mtlr r0
 /* 80140594 0013D4D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140598 0013D4D8  4E 80 00 20 */	blr 
+.endfn getPosition__Q24Game4NaviFv
 
-.global onStickStart__Q24Game4NaviFPQ24Game8Creature
-onStickStart__Q24Game4NaviFPQ24Game8Creature:
+.fn onStickStart__Q24Game4NaviFPQ24Game8Creature, global
 /* 8014059C 0013D4DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801405A0 0013D4E0  7C 08 02 A6 */	mflr r0
 /* 801405A4 0013D4E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1643,9 +1642,9 @@ onStickStart__Q24Game4NaviFPQ24Game8Creature:
 /* 801405E0 0013D520  7C 08 03 A6 */	mtlr r0
 /* 801405E4 0013D524  38 21 00 10 */	addi r1, r1, 0x10
 /* 801405E8 0013D528  4E 80 00 20 */	blr 
+.endfn onStickStart__Q24Game4NaviFPQ24Game8Creature
 
-.global onStickEnd__Q24Game4NaviFPQ24Game8Creature
-onStickEnd__Q24Game4NaviFPQ24Game8Creature:
+.fn onStickEnd__Q24Game4NaviFPQ24Game8Creature, global
 /* 801405EC 0013D52C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801405F0 0013D530  7C 08 02 A6 */	mflr r0
 /* 801405F4 0013D534  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1669,9 +1668,9 @@ onStickEnd__Q24Game4NaviFPQ24Game8Creature:
 /* 80140638 0013D578  7C 08 03 A6 */	mtlr r0
 /* 8014063C 0013D57C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140640 0013D580  4E 80 00 20 */	blr 
+.endfn onStickEnd__Q24Game4NaviFPQ24Game8Creature
 
-.global procActionButton__Q24Game4NaviFv
-procActionButton__Q24Game4NaviFv:
+.fn procActionButton__Q24Game4NaviFv, global
 /* 80140644 0013D584  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 80140648 0013D588  7C 08 02 A6 */	mflr r0
 /* 8014064C 0013D58C  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -2102,16 +2101,16 @@ procActionButton__Q24Game4NaviFv:
 /* 80140C8C 0013DBCC  7C 08 03 A6 */	mtlr r0
 /* 80140C90 0013DBD0  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80140C94 0013DBD4  4E 80 00 20 */	blr 
+.endfn procActionButton__Q24Game4NaviFv
 
-.global "getAt__27MonoObjectMgr<Q24Game4Navi>Fi"
-"getAt__27MonoObjectMgr<Q24Game4Navi>Fi":
+.fn "getAt__27MonoObjectMgr<Q24Game4Navi>Fi", weak
 /* 80140C98 0013DBD8  1C 04 03 20 */	mulli r0, r4, 0x320
 /* 80140C9C 0013DBDC  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 80140CA0 0013DBE0  7C 63 02 14 */	add r3, r3, r0
 /* 80140CA4 0013DBE4  4E 80 00 20 */	blr 
+.endfn "getAt__27MonoObjectMgr<Q24Game4Navi>Fi"
 
-.global "isDone__36Iterator<Q34Game12ItemPikihead4Item>Fv"
-"isDone__36Iterator<Q34Game12ItemPikihead4Item>Fv":
+.fn "isDone__36Iterator<Q34Game12ItemPikihead4Item>Fv", weak
 /* 80140CA8 0013DBE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140CAC 0013DBEC  7C 08 02 A6 */	mflr r0
 /* 80140CB0 0013DBF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2131,9 +2130,9 @@ procActionButton__Q24Game4NaviFv:
 /* 80140CE8 0013DC28  7C 08 03 A6 */	mtlr r0
 /* 80140CEC 0013DC2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140CF0 0013DC30  4E 80 00 20 */	blr 
+.endfn "isDone__36Iterator<Q34Game12ItemPikihead4Item>Fv"
 
-.global setupNukuAdjustArg__Q24Game4NaviFPQ34Game12ItemPikihead4ItemRQ24Game22NaviNukuAdjustStateArg
-setupNukuAdjustArg__Q24Game4NaviFPQ34Game12ItemPikihead4ItemRQ24Game22NaviNukuAdjustStateArg:
+.fn setupNukuAdjustArg__Q24Game4NaviFPQ34Game12ItemPikihead4ItemRQ24Game22NaviNukuAdjustStateArg, global
 /* 80140CF4 0013DC34  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80140CF8 0013DC38  7C 08 02 A6 */	mflr r0
 /* 80140CFC 0013DC3C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2212,9 +2211,9 @@ setupNukuAdjustArg__Q24Game4NaviFPQ34Game12ItemPikihead4ItemRQ24Game22NaviNukuAd
 /* 80140E20 0013DD60  7C 08 03 A6 */	mtlr r0
 /* 80140E24 0013DD64  38 21 00 60 */	addi r1, r1, 0x60
 /* 80140E28 0013DD68  4E 80 00 20 */	blr 
+.endfn setupNukuAdjustArg__Q24Game4NaviFPQ34Game12ItemPikihead4ItemRQ24Game22NaviNukuAdjustStateArg
 
-.global hasDope__Q24Game4NaviFi
-hasDope__Q24Game4NaviFi:
+.fn hasDope__Q24Game4NaviFi, global
 /* 80140E2C 0013DD6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140E30 0013DD70  7C 08 02 A6 */	mflr r0
 /* 80140E34 0013DD74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2237,9 +2236,9 @@ hasDope__Q24Game4NaviFi:
 /* 80140E70 0013DDB0  7C 08 03 A6 */	mtlr r0
 /* 80140E74 0013DDB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140E78 0013DDB8  4E 80 00 20 */	blr 
+.endfn hasDope__Q24Game4NaviFi
 
-.global getDopeCount__Q24Game4NaviFi
-getDopeCount__Q24Game4NaviFi:
+.fn getDopeCount__Q24Game4NaviFi, global
 /* 80140E7C 0013DDBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140E80 0013DDC0  7C 08 02 A6 */	mflr r0
 /* 80140E84 0013DDC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2259,9 +2258,9 @@ getDopeCount__Q24Game4NaviFi:
 /* 80140EB4 0013DDF4  7C 08 03 A6 */	mtlr r0
 /* 80140EB8 0013DDF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140EBC 0013DDFC  4E 80 00 20 */	blr 
+.endfn getDopeCount__Q24Game4NaviFi
 
-.global useDope__Q24Game4NaviFi
-useDope__Q24Game4NaviFi:
+.fn useDope__Q24Game4NaviFi, global
 /* 80140EC0 0013DE00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80140EC4 0013DE04  7C 08 02 A6 */	mflr r0
 /* 80140EC8 0013DE08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2283,9 +2282,9 @@ useDope__Q24Game4NaviFi:
 /* 80140F00 0013DE40  7C 08 03 A6 */	mtlr r0
 /* 80140F04 0013DE44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80140F08 0013DE48  4E 80 00 20 */	blr 
+.endfn useDope__Q24Game4NaviFi
 
-.global incDopeCount__Q24Game4NaviFi
-incDopeCount__Q24Game4NaviFi:
+.fn incDopeCount__Q24Game4NaviFi, global
 /* 80140F0C 0013DE4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80140F10 0013DE50  7C 08 02 A6 */	mflr r0
 /* 80140F14 0013DE54  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2328,14 +2327,14 @@ incDopeCount__Q24Game4NaviFi:
 /* 80140FA0 0013DEE0  7C 08 03 A6 */	mtlr r0
 /* 80140FA4 0013DEE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80140FA8 0013DEE8  4E 80 00 20 */	blr 
+.endfn incDopeCount__Q24Game4NaviFi
 
-.global sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage
-sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage:
+.fn sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage, weak
 /* 80140FAC 0013DEEC  38 60 00 00 */	li r3, 0
 /* 80140FB0 0013DEF0  4E 80 00 20 */	blr 
+.endfn sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage
 
-.global "applyDopes__Q24Game4NaviFiR10Vector3<f>"
-"applyDopes__Q24Game4NaviFiR10Vector3<f>":
+.fn "applyDopes__Q24Game4NaviFiR10Vector3<f>", global
 /* 80140FB4 0013DEF4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80140FB8 0013DEF8  7C 08 02 A6 */	mflr r0
 /* 80140FBC 0013DEFC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2531,9 +2530,9 @@ sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage:
 /* 80141288 0013E1C8  7C 08 03 A6 */	mtlr r0
 /* 8014128C 0013E1CC  38 21 00 60 */	addi r1, r1, 0x60
 /* 80141290 0013E1D0  4E 80 00 20 */	blr 
+.endfn "applyDopes__Q24Game4NaviFiR10Vector3<f>"
 
-.global applyDopeSmoke__Q24Game4NaviFPQ24Game10CellObject
-applyDopeSmoke__Q24Game4NaviFPQ24Game10CellObject:
+.fn applyDopeSmoke__Q24Game4NaviFPQ24Game10CellObject, global
 /* 80141294 0013E1D4  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80141298 0013E1D8  7C 08 02 A6 */	mflr r0
 /* 8014129C 0013E1DC  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -2644,9 +2643,9 @@ applyDopeSmoke__Q24Game4NaviFPQ24Game10CellObject:
 /* 80141438 0013E378  7C 08 03 A6 */	mtlr r0
 /* 8014143C 0013E37C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80141440 0013E380  4E 80 00 20 */	blr 
+.endfn applyDopeSmoke__Q24Game4NaviFPQ24Game10CellObject
 
-.global getStateID__Q24Game4NaviFv
-getStateID__Q24Game4NaviFv:
+.fn getStateID__Q24Game4NaviFv, global
 /* 80141444 0013E384  80 63 02 74 */	lwz r3, 0x274(r3)
 /* 80141448 0013E388  28 03 00 00 */	cmplwi r3, 0
 /* 8014144C 0013E38C  41 82 00 0C */	beq .L_80141458
@@ -2655,9 +2654,9 @@ getStateID__Q24Game4NaviFv:
 .L_80141458:
 /* 80141458 0013E398  38 60 FF FF */	li r3, -1
 /* 8014145C 0013E39C  4E 80 00 20 */	blr 
+.endfn getStateID__Q24Game4NaviFv
 
-.global transit__Q24Game4NaviFiPQ24Game8StateArg
-transit__Q24Game4NaviFiPQ24Game8StateArg:
+.fn transit__Q24Game4NaviFiPQ24Game8StateArg, global
 /* 80141460 0013E3A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80141464 0013E3A4  7C 08 02 A6 */	mflr r0
 /* 80141468 0013E3A8  7C 67 1B 78 */	mr r7, r3
@@ -2675,28 +2674,28 @@ transit__Q24Game4NaviFiPQ24Game8StateArg:
 /* 80141498 0013E3D8  7C 08 03 A6 */	mtlr r0
 /* 8014149C 0013E3DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801414A0 0013E3E0  4E 80 00 20 */	blr 
+.endfn transit__Q24Game4NaviFiPQ24Game8StateArg
 
-.global getOlimarData__Q24Game4NaviFv
-getOlimarData__Q24Game4NaviFv:
+.fn getOlimarData__Q24Game4NaviFv, global
 /* 801414A4 0013E3E4  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 801414A8 0013E3E8  38 63 00 48 */	addi r3, r3, 0x48
 /* 801414AC 0013E3EC  4E 80 00 20 */	blr 
+.endfn getOlimarData__Q24Game4NaviFv
 
-.global getJAIObject__Q24Game4NaviFv
-getJAIObject__Q24Game4NaviFv:
+.fn getJAIObject__Q24Game4NaviFv, global
 /* 801414B0 0013E3F0  80 63 02 6C */	lwz r3, 0x26c(r3)
 /* 801414B4 0013E3F4  28 03 00 00 */	cmplwi r3, 0
 /* 801414B8 0013E3F8  4D 82 00 20 */	beqlr 
 /* 801414BC 0013E3FC  38 63 00 30 */	addi r3, r3, 0x30
 /* 801414C0 0013E400  4E 80 00 20 */	blr 
+.endfn getJAIObject__Q24Game4NaviFv
 
-.global getPSCreature__Q24Game4NaviFv
-getPSCreature__Q24Game4NaviFv:
+.fn getPSCreature__Q24Game4NaviFv, global
 /* 801414C4 0013E404  80 63 02 6C */	lwz r3, 0x26c(r3)
 /* 801414C8 0013E408  4E 80 00 20 */	blr 
+.endfn getPSCreature__Q24Game4NaviFv
 
-.global "wallCallback__Q24Game4NaviFR10Vector3<f>"
-"wallCallback__Q24Game4NaviFR10Vector3<f>":
+.fn "wallCallback__Q24Game4NaviFR10Vector3<f>", global
 /* 801414CC 0013E40C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801414D0 0013E410  7C 08 02 A6 */	mflr r0
 /* 801414D4 0013E414  7C 66 1B 78 */	mr r6, r3
@@ -2715,13 +2714,13 @@ getPSCreature__Q24Game4NaviFv:
 /* 80141504 0013E444  7C 08 03 A6 */	mtlr r0
 /* 80141508 0013E448  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014150C 0013E44C  4E 80 00 20 */	blr 
+.endfn "wallCallback__Q24Game4NaviFR10Vector3<f>"
 
-.global "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
-"wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>":
+.fn "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>", weak
 /* 80141510 0013E450  4E 80 00 20 */	blr 
+.endfn "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
 
-.global bounceCallback__Q24Game4NaviFPQ23Sys8Triangle
-bounceCallback__Q24Game4NaviFPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game4NaviFPQ23Sys8Triangle, global
 /* 80141514 0013E454  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80141518 0013E458  7C 08 02 A6 */	mflr r0
 /* 8014151C 0013E45C  7C 66 1B 78 */	mr r6, r3
@@ -2740,13 +2739,13 @@ bounceCallback__Q24Game4NaviFPQ23Sys8Triangle:
 /* 8014154C 0013E48C  7C 08 03 A6 */	mtlr r0
 /* 80141550 0013E490  38 21 00 10 */	addi r1, r1, 0x10
 /* 80141554 0013E494  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game4NaviFPQ23Sys8Triangle
 
-.global bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
-bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle, weak
 /* 80141558 0013E498  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
 
-.global collisionCallback__Q24Game4NaviFRQ24Game9CollEvent
-collisionCallback__Q24Game4NaviFRQ24Game9CollEvent:
+.fn collisionCallback__Q24Game4NaviFRQ24Game9CollEvent, global
 /* 8014155C 0013E49C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80141560 0013E4A0  7C 08 02 A6 */	mflr r0
 /* 80141564 0013E4A4  7C 66 1B 78 */	mr r6, r3
@@ -2765,13 +2764,13 @@ collisionCallback__Q24Game4NaviFRQ24Game9CollEvent:
 /* 80141594 0013E4D4  7C 08 03 A6 */	mtlr r0
 /* 80141598 0013E4D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014159C 0013E4DC  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q24Game4NaviFRQ24Game9CollEvent
 
-.global collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
-collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent:
+.fn collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent, weak
 /* 801415A0 0013E4E0  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
 
-.global platCallback__Q24Game4NaviFRQ24Game9PlatEvent
-platCallback__Q24Game4NaviFRQ24Game9PlatEvent:
+.fn platCallback__Q24Game4NaviFRQ24Game9PlatEvent, global
 /* 801415A4 0013E4E4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801415A8 0013E4E8  7C 08 02 A6 */	mflr r0
 /* 801415AC 0013E4EC  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2876,18 +2875,18 @@ platCallback__Q24Game4NaviFRQ24Game9PlatEvent:
 /* 8014172C 0013E66C  7C 08 03 A6 */	mtlr r0
 /* 80141730 0013E670  38 21 00 70 */	addi r1, r1, 0x70
 /* 80141734 0013E674  4E 80 00 20 */	blr 
+.endfn platCallback__Q24Game4NaviFRQ24Game9PlatEvent
 
-.global "viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>"
-"viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>":
+.fn "viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>", global
 /* 80141738 0013E678  4E 80 00 20 */	blr 
+.endfn "viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>"
 
-.global viewGetShape__Q24Game4NaviFv
-viewGetShape__Q24Game4NaviFv:
+.fn viewGetShape__Q24Game4NaviFv, global
 /* 8014173C 0013E67C  80 63 01 74 */	lwz r3, 0x174(r3)
 /* 80141740 0013E680  4E 80 00 20 */	blr 
+.endfn viewGetShape__Q24Game4NaviFv
 
-.global viewGetBaseScale__Q24Game4NaviFv
-viewGetBaseScale__Q24Game4NaviFv:
+.fn viewGetBaseScale__Q24Game4NaviFv, global
 /* 80141744 0013E684  A0 03 02 DC */	lhz r0, 0x2dc(r3)
 /* 80141748 0013E688  28 00 00 00 */	cmplwi r0, 0
 /* 8014174C 0013E68C  40 82 00 0C */	bne .L_80141758
@@ -2896,9 +2895,9 @@ viewGetBaseScale__Q24Game4NaviFv:
 .L_80141758:
 /* 80141758 0013E698  C0 22 A0 0C */	lfs f1, lbl_8051836C@sda21(r2)
 /* 8014175C 0013E69C  4E 80 00 20 */	blr 
+.endfn viewGetBaseScale__Q24Game4NaviFv
 
-.global doEntry__Q24Game4NaviFv
-doEntry__Q24Game4NaviFv:
+.fn doEntry__Q24Game4NaviFv, global
 /* 80141760 0013E6A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80141764 0013E6A4  7C 08 02 A6 */	mflr r0
 /* 80141768 0013E6A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3035,9 +3034,9 @@ doEntry__Q24Game4NaviFv:
 /* 8014194C 0013E88C  7C 08 03 A6 */	mtlr r0
 /* 80141950 0013E890  38 21 00 20 */	addi r1, r1, 0x20
 /* 80141954 0013E894  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game4NaviFv
 
-.global doAnimation__Q24Game4NaviFv
-doAnimation__Q24Game4NaviFv:
+.fn doAnimation__Q24Game4NaviFv, global
 /* 80141958 0013E898  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8014195C 0013E89C  7C 08 02 A6 */	mflr r0
 /* 80141960 0013E8A0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3222,9 +3221,9 @@ doAnimation__Q24Game4NaviFv:
 /* 80141C10 0013EB50  7C 08 03 A6 */	mtlr r0
 /* 80141C14 0013EB54  38 21 00 50 */	addi r1, r1, 0x50
 /* 80141C18 0013EB58  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game4NaviFv
 
-.global updateCursor__Q24Game4NaviFv
-updateCursor__Q24Game4NaviFv:
+.fn updateCursor__Q24Game4NaviFv, global
 /* 80141C1C 0013EB5C  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 80141C20 0013EB60  7C 08 02 A6 */	mflr r0
 /* 80141C24 0013EB64  90 01 01 14 */	stw r0, 0x114(r1)
@@ -3388,9 +3387,9 @@ updateCursor__Q24Game4NaviFv:
 /* 80141E90 0013EDD0  7C 08 03 A6 */	mtlr r0
 /* 80141E94 0013EDD4  38 21 01 10 */	addi r1, r1, 0x110
 /* 80141E98 0013EDD8  4E 80 00 20 */	blr 
+.endfn updateCursor__Q24Game4NaviFv
 
-.global doSimulation__Q24Game4NaviFf
-doSimulation__Q24Game4NaviFf:
+.fn doSimulation__Q24Game4NaviFf, global
 /* 80141E9C 0013EDDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80141EA0 0013EDE0  7C 08 02 A6 */	mflr r0
 /* 80141EA4 0013EDE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3414,9 +3413,9 @@ doSimulation__Q24Game4NaviFf:
 /* 80141EE8 0013EE28  7C 08 03 A6 */	mtlr r0
 /* 80141EEC 0013EE2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80141EF0 0013EE30  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game4NaviFf
 
-.global doSetView__Q24Game4NaviFi
-doSetView__Q24Game4NaviFi:
+.fn doSetView__Q24Game4NaviFi, global
 /* 80141EF4 0013EE34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80141EF8 0013EE38  7C 08 02 A6 */	mflr r0
 /* 80141EFC 0013EE3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3465,9 +3464,9 @@ doSetView__Q24Game4NaviFi:
 /* 80141FA0 0013EEE0  7C 08 03 A6 */	mtlr r0
 /* 80141FA4 0013EEE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80141FA8 0013EEE8  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game4NaviFi
 
-.global doViewCalc__Q24Game4NaviFv
-doViewCalc__Q24Game4NaviFv:
+.fn doViewCalc__Q24Game4NaviFv, global
 /* 80141FAC 0013EEEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80141FB0 0013EEF0  7C 08 02 A6 */	mflr r0
 /* 80141FB4 0013EEF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3483,26 +3482,26 @@ doViewCalc__Q24Game4NaviFv:
 /* 80141FDC 0013EF1C  7C 08 03 A6 */	mtlr r0
 /* 80141FE0 0013EF20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80141FE4 0013EF24  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game4NaviFv
 
-.global setLifeMax__Q24Game4NaviFv
-setLifeMax__Q24Game4NaviFv:
+.fn setLifeMax__Q24Game4NaviFv, global
 /* 80141FE8 0013EF28  80 8D 92 E0 */	lwz r4, naviMgr__4Game@sda21(r13)
 /* 80141FEC 0013EF2C  80 84 00 C8 */	lwz r4, 0xc8(r4)
 /* 80141FF0 0013EF30  C0 04 09 D0 */	lfs f0, 0x9d0(r4)
 /* 80141FF4 0013EF34  D0 03 02 A0 */	stfs f0, 0x2a0(r3)
 /* 80141FF8 0013EF38  4E 80 00 20 */	blr 
+.endfn setLifeMax__Q24Game4NaviFv
 
-.global getLifeRatio__Q24Game4NaviFv
-getLifeRatio__Q24Game4NaviFv:
+.fn getLifeRatio__Q24Game4NaviFv, global
 /* 80141FFC 0013EF3C  80 8D 92 E0 */	lwz r4, naviMgr__4Game@sda21(r13)
 /* 80142000 0013EF40  C0 23 02 A0 */	lfs f1, 0x2a0(r3)
 /* 80142004 0013EF44  80 64 00 C8 */	lwz r3, 0xc8(r4)
 /* 80142008 0013EF48  C0 03 09 D0 */	lfs f0, 0x9d0(r3)
 /* 8014200C 0013EF4C  EC 21 00 24 */	fdivs f1, f1, f0
 /* 80142010 0013EF50  4E 80 00 20 */	blr 
+.endfn getLifeRatio__Q24Game4NaviFv
 
-.global getDownfloorMass__Q24Game4NaviFv
-getDownfloorMass__Q24Game4NaviFv:
+.fn getDownfloorMass__Q24Game4NaviFv, global
 /* 80142014 0013EF54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80142018 0013EF58  7C 08 02 A6 */	mflr r0
 /* 8014201C 0013EF5C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3553,9 +3552,9 @@ getDownfloorMass__Q24Game4NaviFv:
 /* 801420B4 0013EFF4  7C 08 03 A6 */	mtlr r0
 /* 801420B8 0013EFF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801420BC 0013EFFC  4E 80 00 20 */	blr 
+.endfn getDownfloorMass__Q24Game4NaviFv
 
-.global update__Q24Game4NaviFv
-update__Q24Game4NaviFv:
+.fn update__Q24Game4NaviFv, global
 /* 801420C0 0013F000  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801420C4 0013F004  7C 08 02 A6 */	mflr r0
 /* 801420C8 0013F008  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3733,30 +3732,30 @@ update__Q24Game4NaviFv:
 /* 8014235C 0013F29C  7C 08 03 A6 */	mtlr r0
 /* 80142360 0013F2A0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80142364 0013F2A4  4E 80 00 20 */	blr 
+.endfn update__Q24Game4NaviFv
 
-.global vsUsableY__Q24Game9NaviStateFv
-vsUsableY__Q24Game9NaviStateFv:
+.fn vsUsableY__Q24Game9NaviStateFv, weak
 /* 80142368 0013F2A8  38 60 00 01 */	li r3, 1
 /* 8014236C 0013F2AC  4E 80 00 20 */	blr 
+.endfn vsUsableY__Q24Game9NaviStateFv
 
-.global openKanketuMenu__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller
-openKanketuMenu__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller:
+.fn openKanketuMenu__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller, weak
 /* 80142370 0013F2B0  4E 80 00 20 */	blr 
+.endfn openKanketuMenu__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller
 
-.global openCaveInMenu__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Itemi
-openCaveInMenu__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Itemi:
+.fn openCaveInMenu__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Itemi, weak
 /* 80142374 0013F2B4  4E 80 00 20 */	blr 
+.endfn openCaveInMenu__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Itemi
 
-.global openCaveMoreMenu__Q24Game15BaseGameSectionFPQ34Game8ItemHole4ItemP10Controller
-openCaveMoreMenu__Q24Game15BaseGameSectionFPQ34Game8ItemHole4ItemP10Controller:
+.fn openCaveMoreMenu__Q24Game15BaseGameSectionFPQ34Game8ItemHole4ItemP10Controller, weak
 /* 80142378 0013F2B8  4E 80 00 20 */	blr 
+.endfn openCaveMoreMenu__Q24Game15BaseGameSectionFPQ34Game8ItemHole4ItemP10Controller
 
-.global do_updateLookCreature__Q24Game4NaviFv
-do_updateLookCreature__Q24Game4NaviFv:
+.fn do_updateLookCreature__Q24Game4NaviFv, global
 /* 8014237C 0013F2BC  4E 80 00 20 */	blr 
+.endfn do_updateLookCreature__Q24Game4NaviFv
 
-.global inWaterCallback__Q24Game4NaviFPQ24Game8WaterBox
-inWaterCallback__Q24Game4NaviFPQ24Game8WaterBox:
+.fn inWaterCallback__Q24Game4NaviFPQ24Game8WaterBox, global
 /* 80142380 0013F2C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80142384 0013F2C4  7C 08 02 A6 */	mflr r0
 /* 80142388 0013F2C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3797,9 +3796,9 @@ inWaterCallback__Q24Game4NaviFPQ24Game8WaterBox:
 /* 80142410 0013F350  7C 08 03 A6 */	mtlr r0
 /* 80142414 0013F354  38 21 00 20 */	addi r1, r1, 0x20
 /* 80142418 0013F358  4E 80 00 20 */	blr 
+.endfn inWaterCallback__Q24Game4NaviFPQ24Game8WaterBox
 
-.global outWaterCallback__Q24Game4NaviFv
-outWaterCallback__Q24Game4NaviFv:
+.fn outWaterCallback__Q24Game4NaviFv, global
 /* 8014241C 0013F35C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80142420 0013F360  7C 08 02 A6 */	mflr r0
 /* 80142424 0013F364  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3817,9 +3816,9 @@ outWaterCallback__Q24Game4NaviFv:
 /* 80142454 0013F394  7C 08 03 A6 */	mtlr r0
 /* 80142458 0013F398  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014245C 0013F39C  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q24Game4NaviFv
 
-.global ignoreAtari__Q24Game4NaviFPQ24Game8Creature
-ignoreAtari__Q24Game4NaviFPQ24Game8Creature:
+.fn ignoreAtari__Q24Game4NaviFPQ24Game8Creature, global
 /* 80142460 0013F3A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80142464 0013F3A4  7C 08 02 A6 */	mflr r0
 /* 80142468 0013F3A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3867,14 +3866,14 @@ ignoreAtari__Q24Game4NaviFPQ24Game8Creature:
 /* 80142504 0013F444  7C 08 03 A6 */	mtlr r0
 /* 80142508 0013F448  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014250C 0013F44C  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q24Game4NaviFPQ24Game8Creature
 
-.global ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
-ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature:
+.fn ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature, weak
 /* 80142510 0013F450  38 60 00 00 */	li r3, 0
 /* 80142514 0013F454  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
 
-.global on_movie_begin__Q24Game4NaviFb
-on_movie_begin__Q24Game4NaviFb:
+.fn on_movie_begin__Q24Game4NaviFb, global
 /* 80142518 0013F458  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014251C 0013F45C  7C 08 02 A6 */	mflr r0
 /* 80142520 0013F460  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3894,9 +3893,9 @@ on_movie_begin__Q24Game4NaviFb:
 /* 80142558 0013F498  7C 08 03 A6 */	mtlr r0
 /* 8014255C 0013F49C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80142560 0013F4A0  4E 80 00 20 */	blr 
+.endfn on_movie_begin__Q24Game4NaviFb
 
-.global on_movie_end__Q24Game4NaviFb
-on_movie_end__Q24Game4NaviFb:
+.fn on_movie_end__Q24Game4NaviFb, global
 /* 80142564 0013F4A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80142568 0013F4A8  7C 08 02 A6 */	mflr r0
 /* 8014256C 0013F4AC  38 80 00 1F */	li r4, 0x1f
@@ -3915,9 +3914,9 @@ on_movie_end__Q24Game4NaviFb:
 /* 801425A0 0013F4E0  7C 08 03 A6 */	mtlr r0
 /* 801425A4 0013F4E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801425A8 0013F4E8  4E 80 00 20 */	blr 
+.endfn on_movie_end__Q24Game4NaviFb
 
-.global movieUserCommand__Q24Game4NaviFUlPQ24Game11MoviePlayer
-movieUserCommand__Q24Game4NaviFUlPQ24Game11MoviePlayer:
+.fn movieUserCommand__Q24Game4NaviFUlPQ24Game11MoviePlayer, global
 /* 801425AC 0013F4EC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801425B0 0013F4F0  7C 08 02 A6 */	mflr r0
 /* 801425B4 0013F4F4  90 01 00 54 */	stw r0, 0x54(r1)
@@ -4090,9 +4089,9 @@ movieUserCommand__Q24Game4NaviFUlPQ24Game11MoviePlayer:
 /* 8014281C 0013F75C  7C 08 03 A6 */	mtlr r0
 /* 80142820 0013F760  38 21 00 50 */	addi r1, r1, 0x50
 /* 80142824 0013F764  4E 80 00 20 */	blr 
+.endfn movieUserCommand__Q24Game4NaviFUlPQ24Game11MoviePlayer
 
-.global movieSetFaceDir__Q24Game4NaviFf
-movieSetFaceDir__Q24Game4NaviFf:
+.fn movieSetFaceDir__Q24Game4NaviFf, global
 /* 80142828 0013F768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014282C 0013F76C  7C 08 02 A6 */	mflr r0
 /* 80142830 0013F770  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4103,9 +4102,9 @@ movieSetFaceDir__Q24Game4NaviFf:
 /* 80142844 0013F784  7C 08 03 A6 */	mtlr r0
 /* 80142848 0013F788  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014284C 0013F78C  4E 80 00 20 */	blr 
+.endfn movieSetFaceDir__Q24Game4NaviFf
 
-.global movieStartAnimation__Q24Game4NaviFUl
-movieStartAnimation__Q24Game4NaviFUl:
+.fn movieStartAnimation__Q24Game4NaviFUl, global
 /* 80142850 0013F790  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80142854 0013F794  7C 08 02 A6 */	mflr r0
 /* 80142858 0013F798  7C 85 23 78 */	mr r5, r4
@@ -4125,9 +4124,9 @@ movieStartAnimation__Q24Game4NaviFUl:
 /* 80142890 0013F7D0  7C 08 03 A6 */	mtlr r0
 /* 80142894 0013F7D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80142898 0013F7D8  4E 80 00 20 */	blr 
+.endfn movieStartAnimation__Q24Game4NaviFUl
 
-.global movieStartDemoAnimation__Q24Game4NaviFPQ28SysShape8AnimInfo
-movieStartDemoAnimation__Q24Game4NaviFPQ28SysShape8AnimInfo:
+.fn movieStartDemoAnimation__Q24Game4NaviFPQ28SysShape8AnimInfo, global
 /* 8014289C 0013F7DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801428A0 0013F7E0  7C 08 02 A6 */	mflr r0
 /* 801428A4 0013F7E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4185,9 +4184,9 @@ movieStartDemoAnimation__Q24Game4NaviFPQ28SysShape8AnimInfo:
 /* 8014296C 0013F8AC  7C 08 03 A6 */	mtlr r0
 /* 80142970 0013F8B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80142974 0013F8B4  4E 80 00 20 */	blr 
+.endfn movieStartDemoAnimation__Q24Game4NaviFPQ28SysShape8AnimInfo
 
-.global "movieSetTranslation__Q24Game4NaviFR10Vector3<f>f"
-"movieSetTranslation__Q24Game4NaviFR10Vector3<f>f":
+.fn "movieSetTranslation__Q24Game4NaviFR10Vector3<f>f", global
 /* 80142978 0013F8B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014297C 0013F8BC  7C 08 02 A6 */	mflr r0
 /* 80142980 0013F8C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4222,9 +4221,9 @@ movieStartDemoAnimation__Q24Game4NaviFPQ28SysShape8AnimInfo:
 /* 801429F4 0013F934  7C 08 03 A6 */	mtlr r0
 /* 801429F8 0013F938  38 21 00 20 */	addi r1, r1, 0x20
 /* 801429FC 0013F93C  4E 80 00 20 */	blr 
+.endfn "movieSetTranslation__Q24Game4NaviFR10Vector3<f>f"
 
-.global "movieGotoPosition__Q24Game4NaviFR10Vector3<f>"
-"movieGotoPosition__Q24Game4NaviFR10Vector3<f>":
+.fn "movieGotoPosition__Q24Game4NaviFR10Vector3<f>", global
 /* 80142A00 0013F940  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80142A04 0013F944  7C 08 02 A6 */	mflr r0
 /* 80142A08 0013F948  90 01 00 54 */	stw r0, 0x54(r1)
@@ -4303,9 +4302,9 @@ movieStartDemoAnimation__Q24Game4NaviFPQ28SysShape8AnimInfo:
 /* 80142B20 0013FA60  7C 08 03 A6 */	mtlr r0
 /* 80142B24 0013FA64  38 21 00 50 */	addi r1, r1, 0x50
 /* 80142B28 0013FA68  4E 80 00 20 */	blr 
+.endfn "movieGotoPosition__Q24Game4NaviFR10Vector3<f>"
 
-.global set_movie_draw__Q24Game4NaviFb
-set_movie_draw__Q24Game4NaviFb:
+.fn set_movie_draw__Q24Game4NaviFb, global
 /* 80142B2C 0013FA6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80142B30 0013FA70  7C 08 02 A6 */	mflr r0
 /* 80142B34 0013FA74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4417,9 +4416,9 @@ set_movie_draw__Q24Game4NaviFb:
 /* 80142CC8 0013FC08  7C 08 03 A6 */	mtlr r0
 /* 80142CCC 0013FC0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80142CD0 0013FC10  4E 80 00 20 */	blr 
+.endfn set_movie_draw__Q24Game4NaviFb
 
-.global isWalking__Q24Game4NaviFv
-isWalking__Q24Game4NaviFv:
+.fn isWalking__Q24Game4NaviFv, global
 /* 80142CD4 0013FC14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80142CD8 0013FC18  7C 08 02 A6 */	mflr r0
 /* 80142CDC 0013FC1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4440,9 +4439,9 @@ isWalking__Q24Game4NaviFv:
 /* 80142D18 0013FC58  7C 08 03 A6 */	mtlr r0
 /* 80142D1C 0013FC5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80142D20 0013FC60  4E 80 00 20 */	blr 
+.endfn isWalking__Q24Game4NaviFv
 
-.global setDeadLaydown__Q24Game4NaviFv
-setDeadLaydown__Q24Game4NaviFv:
+.fn setDeadLaydown__Q24Game4NaviFv, global
 /* 80142D24 0013FC64  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80142D28 0013FC68  7C 08 02 A6 */	mflr r0
 /* 80142D2C 0013FC6C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4539,9 +4538,9 @@ setDeadLaydown__Q24Game4NaviFv:
 /* 80142E84 0013FDC4  7C 08 03 A6 */	mtlr r0
 /* 80142E88 0013FDC8  38 21 00 30 */	addi r1, r1, 0x30
 /* 80142E8C 0013FDCC  4E 80 00 20 */	blr 
+.endfn setDeadLaydown__Q24Game4NaviFv
 
-.global checkHole__Q24Game4NaviFv
-checkHole__Q24Game4NaviFv:
+.fn checkHole__Q24Game4NaviFv, global
 /* 80142E90 0013FDD0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80142E94 0013FDD4  7C 08 02 A6 */	mflr r0
 /* 80142E98 0013FDD8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4741,9 +4740,9 @@ checkHole__Q24Game4NaviFv:
 /* 80143160 001400A0  7C 08 03 A6 */	mtlr r0
 /* 80143164 001400A4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80143168 001400A8  4E 80 00 20 */	blr 
+.endfn checkHole__Q24Game4NaviFv
 
-.global "isDone__26Iterator<Q24Game8BaseItem>Fv"
-"isDone__26Iterator<Q24Game8BaseItem>Fv":
+.fn "isDone__26Iterator<Q24Game8BaseItem>Fv", weak
 /* 8014316C 001400AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80143170 001400B0  7C 08 02 A6 */	mflr r0
 /* 80143174 001400B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4763,9 +4762,9 @@ checkHole__Q24Game4NaviFv:
 /* 801431AC 001400EC  7C 08 03 A6 */	mtlr r0
 /* 801431B0 001400F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801431B4 001400F4  4E 80 00 20 */	blr 
+.endfn "isDone__26Iterator<Q24Game8BaseItem>Fv"
 
-.global checkCave__Q24Game4NaviFv
-checkCave__Q24Game4NaviFv:
+.fn checkCave__Q24Game4NaviFv, global
 /* 801431B8 001400F8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801431BC 001400FC  7C 08 02 A6 */	mflr r0
 /* 801431C0 00140100  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4961,9 +4960,9 @@ checkCave__Q24Game4NaviFv:
 /* 80143478 001403B8  7C 08 03 A6 */	mtlr r0
 /* 8014347C 001403BC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80143480 001403C0  4E 80 00 20 */	blr 
+.endfn checkCave__Q24Game4NaviFv
 
-.global checkBigFountain__Q24Game4NaviFv
-checkBigFountain__Q24Game4NaviFv:
+.fn checkBigFountain__Q24Game4NaviFv, global
 /* 80143484 001403C4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80143488 001403C8  7C 08 02 A6 */	mflr r0
 /* 8014348C 001403CC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -5153,9 +5152,9 @@ checkBigFountain__Q24Game4NaviFv:
 /* 8014372C 0014066C  7C 08 03 A6 */	mtlr r0
 /* 80143730 00140670  38 21 00 30 */	addi r1, r1, 0x30
 /* 80143734 00140674  4E 80 00 20 */	blr 
+.endfn checkBigFountain__Q24Game4NaviFv
 
-.global checkOnyon__Q24Game4NaviFv
-checkOnyon__Q24Game4NaviFv:
+.fn checkOnyon__Q24Game4NaviFv, global
 /* 80143738 00140678  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8014373C 0014067C  7C 08 02 A6 */	mflr r0
 /* 80143740 00140680  90 01 00 44 */	stw r0, 0x44(r1)
@@ -5394,9 +5393,9 @@ checkOnyon__Q24Game4NaviFv:
 /* 80143A94 001409D4  7C 08 03 A6 */	mtlr r0
 /* 80143A98 001409D8  38 21 00 40 */	addi r1, r1, 0x40
 /* 80143A9C 001409DC  4E 80 00 20 */	blr 
+.endfn checkOnyon__Q24Game4NaviFv
 
-.global "isDone__23Iterator<Q24Game5Onyon>Fv"
-"isDone__23Iterator<Q24Game5Onyon>Fv":
+.fn "isDone__23Iterator<Q24Game5Onyon>Fv", weak
 /* 80143AA0 001409E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80143AA4 001409E4  7C 08 02 A6 */	mflr r0
 /* 80143AA8 001409E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5416,24 +5415,24 @@ checkOnyon__Q24Game4NaviFv:
 /* 80143AE0 00140A20  7C 08 03 A6 */	mtlr r0
 /* 80143AE4 00140A24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80143AE8 00140A28  4E 80 00 20 */	blr 
+.endfn "isDone__23Iterator<Q24Game5Onyon>Fv"
 
-.global getMapCollisionRadius__Q24Game4NaviFv
-getMapCollisionRadius__Q24Game4NaviFv:
+.fn getMapCollisionRadius__Q24Game4NaviFv, global
 /* 80143AEC 00140A2C  C0 22 A0 58 */	lfs f1, lbl_805183B8@sda21(r2)
 /* 80143AF0 00140A30  4E 80 00 20 */	blr 
+.endfn getMapCollisionRadius__Q24Game4NaviFv
 
-.global doDirectDraw__Q24Game4NaviFR8Graphics
-doDirectDraw__Q24Game4NaviFR8Graphics:
+.fn doDirectDraw__Q24Game4NaviFR8Graphics, global
 /* 80143AF4 00140A34  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game4NaviFR8Graphics
 
-.global disableController__Q24Game4NaviFv
-disableController__Q24Game4NaviFv:
+.fn disableController__Q24Game4NaviFv, global
 /* 80143AF8 00140A38  38 00 00 00 */	li r0, 0
 /* 80143AFC 00140A3C  90 03 02 78 */	stw r0, 0x278(r3)
 /* 80143B00 00140A40  4E 80 00 20 */	blr 
+.endfn disableController__Q24Game4NaviFv
 
-.global control__Q24Game4NaviFv
-control__Q24Game4NaviFv:
+.fn control__Q24Game4NaviFv, global
 /* 80143B04 00140A44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80143B08 00140A48  7C 08 02 A6 */	mflr r0
 /* 80143B0C 00140A4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5493,9 +5492,9 @@ control__Q24Game4NaviFv:
 /* 80143BD0 00140B10  7C 08 03 A6 */	mtlr r0
 /* 80143BD4 00140B14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80143BD8 00140B18  4E 80 00 20 */	blr 
+.endfn control__Q24Game4NaviFv
 
-.global makeVelocity__Q24Game4NaviFv
-makeVelocity__Q24Game4NaviFv:
+.fn makeVelocity__Q24Game4NaviFv, global
 /* 80143BDC 00140B1C  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 80143BE0 00140B20  7C 08 02 A6 */	mflr r0
 /* 80143BE4 00140B24  90 01 01 04 */	stw r0, 0x104(r1)
@@ -5773,9 +5772,9 @@ makeVelocity__Q24Game4NaviFv:
 /* 80143FE8 00140F28  7C 08 03 A6 */	mtlr r0
 /* 80143FEC 00140F2C  38 21 01 00 */	addi r1, r1, 0x100
 /* 80143FF0 00140F30  4E 80 00 20 */	blr 
+.endfn makeVelocity__Q24Game4NaviFv
 
-.global "reviseController__Q24Game4NaviFR10Vector3<f>"
-"reviseController__Q24Game4NaviFR10Vector3<f>":
+.fn "reviseController__Q24Game4NaviFR10Vector3<f>", global
 /* 80143FF4 00140F34  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80143FF8 00140F38  7C 08 02 A6 */	mflr r0
 /* 80143FFC 00140F3C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -5883,9 +5882,9 @@ makeVelocity__Q24Game4NaviFv:
 /* 8014418C 001410CC  7C 08 03 A6 */	mtlr r0
 /* 80144190 001410D0  38 21 00 70 */	addi r1, r1, 0x70
 /* 80144194 001410D4  4E 80 00 20 */	blr 
+.endfn "reviseController__Q24Game4NaviFR10Vector3<f>"
 
-.global callPikis__Q24Game4NaviFv
-callPikis__Q24Game4NaviFv:
+.fn callPikis__Q24Game4NaviFv, global
 /* 80144198 001410D8  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 8014419C 001410DC  7C 08 02 A6 */	mflr r0
 /* 801441A0 001410E0  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -6008,9 +6007,9 @@ callPikis__Q24Game4NaviFv:
 /* 80144360 001412A0  7C 08 03 A6 */	mtlr r0
 /* 80144364 001412A4  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 80144368 001412A8  4E 80 00 20 */	blr 
+.endfn callPikis__Q24Game4NaviFv
 
-.global invincible__Q24Game4NaviFv
-invincible__Q24Game4NaviFv:
+.fn invincible__Q24Game4NaviFv, global
 /* 8014436C 001412AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80144370 001412B0  7C 08 02 A6 */	mflr r0
 /* 80144374 001412B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6051,19 +6050,19 @@ invincible__Q24Game4NaviFv:
 /* 801443EC 0014132C  7C 08 03 A6 */	mtlr r0
 /* 801443F0 00141330  38 21 00 10 */	addi r1, r1, 0x10
 /* 801443F4 00141334  4E 80 00 20 */	blr 
+.endfn invincible__Q24Game4NaviFv
 
-.global invincible__Q24Game9NaviStateFv
-invincible__Q24Game9NaviStateFv:
+.fn invincible__Q24Game9NaviStateFv, weak
 /* 801443F8 00141338  38 60 00 00 */	li r3, 0
 /* 801443FC 0014133C  4E 80 00 20 */	blr 
+.endfn invincible__Q24Game9NaviStateFv
 
-.global setInvincibleTimer__Q24Game4NaviFUc
-setInvincibleTimer__Q24Game4NaviFUc:
+.fn setInvincibleTimer__Q24Game4NaviFUc, global
 /* 80144400 00141340  98 83 02 A4 */	stb r4, 0x2a4(r3)
 /* 80144404 00141344  4E 80 00 20 */	blr 
+.endfn setInvincibleTimer__Q24Game4NaviFUc
 
-.global startDamage__Q24Game4NaviFf
-startDamage__Q24Game4NaviFf:
+.fn startDamage__Q24Game4NaviFf, global
 /* 80144408 00141348  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014440C 0014134C  7C 08 02 A6 */	mflr r0
 /* 80144410 00141350  90 01 00 34 */	stw r0, 0x34(r1)
@@ -6207,9 +6206,9 @@ startDamage__Q24Game4NaviFf:
 /* 80144604 00141544  7C 08 03 A6 */	mtlr r0
 /* 80144608 00141548  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014460C 0014154C  4E 80 00 20 */	blr 
+.endfn startDamage__Q24Game4NaviFf
 
-.global addDamage__Q24Game4NaviFfb
-addDamage__Q24Game4NaviFfb:
+.fn addDamage__Q24Game4NaviFfb, global
 /* 80144610 00141550  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80144614 00141554  7C 08 02 A6 */	mflr r0
 /* 80144618 00141558  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6355,9 +6354,9 @@ addDamage__Q24Game4NaviFfb:
 /* 80144818 00141758  7C 08 03 A6 */	mtlr r0
 /* 8014481C 0014175C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80144820 00141760  4E 80 00 20 */	blr 
+.endfn addDamage__Q24Game4NaviFfb
 
-.global enterAllPikis__Q24Game4NaviFv
-enterAllPikis__Q24Game4NaviFv:
+.fn enterAllPikis__Q24Game4NaviFv, global
 /* 80144824 00141764  94 21 FE 40 */	stwu r1, -0x1c0(r1)
 /* 80144828 00141768  7C 08 02 A6 */	mflr r0
 /* 8014482C 0014176C  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
@@ -6539,17 +6538,17 @@ enterAllPikis__Q24Game4NaviFv:
 /* 80144AB4 001419F4  7C 08 03 A6 */	mtlr r0
 /* 80144AB8 001419F8  38 21 01 C0 */	addi r1, r1, 0x1c0
 /* 80144ABC 001419FC  4E 80 00 20 */	blr 
+.endfn enterAllPikis__Q24Game4NaviFv
 
-.global formationable__Q24Game4NaviFv
-formationable__Q24Game4NaviFv:
+.fn formationable__Q24Game4NaviFv, global
 /* 80144AC0 00141A00  88 03 02 D4 */	lbz r0, 0x2d4(r3)
 /* 80144AC4 00141A04  7C 00 07 74 */	extsb r0, r0
 /* 80144AC8 00141A08  7C 00 00 34 */	cntlzw r0, r0
 /* 80144ACC 00141A0C  54 03 D9 7E */	srwi r3, r0, 5
 /* 80144AD0 00141A10  4E 80 00 20 */	blr 
+.endfn formationable__Q24Game4NaviFv
 
-.global updateKaisanDisable__Q24Game4NaviFv
-updateKaisanDisable__Q24Game4NaviFv:
+.fn updateKaisanDisable__Q24Game4NaviFv, global
 /* 80144AD4 00141A14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80144AD8 00141A18  7C 08 02 A6 */	mflr r0
 /* 80144ADC 00141A1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6579,28 +6578,28 @@ updateKaisanDisable__Q24Game4NaviFv:
 /* 80144B38 00141A78  7C 08 03 A6 */	mtlr r0
 /* 80144B3C 00141A7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80144B40 00141A80  4E 80 00 20 */	blr 
+.endfn updateKaisanDisable__Q24Game4NaviFv
 
-.global clearKaisanDisable__Q24Game4NaviFv
-clearKaisanDisable__Q24Game4NaviFv:
+.fn clearKaisanDisable__Q24Game4NaviFv, global
 /* 80144B44 00141A84  38 00 00 00 */	li r0, 0
 /* 80144B48 00141A88  98 03 02 D4 */	stb r0, 0x2d4(r3)
 /* 80144B4C 00141A8C  4E 80 00 20 */	blr 
+.endfn clearKaisanDisable__Q24Game4NaviFv
 
-.global throwable__Q24Game4NaviFv
-throwable__Q24Game4NaviFv:
+.fn throwable__Q24Game4NaviFv, global
 /* 80144B50 00141A90  88 03 02 BC */	lbz r0, 0x2bc(r3)
 /* 80144B54 00141A94  7C 00 00 34 */	cntlzw r0, r0
 /* 80144B58 00141A98  54 03 D9 7E */	srwi r3, r0, 5
 /* 80144B5C 00141A9C  4E 80 00 20 */	blr 
+.endfn throwable__Q24Game4NaviFv
 
-.global startThrowDisable__Q24Game4NaviFv
-startThrowDisable__Q24Game4NaviFv:
+.fn startThrowDisable__Q24Game4NaviFv, global
 /* 80144B60 00141AA0  38 00 00 0A */	li r0, 0xa
 /* 80144B64 00141AA4  98 03 02 BC */	stb r0, 0x2bc(r3)
 /* 80144B68 00141AA8  4E 80 00 20 */	blr 
+.endfn startThrowDisable__Q24Game4NaviFv
 
-.global updateThrowDisable__Q24Game4NaviFv
-updateThrowDisable__Q24Game4NaviFv:
+.fn updateThrowDisable__Q24Game4NaviFv, global
 /* 80144B6C 00141AAC  88 03 02 BC */	lbz r0, 0x2bc(r3)
 /* 80144B70 00141AB0  28 00 00 00 */	cmplwi r0, 0
 /* 80144B74 00141AB4  4D 82 00 20 */	beqlr 
@@ -6617,15 +6616,15 @@ updateThrowDisable__Q24Game4NaviFv:
 /* 80144B9C 00141ADC  38 04 FF FF */	addi r0, r4, -1
 /* 80144BA0 00141AE0  98 03 02 BC */	stb r0, 0x2bc(r3)
 /* 80144BA4 00141AE4  4E 80 00 20 */	blr 
+.endfn updateThrowDisable__Q24Game4NaviFv
 
-.global clearThrowDisable__Q24Game4NaviFv
-clearThrowDisable__Q24Game4NaviFv:
+.fn clearThrowDisable__Q24Game4NaviFv, global
 /* 80144BA8 00141AE8  38 00 00 00 */	li r0, 0
 /* 80144BAC 00141AEC  98 03 02 BC */	stb r0, 0x2bc(r3)
 /* 80144BB0 00141AF0  4E 80 00 20 */	blr 
+.endfn clearThrowDisable__Q24Game4NaviFv
 
-.global "holeinAllPikis__Q24Game4NaviFR10Vector3<f>"
-"holeinAllPikis__Q24Game4NaviFR10Vector3<f>":
+.fn "holeinAllPikis__Q24Game4NaviFR10Vector3<f>", global
 /* 80144BB4 00141AF4  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 80144BB8 00141AF8  7C 08 02 A6 */	mflr r0
 /* 80144BBC 00141AFC  90 01 01 D4 */	stw r0, 0x1d4(r1)
@@ -6829,19 +6828,19 @@ clearThrowDisable__Q24Game4NaviFv:
 /* 80144EA4 00141DE4  7C 08 03 A6 */	mtlr r0
 /* 80144EA8 00141DE8  38 21 01 D0 */	addi r1, r1, 0x1d0
 /* 80144EAC 00141DEC  4E 80 00 20 */	blr 
+.endfn "holeinAllPikis__Q24Game4NaviFR10Vector3<f>"
 
-.global soft_transittable__Q24Game9PikiStateFi
-soft_transittable__Q24Game9PikiStateFi:
+.fn soft_transittable__Q24Game9PikiStateFi, weak
 /* 80144EB0 00141DF0  38 60 00 01 */	li r3, 1
 /* 80144EB4 00141DF4  4E 80 00 20 */	blr 
+.endfn soft_transittable__Q24Game9PikiStateFi
 
-.global transittable__Q24Game9PikiStateFi
-transittable__Q24Game9PikiStateFi:
+.fn transittable__Q24Game9PikiStateFi, weak
 /* 80144EB8 00141DF8  38 60 00 01 */	li r3, 1
 /* 80144EBC 00141DFC  4E 80 00 20 */	blr 
+.endfn transittable__Q24Game9PikiStateFi
 
-.global "fountainonAllPikis__Q24Game4NaviFR10Vector3<f>"
-"fountainonAllPikis__Q24Game4NaviFR10Vector3<f>":
+.fn "fountainonAllPikis__Q24Game4NaviFR10Vector3<f>", global
 /* 80144EC0 00141E00  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 80144EC4 00141E04  7C 08 02 A6 */	mflr r0
 /* 80144EC8 00141E08  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8Creature>"@ha
@@ -7044,9 +7043,9 @@ transittable__Q24Game9PikiStateFi:
 /* 801451AC 001420EC  7C 08 03 A6 */	mtlr r0
 /* 801451B0 001420F0  38 21 01 D0 */	addi r1, r1, 0x1d0
 /* 801451B4 001420F4  4E 80 00 20 */	blr 
+.endfn "fountainonAllPikis__Q24Game4NaviFR10Vector3<f>"
 
-.global demowaitAllPikis__Q24Game4NaviFv
-demowaitAllPikis__Q24Game4NaviFv:
+.fn demowaitAllPikis__Q24Game4NaviFv, global
 /* 801451B8 001420F8  94 21 FE 40 */	stwu r1, -0x1c0(r1)
 /* 801451BC 001420FC  7C 08 02 A6 */	mflr r0
 /* 801451C0 00142100  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8Creature>"@ha
@@ -7240,9 +7239,9 @@ demowaitAllPikis__Q24Game4NaviFv:
 /* 80145480 001423C0  7C 08 03 A6 */	mtlr r0
 /* 80145484 001423C4  38 21 01 C0 */	addi r1, r1, 0x1c0
 /* 80145488 001423C8  4E 80 00 20 */	blr 
+.endfn demowaitAllPikis__Q24Game4NaviFv
 
-.global releasePikis__Q24Game4NaviFv
-releasePikis__Q24Game4NaviFv:
+.fn releasePikis__Q24Game4NaviFv, global
 /* 8014548C 001423CC  94 21 FC E0 */	stwu r1, -0x320(r1)
 /* 80145490 001423D0  7C 08 02 A6 */	mflr r0
 /* 80145494 001423D4  90 01 03 24 */	stw r0, 0x324(r1)
@@ -7880,14 +7879,14 @@ releasePikis__Q24Game4NaviFv:
 /* 80145DD4 00142D14  7C 08 03 A6 */	mtlr r0
 /* 80145DD8 00142D18  38 21 03 20 */	addi r1, r1, 0x320
 /* 80145DDC 00142D1C  4E 80 00 20 */	blr 
+.endfn releasePikis__Q24Game4NaviFv
 
-.global releasable__Q24Game9PikiStateFv
-releasable__Q24Game9PikiStateFv:
+.fn releasable__Q24Game9PikiStateFv, weak
 /* 80145DE0 00142D20  38 60 00 00 */	li r3, 0
 /* 80145DE4 00142D24  4E 80 00 20 */	blr 
+.endfn releasable__Q24Game9PikiStateFv
 
-.global makeCStick__Q24Game4NaviFb
-makeCStick__Q24Game4NaviFb:
+.fn makeCStick__Q24Game4NaviFb, global
 /* 80145DE8 00142D28  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 80145DEC 00142D2C  7C 08 02 A6 */	mflr r0
 /* 80145DF0 00142D30  90 01 01 94 */	stw r0, 0x194(r1)
@@ -8511,9 +8510,9 @@ makeCStick__Q24Game4NaviFb:
 /* 801466FC 0014363C  7C 08 03 A6 */	mtlr r0
 /* 80146700 00143640  38 21 01 90 */	addi r1, r1, 0x190
 /* 80146704 00143644  4E 80 00 20 */	blr 
+.endfn makeCStick__Q24Game4NaviFb
 
-.global isCStickNetural__Q24Game4NaviFv
-isCStickNetural__Q24Game4NaviFv:
+.fn isCStickNetural__Q24Game4NaviFv, global
 /* 80146708 00143648  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014670C 0014364C  7C 08 02 A6 */	mflr r0
 /* 80146710 00143650  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8539,9 +8538,9 @@ isCStickNetural__Q24Game4NaviFv:
 /* 80146760 001436A0  7C 08 03 A6 */	mtlr r0
 /* 80146764 001436A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80146768 001436A8  4E 80 00 20 */	blr 
+.endfn isCStickNetural__Q24Game4NaviFv
 
-.global findNextThrowPiki__Q24Game4NaviFv
-findNextThrowPiki__Q24Game4NaviFv:
+.fn findNextThrowPiki__Q24Game4NaviFv, global
 /* 8014676C 001436AC  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80146770 001436B0  7C 08 02 A6 */	mflr r0
 /* 80146774 001436B4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -8726,9 +8725,9 @@ findNextThrowPiki__Q24Game4NaviFv:
 /* 80146A1C 0014395C  7C 08 03 A6 */	mtlr r0
 /* 80146A20 00143960  38 21 00 70 */	addi r1, r1, 0x70
 /* 80146A24 00143964  4E 80 00 20 */	blr 
+.endfn findNextThrowPiki__Q24Game4NaviFv
 
-.global ogGetNextThrowPiki__Q24Game4NaviFv
-ogGetNextThrowPiki__Q24Game4NaviFv:
+.fn ogGetNextThrowPiki__Q24Game4NaviFv, global
 /* 80146A28 00143968  80 63 02 A8 */	lwz r3, 0x2a8(r3)
 /* 80146A2C 0014396C  28 03 00 00 */	cmplwi r3, 0
 /* 80146A30 00143970  40 82 00 0C */	bne .L_80146A3C
@@ -8741,9 +8740,9 @@ ogGetNextThrowPiki__Q24Game4NaviFv:
 /* 80146A48 00143988  7C 60 1A 14 */	add r3, r0, r3
 /* 80146A4C 0014398C  38 63 00 01 */	addi r3, r3, 1
 /* 80146A50 00143990  4E 80 00 20 */	blr 
+.endfn ogGetNextThrowPiki__Q24Game4NaviFv
 
-.global "throwPiki__Q24Game4NaviFPQ24Game4PikiR10Vector3<f>"
-"throwPiki__Q24Game4NaviFPQ24Game4PikiR10Vector3<f>":
+.fn "throwPiki__Q24Game4NaviFPQ24Game4PikiR10Vector3<f>", global
 /* 80146A54 00143994  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80146A58 00143998  7C 08 02 A6 */	mflr r0
 /* 80146A5C 0014399C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -8925,38 +8924,38 @@ ogGetNextThrowPiki__Q24Game4NaviFv:
 /* 80146D08 00143C48  7C 08 03 A6 */	mtlr r0
 /* 80146D0C 00143C4C  38 21 00 80 */	addi r1, r1, 0x80
 /* 80146D10 00143C50  4E 80 00 20 */	blr 
+.endfn "throwPiki__Q24Game4NaviFPQ24Game4PikiR10Vector3<f>"
 
-.global commandOn__Q24Game4NaviFv
-commandOn__Q24Game4NaviFv:
+.fn commandOn__Q24Game4NaviFv, global
 /* 80146D14 00143C54  88 63 03 0D */	lbz r3, 0x30d(r3)
 /* 80146D18 00143C58  4E 80 00 20 */	blr 
+.endfn commandOn__Q24Game4NaviFv
 
-.global getName__Q26PikiAI10ActFreeArgFv
-getName__Q26PikiAI10ActFreeArgFv:
+.fn getName__Q26PikiAI10ActFreeArgFv, weak
 /* 80146D1C 00143C5C  3C 60 80 48 */	lis r3, lbl_8047C840@ha
 /* 80146D20 00143C60  38 63 C8 40 */	addi r3, r3, lbl_8047C840@l
 /* 80146D24 00143C64  4E 80 00 20 */	blr 
+.endfn getName__Q26PikiAI10ActFreeArgFv
 
-.global getName__Q26PikiAI17CreatureActionArgFv
-getName__Q26PikiAI17CreatureActionArgFv:
+.fn getName__Q26PikiAI17CreatureActionArgFv, weak
 /* 80146D28 00143C68  3C 60 80 48 */	lis r3, lbl_8047C84C@ha
 /* 80146D2C 00143C6C  38 63 C8 4C */	addi r3, r3, lbl_8047C84C@l
 /* 80146D30 00143C70  4E 80 00 20 */	blr 
+.endfn getName__Q26PikiAI17CreatureActionArgFv
 
-.global getName__Q26PikiAI9ActionArgFv
-getName__Q26PikiAI9ActionArgFv:
+.fn getName__Q26PikiAI9ActionArgFv, weak
 /* 80146D34 00143C74  3C 60 80 48 */	lis r3, lbl_8047C860@ha
 /* 80146D38 00143C78  38 63 C8 60 */	addi r3, r3, lbl_8047C860@l
 /* 80146D3C 00143C7C  4E 80 00 20 */	blr 
+.endfn getName__Q26PikiAI9ActionArgFv
 
-.global getName__Q24Game13NaviDamageArgFv
-getName__Q24Game13NaviDamageArgFv:
+.fn getName__Q24Game13NaviDamageArgFv, weak
 /* 80146D40 00143C80  3C 60 80 48 */	lis r3, lbl_8047C86C@ha
 /* 80146D44 00143C84  38 63 C8 6C */	addi r3, r3, lbl_8047C86C@l
 /* 80146D48 00143C88  4E 80 00 20 */	blr 
+.endfn getName__Q24Game13NaviDamageArgFv
 
-.global "__ml__23Iterator<Q24Game5Onyon>Fv"
-"__ml__23Iterator<Q24Game5Onyon>Fv":
+.fn "__ml__23Iterator<Q24Game5Onyon>Fv", weak
 /* 80146D4C 00143C8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146D50 00143C90  7C 08 02 A6 */	mflr r0
 /* 80146D54 00143C94  7C 64 1B 78 */	mr r4, r3
@@ -8971,9 +8970,9 @@ getName__Q24Game13NaviDamageArgFv:
 /* 80146D78 00143CB8  7C 08 03 A6 */	mtlr r0
 /* 80146D7C 00143CBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80146D80 00143CC0  4E 80 00 20 */	blr 
+.endfn "__ml__23Iterator<Q24Game5Onyon>Fv"
 
-.global "next__23Iterator<Q24Game5Onyon>Fv"
-"next__23Iterator<Q24Game5Onyon>Fv":
+.fn "next__23Iterator<Q24Game5Onyon>Fv", weak
 /* 80146D84 00143CC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146D88 00143CC8  7C 08 02 A6 */	mflr r0
 /* 80146D8C 00143CCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9035,9 +9034,9 @@ getName__Q24Game13NaviDamageArgFv:
 /* 80146E5C 00143D9C  7C 08 03 A6 */	mtlr r0
 /* 80146E60 00143DA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80146E64 00143DA4  4E 80 00 20 */	blr 
+.endfn "next__23Iterator<Q24Game5Onyon>Fv"
 
-.global "first__23Iterator<Q24Game5Onyon>Fv"
-"first__23Iterator<Q24Game5Onyon>Fv":
+.fn "first__23Iterator<Q24Game5Onyon>Fv", weak
 /* 80146E68 00143DA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146E6C 00143DAC  7C 08 02 A6 */	mflr r0
 /* 80146E70 00143DB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9097,9 +9096,9 @@ getName__Q24Game13NaviDamageArgFv:
 /* 80146F38 00143E78  7C 08 03 A6 */	mtlr r0
 /* 80146F3C 00143E7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80146F40 00143E80  4E 80 00 20 */	blr 
+.endfn "first__23Iterator<Q24Game5Onyon>Fv"
 
-.global "__ml__26Iterator<Q24Game8BaseItem>Fv"
-"__ml__26Iterator<Q24Game8BaseItem>Fv":
+.fn "__ml__26Iterator<Q24Game8BaseItem>Fv", weak
 /* 80146F44 00143E84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146F48 00143E88  7C 08 02 A6 */	mflr r0
 /* 80146F4C 00143E8C  7C 64 1B 78 */	mr r4, r3
@@ -9114,9 +9113,9 @@ getName__Q24Game13NaviDamageArgFv:
 /* 80146F70 00143EB0  7C 08 03 A6 */	mtlr r0
 /* 80146F74 00143EB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80146F78 00143EB8  4E 80 00 20 */	blr 
+.endfn "__ml__26Iterator<Q24Game8BaseItem>Fv"
 
-.global "next__26Iterator<Q24Game8BaseItem>Fv"
-"next__26Iterator<Q24Game8BaseItem>Fv":
+.fn "next__26Iterator<Q24Game8BaseItem>Fv", weak
 /* 80146F7C 00143EBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80146F80 00143EC0  7C 08 02 A6 */	mflr r0
 /* 80146F84 00143EC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9178,9 +9177,9 @@ getName__Q24Game13NaviDamageArgFv:
 /* 80147054 00143F94  7C 08 03 A6 */	mtlr r0
 /* 80147058 00143F98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014705C 00143F9C  4E 80 00 20 */	blr 
+.endfn "next__26Iterator<Q24Game8BaseItem>Fv"
 
-.global "first__26Iterator<Q24Game8BaseItem>Fv"
-"first__26Iterator<Q24Game8BaseItem>Fv":
+.fn "first__26Iterator<Q24Game8BaseItem>Fv", weak
 /* 80147060 00143FA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147064 00143FA4  7C 08 02 A6 */	mflr r0
 /* 80147068 00143FA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9240,24 +9239,24 @@ getName__Q24Game13NaviDamageArgFv:
 /* 80147130 00144070  7C 08 03 A6 */	mtlr r0
 /* 80147134 00144074  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147138 00144078  4E 80 00 20 */	blr 
+.endfn "first__26Iterator<Q24Game8BaseItem>Fv"
 
-.global actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
-actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection:
+.fn actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection, weak
 /* 8014713C 0014407C  38 60 00 01 */	li r3, 1
 /* 80147140 00144080  4E 80 00 20 */	blr 
+.endfn actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
 
-.global actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
-actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection:
+.fn actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection, weak
 /* 80147144 00144084  38 60 00 01 */	li r3, 1
 /* 80147148 00144088  4E 80 00 20 */	blr 
+.endfn actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
 
-.global actVs__Q24Game11GameMessageFPQ24Game13VsGameSection
-actVs__Q24Game11GameMessageFPQ24Game13VsGameSection:
+.fn actVs__Q24Game11GameMessageFPQ24Game13VsGameSection, weak
 /* 8014714C 0014408C  38 60 00 01 */	li r3, 1
 /* 80147150 00144090  4E 80 00 20 */	blr 
+.endfn actVs__Q24Game11GameMessageFPQ24Game13VsGameSection
 
-.global "__ml__36Iterator<Q34Game12ItemPikihead4Item>Fv"
-"__ml__36Iterator<Q34Game12ItemPikihead4Item>Fv":
+.fn "__ml__36Iterator<Q34Game12ItemPikihead4Item>Fv", weak
 /* 80147154 00144094  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147158 00144098  7C 08 02 A6 */	mflr r0
 /* 8014715C 0014409C  7C 64 1B 78 */	mr r4, r3
@@ -9272,9 +9271,9 @@ actVs__Q24Game11GameMessageFPQ24Game13VsGameSection:
 /* 80147180 001440C0  7C 08 03 A6 */	mtlr r0
 /* 80147184 001440C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147188 001440C8  4E 80 00 20 */	blr 
+.endfn "__ml__36Iterator<Q34Game12ItemPikihead4Item>Fv"
 
-.global "next__36Iterator<Q34Game12ItemPikihead4Item>Fv"
-"next__36Iterator<Q34Game12ItemPikihead4Item>Fv":
+.fn "next__36Iterator<Q34Game12ItemPikihead4Item>Fv", weak
 /* 8014718C 001440CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147190 001440D0  7C 08 02 A6 */	mflr r0
 /* 80147194 001440D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9336,9 +9335,9 @@ actVs__Q24Game11GameMessageFPQ24Game13VsGameSection:
 /* 80147264 001441A4  7C 08 03 A6 */	mtlr r0
 /* 80147268 001441A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014726C 001441AC  4E 80 00 20 */	blr 
+.endfn "next__36Iterator<Q34Game12ItemPikihead4Item>Fv"
 
-.global "first__36Iterator<Q34Game12ItemPikihead4Item>Fv"
-"first__36Iterator<Q34Game12ItemPikihead4Item>Fv":
+.fn "first__36Iterator<Q34Game12ItemPikihead4Item>Fv", weak
 /* 80147270 001441B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147274 001441B4  7C 08 02 A6 */	mflr r0
 /* 80147278 001441B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9398,9 +9397,9 @@ actVs__Q24Game11GameMessageFPQ24Game13VsGameSection:
 /* 80147340 00144280  7C 08 03 A6 */	mtlr r0
 /* 80147344 00144284  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147348 00144288  4E 80 00 20 */	blr 
+.endfn "first__36Iterator<Q34Game12ItemPikihead4Item>Fv"
 
-.global "setVelocity__Q24Game4NaviFR10Vector3<f>"
-"setVelocity__Q24Game4NaviFR10Vector3<f>":
+.fn "setVelocity__Q24Game4NaviFR10Vector3<f>", weak
 /* 8014734C 0014428C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80147350 00144290  D0 03 01 E4 */	stfs f0, 0x1e4(r3)
 /* 80147354 00144294  C0 04 00 04 */	lfs f0, 4(r4)
@@ -9408,14 +9407,14 @@ actVs__Q24Game11GameMessageFPQ24Game13VsGameSection:
 /* 8014735C 0014429C  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80147360 001442A0  D0 03 01 EC */	stfs f0, 0x1ec(r3)
 /* 80147364 001442A4  4E 80 00 20 */	blr 
+.endfn "setVelocity__Q24Game4NaviFR10Vector3<f>"
 
-.global getCreatureName__Q24Game4NaviFv
-getCreatureName__Q24Game4NaviFv:
+.fn getCreatureName__Q24Game4NaviFv, weak
 /* 80147368 001442A8  38 62 A0 A8 */	addi r3, r2, lbl_80518408@sda21
 /* 8014736C 001442AC  4E 80 00 20 */	blr 
+.endfn getCreatureName__Q24Game4NaviFv
 
-.global create__Q23efx7TFueactFPQ23efx3Arg
-create__Q23efx7TFueactFPQ23efx3Arg:
+.fn create__Q23efx7TFueactFPQ23efx3Arg, weak
 /* 80147370 001442B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147374 001442B4  7C 08 02 A6 */	mflr r0
 /* 80147378 001442B8  38 80 00 00 */	li r4, 0
@@ -9456,9 +9455,9 @@ create__Q23efx7TFueactFPQ23efx3Arg:
 /* 80147400 00144340  7C 08 03 A6 */	mtlr r0
 /* 80147404 00144344  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147408 00144348  4E 80 00 20 */	blr 
+.endfn create__Q23efx7TFueactFPQ23efx3Arg
 
-.global fade__Q23efx7TFueactFv
-fade__Q23efx7TFueactFv:
+.fn fade__Q23efx7TFueactFv, weak
 /* 8014740C 0014434C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147410 00144350  7C 08 02 A6 */	mflr r0
 /* 80147414 00144354  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9484,9 +9483,9 @@ fade__Q23efx7TFueactFv:
 /* 80147464 001443A4  7C 08 03 A6 */	mtlr r0
 /* 80147468 001443A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014746C 001443AC  4E 80 00 20 */	blr 
+.endfn fade__Q23efx7TFueactFv
 
-.global fade__Q23efx13TFueactCircleFv
-fade__Q23efx13TFueactCircleFv:
+.fn fade__Q23efx13TFueactCircleFv, weak
 /* 80147470 001443B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147474 001443B4  7C 08 02 A6 */	mflr r0
 /* 80147478 001443B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9502,9 +9501,9 @@ fade__Q23efx13TFueactCircleFv:
 /* 801474A0 001443E0  7C 08 03 A6 */	mtlr r0
 /* 801474A4 001443E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801474A8 001443E8  4E 80 00 20 */	blr 
+.endfn fade__Q23efx13TFueactCircleFv
 
-.global forceKill__Q23efx7TFueactFv
-forceKill__Q23efx7TFueactFv:
+.fn forceKill__Q23efx7TFueactFv, weak
 /* 801474AC 001443EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801474B0 001443F0  7C 08 02 A6 */	mflr r0
 /* 801474B4 001443F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9530,9 +9529,9 @@ forceKill__Q23efx7TFueactFv:
 /* 80147504 00144444  7C 08 03 A6 */	mtlr r0
 /* 80147508 00144448  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014750C 0014444C  4E 80 00 20 */	blr 
+.endfn forceKill__Q23efx7TFueactFv
 
-.global forceKill__Q23efx13TFueactCircleFv
-forceKill__Q23efx13TFueactCircleFv:
+.fn forceKill__Q23efx13TFueactCircleFv, weak
 /* 80147510 00144450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147514 00144454  7C 08 02 A6 */	mflr r0
 /* 80147518 00144458  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9548,13 +9547,13 @@ forceKill__Q23efx13TFueactCircleFv:
 /* 80147540 00144480  7C 08 03 A6 */	mtlr r0
 /* 80147544 00144484  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147548 00144488  4E 80 00 20 */	blr 
+.endfn forceKill__Q23efx13TFueactCircleFv
 
-.global "init__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
-"init__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi":
+.fn "init__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi", weak
 /* 8014754C 0014448C  4E 80 00 20 */	blr 
+.endfn "init__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
 
-.global "invoke__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>FPQ24Game10CellObject"
-"invoke__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>FPQ24Game10CellObject":
+.fn "invoke__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>FPQ24Game10CellObject", weak
 /* 80147550 00144490  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147554 00144494  7C 08 02 A6 */	mflr r0
 /* 80147558 00144498  7C 65 1B 78 */	mr r5, r3
@@ -9567,9 +9566,9 @@ forceKill__Q23efx13TFueactCircleFv:
 /* 80147574 001444B4  7C 08 03 A6 */	mtlr r0
 /* 80147578 001444B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014757C 001444BC  4E 80 00 20 */	blr 
+.endfn "invoke__44Delegate1<Q24Game4Navi,PQ24Game10CellObject>FPQ24Game10CellObject"
 
-.global "transit__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
-"transit__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg":
+.fn "transit__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg", weak
 /* 80147580 001444C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80147584 001444C4  7C 08 02 A6 */	mflr r0
 /* 80147588 001444C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9612,17 +9611,17 @@ forceKill__Q23efx13TFueactCircleFv:
 /* 80147610 00144550  7C 08 03 A6 */	mtlr r0
 /* 80147614 00144554  38 21 00 20 */	addi r1, r1, 0x20
 /* 80147618 00144558  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
 
-.global "init__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviPQ24Game8StateArg"
-"init__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviPQ24Game8StateArg":
+.fn "init__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviPQ24Game8StateArg", weak
 /* 8014761C 0014455C  4E 80 00 20 */	blr 
+.endfn "init__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviPQ24Game8StateArg"
 
-.global "cleanup__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
-"cleanup__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi":
+.fn "cleanup__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi", weak
 /* 80147620 00144560  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
 
-.global "exec__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
-"exec__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi":
+.fn "exec__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi", weak
 /* 80147624 00144564  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80147628 00144568  7C 08 02 A6 */	mflr r0
 /* 8014762C 0014456C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9638,10 +9637,11 @@ forceKill__Q23efx13TFueactCircleFv:
 /* 80147650 00144590  7C 08 03 A6 */	mtlr r0
 /* 80147654 00144594  38 21 00 10 */	addi r1, r1, 0x10
 /* 80147658 00144598  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game26StateMachine<Q24Game4Navi>FPQ24Game4Navi"
 
-.global "exec__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
-"exec__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi":
+.fn "exec__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi", weak
 /* 8014765C 0014459C  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
 
 .fn __sinit_navi_cpp, local
 /* 80147660 001445A0  3C 80 80 51 */	lis r4, __float_nan@ha
@@ -9656,41 +9656,41 @@ forceKill__Q23efx13TFueactCircleFv:
 /* 80147684 001445C4  4E 80 00 20 */	blr 
 .endfn __sinit_navi_cpp
 
-.global "@4@__dt__Q23efx12TFueactBiri1Fv"
-"@4@__dt__Q23efx12TFueactBiri1Fv":
+.fn "@4@__dt__Q23efx12TFueactBiri1Fv", weak
 /* 80147688 001445C8  38 63 FF FC */	addi r3, r3, -4
 /* 8014768C 001445CC  4B FF 87 D0 */	b __dt__Q23efx12TFueactBiri1Fv
+.endfn "@4@__dt__Q23efx12TFueactBiri1Fv"
 
-.global "@4@__dt__Q23efx12TFueactBiri2Fv"
-"@4@__dt__Q23efx12TFueactBiri2Fv":
+.fn "@4@__dt__Q23efx12TFueactBiri2Fv", weak
 /* 80147690 001445D0  38 63 FF FC */	addi r3, r3, -4
 /* 80147694 001445D4  4B FF 87 2C */	b __dt__Q23efx12TFueactBiri2Fv
+.endfn "@4@__dt__Q23efx12TFueactBiri2Fv"
 
-.global "@376@onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent", weak
 /* 80147698 001445D8  38 63 FE 88 */	addi r3, r3, -376
 /* 8014769C 001445DC  4B FF 8D A8 */	b onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent
+.endfn "@376@onKeyEvent__Q24Game4NaviFRCQ28SysShape8KeyEvent"
 
-.global "@784@12@viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>"
-"@784@12@viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>":
+.fn "@784@12@viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>", weak
 /* 801476A0 001445E0  39 60 00 0C */	li r11, 0xc
 /* 801476A4 001445E4  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801476A8 001445E8  7C 63 5A 14 */	add r3, r3, r11
 /* 801476AC 001445EC  38 63 FC F0 */	addi r3, r3, -784
 /* 801476B0 001445F0  4B FF A0 88 */	b "viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>"
+.endfn "@784@12@viewEntryShape__Q24Game4NaviFR7MatrixfR10Vector3<f>"
 
-.global "@784@12@viewGetShape__Q24Game4NaviFv"
-"@784@12@viewGetShape__Q24Game4NaviFv":
+.fn "@784@12@viewGetShape__Q24Game4NaviFv", weak
 /* 801476B4 001445F4  39 60 00 0C */	li r11, 0xc
 /* 801476B8 001445F8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801476BC 001445FC  7C 63 5A 14 */	add r3, r3, r11
 /* 801476C0 00144600  38 63 FC F0 */	addi r3, r3, -784
 /* 801476C4 00144604  4B FF A0 78 */	b viewGetShape__Q24Game4NaviFv
+.endfn "@784@12@viewGetShape__Q24Game4NaviFv"
 
-.global "@784@12@viewGetBaseScale__Q24Game4NaviFv"
-"@784@12@viewGetBaseScale__Q24Game4NaviFv":
+.fn "@784@12@viewGetBaseScale__Q24Game4NaviFv", weak
 /* 801476C8 00144608  39 60 00 0C */	li r11, 0xc
 /* 801476CC 0014460C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801476D0 00144610  7C 63 5A 14 */	add r3, r3, r11
 /* 801476D4 00144614  38 63 FC F0 */	addi r3, r3, -784
 /* 801476D8 00144618  4B FF A0 6C */	b viewGetBaseScale__Q24Game4NaviFv
+.endfn "@784@12@viewGetBaseScale__Q24Game4NaviFv"

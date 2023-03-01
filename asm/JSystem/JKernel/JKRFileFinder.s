@@ -1,22 +1,22 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__12JKRDvdFinder
-__vt__12JKRDvdFinder:
+.obj __vt__12JKRDvdFinder, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JKRDvdFinderFv
 	.4byte findNextFile__12JKRDvdFinderFv
-.global __vt__12JKRArcFinder
-__vt__12JKRArcFinder:
+.endobj __vt__12JKRDvdFinder
+.balign 4
+.obj __vt__12JKRArcFinder, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JKRArcFinderFv
 	.4byte findNextFile__12JKRArcFinderFv
+.endobj __vt__12JKRArcFinder
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__12JKRArcFinderFP10JKRArchivell
-__ct__12JKRArcFinderFP10JKRArchivell:
+.fn __ct__12JKRArcFinderFP10JKRArchivell, global
 /* 80022ADC 0001FA1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022AE0 0001FA20  7C 08 02 A6 */	mflr r0
 /* 80022AE4 0001FA24  3D 20 80 4A */	lis r9, __vt__13JKRFileFinder@ha
@@ -52,9 +52,9 @@ __ct__12JKRArcFinderFP10JKRArchivell:
 /* 80022B5C 0001FA9C  7C 08 03 A6 */	mtlr r0
 /* 80022B60 0001FAA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022B64 0001FAA4  4E 80 00 20 */	blr 
+.endfn __ct__12JKRArcFinderFP10JKRArchivell
 
-.global findNextFile__12JKRArcFinderFv
-findNextFile__12JKRArcFinderFv:
+.fn findNextFile__12JKRArcFinderFv, global
 /* 80022B68 0001FAA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80022B6C 0001FAAC  7C 08 02 A6 */	mflr r0
 /* 80022B70 0001FAB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -99,9 +99,9 @@ findNextFile__12JKRArcFinderFv:
 /* 80022C08 0001FB48  7C 08 03 A6 */	mtlr r0
 /* 80022C0C 0001FB4C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80022C10 0001FB50  4E 80 00 20 */	blr 
+.endfn findNextFile__12JKRArcFinderFv
 
-.global __ct__12JKRDvdFinderFPCc
-__ct__12JKRDvdFinderFPCc:
+.fn __ct__12JKRDvdFinderFPCc, global
 /* 80022C14 0001FB54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022C18 0001FB58  7C 08 02 A6 */	mflr r0
 /* 80022C1C 0001FB5C  3C C0 80 4A */	lis r6, __vt__13JKRFileFinder@ha
@@ -136,9 +136,9 @@ __ct__12JKRDvdFinderFPCc:
 /* 80022C90 0001FBD0  7C 08 03 A6 */	mtlr r0
 /* 80022C94 0001FBD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022C98 0001FBD8  4E 80 00 20 */	blr 
+.endfn __ct__12JKRDvdFinderFPCc
 
-.global __dt__12JKRDvdFinderFv
-__dt__12JKRDvdFinderFv:
+.fn __dt__12JKRDvdFinderFv, global
 /* 80022C9C 0001FBDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022CA0 0001FBE0  7C 08 02 A6 */	mflr r0
 /* 80022CA4 0001FBE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -174,9 +174,9 @@ __dt__12JKRDvdFinderFv:
 /* 80022D10 0001FC50  7C 08 03 A6 */	mtlr r0
 /* 80022D14 0001FC54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022D18 0001FC58  4E 80 00 20 */	blr 
+.endfn __dt__12JKRDvdFinderFv
 
-.global findNextFile__12JKRDvdFinderFv
-findNextFile__12JKRDvdFinderFv:
+.fn findNextFile__12JKRDvdFinderFv, global
 /* 80022D1C 0001FC5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80022D20 0001FC60  7C 08 02 A6 */	mflr r0
 /* 80022D24 0001FC64  90 01 00 24 */	stw r0, 0x24(r1)
@@ -220,9 +220,9 @@ findNextFile__12JKRDvdFinderFv:
 /* 80022DB4 0001FCF4  7C 08 03 A6 */	mtlr r0
 /* 80022DB8 0001FCF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80022DBC 0001FCFC  4E 80 00 20 */	blr 
+.endfn findNextFile__12JKRDvdFinderFv
 
-.global __dt__12JKRArcFinderFv
-__dt__12JKRArcFinderFv:
+.fn __dt__12JKRArcFinderFv, weak
 /* 80022DC0 0001FD00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022DC4 0001FD04  7C 08 02 A6 */	mflr r0
 /* 80022DC8 0001FD08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -248,3 +248,4 @@ __dt__12JKRArcFinderFv:
 /* 80022E10 0001FD50  7C 08 03 A6 */	mtlr r0
 /* 80022E14 0001FD54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022E18 0001FD58  4E 80 00 20 */	blr 
+.endfn __dt__12JKRArcFinderFv

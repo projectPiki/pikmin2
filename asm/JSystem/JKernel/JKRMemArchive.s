@@ -1,19 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473A78
-lbl_80473A78:
+.obj lbl_80473A78, local
 	.asciz "JKRMemArchive.cpp"
-	.skip 2
-.global lbl_80473A8C
-lbl_80473A8C:
+.endobj lbl_80473A78
+.balign 4
+.obj lbl_80473A8C, local
 	.asciz ":::??? bad sequence\n"
-	.skip 3
+.endobj lbl_80473A8C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13JKRMemArchive
-__vt__13JKRMemArchive:
+.obj __vt__13JKRMemArchive, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13JKRMemArchiveFv
@@ -34,10 +32,10 @@ __vt__13JKRMemArchive:
 	.4byte fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
 	.4byte setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
 	.4byte getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
+.endobj __vt__13JKRMemArchive
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
-__ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection:
+.fn __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection, global
 /* 80024644 00021584  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80024648 00021588  7C 08 02 A6 */	mflr r0
 /* 8002464C 0002158C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -87,9 +85,9 @@ __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection:
 /* 800246F4 00021634  7C 08 03 A6 */	mtlr r0
 /* 800246F8 00021638  38 21 00 20 */	addi r1, r1, 0x20
 /* 800246FC 0002163C  4E 80 00 20 */	blr 
+.endfn __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
 
-.global __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag
-__ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag:
+.fn __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag, global
 /* 80024700 00021640  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80024704 00021644  7C 08 02 A6 */	mflr r0
 /* 80024708 00021648  90 01 00 24 */	stw r0, 0x24(r1)
@@ -142,9 +140,9 @@ __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag:
 /* 800247BC 000216FC  7C 08 03 A6 */	mtlr r0
 /* 800247C0 00021700  38 21 00 20 */	addi r1, r1, 0x20
 /* 800247C4 00021704  4E 80 00 20 */	blr 
+.endfn __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag
 
-.global __dt__13JKRMemArchiveFv
-__dt__13JKRMemArchiveFv:
+.fn __dt__13JKRMemArchiveFv, global
 /* 800247C8 00021708  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800247CC 0002170C  7C 08 02 A6 */	mflr r0
 /* 800247D0 00021710  90 01 00 14 */	stw r0, 0x14(r1)
@@ -190,9 +188,9 @@ __dt__13JKRMemArchiveFv:
 /* 80024864 000217A4  7C 08 03 A6 */	mtlr r0
 /* 80024868 000217A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002486C 000217AC  4E 80 00 20 */	blr 
+.endfn __dt__13JKRMemArchiveFv
 
-.global open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
-open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection:
+.fn open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection, global
 /* 80024870 000217B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80024874 000217B4  7C 08 02 A6 */	mflr r0
 /* 80024878 000217B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -287,9 +285,9 @@ open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection:
 /* 800249CC 0002190C  7C 08 03 A6 */	mtlr r0
 /* 800249D0 00021910  38 21 00 20 */	addi r1, r1, 0x20
 /* 800249D4 00021914  4E 80 00 20 */	blr 
+.endfn open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
 
-.global open__13JKRMemArchiveFPvUl15JKRMemBreakFlag
-open__13JKRMemArchiveFPvUl15JKRMemBreakFlag:
+.fn open__13JKRMemArchiveFPvUl15JKRMemBreakFlag, global
 /* 800249D8 00021918  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800249DC 0002191C  7C 08 02 A6 */	mflr r0
 /* 800249E0 00021920  90 01 00 14 */	stw r0, 0x14(r1)
@@ -333,9 +331,9 @@ open__13JKRMemArchiveFPvUl15JKRMemBreakFlag:
 /* 80024A78 000219B8  7C 08 03 A6 */	mtlr r0
 /* 80024A7C 000219BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80024A80 000219C0  4E 80 00 20 */	blr 
+.endfn open__13JKRMemArchiveFPvUl15JKRMemBreakFlag
 
-.global fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl
-fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl:
+.fn fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl, global
 /* 80024A84 000219C4  80 04 00 10 */	lwz r0, 0x10(r4)
 /* 80024A88 000219C8  28 00 00 00 */	cmplwi r0, 0
 /* 80024A8C 000219CC  40 82 00 14 */	bne .L_80024AA0
@@ -351,9 +349,9 @@ fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl:
 .L_80024AB0:
 /* 80024AB0 000219F0  80 64 00 10 */	lwz r3, 0x10(r4)
 /* 80024AB4 000219F4  4E 80 00 20 */	blr 
+.endfn fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl
 
-.global fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
-fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl:
+.fn fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl, global
 /* 80024AB8 000219F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80024ABC 000219FC  7C 08 02 A6 */	mflr r0
 /* 80024AC0 00021A00  7C A8 2B 78 */	mr r8, r5
@@ -411,9 +409,9 @@ fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl:
 /* 80024B74 00021AB4  7C 08 03 A6 */	mtlr r0
 /* 80024B78 00021AB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80024B7C 00021ABC  4E 80 00 20 */	blr 
+.endfn fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
 
-.global removeResourceAll__13JKRMemArchiveFv
-removeResourceAll__13JKRMemArchiveFv:
+.fn removeResourceAll__13JKRMemArchiveFv, global
 /* 80024B80 00021AC0  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 80024B84 00021AC4  28 00 00 00 */	cmplwi r0, 0
 /* 80024B88 00021AC8  4D 82 00 20 */	beqlr 
@@ -437,9 +435,9 @@ removeResourceAll__13JKRMemArchiveFv:
 /* 80024BC4 00021B04  7C 07 00 40 */	cmplw r7, r0
 /* 80024BC8 00021B08  41 80 FF E0 */	blt .L_80024BA8
 /* 80024BCC 00021B0C  4E 80 00 20 */	blr 
+.endfn removeResourceAll__13JKRMemArchiveFv
 
-.global removeResource__13JKRMemArchiveFPv
-removeResource__13JKRMemArchiveFPv:
+.fn removeResource__13JKRMemArchiveFPv, global
 /* 80024BD0 00021B10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80024BD4 00021B14  7C 08 02 A6 */	mflr r0
 /* 80024BD8 00021B18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -457,9 +455,9 @@ removeResource__13JKRMemArchiveFPv:
 /* 80024C00 00021B40  7C 08 03 A6 */	mtlr r0
 /* 80024C04 00021B44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80024C08 00021B48  4E 80 00 20 */	blr 
+.endfn removeResource__13JKRMemArchiveFPv
 
-.global fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli
-fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli:
+.fn fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli, global
 /* 80024C0C 00021B4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80024C10 00021B50  7C 08 02 A6 */	mflr r0
 /* 80024C14 00021B54  2C 07 00 00 */	cmpwi r7, 0
@@ -519,9 +517,9 @@ fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli:
 /* 80024CD4 00021C14  7C 08 03 A6 */	mtlr r0
 /* 80024CD8 00021C18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80024CDC 00021C1C  4E 80 00 20 */	blr 
+.endfn fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli
 
-.global getExpandedResSize__13JKRMemArchiveCFPCv
-getExpandedResSize__13JKRMemArchiveCFPCv:
+.fn getExpandedResSize__13JKRMemArchiveCFPCv, global
 /* 80024CE0 00021C20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80024CE4 00021C24  7C 08 02 A6 */	mflr r0
 /* 80024CE8 00021C28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -561,3 +559,4 @@ getExpandedResSize__13JKRMemArchiveCFPCv:
 /* 80024D64 00021CA4  7C 08 03 A6 */	mtlr r0
 /* 80024D68 00021CA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80024D6C 00021CAC  4E 80 00 20 */	blr 
+.endfn getExpandedResSize__13JKRMemArchiveCFPCv

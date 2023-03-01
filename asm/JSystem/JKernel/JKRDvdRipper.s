@@ -5,14 +5,17 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80473688:
+.obj lbl_80473688, local
 	.asciz "JKRDvdRipper.cpp"
+.endobj lbl_80473688
 .balign 4
-lbl_8047369C:
+.obj lbl_8047369C, local
 	.asciz "Sorry, not prepared for SZP resource\n"
+.endobj lbl_8047369C
 .balign 4
-lbl_804736C4:
+.obj lbl_804736C4, local
 	.asciz ":::Not support SZP with offset read"
+.endobj lbl_804736C4
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -23,51 +26,65 @@ lbl_804736C4:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global errorRetry__12JKRDvdRipper
-errorRetry__12JKRDvdRipper:
+.obj errorRetry__12JKRDvdRipper, global
 	.byte 0x01
+.endobj errorRetry__12JKRDvdRipper
 .balign 4
-.global sSZSBufferSize__12JKRDvdRipper
-sSZSBufferSize__12JKRDvdRipper:
+.obj sSZSBufferSize__12JKRDvdRipper, global
 	.4byte 0x00000400
+.endobj sSZSBufferSize__12JKRDvdRipper
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-szpBuf:
+.obj szpBuf, local
 	.skip 0x4
-szpEnd:
+.endobj szpBuf
+.obj szpEnd, local
 	.skip 0x4
-refBuf:
+.endobj szpEnd
+.obj refBuf, local
 	.skip 0x4
-refEnd:
+.endobj refBuf
+.obj refEnd, local
 	.skip 0x4
-refCurrent:
+.endobj refEnd
+.obj refCurrent, local
 	.skip 0x4
-srcOffset:
+.endobj refCurrent
+.obj srcOffset, local
 	.skip 0x4
-transLeft:
+.endobj srcOffset
+.obj transLeft, local
 	.skip 0x4
-srcLimit:
+.endobj transLeft
+.obj srcLimit, local
 	.skip 0x4
-srcFile:
+.endobj srcLimit
+.obj srcFile, local
 	.skip 0x4
-fileOffset:
+.endobj srcFile
+.obj fileOffset, local
 	.skip 0x4
-readCount:
+.endobj fileOffset
+.obj readCount, local
 	.skip 0x4
-maxDest:
+.endobj readCount
+.obj maxDest, local
 	.skip 0x4
-isInitMutex:
+.endobj maxDest
+.obj isInitMutex, local
 	.skip 0x1
+.endobj isInitMutex
 .balign 4
-tsPtr:
+.obj tsPtr, local
 	.skip 0x4
-tsArea:
+.endobj tsPtr
+.obj tsArea, local
 	.skip 0x4
+.endobj tsArea
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl:
+.fn loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl, global
 /* 8001F188 0001C0C8  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 8001F18C 0001C0CC  7C 08 02 A6 */	mflr r0
 /* 8001F190 0001C0D0  90 01 01 34 */	stw r0, 0x134(r1)
@@ -115,9 +132,9 @@ loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper
 /* 8001F230 0001C170  7C 08 03 A6 */	mtlr r0
 /* 8001F234 0001C174  38 21 01 30 */	addi r1, r1, 0x130
 /* 8001F238 0001C178  4E 80 00 20 */	blr 
+.endfn loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
 
-.global loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl:
+.fn loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl, global
 /* 8001F23C 0001C17C  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 8001F240 0001C180  7C 08 02 A6 */	mflr r0
 /* 8001F244 0001C184  90 01 01 34 */	stw r0, 0x134(r1)
@@ -165,9 +182,9 @@ loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15
 /* 8001F2E4 0001C224  7C 08 03 A6 */	mtlr r0
 /* 8001F2E8 0001C228  38 21 01 30 */	addi r1, r1, 0x130
 /* 8001F2EC 0001C22C  4E 80 00 20 */	blr 
+.endfn loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
 
-.global loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl:
+.fn loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl, global
 /* 8001F2F0 0001C230  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 8001F2F4 0001C234  7C 08 02 A6 */	mflr r0
 /* 8001F2F8 0001C238  3D 60 80 47 */	lis r11, lbl_80473688@ha
@@ -512,9 +529,9 @@ loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JK
 /* 8001F790 0001C6D0  7C 08 03 A6 */	mtlr r0
 /* 8001F794 0001C6D4  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 8001F798 0001C6D8  4E 80 00 20 */	blr 
+.endfn loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
 
-.global JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl
-JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl:
+.fn JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl, global
 /* 8001F79C 0001C6DC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8001F7A0 0001C6E0  7C 08 02 A6 */	mflr r0
 /* 8001F7A4 0001C6E4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -583,7 +600,7 @@ JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl:
 /* 8001F88C 0001C7CC  90 6D 87 FC */	stw r3, tsPtr@sda21(r13)
 /* 8001F890 0001C7D0  38 00 00 00 */	li r0, 0
 /* 8001F894 0001C7D4  90 03 00 00 */	stw r0, 0(r3)
-/* 8001F898 0001C7D8  48 00 03 31 */	bl firstSrcData__Fv2
+/* 8001F898 0001C7D8  48 00 03 31 */	bl firstSrcData__Fv
 /* 8001F89C 0001C7DC  28 03 00 00 */	cmplwi r3, 0
 /* 8001F8A0 0001C7E0  41 82 00 14 */	beq .L_8001F8B4
 /* 8001F8A4 0001C7E4  7F 44 D3 78 */	mr r4, r26
@@ -616,8 +633,9 @@ JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl:
 /* 8001F904 0001C844  7C 08 03 A6 */	mtlr r0
 /* 8001F908 0001C848  38 21 00 30 */	addi r1, r1, 0x30
 /* 8001F90C 0001C84C  4E 80 00 20 */	blr 
+.endfn JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl
 
-decompSZS_subroutine__FPUcPUc: # local function
+.fn decompSZS_subroutine__FPUcPUc, local
 /* 8001F910 0001C850  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001F914 0001C854  7C 08 02 A6 */	mflr r0
 /* 8001F918 0001C858  90 01 00 24 */	stw r0, 0x24(r1)
@@ -664,7 +682,7 @@ decompSZS_subroutine__FPUcPUc: # local function
 /* 8001F9AC 0001C8EC  80 0D 87 E0 */	lwz r0, transLeft@sda21(r13)
 /* 8001F9B0 0001C8F0  28 00 00 00 */	cmplwi r0, 0
 /* 8001F9B4 0001C8F4  41 82 00 18 */	beq .L_8001F9CC
-/* 8001F9B8 0001C8F8  48 00 02 E5 */	bl nextSrcData__FPUc2
+/* 8001F9B8 0001C8F8  48 00 02 E5 */	bl nextSrcData__FPUc
 /* 8001F9BC 0001C8FC  28 03 00 00 */	cmplwi r3, 0
 /* 8001F9C0 0001C900  40 82 00 0C */	bne .L_8001F9CC
 /* 8001F9C4 0001C904  38 60 FF FF */	li r3, -1
@@ -815,9 +833,9 @@ decompSZS_subroutine__FPUcPUc: # local function
 /* 8001FBBC 0001CAFC  7C 08 03 A6 */	mtlr r0
 /* 8001FBC0 0001CB00  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001FBC4 0001CB04  4E 80 00 20 */	blr 
+.endfn decompSZS_subroutine__FPUcPUc
 
-.global firstSrcData__Fv2
-firstSrcData__Fv2:
+.fn firstSrcData__Fv, local
 /* 8001FBC8 0001CB08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001FBCC 0001CB0C  7C 08 02 A6 */	mflr r0
 /* 8001FBD0 0001CB10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -877,9 +895,9 @@ firstSrcData__Fv2:
 /* 8001FC90 0001CBD0  7C 08 03 A6 */	mtlr r0
 /* 8001FC94 0001CBD4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001FC98 0001CBD8  4E 80 00 20 */	blr 
+.endfn firstSrcData__Fv
 
-.global nextSrcData__FPUc2
-nextSrcData__FPUc2:
+.obj nextSrcData__FPUc, local
 /* 8001FC9C 0001CBDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001FCA0 0001CBE0  7C 08 02 A6 */	mflr r0
 /* 8001FCA4 0001CBE4  7C 64 1B 78 */	mr r4, r3
@@ -956,11 +974,12 @@ nextSrcData__FPUc2:
 /* 8001FD9C 0001CCDC  7C 08 03 A6 */	mtlr r0
 /* 8001FDA0 0001CCE0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001FDA4 0001CCE4  4E 80 00 20 */	blr 
+.endfn nextSrcData__FPUc
 
-.global isErrorRetry__12JKRDvdRipperFv
-isErrorRetry__12JKRDvdRipperFv:
+.fn isErrorRetry__12JKRDvdRipperFv, weak
 /* 8001FDA8 0001CCE8  88 6D 80 10 */	lbz r3, errorRetry__12JKRDvdRipper@sda21(r13)
 /* 8001FDAC 0001CCEC  4E 80 00 20 */	blr 
+.endfn isErrorRetry__12JKRDvdRipperFv
 
 .fn __sinit_JKRDvdRipper_cpp, local
 /* 8001FDB0 0001CCF0  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -982,8 +1001,7 @@ isErrorRetry__12JKRDvdRipperFv:
 /* 8001FDF0 0001CD30  4E 80 00 20 */	blr 
 .endfn __sinit_JKRDvdRipper_cpp
 
-.global "__dt__23JSUList<12JKRDMCommand>Fv"
-"__dt__23JSUList<12JKRDMCommand>Fv":
+.fn "__dt__23JSUList<12JKRDMCommand>Fv", weak
 /* 8001FDF4 0001CD34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001FDF8 0001CD38  7C 08 02 A6 */	mflr r0
 /* 8001FDFC 0001CD3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1006,3 +1024,4 @@ isErrorRetry__12JKRDvdRipperFv:
 /* 8001FE3C 0001CD7C  7C 08 03 A6 */	mtlr r0
 /* 8001FE40 0001CD80  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001FE44 0001CD84  4E 80 00 20 */	blr 
+.endfn "__dt__23JSUList<12JKRDMCommand>Fv"

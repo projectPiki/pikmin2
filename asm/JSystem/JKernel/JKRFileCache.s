@@ -1,14 +1,13 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13JKRFileFinder
-__vt__13JKRFileFinder:
+.obj __vt__13JKRFileFinder, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13JKRFileFinderFv
 	.4byte 0
-.global __vt__12JKRFileCache
-__vt__12JKRFileCache:
+.endobj __vt__13JKRFileFinder
+.obj __vt__12JKRFileCache, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JKRFileCacheFv
@@ -28,20 +27,20 @@ __vt__12JKRFileCache:
 	.4byte getNameResource__12JKRFileCacheFUlPCc
 	.4byte readFsResource__12JKRFileCacheFPvUlPCc
 	.4byte readNameResource__12JKRFileCacheFPvUlUlPCc
-	.4byte 0
+.endobj __vt__12JKRFileCache
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516520
-lbl_80516520:
-	.4byte 0x2F000000
-.global lbl_80516524
-lbl_80516524:
-	.4byte 0x64766400
+.obj lbl_80516520, local
+	.asciz "/"
+.endobj lbl_80516520
+.balign 4
+.obj lbl_80516524, local
+	.asciz "dvd"
+.endobj lbl_80516524
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global mount__12JKRFileCacheFPCcP7JKRHeapPCc
-mount__12JKRFileCacheFPCcP7JKRHeapPCc:
+.fn mount__12JKRFileCacheFPCcP7JKRHeapPCc, global
 /* 800219C4 0001E904  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800219C8 0001E908  7C 08 02 A6 */	mflr r0
 /* 800219CC 0001E90C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -112,9 +111,9 @@ mount__12JKRFileCacheFPCcP7JKRHeapPCc:
 /* 80021AB0 0001E9F0  7C 08 03 A6 */	mtlr r0
 /* 80021AB4 0001E9F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80021AB8 0001E9F8  4E 80 00 20 */	blr 
+.endfn mount__12JKRFileCacheFPCcP7JKRHeapPCc
 
-.global __ct__12JKRFileCacheFPCcPCc
-__ct__12JKRFileCacheFPCcPCc:
+.fn __ct__12JKRFileCacheFPCcPCc, global
 /* 80021ABC 0001E9FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80021AC0 0001EA00  7C 08 02 A6 */	mflr r0
 /* 80021AC4 0001EA04  90 01 00 24 */	stw r0, 0x24(r1)
@@ -231,9 +230,9 @@ __ct__12JKRFileCacheFPCcPCc:
 /* 80021C70 0001EBB0  7C 08 03 A6 */	mtlr r0
 /* 80021C74 0001EBB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80021C78 0001EBB8  4E 80 00 20 */	blr 
+.endfn __ct__12JKRFileCacheFPCcPCc
 
-.global __dt__12JKRFileCacheFv
-__dt__12JKRFileCacheFv:
+.fn __dt__12JKRFileCacheFv, global
 /* 80021C7C 0001EBBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80021C80 0001EBC0  7C 08 02 A6 */	mflr r0
 /* 80021C84 0001EBC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -292,9 +291,9 @@ __dt__12JKRFileCacheFv:
 /* 80021D44 0001EC84  7C 08 03 A6 */	mtlr r0
 /* 80021D48 0001EC88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80021D4C 0001EC8C  4E 80 00 20 */	blr 
+.endfn __dt__12JKRFileCacheFv
 
-.global becomeCurrent__12JKRFileCacheFPCc
-becomeCurrent__12JKRFileCacheFPCc:
+.fn becomeCurrent__12JKRFileCacheFPCc, global
 /* 80021D50 0001EC90  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80021D54 0001EC94  7C 08 02 A6 */	mflr r0
 /* 80021D58 0001EC98  90 01 00 24 */	stw r0, 0x24(r1)
@@ -335,9 +334,9 @@ becomeCurrent__12JKRFileCacheFPCc:
 /* 80021DDC 0001ED1C  7C 08 03 A6 */	mtlr r0
 /* 80021DE0 0001ED20  38 21 00 20 */	addi r1, r1, 0x20
 /* 80021DE4 0001ED24  4E 80 00 20 */	blr 
+.endfn becomeCurrent__12JKRFileCacheFPCc
 
-.global getResource__12JKRFileCacheFPCc
-getResource__12JKRFileCacheFPCc:
+.fn getResource__12JKRFileCacheFPCc, global
 /* 80021DE8 0001ED28  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 80021DEC 0001ED2C  7C 08 02 A6 */	mflr r0
 /* 80021DF0 0001ED30  90 01 01 14 */	stw r0, 0x114(r1)
@@ -411,9 +410,9 @@ getResource__12JKRFileCacheFPCc:
 /* 80021EF4 0001EE34  7C 08 03 A6 */	mtlr r0
 /* 80021EF8 0001EE38  38 21 01 10 */	addi r1, r1, 0x110
 /* 80021EFC 0001EE3C  4E 80 00 20 */	blr 
+.endfn getResource__12JKRFileCacheFPCc
 
-.global getResource__12JKRFileCacheFUlPCc
-getResource__12JKRFileCacheFUlPCc:
+.fn getResource__12JKRFileCacheFUlPCc, global
 /* 80021F00 0001EE40  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 80021F04 0001EE44  7C 08 02 A6 */	mflr r0
 /* 80021F08 0001EE48  90 01 01 24 */	stw r0, 0x124(r1)
@@ -452,9 +451,9 @@ getResource__12JKRFileCacheFUlPCc:
 /* 80021F84 0001EEC4  7C 08 03 A6 */	mtlr r0
 /* 80021F88 0001EEC8  38 21 01 20 */	addi r1, r1, 0x120
 /* 80021F8C 0001EECC  4E 80 00 20 */	blr 
+.endfn getResource__12JKRFileCacheFUlPCc
 
-.global readResource__12JKRFileCacheFPvUlPCc
-readResource__12JKRFileCacheFPvUlPCc:
+.fn readResource__12JKRFileCacheFPvUlPCc, global
 /* 80021F90 0001EED0  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 80021F94 0001EED4  7C 08 02 A6 */	mflr r0
 /* 80021F98 0001EED8  90 01 01 24 */	stw r0, 0x124(r1)
@@ -512,9 +511,9 @@ readResource__12JKRFileCacheFPvUlPCc:
 /* 80022058 0001EF98  7C 08 03 A6 */	mtlr r0
 /* 8002205C 0001EF9C  38 21 01 20 */	addi r1, r1, 0x120
 /* 80022060 0001EFA0  4E 80 00 20 */	blr 
+.endfn readResource__12JKRFileCacheFPvUlPCc
 
-.global readResource__12JKRFileCacheFPvUlUlPCc
-readResource__12JKRFileCacheFPvUlUlPCc:
+.fn readResource__12JKRFileCacheFPvUlUlPCc, global
 /* 80022064 0001EFA4  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 80022068 0001EFA8  7C 08 02 A6 */	mflr r0
 /* 8002206C 0001EFAC  90 01 01 24 */	stw r0, 0x124(r1)
@@ -553,9 +552,9 @@ readResource__12JKRFileCacheFPvUlUlPCc:
 /* 800220E8 0001F028  7C 08 03 A6 */	mtlr r0
 /* 800220EC 0001F02C  38 21 01 20 */	addi r1, r1, 0x120
 /* 800220F0 0001F030  4E 80 00 20 */	blr 
+.endfn readResource__12JKRFileCacheFPvUlUlPCc
 
-.global removeResourceAll__12JKRFileCacheFv
-removeResourceAll__12JKRFileCacheFv:
+.fn removeResourceAll__12JKRFileCacheFv, global
 /* 800220F4 0001F034  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800220F8 0001F038  7C 08 02 A6 */	mflr r0
 /* 800220FC 0001F03C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -595,9 +594,9 @@ removeResourceAll__12JKRFileCacheFv:
 /* 80022178 0001F0B8  7C 08 03 A6 */	mtlr r0
 /* 8002217C 0001F0BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80022180 0001F0C0  4E 80 00 20 */	blr 
+.endfn removeResourceAll__12JKRFileCacheFv
 
-.global removeResource__12JKRFileCacheFPv
-removeResource__12JKRFileCacheFPv:
+.fn removeResource__12JKRFileCacheFPv, global
 /* 80022184 0001F0C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80022188 0001F0C8  7C 08 02 A6 */	mflr r0
 /* 8002218C 0001F0CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -641,9 +640,9 @@ removeResource__12JKRFileCacheFPv:
 /* 80022214 0001F154  7C 08 03 A6 */	mtlr r0
 /* 80022218 0001F158  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002221C 0001F15C  4E 80 00 20 */	blr 
+.endfn removeResource__12JKRFileCacheFPv
 
-.global detachResource__12JKRFileCacheFPv
-detachResource__12JKRFileCacheFPv:
+.fn detachResource__12JKRFileCacheFPv, global
 /* 80022220 0001F160  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022224 0001F164  7C 08 02 A6 */	mflr r0
 /* 80022228 0001F168  90 01 00 14 */	stw r0, 0x14(r1)
@@ -677,9 +676,9 @@ detachResource__12JKRFileCacheFPv:
 /* 80022288 0001F1C8  7C 08 03 A6 */	mtlr r0
 /* 8002228C 0001F1CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022290 0001F1D0  4E 80 00 20 */	blr 
+.endfn detachResource__12JKRFileCacheFPv
 
-.global getResSize__12JKRFileCacheCFPCv
-getResSize__12JKRFileCacheCFPCv:
+.fn getResSize__12JKRFileCacheCFPCv, global
 /* 80022294 0001F1D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022298 0001F1D8  7C 08 02 A6 */	mflr r0
 /* 8002229C 0001F1DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -695,9 +694,9 @@ getResSize__12JKRFileCacheCFPCv:
 /* 800222BC 0001F1FC  7C 08 03 A6 */	mtlr r0
 /* 800222C0 0001F200  38 21 00 10 */	addi r1, r1, 0x10
 /* 800222C4 0001F204  4E 80 00 20 */	blr 
+.endfn getResSize__12JKRFileCacheCFPCv
 
-.global countFile__12JKRFileCacheCFPCc
-countFile__12JKRFileCacheCFPCc:
+.fn countFile__12JKRFileCacheCFPCc, global
 /* 800222C8 0001F208  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800222CC 0001F20C  7C 08 02 A6 */	mflr r0
 /* 800222D0 0001F210  90 01 00 34 */	stw r0, 0x34(r1)
@@ -732,9 +731,9 @@ countFile__12JKRFileCacheCFPCc:
 /* 80022338 0001F278  7C 08 03 A6 */	mtlr r0
 /* 8002233C 0001F27C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80022340 0001F280  4E 80 00 20 */	blr 
+.endfn countFile__12JKRFileCacheCFPCc
 
-.global getFirstFile__12JKRFileCacheCFPCc
-getFirstFile__12JKRFileCacheCFPCc:
+.fn getFirstFile__12JKRFileCacheCFPCc, global
 /* 80022344 0001F284  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022348 0001F288  7C 08 02 A6 */	mflr r0
 /* 8002234C 0001F28C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -778,9 +777,9 @@ getFirstFile__12JKRFileCacheCFPCc:
 /* 800223D4 0001F314  7C 08 03 A6 */	mtlr r0
 /* 800223D8 0001F318  38 21 00 10 */	addi r1, r1, 0x10
 /* 800223DC 0001F31C  4E 80 00 20 */	blr 
+.endfn getFirstFile__12JKRFileCacheCFPCc
 
-.global __dt__13JKRFileFinderFv
-__dt__13JKRFileFinderFv:
+.fn __dt__13JKRFileFinderFv, weak
 /* 800223E0 0001F320  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800223E4 0001F324  7C 08 02 A6 */	mflr r0
 /* 800223E8 0001F328  90 01 00 14 */	stw r0, 0x14(r1)
@@ -800,9 +799,9 @@ __dt__13JKRFileFinderFv:
 /* 8002241C 0001F35C  7C 08 03 A6 */	mtlr r0
 /* 80022420 0001F360  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022424 0001F364  4E 80 00 20 */	blr 
+.endfn __dt__13JKRFileFinderFv
 
-.global findCacheBlock__12JKRFileCacheCFPCv
-findCacheBlock__12JKRFileCacheCFPCv:
+.fn findCacheBlock__12JKRFileCacheCFPCv, global
 /* 80022428 0001F368  80 A3 00 3C */	lwz r5, 0x3c(r3)
 /* 8002242C 0001F36C  48 00 00 18 */	b .L_80022444
 .L_80022430:
@@ -816,9 +815,9 @@ findCacheBlock__12JKRFileCacheCFPCv:
 /* 80022448 0001F388  40 82 FF E8 */	bne .L_80022430
 /* 8002244C 0001F38C  38 60 00 00 */	li r3, 0
 /* 80022450 0001F390  4E 80 00 20 */	blr 
+.endfn findCacheBlock__12JKRFileCacheCFPCv
 
-.global findCacheBlock__12JKRFileCacheCFUl
-findCacheBlock__12JKRFileCacheCFUl:
+.fn findCacheBlock__12JKRFileCacheCFUl, global
 /* 80022454 0001F394  80 A3 00 3C */	lwz r5, 0x3c(r3)
 /* 80022458 0001F398  48 00 00 18 */	b .L_80022470
 .L_8002245C:
@@ -832,9 +831,9 @@ findCacheBlock__12JKRFileCacheCFUl:
 /* 80022474 0001F3B4  40 82 FF E8 */	bne .L_8002245C
 /* 80022478 0001F3B8  38 60 00 00 */	li r3, 0
 /* 8002247C 0001F3BC  4E 80 00 20 */	blr 
+.endfn findCacheBlock__12JKRFileCacheCFUl
 
-.global findFile__12JKRFileCacheCFPcPCc
-findFile__12JKRFileCacheCFPcPCc:
+.fn findFile__12JKRFileCacheCFPcPCc, global
 /* 80022480 0001F3C0  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80022484 0001F3C4  7C 08 02 A6 */	mflr r0
 /* 80022488 0001F3C8  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -1110,9 +1109,9 @@ findFile__12JKRFileCacheCFPcPCc:
 /* 8002285C 0001F79C  7C 08 03 A6 */	mtlr r0
 /* 80022860 0001F7A0  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80022864 0001F7A4  4E 80 00 20 */	blr 
+.endfn findFile__12JKRFileCacheCFPcPCc
 
-.global getDvdPathName__12JKRFileCacheCFPCc
-getDvdPathName__12JKRFileCacheCFPCc:
+.fn getDvdPathName__12JKRFileCacheCFPCc, global
 /* 80022868 0001F7A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002286C 0001F7AC  7C 08 02 A6 */	mflr r0
 /* 80022870 0001F7B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1184,9 +1183,9 @@ getDvdPathName__12JKRFileCacheCFPCc:
 /* 8002296C 0001F8AC  7C 08 03 A6 */	mtlr r0
 /* 80022970 0001F8B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80022974 0001F8B4  4E 80 00 20 */	blr 
+.endfn getDvdPathName__12JKRFileCacheCFPCc
 
-.global convStrLower__12JKRFileCacheCFPc
-convStrLower__12JKRFileCacheCFPc:
+.fn convStrLower__12JKRFileCacheCFPc, global
 /* 80022978 0001F8B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002297C 0001F8BC  7C 08 02 A6 */	mflr r0
 /* 80022980 0001F8C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1207,9 +1206,9 @@ convStrLower__12JKRFileCacheCFPc:
 /* 800229B4 0001F8F4  7C 08 03 A6 */	mtlr r0
 /* 800229B8 0001F8F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800229BC 0001F8FC  4E 80 00 20 */	blr 
+.endfn convStrLower__12JKRFileCacheCFPc
 
-.global __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv
-__ct__Q212JKRFileCache11CCacheBlockFUlUlPCv:
+.fn __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv, global
 /* 800229C0 0001F900  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800229C4 0001F904  7C 08 02 A6 */	mflr r0
 /* 800229C8 0001F908  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1237,9 +1236,9 @@ __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv:
 /* 80022A20 0001F960  7C 08 03 A6 */	mtlr r0
 /* 80022A24 0001F964  38 21 00 20 */	addi r1, r1, 0x20
 /* 80022A28 0001F968  4E 80 00 20 */	blr 
+.endfn __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv
 
-.global getFsResource__12JKRFileCacheFPCc
-getFsResource__12JKRFileCacheFPCc:
+.fn getFsResource__12JKRFileCacheFPCc, weak
 /* 80022A2C 0001F96C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022A30 0001F970  7C 08 02 A6 */	mflr r0
 /* 80022A34 0001F974  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1251,9 +1250,9 @@ getFsResource__12JKRFileCacheFPCc:
 /* 80022A4C 0001F98C  7C 08 03 A6 */	mtlr r0
 /* 80022A50 0001F990  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022A54 0001F994  4E 80 00 20 */	blr 
+.endfn getFsResource__12JKRFileCacheFPCc
 
-.global getNameResource__12JKRFileCacheFUlPCc
-getNameResource__12JKRFileCacheFUlPCc:
+.fn getNameResource__12JKRFileCacheFUlPCc, weak
 /* 80022A58 0001F998  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022A5C 0001F99C  7C 08 02 A6 */	mflr r0
 /* 80022A60 0001F9A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1265,9 +1264,9 @@ getNameResource__12JKRFileCacheFUlPCc:
 /* 80022A78 0001F9B8  7C 08 03 A6 */	mtlr r0
 /* 80022A7C 0001F9BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022A80 0001F9C0  4E 80 00 20 */	blr 
+.endfn getNameResource__12JKRFileCacheFUlPCc
 
-.global readFsResource__12JKRFileCacheFPvUlPCc
-readFsResource__12JKRFileCacheFPvUlPCc:
+.fn readFsResource__12JKRFileCacheFPvUlPCc, weak
 /* 80022A84 0001F9C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022A88 0001F9C8  7C 08 02 A6 */	mflr r0
 /* 80022A8C 0001F9CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1279,9 +1278,9 @@ readFsResource__12JKRFileCacheFPvUlPCc:
 /* 80022AA4 0001F9E4  7C 08 03 A6 */	mtlr r0
 /* 80022AA8 0001F9E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022AAC 0001F9EC  4E 80 00 20 */	blr 
+.endfn readFsResource__12JKRFileCacheFPvUlPCc
 
-.global readNameResource__12JKRFileCacheFPvUlUlPCc
-readNameResource__12JKRFileCacheFPvUlUlPCc:
+.fn readNameResource__12JKRFileCacheFPvUlUlPCc, weak
 /* 80022AB0 0001F9F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80022AB4 0001F9F4  7C 08 02 A6 */	mflr r0
 /* 80022AB8 0001F9F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1293,3 +1292,4 @@ readNameResource__12JKRFileCacheFPvUlUlPCc:
 /* 80022AD0 0001FA10  7C 08 03 A6 */	mtlr r0
 /* 80022AD4 0001FA14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022AD8 0001FA18  4E 80 00 20 */	blr 
+.endfn readNameResource__12JKRFileCacheFPvUlUlPCc

@@ -1,33 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804735C8
-lbl_804735C8:
-	.4byte 0x4A4B5243
-	.4byte 0x6F6D7041
-	.4byte 0x72636869
-	.4byte 0x76652E63
-	.4byte 0x70700000
-.global lbl_804735DC
-lbl_804735DC:
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x61726368
-	.4byte 0x6976652E
-	.4byte 0x00000000
-.global lbl_804735F0
-lbl_804735F0:
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x7265736F
-	.4byte 0x75726365
-	.4byte 0x2E000000
-	.4byte 0x00000000
+.obj lbl_804735C8, local
+	.asciz "JKRCompArchive.cpp"
+.endobj lbl_804735C8
+.balign 4
+.obj lbl_804735DC, local
+	.asciz "illegal archive."
+.endobj lbl_804735DC
+.balign 4
+.obj lbl_804735F0, local
+	.asciz "illegal resource."
+.endobj lbl_804735F0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__14JKRCompArchive
-__vt__14JKRCompArchive:
+.obj __vt__14JKRCompArchive, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14JKRCompArchiveFv
@@ -48,17 +36,16 @@ __vt__14JKRCompArchive:
 	.4byte fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
 	.4byte setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
 	.4byte getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
+.endobj __vt__14JKRCompArchive
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805164E8
-lbl_805164E8:
-	.4byte 0x25730000
-	.4byte 0x00000000
+.obj lbl_805164E8, local
+	.asciz "%s"
+.endobj lbl_805164E8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection
-__ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection:
+.fn __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection, global
 /* 8001BBB8 00018AF8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001BBBC 00018AFC  7C 08 02 A6 */	mflr r0
 /* 8001BBC0 00018B00  90 01 00 24 */	stw r0, 0x24(r1)
@@ -105,9 +92,9 @@ __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection:
 /* 8001BC5C 00018B9C  7C 08 03 A6 */	mtlr r0
 /* 8001BC60 00018BA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001BC64 00018BA4  4E 80 00 20 */	blr 
+.endfn __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection
 
-.global __dt__14JKRCompArchiveFv
-__dt__14JKRCompArchiveFv:
+.fn __dt__14JKRCompArchiveFv, global
 /* 8001BC68 00018BA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001BC6C 00018BAC  7C 08 02 A6 */	mflr r0
 /* 8001BC70 00018BB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -200,9 +187,9 @@ __dt__14JKRCompArchiveFv:
 /* 8001BDAC 00018CEC  7C 08 03 A6 */	mtlr r0
 /* 8001BDB0 00018CF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001BDB4 00018CF4  4E 80 00 20 */	blr 
+.endfn __dt__14JKRCompArchiveFv
 
-.global open__14JKRCompArchiveFl
-open__14JKRCompArchiveFl:
+.fn open__14JKRCompArchiveFl, global
 /* 8001BDB8 00018CF8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8001BDBC 00018CFC  7C 08 02 A6 */	mflr r0
 /* 8001BDC0 00018D00  38 A0 00 00 */	li r5, 0
@@ -580,9 +567,9 @@ open__14JKRCompArchiveFl:
 /* 8001C328 00019268  7C 08 03 A6 */	mtlr r0
 /* 8001C32C 0001926C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8001C330 00019270  4E 80 00 20 */	blr 
+.endfn open__14JKRCompArchiveFl
 
-.global fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl
-fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl:
+.fn fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl, global
 /* 8001C334 00019274  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8001C338 00019278  7C 08 02 A6 */	mflr r0
 /* 8001C33C 0001927C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -692,9 +679,9 @@ fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl:
 /* 8001C4B8 000193F8  7C 08 03 A6 */	mtlr r0
 /* 8001C4BC 000193FC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8001C4C0 00019400  4E 80 00 20 */	blr 
+.endfn fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl
 
-.global fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
-fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl:
+.fn fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl, global
 /* 8001C4C4 00019404  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001C4C8 00019408  7C 08 02 A6 */	mflr r0
 /* 8001C4CC 0001940C  7C 69 1B 78 */	mr r9, r3
@@ -807,9 +794,9 @@ fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl:
 /* 8001C64C 0001958C  7C 08 03 A6 */	mtlr r0
 /* 8001C650 00019590  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001C654 00019594  4E 80 00 20 */	blr 
+.endfn fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
 
-.global removeResourceAll__14JKRCompArchiveFv
-removeResourceAll__14JKRCompArchiveFv:
+.fn removeResourceAll__14JKRCompArchiveFv, global
 /* 8001C658 00019598  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001C65C 0001959C  7C 08 02 A6 */	mflr r0
 /* 8001C660 000195A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -856,9 +843,9 @@ removeResourceAll__14JKRCompArchiveFv:
 /* 8001C6F0 00019630  7C 08 03 A6 */	mtlr r0
 /* 8001C6F4 00019634  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001C6F8 00019638  4E 80 00 20 */	blr 
+.endfn removeResourceAll__14JKRCompArchiveFv
 
-.global removeResource__14JKRCompArchiveFPv
-removeResource__14JKRCompArchiveFPv:
+.fn removeResource__14JKRCompArchiveFPv, global
 /* 8001C6FC 0001963C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001C700 00019640  7C 08 02 A6 */	mflr r0
 /* 8001C704 00019644  90 01 00 24 */	stw r0, 0x24(r1)
@@ -891,9 +878,9 @@ removeResource__14JKRCompArchiveFPv:
 /* 8001C764 000196A4  7C 08 03 A6 */	mtlr r0
 /* 8001C768 000196A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001C76C 000196AC  4E 80 00 20 */	blr 
+.endfn removeResource__14JKRCompArchiveFPv
 
-.global getExpandedResSize__14JKRCompArchiveCFPCv
-getExpandedResSize__14JKRCompArchiveCFPCv:
+.fn getExpandedResSize__14JKRCompArchiveCFPCv, global
 /* 8001C770 000196B0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8001C774 000196B4  7C 08 02 A6 */	mflr r0
 /* 8001C778 000196B8  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1015,3 +1002,4 @@ getExpandedResSize__14JKRCompArchiveCFPCv:
 /* 8001C928 00019868  7C 08 03 A6 */	mtlr r0
 /* 8001C92C 0001986C  38 21 00 60 */	addi r1, r1, 0x60
 /* 8001C930 00019870  4E 80 00 20 */	blr 
+.endfn getExpandedResSize__14JKRCompArchiveCFPCv

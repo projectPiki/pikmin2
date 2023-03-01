@@ -5,11 +5,11 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__11JKRAramHeap
-__vt__11JKRAramHeap:
+.obj __vt__11JKRAramHeap, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11JKRAramHeapFv
+.endobj __vt__11JKRAramHeap
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -18,8 +18,7 @@ __vt__11JKRAramHeap:
 .comm sAramList__11JKRAramHeap, 0xC, 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__11JKRAramHeapFUlUl
-__ct__11JKRAramHeapFUlUl:
+.fn __ct__11JKRAramHeapFUlUl, global
 /* 800196C8 00016608  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800196CC 0001660C  7C 08 02 A6 */	mflr r0
 /* 800196D0 00016610  90 01 00 24 */	stw r0, 0x24(r1)
@@ -75,9 +74,9 @@ __ct__11JKRAramHeapFUlUl:
 /* 80019794 000166D4  7C 08 03 A6 */	mtlr r0
 /* 80019798 000166D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001979C 000166DC  4E 80 00 20 */	blr 
+.endfn __ct__11JKRAramHeapFUlUl
 
-.global __dt__11JKRAramHeapFv
-__dt__11JKRAramHeapFv:
+.fn __dt__11JKRAramHeapFv, global
 /* 800197A0 000166E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800197A4 000166E4  7C 08 02 A6 */	mflr r0
 /* 800197A8 000166E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -123,9 +122,9 @@ __dt__11JKRAramHeapFv:
 /* 8001983C 0001677C  7C 08 03 A6 */	mtlr r0
 /* 80019840 00016780  38 21 00 20 */	addi r1, r1, 0x20
 /* 80019844 00016784  4E 80 00 20 */	blr 
+.endfn __dt__11JKRAramHeapFv
 
-.global alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode
-alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode:
+.fn alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode, global
 /* 80019848 00016788  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001984C 0001678C  7C 08 02 A6 */	mflr r0
 /* 80019850 00016790  90 01 00 24 */	stw r0, 0x24(r1)
@@ -160,9 +159,9 @@ alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode:
 /* 800198BC 000167FC  7C 08 03 A6 */	mtlr r0
 /* 800198C0 00016800  38 21 00 20 */	addi r1, r1, 0x20
 /* 800198C4 00016804  4E 80 00 20 */	blr 
+.endfn alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode
 
-.global allocFromHead__11JKRAramHeapFUl
-allocFromHead__11JKRAramHeapFUl:
+.fn allocFromHead__11JKRAramHeapFUl, global
 /* 800198C8 00016808  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800198CC 0001680C  7C 08 02 A6 */	mflr r0
 /* 800198D0 00016810  7C 66 1B 78 */	mr r6, r3
@@ -203,9 +202,9 @@ allocFromHead__11JKRAramHeapFUl:
 /* 80019944 00016884  7C 08 03 A6 */	mtlr r0
 /* 80019948 00016888  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001994C 0001688C  4E 80 00 20 */	blr 
+.endfn allocFromHead__11JKRAramHeapFUl
 
-.global allocFromTail__11JKRAramHeapFUl
-allocFromTail__11JKRAramHeapFUl:
+.fn allocFromTail__11JKRAramHeapFUl, global
 /* 80019950 00016890  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019954 00016894  7C 08 02 A6 */	mflr r0
 /* 80019958 00016898  7C 66 1B 78 */	mr r6, r3
@@ -242,9 +241,9 @@ allocFromTail__11JKRAramHeapFUl:
 /* 800199BC 000168FC  7C 08 03 A6 */	mtlr r0
 /* 800199C0 00016900  38 21 00 10 */	addi r1, r1, 0x10
 /* 800199C4 00016904  4E 80 00 20 */	blr 
+.endfn allocFromTail__11JKRAramHeapFUl
 
-.global getFreeSize__11JKRAramHeapFv
-getFreeSize__11JKRAramHeapFv:
+.fn getFreeSize__11JKRAramHeapFv, global
 /* 800199C8 00016908  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800199CC 0001690C  7C 08 02 A6 */	mflr r0
 /* 800199D0 00016910  90 01 00 14 */	stw r0, 0x14(r1)
@@ -278,6 +277,7 @@ getFreeSize__11JKRAramHeapFv:
 /* 80019A34 00016974  7C 08 03 A6 */	mtlr r0
 /* 80019A38 00016978  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019A3C 0001697C  4E 80 00 20 */	blr 
+.endfn getFreeSize__11JKRAramHeapFv
 
 .fn __sinit_JKRAramHeap_cpp, local
 /* 80019A40 00016980  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -299,8 +299,7 @@ getFreeSize__11JKRAramHeapFv:
 /* 80019A80 000169C0  4E 80 00 20 */	blr 
 .endfn __sinit_JKRAramHeap_cpp
 
-.global "__dt__23JSUList<12JKRAramBlock>Fv"
-"__dt__23JSUList<12JKRAramBlock>Fv":
+.fn "__dt__23JSUList<12JKRAramBlock>Fv", weak
 /* 80019A84 000169C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019A88 000169C8  7C 08 02 A6 */	mflr r0
 /* 80019A8C 000169CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -323,3 +322,4 @@ getFreeSize__11JKRAramHeapFv:
 /* 80019ACC 00016A0C  7C 08 03 A6 */	mtlr r0
 /* 80019AD0 00016A10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019AD4 00016A14  4E 80 00 20 */	blr 
+.endfn "__dt__23JSUList<12JKRAramBlock>Fv"
