@@ -1,16 +1,16 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804785D0:
+.obj lbl_804785D0, local
 	.4byte 0x00000000
 	.4byte 0x00000002
 	.4byte 0x00000001
 	.4byte 0x00000003
+.endobj lbl_804785D0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__15J2DIndBlockFull
-__vt__15J2DIndBlockFull:
+.obj __vt__15J2DIndBlockFull, global
 	.4byte 0
 	.4byte 0
 	.4byte initialize__15J2DIndBlockFullFv
@@ -25,8 +25,8 @@ __vt__15J2DIndBlockFull:
 	.4byte setIndTexCoordScale__15J2DIndBlockFullFUl19J2DIndTexCoordScale
 	.4byte getIndTexCoordScale__15J2DIndBlockFullFUl
 	.4byte __dt__15J2DIndBlockFullFv
-.global __vt__11J2DIndBlock
-__vt__11J2DIndBlock:
+.endobj __vt__15J2DIndBlockFull
+.obj __vt__11J2DIndBlock, weak
 	.4byte 0
 	.4byte 0
 	.4byte initialize__11J2DIndBlockFv
@@ -41,8 +41,8 @@ __vt__11J2DIndBlock:
 	.4byte setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale
 	.4byte getIndTexCoordScale__11J2DIndBlockFUl
 	.4byte __dt__11J2DIndBlockFv
-.global __vt__13J2DTevBlock16
-__vt__13J2DTevBlock16:
+.endobj __vt__11J2DIndBlock
+.obj __vt__13J2DTevBlock16, global
 	.4byte 0
 	.4byte 0
 	.4byte initialize__13J2DTevBlock16Fv
@@ -90,8 +90,8 @@ __vt__13J2DTevBlock16:
 	.4byte setUndeleteFlag__13J2DTevBlock16FUc
 	.4byte setFontUndeleteFlag__13J2DTevBlock16Fv
 	.4byte __dt__13J2DTevBlock16Fv
-.global __vt__12J2DTevBlock8
-__vt__12J2DTevBlock8:
+.endobj __vt__13J2DTevBlock16
+.obj __vt__12J2DTevBlock8, global
 	.4byte 0
 	.4byte 0
 	.4byte initialize__12J2DTevBlock8Fv
@@ -139,8 +139,8 @@ __vt__12J2DTevBlock8:
 	.4byte setUndeleteFlag__12J2DTevBlock8FUc
 	.4byte setFontUndeleteFlag__12J2DTevBlock8Fv
 	.4byte __dt__12J2DTevBlock8Fv
-.global __vt__12J2DTevBlock4
-__vt__12J2DTevBlock4:
+.endobj __vt__12J2DTevBlock8
+.obj __vt__12J2DTevBlock4, global
 	.4byte 0
 	.4byte 0
 	.4byte initialize__12J2DTevBlock4Fv
@@ -188,8 +188,8 @@ __vt__12J2DTevBlock4:
 	.4byte setUndeleteFlag__12J2DTevBlock4FUc
 	.4byte setFontUndeleteFlag__12J2DTevBlock4Fv
 	.4byte __dt__12J2DTevBlock4Fv
-.global __vt__12J2DTevBlock2
-__vt__12J2DTevBlock2:
+.endobj __vt__12J2DTevBlock4
+.obj __vt__12J2DTevBlock2, global
 	.4byte 0
 	.4byte 0
 	.4byte initialize__12J2DTevBlock2Fv
@@ -237,8 +237,8 @@ __vt__12J2DTevBlock2:
 	.4byte setUndeleteFlag__12J2DTevBlock2FUc
 	.4byte setFontUndeleteFlag__12J2DTevBlock2Fv
 	.4byte __dt__12J2DTevBlock2Fv
-.global __vt__12J2DTevBlock1
-__vt__12J2DTevBlock1:
+.endobj __vt__12J2DTevBlock2
+.obj __vt__12J2DTevBlock1, global
 	.4byte 0
 	.4byte 0
 	.4byte initialize__12J2DTevBlock1Fv
@@ -286,8 +286,8 @@ __vt__12J2DTevBlock1:
 	.4byte setUndeleteFlag__12J2DTevBlock1FUc
 	.4byte setFontUndeleteFlag__12J2DTevBlock1Fv
 	.4byte __dt__12J2DTevBlock1Fv
-.global __vt__11J2DTevBlock
-__vt__11J2DTevBlock:
+.endobj __vt__12J2DTevBlock1
+.obj __vt__11J2DTevBlock, global
 	.4byte 0
 	.4byte 0
 	.4byte initialize__11J2DTevBlockFv
@@ -335,11 +335,12 @@ __vt__11J2DTevBlock:
 	.4byte setUndeleteFlag__11J2DTevBlockFUc
 	.4byte setFontUndeleteFlag__11J2DTevBlockFv
 	.4byte __dt__11J2DTevBlockFv
-.global __vt__14J2DTexGenBlock
-__vt__14J2DTexGenBlock:
+.endobj __vt__11J2DTevBlock
+.obj __vt__14J2DTexGenBlock, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14J2DTexGenBlockFv
+.endobj __vt__14J2DTexGenBlock
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__13J2DColorBlockFv

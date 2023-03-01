@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__17JPAResourceLoaderFPCUcP18JPAResourceManager
-__ct__17JPAResourceLoaderFPCUcP18JPAResourceManager:
+.fn __ct__17JPAResourceLoaderFPCUcP18JPAResourceManager, global
 /* 800980D8 00095018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800980DC 0009501C  7C 08 02 A6 */	mflr r0
 /* 800980E0 00095020  80 C4 00 04 */	lwz r6, 4(r4)
@@ -20,9 +19,9 @@ __ct__17JPAResourceLoaderFPCUcP18JPAResourceManager:
 /* 8009810C 0009504C  7C 08 03 A6 */	mtlr r0
 /* 80098110 00095050  38 21 00 10 */	addi r1, r1, 0x10
 /* 80098114 00095054  4E 80 00 20 */	blr 
+.endfn __ct__17JPAResourceLoaderFPCUcP18JPAResourceManager
 
-.global load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager
-load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager:
+.fn load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager, global
 /* 80098118 00095058  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8009811C 0009505C  7C 08 02 A6 */	mflr r0
 /* 80098120 00095060  A0 64 00 08 */	lhz r3, 8(r4)
@@ -292,3 +291,4 @@ load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager:
 /* 800984C4 00095404  7C 08 03 A6 */	mtlr r0
 /* 800984C8 00095408  38 21 00 40 */	addi r1, r1, 0x40
 /* 800984CC 0009540C  4E 80 00 20 */	blr 
+.endfn load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager

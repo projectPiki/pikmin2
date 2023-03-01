@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A20F0
 lbl_804A20F0:
 	.4byte .L_80081300
 	.4byte .L_800811EC
@@ -19,7 +18,6 @@ lbl_804A20F0:
 	.4byte .L_80081270
 	.4byte .L_800812B4
 	.4byte .L_800812B4
-.global lbl_804A2120
 lbl_804A2120:
 	.4byte .L_80081440
 	.4byte .L_8008139C
@@ -33,7 +31,6 @@ lbl_804A2120:
 	.4byte .L_800813E0
 	.4byte .L_800813F4
 	.4byte .L_800813F4
-.global lbl_804A2150
 lbl_804A2150:
 	.4byte .L_80081570
 	.4byte .L_800814D8
@@ -47,7 +44,6 @@ lbl_804A2150:
 	.4byte .L_8008151C
 	.4byte .L_80081538
 	.4byte .L_80081538
-.global lbl_804A2180
 lbl_804A2180:
 	.4byte .L_80081688
 	.4byte .L_80081618
@@ -784,7 +780,6 @@ __vt__21J3DColorBlockLightOff:
 	.4byte setMatColorOffset__21J3DColorBlockLightOffFUl
 	.4byte setColorChanOffset__21J3DColorBlockLightOffFUl
 	.4byte __dt__21J3DColorBlockLightOffFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -809,12 +804,12 @@ SizeOfJ3DColorBlockAmbientOnLoad:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516AD8
-lbl_80516AD8:
+.obj lbl_80516AD8, local
 	.4byte 0x02000201
-.global lbl_80516ADC
-lbl_80516ADC:
-	.4byte 0x00000000
+.endobj lbl_80516AD8
+.obj lbl_80516ADC, local
+	.float 0.0
+.endobj lbl_80516ADC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__21J3DColorBlockLightOffFv

@@ -1,20 +1,24 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516C18:
+.obj lbl_80516C18, local
 	.float 1.0
-lbl_80516C1C:
+.endobj lbl_80516C18
+.obj lbl_80516C1C, local
 	.float 0.0
-lbl_80516C20:
+.endobj lbl_80516C1C
+.obj lbl_80516C20, local
 	.float 0.5
-lbl_80516C24:
+.endobj lbl_80516C20
+.obj lbl_80516C24, local
 	.float 3.0
-lbl_80516C28:
+.endobj lbl_80516C24
+.obj lbl_80516C28, local
 	.float 32.0
+.endobj lbl_80516C28
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "JPAGetDirMtx__FRCQ29JGeometry8TVec3<f>PA4_f"
-"JPAGetDirMtx__FRCQ29JGeometry8TVec3<f>PA4_f":
+.fn "JPAGetDirMtx__FRCQ29JGeometry8TVec3<f>PA4_f", global
 /* 80093AE4 00090A24  C0 03 00 00 */	lfs f0, 0(r3)
 /* 80093AE8 00090A28  C0 63 00 04 */	lfs f3, 4(r3)
 /* 80093AEC 00090A2C  FC 80 00 50 */	fneg f4, f0
@@ -83,9 +87,9 @@ lbl_80516C28:
 /* 80093BD8 00090B18  D0 04 00 28 */	stfs f0, 0x28(r4)
 /* 80093BDC 00090B1C  D0 64 00 2C */	stfs f3, 0x2c(r4)
 /* 80093BE0 00090B20  4E 80 00 20 */	blr 
+.endfn "JPAGetDirMtx__FRCQ29JGeometry8TVec3<f>PA4_f"
 
-.global JPAGetYZRotateMtx__FssPA4_f
-JPAGetYZRotateMtx__FssPA4_f:
+.fn JPAGetYZRotateMtx__FssPA4_f, global
 /* 80093BE4 00090B24  3C C0 80 50 */	lis r6, sincosTable___5JMath@ha
 /* 80093BE8 00090B28  54 60 F4 B8 */	rlwinm r0, r3, 0x1e, 0x12, 0x1c
 /* 80093BEC 00090B2C  38 66 71 A0 */	addi r3, r6, sincosTable___5JMath@l
@@ -115,9 +119,9 @@ JPAGetYZRotateMtx__FssPA4_f:
 /* 80093C4C 00090B8C  D0 05 00 1C */	stfs f0, 0x1c(r5)
 /* 80093C50 00090B90  D0 05 00 0C */	stfs f0, 0xc(r5)
 /* 80093C54 00090B94  4E 80 00 20 */	blr 
+.endfn JPAGetYZRotateMtx__FssPA4_f
 
-.global JPAGetXYZRotateMtx__FsssPA4_f
-JPAGetXYZRotateMtx__FsssPA4_f:
+.fn JPAGetXYZRotateMtx__FsssPA4_f, global
 /* 80093C58 00090B98  3C E0 80 50 */	lis r7, sincosTable___5JMath@ha
 /* 80093C5C 00090B9C  54 88 F4 B8 */	rlwinm r8, r4, 0x1e, 0x12, 0x1c
 /* 80093C60 00090BA0  38 E7 71 A0 */	addi r7, r7, sincosTable___5JMath@l
@@ -157,9 +161,9 @@ JPAGetXYZRotateMtx__FsssPA4_f:
 /* 80093CE8 00090C28  D0 06 00 1C */	stfs f0, 0x1c(r6)
 /* 80093CEC 00090C2C  D0 06 00 0C */	stfs f0, 0xc(r6)
 /* 80093CF0 00090C30  4E 80 00 20 */	blr 
+.endfn JPAGetXYZRotateMtx__FsssPA4_f
 
-.global JPASetRMtxfromMtx__FPA4_CfPA4_f
-JPASetRMtxfromMtx__FPA4_CfPA4_f:
+.fn JPASetRMtxfromMtx__FPA4_CfPA4_f, global
 /* 80093CF4 00090C34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80093CF8 00090C38  7C 08 02 A6 */	mflr r0
 /* 80093CFC 00090C3C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -170,9 +174,9 @@ JPASetRMtxfromMtx__FPA4_CfPA4_f:
 /* 80093D10 00090C50  7C 08 03 A6 */	mtlr r0
 /* 80093D14 00090C54  38 21 00 20 */	addi r1, r1, 0x20
 /* 80093D18 00090C58  4E 80 00 20 */	blr 
+.endfn JPASetRMtxfromMtx__FPA4_CfPA4_f
 
-.global "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-"JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>":
+.fn "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>", global
 /* 80093D1C 00090C5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80093D20 00090C60  7C 08 02 A6 */	mflr r0
 /* 80093D24 00090C64  7C A6 2B 78 */	mr r6, r5
@@ -183,9 +187,9 @@ JPASetRMtxfromMtx__FPA4_CfPA4_f:
 /* 80093D38 00090C78  7C 08 03 A6 */	mtlr r0
 /* 80093D3C 00090C7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80093D40 00090C80  4E 80 00 20 */	blr 
+.endfn "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
 
-.global "JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>"
-"JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>":
+.fn "JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>", global
 /* 80093D44 00090C84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80093D48 00090C88  7C 08 02 A6 */	mflr r0
 /* 80093D4C 00090C8C  C0 23 00 10 */	lfs f1, 0x10(r3)
@@ -330,9 +334,9 @@ JPASetRMtxfromMtx__FPA4_CfPA4_f:
 /* 80093F54 00090E94  7C 08 03 A6 */	mtlr r0
 /* 80093F58 00090E98  38 21 00 20 */	addi r1, r1, 0x20
 /* 80093F5C 00090E9C  4E 80 00 20 */	blr 
+.endfn "JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>"
 
-.global JPACalcKeyAnmValue__FfUsPCf
-JPACalcKeyAnmValue__FfUsPCf:
+.fn JPACalcKeyAnmValue__FfUsPCf, global
 /* 80093F60 00090EA0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80093F64 00090EA4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80093F68 00090EA8  40 80 00 0C */	bge .L_80093F74
@@ -387,3 +391,4 @@ JPACalcKeyAnmValue__FfUsPCf:
 /* 8009401C 00090F5C  EC 23 09 F8 */	fmsubs f1, f3, f7, f1
 /* 80094020 00090F60  EC 25 00 7C */	fnmsubs f1, f5, f1, f0
 /* 80094024 00090F64  4E 80 00 20 */	blr 
+.endfn JPACalcKeyAnmValue__FfUsPCf

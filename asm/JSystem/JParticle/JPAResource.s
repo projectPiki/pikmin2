@@ -1,7 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 32
-jpa_pos: # local object
+.obj jpa_pos, local
 	.4byte 0x00000032
 	.4byte 0x000032CE
 	.4byte 0x0000CE00
@@ -83,8 +83,9 @@ jpa_pos: # local object
 	.4byte 0x0032CE00
 	.4byte 0x32000000
 	.4byte 0x000000CE
+.endobj jpa_pos
 .balign 32
-jpa_crd: # local object
+.obj jpa_crd, local
 	.4byte 0x00000100
 	.4byte 0x01010001
 	.4byte 0x00000200
@@ -93,7 +94,8 @@ jpa_crd: # local object
 	.4byte 0x01020002
 	.4byte 0x00000200
 	.4byte 0x02020002
-lbl_804A3500:
+.endobj jpa_crd
+.obj lbl_804A3500, local
 	.4byte .L_80096AC0
 	.4byte .L_80096AD4
 	.4byte .L_80096A08
@@ -105,7 +107,8 @@ lbl_804A3500:
 	.4byte .L_80096AAC
 	.4byte .L_80096A98
 	.4byte .L_80096A38
-lbl_804A352C:
+.endobj lbl_804A3500
+.obj lbl_804A352C, local
 	.4byte .L_80096764
 	.4byte .L_80096778
 	.4byte .L_800966AC
@@ -117,7 +120,8 @@ lbl_804A352C:
 	.4byte .L_80096750
 	.4byte .L_8009673C
 	.4byte .L_800966DC
-lbl_804A3558:
+.endobj lbl_804A352C
+.obj lbl_804A3558, local
 	.4byte .L_80097DD0
 	.4byte .L_80097DDC
 	.4byte .L_80097E50
@@ -129,25 +133,29 @@ lbl_804A3558:
 	.4byte .L_80097E30
 	.4byte .L_80097E3C
 	.4byte .L_80097E48
+.endobj lbl_804A3558
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516C58:
+.obj lbl_80516C58, local
 	.float 1.02
-lbl_80516C5C:
+.endobj lbl_80516C58
+.obj lbl_80516C5C, local
 	.float 0.4
-lbl_80516C60:
+.endobj lbl_80516C5C
+.obj lbl_80516C60, local
 	.float 1.0
-lbl_80516C64:
+.endobj lbl_80516C60
+.obj lbl_80516C64, local
 	.float 0.0
+.endobj lbl_80516C64
 .balign 8
-lbl_80516C68:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80516C68, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516C68
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__11JPAResourceFv
-__ct__11JPAResourceFv:
+.fn __ct__11JPAResourceFv, global
 /* 800955EC 0009252C  38 00 00 00 */	li r0, 0
 /* 800955F0 00092530  90 03 00 08 */	stw r0, 8(r3)
 /* 800955F4 00092534  90 03 00 04 */	stw r0, 4(r3)
@@ -176,9 +184,9 @@ __ct__11JPAResourceFv:
 /* 80095650 00092590  98 03 00 3E */	stb r0, 0x3e(r3)
 /* 80095654 00092594  B0 03 00 3C */	sth r0, 0x3c(r3)
 /* 80095658 00092598  4E 80 00 20 */	blr 
+.endfn __ct__11JPAResourceFv
 
-.global init__11JPAResourceFP7JKRHeap
-init__11JPAResourceFP7JKRHeap:
+.fn init__11JPAResourceFP7JKRHeap, global
 /* 8009565C 0009259C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80095660 000925A0  7C 08 02 A6 */	mflr r0
 /* 80095664 000925A4  38 A0 00 00 */	li r5, 0
@@ -1719,9 +1727,9 @@ init__11JPAResourceFP7JKRHeap:
 /* 80096B90 00093AD0  7C 08 03 A6 */	mtlr r0
 /* 80096B94 00093AD4  38 21 00 60 */	addi r1, r1, 0x60
 /* 80096B98 00093AD8  4E 80 00 20 */	blr 
+.endfn init__11JPAResourceFP7JKRHeap
 
-.global calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter
-calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter:
+.fn calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter, global
 /* 80096B9C 00093ADC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80096BA0 00093AE0  7C 08 02 A6 */	mflr r0
 /* 80096BA4 00093AE4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2100,9 +2108,9 @@ calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter:
 /* 800970EC 0009402C  7C 08 03 A6 */	mtlr r0
 /* 800970F0 00094030  38 21 00 20 */	addi r1, r1, 0x20
 /* 800970F4 00094034  4E 80 00 20 */	blr 
+.endfn calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter
 
-.global draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter
-draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter:
+.fn draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter, global
 /* 800970F8 00094038  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800970FC 0009403C  7C 08 02 A6 */	mflr r0
 /* 80097100 00094040  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2167,9 +2175,9 @@ draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter:
 /* 800971DC 0009411C  7C 08 03 A6 */	mtlr r0
 /* 800971E0 00094120  38 21 00 20 */	addi r1, r1, 0x20
 /* 800971E4 00094124  4E 80 00 20 */	blr 
+.endfn draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter
 
-.global drawP__11JPAResourceFP18JPAEmitterWorkData
-drawP__11JPAResourceFP18JPAEmitterWorkData:
+.fn drawP__11JPAResourceFP18JPAEmitterWorkData, global
 /* 800971E8 00094128  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800971EC 0009412C  7C 08 02 A6 */	mflr r0
 /* 800971F0 00094130  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2399,9 +2407,9 @@ drawP__11JPAResourceFP18JPAEmitterWorkData:
 /* 80097510 00094450  7C 08 03 A6 */	mtlr r0
 /* 80097514 00094454  38 21 00 30 */	addi r1, r1, 0x30
 /* 80097518 00094458  4E 80 00 20 */	blr 
+.endfn drawP__11JPAResourceFP18JPAEmitterWorkData
 
-.global drawC__11JPAResourceFP18JPAEmitterWorkData
-drawC__11JPAResourceFP18JPAEmitterWorkData:
+.fn drawC__11JPAResourceFP18JPAEmitterWorkData, global
 /* 8009751C 0009445C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80097520 00094460  7C 08 02 A6 */	mflr r0
 /* 80097524 00094464  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2612,9 +2620,9 @@ drawC__11JPAResourceFP18JPAEmitterWorkData:
 /* 80097800 00094740  7C 08 03 A6 */	mtlr r0
 /* 80097804 00094744  38 21 00 20 */	addi r1, r1, 0x20
 /* 80097808 00094748  4E 80 00 20 */	blr 
+.endfn drawC__11JPAResourceFP18JPAEmitterWorkData
 
-.global setPTev__11JPAResourceFv
-setPTev__11JPAResourceFv:
+.fn setPTev__11JPAResourceFv, global
 /* 8009780C 0009474C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80097810 00094750  7C 08 02 A6 */	mflr r0
 /* 80097814 00094754  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2780,9 +2788,9 @@ setPTev__11JPAResourceFv:
 /* 80097A78 000949B8  7C 08 03 A6 */	mtlr r0
 /* 80097A7C 000949BC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80097A80 000949C0  4E 80 00 20 */	blr 
+.endfn setPTev__11JPAResourceFv
 
-.global setCTev__11JPAResourceFP18JPAEmitterWorkData
-setCTev__11JPAResourceFP18JPAEmitterWorkData:
+.fn setCTev__11JPAResourceFP18JPAEmitterWorkData, global
 /* 80097A84 000949C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80097A88 000949C8  7C 08 02 A6 */	mflr r0
 /* 80097A8C 000949CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2875,9 +2883,9 @@ setCTev__11JPAResourceFP18JPAEmitterWorkData:
 /* 80097BDC 00094B1C  7C 08 03 A6 */	mtlr r0
 /* 80097BE0 00094B20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80097BE4 00094B24  4E 80 00 20 */	blr 
+.endfn setCTev__11JPAResourceFP18JPAEmitterWorkData
 
-.global calc_p__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
-calc_p__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle:
+.fn calc_p__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle, global
 /* 80097BE8 00094B28  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80097BEC 00094B2C  7C 08 02 A6 */	mflr r0
 /* 80097BF0 00094B30  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2910,9 +2918,9 @@ calc_p__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle:
 /* 80097C50 00094B90  7C 08 03 A6 */	mtlr r0
 /* 80097C54 00094B94  38 21 00 20 */	addi r1, r1, 0x20
 /* 80097C58 00094B98  4E 80 00 20 */	blr 
+.endfn calc_p__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
 
-.global calc_c__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
-calc_c__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle:
+.fn calc_c__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle, global
 /* 80097C5C 00094B9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80097C60 00094BA0  7C 08 02 A6 */	mflr r0
 /* 80097C64 00094BA4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2945,9 +2953,9 @@ calc_c__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle:
 /* 80097CC4 00094C04  7C 08 03 A6 */	mtlr r0
 /* 80097CC8 00094C08  38 21 00 20 */	addi r1, r1, 0x20
 /* 80097CCC 00094C0C  4E 80 00 20 */	blr 
+.endfn calc_c__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
 
-.global calcField__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
-calcField__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle:
+.fn calcField__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle, global
 /* 80097CD0 00094C10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80097CD4 00094C14  7C 08 02 A6 */	mflr r0
 /* 80097CD8 00094C18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2979,9 +2987,9 @@ calcField__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle:
 /* 80097D38 00094C78  7C 08 03 A6 */	mtlr r0
 /* 80097D3C 00094C7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80097D40 00094C80  4E 80 00 20 */	blr 
+.endfn calcField__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
 
-.global calcKey__11JPAResourceFP18JPAEmitterWorkData
-calcKey__11JPAResourceFP18JPAEmitterWorkData:
+.fn calcKey__11JPAResourceFP18JPAEmitterWorkData, global
 /* 80097D44 00094C84  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80097D48 00094C88  7C 08 02 A6 */	mflr r0
 /* 80097D4C 00094C8C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3072,9 +3080,9 @@ calcKey__11JPAResourceFP18JPAEmitterWorkData:
 /* 80097E70 00094DB0  7C 08 03 A6 */	mtlr r0
 /* 80097E74 00094DB4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80097E78 00094DB8  4E 80 00 20 */	blr 
+.endfn calcKey__11JPAResourceFP18JPAEmitterWorkData
 
-.global calcWorkData_c__11JPAResourceFP18JPAEmitterWorkData
-calcWorkData_c__11JPAResourceFP18JPAEmitterWorkData:
+.fn calcWorkData_c__11JPAResourceFP18JPAEmitterWorkData, global
 /* 80097E7C 00094DBC  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80097E80 00094DC0  7C 08 02 A6 */	mflr r0
 /* 80097E84 00094DC4  C8 22 89 08 */	lfd f1, lbl_80516C68@sda21(r2)
@@ -3194,9 +3202,9 @@ calcWorkData_c__11JPAResourceFP18JPAEmitterWorkData:
 /* 8009804C 00094F8C  7C 08 03 A6 */	mtlr r0
 /* 80098050 00094F90  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80098054 00094F94  4E 80 00 20 */	blr 
+.endfn calcWorkData_c__11JPAResourceFP18JPAEmitterWorkData
 
-.global calcWorkData_d__11JPAResourceFP18JPAEmitterWorkData
-calcWorkData_d__11JPAResourceFP18JPAEmitterWorkData:
+.fn calcWorkData_d__11JPAResourceFP18JPAEmitterWorkData, global
 /* 80098058 00094F98  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8009805C 00094F9C  7C 08 02 A6 */	mflr r0
 /* 80098060 00094FA0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3229,3 +3237,4 @@ calcWorkData_d__11JPAResourceFP18JPAEmitterWorkData:
 /* 800980CC 0009500C  7C 08 03 A6 */	mtlr r0
 /* 800980D0 00095010  38 21 00 40 */	addi r1, r1, 0x40
 /* 800980D4 00095014  4E 80 00 20 */	blr 
+.endfn calcWorkData_d__11JPAResourceFP18JPAEmitterWorkData

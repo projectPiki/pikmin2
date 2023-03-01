@@ -1,40 +1,45 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__19JPAParticleCallBack
-__vt__19JPAParticleCallBack:
+.obj __vt__19JPAParticleCallBack, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
 	.4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
+.endobj __vt__19JPAParticleCallBack
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516C30:
+.obj lbl_80516C30, local
 	.float 1.0
-lbl_80516C34:
+.endobj lbl_80516C30
+.obj lbl_80516C34, local
 	.float 0.0
-lbl_80516C38:
+.endobj lbl_80516C34
+.obj lbl_80516C38, local
 	.float 32.0
-lbl_80516C3C:
+.endobj lbl_80516C38
+.obj lbl_80516C3C, local
 	.float 0.5
-lbl_80516C40:
+.endobj lbl_80516C3C
+.obj lbl_80516C40, local
 	.float 3.0
-lbl_80516C44:
+.endobj lbl_80516C40
+.obj lbl_80516C44, local
 	.float 32768.0
+.endobj lbl_80516C44
 .balign 8
-lbl_80516C48:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80516C48, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516C48
 .balign 8
-lbl_80516C50:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80516C50, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516C50
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__19JPAParticleCallBackFv
-__dt__19JPAParticleCallBackFv:
+.fn __dt__19JPAParticleCallBackFv, global
 /* 80094028 00090F68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009402C 00090F6C  7C 08 02 A6 */	mflr r0
 /* 80094030 00090F70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -54,9 +59,9 @@ __dt__19JPAParticleCallBackFv:
 /* 80094064 00090FA4  7C 08 03 A6 */	mtlr r0
 /* 80094068 00090FA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009406C 00090FAC  4E 80 00 20 */	blr 
+.endfn __dt__19JPAParticleCallBackFv
 
-.global init_p__15JPABaseParticleFP18JPAEmitterWorkData
-init_p__15JPABaseParticleFP18JPAEmitterWorkData:
+.fn init_p__15JPABaseParticleFP18JPAEmitterWorkData, global
 /* 80094070 00090FB0  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 80094074 00090FB4  7C 08 02 A6 */	mflr r0
 /* 80094078 00090FB8  90 01 01 04 */	stw r0, 0x104(r1)
@@ -643,9 +648,9 @@ init_p__15JPABaseParticleFP18JPAEmitterWorkData:
 /* 80094928 00091868  7C 08 03 A6 */	mtlr r0
 /* 8009492C 0009186C  38 21 01 00 */	addi r1, r1, 0x100
 /* 80094930 00091870  4E 80 00 20 */	blr 
+.endfn init_p__15JPABaseParticleFP18JPAEmitterWorkData
 
-.global init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle
-init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle:
+.fn init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle, global
 /* 80094934 00091874  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80094938 00091878  38 E0 FF FF */	li r7, -1
 /* 8009493C 0009187C  C0 E2 88 D4 */	lfs f7, lbl_80516C34@sda21(r2)
@@ -1090,9 +1095,9 @@ init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle:
 .L_80094FD4:
 /* 80094FD4 00091F14  38 21 00 90 */	addi r1, r1, 0x90
 /* 80094FD8 00091F18  4E 80 00 20 */	blr 
+.endfn init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle
 
-.global calc_p__15JPABaseParticleFP18JPAEmitterWorkData
-calc_p__15JPABaseParticleFP18JPAEmitterWorkData:
+.fn calc_p__15JPABaseParticleFP18JPAEmitterWorkData, global
 /* 80094FDC 00091F1C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80094FE0 00091F20  7C 08 02 A6 */	mflr r0
 /* 80094FE4 00091F24  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1272,13 +1277,13 @@ calc_p__15JPABaseParticleFP18JPAEmitterWorkData:
 /* 80095278 000921B8  7C 08 03 A6 */	mtlr r0
 /* 8009527C 000921BC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80095280 000921C0  4E 80 00 20 */	blr 
+.endfn calc_p__15JPABaseParticleFP18JPAEmitterWorkData
 
-.global execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
-execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle:
+.fn execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle, weak
 /* 80095284 000921C4  4E 80 00 20 */	blr 
+.endfn execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
 
-.global calc_c__15JPABaseParticleFP18JPAEmitterWorkData
-calc_c__15JPABaseParticleFP18JPAEmitterWorkData:
+.fn calc_c__15JPABaseParticleFP18JPAEmitterWorkData, global
 /* 80095288 000921C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009528C 000921CC  7C 08 02 A6 */	mflr r0
 /* 80095290 000921D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1444,9 +1449,9 @@ calc_c__15JPABaseParticleFP18JPAEmitterWorkData:
 /* 800954F4 00092434  7C 08 03 A6 */	mtlr r0
 /* 800954F8 00092438  38 21 00 20 */	addi r1, r1, 0x20
 /* 800954FC 0009243C  4E 80 00 20 */	blr 
+.endfn calc_c__15JPABaseParticleFP18JPAEmitterWorkData
 
-.global canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData
-canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData:
+.fn canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData, global
 /* 80095500 00092440  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80095504 00092444  3C 00 43 30 */	lis r0, 0x4330
 /* 80095508 00092448  C8 42 88 E8 */	lfd f2, lbl_80516C48@sda21(r2)
@@ -1480,9 +1485,9 @@ canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData:
 /* 80095574 000924B4  7C C3 33 78 */	mr r3, r6
 /* 80095578 000924B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8009557C 000924BC  4E 80 00 20 */	blr 
+.endfn canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData
 
-.global getCalcCurrentPositionX__15JPABaseParticleCFPC14JPABaseEmitter
-getCalcCurrentPositionX__15JPABaseParticleCFPC14JPABaseEmitter:
+.fn getCalcCurrentPositionX__15JPABaseParticleCFPC14JPABaseEmitter, global
 /* 80095580 000924C0  80 84 00 E4 */	lwz r4, 0xe4(r4)
 /* 80095584 000924C4  C0 23 00 0C */	lfs f1, 0xc(r3)
 /* 80095588 000924C8  C0 03 00 24 */	lfs f0, 0x24(r3)
@@ -1492,9 +1497,9 @@ getCalcCurrentPositionX__15JPABaseParticleCFPC14JPABaseEmitter:
 /* 80095598 000924D8  C0 44 01 2C */	lfs f2, 0x12c(r4)
 /* 8009559C 000924DC  EC 22 00 7A */	fmadds f1, f2, f1, f0
 /* 800955A0 000924E0  4E 80 00 20 */	blr 
+.endfn getCalcCurrentPositionX__15JPABaseParticleCFPC14JPABaseEmitter
 
-.global getCalcCurrentPositionY__15JPABaseParticleCFPC14JPABaseEmitter
-getCalcCurrentPositionY__15JPABaseParticleCFPC14JPABaseEmitter:
+.fn getCalcCurrentPositionY__15JPABaseParticleCFPC14JPABaseEmitter, global
 /* 800955A4 000924E4  80 84 00 E4 */	lwz r4, 0xe4(r4)
 /* 800955A8 000924E8  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 800955AC 000924EC  C0 03 00 28 */	lfs f0, 0x28(r3)
@@ -1504,9 +1509,9 @@ getCalcCurrentPositionY__15JPABaseParticleCFPC14JPABaseEmitter:
 /* 800955BC 000924FC  C0 44 01 30 */	lfs f2, 0x130(r4)
 /* 800955C0 00092500  EC 22 00 7A */	fmadds f1, f2, f1, f0
 /* 800955C4 00092504  4E 80 00 20 */	blr 
+.endfn getCalcCurrentPositionY__15JPABaseParticleCFPC14JPABaseEmitter
 
-.global getCalcCurrentPositionZ__15JPABaseParticleCFPC14JPABaseEmitter
-getCalcCurrentPositionZ__15JPABaseParticleCFPC14JPABaseEmitter:
+.fn getCalcCurrentPositionZ__15JPABaseParticleCFPC14JPABaseEmitter, global
 /* 800955C8 00092508  80 84 00 E4 */	lwz r4, 0xe4(r4)
 /* 800955CC 0009250C  C0 23 00 14 */	lfs f1, 0x14(r3)
 /* 800955D0 00092510  C0 03 00 2C */	lfs f0, 0x2c(r3)
@@ -1516,3 +1521,4 @@ getCalcCurrentPositionZ__15JPABaseParticleCFPC14JPABaseEmitter:
 /* 800955E0 00092520  C0 44 01 34 */	lfs f2, 0x134(r4)
 /* 800955E4 00092524  EC 22 00 7A */	fmadds f1, f2, f1, f0
 /* 800955E8 00092528  4E 80 00 20 */	blr 
+.endfn getCalcCurrentPositionZ__15JPABaseParticleCFPC14JPABaseEmitter

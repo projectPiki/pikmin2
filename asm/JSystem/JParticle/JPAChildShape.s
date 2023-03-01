@@ -1,14 +1,15 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516B70:
+.obj lbl_80516B70, local
 	.float 255.0
-lbl_80516B74:
+.endobj lbl_80516B70
+.obj lbl_80516B74, local
 	.float 1.0
+.endobj lbl_80516B74
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global JPARegistChildPrmEnv__FP18JPAEmitterWorkData
-JPARegistChildPrmEnv__FP18JPAEmitterWorkData:
+.fn JPARegistChildPrmEnv__FP18JPAEmitterWorkData, global
 /* 8008EE44 0008BD84  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8008EE48 0008BD88  7C 08 02 A6 */	mflr r0
 /* 8008EE4C 0008BD8C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -83,9 +84,9 @@ JPARegistChildPrmEnv__FP18JPAEmitterWorkData:
 /* 8008EF60 0008BEA0  7C 08 03 A6 */	mtlr r0
 /* 8008EF64 0008BEA4  38 21 00 40 */	addi r1, r1, 0x40
 /* 8008EF68 0008BEA8  4E 80 00 20 */	blr 
+.endfn JPARegistChildPrmEnv__FP18JPAEmitterWorkData
 
-.global JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle
-JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle:
+.fn JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle, global
 /* 8008EF6C 0008BEAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8008EF70 0008BEB0  C0 22 88 14 */	lfs f1, lbl_80516B74@sda21(r2)
 /* 8008EF74 0008BEB4  C0 04 00 84 */	lfs f0, 0x84(r4)
@@ -97,9 +98,9 @@ JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle:
 /* 8008EF8C 0008BECC  98 04 00 96 */	stb r0, 0x96(r4)
 /* 8008EF90 0008BED0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008EF94 0008BED4  4E 80 00 20 */	blr 
+.endfn JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle
 
-.global JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle
-JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle:
+.fn JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle, global
 /* 8008EF98 0008BED8  C0 42 88 14 */	lfs f2, lbl_80516B74@sda21(r2)
 /* 8008EF9C 0008BEDC  C0 04 00 84 */	lfs f0, 0x84(r4)
 /* 8008EFA0 0008BEE0  C0 24 00 68 */	lfs f1, 0x68(r4)
@@ -112,8 +113,9 @@ JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle:
 /* 8008EFBC 0008BEFC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8008EFC0 0008BF00  D0 04 00 64 */	stfs f0, 0x64(r4)
 /* 8008EFC4 0008BF04  4E 80 00 20 */	blr 
+.endfn JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle
 
-.global __ct__13JPAChildShapeFPCUc
-__ct__13JPAChildShapeFPCUc:
+.fn __ct__13JPAChildShapeFPCUc, global
 /* 8008EFC8 0008BF08  90 83 00 00 */	stw r4, 0(r3)
 /* 8008EFCC 0008BF0C  4E 80 00 20 */	blr 
+.endfn __ct__13JPAChildShapeFPCUc

@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global JPALoadExTex__FP18JPAEmitterWorkData
-JPALoadExTex__FP18JPAEmitterWorkData:
+.fn JPALoadExTex__FP18JPAEmitterWorkData, global
 /* 80090F2C 0008DE6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090F30 0008DE70  7C 08 02 A6 */	mflr r0
 /* 80090F34 0008DE74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -68,8 +67,9 @@ JPALoadExTex__FP18JPAEmitterWorkData:
 /* 8009101C 0008DF5C  7C 08 03 A6 */	mtlr r0
 /* 80091020 0008DF60  38 21 00 10 */	addi r1, r1, 0x10
 /* 80091024 0008DF64  4E 80 00 20 */	blr 
+.endfn JPALoadExTex__FP18JPAEmitterWorkData
 
-.global __ct__13JPAExTexShapeFPCUc
-__ct__13JPAExTexShapeFPCUc:
+.fn __ct__13JPAExTexShapeFPCUc, global
 /* 80091028 0008DF68  90 83 00 00 */	stw r4, 0(r3)
 /* 8009102C 0008DF6C  4E 80 00 20 */	blr 
+.endfn __ct__13JPAExTexShapeFPCUc

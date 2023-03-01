@@ -1,7 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A3268:
+.obj lbl_804A3268, local
 	.4byte .L_800934C8
 	.4byte .L_800934FC
 	.4byte .L_80093530
@@ -11,95 +11,101 @@ lbl_804A3268:
 	.4byte .L_80093600
 	.4byte .L_80093634
 	.4byte .L_80093668
-.global __vt__12JPAFieldBase
-__vt__12JPAFieldBase:
+.endobj lbl_804A3268
+.obj __vt__12JPAFieldBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JPAFieldBaseFv
 	.4byte prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte 0
-.global __vt__12JPAFieldSpin
-__vt__12JPAFieldSpin:
+.endobj __vt__12JPAFieldBase
+.obj __vt__12JPAFieldSpin, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JPAFieldSpinFv
 	.4byte prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-.global __vt__12JPAFieldDrag
-__vt__12JPAFieldDrag:
+.endobj __vt__12JPAFieldSpin
+.obj __vt__12JPAFieldDrag, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12JPAFieldDragFv
 	.4byte prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-.global __vt__14JPAFieldRandom
-__vt__14JPAFieldRandom:
+.endobj __vt__12JPAFieldDrag
+.obj __vt__14JPAFieldRandom, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14JPAFieldRandomFv
 	.4byte prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-.global __vt__18JPAFieldConvection
-__vt__18JPAFieldConvection:
+.endobj __vt__14JPAFieldRandom
+.obj __vt__18JPAFieldConvection, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__18JPAFieldConvectionFv
 	.4byte prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-.global __vt__14JPAFieldVortex
-__vt__14JPAFieldVortex:
+.endobj __vt__18JPAFieldConvection
+.obj __vt__14JPAFieldVortex, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14JPAFieldVortexFv
 	.4byte prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-.global __vt__14JPAFieldNewton
-__vt__14JPAFieldNewton:
+.endobj __vt__14JPAFieldVortex
+.obj __vt__14JPAFieldNewton, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14JPAFieldNewtonFv
 	.4byte prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-.global __vt__14JPAFieldMagnet
-__vt__14JPAFieldMagnet:
+.endobj __vt__14JPAFieldNewton
+.obj __vt__14JPAFieldMagnet, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14JPAFieldMagnetFv
 	.4byte prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-.global __vt__11JPAFieldAir
-__vt__11JPAFieldAir:
+.endobj __vt__14JPAFieldMagnet
+.obj __vt__11JPAFieldAir, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11JPAFieldAirFv
 	.4byte prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-.global __vt__15JPAFieldGravity
-__vt__15JPAFieldGravity:
+.endobj __vt__11JPAFieldAir
+.obj __vt__15JPAFieldGravity, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__15JPAFieldGravityFv
 	.4byte prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
+.endobj __vt__15JPAFieldGravity
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516BF8:
+.obj lbl_80516BF8, local
 	.float 1.0
-lbl_80516BFC:
+.endobj lbl_80516BF8
+.obj lbl_80516BFC, local
 	.float 0.0
-lbl_80516C00:
+.endobj lbl_80516BFC
+.obj lbl_80516C00, local
 	.float 32.0
-lbl_80516C04:
+.endobj lbl_80516C00
+.obj lbl_80516C04, local
 	.float 0.5
-lbl_80516C08:
+.endobj lbl_80516C04
+.obj lbl_80516C08, local
 	.float 3.0
-lbl_80516C0C:
+.endobj lbl_80516C08
+.obj lbl_80516C0C, local
 	.float 10.0
+.endobj lbl_80516C0C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock
-prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock:
+.fn prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock, global
 /* 800915A0 0008E4E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800915A4 0008E4E4  7C 08 02 A6 */	mflr r0
 /* 800915A8 0008E4E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -144,9 +150,9 @@ prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock:
 /* 8009163C 0008E57C  7C 08 03 A6 */	mtlr r0
 /* 80091640 0008E580  38 21 00 10 */	addi r1, r1, 0x10
 /* 80091644 0008E584  4E 80 00 20 */	blr 
+.endfn prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock
 
-.global calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
+.fn calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle, global
 /* 80091648 0008E588  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009164C 0008E58C  80 06 00 7C */	lwz r0, 0x7c(r6)
 /* 80091650 0008E590  80 E3 00 04 */	lwz r7, 4(r3)
@@ -269,9 +275,9 @@ calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
 .L_800917FC:
 /* 800917FC 0008E73C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80091800 0008E740  4E 80 00 20 */	blr 
+.endfn calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 
-.global prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock
-prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock:
+.fn prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock, global
 /* 80091804 0008E744  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80091808 0008E748  7C 08 02 A6 */	mflr r0
 /* 8009180C 0008E74C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -362,9 +368,9 @@ prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock:
 /* 80091948 0008E888  7C 08 03 A6 */	mtlr r0
 /* 8009194C 0008E88C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80091950 0008E890  4E 80 00 20 */	blr 
+.endfn prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock
 
-.global calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
+.fn calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle, global
 /* 80091954 0008E894  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80091958 0008E898  80 06 00 7C */	lwz r0, 0x7c(r6)
 /* 8009195C 0008E89C  80 E3 00 04 */	lwz r7, 4(r3)
@@ -530,9 +536,9 @@ calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
 .L_80091BA8:
 /* 80091BA8 0008EAE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80091BAC 0008EAEC  4E 80 00 20 */	blr 
+.endfn calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 
-.global prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock
-prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock:
+.fn prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock, global
 /* 80091BB0 0008EAF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80091BB4 0008EAF4  7C 08 02 A6 */	mflr r0
 /* 80091BB8 0008EAF8  7C 66 1B 78 */	mr r6, r3
@@ -557,9 +563,9 @@ prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock:
 /* 80091C04 0008EB44  7C 08 03 A6 */	mtlr r0
 /* 80091C08 0008EB48  38 21 00 10 */	addi r1, r1, 0x10
 /* 80091C0C 0008EB4C  4E 80 00 20 */	blr 
+.endfn prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock
 
-.global calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
+.fn calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle, global
 /* 80091C10 0008EB50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80091C14 0008EB54  3C 80 80 51 */	lis r4, __float_epsilon@ha
 /* 80091C18 0008EB58  C0 22 88 A0 */	lfs f1, lbl_80516C00@sda21(r2)
@@ -736,9 +742,9 @@ calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
 .L_80091E90:
 /* 80091E90 0008EDD0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80091E94 0008EDD4  4E 80 00 20 */	blr 
+.endfn calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 
-.global prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock
-prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock:
+.fn prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock, global
 /* 80091E98 0008EDD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80091E9C 0008EDDC  7C 08 02 A6 */	mflr r0
 /* 80091EA0 0008EDE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -772,9 +778,9 @@ prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock:
 /* 80091F10 0008EE50  7C 08 03 A6 */	mtlr r0
 /* 80091F14 0008EE54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80091F18 0008EE58  4E 80 00 20 */	blr 
+.endfn prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock
 
-.global calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
+.fn calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle, global
 /* 80091F1C 0008EE5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80091F20 0008EE60  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 80091F24 0008EE64  C0 06 00 0C */	lfs f0, 0xc(r6)
@@ -995,9 +1001,9 @@ calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
 .L_80092240:
 /* 80092240 0008F180  38 21 00 20 */	addi r1, r1, 0x20
 /* 80092244 0008F184  4E 80 00 20 */	blr 
+.endfn calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 
-.global prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock
-prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock:
+.fn prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock, global
 /* 80092248 0008F188  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009224C 0008F18C  7C 08 02 A6 */	mflr r0
 /* 80092250 0008F190  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1062,9 +1068,9 @@ prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock:
 /* 80092330 0008F270  7C 08 03 A6 */	mtlr r0
 /* 80092334 0008F274  38 21 00 10 */	addi r1, r1, 0x10
 /* 80092338 0008F278  4E 80 00 20 */	blr 
+.endfn prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock
 
-.global calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
+.fn calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle, global
 /* 8009233C 0008F27C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80092340 0008F280  C0 23 00 14 */	lfs f1, 0x14(r3)
 /* 80092344 0008F284  C0 C6 00 10 */	lfs f6, 0x10(r6)
@@ -1269,9 +1275,9 @@ calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
 .L_80092624:
 /* 80092624 0008F564  38 21 00 20 */	addi r1, r1, 0x20
 /* 80092628 0008F568  4E 80 00 20 */	blr 
+.endfn calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 
-.global prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock
-prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock:
+.fn prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock, global
 /* 8009262C 0008F56C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80092630 0008F570  7C 08 02 A6 */	mflr r0
 /* 80092634 0008F574  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1444,9 +1450,9 @@ prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock:
 /* 800928AC 0008F7EC  7C 08 03 A6 */	mtlr r0
 /* 800928B0 0008F7F0  38 21 00 30 */	addi r1, r1, 0x30
 /* 800928B4 0008F7F4  4E 80 00 20 */	blr 
+.endfn prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock
 
-.global calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
+.fn calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle, global
 /* 800928B8 0008F7F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800928BC 0008F7FC  3C 80 80 51 */	lis r4, __float_epsilon@ha
 /* 800928C0 0008F800  C0 63 00 14 */	lfs f3, 0x14(r3)
@@ -1696,9 +1702,9 @@ calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABasePartic
 .L_80092C4C:
 /* 80092C4C 0008FB8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80092C50 0008FB90  4E 80 00 20 */	blr 
+.endfn calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 
-.global calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
+.fn calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle, global
 /* 80092C54 0008FB94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80092C58 0008FB98  A9 06 00 80 */	lha r8, 0x80(r6)
 /* 80092C5C 0008FB9C  7D 00 07 35 */	extsh. r0, r8
@@ -1883,9 +1889,9 @@ calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
 .L_80092EFC:
 /* 80092EFC 0008FE3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80092F00 0008FE40  4E 80 00 20 */	blr 
+.endfn calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 
-.global calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
+.fn calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle, global
 /* 80092F04 0008FE44  80 06 00 7C */	lwz r0, 0x7c(r6)
 /* 80092F08 0008FE48  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 80092F0C 0008FE4C  40 82 00 BC */	bne .L_80092FC8
@@ -1946,9 +1952,9 @@ calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
 /* 80092FD0 0008FF10  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80092FD4 0008FF14  D0 06 00 74 */	stfs f0, 0x74(r6)
 /* 80092FD8 0008FF18  4E 80 00 20 */	blr 
+.endfn calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 
-.global prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock
-prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock:
+.fn prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock, global
 /* 80092FDC 0008FF1C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80092FE0 0008FF20  7C 08 02 A6 */	mflr r0
 /* 80092FE4 0008FF24  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2028,9 +2034,9 @@ prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock:
 /* 80093100 00090040  7C 08 03 A6 */	mtlr r0
 /* 80093104 00090044  38 21 00 50 */	addi r1, r1, 0x50
 /* 80093108 00090048  4E 80 00 20 */	blr 
+.endfn prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock
 
-.global calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
+.fn calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle, global
 /* 8009310C 0009004C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80093110 00090050  7C 08 02 A6 */	mflr r0
 /* 80093114 00090054  C0 02 88 9C */	lfs f0, lbl_80516BFC@sda21(r2)
@@ -2204,9 +2210,9 @@ calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle:
 /* 80093388 000902C8  7C 08 03 A6 */	mtlr r0
 /* 8009338C 000902CC  38 21 00 60 */	addi r1, r1, 0x60
 /* 80093390 000902D0  4E 80 00 20 */	blr 
+.endfn calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 
-.global __ct__13JPAFieldBlockFPCUcP7JKRHeap
-__ct__13JPAFieldBlockFPCUcP7JKRHeap:
+.fn __ct__13JPAFieldBlockFPCUcP7JKRHeap, global
 /* 80093394 000902D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80093398 000902D8  7C 08 02 A6 */	mflr r0
 /* 8009339C 000902DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2221,9 +2227,9 @@ __ct__13JPAFieldBlockFPCUcP7JKRHeap:
 /* 800933C0 00090300  7C 08 03 A6 */	mtlr r0
 /* 800933C4 00090304  38 21 00 10 */	addi r1, r1, 0x10
 /* 800933C8 00090308  4E 80 00 20 */	blr 
+.endfn __ct__13JPAFieldBlockFPCUcP7JKRHeap
 
-.global init__13JPAFieldBlockFP7JKRHeap
-init__13JPAFieldBlockFP7JKRHeap:
+.fn init__13JPAFieldBlockFP7JKRHeap, global
 /* 800933CC 0009030C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800933D0 00090310  7C 08 02 A6 */	mflr r0
 /* 800933D4 00090314  C0 02 88 9C */	lfs f0, lbl_80516BFC@sda21(r2)
@@ -2435,9 +2441,9 @@ init__13JPAFieldBlockFP7JKRHeap:
 /* 800936AC 000905EC  7C 08 03 A6 */	mtlr r0
 /* 800936B0 000905F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800936B4 000905F4  4E 80 00 20 */	blr 
+.endfn init__13JPAFieldBlockFP7JKRHeap
 
-.global __dt__12JPAFieldBaseFv
-__dt__12JPAFieldBaseFv: # weak function
+.fn __dt__12JPAFieldBaseFv, weak
 /* 800936B8 000905F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800936BC 000905FC  7C 08 02 A6 */	mflr r0
 /* 800936C0 00090600  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2457,13 +2463,13 @@ __dt__12JPAFieldBaseFv: # weak function
 /* 800936F4 00090634  7C 08 03 A6 */	mtlr r0
 /* 800936F8 00090638  38 21 00 10 */	addi r1, r1, 0x10
 /* 800936FC 0009063C  4E 80 00 20 */	blr 
+.endfn __dt__12JPAFieldBaseFv
 
-.global prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
-prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock: # weak function
+.fn prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock, weak
 /* 80093700 00090640  4E 80 00 20 */	blr 
+.endfn prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
 
-.global __dt__12JPAFieldSpinFv
-__dt__12JPAFieldSpinFv: # weak function
+.fn __dt__12JPAFieldSpinFv, weak
 /* 80093704 00090644  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80093708 00090648  7C 08 02 A6 */	mflr r0
 /* 8009370C 0009064C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2489,9 +2495,9 @@ __dt__12JPAFieldSpinFv: # weak function
 /* 80093754 00090694  7C 08 03 A6 */	mtlr r0
 /* 80093758 00090698  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009375C 0009069C  4E 80 00 20 */	blr 
+.endfn __dt__12JPAFieldSpinFv
 
-.global __dt__12JPAFieldDragFv
-__dt__12JPAFieldDragFv: # weak function
+.fn __dt__12JPAFieldDragFv, weak
 /* 80093760 000906A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80093764 000906A4  7C 08 02 A6 */	mflr r0
 /* 80093768 000906A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2517,9 +2523,9 @@ __dt__12JPAFieldDragFv: # weak function
 /* 800937B0 000906F0  7C 08 03 A6 */	mtlr r0
 /* 800937B4 000906F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800937B8 000906F8  4E 80 00 20 */	blr 
+.endfn __dt__12JPAFieldDragFv
 
-.global __dt__14JPAFieldRandomFv
-__dt__14JPAFieldRandomFv: # weak function
+.fn __dt__14JPAFieldRandomFv, weak
 /* 800937BC 000906FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800937C0 00090700  7C 08 02 A6 */	mflr r0
 /* 800937C4 00090704  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2545,9 +2551,9 @@ __dt__14JPAFieldRandomFv: # weak function
 /* 8009380C 0009074C  7C 08 03 A6 */	mtlr r0
 /* 80093810 00090750  38 21 00 10 */	addi r1, r1, 0x10
 /* 80093814 00090754  4E 80 00 20 */	blr 
+.endfn __dt__14JPAFieldRandomFv
 
-.global __dt__18JPAFieldConvectionFv
-__dt__18JPAFieldConvectionFv: # weak function
+.fn __dt__18JPAFieldConvectionFv, weak
 /* 80093818 00090758  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009381C 0009075C  7C 08 02 A6 */	mflr r0
 /* 80093820 00090760  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2573,9 +2579,9 @@ __dt__18JPAFieldConvectionFv: # weak function
 /* 80093868 000907A8  7C 08 03 A6 */	mtlr r0
 /* 8009386C 000907AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80093870 000907B0  4E 80 00 20 */	blr 
+.endfn __dt__18JPAFieldConvectionFv
 
-.global __dt__14JPAFieldVortexFv
-__dt__14JPAFieldVortexFv: # weak function
+.fn __dt__14JPAFieldVortexFv, weak
 /* 80093874 000907B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80093878 000907B8  7C 08 02 A6 */	mflr r0
 /* 8009387C 000907BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2601,9 +2607,9 @@ __dt__14JPAFieldVortexFv: # weak function
 /* 800938C4 00090804  7C 08 03 A6 */	mtlr r0
 /* 800938C8 00090808  38 21 00 10 */	addi r1, r1, 0x10
 /* 800938CC 0009080C  4E 80 00 20 */	blr 
+.endfn __dt__14JPAFieldVortexFv
 
-.global __dt__14JPAFieldNewtonFv
-__dt__14JPAFieldNewtonFv: # weak function
+.fn __dt__14JPAFieldNewtonFv, weak
 /* 800938D0 00090810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800938D4 00090814  7C 08 02 A6 */	mflr r0
 /* 800938D8 00090818  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2629,9 +2635,9 @@ __dt__14JPAFieldNewtonFv: # weak function
 /* 80093920 00090860  7C 08 03 A6 */	mtlr r0
 /* 80093924 00090864  38 21 00 10 */	addi r1, r1, 0x10
 /* 80093928 00090868  4E 80 00 20 */	blr 
+.endfn __dt__14JPAFieldNewtonFv
 
-.global __dt__14JPAFieldMagnetFv
-__dt__14JPAFieldMagnetFv: # weak function
+.fn __dt__14JPAFieldMagnetFv, weak
 /* 8009392C 0009086C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80093930 00090870  7C 08 02 A6 */	mflr r0
 /* 80093934 00090874  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2657,9 +2663,9 @@ __dt__14JPAFieldMagnetFv: # weak function
 /* 8009397C 000908BC  7C 08 03 A6 */	mtlr r0
 /* 80093980 000908C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80093984 000908C4  4E 80 00 20 */	blr 
+.endfn __dt__14JPAFieldMagnetFv
 
-.global __dt__11JPAFieldAirFv
-__dt__11JPAFieldAirFv: # weak function
+.fn __dt__11JPAFieldAirFv, weak
 /* 80093988 000908C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009398C 000908CC  7C 08 02 A6 */	mflr r0
 /* 80093990 000908D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2685,9 +2691,9 @@ __dt__11JPAFieldAirFv: # weak function
 /* 800939D8 00090918  7C 08 03 A6 */	mtlr r0
 /* 800939DC 0009091C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800939E0 00090920  4E 80 00 20 */	blr 
+.endfn __dt__11JPAFieldAirFv
 
-.global __dt__15JPAFieldGravityFv
-__dt__15JPAFieldGravityFv: # weak function
+.fn __dt__15JPAFieldGravityFv, weak
 /* 800939E4 00090924  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800939E8 00090928  7C 08 02 A6 */	mflr r0
 /* 800939EC 0009092C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2713,3 +2719,4 @@ __dt__15JPAFieldGravityFv: # weak function
 /* 80093A34 00090974  7C 08 03 A6 */	mtlr r0
 /* 80093A38 00090978  38 21 00 10 */	addi r1, r1, 0x10
 /* 80093A3C 0009097C  4E 80 00 20 */	blr 
+.endfn __dt__15JPAFieldGravityFv

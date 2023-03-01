@@ -1,20 +1,24 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516BB8:
+.obj lbl_80516BB8, local
 	.float 0.0
-lbl_80516BBC:
+.endobj lbl_80516BB8
+.obj lbl_80516BBC, local
 	.float 32.0
-lbl_80516BC0:
+.endobj lbl_80516BBC
+.obj lbl_80516BC0, local
 	.float 0.5
-lbl_80516BC4:
+.endobj lbl_80516BC0
+.obj lbl_80516BC4, local
 	.float 3.0
-lbl_80516BC8:
+.endobj lbl_80516BC4
+.obj lbl_80516BC8, local
 	.float 1.0
+.endobj lbl_80516BC8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
-__ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc:
+.fn __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc, global
 /* 80090538 0008D478  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009053C 0008D47C  7C 08 02 A6 */	mflr r0
 /* 80090540 0008D480  90 01 00 24 */	stw r0, 0x24(r1)
@@ -151,9 +155,9 @@ __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc:
 /* 80090728 0008D668  7C 08 03 A6 */	mtlr r0
 /* 8009072C 0008D66C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80090730 0008D670  4E 80 00 20 */	blr 
+.endfn __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
 
-.global "__ct__25JSUList<14JPABaseEmitter>Fv"
-"__ct__25JSUList<14JPABaseEmitter>Fv": # weak function
+.fn "__ct__25JSUList<14JPABaseEmitter>Fv", weak
 /* 80090734 0008D674  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090738 0008D678  7C 08 02 A6 */	mflr r0
 /* 8009073C 0008D67C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -166,9 +170,9 @@ __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc:
 /* 80090758 0008D698  7C 08 03 A6 */	mtlr r0
 /* 8009075C 0008D69C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80090760 0008D6A0  4E 80 00 20 */	blr 
+.endfn "__ct__25JSUList<14JPABaseEmitter>Fv"
 
-.global "__dt__26JPANode<15JPABaseParticle>Fv"
-"__dt__26JPANode<15JPABaseParticle>Fv": # weak function
+.fn "__dt__26JPANode<15JPABaseParticle>Fv", weak
 /* 80090764 0008D6A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090768 0008D6A8  7C 08 02 A6 */	mflr r0
 /* 8009076C 0008D6AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -185,16 +189,16 @@ __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc:
 /* 80090794 0008D6D4  7C 08 03 A6 */	mtlr r0
 /* 80090798 0008D6D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009079C 0008D6DC  4E 80 00 20 */	blr 
+.endfn "__dt__26JPANode<15JPABaseParticle>Fv"
 
-.global "__ct__26JPANode<15JPABaseParticle>Fv"
-"__ct__26JPANode<15JPABaseParticle>Fv": # weak function
+.fn "__ct__26JPANode<15JPABaseParticle>Fv", weak
 /* 800907A0 0008D6E0  38 00 00 00 */	li r0, 0
 /* 800907A4 0008D6E4  90 03 00 00 */	stw r0, 0(r3)
 /* 800907A8 0008D6E8  90 03 00 04 */	stw r0, 4(r3)
 /* 800907AC 0008D6EC  4E 80 00 20 */	blr 
+.endfn "__ct__26JPANode<15JPABaseParticle>Fv"
 
-.global __dt__14JPABaseEmitterFv
-__dt__14JPABaseEmitterFv: # weak function
+.fn __dt__14JPABaseEmitterFv, weak
 /* 800907B0 0008D6F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800907B4 0008D6F4  7C 08 02 A6 */	mflr r0
 /* 800907B8 0008D6F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -221,9 +225,9 @@ __dt__14JPABaseEmitterFv: # weak function
 /* 80090804 0008D744  7C 08 03 A6 */	mtlr r0
 /* 80090808 0008D748  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009080C 0008D74C  4E 80 00 20 */	blr 
+.endfn __dt__14JPABaseEmitterFv
 
-.global __ct__14JPABaseEmitterFv
-__ct__14JPABaseEmitterFv: # weak function
+.fn __ct__14JPABaseEmitterFv, weak
 /* 80090810 0008D750  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090814 0008D754  7C 08 02 A6 */	mflr r0
 /* 80090818 0008D758  90 01 00 14 */	stw r0, 0x14(r1)
@@ -246,9 +250,9 @@ __ct__14JPABaseEmitterFv: # weak function
 /* 8009085C 0008D79C  7C 08 03 A6 */	mtlr r0
 /* 80090860 0008D7A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80090864 0008D7A4  4E 80 00 20 */	blr 
+.endfn __ct__14JPABaseEmitterFv
 
-.global "__dt__25JSUList<14JPABaseEmitter>Fv"
-"__dt__25JSUList<14JPABaseEmitter>Fv": # weak function
+.fn "__dt__25JSUList<14JPABaseEmitter>Fv", weak
 /* 80090868 0008D7A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009086C 0008D7AC  7C 08 02 A6 */	mflr r0
 /* 80090870 0008D7B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -271,9 +275,9 @@ __ct__14JPABaseEmitterFv: # weak function
 /* 800908B0 0008D7F0  7C 08 03 A6 */	mtlr r0
 /* 800908B4 0008D7F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800908B8 0008D7F8  4E 80 00 20 */	blr 
+.endfn "__dt__25JSUList<14JPABaseEmitter>Fv"
 
-.global "createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
-"createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack":
+.fn "createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack", global
 /* 800908BC 0008D7FC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800908C0 0008D800  7C 08 02 A6 */	mflr r0
 /* 800908C4 0008D804  90 01 00 34 */	stw r0, 0x34(r1)
@@ -331,9 +335,9 @@ __ct__14JPABaseEmitterFv: # weak function
 /* 8009098C 0008D8CC  7C 08 03 A6 */	mtlr r0
 /* 80090990 0008D8D0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80090994 0008D8D4  4E 80 00 20 */	blr 
+.endfn "createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
 
-.global calc__17JPAEmitterManagerFv
-calc__17JPAEmitterManagerFv:
+.fn calc__17JPAEmitterManagerFv, global
 /* 80090998 0008D8D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009099C 0008D8DC  7C 08 02 A6 */	mflr r0
 /* 800909A0 0008D8E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -382,9 +386,9 @@ calc__17JPAEmitterManagerFv:
 /* 80090A3C 0008D97C  7C 08 03 A6 */	mtlr r0
 /* 80090A40 0008D980  38 21 00 20 */	addi r1, r1, 0x20
 /* 80090A44 0008D984  4E 80 00 20 */	blr 
+.endfn calc__17JPAEmitterManagerFv
 
-.global draw__17JPAEmitterManagerFPC11JPADrawInfoUc
-draw__17JPAEmitterManagerFPC11JPADrawInfoUc:
+.fn draw__17JPAEmitterManagerFPC11JPADrawInfoUc, global
 /* 80090A48 0008D988  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80090A4C 0008D98C  7C 08 02 A6 */	mflr r0
 /* 80090A50 0008D990  90 01 00 24 */	stw r0, 0x24(r1)
@@ -516,9 +520,9 @@ draw__17JPAEmitterManagerFPC11JPADrawInfoUc:
 /* 80090C3C 0008DB7C  7C 08 03 A6 */	mtlr r0
 /* 80090C40 0008DB80  38 21 00 20 */	addi r1, r1, 0x20
 /* 80090C44 0008DB84  4E 80 00 20 */	blr 
+.endfn draw__17JPAEmitterManagerFPC11JPADrawInfoUc
 
-.global forceDeleteAllEmitter__17JPAEmitterManagerFv
-forceDeleteAllEmitter__17JPAEmitterManagerFv:
+.fn forceDeleteAllEmitter__17JPAEmitterManagerFv, global
 /* 80090C48 0008DB88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090C4C 0008DB8C  7C 08 02 A6 */	mflr r0
 /* 80090C50 0008DB90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -543,9 +547,9 @@ forceDeleteAllEmitter__17JPAEmitterManagerFv:
 /* 80090C94 0008DBD4  7C 08 03 A6 */	mtlr r0
 /* 80090C98 0008DBD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80090C9C 0008DBDC  4E 80 00 20 */	blr 
+.endfn forceDeleteAllEmitter__17JPAEmitterManagerFv
 
-.global forceDeleteGroupEmitter__17JPAEmitterManagerFUc
-forceDeleteGroupEmitter__17JPAEmitterManagerFUc:
+.fn forceDeleteGroupEmitter__17JPAEmitterManagerFUc, global
 /* 80090CA0 0008DBE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090CA4 0008DBE4  7C 08 02 A6 */	mflr r0
 /* 80090CA8 0008DBE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -572,9 +576,9 @@ forceDeleteGroupEmitter__17JPAEmitterManagerFUc:
 /* 80090CF4 0008DC34  7C 08 03 A6 */	mtlr r0
 /* 80090CF8 0008DC38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80090CFC 0008DC3C  4E 80 00 20 */	blr 
+.endfn forceDeleteGroupEmitter__17JPAEmitterManagerFUc
 
-.global forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
-forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter:
+.fn forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter, global
 /* 80090D00 0008DC40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090D04 0008DC44  7C 08 02 A6 */	mflr r0
 /* 80090D08 0008DC48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -602,16 +606,16 @@ forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter:
 /* 80090D60 0008DCA0  7C 08 03 A6 */	mtlr r0
 /* 80090D64 0008DCA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80090D68 0008DCA8  4E 80 00 20 */	blr 
+.endfn forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 
-.global entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc
-entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc:
+.fn entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc, global
 /* 80090D6C 0008DCAC  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80090D70 0008DCB0  54 A0 15 BA */	rlwinm r0, r5, 2, 0x16, 0x1d
 /* 80090D74 0008DCB4  7C 83 01 2E */	stwx r4, r3, r0
 /* 80090D78 0008DCB8  4E 80 00 20 */	blr 
+.endfn entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc
 
-.global clearResourceManager__17JPAEmitterManagerFUc
-clearResourceManager__17JPAEmitterManagerFUc:
+.fn clearResourceManager__17JPAEmitterManagerFUc, global
 /* 80090D7C 0008DCBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80090D80 0008DCC0  7C 08 02 A6 */	mflr r0
 /* 80090D84 0008DCC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -667,9 +671,9 @@ clearResourceManager__17JPAEmitterManagerFUc:
 /* 80090E38 0008DD78  7C 08 03 A6 */	mtlr r0
 /* 80090E3C 0008DD7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80090E40 0008DD80  4E 80 00 20 */	blr 
+.endfn clearResourceManager__17JPAEmitterManagerFUc
 
-.global calcYBBCam__17JPAEmitterManagerFv
-calcYBBCam__17JPAEmitterManagerFv:
+.fn calcYBBCam__17JPAEmitterManagerFv, global
 /* 80090E44 0008DD84  80 A3 00 20 */	lwz r5, 0x20(r3)
 /* 80090E48 0008DD88  3C 80 80 51 */	lis r4, __float_epsilon@ha
 /* 80090E4C 0008DD8C  C0 62 88 58 */	lfs f3, lbl_80516BB8@sda21(r2)
@@ -731,3 +735,4 @@ calcYBBCam__17JPAEmitterManagerFv:
 /* 80090F20 0008DE60  C0 03 01 B0 */	lfs f0, 0x1b0(r3)
 /* 80090F24 0008DE64  D0 03 01 80 */	stfs f0, 0x180(r3)
 /* 80090F28 0008DE68  4E 80 00 20 */	blr 
+.endfn calcYBBCam__17JPAEmitterManagerFv

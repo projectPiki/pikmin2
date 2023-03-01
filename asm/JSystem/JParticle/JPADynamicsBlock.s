@@ -1,7 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A3248:
+.obj lbl_804A3248, local
 	.4byte .L_8008FA2C
 	.4byte .L_8008FA3C
 	.4byte .L_8008FA4C
@@ -9,29 +9,34 @@ lbl_804A3248:
 	.4byte .L_8008FA6C
 	.4byte .L_8008FA7C
 	.4byte .L_8008FA8C
+.endobj lbl_804A3248
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516B78:
+.obj lbl_80516B78, local
 	.float 0.0
-lbl_80516B7C:
+.endobj lbl_80516B78
+.obj lbl_80516B7C, local
 	.float 1.0
-lbl_80516B80:
+.endobj lbl_80516B7C
+.obj lbl_80516B80, local
 	.float 0.5
+.endobj lbl_80516B80
 .balign 8
-lbl_80516B88:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80516B90:
+.obj lbl_80516B88, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516B88
+.balign 4
+.obj lbl_80516B90, local
 	.float 32768.0
+.endobj lbl_80516B90
 .balign 8
-lbl_80516B98:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80516B98, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516B98
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global JPAVolumePoint__FP18JPAEmitterWorkData
-JPAVolumePoint__FP18JPAEmitterWorkData:
+.fn JPAVolumePoint__FP18JPAEmitterWorkData, local
 /* 8008EFD0 0008BF10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008EFD4 0008BF14  3C 80 00 19 */	lis r4, 0x0019660D@ha
 /* 8008EFD8 0008BF18  C0 62 88 18 */	lfs f3, lbl_80516B78@sda21(r2)
@@ -87,9 +92,9 @@ JPAVolumePoint__FP18JPAEmitterWorkData:
 /* 8008F0A0 0008BFE0  D0 23 00 30 */	stfs f1, 0x30(r3)
 /* 8008F0A4 0008BFE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8008F0A8 0008BFE8  4E 80 00 20 */	blr 
+.endfn JPAVolumePoint__FP18JPAEmitterWorkData
 
-.global JPAVolumeLine__FP18JPAEmitterWorkData
-JPAVolumeLine__FP18JPAEmitterWorkData:
+.fn JPAVolumeLine__FP18JPAEmitterWorkData, local
 /* 8008F0AC 0008BFEC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008F0B0 0008BFF0  80 C3 00 00 */	lwz r6, 0(r3)
 /* 8008F0B4 0008BFF4  80 86 00 E8 */	lwz r4, 0xe8(r6)
@@ -163,9 +168,9 @@ JPAVolumeLine__FP18JPAEmitterWorkData:
 /* 8008F1BC 0008C0FC  D0 23 00 30 */	stfs f1, 0x30(r3)
 /* 8008F1C0 0008C100  38 21 00 20 */	addi r1, r1, 0x20
 /* 8008F1C4 0008C104  4E 80 00 20 */	blr 
+.endfn JPAVolumeLine__FP18JPAEmitterWorkData
 
-.global JPAVolumeCircle__FP18JPAEmitterWorkData
-JPAVolumeCircle__FP18JPAEmitterWorkData:
+.fn JPAVolumeCircle__FP18JPAEmitterWorkData, local
 /* 8008F1C8 0008C108  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008F1CC 0008C10C  80 C3 00 00 */	lwz r6, 0(r3)
 /* 8008F1D0 0008C110  80 86 00 E8 */	lwz r4, 0xe8(r6)
@@ -278,9 +283,9 @@ JPAVolumeCircle__FP18JPAEmitterWorkData:
 /* 8008F370 0008C2B0  D0 23 00 30 */	stfs f1, 0x30(r3)
 /* 8008F374 0008C2B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8008F378 0008C2B8  4E 80 00 20 */	blr 
+.endfn JPAVolumeCircle__FP18JPAEmitterWorkData
 
-.global JPAVolumeCube__FP18JPAEmitterWorkData
-JPAVolumeCube__FP18JPAEmitterWorkData:
+.fn JPAVolumeCube__FP18JPAEmitterWorkData, local
 /* 8008F37C 0008C2BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008F380 0008C2C0  3C 80 00 19 */	lis r4, 0x0019660D@ha
 /* 8008F384 0008C2C4  38 A4 66 0D */	addi r5, r4, 0x0019660D@l
@@ -351,9 +356,9 @@ JPAVolumeCube__FP18JPAEmitterWorkData:
 /* 8008F488 0008C3C8  D0 43 00 30 */	stfs f2, 0x30(r3)
 /* 8008F48C 0008C3CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8008F490 0008C3D0  4E 80 00 20 */	blr 
+.endfn JPAVolumeCube__FP18JPAEmitterWorkData
 
-.global JPAVolumeSphere__FP18JPAEmitterWorkData
-JPAVolumeSphere__FP18JPAEmitterWorkData:
+.fn JPAVolumeSphere__FP18JPAEmitterWorkData local
 /* 8008F494 0008C3D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008F498 0008C3D8  80 E3 00 00 */	lwz r7, 0(r3)
 /* 8008F49C 0008C3DC  80 87 00 E8 */	lwz r4, 0xe8(r7)
@@ -525,9 +530,9 @@ JPAVolumeSphere__FP18JPAEmitterWorkData:
 /* 8008F714 0008C654  D0 43 00 30 */	stfs f2, 0x30(r3)
 /* 8008F718 0008C658  38 21 00 20 */	addi r1, r1, 0x20
 /* 8008F71C 0008C65C  4E 80 00 20 */	blr 
+.endfn JPAVolumeSphere__FP18JPAEmitterWorkData
 
-.global JPAVolumeCylinder__FP18JPAEmitterWorkData
-JPAVolumeCylinder__FP18JPAEmitterWorkData:
+.fn JPAVolumeCylinder__FP18JPAEmitterWorkData, local
 /* 8008F720 0008C660  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008F724 0008C664  3C 80 00 19 */	lis r4, 0x0019660D@ha
 /* 8008F728 0008C668  3C 00 43 30 */	lis r0, 0x4330
@@ -626,9 +631,9 @@ JPAVolumeCylinder__FP18JPAEmitterWorkData:
 /* 8008F898 0008C7D8  D0 43 00 30 */	stfs f2, 0x30(r3)
 /* 8008F89C 0008C7DC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8008F8A0 0008C7E0  4E 80 00 20 */	blr 
+.endfn JPAVolumeCylinder__FP18JPAEmitterWorkData
 
-.global JPAVolumeTorus__FP18JPAEmitterWorkData
-JPAVolumeTorus__FP18JPAEmitterWorkData:
+.fn JPAVolumeTorus__FP18JPAEmitterWorkData, local
 /* 8008F8A4 0008C7E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008F8A8 0008C7E8  3C A0 00 19 */	lis r5, 0x0019660D@ha
 /* 8008F8AC 0008C7EC  3C 00 43 30 */	lis r0, 0x4330
@@ -703,9 +708,9 @@ JPAVolumeTorus__FP18JPAEmitterWorkData:
 /* 8008F9C0 0008C900  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 8008F9C4 0008C904  38 21 00 20 */	addi r1, r1, 0x20
 /* 8008F9C8 0008C908  4E 80 00 20 */	blr 
+.endfn JPAVolumeTorus__FP18JPAEmitterWorkData
 
-.global __ct__16JPADynamicsBlockFPCUc
-__ct__16JPADynamicsBlockFPCUc:
+.fn __ct__16JPADynamicsBlockFPCUc, global
 /* 8008F9CC 0008C90C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8008F9D0 0008C910  7C 08 02 A6 */	mflr r0
 /* 8008F9D4 0008C914  90 01 00 14 */	stw r0, 0x14(r1)
@@ -719,9 +724,9 @@ __ct__16JPADynamicsBlockFPCUc:
 /* 8008F9F4 0008C934  7C 08 03 A6 */	mtlr r0
 /* 8008F9F8 0008C938  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008F9FC 0008C93C  4E 80 00 20 */	blr 
+.endfn __ct__16JPADynamicsBlockFPCUc
 
-.global init__16JPADynamicsBlockFv
-init__16JPADynamicsBlockFv:
+.fn init__16JPADynamicsBlockFv, global
 /* 8008FA00 0008C940  80 83 00 00 */	lwz r4, 0(r3)
 /* 8008FA04 0008C944  80 04 00 08 */	lwz r0, 8(r4)
 /* 8008FA08 0008C948  54 00 C7 7E */	rlwinm r0, r0, 0x18, 0x1d, 0x1f
@@ -768,9 +773,9 @@ init__16JPADynamicsBlockFv:
 /* 8008FA90 0008C9D0  38 04 F0 AC */	addi r0, r4, JPAVolumeLine__FP18JPAEmitterWorkData@l
 /* 8008FA94 0008C9D4  90 03 00 04 */	stw r0, 4(r3)
 /* 8008FA98 0008C9D8  4E 80 00 20 */	blr 
+.endfn init__16JPADynamicsBlockFv
 
-.global create__16JPADynamicsBlockFP18JPAEmitterWorkData
-create__16JPADynamicsBlockFP18JPAEmitterWorkData:
+.fn create__16JPADynamicsBlockFP18JPAEmitterWorkData, global
 /* 8008FA9C 0008C9DC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8008FAA0 0008C9E0  7C 08 02 A6 */	mflr r0
 /* 8008FAA4 0008C9E4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -909,3 +914,4 @@ create__16JPADynamicsBlockFP18JPAEmitterWorkData:
 /* 8008FC90 0008CBD0  7C 08 03 A6 */	mtlr r0
 /* 8008FC94 0008CBD4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8008FC98 0008CBD8  4E 80 00 20 */	blr 
+.endfn create__16JPADynamicsBlockFP18JPAEmitterWorkData

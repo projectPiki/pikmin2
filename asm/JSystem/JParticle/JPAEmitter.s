@@ -1,20 +1,24 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516BA0:
+.obj lbl_80516BA0, local
 	.float 32.0
-lbl_80516BA4:
+.endobj lbl_80516BA0
+.obj lbl_80516BA4, local
 	.float 0.0
-lbl_80516BA8:
+.endobj lbl_80516BA4
+.obj lbl_80516BA8, local
 	.float 0.5
-lbl_80516BAC:
+.endobj lbl_80516BA8
+.obj lbl_80516BAC, local
 	.float 3.0
-lbl_80516BB0:
+.endobj lbl_80516BAC
+.obj lbl_80516BB0, local
 	.float 1.0
+.endobj lbl_80516BB0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__18JPAEmitterCallBackFv
-__dt__18JPAEmitterCallBackFv:
+.fn __dt__18JPAEmitterCallBackFv, global
 /* 8008FC9C 0008CBDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8008FCA0 0008CBE0  7C 08 02 A6 */	mflr r0
 /* 8008FCA4 0008CBE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -34,9 +38,9 @@ __dt__18JPAEmitterCallBackFv:
 /* 8008FCD8 0008CC18  7C 08 03 A6 */	mtlr r0
 /* 8008FCDC 0008CC1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008FCE0 0008CC20  4E 80 00 20 */	blr 
+.endfn __dt__18JPAEmitterCallBackFv
 
-.global init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource
-init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource:
+.fn init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource, global
 /* 8008FCE4 0008CC24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8008FCE8 0008CC28  7C 08 02 A6 */	mflr r0
 /* 8008FCEC 0008CC2C  C0 22 88 40 */	lfs f1, lbl_80516BA0@sda21(r2)
@@ -255,9 +259,9 @@ init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource:
 /* 80090034 0008CF74  7C 08 03 A6 */	mtlr r0
 /* 80090038 0008CF78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009003C 0008CF7C  4E 80 00 20 */	blr 
+.endfn init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource
 
-.global createParticle__14JPABaseEmitterFv
-createParticle__14JPABaseEmitterFv:
+.fn createParticle__14JPABaseEmitterFv, global
 /* 80090040 0008CF80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090044 0008CF84  7C 08 02 A6 */	mflr r0
 /* 80090048 0008CF88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -335,9 +339,9 @@ createParticle__14JPABaseEmitterFv:
 /* 80090150 0008D090  7C 08 03 A6 */	mtlr r0
 /* 80090154 0008D094  38 21 00 10 */	addi r1, r1, 0x10
 /* 80090158 0008D098  4E 80 00 20 */	blr 
+.endfn createParticle__14JPABaseEmitterFv
 
-.global createChild__14JPABaseEmitterFP15JPABaseParticle
-createChild__14JPABaseEmitterFP15JPABaseParticle:
+.fn createChild__14JPABaseEmitterFP15JPABaseParticle, global
 /* 8009015C 0008D09C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090160 0008D0A0  7C 08 02 A6 */	mflr r0
 /* 80090164 0008D0A4  7C 67 1B 78 */	mr r7, r3
@@ -407,9 +411,9 @@ createChild__14JPABaseEmitterFP15JPABaseParticle:
 /* 8009024C 0008D18C  7C 08 03 A6 */	mtlr r0
 /* 80090250 0008D190  38 21 00 10 */	addi r1, r1, 0x10
 /* 80090254 0008D194  4E 80 00 20 */	blr 
+.endfn createChild__14JPABaseEmitterFP15JPABaseParticle
 
-.global deleteAllParticle__14JPABaseEmitterFv
-deleteAllParticle__14JPABaseEmitterFv:
+.fn deleteAllParticle__14JPABaseEmitterFv, global
 /* 80090258 0008D198  48 00 00 AC */	b .L_80090304
 .L_8009025C:
 /* 8009025C 0008D19C  28 00 00 01 */	cmplwi r0, 1
@@ -515,9 +519,9 @@ deleteAllParticle__14JPABaseEmitterFv:
 /* 800903C0 0008D300  28 00 00 00 */	cmplwi r0, 0
 /* 800903C4 0008D304  40 82 FF 50 */	bne .L_80090314
 /* 800903C8 0008D308  4E 80 00 20 */	blr 
+.endfn deleteAllParticle__14JPABaseEmitterFv
 
-.global processTillStartFrame__14JPABaseEmitterFv
-processTillStartFrame__14JPABaseEmitterFv:
+.fn processTillStartFrame__14JPABaseEmitterFv, global
 /* 800903CC 0008D30C  80 83 00 E8 */	lwz r4, 0xe8(r3)
 /* 800903D0 0008D310  A8 A3 01 04 */	lha r5, 0x104(r3)
 /* 800903D4 0008D314  80 84 00 2C */	lwz r4, 0x2c(r4)
@@ -536,9 +540,9 @@ processTillStartFrame__14JPABaseEmitterFv:
 .L_80090404:
 /* 80090404 0008D344  38 60 00 00 */	li r3, 0
 /* 80090408 0008D348  4E 80 00 20 */	blr 
+.endfn processTillStartFrame__14JPABaseEmitterFv
 
-.global processTermination__14JPABaseEmitterFv
-processTermination__14JPABaseEmitterFv:
+.fn processTermination__14JPABaseEmitterFv, global
 /* 8009040C 0008D34C  80 03 00 F4 */	lwz r0, 0xf4(r3)
 /* 80090410 0008D350  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80090414 0008D354  41 82 00 0C */	beq .L_80090420
@@ -583,9 +587,9 @@ processTermination__14JPABaseEmitterFv:
 .L_800904A0:
 /* 800904A0 0008D3E0  38 60 00 00 */	li r3, 0
 /* 800904A4 0008D3E4  4E 80 00 20 */	blr 
+.endfn processTermination__14JPABaseEmitterFv
 
-.global "calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3<f>"
-"calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3<f>":
+.fn "calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3<f>", global
 /* 800904A8 0008D3E8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800904AC 0008D3EC  7C 08 02 A6 */	mflr r0
 /* 800904B0 0008D3F0  C0 23 00 98 */	lfs f1, 0x98(r3)
@@ -618,10 +622,11 @@ processTermination__14JPABaseEmitterFv:
 /* 8009051C 0008D45C  7C 08 03 A6 */	mtlr r0
 /* 80090520 0008D460  38 21 00 40 */	addi r1, r1, 0x40
 /* 80090524 0008D464  4E 80 00 20 */	blr 
+.endfn "calcEmitterGlobalPosition__14JPABaseEmitterCFPQ29JGeometry8TVec3<f>"
 
-.global getCurrentCreateNumber__14JPABaseEmitterCFv
-getCurrentCreateNumber__14JPABaseEmitterCFv:
+.fn getCurrentCreateNumber__14JPABaseEmitterCFv, global
 /* 80090528 0008D468  80 63 00 E4 */	lwz r3, 0xe4(r3)
 /* 8009052C 0008D46C  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 80090530 0008D470  80 63 00 40 */	lwz r3, 0x40(r3)
 /* 80090534 0008D474  4E 80 00 20 */	blr 
+.endfn getCurrentCreateNumber__14JPABaseEmitterCFv

@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__18JPAResourceManagerFPCvP7JKRHeap
-__ct__18JPAResourceManagerFPCvP7JKRHeap:
+.fn __ct__18JPAResourceManagerFPCvP7JKRHeap, global
 /* 800984D0 00095410  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800984D4 00095414  7C 08 02 A6 */	mflr r0
 /* 800984D8 00095418  90 01 00 24 */	stw r0, 0x24(r1)
@@ -25,9 +24,9 @@ __ct__18JPAResourceManagerFPCvP7JKRHeap:
 /* 8009851C 0009545C  7C 08 03 A6 */	mtlr r0
 /* 80098520 00095460  38 21 00 20 */	addi r1, r1, 0x20
 /* 80098524 00095464  4E 80 00 20 */	blr 
+.endfn __ct__18JPAResourceManagerFPCvP7JKRHeap
 
-.global getResource__18JPAResourceManagerCFUs
-getResource__18JPAResourceManagerCFUs:
+.fn getResource__18JPAResourceManagerCFUs, global
 /* 80098528 00095468  A0 C3 00 0E */	lhz r6, 0xe(r3)
 /* 8009852C 0009546C  54 84 04 3E */	clrlwi r4, r4, 0x10
 /* 80098530 00095470  80 A3 00 04 */	lwz r5, 4(r3)
@@ -46,9 +45,9 @@ getResource__18JPAResourceManagerCFUs:
 /* 8009855C 0009549C  41 80 FF E0 */	blt .L_8009853C
 /* 80098560 000954A0  38 60 00 00 */	li r3, 0
 /* 80098564 000954A4  4E 80 00 20 */	blr 
+.endfn getResource__18JPAResourceManagerCFUs
 
-.global swapTexture__18JPAResourceManagerFPC7ResTIMGPCc
-swapTexture__18JPAResourceManagerFPC7ResTIMGPCc:
+.fn swapTexture__18JPAResourceManagerFPC7ResTIMGPCc, global
 /* 80098568 000954A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009856C 000954AC  7C 08 02 A6 */	mflr r0
 /* 80098570 000954B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -92,9 +91,9 @@ swapTexture__18JPAResourceManagerFPC7ResTIMGPCc:
 /* 800985F8 00095538  7C 08 03 A6 */	mtlr r0
 /* 800985FC 0009553C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80098600 00095540  4E 80 00 20 */	blr 
+.endfn swapTexture__18JPAResourceManagerFPC7ResTIMGPCc
 
-.global registRes__18JPAResourceManagerFP11JPAResource
-registRes__18JPAResourceManagerFP11JPAResource:
+.fn registRes__18JPAResourceManagerFP11JPAResource, global
 /* 80098604 00095544  A0 03 00 0E */	lhz r0, 0xe(r3)
 /* 80098608 00095548  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8009860C 0009554C  54 00 10 3A */	slwi r0, r0, 2
@@ -103,9 +102,9 @@ registRes__18JPAResourceManagerFP11JPAResource:
 /* 80098618 00095558  38 04 00 01 */	addi r0, r4, 1
 /* 8009861C 0009555C  B0 03 00 0E */	sth r0, 0xe(r3)
 /* 80098620 00095560  4E 80 00 20 */	blr 
+.endfn registRes__18JPAResourceManagerFP11JPAResource
 
-.global registTex__18JPAResourceManagerFP10JPATexture
-registTex__18JPAResourceManagerFP10JPATexture:
+.fn registTex__18JPAResourceManagerFP10JPATexture, global
 /* 80098624 00095564  A0 03 00 12 */	lhz r0, 0x12(r3)
 /* 80098628 00095568  80 A3 00 08 */	lwz r5, 8(r3)
 /* 8009862C 0009556C  54 00 10 3A */	slwi r0, r0, 2
@@ -114,9 +113,9 @@ registTex__18JPAResourceManagerFP10JPATexture:
 /* 80098638 00095578  38 04 00 01 */	addi r0, r4, 1
 /* 8009863C 0009557C  B0 03 00 12 */	sth r0, 0x12(r3)
 /* 80098640 00095580  4E 80 00 20 */	blr 
+.endfn registTex__18JPAResourceManagerFP10JPATexture
 
-.global getResUserWork__18JPAResourceManagerCFUs
-getResUserWork__18JPAResourceManagerCFUs:
+.fn getResUserWork__18JPAResourceManagerCFUs, global
 /* 80098644 00095584  A0 E3 00 0E */	lhz r7, 0xe(r3)
 /* 80098648 00095588  54 84 04 3E */	clrlwi r4, r4, 0x10
 /* 8009864C 0009558C  80 A3 00 04 */	lwz r5, 4(r3)
@@ -144,3 +143,4 @@ getResUserWork__18JPAResourceManagerCFUs:
 /* 80098694 000955D4  80 63 00 00 */	lwz r3, 0(r3)
 /* 80098698 000955D8  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8009869C 000955DC  4E 80 00 20 */	blr 
+.endfn getResUserWork__18JPAResourceManagerCFUs
