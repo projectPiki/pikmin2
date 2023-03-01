@@ -174,6 +174,12 @@ inline void weightVecXZ(Vector3f& vec, f32 weight)
 	vec = temp;
 }
 
+inline void getScaledXZVec(Vector3f& vec, f32 x, f32 z, f32 scale)
+{
+	vec.x = x * scale;
+	vec.z = z * scale;
+}
+
 template <>
 inline f32 Vector3f::length() const
 {

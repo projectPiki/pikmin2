@@ -8,6 +8,7 @@
 #include "Game/MoviePlayer.h"
 #include "Game/PikiMgr.h"
 #include "Game/Entities/ItemPikihead.h"
+#include "Game/AIConstants.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "PSM/Navi.h"
@@ -66,8 +67,8 @@ Navi::Navi()
 	mObjectTypeID = 1;
 
 	mEffectsObj = new efx::TNaviEffect;
-	mEffectsObj->init(nullptr, nullptr, nullptr, efx::TNaviEffect::NAVITYPE_Unk0);
-	mEffectsObj->_08 = &mPosition3;
+	mEffectsObj->init(nullptr, nullptr, nullptr, efx::TNaviEffect::NAVITYPE_Olimar);
+	mEffectsObj->mPos = &mPosition3;
 
 	mFsm = new NaviFSM;
 	mFsm->init(this);
@@ -139,7 +140,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	mBeaconJoint = mModel->getJoint("happajnt3");
 
 	mEffectsObj->mBeaconMtx = mBeaconJoint->getWorldMatrix();
-	mEffectsObj->_0C        = &mWhistle->_0C;
+	mEffectsObj->mNaviPos   = &mWhistle->mPosition;
 
 	SysShape::Joint* headJnt = mModel->getJoint("headjnt");
 	mEffectsObj->mHeadMtx    = headJnt->getWorldMatrix();
@@ -1002,7 +1003,7 @@ void Navi::applyDopeSmoke(CellObject* object)
 {
 	Creature* creature = static_cast<Creature*>(object);
 	Vector3f naviPos   = getPosition();
-	Vector3f direction = mWhistle->_0C - naviPos;
+	Vector3f direction = mWhistle->mPosition - naviPos;
 	f32 length         = pikmin2_sqrtf(direction.sqrMagnitude());
 	if (length > 0.0f) {
 		f32 norm = 1.0f / length;
@@ -1459,7 +1460,7 @@ void Navi::doEntry()
 		cursorCols.b = col.b;
 		cursorCols.a = col.a;
 	} else {
-		cursorCols = J3DGXColorS10(0xFF, 0xFF, 0xFF, 0xFF);
+		cursorCols = J3DGXColorS10();
 	}
 
 	J3DMaterial* materials = mCursorModel->mJ3dModel->mModelData->mMaterialTable.mMaterials[0];
@@ -1860,7 +1861,7 @@ void Navi::updateCursor()
 void Navi::doSimulation(f32 timeStep)
 {
 	if (moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
-		mPosition2    = Vector3f(0.0f);
+		mSimVelocity  = Vector3f(0.0f);
 		mVelocity     = Vector3f(0.0f);
 		mAcceleration = Vector3f(0.0f);
 	}
@@ -7365,29 +7366,110 @@ u32 Navi::ogGetNextThrowPiki()
 	return (!nextPiki) ? 0 : ((3 * nextPiki->mPikiKind) + 1) + nextPiki->mHappaKind;
 }
 
+extern f32 pikmin2_cosf(f32 theta);
+extern f32 pikmin2_sinf(f32 theta);
+
+inline f32 pikmin2_normalise(Vector3f& vec)
+{
+	f32 length = pikmin2_sqrtf(vec.magnitude());
+	if (length > 0) {
+		f32 norm = 1.0f / length;
+		vec *= norm;
+	} else {
+		length = 0.0f;
+	}
+
+	return length;
+}
+
 /*
  * --INFO--
  * Address:	80146A54
  * Size:	0002C0
  */
-void Navi::throwPiki(Piki* piki, Vector3f& destination)
+void Navi::throwPiki(Piki* piki, Vector3f& cursorPos)
 {
+	// Play throw sound.
 	mSoundObj->startSound(PSSE_PL_THROW, 0);
 
-	Vector3f pos = getPosition();
-	pos.z += -15.0f * cos(mFaceDir);
-	pos.x += -15.0f * sin(mFaceDir);
-	pos.y += 10.0f;
-	piki->setPosition(pos, false);
+	// Set piki start position, which is captain position + an offset:
+	// -- horizontally, 15 units 'behind' captain (based on face direction), and
+	// -- vertically, 10 units above captain.
+	Vector3f startPos = getPosition();
+	f32 cosTheta      = (f32)cos(mFaceDir);
+	f32 sinTheta      = (f32)sin(mFaceDir);
+	startPos          = startPos + Vector3f(-15.0f * sinTheta, 0.0f, -15.0f * cosTheta);
+	startPos.y += 10.0f;
+	piki->setPosition(startPos, false);
 
+	// Work out where we're meant to be going (distance and angle).
 	Vector3f pikiPos = piki->getPosition();
-	// some bullshit
+	Vector2f sepXZ   = Vector2f(cursorPos.x - pikiPos.x, cursorPos.z - pikiPos.z);
 
-	Vector3f vec(pikiPos.x, 0.0f, pikiPos.z);
-	f32 length = vec.normalise();
+	// How far away is the cursor from the piki, in the 2D plane? (i.e., x distance in a 2D motion problem)
+	f32 dist2D = pikmin2_sqrtf(sepXZ.x * sepXZ.x + sepXZ.y * sepXZ.y);
+	// How far do we have to rotate to aim there? (i.e., how much do we have to rotate our axes by to get a 2D motion problem)
+	f32 angDist = pikmin2_atan2f(sepXZ.x, sepXZ.y);
 
-	mPosition2 += vec * length;
-	mVelocity = mPosition2;
+	// Make sure piki is facing in its direction of travel.
+	piki->mFaceDir = roundAng(angDist);
+
+	// -- Calculate mechanics of flight. --
+	// We know where we want to be at the peak, and how long the arc should take.
+	// So, we should be able to work out what our initial velocity should be to get there.
+
+	// NaviParm p026 is 'landing time', i.e. total flight time, so time to peak is half that.
+	f32 timeToPeak = 0.5f * naviMgr->mNaviParms->mNaviParms.mP026.mValue;
+
+	// "Actual" height at peak is navi elevation + 10.0f + throwHeight, but this is fine for our mechanics, mostly.
+	f32 throwHeight = piki->getThrowHeight();
+
+	int pikiColor = piki->mPikiKind;
+
+	// If we're throwing a purple, travel time is 'half' as we stop at the peak (to pound).
+	// Effectively, makes purples have more initial velocity.
+	if (pikiColor == Purple) {
+		timeToPeak *= 0.5f;
+	}
+
+	// If you rearrange parabolic motion equations, y velocity is (y_peak + (g/2 * (t/2)^2)) / (t/2), if initial y pos is 0.
+	f32 ySpeed = timeToPeak * (0.5f * _aiConstants->mGravity.mData) + (throwHeight / timeToPeak);
+
+	// Idk why we use this rather than the navi parameter like before, but w/e.
+	// Back-calculate the time at peak given that the y velocity is 0 at the peak.
+	// So, 0 = -g * t + ySpeed  ==>  t = ySpeed / g
+	f32 newTimeToPeak = ySpeed / _aiConstants->mGravity.mData;
+
+	// Again, halve it for purples.
+	if (pikiColor == Purple) {
+		newTimeToPeak *= 0.5f;
+	}
+
+	// 'x' (2D plane) velocity is constant (no accel), so distance / time.
+	f32 xSpeed = dist2D / (2.0f * newTimeToPeak);
+
+	// Velocity to use in movement calcs needs to be in 3D, not 2D, so adjust XZ components.
+	piki->mSimVelocity = Vector3f(xSpeed * pikmin2_sinf(angDist), ySpeed, xSpeed * pikmin2_cosf(angDist));
+
+	// Add navi 'momentum' to piki (XZ) velocity - ignore y.
+	Vector3f momentum;
+	// Momentum is navi simulation velocity components, scaled by 1.0f.
+	//  -- I suspect devs toyed around with this value in development.
+	getScaledXZVec(momentum, mSimVelocity.x, mSimVelocity.z, 1.0f);
+	momentum.y = 0.0f;
+
+	// Normalise vector into just a 'direction' and grab the 'length' - this is just navi ground speed.
+	f32 magnitude = pikmin2_normalise(momentum);
+
+	// If Navi member 0x308 is greater than 0.0f, don't add momentum.
+	// Not sure what this is at the moment honestly.
+	if (_308 > 0.0f) {
+		magnitude = 0.0f;
+	}
+
+	// Adjust piki sim and real velocities.
+	piki->mSimVelocity += momentum * magnitude;
+	piki->mVelocity = piki->mSimVelocity;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)

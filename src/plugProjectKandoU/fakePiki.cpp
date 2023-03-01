@@ -27,7 +27,7 @@ FakePiki::FakePiki()
 	mBoundingSphere.mRadius = 8.5f;
 	mFaceDir                = 0.0f;
 	mPosition3              = Vector3f(0.0f);
-	mPosition2              = Vector3f(0.0f);
+	mSimVelocity            = Vector3f(0.0f);
 	mVelocity               = Vector3f(0.0f);
 	_1F0                    = Vector3f(0.0f);
 	mBoundAnimIdx           = IPikiAnims::NULLANIM;
@@ -54,7 +54,7 @@ void FakePiki::initFakePiki()
 	mPosition3      = Vector3f(0.0f);
 	mVelocity       = Vector3f(0.0f);
 	_1F0            = Vector3f(0.0f);
-	mPosition2      = Vector3f(0.0f);
+	mSimVelocity    = Vector3f(0.0f);
 	_248            = nullptr;
 
 	if (shadowMgr) {
@@ -2964,21 +2964,21 @@ f32 FakePiki::getFaceDir() { return mFaceDir; }
  * Address:	8013F63C
  * Size:	00001C
  */
-Vector3f FakePiki::getVelocity() { return mPosition2; }
+Vector3f FakePiki::getVelocity() { return mSimVelocity; }
 
 /*
  * --INFO--
  * Address:	8013F658
  * Size:	00001C
  */
-void FakePiki::setVelocity(Vector3f& velocity) { mPosition2 = velocity; }
+void FakePiki::setVelocity(Vector3f& velocity) { mSimVelocity = velocity; }
 
 /*
  * --INFO--
  * Address:	8013F674
  * Size:	00001C
  */
-void FakePiki::getVelocityAt(Vector3f& vec, Vector3f& velocity) { velocity = mPosition2; }
+void FakePiki::getVelocityAt(Vector3f& vec, Vector3f& velocity) { velocity = mSimVelocity; }
 
 /*
  * --INFO--

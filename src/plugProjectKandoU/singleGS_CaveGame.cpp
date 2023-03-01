@@ -2154,8 +2154,8 @@ void SingleGame::CaveState::onMovieDone(Game::SingleGameSection* game, Game::Mov
 			Vector3f temp = piki->getPosition();
 			temp.y        = mapMgr->getMinY(temp);
 			piki->setPosition(temp, false);
-			piki->mPosition2 = 0.0f; // seems odd, this might be another velocity, not position
-			piki->mVelocity  = 0.0f;
+			piki->mSimVelocity = 0.0f; // seems odd, this might be another velocity, not position
+			piki->mVelocity    = 0.0f;
 		}
 
 		if (!playData->isDemoFlag(DEMO_First_Cave_Enter)) {

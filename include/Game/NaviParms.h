@@ -32,7 +32,7 @@ struct NaviParms : public FakePikiParms {
 		Parm<f32> mP054;                // _5A8
 		Parm<f32> mQ000;                // _5D0
 		Parm<f32> mQ001;                // _5F8
-		Parm<f32> mP026;                // _620
+		Parm<f32> mP026;                // _620 // 'landing time'
 		Parm<f32> mP037;                // _648
 		Parm<int> mP042;                // _670
 		Parm<f32> _698;                 // _698

@@ -210,8 +210,8 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 	switch (keyEvent.mType) {
 	case KEYEVENT_2:
 		if (_54) {
-			mParent->mPosition2 = Vector3f(0.0f);
-			mParent->mVelocity  = Vector3f(0.0f);
+			mParent->mSimVelocity = Vector3f(0.0f);
+			mParent->mVelocity    = Vector3f(0.0f);
 		}
 		break;
 

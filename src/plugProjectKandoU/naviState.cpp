@@ -5139,9 +5139,9 @@ void NaviFollowState::exec(Navi* navi)
 							}
 						}
 					} else {
-						float dx   = targetNavi->mPosition2.x;
-						float dy   = targetNavi->mPosition2.y;
-						float dz   = targetNavi->mPosition2.z;
+						float dx   = targetNavi->mSimVelocity.x;
+						float dy   = targetNavi->mSimVelocity.y;
+						float dz   = targetNavi->mSimVelocity.z;
 						float dist = dx * dx + dy * dy + dz * dz;
 						if (dist > 0.0f) {
 							dist = (1.0 / SQRT(dist)) * dist;
