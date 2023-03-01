@@ -76,7 +76,8 @@ struct TParse_TBlock_object {
 	struct TData {
 		int _00;        // _00
 		int _04;        // _04
-		int _08;        // _08
+		u16 _08;        // _08
+		u16 _0A;        // _0A
 		const char _0C; // _0C
 	};
 	TData* filedata;

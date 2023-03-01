@@ -104,22 +104,17 @@ TObject::TObject(unsigned long p1, void const* id, unsigned long idLength)
  * Size:	000070
  */
 TObject::TObject(data::TParse_TBlock_object const& block)
-    : JStudio::object::TObject_ID((u32*)block.filedata + 3, block.filedata[2])
+    : JStudio::object::TObject_ID((u32*)block.filedata + 3, block.filedata->_0A)
 {
-	// idString_0x0      = (u32*)block.filedata + 3;
-	// lengthInBytes_0x4 = block.filedata[2]; // should be short 0xa
-	_0C.mPrev      = 0;
-	_0C.mNext      = 0;
 	pControl       = nullptr;
-	signature      = block.filedata[1];
-	mFlag          = block.filedata[2]; // should be short 0x8
+	signature      = block.filedata->_04;
+	mFlag          = block.filedata->_08;
 	bSequence_     = false;
 	_20            = 0;
 	pSequence      = nullptr;
-	pSequence_next = nullptr; //(int)iVar2 + (*(u16 *)((int)iVar2 + 10) + 3 &
-	                          // 0xfffffffc) + 0xc; this crap
-	u32Wait_ = 0;
-	mStatus  = STATUS_STILL;
+	pSequence_next = &((u32*)&block.filedata[block.filedata->_0A + 3])[3]; // close
+	u32Wait_       = 0;
+	mStatus        = STATUS_STILL;
 	/*
 	lwz      r8, 0(r4)
 	lis      r4, __vt__Q37JStudio3stb7TObject@ha
