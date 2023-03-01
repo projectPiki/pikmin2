@@ -5,7 +5,7 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A20F0:
+.obj lbl_804A20F0, local
 	.4byte .L_80081300
 	.4byte .L_800811EC
 	.4byte .L_80081240
@@ -18,7 +18,8 @@ lbl_804A20F0:
 	.4byte .L_80081270
 	.4byte .L_800812B4
 	.4byte .L_800812B4
-lbl_804A2120:
+.endobj lbl_804A20F0
+.obj lbl_804A2120, local
 	.4byte .L_80081440
 	.4byte .L_8008139C
 	.4byte .L_800813B0
@@ -31,7 +32,8 @@ lbl_804A2120:
 	.4byte .L_800813E0
 	.4byte .L_800813F4
 	.4byte .L_800813F4
-lbl_804A2150:
+.endobj lbl_804A2120
+.obj lbl_804A2150, local
 	.4byte .L_80081570
 	.4byte .L_800814D8
 	.4byte .L_800814F4
@@ -44,7 +46,8 @@ lbl_804A2150:
 	.4byte .L_8008151C
 	.4byte .L_80081538
 	.4byte .L_80081538
-lbl_804A2180:
+.endobj lbl_804A2150
+.obj lbl_804A2180, local
 	.4byte .L_80081688
 	.4byte .L_80081618
 	.4byte .L_80081634
@@ -57,8 +60,8 @@ lbl_804A2180:
 	.4byte .L_80081650
 	.4byte .L_8008166C
 	.4byte .L_8008166C
-.global __vt__14J3DPEBlockFull
-__vt__14J3DPEBlockFull:
+.endobj lbl_804A2180
+.obj __vt__14J3DPEBlockFull, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__14J3DPEBlockFullFP10J3DPEBlock
@@ -90,8 +93,8 @@ __vt__14J3DPEBlockFull:
 	.4byte getFogOffset__14J3DPEBlockFullCFv
 	.4byte setFogOffset__14J3DPEBlockFullFUl
 	.4byte __dt__14J3DPEBlockFullFv
-.global __vt__16J3DPEBlockFogOff
-__vt__16J3DPEBlockFogOff:
+.endobj __vt__14J3DPEBlockFull
+.obj __vt__16J3DPEBlockFogOff, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__16J3DPEBlockFogOffFP10J3DPEBlock
@@ -123,8 +126,8 @@ __vt__16J3DPEBlockFogOff:
 	.4byte getFogOffset__10J3DPEBlockCFv
 	.4byte setFogOffset__10J3DPEBlockFUl
 	.4byte __dt__16J3DPEBlockFogOffFv
-.global __vt__13J3DTevBlock16
-__vt__13J3DTevBlock16:
+.endobj __vt__16J3DPEBlockFogOff
+.obj __vt__13J3DTevBlock16, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__13J3DTevBlock16FP11J3DTevBlock
@@ -180,8 +183,8 @@ __vt__13J3DTevBlock16:
 	.4byte setTexNoOffset__11J3DTevBlockFUl
 	.4byte setTevRegOffset__13J3DTevBlock16FUl
 	.4byte __dt__13J3DTevBlock16Fv
-.global __vt__12J3DTevBlock4
-__vt__12J3DTevBlock4:
+.endobj __vt__13J3DTevBlock16
+.obj __vt__12J3DTevBlock4, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__12J3DTevBlock4FP11J3DTevBlock
@@ -237,8 +240,8 @@ __vt__12J3DTevBlock4:
 	.4byte setTexNoOffset__11J3DTevBlockFUl
 	.4byte setTevRegOffset__12J3DTevBlock4FUl
 	.4byte __dt__12J3DTevBlock4Fv
-.global __vt__12J3DTevBlock2
-__vt__12J3DTevBlock2:
+.endobj __vt__12J3DTevBlock4
+.obj __vt__12J3DTevBlock2, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__12J3DTevBlock2FP11J3DTevBlock
@@ -294,8 +297,8 @@ __vt__12J3DTevBlock2:
 	.4byte setTexNoOffset__11J3DTevBlockFUl
 	.4byte setTevRegOffset__12J3DTevBlock2FUl
 	.4byte __dt__12J3DTevBlock2Fv
-.global __vt__12J3DTevBlock1
-__vt__12J3DTevBlock1:
+.endobj __vt__12J3DTevBlock2
+.obj __vt__12J3DTevBlock1, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__12J3DTevBlock1FP11J3DTevBlock
@@ -351,8 +354,8 @@ __vt__12J3DTevBlock1:
 	.4byte setTexNoOffset__11J3DTevBlockFUl
 	.4byte setTevRegOffset__11J3DTevBlockFUl
 	.4byte __dt__12J3DTevBlock1Fv
-.global __vt__18J3DTevBlockPatched
-__vt__18J3DTevBlockPatched:
+.endobj __vt__12J3DTevBlock1
+.obj __vt__18J3DTevBlockPatched, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__18J3DTevBlockPatchedFP11J3DTevBlock
@@ -408,8 +411,8 @@ __vt__18J3DTevBlockPatched:
 	.4byte setTexNoOffset__11J3DTevBlockFUl
 	.4byte setTevRegOffset__18J3DTevBlockPatchedFUl
 	.4byte __dt__18J3DTevBlockPatchedFv
-.global __vt__19J3DTexGenBlockBasic
-__vt__19J3DTexGenBlockBasic:
+.endobj __vt__18J3DTevBlockPatched
+.obj __vt__19J3DTexGenBlockBasic, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__19J3DTexGenBlockBasicFP14J3DTexGenBlock
@@ -437,8 +440,8 @@ __vt__19J3DTexGenBlockBasic:
 	.4byte getTexMtxOffset__21J3DTexGenBlockPatchedCFv
 	.4byte setTexMtxOffset__21J3DTexGenBlockPatchedFUl
 	.4byte __dt__19J3DTexGenBlockBasicFv
-.global __vt__15J3DTexGenBlock4
-__vt__15J3DTexGenBlock4:
+.endobj __vt__19J3DTexGenBlockBasic
+.obj __vt__15J3DTexGenBlock4, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__15J3DTexGenBlock4FP14J3DTexGenBlock
@@ -466,8 +469,8 @@ __vt__15J3DTexGenBlock4:
 	.4byte getTexMtxOffset__21J3DTexGenBlockPatchedCFv
 	.4byte setTexMtxOffset__21J3DTexGenBlockPatchedFUl
 	.4byte __dt__15J3DTexGenBlock4Fv
-.global __vt__21J3DTexGenBlockPatched
-__vt__21J3DTexGenBlockPatched:
+.endobj __vt__15J3DTexGenBlock4
+.obj __vt__21J3DTexGenBlockPatched, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__21J3DTexGenBlockPatchedFP14J3DTexGenBlock
@@ -495,8 +498,8 @@ __vt__21J3DTexGenBlockPatched:
 	.4byte getTexMtxOffset__21J3DTexGenBlockPatchedCFv
 	.4byte setTexMtxOffset__21J3DTexGenBlockPatchedFUl
 	.4byte __dt__21J3DTexGenBlockPatchedFv
-.global __vt__20J3DColorBlockLightOn
-__vt__20J3DColorBlockLightOn:
+.endobj __vt__21J3DTexGenBlockPatched
+.obj __vt__20J3DColorBlockLightOn, global
 	.4byte 0
 	.4byte 0
 	.4byte load__20J3DColorBlockLightOnFv
@@ -531,8 +534,8 @@ __vt__20J3DColorBlockLightOn:
 	.4byte setMatColorOffset__20J3DColorBlockLightOnFUl
 	.4byte setColorChanOffset__20J3DColorBlockLightOnFUl
 	.4byte __dt__20J3DColorBlockLightOnFv
-.global __vt__22J3DColorBlockAmbientOn
-__vt__22J3DColorBlockAmbientOn:
+.endobj __vt__20J3DColorBlockLightOn
+.obj __vt__22J3DColorBlockAmbientOn, global
 	.4byte 0
 	.4byte 0
 	.4byte load__22J3DColorBlockAmbientOnFv
@@ -567,8 +570,8 @@ __vt__22J3DColorBlockAmbientOn:
 	.4byte setMatColorOffset__21J3DColorBlockLightOffFUl
 	.4byte setColorChanOffset__21J3DColorBlockLightOffFUl
 	.4byte __dt__22J3DColorBlockAmbientOnFv
-.global __vt__13J3DPEBlockXlu
-__vt__13J3DPEBlockXlu:
+.endobj __vt__22J3DColorBlockAmbientOn
+.obj __vt__13J3DPEBlockXlu, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__10J3DPEBlockFP10J3DPEBlock
@@ -600,8 +603,8 @@ __vt__13J3DPEBlockXlu:
 	.4byte getFogOffset__10J3DPEBlockCFv
 	.4byte setFogOffset__10J3DPEBlockFUl
 	.4byte __dt__13J3DPEBlockXluFv
-.global __vt__17J3DPEBlockTexEdge
-__vt__17J3DPEBlockTexEdge:
+.endobj __vt__13J3DPEBlockXlu
+.obj __vt__17J3DPEBlockTexEdge, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__10J3DPEBlockFP10J3DPEBlock
@@ -633,8 +636,8 @@ __vt__17J3DPEBlockTexEdge:
 	.4byte getFogOffset__10J3DPEBlockCFv
 	.4byte setFogOffset__10J3DPEBlockFUl
 	.4byte __dt__17J3DPEBlockTexEdgeFv
-.global __vt__13J3DPEBlockOpa
-__vt__13J3DPEBlockOpa:
+.endobj __vt__17J3DPEBlockTexEdge
+.obj __vt__13J3DPEBlockOpa, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__10J3DPEBlockFP10J3DPEBlock
@@ -666,8 +669,8 @@ __vt__13J3DPEBlockOpa:
 	.4byte getFogOffset__10J3DPEBlockCFv
 	.4byte setFogOffset__10J3DPEBlockFUl
 	.4byte __dt__13J3DPEBlockOpaFv
-.global __vt__15J3DIndBlockFull
-__vt__15J3DIndBlockFull:
+.endobj __vt__13J3DPEBlockOpa
+.obj __vt__15J3DIndBlockFull, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__15J3DIndBlockFullFP11J3DIndBlock
@@ -687,8 +690,8 @@ __vt__15J3DIndBlockFull:
 	.4byte setIndTexCoordScale__15J3DIndBlockFullFUl19J3DIndTexCoordScale
 	.4byte getIndTexCoordScale__15J3DIndBlockFullFUl
 	.4byte __dt__15J3DIndBlockFullFv
-.global __vt__11J3DTevBlock
-__vt__11J3DTevBlock:
+.endobj __vt__15J3DIndBlockFull
+.obj __vt__11J3DTevBlock, global
 	.4byte 0
 	.4byte 0
 	.4byte reset__11J3DTevBlockFP11J3DTevBlock
@@ -744,8 +747,8 @@ __vt__11J3DTevBlock:
 	.4byte setTexNoOffset__11J3DTevBlockFUl
 	.4byte setTevRegOffset__11J3DTevBlockFUl
 	.4byte __dt__11J3DTevBlockFv
-.global __vt__21J3DColorBlockLightOff
-__vt__21J3DColorBlockLightOff:
+.endobj __vt__11J3DTevBlock
+.obj __vt__21J3DColorBlockLightOff, global
 	.4byte 0
 	.4byte 0
 	.4byte load__21J3DColorBlockLightOffFv
@@ -780,27 +783,28 @@ __vt__21J3DColorBlockLightOff:
 	.4byte setMatColorOffset__21J3DColorBlockLightOffFUl
 	.4byte setColorChanOffset__21J3DColorBlockLightOffFUl
 	.4byte __dt__21J3DColorBlockLightOffFv
+.endobj __vt__21J3DColorBlockLightOff
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global SizeOfLoadMatColors
-SizeOfLoadMatColors:
+.obj SizeOfLoadMatColors, local
 	.4byte 0xd
-.global SizeOfLoadAmbColors
-SizeOfLoadAmbColors:
+.endobj SizeOfLoadMatColors
+.obj SizeOfLoadAmbColors, local
 	.4byte 0xd
-.global SizeOfLoadColorChans
-SizeOfLoadColorChans:
+.endobj SizeOfLoadAmbColors
+.obj SizeOfLoadColorChans, local
 	.4byte 0x15
+.endobj SizeOfLoadColorChans
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global SizeOfJ3DColorBlockLightOffLoad
-SizeOfJ3DColorBlockLightOffLoad:
+.obj SizeOfJ3DColorBlockLightOffLoad, local
 	.skip 0x4
-.global SizeOfJ3DColorBlockAmbientOnLoad
-SizeOfJ3DColorBlockAmbientOnLoad:
+.endobj SizeOfJ3DColorBlockLightOffLoad
+.obj SizeOfJ3DColorBlockAmbientOnLoad, local
 	.skip 0x4
+.endobj SizeOfJ3DColorBlockAmbientOnLoad
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

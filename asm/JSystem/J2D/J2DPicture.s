@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__10J2DPicture
-__vt__10J2DPicture:
+.obj __vt__10J2DPicture, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__10J2DPictureFv
@@ -86,25 +85,30 @@ __vt__10J2DPicture:
 	.4byte drawFullSet__10J2DPictureFffffPA3_A4_f
 	.4byte drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f
 	.4byte getUsableTlut__10J2DPictureFUc
+.endobj __vt__10J2DPicture
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805167F0:
+.obj lbl_805167F0, local
 	.float 1.0
+.endobj lbl_805167F0
 .balign 8
-lbl_805167F8:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80516800:
+.obj lbl_805167F8, local
+	.8byte 0x4330000000000000
+.endobj lbl_805167F8
+.obj lbl_80516800, local
 	.float 0.0
+.endobj lbl_80516800
 .balign 8
-lbl_80516808:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80516810:
+.obj lbl_80516808, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516808
+.obj lbl_80516810, local
 	.float 255.0
-lbl_80516814:
+.endobj lbl_80516810
+.obj lbl_80516814, local
 	.float 0.5
+.endobj lbl_80516814
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10J2DPictureFv

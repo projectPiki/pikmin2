@@ -343,8 +343,7 @@
 .endobj __vt__14J2DTexGenBlock
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global initialize__13J2DColorBlockFv
-initialize__13J2DColorBlockFv:
+.fn initialize__13J2DColorBlockFv, global
 /* 80049B20 00046A60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049B24 00046A64  38 80 00 02 */	li r4, 2
 /* 80049B28 00046A68  81 22 85 AC */	lwz r9, j2dDefaultColInfo@sda21(r2)
@@ -388,9 +387,9 @@ initialize__13J2DColorBlockFv:
 /* 80049BC0 00046B00  98 03 00 12 */	stb r0, 0x12(r3)
 /* 80049BC4 00046B04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80049BC8 00046B08  4E 80 00 20 */	blr 
+.endfn initialize__13J2DColorBlockFv
 
-.global setGX__13J2DColorBlockFv
-setGX__13J2DColorBlockFv:
+.fn setGX__13J2DColorBlockFv, global
 /* 80049BCC 00046B0C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80049BD0 00046B10  7C 08 02 A6 */	mflr r0
 /* 80049BD4 00046B14  90 01 00 34 */	stw r0, 0x34(r1)
@@ -455,9 +454,9 @@ setGX__13J2DColorBlockFv:
 /* 80049CB4 00046BF4  7C 08 03 A6 */	mtlr r0
 /* 80049CB8 00046BF8  38 21 00 30 */	addi r1, r1, 0x30
 /* 80049CBC 00046BFC  4E 80 00 20 */	blr 
+.endfn setGX__13J2DColorBlockFv
 
-.global initialize__14J2DTexGenBlockFv
-initialize__14J2DTexGenBlockFv:
+.fn initialize__14J2DTexGenBlockFv, global
 /* 80049CC0 00046C00  38 A0 00 00 */	li r5, 0
 /* 80049CC4 00046C04  3C 80 80 48 */	lis r4, j2dDefaultTexCoordInfo@ha
 /* 80049CC8 00046C08  90 A3 00 00 */	stw r5, 0(r3)
@@ -518,9 +517,9 @@ initialize__14J2DTexGenBlockFv:
 /* 80049DA4 00046CE4  90 A3 00 3C */	stw r5, 0x3c(r3)
 /* 80049DA8 00046CE8  90 A3 00 40 */	stw r5, 0x40(r3)
 /* 80049DAC 00046CEC  4E 80 00 20 */	blr 
+.endfn initialize__14J2DTexGenBlockFv
 
-.global setGX__14J2DTexGenBlockFv
-setGX__14J2DTexGenBlockFv:
+.fn setGX__14J2DTexGenBlockFv, global
 /* 80049DB0 00046CF0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80049DB4 00046CF4  7C 08 02 A6 */	mflr r0
 /* 80049DB8 00046CF8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -571,9 +570,9 @@ setGX__14J2DTexGenBlockFv:
 /* 80049E58 00046D98  7C 08 03 A6 */	mtlr r0
 /* 80049E5C 00046D9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80049E60 00046DA0  4E 80 00 20 */	blr 
+.endfn setGX__14J2DTexGenBlockFv
 
-.global __dt__14J2DTexGenBlockFv
-__dt__14J2DTexGenBlockFv:
+.fn __dt__14J2DTexGenBlockFv, global
 /* 80049E64 00046DA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80049E68 00046DA8  7C 08 02 A6 */	mflr r0
 /* 80049E6C 00046DAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -613,9 +612,9 @@ __dt__14J2DTexGenBlockFv:
 /* 80049EE8 00046E28  7C 08 03 A6 */	mtlr r0
 /* 80049EEC 00046E2C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80049EF0 00046E30  4E 80 00 20 */	blr 
+.endfn __dt__14J2DTexGenBlockFv
 
-.global setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
-setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx:
+.fn setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx, global
 /* 80049EF4 00046E34  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80049EF8 00046E38  7C 08 02 A6 */	mflr r0
 /* 80049EFC 00046E3C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -706,9 +705,9 @@ setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx:
 /* 8004A040 00046F80  7C 08 03 A6 */	mtlr r0
 /* 8004A044 00046F84  38 21 00 40 */	addi r1, r1, 0x40
 /* 8004A048 00046F88  4E 80 00 20 */	blr 
+.endfn setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
 
-.global getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
-getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx:
+.fn getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx, global
 /* 8004A04C 00046F8C  54 80 10 3A */	slwi r0, r4, 2
 /* 8004A050 00046F90  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004A054 00046F94  7C 63 02 14 */	add r3, r3, r0
@@ -756,19 +755,19 @@ getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx:
 .L_8004A0FC:
 /* 8004A0FC 0004703C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004A100 00047040  4E 80 00 20 */	blr 
+.endfn getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
 
-.global getTexture__11J2DTevBlockFUl
-getTexture__11J2DTevBlockFUl:
+.fn getTexture__11J2DTevBlockFUl, global
 /* 8004A104 00047044  38 60 00 00 */	li r3, 0
 /* 8004A108 00047048  4E 80 00 20 */	blr 
+.endfn getTexture__11J2DTevBlockFUl
 
-.global getPalette__11J2DTevBlockFUl
-getPalette__11J2DTevBlockFUl:
+.fn getPalette__11J2DTevBlockFUl, global
 /* 8004A10C 0004704C  38 60 00 00 */	li r3, 0
 /* 8004A110 00047050  4E 80 00 20 */	blr 
+.endfn getPalette__11J2DTevBlockFUl
 
-.global __ct__12J2DTevBlock1Fv
-__ct__12J2DTevBlock1Fv:
+.fn __ct__12J2DTevBlock1Fv, global
 /* 8004A114 00047054  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004A118 00047058  7C 08 02 A6 */	mflr r0
 /* 8004A11C 0004705C  3C 80 80 4A */	lis r4, __vt__11J2DTevBlock@ha
@@ -836,9 +835,9 @@ __ct__12J2DTevBlock1Fv:
 /* 8004A214 00047154  7C 08 03 A6 */	mtlr r0
 /* 8004A218 00047158  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004A21C 0004715C  4E 80 00 20 */	blr 
+.endfn __ct__12J2DTevBlock1Fv
 
-.global __ct__14J2DIndTevStageFv
-__ct__14J2DIndTevStageFv:
+.fn __ct__14J2DIndTevStageFv, weak
 /* 8004A220 00047160  3C 80 80 48 */	lis r4, j2dDefaultIndTevStageInfo@ha
 /* 8004A224 00047164  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004A228 00047168  38 A4 86 BC */	addi r5, r4, j2dDefaultIndTevStageInfo@l
@@ -876,19 +875,19 @@ __ct__14J2DIndTevStageFv:
 /* 8004A2A8 000471E8  90 03 00 00 */	stw r0, 0(r3)
 /* 8004A2AC 000471EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004A2B0 000471F0  4E 80 00 20 */	blr 
+.endfn __ct__14J2DIndTevStageFv
 
-.global __ct__19J2DTevSwapModeTableFv
-__ct__19J2DTevSwapModeTableFv:
+.fn __ct__19J2DTevSwapModeTableFv, weak
 /* 8004A2B4 000471F4  88 02 85 DC */	lbz r0, j2dDefaultTevSwapTable@sda21(r2)
 /* 8004A2B8 000471F8  98 03 00 00 */	stb r0, 0(r3)
 /* 8004A2BC 000471FC  4E 80 00 20 */	blr 
+.endfn __ct__19J2DTevSwapModeTableFv
 
-.global __ct__13J2DGXColorS10Fv
-__ct__13J2DGXColorS10Fv:
+.fn __ct__13J2DGXColorS10Fv, weak
 /* 8004A2C0 00047200  4E 80 00 20 */	blr 
+.endfn __ct__13J2DGXColorS10Fv
 
-.global __ct__11J2DTevOrderFv
-__ct__11J2DTevOrderFv:
+.fn __ct__11J2DTevOrderFv, weak
 /* 8004A2C4 00047204  88 02 85 B0 */	lbz r0, j2dDefaultTevOrderInfoNull@sda21(r2)
 /* 8004A2C8 00047208  38 82 85 B0 */	addi r4, r2, j2dDefaultTevOrderInfoNull@sda21
 /* 8004A2CC 0004720C  98 03 00 00 */	stb r0, 0(r3)
@@ -897,9 +896,9 @@ __ct__11J2DTevOrderFv:
 /* 8004A2D8 00047218  88 04 00 02 */	lbz r0, 2(r4)
 /* 8004A2DC 0004721C  98 03 00 02 */	stb r0, 2(r3)
 /* 8004A2E0 00047220  4E 80 00 20 */	blr 
+.endfn __ct__11J2DTevOrderFv
 
-.global __dt__11J2DTevBlockFv
-__dt__11J2DTevBlockFv:
+.fn __dt__11J2DTevBlockFv, weak
 /* 8004A2E4 00047224  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004A2E8 00047228  7C 08 02 A6 */	mflr r0
 /* 8004A2EC 0004722C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -919,9 +918,9 @@ __dt__11J2DTevBlockFv:
 /* 8004A320 00047260  7C 08 03 A6 */	mtlr r0
 /* 8004A324 00047264  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004A328 00047268  4E 80 00 20 */	blr 
+.endfn __dt__11J2DTevBlockFv
 
-.global __dt__12J2DTevBlock1Fv
-__dt__12J2DTevBlock1Fv:
+.fn __dt__12J2DTevBlock1Fv, global
 /* 8004A32C 0004726C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004A330 00047270  7C 08 02 A6 */	mflr r0
 /* 8004A334 00047274  90 01 00 14 */	stw r0, 0x14(r1)
@@ -972,9 +971,9 @@ __dt__12J2DTevBlock1Fv:
 /* 8004A3D8 00047318  7C 08 03 A6 */	mtlr r0
 /* 8004A3DC 0004731C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004A3E0 00047320  4E 80 00 20 */	blr 
+.endfn __dt__12J2DTevBlock1Fv
 
-.global initialize__12J2DTevBlock1Fv
-initialize__12J2DTevBlock1Fv:
+.fn initialize__12J2DTevBlock1Fv, global
 /* 8004A3E4 00047324  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004A3E8 00047328  38 C2 85 B8 */	addi r6, r2, j2dDefaultTevColor@sda21
 /* 8004A3EC 0004732C  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
@@ -1134,9 +1133,9 @@ initialize__12J2DTevBlock1Fv:
 /* 8004A650 00047590  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 8004A654 00047594  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004A658 00047598  4E 80 00 20 */	blr 
+.endfn initialize__12J2DTevBlock1Fv
 
-.global prepareTexture__12J2DTevBlock1FUc
-prepareTexture__12J2DTevBlock1FUc:
+.fn prepareTexture__12J2DTevBlock1FUc, global
 /* 8004A65C 0004759C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004A660 000475A0  7C 08 02 A6 */	mflr r0
 /* 8004A664 000475A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1189,6 +1188,7 @@ prepareTexture__12J2DTevBlock1FUc:
 /* 8004A70C 0004764C  7C 08 03 A6 */	mtlr r0
 /* 8004A710 00047650  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004A714 00047654  4E 80 00 20 */	blr 
+.endfn prepareTexture__12J2DTevBlock1FUc
 
 .global insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette
 insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette:

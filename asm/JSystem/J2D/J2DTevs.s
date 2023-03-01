@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global j2dDefaultTexCoordInfo
-j2dDefaultTexCoordInfo:
+.obj j2dDefaultTexCoordInfo, global
 	.4byte 0x01043C00
 	.4byte 0x01053C00
 	.4byte 0x01063C00
@@ -11,8 +10,8 @@ j2dDefaultTexCoordInfo:
 	.4byte 0x01093C00
 	.4byte 0x010A3C00
 	.4byte 0x010B3C00
-.global j2dDefaultTexMtxInfo
-j2dDefaultTexMtxInfo:
+.endobj j2dDefaultTexCoordInfo
+.obj j2dDefaultTexMtxInfo, global
 	.4byte 0x0101FFFF
 	.float 0.5
 	.float 0.5
@@ -22,8 +21,8 @@ j2dDefaultTexMtxInfo:
 	.float 0.0
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global j2dDefaultIndTexMtxInfo
-j2dDefaultIndTexMtxInfo:
+.endobj j2dDefaultTexMtxInfo
+.obj j2dDefaultIndTexMtxInfo, global
 	.float 0.5
 	.float 0.0
 	.float 0.0
@@ -31,75 +30,84 @@ j2dDefaultIndTexMtxInfo:
 	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x01000000
-.global j2dDefaultTevStageInfo
-j2dDefaultTevStageInfo:
+.endobj j2dDefaultIndTexMtxInfo
+.obj j2dDefaultTevStageInfo, global
 	.4byte 0x040A0F0F
 	.4byte 0x00000000
 	.4byte 0x01000507
 	.4byte 0x07000000
 	.4byte 0x00010000
-.global j2dDefaultIndTevStageInfo
-j2dDefaultIndTevStageInfo:
+.endobj j2dDefaultTevStageInfo
+.obj j2dDefaultIndTevStageInfo, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj j2dDefaultIndTevStageInfo
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805168F8: # pi
+.obj lbl_805168F8, local # pi
 	.float 3.1415927
-lbl_805168FC:
+.endobj lbl_805168F8
+.obj lbl_805168FC, local
 	.float 180.0
-lbl_80516900:
+.endobj lbl_805168FC
+.obj lbl_80516900, local
 	.float 0.0
-lbl_80516904:
+.endobj lbl_80516900
+.obj lbl_80516904, local
 	.float 1.0
-lbl_80516908:
+.endobj lbl_80516904
+.obj lbl_80516908, local
 	.float 0.5
-.global j2dDefaultColInfo
-j2dDefaultColInfo:
+.endobj lbl_80516908
+.obj j2dDefaultColInfo, global
 	.4byte 0xFFFFFFFF
-.global j2dDefaultTevOrderInfoNull
-j2dDefaultTevOrderInfoNull:
+.endobj j2dDefaultColInfo
+.obj j2dDefaultTevOrderInfoNull, global
 	.4byte 0xFFFFFF00
-.global j2dDefaultIndTexOrderNull
-j2dDefaultIndTexOrderNull:
-	.4byte 0xFFFF0000
-.global j2dDefaultTevColor
-j2dDefaultTevColor:
+.endobj j2dDefaultTevOrderInfoNull
+.obj j2dDefaultIndTexOrderNull, global
+	.2byte 0xFFFF
+.endobj j2dDefaultIndTexOrderNull
+.balign 4
+.obj j2dDefaultTevColor, global
 	.4byte 0x00FF00FF
 	.4byte 0x00FF00FF
-.global j2dDefaultIndTexCoordScaleInfo
-j2dDefaultIndTexCoordScaleInfo:
-	.4byte 0x00000000
-.global j2dDefaultTevKColor
-j2dDefaultTevKColor:
+.endobj j2dDefaultTevColor
+.obj j2dDefaultIndTexCoordScaleInfo, global
+	.2byte 0x0000
+.endobj j2dDefaultIndTexCoordScaleInfo
+.balign 4
+.obj j2dDefaultTevKColor, global
 	.4byte 0xFFFFFFFF
-.global j2dDefaultTevSwapMode
-j2dDefaultTevSwapMode:
+.endobj j2dDefaultTevKColor
+.obj j2dDefaultTevSwapMode, global
 	.4byte 0x00000000
-.global j2dDefaultTevSwapModeTable
-j2dDefaultTevSwapModeTable:
+.endobj j2dDefaultTevSwapMode
+.obj j2dDefaultTevSwapModeTable, global
 	.4byte 0x00010203
-.global j2dDefaultBlendInfo
-j2dDefaultBlendInfo:
+.endobj j2dDefaultTevSwapModeTable
+.obj j2dDefaultBlendInfo, global
 	.4byte 0x01040505
-.global j2dDefaultDither
-j2dDefaultDither:
-	.4byte 0x00000000
-.global j2dDefaultColorChanInfo
-j2dDefaultColorChanInfo:
+.endobj j2dDefaultBlendInfo
+.obj j2dDefaultDither, global
+	.byte 0
+.endobj j2dDefaultDither
+.balign 4
+.obj j2dDefaultColorChanInfo, global
 	.4byte 0x00030000
-.global j2dDefaultTevSwapTable
-j2dDefaultTevSwapTable:
-	.2byte 0x1B00
-.global j2dDefaultAlphaCmp
-j2dDefaultAlphaCmp:
+.endobj j2dDefaultColorChanInfo
+.obj j2dDefaultTevSwapTable, global
+	.byte 0x1B
+.endobj j2dDefaultTevSwapTable
+.balign 2
+.obj j2dDefaultAlphaCmp, global
 	.2byte 0x00E7
+.endobj j2dDefaultAlphaCmp
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global load__9J2DTexMtxFUl
-load__9J2DTexMtxFUl:
+.fn load__9J2DTexMtxFUl, global
 /* 8005921C 0005615C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80059220 00056160  7C 08 02 A6 */	mflr r0
 /* 80059224 00056164  1C 84 00 03 */	mulli r4, r4, 3
@@ -112,9 +120,9 @@ load__9J2DTexMtxFUl:
 /* 80059240 00056180  7C 08 03 A6 */	mtlr r0
 /* 80059244 00056184  38 21 00 10 */	addi r1, r1, 0x10
 /* 80059248 00056188  4E 80 00 20 */	blr 
+.endfn load__9J2DTexMtxFUl
 
-.global calc__9J2DTexMtxFv
-calc__9J2DTexMtxFv:
+.fn calc__9J2DTexMtxFv, global
 /* 8005924C 0005618C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80059250 00056190  7C 08 02 A6 */	mflr r0
 /* 80059254 00056194  90 01 00 24 */	stw r0, 0x24(r1)
@@ -143,9 +151,9 @@ calc__9J2DTexMtxFv:
 /* 800592A8 000561E8  7C 08 03 A6 */	mtlr r0
 /* 800592AC 000561EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800592B0 000561F0  4E 80 00 20 */	blr 
+.endfn calc__9J2DTexMtxFv
 
-.global getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f
-getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f:
+.fn getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f, global
 /* 800592B4 000561F4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800592B8 000561F8  7C 08 02 A6 */	mflr r0
 /* 800592BC 000561FC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -246,9 +254,9 @@ getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f:
 /* 80059438 00056378  7C 08 03 A6 */	mtlr r0
 /* 8005943C 0005637C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80059440 00056380  4E 80 00 20 */	blr 
+.endfn getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f
 
-.global getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f
-getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f:
+.fn getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f, global
 /* 80059444 00056384  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80059448 00056388  7C 08 02 A6 */	mflr r0
 /* 8005944C 0005638C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -345,9 +353,9 @@ getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f:
 /* 800595B8 000564F8  7C 08 03 A6 */	mtlr r0
 /* 800595BC 000564FC  38 21 00 30 */	addi r1, r1, 0x30
 /* 800595C0 00056500  4E 80 00 20 */	blr 
+.endfn getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f
 
-.global load__14J2DIndTevStageFUc
-load__14J2DIndTevStageFUc:
+.fn load__14J2DIndTevStageFUc, global
 /* 800595C4 00056504  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800595C8 00056508  7C 08 02 A6 */	mflr r0
 /* 800595CC 0005650C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -369,9 +377,9 @@ load__14J2DIndTevStageFUc:
 /* 8005960C 0005654C  7C 08 03 A6 */	mtlr r0
 /* 80059610 00056550  38 21 00 10 */	addi r1, r1, 0x10
 /* 80059614 00056554  4E 80 00 20 */	blr 
+.endfn load__14J2DIndTevStageFUc
 
-.global load__12J2DIndTexMtxFUc
-load__12J2DIndTexMtxFUc:
+.fn load__12J2DIndTexMtxFUc, global
 /* 80059618 00056558  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005961C 0005655C  7C 08 02 A6 */	mflr r0
 /* 80059620 00056560  54 86 06 3E */	clrlwi r6, r4, 0x18
@@ -384,9 +392,9 @@ load__12J2DIndTexMtxFUc:
 /* 8005963C 0005657C  7C 08 03 A6 */	mtlr r0
 /* 80059640 00056580  38 21 00 10 */	addi r1, r1, 0x10
 /* 80059644 00056584  4E 80 00 20 */	blr 
+.endfn load__12J2DIndTexMtxFUc
 
-.global load__19J2DIndTexCoordScaleFUc
-load__19J2DIndTexCoordScaleFUc:
+.fn load__19J2DIndTexCoordScaleFUc, global
 /* 80059648 00056588  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005964C 0005658C  7C 08 02 A6 */	mflr r0
 /* 80059650 00056590  7C 65 1B 78 */	mr r5, r3
@@ -399,9 +407,9 @@ load__19J2DIndTexCoordScaleFUc:
 /* 8005966C 000565AC  7C 08 03 A6 */	mtlr r0
 /* 80059670 000565B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80059674 000565B4  4E 80 00 20 */	blr 
+.endfn load__19J2DIndTexCoordScaleFUc
 
-.global load__14J2DIndTexOrderFUc
-load__14J2DIndTexOrderFUc:
+.fn load__14J2DIndTexOrderFUc, global
 /* 80059678 000565B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005967C 000565BC  7C 08 02 A6 */	mflr r0
 /* 80059680 000565C0  7C 65 1B 78 */	mr r5, r3
@@ -414,3 +422,4 @@ load__14J2DIndTexOrderFUc:
 /* 8005969C 000565DC  7C 08 03 A6 */	mtlr r0
 /* 800596A0 000565E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800596A4 000565E4  4E 80 00 20 */	blr 
+.endfn load__14J2DIndTexOrderFUc

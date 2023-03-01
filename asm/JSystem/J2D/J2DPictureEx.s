@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804785E0
-lbl_804785E0:
+.obj lbl_804785E0, local
 	.4byte 0x0F080A0F
 	.4byte 0x0F080A0F
 	.4byte 0x0F080E0F
@@ -11,6 +10,8 @@ lbl_804785E0:
 	.4byte 0x0204080F
 	.4byte 0x0204080F
 	.4byte 0x0204000F
+.endobj lbl_804785E0
+.obj lbl_80478600, local
 	.4byte 0x07040507
 	.4byte 0x05070707
 	.4byte 0x07040607
@@ -19,6 +20,8 @@ lbl_804785E0:
 	.4byte 0x01020407
 	.4byte 0x07070702
 	.4byte 0x01020007
+.endobj lbl_80478600
+.obj lbl_80478620, local
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.4byte 0x01000000
@@ -29,11 +32,11 @@ lbl_804785E0:
 	.4byte 0x01000000
 	.4byte 0x00010000
 	.4byte 0x00000000
+.endobj lbl_80478620
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__12J2DPictureEx
-__vt__12J2DPictureEx:
+.obj __vt__12J2DPictureEx, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__12J2DPictureExFv
@@ -117,19 +120,23 @@ __vt__12J2DPictureEx:
 	.4byte drawFullSet__12J2DPictureExFffffPA3_A4_f
 	.4byte drawTexCoord__12J2DPictureExFffffssssssssPA3_A4_f
 	.4byte getUsableTlut__12J2DPictureExFUc
+.endobj __vt__12J2DPictureEx
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805168E0:
+.obj lbl_805168E0, local
 	.float 1.0
-lbl_805168E4:
+.endobj lbl_805168E0
+.obj lbl_805168E4, local
 	.float 0.0
+.endobj lbl_805168E4
 .balign 8
-lbl_805168E8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_805168F0:
+.obj lbl_805168E8, local
+	.8byte 0x4330000080000000
+.endobj lbl_805168E8
+.obj lbl_805168F0, local
 	.float 255.0
+.endobj lbl_805168F0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12J2DPictureExFv

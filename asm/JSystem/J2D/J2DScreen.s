@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__9J2DScreen
-__vt__9J2DScreen:
+.obj __vt__9J2DScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__9J2DScreenFv
@@ -42,29 +41,35 @@ __vt__9J2DScreen:
 	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
+.endobj __vt__9J2DScreen
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mDataManage__9J2DScreen
-mDataManage__9J2DScreen:
+.obj mDataManage__9J2DScreen, global
 	.skip 0x4
+.endobj mDataManage__9J2DScreen
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516840:
+.obj lbl_80516840, local
 	.float 0.0
-lbl_80516844:
+.endobj lbl_80516840
+.obj lbl_80516844, local
 	.float 640.0
-lbl_80516848:
+.endobj lbl_80516844
+.obj lbl_80516848, local
 	.float 480.0
+.endobj lbl_80516848
 .balign 8
-lbl_80516850:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80516858:
+.obj lbl_80516850, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516850
+.obj lbl_80516858, local
 	.float -1.0
-lbl_8051685C:
+.endobj lbl_80516858
+.obj lbl_8051685C, local
 	.float 1.0
+.endobj lbl_8051685C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9J2DScreenFv
