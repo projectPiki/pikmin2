@@ -14,14 +14,10 @@ lbl_80003184:
 #############################################
 
 # Slot 0x0100: System Reset Exception
-.global system_reset_exception_handler
-system_reset_exception_handler:
     b __TRK_reset
 .fill 0xFC
 
 # Slot 0x0200: Machine Check Exception
-.global machine_check_exception_handler
-machine_check_exception_handler:
 /* 80003354 00000354  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003358 00000358  7C 5A 02 A6 */	mfspr r2, 0x1a
 /* 8000335C 0000035C  7C 00 17 AC */	icbi 0, r2
@@ -44,8 +40,6 @@ machine_check_exception_handler:
 .fill 0xB4
 
 # Slot 0x0300: DSI Exception
-.global dsi_exception_handler
-dsi_exception_handler:
 /* 80003454 00000454  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003458 00000458  7C 72 43 A6 */	mtspr 0x112, r3
 /* 8000345C 0000045C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -62,8 +56,6 @@ dsi_exception_handler:
 .fill 0xCC
 
 # Slot 0x0400: ISI Exception
-.global isi_exception_handler
-isi_exception_handler:
 /* 80003554 00000554  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003558 00000558  7C 72 43 A6 */	mtspr 0x112, r3
 /* 8000355C 0000055C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -80,8 +72,6 @@ isi_exception_handler:
 .fill 0xCC
 
 # Slot 0x0500: External Interrupt Exception
-.global external_interrupt_exception_handler
-external_interrupt_exception_handler:
 /* 80003654 00000654  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003658 00000658  7C 72 43 A6 */	mtspr 0x112, r3
 /* 8000365C 0000065C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -98,8 +88,6 @@ external_interrupt_exception_handler:
 .fill 0xCC
 
 # Slot 0x0600: Alignment Exception
-.global alignment_exception_handler
-alignment_exception_handler:
 /* 80003754 00000754  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003758 00000758  7C 72 43 A6 */	mtspr 0x112, r3
 /* 8000375C 0000075C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -116,8 +104,6 @@ alignment_exception_handler:
 .fill 0xCC
 
 # Slot 0x0700: Program Exception
-.global program_exception_handler
-program_exception_handler:
 /* 80003854 00000854  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003858 00000858  7C 72 43 A6 */	mtspr 0x112, r3
 /* 8000385C 0000085C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -134,8 +120,6 @@ program_exception_handler:
 .fill 0xCC
 
 # Slot 0x0800: Floating Point Unavailable Exception
-.global floating_point_unavailable_exception_handler
-floating_point_unavailable_exception_handler:
 /* 80003954 00000954  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003958 00000958  7C 72 43 A6 */	mtspr 0x112, r3
 /* 8000395C 0000095C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -152,8 +136,6 @@ floating_point_unavailable_exception_handler:
 .fill 0xCC
 
 # Slot 0x0900: Decrementer Exception
-.global decrementer_exception_handler
-decrementer_exception_handler:
 /* 80003A54 00000A54  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003A58 00000A58  7C 72 43 A6 */	mtspr 0x112, r3
 /* 80003A5C 00000A5C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -176,8 +158,6 @@ decrementer_exception_handler:
 ######################################################
 
 # Slot 0x0C00: System Call Exception
-.global system_call_exception_handler
-system_call_exception_handler:
 /* 80003D54 00000D54  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003D58 00000D58  7C 72 43 A6 */	mtspr 0x112, r3
 /* 80003D5C 00000D5C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -194,8 +174,6 @@ system_call_exception_handler:
 .fill 0xCC
 
 # Slot 0x0D00: Trace Exception
-.global trace_exception_handler
-trace_exception_handler:
 /* 80003E54 00000E54  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003E58 00000E58  7C 72 43 A6 */	mtspr 0x112, r3
 /* 80003E5C 00000E5C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -217,8 +195,6 @@ trace_exception_handler:
 ############################################################################
 
 # Slot 0x0F00: Performance Monitor Exception
-.global performance_monitor_exception_handler
-performance_monitor_exception_handler:
 /* 80003F54 00000F54  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80003F58 00000F58  7C 72 43 A6 */	mtspr 0x112, r3
 /* 80003F5C 00000F5C  7C 93 43 A6 */	mtspr 0x113, r4
@@ -239,8 +215,6 @@ performance_monitor_exception_handler:
 ##################################################################################
 
 # Slot 0x1300: Instruction Address Breakpoint Exception
-.global break_point_exception_handler
-break_point_exception_handler:
 /* 80004054 00001054  48 00 00 54 */	b .L_800040A8
 .fill 0x1C
 /* 80004074 00001074  7C 51 43 A6 */	mtspr 0x111, r2
@@ -273,8 +247,6 @@ break_point_exception_handler:
 .fill 0x78
 
 # Slot 0x1400: System Management Interrupt Exception
-.global system_interrupt_exception_handler
-system_interrupt_exception_handler:
 /* 80004154 00001154  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80004158 00001158  7C 40 00 26 */	mfcr r2
 /* 8000415C 0000115C  7C 52 43 A6 */	mtspr 0x112, r2
@@ -312,8 +284,6 @@ system_interrupt_exception_handler:
 ##############################################################################
 
 # Slot 0x1700: Thermal-Management Interrupt Exception
-.global thermal_interrupt_exception_handler
-thermal_interrupt_exception_handler:
 /* 80004254 00001254  7C 51 43 A6 */	mtspr 0x111, r2
 /* 80004258 00001258  7C 40 00 26 */	mfcr r2
 /* 8000425C 0000125C  7C 52 43 A6 */	mtspr 0x112, r2
