@@ -185,10 +185,14 @@ bool TObject::forward(u32 a1)
 	bool end = false;
 	while (true) {
 		if (mFlag & 0x8000) {
-			if (mStatus == STATUS_SUSPEND || mStatus == STATUS_WAIT) {
+			switch (mStatus) {
+			case STATUS_SUSPEND:
+			case STATUS_WAIT:
+
 				mStatus = STATUS_INACTIVE;
 				if (bSequence_)
 					do_end();
+				break;
 			}
 			return true;
 		}
@@ -466,12 +470,8 @@ void TObject::process_sequence_()
 	temp.stbData = pSequence;
 	temp.getData(&data);
 	pSequence_next = (void*)data.next;
-	if (data.type == 3) {
-		if (data.param & 0x800000) {
-			data.param |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data;
-		}
-		pSequence_next = (u8*)pSequence + data.param;
-	} else if (data.type == 1) {
+	switch (data.type) {
+	case 1:
 		int bitflag = data.param >> 0x10 & 0xff;
 		if (bitflag == 2)
 			mFlag &= data.param;
@@ -479,9 +479,24 @@ void TObject::process_sequence_()
 			mFlag |= data.param;
 		else if (bitflag == 3)
 			mFlag ^= data.param;
-	} else if (data.type == 2) {
+		break;
+	case 2:
 		u32Wait_ = data.param;
-	} else if (data.type == 0x80) {
+		break;
+	case 3:
+		if (data.param & 0x800000) {
+			data.param |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data;
+		}
+		pSequence_next = (u8*)pSequence + data.param;
+		break;
+	case 4:
+		if (data.param & 0x800000) {
+			data.param |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
+		}
+		_20 += data.param;
+		break;
+	case 0x80:
+	default:
 		while (data.content < data.next) {
 			stb::data::TParse_TParagraph para;
 			stb::data::TParse_TParagraph::TData data2;
@@ -494,11 +509,7 @@ void TObject::process_sequence_()
 				data.content = data2.next;
 			}
 		}
-	} else if (data.type == 4) {
-		if (data.param & 0x800000) {
-			data.param |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
-		}
-		_20 += data.param;
+		break;
 	}
 	/*
 	stwu     r1, -0x40(r1)
@@ -656,7 +667,7 @@ lbl_80010708:
 void TObject::process_paragraph_reserved_(u32 a1, void const* a2, u32 a3)
 {
 	switch (((u8)a1)) {
-	case 0x01: {
+	case 1: {
 		int flag   = *(u32*)a2 >> 0x10 & 0xff;
 		short flip = *(u16*)a2;
 		switch (flip) {
@@ -671,10 +682,10 @@ void TObject::process_paragraph_reserved_(u32 a1, void const* a2, u32 a3)
 			break;
 		}
 	} break;
-	case 0x02: {
+	case 2: {
 		u32Wait_ = *(u32*)a2;
 	} break;
-	case 0x03: {
+	case 3: {
 		pSequence_next = (u8*)pSequence + *(u32*)a2;
 	} break;
 	case 0x80: {
