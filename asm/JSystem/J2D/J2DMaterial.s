@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__15J2DIndBlockNull
-__vt__15J2DIndBlockNull:
+.obj __vt__15J2DIndBlockNull, weak
 	.4byte 0
 	.4byte 0
 	.4byte initialize__11J2DIndBlockFv
@@ -17,31 +16,33 @@ __vt__15J2DIndBlockNull:
 	.4byte setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale
 	.4byte getIndTexCoordScale__11J2DIndBlockFUl
 	.4byte __dt__15J2DIndBlockNullFv
-.global __vt__11J2DMaterial
-__vt__11J2DMaterial:
+.endobj __vt__15J2DIndBlockNull
+.obj __vt__11J2DMaterial, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11J2DMaterialFv
-.global __vt__13J2DColorBlock
-__vt__13J2DColorBlock:
+.endobj __vt__11J2DMaterial
+.obj __vt__13J2DColorBlock, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13J2DColorBlockFv
+.endobj __vt__13J2DColorBlock
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805168C8:
+.obj lbl_805168C8, local
 	.float 360.0
-lbl_805168CC:
+.endobj lbl_805168C8
+.obj lbl_805168CC, local
 	.float 65535.0
+.endobj lbl_805168CC
 .balign 8
-lbl_805168D0:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_805168D0, local
+	.8byte 0x4330000000000000
+.endobj lbl_805168D0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__11J2DMaterialFv
-__ct__11J2DMaterialFv:
+.fn __ct__11J2DMaterialFv, global
 /* 80051EA4 0004EDE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80051EA8 0004EDE8  7C 08 02 A6 */	mflr r0
 /* 80051EAC 0004EDEC  3C 80 80 4A */	lis r4, __vt__11J2DMaterial@ha
@@ -114,9 +115,9 @@ __ct__11J2DMaterialFv:
 /* 80051FB8 0004EEF8  7C 08 03 A6 */	mtlr r0
 /* 80051FBC 0004EEFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80051FC0 0004EF00  4E 80 00 20 */	blr 
+.endfn __ct__11J2DMaterialFv
 
-.global __ct__11J2DTexCoordFv
-__ct__11J2DTexCoordFv:
+.fn __ct__11J2DTexCoordFv, weak
 /* 80051FC4 0004EF04  3C 80 80 48 */	lis r4, j2dDefaultTexCoordInfo@ha
 /* 80051FC8 0004EF08  8C 04 86 48 */	lbzu r0, j2dDefaultTexCoordInfo@l(r4)
 /* 80051FCC 0004EF0C  98 03 00 00 */	stb r0, 0(r3)
@@ -125,9 +126,9 @@ __ct__11J2DTexCoordFv:
 /* 80051FD8 0004EF18  88 04 00 02 */	lbz r0, 2(r4)
 /* 80051FDC 0004EF1C  98 03 00 02 */	stb r0, 2(r3)
 /* 80051FE0 0004EF20  4E 80 00 20 */	blr 
+.endfn __ct__11J2DTexCoordFv
 
-.global __dt__13J2DColorBlockFv
-__dt__13J2DColorBlockFv:
+.fn __dt__13J2DColorBlockFv, weak
 /* 80051FE4 0004EF24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80051FE8 0004EF28  7C 08 02 A6 */	mflr r0
 /* 80051FEC 0004EF2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -147,16 +148,16 @@ __dt__13J2DColorBlockFv:
 /* 80052020 0004EF60  7C 08 03 A6 */	mtlr r0
 /* 80052024 0004EF64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80052028 0004EF68  4E 80 00 20 */	blr 
+.endfn __dt__13J2DColorBlockFv
 
-.global __ct__12J2DColorChanFv
-__ct__12J2DColorChanFv:
+.fn __ct__12J2DColorChanFv, weak
 /* 8005202C 0004EF6C  38 82 85 D8 */	addi r4, r2, j2dDefaultColorChanInfo@sda21
 /* 80052030 0004EF70  88 04 00 01 */	lbz r0, 1(r4)
 /* 80052034 0004EF74  B0 03 00 00 */	sth r0, 0(r3)
 /* 80052038 0004EF78  4E 80 00 20 */	blr 
+.endfn __ct__12J2DColorChanFv
 
-.global __ct__11J2DMaterialFUl
-__ct__11J2DMaterialFUl:
+.fn __ct__11J2DMaterialFUl, global
 /* 8005203C 0004EF7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80052040 0004EF80  7C 08 02 A6 */	mflr r0
 /* 80052044 0004EF84  3C A0 80 4A */	lis r5, __vt__11J2DMaterial@ha
@@ -240,9 +241,9 @@ __ct__11J2DMaterialFUl:
 /* 8005217C 0004F0BC  7C 08 03 A6 */	mtlr r0
 /* 80052180 0004F0C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80052184 0004F0C4  4E 80 00 20 */	blr 
+.endfn __ct__11J2DMaterialFUl
 
-.global __dt__11J2DMaterialFv
-__dt__11J2DMaterialFv:
+.fn __dt__11J2DMaterialFv, global
 /* 80052188 0004F0C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005218C 0004F0CC  7C 08 02 A6 */	mflr r0
 /* 80052190 0004F0D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -295,9 +296,9 @@ __dt__11J2DMaterialFv:
 /* 8005223C 0004F17C  7C 08 03 A6 */	mtlr r0
 /* 80052240 0004F180  38 21 00 10 */	addi r1, r1, 0x10
 /* 80052244 0004F184  4E 80 00 20 */	blr 
+.endfn __dt__11J2DMaterialFv
 
-.global setGX__11J2DMaterialFv
-setGX__11J2DMaterialFv:
+.fn setGX__11J2DMaterialFv, global
 /* 80052248 0004F188  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005224C 0004F18C  7C 08 02 A6 */	mflr r0
 /* 80052250 0004F190  90 01 00 14 */	stw r0, 0x14(r1)
@@ -334,9 +335,9 @@ setGX__11J2DMaterialFv:
 /* 800522C0 0004F200  7C 08 03 A6 */	mtlr r0
 /* 800522C4 0004F204  38 21 00 10 */	addi r1, r1, 0x10
 /* 800522C8 0004F208  4E 80 00 20 */	blr 
+.endfn setGX__11J2DMaterialFv
 
-.global createTevBlock__11J2DMaterialFib
-createTevBlock__11J2DMaterialFib:
+.fn createTevBlock__11J2DMaterialFib, global
 /* 800522CC 0004F20C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800522D0 0004F210  7C 08 02 A6 */	mflr r0
 /* 800522D4 0004F214  90 01 00 14 */	stw r0, 0x14(r1)
@@ -466,9 +467,9 @@ createTevBlock__11J2DMaterialFib:
 /* 80052474 0004F3B4  7C 08 03 A6 */	mtlr r0
 /* 80052478 0004F3B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005247C 0004F3BC  4E 80 00 20 */	blr 
+.endfn createTevBlock__11J2DMaterialFib
 
-.global createIndBlock__11J2DMaterialFib
-createIndBlock__11J2DMaterialFib:
+.fn createIndBlock__11J2DMaterialFib, global
 /* 80052480 0004F3C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80052484 0004F3C4  7C 08 02 A6 */	mflr r0
 /* 80052488 0004F3C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -593,18 +594,18 @@ createIndBlock__11J2DMaterialFib:
 /* 8005264C 0004F58C  7C 08 03 A6 */	mtlr r0
 /* 80052650 0004F590  38 21 00 10 */	addi r1, r1, 0x10
 /* 80052654 0004F594  4E 80 00 20 */	blr 
+.endfn createIndBlock__11J2DMaterialFib
 
-.global __ct__19J2DIndTexCoordScaleFv
-__ct__19J2DIndTexCoordScaleFv:
+.fn __ct__19J2DIndTexCoordScaleFv, weak
 /* 80052658 0004F598  88 02 85 C0 */	lbz r0, j2dDefaultIndTexCoordScaleInfo@sda21(r2)
 /* 8005265C 0004F59C  38 82 85 C0 */	addi r4, r2, j2dDefaultIndTexCoordScaleInfo@sda21
 /* 80052660 0004F5A0  98 03 00 00 */	stb r0, 0(r3)
 /* 80052664 0004F5A4  88 04 00 01 */	lbz r0, 1(r4)
 /* 80052668 0004F5A8  98 03 00 01 */	stb r0, 1(r3)
 /* 8005266C 0004F5AC  4E 80 00 20 */	blr 
+.endfn __ct__19J2DIndTexCoordScaleFv
 
-.global __ct__12J2DIndTexMtxFv
-__ct__12J2DIndTexMtxFv:
+.fn __ct__12J2DIndTexMtxFv, weak
 /* 80052670 0004F5B0  3C 80 80 48 */	lis r4, j2dDefaultIndTexMtxInfo@ha
 /* 80052674 0004F5B4  C4 04 86 8C */	lfsu f0, j2dDefaultIndTexMtxInfo@l(r4)
 /* 80052678 0004F5B8  D0 03 00 00 */	stfs f0, 0(r3)
@@ -621,18 +622,18 @@ __ct__12J2DIndTexMtxFv:
 /* 800526A4 0004F5E4  88 04 00 18 */	lbz r0, 0x18(r4)
 /* 800526A8 0004F5E8  98 03 00 18 */	stb r0, 0x18(r3)
 /* 800526AC 0004F5EC  4E 80 00 20 */	blr 
+.endfn __ct__12J2DIndTexMtxFv
 
-.global __ct__14J2DIndTexOrderFv
-__ct__14J2DIndTexOrderFv:
+.fn __ct__14J2DIndTexOrderFv, weak
 /* 800526B0 0004F5F0  88 02 85 B4 */	lbz r0, j2dDefaultIndTexOrderNull@sda21(r2)
 /* 800526B4 0004F5F4  38 82 85 B4 */	addi r4, r2, j2dDefaultIndTexOrderNull@sda21
 /* 800526B8 0004F5F8  98 03 00 00 */	stb r0, 0(r3)
 /* 800526BC 0004F5FC  88 04 00 01 */	lbz r0, 1(r4)
 /* 800526C0 0004F600  98 03 00 01 */	stb r0, 1(r3)
 /* 800526C4 0004F604  4E 80 00 20 */	blr 
+.endfn __ct__14J2DIndTexOrderFv
 
-.global makeAnmPointer__11J2DMaterialFv
-makeAnmPointer__11J2DMaterialFv:
+.fn makeAnmPointer__11J2DMaterialFv, global
 /* 800526C8 0004F608  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800526CC 0004F60C  7C 08 02 A6 */	mflr r0
 /* 800526D0 0004F610  90 01 00 14 */	stw r0, 0x14(r1)
@@ -685,9 +686,9 @@ makeAnmPointer__11J2DMaterialFv:
 /* 80052784 0004F6C4  7C 08 03 A6 */	mtlr r0
 /* 80052788 0004F6C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005278C 0004F6CC  4E 80 00 20 */	blr 
+.endfn makeAnmPointer__11J2DMaterialFv
 
-.global setAnimation__11J2DMaterialFP11J2DAnmColor
-setAnimation__11J2DMaterialFP11J2DAnmColor:
+.fn setAnimation__11J2DMaterialFP11J2DAnmColor, global
 /* 80052790 0004F6D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80052794 0004F6D4  7C 08 02 A6 */	mflr r0
 /* 80052798 0004F6D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -776,9 +777,9 @@ setAnimation__11J2DMaterialFP11J2DAnmColor:
 /* 800528C8 0004F808  7C 08 03 A6 */	mtlr r0
 /* 800528CC 0004F80C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800528D0 0004F810  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DMaterialFP11J2DAnmColor
 
-.global setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey
-setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey:
+.fn setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey, global
 /* 800528D4 0004F814  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800528D8 0004F818  7C 08 02 A6 */	mflr r0
 /* 800528DC 0004F81C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -891,9 +892,9 @@ setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey:
 /* 80052A6C 0004F9AC  7C 08 03 A6 */	mtlr r0
 /* 80052A70 0004F9B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80052A74 0004F9B4  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey
 
-.global setAnimation__11J2DMaterialFP16J2DAnmTexPattern
-setAnimation__11J2DMaterialFP16J2DAnmTexPattern:
+.fn setAnimation__11J2DMaterialFP16J2DAnmTexPattern, global
 /* 80052A78 0004F9B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80052A7C 0004F9BC  7C 08 02 A6 */	mflr r0
 /* 80052A80 0004F9C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1002,9 +1003,9 @@ setAnimation__11J2DMaterialFP16J2DAnmTexPattern:
 /* 80052C00 0004FB40  7C 08 03 A6 */	mtlr r0
 /* 80052C04 0004FB44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80052C08 0004FB48  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DMaterialFP16J2DAnmTexPattern
 
-.global setAnimation__11J2DMaterialFP15J2DAnmTevRegKey
-setAnimation__11J2DMaterialFP15J2DAnmTevRegKey:
+.fn setAnimation__11J2DMaterialFP15J2DAnmTevRegKey, global
 /* 80052C0C 0004FB4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80052C10 0004FB50  7C 08 02 A6 */	mflr r0
 /* 80052C14 0004FB54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1143,9 +1144,9 @@ setAnimation__11J2DMaterialFP15J2DAnmTevRegKey:
 /* 80052DFC 0004FD3C  7C 08 03 A6 */	mtlr r0
 /* 80052E00 0004FD40  38 21 00 10 */	addi r1, r1, 0x10
 /* 80052E04 0004FD44  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DMaterialFP15J2DAnmTevRegKey
 
-.global animation__11J2DMaterialFv
-animation__11J2DMaterialFv:
+.fn animation__11J2DMaterialFv, global
 /* 80052E08 0004FD48  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 80052E0C 0004FD4C  7C 08 02 A6 */	mflr r0
 /* 80052E10 0004FD50  90 01 01 14 */	stw r0, 0x114(r1)
@@ -1448,23 +1449,23 @@ animation__11J2DMaterialFv:
 /* 8005326C 000501AC  7C 08 03 A6 */	mtlr r0
 /* 80053270 000501B0  38 21 01 10 */	addi r1, r1, 0x110
 /* 80053274 000501B4  4E 80 00 20 */	blr 
+.endfn animation__11J2DMaterialFv
 
-.global getColor__11J2DAnmColorCFUsP8_GXColor
-getColor__11J2DAnmColorCFUsP8_GXColor:
+.fn getColor__11J2DAnmColorCFUsP8_GXColor, weak
 /* 80053278 000501B8  4E 80 00 20 */	blr 
+.endfn getColor__11J2DAnmColorCFUsP8_GXColor
 
-.global setGX__15J2DIndBlockNullFv
-setGX__15J2DIndBlockNullFv:
+.fn setGX__15J2DIndBlockNullFv, weak
 /* 8005327C 000501BC  4E 80 00 20 */	blr 
+.endfn setGX__15J2DIndBlockNullFv
 
-.global getType__15J2DIndBlockNullFv
-getType__15J2DIndBlockNullFv:
+.fn getType__15J2DIndBlockNullFv, weak
 /* 80053280 000501C0  3C 60 49 42 */	lis r3, 0x49424C4E@ha
 /* 80053284 000501C4  38 63 4C 4E */	addi r3, r3, 0x49424C4E@l
 /* 80053288 000501C8  4E 80 00 20 */	blr 
+.endfn getType__15J2DIndBlockNullFv
 
-.global __dt__15J2DIndBlockNullFv
-__dt__15J2DIndBlockNullFv:
+.fn __dt__15J2DIndBlockNullFv, weak
 /* 8005328C 000501CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80053290 000501D0  7C 08 02 A6 */	mflr r0
 /* 80053294 000501D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1490,3 +1491,4 @@ __dt__15J2DIndBlockNullFv:
 /* 800532DC 0005021C  7C 08 03 A6 */	mtlr r0
 /* 800532E0 00050220  38 21 00 10 */	addi r1, r1, 0x10
 /* 800532E4 00050224  4E 80 00 20 */	blr 
+.endfn __dt__15J2DIndBlockNullFv

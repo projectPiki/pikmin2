@@ -1,66 +1,78 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804784E0:
+.obj lbl_804784E0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_804784F0:
+.endobj lbl_804784E0
+.obj lbl_804784F0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_80478500:
+.endobj lbl_804784F0
+.obj lbl_80478500, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_80478510:
+.endobj lbl_80478500
+.obj lbl_80478510, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_80478520:
+.endobj lbl_80478510
+.obj lbl_80478520, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_80478530:
+.endobj lbl_80478520
+.obj lbl_80478530, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_80478540:
+.endobj lbl_80478530
+.obj lbl_80478540, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_80478550:
+.endobj lbl_80478540
+.obj lbl_80478550, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_80478560:
+.endobj lbl_80478550
+.obj lbl_80478560, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_80478570:
+.endobj lbl_80478560
+.obj lbl_80478570, local
 	.4byte 0x0F080A0F
 	.4byte 0x0F080A0F
 	.4byte 0x0F0A000F
 	.4byte 0x0204080F
 	.4byte 0x0204080F
 	.4byte 0x0F0F0F0A
-lbl_80478588:
+.endobj lbl_80478570
+.obj lbl_80478588, local
 	.4byte 0x07040507
 	.4byte 0x05070707
 	.4byte 0x07050007
 	.4byte 0x01020407
 	.4byte 0x07070702
 	.4byte 0x07070705
-lbl_804785A0:
+.endobj lbl_80478588
+.balign 4
+.obj lbl_804785A0, local
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.4byte 0x01000000
@@ -68,17 +80,19 @@ lbl_804785A0:
 	.4byte 0x00000100
 	.4byte 0x00000001
 	.4byte 0x00000000
-	.4byte 0x01000000
-lbl_804785C0:
+	.2byte 0x0100
+.endobj lbl_804785A0
+.balign 4
+.obj lbl_804785C0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_804785C0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__11J2DWindowEx
-__vt__11J2DWindowEx:
+.obj __vt__11J2DWindowEx, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11J2DWindowExFv
@@ -130,26 +144,29 @@ __vt__11J2DWindowEx:
 	.4byte getFrameMaterial__11J2DWindowExCFUc
 	.4byte getContentsMaterial__11J2DWindowExCFv
 	.4byte "drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
+.endobj __vt__11J2DWindowEx
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805168A0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_805168A0, local
+	.8byte 0x4330000080000000
+.endobj lbl_805168A0
 .balign 8
-lbl_805168A8:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_805168B0:
+.obj lbl_805168A8, local
+	.8byte 0x4330000000000000
+.endobj lbl_805168A8
+.obj lbl_805168B0, local
 	.float 0.0
-lbl_805168B4:
+.endobj lbl_805168B0
+.obj lbl_805168B4, local
 	.float 1.0
-lbl_805168B8:
+.endobj lbl_805168B4
+.obj lbl_805168B8, local
 	.float 0.5
+.endobj lbl_805168B8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
-__ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial:
+.fn __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial, global
 /* 80044E34 00041D74  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80044E38 00041D78  7C 08 02 A6 */	mflr r0
 /* 80044E3C 00041D7C  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -339,35 +356,35 @@ __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial:
 /* 80045110 00042050  7C 08 03 A6 */	mtlr r0
 /* 80045114 00042054  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80045118 00042058  4E 80 00 20 */	blr 
+.endfn __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
 
-.global getTevStage__11J2DTevBlockFUl
-getTevStage__11J2DTevBlockFUl:
+.fn getTevStage__11J2DTevBlockFUl, weak
 /* 8004511C 0004205C  38 60 00 00 */	li r3, 0
 /* 80045120 00042060  4E 80 00 20 */	blr 
+.endfn getTevStage__11J2DTevBlockFUl
 
-.global setTevOrder__11J2DTevBlockFUl11J2DTevOrder
-setTevOrder__11J2DTevBlockFUl11J2DTevOrder:
+.fn setTevOrder__11J2DTevBlockFUl11J2DTevOrder, weak
 /* 80045124 00042064  4E 80 00 20 */	blr 
+.endfn setTevOrder__11J2DTevBlockFUl11J2DTevOrder
 
-.global insertTexture__11J2DTevBlockFUlPC7ResTIMG
-insertTexture__11J2DTevBlockFUlPC7ResTIMG:
+.fn insertTexture__11J2DTevBlockFUlPC7ResTIMG, weak
 /* 80045128 00042068  38 60 00 00 */	li r3, 0
 /* 8004512C 0004206C  4E 80 00 20 */	blr 
+.endfn insertTexture__11J2DTevBlockFUlPC7ResTIMG
 
-.global setTevKAlphaSel__11J2DTevBlockFUlUc
-setTevKAlphaSel__11J2DTevBlockFUlUc:
+.fn setTevKAlphaSel__11J2DTevBlockFUlUc, weak
 /* 80045130 00042070  4E 80 00 20 */	blr 
+.endfn setTevKAlphaSel__11J2DTevBlockFUlUc
 
-.global setTevKColorSel__11J2DTevBlockFUlUc
-setTevKColorSel__11J2DTevBlockFUlUc:
+.fn setTevKColorSel__11J2DTevBlockFUlUc, weak
 /* 80045134 00042074  4E 80 00 20 */	blr 
+.endfn setTevKColorSel__11J2DTevBlockFUlUc
 
-.global setTevStageNum__11J2DTevBlockFUc
-setTevStageNum__11J2DTevBlockFUc:
+.fn setTevStageNum__11J2DTevBlockFUc, weak
 /* 80045138 00042078  4E 80 00 20 */	blr 
+.endfn setTevStageNum__11J2DTevBlockFUc
 
-.global setMinSize__11J2DWindowExFv
-setMinSize__11J2DWindowExFv:
+.fn setMinSize__11J2DWindowExFv, global
 /* 8004513C 0004207C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80045140 00042080  7C 08 02 A6 */	mflr r0
 /* 80045144 00042084  90 01 00 14 */	stw r0, 0x14(r1)
@@ -482,9 +499,9 @@ setMinSize__11J2DWindowExFv:
 /* 800452F4 00042234  7C 08 03 A6 */	mtlr r0
 /* 800452F8 00042238  38 21 00 10 */	addi r1, r1, 0x10
 /* 800452FC 0004223C  4E 80 00 20 */	blr 
+.endfn setMinSize__11J2DWindowExFv
 
-.global __dt__11J2DWindowExFv
-__dt__11J2DWindowExFv:
+.fn __dt__11J2DWindowExFv, global
 /* 80045300 00042240  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80045304 00042244  7C 08 02 A6 */	mflr r0
 /* 80045308 00042248  90 01 00 24 */	stw r0, 0x24(r1)
@@ -552,9 +569,9 @@ __dt__11J2DWindowExFv:
 /* 800453EC 0004232C  7C 08 03 A6 */	mtlr r0
 /* 800453F0 00042330  38 21 00 20 */	addi r1, r1, 0x20
 /* 800453F4 00042334  4E 80 00 20 */	blr 
+.endfn __dt__11J2DWindowExFv
 
-.global drawSelf__11J2DWindowExFffPA3_A4_f
-drawSelf__11J2DWindowExFffPA3_A4_f:
+.fn drawSelf__11J2DWindowExFffPA3_A4_f, global
 /* 800453F8 00042338  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800453FC 0004233C  7C 08 02 A6 */	mflr r0
 /* 80045400 00042340  90 01 00 54 */	stw r0, 0x54(r1)
@@ -595,9 +612,9 @@ drawSelf__11J2DWindowExFffPA3_A4_f:
 /* 8004548C 000423CC  7C 08 03 A6 */	mtlr r0
 /* 80045490 000423D0  38 21 00 50 */	addi r1, r1, 0x50
 /* 80045494 000423D4  4E 80 00 20 */	blr 
+.endfn drawSelf__11J2DWindowExFffPA3_A4_f
 
-.global "draw_private__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-"draw_private__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>":
+.fn "draw_private__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>", global
 /* 80045498 000423D8  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 8004549C 000423DC  7C 08 02 A6 */	mflr r0
 /* 800454A0 000423E0  90 01 01 44 */	stw r0, 0x144(r1)
@@ -1046,9 +1063,9 @@ drawSelf__11J2DWindowExFffPA3_A4_f:
 /* 80045B7C 00042ABC  7C 08 03 A6 */	mtlr r0
 /* 80045B80 00042AC0  38 21 01 40 */	addi r1, r1, 0x140
 /* 80045B84 00042AC4  4E 80 00 20 */	blr 
+.endfn "draw_private__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
 
-.global "drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
-"drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>":
+.fn "drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>", global
 /* 80045B88 00042AC8  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80045B8C 00042ACC  7C 08 02 A6 */	mflr r0
 /* 80045B90 00042AD0  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1326,9 +1343,9 @@ drawSelf__11J2DWindowExFffPA3_A4_f:
 /* 80045FA8 00042EE8  7C 08 03 A6 */	mtlr r0
 /* 80045FAC 00042EEC  38 21 00 80 */	addi r1, r1, 0x80
 /* 80045FB0 00042EF0  4E 80 00 20 */	blr 
+.endfn "drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
 
-.global drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb
-drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb:
+.fn drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb, global
 /* 80045FB4 00042EF4  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80045FB8 00042EF8  7C 08 02 A6 */	mflr r0
 /* 80045FBC 00042EFC  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1488,9 +1505,9 @@ drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb:
 /* 8004620C 0004314C  7C 08 03 A6 */	mtlr r0
 /* 80046210 00043150  38 21 00 80 */	addi r1, r1, 0x80
 /* 80046214 00043154  4E 80 00 20 */	blr 
+.endfn drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb
 
-.global "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
-"draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>":
+.fn "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>", global
 /* 80046218 00043158  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8004621C 0004315C  7C 08 02 A6 */	mflr r0
 /* 80046220 00043160  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1597,9 +1614,9 @@ drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb:
 /* 800463A0 000432E0  7C 08 03 A6 */	mtlr r0
 /* 800463A4 000432E4  38 21 00 60 */	addi r1, r1, 0x60
 /* 800463A8 000432E8  4E 80 00 20 */	blr 
+.endfn "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
 
-.global "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-"draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>":
+.fn "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>", global
 /* 800463AC 000432EC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800463B0 000432F0  7C 08 02 A6 */	mflr r0
 /* 800463B4 000432F4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1676,9 +1693,9 @@ drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb:
 /* 800464C8 00043408  7C 08 03 A6 */	mtlr r0
 /* 800464CC 0004340C  38 21 00 60 */	addi r1, r1, 0x60
 /* 800464D0 00043410  4E 80 00 20 */	blr 
+.endfn "draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
 
-.global setTevStage__11J2DWindowExFb
-setTevStage__11J2DWindowExFb:
+.fn setTevStage__11J2DWindowExFb, global
 /* 800464D4 00043414  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800464D8 00043418  7C 08 02 A6 */	mflr r0
 /* 800464DC 0004341C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1758,9 +1775,9 @@ setTevStage__11J2DWindowExFb:
 /* 800465EC 0004352C  7C 08 03 A6 */	mtlr r0
 /* 800465F0 00043530  38 21 00 20 */	addi r1, r1, 0x20
 /* 800465F4 00043534  4E 80 00 20 */	blr 
+.endfn setTevStage__11J2DWindowExFb
 
-.global setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum
-setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum:
+.fn setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum, global
 /* 800465F8 00043538  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 800465FC 0004353C  3C 60 80 48 */	lis r3, lbl_804784E0@ha
 /* 80046600 00043540  BD C1 00 58 */	stmw r14, 0x58(r1)
@@ -1940,9 +1957,9 @@ setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum:
 /* 800468A8 000437E8  B9 C1 00 58 */	lmw r14, 0x58(r1)
 /* 800468AC 000437EC  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 800468B0 000437F0  4E 80 00 20 */	blr 
+.endfn setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum
 
-.global setBlack__11J2DWindowExFQ28JUtility6TColor
-setBlack__11J2DWindowExFQ28JUtility6TColor:
+.fn setBlack__11J2DWindowExFQ28JUtility6TColor, global
 /* 800468B4 000437F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800468B8 000437F8  7C 08 02 A6 */	mflr r0
 /* 800468BC 000437FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1979,9 +1996,9 @@ setBlack__11J2DWindowExFQ28JUtility6TColor:
 /* 80046930 00043870  7C 08 03 A6 */	mtlr r0
 /* 80046934 00043874  38 21 00 20 */	addi r1, r1, 0x20
 /* 80046938 00043878  4E 80 00 20 */	blr 
+.endfn setBlack__11J2DWindowExFQ28JUtility6TColor
 
-.global setWhite__11J2DWindowExFQ28JUtility6TColor
-setWhite__11J2DWindowExFQ28JUtility6TColor:
+.fn setWhite__11J2DWindowExFQ28JUtility6TColor, global
 /* 8004693C 0004387C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80046940 00043880  7C 08 02 A6 */	mflr r0
 /* 80046944 00043884  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2018,9 +2035,9 @@ setWhite__11J2DWindowExFQ28JUtility6TColor:
 /* 800469B8 000438F8  7C 08 03 A6 */	mtlr r0
 /* 800469BC 000438FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800469C0 00043900  4E 80 00 20 */	blr 
+.endfn setWhite__11J2DWindowExFQ28JUtility6TColor
 
-.global setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor
-setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor:
+.fn setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor, global
 /* 800469C4 00043904  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800469C8 00043908  7C 08 02 A6 */	mflr r0
 /* 800469CC 0004390C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2229,13 +2246,13 @@ setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor:
 /* 80046CA4 00043BE4  7C 08 03 A6 */	mtlr r0
 /* 80046CA8 00043BE8  38 21 00 60 */	addi r1, r1, 0x60
 /* 80046CAC 00043BEC  4E 80 00 20 */	blr 
+.endfn setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor
 
-.global setTevColor__11J2DTevBlockFUl13J2DGXColorS10
-setTevColor__11J2DTevBlockFUl13J2DGXColorS10:
+.fn setTevColor__11J2DTevBlockFUl13J2DGXColorS10, weak
 /* 80046CB0 00043BF0  4E 80 00 20 */	blr 
+.endfn setTevColor__11J2DTevBlockFUl13J2DGXColorS10
 
-.global getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor
-getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor:
+.fn getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor, global
 /* 80046CB4 00043BF4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80046CB8 00043BF8  7C 08 02 A6 */	mflr r0
 /* 80046CBC 00043BFC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2341,9 +2358,9 @@ getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor:
 /* 80046E3C 00043D7C  7C 08 03 A6 */	mtlr r0
 /* 80046E40 00043D80  38 21 00 30 */	addi r1, r1, 0x30
 /* 80046E44 00043D84  4E 80 00 20 */	blr 
+.endfn getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor
 
-.global isSetBlackWhite__11J2DWindowExCFQ28JUtility6TColorQ28JUtility6TColor
-isSetBlackWhite__11J2DWindowExCFQ28JUtility6TColorQ28JUtility6TColor:
+.fn isSetBlackWhite__11J2DWindowExCFQ28JUtility6TColorQ28JUtility6TColor, global
 /* 80046E48 00043D88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80046E4C 00043D8C  7C 08 02 A6 */	mflr r0
 /* 80046E50 00043D90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2386,9 +2403,9 @@ isSetBlackWhite__11J2DWindowExCFQ28JUtility6TColorQ28JUtility6TColor:
 /* 80046ED4 00043E14  7C 08 03 A6 */	mtlr r0
 /* 80046ED8 00043E18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80046EDC 00043E1C  4E 80 00 20 */	blr 
+.endfn isSetBlackWhite__11J2DWindowExCFQ28JUtility6TColorQ28JUtility6TColor
 
-.global getBlack__11J2DWindowExCFv
-getBlack__11J2DWindowExCFv:
+.fn getBlack__11J2DWindowExCFv, global
 /* 80046EE0 00043E20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80046EE4 00043E24  7C 08 02 A6 */	mflr r0
 /* 80046EE8 00043E28  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2415,9 +2432,9 @@ getBlack__11J2DWindowExCFv:
 /* 80046F34 00043E74  7C 08 03 A6 */	mtlr r0
 /* 80046F38 00043E78  38 21 00 20 */	addi r1, r1, 0x20
 /* 80046F3C 00043E7C  4E 80 00 20 */	blr 
+.endfn getBlack__11J2DWindowExCFv
 
-.global getWhite__11J2DWindowExCFv
-getWhite__11J2DWindowExCFv:
+.fn getWhite__11J2DWindowExCFv, global
 /* 80046F40 00043E80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80046F44 00043E84  7C 08 02 A6 */	mflr r0
 /* 80046F48 00043E88  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2444,9 +2461,9 @@ getWhite__11J2DWindowExCFv:
 /* 80046F94 00043ED4  7C 08 03 A6 */	mtlr r0
 /* 80046F98 00043ED8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80046F9C 00043EDC  4E 80 00 20 */	blr 
+.endfn getWhite__11J2DWindowExCFv
 
-.global setAlpha__11J2DWindowExFUc
-setAlpha__11J2DWindowExFUc:
+.fn setAlpha__11J2DWindowExFUc, global
 /* 80046FA0 00043EE0  98 83 00 B2 */	stb r4, 0xb2(r3)
 /* 80046FA4 00043EE4  80 C3 01 48 */	lwz r6, 0x148(r3)
 /* 80046FA8 00043EE8  28 06 00 00 */	cmplwi r6, 0
@@ -2484,9 +2501,9 @@ setAlpha__11J2DWindowExFUc:
 /* 80047018 00043F58  4D 82 00 20 */	beqlr 
 /* 8004701C 00043F5C  98 83 00 03 */	stb r4, 3(r3)
 /* 80047020 00043F60  4E 80 00 20 */	blr 
+.endfn setAlpha__11J2DWindowExFUc
 
-.global setCullBack__11J2DWindowExF11_GXCullMode
-setCullBack__11J2DWindowExF11_GXCullMode:
+.fn setCullBack__11J2DWindowExF11_GXCullMode, global
 /* 80047024 00043F64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80047028 00043F68  7C 08 02 A6 */	mflr r0
 /* 8004702C 00043F6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2522,18 +2539,18 @@ setCullBack__11J2DWindowExF11_GXCullMode:
 /* 80047090 00043FD0  7C 08 03 A6 */	mtlr r0
 /* 80047094 00043FD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047098 00043FD8  4E 80 00 20 */	blr 
+.endfn setCullBack__11J2DWindowExF11_GXCullMode
 
-.global rewriteAlpha__11J2DWindowExFv
-rewriteAlpha__11J2DWindowExFv:
+.fn rewriteAlpha__11J2DWindowExFv, global
 /* 8004709C 00043FDC  80 83 01 60 */	lwz r4, 0x160(r3)
 /* 800470A0 00043FE0  28 04 00 00 */	cmplwi r4, 0
 /* 800470A4 00043FE4  4D 82 00 20 */	beqlr 
 /* 800470A8 00043FE8  88 04 00 13 */	lbz r0, 0x13(r4)
 /* 800470AC 00043FEC  98 03 00 B2 */	stb r0, 0xb2(r3)
 /* 800470B0 00043FF0  4E 80 00 20 */	blr 
+.endfn rewriteAlpha__11J2DWindowExFv
 
-.global getFrameTexture__11J2DWindowExCFUcUc
-getFrameTexture__11J2DWindowExCFUcUc:
+.fn getFrameTexture__11J2DWindowExCFUcUc, global
 /* 800470B4 00043FF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800470B8 00043FF8  7C 08 02 A6 */	mflr r0
 /* 800470BC 00043FFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2562,9 +2579,9 @@ getFrameTexture__11J2DWindowExCFUcUc:
 /* 80047110 00044050  7C 08 03 A6 */	mtlr r0
 /* 80047114 00044054  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047118 00044058  4E 80 00 20 */	blr 
+.endfn getFrameTexture__11J2DWindowExCFUcUc
 
-.global getFrameMaterial__11J2DWindowExCFUc
-getFrameMaterial__11J2DWindowExCFUc:
+.fn getFrameMaterial__11J2DWindowExCFUc, weak
 /* 8004711C 0004405C  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 80047120 00044060  28 00 00 04 */	cmplwi r0, 4
 /* 80047124 00044064  41 80 00 0C */	blt .L_80047130
@@ -2575,9 +2592,9 @@ getFrameMaterial__11J2DWindowExCFUc:
 /* 80047134 00044074  7C 63 02 14 */	add r3, r3, r0
 /* 80047138 00044078  80 63 01 48 */	lwz r3, 0x148(r3)
 /* 8004713C 0004407C  4E 80 00 20 */	blr 
+.endfn getFrameMaterial__11J2DWindowExCFUc
 
-.global getContentsTexture__11J2DWindowExCFUc
-getContentsTexture__11J2DWindowExCFUc:
+.fn getContentsTexture__11J2DWindowExCFUc, global
 /* 80047140 00044080  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80047144 00044084  7C 08 02 A6 */	mflr r0
 /* 80047148 00044088  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2606,14 +2623,14 @@ getContentsTexture__11J2DWindowExCFUc:
 /* 8004719C 000440DC  7C 08 03 A6 */	mtlr r0
 /* 800471A0 000440E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800471A4 000440E4  4E 80 00 20 */	blr 
+.endfn getContentsTexture__11J2DWindowExCFUc
 
-.global getContentsMaterial__11J2DWindowExCFv
-getContentsMaterial__11J2DWindowExCFv:
+.fn getContentsMaterial__11J2DWindowExCFv, weak
 /* 800471A8 000440E8  80 63 01 60 */	lwz r3, 0x160(r3)
 /* 800471AC 000440EC  4E 80 00 20 */	blr 
+.endfn getContentsMaterial__11J2DWindowExCFv
 
-.global isUsed__11J2DWindowExFPC7ResTIMG
-isUsed__11J2DWindowExFPC7ResTIMG:
+.fn isUsed__11J2DWindowExFPC7ResTIMG, global
 /* 800471B0 000440F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800471B4 000440F4  7C 08 02 A6 */	mflr r0
 /* 800471B8 000440F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2693,9 +2710,9 @@ isUsed__11J2DWindowExFPC7ResTIMG:
 /* 800472BC 000441FC  7C 08 03 A6 */	mtlr r0
 /* 800472C0 00044200  38 21 00 20 */	addi r1, r1, 0x20
 /* 800472C4 00044204  4E 80 00 20 */	blr 
+.endfn isUsed__11J2DWindowExFPC7ResTIMG
 
-.global setAnimation__11J2DWindowExFP11J2DAnmColor
-setAnimation__11J2DWindowExFP11J2DAnmColor:
+.fn setAnimation__11J2DWindowExFP11J2DAnmColor, global
 /* 800472C8 00044208  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800472CC 0004420C  7C 08 02 A6 */	mflr r0
 /* 800472D0 00044210  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2736,9 +2753,9 @@ setAnimation__11J2DWindowExFP11J2DAnmColor:
 /* 8004734C 0004428C  7C 08 03 A6 */	mtlr r0
 /* 80047350 00044290  38 21 00 20 */	addi r1, r1, 0x20
 /* 80047354 00044294  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DWindowExFP11J2DAnmColor
 
-.global setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey
-setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey:
+.fn setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey, global
 /* 80047358 00044298  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004735C 0004429C  7C 08 02 A6 */	mflr r0
 /* 80047360 000442A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2779,9 +2796,9 @@ setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey:
 /* 800473DC 0004431C  7C 08 03 A6 */	mtlr r0
 /* 800473E0 00044320  38 21 00 20 */	addi r1, r1, 0x20
 /* 800473E4 00044324  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey
 
-.global setAnimation__11J2DWindowExFP16J2DAnmTexPattern
-setAnimation__11J2DWindowExFP16J2DAnmTexPattern:
+.fn setAnimation__11J2DWindowExFP16J2DAnmTexPattern, global
 /* 800473E8 00044328  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800473EC 0004432C  7C 08 02 A6 */	mflr r0
 /* 800473F0 00044330  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2822,9 +2839,9 @@ setAnimation__11J2DWindowExFP16J2DAnmTexPattern:
 /* 8004746C 000443AC  7C 08 03 A6 */	mtlr r0
 /* 80047470 000443B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80047474 000443B4  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DWindowExFP16J2DAnmTexPattern
 
-.global setAnimation__11J2DWindowExFP15J2DAnmTevRegKey
-setAnimation__11J2DWindowExFP15J2DAnmTevRegKey:
+.fn setAnimation__11J2DWindowExFP15J2DAnmTevRegKey, global
 /* 80047478 000443B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004747C 000443BC  7C 08 02 A6 */	mflr r0
 /* 80047480 000443C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2865,9 +2882,9 @@ setAnimation__11J2DWindowExFP15J2DAnmTevRegKey:
 /* 800474FC 0004443C  7C 08 03 A6 */	mtlr r0
 /* 80047500 00044440  38 21 00 20 */	addi r1, r1, 0x20
 /* 80047504 00044444  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DWindowExFP15J2DAnmTevRegKey
 
-.global isNeedSetAnm__11J2DWindowExFUc
-isNeedSetAnm__11J2DWindowExFUc:
+.fn isNeedSetAnm__11J2DWindowExFUc, global
 /* 80047508 00044448  54 87 15 BA */	rlwinm r7, r4, 2, 0x16, 0x1d
 /* 8004750C 0004444C  54 85 06 3E */	clrlwi r5, r4, 0x18
 /* 80047510 00044450  38 C7 01 48 */	addi r6, r7, 0x148
@@ -2894,14 +2911,14 @@ isNeedSetAnm__11J2DWindowExFUc:
 /* 80047558 00044498  7C 00 1B 78 */	or r0, r0, r3
 /* 8004755C 0004449C  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80047560 000444A0  4E 80 00 20 */	blr 
+.endfn isNeedSetAnm__11J2DWindowExFUc
 
-.global setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull
-setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull:
+.fn setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull, global
 /* 80047564 000444A4  90 83 01 74 */	stw r4, 0x174(r3)
 /* 80047568 000444A8  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull
 
-.global setAnimation__11J2DWindowExFP14J2DAnmVtxColor
-setAnimation__11J2DWindowExFP14J2DAnmVtxColor:
+.fn setAnimation__11J2DWindowExFP14J2DAnmVtxColor, global
 /* 8004756C 000444AC  90 83 01 78 */	stw r4, 0x178(r3)
 /* 80047570 000444B0  38 00 00 00 */	li r0, 0
 /* 80047574 000444B4  28 04 00 00 */	cmplwi r4, 0
@@ -2967,9 +2984,9 @@ setAnimation__11J2DWindowExFP14J2DAnmVtxColor:
 /* 80047640 00044580  38 00 00 00 */	li r0, 0
 /* 80047644 00044584  90 03 01 78 */	stw r0, 0x178(r3)
 /* 80047648 00044588  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DWindowExFP14J2DAnmVtxColor
 
-.global animationPane__11J2DWindowExFPC15J2DAnmTransform
-animationPane__11J2DWindowExFPC15J2DAnmTransform:
+.fn animationPane__11J2DWindowExFPC15J2DAnmTransform, global
 /* 8004764C 0004458C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80047650 00044590  7C 08 02 A6 */	mflr r0
 /* 80047654 00044594  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3088,13 +3105,13 @@ animationPane__11J2DWindowExFPC15J2DAnmTransform:
 /* 800477EC 0004472C  7C 08 03 A6 */	mtlr r0
 /* 800477F0 00044730  38 21 00 30 */	addi r1, r1, 0x30
 /* 800477F4 00044734  4E 80 00 20 */	blr 
+.endfn animationPane__11J2DWindowExFPC15J2DAnmTransform
 
-.global getColor__14J2DAnmVtxColorCFUcUsP8_GXColor
-getColor__14J2DAnmVtxColorCFUcUsP8_GXColor:
+.fn getColor__14J2DAnmVtxColorCFUcUsP8_GXColor, weak
 /* 800477F8 00044738  4E 80 00 20 */	blr 
+.endfn getColor__14J2DAnmVtxColorCFUcUsP8_GXColor
 
-.global getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial
-getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial:
+.fn getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial, weak
 /* 800477FC 0004473C  80 03 01 48 */	lwz r0, 0x148(r3)
 /* 80047800 00044740  80 A3 01 4C */	lwz r5, 0x14c(r3)
 /* 80047804 00044744  90 04 00 00 */	stw r0, 0(r4)
@@ -3106,9 +3123,9 @@ getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial:
 /* 8004781C 0004475C  90 A4 00 0C */	stw r5, 0xc(r4)
 /* 80047820 00044760  90 04 00 10 */	stw r0, 0x10(r4)
 /* 80047824 00044764  4E 80 00 20 */	blr 
+.endfn getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial
 
-.global draw__11J2DWindowExFffff
-draw__11J2DWindowExFffff:
+.fn draw__11J2DWindowExFffff, weak
 /* 80047828 00044768  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004782C 0004476C  7C 08 02 A6 */	mflr r0
 /* 80047830 00044770  FC C0 08 18 */	frsp f6, f1
@@ -3131,9 +3148,9 @@ draw__11J2DWindowExFffff:
 /* 80047874 000447B4  7C 08 03 A6 */	mtlr r0
 /* 80047878 000447B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004787C 000447BC  4E 80 00 20 */	blr 
+.endfn draw__11J2DWindowExFffff
 
-.global setCullBack__11J2DWindowExFb
-setCullBack__11J2DWindowExFb:
+.fn setCullBack__11J2DWindowExFb, weak
 /* 80047880 000447C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80047884 000447C4  7C 08 02 A6 */	mflr r0
 /* 80047888 000447C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3150,9 +3167,9 @@ setCullBack__11J2DWindowExFb:
 /* 800478B0 000447F0  7C 08 03 A6 */	mtlr r0
 /* 800478B4 000447F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800478B8 000447F8  4E 80 00 20 */	blr 
+.endfn setCullBack__11J2DWindowExFb
 
-.global isUsed__11J2DWindowExFPC7ResFONT
-isUsed__11J2DWindowExFPC7ResFONT:
+.fn isUsed__11J2DWindowExFPC7ResFONT, weak
 /* 800478BC 000447FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800478C0 00044800  7C 08 02 A6 */	mflr r0
 /* 800478C4 00044804  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3161,9 +3178,9 @@ isUsed__11J2DWindowExFPC7ResFONT:
 /* 800478D0 00044810  7C 08 03 A6 */	mtlr r0
 /* 800478D4 00044814  38 21 00 10 */	addi r1, r1, 0x10
 /* 800478D8 00044818  4E 80 00 20 */	blr 
+.endfn isUsed__11J2DWindowExFPC7ResFONT
 
-.global setAnimation__11J2DWindowExFP15J2DAnmTransform
-setAnimation__11J2DWindowExFP15J2DAnmTransform:
+.fn setAnimation__11J2DWindowExFP15J2DAnmTransform, weak
 /* 800478DC 0004481C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800478E0 00044820  7C 08 02 A6 */	mflr r0
 /* 800478E4 00044824  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3172,9 +3189,9 @@ setAnimation__11J2DWindowExFP15J2DAnmTransform:
 /* 800478F0 00044830  7C 08 03 A6 */	mtlr r0
 /* 800478F4 00044834  38 21 00 10 */	addi r1, r1, 0x10
 /* 800478F8 00044838  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DWindowExFP15J2DAnmTransform
 
-.global setAnimation__11J2DWindowExFP10J2DAnmBase
-setAnimation__11J2DWindowExFP10J2DAnmBase:
+.fn setAnimation__11J2DWindowExFP10J2DAnmBase, weak
 /* 800478FC 0004483C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80047900 00044840  7C 08 02 A6 */	mflr r0
 /* 80047904 00044844  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3183,3 +3200,4 @@ setAnimation__11J2DWindowExFP10J2DAnmBase:
 /* 80047910 00044850  7C 08 03 A6 */	mtlr r0
 /* 80047914 00044854  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047918 00044858  4E 80 00 20 */	blr 
+.endfn setAnimation__11J2DWindowExFP10J2DAnmBase

@@ -1190,8 +1190,7 @@
 /* 8004A714 00047654  4E 80 00 20 */	blr 
 .endfn prepareTexture__12J2DTevBlock1FUc
 
-.global insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette
-insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette:
+.fn insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette, global
 /* 8004A718 00047658  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004A71C 0004765C  7C 08 02 A6 */	mflr r0
 /* 8004A720 00047660  28 04 00 00 */	cmplwi r4, 0
@@ -1278,9 +1277,9 @@ insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette:
 /* 8004A840 00047780  7C 08 03 A6 */	mtlr r0
 /* 8004A844 00047784  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004A848 00047788  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette
 
-.global insertTexture__12J2DTevBlock1FUlP10JUTTexture
-insertTexture__12J2DTevBlock1FUlP10JUTTexture:
+.fn insertTexture__12J2DTevBlock1FUlP10JUTTexture, global
 /* 8004A84C 0004778C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004A850 00047790  7C 08 02 A6 */	mflr r0
 /* 8004A854 00047794  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1328,9 +1327,9 @@ insertTexture__12J2DTevBlock1FUlP10JUTTexture:
 /* 8004A8E8 00047828  7C 08 03 A6 */	mtlr r0
 /* 8004A8EC 0004782C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004A8F0 00047830  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock1FUlP10JUTTexture
 
-.global setTexture__12J2DTevBlock1FUlPC7ResTIMG
-setTexture__12J2DTevBlock1FUlPC7ResTIMG:
+.fn setTexture__12J2DTevBlock1FUlPC7ResTIMG, global
 /* 8004A8F4 00047834  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004A8F8 00047838  7C 08 02 A6 */	mflr r0
 /* 8004A8FC 0004783C  28 04 00 00 */	cmplwi r4, 0
@@ -1444,9 +1443,9 @@ setTexture__12J2DTevBlock1FUlPC7ResTIMG:
 /* 8004AA80 000479C0  7C 08 03 A6 */	mtlr r0
 /* 8004AA84 000479C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004AA88 000479C8  4E 80 00 20 */	blr 
+.endfn setTexture__12J2DTevBlock1FUlPC7ResTIMG
 
-.global setTexture__12J2DTevBlock1FUlP10JUTTexture
-setTexture__12J2DTevBlock1FUlP10JUTTexture:
+.fn setTexture__12J2DTevBlock1FUlP10JUTTexture, global
 /* 8004AA8C 000479CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004AA90 000479D0  7C 08 02 A6 */	mflr r0
 /* 8004AA94 000479D4  28 04 00 00 */	cmplwi r4, 0
@@ -1485,9 +1484,9 @@ setTexture__12J2DTevBlock1FUlP10JUTTexture:
 /* 8004AB0C 00047A4C  7C 08 03 A6 */	mtlr r0
 /* 8004AB10 00047A50  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004AB14 00047A54  4E 80 00 20 */	blr 
+.endfn setTexture__12J2DTevBlock1FUlP10JUTTexture
 
-.global removeTexture__12J2DTevBlock1FUl
-removeTexture__12J2DTevBlock1FUl:
+.fn removeTexture__12J2DTevBlock1FUl, global
 /* 8004AB18 00047A58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004AB1C 00047A5C  7C 08 02 A6 */	mflr r0
 /* 8004AB20 00047A60  28 04 00 01 */	cmplwi r4, 1
@@ -1522,9 +1521,9 @@ removeTexture__12J2DTevBlock1FUl:
 /* 8004AB88 00047AC8  7C 08 03 A6 */	mtlr r0
 /* 8004AB8C 00047ACC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004AB90 00047AD0  4E 80 00 20 */	blr 
+.endfn removeTexture__12J2DTevBlock1FUl
 
-.global setFont__12J2DTevBlock1FP7ResFONT
-setFont__12J2DTevBlock1FP7ResFONT:
+.fn setFont__12J2DTevBlock1FP7ResFONT, global
 /* 8004AB94 00047AD4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004AB98 00047AD8  7C 08 02 A6 */	mflr r0
 /* 8004AB9C 00047ADC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1577,9 +1576,9 @@ setFont__12J2DTevBlock1FP7ResFONT:
 /* 8004AC44 00047B84  7C 08 03 A6 */	mtlr r0
 /* 8004AC48 00047B88  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004AC4C 00047B8C  4E 80 00 20 */	blr 
+.endfn setFont__12J2DTevBlock1FP7ResFONT
 
-.global setFont__12J2DTevBlock1FP7JUTFont
-setFont__12J2DTevBlock1FP7JUTFont:
+.fn setFont__12J2DTevBlock1FP7JUTFont, global
 /* 8004AC50 00047B90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004AC54 00047B94  7C 08 02 A6 */	mflr r0
 /* 8004AC58 00047B98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1615,9 +1614,9 @@ setFont__12J2DTevBlock1FP7JUTFont:
 /* 8004ACC4 00047C04  7C 08 03 A6 */	mtlr r0
 /* 8004ACC8 00047C08  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004ACCC 00047C0C  4E 80 00 20 */	blr 
+.endfn setFont__12J2DTevBlock1FP7JUTFont
 
-.global setPalette__12J2DTevBlock1FUlPC7ResTLUT
-setPalette__12J2DTevBlock1FUlPC7ResTLUT:
+.fn setPalette__12J2DTevBlock1FUlPC7ResTLUT, global
 /* 8004ACD0 00047C10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004ACD4 00047C14  7C 08 02 A6 */	mflr r0
 /* 8004ACD8 00047C18  28 04 00 00 */	cmplwi r4, 0
@@ -1675,16 +1674,16 @@ setPalette__12J2DTevBlock1FUlPC7ResTLUT:
 /* 8004AD8C 00047CCC  7C 08 03 A6 */	mtlr r0
 /* 8004AD90 00047CD0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004AD94 00047CD4  4E 80 00 20 */	blr 
+.endfn setPalette__12J2DTevBlock1FUlPC7ResTLUT
 
-.global shiftDeleteFlag__12J2DTevBlock1FUcb
-shiftDeleteFlag__12J2DTevBlock1FUcb:
+.fn shiftDeleteFlag__12J2DTevBlock1FUcb, global
 /* 8004AD98 00047CD8  88 03 00 5C */	lbz r0, 0x5c(r3)
 /* 8004AD9C 00047CDC  54 00 06 30 */	rlwinm r0, r0, 0, 0x18, 0x18
 /* 8004ADA0 00047CE0  98 03 00 5C */	stb r0, 0x5c(r3)
 /* 8004ADA4 00047CE4  4E 80 00 20 */	blr 
+.endfn shiftDeleteFlag__12J2DTevBlock1FUcb
 
-.global setGX__12J2DTevBlock1Fv
-setGX__12J2DTevBlock1Fv:
+.fn setGX__12J2DTevBlock1Fv, global
 /* 8004ADA8 00047CE8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004ADAC 00047CEC  7C 08 02 A6 */	mflr r0
 /* 8004ADB0 00047CF0  38 80 00 00 */	li r4, 0
@@ -1840,9 +1839,9 @@ setGX__12J2DTevBlock1Fv:
 /* 8004AFE8 00047F28  7C 08 03 A6 */	mtlr r0
 /* 8004AFEC 00047F2C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004AFF0 00047F30  4E 80 00 20 */	blr 
+.endfn setGX__12J2DTevBlock1Fv
 
-.global loadTexture__12J2DTevBlock1F11_GXTexMapIDUl
-loadTexture__12J2DTevBlock1F11_GXTexMapIDUl:
+.fn loadTexture__12J2DTevBlock1F11_GXTexMapIDUl, global
 /* 8004AFF4 00047F34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004AFF8 00047F38  7C 08 02 A6 */	mflr r0
 /* 8004AFFC 00047F3C  28 05 00 00 */	cmplwi r5, 0
@@ -1862,9 +1861,9 @@ loadTexture__12J2DTevBlock1F11_GXTexMapIDUl:
 /* 8004B030 00047F70  7C 08 03 A6 */	mtlr r0
 /* 8004B034 00047F74  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B038 00047F78  4E 80 00 20 */	blr 
+.endfn loadTexture__12J2DTevBlock1F11_GXTexMapIDUl
 
-.global __ct__12J2DTevBlock2Fv
-__ct__12J2DTevBlock2Fv:
+.fn __ct__12J2DTevBlock2Fv, global
 /* 8004B03C 00047F7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004B040 00047F80  7C 08 02 A6 */	mflr r0
 /* 8004B044 00047F84  3C 80 80 4A */	lis r4, __vt__11J2DTevBlock@ha
@@ -1933,9 +1932,9 @@ __ct__12J2DTevBlock2Fv:
 /* 8004B140 00048080  7C 08 03 A6 */	mtlr r0
 /* 8004B144 00048084  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B148 00048088  4E 80 00 20 */	blr 
+.endfn __ct__12J2DTevBlock2Fv
 
-.global __dt__12J2DTevBlock2Fv
-__dt__12J2DTevBlock2Fv:
+.fn __dt__12J2DTevBlock2Fv, global
 /* 8004B14C 0004808C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004B150 00048090  7C 08 02 A6 */	mflr r0
 /* 8004B154 00048094  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1995,9 +1994,9 @@ __dt__12J2DTevBlock2Fv:
 /* 8004B218 00048158  7C 08 03 A6 */	mtlr r0
 /* 8004B21C 0004815C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B220 00048160  4E 80 00 20 */	blr 
+.endfn __dt__12J2DTevBlock2Fv
 
-.global initialize__12J2DTevBlock2Fv
-initialize__12J2DTevBlock2Fv:
+.fn initialize__12J2DTevBlock2Fv, global
 /* 8004B224 00048164  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8004B228 00048168  38 E2 85 B8 */	addi r7, r2, j2dDefaultTevColor@sda21
 /* 8004B22C 0004816C  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
@@ -2211,9 +2210,9 @@ initialize__12J2DTevBlock2Fv:
 /* 8004B568 000484A8  83 81 00 30 */	lwz r28, 0x30(r1)
 /* 8004B56C 000484AC  38 21 00 40 */	addi r1, r1, 0x40
 /* 8004B570 000484B0  4E 80 00 20 */	blr 
+.endfn initialize__12J2DTevBlock2Fv
 
-.global prepareTexture__12J2DTevBlock2FUc
-prepareTexture__12J2DTevBlock2FUc:
+.fn prepareTexture__12J2DTevBlock2FUc, global
 /* 8004B574 000484B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004B578 000484B8  7C 08 02 A6 */	mflr r0
 /* 8004B57C 000484BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2277,9 +2276,9 @@ prepareTexture__12J2DTevBlock2FUc:
 /* 8004B648 00048588  7C 08 03 A6 */	mtlr r0
 /* 8004B64C 0004858C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004B650 00048590  4E 80 00 20 */	blr 
+.endfn prepareTexture__12J2DTevBlock2FUc
 
-.global insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette
-insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette:
+.fn insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette, global
 /* 8004B654 00048594  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004B658 00048598  7C 08 02 A6 */	mflr r0
 /* 8004B65C 0004859C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2481,9 +2480,9 @@ insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette:
 /* 8004B914 00048854  7C 08 03 A6 */	mtlr r0
 /* 8004B918 00048858  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004B91C 0004885C  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette
 
-.global insertTexture__12J2DTevBlock2FUlP10JUTTexture
-insertTexture__12J2DTevBlock2FUlP10JUTTexture:
+.fn insertTexture__12J2DTevBlock2FUlP10JUTTexture, global
 /* 8004B920 00048860  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004B924 00048864  7C 08 02 A6 */	mflr r0
 /* 8004B928 00048868  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2585,9 +2584,9 @@ insertTexture__12J2DTevBlock2FUlP10JUTTexture:
 /* 8004BA7C 000489BC  7C 08 03 A6 */	mtlr r0
 /* 8004BA80 000489C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004BA84 000489C4  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock2FUlP10JUTTexture
 
-.global setTexture__12J2DTevBlock2FUlPC7ResTIMG
-setTexture__12J2DTevBlock2FUlPC7ResTIMG:
+.fn setTexture__12J2DTevBlock2FUlPC7ResTIMG, global
 /* 8004BA88 000489C8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004BA8C 000489CC  7C 08 02 A6 */	mflr r0
 /* 8004BA90 000489D0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2736,9 +2735,9 @@ setTexture__12J2DTevBlock2FUlPC7ResTIMG:
 /* 8004BC98 00048BD8  7C 08 03 A6 */	mtlr r0
 /* 8004BC9C 00048BDC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004BCA0 00048BE0  4E 80 00 20 */	blr 
+.endfn setTexture__12J2DTevBlock2FUlPC7ResTIMG
 
-.global setTexture__12J2DTevBlock2FUlP10JUTTexture
-setTexture__12J2DTevBlock2FUlP10JUTTexture:
+.fn setTexture__12J2DTevBlock2FUlP10JUTTexture, global
 /* 8004BCA4 00048BE4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004BCA8 00048BE8  7C 08 02 A6 */	mflr r0
 /* 8004BCAC 00048BEC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2784,9 +2783,9 @@ setTexture__12J2DTevBlock2FUlP10JUTTexture:
 /* 8004BD40 00048C80  7C 08 03 A6 */	mtlr r0
 /* 8004BD44 00048C84  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004BD48 00048C88  4E 80 00 20 */	blr 
+.endfn setTexture__12J2DTevBlock2FUlP10JUTTexture
 
-.global removeTexture__12J2DTevBlock2FUl
-removeTexture__12J2DTevBlock2FUl:
+.fn removeTexture__12J2DTevBlock2FUl, global
 /* 8004BD4C 00048C8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004BD50 00048C90  7C 08 02 A6 */	mflr r0
 /* 8004BD54 00048C94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2844,9 +2843,9 @@ removeTexture__12J2DTevBlock2FUl:
 /* 8004BE14 00048D54  7C 08 03 A6 */	mtlr r0
 /* 8004BE18 00048D58  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004BE1C 00048D5C  4E 80 00 20 */	blr 
+.endfn removeTexture__12J2DTevBlock2FUl
 
-.global setFont__12J2DTevBlock2FP7ResFONT
-setFont__12J2DTevBlock2FP7ResFONT:
+.fn setFont__12J2DTevBlock2FP7ResFONT, global
 /* 8004BE20 00048D60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004BE24 00048D64  7C 08 02 A6 */	mflr r0
 /* 8004BE28 00048D68  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2899,9 +2898,9 @@ setFont__12J2DTevBlock2FP7ResFONT:
 /* 8004BED0 00048E10  7C 08 03 A6 */	mtlr r0
 /* 8004BED4 00048E14  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004BED8 00048E18  4E 80 00 20 */	blr 
+.endfn setFont__12J2DTevBlock2FP7ResFONT
 
-.global setFont__12J2DTevBlock2FP7JUTFont
-setFont__12J2DTevBlock2FP7JUTFont:
+.fn setFont__12J2DTevBlock2FP7JUTFont, global
 /* 8004BEDC 00048E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004BEE0 00048E20  7C 08 02 A6 */	mflr r0
 /* 8004BEE4 00048E24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2937,9 +2936,9 @@ setFont__12J2DTevBlock2FP7JUTFont:
 /* 8004BF50 00048E90  7C 08 03 A6 */	mtlr r0
 /* 8004BF54 00048E94  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004BF58 00048E98  4E 80 00 20 */	blr 
+.endfn setFont__12J2DTevBlock2FP7JUTFont
 
-.global setPalette__12J2DTevBlock2FUlPC7ResTLUT
-setPalette__12J2DTevBlock2FUlPC7ResTLUT:
+.fn setPalette__12J2DTevBlock2FUlPC7ResTLUT, global
 /* 8004BF5C 00048E9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004BF60 00048EA0  7C 08 02 A6 */	mflr r0
 /* 8004BF64 00048EA4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2999,9 +2998,9 @@ setPalette__12J2DTevBlock2FUlPC7ResTLUT:
 /* 8004C020 00048F60  7C 08 03 A6 */	mtlr r0
 /* 8004C024 00048F64  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004C028 00048F68  4E 80 00 20 */	blr 
+.endfn setPalette__12J2DTevBlock2FUlPC7ResTLUT
 
-.global shiftDeleteFlag__12J2DTevBlock2FUcb
-shiftDeleteFlag__12J2DTevBlock2FUcb:
+.fn shiftDeleteFlag__12J2DTevBlock2FUcb, global
 /* 8004C02C 00048F6C  88 C3 00 78 */	lbz r6, 0x78(r3)
 /* 8004C030 00048F70  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 8004C034 00048F74  54 C0 06 7E */	clrlwi r0, r6, 0x19
@@ -3038,9 +3037,9 @@ shiftDeleteFlag__12J2DTevBlock2FUcb:
 /* 8004C0A8 00048FE8  7C 00 33 78 */	or r0, r0, r6
 /* 8004C0AC 00048FEC  98 03 00 78 */	stb r0, 0x78(r3)
 /* 8004C0B0 00048FF0  4E 80 00 20 */	blr 
+.endfn shiftDeleteFlag__12J2DTevBlock2FUcb
 
-.global setGX__12J2DTevBlock2Fv
-setGX__12J2DTevBlock2Fv:
+.fn setGX__12J2DTevBlock2Fv, global
 /* 8004C0B4 00048FF4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004C0B8 00048FF8  7C 08 02 A6 */	mflr r0
 /* 8004C0BC 00048FFC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3244,9 +3243,9 @@ setGX__12J2DTevBlock2Fv:
 /* 8004C390 000492D0  7C 08 03 A6 */	mtlr r0
 /* 8004C394 000492D4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004C398 000492D8  4E 80 00 20 */	blr 
+.endfn setGX__12J2DTevBlock2Fv
 
-.global loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
-loadTexture__12J2DTevBlock2F11_GXTexMapIDUl:
+.fn loadTexture__12J2DTevBlock2F11_GXTexMapIDUl, global
 /* 8004C39C 000492DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004C3A0 000492E0  7C 08 02 A6 */	mflr r0
 /* 8004C3A4 000492E4  28 05 00 02 */	cmplwi r5, 2
@@ -3266,9 +3265,9 @@ loadTexture__12J2DTevBlock2F11_GXTexMapIDUl:
 /* 8004C3D8 00049318  7C 08 03 A6 */	mtlr r0
 /* 8004C3DC 0004931C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004C3E0 00049320  4E 80 00 20 */	blr 
+.endfn loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
 
-.global __ct__12J2DTevBlock4Fv
-__ct__12J2DTevBlock4Fv:
+.fn __ct__12J2DTevBlock4Fv, global
 /* 8004C3E4 00049324  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004C3E8 00049328  7C 08 02 A6 */	mflr r0
 /* 8004C3EC 0004932C  3C 80 80 4A */	lis r4, __vt__11J2DTevBlock@ha
@@ -3339,9 +3338,9 @@ __ct__12J2DTevBlock4Fv:
 /* 8004C4F0 00049430  7C 08 03 A6 */	mtlr r0
 /* 8004C4F4 00049434  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004C4F8 00049438  4E 80 00 20 */	blr 
+.endfn __ct__12J2DTevBlock4Fv
 
-.global __dt__12J2DTevBlock4Fv
-__dt__12J2DTevBlock4Fv:
+.fn __dt__12J2DTevBlock4Fv, global
 /* 8004C4FC 0004943C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004C500 00049440  7C 08 02 A6 */	mflr r0
 /* 8004C504 00049444  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3399,9 +3398,9 @@ __dt__12J2DTevBlock4Fv:
 /* 8004C5C0 00049500  7C 08 03 A6 */	mtlr r0
 /* 8004C5C4 00049504  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004C5C8 00049508  4E 80 00 20 */	blr 
+.endfn __dt__12J2DTevBlock4Fv
 
-.global initialize__12J2DTevBlock4Fv
-initialize__12J2DTevBlock4Fv:
+.fn initialize__12J2DTevBlock4Fv, global
 /* 8004C5CC 0004950C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8004C5D0 00049510  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 8004C5D4 00049514  38 04 FF FF */	addi r0, r4, 0x0000FFFF@l
@@ -3643,9 +3642,9 @@ initialize__12J2DTevBlock4Fv:
 /* 8004C97C 000498BC  BB 01 00 20 */	lmw r24, 0x20(r1)
 /* 8004C980 000498C0  38 21 00 40 */	addi r1, r1, 0x40
 /* 8004C984 000498C4  4E 80 00 20 */	blr 
+.endfn initialize__12J2DTevBlock4Fv
 
-.global prepareTexture__12J2DTevBlock4FUc
-prepareTexture__12J2DTevBlock4FUc:
+.fn prepareTexture__12J2DTevBlock4FUc, global
 /* 8004C988 000498C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004C98C 000498CC  7C 08 02 A6 */	mflr r0
 /* 8004C990 000498D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3709,9 +3708,9 @@ prepareTexture__12J2DTevBlock4FUc:
 /* 8004CA5C 0004999C  7C 08 03 A6 */	mtlr r0
 /* 8004CA60 000499A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004CA64 000499A4  4E 80 00 20 */	blr 
+.endfn prepareTexture__12J2DTevBlock4FUc
 
-.global insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette
-insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette:
+.fn insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette, global
 /* 8004CA68 000499A8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004CA6C 000499AC  7C 08 02 A6 */	mflr r0
 /* 8004CA70 000499B0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3976,9 +3975,9 @@ insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette:
 /* 8004CE08 00049D48  7C 08 03 A6 */	mtlr r0
 /* 8004CE0C 00049D4C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004CE10 00049D50  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette
 
-.global insertTexture__12J2DTevBlock4FUlP10JUTTexture
-insertTexture__12J2DTevBlock4FUlP10JUTTexture:
+.fn insertTexture__12J2DTevBlock4FUlP10JUTTexture, global
 /* 8004CE14 00049D54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004CE18 00049D58  7C 08 02 A6 */	mflr r0
 /* 8004CE1C 00049D5C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4093,9 +4092,9 @@ insertTexture__12J2DTevBlock4FUlP10JUTTexture:
 /* 8004CFA0 00049EE0  7C 08 03 A6 */	mtlr r0
 /* 8004CFA4 00049EE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004CFA8 00049EE8  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock4FUlP10JUTTexture
 
-.global setTexture__12J2DTevBlock4FUlPC7ResTIMG
-setTexture__12J2DTevBlock4FUlPC7ResTIMG:
+.fn setTexture__12J2DTevBlock4FUlPC7ResTIMG, global
 /* 8004CFAC 00049EEC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004CFB0 00049EF0  7C 08 02 A6 */	mflr r0
 /* 8004CFB4 00049EF4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4301,9 +4300,9 @@ setTexture__12J2DTevBlock4FUlPC7ResTIMG:
 /* 8004D284 0004A1C4  7C 08 03 A6 */	mtlr r0
 /* 8004D288 0004A1C8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004D28C 0004A1CC  4E 80 00 20 */	blr 
+.endfn setTexture__12J2DTevBlock4FUlPC7ResTIMG
 
-.global setTexture__12J2DTevBlock4FUlP10JUTTexture
-setTexture__12J2DTevBlock4FUlP10JUTTexture:
+.fn setTexture__12J2DTevBlock4FUlP10JUTTexture, global
 /* 8004D290 0004A1D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004D294 0004A1D4  7C 08 02 A6 */	mflr r0
 /* 8004D298 0004A1D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4349,9 +4348,9 @@ setTexture__12J2DTevBlock4FUlP10JUTTexture:
 /* 8004D32C 0004A26C  7C 08 03 A6 */	mtlr r0
 /* 8004D330 0004A270  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004D334 0004A274  4E 80 00 20 */	blr 
+.endfn setTexture__12J2DTevBlock4FUlP10JUTTexture
 
-.global removeTexture__12J2DTevBlock4FUl
-removeTexture__12J2DTevBlock4FUl:
+.fn removeTexture__12J2DTevBlock4FUl, global
 /* 8004D338 0004A278  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004D33C 0004A27C  7C 08 02 A6 */	mflr r0
 /* 8004D340 0004A280  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4491,9 +4490,9 @@ removeTexture__12J2DTevBlock4FUl:
 /* 8004D53C 0004A47C  7C 08 03 A6 */	mtlr r0
 /* 8004D540 0004A480  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004D544 0004A484  4E 80 00 20 */	blr 
+.endfn removeTexture__12J2DTevBlock4FUl
 
-.global setFont__12J2DTevBlock4FP7ResFONT
-setFont__12J2DTevBlock4FP7ResFONT:
+.fn setFont__12J2DTevBlock4FP7ResFONT, global
 /* 8004D548 0004A488  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004D54C 0004A48C  7C 08 02 A6 */	mflr r0
 /* 8004D550 0004A490  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4546,9 +4545,9 @@ setFont__12J2DTevBlock4FP7ResFONT:
 /* 8004D5F8 0004A538  7C 08 03 A6 */	mtlr r0
 /* 8004D5FC 0004A53C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004D600 0004A540  4E 80 00 20 */	blr 
+.endfn setFont__12J2DTevBlock4FP7ResFONT
 
-.global setFont__12J2DTevBlock4FP7JUTFont
-setFont__12J2DTevBlock4FP7JUTFont:
+.fn setFont__12J2DTevBlock4FP7JUTFont, global
 /* 8004D604 0004A544  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004D608 0004A548  7C 08 02 A6 */	mflr r0
 /* 8004D60C 0004A54C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4584,9 +4583,9 @@ setFont__12J2DTevBlock4FP7JUTFont:
 /* 8004D678 0004A5B8  7C 08 03 A6 */	mtlr r0
 /* 8004D67C 0004A5BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004D680 0004A5C0  4E 80 00 20 */	blr 
+.endfn setFont__12J2DTevBlock4FP7JUTFont
 
-.global setPalette__12J2DTevBlock4FUlPC7ResTLUT
-setPalette__12J2DTevBlock4FUlPC7ResTLUT:
+.fn setPalette__12J2DTevBlock4FUlPC7ResTLUT, global
 /* 8004D684 0004A5C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004D688 0004A5C8  7C 08 02 A6 */	mflr r0
 /* 8004D68C 0004A5CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4646,9 +4645,9 @@ setPalette__12J2DTevBlock4FUlPC7ResTLUT:
 /* 8004D748 0004A688  7C 08 03 A6 */	mtlr r0
 /* 8004D74C 0004A68C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004D750 0004A690  4E 80 00 20 */	blr 
+.endfn setPalette__12J2DTevBlock4FUlPC7ResTLUT
 
-.global shiftDeleteFlag__12J2DTevBlock4FUcb
-shiftDeleteFlag__12J2DTevBlock4FUcb:
+.fn shiftDeleteFlag__12J2DTevBlock4FUcb, global
 /* 8004D754 0004A694  88 C3 00 B0 */	lbz r6, 0xb0(r3)
 /* 8004D758 0004A698  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 8004D75C 0004A69C  54 C0 06 7E */	clrlwi r0, r6, 0x19
@@ -4685,9 +4684,9 @@ shiftDeleteFlag__12J2DTevBlock4FUcb:
 /* 8004D7D0 0004A710  7C 00 33 78 */	or r0, r0, r6
 /* 8004D7D4 0004A714  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 8004D7D8 0004A718  4E 80 00 20 */	blr 
+.endfn shiftDeleteFlag__12J2DTevBlock4FUcb
 
-.global setGX__12J2DTevBlock4Fv
-setGX__12J2DTevBlock4Fv:
+.fn setGX__12J2DTevBlock4Fv, global
 /* 8004D7DC 0004A71C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004D7E0 0004A720  7C 08 02 A6 */	mflr r0
 /* 8004D7E4 0004A724  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4891,9 +4890,9 @@ setGX__12J2DTevBlock4Fv:
 /* 8004DAB8 0004A9F8  7C 08 03 A6 */	mtlr r0
 /* 8004DABC 0004A9FC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004DAC0 0004AA00  4E 80 00 20 */	blr 
+.endfn setGX__12J2DTevBlock4Fv
 
-.global loadTexture__12J2DTevBlock4F11_GXTexMapIDUl
-loadTexture__12J2DTevBlock4F11_GXTexMapIDUl:
+.fn loadTexture__12J2DTevBlock4F11_GXTexMapIDUl, global
 /* 8004DAC4 0004AA04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004DAC8 0004AA08  7C 08 02 A6 */	mflr r0
 /* 8004DACC 0004AA0C  28 05 00 04 */	cmplwi r5, 4
@@ -4913,9 +4912,9 @@ loadTexture__12J2DTevBlock4F11_GXTexMapIDUl:
 /* 8004DB00 0004AA40  7C 08 03 A6 */	mtlr r0
 /* 8004DB04 0004AA44  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004DB08 0004AA48  4E 80 00 20 */	blr 
+.endfn loadTexture__12J2DTevBlock4F11_GXTexMapIDUl
 
-.global __ct__12J2DTevBlock8Fv
-__ct__12J2DTevBlock8Fv:
+.fn __ct__12J2DTevBlock8Fv, global
 /* 8004DB0C 0004AA4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004DB10 0004AA50  7C 08 02 A6 */	mflr r0
 /* 8004DB14 0004AA54  3C 80 80 4A */	lis r4, __vt__11J2DTevBlock@ha
@@ -4990,9 +4989,9 @@ __ct__12J2DTevBlock8Fv:
 /* 8004DC28 0004AB68  7C 08 03 A6 */	mtlr r0
 /* 8004DC2C 0004AB6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004DC30 0004AB70  4E 80 00 20 */	blr 
+.endfn __ct__12J2DTevBlock8Fv
 
-.global __dt__12J2DTevBlock8Fv
-__dt__12J2DTevBlock8Fv:
+.fn __dt__12J2DTevBlock8Fv, global
 /* 8004DC34 0004AB74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004DC38 0004AB78  7C 08 02 A6 */	mflr r0
 /* 8004DC3C 0004AB7C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5050,9 +5049,9 @@ __dt__12J2DTevBlock8Fv:
 /* 8004DCF8 0004AC38  7C 08 03 A6 */	mtlr r0
 /* 8004DCFC 0004AC3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004DD00 0004AC40  4E 80 00 20 */	blr 
+.endfn __dt__12J2DTevBlock8Fv
 
-.global initialize__12J2DTevBlock8Fv
-initialize__12J2DTevBlock8Fv:
+.fn initialize__12J2DTevBlock8Fv, global
 /* 8004DD04 0004AC44  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8004DD08 0004AC48  39 02 85 B8 */	addi r8, r2, j2dDefaultTevColor@sda21
 /* 8004DD0C 0004AC4C  3C A0 00 01 */	lis r5, 0x0000FFFF@ha
@@ -5351,9 +5350,9 @@ initialize__12J2DTevBlock8Fv:
 /* 8004E198 0004B0D8  BA A1 00 24 */	lmw r21, 0x24(r1)
 /* 8004E19C 0004B0DC  38 21 00 50 */	addi r1, r1, 0x50
 /* 8004E1A0 0004B0E0  4E 80 00 20 */	blr 
+.endfn initialize__12J2DTevBlock8Fv
 
-.global prepareTexture__12J2DTevBlock8FUc
-prepareTexture__12J2DTevBlock8FUc:
+.fn prepareTexture__12J2DTevBlock8FUc, global
 /* 8004E1A4 0004B0E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004E1A8 0004B0E8  7C 08 02 A6 */	mflr r0
 /* 8004E1AC 0004B0EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5417,9 +5416,9 @@ prepareTexture__12J2DTevBlock8FUc:
 /* 8004E278 0004B1B8  7C 08 03 A6 */	mtlr r0
 /* 8004E27C 0004B1BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004E280 0004B1C0  4E 80 00 20 */	blr 
+.endfn prepareTexture__12J2DTevBlock8FUc
 
-.global insertTexture__12J2DTevBlock8FUlPC7ResTIMGP10JUTPalette
-insertTexture__12J2DTevBlock8FUlPC7ResTIMGP10JUTPalette:
+.fn insertTexture__12J2DTevBlock8FUlPC7ResTIMGP10JUTPalette, global
 /* 8004E284 0004B1C4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004E288 0004B1C8  7C 08 02 A6 */	mflr r0
 /* 8004E28C 0004B1CC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -5691,9 +5690,9 @@ insertTexture__12J2DTevBlock8FUlPC7ResTIMGP10JUTPalette:
 /* 8004E640 0004B580  7C 08 03 A6 */	mtlr r0
 /* 8004E644 0004B584  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004E648 0004B588  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock8FUlPC7ResTIMGP10JUTPalette
 
-.global insertTexture__12J2DTevBlock8FUlP10JUTTexture
-insertTexture__12J2DTevBlock8FUlP10JUTTexture:
+.fn insertTexture__12J2DTevBlock8FUlP10JUTTexture, global
 /* 8004E64C 0004B58C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004E650 0004B590  7C 08 02 A6 */	mflr r0
 /* 8004E654 0004B594  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5808,9 +5807,9 @@ insertTexture__12J2DTevBlock8FUlP10JUTTexture:
 /* 8004E7D8 0004B718  7C 08 03 A6 */	mtlr r0
 /* 8004E7DC 0004B71C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004E7E0 0004B720  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock8FUlP10JUTTexture
 
-.global setTexture__12J2DTevBlock8FUlPC7ResTIMG
-setTexture__12J2DTevBlock8FUlPC7ResTIMG:
+.fn setTexture__12J2DTevBlock8FUlPC7ResTIMG, global
 /* 8004E7E4 0004B724  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004E7E8 0004B728  7C 08 02 A6 */	mflr r0
 /* 8004E7EC 0004B72C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -6016,9 +6015,9 @@ setTexture__12J2DTevBlock8FUlPC7ResTIMG:
 /* 8004EABC 0004B9FC  7C 08 03 A6 */	mtlr r0
 /* 8004EAC0 0004BA00  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004EAC4 0004BA04  4E 80 00 20 */	blr 
+.endfn setTexture__12J2DTevBlock8FUlPC7ResTIMG
 
-.global setTexture__12J2DTevBlock8FUlP10JUTTexture
-setTexture__12J2DTevBlock8FUlP10JUTTexture:
+.fn setTexture__12J2DTevBlock8FUlP10JUTTexture, global
 /* 8004EAC8 0004BA08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004EACC 0004BA0C  7C 08 02 A6 */	mflr r0
 /* 8004EAD0 0004BA10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6064,9 +6063,9 @@ setTexture__12J2DTevBlock8FUlP10JUTTexture:
 /* 8004EB64 0004BAA4  7C 08 03 A6 */	mtlr r0
 /* 8004EB68 0004BAA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004EB6C 0004BAAC  4E 80 00 20 */	blr 
+.endfn setTexture__12J2DTevBlock8FUlP10JUTTexture
 
-.global removeTexture__12J2DTevBlock8FUl
-removeTexture__12J2DTevBlock8FUl:
+.fn removeTexture__12J2DTevBlock8FUl, global
 /* 8004EB70 0004BAB0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004EB74 0004BAB4  7C 08 02 A6 */	mflr r0
 /* 8004EB78 0004BAB8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6206,9 +6205,9 @@ removeTexture__12J2DTevBlock8FUl:
 /* 8004ED74 0004BCB4  7C 08 03 A6 */	mtlr r0
 /* 8004ED78 0004BCB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004ED7C 0004BCBC  4E 80 00 20 */	blr 
+.endfn removeTexture__12J2DTevBlock8FUl
 
-.global setFont__12J2DTevBlock8FP7ResFONT
-setFont__12J2DTevBlock8FP7ResFONT:
+.fn setFont__12J2DTevBlock8FP7ResFONT, global
 /* 8004ED80 0004BCC0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004ED84 0004BCC4  7C 08 02 A6 */	mflr r0
 /* 8004ED88 0004BCC8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6259,9 +6258,9 @@ setFont__12J2DTevBlock8FP7ResFONT:
 /* 8004EE28 0004BD68  7C 08 03 A6 */	mtlr r0
 /* 8004EE2C 0004BD6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004EE30 0004BD70  4E 80 00 20 */	blr 
+.endfn setFont__12J2DTevBlock8FP7ResFONT
 
-.global setFont__12J2DTevBlock8FP7JUTFont
-setFont__12J2DTevBlock8FP7JUTFont:
+.fn setFont__12J2DTevBlock8FP7JUTFont, global
 /* 8004EE34 0004BD74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004EE38 0004BD78  7C 08 02 A6 */	mflr r0
 /* 8004EE3C 0004BD7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6296,9 +6295,9 @@ setFont__12J2DTevBlock8FP7JUTFont:
 /* 8004EEA4 0004BDE4  7C 08 03 A6 */	mtlr r0
 /* 8004EEA8 0004BDE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004EEAC 0004BDEC  4E 80 00 20 */	blr 
+.endfn setFont__12J2DTevBlock8FP7JUTFont
 
-.global setPalette__12J2DTevBlock8FUlPC7ResTLUT
-setPalette__12J2DTevBlock8FUlPC7ResTLUT:
+.fn setPalette__12J2DTevBlock8FUlPC7ResTLUT, global
 /* 8004EEB0 0004BDF0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004EEB4 0004BDF4  7C 08 02 A6 */	mflr r0
 /* 8004EEB8 0004BDF8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6358,9 +6357,9 @@ setPalette__12J2DTevBlock8FUlPC7ResTLUT:
 /* 8004EF74 0004BEB4  7C 08 03 A6 */	mtlr r0
 /* 8004EF78 0004BEB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004EF7C 0004BEBC  4E 80 00 20 */	blr 
+.endfn setPalette__12J2DTevBlock8FUlPC7ResTLUT
 
-.global shiftDeleteFlag__12J2DTevBlock8FUcb
-shiftDeleteFlag__12J2DTevBlock8FUcb:
+.fn shiftDeleteFlag__12J2DTevBlock8FUcb, global
 /* 8004EF80 0004BEC0  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 8004EF84 0004BEC4  41 82 00 30 */	beq .L_8004EFB4
 /* 8004EF88 0004BEC8  54 80 06 3E */	clrlwi r0, r4, 0x18
@@ -6389,9 +6388,9 @@ shiftDeleteFlag__12J2DTevBlock8FUcb:
 /* 8004EFE0 0004BF20  7C 80 03 78 */	or r0, r4, r0
 /* 8004EFE4 0004BF24  98 03 01 20 */	stb r0, 0x120(r3)
 /* 8004EFE8 0004BF28  4E 80 00 20 */	blr 
+.endfn shiftDeleteFlag__12J2DTevBlock8FUcb
 
-.global setGX__12J2DTevBlock8Fv
-setGX__12J2DTevBlock8Fv:
+.fn setGX__12J2DTevBlock8Fv, global
 /* 8004EFEC 0004BF2C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004EFF0 0004BF30  7C 08 02 A6 */	mflr r0
 /* 8004EFF4 0004BF34  90 01 00 34 */	stw r0, 0x34(r1)
@@ -6595,9 +6594,9 @@ setGX__12J2DTevBlock8Fv:
 /* 8004F2C8 0004C208  7C 08 03 A6 */	mtlr r0
 /* 8004F2CC 0004C20C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004F2D0 0004C210  4E 80 00 20 */	blr 
+.endfn setGX__12J2DTevBlock8Fv
 
-.global loadTexture__12J2DTevBlock8F11_GXTexMapIDUl
-loadTexture__12J2DTevBlock8F11_GXTexMapIDUl:
+.fn loadTexture__12J2DTevBlock8F11_GXTexMapIDUl, global
 /* 8004F2D4 0004C214  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004F2D8 0004C218  7C 08 02 A6 */	mflr r0
 /* 8004F2DC 0004C21C  28 05 00 08 */	cmplwi r5, 8
@@ -6617,9 +6616,9 @@ loadTexture__12J2DTevBlock8F11_GXTexMapIDUl:
 /* 8004F310 0004C250  7C 08 03 A6 */	mtlr r0
 /* 8004F314 0004C254  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004F318 0004C258  4E 80 00 20 */	blr 
+.endfn loadTexture__12J2DTevBlock8F11_GXTexMapIDUl
 
-.global __ct__13J2DTevBlock16Fv
-__ct__13J2DTevBlock16Fv:
+.fn __ct__13J2DTevBlock16Fv, global
 /* 8004F31C 0004C25C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004F320 0004C260  7C 08 02 A6 */	mflr r0
 /* 8004F324 0004C264  3C 80 80 4A */	lis r4, __vt__11J2DTevBlock@ha
@@ -6694,9 +6693,9 @@ __ct__13J2DTevBlock16Fv:
 /* 8004F438 0004C378  7C 08 03 A6 */	mtlr r0
 /* 8004F43C 0004C37C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004F440 0004C380  4E 80 00 20 */	blr 
+.endfn __ct__13J2DTevBlock16Fv
 
-.global __dt__13J2DTevBlock16Fv
-__dt__13J2DTevBlock16Fv:
+.fn __dt__13J2DTevBlock16Fv, global
 /* 8004F444 0004C384  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004F448 0004C388  7C 08 02 A6 */	mflr r0
 /* 8004F44C 0004C38C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6754,9 +6753,9 @@ __dt__13J2DTevBlock16Fv:
 /* 8004F508 0004C448  7C 08 03 A6 */	mtlr r0
 /* 8004F50C 0004C44C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004F510 0004C450  4E 80 00 20 */	blr 
+.endfn __dt__13J2DTevBlock16Fv
 
-.global initialize__13J2DTevBlock16Fv
-initialize__13J2DTevBlock16Fv:
+.fn initialize__13J2DTevBlock16Fv, global
 /* 8004F514 0004C454  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004F518 0004C458  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 8004F51C 0004C45C  38 C4 FF FF */	addi r6, r4, 0x0000FFFF@l
@@ -7101,9 +7100,9 @@ initialize__13J2DTevBlock16Fv:
 /* 8004FA58 0004C998  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 8004FA5C 0004C99C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004FA60 0004C9A0  4E 80 00 20 */	blr 
+.endfn initialize__13J2DTevBlock16Fv
 
-.global prepareTexture__13J2DTevBlock16FUc
-prepareTexture__13J2DTevBlock16FUc:
+.fn prepareTexture__13J2DTevBlock16FUc, global
 /* 8004FA64 0004C9A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004FA68 0004C9A8  7C 08 02 A6 */	mflr r0
 /* 8004FA6C 0004C9AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7167,9 +7166,9 @@ prepareTexture__13J2DTevBlock16FUc:
 /* 8004FB38 0004CA78  7C 08 03 A6 */	mtlr r0
 /* 8004FB3C 0004CA7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004FB40 0004CA80  4E 80 00 20 */	blr 
+.endfn prepareTexture__13J2DTevBlock16FUc
 
-.global insertTexture__13J2DTevBlock16FUlPC7ResTIMGP10JUTPalette
-insertTexture__13J2DTevBlock16FUlPC7ResTIMGP10JUTPalette:
+.fn insertTexture__13J2DTevBlock16FUlPC7ResTIMGP10JUTPalette, global
 /* 8004FB44 0004CA84  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004FB48 0004CA88  7C 08 02 A6 */	mflr r0
 /* 8004FB4C 0004CA8C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -7441,9 +7440,9 @@ insertTexture__13J2DTevBlock16FUlPC7ResTIMGP10JUTPalette:
 /* 8004FF00 0004CE40  7C 08 03 A6 */	mtlr r0
 /* 8004FF04 0004CE44  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004FF08 0004CE48  4E 80 00 20 */	blr 
+.endfn insertTexture__13J2DTevBlock16FUlPC7ResTIMGP10JUTPalette
 
-.global insertTexture__13J2DTevBlock16FUlP10JUTTexture
-insertTexture__13J2DTevBlock16FUlP10JUTTexture:
+.fn insertTexture__13J2DTevBlock16FUlP10JUTTexture, global
 /* 8004FF0C 0004CE4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004FF10 0004CE50  7C 08 02 A6 */	mflr r0
 /* 8004FF14 0004CE54  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7558,9 +7557,9 @@ insertTexture__13J2DTevBlock16FUlP10JUTTexture:
 /* 80050098 0004CFD8  7C 08 03 A6 */	mtlr r0
 /* 8005009C 0004CFDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800500A0 0004CFE0  4E 80 00 20 */	blr 
+.endfn insertTexture__13J2DTevBlock16FUlP10JUTTexture
 
-.global setTexture__13J2DTevBlock16FUlPC7ResTIMG
-setTexture__13J2DTevBlock16FUlPC7ResTIMG:
+.fn setTexture__13J2DTevBlock16FUlPC7ResTIMG, global
 /* 800500A4 0004CFE4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800500A8 0004CFE8  7C 08 02 A6 */	mflr r0
 /* 800500AC 0004CFEC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -7766,9 +7765,9 @@ setTexture__13J2DTevBlock16FUlPC7ResTIMG:
 /* 8005037C 0004D2BC  7C 08 03 A6 */	mtlr r0
 /* 80050380 0004D2C0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80050384 0004D2C4  4E 80 00 20 */	blr 
+.endfn setTexture__13J2DTevBlock16FUlPC7ResTIMG
 
-.global setTexture__13J2DTevBlock16FUlP10JUTTexture
-setTexture__13J2DTevBlock16FUlP10JUTTexture:
+.fn setTexture__13J2DTevBlock16FUlP10JUTTexture, global
 /* 80050388 0004D2C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8005038C 0004D2CC  7C 08 02 A6 */	mflr r0
 /* 80050390 0004D2D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7814,9 +7813,9 @@ setTexture__13J2DTevBlock16FUlP10JUTTexture:
 /* 80050424 0004D364  7C 08 03 A6 */	mtlr r0
 /* 80050428 0004D368  38 21 00 20 */	addi r1, r1, 0x20
 /* 8005042C 0004D36C  4E 80 00 20 */	blr 
+.endfn setTexture__13J2DTevBlock16FUlP10JUTTexture
 
-.global removeTexture__13J2DTevBlock16FUl
-removeTexture__13J2DTevBlock16FUl:
+.fn removeTexture__13J2DTevBlock16FUl, global
 /* 80050430 0004D370  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80050434 0004D374  7C 08 02 A6 */	mflr r0
 /* 80050438 0004D378  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7956,9 +7955,9 @@ removeTexture__13J2DTevBlock16FUl:
 /* 80050634 0004D574  7C 08 03 A6 */	mtlr r0
 /* 80050638 0004D578  38 21 00 20 */	addi r1, r1, 0x20
 /* 8005063C 0004D57C  4E 80 00 20 */	blr 
+.endfn removeTexture__13J2DTevBlock16FUl
 
-.global setFont__13J2DTevBlock16FP7ResFONT
-setFont__13J2DTevBlock16FP7ResFONT:
+.fn setFont__13J2DTevBlock16FP7ResFONT, global
 /* 80050640 0004D580  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80050644 0004D584  7C 08 02 A6 */	mflr r0
 /* 80050648 0004D588  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8009,9 +8008,9 @@ setFont__13J2DTevBlock16FP7ResFONT:
 /* 800506E8 0004D628  7C 08 03 A6 */	mtlr r0
 /* 800506EC 0004D62C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800506F0 0004D630  4E 80 00 20 */	blr 
+.endfn setFont__13J2DTevBlock16FP7ResFONT
 
-.global setFont__13J2DTevBlock16FP7JUTFont
-setFont__13J2DTevBlock16FP7JUTFont:
+.fn setFont__13J2DTevBlock16FP7JUTFont, global
 /* 800506F4 0004D634  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800506F8 0004D638  7C 08 02 A6 */	mflr r0
 /* 800506FC 0004D63C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8046,9 +8045,9 @@ setFont__13J2DTevBlock16FP7JUTFont:
 /* 80050764 0004D6A4  7C 08 03 A6 */	mtlr r0
 /* 80050768 0004D6A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005076C 0004D6AC  4E 80 00 20 */	blr 
+.endfn setFont__13J2DTevBlock16FP7JUTFont
 
-.global setPalette__13J2DTevBlock16FUlPC7ResTLUT
-setPalette__13J2DTevBlock16FUlPC7ResTLUT:
+.fn setPalette__13J2DTevBlock16FUlPC7ResTLUT, global
 /* 80050770 0004D6B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80050774 0004D6B4  7C 08 02 A6 */	mflr r0
 /* 80050778 0004D6B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8108,9 +8107,9 @@ setPalette__13J2DTevBlock16FUlPC7ResTLUT:
 /* 80050834 0004D774  7C 08 03 A6 */	mtlr r0
 /* 80050838 0004D778  38 21 00 20 */	addi r1, r1, 0x20
 /* 8005083C 0004D77C  4E 80 00 20 */	blr 
+.endfn setPalette__13J2DTevBlock16FUlPC7ResTLUT
 
-.global shiftDeleteFlag__13J2DTevBlock16FUcb
-shiftDeleteFlag__13J2DTevBlock16FUcb:
+.fn shiftDeleteFlag__13J2DTevBlock16FUcb, global
 /* 80050840 0004D780  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 80050844 0004D784  41 82 00 30 */	beq .L_80050874
 /* 80050848 0004D788  54 80 06 3E */	clrlwi r0, r4, 0x18
@@ -8139,9 +8138,9 @@ shiftDeleteFlag__13J2DTevBlock16FUcb:
 /* 800508A0 0004D7E0  7C 80 03 78 */	or r0, r4, r0
 /* 800508A4 0004D7E4  98 03 01 B0 */	stb r0, 0x1b0(r3)
 /* 800508A8 0004D7E8  4E 80 00 20 */	blr 
+.endfn shiftDeleteFlag__13J2DTevBlock16FUcb
 
-.global setGX__13J2DTevBlock16Fv
-setGX__13J2DTevBlock16Fv:
+.fn setGX__13J2DTevBlock16Fv, global
 /* 800508AC 0004D7EC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800508B0 0004D7F0  7C 08 02 A6 */	mflr r0
 /* 800508B4 0004D7F4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -8345,9 +8344,9 @@ setGX__13J2DTevBlock16Fv:
 /* 80050B88 0004DAC8  7C 08 03 A6 */	mtlr r0
 /* 80050B8C 0004DACC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80050B90 0004DAD0  4E 80 00 20 */	blr 
+.endfn setGX__13J2DTevBlock16Fv
 
-.global loadTexture__13J2DTevBlock16F11_GXTexMapIDUl
-loadTexture__13J2DTevBlock16F11_GXTexMapIDUl:
+.fn loadTexture__13J2DTevBlock16F11_GXTexMapIDUl, global
 /* 80050B94 0004DAD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80050B98 0004DAD8  7C 08 02 A6 */	mflr r0
 /* 80050B9C 0004DADC  28 05 00 08 */	cmplwi r5, 8
@@ -8367,9 +8366,9 @@ loadTexture__13J2DTevBlock16F11_GXTexMapIDUl:
 /* 80050BD0 0004DB10  7C 08 03 A6 */	mtlr r0
 /* 80050BD4 0004DB14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80050BD8 0004DB18  4E 80 00 20 */	blr 
+.endfn loadTexture__13J2DTevBlock16F11_GXTexMapIDUl
 
-.global initialize__15J2DIndBlockFullFv
-initialize__15J2DIndBlockFullFv:
+.fn initialize__15J2DIndBlockFullFv, global
 /* 80050BDC 0004DB1C  38 00 00 00 */	li r0, 0
 /* 80050BE0 0004DB20  3C 80 80 48 */	lis r4, j2dDefaultIndTexMtxInfo@ha
 /* 80050BE4 0004DB24  98 03 00 04 */	stb r0, 4(r3)
@@ -8452,9 +8451,9 @@ initialize__15J2DIndBlockFullFv:
 /* 80050D18 0004DC58  88 06 00 01 */	lbz r0, 1(r6)
 /* 80050D1C 0004DC5C  98 03 00 6B */	stb r0, 0x6b(r3)
 /* 80050D20 0004DC60  4E 80 00 20 */	blr 
+.endfn initialize__15J2DIndBlockFullFv
 
-.global setGX__15J2DIndBlockFullFv
-setGX__15J2DIndBlockFullFv:
+.fn setGX__15J2DIndBlockFullFv, global
 /* 80050D24 0004DC64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80050D28 0004DC68  7C 08 02 A6 */	mflr r0
 /* 80050D2C 0004DC6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8512,9 +8511,9 @@ setGX__15J2DIndBlockFullFv:
 /* 80050DE4 0004DD24  7C 08 03 A6 */	mtlr r0
 /* 80050DE8 0004DD28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80050DEC 0004DD2C  4E 80 00 20 */	blr 
+.endfn setGX__15J2DIndBlockFullFv
 
-.global initialize__10J2DPEBlockFv
-initialize__10J2DPEBlockFv:
+.fn initialize__10J2DPEBlockFv, global
 /* 80050DF0 0004DD30  A0 C2 85 DE */	lhz r6, j2dDefaultAlphaCmp@sda21(r2)
 /* 80050DF4 0004DD34  38 80 00 00 */	li r4, 0
 /* 80050DF8 0004DD38  38 A2 85 D0 */	addi r5, r2, j2dDefaultBlendInfo@sda21
@@ -8532,9 +8531,9 @@ initialize__10J2DPEBlockFv:
 /* 80050E28 0004DD68  98 83 00 07 */	stb r4, 7(r3)
 /* 80050E2C 0004DD6C  98 03 00 08 */	stb r0, 8(r3)
 /* 80050E30 0004DD70  4E 80 00 20 */	blr 
+.endfn initialize__10J2DPEBlockFv
 
-.global setGX__10J2DPEBlockFv
-setGX__10J2DPEBlockFv:
+.fn setGX__10J2DPEBlockFv, global
 /* 80050E34 0004DD74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80050E38 0004DD78  7C 08 02 A6 */	mflr r0
 /* 80050E3C 0004DD7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8559,25 +8558,25 @@ setGX__10J2DPEBlockFv:
 /* 80050E88 0004DDC8  7C 08 03 A6 */	mtlr r0
 /* 80050E8C 0004DDCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80050E90 0004DDD0  4E 80 00 20 */	blr 
+.endfn setGX__10J2DPEBlockFv
 
-.global getType__15J2DIndBlockFullFv
-getType__15J2DIndBlockFullFv:
+.fn getType__15J2DIndBlockFullFv, weak
 /* 80050E94 0004DDD4  3C 60 49 42 */	lis r3, 0x49424C46@ha
 /* 80050E98 0004DDD8  38 63 4C 46 */	addi r3, r3, 0x49424C46@l
 /* 80050E9C 0004DDDC  4E 80 00 20 */	blr 
+.endfn getType__15J2DIndBlockFullFv
 
-.global setIndTexStageNum__15J2DIndBlockFullFUc
-setIndTexStageNum__15J2DIndBlockFullFUc:
+.fn setIndTexStageNum__15J2DIndBlockFullFUc, weak
 /* 80050EA0 0004DDE0  98 83 00 04 */	stb r4, 4(r3)
 /* 80050EA4 0004DDE4  4E 80 00 20 */	blr 
+.endfn setIndTexStageNum__15J2DIndBlockFullFUc
 
-.global getIndTexStageNum__15J2DIndBlockFullCFv
-getIndTexStageNum__15J2DIndBlockFullCFv:
+.fn getIndTexStageNum__15J2DIndBlockFullCFv, weak
 /* 80050EA8 0004DDE8  88 63 00 04 */	lbz r3, 4(r3)
 /* 80050EAC 0004DDEC  4E 80 00 20 */	blr 
+.endfn getIndTexStageNum__15J2DIndBlockFullCFv
 
-.global setIndTexOrder__15J2DIndBlockFullFUl14J2DIndTexOrder
-setIndTexOrder__15J2DIndBlockFullFUl14J2DIndTexOrder:
+.fn setIndTexOrder__15J2DIndBlockFullFUl14J2DIndTexOrder, weak
 /* 80050EB0 0004DDF0  54 80 08 3C */	slwi r0, r4, 1
 /* 80050EB4 0004DDF4  88 85 00 00 */	lbz r4, 0(r5)
 /* 80050EB8 0004DDF8  7C 63 02 14 */	add r3, r3, r0
@@ -8585,17 +8584,17 @@ setIndTexOrder__15J2DIndBlockFullFUl14J2DIndTexOrder:
 /* 80050EC0 0004DE00  98 83 00 05 */	stb r4, 5(r3)
 /* 80050EC4 0004DE04  98 03 00 06 */	stb r0, 6(r3)
 /* 80050EC8 0004DE08  4E 80 00 20 */	blr 
+.endfn setIndTexOrder__15J2DIndBlockFullFUl14J2DIndTexOrder
 
-.global getIndTexOrder__15J2DIndBlockFullFUl
-getIndTexOrder__15J2DIndBlockFullFUl:
+.fn getIndTexOrder__15J2DIndBlockFullFUl, weak
 /* 80050ECC 0004DE0C  54 84 08 3C */	slwi r4, r4, 1
 /* 80050ED0 0004DE10  7C 60 1B 78 */	mr r0, r3
 /* 80050ED4 0004DE14  38 64 00 05 */	addi r3, r4, 5
 /* 80050ED8 0004DE18  7C 60 1A 14 */	add r3, r0, r3
 /* 80050EDC 0004DE1C  4E 80 00 20 */	blr 
+.endfn getIndTexOrder__15J2DIndBlockFullFUl
 
-.global setIndTexMtx__15J2DIndBlockFullFUl12J2DIndTexMtx
-setIndTexMtx__15J2DIndBlockFullFUl12J2DIndTexMtx:
+.fn setIndTexMtx__15J2DIndBlockFullFUl12J2DIndTexMtx, weak
 /* 80050EE0 0004DE20  1C 04 00 1C */	mulli r0, r4, 0x1c
 /* 80050EE4 0004DE24  C0 45 00 00 */	lfs f2, 0(r5)
 /* 80050EE8 0004DE28  C0 25 00 04 */	lfs f1, 4(r5)
@@ -8613,17 +8612,17 @@ setIndTexMtx__15J2DIndBlockFullFUl12J2DIndTexMtx:
 /* 80050F18 0004DE58  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 80050F1C 0004DE5C  98 03 00 28 */	stb r0, 0x28(r3)
 /* 80050F20 0004DE60  4E 80 00 20 */	blr 
+.endfn setIndTexMtx__15J2DIndBlockFullFUl12J2DIndTexMtx
 
-.global getIndTexMtx__15J2DIndBlockFullFUl
-getIndTexMtx__15J2DIndBlockFullFUl:
+.fn getIndTexMtx__15J2DIndBlockFullFUl, weak
 /* 80050F24 0004DE64  1C 84 00 1C */	mulli r4, r4, 0x1c
 /* 80050F28 0004DE68  7C 60 1B 78 */	mr r0, r3
 /* 80050F2C 0004DE6C  38 64 00 10 */	addi r3, r4, 0x10
 /* 80050F30 0004DE70  7C 60 1A 14 */	add r3, r0, r3
 /* 80050F34 0004DE74  4E 80 00 20 */	blr 
+.endfn getIndTexMtx__15J2DIndBlockFullFUl
 
-.global setIndTexCoordScale__15J2DIndBlockFullFUl19J2DIndTexCoordScale
-setIndTexCoordScale__15J2DIndBlockFullFUl19J2DIndTexCoordScale:
+.fn setIndTexCoordScale__15J2DIndBlockFullFUl19J2DIndTexCoordScale, weak
 /* 80050F38 0004DE78  54 80 08 3C */	slwi r0, r4, 1
 /* 80050F3C 0004DE7C  88 85 00 00 */	lbz r4, 0(r5)
 /* 80050F40 0004DE80  7C 63 02 14 */	add r3, r3, r0
@@ -8631,17 +8630,17 @@ setIndTexCoordScale__15J2DIndBlockFullFUl19J2DIndTexCoordScale:
 /* 80050F48 0004DE88  98 83 00 64 */	stb r4, 0x64(r3)
 /* 80050F4C 0004DE8C  98 03 00 65 */	stb r0, 0x65(r3)
 /* 80050F50 0004DE90  4E 80 00 20 */	blr 
+.endfn setIndTexCoordScale__15J2DIndBlockFullFUl19J2DIndTexCoordScale
 
-.global getIndTexCoordScale__15J2DIndBlockFullFUl
-getIndTexCoordScale__15J2DIndBlockFullFUl:
+.fn getIndTexCoordScale__15J2DIndBlockFullFUl, weak
 /* 80050F54 0004DE94  54 84 08 3C */	slwi r4, r4, 1
 /* 80050F58 0004DE98  7C 60 1B 78 */	mr r0, r3
 /* 80050F5C 0004DE9C  38 64 00 64 */	addi r3, r4, 0x64
 /* 80050F60 0004DEA0  7C 60 1A 14 */	add r3, r0, r3
 /* 80050F64 0004DEA4  4E 80 00 20 */	blr 
+.endfn getIndTexCoordScale__15J2DIndBlockFullFUl
 
-.global __dt__15J2DIndBlockFullFv
-__dt__15J2DIndBlockFullFv:
+.fn __dt__15J2DIndBlockFullFv, weak
 /* 80050F68 0004DEA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80050F6C 0004DEAC  7C 08 02 A6 */	mflr r0
 /* 80050F70 0004DEB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8683,9 +8682,9 @@ __dt__15J2DIndBlockFullFv:
 /* 80050FF8 0004DF38  7C 08 03 A6 */	mtlr r0
 /* 80050FFC 0004DF3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80051000 0004DF40  4E 80 00 20 */	blr 
+.endfn __dt__15J2DIndBlockFullFv
 
-.global __dt__12J2DIndTexMtxFv
-__dt__12J2DIndTexMtxFv:
+.fn __dt__12J2DIndTexMtxFv, weak
 /* 80051004 0004DF44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80051008 0004DF48  7C 08 02 A6 */	mflr r0
 /* 8005100C 0004DF4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8702,9 +8701,9 @@ __dt__12J2DIndTexMtxFv:
 /* 80051034 0004DF74  7C 08 03 A6 */	mtlr r0
 /* 80051038 0004DF78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005103C 0004DF7C  4E 80 00 20 */	blr 
+.endfn __dt__12J2DIndTexMtxFv
 
-.global __dt__19J2DIndTexCoordScaleFv
-__dt__19J2DIndTexCoordScaleFv:
+.fn __dt__19J2DIndTexCoordScaleFv, weak
 /* 80051040 0004DF80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80051044 0004DF84  7C 08 02 A6 */	mflr r0
 /* 80051048 0004DF88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8721,48 +8720,48 @@ __dt__19J2DIndTexCoordScaleFv:
 /* 80051070 0004DFB0  7C 08 03 A6 */	mtlr r0
 /* 80051074 0004DFB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80051078 0004DFB8  4E 80 00 20 */	blr 
+.endfn __dt__19J2DIndTexCoordScaleFv
 
-.global initialize__11J2DIndBlockFv
-initialize__11J2DIndBlockFv:
+.fn initialize__11J2DIndBlockFv, weak
 /* 8005107C 0004DFBC  4E 80 00 20 */	blr 
+.endfn initialize__11J2DIndBlockFv
 
-.global setGX__11J2DIndBlockFv
-setGX__11J2DIndBlockFv:
+.fn setGX__11J2DIndBlockFv, weak
 /* 80051080 0004DFC0  4E 80 00 20 */	blr 
+.endfn setGX__11J2DIndBlockFv
 
-.global setIndTexStageNum__11J2DIndBlockFUc
-setIndTexStageNum__11J2DIndBlockFUc:
+.fn setIndTexStageNum__11J2DIndBlockFUc, weak
 /* 80051084 0004DFC4  4E 80 00 20 */	blr 
+.endfn setIndTexStageNum__11J2DIndBlockFUc
 
-.global setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder
-setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder:
+.fn setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder, weak
 /* 80051088 0004DFC8  4E 80 00 20 */	blr 
+.endfn setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder
 
-.global getIndTexOrder__11J2DIndBlockFUl
-getIndTexOrder__11J2DIndBlockFUl:
+.fn getIndTexOrder__11J2DIndBlockFUl, weak
 /* 8005108C 0004DFCC  38 60 00 00 */	li r3, 0
 /* 80051090 0004DFD0  4E 80 00 20 */	blr 
+.endfn getIndTexOrder__11J2DIndBlockFUl
 
-.global setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx
-setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx:
+.fn setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx, weak
 /* 80051094 0004DFD4  4E 80 00 20 */	blr 
+.endfn setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx
 
-.global getIndTexMtx__11J2DIndBlockFUl
-getIndTexMtx__11J2DIndBlockFUl:
+.fn getIndTexMtx__11J2DIndBlockFUl, weak
 /* 80051098 0004DFD8  38 60 00 00 */	li r3, 0
 /* 8005109C 0004DFDC  4E 80 00 20 */	blr 
+.endfn getIndTexMtx__11J2DIndBlockFUl
 
-.global setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale
-setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale:
+.fn setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale, weak
 /* 800510A0 0004DFE0  4E 80 00 20 */	blr 
+.endfn setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale
 
-.global getIndTexCoordScale__11J2DIndBlockFUl
-getIndTexCoordScale__11J2DIndBlockFUl:
+.fn getIndTexCoordScale__11J2DIndBlockFUl, weak
 /* 800510A4 0004DFE4  38 60 00 00 */	li r3, 0
 /* 800510A8 0004DFE8  4E 80 00 20 */	blr 
+.endfn getIndTexCoordScale__11J2DIndBlockFUl
 
-.global __dt__11J2DIndBlockFv
-__dt__11J2DIndBlockFv:
+.fn __dt__11J2DIndBlockFv, weak
 /* 800510AC 0004DFEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800510B0 0004DFF0  7C 08 02 A6 */	mflr r0
 /* 800510B4 0004DFF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8782,44 +8781,44 @@ __dt__11J2DIndBlockFv:
 /* 800510E8 0004E028  7C 08 03 A6 */	mtlr r0
 /* 800510EC 0004E02C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800510F0 0004E030  4E 80 00 20 */	blr 
+.endfn __dt__11J2DIndBlockFv
 
-.global getType__13J2DTevBlock16Fv
-getType__13J2DTevBlock16Fv:
+.fn getType__13J2DTevBlock16Fv, weak
 /* 800510F4 0004E034  3C 60 54 56 */	lis r3, 0x54563136@ha
 /* 800510F8 0004E038  38 63 31 36 */	addi r3, r3, 0x54563136@l
 /* 800510FC 0004E03C  4E 80 00 20 */	blr 
+.endfn getType__13J2DTevBlock16Fv
 
-.global getMaxStage__13J2DTevBlock16Fv
-getMaxStage__13J2DTevBlock16Fv:
+.fn getMaxStage__13J2DTevBlock16Fv, weak
 /* 80051100 0004E040  38 60 00 10 */	li r3, 0x10
 /* 80051104 0004E044  4E 80 00 20 */	blr 
+.endfn getMaxStage__13J2DTevBlock16Fv
 
-.global setTexNo__13J2DTevBlock16FUlUs
-setTexNo__13J2DTevBlock16FUlUs:
+.fn setTexNo__13J2DTevBlock16FUlUs, weak
 /* 80051108 0004E048  54 80 08 3C */	slwi r0, r4, 1
 /* 8005110C 0004E04C  7C 63 02 14 */	add r3, r3, r0
 /* 80051110 0004E050  B0 A3 00 04 */	sth r5, 4(r3)
 /* 80051114 0004E054  4E 80 00 20 */	blr 
+.endfn setTexNo__13J2DTevBlock16FUlUs
 
-.global getTexNo__13J2DTevBlock16CFUl
-getTexNo__13J2DTevBlock16CFUl:
+.fn getTexNo__13J2DTevBlock16CFUl, weak
 /* 80051118 0004E058  54 80 08 3C */	slwi r0, r4, 1
 /* 8005111C 0004E05C  7C 63 02 14 */	add r3, r3, r0
 /* 80051120 0004E060  A0 63 00 04 */	lhz r3, 4(r3)
 /* 80051124 0004E064  4E 80 00 20 */	blr 
+.endfn getTexNo__13J2DTevBlock16CFUl
 
-.global setFontNo__13J2DTevBlock16FUs
-setFontNo__13J2DTevBlock16FUs:
+.fn setFontNo__13J2DTevBlock16FUs, weak
 /* 80051128 0004E068  B0 83 00 14 */	sth r4, 0x14(r3)
 /* 8005112C 0004E06C  4E 80 00 20 */	blr 
+.endfn setFontNo__13J2DTevBlock16FUs
 
-.global getFontNo__13J2DTevBlock16CFv
-getFontNo__13J2DTevBlock16CFv:
+.fn getFontNo__13J2DTevBlock16CFv, weak
 /* 80051130 0004E070  A0 63 00 14 */	lhz r3, 0x14(r3)
 /* 80051134 0004E074  4E 80 00 20 */	blr 
+.endfn getFontNo__13J2DTevBlock16CFv
 
-.global setTevOrder__13J2DTevBlock16FUl11J2DTevOrder
-setTevOrder__13J2DTevBlock16FUl11J2DTevOrder:
+.fn setTevOrder__13J2DTevBlock16FUl11J2DTevOrder, weak
 /* 80051138 0004E078  54 84 10 3A */	slwi r4, r4, 2
 /* 8005113C 0004E07C  88 05 00 00 */	lbz r0, 0(r5)
 /* 80051140 0004E080  7C 83 22 14 */	add r4, r3, r4
@@ -8829,17 +8828,17 @@ setTevOrder__13J2DTevBlock16FUl11J2DTevOrder:
 /* 80051150 0004E090  98 64 00 17 */	stb r3, 0x17(r4)
 /* 80051154 0004E094  98 04 00 18 */	stb r0, 0x18(r4)
 /* 80051158 0004E098  4E 80 00 20 */	blr 
+.endfn setTevOrder__13J2DTevBlock16FUl11J2DTevOrder
 
-.global getTevOrder__13J2DTevBlock16FUl
-getTevOrder__13J2DTevBlock16FUl:
+.fn getTevOrder__13J2DTevBlock16FUl, weak
 /* 8005115C 0004E09C  54 84 10 3A */	slwi r4, r4, 2
 /* 80051160 0004E0A0  7C 60 1B 78 */	mr r0, r3
 /* 80051164 0004E0A4  38 64 00 16 */	addi r3, r4, 0x16
 /* 80051168 0004E0A8  7C 60 1A 14 */	add r3, r0, r3
 /* 8005116C 0004E0AC  4E 80 00 20 */	blr 
+.endfn getTevOrder__13J2DTevBlock16FUl
 
-.global setTevColor__13J2DTevBlock16FUl13J2DGXColorS10
-setTevColor__13J2DTevBlock16FUl13J2DGXColorS10:
+.fn setTevColor__13J2DTevBlock16FUl13J2DGXColorS10, weak
 /* 80051170 0004E0B0  54 80 18 38 */	slwi r0, r4, 3
 /* 80051174 0004E0B4  A8 C5 00 00 */	lha r6, 0(r5)
 /* 80051178 0004E0B8  7C 83 02 14 */	add r4, r3, r0
@@ -8851,17 +8850,17 @@ setTevColor__13J2DTevBlock16FUl13J2DGXColorS10:
 /* 80051190 0004E0D0  B0 64 00 5A */	sth r3, 0x5a(r4)
 /* 80051194 0004E0D4  B0 04 00 5C */	sth r0, 0x5c(r4)
 /* 80051198 0004E0D8  4E 80 00 20 */	blr 
+.endfn setTevColor__13J2DTevBlock16FUl13J2DGXColorS10
 
-.global getTevColor__13J2DTevBlock16FUl
-getTevColor__13J2DTevBlock16FUl:
+.fn getTevColor__13J2DTevBlock16FUl, weak
 /* 8005119C 0004E0DC  54 84 18 38 */	slwi r4, r4, 3
 /* 800511A0 0004E0E0  7C 60 1B 78 */	mr r0, r3
 /* 800511A4 0004E0E4  38 64 00 56 */	addi r3, r4, 0x56
 /* 800511A8 0004E0E8  7C 60 1A 14 */	add r3, r0, r3
 /* 800511AC 0004E0EC  4E 80 00 20 */	blr 
+.endfn getTevColor__13J2DTevBlock16FUl
 
-.global setTevKColor__13J2DTevBlock16FUlQ28JUtility6TColor
-setTevKColor__13J2DTevBlock16FUlQ28JUtility6TColor:
+.fn setTevKColor__13J2DTevBlock16FUlQ28JUtility6TColor, weak
 /* 800511B0 0004E0F0  54 80 10 3A */	slwi r0, r4, 2
 /* 800511B4 0004E0F4  88 C5 00 00 */	lbz r6, 0(r5)
 /* 800511B8 0004E0F8  7C 83 02 14 */	add r4, r3, r0
@@ -8873,51 +8872,51 @@ setTevKColor__13J2DTevBlock16FUlQ28JUtility6TColor:
 /* 800511D0 0004E110  98 64 00 FA */	stb r3, 0xfa(r4)
 /* 800511D4 0004E114  98 04 00 FB */	stb r0, 0xfb(r4)
 /* 800511D8 0004E118  4E 80 00 20 */	blr 
+.endfn setTevKColor__13J2DTevBlock16FUlQ28JUtility6TColor
 
-.global getTevKColor__13J2DTevBlock16FUl
-getTevKColor__13J2DTevBlock16FUl:
+.fn getTevKColor__13J2DTevBlock16FUl, weak
 /* 800511DC 0004E11C  54 84 10 3A */	slwi r4, r4, 2
 /* 800511E0 0004E120  7C 60 1B 78 */	mr r0, r3
 /* 800511E4 0004E124  38 64 00 F8 */	addi r3, r4, 0xf8
 /* 800511E8 0004E128  7C 60 1A 14 */	add r3, r0, r3
 /* 800511EC 0004E12C  4E 80 00 20 */	blr 
+.endfn getTevKColor__13J2DTevBlock16FUl
 
-.global setTevKColorSel__13J2DTevBlock16FUlUc
-setTevKColorSel__13J2DTevBlock16FUlUc:
+.fn setTevKColorSel__13J2DTevBlock16FUlUc, weak
 /* 800511F0 0004E130  7C 63 22 14 */	add r3, r3, r4
 /* 800511F4 0004E134  98 A3 01 08 */	stb r5, 0x108(r3)
 /* 800511F8 0004E138  4E 80 00 20 */	blr 
+.endfn setTevKColorSel__13J2DTevBlock16FUlUc
 
-.global getTevKColorSel__13J2DTevBlock16FUl
-getTevKColorSel__13J2DTevBlock16FUl:
+.fn getTevKColorSel__13J2DTevBlock16FUl, weak
 /* 800511FC 0004E13C  7C 63 22 14 */	add r3, r3, r4
 /* 80051200 0004E140  88 63 01 08 */	lbz r3, 0x108(r3)
 /* 80051204 0004E144  4E 80 00 20 */	blr 
+.endfn getTevKColorSel__13J2DTevBlock16FUl
 
-.global setTevKAlphaSel__13J2DTevBlock16FUlUc
-setTevKAlphaSel__13J2DTevBlock16FUlUc:
+.fn setTevKAlphaSel__13J2DTevBlock16FUlUc, weak
 /* 80051208 0004E148  7C 63 22 14 */	add r3, r3, r4
 /* 8005120C 0004E14C  98 A3 01 18 */	stb r5, 0x118(r3)
 /* 80051210 0004E150  4E 80 00 20 */	blr 
+.endfn setTevKAlphaSel__13J2DTevBlock16FUlUc
 
-.global getTevKAlphaSel__13J2DTevBlock16FUl
-getTevKAlphaSel__13J2DTevBlock16FUl:
+.fn getTevKAlphaSel__13J2DTevBlock16FUl, weak
 /* 80051214 0004E154  7C 63 22 14 */	add r3, r3, r4
 /* 80051218 0004E158  88 63 01 18 */	lbz r3, 0x118(r3)
 /* 8005121C 0004E15C  4E 80 00 20 */	blr 
+.endfn getTevKAlphaSel__13J2DTevBlock16FUl
 
-.global setTevStageNum__13J2DTevBlock16FUc
-setTevStageNum__13J2DTevBlock16FUc:
+.fn setTevStageNum__13J2DTevBlock16FUc, weak
 /* 80051220 0004E160  98 83 00 76 */	stb r4, 0x76(r3)
 /* 80051224 0004E164  4E 80 00 20 */	blr 
+.endfn setTevStageNum__13J2DTevBlock16FUc
 
-.global getTevStageNum__13J2DTevBlock16CFv
-getTevStageNum__13J2DTevBlock16CFv:
+.fn getTevStageNum__13J2DTevBlock16CFv, weak
 /* 80051228 0004E168  88 63 00 76 */	lbz r3, 0x76(r3)
 /* 8005122C 0004E16C  4E 80 00 20 */	blr 
+.endfn getTevStageNum__13J2DTevBlock16CFv
 
-.global setTevStage__13J2DTevBlock16FUl11J2DTevStage
-setTevStage__13J2DTevBlock16FUl11J2DTevStage:
+.fn setTevStage__13J2DTevBlock16FUl11J2DTevStage, weak
 /* 80051230 0004E170  54 80 18 38 */	slwi r0, r4, 3
 /* 80051234 0004E174  88 C5 00 01 */	lbz r6, 1(r5)
 /* 80051238 0004E178  7C 83 02 14 */	add r4, r3, r0
@@ -8933,17 +8932,17 @@ setTevStage__13J2DTevBlock16FUl11J2DTevStage:
 /* 80051260 0004E1A0  98 64 00 7D */	stb r3, 0x7d(r4)
 /* 80051264 0004E1A4  98 04 00 7E */	stb r0, 0x7e(r4)
 /* 80051268 0004E1A8  4E 80 00 20 */	blr 
+.endfn setTevStage__13J2DTevBlock16FUl11J2DTevStage
 
-.global getTevStage__13J2DTevBlock16FUl
-getTevStage__13J2DTevBlock16FUl:
+.fn getTevStage__13J2DTevBlock16FUl, weak
 /* 8005126C 0004E1AC  54 84 18 38 */	slwi r4, r4, 3
 /* 80051270 0004E1B0  7C 60 1B 78 */	mr r0, r3
 /* 80051274 0004E1B4  38 64 00 77 */	addi r3, r4, 0x77
 /* 80051278 0004E1B8  7C 60 1A 14 */	add r3, r0, r3
 /* 8005127C 0004E1BC  4E 80 00 20 */	blr 
+.endfn getTevStage__13J2DTevBlock16FUl
 
-.global setTevSwapModeInfo__13J2DTevBlock16FUl18J2DTevSwapModeInfo
-setTevSwapModeInfo__13J2DTevBlock16FUl18J2DTevSwapModeInfo:
+.fn setTevSwapModeInfo__13J2DTevBlock16FUl18J2DTevSwapModeInfo, weak
 /* 80051280 0004E1C0  54 80 18 38 */	slwi r0, r4, 3
 /* 80051284 0004E1C4  88 85 00 01 */	lbz r4, 1(r5)
 /* 80051288 0004E1C8  7C C3 02 14 */	add r6, r3, r0
@@ -8958,39 +8957,39 @@ setTevSwapModeInfo__13J2DTevBlock16FUl18J2DTevSwapModeInfo:
 /* 800512AC 0004E1EC  7C 60 03 78 */	or r0, r3, r0
 /* 800512B0 0004E1F0  98 06 00 7E */	stb r0, 0x7e(r6)
 /* 800512B4 0004E1F4  4E 80 00 20 */	blr 
+.endfn setTevSwapModeInfo__13J2DTevBlock16FUl18J2DTevSwapModeInfo
 
-.global setTevSwapModeTable__13J2DTevBlock16FUl19J2DTevSwapModeTable
-setTevSwapModeTable__13J2DTevBlock16FUl19J2DTevSwapModeTable:
+.fn setTevSwapModeTable__13J2DTevBlock16FUl19J2DTevSwapModeTable, weak
 /* 800512B8 0004E1F8  88 05 00 00 */	lbz r0, 0(r5)
 /* 800512BC 0004E1FC  7C 63 22 14 */	add r3, r3, r4
 /* 800512C0 0004E200  98 03 01 28 */	stb r0, 0x128(r3)
 /* 800512C4 0004E204  4E 80 00 20 */	blr 
+.endfn setTevSwapModeTable__13J2DTevBlock16FUl19J2DTevSwapModeTable
 
-.global getTevSwapModeTable__13J2DTevBlock16FUl
-getTevSwapModeTable__13J2DTevBlock16FUl:
+.fn getTevSwapModeTable__13J2DTevBlock16FUl, weak
 /* 800512C8 0004E208  7C 60 1B 78 */	mr r0, r3
 /* 800512CC 0004E20C  38 64 01 28 */	addi r3, r4, 0x128
 /* 800512D0 0004E210  7C 60 1A 14 */	add r3, r0, r3
 /* 800512D4 0004E214  4E 80 00 20 */	blr 
+.endfn getTevSwapModeTable__13J2DTevBlock16FUl
 
-.global setIndTevStage__13J2DTevBlock16FUl14J2DIndTevStage
-setIndTevStage__13J2DTevBlock16FUl14J2DIndTevStage:
+.fn setIndTevStage__13J2DTevBlock16FUl14J2DIndTevStage, weak
 /* 800512D8 0004E218  54 80 10 3A */	slwi r0, r4, 2
 /* 800512DC 0004E21C  80 85 00 00 */	lwz r4, 0(r5)
 /* 800512E0 0004E220  7C 63 02 14 */	add r3, r3, r0
 /* 800512E4 0004E224  90 83 01 2C */	stw r4, 0x12c(r3)
 /* 800512E8 0004E228  4E 80 00 20 */	blr 
+.endfn setIndTevStage__13J2DTevBlock16FUl14J2DIndTevStage
 
-.global getIndTevStage__13J2DTevBlock16FUl
-getIndTevStage__13J2DTevBlock16FUl:
+.fn getIndTevStage__13J2DTevBlock16FUl, weak
 /* 800512EC 0004E22C  54 84 10 3A */	slwi r4, r4, 2
 /* 800512F0 0004E230  7C 60 1B 78 */	mr r0, r3
 /* 800512F4 0004E234  38 64 01 2C */	addi r3, r4, 0x12c
 /* 800512F8 0004E238  7C 60 1A 14 */	add r3, r0, r3
 /* 800512FC 0004E23C  4E 80 00 20 */	blr 
+.endfn getIndTevStage__13J2DTevBlock16FUl
 
-.global insertTexture__13J2DTevBlock16FUlPC7ResTIMG
-insertTexture__13J2DTevBlock16FUlPC7ResTIMG:
+.fn insertTexture__13J2DTevBlock16FUlPC7ResTIMG, weak
 /* 80051300 0004E240  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80051304 0004E244  7C 08 02 A6 */	mflr r0
 /* 80051308 0004E248  38 C0 00 00 */	li r6, 0
@@ -9003,9 +9002,9 @@ insertTexture__13J2DTevBlock16FUlPC7ResTIMG:
 /* 80051324 0004E264  7C 08 03 A6 */	mtlr r0
 /* 80051328 0004E268  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005132C 0004E26C  4E 80 00 20 */	blr 
+.endfn insertTexture__13J2DTevBlock16FUlPC7ResTIMG
 
-.global getTexture__13J2DTevBlock16FUl
-getTexture__13J2DTevBlock16FUl:
+.fn getTexture__13J2DTevBlock16FUl, weak
 /* 80051330 0004E270  28 04 00 08 */	cmplwi r4, 8
 /* 80051334 0004E274  41 80 00 0C */	blt .L_80051340
 /* 80051338 0004E278  38 60 00 00 */	li r3, 0
@@ -9015,9 +9014,9 @@ getTexture__13J2DTevBlock16FUl:
 /* 80051344 0004E284  7C 63 02 14 */	add r3, r3, r0
 /* 80051348 0004E288  80 63 01 6C */	lwz r3, 0x16c(r3)
 /* 8005134C 0004E28C  4E 80 00 20 */	blr 
+.endfn getTexture__13J2DTevBlock16FUl
 
-.global getPalette__13J2DTevBlock16FUl
-getPalette__13J2DTevBlock16FUl:
+.fn getPalette__13J2DTevBlock16FUl, weak
 /* 80051350 0004E290  28 04 00 08 */	cmplwi r4, 8
 /* 80051354 0004E294  41 80 00 0C */	blt .L_80051360
 /* 80051358 0004E298  38 60 00 00 */	li r3, 0
@@ -9027,62 +9026,62 @@ getPalette__13J2DTevBlock16FUl:
 /* 80051364 0004E2A4  7C 63 02 14 */	add r3, r3, r0
 /* 80051368 0004E2A8  80 63 01 8C */	lwz r3, 0x18c(r3)
 /* 8005136C 0004E2AC  4E 80 00 20 */	blr 
+.endfn getPalette__13J2DTevBlock16FUl
 
-.global getFont__13J2DTevBlock16Fv
-getFont__13J2DTevBlock16Fv:
+.fn getFont__13J2DTevBlock16Fv, weak
 /* 80051370 0004E2B0  80 63 01 AC */	lwz r3, 0x1ac(r3)
 /* 80051374 0004E2B4  4E 80 00 20 */	blr 
+.endfn getFont__13J2DTevBlock16Fv
 
-.global setUndeleteFlag__13J2DTevBlock16FUc
-setUndeleteFlag__13J2DTevBlock16FUc:
+.fn setUndeleteFlag__13J2DTevBlock16FUc, weak
 /* 80051378 0004E2B8  88 03 01 B0 */	lbz r0, 0x1b0(r3)
 /* 8005137C 0004E2BC  7C 00 20 38 */	and r0, r0, r4
 /* 80051380 0004E2C0  98 03 01 B0 */	stb r0, 0x1b0(r3)
 /* 80051384 0004E2C4  4E 80 00 20 */	blr 
+.endfn setUndeleteFlag__13J2DTevBlock16FUc
 
-.global setFontUndeleteFlag__13J2DTevBlock16Fv
-setFontUndeleteFlag__13J2DTevBlock16Fv:
+.fn setFontUndeleteFlag__13J2DTevBlock16Fv, weak
 /* 80051388 0004E2C8  38 00 00 00 */	li r0, 0
 /* 8005138C 0004E2CC  98 03 01 B1 */	stb r0, 0x1b1(r3)
 /* 80051390 0004E2D0  4E 80 00 20 */	blr 
+.endfn setFontUndeleteFlag__13J2DTevBlock16Fv
 
-.global getType__12J2DTevBlock8Fv
-getType__12J2DTevBlock8Fv:
+.fn getType__12J2DTevBlock8Fv, weak
 /* 80051394 0004E2D4  3C 60 54 56 */	lis r3, 0x54564238@ha
 /* 80051398 0004E2D8  38 63 42 38 */	addi r3, r3, 0x54564238@l
 /* 8005139C 0004E2DC  4E 80 00 20 */	blr 
+.endfn getType__12J2DTevBlock8Fv
 
-.global getMaxStage__12J2DTevBlock8Fv
-getMaxStage__12J2DTevBlock8Fv:
+.fn getMaxStage__12J2DTevBlock8Fv, weak
 /* 800513A0 0004E2E0  38 60 00 08 */	li r3, 8
 /* 800513A4 0004E2E4  4E 80 00 20 */	blr 
+.endfn getMaxStage__12J2DTevBlock8Fv
 
-.global setTexNo__12J2DTevBlock8FUlUs
-setTexNo__12J2DTevBlock8FUlUs:
+.fn setTexNo__12J2DTevBlock8FUlUs, weak
 /* 800513A8 0004E2E8  54 80 08 3C */	slwi r0, r4, 1
 /* 800513AC 0004E2EC  7C 63 02 14 */	add r3, r3, r0
 /* 800513B0 0004E2F0  B0 A3 00 04 */	sth r5, 4(r3)
 /* 800513B4 0004E2F4  4E 80 00 20 */	blr 
+.endfn setTexNo__12J2DTevBlock8FUlUs
 
-.global getTexNo__12J2DTevBlock8CFUl
-getTexNo__12J2DTevBlock8CFUl:
+.fn getTexNo__12J2DTevBlock8CFUl, weak
 /* 800513B8 0004E2F8  54 80 08 3C */	slwi r0, r4, 1
 /* 800513BC 0004E2FC  7C 63 02 14 */	add r3, r3, r0
 /* 800513C0 0004E300  A0 63 00 04 */	lhz r3, 4(r3)
 /* 800513C4 0004E304  4E 80 00 20 */	blr 
+.endfn getTexNo__12J2DTevBlock8CFUl
 
-.global setFontNo__12J2DTevBlock8FUs
-setFontNo__12J2DTevBlock8FUs:
+.fn setFontNo__12J2DTevBlock8FUs, weak
 /* 800513C8 0004E308  B0 83 00 14 */	sth r4, 0x14(r3)
 /* 800513CC 0004E30C  4E 80 00 20 */	blr 
+.endfn setFontNo__12J2DTevBlock8FUs
 
-.global getFontNo__12J2DTevBlock8CFv
-getFontNo__12J2DTevBlock8CFv:
+.fn getFontNo__12J2DTevBlock8CFv, weak
 /* 800513D0 0004E310  A0 63 00 14 */	lhz r3, 0x14(r3)
 /* 800513D4 0004E314  4E 80 00 20 */	blr 
+.endfn getFontNo__12J2DTevBlock8CFv
 
-.global setTevOrder__12J2DTevBlock8FUl11J2DTevOrder
-setTevOrder__12J2DTevBlock8FUl11J2DTevOrder:
+.fn setTevOrder__12J2DTevBlock8FUl11J2DTevOrder, weak
 /* 800513D8 0004E318  54 84 10 3A */	slwi r4, r4, 2
 /* 800513DC 0004E31C  88 05 00 00 */	lbz r0, 0(r5)
 /* 800513E0 0004E320  7C 83 22 14 */	add r4, r3, r4
@@ -9092,17 +9091,17 @@ setTevOrder__12J2DTevBlock8FUl11J2DTevOrder:
 /* 800513F0 0004E330  98 64 00 17 */	stb r3, 0x17(r4)
 /* 800513F4 0004E334  98 04 00 18 */	stb r0, 0x18(r4)
 /* 800513F8 0004E338  4E 80 00 20 */	blr 
+.endfn setTevOrder__12J2DTevBlock8FUl11J2DTevOrder
 
-.global getTevOrder__12J2DTevBlock8FUl
-getTevOrder__12J2DTevBlock8FUl:
+.fn getTevOrder__12J2DTevBlock8FUl, weak
 /* 800513FC 0004E33C  54 84 10 3A */	slwi r4, r4, 2
 /* 80051400 0004E340  7C 60 1B 78 */	mr r0, r3
 /* 80051404 0004E344  38 64 00 16 */	addi r3, r4, 0x16
 /* 80051408 0004E348  7C 60 1A 14 */	add r3, r0, r3
 /* 8005140C 0004E34C  4E 80 00 20 */	blr 
+.endfn getTevOrder__12J2DTevBlock8FUl
 
-.global setTevColor__12J2DTevBlock8FUl13J2DGXColorS10
-setTevColor__12J2DTevBlock8FUl13J2DGXColorS10:
+.fn setTevColor__12J2DTevBlock8FUl13J2DGXColorS10, weak
 /* 80051410 0004E350  54 80 18 38 */	slwi r0, r4, 3
 /* 80051414 0004E354  A8 C5 00 00 */	lha r6, 0(r5)
 /* 80051418 0004E358  7C 83 02 14 */	add r4, r3, r0
@@ -9114,17 +9113,17 @@ setTevColor__12J2DTevBlock8FUl13J2DGXColorS10:
 /* 80051430 0004E370  B0 64 00 3A */	sth r3, 0x3a(r4)
 /* 80051434 0004E374  B0 04 00 3C */	sth r0, 0x3c(r4)
 /* 80051438 0004E378  4E 80 00 20 */	blr 
+.endfn setTevColor__12J2DTevBlock8FUl13J2DGXColorS10
 
-.global getTevColor__12J2DTevBlock8FUl
-getTevColor__12J2DTevBlock8FUl:
+.fn getTevColor__12J2DTevBlock8FUl, weak
 /* 8005143C 0004E37C  54 84 18 38 */	slwi r4, r4, 3
 /* 80051440 0004E380  7C 60 1B 78 */	mr r0, r3
 /* 80051444 0004E384  38 64 00 36 */	addi r3, r4, 0x36
 /* 80051448 0004E388  7C 60 1A 14 */	add r3, r0, r3
 /* 8005144C 0004E38C  4E 80 00 20 */	blr 
+.endfn getTevColor__12J2DTevBlock8FUl
 
-.global setTevKColor__12J2DTevBlock8FUlQ28JUtility6TColor
-setTevKColor__12J2DTevBlock8FUlQ28JUtility6TColor:
+.fn setTevKColor__12J2DTevBlock8FUlQ28JUtility6TColor, weak
 /* 80051450 0004E390  54 80 10 3A */	slwi r0, r4, 2
 /* 80051454 0004E394  88 C5 00 00 */	lbz r6, 0(r5)
 /* 80051458 0004E398  7C 83 02 14 */	add r4, r3, r0
@@ -9136,51 +9135,51 @@ setTevKColor__12J2DTevBlock8FUlQ28JUtility6TColor:
 /* 80051470 0004E3B0  98 64 00 9A */	stb r3, 0x9a(r4)
 /* 80051474 0004E3B4  98 04 00 9B */	stb r0, 0x9b(r4)
 /* 80051478 0004E3B8  4E 80 00 20 */	blr 
+.endfn setTevKColor__12J2DTevBlock8FUlQ28JUtility6TColor
 
-.global getTevKColor__12J2DTevBlock8FUl
-getTevKColor__12J2DTevBlock8FUl:
+.fn getTevKColor__12J2DTevBlock8FUl, weak
 /* 8005147C 0004E3BC  54 84 10 3A */	slwi r4, r4, 2
 /* 80051480 0004E3C0  7C 60 1B 78 */	mr r0, r3
 /* 80051484 0004E3C4  38 64 00 98 */	addi r3, r4, 0x98
 /* 80051488 0004E3C8  7C 60 1A 14 */	add r3, r0, r3
 /* 8005148C 0004E3CC  4E 80 00 20 */	blr 
+.endfn getTevKColor__12J2DTevBlock8FUl
 
-.global setTevKColorSel__12J2DTevBlock8FUlUc
-setTevKColorSel__12J2DTevBlock8FUlUc:
+.fn setTevKColorSel__12J2DTevBlock8FUlUc, weak
 /* 80051490 0004E3D0  7C 63 22 14 */	add r3, r3, r4
 /* 80051494 0004E3D4  98 A3 00 A8 */	stb r5, 0xa8(r3)
 /* 80051498 0004E3D8  4E 80 00 20 */	blr 
+.endfn setTevKColorSel__12J2DTevBlock8FUlUc
 
-.global getTevKColorSel__12J2DTevBlock8FUl
-getTevKColorSel__12J2DTevBlock8FUl:
+.fn getTevKColorSel__12J2DTevBlock8FUl, weak
 /* 8005149C 0004E3DC  7C 63 22 14 */	add r3, r3, r4
 /* 800514A0 0004E3E0  88 63 00 A8 */	lbz r3, 0xa8(r3)
 /* 800514A4 0004E3E4  4E 80 00 20 */	blr 
+.endfn getTevKColorSel__12J2DTevBlock8FUl
 
-.global setTevKAlphaSel__12J2DTevBlock8FUlUc
-setTevKAlphaSel__12J2DTevBlock8FUlUc:
+.fn setTevKAlphaSel__12J2DTevBlock8FUlUc, weak
 /* 800514A8 0004E3E8  7C 63 22 14 */	add r3, r3, r4
 /* 800514AC 0004E3EC  98 A3 00 B0 */	stb r5, 0xb0(r3)
 /* 800514B0 0004E3F0  4E 80 00 20 */	blr 
+.endfn setTevKAlphaSel__12J2DTevBlock8FUlUc
 
-.global getTevKAlphaSel__12J2DTevBlock8FUl
-getTevKAlphaSel__12J2DTevBlock8FUl:
+.fn getTevKAlphaSel__12J2DTevBlock8FUl, weak
 /* 800514B4 0004E3F4  7C 63 22 14 */	add r3, r3, r4
 /* 800514B8 0004E3F8  88 63 00 B0 */	lbz r3, 0xb0(r3)
 /* 800514BC 0004E3FC  4E 80 00 20 */	blr 
+.endfn getTevKAlphaSel__12J2DTevBlock8FUl
 
-.global setTevStageNum__12J2DTevBlock8FUc
-setTevStageNum__12J2DTevBlock8FUc:
+.fn setTevStageNum__12J2DTevBlock8FUc, weak
 /* 800514C0 0004E400  98 83 00 56 */	stb r4, 0x56(r3)
 /* 800514C4 0004E404  4E 80 00 20 */	blr 
+.endfn setTevStageNum__12J2DTevBlock8FUc
 
-.global getTevStageNum__12J2DTevBlock8CFv
-getTevStageNum__12J2DTevBlock8CFv:
+.fn getTevStageNum__12J2DTevBlock8CFv, weak
 /* 800514C8 0004E408  88 63 00 56 */	lbz r3, 0x56(r3)
 /* 800514CC 0004E40C  4E 80 00 20 */	blr 
+.endfn getTevStageNum__12J2DTevBlock8CFv
 
-.global setTevStage__12J2DTevBlock8FUl11J2DTevStage
-setTevStage__12J2DTevBlock8FUl11J2DTevStage:
+.fn setTevStage__12J2DTevBlock8FUl11J2DTevStage, weak
 /* 800514D0 0004E410  54 80 18 38 */	slwi r0, r4, 3
 /* 800514D4 0004E414  88 C5 00 01 */	lbz r6, 1(r5)
 /* 800514D8 0004E418  7C 83 02 14 */	add r4, r3, r0
@@ -9196,17 +9195,17 @@ setTevStage__12J2DTevBlock8FUl11J2DTevStage:
 /* 80051500 0004E440  98 64 00 5D */	stb r3, 0x5d(r4)
 /* 80051504 0004E444  98 04 00 5E */	stb r0, 0x5e(r4)
 /* 80051508 0004E448  4E 80 00 20 */	blr 
+.endfn setTevStage__12J2DTevBlock8FUl11J2DTevStage
 
-.global getTevStage__12J2DTevBlock8FUl
-getTevStage__12J2DTevBlock8FUl:
+.fn getTevStage__12J2DTevBlock8FUl, weak
 /* 8005150C 0004E44C  54 84 18 38 */	slwi r4, r4, 3
 /* 80051510 0004E450  7C 60 1B 78 */	mr r0, r3
 /* 80051514 0004E454  38 64 00 57 */	addi r3, r4, 0x57
 /* 80051518 0004E458  7C 60 1A 14 */	add r3, r0, r3
 /* 8005151C 0004E45C  4E 80 00 20 */	blr 
+.endfn getTevStage__12J2DTevBlock8FUl
 
-.global setTevSwapModeInfo__12J2DTevBlock8FUl18J2DTevSwapModeInfo
-setTevSwapModeInfo__12J2DTevBlock8FUl18J2DTevSwapModeInfo:
+.fn setTevSwapModeInfo__12J2DTevBlock8FUl18J2DTevSwapModeInfo, weak
 /* 80051520 0004E460  54 80 18 38 */	slwi r0, r4, 3
 /* 80051524 0004E464  88 85 00 01 */	lbz r4, 1(r5)
 /* 80051528 0004E468  7C C3 02 14 */	add r6, r3, r0
@@ -9221,39 +9220,39 @@ setTevSwapModeInfo__12J2DTevBlock8FUl18J2DTevSwapModeInfo:
 /* 8005154C 0004E48C  7C 60 03 78 */	or r0, r3, r0
 /* 80051550 0004E490  98 06 00 5E */	stb r0, 0x5e(r6)
 /* 80051554 0004E494  4E 80 00 20 */	blr 
+.endfn setTevSwapModeInfo__12J2DTevBlock8FUl18J2DTevSwapModeInfo
 
-.global setTevSwapModeTable__12J2DTevBlock8FUl19J2DTevSwapModeTable
-setTevSwapModeTable__12J2DTevBlock8FUl19J2DTevSwapModeTable:
+.fn setTevSwapModeTable__12J2DTevBlock8FUl19J2DTevSwapModeTable, weak
 /* 80051558 0004E498  88 05 00 00 */	lbz r0, 0(r5)
 /* 8005155C 0004E49C  7C 63 22 14 */	add r3, r3, r4
 /* 80051560 0004E4A0  98 03 00 B8 */	stb r0, 0xb8(r3)
 /* 80051564 0004E4A4  4E 80 00 20 */	blr 
+.endfn setTevSwapModeTable__12J2DTevBlock8FUl19J2DTevSwapModeTable
 
-.global getTevSwapModeTable__12J2DTevBlock8FUl
-getTevSwapModeTable__12J2DTevBlock8FUl:
+.fn getTevSwapModeTable__12J2DTevBlock8FUl, weak
 /* 80051568 0004E4A8  7C 60 1B 78 */	mr r0, r3
 /* 8005156C 0004E4AC  38 64 00 B8 */	addi r3, r4, 0xb8
 /* 80051570 0004E4B0  7C 60 1A 14 */	add r3, r0, r3
 /* 80051574 0004E4B4  4E 80 00 20 */	blr 
+.endfn getTevSwapModeTable__12J2DTevBlock8FUl
 
-.global setIndTevStage__12J2DTevBlock8FUl14J2DIndTevStage
-setIndTevStage__12J2DTevBlock8FUl14J2DIndTevStage:
+.fn setIndTevStage__12J2DTevBlock8FUl14J2DIndTevStage, weak
 /* 80051578 0004E4B8  54 80 10 3A */	slwi r0, r4, 2
 /* 8005157C 0004E4BC  80 85 00 00 */	lwz r4, 0(r5)
 /* 80051580 0004E4C0  7C 63 02 14 */	add r3, r3, r0
 /* 80051584 0004E4C4  90 83 00 BC */	stw r4, 0xbc(r3)
 /* 80051588 0004E4C8  4E 80 00 20 */	blr 
+.endfn setIndTevStage__12J2DTevBlock8FUl14J2DIndTevStage
 
-.global getIndTevStage__12J2DTevBlock8FUl
-getIndTevStage__12J2DTevBlock8FUl:
+.fn getIndTevStage__12J2DTevBlock8FUl, weak
 /* 8005158C 0004E4CC  54 84 10 3A */	slwi r4, r4, 2
 /* 80051590 0004E4D0  7C 60 1B 78 */	mr r0, r3
 /* 80051594 0004E4D4  38 64 00 BC */	addi r3, r4, 0xbc
 /* 80051598 0004E4D8  7C 60 1A 14 */	add r3, r0, r3
 /* 8005159C 0004E4DC  4E 80 00 20 */	blr 
+.endfn getIndTevStage__12J2DTevBlock8FUl
 
-.global insertTexture__12J2DTevBlock8FUlPC7ResTIMG
-insertTexture__12J2DTevBlock8FUlPC7ResTIMG:
+.fn insertTexture__12J2DTevBlock8FUlPC7ResTIMG, weak
 /* 800515A0 0004E4E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800515A4 0004E4E4  7C 08 02 A6 */	mflr r0
 /* 800515A8 0004E4E8  38 C0 00 00 */	li r6, 0
@@ -9266,9 +9265,9 @@ insertTexture__12J2DTevBlock8FUlPC7ResTIMG:
 /* 800515C4 0004E504  7C 08 03 A6 */	mtlr r0
 /* 800515C8 0004E508  38 21 00 10 */	addi r1, r1, 0x10
 /* 800515CC 0004E50C  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock8FUlPC7ResTIMG
 
-.global getTexture__12J2DTevBlock8FUl
-getTexture__12J2DTevBlock8FUl:
+.fn getTexture__12J2DTevBlock8FUl, weak
 /* 800515D0 0004E510  28 04 00 08 */	cmplwi r4, 8
 /* 800515D4 0004E514  41 80 00 0C */	blt .L_800515E0
 /* 800515D8 0004E518  38 60 00 00 */	li r3, 0
@@ -9278,9 +9277,9 @@ getTexture__12J2DTevBlock8FUl:
 /* 800515E4 0004E524  7C 63 02 14 */	add r3, r3, r0
 /* 800515E8 0004E528  80 63 00 DC */	lwz r3, 0xdc(r3)
 /* 800515EC 0004E52C  4E 80 00 20 */	blr 
+.endfn getTexture__12J2DTevBlock8FUl
 
-.global getPalette__12J2DTevBlock8FUl
-getPalette__12J2DTevBlock8FUl:
+.fn getPalette__12J2DTevBlock8FUl, weak
 /* 800515F0 0004E530  28 04 00 08 */	cmplwi r4, 8
 /* 800515F4 0004E534  41 80 00 0C */	blt .L_80051600
 /* 800515F8 0004E538  38 60 00 00 */	li r3, 0
@@ -9290,62 +9289,62 @@ getPalette__12J2DTevBlock8FUl:
 /* 80051604 0004E544  7C 63 02 14 */	add r3, r3, r0
 /* 80051608 0004E548  80 63 00 FC */	lwz r3, 0xfc(r3)
 /* 8005160C 0004E54C  4E 80 00 20 */	blr 
+.endfn getPalette__12J2DTevBlock8FUl
 
-.global getFont__12J2DTevBlock8Fv
-getFont__12J2DTevBlock8Fv:
+.fn getFont__12J2DTevBlock8Fv, weak
 /* 80051610 0004E550  80 63 01 1C */	lwz r3, 0x11c(r3)
 /* 80051614 0004E554  4E 80 00 20 */	blr 
+.endfn getFont__12J2DTevBlock8Fv
 
-.global setUndeleteFlag__12J2DTevBlock8FUc
-setUndeleteFlag__12J2DTevBlock8FUc:
+.fn setUndeleteFlag__12J2DTevBlock8FUc, weak
 /* 80051618 0004E558  88 03 01 20 */	lbz r0, 0x120(r3)
 /* 8005161C 0004E55C  7C 00 20 38 */	and r0, r0, r4
 /* 80051620 0004E560  98 03 01 20 */	stb r0, 0x120(r3)
 /* 80051624 0004E564  4E 80 00 20 */	blr 
+.endfn setUndeleteFlag__12J2DTevBlock8FUc
 
-.global setFontUndeleteFlag__12J2DTevBlock8Fv
-setFontUndeleteFlag__12J2DTevBlock8Fv:
+.fn setFontUndeleteFlag__12J2DTevBlock8Fv, weak
 /* 80051628 0004E568  38 00 00 00 */	li r0, 0
 /* 8005162C 0004E56C  98 03 01 21 */	stb r0, 0x121(r3)
 /* 80051630 0004E570  4E 80 00 20 */	blr 
+.endfn setFontUndeleteFlag__12J2DTevBlock8Fv
 
-.global getType__12J2DTevBlock4Fv
-getType__12J2DTevBlock4Fv:
+.fn getType__12J2DTevBlock4Fv, weak
 /* 80051634 0004E574  3C 60 54 56 */	lis r3, 0x54564234@ha
 /* 80051638 0004E578  38 63 42 34 */	addi r3, r3, 0x54564234@l
 /* 8005163C 0004E57C  4E 80 00 20 */	blr 
+.endfn getType__12J2DTevBlock4Fv
 
-.global getMaxStage__12J2DTevBlock4Fv
-getMaxStage__12J2DTevBlock4Fv:
+.fn getMaxStage__12J2DTevBlock4Fv, weak
 /* 80051640 0004E580  38 60 00 04 */	li r3, 4
 /* 80051644 0004E584  4E 80 00 20 */	blr 
+.endfn getMaxStage__12J2DTevBlock4Fv
 
-.global setTexNo__12J2DTevBlock4FUlUs
-setTexNo__12J2DTevBlock4FUlUs:
+.fn setTexNo__12J2DTevBlock4FUlUs, weak
 /* 80051648 0004E588  54 80 08 3C */	slwi r0, r4, 1
 /* 8005164C 0004E58C  7C 63 02 14 */	add r3, r3, r0
 /* 80051650 0004E590  B0 A3 00 04 */	sth r5, 4(r3)
 /* 80051654 0004E594  4E 80 00 20 */	blr 
+.endfn setTexNo__12J2DTevBlock4FUlUs
 
-.global getTexNo__12J2DTevBlock4CFUl
-getTexNo__12J2DTevBlock4CFUl:
+.fn getTexNo__12J2DTevBlock4CFUl, weak
 /* 80051658 0004E598  54 80 08 3C */	slwi r0, r4, 1
 /* 8005165C 0004E59C  7C 63 02 14 */	add r3, r3, r0
 /* 80051660 0004E5A0  A0 63 00 04 */	lhz r3, 4(r3)
 /* 80051664 0004E5A4  4E 80 00 20 */	blr 
+.endfn getTexNo__12J2DTevBlock4CFUl
 
-.global setFontNo__12J2DTevBlock4FUs
-setFontNo__12J2DTevBlock4FUs:
+.fn setFontNo__12J2DTevBlock4FUs, weak
 /* 80051668 0004E5A8  B0 83 00 0C */	sth r4, 0xc(r3)
 /* 8005166C 0004E5AC  4E 80 00 20 */	blr 
+.endfn setFontNo__12J2DTevBlock4FUs
 
-.global getFontNo__12J2DTevBlock4CFv
-getFontNo__12J2DTevBlock4CFv:
+.fn getFontNo__12J2DTevBlock4CFv, weak
 /* 80051670 0004E5B0  A0 63 00 0C */	lhz r3, 0xc(r3)
 /* 80051674 0004E5B4  4E 80 00 20 */	blr 
+.endfn getFontNo__12J2DTevBlock4CFv
 
-.global setTevOrder__12J2DTevBlock4FUl11J2DTevOrder
-setTevOrder__12J2DTevBlock4FUl11J2DTevOrder:
+.fn setTevOrder__12J2DTevBlock4FUl11J2DTevOrder, weak
 /* 80051678 0004E5B8  54 84 10 3A */	slwi r4, r4, 2
 /* 8005167C 0004E5BC  88 05 00 00 */	lbz r0, 0(r5)
 /* 80051680 0004E5C0  7C 83 22 14 */	add r4, r3, r4
@@ -9355,17 +9354,17 @@ setTevOrder__12J2DTevBlock4FUl11J2DTevOrder:
 /* 80051690 0004E5D0  98 64 00 0F */	stb r3, 0xf(r4)
 /* 80051694 0004E5D4  98 04 00 10 */	stb r0, 0x10(r4)
 /* 80051698 0004E5D8  4E 80 00 20 */	blr 
+.endfn setTevOrder__12J2DTevBlock4FUl11J2DTevOrder
 
-.global getTevOrder__12J2DTevBlock4FUl
-getTevOrder__12J2DTevBlock4FUl:
+.fn getTevOrder__12J2DTevBlock4FUl, weak
 /* 8005169C 0004E5DC  54 84 10 3A */	slwi r4, r4, 2
 /* 800516A0 0004E5E0  7C 60 1B 78 */	mr r0, r3
 /* 800516A4 0004E5E4  38 64 00 0E */	addi r3, r4, 0xe
 /* 800516A8 0004E5E8  7C 60 1A 14 */	add r3, r0, r3
 /* 800516AC 0004E5EC  4E 80 00 20 */	blr 
+.endfn getTevOrder__12J2DTevBlock4FUl
 
-.global setTevColor__12J2DTevBlock4FUl13J2DGXColorS10
-setTevColor__12J2DTevBlock4FUl13J2DGXColorS10:
+.fn setTevColor__12J2DTevBlock4FUl13J2DGXColorS10, weak
 /* 800516B0 0004E5F0  54 80 18 38 */	slwi r0, r4, 3
 /* 800516B4 0004E5F4  A8 C5 00 00 */	lha r6, 0(r5)
 /* 800516B8 0004E5F8  7C 83 02 14 */	add r4, r3, r0
@@ -9377,17 +9376,17 @@ setTevColor__12J2DTevBlock4FUl13J2DGXColorS10:
 /* 800516D0 0004E610  B0 64 00 22 */	sth r3, 0x22(r4)
 /* 800516D4 0004E614  B0 04 00 24 */	sth r0, 0x24(r4)
 /* 800516D8 0004E618  4E 80 00 20 */	blr 
+.endfn setTevColor__12J2DTevBlock4FUl13J2DGXColorS10
 
-.global getTevColor__12J2DTevBlock4FUl
-getTevColor__12J2DTevBlock4FUl:
+.fn getTevColor__12J2DTevBlock4FUl, weak
 /* 800516DC 0004E61C  54 84 18 38 */	slwi r4, r4, 3
 /* 800516E0 0004E620  7C 60 1B 78 */	mr r0, r3
 /* 800516E4 0004E624  38 64 00 1E */	addi r3, r4, 0x1e
 /* 800516E8 0004E628  7C 60 1A 14 */	add r3, r0, r3
 /* 800516EC 0004E62C  4E 80 00 20 */	blr 
+.endfn getTevColor__12J2DTevBlock4FUl
 
-.global setTevKColor__12J2DTevBlock4FUlQ28JUtility6TColor
-setTevKColor__12J2DTevBlock4FUlQ28JUtility6TColor:
+.fn setTevKColor__12J2DTevBlock4FUlQ28JUtility6TColor, weak
 /* 800516F0 0004E630  54 80 10 3A */	slwi r0, r4, 2
 /* 800516F4 0004E634  88 C5 00 00 */	lbz r6, 0(r5)
 /* 800516F8 0004E638  7C 83 02 14 */	add r4, r3, r0
@@ -9399,51 +9398,51 @@ setTevKColor__12J2DTevBlock4FUlQ28JUtility6TColor:
 /* 80051710 0004E650  98 64 00 62 */	stb r3, 0x62(r4)
 /* 80051714 0004E654  98 04 00 63 */	stb r0, 0x63(r4)
 /* 80051718 0004E658  4E 80 00 20 */	blr 
+.endfn setTevKColor__12J2DTevBlock4FUlQ28JUtility6TColor
 
-.global getTevKColor__12J2DTevBlock4FUl
-getTevKColor__12J2DTevBlock4FUl:
+.fn getTevKColor__12J2DTevBlock4FUl, weak
 /* 8005171C 0004E65C  54 84 10 3A */	slwi r4, r4, 2
 /* 80051720 0004E660  7C 60 1B 78 */	mr r0, r3
 /* 80051724 0004E664  38 64 00 60 */	addi r3, r4, 0x60
 /* 80051728 0004E668  7C 60 1A 14 */	add r3, r0, r3
 /* 8005172C 0004E66C  4E 80 00 20 */	blr 
+.endfn getTevKColor__12J2DTevBlock4FUl
 
-.global setTevKColorSel__12J2DTevBlock4FUlUc
-setTevKColorSel__12J2DTevBlock4FUlUc:
+.fn setTevKColorSel__12J2DTevBlock4FUlUc, weak
 /* 80051730 0004E670  7C 63 22 14 */	add r3, r3, r4
 /* 80051734 0004E674  98 A3 00 70 */	stb r5, 0x70(r3)
 /* 80051738 0004E678  4E 80 00 20 */	blr 
+.endfn setTevKColorSel__12J2DTevBlock4FUlUc
 
-.global getTevKColorSel__12J2DTevBlock4FUl
-getTevKColorSel__12J2DTevBlock4FUl:
+.fn getTevKColorSel__12J2DTevBlock4FUl, weak
 /* 8005173C 0004E67C  7C 63 22 14 */	add r3, r3, r4
 /* 80051740 0004E680  88 63 00 70 */	lbz r3, 0x70(r3)
 /* 80051744 0004E684  4E 80 00 20 */	blr 
+.endfn getTevKColorSel__12J2DTevBlock4FUl
 
-.global setTevKAlphaSel__12J2DTevBlock4FUlUc
-setTevKAlphaSel__12J2DTevBlock4FUlUc:
+.fn setTevKAlphaSel__12J2DTevBlock4FUlUc, weak
 /* 80051748 0004E688  7C 63 22 14 */	add r3, r3, r4
 /* 8005174C 0004E68C  98 A3 00 74 */	stb r5, 0x74(r3)
 /* 80051750 0004E690  4E 80 00 20 */	blr 
+.endfn setTevKAlphaSel__12J2DTevBlock4FUlUc
 
-.global getTevKAlphaSel__12J2DTevBlock4FUl
-getTevKAlphaSel__12J2DTevBlock4FUl:
+.fn getTevKAlphaSel__12J2DTevBlock4FUl, weak
 /* 80051754 0004E694  7C 63 22 14 */	add r3, r3, r4
 /* 80051758 0004E698  88 63 00 74 */	lbz r3, 0x74(r3)
 /* 8005175C 0004E69C  4E 80 00 20 */	blr 
+.endfn getTevKAlphaSel__12J2DTevBlock4FUl
 
-.global setTevStageNum__12J2DTevBlock4FUc
-setTevStageNum__12J2DTevBlock4FUc:
+.fn setTevStageNum__12J2DTevBlock4FUc, weak
 /* 80051760 0004E6A0  98 83 00 3E */	stb r4, 0x3e(r3)
 /* 80051764 0004E6A4  4E 80 00 20 */	blr 
+.endfn setTevStageNum__12J2DTevBlock4FUc
 
-.global getTevStageNum__12J2DTevBlock4CFv
-getTevStageNum__12J2DTevBlock4CFv:
+.fn getTevStageNum__12J2DTevBlock4CFv, weak
 /* 80051768 0004E6A8  88 63 00 3E */	lbz r3, 0x3e(r3)
 /* 8005176C 0004E6AC  4E 80 00 20 */	blr 
+.endfn getTevStageNum__12J2DTevBlock4CFv
 
-.global setTevStage__12J2DTevBlock4FUl11J2DTevStage
-setTevStage__12J2DTevBlock4FUl11J2DTevStage:
+.fn setTevStage__12J2DTevBlock4FUl11J2DTevStage, weak
 /* 80051770 0004E6B0  54 80 18 38 */	slwi r0, r4, 3
 /* 80051774 0004E6B4  88 C5 00 01 */	lbz r6, 1(r5)
 /* 80051778 0004E6B8  7C 83 02 14 */	add r4, r3, r0
@@ -9459,17 +9458,17 @@ setTevStage__12J2DTevBlock4FUl11J2DTevStage:
 /* 800517A0 0004E6E0  98 64 00 45 */	stb r3, 0x45(r4)
 /* 800517A4 0004E6E4  98 04 00 46 */	stb r0, 0x46(r4)
 /* 800517A8 0004E6E8  4E 80 00 20 */	blr 
+.endfn setTevStage__12J2DTevBlock4FUl11J2DTevStage
 
-.global getTevStage__12J2DTevBlock4FUl
-getTevStage__12J2DTevBlock4FUl:
+.fn getTevStage__12J2DTevBlock4FUl, weak
 /* 800517AC 0004E6EC  54 84 18 38 */	slwi r4, r4, 3
 /* 800517B0 0004E6F0  7C 60 1B 78 */	mr r0, r3
 /* 800517B4 0004E6F4  38 64 00 3F */	addi r3, r4, 0x3f
 /* 800517B8 0004E6F8  7C 60 1A 14 */	add r3, r0, r3
 /* 800517BC 0004E6FC  4E 80 00 20 */	blr 
+.endfn getTevStage__12J2DTevBlock4FUl
 
-.global setTevSwapModeInfo__12J2DTevBlock4FUl18J2DTevSwapModeInfo
-setTevSwapModeInfo__12J2DTevBlock4FUl18J2DTevSwapModeInfo:
+.fn setTevSwapModeInfo__12J2DTevBlock4FUl18J2DTevSwapModeInfo, weak
 /* 800517C0 0004E700  54 80 18 38 */	slwi r0, r4, 3
 /* 800517C4 0004E704  88 85 00 01 */	lbz r4, 1(r5)
 /* 800517C8 0004E708  7C C3 02 14 */	add r6, r3, r0
@@ -9484,39 +9483,39 @@ setTevSwapModeInfo__12J2DTevBlock4FUl18J2DTevSwapModeInfo:
 /* 800517EC 0004E72C  7C 60 03 78 */	or r0, r3, r0
 /* 800517F0 0004E730  98 06 00 46 */	stb r0, 0x46(r6)
 /* 800517F4 0004E734  4E 80 00 20 */	blr 
+.endfn setTevSwapModeInfo__12J2DTevBlock4FUl18J2DTevSwapModeInfo
 
-.global setTevSwapModeTable__12J2DTevBlock4FUl19J2DTevSwapModeTable
-setTevSwapModeTable__12J2DTevBlock4FUl19J2DTevSwapModeTable:
+.fn setTevSwapModeTable__12J2DTevBlock4FUl19J2DTevSwapModeTable, weak
 /* 800517F8 0004E738  88 05 00 00 */	lbz r0, 0(r5)
 /* 800517FC 0004E73C  7C 63 22 14 */	add r3, r3, r4
 /* 80051800 0004E740  98 03 00 78 */	stb r0, 0x78(r3)
 /* 80051804 0004E744  4E 80 00 20 */	blr 
+.endfn setTevSwapModeTable__12J2DTevBlock4FUl19J2DTevSwapModeTable
 
-.global getTevSwapModeTable__12J2DTevBlock4FUl
-getTevSwapModeTable__12J2DTevBlock4FUl:
+.fn getTevSwapModeTable__12J2DTevBlock4FUl, weak
 /* 80051808 0004E748  7C 60 1B 78 */	mr r0, r3
 /* 8005180C 0004E74C  38 64 00 78 */	addi r3, r4, 0x78
 /* 80051810 0004E750  7C 60 1A 14 */	add r3, r0, r3
 /* 80051814 0004E754  4E 80 00 20 */	blr 
+.endfn getTevSwapModeTable__12J2DTevBlock4FUl
 
-.global setIndTevStage__12J2DTevBlock4FUl14J2DIndTevStage
-setIndTevStage__12J2DTevBlock4FUl14J2DIndTevStage:
+.fn setIndTevStage__12J2DTevBlock4FUl14J2DIndTevStage, weak
 /* 80051818 0004E758  54 80 10 3A */	slwi r0, r4, 2
 /* 8005181C 0004E75C  80 85 00 00 */	lwz r4, 0(r5)
 /* 80051820 0004E760  7C 63 02 14 */	add r3, r3, r0
 /* 80051824 0004E764  90 83 00 7C */	stw r4, 0x7c(r3)
 /* 80051828 0004E768  4E 80 00 20 */	blr 
+.endfn setIndTevStage__12J2DTevBlock4FUl14J2DIndTevStage
 
-.global getIndTevStage__12J2DTevBlock4FUl
-getIndTevStage__12J2DTevBlock4FUl:
+.fn getIndTevStage__12J2DTevBlock4FUl, weak
 /* 8005182C 0004E76C  54 84 10 3A */	slwi r4, r4, 2
 /* 80051830 0004E770  7C 60 1B 78 */	mr r0, r3
 /* 80051834 0004E774  38 64 00 7C */	addi r3, r4, 0x7c
 /* 80051838 0004E778  7C 60 1A 14 */	add r3, r0, r3
 /* 8005183C 0004E77C  4E 80 00 20 */	blr 
+.endfn getIndTevStage__12J2DTevBlock4FUl
 
-.global insertTexture__12J2DTevBlock4FUlPC7ResTIMG
-insertTexture__12J2DTevBlock4FUlPC7ResTIMG:
+.fn insertTexture__12J2DTevBlock4FUlPC7ResTIMG, weak
 /* 80051840 0004E780  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80051844 0004E784  7C 08 02 A6 */	mflr r0
 /* 80051848 0004E788  38 C0 00 00 */	li r6, 0
@@ -9529,9 +9528,9 @@ insertTexture__12J2DTevBlock4FUlPC7ResTIMG:
 /* 80051864 0004E7A4  7C 08 03 A6 */	mtlr r0
 /* 80051868 0004E7A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005186C 0004E7AC  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock4FUlPC7ResTIMG
 
-.global getTexture__12J2DTevBlock4FUl
-getTexture__12J2DTevBlock4FUl:
+.fn getTexture__12J2DTevBlock4FUl, weak
 /* 80051870 0004E7B0  28 04 00 04 */	cmplwi r4, 4
 /* 80051874 0004E7B4  41 80 00 0C */	blt .L_80051880
 /* 80051878 0004E7B8  38 60 00 00 */	li r3, 0
@@ -9541,9 +9540,9 @@ getTexture__12J2DTevBlock4FUl:
 /* 80051884 0004E7C4  7C 63 02 14 */	add r3, r3, r0
 /* 80051888 0004E7C8  80 63 00 8C */	lwz r3, 0x8c(r3)
 /* 8005188C 0004E7CC  4E 80 00 20 */	blr 
+.endfn getTexture__12J2DTevBlock4FUl
 
-.global getPalette__12J2DTevBlock4FUl
-getPalette__12J2DTevBlock4FUl:
+.fn getPalette__12J2DTevBlock4FUl, weak
 /* 80051890 0004E7D0  28 04 00 04 */	cmplwi r4, 4
 /* 80051894 0004E7D4  41 80 00 0C */	blt .L_800518A0
 /* 80051898 0004E7D8  38 60 00 00 */	li r3, 0
@@ -9553,63 +9552,63 @@ getPalette__12J2DTevBlock4FUl:
 /* 800518A4 0004E7E4  7C 63 02 14 */	add r3, r3, r0
 /* 800518A8 0004E7E8  80 63 00 9C */	lwz r3, 0x9c(r3)
 /* 800518AC 0004E7EC  4E 80 00 20 */	blr 
+.endfn getPalette__12J2DTevBlock4FUl
 
-.global getFont__12J2DTevBlock4Fv
-getFont__12J2DTevBlock4Fv:
+.fn getFont__12J2DTevBlock4Fv, weak
 /* 800518B0 0004E7F0  80 63 00 AC */	lwz r3, 0xac(r3)
 /* 800518B4 0004E7F4  4E 80 00 20 */	blr 
+.endfn getFont__12J2DTevBlock4Fv
 
-.global setUndeleteFlag__12J2DTevBlock4FUc
-setUndeleteFlag__12J2DTevBlock4FUc:
+.fn setUndeleteFlag__12J2DTevBlock4FUc, weak
 /* 800518B8 0004E7F8  88 03 00 B0 */	lbz r0, 0xb0(r3)
 /* 800518BC 0004E7FC  7C 00 20 38 */	and r0, r0, r4
 /* 800518C0 0004E800  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 800518C4 0004E804  4E 80 00 20 */	blr 
+.endfn setUndeleteFlag__12J2DTevBlock4FUc
 
-.global setFontUndeleteFlag__12J2DTevBlock4Fv
-setFontUndeleteFlag__12J2DTevBlock4Fv:
+.fn setFontUndeleteFlag__12J2DTevBlock4Fv, weak
 /* 800518C8 0004E808  88 03 00 B0 */	lbz r0, 0xb0(r3)
 /* 800518CC 0004E80C  54 00 06 7E */	clrlwi r0, r0, 0x19
 /* 800518D0 0004E810  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 800518D4 0004E814  4E 80 00 20 */	blr 
+.endfn setFontUndeleteFlag__12J2DTevBlock4Fv
 
-.global getType__12J2DTevBlock2Fv
-getType__12J2DTevBlock2Fv:
+.fn getType__12J2DTevBlock2Fv, weak
 /* 800518D8 0004E818  3C 60 54 56 */	lis r3, 0x54564232@ha
 /* 800518DC 0004E81C  38 63 42 32 */	addi r3, r3, 0x54564232@l
 /* 800518E0 0004E820  4E 80 00 20 */	blr 
+.endfn getType__12J2DTevBlock2Fv
 
-.global getMaxStage__12J2DTevBlock2Fv
-getMaxStage__12J2DTevBlock2Fv:
+.fn getMaxStage__12J2DTevBlock2Fv, weak
 /* 800518E4 0004E824  38 60 00 02 */	li r3, 2
 /* 800518E8 0004E828  4E 80 00 20 */	blr 
+.endfn getMaxStage__12J2DTevBlock2Fv
 
-.global setTexNo__12J2DTevBlock2FUlUs
-setTexNo__12J2DTevBlock2FUlUs:
+.fn setTexNo__12J2DTevBlock2FUlUs, weak
 /* 800518EC 0004E82C  54 80 08 3C */	slwi r0, r4, 1
 /* 800518F0 0004E830  7C 63 02 14 */	add r3, r3, r0
 /* 800518F4 0004E834  B0 A3 00 04 */	sth r5, 4(r3)
 /* 800518F8 0004E838  4E 80 00 20 */	blr 
+.endfn setTexNo__12J2DTevBlock2FUlUs
 
-.global getTexNo__12J2DTevBlock2CFUl
-getTexNo__12J2DTevBlock2CFUl:
+.fn getTexNo__12J2DTevBlock2CFUl, weak
 /* 800518FC 0004E83C  54 80 08 3C */	slwi r0, r4, 1
 /* 80051900 0004E840  7C 63 02 14 */	add r3, r3, r0
 /* 80051904 0004E844  A0 63 00 04 */	lhz r3, 4(r3)
 /* 80051908 0004E848  4E 80 00 20 */	blr 
+.endfn getTexNo__12J2DTevBlock2CFUl
 
-.global setFontNo__12J2DTevBlock2FUs
-setFontNo__12J2DTevBlock2FUs:
+.fn setFontNo__12J2DTevBlock2FUs, weak
 /* 8005190C 0004E84C  B0 83 00 08 */	sth r4, 8(r3)
 /* 80051910 0004E850  4E 80 00 20 */	blr 
+.endfn setFontNo__12J2DTevBlock2FUs
 
-.global getFontNo__12J2DTevBlock2CFv
-getFontNo__12J2DTevBlock2CFv:
+.fn getFontNo__12J2DTevBlock2CFv, weak
 /* 80051914 0004E854  A0 63 00 08 */	lhz r3, 8(r3)
 /* 80051918 0004E858  4E 80 00 20 */	blr 
+.endfn getFontNo__12J2DTevBlock2CFv
 
-.global setTevOrder__12J2DTevBlock2FUl11J2DTevOrder
-setTevOrder__12J2DTevBlock2FUl11J2DTevOrder:
+.fn setTevOrder__12J2DTevBlock2FUl11J2DTevOrder, weak
 /* 8005191C 0004E85C  54 84 10 3A */	slwi r4, r4, 2
 /* 80051920 0004E860  88 05 00 00 */	lbz r0, 0(r5)
 /* 80051924 0004E864  7C 83 22 14 */	add r4, r3, r4
@@ -9619,17 +9618,17 @@ setTevOrder__12J2DTevBlock2FUl11J2DTevOrder:
 /* 80051934 0004E874  98 64 00 0B */	stb r3, 0xb(r4)
 /* 80051938 0004E878  98 04 00 0C */	stb r0, 0xc(r4)
 /* 8005193C 0004E87C  4E 80 00 20 */	blr 
+.endfn setTevOrder__12J2DTevBlock2FUl11J2DTevOrder
 
-.global getTevOrder__12J2DTevBlock2FUl
-getTevOrder__12J2DTevBlock2FUl:
+.fn getTevOrder__12J2DTevBlock2FUl, weak
 /* 80051940 0004E880  54 84 10 3A */	slwi r4, r4, 2
 /* 80051944 0004E884  7C 60 1B 78 */	mr r0, r3
 /* 80051948 0004E888  38 64 00 0A */	addi r3, r4, 0xa
 /* 8005194C 0004E88C  7C 60 1A 14 */	add r3, r0, r3
 /* 80051950 0004E890  4E 80 00 20 */	blr 
+.endfn getTevOrder__12J2DTevBlock2FUl
 
-.global setTevColor__12J2DTevBlock2FUl13J2DGXColorS10
-setTevColor__12J2DTevBlock2FUl13J2DGXColorS10:
+.fn setTevColor__12J2DTevBlock2FUl13J2DGXColorS10, weak
 /* 80051954 0004E894  54 80 18 38 */	slwi r0, r4, 3
 /* 80051958 0004E898  A8 C5 00 00 */	lha r6, 0(r5)
 /* 8005195C 0004E89C  7C 83 02 14 */	add r4, r3, r0
@@ -9641,17 +9640,17 @@ setTevColor__12J2DTevBlock2FUl13J2DGXColorS10:
 /* 80051974 0004E8B4  B0 64 00 16 */	sth r3, 0x16(r4)
 /* 80051978 0004E8B8  B0 04 00 18 */	sth r0, 0x18(r4)
 /* 8005197C 0004E8BC  4E 80 00 20 */	blr 
+.endfn setTevColor__12J2DTevBlock2FUl13J2DGXColorS10
 
-.global getTevColor__12J2DTevBlock2FUl
-getTevColor__12J2DTevBlock2FUl:
+.fn getTevColor__12J2DTevBlock2FUl, weak
 /* 80051980 0004E8C0  54 84 18 38 */	slwi r4, r4, 3
 /* 80051984 0004E8C4  7C 60 1B 78 */	mr r0, r3
 /* 80051988 0004E8C8  38 64 00 12 */	addi r3, r4, 0x12
 /* 8005198C 0004E8CC  7C 60 1A 14 */	add r3, r0, r3
 /* 80051990 0004E8D0  4E 80 00 20 */	blr 
+.endfn getTevColor__12J2DTevBlock2FUl
 
-.global setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor
-setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor:
+.fn setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor, weak
 /* 80051994 0004E8D4  54 80 10 3A */	slwi r0, r4, 2
 /* 80051998 0004E8D8  88 C5 00 00 */	lbz r6, 0(r5)
 /* 8005199C 0004E8DC  7C 83 02 14 */	add r4, r3, r0
@@ -9663,51 +9662,51 @@ setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor:
 /* 800519B4 0004E8F4  98 64 00 46 */	stb r3, 0x46(r4)
 /* 800519B8 0004E8F8  98 04 00 47 */	stb r0, 0x47(r4)
 /* 800519BC 0004E8FC  4E 80 00 20 */	blr 
+.endfn setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor
 
-.global getTevKColor__12J2DTevBlock2FUl
-getTevKColor__12J2DTevBlock2FUl:
+.fn getTevKColor__12J2DTevBlock2FUl, weak
 /* 800519C0 0004E900  54 84 10 3A */	slwi r4, r4, 2
 /* 800519C4 0004E904  7C 60 1B 78 */	mr r0, r3
 /* 800519C8 0004E908  38 64 00 44 */	addi r3, r4, 0x44
 /* 800519CC 0004E90C  7C 60 1A 14 */	add r3, r0, r3
 /* 800519D0 0004E910  4E 80 00 20 */	blr 
+.endfn getTevKColor__12J2DTevBlock2FUl
 
-.global setTevKColorSel__12J2DTevBlock2FUlUc
-setTevKColorSel__12J2DTevBlock2FUlUc:
+.fn setTevKColorSel__12J2DTevBlock2FUlUc, weak
 /* 800519D4 0004E914  7C 63 22 14 */	add r3, r3, r4
 /* 800519D8 0004E918  98 A3 00 54 */	stb r5, 0x54(r3)
 /* 800519DC 0004E91C  4E 80 00 20 */	blr 
+.endfn setTevKColorSel__12J2DTevBlock2FUlUc
 
-.global getTevKColorSel__12J2DTevBlock2FUl
-getTevKColorSel__12J2DTevBlock2FUl:
+.fn getTevKColorSel__12J2DTevBlock2FUl, weak
 /* 800519E0 0004E920  7C 63 22 14 */	add r3, r3, r4
 /* 800519E4 0004E924  88 63 00 54 */	lbz r3, 0x54(r3)
 /* 800519E8 0004E928  4E 80 00 20 */	blr 
+.endfn getTevKColorSel__12J2DTevBlock2FUl
 
-.global setTevKAlphaSel__12J2DTevBlock2FUlUc
-setTevKAlphaSel__12J2DTevBlock2FUlUc:
+.fn setTevKAlphaSel__12J2DTevBlock2FUlUc, weak
 /* 800519EC 0004E92C  7C 63 22 14 */	add r3, r3, r4
 /* 800519F0 0004E930  98 A3 00 56 */	stb r5, 0x56(r3)
 /* 800519F4 0004E934  4E 80 00 20 */	blr 
+.endfn setTevKAlphaSel__12J2DTevBlock2FUlUc
 
-.global getTevKAlphaSel__12J2DTevBlock2FUl
-getTevKAlphaSel__12J2DTevBlock2FUl:
+.fn getTevKAlphaSel__12J2DTevBlock2FUl, weak
 /* 800519F8 0004E938  7C 63 22 14 */	add r3, r3, r4
 /* 800519FC 0004E93C  88 63 00 56 */	lbz r3, 0x56(r3)
 /* 80051A00 0004E940  4E 80 00 20 */	blr 
+.endfn getTevKAlphaSel__12J2DTevBlock2FUl
 
-.global setTevStageNum__12J2DTevBlock2FUc
-setTevStageNum__12J2DTevBlock2FUc:
+.fn setTevStageNum__12J2DTevBlock2FUc, weak
 /* 80051A04 0004E944  98 83 00 32 */	stb r4, 0x32(r3)
 /* 80051A08 0004E948  4E 80 00 20 */	blr 
+.endfn setTevStageNum__12J2DTevBlock2FUc
 
-.global getTevStageNum__12J2DTevBlock2CFv
-getTevStageNum__12J2DTevBlock2CFv:
+.fn getTevStageNum__12J2DTevBlock2CFv, weak
 /* 80051A0C 0004E94C  88 63 00 32 */	lbz r3, 0x32(r3)
 /* 80051A10 0004E950  4E 80 00 20 */	blr 
+.endfn getTevStageNum__12J2DTevBlock2CFv
 
-.global setTevStage__12J2DTevBlock2FUl11J2DTevStage
-setTevStage__12J2DTevBlock2FUl11J2DTevStage:
+.fn setTevStage__12J2DTevBlock2FUl11J2DTevStage, weak
 /* 80051A14 0004E954  54 80 18 38 */	slwi r0, r4, 3
 /* 80051A18 0004E958  88 C5 00 01 */	lbz r6, 1(r5)
 /* 80051A1C 0004E95C  7C 83 02 14 */	add r4, r3, r0
@@ -9723,17 +9722,17 @@ setTevStage__12J2DTevBlock2FUl11J2DTevStage:
 /* 80051A44 0004E984  98 64 00 39 */	stb r3, 0x39(r4)
 /* 80051A48 0004E988  98 04 00 3A */	stb r0, 0x3a(r4)
 /* 80051A4C 0004E98C  4E 80 00 20 */	blr 
+.endfn setTevStage__12J2DTevBlock2FUl11J2DTevStage
 
-.global getTevStage__12J2DTevBlock2FUl
-getTevStage__12J2DTevBlock2FUl:
+.fn getTevStage__12J2DTevBlock2FUl, weak
 /* 80051A50 0004E990  54 84 18 38 */	slwi r4, r4, 3
 /* 80051A54 0004E994  7C 60 1B 78 */	mr r0, r3
 /* 80051A58 0004E998  38 64 00 33 */	addi r3, r4, 0x33
 /* 80051A5C 0004E99C  7C 60 1A 14 */	add r3, r0, r3
 /* 80051A60 0004E9A0  4E 80 00 20 */	blr 
+.endfn getTevStage__12J2DTevBlock2FUl
 
-.global setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo
-setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo:
+.fn setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo, weak
 /* 80051A64 0004E9A4  54 80 18 38 */	slwi r0, r4, 3
 /* 80051A68 0004E9A8  88 85 00 01 */	lbz r4, 1(r5)
 /* 80051A6C 0004E9AC  7C C3 02 14 */	add r6, r3, r0
@@ -9748,39 +9747,39 @@ setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo:
 /* 80051A90 0004E9D0  7C 60 03 78 */	or r0, r3, r0
 /* 80051A94 0004E9D4  98 06 00 3A */	stb r0, 0x3a(r6)
 /* 80051A98 0004E9D8  4E 80 00 20 */	blr 
+.endfn setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo
 
-.global setTevSwapModeTable__12J2DTevBlock2FUl19J2DTevSwapModeTable
-setTevSwapModeTable__12J2DTevBlock2FUl19J2DTevSwapModeTable:
+.fn setTevSwapModeTable__12J2DTevBlock2FUl19J2DTevSwapModeTable, weak
 /* 80051A9C 0004E9DC  88 05 00 00 */	lbz r0, 0(r5)
 /* 80051AA0 0004E9E0  7C 63 22 14 */	add r3, r3, r4
 /* 80051AA4 0004E9E4  98 03 00 58 */	stb r0, 0x58(r3)
 /* 80051AA8 0004E9E8  4E 80 00 20 */	blr 
+.endfn setTevSwapModeTable__12J2DTevBlock2FUl19J2DTevSwapModeTable
 
-.global getTevSwapModeTable__12J2DTevBlock2FUl
-getTevSwapModeTable__12J2DTevBlock2FUl:
+.fn getTevSwapModeTable__12J2DTevBlock2FUl, weak
 /* 80051AAC 0004E9EC  7C 60 1B 78 */	mr r0, r3
 /* 80051AB0 0004E9F0  38 64 00 58 */	addi r3, r4, 0x58
 /* 80051AB4 0004E9F4  7C 60 1A 14 */	add r3, r0, r3
 /* 80051AB8 0004E9F8  4E 80 00 20 */	blr 
+.endfn getTevSwapModeTable__12J2DTevBlock2FUl
 
-.global setIndTevStage__12J2DTevBlock2FUl14J2DIndTevStage
-setIndTevStage__12J2DTevBlock2FUl14J2DIndTevStage:
+.fn setIndTevStage__12J2DTevBlock2FUl14J2DIndTevStage, weak
 /* 80051ABC 0004E9FC  54 80 10 3A */	slwi r0, r4, 2
 /* 80051AC0 0004EA00  80 85 00 00 */	lwz r4, 0(r5)
 /* 80051AC4 0004EA04  7C 63 02 14 */	add r3, r3, r0
 /* 80051AC8 0004EA08  90 83 00 5C */	stw r4, 0x5c(r3)
 /* 80051ACC 0004EA0C  4E 80 00 20 */	blr 
+.endfn setIndTevStage__12J2DTevBlock2FUl14J2DIndTevStage
 
-.global getIndTevStage__12J2DTevBlock2FUl
-getIndTevStage__12J2DTevBlock2FUl:
+.fn getIndTevStage__12J2DTevBlock2FUl, weak
 /* 80051AD0 0004EA10  54 84 10 3A */	slwi r4, r4, 2
 /* 80051AD4 0004EA14  7C 60 1B 78 */	mr r0, r3
 /* 80051AD8 0004EA18  38 64 00 5C */	addi r3, r4, 0x5c
 /* 80051ADC 0004EA1C  7C 60 1A 14 */	add r3, r0, r3
 /* 80051AE0 0004EA20  4E 80 00 20 */	blr 
+.endfn getIndTevStage__12J2DTevBlock2FUl
 
-.global insertTexture__12J2DTevBlock2FUlPC7ResTIMG
-insertTexture__12J2DTevBlock2FUlPC7ResTIMG:
+.fn insertTexture__12J2DTevBlock2FUlPC7ResTIMG, weak
 /* 80051AE4 0004EA24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80051AE8 0004EA28  7C 08 02 A6 */	mflr r0
 /* 80051AEC 0004EA2C  38 C0 00 00 */	li r6, 0
@@ -9793,9 +9792,9 @@ insertTexture__12J2DTevBlock2FUlPC7ResTIMG:
 /* 80051B08 0004EA48  7C 08 03 A6 */	mtlr r0
 /* 80051B0C 0004EA4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80051B10 0004EA50  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock2FUlPC7ResTIMG
 
-.global getTexture__12J2DTevBlock2FUl
-getTexture__12J2DTevBlock2FUl:
+.fn getTexture__12J2DTevBlock2FUl, weak
 /* 80051B14 0004EA54  28 04 00 02 */	cmplwi r4, 2
 /* 80051B18 0004EA58  41 80 00 0C */	blt .L_80051B24
 /* 80051B1C 0004EA5C  38 60 00 00 */	li r3, 0
@@ -9805,9 +9804,9 @@ getTexture__12J2DTevBlock2FUl:
 /* 80051B28 0004EA68  7C 63 02 14 */	add r3, r3, r0
 /* 80051B2C 0004EA6C  80 63 00 64 */	lwz r3, 0x64(r3)
 /* 80051B30 0004EA70  4E 80 00 20 */	blr 
+.endfn getTexture__12J2DTevBlock2FUl
 
-.global getPalette__12J2DTevBlock2FUl
-getPalette__12J2DTevBlock2FUl:
+.fn getPalette__12J2DTevBlock2FUl, weak
 /* 80051B34 0004EA74  28 04 00 02 */	cmplwi r4, 2
 /* 80051B38 0004EA78  41 80 00 0C */	blt .L_80051B44
 /* 80051B3C 0004EA7C  38 60 00 00 */	li r3, 0
@@ -9817,63 +9816,63 @@ getPalette__12J2DTevBlock2FUl:
 /* 80051B48 0004EA88  7C 63 02 14 */	add r3, r3, r0
 /* 80051B4C 0004EA8C  80 63 00 6C */	lwz r3, 0x6c(r3)
 /* 80051B50 0004EA90  4E 80 00 20 */	blr 
+.endfn getPalette__12J2DTevBlock2FUl
 
-.global getFont__12J2DTevBlock2Fv
-getFont__12J2DTevBlock2Fv:
+.fn getFont__12J2DTevBlock2Fv, weak
 /* 80051B54 0004EA94  80 63 00 74 */	lwz r3, 0x74(r3)
 /* 80051B58 0004EA98  4E 80 00 20 */	blr 
+.endfn getFont__12J2DTevBlock2Fv
 
-.global setUndeleteFlag__12J2DTevBlock2FUc
-setUndeleteFlag__12J2DTevBlock2FUc:
+.fn setUndeleteFlag__12J2DTevBlock2FUc, weak
 /* 80051B5C 0004EA9C  88 03 00 78 */	lbz r0, 0x78(r3)
 /* 80051B60 0004EAA0  7C 00 20 38 */	and r0, r0, r4
 /* 80051B64 0004EAA4  98 03 00 78 */	stb r0, 0x78(r3)
 /* 80051B68 0004EAA8  4E 80 00 20 */	blr 
+.endfn setUndeleteFlag__12J2DTevBlock2FUc
 
-.global setFontUndeleteFlag__12J2DTevBlock2Fv
-setFontUndeleteFlag__12J2DTevBlock2Fv:
+.fn setFontUndeleteFlag__12J2DTevBlock2Fv, weak
 /* 80051B6C 0004EAAC  88 03 00 78 */	lbz r0, 0x78(r3)
 /* 80051B70 0004EAB0  54 00 06 7E */	clrlwi r0, r0, 0x19
 /* 80051B74 0004EAB4  98 03 00 78 */	stb r0, 0x78(r3)
 /* 80051B78 0004EAB8  4E 80 00 20 */	blr 
+.endfn setFontUndeleteFlag__12J2DTevBlock2Fv
 
-.global getType__12J2DTevBlock1Fv
-getType__12J2DTevBlock1Fv:
+.fn getType__12J2DTevBlock1Fv, weak
 /* 80051B7C 0004EABC  3C 60 54 56 */	lis r3, 0x54564231@ha
 /* 80051B80 0004EAC0  38 63 42 31 */	addi r3, r3, 0x54564231@l
 /* 80051B84 0004EAC4  4E 80 00 20 */	blr 
+.endfn getType__12J2DTevBlock1Fv
 
-.global getMaxStage__12J2DTevBlock1Fv
-getMaxStage__12J2DTevBlock1Fv:
+.fn getMaxStage__12J2DTevBlock1Fv, weak
 /* 80051B88 0004EAC8  38 60 00 01 */	li r3, 1
 /* 80051B8C 0004EACC  4E 80 00 20 */	blr 
+.endfn getMaxStage__12J2DTevBlock1Fv
 
-.global setTexNo__12J2DTevBlock1FUlUs
-setTexNo__12J2DTevBlock1FUlUs:
+.fn setTexNo__12J2DTevBlock1FUlUs, weak
 /* 80051B90 0004EAD0  54 80 08 3C */	slwi r0, r4, 1
 /* 80051B94 0004EAD4  7C 63 02 14 */	add r3, r3, r0
 /* 80051B98 0004EAD8  B0 A3 00 04 */	sth r5, 4(r3)
 /* 80051B9C 0004EADC  4E 80 00 20 */	blr 
+.endfn setTexNo__12J2DTevBlock1FUlUs
 
-.global getTexNo__12J2DTevBlock1CFUl
-getTexNo__12J2DTevBlock1CFUl:
+.fn getTexNo__12J2DTevBlock1CFUl, weak
 /* 80051BA0 0004EAE0  54 80 08 3C */	slwi r0, r4, 1
 /* 80051BA4 0004EAE4  7C 63 02 14 */	add r3, r3, r0
 /* 80051BA8 0004EAE8  A0 63 00 04 */	lhz r3, 4(r3)
 /* 80051BAC 0004EAEC  4E 80 00 20 */	blr 
+.endfn getTexNo__12J2DTevBlock1CFUl
 
-.global setFontNo__12J2DTevBlock1FUs
-setFontNo__12J2DTevBlock1FUs:
+.fn setFontNo__12J2DTevBlock1FUs, weak
 /* 80051BB0 0004EAF0  B0 83 00 06 */	sth r4, 6(r3)
 /* 80051BB4 0004EAF4  4E 80 00 20 */	blr 
+.endfn setFontNo__12J2DTevBlock1FUs
 
-.global getFontNo__12J2DTevBlock1CFv
-getFontNo__12J2DTevBlock1CFv:
+.fn getFontNo__12J2DTevBlock1CFv, weak
 /* 80051BB8 0004EAF8  A0 63 00 06 */	lhz r3, 6(r3)
 /* 80051BBC 0004EAFC  4E 80 00 20 */	blr 
+.endfn getFontNo__12J2DTevBlock1CFv
 
-.global setTevOrder__12J2DTevBlock1FUl11J2DTevOrder
-setTevOrder__12J2DTevBlock1FUl11J2DTevOrder:
+.fn setTevOrder__12J2DTevBlock1FUl11J2DTevOrder, weak
 /* 80051BC0 0004EB00  54 84 10 3A */	slwi r4, r4, 2
 /* 80051BC4 0004EB04  88 05 00 00 */	lbz r0, 0(r5)
 /* 80051BC8 0004EB08  7C 83 22 14 */	add r4, r3, r4
@@ -9883,17 +9882,17 @@ setTevOrder__12J2DTevBlock1FUl11J2DTevOrder:
 /* 80051BD8 0004EB18  98 64 00 09 */	stb r3, 9(r4)
 /* 80051BDC 0004EB1C  98 04 00 0A */	stb r0, 0xa(r4)
 /* 80051BE0 0004EB20  4E 80 00 20 */	blr 
+.endfn setTevOrder__12J2DTevBlock1FUl11J2DTevOrder
 
-.global getTevOrder__12J2DTevBlock1FUl
-getTevOrder__12J2DTevBlock1FUl:
+.fn getTevOrder__12J2DTevBlock1FUl, weak
 /* 80051BE4 0004EB24  54 84 10 3A */	slwi r4, r4, 2
 /* 80051BE8 0004EB28  7C 60 1B 78 */	mr r0, r3
 /* 80051BEC 0004EB2C  38 64 00 08 */	addi r3, r4, 8
 /* 80051BF0 0004EB30  7C 60 1A 14 */	add r3, r0, r3
 /* 80051BF4 0004EB34  4E 80 00 20 */	blr 
+.endfn getTevOrder__12J2DTevBlock1FUl
 
-.global setTevColor__12J2DTevBlock1FUl13J2DGXColorS10
-setTevColor__12J2DTevBlock1FUl13J2DGXColorS10:
+.fn setTevColor__12J2DTevBlock1FUl13J2DGXColorS10, weak
 /* 80051BF8 0004EB38  54 80 18 38 */	slwi r0, r4, 3
 /* 80051BFC 0004EB3C  A8 C5 00 00 */	lha r6, 0(r5)
 /* 80051C00 0004EB40  7C 83 02 14 */	add r4, r3, r0
@@ -9905,17 +9904,17 @@ setTevColor__12J2DTevBlock1FUl13J2DGXColorS10:
 /* 80051C18 0004EB58  B0 64 00 10 */	sth r3, 0x10(r4)
 /* 80051C1C 0004EB5C  B0 04 00 12 */	sth r0, 0x12(r4)
 /* 80051C20 0004EB60  4E 80 00 20 */	blr 
+.endfn setTevColor__12J2DTevBlock1FUl13J2DGXColorS10
 
-.global getTevColor__12J2DTevBlock1FUl
-getTevColor__12J2DTevBlock1FUl:
+.fn getTevColor__12J2DTevBlock1FUl, weak
 /* 80051C24 0004EB64  54 84 18 38 */	slwi r4, r4, 3
 /* 80051C28 0004EB68  7C 60 1B 78 */	mr r0, r3
 /* 80051C2C 0004EB6C  38 64 00 0C */	addi r3, r4, 0xc
 /* 80051C30 0004EB70  7C 60 1A 14 */	add r3, r0, r3
 /* 80051C34 0004EB74  4E 80 00 20 */	blr 
+.endfn getTevColor__12J2DTevBlock1FUl
 
-.global setTevKColor__12J2DTevBlock1FUlQ28JUtility6TColor
-setTevKColor__12J2DTevBlock1FUlQ28JUtility6TColor:
+.fn setTevKColor__12J2DTevBlock1FUlQ28JUtility6TColor, weak
 /* 80051C38 0004EB78  54 80 10 3A */	slwi r0, r4, 2
 /* 80051C3C 0004EB7C  88 C5 00 00 */	lbz r6, 0(r5)
 /* 80051C40 0004EB80  7C 83 02 14 */	add r4, r3, r0
@@ -9927,50 +9926,50 @@ setTevKColor__12J2DTevBlock1FUlQ28JUtility6TColor:
 /* 80051C58 0004EB98  98 64 00 36 */	stb r3, 0x36(r4)
 /* 80051C5C 0004EB9C  98 04 00 37 */	stb r0, 0x37(r4)
 /* 80051C60 0004EBA0  4E 80 00 20 */	blr 
+.endfn setTevKColor__12J2DTevBlock1FUlQ28JUtility6TColor
 
-.global getTevKColor__12J2DTevBlock1FUl
-getTevKColor__12J2DTevBlock1FUl:
+.fn getTevKColor__12J2DTevBlock1FUl, weak
 /* 80051C64 0004EBA4  54 84 10 3A */	slwi r4, r4, 2
 /* 80051C68 0004EBA8  7C 60 1B 78 */	mr r0, r3
 /* 80051C6C 0004EBAC  38 64 00 34 */	addi r3, r4, 0x34
 /* 80051C70 0004EBB0  7C 60 1A 14 */	add r3, r0, r3
 /* 80051C74 0004EBB4  4E 80 00 20 */	blr 
+.endfn getTevKColor__12J2DTevBlock1FUl
 
-.global setTevKColorSel__12J2DTevBlock1FUlUc
-setTevKColorSel__12J2DTevBlock1FUlUc:
+.fn setTevKColorSel__12J2DTevBlock1FUlUc, weak
 /* 80051C78 0004EBB8  7C 63 22 14 */	add r3, r3, r4
 /* 80051C7C 0004EBBC  98 A3 00 44 */	stb r5, 0x44(r3)
 /* 80051C80 0004EBC0  4E 80 00 20 */	blr 
+.endfn setTevKColorSel__12J2DTevBlock1FUlUc
 
-.global getTevKColorSel__12J2DTevBlock1FUl
-getTevKColorSel__12J2DTevBlock1FUl:
+.fn getTevKColorSel__12J2DTevBlock1FUl, weak
 /* 80051C84 0004EBC4  7C 63 22 14 */	add r3, r3, r4
 /* 80051C88 0004EBC8  88 63 00 44 */	lbz r3, 0x44(r3)
 /* 80051C8C 0004EBCC  4E 80 00 20 */	blr 
+.endfn getTevKColorSel__12J2DTevBlock1FUl
 
-.global setTevKAlphaSel__12J2DTevBlock1FUlUc
-setTevKAlphaSel__12J2DTevBlock1FUlUc:
+.fn setTevKAlphaSel__12J2DTevBlock1FUlUc, weak
 /* 80051C90 0004EBD0  7C 63 22 14 */	add r3, r3, r4
 /* 80051C94 0004EBD4  98 A3 00 45 */	stb r5, 0x45(r3)
 /* 80051C98 0004EBD8  4E 80 00 20 */	blr 
+.endfn setTevKAlphaSel__12J2DTevBlock1FUlUc
 
-.global getTevKAlphaSel__12J2DTevBlock1FUl
-getTevKAlphaSel__12J2DTevBlock1FUl:
+.fn getTevKAlphaSel__12J2DTevBlock1FUl, weak
 /* 80051C9C 0004EBDC  7C 63 22 14 */	add r3, r3, r4
 /* 80051CA0 0004EBE0  88 63 00 45 */	lbz r3, 0x45(r3)
 /* 80051CA4 0004EBE4  4E 80 00 20 */	blr 
+.endfn getTevKAlphaSel__12J2DTevBlock1FUl
 
-.global setTevStageNum__12J2DTevBlock1FUc
-setTevStageNum__12J2DTevBlock1FUc:
+.fn setTevStageNum__12J2DTevBlock1FUc, weak
 /* 80051CA8 0004EBE8  4E 80 00 20 */	blr 
+.endfn setTevStageNum__12J2DTevBlock1FUc
 
-.global getTevStageNum__12J2DTevBlock1CFv
-getTevStageNum__12J2DTevBlock1CFv:
+.fn getTevStageNum__12J2DTevBlock1CFv, weak
 /* 80051CAC 0004EBEC  38 60 00 01 */	li r3, 1
 /* 80051CB0 0004EBF0  4E 80 00 20 */	blr 
+.endfn getTevStageNum__12J2DTevBlock1CFv
 
-.global setTevStage__12J2DTevBlock1FUl11J2DTevStage
-setTevStage__12J2DTevBlock1FUl11J2DTevStage:
+.fn setTevStage__12J2DTevBlock1FUl11J2DTevStage, weak
 /* 80051CB4 0004EBF4  54 80 18 38 */	slwi r0, r4, 3
 /* 80051CB8 0004EBF8  88 C5 00 01 */	lbz r6, 1(r5)
 /* 80051CBC 0004EBFC  7C 83 02 14 */	add r4, r3, r0
@@ -9986,17 +9985,17 @@ setTevStage__12J2DTevBlock1FUl11J2DTevStage:
 /* 80051CE4 0004EC24  98 64 00 32 */	stb r3, 0x32(r4)
 /* 80051CE8 0004EC28  98 04 00 33 */	stb r0, 0x33(r4)
 /* 80051CEC 0004EC2C  4E 80 00 20 */	blr 
+.endfn setTevStage__12J2DTevBlock1FUl11J2DTevStage
 
-.global getTevStage__12J2DTevBlock1FUl
-getTevStage__12J2DTevBlock1FUl:
+.fn getTevStage__12J2DTevBlock1FUl, weak
 /* 80051CF0 0004EC30  54 84 18 38 */	slwi r4, r4, 3
 /* 80051CF4 0004EC34  7C 60 1B 78 */	mr r0, r3
 /* 80051CF8 0004EC38  38 64 00 2C */	addi r3, r4, 0x2c
 /* 80051CFC 0004EC3C  7C 60 1A 14 */	add r3, r0, r3
 /* 80051D00 0004EC40  4E 80 00 20 */	blr 
+.endfn getTevStage__12J2DTevBlock1FUl
 
-.global setTevSwapModeInfo__12J2DTevBlock1FUl18J2DTevSwapModeInfo
-setTevSwapModeInfo__12J2DTevBlock1FUl18J2DTevSwapModeInfo:
+.fn setTevSwapModeInfo__12J2DTevBlock1FUl18J2DTevSwapModeInfo, weak
 /* 80051D04 0004EC44  54 80 18 38 */	slwi r0, r4, 3
 /* 80051D08 0004EC48  88 85 00 01 */	lbz r4, 1(r5)
 /* 80051D0C 0004EC4C  7C C3 02 14 */	add r6, r3, r0
@@ -10011,39 +10010,39 @@ setTevSwapModeInfo__12J2DTevBlock1FUl18J2DTevSwapModeInfo:
 /* 80051D30 0004EC70  7C 60 03 78 */	or r0, r3, r0
 /* 80051D34 0004EC74  98 06 00 33 */	stb r0, 0x33(r6)
 /* 80051D38 0004EC78  4E 80 00 20 */	blr 
+.endfn setTevSwapModeInfo__12J2DTevBlock1FUl18J2DTevSwapModeInfo
 
-.global setTevSwapModeTable__12J2DTevBlock1FUl19J2DTevSwapModeTable
-setTevSwapModeTable__12J2DTevBlock1FUl19J2DTevSwapModeTable:
+.fn setTevSwapModeTable__12J2DTevBlock1FUl19J2DTevSwapModeTable, weak
 /* 80051D3C 0004EC7C  88 05 00 00 */	lbz r0, 0(r5)
 /* 80051D40 0004EC80  7C 63 22 14 */	add r3, r3, r4
 /* 80051D44 0004EC84  98 03 00 46 */	stb r0, 0x46(r3)
 /* 80051D48 0004EC88  4E 80 00 20 */	blr 
+.endfn setTevSwapModeTable__12J2DTevBlock1FUl19J2DTevSwapModeTable
 
-.global getTevSwapModeTable__12J2DTevBlock1FUl
-getTevSwapModeTable__12J2DTevBlock1FUl:
+.fn getTevSwapModeTable__12J2DTevBlock1FUl, weak
 /* 80051D4C 0004EC8C  7C 60 1B 78 */	mr r0, r3
 /* 80051D50 0004EC90  38 64 00 46 */	addi r3, r4, 0x46
 /* 80051D54 0004EC94  7C 60 1A 14 */	add r3, r0, r3
 /* 80051D58 0004EC98  4E 80 00 20 */	blr 
+.endfn getTevSwapModeTable__12J2DTevBlock1FUl
 
-.global setIndTevStage__12J2DTevBlock1FUl14J2DIndTevStage
-setIndTevStage__12J2DTevBlock1FUl14J2DIndTevStage:
+.fn setIndTevStage__12J2DTevBlock1FUl14J2DIndTevStage, weak
 /* 80051D5C 0004EC9C  54 80 10 3A */	slwi r0, r4, 2
 /* 80051D60 0004ECA0  80 85 00 00 */	lwz r4, 0(r5)
 /* 80051D64 0004ECA4  7C 63 02 14 */	add r3, r3, r0
 /* 80051D68 0004ECA8  90 83 00 4C */	stw r4, 0x4c(r3)
 /* 80051D6C 0004ECAC  4E 80 00 20 */	blr 
+.endfn setIndTevStage__12J2DTevBlock1FUl14J2DIndTevStage
 
-.global getIndTevStage__12J2DTevBlock1FUl
-getIndTevStage__12J2DTevBlock1FUl:
+.fn getIndTevStage__12J2DTevBlock1FUl, weak
 /* 80051D70 0004ECB0  54 84 10 3A */	slwi r4, r4, 2
 /* 80051D74 0004ECB4  7C 60 1B 78 */	mr r0, r3
 /* 80051D78 0004ECB8  38 64 00 4C */	addi r3, r4, 0x4c
 /* 80051D7C 0004ECBC  7C 60 1A 14 */	add r3, r0, r3
 /* 80051D80 0004ECC0  4E 80 00 20 */	blr 
+.endfn getIndTevStage__12J2DTevBlock1FUl
 
-.global insertTexture__12J2DTevBlock1FUlPC7ResTIMG
-insertTexture__12J2DTevBlock1FUlPC7ResTIMG:
+.fn insertTexture__12J2DTevBlock1FUlPC7ResTIMG, weak
 /* 80051D84 0004ECC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80051D88 0004ECC8  7C 08 02 A6 */	mflr r0
 /* 80051D8C 0004ECCC  38 C0 00 00 */	li r6, 0
@@ -10056,9 +10055,9 @@ insertTexture__12J2DTevBlock1FUlPC7ResTIMG:
 /* 80051DA8 0004ECE8  7C 08 03 A6 */	mtlr r0
 /* 80051DAC 0004ECEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80051DB0 0004ECF0  4E 80 00 20 */	blr 
+.endfn insertTexture__12J2DTevBlock1FUlPC7ResTIMG
 
-.global getTexture__12J2DTevBlock1FUl
-getTexture__12J2DTevBlock1FUl:
+.fn getTexture__12J2DTevBlock1FUl, weak
 /* 80051DB4 0004ECF4  28 04 00 01 */	cmplwi r4, 1
 /* 80051DB8 0004ECF8  41 80 00 0C */	blt .L_80051DC4
 /* 80051DBC 0004ECFC  38 60 00 00 */	li r3, 0
@@ -10068,9 +10067,9 @@ getTexture__12J2DTevBlock1FUl:
 /* 80051DC8 0004ED08  7C 63 02 14 */	add r3, r3, r0
 /* 80051DCC 0004ED0C  80 63 00 50 */	lwz r3, 0x50(r3)
 /* 80051DD0 0004ED10  4E 80 00 20 */	blr 
+.endfn getTexture__12J2DTevBlock1FUl
 
-.global getPalette__12J2DTevBlock1FUl
-getPalette__12J2DTevBlock1FUl:
+.fn getPalette__12J2DTevBlock1FUl, weak
 /* 80051DD4 0004ED14  28 04 00 01 */	cmplwi r4, 1
 /* 80051DD8 0004ED18  41 80 00 0C */	blt .L_80051DE4
 /* 80051DDC 0004ED1C  38 60 00 00 */	li r3, 0
@@ -10080,122 +10079,123 @@ getPalette__12J2DTevBlock1FUl:
 /* 80051DE8 0004ED28  7C 63 02 14 */	add r3, r3, r0
 /* 80051DEC 0004ED2C  80 63 00 54 */	lwz r3, 0x54(r3)
 /* 80051DF0 0004ED30  4E 80 00 20 */	blr 
+.endfn getPalette__12J2DTevBlock1FUl
 
-.global getFont__12J2DTevBlock1Fv
-getFont__12J2DTevBlock1Fv:
+.fn getFont__12J2DTevBlock1Fv, weak
 /* 80051DF4 0004ED34  80 63 00 58 */	lwz r3, 0x58(r3)
 /* 80051DF8 0004ED38  4E 80 00 20 */	blr 
+.endfn getFont__12J2DTevBlock1Fv
 
-.global setUndeleteFlag__12J2DTevBlock1FUc
-setUndeleteFlag__12J2DTevBlock1FUc:
+.fn setUndeleteFlag__12J2DTevBlock1FUc, weak
 /* 80051DFC 0004ED3C  88 03 00 5C */	lbz r0, 0x5c(r3)
 /* 80051E00 0004ED40  7C 00 20 38 */	and r0, r0, r4
 /* 80051E04 0004ED44  98 03 00 5C */	stb r0, 0x5c(r3)
 /* 80051E08 0004ED48  4E 80 00 20 */	blr 
+.endfn setUndeleteFlag__12J2DTevBlock1FUc
 
-.global setFontUndeleteFlag__12J2DTevBlock1Fv
-setFontUndeleteFlag__12J2DTevBlock1Fv: # weak function
+.fn setFontUndeleteFlag__12J2DTevBlock1Fv, weak
 /* 80051E0C 0004ED4C  88 03 00 5C */	lbz r0, 0x5c(r3)
 /* 80051E10 0004ED50  54 00 06 7E */	clrlwi r0, r0, 0x19
 /* 80051E14 0004ED54  98 03 00 5C */	stb r0, 0x5c(r3)
 /* 80051E18 0004ED58  4E 80 00 20 */	blr 
+.endfn setFontUndeleteFlag__12J2DTevBlock1Fv
 
-.global initialize__11J2DTevBlockFv
-initialize__11J2DTevBlockFv: # weak function, as are the funcs below
+.fn initialize__11J2DTevBlockFv, weak
 /* 80051E1C 0004ED5C  4E 80 00 20 */	blr 
+.endfn initialize__11J2DTevBlockFv
 
-.global setGX__11J2DTevBlockFv
-setGX__11J2DTevBlockFv:
+.fn setGX__11J2DTevBlockFv, weak
 /* 80051E20 0004ED60  4E 80 00 20 */	blr 
+.endfn setGX__11J2DTevBlockFv
 
-.global loadTexture__11J2DTevBlockF11_GXTexMapIDUl
-loadTexture__11J2DTevBlockF11_GXTexMapIDUl:
+.fn loadTexture__11J2DTevBlockF11_GXTexMapIDUl, weak
 /* 80051E24 0004ED64  4E 80 00 20 */	blr 
+.endfn loadTexture__11J2DTevBlockF11_GXTexMapIDUl
 
-.global setFontNo__11J2DTevBlockFUs
-setFontNo__11J2DTevBlockFUs:
+.fn setFontNo__11J2DTevBlockFUs, weak
 /* 80051E28 0004ED68  4E 80 00 20 */	blr 
+.endfn setFontNo__11J2DTevBlockFUs
 
-.global setTevKColor__11J2DTevBlockFUlQ28JUtility6TColor
-setTevKColor__11J2DTevBlockFUlQ28JUtility6TColor:
+.fn setTevKColor__11J2DTevBlockFUlQ28JUtility6TColor, weak
 /* 80051E2C 0004ED6C  4E 80 00 20 */	blr 
+.endfn setTevKColor__11J2DTevBlockFUlQ28JUtility6TColor
 
-.global getTevKColorSel__11J2DTevBlockFUl
-getTevKColorSel__11J2DTevBlockFUl:
+.fn getTevKColorSel__11J2DTevBlockFUl, weak
 /* 80051E30 0004ED70  38 60 00 00 */	li r3, 0
 /* 80051E34 0004ED74  4E 80 00 20 */	blr 
+.endfn getTevKColorSel__11J2DTevBlockFUl
 
-.global getTevKAlphaSel__11J2DTevBlockFUl
-getTevKAlphaSel__11J2DTevBlockFUl:
+.fn getTevKAlphaSel__11J2DTevBlockFUl, weak
 /* 80051E38 0004ED78  38 60 00 00 */	li r3, 0
 /* 80051E3C 0004ED7C  4E 80 00 20 */	blr 
+.endfn getTevKAlphaSel__11J2DTevBlockFUl
 
-.global setTevStage__11J2DTevBlockFUl11J2DTevStage
-setTevStage__11J2DTevBlockFUl11J2DTevStage:
+.fn setTevStage__11J2DTevBlockFUl11J2DTevStage, weak
 /* 80051E40 0004ED80  4E 80 00 20 */	blr 
+.endfn setTevStage__11J2DTevBlockFUl11J2DTevStage
 
-.global setTevSwapModeInfo__11J2DTevBlockFUl18J2DTevSwapModeInfo
-setTevSwapModeInfo__11J2DTevBlockFUl18J2DTevSwapModeInfo:
+.fn setTevSwapModeInfo__11J2DTevBlockFUl18J2DTevSwapModeInfo, weak
 /* 80051E44 0004ED84  4E 80 00 20 */	blr 
+.endfn setTevSwapModeInfo__11J2DTevBlockFUl18J2DTevSwapModeInfo
 
-.global setTevSwapModeTable__11J2DTevBlockFUl19J2DTevSwapModeTable
-setTevSwapModeTable__11J2DTevBlockFUl19J2DTevSwapModeTable:
+.fn setTevSwapModeTable__11J2DTevBlockFUl19J2DTevSwapModeTable, weak
 /* 80051E48 0004ED88  4E 80 00 20 */	blr 
+.endfn setTevSwapModeTable__11J2DTevBlockFUl19J2DTevSwapModeTable
 
-.global setIndTevStage__11J2DTevBlockFUl14J2DIndTevStage
-setIndTevStage__11J2DTevBlockFUl14J2DIndTevStage:
+.fn setIndTevStage__11J2DTevBlockFUl14J2DIndTevStage, weak
 /* 80051E4C 0004ED8C  4E 80 00 20 */	blr 
+.endfn setIndTevStage__11J2DTevBlockFUl14J2DIndTevStage
 
-.global getIndTevStage__11J2DTevBlockFUl
-getIndTevStage__11J2DTevBlockFUl:
+.fn getIndTevStage__11J2DTevBlockFUl, weak
 /* 80051E50 0004ED90  38 60 00 00 */	li r3, 0
 /* 80051E54 0004ED94  4E 80 00 20 */	blr 
+.endfn getIndTevStage__11J2DTevBlockFUl
 
-.global insertTexture__11J2DTevBlockFUlP10JUTTexture
-insertTexture__11J2DTevBlockFUlP10JUTTexture:
+.fn insertTexture__11J2DTevBlockFUlP10JUTTexture, weak
 /* 80051E58 0004ED98  38 60 00 00 */	li r3, 0
 /* 80051E5C 0004ED9C  4E 80 00 20 */	blr 
+.endfn insertTexture__11J2DTevBlockFUlP10JUTTexture
 
-.global insertTexture__11J2DTevBlockFUlPC7ResTIMGP10JUTPalette
-insertTexture__11J2DTevBlockFUlPC7ResTIMGP10JUTPalette:
+.fn insertTexture__11J2DTevBlockFUlPC7ResTIMGP10JUTPalette, weak
 /* 80051E60 0004EDA0  38 60 00 00 */	li r3, 0
 /* 80051E64 0004EDA4  4E 80 00 20 */	blr 
+.endfn insertTexture__11J2DTevBlockFUlPC7ResTIMGP10JUTPalette
 
-.global setTexture__11J2DTevBlockFUlP10JUTTexture
-setTexture__11J2DTevBlockFUlP10JUTTexture:
+.fn setTexture__11J2DTevBlockFUlP10JUTTexture, weak
 /* 80051E68 0004EDA8  38 60 00 00 */	li r3, 0
 /* 80051E6C 0004EDAC  4E 80 00 20 */	blr 
+.endfn setTexture__11J2DTevBlockFUlP10JUTTexture
 
-.global setTexture__11J2DTevBlockFUlPC7ResTIMG
-setTexture__11J2DTevBlockFUlPC7ResTIMG:
+.fn setTexture__11J2DTevBlockFUlPC7ResTIMG, weak
 /* 80051E70 0004EDB0  38 60 00 00 */	li r3, 0
 /* 80051E74 0004EDB4  4E 80 00 20 */	blr 
+.endfn setTexture__11J2DTevBlockFUlPC7ResTIMG
 
-.global removeTexture__11J2DTevBlockFUl
-removeTexture__11J2DTevBlockFUl:
+.fn removeTexture__11J2DTevBlockFUl, weak
 /* 80051E78 0004EDB8  38 60 00 00 */	li r3, 0
 /* 80051E7C 0004EDBC  4E 80 00 20 */	blr 
+.endfn removeTexture__11J2DTevBlockFUl
 
-.global setFont__11J2DTevBlockFP7JUTFont
-setFont__11J2DTevBlockFP7JUTFont:
+.fn setFont__11J2DTevBlockFP7JUTFont, weak
 /* 80051E80 0004EDC0  38 60 00 00 */	li r3, 0
 /* 80051E84 0004EDC4  4E 80 00 20 */	blr 
+.endfn setFont__11J2DTevBlockFP7JUTFont
 
-.global setFont__11J2DTevBlockFP7ResFONT
-setFont__11J2DTevBlockFP7ResFONT: # weak function
+.fn setFont__11J2DTevBlockFP7ResFONT, weak
 /* 80051E88 0004EDC8  38 60 00 00 */	li r3, 0
 /* 80051E8C 0004EDCC  4E 80 00 20 */	blr 
+.endfn setFont__11J2DTevBlockFP7ResFONT
 
-.global setPalette__11J2DTevBlockFUlPC7ResTLUT
-setPalette__11J2DTevBlockFUlPC7ResTLUT:
+.fn setPalette__11J2DTevBlockFUlPC7ResTLUT, weak
 /* 80051E90 0004EDD0  38 60 00 00 */	li r3, 0
 /* 80051E94 0004EDD4  4E 80 00 20 */	blr 
+.endfn setPalette__11J2DTevBlockFUlPC7ResTLUT
 
-.global prepareTexture__11J2DTevBlockFUc
-prepareTexture__11J2DTevBlockFUc:
+.fn prepareTexture__11J2DTevBlockFUc, weak
 /* 80051E98 0004EDD8  38 60 00 00 */	li r3, 0
 /* 80051E9C 0004EDDC  4E 80 00 20 */	blr 
+.endfn prepareTexture__11J2DTevBlockFUc
 
-.global shiftDeleteFlag__11J2DTevBlockFUcb
-shiftDeleteFlag__11J2DTevBlockFUcb:
+.fn shiftDeleteFlag__11J2DTevBlockFUcb, weak
 /* 80051EA0 0004EDE0  4E 80 00 20 */	blr 
+.endfn shiftDeleteFlag__11J2DTevBlockFUcb

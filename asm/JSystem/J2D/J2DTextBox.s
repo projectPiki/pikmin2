@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__10J2DTextBox
-__vt__10J2DTextBox:
+.obj __vt__10J2DTextBox, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__10J2DTextBoxFv
@@ -50,29 +49,32 @@ __vt__10J2DTextBox:
 	.4byte getBlack__10J2DTextBoxCFv
 	.4byte getWhite__10J2DTextBoxCFv
 	.4byte getMaterial__10J2DTextBoxCFv
+.endobj __vt__10J2DTextBox
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516860:
+.obj lbl_80516860, local
 	.float 0.0
+.endobj lbl_80516860
 .balign 8
-lbl_80516868:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80516868, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516868
 .balign 8
-lbl_80516870:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80516870, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516870
 .balign 4
-lbl_80516878:
+.obj lbl_80516878, local
 	.asciz "%s"
+.endobj lbl_80516878
 .balign 4
-lbl_8051687C:
+.obj lbl_8051687C, local
 	.float 1.0E-4
+.endobj lbl_8051687C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__10J2DTextBoxFv
-__ct__10J2DTextBoxFv:
+.fn __ct__10J2DTextBoxFv, global
 /* 80040F74 0003DEB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040F78 0003DEB8  7C 08 02 A6 */	mflr r0
 /* 80040F7C 0003DEBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -103,9 +105,9 @@ __ct__10J2DTextBoxFv:
 /* 80040FE0 0003DF20  7C 08 03 A6 */	mtlr r0
 /* 80040FE4 0003DF24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040FE8 0003DF28  4E 80 00 20 */	blr 
+.endfn __ct__10J2DTextBoxFv
 
-.global __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
-__ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
+.fn __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive, global
 /* 80040FEC 0003DF2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80040FF0 0003DF30  7C 08 02 A6 */	mflr r0
 /* 80040FF4 0003DF34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -143,9 +145,9 @@ __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
 /* 80041074 0003DFB4  7C 08 03 A6 */	mtlr r0
 /* 80041078 0003DFB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004107C 0003DFBC  4E 80 00 20 */	blr 
+.endfn __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
 
-.global __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
-__ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial:
+.fn __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial, global
 /* 80041080 0003DFC0  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80041084 0003DFC4  7C 08 02 A6 */	mflr r0
 /* 80041088 0003DFC8  90 01 00 94 */	stw r0, 0x94(r1)
@@ -433,18 +435,18 @@ __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial:
 /* 800414D4 0003E414  7C 08 03 A6 */	mtlr r0
 /* 800414D8 0003E418  38 21 00 90 */	addi r1, r1, 0x90
 /* 800414DC 0003E41C  4E 80 00 20 */	blr 
+.endfn __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
 
-.global setFontUndeleteFlag__11J2DTevBlockFv
-setFontUndeleteFlag__11J2DTevBlockFv:
+.fn setFontUndeleteFlag__11J2DTevBlockFv, weak
 /* 800414E0 0003E420  4E 80 00 20 */	blr 
+.endfn setFontUndeleteFlag__11J2DTevBlockFv
 
-.global getFont__11J2DTevBlockFv
-getFont__11J2DTevBlockFv:
+.fn getFont__11J2DTevBlockFv, weak
 /* 800414E4 0003E424  38 60 00 00 */	li r3, 0
 /* 800414E8 0003E428  4E 80 00 20 */	blr 
+.endfn getFont__11J2DTevBlockFv
 
-.global "__ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding"
-"__ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding":
+.fn "__ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding", global
 /* 800414EC 0003E42C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800414F0 0003E430  7C 08 02 A6 */	mflr r0
 /* 800414F4 0003E434  90 01 00 24 */	stw r0, 0x24(r1)
@@ -480,9 +482,9 @@ getFont__11J2DTevBlockFv:
 /* 8004156C 0003E4AC  7C 08 03 A6 */	mtlr r0
 /* 80041570 0003E4B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80041574 0003E4B4  4E 80 00 20 */	blr 
+.endfn "__ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding"
 
-.global initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding
-initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding:
+.fn initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding, global
 /* 80041578 0003E4B8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8004157C 0003E4BC  7C 08 02 A6 */	mflr r0
 /* 80041580 0003E4C0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -628,9 +630,9 @@ initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding:
 /* 80041794 0003E6D4  7C 08 03 A6 */	mtlr r0
 /* 80041798 0003E6D8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8004179C 0003E6DC  4E 80 00 20 */	blr 
+.endfn initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding
 
-.global private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
-private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
+.fn private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive, global
 /* 800417A0 0003E6E0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800417A4 0003E6E4  7C 08 02 A6 */	mflr r0
 /* 800417A8 0003E6E8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -851,9 +853,9 @@ private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
 /* 80041AE4 0003EA24  7C 08 03 A6 */	mtlr r0
 /* 80041AE8 0003EA28  38 21 00 70 */	addi r1, r1, 0x70
 /* 80041AEC 0003EA2C  4E 80 00 20 */	blr 
+.endfn private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
 
-.global __dt__10J2DTextBoxFv
-__dt__10J2DTextBoxFv:
+.fn __dt__10J2DTextBoxFv, global
 /* 80041AF0 0003EA30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80041AF4 0003EA34  7C 08 02 A6 */	mflr r0
 /* 80041AF8 0003EA38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -894,14 +896,14 @@ __dt__10J2DTextBoxFv:
 /* 80041B7C 0003EABC  7C 08 03 A6 */	mtlr r0
 /* 80041B80 0003EAC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80041B84 0003EAC4  4E 80 00 20 */	blr 
+.endfn __dt__10J2DTextBoxFv
 
-.global getFont__10J2DTextBoxCFv
-getFont__10J2DTextBoxCFv:
+.fn getFont__10J2DTextBoxCFv, weak
 /* 80041B88 0003EAC8  80 63 01 00 */	lwz r3, 0x100(r3)
 /* 80041B8C 0003EACC  4E 80 00 20 */	blr 
+.endfn getFont__10J2DTextBoxCFv
 
-.global setFont__10J2DTextBoxFP7JUTFont
-setFont__10J2DTextBoxFP7JUTFont:
+.fn setFont__10J2DTextBoxFP7JUTFont, global
 /* 80041B90 0003EAD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80041B94 0003EAD4  7C 08 02 A6 */	mflr r0
 /* 80041B98 0003EAD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -932,9 +934,9 @@ setFont__10J2DTextBoxFP7JUTFont:
 /* 80041BF4 0003EB34  7C 08 03 A6 */	mtlr r0
 /* 80041BF8 0003EB38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80041BFC 0003EB3C  4E 80 00 20 */	blr 
+.endfn setFont__10J2DTextBoxFP7JUTFont
 
-.global draw__10J2DTextBoxFff
-draw__10J2DTextBoxFff:
+.fn draw__10J2DTextBoxFff, global
 /* 80041C00 0003EB40  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80041C04 0003EB44  7C 08 02 A6 */	mflr r0
 /* 80041C08 0003EB48  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -1047,9 +1049,9 @@ draw__10J2DTextBoxFff:
 /* 80041D98 0003ECD8  7C 08 03 A6 */	mtlr r0
 /* 80041D9C 0003ECDC  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 80041DA0 0003ECE0  4E 80 00 20 */	blr 
+.endfn draw__10J2DTextBoxFff
 
-.global draw__10J2DTextBoxFfff18J2DTextBoxHBinding
-draw__10J2DTextBoxFfff18J2DTextBoxHBinding:
+.fn draw__10J2DTextBoxFfff18J2DTextBoxHBinding, global
 /* 80041DA4 0003ECE4  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 80041DA8 0003ECE8  7C 08 02 A6 */	mflr r0
 /* 80041DAC 0003ECEC  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -1173,9 +1175,9 @@ draw__10J2DTextBoxFfff18J2DTextBoxHBinding:
 /* 80041F68 0003EEA8  7C 08 03 A6 */	mtlr r0
 /* 80041F6C 0003EEAC  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 80041F70 0003EEB0  4E 80 00 20 */	blr 
+.endfn draw__10J2DTextBoxFfff18J2DTextBoxHBinding
 
-.global setString__10J2DTextBoxFPCce
-setString__10J2DTextBoxFPCce:
+.fn setString__10J2DTextBoxFPCce, global
 /* 80041F74 0003EEB4  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80041F78 0003EEB8  7C 08 02 A6 */	mflr r0
 /* 80041F7C 0003EEBC  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1240,9 +1242,9 @@ setString__10J2DTextBoxFPCce:
 /* 8004205C 0003EF9C  7C 08 03 A6 */	mtlr r0
 /* 80042060 0003EFA0  38 21 00 90 */	addi r1, r1, 0x90
 /* 80042064 0003EFA4  4E 80 00 20 */	blr 
+.endfn setString__10J2DTextBoxFPCce
 
-.global setConnectParent__10J2DTextBoxFb
-setConnectParent__10J2DTextBoxFb:
+.fn setConnectParent__10J2DTextBoxFb, global
 /* 80042068 0003EFA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004206C 0003EFAC  7C 08 02 A6 */	mflr r0
 /* 80042070 0003EFB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1276,9 +1278,9 @@ setConnectParent__10J2DTextBoxFb:
 /* 800420D4 0003F014  7C 08 03 A6 */	mtlr r0
 /* 800420D8 0003F018  38 21 00 10 */	addi r1, r1, 0x10
 /* 800420DC 0003F01C  4E 80 00 20 */	blr 
+.endfn setConnectParent__10J2DTextBoxFb
 
-.global drawSelf__10J2DTextBoxFff
-drawSelf__10J2DTextBoxFff:
+.fn drawSelf__10J2DTextBoxFff, global
 /* 800420E0 0003F020  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800420E4 0003F024  7C 08 02 A6 */	mflr r0
 /* 800420E8 0003F028  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1305,9 +1307,9 @@ drawSelf__10J2DTextBoxFff:
 /* 8004213C 0003F07C  7C 08 03 A6 */	mtlr r0
 /* 80042140 0003F080  38 21 00 50 */	addi r1, r1, 0x50
 /* 80042144 0003F084  4E 80 00 20 */	blr 
+.endfn drawSelf__10J2DTextBoxFff
 
-.global drawSelf__10J2DTextBoxFffPA3_A4_f
-drawSelf__10J2DTextBoxFffPA3_A4_f:
+.fn drawSelf__10J2DTextBoxFffPA3_A4_f, global
 /* 80042148 0003F088  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 8004214C 0003F08C  7C 08 02 A6 */	mflr r0
 /* 80042150 0003F090  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -1420,9 +1422,9 @@ drawSelf__10J2DTextBoxFffPA3_A4_f:
 /* 800422E4 0003F224  7C 08 03 A6 */	mtlr r0
 /* 800422E8 0003F228  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 800422EC 0003F22C  4E 80 00 20 */	blr 
+.endfn drawSelf__10J2DTextBoxFffPA3_A4_f
 
-.global resize__10J2DTextBoxFff
-resize__10J2DTextBoxFff:
+.fn resize__10J2DTextBoxFff, global
 /* 800422F0 0003F230  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800422F4 0003F234  7C 08 02 A6 */	mflr r0
 /* 800422F8 0003F238  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1490,9 +1492,9 @@ resize__10J2DTextBoxFff:
 /* 800423E8 0003F328  7C 08 03 A6 */	mtlr r0
 /* 800423EC 0003F32C  38 21 00 30 */	addi r1, r1, 0x30
 /* 800423F0 0003F330  4E 80 00 20 */	blr 
+.endfn resize__10J2DTextBoxFff
 
-.global isUsed__10J2DTextBoxFPC7ResFONT
-isUsed__10J2DTextBoxFPC7ResFONT:
+.fn isUsed__10J2DTextBoxFPC7ResFONT, global
 /* 800423F4 0003F334  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800423F8 0003F338  7C 08 02 A6 */	mflr r0
 /* 800423FC 0003F33C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1522,14 +1524,14 @@ isUsed__10J2DTextBoxFPC7ResFONT:
 /* 80042454 0003F394  7C 08 03 A6 */	mtlr r0
 /* 80042458 0003F398  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004245C 0003F39C  4E 80 00 20 */	blr 
+.endfn isUsed__10J2DTextBoxFPC7ResFONT
 
-.global getTypeID__10J2DTextBoxCFv
-getTypeID__10J2DTextBoxCFv:
+.fn getTypeID__10J2DTextBoxCFv, weak
 /* 80042460 0003F3A0  38 60 00 13 */	li r3, 0x13
 /* 80042464 0003F3A4  4E 80 00 20 */	blr 
+.endfn getTypeID__10J2DTextBoxCFv
 
-.global setBlack__10J2DTextBoxFQ28JUtility6TColor
-setBlack__10J2DTextBoxFQ28JUtility6TColor:
+.fn setBlack__10J2DTextBoxFQ28JUtility6TColor, weak
 /* 80042468 0003F3A8  88 A4 00 00 */	lbz r5, 0(r4)
 /* 8004246C 0003F3AC  88 04 00 01 */	lbz r0, 1(r4)
 /* 80042470 0003F3B0  98 A3 01 2C */	stb r5, 0x12c(r3)
@@ -1540,9 +1542,9 @@ setBlack__10J2DTextBoxFQ28JUtility6TColor:
 /* 80042484 0003F3C4  98 03 01 2F */	stb r0, 0x12f(r3)
 /* 80042488 0003F3C8  38 60 00 01 */	li r3, 1
 /* 8004248C 0003F3CC  4E 80 00 20 */	blr 
+.endfn setBlack__10J2DTextBoxFQ28JUtility6TColor
 
-.global setWhite__10J2DTextBoxFQ28JUtility6TColor
-setWhite__10J2DTextBoxFQ28JUtility6TColor:
+.fn setWhite__10J2DTextBoxFQ28JUtility6TColor, weak
 /* 80042490 0003F3D0  88 A4 00 00 */	lbz r5, 0(r4)
 /* 80042494 0003F3D4  88 04 00 01 */	lbz r0, 1(r4)
 /* 80042498 0003F3D8  98 A3 01 28 */	stb r5, 0x128(r3)
@@ -1553,9 +1555,9 @@ setWhite__10J2DTextBoxFQ28JUtility6TColor:
 /* 800424AC 0003F3EC  98 03 01 2B */	stb r0, 0x12b(r3)
 /* 800424B0 0003F3F0  38 60 00 01 */	li r3, 1
 /* 800424B4 0003F3F4  4E 80 00 20 */	blr 
+.endfn setWhite__10J2DTextBoxFQ28JUtility6TColor
 
-.global setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor
-setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor:
+.fn setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor, weak
 /* 800424B8 0003F3F8  88 C4 00 00 */	lbz r6, 0(r4)
 /* 800424BC 0003F3FC  88 04 00 01 */	lbz r0, 1(r4)
 /* 800424C0 0003F400  98 C3 01 2C */	stb r6, 0x12c(r3)
@@ -1574,26 +1576,26 @@ setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor:
 /* 800424F4 0003F434  98 03 01 2B */	stb r0, 0x12b(r3)
 /* 800424F8 0003F438  38 60 00 01 */	li r3, 1
 /* 800424FC 0003F43C  4E 80 00 20 */	blr 
+.endfn setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor
 
-.global getBlack__10J2DTextBoxCFv
-getBlack__10J2DTextBoxCFv:
+.fn getBlack__10J2DTextBoxCFv, weak
 /* 80042500 0003F440  80 04 01 2C */	lwz r0, 0x12c(r4)
 /* 80042504 0003F444  90 03 00 00 */	stw r0, 0(r3)
 /* 80042508 0003F448  4E 80 00 20 */	blr 
+.endfn getBlack__10J2DTextBoxCFv
 
-.global getWhite__10J2DTextBoxCFv
-getWhite__10J2DTextBoxCFv:
+.fn getWhite__10J2DTextBoxCFv, weak
 /* 8004250C 0003F44C  80 04 01 28 */	lwz r0, 0x128(r4)
 /* 80042510 0003F450  90 03 00 00 */	stw r0, 0(r3)
 /* 80042514 0003F454  4E 80 00 20 */	blr 
+.endfn getWhite__10J2DTextBoxCFv
 
-.global getMaterial__10J2DTextBoxCFv
-getMaterial__10J2DTextBoxCFv:
+.fn getMaterial__10J2DTextBoxCFv, weak
 /* 80042518 0003F458  38 60 00 00 */	li r3, 0
 /* 8004251C 0003F45C  4E 80 00 20 */	blr 
+.endfn getMaterial__10J2DTextBoxCFv
 
-.global isUsed__10J2DTextBoxFPC7ResTIMG
-isUsed__10J2DTextBoxFPC7ResTIMG:
+.fn isUsed__10J2DTextBoxFPC7ResTIMG, weak
 /* 80042520 0003F460  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80042524 0003F464  7C 08 02 A6 */	mflr r0
 /* 80042528 0003F468  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1602,7 +1604,8 @@ isUsed__10J2DTextBoxFPC7ResTIMG:
 /* 80042534 0003F474  7C 08 03 A6 */	mtlr r0
 /* 80042538 0003F478  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004253C 0003F47C  4E 80 00 20 */	blr 
+.endfn isUsed__10J2DTextBoxFPC7ResTIMG
 
-.global rewriteAlpha__10J2DTextBoxFv
-rewriteAlpha__10J2DTextBoxFv:
+.fn rewriteAlpha__10J2DTextBoxFv, weak
 /* 80042540 0003F480  4E 80 00 20 */	blr 
+.endfn rewriteAlpha__10J2DTextBoxFv

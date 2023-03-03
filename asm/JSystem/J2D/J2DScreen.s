@@ -72,8 +72,7 @@
 .endobj lbl_8051685C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__9J2DScreenFv
-__ct__9J2DScreenFv:
+.fn __ct__9J2DScreenFv, global
 /* 8003F474 0003C3B4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003F478 0003C3B8  7C 08 02 A6 */	mflr r0
 /* 8003F47C 0003C3BC  C0 42 84 E0 */	lfs f2, lbl_80516840@sda21(r2)
@@ -116,9 +115,9 @@ __ct__9J2DScreenFv:
 /* 8003F510 0003C450  7C 08 03 A6 */	mtlr r0
 /* 8003F514 0003C454  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003F518 0003C458  4E 80 00 20 */	blr 
+.endfn __ct__9J2DScreenFv
 
-.global __dt__9J2DScreenFv
-__dt__9J2DScreenFv:
+.fn __dt__9J2DScreenFv, global
 /* 8003F51C 0003C45C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F520 0003C460  7C 08 02 A6 */	mflr r0
 /* 8003F524 0003C464  90 01 00 14 */	stw r0, 0x14(r1)
@@ -146,9 +145,9 @@ __dt__9J2DScreenFv:
 /* 8003F578 0003C4B8  7C 08 03 A6 */	mtlr r0
 /* 8003F57C 0003C4BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003F580 0003C4C0  4E 80 00 20 */	blr 
+.endfn __dt__9J2DScreenFv
 
-.global clean__9J2DScreenFv
-clean__9J2DScreenFv:
+.fn clean__9J2DScreenFv, global
 /* 8003F584 0003C4C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F588 0003C4C8  7C 08 02 A6 */	mflr r0
 /* 8003F58C 0003C4CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -191,9 +190,9 @@ clean__9J2DScreenFv:
 /* 8003F618 0003C558  7C 08 03 A6 */	mtlr r0
 /* 8003F61C 0003C55C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003F620 0003C560  4E 80 00 20 */	blr 
+.endfn clean__9J2DScreenFv
 
-.global set__9J2DScreenFPCcUlP10JKRArchive
-set__9J2DScreenFPCcUlP10JKRArchive:
+.fn set__9J2DScreenFPCcUlP10JKRArchive, global
 /* 8003F624 0003C564  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003F628 0003C568  7C 08 02 A6 */	mflr r0
 /* 8003F62C 0003C56C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -261,9 +260,9 @@ set__9J2DScreenFPCcUlP10JKRArchive:
 /* 8003F71C 0003C65C  7C 08 03 A6 */	mtlr r0
 /* 8003F720 0003C660  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003F724 0003C664  4E 80 00 20 */	blr 
+.endfn set__9J2DScreenFPCcUlP10JKRArchive
 
-.global set__9J2DScreenFP20JSURandomInputStreamUl
-set__9J2DScreenFP20JSURandomInputStreamUl:
+.fn set__9J2DScreenFP20JSURandomInputStreamUl, global
 /* 8003F728 0003C668  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F72C 0003C66C  7C 08 02 A6 */	mflr r0
 /* 8003F730 0003C670  38 C0 00 00 */	li r6, 0
@@ -273,9 +272,9 @@ set__9J2DScreenFP20JSURandomInputStreamUl:
 /* 8003F740 0003C680  7C 08 03 A6 */	mtlr r0
 /* 8003F744 0003C684  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003F748 0003C688  4E 80 00 20 */	blr 
+.endfn set__9J2DScreenFP20JSURandomInputStreamUl
 
-.global private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive
-private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive:
+.fn private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive, global
 /* 8003F74C 0003C68C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003F750 0003C690  7C 08 02 A6 */	mflr r0
 /* 8003F754 0003C694  90 01 00 24 */	stw r0, 0x24(r1)
@@ -362,9 +361,9 @@ private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive:
 /* 8003F880 0003C7C0  7C 08 03 A6 */	mtlr r0
 /* 8003F884 0003C7C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003F888 0003C7C8  4E 80 00 20 */	blr 
+.endfn private_set__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive
 
-.global checkSignature__9J2DScreenFP20JSURandomInputStream
-checkSignature__9J2DScreenFP20JSURandomInputStream:
+.fn checkSignature__9J2DScreenFP20JSURandomInputStream, global
 /* 8003F88C 0003C7CC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003F890 0003C7D0  7C 08 02 A6 */	mflr r0
 /* 8003F894 0003C7D4  7C 83 23 78 */	mr r3, r4
@@ -392,9 +391,9 @@ checkSignature__9J2DScreenFP20JSURandomInputStream:
 /* 8003F8E0 0003C820  7C 08 03 A6 */	mtlr r0
 /* 8003F8E4 0003C824  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003F8E8 0003C828  4E 80 00 20 */	blr 
+.endfn checkSignature__9J2DScreenFP20JSURandomInputStream
 
-.global getScreenInformation__9J2DScreenFP20JSURandomInputStream
-getScreenInformation__9J2DScreenFP20JSURandomInputStream:
+.fn getScreenInformation__9J2DScreenFP20JSURandomInputStream, global
 /* 8003F8EC 0003C82C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8003F8F0 0003C830  7C 08 02 A6 */	mflr r0
 /* 8003F8F4 0003C834  38 A0 00 10 */	li r5, 0x10
@@ -461,9 +460,9 @@ getScreenInformation__9J2DScreenFP20JSURandomInputStream:
 /* 8003F9DC 0003C91C  7C 08 03 A6 */	mtlr r0
 /* 8003F9E0 0003C920  38 21 00 50 */	addi r1, r1, 0x50
 /* 8003F9E4 0003C924  4E 80 00 20 */	blr 
+.endfn getScreenInformation__9J2DScreenFP20JSURandomInputStream
 
-.global makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive
-makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive:
+.fn makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive, global
 /* 8003F9E8 0003C928  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8003F9EC 0003C92C  7C 08 02 A6 */	mflr r0
 /* 8003F9F0 0003C930  90 01 00 54 */	stw r0, 0x54(r1)
@@ -847,9 +846,9 @@ makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive:
 /* 8003FF3C 0003CE7C  7C 08 03 A6 */	mtlr r0
 /* 8003FF40 0003CE80  38 21 00 50 */	addi r1, r1, 0x50
 /* 8003FF44 0003CE84  4E 80 00 20 */	blr 
+.endfn makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive
 
-.global createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
-createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl:
+.fn createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl, weak
 /* 8003FF48 0003CE88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003FF4C 0003CE8C  7C 08 02 A6 */	mflr r0
 /* 8003FF50 0003CE90  39 00 00 00 */	li r8, 0
@@ -862,9 +861,9 @@ createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl:
 /* 8003FF6C 0003CEAC  7C 08 03 A6 */	mtlr r0
 /* 8003FF70 0003CEB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003FF74 0003CEB4  4E 80 00 20 */	blr 
+.endfn createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
 
-.global createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
-createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive:
+.fn createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive, global
 /* 8003FF78 0003CEB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003FF7C 0003CEBC  7C 08 02 A6 */	mflr r0
 /* 8003FF80 0003CEC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1098,9 +1097,9 @@ createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP
 /* 800402A0 0003D1E0  7C 08 03 A6 */	mtlr r0
 /* 800402A4 0003D1E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800402A8 0003D1E8  4E 80 00 20 */	blr 
+.endfn createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
 
-.global draw__9J2DScreenFffPC14J2DGrafContext
-draw__9J2DScreenFffPC14J2DGrafContext:
+.fn draw__9J2DScreenFffPC14J2DGrafContext, global
 /* 800402AC 0003D1EC  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 800402B0 0003D1F0  7C 08 02 A6 */	mflr r0
 /* 800402B4 0003D1F4  90 01 01 24 */	stw r0, 0x124(r1)
@@ -1222,9 +1221,9 @@ draw__9J2DScreenFffPC14J2DGrafContext:
 /* 8004046C 0003D3AC  7C 08 03 A6 */	mtlr r0
 /* 80040470 0003D3B0  38 21 01 20 */	addi r1, r1, 0x120
 /* 80040474 0003D3B4  4E 80 00 20 */	blr 
+.endfn draw__9J2DScreenFffPC14J2DGrafContext
 
-.global search__9J2DScreenFUx
-search__9J2DScreenFUx:
+.fn search__9J2DScreenFUx, global
 /* 80040478 0003D3B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004047C 0003D3BC  7C 08 02 A6 */	mflr r0
 /* 80040480 0003D3C0  38 E0 00 00 */	li r7, 0
@@ -1243,9 +1242,9 @@ search__9J2DScreenFUx:
 /* 800404AC 0003D3EC  7C 08 03 A6 */	mtlr r0
 /* 800404B0 0003D3F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800404B4 0003D3F4  4E 80 00 20 */	blr 
+.endfn search__9J2DScreenFUx
 
-.global gather__9J2DScreenFPP7J2DPaneUxUxi
-gather__9J2DScreenFPP7J2DPaneUxUxi:
+.fn gather__9J2DScreenFPP7J2DPaneUxUxi, global
 /* 800404B8 0003D3F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800404BC 0003D3FC  7C 08 02 A6 */	mflr r0
 /* 800404C0 0003D400  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1258,9 +1257,9 @@ gather__9J2DScreenFPP7J2DPaneUxUxi:
 /* 800404DC 0003D41C  7C 08 03 A6 */	mtlr r0
 /* 800404E0 0003D420  38 21 00 10 */	addi r1, r1, 0x10
 /* 800404E4 0003D424  4E 80 00 20 */	blr 
+.endfn gather__9J2DScreenFPP7J2DPaneUxUxi
 
-.global searchUserInfo__9J2DScreenFUx
-searchUserInfo__9J2DScreenFUx:
+.fn searchUserInfo__9J2DScreenFUx, global
 /* 800404E8 0003D428  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800404EC 0003D42C  7C 08 02 A6 */	mflr r0
 /* 800404F0 0003D430  38 E0 00 00 */	li r7, 0
@@ -1279,9 +1278,9 @@ searchUserInfo__9J2DScreenFUx:
 /* 8004051C 0003D45C  7C 08 03 A6 */	mtlr r0
 /* 80040520 0003D460  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040524 0003D464  4E 80 00 20 */	blr 
+.endfn searchUserInfo__9J2DScreenFUx
 
-.global drawSelf__9J2DScreenFffPA3_A4_f
-drawSelf__9J2DScreenFffPA3_A4_f:
+.fn drawSelf__9J2DScreenFffPA3_A4_f, global
 /* 80040528 0003D468  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004052C 0003D46C  7C 08 02 A6 */	mflr r0
 /* 80040530 0003D470  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1369,9 +1368,9 @@ drawSelf__9J2DScreenFffPA3_A4_f:
 /* 80040674 0003D5B4  7C 08 03 A6 */	mtlr r0
 /* 80040678 0003D5B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004067C 0003D5BC  4E 80 00 20 */	blr 
+.endfn drawSelf__9J2DScreenFffPA3_A4_f
 
-.global getResReference__9J2DScreenFP20JSURandomInputStreamUl
-getResReference__9J2DScreenFP20JSURandomInputStreamUl:
+.fn getResReference__9J2DScreenFP20JSURandomInputStreamUl, global
 /* 80040680 0003D5C0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80040684 0003D5C4  7C 08 02 A6 */	mflr r0
 /* 80040688 0003D5C8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1436,9 +1435,9 @@ getResReference__9J2DScreenFP20JSURandomInputStreamUl:
 /* 80040768 0003D6A8  7C 08 03 A6 */	mtlr r0
 /* 8004076C 0003D6AC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80040770 0003D6B0  4E 80 00 20 */	blr 
+.endfn getResReference__9J2DScreenFP20JSURandomInputStreamUl
 
-.global createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive
-createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive:
+.fn createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive, global
 /* 80040774 0003D6B4  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80040778 0003D6B8  7C 08 02 A6 */	mflr r0
 /* 8004077C 0003D6BC  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1641,9 +1640,9 @@ createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive:
 /* 80040A58 0003D998  7C 08 03 A6 */	mtlr r0
 /* 80040A5C 0003D99C  38 21 00 90 */	addi r1, r1, 0x90
 /* 80040A60 0003D9A0  4E 80 00 20 */	blr 
+.endfn createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive
 
-.global getMaterial__9J2DScreenFUs
-getMaterial__9J2DScreenFUs:
+.fn getMaterial__9J2DScreenFUs, global
 /* 80040A64 0003D9A4  A0 03 01 02 */	lhz r0, 0x102(r3)
 /* 80040A68 0003D9A8  54 84 04 3E */	clrlwi r4, r4, 0x10
 /* 80040A6C 0003D9AC  7C 04 00 40 */	cmplw r4, r0
@@ -1660,9 +1659,9 @@ getMaterial__9J2DScreenFUs:
 /* 80040A90 0003D9D0  1C 04 00 88 */	mulli r0, r4, 0x88
 /* 80040A94 0003D9D4  7C 63 02 14 */	add r3, r3, r0
 /* 80040A98 0003D9D8  4E 80 00 20 */	blr 
+.endfn getMaterial__9J2DScreenFUs
 
-.global isUsed__9J2DScreenFPC7ResTIMG
-isUsed__9J2DScreenFPC7ResTIMG:
+.fn isUsed__9J2DScreenFPC7ResTIMG, global
 /* 80040A9C 0003D9DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040AA0 0003D9E0  7C 08 02 A6 */	mflr r0
 /* 80040AA4 0003D9E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1671,9 +1670,9 @@ isUsed__9J2DScreenFPC7ResTIMG:
 /* 80040AB0 0003D9F0  7C 08 03 A6 */	mtlr r0
 /* 80040AB4 0003D9F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040AB8 0003D9F8  4E 80 00 20 */	blr 
+.endfn isUsed__9J2DScreenFPC7ResTIMG
 
-.global isUsed__9J2DScreenFPC7ResFONT
-isUsed__9J2DScreenFPC7ResFONT:
+.fn isUsed__9J2DScreenFPC7ResFONT, global
 /* 80040ABC 0003D9FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040AC0 0003DA00  7C 08 02 A6 */	mflr r0
 /* 80040AC4 0003DA04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1682,9 +1681,9 @@ isUsed__9J2DScreenFPC7ResFONT:
 /* 80040AD0 0003DA10  7C 08 03 A6 */	mtlr r0
 /* 80040AD4 0003DA14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040AD8 0003DA18  4E 80 00 20 */	blr 
+.endfn isUsed__9J2DScreenFPC7ResFONT
 
-.global getNameResource__9J2DScreenFPCc
-getNameResource__9J2DScreenFPCc:
+.fn getNameResource__9J2DScreenFPCc, global
 /* 80040ADC 0003DA1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040AE0 0003DA20  7C 08 02 A6 */	mflr r0
 /* 80040AE4 0003DA24  38 80 00 00 */	li r4, 0
@@ -1706,9 +1705,9 @@ getNameResource__9J2DScreenFPCc:
 /* 80040B20 0003DA60  7C 08 03 A6 */	mtlr r0
 /* 80040B24 0003DA64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040B28 0003DA68  4E 80 00 20 */	blr 
+.endfn getNameResource__9J2DScreenFPCc
 
-.global animation__9J2DScreenFv
-animation__9J2DScreenFv:
+.fn animation__9J2DScreenFv, global
 /* 80040B2C 0003DA6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040B30 0003DA70  7C 08 02 A6 */	mflr r0
 /* 80040B34 0003DA74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1740,9 +1739,9 @@ animation__9J2DScreenFv:
 /* 80040B94 0003DAD4  7C 08 03 A6 */	mtlr r0
 /* 80040B98 0003DAD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040B9C 0003DADC  4E 80 00 20 */	blr 
+.endfn animation__9J2DScreenFv
 
-.global setAnimation__9J2DScreenFP11J2DAnmColor
-setAnimation__9J2DScreenFP11J2DAnmColor:
+.fn setAnimation__9J2DScreenFP11J2DAnmColor, global
 /* 80040BA0 0003DAE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80040BA4 0003DAE4  7C 08 02 A6 */	mflr r0
 /* 80040BA8 0003DAE8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1787,9 +1786,9 @@ setAnimation__9J2DScreenFP11J2DAnmColor:
 /* 80040C38 0003DB78  7C 08 03 A6 */	mtlr r0
 /* 80040C3C 0003DB7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80040C40 0003DB80  4E 80 00 20 */	blr 
+.endfn setAnimation__9J2DScreenFP11J2DAnmColor
 
-.global setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
-setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey:
+.fn setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey, global
 /* 80040C44 0003DB84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80040C48 0003DB88  7C 08 02 A6 */	mflr r0
 /* 80040C4C 0003DB8C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1840,9 +1839,9 @@ setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey:
 /* 80040CF4 0003DC34  7C 08 03 A6 */	mtlr r0
 /* 80040CF8 0003DC38  38 21 00 20 */	addi r1, r1, 0x20
 /* 80040CFC 0003DC3C  4E 80 00 20 */	blr 
+.endfn setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
 
-.global setAnimation__9J2DScreenFP16J2DAnmTexPattern
-setAnimation__9J2DScreenFP16J2DAnmTexPattern:
+.fn setAnimation__9J2DScreenFP16J2DAnmTexPattern, global
 /* 80040D00 0003DC40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80040D04 0003DC44  7C 08 02 A6 */	mflr r0
 /* 80040D08 0003DC48  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1887,9 +1886,9 @@ setAnimation__9J2DScreenFP16J2DAnmTexPattern:
 /* 80040D98 0003DCD8  7C 08 03 A6 */	mtlr r0
 /* 80040D9C 0003DCDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80040DA0 0003DCE0  4E 80 00 20 */	blr 
+.endfn setAnimation__9J2DScreenFP16J2DAnmTexPattern
 
-.global setAnimation__9J2DScreenFP15J2DAnmTevRegKey
-setAnimation__9J2DScreenFP15J2DAnmTevRegKey:
+.fn setAnimation__9J2DScreenFP15J2DAnmTevRegKey, global
 /* 80040DA4 0003DCE4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80040DA8 0003DCE8  7C 08 02 A6 */	mflr r0
 /* 80040DAC 0003DCEC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1955,9 +1954,9 @@ setAnimation__9J2DScreenFP15J2DAnmTevRegKey:
 /* 80040E84 0003DDC4  7C 08 03 A6 */	mtlr r0
 /* 80040E88 0003DDC8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80040E8C 0003DDCC  4E 80 00 20 */	blr 
+.endfn setAnimation__9J2DScreenFP15J2DAnmTevRegKey
 
-.global setAnimation__9J2DScreenFP14J2DAnmVtxColor
-setAnimation__9J2DScreenFP14J2DAnmVtxColor:
+.fn setAnimation__9J2DScreenFP14J2DAnmVtxColor, global
 /* 80040E90 0003DDD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040E94 0003DDD4  7C 08 02 A6 */	mflr r0
 /* 80040E98 0003DDD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1966,9 +1965,9 @@ setAnimation__9J2DScreenFP14J2DAnmVtxColor:
 /* 80040EA4 0003DDE4  7C 08 03 A6 */	mtlr r0
 /* 80040EA8 0003DDE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040EAC 0003DDEC  4E 80 00 20 */	blr 
+.endfn setAnimation__9J2DScreenFP14J2DAnmVtxColor
 
-.global setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
-setAnimation__9J2DScreenFP20J2DAnmVisibilityFull:
+.fn setAnimation__9J2DScreenFP20J2DAnmVisibilityFull, global
 /* 80040EB0 0003DDF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040EB4 0003DDF4  7C 08 02 A6 */	mflr r0
 /* 80040EB8 0003DDF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1977,14 +1976,14 @@ setAnimation__9J2DScreenFP20J2DAnmVisibilityFull:
 /* 80040EC4 0003DE04  7C 08 03 A6 */	mtlr r0
 /* 80040EC8 0003DE08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040ECC 0003DE0C  4E 80 00 20 */	blr 
+.endfn setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
 
-.global getTypeID__9J2DScreenCFv
-getTypeID__9J2DScreenCFv:
+.fn getTypeID__9J2DScreenCFv, weak
 /* 80040ED0 0003DE10  38 60 00 08 */	li r3, 8
 /* 80040ED4 0003DE14  4E 80 00 20 */	blr 
+.endfn getTypeID__9J2DScreenCFv
 
-.global calcMtx__9J2DScreenFv
-calcMtx__9J2DScreenFv:
+.fn calcMtx__9J2DScreenFv, weak
 /* 80040ED8 0003DE18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040EDC 0003DE1C  7C 08 02 A6 */	mflr r0
 /* 80040EE0 0003DE20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1998,9 +1997,9 @@ calcMtx__9J2DScreenFv:
 /* 80040F00 0003DE40  7C 08 03 A6 */	mtlr r0
 /* 80040F04 0003DE44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040F08 0003DE48  4E 80 00 20 */	blr 
+.endfn calcMtx__9J2DScreenFv
 
-.global setAnimation__9J2DScreenFP15J2DAnmTransform
-setAnimation__9J2DScreenFP15J2DAnmTransform:
+.fn setAnimation__9J2DScreenFP15J2DAnmTransform, weak
 /* 80040F0C 0003DE4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040F10 0003DE50  7C 08 02 A6 */	mflr r0
 /* 80040F14 0003DE54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2009,9 +2008,9 @@ setAnimation__9J2DScreenFP15J2DAnmTransform:
 /* 80040F20 0003DE60  7C 08 03 A6 */	mtlr r0
 /* 80040F24 0003DE64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040F28 0003DE68  4E 80 00 20 */	blr 
+.endfn setAnimation__9J2DScreenFP15J2DAnmTransform
 
-.global setAnimation__9J2DScreenFP10J2DAnmBase
-setAnimation__9J2DScreenFP10J2DAnmBase:
+.fn setAnimation__9J2DScreenFP10J2DAnmBase, weak
 /* 80040F2C 0003DE6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040F30 0003DE70  7C 08 02 A6 */	mflr r0
 /* 80040F34 0003DE74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2020,9 +2019,9 @@ setAnimation__9J2DScreenFP10J2DAnmBase:
 /* 80040F40 0003DE80  7C 08 03 A6 */	mtlr r0
 /* 80040F44 0003DE84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040F48 0003DE88  4E 80 00 20 */	blr 
+.endfn setAnimation__9J2DScreenFP10J2DAnmBase
 
-.global clearAnmTransform__9J2DScreenFv
-clearAnmTransform__9J2DScreenFv:
+.fn clearAnmTransform__9J2DScreenFv, weak
 /* 80040F4C 0003DE8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040F50 0003DE90  7C 08 02 A6 */	mflr r0
 /* 80040F54 0003DE94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2031,11 +2030,12 @@ clearAnmTransform__9J2DScreenFv:
 /* 80040F60 0003DEA0  7C 08 03 A6 */	mtlr r0
 /* 80040F64 0003DEA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040F68 0003DEA8  4E 80 00 20 */	blr 
+.endfn clearAnmTransform__9J2DScreenFv
 
-.global setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
-setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull:
+.fn setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull, weak
 /* 80040F6C 0003DEAC  4E 80 00 20 */	blr 
+.endfn setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
 
-.global setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
-setAnimationVC__9J2DScreenFP14J2DAnmVtxColor:
+.fn setAnimationVC__9J2DScreenFP14J2DAnmVtxColor, weak
 /* 80040F70 0003DEB0  4E 80 00 20 */	blr 
+.endfn setAnimationVC__9J2DScreenFP14J2DAnmVtxColor

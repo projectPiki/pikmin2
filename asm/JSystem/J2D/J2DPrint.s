@@ -1,7 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A0880:
+.obj lbl_804A0880, local
 	.4byte .L_8003EB18
 	.4byte .L_8003EB34
 	.4byte .L_8003EB8C
@@ -26,52 +26,57 @@ lbl_804A0880:
 	.4byte .L_8003EBD8
 	.4byte .L_8003EBEC
 	.4byte .L_8003EC00
-.global __vt__8J2DPrint
-__vt__8J2DPrint:
+.endobj lbl_804A0880
+.obj __vt__8J2DPrint, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8J2DPrintFv
+.endobj __vt__8J2DPrint
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mStrBuff__8J2DPrint
-mStrBuff__8J2DPrint:
+.obj mStrBuff__8J2DPrint, global
 	.skip 0x4
-.global mHeapFlag__8J2DPrint
-mHeapFlag__8J2DPrint:
+.endobj mStrBuff__8J2DPrint
+.obj mHeapFlag__8J2DPrint, global
 	.skip 0x1
+.endobj mHeapFlag__8J2DPrint
 .balign 4
-.global mStrBuffSize__8J2DPrint
-mStrBuffSize__8J2DPrint:
+.obj mStrBuffSize__8J2DPrint, global
 	.skip 0x4
-.global mBufferNotEnough__8J2DPrint
-mBufferNotEnough__8J2DPrint:
+.endobj mStrBuffSize__8J2DPrint
+.obj mBufferNotEnough__8J2DPrint, global
 	.skip 0x1
+.endobj mBufferNotEnough__8J2DPrint
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516818:
+.obj lbl_80516818, local
 	.float 0.0
-lbl_8051681C:
+.endobj lbl_80516818
+.obj lbl_8051681C, local
 	.float 32.0
+.endobj lbl_8051681C
 .balign 8
-lbl_80516820:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80516828:
+.obj lbl_80516820, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516820
+.obj lbl_80516828, local
 	.float 0.5
+.endobj lbl_80516828
 .balign 8
-lbl_80516830:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80516838:
+.obj lbl_80516830, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516830
+.obj lbl_80516838, local
 	.float 10000.0
-lbl_8051683C:
+.endobj lbl_80516838
+.obj lbl_8051683C, local
 	.float 1.0
+.endobj lbl_8051683C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__8J2DPrintFP7JUTFontf
-__ct__8J2DPrintFP7JUTFontf:
+.fn __ct__8J2DPrintFP7JUTFontf, global
 /* 8003D750 0003A690  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003D754 0003A694  7C 08 02 A6 */	mflr r0
 /* 8003D758 0003A698  39 40 FF FF */	li r10, -1
@@ -109,9 +114,9 @@ __ct__8J2DPrintFP7JUTFontf:
 /* 8003D7D8 0003A718  7C 08 03 A6 */	mtlr r0
 /* 8003D7DC 0003A71C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003D7E0 0003A720  4E 80 00 20 */	blr 
+.endfn __ct__8J2DPrintFP7JUTFontf
 
-.global __ct__8J2DPrintFP7JUTFontQ28JUtility6TColorQ28JUtility6TColor
-__ct__8J2DPrintFP7JUTFontQ28JUtility6TColorQ28JUtility6TColor:
+.fn __ct__8J2DPrintFP7JUTFontQ28JUtility6TColorQ28JUtility6TColor, global
 /* 8003D7E4 0003A724  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003D7E8 0003A728  7C 08 02 A6 */	mflr r0
 /* 8003D7EC 0003A72C  39 80 FF FF */	li r12, -1
@@ -150,9 +155,9 @@ __ct__8J2DPrintFP7JUTFontQ28JUtility6TColorQ28JUtility6TColor:
 /* 8003D870 0003A7B0  7C 08 03 A6 */	mtlr r0
 /* 8003D874 0003A7B4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003D878 0003A7B8  4E 80 00 20 */	blr 
+.endfn __ct__8J2DPrintFP7JUTFontQ28JUtility6TColorQ28JUtility6TColor
 
-.global __ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-__ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor:
+.fn __ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor, global
 /* 8003D87C 0003A7BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003D880 0003A7C0  7C 08 02 A6 */	mflr r0
 /* 8003D884 0003A7C4  81 88 00 00 */	lwz r12, 0(r8)
@@ -190,9 +195,9 @@ __ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
 /* 8003D904 0003A844  7C 08 03 A6 */	mtlr r0
 /* 8003D908 0003A848  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003D90C 0003A84C  4E 80 00 20 */	blr 
+.endfn __ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 
-.global __dt__8J2DPrintFv
-__dt__8J2DPrintFv:
+.fn __dt__8J2DPrintFv, global
 /* 8003D910 0003A850  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D914 0003A854  7C 08 02 A6 */	mflr r0
 /* 8003D918 0003A858  90 01 00 14 */	stw r0, 0x14(r1)
@@ -212,9 +217,9 @@ __dt__8J2DPrintFv:
 /* 8003D94C 0003A88C  7C 08 03 A6 */	mtlr r0
 /* 8003D950 0003A890  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D954 0003A894  4E 80 00 20 */	blr 
+.endfn __dt__8J2DPrintFv
 
-.global initiate__8J2DPrintFv
-initiate__8J2DPrintFv:
+.fn initiate__8J2DPrintFv, global
 /* 8003D958 0003A898  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D95C 0003A89C  7C 08 02 A6 */	mflr r0
 /* 8003D960 0003A8A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -237,9 +242,9 @@ initiate__8J2DPrintFv:
 /* 8003D9A0 0003A8E0  7C 08 03 A6 */	mtlr r0
 /* 8003D9A4 0003A8E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D9A8 0003A8E8  4E 80 00 20 */	blr 
+.endfn initiate__8J2DPrintFv
 
-.global private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
-private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb:
+.fn private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb, global
 /* 8003D9AC 0003A8EC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8003D9B0 0003A8F0  7C 08 02 A6 */	mflr r0
 /* 8003D9B4 0003A8F4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -369,9 +374,9 @@ private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JU
 /* 8003DB88 0003AAC8  7C 08 03 A6 */	mtlr r0
 /* 8003DB8C 0003AACC  38 21 00 60 */	addi r1, r1, 0x60
 /* 8003DB90 0003AAD0  4E 80 00 20 */	blr 
+.endfn private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
 
-.global setFont__8J2DPrintFP7JUTFont
-setFont__8J2DPrintFP7JUTFont:
+.fn setFont__8J2DPrintFP7JUTFont, global
 /* 8003DB94 0003AAD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003DB98 0003AAD8  7C 08 02 A6 */	mflr r0
 /* 8003DB9C 0003AADC  28 04 00 00 */	cmplwi r4, 0
@@ -391,9 +396,9 @@ setFont__8J2DPrintFP7JUTFont:
 /* 8003DBCC 0003AB0C  7C 08 03 A6 */	mtlr r0
 /* 8003DBD0 0003AB10  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003DBD4 0003AB14  4E 80 00 20 */	blr 
+.endfn setFont__8J2DPrintFP7JUTFont
 
-.global setBuffer__8J2DPrintFUl
-setBuffer__8J2DPrintFUl:
+.fn setBuffer__8J2DPrintFUl, global
 /* 8003DBD8 0003AB18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003DBDC 0003AB1C  7C 08 02 A6 */	mflr r0
 /* 8003DBE0 0003AB20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -422,9 +427,9 @@ setBuffer__8J2DPrintFUl:
 /* 8003DC38 0003AB78  7C 08 03 A6 */	mtlr r0
 /* 8003DC3C 0003AB7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003DC40 0003AB80  4E 80 00 20 */	blr 
+.endfn setBuffer__8J2DPrintFUl
 
-.global setFontSize__8J2DPrintFv
-setFontSize__8J2DPrintFv:
+.fn setFontSize__8J2DPrintFv, global
 /* 8003DC44 0003AB84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003DC48 0003AB88  7C 08 02 A6 */	mflr r0
 /* 8003DC4C 0003AB8C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -464,9 +469,9 @@ setFontSize__8J2DPrintFv:
 /* 8003DCD0 0003AC10  7C 08 03 A6 */	mtlr r0
 /* 8003DCD4 0003AC14  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003DCD8 0003AC18  4E 80 00 20 */	blr 
+.endfn setFontSize__8J2DPrintFv
 
-.global locate__8J2DPrintFff
-locate__8J2DPrintFff:
+.fn locate__8J2DPrintFff, global
 /* 8003DCDC 0003AC1C  D0 23 00 24 */	stfs f1, 0x24(r3)
 /* 8003DCE0 0003AC20  C0 02 84 B8 */	lfs f0, lbl_80516818@sda21(r2)
 /* 8003DCE4 0003AC24  D0 43 00 28 */	stfs f2, 0x28(r3)
@@ -474,9 +479,9 @@ locate__8J2DPrintFff:
 /* 8003DCEC 0003AC2C  D0 43 00 30 */	stfs f2, 0x30(r3)
 /* 8003DCF0 0003AC30  D0 03 00 34 */	stfs f0, 0x34(r3)
 /* 8003DCF4 0003AC34  4E 80 00 20 */	blr 
+.endfn locate__8J2DPrintFff
 
-.global print__8J2DPrintFffPCce
-print__8J2DPrintFffPCce:
+.fn print__8J2DPrintFffPCce, global
 /* 8003DCF8 0003AC38  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8003DCFC 0003AC3C  7C 08 02 A6 */	mflr r0
 /* 8003DD00 0003AC40  90 01 00 94 */	stw r0, 0x94(r1)
@@ -550,9 +555,9 @@ print__8J2DPrintFffPCce:
 /* 8003DE00 0003AD40  7C 08 03 A6 */	mtlr r0
 /* 8003DE04 0003AD44  38 21 00 90 */	addi r1, r1, 0x90
 /* 8003DE08 0003AD48  4E 80 00 20 */	blr 
+.endfn print__8J2DPrintFffPCce
 
-.global print__8J2DPrintFffUcPCce
-print__8J2DPrintFffUcPCce:
+.fn print__8J2DPrintFffUcPCce, global
 /* 8003DE0C 0003AD4C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8003DE10 0003AD50  7C 08 02 A6 */	mflr r0
 /* 8003DE14 0003AD54  90 01 00 94 */	stw r0, 0x94(r1)
@@ -629,9 +634,9 @@ print__8J2DPrintFffUcPCce:
 /* 8003DF20 0003AE60  7C 08 03 A6 */	mtlr r0
 /* 8003DF24 0003AE64  38 21 00 90 */	addi r1, r1, 0x90
 /* 8003DF28 0003AE68  4E 80 00 20 */	blr 
+.endfn print__8J2DPrintFffUcPCce
 
-.global getWidth__8J2DPrintFPCce
-getWidth__8J2DPrintFPCce:
+.fn getWidth__8J2DPrintFPCce, global
 /* 8003DF2C 0003AE6C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8003DF30 0003AE70  7C 08 02 A6 */	mflr r0
 /* 8003DF34 0003AE74  90 01 00 94 */	stw r0, 0x94(r1)
@@ -694,9 +699,9 @@ getWidth__8J2DPrintFPCce:
 /* 8003E00C 0003AF4C  7C 08 03 A6 */	mtlr r0
 /* 8003E010 0003AF50  38 21 00 90 */	addi r1, r1, 0x90
 /* 8003E014 0003AF54  4E 80 00 20 */	blr 
+.endfn getWidth__8J2DPrintFPCce
 
-.global printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc
-printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc:
+.fn printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc, global
 /* 8003E018 0003AF58  94 21 FD 50 */	stwu r1, -0x2b0(r1)
 /* 8003E01C 0003AF5C  7C 08 02 A6 */	mflr r0
 /* 8003E020 0003AF60  90 01 02 B4 */	stw r0, 0x2b4(r1)
@@ -907,9 +912,9 @@ printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc:
 /* 8003E328 0003B268  7C 08 03 A6 */	mtlr r0
 /* 8003E32C 0003B26C  38 21 02 B0 */	addi r1, r1, 0x2b0
 /* 8003E330 0003B270  4E 80 00 20 */	blr 
+.endfn printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc
 
-.global parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
-parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb:
+.fn parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb, global
 /* 8003E334 0003B274  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 8003E338 0003B278  7C 08 02 A6 */	mflr r0
 /* 8003E33C 0003B27C  90 01 01 24 */	stw r0, 0x124(r1)
@@ -1437,9 +1442,9 @@ parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb:
 /* 8003EAE4 0003BA24  7C 08 03 A6 */	mtlr r0
 /* 8003EAE8 0003BA28  38 21 01 20 */	addi r1, r1, 0x120
 /* 8003EAEC 0003BA2C  4E 80 00 20 */	blr 
+.endfn parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
 
-.global doCtrlCode__8J2DPrintFi
-doCtrlCode__8J2DPrintFi:
+.fn doCtrlCode__8J2DPrintFi, global
 /* 8003EAF0 0003BA30  38 04 FF F8 */	addi r0, r4, -8
 /* 8003EAF4 0003BA34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003EAF8 0003BA38  28 00 00 17 */	cmplwi r0, 0x17
@@ -1523,9 +1528,9 @@ doCtrlCode__8J2DPrintFi:
 .L_8003EC10:
 /* 8003EC10 0003BB50  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003EC14 0003BB54  4E 80 00 20 */	blr 
+.endfn doCtrlCode__8J2DPrintFi
 
-.global doEscapeCode__8J2DPrintFPPCUcUc
-doEscapeCode__8J2DPrintFPPCUcUc:
+.fn doEscapeCode__8J2DPrintFPPCUcUc, global
 /* 8003EC18 0003BB58  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8003EC1C 0003BB5C  7C 08 02 A6 */	mflr r0
 /* 8003EC20 0003BB60  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1918,9 +1923,9 @@ doEscapeCode__8J2DPrintFPPCUcUc:
 /* 8003F1AC 0003C0EC  7C 08 03 A6 */	mtlr r0
 /* 8003F1B0 0003C0F0  38 21 00 50 */	addi r1, r1, 0x50
 /* 8003F1B4 0003C0F4  4E 80 00 20 */	blr 
+.endfn doEscapeCode__8J2DPrintFPPCUcUc
 
-.global initchar__8J2DPrintFv
-initchar__8J2DPrintFv:
+.fn initchar__8J2DPrintFv, global
 /* 8003F1B8 0003C0F8  88 03 00 40 */	lbz r0, 0x40(r3)
 /* 8003F1BC 0003C0FC  98 03 00 08 */	stb r0, 8(r3)
 /* 8003F1C0 0003C100  88 03 00 41 */	lbz r0, 0x41(r3)
@@ -1950,9 +1955,9 @@ initchar__8J2DPrintFv:
 /* 8003F220 0003C160  C0 03 00 54 */	lfs f0, 0x54(r3)
 /* 8003F224 0003C164  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 8003F228 0003C168  4E 80 00 20 */	blr 
+.endfn initchar__8J2DPrintFv
 
-.global getNumberS32__8J2DPrintFPPCUclli
-getNumberS32__8J2DPrintFPPCUclli:
+.fn getNumberS32__8J2DPrintFPPCUclli, global
 /* 8003F22C 0003C16C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003F230 0003C170  7C 08 02 A6 */	mflr r0
 /* 8003F234 0003C174  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2029,9 +2034,9 @@ getNumberS32__8J2DPrintFPPCUclli:
 /* 8003F334 0003C274  7C 08 03 A6 */	mtlr r0
 /* 8003F338 0003C278  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003F33C 0003C27C  4E 80 00 20 */	blr 
+.endfn getNumberS32__8J2DPrintFPPCUclli
 
-.global getNumberF32__8J2DPrintFPPCUcffi
-getNumberF32__8J2DPrintFPPCUcffi:
+.fn getNumberF32__8J2DPrintFPPCUcffi, global
 /* 8003F340 0003C280  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8003F344 0003C284  7C 08 02 A6 */	mflr r0
 /* 8003F348 0003C288  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2116,3 +2121,4 @@ getNumberF32__8J2DPrintFPPCUcffi:
 /* 8003F468 0003C3A8  7C 08 03 A6 */	mtlr r0
 /* 8003F46C 0003C3AC  38 21 00 40 */	addi r1, r1, 0x40
 /* 8003F470 0003C3B0  4E 80 00 20 */	blr 
+.endfn getNumberF32__8J2DPrintFPPCUcffi

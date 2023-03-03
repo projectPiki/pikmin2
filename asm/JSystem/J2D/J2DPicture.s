@@ -111,8 +111,7 @@
 .endobj lbl_80516814
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__10J2DPictureFv
-__ct__10J2DPictureFv:
+.fn __ct__10J2DPictureFv, global
 /* 80039ADC 00036A1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80039AE0 00036A20  7C 08 02 A6 */	mflr r0
 /* 80039AE4 00036A24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -159,19 +158,19 @@ __ct__10J2DPictureFv:
 /* 80039B88 00036AC8  7C 08 03 A6 */	mtlr r0
 /* 80039B8C 00036ACC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80039B90 00036AD0  4E 80 00 20 */	blr 
+.endfn __ct__10J2DPictureFv
 
-.global __ct__Q28JUtility6TColorFv
-__ct__Q28JUtility6TColorFv:
+.fn __ct__Q28JUtility6TColorFv, weak
 /* 80039B94 00036AD4  38 00 FF FF */	li r0, -1
 /* 80039B98 00036AD8  90 03 00 00 */	stw r0, 0(r3)
 /* 80039B9C 00036ADC  4E 80 00 20 */	blr 
+.endfn __ct__Q28JUtility6TColorFv
 
-.global "__ct__Q29JGeometry8TVec2<s>Fv"
-"__ct__Q29JGeometry8TVec2<s>Fv":
+.fn "__ct__Q29JGeometry8TVec2<s>Fv", weak
 /* 80039BA0 00036AE0  4E 80 00 20 */	blr 
+.endfn "__ct__Q29JGeometry8TVec2<s>Fv"
 
-.global __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
-__ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
+.fn __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive, global
 /* 80039BA4 00036AE4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80039BA8 00036AE8  7C 08 02 A6 */	mflr r0
 /* 80039BAC 00036AEC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -223,9 +222,9 @@ __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
 /* 80039C64 00036BA4  7C 08 03 A6 */	mtlr r0
 /* 80039C68 00036BA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80039C6C 00036BAC  4E 80 00 20 */	blr 
+.endfn __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
 
-.global __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial
-__ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial:
+.fn __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial, global
 /* 80039C70 00036BB0  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80039C74 00036BB4  7C 08 02 A6 */	mflr r0
 /* 80039C78 00036BB8  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -617,28 +616,28 @@ __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial:
 /* 8003A250 00037190  7C 08 03 A6 */	mtlr r0
 /* 8003A254 00037194  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 8003A258 00037198  4E 80 00 20 */	blr 
+.endfn __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial
 
-.global getTevKColor__11J2DTevBlockFUl
-getTevKColor__11J2DTevBlockFUl:
+.fn getTevKColor__11J2DTevBlockFUl, weak
 /* 8003A25C 0003719C  38 60 00 00 */	li r3, 0
 /* 8003A260 000371A0  4E 80 00 20 */	blr 
+.endfn getTevKColor__11J2DTevBlockFUl
 
-.global setUndeleteFlag__11J2DTevBlockFUc
-setUndeleteFlag__11J2DTevBlockFUc:
+.fn setUndeleteFlag__11J2DTevBlockFUc, weak
 /* 8003A264 000371A4  4E 80 00 20 */	blr 
+.endfn setUndeleteFlag__11J2DTevBlockFUc
 
-.global getTevColor__11J2DTevBlockFUl
-getTevColor__11J2DTevBlockFUl:
+.fn getTevColor__11J2DTevBlockFUl, weak
 /* 8003A268 000371A8  38 60 00 00 */	li r3, 0
 /* 8003A26C 000371AC  4E 80 00 20 */	blr 
+.endfn getTevColor__11J2DTevBlockFUl
 
-.global getTevStageNum__11J2DTevBlockCFv
-getTevStageNum__11J2DTevBlockCFv:
+.fn getTevStageNum__11J2DTevBlockCFv, weak
 /* 8003A270 000371B0  38 60 00 01 */	li r3, 1
 /* 8003A274 000371B4  4E 80 00 20 */	blr 
+.endfn getTevStageNum__11J2DTevBlockCFv
 
-.global __ct__10J2DPictureFPC7ResTIMG
-__ct__10J2DPictureFPC7ResTIMG:
+.fn __ct__10J2DPictureFPC7ResTIMG, global
 /* 8003A278 000371B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A27C 000371BC  7C 08 02 A6 */	mflr r0
 /* 8003A280 000371C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -698,9 +697,9 @@ __ct__10J2DPictureFPC7ResTIMG:
 /* 8003A354 00037294  7C 08 03 A6 */	mtlr r0
 /* 8003A358 00037298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A35C 0003729C  4E 80 00 20 */	blr 
+.endfn __ct__10J2DPictureFPC7ResTIMG
 
-.global append__10J2DPictureFPC7ResTIMGf
-append__10J2DPictureFPC7ResTIMGf:
+.fn append__10J2DPictureFPC7ResTIMGf, weak
 /* 8003A360 000372A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A364 000372A4  7C 08 02 A6 */	mflr r0
 /* 8003A368 000372A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -713,9 +712,9 @@ append__10J2DPictureFPC7ResTIMGf:
 /* 8003A384 000372C4  7C 08 03 A6 */	mtlr r0
 /* 8003A388 000372C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A38C 000372CC  4E 80 00 20 */	blr 
+.endfn append__10J2DPictureFPC7ResTIMGf
 
-.global insert__10J2DPictureFPC7ResTIMGUcf
-insert__10J2DPictureFPC7ResTIMGUcf:
+.fn insert__10J2DPictureFPC7ResTIMGUcf, weak
 /* 8003A390 000372D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A394 000372D4  7C 08 02 A6 */	mflr r0
 /* 8003A398 000372D8  7C A6 2B 78 */	mr r6, r5
@@ -729,9 +728,9 @@ insert__10J2DPictureFPC7ResTIMGUcf:
 /* 8003A3B8 000372F8  7C 08 03 A6 */	mtlr r0
 /* 8003A3BC 000372FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A3C0 00037300  4E 80 00 20 */	blr 
+.endfn insert__10J2DPictureFPC7ResTIMGUcf
 
-.global __ct__10J2DPictureFPCc
-__ct__10J2DPictureFPCc:
+.fn __ct__10J2DPictureFPCc, global
 /* 8003A3C4 00037304  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A3C8 00037308  7C 08 02 A6 */	mflr r0
 /* 8003A3CC 0003730C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -791,9 +790,9 @@ __ct__10J2DPictureFPCc:
 /* 8003A4A0 000373E0  7C 08 03 A6 */	mtlr r0
 /* 8003A4A4 000373E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A4A8 000373E8  4E 80 00 20 */	blr 
+.endfn __ct__10J2DPictureFPCc
 
-.global append__10J2DPictureFPCcf
-append__10J2DPictureFPCcf:
+.fn append__10J2DPictureFPCcf, weak
 /* 8003A4AC 000373EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A4B0 000373F0  7C 08 02 A6 */	mflr r0
 /* 8003A4B4 000373F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -806,9 +805,9 @@ append__10J2DPictureFPCcf:
 /* 8003A4D0 00037410  7C 08 03 A6 */	mtlr r0
 /* 8003A4D4 00037414  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A4D8 00037418  4E 80 00 20 */	blr 
+.endfn append__10J2DPictureFPCcf
 
-.global insert__10J2DPictureFPCcUcf
-insert__10J2DPictureFPCcUcf:
+.fn insert__10J2DPictureFPCcUcf, weak
 /* 8003A4DC 0003741C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A4E0 00037420  7C 08 02 A6 */	mflr r0
 /* 8003A4E4 00037424  7C A6 2B 78 */	mr r6, r5
@@ -822,9 +821,9 @@ insert__10J2DPictureFPCcUcf:
 /* 8003A504 00037444  7C 08 03 A6 */	mtlr r0
 /* 8003A508 00037448  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A50C 0003744C  4E 80 00 20 */	blr 
+.endfn insert__10J2DPictureFPCcUcf
 
-.global __ct__10J2DPictureFP10JUTTexture
-__ct__10J2DPictureFP10JUTTexture:
+.fn __ct__10J2DPictureFP10JUTTexture, global
 /* 8003A510 00037450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A514 00037454  7C 08 02 A6 */	mflr r0
 /* 8003A518 00037458  90 01 00 14 */	stw r0, 0x14(r1)
@@ -884,9 +883,9 @@ __ct__10J2DPictureFP10JUTTexture:
 /* 8003A5EC 0003752C  7C 08 03 A6 */	mtlr r0
 /* 8003A5F0 00037530  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A5F4 00037534  4E 80 00 20 */	blr 
+.endfn __ct__10J2DPictureFP10JUTTexture
 
-.global append__10J2DPictureFP10JUTTexturef
-append__10J2DPictureFP10JUTTexturef:
+.fn append__10J2DPictureFP10JUTTexturef, weak
 /* 8003A5F8 00037538  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A5FC 0003753C  7C 08 02 A6 */	mflr r0
 /* 8003A600 00037540  90 01 00 14 */	stw r0, 0x14(r1)
@@ -899,9 +898,9 @@ append__10J2DPictureFP10JUTTexturef:
 /* 8003A61C 0003755C  7C 08 03 A6 */	mtlr r0
 /* 8003A620 00037560  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A624 00037564  4E 80 00 20 */	blr 
+.endfn append__10J2DPictureFP10JUTTexturef
 
-.global "__ct__10J2DPictureFUxRCQ29JGeometry8TBox2<f>"
-"__ct__10J2DPictureFUxRCQ29JGeometry8TBox2<f>":
+.fn "__ct__10J2DPictureFUxRCQ29JGeometry8TBox2<f>", global
 /* 8003A628 00037568  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003A62C 0003756C  7C 08 02 A6 */	mflr r0
 /* 8003A630 00037570  90 01 00 14 */	stw r0, 0x14(r1)
@@ -961,9 +960,9 @@ append__10J2DPictureFP10JUTTexturef:
 /* 8003A708 00037648  7C 08 03 A6 */	mtlr r0
 /* 8003A70C 0003764C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003A710 00037650  4E 80 00 20 */	blr 
+.endfn "__ct__10J2DPictureFUxRCQ29JGeometry8TBox2<f>"
 
-.global setBlendRatio__10J2DPictureFffffffff
-setBlendRatio__10J2DPictureFffffffff:
+.fn setBlendRatio__10J2DPictureFffffffff, weak
 /* 8003A714 00037654  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8003A718 00037658  7C 08 02 A6 */	mflr r0
 /* 8003A71C 0003765C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1003,9 +1002,9 @@ setBlendRatio__10J2DPictureFffffffff:
 /* 8003A7A4 000376E4  7C 08 03 A6 */	mtlr r0
 /* 8003A7A8 000376E8  38 21 00 50 */	addi r1, r1, 0x50
 /* 8003A7AC 000376EC  4E 80 00 20 */	blr 
+.endfn setBlendRatio__10J2DPictureFffffffff
 
-.global private_readStream__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
-private_readStream__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
+.fn private_readStream__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive, global
 /* 8003A7B0 000376F0  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8003A7B4 000376F4  7C 08 02 A6 */	mflr r0
 /* 8003A7B8 000376F8  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1270,9 +1269,9 @@ private_readStream__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
 /* 8003AB98 00037AD8  7C 08 03 A6 */	mtlr r0
 /* 8003AB9C 00037ADC  38 21 00 80 */	addi r1, r1, 0x80
 /* 8003ABA0 00037AE0  4E 80 00 20 */	blr 
+.endfn private_readStream__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
 
-.global initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT
-initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT:
+.fn initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT, global
 /* 8003ABA4 00037AE4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003ABA8 00037AE8  7C 08 02 A6 */	mflr r0
 /* 8003ABAC 00037AEC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1311,9 +1310,9 @@ initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT:
 /* 8003AC2C 00037B6C  7C 08 03 A6 */	mtlr r0
 /* 8003AC30 00037B70  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003AC34 00037B74  4E 80 00 20 */	blr 
+.endfn initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT
 
-.global private_initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT
-private_initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT:
+.fn private_initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT, global
 /* 8003AC38 00037B78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003AC3C 00037B7C  7C 08 02 A6 */	mflr r0
 /* 8003AC40 00037B80  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1398,9 +1397,9 @@ private_initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT:
 /* 8003AD68 00037CA8  7C 08 03 A6 */	mtlr r0
 /* 8003AD6C 00037CAC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003AD70 00037CB0  4E 80 00 20 */	blr 
+.endfn private_initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT
 
-.global initinfo__10J2DPictureFv
-initinfo__10J2DPictureFv:
+.fn initinfo__10J2DPictureFv, global
 /* 8003AD74 00037CB4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8003AD78 00037CB8  7C 08 02 A6 */	mflr r0
 /* 8003AD7C 00037CBC  3C 80 50 49 */	lis r4, 0x50494331@ha
@@ -1492,9 +1491,9 @@ initinfo__10J2DPictureFv:
 /* 8003AED4 00037E14  7C 08 03 A6 */	mtlr r0
 /* 8003AED8 00037E18  38 21 00 40 */	addi r1, r1, 0x40
 /* 8003AEDC 00037E1C  4E 80 00 20 */	blr 
+.endfn initinfo__10J2DPictureFv
 
-.global __dt__10J2DPictureFv
-__dt__10J2DPictureFv:
+.fn __dt__10J2DPictureFv, global
 /* 8003AEE0 00037E20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003AEE4 00037E24  7C 08 02 A6 */	mflr r0
 /* 8003AEE8 00037E28  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1537,9 +1536,9 @@ __dt__10J2DPictureFv:
 /* 8003AF70 00037EB0  7C 08 03 A6 */	mtlr r0
 /* 8003AF74 00037EB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003AF78 00037EB8  4E 80 00 20 */	blr 
+.endfn __dt__10J2DPictureFv
 
-.global prepareTexture__10J2DPictureFUc
-prepareTexture__10J2DPictureFUc:
+.fn prepareTexture__10J2DPictureFUc, global
 /* 8003AF7C 00037EBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003AF80 00037EC0  7C 08 02 A6 */	mflr r0
 /* 8003AF84 00037EC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1603,9 +1602,9 @@ prepareTexture__10J2DPictureFUc:
 /* 8003B050 00037F90  7C 08 03 A6 */	mtlr r0
 /* 8003B054 00037F94  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003B058 00037F98  4E 80 00 20 */	blr 
+.endfn prepareTexture__10J2DPictureFUc
 
-.global insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf
-insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf:
+.fn insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf, global
 /* 8003B05C 00037F9C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8003B060 00037FA0  7C 08 02 A6 */	mflr r0
 /* 8003B064 00037FA4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1827,9 +1826,9 @@ insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf:
 /* 8003B37C 000382BC  7C 08 03 A6 */	mtlr r0
 /* 8003B380 000382C0  38 21 00 60 */	addi r1, r1, 0x60
 /* 8003B384 000382C4  4E 80 00 20 */	blr 
+.endfn insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf
 
-.global insert__10J2DPictureFPCcP10JUTPaletteUcf
-insert__10J2DPictureFPCcP10JUTPaletteUcf:
+.fn insert__10J2DPictureFPCcP10JUTPaletteUcf, global
 /* 8003B388 000382C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003B38C 000382CC  7C 08 02 A6 */	mflr r0
 /* 8003B390 000382D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1860,9 +1859,9 @@ insert__10J2DPictureFPCcP10JUTPaletteUcf:
 /* 8003B3F4 00038334  7C 08 03 A6 */	mtlr r0
 /* 8003B3F8 00038338  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003B3FC 0003833C  4E 80 00 20 */	blr 
+.endfn insert__10J2DPictureFPCcP10JUTPaletteUcf
 
-.global insert__10J2DPictureFP10JUTTextureUcf
-insert__10J2DPictureFP10JUTTextureUcf:
+.fn insert__10J2DPictureFP10JUTTextureUcf, global
 /* 8003B400 00038340  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8003B404 00038344  7C 08 02 A6 */	mflr r0
 /* 8003B408 00038348  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1988,9 +1987,9 @@ insert__10J2DPictureFP10JUTTextureUcf:
 /* 8003B5CC 0003850C  7C 08 03 A6 */	mtlr r0
 /* 8003B5D0 00038510  38 21 00 50 */	addi r1, r1, 0x50
 /* 8003B5D4 00038514  4E 80 00 20 */	blr 
+.endfn insert__10J2DPictureFP10JUTTextureUcf
 
-.global remove__10J2DPictureFUc
-remove__10J2DPictureFUc:
+.fn remove__10J2DPictureFUc, global
 /* 8003B5D8 00038518  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003B5DC 0003851C  7C 08 02 A6 */	mflr r0
 /* 8003B5E0 00038520  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2073,9 +2072,9 @@ remove__10J2DPictureFUc:
 /* 8003B6FC 0003863C  7C 08 03 A6 */	mtlr r0
 /* 8003B700 00038640  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003B704 00038644  4E 80 00 20 */	blr 
+.endfn remove__10J2DPictureFUc
 
-.global remove__10J2DPictureFP10JUTTexture
-remove__10J2DPictureFP10JUTTexture:
+.fn remove__10J2DPictureFP10JUTTexture, global
 /* 8003B708 00038648  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003B70C 0003864C  7C 08 02 A6 */	mflr r0
 /* 8003B710 00038650  38 E0 00 00 */	li r7, 0
@@ -2103,9 +2102,9 @@ remove__10J2DPictureFP10JUTTexture:
 /* 8003B75C 0003869C  7C 08 03 A6 */	mtlr r0
 /* 8003B760 000386A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003B764 000386A4  4E 80 00 20 */	blr 
+.endfn remove__10J2DPictureFP10JUTTexture
 
-.global changeTexture__10J2DPictureFPC7ResTIMGUc
-changeTexture__10J2DPictureFPC7ResTIMGUc:
+.fn changeTexture__10J2DPictureFPC7ResTIMGUc, global
 /* 8003B768 000386A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003B76C 000386AC  7C 08 02 A6 */	mflr r0
 /* 8003B770 000386B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2169,9 +2168,9 @@ changeTexture__10J2DPictureFPC7ResTIMGUc:
 /* 8003B844 00038784  7C 08 03 A6 */	mtlr r0
 /* 8003B848 00038788  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003B84C 0003878C  4E 80 00 20 */	blr 
+.endfn changeTexture__10J2DPictureFPC7ResTIMGUc
 
-.global getTexture__10J2DPictureCFUc
-getTexture__10J2DPictureCFUc:
+.fn getTexture__10J2DPictureCFUc, weak
 /* 8003B850 00038790  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 8003B854 00038794  28 00 00 04 */	cmplwi r0, 4
 /* 8003B858 00038798  40 80 00 14 */	bge .L_8003B86C
@@ -2182,9 +2181,9 @@ getTexture__10J2DPictureCFUc:
 .L_8003B86C:
 /* 8003B86C 000387AC  38 60 00 00 */	li r3, 0
 /* 8003B870 000387B0  4E 80 00 20 */	blr 
+.endfn getTexture__10J2DPictureCFUc
 
-.global changeTexture__10J2DPictureFPCcUc
-changeTexture__10J2DPictureFPCcUc:
+.fn changeTexture__10J2DPictureFPCcUc, global
 /* 8003B874 000387B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003B878 000387B8  7C 08 02 A6 */	mflr r0
 /* 8003B87C 000387BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2207,9 +2206,9 @@ changeTexture__10J2DPictureFPCcUc:
 /* 8003B8C0 00038800  7C 08 03 A6 */	mtlr r0
 /* 8003B8C4 00038804  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003B8C8 00038808  4E 80 00 20 */	blr 
+.endfn changeTexture__10J2DPictureFPCcUc
 
-.global changeTexture__10J2DPictureFPC7ResTIMGUcP10JUTPalette
-changeTexture__10J2DPictureFPC7ResTIMGUcP10JUTPalette:
+.fn changeTexture__10J2DPictureFPC7ResTIMGUcP10JUTPalette, global
 /* 8003B8CC 0003880C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003B8D0 00038810  7C 08 02 A6 */	mflr r0
 /* 8003B8D4 00038814  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2281,9 +2280,9 @@ changeTexture__10J2DPictureFPC7ResTIMGUcP10JUTPalette:
 /* 8003B9C8 00038908  7C 08 03 A6 */	mtlr r0
 /* 8003B9CC 0003890C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003B9D0 00038910  4E 80 00 20 */	blr 
+.endfn changeTexture__10J2DPictureFPC7ResTIMGUcP10JUTPalette
 
-.global append__10J2DPictureFPC7ResTIMGP10JUTPalettef
-append__10J2DPictureFPC7ResTIMGP10JUTPalettef:
+.fn append__10J2DPictureFPC7ResTIMGP10JUTPalettef, weak
 /* 8003B9D4 00038914  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003B9D8 00038918  7C 08 02 A6 */	mflr r0
 /* 8003B9DC 0003891C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2296,9 +2295,9 @@ append__10J2DPictureFPC7ResTIMGP10JUTPalettef:
 /* 8003B9F8 00038938  7C 08 03 A6 */	mtlr r0
 /* 8003B9FC 0003893C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003BA00 00038940  4E 80 00 20 */	blr 
+.endfn append__10J2DPictureFPC7ResTIMGP10JUTPalettef
 
-.global changeTexture__10J2DPictureFPCcUcP10JUTPalette
-changeTexture__10J2DPictureFPCcUcP10JUTPalette:
+.fn changeTexture__10J2DPictureFPCcUcP10JUTPalette, global
 /* 8003BA04 00038944  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003BA08 00038948  7C 08 02 A6 */	mflr r0
 /* 8003BA0C 0003894C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2325,9 +2324,9 @@ changeTexture__10J2DPictureFPCcUcP10JUTPalette:
 /* 8003BA60 000389A0  7C 08 03 A6 */	mtlr r0
 /* 8003BA64 000389A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003BA68 000389A8  4E 80 00 20 */	blr 
+.endfn changeTexture__10J2DPictureFPCcUcP10JUTPalette
 
-.global drawSelf__10J2DPictureFff
-drawSelf__10J2DPictureFff:
+.fn drawSelf__10J2DPictureFff, global
 /* 8003BA6C 000389AC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8003BA70 000389B0  7C 08 02 A6 */	mflr r0
 /* 8003BA74 000389B4  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2354,9 +2353,9 @@ drawSelf__10J2DPictureFff:
 /* 8003BAC8 00038A08  7C 08 03 A6 */	mtlr r0
 /* 8003BACC 00038A0C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8003BAD0 00038A10  4E 80 00 20 */	blr 
+.endfn drawSelf__10J2DPictureFff
 
-.global drawSelf__10J2DPictureFffPA3_A4_f
-drawSelf__10J2DPictureFffPA3_A4_f:
+.fn drawSelf__10J2DPictureFffPA3_A4_f, global
 /* 8003BAD4 00038A14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003BAD8 00038A18  7C 08 02 A6 */	mflr r0
 /* 8003BADC 00038A1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2385,9 +2384,9 @@ drawSelf__10J2DPictureFffPA3_A4_f:
 /* 8003BB34 00038A74  7C 08 03 A6 */	mtlr r0
 /* 8003BB38 00038A78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003BB3C 00038A7C  4E 80 00 20 */	blr 
+.endfn drawSelf__10J2DPictureFffPA3_A4_f
 
-.global drawFullSet__10J2DPictureFffffPA3_A4_f
-drawFullSet__10J2DPictureFffffPA3_A4_f:
+.fn drawFullSet__10J2DPictureFffffPA3_A4_f, global
 /* 8003BB40 00038A80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003BB44 00038A84  7C 08 02 A6 */	mflr r0
 /* 8003BB48 00038A88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2418,9 +2417,9 @@ drawFullSet__10J2DPictureFffffPA3_A4_f:
 /* 8003BBA8 00038AE8  7C 08 03 A6 */	mtlr r0
 /* 8003BBAC 00038AEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003BBB0 00038AF0  4E 80 00 20 */	blr 
+.endfn drawFullSet__10J2DPictureFffffPA3_A4_f
 
-.global draw__10J2DPictureFffffbbb
-draw__10J2DPictureFffffbbb:
+.fn draw__10J2DPictureFffffbbb, global
 /* 8003BBB4 00038AF4  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 8003BBB8 00038AF8  7C 08 02 A6 */	mflr r0
 /* 8003BBBC 00038AFC  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -2613,9 +2612,9 @@ draw__10J2DPictureFffffbbb:
 /* 8003BE9C 00038DDC  7C 08 03 A6 */	mtlr r0
 /* 8003BEA0 00038DE0  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 8003BEA4 00038DE4  4E 80 00 20 */	blr 
+.endfn draw__10J2DPictureFffffbbb
 
-.global load__10J2DPictureFUc
-load__10J2DPictureFUc:
+.fn load__10J2DPictureFUc, weak
 /* 8003BEA8 00038DE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003BEAC 00038DEC  7C 08 02 A6 */	mflr r0
 /* 8003BEB0 00038DF0  7C 85 23 78 */	mr r5, r4
@@ -2629,9 +2628,9 @@ load__10J2DPictureFUc:
 /* 8003BED0 00038E10  7C 08 03 A6 */	mtlr r0
 /* 8003BED4 00038E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003BED8 00038E18  4E 80 00 20 */	blr 
+.endfn load__10J2DPictureFUc
 
-.global load__10J2DPictureF11_GXTexMapIDUc
-load__10J2DPictureF11_GXTexMapIDUc:
+.fn load__10J2DPictureF11_GXTexMapIDUc, weak
 /* 8003BEDC 00038E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003BEE0 00038E20  7C 08 02 A6 */	mflr r0
 /* 8003BEE4 00038E24  54 A6 06 3E */	clrlwi r6, r5, 0x18
@@ -2652,9 +2651,9 @@ load__10J2DPictureF11_GXTexMapIDUc:
 /* 8003BF1C 00038E5C  7C 08 03 A6 */	mtlr r0
 /* 8003BF20 00038E60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003BF24 00038E64  4E 80 00 20 */	blr 
+.endfn load__10J2DPictureF11_GXTexMapIDUc
 
-.global "drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-"drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>":
+.fn "drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>", global
 /* 8003BF28 00038E68  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8003BF2C 00038E6C  7C 08 02 A6 */	mflr r0
 /* 8003BF30 00038E70  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -2913,9 +2912,9 @@ load__10J2DPictureF11_GXTexMapIDUc:
 /* 8003C318 00039258  7C 08 03 A6 */	mtlr r0
 /* 8003C31C 0003925C  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 8003C320 00039260  4E 80 00 20 */	blr 
+.endfn "drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
 
-.global drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f
-drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f:
+.fn drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f, global
 /* 8003C324 00039264  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8003C328 00039268  7C 08 02 A6 */	mflr r0
 /* 8003C32C 0003926C  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -3062,9 +3061,9 @@ drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f:
 /* 8003C554 00039494  7C 08 03 A6 */	mtlr r0
 /* 8003C558 00039498  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8003C55C 0003949C  4E 80 00 20 */	blr 
+.endfn drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f
 
-.global setTevMode__10J2DPictureFv
-setTevMode__10J2DPictureFv:
+.fn setTevMode__10J2DPictureFv, global
 /* 8003C560 000394A0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003C564 000394A4  7C 08 02 A6 */	mflr r0
 /* 8003C568 000394A8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3378,9 +3377,9 @@ setTevMode__10J2DPictureFv:
 /* 8003C9F4 00039934  7C 08 03 A6 */	mtlr r0
 /* 8003C9F8 00039938  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003C9FC 0003993C  4E 80 00 20 */	blr 
+.endfn setTevMode__10J2DPictureFv
 
-.global setBlendColorRatio__10J2DPictureFffffffff
-setBlendColorRatio__10J2DPictureFffffffff:
+.fn setBlendColorRatio__10J2DPictureFffffffff, global
 /* 8003CA00 00039940  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003CA04 00039944  7C 08 02 A6 */	mflr r0
 /* 8003CA08 00039948  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3393,9 +3392,9 @@ setBlendColorRatio__10J2DPictureFffffffff:
 /* 8003CA24 00039964  7C 08 03 A6 */	mtlr r0
 /* 8003CA28 00039968  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003CA2C 0003996C  4E 80 00 20 */	blr 
+.endfn setBlendColorRatio__10J2DPictureFffffffff
 
-.global setBlendAlphaRatio__10J2DPictureFffffffff
-setBlendAlphaRatio__10J2DPictureFffffffff:
+.fn setBlendAlphaRatio__10J2DPictureFffffffff, global
 /* 8003CA30 00039970  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003CA34 00039974  7C 08 02 A6 */	mflr r0
 /* 8003CA38 00039978  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3408,9 +3407,9 @@ setBlendAlphaRatio__10J2DPictureFffffffff:
 /* 8003CA54 00039994  7C 08 03 A6 */	mtlr r0
 /* 8003CA58 00039998  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003CA5C 0003999C  4E 80 00 20 */	blr 
+.endfn setBlendAlphaRatio__10J2DPictureFffffffff
 
-.global setBlendKonstColor__10J2DPictureFv
-setBlendKonstColor__10J2DPictureFv:
+.fn setBlendKonstColor__10J2DPictureFv, global
 /* 8003CA60 000399A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003CA64 000399A4  38 E0 00 00 */	li r7, 0
 /* 8003CA68 000399A8  C0 62 84 A0 */	lfs f3, lbl_80516800@sda21(r2)
@@ -3504,9 +3503,9 @@ setBlendKonstColor__10J2DPictureFv:
 /* 8003CBA4 00039AE4  98 03 01 63 */	stb r0, 0x163(r3)
 /* 8003CBA8 00039AE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003CBAC 00039AEC  4E 80 00 20 */	blr 
+.endfn setBlendKonstColor__10J2DPictureFv
 
-.global setBlendKonstAlpha__10J2DPictureFv
-setBlendKonstAlpha__10J2DPictureFv:
+.fn setBlendKonstAlpha__10J2DPictureFv, global
 /* 8003CBB0 00039AF0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003CBB4 00039AF4  38 E0 00 00 */	li r7, 0
 /* 8003CBB8 00039AF8  C0 62 84 A0 */	lfs f3, lbl_80516800@sda21(r2)
@@ -3600,9 +3599,9 @@ setBlendKonstAlpha__10J2DPictureFv:
 /* 8003CCF4 00039C34  98 03 01 67 */	stb r0, 0x167(r3)
 /* 8003CCF8 00039C38  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003CCFC 00039C3C  4E 80 00 20 */	blr 
+.endfn setBlendKonstAlpha__10J2DPictureFv
 
-.global getNewColor__10J2DPictureFPQ28JUtility6TColor
-getNewColor__10J2DPictureFPQ28JUtility6TColor:
+.fn getNewColor__10J2DPictureFPQ28JUtility6TColor, global
 /* 8003CD00 00039C40  88 03 01 50 */	lbz r0, 0x150(r3)
 /* 8003CD04 00039C44  98 04 00 00 */	stb r0, 0(r4)
 /* 8003CD08 00039C48  88 03 01 51 */	lbz r0, 0x151(r3)
@@ -3676,9 +3675,9 @@ getNewColor__10J2DPictureFPQ28JUtility6TColor:
 /* 8003CE18 00039D58  7C 00 1A 14 */	add r0, r0, r3
 /* 8003CE1C 00039D5C  98 04 00 0F */	stb r0, 0xf(r4)
 /* 8003CE20 00039D60  4E 80 00 20 */	blr 
+.endfn getNewColor__10J2DPictureFPQ28JUtility6TColor
 
-.global "setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2<s>"
-"setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2<s>":
+.fn "setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2<s>", global
 /* 8003CE24 00039D64  A8 A4 00 00 */	lha r5, 0(r4)
 /* 8003CE28 00039D68  A8 04 00 02 */	lha r0, 2(r4)
 /* 8003CE2C 00039D6C  B0 A3 01 12 */	sth r5, 0x112(r3)
@@ -3696,9 +3695,9 @@ getNewColor__10J2DPictureFPQ28JUtility6TColor:
 /* 8003CE5C 00039D9C  B0 A3 01 1E */	sth r5, 0x11e(r3)
 /* 8003CE60 00039DA0  B0 03 01 20 */	sth r0, 0x120(r3)
 /* 8003CE64 00039DA4  4E 80 00 20 */	blr 
+.endfn "setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2<s>"
 
-.global setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb
-setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb:
+.fn setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb, global
 /* 8003CE68 00039DA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003CE6C 00039DAC  7C 08 02 A6 */	mflr r0
 /* 8003CE70 00039DB0  7C A9 2B 78 */	mr r9, r5
@@ -3714,9 +3713,9 @@ setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb:
 /* 8003CE98 00039DD8  7C 08 03 A6 */	mtlr r0
 /* 8003CE9C 00039DDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003CEA0 00039DE0  4E 80 00 20 */	blr 
+.endfn setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb
 
-.global "setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb"
-"setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb":
+.fn "setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb", global
 /* 8003CEA4 00039DE4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8003CEA8 00039DE8  7C 08 02 A6 */	mflr r0
 /* 8003CEAC 00039DEC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -3949,9 +3948,9 @@ setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb:
 /* 8003D1B0 0003A0F0  7C 08 03 A6 */	mtlr r0
 /* 8003D1B4 0003A0F4  38 21 00 60 */	addi r1, r1, 0x60
 /* 8003D1B8 0003A0F8  4E 80 00 20 */	blr 
+.endfn "setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb"
 
-.global isUsed__10J2DPictureFPC7ResTIMG
-isUsed__10J2DPictureFPC7ResTIMG:
+.fn isUsed__10J2DPictureFPC7ResTIMG, global
 /* 8003D1BC 0003A0FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D1C0 0003A100  7C 08 02 A6 */	mflr r0
 /* 8003D1C4 0003A104  38 E0 00 00 */	li r7, 0
@@ -3981,9 +3980,9 @@ isUsed__10J2DPictureFPC7ResTIMG:
 /* 8003D214 0003A154  7C 08 03 A6 */	mtlr r0
 /* 8003D218 0003A158  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D21C 0003A15C  4E 80 00 20 */	blr 
+.endfn isUsed__10J2DPictureFPC7ResTIMG
 
-.global getUsableTlut__10J2DPictureFUc
-getUsableTlut__10J2DPictureFUc:
+.fn getUsableTlut__10J2DPictureFUc, global
 /* 8003D220 0003A160  88 C3 01 10 */	lbz r6, 0x110(r3)
 /* 8003D224 0003A164  54 85 06 3E */	clrlwi r5, r4, 0x18
 /* 8003D228 0003A168  39 00 00 00 */	li r8, 0
@@ -4043,9 +4042,9 @@ getUsableTlut__10J2DPictureFUc:
 /* 8003D2E4 0003A224  28 00 00 04 */	cmplwi r0, 4
 /* 8003D2E8 0003A228  41 80 FF DC */	blt .L_8003D2C4
 /* 8003D2EC 0003A22C  4E 80 00 20 */	blr 
+.endfn getUsableTlut__10J2DPictureFUc
 
-.global getTlutID__10J2DPictureFPC7ResTIMGUc
-getTlutID__10J2DPictureFPC7ResTIMGUc:
+.fn getTlutID__10J2DPictureFPC7ResTIMGUc, global
 /* 8003D2F0 0003A230  A0 04 00 0A */	lhz r0, 0xa(r4)
 /* 8003D2F4 0003A234  28 00 01 00 */	cmplwi r0, 0x100
 /* 8003D2F8 0003A238  40 81 00 24 */	ble .L_8003D31C
@@ -4060,14 +4059,14 @@ getTlutID__10J2DPictureFPC7ResTIMGUc:
 .L_8003D31C:
 /* 8003D31C 0003A25C  54 A3 06 3E */	clrlwi r3, r5, 0x18
 /* 8003D320 0003A260  4E 80 00 20 */	blr 
+.endfn getTlutID__10J2DPictureFPC7ResTIMGUc
 
-.global getTypeID__10J2DPictureCFv
-getTypeID__10J2DPictureCFv:
+.fn getTypeID__10J2DPictureCFv, weak
 /* 8003D324 0003A264  38 60 00 12 */	li r3, 0x12
 /* 8003D328 0003A268  4E 80 00 20 */	blr 
+.endfn getTypeID__10J2DPictureCFv
 
-.global append__10J2DPictureFPCcP10JUTPalettef
-append__10J2DPictureFPCcP10JUTPalettef:
+.fn append__10J2DPictureFPCcP10JUTPalettef, weak
 /* 8003D32C 0003A26C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D330 0003A270  7C 08 02 A6 */	mflr r0
 /* 8003D334 0003A274  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4080,9 +4079,9 @@ append__10J2DPictureFPCcP10JUTPalettef:
 /* 8003D350 0003A290  7C 08 03 A6 */	mtlr r0
 /* 8003D354 0003A294  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D358 0003A298  4E 80 00 20 */	blr 
+.endfn append__10J2DPictureFPCcP10JUTPalettef
 
-.global prepend__10J2DPictureFP10JUTTexturef
-prepend__10J2DPictureFP10JUTTexturef:
+.fn prepend__10J2DPictureFP10JUTTexturef, weak
 /* 8003D35C 0003A29C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D360 0003A2A0  7C 08 02 A6 */	mflr r0
 /* 8003D364 0003A2A4  38 A0 00 00 */	li r5, 0
@@ -4095,9 +4094,9 @@ prepend__10J2DPictureFP10JUTTexturef:
 /* 8003D380 0003A2C0  7C 08 03 A6 */	mtlr r0
 /* 8003D384 0003A2C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D388 0003A2C8  4E 80 00 20 */	blr 
+.endfn prepend__10J2DPictureFP10JUTTexturef
 
-.global prepend__10J2DPictureFPCcP10JUTPalettef
-prepend__10J2DPictureFPCcP10JUTPalettef:
+.fn prepend__10J2DPictureFPCcP10JUTPalettef, weak
 /* 8003D38C 0003A2CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D390 0003A2D0  7C 08 02 A6 */	mflr r0
 /* 8003D394 0003A2D4  38 C0 00 00 */	li r6, 0
@@ -4110,9 +4109,9 @@ prepend__10J2DPictureFPCcP10JUTPalettef:
 /* 8003D3B0 0003A2F0  7C 08 03 A6 */	mtlr r0
 /* 8003D3B4 0003A2F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D3B8 0003A2F8  4E 80 00 20 */	blr 
+.endfn prepend__10J2DPictureFPCcP10JUTPalettef
 
-.global prepend__10J2DPictureFPCcf
-prepend__10J2DPictureFPCcf:
+.fn prepend__10J2DPictureFPCcf, weak
 /* 8003D3BC 0003A2FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D3C0 0003A300  7C 08 02 A6 */	mflr r0
 /* 8003D3C4 0003A304  38 A0 00 00 */	li r5, 0
@@ -4125,9 +4124,9 @@ prepend__10J2DPictureFPCcf:
 /* 8003D3E0 0003A320  7C 08 03 A6 */	mtlr r0
 /* 8003D3E4 0003A324  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D3E8 0003A328  4E 80 00 20 */	blr 
+.endfn prepend__10J2DPictureFPCcf
 
-.global prepend__10J2DPictureFPC7ResTIMGP10JUTPalettef
-prepend__10J2DPictureFPC7ResTIMGP10JUTPalettef:
+.fn prepend__10J2DPictureFPC7ResTIMGP10JUTPalettef, weak
 /* 8003D3EC 0003A32C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D3F0 0003A330  7C 08 02 A6 */	mflr r0
 /* 8003D3F4 0003A334  38 C0 00 00 */	li r6, 0
@@ -4140,9 +4139,9 @@ prepend__10J2DPictureFPC7ResTIMGP10JUTPalettef:
 /* 8003D410 0003A350  7C 08 03 A6 */	mtlr r0
 /* 8003D414 0003A354  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D418 0003A358  4E 80 00 20 */	blr 
+.endfn prepend__10J2DPictureFPC7ResTIMGP10JUTPalettef
 
-.global prepend__10J2DPictureFPC7ResTIMGf
-prepend__10J2DPictureFPC7ResTIMGf:
+.fn prepend__10J2DPictureFPC7ResTIMGf, weak
 /* 8003D41C 0003A35C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D420 0003A360  7C 08 02 A6 */	mflr r0
 /* 8003D424 0003A364  38 A0 00 00 */	li r5, 0
@@ -4155,9 +4154,9 @@ prepend__10J2DPictureFPC7ResTIMGf:
 /* 8003D440 0003A380  7C 08 03 A6 */	mtlr r0
 /* 8003D444 0003A384  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D448 0003A388  4E 80 00 20 */	blr 
+.endfn prepend__10J2DPictureFPC7ResTIMGf
 
-.global remove__10J2DPictureFv
-remove__10J2DPictureFv:
+.fn remove__10J2DPictureFv, weak
 /* 8003D44C 0003A38C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D450 0003A390  7C 08 02 A6 */	mflr r0
 /* 8003D454 0003A394  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4172,9 +4171,9 @@ remove__10J2DPictureFv:
 /* 8003D478 0003A3B8  7C 08 03 A6 */	mtlr r0
 /* 8003D47C 0003A3BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D480 0003A3C0  4E 80 00 20 */	blr 
+.endfn remove__10J2DPictureFv
 
-.global draw__10J2DPictureFffUcbbb
-draw__10J2DPictureFffUcbbb:
+.fn draw__10J2DPictureFffUcbbb, weak
 /* 8003D484 0003A3C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003D488 0003A3C8  7C 08 02 A6 */	mflr r0
 /* 8003D48C 0003A3CC  54 88 06 3E */	clrlwi r8, r4, 0x18
@@ -4214,9 +4213,9 @@ draw__10J2DPictureFffUcbbb:
 /* 8003D510 0003A450  7C 08 03 A6 */	mtlr r0
 /* 8003D514 0003A454  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003D518 0003A458  4E 80 00 20 */	blr 
+.endfn draw__10J2DPictureFffUcbbb
 
-.global draw__10J2DPictureFffbbb
-draw__10J2DPictureFffbbb:
+.fn draw__10J2DPictureFffbbb, weak
 /* 8003D51C 0003A45C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D520 0003A460  7C 08 02 A6 */	mflr r0
 /* 8003D524 0003A464  7C C7 33 78 */	mr r7, r6
@@ -4233,9 +4232,9 @@ draw__10J2DPictureFffbbb:
 /* 8003D550 0003A490  7C 08 03 A6 */	mtlr r0
 /* 8003D554 0003A494  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D558 0003A498  4E 80 00 20 */	blr 
+.endfn draw__10J2DPictureFffbbb
 
-.global drawOut__10J2DPictureFffffffff
-drawOut__10J2DPictureFffffffff:
+.fn drawOut__10J2DPictureFffffffff, weak
 /* 8003D55C 0003A49C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003D560 0003A4A0  7C 08 02 A6 */	mflr r0
 /* 8003D564 0003A4A4  EC E5 38 2A */	fadds f7, f5, f7
@@ -4261,9 +4260,9 @@ drawOut__10J2DPictureFffffffff:
 /* 8003D5B4 0003A4F4  7C 08 03 A6 */	mtlr r0
 /* 8003D5B8 0003A4F8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003D5BC 0003A4FC  4E 80 00 20 */	blr 
+.endfn drawOut__10J2DPictureFffffffff
 
-.global drawOut__10J2DPictureFffffff
-drawOut__10J2DPictureFffffff:
+.fn drawOut__10J2DPictureFffffff, weak
 /* 8003D5C0 0003A500  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8003D5C4 0003A504  7C 08 02 A6 */	mflr r0
 /* 8003D5C8 0003A508  90 01 00 44 */	stw r0, 0x44(r1)
@@ -4308,14 +4307,14 @@ drawOut__10J2DPictureFffffff:
 /* 8003D660 0003A5A0  7C 08 03 A6 */	mtlr r0
 /* 8003D664 0003A5A4  38 21 00 40 */	addi r1, r1, 0x40
 /* 8003D668 0003A5A8  4E 80 00 20 */	blr 
+.endfn drawOut__10J2DPictureFffffff
 
-.global getTextureCount__10J2DPictureCFv
-getTextureCount__10J2DPictureCFv:
+.fn getTextureCount__10J2DPictureCFv, weak
 /* 8003D66C 0003A5AC  88 63 01 10 */	lbz r3, 0x110(r3)
 /* 8003D670 0003A5B0  4E 80 00 20 */	blr 
+.endfn getTextureCount__10J2DPictureCFv
 
-.global setBlack__10J2DPictureFQ28JUtility6TColor
-setBlack__10J2DPictureFQ28JUtility6TColor:
+.fn setBlack__10J2DPictureFQ28JUtility6TColor, weak
 /* 8003D674 0003A5B4  88 A4 00 00 */	lbz r5, 0(r4)
 /* 8003D678 0003A5B8  88 04 00 01 */	lbz r0, 1(r4)
 /* 8003D67C 0003A5BC  98 A3 01 4C */	stb r5, 0x14c(r3)
@@ -4326,9 +4325,9 @@ setBlack__10J2DPictureFQ28JUtility6TColor:
 /* 8003D690 0003A5D0  98 03 01 4F */	stb r0, 0x14f(r3)
 /* 8003D694 0003A5D4  38 60 00 01 */	li r3, 1
 /* 8003D698 0003A5D8  4E 80 00 20 */	blr 
+.endfn setBlack__10J2DPictureFQ28JUtility6TColor
 
-.global setWhite__10J2DPictureFQ28JUtility6TColor
-setWhite__10J2DPictureFQ28JUtility6TColor:
+.fn setWhite__10J2DPictureFQ28JUtility6TColor, weak
 /* 8003D69C 0003A5DC  88 A4 00 00 */	lbz r5, 0(r4)
 /* 8003D6A0 0003A5E0  88 04 00 01 */	lbz r0, 1(r4)
 /* 8003D6A4 0003A5E4  98 A3 01 48 */	stb r5, 0x148(r3)
@@ -4339,9 +4338,9 @@ setWhite__10J2DPictureFQ28JUtility6TColor:
 /* 8003D6B8 0003A5F8  98 03 01 4B */	stb r0, 0x14b(r3)
 /* 8003D6BC 0003A5FC  38 60 00 01 */	li r3, 1
 /* 8003D6C0 0003A600  4E 80 00 20 */	blr 
+.endfn setWhite__10J2DPictureFQ28JUtility6TColor
 
-.global setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor
-setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor:
+.fn setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor, weak
 /* 8003D6C4 0003A604  88 C4 00 00 */	lbz r6, 0(r4)
 /* 8003D6C8 0003A608  88 04 00 01 */	lbz r0, 1(r4)
 /* 8003D6CC 0003A60C  98 C3 01 4C */	stb r6, 0x14c(r3)
@@ -4360,26 +4359,26 @@ setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor:
 /* 8003D700 0003A640  98 03 01 4B */	stb r0, 0x14b(r3)
 /* 8003D704 0003A644  38 60 00 01 */	li r3, 1
 /* 8003D708 0003A648  4E 80 00 20 */	blr 
+.endfn setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor
 
-.global getBlack__10J2DPictureCFv
-getBlack__10J2DPictureCFv:
+.fn getBlack__10J2DPictureCFv, weak
 /* 8003D70C 0003A64C  80 04 01 4C */	lwz r0, 0x14c(r4)
 /* 8003D710 0003A650  90 03 00 00 */	stw r0, 0(r3)
 /* 8003D714 0003A654  4E 80 00 20 */	blr 
+.endfn getBlack__10J2DPictureCFv
 
-.global getWhite__10J2DPictureCFv
-getWhite__10J2DPictureCFv:
+.fn getWhite__10J2DPictureCFv, weak
 /* 8003D718 0003A658  80 04 01 48 */	lwz r0, 0x148(r4)
 /* 8003D71C 0003A65C  90 03 00 00 */	stw r0, 0(r3)
 /* 8003D720 0003A660  4E 80 00 20 */	blr 
+.endfn getWhite__10J2DPictureCFv
 
-.global getMaterial__10J2DPictureCFv
-getMaterial__10J2DPictureCFv:
+.fn getMaterial__10J2DPictureCFv, weak
 /* 8003D724 0003A664  38 60 00 00 */	li r3, 0
 /* 8003D728 0003A668  4E 80 00 20 */	blr 
+.endfn getMaterial__10J2DPictureCFv
 
-.global isUsed__10J2DPictureFPC7ResFONT
-isUsed__10J2DPictureFPC7ResFONT:
+.fn isUsed__10J2DPictureFPC7ResFONT, weak
 /* 8003D72C 0003A66C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D730 0003A670  7C 08 02 A6 */	mflr r0
 /* 8003D734 0003A674  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4388,7 +4387,8 @@ isUsed__10J2DPictureFPC7ResFONT:
 /* 8003D740 0003A680  7C 08 03 A6 */	mtlr r0
 /* 8003D744 0003A684  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D748 0003A688  4E 80 00 20 */	blr 
+.endfn isUsed__10J2DPictureFPC7ResFONT
 
-.global rewriteAlpha__10J2DPictureFv
-rewriteAlpha__10J2DPictureFv:
+.fn rewriteAlpha__10J2DPictureFv, weak
 /* 8003D74C 0003A68C  4E 80 00 20 */	blr 
+.endfn rewriteAlpha__10J2DPictureFv

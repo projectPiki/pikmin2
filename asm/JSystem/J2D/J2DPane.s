@@ -92,8 +92,7 @@ lbl_constructor:
 .endobj lbl_805167E8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__7J2DPaneFv
-__ct__7J2DPaneFv:
+.fn __ct__7J2DPaneFv, global
 /* 80036AF0 00033A30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036AF4 00033A34  7C 08 02 A6 */	mflr r0
 /* 80036AF8 00033A38  3C 80 80 4A */	lis r4, __vt__7J2DPane@ha
@@ -142,9 +141,9 @@ __ct__7J2DPaneFv:
 /* 80036BA4 00033AE4  7C 08 03 A6 */	mtlr r0
 /* 80036BA8 00033AE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80036BAC 00033AEC  4E 80 00 20 */	blr 
+.endfn __ct__7J2DPaneFv
 
-.global calcMtx__7J2DPaneFv
-calcMtx__7J2DPaneFv:
+.fn calcMtx__7J2DPaneFv, weak
 /* 80036BB0 00033AF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036BB4 00033AF4  7C 08 02 A6 */	mflr r0
 /* 80036BB8 00033AF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -162,9 +161,9 @@ calcMtx__7J2DPaneFv:
 /* 80036BE4 00033B24  7C 08 03 A6 */	mtlr r0
 /* 80036BE8 00033B28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80036BEC 00033B2C  4E 80 00 20 */	blr 
+.endfn calcMtx__7J2DPaneFv
 
-.global makeMatrix__7J2DPaneFff
-makeMatrix__7J2DPaneFff:
+.fn makeMatrix__7J2DPaneFff, weak
 /* 80036BF0 00033B30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036BF4 00033B34  7C 08 02 A6 */	mflr r0
 /* 80036BF8 00033B38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -180,9 +179,9 @@ makeMatrix__7J2DPaneFff:
 /* 80036C20 00033B60  7C 08 03 A6 */	mtlr r0
 /* 80036C24 00033B64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80036C28 00033B68  4E 80 00 20 */	blr 
+.endfn makeMatrix__7J2DPaneFff
 
-.global initiate__7J2DPaneFv
-initiate__7J2DPaneFv:
+.fn initiate__7J2DPaneFv, global
 /* 80036C2C 00033B6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036C30 00033B70  7C 08 02 A6 */	mflr r0
 /* 80036C34 00033B74  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
@@ -217,9 +216,9 @@ initiate__7J2DPaneFv:
 /* 80036CA8 00033BE8  7C 08 03 A6 */	mtlr r0
 /* 80036CAC 00033BEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80036CB0 00033BF0  4E 80 00 20 */	blr 
+.endfn initiate__7J2DPaneFv
 
-.global "__ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>"
-"__ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>":
+.fn "__ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>", global
 /* 80036CB4 00033BF4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80036CB8 00033BF8  7C 08 02 A6 */	mflr r0
 /* 80036CBC 00033BFC  3C C0 80 4A */	lis r6, __vt__7J2DPane@ha
@@ -254,9 +253,9 @@ initiate__7J2DPaneFv:
 /* 80036D30 00033C70  7C 08 03 A6 */	mtlr r0
 /* 80036D34 00033C74  38 21 00 30 */	addi r1, r1, 0x30
 /* 80036D38 00033C78  4E 80 00 20 */	blr 
+.endfn "__ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>"
 
-.global "initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>"
-"initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>":
+.fn "initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>", global
 /* 80036D3C 00033C7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036D40 00033C80  7C 08 02 A6 */	mflr r0
 /* 80036D44 00033C84  3C C0 50 41 */	lis r6, 0x50414E31@ha
@@ -331,9 +330,9 @@ initiate__7J2DPaneFv:
 /* 80036E50 00033D90  7C 08 03 A6 */	mtlr r0
 /* 80036E54 00033D94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80036E58 00033D98  4E 80 00 20 */	blr 
+.endfn "initialize__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>"
 
-.global "__ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>"
-"__ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>":
+.fn "__ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>", global
 /* 80036E5C 00033D9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80036E60 00033DA0  7C 08 02 A6 */	mflr r0
 /* 80036E64 00033DA4  3C 80 80 4A */	lis r4, __vt__7J2DPane@ha
@@ -364,9 +363,9 @@ initiate__7J2DPaneFv:
 /* 80036EC8 00033E08  7C 08 03 A6 */	mtlr r0
 /* 80036ECC 00033E0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80036ED0 00033E10  4E 80 00 20 */	blr 
+.endfn "__ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>"
 
-.global "initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>"
-"initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>":
+.fn "initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>", global
 /* 80036ED4 00033E14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036ED8 00033E18  7C 08 02 A6 */	mflr r0
 /* 80036EDC 00033E1C  3D 00 50 41 */	lis r8, 0x50414E31@ha
@@ -428,9 +427,9 @@ initiate__7J2DPaneFv:
 /* 80036FBC 00033EFC  7C 08 03 A6 */	mtlr r0
 /* 80036FC0 00033F00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80036FC4 00033F04  4E 80 00 20 */	blr 
+.endfn "initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>"
 
-.global __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc
-__ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc:
+.fn __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc, global
 /* 80036FC8 00033F08  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80036FCC 00033F0C  7C 08 02 A6 */	mflr r0
 /* 80036FD0 00033F10  3C E0 80 4A */	lis r7, __vt__7J2DPane@ha
@@ -505,9 +504,9 @@ __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc:
 /* 800370DC 0003401C  7C 08 03 A6 */	mtlr r0
 /* 800370E0 00034020  38 21 00 30 */	addi r1, r1, 0x30
 /* 800370E4 00034024  4E 80 00 20 */	blr 
+.endfn __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc
 
-.global makePaneStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream
-makePaneStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream:
+.fn makePaneStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream, global
 /* 800370E8 00034028  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 800370EC 0003402C  7C 08 02 A6 */	mflr r0
 /* 800370F0 00034030  90 01 00 84 */	stw r0, 0x84(r1)
@@ -723,9 +722,9 @@ makePaneStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream:
 /* 8003741C 0003435C  7C 08 03 A6 */	mtlr r0
 /* 80037420 00034360  38 21 00 80 */	addi r1, r1, 0x80
 /* 80037424 00034364  4E 80 00 20 */	blr 
+.endfn makePaneStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream
 
-.global changeUseTrans__7J2DPaneFP7J2DPane
-changeUseTrans__7J2DPaneFP7J2DPane:
+.fn changeUseTrans__7J2DPaneFP7J2DPane, global
 /* 80037428 00034368  3C A0 55 55 */	lis r5, 0x55555556@ha
 /* 8003742C 0003436C  88 C3 00 B7 */	lbz r6, 0xb7(r3)
 /* 80037430 00034370  38 05 55 56 */	addi r0, r5, 0x55555556@l
@@ -844,9 +843,9 @@ changeUseTrans__7J2DPaneFP7J2DPane:
 /* 800375D8 00034518  EC 00 18 28 */	fsubs f0, f0, f3
 /* 800375DC 0003451C  D0 03 00 D8 */	stfs f0, 0xd8(r3)
 /* 800375E0 00034520  4E 80 00 20 */	blr 
+.endfn changeUseTrans__7J2DPaneFP7J2DPane
 
-.global __dt__7J2DPaneFv
-__dt__7J2DPaneFv:
+.fn __dt__7J2DPaneFv, global
 /* 800375E4 00034524  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800375E8 00034528  7C 08 02 A6 */	mflr r0
 /* 800375EC 0003452C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -909,9 +908,9 @@ __dt__7J2DPaneFv:
 /* 800376B8 000345F8  7C 08 03 A6 */	mtlr r0
 /* 800376BC 000345FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800376C0 00034600  4E 80 00 20 */	blr 
+.endfn __dt__7J2DPaneFv
 
-.global appendChild__7J2DPaneFP7J2DPane
-appendChild__7J2DPaneFP7J2DPane:
+.fn appendChild__7J2DPaneFP7J2DPane, global
 /* 800376C4 00034604  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800376C8 00034608  7C 08 02 A6 */	mflr r0
 /* 800376CC 0003460C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -962,9 +961,9 @@ appendChild__7J2DPaneFP7J2DPane:
 /* 80037770 000346B0  7C 08 03 A6 */	mtlr r0
 /* 80037774 000346B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80037778 000346B8  4E 80 00 20 */	blr 
+.endfn appendChild__7J2DPaneFP7J2DPane
 
-.global prependChild__7J2DPaneFP7J2DPane
-prependChild__7J2DPaneFP7J2DPane:
+.fn prependChild__7J2DPaneFP7J2DPane, global
 /* 8003777C 000346BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80037780 000346C0  7C 08 02 A6 */	mflr r0
 /* 80037784 000346C4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1015,9 +1014,9 @@ prependChild__7J2DPaneFP7J2DPane:
 /* 80037828 00034768  7C 08 03 A6 */	mtlr r0
 /* 8003782C 0003476C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80037830 00034770  4E 80 00 20 */	blr 
+.endfn prependChild__7J2DPaneFP7J2DPane
 
-.global removeChild__7J2DPaneFP7J2DPane
-removeChild__7J2DPaneFP7J2DPane:
+.fn removeChild__7J2DPaneFP7J2DPane, global
 /* 80037834 00034774  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80037838 00034778  7C 08 02 A6 */	mflr r0
 /* 8003783C 0003477C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1063,9 +1062,9 @@ removeChild__7J2DPaneFP7J2DPane:
 /* 800378CC 0003480C  7C 08 03 A6 */	mtlr r0
 /* 800378D0 00034810  38 21 00 20 */	addi r1, r1, 0x20
 /* 800378D4 00034814  4E 80 00 20 */	blr 
+.endfn removeChild__7J2DPaneFP7J2DPane
 
-.global draw__7J2DPaneFffPC14J2DGrafContextbb
-draw__7J2DPaneFffPC14J2DGrafContextbb:
+.fn draw__7J2DPaneFffPC14J2DGrafContextbb, global
 /* 800378D8 00034818  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 800378DC 0003481C  7C 08 02 A6 */	mflr r0
 /* 800378E0 00034820  90 01 01 84 */	stw r0, 0x184(r1)
@@ -1491,17 +1490,17 @@ draw__7J2DPaneFffPC14J2DGrafContextbb:
 /* 80037F24 00034E64  7C 08 03 A6 */	mtlr r0
 /* 80037F28 00034E68  38 21 01 80 */	addi r1, r1, 0x180
 /* 80037F2C 00034E6C  4E 80 00 20 */	blr 
+.endfn draw__7J2DPaneFffPC14J2DGrafContextbb
 
-.global drawSelf__7J2DPaneFffPA3_A4_f
-drawSelf__7J2DPaneFffPA3_A4_f:
+.fn drawSelf__7J2DPaneFffPA3_A4_f, weak
 /* 80037F30 00034E70  4E 80 00 20 */	blr 
+.endfn drawSelf__7J2DPaneFffPA3_A4_f
 
-.global rewriteAlpha__7J2DPaneFv
-rewriteAlpha__7J2DPaneFv:
+.fn rewriteAlpha__7J2DPaneFv, weak
 /* 80037F34 00034E74  4E 80 00 20 */	blr 
+.endfn rewriteAlpha__7J2DPaneFv
 
-.global "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-"place__7J2DPaneFRCQ29JGeometry8TBox2<f>":
+.fn "place__7J2DPaneFRCQ29JGeometry8TBox2<f>", global
 /* 80037F38 00034E78  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80037F3C 00034E7C  7C 08 02 A6 */	mflr r0
 /* 80037F40 00034E80  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1659,9 +1658,9 @@ rewriteAlpha__7J2DPaneFv:
 /* 80038174 000350B4  7C 08 03 A6 */	mtlr r0
 /* 80038178 000350B8  38 21 00 50 */	addi r1, r1, 0x50
 /* 8003817C 000350BC  4E 80 00 20 */	blr 
+.endfn "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
 
-.global move__7J2DPaneFff
-move__7J2DPaneFff:
+.fn move__7J2DPaneFff, global
 /* 80038180 000350C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80038184 000350C4  7C 08 02 A6 */	mflr r0
 /* 80038188 000350C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1683,9 +1682,9 @@ move__7J2DPaneFff:
 /* 800381C8 00035108  7C 08 03 A6 */	mtlr r0
 /* 800381CC 0003510C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800381D0 00035110  4E 80 00 20 */	blr 
+.endfn move__7J2DPaneFff
 
-.global add__7J2DPaneFff
-add__7J2DPaneFff:
+.fn add__7J2DPaneFff, global
 /* 800381D4 00035114  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800381D8 00035118  7C 08 02 A6 */	mflr r0
 /* 800381DC 0003511C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1703,9 +1702,9 @@ add__7J2DPaneFff:
 /* 8003820C 0003514C  7C 08 03 A6 */	mtlr r0
 /* 80038210 00035150  38 21 00 10 */	addi r1, r1, 0x10
 /* 80038214 00035154  4E 80 00 20 */	blr 
+.endfn add__7J2DPaneFff
 
-.global resize__7J2DPaneFff
-resize__7J2DPaneFff:
+.fn resize__7J2DPaneFff, global
 /* 80038218 00035158  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8003821C 0003515C  7C 08 02 A6 */	mflr r0
 /* 80038220 00035160  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1773,9 +1772,9 @@ resize__7J2DPaneFff:
 /* 80038314 00035254  7C 08 03 A6 */	mtlr r0
 /* 80038318 00035258  38 21 00 40 */	addi r1, r1, 0x40
 /* 8003831C 0003525C  4E 80 00 20 */	blr 
+.endfn resize__7J2DPaneFff
 
-.global getBounds__7J2DPaneFv
-getBounds__7J2DPaneFv:
+.fn getBounds__7J2DPaneFv, global
 /* 80038320 00035260  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80038324 00035264  7C 08 02 A6 */	mflr r0
 /* 80038328 00035268  3C A0 80 51 */	lis r5, static_mBounds__7J2DPane@ha
@@ -1833,9 +1832,9 @@ getBounds__7J2DPaneFv:
 /* 800383F4 00035334  7C 08 03 A6 */	mtlr r0
 /* 800383F8 00035338  38 21 00 10 */	addi r1, r1, 0x10
 /* 800383FC 0003533C  4E 80 00 20 */	blr 
+.endfn getBounds__7J2DPaneFv
 
-.global rotate__7J2DPaneFff13J2DRotateAxisf
-rotate__7J2DPaneFff13J2DRotateAxisf:
+.fn rotate__7J2DPaneFff13J2DRotateAxisf, global
 /* 80038400 00035340  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80038404 00035344  7C 08 02 A6 */	mflr r0
 /* 80038408 00035348  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1848,9 +1847,9 @@ rotate__7J2DPaneFff13J2DRotateAxisf:
 /* 80038424 00035364  7C 08 03 A6 */	mtlr r0
 /* 80038428 00035368  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003842C 0003536C  4E 80 00 20 */	blr 
+.endfn rotate__7J2DPaneFff13J2DRotateAxisf
 
-.global rotate__7J2DPaneFf
-rotate__7J2DPaneFf:
+.fn rotate__7J2DPaneFf, global
 /* 80038430 00035370  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80038434 00035374  7C 08 02 A6 */	mflr r0
 /* 80038438 00035378  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1876,9 +1875,9 @@ rotate__7J2DPaneFf:
 /* 8003847C 000353BC  7C 08 03 A6 */	mtlr r0
 /* 80038480 000353C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80038484 000353C4  4E 80 00 20 */	blr 
+.endfn rotate__7J2DPaneFf
 
-.global "clip__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-"clip__7J2DPaneFRCQ29JGeometry8TBox2<f>":
+.fn "clip__7J2DPaneFRCQ29JGeometry8TBox2<f>", global
 /* 80038488 000353C8  C0 44 00 00 */	lfs f2, 0(r4)
 /* 8003848C 000353CC  C0 23 00 30 */	lfs f1, 0x30(r3)
 /* 80038490 000353D0  C0 84 00 08 */	lfs f4, 8(r4)
@@ -1913,9 +1912,9 @@ rotate__7J2DPaneFf:
 /* 800384F8 00035438  4C 82 00 20 */	bnelr 
 /* 800384FC 0003543C  D0 A3 00 4C */	stfs f5, 0x4c(r3)
 /* 80038500 00035440  4E 80 00 20 */	blr 
+.endfn "clip__7J2DPaneFRCQ29JGeometry8TBox2<f>"
 
-.global search__7J2DPaneFUx
-search__7J2DPaneFUx:
+.fn search__7J2DPaneFUx, global
 /* 80038504 00035444  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80038508 00035448  7C 08 02 A6 */	mflr r0
 /* 8003850C 0003544C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1965,9 +1964,9 @@ search__7J2DPaneFUx:
 /* 800385A8 000354E8  7C 08 03 A6 */	mtlr r0
 /* 800385AC 000354EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800385B0 000354F0  4E 80 00 20 */	blr 
+.endfn search__7J2DPaneFUx
 
-.global gather__7J2DPaneFPP7J2DPaneUxUxiRi
-gather__7J2DPaneFPP7J2DPaneUxUxiRi:
+.fn gather__7J2DPaneFPP7J2DPaneUxUxiRi, global
 /* 800385B4 000354F4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800385B8 000354F8  7C 08 02 A6 */	mflr r0
 /* 800385BC 000354FC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2185,31 +2184,31 @@ gather__7J2DPaneFPP7J2DPaneUxUxiRi:
 /* 800388B8 000357F8  7C 08 03 A6 */	mtlr r0
 /* 800388BC 000357FC  38 21 00 50 */	addi r1, r1, 0x50
 /* 800388C0 00035800  4E 80 00 20 */	blr 
+.endfn gather__7J2DPaneFPP7J2DPaneUxUxiRi
 
-.global "getNextChild__17JSUTree<7J2DPane>CFv"
-"getNextChild__17JSUTree<7J2DPane>CFv":
+.fn "getNextChild__17JSUTree<7J2DPane>CFv", weak
 /* 800388C4 00035804  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 800388C8 00035808  28 03 00 00 */	cmplwi r3, 0
 /* 800388CC 0003580C  4D 82 00 20 */	beqlr 
 /* 800388D0 00035810  38 63 FF F4 */	addi r3, r3, -12
 /* 800388D4 00035814  4E 80 00 20 */	blr 
+.endfn "getNextChild__17JSUTree<7J2DPane>CFv"
 
-.global "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
-"__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>":
+.fn "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>", weak
 /* 800388D8 00035818  80 03 00 00 */	lwz r0, 0(r3)
 /* 800388DC 0003581C  7C 60 20 50 */	subf r3, r0, r4
 /* 800388E0 00035820  7C 04 00 50 */	subf r0, r4, r0
 /* 800388E4 00035824  7C 60 03 78 */	or r0, r3, r0
 /* 800388E8 00035828  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 800388EC 0003582C  4E 80 00 20 */	blr 
+.endfn "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
 
-.global "getEndChild__17JSUTree<7J2DPane>CFv"
-"getEndChild__17JSUTree<7J2DPane>CFv":
+.fn "getEndChild__17JSUTree<7J2DPane>CFv", weak
 /* 800388F0 00035830  38 60 00 00 */	li r3, 0
 /* 800388F4 00035834  4E 80 00 20 */	blr 
+.endfn "getEndChild__17JSUTree<7J2DPane>CFv"
 
-.global "__pp__25JSUTreeIterator<7J2DPane>Fv"
-"__pp__25JSUTreeIterator<7J2DPane>Fv":
+.fn "__pp__25JSUTreeIterator<7J2DPane>Fv", weak
 /* 800388F8 00035838  80 83 00 00 */	lwz r4, 0(r3)
 /* 800388FC 0003583C  80 84 00 18 */	lwz r4, 0x18(r4)
 /* 80038900 00035840  28 04 00 00 */	cmplwi r4, 0
@@ -2218,33 +2217,33 @@ gather__7J2DPaneFPP7J2DPaneUxUxiRi:
 .L_8003890C:
 /* 8003890C 0003584C  90 83 00 00 */	stw r4, 0(r3)
 /* 80038910 00035850  4E 80 00 20 */	blr 
+.endfn "__pp__25JSUTreeIterator<7J2DPane>Fv"
 
-.global "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
-"__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>":
+.fn "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>", weak
 /* 80038914 00035854  90 83 00 00 */	stw r4, 0(r3)
 /* 80038918 00035858  4E 80 00 20 */	blr 
+.endfn "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
 
-.global "__rf__25JSUTreeIterator<7J2DPane>CFv"
-"__rf__25JSUTreeIterator<7J2DPane>CFv":
+.fn "__rf__25JSUTreeIterator<7J2DPane>CFv", weak
 /* 8003891C 0003585C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80038920 00035860  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80038924 00035864  4E 80 00 20 */	blr 
+.endfn "__rf__25JSUTreeIterator<7J2DPane>CFv"
 
-.global "getFirstChild__17JSUTree<7J2DPane>CFv"
-"getFirstChild__17JSUTree<7J2DPane>CFv":
+.fn "getFirstChild__17JSUTree<7J2DPane>CFv", weak
 /* 80038928 00035868  80 63 00 00 */	lwz r3, 0(r3)
 /* 8003892C 0003586C  28 03 00 00 */	cmplwi r3, 0
 /* 80038930 00035870  4D 82 00 20 */	beqlr 
 /* 80038934 00035874  38 63 FF F4 */	addi r3, r3, -12
 /* 80038938 00035878  4E 80 00 20 */	blr 
+.endfn "getFirstChild__17JSUTree<7J2DPane>CFv"
 
-.global "getObject__17JSUTree<7J2DPane>CFv"
-"getObject__17JSUTree<7J2DPane>CFv":
+.fn "getObject__17JSUTree<7J2DPane>CFv", weak
 /* 8003893C 0003587C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80038940 00035880  4E 80 00 20 */	blr 
+.endfn "getObject__17JSUTree<7J2DPane>CFv"
 
-.global searchUserInfo__7J2DPaneFUx
-searchUserInfo__7J2DPaneFUx:
+.fn searchUserInfo__7J2DPaneFUx, global
 /* 80038944 00035884  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80038948 00035888  7C 08 02 A6 */	mflr r0
 /* 8003894C 0003588C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2294,9 +2293,9 @@ searchUserInfo__7J2DPaneFUx:
 /* 800389E8 00035928  7C 08 03 A6 */	mtlr r0
 /* 800389EC 0003592C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800389F0 00035930  4E 80 00 20 */	blr 
+.endfn searchUserInfo__7J2DPaneFUx
 
-.global isUsed__7J2DPaneFPC7ResTIMG
-isUsed__7J2DPaneFPC7ResTIMG:
+.fn isUsed__7J2DPaneFPC7ResTIMG, global
 /* 800389F4 00035934  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800389F8 00035938  7C 08 02 A6 */	mflr r0
 /* 800389FC 0003593C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2335,9 +2334,9 @@ isUsed__7J2DPaneFPC7ResTIMG:
 /* 80038A70 000359B0  7C 08 03 A6 */	mtlr r0
 /* 80038A74 000359B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80038A78 000359B8  4E 80 00 20 */	blr 
+.endfn isUsed__7J2DPaneFPC7ResTIMG
 
-.global isUsed__7J2DPaneFPC7ResFONT
-isUsed__7J2DPaneFPC7ResFONT:
+.fn isUsed__7J2DPaneFPC7ResFONT, global
 /* 80038A7C 000359BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80038A80 000359C0  7C 08 02 A6 */	mflr r0
 /* 80038A84 000359C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2376,9 +2375,9 @@ isUsed__7J2DPaneFPC7ResFONT:
 /* 80038AF8 00035A38  7C 08 03 A6 */	mtlr r0
 /* 80038AFC 00035A3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80038B00 00035A40  4E 80 00 20 */	blr 
+.endfn isUsed__7J2DPaneFPC7ResFONT
 
-.global makeMatrix__7J2DPaneFffff
-makeMatrix__7J2DPaneFffff:
+.fn makeMatrix__7J2DPaneFffff, global
 /* 80038B04 00035A44  94 21 FE 90 */	stwu r1, -0x170(r1)
 /* 80038B08 00035A48  7C 08 02 A6 */	mflr r0
 /* 80038B0C 00035A4C  90 01 01 74 */	stw r0, 0x174(r1)
@@ -2459,9 +2458,9 @@ makeMatrix__7J2DPaneFffff:
 /* 80038C38 00035B78  7C 08 03 A6 */	mtlr r0
 /* 80038C3C 00035B7C  38 21 01 70 */	addi r1, r1, 0x170
 /* 80038C40 00035B80  4E 80 00 20 */	blr 
+.endfn makeMatrix__7J2DPaneFffff
 
-.global setCullBack__7J2DPaneF11_GXCullMode
-setCullBack__7J2DPaneF11_GXCullMode:
+.fn setCullBack__7J2DPaneF11_GXCullMode, global
 /* 80038C44 00035B84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80038C48 00035B88  7C 08 02 A6 */	mflr r0
 /* 80038C4C 00035B8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2494,9 +2493,9 @@ setCullBack__7J2DPaneF11_GXCullMode:
 /* 80038CB0 00035BF0  7C 08 03 A6 */	mtlr r0
 /* 80038CB4 00035BF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80038CB8 00035BF8  4E 80 00 20 */	blr 
+.endfn setCullBack__7J2DPaneF11_GXCullMode
 
-.global setBasePosition__7J2DPaneF15J2DBasePosition
-setBasePosition__7J2DPaneF15J2DBasePosition:
+.fn setBasePosition__7J2DPaneF15J2DBasePosition, global
 /* 80038CBC 00035BFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80038CC0 00035C00  7C 08 02 A6 */	mflr r0
 /* 80038CC4 00035C04  3C A0 55 55 */	lis r5, 0x55555556@ha
@@ -2561,9 +2560,9 @@ setBasePosition__7J2DPaneF15J2DBasePosition:
 /* 80038DA0 00035CE0  7C 08 03 A6 */	mtlr r0
 /* 80038DA4 00035CE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80038DA8 00035CE8  4E 80 00 20 */	blr 
+.endfn setBasePosition__7J2DPaneF15J2DBasePosition
 
-.global setInfluencedAlpha__7J2DPaneFbb
-setInfluencedAlpha__7J2DPaneFbb:
+.fn setInfluencedAlpha__7J2DPaneFbb, global
 /* 80038DAC 00035CEC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80038DB0 00035CF0  7C 08 02 A6 */	mflr r0
 /* 80038DB4 00035CF4  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2694,14 +2693,14 @@ setInfluencedAlpha__7J2DPaneFbb:
 /* 80038F84 00035EC4  7C 08 03 A6 */	mtlr r0
 /* 80038F88 00035EC8  38 21 00 50 */	addi r1, r1, 0x50
 /* 80038F8C 00035ECC  4E 80 00 20 */	blr 
+.endfn setInfluencedAlpha__7J2DPaneFbb
 
-.global setAlpha__7J2DPaneFUc
-setAlpha__7J2DPaneFUc:
+.fn setAlpha__7J2DPaneFUc, weak
 /* 80038F90 00035ED0  98 83 00 B2 */	stb r4, 0xb2(r3)
 /* 80038F94 00035ED4  4E 80 00 20 */	blr 
+.endfn setAlpha__7J2DPaneFUc
 
-.global getGlbVtx__7J2DPaneCFUc
-getGlbVtx__7J2DPaneCFUc:
+.fn getGlbVtx__7J2DPaneCFUc, global
 /* 80038F98 00035ED8  54 A6 06 3E */	clrlwi r6, r5, 0x18
 /* 80038F9C 00035EDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80038FA0 00035EE0  28 06 00 04 */	cmplwi r6, 4
@@ -2762,9 +2761,9 @@ getGlbVtx__7J2DPaneCFUc:
 .L_80039068:
 /* 80039068 00035FA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003906C 00035FAC  4E 80 00 20 */	blr 
+.endfn getGlbVtx__7J2DPaneCFUc
 
-.global getFirstChildPane__7J2DPaneFv
-getFirstChildPane__7J2DPaneFv:
+.fn getFirstChildPane__7J2DPaneFv, global
 /* 80039070 00035FB0  80 63 00 DC */	lwz r3, 0xdc(r3)
 /* 80039074 00035FB4  28 03 00 00 */	cmplwi r3, 0
 /* 80039078 00035FB8  7C 60 1B 78 */	mr r0, r3
@@ -2782,9 +2781,9 @@ getFirstChildPane__7J2DPaneFv:
 .L_800390A0:
 /* 800390A0 00035FE0  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 800390A4 00035FE4  4E 80 00 20 */	blr 
+.endfn getFirstChildPane__7J2DPaneFv
 
-.global getNextChildPane__7J2DPaneFv
-getNextChildPane__7J2DPaneFv:
+.fn getNextChildPane__7J2DPaneFv, global
 /* 800390A8 00035FE8  80 63 00 F4 */	lwz r3, 0xf4(r3)
 /* 800390AC 00035FEC  28 03 00 00 */	cmplwi r3, 0
 /* 800390B0 00035FF0  7C 60 1B 78 */	mr r0, r3
@@ -2802,9 +2801,9 @@ getNextChildPane__7J2DPaneFv:
 .L_800390D8:
 /* 800390D8 00036018  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 800390DC 0003601C  4E 80 00 20 */	blr 
+.endfn getNextChildPane__7J2DPaneFv
 
-.global getParentPane__7J2DPaneFv
-getParentPane__7J2DPaneFv:
+.fn getParentPane__7J2DPaneFv, global
 /* 800390E0 00036020  80 63 00 EC */	lwz r3, 0xec(r3)
 /* 800390E4 00036024  28 03 00 00 */	cmplwi r3, 0
 /* 800390E8 00036028  40 82 00 0C */	bne .L_800390F4
@@ -2813,9 +2812,9 @@ getParentPane__7J2DPaneFv:
 .L_800390F4:
 /* 800390F4 00036034  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 800390F8 00036038  4E 80 00 20 */	blr 
+.endfn getParentPane__7J2DPaneFv
 
-.global makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream
-makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream:
+.fn makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream, global
 /* 800390FC 0003603C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80039100 00036040  7C 08 02 A6 */	mflr r0
 /* 80039104 00036044  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2955,9 +2954,9 @@ makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream:
 /* 800392FC 0003623C  7C 08 03 A6 */	mtlr r0
 /* 80039300 00036240  38 21 00 60 */	addi r1, r1, 0x60
 /* 80039304 00036244  4E 80 00 20 */	blr 
+.endfn makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream
 
-.global J2DCast_F32_to_S16__7J2DPaneFfUc
-J2DCast_F32_to_S16__7J2DPaneFfUc:
+.fn J2DCast_F32_to_S16__7J2DPaneFfUc, global
 /* 80039308 00036248  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8003930C 0003624C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80039310 00036250  28 00 00 0F */	cmplwi r0, 0xf
@@ -3010,9 +3009,9 @@ J2DCast_F32_to_S16__7J2DPaneFfUc:
 .L_800393B8:
 /* 800393B8 000362F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800393BC 000362FC  4E 80 00 20 */	blr 
+.endfn J2DCast_F32_to_S16__7J2DPaneFfUc
 
-.global getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive
-getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive:
+.fn getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive, global
 /* 800393C0 00036300  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 800393C4 00036304  7C 08 02 A6 */	mflr r0
 /* 800393C8 00036308  90 01 01 24 */	stw r0, 0x124(r1)
@@ -3100,9 +3099,9 @@ getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive:
 /* 80039500 00036440  7C 08 03 A6 */	mtlr r0
 /* 80039504 00036444  38 21 01 20 */	addi r1, r1, 0x120
 /* 80039508 00036448  4E 80 00 20 */	blr 
+.endfn getPointer__7J2DPaneFP20JSURandomInputStreamUlP10JKRArchive
 
-.global setAnimation__7J2DPaneFP10J2DAnmBase
-setAnimation__7J2DPaneFP10J2DAnmBase:
+.fn setAnimation__7J2DPaneFP10J2DAnmBase, global
 /* 8003950C 0003644C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80039510 00036450  7C 08 02 A6 */	mflr r0
 /* 80039514 00036454  28 04 00 00 */	cmplwi r4, 0
@@ -3163,38 +3162,38 @@ setAnimation__7J2DPaneFP10J2DAnmBase:
 /* 800395D0 00036510  7C 08 03 A6 */	mtlr r0
 /* 800395D4 00036514  38 21 00 10 */	addi r1, r1, 0x10
 /* 800395D8 00036518  4E 80 00 20 */	blr 
+.endfn setAnimation__7J2DPaneFP10J2DAnmBase
 
-.global setAnimation__7J2DPaneFP15J2DAnmTevRegKey
-setAnimation__7J2DPaneFP15J2DAnmTevRegKey:
+.fn setAnimation__7J2DPaneFP15J2DAnmTevRegKey, weak
 /* 800395DC 0003651C  4E 80 00 20 */	blr 
+.endfn setAnimation__7J2DPaneFP15J2DAnmTevRegKey
 
-.global setAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-setAnimation__7J2DPaneFP20J2DAnmVisibilityFull:
+.fn setAnimation__7J2DPaneFP20J2DAnmVisibilityFull, weak
 /* 800395E0 00036520  4E 80 00 20 */	blr 
+.endfn setAnimation__7J2DPaneFP20J2DAnmVisibilityFull
 
-.global setAnimation__7J2DPaneFP16J2DAnmTexPattern
-setAnimation__7J2DPaneFP16J2DAnmTexPattern:
+.fn setAnimation__7J2DPaneFP16J2DAnmTexPattern, weak
 /* 800395E4 00036524  4E 80 00 20 */	blr 
+.endfn setAnimation__7J2DPaneFP16J2DAnmTexPattern
 
-.global setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey
-setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey:
+.fn setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey, weak
 /* 800395E8 00036528  4E 80 00 20 */	blr 
+.endfn setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey
 
-.global setAnimation__7J2DPaneFP14J2DAnmVtxColor
-setAnimation__7J2DPaneFP14J2DAnmVtxColor:
+.fn setAnimation__7J2DPaneFP14J2DAnmVtxColor, weak
 /* 800395EC 0003652C  4E 80 00 20 */	blr 
+.endfn setAnimation__7J2DPaneFP14J2DAnmVtxColor
 
-.global setAnimation__7J2DPaneFP11J2DAnmColor
-setAnimation__7J2DPaneFP11J2DAnmColor:
+.fn setAnimation__7J2DPaneFP11J2DAnmColor, weak
 /* 800395F0 00036530  4E 80 00 20 */	blr 
+.endfn setAnimation__7J2DPaneFP11J2DAnmColor
 
-.global setAnimation__7J2DPaneFP15J2DAnmTransform
-setAnimation__7J2DPaneFP15J2DAnmTransform:
+.fn setAnimation__7J2DPaneFP15J2DAnmTransform, global
 /* 800395F4 00036534  90 83 00 F8 */	stw r4, 0xf8(r3)
 /* 800395F8 00036538  4E 80 00 20 */	blr 
+.endfn setAnimation__7J2DPaneFP15J2DAnmTransform
 
-.global animationTransform__7J2DPaneFv
-animationTransform__7J2DPaneFv:
+.fn animationTransform__7J2DPaneFv, global
 /* 800395FC 0003653C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80039600 00036540  7C 08 02 A6 */	mflr r0
 /* 80039604 00036544  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3210,9 +3209,9 @@ animationTransform__7J2DPaneFv:
 /* 80039628 00036568  7C 08 03 A6 */	mtlr r0
 /* 8003962C 0003656C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80039630 00036570  4E 80 00 20 */	blr 
+.endfn animationTransform__7J2DPaneFv
 
-.global clearAnmTransform__7J2DPaneFv
-clearAnmTransform__7J2DPaneFv:
+.fn clearAnmTransform__7J2DPaneFv, global
 /* 80039634 00036574  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80039638 00036578  7C 08 02 A6 */	mflr r0
 /* 8003963C 0003657C  38 80 00 00 */	li r4, 0
@@ -3246,9 +3245,9 @@ clearAnmTransform__7J2DPaneFv:
 /* 800396A4 000365E4  7C 08 03 A6 */	mtlr r0
 /* 800396A8 000365E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800396AC 000365EC  4E 80 00 20 */	blr 
+.endfn clearAnmTransform__7J2DPaneFv
 
-.global animationTransform__7J2DPaneFPC15J2DAnmTransform
-animationTransform__7J2DPaneFPC15J2DAnmTransform:
+.fn animationTransform__7J2DPaneFPC15J2DAnmTransform, global
 /* 800396B0 000365F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800396B4 000365F4  7C 08 02 A6 */	mflr r0
 /* 800396B8 000365F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3292,9 +3291,9 @@ animationTransform__7J2DPaneFPC15J2DAnmTransform:
 /* 80039744 00036684  7C 08 03 A6 */	mtlr r0
 /* 80039748 00036688  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003974C 0003668C  4E 80 00 20 */	blr 
+.endfn animationTransform__7J2DPaneFPC15J2DAnmTransform
 
-.global setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull:
+.fn setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull, global
 /* 80039750 00036690  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80039754 00036694  7C 08 02 A6 */	mflr r0
 /* 80039758 00036698  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3331,9 +3330,9 @@ setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull:
 /* 800397CC 0003670C  7C 08 03 A6 */	mtlr r0
 /* 800397D0 00036710  38 21 00 10 */	addi r1, r1, 0x10
 /* 800397D4 00036714  4E 80 00 20 */	blr 
+.endfn setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
 
-.global setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
-setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull:
+.fn setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull, weak
 /* 800397D8 00036718  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800397DC 0003671C  7C 08 02 A6 */	mflr r0
 /* 800397E0 00036720  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3345,9 +3344,9 @@ setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull:
 /* 800397F8 00036738  7C 08 03 A6 */	mtlr r0
 /* 800397FC 0003673C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80039800 00036740  4E 80 00 20 */	blr 
+.endfn setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
 
-.global setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
-setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor:
+.fn setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor, global
 /* 80039804 00036744  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80039808 00036748  7C 08 02 A6 */	mflr r0
 /* 8003980C 0003674C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3384,9 +3383,9 @@ setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor:
 /* 80039880 000367C0  7C 08 03 A6 */	mtlr r0
 /* 80039884 000367C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80039888 000367C8  4E 80 00 20 */	blr 
+.endfn setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
 
-.global setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
-setAnimationVC__7J2DPaneFP14J2DAnmVtxColor:
+.fn setAnimationVC__7J2DPaneFP14J2DAnmVtxColor, weak
 /* 8003988C 000367CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80039890 000367D0  7C 08 02 A6 */	mflr r0
 /* 80039894 000367D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3398,9 +3397,9 @@ setAnimationVC__7J2DPaneFP14J2DAnmVtxColor:
 /* 800398AC 000367EC  7C 08 03 A6 */	mtlr r0
 /* 800398B0 000367F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800398B4 000367F4  4E 80 00 20 */	blr 
+.endfn setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
 
-.global animationPane__7J2DPaneFPC15J2DAnmTransform
-animationPane__7J2DPaneFPC15J2DAnmTransform:
+.fn animationPane__7J2DPaneFPC15J2DAnmTransform, global
 /* 800398B8 000367F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800398BC 000367FC  7C 08 02 A6 */	mflr r0
 /* 800398C0 00036800  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3444,9 +3443,9 @@ animationPane__7J2DPaneFPC15J2DAnmTransform:
 /* 8003994C 0003688C  7C 08 03 A6 */	mtlr r0
 /* 80039950 00036890  38 21 00 20 */	addi r1, r1, 0x20
 /* 80039954 00036894  4E 80 00 20 */	blr 
+.endfn animationPane__7J2DPaneFPC15J2DAnmTransform
 
-.global updateTransform__7J2DPaneFPC15J2DAnmTransform
-updateTransform__7J2DPaneFPC15J2DAnmTransform:
+.fn updateTransform__7J2DPaneFPC15J2DAnmTransform, global
 /* 80039958 00036898  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8003995C 0003689C  7C 08 02 A6 */	mflr r0
 /* 80039960 000368A0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -3514,18 +3513,18 @@ updateTransform__7J2DPaneFPC15J2DAnmTransform:
 /* 80039A54 00036994  7C 08 03 A6 */	mtlr r0
 /* 80039A58 00036998  38 21 00 50 */	addi r1, r1, 0x50
 /* 80039A5C 0003699C  4E 80 00 20 */	blr 
+.endfn updateTransform__7J2DPaneFPC15J2DAnmTransform
 
-.global getTransform__15J2DAnmTransformCFUsP16J3DTransformInfo
-getTransform__15J2DAnmTransformCFUsP16J3DTransformInfo:
+.fn getTransform__15J2DAnmTransformCFUsP16J3DTransformInfo, weak
 /* 80039A60 000369A0  4E 80 00 20 */	blr 
+.endfn getTransform__15J2DAnmTransformCFUsP16J3DTransformInfo
 
-.global getTypeID__7J2DPaneCFv
-getTypeID__7J2DPaneCFv:
+.fn getTypeID__7J2DPaneCFv, weak
 /* 80039A64 000369A4  38 60 00 10 */	li r3, 0x10
 /* 80039A68 000369A8  4E 80 00 20 */	blr 
+.endfn getTypeID__7J2DPaneCFv
 
-.global setCullBack__7J2DPaneFb
-setCullBack__7J2DPaneFb:
+.fn setCullBack__7J2DPaneFb, weak
 /* 80039A6C 000369AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80039A70 000369B0  7C 08 02 A6 */	mflr r0
 /* 80039A74 000369B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3542,21 +3541,22 @@ setCullBack__7J2DPaneFb:
 /* 80039A9C 000369DC  7C 08 03 A6 */	mtlr r0
 /* 80039AA0 000369E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80039AA4 000369E4  4E 80 00 20 */	blr 
+.endfn setCullBack__7J2DPaneFb
 
-.global setConnectParent__7J2DPaneFb
-setConnectParent__7J2DPaneFb:
+.fn setConnectParent__7J2DPaneFb, weak
 /* 80039AA8 000369E8  38 00 00 00 */	li r0, 0
 /* 80039AAC 000369EC  98 03 00 B5 */	stb r0, 0xb5(r3)
 /* 80039AB0 000369F0  38 60 00 00 */	li r3, 0
 /* 80039AB4 000369F4  4E 80 00 20 */	blr 
+.endfn setConnectParent__7J2DPaneFb
 
-.global update__7J2DPaneFv
-update__7J2DPaneFv:
+.fn update__7J2DPaneFv, weak
 /* 80039AB8 000369F8  4E 80 00 20 */	blr 
+.endfn update__7J2DPaneFv
 
-.global drawSelf__7J2DPaneFff
-drawSelf__7J2DPaneFff:
+.fn drawSelf__7J2DPaneFff, weak
 /* 80039ABC 000369FC  4E 80 00 20 */	blr 
+.endfn drawSelf__7J2DPaneFff
 
 .fn __sinit_J2DPane_cpp, local
 /* 80039AC0 00036A00  C0 02 84 60 */	lfs f0, lbl_805167C0@sda21(r2)

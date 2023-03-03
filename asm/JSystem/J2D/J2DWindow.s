@@ -1,32 +1,35 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80478498:
+.obj lbl_80478498, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_804784A8:
+.endobj lbl_80478498
+.obj lbl_804784A8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_804784B8:
+.endobj lbl_804784A8
+.obj lbl_804784B8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_804784C8:
+.endobj lbl_804784B8
+.obj lbl_804784C8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_804784C8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__9J2DWindow
-__vt__9J2DWindow:
+.obj __vt__9J2DWindow, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__9J2DWindowFv
@@ -78,26 +81,29 @@ __vt__9J2DWindow:
 	.4byte getFrameMaterial__9J2DWindowCFUc
 	.4byte getContentsMaterial__9J2DWindowCFv
 	.4byte "drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>"
+.endobj __vt__9J2DWindow
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516880:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80516880, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516880
 .balign 8
-lbl_80516888:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80516890:
+.obj lbl_80516888, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516888
+.obj lbl_80516890, local
 	.float 0.0
-lbl_80516894:
+.endobj lbl_80516890
+.obj lbl_80516894, local
 	.float 1.0
-lbl_80516898:
+.endobj lbl_80516894
+.obj lbl_80516898, local
 	.float 0.5
+.endobj lbl_80516898
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__9J2DWindowFv
-__ct__9J2DWindowFv:
+.fn __ct__9J2DWindowFv, global
 /* 80042544 0003F484  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80042548 0003F488  7C 08 02 A6 */	mflr r0
 /* 8004254C 0003F48C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -160,9 +166,9 @@ __ct__9J2DWindowFv:
 /* 80042630 0003F570  7C 08 03 A6 */	mtlr r0
 /* 80042634 0003F574  38 21 00 30 */	addi r1, r1, 0x30
 /* 80042638 0003F578  4E 80 00 20 */	blr 
+.endfn __ct__9J2DWindowFv
 
-.global __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
-__ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
+.fn __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive, global
 /* 8004263C 0003F57C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80042640 0003F580  7C 08 02 A6 */	mflr r0
 /* 80042644 0003F584  90 01 00 24 */	stw r0, 0x24(r1)
@@ -206,9 +212,9 @@ __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
 /* 800426DC 0003F61C  7C 08 03 A6 */	mtlr r0
 /* 800426E0 0003F620  38 21 00 20 */	addi r1, r1, 0x20
 /* 800426E4 0003F624  4E 80 00 20 */	blr 
+.endfn __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
 
-.global __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial
-__ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial:
+.fn __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial, global
 /* 800426E8 0003F628  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 800426EC 0003F62C  7C 08 02 A6 */	mflr r0
 /* 800426F0 0003F630  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -562,9 +568,9 @@ __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial:
 /* 80042C3C 0003FB7C  7C 08 03 A6 */	mtlr r0
 /* 80042C40 0003FB80  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80042C44 0003FB84  4E 80 00 20 */	blr 
+.endfn __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial
 
-.global private_readStream__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
-private_readStream__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
+.fn private_readStream__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive, global
 /* 80042C48 0003FB88  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80042C4C 0003FB8C  7C 08 02 A6 */	mflr r0
 /* 80042C50 0003FB90  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -893,9 +899,9 @@ private_readStream__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
 /* 80043120 00040060  7C 08 03 A6 */	mtlr r0
 /* 80043124 00040064  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80043128 00040068  4E 80 00 20 */	blr 
+.endfn private_readStream__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
 
-.global initinfo2__9J2DWindowFv
-initinfo2__9J2DWindowFv:
+.fn initinfo2__9J2DWindowFv, global
 /* 8004312C 0004006C  80 A3 01 00 */	lwz r5, 0x100(r3)
 /* 80043130 00040070  28 05 00 00 */	cmplwi r5, 0
 /* 80043134 00040074  41 82 00 64 */	beq .L_80043198
@@ -1062,9 +1068,9 @@ initinfo2__9J2DWindowFv:
 /* 8004339C 000402DC  60 00 00 04 */	ori r0, r0, 4
 /* 800433A0 000402E0  98 03 01 45 */	stb r0, 0x145(r3)
 /* 800433A4 000402E4  4E 80 00 20 */	blr 
+.endfn initinfo2__9J2DWindowFv
 
-.global __dt__9J2DWindowFv
-__dt__9J2DWindowFv:
+.fn __dt__9J2DWindowFv, global
 /* 800433A8 000402E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800433AC 000402EC  7C 08 02 A6 */	mflr r0
 /* 800433B0 000402F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1108,9 +1114,9 @@ __dt__9J2DWindowFv:
 /* 80043444 00040384  7C 08 03 A6 */	mtlr r0
 /* 80043448 00040388  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004344C 0004038C  4E 80 00 20 */	blr 
+.endfn __dt__9J2DWindowFv
 
-.global "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>"
-"draw__9J2DWindowFRCQ29JGeometry8TBox2<f>":
+.fn "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>", global
 /* 80043450 00040390  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80043454 00040394  7C 08 02 A6 */	mflr r0
 /* 80043458 00040398  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1190,9 +1196,9 @@ __dt__9J2DWindowFv:
 /* 80043578 000404B8  7C 08 03 A6 */	mtlr r0
 /* 8004357C 000404BC  38 21 00 40 */	addi r1, r1, 0x40
 /* 80043580 000404C0  4E 80 00 20 */	blr 
+.endfn "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>"
 
-.global "draw_private__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-"draw_private__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>":
+.fn "draw_private__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>", global
 /* 80043584 000404C4  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80043588 000404C8  7C 08 02 A6 */	mflr r0
 /* 8004358C 000404CC  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -1483,9 +1489,9 @@ __dt__9J2DWindowFv:
 /* 800439FC 0004093C  7C 08 03 A6 */	mtlr r0
 /* 80043A00 00040940  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 80043A04 00040944  4E 80 00 20 */	blr 
+.endfn "draw_private__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
 
-.global "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-"draw__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>":
+.fn "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>", global
 /* 80043A08 00040948  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80043A0C 0004094C  7C 08 02 A6 */	mflr r0
 /* 80043A10 00040950  C8 82 85 20 */	lfd f4, lbl_80516880@sda21(r2)
@@ -1565,9 +1571,9 @@ __dt__9J2DWindowFv:
 /* 80043B34 00040A74  7C 08 03 A6 */	mtlr r0
 /* 80043B38 00040A78  38 21 00 60 */	addi r1, r1, 0x60
 /* 80043B3C 00040A7C  4E 80 00 20 */	blr 
+.endfn "draw__9J2DWindowFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
 
-.global resize__9J2DWindowFff
-resize__9J2DWindowFff:
+.fn resize__9J2DWindowFff, global
 /* 80043B40 00040A80  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80043B44 00040A84  7C 08 02 A6 */	mflr r0
 /* 80043B48 00040A88  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1646,9 +1652,9 @@ resize__9J2DWindowFff:
 /* 80043C60 00040BA0  7C 08 03 A6 */	mtlr r0
 /* 80043C64 00040BA4  38 21 00 50 */	addi r1, r1, 0x50
 /* 80043C68 00040BA8  4E 80 00 20 */	blr 
+.endfn resize__9J2DWindowFff
 
-.global setContentsColor__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-setContentsColor__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor:
+.fn setContentsColor__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor, global
 /* 80043C6C 00040BAC  80 04 00 00 */	lwz r0, 0(r4)
 /* 80043C70 00040BB0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80043C74 00040BB4  80 85 00 00 */	lwz r4, 0(r5)
@@ -1692,9 +1698,9 @@ setContentsColor__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TCo
 /* 80043D0C 00040C4C  98 03 01 37 */	stb r0, 0x137(r3)
 /* 80043D10 00040C50  38 21 00 20 */	addi r1, r1, 0x20
 /* 80043D14 00040C54  4E 80 00 20 */	blr 
+.endfn setContentsColor__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 
-.global drawSelf__9J2DWindowFff
-drawSelf__9J2DWindowFff:
+.fn drawSelf__9J2DWindowFff, global
 /* 80043D18 00040C58  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80043D1C 00040C5C  7C 08 02 A6 */	mflr r0
 /* 80043D20 00040C60  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1721,9 +1727,9 @@ drawSelf__9J2DWindowFff:
 /* 80043D74 00040CB4  7C 08 03 A6 */	mtlr r0
 /* 80043D78 00040CB8  38 21 00 50 */	addi r1, r1, 0x50
 /* 80043D7C 00040CBC  4E 80 00 20 */	blr 
+.endfn drawSelf__9J2DWindowFff
 
-.global drawSelf__9J2DWindowFffPA3_A4_f
-drawSelf__9J2DWindowFffPA3_A4_f:
+.fn drawSelf__9J2DWindowFffPA3_A4_f, global
 /* 80043D80 00040CC0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80043D84 00040CC4  7C 08 02 A6 */	mflr r0
 /* 80043D88 00040CC8  C8 62 85 20 */	lfd f3, lbl_80516880@sda21(r2)
@@ -1787,9 +1793,9 @@ drawSelf__9J2DWindowFffPA3_A4_f:
 /* 80043E6C 00040DAC  7C 08 03 A6 */	mtlr r0
 /* 80043E70 00040DB0  38 21 00 60 */	addi r1, r1, 0x60
 /* 80043E74 00040DB4  4E 80 00 20 */	blr 
+.endfn drawSelf__9J2DWindowFffPA3_A4_f
 
-.global "drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>"
-"drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>":
+.fn "drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>", global
 /* 80043E78 00040DB8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80043E7C 00040DBC  7C 08 02 A6 */	mflr r0
 /* 80043E80 00040DC0  C0 24 00 08 */	lfs f1, 8(r4)
@@ -2004,9 +2010,9 @@ drawSelf__9J2DWindowFffPA3_A4_f:
 /* 800441A8 000410E8  7C 08 03 A6 */	mtlr r0
 /* 800441AC 000410EC  38 21 00 30 */	addi r1, r1, 0x30
 /* 800441B0 000410F0  4E 80 00 20 */	blr 
+.endfn "drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>"
 
-.global drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb
-drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb:
+.fn drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb, global
 /* 800441B4 000410F4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800441B8 000410F8  7C 08 02 A6 */	mflr r0
 /* 800441BC 000410FC  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2104,9 +2110,9 @@ drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb:
 /* 80044328 00041268  7C 08 03 A6 */	mtlr r0
 /* 8004432C 0004126C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80044330 00041270  4E 80 00 20 */	blr 
+.endfn drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb
 
-.global drawFrameTexture__9J2DWindowFP10JUTTextureffbbb
-drawFrameTexture__9J2DWindowFP10JUTTextureffbbb:
+.fn drawFrameTexture__9J2DWindowFP10JUTTextureffbbb, global
 /* 80044334 00041274  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80044338 00041278  7C 08 02 A6 */	mflr r0
 /* 8004433C 0004127C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -2247,9 +2253,9 @@ drawFrameTexture__9J2DWindowFP10JUTTextureffbbb:
 /* 80044554 00041494  7C 08 03 A6 */	mtlr r0
 /* 80044558 00041498  38 21 00 80 */	addi r1, r1, 0x80
 /* 8004455C 0004149C  4E 80 00 20 */	blr 
+.endfn drawFrameTexture__9J2DWindowFP10JUTTextureffbbb
 
-.global drawContentsTexture__9J2DWindowFffff
-drawContentsTexture__9J2DWindowFffff:
+.fn drawContentsTexture__9J2DWindowFffff, global
 /* 80044560 000414A0  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 80044564 000414A4  7C 08 02 A6 */	mflr r0
 /* 80044568 000414A8  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -2467,9 +2473,9 @@ drawContentsTexture__9J2DWindowFffff:
 /* 800448B4 000417F4  7C 08 03 A6 */	mtlr r0
 /* 800448B8 000417F8  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 800448BC 000417FC  4E 80 00 20 */	blr 
+.endfn drawContentsTexture__9J2DWindowFffff
 
-.global setTevMode__9J2DWindowFP10JUTTextureQ28JUtility6TColorQ28JUtility6TColor
-setTevMode__9J2DWindowFP10JUTTextureQ28JUtility6TColorQ28JUtility6TColor:
+.fn setTevMode__9J2DWindowFP10JUTTextureQ28JUtility6TColorQ28JUtility6TColor, global
 /* 800448C0 00041800  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800448C4 00041804  7C 08 02 A6 */	mflr r0
 /* 800448C8 00041808  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2658,9 +2664,9 @@ setTevMode__9J2DWindowFP10JUTTextureQ28JUtility6TColorQ28JUtility6TColor:
 /* 80044B8C 00041ACC  7C 08 03 A6 */	mtlr r0
 /* 80044B90 00041AD0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80044B94 00041AD4  4E 80 00 20 */	blr 
+.endfn setTevMode__9J2DWindowFP10JUTTextureQ28JUtility6TColorQ28JUtility6TColor
 
-.global getFrameTexture__9J2DWindowCFUcUc
-getFrameTexture__9J2DWindowCFUcUc:
+.fn getFrameTexture__9J2DWindowCFUcUc, global
 /* 80044B98 00041AD8  3C C0 80 48 */	lis r6, lbl_804784B8@ha
 /* 80044B9C 00041ADC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80044BA0 00041AE0  39 26 84 B8 */	addi r9, r6, lbl_804784B8@l
@@ -2695,9 +2701,9 @@ getFrameTexture__9J2DWindowCFUcUc:
 .L_80044C0C:
 /* 80044C0C 00041B4C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80044C10 00041B50  4E 80 00 20 */	blr 
+.endfn getFrameTexture__9J2DWindowCFUcUc
 
-.global isUsed__9J2DWindowFPC7ResTIMG
-isUsed__9J2DWindowFPC7ResTIMG:
+.fn isUsed__9J2DWindowFPC7ResTIMG, global
 /* 80044C14 00041B54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80044C18 00041B58  7C 08 02 A6 */	mflr r0
 /* 80044C1C 00041B5C  3C A0 80 48 */	lis r5, lbl_804784C8@ha
@@ -2748,14 +2754,14 @@ isUsed__9J2DWindowFPC7ResTIMG:
 /* 80044CC0 00041C00  7C 08 03 A6 */	mtlr r0
 /* 80044CC4 00041C04  38 21 00 20 */	addi r1, r1, 0x20
 /* 80044CC8 00041C08  4E 80 00 20 */	blr 
+.endfn isUsed__9J2DWindowFPC7ResTIMG
 
-.global getTypeID__9J2DWindowCFv
-getTypeID__9J2DWindowCFv:
+.fn getTypeID__9J2DWindowCFv, weak
 /* 80044CCC 00041C0C  38 60 00 11 */	li r3, 0x11
 /* 80044CD0 00041C10  4E 80 00 20 */	blr 
+.endfn getTypeID__9J2DWindowCFv
 
-.global draw__9J2DWindowFffff
-draw__9J2DWindowFffff:
+.fn draw__9J2DWindowFffff, weak
 /* 80044CD4 00041C14  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80044CD8 00041C18  7C 08 02 A6 */	mflr r0
 /* 80044CDC 00041C1C  EC 61 18 2A */	fadds f3, f1, f3
@@ -2774,9 +2780,9 @@ draw__9J2DWindowFffff:
 /* 80044D10 00041C50  7C 08 03 A6 */	mtlr r0
 /* 80044D14 00041C54  38 21 00 20 */	addi r1, r1, 0x20
 /* 80044D18 00041C58  4E 80 00 20 */	blr 
+.endfn draw__9J2DWindowFffff
 
-.global setBlack__9J2DWindowFQ28JUtility6TColor
-setBlack__9J2DWindowFQ28JUtility6TColor:
+.fn setBlack__9J2DWindowFQ28JUtility6TColor, weak
 /* 80044D1C 00041C5C  88 A4 00 00 */	lbz r5, 0(r4)
 /* 80044D20 00041C60  88 04 00 01 */	lbz r0, 1(r4)
 /* 80044D24 00041C64  98 A3 01 3C */	stb r5, 0x13c(r3)
@@ -2787,9 +2793,9 @@ setBlack__9J2DWindowFQ28JUtility6TColor:
 /* 80044D38 00041C78  98 03 01 3F */	stb r0, 0x13f(r3)
 /* 80044D3C 00041C7C  38 60 00 01 */	li r3, 1
 /* 80044D40 00041C80  4E 80 00 20 */	blr 
+.endfn setBlack__9J2DWindowFQ28JUtility6TColor
 
-.global setWhite__9J2DWindowFQ28JUtility6TColor
-setWhite__9J2DWindowFQ28JUtility6TColor:
+.fn setWhite__9J2DWindowFQ28JUtility6TColor, weak
 /* 80044D44 00041C84  88 A4 00 00 */	lbz r5, 0(r4)
 /* 80044D48 00041C88  88 04 00 01 */	lbz r0, 1(r4)
 /* 80044D4C 00041C8C  98 A3 01 38 */	stb r5, 0x138(r3)
@@ -2800,9 +2806,9 @@ setWhite__9J2DWindowFQ28JUtility6TColor:
 /* 80044D60 00041CA0  98 03 01 3B */	stb r0, 0x13b(r3)
 /* 80044D64 00041CA4  38 60 00 01 */	li r3, 1
 /* 80044D68 00041CA8  4E 80 00 20 */	blr 
+.endfn setWhite__9J2DWindowFQ28JUtility6TColor
 
-.global setBlackWhite__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColor
-setBlackWhite__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColor:
+.fn setBlackWhite__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColor, weak
 /* 80044D6C 00041CAC  88 C4 00 00 */	lbz r6, 0(r4)
 /* 80044D70 00041CB0  88 04 00 01 */	lbz r0, 1(r4)
 /* 80044D74 00041CB4  98 C3 01 3C */	stb r6, 0x13c(r3)
@@ -2821,21 +2827,21 @@ setBlackWhite__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColor:
 /* 80044DA8 00041CE8  98 03 01 3B */	stb r0, 0x13b(r3)
 /* 80044DAC 00041CEC  38 60 00 01 */	li r3, 1
 /* 80044DB0 00041CF0  4E 80 00 20 */	blr 
+.endfn setBlackWhite__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColor
 
-.global getBlack__9J2DWindowCFv
-getBlack__9J2DWindowCFv:
+.fn getBlack__9J2DWindowCFv, weak
 /* 80044DB4 00041CF4  80 04 01 3C */	lwz r0, 0x13c(r4)
 /* 80044DB8 00041CF8  90 03 00 00 */	stw r0, 0(r3)
 /* 80044DBC 00041CFC  4E 80 00 20 */	blr 
+.endfn getBlack__9J2DWindowCFv
 
-.global getWhite__9J2DWindowCFv
-getWhite__9J2DWindowCFv:
+.fn getWhite__9J2DWindowCFv, weak
 /* 80044DC0 00041D00  80 04 01 38 */	lwz r0, 0x138(r4)
 /* 80044DC4 00041D04  90 03 00 00 */	stw r0, 0(r3)
 /* 80044DC8 00041D08  4E 80 00 20 */	blr 
+.endfn getWhite__9J2DWindowCFv
 
-.global getContentsTexture__9J2DWindowCFUc
-getContentsTexture__9J2DWindowCFUc:
+.fn getContentsTexture__9J2DWindowCFUc, weak
 /* 80044DCC 00041D0C  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 80044DD0 00041D10  41 82 00 0C */	beq .L_80044DDC
 /* 80044DD4 00041D14  38 60 00 00 */	li r3, 0
@@ -2843,9 +2849,9 @@ getContentsTexture__9J2DWindowCFUc:
 .L_80044DDC:
 /* 80044DDC 00041D1C  80 63 01 10 */	lwz r3, 0x110(r3)
 /* 80044DE0 00041D20  4E 80 00 20 */	blr 
+.endfn getContentsTexture__9J2DWindowCFUc
 
-.global getMaterial__9J2DWindowCFRQ29J2DWindow9TMaterial
-getMaterial__9J2DWindowCFRQ29J2DWindow9TMaterial:
+.fn getMaterial__9J2DWindowCFRQ29J2DWindow9TMaterial, weak
 /* 80044DE4 00041D24  38 00 00 00 */	li r0, 0
 /* 80044DE8 00041D28  90 04 00 00 */	stw r0, 0(r4)
 /* 80044DEC 00041D2C  90 04 00 04 */	stw r0, 4(r4)
@@ -2853,19 +2859,19 @@ getMaterial__9J2DWindowCFRQ29J2DWindow9TMaterial:
 /* 80044DF4 00041D34  90 04 00 0C */	stw r0, 0xc(r4)
 /* 80044DF8 00041D38  90 04 00 10 */	stw r0, 0x10(r4)
 /* 80044DFC 00041D3C  4E 80 00 20 */	blr 
+.endfn getMaterial__9J2DWindowCFRQ29J2DWindow9TMaterial
 
-.global getFrameMaterial__9J2DWindowCFUc
-getFrameMaterial__9J2DWindowCFUc:
+.fn getFrameMaterial__9J2DWindowCFUc, weak
 /* 80044E00 00041D40  38 60 00 00 */	li r3, 0
 /* 80044E04 00041D44  4E 80 00 20 */	blr 
+.endfn getFrameMaterial__9J2DWindowCFUc
 
-.global getContentsMaterial__9J2DWindowCFv
-getContentsMaterial__9J2DWindowCFv:
+.fn getContentsMaterial__9J2DWindowCFv, weak
 /* 80044E08 00041D48  38 60 00 00 */	li r3, 0
 /* 80044E0C 00041D4C  4E 80 00 20 */	blr 
+.endfn getContentsMaterial__9J2DWindowCFv
 
-.global isUsed__9J2DWindowFPC7ResFONT
-isUsed__9J2DWindowFPC7ResFONT:
+.fn isUsed__9J2DWindowFPC7ResFONT, weak
 /* 80044E10 00041D50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80044E14 00041D54  7C 08 02 A6 */	mflr r0
 /* 80044E18 00041D58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2874,7 +2880,8 @@ isUsed__9J2DWindowFPC7ResFONT:
 /* 80044E24 00041D64  7C 08 03 A6 */	mtlr r0
 /* 80044E28 00041D68  38 21 00 10 */	addi r1, r1, 0x10
 /* 80044E2C 00041D6C  4E 80 00 20 */	blr 
+.endfn isUsed__9J2DWindowFPC7ResFONT
 
-.global rewriteAlpha__9J2DWindowFv
-rewriteAlpha__9J2DWindowFv:
+.fn rewriteAlpha__9J2DWindowFv, weak
 /* 80044E30 00041D70  4E 80 00 20 */	blr 
+.endfn rewriteAlpha__9J2DWindowFv
