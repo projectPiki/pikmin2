@@ -67,10 +67,6 @@ struct TParse_TParagraph {
 	const void* stbData;
 };
 
-struct TParse_TBlock {
-	int* filedata;
-};
-
 struct TParse_TBlock_object {
 
 	struct TData {
@@ -81,6 +77,10 @@ struct TParse_TBlock_object {
 		const char _0C; // _0C
 	};
 	TData* filedata;
+};
+
+struct TParse_TBlock {
+	TParse_TBlock_object* filedata;
 };
 
 /** @size{0x20} */
