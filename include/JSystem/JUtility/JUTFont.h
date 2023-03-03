@@ -3,73 +3,74 @@
 
 #include "Dolphin/gx.h"
 #include "JSystem/JUtility/TColor.h"
+#include "Dolphin/string.h"
 
 struct JKRAramBlock;
 struct JKRHeap;
 
-/*
- * ResFONT is probably an intermediate able to be casted to the various Block structs below
- */
-struct ResFONT {
-	u32 mMagic;       // _00
-	u32 mBlockLength; // _04
-	u16 mEncoding;    // _08
-	u16 mMaxGlyph;    // _0A
-	u32 mChunkNum;    // _0C
-	u32 _10;          // _10
-	u32 _14;          // _14
-	u16 _18;          // _18
-	u16 _1A;          // _1A
-	u16 _1C;          // _1C
-	u32 : 0;
-	u8 mData[]; // _20
-};
 struct BlockHeader {
-	u32 mMagic; // _00
-	u32 mSize;  // _04
-
 	const BlockHeader* getNext() const { return reinterpret_cast<const BlockHeader*>(reinterpret_cast<const u8*>(this) + this->mSize); }
 	inline static void advance(const BlockHeader** iterator)
 	{
 		*iterator = reinterpret_cast<const BlockHeader*>(reinterpret_cast<const u8*>(*iterator) + (*iterator)->mSize);
 	}
-};
-struct WidthBlock {
-	BlockHeader mHeader;
-	u16 mEncoding;   // _08
-	u16 mMaxGlyph;   // _0A
-	u8 mChunkNum[4]; // _0C
-	u32 _10;         // _10
-	u32 _14;         // _14
-	u16 _18;         // _18
-	u16 _1A;         // _1A
-	u16 _1C;         // _1C
-	u32 : 0;
-	u16 mData[]; // _20
-};
-struct GlyphBlock {
-	BlockHeader mHeader;
-	u16 mMinCode;      // _08
-	u16 mMaxCode;      // _0A
-	u16 mCellWidth;    // _0C
-	u16 mCellHeight;   // _0E
-	int mPageByteSize; // _10
-	u16 mTexFormat;    // _14
-	u16 mPageCellNumW; // _16
-	u16 mPageCellNumH; // _18
-	u16 mTexWidth;     // _1A
-	u16 mTexHeight;    // _1C
-	u16 _pad;          // _1E
-	u8 mData[];        // _20
+
+	u32 mMagic; // _00
+	u32 mSize;  // _04
 };
 
-struct MapBlock {
-	BlockHeader mHeader;
-	u16 mMinCode;
-	u16 mMaxCode;
-	u16 mMessageCodeHighWord; // _0C
-	u16 mMessageCodeLowWord;  // _0E
-	u16 mLeading;             // _10
+struct ResFONT {
+	// INF1, size: 0x14
+	struct InfoBlock : public BlockHeader {
+		// _00 = BlockHeader
+		u16 mFontType;    // _08
+		u16 mAscent;      // _0A
+		u16 mDescent;     // _0C
+		u16 mWidth;       // _0E
+		u16 mLeading;     // _10
+		u16 mDefaultCode; // _12
+	};
+
+	// WID1, size: 0x10
+	struct WidthBlock : public BlockHeader {
+		// _00 = BlockHeader
+		u16 mStartCode;  // _08
+		u16 mEndCode;    // _0A
+		u8 mChunkNum[4]; // _0C
+	};
+
+	// MAP1, size: 0x14
+	struct MapBlock : public BlockHeader {
+		// _00 = BlockHeader
+		u16 mMappingMethod; // _08
+		u16 mStartCode;     // _0A
+		u16 mEndCode;       // _0C
+		u16 mNumEntries;    // _0E
+		u16 mLeading;       // _10
+	};
+
+	// GLY1, size: 0x20
+	struct GlyphBlock : public BlockHeader {
+		// _00 = BlockHeader
+		u16 mStartCode;     // _08
+		u16 mEndCode;       // _0A
+		u16 mCellWidth;     // _0C
+		u16 mCellHeight;    // _0E
+		u32 mTextureSize;   // _10
+		u16 mTextureFormat; // _14
+		u16 mNumRows;       // _16
+		u16 mNumColumns;    // _18
+		u16 mTextureWidth;  // _1A
+		u16 mTextureHeight; // _1C
+		u16 mPadding;       // _1E
+		u8 mData[];         // _20
+	};
+
+	u64 mMagic;        // _00
+	u32 mFileSize;     // _08
+	u32 mNumBlocks;    // _0C
+	u8 mPadding[0x10]; // _10
+	u8 mData[];        // _20
 };
 
 struct JUTFont {
@@ -82,8 +83,7 @@ struct JUTFont {
 
 	JUTFont();
 
-	// TODO: Finish VTBL.
-	virtual ~JUTFont() {};                                               // _08
+	virtual ~JUTFont() { }                                               // _08
 	virtual void setGX() = 0;                                            // _0C
 	virtual void setGX(JUtility::TColor, JUtility::TColor) { setGX(); }; // _10
 	virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool) = 0;       // _14
@@ -98,44 +98,53 @@ struct JUTFont {
 	virtual int getFontType() const           = 0;                       // _38
 	virtual const ResFONT* getResFont() const = 0;                       // _3C
 	virtual bool isLeadByte(int) const        = 0;                       // _40
-	// virtual void loadImage(int, _GXTexMapID) = 0;                // _44
 
 	void initialize_state();
 	void setCharColor(JUtility::TColor);
 	void setGradColor(JUtility::TColor, JUtility::TColor);
 	f32 drawString_size_scale(f32, f32, f32, f32, const char*, u32, bool);
 
+	void drawString(int posX, int posY, const char* str, bool visible) { drawString_size(posX, posY, str, strlen(str), visible); }
+
+	void drawString_size(int posX, int posY, const char* str, u32 len, bool visible)
+	{
+		drawString_size_scale(posX, posY, getWidth(), getHeight(), str, len, visible);
+	}
+
+	void drawString_scale(f32 posX, f32 posY, f32 width, f32 height, const char* str, bool visible)
+	{
+		drawString_size_scale(posX, posY, width, height, str, strlen(str), visible);
+	}
+
+	int getWidth(int i_no) const
+	{
+		TWidth width;
+		getWidthEntry(i_no, &width);
+		return width.w0;
+	}
+
+	bool isValid() const { return mIsValid; }
+
 	static bool isLeadByte_1Byte(int);
 	static bool isLeadByte_2Byte(int);
 	static bool isLeadByte_ShiftJIS(int);
 
-	bool _04;
-	bool _05;
-	int _08;
-	JUtility::TColor _0C;
-	JUtility::TColor _10;
-	JUtility::TColor _14;
-	JUtility::TColor _18;
+	// _00 = VTBL
+	bool mIsValid;            // _04
+	bool mIsFixed;            // _05
+	int mFixedWidth;          // _08
+	JUtility::TColor mColor1; // _0C, bottom left
+	JUtility::TColor mColor2; // _10, bottom right
+	JUtility::TColor mColor3; // _14, top left
+	JUtility::TColor mColor4; // _18, top right
 };
 
 struct JUTRomFont : public JUTFont {
 	// @fabricatedName
 	struct AboutEncoding {
-		u32 mFontType;
-		u32 mDataSize;
-		IsLeadByte mIsLeadByteFunction;
-	};
-	// @fabricatedName
-	struct FontHeader {
-		u32 mFontType;
-		u16 _04;
-		u16 mEncoding;
-		u16 mAscent;
-		u16 mDescent;
-		u16 mWidth;
-		u16 mLeading;
-		u16 mCellWidth;
-		u16 mCellHeight;
+		u32 mFontType;                  // _00
+		u32 mDataSize;                  // _04
+		IsLeadByte mIsLeadByteFunction; // _08
 	};
 
 	JUTRomFont();
@@ -155,7 +164,6 @@ struct JUTRomFont : public JUTFont {
 	virtual ResFONT* getResFont() const { return nullptr; };                 // _3C
 	virtual int getFontType() const { return spAboutEncoding_->mFontType; }; // _38
 	virtual bool isLeadByte(int) const;                                      // _40
-	// virtual void loadImage(int, _GXTexMapID) = 0;                           // _44
 
 	void initiate(JKRHeap*);
 	void loadImage(JKRHeap*);
@@ -164,24 +172,15 @@ struct JUTRomFont : public JUTFont {
 	static OSFontHeader* spFontHeader_;
 	static u32 suFontHeaderRefered_; // they misspelled referred
 	static AboutEncoding saoAboutEncoding_[2];
+
+	// _00     = VTBL
+	// _00-_1C = JUTFont
 };
 
 /**
  * @size{0x70}
  */
 struct JUTResFont : public JUTFont {
-	// @fabricatedName
-	struct FontHeader {
-		u32 mFontType;
-		u32 _04;
-		u16 mEncoding;
-		u16 mAscent;
-		u16 mDescent;
-		u16 mWidth;
-		u16 mLeading;
-		u16 mCellWidth;
-		u16 mCellHeight;
-	};
 	JUTResFont();
 	JUTResFont(const ResFONT*, JKRHeap*);
 
@@ -196,13 +195,12 @@ struct JUTResFont : public JUTFont {
 	virtual void getWidthEntry(int, JUTFont::TWidth*) const;              // _2C
 	virtual int getCellWidth() const;                                     // _30
 	virtual int getCellHeight() const;                                    // _34
-	virtual int getFontType() const { return mInfoBlock->mEncoding; };    // _38
+	virtual int getFontType() const { return mInfoBlock->mFontType; };    // _38
 	virtual const ResFONT* getResFont() const { return mResource; };      // _3C
 	virtual int getLeading() const { return mInfoBlock->mLeading; };      // _18
 	virtual bool isLeadByte(int) const;                                   // _40
-	virtual void loadImage(int, _GXTexMapID);                             // _44
+	virtual void loadImage(int, GXTexMapID);                              // _44
 	virtual void setBlock();                                              // _48
-	// virtual void _4C(); // _4C
 
 	int convertSjis(int, u16*) const;
 	void countBlock();
@@ -210,37 +208,43 @@ struct JUTResFont : public JUTFont {
 	int getFontCode(int) const;
 	void initialize_state();
 	bool initiate(const ResFONT*, JKRHeap*);
-	void loadFont(int, _GXTexMapID, TWidth*);
+	void loadFont(int, GXTexMapID, TWidth*);
 	bool protected_initiate(const ResFONT*, JKRHeap*);
 
-	int mWidth;               // _1C
-	int mHeight;              // _20
-	GXTexObj _24;             // _24
-	int _44;                  // _44
-	const ResFONT* mResource; // _48
-	/*
-	 * INF1
-	 * TODO: Is mInfoBlock really a FontHeader, or is it a ResFONT? It should be 0x20 bytes long in JUTCacheFont::allocArea.
-	 */
-	FontHeader* mInfoBlock; // _4C
-	void** mMemBlocks;      // _50
-	// WID1
-	WidthBlock** mWidthBlocks; // _54
-	// GLY1
-	GlyphBlock** mGlyphBlocks; // _58
-	// MAP1
-	MapBlock** mMapBlocks;   // _5C
-	u16 mWidthBlockCount;    // _60
-	u16 mGlyphBlockCount;    // _62
-	u16 mMapBlockCount;      // _64
-	u16 _66;                 // _66
-	u16 mMaxCode;            // _68
-	IsLeadByte* mIsLeadByte; // _6C
+	inline void delete_and_initialize()
+	{
+		deleteMemBlocks_ResFont();
+		initialize_state();
+	}
 
 	static IsLeadByte const saoAboutEncoding_[3];
+
+	// _00     = VTBL
+	// _00-_1C = JUTFont
+	int mWidth;                         // _1C
+	int mHeight;                        // _20
+	GXTexObj _24;                       // _24
+	int _44;                            // _44
+	const ResFONT* mResource;           // _48
+	ResFONT::InfoBlock* mInfoBlock;     // _4C, INF1
+	void** mMemBlocks;                  // _50
+	ResFONT::WidthBlock** mWidthBlocks; // _54, WID1
+	ResFONT::GlyphBlock** mGlyphBlocks; // _58, GLY1
+	ResFONT::MapBlock** mMapBlocks;     // _5C, MAP1
+	u16 mWidthBlockCount;               // _60
+	u16 mGlyphBlockCount;               // _62
+	u16 mMapBlockCount;                 // _64
+	u16 _66;                            // _66
+	u16 mMaxCode;                       // _68
+	IsLeadByte* mIsLeadByte;            // _6C
 };
 
 struct JUTCacheFont : public JUTResFont {
+	enum EPagingType {
+		CFPAGETYPE_Unk0 = 0,
+		CFPAGETYPE_Unk1 = 1,
+	};
+
 	struct TGlyphCacheInfo {
 		// TODO: the rest of the data members
 		TGlyphCacheInfo* mPrev; // _00
@@ -256,6 +260,17 @@ struct JUTCacheFont : public JUTResFont {
 	};
 
 	struct TCachePage {
+		u8 _00[0x8]; // _00, unknown
+		s16 _08;     // _08
+		u16 _0A;     // _0A
+		u8 _0C[0x4]; // _0C, unknown
+		u8* _10;     // _10
+		u16 _14;     // _14
+		u16 _18;     // _18
+		u16 _1C;     // _1C
+		u16 _20;     // _20
+		u16 _24;     // _24
+		u16 _28;     // _28
 	};
 
 	JUTCacheFont();
@@ -289,24 +304,30 @@ struct JUTCacheFont : public JUTResFont {
 	void unlockCache_string(const char*);
 	void unlockCache_string_size(const char*, u32);
 
+	void setPagingType(EPagingType type) { mPagingType = type; }
+
+	static u32 calcCacheSize(u32 param_0, int param_1) { return (ALIGN_NEXT(param_0, 0x20) + 0x40) * param_1; }
+
+	// _00     = VTBL
+	// _00-_70 = JUTResFont
 	u32 mWidthBlocksSize;     // _70
 	u32 mGlyphBlocksSize;     // _74
 	u32 mMapBlocksSize;       // _78
 	void* _7C;                // _7C
 	void* _80;                // _80
 	void* _84;                // _84
-	u32 mMaxPageByteSize;     // _88
-	int _8C;                  // _8C
-	void* _90;                // _90
+	u32 mMaxSheetSize;        // _88
+	EPagingType mPagingType;  // _8C
+	void* mCacheBuffer;       // _90
 	u32 _94;                  // _94
-	u32 _98;                  // _98
+	u32 mCachePage;           // _98
 	TGlyphCacheInfo* _9C;     // _9C
 	TGlyphCacheInfo* _A0;     // _A0
-	u8 _A4[8];                // _A4
+	void* _A4;                // _A4
+	u32 _A8;                  // _A8
 	JKRAramBlock* mAramBlock; // _AC
 	u8 _B0;                   // _B0
-	u32 : 0;
-	u8 _B4[4]; // _B4
+	int _B4;                  // _B4
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include "JSystem/JGadget/linklist.h"
+#include "Dolphin/stl.h"
 #include "types.h"
 
 inline s32 colorCheck(s32 diff, s32 t)
@@ -12,38 +13,36 @@ inline s32 colorCheck(s32 diff, s32 t)
 	return ret + 1;
 }
 
-class JUTConsole : public JKRDisposer {
-public:
+struct JUTConsole : public JKRDisposer {
 	enum EConsoleType {
-		UNK_TYPE2 = 2,
+		CONSOLETYPE_Unk0 = 0,
+		CONSOLETYPE_Unk1 = 1,
+		CONSOLETYPE_Unk2 = 2,
 	};
 
 	enum OutputFlag {
-		/* 0x0 */ OUTPUT_NONE,
-		/* 0x1 */ OUTPUT_OSREPORT,
-		/* 0x2 */ OUTPUT_CONSOLE
+		CONSOLEOUT_None     = 0,
+		CONSOLEOUT_OSReport = 1,
+		CONSOLEOUT_Console  = 2,
 	};
+
+	JUTConsole(uint, uint, bool);
 
 	virtual ~JUTConsole(); // _08
 
-	// _00 VTBL
-
-	static JUTConsole* create(unsigned int, unsigned int, JKRHeap*);
-	static JUTConsole* create(unsigned int, void*, u32);
-	static void destroy(JUTConsole*); // UNUSED
-	JUTConsole(unsigned int, unsigned int, bool);
-	static size_t getObjectSizeFromBufferSize(uint, uint);
-	static size_t getLineFromObjectSize(u32, uint);
 	void clear();
-	void doDraw(JUTConsole::EConsoleType) const;
-	void print_f(char const*, ...);
-	void print(char const*);
-	void dumpToTerminal(unsigned int);
+	void doDraw(EConsoleType) const;
+	void print_f(const char*, ...);
+	void print(const char*);
+	void dumpToTerminal(uint);
 	void scroll(int);
 	int getUsedLine() const;
 	int getLineOffset() const;
 
-	void setOutput(unsigned int output) { mOutput = output; }
+	// unused/inlined:
+	void dumpToConsole(JUTConsole*, uint);
+
+	void setOutput(uint output) { mOutput = output; }
 	void setPosition(int x, int y)
 	{
 		mPositionX = x;
@@ -57,15 +56,15 @@ public:
 	void setHeight(u32 height)
 	{
 		mHeight = height;
-		if (mHeight > field_0x24) {
-			mHeight = field_0x24;
+		if (mHeight > mMaxLines) {
+			mHeight = mMaxLines;
 		}
 	}
 
-	void setFont(JUTFont* p_font)
+	void setFont(JUTFont* font)
 	{
-		mFont = p_font;
-		setFontSize(p_font->getWidth(), p_font->getHeight());
+		mFont = font;
+		setFontSize(font->getWidth(), font->getHeight());
 	}
 
 	u32 getOutput() const { return mOutput; }
@@ -73,59 +72,72 @@ public:
 	int getPositionX() const { return mPositionX; }
 	u32 getHeight() const { return mHeight; }
 
-	bool isVisible() const { return mVisible; }
-	void setVisible(bool visible) { mVisible = visible; }
+	bool isVisible() const { return mIsVisible; }
+	void setVisible(bool visible) { mIsVisible = visible; }
 
-	void setLineAttr(int param_0, u8 param_1) { mBuf[(field_0x20 + 2) * param_0] = param_1; }
-	u8* getLinePtr(int param_0) const { return &mBuf[(field_0x20 + 2) * param_0] + 1; }
-	int diffIndex(int param_0, int param_1) const
+	void setLineAttr(int param_0, u8 param_1) { mBuf[(_20 + 2) * param_0] = param_1; }
+	u8* getLinePtr(int param_0) const { return &mBuf[(_20 + 2) * param_0] + 1; }
+	int diffIndex(int startIndex, int endIndex) const
 	{
-		int diff = param_1 - param_0;
+		int diff = endIndex - startIndex;
 		if (diff >= 0) {
 			return diff;
 		}
-		return diff += field_0x24;
+		return diff += mMaxLines;
 	}
 
-	void scrollToLastLine() { scroll(field_0x24); }
-	void scrollToFirstLine() { scroll(-field_0x24); }
+	int nextIndex(int currIndex) const
+	{
+		int newIndex = currIndex + 1;
+		if (mMaxLines <= newIndex) {
+			newIndex = 0;
+		}
 
-	// unused/inlined:
-	void dumpToConsole(JUTConsole*, unsigned int);
+		return newIndex;
+	}
 
-private:
+	void scrollToLastLine() { scroll(mMaxLines); }
+	void scrollToFirstLine() { scroll(-mMaxLines); }
+
+	static JUTConsole* create(uint, uint, JKRHeap*);
+	static JUTConsole* create(uint, void*, u32);
+	static size_t getObjectSizeFromBufferSize(uint, uint);
+	static size_t getLineFromObjectSize(u32, uint);
+
+	static void destroy(JUTConsole*); // UNUSED
+
+	// _00     = VTBL
+	// _00-_18 = JKRDisposer
 	JGadget::TLinkListNode mListNode; // _18
+	u32 _20;                          // _20
+	u32 mMaxLines;                    // _24
+	u8* mBuf;                         // _28
+	bool _2C;                         // _2C
+	int _30;                          // _30
+	int _34;                          // _34
+	int _38;                          // _38
+	int _3C;                          // _3C
+	int mPositionX;                   // _40
+	int mPositionY;                   // _44
+	u32 mHeight;                      // _48
+	JUTFont* mFont;                   // _4C
+	f32 mFontSizeX;                   // _50
+	f32 mFontSizeY;                   // _54
+	int mOutput;                      // _58
+	JUtility::TColor _5C;             // _5C
+	JUtility::TColor _60;             // _60
+	int _64;                          // _64
+	bool mIsVisible;                  // _68
+	bool _69;                         // _69
+	bool _6A;                         // _6A
+	bool _6B;                         // _6B
+};
 
-private:
-	/* 0x20 */ u32 field_0x20;
-	/* 0x24 */ u32 field_0x24;
-	/* 0x28 */ u8* mBuf;
-	/* 0x2C */ bool field_0x2c;
-	/* 0x30 */ int field_0x30;
-	/* 0x34 */ int field_0x34;
-	/* 0x38 */ int field_0x38;
-	/* 0x3C */ int field_0x3c;
-	/* 0x40 */ int mPositionX;
-	/* 0x44 */ int mPositionY;
-	/* 0x48 */ u32 mHeight;
-	/* 0x4C */ JUTFont* mFont;
-	/* 0x50 */ f32 mFontSizeX;
-	/* 0x54 */ f32 mFontSizeY;
-	/* 0x58 */ int mOutput;
-	/* 0x5C */ JUtility::TColor field_0x5c;
-	/* 0x60 */ JUtility::TColor field_0x60;
-	/* 0x64 */ int field_0x64;
-	/* 0x68 */ bool mVisible;
-	/* 0x69 */ bool field_0x69;
-	/* 0x6A */ bool field_0x6a;
-	/* 0x6B */ bool field_0x6b;
-}; // Size: 0x6C
-
-class JUTConsoleManager {
-public:
+struct JUTConsoleManager {
 	JUTConsoleManager();
+
 	~JUTConsoleManager();
-	static JUTConsoleManager* createManager(JKRHeap*);
+
 	void appendConsole(JUTConsole*);
 	void removeConsole(JUTConsole*);
 	void draw() const;
@@ -133,28 +145,31 @@ public:
 	void setDirectConsole(JUTConsole*);
 
 	static JUTConsoleManager* getManager() { return sManager; }
-
-	static JUTConsoleManager* sManager;
+	static JUTConsoleManager* createManager(JKRHeap*);
 
 	// unused/inlined:
 	static void destroyManager(JUTConsoleManager*);
 	void getConsoleNumber() const;
 
-private:
+	JUTConsole* getDirectConsole() const { return mDirectConsole; }
+
+	static JUTConsoleManager* sManager;
+
 	JGadget::TLinkList<JUTConsole, 4> mLinkList; // _00
 	JUTConsole* mActiveConsole;                  // _0C
 	JUTConsole* mDirectConsole;                  // _10
-};                                               // Size: 0x14
+};
 
 extern "C" {
 JUTConsole* JUTGetReportConsole();
 void JUTSetReportConsole(JUTConsole*);
 JUTConsole* JUTGetWarningConsole();
 void JUTSetWarningConsole(JUTConsole*);
-void JUTReportConsole(char const*);
-void JUTReportConsole_f(char const*, ...);
-void JUTWarningConsole(char const*);
-void JUTWarningConsole_f(char const*, ...);
+void JUTReportConsole(const char*);
+void JUTReportConsole_f(const char*, ...);
+void JUTWarningConsole(const char*);
+void JUTWarningConsole_f(const char*, ...);
+void JUTConsole_print_f_va_(JUTConsole* console, const char* fmt, va_list args);
 }
 
 #endif

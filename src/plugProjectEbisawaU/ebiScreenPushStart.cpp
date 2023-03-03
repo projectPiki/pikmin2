@@ -99,7 +99,7 @@ void TPressStart::doCloseScreen(ArgClose*)
 bool TPressStart::doUpdateStateWait()
 {
 	mScreens[mCurrentScreen]->update();
-	if (mIsOpen && mControl->mButton.mMask & (Controller::PRESS_START | Controller::PRESS_A)) {
+	if (mIsOpen && mControl->getButton() & (Controller::PRESS_START | Controller::PRESS_A)) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 		return true;
 	} else {

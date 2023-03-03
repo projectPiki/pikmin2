@@ -13,11 +13,11 @@
 typedef u8 (*Pattern)[2];
 
 struct JUTVideo {
-	JUTVideo(const _GXRenderModeObj*);
+	JUTVideo(const GXRenderModeObj*);
 
 	virtual ~JUTVideo(); // _08
 
-	static JUTVideo* createManager(const _GXRenderModeObj*);
+	static JUTVideo* createManager(const GXRenderModeObj*);
 	static void destroyManager();
 	static JUTVideo* getManager() { return sManager; }
 	static void preRetraceProc(unsigned long);
@@ -36,16 +36,22 @@ struct JUTVideo {
 	Pattern getSamplePattern() const { return mRenderModeObj->sample_pattern; }
 	u8* getVFilter() const { return mRenderModeObj->vfilter; }
 	OSMessageQueue* getMessageQueue() { return &mMessageQueue; };
+	void getBounds(u16& width, u16& height) const
+	{
+		width  = (u16)getFbWidth();
+		height = (u16)getEfbHeight();
+	}
+
 	static void drawDoneStart();
 	static void dummyNoDrawWait();
-	void setRenderMode(const _GXRenderModeObj*);
+	void setRenderMode(const GXRenderModeObj*);
 	void waitRetraceIfNeed();
 	VIRetraceCallback setPostRetraceCallback(VIRetraceCallback);
 
 	// Unused/inlined:
 	void getDrawWait();
 	VIRetraceCallback setPreRetraceCallback(VIRetraceCallback);
-	void getPixelAspect(const _GXRenderModeObj*);
+	void getPixelAspect(const GXRenderModeObj*);
 	void getPixelAspect() const;
 
 	static JUTVideo* sManager;
@@ -53,7 +59,7 @@ struct JUTVideo {
 	static u32 sVideoInterval;
 
 	// _00 VTBL
-	_GXRenderModeObj* mRenderModeObj;               // _04
+	GXRenderModeObj* mRenderModeObj;                // _04
 	u32 _08;                                        // _08
 	u32 mRetraceCount;                              // _0C
 	int _10;                                        // _10
@@ -63,10 +69,12 @@ struct JUTVideo {
 	VIRetraceCallback mPreviousPostRetraceCallback; // _20
 	VIRetraceCallback mPreRetraceCallback;          // _24
 	VIRetraceCallback mPostRetraceCallback;         // _28
-	bool _2C;                                       // _2C
-	s32 _30;                                        // _30
-	void* mMessageSlots;                            // _34
+	bool mIsSetBlack;                               // _2C
+	s32 mSetBlackFrameCount;                        // _30
+	OSMessage mMessage;                             // _34
 	OSMessageQueue mMessageQueue;                   // _38
 };
+
+inline JUTVideo* JUTGetVideoManager() { return JUTVideo::getManager(); }
 
 #endif

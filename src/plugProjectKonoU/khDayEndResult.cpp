@@ -1272,7 +1272,7 @@ void ObjDayEndResultItem::statusNormal()
 	}
 
 	if (mFlags & 0x1) {
-		if (getGamePad()->mButton.mMask & Controller::PRESS_UP && mCurrentSelectId != 0) {
+		if (getGamePad()->getButton() & Controller::PRESS_UP && mCurrentSelectId != 0) {
 			mCurrentSelectId--;
 			if (mScrollUpDelay >= 1) {
 				mScollMoveTargetTime = ObjDayEndResultBase::msVal._28;
@@ -1283,7 +1283,7 @@ void ObjDayEndResultItem::statusNormal()
 			mScrollDownDelay = 0;
 			mStatus          = ITEMSTATUS_ScrollUp;
 			statusScrollUp();
-		} else if (getGamePad()->mButton.mMask & Controller::PRESS_DOWN && mCurrentSelectId != mMaxScrollId) {
+		} else if (getGamePad()->getButton() & Controller::PRESS_DOWN && mCurrentSelectId != mMaxScrollId) {
 			mCurrentSelectId++;
 			if (mScrollDownDelay >= 1) {
 				mScollMoveTargetTime = ObjDayEndResultBase::msVal._28;
@@ -3044,7 +3044,7 @@ void ObjDayEndResultMail::statusNormal()
 			getOwner()->startScene(&argIncP);
 			mFlags |= 0x10;
 		}
-	} else if (getGamePad()->mButton.mMask & Controller::PRESS_L) {
+	} else if (getGamePad()->getButton() & Controller::PRESS_L) {
 		if (mCurrentDay > 1 && (mMaxDay - (mCurrentDay - 1)) < 20) {
 			SceneDayEndResultMail* scene = static_cast<SceneDayEndResultMail*>(getOwner());
 			s8* flag                     = scene->mMailFlags;
@@ -3055,7 +3055,7 @@ void ObjDayEndResultMail::statusNormal()
 				mSideMoveTimer = 399.0f;
 			}
 		}
-	} else if (getGamePad()->mButton.mMask & Controller::PRESS_R) {
+	} else if (getGamePad()->getButton() & Controller::PRESS_R) {
 		if (mCurrentDay < mMaxDay) {
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 			mFadePaneArrowL->fadein();

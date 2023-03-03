@@ -115,7 +115,7 @@ VsGameSection::~VsGameSection()
 		while (VSFifo::isGPActive())
 			;
 		GXDrawDone();
-		GXInitFifoPtrs(JUTGraphFifo::sCurrentFifo->mFifo, JUTGraphFifo::sCurrentFifo->_08, JUTGraphFifo::sCurrentFifo->_08);
+		GXInitFifoPtrs(JUTGraphFifo::sCurrentFifo->mFifo, JUTGraphFifo::sCurrentFifo->mBase, JUTGraphFifo::sCurrentFifo->mBase);
 		GXSetCPUFifo(JUTGraphFifo::sCurrentFifo->mFifo);
 		GXSetGPFifo(JUTGraphFifo::sCurrentFifo->mFifo);
 	}

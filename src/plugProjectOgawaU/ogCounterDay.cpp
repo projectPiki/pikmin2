@@ -65,7 +65,7 @@ void CallBack_CounterDay::setValue()
 	}
 
 	J2DPicture* picture = mCounters[0]->mPicture;
-	_A8->changeTexture(picture->getTexture(0)->_20, 0);
+	_A8->changeTexture(picture->getTexture(0)->mTexInfo, 0);
 
 	if (mIsHidden) {
 		_A8->hide();

@@ -6,25 +6,42 @@
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTGamePad.h"
+#include "JSystem/JUtility/JUTExternalFB.h"
 #include "types.h"
 
 struct JUTConsole;
 struct JUTDirectPrint;
 
+enum ExPrintFlags {
+	EXPRINTFLAG_GPR     = 0x1,
+	EXPRINTFLAG_GPRMap  = 0x2,
+	EXPRINTFLAG_SRR0Map = 0x4,
+	EXPRINTFLAG_Float   = 0x8,
+	EXPRINTFLAG_Stack   = 0x10,
+};
+
 /**
  * @size{0xA4}
  */
 struct JUTException : public JKRThread {
-	enum EInfoPage {};
+	enum EInfoPage {
+		INFOPAGE_GPR     = 1,
+		INFOPAGE_Float   = 2,
+		INFOPAGE_Stack   = 3,
+		INFOPAGE_GPRMap  = 4,
+		INFOPAGE_SRR0Map = 5,
+	};
 
+	// size: 0x14
 	struct JUTExMapFile {
 		inline JUTExMapFile(const char* fileName)
 		    : mLink(this)
 		{
 			mFileName = fileName;
 		}
-		const char* mFileName;
-		JSULink<JUTExMapFile> mLink;
+
+		const char* mFileName;       // _00
+		JSULink<JUTExMapFile> mLink; // _04
 	};
 
 	/** @fabricated */
@@ -43,48 +60,51 @@ struct JUTException : public JKRThread {
 
 	void showFloat(OSContext*);
 	void showStack(OSContext*);
-	void showMainInfo(unsigned short, OSContext*, unsigned long, unsigned long);
-	void showMapInfo_subroutine(unsigned long, bool);
+	void showMainInfo(u16, OSContext*, u32, u32);
+	void showMapInfo_subroutine(u32, bool);
 	void showGPRMap(OSContext*);
-	void printDebugInfo(JUTException::EInfoPage, unsigned short, OSContext*, unsigned long, unsigned long);
-	void readPad(unsigned long*, unsigned long*);
-	void printContext(unsigned short, OSContext*, unsigned long, unsigned long);
-	static void waitTime(long);
+	void printDebugInfo(JUTException::EInfoPage, u16, OSContext*, u32, u32);
+	void readPad(u32*, u32*);
+	void printContext(u16, OSContext*, u32, u32);
 	void createFB();
+
+	static void waitTime(long);
 	static OSErrorHandler setPreUserCallback(OSErrorHandler);
 	static void appendMapFile(const char*);
-	static bool queryMapAddress(char*, unsigned long, long, unsigned long*, unsigned long*, char*, unsigned long, bool, bool);
-	static bool queryMapAddress_single(char*, unsigned long, long, unsigned long*, unsigned long*, char*, unsigned long, bool, bool);
+	static bool queryMapAddress(char*, u32, long, u32*, u32*, char*, u32, bool, bool);
+	static bool queryMapAddress_single(char*, u32, long, u32*, u32*, char*, u32, bool, bool);
 
 	static JUTException* create(JUTDirectPrint*);
 	static void createConsole(void* buffer, u32 bufferSize);
 	static void panic_f(char const* file, int line, char const* msg, ...);
-	static void errorHandler(unsigned short, OSContext*, unsigned long, unsigned long);
-	static void setFPException(unsigned long);
+	static void errorHandler(u16, OSContext*, u32, u32);
+	static void setFPException(u32);
 
 	// unused/inlined:
 	static void panic_f_va(const char*, int, const char*, va_list*);
+	static OSErrorHandler setPostUserCallback(OSErrorHandler);
+
 	void showFloatSub(int, f32);
-	void searchPartialModule(unsigned long, unsigned long*, unsigned long*, unsigned long*, unsigned long*);
+	void searchPartialModule(u32, u32*, u32*, u32*, u32*);
 	void showGPR(OSContext*);
 	void showSRR0Map(OSContext*);
 	bool isEnablePad() const;
 	u32 getFpscr();
-	void setFpscr(unsigned long);
-	static OSErrorHandler setPostUserCallback(OSErrorHandler);
+	void setFpscr(u32);
 	void enableFpuException();
 	void disableFpuException();
 
-	void* mFrameBuffer;            // _7C
-	JUTDirectPrint* mDirectPrint;  // _80
-	u32 _84;                       // _84
-	JUTGamePad::EPadPort mPadPort; // _88
-	int _8C;                       // _8C
-	int _90;                       // _90
-	int _94;                       // _94
-	u32 _98;                       // _98
-	int _9C;                       // _9C
-	void* mStackPointer;           // _A0
+	JUTExternalFB* getFrameMemory() const { return mFrameMemory; }
+
+	void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
+	void setGamePad(JUTGamePad* gamePad)
+	{
+		mGamePad = gamePad;
+		mPadPort = JUTGamePad::PORT_INVALID;
+	}
+
+	static JUTException* getManager() { return sErrorManager; }
+	static JUTConsole* getConsole() { return sConsole; }
 
 	static JUTConsole* sConsole;
 	static void* sConsoleBuffer;
@@ -98,6 +118,19 @@ struct JUTException : public JKRThread {
 	static u32 fpscr;
 	static const char* sCpuExpName[OS_ERROR_MAX + 1];
 	static JSUList<JUTExMapFile> sMapFileList;
+
+	// _00     = VTBL
+	// _00-_7C = JKRThread
+	JUTExternalFB* mFrameMemory;   // _7C
+	JUTDirectPrint* mDirectPrint;  // _80
+	JUTGamePad* mGamePad;          // _84
+	JUTGamePad::EPadPort mPadPort; // _88
+	int mPrintWaitTime0;           // _8C
+	int mPrintWaitTime1;           // _90
+	u32 mTraceSuppress;            // _94
+	u32 _98;                       // _98
+	u32 mPrintFlags;               // _9C, see ExPrintFlags enum
+	void* mStackPointer;           // _A0
 };
 
 #define JUT_PANIC(...) JUTException::panic_f(__FILE__, __LINE__, __VA_ARGS__)

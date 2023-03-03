@@ -47,20 +47,20 @@ void EUTPadInterface_countNum::update()
 
 	switch (mMode) {
 	case MODE_LEFTRIGHT:
-		isForwards  = (mController->mButton.mMask & Controller::PRESS_DPAD_LEFT) || (mController->mMStick.mXPos < -0.5f);
-		isBackwards = (mController->mButton.mMask & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos > 0.5f);
+		isForwards  = (mController->getButton() & Controller::PRESS_DPAD_LEFT) || (mController->mMStick.mXPos < -0.5f);
+		isBackwards = (mController->getButton() & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos > 0.5f);
 		break;
 	case MODE_RIGHTLEFT:
-		isForwards  = (mController->mButton.mMask & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos > 0.5f);
-		isBackwards = (mController->mButton.mMask & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos < -0.5f);
+		isForwards  = (mController->getButton() & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos > 0.5f);
+		isBackwards = (mController->getButton() & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos < -0.5f);
 		break;
 	case MODE_UPDOWN:
-		isForwards  = (mController->mButton.mMask & Controller::PRESS_DPAD_UP) || (mController->mMStick.mYPos > 0.5f);
-		isBackwards = (mController->mButton.mMask & Controller::PRESS_DPAD_DOWN) || (mController->mMStick.mYPos < -0.5f);
+		isForwards  = (mController->getButton() & Controller::PRESS_DPAD_UP) || (mController->mMStick.mYPos > 0.5f);
+		isBackwards = (mController->getButton() & Controller::PRESS_DPAD_DOWN) || (mController->mMStick.mYPos < -0.5f);
 		break;
 	case MODE_DOWNUP:
-		isForwards  = (mController->mButton.mMask & Controller::PRESS_DPAD_DOWN) || (mController->mMStick.mYPos < -0.5f);
-		isBackwards = (mController->mButton.mMask & Controller::PRESS_DPAD_UP) || (mController->mMStick.mYPos > 0.5f);
+		isForwards  = (mController->getButton() & Controller::PRESS_DPAD_DOWN) || (mController->mMStick.mYPos < -0.5f);
+		isBackwards = (mController->getButton() & Controller::PRESS_DPAD_UP) || (mController->mMStick.mYPos > 0.5f);
 		break;
 	}
 

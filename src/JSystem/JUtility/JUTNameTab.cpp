@@ -18,29 +18,19 @@ JUTNameTab::JUTNameTab(const ResNTAB* pNameTable) { setResource(pNameTable); }
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000A8
- */
-// JUTNameTab::JUTNameTab(const JUTNameTab&)
-// {
-// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
  * Address:	8002ED48
  * Size:	00003C
  */
 void JUTNameTab::setResource(const ResNTAB* pNameTable)
 {
-	mpNameTable = pNameTable;
+	mNameTable = pNameTable;
 
 	if (pNameTable) {
-		mNameNum  = pNameTable->mEntryNum;
-		mpStrData = (const char*)(pNameTable->mEntries + mNameNum);
+		mNameNum = pNameTable->mEntryNum;
+		mStrData = (const char*)(pNameTable->mEntries + mNameNum);
 	} else {
-		mNameNum  = 0;
-		mpStrData = 0;
+		mNameNum = 0;
+		mStrData = nullptr;
 	}
 }
 
@@ -51,11 +41,11 @@ void JUTNameTab::setResource(const ResNTAB* pNameTable)
  */
 s32 JUTNameTab::getIndex(const char* pName) const
 {
-	const ResNTAB::Entry* pEntry = mpNameTable->mEntries;
+	const ResNTAB::Entry* pEntry = mNameTable->mEntries;
 	u16 keyCode                  = calcKeyCode(pName);
 
 	for (u16 i = 0; i < mNameNum; pEntry++, i++)
-		if (pEntry->mKeyCode == keyCode && strcmp((mpNameTable->mEntries[i].mOffs + ((const char*)mpNameTable)), pName) == 0)
+		if (pEntry->mKeyCode == keyCode && strcmp((mNameTable->mEntries[i].mOffs + ((const char*)mNameTable)), pName) == 0)
 			return i;
 
 	return -1;
@@ -69,7 +59,7 @@ s32 JUTNameTab::getIndex(const char* pName) const
 const char* JUTNameTab::getName(u16 index) const
 {
 	if (index < mNameNum)
-		return mpNameTable->getName(index);
+		return mNameTable->getName(index);
 	return nullptr;
 }
 

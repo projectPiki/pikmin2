@@ -3,44 +3,12 @@
 #include "JSystem/JUtility/JUTFont.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__7JUTFont
-    __vt__7JUTFont:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__7JUTFontFv
-        .4byte 0
-        .4byte setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte getCellWidth__7JUTFontCFv
-        .4byte getCellHeight__7JUTFontCFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-*/
-
-/*
  * --INFO--
  * Address:	8002D144
  * Size:	00002C
  * Matches
  */
-JUTFont::JUTFont()
-    : _0C()
-    , _10()
-    , _14()
-    , _18()
-{
-	_04 = false;
-}
+JUTFont::JUTFont() { mIsValid = false; }
 
 /*
  * --INFO--
@@ -51,9 +19,9 @@ JUTFont::JUTFont()
 void JUTFont::initialize_state()
 {
 	setCharColor(JUtility::TColor());
-	_05 = false;
-	_08 = 0;
-	_04 = false;
+	mIsFixed    = false;
+	mFixedWidth = 0;
+	mIsValid    = false;
 }
 
 /*
@@ -64,10 +32,10 @@ void JUTFont::initialize_state()
  */
 void JUTFont::setCharColor(JUtility::TColor color)
 {
-	_0C = color;
-	_10 = color;
-	_14 = color;
-	_18 = color;
+	mColor1 = color;
+	mColor2 = color;
+	mColor3 = color;
+	mColor4 = color;
 }
 
 /*
@@ -78,10 +46,10 @@ void JUTFont::setCharColor(JUtility::TColor color)
  */
 void JUTFont::setGradColor(JUtility::TColor color, JUtility::TColor color2)
 {
-	_0C = color;
-	_10 = color;
-	_14 = color2;
-	_18 = color2;
+	mColor1 = color;
+	mColor2 = color;
+	mColor3 = color2;
+	mColor4 = color2;
 }
 
 /*
@@ -109,35 +77,3 @@ f32 JUTFont::drawString_size_scale(f32 w, f32 x, f32 y, f32 z, const char* str, 
 	}
 	return w - w_old;
 }
-
-/*
- * --INFO--
- * Address:	8002D38C
- * Size:	000048
- * JUTFont::~JUTFont()
- * Weak function.
- */
-
-/*
- * --INFO--
- * Address:	8002D3D4
- * Size:	00002C
- * void JUTFont::setGX(JUtility::TColor, JUtility::TColor)
- * Weak function.
- */
-
-/*
- * --INFO--
- * Address:	8002D400
- * Size:	00002C
- * int JUTFont::getCellWidth() const
- * Weak function.
- */
-
-/*
- * --INFO--
- * Address:	8002D42C
- * Size:	00002C
- * int JUTFont::getCellHeight() const
- * Weak function.
- */

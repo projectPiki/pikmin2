@@ -6,25 +6,11 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "types.h"
 
-/*
-    __vt__8JUTFader:
-    .4byte 0
-    .4byte 0
-    .4byte __dt__8JUTFaderFv
-    .4byte startFadeIn__8JUTFaderFi
-    .4byte startFadeOut__8JUTFaderFi
-    .4byte draw__8JUTFaderFv
-*/
-
 struct JUTFader {
-	enum EStatus { Status_Out = 0, Status_In, Status_FadingIn, Status_FadingOut };
+	enum EStatus { Status_Out = 0, Status_In = 1, Status_FadingIn = 2, Status_FadingOut = 3 };
 
 	JUTFader(int, int, int, int, JUtility::TColor);
 
-	/**
-	 * @reifiedAddress{8002D0FC}
-	 * @reifiedFile{JSystem/JUT/JUTFader.cpp}
-	 */
 	virtual ~JUTFader() { }                  // _08 (weak)
 	virtual bool startFadeIn(int duration);  // _0C
 	virtual bool startFadeOut(int duration); // _10
@@ -36,6 +22,9 @@ struct JUTFader {
 	void start(int);
 	void setStatus(EStatus, int);
 
+	EStatus getStatus() const { return mStatus; }
+	void setColor(JUtility::TColor color) { mColor.set(color); }
+
 	// _00 VTBL
 	EStatus mStatus;            // _04 - current status
 	u16 mTicksTarget;           // _08 - ticks (calls to control()) to run a fade in/out for
@@ -44,8 +33,6 @@ struct JUTFader {
 	JGeometry::TBox2f mViewBox; // _10 - ortho box to render within
 	int _20;                    // _20 - ???
 	EStatus _24;                // _24 - ???
-
-	// u8 filler[0x28 - 0xC];
 };
 
 #endif

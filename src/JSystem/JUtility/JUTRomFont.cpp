@@ -8,15 +8,13 @@ OSFontHeader* JUTRomFont::spFontHeader_;
 u32 JUTRomFont::suFontHeaderRefered_; // they misspelled referred
 JUTRomFont::AboutEncoding JUTRomFont::saoAboutEncoding_[2]
     = { 0, 0x00020120, &JUTFont::isLeadByte_1Byte, 2, 0x00120F00, &JUTFont::isLeadByte_ShiftJIS };
+
 /*
  * --INFO--
  * Address:	........
  * Size:	00003C
  */
-JUTRomFont::JUTRomFont()
-{
-	// UNUSED FUNCTION
-}
+JUTRomFont::JUTRomFont() { }
 
 /*
  * --INFO--
@@ -32,10 +30,10 @@ JUTRomFont::JUTRomFont(JKRHeap* heap) { initiate(heap); }
  */
 void JUTRomFont::initiate(JKRHeap* heap)
 {
-	_04 = false;
+	mIsValid = false;
 	JUTFont::initialize_state();
 	JUTRomFont::loadImage(heap);
-	_04 = true;
+	mIsValid = true;
 }
 
 /*
@@ -50,7 +48,7 @@ JUTRomFont::~JUTRomFont()
 		spFontHeader_    = nullptr;
 		spAboutEncoding_ = nullptr;
 	}
-	_04 = false;
+	mIsValid = false;
 }
 
 /*
@@ -58,21 +56,22 @@ JUTRomFont::~JUTRomFont()
  * Address:	80032790
  * Size:	0000CC
  */
-void JUTRomFont::loadImage(JKRHeap* param_1)
+void JUTRomFont::loadImage(JKRHeap* heap)
 {
 	u32 byteCount;
 
-	if (param_1 == nullptr) {
-		param_1 = JKRHeap::sCurrentHeap;
+	if (heap == nullptr) {
+		heap = JKRHeap::getCurrentHeap();
 	}
+
 	if (spFontHeader_ == nullptr) {
 		JUTReportConsole_f("Font Encode Type %d\n", OSGetFontEncode());
 		spAboutEncoding_ = &saoAboutEncoding_[OSGetFontEncode()];
 		byteCount        = (spAboutEncoding_->mDataSize);
 		JUTReportConsole_f("IPLROM fontdata size : %u\n", byteCount);
-		spFontHeader_ = (OSFontHeader*)JKRHeap::alloc(byteCount, 0x20, param_1);
+		spFontHeader_ = (OSFontHeader*)JKRHeap::alloc(byteCount, 0x20, heap);
 		OSInitFont(spFontHeader_);
-		_08 = spFontHeader_->width;
+		mFixedWidth = spFontHeader_->width;
 	}
 	suFontHeaderRefered_++;
 }
@@ -81,20 +80,23 @@ void JUTRomFont::loadImage(JKRHeap* param_1)
  * --INFO--
  * Address:	8003285C
  * Size:	0000F8
- * TODO: finish GX enums
  */
 void JUTRomFont::setGX()
 {
 	GXSetNumChans(1);
 	GXSetNumTevStages(1);
 	GXSetNumTexGens(1);
+
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
 	GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+
 	GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
+
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
-	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 0xf);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 15);
+
 	GXClearVtxDesc();
 	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
 	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
@@ -106,163 +108,95 @@ void JUTRomFont::setGX()
  * Address:	80032954
  * Size:	000480
  */
-f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, int str_int, bool flag)
+f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, int chr, bool flag)
 {
-	GXTexObj sp1C_tex;
-	s32 sp18_width;
-	void* sp14_image;
-	s32 sp10_x, spC_y;
+	GXTexObj texObj;
+	s32 width;
+	void* image;
+	s32 fontX, fontY;
 
-	// 58
-	if (str_int == 0) {
+	if (chr == '\0') {
 		return 0.0f;
 	}
 
-	// 64
-	f32 _f31 = scale_x / getCellWidth();
-	f32 _f29 = scale_y / getCellHeight();
+	f32 xScale = scale_x / getCellWidth();
+	f32 yScale = scale_y / getCellHeight();
 
-	// d0
-	char sp8_str[2];
-	char* thing_p = sp8_str;
-	if (str_int >= 0x100) {
-		thing_p++;
-		sp8_str[0] = str_int >> 8;
+	char str[2];
+	char* strPtr = str;
+	if (chr >= 0x100) {
+		strPtr++;
+		str[0] = chr >> 8;
 	}
-	*thing_p = str_int;
+	*strPtr = chr;
 
-	// f8
-	// char* OSGetFontTexture(const char* string, void** image, s32 *x, s32 *y, s32* width);
-	OSGetFontTexture(sp8_str, &sp14_image, &sp10_x, &spC_y, &sp18_width);
-	// void GXInitTexObj(GXTexObj*, void*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool);
-	GXInitTexObj(&sp1C_tex, sp14_image, 0x200, 0x200, GX_TF_I4, GX_CLAMP, GX_CLAMP, GX_DISABLE);
-	// void GXInitTexObjLOD(GXTexObj*, GXTexFilter, GXTexFilter, float, float, float, GXBool, GXBool, GXAnisotropy);
-	GXInitTexObjLOD(&sp1C_tex, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_DISABLE, GX_DISABLE, GX_ANISO_1);
-	// void GXLoadTexObj(GXTexObj*, GXTexMapID);
-	GXLoadTexObj(&sp1C_tex, GX_TEXMAP0);
+	OSGetFontTexture(str, &image, &fontX, &fontY, &width);
+	GXInitTexObj(&texObj, image, 0x200, 0x200, GX_TF_I4, GX_CLAMP, GX_CLAMP, GX_DISABLE);
+	GXInitTexObjLOD(&texObj, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_DISABLE, GX_DISABLE, GX_ANISO_1);
+	GXLoadTexObj(&texObj, GX_TEXMAP0);
 
-	// 154
-	s32 _r31;
-	if (_05 != 0) {
-		_r31 = _08 - sp18_width;
+	s32 shift;
+	if (mIsFixed) {
+		shift = mFixedWidth - width;
 	} else {
-		_r31 = 0;
+		shift = 0;
 	}
 
-	// 174
-	// 1ac
-	// f32 _f2 = _f31 * _r31;
-	// 1b8
-	f32 _f28 = _f31 * _r31 / 2 + pos_x;
-	// 1c0
-	f32 _f27 = sp18_width * _f31 + _f28;
+	f32 posMinX = xScale * shift / 2 + pos_x;
+	f32 posMaxX = width * xScale + posMinX;
+	f32 posMinY = pos_y - yScale * getAscent();
+	f32 posMaxY = yScale * getDescent() + pos_y;
 
-	// 1c4
-	// 1f4
-	f32 _f26 = pos_y - _f29 * getAscent();
+	s32 texMinX = (fontX << 15) / 512;
+	s32 texMaxX = ((fontX + width) << 15) / 512;
+	s32 texMinY = (fontY << 15) / 512;
+	s32 texMaxY = ((fontY + getHeight()) << 15) / 512;
 
-	// 25c
-	f32 _f29_2 = _f29 * getDescent() + pos_y;
-
-	s32 _r30 = (sp10_x << 15) / 512;                // 228
-	s32 _r29 = ((sp10_x + sp18_width) << 15) / 512; // 240
-	s32 _r28 = (spC_y << 15) / 512;                 // 258
-	s32 _r27 = ((spC_y + getHeight()) << 15) / 512; // 284
-
-	// 288
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-	f32 _f4 = 0.0f;
+	// Bottom left
+	GXPosition3f32((s16)posMinX, (s16)posMinY, 0.0f);
+	GXColor1u32(mColor1);
+	GXPosition2u16(texMinX, texMinY);
 
-	HW_REG(0xCC008000, f32) = (s16)_f28; // 2f4
-	HW_REG(0xCC008000, f32) = (s16)_f26; // 304
-	HW_REG(0xCC008000, f32) = _f4;       // 30c
-	HW_REG(0xCC008000, u32) = u32(_0C);  // 324
-	HW_REG(0xCC008000, s16) = _r30;      // 32c
-	HW_REG(0xCC008000, s16) = _r28;      // 334
+	// Bottom right
+	GXPosition3f32((s16)posMaxX, (s16)posMinY, 0.0f);
+	GXColor1u32(mColor2);
+	GXPosition2u16(texMaxX, texMinY);
 
-	HW_REG(0xCC008000, f32) = (s16)_f27; // 364
-	HW_REG(0xCC008000, f32) = (s16)_f26; // 370
-	HW_REG(0xCC008000, f32) = _f4;       // 374
-	HW_REG(0xCC008000, u32) = u32(_10);  // 380
-	HW_REG(0xCC008000, s16) = _r29;      // 388
-	HW_REG(0xCC008000, s16) = _r28;      // 390
+	// Top right
+	GXPosition3f32((s16)posMaxX, (s16)posMaxY, 0.0f);
+	GXColor1u32(mColor4);
+	GXPosition2u16(texMaxX, texMaxY);
 
-	HW_REG(0xCC008000, f32) = (s16)_f27;   // 3a0
-	HW_REG(0xCC008000, f32) = (s16)_f29_2; // 3a8
-	HW_REG(0xCC008000, f32) = _f4;         // 3b4
-	HW_REG(0xCC008000, u32) = u32(_18);    // 3cc
-	HW_REG(0xCC008000, s16) = _r29;        // 3d8
-	HW_REG(0xCC008000, s16) = _r27;        // 3f8
+	// Top left
+	GXPosition3f32((s16)posMinX, (s16)posMaxY, 0.0f);
+	GXColor1u32(mColor3);
+	GXPosition2u16(texMinX, texMaxY);
 
-	HW_REG(0xCC008000, f32) = (s16)_f28;   // 400
-	HW_REG(0xCC008000, f32) = (s16)_f29_2; // 404
-	HW_REG(0xCC008000, f32) = _f4;         // 408
-	HW_REG(0xCC008000, u32) = u32(_14);    // 414
-	HW_REG(0xCC008000, s16) = _r30;        // 418
-	HW_REG(0xCC008000, s16) = _r27;        // 41c
-
-	return _f31 * (sp18_width + _r31);
+	return xScale * (width + shift);
 }
-
-/*
- * --INFO--
- * Address:	80032DD4
- * Size:	00005C
- * int JUTRomFont::getHeight() const { return getAscent() + getDescent(); }
- */
-
-/*
- * --INFO--
- * Address:	80032E30
- * Size:	00000C
- * int JUTRomFont::getDescent() const { return spFontHeader_->mDescent; }
- * Weak function.
- */
-
-/*
- * --INFO--
- * Address:	80032E3C
- * Size:	00000C
- * int JUTRomFont::getAscent() const { return spFontHeader_->mAscent; }
- * Weak function.
- */
-
-/*
- * --INFO--
- * Address:	80032E48
- * Size:	00000C
- * int JUTRomFont::getCellHeight() const { return spFontHeader_->mCellHeight; }
- * Weak function.
- */
-
-/*
- * --INFO--
- * Address:	80032E54
- * Size:	00000C
- * int JUTRomFont::getCellWidth() const { return spFontHeader_->mCellWidth; }
- * Weak function.
- */
 
 /*
  * --INFO--
  * Address:	80032E60
  * Size:	000060
  */
-void JUTRomFont::getWidthEntry(int a, JUTFont::TWidth* width) const
+void JUTRomFont::getWidthEntry(int chr, JUTFont::TWidth* width) const
 {
-	char sp8[2];
-	s32 spC;
-	char* phi_r3;
+	char str[2];
+	s32 fontWidth;
+	char* strPtr;
 
-	phi_r3 = sp8;
-	if (a >= 0x100) {
-		sp8[0] = a >> 8;
-		phi_r3++;
+	strPtr = str;
+	if (chr >= 0x100) {
+		str[0] = chr >> 8;
+		strPtr++;
 	}
-	*phi_r3 = a;
-	OSGetFontWidth(sp8, &spC);
-	width->w1 = spC;
+	*strPtr = chr;
+
+	OSGetFontWidth(str, &fontWidth);
+	width->w1 = fontWidth;
 	width->w0 = 0;
 }
 
@@ -271,36 +205,4 @@ void JUTRomFont::getWidthEntry(int a, JUTFont::TWidth* width) const
  * Address:	80032EC0
  * Size:	000030
  */
-bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->mIsLeadByteFunction(c); }
-
-/*
- * --INFO--
- * Address:	80032EF0
- * Size:	00000C
- * int JUTRomFont::getWidth() const { return spFontHeader_->mWidth; }
- * Weak function.
- */
-
-/*
- * --INFO--
- * Address:	80032EFC
- * Size:	00000C
- * u16 JUTRomFont::getLeading() const { return spFontHeader_->mLeading; }
- * Weak function.
- */
-
-/*
- * --INFO--
- * Address:	80032F08
- * Size:	000008
- * ResFONT* JUTRomFont::getResFont() const { return nullptr; }
- * Weak function.
- */
-
-/*
- * --INFO--
- * Address:	80032F10
- * Size:	00000C
- * u32 JUTRomFont::getFontType() const { return spAboutEncoding_->mFontType; }
- * Weak function.
- */
+bool JUTRomFont::isLeadByte(int chr) const { return spAboutEncoding_->mIsLeadByteFunction(chr); }

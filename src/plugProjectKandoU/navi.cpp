@@ -5216,7 +5216,7 @@ void Navi::updateThrowDisable()
 		return;
 	}
 
-	if (mController1 && mController1->mButton.mMask & PAD_BUTTON_A) {
+	if (mController1 && mController1->getButton() & PAD_BUTTON_A) {
 		mThrowTimer = NAVI_THROWTIMER_LENGTH;
 	}
 

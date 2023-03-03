@@ -1936,7 +1936,7 @@ bool THiScore::doUpdate()
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 		}
 	} else {
-		u32 press = mController->mButton.mMask;
+		u32 press = mController->getButton();
 		if (press & Controller::PRESS_DOWN) {
 			if (mState != 1) {
 				if (_184 == 0.0f) {

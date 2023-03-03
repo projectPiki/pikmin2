@@ -24,8 +24,8 @@ MapUnits::MapUnits(JUTTexture* texture)
 	mSizeX   = -1;
 	mSizeY   = -1;
 	if (mTexture) {
-		mSizeX = ((u32)mTexture->_20->mSizeX) >> 3;
-		mSizeY = ((u32)mTexture->_20->mSizeY) >> 3;
+		mSizeX = ((u32)mTexture->mTexInfo->mSizeX) >> 3;
+		mSizeY = ((u32)mTexture->mTexInfo->mSizeY) >> 3;
 	}
 
 	mDoorNode   = new DoorNode();

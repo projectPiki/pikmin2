@@ -1481,7 +1481,7 @@ void ObjSMenuMap::transMap()
 	f32 angle    = (mMapAngle * TAU) / 360.0f;
 	f32 anglesin = pikmin2_sinf(angle) * 2.0f;
 	f32 anglecos = pikmin2_cosf(angle) * 2.0f;
-	int buttons  = mController->mButton.mMask;
+	int buttons  = mController->getButton();
 	f32 inputx   = mController->mMStick.mXPos;
 	f32 inputz   = mController->mMStick.mXPos;
 

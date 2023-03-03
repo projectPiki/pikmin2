@@ -19,22 +19,23 @@ struct JUTTexture : public GXTexObj {
 	JUTTexture()
 	{
 		mFlags &= TEXFLAG_Unk2;
-		_28 = 0;
-		_20 = 0;
+		mEmbPalette = nullptr;
+		mTexInfo    = nullptr;
 	}
+
 	JUTTexture(int, int, _GXTexFmt);
 
 	inline JUTTexture(const char* resName)
 	{
 		const ResTIMG* resource = static_cast<ResTIMG*>(J2DScreen::getNameResource(resName));
-		_28                     = nullptr;
+		mEmbPalette             = nullptr;
 		storeTIMG(resource, (u8)0);
 		mFlags &= TEXFLAG_Unk2;
 	}
 
 	inline JUTTexture(ResTIMG* timg)
 	{
-		_28 = nullptr;
+		mEmbPalette = nullptr;
 		storeTIMG(timg, (u8)0);
 		mFlags &= TEXFLAG_Unk2;
 	}
@@ -54,26 +55,32 @@ struct JUTTexture : public GXTexObj {
 	void storeTIMG(const ResTIMG*, JUTPalette*, _GXTlut);
 
 	/** @fabricated */
-	inline int getSizeX() const { return _20->mSizeX; }
+	inline int getSizeX() const { return mTexInfo->mSizeX; }
 	/** @fabricated */
-	inline int getSizeY() const { return _20->mSizeY; }
+	inline int getSizeY() const { return mTexInfo->mSizeY; }
 
-	ResTIMG* _20;    // _20
-	void* _24;       // _24 /* DCrange */
-	JUTPalette* _28; // _28
-	JUTPalette* _2C; // _2C
-	u8 _30;          // _30 /* texWrapMode */
-	u8 _31;          // _31 /* texWrapMode */
-	u8 _32;          // _32
-	u8 _33;          // _33
-	u16 _34;         // _34
-	u16 _36;         // _36
-	short _38;       // _38
-	u8 mTlut;        // _3A
-	u8 mFlags;       // _3B
-	ResTIMG* _3C;    // _3C
+	const ResTIMG* getTexInfo() const { return mTexInfo; }
+	void setCaptureFlag(bool flag) { mFlags &= TEXFLAG_Unk2 | flag; }
+	u8 getCaptureFlag() const { return mFlags & TEXFLAG_Unk1; }
+	u8 getEmbPaletteDelFlag() const { return mFlags & TEXFLAG_Unk2; }
+	u8 getTlutName() const { return mTlut; }
+
+	ResTIMG* mTexInfo;       // _20
+	void* mTexData;          // _24
+	JUTPalette* mEmbPalette; // _28
+	JUTPalette* _2C;         // _2C
+	u8 mWrapS;               // _30, GXTexWrapMode
+	u8 mWrapT;               // _31, GXTexWrapMode
+	u8 mMinFilter;           // _32
+	u8 mMagFilter;           // _33
+	u16 mMinLOD;             // _34
+	u16 mMaxLOD;             // _36
+	s16 mLODBias;            // _38
+	u8 mTlut;                // _3A
+	u8 mFlags;               // _3B
+	ResTIMG* _3C;            // _3C
 };
 
-inline ResTIMG* J2DPicture::getTIMG(u8 i) { return getTexture(i)->_20; }
+inline ResTIMG* J2DPicture::getTIMG(u8 i) { return getTexture(i)->mTexInfo; }
 
 #endif

@@ -1639,7 +1639,7 @@ void ObjFinalResult::statusNormal()
 	}
 	mFadePane3DStick->fadein();
 	Controller* pad = getGamePad();
-	if (pad->mButton.mMask & Controller::PRESS_UP) {
+	if (pad->getButton() & Controller::PRESS_UP) {
 		if (mCurrentPage) {
 			mCurrentPage--;
 			mScreen->search(getSerialTagName('Nsel00', mCurrentPage + 1))->setAlpha(msVal._21);
@@ -1652,7 +1652,7 @@ void ObjFinalResult::statusNormal()
 		}
 	}
 	pad = getGamePad();
-	if (pad->mButton.mMask & Controller::PRESS_DOWN) {
+	if (pad->getButton() & Controller::PRESS_DOWN) {
 		if (mCurrentPage != 7) {
 			mCurrentPage++;
 			mScreen->search(getSerialTagName('Nsel00', mCurrentPage - 1))->setAlpha(msVal._21);

@@ -7,9 +7,10 @@
 struct JUTFont;
 struct JKRHeap;
 
-/** Unknown struct pointed to by offset 0 of JUTDbPrint. */
-struct JUTDbPrint_0x0 {
-	JUTDbPrint_0x0* mNext; // _00
+// Unknown struct pointed to by 0x0 of JUTDbPrint.
+// Name made up.
+struct JUTDbPrintList {
+	JUTDbPrintList* mNext; // _00
 	s16 _04;               // _04
 	s16 _06;               // _06
 	s16 _08;               // _08
@@ -19,9 +20,8 @@ struct JUTDbPrint_0x0 {
 
 struct JUTDbPrint {
 	JUTDbPrint(JUTFont*, JKRHeap*); // unused/inlined
-	~JUTDbPrint();                  // unused/inlined
 
-	static JUTDbPrint* start(JUTFont*, JKRHeap*);
+	~JUTDbPrint(); // unused/inlined
 
 	JUTFont* changeFont(JUTFont*);
 	void flush();
@@ -34,14 +34,18 @@ struct JUTDbPrint {
 	void print(int, int, int, const char*, ...);
 	void reset();
 
+	void setVisible(bool visible) { mIsVisible = visible; }
+	JUTFont* getFont() const { return mFont; }
+
+	static JUTDbPrint* start(JUTFont*, JKRHeap*);
 	static JUTDbPrint* getManager() { return sDebugPrint; }
 
 	static JUTDbPrint* sDebugPrint;
 
-	JUTDbPrint_0x0* _00;     // _00
+	JUTDbPrintList* mList;   // _00
 	JUTFont* mFont;          // _04
 	JUtility::TColor mColor; // _08
-	u8 _0C;                  // _0C
+	bool mIsVisible;         // _0C
 	JKRHeap* mHeap;          // _10
 };
 

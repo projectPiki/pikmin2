@@ -13,16 +13,19 @@ struct JKRHeap;
 struct JUTXfb {
 	enum EXfbNumber { Unset = 0, SingleBuffer = 1, DoubleBuffer = 2, TripleBuffer = 3 };
 
-	void clearIndex();
-	static JUTXfb* createManager(JKRHeap*, EXfbNumber);
-	static void destroyManager();
-	void initiate(u16, u16, JKRHeap*, EXfbNumber);
-	static u32 accumeXfbSize();
-
-	// Unused/inlined:
 	JUTXfb(const _GXRenderModeObj*, JKRHeap*, EXfbNumber);
 	JUTXfb(const _GXRenderModeObj*, void*, void*, void*, JUTXfb::EXfbNumber);
+
 	~JUTXfb();
+
+	void clearIndex();
+	void initiate(u16, u16, JKRHeap*, EXfbNumber);
+
+	static JUTXfb* createManager(JKRHeap*, EXfbNumber);
+	static void destroyManager();
+	static u32 accumeXfbSize();
+
+	// unused/inlined
 	void common_init(int);
 	void delXfb(int);
 	void exchangeXfbIndex(int, int);
@@ -42,17 +45,11 @@ struct JUTXfb {
 	{
 		return GXGetNumXfbLines(GXGetYScaleFactor(gxObj->efbHeight, gxObj->xfbHeight), gxObj->efbHeight);
 	}
-	/*void *getDrawnXfb() const {
-	    return (mDrawnXfbIndex >= 0) ? mBuffer[mDrawnXfbIndex] : nullptr;
-	}
+	void* getDrawnXfb() const { return (mDrawnXfbIndex >= 0) ? mBuffers[mDrawnXfbIndex] : nullptr; }
 
-	void *getDrawingXfb() const {
-	    return (mDrawingXfbIndex >= 0) ? mBuffer[mDrawingXfbIndex] : nullptr;
-	}
+	void* getDrawingXfb() const { return (mDrawingXfbIndex >= 0) ? mBuffers[mDrawingXfbIndex] : nullptr; }
 
-	void *getDisplayingXfb() const {
-	    return (mDisplayingXfbIndex >= 0) ? mBuffer[mDisplayingXfbIndex] : nullptr;
-	}*/
+	void* getDisplayingXfb() const { return (mDisplayingXfbIndex >= 0) ? mBuffers[mDisplayingXfbIndex] : nullptr; }
 
 	EXfbNumber getBufferNum() const { return mBufferNum; }
 	int getDrawingXfbIndex() const { return mDrawingXfbIndex; }
@@ -62,8 +59,6 @@ struct JUTXfb {
 	void setSDrawingFlag(int flag) { mSDrawingFlag = flag; }
 	void setDrawnXfbIndex(s16 index) { mDrawnXfbIndex = index; }
 	void setDrawingXfbIndex(s16 index) { mDrawingXfbIndex = index; }
-
-	void* getDrawingXfb() const { return (mDrawingXfbIndex >= 0) ? mBuffers[mDrawingXfbIndex] : nullptr; }
 
 	static JUTXfb* getManager() { return sManager; }
 

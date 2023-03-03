@@ -6219,7 +6219,7 @@ bool WorldMap::changeState()
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_PLAYER_CHANGE, 0);
 		ret           = true;
 		mCurrentState = WMAP_GoToZukan1;
-	} else if (mInitArg.mController->mMStick.mStickMag > 0.1f || mInitArg.mController->mButton.mMask & 0xf) {
+	} else if (mInitArg.mController->mMStick.mStickMag > 0.1f || mInitArg.mController->getButton() & 0xf) {
 		if (mInputState == 0) {
 			ret           = true;
 			mInputState   = msVal._78;
@@ -6505,11 +6505,11 @@ int WorldMap::getTarget()
 	case 0: // currently selected valley of repose
 	{
 		// press right, go to awakening wood if opened
-		if (mInitArg.mController->mButton.mMask & Controller::PRESS_RIGHT) {
+		if (mInitArg.mController->getButton() & Controller::PRESS_RIGHT) {
 			newMap = 1;
 		}
 		// press up, go to perplexing pool if opened
-		else if (mInitArg.mController->mButton.mMask & Controller::PRESS_UP) {
+		else if (mInitArg.mController->getButton() & Controller::PRESS_UP) {
 			newMap = 2;
 		}
 		break;
@@ -6517,11 +6517,11 @@ int WorldMap::getTarget()
 	case 1: // currently selected awakening wood
 	{
 		// press left, go to valley of repose if opened
-		if (mInitArg.mController->mButton.mMask & Controller::PRESS_LEFT) {
+		if (mInitArg.mController->getButton() & Controller::PRESS_LEFT) {
 			newMap = 0;
 		}
 		// press up, go to wistful wild if opened, or go to perplexing pool if not
-		else if (mInitArg.mController->mButton.mMask & Controller::PRESS_UP) {
+		else if (mInitArg.mController->getButton() & Controller::PRESS_UP) {
 			newMap = mOpenCourses == 3 ? 2 : 3;
 		}
 		break;
@@ -6529,11 +6529,11 @@ int WorldMap::getTarget()
 	case 2: // currently selected perplexing pool
 	{
 		// press right, go to wistful wild if open, otherwise awakening wood
-		if (mInitArg.mController->mButton.mMask & Controller::PRESS_RIGHT) {
+		if (mInitArg.mController->getButton() & Controller::PRESS_RIGHT) {
 			newMap = mOpenCourses == 3 ? 1 : 3;
 		}
 		// press down, to go valley of repose
-		else if (mInitArg.mController->mButton.mMask & Controller::PRESS_DOWN) {
+		else if (mInitArg.mController->getButton() & Controller::PRESS_DOWN) {
 			newMap = 0;
 		}
 		break;
@@ -6541,11 +6541,11 @@ int WorldMap::getTarget()
 	case 3: // currently selected wistful wild
 	{
 		// press left, go to perplexing pool
-		if (mInitArg.mController->mButton.mMask & Controller::PRESS_LEFT) {
+		if (mInitArg.mController->getButton() & Controller::PRESS_LEFT) {
 			newMap = 2;
 		}
 		// press down, go to awakening wood
-		else if (mInitArg.mController->mButton.mMask & Controller::PRESS_DOWN) {
+		else if (mInitArg.mController->getButton() & Controller::PRESS_DOWN) {
 			newMap = 1;
 		}
 		break;

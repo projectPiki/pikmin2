@@ -124,7 +124,7 @@ void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 	switch (lifeGaugeType) {
 	case 1:
 		JUTTexture* texture1 = _74->getTexture(0);
-		_70->changeTexture(texture1->_20, 0);
+		_70->changeTexture(texture1->mTexInfo, 0);
 
 		_7C->setWhite(_80->getWhite());
 		_7C->setBlack(_80->getBlack());
@@ -137,7 +137,7 @@ void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 
 	case 2:
 		JUTTexture* texture2 = _78->getTexture(0);
-		_70->changeTexture(texture2->_20, 0);
+		_70->changeTexture(texture2->mTexInfo, 0);
 
 		_7C->setWhite(_84->getWhite());
 		_7C->setBlack(_84->getBlack());

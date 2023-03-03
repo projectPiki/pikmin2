@@ -34,7 +34,7 @@ void BaseGameSection::newdraw_draw3D_all(Graphics& gfx)
 	_130->frameInitAll();
 
 	if (!gameSystem->isMultiplayerMode()) {
-		particleMgr->setXfb(mXfbImage->_20);
+		particleMgr->setXfb(mXfbImage->mTexInfo);
 	}
 
 	// Draw particles for both viewports

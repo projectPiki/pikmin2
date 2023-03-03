@@ -249,7 +249,7 @@ bool TSequenceProcessor::do_isReady()
 			if ((_54 && (_54->mButton.mButtonDown & PAD_BUTTON_B)) || (_58 && (_58->mButton.mButtonDown & PAD_BUTTON_B))) {
 				doFastForwardSE();
 				_68.typeView |= 8;
-			} else if ((_54 && (_54->mButton.mMask & PAD_BUTTON_A)) || (_58 && (_58->mButton.mMask & PAD_BUTTON_A))) {
+			} else if ((_54 && (_54->getButton() & PAD_BUTTON_A)) || (_58 && (_58->getButton() & PAD_BUTTON_A))) {
 				frameCount = 2.5f;
 			}
 		}

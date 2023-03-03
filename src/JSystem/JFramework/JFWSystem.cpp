@@ -90,7 +90,7 @@ void JFWSystem::init()
 	}
 	systemConsole->setHeight(25);
 	systemConsole->setVisible(false);
-	systemConsole->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
+	systemConsole->setOutput(JUTConsole::CONSOLEOUT_OSReport | JUTConsole::CONSOLEOUT_Console);
 	JUTSetReportConsole(systemConsole);
 	JUTSetWarningConsole(systemConsole);
 	void* mem = systemHeap->alloc(CSetUpParam::exConsoleBufferSize, 4);

@@ -7,9 +7,9 @@
 typedef u8 _JUTTransparency;
 
 struct ResTLUT {
-	_GXTlutFmt mFormat;             // _00
+	GXTlutFmt mFormat;              // _00
 	_JUTTransparency mTransparency; // _01
-	u16 _02;                        // _02 // maybe sizeX, given similarities to ResTIMG?
+	u16 mNumColors;                 // _02 // maybe sizeX, given similarities to ResTIMG?
 	u8 _04[0x1C];                   // _04
 	u32 _20;                        // _20
 };
