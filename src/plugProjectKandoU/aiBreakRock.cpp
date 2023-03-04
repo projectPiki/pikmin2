@@ -72,17 +72,17 @@ static const char followFieldArgName[] = "FollowVectorFieldActionArg";
 void ActBreakRock::initStickAttack()
 {
 	int state = -1;
-	if (mRock->mObjectTypeID == 0x40E) {
+	if (mRock->mObjectTypeID == OBJTYPE_Treasure) {
 		state = 58;
 	}
 	f32 attackDamage = mParent->getAttackDamage();
 	StickAttackActionArg stickAttackArg(attackDamage, mRock, state, 0);
 
-	if (mRock->mObjectTypeID == 0x410 || mRock->mObjectTypeID == 0x40C) {
+	if (mRock->mObjectTypeID == OBJTYPE_Barrel || mRock->mObjectTypeID == OBJTYPE_BigFountain) {
 		stickAttackArg._10 = 5;
-	} else if (mRock->mObjectTypeID == 0x40E) {
+	} else if (mRock->mObjectTypeID == OBJTYPE_Treasure) {
 		stickAttackArg._10 = 6;
-	} else if (mRock->mObjectTypeID == 0x409) {
+	} else if (mRock->mObjectTypeID == OBJTYPE_Rock) {
 		stickAttackArg._10 = 7;
 	}
 
@@ -107,8 +107,8 @@ int ActBreakRock::exec()
 		mFollowField->exec();
 		int stickResult = mStickAttack->exec();
 
-		if (mRock->mObjectTypeID == 0x40E) {
-			mParent->startSound(mRock, PSSE_PK_VC_DIGGING, PSGame::SeMgr::UNK_1);
+		if (mRock->mObjectTypeID == OBJTYPE_Treasure) {
+			mParent->startSound(mRock, PSSE_PK_VC_DIGGING, PSGame::SeMgr::SETSE_PikiCarry);
 		}
 
 		if (stickResult != 1) {

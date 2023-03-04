@@ -1,165 +1,8 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80490038
-    lbl_80490038:
-        .4byte 0x8373834C
-        .4byte 0x53458AD4
-        .4byte 0x88F882AB
-        .4byte 0x90DD92E8
-        .4byte 0x00000000
-        .4byte 0x8373834C
-        .4byte 0x95A8895E
-        .4byte 0x82D189B9
-        .4byte 0x00000000
-        .4byte 0x8373834C
-        .4byte 0x8E648E96
-        .4byte 0x924082AB
-        .4byte 0x89B90000
-        .4byte 0x8373834C
-        .4byte 0x93DB82DD
-        .4byte 0x8D9E82DC
-        .4byte 0x82EA82E0
-        .4byte 0x82AA82AB
-        .4byte 0x90BA0000
-        .4byte 0x83608383
-        .4byte 0x838C8393
-        .4byte 0x83578382
-        .4byte 0x815B8368
-        .4byte 0x82CC8367
-        .4byte 0x83628376
-        .4byte 0x89E696CA
-        .4byte 0x97700000
-        .4byte 0x8373834C
-        .4byte 0x92859085
-        .4byte 0x89B99770
-        .4byte 0x00000000
-        .4byte 0x8373834C
-        .4byte 0x8370836A
-        .4byte 0x8362834E
-        .4byte 0x83898393
-        .4byte 0x97700000
-    .global lbl_804900C8
-    lbl_804900C8:
-        .4byte 0x50535365
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_804900D4
-    lbl_804900D4:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x5053436F
-        .4byte 0x6D6D6F6E
-        .4byte 0x2E680000
-        .4byte 0x838A8393
-        .4byte 0x834E82AA
-        .4byte 0x82A082E8
-        .4byte 0x82DC82B9
-        .4byte 0x82F10000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q26PSGame25Builder_EvnSe_Perspective
-    __vt__Q26PSGame25Builder_EvnSe_Perspective:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q26PSGame25Builder_EvnSe_PerspectiveFv
-        .4byte
-   onBuild__Q26PSGame25Builder_EvnSe_PerspectiveFPQ28PSSystem9EnvSeBase .4byte
-   newSeObj__Q26PSGame25Builder_EvnSe_PerspectiveFUlf3Vec .global
-   __vt__Q26PSGame13EnvSe_AutoPan
-    __vt__Q26PSGame13EnvSe_AutoPan:
-        .4byte 0
-        .4byte 0
-        .4byte exec__Q28PSSystem9EnvSeBaseFv
-        .4byte play__Q28PSSystem9EnvSeBaseFv
-        .4byte getCastType__Q28PSSystem9EnvSeBaseFv
-        .4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
-    .global __vt__Q26PSGame17EnvSe_Perspective
-    __vt__Q26PSGame17EnvSe_Perspective:
-        .4byte 0
-        .4byte 0
-        .4byte exec__Q28PSSystem9EnvSeBaseFv
-        .4byte play__Q26PSGame17EnvSe_PerspectiveFv
-        .4byte getCastType__Q28PSSystem9EnvSeBaseFv
-        .4byte setPanAndDolby__Q28PSSystem9EnvSeBaseFP8JAISound
-    .global __vt__Q26PSGame9EnvSe_Pan
-    __vt__Q26PSGame9EnvSe_Pan:
-        .4byte 0
-        .4byte 0
-        .4byte exec__Q28PSSystem9EnvSeBaseFv
-        .4byte play__Q28PSSystem9EnvSeBaseFv
-        .4byte getCastType__Q28PSSystem9EnvSeBaseFv
-        .4byte setPanAndDolby__Q26PSGame9EnvSe_PanFP8JAISound
-    .global __vt__Q26PSGame5Rappa
-    __vt__Q26PSGame5Rappa:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q26PSGame5RappaFv
-    .global __vt__Q26PSGame5SeMgr
-    __vt__Q26PSGame5SeMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q26PSGame5SeMgrFv
-    .global "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"
-    "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv"
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global cRatio__Q26PSGame5Rappa
-    cRatio__Q26PSGame5Rappa:
-        .float 15.0
-    .global cBaseWaitTime__Q26PSGame5Rappa
-    cBaseWaitTime__Q26PSGame5Rappa:
-        .4byte 0x00030000
-    .global sRappa__Q26PSGame5Rappa
-    sRappa__Q26PSGame5Rappa:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global cNotUsingMasterIdRatio__Q26PSGame6RandId
-    cNotUsingMasterIdRatio__Q26PSGame6RandId:
-        .float -1.0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051E188
-    lbl_8051E188:
-        .4byte 0x934794C4
-        .4byte 0x97700000
-    .global lbl_8051E190
-    lbl_8051E190:
-        .float 1.0
-    .global lbl_8051E194
-    lbl_8051E194:
-        .float 0.5
-    .global lbl_8051E198
-    lbl_8051E198:
-        .4byte 0x00000000
-    .global lbl_8051E19C
-    lbl_8051E19C:
-        .float 0.1
-    .global lbl_8051E1A0
-    lbl_8051E1A0:
-        .4byte 0xBF800000
-        .4byte 0x00000000
-    .global lbl_8051E1A8
-    lbl_8051E1A8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051E1B0
-    lbl_8051E1B0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051E1B8
-    lbl_8051E1B8:
-        .4byte 0x40000000
-    .global lbl_8051E1BC
-    lbl_8051E1BC:
-        .4byte 0x447A0000
-*/
+#include "PSGame/SeMgr.h"
+#include "PSGame/Rappa.h"
+#include "PSGame/EnvSe.h"
+#include "JSystem/JAudio2/JALCalc.h"
+#include "PSSystem/PSSystemIF.h"
 
 namespace PSGame {
 
@@ -169,149 +12,26 @@ namespace PSGame {
  * Size:	000210
  */
 SeMgr::SeMgr()
+    : PSSystem::SingletonBase<SeMgr>(this)
+    , mRandid()
+    , mSound(nullptr)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r4, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@l
-	lis      r4, lbl_80490038@ha
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_80490038@l
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lis      r3, __vt__Q26PSGame5SeMgr@ha
-	stw      r29, 0x14(r1)
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__Q26PSGame5SeMgr@l
-	addi     r3, r30, 0x24
-	stw      r30,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) stw      r0,
-0(r30) bl       __ct__Q26PSGame6RandIdFv li       r0, 0 li       r3, 0x18 stw
-r0, 0x2c(r30) stw      r0, 4(r30) stw      r0, 8(r30) stw      r0, 0xc(r30) stw
-r0, 0x10(r30) stw      r0, 0x14(r30) stw      r0, 0x18(r30) stw      r0,
-0x1c(r30) stw      r0, 0x20(r30) bl       __nw__FUl or.      r0, r3, r3 beq
-lbl_8033F1EC addi     r4, r31, 0 li       r5, 0 li       r6, 3 bl
-__ct__Q26PSGame5SetSeFPCcss mr       r0, r3
+	for (int i = 0; i < 8; i++) {
+		mSetSeList[i] = nullptr;
+	}
 
-lbl_8033F1EC:
-	stw      r0, 4(r30)
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8033F214
-	addi     r4, r31, 0x14
-	li       r5, 9
-	li       r6, 9
-	bl       __ct__Q26PSGame5SetSeFPCcss
-	mr       r0, r3
+	mSetSeList[0] = new SetSe("ピキSE間引き設定", 0, 3);               // "Pixel SE thinning setting"
+	mSetSeList[1] = new SetSe("ピキ物運び音", 9, 9);                   // "piki hauling sound"
+	mSetSeList[2] = new SetSe("ピキ仕事叩き音", 0, 5);                 // "Piki job tapping sound"
+	mSetSeList[4] = new SetSe("ピキ呑み込まれもがき声", 20, 20);       // "Piki swallowed and struggle voice"
+	mSetSeList[5] = new SetSe("チャレンジモードのトップ画面用", 0, 2); // "For challenge mode top screen"
+	mSetSeList[6] = new SetSe("ピキ着水音用", 2, 5);                   // "For Piki landing sound"
+	mSetSeList[7] = new SetSe("ピキパニックラン用", 4, 10);            // "For Piki Panic Run"
+	mSetSeList[3] = new SetSe("敵汎用", 20, 9);                        // "Enemy General Purpose"
 
-lbl_8033F214:
-	stw      r0, 8(r30)
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8033F23C
-	addi     r4, r31, 0x24
-	li       r5, 0
-	li       r6, 5
-	bl       __ct__Q26PSGame5SetSeFPCcss
-	mr       r0, r3
-
-lbl_8033F23C:
-	stw      r0, 0xc(r30)
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8033F264
-	addi     r4, r31, 0x34
-	li       r5, 0x14
-	li       r6, 0x14
-	bl       __ct__Q26PSGame5SetSeFPCcss
-	mr       r0, r3
-
-lbl_8033F264:
-	stw      r0, 0x14(r30)
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8033F28C
-	addi     r4, r31, 0x4c
-	li       r5, 0
-	li       r6, 2
-	bl       __ct__Q26PSGame5SetSeFPCcss
-	mr       r0, r3
-
-lbl_8033F28C:
-	stw      r0, 0x18(r30)
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8033F2B4
-	addi     r4, r31, 0x6c
-	li       r5, 2
-	li       r6, 5
-	bl       __ct__Q26PSGame5SetSeFPCcss
-	mr       r0, r3
-
-lbl_8033F2B4:
-	stw      r0, 0x1c(r30)
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8033F2DC
-	addi     r4, r31, 0x7c
-	li       r5, 4
-	li       r6, 0xa
-	bl       __ct__Q26PSGame5SetSeFPCcss
-	mr       r0, r3
-
-lbl_8033F2DC:
-	stw      r0, 0x20(r30)
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8033F304
-	addi     r4, r2, lbl_8051E188@sda21
-	li       r5, 0x14
-	li       r6, 9
-	bl       __ct__Q26PSGame5SetSeFPCcss
-	mr       r0, r3
-
-lbl_8033F304:
-	stw      r0, 0x10(r30)
-	li       r29, 0
-	b        lbl_8033F33C
-
-lbl_8033F310:
-	rlwinm   r3, r29, 2, 0x16, 0x1d
-	addi     r0, r3, 4
-	lwzx     r0, r30, r0
-	cmplwi   r0, 0
-	bne      lbl_8033F338
-	addi     r3, r31, 0x90
-	addi     r5, r31, 0x9c
-	li       r4, 0x2c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033F338:
-	addi     r29, r29, 1
-
-lbl_8033F33C:
-	clrlwi   r0, r29, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8033F310
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u8 i = 0; i < 8; i++) {
+		P2ASSERTLINE(44, mSetSeList[i]);
+	}
 }
 
 /*
@@ -319,102 +39,37 @@ lbl_8033F33C:
  * Address:	8033F368
  * Size:	000120
  */
-void SeMgr::playMessageVoice(unsigned long, bool)
+void SeMgr::playMessageVoice(u32 soundID, bool flag)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	lfs      f31, lbl_8051E190@sda21(r2)
-	cmpwi    r30, 0x1850
-	lfs      f30, cNotUsingMasterIdRatio__Q26PSGame6RandId@sda21(r13)
-	mr       r29, r3
-	beq      lbl_8033F3CC
-	bge      lbl_8033F3B8
-	cmpwi    r30, 0x1846
-	beq      lbl_8033F3C4
-	b        lbl_8033F45C
+	f32 calc = 1.0f;
+	f32 mod  = RandId::cNotUsingMasterIdRatio;
+	int message;
+	switch (soundID) {
+	case PSSE_MP_VOX_HEAD_A_FLAT:
+		message = 10;
+		break;
+	case PSSE_MP_VOX_BODY_MN:
+		if (!flag) {
+			calc = 0.0f;
+		}
+		mod     = 0.0f;
+		message = 15;
+		break;
+	case PSSE_MP_VOX_FOOT_A_UP:
+		message = 15;
+		break;
+	default:
+		return;
+	}
 
-lbl_8033F3B8:
-	cmpwi    r30, 0x185f
-	beq      lbl_8033F3E4
-	b        lbl_8033F45C
+	P2ASSERTLINE(90, message != 0xffffffff);
+	bool test = JALCalc::getRandom_0_1() < calc ? true : false;
 
-lbl_8033F3C4:
-	li       r31, 0xa
-	b        lbl_8033F3F0
-
-lbl_8033F3CC:
-	clrlwi.  r0, r5, 0x18
-	bne      lbl_8033F3D8
-	lfs      f31, lbl_8051E194@sda21(r2)
-
-lbl_8033F3D8:
-	lfs      f30, lbl_8051E198@sda21(r2)
-	li       r31, 0xf
-	b        lbl_8033F3F0
-
-lbl_8033F3E4:
-	li       r31, 0xf
-	b        lbl_8033F3F0
-	b        lbl_8033F45C
-
-lbl_8033F3F0:
-	addis    r0, r31, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_8033F418
-	lis      r3, lbl_804900C8@ha
-	lis      r5, lbl_804900D4@ha
-	addi     r3, r3, lbl_804900C8@l
-	li       r4, 0x5a
-	addi     r5, r5, lbl_804900D4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033F418:
-	bl       getRandom_0_1__7JALCalcFv
-	fcmpo    cr0, f1, f31
-	bge      lbl_8033F42C
-	li       r0, 1
-	b        lbl_8033F430
-
-lbl_8033F42C:
-	li       r0, 0
-
-lbl_8033F430:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8033F45C
-	stfs     f30, 0x24(r29)
-	mr       r4, r30
-	mr       r6, r31
-	addi     r3, r29, 0x24
-	addi     r5, r29, 0x2c
-	li       r7, 0
-	bl       playSystemSe__Q26PSGame6RandIdFUlPP8JAISoundUlUl
-	lfs      f0, cNotUsingMasterIdRatio__Q26PSGame6RandId@sda21(r13)
-	stfs     f0, 0x24(r29)
-
-lbl_8033F45C:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	if (test) {
+		mRandid.mId = mod;
+		mRandid.playSystemSe(soundID, &mSound, message, 0);
+		mRandid.mId = RandId::cNotUsingMasterIdRatio;
+	}
 }
 
 /*
@@ -424,25 +79,9 @@ lbl_8033F45C:
  */
 void SeMgr::stopMessageVoice()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2c(r3)
-	cmplwi   r3, 0
-	beq      lbl_8033F4B4
-	lwz      r12, 0x10(r3)
-	li       r4, 0
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8033F4B4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mSound) {
+		mSound->stop(0);
+	}
 }
 
 /*
@@ -452,28 +91,9 @@ lbl_8033F4B4:
  */
 Rappa::Rappa()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q26PSGame5Rappa@ha
-	li       r4, -1
-	addi     r3, r3, __vt__Q26PSGame5Rappa@l
-	li       r0, 0
-	stw      r3, 0(r31)
-	mr       r3, r31
-	stw      r4, 0x18(r31)
-	sth      r0, 0x1c(r31)
-	sth      r0, 0x1e(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mId    = -1;
+	mWait  = 0;
+	mTblNo = 0;
 }
 
 /*
@@ -481,8 +101,11 @@ Rappa::Rappa()
  * Address:	8033F514
  * Size:	0000A0
  */
-void Rappa::init(unsigned short)
+void Rappa::init(u16 id)
 {
+	P2ASSERTLINE(180, (bool)id < 2);
+	mId        = 0xe - id;
+	sRappa[id] = this;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -536,11 +159,7 @@ lbl_8033F578:
  * Address:	8033F5B4
  * Size:	000008
  */
-void Rappa::setId(unsigned long a1)
-{
-	// Generated from stw r4, 0x18(r3)
-	_18 = a1;
-}
+void Rappa::setId(u32 id) { mId = id; }
 
 /*
  * --INFO--
@@ -549,6 +168,11 @@ void Rappa::setId(unsigned long a1)
  */
 Rappa::~Rappa()
 {
+	for (int i = 0; i <= 1; i++) {
+		if (sRappa[i] == this) {
+			sRappa[i] = nullptr;
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -604,8 +228,31 @@ lbl_8033F638:
  * Address:	8033F654
  * Size:	000170
  */
-void Rappa::playRappa(bool, float, float, JAInter::Object*)
+bool Rappa::playRappa(bool flag, f32 x, f32 y, JAInter::Object* obj)
 {
+	P2ASSERTLINE(204, mId != -1);
+
+	bool ret = false;
+	if (flag) {
+		if (y < 0.0f) {
+			y = -y;
+		}
+		if (x < 0.0f) {
+			x = -x;
+		}
+		if (y < x) {
+			y = x;
+		}
+
+		if (y > 0.1f) {
+			ret = false;
+		} else {
+			obj->startSound(mId, 0);
+			f32 comp = _sqrtf((y - 1.0f) * -1.0f);
+			mWait    = comp * 15.0f + cBaseWaitTime;
+		}
+	}
+	return ret;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -731,25 +378,10 @@ lbl_8033F798:
  * Address:	8033F7C4
  * Size:	00003C
  */
-void Rappa::syncCpu_WaitChk(JASTrack*)
+u32 Rappa::syncCpu_WaitChk(JASTrack* track)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r3, r4
-	li       r4, 0xb
-	addi     r5, r31, 0x1e
-	bl       readPortAppDirect__8JASTrackFUlPUs
-	lwz      r0, 0x14(r1)
-	lhz      r3, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	track->readPortAppDirect(0xb, &mTblNo);
+	return mWait;
 }
 
 /*
@@ -757,55 +389,24 @@ void Rappa::syncCpu_WaitChk(JASTrack*)
  * Address:	8033F800
  * Size:	000008
  */
-void Rappa::syncCpu_TblNo(JASTrack*)
-{
-	/*
-	lhz      r3, 0x1e(r3)
-	blr
-	*/
-}
+u32 Rappa::syncCpu_TblNo(JASTrack* track) { return mTblNo; }
 
 /*
  * --INFO--
  * Address:	8033F808
  * Size:	000078
  */
-SetSe::SetSe(const char*, short, short)
+SetSe::SetSe(const char* name, s16 min, s16 max)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r6
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	sth      r4, 0(r3)
-	li       r3, -1
-	sth      r5, 2(r31)
-	sth      r6, 4(r31)
-	sth      r5, 6(r31)
-	stw      r3, 8(r31)
-	stb      r4, 0x14(r31)
-	stw      r4, 0xc(r31)
-	stw      r4, 0x10(r31)
-	bge      lbl_8033F868
-	lis      r3, lbl_804900C8@ha
-	lis      r5, lbl_804900D4@ha
-	addi     r3, r3, lbl_804900C8@l
-	li       r4, 0x13f
-	addi     r5, r5, lbl_804900D4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033F868:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCounter   = 0;
+	mMinId     = min;
+	mMaxId     = max;
+	mMaxCount  = min;
+	mStatus    = -1;
+	mCounter2  = 0;
+	mSounds[0] = nullptr;
+	mSounds[1] = nullptr;
+	P2ASSERTLINE(319, max >= 0);
 }
 
 /*
@@ -815,24 +416,11 @@ lbl_8033F868:
  */
 void SetSe::exec()
 {
-	/*
-	lhz      r4, 0(r3)
-	lha      r0, 6(r3)
-	cmpw     r4, r0
-	ble      lbl_8033F898
-	li       r0, -1
-	stw      r0, 8(r3)
-
-lbl_8033F898:
-	lwz      r4, 8(r3)
-	addis    r0, r4, 1
-	cmplwi   r0, 0xffff
-	beqlr
-	lhz      r4, 0(r3)
-	addi     r0, r4, 1
-	sth      r0, 0(r3)
-	blr
-	*/
+	if (mCounter > mMaxCount)
+		mStatus = -1;
+	if (mStatus == -1)
+		return;
+	mCounter++;
 }
 
 /*
@@ -840,8 +428,16 @@ lbl_8033F898:
  * Address:	8033F8B8
  * Size:	0000B8
  */
-void SetSe::startSound(JAInter::Object*, unsigned long, unsigned long)
+bool SetSe::startSound(JAInter::Object* obj, u32 id1, u32 flag)
 {
+	P2ASSERTLINE(336, obj);
+	if (mStatus == -1) {
+		JAISound* ret = obj->startSound(id1, flag);
+		startCounter(id1);
+		return ret;
+	} else {
+		return false;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -903,54 +499,21 @@ lbl_8033F950:
  * Address:	8033F970
  * Size:	0000A0
  */
-void SetSe::playSystemSe(unsigned long, unsigned long)
+JAISound* SetSe::playSystemSe(u32 soundID, u32 flag)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 8(r3)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_8033F9F4
-	lbz      r0, 0x14(r30)
-	mr       r6, r5
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	slwi     r5, r0, 2
-	addi     r5, r5, 0xc
-	add      r5, r30, r5
-	bl       playSystemSe__Q28PSSystem5SysIFFUlPP8JAISoundUl
-	mr       r3, r30
-	mr       r4, r31
-	bl       startCounter__Q26PSGame5SetSeFUl
-	lbz      r4, 0x14(r30)
-	slwi     r3, r4, 2
-	addi     r0, r4, 1
-	add      r3, r30, r3
-	lwz      r3, 0xc(r3)
-	stb      r0, 0x14(r30)
-	lbz      r0, 0x14(r30)
-	cmplwi   r0, 2
-	bne      lbl_8033F9F8
-	li       r0, 0
-	stb      r0, 0x14(r30)
-	b        lbl_8033F9F8
-
-lbl_8033F9F4:
-	li       r3, 0
-
-lbl_8033F9F8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JAISound* ret;
+	if (mStatus == -1) {
+		PSSystem::spSysIF->playSystemSe(soundID, &mSounds[mCounter2], flag);
+		startCounter(soundID);
+		ret = mSounds[mCounter2];
+		mCounter2++;
+		if (mCounter2 == 2) {
+			mCounter2 = 0;
+		}
+	} else {
+		ret = nullptr;
+	}
+	return ret;
 }
 
 /*
@@ -958,43 +521,11 @@ lbl_8033F9F8:
  * Address:	8033FA10
  * Size:	000084
  */
-void SetSe::startCounter(unsigned long)
+void SetSe::startCounter(u32 id)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	sth      r0, 0(r3)
-	stw      r4, 8(r3)
-	bl       getRandom_0_1__7JALCalcFv
-	lha      r4, 4(r31)
-	lis      r3, 0x43300000@ha
-	lha      r0, 2(r31)
-	xoris    r4, r4, 0x8000
-	stw      r3, 8(r1)
-	xoris    r0, r0, 0x8000
-	lfd      f3, lbl_8051E1A8@sda21(r2)
-	stw      r4, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r0, 0x14(r1)
-	fsubs    f2, f0, f3
-	stw      r3, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f3
-	fmadds   f0, f2, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	sth      r0, 6(r31)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mCounter  = 0;
+	mStatus   = id;
+	mMaxCount = mMaxId * JALCalc::getRandom_0_1() + mMinId;
 }
 
 /*
@@ -1002,22 +533,36 @@ void SetSe::startCounter(unsigned long)
  * Address:	8033FA94
  * Size:	00000C
  */
-RandId::RandId()
-{
-	/*
-	lfs      f0, cNotUsingMasterIdRatio__Q26PSGame6RandId@sda21(r13)
-	stfs     f0, 0x43300000@l(r3)
-	blr
-	*/
-}
+RandId::RandId() { mId = cNotUsingMasterIdRatio; }
 
 /*
  * --INFO--
  * Address:	8033FAA0
  * Size:	0001E8
  */
-void RandId::startSound(JAInter::Object*, unsigned long, unsigned long, unsigned long)
+void RandId::startSound(JAInter::Object* obj, u32 soundID, u32 range, u32 flag)
 {
+	if (mId == -1.0f) {
+		P2ASSERTLINE(426, range > 1);
+		u32 inc = range * JALCalc::getRandom_0_1();
+		P2ASSERTLINE(429, inc < range);
+		soundID += inc;
+	} else {
+		P2ASSERTLINE(432, mId >= 0.0f);
+		P2ASSERTLINE(433, range > 1);
+		f32 comp = JALCalc::getRandom_0_1() - mId;
+		if (comp > 0.0f) {
+			P2ASSERTLINE(451, range > 1);
+			for (int i = 0; i < range; i++) {
+				comp -= (1.0f - mId) / range - 1.0f;
+				if (comp < 0.0f)
+					soundID += i;
+				break;
+			}
+		}
+	}
+	P2ASSERTLINE(460, obj);
+	obj->startSound(soundID, flag);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -1172,8 +717,28 @@ void RandId::startSound(JAInter::Object*, unsigned long, unsigned long, unsigned
  * Address:	8033FC88
  * Size:	0001B8
  */
-void RandId::playSystemSe(unsigned long, JAISound**, unsigned long, unsigned long)
+void RandId::playSystemSe(u32 soundID, JAISound** sound, u32 range, u32 flag)
 {
+	if (mId == -1.0f) {
+		P2ASSERTLINE(426, range > 1);
+		u32 inc = range * JALCalc::getRandom_0_1();
+		P2ASSERTLINE(429, inc < range);
+		soundID += inc;
+	} else {
+		P2ASSERTLINE(432, mId >= 0.0f);
+		P2ASSERTLINE(433, range > 1);
+		f32 comp = JALCalc::getRandom_0_1() - mId;
+		if (comp > 0.0f) {
+			P2ASSERTLINE(451, range > 1);
+			for (int i = 0; i < range; i++) {
+				comp -= (1.0f - mId) / range - 1.0f;
+				if (comp < 0.0f)
+					soundID += i;
+				break;
+			}
+		}
+	}
+	PSSystem::spSysIF->playSystemSe(soundID, sound, flag);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -1314,39 +879,10 @@ void RandId::playSystemSe(unsigned long, JAISound**, unsigned long, unsigned lon
  * Address:	8033FE40
  * Size:	000074
  */
-void EnvSe_Pan::setPanAndDolby(JAISound*)
+void EnvSe_Pan::setPanAndDolby(JAISound* sound)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lfs      f1, 0x3c(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f1, 0x40(r30)
-	lwz      r12, 0x10(r31)
-	li       r4, 0
-	li       r5, 0
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	sound->setPan(mPan, 0, 0);
+	sound->setDolby(mDolby, 0, 0);
 }
 
 /*
@@ -1354,34 +890,10 @@ void EnvSe_Pan::setPanAndDolby(JAISound*)
  * Address:	8033FEB4
  * Size:	000060
  */
-EnvSe_Perspective::EnvSe_Perspective(unsigned long, float, Vec)
+EnvSe_Perspective::EnvSe_Perspective(u32 a1, f32 a2, Vec a3)
+    : EnvSeBase(a1, a2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q28PSSystem9EnvSeBaseFUlf
-	lis      r3, __vt__Q26PSGame17EnvSe_Perspective@ha
-	lfs      f2, 0(r31)
-	addi     r0, r3, __vt__Q26PSGame17EnvSe_Perspective@l
-	lfs      f1, 4(r31)
-	stw      r0, 0x10(r30)
-	mr       r3, r30
-	lfs      f0, 8(r31)
-	stfs     f2, 0x3c(r30)
-	stfs     f1, 0x40(r30)
-	stfs     f0, 0x44(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mVec = a3;
 }
 
 /*
@@ -1389,8 +901,10 @@ EnvSe_Perspective::EnvSe_Perspective(unsigned long, float, Vec)
  * Address:	8033FF14
  * Size:	00004C
  */
-void EnvSe_Perspective::play()
+JAISound* EnvSe_Perspective::play()
 {
+	PSSystem::spSysIF->startSoundVecT(mSoundID, &mSound, &mVec, 0, 0, 4);
+	return mSound;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1419,8 +933,15 @@ void EnvSe_Perspective::play()
  * Address:	8033FF60
  * Size:	000088
  */
-EnvSe_AutoPan::EnvSe_AutoPan(unsigned long, float, float, float, float, float)
+EnvSe_AutoPan::EnvSe_AutoPan(u32 a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6)
+    : EnvSe_Pan(a1, a2)
 {
+	mPan       = a3;
+	mDolby     = a4;
+	_44        = a5;
+	_48        = a6;
+	mIsDolby   = true;
+	mDirection = true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1464,13 +985,10 @@ EnvSe_AutoPan::EnvSe_AutoPan(unsigned long, float, float, float, float, float)
  * Address:	8033FFE8
  * Size:	00000C
  */
-void EnvSe_AutoPan::setDirection(bool, bool)
+void EnvSe_AutoPan::setDirection(bool dolby, bool dir)
 {
-	/*
-	stb      r4, 0x4c(r3)
-	stb      r5, 0x4d(r3)
-	blr
-	*/
+	mIsDolby   = dolby;
+	mDirection = dir;
 }
 
 /*
@@ -1478,8 +996,12 @@ void EnvSe_AutoPan::setDirection(bool, bool)
  * Address:	8033FFF4
  * Size:	00011C
  */
-void EnvSe_AutoPan::setPanAndDolby(JAISound*)
+void EnvSe_AutoPan::setPanAndDolby(JAISound* sound)
 {
+	for (int i = 0; i < 2; i++) { }
+
+	sound->setPan(mPan, 0, 0);
+	sound->setDolby(mDolby, 0, 0);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1568,7 +1090,7 @@ lbl_803400AC:
  * Address:	80340110
  * Size:	00021C
  */
-Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(JGeometry::TBox3<float>)
+Builder_EvnSe_Perspective::Builder_EvnSe_Perspective(JGeometry::TBox3f box)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1740,7 +1262,7 @@ lbl_80340310:
  * Address:	8034032C
  * Size:	0002D0
  */
-void Builder_EvnSe_Perspective::build(float, PSSystem::EnvSeMgr*)
+void Builder_EvnSe_Perspective::build(f32, PSSystem::EnvSeMgr*)
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -1955,56 +1477,7 @@ lbl_803405AC:
  * Address:	803405FC
  * Size:	0000AC
  */
-void Builder_EvnSe_Perspective::newSeObj(unsigned long, float, Vec)
-{
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	fmr      f31, f1
-	mr       r29, r4
-	mr       r30, r5
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80340680
-	lwz      r6, 0(r30)
-	fmr      f1, f31
-	lwz      r5, 4(r30)
-	mr       r4, r29
-	lwz      r0, 8(r30)
-	stw      r6, 8(r1)
-	stw      r5, 0xc(r1)
-	stw      r0, 0x10(r1)
-	bl       __ct__Q28PSSystem9EnvSeBaseFUlf
-	lis      r3, __vt__Q26PSGame17EnvSe_Perspective@ha
-	lfs      f2, 8(r1)
-	addi     r0, r3, __vt__Q26PSGame17EnvSe_Perspective@l
-	lfs      f1, 0xc(r1)
-	stw      r0, 0x10(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x3c(r31)
-	stfs     f1, 0x40(r31)
-	stfs     f0, 0x44(r31)
-
-lbl_80340680:
-	mr       r3, r31
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
-}
+EnvSe_Perspective* Builder_EvnSe_Perspective::newSeObj(u32 flag, f32 a2, Vec vec) { return new EnvSe_Perspective(flag, a2, vec); }
 
 /*
  * --INFO--
@@ -2078,120 +1551,3 @@ lbl_80340750:
 }
 
 } // namespace PSGame
-
-namespace PSSystem {
-
-/*
- * --INFO--
- * Address:	80340770
- * Size:	000050
- */
-void SingletonBase<PSGame::SeMgr>::~SingletonBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_803407A8
-	lis      r5, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@ha
-	extsh.   r0, r4
-	addi     r4, r5, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@l
-	li       r0, 0
-	stw      r4, 0(r31)
-	stw      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) ble
-lbl_803407A8 bl       __dl__FPv
-
-lbl_803407A8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace PSGame {
-
-} // namespace PSGame
-
-/*
- * --INFO--
- * Address:	803407C0
- * Size:	000004
- */
-void Builder_EvnSe_Perspective::onBuild(PSSystem::EnvSeBase*) { }
-
-} // namespace PSSystem
-
-namespace PSSystem {
-
-/*
- * --INFO--
- * Address:	803407C4
- * Size:	00000C
- */
-void EnvSeBase::getCastType()
-{
-	/*
-	lis      r3, 0x62617365@ha
-	addi     r3, r3, 0x62617365@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803407D0
- * Size:	000004
- */
-void EnvSeBase::setPanAndDolby(JAISound*) { }
-
-namespace PSGame {
-
-} // namespace PSGame
-
-/*
- * --INFO--
- * Address:	803407D4
- * Size:	000064
- */
-SeMgr::~SeMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80340820
-	lis      r3, __vt__Q26PSGame5SeMgr@ha
-	addi     r0, r3, __vt__Q26PSGame5SeMgr@l
-	stw      r0, 0(r31)
-	beq      lbl_80340810
-	lis      r3, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@ha
-	li       r0, 0
-	addi     r3, r3, "__vt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@l
-	stw      r3, 0(r31)
-	stw      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13)
-
-lbl_80340810:
-	extsh.   r0, r4
-	ble      lbl_80340820
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80340820:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-} // namespace PSSystem

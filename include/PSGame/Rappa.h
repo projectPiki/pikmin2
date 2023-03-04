@@ -15,16 +15,20 @@ struct Rappa : public JKRDisposer {
 
 	void init(u16);
 	void setId(u32);
-	void playRappa(bool, f32, f32, JAInter::Object*);
-	void syncCpu_WaitChk(JASTrack*);
-	void syncCpu_TblNo(JASTrack*);
+	bool playRappa(bool, f32, f32, JAInter::Object*);
+	u32 syncCpu_WaitChk(JASTrack*);
+	u32 syncCpu_TblNo(JASTrack*);
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	u32 mId; // _18
-	s16 _1C; // _1C
-	u16 _1E; // _1E
+	u32 mId;    // _18
+	u16 mWait;  // _1C
+	u16 mTblNo; // _1E
+
+	static Rappa* sRappa[2];
+	static const s16 cBaseWaitTime;
 };
+
 } // namespace PSGame
 
 #endif

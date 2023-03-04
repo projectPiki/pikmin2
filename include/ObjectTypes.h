@@ -29,7 +29,7 @@ enum ObjTypes {
 	OBJTYPE_Bridge,
 	OBJTYPE_Treasure,
 	OBJTYPE_Downfloor,
-	OBJTYPE_Unused, // value is never used
+	OBJTYPE_Barrel,
 	OBJTYPE_Ujamushi,
 	OBJTYPE_Weed,
 	OBJTYPE_Ball,
