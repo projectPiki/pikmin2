@@ -14,7 +14,7 @@ struct JUTDirectFile {
 	int fgets(void*, int);
 
 	// unused/inlined
-	void fetch32byte();
+	int fetch32byte();
 	void fread(void*, u32);
 	void setPos(u32);
 	void fgetc();

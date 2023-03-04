@@ -335,7 +335,7 @@ JUTDirectPrint* JUTDirectPrint::sDirectPrint;
  * Size:	000058
  */
 JUTDirectPrint::JUTDirectPrint()
-    : _18(0xFFFFFFFF)
+    : mCharColor(0xFFFFFFFF)
 {
 	// UNUSED FUNCTION
 	changeFrameBuffer(nullptr, 0, 0);
@@ -349,7 +349,7 @@ JUTDirectPrint::JUTDirectPrint()
  */
 JUTDirectPrint* JUTDirectPrint::start()
 {
-	if (sDirectPrint == nullptr) {
+	if (!sDirectPrint) {
 		sDirectPrint = new JUTDirectPrint();
 	}
 	return sDirectPrint;
@@ -363,23 +363,23 @@ JUTDirectPrint* JUTDirectPrint::start()
  */
 void JUTDirectPrint::erase(int x, int y, int width, int height)
 {
-	if (_00 == nullptr) {
+	if (!_00) {
 		return;
 	}
-	if (400 < mPixelWidth) {
-		x <<= 1;
-		width <<= 1;
+	if (mFBWidth > 400) {
+		x *= 2;
+		width *= 2;
 	}
-	if (300 < mPixelHeight) {
-		y <<= 1;
-		height <<= 1;
+	if (mFBHeight > 300) {
+		y *= 2;
+		height *= 2;
 	}
-	u16* buffer = mGlyphBuffer + mWidth * y + x;
+	u16* buffer = mFrameBuffer + mStride * y + x;
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			buffer[j] = 0x1080;
 		}
-		buffer += mWidth - width;
+		buffer += mStride - width;
 	}
 	/*
 	lwz      r0, 0(r3)
@@ -471,7 +471,7 @@ lbl_80029D2C:
 void JUTDirectPrint::drawChar(int p1, int p2, int p3)
 {
 	int v1 = p3;
-	if (99 < p3) {
+	if (p3 > 99) {
 		v1 = p3 - 100;
 	}
 	u32* fontData2 = sFontData2;
@@ -683,14 +683,14 @@ lbl_80029F60:
  * Address:	80029F8C
  * Size:	000034
  */
-void JUTDirectPrint::changeFrameBuffer(void* buffer, unsigned short pixelWidth, unsigned short pixelHeight)
+void JUTDirectPrint::changeFrameBuffer(void* buffer, u16 pixelWidth, u16 pixelHeight)
 {
 	_00          = buffer;
-	mGlyphBuffer = (u16*)buffer;
-	mPixelWidth  = pixelWidth;
-	mPixelHeight = pixelHeight;
-	mWidth       = ALIGN_NEXT(pixelWidth, 0x10);
-	_0C          = mWidth * mPixelHeight * sizeof(u16);
+	mFrameBuffer = (u16*)buffer;
+	mFBWidth     = pixelWidth;
+	mFBHeight    = pixelHeight;
+	mStride      = ALIGN_NEXT(pixelWidth, 0x10);
+	mFBSize      = mStride * mFBHeight * sizeof(u16);
 }
 
 /*
@@ -698,7 +698,7 @@ void JUTDirectPrint::changeFrameBuffer(void* buffer, unsigned short pixelWidth, 
  * Address:	........
  * Size:	000228
  */
-// void JUTDirectPrint::printSub(unsigned short, unsigned short, const char*, __va_list_struct*, bool)
+// void JUTDirectPrint::printSub(u16, u16, const char*, __va_list_struct*, bool)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -708,7 +708,7 @@ void JUTDirectPrint::changeFrameBuffer(void* buffer, unsigned short pixelWidth, 
  * Address:	........
  * Size:	000280
  */
-// void JUTDirectPrint::print(unsigned short, unsigned short, const char*, ...)
+// void JUTDirectPrint::print(u16, u16, const char*, ...)
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -718,14 +718,14 @@ void JUTDirectPrint::changeFrameBuffer(void* buffer, unsigned short pixelWidth, 
  * Address:	80029FC0
  * Size:	00002C
  */
-void JUTDirectPrint::drawString(unsigned short x, unsigned short y, char* str) { drawString_f(x, y, "%s", str); }
+void JUTDirectPrint::drawString(u16 x, u16 y, char* str) { drawString_f(x, y, "%s", str); }
 
 /*
  * --INFO--
  * Address:	80029FEC
  * Size:	000174
  */
-void JUTDirectPrint::drawString_f(unsigned short x, unsigned short y, const char* format, ...)
+void JUTDirectPrint::drawString_f(u16 x, u16 y, const char* format, ...)
 {
 	/*
 	.loc_0x0:
@@ -856,7 +856,7 @@ void JUTDirectPrint::setCharColor(JUtility::TColor color) { setCharColor(color.r
  * Size:	00017C
  * UcUcUc
  */
-void JUTDirectPrint::setCharColor(unsigned char, unsigned char, unsigned char)
+void JUTDirectPrint::setCharColor(u8, u8, u8)
 {
 	/*
 	stwu     r1, -0x70(r1)

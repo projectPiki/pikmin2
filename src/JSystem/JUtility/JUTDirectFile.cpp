@@ -6,9 +6,21 @@
  * Address:	........
  * Size:	0000D0
  */
-void JUTDirectFile::fetch32byte()
+int JUTDirectFile::fetch32byte() // not the right size, currently 0xA0
 {
-	// UNUSED FUNCTION
+	int interrupts = OSEnableInterrupts();
+	int readRes    = DVDReadAsyncPrio(&mFileInfo, _820, _824 + 31, _82C, nullptr, 2);
+	OSRestoreInterrupts(interrupts);
+	if (!readRes) {
+		return -1;
+	} else {
+		interrupts = OSEnableInterrupts();
+		while (DVDGetCommandBlockStatus(&mFileInfo.cBlock)) {
+			;
+		}
+		OSRestoreInterrupts(interrupts);
+		return _824;
+	}
 }
 
 /*
@@ -44,7 +56,7 @@ bool JUTDirectFile::fopen(const char* filename)
 	}
 
 	int interrupts = OSEnableInterrupts();
-	int dvdRes     = DVDOpen((char*)filename, &mFileInfo);
+	int dvdRes     = DVDOpen(const_cast<char*>(filename), &mFileInfo);
 	OSRestoreInterrupts(interrupts);
 
 	if (!dvdRes) {
@@ -145,23 +157,7 @@ int JUTDirectFile::fgets(void* p1, int p2)
 				_824 = 0x800;
 			}
 
-			int interrupts = OSEnableInterrupts();
-			int readRes    = DVDReadAsyncPrio(&mFileInfo, (void*)_820, _824 + 31, _82C, nullptr, 2);
-			OSRestoreInterrupts(interrupts);
-
-			int val;
-			if (!readRes) {
-				val = -1;
-			} else {
-				interrupts = OSEnableInterrupts();
-				while (DVDGetCommandBlockStatus(&mFileInfo.cBlock)) {
-					;
-				}
-				OSRestoreInterrupts(interrupts);
-				val = _824;
-			}
-
-			if (val < 0) {
+			if (fetch32byte() < 0) {
 				return -1;
 			}
 		}
