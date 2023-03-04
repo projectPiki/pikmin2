@@ -5,49 +5,11 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JUtility/JUTVideo.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__8JUTVideo
-    __vt__8JUTVideo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__8JUTVideoFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sManager__8JUTVideo
-    sManager__8JUTVideo:
-        .skip 0x4
-    .global sVideoLastTick__8JUTVideo
-    sVideoLastTick__8JUTVideo:
-        .skip 0x4
-    .global sVideoInterval__8JUTVideo
-    sVideoInterval__8JUTVideo:
-        .skip 0x4
-    .global sDrawWaiting
-    sDrawWaiting:
-        .skip 0x4
-    .global frameBuffer$2452
-    frameBuffer$2452:
-        .skip 0x4
-    .global init$2453
-    init$2453:
-        .skip 0x4
-*/
 
 JUTVideo* JUTVideo::sManager;
 s32 JUTVideo::sVideoLastTick;
 u32 JUTVideo::sVideoInterval;
 static bool sDrawWaiting;
-
-/**
- * TODO: Replace framebuffer retrievals that use ternary operator with fabricated methods on JUTXfb? probably one for each of _16 and _18
- * (next/current?)
- */
 
 /*
  * --INFO--
@@ -85,8 +47,8 @@ JUTVideo::JUTVideo(const _GXRenderModeObj* renderModeObj)
 {
 	mRenderModeObj = nullptr;
 	VIInit();
-	_2C = true;
-	_30 = 2;
+	mIsSetBlack         = true;
+	mSetBlackFrameCount = 2;
 	setRenderMode(renderModeObj);
 	VISetBlack(TRUE);
 	VIFlush();
@@ -100,7 +62,7 @@ JUTVideo::JUTVideo(const _GXRenderModeObj* renderModeObj)
 	mPreviousPostRetraceCallback = VISetPostRetraceCallback(postRetraceProc);
 	mPreRetraceCallback          = nullptr;
 	mPostRetraceCallback         = nullptr;
-	OSInitMessageQueue(&mMessageQueue, &mMessageSlots, 1);
+	OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
 	GXSetDrawDoneCallback(drawDoneCallback);
 }
 
@@ -123,64 +85,68 @@ JUTVideo::~JUTVideo()
  */
 void JUTVideo::preRetraceProc(u32 p1)
 {
-	if (sManager->mPreRetraceCallback != nullptr) {
+	if (sManager->mPreRetraceCallback) {
 		sManager->mPreRetraceCallback(p1);
 	}
-	u32 tick       = OSGetTick();
-	JUTXfb* xfb    = JUTXfb::sManager;
+
+	OSTick tick    = OSGetTick();
+	JUTXfb* xfb    = JUTXfb::getManager();
 	sVideoInterval = tick - sVideoLastTick;
 	sVideoLastTick = tick;
-	if (xfb == nullptr) {
+
+	if (!xfb) {
 		VISetBlack(TRUE);
 		VIFlush();
 		return;
 	}
-	static u8* frameBuffer = nullptr;
-	if (frameBuffer != nullptr) {
+
+	static void* frameBuffer = nullptr;
+	if (frameBuffer) {
 		u16 width = sManager->getFbWidth();
 		JUTDirectPrint::sDirectPrint->changeFrameBuffer(frameBuffer, width, sManager->getEfbHeight());
 	}
-	if (sManager->_2C == 1) {
-		s32 v1 = sManager->_30;
-		if (0 < v1) {
-			v1--;
+
+	if (sManager->mIsSetBlack == true) { // yes, the explicit true comparison is needed. sigh.
+		int frameCount = sManager->mSetBlackFrameCount;
+		if (frameCount > 0) {
+			frameCount--;
 		}
-		sManager->_30 = v1;
-		// // TODO: What is this for???
-		u32 v2        = ((u32)-v1) | ((u32)v1);
-		sManager->_2C = v2 >> 31;
-		// sManager->_2C = getNumBit((u8*)&sManager->_30, 0);
-		// if (0 < sManager->_30) {
-		// 	sManager->_30--;
-		// }
-		// sManager->_2C = getNumBit((u8*)&sManager->_30, 0);
+
+		sManager->mSetBlackFrameCount = frameCount;
+		sManager->mIsSetBlack         = (frameCount != 0);
+
 		VISetBlack(TRUE);
 		VIFlush();
-	} else if (xfb == nullptr) {
+
+	} else if (!xfb) {
 		VISetBlack(TRUE);
 		VIFlush();
+
 	} else {
-		if (xfb->_10 == JUTXfb::TripleBuffer || xfb->_10 == JUTXfb::DoubleBuffer) {
-			if (sDrawWaiting == false) {
-				if ((xfb->_18 = xfb->_16) < 0) {
+		if (xfb->mBufferNum == JUTXfb::TripleBuffer || xfb->mBufferNum == JUTXfb::DoubleBuffer) {
+			if (!sDrawWaiting) {
+				if ((xfb->mDisplayingXfbIndex = xfb->mDrawnXfbIndex) < 0) {
 					VISetBlack(TRUE);
 					VIFlush();
+
 				} else {
-					VISetNextFrameBuffer((xfb->_18 >= 0) ? xfb->mBuffers[xfb->_18] : nullptr);
+					VISetNextFrameBuffer(xfb->getDisplayingXfb());
 					VIFlush();
 					VISetBlack(FALSE);
-					frameBuffer = (xfb->_18 >= 0) ? xfb->mBuffers[xfb->_18] : nullptr;
+					frameBuffer = (u8*)xfb->getDisplayingXfb();
 				}
 			}
-		} else if (xfb->_10 == JUTXfb::SingleBuffer) {
-			if (xfb->_1C == 0) {
-				if (xfb->_16 >= 0) {
-					xfb->_18 = xfb->_16;
-					GXCopyDisp((xfb->_18 >= 0) ? xfb->mBuffers[xfb->_18] : nullptr, GX_TRUE);
+
+		} else if (xfb->mBufferNum == JUTXfb::SingleBuffer) {
+			if (xfb->mSDrawingFlag == 0) {
+				if (xfb->mDrawnXfbIndex >= 0) {
+					xfb->mDisplayingXfbIndex = xfb->mDrawnXfbIndex;
+					GXCopyDisp(xfb->getDisplayingXfb(), GX_TRUE);
 					GXFlush();
-					xfb->_1C    = 2;
-					frameBuffer = (xfb->_18 >= 0) ? xfb->mBuffers[xfb->_18] : nullptr;
+					xfb->mSDrawingFlag = 2;
+					frameBuffer        = (u8*)xfb->getDisplayingXfb();
 					VISetBlack(FALSE);
+
 				} else {
 					VISetBlack(TRUE);
 				}
@@ -210,31 +176,22 @@ void JUTVideo::dummyNoDrawWait() { sDrawWaiting = false; }
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000008
- */
-void JUTVideo::getDrawWait()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80033B9C
  * Size:	000088
  */
 void JUTVideo::drawDoneCallback()
 {
-	JUTXfb* xfb = JUTXfb::sManager;
-	if (xfb == nullptr) {
+	JUTXfb* xfb = JUTXfb::getManager();
+	if (!xfb) {
 		return;
 	}
+
 	sDrawWaiting = false;
-	if (xfb->_10 == JUTXfb::SingleBuffer && xfb->_1C == 1) {
-		xfb->_1C        = 0;
-		u8* frameBuffer = (xfb->_16 >= 0) ? xfb->mBuffers[xfb->_16] : nullptr;
-		if (frameBuffer != nullptr) {
-			VISetNextFrameBuffer((xfb->_16 >= 0) ? xfb->mBuffers[xfb->_16] : nullptr);
+
+	if (xfb->mBufferNum == JUTXfb::SingleBuffer && xfb->mSDrawingFlag == 1) {
+		xfb->mSDrawingFlag = 0;
+		if (xfb->getDrawnXfb()) {
+			VISetNextFrameBuffer(xfb->getDrawnXfb());
 			VIFlush();
 		}
 	}
@@ -245,13 +202,13 @@ void JUTVideo::drawDoneCallback()
  * Address:	80033C24
  * Size:	00004C
  */
-void JUTVideo::postRetraceProc(unsigned long p1)
+void JUTVideo::postRetraceProc(u32 p1)
 {
 	if (sManager->mPostRetraceCallback != nullptr) {
 		sManager->mPostRetraceCallback(p1);
 	}
 	u32 retraceCount = VIGetRetraceCount();
-	OSSendMessage(&sManager->mMessageQueue, (void*)retraceCount, OS_MESSAGE_NON_BLOCKING);
+	OSSendMessage(&sManager->mMessageQueue, (void*)retraceCount, OS_MESSAGE_NOBLOCK);
 }
 
 /*
@@ -259,20 +216,21 @@ void JUTVideo::postRetraceProc(unsigned long p1)
  * Address:	80033C70
  * Size:	000078
  */
-void JUTVideo::setRenderMode(const _GXRenderModeObj* newRenderModeObj)
+void JUTVideo::setRenderMode(const GXRenderModeObj* newRenderModeObj)
 {
-	if (mRenderModeObj != nullptr && newRenderModeObj->viTVmode != mRenderModeObj->viTVmode) {
-		_2C = true;
-		_30 = 4;
+	if (mRenderModeObj && newRenderModeObj->viTVmode != mRenderModeObj->viTVmode) {
+		mIsSetBlack         = true;
+		mSetBlackFrameCount = 4;
 	}
-	mRenderModeObj = newRenderModeObj;
+
+	mRenderModeObj = (GXRenderModeObj*)newRenderModeObj;
 	VIConfigure(mRenderModeObj);
 	VIFlush();
-	if (_2C) {
+
+	if (mIsSetBlack) {
 		VIWaitForRetrace();
 		VIWaitForRetrace();
 	}
-	/// TODO: I wonder if waitRetraceIfNeed is called here...
 }
 
 /*
@@ -280,7 +238,7 @@ void JUTVideo::setRenderMode(const _GXRenderModeObj* newRenderModeObj)
  * Address:	80033CE8
  * Size:	000004
  */
-// void JUTVideo::waitRetraceIfNeed() { }
+void JUTVideo::waitRetraceIfNeed() { }
 
 /*
  * --INFO--
@@ -289,7 +247,6 @@ void JUTVideo::setRenderMode(const _GXRenderModeObj* newRenderModeObj)
  */
 VIRetraceCallback JUTVideo::setPreRetraceCallback(VIRetraceCallback newCB)
 {
-	// UNUSED FUNCTION
 	VIRetraceCallback oldCB = mPreRetraceCallback;
 	mPreRetraceCallback     = newCB;
 	return oldCB;
@@ -305,24 +262,4 @@ VIRetraceCallback JUTVideo::setPostRetraceCallback(VIRetraceCallback newCB)
 	VIRetraceCallback oldCB = mPostRetraceCallback;
 	mPostRetraceCallback    = newCB;
 	return oldCB;
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
- */
-void JUTVideo::getPixelAspect(const _GXRenderModeObj*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
- */
-void JUTVideo::getPixelAspect() const
-{
-	// UNUSED FUNCTION
 }

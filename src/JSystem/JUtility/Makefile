@@ -17,7 +17,7 @@ JUTILITY_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTRomFont.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTFontData_Ascfont_fix12.o\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTTexture.o\
-	$(BUILD_DIR)/asm/JSystem/JUtility/JUTVideo.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTVideo.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTXfb.o\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTCacheFont.o\
 
