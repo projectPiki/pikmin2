@@ -161,7 +161,7 @@ LIBS = [
             ["JSystem/JUtility/JUTFader", True],
             ["JSystem/JUtility/JUTFont", True],
             "JSystem/JUtility/JUTGamePad",
-            "JSystem/JUtility/JUTGraphFifo",
+            ["JSystem/JUtility/JUTGraphFifo", True],
             ["JSystem/JUtility/JUTNameTab", True],
             ["JSystem/JUtility/JUTPalette", True],
             ["JSystem/JUtility/JUTProcBar", True],
