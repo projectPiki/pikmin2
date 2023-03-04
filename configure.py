@@ -152,9 +152,9 @@ LIBS = [
         "mw_version": "2.6",
         "host": True,
         "objects": [
-            "JSystem/JUtility/JUTAssert",
+            ["JSystem/JUtility/JUTAssert", True],
             "JSystem/JUtility/JUTConsole",
-            "JSystem/JUtility/JUTDbPrint",
+            ["JSystem/JUtility/JUTDbPrint", True],
             "JSystem/JUtility/JUTDirectFile",
             "JSystem/JUtility/JUTDirectPrint",
             "JSystem/JUtility/JUTException",

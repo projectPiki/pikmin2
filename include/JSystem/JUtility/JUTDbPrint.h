@@ -36,6 +36,7 @@ struct JUTDbPrint {
 
 	void setVisible(bool visible) { mIsVisible = visible; }
 	JUTFont* getFont() const { return mFont; }
+	JUTDbPrintList* getList() const { return mList; }
 
 	static JUTDbPrint* start(JUTFont*, JKRHeap*);
 	static JUTDbPrint* getManager() { return sDebugPrint; }

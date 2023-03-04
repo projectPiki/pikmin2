@@ -10,7 +10,7 @@ struct JUTDirectFile {
 	~JUTDirectFile();
 
 	bool fopen(const char*);
-	bool fclose();
+	void fclose();
 	int fgets(void*, int);
 
 	// unused/inlined
@@ -20,7 +20,7 @@ struct JUTDirectFile {
 	void fgetc();
 
 	u8 _00[0x820];         // _00, unknown/buffer/data?
-	u32 _820;              // _820
+	void* _820;            // _820
 	u32 _824;              // _824
 	u32 _828;              // _828
 	u32 _82C;              // _82C

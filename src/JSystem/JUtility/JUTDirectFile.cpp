@@ -1,8 +1,5 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-*/
+#include "JSystem/JUtility/JUTDirectFile.h"
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
@@ -21,17 +18,11 @@ void JUTDirectFile::fetch32byte()
  */
 JUTDirectFile::JUTDirectFile()
 {
-	/*
-	li       r4, 0
-	addi     r0, r3, 0x1f
-	stw      r4, 0x828(r3)
-	rlwinm   r0, r0, 0, 0, 0x1a
-	stw      r4, 0x82c(r3)
-	stw      r4, 0x824(r3)
-	stw      r0, 0x820(r3)
-	stb      r4, 0x830(r3)
-	blr
-	*/
+	_828    = 0;
+	_82C    = 0;
+	_824    = 0;
+	_820    = (void*)((u32) & (_00[0x1F]) & ~0x1F); // hmm.
+	mIsOpen = false;
 }
 
 /*
@@ -39,88 +30,35 @@ JUTDirectFile::JUTDirectFile()
  * Address:	80029850
  * Size:	000044
  */
-JUTDirectFile::~JUTDirectFile()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8002987C
-	li       r5, 0
-	extsh.   r0, r4
-	stb      r5, 0x830(r31)
-	ble      lbl_8002987C
-	bl       __dl__FPv
-
-lbl_8002987C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JUTDirectFile::~JUTDirectFile() { mIsOpen = false; }
 
 /*
  * --INFO--
  * Address:	80029894
  * Size:	0000A8
  */
-void JUTDirectFile::fopen(const char*)
+bool JUTDirectFile::fopen(const char* filename)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_800298C0
-	li       r3, 0
-	b        lbl_80029920
+	if (!filename) {
+		return false;
+	}
 
-lbl_800298C0:
-	bl       OSEnableInterrupts
-	mr       r0, r3
-	mr       r3, r30
-	mr       r30, r0
-	addi     r4, r29, 0x834
-	bl       DVDOpen
-	mr       r31, r3
-	mr       r3, r30
-	bl       OSRestoreInterrupts
-	cmpwi    r31, 0
-	bne      lbl_800298FC
-	li       r0, 0
-	li       r3, 0
-	stb      r0, 0x830(r29)
-	b        lbl_80029920
+	int interrupts = OSEnableInterrupts();
+	int dvdRes     = DVDOpen((char*)filename, &mFileInfo);
+	OSRestoreInterrupts(interrupts);
 
-lbl_800298FC:
-	bl       OSEnableInterrupts
-	lwz      r0, 0x868(r29)
-	stw      r0, 0x828(r29)
-	bl       OSRestoreInterrupts
-	li       r3, 0
-	li       r0, 1
-	stw      r3, 0x82c(r29)
-	li       r3, 1
-	stb      r0, 0x830(r29)
+	if (!dvdRes) {
+		mIsOpen = false;
+		return false;
+	}
 
-lbl_80029920:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int interrupts2 = OSEnableInterrupts();
+	_828            = mFileInfo.length;
+	OSRestoreInterrupts(interrupts2);
+
+	_82C    = 0;
+	mIsOpen = true;
+	return true;
 }
 
 /*
@@ -128,7 +66,7 @@ lbl_80029920:
  * Address:	........
  * Size:	000270
  */
-void JUTDirectFile::fread(void*, unsigned long)
+void JUTDirectFile::fread(void*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -140,34 +78,12 @@ void JUTDirectFile::fread(void*, unsigned long)
  */
 void JUTDirectFile::fclose()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x830(r3)
-	cmplwi   r0, 0
-	beq      lbl_80029984
-	bl       OSEnableInterrupts
-	mr       r0, r3
-	addi     r3, r30, 0x834
-	mr       r31, r0
-	bl       DVDClose
-	mr       r3, r31
-	bl       OSRestoreInterrupts
-	li       r0, 0
-	stb      r0, 0x830(r30)
-
-lbl_80029984:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mIsOpen) {
+		int interrupts = OSEnableInterrupts();
+		DVDClose(&mFileInfo);
+		OSRestoreInterrupts(interrupts);
+		mIsOpen = false;
+	}
 }
 
 /*
@@ -175,7 +91,7 @@ lbl_80029984:
  * Address:	........
  * Size:	00003C
  */
-void JUTDirectFile::setPos(unsigned long)
+void JUTDirectFile::setPos(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -195,8 +111,102 @@ void JUTDirectFile::fgetc()
  * Address:	8002999C
  * Size:	000230
  */
-void JUTDirectFile::fgets(void*, int)
+int JUTDirectFile::fgets(void* p1, int p2)
 {
+	if (!mIsOpen) {
+		return -1;
+	}
+
+	if (!p2) {
+		return 0;
+	}
+
+	if (p2 == 1) {
+		return 1;
+	}
+
+	if (!p1) {
+		return -1;
+	}
+
+	if (_82C >= _828) {
+		return -1;
+	}
+	int idx;
+	u8* array   = (u8*)p1;
+	idx         = p2 - 1;
+	int counter = 0;
+
+	while (_82C < _828) {
+		if (!_824) {
+			_824 = _82C - _828;
+
+			if (_824 > 0x800) {
+				_824 = 0x800;
+			}
+
+			int interrupts = OSEnableInterrupts();
+			int readRes    = DVDReadAsyncPrio(&mFileInfo, (void*)_820, _824 + 31, _82C, nullptr, 2);
+			OSRestoreInterrupts(interrupts);
+
+			int val;
+			if (!readRes) {
+				val = -1;
+			} else {
+				interrupts = OSEnableInterrupts();
+				while (DVDGetCommandBlockStatus(&mFileInfo.cBlock)) {
+					;
+				}
+				OSRestoreInterrupts(interrupts);
+				val = _824;
+			}
+
+			if (val < 0) {
+				return -1;
+			}
+		}
+
+		u32 counter2 = _82C;
+		u32 max      = (_824 - counter2);
+		if (counter + max > idx) {
+			max = p2 - counter - 1;
+		}
+
+		int check = 0;
+		for (int i = 0; i < max; i++) {
+			int val2 = ((u8*)_820)[counter2];
+			counter2++;
+			*array++ = val2;
+			if (val2 == 10) {
+				max   = i + 1;
+				check = 1;
+				break;
+			}
+		}
+		if (counter2 >= 0x800) {
+			_824 = 0;
+		}
+
+		if (check == 1) {
+			counter += max;
+			array[0] = 0;
+			_82C += max;
+			break;
+		}
+
+		counter += max;
+		_82C += max;
+		if (counter >= idx) {
+			array[0] = 0;
+			break;
+		}
+	}
+
+	if (_82C >= _828) {
+		array[0] = 0;
+	}
+
+	return counter;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
