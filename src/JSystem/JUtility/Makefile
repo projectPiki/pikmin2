@@ -13,7 +13,7 @@ JUTILITY_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTPalette.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTProcBar.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTResFont.o\
-	$(BUILD_DIR)/asm/JSystem/JUtility/JUTResource.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTResource.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTRomFont.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTFontData_Ascfont_fix12.o\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTTexture.o\

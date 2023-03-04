@@ -166,7 +166,7 @@ LIBS = [
             "JSystem/JUtility/JUTPalette",
             ["JSystem/JUtility/JUTProcBar", True],
             ["JSystem/JUtility/JUTResFont", True],
-            "JSystem/JUtility/JUTResource",
+            ["JSystem/JUtility/JUTResource", True],
             ["JSystem/JUtility/JUTRomFont", True],
             ["JSystem/JUtility/JUTFontData_Ascfont_fix12", True],
             "JSystem/JUtility/JUTTexture",
