@@ -1,380 +1,30 @@
-#include "types.h"
 #include "nans.h"
+#include "P2JME/Movie.h"
+#include "P2JME/P2JME.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
+#include "PSSystem/PSSystemIF.h"
+#include "trig.h"
+#include "Game/MoviePlayer.h"
+#include "Game/gamePlayData.h"
+#include "Game/GameSystem.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_movieMessage_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049A6E0
-    lbl_8049A6E0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x6D6F7669
-        .4byte 0x654D6573
-        .4byte 0x73616765
-        .4byte 0x00000000
-        .4byte 0x6D6F7669
-        .4byte 0x654D6573
-        .4byte 0x73616765
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_8049A710
-    lbl_8049A710:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x616E696D
-        .4byte 0x2F706F64
-        .4byte 0x2E627470
-        .4byte 0x00000000
-        .4byte 0x616E696D
-        .4byte 0x2F706F64
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x616E696D
-        .4byte 0x2F706F64
-        .4byte 0x2E62706B
-        .4byte 0x00000000
-        .4byte 0x6D675F77
-        .4byte 0x696E646F
-        .4byte 0x772E626C
-        .4byte 0x6F000000
-        .4byte 0x50324A4D
-        .4byte 0x453A3A4D
-        .4byte 0x6F766965
-        .4byte 0x3A3A5443
-        .4byte 0x6F6E7472
-        .4byte 0x6F6C3A3A
-        .4byte 0x6F6E496E
-        .4byte 0x69740000
-        .4byte 0x504D545F
-        .4byte 0x6F6E496E
-        .4byte 0x69745F61
-        .4byte 0x72630000
-        .4byte 0x6E65775F
-        .4byte 0x73637265
-        .4byte 0x656E2F63
-        .4byte 0x6D6E2F6D
-        .4byte 0x65737361
-        .4byte 0x67655F77
-        .4byte 0x696E646F
-        .4byte 0x772E737A
-        .4byte 0x73000000
-        .4byte 0x6E65775F
-        .4byte 0x73637265
-        .4byte 0x656E2F63
-        .4byte 0x6D6E2F67
-        .4byte 0x6F6C645F
-        .4byte 0x706F645F
-        .4byte 0x666F725F
-        .4byte 0x6D657373
-        .4byte 0x6167655F
-        .4byte 0x77696E64
-        .4byte 0x6F772E73
-        .4byte 0x7A730000
-        .4byte 0x6E65775F
-        .4byte 0x73637265
-        .4byte 0x656E2F63
-        .4byte 0x6D6E2F70
-        .4byte 0x6F645F66
-        .4byte 0x6F725F6D
-        .4byte 0x65737361
-        .4byte 0x67655F77
-        .4byte 0x696E646F
-        .4byte 0x772E737A
-        .4byte 0x73000000
-        .4byte 0x25732069
-        .4byte 0x73206E6F
-        .4byte 0x7420666F
-        .4byte 0x756E642E
-        .4byte 0x0A000000
-        .4byte 0x504D545F
-        .4byte 0x6F6E496E
-        .4byte 0x69745F69
-        .4byte 0x6E697452
-        .4byte 0x656E6465
-        .4byte 0x72696E67
-        .4byte 0x50726F63
-        .4byte 0x6573736F
-        .4byte 0x72000000
-    .global lbl_8049A844
-    lbl_8049A844:
-        .4byte 0x6D657373
-        .4byte 0x6167654F
-        .4byte 0x626A2E68
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EC640
-    lbl_804EC640:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q35P2JME5Movie8TControl
-    __vt__Q35P2JME5Movie8TControl:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q35P2JME5Movie8TControlFv
-        .4byte reset__Q35P2JME5Movie8TControlFv
-        .4byte update__Q25P2JME8TControlFv
-        .4byte update__Q35P2JME5Movie8TControlFP10ControllerP10Controller
-        .4byte draw__Q35P2JME5Movie8TControlFR8Graphics
-        .4byte draw__Q35P2JME6Window8TControlFPA4_fPA4_f
-        .4byte setMessageID__Q25P2JME8TControlFUlUl
-        .4byte setMessageID__Q25P2JME8TControlFPc
-        .4byte setMessageID__Q25P2JME8TControlFUx
-        .4byte setMessageCode__Q25P2JME8TControlFUsUs
-        .4byte setMessageCode__Q25P2JME8TControlFUl
-        .4byte onInit__Q35P2JME5Movie8TControlFv
-        .4byte createReference__Q25P2JME8TControlFv
-        .4byte createResourceContainer__Q25P2JME8TControlFv
-        .4byte createSequenceProcessor__Q35P2JME6Window8TControlFv
-        .4byte createRenderingProcessor__Q35P2JME6Window8TControlFv
-    .global __vt__Q35P2JME5Movie19MessageWindowScreen
-    __vt__Q35P2JME5Movie19MessageWindowScreen:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q35P2JME5Movie19MessageWindowScreenFv
-        .4byte getTypeID__9J2DScreenCFv
-        .4byte move__7J2DPaneFff
-        .4byte add__7J2DPaneFff
-        .4byte resize__7J2DPaneFff
-        .4byte setCullBack__7J2DPaneFb
-        .4byte setCullBack__7J2DPaneF11_GXCullMode
-        .4byte setAlpha__7J2DPaneFUc
-        .4byte setConnectParent__7J2DPaneFb
-        .4byte calcMtx__9J2DScreenFv
-        .4byte update__Q29P2DScreen3MgrFv
-        .4byte drawSelf__7J2DPaneFff
-        .4byte drawSelf__9J2DScreenFffPA3_A4_f
-        .4byte search__9J2DScreenFUx
-        .4byte searchUserInfo__9J2DScreenFUx
-        .4byte makeMatrix__7J2DPaneFff
-        .4byte makeMatrix__7J2DPaneFffff
-        .4byte isUsed__9J2DScreenFPC7ResTIMG
-        .4byte isUsed__9J2DScreenFPC7ResFONT
-        .4byte clearAnmTransform__9J2DScreenFv
-        .4byte rewriteAlpha__7J2DPaneFv
-        .4byte setAnimation__9J2DScreenFP10J2DAnmBase
-        .4byte setAnimation__9J2DScreenFP15J2DAnmTransform
-        .4byte setAnimation__9J2DScreenFP11J2DAnmColor
-        .4byte setAnimation__9J2DScreenFP16J2DAnmTexPattern
-        .4byte setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
-        .4byte setAnimation__9J2DScreenFP15J2DAnmTevRegKey
-        .4byte setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
-        .4byte setAnimation__9J2DScreenFP14J2DAnmVtxColor
-        .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
-        .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
-        .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
-        .4byte setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
-        .4byte animationPane__7J2DPaneFPC15J2DAnmTransform
-        .4byte
-   createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
-        .4byte
-   createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
-        .4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
-    .global __vt__Q35P2JME5Movie13PodIconScreen
-    __vt__Q35P2JME5Movie13PodIconScreen:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q35P2JME5Movie13PodIconScreenFv
-        .4byte getTypeID__9J2DScreenCFv
-        .4byte move__7J2DPaneFff
-        .4byte add__7J2DPaneFff
-        .4byte resize__7J2DPaneFff
-        .4byte setCullBack__7J2DPaneFb
-        .4byte setCullBack__7J2DPaneF11_GXCullMode
-        .4byte setAlpha__7J2DPaneFUc
-        .4byte setConnectParent__7J2DPaneFb
-        .4byte calcMtx__9J2DScreenFv
-        .4byte update__Q35P2JME5Movie13PodIconScreenFv
-        .4byte drawSelf__7J2DPaneFff
-        .4byte drawSelf__9J2DScreenFffPA3_A4_f
-        .4byte search__9J2DScreenFUx
-        .4byte searchUserInfo__9J2DScreenFUx
-        .4byte makeMatrix__7J2DPaneFff
-        .4byte makeMatrix__7J2DPaneFffff
-        .4byte isUsed__9J2DScreenFPC7ResTIMG
-        .4byte isUsed__9J2DScreenFPC7ResFONT
-        .4byte clearAnmTransform__9J2DScreenFv
-        .4byte rewriteAlpha__7J2DPaneFv
-        .4byte setAnimation__9J2DScreenFP10J2DAnmBase
-        .4byte setAnimation__9J2DScreenFP15J2DAnmTransform
-        .4byte setAnimation__9J2DScreenFP11J2DAnmColor
-        .4byte setAnimation__9J2DScreenFP16J2DAnmTexPattern
-        .4byte setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
-        .4byte setAnimation__9J2DScreenFP15J2DAnmTevRegKey
-        .4byte setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
-        .4byte setAnimation__9J2DScreenFP14J2DAnmVtxColor
-        .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
-        .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
-        .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
-        .4byte setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
-        .4byte animationPane__7J2DPaneFPC15J2DAnmTransform
-        .4byte
-   createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
-        .4byte
-   createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
-        .4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
-    .global __vt__Q35P2JME5Movie8AbtnPane
-    __vt__Q35P2JME5Movie8AbtnPane:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q35P2JME5Movie8AbtnPaneFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q35P2JME5Movie8AbtnPaneFv
-        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q35P2JME5Movie8AbtnPaneFv
-    .global __vt__Q35P2JME5Movie10WindowPane
-    __vt__Q35P2JME5Movie10WindowPane:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q35P2JME5Movie10WindowPaneFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q35P2JME5Movie10WindowPaneFv
-        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q35P2JME5Movie10WindowPaneFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516238
-    lbl_80516238:
-        .skip 0x4
-    .global lbl_8051623C
-    lbl_8051623C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805207B8
-    lbl_805207B8:
-        .4byte 0x00000000
-    .global lbl_805207BC
-    lbl_805207BC:
-        .4byte 0x41200000
-    .global lbl_805207C0
-    lbl_805207C0:
-        .4byte 0x42B40000
-    .global lbl_805207C4
-    lbl_805207C4:
-        .4byte 0x43340000
-    .global lbl_805207C8
-    lbl_805207C8:
-        .float 1.0
-    .global lbl_805207CC
-    lbl_805207CC:
-        .4byte 0x43FA0000
-    .global lbl_805207D0
-    lbl_805207D0:
-        .4byte 0x40490FDB
-    .global lbl_805207D4
-    lbl_805207D4:
-        .4byte 0x3BB60B61
-    .global lbl_805207D8
-    lbl_805207D8:
-        .4byte 0x43A2F983
-    .global lbl_805207DC
-    lbl_805207DC:
-        .4byte 0xC3A2F983
-    .global lbl_805207E0
-    lbl_805207E0:
-        .4byte 0x3E4CCCCD
-    .global lbl_805207E4
-    lbl_805207E4:
-        .4byte 0x3F3851EC
-    .global lbl_805207E8
-    lbl_805207E8:
-        .4byte 0x43870000
-    .global lbl_805207EC
-    lbl_805207EC:
-        .4byte 0x42652EE0
-    .global lbl_805207F0
-    lbl_805207F0:
-        .4byte 0x437F0000
-        .4byte 0x00000000
-    .global lbl_805207F8
-    lbl_805207F8:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80520800
-    lbl_80520800:
-        .4byte 0x40C90FDB
-    .global lbl_80520804
-    lbl_80520804:
-        .float 0.5
-    .global lbl_80520808
-    lbl_80520808:
-        .4byte 0x40000000
-    .global lbl_8052080C
-    lbl_8052080C:
-        .4byte 0x3F400000
-    .global lbl_80520810
-    lbl_80520810:
-        .4byte 0x42C80000
-    .global lbl_80520814
-    lbl_80520814:
-        .4byte 0x41C80000
-    .global lbl_80520818
-    lbl_80520818:
-        .4byte 0x437A0000
-    .global lbl_8052081C
-    lbl_8052081C:
-        .4byte 0x47000000
-    .global lbl_80520820
-    lbl_80520820:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80520828
-    lbl_80520828:
-        .float 0.3
-    .global lbl_8052082C
-    lbl_8052082C:
-        .4byte 0x3FA00000
-    .global lbl_80520830
-    lbl_80520830:
-        .4byte 0x3F266666
-    .global lbl_80520834
-    lbl_80520834:
-        .4byte 0x706F642E
-        .4byte 0x626C6F00
-    .global lbl_8052083C
-    lbl_8052083C:
-        .4byte 0x38D1B717
-    .global lbl_80520840
-    lbl_80520840:
-        .4byte 0x3EB33333
-    .global lbl_80520844
-    lbl_80520844:
-        .4byte 0x41A00000
-    .global lbl_80520848
-    lbl_80520848:
-        .4byte 0x80000000
-    .global lbl_8052084C
-    lbl_8052084C:
-        .4byte 0x706F6449
-        .4byte 0x636F6E00
-    .global lbl_80520854
-    lbl_80520854:
-        .4byte 0x6D657373
-        .4byte 0x61676500
-        .4byte 0x00000000
-*/
+static const char name[] = "movieMessage";
 
 namespace P2JME {
+namespace Movie {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000B8
  */
-Movie::WindowPane::WindowPane()
+WindowPane::WindowPane()
 {
-	// UNUSED FUNCTION
+	mState           = WINDOWPANE_Inactive;
+	mTimer           = 0.0f;
+	mInitialPosition = Vector3f::zero;
+	mNewPosition     = Vector3f::zero;
+	mCurrPosition    = Vector3f::zero;
 }
 
 /*
@@ -382,136 +32,40 @@ Movie::WindowPane::WindowPane()
  * Address:	80434F5C
  * Size:	000020
  */
-void Movie::WindowPane::doInit()
-{
-	/*
-	lwz      r4, 0x18(r3)
-	lfs      f0, lbl_805207B8@sda21(r2)
-	lfs      f2, 0xd8(r4)
-	lfs      f1, 0xd4(r4)
-	stfs     f1, 0x28(r3)
-	stfs     f2, 0x2c(r3)
-	stfs     f0, 0x30(r3)
-	blr
-	*/
-}
+void WindowPane::doInit() { mInitialPosition = Vector3f(mPane->mOffset.x, mPane->mOffset.y, 0.0f); }
 
 /*
  * --INFO--
  * Address:	80434F7C
  * Size:	000164
  */
-void Movie::WindowPane::update()
+void WindowPane::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 2
-	beq      lbl_804350C8
-	bge      lbl_80434FA8
-	cmpwi    r0, 0
-	beq      lbl_80434FB8
-	bge      lbl_80434FC8
-	b        lbl_804350C8
-
-lbl_80434FA8:
-	cmpwi    r0, 4
-	beq      lbl_80434FB8
-	bge      lbl_804350C8
-	b        lbl_80435070
-
-lbl_80434FB8:
-	lwz      r4, 0x18(r3)
-	li       r0, 0
-	stb      r0, 0xb0(r4)
-	b        lbl_804350C8
-
-lbl_80434FC8:
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0x20(r3)
-	lfs      f0, 0x54(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x20(r3)
-	lfs      f0, 0x20(r3)
-	lfs      f1, 0x24(r3)
-	fcmpo    cr0, f0, f1
-	ble      lbl_80435050
-	stfs     f1, 0x20(r3)
-	lfs      f1, lbl_805207B8@sda21(r2)
-	lfs      f3, 0x44(r3)
-	lfs      f2, 0x48(r3)
-	fmuls    f0, f3, f3
-	lfs      f4, 0x4c(r3)
-	fmuls    f2, f2, f2
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f2
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80435038
-	fmadds   f0, f3, f3, f2
-	fadds    f2, f4, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_8043503C
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_8043503C
-
-lbl_80435038:
-	fmr      f2, f1
-
-lbl_8043503C:
-	lfs      f0, lbl_805207BC@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_80435050
-	li       r0, 2
-	stw      r0, 0x1c(r3)
-
-lbl_80435050:
-	lfs      f1, 0x20(r3)
-	lfs      f0, 0x24(r3)
-	lfs      f2, lbl_805207C4@sda21(r2)
-	fdivs    f1, f1, f0
-	lfs      f0, lbl_805207C0@sda21(r2)
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x34(r3)
-	b        lbl_804350C8
-
-lbl_80435070:
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0x20(r3)
-	lfs      f0, 0x54(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x20(r3)
-	lfs      f1, 0x20(r3)
-	lfs      f0, 0x24(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_804350A4
-	li       r0, 4
-	stw      r0, 0x1c(r3)
-	lfs      f0, 0x24(r3)
-	stfs     f0, 0x20(r3)
-
-lbl_804350A4:
-	lfs      f1, 0x20(r3)
-	lfs      f0, 0x24(r3)
-	lfs      f2, lbl_805207C8@sda21(r2)
-	fdivs    f1, f1, f0
-	lfs      f3, lbl_805207C4@sda21(r2)
-	lfs      f0, lbl_805207C0@sda21(r2)
-	fsubs    f1, f2, f1
-	fmadds   f0, f3, f1, f0
-	stfs     f0, 0x34(r3)
-
-lbl_804350C8:
-	li       r4, 0
-	bl       moveWindow__Q35P2JME5Movie10WindowPaneFb
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (mState) {
+	case WINDOWPANE_Inactive:
+	case WINDOWPANE_4:
+		mPane->hide();
+		break;
+	case WINDOWPANE_Appear:
+		mTimer += sys->mDeltaTime;
+		if (mTimer > mMaxTime) {
+			mTimer = mMaxTime;
+			if (mCurrPosition.length() < 10.0f) {
+				mState = 2;
+			}
+		}
+		mCurrAngle = (mTimer / mMaxTime) * 180.0f + 90.0f;
+		break;
+	case 3:
+		mTimer += sys->mDeltaTime;
+		if (mTimer > mMaxTime) {
+			mState = WINDOWPANE_4;
+			mTimer = mMaxTime;
+		}
+		mCurrAngle = (1.0f - mTimer / mMaxTime) * 180.0f + 90.0f;
+		break;
+	}
+	moveWindow(false);
 }
 
 /*
@@ -519,8 +73,31 @@ lbl_804350C8:
  * Address:	804350E0
  * Size:	000278
  */
-void Movie::WindowPane::moveWindow(bool)
+void WindowPane::moveWindow(bool flag)
 {
+	f32 angle = mCurrAngle * DEG2RAD * PI;
+	f32 x     = mInitialPosition.x + 500.0f;
+	f32 y     = mInitialPosition.y;
+
+	f32 cos  = pikmin2_cosf(angle) * 500.0f + x;
+	f32 sin  = pikmin2_sinf(angle) * 500.0f + y;
+	f32 zero = 0.0f;
+	if (flag) {
+		mNewPosition  = Vector3f(sin, cos, 0.0f);
+		mCurrPosition = Vector3f(0.0f);
+	} else {
+		mCurrPosition.x += (sin - mNewPosition.x) * 0.2f;
+		mCurrPosition.y += (cos - mNewPosition.y) * 0.2f;
+		mCurrPosition.z += (zero - mNewPosition.z) * 0.2f;
+		mCurrPosition *= 0.72f;
+		mNewPosition += mCurrPosition;
+	}
+	mPane->setOffset(mNewPosition.x, mNewPosition.y);
+	f32 newangle = JMath::atanTable_.atan2_(mNewPosition.x - x, mNewPosition.y - y);
+	f32 scale    = roundAng(mCurrAngle);
+	scale        = FABS((newangle - 270.0f) / 180.f) + 1.0f;
+	mPane->setAngle(newangle * 57.295776f + 90.0f);
+	mPane->updateScale(scale);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -698,28 +275,14 @@ lbl_80435288:
  * Address:	80435358
  * Size:	000048
  */
-void Movie::WindowPane::open(float)
+void WindowPane::open(f32 duration)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f2, lbl_805207B8@sda21(r2)
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	lfs      f0, lbl_805207C0@sda21(r2)
-	lwz      r5, 0x18(r3)
-	stb      r0, 0xb0(r5)
-	stw      r0, 0x1c(r3)
-	stfs     f2, 0x20(r3)
-	stfs     f1, 0x24(r3)
-	stfs     f0, 0x34(r3)
-	bl       moveWindow__Q35P2JME5Movie10WindowPaneFb
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mPane->show();
+	mState     = WINDOWPANE_Appear;
+	mTimer     = 0.0f;
+	mMaxTime   = duration;
+	mCurrAngle = 90.0f;
+	moveWindow(true);
 }
 
 /*
@@ -727,9 +290,13 @@ void Movie::WindowPane::open(float)
  * Address:	........
  * Size:	000024
  */
-void Movie::WindowPane::close(float)
+void WindowPane::close(f32 duration)
 {
-	// UNUSED FUNCTION
+	mPane->show();
+	mState     = WINDOWPANE_Finish;
+	mTimer     = 0.0f;
+	mMaxTime   = duration;
+	mCurrAngle = 90.0f;
 }
 
 /*
@@ -737,9 +304,12 @@ void Movie::WindowPane::close(float)
  * Address:	........
  * Size:	0000A4
  */
-Movie::AbtnPane::AbtnPane(unsigned char)
+AbtnPane::AbtnPane(u8 state)
 {
-	// UNUSED FUNCTION
+	mState  = state;
+	mTimer1 = 0.0f;
+	mTimer2 = 0.0f;
+	mTimer1 = -0.0f;
 }
 
 /*
@@ -747,31 +317,11 @@ Movie::AbtnPane::AbtnPane(unsigned char)
  * Address:	804353A0
  * Size:	000054
  */
-void Movie::AbtnPane::doInit()
+void AbtnPane::doInit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x18(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x18(r31)
-	li       r4, 1
-	li       r0, 0
-	stb      r4, 0xb0(r3)
-	stw      r0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mPane->setAlpha(0);
+	mPane->show();
+	mState = 0;
 }
 
 /*
@@ -779,116 +329,35 @@ void Movie::AbtnPane::doInit()
  * Address:	804353F4
  * Size:	000170
  */
-void Movie::AbtnPane::update()
+void AbtnPane::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f2, lbl_80520800@sda21(r2)
-	stw      r0, 0x14(r1)
-	lfs      f1, lbl_805207C8@sda21(r2)
-	lfs      f0, 0x20(r3)
-	fmuls    f2, f2, f0
-	lfs      f0, lbl_805207B8@sda21(r2)
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80435424
-	fneg     f1, f1
+	f32 one   = 1.0f;
+	f32 alpha = (mTimer1 * TAU) / one;
+	alpha     = pikmin2_cosf(alpha);
+	alpha     = (1.0f - alpha) * 0.5f;
+	switch (mState) {
+	case 0:
+		mTimer2 += -(sys->mDeltaTime * 2.0f);
+		if (mTimer2 < 0.0f) {
+			mTimer2 = 0.0f;
+		}
+		break;
+	case 1:
+		mTimer2 += sys->mDeltaTime * 2.0f;
+		if (mTimer2 > 1.0f) {
+			mTimer2 = 1.0f;
+		}
+		break;
+	}
 
-lbl_80435424:
-	lfs      f0, lbl_805207D8@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	lwz      r0, 0x1c(r3)
-	addi     r5, r4, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	lfs      f3, lbl_805207C8@sda21(r2)
-	lfs      f1, lbl_80520804@sda21(r2)
-	cmpwi    r0, 1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	rlwinm   r4, r4, 3, 0x12, 0x1c
-	add      r4, r5, r4
-	lfs      f0, 4(r4)
-	fsubs    f0, f3, f0
-	fmuls    f4, f1, f0
-	beq      lbl_804354A8
-	bge      lbl_804354D0
-	cmpwi    r0, 0
-	bge      lbl_80435478
-	b        lbl_804354D0
+	mTimer1 += sys->mDeltaTime;
+	if (mTimer1 > 1.0f) {
+		mTimer1 = 0.0f;
+	}
 
-lbl_80435478:
-	lwz      r4, sys@sda21(r13)
-	lfs      f3, lbl_80520808@sda21(r2)
-	lfs      f2, 0x54(r4)
-	lfs      f1, 0x24(r3)
-	lfs      f0, lbl_805207B8@sda21(r2)
-	fnmsubs  f1, f3, f2, f1
-	stfs     f1, 0x24(r3)
-	lfs      f1, 0x24(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_804354D0
-	stfs     f0, 0x24(r3)
-	b        lbl_804354D0
-
-lbl_804354A8:
-	lwz      r4, sys@sda21(r13)
-	lfs      f2, lbl_80520808@sda21(r2)
-	lfs      f1, 0x54(r4)
-	lfs      f0, 0x24(r3)
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x24(r3)
-	lfs      f0, 0x24(r3)
-	fcmpo    cr0, f0, f3
-	ble      lbl_804354D0
-	stfs     f3, 0x24(r3)
-
-lbl_804354D0:
-	lwz      r4, sys@sda21(r13)
-	lfs      f2, 0x20(r3)
-	lfs      f1, 0x54(r4)
-	lfs      f0, lbl_805207C8@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x20(r3)
-	lfs      f1, 0x20(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_804354FC
-	lfs      f0, lbl_805207B8@sda21(r2)
-	stfs     f0, 0x20(r3)
-
-lbl_804354FC:
-	lfs      f0, lbl_805207F0@sda21(r2)
-	lfs      f1, 0x24(r3)
-	fmuls    f2, f0, f4
-	lfs      f0, lbl_805207B8@sda21(r2)
-	lwz      r3, 0x18(r3)
-	fmuls    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8043552C
-	lfs      f0, lbl_80520804@sda21(r2)
-	fadds    f0, f0, f1
-	b        lbl_80435534
-
-lbl_8043552C:
-	lfs      f0, lbl_80520804@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_80435534:
-	fctiwz   f0, f0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	clrlwi   r4, r0, 0x18
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J2DPane* pane = mPane;
+	alpha         = alpha * 255.0f * mTimer2;
+	pane->setAlphaFromFloat(alpha);
 }
 
 /*
@@ -896,9 +365,17 @@ lbl_80435534:
  * Address:	........
  * Size:	0000CC
  */
-Movie::PodIconScreen::PodIconScreen()
+PodIconScreen::PodIconScreen()
 {
-	// UNUSED FUNCTION
+	mState              = -1;
+	mAnmColor           = nullptr;
+	mAnmColorTimer      = 0.0f;
+	mAnmTrans           = nullptr;
+	mAnmTransTimer      = 0.0f;
+	mAnmTexPattern      = nullptr;
+	mAnmTexPatternTimer = 0.0f;
+	reset();
+	disappear();
 }
 
 /*
@@ -906,9 +383,13 @@ Movie::PodIconScreen::PodIconScreen()
  * Address:	........
  * Size:	000078
  */
-void Movie::PodIconScreen::setTrans()
+void PodIconScreen::setTrans()
 {
-	// UNUSED FUNCTION
+	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+		setXY(mInitialPos.x - 250.0f, mInitialPos.y - 25.0f);
+	} else {
+		setXY(mInitialPos.x - 250.0f, mInitialPos.y - 10.0f);
+	}
 }
 
 /*
@@ -916,29 +397,11 @@ void Movie::PodIconScreen::setTrans()
  * Address:	........
  * Size:	000168
  */
-void Movie::PodIconScreen::reset()
+void PodIconScreen::reset()
 {
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000178
- */
-void Movie::PodIconScreen::appear()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0002A0
- */
-void Movie::PodIconScreen::disappear()
-{
-	// UNUSED FUNCTION
+	u16 y       = sys->getRenderModeObj()->efbHeight;
+	u16 x       = sys->getRenderModeObj()->fbWidth;
+	mInitialPos = Vector3f(x * 0.75f, y, 100.0f);
 }
 
 /*
@@ -946,9 +409,28 @@ void Movie::PodIconScreen::disappear()
  * Address:	........
  * Size:	0001E0
  */
-void Movie::PodIconScreen::set(JKRArchive*)
+void PodIconScreen::set(JKRArchive* arc)
 {
-	// UNUSED FUNCTION
+	bool didLoad = J2DScreen::set("pod.blo", 0x40000, arc);
+	P2ASSERTLINE(428, didLoad);
+
+	void* file = arc->getResource("anim/pod.btp");
+	P2ASSERTLINE(433, file);
+	mAnmTexPattern = static_cast<J2DAnmTexPattern*>(J2DAnmLoaderDataBase::load(file));
+	P2ASSERTLINE(435, mAnmTexPattern);
+	setAnimation(mAnmTexPattern);
+
+	file = arc->getResource("anim/pod.bck");
+	P2ASSERTLINE(440, file);
+	mAnmTrans = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	P2ASSERTLINE(442, mAnmTrans);
+	setAnimation(mAnmTrans);
+
+	file = arc->getResource("anim/pod.bpk");
+	P2ASSERTLINE(447, file);
+	mAnmColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+	P2ASSERTLINE(449, mAnmColor);
+	setAnimation(mAnmColor);
 }
 
 /*
@@ -956,8 +438,38 @@ void Movie::PodIconScreen::set(JKRArchive*)
  * Address:	80435564
  * Size:	000438
  */
-void Movie::PodIconScreen::update()
+void PodIconScreen::update()
 {
+	if (mState != -1) {
+		mAnmTexPatternTimer += 1.0f;
+		if (mAnmTexPattern->mMaxFrame >= mAnmTexPatternTimer) {
+			mAnmTexPatternTimer -= mAnmTexPattern->mMaxFrame;
+		}
+
+		mAnmColorTimer += 1.0f;
+		if (mAnmColor->mMaxFrame >= mAnmColorTimer) {
+			mAnmColorTimer -= mAnmColor->mMaxFrame;
+		}
+
+		mAnmColorTimer += 1.0f;
+		if (mAnmColor->mMaxFrame >= mAnmColorTimer) {
+			mAnmColorTimer -= mAnmColor->mMaxFrame;
+		}
+		animation();
+
+		f32 test = mInitialPos.z / 20.0f;
+		if (test < 0.5f) {
+			test = 0.5f;
+		}
+		setTrans();
+		mScreenScaleX = (test + 1.0f) * 0.95f;
+		mScreenScaleY = (test + 1.0f) * 0.95f;
+
+		if (mState == 0 || mState == 1) {
+			PSSystem::spSysIF->playSystemSe(PSSE_POD_PC, 0);
+		}
+	}
+	P2DScreen::Mgr::update();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1271,21 +783,20 @@ lbl_80435980:
 /*
  * --INFO--
  * Address:	........
- * Size:	00003C
- */
-Movie::MessageWindowScreen::MessageWindowScreen()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	00026C
  */
-void Movie::MessageWindowScreen::set(JKRArchive*)
+void MessageWindowScreen::set(JKRArchive* arc)
 {
-	// UNUSED FUNCTION
+	bool didLoad = J2DScreen::set("mg_window.blo", 0, arc);
+	P2ASSERTLINE(554, didLoad);
+	mWindowPane = new WindowPane;
+	addCallBack('mgnull00', mWindowPane);
+	mAButton = new AbtnPane(0);
+	addCallBack('mg_abtn_', mAButton);
+	mArrowPane = new AbtnPane(0);
+	addCallBack('mg_yaji', mArrowPane);
+	search('mg_yaji1')->setInfluencedAlpha(true, false);
+	search('PICT_001')->setInfluencedAlpha(true, false);
 }
 
 /*
@@ -1293,85 +804,22 @@ void Movie::MessageWindowScreen::set(JKRArchive*)
  * Address:	8043599C
  * Size:	000080
  */
-Movie::TControl::TControl()
+TControl::TControl()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q35P2JME6Window8TControlFv
-	lis      r3, __vt__Q35P2JME5Movie8TControl@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q35P2JME5Movie8TControl@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stw      r0, 0x5c(r31)
-	stw      r0, 0x60(r31)
-	stw      r0, 0x64(r31)
-	stb      r0, 0x68(r31)
-	stw      r0, 0x6c(r31)
-	stb      r0, 0x70(r31)
-	stb      r0, 0x71(r31)
-	stb      r0, 0x72(r31)
-	stb      r0, 0x73(r31)
-	stb      r0, 0x70(r31)
-	stb      r0, 0x71(r31)
-	stb      r0, 0x72(r31)
-	stb      r0, 0x73(r31)
-	lwz      r0, 0x70(r31)
-	ori      r0, r0, 1
-	stw      r0, 0x70(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80435A1C
- * Size:	000070
- */
-Window::TControl::~TControl()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80435A70
-	lis      r4, __vt__Q35P2JME6Window8TControl@ha
-	addi     r0, r4, __vt__Q35P2JME6Window8TControl@l
-	stw      r0, 0(r30)
-	beq      lbl_80435A60
-	lis      r5, __vt__Q25P2JME8TControl@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q25P2JME8TControl@l
-	stw      r0, 0(r30)
-	bl       __dt__Q28JMessage8TControlFv
-
-lbl_80435A60:
-	extsh.   r0, r31
-	ble      lbl_80435A70
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80435A70:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mMessageWindow      = nullptr;
+	mPodIcon            = nullptr;
+	mPaneMgDemo         = nullptr;
+	mIsActive           = false;
+	mModeFlag           = MODEFLAG_Inactive;
+	mFlags.bytesView[0] = 0;
+	mFlags.bytesView[1] = 0;
+	mFlags.bytesView[2] = 0;
+	mFlags.bytesView[3] = 0;
+	mFlags.bytesView[0] = 0;
+	mFlags.bytesView[1] = 0;
+	mFlags.bytesView[2] = 0;
+	mFlags.bytesView[3] = 0;
+	mFlags.dwordView |= 1;
 }
 
 /*
@@ -1379,8 +827,48 @@ lbl_80435A70:
  * Address:	80435A8C
  * Size:	0007B0
  */
-void Movie::TControl::onInit()
+void TControl::onInit()
 {
+	sys->heapStatusStart("P2JME::Movie::TControl::onInit", nullptr);
+	if (gP2JMEMgr) {
+		setFont(gP2JMEMgr->mFont);
+		setRubyFont(gP2JMEMgr->mFont);
+	}
+	sys->heapStatusStart("PMT_onInit_arc", nullptr);
+
+	JKRArchive* arc = JKRArchive::mount("new_screen/cmn/message_window.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	if (arc) {
+		mMessageWindow = new MessageWindowScreen;
+		mMessageWindow->set(arc);
+
+		J2DPane* demo = mMessageWindow->search('mg_demo_');
+		P2ASSERTLINE(632, demo);
+		P2ASSERTLINE(633, demo->getTypeID() == PANETYPE_TextBox);
+		mPaneMgDemo = demo;
+		mTextRenderProc->setTextBoxInfo(mPaneMgDemo);
+	}
+
+	sys->heapStatusStart("podIcon", nullptr);
+
+	char* path = "new_screen/cmn/pod_for_message_window.szs";
+	if (Game::playData->mStoryFlags & Game::STORY_DebtPaid) {
+		path = "new_screen/cmn/gold_pod_for_message_window.szs";
+	}
+	arc = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	if (arc) {
+		mPodIcon = new PodIconScreen;
+		mPodIcon->set(arc);
+	} else {
+		JUT_PANICLINE(658, "%s is not found.\n", path);
+	}
+
+	sys->heapStatusEnd("podIcon");
+	sys->heapStatusEnd("PMT_onInit_arc");
+	sys->heapStatusStart("PMT_onInit_initRenderingProcessor", nullptr);
+	initRenderingProcessor(0x400);
+	sys->heapStatusEnd("PMT_onInit_initRenderingProcessor");
+	sys->heapStatusEnd("P2JME::Movie::TControl::onInit");
+	// return 1;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1934,24 +1422,10 @@ lbl_804361D8:
  * Address:	8043623C
  * Size:	000038
  */
-void Movie::TControl::reset()
+void TControl::reset()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       reset__Q35P2JME6Window8TControlFv
-	mr       r3, r31
-	li       r4, 0
-	bl       setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Window::TControl::reset();
+	setMode(MODEFLAG_Inactive);
 }
 
 /*
@@ -1959,8 +1433,30 @@ void Movie::TControl::reset()
  * Address:	80436274
  * Size:	0004E0
  */
-void Movie::TControl::setMode(P2JME::Movie::TControl::EModeFlag)
+TControl::EModeFlag TControl::setMode(EModeFlag mode)
 {
+	mModeFlag = mode;
+	switch (mModeFlag) {
+	case MODEFLAG_Inactive:
+		mIsActive = false;
+		mMessageWindow->mWindowPane->mPane->hide();
+		mSequenceProc->mFlags.typeView |= 1;
+		break;
+	case MODEFLAG_Start:
+		PSSystem::spSysIF->playSystemSe(PSSE_MP_SHIP_CALLING_01, 0);
+		mMessageWindow->open(0.5f);
+		mPodIcon->appear();
+		mSequenceProc->mFlags.typeView |= 1;
+		break;
+	case MODEFLAG_Writing:
+		mSequenceProc->mFlags.typeView &= ~1;
+		break;
+	case MODEFLAG_Finish:
+		PSSystem::spSysIF->playSystemSe(PSSE_MP_SHIP_PERIOD_01, 0);
+		mMessageWindow->mWindowPane->close(0.5f);
+		break;
+	}
+	return mode;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2316,28 +1812,73 @@ lbl_80436728:
  * Address:	80436754
  * Size:	000024
  */
-void Movie::MessageWindowScreen::open(float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x148(r3)
-	bl       open__Q35P2JME5Movie10WindowPaneFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void MessageWindowScreen::open(f32 duration) { mWindowPane->open(duration); }
 
 /*
  * --INFO--
  * Address:	80436778
  * Size:	000228
  */
-void Movie::TControl::update(Controller*, Controller*)
+void TControl::update(Controller* pad1, Controller* pad2)
 {
+	bool ret = true;
+	Window::TControl::update(pad1, pad2); // matching bs when this is bool
+	if (mFlags.dwordView & 1 && Game::moviePlayer && (Game::moviePlayer->mFlags & 2)) {
+		if (mIsActive) {
+			reset();
+			Game::moviePlayer->unsuspend(1, false);
+		}
+		ret = true;
+	} else {
+		if (mMessageWindow) {
+			mMessageWindow->update();
+		}
+		if (mPodIcon) {
+			mPodIcon->update();
+		}
+		switch (mModeFlag) {
+		case MODEFLAG_Inactive:
+			if (ret) {
+				if (Game::gameSystem) {
+					mIsPaused = Game::gameSystem->setPause(1, "message", 3);
+					setMode(MODEFLAG_Start);
+					mIsActive = true;
+				} else {
+					mIsActive = false;
+				}
+			}
+			break;
+		case MODEFLAG_Start:
+			if (mMessageWindow->mWindowPane->mState == 2) {
+				setMode(MODEFLAG_Writing);
+			}
+			break;
+		case MODEFLAG_Writing:
+			if (mStatus & 2) {
+				setMode(MODEFLAG_Finish);
+			}
+			break;
+		case MODEFLAG_Finish:
+			if (mMessageWindow->mWindowPane->mState == 4 && mPodIcon->mState == 3) {
+				reset();
+				if ((mFlags.dwordView & 1) && Game::moviePlayer) {
+					Game::moviePlayer->unsuspend(1, true);
+				}
+			}
+		}
+
+		if (mSequenceProc->mFlags.typeView & 2) { // done writing, can press A
+			MessageWindowScreen* window = mMessageWindow;
+			window->mAButton->mState    = 1;
+			window->mArrowPane->mState  = 1;
+		} else {
+			MessageWindowScreen* window = mMessageWindow;
+			window->mAButton->mState    = 0;
+			window->mArrowPane->mState  = 0;
+		}
+		ret = mIsActive;
+	}
+	// return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2515,140 +2056,40 @@ lbl_80436988:
  * Address:	804369A0
  * Size:	0000CC
  */
-void Movie::TControl::draw(Graphics&)
+void TControl::draw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x5c(r3)
-	cmplwi   r0, 0
-	beq      lbl_80436A50
-	lwz      r0, 0x6c(r29)
-	cmpwi    r0, 0
-	beq      lbl_80436A50
-	addi     r3, r30, 0x190
-	lwz      r12, 0x190(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x5c(r29)
-	mr       r4, r30
-	addi     r5, r30, 0x190
-	lwz      r12, 0(r3)
-	lwz      r12, 0x9c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x64(r29)
-	cmplwi   r4, 0
-	beq      lbl_80436A34
-	addi     r31, r30, 0x210
-	mr       r3, r29
-	mr       r5, r31
-	addi     r4, r4, 0x80
-	bl       draw__Q25P2JME8TControlFPA4_fPA4_f
-	mr       r3, r31
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-
-lbl_80436A34:
-	lwz      r3, 0x60(r29)
-	mr       r4, r30
-	addi     r5, r30, 0x190
-	lwz      r12, 0(r3)
-	lwz      r12, 0x9c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80436A50:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mMessageWindow && mModeFlag != MODEFLAG_Inactive) {
+		gfx.mPerspGraph.setPort();
+		mMessageWindow->draw(gfx, gfx.mPerspGraph);
+		if (mPaneMgDemo) {
+			Mtx* mtx = &gfx.mPerspGraph.mPosMtx;
+			P2JME::TControl::draw(mPaneMgDemo->mGlobalMtx, *mtx);
+			GXLoadPosMtxImm(*mtx, 0);
+		}
+		mPodIcon->draw(gfx, gfx.mPerspGraph);
+	}
 }
 
-/*
- * --INFO--
- * Address:	80436A6C
- * Size:	000080
- */
-Movie::TControl::~TControl()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80436AD0
-	lis      r4, __vt__Q35P2JME5Movie8TControl@ha
-	addi     r0, r4, __vt__Q35P2JME5Movie8TControl@l
-	stw      r0, 0(r30)
-	beq      lbl_80436AC0
-	lis      r4, __vt__Q35P2JME6Window8TControl@ha
-	addi     r0, r4, __vt__Q35P2JME6Window8TControl@l
-	stw      r0, 0(r30)
-	beq      lbl_80436AC0
-	lis      r5, __vt__Q25P2JME8TControl@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q25P2JME8TControl@l
-	stw      r0, 0(r30)
-	bl       __dt__Q28JMessage8TControlFv
+} // namespace Movie
 
-lbl_80436AC0:
-	extsh.   r0, r31
-	ble      lbl_80436AD0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80436AD0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+namespace Window {
 
 /*
  * --INFO--
  * Address:	80436AEC
  * Size:	000020
  */
-void Window::TControl::draw(float (*)[4], float (*)[4])
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       draw__Q25P2JME8TControlFPA4_fPA4_f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TControl::draw(Mtx mtx1, Mtx mtx2) { P2JME::TControl::draw(mtx1, mtx2); }
 
 /*
  * --INFO--
  * Address:	80436B0C
  * Size:	00007C
  */
-void Window::TControl::createRenderingProcessor()
+void TControl::createRenderingProcessor()
 {
+	P2ASSERTLINE(121, mReference);
+	mTextRenderProc = new TRenderingProcessor(mReference);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2693,8 +2134,10 @@ lbl_80436B6C:
  * Address:	80436B88
  * Size:	000080
  */
-void Window::TControl::createSequenceProcessor()
+void TControl::createSequenceProcessor()
 {
+	P2ASSERTLINE(121, mReference);
+	mSequenceProc = new TSequenceProcessor(mReference, this);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2736,290 +2179,27 @@ lbl_80436BEC:
 	*/
 }
 
+} // namespace Window
+
 /*
  * --INFO--
  * Address:	80436C08
  * Size:	000038
  */
-void TControl::setMessageID(unsigned long long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	addi     r4, r1, 8
-	stw      r5, 8(r1)
-	stw      r6, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TControl::setMessageID(u64 tag) { setMessageID((char*)&tag); }
 
 /*
  * --INFO--
  * Address:	80436C40
  * Size:	000010
  */
-void TControl::createReference()
-{
-	/*
-	lwz      r4, gP2JMEMgr@sda21(r13)
-	lwz      r0, 0x34(r4)
-	stw      r0, 0x38(r3)
-	blr
-	*/
-}
+void TControl::createReference() { mReference = gP2JMEMgr->mMsgRef; }
 
 /*
  * --INFO--
  * Address:	80436C50
  * Size:	000010
  */
-void TControl::createResourceContainer()
-{
-	/*
-	lwz      r4, gP2JMEMgr@sda21(r13)
-	lwz      r0, 0x30(r4)
-	stw      r0, 0x44(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80436C60
- * Size:	0000A4
- */
-Movie::MessageWindowScreen::~MessageWindowScreen()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80436CE8
-	lis      r3, __vt__Q35P2JME5Movie19MessageWindowScreen@ha
-	addi     r0, r3, __vt__Q35P2JME5Movie19MessageWindowScreen@l
-	stw      r0, 0(r30)
-	beq      lbl_80436CD8
-	lis      r3, __vt__Q29P2DScreen10Mgr_tuning@ha
-	addi     r0, r3, __vt__Q29P2DScreen10Mgr_tuning@l
-	stw      r0, 0(r30)
-	beq      lbl_80436CD8
-	lis      r3, __vt__Q29P2DScreen3Mgr@ha
-	addic.   r0, r30, 0x118
-	addi     r0, r3, __vt__Q29P2DScreen3Mgr@l
-	stw      r0, 0(r30)
-	beq      lbl_80436CCC
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x118
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x118(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80436CCC:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__9J2DScreenFv
-
-lbl_80436CD8:
-	extsh.   r0, r31
-	ble      lbl_80436CE8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80436CE8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80436D04
- * Size:	0000A4
- */
-Movie::PodIconScreen::~PodIconScreen()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80436D8C
-	lis      r3, __vt__Q35P2JME5Movie13PodIconScreen@ha
-	addi     r0, r3, __vt__Q35P2JME5Movie13PodIconScreen@l
-	stw      r0, 0(r30)
-	beq      lbl_80436D7C
-	lis      r3, __vt__Q29P2DScreen10Mgr_tuning@ha
-	addi     r0, r3, __vt__Q29P2DScreen10Mgr_tuning@l
-	stw      r0, 0(r30)
-	beq      lbl_80436D7C
-	lis      r3, __vt__Q29P2DScreen3Mgr@ha
-	addic.   r0, r30, 0x118
-	addi     r0, r3, __vt__Q29P2DScreen3Mgr@l
-	stw      r0, 0(r30)
-	beq      lbl_80436D70
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x118
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x118(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80436D70:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__9J2DScreenFv
-
-lbl_80436D7C:
-	extsh.   r0, r31
-	ble      lbl_80436D8C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80436D8C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80436DA8
- * Size:	000080
- */
-Movie::AbtnPane::~AbtnPane()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80436E0C
-	lis      r4, __vt__Q35P2JME5Movie8AbtnPane@ha
-	addi     r0, r4, __vt__Q35P2JME5Movie8AbtnPane@l
-	stw      r0, 0(r30)
-	beq      lbl_80436DFC
-	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-	addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0(r30)
-	beq      lbl_80436DFC
-	lis      r5, __vt__Q29P2DScreen4Node@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q29P2DScreen4Node@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80436DFC:
-	extsh.   r0, r31
-	ble      lbl_80436E0C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80436E0C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80436E28
- * Size:	000080
- */
-Movie::WindowPane::~WindowPane()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80436E8C
-	lis      r4, __vt__Q35P2JME5Movie10WindowPane@ha
-	addi     r0, r4, __vt__Q35P2JME5Movie10WindowPane@l
-	stw      r0, 0(r30)
-	beq      lbl_80436E7C
-	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-	addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0(r30)
-	beq      lbl_80436E7C
-	lis      r5, __vt__Q29P2DScreen4Node@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q29P2DScreen4Node@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80436E7C:
-	extsh.   r0, r31
-	ble      lbl_80436E8C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80436E8C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TControl::createResourceContainer() { mResContainer = gP2JMEMgr->mResContainer; }
 
 } // namespace P2JME
-
-/*
- * --INFO--
- * Address:	80436EA8
- * Size:	000028
- */
-void __sinit_movieMessage_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EC640@ha
-	stw      r0, lbl_80516238@sda21(r13)
-	stfsu    f0, lbl_804EC640@l(r3)
-	stfs     f0, lbl_8051623C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

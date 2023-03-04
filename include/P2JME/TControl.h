@@ -39,12 +39,12 @@ struct TControl : public JMessage::TControl {
 
 	// _00     = VTBL
 	// _00-_38 = JMessage::TControl
-	JMessage::TReference* _38;         // _38
-	TSequenceProcessor* _3C;           // _3C
-	TRenderingProcessor* _40;          // _40
-	JMessage::TResourceContainer* _44; // _44
-	f32 _48;                           // _48
-	uint _4C;                          // _4C
+	JMessage::TReference* mReference;            // _38
+	TSequenceProcessor* mSequenceProc;           // _3C
+	TRenderingProcessor* mTextRenderProc;        // _40
+	JMessage::TResourceContainer* mResContainer; // _44
+	f32 _48;                                     // _48
+	uint mStatus;                                // _4C
 };
 } // namespace P2JME
 

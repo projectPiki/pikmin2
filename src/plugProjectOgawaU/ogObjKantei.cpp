@@ -187,7 +187,7 @@ void ObjKantei::doCreate(JKRArchive* arc)
 
 	mTControl = new P2JME::Movie::TControl;
 	mTControl->init();
-	mTControl->mFlags &= 0xfffffffe;
+	mTControl->mFlags.dwordView &= 0xfffffffe;
 	mInTextBox = false;
 
 	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, mScreenButton, 'ota3dl');
@@ -401,7 +401,7 @@ bool ObjKantei::doUpdate()
 
 	case Kantei_MessageBox:
 		mTControl->update(pad, mDisp->mSecondaryController);
-		if (!mTControl->mFinished) {
+		if (!mTControl->mIsActive) {
 			finishKantei();
 		}
 
