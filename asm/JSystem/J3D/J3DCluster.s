@@ -1,44 +1,41 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516A48
-lbl_80516A48:
+.obj lbl_80516A48, local
 	.float 1.0
-.global lbl_80516A4C
-lbl_80516A4C:
+.endobj lbl_80516A48
+.obj lbl_80516A4C, local # array of two floats
 	.float 1.0
-.global lbl_80516A50
-lbl_80516A50:
 	.float -1.0
-.global lbl_80516A54
-lbl_80516A54:
-	.4byte 0x00000000
-.global lbl_80516A58
-lbl_80516A58:
+.endobj lbl_80516A4C
+.obj lbl_80516A54, local
+	.float 0.0
+.endobj lbl_80516A54
+.obj lbl_80516A58, local
 	.float -1.0
-.global lbl_80516A5C
-lbl_80516A5C:
-	.4byte 0x40490FDB
-.global lbl_80516A60
-lbl_80516A60:
-	.4byte 0x447FE000
-.global lbl_80516A64
-lbl_80516A64:
-	.4byte 0x3FC90FDB
-.global lbl_80516A68
-lbl_80516A68:
-	.4byte 0x42652EE0
-.global lbl_80516A6C
-lbl_80516A6C:
-	.4byte 0x43340000
-.global lbl_80516A70
-lbl_80516A70:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.endobj lbl_80516A58
+.obj lbl_80516A5C, local # pi
+	.float 3.1415927
+.endobj lbl_80516A5C
+.obj lbl_80516A60, local
+	.float 1023.5
+.endobj lbl_80516A60
+.obj lbl_80516A64, local # pi/2
+	.float 1.5707964
+.endobj lbl_80516A64
+.obj lbl_80516A68, local
+	.float 57.295776
+.endobj lbl_80516A68
+.obj lbl_80516A6C, local
+	.float 180.0
+.endobj lbl_80516A6C
+.balign 8
+.obj lbl_80516A70, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516A70
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global deform__13J3DDeformDataFP8J3DModel
-deform__13J3DDeformDataFP8J3DModel:
+.fn deform__13J3DDeformDataFP8J3DModel, global
 /* 8006A59C 000674DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006A5A0 000674E0  7C 08 02 A6 */	mflr r0
 /* 8006A5A4 000674E4  38 84 00 88 */	addi r4, r4, 0x88
@@ -48,9 +45,9 @@ deform__13J3DDeformDataFP8J3DModel:
 /* 8006A5B4 000674F4  7C 08 03 A6 */	mtlr r0
 /* 8006A5B8 000674F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006A5BC 000674FC  4E 80 00 20 */	blr 
+.endfn deform__13J3DDeformDataFP8J3DModel
 
-.global deform__13J3DDeformDataFP15J3DVertexBuffer
-deform__13J3DDeformDataFP15J3DVertexBuffer:
+.fn deform__13J3DDeformDataFP15J3DVertexBuffer, global
 /* 8006A5C0 00067500  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006A5C4 00067504  7C 08 02 A6 */	mflr r0
 /* 8006A5C8 00067508  90 01 00 24 */	stw r0, 0x24(r1)
@@ -106,9 +103,9 @@ deform__13J3DDeformDataFP15J3DVertexBuffer:
 /* 8006A688 000675C8  7C 08 03 A6 */	mtlr r0
 /* 8006A68C 000675CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006A690 000675D0  4E 80 00 20 */	blr 
+.endfn deform__13J3DDeformDataFP15J3DVertexBuffer
 
-.global deform__11J3DDeformerFP15J3DVertexBufferUs
-deform__11J3DDeformerFP15J3DVertexBufferUs:
+.fn deform__11J3DDeformerFP15J3DVertexBufferUs, global
 /* 8006A694 000675D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006A698 000675D8  7C 08 02 A6 */	mflr r0
 /* 8006A69C 000675DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -208,9 +205,9 @@ deform__11J3DDeformerFP15J3DVertexBufferUs:
 /* 8006A7F0 00067730  7C 08 03 A6 */	mtlr r0
 /* 8006A7F4 00067734  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006A7F8 00067738  4E 80 00 20 */	blr 
+.endfn deform__11J3DDeformerFP15J3DVertexBufferUs
 
-.global deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
-deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf:
+.fn deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf, global
 /* 8006A7FC 0006773C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8006A800 00067740  39 60 00 00 */	li r11, 0
 /* 8006A804 00067744  BF 41 00 18 */	stmw r26, 0x18(r1)
@@ -313,7 +310,7 @@ deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyP
 .L_8006A97C:
 /* 8006A97C 000678BC  81 62 86 EC */	lwz r11, lbl_80516A4C@sda21(r2)
 /* 8006A980 000678C0  39 81 00 08 */	addi r12, r1, 8
-/* 8006A984 000678C4  81 42 86 F0 */	lwz r10, lbl_80516A50@sda21(r2)
+/* 8006A984 000678C4  81 42 86 F0 */	lwz r10, (lbl_80516A4C+4)@sda21(r2)
 /* 8006A988 000678C8  38 60 00 00 */	li r3, 0
 /* 8006A98C 000678CC  91 61 00 08 */	stw r11, 8(r1)
 /* 8006A990 000678D0  91 41 00 0C */	stw r10, 0xc(r1)
@@ -374,9 +371,9 @@ deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyP
 /* 8006AA5C 0006799C  BB 41 00 18 */	lmw r26, 0x18(r1)
 /* 8006AA60 000679A0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8006AA64 000679A4  4E 80 00 20 */	blr 
+.endfn deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
 
-.global deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
-deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf:
+.fn deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf, global
 /* 8006AA68 000679A8  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8006AA6C 000679AC  7C 08 02 A6 */	mflr r0
 /* 8006AA70 000679B0  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -687,9 +684,9 @@ deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyP
 /* 8006AECC 00067E0C  7C 08 03 A6 */	mtlr r0
 /* 8006AED0 00067E10  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8006AED4 00067E14  4E 80 00 20 */	blr 
+.endfn deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
 
-.global deform__11J3DDeformerFP15J3DVertexBufferUsPf
-deform__11J3DDeformerFP15J3DVertexBufferUsPf:
+.fn deform__11J3DDeformerFP15J3DVertexBufferUsPf, global
 /* 8006AED8 00067E18  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006AEDC 00067E1C  7C 08 02 A6 */	mflr r0
 /* 8006AEE0 00067E20  90 01 00 24 */	stw r0, 0x24(r1)
@@ -812,9 +809,9 @@ deform__11J3DDeformerFP15J3DVertexBufferUsPf:
 /* 8006B098 00067FD8  7C 08 03 A6 */	mtlr r0
 /* 8006B09C 00067FDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006B0A0 00067FE0  4E 80 00 20 */	blr 
+.endfn deform__11J3DDeformerFP15J3DVertexBufferUsPf
 
-.global normalizeWeight__11J3DDeformerFiPf
-normalizeWeight__11J3DDeformerFiPf:
+.fn normalizeWeight__11J3DDeformerFiPf, global
 /* 8006B0A4 00067FE4  2C 04 00 00 */	cmpwi r4, 0
 /* 8006B0A8 00067FE8  C0 C2 86 F4 */	lfs f6, lbl_80516A54@sda21(r2)
 /* 8006B0AC 00067FEC  38 E0 00 00 */	li r7, 0
@@ -911,3 +908,4 @@ normalizeWeight__11J3DDeformerFiPf:
 /* 8006B1F4 00068134  7C 00 20 00 */	cmpw r0, r4
 /* 8006B1F8 00068138  41 80 FF E4 */	blt .L_8006B1DC
 /* 8006B1FC 0006813C  4E 80 00 20 */	blr 
+.endfn normalizeWeight__11J3DDeformerFiPf

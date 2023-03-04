@@ -87,10 +87,12 @@ mCurrentMtxCalc__8J3DJoint:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516A78:
+.obj lbl_80516A78, local
 	.float 1.0
-lbl_80516A7C:
+.endobj lbl_80516A78
+.obj lbl_80516A7C, local
 	.float 0.0
+.endobj lbl_80516A7C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf

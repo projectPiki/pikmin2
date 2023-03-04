@@ -31,7 +31,7 @@ lbl_8047F6D4:
 lbl_8047F6E4:
 	.asciz "\t# reserved\r\n"
 .balign 4
-lbl_8047F6F4: #Shift-JIS
+lbl_8047F6F4: # Shift-JIS
 	.4byte 0x09232095
 	.4byte 0x9C8A8893
 	.4byte 0xFA90940D

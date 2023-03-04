@@ -5,68 +5,57 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804825B0
-lbl_804825B0:
+.obj lbl_804825B0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x53696E67
-	.4byte 0x6C654753
-	.4byte 0x5F436176
-	.4byte 0x65526573
-	.4byte 0x756C7400
-	.4byte 0x63617665
-	.4byte 0x722D696E
-	.4byte 0x69740000
-	.4byte 0x73696E67
-	.4byte 0x6C654753
-	.4byte 0x5F436176
-	.4byte 0x65526573
-	.4byte 0x756C742E
-	.4byte 0x63707000
-.global lbl_804825F4
-lbl_804825F4:
+.endobj lbl_804825B0
+.balign 4
+.obj lbl_804825BC, local
+	.asciz "SingleGS_CaveResult"
+.endobj lbl_804825BC
+.balign 4
+.obj lbl_804825D0, local
+	.asciz "caver-init"
+.endobj lbl_804825D0
+.balign 4
+.obj lbl_804825DC, local
+	.asciz "singleGS_CaveResult.cpp"
+.endobj lbl_804825DC
+.balign 4
+.obj lbl_804825F4, local
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80482600
-lbl_80482600:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x63616E6E
-	.4byte 0x6F74206F
-	.4byte 0x70656E20
-	.4byte 0x63617665
-	.4byte 0x72657375
-	.4byte 0x6C740A00
-	.4byte 0x00000000
+.endobj lbl_804825F4
+.balign 4
+.obj lbl_80482600, local
+	.asciz "PSGame.h"
+.endobj lbl_80482600
+.balign 4
+.obj lbl_8048260C, local
+	.asciz "PSScene.h"
+.endobj lbl_8048260C
+.balign 4
+.obj lbl_80482618, local
+	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_80482618
+.balign 4
+.obj lbl_8048263C, local
+	.asciz "cannot open caveresult\n"
+.endobj lbl_8048263C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C0700
-lbl_804C0700:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804C070C
-lbl_804C070C:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804C070C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadResource__Q34Game10SingleGame15CaveResultStateFv
-.global __vt__Q34Game10SingleGame15CaveResultState
-__vt__Q34Game10SingleGame15CaveResultState:
+.endobj lbl_804C070C
+.obj __vt__Q34Game10SingleGame15CaveResultState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
@@ -85,34 +74,33 @@ __vt__Q34Game10SingleGame15CaveResultState:
 	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-.global "__vt__46Delegate<Q34Game10SingleGame15CaveResultState>"
-"__vt__46Delegate<Q34Game10SingleGame15CaveResultState>":
+.endobj __vt__Q34Game10SingleGame15CaveResultState
+.obj "__vt__46Delegate<Q34Game10SingleGame15CaveResultState>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__46Delegate<Q34Game10SingleGame15CaveResultState>Fv"
-	.4byte 0
+.endobj "__vt__46Delegate<Q34Game10SingleGame15CaveResultState>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C08
-lbl_80515C08:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515C0C
-lbl_80515C0C:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A048
-lbl_8051A048:
+.obj lbl_8051A048, local
 	.float 1.0
-.global lbl_8051A04C
-lbl_8051A04C:
-	.4byte 0x00000000
+.endobj lbl_8051A048
+.obj lbl_8051A04C, local
+	.float 0.0
+.endobj lbl_8051A04C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game10SingleGame15CaveResultStateFv
-__ct__Q34Game10SingleGame15CaveResultStateFv:
+.fn __ct__Q34Game10SingleGame15CaveResultStateFv, global
 /* 8021AC20 00217B60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021AC24 00217B64  7C 08 02 A6 */	mflr r0
 /* 8021AC28 00217B68  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
@@ -177,9 +165,9 @@ __ct__Q34Game10SingleGame15CaveResultStateFv:
 /* 8021AD0C 00217C4C  7C 08 03 A6 */	mtlr r0
 /* 8021AD10 00217C50  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021AD14 00217C54  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game10SingleGame15CaveResultStateFv
 
-.global init__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 8021AD18 00217C58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021AD1C 00217C5C  7C 08 02 A6 */	mflr r0
 /* 8021AD20 00217C60  3C E0 80 48 */	lis r7, lbl_804825B0@ha
@@ -255,10 +243,10 @@ init__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionPQ24Game8S
 /* 8021AE30 00217D70  7C 08 03 A6 */	mtlr r0
 /* 8021AE34 00217D74  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021AE38 00217D78  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 
 .if version == 1
-.global loadResource__Q34Game10SingleGame15CaveResultStateFv
-loadResource__Q34Game10SingleGame15CaveResultStateFv:
+.fn loadResource__Q34Game10SingleGame15CaveResultStateFv, global
 /* 8021AE3C 00217D7C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8021AE40 00217D80  7C 08 02 A6 */	mflr r0
 /* 8021AE44 00217D84  38 C0 00 00 */	li r6, 0
@@ -412,9 +400,9 @@ loadResource__Q34Game10SingleGame15CaveResultStateFv:
 /* 8021B070 00217FB0  7C 08 03 A6 */	mtlr r0
 /* 8021B074 00217FB4  38 21 00 60 */	addi r1, r1, 0x60
 /* 8021B078 00217FB8  4E 80 00 20 */	blr 
+.endfn loadResource__Q34Game10SingleGame15CaveResultStateFv
 .else
-.global loadResource__Q34Game10SingleGame15CaveResultStateFv
-loadResource__Q34Game10SingleGame15CaveResultStateFv:
+.fn loadResource__Q34Game10SingleGame15CaveResultStateFv, global
 /* 8021AE3C 00217D7C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8021AE40 00217D80  7C 08 02 A6 */	mflr r0
 /* 8021AE44 00217D84  38 C0 00 00 */	li r6, 0
@@ -568,11 +556,11 @@ loadResource__Q34Game10SingleGame15CaveResultStateFv:
 /* 8021B070 00217FB0  7C 08 03 A6 */	mtlr r0
 /* 8021B074 00217FB4  38 21 00 60 */	addi r1, r1, 0x60
 /* 8021B078 00217FB8  4E 80 00 20 */	blr 
+.endfn loadResource__Q34Game10SingleGame15CaveResultStateFv
 .endif
 
 .if version == 1
-.global exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection, global
 /* 8021B07C 00217FBC  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8021B080 00217FC0  7C 08 02 A6 */	mflr r0
 /* 8021B084 00217FC4  90 01 00 84 */	stw r0, 0x84(r1)
@@ -770,9 +758,9 @@ exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection:
 /* 8021B358 00218298  7C 08 03 A6 */	mtlr r0
 /* 8021B35C 0021829C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8021B360 002182A0  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection
 .else
-.global exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection, global
 /* 8021B07C 00217FBC  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8021B080 00217FC0  7C 08 02 A6 */	mflr r0
 /* 8021B084 00217FC4  90 01 00 84 */	stw r0, 0x84(r1)
@@ -970,10 +958,10 @@ exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection:
 /* 8021B358 00218298  7C 08 03 A6 */	mtlr r0
 /* 8021B35C 0021829C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8021B360 002182A0  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection
 .endif
 
-.global draw__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionR8Graphics
-draw__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn draw__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 8021B364 002182A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021B368 002182A8  7C 08 02 A6 */	mflr r0
 /* 8021B36C 002182AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1023,10 +1011,10 @@ draw__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionR8Graphics
 /* 8021B418 00218358  7C 08 03 A6 */	mtlr r0
 /* 8021B41C 0021835C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021B420 00218360  4E 80 00 20 */	blr 
+.endfn draw__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSectionR8Graphics
 
 .if version == 1
-.global cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection, global
 /* 8021B424 00218364  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021B428 00218368  7C 08 02 A6 */	mflr r0
 /* 8021B42C 0021836C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1078,9 +1066,9 @@ cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection:
 /* 8021B4DC 0021841C  7C 08 03 A6 */	mtlr r0
 /* 8021B4E0 00218420  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021B4E4 00218424  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection
 .else
-.global cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection, global
 /* 8021B424 00218364  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021B428 00218368  7C 08 02 A6 */	mflr r0
 /* 8021B42C 0021836C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1132,11 +1120,11 @@ cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection:
 /* 8021B4DC 0021841C  7C 08 03 A6 */	mtlr r0
 /* 8021B4E0 00218420  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021B4E4 00218424  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame15CaveResultStateFPQ24Game17SingleGameSection
 .endif
 
 .if version == 1
-.global createResultNodes__Q34Game10SingleGame15CaveResultStateFv
-createResultNodes__Q34Game10SingleGame15CaveResultStateFv:
+.fn createResultNodes__Q34Game10SingleGame15CaveResultStateFv, global
 /* 8021B4E8 00218428  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8021B4EC 0021842C  7C 08 02 A6 */	mflr r0
 /* 8021B4F0 00218430  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1415,9 +1403,9 @@ createResultNodes__Q34Game10SingleGame15CaveResultStateFv:
 /* 8021B8E8 00218828  7C 08 03 A6 */	mtlr r0
 /* 8021B8EC 0021882C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8021B8F0 00218830  4E 80 00 20 */	blr 
+.endfn createResultNodes__Q34Game10SingleGame15CaveResultStateFv
 .else
-.global createResultNodes__Q34Game10SingleGame15CaveResultStateFv
-createResultNodes__Q34Game10SingleGame15CaveResultStateFv:
+.fn createResultNodes__Q34Game10SingleGame15CaveResultStateFv, global
 /* 8021B4E8 00218428  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8021B4EC 0021842C  7C 08 02 A6 */	mflr r0
 /* 8021B4F0 00218430  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1696,10 +1684,10 @@ createResultNodes__Q34Game10SingleGame15CaveResultStateFv:
 /* 8021B8E8 00218828  7C 08 03 A6 */	mtlr r0
 /* 8021B8EC 0021882C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8021B8F0 00218830  4E 80 00 20 */	blr 
+.endfn createResultNodes__Q34Game10SingleGame15CaveResultStateFv
 .endif
 
-.global "invoke__46Delegate<Q34Game10SingleGame15CaveResultState>Fv"
-"invoke__46Delegate<Q34Game10SingleGame15CaveResultState>Fv":
+.fn "invoke__46Delegate<Q34Game10SingleGame15CaveResultState>Fv", weak
 /* 8021B8F4 00218834  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021B8F8 00218838  7C 08 02 A6 */	mflr r0
 /* 8021B8FC 0021883C  7C 64 1B 78 */	mr r4, r3
@@ -1712,16 +1700,17 @@ createResultNodes__Q34Game10SingleGame15CaveResultStateFv:
 /* 8021B918 00218858  7C 08 03 A6 */	mtlr r0
 /* 8021B91C 0021885C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021B920 00218860  4E 80 00 20 */	blr 
+.endfn "invoke__46Delegate<Q34Game10SingleGame15CaveResultState>Fv"
 
-.global __sinit_singleGS_CaveResult_cpp
-__sinit_singleGS_CaveResult_cpp:
+.fn __sinit_singleGS_CaveResult_cpp, local
 /* 8021B924 00218864  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8021B928 00218868  38 00 FF FF */	li r0, -1
 /* 8021B92C 0021886C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8021B930 00218870  3C 60 80 4C */	lis r3, lbl_804C0700@ha
-/* 8021B934 00218874  90 0D 95 88 */	stw r0, lbl_80515C08@sda21(r13)
-/* 8021B938 00218878  D4 03 07 00 */	stfsu f0, lbl_804C0700@l(r3)
-/* 8021B93C 0021887C  D0 0D 95 8C */	stfs f0, lbl_80515C0C@sda21(r13)
+/* 8021B930 00218870  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8021B934 00218874  90 0D 95 88 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8021B938 00218878  D4 03 07 00 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8021B93C 0021887C  D0 0D 95 8C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8021B940 00218880  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8021B944 00218884  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8021B948 00218888  4E 80 00 20 */	blr 
+.endfn __sinit_singleGS_CaveResult_cpp

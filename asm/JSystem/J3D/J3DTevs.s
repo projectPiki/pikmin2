@@ -128,8 +128,7 @@ lbl_804A1870:
 	.4byte .L_80064D5C
 	.4byte .L_80064E1C
 	.4byte .L_80064D5C
-.global qMtx$1744
-qMtx$1744:
+.obj qMtx$1744, local
 	.float 0.5
 	.4byte 0x00000000
 	.float 0.5
@@ -142,8 +141,8 @@ qMtx$1744:
 	.4byte 0x00000000
 	.float 1.0
 	.4byte 0x00000000
-.global qMtx2$1745
-qMtx2$1745:
+.endobj qMtx$1744
+.obj qMtx2$1745, local
 	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -156,8 +155,8 @@ qMtx2$1745:
 	.4byte 0x00000000
 	.float 1.0
 	.4byte 0x00000000
-.global lbl_804A1900
-lbl_804A1900:
+.endobj qMtx2$1745
+.obj lbl_804A1900, local
 	.4byte .L_80065310
 	.4byte .L_80065200
 	.4byte .L_80065234
@@ -170,6 +169,7 @@ lbl_804A1900:
 	.4byte .L_800650B0
 	.4byte .L_80065150
 	.4byte .L_80065048
+.endobj lbl_804A1900
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # J3DTevs.cpp

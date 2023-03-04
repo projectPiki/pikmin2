@@ -68,16 +68,13 @@ entryNum__13J3DDrawBuffer:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516A00
 lbl_80516A00:
 	.float 1.0
-.global lbl_80516A04
 lbl_80516A04:
 	.4byte 0x461C4000
-.global lbl_80516A08
+.balign 8
 lbl_80516A08:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__13J3DDrawBufferFv

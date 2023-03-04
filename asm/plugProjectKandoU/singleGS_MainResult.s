@@ -16,11 +16,10 @@ lbl_80482598:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C0648
-lbl_804C0648:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global lbl_804C0654
 lbl_804C0654:
 	.4byte 0x00000000
@@ -81,15 +80,13 @@ __vt__Q34Game6Result5TNode:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515BF8
-lbl_80515BF8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515BFC
-lbl_80515BFC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global theTekiHeap
 theTekiHeap:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -100,7 +97,6 @@ lbl_8051A038:
 lbl_8051A03C:
 	.4byte 0x6D725F6C
 	.4byte 0x6F616400
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10SingleGame15MainResultStateFv
@@ -1335,10 +1331,10 @@ __sinit_singleGS_MainResult_cpp:
 /* 8021ABF8 00217B38  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8021ABFC 00217B3C  38 00 FF FF */	li r0, -1
 /* 8021AC00 00217B40  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8021AC04 00217B44  3C 60 80 4C */	lis r3, lbl_804C0648@ha
-/* 8021AC08 00217B48  90 0D 95 78 */	stw r0, lbl_80515BF8@sda21(r13)
-/* 8021AC0C 00217B4C  D4 03 06 48 */	stfsu f0, lbl_804C0648@l(r3)
-/* 8021AC10 00217B50  D0 0D 95 7C */	stfs f0, lbl_80515BFC@sda21(r13)
+/* 8021AC04 00217B44  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8021AC08 00217B48  90 0D 95 78 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8021AC0C 00217B4C  D4 03 06 48 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8021AC10 00217B50  D0 0D 95 7C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8021AC14 00217B54  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8021AC18 00217B58  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8021AC1C 00217B5C  4E 80 00 20 */	blr 

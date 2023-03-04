@@ -1,127 +1,124 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__14J3DAnmColorKey
-__vt__14J3DAnmColorKey:
+.obj __vt__14J3DAnmColorKey, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14J3DAnmColorKeyFv
 	.4byte getKind__14J3DAnmColorKeyCFv
 	.4byte getColor__14J3DAnmColorKeyCFUsP8_GXColor
-.global __vt__10J3DAnmBase
-__vt__10J3DAnmBase:
+.endobj __vt__14J3DAnmColorKey
+.obj __vt__10J3DAnmBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__10J3DAnmBaseFv
 	.4byte 0
-.global __vt__11J3DAnmColor
-__vt__11J3DAnmColor:
+.endobj __vt__10J3DAnmBase
+.obj __vt__11J3DAnmColor, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11J3DAnmColorFv
 	.4byte getKind__11J3DAnmColorCFv
 	.4byte getColor__11J3DAnmColorCFUsP8_GXColor
-.global __vt__15J3DAnmColorFull
-__vt__15J3DAnmColorFull:
+.endobj __vt__11J3DAnmColor
+.obj __vt__15J3DAnmColorFull, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__15J3DAnmColorFullFv
 	.4byte getKind__15J3DAnmColorFullCFv
 	.4byte getColor__15J3DAnmColorFullCFUsP8_GXColor
-.global __vt__17J3DAnmVtxColorKey
-__vt__17J3DAnmVtxColorKey:
+.endobj __vt__15J3DAnmColorFull
+.obj __vt__17J3DAnmVtxColorKey, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__17J3DAnmVtxColorKeyFv
 	.4byte getKind__17J3DAnmVtxColorKeyCFv
 	.4byte getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor
-.global __vt__14J3DAnmVtxColor
-__vt__14J3DAnmVtxColor:
+.endobj __vt__17J3DAnmVtxColorKey
+.obj __vt__14J3DAnmVtxColor, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14J3DAnmVtxColorFv
 	.4byte getKind__14J3DAnmVtxColorCFv
 	.4byte getColor__14J3DAnmVtxColorCFUcUsP8_GXColor
-.global __vt__18J3DAnmVtxColorFull
-__vt__18J3DAnmVtxColorFull:
+.endobj __vt__14J3DAnmVtxColor
+.obj __vt__18J3DAnmVtxColorFull, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__18J3DAnmVtxColorFullFv
 	.4byte getKind__18J3DAnmVtxColorFullCFv
 	.4byte getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor
-.global __vt__16J3DAnmClusterKey
-__vt__16J3DAnmClusterKey:
+.endobj __vt__18J3DAnmVtxColorFull
+.obj __vt__16J3DAnmClusterKey, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__16J3DAnmClusterKeyFv
 	.4byte getKind__16J3DAnmClusterKeyCFv
 	.4byte getWeight__16J3DAnmClusterKeyCFUs
-.global __vt__13J3DAnmCluster
-__vt__13J3DAnmCluster:
+.endobj __vt__16J3DAnmClusterKey
+.obj __vt__13J3DAnmCluster, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13J3DAnmClusterFv
 	.4byte getKind__13J3DAnmClusterCFv
 	.4byte getWeight__13J3DAnmClusterCFUs
-.global __vt__17J3DAnmClusterFull
-__vt__17J3DAnmClusterFull:
+.endobj __vt__13J3DAnmCluster
+.obj __vt__17J3DAnmClusterFull, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__17J3DAnmClusterFullFv
 	.4byte getKind__17J3DAnmClusterFullCFv
 	.4byte getWeight__17J3DAnmClusterFullCFUs
-.global __vt__19J3DAnmTransformFull
-__vt__19J3DAnmTransformFull:
+.endobj __vt__17J3DAnmClusterFull
+.obj __vt__19J3DAnmTransformFull, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__19J3DAnmTransformFullFv
 	.4byte getKind__19J3DAnmTransformFullCFv
 	.4byte getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo
-.global __vt__15J3DAnmTransform
-__vt__15J3DAnmTransform:
+.endobj __vt__19J3DAnmTransformFull
+.obj __vt__15J3DAnmTransform, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__15J3DAnmTransformFv
 	.4byte getKind__15J3DAnmTransformCFv
 	.4byte 0
-	.4byte 0
+.endobj __vt__15J3DAnmTransform
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516A18
-lbl_80516A18:
+.obj lbl_80516A18, local
 	.float 1.0
-.global lbl_80516A1C
-lbl_80516A1C:
-	.4byte 0x00000000
-.global lbl_80516A20
-lbl_80516A20:
-	.4byte 0x3A83126F
-	.4byte 0x00000000
-.global lbl_80516A28
-lbl_80516A28:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_80516A30
-lbl_80516A30:
+.endobj lbl_80516A18
+.obj lbl_80516A1C, local
+	.float 0.0
+.endobj lbl_80516A1C
+.obj lbl_80516A20, local
+	.float 0.001
+.endobj lbl_80516A20
+.balign 8
+.obj lbl_80516A28, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516A28
+.obj lbl_80516A30, local
 	.float 0.5
-.global lbl_80516A34
-lbl_80516A34:
-	.4byte 0x437F0000
-.global lbl_80516A38
-lbl_80516A38:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global lbl_80516A40
-lbl_80516A40:
-	.4byte 0xC4800000
-.global lbl_80516A44
-lbl_80516A44:
-	.4byte 0x447FC000
+.endobj lbl_80516A30
+.obj lbl_80516A34, local
+	.float 255.0
+.endobj lbl_80516A34
+.balign 8
+.obj lbl_80516A38, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516A38
+.obj lbl_80516A40, local
+	.float -1024.0
+.endobj lbl_80516A40
+.obj lbl_80516A44, local
+	.float 1023.0
+.endobj lbl_80516A44
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__12J3DFrameCtrlFs
-init__12J3DFrameCtrlFs:
+.fn init__12J3DFrameCtrlFs, global
 /* 80067678 000645B8  38 A0 00 02 */	li r5, 2
 /* 8006767C 000645BC  38 00 00 00 */	li r0, 0
 /* 80067680 000645C0  98 A3 00 04 */	stb r5, 4(r3)
@@ -134,9 +131,9 @@ init__12J3DFrameCtrlFs:
 /* 8006769C 000645DC  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 800676A0 000645E0  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 800676A4 000645E4  4E 80 00 20 */	blr 
+.endfn init__12J3DFrameCtrlFs
 
-.global update__12J3DFrameCtrlFv
-update__12J3DFrameCtrlFv:
+.fn update__12J3DFrameCtrlFv, global
 /* 800676A8 000645E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800676AC 000645EC  38 00 00 00 */	li r0, 0
 /* 800676B0 000645F0  98 03 00 05 */	stb r0, 5(r3)
@@ -438,9 +435,9 @@ update__12J3DFrameCtrlFv:
 .L_80067B14:
 /* 80067B14 00064A54  38 21 00 20 */	addi r1, r1, 0x20
 /* 80067B18 00064A58  4E 80 00 20 */	blr 
+.endfn update__12J3DFrameCtrlFv
 
-.global getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo
-getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo:
+.fn getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo, global
 /* 80067B1C 00064A5C  1C 04 00 03 */	mulli r0, r4, 3
 /* 80067B20 00064A60  C0 23 00 08 */	lfs f1, 8(r3)
 /* 80067B24 00064A64  C0 02 86 BC */	lfs f0, lbl_80516A1C@sda21(r2)
@@ -676,9 +673,9 @@ getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo:
 .L_80067E74:
 /* 80067E74 00064DB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80067E78 00064DB8  4E 80 00 20 */	blr 
+.endfn getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo
 
-.global calcTransform__18J3DAnmTransformKeyCFfUsP16J3DTransformInfo
-calcTransform__18J3DAnmTransformKeyCFfUsP16J3DTransformInfo:
+.fn calcTransform__18J3DAnmTransformKeyCFfUsP16J3DTransformInfo, global
 /* 80067E7C 00064DBC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80067E80 00064DC0  7C 08 02 A6 */	mflr r0
 /* 80067E84 00064DC4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -979,9 +976,9 @@ calcTransform__18J3DAnmTransformKeyCFfUsP16J3DTransformInfo:
 /* 80068290 000651D0  7C 08 03 A6 */	mtlr r0
 /* 80068294 000651D4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80068298 000651D8  4E 80 00 20 */	blr 
+.endfn calcTransform__18J3DAnmTransformKeyCFfUsP16J3DTransformInfo
 
-.global calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo
-calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo:
+.fn calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo, global
 /* 8006829C 000651DC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800682A0 000651E0  7C 08 02 A6 */	mflr r0
 /* 800682A4 000651E4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1156,9 +1153,9 @@ calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo:
 /* 800684F8 00065438  7C 08 03 A6 */	mtlr r0
 /* 800684FC 0006543C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80068500 00065440  4E 80 00 20 */	blr 
+.endfn calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo
 
-.global getWeight__17J3DAnmClusterFullCFUs
-getWeight__17J3DAnmClusterFullCFUs:
+.fn getWeight__17J3DAnmClusterFullCFUs, global
 /* 80068504 00065444  C0 22 86 D0 */	lfs f1, lbl_80516A30@sda21(r2)
 /* 80068508 00065448  54 80 13 BA */	rlwinm r0, r4, 2, 0xe, 0x1d
 /* 8006850C 0006544C  C0 43 00 08 */	lfs f2, 8(r3)
@@ -1199,9 +1196,9 @@ getWeight__17J3DAnmClusterFullCFUs:
 .L_80068590:
 /* 80068590 000654D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80068594 000654D4  4E 80 00 20 */	blr 
+.endfn getWeight__17J3DAnmClusterFullCFUs
 
-.global getWeight__16J3DAnmClusterKeyCFUs
-getWeight__16J3DAnmClusterKeyCFUs:
+.fn getWeight__16J3DAnmClusterKeyCFUs, global
 /* 80068598 000654D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006859C 000654DC  7C 08 02 A6 */	mflr r0
 /* 800685A0 000654E0  80 A3 00 10 */	lwz r5, 0x10(r3)
@@ -1239,9 +1236,9 @@ getWeight__16J3DAnmClusterKeyCFUs:
 /* 80068610 00065550  7C 08 03 A6 */	mtlr r0
 /* 80068614 00065554  38 21 00 10 */	addi r1, r1, 0x10
 /* 80068618 00065558  4E 80 00 20 */	blr 
+.endfn getWeight__16J3DAnmClusterKeyCFUs
 
-.global getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor
-getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor:
+.fn getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor, global
 /* 8006861C 0006555C  54 80 15 BA */	rlwinm r0, r4, 2, 0x16, 0x1d
 /* 80068620 00065560  C0 23 00 08 */	lfs f1, 8(r3)
 /* 80068624 00065564  7C 83 02 14 */	add r4, r3, r0
@@ -1345,9 +1342,9 @@ getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor:
 .L_8006878C:
 /* 8006878C 000656CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80068790 000656D0  4E 80 00 20 */	blr 
+.endfn getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor
 
-.global getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor
-getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor:
+.fn getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor, global
 /* 80068794 000656D4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80068798 000656D8  7C 08 02 A6 */	mflr r0
 /* 8006879C 000656DC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1561,9 +1558,9 @@ getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor:
 /* 80068A7C 000659BC  7C 08 03 A6 */	mtlr r0
 /* 80068A80 000659C0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80068A84 000659C4  4E 80 00 20 */	blr 
+.endfn getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor
 
-.global searchUpdateMaterialID__11J3DAnmColorFP12J3DModelData
-searchUpdateMaterialID__11J3DAnmColorFP12J3DModelData:
+.fn searchUpdateMaterialID__11J3DAnmColorFP12J3DModelData, global
 /* 80068A88 000659C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80068A8C 000659CC  7C 08 02 A6 */	mflr r0
 /* 80068A90 000659D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1610,9 +1607,9 @@ searchUpdateMaterialID__11J3DAnmColorFP12J3DModelData:
 /* 80068B24 00065A64  7C 08 03 A6 */	mtlr r0
 /* 80068B28 00065A68  38 21 00 20 */	addi r1, r1, 0x20
 /* 80068B2C 00065A6C  4E 80 00 20 */	blr 
+.endfn searchUpdateMaterialID__11J3DAnmColorFP12J3DModelData
 
-.global getColor__15J3DAnmColorFullCFUsP8_GXColor
-getColor__15J3DAnmColorFullCFUsP8_GXColor:
+.fn getColor__15J3DAnmColorFullCFUsP8_GXColor, global
 /* 80068B30 00065A70  C0 23 00 08 */	lfs f1, 8(r3)
 /* 80068B34 00065A74  54 80 23 36 */	rlwinm r0, r4, 4, 0xc, 0x1b
 /* 80068B38 00065A78  C0 02 86 BC */	lfs f0, lbl_80516A1C@sda21(r2)
@@ -1714,9 +1711,9 @@ getColor__15J3DAnmColorFullCFUsP8_GXColor:
 .L_80068C98:
 /* 80068C98 00065BD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80068C9C 00065BDC  4E 80 00 20 */	blr 
+.endfn getColor__15J3DAnmColorFullCFUsP8_GXColor
 
-.global getColor__14J3DAnmColorKeyCFUsP8_GXColor
-getColor__14J3DAnmColorKeyCFUsP8_GXColor:
+.fn getColor__14J3DAnmColorKeyCFUsP8_GXColor, global
 /* 80068CA0 00065BE0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80068CA4 00065BE4  7C 08 02 A6 */	mflr r0
 /* 80068CA8 00065BE8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1920,9 +1917,9 @@ getColor__14J3DAnmColorKeyCFUsP8_GXColor:
 /* 80068F60 00065EA0  7C 08 03 A6 */	mtlr r0
 /* 80068F64 00065EA4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80068F68 00065EA8  4E 80 00 20 */	blr 
+.endfn getColor__14J3DAnmColorKeyCFUsP8_GXColor
 
-.global getTexNo__16J3DAnmTexPatternCFUsPUs
-getTexNo__16J3DAnmTexPatternCFUsPUs:
+.fn getTexNo__16J3DAnmTexPatternCFUsPUs, global
 /* 80068F6C 00065EAC  C0 43 00 08 */	lfs f2, 8(r3)
 /* 80068F70 00065EB0  54 84 1B 78 */	rlwinm r4, r4, 3, 0xd, 0x1c
 /* 80068F74 00065EB4  C0 02 86 BC */	lfs f0, lbl_80516A1C@sda21(r2)
@@ -1971,9 +1968,9 @@ getTexNo__16J3DAnmTexPatternCFUsPUs:
 .L_80069018:
 /* 80069018 00065F58  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006901C 00065F5C  4E 80 00 20 */	blr 
+.endfn getTexNo__16J3DAnmTexPatternCFUsPUs
 
-.global searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData
-searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData:
+.fn searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData, global
 /* 80069020 00065F60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80069024 00065F64  7C 08 02 A6 */	mflr r0
 /* 80069028 00065F68  3C A0 55 55 */	lis r5, 0x55555556@ha
@@ -2055,9 +2052,9 @@ searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData:
 /* 80069138 00066078  7C 08 03 A6 */	mtlr r0
 /* 8006913C 0006607C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80069140 00066080  4E 80 00 20 */	blr 
+.endfn searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData
 
-.global getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10
-getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10:
+.fn getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10, global
 /* 80069144 00066084  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80069148 00066088  7C 08 02 A6 */	mflr r0
 /* 8006914C 0006608C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2261,9 +2258,9 @@ getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10:
 /* 80069404 00066344  7C 08 03 A6 */	mtlr r0
 /* 80069408 00066348  38 21 00 40 */	addi r1, r1, 0x40
 /* 8006940C 0006634C  4E 80 00 20 */	blr 
+.endfn getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10
 
-.global getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor
-getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor:
+.fn getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor, global
 /* 80069410 00066350  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80069414 00066354  7C 08 02 A6 */	mflr r0
 /* 80069418 00066358  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2467,9 +2464,9 @@ getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor:
 /* 800696D0 00066610  7C 08 03 A6 */	mtlr r0
 /* 800696D4 00066614  38 21 00 40 */	addi r1, r1, 0x40
 /* 800696D8 00066618  4E 80 00 20 */	blr 
+.endfn getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor
 
-.global searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
-searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData:
+.fn searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData, global
 /* 800696DC 0006661C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800696E0 00066620  7C 08 02 A6 */	mflr r0
 /* 800696E4 00066624  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2545,9 +2542,9 @@ searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData:
 /* 800697DC 0006671C  7C 08 03 A6 */	mtlr r0
 /* 800697E0 00066720  38 21 00 20 */	addi r1, r1, 0x20
 /* 800697E4 00066724  4E 80 00 20 */	blr 
+.endfn searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
 
-.global __dt__14J3DAnmColorKeyFv
-__dt__14J3DAnmColorKeyFv:
+.fn __dt__14J3DAnmColorKeyFv, weak
 /* 800697E8 00066728  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800697EC 0006672C  7C 08 02 A6 */	mflr r0
 /* 800697F0 00066730  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2584,14 +2581,14 @@ __dt__14J3DAnmColorKeyFv:
 /* 80069860 000667A0  7C 08 03 A6 */	mtlr r0
 /* 80069864 000667A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069868 000667A8  4E 80 00 20 */	blr 
+.endfn __dt__14J3DAnmColorKeyFv
 
-.global getKind__14J3DAnmColorKeyCFv
-getKind__14J3DAnmColorKeyCFv:
+.fn getKind__14J3DAnmColorKeyCFv, weak
 /* 8006986C 000667AC  38 60 00 0B */	li r3, 0xb
 /* 80069870 000667B0  4E 80 00 20 */	blr 
+.endfn getKind__14J3DAnmColorKeyCFv
 
-.global __dt__10J3DAnmBaseFv
-__dt__10J3DAnmBaseFv:
+.fn __dt__10J3DAnmBaseFv, weak
 /* 80069874 000667B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069878 000667B8  7C 08 02 A6 */	mflr r0
 /* 8006987C 000667BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2611,9 +2608,9 @@ __dt__10J3DAnmBaseFv:
 /* 800698B0 000667F0  7C 08 03 A6 */	mtlr r0
 /* 800698B4 000667F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800698B8 000667F8  4E 80 00 20 */	blr 
+.endfn __dt__10J3DAnmBaseFv
 
-.global __dt__11J3DAnmColorFv
-__dt__11J3DAnmColorFv:
+.fn __dt__11J3DAnmColorFv, weak
 /* 800698BC 000667FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800698C0 00066800  7C 08 02 A6 */	mflr r0
 /* 800698C4 00066804  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2646,18 +2643,18 @@ __dt__11J3DAnmColorFv:
 /* 80069924 00066864  7C 08 03 A6 */	mtlr r0
 /* 80069928 00066868  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006992C 0006686C  4E 80 00 20 */	blr 
+.endfn __dt__11J3DAnmColorFv
 
-.global getKind__11J3DAnmColorCFv
-getKind__11J3DAnmColorCFv:
+.fn getKind__11J3DAnmColorCFv, weak
 /* 80069930 00066870  38 60 00 01 */	li r3, 1
 /* 80069934 00066874  4E 80 00 20 */	blr 
+.endfn getKind__11J3DAnmColorCFv
 
-.global getColor__11J3DAnmColorCFUsP8_GXColor
-getColor__11J3DAnmColorCFUsP8_GXColor:
+.fn getColor__11J3DAnmColorCFUsP8_GXColor, weak
 /* 80069938 00066878  4E 80 00 20 */	blr 
+.endfn getColor__11J3DAnmColorCFUsP8_GXColor
 
-.global __dt__15J3DAnmColorFullFv
-__dt__15J3DAnmColorFullFv:
+.fn __dt__15J3DAnmColorFullFv, weak
 /* 8006993C 0006687C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069940 00066880  7C 08 02 A6 */	mflr r0
 /* 80069944 00066884  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2694,14 +2691,14 @@ __dt__15J3DAnmColorFullFv:
 /* 800699B4 000668F4  7C 08 03 A6 */	mtlr r0
 /* 800699B8 000668F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800699BC 000668FC  4E 80 00 20 */	blr 
+.endfn __dt__15J3DAnmColorFullFv
 
-.global getKind__15J3DAnmColorFullCFv
-getKind__15J3DAnmColorFullCFv:
+.fn getKind__15J3DAnmColorFullCFv, weak
 /* 800699C0 00066900  38 60 00 0A */	li r3, 0xa
 /* 800699C4 00066904  4E 80 00 20 */	blr 
+.endfn getKind__15J3DAnmColorFullCFv
 
-.global __dt__17J3DAnmVtxColorKeyFv
-__dt__17J3DAnmVtxColorKeyFv:
+.fn __dt__17J3DAnmVtxColorKeyFv, weak
 /* 800699C8 00066908  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800699CC 0006690C  7C 08 02 A6 */	mflr r0
 /* 800699D0 00066910  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2731,14 +2728,14 @@ __dt__17J3DAnmVtxColorKeyFv:
 /* 80069A28 00066968  7C 08 03 A6 */	mtlr r0
 /* 80069A2C 0006696C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069A30 00066970  4E 80 00 20 */	blr 
+.endfn __dt__17J3DAnmVtxColorKeyFv
 
-.global getKind__17J3DAnmVtxColorKeyCFv
-getKind__17J3DAnmVtxColorKeyCFv:
+.fn getKind__17J3DAnmVtxColorKeyCFv, weak
 /* 80069A34 00066974  38 60 00 0F */	li r3, 0xf
 /* 80069A38 00066978  4E 80 00 20 */	blr 
+.endfn getKind__17J3DAnmVtxColorKeyCFv
 
-.global __dt__14J3DAnmVtxColorFv
-__dt__14J3DAnmVtxColorFv:
+.fn __dt__14J3DAnmVtxColorFv, weak
 /* 80069A3C 0006697C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069A40 00066980  7C 08 02 A6 */	mflr r0
 /* 80069A44 00066984  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2764,18 +2761,18 @@ __dt__14J3DAnmVtxColorFv:
 /* 80069A8C 000669CC  7C 08 03 A6 */	mtlr r0
 /* 80069A90 000669D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069A94 000669D4  4E 80 00 20 */	blr 
+.endfn __dt__14J3DAnmVtxColorFv
 
-.global getKind__14J3DAnmVtxColorCFv
-getKind__14J3DAnmVtxColorCFv:
+.fn getKind__14J3DAnmVtxColorCFv, weak
 /* 80069A98 000669D8  38 60 00 07 */	li r3, 7
 /* 80069A9C 000669DC  4E 80 00 20 */	blr 
+.endfn getKind__14J3DAnmVtxColorCFv
 
-.global getColor__14J3DAnmVtxColorCFUcUsP8_GXColor
-getColor__14J3DAnmVtxColorCFUcUsP8_GXColor:
+.fn getColor__14J3DAnmVtxColorCFUcUsP8_GXColor, weak
 /* 80069AA0 000669E0  4E 80 00 20 */	blr 
+.endfn getColor__14J3DAnmVtxColorCFUcUsP8_GXColor
 
-.global __dt__18J3DAnmVtxColorFullFv
-__dt__18J3DAnmVtxColorFullFv:
+.fn __dt__18J3DAnmVtxColorFullFv, weak
 /* 80069AA4 000669E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069AA8 000669E8  7C 08 02 A6 */	mflr r0
 /* 80069AAC 000669EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2805,14 +2802,14 @@ __dt__18J3DAnmVtxColorFullFv:
 /* 80069B04 00066A44  7C 08 03 A6 */	mtlr r0
 /* 80069B08 00066A48  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069B0C 00066A4C  4E 80 00 20 */	blr 
+.endfn __dt__18J3DAnmVtxColorFullFv
 
-.global getKind__18J3DAnmVtxColorFullCFv
-getKind__18J3DAnmVtxColorFullCFv:
+.fn getKind__18J3DAnmVtxColorFullCFv, weak
 /* 80069B10 00066A50  38 60 00 0E */	li r3, 0xe
 /* 80069B14 00066A54  4E 80 00 20 */	blr 
+.endfn getKind__18J3DAnmVtxColorFullCFv
 
-.global __dt__16J3DAnmClusterKeyFv
-__dt__16J3DAnmClusterKeyFv:
+.fn __dt__16J3DAnmClusterKeyFv, weak
 /* 80069B18 00066A58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069B1C 00066A5C  7C 08 02 A6 */	mflr r0
 /* 80069B20 00066A60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2842,14 +2839,14 @@ __dt__16J3DAnmClusterKeyFv:
 /* 80069B78 00066AB8  7C 08 03 A6 */	mtlr r0
 /* 80069B7C 00066ABC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069B80 00066AC0  4E 80 00 20 */	blr 
+.endfn __dt__16J3DAnmClusterKeyFv
 
-.global getKind__16J3DAnmClusterKeyCFv
-getKind__16J3DAnmClusterKeyCFv:
+.fn getKind__16J3DAnmClusterKeyCFv, weak
 /* 80069B84 00066AC4  38 60 00 0D */	li r3, 0xd
 /* 80069B88 00066AC8  4E 80 00 20 */	blr 
+.endfn getKind__16J3DAnmClusterKeyCFv
 
-.global __dt__13J3DAnmClusterFv
-__dt__13J3DAnmClusterFv:
+.fn __dt__13J3DAnmClusterFv, weak
 /* 80069B8C 00066ACC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069B90 00066AD0  7C 08 02 A6 */	mflr r0
 /* 80069B94 00066AD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2875,19 +2872,19 @@ __dt__13J3DAnmClusterFv:
 /* 80069BDC 00066B1C  7C 08 03 A6 */	mtlr r0
 /* 80069BE0 00066B20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069BE4 00066B24  4E 80 00 20 */	blr 
+.endfn __dt__13J3DAnmClusterFv
 
-.global getKind__13J3DAnmClusterCFv
-getKind__13J3DAnmClusterCFv:
+.fn getKind__13J3DAnmClusterCFv, weak
 /* 80069BE8 00066B28  38 60 00 03 */	li r3, 3
 /* 80069BEC 00066B2C  4E 80 00 20 */	blr 
+.endfn getKind__13J3DAnmClusterCFv
 
-.global getWeight__13J3DAnmClusterCFUs
-getWeight__13J3DAnmClusterCFUs:
+.fn getWeight__13J3DAnmClusterCFUs, weak
 /* 80069BF0 00066B30  C0 22 86 B8 */	lfs f1, lbl_80516A18@sda21(r2)
 /* 80069BF4 00066B34  4E 80 00 20 */	blr 
+.endfn getWeight__13J3DAnmClusterCFUs
 
-.global __dt__17J3DAnmClusterFullFv
-__dt__17J3DAnmClusterFullFv:
+.fn __dt__17J3DAnmClusterFullFv, weak
 /* 80069BF8 00066B38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069BFC 00066B3C  7C 08 02 A6 */	mflr r0
 /* 80069C00 00066B40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2917,14 +2914,14 @@ __dt__17J3DAnmClusterFullFv:
 /* 80069C58 00066B98  7C 08 03 A6 */	mtlr r0
 /* 80069C5C 00066B9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069C60 00066BA0  4E 80 00 20 */	blr 
+.endfn __dt__17J3DAnmClusterFullFv
 
-.global getKind__17J3DAnmClusterFullCFv
-getKind__17J3DAnmClusterFullCFv:
+.fn getKind__17J3DAnmClusterFullCFv, weak
 /* 80069C64 00066BA4  38 60 00 0C */	li r3, 0xc
 /* 80069C68 00066BA8  4E 80 00 20 */	blr 
+.endfn getKind__17J3DAnmClusterFullCFv
 
-.global __dt__19J3DAnmTransformFullFv
-__dt__19J3DAnmTransformFullFv:
+.fn __dt__19J3DAnmTransformFullFv, weak
 /* 80069C6C 00066BAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069C70 00066BB0  7C 08 02 A6 */	mflr r0
 /* 80069C74 00066BB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2954,14 +2951,14 @@ __dt__19J3DAnmTransformFullFv:
 /* 80069CCC 00066C0C  7C 08 03 A6 */	mtlr r0
 /* 80069CD0 00066C10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069CD4 00066C14  4E 80 00 20 */	blr 
+.endfn __dt__19J3DAnmTransformFullFv
 
-.global getKind__19J3DAnmTransformFullCFv
-getKind__19J3DAnmTransformFullCFv:
+.fn getKind__19J3DAnmTransformFullCFv, weak
 /* 80069CD8 00066C18  38 60 00 09 */	li r3, 9
 /* 80069CDC 00066C1C  4E 80 00 20 */	blr 
+.endfn getKind__19J3DAnmTransformFullCFv
 
-.global __dt__15J3DAnmTransformFv
-__dt__15J3DAnmTransformFv:
+.fn __dt__15J3DAnmTransformFv, weak
 /* 80069CE0 00066C20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069CE4 00066C24  7C 08 02 A6 */	mflr r0
 /* 80069CE8 00066C28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2987,14 +2984,14 @@ __dt__15J3DAnmTransformFv:
 /* 80069D30 00066C70  7C 08 03 A6 */	mtlr r0
 /* 80069D34 00066C74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069D38 00066C78  4E 80 00 20 */	blr 
+.endfn __dt__15J3DAnmTransformFv
 
-.global getKind__15J3DAnmTransformCFv
-getKind__15J3DAnmTransformCFv:
+.fn getKind__15J3DAnmTransformCFv, weak
 /* 80069D3C 00066C7C  38 60 00 00 */	li r3, 0
 /* 80069D40 00066C80  4E 80 00 20 */	blr 
+.endfn getKind__15J3DAnmTransformCFv
 
-.global "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
-"J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs":
+.fn "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs", local
 /* 80069D44 00066C84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80069D48 00066C88  3C A0 43 30 */	lis r5, 0x4330
 /* 80069D4C 00066C8C  C8 42 86 C8 */	lfd f2, lbl_80516A28@sda21(r2)
@@ -3145,9 +3142,9 @@ getKind__15J3DAnmTransformCFv:
 .L_80069F70:
 /* 80069F70 00066EB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80069F74 00066EB4  4E 80 00 20 */	blr 
+.endfn "J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs"
 
-.global "J3DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"
-"J3DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf":
+.fn "J3DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf", local
 /* 80069F78 00066EB8  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80069F7C 00066EBC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80069F80 00066EC0  40 80 00 0C */	bge .L_80069F8C
@@ -3251,3 +3248,4 @@ getKind__15J3DAnmTransformCFv:
 /* 8006A0E8 00067028  EC 23 09 F8 */	fmsubs f1, f3, f7, f1
 /* 8006A0EC 0006702C  EC 25 00 7C */	fnmsubs f1, f5, f1, f0
 /* 8006A0F0 00067030  4E 80 00 20 */	blr 
+.endfn "J3DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf"

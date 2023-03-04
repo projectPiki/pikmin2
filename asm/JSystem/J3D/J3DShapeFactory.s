@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__15J3DShapeFactoryFRC13J3DShapeBlock
-__ct__15J3DShapeFactoryFRC13J3DShapeBlock:
+.fn __ct__15J3DShapeFactoryFRC13J3DShapeBlock, global
 /* 80071D10 0006EC50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80071D14 0006EC54  7C 08 02 A6 */	mflr r0
 /* 80071D18 0006EC58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -47,9 +46,9 @@ __ct__15J3DShapeFactoryFRC13J3DShapeBlock:
 /* 80071DB4 0006ECF4  7C 08 03 A6 */	mtlr r0
 /* 80071DB8 0006ECF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80071DBC 0006ECFC  4E 80 00 20 */	blr 
+.endfn __ct__15J3DShapeFactoryFRC13J3DShapeBlock
 
-.global create__15J3DShapeFactoryFiUlP14_GXVtxDescList
-create__15J3DShapeFactoryFiUlP14_GXVtxDescList:
+.fn create__15J3DShapeFactoryFiUlP14_GXVtxDescList, global
 /* 80071DC0 0006ED00  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80071DC4 0006ED04  7C 08 02 A6 */	mflr r0
 /* 80071DC8 0006ED08  90 01 00 34 */	stw r0, 0x34(r1)
@@ -162,9 +161,9 @@ create__15J3DShapeFactoryFiUlP14_GXVtxDescList:
 /* 80071F68 0006EEA8  7C 08 03 A6 */	mtlr r0
 /* 80071F6C 0006EEAC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80071F70 0006EEB0  4E 80 00 20 */	blr 
+.endfn create__15J3DShapeFactoryFiUlP14_GXVtxDescList
 
-.global newShapeMtx__15J3DShapeFactoryCFUlii
-newShapeMtx__15J3DShapeFactoryCFUlii:
+.fn newShapeMtx__15J3DShapeFactoryCFUlii, global
 /* 80071F74 0006EEB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80071F78 0006EEB8  7C 08 02 A6 */	mflr r0
 /* 80071F7C 0006EEBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -322,9 +321,9 @@ newShapeMtx__15J3DShapeFactoryCFUlii:
 /* 800721B4 0006F0F4  7C 08 03 A6 */	mtlr r0
 /* 800721B8 0006F0F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800721BC 0006F0FC  4E 80 00 20 */	blr 
+.endfn newShapeMtx__15J3DShapeFactoryCFUlii
 
-.global __dt__21J3DShapeMtxConcatViewFv
-__dt__21J3DShapeMtxConcatViewFv:
+.fn __dt__21J3DShapeMtxConcatViewFv, weak
 /* 800721C0 0006F100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800721C4 0006F104  7C 08 02 A6 */	mflr r0
 /* 800721C8 0006F108  90 01 00 14 */	stw r0, 0x14(r1)
@@ -350,9 +349,9 @@ __dt__21J3DShapeMtxConcatViewFv:
 /* 80072210 0006F150  7C 08 03 A6 */	mtlr r0
 /* 80072214 0006F154  38 21 00 10 */	addi r1, r1, 0x10
 /* 80072218 0006F158  4E 80 00 20 */	blr 
+.endfn __dt__21J3DShapeMtxConcatViewFv
 
-.global __dt__11J3DShapeMtxFv
-__dt__11J3DShapeMtxFv:
+.fn __dt__11J3DShapeMtxFv, weak
 /* 8007221C 0006F15C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80072220 0006F160  7C 08 02 A6 */	mflr r0
 /* 80072224 0006F164  90 01 00 14 */	stw r0, 0x14(r1)
@@ -372,9 +371,9 @@ __dt__11J3DShapeMtxFv:
 /* 80072258 0006F198  7C 08 03 A6 */	mtlr r0
 /* 8007225C 0006F19C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80072260 0006F1A0  4E 80 00 20 */	blr 
+.endfn __dt__11J3DShapeMtxFv
 
-.global newShapeDraw__15J3DShapeFactoryCFii
-newShapeDraw__15J3DShapeFactoryCFii:
+.fn newShapeDraw__15J3DShapeFactoryCFii, global
 /* 80072264 0006F1A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80072268 0006F1A8  7C 08 02 A6 */	mflr r0
 /* 8007226C 0006F1AC  80 C3 00 04 */	lwz r6, 4(r3)
@@ -411,9 +410,9 @@ newShapeDraw__15J3DShapeFactoryCFii:
 /* 800722E4 0006F224  7C 08 03 A6 */	mtlr r0
 /* 800722E8 0006F228  38 21 00 10 */	addi r1, r1, 0x10
 /* 800722EC 0006F22C  4E 80 00 20 */	blr 
+.endfn newShapeDraw__15J3DShapeFactoryCFii
 
-.global allocVcdVatCmdBuffer__15J3DShapeFactoryFUl
-allocVcdVatCmdBuffer__15J3DShapeFactoryFUl:
+.fn allocVcdVatCmdBuffer__15J3DShapeFactoryFUl, global
 /* 800722F0 0006F230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800722F4 0006F234  7C 08 02 A6 */	mflr r0
 /* 800722F8 0006F238  90 01 00 14 */	stw r0, 0x14(r1)
@@ -485,9 +484,9 @@ allocVcdVatCmdBuffer__15J3DShapeFactoryFUl:
 /* 800723F0 0006F330  7C 08 03 A6 */	mtlr r0
 /* 800723F4 0006F334  38 21 00 10 */	addi r1, r1, 0x10
 /* 800723F8 0006F338  4E 80 00 20 */	blr 
+.endfn allocVcdVatCmdBuffer__15J3DShapeFactoryFUl
 
-.global calcSize__15J3DShapeFactoryFiUl
-calcSize__15J3DShapeFactoryFiUl:
+.fn calcSize__15J3DShapeFactoryFiUl, global
 /* 800723FC 0006F33C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80072400 0006F340  7C 08 02 A6 */	mflr r0
 /* 80072404 0006F344  90 01 00 24 */	stw r0, 0x24(r1)
@@ -525,16 +524,16 @@ calcSize__15J3DShapeFactoryFiUl:
 /* 8007247C 0006F3BC  7C 08 03 A6 */	mtlr r0
 /* 80072480 0006F3C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80072484 0006F3C4  4E 80 00 20 */	blr 
+.endfn calcSize__15J3DShapeFactoryFiUl
 
-.global calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl
-calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl:
+.fn calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl, global
 /* 80072488 0006F3C8  1C 64 00 C0 */	mulli r3, r4, 0xc0
 /* 8007248C 0006F3CC  38 03 00 1F */	addi r0, r3, 0x1f
 /* 80072490 0006F3D0  54 03 00 34 */	rlwinm r3, r0, 0, 0, 0x1a
 /* 80072494 0006F3D4  4E 80 00 20 */	blr 
+.endfn calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl
 
-.global calcSizeShapeMtx__15J3DShapeFactoryCFUlii
-calcSizeShapeMtx__15J3DShapeFactoryCFUlii:
+.fn calcSizeShapeMtx__15J3DShapeFactoryCFUlii, global
 /* 80072498 0006F3D8  80 C3 00 04 */	lwz r6, 4(r3)
 /* 8007249C 0006F3DC  54 A5 08 3C */	slwi r5, r5, 1
 /* 800724A0 0006F3E0  54 80 06 F6 */	rlwinm r0, r4, 0, 0x1b, 0x1b
@@ -585,9 +584,9 @@ calcSizeShapeMtx__15J3DShapeFactoryCFUlii:
 .L_80072538:
 /* 80072538 0006F478  38 60 00 10 */	li r3, 0x10
 /* 8007253C 0006F47C  4E 80 00 20 */	blr 
+.endfn calcSizeShapeMtx__15J3DShapeFactoryCFUlii
 
-.global "JSUConvertOffsetToPtr<20J3DShapeDrawInitData>__FPCvUl"
-"JSUConvertOffsetToPtr<20J3DShapeDrawInitData>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<20J3DShapeDrawInitData>__FPCvUl", weak
 /* 80072540 0006F480  28 04 00 00 */	cmplwi r4, 0
 /* 80072544 0006F484  40 82 00 0C */	bne .L_80072550
 /* 80072548 0006F488  38 60 00 00 */	li r3, 0
@@ -595,9 +594,9 @@ calcSizeShapeMtx__15J3DShapeFactoryCFUlii:
 .L_80072550:
 /* 80072550 0006F490  7C 63 22 14 */	add r3, r3, r4
 /* 80072554 0006F494  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<20J3DShapeDrawInitData>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<19J3DShapeMtxInitData>__FPCvUl"
-"JSUConvertOffsetToPtr<19J3DShapeMtxInitData>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<19J3DShapeMtxInitData>__FPCvUl", weak
 /* 80072558 0006F498  28 04 00 00 */	cmplwi r4, 0
 /* 8007255C 0006F49C  40 82 00 0C */	bne .L_80072568
 /* 80072560 0006F4A0  38 60 00 00 */	li r3, 0
@@ -605,9 +604,9 @@ calcSizeShapeMtx__15J3DShapeFactoryCFUlii:
 .L_80072568:
 /* 80072568 0006F4A8  7C 63 22 14 */	add r3, r3, r4
 /* 8007256C 0006F4AC  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<19J3DShapeMtxInitData>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Uc>__FPCvUl"
-"JSUConvertOffsetToPtr<Uc>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Uc>__FPCvUl", weak
 /* 80072570 0006F4B0  28 04 00 00 */	cmplwi r4, 0
 /* 80072574 0006F4B4  40 82 00 0C */	bne .L_80072580
 /* 80072578 0006F4B8  38 60 00 00 */	li r3, 0
@@ -615,9 +614,9 @@ calcSizeShapeMtx__15J3DShapeFactoryCFUlii:
 .L_80072580:
 /* 80072580 0006F4C0  7C 63 22 14 */	add r3, r3, r4
 /* 80072584 0006F4C4  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Uc>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<14_GXVtxDescList>__FPCvUl"
-"JSUConvertOffsetToPtr<14_GXVtxDescList>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<14_GXVtxDescList>__FPCvUl", weak
 /* 80072588 0006F4C8  28 04 00 00 */	cmplwi r4, 0
 /* 8007258C 0006F4CC  40 82 00 0C */	bne .L_80072598
 /* 80072590 0006F4D0  38 60 00 00 */	li r3, 0
@@ -625,3 +624,4 @@ calcSizeShapeMtx__15J3DShapeFactoryCFUlii:
 .L_80072598:
 /* 80072598 0006F4D8  7C 63 22 14 */	add r3, r3, r4
 /* 8007259C 0006F4DC  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<14_GXVtxDescList>__FPCvUl"

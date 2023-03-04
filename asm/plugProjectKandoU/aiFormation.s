@@ -80,60 +80,82 @@ __vt__Q24Game18SlotChangeListener:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-newVer:
+.obj newVer, local
 	.byte 1
+.endobj newVer
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518FE8:
+.obj lbl_80518FE8, local
 	.float 0.0
-lbl_80518FEC:
+.endobj lbl_80518FE8
+.obj lbl_80518FEC, local
 	.float 10.0
-lbl_80518FF0:
+.endobj lbl_80518FEC
+.obj lbl_80518FF0, local
 	.float 0.955
-lbl_80518FF4:
+.endobj lbl_80518FF0
+.obj lbl_80518FF4, local
 	.float 60.0
-lbl_80518FF8:
+.endobj lbl_80518FF4
+.obj lbl_80518FF8, local
 	.float 1.0
-lbl_80518FFC:
+.endobj lbl_80518FF8
+.obj lbl_80518FFC, local
 	.float 20.0
-lbl_80519000:
+.endobj lbl_80518FFC
+.obj lbl_80519000, local
 	.float 100.0
-lbl_80519004:
+.endobj lbl_80519000
+.obj lbl_80519004, local
 	.float 110.0
-lbl_80519008:
+.endobj lbl_80519004
+.obj lbl_80519008, local
 	.float 32768.0
-lbl_8051900C:
+.endobj lbl_80519008
+.obj lbl_8051900C, local
 	.float 0.99
-lbl_80519010: # supposedly a trip threshold
+.endobj lbl_8051900C
+.obj lbl_80519010, local # supposedly a trip threshold
 	.float 0.7
-lbl_80519014:
+.endobj lbl_80519010
+.obj lbl_80519014, local
 	.float 2.0
-lbl_80519018:
+.endobj lbl_80519014
+.obj lbl_80519018, local
 	.float 40.0
-lbl_8051901C:
+.endobj lbl_80519018
+.obj lbl_8051901C, local
 	.float 0.3
-lbl_80519020:
+.endobj lbl_8051901C
+.obj lbl_80519020, local
 	.float 7.0
-lbl_80519024:
+.endobj lbl_80519020
+.obj lbl_80519024, local
 	.float 15.0
-lbl_80519028:
+.endobj lbl_80519024
+.obj lbl_80519028, local
 	.float 0.1
-lbl_8051902C:
+.endobj lbl_80519028
+.obj lbl_8051902C, local
 	.float 0.5
-lbl_80519030:
+.endobj lbl_8051902C
+.obj lbl_80519030, local
 	.float 8.0
+.endobj lbl_80519030
 .balign 8
-lbl_80519038:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80519038, local
+	.8byte 0x4330000080000000
+.endobj lbl_80519038
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI12ActFormationFPQ24Game4Piki

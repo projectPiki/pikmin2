@@ -99,36 +99,46 @@ __vt__Q34Game10SingleGame9CaveState:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A000:
+.obj lbl_8051A000, local
 	.float 1.0
-lbl_8051A004:
+.endobj lbl_8051A000
+.obj lbl_8051A004, local
 	.float 12800.0
-lbl_8051A008:
+.endobj lbl_8051A004
+.obj lbl_8051A008, local
 	.float 0.0
-lbl_8051A00C:
+.endobj lbl_8051A008
+.obj lbl_8051A00C, local
 	.float 128000.0
+.endobj lbl_8051A00C
 .balign 4
-lbl_8051A010:
+.obj lbl_8051A010, local
 	.asciz "sm-canc"
+.endobj lbl_8051A010
 .balign 4
-lbl_8051A018:
+.obj lbl_8051A018, local
 	.asciz "open-sm"
+.endobj lbl_8051A018
 .balign 4
-lbl_8051A020:
+.obj lbl_8051A020, local
 	.float 32768.0
+.endobj lbl_8051A020
 .balign 8
-lbl_8051A028:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051A030:
+.obj lbl_8051A028, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051A028
+.obj lbl_8051A030, local
 	.float 900.0
+.endobj lbl_8051A030
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1

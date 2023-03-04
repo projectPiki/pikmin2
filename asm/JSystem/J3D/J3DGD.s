@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A2048
-lbl_804A2048:
+.obj lbl_804A2048, local
 	.4byte .L_80075010
 	.4byte .L_8007502C
 	.4byte .L_80075068
@@ -20,8 +19,8 @@ lbl_804A2048:
 	.4byte .L_8007512C
 	.4byte .L_8007512C
 	.4byte .L_8007502C
-.global lbl_804A208C
-lbl_804A208C:
+.endobj lbl_804A2048
+.obj lbl_804A208C, local
 	.4byte .L_80075488
 	.4byte .L_80075494
 	.4byte .L_800754A0
@@ -43,12 +42,13 @@ lbl_804A208C:
 	.4byte .L_80075538
 	.4byte .L_800754B8
 	.4byte .L_800754C0
-.global c2r$1298
-c2r$1298:
+.endobj lbl_804A208C
+.obj c2r$1298, local
 	.4byte 0x00010001
 	.4byte 0x00010705
 	.4byte 0x06000000
 	.4byte 0x00000007
+.endobj c2r$1298
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8

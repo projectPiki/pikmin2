@@ -4,7 +4,7 @@
 lbl_8047C648:
 	.asciz "Dynamics"
 .balign 4
-lbl_8047C654: #Shift-JIS
+lbl_8047C654: # Shift-JIS
 	.4byte 0x90568374
 	.4byte 0x838A834E
 	.4byte 0x83568387
@@ -16,7 +16,7 @@ lbl_8047C664:
 lbl_8047C670:
 	.asciz "micro collision"
 .balign 4
-lbl_8047C680: #Shift-JIS
+lbl_8047C680: # Shift-JIS
 	.4byte 0x5265736F
 	.4byte 0x6C76658E
 	.4byte 0x9E82CC96
@@ -25,29 +25,29 @@ lbl_8047C680: #Shift-JIS
 lbl_8047C690:
 	.asciz "elasticity"
 .balign 4
-lbl_8047C69C: #Shift-JIS
+lbl_8047C69C: # Shift-JIS
 	.4byte 0x96808E43
 	.4byte 0x3A74616E
 	.4byte 0x76656C00
 .balign 4
-lbl_8047C6A8: #Shift-JIS
+lbl_8047C6A8: # Shift-JIS
 	.4byte 0x8CC592E8
 	.4byte 0x96808E43
 	.4byte 0x00000000
 .balign 4
-lbl_8047C6B4: #Shift-JIS
+lbl_8047C6B4: # Shift-JIS
 	.4byte 0x8CC592E8
 	.4byte 0x96808E43
 	.4byte 0x926C0000
 .balign 4
-lbl_8047C6C0: #Shift-JIS
+lbl_8047C6C0: # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x89658BBF
 	.4byte 0x82C882B5
 	.4byte 0x82C982B7
 	.4byte 0x82E90000
 .balign 4
-lbl_8047C6D4: #Shift-JIS
+lbl_8047C6D4: # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x8382815B
 	.4byte 0x83818393
@@ -74,47 +74,62 @@ __vt__13DynamicsParms:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mInstance__13DynamicsParms
-mInstance__13DynamicsParms:
+.obj mInstance__13DynamicsParms, global
 	.skip 4
+.endobj mInstance__13DynamicsParms
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518238:
+.obj lbl_80518238, local
 	.float 140.0
-lbl_8051823C:
+.endobj lbl_80518238
+.obj lbl_8051823C, local
 	.float 0.0
-lbl_80518240:
+.endobj lbl_8051823C
+.obj lbl_80518240, local
 	.float 5000.0
+.endobj lbl_80518240
 .balign 4
-lbl_80518244:
+.obj lbl_80518244, local
 	.asciz "Static"
+.endobj lbl_80518244
 .balign 4
-lbl_8051824C:
+.obj lbl_8051824C, local
 	.float 10.0
-lbl_80518250:
+.endobj lbl_8051824C
+.obj lbl_80518250, local
 	.float 0.015
-lbl_80518254:
+.endobj lbl_80518250
+.obj lbl_80518254, local
 	.float 0.3
-lbl_80518258:
+.endobj lbl_80518254
+.obj lbl_80518258, local
 	.float 1.0
+.endobj lbl_80518258
 .balign 4
-lbl_8051825C: #Shift-JIS
+.obj lbl_8051825C, local # Shift-JIS
 	.4byte 0x96808E43
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8051825C
 .balign 4
-lbl_80518264:
+.obj lbl_80518264, local
 	.float 100.0
-lbl_80518268:
+.endobj lbl_80518264
+.obj lbl_80518268, local
 	.float 10000.0
-lbl_8051826C:
+.endobj lbl_80518268
+.obj lbl_8051826C, local
 	.float 0.05
-lbl_80518270:
+.endobj lbl_8051826C
+.obj lbl_80518270, local
 	.float 0.5
-lbl_80518274:
+.endobj lbl_80518270
+.obj lbl_80518274, local
 	.float 1000.0
-lbl_80518278:
+.endobj lbl_80518274
+.obj lbl_80518278, local
 	.float 1120.0
+.endobj lbl_80518278
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13DynamicsParmsFv

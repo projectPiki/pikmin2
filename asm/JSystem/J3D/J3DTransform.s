@@ -30,31 +30,30 @@ j3dDefaultMtx:
 	.4byte 0x00000000
 	.float 1.0
 	.4byte 0x00000000
-.global lbl_8047889C
-lbl_8047889C:
+.obj lbl_8047889C, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047889C
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global Unit01
-Unit01:
-	.skip 4
+.obj Unit01, local
+	.float 0.0
 	.float 1.0
+.endobj Unit01
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516998
-lbl_80516998:
-	.4byte 0x00000000
-.global lbl_8051699C
-lbl_8051699C:
+.obj lbl_80516998, local
+	.float 0.0
+.endobj lbl_80516998
+.obj lbl_8051699C, local
 	.float 1.0
-.global lbl_805169A0
-lbl_805169A0:
+.endobj lbl_8051699C
+.obj lbl_805169A0, local
 	.float 0.5
-	.4byte 0x00000000
+.endobj lbl_805169A0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global J3DCalcBBoardMtx__FPA4_f

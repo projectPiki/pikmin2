@@ -167,8 +167,9 @@ lbl_80516A88:
 	.4byte 0xFFFFFFFF
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-lbl_80520E48:
+.obj lbl_80520E48, local
 	.skip 0x8
+.endobj lbl_80520E48
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock

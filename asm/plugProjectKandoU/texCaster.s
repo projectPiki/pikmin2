@@ -1,59 +1,71 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80483EA0:
+.obj lbl_80483EA0, local
 	.asciz "texCaster"
+.endobj lbl_80483EA0
 .balign 4
-lbl_80483EAC:
+.obj lbl_80483EAC, local
 	.asciz "texCaster.cpp"
+.endobj lbl_80483EAC
 .balign 4
-lbl_80483EBC:
+.obj lbl_80483EBC, local
 	.asciz "P2Assert"
+.endobj lbl_80483EBC
 .balign 4
-lbl_80483EC8:
+.obj lbl_80483EC8, local
 	.asciz "user/Kando/texCaster/arc.szs"
+.endobj lbl_80483EC8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q29TexCaster6Caster
-__vt__Q29TexCaster6Caster:
+.obj __vt__Q29TexCaster6Caster, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q29TexCaster6CasterFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q29TexCaster6Caster
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sInstance__Q29TexCaster3Mgr
-sInstance__Q29TexCaster3Mgr:
+.obj sInstance__Q29TexCaster3Mgr, global
 	.skip 4
+.endobj sInstance__Q29TexCaster3Mgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A5D8:
+.obj lbl_8051A5D8, local
 	.float 0.0
-lbl_8051A5DC:
+.endobj lbl_8051A5D8
+.obj lbl_8051A5DC, local
 	.float 1.0
-lbl_8051A5E0:
+.endobj lbl_8051A5DC
+.obj lbl_8051A5E0, local
 	.float 255.0
+.endobj lbl_8051A5E0
 .balign 4
-lbl_8051A5E4:
+.obj lbl_8051A5E4, local
 	.asciz "tex.bti"
+.endobj lbl_8051A5E4
 .balign 4
-lbl_8051A5EC:
+.obj lbl_8051A5EC, local
 	.float 0.1
-lbl_8051A5F0:
+.endobj lbl_8051A5EC
+.obj lbl_8051A5F0, local
 	.float 0.5
-lbl_8051A5F4:
+.endobj lbl_8051A5F0
+.obj lbl_8051A5F4, local
 	.float 0.22
-lbl_8051A5F8:
+.endobj lbl_8051A5F4
+.obj lbl_8051A5F8, local
 	.float 0.03125
-lbl_8051A5FC:
+.endobj lbl_8051A5F8
+.obj lbl_8051A5FC, local
 	.float 30.0
+.endobj lbl_8051A5FC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q29TexCaster6CasterFv
-__dt__Q29TexCaster6CasterFv:
+.fn __dt__Q29TexCaster6CasterFv, global
 /* 8023C95C 0023989C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023C960 002398A0  7C 08 02 A6 */	mflr r0
 /* 8023C964 002398A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -79,17 +91,17 @@ __dt__Q29TexCaster6CasterFv:
 /* 8023C9B0 002398F0  7C 08 03 A6 */	mtlr r0
 /* 8023C9B4 002398F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023C9B8 002398F8  4E 80 00 20 */	blr 
+.endfn __dt__Q29TexCaster6CasterFv
 
-.global hide__Q29TexCaster6CasterFv
-hide__Q29TexCaster6CasterFv:
+.fn hide__Q29TexCaster6CasterFv, global
 /* 8023C9BC 002398FC  C0 02 C2 78 */	lfs f0, lbl_8051A5D8@sda21(r2)
 /* 8023C9C0 00239900  38 00 00 00 */	li r0, 0
 /* 8023C9C4 00239904  D0 03 00 40 */	stfs f0, 0x40(r3)
 /* 8023C9C8 00239908  98 03 00 3C */	stb r0, 0x3c(r3)
 /* 8023C9CC 0023990C  4E 80 00 20 */	blr 
+.endfn hide__Q29TexCaster6CasterFv
 
-.global fadein__Q29TexCaster6CasterFf
-fadein__Q29TexCaster6CasterFf:
+.fn fadein__Q29TexCaster6CasterFf, global
 /* 8023C9D0 00239910  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023C9D4 00239914  7C 08 02 A6 */	mflr r0
 /* 8023C9D8 00239918  90 01 00 24 */	stw r0, 0x24(r1)
@@ -123,9 +135,9 @@ fadein__Q29TexCaster6CasterFf:
 /* 8023CA44 00239984  7C 08 03 A6 */	mtlr r0
 /* 8023CA48 00239988  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023CA4C 0023998C  4E 80 00 20 */	blr 
+.endfn fadein__Q29TexCaster6CasterFf
 
-.global globalInstance__Q29TexCaster3MgrFv
-globalInstance__Q29TexCaster3MgrFv:
+.fn globalInstance__Q29TexCaster3MgrFv, global
 /* 8023CA50 00239990  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023CA54 00239994  7C 08 02 A6 */	mflr r0
 /* 8023CA58 00239998  90 01 00 14 */	stw r0, 0x14(r1)
@@ -168,9 +180,9 @@ globalInstance__Q29TexCaster3MgrFv:
 /* 8023CAE4 00239A24  7C 08 03 A6 */	mtlr r0
 /* 8023CAE8 00239A28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023CAEC 00239A2C  4E 80 00 20 */	blr 
+.endfn globalInstance__Q29TexCaster3MgrFv
 
-.global deleteInstance__Q29TexCaster3MgrFv
-deleteInstance__Q29TexCaster3MgrFv:
+.fn deleteInstance__Q29TexCaster3MgrFv, global
 /* 8023CAF0 00239A30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023CAF4 00239A34  7C 08 02 A6 */	mflr r0
 /* 8023CAF8 00239A38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -201,9 +213,9 @@ deleteInstance__Q29TexCaster3MgrFv:
 /* 8023CB50 00239A90  7C 08 03 A6 */	mtlr r0
 /* 8023CB54 00239A94  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023CB58 00239A98  4E 80 00 20 */	blr 
+.endfn deleteInstance__Q29TexCaster3MgrFv
 
-.global loadResource__Q29TexCaster3MgrFv
-loadResource__Q29TexCaster3MgrFv:
+.fn loadResource__Q29TexCaster3MgrFv, global
 /* 8023CB5C 00239A9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023CB60 00239AA0  7C 08 02 A6 */	mflr r0
 /* 8023CB64 00239AA4  3C 80 80 48 */	lis r4, lbl_80483EA0@ha
@@ -265,9 +277,9 @@ loadResource__Q29TexCaster3MgrFv:
 /* 8023CC38 00239B78  7C 08 03 A6 */	mtlr r0
 /* 8023CC3C 00239B7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023CC40 00239B80  4E 80 00 20 */	blr 
+.endfn loadResource__Q29TexCaster3MgrFv
 
-.global create__Q29TexCaster3MgrFRQ23Sys6Spheref
-create__Q29TexCaster3MgrFRQ23Sys6Spheref:
+.fn create__Q29TexCaster3MgrFRQ23Sys6Spheref, global
 /* 8023CC44 00239B84  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 8023CC48 00239B88  7C 08 02 A6 */	mflr r0
 /* 8023CC4C 00239B8C  90 01 01 14 */	stw r0, 0x114(r1)
@@ -619,9 +631,9 @@ create__Q29TexCaster3MgrFRQ23Sys6Spheref:
 /* 8023D188 0023A0C8  7C 08 03 A6 */	mtlr r0
 /* 8023D18C 0023A0CC  38 21 01 10 */	addi r1, r1, 0x110
 /* 8023D190 0023A0D0  4E 80 00 20 */	blr 
+.endfn create__Q29TexCaster3MgrFRQ23Sys6Spheref
 
-.global draw__Q29TexCaster3MgrFR8Graphics
-draw__Q29TexCaster3MgrFR8Graphics:
+.fn draw__Q29TexCaster3MgrFR8Graphics, global
 /* 8023D194 0023A0D4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8023D198 0023A0D8  7C 08 02 A6 */	mflr r0
 /* 8023D19C 0023A0DC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -791,3 +803,4 @@ draw__Q29TexCaster3MgrFR8Graphics:
 /* 8023D410 0023A350  7C 08 03 A6 */	mtlr r0
 /* 8023D414 0023A354  38 21 00 30 */	addi r1, r1, 0x30
 /* 8023D418 0023A358  4E 80 00 20 */	blr 
+.endfn draw__Q29TexCaster3MgrFR8Graphics

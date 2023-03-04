@@ -234,43 +234,58 @@ __vt__Q24Game15InteractFueFuki:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518EB0:
+.obj lbl_80518EB0, local
 	.float 128000.0
-lbl_80518EB4:
+.endobj lbl_80518EB0
+.obj lbl_80518EB4, local
 	.float 0.0
-lbl_80518EB8:
+.endobj lbl_80518EB4
+.obj lbl_80518EB8, local
 	.float 1.2
-lbl_80518EBC:
+.endobj lbl_80518EB8
+.obj lbl_80518EBC, local
 	.float 1.0
-lbl_80518EC0:
+.endobj lbl_80518EBC
+.obj lbl_80518EC0, local
 	.float -128000.0
-lbl_80518EC4:
+.endobj lbl_80518EC0
+.obj lbl_80518EC4, local
 	.float -1.0
-lbl_80518EC8:
+.endobj lbl_80518EC4
+.obj lbl_80518EC8, local
 	.float -10.0
-lbl_80518ECC:
+.endobj lbl_80518EC8
+.obj lbl_80518ECC, local
 	.float 325.9493
-lbl_80518ED0:
+.endobj lbl_80518ECC
+.obj lbl_80518ED0, local
 	.float -325.9493
-lbl_80518ED4:
+.endobj lbl_80518ED0
+.obj lbl_80518ED4, local
 	.float 32768.0
-lbl_80518ED8:
+.endobj lbl_80518ED4
+.obj lbl_80518ED8, local
 	.float 0.1
-lbl_80518EDC:
+.endobj lbl_80518ED8
+.obj lbl_80518EDC, local
 	.float 100.0
-lbl_80518EE0:
+.endobj lbl_80518EDC
+.obj lbl_80518EE0, local
 	.float 50.0
+.endobj lbl_80518EE0
 .balign 8
-lbl_80518EE8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80518EE8, local
+	.8byte 0x4330000080000000
+.endobj lbl_80518EE8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki

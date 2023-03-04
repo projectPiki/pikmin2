@@ -69,10 +69,12 @@ asArrayOtakara__4Game:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -86,8 +88,7 @@ lbl_8051A584:
 	.float 0.5
 .balign 8
 lbl_8051A588:
-	.4byte 0x43300000
-	.4byte 0x00000000
+	.8byte 0x4330000000000000
 lbl_8051A590:
 	.float 1.5707964 # half of pi
 lbl_8051A594:
@@ -109,9 +110,9 @@ lbl_8051A5B0:
 lbl_8051A5B4:
 	.float 0.12566371
 lbl_8051A5B8:
-	.float 6.2831855 #tau
+	.float 6.2831855 # tau
 lbl_8051A5BC:
-	.float 0.06283186 #tau/100
+	.float 0.06283186 # tau/100
 lbl_8051A5C0:
 	.float 0.5340708
 lbl_8051A5C4:

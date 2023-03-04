@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A2F70
-lbl_804A2F70:
+.obj lbl_804A2F70, local
 	.4byte .L_8008839C
 	.4byte .L_8008836C
 	.4byte .L_80088390
@@ -22,24 +21,22 @@ lbl_804A2F70:
 	.4byte .L_800883A0
 	.4byte .L_800883BC
 	.4byte .L_800883D8
-.global __vt__12J3DJointTree
-__vt__12J3DJointTree:
+.endobj lbl_804A2F70
+.obj __vt__12J3DJointTree, global
 	.4byte 0
 	.4byte 0
 	.4byte calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf
 	.4byte __dt__12J3DJointTreeFv
-	.4byte 0
+.endobj __vt__12J3DJointTree
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516AF0
-lbl_80516AF0:
-	.4byte 0xBDCCCCCD
-	.4byte 0x00000000
+.obj lbl_80516AF0, local
+	.float -0.1
+.endobj lbl_80516AF0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__12J3DJointTreeFv
-__ct__12J3DJointTreeFv:
+.fn __ct__12J3DJointTreeFv, global
 /* 8008828C 000851CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80088290 000851D0  7C 08 02 A6 */	mflr r0
 /* 80088294 000851D4  3C 80 80 4A */	lis r4, __vt__12J3DJointTree@ha
@@ -73,9 +70,9 @@ __ct__12J3DJointTreeFv:
 /* 80088304 00085244  7C 08 03 A6 */	mtlr r0
 /* 80088308 00085248  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008830C 0008524C  4E 80 00 20 */	blr 
+.endfn __ct__12J3DJointTreeFv
 
-.global makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable
-makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable:
+.fn makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable, global
 /* 80088310 00085250  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80088314 00085254  7C 08 02 A6 */	mflr r0
 /* 80088318 00085258  90 01 00 34 */	stw r0, 0x34(r1)
@@ -176,9 +173,9 @@ makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTabl
 /* 80088460 000853A0  7C 08 03 A6 */	mtlr r0
 /* 80088464 000853A4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80088468 000853A8  4E 80 00 20 */	blr 
+.endfn makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable
 
-.global findImportantMtxIndex__12J3DJointTreeFv
-findImportantMtxIndex__12J3DJointTreeFv:
+.fn findImportantMtxIndex__12J3DJointTreeFv, global
 /* 8008846C 000853AC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80088470 000853B0  39 20 00 00 */	li r9, 0
 /* 80088474 000853B4  BF 21 00 14 */	stmw r25, 0x14(r1)
@@ -282,9 +279,9 @@ findImportantMtxIndex__12J3DJointTreeFv:
 /* 800885D4 00085514  BB 21 00 14 */	lmw r25, 0x14(r1)
 /* 800885D8 00085518  38 21 00 30 */	addi r1, r1, 0x30
 /* 800885DC 0008551C  4E 80 00 20 */	blr 
+.endfn findImportantMtxIndex__12J3DJointTreeFv
 
-.global calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf
-calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf:
+.fn calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf, global
 /* 800885E0 00085520  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800885E4 00085524  7C 08 02 A6 */	mflr r0
 /* 800885E8 00085528  90 01 00 14 */	stw r0, 0x14(r1)
@@ -314,8 +311,9 @@ calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf:
 /* 80088644 00085584  7C 08 03 A6 */	mtlr r0
 /* 80088648 00085588  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008864C 0008558C  4E 80 00 20 */	blr 
+.endfn calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf
 
-.global setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer
-setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer:
+.fn setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer, weak
 /* 80088650 00085590  90 6D 89 88 */	stw r3, mMtxBuffer__10J3DMtxCalc@sda21(r13)
 /* 80088654 00085594  4E 80 00 20 */	blr 
+.endfn setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer
