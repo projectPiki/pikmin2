@@ -5,7 +5,6 @@
 #include "types.h"
 
 struct ResTLUT;
-typedef u8 _JUTTransparency;
 enum JUTTransparency { Transparency_0 = 0, Transparency_1, Transparency_2 };
 
 // Size: 0x18
@@ -27,7 +26,7 @@ struct JUTPalette {
 	u8 mTlutFormat;       // _0D, GXTlut
 	ResTLUT* mColorTable; // _10
 	u16 mNumColors;       // _14
-	u16 mTransparency;    // _16, JUTTransparency
+	u8 mTransparency;     // _16, JUTTransparency
 };
 
 #endif

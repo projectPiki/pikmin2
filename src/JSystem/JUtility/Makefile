@@ -10,7 +10,7 @@ JUTILITY_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTGamePad.o\
 	$(BUILD_DIR)/asm/JSystem/JUtility/JUTGraphFifo.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTNameTab.o\
-	$(BUILD_DIR)/asm/JSystem/JUtility/JUTPalette.o\
+	$(BUILD_DIR)/src/JSystem/JUtility/JUTPalette.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTProcBar.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTResFont.o\
 	$(BUILD_DIR)/src/JSystem/JUtility/JUTResource.o\
