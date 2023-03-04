@@ -43,7 +43,8 @@ struct JUTXfb {
 
 	inline static u16 getLineCount(const _GXRenderModeObj* gxObj)
 	{
-		return GXGetNumXfbLines(GXGetYScaleFactor(gxObj->efbHeight, gxObj->xfbHeight), gxObj->efbHeight);
+		u16 height = gxObj->efbHeight;
+		return GXGetNumXfbLines(height, GXGetYScaleFactor(height, gxObj->xfbHeight));
 	}
 	void* getDrawnXfb() const { return (mDrawnXfbIndex >= 0) ? mBuffers[mDrawnXfbIndex] : nullptr; }
 
