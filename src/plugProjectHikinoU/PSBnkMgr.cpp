@@ -1,9 +1,9 @@
 #include "PSSystem/BankMgr.h"
 #include "PSSystem/WaveScene.h"
-#include "JSystem/JAudio2/JAI/JAInter/BankWave.h"
-#include "JSystem/JAudio2/JAI/JAInter/InitData.h"
-#include "JSystem/JAudio2/JAS/JASBank.h"
-#include "JSystem/JAudio2/JAS/JASWave.h"
+#include "JSystem/JAudio/JAI/JAInter/BankWave.h"
+#include "JSystem/JAudio/JAI/JAInter/InitData.h"
+#include "JSystem/JAudio/JAS/JASBank.h"
+#include "JSystem/JAudio/JAS/JASWave.h"
 
 namespace PSSystem {
 

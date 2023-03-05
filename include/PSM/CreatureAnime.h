@@ -1,7 +1,7 @@
 #ifndef _PSM_CREATUREANIME_H
 #define _PSM_CREATUREANIME_H
 
-#include "JSystem/JAudio2/JAI/JAIAnimeSound.h"
+#include "JSystem/JAudio/JAI/JAIAnimeSound.h"
 #include "PSM/Creature.h"
 
 namespace PSM {

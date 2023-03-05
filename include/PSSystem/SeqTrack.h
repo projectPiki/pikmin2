@@ -4,8 +4,8 @@
 #include "types.h"
 #include "PSSystem/PSBgmTask.h"
 #include "PSSystem/Director.h"
-#include "JSystem/JAudio2/JAS/JASTrack.h"
-#include "JSystem/JAudio2/JAD/JADDataMgr.h"
+#include "JSystem/JAudio/JAS/JASTrack.h"
+#include "JSystem/JAudio/JAD/JADDataMgr.h"
 
 namespace PSSystem {
 

@@ -5,7 +5,7 @@
 #include "PSSystem/PSBgm.h"
 #include "PSSystem/Seq.h"
 #include "PSSystem/PSBgmTask.h"
-#include "JSystem/JAudio2/JAI/JAInter.h"
+#include "JSystem/JAudio/JAI/JAInter.h"
 #include "PSAutoBgm/Conductor.h"
 #include "PSAutoMgr/MeloArr.h"
 

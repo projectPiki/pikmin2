@@ -2,10 +2,10 @@
 #define _PSAUTOBGM_TRACK_H
 
 #include "types.h"
-#include "JSystem/JAudio2/JAD/JADUtility.h"
+#include "JSystem/JAudio/JAD/JADUtility.h"
 #include "PSAutoBgm/Cycle.h"
-#include "JSystem/JAudio2/JAD/JADStr.h"
-#include "JSystem/JAudio2/JAS/JASTrack.h"
+#include "JSystem/JAudio/JAD/JADStr.h"
+#include "JSystem/JAudio/JAS/JASTrack.h"
 
 namespace PSAutoBgm {
 /**

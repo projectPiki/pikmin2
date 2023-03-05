@@ -1,5 +1,5 @@
 #include "JSystem/JStudio_JAudio.h"
-#include "JSystem/JAudio2/JAI/JAIBasic.h"
+#include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "types.h"
 
 /*

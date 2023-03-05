@@ -1,6 +1,6 @@
 #include "types.h"
 #include "PSAutoBgm/MeloArr.h"
-#include "JSystem/JAudio2/JALCalc.h"
+#include "JSystem/JAudio/JALCalc.h"
 #include "JSystem/JUtility/JUTException.h"
 
 namespace PSAutoBgm {

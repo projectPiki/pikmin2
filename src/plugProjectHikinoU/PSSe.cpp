@@ -1,7 +1,7 @@
 #include "PSGame/SeMgr.h"
 #include "PSGame/Rappa.h"
 #include "PSGame/EnvSe.h"
-#include "JSystem/JAudio2/JALCalc.h"
+#include "JSystem/JAudio/JALCalc.h"
 #include "PSSystem/PSSystemIF.h"
 
 namespace PSGame {

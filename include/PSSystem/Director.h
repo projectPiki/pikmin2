@@ -2,8 +2,8 @@
 #define _PSSYSTEM_DIRECTOR_H
 
 #include "Dolphin/os.h"
-#include "JSystem/JAudio2/JAD/JADHioNode.h"
-#include "JSystem/JAudio2/JAS/JASTrack.h"
+#include "JSystem/JAudio/JAD/JADHioNode.h"
+#include "JSystem/JAudio/JAS/JASTrack.h"
 #include "PSSystem/PSBgm.h"
 
 namespace PSSystem {

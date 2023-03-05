@@ -5,7 +5,7 @@
 #include "PSM/Piki.h"
 #include "PS.h"
 #include "PSSystem/PSSystemIF.h"
-#include "JSystem/JAudio2/JALCalc.h"
+#include "JSystem/JAudio/JALCalc.h"
 #include "Game/EnemyBase.h"
 #include "PSM/EnemyBase.h"
 

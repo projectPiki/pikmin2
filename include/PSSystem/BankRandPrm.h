@@ -1,7 +1,7 @@
 #ifndef _PSSYSTEM_BANKRANDPRM_H
 #define _PSSYSTEM_BANKRANDPRM_H
 
-#include "JSystem/JAudio2/JAS/JASInst.h"
+#include "JSystem/JAudio/JAS/JASInst.h"
 #include "types.h"
 
 namespace PSSystem {

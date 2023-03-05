@@ -1,7 +1,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/vi.h"
 #include "Game/Data.h"
-#include "JSystem/JAudio2/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAudio/JAI/JAIGlobalParameter.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "System.h"
 #include "stream.h"

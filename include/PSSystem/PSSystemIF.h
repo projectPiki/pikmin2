@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "Dolphin/os.h"
-#include "JSystem/JAudio2/JAI/JAIBasic.h"
+#include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "PSSystem/FxMgr.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRFileLoader.h"

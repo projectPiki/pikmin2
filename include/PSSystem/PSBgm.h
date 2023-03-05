@@ -4,10 +4,10 @@
 #include "types.h"
 #include "PSSystem/Seq.h"
 #include "PSSystem/SeqTrack.h"
-#include "JSystem/JAudio2/JAI/JAInter.h"
-#include "JSystem/JAudio2/JAI/JAISound.h"
+#include "JSystem/JAudio/JAI/JAInter.h"
+#include "JSystem/JAudio/JAI/JAISound.h"
 #include "Dolphin/os.h"
-#include "JSystem/JAudio2/JAS/JASTrack.h"
+#include "JSystem/JAudio/JAS/JASTrack.h"
 
 namespace PSSystem {
 struct DirectorMgrBase;

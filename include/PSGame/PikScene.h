@@ -6,8 +6,8 @@
 #include "PSSystem/Director.h"
 #include "PSSystem/PSBgm.h"
 #include "PSGame/SceneInfo.h"
-#include "JSystem/JAudio2/JAI/JAInter.h"
-#include "JSystem/JAudio2/JAD/JADUtility.h"
+#include "JSystem/JAudio/JAI/JAInter.h"
+#include "JSystem/JAudio/JAD/JADUtility.h"
 
 namespace PSGame {
 

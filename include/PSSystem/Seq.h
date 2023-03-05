@@ -4,10 +4,10 @@
 #include "types.h"
 #include "Dolphin/os.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JAudio2/JAI/JAISequence.h"
-#include "JSystem/JAudio2/JAI/JAInter.h"
+#include "JSystem/JAudio/JAI/JAISequence.h"
+#include "JSystem/JAudio/JAI/JAInter.h"
 #include "PSSystem/PSBgmTask.h"
-#include "JSystem/JAudio2/JAS/JASTrack.h"
+#include "JSystem/JAudio/JAS/JASTrack.h"
 #include "PSSystem/Reservator.h"
 
 namespace PSSystem {

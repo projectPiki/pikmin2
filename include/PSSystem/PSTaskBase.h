@@ -6,7 +6,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "PSSystem/BankRandPrm.h"
 #include "PSSystem/MutexList.h"
-#include "JSystem/JAudio2/JAS/JASTrack.h"
+#include "JSystem/JAudio/JAS/JASTrack.h"
 
 namespace PSSystem {
 struct DirectorBase;

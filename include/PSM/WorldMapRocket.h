@@ -2,7 +2,7 @@
 #define _PSM_WORLDMAPROCKET_H
 
 #include "types.h"
-#include "JSystem/JAudio2/JAD/JADHioNode.h"
+#include "JSystem/JAudio/JAD/JADHioNode.h"
 
 namespace PSM {
 

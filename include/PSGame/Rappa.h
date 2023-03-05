@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "JSystem/JAudio2/JAI/JAInter/Object.h"
+#include "JSystem/JAudio/JAI/JAInter/Object.h"
 
 struct JASTrack;
 

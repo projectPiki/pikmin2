@@ -2,7 +2,7 @@
 #define _PSM_ENVSE_PERSPECTIVE_AVOIDY_H
 
 #include "PSGame/EnvSe.h"
-#include "JSystem/JAudio2/JAI/JAISe.h"
+#include "JSystem/JAudio/JAI/JAISe.h"
 #include "PSGame/SoundTable.h"
 
 namespace PSM {

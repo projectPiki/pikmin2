@@ -2,11 +2,11 @@
 #define _PSAUTOBGM_CONDUCTOR_H
 
 #include "types.h"
-#include "JSystem/JAudio2/JAD/JADUtility.h"
+#include "JSystem/JAudio/JAD/JADUtility.h"
 #include "PSAutoBgm/Track.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JAudio2/JAS/JASTrack.h"
+#include "JSystem/JAudio/JAS/JASTrack.h"
 
 namespace PSAutoBgm {
 
