@@ -99,6 +99,10 @@ struct JUTConsole : public JKRDisposer {
 	void scrollToLastLine() { scroll(mMaxLines); }
 	void scrollToFirstLine() { scroll(-mMaxLines); }
 
+	inline bool isAnyOutput() const { return getOutput() & (CONSOLEOUT_Console | CONSOLEOUT_OSReport); }
+	inline bool isOutputOSReport() const { return getOutput() & CONSOLEOUT_OSReport; }
+	inline bool isOutputConsole() const { return getOutput() & CONSOLEOUT_Console; }
+
 	static JUTConsole* create(uint, uint, JKRHeap*);
 	static JUTConsole* create(uint, void*, u32);
 	static size_t getObjectSizeFromBufferSize(uint, uint);

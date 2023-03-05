@@ -9,6 +9,11 @@ typedef u8 _JUTTransparency;
 #endif
 
 struct ResTIMG {
+	inline BOOL isMIPmapEnabled() const { return (mIsMIPmapEnabled > 0); }
+
+	inline u16 getWidth() const { return mSizeX; }
+	inline u16 getHeight() const { return mSizeY; }
+
 	u8 mTextureFormat;              // _00
 	_JUTTransparency mTransparency; // _01
 	u16 mSizeX;                     // _02

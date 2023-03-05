@@ -45,6 +45,7 @@ extern void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter minFilter, GXTexFilter ma
 // Get functions.
 extern GXTexFmt GXGetTexObjFmt(GXTexObj* obj);
 extern GXBool GXGetTexObjMipMap(GXTexObj* obj);
+extern u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_lod);
 
 // Load functions.
 extern void GXLoadTexObjPreLoaded(GXTexObj* obj, GXTexRegion* region, GXTexMapID map);

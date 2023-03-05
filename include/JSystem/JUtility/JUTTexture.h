@@ -65,20 +65,22 @@ struct JUTTexture : public GXTexObj {
 	u8 getEmbPaletteDelFlag() const { return mFlags & TEXFLAG_Unk2; }
 	u8 getTlutName() const { return mTlut; }
 
-	ResTIMG* mTexInfo;       // _20
-	void* mTexData;          // _24
-	JUTPalette* mEmbPalette; // _28
-	JUTPalette* _2C;         // _2C
-	u8 mWrapS;               // _30, GXTexWrapMode
-	u8 mWrapT;               // _31, GXTexWrapMode
-	u8 mMinFilter;           // _32
-	u8 mMagFilter;           // _33
-	u16 mMinLOD;             // _34
-	u16 mMaxLOD;             // _36
-	s16 mLODBias;            // _38
-	u8 mTlut;                // _3A
-	u8 mFlags;               // _3B
-	ResTIMG* _3C;            // _3C
+	void setTlutName(u8 tlut) { mTlut = tlut; }
+
+	ResTIMG* mTexInfo;          // _20
+	void* mTexData;             // _24
+	JUTPalette* mEmbPalette;    // _28
+	JUTPalette* mActivePalette; // _2C
+	u8 mWrapS;                  // _30, GXTexWrapMode
+	u8 mWrapT;                  // _31, GXTexWrapMode
+	u8 mMinFilter;              // _32
+	u8 mMagFilter;              // _33
+	u16 mMinLOD;                // _34
+	u16 mMaxLOD;                // _36
+	s16 mLODBias;               // _38
+	u8 mTlut;                   // _3A
+	u8 mFlags;                  // _3B
+	ResTIMG* mImage;            // _3C
 };
 
 inline ResTIMG* J2DPicture::getTIMG(u8 i) { return getTexture(i)->mTexInfo; }

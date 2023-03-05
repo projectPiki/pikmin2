@@ -60,6 +60,7 @@
         .asciz "%s"
 */
 
+JUTConsoleManager* JUTConsoleManager::sManager;
 static JUTConsole* sReportConsole;
 static JUTConsole* sWarningConsole;
 
@@ -117,28 +118,28 @@ JUTConsole* JUTConsole::create(uint param_0, void* param_1, u32 param_2)
  */
 JUTConsole::JUTConsole(uint param_0, uint param_1, bool param_2)
 {
-	field_0x2c = param_2;
-	field_0x20 = param_0;
-	field_0x24 = param_1;
+	_2C       = param_2;
+	_20       = param_0;
+	mMaxLines = param_1;
 
 	mPositionX = 30;
 	mPositionY = 50;
 	mHeight    = 20;
 
-	if (mHeight > field_0x24) {
-		mHeight = field_0x24;
+	if (mHeight > mMaxLines) {
+		mHeight = mMaxLines;
 	}
 
 	mFont      = nullptr;
-	mVisible   = true;
-	field_0x69 = false;
-	field_0x6a = false;
-	field_0x6b = false;
+	mIsVisible = true;
+	_69        = false;
+	_6A        = false;
+	_6B        = false;
 	mOutput    = 1;
 
-	field_0x5c.set(0, 0, 0, 100);
-	field_0x60.set(0, 0, 0, 230);
-	field_0x64 = 8;
+	_5C.set(0, 0, 0, 100);
+	_60.set(0, 0, 0, 230);
+	_64 = 8;
 }
 
 /*
@@ -169,12 +170,12 @@ size_t JUTConsole::getLineFromObjectSize(u32 param_1, uint param_2) { return (pa
  */
 void JUTConsole::clear()
 {
-	field_0x30 = 0;
-	field_0x34 = 0;
-	field_0x38 = 0;
-	field_0x3c = 0;
+	_30 = 0;
+	_34 = 0;
+	_38 = 0;
+	_3C = 0;
 
-	for (int i = 0; i < field_0x24; i++) {
+	for (int i = 0; i < mMaxLines; i++) {
 		setLineAttr(i, 0);
 	}
 	mBuf[0] = 0xFF;
@@ -192,12 +193,12 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 	s32 changeLine_1;
 	s32 changeLine_2;
 
-	if ((mVisible != false) && ((mFont != nullptr) || (inputType == 2))) {
+	if (mIsVisible && (mFont || (inputType == CONSOLETYPE_Unk2))) {
 		if (mHeight != 0) {
-			bool testVal = (inputType == 0);
+			bool testVal = (inputType == CONSOLETYPE_Unk0);
 			fontYOffset  = 2.0f + mFontSizeY;
 
-			if (inputType != 2) {
+			if (inputType != CONSOLETYPE_Unk2) {
 				if (JUTVideo::getManager() == nullptr) {
 					J2DOrthoGraph ortho(0.0f, 0.0f, 640.0f, 480.0f, -1.0f, 1.0f);
 					ortho.setPort();
@@ -210,25 +211,24 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 				const JUtility::TColor* TColorChoice;
 
 				if (testVal) {
-					TColorChoice = &this->field_0x60;
+					TColorChoice = &this->_60;
 				} else {
-					TColorChoice = &this->field_0x5c;
+					TColorChoice = &this->_5C;
 				}
 
-				J2DFillBox((f32)(mPositionX - 2), (f32)(s32)((f32)mPositionY - fontYOffset),
-				           (f32)(s32)((mFontSizeX * (f32)field_0x20) + 4.0f), (f32)(s32)(fontYOffset * (f32)mHeight),
-				           (JUtility::TColor)*TColorChoice);
+				J2DFillBox((f32)(mPositionX - 2), (f32)(s32)((f32)mPositionY - fontYOffset), (f32)(s32)((mFontSizeX * (f32)_20) + 4.0f),
+				           (f32)(s32)(fontYOffset * (f32)mHeight), (JUtility::TColor)*TColorChoice);
 
 				mFont->setGX();
 				if (testVal) {
-					int colordiff = field_0x38;
-					int colorf30  = field_0x30;
+					int colordiff = _38;
+					int colorf30  = _30;
 
 					s32 s = colorCheck(diffIndex(colorf30, colordiff), mHeight);
 					if (s <= 0) {
 						mFont->setCharColor(JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
 
-					} else if (colorf30 == (s32)field_0x34) {
+					} else if (colorf30 == (s32)_34) {
 						mFont->setCharColor(JUtility::TColor(0xFF, 0xE6, 0xE6, 0xFF));
 
 					} else {
@@ -238,18 +238,17 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 					mFont->setCharColor(JUtility::TColor(0xE6, 0xE6, 0xE6, 0xFF));
 				}
 			} else {
-				JUTDirectPrint::sDirectPrint->erase(mPositionX - 3, mPositionY - 2, (field_0x20 * 6) + 6,
-				                                    (s32)(fontYOffset * (f32)mHeight) + 4);
+				JUTDirectPrint::sDirectPrint->erase(mPositionX - 3, mPositionY - 2, (_20 * 6) + 6, (s32)(fontYOffset * (f32)mHeight) + 4);
 				JUTDirectPrint::sDirectPrint->setCharColor(JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
 			}
 
 			char* linePtr;
-			s32 currLine = field_0x30;
+			s32 currLine = _30;
 			s32 yFactor  = 0;
 
 			do {
 				linePtr = (char*)getLinePtr(currLine); // getLinePtr was fixed, it was adding to the array index not to the address
-				if ((u8)linePtr[-1]) {
+				if ((u8)linePtr[-1] != 0) {            // necessary explicit comparison
 
 					if (inputType != 2) {
 						f32 f1, f2, f3, f4;
@@ -258,7 +257,7 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 						f1             = mPositionX;
 						f3             = mFontSizeX;
 						JUTFont* pFont = mFont;
-						u32 lineLength = strlen((char*)linePtr); // this is getting called too early still
+						u32 lineLength = strlen((char*)linePtr);
 						bool inputBool = true;
 
 						pFont->drawString_size_scale(f1, f2, f3, f4, linePtr, lineLength, inputBool);
@@ -271,23 +270,15 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 
 					changeLine_1 = currLine + 1;
 					yFactor += 1;
-					changeLine_2 = changeLine_1 & ~(-((s32)field_0x24 <= (s32)changeLine_1));
+					changeLine_2 = changeLine_1 & ~(-((s32)mMaxLines <= (s32)changeLine_1));
 					currLine     = changeLine_2;
 				} else {
 					break;
 				}
-			} while ((yFactor < mHeight) && (changeLine_2 != field_0x34));
+			} while ((yFactor < mHeight) && (changeLine_2 != _34));
 		}
 	}
 }
-
-/*
- * --INFO--
- * Address:	80028944
- * Size:	00005C
- */
-// WEAK - in header
-// J2DOrthoGraph::~J2DOrthoGraph() { }
 
 /*
  * --INFO--
@@ -312,8 +303,12 @@ void JUTConsole::print_f(const char* format, ...)
  * Address:	80028A2C
  * Size:	000300
  */
-void JUTConsole::print(const char*)
+void JUTConsole::print(const char* str)
 {
+	char* strPtr = const_cast<char*>(str);
+	if (isOutputOSReport()) {
+		while (*strPtr) { }
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -551,7 +546,7 @@ lbl_80028D10:
  */
 extern "C" void JUTConsole_print_f_va_(JUTConsole* console, const char* format, va_list args)
 {
-	char buffer[1024];
+	char buffer[0x400];
 	vsnprintf(buffer, sizeof(buffer), format, args);
 	console->print(buffer);
 }
@@ -584,21 +579,21 @@ void JUTConsole::dumpToConsole(JUTConsole*, uint)
 void JUTConsole::scroll(int amount)
 {
 	if (amount < 0) {
-		int var = field_0x30 - field_0x34;
-		var     = field_0x30 - field_0x34 >= 0 ? var : var + field_0x24;
+		int var = _30 - _34;
+		var     = _30 - _34 >= 0 ? var : var + mMaxLines;
 
 		if (amount < -var) {
 			amount = -var;
 		}
 	} else if (amount > 0) {
-		int var2 = field_0x38 - field_0x34;
-		var2     = var2 >= 0 ? var2 : var2 + field_0x24;
+		int var2 = _38 - _34;
+		var2     = var2 >= 0 ? var2 : var2 + mMaxLines;
 
 		if (var2 + 1 <= mHeight) {
 			amount = 0;
 		} else {
-			int var3 = field_0x38 - field_0x30;
-			var3     = field_0x38 - field_0x30 >= 0 ? var3 : var3 + field_0x24;
+			int var3 = _38 - _30;
+			var3     = _38 - _30 >= 0 ? var3 : var3 + mMaxLines;
 
 			if (amount > (s32)(var3 - mHeight + 1)) {
 				amount = var3 - mHeight + 1;
@@ -606,12 +601,12 @@ void JUTConsole::scroll(int amount)
 		}
 	}
 
-	field_0x30 += amount;
-	if (field_0x30 < 0) {
-		field_0x30 += field_0x24;
+	_30 += amount;
+	if (_30 < 0) {
+		_30 += mMaxLines;
 	}
-	if (field_0x30 >= field_0x24) {
-		field_0x30 -= field_0x24;
+	if (_30 >= mMaxLines) {
+		_30 -= mMaxLines;
 	}
 }
 
@@ -622,11 +617,11 @@ void JUTConsole::scroll(int amount)
  */
 int JUTConsole::getUsedLine() const
 {
-	int line = field_0x38 - field_0x34;
+	int line = _38 - _34;
 	if (line >= 0) {
 		return line;
 	}
-	return line + field_0x24;
+	return line + mMaxLines;
 }
 
 /*
@@ -636,11 +631,11 @@ int JUTConsole::getUsedLine() const
  */
 int JUTConsole::getLineOffset() const
 {
-	int line = field_0x30 - field_0x34;
+	int line = _30 - _34;
 	if (line >= 0) {
 		return line;
 	}
-	return line + field_0x24;
+	return line + mMaxLines;
 }
 
 /*
@@ -650,7 +645,8 @@ int JUTConsole::getLineOffset() const
  */
 JUTConsoleManager::JUTConsoleManager()
 {
-	// UNUSED FUNCTION
+	mActiveConsole = nullptr;
+	mDirectConsole = nullptr;
 }
 
 /*
@@ -680,7 +676,7 @@ JUTConsoleManager::~JUTConsoleManager()
  */
 JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* heap)
 {
-	if (heap == NULL) {
+	if (heap == nullptr) {
 		heap = JKRHeap::sCurrentHeap;
 	}
 	JUTConsoleManager* manager = new (heap, 0) JUTConsoleManager();
@@ -905,19 +901,19 @@ lbl_800290E8:
  * Address:	80029104
  * Size:	00007C
  */
-void JUTConsoleManager::drawDirect(bool p1) const
+void JUTConsoleManager::drawDirect(bool doRetrace) const
 {
-	if (mDirectConsole == nullptr) {
+	if (!mDirectConsole) {
 		return;
 	}
-	if (p1 != false) {
+	if (doRetrace) {
 		int interrupts = OSEnableInterrupts();
 		u32 count      = VIGetRetraceCount();
 		do {
 		} while (count == VIGetRetraceCount());
 		OSRestoreInterrupts(interrupts);
 	}
-	mDirectConsole->doDraw(JUTConsole::UNK_TYPE2);
+	mDirectConsole->doDraw(JUTConsole::CONSOLETYPE_Unk2);
 }
 
 /*
@@ -927,6 +923,14 @@ void JUTConsoleManager::drawDirect(bool p1) const
  */
 void JUTConsoleManager::setDirectConsole(JUTConsole* console)
 {
+	if (mDirectConsole) {
+		appendConsole(mDirectConsole);
+	}
+
+	if (console) {
+		removeConsole(console);
+	}
+	mDirectConsole = console;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1026,66 +1030,46 @@ lbl_80029284:
  * Address:	800292A4
  * Size:	000008
  */
-void JUTSetReportConsole(JUTConsole* console)
-{
-	sReportConsole = console;
-	/*
-	stw      r3, sReportConsole@sda21(r13)
-	blr
-	*/
-}
+void JUTSetReportConsole(JUTConsole* console) { sReportConsole = console; }
 
 /*
  * --INFO--
  * Address:	800292AC
  * Size:	000008
  */
-JUTConsole* JUTGetReportConsole()
-{
-	return sReportConsole;
-	/*
-	lwz      r3, sReportConsole@sda21(r13)
-	blr
-	*/
-}
+JUTConsole* JUTGetReportConsole() { return sReportConsole; }
 
 /*
  * --INFO--
  * Address:	800292B4
  * Size:	000008
  */
-void JUTSetWarningConsole(JUTConsole* console)
-{
-	sWarningConsole = console;
-	/*
-	stw      r3, sWarningConsole@sda21(r13)
-	blr
-	*/
-}
+void JUTSetWarningConsole(JUTConsole* console) { sWarningConsole = console; }
 
 /*
  * --INFO--
  * Address:	800292BC
  * Size:	000008
  */
-JUTConsole* JUTGetWarningConsole()
-{
-	return sWarningConsole;
-	/*
-	lwz      r3, sWarningConsole@sda21(r13)
-	blr
-	*/
-}
+JUTConsole* JUTGetWarningConsole() { return sWarningConsole; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00006C
  */
-// void JUTReportConsole_f_va()
-// {
-// 	// UNUSED FUNCTION
-// }
+void JUTReportConsole_f_va(const char* fmt, va_list args)
+{
+	char buf[256];
+
+	if (JUTGetReportConsole() == nullptr) {
+		vsnprintf(buf, sizeof(buf), fmt, args);
+
+	} else if (JUTGetReportConsole()->isAnyOutput()) {
+		vsnprintf(buf, sizeof(buf), fmt, args);
+		JUTGetReportConsole()->print(buf);
+	}
+}
 
 /*
  * --INFO--
@@ -1094,18 +1078,10 @@ JUTConsole* JUTGetWarningConsole()
  */
 void JUTReportConsole_f(char const* fmt, ...)
 {
-	char buffer[0x100];
 	va_list args;
 	va_start(args, fmt);
-
-	if (sReportConsole == nullptr) {
-		vsnprintf(buffer, 0x100, fmt, args);
-		return;
-	}
-	if ((sReportConsole->getOutput() & (JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE)) != 0) {
-		vsnprintf(buffer, 0x100, fmt, args);
-		sReportConsole->print(buffer);
-	}
+	JUTReportConsole_f_va(fmt, args);
+	va_end(args);
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -1176,33 +1152,7 @@ lbl_80029388:
  * Address:	800293A0
  * Size:	00002C
  */
-void JUTReportConsole(char const* str)
-{
-	JUTReportConsole_f("%s", str);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	addi     r3, r2, lbl_80516598@sda21
-	stw      r0, 0x14(r1)
-	crclr    6
-	bl       JUTReportConsole_f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void JUTWarningConsole_f_va()
-{
-	// UNUSED FUNCTION
-}
+void JUTReportConsole(char const* str) { JUTReportConsole_f("%s", str); }
 
 /**
  * --INFO--
@@ -1212,81 +1162,10 @@ void JUTWarningConsole_f_va()
  */
 void JUTWarningConsole_f(char const* fmt, ...)
 {
-	char buffer[0x100];
 	va_list args;
 	va_start(args, fmt);
-
-	if (sReportConsole == nullptr) {
-		vsnprintf(buffer, 0x100, fmt, args);
-		return;
-	}
-	if ((sReportConsole->getOutput() & (JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE)) != 0) {
-		vsnprintf(buffer, 0x100, fmt, args);
-		sReportConsole->print(buffer);
-	}
-	/*
-	stwu     r1, -0x180(r1)
-	mflr     r0
-	stw      r0, 0x184(r1)
-	stw      r31, 0x17c(r1)
-	stw      r30, 0x178(r1)
-	bne      cr1, lbl_80029404
-	stfd     f1, 0x28(r1)
-	stfd     f2, 0x30(r1)
-	stfd     f3, 0x38(r1)
-	stfd     f4, 0x40(r1)
-	stfd     f5, 0x48(r1)
-	stfd     f6, 0x50(r1)
-	stfd     f7, 0x58(r1)
-	stfd     f8, 0x60(r1)
-
-lbl_80029404:
-	lwz      r30, sReportConsole@sda21(r13)
-	addi     r11, r1, 0x188
-	addi     r0, r1, 8
-	lis      r12, 0x100
-	cmplwi   r30, 0
-	stw      r3, 8(r1)
-	addi     r31, r1, 0x68
-	stw      r4, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r10, 0x24(r1)
-	stw      r12, 0x68(r1)
-	stw      r11, 0x6c(r1)
-	stw      r0, 0x70(r1)
-	bne      lbl_80029464
-	mr       r5, r3
-	mr       r6, r31
-	addi     r3, r1, 0x74
-	li       r4, 0x100
-	bl       vsnprintf
-	b        lbl_80029490
-
-lbl_80029464:
-	lwz      r0, 0x58(r30)
-	clrlwi.  r0, r0, 0x1e
-	beq      lbl_80029490
-	mr       r5, r3
-	mr       r6, r31
-	addi     r3, r1, 0x74
-	li       r4, 0x100
-	bl       vsnprintf
-	lwz      r3, sReportConsole@sda21(r13)
-	addi     r4, r1, 0x74
-	bl       print__10JUTConsoleFPCc
-
-lbl_80029490:
-	lwz      r0, 0x184(r1)
-	lwz      r31, 0x17c(r1)
-	lwz      r30, 0x178(r1)
-	mtlr     r0
-	addi     r1, r1, 0x180
-	blr
-	*/
+	JUTReportConsole_f_va(fmt, args);
+	va_end(args);
 }
 
 /**
@@ -1295,20 +1174,4 @@ lbl_80029490:
  * Size:	00002C
  * @warning This does not actually use the warning console.
  */
-void JUTWarningConsole(char const* str)
-{
-	JUTReportConsole_f("%s", str);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	addi     r3, r2, lbl_80516598@sda21
-	stw      r0, 0x14(r1)
-	crclr    6
-	bl       JUTReportConsole_f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JUTWarningConsole(char const* str) { JUTReportConsole_f("%s", str); }

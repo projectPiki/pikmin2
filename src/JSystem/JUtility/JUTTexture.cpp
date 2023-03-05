@@ -2,126 +2,45 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/os.h"
 #include "JSystem/JUtility/JUTPalette.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/ResTIMG.h"
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516708
-    lbl_80516708:
-        .4byte 0x3E000000
-    .global lbl_8051670C
-    lbl_8051670C:
-        .4byte 0x42C80000
-    .global lbl_80516710
-    lbl_80516710:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80516718
-    lbl_80516718:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
 
 /*
  * --INFO--
  * Address:	80032F1C
  * Size:	0000F4
  */
-JUTTexture::JUTTexture(int sizeX, int sizeY, _GXTexFmt textureFormat)
+JUTTexture::JUTTexture(int sizeX, int sizeY, GXTexFmt textureFormat)
 {
-	mFlags                  = (mFlags & 2) | 1;
-	u32 texBufferSize       = GXGetTexBufferSize(sizeX, sizeY, textureFormat, 0, 1);
-	_3C                     = reinterpret_cast<ResTIMG*>(new u8[texBufferSize]);
-	_3C->mTextureFormat     = textureFormat;
-	_3C->mTransparency      = 0;
-	_3C->mSizeX             = sizeX;
-	_3C->mSizeY             = sizeY;
-	_3C->mWrapS             = 0;
-	_3C->mWrapT             = 0;
-	_3C->mPaletteFormat     = 0;
-	_3C->mLutFormat         = 0;
-	_3C->mPaletteEntryCount = 0;
-	_3C->mPaletteOffset     = 0;
-	_3C->_10                = GX_FALSE;
-	_3C->_11                = GX_FALSE;
-	_3C->_12                = GX_FALSE;
-	_3C->_13                = GX_FALSE;
-	_3C->mMagFilterType     = 1;
-	_3C->mMinFilterType     = 1;
-	_3C->_16                = 0;
-	_3C->_17                = 0;
-	_3C->mTotalImageCount   = 1;
-	_3C->_1A                = 0;
-	_3C->mImageDataOffset   = 0x20;
-	_28                     = nullptr;
-	storeTIMG(_3C, '\0');
-	DCFlushRange(_24, texBufferSize);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r7, 1
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r30, r6
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	li       r6, 0
-	lbz      r0, 0x3b(r3)
-	clrlwi   r3, r4, 0x10
-	clrlwi   r4, r5, 0x10
-	mr       r5, r30
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	ori      r0, r0, 1
-	stb      r0, 0x3b(r27)
-	bl       GXGetTexBufferSize
-	mr       r31, r3
-	li       r4, 0x20
-	addi     r3, r31, 0x20
-	bl       __nwa__FUli
-	stw      r3, 0x3c(r27)
-	li       r7, 0
-	li       r6, 1
-	li       r0, 0x20
-	lwz      r4, 0x3c(r27)
-	mr       r3, r27
-	li       r5, 0
-	stb      r30, 0(r4)
-	stb      r7, 1(r4)
-	sth      r28, 2(r4)
-	sth      r29, 4(r4)
-	stb      r7, 6(r4)
-	stb      r7, 7(r4)
-	stb      r7, 8(r4)
-	stb      r7, 9(r4)
-	sth      r7, 0xa(r4)
-	stw      r7, 0xc(r4)
-	stb      r7, 0x10(r4)
-	stb      r7, 0x11(r4)
-	stb      r7, 0x12(r4)
-	stb      r7, 0x13(r4)
-	stb      r6, 0x14(r4)
-	stb      r6, 0x15(r4)
-	stb      r7, 0x16(r4)
-	stb      r7, 0x17(r4)
-	stb      r6, 0x18(r4)
-	sth      r7, 0x1a(r4)
-	stw      r0, 0x1c(r4)
-	stw      r7, 0x28(r27)
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lwz      r3, 0x24(r27)
-	mr       r4, r31
-	bl       DCFlushRange
-	mr       r3, r27
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mFlags                  = (mFlags & TEXFLAG_Unk2) | TEXFLAG_Unk1;
+	u32 texBufferSize       = GXGetTexBufferSize(sizeX, sizeY, textureFormat, GX_FALSE, 1);
+	mImage                  = reinterpret_cast<ResTIMG*>(new (0x20) u8[texBufferSize + 0x20]);
+	ResTIMG* img            = mImage;
+	img->mTextureFormat     = textureFormat;
+	img->mTransparency      = Transparency_0;
+	img->mSizeX             = sizeX;
+	img->mSizeY             = sizeY;
+	img->mWrapS             = GX_CLAMP;
+	img->mWrapT             = GX_CLAMP;
+	img->mPaletteFormat     = 0;
+	img->mLutFormat         = GX_TL_IA8;
+	img->mPaletteEntryCount = 0;
+	img->mPaletteOffset     = 0;
+	img->mIsMIPmapEnabled   = GX_FALSE;
+	img->mDoEdgeLOD         = GX_FALSE;
+	img->mIsBiasClamp       = GX_FALSE;
+	img->mIsMaxAnisotropy   = GX_FALSE;
+	img->mMinFilterType     = 1;
+	img->mMagFilterType     = 1;
+	img->mMinLOD            = 0;
+	img->mMaxLOD            = 0;
+	img->mTotalImageCount   = 1;
+	img->mLODBias           = 0;
+	img->mImageDataOffset   = 0x20;
+	mEmbPalette             = nullptr;
+	storeTIMG(img, (u8)'\0');
+	DCFlushRange(mTexData, texBufferSize);
 }
 
 /*
@@ -131,49 +50,12 @@ JUTTexture::JUTTexture(int sizeX, int sizeY, _GXTexFmt textureFormat)
  */
 JUTTexture::~JUTTexture()
 {
-	if (mFlags & 1) {
-		delete[] _3C;
+	if (mFlags & TEXFLAG_Unk1) {
+		delete[] mImage;
 	}
-	if (mFlags & 2) {
-		delete _28;
+	if (mFlags & TEXFLAG_Unk2) {
+		delete mEmbPalette;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80033068
-	lbz      r0, 0x3b(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80033044
-	lwz      r3, 0x3c(r30)
-	bl       __dla__FPv
-
-lbl_80033044:
-	lbz      r0, 0x3b(r30)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_80033058
-	lwz      r3, 0x28(r30)
-	bl       __dl__FPv
-
-lbl_80033058:
-	extsh.   r0, r31
-	ble      lbl_80033068
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80033068:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -181,135 +63,49 @@ lbl_80033068:
  * Address:	80033084
  * Size:	0001AC
  */
-void JUTTexture::storeTIMG(const ResTIMG*, unsigned char)
+void JUTTexture::storeTIMG(const ResTIMG* img, u8 lutID)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	beq      lbl_80033214
-	clrlwi   r0, r5, 0x18
-	cmplwi   r0, 0x10
-	bge      lbl_80033214
-	stw      r4, 0x20(r31)
-	lwz      r3, 0x20(r31)
-	lwz      r0, 0x1c(r3)
-	add      r0, r3, r0
-	stw      r0, 0x24(r31)
-	lwz      r3, 0x20(r31)
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	bne      lbl_800330E0
-	addi     r0, r3, 0x20
-	stw      r0, 0x24(r31)
+	if (img && lutID < 16) {
+		mTexInfo = const_cast<ResTIMG*>(img);
+		mTexData = (void*)((u32)mTexInfo + mTexInfo->mImageDataOffset);
+		if ((u32)mTexInfo->mImageDataOffset == 0) {
+			mTexData = (void*)((u32)mTexInfo + 0x20);
+		}
 
-lbl_800330E0:
-	li       r0, 0
-	stw      r0, 0x2c(r31)
-	stb      r0, 0x3a(r31)
-	lwz      r3, 0x20(r31)
-	lbz      r0, 6(r3)
-	stb      r0, 0x30(r31)
-	lwz      r3, 0x20(r31)
-	lbz      r0, 7(r3)
-	stb      r0, 0x31(r31)
-	lwz      r3, 0x20(r31)
-	lbz      r0, 0x14(r3)
-	stb      r0, 0x32(r31)
-	lwz      r3, 0x20(r31)
-	lbz      r0, 0x15(r3)
-	stb      r0, 0x33(r31)
-	lwz      r3, 0x20(r31)
-	lbz      r0, 0x16(r3)
-	extsb    r0, r0
-	sth      r0, 0x34(r31)
-	lwz      r3, 0x20(r31)
-	lbz      r0, 0x17(r3)
-	extsb    r0, r0
-	sth      r0, 0x36(r31)
-	lwz      r3, 0x20(r31)
-	lha      r0, 0x1a(r3)
-	sth      r0, 0x38(r31)
-	lwz      r8, 0x20(r31)
-	lhz      r7, 0xa(r8)
-	cmplwi   r7, 0
-	bne      lbl_80033164
-	mr       r3, r31
-	bl       initTexObj__10JUTTextureFv
-	b        lbl_80033214
+		mActivePalette = nullptr;
+		mTlut          = GX_TLUT0;
+		mWrapS         = mTexInfo->mWrapS;
+		mWrapT         = mTexInfo->mWrapT;
+		mMinFilter     = mTexInfo->mMinFilterType;
+		mMagFilter     = mTexInfo->mMagFilterType;
+		mMinLOD        = mTexInfo->mMinLOD;
+		mMaxLOD        = mTexInfo->mMaxLOD;
+		mLODBias       = mTexInfo->mLODBias;
 
-lbl_80033164:
-	cmplwi   r7, 0x100
-	ble      lbl_8003318C
-	clrlwi   r3, r5, 0x18
-	slwi     r0, r5, 0x1e
-	srwi     r3, r3, 0x1f
-	subf     r0, r3, r0
-	rotlwi   r0, r0, 2
-	add      r3, r0, r3
-	addi     r29, r3, 0x10
-	b        lbl_80033190
+		u16 paletteCount = mTexInfo->mPaletteEntryCount;
+		if (paletteCount == 0) {
+			initTexObj();
+			return;
+		}
 
-lbl_8003318C:
-	clrlwi   r29, r5, 0x18
+		GXTlut tlut;
+		if (paletteCount > 0x100) {
+			tlut = (GXTlut)(lutID % 4 + 0x10);
+		} else {
+			tlut = (GXTlut)(lutID);
+		}
 
-lbl_80033190:
-	lwz      r3, 0x28(r31)
-	cmplwi   r3, 0
-	beq      lbl_800331A8
-	lbz      r0, 0x3b(r31)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_800331F0
+		if (!mEmbPalette || !(mFlags & TEXFLAG_Unk2)) {
+			mEmbPalette = new JUTPalette(tlut, (GXTlutFmt)mTexInfo->mLutFormat, (JUTTransparency)mTexInfo->mTransparency,
+			                             mTexInfo->mPaletteEntryCount, (void*)((u32)mTexInfo + mTexInfo->mPaletteOffset));
+			mFlags      = (mFlags & TEXFLAG_Unk1) | TEXFLAG_Unk2;
+		} else {
+			mEmbPalette->storeTLUT(tlut, (GXTlutFmt)mTexInfo->mLutFormat, (JUTTransparency)mTexInfo->mTransparency,
+			                       mTexInfo->mPaletteEntryCount, (void*)((u32)mTexInfo + mTexInfo->mPaletteOffset));
+		}
 
-lbl_800331A8:
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_800331D8
-	lwz      r7, 0x20(r31)
-	mr       r4, r29
-	lwz      r0, 0xc(r7)
-	lbz      r5, 9(r7)
-	lbz      r6, 1(r7)
-	add      r8, r7, r0
-	lhz      r7, 0xa(r7)
-	bl       storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
-
-lbl_800331D8:
-	stw      r30, 0x28(r31)
-	lbz      r0, 0x3b(r31)
-	clrlwi   r0, r0, 0x1f
-	ori      r0, r0, 2
-	stb      r0, 0x3b(r31)
-	b        lbl_80033208
-
-lbl_800331F0:
-	lwz      r0, 0xc(r8)
-	mr       r4, r29
-	lbz      r5, 9(r8)
-	lbz      r6, 1(r8)
-	add      r8, r8, r0
-	bl       storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
-
-lbl_80033208:
-	lwz      r4, 0x28(r31)
-	mr       r3, r31
-	bl       attachPalette__10JUTTextureFP10JUTPalette
-
-lbl_80033214:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		attachPalette(mEmbPalette);
+	}
 }
 
 /*
@@ -319,26 +115,7 @@ lbl_80033214:
  */
 void JUTTexture::storeTIMG(const ResTIMG* img, JUTPalette* palette)
 {
-	storeTIMG(img, palette, palette == nullptr ? GX_TLUT0 : (_GXTlut)palette->mTlutID);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x14(r1)
-	beq      lbl_8003324C
-	lbz      r6, 0xc(r5)
-	b        lbl_80033250
-
-lbl_8003324C:
-	li       r6, 0
-
-lbl_80033250:
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	storeTIMG(img, palette, palette ? (GXTlut)palette->mTlutID : GX_TLUT0);
 }
 
 /*
@@ -346,96 +123,39 @@ lbl_80033250:
  * Address:	80033264
  * Size:	000138
  */
-void JUTTexture::storeTIMG(const ResTIMG*, JUTPalette*, _GXTlut)
+void JUTTexture::storeTIMG(const ResTIMG* img, JUTPalette* palette, GXTlut tlut)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	mr       r30, r6
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	beq      lbl_80033380
-	stw      r4, 0x20(r31)
-	lwz      r3, 0x20(r31)
-	lwz      r0, 0x1c(r3)
-	add      r0, r3, r0
-	stw      r0, 0x24(r31)
-	lwz      r3, 0x20(r31)
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	bne      lbl_800332BC
-	addi     r0, r3, 0x20
-	stw      r0, 0x24(r31)
+	if (img) {
+		mTexInfo = const_cast<ResTIMG*>(img);
+		mTexData = (void*)((u32)mTexInfo + mTexInfo->mImageDataOffset);
+		if ((u32)mTexInfo->mImageDataOffset == 0) {
+			mTexData = (void*)((u32)mTexInfo + 0x20);
+		}
 
-lbl_800332BC:
-	lbz      r0, 0x3b(r31)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_800332D0
-	lwz      r3, 0x28(r31)
-	bl       __dl__FPv
+		if (mFlags & TEXFLAG_Unk2) {
+			delete mEmbPalette;
+		}
+		mEmbPalette = palette;
+		mFlags &= TEXFLAG_Unk1;
+		mActivePalette = nullptr;
 
-lbl_800332D0:
-	stw      r29, 0x28(r31)
-	cmplwi   r29, 0
-	li       r0, 0
-	lbz      r3, 0x3b(r31)
-	clrlwi   r3, r3, 0x1f
-	stb      r3, 0x3b(r31)
-	stw      r0, 0x2c(r31)
-	beq      lbl_8003331C
-	stb      r30, 0x3a(r31)
-	lbz      r0, 0xc(r29)
-	cmpw     r30, r0
-	beq      lbl_8003331C
-	lbz      r5, 0xd(r29)
-	mr       r3, r29
-	lbz      r6, 0x16(r29)
-	mr       r4, r30
-	lhz      r7, 0x14(r29)
-	lwz      r8, 0x10(r29)
-	bl       storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
+		if (palette) {
+			mTlut = tlut;
+			if (tlut != palette->mTlutID) {
+				palette->storeTLUT(tlut, (GXTlutFmt)palette->mTlutFormat, (JUTTransparency)palette->mTransparency, palette->mNumColors,
+				                   palette->mColorTable);
+			}
+		}
 
-lbl_8003331C:
-	lwz      r4, 0x20(r31)
-	mr       r3, r31
-	lbz      r0, 6(r4)
-	stb      r0, 0x30(r31)
-	lwz      r4, 0x20(r31)
-	lbz      r0, 7(r4)
-	stb      r0, 0x31(r31)
-	lwz      r4, 0x20(r31)
-	lbz      r0, 0x14(r4)
-	stb      r0, 0x32(r31)
-	lwz      r4, 0x20(r31)
-	lbz      r0, 0x15(r4)
-	stb      r0, 0x33(r31)
-	lwz      r4, 0x20(r31)
-	lbz      r0, 0x16(r4)
-	extsb    r0, r0
-	sth      r0, 0x34(r31)
-	lwz      r4, 0x20(r31)
-	lbz      r0, 0x17(r4)
-	extsb    r0, r0
-	sth      r0, 0x36(r31)
-	lwz      r4, 0x20(r31)
-	lha      r0, 0x1a(r4)
-	sth      r0, 0x38(r31)
-	bl       init__10JUTTextureFv
-
-lbl_80033380:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		mWrapS     = mTexInfo->mWrapS;
+		mWrapT     = mTexInfo->mWrapT;
+		mMinFilter = mTexInfo->mMinFilterType;
+		mMagFilter = mTexInfo->mMagFilterType;
+		mMinLOD    = mTexInfo->mMinLOD;
+		mMaxLOD    = mTexInfo->mMaxLOD;
+		mLODBias   = mTexInfo->mLODBias;
+		init();
+	}
 }
 
 /*
@@ -445,45 +165,15 @@ lbl_80033380:
  */
 void JUTTexture::attachPalette(JUTPalette* palette)
 {
-	if (_20->mPaletteFormat == 0) {
+	if (mTexInfo->mPaletteFormat == 0) {
 		return;
 	}
-	if (palette == nullptr && _28 != nullptr) {
-		_2C = _28;
+	if (!palette && mEmbPalette) {
+		mActivePalette = mEmbPalette;
 	} else {
-		_2C = palette;
+		mActivePalette = palette;
 	}
-	initTexObj((_GXTlut)_2C->mTlutID);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x20(r3)
-	lbz      r0, 8(r5)
-	cmplwi   r0, 0
-	beq      lbl_800333E4
-	cmplwi   r4, 0
-	bne      lbl_800333D4
-	lwz      r0, 0x28(r3)
-	cmplwi   r0, 0
-	beq      lbl_800333D4
-	stw      r0, 0x2c(r3)
-	b        lbl_800333D8
-
-lbl_800333D4:
-	stw      r4, 0x2c(r3)
-
-lbl_800333D8:
-	lwz      r4, 0x2c(r3)
-	lbz      r4, 0xc(r4)
-	bl       initTexObj__10JUTTextureF7_GXTlut
-
-lbl_800333E4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	initTexObj((GXTlut)mActivePalette->mTlutID);
 }
 
 /*
@@ -493,38 +183,12 @@ lbl_800333E4:
  */
 void JUTTexture::init()
 {
-	if (_20->mPaletteEntryCount == 0) {
+	if (mTexInfo->mPaletteEntryCount == 0) {
 		initTexObj();
-	} else if (_28 != nullptr) {
-		_2C = _28;
-		initTexObj((_GXTlut)_2C->mTlutID);
+	} else if (mEmbPalette) {
+		mActivePalette = mEmbPalette;
+		initTexObj((GXTlut)mActivePalette->mTlutID);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x20(r3)
-	lhz      r0, 0xa(r4)
-	cmplwi   r0, 0
-	bne      lbl_80033418
-	bl       initTexObj__10JUTTextureFv
-	b        lbl_80033434
-
-lbl_80033418:
-	lwz      r0, 0x28(r3)
-	cmplwi   r0, 0
-	beq      lbl_80033434
-	stw      r0, 0x2c(r3)
-	lwz      r4, 0x2c(r3)
-	lbz      r4, 0xc(r4)
-	bl       initTexObj__10JUTTextureF7_GXTlut
-
-lbl_80033434:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -534,6 +198,12 @@ lbl_80033434:
  */
 void JUTTexture::initTexObj()
 {
+	GXInitTexObj(this, (void*)((u32)mTexInfo + ((u32)(mTexInfo->mImageDataOffset) ? mTexInfo->mImageDataOffset : 0x20)), mTexInfo->mSizeX,
+	             mTexInfo->mSizeY, (GXTexFmt)mTexInfo->mTextureFormat, (GXTexWrapMode)mWrapS, (GXTexWrapMode)mWrapT,
+	             mTexInfo->isMIPmapEnabled());
+
+	GXInitTexObjLOD(this, (GXTexFilter)mMinFilter, (GXTexFilter)mMagFilter, (f32)mMinLOD / 8, (f32)mMaxLOD / 8, mLODBias / 100.0f,
+	                mTexInfo->mIsBiasClamp, mTexInfo->mDoEdgeLOD, (GXAnisotropy)mTexInfo->mIsMaxAnisotropy);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -605,8 +275,15 @@ lbl_80033480:
  * Address:	80033534
  * Size:	0000FC
  */
-void JUTTexture::initTexObj(_GXTlut)
+void JUTTexture::initTexObj(GXTlut tlut)
 {
+	mTlut = tlut;
+	GXInitTexObjCI(this, (void*)((u32)mTexInfo + ((mTexInfo->mImageDataOffset) ? mTexInfo->mImageDataOffset : 0x20)), mTexInfo->mSizeX,
+	               mTexInfo->mSizeY, (GXCITexFmt)mTexInfo->mTextureFormat, (GXTexWrapMode)mWrapS, (GXTexWrapMode)mWrapT,
+	               mTexInfo->isMIPmapEnabled(), tlut);
+
+	GXInitTexObjLOD(this, (GXTexFilter)mMinFilter, (GXTexFilter)mMagFilter, (f32)mMinLOD / 8, (f32)mMaxLOD / 8, mLODBias / 100.0f,
+	                mTexInfo->mIsBiasClamp, mTexInfo->mDoEdgeLOD, (GXAnisotropy)mTexInfo->mIsMaxAnisotropy);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -681,36 +358,12 @@ lbl_80033578:
  * Address:	80033630
  * Size:	000050
  */
-void JUTTexture::load(_GXTexMapID id)
+void JUTTexture::load(GXTexMapID id)
 {
-	if (_2C != nullptr) {
-		_2C->load();
+	if (mActivePalette) {
+		mActivePalette->load();
 	}
 	GXLoadTexObj(this, id);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x2c(r3)
-	cmplwi   r3, 0
-	beq      lbl_8003365C
-	bl       load__10JUTPaletteFv
-
-lbl_8003365C:
-	mr       r3, r30
-	mr       r4, r31
-	bl       GXLoadTexObj
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -718,94 +371,19 @@ lbl_8003365C:
  * Address:	80033680
  * Size:	0000C4
  */
-void JUTTexture::capture(int p1, int p2, _GXTexFmt textureFormat, bool p4, unsigned char p5)
+void JUTTexture::capture(int x0, int y0, GXTexFmt textureFormat, bool useMIPmap, u8 doClear)
 {
-	if ((mFlags & 1) == 0) {
+	if (!(mFlags & 1)) {
 		return;
 	}
-	if (p4) {
-		GXSetTexCopySrc(p1, p2, _20->mSizeX << 1, _20->mSizeY << 1, p4, p5);
+
+	if (useMIPmap) {
+		GXSetTexCopySrc(x0, y0, mTexInfo->mSizeX << 1, mTexInfo->mSizeY << 1);
 	} else {
-		GXSetTexCopySrc(p1, p2, _20->mSizeX, _20->mSizeY, GX_FALSE, p5);
+		GXSetTexCopySrc(x0, y0, mTexInfo->mSizeX, mTexInfo->mSizeY);
 	}
-	GXSetTexCopyDst(_20->mSizeX, _20->mSizeY, textureFormat, p4);
-	GXCopyTex(_24, p5);
+
+	GXSetTexCopyDst(mTexInfo->mSizeX, mTexInfo->mSizeY, textureFormat, useMIPmap);
+	GXCopyTex(mTexData, doClear);
 	GXPixModeSync();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r8
-	stw      r30, 0x18(r1)
-	mr       r30, r7
-	stw      r29, 0x14(r1)
-	mr       r29, r6
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lbz      r0, 0x3b(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80033724
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_800336E4
-	lwz      r6, 0x20(r28)
-	clrlwi   r3, r4, 0x10
-	clrlwi   r4, r5, 0x10
-	lhz      r5, 2(r6)
-	lhz      r0, 4(r6)
-	rlwinm   r5, r5, 1, 0x10, 0x1e
-	rlwinm   r6, r0, 1, 0x10, 0x1e
-	bl       GXSetTexCopySrc
-	b        lbl_800336FC
-
-lbl_800336E4:
-	lwz      r6, 0x20(r28)
-	clrlwi   r3, r4, 0x10
-	clrlwi   r4, r5, 0x10
-	lhz      r5, 2(r6)
-	lhz      r6, 4(r6)
-	bl       GXSetTexCopySrc
-
-lbl_800336FC:
-	lwz      r4, 0x20(r28)
-	mr       r5, r29
-	clrlwi   r6, r30, 0x18
-	lhz      r3, 2(r4)
-	lhz      r4, 4(r4)
-	bl       GXSetTexCopyDst
-	lwz      r3, 0x24(r28)
-	mr       r4, r31
-	bl       GXCopyTex
-	bl       GXPixModeSync
-
-lbl_80033724:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000188
- */
-void JUTTexture::captureTexture(int, int, int, int, bool, _GXTexFmt, _GXTexFmt)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
- */
-void JUTTexture::captureDolTexture(void*, int, int, int, int, bool, _GXTexFmt)
-{
-	// UNUSED FUNCTION
 }
