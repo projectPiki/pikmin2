@@ -155,7 +155,7 @@ LIBS = [
             ["JSystem/JUtility/JUTAssert", True],
             "JSystem/JUtility/JUTConsole",
             ["JSystem/JUtility/JUTDbPrint", True],
-            "JSystem/JUtility/JUTDirectFile",
+            ["JSystem/JUtility/JUTDirectFile", True],
             "JSystem/JUtility/JUTDirectPrint",
             "JSystem/JUtility/JUTException",
             ["JSystem/JUtility/JUTFader", True],
