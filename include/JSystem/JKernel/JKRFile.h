@@ -72,6 +72,8 @@ struct JKRDvdFile : public JKRFile {
 
 	inline int writeDataAsync(const void*, long, long) { return -1; }
 
+	inline DVDFileInfo* getFileInfo() { return &mDvdPlayer; }
+
 	void initiate();
 	long sync();
 

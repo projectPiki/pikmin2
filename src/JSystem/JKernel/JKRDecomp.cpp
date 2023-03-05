@@ -113,10 +113,10 @@ bool JKRDecomp::orderSync(u8* srcBuffer, u8* destBuffer, u32 srcLen, u32 destLen
  */
 void JKRDecomp::decode(u8* p1, u8* p2, u32 p3, u32 p4)
 {
-	CompressionMode compression = checkCompressed(p1);
-	if (compression == YAY0)
+	JKRCompression compression = checkCompressed(p1);
+	if (compression == COMPRESSION_YAY0)
 		decodeSZP(p1, p2, p3, p4);
-	else if (compression == YAZ0)
+	else if (compression == COMPRESSION_YAZ0)
 		decodeSZS(p1, p2, p3, p4);
 }
 
@@ -275,17 +275,17 @@ void JKRDecomp::decodeSZS(u8* src_buffer, u8* dst_buffer, u32 srcSize, u32 dstSi
  * Address:	8001CEF0
  * Size:	000050
  */
-JKRDecomp::CompressionMode JKRDecomp::checkCompressed(u8* p1)
+JKRCompression JKRDecomp::checkCompressed(u8* p1)
 {
 	if (p1[0] == 'Y' && p1[1] == 'a' && p1[3] == '0') {
 		if (p1[2] == 'y') {
-			return YAY0;
+			return COMPRESSION_YAY0;
 		}
 		if (p1[2] == 'z') {
-			return YAZ0;
+			return COMPRESSION_YAZ0;
 		}
 	}
-	return NOT_COMPRESSED;
+	return COMPRESSION_None;
 }
 
 /*

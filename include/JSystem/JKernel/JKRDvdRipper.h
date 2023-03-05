@@ -13,6 +13,11 @@ struct JKRDMCommand {
 	~JKRDMCommand();
 };
 
+struct SYaz0Header {
+	u32 mSignature; // _00
+	u32 mLength;    // _04
+};
+
 struct JKRDvdRipper {
 	enum EAllocDirection {
 		ALLOC_DIR_PAD,    // Unseen/unhandled so far
@@ -30,12 +35,14 @@ struct JKRDvdRipper {
 
 	static void syncAll(int);
 	static void countLeftSync();
-	static bool isErrorRetry();
 
 	static bool errorRetry;
-	static const int sSZSBufferSize = 0x400;
+	static int sSZSBufferSize; // 0x400
 
 	static JSUList<JKRDMCommand> sDvdAsyncList;
+
+	static int getSZSBufferSize() { return sSZSBufferSize; }
+	static bool isErrorRetry() { return errorRetry; }
 };
 
 inline void* JKRLoadToMainRAM(char* filename)
@@ -43,5 +50,7 @@ inline void* JKRLoadToMainRAM(char* filename)
 	return JKRDvdRipper::loadToMainRAM(filename, nullptr, Switch_1, 0, JKRGetCurrentHeap(), JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
 	                                   nullptr);
 }
+
+int JKRDecompressFromDVD(JKRDvdFile*, void*, u32, u32, u32, u32, u32*);
 
 #endif

@@ -3,6 +3,7 @@
 
 #include "Dolphin/os.h"
 #include "JSystem/JKernel/JKRThread.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "types.h"
 
 struct JKRAMCommand;
@@ -107,14 +108,12 @@ struct JKRDecompCommand {
 
 // Size: 0x7C
 struct JKRDecomp : public JKRThread {
-	enum CompressionMode { NOT_COMPRESSED = 0, YAY0, YAZ0 };
-
 	JKRDecomp(long);
 
 	virtual ~JKRDecomp(); // _08
 	virtual void* run();  // _0C
 
-	static CompressionMode checkCompressed(u8*);
+	static JKRCompression checkCompressed(u8*);
 	static JKRDecomp* create(long);
 	static void decode(u8*, u8*, u32, u32);
 	static void decodeSZP(u8*, u8*, u32, u32);
@@ -133,5 +132,13 @@ inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLe
 }
 
 inline JKRDecomp* JKRCreateDecompManager(long priority) { return JKRDecomp::create(priority); }
+
+inline JKRCompression JKRCheckCompressed(u8* buffer)
+{
+	JKRCompression compression = JKRDecomp::checkCompressed(buffer);
+	return compression;
+}
+
+inline u32 JKRDecompExpandSize(u8* buffer) { return (buffer[4] << 0x18) | (buffer[5] << 0x10) | (buffer[6] << 8) | buffer[7]; }
 
 #endif
