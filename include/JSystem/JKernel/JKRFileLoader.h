@@ -26,7 +26,7 @@ struct JKRFileLoader : public JKRDisposer {
 	static void* getGlbResource(char const*);
 	static void* getGlbResource(char const*, JKRFileLoader*);
 	static JKRFileLoader* findVolume(char const**);
-	static void fetchVolumeName(char*, long, char const*);
+	static const char* fetchVolumeName(char*, long, char const*);
 
 	bool isMounted() const { return mIsMounted; }
 	u32 getVolumeType() const { return mMagicWord; }

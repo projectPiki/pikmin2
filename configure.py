@@ -114,7 +114,7 @@ LIBS = [
             "JSystem/JKernel/JKRFileCache",
             ["JSystem/JKernel/JKRFileFinder", True],
             ["JSystem/JKernel/JKRFile", True],
-            "JSystem/JKernel/JKRFileLoader",
+            ["JSystem/JKernel/JKRFileLoader", True],
             "JSystem/JKernel/JKRHeap",
             "JSystem/JKernel/JKRMemArchive",
             "JSystem/JKernel/JKRSolidHeap",
