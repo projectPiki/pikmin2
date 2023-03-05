@@ -12,7 +12,7 @@ JSUList<JKRTask> JKRTask::sTaskList;
 
 JKRThreadSwitch* JKRThreadSwitch::sManager;
 u32 JKRThreadSwitch::sTotalCount;
-u64 JKRThreadSwitch::sTotalStart;
+OSTime JKRThreadSwitch::sTotalStart;
 
 /*
  * --INFO--
@@ -20,7 +20,7 @@ u64 JKRThreadSwitch::sTotalStart;
  * Size:	0000B8
  * __ct__9JKRThreadFUlii
  */
-JKRThread::JKRThread(unsigned long stackSize, int msgCount, int threadPriority)
+JKRThread::JKRThread(u32 stackSize, int msgCount, int threadPriority)
     : JKRDisposer()
     , mLink(this)
     , mLoadInfo()
@@ -39,7 +39,7 @@ JKRThread::JKRThread(unsigned long stackSize, int msgCount, int threadPriority)
  * Size:	0000A0
  * __ct__9JKRThreadFP7JKRHeapUlii
  */
-JKRThread::JKRThread(JKRHeap* heap, unsigned long stackSize, int msgCount, int threadPriority)
+JKRThread::JKRThread(JKRHeap* heap, u32 stackSize, int msgCount, int threadPriority)
     : JKRDisposer()
     , mLink(this)
     , mLoadInfo()
@@ -109,7 +109,7 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int msgCount)
  * Address:	80025980
  * Size:	000090
  */
-BOOL JKRThread::setCommon_heapSpecified(JKRHeap* heap, unsigned long stackSize, int threadPriority)
+BOOL JKRThread::setCommon_heapSpecified(JKRHeap* heap, u32 stackSize, int threadPriority)
 {
 	mHeap      = heap;
 	mStackSize = stackSize & ~0x1F;
@@ -127,22 +127,15 @@ void* JKRThread::start(void* thread) { return static_cast<JKRThread*>(thread)->r
 
 /*
  * --INFO--
- * Address:	80025A3C
- * Size:	000008
- */
-// void* JKRThread::run() { return nullptr; }
-
-/*
- * --INFO--
  * Address:	........
  * Size:	000038
  */
 JKRThread::TLoad* JKRThread::searchThreadLoad(OSThread* osThread)
 {
-	// UNUSED FUNCTION
-	for (JSULink<JKRThread>* link = JKRThread::sThreadList.getFirst(); link != nullptr; link = link->getNext()) {
-		if (link->getObject()->mThread == osThread) {
-			return &link->getObject()->mLoadInfo;
+	for (JSULink<JKRThread>* link = getList().getFirst(); link; link = link->getNext()) {
+		JKRThread* thread = link->getObject();
+		if (thread->mThread == osThread) {
+			return &thread->mLoadInfo;
 		}
 	}
 	return nullptr;
@@ -165,23 +158,16 @@ void JKRThreadSwitch::loopProc()
 	OSDisableInterrupts();
 	OSDisableScheduler();
 	JKRThread::TLoad* v1 = JKRThread::searchThreadLoad(OSGetCurrentThread());
-	// OSThread* osThread = OSGetCurrentThread();
-	// JKRThread_0x60* v1;
-	// for (JSULink<JKRThread>* link = JKRThread::sThreadList.getFirst(); link != nullptr; link = link->getNext()) {
-	// 	if (link->getObject()->mThread == osThread) {
-	// 		v1 = &link->getObject()->mLoadInfo;
-	// 	}
-	// }
-	// v1  = nullptr;
+
 	_0C = 0;
-	_18 = OSGetTime() - sTotalStart;
+	_18 = OSGetTime() - getTotalStart();
 	if (v1 != nullptr) {
 		v1->mCost += OSGetTick() - v1->mLastTick;
 	}
 	if (_20 != 0) {
-		// v1->draw(_24);
+		draw(_24, _20);
 	} else {
-		// v1->draw(_24);
+		draw(_24);
 	}
 	for (JSULink<JKRThread>* link = JKRThread::sThreadList.getFirst(); link != nullptr; link = link->getNext()) {
 		JKRThread* thread              = link->getObject();
@@ -347,7 +333,7 @@ JKRTask::~JKRTask() { sTaskList.remove(&_7C); }
  * Address:	80025CD8
  * Size:	0002A4
  */
-JKRTask* JKRTask::create(int msgCount, int threadPriority, unsigned long stackSize, JKRHeap* heap)
+JKRTask* JKRTask::create(int msgCount, int threadPriority, u32 stackSize, JKRHeap* heap)
 {
 	if (heap == nullptr) {
 		heap = JKRHeap::sCurrentHeap;
@@ -380,60 +366,15 @@ void* JKRTask::run()
 	Message* msg;
 	OSInitFastCast();
 	while (true) {
-		// OSReceiveMessage(&mMsgQueue, (OSMessage*)msg, OS_MESSAGE_BLOCKING);
+		msg = (Message*)waitMessageBlock();
 		if (msg->_00 != nullptr) {
 			msg->_00(msg->_04);
 			if (_94 != nullptr) {
-				OSSendMessage(_94, msg->_08, OS_MESSAGE_NON_BLOCKING);
+				OSSendMessage(_94, msg->_08, OS_MESSAGE_NOBLOCK);
 			}
 		}
 		msg->_00 = nullptr;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 4
-	oris     r3, r3, 4
-	mtspr    0x392, r3
-	li       r3, 5
-	oris     r3, r3, 5
-	mtspr    0x393, r3
-	li       r3, 6
-	oris     r3, r3, 6
-	mtspr    0x394, r3
-	li       r3, 7
-	oris     r3, r3, 7
-	mtspr    0x395, r3
-	li       r31, 0
-
-lbl_80025FCC:
-	addi     r3, r29, 0x30
-	addi     r4, r1, 8
-	li       r5, 1
-	bl       OSReceiveMessage
-	lwz      r30, 8(r1)
-	lwz      r12, 0(r30)
-	cmplwi   r12, 0
-	beq      lbl_80026010
-	lwz      r3, 4(r30)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x94(r29)
-	cmplwi   r3, 0
-	beq      lbl_80026010
-	lwz      r4, 8(r30)
-	li       r5, 0
-	bl       OSSendMessage
-
-lbl_80026010:
-	stw      r31, 0(r30)
-	b        lbl_80025FCC
-	*/
 }
 
 /*
@@ -443,7 +384,6 @@ lbl_80026010:
  */
 JKRTask::Message* JKRTask::searchBlank()
 {
-	// UNUSED FUNCTION
 	for (int i = 0; i < _90; i++) {
 		if (_8C[i]._00 == nullptr) {
 			return _8C + i;
@@ -466,79 +406,9 @@ bool JKRTask::request(RequestCallback callback, void* p2, void* p3)
 	msg->_00        = callback;
 	msg->_04        = p2;
 	msg->_08        = p3;
-	bool sendResult = (OSSendMessage(&mMsgQueue, msg, OS_MESSAGE_NON_BLOCKING));
+	bool sendResult = (OSSendMessage(&mMsgQueue, msg, OS_MESSAGE_NOBLOCK));
 	if (!sendResult) {
 		msg->_00 = nullptr;
 	}
 	return sendResult;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r7, 0
-	stw      r0, 0x14(r1)
-	mr       r8, r7
-	stw      r31, 0xc(r1)
-	lwz      r0, 0x90(r3)
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_80026068
-
-lbl_80026040:
-	lwz      r9, 0x8c(r3)
-	lwzx     r0, r9, r8
-	cmplwi   r0, 0
-	bne      lbl_8002605C
-	mulli    r0, r7, 0xc
-	add      r31, r9, r0
-	b        lbl_8002606C
-
-lbl_8002605C:
-	addi     r8, r8, 0xc
-	addi     r7, r7, 1
-	bdnz     lbl_80026040
-
-lbl_80026068:
-	li       r31, 0
-
-lbl_8002606C:
-	cmplwi   r31, 0
-	bne      lbl_8002607C
-	li       r3, 0
-	b        lbl_800260B4
-
-lbl_8002607C:
-	stw      r4, 0(r31)
-	mr       r4, r31
-	addi     r3, r3, 0x30
-	stw      r5, 4(r31)
-	li       r5, 0
-	stw      r6, 8(r31)
-	bl       OSSendMessage
-	neg      r0, r3
-	or       r0, r0, r3
-	rlwinm.  r0, r0, 1, 0x1f, 0x1f
-	mr       r3, r0
-	bne      lbl_800260B4
-	li       r0, 0
-	stw      r0, 0(r31)
-
-lbl_800260B4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
-
-/*
- * --INFO--
- * Address:	800260C8
- * Size:	000070
- */
-// void __sinit_JKRThread_cpp() { }
-
-/*
- * @generated{__dt__17JSUList<7JKRTask>Fv}
- * @generated{__dt__19JSUList<9JKRThread>Fv}
- */

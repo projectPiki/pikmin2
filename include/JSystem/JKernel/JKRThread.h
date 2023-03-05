@@ -35,18 +35,20 @@ struct JKRThreadSwitch {
 	void resetAll();
 	void createConsole(JUTFont*, int, JKRHeap*);
 
+	static OSTime getTotalStart() { return sTotalStart; }
+
 	// _00 VTBL
-	u8 _04[8]; // _04 - unknown/padding
-	int _0C;   // _0C
-	int _10;   // _10
-	u8 _14[4]; // _14 - unknown/padding
-	u64 _18;   // _18
-	u32 _20;   // _20
-	u32 _24;   // _24
+	u8 _04[8];           // _04 - unknown/padding
+	int _0C;             // _0C
+	int _10;             // _10
+	u8 _14[4];           // _14 - unknown/padding
+	u64 _18;             // _18
+	JUTConsole* _20;     // _20
+	JKRThreadName_* _24; // _24
 
 	static JKRThreadSwitch* sManager;
 	static u32 sTotalCount;
-	static u64 sTotalStart;
+	static OSTime sTotalStart;
 };
 
 struct JKRThread : public JKRDisposer {
@@ -120,6 +122,8 @@ struct JKRThread : public JKRDisposer {
 		mCurrentHeap = heap;
 	}
 
+	static JSUList<JKRThread>& getList() { return (JSUList<JKRThread>&)sThreadList; }
+
 	static JSUList<JKRThread> sThreadList;
 
 	// _00     = VTBL
@@ -173,7 +177,7 @@ struct JKRTask : public JKRThread {
 	OSMessage waitMessageBlock()
 	{
 		OSMessage msg;
-		// OSReceiveMessage(_94, &msg, OS_MESSAGE_BLOCKING);
+		OSReceiveMessage(&mMsgQueue, &msg, OS_MESSAGE_BLOCK);
 		return msg;
 	}
 
