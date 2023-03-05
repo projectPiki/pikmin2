@@ -9,6 +9,8 @@
 #include "JSystem/JUtility/JUTExternalFB.h"
 #include "types.h"
 
+typedef void (*JUTExceptionHandler)(OSError error, OSContext* context, u32 p3, u32 p4);
+
 struct JUTConsole;
 struct JUTDirectPrint;
 
@@ -18,6 +20,8 @@ enum ExPrintFlags {
 	EXPRINTFLAG_SRR0Map = 0x4,
 	EXPRINTFLAG_Float   = 0x8,
 	EXPRINTFLAG_Stack   = 0x10,
+
+	EXPRINTFLAG_All = 0x1F,
 };
 
 /**
@@ -61,15 +65,15 @@ struct JUTException : public JKRThread {
 	void showFloat(OSContext*);
 	void showStack(OSContext*);
 	void showMainInfo(u16, OSContext*, u32, u32);
-	void showMapInfo_subroutine(u32, bool);
+	bool showMapInfo_subroutine(u32, bool);
 	void showGPRMap(OSContext*);
 	void printDebugInfo(JUTException::EInfoPage, u16, OSContext*, u32, u32);
-	void readPad(u32*, u32*);
+	bool readPad(u32*, u32*);
 	void printContext(u16, OSContext*, u32, u32);
 	void createFB();
 
 	static void waitTime(long);
-	static OSErrorHandler setPreUserCallback(OSErrorHandler);
+	static JUTExceptionHandler setPreUserCallback(JUTExceptionHandler);
 	static void appendMapFile(const char*);
 	static bool queryMapAddress(char*, u32, long, u32*, u32*, char*, u32, bool, bool);
 	static bool queryMapAddress_single(char*, u32, long, u32*, u32*, char*, u32, bool, bool);
@@ -82,10 +86,10 @@ struct JUTException : public JKRThread {
 
 	// unused/inlined:
 	static void panic_f_va(const char*, int, const char*, va_list*);
-	static OSErrorHandler setPostUserCallback(OSErrorHandler);
+	static JUTExceptionHandler setPostUserCallback(JUTExceptionHandler);
 
 	void showFloatSub(int, f32);
-	void searchPartialModule(u32, u32*, u32*, u32*, u32*);
+	bool searchPartialModule(u32, u32*, u32*, u32*, u32*);
 	void showGPR(OSContext*);
 	void showSRR0Map(OSContext*);
 	bool isEnablePad() const;
@@ -112,8 +116,8 @@ struct JUTException : public JKRThread {
 	static JUTException* sErrorManager;
 	static OSMessageQueue sMessageQueue;
 	static void* sMessageBuffer[1];
-	static OSErrorHandler sPreUserCallback;
-	static OSErrorHandler sPostUserCallback;
+	static JUTExceptionHandler sPreUserCallback;
+	static JUTExceptionHandler sPostUserCallback;
 	static u32 msr;
 	static u32 fpscr;
 	static const char* sCpuExpName[OS_ERROR_MAX + 1];

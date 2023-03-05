@@ -243,7 +243,7 @@ struct JUTGamePad : public JKRDisposer {
 		C3ButtonReset::sCallbackArg = (u32)param_0;
 	}
 
-	static void initList();
+	void initList();
 	static void init();
 	static u32 read();
 	static void checkResetSwitch();

@@ -14,7 +14,6 @@ extern "C" {
 typedef u16 OSError;
 
 // Error handler function type.
-// NB: usually, next two args after context are u32s.
 typedef void (*OSErrorHandler)(OSError error, OSContext* context, ...);
 
 // Error functions.
