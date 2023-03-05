@@ -8,6 +8,11 @@
 struct JKRArchive;
 
 struct JKRFileFinderBase {
+	enum FileTypes {
+		FILETYPE_Unk1 = 1,
+		FILETYPE_Unk2 = 2,
+	};
+
 	char* mFileName;    // _00
 	int mFileIndex;     // _04
 	u16 mFileID;        // _08
@@ -46,12 +51,7 @@ struct JKRArcFinder : public JKRFileFinder {
 struct JKRDvdFinder : public JKRFileFinder {
 	JKRDvdFinder(const char*);
 
-	virtual ~JKRDvdFinder() // _08 (weak)
-	{
-		if (mIsDvdOpen) {
-			DVDCloseDir(&mFstEntry);
-		}
-	}
+	virtual ~JKRDvdFinder();     // _08 (weak)
 	virtual bool findNextFile(); // _0C
 
 	// _00     = VTBL

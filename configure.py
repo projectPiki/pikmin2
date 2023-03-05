@@ -112,7 +112,7 @@ LIBS = [
             ["JSystem/JKernel/JKRDvdRipper", True],
             ["JSystem/JKernel/JKRExpHeap", True],
             "JSystem/JKernel/JKRFileCache",
-            "JSystem/JKernel/JKRFileFinder",
+            ["JSystem/JKernel/JKRFileFinder", True],
             ["JSystem/JKernel/JKRFile", True],
             "JSystem/JKernel/JKRFileLoader",
             "JSystem/JKernel/JKRHeap",
