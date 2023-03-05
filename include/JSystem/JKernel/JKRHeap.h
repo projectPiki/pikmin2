@@ -113,7 +113,7 @@ struct JKRHeap : public JKRDisposer {
 	void free(void*);
 	void freeAll();
 	void freeTail();
-	void resize(void*, u32);
+	int resize(void*, u32);
 	u32 getFreeSize();
 	u32 getTotalFreeSize();
 	u8 changeGroupID(u8);
@@ -302,6 +302,22 @@ struct JKRExpHeap : public JKRHeap {
 };
 
 struct JKRSolidHeap : public JKRHeap {
+	struct SolidList {
+		SolidList(u32 num, u32 size, u8* p3, u8* p4, SolidList* next)
+		{
+			mCount = num;
+			mSize  = size;
+			_08    = p3;
+			_0C    = p4;
+			mNext  = next;
+		}
+		u32 mCount;       // _00
+		u32 mSize;        // _04
+		u8* _08;          // _08
+		void* _0C;        // _0C
+		SolidList* mNext; // _10
+	};
+
 	JKRSolidHeap(void*, u32, JKRHeap*, bool);
 
 	virtual ~JKRSolidHeap();                                         // _08
@@ -322,18 +338,26 @@ struct JKRSolidHeap : public JKRHeap {
 	virtual void state_register(TState*, u32) const;                 // _54
 	virtual bool state_compare(const TState&, const TState&) const;  // _58
 
-	u32 adjustSize();
+	int adjustSize();
 	void* allocFromHead(u32, int);
 	void* allocFromTail(u32, int);
 
+	static u32 getUsedSize(JKRSolidHeap* sldHeap)
+	{
+		// u32 totalFreeSize = sldHeap->getTotalFreeSize();
+		return sldHeap->mHeapSize - sldHeap->getTotalFreeSize();
+	}
+
 	static JKRSolidHeap* create(u32, JKRHeap*, bool);
+
+	static u32 getState_(TState* state) { return getState_buf_(state); }
 
 	// _00     = VTBL
 	// _00-_6C = JKRHeap
-	u32 mFreeSize;  // _6C
-	u8* mSolidHead; // _70
-	u8* mSolidTail; // _74
-	u32 _78;        // _78, seems to be some linked list struct in TP
+	u32 mFreeSize;    // _6C
+	u8* mSolidHead;   // _70
+	u8* mSolidTail;   // _74
+	SolidList* mList; // _78
 };
 
 void JKRDefaultMemoryErrorRoutine(void*, u32, int);
