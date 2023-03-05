@@ -170,7 +170,7 @@ struct JKRAMCommand : public ARQRequest {
 	s32 _60;                          // _60
 	JKRDecompCommand* mDecompCommand; // _64
 	OSMessageQueue mMessageQueue;     // _68
-	void* mMessage;                   // _88
+	OSMessage mMessage;               // _88
 	void* _8C;                        // _8C
 	void* _90;                        // _90
 	void* _94;                        // _94

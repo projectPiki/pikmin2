@@ -5,57 +5,8 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_JKRAramPiece_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80473540
-    lbl_80473540:
-        .4byte 0x64697265
-        .4byte 0x6374696F
-        .4byte 0x6E203D20
-        .4byte 0x25780A00
-        .4byte 0x736F7572
-        .4byte 0x6365203D
-        .4byte 0x2025780A
-        .4byte 0x00000000
-        .4byte 0x64657374
-        .4byte 0x696E6174
-        .4byte 0x696F6E20
-        .4byte 0x3D202578
-        .4byte 0x0A000000
-        .4byte 0x6C656E67
-        .4byte 0x7468203D
-        .4byte 0x2025780A
-        .4byte 0x00000000
-        .4byte 0x4A4B5241
-        .4byte 0x72616D50
-        .4byte 0x69656365
-        .4byte 0x2E637070
-        .4byte 0x00000000
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global sAramPieceCommandList__12JKRAramPiece
-    sAramPieceCommandList__12JKRAramPiece:
-        .skip 0x24
-    .global mMutex__12JKRAramPiece
-    mMutex__12JKRAramPiece:
-        .skip 0x18
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805164D8
-    lbl_805164D8:
-        .4byte 0x41626F72
-        .4byte 0x742E0000
-*/
-
-/**
- * TODO: This needs proper sinit
- */
 JSUList<JKRAMCommand> JKRAramPiece::sAramPieceCommandList;
+OSMutex JKRAramPiece::mMutex;
 
 /*
  * --INFO--
@@ -74,39 +25,41 @@ struct OrderSyncMsg {
  * Address:	80019AF8
  * Size:	0001AC
  */
-bool JKRAramPiece::orderSync(int direction, unsigned long source, unsigned long destination, unsigned long length, JKRAramBlock* block)
+bool JKRAramPiece::orderSync(int direction, u32 source, u32 destination, u32 length, JKRAramBlock* block)
 {
 	OSLockMutex(&mMutex);
 	OSLockMutex(&mMutex);
-	if ((source & 0x1F) != 0 || (destination & 0x1F) != 0) {
+
+	if (!IS_ALIGNED(source, 32) || !IS_ALIGNED(destination, 32)) {
 		OSReport("direction = %x\n", direction);
 		OSReport("source = %x\n", source);
 		OSReport("destination = %x\n", destination);
 		OSReport("length = %x\n", length);
 		OSErrorLine(107, "Abort.");
 	}
-	OrderSyncMsg* msg = new (JKRHeap::sSystemHeap, -4) OrderSyncMsg();
-	// void** msg         = new (JKRHeap::sSystemHeap, -4) void*[2];
-	JKRAMCommand* cmd = new (JKRHeap::sSystemHeap, -4) JKRAMCommand();
+	OrderSyncMsg* msg = new (JKRHeap::getSystemHeap(), -4) OrderSyncMsg();
+	JKRAMCommand* cmd = new (JKRHeap::getSystemHeap(), -4) JKRAMCommand();
 	cmd->mDirection   = direction;
 	cmd->mSource      = source;
 	cmd->mDestination = destination;
-	cmd->_50          = block;
+	cmd->mAramBlock   = block;
 	cmd->mLength      = length;
-	cmd->_58          = nullptr;
+	cmd->mCallback    = nullptr;
 	msg->_00          = 1;
 	msg->_04          = cmd;
-	// msg[0] = (void*)1;
-	// msg[1] = cmd;
-	OSSendMessage((OSMessageQueue*)&JKRAram::sMessageQueue, msg, OS_MESSAGE_BLOCKING);
-	if (cmd->_58 != nullptr) {
+
+	OSSendMessage((OSMessageQueue*)&JKRAram::sMessageQueue, msg, OS_MESSAGE_BLOCK);
+	if (cmd->mCallback) {
 		sAramPieceCommandList.append(&cmd->_20);
 	}
+
 	OSUnlockMutex(&mMutex);
 	OSLockMutex(&mMutex);
-	void* recvMsg[2];
-	OSReceiveMessage(&cmd->_68, recvMsg, OS_MESSAGE_BLOCKING);
+
+	OSMessage recvMsg[2];
+	OSReceiveMessage(&cmd->mMessageQueue, recvMsg, OS_MESSAGE_BLOCK);
 	sAramPieceCommandList.remove(&cmd->_20);
+
 	OSUnlockMutex(&mMutex);
 	delete cmd;
 	OSUnlockMutex(&mMutex);
@@ -120,7 +73,7 @@ bool JKRAramPiece::orderSync(int direction, unsigned long source, unsigned long 
  */
 void JKRAramPiece::startDMA(JKRAMCommand* cmd)
 {
-	if (cmd->mDirection == 1) {
+	if (cmd->mDirection == ARAM_DIR_ARAM_TO_MRAM) {
 		DCInvalidateRange((u8*)cmd->mDestination, cmd->mLength);
 	} else {
 		DCStoreRange((u8*)cmd->mSource, cmd->mLength);
@@ -133,25 +86,25 @@ void JKRAramPiece::startDMA(JKRAMCommand* cmd)
  * Address:	80019D1C
  * Size:	0000A8
  */
-void JKRAramPiece::doneDMA(unsigned long p1)
+void JKRAramPiece::doneDMA(u32 cmdAddr)
 {
-	JKRAMCommand* cmd = (JKRAMCommand*)p1;
+	JKRAMCommand* cmd = (JKRAMCommand*)cmdAddr;
 	if (cmd->mDirection == 1) {
 		DCInvalidateRange((u8*)cmd->mDestination, cmd->mLength);
 	}
-	if (cmd->_60 != 0) {
+	if (cmd->_60) {
 		if (cmd->_60 == 2) {
-			JKRDecomp::sendCommand(cmd->_64);
+			JKRDecomp::sendCommand(cmd->mDecompCommand);
 		}
 		return;
 	}
-	if (cmd->_58 != nullptr) {
-		cmd->_58(cmd);
+	if (cmd->mCallback) {
+		cmd->mCallback(cmd);
 	} else {
-		if (cmd->_5C != nullptr) {
-			OSSendMessage(cmd->_5C, cmd, OS_MESSAGE_NON_BLOCKING);
+		if (cmd->_5C) {
+			OSSendMessage(cmd->_5C, cmd, OS_MESSAGE_NOBLOCK);
 		} else {
-			OSSendMessage(&cmd->_68, cmd, OS_MESSAGE_NON_BLOCKING);
+			OSSendMessage(&cmd->mMessageQueue, cmd, OS_MESSAGE_NOBLOCK);
 		}
 	}
 }
@@ -166,13 +119,13 @@ JKRAMCommand::JKRAMCommand()
     : _20(this)
     , _30(this)
 {
-	OSInitMessageQueue(&_68, &_88, OS_MESSAGE_BLOCKING);
-	_58 = nullptr;
-	_5C = nullptr;
-	_60 = 0;
-	_8C = nullptr;
-	_90 = nullptr;
-	_94 = nullptr;
+	OSInitMessageQueue(&mMessageQueue, &mMessage, OS_MESSAGE_BLOCK);
+	mCallback = nullptr;
+	_5C       = nullptr;
+	_60       = 0;
+	_8C       = nullptr;
+	_90       = nullptr;
+	_94       = nullptr;
 }
 
 /*
@@ -183,41 +136,13 @@ JKRAMCommand::JKRAMCommand()
  */
 JKRAMCommand::~JKRAMCommand()
 {
-	if (_8C != nullptr) {
+	if (_8C) {
 		delete _8C;
 	}
-	if (_90 != nullptr) {
+	if (_90) {
 		delete _90;
 	}
-	if (_94 != nullptr) {
+	if (_94) {
 		JKRHeap::free(_94, nullptr);
 	}
 }
-
-/*
- * --INFO--
- * Address:	80019EDC
- * Size:	000044
- */
-// void __sinit_JKRAramPiece_cpp()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	lis      r3, sAramPieceCommandList__12JKRAramPiece@ha
-// 	stw      r0, 0x14(r1)
-// 	addi     r3, r3, sAramPieceCommandList__12JKRAramPiece@l
-// 	bl       initiate__10JSUPtrListFv
-// 	lis      r3, sAramPieceCommandList__12JKRAramPiece@ha
-// 	lis      r4, "__dt__23JSUList<12JKRAMCommand>Fv"@ha
-// 	lis      r5, lbl_804EFF30@ha
-// 	addi     r3, r3, sAramPieceCommandList__12JKRAramPiece@l
-// 	addi     r4, r4, "__dt__23JSUList<12JKRAMCommand>Fv"@l
-// 	addi     r5, r5, lbl_804EFF30@l
-// 	bl       __register_global_object
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
