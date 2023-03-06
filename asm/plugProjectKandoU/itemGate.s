@@ -27,7 +27,7 @@ lbl_804801B0:
 .global lbl_804801BC
 lbl_804801BC:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 .global lbl_804801C8
 lbl_804801C8:
 	.4byte 0x4974656D
@@ -155,11 +155,10 @@ lbl_804802C4:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B6558
-lbl_804B6558:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game15ItemDengekiGate3Mgr
 __vt__Q34Game15ItemDengekiGate3Mgr:
 	.4byte 0
@@ -948,15 +947,12 @@ __vt__Q24Game7GateFSM:
 	.4byte "start__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
 	.4byte "exec__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
 	.4byte "transit__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515AA8
-lbl_80515AA8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515AAC
-lbl_80515AAC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global itemGateMgr__4Game
 itemGateMgr__4Game:
@@ -6354,10 +6350,10 @@ __sinit_itemGate_cpp:
 /* 801CBF40 001C8E80  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801CBF44 001C8E84  38 00 FF FF */	li r0, -1
 /* 801CBF48 001C8E88  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801CBF4C 001C8E8C  3C 60 80 4B */	lis r3, lbl_804B6558@ha
-/* 801CBF50 001C8E90  90 0D 94 28 */	stw r0, lbl_80515AA8@sda21(r13)
-/* 801CBF54 001C8E94  D4 03 65 58 */	stfsu f0, lbl_804B6558@l(r3)
-/* 801CBF58 001C8E98  D0 0D 94 2C */	stfs f0, lbl_80515AAC@sda21(r13)
+/* 801CBF4C 001C8E8C  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801CBF50 001C8E90  90 0D 94 28 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801CBF54 001C8E94  D4 03 65 58 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801CBF58 001C8E98  D0 0D 94 2C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801CBF5C 001C8E9C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801CBF60 001C8EA0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801CBF64 001C8EA4  4E 80 00 20 */	blr 

@@ -5,12 +5,12 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q34Game15BaseGameSection10ZoomCamera
-__vt__Q34Game15BaseGameSection10ZoomCamera:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game15BaseGameSection10ZoomCamera, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game15BaseGameSection10ZoomCameraFv
@@ -43,29 +43,30 @@ __vt__Q34Game15BaseGameSection10ZoomCamera:
 	.4byte updateMatrix__12LookAtCameraFv
 	.4byte doUpdate__Q34Game15BaseGameSection10ZoomCameraFv
 	.4byte startVibration__12LookAtCameraFi
-.global __vt__Q32og6Screen21DispMemberSpecialItem
-__vt__Q32og6Screen21DispMemberSpecialItem:
+.endobj __vt__Q34Game15BaseGameSection10ZoomCamera
+.obj __vt__Q32og6Screen21DispMemberSpecialItem, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen21DispMemberSpecialItemFv
 	.4byte getOwnerID__Q32og6Screen21DispMemberSpecialItemFv
 	.4byte getMemberID__Q32og6Screen21DispMemberSpecialItemFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q32og6Screen16DispMemberKantei
-__vt__Q32og6Screen16DispMemberKantei:
+.endobj __vt__Q32og6Screen21DispMemberSpecialItem
+.obj __vt__Q32og6Screen16DispMemberKantei, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen16DispMemberKanteiFv
 	.4byte getOwnerID__Q32og6Screen16DispMemberKanteiFv
 	.4byte getMemberID__Q32og6Screen16DispMemberKanteiFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+.endobj __vt__Q32og6Screen16DispMemberKantei
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global asArrayOtakara__4Game
-asArrayOtakara__4Game:
+.obj asArrayOtakara__4Game, global
 	.4byte 0xFFFFFFFF
 	.float 1.0
+.endobj asArrayOtakara__4Game
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -78,53 +79,73 @@ asArrayOtakara__4Game:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A578:
+.obj lbl_8051A578, local
 	.float 0.0
-lbl_8051A57C:
+.endobj lbl_8051A578
+.obj lbl_8051A57C, local
 	.float 1.5
-lbl_8051A580:
+.endobj lbl_8051A57C
+.obj lbl_8051A580, local
 	.float 20.0
-lbl_8051A584:
+.endobj lbl_8051A580
+.obj lbl_8051A584, local
 	.float 0.5
+.endobj lbl_8051A584
 .balign 8
-lbl_8051A588:
+.obj lbl_8051A588, local
 	.8byte 0x4330000000000000
-lbl_8051A590:
-	.float 1.5707964 # half of pi
-lbl_8051A594:
+.endobj lbl_8051A588
+.obj lbl_8051A590, local # half of pi
+	.float 1.5707964
+.endobj lbl_8051A590
+.obj lbl_8051A594, local
 	.float 1.0
-lbl_8051A598:
+.endobj lbl_8051A594
+.obj lbl_8051A598, local
 	.float -1.0
-lbl_8051A59C:
-	.float -1.5707964 # negative half-pi
-lbl_8051A5A0:
+.endobj lbl_8051A598
+.obj lbl_8051A59C, local # negative half-pi
+	.float -1.5707964
+.endobj lbl_8051A59C
+.obj lbl_8051A5A0, local
 	.float 1023.5
-lbl_8051A5A4:
+.endobj lbl_8051A5A0
+.obj lbl_8051A5A4, local
 	.float 0.75
-lbl_8051A5A8:
+.endobj lbl_8051A5A4
+.obj lbl_8051A5A8, local
 	.float -325.9493
-lbl_8051A5AC:
+.endobj lbl_8051A5A8
+.obj lbl_8051A5AC, local
 	.float 325.9493
-lbl_8051A5B0:
+.endobj lbl_8051A5AC
+.obj lbl_8051A5B0, local
 	.float 0.2
-lbl_8051A5B4:
+.endobj lbl_8051A5B0
+.obj lbl_8051A5B4, local
 	.float 0.12566371
-lbl_8051A5B8:
-	.float 6.2831855 # tau
-lbl_8051A5BC:
-	.float 0.06283186 # tau/100
-lbl_8051A5C0:
+.endobj lbl_8051A5B4
+.obj lbl_8051A5B8, local # tau
+	.float 6.2831855
+.endobj lbl_8051A5B8
+.obj lbl_8051A5BC, local # tau/100
+	.float 0.06283186
+.endobj lbl_8051A5BC
+.obj lbl_8051A5C0, local
 	.float 0.5340708
-lbl_8051A5C4:
+.endobj lbl_8051A5C0
+.obj lbl_8051A5C4, local
 	.float 2.0
-lbl_8051A5C8:
+.endobj lbl_8051A5C4
+.obj lbl_8051A5C8, local
 	.float 6.0
-lbl_8051A5CC:
+.endobj lbl_8051A5C8
+.obj lbl_8051A5CC, local
 	.float 10.0
+.endobj lbl_8051A5CC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
-drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics:
+.fn drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8023B534 00238474  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023B538 00238478  7C 08 02 A6 */	mflr r0
 /* 8023B53C 0023847C  3C A0 80 51 */	lis r5, j3dSys@ha
@@ -150,10 +171,10 @@ drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics:
 /* 8023B58C 002384CC  7C 08 03 A6 */	mtlr r0
 /* 8023B590 002384D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023B594 002384D4  4E 80 00 20 */	blr 
+.endfn drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
 
 .if version == 1
-.global setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature
-setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature:
+.fn setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature, global
 /* 8023B598 002384D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023B59C 002384DC  7C 08 02 A6 */	mflr r0
 /* 8023B5A0 002384E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -192,9 +213,9 @@ setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature:
 /* 8023B620 00238560  7C 08 03 A6 */	mtlr r0
 /* 8023B624 00238564  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023B628 00238568  4E 80 00 20 */	blr 
+.endfn setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature
 .else
-.global setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature
-setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature:
+.fn setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature, global
 /* 8023B598 002384D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023B59C 002384DC  7C 08 02 A6 */	mflr r0
 /* 8023B5A0 002384E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -233,11 +254,11 @@ setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature:
 /* 8023B620 00238560  7C 08 03 A6 */	mtlr r0
 /* 8023B624 00238564  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023B628 00238568  4E 80 00 20 */	blr 
+.endfn setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature
 .endif
 
 .if version == 1
-.global startZoomWindow__Q24Game15BaseGameSectionFv
-startZoomWindow__Q24Game15BaseGameSectionFv:
+.fn startZoomWindow__Q24Game15BaseGameSectionFv, global
 /* 8023B62C 0023856C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8023B630 00238570  7C 08 02 A6 */	mflr r0
 /* 8023B634 00238574  90 01 00 54 */	stw r0, 0x54(r1)
@@ -366,9 +387,9 @@ startZoomWindow__Q24Game15BaseGameSectionFv:
 /* 8023B800 00238740  7C 08 03 A6 */	mtlr r0
 /* 8023B804 00238744  38 21 00 50 */	addi r1, r1, 0x50
 /* 8023B808 00238748  4E 80 00 20 */	blr 
+.endfn startZoomWindow__Q24Game15BaseGameSectionFv
 .else
-.global startZoomWindow__Q24Game15BaseGameSectionFv
-startZoomWindow__Q24Game15BaseGameSectionFv:
+.fn startZoomWindow__Q24Game15BaseGameSectionFv, global
 /* 8023B62C 0023856C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8023B630 00238570  7C 08 02 A6 */	mflr r0
 /* 8023B634 00238574  90 01 00 54 */	stw r0, 0x54(r1)
@@ -497,11 +518,11 @@ startZoomWindow__Q24Game15BaseGameSectionFv:
 /* 8023B800 00238740  7C 08 03 A6 */	mtlr r0
 /* 8023B804 00238744  38 21 00 50 */	addi r1, r1, 0x50
 /* 8023B808 00238748  4E 80 00 20 */	blr 
+.endfn startZoomWindow__Q24Game15BaseGameSectionFv
 .endif
 
 .if version == 1
-.global startKantei2D__Q24Game15BaseGameSectionFv
-startKantei2D__Q24Game15BaseGameSectionFv:
+.fn startKantei2D__Q24Game15BaseGameSectionFv, global
 /* 8023B80C 0023874C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8023B810 00238750  7C 08 02 A6 */	mflr r0
 /* 8023B814 00238754  90 01 00 84 */	stw r0, 0x84(r1)
@@ -660,9 +681,9 @@ startKantei2D__Q24Game15BaseGameSectionFv:
 /* 8023BA58 00238998  7C 08 03 A6 */	mtlr r0
 /* 8023BA5C 0023899C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8023BA60 002389A0  4E 80 00 20 */	blr 
+.endfn startKantei2D__Q24Game15BaseGameSectionFv
 .else
-.global startKantei2D__Q24Game15BaseGameSectionFv
-startKantei2D__Q24Game15BaseGameSectionFv:
+.fn startKantei2D__Q24Game15BaseGameSectionFv, global
 /* 8023B80C 0023874C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8023B810 00238750  7C 08 02 A6 */	mflr r0
 /* 8023B814 00238754  90 01 00 84 */	stw r0, 0x84(r1)
@@ -821,11 +842,11 @@ startKantei2D__Q24Game15BaseGameSectionFv:
 /* 8023BA58 00238998  7C 08 03 A6 */	mtlr r0
 /* 8023BA5C 0023899C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8023BA60 002389A0  4E 80 00 20 */	blr 
+.endfn startKantei2D__Q24Game15BaseGameSectionFv
 .endif
 
 .if version == 1
-.global "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>"
-"onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>":
+.fn "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>", global
 /* 8023BA64 002389A4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8023BA68 002389A8  7C 08 02 A6 */	mflr r0
 /* 8023BA6C 002389AC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -877,9 +898,9 @@ startKantei2D__Q24Game15BaseGameSectionFv:
 /* 8023BB24 00238A64  7C 08 03 A6 */	mtlr r0
 /* 8023BB28 00238A68  38 21 00 40 */	addi r1, r1, 0x40
 /* 8023BB2C 00238A6C  4E 80 00 20 */	blr 
+.endfn "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>"
 .else
-.global "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>"
-"onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>":
+.fn "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>", global
 /* 8023BA64 002389A4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8023BA68 002389A8  7C 08 02 A6 */	mflr r0
 /* 8023BA6C 002389AC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -931,10 +952,10 @@ startKantei2D__Q24Game15BaseGameSectionFv:
 /* 8023BB24 00238A64  7C 08 03 A6 */	mtlr r0
 /* 8023BB28 00238A68  38 21 00 40 */	addi r1, r1, 0x40
 /* 8023BB2C 00238A6C  4E 80 00 20 */	blr 
+.endfn "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>"
 .endif
 
-.global "init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3<f>P10Controller"
-"init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3<f>P10Controller":
+.fn "init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3<f>P10Controller", global
 /* 8023BB30 00238A70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023BB34 00238A74  7C 08 02 A6 */	mflr r0
 /* 8023BB38 00238A78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1008,9 +1029,9 @@ startKantei2D__Q24Game15BaseGameSectionFv:
 /* 8023BC38 00238B78  7C 08 03 A6 */	mtlr r0
 /* 8023BC3C 00238B7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023BC40 00238B80  4E 80 00 20 */	blr 
+.endfn "init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3<f>P10Controller"
 
-.global makeLookAt__Q34Game15BaseGameSection10ZoomCameraFv
-makeLookAt__Q34Game15BaseGameSection10ZoomCameraFv:
+.fn makeLookAt__Q34Game15BaseGameSection10ZoomCameraFv, global
 /* 8023BC44 00238B84  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8023BC48 00238B88  C0 02 C2 18 */	lfs f0, lbl_8051A578@sda21(r2)
 /* 8023BC4C 00238B8C  C0 63 01 9C */	lfs f3, 0x19c(r3)
@@ -1196,9 +1217,9 @@ makeLookAt__Q34Game15BaseGameSection10ZoomCameraFv:
 /* 8023BEE8 00238E28  D0 63 01 94 */	stfs f3, 0x194(r3)
 /* 8023BEEC 00238E2C  38 21 00 70 */	addi r1, r1, 0x70
 /* 8023BEF0 00238E30  4E 80 00 20 */	blr 
+.endfn makeLookAt__Q34Game15BaseGameSection10ZoomCameraFv
 
-.global doUpdate__Q34Game15BaseGameSection10ZoomCameraFv
-doUpdate__Q34Game15BaseGameSection10ZoomCameraFv:
+.fn doUpdate__Q34Game15BaseGameSection10ZoomCameraFv, global
 /* 8023BEF4 00238E34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023BEF8 00238E38  7C 08 02 A6 */	mflr r0
 /* 8023BEFC 00238E3C  C0 02 C2 50 */	lfs f0, lbl_8051A5B0@sda21(r2)
@@ -1298,10 +1319,10 @@ doUpdate__Q34Game15BaseGameSection10ZoomCameraFv:
 /* 8023C04C 00238F8C  7C 08 03 A6 */	mtlr r0
 /* 8023C050 00238F90  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023C054 00238F94  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game15BaseGameSection10ZoomCameraFv
 
 .if version == 1
-.global do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
-do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics:
+.fn do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8023C058 00238F98  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8023C05C 00238F9C  7C 08 02 A6 */	mflr r0
 /* 8023C060 00238FA0  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -1570,9 +1591,9 @@ do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics:
 /* 8023C45C 0023939C  7C 08 03 A6 */	mtlr r0
 /* 8023C460 002393A0  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 8023C464 002393A4  4E 80 00 20 */	blr 
+.endfn do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
 .else
-.global do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
-do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics:
+.fn do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8023C058 00238F98  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8023C05C 00238F9C  7C 08 02 A6 */	mflr r0
 /* 8023C060 00238FA0  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -1841,10 +1862,10 @@ do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics:
 /* 8023C45C 0023939C  7C 08 03 A6 */	mtlr r0
 /* 8023C460 002393A0  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 8023C464 002393A4  4E 80 00 20 */	blr 
+.endfn do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
 .endif
 
-.global __dt__Q34Game15BaseGameSection10ZoomCameraFv # weak function
-__dt__Q34Game15BaseGameSection10ZoomCameraFv:
+.fn __dt__Q34Game15BaseGameSection10ZoomCameraFv, weak
 /* 8023C468 002393A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023C46C 002393AC  7C 08 02 A6 */	mflr r0
 /* 8023C470 002393B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1899,49 +1920,50 @@ __dt__Q34Game15BaseGameSection10ZoomCameraFv:
 /* 8023C52C 0023946C  7C 08 03 A6 */	mtlr r0
 /* 8023C530 00239470  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023C534 00239474  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game15BaseGameSection10ZoomCameraFv
 
-.global startVibration__12LookAtCameraFi
-startVibration__12LookAtCameraFi:
+.fn startVibration__12LookAtCameraFi, weak
 /* 8023C538 00239478  4E 80 00 20 */	blr 
+.endfn startVibration__12LookAtCameraFi
 
-.global getSize__Q32og6Screen21DispMemberSpecialItemFv
-getSize__Q32og6Screen21DispMemberSpecialItemFv:
+.fn getSize__Q32og6Screen21DispMemberSpecialItemFv, weak
 /* 8023C53C 0023947C  38 60 00 10 */	li r3, 0x10
 /* 8023C540 00239480  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen21DispMemberSpecialItemFv
 
-.global getOwnerID__Q32og6Screen21DispMemberSpecialItemFv
-getOwnerID__Q32og6Screen21DispMemberSpecialItemFv:
+.fn getOwnerID__Q32og6Screen21DispMemberSpecialItemFv, weak
 /* 8023C544 00239484  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 8023C548 00239488  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 8023C54C 0023948C  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen21DispMemberSpecialItemFv
 
-.global getMemberID__Q32og6Screen21DispMemberSpecialItemFv
-getMemberID__Q32og6Screen21DispMemberSpecialItemFv:
+.fn getMemberID__Q32og6Screen21DispMemberSpecialItemFv, weak
 /* 8023C550 00239490  3C 80 49 54 */	lis r4, 0x4954454D@ha
 /* 8023C554 00239494  3C 60 00 53 */	lis r3, 0x0053505F@ha
 /* 8023C558 00239498  38 84 45 4D */	addi r4, r4, 0x4954454D@l
 /* 8023C55C 0023949C  38 63 50 5F */	addi r3, r3, 0x0053505F@l
 /* 8023C560 002394A0  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen21DispMemberSpecialItemFv
 
-.global getSize__Q32og6Screen16DispMemberKanteiFv
-getSize__Q32og6Screen16DispMemberKanteiFv:
+.fn getSize__Q32og6Screen16DispMemberKanteiFv, weak
 /* 8023C564 002394A4  38 60 00 40 */	li r3, 0x40
 /* 8023C568 002394A8  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen16DispMemberKanteiFv
 
-.global getOwnerID__Q32og6Screen16DispMemberKanteiFv
-getOwnerID__Q32og6Screen16DispMemberKanteiFv:
+.fn getOwnerID__Q32og6Screen16DispMemberKanteiFv, weak
 /* 8023C56C 002394AC  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 8023C570 002394B0  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 8023C574 002394B4  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen16DispMemberKanteiFv
 
-.global getMemberID__Q32og6Screen16DispMemberKanteiFv # weak function
-getMemberID__Q32og6Screen16DispMemberKanteiFv:
+.fn getMemberID__Q32og6Screen16DispMemberKanteiFv, weak
 /* 8023C578 002394B8  3C 80 4E 54 */	lis r4, 0x4E544549@ha
 /* 8023C57C 002394BC  38 60 4B 41 */	li r3, 0x4b41
 /* 8023C580 002394C0  38 84 45 49 */	addi r4, r4, 0x4E544549@l
 /* 8023C584 002394C4  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen16DispMemberKanteiFv
 
-__sinit_baseGameSectionKantei_cpp: # static initializer
+.fn __sinit_baseGameSectionKantei_cpp, local
 /* 8023C588 002394C8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8023C58C 002394CC  38 00 FF FF */	li r0, -1
 /* 8023C590 002394D0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1952,3 +1974,4 @@ __sinit_baseGameSectionKantei_cpp: # static initializer
 /* 8023C5A4 002394E4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8023C5A8 002394E8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8023C5AC 002394EC  4E 80 00 20 */	blr 
+.endfn __sinit_baseGameSectionKantei_cpp

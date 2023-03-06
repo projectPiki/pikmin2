@@ -5,49 +5,60 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047F168:
+.obj lbl_8047F168, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047F168
 .balign 4
-lbl_8047F174:
+.obj lbl_8047F174, local
 	.asciz "actFormation"
+.endobj lbl_8047F174
 .balign 4
-lbl_8047F184:
+.obj lbl_8047F184, local
 	.asciz "Formation"
+.endobj lbl_8047F184
 .balign 4
-lbl_8047F190:
+.obj lbl_8047F190, local
 	.asciz "aiFormation.cpp"
+.endobj lbl_8047F190
 .balign 4
-lbl_8047F1A0:
+.obj lbl_8047F1A0, local
 	.asciz "P2Assert"
+.endobj lbl_8047F1A0
 .balign 4
-lbl_8047F1AC:
+.obj lbl_8047F1AC, local
 	.asciz "slot id is -1"
+.endobj lbl_8047F1AC
 .balign 4
-lbl_8047F1BC:
+.obj lbl_8047F1BC, local
 	.asciz "x02_watch_red_pikmin"
+.endobj lbl_8047F1BC
 .balign 4
-lbl_8047F1D4:
+.obj lbl_8047F1D4, local
 	.asciz "gameStat.h"
+.endobj lbl_8047F1D4
 .balign 4
-lbl_8047F1E0:
+.obj lbl_8047F1E0, local
 	.asciz "invalid slotId!\n"
+.endobj lbl_8047F1E0
 .balign 4
-lbl_8047F1F4:
+.obj lbl_8047F1F4, local
 	.asciz "CreatureActionArg"
+.endobj lbl_8047F1F4
 .balign 4
-lbl_8047F208:
+.obj lbl_8047F208, local
 	.asciz "ActionArg"
+.endobj lbl_8047F208
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q26PikiAI12ActFormation
-__vt__Q26PikiAI12ActFormation:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q26PikiAI12ActFormation, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q26PikiAI12ActFormationFPQ26PikiAI9ActionArg
@@ -72,11 +83,12 @@ __vt__Q26PikiAI12ActFormation:
 	.4byte 0
 	.4byte 0
 	.4byte "@108@4@onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent"
-.global __vt__Q24Game18SlotChangeListener
-__vt__Q24Game18SlotChangeListener:
+.endobj __vt__Q26PikiAI12ActFormation
+.obj __vt__Q24Game18SlotChangeListener, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj __vt__Q24Game18SlotChangeListener
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -158,8 +170,7 @@ __vt__Q24Game18SlotChangeListener:
 .endobj lbl_80519038
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q26PikiAI12ActFormationFPQ24Game4Piki
-__ct__Q26PikiAI12ActFormationFPQ24Game4Piki:
+.fn __ct__Q26PikiAI12ActFormationFPQ24Game4Piki, global
 /* 8019CD70 00199CB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019CD74 00199CB4  7C 08 02 A6 */	mflr r0
 /* 8019CD78 00199CB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -223,20 +234,20 @@ __ct__Q26PikiAI12ActFormationFPQ24Game4Piki:
 /* 8019CE5C 00199D9C  7C 08 03 A6 */	mtlr r0
 /* 8019CE60 00199DA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019CE64 00199DA4  4E 80 00 20 */	blr 
+.endfn __ct__Q26PikiAI12ActFormationFPQ24Game4Piki
 
-.global inform__Q26PikiAI12ActFormationFi
-inform__Q26PikiAI12ActFormationFi:
+.fn inform__Q26PikiAI12ActFormationFi, global
 /* 8019CE68 00199DA8  90 83 00 34 */	stw r4, 0x34(r3)
 /* 8019CE6C 00199DAC  4E 80 00 20 */	blr 
+.endfn inform__Q26PikiAI12ActFormationFi
 
-.global startSort__Q26PikiAI12ActFormationFv
-startSort__Q26PikiAI12ActFormationFv:
+.fn startSort__Q26PikiAI12ActFormationFv, global
 /* 8019CE70 00199DB0  38 00 00 02 */	li r0, 2
 /* 8019CE74 00199DB4  B0 03 00 28 */	sth r0, 0x28(r3)
 /* 8019CE78 00199DB8  4E 80 00 20 */	blr 
+.endfn startSort__Q26PikiAI12ActFormationFv
 
-.global init__Q26PikiAI12ActFormationFPQ26PikiAI9ActionArg
-init__Q26PikiAI12ActFormationFPQ26PikiAI9ActionArg:
+.fn init__Q26PikiAI12ActFormationFPQ26PikiAI9ActionArg, global
 /* 8019CE7C 00199DBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019CE80 00199DC0  7C 08 02 A6 */	mflr r0
 /* 8019CE84 00199DC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -353,9 +364,9 @@ init__Q26PikiAI12ActFormationFPQ26PikiAI9ActionArg:
 /* 8019D024 00199F64  7C 08 03 A6 */	mtlr r0
 /* 8019D028 00199F68  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019D02C 00199F6C  4E 80 00 20 */	blr 
+.endfn init__Q26PikiAI12ActFormationFPQ26PikiAI9ActionArg
 
-.global "wallCallback__Q26PikiAI12ActFormationFR10Vector3<f>"
-"wallCallback__Q26PikiAI12ActFormationFR10Vector3<f>":
+.fn "wallCallback__Q26PikiAI12ActFormationFR10Vector3<f>", global
 /* 8019D030 00199F70  80 8D 93 E8 */	lwz r4, gameSystem__4Game@sda21(r13)
 /* 8019D034 00199F74  80 04 00 50 */	lwz r0, 0x50(r4)
 /* 8019D038 00199F78  90 03 00 44 */	stw r0, 0x44(r3)
@@ -380,9 +391,9 @@ init__Q26PikiAI12ActFormationFPQ26PikiAI9ActionArg:
 /* 8019D07C 00199FBC  38 00 00 00 */	li r0, 0
 /* 8019D080 00199FC0  98 03 00 40 */	stb r0, 0x40(r3)
 /* 8019D084 00199FC4  4E 80 00 20 */	blr 
+.endfn "wallCallback__Q26PikiAI12ActFormationFR10Vector3<f>"
 
-.global setFormed__Q26PikiAI12ActFormationFv
-setFormed__Q26PikiAI12ActFormationFv:
+.fn setFormed__Q26PikiAI12ActFormationFv, global
 /* 8019D088 00199FC8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8019D08C 00199FCC  7C 08 02 A6 */	mflr r0
 /* 8019D090 00199FD0  38 80 00 23 */	li r4, 0x23
@@ -678,9 +689,9 @@ setFormed__Q26PikiAI12ActFormationFv:
 /* 8019D4D8 0019A418  7C 08 03 A6 */	mtlr r0
 /* 8019D4DC 0019A41C  38 21 00 70 */	addi r1, r1, 0x70
 /* 8019D4E0 0019A420  4E 80 00 20 */	blr 
+.endfn setFormed__Q26PikiAI12ActFormationFv
 
-.global onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent
-onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent, global
 /* 8019D4E4 0019A424  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019D4E8 0019A428  7C 08 02 A6 */	mflr r0
 /* 8019D4EC 0019A42C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -748,9 +759,9 @@ onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent:
 /* 8019D5D0 0019A510  7C 08 03 A6 */	mtlr r0
 /* 8019D5D4 0019A514  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019D5D8 0019A518  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent
 
-.global cleanup__Q26PikiAI12ActFormationFv
-cleanup__Q26PikiAI12ActFormationFv:
+.fn cleanup__Q26PikiAI12ActFormationFv, global
 /* 8019D5DC 0019A51C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019D5E0 0019A520  7C 08 02 A6 */	mflr r0
 /* 8019D5E4 0019A524  38 80 00 00 */	li r4, 0
@@ -793,9 +804,9 @@ cleanup__Q26PikiAI12ActFormationFv:
 /* 8019D674 0019A5B4  7C 08 03 A6 */	mtlr r0
 /* 8019D678 0019A5B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019D67C 0019A5BC  4E 80 00 20 */	blr 
+.endfn cleanup__Q26PikiAI12ActFormationFv
 
-.global exec__Q26PikiAI12ActFormationFv
-exec__Q26PikiAI12ActFormationFv:
+.fn exec__Q26PikiAI12ActFormationFv, global
 /* 8019D680 0019A5C0  94 21 FE 40 */	stwu r1, -0x1c0(r1)
 /* 8019D684 0019A5C4  7C 08 02 A6 */	mflr r0
 /* 8019D688 0019A5C8  90 01 01 C4 */	stw r0, 0x1c4(r1)
@@ -2365,9 +2376,9 @@ exec__Q26PikiAI12ActFormationFv:
 /* 8019ED5C 0019BC9C  7C 08 03 A6 */	mtlr r0
 /* 8019ED60 0019BCA0  38 21 01 C0 */	addi r1, r1, 0x1c0
 /* 8019ED64 0019BCA4  4E 80 00 20 */	blr 
+.endfn exec__Q26PikiAI12ActFormationFv
 
-.global collisionCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 8019ED68 0019BCA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019ED6C 0019BCAC  7C 08 02 A6 */	mflr r0
 /* 8019ED70 0019BCB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2398,9 +2409,9 @@ collisionCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9CollEvent:
 /* 8019EDD0 0019BD10  7C 08 03 A6 */	mtlr r0
 /* 8019EDD4 0019BD14  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019EDD8 0019BD18  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9CollEvent
 
-.global platCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9PlatEvent
-platCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9PlatEvent:
+.fn platCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9PlatEvent, global
 /* 8019EDDC 0019BD1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019EDE0 0019BD20  7C 08 02 A6 */	mflr r0
 /* 8019EDE4 0019BD24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2424,18 +2435,19 @@ platCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9PlatEvent:
 /* 8019EE28 0019BD68  7C 08 03 A6 */	mtlr r0
 /* 8019EE2C 0019BD6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019EE30 0019BD70  4E 80 00 20 */	blr 
+.endfn platCallback__Q26PikiAI12ActFormationFPQ24Game4PikiRQ24Game9PlatEvent
 
-.global resumable__Q26PikiAI12ActFormationFv
-resumable__Q26PikiAI12ActFormationFv:
+.fn resumable__Q26PikiAI12ActFormationFv, weak
 /* 8019EE34 0019BD74  38 60 00 01 */	li r3, 1
 /* 8019EE38 0019BD78  4E 80 00 20 */	blr 
+.endfn resumable__Q26PikiAI12ActFormationFv
 
-.global getNextAIType__Q26PikiAI12ActFormationFv
-getNextAIType__Q26PikiAI12ActFormationFv:
+.fn getNextAIType__Q26PikiAI12ActFormationFv, weak
 /* 8019EE3C 0019BD7C  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 8019EE40 0019BD80  4E 80 00 20 */	blr 
+.endfn getNextAIType__Q26PikiAI12ActFormationFv
 
-__sinit_aiFormation_cpp: # static initializer
+.fn __sinit_aiFormation_cpp, local
 /* 8019EE44 0019BD84  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8019EE48 0019BD88  38 00 FF FF */	li r0, -1
 /* 8019EE4C 0019BD8C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2446,19 +2458,20 @@ __sinit_aiFormation_cpp: # static initializer
 /* 8019EE60 0019BDA0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8019EE64 0019BDA4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8019EE68 0019BDA8  4E 80 00 20 */	blr 
+.endfn __sinit_aiFormation_cpp
 
-.global "@100@4@inform__Q26PikiAI12ActFormationFi"
-"@100@4@inform__Q26PikiAI12ActFormationFi":
+.fn "@100@4@inform__Q26PikiAI12ActFormationFi", weak
 /* 8019EE6C 0019BDAC  39 60 00 04 */	li r11, 4
 /* 8019EE70 0019BDB0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8019EE74 0019BDB4  7C 63 5A 14 */	add r3, r3, r11
 /* 8019EE78 0019BDB8  38 63 FF 9C */	addi r3, r3, -100
 /* 8019EE7C 0019BDBC  4B FF DF EC */	b inform__Q26PikiAI12ActFormationFi
+.endfn "@100@4@inform__Q26PikiAI12ActFormationFi"
 
-.global "@108@4@onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent"
-"@108@4@onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent":
+.fn "@108@4@onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent", weak
 /* 8019EE80 0019BDC0  39 60 00 04 */	li r11, 4
 /* 8019EE84 0019BDC4  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8019EE88 0019BDC8  7C 63 5A 14 */	add r3, r3, r11
 /* 8019EE8C 0019BDCC  38 63 FF 94 */	addi r3, r3, -108
 /* 8019EE90 0019BDD0  4B FF E6 54 */	b onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent
+.endfn "@108@4@onKeyEvent__Q26PikiAI12ActFormationFRCQ28SysShape8KeyEvent"

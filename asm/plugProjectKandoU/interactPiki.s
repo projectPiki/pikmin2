@@ -5,69 +5,85 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047EE90:
+.obj lbl_8047EE90, local
 	.skip 0xC
+.endobj lbl_8047EE90
 .balign 4
-lbl_8047EE9C:
+.obj lbl_8047EE9C, local
 	.asciz "interactPiki"
+.endobj lbl_8047EE9C
 .balign 4
-lbl_8047EEAC:
+.obj lbl_8047EEAC, local
 	.asciz "g21_meet_bluepikmin"
+.endobj lbl_8047EEAC
 .balign 4
-lbl_8047EEC0:
+.obj lbl_8047EEC0, local
 	.asciz "g03_meet_redpikmin"
+.endobj lbl_8047EEC0
 .balign 4
-lbl_8047EED4:
+.obj lbl_8047EED4, local
 	.asciz "g1F_meet_yellowpikmin"
+.endobj lbl_8047EED4
 .balign 4
-lbl_8047EEEC:
+.obj lbl_8047EEEC, local
 	.4byte lbl_8047EEAC
 	.4byte lbl_8047EEC0
 	.4byte lbl_8047EED4
+.endobj lbl_8047EEEC
 .balign 4
-lbl_8047EEF8:
+.obj lbl_8047EEF8, local
 	.asciz "X13_exp_leafchappy"
+.endobj lbl_8047EEF8
 .balign 4
-lbl_8047EF0C:
+.obj lbl_8047EF0C, local
 	.asciz "x13_exp_leafchappy"
+.endobj lbl_8047EF0C
 .balign 4
-lbl_8047EF20:
+.obj lbl_8047EF20, local
 	.asciz "interactPiki.cpp"
+.endobj lbl_8047EF20
 .balign 4
-lbl_8047EF34:
+.obj lbl_8047EF34, local
 	.asciz "P2Assert"
+.endobj lbl_8047EF34
 .balign 4
-lbl_8047EF40:
+.obj lbl_8047EF40, local
 	.asciz "ActBattleArg"
+.endobj lbl_8047EF40
 .balign 4
-lbl_8047EF50:
+.obj lbl_8047EF50, local
 	.asciz "CreatureKillArg"
+.endobj lbl_8047EF50
 .balign 4
-lbl_8047EF60:
+.obj lbl_8047EF60, local
 	.asciz "ItemPikiHead::InitArg"
+.endobj lbl_8047EF60
 .balign 4
-lbl_8047EF78:
+.obj lbl_8047EF78, local
 	.asciz "ItemInitArg"
+.endobj lbl_8047EF78
 .balign 4
-lbl_8047EF84:
+.obj lbl_8047EF84, local
 	.asciz "CreatureActionArg"
+.endobj lbl_8047EF84
 .balign 4
-lbl_8047EF98:
+.obj lbl_8047EF98, local
 	.asciz "ActionArg"
+.endobj lbl_8047EF98
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q26PikiAI12ActBattleArg
-__vt__Q26PikiAI12ActBattleArg:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q26PikiAI12ActBattleArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI12ActBattleArgFv
-.global __vt__Q24Game14InteractBattle
-__vt__Q24Game14InteractBattle:
+.endobj __vt__Q26PikiAI12ActBattleArg
+.obj __vt__Q24Game14InteractBattle, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -77,8 +93,8 @@ __vt__Q24Game14InteractBattle:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game11InteractGas
-__vt__Q24Game11InteractGas:
+.endobj __vt__Q24Game14InteractBattle
+.obj __vt__Q24Game11InteractGas, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -88,8 +104,8 @@ __vt__Q24Game11InteractGas:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game14InteractBubble
-__vt__Q24Game14InteractBubble:
+.endobj __vt__Q24Game11InteractGas
+.obj __vt__Q24Game14InteractBubble, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -99,8 +115,8 @@ __vt__Q24Game14InteractBubble:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game16InteractAstonish
-__vt__Q24Game16InteractAstonish:
+.endobj __vt__Q24Game14InteractBubble
+.obj __vt__Q24Game16InteractAstonish, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -110,8 +126,8 @@ __vt__Q24Game16InteractAstonish:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game12InteractFire
-__vt__Q24Game12InteractFire:
+.endobj __vt__Q24Game16InteractAstonish
+.obj __vt__Q24Game12InteractFire, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -121,8 +137,8 @@ __vt__Q24Game12InteractFire:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game20InteractSuikomi_Test
-__vt__Q24Game20InteractSuikomi_Test:
+.endobj __vt__Q24Game12InteractFire
+.obj __vt__Q24Game20InteractSuikomi_Test, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -132,8 +148,8 @@ __vt__Q24Game20InteractSuikomi_Test:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game12InteractBury
-__vt__Q24Game12InteractBury:
+.endobj __vt__Q24Game20InteractSuikomi_Test
+.obj __vt__Q24Game12InteractBury, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -143,8 +159,8 @@ __vt__Q24Game12InteractBury:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game16InteractFallMeck
-__vt__Q24Game16InteractFallMeck:
+.endobj __vt__Q24Game12InteractBury
+.obj __vt__Q24Game16InteractFallMeck, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -154,8 +170,8 @@ __vt__Q24Game16InteractFallMeck:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game13InteractDenki
-__vt__Q24Game13InteractDenki:
+.endobj __vt__Q24Game16InteractFallMeck
+.obj __vt__Q24Game13InteractDenki, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -165,8 +181,8 @@ __vt__Q24Game13InteractDenki:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game12InteractBomb
-__vt__Q24Game12InteractBomb:
+.endobj __vt__Q24Game13InteractDenki
+.obj __vt__Q24Game12InteractBomb, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -176,8 +192,8 @@ __vt__Q24Game12InteractBomb:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game20InteractHanaChirashi
-__vt__Q24Game20InteractHanaChirashi:
+.endobj __vt__Q24Game12InteractBomb
+.obj __vt__Q24Game20InteractHanaChirashi, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -187,8 +203,8 @@ __vt__Q24Game20InteractHanaChirashi:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game12InteractWind
-__vt__Q24Game12InteractWind:
+.endobj __vt__Q24Game20InteractHanaChirashi
+.obj __vt__Q24Game12InteractWind, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -198,8 +214,8 @@ __vt__Q24Game12InteractWind:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game12InteractDope
-__vt__Q24Game12InteractDope:
+.endobj __vt__Q24Game12InteractWind
+.obj __vt__Q24Game12InteractDope, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -209,8 +225,8 @@ __vt__Q24Game12InteractDope:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q24Game11InteractFue
-__vt__Q24Game11InteractFue:
+.endobj __vt__Q24Game12InteractDope
+.obj __vt__Q24Game11InteractFue, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -220,8 +236,8 @@ __vt__Q24Game11InteractFue:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractFueFPQ24Game8BaseItem
-.global __vt__Q24Game15InteractFueFuki
-__vt__Q24Game15InteractFueFuki:
+.endobj __vt__Q24Game11InteractFue
+.obj __vt__Q24Game15InteractFueFuki, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -231,6 +247,7 @@ __vt__Q24Game15InteractFueFuki:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+.endobj __vt__Q24Game15InteractFueFuki
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -288,8 +305,7 @@ __vt__Q24Game15InteractFueFuki:
 .endobj lbl_80518EE8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki
-actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki:
+.fn actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki, global
 /* 80192C84 0018FBC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80192C88 0018FBC8  7C 08 02 A6 */	mflr r0
 /* 80192C8C 0018FBCC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -352,9 +368,9 @@ actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki:
 /* 80192D5C 0018FC9C  7C 08 03 A6 */	mtlr r0
 /* 80192D60 0018FCA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80192D64 0018FCA4  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game15InteractFueFukiFPQ24Game4Piki
 
-.global actPiki__Q24Game11InteractFueFPQ24Game4Piki
-actPiki__Q24Game11InteractFueFPQ24Game4Piki:
+.fn actPiki__Q24Game11InteractFueFPQ24Game4Piki, global
 /* 80192D68 0018FCA8  94 21 FE 40 */	stwu r1, -0x1c0(r1)
 /* 80192D6C 0018FCAC  7C 08 02 A6 */	mflr r0
 /* 80192D70 0018FCB0  90 01 01 C4 */	stw r0, 0x1c4(r1)
@@ -1162,9 +1178,9 @@ actPiki__Q24Game11InteractFueFPQ24Game4Piki:
 /* 8019392C 0019086C  7C 08 03 A6 */	mtlr r0
 /* 80193930 00190870  38 21 01 C0 */	addi r1, r1, 0x1c0
 /* 80193934 00190874  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game11InteractFueFPQ24Game4Piki
 
-.global actPiki__Q24Game12InteractDopeFPQ24Game4Piki
-actPiki__Q24Game12InteractDopeFPQ24Game4Piki:
+.fn actPiki__Q24Game12InteractDopeFPQ24Game4Piki, global
 /* 80193938 00190878  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019393C 0019087C  7C 08 02 A6 */	mflr r0
 /* 80193940 00190880  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1256,9 +1272,9 @@ actPiki__Q24Game12InteractDopeFPQ24Game4Piki:
 /* 80193A88 001909C8  7C 08 03 A6 */	mtlr r0
 /* 80193A8C 001909CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80193A90 001909D0  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game12InteractDopeFPQ24Game4Piki
 
-.global actPiki__Q24Game12InteractWindFPQ24Game4Piki
-actPiki__Q24Game12InteractWindFPQ24Game4Piki:
+.fn actPiki__Q24Game12InteractWindFPQ24Game4Piki, global
 /* 80193A94 001909D4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80193A98 001909D8  7C 08 02 A6 */	mflr r0
 /* 80193A9C 001909DC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1328,9 +1344,9 @@ actPiki__Q24Game12InteractWindFPQ24Game4Piki:
 /* 80193B88 00190AC8  7C 08 03 A6 */	mtlr r0
 /* 80193B8C 00190ACC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80193B90 00190AD0  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game12InteractWindFPQ24Game4Piki
 
-.global actPiki__Q24Game20InteractHanaChirashiFPQ24Game4Piki
-actPiki__Q24Game20InteractHanaChirashiFPQ24Game4Piki:
+.fn actPiki__Q24Game20InteractHanaChirashiFPQ24Game4Piki, global
 /* 80193B94 00190AD4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80193B98 00190AD8  7C 08 02 A6 */	mflr r0
 /* 80193B9C 00190ADC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1408,9 +1424,9 @@ actPiki__Q24Game20InteractHanaChirashiFPQ24Game4Piki:
 /* 80193CA8 00190BE8  7C 08 03 A6 */	mtlr r0
 /* 80193CAC 00190BEC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80193CB0 00190BF0  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game20InteractHanaChirashiFPQ24Game4Piki
 
-.global actPiki__Q24Game12InteractBombFPQ24Game4Piki
-actPiki__Q24Game12InteractBombFPQ24Game4Piki:
+.fn actPiki__Q24Game12InteractBombFPQ24Game4Piki, global
 /* 80193CB4 00190BF4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80193CB8 00190BF8  7C 08 02 A6 */	mflr r0
 /* 80193CBC 00190BFC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1505,9 +1521,9 @@ actPiki__Q24Game12InteractBombFPQ24Game4Piki:
 /* 80193E04 00190D44  7C 08 03 A6 */	mtlr r0
 /* 80193E08 00190D48  38 21 00 30 */	addi r1, r1, 0x30
 /* 80193E0C 00190D4C  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game12InteractBombFPQ24Game4Piki
 
-.global actPiki__Q24Game13InteractDenkiFPQ24Game4Piki
-actPiki__Q24Game13InteractDenkiFPQ24Game4Piki:
+.fn actPiki__Q24Game13InteractDenkiFPQ24Game4Piki, global
 /* 80193E10 00190D50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80193E14 00190D54  7C 08 02 A6 */	mflr r0
 /* 80193E18 00190D58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1582,9 +1598,9 @@ actPiki__Q24Game13InteractDenkiFPQ24Game4Piki:
 /* 80193F18 00190E58  7C 08 03 A6 */	mtlr r0
 /* 80193F1C 00190E5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80193F20 00190E60  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game13InteractDenkiFPQ24Game4Piki
 
-.global actPiki__Q24Game16InteractFallMeckFPQ24Game4Piki
-actPiki__Q24Game16InteractFallMeckFPQ24Game4Piki:
+.fn actPiki__Q24Game16InteractFallMeckFPQ24Game4Piki, global
 /* 80193F24 00190E64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80193F28 00190E68  7C 08 02 A6 */	mflr r0
 /* 80193F2C 00190E6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1628,9 +1644,9 @@ actPiki__Q24Game16InteractFallMeckFPQ24Game4Piki:
 /* 80193FB8 00190EF8  7C 08 03 A6 */	mtlr r0
 /* 80193FBC 00190EFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80193FC0 00190F00  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game16InteractFallMeckFPQ24Game4Piki
 
-.global actPiki__Q24Game12InteractBuryFPQ24Game4Piki
-actPiki__Q24Game12InteractBuryFPQ24Game4Piki:
+.fn actPiki__Q24Game12InteractBuryFPQ24Game4Piki, global
 /* 80193FC4 00190F04  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80193FC8 00190F08  7C 08 02 A6 */	mflr r0
 /* 80193FCC 00190F0C  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1798,9 +1814,9 @@ actPiki__Q24Game12InteractBuryFPQ24Game4Piki:
 /* 80194240 00191180  7C 08 03 A6 */	mtlr r0
 /* 80194244 00191184  38 21 00 90 */	addi r1, r1, 0x90
 /* 80194248 00191188  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game12InteractBuryFPQ24Game4Piki
 
-.global actPiki__Q24Game20InteractSuikomi_TestFPQ24Game4Piki
-actPiki__Q24Game20InteractSuikomi_TestFPQ24Game4Piki:
+.fn actPiki__Q24Game20InteractSuikomi_TestFPQ24Game4Piki, global
 /* 8019424C 0019118C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80194250 00191190  7C 08 02 A6 */	mflr r0
 /* 80194254 00191194  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1860,9 +1876,9 @@ actPiki__Q24Game20InteractSuikomi_TestFPQ24Game4Piki:
 /* 8019431C 0019125C  7C 08 03 A6 */	mtlr r0
 /* 80194320 00191260  38 21 00 20 */	addi r1, r1, 0x20
 /* 80194324 00191264  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game20InteractSuikomi_TestFPQ24Game4Piki
 
-.global actPiki__Q24Game12InteractFireFPQ24Game4Piki
-actPiki__Q24Game12InteractFireFPQ24Game4Piki:
+.fn actPiki__Q24Game12InteractFireFPQ24Game4Piki, global
 /* 80194328 00191268  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019432C 0019126C  7C 08 02 A6 */	mflr r0
 /* 80194330 00191270  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1938,9 +1954,9 @@ actPiki__Q24Game12InteractFireFPQ24Game4Piki:
 /* 80194434 00191374  7C 08 03 A6 */	mtlr r0
 /* 80194438 00191378  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019443C 0019137C  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game12InteractFireFPQ24Game4Piki
 
-.global actPiki__Q24Game16InteractAstonishFPQ24Game4Piki
-actPiki__Q24Game16InteractAstonishFPQ24Game4Piki:
+.fn actPiki__Q24Game16InteractAstonishFPQ24Game4Piki, global
 /* 80194440 00191380  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80194444 00191384  7C 08 02 A6 */	mflr r0
 /* 80194448 00191388  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2023,9 +2039,9 @@ actPiki__Q24Game16InteractAstonishFPQ24Game4Piki:
 /* 80194568 001914A8  7C 08 03 A6 */	mtlr r0
 /* 8019456C 001914AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80194570 001914B0  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game16InteractAstonishFPQ24Game4Piki
 
-.global actPiki__Q24Game14InteractBubbleFPQ24Game4Piki
-actPiki__Q24Game14InteractBubbleFPQ24Game4Piki:
+.fn actPiki__Q24Game14InteractBubbleFPQ24Game4Piki, global
 /* 80194574 001914B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80194578 001914B8  7C 08 02 A6 */	mflr r0
 /* 8019457C 001914BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2101,9 +2117,9 @@ actPiki__Q24Game14InteractBubbleFPQ24Game4Piki:
 /* 80194680 001915C0  7C 08 03 A6 */	mtlr r0
 /* 80194684 001915C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80194688 001915C8  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game14InteractBubbleFPQ24Game4Piki
 
-.global actPiki__Q24Game11InteractGasFPQ24Game4Piki
-actPiki__Q24Game11InteractGasFPQ24Game4Piki:
+.fn actPiki__Q24Game11InteractGasFPQ24Game4Piki, global
 /* 8019468C 001915CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80194690 001915D0  7C 08 02 A6 */	mflr r0
 /* 80194694 001915D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2189,9 +2205,9 @@ actPiki__Q24Game11InteractGasFPQ24Game4Piki:
 /* 801947BC 001916FC  7C 08 03 A6 */	mtlr r0
 /* 801947C0 00191700  38 21 00 20 */	addi r1, r1, 0x20
 /* 801947C4 00191704  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game11InteractGasFPQ24Game4Piki
 
-.global actPiki__Q24Game14InteractBattleFPQ24Game4Piki
-actPiki__Q24Game14InteractBattleFPQ24Game4Piki:
+.fn actPiki__Q24Game14InteractBattleFPQ24Game4Piki, global
 /* 801947C8 00191708  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801947CC 0019170C  7C 08 02 A6 */	mflr r0
 /* 801947D0 00191710  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2243,9 +2259,9 @@ actPiki__Q24Game14InteractBattleFPQ24Game4Piki:
 /* 8019487C 001917BC  7C 08 03 A6 */	mtlr r0
 /* 80194880 001917C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80194884 001917C4  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game14InteractBattleFPQ24Game4Piki
 
-.global actPiki__Q24Game13InteractPressFPQ24Game4Piki
-actPiki__Q24Game13InteractPressFPQ24Game4Piki:
+.fn actPiki__Q24Game13InteractPressFPQ24Game4Piki, global
 /* 80194888 001917C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019488C 001917CC  7C 08 02 A6 */	mflr r0
 /* 80194890 001917D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2324,9 +2340,9 @@ actPiki__Q24Game13InteractPressFPQ24Game4Piki:
 /* 8019499C 001918DC  7C 08 03 A6 */	mtlr r0
 /* 801949A0 001918E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801949A4 001918E4  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game13InteractPressFPQ24Game4Piki
 
-.global actPiki__Q24Game13InteractFlickFPQ24Game4Piki
-actPiki__Q24Game13InteractFlickFPQ24Game4Piki:
+.fn actPiki__Q24Game13InteractFlickFPQ24Game4Piki, global
 /* 801949A8 001918E8  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 801949AC 001918EC  7C 08 02 A6 */	mflr r0
 /* 801949B0 001918F0  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2488,9 +2504,9 @@ actPiki__Q24Game13InteractFlickFPQ24Game4Piki:
 /* 80194BFC 00191B3C  7C 08 03 A6 */	mtlr r0
 /* 80194C00 00191B40  38 21 00 90 */	addi r1, r1, 0x90
 /* 80194C04 00191B44  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game13InteractFlickFPQ24Game4Piki
 
-.global actPiki__Q24Game15InteractSwallowFPQ24Game4Piki
-actPiki__Q24Game15InteractSwallowFPQ24Game4Piki:
+.fn actPiki__Q24Game15InteractSwallowFPQ24Game4Piki, global
 /* 80194C08 00191B48  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80194C0C 00191B4C  7C 08 02 A6 */	mflr r0
 /* 80194C10 00191B50  90 01 00 84 */	stw r0, 0x84(r1)
@@ -2691,9 +2707,9 @@ actPiki__Q24Game15InteractSwallowFPQ24Game4Piki:
 /* 80194EE8 00191E28  7C 08 03 A6 */	mtlr r0
 /* 80194EEC 00191E2C  38 21 00 80 */	addi r1, r1, 0x80
 /* 80194EF0 00191E30  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game15InteractSwallowFPQ24Game4Piki
 
-.global actPiki__Q24Game12InteractKillFPQ24Game4Piki
-actPiki__Q24Game12InteractKillFPQ24Game4Piki:
+.fn actPiki__Q24Game12InteractKillFPQ24Game4Piki, global
 /* 80194EF4 00191E34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80194EF8 00191E38  7C 08 02 A6 */	mflr r0
 /* 80194EFC 00191E3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2749,14 +2765,15 @@ actPiki__Q24Game12InteractKillFPQ24Game4Piki:
 /* 80194FB4 00191EF4  7C 08 03 A6 */	mtlr r0
 /* 80194FB8 00191EF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80194FBC 00191EFC  4E 80 00 20 */	blr 
+.endfn actPiki__Q24Game12InteractKillFPQ24Game4Piki
 
-.global getName__Q26PikiAI12ActBattleArgFv
-getName__Q26PikiAI12ActBattleArgFv: # weak function
+.fn getName__Q26PikiAI12ActBattleArgFv, weak
 /* 80194FC0 00191F00  3C 60 80 48 */	lis r3, lbl_8047EF40@ha
 /* 80194FC4 00191F04  38 63 EF 40 */	addi r3, r3, lbl_8047EF40@l
 /* 80194FC8 00191F08  4E 80 00 20 */	blr 
+.endfn getName__Q26PikiAI12ActBattleArgFv
 
-__sinit_interactPiki_cpp: # static initializer
+.fn __sinit_interactPiki_cpp, local
 /* 80194FCC 00191F0C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80194FD0 00191F10  38 00 FF FF */	li r0, -1
 /* 80194FD4 00191F14  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2767,3 +2784,4 @@ __sinit_interactPiki_cpp: # static initializer
 /* 80194FE8 00191F28  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80194FEC 00191F2C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80194FF0 00191F30  4E 80 00 20 */	blr 
+.endfn __sinit_interactPiki_cpp

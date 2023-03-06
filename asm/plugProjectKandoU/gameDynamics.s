@@ -1,76 +1,87 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047C648:
+.obj lbl_8047C648, local
 	.asciz "Dynamics"
+.endobj lbl_8047C648
 .balign 4
-lbl_8047C654: # Shift-JIS
+.obj lbl_8047C654, local # Shift-JIS
 	.4byte 0x90568374
 	.4byte 0x838A834E
 	.4byte 0x83568387
 	.4byte 0x83930000
+.endobj lbl_8047C654
 .balign 4
-lbl_8047C664:
+.obj lbl_8047C664, local
 	.asciz "Sta-Parm"
+.endobj lbl_8047C664
 .balign 4
-lbl_8047C670:
+.obj lbl_8047C670, local
 	.asciz "micro collision"
+.endobj lbl_8047C670
 .balign 4
-lbl_8047C680: # Shift-JIS
+.obj lbl_8047C680, local # Shift-JIS
 	.4byte 0x5265736F
 	.4byte 0x6C76658E
 	.4byte 0x9E82CC96
 	.4byte 0x808E4300
+.endobj lbl_8047C680
 .balign 4
-lbl_8047C690:
+.obj lbl_8047C690, local
 	.asciz "elasticity"
+.endobj lbl_8047C690
 .balign 4
-lbl_8047C69C: # Shift-JIS
+.obj lbl_8047C69C, local # Shift-JIS
 	.4byte 0x96808E43
 	.4byte 0x3A74616E
 	.4byte 0x76656C00
+.endobj lbl_8047C69C
 .balign 4
-lbl_8047C6A8: # Shift-JIS
+.obj lbl_8047C6A8, local # Shift-JIS
 	.4byte 0x8CC592E8
 	.4byte 0x96808E43
 	.4byte 0x00000000
+.endobj lbl_8047C6A8
 .balign 4
-lbl_8047C6B4: # Shift-JIS
+.obj lbl_8047C6B4, local # Shift-JIS
 	.4byte 0x8CC592E8
 	.4byte 0x96808E43
 	.4byte 0x926C0000
+.endobj lbl_8047C6B4
 .balign 4
-lbl_8047C6C0: # Shift-JIS
+.obj lbl_8047C6C0, local # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x89658BBF
 	.4byte 0x82C882B5
 	.4byte 0x82C982B7
 	.4byte 0x82E90000
+.endobj lbl_8047C6C0
 .balign 4
-lbl_8047C6D4: # Shift-JIS
+.obj lbl_8047C6D4, local # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x8382815B
 	.4byte 0x83818393
 	.4byte 0x83672044
 	.4byte 0x616D7000
+.endobj lbl_8047C6D4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13DynamicsParms
-__vt__13DynamicsParms:
+.obj __vt__13DynamicsParms, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte "@12@__dt__13DynamicsParmsFv"
 	.4byte __dt__13DynamicsParmsFv
-.global "__vt__7Parm<b>"
-"__vt__7Parm<b>":
+.endobj __vt__13DynamicsParms
+.obj "__vt__7Parm<b>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "size__7Parm<b>Fv"
 	.4byte "write__7Parm<b>FR6Stream"
 	.4byte "read__7Parm<b>FR6Stream"
+.endobj "__vt__7Parm<b>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -132,8 +143,7 @@ __vt__13DynamicsParms:
 .endobj lbl_80518278
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__13DynamicsParmsFv
-__ct__13DynamicsParmsFv:
+.fn __ct__13DynamicsParmsFv, global
 /* 80139C60 00136BA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80139C64 00136BA4  7C 08 02 A6 */	mflr r0
 /* 80139C68 00136BA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -340,9 +350,9 @@ __ct__13DynamicsParmsFv:
 /* 80139F88 00136EC8  7C 08 03 A6 */	mtlr r0
 /* 80139F8C 00136ECC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80139F90 00136ED0  4E 80 00 20 */	blr 
+.endfn __ct__13DynamicsParmsFv
 
-.global __dt__13DynamicsParmsFv
-__dt__13DynamicsParmsFv:
+.fn __dt__13DynamicsParmsFv, weak
 /* 80139F94 00136ED4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80139F98 00136ED8  7C 08 02 A6 */	mflr r0
 /* 80139F9C 00136EDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -373,9 +383,9 @@ __dt__13DynamicsParmsFv:
 /* 80139FFC 00136F3C  7C 08 03 A6 */	mtlr r0
 /* 8013A000 00136F40  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013A004 00136F44  4E 80 00 20 */	blr 
+.endfn __dt__13DynamicsParmsFv
 
-.global globalInstance__13DynamicsParmsFv
-globalInstance__13DynamicsParmsFv:
+.fn globalInstance__13DynamicsParmsFv, global
 /* 8013A008 00136F48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013A00C 00136F4C  7C 08 02 A6 */	mflr r0
 /* 8013A010 00136F50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -396,9 +406,9 @@ globalInstance__13DynamicsParmsFv:
 /* 8013A044 00136F84  7C 08 03 A6 */	mtlr r0
 /* 8013A048 00136F88  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013A04C 00136F8C  4E 80 00 20 */	blr 
+.endfn globalInstance__13DynamicsParmsFv
 
-.global __ct__Q24Game5RigidFv
-__ct__Q24Game5RigidFv:
+.fn __ct__Q24Game5RigidFv, global
 /* 8013A050 00136F90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013A054 00136F94  7C 08 02 A6 */	mflr r0
 /* 8013A058 00136F98  3C 80 80 14 */	lis r4, __ct__Q24Game11RigidConfigFv@ha
@@ -420,9 +430,9 @@ __ct__Q24Game5RigidFv:
 /* 8013A098 00136FD8  7C 08 03 A6 */	mtlr r0
 /* 8013A09C 00136FDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013A0A0 00136FE0  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game5RigidFv
 
-.global __ct__Q24Game11RigidConfigFv
-__ct__Q24Game11RigidConfigFv:
+.fn __ct__Q24Game11RigidConfigFv, weak
 /* 8013A0A4 00136FE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013A0A8 00136FE8  7C 08 02 A6 */	mflr r0
 /* 8013A0AC 00136FEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -436,9 +446,9 @@ __ct__Q24Game11RigidConfigFv:
 /* 8013A0CC 0013700C  7C 08 03 A6 */	mtlr r0
 /* 8013A0D0 00137010  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013A0D4 00137014  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11RigidConfigFv
 
-.global "initPosition__Q24Game5RigidFR10Vector3<f>R10Vector3<f>"
-"initPosition__Q24Game5RigidFR10Vector3<f>R10Vector3<f>":
+.fn "initPosition__Q24Game5RigidFR10Vector3<f>R10Vector3<f>", global
 /* 8013A0D8 00137018  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8013A0DC 0013701C  7C 08 02 A6 */	mflr r0
 /* 8013A0E0 00137020  90 01 00 24 */	stw r0, 0x24(r1)
@@ -474,9 +484,9 @@ __ct__Q24Game11RigidConfigFv:
 /* 8013A158 00137098  7C 08 03 A6 */	mtlr r0
 /* 8013A15C 0013709C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8013A160 001370A0  4E 80 00 20 */	blr 
+.endfn "initPosition__Q24Game5RigidFR10Vector3<f>R10Vector3<f>"
 
-.global "initPositionIndex__Q24Game5RigidFR10Vector3<f>iR10Vector3<f>"
-"initPositionIndex__Q24Game5RigidFR10Vector3<f>iR10Vector3<f>":
+.fn "initPositionIndex__Q24Game5RigidFR10Vector3<f>iR10Vector3<f>", global
 /* 8013A164 001370A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013A168 001370A8  7C 08 02 A6 */	mflr r0
 /* 8013A16C 001370AC  1C A5 00 88 */	mulli r5, r5, 0x88
@@ -512,9 +522,9 @@ __ct__Q24Game11RigidConfigFv:
 /* 8013A1E4 00137124  7C 08 03 A6 */	mtlr r0
 /* 8013A1E8 00137128  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013A1EC 0013712C  4E 80 00 20 */	blr 
+.endfn "initPositionIndex__Q24Game5RigidFR10Vector3<f>iR10Vector3<f>"
 
-.global updateMatrix__Q24Game5RigidFi
-updateMatrix__Q24Game5RigidFi:
+.fn updateMatrix__Q24Game5RigidFi, global
 /* 8013A1F0 00137130  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8013A1F4 00137134  7C 08 02 A6 */	mflr r0
 /* 8013A1F8 00137138  1C 84 00 88 */	mulli r4, r4, 0x88
@@ -529,9 +539,9 @@ updateMatrix__Q24Game5RigidFi:
 /* 8013A21C 0013715C  7C 08 03 A6 */	mtlr r0
 /* 8013A220 00137160  38 21 00 10 */	addi r1, r1, 0x10
 /* 8013A224 00137164  4E 80 00 20 */	blr 
+.endfn updateMatrix__Q24Game5RigidFi
 
-.global computeForces__Q24Game5RigidFi
-computeForces__Q24Game5RigidFi:
+.fn computeForces__Q24Game5RigidFi, global
 /* 8013A228 00137168  1C 84 00 88 */	mulli r4, r4, 0x88
 /* 8013A22C 0013716C  C0 02 9E DC */	lfs f0, lbl_8051823C@sda21(r2)
 /* 8013A230 00137170  38 84 00 34 */	addi r4, r4, 0x34
@@ -559,9 +569,9 @@ computeForces__Q24Game5RigidFi:
 /* 8013A288 001371C8  D0 24 00 34 */	stfs f1, 0x34(r4)
 /* 8013A28C 001371CC  D0 04 00 38 */	stfs f0, 0x38(r4)
 /* 8013A290 001371D0  4E 80 00 20 */	blr 
+.endfn computeForces__Q24Game5RigidFi
 
-.global "getYDegree__FR4QuatR10Vector3<f>"
-"getYDegree__FR4QuatR10Vector3<f>":
+.fn "getYDegree__FR4QuatR10Vector3<f>", local
 /* 8013A294 001371D4  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8013A298 001371D8  7C 08 02 A6 */	mflr r0
 /* 8013A29C 001371DC  C0 22 9E DC */	lfs f1, lbl_8051823C@sda21(r2)
@@ -716,9 +726,9 @@ computeForces__Q24Game5RigidFi:
 /* 8013A4F0 00137430  7C 08 03 A6 */	mtlr r0
 /* 8013A4F4 00137434  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8013A4F8 00137438  4E 80 00 20 */	blr 
+.endfn "getYDegree__FR4QuatR10Vector3<f>"
 
-.global integrate__Q24Game5RigidFfi
-integrate__Q24Game5RigidFfi:
+.fn integrate__Q24Game5RigidFfi, global
 /* 8013A4FC 0013743C  94 21 FD C0 */	stwu r1, -0x240(r1)
 /* 8013A500 00137440  7C 08 02 A6 */	mflr r0
 /* 8013A504 00137444  90 01 02 44 */	stw r0, 0x244(r1)
@@ -1137,9 +1147,9 @@ integrate__Q24Game5RigidFfi:
 /* 8013AB68 00137AA8  7C 08 03 A6 */	mtlr r0
 /* 8013AB6C 00137AAC  38 21 02 40 */	addi r1, r1, 0x240
 /* 8013AB70 00137AB0  4E 80 00 20 */	blr 
+.endfn integrate__Q24Game5RigidFfi
 
-.global "resolveCollision__Q24Game5RigidFiR10Vector3<f>R10Vector3<f>f"
-"resolveCollision__Q24Game5RigidFiR10Vector3<f>R10Vector3<f>f":
+.fn "resolveCollision__Q24Game5RigidFiR10Vector3<f>R10Vector3<f>f", global
 /* 8013AB74 00137AB4  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8013AB78 00137AB8  7C 08 02 A6 */	mflr r0
 /* 8013AB7C 00137ABC  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1335,13 +1345,14 @@ integrate__Q24Game5RigidFfi:
 /* 8013AE68 00137DA8  7C 08 03 A6 */	mtlr r0
 /* 8013AE6C 00137DAC  38 21 00 90 */	addi r1, r1, 0x90
 /* 8013AE70 00137DB0  4E 80 00 20 */	blr 
+.endfn "resolveCollision__Q24Game5RigidFiR10Vector3<f>R10Vector3<f>f"
 
-.global "size__7Parm<b>Fv"
-"size__7Parm<b>Fv":
+.fn "size__7Parm<b>Fv", weak
 /* 8013AE74 00137DB4  38 60 00 01 */	li r3, 1
 /* 8013AE78 00137DB8  4E 80 00 20 */	blr 
+.endfn "size__7Parm<b>Fv"
 
-.global "@12@__dt__13DynamicsParmsFv"
-"@12@__dt__13DynamicsParmsFv":
+.fn "@12@__dt__13DynamicsParmsFv", weak
 /* 8013AE7C 00137DBC  38 63 FF F4 */	addi r3, r3, -12
 /* 8013AE80 00137DC0  4B FF F1 14 */	b __dt__13DynamicsParmsFv
+.endfn "@12@__dt__13DynamicsParmsFv"

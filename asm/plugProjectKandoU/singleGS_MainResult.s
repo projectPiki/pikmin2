@@ -5,49 +5,44 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80482598
-lbl_80482598:
-	.4byte 0x7330325F
-	.4byte 0x64617965
-	.4byte 0x6E645F72
-	.4byte 0x6573756C
-	.4byte 0x74000000
-	.4byte 0x00000000
+.obj lbl_80482598, local
+	.asciz "s02_dayend_result"
+.endobj lbl_80482598
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global lbl_804C0654
-lbl_804C0654:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804C0654, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadResource__Q34Game10SingleGame15MainResultStateFv
-.global lbl_804C0660
-lbl_804C0660:
+.endobj lbl_804C0654
+.obj lbl_804C0660, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte beforeSave__Q34Game10SingleGame15MainResultStateFv
-.global __vt__Q32kh6Screen20DispDayEndResultTitl
-__vt__Q32kh6Screen20DispDayEndResultTitl:
+.endobj lbl_804C0660
+.obj __vt__Q32kh6Screen20DispDayEndResultTitl, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32kh6Screen20DispDayEndResultTitlFv
 	.4byte getOwnerID__Q32kh6Screen20DispDayEndResultTitlFv
 	.4byte getMemberID__Q32kh6Screen20DispDayEndResultTitlFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q32kh6Screen16DispDayEndResult
-__vt__Q32kh6Screen16DispDayEndResult:
+.endobj __vt__Q32kh6Screen20DispDayEndResultTitl
+.obj __vt__Q32kh6Screen16DispDayEndResult, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32kh6Screen16DispDayEndResultFv
 	.4byte getOwnerID__Q32kh6Screen16DispDayEndResultFv
 	.4byte getMemberID__Q32kh6Screen16DispDayEndResultFv
 	.4byte doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv
-.global __vt__Q34Game10SingleGame15MainResultState
-__vt__Q34Game10SingleGame15MainResultState:
+.endobj __vt__Q32kh6Screen16DispDayEndResult
+.obj __vt__Q34Game10SingleGame15MainResultState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
@@ -66,41 +61,42 @@ __vt__Q34Game10SingleGame15MainResultState:
 	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-.global __vt__Q34Game6Result5TNode
-__vt__Q34Game6Result5TNode:
+.endobj __vt__Q34Game10SingleGame15MainResultState
+.obj __vt__Q34Game6Result5TNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game6Result5TNodeFv
 	.4byte getChildCount__Q24Game5DNodeFv
-.global "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"
-"__vt__46Delegate<Q34Game10SingleGame15MainResultState>":
+.endobj __vt__Q34Game6Result5TNode
+.obj "__vt__46Delegate<Q34Game10SingleGame15MainResultState>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv"
+.endobj "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global theTekiHeap
-theTekiHeap:
+.endobj gfNAN___Q24Game5P2JST
+.obj theTekiHeap, local
 	.skip 0x4
+.endobj theTekiHeap
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A038
-lbl_8051A038:
-	.4byte 0x00000000
-.global lbl_8051A03C
-lbl_8051A03C:
-	.4byte 0x6D725F6C
-	.4byte 0x6F616400
+.obj lbl_8051A038, local
+	.float 0.0
+.endobj lbl_8051A038
+.obj lbl_8051A03C, local
+	.asciz "mr_load"
+.endobj lbl_8051A03C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game10SingleGame15MainResultStateFv
-__ct__Q34Game10SingleGame15MainResultStateFv:
+.fn __ct__Q34Game10SingleGame15MainResultStateFv, global
 /* 80219F48 00216E88  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80219F4C 00216E8C  7C 08 02 A6 */	mflr r0
 /* 80219F50 00216E90  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
@@ -188,9 +184,9 @@ __ct__Q34Game10SingleGame15MainResultStateFv:
 /* 8021A08C 00216FCC  7C 08 03 A6 */	mtlr r0
 /* 8021A090 00216FD0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8021A094 00216FD4  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game10SingleGame15MainResultStateFv
 
-.global __dt__Q34Game6Result5TNodeFv
-__dt__Q34Game6Result5TNodeFv:
+.fn __dt__Q34Game6Result5TNodeFv, weak
 /* 8021A098 00216FD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021A09C 00216FDC  7C 08 02 A6 */	mflr r0
 /* 8021A0A0 00216FE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -216,9 +212,9 @@ __dt__Q34Game6Result5TNodeFv:
 /* 8021A0EC 0021702C  7C 08 03 A6 */	mtlr r0
 /* 8021A0F0 00217030  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021A0F4 00217034  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game6Result5TNodeFv
 
-.global init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 8021A0F8 00217038  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021A0FC 0021703C  7C 08 02 A6 */	mflr r0
 /* 8021A100 00217040  90 01 00 14 */	stw r0, 0x14(r1)
@@ -286,9 +282,9 @@ init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game8S
 /* 8021A1F0 00217130  7C 08 03 A6 */	mtlr r0
 /* 8021A1F4 00217134  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021A1F8 00217138  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 
-.global beforeSave__Q34Game10SingleGame15MainResultStateFv
-beforeSave__Q34Game10SingleGame15MainResultStateFv:
+.fn beforeSave__Q34Game10SingleGame15MainResultStateFv, global
 /* 8021A1FC 0021713C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021A200 00217140  7C 08 02 A6 */	mflr r0
 /* 8021A204 00217144  90 01 00 14 */	stw r0, 0x14(r1)
@@ -298,9 +294,9 @@ beforeSave__Q34Game10SingleGame15MainResultStateFv:
 /* 8021A214 00217154  7C 08 03 A6 */	mtlr r0
 /* 8021A218 00217158  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021A21C 0021715C  4E 80 00 20 */	blr 
+.endfn beforeSave__Q34Game10SingleGame15MainResultStateFv
 
-.global loadResource__Q34Game10SingleGame15MainResultStateFv
-loadResource__Q34Game10SingleGame15MainResultStateFv:
+.fn loadResource__Q34Game10SingleGame15MainResultStateFv, global
 /* 8021A220 00217160  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8021A224 00217164  7C 08 02 A6 */	mflr r0
 /* 8021A228 00217168  38 A0 00 00 */	li r5, 0
@@ -335,10 +331,10 @@ loadResource__Q34Game10SingleGame15MainResultStateFv:
 /* 8021A29C 002171DC  7C 08 03 A6 */	mtlr r0
 /* 8021A2A0 002171E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8021A2A4 002171E4  4E 80 00 20 */	blr 
+.endfn loadResource__Q34Game10SingleGame15MainResultStateFv
 
 .if version == 1
-.global exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection, global
 /* 8021A2A8 002171E8  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8021A2AC 002171EC  7C 08 02 A6 */	mflr r0
 /* 8021A2B0 002171F0  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -612,9 +608,9 @@ exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection:
 /* 8021A684 002175C4  7C 08 03 A6 */	mtlr r0
 /* 8021A688 002175C8  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8021A68C 002175CC  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
 .else
-.global exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection, global
 /* 8021A2A8 002171E8  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8021A2AC 002171EC  7C 08 02 A6 */	mflr r0
 /* 8021A2B0 002171F0  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -888,10 +884,10 @@ exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection:
 /* 8021A684 002175C4  7C 08 03 A6 */	mtlr r0
 /* 8021A688 002175C8  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8021A68C 002175CC  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
 .endif
 
-.global onMovieDone__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieDone__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieDone__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 8021A690 002175D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021A694 002175D4  7C 08 02 A6 */	mflr r0
 /* 8021A698 002175D8  C0 02 BC D8 */	lfs f0, lbl_8051A038@sda21(r2)
@@ -904,9 +900,9 @@ onMovieDone__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ2
 /* 8021A6B4 002175F4  7C 08 03 A6 */	mtlr r0
 /* 8021A6B8 002175F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021A6BC 002175FC  4E 80 00 20 */	blr 
+.endfn onMovieDone__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 
-.global createResultNodes__Q34Game10SingleGame15MainResultStateFv
-createResultNodes__Q34Game10SingleGame15MainResultStateFv:
+.fn createResultNodes__Q34Game10SingleGame15MainResultStateFv, global
 /* 8021A6C0 00217600  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8021A6C4 00217604  7C 08 02 A6 */	mflr r0
 /* 8021A6C8 00217608  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1136,9 +1132,9 @@ createResultNodes__Q34Game10SingleGame15MainResultStateFv:
 /* 8021AA10 00217950  7C 08 03 A6 */	mtlr r0
 /* 8021AA14 00217954  38 21 00 40 */	addi r1, r1, 0x40
 /* 8021AA18 00217958  4E 80 00 20 */	blr 
+.endfn createResultNodes__Q34Game10SingleGame15MainResultStateFv
 
-.global draw__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionR8Graphics
-draw__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn draw__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 8021AA1C 0021795C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021AA20 00217960  7C 08 02 A6 */	mflr r0
 /* 8021AA24 00217964  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1178,10 +1174,10 @@ draw__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionR8Graphics
 /* 8021AAA4 002179E4  7C 08 03 A6 */	mtlr r0
 /* 8021AAA8 002179E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021AAAC 002179EC  4E 80 00 20 */	blr 
+.endfn draw__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionR8Graphics
 
 .if version == 1
-.global cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection, global
 /* 8021AAB0 002179F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021AAB4 002179F4  7C 08 02 A6 */	mflr r0
 /* 8021AAB8 002179F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1214,9 +1210,9 @@ cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection:
 /* 8021AB20 00217A60  7C 08 03 A6 */	mtlr r0
 /* 8021AB24 00217A64  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021AB28 00217A68  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
 .else
-.global cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection, global
 /* 8021AAB0 002179F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021AAB4 002179F4  7C 08 02 A6 */	mflr r0
 /* 8021AAB8 002179F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1249,46 +1245,46 @@ cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection:
 /* 8021AB20 00217A60  7C 08 03 A6 */	mtlr r0
 /* 8021AB24 00217A64  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021AB28 00217A68  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
 .endif
 
-.global getSize__Q32kh6Screen20DispDayEndResultTitlFv
-getSize__Q32kh6Screen20DispDayEndResultTitlFv:
+.fn getSize__Q32kh6Screen20DispDayEndResultTitlFv, weak
 /* 8021AB2C 00217A6C  38 60 00 08 */	li r3, 8
 /* 8021AB30 00217A70  4E 80 00 20 */	blr 
+.endfn getSize__Q32kh6Screen20DispDayEndResultTitlFv
 
-.global getOwnerID__Q32kh6Screen20DispDayEndResultTitlFv
-getOwnerID__Q32kh6Screen20DispDayEndResultTitlFv:
+.fn getOwnerID__Q32kh6Screen20DispDayEndResultTitlFv, weak
 /* 8021AB34 00217A74  38 60 4B 48 */	li r3, 0x4b48
 /* 8021AB38 00217A78  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32kh6Screen20DispDayEndResultTitlFv
 
-.global getMemberID__Q32kh6Screen20DispDayEndResultTitlFv
-getMemberID__Q32kh6Screen20DispDayEndResultTitlFv:
+.fn getMemberID__Q32kh6Screen20DispDayEndResultTitlFv, weak
 /* 8021AB3C 00217A7C  3C 80 54 49 */	lis r4, 0x5449544C@ha
 /* 8021AB40 00217A80  3C 60 44 45 */	lis r3, 0x4445525F@ha
 /* 8021AB44 00217A84  38 84 54 4C */	addi r4, r4, 0x5449544C@l
 /* 8021AB48 00217A88  38 63 52 5F */	addi r3, r3, 0x4445525F@l
 /* 8021AB4C 00217A8C  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32kh6Screen20DispDayEndResultTitlFv
 
-.global getSize__Q32kh6Screen16DispDayEndResultFv
-getSize__Q32kh6Screen16DispDayEndResultFv:
+.fn getSize__Q32kh6Screen16DispDayEndResultFv, weak
 /* 8021AB50 00217A90  38 60 00 68 */	li r3, 0x68
 /* 8021AB54 00217A94  4E 80 00 20 */	blr 
+.endfn getSize__Q32kh6Screen16DispDayEndResultFv
 
-.global getOwnerID__Q32kh6Screen16DispDayEndResultFv
-getOwnerID__Q32kh6Screen16DispDayEndResultFv:
+.fn getOwnerID__Q32kh6Screen16DispDayEndResultFv, weak
 /* 8021AB58 00217A98  38 60 4B 48 */	li r3, 0x4b48
 /* 8021AB5C 00217A9C  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32kh6Screen16DispDayEndResultFv
 
-.global getMemberID__Q32kh6Screen16DispDayEndResultFv
-getMemberID__Q32kh6Screen16DispDayEndResultFv:
+.fn getMemberID__Q32kh6Screen16DispDayEndResultFv, weak
 /* 8021AB60 00217AA0  3C 80 52 53 */	lis r4, 0x52534C54@ha
 /* 8021AB64 00217AA4  3C 60 00 44 */	lis r3, 0x0044455F@ha
 /* 8021AB68 00217AA8  38 84 4C 54 */	addi r4, r4, 0x52534C54@l
 /* 8021AB6C 00217AAC  38 63 45 5F */	addi r3, r3, 0x0044455F@l
 /* 8021AB70 00217AB0  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32kh6Screen16DispDayEndResultFv
 
-.global doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv
-doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv:
+.fn doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv, weak
 /* 8021AB74 00217AB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021AB78 00217AB8  7C 08 02 A6 */	mflr r0
 /* 8021AB7C 00217ABC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1310,9 +1306,9 @@ doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv:
 /* 8021ABBC 00217AFC  7C 08 03 A6 */	mtlr r0
 /* 8021ABC0 00217B00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021ABC4 00217B04  4E 80 00 20 */	blr 
+.endfn doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv
 
-.global "invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv"
-"invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv":
+.fn "invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv", weak
 /* 8021ABC8 00217B08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021ABCC 00217B0C  7C 08 02 A6 */	mflr r0
 /* 8021ABD0 00217B10  7C 64 1B 78 */	mr r4, r3
@@ -1325,9 +1321,9 @@ doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv:
 /* 8021ABEC 00217B2C  7C 08 03 A6 */	mtlr r0
 /* 8021ABF0 00217B30  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021ABF4 00217B34  4E 80 00 20 */	blr 
+.endfn "invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv"
 
-.global __sinit_singleGS_MainResult_cpp
-__sinit_singleGS_MainResult_cpp:
+.fn __sinit_singleGS_MainResult_cpp, local
 /* 8021ABF8 00217B38  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8021ABFC 00217B3C  38 00 FF FF */	li r0, -1
 /* 8021AC00 00217B40  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1338,3 +1334,4 @@ __sinit_singleGS_MainResult_cpp:
 /* 8021AC14 00217B54  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8021AC18 00217B58  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8021AC1C 00217B5C  4E 80 00 20 */	blr 
+.endfn __sinit_singleGS_MainResult_cpp

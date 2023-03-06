@@ -5,79 +5,100 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80482430:
+.obj lbl_80482430, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80482430
 .balign 4
-lbl_8048243C:
+.obj lbl_8048243C, local
 	.asciz "SingleGS_Game"
+.endobj lbl_8048243C
 .balign 4
-lbl_8048244C:
+.obj lbl_8048244C, local
 	.asciz "s0B_cv_coursein"
+.endobj lbl_8048244C
 .balign 4
-lbl_8048245C:
+.obj lbl_8048245C, local
 	.asciz "PSGame.h"
+.endobj lbl_8048245C
 .balign 4
-lbl_80482468:
+.obj lbl_80482468, local
 	.asciz "P2Assert"
+.endobj lbl_80482468
 .balign 4
-lbl_80482474:
+.obj lbl_80482474, local
 	.asciz "PSScene.h"
+.endobj lbl_80482474
 .balign 4
-lbl_80482480:
+.obj lbl_80482480, local
 	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_80482480
 .balign 4
-lbl_804824A4:
+.obj lbl_804824A4, local
 	.asciz "PSMainSide_Scene.h"
+.endobj lbl_804824A4
 .balign 4
-lbl_804824B8:
+.obj lbl_804824B8, local
 	.asciz "s05_pikminzero"
+.endobj lbl_804824B8
 .balign 4
-lbl_804824C8:
+.obj lbl_804824C8, local
 	.asciz "sm-giveup"
+.endobj lbl_804824C8
 .balign 4
-lbl_804824D4:
+.obj lbl_804824D4, local
 	.asciz "s12_cv_giveup"
+.endobj lbl_804824D4
 .balign 4
-lbl_804824E4:
+.obj lbl_804824E4, local
 	.asciz "singleGS_CaveGame.cpp"
+.endobj lbl_804824E4
 .balign 4
-lbl_804824FC:
+.obj lbl_804824FC, local
 	.asciz "no pod demo 12"
+.endobj lbl_804824FC
 .balign 4
-lbl_8048250C:
+.obj lbl_8048250C, local
 	.asciz "Illegal return value %d."
+.endobj lbl_8048250C
 .balign 4
-lbl_80482528:
+.obj lbl_80482528, local
 	.asciz "cavestate:cleanup"
+.endobj lbl_80482528
 .balign 4
-lbl_8048253C:
+.obj lbl_8048253C, local
 	.asciz "s03_orimadown"
+.endobj lbl_8048253C
 .balign 4
-lbl_8048254C:
+.obj lbl_8048254C, local
 	.asciz "s0C_cv_escape"
+.endobj lbl_8048254C
 .balign 4
-lbl_8048255C:
+.obj lbl_8048255C, local
 	.asciz "s09_holein"
+.endobj lbl_8048255C
 .balign 4
-lbl_80482568:
+.obj lbl_80482568, local
 	.asciz "g07_cv_gamestart"
+.endobj lbl_80482568
 .balign 4
-lbl_8048257C:
+.obj lbl_8048257C, local
 	.asciz "PikiKillArg"
+.endobj lbl_8048257C
 .balign 4
-lbl_80482588:
+.obj lbl_80482588, local
 	.asciz "CreatureKillArg"
+.endobj lbl_80482588
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q34Game10SingleGame9CaveState
-__vt__Q34Game10SingleGame9CaveState:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game10SingleGame9CaveState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
@@ -96,6 +117,7 @@ __vt__Q34Game10SingleGame9CaveState:
 	.4byte onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
+.endobj __vt__Q34Game10SingleGame9CaveState
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -142,8 +164,7 @@ __vt__Q34Game10SingleGame9CaveState:
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
-.global init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 80217760 002146A0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80217764 002146A4  7C 08 02 A6 */	mflr r0
 /* 80217768 002146A8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -342,9 +363,9 @@ init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 /* 80217A58 00214998  7C 08 03 A6 */	mtlr r0
 /* 80217A5C 0021499C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80217A60 002149A0  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .else
-.global init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 80217760 002146A0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80217764 002146A4  7C 08 02 A6 */	mflr r0
 /* 80217768 002146A8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -543,17 +564,17 @@ init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 /* 80217A58 00214998  7C 08 03 A6 */	mtlr r0
 /* 80217A5C 0021499C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80217A60 002149A0  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .endif
 
-.global on_section_fadeout__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
-on_section_fadeout__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
+.fn on_section_fadeout__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection, global
 /* 80217A64 002149A4  38 00 00 01 */	li r0, 1
 /* 80217A68 002149A8  98 03 00 11 */	stb r0, 0x11(r3)
 /* 80217A6C 002149AC  4E 80 00 20 */	blr 
+.endfn on_section_fadeout__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
 
 .if version == 1
-.global exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection, global
 /* 80217A70 002149B0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80217A74 002149B4  7C 08 02 A6 */	mflr r0
 /* 80217A78 002149B8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -743,9 +764,9 @@ exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
 /* 80217D38 00214C78  7C 08 03 A6 */	mtlr r0
 /* 80217D3C 00214C7C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80217D40 00214C80  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
 .else
-.global exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection, global
 /* 80217A70 002149B0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80217A74 002149B4  7C 08 02 A6 */	mflr r0
 /* 80217A78 002149B8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -935,10 +956,10 @@ exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
 /* 80217D38 00214C78  7C 08 03 A6 */	mtlr r0
 /* 80217D3C 00214C7C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80217D40 00214C80  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
 .endif
 
-.global draw__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionR8Graphics
-draw__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn draw__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 80217D44 00214C84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80217D48 00214C88  7C 08 02 A6 */	mflr r0
 /* 80217D4C 00214C8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -980,10 +1001,10 @@ draw__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionR8Graphics:
 /* 80217DD0 00214D10  7C 08 03 A6 */	mtlr r0
 /* 80217DD4 00214D14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80217DD8 00214D18  4E 80 00 20 */	blr 
+.endfn draw__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionR8Graphics
 
 .if version == 1
-.global check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
-check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
+.fn check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection, global
 /* 80217DDC 00214D1C  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 80217DE0 00214D20  7C 08 02 A6 */	mflr r0
 /* 80217DE4 00214D24  90 01 01 34 */	stw r0, 0x134(r1)
@@ -1293,9 +1314,9 @@ check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
 /* 8021825C 0021519C  7C 08 03 A6 */	mtlr r0
 /* 80218260 002151A0  38 21 01 30 */	addi r1, r1, 0x130
 /* 80218264 002151A4  4E 80 00 20 */	blr 
+.endfn check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
 .else
-.global check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
-check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
+.fn check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection, global
 /* 80217DDC 00214D1C  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 80217DE0 00214D20  7C 08 02 A6 */	mflr r0
 /* 80217DE4 00214D24  90 01 01 34 */	stw r0, 0x134(r1)
@@ -1605,11 +1626,11 @@ check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
 /* 8021825C 0021519C  7C 08 03 A6 */	mtlr r0
 /* 80218260 002151A0  38 21 01 30 */	addi r1, r1, 0x130
 /* 80218264 002151A4  4E 80 00 20 */	blr 
+.endfn check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
 .endif
 
 .if version == 1
-.global cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection, global
 /* 80218268 002151A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021826C 002151AC  7C 08 02 A6 */	mflr r0
 /* 80218270 002151B0  3C 60 80 48 */	lis r3, lbl_80482528@ha
@@ -1637,9 +1658,9 @@ cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
 /* 802182C4 00215204  7C 08 03 A6 */	mtlr r0
 /* 802182C8 00215208  38 21 00 10 */	addi r1, r1, 0x10
 /* 802182CC 0021520C  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
 .else
-.global cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection, global
 /* 80218268 002151A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8021826C 002151AC  7C 08 02 A6 */	mflr r0
 /* 80218270 002151B0  3C 60 80 48 */	lis r3, lbl_80482528@ha
@@ -1667,11 +1688,11 @@ cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection:
 /* 802182C4 00215204  7C 08 03 A6 */	mtlr r0
 /* 802182C8 00215208  38 21 00 10 */	addi r1, r1, 0x10
 /* 802182CC 0021520C  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
 .endif
 
 .if version == 1
-.global onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
-onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni:
+.fn onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni, global
 /* 802182D0 00215210  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802182D4 00215214  7C 08 02 A6 */	mflr r0
 /* 802182D8 00215218  3C 60 80 48 */	lis r3, lbl_8048253C@ha
@@ -1727,9 +1748,9 @@ onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni:
 /* 80218398 002152D8  7C 08 03 A6 */	mtlr r0
 /* 8021839C 002152DC  38 21 00 50 */	addi r1, r1, 0x50
 /* 802183A0 002152E0  4E 80 00 20 */	blr 
+.endfn onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
 .else
-.global onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
-onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni:
+.fn onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni, global
 /* 802182D0 00215210  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802182D4 00215214  7C 08 02 A6 */	mflr r0
 /* 802182D8 00215218  3C 60 80 48 */	lis r3, lbl_8048253C@ha
@@ -1785,11 +1806,11 @@ onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni:
 /* 80218398 002152D8  7C 08 03 A6 */	mtlr r0
 /* 8021839C 002152DC  38 21 00 50 */	addi r1, r1, 0x50
 /* 802183A0 002152E0  4E 80 00 20 */	blr 
+.endfn onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
 .endif
 
 .if version == 1
-.global onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item:
+.fn onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item, global
 /* 802183A4 002152E4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802183A8 002152E8  7C 08 02 A6 */	mflr r0
 /* 802183AC 002152EC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1855,9 +1876,9 @@ onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34G
 /* 8021849C 002153DC  7C 08 03 A6 */	mtlr r0
 /* 802184A0 002153E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 802184A4 002153E4  4E 80 00 20 */	blr 
+.endfn onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 .else
-.global onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item:
+.fn onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item, global
 /* 802183A4 002152E4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802183A8 002152E8  7C 08 02 A6 */	mflr r0
 /* 802183AC 002152EC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1923,11 +1944,11 @@ onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34G
 /* 8021849C 002153DC  7C 08 03 A6 */	mtlr r0
 /* 802184A0 002153E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 802184A4 002153E4  4E 80 00 20 */	blr 
+.endfn onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 .endif
 
 .if version == 1
-.global onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item:
+.fn onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item, global
 /* 802184A8 002153E8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802184AC 002153EC  7C 08 02 A6 */	mflr r0
 /* 802184B0 002153F0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2011,9 +2032,9 @@ onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8I
 /* 802185E0 00215520  7C 08 03 A6 */	mtlr r0
 /* 802185E4 00215524  38 21 00 60 */	addi r1, r1, 0x60
 /* 802185E8 00215528  4E 80 00 20 */	blr 
+.endfn onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
 .else
-.global onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item:
+.fn onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item, global
 /* 802184A8 002153E8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802184AC 002153EC  7C 08 02 A6 */	mflr r0
 /* 802184B0 002153F0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2097,11 +2118,11 @@ onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8I
 /* 802185E0 00215520  7C 08 03 A6 */	mtlr r0
 /* 802185E4 00215524  38 21 00 60 */	addi r1, r1, 0x60
 /* 802185E8 00215528  4E 80 00 20 */	blr 
+.endfn onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
 .endif
 
 .if version == 1
-.global onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
-onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni:
+.fn onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni, global
 /* 802185EC 0021552C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 802185F0 00215530  7C 08 02 A6 */	mflr r0
 /* 802185F4 00215534  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2513,9 +2534,9 @@ onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni:
 /* 80218BD0 00215B10  7C 08 03 A6 */	mtlr r0
 /* 80218BD4 00215B14  38 21 00 90 */	addi r1, r1, 0x90
 /* 80218BD8 00215B18  4E 80 00 20 */	blr 
+.endfn onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
 .else
-.global onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
-onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni:
+.fn onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni, global
 /* 802185EC 0021552C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 802185F0 00215530  7C 08 02 A6 */	mflr r0
 /* 802185F4 00215534  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2927,11 +2948,11 @@ onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni:
 /* 80218BD0 00215B10  7C 08 03 A6 */	mtlr r0
 /* 80218BD4 00215B14  38 21 00 90 */	addi r1, r1, 0x90
 /* 80218BD8 00215B18  4E 80 00 20 */	blr 
+.endfn onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
 .endif
 
 .if version == 1
-.global onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 80218BDC 00215B1C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80218BE0 00215B20  7C 08 02 A6 */	mflr r0
 /* 80218BE4 00215B24  3C 60 80 48 */	lis r3, lbl_80482430@ha
@@ -3248,9 +3269,9 @@ onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game1
 /* 80219060 00215FA0  7C 08 03 A6 */	mtlr r0
 /* 80219064 00215FA4  38 21 00 60 */	addi r1, r1, 0x60
 /* 80219068 00215FA8  4E 80 00 20 */	blr 
+.endfn onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .else
-.global onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 80218BDC 00215B1C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80218BE0 00215B20  7C 08 02 A6 */	mflr r0
 /* 80218BE4 00215B24  3C 60 80 48 */	lis r3, lbl_80482430@ha
@@ -3567,11 +3588,11 @@ onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game1
 /* 80219060 00215FA0  7C 08 03 A6 */	mtlr r0
 /* 80219064 00215FA4  38 21 00 60 */	addi r1, r1, 0x60
 /* 80219068 00215FA8  4E 80 00 20 */	blr 
+.endfn onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .endif
 
 .if version == 1
-.global onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 8021906C 00215FAC  94 21 FC D0 */	stwu r1, -0x330(r1)
 /* 80219070 00215FB0  7C 08 02 A6 */	mflr r0
 /* 80219074 00215FB4  90 01 03 34 */	stw r0, 0x334(r1)
@@ -4571,9 +4592,9 @@ onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11
 /* 80219F14 00216E54  7C 08 03 A6 */	mtlr r0
 /* 80219F18 00216E58  38 21 03 30 */	addi r1, r1, 0x330
 /* 80219F1C 00216E5C  4E 80 00 20 */	blr 
+.endfn onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .else
-.global onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 8021906C 00215FAC  94 21 FC D0 */	stwu r1, -0x330(r1)
 /* 80219070 00215FB0  7C 08 02 A6 */	mflr r0
 /* 80219074 00215FB4  90 01 03 34 */	stw r0, 0x334(r1)
@@ -5573,6 +5594,7 @@ onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11
 /* 80219F14 00216E54  7C 08 03 A6 */	mtlr r0
 /* 80219F18 00216E58  38 21 03 30 */	addi r1, r1, 0x330
 /* 80219F1C 00216E5C  4E 80 00 20 */	blr 
+.endfn onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .endif
 
 .fn __sinit_singleGS_CaveGame_cpp, local

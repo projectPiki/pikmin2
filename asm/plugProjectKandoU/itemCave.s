@@ -85,11 +85,10 @@ lbl_80481078:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BA3A0
-lbl_804BA3A0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__11GenCaveParm
 __vt__11GenCaveParm:
 	.4byte 0
@@ -526,15 +525,13 @@ __vt__Q34Game8ItemCave3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515B18
-lbl_80515B18:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515B1C
-lbl_80515B1C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global mgr__Q24Game8ItemCave
 mgr__Q24Game8ItemCave:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -3063,10 +3060,10 @@ __sinit_itemCave_cpp:
 /* 801EC150 001E9090  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801EC154 001E9094  38 00 FF FF */	li r0, -1
 /* 801EC158 001E9098  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801EC15C 001E909C  3C 60 80 4C */	lis r3, lbl_804BA3A0@ha
-/* 801EC160 001E90A0  90 0D 94 98 */	stw r0, lbl_80515B18@sda21(r13)
-/* 801EC164 001E90A4  D4 03 A3 A0 */	stfsu f0, lbl_804BA3A0@l(r3)
-/* 801EC168 001E90A8  D0 0D 94 9C */	stfs f0, lbl_80515B1C@sda21(r13)
+/* 801EC15C 001E909C  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801EC160 001E90A0  90 0D 94 98 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801EC164 001E90A4  D4 03 A3 A0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801EC168 001E90A8  D0 0D 94 9C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801EC16C 001E90AC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801EC170 001E90B0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801EC174 001E90B4  4E 80 00 20 */	blr 
