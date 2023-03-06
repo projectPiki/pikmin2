@@ -1,7 +1,7 @@
 #ifndef _P2JME_CAPTION_H
 #define _P2JME_CAPTION_H
 
-#include "P2JME/Window.h"
+#include "P2JME/messageObj.h"
 
 namespace P2JME {
 namespace Caption {

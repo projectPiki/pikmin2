@@ -8,7 +8,8 @@
 #include "Game/gamePlayData.h"
 #include "Game/GameSystem.h"
 
-static const char name[] = "movieMessage";
+static const int unusedArray[] = { 0, 0, 0 };
+static const char name[]       = "movieMessage";
 
 namespace P2JME {
 namespace Movie {
@@ -75,27 +76,33 @@ void WindowPane::update()
  */
 void WindowPane::moveWindow(bool flag)
 {
-	f32 angle = mCurrAngle * DEG2RAD * PI;
-	f32 x     = mInitialPosition.x + 500.0f;
-	f32 y     = mInitialPosition.y;
+	f32 angle = DEG2RAD;
+	angle *= mCurrAngle;
+	// f32 radAngle = mCurrAngle * DEG2RAD;
+	angle        = PI * angle;
+	Vector3f vec = mInitialPosition;
+	vec.x += 500.0f;
 
-	f32 cos  = pikmin2_cosf(angle) * 500.0f + x;
-	f32 sin  = pikmin2_sinf(angle) * 500.0f + y;
-	f32 zero = 0.0f;
+	Vector3f offset = Vector3f(pikmin2_sinf(angle) * 500.0f + vec.x, pikmin2_cosf(angle) * 500.0f + vec.y, 0.0f);
 	if (flag) {
-		mNewPosition  = Vector3f(sin, cos, 0.0f);
+		mNewPosition  = offset;
 		mCurrPosition = Vector3f(0.0f);
 	} else {
-		mCurrPosition.x += (sin - mNewPosition.x) * 0.2f;
-		mCurrPosition.y += (cos - mNewPosition.y) * 0.2f;
-		mCurrPosition.z += (zero - mNewPosition.z) * 0.2f;
-		mCurrPosition *= 0.72f;
+		Vector3f diff = offset - mNewPosition;
+		diff.x *= 0.2f;
+		diff.y *= 0.2f;
+		diff.z *= 0.2f;
+		mCurrPosition += diff;
+		mCurrPosition.x *= 0.72f;
+		mCurrPosition.y *= 0.72f;
+		mCurrPosition.z *= 0.72f;
 		mNewPosition += mCurrPosition;
 	}
 	mPane->setOffset(mNewPosition.x, mNewPosition.y);
-	f32 newangle = JMath::atanTable_.atan2_(mNewPosition.x - x, mNewPosition.y - y);
+	f32 newangle = JMath::atanTable_.atan2_(mNewPosition.x - vec.x, mNewPosition.y - vec.y);
 	f32 scale    = roundAng(mCurrAngle);
-	scale        = FABS((newangle - 270.0f) / 180.f) + 1.0f;
+	f64 newScale = fabs((scale - 270.0f) / 180.f);
+	scale        = (f32)newScale + 1.0f;
 	mPane->setAngle(newangle * 57.295776f + 90.0f);
 	mPane->updateScale(scale);
 	/*
@@ -1435,8 +1442,9 @@ void TControl::reset()
  */
 TControl::EModeFlag TControl::setMode(EModeFlag mode)
 {
-	mModeFlag = mode;
-	switch (mModeFlag) {
+	EModeFlag oldMode = mModeFlag;
+	mModeFlag         = mode;
+	switch (mode) {
 	case MODEFLAG_Inactive:
 		mIsActive = false;
 		mMessageWindow->mWindowPane->mPane->hide();
@@ -1456,7 +1464,7 @@ TControl::EModeFlag TControl::setMode(EModeFlag mode)
 		mMessageWindow->mWindowPane->close(0.5f);
 		break;
 	}
-	return mode;
+	return oldMode;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1819,16 +1827,15 @@ void MessageWindowScreen::open(f32 duration) { mWindowPane->open(duration); }
  * Address:	80436778
  * Size:	000228
  */
-void TControl::update(Controller* pad1, Controller* pad2)
+bool TControl::update(Controller* pad1, Controller* pad2)
 {
-	bool ret = true;
-	Window::TControl::update(pad1, pad2); // matching bs when this is bool
+	bool ret = Window::TControl::update(pad1, pad2); // matching bs when this is bool
 	if (mFlags.dwordView & 1 && Game::moviePlayer && (Game::moviePlayer->mFlags & 2)) {
 		if (mIsActive) {
 			reset();
 			Game::moviePlayer->unsuspend(1, false);
 		}
-		ret = true;
+		return true;
 	} else {
 		if (mMessageWindow) {
 			mMessageWindow->update();
@@ -1836,16 +1843,17 @@ void TControl::update(Controller* pad1, Controller* pad2)
 		if (mPodIcon) {
 			mPodIcon->update();
 		}
+
 		switch (mModeFlag) {
 		case MODEFLAG_Inactive:
 			if (ret) {
 				if (Game::gameSystem) {
 					mIsPaused = Game::gameSystem->setPause(1, "message", 3);
-					setMode(MODEFLAG_Start);
-					mIsActive = true;
-				} else {
-					mIsActive = false;
 				}
+				setMode(MODEFLAG_Start);
+				mIsActive = true;
+			} else {
+				mIsActive = false;
 			}
 			break;
 		case MODEFLAG_Start:
@@ -1876,179 +1884,10 @@ void TControl::update(Controller* pad1, Controller* pad2)
 			window->mAButton->mState    = 0;
 			window->mArrowPane->mState  = 0;
 		}
-		ret = mIsActive;
+		return mIsActive;
 	}
-	// return ret;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	bl       update__Q35P2JME6Window8TControlFP10ControllerP10Controller
-	lwz      r0, 0x70(r31)
-	mr       r30, r3
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_804367F4
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_804367F4
-	lwz      r0, 0x1f0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_804367F4
-	lbz      r0, 0x68(r31)
-	cmplwi   r0, 0
-	beq      lbl_804367EC
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	li       r4, 1
-	li       r5, 0
-	bl       unsuspend__Q24Game11MoviePlayerFlb
 
-lbl_804367EC:
-	li       r3, 1
-	b        lbl_80436988
-
-lbl_804367F4:
-	lwz      r3, 0x5c(r31)
-	cmplwi   r3, 0
-	beq      lbl_80436810
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80436810:
-	lwz      r3, 0x60(r31)
-	cmplwi   r3, 0
-	beq      lbl_8043682C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8043682C:
-	lwz      r0, 0x6c(r31)
-	cmpwi    r0, 2
-	beq      lbl_804368C8
-	bge      lbl_8043684C
-	cmpwi    r0, 0
-	beq      lbl_80436858
-	bge      lbl_804368A4
-	b        lbl_80436940
-
-lbl_8043684C:
-	cmpwi    r0, 4
-	bge      lbl_80436940
-	b        lbl_804368E4
-
-lbl_80436858:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_80436898
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80436880
-	li       r4, 1
-	addi     r5, r2, lbl_80520854@sda21
-	li       r6, 3
-	bl       setPause__Q24Game10GameSystemFbPci
-	stb      r3, 0x74(r31)
-
-lbl_80436880:
-	mr       r3, r31
-	li       r4, 1
-	bl       setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag
-	li       r0, 1
-	stb      r0, 0x68(r31)
-	b        lbl_80436940
-
-lbl_80436898:
-	li       r0, 0
-	stb      r0, 0x68(r31)
-	b        lbl_80436940
-
-lbl_804368A4:
-	lwz      r3, 0x5c(r31)
-	lwz      r3, 0x148(r3)
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 2
-	bne      lbl_80436940
-	mr       r3, r31
-	li       r4, 2
-	bl       setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag
-	b        lbl_80436940
-
-lbl_804368C8:
-	lwz      r0, 0x4c(r31)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_80436940
-	mr       r3, r31
-	li       r4, 3
-	bl       setMode__Q35P2JME5Movie8TControlFQ45P2JME5Movie8TControl9EModeFlag
-	b        lbl_80436940
-
-lbl_804368E4:
-	lwz      r3, 0x5c(r31)
-	lwz      r3, 0x148(r3)
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 4
-	bne      lbl_80436940
-	lwz      r3, 0x60(r31)
-	lwz      r0, 0x148(r3)
-	cmpwi    r0, 3
-	bne      lbl_80436940
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x70(r31)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80436940
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80436940
-	li       r4, 1
-	li       r5, 1
-	bl       unsuspend__Q24Game11MoviePlayerFlb
-
-lbl_80436940:
-	lwz      r3, 0x3c(r31)
-	lwz      r0, 0x68(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8043696C
-	lwz      r4, 0x5c(r31)
-	li       r0, 1
-	lwz      r3, 0x14c(r4)
-	stw      r0, 0x1c(r3)
-	lwz      r3, 0x150(r4)
-	stw      r0, 0x1c(r3)
-	b        lbl_80436984
-
-lbl_8043696C:
-	lwz      r4, 0x5c(r31)
-	li       r0, 0
-	lwz      r3, 0x14c(r4)
-	stw      r0, 0x1c(r3)
-	lwz      r3, 0x150(r4)
-	stw      r0, 0x1c(r3)
-
-lbl_80436984:
-	lbz      r3, 0x68(r31)
-
-lbl_80436988:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return ret;
 }
 
 /*
@@ -2071,135 +1910,4 @@ void TControl::draw(Graphics& gfx)
 }
 
 } // namespace Movie
-
-namespace Window {
-
-/*
- * --INFO--
- * Address:	80436AEC
- * Size:	000020
- */
-void TControl::draw(Mtx mtx1, Mtx mtx2) { P2JME::TControl::draw(mtx1, mtx2); }
-
-/*
- * --INFO--
- * Address:	80436B0C
- * Size:	00007C
- */
-void TControl::createRenderingProcessor()
-{
-	P2ASSERTLINE(121, mReference);
-	mTextRenderProc = new TRenderingProcessor(mReference);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x144
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80436B6C
-	lwz      r0, 0x38(r30)
-	cmplwi   r0, 0
-	bne      lbl_80436B5C
-	lis      r3, lbl_8049A844@ha
-	lis      r5, lbl_8049A710@ha
-	addi     r3, r3, lbl_8049A844@l
-	li       r4, 0x79
-	addi     r5, r5, lbl_8049A710@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80436B5C:
-	lwz      r4, 0x38(r30)
-	mr       r3, r31
-	bl       __ct__Q35P2JME6Window19TRenderingProcessorFPQ28JMessage10TReference
-	mr       r31, r3
-
-lbl_80436B6C:
-	stw      r31, 0x40(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80436B88
- * Size:	000080
- */
-void TControl::createSequenceProcessor()
-{
-	P2ASSERTLINE(121, mReference);
-	mSequenceProc = new TSequenceProcessor(mReference, this);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x70
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80436BEC
-	lwz      r0, 0x38(r30)
-	cmplwi   r0, 0
-	bne      lbl_80436BD8
-	lis      r3, lbl_8049A844@ha
-	lis      r5, lbl_8049A710@ha
-	addi     r3, r3, lbl_8049A844@l
-	li       r4, 0x79
-	addi     r5, r5, lbl_8049A710@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80436BD8:
-	lwz      r4, 0x38(r30)
-	mr       r3, r31
-	mr       r5, r30
-	bl
-__ct__Q35P2JME6Window18TSequenceProcessorFPQ28JMessage10TReferencePQ28JMessage8TControl
-	mr       r31, r3
-
-lbl_80436BEC:
-	stw      r31, 0x3c(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Window
-
-/*
- * --INFO--
- * Address:	80436C08
- * Size:	000038
- */
-void TControl::setMessageID(u64 tag) { setMessageID((char*)&tag); }
-
-/*
- * --INFO--
- * Address:	80436C40
- * Size:	000010
- */
-void TControl::createReference() { mReference = gP2JMEMgr->mMsgRef; }
-
-/*
- * --INFO--
- * Address:	80436C50
- * Size:	000010
- */
-void TControl::createResourceContainer() { mResContainer = gP2JMEMgr->mResContainer; }
-
 } // namespace P2JME

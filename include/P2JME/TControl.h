@@ -5,6 +5,7 @@
 #include "JSystem/JMessage/TReference.h"
 #include "P2JME/TRenderingProcessor.h"
 #include "P2JME/TSequenceProcessor.h"
+#include "P2JME/P2JME.h"
 #include "Dolphin/mtx.h"
 #include "Graphics.h"
 
@@ -17,19 +18,28 @@ struct TControl : public JMessage::TControl {
 	virtual ~TControl() { }                        // _08 (weak)
 	virtual void reset();                          // _0C
 	virtual void update();                         // _10
-	virtual void update(Controller*, Controller*); // _14 (weak)
+	virtual bool update(Controller*, Controller*); // _14 (weak)
 	virtual void draw(Graphics&);                  // _18
 	virtual void draw(Mtx, Mtx);                   // _1C
 	virtual void setMessageID(u32, u32);           // _20
 	virtual void setMessageID(char*);              // _24
-	virtual void setMessageID(u64);                // _28 (weak)
-	virtual void setMessageCode(u16, u16);         // _2C
-	virtual void setMessageCode(u32);              // _30
-	virtual void onInit();                         // _34 (weak)
-	virtual void createReference();                // _38 (weak)
-	virtual void createResourceContainer();        // _3C (weak)
-	virtual void createSequenceProcessor();        // _40 (weak)
-	virtual void createRenderingProcessor();       // _44 (weak)
+	virtual void setMessageID(u64 tag)             // _28 (weak)
+	{
+		setMessageID((char*)&tag);
+	}
+	virtual void setMessageCode(u16, u16); // _2C
+	virtual void setMessageCode(u32);      // _30
+	virtual void onInit();                 // _34 (weak)
+	virtual void createReference()         // _38 (weak)
+	{
+		mReference = gP2JMEMgr->mMsgRef;
+	}
+	virtual void createResourceContainer() // _3C (weak)
+	{
+		mResContainer = gP2JMEMgr->mResContainer;
+	}
+	virtual void createSequenceProcessor();  // _40 (weak)
+	virtual void createRenderingProcessor(); // _44 (weak)
 
 	void setController(Controller*, Controller*);
 	void setFont(JUTFont* font);

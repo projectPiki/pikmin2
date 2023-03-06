@@ -23,27 +23,6 @@ struct DrawInfoMgr {
 	// TODO: fill this in once known
 };
 
-struct TControl : public P2JME::TControl {
-	TControl();
-
-	virtual ~TControl() { }                        // _08 (weak)
-	virtual void reset();                          // _0C
-	virtual void update(Controller*, Controller*); // _14
-	virtual void draw(Graphics&);                  // _18
-	virtual void draw(Mtx, Mtx);                   // _1C (weak)
-	virtual void onInit();                         // _34
-	virtual void createSequenceProcessor();        // _40 (weak)
-	virtual void createRenderingProcessor();       // _44 (weak)
-
-	void initRenderingProcessor(u32);
-
-	// _00     = VTBL
-	// _00-_50 = P2JME::TControl
-	f32 _50; // _50
-	f32 _54; // _54
-	f32 _58; // _58
-};
-
 struct TRenderingProcessor : public P2JME::TRenderingProcessor {
 	TRenderingProcessor(JMessage::TReference*);
 
@@ -76,6 +55,43 @@ struct TSequenceProcessor : public P2JME::TSequenceProcessor {
 	// _00     = VTBL
 	// _00-_70 = P2JME::TSequenceProcessor
 };
+
+struct TControl : public P2JME::TControl {
+	TControl();
+
+	virtual ~TControl() { }                        // _08 (weak)
+	virtual void reset();                          // _0C
+	virtual bool update(Controller*, Controller*); // _14
+	virtual void draw(Graphics&);                  // _18
+	virtual void draw(Mtx mtx1, Mtx mtx2)          // _1C (weak)
+	{
+		P2JME::TControl::draw(mtx1, mtx2);
+	}
+	virtual void onInit();                  // _34
+	virtual void createRenderingProcessor() // _44 (weak)
+	{
+		mTextRenderProc = new TRenderingProcessor(getReference());
+	}
+
+	virtual void createSequenceProcessor() // _40 (weak)
+	{
+		mSequenceProc = new TSequenceProcessor(getReference(), this);
+	}
+	void initRenderingProcessor(u32);
+
+	inline JMessage::TReference* getReference()
+	{
+		P2ASSERTLINE(121, mReference);
+		return mReference;
+	}
+
+	// _00     = VTBL
+	// _00-_50 = P2JME::TControl
+	f32 _50; // _50
+	f32 _54; // _54
+	f32 _58; // _58
+};
+
 } // namespace Window
 } // namespace P2JME
 

@@ -1,7 +1,7 @@
 #ifndef _P2JME_MOVIE_H
 #define _P2JME_MOVIE_H
 
-#include "P2JME/Window.h"
+#include "P2JME/messageObj.h"
 #include "P2DScreen.h"
 #include "Vector3.h"
 #include "System.h"
@@ -116,7 +116,7 @@ struct TControl : public P2JME::Window::TControl {
 
 	virtual ~TControl() { }                        // _08 (weak)
 	virtual void reset();                          // _0C
-	virtual void update(Controller*, Controller*); // _14
+	virtual bool update(Controller*, Controller*); // _14
 	virtual void draw(Graphics&);                  // _18
 	virtual void onInit();                         // _34
 
@@ -127,7 +127,7 @@ struct TControl : public P2JME::Window::TControl {
 	MessageWindowScreen* mMessageWindow; // _5C
 	PodIconScreen* mPodIcon;             // _60
 	J2DPane* mPaneMgDemo;                // _64
-	u8 mIsActive;                        // _68
+	bool mIsActive;                      // _68
 	EModeFlag mModeFlag;                 // _6C
 	union {
 		u8 bytesView[4];

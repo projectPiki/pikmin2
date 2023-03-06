@@ -1,7 +1,7 @@
 #ifndef _P2JME_ILLUSTRATEDBOOK_H
 #define _P2JME_ILLUSTRATEDBOOK_H
 
-#include "P2JME/Window.h"
+#include "P2JME/messageObj.h"
 
 struct J2DTextBox;
 
