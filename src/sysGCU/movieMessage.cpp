@@ -449,28 +449,72 @@ void PodIconScreen::update()
 {
 	if (mState != -1) {
 		mAnmTexPatternTimer += 1.0f;
-		if (mAnmTexPattern->mMaxFrame >= mAnmTexPatternTimer) {
+		if (mAnmTexPatternTimer >= mAnmTexPattern->mMaxFrame) {
 			mAnmTexPatternTimer -= mAnmTexPattern->mMaxFrame;
 		}
+		mAnmTexPattern->mCurrentFrame = mAnmTexPatternTimer;
+
+		mAnmTransTimer += 1.0f;
+		if (mAnmTransTimer >= mAnmTrans->mMaxFrame) {
+			mAnmTransTimer -= mAnmTrans->mMaxFrame;
+		}
+		mAnmTrans->mCurrentFrame = mAnmTransTimer;
 
 		mAnmColorTimer += 1.0f;
-		if (mAnmColor->mMaxFrame >= mAnmColorTimer) {
+		if (mAnmColorTimer >= mAnmColor->mMaxFrame) {
 			mAnmColorTimer -= mAnmColor->mMaxFrame;
 		}
+		mAnmColor->mCurrentFrame = mAnmColorTimer;
 
-		mAnmColorTimer += 1.0f;
-		if (mAnmColor->mMaxFrame >= mAnmColorTimer) {
-			mAnmColorTimer -= mAnmColor->mMaxFrame;
-		}
 		animation();
 
-		f32 test = mInitialPos.z / 20.0f;
-		if (test < 0.5f) {
-			test = 0.5f;
+		Vector3f diff = mPosition - mInitialPos;
+		f32 length    = _length(diff);
+
+		if (length > 1.0E-4f) {
+			f32 norm = 1.0f / length;
+			Vector3f newDiff;
+			newDiff = diff * norm;
+
+			f32 factor        = (newDiff.x * mMomentum.x + newDiff.y * mMomentum.y + newDiff.z * mMomentum.z + 1.0f) * 0.5f;
+			f32 momentumScale = ((1.0f - factor) + 1.0f) * 0.2f;
+
+			factor = factor * factor * 0.35f * length;
+
+			newDiff.x *= momentumScale;
+			newDiff.y *= momentumScale;
+			newDiff.z *= momentumScale;
+
+			mMomentum += newDiff;
+
+			mMomentum.normalise();
+
+			mInitialPos.x += mMomentum.x * factor;
+			mInitialPos.y += mMomentum.y * factor;
+			mInitialPos.z += mMomentum.z * factor;
 		}
+
+		f32 scale = mInitialPos.z / 20.0f;
+		if (scale < 0.5f) {
+			scale = 0.5f;
+		}
+
+		scale += 1.0f;
 		setTrans();
-		mScreenScaleX = (test + 1.0f) * 0.95f;
-		mScreenScaleY = (test + 1.0f) * 0.95f;
+		scaleScreen(scale);
+		// mScreenScaleX = (test) * 0.95f;
+		// mScreenScaleY = (test) * 0.95f;
+
+		if (length < 10.0f) {
+			switch (mState) {
+			case 0:
+				mState = 1;
+				break;
+			case 2:
+				mState = 3;
+				break;
+			}
+		}
 
 		if (mState == 0 || mState == 1) {
 			PSSystem::spSysIF->playSystemSe(PSSE_POD_PC, 0);

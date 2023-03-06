@@ -99,9 +99,9 @@ struct PodIconScreen : P2DScreen::Mgr_tuning {
 	f32 mAnmTransTimer;               // _158
 	J2DAnmTexPattern* mAnmTexPattern; // _15C
 	f32 mAnmTexPatternTimer;          // _160
-	Vector3f mInitialPos;
-	Vector3f mPosition; // _170
-	Vector3f mMomentum; // _17C
+	Vector3f mInitialPos;             // _164
+	Vector3f mPosition;               // _170
+	Vector3f mMomentum;               // _17C
 };
 
 struct TControl : public P2JME::Window::TControl {
