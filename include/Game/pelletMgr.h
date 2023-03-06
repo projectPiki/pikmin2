@@ -608,6 +608,12 @@ struct PelletNormalState : public PelletState {
 	virtual bool isPickable();             // _28 (weak)
 };
 
+struct PelletReturnArg : StateArg {
+	inline PelletReturnArg(Vector3f& vec) { m_endPos = vec; }
+
+	Vector3f m_endPos;
+};
+
 struct PelletReturnState : public PelletState {
 	PelletReturnState();
 

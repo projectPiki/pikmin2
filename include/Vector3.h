@@ -365,6 +365,15 @@ inline f32 _distanceXZ(Vector3f& vec1, Vector3f& vec2)
 	return _sqrtf(vec.x * vec.x + vec.y * vec.y);
 }
 
+inline f32 _distanceXZflag(Vector3f& vec1, Vector3f& vec2)
+{
+	Vector2f vec;
+	vec.x = vec1.x - vec2.x;
+	vec.y = vec1.z - vec2.z;
+	vec.y *= vec.y;
+	return _sqrtf(vec.y + vec.x * vec.x);
+}
+
 inline void sumXY(Vector3f vec, f32* sum) { *sum = (vec.x *= vec.x) + (vec.y *= vec.y); }
 
 inline void sumZ(Vector3f vec, f32* sum)

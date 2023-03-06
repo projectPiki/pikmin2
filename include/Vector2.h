@@ -20,6 +20,20 @@ struct Vector2 {
 		y = val;
 	}
 
+	Vector2& operator+=(const Vector2& other)
+	{
+		x += other.x;
+		y += other.y;
+		return *this;
+	}
+
+	Vector2& operator-=(const Vector2& other)
+	{
+		x -= other.x;
+		y -= other.y;
+		return *this;
+	}
+
 	operator JGeometry::TVec2f() { return JGeometry::TVec2f(x, y); }
 
 	inline f32 length() const;
@@ -37,8 +51,6 @@ inline Vector2f operator+(const Vector2f& a, f32 b) { return Vector2f(a.x + b, a
 inline Vector2f operator*(const Vector2f& a, f32 b) { return Vector2f(a.x * b, a.y * b); }
 
 inline Vector2f operator+(const Vector2f& a, const Vector2f& b) { return Vector2f(a.x + b.x, a.y + b.y); }
-
-inline Vector2f operator+=(const Vector2f& a, const Vector2f& b) { return Vector2f(a.x + b.x, a.y + b.y); }
 
 inline Vector2f operator-(const Vector2f& a, const Vector2f& b) { return Vector2f(a.x - b.x, a.y - b.y); }
 

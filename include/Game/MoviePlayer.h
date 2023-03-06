@@ -256,6 +256,11 @@ struct MoviePlayer : public JKRDisposer {
 	enum { IS_ACTIVE = 1, IS_FINISHED = 2, _FORCE_INT = 0xFFFFFFFF } mFlags; // _1F0
 	// u32 mIsActive : 1, mFlags : 1;
 	JPAResourceManager* mResourceManager; // _1F4
+
+	inline bool isActive()
+	{
+		return mFlags & IS_ACTIVE; // got tired of typing it out tbh
+	}
 };
 
 extern MoviePlayer* moviePlayer;

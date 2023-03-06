@@ -81,6 +81,32 @@ struct TekiMgr {
 	int mNodeCount; // _24
 };
 
+enum eCardType { // official enum name
+	PIKMIN_5          = 0,
+	PIKMIN_10         = 1,
+	ALL_FLOWER        = 2,
+	PIKMIN_XLU        = 3,
+	DOPE_BLACK        = 4,
+	DOPE_RED          = 5,
+	RESET_BEDAMA      = 6,
+	TEKI_HANACHIRASHI = 7,
+	TEKI_SARAI        = 8,
+	TEKI_ROCK         = 9,
+	TEKI_BOMBOTAKRA   = 10,
+	TEKI_TANK         = 11,
+	CARD_ID_COUNT,
+	UNRESOLVED = 0xffff
+};
+
+struct CardSelector {
+	CardSelector();
+	int getTotalWeight();
+	int selectCard();
+
+	int mValues[CARD_ID_COUNT];
+	f32 mCumulative[CARD_ID_COUNT];
+};
+
 struct CardMgr {
 	struct SlotMachine {
 		SlotMachine();
@@ -95,37 +121,64 @@ struct CardMgr {
 		void updateZoomIn();
 		void updateZoomUse();
 
-		f32 _00;          // _00
-		u8 _04[0x8];      // _04, unknown
-		f32 _0C;          // _0C
-		f32 _10;          // _10
-		f32 _14;          // _14
-		bool _18;         // _18
-		u32 _1C;          // _1C, unknown
-		int _20;          // _20
-		u8 _24[0x8];      // _24, unknown
-		f32 _2C;          // _2C
-		u8 _30[0xC];      // _30, unknown
-		f32 _3C;          // _3C, timer?
-		f32 _40;          // _40
-		f32 _44;          // _44
-		f32 _48;          // _48
-		int _4C;          // _4C, maybe currentSlotIndex?
-		u8 _50;           // _50, unknown
-		u8 _51;           // _51
-		f32 _54;          // _54
-		int _58;          // _58
-		int mPlayerIndex; // _5C
-		CardMgr* _60;     // _60
-		u32 _64;          // _64
-		f32 _68;          // _68
-		f32 _6C;          // _6C
+		bool equalTo(int);
+		bool goodPlace();
+
+		int getNextCard(int);
+		int getPrevCard(int);
+
+		f32 mSpinAngle;     // _00
+		int mCurrCardIndex; // _04
+		int mPrevCardIndex; // _08
+		f32 mSpinProgress;  // _0C
+		f32 mSpinSpeed;     // _10
+		f32 mSpinAccel;     // _14
+		bool _18;           // _18
+		int mCherryStock;   // _1C, cherry count
+		int mSpinState;     // _20
+		int mSelectedSlot;  // _24, pre-determined slot
+		f32 _28;            // _28, unknown
+		f32 _2C;            // _2C
+		u32 mAppearState;   // _30, unknown
+		f32 mAppearValue;   // _34
+		int _38;            // _38
+		f32 _3C;            // _3C, timer?
+		f32 _40;            // _40
+		f32 _44;            // _44
+		f32 _48;            // _48
+		int _4C;            // _4C, maybe currentSlotIndex?
+		u8 _50;             // _50, unknown
+		u8 _51;             // _51
+		f32 mSpinTimer;     // _54
+		int mSlotID;        // _58
+		int mPlayerIndex;   // _5C
+		CardMgr* mCardMgr;  // _60
+		int mPrevSelected;  // _64
+		f32 _68;            // _68
+		f32 _6C;            // _6C
+
+		enum ESpinStates {
+			SPIN_UNSTARTED      = 0,
+			SPIN_WAIT_START     = 1,
+			SPIN_START          = 2,
+			SPIN_WAIT_MAX_SPEED = 3,
+			SPIN_DECELERATE     = 4,
+			SPIN_DECELERATE_END = 5,
+			SPIN_DOWN_TO_CARD   = 6,
+			SPIN_WAIT_CARD_STOP = 7,
+			SPIN_UP_TO_CARD     = 8,
+			SPIN_WAIT_CARD_ROLL = 9,
+			SPIN_END            = 10
+		};
+
+		enum EAppearStates { APPEAR_LEAVE = 0, APPEAR_AWAIT = 1, APPEAR_ENTER = 2, APPEAR_RESET = 3 };
 	};
 
 	CardMgr(VsGameSection*, TekiMgr*);
 
 	void loadResource();
 	void update();
+	void clear();
 	void draw(Graphics&);
 	void stopSlot(int);
 	bool usePlayerCard(int, TekiMgr*);
@@ -133,20 +186,29 @@ struct CardMgr {
 	void initDraw();
 	void drawSlot(Graphics&, Vector3f&, SlotMachine&);
 
-	u32 _00;                      // _00, unknown
-	JUTTexture** _04;             // _04, slot textures?
-	JUTTexture* _08;              // _08
-	JUTTexture* _0C;              // _0C
-	JUTTexture* _10;              // _10
-	JUTTexture* _14;              // _14
-	SlotMachine mSlotMachines[2]; // _18
-	int _F8;                      // _F8
-	Vector3f* _FC;                // _FC, array of 0x100 vectors?
-	Vector3f* _100;               // _100, array of 0x100 vectors?
-	f32 _104;                     // _104
-	LightObj* mLightObj;          // _108
-	VsGameSection* mSection;      // _10C
-	TekiMgr* mTekiMgr;            // _110
+	Vector3f getSlotOrigin(int);
+	Vector2f getLampPos(int, int);
+	Vector2f getPlayerCard(int);
+	void clearPlayerCard();
+
+	JUTTexture* getTexture(eCardType);
+	void vert(int);
+	void norm(int);
+
+	int mSlotNum;                  // _00, unknown
+	JUTTexture** mSlotTextures;    // _04, slot textures?
+	JUTTexture* mYButtonTexture;   // _08
+	JUTTexture* mLampOnTexture;    // _0C
+	JUTTexture* mLampOffTexture;   // _10
+	JUTTexture* mHighlightTexture; // _14
+	SlotMachine mSlotMachines[2];  // _18
+	int _F8;                       // _F8
+	Vector3f* _FC;                 // _FC, array of 0x100 vectors?
+	Vector3f* _100;                // _100, array of 0x100 vectors?
+	f32 _104;                      // _104
+	LightObj* mLightObj;           // _108
+	VsGameSection* mSection;       // _10C
+	TekiMgr* mTekiMgr;             // _110
 };
 
 struct StageData : public CNode {

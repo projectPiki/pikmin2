@@ -1014,7 +1014,7 @@ bool GameMessageVsPikminDead::actVs(VsGameSection* section)
 bool GameMessageVsGotCard::actVs(VsGameSection* section)
 {
 	VsGame::CardMgr::SlotMachine* slot = &section->mCardMgr->mSlotMachines[_04];
-	if (!slot->_18 && slot->_58 != 0xffff) {
+	if (!slot->_18 && slot->mSlotID != VsGame::UNRESOLVED) {
 		section->useCard();
 	}
 	section->mCardMgr->gotPlayerCard(_04);
