@@ -30,6 +30,7 @@ struct Caster : public CNode {
 
 struct Mgr {
 	Caster* create(Sys::Sphere&, f32);
+	void draw(Graphics&);
 
 	static Mgr* sInstance;
 

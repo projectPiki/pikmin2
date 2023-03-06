@@ -46,9 +46,9 @@ struct LimitGen : public CNode {
 
 	virtual ~LimitGen(); // _08 (weak)
 
-	u32 _18;       // _18
-	u32 _1C;       // _1C
-	u32 mDayLimit; // _20
+	int mMinimumDay; // _18
+	int mMaximumDay; // _1C
+	int mDayLimit;   // _20
 };
 
 struct LimitGenInfo {

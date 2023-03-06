@@ -2,6 +2,7 @@
 #define _BOUNDBOX_H
 
 #include "Vector3.h"
+#include "JSystem/JGeometry.h"
 
 namespace Sys {
 struct Sphere;

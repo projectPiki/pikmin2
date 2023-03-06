@@ -4,6 +4,7 @@
 #include "JSystem/JGeometry.h"
 #include "types.h"
 #include "Vector3.h"
+#include "Matrixf.h"
 
 namespace PSGame {
 /**
@@ -57,11 +58,11 @@ struct SceneInfo {
 	u8 mSceneType;           // _06
 	u8 mCameras;             // _07
 	Vector3f* mCam1Position; // _08
-	u32 _0C;                 // _0C
+	Vector3f* _0C;           // _0C
 	Vector3f* mCam2Position; // _10
-	u32 _14;                 // _14
-	Vector3f* mCameraMtx;    // _18
-	u32 _1C;                 // _1C
+	Vector3f* _14;           // _14
+	Matrixf* mCameraMtx;     // _18
+	Matrixf* _1C;            // _1C
 	JGeometry::TBox3f _20;   // _20
 };
 

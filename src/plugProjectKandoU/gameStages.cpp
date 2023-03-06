@@ -146,11 +146,11 @@ inline void LimitGenInfo::read(Stream& stream)
 {
 	mCount = stream.readInt();
 	for (int i = 0; i < mCount; i++) {
-		LimitGen* currLimitGen  = new LimitGen;
-		currLimitGen->mName     = stream.readString(nullptr, 0);
-		currLimitGen->_18       = stream.readInt();
-		currLimitGen->_1C       = stream.readInt();
-		currLimitGen->mDayLimit = stream.readInt();
+		LimitGen* currLimitGen    = new LimitGen;
+		currLimitGen->mName       = stream.readString(nullptr, 0);
+		currLimitGen->mMinimumDay = stream.readInt();
+		currLimitGen->mMaximumDay = stream.readInt();
+		currLimitGen->mDayLimit   = stream.readInt();
 		mOwner.add(currLimitGen);
 	}
 }

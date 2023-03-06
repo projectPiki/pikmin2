@@ -45,7 +45,7 @@ struct MapMgr : virtual public GenericObjectMgr {
 	}
 	virtual void constraintBoundBox(Sys::Sphere&) { }         // _0C (weak)
 	virtual void getStartPosition(Vector3f&, int);            // _10
-	virtual void getDemoMatrix();                             // _14
+	virtual Matrixf* getDemoMatrix();                         // _14
 	virtual void getBoundBox2d(BoundBox2d&) = 0;              // _18
 	virtual void getBoundBox(BoundBox&)     = 0;              // _1C
 	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20 (weak)
@@ -62,7 +62,7 @@ struct MapMgr : virtual public GenericObjectMgr {
 	virtual void doDirectDraw(Graphics& gfx);                 // _4C (weak)
 
 	WaterBox* findWater(Sys::Sphere&);
-	void getMapRotation();
+	f32 getMapRotation();
 	void getBestAngle(Vector3f&, f32, f32);
 	void checkBeamCollision(BeamCollisionArg&);
 	void clearPerfMonitor();
