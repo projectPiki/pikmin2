@@ -1,18 +1,20 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516AE0:
+.obj lbl_80516AE0, local
 	.4byte 0xFFFFFFFF
-lbl_80516AE4:
+.endobj lbl_80516AE0
+.obj lbl_80516AE4, local
 	.4byte 0xFFFFFFFF
+.endobj lbl_80516AE4
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-lbl_80520E50:
+.obj lbl_80520E50, local
 	.skip 0x8
+.endobj lbl_80520E50
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21
-__ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21:
+.fn __ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21, global
 /* 80084A00 00081940  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80084A04 00081944  7C 08 02 A6 */	mflr r0
 /* 80084A08 00081948  90 01 00 14 */	stw r0, 0x14(r1)
@@ -133,9 +135,9 @@ __ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21:
 /* 80084BD4 00081B14  7C 08 03 A6 */	mtlr r0
 /* 80084BD8 00081B18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80084BDC 00081B1C  4E 80 00 20 */	blr 
+.endfn __ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21
 
-.global countUniqueMaterials__22J3DMaterialFactory_v21Fv
-countUniqueMaterials__22J3DMaterialFactory_v21Fv:
+.fn countUniqueMaterials__22J3DMaterialFactory_v21Fv, global
 /* 80084BE0 00081B20  A0 A3 00 00 */	lhz r5, 0(r3)
 /* 80084BE4 00081B24  38 60 00 00 */	li r3, 0
 /* 80084BE8 00081B28  28 05 00 00 */	cmplwi r5, 0
@@ -159,9 +161,9 @@ countUniqueMaterials__22J3DMaterialFactory_v21Fv:
 /* 80084C20 00081B60  7C 00 28 40 */	cmplw r0, r5
 /* 80084C24 00081B64  41 80 FF F4 */	blt .L_80084C18
 /* 80084C28 00081B68  4E 80 00 20 */	blr 
+.endfn countUniqueMaterials__22J3DMaterialFactory_v21Fv
 
-.global create__22J3DMaterialFactory_v21CFP11J3DMaterialiUl
-create__22J3DMaterialFactory_v21CFP11J3DMaterialiUl:
+.fn create__22J3DMaterialFactory_v21CFP11J3DMaterialiUl, global
 /* 80084C2C 00081B6C  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 80084C30 00081B70  7C 08 02 A6 */	mflr r0
 /* 80084C34 00081B74  38 E0 00 00 */	li r7, 0
@@ -733,9 +735,9 @@ create__22J3DMaterialFactory_v21CFP11J3DMaterialiUl:
 /* 80085458 00082398  7C 08 03 A6 */	mtlr r0
 /* 8008545C 0008239C  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 80085460 000823A0  4E 80 00 20 */	blr 
+.endfn create__22J3DMaterialFactory_v21CFP11J3DMaterialiUl
 
-.global newMatColor__22J3DMaterialFactory_v21CFii
-newMatColor__22J3DMaterialFactory_v21CFii:
+.fn newMatColor__22J3DMaterialFactory_v21CFii, global
 /* 80085464 000823A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80085468 000823A8  54 C0 08 3C */	slwi r0, r6, 1
 /* 8008546C 000823AC  80 E4 00 08 */	lwz r7, 8(r4)
@@ -774,9 +776,9 @@ newMatColor__22J3DMaterialFactory_v21CFii:
 .L_800854EC:
 /* 800854EC 0008242C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800854F0 00082430  4E 80 00 20 */	blr 
+.endfn newMatColor__22J3DMaterialFactory_v21CFii
 
-.global newColorChanNum__22J3DMaterialFactory_v21CFi
-newColorChanNum__22J3DMaterialFactory_v21CFi:
+.fn newColorChanNum__22J3DMaterialFactory_v21CFi, global
 /* 800854F4 00082434  80 A3 00 08 */	lwz r5, 8(r3)
 /* 800854F8 00082438  54 80 08 3C */	slwi r0, r4, 1
 /* 800854FC 0008243C  80 C3 00 04 */	lwz r6, 4(r3)
@@ -792,9 +794,9 @@ newColorChanNum__22J3DMaterialFactory_v21CFi:
 .L_80085524:
 /* 80085524 00082464  38 60 00 00 */	li r3, 0
 /* 80085528 00082468  4E 80 00 20 */	blr 
+.endfn newColorChanNum__22J3DMaterialFactory_v21CFi
 
-.global newColorChan__22J3DMaterialFactory_v21CFii
-newColorChan__22J3DMaterialFactory_v21CFii:
+.fn newColorChan__22J3DMaterialFactory_v21CFii, global
 /* 8008552C 0008246C  80 E4 00 08 */	lwz r7, 8(r4)
 /* 80085530 00082470  54 A5 08 3C */	slwi r5, r5, 1
 /* 80085534 00082474  54 C0 08 3C */	slwi r0, r6, 1
@@ -897,9 +899,9 @@ newColorChan__22J3DMaterialFactory_v21CFii:
 /* 800856B4 000825F4  50 85 5D 6A */	rlwimi r5, r4, 0xb, 0x15, 0x15
 /* 800856B8 000825F8  B0 A3 00 00 */	sth r5, 0(r3)
 /* 800856BC 000825FC  4E 80 00 20 */	blr 
+.endfn newColorChan__22J3DMaterialFactory_v21CFii
 
-.global newTexGenNum__22J3DMaterialFactory_v21CFi
-newTexGenNum__22J3DMaterialFactory_v21CFi:
+.fn newTexGenNum__22J3DMaterialFactory_v21CFi, global
 /* 800856C0 00082600  80 A3 00 08 */	lwz r5, 8(r3)
 /* 800856C4 00082604  54 80 08 3C */	slwi r0, r4, 1
 /* 800856C8 00082608  80 C3 00 04 */	lwz r6, 4(r3)
@@ -915,9 +917,9 @@ newTexGenNum__22J3DMaterialFactory_v21CFi:
 .L_800856F0:
 /* 800856F0 00082630  38 60 00 00 */	li r3, 0
 /* 800856F4 00082634  4E 80 00 20 */	blr 
+.endfn newTexGenNum__22J3DMaterialFactory_v21CFi
 
-.global newTexCoord__22J3DMaterialFactory_v21CFii
-newTexCoord__22J3DMaterialFactory_v21CFii:
+.fn newTexCoord__22J3DMaterialFactory_v21CFii, global
 /* 800856F8 00082638  80 E4 00 08 */	lwz r7, 8(r4)
 /* 800856FC 0008263C  54 A5 08 3C */	slwi r5, r5, 1
 /* 80085700 00082640  54 C0 08 3C */	slwi r0, r6, 1
@@ -952,9 +954,9 @@ newTexCoord__22J3DMaterialFactory_v21CFii:
 /* 80085770 000826B0  88 03 00 02 */	lbz r0, 2(r3)
 /* 80085774 000826B4  B0 03 00 04 */	sth r0, 4(r3)
 /* 80085778 000826B8  4E 80 00 20 */	blr 
+.endfn newTexCoord__22J3DMaterialFactory_v21CFii
 
-.global newTexMtx__22J3DMaterialFactory_v21CFii
-newTexMtx__22J3DMaterialFactory_v21CFii:
+.fn newTexMtx__22J3DMaterialFactory_v21CFii, global
 /* 8008577C 000826BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80085780 000826C0  7C 08 02 A6 */	mflr r0
 /* 80085784 000826C4  80 C3 00 08 */	lwz r6, 8(r3)
@@ -1042,9 +1044,9 @@ newTexMtx__22J3DMaterialFactory_v21CFii:
 /* 800858C8 00082808  7C 08 03 A6 */	mtlr r0
 /* 800858CC 0008280C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800858D0 00082810  4E 80 00 20 */	blr 
+.endfn newTexMtx__22J3DMaterialFactory_v21CFii
 
-.global newCullMode__22J3DMaterialFactory_v21CFi
-newCullMode__22J3DMaterialFactory_v21CFi:
+.fn newCullMode__22J3DMaterialFactory_v21CFi, global
 /* 800858D4 00082814  80 A3 00 08 */	lwz r5, 8(r3)
 /* 800858D8 00082818  54 80 08 3C */	slwi r0, r4, 1
 /* 800858DC 0008281C  80 C3 00 04 */	lwz r6, 4(r3)
@@ -1062,9 +1064,9 @@ newCullMode__22J3DMaterialFactory_v21CFi:
 .L_8008590C:
 /* 8008590C 0008284C  38 60 00 FF */	li r3, 0xff
 /* 80085910 00082850  4E 80 00 20 */	blr 
+.endfn newCullMode__22J3DMaterialFactory_v21CFi
 
-.global newTexNo__22J3DMaterialFactory_v21CFii
-newTexNo__22J3DMaterialFactory_v21CFii:
+.fn newTexNo__22J3DMaterialFactory_v21CFii, global
 /* 80085914 00082854  80 C3 00 08 */	lwz r6, 8(r3)
 /* 80085918 00082858  54 84 08 3C */	slwi r4, r4, 1
 /* 8008591C 0008285C  54 A0 08 3C */	slwi r0, r5, 1
@@ -1084,9 +1086,9 @@ newTexNo__22J3DMaterialFactory_v21CFii:
 /* 80085950 00082890  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
 /* 80085954 00082894  38 63 FF FF */	addi r3, r3, 0x0000FFFF@l
 /* 80085958 00082898  4E 80 00 20 */	blr 
+.endfn newTexNo__22J3DMaterialFactory_v21CFii
 
-.global newTevOrder__22J3DMaterialFactory_v21CFii
-newTevOrder__22J3DMaterialFactory_v21CFii:
+.fn newTevOrder__22J3DMaterialFactory_v21CFii, global
 /* 8008595C 0008289C  80 E4 00 08 */	lwz r7, 8(r4)
 /* 80085960 000828A0  54 A5 08 3C */	slwi r5, r5, 1
 /* 80085964 000828A4  54 C0 08 3C */	slwi r0, r6, 1
@@ -1117,9 +1119,9 @@ newTevOrder__22J3DMaterialFactory_v21CFii:
 /* 800859C4 00082904  88 04 00 02 */	lbz r0, 2(r4)
 /* 800859C8 00082908  98 03 00 02 */	stb r0, 2(r3)
 /* 800859CC 0008290C  4E 80 00 20 */	blr 
+.endfn newTevOrder__22J3DMaterialFactory_v21CFii
 
-.global newTevColor__22J3DMaterialFactory_v21CFii
-newTevColor__22J3DMaterialFactory_v21CFii:
+.fn newTevColor__22J3DMaterialFactory_v21CFii, global
 /* 800859D0 00082910  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800859D4 00082914  54 C0 08 3C */	slwi r0, r6, 1
 /* 800859D8 00082918  80 E4 00 08 */	lwz r7, 8(r4)
@@ -1160,9 +1162,9 @@ newTevColor__22J3DMaterialFactory_v21CFii:
 .L_80085A60:
 /* 80085A60 000829A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80085A64 000829A4  4E 80 00 20 */	blr 
+.endfn newTevColor__22J3DMaterialFactory_v21CFii
 
-.global newTevKColor__22J3DMaterialFactory_v21CFii
-newTevKColor__22J3DMaterialFactory_v21CFii:
+.fn newTevKColor__22J3DMaterialFactory_v21CFii, global
 /* 80085A68 000829A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80085A6C 000829AC  54 C0 08 3C */	slwi r0, r6, 1
 /* 80085A70 000829B0  80 E4 00 08 */	lwz r7, 8(r4)
@@ -1201,9 +1203,9 @@ newTevKColor__22J3DMaterialFactory_v21CFii:
 .L_80085AF0:
 /* 80085AF0 00082A30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80085AF4 00082A34  4E 80 00 20 */	blr 
+.endfn newTevKColor__22J3DMaterialFactory_v21CFii
 
-.global newTevStageNum__22J3DMaterialFactory_v21CFi
-newTevStageNum__22J3DMaterialFactory_v21CFi:
+.fn newTevStageNum__22J3DMaterialFactory_v21CFi, global
 /* 80085AF8 00082A38  80 A3 00 08 */	lwz r5, 8(r3)
 /* 80085AFC 00082A3C  54 80 08 3C */	slwi r0, r4, 1
 /* 80085B00 00082A40  80 C3 00 04 */	lwz r6, 4(r3)
@@ -1219,9 +1221,9 @@ newTevStageNum__22J3DMaterialFactory_v21CFi:
 .L_80085B28:
 /* 80085B28 00082A68  38 60 00 FF */	li r3, 0xff
 /* 80085B2C 00082A6C  4E 80 00 20 */	blr 
+.endfn newTevStageNum__22J3DMaterialFactory_v21CFi
 
-.global newTevStage__22J3DMaterialFactory_v21CFii
-newTevStage__22J3DMaterialFactory_v21CFii:
+.fn newTevStage__22J3DMaterialFactory_v21CFii, global
 /* 80085B30 00082A70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80085B34 00082A74  7C 08 02 A6 */	mflr r0
 /* 80085B38 00082A78  80 E4 00 08 */	lwz r7, 8(r4)
@@ -1248,9 +1250,9 @@ newTevStage__22J3DMaterialFactory_v21CFii:
 /* 80085B84 00082AC4  7C 08 03 A6 */	mtlr r0
 /* 80085B88 00082AC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80085B8C 00082ACC  4E 80 00 20 */	blr 
+.endfn newTevStage__22J3DMaterialFactory_v21CFii
 
-.global newTevSwapModeTable__22J3DMaterialFactory_v21CFii
-newTevSwapModeTable__22J3DMaterialFactory_v21CFii:
+.fn newTevSwapModeTable__22J3DMaterialFactory_v21CFii, global
 /* 80085B90 00082AD0  80 E4 00 08 */	lwz r7, 8(r4)
 /* 80085B94 00082AD4  54 A5 08 3C */	slwi r5, r5, 1
 /* 80085B98 00082AD8  54 C0 08 3C */	slwi r0, r6, 1
@@ -1291,9 +1293,9 @@ newTevSwapModeTable__22J3DMaterialFactory_v21CFii:
 /* 80085C20 00082B60  7C 04 02 14 */	add r0, r4, r0
 /* 80085C24 00082B64  98 03 00 00 */	stb r0, 0(r3)
 /* 80085C28 00082B68  4E 80 00 20 */	blr 
+.endfn newTevSwapModeTable__22J3DMaterialFactory_v21CFii
 
-.global newFog__22J3DMaterialFactory_v21CFi
-newFog__22J3DMaterialFactory_v21CFi:
+.fn newFog__22J3DMaterialFactory_v21CFi, global
 /* 80085C2C 00082B6C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80085C30 00082B70  54 A0 08 3C */	slwi r0, r5, 1
 /* 80085C34 00082B74  80 C4 00 08 */	lwz r6, 8(r4)
@@ -1442,9 +1444,9 @@ newFog__22J3DMaterialFactory_v21CFi:
 /* 80085E6C 00082DAC  BB 41 00 68 */	lmw r26, 0x68(r1)
 /* 80085E70 00082DB0  38 21 00 80 */	addi r1, r1, 0x80
 /* 80085E74 00082DB4  4E 80 00 20 */	blr 
+.endfn newFog__22J3DMaterialFactory_v21CFi
 
-.global newAlphaComp__22J3DMaterialFactory_v21CFi
-newAlphaComp__22J3DMaterialFactory_v21CFi:
+.fn newAlphaComp__22J3DMaterialFactory_v21CFi, global
 /* 80085E78 00082DB8  80 C4 00 08 */	lwz r6, 8(r4)
 /* 80085E7C 00082DBC  54 A0 08 3C */	slwi r0, r5, 1
 /* 80085E80 00082DC0  80 E4 00 04 */	lwz r7, 4(r4)
@@ -1478,9 +1480,9 @@ newAlphaComp__22J3DMaterialFactory_v21CFi:
 /* 80085EEC 00082E2C  98 03 00 02 */	stb r0, 2(r3)
 /* 80085EF0 00082E30  98 03 00 03 */	stb r0, 3(r3)
 /* 80085EF4 00082E34  4E 80 00 20 */	blr 
+.endfn newAlphaComp__22J3DMaterialFactory_v21CFi
 
-.global newBlend__22J3DMaterialFactory_v21CFi
-newBlend__22J3DMaterialFactory_v21CFi:
+.fn newBlend__22J3DMaterialFactory_v21CFi, global
 /* 80085EF8 00082E38  80 C4 00 08 */	lwz r6, 8(r4)
 /* 80085EFC 00082E3C  54 A0 08 3C */	slwi r0, r5, 1
 /* 80085F00 00082E40  80 E4 00 04 */	lwz r7, 4(r4)
@@ -1513,9 +1515,9 @@ newBlend__22J3DMaterialFactory_v21CFi:
 /* 80085F68 00082EA8  88 04 00 03 */	lbz r0, 3(r4)
 /* 80085F6C 00082EAC  98 03 00 03 */	stb r0, 3(r3)
 /* 80085F70 00082EB0  4E 80 00 20 */	blr 
+.endfn newBlend__22J3DMaterialFactory_v21CFi
 
-.global newZMode__22J3DMaterialFactory_v21CFi
-newZMode__22J3DMaterialFactory_v21CFi:
+.fn newZMode__22J3DMaterialFactory_v21CFi, global
 /* 80085F74 00082EB4  80 C4 00 08 */	lwz r6, 8(r4)
 /* 80085F78 00082EB8  54 A0 08 3C */	slwi r0, r5, 1
 /* 80085F7C 00082EBC  80 E4 00 04 */	lwz r7, 4(r4)
@@ -1541,9 +1543,9 @@ newZMode__22J3DMaterialFactory_v21CFi:
 /* 80085FC8 00082F08  A0 02 86 9C */	lhz r0, j3dDefaultZModeID@sda21(r2)
 /* 80085FCC 00082F0C  B0 03 00 00 */	sth r0, 0(r3)
 /* 80085FD0 00082F10  4E 80 00 20 */	blr 
+.endfn newZMode__22J3DMaterialFactory_v21CFi
 
-.global newZCompLoc__22J3DMaterialFactory_v21CFi
-newZCompLoc__22J3DMaterialFactory_v21CFi:
+.fn newZCompLoc__22J3DMaterialFactory_v21CFi, global
 /* 80085FD4 00082F14  80 A3 00 08 */	lwz r5, 8(r3)
 /* 80085FD8 00082F18  54 80 08 3C */	slwi r0, r4, 1
 /* 80085FDC 00082F1C  80 C3 00 04 */	lwz r6, 4(r3)
@@ -1559,9 +1561,9 @@ newZCompLoc__22J3DMaterialFactory_v21CFi:
 .L_80086004:
 /* 80086004 00082F44  38 60 00 00 */	li r3, 0
 /* 80086008 00082F48  4E 80 00 20 */	blr 
+.endfn newZCompLoc__22J3DMaterialFactory_v21CFi
 
-.global newDither__22J3DMaterialFactory_v21CFi
-newDither__22J3DMaterialFactory_v21CFi:
+.fn newDither__22J3DMaterialFactory_v21CFi, global
 /* 8008600C 00082F4C  80 A3 00 08 */	lwz r5, 8(r3)
 /* 80086010 00082F50  54 80 08 3C */	slwi r0, r4, 1
 /* 80086014 00082F54  80 C3 00 04 */	lwz r6, 4(r3)
@@ -1577,9 +1579,9 @@ newDither__22J3DMaterialFactory_v21CFi:
 .L_8008603C:
 /* 8008603C 00082F7C  38 60 00 01 */	li r3, 1
 /* 80086040 00082F80  4E 80 00 20 */	blr 
+.endfn newDither__22J3DMaterialFactory_v21CFi
 
-.global newNBTScale__22J3DMaterialFactory_v21CFi
-newNBTScale__22J3DMaterialFactory_v21CFi:
+.fn newNBTScale__22J3DMaterialFactory_v21CFi, global
 /* 80086044 00082F84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80086048 00082F88  54 A0 08 3C */	slwi r0, r5, 1
 /* 8008604C 00082F8C  80 C4 00 08 */	lwz r6, 8(r4)
@@ -1624,9 +1626,9 @@ newNBTScale__22J3DMaterialFactory_v21CFi:
 .L_800860E4:
 /* 800860E4 00083024  38 21 00 20 */	addi r1, r1, 0x20
 /* 800860E8 00083028  4E 80 00 20 */	blr 
+.endfn newNBTScale__22J3DMaterialFactory_v21CFi
 
-.global "JSUConvertOffsetToPtr<23J3DMaterialInitData_v21>__FPCvPCv"
-"JSUConvertOffsetToPtr<23J3DMaterialInitData_v21>__FPCvPCv":
+.fn "JSUConvertOffsetToPtr<23J3DMaterialInitData_v21>__FPCvPCv", weak
 /* 800860EC 0008302C  28 04 00 00 */	cmplwi r4, 0
 /* 800860F0 00083030  40 82 00 0C */	bne .L_800860FC
 /* 800860F4 00083034  38 60 00 00 */	li r3, 0
@@ -1634,3 +1636,4 @@ newNBTScale__22J3DMaterialFactory_v21CFi:
 .L_800860FC:
 /* 800860FC 0008303C  7C 63 22 14 */	add r3, r3, r4
 /* 80086100 00083040  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<23J3DMaterialInitData_v21>__FPCvPCv"

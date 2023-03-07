@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global sDifferedRegister
-sDifferedRegister:
+.obj sDifferedRegister, local
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x01000000
@@ -10,8 +9,8 @@ sDifferedRegister:
 	.4byte 0x20000000
 	.4byte 0x02000000
 	.4byte 0x08000000
-.global sSizeOfDiffered
-sSizeOfDiffered:
+.endobj sDifferedRegister
+.obj sSizeOfDiffered, local
 	.4byte 0x0000000D
 	.4byte 0x00000015
 	.4byte 0x00000078
@@ -19,34 +18,35 @@ sSizeOfDiffered:
 	.4byte 0x0000000F
 	.4byte 0x00000013
 	.4byte 0x0000002D
-.global __vt__14J3DShapePacket
-__vt__14J3DShapePacket:
+.endobj sSizeOfDiffered
+.obj __vt__14J3DShapePacket, global
 	.4byte 0
 	.4byte 0
 	.4byte entry__9J3DPacketFP13J3DDrawBuffer
 	.4byte draw__14J3DShapePacketFv
 	.4byte __dt__14J3DShapePacketFv
-.global __vt__12J3DMatPacket
-__vt__12J3DMatPacket:
+.endobj __vt__14J3DShapePacket
+.obj __vt__12J3DMatPacket, global
 	.4byte 0
 	.4byte 0
 	.4byte entry__12J3DMatPacketFP13J3DDrawBuffer
 	.4byte draw__12J3DMatPacketFv
 	.4byte __dt__12J3DMatPacketFv
-.global __vt__13J3DDrawPacket
-__vt__13J3DDrawPacket:
+.endobj __vt__12J3DMatPacket
+.obj __vt__13J3DDrawPacket, global
 	.4byte 0
 	.4byte 0
 	.4byte entry__9J3DPacketFP13J3DDrawBuffer
 	.4byte draw__13J3DDrawPacketFv
 	.4byte __dt__13J3DDrawPacketFv
-.global __vt__9J3DPacket
-__vt__9J3DPacket:
+.endobj __vt__13J3DDrawPacket
+.obj __vt__9J3DPacket, global
 	.4byte 0
 	.4byte 0
 	.4byte entry__9J3DPacketFP13J3DDrawBuffer
 	.4byte draw__9J3DPacketFv
 	.4byte __dt__9J3DPacketFv
+.endobj __vt__9J3DPacket
 
 #.section .bss  # 0x804EFC20 - 0x8051467C
 # J3DPacket.cpp
@@ -55,13 +55,12 @@ __vt__9J3DPacket:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sInterruptFlag__17J3DDisplayListObj
-sInterruptFlag__17J3DDisplayListObj:
+.obj sInterruptFlag__17J3DDisplayListObj, global
 	.skip 4
+.endobj sInterruptFlag__17J3DDisplayListObj
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global newDisplayList__17J3DDisplayListObjFUl
-newDisplayList__17J3DDisplayListObjFUl:
+.fn newDisplayList__17J3DDisplayListObjFUl, global
 /* 8005F82C 0005C76C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005F830 0005C770  7C 08 02 A6 */	mflr r0
 /* 8005F834 0005C774  90 01 00 14 */	stw r0, 0x14(r1)
@@ -86,9 +85,9 @@ newDisplayList__17J3DDisplayListObjFUl:
 /* 8005F880 0005C7C0  7C 08 03 A6 */	mtlr r0
 /* 8005F884 0005C7C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005F888 0005C7C8  4E 80 00 20 */	blr 
+.endfn newDisplayList__17J3DDisplayListObjFUl
 
-.global newSingleDisplayList__17J3DDisplayListObjFUl
-newSingleDisplayList__17J3DDisplayListObjFUl:
+.fn newSingleDisplayList__17J3DDisplayListObjFUl, global
 /* 8005F88C 0005C7CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005F890 0005C7D0  7C 08 02 A6 */	mflr r0
 /* 8005F894 0005C7D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -111,9 +110,9 @@ newSingleDisplayList__17J3DDisplayListObjFUl:
 /* 8005F8D8 0005C818  7C 08 03 A6 */	mtlr r0
 /* 8005F8DC 0005C81C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005F8E0 0005C820  4E 80 00 20 */	blr 
+.endfn newSingleDisplayList__17J3DDisplayListObjFUl
 
-.global single_To_Double__17J3DDisplayListObjFv
-single_To_Double__17J3DDisplayListObjFv:
+.fn single_To_Double__17J3DDisplayListObjFv, global
 /* 8005F8E4 0005C824  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005F8E8 0005C828  7C 08 02 A6 */	mflr r0
 /* 8005F8EC 0005C82C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -141,9 +140,9 @@ single_To_Double__17J3DDisplayListObjFv:
 /* 8005F940 0005C880  7C 08 03 A6 */	mtlr r0
 /* 8005F944 0005C884  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005F948 0005C888  4E 80 00 20 */	blr 
+.endfn single_To_Double__17J3DDisplayListObjFv
 
-.global setSingleDisplayList__17J3DDisplayListObjFPvUl
-setSingleDisplayList__17J3DDisplayListObjFPvUl:
+.fn setSingleDisplayList__17J3DDisplayListObjFPvUl, global
 /* 8005F94C 0005C88C  38 05 00 1F */	addi r0, r5, 0x1f
 /* 8005F950 0005C890  54 00 00 34 */	rlwinm r0, r0, 0, 0, 0x1a
 /* 8005F954 0005C894  90 03 00 0C */	stw r0, 0xc(r3)
@@ -152,9 +151,9 @@ setSingleDisplayList__17J3DDisplayListObjFPvUl:
 /* 8005F960 0005C8A0  90 03 00 04 */	stw r0, 4(r3)
 /* 8005F964 0005C8A4  90 A3 00 08 */	stw r5, 8(r3)
 /* 8005F968 0005C8A8  4E 80 00 20 */	blr 
+.endfn setSingleDisplayList__17J3DDisplayListObjFPvUl
 
-.global callDL__17J3DDisplayListObjCFv
-callDL__17J3DDisplayListObjCFv:
+.fn callDL__17J3DDisplayListObjCFv, global
 /* 8005F96C 0005C8AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005F970 0005C8B0  7C 08 02 A6 */	mflr r0
 /* 8005F974 0005C8B4  7C 64 1B 78 */	mr r4, r3
@@ -166,9 +165,9 @@ callDL__17J3DDisplayListObjCFv:
 /* 8005F98C 0005C8CC  7C 08 03 A6 */	mtlr r0
 /* 8005F990 0005C8D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005F994 0005C8D4  4E 80 00 20 */	blr 
+.endfn callDL__17J3DDisplayListObjCFv
 
-.global beginDL__17J3DDisplayListObjFv
-beginDL__17J3DDisplayListObjFv:
+.fn beginDL__17J3DDisplayListObjFv, global
 /* 8005F998 0005C8D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005F99C 0005C8DC  7C 08 02 A6 */	mflr r0
 /* 8005F9A0 0005C8E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -193,9 +192,9 @@ beginDL__17J3DDisplayListObjFv:
 /* 8005F9EC 0005C92C  7C 08 03 A6 */	mtlr r0
 /* 8005F9F0 0005C930  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005F9F4 0005C934  4E 80 00 20 */	blr 
+.endfn beginDL__17J3DDisplayListObjFv
 
-.global endDL__17J3DDisplayListObjFv
-endDL__17J3DDisplayListObjFv:
+.fn endDL__17J3DDisplayListObjFv, global
 /* 8005F9F8 0005C938  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005F9FC 0005C93C  7C 08 02 A6 */	mflr r0
 /* 8005FA00 0005C940  90 01 00 14 */	stw r0, 0x14(r1)
@@ -219,9 +218,9 @@ endDL__17J3DDisplayListObjFv:
 /* 8005FA48 0005C988  7C 08 03 A6 */	mtlr r0
 /* 8005FA4C 0005C98C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FA50 0005C990  4E 80 00 20 */	blr 
+.endfn endDL__17J3DDisplayListObjFv
 
-.global beginPatch__17J3DDisplayListObjFv
-beginPatch__17J3DDisplayListObjFv:
+.fn beginPatch__17J3DDisplayListObjFv, global
 /* 8005FA54 0005C994  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FA58 0005C998  7C 08 02 A6 */	mflr r0
 /* 8005FA5C 0005C99C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -246,9 +245,9 @@ beginPatch__17J3DDisplayListObjFv:
 /* 8005FAA8 0005C9E8  7C 08 03 A6 */	mtlr r0
 /* 8005FAAC 0005C9EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FAB0 0005C9F0  4E 80 00 20 */	blr 
+.endfn beginPatch__17J3DDisplayListObjFv
 
-.global endPatch__17J3DDisplayListObjFv
-endPatch__17J3DDisplayListObjFv:
+.fn endPatch__17J3DDisplayListObjFv, global
 /* 8005FAB4 0005C9F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FAB8 0005C9F8  7C 08 02 A6 */	mflr r0
 /* 8005FABC 0005C9FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -264,14 +263,14 @@ endPatch__17J3DDisplayListObjFv:
 /* 8005FAE4 0005CA24  7C 08 03 A6 */	mtlr r0
 /* 8005FAE8 0005CA28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FAEC 0005CA2C  4E 80 00 20 */	blr 
+.endfn endPatch__17J3DDisplayListObjFv
 
-.global entry__9J3DPacketFP13J3DDrawBuffer
-entry__9J3DPacketFP13J3DDrawBuffer:
+.fn entry__9J3DPacketFP13J3DDrawBuffer, global
 /* 8005FAF0 0005CA30  38 60 00 01 */	li r3, 1
 /* 8005FAF4 0005CA34  4E 80 00 20 */	blr 
+.endfn entry__9J3DPacketFP13J3DDrawBuffer
 
-.global addChildPacket__9J3DPacketFP9J3DPacket
-addChildPacket__9J3DPacketFP9J3DPacket:
+.fn addChildPacket__9J3DPacketFP9J3DPacket, global
 /* 8005FAF8 0005CA38  80 03 00 08 */	lwz r0, 8(r3)
 /* 8005FAFC 0005CA3C  28 00 00 00 */	cmplwi r0, 0
 /* 8005FB00 0005CA40  40 82 00 0C */	bne .L_8005FB0C
@@ -281,13 +280,13 @@ addChildPacket__9J3DPacketFP9J3DPacket:
 /* 8005FB0C 0005CA4C  90 04 00 04 */	stw r0, 4(r4)
 /* 8005FB10 0005CA50  90 83 00 08 */	stw r4, 8(r3)
 /* 8005FB14 0005CA54  4E 80 00 20 */	blr 
+.endfn addChildPacket__9J3DPacketFP9J3DPacket
 
-.global draw__9J3DPacketFv
-draw__9J3DPacketFv:
+.fn draw__9J3DPacketFv, weak
 /* 8005FB18 0005CA58  4E 80 00 20 */	blr 
+.endfn draw__9J3DPacketFv
 
-.global __dt__9J3DPacketFv
-__dt__9J3DPacketFv:
+.fn __dt__9J3DPacketFv, weak
 /* 8005FB1C 0005CA5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FB20 0005CA60  7C 08 02 A6 */	mflr r0
 /* 8005FB24 0005CA64  90 01 00 14 */	stw r0, 0x14(r1)
@@ -307,9 +306,9 @@ __dt__9J3DPacketFv:
 /* 8005FB58 0005CA98  7C 08 03 A6 */	mtlr r0
 /* 8005FB5C 0005CA9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FB60 0005CAA0  4E 80 00 20 */	blr 
+.endfn __dt__9J3DPacketFv
 
-.global __dt__13J3DDrawPacketFv
-__dt__13J3DDrawPacketFv:
+.fn __dt__13J3DDrawPacketFv, global
 /* 8005FB64 0005CAA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FB68 0005CAA8  7C 08 02 A6 */	mflr r0
 /* 8005FB6C 0005CAAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -335,9 +334,9 @@ __dt__13J3DDrawPacketFv:
 /* 8005FBB4 0005CAF4  7C 08 03 A6 */	mtlr r0
 /* 8005FBB8 0005CAF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FBBC 0005CAFC  4E 80 00 20 */	blr 
+.endfn __dt__13J3DDrawPacketFv
 
-.global newDisplayList__13J3DDrawPacketFUl
-newDisplayList__13J3DDrawPacketFUl:
+.fn newDisplayList__13J3DDrawPacketFUl, global
 /* 8005FBC0 0005CB00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FBC4 0005CB04  7C 08 02 A6 */	mflr r0
 /* 8005FBC8 0005CB08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -382,9 +381,9 @@ newDisplayList__13J3DDrawPacketFUl:
 /* 8005FC58 0005CB98  7C 08 03 A6 */	mtlr r0
 /* 8005FC5C 0005CB9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FC60 0005CBA0  4E 80 00 20 */	blr 
+.endfn newDisplayList__13J3DDrawPacketFUl
 
-.global newSingleDisplayList__13J3DDrawPacketFUl
-newSingleDisplayList__13J3DDrawPacketFUl:
+.fn newSingleDisplayList__13J3DDrawPacketFUl, global
 /* 8005FC64 0005CBA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FC68 0005CBA8  7C 08 02 A6 */	mflr r0
 /* 8005FC6C 0005CBAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -427,9 +426,9 @@ newSingleDisplayList__13J3DDrawPacketFUl:
 /* 8005FCF4 0005CC34  7C 08 03 A6 */	mtlr r0
 /* 8005FCF8 0005CC38  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FCFC 0005CC3C  4E 80 00 20 */	blr 
+.endfn newSingleDisplayList__13J3DDrawPacketFUl
 
-.global draw__13J3DDrawPacketFv
-draw__13J3DDrawPacketFv:
+.fn draw__13J3DDrawPacketFv, global
 /* 8005FD00 0005CC40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FD04 0005CC44  7C 08 02 A6 */	mflr r0
 /* 8005FD08 0005CC48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -441,9 +440,9 @@ draw__13J3DDrawPacketFv:
 /* 8005FD20 0005CC60  7C 08 03 A6 */	mtlr r0
 /* 8005FD24 0005CC64  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FD28 0005CC68  4E 80 00 20 */	blr 
+.endfn draw__13J3DDrawPacketFv
 
-.global __ct__12J3DMatPacketFv
-__ct__12J3DMatPacketFv:
+.fn __ct__12J3DMatPacketFv, global
 /* 8005FD2C 0005CC6C  3C C0 80 4A */	lis r6, __vt__9J3DPacket@ha
 /* 8005FD30 0005CC70  3C A0 80 4A */	lis r5, __vt__13J3DDrawPacket@ha
 /* 8005FD34 0005CC74  38 06 15 4C */	addi r0, r6, __vt__9J3DPacket@l
@@ -467,9 +466,9 @@ __ct__12J3DMatPacketFv:
 /* 8005FD7C 0005CCBC  90 C3 00 38 */	stw r6, 0x38(r3)
 /* 8005FD80 0005CCC0  90 C3 00 3C */	stw r6, 0x3c(r3)
 /* 8005FD84 0005CCC4  4E 80 00 20 */	blr 
+.endfn __ct__12J3DMatPacketFv
 
-.global __dt__12J3DMatPacketFv
-__dt__12J3DMatPacketFv:
+.fn __dt__12J3DMatPacketFv, global
 /* 8005FD88 0005CCC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FD8C 0005CCCC  7C 08 02 A6 */	mflr r0
 /* 8005FD90 0005CCD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -499,9 +498,9 @@ __dt__12J3DMatPacketFv:
 /* 8005FDE8 0005CD28  7C 08 03 A6 */	mtlr r0
 /* 8005FDEC 0005CD2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FDF0 0005CD30  4E 80 00 20 */	blr 
+.endfn __dt__12J3DMatPacketFv
 
-.global addShapePacket__12J3DMatPacketFP14J3DShapePacket
-addShapePacket__12J3DMatPacketFP14J3DShapePacket:
+.fn addShapePacket__12J3DMatPacketFP14J3DShapePacket, global
 /* 8005FDF4 0005CD34  80 03 00 2C */	lwz r0, 0x2c(r3)
 /* 8005FDF8 0005CD38  28 00 00 00 */	cmplwi r0, 0
 /* 8005FDFC 0005CD3C  40 82 00 0C */	bne .L_8005FE08
@@ -511,9 +510,9 @@ addShapePacket__12J3DMatPacketFP14J3DShapePacket:
 /* 8005FE08 0005CD48  90 04 00 04 */	stw r0, 4(r4)
 /* 8005FE0C 0005CD4C  90 83 00 2C */	stw r4, 0x2c(r3)
 /* 8005FE10 0005CD50  4E 80 00 20 */	blr 
+.endfn addShapePacket__12J3DMatPacketFP14J3DShapePacket
 
-.global beginDiff__12J3DMatPacketFv
-beginDiff__12J3DMatPacketFv:
+.fn beginDiff__12J3DMatPacketFv, global
 /* 8005FE14 0005CD54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FE18 0005CD58  7C 08 02 A6 */	mflr r0
 /* 8005FE1C 0005CD5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -539,9 +538,9 @@ beginDiff__12J3DMatPacketFv:
 /* 8005FE6C 0005CDAC  7C 08 03 A6 */	mtlr r0
 /* 8005FE70 0005CDB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FE74 0005CDB4  4E 80 00 20 */	blr 
+.endfn beginDiff__12J3DMatPacketFv
 
-.global endDiff__12J3DMatPacketFv
-endDiff__12J3DMatPacketFv:
+.fn endDiff__12J3DMatPacketFv, global
 /* 8005FE78 0005CDB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FE7C 0005CDBC  7C 08 02 A6 */	mflr r0
 /* 8005FE80 0005CDC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -566,9 +565,9 @@ endDiff__12J3DMatPacketFv:
 /* 8005FECC 0005CE0C  7C 08 03 A6 */	mtlr r0
 /* 8005FED0 0005CE10  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FED4 0005CE14  4E 80 00 20 */	blr 
+.endfn endDiff__12J3DMatPacketFv
 
-.global isSame__12J3DMatPacketCFP12J3DMatPacket
-isSame__12J3DMatPacketCFP12J3DMatPacket:
+.fn isSame__12J3DMatPacketCFP12J3DMatPacket, global
 /* 8005FED8 0005CE18  80 A3 00 34 */	lwz r5, 0x34(r3)
 /* 8005FEDC 0005CE1C  38 60 00 00 */	li r3, 0
 /* 8005FEE0 0005CE20  80 04 00 34 */	lwz r0, 0x34(r4)
@@ -578,9 +577,9 @@ isSame__12J3DMatPacketCFP12J3DMatPacket:
 /* 8005FEF0 0005CE30  4C 82 00 20 */	bnelr 
 /* 8005FEF4 0005CE34  38 60 00 01 */	li r3, 1
 /* 8005FEF8 0005CE38  4E 80 00 20 */	blr 
+.endfn isSame__12J3DMatPacketCFP12J3DMatPacket
 
-.global draw__12J3DMatPacketFv
-draw__12J3DMatPacketFv:
+.fn draw__12J3DMatPacketFv, global
 /* 8005FEFC 0005CE3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FF00 0005CE40  7C 08 02 A6 */	mflr r0
 /* 8005FF04 0005CE44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -621,9 +620,9 @@ draw__12J3DMatPacketFv:
 /* 8005FF84 0005CEC4  7C 08 03 A6 */	mtlr r0
 /* 8005FF88 0005CEC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005FF8C 0005CECC  4E 80 00 20 */	blr 
+.endfn draw__12J3DMatPacketFv
 
-.global __ct__14J3DShapePacketFv
-__ct__14J3DShapePacketFv:
+.fn __ct__14J3DShapePacketFv, global
 /* 8005FF90 0005CED0  3C C0 80 4A */	lis r6, __vt__9J3DPacket@ha
 /* 8005FF94 0005CED4  3C A0 80 4A */	lis r5, __vt__13J3DDrawPacket@ha
 /* 8005FF98 0005CED8  38 06 15 4C */	addi r0, r6, __vt__9J3DPacket@l
@@ -646,9 +645,9 @@ __ct__14J3DShapePacketFv:
 /* 8005FFDC 0005CF1C  90 C3 00 34 */	stw r6, 0x34(r3)
 /* 8005FFE0 0005CF20  90 C3 00 38 */	stw r6, 0x38(r3)
 /* 8005FFE4 0005CF24  4E 80 00 20 */	blr 
+.endfn __ct__14J3DShapePacketFv
 
-.global __dt__14J3DShapePacketFv
-__dt__14J3DShapePacketFv:
+.fn __dt__14J3DShapePacketFv, global
 /* 8005FFE8 0005CF28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005FFEC 0005CF2C  7C 08 02 A6 */	mflr r0
 /* 8005FFF0 0005CF30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -678,9 +677,9 @@ __dt__14J3DShapePacketFv:
 /* 80060048 0005CF88  7C 08 03 A6 */	mtlr r0
 /* 8006004C 0005CF8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80060050 0005CF90  4E 80 00 20 */	blr 
+.endfn __dt__14J3DShapePacketFv
 
-.global calcDifferedBufferSize__14J3DShapePacketFUl
-calcDifferedBufferSize__14J3DShapePacketFUl:
+.fn calcDifferedBufferSize__14J3DShapePacketFUl, global
 /* 80060054 0005CF94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80060058 0005CF98  7C 08 02 A6 */	mflr r0
 /* 8006005C 0005CF9C  3C C0 80 4A */	lis r6, sDifferedRegister@ha
@@ -857,19 +856,19 @@ calcDifferedBufferSize__14J3DShapePacketFUl:
 /* 800602BC 0005D1FC  7C 08 03 A6 */	mtlr r0
 /* 800602C0 0005D200  38 21 00 20 */	addi r1, r1, 0x20
 /* 800602C4 0005D204  4E 80 00 20 */	blr 
+.endfn calcDifferedBufferSize__14J3DShapePacketFUl
 
-.global getTevStageNum__11J3DTevBlockCFv
-getTevStageNum__11J3DTevBlockCFv:
+.fn getTevStageNum__11J3DTevBlockCFv, weak
 /* 800602C8 0005D208  38 60 00 01 */	li r3, 1
 /* 800602CC 0005D20C  4E 80 00 20 */	blr 
+.endfn getTevStageNum__11J3DTevBlockCFv
 
-.global getTexGenNum__14J3DTexGenBlockCFv
-getTexGenNum__14J3DTexGenBlockCFv:
+.fn getTexGenNum__14J3DTexGenBlockCFv, weak
 /* 800602D0 0005D210  38 60 00 00 */	li r3, 0
 /* 800602D4 0005D214  4E 80 00 20 */	blr 
+.endfn getTexGenNum__14J3DTexGenBlockCFv
 
-.global newDifferedDisplayList__14J3DShapePacketFUl
-newDifferedDisplayList__14J3DShapePacketFUl:
+.fn newDifferedDisplayList__14J3DShapePacketFUl, global
 /* 800602D8 0005D218  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800602DC 0005D21C  7C 08 02 A6 */	mflr r0
 /* 800602E0 0005D220  90 01 00 14 */	stw r0, 0x14(r1)
@@ -921,9 +920,9 @@ newDifferedDisplayList__14J3DShapePacketFUl:
 /* 80060388 0005D2C8  7C 08 03 A6 */	mtlr r0
 /* 8006038C 0005D2CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80060390 0005D2D0  4E 80 00 20 */	blr 
+.endfn newDifferedDisplayList__14J3DShapePacketFUl
 
-.global newDifferedTexMtx__14J3DShapePacketF14J3DTexDiffFlag
-newDifferedTexMtx__14J3DShapePacketF14J3DTexDiffFlag:
+.fn newDifferedTexMtx__14J3DShapePacketF14J3DTexDiffFlag, global
 /* 80060394 0005D2D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80060398 0005D2D8  7C 08 02 A6 */	mflr r0
 /* 8006039C 0005D2DC  2C 04 00 01 */	cmpwi r4, 1
@@ -1000,9 +999,9 @@ newDifferedTexMtx__14J3DShapePacketF14J3DTexDiffFlag:
 /* 8006049C 0005D3DC  7C 08 03 A6 */	mtlr r0
 /* 800604A0 0005D3E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800604A4 0005D3E4  4E 80 00 20 */	blr 
+.endfn newDifferedTexMtx__14J3DShapePacketF14J3DTexDiffFlag
 
-.global draw__14J3DShapePacketFv
-draw__14J3DShapePacketFv:
+.fn draw__14J3DShapePacketFv, global
 /* 800604A8 0005D3E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800604AC 0005D3EC  7C 08 02 A6 */	mflr r0
 /* 800604B0 0005D3F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1121,9 +1120,9 @@ draw__14J3DShapePacketFv:
 /* 8006064C 0005D58C  7C 08 03 A6 */	mtlr r0
 /* 80060650 0005D590  38 21 00 10 */	addi r1, r1, 0x10
 /* 80060654 0005D594  4E 80 00 20 */	blr 
+.endfn draw__14J3DShapePacketFv
 
-.global drawFast__14J3DShapePacketFv
-drawFast__14J3DShapePacketFv:
+.fn drawFast__14J3DShapePacketFv, global
 /* 80060658 0005D598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006065C 0005D59C  7C 08 02 A6 */	mflr r0
 /* 80060660 0005D5A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1235,9 +1234,9 @@ drawFast__14J3DShapePacketFv:
 /* 800607E4 0005D724  7C 08 03 A6 */	mtlr r0
 /* 800607E8 0005D728  38 21 00 10 */	addi r1, r1, 0x10
 /* 800607EC 0005D72C  4E 80 00 20 */	blr 
+.endfn drawFast__14J3DShapePacketFv
 
-.global entry__12J3DMatPacketFP13J3DDrawBuffer
-entry__12J3DMatPacketFP13J3DDrawBuffer:
+.fn entry__12J3DMatPacketFP13J3DDrawBuffer, weak
 /* 800607F0 0005D730  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800607F4 0005D734  7C 08 02 A6 */	mflr r0
 /* 800607F8 0005D738  7C 66 1B 78 */	mr r6, r3
@@ -1262,3 +1261,4 @@ entry__12J3DMatPacketFP13J3DDrawBuffer:
 /* 80060844 0005D784  7C 08 03 A6 */	mtlr r0
 /* 80060848 0005D788  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006084C 0005D78C  4E 80 00 20 */	blr 
+.endfn entry__12J3DMatPacketFP13J3DDrawBuffer

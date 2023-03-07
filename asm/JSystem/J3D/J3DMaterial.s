@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__17J3DLockedMaterial
-__vt__17J3DLockedMaterial:
+.obj __vt__17J3DLockedMaterial, global
 	.4byte 0
 	.4byte 0
 	.4byte calc__17J3DLockedMaterialFPA4_Cf
@@ -15,8 +14,8 @@ __vt__17J3DLockedMaterial:
 	.4byte diff__17J3DLockedMaterialFUl
 	.4byte reset__17J3DLockedMaterialFv
 	.4byte change__17J3DLockedMaterialFv
-.global __vt__18J3DPatchedMaterial
-__vt__18J3DPatchedMaterial:
+.endobj __vt__17J3DLockedMaterial
+.obj __vt__18J3DPatchedMaterial, global
 	.4byte 0
 	.4byte 0
 	.4byte calc__11J3DMaterialFPA4_Cf
@@ -29,8 +28,8 @@ __vt__18J3DPatchedMaterial:
 	.4byte diff__11J3DMaterialFUl
 	.4byte reset__18J3DPatchedMaterialFv
 	.4byte change__18J3DPatchedMaterialFv
-.global __vt__11J3DMaterial
-__vt__11J3DMaterial:
+.endobj __vt__18J3DPatchedMaterial
+.obj __vt__11J3DMaterial, global
 	.4byte 0
 	.4byte 0
 	.4byte calc__11J3DMaterialFPA4_Cf
@@ -43,8 +42,8 @@ __vt__11J3DMaterial:
 	.4byte diff__11J3DMaterialFUl
 	.4byte reset__11J3DMaterialFv
 	.4byte change__11J3DMaterialFv
-.global __vt__10J3DPEBlock
-__vt__10J3DPEBlock:
+.endobj __vt__11J3DMaterial
+.obj __vt__10J3DPEBlock, weak
 	.4byte 0
 	.4byte 0
 	.4byte reset__10J3DPEBlockFP10J3DPEBlock
@@ -76,8 +75,8 @@ __vt__10J3DPEBlock:
 	.4byte getFogOffset__10J3DPEBlockCFv
 	.4byte setFogOffset__10J3DPEBlockFUl
 	.4byte __dt__10J3DPEBlockFv
-.global __vt__15J3DIndBlockNull
-__vt__15J3DIndBlockNull:
+.endobj __vt__10J3DPEBlock
+.obj __vt__15J3DIndBlockNull, weak
 	.4byte 0
 	.4byte 0
 	.4byte reset__15J3DIndBlockNullFP11J3DIndBlock
@@ -97,8 +96,8 @@ __vt__15J3DIndBlockNull:
 	.4byte setIndTexCoordScale__11J3DIndBlockFUl19J3DIndTexCoordScale
 	.4byte getIndTexCoordScale__11J3DIndBlockFUl
 	.4byte __dt__15J3DIndBlockNullFv
-.global __vt__11J3DIndBlock
-__vt__11J3DIndBlock:
+.endobj __vt__15J3DIndBlockNull
+.obj __vt__11J3DIndBlock, weak
 	.4byte 0
 	.4byte 0
 	.4byte reset__11J3DIndBlockFP11J3DIndBlock
@@ -118,8 +117,8 @@ __vt__11J3DIndBlock:
 	.4byte setIndTexCoordScale__11J3DIndBlockFUl19J3DIndTexCoordScale
 	.4byte getIndTexCoordScale__11J3DIndBlockFUl
 	.4byte __dt__11J3DIndBlockFv
-.global __vt__14J3DTexGenBlock
-__vt__14J3DTexGenBlock:
+.endobj __vt__11J3DIndBlock
+.obj __vt__14J3DTexGenBlock, weak
 	.4byte 0
 	.4byte 0
 	.4byte reset__14J3DTexGenBlockFP14J3DTexGenBlock
@@ -147,8 +146,8 @@ __vt__14J3DTexGenBlock:
 	.4byte getTexMtxOffset__14J3DTexGenBlockCFv
 	.4byte setTexMtxOffset__14J3DTexGenBlockFUl
 	.4byte __dt__14J3DTexGenBlockFv
-.global __vt__13J3DColorBlock
-__vt__13J3DColorBlock:
+.endobj __vt__14J3DTexGenBlock
+.obj __vt__13J3DColorBlock, weak
 	.4byte 0
 	.4byte 0
 	.4byte load__13J3DColorBlockFv
@@ -183,6 +182,7 @@ __vt__13J3DColorBlock:
 	.4byte setMatColorOffset__13J3DColorBlockFUl
 	.4byte setColorChanOffset__13J3DColorBlockFUl
 	.4byte __dt__13J3DColorBlockFv
+.endobj __vt__13J3DColorBlock
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createColorBlock__11J3DMaterialFUl

@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__14J3DPEBlockNull
-__vt__14J3DPEBlockNull:
+.obj __vt__14J3DPEBlockNull, weak
 	.4byte 0
 	.4byte 0
 	.4byte reset__10J3DPEBlockFP10J3DPEBlock
@@ -34,8 +33,8 @@ __vt__14J3DPEBlockNull:
 	.4byte getFogOffset__10J3DPEBlockCFv
 	.4byte setFogOffset__10J3DPEBlockFUl
 	.4byte __dt__14J3DPEBlockNullFv
-.global __vt__15J3DTevBlockNull
-__vt__15J3DTevBlockNull:
+.endobj __vt__14J3DPEBlockNull
+.obj __vt__15J3DTevBlockNull, weak
 	.4byte 0
 	.4byte 0
 	.4byte reset__15J3DTevBlockNullFP11J3DTevBlock
@@ -91,8 +90,8 @@ __vt__15J3DTevBlockNull:
 	.4byte setTexNoOffset__11J3DTevBlockFUl
 	.4byte setTevRegOffset__11J3DTevBlockFUl
 	.4byte __dt__15J3DTevBlockNullFv
-.global __vt__18J3DTexGenBlockNull
-__vt__18J3DTexGenBlockNull:
+.endobj __vt__15J3DTevBlockNull
+.obj __vt__18J3DTexGenBlockNull, weak
 	.4byte 0
 	.4byte 0
 	.4byte reset__14J3DTexGenBlockFP14J3DTexGenBlock
@@ -120,8 +119,8 @@ __vt__18J3DTexGenBlockNull:
 	.4byte getTexMtxOffset__14J3DTexGenBlockCFv
 	.4byte setTexMtxOffset__14J3DTexGenBlockFUl
 	.4byte __dt__18J3DTexGenBlockNullFv
-.global __vt__17J3DColorBlockNull
-__vt__17J3DColorBlockNull:
+.endobj __vt__18J3DTexGenBlockNull
+.obj __vt__17J3DColorBlockNull, weak
 	.4byte 0
 	.4byte 0
 	.4byte load__13J3DColorBlockFv
@@ -156,15 +155,19 @@ __vt__17J3DColorBlockNull:
 	.4byte setMatColorOffset__13J3DColorBlockFUl
 	.4byte setColorChanOffset__13J3DColorBlockFUl
 	.4byte __dt__17J3DColorBlockNullFv
+.endobj __vt__17J3DColorBlockNull
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516A80:
+.obj lbl_80516A80, local
 	.4byte 0xFFFFFFFF
-lbl_80516A84:
+.endobj lbl_80516A80
+.obj lbl_80516A84, local
 	.4byte 0x32323232
-lbl_80516A88:
+.endobj lbl_80516A84
+.obj lbl_80516A88, local
 	.4byte 0xFFFFFFFF
+.endobj lbl_80516A88
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 .obj lbl_80520E48, local
