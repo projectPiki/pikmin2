@@ -1,40 +1,39 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__8J3DShape
-__vt__8J3DShape:
+.obj __vt__8J3DShape, global
 	.4byte 0
 	.4byte 0
 	.4byte draw__8J3DShapeCFv
 	.4byte drawFast__8J3DShapeCFv
 	.4byte simpleDraw__8J3DShapeCFv
 	.4byte simpleDrawCache__8J3DShapeCFv
+.endobj __vt__8J3DShape
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sOldVcdVatCmd__8J3DShape
-sOldVcdVatCmd__8J3DShape:
+.obj sOldVcdVatCmd__8J3DShape, global
 	.skip 0x4
-.global sEnvelopeFlag__8J3DShape
-sEnvelopeFlag__8J3DShape:
+.endobj sOldVcdVatCmd__8J3DShape
+.obj sEnvelopeFlag__8J3DShape, global
+	.skip 0x1
+.endobj sEnvelopeFlag__8J3DShape
+.balign 4
+.obj sInterruptFlag$1728, local
 	.skip 0x4
-.global sInterruptFlag$1728
-sInterruptFlag$1728:
-	.skip 0x4
-.global init$1729
-init$1729:
-	.skip 0x4
+.endobj sInterruptFlag$1728
+.obj init$1729, local
+	.skip 0x1
+.endobj init$1729
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805169A8
-lbl_805169A8:
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj lbl_805169A8, local
+	.float 0.0
+.endobj lbl_805169A8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global initialize__8J3DShapeFv
-initialize__8J3DShapeFv:
+.fn initialize__8J3DShapeFv, global
 /* 80060850 0005D790  38 A0 00 00 */	li r5, 0
 /* 80060854 0005D794  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 80060858 0005D798  90 A3 00 04 */	stw r5, 4(r3)
@@ -63,9 +62,9 @@ initialize__8J3DShapeFv:
 /* 800608B4 0005D7F4  98 A3 00 34 */	stb r5, 0x34(r3)
 /* 800608B8 0005D7F8  98 A3 00 48 */	stb r5, 0x48(r3)
 /* 800608BC 0005D7FC  4E 80 00 20 */	blr 
+.endfn initialize__8J3DShapeFv
 
-.global calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f
-calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f:
+.fn calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f, global
 /* 800608C0 0005D800  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800608C4 0005D804  7C 08 02 A6 */	mflr r0
 /* 800608C8 0005D808  90 01 00 24 */	stw r0, 0x24(r1)
@@ -98,9 +97,9 @@ calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f:
 /* 8006092C 0005D86C  7C 08 03 A6 */	mtlr r0
 /* 80060930 0005D870  38 21 00 20 */	addi r1, r1, 0x20
 /* 80060934 0005D874  4E 80 00 20 */	blr 
+.endfn calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f
 
-.global countBumpMtxNum__8J3DShapeCFv
-countBumpMtxNum__8J3DShapeCFv:
+.fn countBumpMtxNum__8J3DShapeCFv, global
 /* 80060938 0005D878  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006093C 0005D87C  7C 08 02 A6 */	mflr r0
 /* 80060940 0005D880  90 01 00 24 */	stw r0, 0x24(r1)
@@ -135,9 +134,9 @@ countBumpMtxNum__8J3DShapeCFv:
 /* 800609AC 0005D8EC  7C 08 03 A6 */	mtlr r0
 /* 800609B0 0005D8F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800609B4 0005D8F4  4E 80 00 20 */	blr 
+.endfn countBumpMtxNum__8J3DShapeCFv
 
-.global isSameVcdVatCmd__8J3DShapeFP8J3DShape
-isSameVcdVatCmd__8J3DShapeFP8J3DShape:
+.fn isSameVcdVatCmd__8J3DShapeFP8J3DShape, global
 /* 800609B8 0005D8F8  38 00 00 18 */	li r0, 0x18
 /* 800609BC 0005D8FC  80 84 00 2C */	lwz r4, 0x2c(r4)
 /* 800609C0 0005D900  80 63 00 2C */	lwz r3, 0x2c(r3)
@@ -206,9 +205,9 @@ isSameVcdVatCmd__8J3DShapeFP8J3DShape:
 /* 80060A98 0005D9D8  42 00 FF 34 */	bdnz .L_800609CC
 /* 80060A9C 0005D9DC  38 60 00 01 */	li r3, 1
 /* 80060AA0 0005D9E0  4E 80 00 20 */	blr 
+.endfn isSameVcdVatCmd__8J3DShapeFP8J3DShape
 
-.global makeVtxArrayCmd__8J3DShapeFv
-makeVtxArrayCmd__8J3DShapeFv:
+.fn makeVtxArrayCmd__8J3DShapeFv, global
 /* 80060AA4 0005D9E4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80060AA8 0005D9E8  7C 08 02 A6 */	mflr r0
 /* 80060AAC 0005D9EC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -421,9 +420,9 @@ makeVtxArrayCmd__8J3DShapeFv:
 /* 80060D94 0005DCD4  7C 08 03 A6 */	mtlr r0
 /* 80060D98 0005DCD8  38 21 00 60 */	addi r1, r1, 0x60
 /* 80060D9C 0005DCDC  4E 80 00 20 */	blr 
+.endfn makeVtxArrayCmd__8J3DShapeFv
 
-.global makeVcdVatCmd__8J3DShapeFv
-makeVcdVatCmd__8J3DShapeFv:
+.fn makeVcdVatCmd__8J3DShapeFv, global
 /* 80060DA0 0005DCE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80060DA4 0005DCE4  7C 08 02 A6 */	mflr r0
 /* 80060DA8 0005DCE8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -465,9 +464,9 @@ makeVcdVatCmd__8J3DShapeFv:
 /* 80060E34 0005DD74  7C 08 03 A6 */	mtlr r0
 /* 80060E38 0005DD78  38 21 00 20 */	addi r1, r1, 0x20
 /* 80060E3C 0005DD7C  4E 80 00 20 */	blr 
+.endfn makeVcdVatCmd__8J3DShapeFv
 
-.global loadPreDrawSetting__8J3DShapeCFv
-loadPreDrawSetting__8J3DShapeCFv:
+.fn loadPreDrawSetting__8J3DShapeCFv, global
 /* 80060E40 0005DD80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80060E44 0005DD84  7C 08 02 A6 */	mflr r0
 /* 80060E48 0005DD88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -509,9 +508,9 @@ loadPreDrawSetting__8J3DShapeCFv:
 /* 80060ED4 0005DE14  7C 08 03 A6 */	mtlr r0
 /* 80060ED8 0005DE18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80060EDC 0005DE1C  4E 80 00 20 */	blr 
+.endfn loadPreDrawSetting__8J3DShapeCFv
 
-.global drawFast__8J3DShapeCFv
-drawFast__8J3DShapeCFv:
+.fn drawFast__8J3DShapeCFv, global
 /* 80060EE0 0005DE20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80060EE4 0005DE24  7C 08 02 A6 */	mflr r0
 /* 80060EE8 0005DE28  90 01 00 24 */	stw r0, 0x24(r1)
@@ -683,9 +682,9 @@ drawFast__8J3DShapeCFv:
 /* 8006114C 0005E08C  7C 08 03 A6 */	mtlr r0
 /* 80061150 0005E090  38 21 00 20 */	addi r1, r1, 0x20
 /* 80061154 0005E094  4E 80 00 20 */	blr 
+.endfn drawFast__8J3DShapeCFv
 
-.global draw__8J3DShapeCFv
-draw__8J3DShapeCFv:
+.fn draw__8J3DShapeCFv, global
 /* 80061158 0005E098  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006115C 0005E09C  7C 08 02 A6 */	mflr r0
 /* 80061160 0005E0A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -733,9 +732,9 @@ draw__8J3DShapeCFv:
 /* 80061204 0005E144  7C 08 03 A6 */	mtlr r0
 /* 80061208 0005E148  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006120C 0005E14C  4E 80 00 20 */	blr 
+.endfn draw__8J3DShapeCFv
 
-.global simpleDraw__8J3DShapeCFv
-simpleDraw__8J3DShapeCFv:
+.fn simpleDraw__8J3DShapeCFv, global
 /* 80061210 0005E150  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80061214 0005E154  7C 08 02 A6 */	mflr r0
 /* 80061218 0005E158  90 01 00 24 */	stw r0, 0x24(r1)
@@ -829,9 +828,9 @@ simpleDraw__8J3DShapeCFv:
 /* 80061364 0005E2A4  7C 08 03 A6 */	mtlr r0
 /* 80061368 0005E2A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006136C 0005E2AC  4E 80 00 20 */	blr 
+.endfn simpleDraw__8J3DShapeCFv
 
-.global simpleDrawCache__8J3DShapeCFv
-simpleDrawCache__8J3DShapeCFv:
+.fn simpleDrawCache__8J3DShapeCFv, global
 /* 80061370 0005E2B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80061374 0005E2B4  7C 08 02 A6 */	mflr r0
 /* 80061378 0005E2B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -930,3 +929,4 @@ simpleDrawCache__8J3DShapeCFv:
 /* 800614D4 0005E414  7C 08 03 A6 */	mtlr r0
 /* 800614D8 0005E418  38 21 00 20 */	addi r1, r1, 0x20
 /* 800614DC 0005E41C  4E 80 00 20 */	blr 
+.endfn simpleDrawCache__8J3DShapeCFv

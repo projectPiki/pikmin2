@@ -14,38 +14,39 @@ j3dDefaultTexCoordInfo:
 .global j3dDefaultTexMtxInfo
 j3dDefaultTexMtxInfo:
 	.4byte 0x0100FFFF
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.2byte 0x0000
+.balign 4
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 1.0
 .global j3dDefaultIndTexMtxInfo
 j3dDefaultIndTexMtxInfo:
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
+	.float 0.0
 	.4byte 0x01000000
 .global j3dDefaultTevStageInfo
 j3dDefaultTevStageInfo:
@@ -89,31 +90,31 @@ lbl_804789A4:
 .global qMtx$1682
 qMtx$1682:
 	.float 0.5
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
 	.4byte 0xBF000000
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
+	.float 0.0
 .global qMtx2$1683
 qMtx2$1683:
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
+	.float 0.0
 	.4byte 0xBF000000
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
+	.float 0.0
 .global lbl_804A1870
 lbl_804A1870:
 	.4byte .L_80064FB8
@@ -130,31 +131,31 @@ lbl_804A1870:
 	.4byte .L_80064D5C
 .obj qMtx$1744, local
 	.float 0.5
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
 	.4byte 0xBF000000
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
+	.float 0.0
 .endobj qMtx$1744
 .obj qMtx2$1745, local
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
+	.float 0.0
 	.4byte 0xBF000000
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
+	.float 0.0
 .endobj qMtx2$1745
 .obj lbl_804A1900, local
 	.4byte .L_80065310

@@ -1,27 +1,30 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804789B0:
+.obj lbl_804789B0, local
 	.float 1.0
 	.float 1.0
 	.float 1.0
-lbl_804789BC:
+.endobj lbl_804789B0
+.obj lbl_804789BC, local
 	.float 1.0
 	.float 1.0
 	.float 1.0
-lbl_804789C8:
+.endobj lbl_804789BC
+.obj lbl_804789C8, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804789D4:
+.endobj lbl_804789C8
+.obj lbl_804789D4, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
+.endobj lbl_804789D4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global "__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>"
-"__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>":
+.obj "__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
@@ -33,8 +36,8 @@ lbl_804789D4:
 	.4byte getWeight__10J3DMtxCalcCFUc
 	.4byte "init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
 	.4byte "calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-.global "__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
-"__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>":
+.endobj "__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>"
+.obj "__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
@@ -46,8 +49,8 @@ lbl_804789D4:
 	.4byte getWeight__10J3DMtxCalcCFUc
 	.4byte "init__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
 	.4byte "calc__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-.global "__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>"
-"__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>":
+.endobj "__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"
+.obj "__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
@@ -59,8 +62,8 @@ lbl_804789D4:
 	.4byte getWeight__10J3DMtxCalcCFUc
 	.4byte "init__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
 	.4byte "calc__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-.global __vt__17J3DMtxCalcAnmBase
-__vt__17J3DMtxCalcAnmBase:
+.endobj "__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>"
+.obj __vt__17J3DMtxCalcAnmBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__17J3DMtxCalcAnmBaseFv
@@ -72,18 +75,19 @@ __vt__17J3DMtxCalcAnmBase:
 	.4byte getWeight__10J3DMtxCalcCFUc
 	.4byte 0
 	.4byte 0
+.endobj __vt__17J3DMtxCalcAnmBase
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mMtxBuffer__10J3DMtxCalc
-mMtxBuffer__10J3DMtxCalc:
+.obj mMtxBuffer__10J3DMtxCalc, global
 	.skip 0x4
-.global mJoint__10J3DMtxCalc
-mJoint__10J3DMtxCalc:
+.endobj mMtxBuffer__10J3DMtxCalc
+.obj mJoint__10J3DMtxCalc, global
 	.skip 0x4
-.global mCurrentMtxCalc__8J3DJoint
-mCurrentMtxCalc__8J3DJoint:
+.endobj mJoint__10J3DMtxCalc
+.obj mCurrentMtxCalc__8J3DJoint, global
 	.skip 0x4
+.endobj mCurrentMtxCalc__8J3DJoint
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -95,8 +99,7 @@ mCurrentMtxCalc__8J3DJoint:
 .endobj lbl_80516A7C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf
-init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf:
+.fn init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf, global
 /* 8006B200 00068140  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006B204 00068144  7C 08 02 A6 */	mflr r0
 /* 8006B208 00068148  7C 69 1B 78 */	mr r9, r3
@@ -135,9 +138,9 @@ init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf:
 /* 8006B28C 000681CC  7C 08 03 A6 */	mtlr r0
 /* 8006B290 000681D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006B294 000681D4  4E 80 00 20 */	blr 
+.endfn init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf
 
-.global init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf
-init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf:
+.fn init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf, global
 /* 8006B298 000681D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006B29C 000681DC  7C 08 02 A6 */	mflr r0
 /* 8006B2A0 000681E0  7C 69 1B 78 */	mr r9, r3
@@ -176,9 +179,9 @@ init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf:
 /* 8006B324 00068264  7C 08 03 A6 */	mtlr r0
 /* 8006B328 00068268  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006B32C 0006826C  4E 80 00 20 */	blr 
+.endfn init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf
 
-.global calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo
-calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo:
+.fn calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo, global
 /* 8006B330 00068270  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006B334 00068274  7C 08 02 A6 */	mflr r0
 /* 8006B338 00068278  3C 80 80 51 */	lis r4, mCurrentS__6J3DSys@ha
@@ -253,9 +256,9 @@ calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo:
 /* 8006B43C 0006837C  7C 08 03 A6 */	mtlr r0
 /* 8006B440 00068380  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006B444 00068384  4E 80 00 20 */	blr 
+.endfn calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo
 
-.global calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo
-calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo:
+.fn calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo, global
 /* 8006B448 00068388  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006B44C 0006838C  7C 08 02 A6 */	mflr r0
 /* 8006B450 00068390  90 01 00 24 */	stw r0, 0x24(r1)
@@ -350,9 +353,9 @@ calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo:
 /* 8006B5A4 000684E4  7C 08 03 A6 */	mtlr r0
 /* 8006B5A8 000684E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006B5AC 000684EC  4E 80 00 20 */	blr 
+.endfn calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo
 
-.global calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
-calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo:
+.fn calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo, global
 /* 8006B5B0 000684F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006B5B4 000684F4  7C 08 02 A6 */	mflr r0
 /* 8006B5B8 000684F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -450,9 +453,9 @@ calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo:
 /* 8006B71C 0006865C  7C 08 03 A6 */	mtlr r0
 /* 8006B720 00068660  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006B724 00068664  4E 80 00 20 */	blr 
+.endfn calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
 
-.global J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
-J3DNewMtxCalcAnm__FUlP15J3DAnmTransform:
+.fn J3DNewMtxCalcAnm__FUlP15J3DAnmTransform, global
 /* 8006B728 00068668  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006B72C 0006866C  7C 08 02 A6 */	mflr r0
 /* 8006B730 00068670  2C 03 00 01 */	cmpwi r3, 1
@@ -524,9 +527,9 @@ J3DNewMtxCalcAnm__FUlP15J3DAnmTransform:
 /* 8006B820 00068760  7C 08 03 A6 */	mtlr r0
 /* 8006B824 00068764  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006B828 00068768  4E 80 00 20 */	blr 
+.endfn J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
 
-.global __dt__17J3DMtxCalcAnmBaseFv
-__dt__17J3DMtxCalcAnmBaseFv:
+.fn __dt__17J3DMtxCalcAnmBaseFv, weak
 /* 8006B82C 0006876C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006B830 00068770  7C 08 02 A6 */	mflr r0
 /* 8006B834 00068774  90 01 00 14 */	stw r0, 0x14(r1)
@@ -552,9 +555,9 @@ __dt__17J3DMtxCalcAnmBaseFv:
 /* 8006B87C 000687BC  7C 08 03 A6 */	mtlr r0
 /* 8006B880 000687C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006B884 000687C4  4E 80 00 20 */	blr 
+.endfn __dt__17J3DMtxCalcAnmBaseFv
 
-.global appendChild__8J3DJointFP8J3DJoint
-appendChild__8J3DJointFP8J3DJoint:
+.fn appendChild__8J3DJointFP8J3DJoint, global
 /* 8006B888 000687C8  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 8006B88C 000687CC  28 00 00 00 */	cmplwi r0, 0
 /* 8006B890 000687D0  40 82 00 0C */	bne .L_8006B89C
@@ -571,9 +574,9 @@ appendChild__8J3DJointFP8J3DJoint:
 /* 8006B8B0 000687F0  40 82 FF F4 */	bne .L_8006B8A4
 /* 8006B8B4 000687F4  90 83 00 10 */	stw r4, 0x10(r3)
 /* 8006B8B8 000687F8  4E 80 00 20 */	blr 
+.endfn appendChild__8J3DJointFP8J3DJoint
 
-.global __ct__8J3DJointFv
-__ct__8J3DJointFv:
+.fn __ct__8J3DJointFv, global
 /* 8006B8BC 000687FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006B8C0 00068800  39 00 00 00 */	li r8, 0
 /* 8006B8C4 00068804  3C C0 80 48 */	lis r6, j3dDefaultTransformInfo@ha
@@ -637,9 +640,9 @@ __ct__8J3DJointFv:
 /* 8006B9AC 000688EC  D0 03 00 50 */	stfs f0, 0x50(r3)
 /* 8006B9B0 000688F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006B9B4 000688F4  4E 80 00 20 */	blr 
+.endfn __ct__8J3DJointFv
 
-.global entryIn__8J3DJointFv
-entryIn__8J3DJointFv:
+.fn entryIn__8J3DJointFv, global
 /* 8006B9B8 000688F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006B9BC 000688FC  7C 08 02 A6 */	mflr r0
 /* 8006B9C0 00068900  3C 80 80 51 */	lis r4, j3dSys@ha
@@ -755,9 +758,9 @@ entryIn__8J3DJointFv:
 /* 8006BB48 00068A88  7C 08 03 A6 */	mtlr r0
 /* 8006BB4C 00068A8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006BB50 00068A90  4E 80 00 20 */	blr 
+.endfn entryIn__8J3DJointFv
 
-.global recursiveCalc__8J3DJointFv
-recursiveCalc__8J3DJointFv:
+.fn recursiveCalc__8J3DJointFv, global
 /* 8006BB54 00068A94  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 8006BB58 00068A98  7C 08 02 A6 */	mflr r0
 /* 8006BB5C 00068A9C  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -871,19 +874,19 @@ recursiveCalc__8J3DJointFv:
 /* 8006BCF0 00068C30  7C 08 03 A6 */	mtlr r0
 /* 8006BCF4 00068C34  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 8006BCF8 00068C38  4E 80 00 20 */	blr 
+.endfn recursiveCalc__8J3DJointFv
 
-.global getAnmTransform__17J3DMtxCalcAnmBaseFv
-getAnmTransform__17J3DMtxCalcAnmBaseFv:
+.fn getAnmTransform__17J3DMtxCalcAnmBaseFv, weak
 /* 8006BCFC 00068C3C  80 63 00 04 */	lwz r3, 4(r3)
 /* 8006BD00 00068C40  4E 80 00 20 */	blr 
+.endfn getAnmTransform__17J3DMtxCalcAnmBaseFv
 
-.global setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform
-setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
+.fn setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform, weak
 /* 8006BD04 00068C44  90 83 00 04 */	stw r4, 4(r3)
 /* 8006BD08 00068C48  4E 80 00 20 */	blr 
+.endfn setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform
 
-.global "__dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-"__dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv":
+.fn "__dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv", weak
 /* 8006BD0C 00068C4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006BD10 00068C50  7C 08 02 A6 */	mflr r0
 /* 8006BD14 00068C54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -913,9 +916,9 @@ setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
 /* 8006BD6C 00068CAC  7C 08 03 A6 */	mtlr r0
 /* 8006BD70 00068CB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006BD74 00068CB4  4E 80 00 20 */	blr 
+.endfn "__dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
 
-.global "init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
-"init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf":
+.fn "init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf", weak
 /* 8006BD78 00068CB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006BD7C 00068CBC  7C 08 02 A6 */	mflr r0
 /* 8006BD80 00068CC0  7C 8A 23 78 */	mr r10, r4
@@ -953,14 +956,14 @@ setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
 /* 8006BE00 00068D40  7C 08 03 A6 */	mtlr r0
 /* 8006BE04 00068D44  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006BE08 00068D48  4E 80 00 20 */	blr 
+.endfn "init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
 
-.global "setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform"
-"setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform":
+.fn "setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform", weak
 /* 8006BE0C 00068D4C  90 83 00 04 */	stw r4, 4(r3)
 /* 8006BE10 00068D50  4E 80 00 20 */	blr 
+.endfn "setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform"
 
-.global "__dt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-"__dt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv":
+.fn "__dt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv", weak
 /* 8006BE14 00068D54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006BE18 00068D58  7C 08 02 A6 */	mflr r0
 /* 8006BE1C 00068D5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -990,9 +993,9 @@ setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
 /* 8006BE74 00068DB4  7C 08 03 A6 */	mtlr r0
 /* 8006BE78 00068DB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006BE7C 00068DBC  4E 80 00 20 */	blr 
+.endfn "__dt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
 
-.global "init__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
-"init__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf":
+.fn "init__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf", weak
 /* 8006BE80 00068DC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006BE84 00068DC4  7C 08 02 A6 */	mflr r0
 /* 8006BE88 00068DC8  3C 60 80 51 */	lis r3, mCurrentS__6J3DSys@ha
@@ -1012,14 +1015,14 @@ setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
 /* 8006BEC0 00068E00  7C 08 03 A6 */	mtlr r0
 /* 8006BEC4 00068E04  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006BEC8 00068E08  4E 80 00 20 */	blr 
+.endfn "init__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
 
-.global "setAnmTransform__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FP15J3DAnmTransform"
-"setAnmTransform__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FP15J3DAnmTransform":
+.fn "setAnmTransform__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FP15J3DAnmTransform", weak
 /* 8006BECC 00068E0C  90 83 00 04 */	stw r4, 4(r3)
 /* 8006BED0 00068E10  4E 80 00 20 */	blr 
+.endfn "setAnmTransform__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FP15J3DAnmTransform"
 
-.global "__dt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-"__dt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv":
+.fn "__dt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv", weak
 /* 8006BED4 00068E14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006BED8 00068E18  7C 08 02 A6 */	mflr r0
 /* 8006BEDC 00068E1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1049,9 +1052,9 @@ setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
 /* 8006BF34 00068E74  7C 08 03 A6 */	mtlr r0
 /* 8006BF38 00068E78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006BF3C 00068E7C  4E 80 00 20 */	blr 
+.endfn "__dt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
 
-.global "init__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
-"init__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf":
+.fn "init__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf", weak
 /* 8006BF40 00068E80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006BF44 00068E84  7C 08 02 A6 */	mflr r0
 /* 8006BF48 00068E88  7C 8A 23 78 */	mr r10, r4
@@ -1090,14 +1093,14 @@ setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
 /* 8006BFCC 00068F0C  7C 08 03 A6 */	mtlr r0
 /* 8006BFD0 00068F10  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006BFD4 00068F14  4E 80 00 20 */	blr 
+.endfn "init__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
 
-.global "setAnmTransform__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FP15J3DAnmTransform"
-"setAnmTransform__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FP15J3DAnmTransform":
+.fn "setAnmTransform__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FP15J3DAnmTransform", weak
 /* 8006BFD8 00068F18  90 83 00 04 */	stw r4, 4(r3)
 /* 8006BFDC 00068F1C  4E 80 00 20 */	blr 
+.endfn "setAnmTransform__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FP15J3DAnmTransform"
 
-.global "calc__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
-"calc__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv":
+.fn "calc__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv", weak
 /* 8006BFE0 00068F20  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8006BFE4 00068F24  7C 08 02 A6 */	mflr r0
 /* 8006BFE8 00068F28  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1198,9 +1201,9 @@ setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
 /* 8006C14C 0006908C  7C 08 03 A6 */	mtlr r0
 /* 8006C150 00069090  38 21 00 40 */	addi r1, r1, 0x40
 /* 8006C154 00069094  4E 80 00 20 */	blr 
+.endfn "calc__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv"
 
-.global "calc__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
-"calc__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv":
+.fn "calc__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv", weak
 /* 8006C158 00069098  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8006C15C 0006909C  7C 08 02 A6 */	mflr r0
 /* 8006C160 000690A0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1320,9 +1323,9 @@ setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
 /* 8006C310 00069250  7C 08 03 A6 */	mtlr r0
 /* 8006C314 00069254  38 21 00 40 */	addi r1, r1, 0x40
 /* 8006C318 00069258  4E 80 00 20 */	blr 
+.endfn "calc__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
 
-.global "calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"
-"calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv":
+.fn "calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv", weak
 /* 8006C31C 0006925C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8006C320 00069260  7C 08 02 A6 */	mflr r0
 /* 8006C324 00069264  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1359,3 +1362,4 @@ setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform:
 /* 8006C398 000692D8  7C 08 03 A6 */	mtlr r0
 /* 8006C39C 000692DC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8006C3A0 000692E0  4E 80 00 20 */	blr 
+.endfn "calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv"

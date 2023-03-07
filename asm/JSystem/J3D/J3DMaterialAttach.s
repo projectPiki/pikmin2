@@ -1,16 +1,14 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__16J3DMaterialTable
-__vt__16J3DMaterialTable:
+.obj __vt__16J3DMaterialTable, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__16J3DMaterialTableFv
-	.4byte 0
+.endobj __vt__16J3DMaterialTable
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global clear__16J3DMaterialTableFv
-clear__16J3DMaterialTableFv:
+.fn clear__16J3DMaterialTableFv, global
 /* 80083C4C 00080B8C  38 00 00 00 */	li r0, 0
 /* 80083C50 00080B90  B0 03 00 04 */	sth r0, 4(r3)
 /* 80083C54 00080B94  B0 03 00 06 */	sth r0, 6(r3)
@@ -21,9 +19,9 @@ clear__16J3DMaterialTableFv:
 /* 80083C68 00080BA8  90 03 00 18 */	stw r0, 0x18(r3)
 /* 80083C6C 00080BAC  B0 03 00 1C */	sth r0, 0x1c(r3)
 /* 80083C70 00080BB0  4E 80 00 20 */	blr 
+.endfn clear__16J3DMaterialTableFv
 
-.global __ct__16J3DMaterialTableFv
-__ct__16J3DMaterialTableFv:
+.fn __ct__16J3DMaterialTableFv, global
 /* 80083C74 00080BB4  3C 80 80 4A */	lis r4, __vt__16J3DMaterialTable@ha
 /* 80083C78 00080BB8  38 00 00 00 */	li r0, 0
 /* 80083C7C 00080BBC  38 84 2C 88 */	addi r4, r4, __vt__16J3DMaterialTable@l
@@ -37,9 +35,9 @@ __ct__16J3DMaterialTableFv:
 /* 80083C9C 00080BDC  90 03 00 18 */	stw r0, 0x18(r3)
 /* 80083CA0 00080BE0  B0 03 00 1C */	sth r0, 0x1c(r3)
 /* 80083CA4 00080BE4  4E 80 00 20 */	blr 
+.endfn __ct__16J3DMaterialTableFv
 
-.global __dt__16J3DMaterialTableFv
-__dt__16J3DMaterialTableFv:
+.fn __dt__16J3DMaterialTableFv, global
 /* 80083CA8 00080BE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80083CAC 00080BEC  7C 08 02 A6 */	mflr r0
 /* 80083CB0 00080BF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -59,18 +57,18 @@ __dt__16J3DMaterialTableFv:
 /* 80083CE4 00080C24  7C 08 03 A6 */	mtlr r0
 /* 80083CE8 00080C28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80083CEC 00080C2C  4E 80 00 20 */	blr 
+.endfn __dt__16J3DMaterialTableFv
 
-.global __ct__14J3DMatColorAnmFv
-__ct__14J3DMatColorAnmFv:
+.fn __ct__14J3DMatColorAnmFv, weak
 /* 80083CF0 00080C30  38 80 00 00 */	li r4, 0
 /* 80083CF4 00080C34  38 00 00 01 */	li r0, 1
 /* 80083CF8 00080C38  B0 83 00 00 */	sth r4, 0(r3)
 /* 80083CFC 00080C3C  B0 03 00 02 */	sth r0, 2(r3)
 /* 80083D00 00080C40  90 83 00 04 */	stw r4, 4(r3)
 /* 80083D04 00080C44  4E 80 00 20 */	blr 
+.endfn __ct__14J3DMatColorAnmFv
 
-.global __ct__11J3DTexNoAnmFv
-__ct__11J3DTexNoAnmFv:
+.fn __ct__11J3DTexNoAnmFv, weak
 /* 80083D08 00080C48  3C A0 80 4A */	lis r5, __vt__11J3DTexNoAnm@ha
 /* 80083D0C 00080C4C  38 80 00 00 */	li r4, 0
 /* 80083D10 00080C50  38 A5 1B 20 */	addi r5, r5, __vt__11J3DTexNoAnm@l
@@ -80,9 +78,9 @@ __ct__11J3DTexNoAnmFv:
 /* 80083D20 00080C60  B0 03 00 06 */	sth r0, 6(r3)
 /* 80083D24 00080C64  90 83 00 08 */	stw r4, 8(r3)
 /* 80083D28 00080C68  4E 80 00 20 */	blr 
+.endfn __ct__11J3DTexNoAnmFv
 
-.global allocTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKeyPP12J3DTexMtxAnm
-allocTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKeyPP12J3DTexMtxAnm:
+.fn allocTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKeyPP12J3DTexMtxAnm, global
 /* 80083D2C 00080C6C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80083D30 00080C70  7C 08 02 A6 */	mflr r0
 /* 80083D34 00080C74  3C 60 55 55 */	lis r3, 0x55555556@ha
@@ -203,18 +201,18 @@ allocTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKeyPP12J3DTexMtxAnm:
 /* 80083EE4 00080E24  7C 08 03 A6 */	mtlr r0
 /* 80083EE8 00080E28  38 21 00 40 */	addi r1, r1, 0x40
 /* 80083EEC 00080E2C  4E 80 00 20 */	blr 
+.endfn allocTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKeyPP12J3DTexMtxAnm
 
-.global __ct__12J3DTexMtxAnmFv
-__ct__12J3DTexMtxAnmFv:
+.fn __ct__12J3DTexMtxAnmFv, weak
 /* 80083EF0 00080E30  38 80 00 00 */	li r4, 0
 /* 80083EF4 00080E34  38 00 00 01 */	li r0, 1
 /* 80083EF8 00080E38  B0 83 00 00 */	sth r4, 0(r3)
 /* 80083EFC 00080E3C  B0 03 00 02 */	sth r0, 2(r3)
 /* 80083F00 00080E40  90 83 00 04 */	stw r4, 4(r3)
 /* 80083F04 00080E44  4E 80 00 20 */	blr 
+.endfn __ct__12J3DTexMtxAnmFv
 
-.global allocTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKeyPP14J3DTevColorAnmPP15J3DTevKColorAnm
-allocTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKeyPP14J3DTevColorAnmPP15J3DTevKColorAnm:
+.fn allocTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKeyPP14J3DTevColorAnmPP15J3DTevKColorAnm, global
 /* 80083F08 00080E48  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80083F0C 00080E4C  7C 08 02 A6 */	mflr r0
 /* 80083F10 00080E50  90 01 00 54 */	stw r0, 0x54(r1)
@@ -431,27 +429,27 @@ allocTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKeyPP14J3DTevColorAnmPP15
 /* 80084228 00081168  7C 08 03 A6 */	mtlr r0
 /* 8008422C 0008116C  38 21 00 50 */	addi r1, r1, 0x50
 /* 80084230 00081170  4E 80 00 20 */	blr 
+.endfn allocTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKeyPP14J3DTevColorAnmPP15J3DTevKColorAnm
 
-.global __ct__15J3DTevKColorAnmFv
-__ct__15J3DTevKColorAnmFv:
+.fn __ct__15J3DTevKColorAnmFv, weak
 /* 80084234 00081174  38 80 00 00 */	li r4, 0
 /* 80084238 00081178  38 00 00 01 */	li r0, 1
 /* 8008423C 0008117C  B0 83 00 00 */	sth r4, 0(r3)
 /* 80084240 00081180  B0 03 00 02 */	sth r0, 2(r3)
 /* 80084244 00081184  90 83 00 04 */	stw r4, 4(r3)
 /* 80084248 00081188  4E 80 00 20 */	blr 
+.endfn __ct__15J3DTevKColorAnmFv
 
-.global __ct__14J3DTevColorAnmFv
-__ct__14J3DTevColorAnmFv:
+.fn __ct__14J3DTevColorAnmFv, weak
 /* 8008424C 0008118C  38 80 00 00 */	li r4, 0
 /* 80084250 00081190  38 00 00 01 */	li r0, 1
 /* 80084254 00081194  B0 83 00 00 */	sth r4, 0(r3)
 /* 80084258 00081198  B0 03 00 02 */	sth r0, 2(r3)
 /* 8008425C 0008119C  90 83 00 04 */	stw r4, 4(r3)
 /* 80084260 000811A0  4E 80 00 20 */	blr 
+.endfn __ct__14J3DTevColorAnmFv
 
-.global removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
-removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey:
+.fn removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey, global
 /* 80084264 000811A4  3C A0 55 55 */	lis r5, 0x55555556@ha
 /* 80084268 000811A8  A0 04 00 14 */	lhz r0, 0x14(r4)
 /* 8008426C 000811AC  38 A5 55 56 */	addi r5, r5, 0x55555556@l
@@ -501,9 +499,9 @@ removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey:
 /* 80084304 00081244  41 80 FF 88 */	blt .L_8008428C
 /* 80084308 00081248  7D 43 53 78 */	mr r3, r10
 /* 8008430C 0008124C  4E 80 00 20 */	blr 
+.endfn removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 
-.global removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
-removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey:
+.fn removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey, global
 /* 80084310 00081250  A1 24 00 0C */	lhz r9, 0xc(r4)
 /* 80084314 00081254  38 A0 00 00 */	li r5, 0
 /* 80084318 00081258  A0 04 00 0E */	lhz r0, 0xe(r4)
@@ -587,9 +585,9 @@ removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey:
 /* 80084420 00081360  41 80 FF 88 */	blt .L_800843A8
 /* 80084424 00081364  7C A3 2B 78 */	mr r3, r5
 /* 80084428 00081368  4E 80 00 20 */	blr 
+.endfn removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 
-.global entryMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor
-entryMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor:
+.fn entryMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor, global
 /* 8008442C 0008136C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80084430 00081370  39 00 00 00 */	li r8, 0
 /* 80084434 00081374  A0 03 00 1C */	lhz r0, 0x1c(r3)
@@ -646,9 +644,9 @@ entryMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor:
 .L_800844E0:
 /* 800844E0 00081420  38 21 00 10 */	addi r1, r1, 0x10
 /* 800844E4 00081424  4E 80 00 20 */	blr 
+.endfn entryMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor
 
-.global entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
-entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey:
+.fn entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey, global
 /* 800844E8 00081428  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800844EC 0008142C  7C 08 02 A6 */	mflr r0
 /* 800844F0 00081430  90 01 00 44 */	stw r0, 0x44(r1)
@@ -893,9 +891,9 @@ entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey:
 /* 8008485C 0008179C  7C 08 03 A6 */	mtlr r0
 /* 80084860 000817A0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80084864 000817A4  4E 80 00 20 */	blr 
+.endfn entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 
-.global entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
-entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey:
+.fn entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey, global
 /* 80084868 000817A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008486C 000817AC  38 A0 00 00 */	li r5, 0
 /* 80084870 000817B0  A0 03 00 1C */	lhz r0, 0x1c(r3)
@@ -1014,3 +1012,4 @@ entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey:
 .L_800849F8:
 /* 800849F8 00081938  38 21 00 20 */	addi r1, r1, 0x20
 /* 800849FC 0008193C  4E 80 00 20 */	blr 
+.endfn entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey

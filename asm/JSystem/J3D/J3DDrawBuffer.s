@@ -5,28 +5,36 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A1930
-lbl_804A1930:
+.obj lbl_804A1930, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte entryMatSort__13J3DDrawBufferFP12J3DMatPacket
+.endobj lbl_804A1930
+.obj lbl_804A193C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket
+.endobj lbl_804A193C
+.obj lbl_804A1948, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte entryZSort__13J3DDrawBufferFP12J3DMatPacket
+.endobj lbl_804A1948
+lbl_804A1954:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte entryModelSort__13J3DDrawBufferFP12J3DMatPacket
+.obj lbl_804A1960, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket
+.endobj lbl_804A1960
+.obj lbl_804A196C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte entryNonSort__13J3DDrawBufferFP12J3DMatPacket
-.global sortFuncTable__13J3DDrawBuffer
-sortFuncTable__13J3DDrawBuffer:
+.endobj lbl_804A196C
+.obj sortFuncTable__13J3DDrawBuffer, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -45,40 +53,47 @@ sortFuncTable__13J3DDrawBuffer:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj sortFuncTable__13J3DDrawBuffer
+.obj lbl_804A19C0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte drawHead__13J3DDrawBufferCFv
+.endobj lbl_804A19C0
+.obj lbl_804A19CC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte drawTail__13J3DDrawBufferCFv
-.global drawFuncTable__13J3DDrawBuffer
-drawFuncTable__13J3DDrawBuffer:
+.endobj lbl_804A19CC
+.obj drawFuncTable__13J3DDrawBuffer, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj drawFuncTable__13J3DDrawBuffer
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global entryNum__13J3DDrawBuffer
-entryNum__13J3DDrawBuffer:
-	.skip 0x8
+.obj entryNum__13J3DDrawBuffer, global
+	.skip 0x4
+.endobj entryNum__13J3DDrawBuffer
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516A00:
+.obj lbl_80516A00, local
 	.float 1.0
-lbl_80516A04:
-	.4byte 0x461C4000
+.endobj lbl_80516A00
+.obj lbl_80516A04, local
+	.float 10000.0
+.endobj lbl_80516A04
 .balign 8
-lbl_80516A08:
+.obj lbl_80516A08, local
 	.8byte 0x4330000000000000
+.endobj lbl_80516A08
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global initialize__13J3DDrawBufferFv
-initialize__13J3DDrawBufferFv:
+.fn initialize__13J3DDrawBufferFv, global
 /* 800659A4 000628E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800659A8 000628E8  38 A0 00 00 */	li r5, 0
 /* 800659AC 000628EC  3C 00 43 30 */	lis r0, 0x4330
@@ -105,9 +120,9 @@ initialize__13J3DDrawBufferFv:
 /* 80065A00 00062940  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 80065A04 00062944  38 21 00 10 */	addi r1, r1, 0x10
 /* 80065A08 00062948  4E 80 00 20 */	blr 
+.endfn initialize__13J3DDrawBufferFv
 
-.global allocBuffer__13J3DDrawBufferFUl
-allocBuffer__13J3DDrawBufferFUl:
+.fn allocBuffer__13J3DDrawBufferFUl, global
 /* 80065A0C 0006294C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80065A10 00062950  7C 08 02 A6 */	mflr r0
 /* 80065A14 00062954  90 01 00 24 */	stw r0, 0x24(r1)
@@ -141,9 +156,9 @@ allocBuffer__13J3DDrawBufferFUl:
 /* 80065A84 000629C4  7C 08 03 A6 */	mtlr r0
 /* 80065A88 000629C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80065A8C 000629CC  4E 80 00 20 */	blr 
+.endfn allocBuffer__13J3DDrawBufferFUl
 
-.global frameInit__13J3DDrawBufferFv
-frameInit__13J3DDrawBufferFv:
+.fn frameInit__13J3DDrawBufferFv, global
 /* 80065A90 000629D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80065A94 000629D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80065A98 000629D8  93 C1 00 08 */	stw r30, 8(r1)
@@ -207,9 +222,9 @@ frameInit__13J3DDrawBufferFv:
 /* 80065B70 00062AB0  83 C1 00 08 */	lwz r30, 8(r1)
 /* 80065B74 00062AB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80065B78 00062AB8  4E 80 00 20 */	blr 
+.endfn frameInit__13J3DDrawBufferFv
 
-.global entryMatSort__13J3DDrawBufferFP12J3DMatPacket
-entryMatSort__13J3DDrawBufferFP12J3DMatPacket:
+.fn entryMatSort__13J3DDrawBufferFP12J3DMatPacket, global
 /* 80065B7C 00062ABC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80065B80 00062AC0  7C 08 02 A6 */	mflr r0
 /* 80065B84 00062AC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -304,15 +319,15 @@ entryMatSort__13J3DDrawBufferFP12J3DMatPacket:
 /* 80065CC8 00062C08  7C 08 03 A6 */	mtlr r0
 /* 80065CCC 00062C0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80065CD0 00062C10  4E 80 00 20 */	blr 
+.endfn entryMatSort__13J3DDrawBufferFP12J3DMatPacket
 
-.global getTexNo__11J3DTevBlockCFUl
-getTexNo__11J3DTevBlockCFUl:
+.fn getTexNo__11J3DTevBlockCFUl, weak
 /* 80065CD4 00062C14  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
 /* 80065CD8 00062C18  38 63 FF FF */	addi r3, r3, 0x0000FFFF@l
 /* 80065CDC 00062C1C  4E 80 00 20 */	blr 
+.endfn getTexNo__11J3DTevBlockCFUl
 
-.global entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket
-entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket:
+.fn entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket, global
 /* 80065CE0 00062C20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80065CE4 00062C24  7C 08 02 A6 */	mflr r0
 /* 80065CE8 00062C28  90 01 00 24 */	stw r0, 0x24(r1)
@@ -447,9 +462,9 @@ entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket:
 /* 80065EBC 00062DFC  7C 08 03 A6 */	mtlr r0
 /* 80065EC0 00062E00  38 21 00 20 */	addi r1, r1, 0x20
 /* 80065EC4 00062E04  4E 80 00 20 */	blr 
+.endfn entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket
 
-.global entryZSort__13J3DDrawBufferFP12J3DMatPacket
-entryZSort__13J3DDrawBufferFP12J3DMatPacket:
+.fn entryZSort__13J3DDrawBufferFP12J3DMatPacket, global
 /* 80065EC8 00062E08  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80065ECC 00062E0C  7C 08 02 A6 */	mflr r0
 /* 80065ED0 00062E10  C0 62 86 A0 */	lfs f3, lbl_80516A00@sda21(r2)
@@ -524,9 +539,9 @@ entryZSort__13J3DDrawBufferFP12J3DMatPacket:
 /* 80065FD8 00062F18  7C 08 03 A6 */	mtlr r0
 /* 80065FDC 00062F1C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80065FE0 00062F20  4E 80 00 20 */	blr 
+.endfn entryZSort__13J3DDrawBufferFP12J3DMatPacket
 
-.global entryModelSort__13J3DDrawBufferFP12J3DMatPacket
-entryModelSort__13J3DDrawBufferFP12J3DMatPacket:
+.fn entryModelSort__13J3DDrawBufferFP12J3DMatPacket, global
 /* 80065FE4 00062F24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80065FE8 00062F28  7C 08 02 A6 */	mflr r0
 /* 80065FEC 00062F2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -549,9 +564,9 @@ entryModelSort__13J3DDrawBufferFP12J3DMatPacket:
 /* 80066028 00062F68  7C 08 03 A6 */	mtlr r0
 /* 8006602C 00062F6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80066030 00062F70  4E 80 00 20 */	blr 
+.endfn entryModelSort__13J3DDrawBufferFP12J3DMatPacket
 
-.global entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket
-entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket:
+.fn entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket, global
 /* 80066034 00062F74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80066038 00062F78  7C 08 02 A6 */	mflr r0
 /* 8006603C 00062F7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -575,9 +590,9 @@ entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket:
 /* 8006607C 00062FBC  7C 08 03 A6 */	mtlr r0
 /* 80066080 00062FC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80066084 00062FC4  4E 80 00 20 */	blr 
+.endfn entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket
 
-.global entryNonSort__13J3DDrawBufferFP12J3DMatPacket
-entryNonSort__13J3DDrawBufferFP12J3DMatPacket:
+.fn entryNonSort__13J3DDrawBufferFP12J3DMatPacket, global
 /* 80066088 00062FC8  38 00 00 00 */	li r0, 0
 /* 8006608C 00062FCC  90 04 00 04 */	stw r0, 4(r4)
 /* 80066090 00062FD0  90 04 00 08 */	stw r0, 8(r4)
@@ -591,9 +606,9 @@ entryNonSort__13J3DDrawBufferFP12J3DMatPacket:
 /* 800660B0 00062FF0  38 60 00 01 */	li r3, 1
 /* 800660B4 00062FF4  90 85 00 00 */	stw r4, 0(r5)
 /* 800660B8 00062FF8  4E 80 00 20 */	blr 
+.endfn entryNonSort__13J3DDrawBufferFP12J3DMatPacket
 
-.global draw__13J3DDrawBufferCFv
-draw__13J3DDrawBufferCFv:
+.fn draw__13J3DDrawBufferCFv, global
 /* 800660BC 00062FFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800660C0 00063000  7C 08 02 A6 */	mflr r0
 /* 800660C4 00063004  80 A3 00 08 */	lwz r5, 8(r3)
@@ -615,9 +630,9 @@ draw__13J3DDrawBufferCFv:
 /* 80066104 00063044  7C 08 03 A6 */	mtlr r0
 /* 80066108 00063048  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006610C 0006304C  4E 80 00 20 */	blr 
+.endfn draw__13J3DDrawBufferCFv
 
-.global drawHead__13J3DDrawBufferCFv
-drawHead__13J3DDrawBufferCFv:
+.fn drawHead__13J3DDrawBufferCFv, global
 /* 80066110 00063050  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80066114 00063054  7C 08 02 A6 */	mflr r0
 /* 80066118 00063058  90 01 00 24 */	stw r0, 0x24(r1)
@@ -655,9 +670,9 @@ drawHead__13J3DDrawBufferCFv:
 /* 80066188 000630C8  7C 08 03 A6 */	mtlr r0
 /* 8006618C 000630CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80066190 000630D0  4E 80 00 20 */	blr 
+.endfn drawHead__13J3DDrawBufferCFv
 
-.global drawTail__13J3DDrawBufferCFv
-drawTail__13J3DDrawBufferCFv:
+.fn drawTail__13J3DDrawBufferCFv, global
 /* 80066194 000630D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80066198 000630D8  7C 08 02 A6 */	mflr r0
 /* 8006619C 000630DC  80 83 00 04 */	lwz r4, 4(r3)
@@ -695,6 +710,7 @@ drawTail__13J3DDrawBufferCFv:
 /* 8006620C 0006314C  7C 08 03 A6 */	mtlr r0
 /* 80066210 00063150  38 21 00 20 */	addi r1, r1, 0x20
 /* 80066214 00063154  4E 80 00 20 */	blr 
+.endfn drawTail__13J3DDrawBufferCFv
 
 .fn __sinit_J3DDrawBuffer_cpp, local
 /* 80066218 00063158  94 21 FF B0 */	stwu r1, -0x50(r1)

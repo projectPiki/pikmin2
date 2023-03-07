@@ -7,27 +7,28 @@
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sNoUseDrawMtxPtr__12J3DMtxBuffer
-sNoUseDrawMtxPtr__12J3DMtxBuffer:
+.obj sNoUseDrawMtxPtr__12J3DMtxBuffer, global
 	.4byte sNoUseDrawMtx__12J3DMtxBuffer
-.global sNoUseNrmMtxPtr__12J3DMtxBuffer
-sNoUseNrmMtxPtr__12J3DMtxBuffer:
+.endobj sNoUseDrawMtxPtr__12J3DMtxBuffer
+.obj sNoUseNrmMtxPtr__12J3DMtxBuffer, global
 	.4byte sNoUseNrmMtx__12J3DMtxBuffer
-.global J3DUnit01
-J3DUnit01:
+.endobj sNoUseNrmMtxPtr__12J3DMtxBuffer
+.obj J3DUnit01, local
 	.4byte 0x00000000
 	.float 1.0
+.endobj J3DUnit01
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516AF8:
+.obj lbl_80516AF8, local
 	.float 1.0
-lbl_80516AFC:
+.endobj lbl_80516AF8
+.obj lbl_80516AFC, local
 	.float 0.0
+.endobj lbl_80516AFC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global initialize__12J3DMtxBufferFv
-initialize__12J3DMtxBufferFv:
+.fn initialize__12J3DMtxBufferFv, global
 /* 800888D8 00085818  38 80 00 00 */	li r4, 0
 /* 800888DC 0008581C  38 00 00 01 */	li r0, 1
 /* 800888E0 00085820  90 83 00 00 */	stw r4, 0(r3)
@@ -44,9 +45,9 @@ initialize__12J3DMtxBufferFv:
 /* 8008890C 0008584C  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 80088910 00085850  90 83 00 30 */	stw r4, 0x30(r3)
 /* 80088914 00085854  4E 80 00 20 */	blr 
+.endfn initialize__12J3DMtxBufferFv
 
-.global create__12J3DMtxBufferFP12J3DModelDataUl
-create__12J3DMtxBufferFP12J3DModelDataUl:
+.fn create__12J3DMtxBufferFP12J3DModelDataUl, global
 /* 80088918 00085858  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008891C 0008585C  7C 08 02 A6 */	mflr r0
 /* 80088920 00085860  90 01 00 24 */	stw r0, 0x24(r1)
@@ -128,9 +129,9 @@ create__12J3DMtxBufferFP12J3DModelDataUl:
 /* 80088A28 00085968  7C 08 03 A6 */	mtlr r0
 /* 80088A2C 0008596C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80088A30 00085970  4E 80 00 20 */	blr 
+.endfn create__12J3DMtxBufferFP12J3DModelDataUl
 
-.global createAnmMtx__12J3DMtxBufferFP12J3DModelData
-createAnmMtx__12J3DMtxBufferFP12J3DModelData:
+.fn createAnmMtx__12J3DMtxBufferFP12J3DModelData, global
 /* 80088A34 00085974  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80088A38 00085978  7C 08 02 A6 */	mflr r0
 /* 80088A3C 0008597C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -155,9 +156,9 @@ createAnmMtx__12J3DMtxBufferFP12J3DModelData:
 /* 80088A84 000859C4  7C 08 03 A6 */	mtlr r0
 /* 80088A88 000859C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80088A8C 000859CC  4E 80 00 20 */	blr 
+.endfn createAnmMtx__12J3DMtxBufferFP12J3DModelData
 
-.global createWeightEnvelopeMtx__12J3DMtxBufferFP12J3DModelData
-createWeightEnvelopeMtx__12J3DMtxBufferFP12J3DModelData:
+.fn createWeightEnvelopeMtx__12J3DMtxBufferFP12J3DModelData, global
 /* 80088A90 000859D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80088A94 000859D4  7C 08 02 A6 */	mflr r0
 /* 80088A98 000859D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -182,9 +183,9 @@ createWeightEnvelopeMtx__12J3DMtxBufferFP12J3DModelData:
 /* 80088AE0 00085A20  7C 08 03 A6 */	mtlr r0
 /* 80088AE4 00085A24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80088AE8 00085A28  4E 80 00 20 */	blr 
+.endfn createWeightEnvelopeMtx__12J3DMtxBufferFP12J3DModelData
 
-.global setNoUseDrawMtx__12J3DMtxBufferFv
-setNoUseDrawMtx__12J3DMtxBufferFv:
+.fn setNoUseDrawMtx__12J3DMtxBufferFv, global
 /* 80088AEC 00085A2C  38 AD 80 C0 */	addi r5, r13, sNoUseDrawMtxPtr__12J3DMtxBuffer@sda21
 /* 80088AF0 00085A30  38 8D 80 C4 */	addi r4, r13, sNoUseNrmMtxPtr__12J3DMtxBuffer@sda21
 /* 80088AF4 00085A34  90 A3 00 18 */	stw r5, 0x18(r3)
@@ -196,9 +197,9 @@ setNoUseDrawMtx__12J3DMtxBufferFv:
 /* 80088B0C 00085A4C  90 03 00 24 */	stw r0, 0x24(r3)
 /* 80088B10 00085A50  38 60 00 00 */	li r3, 0
 /* 80088B14 00085A54  4E 80 00 20 */	blr 
+.endfn setNoUseDrawMtx__12J3DMtxBufferFv
 
-.global createDoubleDrawMtx__12J3DMtxBufferFP12J3DModelDataUl
-createDoubleDrawMtx__12J3DMtxBufferFP12J3DModelDataUl:
+.fn createDoubleDrawMtx__12J3DMtxBufferFP12J3DModelDataUl, global
 /* 80088B18 00085A58  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80088B1C 00085A5C  7C 08 02 A6 */	mflr r0
 /* 80088B20 00085A60  90 01 00 34 */	stw r0, 0x34(r1)
@@ -261,9 +262,9 @@ createDoubleDrawMtx__12J3DMtxBufferFP12J3DModelDataUl:
 /* 80088BEC 00085B2C  7C 08 03 A6 */	mtlr r0
 /* 80088BF0 00085B30  38 21 00 30 */	addi r1, r1, 0x30
 /* 80088BF4 00085B34  4E 80 00 20 */	blr 
+.endfn createDoubleDrawMtx__12J3DMtxBufferFP12J3DModelDataUl
 
-.global createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl
-createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl:
+.fn createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl, global
 /* 80088BF8 00085B38  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80088BFC 00085B3C  7C 08 02 A6 */	mflr r0
 /* 80088C00 00085B40  90 01 00 44 */	stw r0, 0x44(r1)
@@ -413,9 +414,9 @@ createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl:
 /* 80088E00 00085D40  7C 08 03 A6 */	mtlr r0
 /* 80088E04 00085D44  38 21 00 40 */	addi r1, r1, 0x40
 /* 80088E08 00085D48  4E 80 00 20 */	blr 
+.endfn createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl
 
-.global calcWeightEnvelopeMtx__12J3DMtxBufferFv
-calcWeightEnvelopeMtx__12J3DMtxBufferFv:
+.fn calcWeightEnvelopeMtx__12J3DMtxBufferFv, global
 /* 80088E0C 00085D4C  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80088E10 00085D50  DB E1 00 90 */	stfd f31, 0x90(r1)
 /* 80088E14 00085D54  F3 E1 00 98 */	psq_st f31, 152(r1), 0, qr0
@@ -555,9 +556,9 @@ calcWeightEnvelopeMtx__12J3DMtxBufferFv:
 /* 80089020 00085F60  83 A1 00 14 */	lwz r29, 0x14(r1)
 /* 80089024 00085F64  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80089028 00085F68  4E 80 00 20 */	blr 
+.endfn calcWeightEnvelopeMtx__12J3DMtxBufferFv
 
-.global calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf
-calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf:
+.fn calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf, global
 /* 8008902C 00085F6C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80089030 00085F70  7C 08 02 A6 */	mflr r0
 /* 80089034 00085F74  2C 04 00 01 */	cmpwi r4, 1
@@ -764,9 +765,9 @@ calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf:
 /* 80089324 00086264  7C 08 03 A6 */	mtlr r0
 /* 80089328 00086268  38 21 00 80 */	addi r1, r1, 0x80
 /* 8008932C 0008626C  4E 80 00 20 */	blr 
+.endfn calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf
 
-.global calcNrmMtx__12J3DMtxBufferFv
-calcNrmMtx__12J3DMtxBufferFv:
+.fn calcNrmMtx__12J3DMtxBufferFv, global
 /* 80089330 00086270  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80089334 00086274  7C 08 02 A6 */	mflr r0
 /* 80089338 00086278  90 01 00 24 */	stw r0, 0x24(r1)
@@ -884,9 +885,9 @@ calcNrmMtx__12J3DMtxBufferFv:
 /* 800894E0 00086420  7C 08 03 A6 */	mtlr r0
 /* 800894E4 00086424  38 21 00 20 */	addi r1, r1, 0x20
 /* 800894E8 00086428  4E 80 00 20 */	blr 
+.endfn calcNrmMtx__12J3DMtxBufferFv
 
-.global calcBBoardMtx__12J3DMtxBufferFv
-calcBBoardMtx__12J3DMtxBufferFv:
+.fn calcBBoardMtx__12J3DMtxBufferFv, global
 /* 800894EC 0008642C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800894F0 00086430  7C 08 02 A6 */	mflr r0
 /* 800894F4 00086434  90 01 00 24 */	stw r0, 0x24(r1)
@@ -988,3 +989,4 @@ calcBBoardMtx__12J3DMtxBufferFv:
 /* 80089658 00086598  7C 08 03 A6 */	mtlr r0
 /* 8008965C 0008659C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80089660 000865A0  4E 80 00 20 */	blr 
+.endfn calcBBoardMtx__12J3DMtxBufferFv
