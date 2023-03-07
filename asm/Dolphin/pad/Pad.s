@@ -57,6 +57,7 @@
 .endobj Initialized
 .obj EnabledBits, local
 	.skip 4
+.endobj Initialized
 .obj ResettingBits, local
 	.skip 4
 .endobj ResettingBits

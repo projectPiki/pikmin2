@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A62A0
-lbl_804A62A0:
+.obj lbl_804A62A0, local
 	.4byte .L_800ADCFC
 	.4byte .L_800ADD04
 	.4byte .L_800ADD48
@@ -12,43 +11,41 @@ lbl_804A62A0:
 	.4byte .L_800ADDD4
 	.4byte .L_800ADE48
 	.4byte .L_800ADE74
-	.4byte 0x00000000
+.endobj lbl_804A62A0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global wsInitCallback__Q27JAInter8InitData
-wsInitCallback__Q27JAInter8InitData:
+.obj wsInitCallback__Q27JAInter8InitData, global
 	.4byte initWsList__Q27JAInter8InitDataFPUl
-.global bnkInitCallback__Q27JAInter8InitData
-bnkInitCallback__Q27JAInter8InitData:
+.endobj wsInitCallback__Q27JAInter8InitData
+.obj bnkInitCallback__Q27JAInter8InitData, global
 	.4byte initBnkList__Q27JAInter8InitDataFPUl
+.endobj bnkInitCallback__Q27JAInter8InitData
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global aafPointer__Q27JAInter8InitData
-aafPointer__Q27JAInter8InitData:
-	.skip 0x8
+.obj aafPointer__Q27JAInter8InitData, global
+	.skip 0x4
+.endobj aafPointer__Q27JAInter8InitData
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516F40
-lbl_80516F40:
+.obj lbl_80516F40, local
 	.asciz "%s%s%c"
-	.skip 1
+.endobj lbl_80516F40
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global setWsInitCallback__Q27JAInter8InitDataFPFPUl_v
-setWsInitCallback__Q27JAInter8InitDataFPFPUl_v:
+.fn setWsInitCallback__Q27JAInter8InitDataFPFPUl_v, global
 /* 800ADBA4 000AAAE4  90 6D 82 00 */	stw r3, wsInitCallback__Q27JAInter8InitData@sda21(r13)
 /* 800ADBA8 000AAAE8  4E 80 00 20 */	blr 
+.endfn setWsInitCallback__Q27JAInter8InitDataFPFPUl_v
 
-.global setBnkInitCallback__Q27JAInter8InitDataFPFPUl_v
-setBnkInitCallback__Q27JAInter8InitDataFPFPUl_v:
+.fn setBnkInitCallback__Q27JAInter8InitDataFPFPUl_v, global
 /* 800ADBAC 000AAAEC  90 6D 82 04 */	stw r3, bnkInitCallback__Q27JAInter8InitData@sda21(r13)
 /* 800ADBB0 000AAAF0  4E 80 00 20 */	blr 
+.endfn setBnkInitCallback__Q27JAInter8InitDataFPFPUl_v
 
-.global checkInitDataFile__Q27JAInter8InitDataFv
-checkInitDataFile__Q27JAInter8InitDataFv:
+.fn checkInitDataFile__Q27JAInter8InitDataFv, global
 /* 800ADBB4 000AAAF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ADBB8 000AAAF8  7C 08 02 A6 */	mflr r0
 /* 800ADBBC 000AAAFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -109,9 +106,9 @@ checkInitDataFile__Q27JAInter8InitDataFv:
 /* 800ADC8C 000AABCC  7C 08 03 A6 */	mtlr r0
 /* 800ADC90 000AABD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ADC94 000AABD4  4E 80 00 20 */	blr 
+.endfn checkInitDataFile__Q27JAInter8InitDataFv
 
-.global checkInitDataOnMemory__Q27JAInter8InitDataFv
-checkInitDataOnMemory__Q27JAInter8InitDataFv:
+.fn checkInitDataOnMemory__Q27JAInter8InitDataFv, global
 /* 800ADC98 000AABD8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800ADC9C 000AABDC  7C 08 02 A6 */	mflr r0
 /* 800ADCA0 000AABE0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -279,9 +276,9 @@ checkInitDataOnMemory__Q27JAInter8InitDataFv:
 /* 800ADEF0 000AAE30  7C 08 03 A6 */	mtlr r0
 /* 800ADEF4 000AAE34  38 21 00 20 */	addi r1, r1, 0x20
 /* 800ADEF8 000AAE38  4E 80 00 20 */	blr 
+.endfn checkInitDataOnMemory__Q27JAInter8InitDataFv
 
-.global initBnkList__Q27JAInter8InitDataFPUl
-initBnkList__Q27JAInter8InitDataFPUl:
+.fn initBnkList__Q27JAInter8InitDataFPUl, global
 /* 800ADEFC 000AAE3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ADF00 000AAE40  7C 08 02 A6 */	mflr r0
 /* 800ADF04 000AAE44  38 C0 00 00 */	li r6, 0
@@ -337,9 +334,9 @@ initBnkList__Q27JAInter8InitDataFPUl:
 /* 800ADFBC 000AAEFC  7C 08 03 A6 */	mtlr r0
 /* 800ADFC0 000AAF00  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ADFC4 000AAF04  4E 80 00 20 */	blr 
+.endfn initBnkList__Q27JAInter8InitDataFPUl
 
-.global initWsList__Q27JAInter8InitDataFPUl
-initWsList__Q27JAInter8InitDataFPUl:
+.fn initWsList__Q27JAInter8InitDataFPUl, global
 /* 800ADFC8 000AAF08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ADFCC 000AAF0C  7C 08 02 A6 */	mflr r0
 /* 800ADFD0 000AAF10  38 C0 00 00 */	li r6, 0
@@ -398,3 +395,4 @@ initWsList__Q27JAInter8InitDataFPUl:
 /* 800AE094 000AAFD4  7C 08 03 A6 */	mtlr r0
 /* 800AE098 000AAFD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AE09C 000AAFDC  4E 80 00 20 */	blr 
+.endfn initWsList__Q27JAInter8InitDataFPUl

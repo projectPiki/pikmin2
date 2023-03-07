@@ -1,58 +1,58 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global flags__Q27JAInter8BankWave
-flags__Q27JAInter8BankWave:
-	.4byte 0x00000000
-.global SceneSetFlag__Q27JAInter8BankWave
-SceneSetFlag__Q27JAInter8BankWave:
+.obj flags__Q27JAInter8BankWave, global
+	.2byte 0x0000
+.endobj flags__Q27JAInter8BankWave
+.balign 4
+.obj SceneSetFlag__Q27JAInter8BankWave, global
 	.4byte 0xFFFFFFFF
-.global initCallback__Q27JAInter8BankWave
-initCallback__Q27JAInter8BankWave:
+.endobj SceneSetFlag__Q27JAInter8BankWave
+.obj initCallback__Q27JAInter8BankWave, global
 	.4byte init__Q27JAInter8BankWaveFv
-.global firstLoadCallback__Q27JAInter8BankWave
-firstLoadCallback__Q27JAInter8BankWave:
+.endobj initCallback__Q27JAInter8BankWave
+.obj firstLoadCallback__Q27JAInter8BankWave, global
 	.4byte loadFirstStayWave__Q27JAInter8BankWaveFv
-.global secondLoadCallback__Q27JAInter8BankWave
-secondLoadCallback__Q27JAInter8BankWave:
+.endobj firstLoadCallback__Q27JAInter8BankWave
+.obj secondLoadCallback__Q27JAInter8BankWave, global
 	.4byte loadSecondStayWave__Q27JAInter8BankWaveFv
+.endobj secondLoadCallback__Q27JAInter8BankWave
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global initOnCodeBnk__Q27JAInter8BankWave
-initOnCodeBnk__Q27JAInter8BankWave:
+.obj initOnCodeBnk__Q27JAInter8BankWave, global
 	.skip 0x4
-.global initOnCodeWs__Q27JAInter8BankWave
-initOnCodeWs__Q27JAInter8BankWave:
+.endobj initOnCodeBnk__Q27JAInter8BankWave
+.obj initOnCodeWs__Q27JAInter8BankWave, global
 	.skip 0x4
-.global wsGroupNumber__Q27JAInter8BankWave
-wsGroupNumber__Q27JAInter8BankWave:
+.endobj initOnCodeWs__Q27JAInter8BankWave
+.obj wsGroupNumber__Q27JAInter8BankWave, global
 	.skip 0x4
-.global wsLoadStatus__Q27JAInter8BankWave
-wsLoadStatus__Q27JAInter8BankWave:
+.endobj wsGroupNumber__Q27JAInter8BankWave
+.obj wsLoadStatus__Q27JAInter8BankWave, global
 	.skip 0x4
-.global wsMax__Q27JAInter8BankWave
-wsMax__Q27JAInter8BankWave:
+.endobj wsLoadStatus__Q27JAInter8BankWave
+.obj wsMax__Q27JAInter8BankWave, global
 	.skip 0x4
+.endobj wsMax__Q27JAInter8BankWave
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global setInitCallback__Q27JAInter8BankWaveFPFv_v
-setInitCallback__Q27JAInter8BankWaveFPFv_v:
+.fn setInitCallback__Q27JAInter8BankWaveFPFv_v, global
 /* 800ABE44 000A8D84  90 6D 81 48 */	stw r3, initCallback__Q27JAInter8BankWave@sda21(r13)
 /* 800ABE48 000A8D88  4E 80 00 20 */	blr 
+.endfn setInitCallback__Q27JAInter8BankWaveFPFv_v
 
-.global setFirstLoadCallback__Q27JAInter8BankWaveFPFv_v
-setFirstLoadCallback__Q27JAInter8BankWaveFPFv_v:
+.fn setFirstLoadCallback__Q27JAInter8BankWaveFPFv_v, global
 /* 800ABE4C 000A8D8C  90 6D 81 4C */	stw r3, firstLoadCallback__Q27JAInter8BankWave@sda21(r13)
 /* 800ABE50 000A8D90  4E 80 00 20 */	blr 
+.endfn setFirstLoadCallback__Q27JAInter8BankWaveFPFv_v
 
-.global setSecondLoadCallback__Q27JAInter8BankWaveFPFv_v
-setSecondLoadCallback__Q27JAInter8BankWaveFPFv_v:
+.fn setSecondLoadCallback__Q27JAInter8BankWaveFPFv_v, global
 /* 800ABE54 000A8D94  90 6D 81 50 */	stw r3, secondLoadCallback__Q27JAInter8BankWave@sda21(r13)
 /* 800ABE58 000A8D98  4E 80 00 20 */	blr 
+.endfn setSecondLoadCallback__Q27JAInter8BankWaveFPFv_v
 
-.global init__Q27JAInter8BankWaveFv
-init__Q27JAInter8BankWaveFv:
+.fn init__Q27JAInter8BankWaveFv, global
 /* 800ABE5C 000A8D9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800ABE60 000A8DA0  7C 08 02 A6 */	mflr r0
 /* 800ABE64 000A8DA4  38 A0 00 20 */	li r5, 0x20
@@ -145,9 +145,9 @@ init__Q27JAInter8BankWaveFv:
 /* 800ABF98 000A8ED8  7C 08 03 A6 */	mtlr r0
 /* 800ABF9C 000A8EDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800ABFA0 000A8EE0  4E 80 00 20 */	blr 
+.endfn init__Q27JAInter8BankWaveFv
 
-.global loadFirstStayWave__Q27JAInter8BankWaveFv
-loadFirstStayWave__Q27JAInter8BankWaveFv:
+.fn loadFirstStayWave__Q27JAInter8BankWaveFv, global
 /* 800ABFA4 000A8EE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ABFA8 000A8EE8  7C 08 02 A6 */	mflr r0
 /* 800ABFAC 000A8EEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -189,9 +189,9 @@ loadFirstStayWave__Q27JAInter8BankWaveFv:
 /* 800AC02C 000A8F6C  7C 08 03 A6 */	mtlr r0
 /* 800AC030 000A8F70  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC034 000A8F74  4E 80 00 20 */	blr 
+.endfn loadFirstStayWave__Q27JAInter8BankWaveFv
 
-.global loadSecondStayWave__Q27JAInter8BankWaveFv
-loadSecondStayWave__Q27JAInter8BankWaveFv:
+.fn loadSecondStayWave__Q27JAInter8BankWaveFv, global
 /* 800AC038 000A8F78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC03C 000A8F7C  7C 08 02 A6 */	mflr r0
 /* 800AC040 000A8F80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -233,18 +233,18 @@ loadSecondStayWave__Q27JAInter8BankWaveFv:
 /* 800AC0C0 000A9000  7C 08 03 A6 */	mtlr r0
 /* 800AC0C4 000A9004  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC0C8 000A9008  4E 80 00 20 */	blr 
+.endfn loadSecondStayWave__Q27JAInter8BankWaveFv
 
-.global finishSceneSet__Q27JAInter8BankWaveFUl
-finishSceneSet__Q27JAInter8BankWaveFUl:
+.fn finishSceneSet__Q27JAInter8BankWaveFUl, global
 /* 800AC0CC 000A900C  90 6D 81 44 */	stw r3, SceneSetFlag__Q27JAInter8BankWave@sda21(r13)
 /* 800AC0D0 000A9010  54 60 93 BA */	rlwinm r0, r3, 0x12, 0xe, 0x1d
 /* 800AC0D4 000A9014  80 6D 8B 5C */	lwz r3, wsLoadStatus__Q27JAInter8BankWave@sda21(r13)
 /* 800AC0D8 000A9018  38 80 00 02 */	li r4, 2
 /* 800AC0DC 000A901C  7C 83 01 2E */	stwx r4, r3, r0
 /* 800AC0E0 000A9020  4E 80 00 20 */	blr 
+.endfn finishSceneSet__Q27JAInter8BankWaveFUl
 
-.global loadGroupWave__Q27JAInter8BankWaveFll
-loadGroupWave__Q27JAInter8BankWaveFll:
+.fn loadGroupWave__Q27JAInter8BankWaveFll, global
 /* 800AC0E4 000A9024  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC0E8 000A9028  7C 08 02 A6 */	mflr r0
 /* 800AC0EC 000A902C  38 A0 00 00 */	li r5, 0
@@ -274,3 +274,4 @@ loadGroupWave__Q27JAInter8BankWaveFll:
 /* 800AC14C 000A908C  7C 08 03 A6 */	mtlr r0
 /* 800AC150 000A9090  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC154 000A9094  4E 80 00 20 */	blr 
+.endfn loadGroupWave__Q27JAInter8BankWaveFll

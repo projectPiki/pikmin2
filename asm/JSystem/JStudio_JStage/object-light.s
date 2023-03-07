@@ -597,7 +597,7 @@ lbl_constructor:
 /* 80011B30 0000EA70  4E 80 00 20 */	blr 
 .endfn __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv
 
-.obj "__sinit_object-light_cpp", local
+.fn "__sinit_object-light_cpp", local
 /* 80011B34 0000EA74  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80011B38 0000EA78  7C 08 02 A6 */	mflr r0
 /* 80011B3C 0000EA7C  3C 80 80 4A */	lis r4, __vt__Q37JStudio14TVariableValue7TOutput@ha

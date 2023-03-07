@@ -593,6 +593,7 @@
 /* 80340F44 0033DE84  7C 08 03 A6 */	mtlr r0
 /* 80340F48 0033DE88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80340F4C 0033DE8C  4E 80 00 20 */	blr 
+.endfn callSe__Q38PSSystem9ClusterSe4PartFPQ27JAInter6Object
 
 .fn __ct__Q38PSSystem9ClusterSe7FactoryFUc, global
 /* 80340F50 0033DE90  94 21 FF F0 */	stwu r1, -0x10(r1)

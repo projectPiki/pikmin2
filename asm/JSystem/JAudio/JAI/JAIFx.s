@@ -1,25 +1,25 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global initOnCodeFxScene__Q27JAInter2Fx
-initOnCodeFxScene__Q27JAInter2Fx:
+.obj initOnCodeFxScene__Q27JAInter2Fx, global
 	.skip 0x4
-.global mSceneMax__Q27JAInter2Fx
-mSceneMax__Q27JAInter2Fx:
+.endobj initOnCodeFxScene__Q27JAInter2Fx
+.obj mSceneMax__Q27JAInter2Fx, global
+	.skip 0x1
+.endobj mSceneMax__Q27JAInter2Fx
+.balign 4
+.obj mBufferSizeMax__Q27JAInter2Fx, global
 	.skip 0x4
-.global mBufferSizeMax__Q27JAInter2Fx
-mBufferSizeMax__Q27JAInter2Fx:
+.endobj mBufferSizeMax__Q27JAInter2Fx
+.obj mBufferPointer__Q27JAInter2Fx, global
 	.skip 0x4
-.global mBufferPointer__Q27JAInter2Fx
-mBufferPointer__Q27JAInter2Fx:
+.endobj mBufferPointer__Q27JAInter2Fx
+.obj mFxconfigTable__Q27JAInter2Fx, global
 	.skip 0x4
-.global mFxconfigTable__Q27JAInter2Fx
-mFxconfigTable__Q27JAInter2Fx:
-	.skip 0x8
+.endobj mFxconfigTable__Q27JAInter2Fx
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q27JAInter2FxFv
-init__Q27JAInter2FxFv:
+.fn init__Q27JAInter2FxFv, global
 /* 800AD6CC 000AA60C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AD6D0 000AA610  7C 08 02 A6 */	mflr r0
 /* 800AD6D4 000AA614  90 01 00 24 */	stw r0, 0x24(r1)
@@ -114,14 +114,14 @@ init__Q27JAInter2FxFv:
 /* 800AD820 000AA760  7C 08 03 A6 */	mtlr r0
 /* 800AD824 000AA764  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AD828 000AA768  4E 80 00 20 */	blr 
+.endfn init__Q27JAInter2FxFv
 
-.global setSceneMax__Q27JAInter2FxFUc
-setSceneMax__Q27JAInter2FxFUc:
+.fn setSceneMax__Q27JAInter2FxFUc, global
 /* 800AD82C 000AA76C  98 6D 8B A4 */	stb r3, mSceneMax__Q27JAInter2Fx@sda21(r13)
 /* 800AD830 000AA770  4E 80 00 20 */	blr 
+.endfn setSceneMax__Q27JAInter2FxFUc
 
-.global setBufferMax__Q27JAInter2FxFUlUlUlUl
-setBufferMax__Q27JAInter2FxFUlUlUlUl:
+.fn setBufferMax__Q27JAInter2FxFUlUlUlUl, global
 /* 800AD834 000AA774  80 ED 8B A8 */	lwz r7, mBufferSizeMax__Q27JAInter2Fx@sda21(r13)
 /* 800AD838 000AA778  90 67 00 00 */	stw r3, 0(r7)
 /* 800AD83C 000AA77C  80 6D 8B A8 */	lwz r3, mBufferSizeMax__Q27JAInter2Fx@sda21(r13)
@@ -131,52 +131,52 @@ setBufferMax__Q27JAInter2FxFUlUlUlUl:
 /* 800AD84C 000AA78C  80 6D 8B A8 */	lwz r3, mBufferSizeMax__Q27JAInter2Fx@sda21(r13)
 /* 800AD850 000AA790  90 C3 00 0C */	stw r6, 0xc(r3)
 /* 800AD854 000AA794  4E 80 00 20 */	blr 
+.endfn setBufferMax__Q27JAInter2FxFUlUlUlUl
 
-.global setTablePointer__Q27JAInter2FxFPPv
-setTablePointer__Q27JAInter2FxFPPv:
+.fn setTablePointer__Q27JAInter2FxFPPv, global
 /* 800AD858 000AA798  90 6D 8B B0 */	stw r3, mFxconfigTable__Q27JAInter2Fx@sda21(r13)
 /* 800AD85C 000AA79C  4E 80 00 20 */	blr 
+.endfn setTablePointer__Q27JAInter2FxFPPv
 
-.global setBufferPointer__Q27JAInter2FxFUcPs
-setBufferPointer__Q27JAInter2FxFUcPs:
+.fn setBufferPointer__Q27JAInter2FxFUcPs, global
 /* 800AD860 000AA7A0  80 AD 8B AC */	lwz r5, mBufferPointer__Q27JAInter2Fx@sda21(r13)
 /* 800AD864 000AA7A4  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
 /* 800AD868 000AA7A8  7C 85 01 2E */	stwx r4, r5, r0
 /* 800AD86C 000AA7AC  4E 80 00 20 */	blr 
+.endfn setBufferPointer__Q27JAInter2FxFUcPs
 
-.global setScenePointer__Q27JAInter2FxFUcPv
-setScenePointer__Q27JAInter2FxFUcPv:
+.fn setScenePointer__Q27JAInter2FxFUcPv, global
 /* 800AD870 000AA7B0  80 AD 8B B0 */	lwz r5, mFxconfigTable__Q27JAInter2Fx@sda21(r13)
 /* 800AD874 000AA7B4  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
 /* 800AD878 000AA7B8  7C 85 01 2E */	stwx r4, r5, r0
 /* 800AD87C 000AA7BC  4E 80 00 20 */	blr 
+.endfn setScenePointer__Q27JAInter2FxFUcPv
 
-.global getSceneMax__Q27JAInter2FxFv
-getSceneMax__Q27JAInter2FxFv:
+.fn getSceneMax__Q27JAInter2FxFv, global
 /* 800AD880 000AA7C0  88 6D 8B A4 */	lbz r3, mSceneMax__Q27JAInter2Fx@sda21(r13)
 /* 800AD884 000AA7C4  4E 80 00 20 */	blr 
+.endfn getSceneMax__Q27JAInter2FxFv
 
-.global getBufferSizeMax__Q27JAInter2FxFUc
-getBufferSizeMax__Q27JAInter2FxFUc:
+.fn getBufferSizeMax__Q27JAInter2FxFUc, global
 /* 800AD888 000AA7C8  80 8D 8B A8 */	lwz r4, mBufferSizeMax__Q27JAInter2Fx@sda21(r13)
 /* 800AD88C 000AA7CC  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
 /* 800AD890 000AA7D0  7C 64 00 2E */	lwzx r3, r4, r0
 /* 800AD894 000AA7D4  4E 80 00 20 */	blr 
+.endfn getBufferSizeMax__Q27JAInter2FxFUc
 
-.global getBufferPointer__Q27JAInter2FxFUc
-getBufferPointer__Q27JAInter2FxFUc:
+.fn getBufferPointer__Q27JAInter2FxFUc, global
 /* 800AD898 000AA7D8  80 8D 8B AC */	lwz r4, mBufferPointer__Q27JAInter2Fx@sda21(r13)
 /* 800AD89C 000AA7DC  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
 /* 800AD8A0 000AA7E0  7C 64 00 2E */	lwzx r3, r4, r0
 /* 800AD8A4 000AA7E4  4E 80 00 20 */	blr 
+.endfn getBufferPointer__Q27JAInter2FxFUc
 
-.global getFxconfigTable__Q27JAInter2FxFv
-getFxconfigTable__Q27JAInter2FxFv:
+.fn getFxconfigTable__Q27JAInter2FxFv, global
 /* 800AD8A8 000AA7E8  80 6D 8B B0 */	lwz r3, mFxconfigTable__Q27JAInter2Fx@sda21(r13)
 /* 800AD8AC 000AA7EC  4E 80 00 20 */	blr 
+.endfn getFxconfigTable__Q27JAInter2FxFv
 
-.global clearAllBuffer__Q27JAInter2FxFv
-clearAllBuffer__Q27JAInter2FxFv:
+.fn clearAllBuffer__Q27JAInter2FxFv, global
 /* 800AD8B0 000AA7F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AD8B4 000AA7F4  7C 08 02 A6 */	mflr r0
 /* 800AD8B8 000AA7F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -222,3 +222,4 @@ clearAllBuffer__Q27JAInter2FxFv:
 /* 800AD944 000AA884  7C 08 03 A6 */	mtlr r0
 /* 800AD948 000AA888  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AD94C 000AA88C  4E 80 00 20 */	blr 
+.endfn clearAllBuffer__Q27JAInter2FxFv

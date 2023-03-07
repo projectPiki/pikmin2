@@ -1,19 +1,18 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global deadObjectFreePointer__Q27JAInter14DummyObjectMgr
-deadObjectFreePointer__Q27JAInter14DummyObjectMgr:
+.obj deadObjectFreePointer__Q27JAInter14DummyObjectMgr, global
 	.skip 0x4
-.global deadObjectUsedPointer__Q27JAInter14DummyObjectMgr
-deadObjectUsedPointer__Q27JAInter14DummyObjectMgr:
+.endobj deadObjectFreePointer__Q27JAInter14DummyObjectMgr
+.obj deadObjectUsedPointer__Q27JAInter14DummyObjectMgr, global
 	.skip 0x4
-.global deadObjectObject__Q27JAInter14DummyObjectMgr
-deadObjectObject__Q27JAInter14DummyObjectMgr:
+.endobj deadObjectUsedPointer__Q27JAInter14DummyObjectMgr
+.obj deadObjectObject__Q27JAInter14DummyObjectMgr, global
 	.skip 0x4
+.endobj deadObjectObject__Q27JAInter14DummyObjectMgr
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q27JAInter14DummyObjectMgrFv
-init__Q27JAInter14DummyObjectMgrFv:
+.fn init__Q27JAInter14DummyObjectMgrFv, global
 /* 800AD490 000AA3D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AD494 000AA3D4  7C 08 02 A6 */	mflr r0
 /* 800AD498 000AA3D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -71,9 +70,9 @@ init__Q27JAInter14DummyObjectMgrFv:
 /* 800AD560 000AA4A0  7C 08 03 A6 */	mtlr r0
 /* 800AD564 000AA4A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AD568 000AA4A8  4E 80 00 20 */	blr 
+.endfn init__Q27JAInter14DummyObjectMgrFv
 
-.global getPointer__Q27JAInter14DummyObjectMgrFUl
-getPointer__Q27JAInter14DummyObjectMgrFUl:
+.fn getPointer__Q27JAInter14DummyObjectMgrFUl, global
 /* 800AD56C 000AA4AC  80 0D 8B 90 */	lwz r0, deadObjectFreePointer__Q27JAInter14DummyObjectMgr@sda21(r13)
 /* 800AD570 000AA4B0  38 AD 8B 90 */	addi r5, r13, deadObjectFreePointer__Q27JAInter14DummyObjectMgr@sda21
 /* 800AD574 000AA4B4  38 CD 8B 94 */	addi r6, r13, deadObjectUsedPointer__Q27JAInter14DummyObjectMgr@sda21
@@ -104,9 +103,9 @@ getPointer__Q27JAInter14DummyObjectMgrFUl:
 .L_800AD5CC:
 /* 800AD5CC 000AA50C  7C E3 3B 78 */	mr r3, r7
 /* 800AD5D0 000AA510  4E 80 00 20 */	blr 
+.endfn getPointer__Q27JAInter14DummyObjectMgrFUl
 
-.global check__Q27JAInter14DummyObjectMgrFv
-check__Q27JAInter14DummyObjectMgrFv:
+.fn check__Q27JAInter14DummyObjectMgrFv, global
 /* 800AD5D4 000AA514  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AD5D8 000AA518  7C 08 02 A6 */	mflr r0
 /* 800AD5DC 000AA51C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -177,3 +176,4 @@ check__Q27JAInter14DummyObjectMgrFv:
 /* 800AD6C0 000AA600  7C 08 03 A6 */	mtlr r0
 /* 800AD6C4 000AA604  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AD6C8 000AA608  4E 80 00 20 */	blr 
+.endfn check__Q27JAInter14DummyObjectMgrFv

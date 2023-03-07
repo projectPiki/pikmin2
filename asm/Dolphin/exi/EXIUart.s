@@ -122,7 +122,7 @@
 /* 800E16B0 000DE5F0  38 21 00 28 */	addi r1, r1, 0x28
 /* 800E16B4 000DE5F4  7C 08 03 A6 */	mtlr r0
 /* 800E16B8 000DE5F8  4E 80 00 20 */	blr 
-.endobj ProbeBarnacle
+.endfn ProbeBarnacle
 
 .fn __OSEnableBarnacle, global
 /* 800E16BC 000DE5FC  7C 08 02 A6 */	mflr r0

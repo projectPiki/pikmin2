@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__8JAIBasic
-__vt__8JAIBasic:
+.obj __vt__8JAIBasic, global
 	.4byte 0
 	.4byte 0
 	.4byte makeSequence__8JAIBasicFv
@@ -13,62 +12,67 @@ __vt__8JAIBasic:
 	.4byte getMapInfoFxParameter__8JAIBasicFUl
 	.4byte setSeExtParameter__8JAIBasicFP8JAISound
 	.4byte setRegisterTrackCallback__8JAIBasicFv
+.endobj __vt__8JAIBasic
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global msStopStatus__8JAIBasic
-msStopStatus__8JAIBasic:
+.obj msStopStatus__8JAIBasic, global
 	.byte 3
+.endobj msStopStatus__8JAIBasic
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global msBasic__8JAIBasic
-msBasic__8JAIBasic:
+.obj msBasic__8JAIBasic, global
 	.skip 0x4
-.global msCurrentHeap__8JAIBasic
-msCurrentHeap__8JAIBasic:
+.endobj msBasic__8JAIBasic
+.obj msCurrentHeap__8JAIBasic, global
 	.skip 0x4
-.global msStopMode__8JAIBasic
-msStopMode__8JAIBasic:
+.endobj msCurrentHeap__8JAIBasic
+.obj msStopMode__8JAIBasic, global
 	.skip 0x1
+.endobj msStopMode__8JAIBasic
 .balign 4
-.global msAudioStopTime__8JAIBasic
-msAudioStopTime__8JAIBasic:
+.obj msAudioStopTime__8JAIBasic, global
 	.skip 0x4
-.global msDspLevel__8JAIBasic
-msDspLevel__8JAIBasic:
+.endobj msAudioStopTime__8JAIBasic
+.obj msDspLevel__8JAIBasic, global
 	.skip 0x4
-.global msAutoLevel__8JAIBasic
-msAutoLevel__8JAIBasic:
+.endobj msDspLevel__8JAIBasic
+.obj msAutoLevel__8JAIBasic, global
 	.skip 0x4
-.global msAutoDif__8JAIBasic
-msAutoDif__8JAIBasic:
+.endobj msAutoLevel__8JAIBasic
+.obj msAutoDif__8JAIBasic, global
 	.skip 0x4
-.global msDspDif__8JAIBasic
-msDspDif__8JAIBasic:
+.endobj msAutoDif__8JAIBasic
+.obj msDspDif__8JAIBasic, global
 	.skip 0x4
+.endobj msDspDif__8JAIBasic
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516F08:
+.obj lbl_80516F08, local
 	.asciz "%s%s%c"
+.endobj lbl_80516F08
 .balign 4
-lbl_80516F10:
+.obj lbl_80516F10, local
 	.float 0.0
-lbl_80516F14:
+.endobj lbl_80516F10
+.obj lbl_80516F14, local
 	.float -50.0
-lbl_80516F18:
+.endobj lbl_80516F14
+.obj lbl_80516F18, local
 	.float 1.0
-lbl_80516F1C:
+.endobj lbl_80516F18
+.obj lbl_80516F1C, local
 	.float 127.0
+.endobj lbl_80516F1C
 .balign 8
-lbl_80516F20:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80516F20, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516F20
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__8JAIBasicFv
-__ct__8JAIBasicFv:
+.fn __ct__8JAIBasicFv, global
 /* 800AC158 000A9098  3C 80 80 4A */	lis r4, __vt__8JAIBasic@ha
 /* 800AC15C 000A909C  38 A0 00 00 */	li r5, 0
 /* 800AC160 000A90A0  38 84 62 48 */	addi r4, r4, __vt__8JAIBasic@l
@@ -100,9 +104,9 @@ __ct__8JAIBasicFv:
 /* 800AC1C8 000A9108  80 0D 8A B8 */	lwz r0, JASDram@sda21(r13)
 /* 800AC1CC 000A910C  90 0D 8B 6C */	stw r0, msCurrentHeap__8JAIBasic@sda21(r13)
 /* 800AC1D0 000A9110  4E 80 00 20 */	blr 
+.endfn __ct__8JAIBasicFv
 
-.global initDriver__8JAIBasicFP12JKRSolidHeapUlUc
-initDriver__8JAIBasicFP12JKRSolidHeapUlUc:
+.fn initDriver__8JAIBasicFP12JKRSolidHeapUlUc, global
 /* 800AC1D4 000A9114  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC1D8 000A9118  7C 08 02 A6 */	mflr r0
 /* 800AC1DC 000A911C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -111,9 +115,9 @@ initDriver__8JAIBasicFP12JKRSolidHeapUlUc:
 /* 800AC1E8 000A9128  7C 08 03 A6 */	mtlr r0
 /* 800AC1EC 000A912C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC1F0 000A9130  4E 80 00 20 */	blr 
+.endfn initDriver__8JAIBasicFP12JKRSolidHeapUlUc
 
-.global initInterface__8JAIBasicFUc
-initInterface__8JAIBasicFUc:
+.fn initInterface__8JAIBasicFUc, global
 /* 800AC1F4 000A9134  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC1F8 000A9138  7C 08 02 A6 */	mflr r0
 /* 800AC1FC 000A913C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -122,9 +126,9 @@ initInterface__8JAIBasicFUc:
 /* 800AC208 000A9148  7C 08 03 A6 */	mtlr r0
 /* 800AC20C 000A914C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC210 000A9150  4E 80 00 20 */	blr 
+.endfn initInterface__8JAIBasicFUc
 
-.global initInterfaceMain__8JAIBasicFv
-initInterfaceMain__8JAIBasicFv:
+.fn initInterfaceMain__8JAIBasicFv, global
 /* 800AC214 000A9154  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC218 000A9158  7C 08 02 A6 */	mflr r0
 /* 800AC21C 000A915C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -175,9 +179,9 @@ initInterfaceMain__8JAIBasicFv:
 /* 800AC2C8 000A9208  7C 08 03 A6 */	mtlr r0
 /* 800AC2CC 000A920C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC2D0 000A9210  4E 80 00 20 */	blr 
+.endfn initInterfaceMain__8JAIBasicFv
 
-.global initHeap__8JAIBasicFv
-initHeap__8JAIBasicFv:
+.fn initHeap__8JAIBasicFv, global
 /* 800AC2D4 000A9214  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC2D8 000A9218  7C 08 02 A6 */	mflr r0
 /* 800AC2DC 000A921C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -203,9 +207,9 @@ initHeap__8JAIBasicFv:
 /* 800AC324 000A9264  7C 08 03 A6 */	mtlr r0
 /* 800AC328 000A9268  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC32C 000A926C  4E 80 00 20 */	blr 
+.endfn initHeap__8JAIBasicFv
 
-.global initArchive__8JAIBasicFv
-initArchive__8JAIBasicFv:
+.fn initArchive__8JAIBasicFv, global
 /* 800AC330 000A9270  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800AC334 000A9274  7C 08 02 A6 */	mflr r0
 /* 800AC338 000A9278  90 01 00 74 */	stw r0, 0x74(r1)
@@ -226,9 +230,9 @@ initArchive__8JAIBasicFv:
 /* 800AC370 000A92B0  7C 08 03 A6 */	mtlr r0
 /* 800AC374 000A92B4  38 21 00 70 */	addi r1, r1, 0x70
 /* 800AC378 000A92B8  4E 80 00 20 */	blr 
+.endfn initArchive__8JAIBasicFv
 
-.global initResourcePath__8JAIBasicFv
-initResourcePath__8JAIBasicFv:
+.fn initResourcePath__8JAIBasicFv, global
 /* 800AC37C 000A92BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC380 000A92C0  7C 08 02 A6 */	mflr r0
 /* 800AC384 000A92C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -280,9 +284,9 @@ initResourcePath__8JAIBasicFv:
 /* 800AC438 000A9378  7C 08 03 A6 */	mtlr r0
 /* 800AC43C 000A937C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC440 000A9380  4E 80 00 20 */	blr 
+.endfn initResourcePath__8JAIBasicFv
 
-.global setCameraInfo__8JAIBasicFP3VecP3VecPA4_fUl
-setCameraInfo__8JAIBasicFP3VecP3VecPA4_fUl:
+.fn setCameraInfo__8JAIBasicFP3VecP3VecPA4_fUl, global
 /* 800AC444 000A9384  80 0D 81 D4 */	lwz r0, audioCameraMax__18JAIGlobalParameter@sda21(r13)
 /* 800AC448 000A9388  7C 00 38 40 */	cmplw r0, r7
 /* 800AC44C 000A938C  4C 81 00 20 */	blelr 
@@ -296,9 +300,9 @@ setCameraInfo__8JAIBasicFP3VecP3VecPA4_fUl:
 /* 800AC46C 000A93AC  7C 60 42 14 */	add r3, r0, r8
 /* 800AC470 000A93B0  90 C3 00 08 */	stw r6, 8(r3)
 /* 800AC474 000A93B4  4E 80 00 20 */	blr 
+.endfn setCameraInfo__8JAIBasicFP3VecP3VecPA4_fUl
 
-.global setRegisterTrackCallback__8JAIBasicFv
-setRegisterTrackCallback__8JAIBasicFv:
+.fn setRegisterTrackCallback__8JAIBasicFv, global
 /* 800AC478 000A93B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC47C 000A93BC  7C 08 02 A6 */	mflr r0
 /* 800AC480 000A93C0  3C 60 80 0B */	lis r3, setParameterSeqSync__8JAIBasicFP8JASTrackUs@ha
@@ -309,9 +313,9 @@ setRegisterTrackCallback__8JAIBasicFv:
 /* 800AC494 000A93D4  7C 08 03 A6 */	mtlr r0
 /* 800AC498 000A93D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC49C 000A93DC  4E 80 00 20 */	blr 
+.endfn setRegisterTrackCallback__8JAIBasicFv
 
-.global initAudioThread__8JAIBasicFP12JKRSolidHeapUlUc
-initAudioThread__8JAIBasicFP12JKRSolidHeapUlUc:
+.fn initAudioThread__8JAIBasicFP12JKRSolidHeapUlUc, global
 /* 800AC4A0 000A93E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC4A4 000A93E4  7C 08 02 A6 */	mflr r0
 /* 800AC4A8 000A93E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -350,9 +354,9 @@ initAudioThread__8JAIBasicFP12JKRSolidHeapUlUc:
 /* 800AC52C 000A946C  7C 08 03 A6 */	mtlr r0
 /* 800AC530 000A9470  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC534 000A9474  4E 80 00 20 */	blr 
+.endfn initAudioThread__8JAIBasicFP12JKRSolidHeapUlUc
 
-.global initCamera__8JAIBasicFv
-initCamera__8JAIBasicFv:
+.fn initCamera__8JAIBasicFv, global
 /* 800AC538 000A9478  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800AC53C 000A947C  7C 08 02 A6 */	mflr r0
 /* 800AC540 000A9480  38 A0 00 20 */	li r5, 0x20
@@ -443,22 +447,22 @@ initCamera__8JAIBasicFv:
 /* 800AC684 000A95C4  7C 08 03 A6 */	mtlr r0
 /* 800AC688 000A95C8  38 21 00 30 */	addi r1, r1, 0x30
 /* 800AC68C 000A95CC  4E 80 00 20 */	blr 
+.endfn initCamera__8JAIBasicFv
 
-.global __defctor__Q27JAInter6CameraFv
-__defctor__Q27JAInter6CameraFv:
+.fn __defctor__Q27JAInter6CameraFv, weak
 /* 800AC690 000A95D0  38 00 00 00 */	li r0, 0
 /* 800AC694 000A95D4  90 03 00 00 */	stw r0, 0(r3)
 /* 800AC698 000A95D8  90 03 00 04 */	stw r0, 4(r3)
 /* 800AC69C 000A95DC  90 03 00 08 */	stw r0, 8(r3)
 /* 800AC6A0 000A95E0  4E 80 00 20 */	blr 
+.endfn __defctor__Q27JAInter6CameraFv
 
-.global setInitFileLoadSwitch__8JAIBasicFUc
-setInitFileLoadSwitch__8JAIBasicFUc:
+.fn setInitFileLoadSwitch__8JAIBasicFUc, global
 /* 800AC6A4 000A95E4  98 83 00 0C */	stb r4, 0xc(r3)
 /* 800AC6A8 000A95E8  4E 80 00 20 */	blr 
+.endfn setInitFileLoadSwitch__8JAIBasicFUc
 
-.global initReadFile__8JAIBasicFv
-initReadFile__8JAIBasicFv:
+.fn initReadFile__8JAIBasicFv, global
 /* 800AC6AC 000A95EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC6B0 000A95F0  7C 08 02 A6 */	mflr r0
 /* 800AC6B4 000A95F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -491,9 +495,9 @@ initReadFile__8JAIBasicFv:
 /* 800AC70C 000A964C  7C 08 03 A6 */	mtlr r0
 /* 800AC710 000A9650  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC714 000A9654  4E 80 00 20 */	blr 
+.endfn initReadFile__8JAIBasicFv
 
-.global processFrameWork__8JAIBasicFv
-processFrameWork__8JAIBasicFv:
+.fn processFrameWork__8JAIBasicFv, global
 /* 800AC718 000A9658  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC71C 000A965C  7C 08 02 A6 */	mflr r0
 /* 800AC720 000A9660  90 01 00 14 */	stw r0, 0x14(r1)
@@ -521,9 +525,9 @@ processFrameWork__8JAIBasicFv:
 /* 800AC770 000A96B0  7C 08 03 A6 */	mtlr r0
 /* 800AC774 000A96B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC778 000A96B8  4E 80 00 20 */	blr 
+.endfn processFrameWork__8JAIBasicFv
 
-.global startSoundBasic__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
-startSoundBasic__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo:
+.fn startSoundBasic__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo, global
 /* 800AC77C 000A96BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC780 000A96C0  7C 08 02 A6 */	mflr r0
 /* 800AC784 000A96C4  54 8B 00 02 */	rlwinm r11, r4, 0, 0, 1
@@ -554,9 +558,9 @@ startSoundBasic__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUcPQ27JAInter9SoundIn
 /* 800AC7D4 000A9714  7C 08 03 A6 */	mtlr r0
 /* 800AC7D8 000A9718  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC7DC 000A971C  4E 80 00 20 */	blr 
+.endfn startSoundBasic__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
 
-.global startSoundBasic__8JAIBasicFUlPP11JAISequencePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
-startSoundBasic__8JAIBasicFUlPP11JAISequencePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo:
+.fn startSoundBasic__8JAIBasicFUlPP11JAISequencePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo, global
 /* 800AC7E0 000A9720  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC7E4 000A9724  7C 08 02 A6 */	mflr r0
 /* 800AC7E8 000A9728  7C 8A 23 78 */	mr r10, r4
@@ -593,9 +597,9 @@ startSoundBasic__8JAIBasicFUlPP11JAISequencePQ27JAInter5ActorUlUcPQ27JAInter9Sou
 /* 800AC858 000A9798  7C 08 03 A6 */	mtlr r0
 /* 800AC85C 000A979C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC860 000A97A0  4E 80 00 20 */	blr 
+.endfn startSoundBasic__8JAIBasicFUlPP11JAISequencePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
 
-.global startSoundBasic__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
-startSoundBasic__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo:
+.fn startSoundBasic__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo, global
 /* 800AC864 000A97A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC868 000A97A8  7C 08 02 A6 */	mflr r0
 /* 800AC86C 000A97AC  7C 8A 23 78 */	mr r10, r4
@@ -623,9 +627,9 @@ startSoundBasic__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo:
 /* 800AC8BC 000A97FC  7C 08 03 A6 */	mtlr r0
 /* 800AC8C0 000A9800  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC8C4 000A9804  4E 80 00 20 */	blr 
+.endfn startSoundBasic__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
 
-.global startSoundBasic__8JAIBasicFUlPP9JAIStreamPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
-startSoundBasic__8JAIBasicFUlPP9JAIStreamPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo:
+.fn startSoundBasic__8JAIBasicFUlPP9JAIStreamPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo, global
 /* 800AC8C8 000A9808  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC8CC 000A980C  7C 08 02 A6 */	mflr r0
 /* 800AC8D0 000A9810  7C 8A 23 78 */	mr r10, r4
@@ -649,9 +653,9 @@ startSoundBasic__8JAIBasicFUlPP9JAIStreamPQ27JAInter5ActorUlUcPQ27JAInter9SoundI
 /* 800AC914 000A9854  7C 08 03 A6 */	mtlr r0
 /* 800AC918 000A9858  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC91C 000A985C  4E 80 00 20 */	blr 
+.endfn startSoundBasic__8JAIBasicFUlPP9JAIStreamPQ27JAInter5ActorUlUcPQ27JAInter9SoundInfo
 
-.global stopSoundHandle__8JAIBasicFP8JAISoundUl
-stopSoundHandle__8JAIBasicFP8JAISoundUl:
+.fn stopSoundHandle__8JAIBasicFP8JAISoundUl, global
 /* 800AC920 000A9860  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC924 000A9864  7C 08 02 A6 */	mflr r0
 /* 800AC928 000A9868  28 04 00 00 */	cmplwi r4, 0
@@ -691,9 +695,9 @@ stopSoundHandle__8JAIBasicFP8JAISoundUl:
 /* 800AC99C 000A98DC  7C 08 03 A6 */	mtlr r0
 /* 800AC9A0 000A98E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AC9A4 000A98E4  4E 80 00 20 */	blr 
+.endfn stopSoundHandle__8JAIBasicFP8JAISoundUl
 
-.global stopAllSe__8JAIBasicFUc
-stopAllSe__8JAIBasicFUc:
+.fn stopAllSe__8JAIBasicFUc, global
 /* 800AC9A8 000A98E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AC9AC 000A98EC  7C 08 02 A6 */	mflr r0
 /* 800AC9B0 000A98F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -743,9 +747,9 @@ stopAllSe__8JAIBasicFUc:
 /* 800ACA48 000A9988  7C 08 03 A6 */	mtlr r0
 /* 800ACA4C 000A998C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ACA50 000A9990  4E 80 00 20 */	blr 
+.endfn stopAllSe__8JAIBasicFUc
 
-.global stop__9JAIStreamFUl
-stop__9JAIStreamFUl:
+.fn stop__9JAIStreamFUl, weak
 /* 800ACA54 000A9994  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ACA58 000A9998  7C 08 02 A6 */	mflr r0
 /* 800ACA5C 000A999C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -754,9 +758,9 @@ stop__9JAIStreamFUl:
 /* 800ACA68 000A99A8  7C 08 03 A6 */	mtlr r0
 /* 800ACA6C 000A99AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ACA70 000A99B0  4E 80 00 20 */	blr 
+.endfn stop__9JAIStreamFUl
 
-.global stop__11JAISequenceFUl
-stop__11JAISequenceFUl:
+.fn stop__11JAISequenceFUl, weak
 /* 800ACA74 000A99B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ACA78 000A99B8  7C 08 02 A6 */	mflr r0
 /* 800ACA7C 000A99BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -765,23 +769,23 @@ stop__11JAISequenceFUl:
 /* 800ACA88 000A99C8  7C 08 03 A6 */	mtlr r0
 /* 800ACA8C 000A99CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ACA90 000A99D0  4E 80 00 20 */	blr 
+.endfn stop__11JAISequenceFUl
 
-.global getMapInfoFxline__8JAIBasicFUl
-getMapInfoFxline__8JAIBasicFUl:
+.fn getMapInfoFxline__8JAIBasicFUl, global
 /* 800ACA94 000A99D4  7C 04 00 D0 */	neg r0, r4
 /* 800ACA98 000A99D8  7C 00 23 78 */	or r0, r0, r4
 /* 800ACA9C 000A99DC  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 800ACAA0 000A99E0  4E 80 00 20 */	blr 
+.endfn getMapInfoFxline__8JAIBasicFUl
 
-.global getMapInfoGround__8JAIBasicFUl
-getMapInfoGround__8JAIBasicFUl:
+.fn getMapInfoGround__8JAIBasicFUl, global
 /* 800ACAA4 000A99E4  7C 04 00 D0 */	neg r0, r4
 /* 800ACAA8 000A99E8  7C 00 23 78 */	or r0, r0, r4
 /* 800ACAAC 000A99EC  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 800ACAB0 000A99F0  4E 80 00 20 */	blr 
+.endfn getMapInfoGround__8JAIBasicFUl
 
-.global getMapInfoFxParameter__8JAIBasicFUl
-getMapInfoFxParameter__8JAIBasicFUl:
+.fn getMapInfoFxParameter__8JAIBasicFUl, global
 /* 800ACAB4 000A99F4  28 04 00 00 */	cmplwi r4, 0
 /* 800ACAB8 000A99F8  40 82 00 0C */	bne .L_800ACAC4
 /* 800ACABC 000A99FC  C0 22 8B B0 */	lfs f1, lbl_80516F10@sda21(r2)
@@ -789,9 +793,9 @@ getMapInfoFxParameter__8JAIBasicFUl:
 .L_800ACAC4:
 /* 800ACAC4 000A9A04  C0 22 8B B8 */	lfs f1, lbl_80516F18@sda21(r2)
 /* 800ACAC8 000A9A08  4E 80 00 20 */	blr 
+.endfn getMapInfoFxParameter__8JAIBasicFUl
 
-.global getSoundOffsetNumberFromID__8JAIBasicFUl
-getSoundOffsetNumberFromID__8JAIBasicFUl:
+.fn getSoundOffsetNumberFromID__8JAIBasicFUl, global
 /* 800ACACC 000A9A0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ACAD0 000A9A10  7C 08 02 A6 */	mflr r0
 /* 800ACAD4 000A9A14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -814,9 +818,9 @@ getSoundOffsetNumberFromID__8JAIBasicFUl:
 /* 800ACB10 000A9A50  7C 08 03 A6 */	mtlr r0
 /* 800ACB14 000A9A54  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ACB18 000A9A58  4E 80 00 20 */	blr 
+.endfn getSoundOffsetNumberFromID__8JAIBasicFUl
 
-.global setParameterSeqSync__8JAIBasicFP8JASTrackUs
-setParameterSeqSync__8JAIBasicFP8JASTrackUs:
+.fn setParameterSeqSync__8JAIBasicFP8JASTrackUs, global
 /* 800ACB1C 000A9A5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800ACB20 000A9A60  7C 08 02 A6 */	mflr r0
 /* 800ACB24 000A9A64  90 01 00 24 */	stw r0, 0x24(r1)
@@ -948,9 +952,9 @@ setParameterSeqSync__8JAIBasicFP8JASTrackUs:
 /* 800ACCEC 000A9C2C  7C 08 03 A6 */	mtlr r0
 /* 800ACCF0 000A9C30  38 21 00 20 */	addi r1, r1, 0x20
 /* 800ACCF4 000A9C34  4E 80 00 20 */	blr 
+.endfn setParameterSeqSync__8JAIBasicFP8JASTrackUs
 
-.global setSeExtParameter__8JAIBasicFP8JAISound
-setSeExtParameter__8JAIBasicFP8JAISound:
+.fn setSeExtParameter__8JAIBasicFP8JAISound, global
 /* 800ACCF8 000A9C38  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800ACCFC 000A9C3C  7C 08 02 A6 */	mflr r0
 /* 800ACD00 000A9C40  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1019,9 +1023,9 @@ setSeExtParameter__8JAIBasicFP8JAISound:
 /* 800ACDF0 000A9D30  7C 08 03 A6 */	mtlr r0
 /* 800ACDF4 000A9D34  38 21 00 20 */	addi r1, r1, 0x20
 /* 800ACDF8 000A9D38  4E 80 00 20 */	blr 
+.endfn setSeExtParameter__8JAIBasicFP8JAISound
 
-.global makeSequence__8JAIBasicFv
-makeSequence__8JAIBasicFv:
+.fn makeSequence__8JAIBasicFv, global
 /* 800ACDFC 000A9D3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ACE00 000A9D40  7C 08 02 A6 */	mflr r0
 /* 800ACE04 000A9D44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1054,9 +1058,9 @@ makeSequence__8JAIBasicFv:
 /* 800ACE60 000A9DA0  7C 08 03 A6 */	mtlr r0
 /* 800ACE64 000A9DA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ACE68 000A9DA8  4E 80 00 20 */	blr 
+.endfn makeSequence__8JAIBasicFv
 
-.global makeSe__8JAIBasicFv
-makeSe__8JAIBasicFv:
+.fn makeSe__8JAIBasicFv, global
 /* 800ACE6C 000A9DAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ACE70 000A9DB0  7C 08 02 A6 */	mflr r0
 /* 800ACE74 000A9DB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1089,9 +1093,9 @@ makeSe__8JAIBasicFv:
 /* 800ACED0 000A9E10  7C 08 03 A6 */	mtlr r0
 /* 800ACED4 000A9E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ACED8 000A9E18  4E 80 00 20 */	blr 
+.endfn makeSe__8JAIBasicFv
 
-.global makeStream__8JAIBasicFv
-makeStream__8JAIBasicFv:
+.fn makeStream__8JAIBasicFv, global
 /* 800ACEDC 000A9E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800ACEE0 000A9E20  7C 08 02 A6 */	mflr r0
 /* 800ACEE4 000A9E24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1124,9 +1128,9 @@ makeStream__8JAIBasicFv:
 /* 800ACF40 000A9E80  7C 08 03 A6 */	mtlr r0
 /* 800ACF44 000A9E84  38 21 00 10 */	addi r1, r1, 0x10
 /* 800ACF48 000A9E88  4E 80 00 20 */	blr 
+.endfn makeStream__8JAIBasicFv
 
-.global stopAudio__8JAIBasicFUlb
-stopAudio__8JAIBasicFUlb:
+.fn stopAudio__8JAIBasicFUlb, global
 /* 800ACF4C 000A9E8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800ACF50 000A9E90  7C 08 02 A6 */	mflr r0
 /* 800ACF54 000A9E94  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1184,9 +1188,9 @@ stopAudio__8JAIBasicFUlb:
 /* 800AD01C 000A9F5C  7C 08 03 A6 */	mtlr r0
 /* 800AD020 000A9F60  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AD024 000A9F64  4E 80 00 20 */	blr 
+.endfn stopAudio__8JAIBasicFUlb
 
-.global checkAudioStopStatus__8JAIBasicFv
-checkAudioStopStatus__8JAIBasicFv:
+.fn checkAudioStopStatus__8JAIBasicFv, global
 /* 800AD028 000A9F68  88 0D 81 58 */	lbz r0, msStopStatus__8JAIBasic@sda21(r13)
 /* 800AD02C 000A9F6C  2C 00 00 03 */	cmpwi r0, 3
 /* 800AD030 000A9F70  41 82 00 1C */	beq .L_800AD04C
@@ -1203,9 +1207,9 @@ checkAudioStopStatus__8JAIBasicFv:
 .L_800AD054:
 /* 800AD054 000A9F94  38 60 00 00 */	li r3, 0
 /* 800AD058 000A9F98  4E 80 00 20 */	blr 
+.endfn checkAudioStopStatus__8JAIBasicFv
 
-.global stopCallBack__8JAIBasicFPv
-stopCallBack__8JAIBasicFPv:
+.fn stopCallBack__8JAIBasicFPv, global
 /* 800AD05C 000A9F9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AD060 000A9FA0  7C 08 02 A6 */	mflr r0
 /* 800AD064 000A9FA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1309,3 +1313,4 @@ stopCallBack__8JAIBasicFPv:
 /* 800AD1B8 000AA0F8  7C 08 03 A6 */	mtlr r0
 /* 800AD1BC 000AA0FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AD1C0 000AA100  4E 80 00 20 */	blr 
+.endfn stopCallBack__8JAIBasicFPv

@@ -31,7 +31,7 @@ lbl_constructor:
 	.4byte 0x82CC91E5
 	.4byte 0x82AB82B3
 	.byte 0
-.endfn lbl_804971A0
+.endobj lbl_804971A0
 .balign 4
 .obj lbl_804971BC, local # Shift-JIS
 	.4byte 0x8CFC82AB

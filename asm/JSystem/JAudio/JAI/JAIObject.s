@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q27JAInter6Object
-__vt__Q27JAInter6Object:
+.obj __vt__Q27JAInter6Object, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JAInter6ObjectFv
@@ -18,8 +17,8 @@ __vt__Q27JAInter6Object:
 	.4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
 	.4byte handleStop__Q27JAInter10ObjectBaseFUcUl
 	.4byte loop__Q27JAInter6ObjectFv
-.global __vt__Q27JAInter10ObjectBase
-__vt__Q27JAInter10ObjectBase:
+.endobj __vt__Q27JAInter6Object
+.obj __vt__Q27JAInter10ObjectBase, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q27JAInter10ObjectBaseFv
@@ -34,23 +33,31 @@ __vt__Q27JAInter10ObjectBase:
 	.4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
 	.4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
 	.4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+.endobj __vt__Q27JAInter10ObjectBase
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80517058:
+.obj lbl_80517058, local
 	.float 0.0
-lbl_8051705C:
+.endobj lbl_80517058
+.obj lbl_8051705C, local
 	.float 0.5
-lbl_80517060:
+.endobj lbl_8051705C
+.balign 8
+.obj lbl_80517060, local
 	.double 0.5
-lbl_80517068:
+.endobj lbl_80517060
+.balign 8
+.obj lbl_80517068, local
 	.double 3.0
-lbl_80517070:
+.endobj lbl_80517068
+.balign 8
+.obj lbl_80517070, local
 	.double 0.0
+.endobj lbl_80517070
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __dt__Q27JAInter10ObjectBaseFv
-__dt__Q27JAInter10ObjectBaseFv:
+.fn __dt__Q27JAInter10ObjectBaseFv, global
 /* 800B95FC 000B653C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B9600 000B6540  7C 08 02 A6 */	mflr r0
 /* 800B9604 000B6544  90 01 00 14 */	stw r0, 0x14(r1)
@@ -81,9 +88,9 @@ __dt__Q27JAInter10ObjectBaseFv:
 /* 800B9664 000B65A4  7C 08 03 A6 */	mtlr r0
 /* 800B9668 000B65A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B966C 000B65AC  4E 80 00 20 */	blr 
+.endfn __dt__Q27JAInter10ObjectBaseFv
 
-.global startSound__Q27JAInter10ObjectBaseFUlUl
-startSound__Q27JAInter10ObjectBaseFUlUl:
+.fn startSound__Q27JAInter10ObjectBaseFUlUl, global
 /* 800B9670 000B65B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B9674 000B65B4  7C 08 02 A6 */	mflr r0
 /* 800B9678 000B65B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -181,9 +188,9 @@ startSound__Q27JAInter10ObjectBaseFUlUl:
 /* 800B97C8 000B6708  7C 08 03 A6 */	mtlr r0
 /* 800B97CC 000B670C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B97D0 000B6710  4E 80 00 20 */	blr 
+.endfn startSound__Q27JAInter10ObjectBaseFUlUl
 
-.global handleStop__Q27JAInter10ObjectBaseFUcUl
-handleStop__Q27JAInter10ObjectBaseFUcUl:
+.fn handleStop__Q27JAInter10ObjectBaseFUcUl, global
 /* 800B97D4 000B6714  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B97D8 000B6718  7C 08 02 A6 */	mflr r0
 /* 800B97DC 000B671C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -202,9 +209,9 @@ handleStop__Q27JAInter10ObjectBaseFUcUl:
 /* 800B980C 000B674C  7C 08 03 A6 */	mtlr r0
 /* 800B9810 000B6750  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B9814 000B6754  4E 80 00 20 */	blr 
+.endfn handleStop__Q27JAInter10ObjectBaseFUcUl
 
-.global startSound__Q27JAInter10ObjectBaseFUcUlUl
-startSound__Q27JAInter10ObjectBaseFUcUlUl:
+.fn startSound__Q27JAInter10ObjectBaseFUcUlUl, global
 /* 800B9818 000B6758  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B981C 000B675C  7C 08 02 A6 */	mflr r0
 /* 800B9820 000B6760  7C 69 1B 78 */	mr r9, r3
@@ -223,9 +230,9 @@ startSound__Q27JAInter10ObjectBaseFUcUlUl:
 /* 800B9854 000B6794  7C 08 03 A6 */	mtlr r0
 /* 800B9858 000B6798  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B985C 000B679C  4E 80 00 20 */	blr 
+.endfn startSound__Q27JAInter10ObjectBaseFUcUlUl
 
-.global startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl
-startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl:
+.fn startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl, global
 /* 800B9860 000B67A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B9864 000B67A4  7C 08 02 A6 */	mflr r0
 /* 800B9868 000B67A8  7C 68 1B 78 */	mr r8, r3
@@ -243,9 +250,9 @@ startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl:
 /* 800B9898 000B67D8  7C 08 03 A6 */	mtlr r0
 /* 800B989C 000B67DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B98A0 000B67E0  4E 80 00 20 */	blr 
+.endfn startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl
 
-.global stopSound__Q27JAInter10ObjectBaseFUlUl
-stopSound__Q27JAInter10ObjectBaseFUlUl:
+.fn stopSound__Q27JAInter10ObjectBaseFUlUl, global
 /* 800B98A4 000B67E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B98A8 000B67E8  7C 08 02 A6 */	mflr r0
 /* 800B98AC 000B67EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -271,9 +278,9 @@ stopSound__Q27JAInter10ObjectBaseFUlUl:
 /* 800B98F8 000B6838  7C 08 03 A6 */	mtlr r0
 /* 800B98FC 000B683C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B9900 000B6840  4E 80 00 20 */	blr 
+.endfn stopSound__Q27JAInter10ObjectBaseFUlUl
 
-.global stopAllSound__Q27JAInter10ObjectBaseFv
-stopAllSound__Q27JAInter10ObjectBaseFv:
+.fn stopAllSound__Q27JAInter10ObjectBaseFv, global
 /* 800B9904 000B6844  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B9908 000B6848  7C 08 02 A6 */	mflr r0
 /* 800B990C 000B684C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -302,9 +309,9 @@ stopAllSound__Q27JAInter10ObjectBaseFv:
 /* 800B9960 000B68A0  7C 08 03 A6 */	mtlr r0
 /* 800B9964 000B68A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B9968 000B68A8  4E 80 00 20 */	blr 
+.endfn stopAllSound__Q27JAInter10ObjectBaseFv
 
-.global disable__Q27JAInter10ObjectBaseFv
-disable__Q27JAInter10ObjectBaseFv:
+.fn disable__Q27JAInter10ObjectBaseFv, global
 /* 800B996C 000B68AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B9970 000B68B0  7C 08 02 A6 */	mflr r0
 /* 800B9974 000B68B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -322,9 +329,9 @@ disable__Q27JAInter10ObjectBaseFv:
 /* 800B99A4 000B68E4  7C 08 03 A6 */	mtlr r0
 /* 800B99A8 000B68E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B99AC 000B68EC  4E 80 00 20 */	blr 
+.endfn disable__Q27JAInter10ObjectBaseFv
 
-.global dispose__Q27JAInter10ObjectBaseFv
-dispose__Q27JAInter10ObjectBaseFv:
+.fn dispose__Q27JAInter10ObjectBaseFv, global
 /* 800B99B0 000B68F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B99B4 000B68F4  7C 08 02 A6 */	mflr r0
 /* 800B99B8 000B68F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -341,9 +348,9 @@ dispose__Q27JAInter10ObjectBaseFv:
 /* 800B99E4 000B6924  7C 08 03 A6 */	mtlr r0
 /* 800B99E8 000B6928  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B99EC 000B692C  4E 80 00 20 */	blr 
+.endfn dispose__Q27JAInter10ObjectBaseFv
 
-.global getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
-getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv:
+.fn getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv, global
 /* 800B99F0 000B6930  88 03 00 19 */	lbz r0, 0x19(r3)
 /* 800B99F4 000B6934  39 00 00 00 */	li r8, 0
 /* 800B99F8 000B6938  38 C0 00 00 */	li r6, 0
@@ -370,9 +377,9 @@ getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv:
 .L_800B9A44:
 /* 800B9A44 000B6984  38 60 00 00 */	li r3, 0
 /* 800B9A48 000B6988  4E 80 00 20 */	blr 
+.endfn getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
 
-.global getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
-getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl:
+.fn getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl, global
 /* 800B9A4C 000B698C  88 03 00 19 */	lbz r0, 0x19(r3)
 /* 800B9A50 000B6990  39 00 00 00 */	li r8, 0
 /* 800B9A54 000B6994  38 A0 00 00 */	li r5, 0
@@ -397,9 +404,9 @@ getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl:
 .L_800B9A98:
 /* 800B9A98 000B69D8  38 60 00 00 */	li r3, 0
 /* 800B9A9C 000B69DC  4E 80 00 20 */	blr 
+.endfn getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
 
-.global getUseSoundHandleNo__Q27JAInter10ObjectBaseFUl
-getUseSoundHandleNo__Q27JAInter10ObjectBaseFUl:
+.fn getUseSoundHandleNo__Q27JAInter10ObjectBaseFUl, global
 /* 800B9AA0 000B69E0  88 C3 00 19 */	lbz r6, 0x19(r3)
 /* 800B9AA4 000B69E4  38 E0 00 00 */	li r7, 0
 /* 800B9AA8 000B69E8  48 00 00 30 */	b .L_800B9AD8
@@ -422,9 +429,9 @@ getUseSoundHandleNo__Q27JAInter10ObjectBaseFUl:
 /* 800B9AE0 000B6A20  41 80 FF CC */	blt .L_800B9AAC
 /* 800B9AE4 000B6A24  38 60 00 FF */	li r3, 0xff
 /* 800B9AE8 000B6A28  4E 80 00 20 */	blr 
+.endfn getUseSoundHandleNo__Q27JAInter10ObjectBaseFUl
 
-.global __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
-__ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc:
+.fn __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc, global
 /* 800B9AEC 000B6A2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B9AF0 000B6A30  7C 08 02 A6 */	mflr r0
 /* 800B9AF4 000B6A34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -489,9 +496,9 @@ __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc:
 /* 800B9BD4 000B6B14  7C 08 03 A6 */	mtlr r0
 /* 800B9BD8 000B6B18  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B9BDC 000B6B1C  4E 80 00 20 */	blr 
+.endfn __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
 
-.global __dt__Q27JAInter6ObjectFv
-__dt__Q27JAInter6ObjectFv:
+.fn __dt__Q27JAInter6ObjectFv, global
 /* 800B9BE0 000B6B20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B9BE4 000B6B24  7C 08 02 A6 */	mflr r0
 /* 800B9BE8 000B6B28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -527,9 +534,9 @@ __dt__Q27JAInter6ObjectFv:
 /* 800B9C58 000B6B98  7C 08 03 A6 */	mtlr r0
 /* 800B9C5C 000B6B9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B9C60 000B6BA0  4E 80 00 20 */	blr 
+.endfn __dt__Q27JAInter6ObjectFv
 
-.global startSound__Q27JAInter6ObjectFUlUl
-startSound__Q27JAInter6ObjectFUlUl:
+.fn startSound__Q27JAInter6ObjectFUlUl, global
 /* 800B9C64 000B6BA4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800B9C68 000B6BA8  7C 08 02 A6 */	mflr r0
 /* 800B9C6C 000B6BAC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -682,9 +689,9 @@ startSound__Q27JAInter6ObjectFUlUl:
 /* 800B9E74 000B6DB4  7C 08 03 A6 */	mtlr r0
 /* 800B9E78 000B6DB8  38 21 00 50 */	addi r1, r1, 0x50
 /* 800B9E7C 000B6DBC  4E 80 00 20 */	blr 
+.endfn startSound__Q27JAInter6ObjectFUlUl
 
-.global disable__Q27JAInter6ObjectFv
-disable__Q27JAInter6ObjectFv:
+.fn disable__Q27JAInter6ObjectFv, global
 /* 800B9E80 000B6DC0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B9E84 000B6DC4  7C 08 02 A6 */	mflr r0
 /* 800B9E88 000B6DC8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -777,9 +784,9 @@ disable__Q27JAInter6ObjectFv:
 /* 800B9FCC 000B6F0C  7C 08 03 A6 */	mtlr r0
 /* 800B9FD0 000B6F10  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B9FD4 000B6F14  4E 80 00 20 */	blr 
+.endfn disable__Q27JAInter6ObjectFv
 
-.global loop__Q27JAInter6ObjectFv
-loop__Q27JAInter6ObjectFv:
+.fn loop__Q27JAInter6ObjectFv, global
 /* 800B9FD8 000B6F18  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B9FDC 000B6F1C  7C 08 02 A6 */	mflr r0
 /* 800B9FE0 000B6F20  90 01 00 24 */	stw r0, 0x24(r1)
@@ -927,3 +934,4 @@ loop__Q27JAInter6ObjectFv:
 /* 800BA1E0 000B7120  7C 08 03 A6 */	mtlr r0
 /* 800BA1E4 000B7124  38 21 00 20 */	addi r1, r1, 0x20
 /* 800BA1E8 000B7128  4E 80 00 20 */	blr 
+.endfn loop__Q27JAInter6ObjectFv

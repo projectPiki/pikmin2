@@ -90,42 +90,39 @@ J3DTexImage2Ids:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516A98
-lbl_80516A98:
-	.4byte 0x42000000
-.global lbl_80516A9C
-lbl_80516A9C:
-	.4byte 0x41800000
-.global lbl_80516AA0
-lbl_80516AA0:
-	.4byte 0x44800000
-.global lbl_80516AA4
-lbl_80516AA4:
-	.4byte 0x00000000
-.global lbl_80516AA8
-lbl_80516AA8:
+.obj lbl_80516A98, local
+	.float 32.0
+.endobj lbl_80516A98
+.obj lbl_80516A9C, local
+	.float 16.0
+.endobj lbl_80516A9C
+.obj lbl_80516AA0, local
+	.float 1024.0
+.endobj lbl_80516AA0
+.obj lbl_80516AA4, local
+	.float 0.0
+.endobj lbl_80516AA4
+.obj lbl_80516AA8, local
 	.float 0.5
-	.4byte 0x00000000
-.global lbl_80516AB0
-lbl_80516AB0:
-	.4byte 0x3FF00000
-	.4byte 0x00000000
-.global lbl_80516AB8
-lbl_80516AB8:
-	.4byte 0x40000000
-	.4byte 0x00000000
-.global lbl_80516AC0
-lbl_80516AC0:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
-.global lbl_80516AC8
-lbl_80516AC8:
-	.4byte 0x4B00001E
-	.4byte 0x00000000
-.global lbl_80516AD0
-lbl_80516AD0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.endobj lbl_80516AA8
+.balign 8
+.obj lbl_80516AB0, local
+	.double 1.0
+.endobj lbl_80516AB0
+.obj lbl_80516AB8, local
+	.float 2.0
+.endobj lbl_80516AB8
+.balign 8
+.obj lbl_80516AC0, local
+	.double 0.5
+.endobj lbl_80516AC0
+.obj lbl_80516AC8, local
+	.float 8388638.0
+.endobj lbl_80516AC8
+.balign 8
+.obj lbl_80516AD0, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516AD0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global J3DGDSetGenMode__FUcUcUcUc11_GXCullMode
