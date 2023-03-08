@@ -340,7 +340,7 @@ LIBS = [
             ["JSystem/JAudio/JAS/JASDvdThread", True],
             "JSystem/JAudio/JAS/JASHeapCtrl",
             ["JSystem/JAudio/JAS/JASProbe", True],
-            "JSystem/JAudio/JAS/JASResArcLoader",
+            ["JSystem/JAudio/JAS/JASResArcLoader", True],
             ["JSystem/JAudio/JAS/JASReport", True],
             "JSystem/JAudio/JAS/JASAiCtrl",
             ["JSystem/JAudio/JAS/JASChannelUpdater", True],

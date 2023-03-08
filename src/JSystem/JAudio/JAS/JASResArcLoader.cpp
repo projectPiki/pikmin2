@@ -6,15 +6,11 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-*/
-
-/*
  * --INFO--
  * Address:	800A7670
  * Size:	000034
  */
-size_t JASResArcLoader::getResSize(JKRArchive* archive, unsigned short resourceID)
+size_t JASResArcLoader::getResSize(JKRArchive* archive, u16 resourceID)
 {
 	JKRArchive::SDIFileEntry* file = archive->findIdResource(resourceID);
 	if (file == nullptr) {
@@ -28,20 +24,20 @@ size_t JASResArcLoader::getResSize(JKRArchive* archive, unsigned short resourceI
  * Address:	800A76A4
  * Size:	00009C
  */
-void JASResArcLoader::loadResourceCallback(void* args)
+static void JASResArcLoader::loadResourceCallback(void* args)
 {
 	CallbackArgs* castedArgs = static_cast<CallbackArgs*>(args);
 	u32 readResult           = castedArgs->mArchive->readResource(castedArgs->_08, castedArgs->_0C, castedArgs->_04);
-	if (castedArgs->mCallback != nullptr) {
+	if (castedArgs->mCallback) {
 		castedArgs->mCallback(readResult, castedArgs->_14);
 	}
 	if (readResult == 0) {
-		if (castedArgs->mQueue != nullptr) {
-			OSSendMessage(castedArgs->mQueue, (void*)-1, OS_MESSAGE_BLOCKING);
+		if (castedArgs->mQueue) {
+			OSSendMessage(castedArgs->mQueue, (void*)-1, OS_MESSAGE_BLOCK);
 		}
 	} else {
-		if (castedArgs->mQueue != nullptr) {
-			OSSendMessage(castedArgs->mQueue, (void*)0, OS_MESSAGE_BLOCKING);
+		if (castedArgs->mQueue) {
+			OSSendMessage(castedArgs->mQueue, (void*)0, OS_MESSAGE_BLOCK);
 		}
 	}
 }
@@ -52,88 +48,21 @@ void JASResArcLoader::loadResourceCallback(void* args)
  * Size:	0000D0
  * loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl
  */
-int JASResArcLoader::loadResource(JKRArchive* archive, unsigned short p2, unsigned char* p3, unsigned long p4)
+int JASResArcLoader::loadResource(JKRArchive* archive, u16 p2, u8* p3, u32 p4)
 {
 	OSMessageQueue queue;
-	void* queueBuffer[1];
-	void* receiveBuffer[1];
-	OSInitMessageQueue(&queue, queueBuffer, OS_MESSAGE_BLOCKING);
-	CallbackArgs args;
+	OSMessage queueBuffer;
+	OSMessage receiveBuffer;
+	OSInitMessageQueue(&queue, &queueBuffer, OS_MESSAGE_BLOCK);
+	CallbackArgs args(p2, p3, p4, archive);
+	args.mQueue = &queue;
 
-	// TODO: Next line smells like inlining of some sort.
-	args.mQueue = nullptr;
-
-	args.mArchive  = archive;
-	args._04       = p2;
-	args._08       = p3;
-	args._0C       = p4;
-	args.mCallback = nullptr;
-	args._14       = 0;
-	args.mQueue    = &queue;
 	if (JASDvd::getThreadPointer()->sendCmdMsg(loadResourceCallback, &args, sizeof(CallbackArgs)) == false) {
 		return 0;
 	}
-	OSReceiveMessage(&queue, receiveBuffer, OS_MESSAGE_BLOCKING);
-	return p4 & ~(((u32)*receiveBuffer) != 0);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x58(r1)
-	  mr        r30, r5
-	  li        r5, 0x1
-	  stw       r29, 0x54(r1)
-	  mr        r29, r4
-	  addi      r4, r1, 0xC
-	  stw       r28, 0x50(r1)
-	  mr        r28, r3
-	  addi      r3, r1, 0x2C
-	  bl        0x47D44
-	  li        r3, 0
-	  addi      r0, r1, 0x2C
-	  stw       r3, 0x28(r1)
-	  stw       r28, 0x10(r1)
-	  sth       r29, 0x14(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r3, 0x20(r1)
-	  stw       r3, 0x24(r1)
-	  stw       r0, 0x28(r1)
-	  bl        -0xE18
-	  lis       r4, 0x800A
-	  addi      r5, r1, 0x10
-	  addi      r4, r4, 0x76A4
-	  li        r6, 0x1C
-	  bl        0x1210
-	  cmpwi     r3, 0
-	  bne-      .loc_0x8C
-	  li        r3, 0
-	  b         .loc_0xB0
 
-	.loc_0x8C:
-	  addi      r3, r1, 0x2C
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        0x47E0C
-	  lwz       r3, 0x8(r1)
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  srawi     r0, r0, 0x1F
-	  andc      r3, r31, r0
-
-	.loc_0xB0:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  lwz       r29, 0x54(r1)
-	  lwz       r28, 0x50(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
+	OSReceiveMessage(&queue, &receiveBuffer, OS_MESSAGE_BLOCK);
+	return (receiveBuffer) ? 0 : p4;
 }
 
 /*
@@ -141,21 +70,10 @@ int JASResArcLoader::loadResource(JKRArchive* archive, unsigned short p2, unsign
  * Address:	800A7810
  * Size:	00005C
  */
-bool JASResArcLoader::loadResourceAsync(JKRArchive* archive, unsigned short p2, unsigned char* p3, unsigned long p4,
-                                        void (*callback)(unsigned long, unsigned long), unsigned long p6)
+int JASResArcLoader::loadResourceAsync(JKRArchive* archive, u16 p2, u8* p3, u32 p4, void (*callback)(u32, u32), u32 p6)
 {
-	CallbackArgs args;
-
-	// TODO: Next two lines smells like inlining of some sort. Inlined ctor? Non-async version is different, though...
-	args.mCallback = nullptr;
-	args._14       = p6;
-
-	args.mArchive  = archive;
-	args._04       = p2;
-	args._08       = p3;
-	args._0C       = p4;
-	args.mQueue    = nullptr;
+	CallbackArgs args(p2, p3, p4, archive);
 	args.mCallback = callback;
 	args._14       = p6;
-	JASDvd::getThreadPointer()->sendCmdMsg(&loadResourceCallback, &args, sizeof(CallbackArgs));
+	return JASDvd::getThreadPointer()->sendCmdMsg(&loadResourceCallback, &args, sizeof(CallbackArgs));
 }
