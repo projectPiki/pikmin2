@@ -6,7 +6,6 @@
 gTRKInterruptVectorTable:
 .asciz "Metrowerks Target Resident Kernel for PowerPC"
 .balign 4
-lbl_80003184:
 .fill 0xD0
 
 #############################################

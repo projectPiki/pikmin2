@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__10JASIntrMgrFv
-init__10JASIntrMgrFv:
+.fn init__10JASIntrMgrFv, global
 /* 800A29F8 0009F938  38 80 00 01 */	li r4, 1
 /* 800A29FC 0009F93C  38 00 00 00 */	li r0, 0
 /* 800A2A00 0009F940  98 83 00 00 */	stb r4, 0(r3)
@@ -20,9 +19,9 @@ init__10JASIntrMgrFv:
 /* 800A2A30 0009F970  90 03 00 24 */	stw r0, 0x24(r3)
 /* 800A2A34 0009F974  90 03 00 28 */	stw r0, 0x28(r3)
 /* 800A2A38 0009F978  4E 80 00 20 */	blr 
+.endfn init__10JASIntrMgrFv
 
-.global request__10JASIntrMgrFUl
-request__10JASIntrMgrFUl:
+.fn request__10JASIntrMgrFUl, global
 /* 800A2A3C 0009F97C  38 00 00 01 */	li r0, 1
 /* 800A2A40 0009F980  88 A3 00 02 */	lbz r5, 2(r3)
 /* 800A2A44 0009F984  7C 04 20 30 */	slw r4, r0, r4
@@ -32,9 +31,9 @@ request__10JASIntrMgrFUl:
 /* 800A2A54 0009F994  7C 00 23 78 */	or r0, r0, r4
 /* 800A2A58 0009F998  98 03 00 01 */	stb r0, 1(r3)
 /* 800A2A5C 0009F99C  4E 80 00 20 */	blr 
+.endfn request__10JASIntrMgrFUl
 
-.global setIntr__10JASIntrMgrFUlPv
-setIntr__10JASIntrMgrFUlPv:
+.fn setIntr__10JASIntrMgrFUlPv, global
 /* 800A2A60 0009F9A0  38 00 00 01 */	li r0, 1
 /* 800A2A64 0009F9A4  88 E3 00 02 */	lbz r7, 2(r3)
 /* 800A2A68 0009F9A8  7C 06 20 30 */	slw r6, r0, r4
@@ -44,18 +43,18 @@ setIntr__10JASIntrMgrFUlPv:
 /* 800A2A78 0009F9B8  7C 63 02 14 */	add r3, r3, r0
 /* 800A2A7C 0009F9BC  90 A3 00 0C */	stw r5, 0xc(r3)
 /* 800A2A80 0009F9C0  4E 80 00 20 */	blr 
+.endfn setIntr__10JASIntrMgrFUlPv
 
-.global resetInter__10JASIntrMgrFUl
-resetInter__10JASIntrMgrFUl:
+.fn resetInter__10JASIntrMgrFUl, global
 /* 800A2A84 0009F9C4  38 00 00 01 */	li r0, 1
 /* 800A2A88 0009F9C8  88 A3 00 02 */	lbz r5, 2(r3)
 /* 800A2A8C 0009F9CC  7C 00 20 30 */	slw r0, r0, r4
 /* 800A2A90 0009F9D0  7C A0 00 78 */	andc r0, r5, r0
 /* 800A2A94 0009F9D4  98 03 00 02 */	stb r0, 2(r3)
 /* 800A2A98 0009F9D8  4E 80 00 20 */	blr 
+.endfn resetInter__10JASIntrMgrFUl
 
-.global checkIntr__10JASIntrMgrFv
-checkIntr__10JASIntrMgrFv:
+.fn checkIntr__10JASIntrMgrFv, global
 /* 800A2A9C 0009F9DC  88 03 00 00 */	lbz r0, 0(r3)
 /* 800A2AA0 0009F9E0  28 00 00 00 */	cmplwi r0, 0
 /* 800A2AA4 0009F9E4  40 82 00 0C */	bne .L_800A2AB0
@@ -87,9 +86,9 @@ checkIntr__10JASIntrMgrFv:
 /* 800A2AFC 0009FA3C  40 82 FF C8 */	bne .L_800A2AC4
 /* 800A2B00 0009FA40  38 60 00 00 */	li r3, 0
 /* 800A2B04 0009FA44  4E 80 00 20 */	blr 
+.endfn checkIntr__10JASIntrMgrFv
 
-.global timerProcess__10JASIntrMgrFv
-timerProcess__10JASIntrMgrFv:
+.fn timerProcess__10JASIntrMgrFv, global
 /* 800A2B08 0009FA48  80 83 00 04 */	lwz r4, 4(r3)
 /* 800A2B0C 0009FA4C  28 04 00 00 */	cmplwi r4, 0
 /* 800A2B10 0009FA50  4D 82 00 20 */	beqlr 
@@ -120,3 +119,4 @@ timerProcess__10JASIntrMgrFv:
 /* 800A2B6C 0009FAAC  80 03 00 08 */	lwz r0, 8(r3)
 /* 800A2B70 0009FAB0  90 03 00 04 */	stw r0, 4(r3)
 /* 800A2B74 0009FAB4  4E 80 00 20 */	blr 
+.endfn timerProcess__10JASIntrMgrFv

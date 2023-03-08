@@ -14,7 +14,6 @@ OSC_ENV__10JASBankMgr:
 	.4byte OSC_RELEASE_TABLE__10JASBankMgr
 	.float 1.0
 	.4byte 0x00000000
-	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

@@ -33,7 +33,7 @@ snIntCount__14JASAudioThread:
 	.skip 0x4
 .global sbPauseFlag__14JASAudioThread
 sbPauseFlag__14JASAudioThread:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

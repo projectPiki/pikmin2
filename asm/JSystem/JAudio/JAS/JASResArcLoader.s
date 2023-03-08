@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getResSize__15JASResArcLoaderFP10JKRArchiveUs
-getResSize__15JASResArcLoaderFP10JKRArchiveUs:
+.fn getResSize__15JASResArcLoaderFP10JKRArchiveUs, global
 /* 800A7670 000A45B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A7674 000A45B4  7C 08 02 A6 */	mflr r0
 /* 800A7678 000A45B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -18,9 +17,9 @@ getResSize__15JASResArcLoaderFP10JKRArchiveUs:
 /* 800A7698 000A45D8  7C 08 03 A6 */	mtlr r0
 /* 800A769C 000A45DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A76A0 000A45E0  4E 80 00 20 */	blr 
+.endfn getResSize__15JASResArcLoaderFP10JKRArchiveUs
 
-.global loadResourceCallback__15JASResArcLoaderFPv
-loadResourceCallback__15JASResArcLoaderFPv:
+.fn loadResourceCallback__15JASResArcLoaderFPv, local
 /* 800A76A4 000A45E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A76A8 000A45E8  7C 08 02 A6 */	mflr r0
 /* 800A76AC 000A45EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -63,9 +62,9 @@ loadResourceCallback__15JASResArcLoaderFPv:
 /* 800A7734 000A4674  7C 08 03 A6 */	mtlr r0
 /* 800A7738 000A4678  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A773C 000A467C  4E 80 00 20 */	blr 
+.endfn loadResourceCallback__15JASResArcLoaderFPv
 
-.global loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl
-loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl:
+.fn loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl, global
 /* 800A7740 000A4680  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800A7744 000A4684  7C 08 02 A6 */	mflr r0
 /* 800A7748 000A4688  90 01 00 64 */	stw r0, 0x64(r1)
@@ -120,9 +119,9 @@ loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl:
 /* 800A7804 000A4744  7C 08 03 A6 */	mtlr r0
 /* 800A7808 000A4748  38 21 00 60 */	addi r1, r1, 0x60
 /* 800A780C 000A474C  4E 80 00 20 */	blr 
+.endfn loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl
 
-.global loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
-loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl:
+.fn loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl, global
 /* 800A7810 000A4750  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A7814 000A4754  7C 08 02 A6 */	mflr r0
 /* 800A7818 000A4758  90 01 00 34 */	stw r0, 0x34(r1)
@@ -146,3 +145,4 @@ loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl:
 /* 800A7860 000A47A0  7C 08 03 A6 */	mtlr r0
 /* 800A7864 000A47A4  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A7868 000A47A8  4E 80 00 20 */	blr 
+.endfn loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl

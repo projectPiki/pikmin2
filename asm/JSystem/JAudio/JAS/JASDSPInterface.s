@@ -388,7 +388,7 @@ first$389:
 	.skip 0x1
 .global init$390
 init$390:
-	.skip 0x3
+	.skip 0x1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global boot__6JASDspFPFPv_v

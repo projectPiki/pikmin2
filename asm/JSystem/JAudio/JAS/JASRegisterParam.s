@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__16JASRegisterParamFv
-__ct__16JASRegisterParamFv:
+.fn __ct__16JASRegisterParamFv, global
 /* 8009C714 00099654  38 00 00 00 */	li r0, 0
 /* 8009C718 00099658  B0 03 00 00 */	sth r0, 0(r3)
 /* 8009C71C 0009965C  B0 03 00 02 */	sth r0, 2(r3)
@@ -23,9 +22,9 @@ __ct__16JASRegisterParamFv:
 /* 8009C758 00099698  90 03 00 28 */	stw r0, 0x28(r3)
 /* 8009C75C 0009969C  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8009C760 000996A0  4E 80 00 20 */	blr 
+.endfn __ct__16JASRegisterParamFv
 
-.global init__16JASRegisterParamFv
-init__16JASRegisterParamFv:
+.fn init__16JASRegisterParamFv, global
 /* 8009C764 000996A4  39 20 00 00 */	li r9, 0
 /* 8009C768 000996A8  39 00 00 F0 */	li r8, 0xf0
 /* 8009C76C 000996AC  B1 23 00 00 */	sth r9, 0(r3)
@@ -52,9 +51,9 @@ init__16JASRegisterParamFv:
 /* 8009C7C0 00099700  91 23 00 28 */	stw r9, 0x28(r3)
 /* 8009C7C4 00099704  91 23 00 2C */	stw r9, 0x2c(r3)
 /* 8009C7C8 00099708  4E 80 00 20 */	blr 
+.endfn init__16JASRegisterParamFv
 
-.global inherit__16JASRegisterParamFRC16JASRegisterParam
-inherit__16JASRegisterParamFRC16JASRegisterParam:
+.fn inherit__16JASRegisterParamFRC16JASRegisterParam, global
 /* 8009C7CC 0009970C  39 60 00 00 */	li r11, 0
 /* 8009C7D0 00099710  A0 04 00 0C */	lhz r0, 0xc(r4)
 /* 8009C7D4 00099714  B1 63 00 00 */	sth r11, 0(r3)
@@ -83,16 +82,17 @@ inherit__16JASRegisterParamFRC16JASRegisterParam:
 /* 8009C830 00099770  91 63 00 28 */	stw r11, 0x28(r3)
 /* 8009C834 00099774  91 63 00 2C */	stw r11, 0x2c(r3)
 /* 8009C838 00099778  4E 80 00 20 */	blr 
+.endfn inherit__16JASRegisterParamFRC16JASRegisterParam
 
-.global getBankNumber__16JASRegisterParamCFv
-getBankNumber__16JASRegisterParamCFv:
+.fn getBankNumber__16JASRegisterParamCFv, global
 /* 8009C83C 0009977C  A0 03 00 0C */	lhz r0, 0xc(r3)
 /* 8009C840 00099780  7C 00 46 70 */	srawi r0, r0, 8
 /* 8009C844 00099784  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8009C848 00099788  4E 80 00 20 */	blr 
+.endfn getBankNumber__16JASRegisterParamCFv
 
-.global getProgramNumber__16JASRegisterParamCFv
-getProgramNumber__16JASRegisterParamCFv:
+.fn getProgramNumber__16JASRegisterParamCFv, global
 /* 8009C84C 0009978C  A0 03 00 0C */	lhz r0, 0xc(r3)
 /* 8009C850 00099790  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8009C854 00099794  4E 80 00 20 */	blr 
+.endfn getProgramNumber__16JASRegisterParamCFv

@@ -23,8 +23,7 @@ calc_sw_table__10JASChannel:
 	.4byte 0x01020102
 	.4byte 0x02020002
 	.4byte 0x02010202
-	.4byte 0x02000000
-	.4byte 0x00000000
+	.byte 0x02
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -61,7 +60,6 @@ __vt__10JASChannel:
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

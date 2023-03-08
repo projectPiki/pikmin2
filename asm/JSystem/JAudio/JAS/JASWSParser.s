@@ -1,13 +1,12 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sUsedHeapSize__11JASWSParser
-sUsedHeapSize__11JASWSParser:
-	.skip 0x8
+.obj sUsedHeapSize__11JASWSParser, local
+	.skip 0x4
+.endobj sUsedHeapSize__11JASWSParser
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getGroupCount__11JASWSParserFPv
-getGroupCount__11JASWSParserFPv:
+.fn getGroupCount__11JASWSParserFPv, global
 /* 80098A68 000959A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80098A6C 000959AC  7C 08 02 A6 */	mflr r0
 /* 80098A70 000959B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -18,9 +17,9 @@ getGroupCount__11JASWSParserFPv:
 /* 80098A84 000959C4  7C 08 03 A6 */	mtlr r0
 /* 80098A88 000959C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80098A8C 000959CC  4E 80 00 20 */	blr 
+.endfn getGroupCount__11JASWSParserFPv
 
-.global createBasicWaveBank__11JASWSParserFPv
-createBasicWaveBank__11JASWSParserFPv:
+.fn createBasicWaveBank__11JASWSParserFPv, global
 /* 80098A90 000959D0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80098A94 000959D4  7C 08 02 A6 */	mflr r0
 /* 80098A98 000959D8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -158,9 +157,9 @@ createBasicWaveBank__11JASWSParserFPv:
 /* 80098C88 00095BC8  7C 08 03 A6 */	mtlr r0
 /* 80098C8C 00095BCC  38 21 00 70 */	addi r1, r1, 0x70
 /* 80098C90 00095BD0  4E 80 00 20 */	blr 
+.endfn createBasicWaveBank__11JASWSParserFPv
 
-.global createSimpleWaveBank__11JASWSParserFPv
-createSimpleWaveBank__11JASWSParserFPv:
+.fn createSimpleWaveBank__11JASWSParserFPv, global
 /* 80098C94 00095BD4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80098C98 00095BD8  7C 08 02 A6 */	mflr r0
 /* 80098C9C 00095BDC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -296,9 +295,9 @@ createSimpleWaveBank__11JASWSParserFPv:
 /* 80098E80 00095DC0  7C 08 03 A6 */	mtlr r0
 /* 80098E84 00095DC4  38 21 00 60 */	addi r1, r1, 0x60
 /* 80098E88 00095DC8  4E 80 00 20 */	blr 
+.endfn createSimpleWaveBank__11JASWSParserFPv
 
-.global "JSUConvertOffsetToPtr<Q211JASWSParser9TCtrlWave>__FPCvUl"
-"JSUConvertOffsetToPtr<Q211JASWSParser9TCtrlWave>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q211JASWSParser9TCtrlWave>__FPCvUl", weak
 /* 80098E8C 00095DCC  28 04 00 00 */	cmplwi r4, 0
 /* 80098E90 00095DD0  40 82 00 0C */	bne .L_80098E9C
 /* 80098E94 00095DD4  38 60 00 00 */	li r3, 0
@@ -306,9 +305,9 @@ createSimpleWaveBank__11JASWSParserFPv:
 .L_80098E9C:
 /* 80098E9C 00095DDC  7C 63 22 14 */	add r3, r3, r4
 /* 80098EA0 00095DE0  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q211JASWSParser9TCtrlWave>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q211JASWSParser5TWave>__FPCvUl"
-"JSUConvertOffsetToPtr<Q211JASWSParser5TWave>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q211JASWSParser5TWave>__FPCvUl", weak
 /* 80098EA4 00095DE4  28 04 00 00 */	cmplwi r4, 0
 /* 80098EA8 00095DE8  40 82 00 0C */	bne .L_80098EB4
 /* 80098EAC 00095DEC  38 60 00 00 */	li r3, 0
@@ -316,9 +315,9 @@ createSimpleWaveBank__11JASWSParserFPv:
 .L_80098EB4:
 /* 80098EB4 00095DF4  7C 63 22 14 */	add r3, r3, r4
 /* 80098EB8 00095DF8  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q211JASWSParser5TWave>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q211JASWSParser12TWaveArchive>__FPCvUl"
-"JSUConvertOffsetToPtr<Q211JASWSParser12TWaveArchive>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q211JASWSParser12TWaveArchive>__FPCvUl", weak
 /* 80098EBC 00095DFC  28 04 00 00 */	cmplwi r4, 0
 /* 80098EC0 00095E00  40 82 00 0C */	bne .L_80098ECC
 /* 80098EC4 00095E04  38 60 00 00 */	li r3, 0
@@ -326,9 +325,9 @@ createSimpleWaveBank__11JASWSParserFPv:
 .L_80098ECC:
 /* 80098ECC 00095E0C  7C 63 22 14 */	add r3, r3, r4
 /* 80098ED0 00095E10  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q211JASWSParser12TWaveArchive>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q211JASWSParser16TWaveArchiveBank>__FPCvUl"
-"JSUConvertOffsetToPtr<Q211JASWSParser16TWaveArchiveBank>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q211JASWSParser16TWaveArchiveBank>__FPCvUl", weak
 /* 80098ED4 00095E14  28 04 00 00 */	cmplwi r4, 0
 /* 80098ED8 00095E18  40 82 00 0C */	bne .L_80098EE4
 /* 80098EDC 00095E1C  38 60 00 00 */	li r3, 0
@@ -336,9 +335,9 @@ createSimpleWaveBank__11JASWSParserFPv:
 .L_80098EE4:
 /* 80098EE4 00095E24  7C 63 22 14 */	add r3, r3, r4
 /* 80098EE8 00095E28  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q211JASWSParser16TWaveArchiveBank>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q211JASWSParser5TCtrl>__FPCvUl"
-"JSUConvertOffsetToPtr<Q211JASWSParser5TCtrl>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q211JASWSParser5TCtrl>__FPCvUl", weak
 /* 80098EEC 00095E2C  28 04 00 00 */	cmplwi r4, 0
 /* 80098EF0 00095E30  40 82 00 0C */	bne .L_80098EFC
 /* 80098EF4 00095E34  38 60 00 00 */	li r3, 0
@@ -346,9 +345,9 @@ createSimpleWaveBank__11JASWSParserFPv:
 .L_80098EFC:
 /* 80098EFC 00095E3C  7C 63 22 14 */	add r3, r3, r4
 /* 80098F00 00095E40  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q211JASWSParser5TCtrl>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlScene>__FPCvUl"
-"JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlScene>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlScene>__FPCvUl", weak
 /* 80098F04 00095E44  28 04 00 00 */	cmplwi r4, 0
 /* 80098F08 00095E48  40 82 00 0C */	bne .L_80098F14
 /* 80098F0C 00095E4C  38 60 00 00 */	li r3, 0
@@ -356,9 +355,9 @@ createSimpleWaveBank__11JASWSParserFPv:
 .L_80098F14:
 /* 80098F14 00095E54  7C 63 22 14 */	add r3, r3, r4
 /* 80098F18 00095E58  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlScene>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlGroup>__FPCvUl"
-"JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlGroup>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlGroup>__FPCvUl", weak
 /* 80098F1C 00095E5C  28 04 00 00 */	cmplwi r4, 0
 /* 80098F20 00095E60  40 82 00 0C */	bne .L_80098F2C
 /* 80098F24 00095E64  38 60 00 00 */	li r3, 0
@@ -366,3 +365,4 @@ createSimpleWaveBank__11JASWSParserFPv:
 .L_80098F2C:
 /* 80098F2C 00095E6C  7C 63 22 14 */	add r3, r3, r4
 /* 80098F30 00095E70  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlGroup>__FPCvUl"

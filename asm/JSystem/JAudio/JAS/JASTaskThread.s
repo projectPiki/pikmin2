@@ -1,16 +1,15 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13JASTaskThread
-__vt__13JASTaskThread:
+.obj __vt__13JASTaskThread, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__13JASTaskThreadFv
 	.4byte run__13JASTaskThreadFv
+.endobj __vt__13JASTaskThread
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__13JASTaskThreadFiiUl
-__ct__13JASTaskThreadFiiUl:
+.fn __ct__13JASTaskThreadFiiUl, global
 /* 800A8840 000A5780  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A8844 000A5784  7C 08 02 A6 */	mflr r0
 /* 800A8848 000A5788  7C 87 23 78 */	mr r7, r4
@@ -35,9 +34,9 @@ __ct__13JASTaskThreadFiiUl:
 /* 800A8894 000A57D4  7C 08 03 A6 */	mtlr r0
 /* 800A8898 000A57D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A889C 000A57DC  4E 80 00 20 */	blr 
+.endfn __ct__13JASTaskThreadFiiUl
 
-.global __dt__13JASTaskThreadFv
-__dt__13JASTaskThreadFv:
+.fn __dt__13JASTaskThreadFv, global
 /* 800A88A0 000A57E0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A88A4 000A57E4  7C 08 02 A6 */	mflr r0
 /* 800A88A8 000A57E8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -121,9 +120,9 @@ __dt__13JASTaskThreadFv:
 /* 800A89BC 000A58FC  7C 08 03 A6 */	mtlr r0
 /* 800A89C0 000A5900  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A89C4 000A5904  4E 80 00 20 */	blr 
+.endfn __dt__13JASTaskThreadFv
 
-.global sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
-sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl:
+.fn sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl, global
 /* 800A89C8 000A5908  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A89CC 000A590C  7C 08 02 A6 */	mflr r0
 /* 800A89D0 000A5910  90 01 00 34 */	stw r0, 0x34(r1)
@@ -295,9 +294,9 @@ sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl:
 /* 800A8C1C 000A5B5C  7C 08 03 A6 */	mtlr r0
 /* 800A8C20 000A5B60  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A8C24 000A5B64  4E 80 00 20 */	blr 
+.endfn sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
 
-.global sendCmdMsg__13JASTaskThreadFPFPv_vPv
-sendCmdMsg__13JASTaskThreadFPFPv_vPv:
+.fn sendCmdMsg__13JASTaskThreadFPFPv_vPv, global
 /* 800A8C28 000A5B68  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A8C2C 000A5B6C  7C 08 02 A6 */	mflr r0
 /* 800A8C30 000A5B70  90 01 00 34 */	stw r0, 0x34(r1)
@@ -457,9 +456,9 @@ sendCmdMsg__13JASTaskThreadFPFPv_vPv:
 /* 800A8E50 000A5D90  7C 08 03 A6 */	mtlr r0
 /* 800A8E54 000A5D94  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A8E58 000A5D98  4E 80 00 20 */	blr 
+.endfn sendCmdMsg__13JASTaskThreadFPFPv_vPv
 
-.global run__13JASTaskThreadFv
-run__13JASTaskThreadFv:
+.fn run__13JASTaskThreadFv, global
 /* 800A8E5C 000A5D9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A8E60 000A5DA0  7C 08 02 A6 */	mflr r0
 /* 800A8E64 000A5DA4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -551,3 +550,4 @@ run__13JASTaskThreadFv:
 /* 800A8F98 000A5ED8  80 61 00 08 */	lwz r3, 8(r1)
 /* 800A8F9C 000A5EDC  48 04 6C A9 */	bl OSUnlockMutex
 /* 800A8FA0 000A5EE0  4B FF FF 0C */	b .L_800A8EAC
+.endfn run__13JASTaskThreadFv

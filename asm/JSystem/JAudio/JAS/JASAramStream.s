@@ -52,7 +52,7 @@ sSystemPauseFlag__13JASAramStream:
 	.skip 0x1
 .global sFatalErrorFlag__13JASAramStream
 sFatalErrorFlag__13JASAramStream:
-	.skip 0x7
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -75,7 +75,6 @@ lbl_80516EC0:
 .global one$870
 one$870:
 	.4byte 0x00000001
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initSystem__13JASAramStreamFUlUl

@@ -1,39 +1,36 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13JASInstEffect
-__vt__13JASInstEffect:
+.obj __vt__13JASInstEffect, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-	.4byte 0
+.endobj __vt__13JASInstEffect
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sUsedHeapSize__12JASBNKParser
-sUsedHeapSize__12JASBNKParser:
-	.skip 0x8
+.obj sUsedHeapSize__12JASBNKParser, local
+	.skip 0x4
+.endobj sUsedHeapSize__12JASBNKParser
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516CB8
-lbl_80516CB8:
+.obj lbl_80516CB8, local
 	.float 1.0
-.global lbl_80516CBC
-lbl_80516CBC:
+.endobj lbl_80516CB8
+.obj lbl_80516CBC, local
 	.4byte 0x00000000
-.global lbl_80516CC0
-lbl_80516CC0:
+.endobj lbl_80516CBC
+.obj lbl_80516CC0, local
 	.4byte 0x42FE0000
-	.4byte 0x00000000
-.global lbl_80516CC8
-lbl_80516CC8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_80516CD0
-lbl_80516CD0:
+.endobj lbl_80516CC0
+.balign 8
+.obj lbl_80516CC8, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516CC8
+.obj lbl_80516CD0, local
 	.float 0.5
-	.4byte 0x00000000
+.endobj lbl_80516CD0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createBasicBank__12JASBNKParserFPv

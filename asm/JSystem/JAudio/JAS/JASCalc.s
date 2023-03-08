@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global imixcopy__7JASCalcFPCsPCsPsUl
-imixcopy__7JASCalcFPCsPCsPsUl:
+.fn imixcopy__7JASCalcFPCsPCsPsUl, global
 /* 800A5EBC 000A2DFC  28 06 00 00 */	cmplwi r6, 0
 /* 800A5EC0 000A2E00  4D 82 00 20 */	beqlr 
 /* 800A5EC4 000A2E04  54 C0 E8 FF */	rlwinm. r0, r6, 0x1d, 3, 0x1f
@@ -59,9 +58,9 @@ imixcopy__7JASCalcFPCsPCsPsUl:
 /* 800A5F84 000A2EC4  38 A5 00 04 */	addi r5, r5, 4
 /* 800A5F88 000A2EC8  42 00 FF E4 */	bdnz .L_800A5F6C
 /* 800A5F8C 000A2ECC  4E 80 00 20 */	blr 
+.endfn imixcopy__7JASCalcFPCsPCsPsUl
 
-.global bcopy__7JASCalcFPCvPvUl
-bcopy__7JASCalcFPCvPvUl:
+.fn bcopy__7JASCalcFPCvPvUl, global
 /* 800A5F90 000A2ED0  54 67 07 BE */	clrlwi r7, r3, 0x1e
 /* 800A5F94 000A2ED4  54 86 07 BE */	clrlwi r6, r4, 0x1e
 /* 800A5F98 000A2ED8  7C 07 30 40 */	cmplw r7, r6
@@ -262,9 +261,9 @@ bcopy__7JASCalcFPCvPvUl:
 /* 800A6258 000A3198  38 84 00 01 */	addi r4, r4, 1
 /* 800A625C 000A319C  42 00 FF F0 */	bdnz .L_800A624C
 /* 800A6260 000A31A0  4E 80 00 20 */	blr 
+.endfn bcopy__7JASCalcFPCvPvUl
 
-.global bzero__7JASCalcFPvUl
-bzero__7JASCalcFPvUl:
+.fn bzero__7JASCalcFPvUl, global
 /* 800A6264 000A31A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A6268 000A31A8  7C 08 02 A6 */	mflr r0
 /* 800A626C 000A31AC  7C 66 1B 78 */	mr r6, r3
@@ -443,9 +442,9 @@ bzero__7JASCalcFPvUl:
 /* 800A64CC 000A340C  7C 08 03 A6 */	mtlr r0
 /* 800A64D0 000A3410  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A64D4 000A3414  4E 80 00 20 */	blr 
+.endfn bzero__7JASCalcFPvUl
 
-.global "clamp<s,l>__7JASCalcFl"
-"clamp<s,l>__7JASCalcFl":
+.fn "clamp<s,l>__7JASCalcFl", weak
 /* 800A64D8 000A3418  2C 03 80 00 */	cmpwi r3, -32768
 /* 800A64DC 000A341C  41 81 00 0C */	bgt .L_800A64E8
 /* 800A64E0 000A3420  38 60 80 00 */	li r3, -32768
@@ -458,3 +457,4 @@ bzero__7JASCalcFPvUl:
 .L_800A64F8:
 /* 800A64F8 000A3438  7C 03 03 78 */	mr r3, r0
 /* 800A64FC 000A343C  4E 80 00 20 */	blr 
+.endfn "clamp<s,l>__7JASCalcFl"

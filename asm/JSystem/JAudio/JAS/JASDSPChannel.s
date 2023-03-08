@@ -1,13 +1,12 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sDspChannels__13JASDSPChannel
-sDspChannels__13JASDSPChannel:
-	.skip 0x8
+.obj sDspChannels__13JASDSPChannel, global
+	.skip 0x4
+.endobj sDspChannels__13JASDSPChannel
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__13JASDSPChannelFv
-__ct__13JASDSPChannelFv:
+.fn __ct__13JASDSPChannelFv, global
 /* 800A4B48 000A1A88  38 00 00 01 */	li r0, 1
 /* 800A4B4C 000A1A8C  38 80 FF FF */	li r4, -1
 /* 800A4B50 000A1A90  90 03 00 00 */	stw r0, 0(r3)
@@ -19,23 +18,23 @@ __ct__13JASDSPChannelFv:
 /* 800A4B68 000A1AA8  90 03 00 14 */	stw r0, 0x14(r3)
 /* 800A4B6C 000A1AAC  90 03 00 18 */	stw r0, 0x18(r3)
 /* 800A4B70 000A1AB0  4E 80 00 20 */	blr 
+.endfn __ct__13JASDSPChannelFv
 
-.global free__13JASDSPChannelFv
-free__13JASDSPChannelFv:
+.fn free__13JASDSPChannelFv, global
 /* 800A4B74 000A1AB4  38 00 00 00 */	li r0, 0
 /* 800A4B78 000A1AB8  90 03 00 10 */	stw r0, 0x10(r3)
 /* 800A4B7C 000A1ABC  90 03 00 14 */	stw r0, 0x14(r3)
 /* 800A4B80 000A1AC0  4E 80 00 20 */	blr 
+.endfn free__13JASDSPChannelFv
 
-.global start__13JASDSPChannelFv
-start__13JASDSPChannelFv:
+.fn start__13JASDSPChannelFv, global
 /* 800A4B84 000A1AC4  80 03 00 08 */	lwz r0, 8(r3)
 /* 800A4B88 000A1AC8  60 00 00 01 */	ori r0, r0, 1
 /* 800A4B8C 000A1ACC  90 03 00 08 */	stw r0, 8(r3)
 /* 800A4B90 000A1AD0  4E 80 00 20 */	blr 
+.endfn start__13JASDSPChannelFv
 
-.global drop__13JASDSPChannelFv
-drop__13JASDSPChannelFv:
+.fn drop__13JASDSPChannelFv, global
 /* 800A4B94 000A1AD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A4B98 000A1AD8  7C 08 02 A6 */	mflr r0
 /* 800A4B9C 000A1ADC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -72,9 +71,9 @@ drop__13JASDSPChannelFv:
 /* 800A4C10 000A1B50  7C 08 03 A6 */	mtlr r0
 /* 800A4C14 000A1B54  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A4C18 000A1B58  4E 80 00 20 */	blr 
+.endfn drop__13JASDSPChannelFv
 
-.global initAll__13JASDSPChannelFv
-initAll__13JASDSPChannelFv:
+.fn initAll__13JASDSPChannelFv, global
 /* 800A4C1C 000A1B5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A4C20 000A1B60  7C 08 02 A6 */	mflr r0
 /* 800A4C24 000A1B64  38 60 07 10 */	li r3, 0x710
@@ -109,9 +108,9 @@ initAll__13JASDSPChannelFv:
 /* 800A4C94 000A1BD4  7C 08 03 A6 */	mtlr r0
 /* 800A4C98 000A1BD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A4C9C 000A1BDC  4E 80 00 20 */	blr 
+.endfn initAll__13JASDSPChannelFv
 
-.global alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
-alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv:
+.fn alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv, global
 /* 800A4CA0 000A1BE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A4CA4 000A1BE4  7C 08 02 A6 */	mflr r0
 /* 800A4CA8 000A1BE8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -171,9 +170,9 @@ alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv:
 /* 800A4D70 000A1CB0  7C 08 03 A6 */	mtlr r0
 /* 800A4D74 000A1CB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A4D78 000A1CB8  4E 80 00 20 */	blr 
+.endfn alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
 
-.global allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
-allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv:
+.fn allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv, global
 /* 800A4D7C 000A1CBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A4D80 000A1CC0  7C 08 02 A6 */	mflr r0
 /* 800A4D84 000A1CC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -235,15 +234,15 @@ allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv:
 /* 800A4E54 000A1D94  7C 08 03 A6 */	mtlr r0
 /* 800A4E58 000A1D98  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A4E5C 000A1D9C  4E 80 00 20 */	blr 
+.endfn allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
 
-.global setPriority__13JASDSPChannelFUc
-setPriority__13JASDSPChannelFUc:
+.fn setPriority__13JASDSPChannelFUc, global
 /* 800A4E60 000A1DA0  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800A4E64 000A1DA4  B0 03 00 04 */	sth r0, 4(r3)
 /* 800A4E68 000A1DA8  4E 80 00 20 */	blr 
+.endfn setPriority__13JASDSPChannelFUc
 
-.global getLowestChannel__13JASDSPChannelFi
-getLowestChannel__13JASDSPChannelFi:
+.fn getLowestChannel__13JASDSPChannelFi, global
 /* 800A4E6C 000A1DAC  80 AD 8A 80 */	lwz r5, sDspChannels__13JASDSPChannel@sda21(r13)
 /* 800A4E70 000A1DB0  38 00 00 20 */	li r0, 0x20
 /* 800A4E74 000A1DB4  38 C0 00 FF */	li r6, 0xff
@@ -307,9 +306,9 @@ getLowestChannel__13JASDSPChannelFi:
 /* 800A4F3C 000A1E7C  1C 07 00 1C */	mulli r0, r7, 0x1c
 /* 800A4F40 000A1E80  7C 65 02 14 */	add r3, r5, r0
 /* 800A4F44 000A1E84  4E 80 00 20 */	blr 
+.endfn getLowestChannel__13JASDSPChannelFi
 
-.global updateProc__13JASDSPChannelFv
-updateProc__13JASDSPChannelFv:
+.fn updateProc__13JASDSPChannelFv, global
 /* 800A4F48 000A1E88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A4F4C 000A1E8C  7C 08 02 A6 */	mflr r0
 /* 800A4F50 000A1E90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -445,9 +444,9 @@ updateProc__13JASDSPChannelFv:
 /* 800A5120 000A2060  7C 08 03 A6 */	mtlr r0
 /* 800A5124 000A2064  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A5128 000A2068  4E 80 00 20 */	blr 
+.endfn updateProc__13JASDSPChannelFv
 
-.global updateAll__13JASDSPChannelFv
-updateAll__13JASDSPChannelFv:
+.fn updateAll__13JASDSPChannelFv, global
 /* 800A512C 000A206C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A5130 000A2070  7C 08 02 A6 */	mflr r0
 /* 800A5134 000A2074  90 01 00 14 */	stw r0, 0x14(r1)
@@ -479,9 +478,9 @@ updateAll__13JASDSPChannelFv:
 /* 800A5194 000A20D4  7C 08 03 A6 */	mtlr r0
 /* 800A5198 000A20D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A519C 000A20DC  4E 80 00 20 */	blr 
+.endfn updateAll__13JASDSPChannelFv
 
-.global killActiveChannel__13JASDSPChannelFv
-killActiveChannel__13JASDSPChannelFv:
+.fn killActiveChannel__13JASDSPChannelFv, global
 /* 800A51A0 000A20E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A51A4 000A20E4  7C 08 02 A6 */	mflr r0
 /* 800A51A8 000A20E8  38 A0 00 00 */	li r5, 0
@@ -581,10 +580,11 @@ killActiveChannel__13JASDSPChannelFv:
 /* 800A52F4 000A2234  7C 08 03 A6 */	mtlr r0
 /* 800A52F8 000A2238  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A52FC 000A223C  4E 80 00 20 */	blr 
+.endfn killActiveChannel__13JASDSPChannelFv
 
-.global getHandle__13JASDSPChannelFUl
-getHandle__13JASDSPChannelFUl:
+.fn getHandle__13JASDSPChannelFUl, global
 /* 800A5300 000A2240  1C 03 00 1C */	mulli r0, r3, 0x1c
 /* 800A5304 000A2244  80 6D 8A 80 */	lwz r3, sDspChannels__13JASDSPChannel@sda21(r13)
 /* 800A5308 000A2248  7C 63 02 14 */	add r3, r3, r0
 /* 800A530C 000A224C  4E 80 00 20 */	blr 
+.endfn getHandle__13JASDSPChannelFUl

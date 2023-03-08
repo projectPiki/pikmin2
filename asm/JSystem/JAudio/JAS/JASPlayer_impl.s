@@ -395,22 +395,22 @@ sTreTable__9JASPlayer:
 	.4byte 0x00000014
 	.4byte 0x7FFF000D
 	.4byte 0x00000001
-	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sV0$663
-sV0$663:
+.obj sV0$663, local
 	.skip 0x4
-.global init$664
-init$664:
+.endobj sV0$663
+.obj init$664, local
+	.skip 0x1
+.endobj init$664
+.balign 4
+.obj sV1$666, local
 	.skip 0x4
-.global sV1$666
-sV1$666:
-	.skip 0x4
-.global init$667
-init$667:
-	.skip 0x4
+.endobj sV1$666
+.obj init$667, local
+	.skip 0x1
+.endobj init$667
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

@@ -9,19 +9,21 @@ lbl_constructor:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global JASDram
-JASDram:
+.obj JASDram, global
 	.skip 0x4
-sAramBase__9JASKernel:
+.endobj JASDram
+.obj sAramBase__9JASKernel, local
 	.skip 0x4
-sSystemHeap__9JASKernel:
+.endobj sAramBase__9JASKernel
+.obj sSystemHeap__9JASKernel, local
 	.skip 0x4
-sCommandHeap__9JASKernel:
+.endobj sSystemHeap__9JASKernel
+.obj sCommandHeap__9JASKernel, local
 	.skip 0x4
+.endobj sCommandHeap__9JASKernel
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__7JASHeapFP11JASDisposer
-__ct__7JASHeapFP11JASDisposer:
+.fn __ct__7JASHeapFP11JASDisposer, global
 /* 800A6A9C 000A39DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A6AA0 000A39E0  7C 08 02 A6 */	mflr r0
 /* 800A6AA4 000A39E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -51,9 +53,9 @@ __ct__7JASHeapFP11JASDisposer:
 /* 800A6B04 000A3A44  7C 08 03 A6 */	mtlr r0
 /* 800A6B08 000A3A48  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A6B0C 000A3A4C  4E 80 00 20 */	blr 
+.endfn __ct__7JASHeapFP11JASDisposer
 
-.global alloc__7JASHeapFP7JASHeapUl
-alloc__7JASHeapFP7JASHeapUl:
+.fn alloc__7JASHeapFP7JASHeapUl, global
 /* 800A6B10 000A3A50  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A6B14 000A3A54  7C 08 02 A6 */	mflr r0
 /* 800A6B18 000A3A58  90 01 00 34 */	stw r0, 0x34(r1)
@@ -181,9 +183,9 @@ alloc__7JASHeapFP7JASHeapUl:
 /* 800A6CD4 000A3C14  7C 08 03 A6 */	mtlr r0
 /* 800A6CD8 000A3C18  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A6CDC 000A3C1C  4E 80 00 20 */	blr 
+.endfn alloc__7JASHeapFP7JASHeapUl
 
-.global allocTail__7JASHeapFP7JASHeapUl
-allocTail__7JASHeapFP7JASHeapUl:
+.fn allocTail__7JASHeapFP7JASHeapUl, global
 /* 800A6CE0 000A3C20  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A6CE4 000A3C24  7C 08 02 A6 */	mflr r0
 /* 800A6CE8 000A3C28  90 01 00 34 */	stw r0, 0x34(r1)
@@ -246,9 +248,9 @@ allocTail__7JASHeapFP7JASHeapUl:
 /* 800A6DBC 000A3CFC  7C 08 03 A6 */	mtlr r0
 /* 800A6DC0 000A3D00  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A6DC4 000A3D04  4E 80 00 20 */	blr 
+.endfn allocTail__7JASHeapFP7JASHeapUl
 
-.global free__7JASHeapFv
-free__7JASHeapFv:
+.fn free__7JASHeapFv, global
 /* 800A6DC8 000A3D08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A6DCC 000A3D0C  7C 08 02 A6 */	mflr r0
 /* 800A6DD0 000A3D10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -333,9 +335,9 @@ free__7JASHeapFv:
 /* 800A6EE0 000A3E20  7C 08 03 A6 */	mtlr r0
 /* 800A6EE4 000A3E24  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A6EE8 000A3E28  4E 80 00 20 */	blr 
+.endfn free__7JASHeapFv
 
-.global insertChild__7JASHeapFP7JASHeapP7JASHeapPvUlb
-insertChild__7JASHeapFP7JASHeapP7JASHeapPvUlb:
+.fn insertChild__7JASHeapFP7JASHeapP7JASHeapPvUlb, global
 /* 800A6EEC 000A3E2C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A6EF0 000A3E30  7C 08 02 A6 */	mflr r0
 /* 800A6EF4 000A3E34  90 01 00 34 */	stw r0, 0x34(r1)
@@ -399,9 +401,9 @@ insertChild__7JASHeapFP7JASHeapP7JASHeapPvUlb:
 /* 800A6FC0 000A3F00  7C 08 03 A6 */	mtlr r0
 /* 800A6FC4 000A3F04  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A6FC8 000A3F08  4E 80 00 20 */	blr 
+.endfn insertChild__7JASHeapFP7JASHeapP7JASHeapPvUlb
 
-.global getTailHeap__7JASHeapFv
-getTailHeap__7JASHeapFv:
+.fn getTailHeap__7JASHeapFv, global
 /* 800A6FCC 000A3F0C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A6FD0 000A3F10  7C 08 02 A6 */	mflr r0
 /* 800A6FD4 000A3F14  90 01 00 24 */	stw r0, 0x24(r1)
@@ -441,9 +443,9 @@ getTailHeap__7JASHeapFv:
 /* 800A704C 000A3F8C  7C 08 03 A6 */	mtlr r0
 /* 800A7050 000A3F90  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A7054 000A3F94  4E 80 00 20 */	blr 
+.endfn getTailHeap__7JASHeapFv
 
-.global getTailOffset__7JASHeapFv
-getTailOffset__7JASHeapFv:
+.fn getTailOffset__7JASHeapFv, global
 /* 800A7058 000A3F98  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A705C 000A3F9C  7C 08 02 A6 */	mflr r0
 /* 800A7060 000A3FA0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -499,9 +501,9 @@ getTailOffset__7JASHeapFv:
 /* 800A7110 000A4050  7C 08 03 A6 */	mtlr r0
 /* 800A7114 000A4054  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A7118 000A4058  4E 80 00 20 */	blr 
+.endfn getTailOffset__7JASHeapFv
 
-.global getCurOffset__7JASHeapFv
-getCurOffset__7JASHeapFv:
+.fn getCurOffset__7JASHeapFv, global
 /* 800A711C 000A405C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A7120 000A4060  7C 08 02 A6 */	mflr r0
 /* 800A7124 000A4064  90 01 00 24 */	stw r0, 0x24(r1)
@@ -530,17 +532,17 @@ getCurOffset__7JASHeapFv:
 /* 800A7178 000A40B8  7C 08 03 A6 */	mtlr r0
 /* 800A717C 000A40BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A7180 000A40C0  4E 80 00 20 */	blr 
+.endfn getCurOffset__7JASHeapFv
 
-.global __ct__17JASGenericMemPoolFv
-__ct__17JASGenericMemPoolFv:
+.fn __ct__17JASGenericMemPoolFv, global
 /* 800A7184 000A40C4  38 00 00 00 */	li r0, 0
 /* 800A7188 000A40C8  90 03 00 00 */	stw r0, 0(r3)
 /* 800A718C 000A40CC  90 03 00 04 */	stw r0, 4(r3)
 /* 800A7190 000A40D0  90 03 00 08 */	stw r0, 8(r3)
 /* 800A7194 000A40D4  4E 80 00 20 */	blr 
+.endfn __ct__17JASGenericMemPoolFv
 
-.global newMemPool__17JASGenericMemPoolFUli
-newMemPool__17JASGenericMemPoolFUli:
+.fn newMemPool__17JASGenericMemPoolFUli, global
 /* 800A7198 000A40D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A719C 000A40DC  7C 08 02 A6 */	mflr r0
 /* 800A71A0 000A40E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -581,9 +583,9 @@ newMemPool__17JASGenericMemPoolFUli:
 /* 800A7220 000A4160  7C 08 03 A6 */	mtlr r0
 /* 800A7224 000A4164  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A7228 000A4168  4E 80 00 20 */	blr 
+.endfn newMemPool__17JASGenericMemPoolFUli
 
-.global alloc__17JASGenericMemPoolFUl
-alloc__17JASGenericMemPoolFUl:
+.fn alloc__17JASGenericMemPoolFUl, global
 /* 800A722C 000A416C  80 A3 00 00 */	lwz r5, 0(r3)
 /* 800A7230 000A4170  28 05 00 00 */	cmplwi r5, 0
 /* 800A7234 000A4174  40 82 00 0C */	bne .L_800A7240
@@ -603,9 +605,9 @@ alloc__17JASGenericMemPoolFUl:
 .L_800A7268:
 /* 800A7268 000A41A8  7C A3 2B 78 */	mr r3, r5
 /* 800A726C 000A41AC  4E 80 00 20 */	blr 
+.endfn alloc__17JASGenericMemPoolFUl
 
-.global free__17JASGenericMemPoolFPvUl
-free__17JASGenericMemPoolFPvUl:
+.fn free__17JASGenericMemPoolFPvUl, global
 /* 800A7270 000A41B0  38 00 00 00 */	li r0, 0
 /* 800A7274 000A41B4  90 04 00 00 */	stw r0, 0(r4)
 /* 800A7278 000A41B8  80 A3 00 04 */	lwz r5, 4(r3)
@@ -621,9 +623,9 @@ free__17JASGenericMemPoolFPvUl:
 /* 800A7298 000A41D8  38 04 00 01 */	addi r0, r4, 1
 /* 800A729C 000A41DC  90 03 00 08 */	stw r0, 8(r3)
 /* 800A72A0 000A41E0  4E 80 00 20 */	blr 
+.endfn free__17JASGenericMemPoolFPvUl
 
-.global setupRootHeap__9JASKernelFP12JKRSolidHeapUl
-setupRootHeap__9JASKernelFP12JKRSolidHeapUl:
+.fn setupRootHeap__9JASKernelFP12JKRSolidHeapUl, global
 /* 800A72A4 000A41E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A72A8 000A41E8  7C 08 02 A6 */	mflr r0
 /* 800A72AC 000A41EC  38 A0 00 00 */	li r5, 0
@@ -698,19 +700,19 @@ setupRootHeap__9JASKernelFP12JKRSolidHeapUl:
 /* 800A73B0 000A42F0  7C 08 03 A6 */	mtlr r0
 /* 800A73B4 000A42F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A73B8 000A42F8  4E 80 00 20 */	blr 
+.endfn setupRootHeap__9JASKernelFP12JKRSolidHeapUl
 
-.global getSystemHeap__9JASKernelFv
-getSystemHeap__9JASKernelFv:
+.fn getSystemHeap__9JASKernelFv, global
 /* 800A73BC 000A42FC  80 6D 8A C0 */	lwz r3, sSystemHeap__9JASKernel@sda21(r13)
 /* 800A73C0 000A4300  4E 80 00 20 */	blr 
+.endfn getSystemHeap__9JASKernelFv
 
-.global getCommandHeap__9JASKernelFv
-getCommandHeap__9JASKernelFv:
+.fn getCommandHeap__9JASKernelFv, global
 /* 800A73C4 000A4304  80 6D 8A C4 */	lwz r3, sCommandHeap__9JASKernel@sda21(r13)
 /* 800A73C8 000A4308  4E 80 00 20 */	blr 
+.endfn getCommandHeap__9JASKernelFv
 
-.global setupAramHeap__9JASKernelFUlUl
-setupAramHeap__9JASKernelFUlUl:
+.fn setupAramHeap__9JASKernelFUlUl, global
 /* 800A73CC 000A430C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A73D0 000A4310  7C 08 02 A6 */	mflr r0
 /* 800A73D4 000A4314  3C A0 80 4F */	lis r5, audioAramHeap__9JASKernel@ha
@@ -742,12 +744,13 @@ setupAramHeap__9JASKernelFUlUl:
 /* 800A743C 000A437C  7C 08 03 A6 */	mtlr r0
 /* 800A7440 000A4380  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A7444 000A4384  4E 80 00 20 */	blr 
+.endfn setupAramHeap__9JASKernelFUlUl
 
-.global getAramHeap__9JASKernelFv
-getAramHeap__9JASKernelFv:
+.fn getAramHeap__9JASKernelFv, global
 /* 800A7448 000A4388  3C 60 80 4F */	lis r3, audioAramHeap__9JASKernel@ha
 /* 800A744C 000A438C  38 63 07 0C */	addi r3, r3, audioAramHeap__9JASKernel@l
 /* 800A7450 000A4390  4E 80 00 20 */	blr 
+.endfn getAramHeap__9JASKernelFv
 
 .fn __sinit_JASHeapCtrl_cpp, local
 /* 800A7454 000A4394  94 21 FF F0 */	stwu r1, -0x10(r1)

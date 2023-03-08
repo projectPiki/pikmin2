@@ -11,8 +11,7 @@ lbl_constructor:
 .comm sCommandListStay__10JASPortCmd, 0xC, 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global addPortCmdOnce__10JASPortCmdFv
-addPortCmdOnce__10JASPortCmdFv:
+.fn addPortCmdOnce__10JASPortCmdFv, global
 /* 800A6724 000A3664  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A6728 000A3668  7C 08 02 A6 */	mflr r0
 /* 800A672C 000A366C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -36,9 +35,9 @@ addPortCmdOnce__10JASPortCmdFv:
 /* 800A6774 000A36B4  7C 08 03 A6 */	mtlr r0
 /* 800A6778 000A36B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A677C 000A36BC  4E 80 00 20 */	blr 
+.endfn addPortCmdOnce__10JASPortCmdFv
 
-.global setPortCmd__10JASPortCmdFPFP11JASPortArgs_vP11JASPortArgs
-setPortCmd__10JASPortCmdFPFP11JASPortArgs_vP11JASPortArgs:
+.fn setPortCmd__10JASPortCmdFPFP11JASPortArgs_vP11JASPortArgs, global
 /* 800A6780 000A36C0  80 03 00 04 */	lwz r0, 4(r3)
 /* 800A6784 000A36C4  28 00 00 00 */	cmplwi r0, 0
 /* 800A6788 000A36C8  41 82 00 0C */	beq .L_800A6794
@@ -49,9 +48,9 @@ setPortCmd__10JASPortCmdFPFP11JASPortArgs_vP11JASPortArgs:
 /* 800A6798 000A36D8  90 A3 00 14 */	stw r5, 0x14(r3)
 /* 800A679C 000A36DC  38 60 00 01 */	li r3, 1
 /* 800A67A0 000A36E0  4E 80 00 20 */	blr 
+.endfn setPortCmd__10JASPortCmdFPFP11JASPortArgs_vP11JASPortArgs
 
-.global execAllCommand__10JASPortCmdFv
-execAllCommand__10JASPortCmdFv:
+.fn execAllCommand__10JASPortCmdFv, global
 /* 800A67A4 000A36E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A67A8 000A36E8  7C 08 02 A6 */	mflr r0
 /* 800A67AC 000A36EC  3C 60 80 51 */	lis r3, sCommandListOnce__10JASPortCmd@ha
@@ -65,9 +64,9 @@ execAllCommand__10JASPortCmdFv:
 /* 800A67CC 000A370C  7C 08 03 A6 */	mtlr r0
 /* 800A67D0 000A3710  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A67D4 000A3714  4E 80 00 20 */	blr 
+.endfn execAllCommand__10JASPortCmdFv
 
-.global execCommandOnce__Q210JASPortCmd9TPortHeadFv
-execCommandOnce__Q210JASPortCmd9TPortHeadFv:
+.fn execCommandOnce__Q210JASPortCmd9TPortHeadFv, global
 /* 800A67D8 000A3718  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A67DC 000A371C  7C 08 02 A6 */	mflr r0
 /* 800A67E0 000A3720  90 01 00 24 */	stw r0, 0x24(r1)
@@ -104,9 +103,9 @@ execCommandOnce__Q210JASPortCmd9TPortHeadFv:
 /* 800A6854 000A3794  7C 08 03 A6 */	mtlr r0
 /* 800A6858 000A3798  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A685C 000A379C  4E 80 00 20 */	blr 
+.endfn execCommandOnce__Q210JASPortCmd9TPortHeadFv
 
-.global execCommandStay__Q210JASPortCmd9TPortHeadFv
-execCommandStay__Q210JASPortCmd9TPortHeadFv:
+.fn execCommandStay__Q210JASPortCmd9TPortHeadFv, global
 /* 800A6860 000A37A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A6864 000A37A4  7C 08 02 A6 */	mflr r0
 /* 800A6868 000A37A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -135,6 +134,7 @@ execCommandStay__Q210JASPortCmd9TPortHeadFv:
 /* 800A68BC 000A37FC  7C 08 03 A6 */	mtlr r0
 /* 800A68C0 000A3800  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A68C4 000A3804  4E 80 00 20 */	blr 
+.endfn execCommandStay__Q210JASPortCmd9TPortHeadFv
 
 .fn __sinit_JASCmdStack_cpp, local
 /* 800A68C8 000A3808  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -166,8 +166,7 @@ execCommandStay__Q210JASPortCmd9TPortHeadFv:
 /* 800A6930 000A3870  4E 80 00 20 */	blr 
 .endfn __sinit_JASCmdStack_cpp
 
-.global __dt__Q210JASPortCmd9TPortHeadFv
-__dt__Q210JASPortCmd9TPortHeadFv:
+.fn __dt__Q210JASPortCmd9TPortHeadFv, weak
 /* 800A6934 000A3874  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A6938 000A3878  7C 08 02 A6 */	mflr r0
 /* 800A693C 000A387C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -192,3 +191,4 @@ __dt__Q210JASPortCmd9TPortHeadFv:
 /* 800A6980 000A38C0  7C 08 03 A6 */	mtlr r0
 /* 800A6984 000A38C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A6988 000A38C8  4E 80 00 20 */	blr 
+.endfn __dt__Q210JASPortCmd9TPortHeadFv

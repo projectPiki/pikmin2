@@ -1,13 +1,13 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__10JASDrumSet
-__vt__10JASDrumSet:
+.obj __vt__10JASDrumSet, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__10JASDrumSetFv
 	.4byte getParam__10JASDrumSetCFiiP12JASInstParam
 	.4byte getType__10JASDrumSetCFv
+.endobj __vt__10JASDrumSet
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -15,26 +15,31 @@ __vt__10JASDrumSet:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-oscp$640:
+.obj oscp$640, local
 	.skip 0x4
-init$641:
+.endobj oscp$640
+.obj init$641, local
 	.skip 0x1
+.endobj init$641
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516CD8:
+.obj lbl_80516CD8, local
 	.float 1.0
-lbl_80516CDC:
+.endobj lbl_80516CD8
+.obj lbl_80516CDC, local
 	.float 0.0
+.endobj lbl_80516CDC
 .balign 8
-lbl_80516CE0:
+.obj lbl_80516CE0, local
 	.double 0.5
-lbl_80516CE8:
+.endobj lbl_80516CE0
+.obj lbl_80516CE8, local
 	.float 0.5
+.endobj lbl_80516CE8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getParam__10JASDrumSetCFiiP12JASInstParam
-getParam__10JASDrumSetCFiiP12JASInstParam:
+.fn getParam__10JASDrumSetCFiiP12JASInstParam, global
 /* 8009B0B8 00097FF8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8009B0BC 00097FFC  7C 08 02 A6 */	mflr r0
 /* 8009B0C0 00098000  90 01 00 34 */	stw r0, 0x34(r1)
@@ -177,17 +182,17 @@ getParam__10JASDrumSetCFiiP12JASInstParam:
 /* 8009B2A8 000981E8  7C 08 03 A6 */	mtlr r0
 /* 8009B2AC 000981EC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8009B2B0 000981F0  4E 80 00 20 */	blr 
+.endfn getParam__10JASDrumSetCFiiP12JASInstParam
 
-.global getPerc__10JASDrumSetFi
-getPerc__10JASDrumSetFi:
+.fn getPerc__10JASDrumSetFi, global
 /* 8009B2B4 000981F4  54 84 28 34 */	slwi r4, r4, 5
 /* 8009B2B8 000981F8  7C 60 1B 78 */	mr r0, r3
 /* 8009B2BC 000981FC  38 64 00 04 */	addi r3, r4, 4
 /* 8009B2C0 00098200  7C 60 1A 14 */	add r3, r0, r3
 /* 8009B2C4 00098204  4E 80 00 20 */	blr 
+.endfn getPerc__10JASDrumSetFi
 
-.global __ct__Q210JASDrumSet5TPercFv
-__ct__Q210JASDrumSet5TPercFv:
+.fn __ct__Q210JASDrumSet5TPercFv, global
 /* 8009B2C8 00098208  C0 22 89 78 */	lfs f1, lbl_80516CD8@sda21(r2)
 /* 8009B2CC 0009820C  38 80 03 E8 */	li r4, 0x3e8
 /* 8009B2D0 00098210  C0 02 89 88 */	lfs f0, lbl_80516CE8@sda21(r2)
@@ -201,9 +206,9 @@ __ct__Q210JASDrumSet5TPercFv:
 /* 8009B2F0 00098230  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8009B2F4 00098234  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 8009B2F8 00098238  4E 80 00 20 */	blr 
+.endfn __ct__Q210JASDrumSet5TPercFv
 
-.global __dt__Q210JASDrumSet5TPercFv
-__dt__Q210JASDrumSet5TPercFv:
+.fn __dt__Q210JASDrumSet5TPercFv, global
 /* 8009B2FC 0009823C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009B300 00098240  7C 08 02 A6 */	mflr r0
 /* 8009B304 00098244  90 01 00 14 */	stw r0, 0x14(r1)
@@ -228,9 +233,9 @@ __dt__Q210JASDrumSet5TPercFv:
 /* 8009B34C 0009828C  7C 08 03 A6 */	mtlr r0
 /* 8009B350 00098290  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009B354 00098294  4E 80 00 20 */	blr 
+.endfn __dt__Q210JASDrumSet5TPercFv
 
-.global setEffectCount__Q210JASDrumSet5TPercFUl
-setEffectCount__Q210JASDrumSet5TPercFUl:
+.fn setEffectCount__Q210JASDrumSet5TPercFUl, global
 /* 8009B358 00098298  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009B35C 0009829C  7C 08 02 A6 */	mflr r0
 /* 8009B360 000982A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -263,9 +268,9 @@ setEffectCount__Q210JASDrumSet5TPercFUl:
 /* 8009B3C4 00098304  7C 08 03 A6 */	mtlr r0
 /* 8009B3C8 00098308  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009B3CC 0009830C  4E 80 00 20 */	blr 
+.endfn setEffectCount__Q210JASDrumSet5TPercFUl
 
-.global setVeloRegionCount__Q210JASDrumSet5TPercFUl
-setVeloRegionCount__Q210JASDrumSet5TPercFUl:
+.fn setVeloRegionCount__Q210JASDrumSet5TPercFUl, global
 /* 8009B3D0 00098310  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009B3D4 00098314  7C 08 02 A6 */	mflr r0
 /* 8009B3D8 00098318  90 01 00 14 */	stw r0, 0x14(r1)
@@ -288,28 +293,28 @@ setVeloRegionCount__Q210JASDrumSet5TPercFUl:
 /* 8009B41C 0009835C  7C 08 03 A6 */	mtlr r0
 /* 8009B420 00098360  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009B424 00098364  4E 80 00 20 */	blr 
+.endfn setVeloRegionCount__Q210JASDrumSet5TPercFUl
 
-.global getVeloRegion__Q210JASDrumSet5TPercFi
-getVeloRegion__Q210JASDrumSet5TPercFi:
+.fn getVeloRegion__Q210JASDrumSet5TPercFi, global
 /* 8009B428 00098368  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8009B42C 0009836C  54 80 20 36 */	slwi r0, r4, 4
 /* 8009B430 00098370  7C 63 02 14 */	add r3, r3, r0
 /* 8009B434 00098374  4E 80 00 20 */	blr 
+.endfn getVeloRegion__Q210JASDrumSet5TPercFi
 
-.global setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect
-setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect:
+.fn setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect, global
 /* 8009B438 00098378  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8009B43C 0009837C  54 80 10 3A */	slwi r0, r4, 2
 /* 8009B440 00098380  7C A3 01 2E */	stwx r5, r3, r0
 /* 8009B444 00098384  4E 80 00 20 */	blr 
+.endfn setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect
 
-.global setRelease__Q210JASDrumSet5TPercFUl
-setRelease__Q210JASDrumSet5TPercFUl:
+.fn setRelease__Q210JASDrumSet5TPercFUl, global
 /* 8009B448 00098388  B0 83 00 0C */	sth r4, 0xc(r3)
 /* 8009B44C 0009838C  4E 80 00 20 */	blr 
+.endfn setRelease__Q210JASDrumSet5TPercFUl
 
-.global __dt__10JASDrumSetFv
-__dt__10JASDrumSetFv:
+.fn __dt__10JASDrumSetFv, weak
 /* 8009B450 00098390  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009B454 00098394  7C 08 02 A6 */	mflr r0
 /* 8009B458 00098398  90 01 00 14 */	stw r0, 0x14(r1)
@@ -345,9 +350,10 @@ __dt__10JASDrumSetFv:
 /* 8009B4C8 00098408  7C 08 03 A6 */	mtlr r0
 /* 8009B4CC 0009840C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009B4D0 00098410  4E 80 00 20 */	blr 
+.endfn __dt__10JASDrumSetFv
 
-.global getType__10JASDrumSetCFv
-getType__10JASDrumSetCFv:
+.fn getType__10JASDrumSetCFv, weak
 /* 8009B4D4 00098414  3C 60 50 45 */	lis r3, 0x50455243@ha
 /* 8009B4D8 00098418  38 63 52 43 */	addi r3, r3, 0x50455243@l
 /* 8009B4DC 0009841C  4E 80 00 20 */	blr 
+.endfn getType__10JASDrumSetCFv

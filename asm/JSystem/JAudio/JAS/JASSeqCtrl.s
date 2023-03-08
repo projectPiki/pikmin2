@@ -1,8 +1,7 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__10JASSeqCtrlFv
-init__10JASSeqCtrlFv:
+.fn init__10JASSeqCtrlFv, global
 /* 8009C858 00099798  38 00 00 00 */	li r0, 0
 /* 8009C85C 0009979C  90 03 00 00 */	stw r0, 0(r3)
 /* 8009C860 000997A0  90 03 00 04 */	stw r0, 4(r3)
@@ -27,17 +26,17 @@ init__10JASSeqCtrlFv:
 /* 8009C8AC 000997EC  90 03 00 40 */	stw r0, 0x40(r3)
 /* 8009C8B0 000997F0  90 03 00 44 */	stw r0, 0x44(r3)
 /* 8009C8B4 000997F4  4E 80 00 20 */	blr 
+.endfn init__10JASSeqCtrlFv
 
-.global start__10JASSeqCtrlFPvUl
-start__10JASSeqCtrlFPvUl:
+.fn start__10JASSeqCtrlFPvUl, global
 /* 8009C8B8 000997F8  90 83 00 00 */	stw r4, 0(r3)
 /* 8009C8BC 000997FC  80 03 00 00 */	lwz r0, 0(r3)
 /* 8009C8C0 00099800  7C 00 2A 14 */	add r0, r0, r5
 /* 8009C8C4 00099804  90 03 00 04 */	stw r0, 4(r3)
 /* 8009C8C8 00099808  4E 80 00 20 */	blr 
+.endfn start__10JASSeqCtrlFPvUl
 
-.global loopEnd__10JASSeqCtrlFv
-loopEnd__10JASSeqCtrlFv:
+.fn loopEnd__10JASSeqCtrlFv, global
 /* 8009C8CC 0009980C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 8009C8D0 00099810  28 00 00 00 */	cmplwi r0, 0
 /* 8009C8D4 00099814  40 82 00 0C */	bne .L_8009C8E0
@@ -68,9 +67,9 @@ loopEnd__10JASSeqCtrlFv:
 /* 8009C92C 0009986C  90 03 00 04 */	stw r0, 4(r3)
 /* 8009C930 00099870  38 60 00 01 */	li r3, 1
 /* 8009C934 00099874  4E 80 00 20 */	blr 
+.endfn loopEnd__10JASSeqCtrlFv
 
-.global waitCountDown__10JASSeqCtrlFv
-waitCountDown__10JASSeqCtrlFv:
+.fn waitCountDown__10JASSeqCtrlFv, global
 /* 8009C938 00099878  80 83 00 08 */	lwz r4, 8(r3)
 /* 8009C93C 0009987C  2C 04 00 00 */	cmpwi r4, 0
 /* 8009C940 00099880  40 81 00 20 */	ble .L_8009C960
@@ -84,9 +83,9 @@ waitCountDown__10JASSeqCtrlFv:
 .L_8009C960:
 /* 8009C960 000998A0  38 60 00 01 */	li r3, 1
 /* 8009C964 000998A4  4E 80 00 20 */	blr 
+.endfn waitCountDown__10JASSeqCtrlFv
 
-.global callIntr__10JASSeqCtrlFPv
-callIntr__10JASSeqCtrlFPv:
+.fn callIntr__10JASSeqCtrlFPv, global
 /* 8009C968 000998A8  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 8009C96C 000998AC  28 00 00 00 */	cmplwi r0, 0
 /* 8009C970 000998B0  41 82 00 0C */	beq .L_8009C97C
@@ -102,9 +101,9 @@ callIntr__10JASSeqCtrlFPv:
 /* 8009C994 000998D4  90 03 00 08 */	stw r0, 8(r3)
 /* 8009C998 000998D8  38 60 00 01 */	li r3, 1
 /* 8009C99C 000998DC  4E 80 00 20 */	blr 
+.endfn callIntr__10JASSeqCtrlFPv
 
-.global retIntr__10JASSeqCtrlFv
-retIntr__10JASSeqCtrlFv:
+.fn retIntr__10JASSeqCtrlFv, global
 /* 8009C9A0 000998E0  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 8009C9A4 000998E4  28 00 00 00 */	cmplwi r0, 0
 /* 8009C9A8 000998E8  40 82 00 0C */	bne .L_8009C9B4
@@ -119,18 +118,18 @@ retIntr__10JASSeqCtrlFv:
 /* 8009C9C8 00099908  90 03 00 44 */	stw r0, 0x44(r3)
 /* 8009C9CC 0009990C  38 60 00 01 */	li r3, 1
 /* 8009C9D0 00099910  4E 80 00 20 */	blr 
+.endfn retIntr__10JASSeqCtrlFv
 
-.global get16__10JASSeqCtrlCFUl
-get16__10JASSeqCtrlCFUl:
+.fn get16__10JASSeqCtrlCFUl, global
 /* 8009C9D4 00099914  80 63 00 00 */	lwz r3, 0(r3)
 /* 8009C9D8 00099918  38 04 00 01 */	addi r0, r4, 1
 /* 8009C9DC 0009991C  7C 83 20 AE */	lbzx r4, r3, r4
 /* 8009C9E0 00099920  7C 63 00 AE */	lbzx r3, r3, r0
 /* 8009C9E4 00099924  50 83 44 2E */	rlwimi r3, r4, 8, 0x10, 0x17
 /* 8009C9E8 00099928  4E 80 00 20 */	blr 
+.endfn get16__10JASSeqCtrlCFUl
 
-.global get24__10JASSeqCtrlCFUl
-get24__10JASSeqCtrlCFUl:
+.fn get24__10JASSeqCtrlCFUl, global
 /* 8009C9EC 0009992C  80 A3 00 00 */	lwz r5, 0(r3)
 /* 8009C9F0 00099930  38 C4 00 01 */	addi r6, r4, 1
 /* 8009C9F4 00099934  7C 85 20 AE */	lbzx r4, r5, r4
@@ -141,9 +140,9 @@ get24__10JASSeqCtrlCFUl:
 /* 8009CA08 00099948  54 63 40 2E */	slwi r3, r3, 8
 /* 8009CA0C 0009994C  7C 63 03 78 */	or r3, r3, r0
 /* 8009CA10 00099950  4E 80 00 20 */	blr 
+.endfn get24__10JASSeqCtrlCFUl
 
-.global get32__10JASSeqCtrlCFUl
-get32__10JASSeqCtrlCFUl:
+.fn get32__10JASSeqCtrlCFUl, global
 /* 8009CA14 00099954  80 C3 00 00 */	lwz r6, 0(r3)
 /* 8009CA18 00099958  38 E4 00 01 */	addi r7, r4, 1
 /* 8009CA1C 0009995C  7C A6 20 AE */	lbzx r5, r6, r4
@@ -158,9 +157,9 @@ get32__10JASSeqCtrlCFUl:
 /* 8009CA40 00099980  54 63 40 2E */	slwi r3, r3, 8
 /* 8009CA44 00099984  7C 63 03 78 */	or r3, r3, r0
 /* 8009CA48 00099988  4E 80 00 20 */	blr 
+.endfn get32__10JASSeqCtrlCFUl
 
-.global read16__10JASSeqCtrlFv
-read16__10JASSeqCtrlFv:
+.fn read16__10JASSeqCtrlFv, global
 /* 8009CA4C 0009998C  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8009CA50 00099990  38 05 00 01 */	addi r0, r5, 1
 /* 8009CA54 00099994  90 03 00 04 */	stw r0, 4(r3)
@@ -171,9 +170,9 @@ read16__10JASSeqCtrlFv:
 /* 8009CA68 000999A8  88 64 00 00 */	lbz r3, 0(r4)
 /* 8009CA6C 000999AC  50 A3 44 2E */	rlwimi r3, r5, 8, 0x10, 0x17
 /* 8009CA70 000999B0  4E 80 00 20 */	blr 
+.endfn read16__10JASSeqCtrlFv
 
-.global read24__10JASSeqCtrlFv
-read24__10JASSeqCtrlFv:
+.fn read24__10JASSeqCtrlFv, global
 /* 8009CA74 000999B4  80 83 00 04 */	lwz r4, 4(r3)
 /* 8009CA78 000999B8  38 04 00 01 */	addi r0, r4, 1
 /* 8009CA7C 000999BC  90 03 00 04 */	stw r0, 4(r3)
@@ -191,3 +190,4 @@ read24__10JASSeqCtrlFv:
 /* 8009CAAC 000999EC  54 63 40 2E */	slwi r3, r3, 8
 /* 8009CAB0 000999F0  7C 63 03 78 */	or r3, r3, r0
 /* 8009CAB4 000999F4  4E 80 00 20 */	blr 
+.endfn read24__10JASSeqCtrlFv
