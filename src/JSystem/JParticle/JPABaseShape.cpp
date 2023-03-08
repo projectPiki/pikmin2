@@ -200,7 +200,7 @@ typedef u32 JPAClrAnmKeyData; /** TODO: Remove and replace this. */
  */
 void JPASetPointSize(JPAEmitterWorkData* workData)
 {
-	GXSetPointSize(workData->_144 * 25.0f, 5);
+	GXSetPointSize(workData->_144 * 25.0f, GX_TO_ONE);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -254,7 +254,7 @@ void JPASetLineWidth(JPAEmitterWorkData* workData)
  */
 void JPASetPointSize(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	GXSetPointSize(particle->_60 * workData->_144 * 25.0f, 5);
+	GXSetPointSize(particle->_60 * workData->_144 * 25.0f, GX_TO_ONE);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -381,9 +381,9 @@ void JPARegistEnv(JPAEmitterWorkData* workData)
 	// GXColor gxColor = { static_cast<u8>(emitter->_10C.r * (static_cast<u16>(emitter->mColor.r + 1) / 0x100)),
 	// 	                static_cast<u8>(emitter->_10C.g * (static_cast<u16>(emitter->mColor.g + 1) / 0x100)),
 	// 	                static_cast<u8>(emitter->_10C.b * (static_cast<u16>(emitter->mColor.b + 1) / 0x100)), emitter->_10C.a };
-	GXColor gxColor = { static_cast<u8>(emitter->_10C.r * (static_cast<u16>(emitter->mColor.r + 1) >> 8)),
-		                static_cast<u8>(emitter->_10C.g * (static_cast<u16>(emitter->mColor.g + 1) >> 8)),
-		                static_cast<u8>(emitter->_10C.b * (static_cast<u16>(emitter->mColor.b + 1) >> 8)), emitter->_10C.a };
+	GXColor gxColor = { static_cast<u8>(emitter->_10C.r * (static_cast<u16>(emitter->mColor1.r + 1) >> 8)),
+		                static_cast<u8>(emitter->_10C.g * (static_cast<u16>(emitter->mColor1.g + 1) >> 8)),
+		                static_cast<u8>(emitter->_10C.b * (static_cast<u16>(emitter->mColor1.b + 1) >> 8)), emitter->_10C.a };
 	GXSetTevColor(GX_TEVREG1, gxColor);
 	/*
 	stwu     r1, -0x10(r1)
@@ -1556,11 +1556,11 @@ void JPALoadTexAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 void JPACalcTexIdxNormal(JPAEmitterWorkData* workData)
 {
 	u32 v2 = workData->mEmitter->_100;
-	u32 v1 = workData->mResource->_1C->mData->_1F - 1;
+	u32 v1 = workData->mResource->mBaseShape->mData->_1F - 1;
 	if (v1 < v2) {
 		v2 = v1;
 	}
-	workData->mEmitter->_111 = workData->mResource->_1C->_08[v2];
+	workData->mEmitter->_111 = workData->mResource->mBaseShape->_08[v2];
 	/*
 	lwz      r4, 4(r3)
 	lwz      r5, 0(r3)
@@ -1732,7 +1732,7 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData* workData, JPABaseParticle* particl
  * Address:	8008C20C
  * Size:	00001C
  */
-void JPACalcTexIdxMerge(JPAEmitterWorkData* workData) { workData->mEmitter->_111 = workData->mResource->_1C->mData->_20; }
+void JPACalcTexIdxMerge(JPAEmitterWorkData* workData) { workData->mEmitter->_111 = workData->mResource->mBaseShape->mData->_20; }
 
 /*
  * --INFO--

@@ -17,6 +17,12 @@ struct J3DShapePacket;
 struct J3DMtxBuffer;
 struct J3DModel;
 
+struct J3DTexMtxObj {
+	Mtx& getMtx(u16 idx) { return mTexMtx[idx]; }
+
+	Mtx* mTexMtx; // _00, array of Mtxs
+};
+
 // TODO: Could this use TLinkList?
 struct J3DPacket {
 	inline J3DPacket()

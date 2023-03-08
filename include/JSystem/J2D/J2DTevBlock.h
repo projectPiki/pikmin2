@@ -9,6 +9,7 @@
 #include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/JUtility/TColor.h"
 #include "JSystem/ResTLUT.h"
+#include "JSystem/ResTIMG.h"
 #include "types.h"
 
 struct J2DTevBlock {

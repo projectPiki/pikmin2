@@ -259,7 +259,7 @@
         .4byte 0x00170000
 */
 
-const J3DTexCoordInfo j3dDefaultTexCoordInfo[8]
+const J3DDefaultTexCoordInfo j3dDefaultTexCoordInfo[8]
     = { { 1, 4, 60 }, { 1, 5, 60 }, { 1, 6, 60 }, { 1, 7, 60 }, { 1, 8, 60 }, { 1, 9, 60 }, { 1, 10, 60 }, { 1, 11, 60 } };
 const J3DTexMtxInfo j3dDefaultTexMtxInfo
     = { 1,
@@ -288,7 +288,7 @@ const J3DFogInfo j3dDefaultFogInfo = { 0, 0, 0x140, 0.0f, 0.0f, 0.1f, 10000.0f, 
 // const J3DNBTScaleInfo j3dDefaultNBTScaleInfo = { 0, JGeometry::TVec3f(1.0f, 1.0f, 1.0f) };
 // const J3DNBTScaleInfo j3dDefaultNBTScaleInfo = { 0, {1.0f, 1.0f, 1.0f} };
 
-const u32 j3dDefaultColInfo                      = 0xFFFFFFFF;
+const GXColor j3dDefaultColInfo                  = { 0xFFFFFFFF };
 const u32 j3dDefaultAmbInfo                      = 0x32323232;
 const u8 j3dDefaultColorChanNum                  = 1;
 const J3DTevOrderInfo j3dDefaultTevOrderInfoNull = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0xFF };
@@ -297,8 +297,8 @@ const J3DTevOrderInfo j3dDefaultTevOrderInfoNull = { GX_TEXCOORD_NULL, GX_TEXMAP
 // const J3DIndTexOrder j3dDefaultIndTexOrderNull   = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL };
 // const J3DIndTexOrder j3dDefaultIndTexOrderNull   = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0, 0 };
 const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull       = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0, 0 };
-const u32 j3dDefaultTevColor                             = 0xFFFFFFFF;
-const u32 j3dDefaultTevKColor                            = 0xFFFFFFFF;
+const GXColorS10 j3dDefaultTevColor                      = { 0xFFFFFFFF };
+const GXColor j3dDefaultTevKColor                        = { 0xFFFFFFFF };
 const J3DTevSwapModeInfo j3dDefaultTevSwapMode           = { 0 };
 const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable = { 0, 1, 2, 3 };
 const J3DBlendInfo j3dDefaultBlendInfo                   = { 1, 4, 5, 5 };
@@ -312,7 +312,7 @@ const u16 j3dDefaultZModeID                              = 0x17;
  * Address:	80063B24
  * Size:	0000B4
  */
-void J3DLightObj::load(unsigned long p1) const
+void J3DLightObj::load(u32 p1) const
 {
 	__GDCheckOverflowed(0x48);
 	GXLightID id = (GXLightID)(1 << p1);
@@ -327,7 +327,7 @@ void J3DLightObj::load(unsigned long p1) const
  * Address:	80063BD8
  * Size:	000530
  */
-void loadTexCoordGens(unsigned long, J3DTexCoord*)
+void loadTexCoordGens(u32, J3DTexCoord*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -690,9 +690,9 @@ lbl_800640F4:
  * Address:	80064108
  * Size:	00003C
  */
-void J3DTexMtx::load(unsigned long p1) const
+void J3DTexMtx::load(u32 p1) const
 {
-	if ((j3dSys._34 & 0x40000000) != 0) {
+	if ((j3dSys.mFlags & 0x40000000) != 0) {
 		loadPostTexMtx(p1);
 	} else {
 		loadTexMtx(p1);
@@ -704,7 +704,7 @@ void J3DTexMtx::load(unsigned long p1) const
  * Address:	80064144
  * Size:	000064
  */
-void J3DTexMtx::loadTexMtx(unsigned long p1) const
+void J3DTexMtx::loadTexMtx(u32 p1) const
 {
 	__GDCheckOverflowed(0x35);
 	J3DGDLoadTexMtxImm(const_cast<float(*)[4]>(_64), p1 * 3 + 30, (_GXTexMtxType)_00);
@@ -715,7 +715,7 @@ void J3DTexMtx::loadTexMtx(unsigned long p1) const
  * Address:	800641A8
  * Size:	000580
  */
-void J3DGDLoadTexMtxImm(Mtx, unsigned long, _GXTexMtxType)
+void J3DGDLoadTexMtxImm(Mtx, u32, _GXTexMtxType)
 {
 	/*
 	cmpwi    r5, 1
@@ -1082,7 +1082,7 @@ lbl_80064720:
  * Address:	80064728
  * Size:	000060
  */
-void J3DTexMtx::loadPostTexMtx(unsigned long p1) const
+void J3DTexMtx::loadPostTexMtx(u32 p1) const
 {
 	__GDCheckOverflowed(0x35);
 	J3DGDLoadPostTexMtxImm(const_cast<float(*)[4]>(_64), p1 * 3 + 0x40);
@@ -1093,7 +1093,7 @@ void J3DTexMtx::loadPostTexMtx(unsigned long p1) const
  * Address:	80064788
  * Size:	00056C
  */
-void J3DGDLoadPostTexMtxImm(Mtx, unsigned long)
+void J3DGDLoadPostTexMtxImm(Mtx, u32)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2025,7 +2025,7 @@ u16 getTexNoReg(void* p1) { return *(u32*)(static_cast<u8*>(p1) + 1); }
  * Address:	80065388
  * Size:	0001B8
  */
-void loadTexNo(unsigned long, const unsigned short&)
+void loadTexNo(u32, const u16&)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2155,7 +2155,7 @@ lbl_80065520:
  * Address:	80065540
  * Size:	000024
  */
-void patchTexNo_PtrToIdx(unsigned long p1, const unsigned short& p2) { J3DGDSetTexImgPtrRaw((_GXTexMapID)p1, p2); }
+void patchTexNo_PtrToIdx(u32 p1, const u16& p2) { J3DGDSetTexImgPtrRaw((_GXTexMapID)p1, p2); }
 
 /*
  * --INFO--

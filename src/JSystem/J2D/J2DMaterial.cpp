@@ -63,13 +63,13 @@ J2DMaterial::J2DMaterial()
     , mTexGenBlock()
     , mPeBlock()
 {
-	mPane     = nullptr;
-	_0C       = 0xFFFF;
-	mTevBlock = nullptr;
-	mIndBlock = nullptr;
-	_84       = nullptr;
-	_08       = 1;
-	_0E       = 1;
+	mPane      = nullptr;
+	mIndex     = 0xFFFF;
+	mTevBlock  = nullptr;
+	mIndBlock  = nullptr;
+	mAnmPtr    = nullptr;
+	_08        = 1;
+	mIsVisible = 1;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -153,9 +153,9 @@ J2DMaterial::J2DMaterial()
  */
 J2DTexCoord::J2DTexCoord()
 {
-	_00 = j2dDefaultTexCoordInfo[0]._00;
-	_01 = j2dDefaultTexCoordInfo[0]._01;
-	_02 = j2dDefaultTexCoordInfo[0]._02;
+	mTexCoordInfo = j2dDefaultTexCoordInfo[0];
+	// _01 = j2dDefaultTexCoordInfo[0]._01;
+	// _02 = j2dDefaultTexCoordInfo[0]._02;
 }
 
 /*
@@ -284,7 +284,7 @@ J2DMaterial::~J2DMaterial()
 {
 	delete mTevBlock;
 	delete mIndBlock;
-	delete _84;
+	delete mAnmPtr;
 }
 
 /*

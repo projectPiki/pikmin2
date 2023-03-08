@@ -516,9 +516,7 @@ void J2DTexGenBlock::initialize()
 {
 	mTexGenNum = 0;
 	for (int i = 0; i < 8; i++) {
-		mTexCoords[i]._00 = j2dDefaultTexCoordInfo[0]._00;
-		mTexCoords[i]._01 = j2dDefaultTexCoordInfo[0]._01;
-		mTexCoords[i]._02 = j2dDefaultTexCoordInfo[0]._02;
+		mTexCoords[i].mTexCoordInfo = j2dDefaultTexCoordInfo[0];
 	}
 	for (int i = 0; i < 8; i++) {
 		mTexMtxes[i] = nullptr;
@@ -534,8 +532,8 @@ void J2DTexGenBlock::setGX()
 {
 	GXSetNumTexGens(mTexGenNum);
 	for (int i = 0; i < mTexGenNum; i++) {
-		GXSetTexCoordGen2((GXTexCoordID)i, (GXTexGenType)mTexCoords[i]._00, (GXTexGenSrc)mTexCoords[i]._01, mTexCoords[i]._02, GX_FALSE,
-		                  0x7D);
+		GXSetTexCoordGen2((GXTexCoordID)i, (GXTexGenType)mTexCoords[i].mTexCoordInfo.mTexGenType,
+		                  (GXTexGenSrc)mTexCoords[i].mTexCoordInfo.mTexGenSrc, mTexCoords[i].mTexCoordInfo.mTexGenMtx, GX_FALSE, 0x7D);
 	}
 	for (u8 i = 0; i < 8; i++) {
 		if (mTexMtxes[i] != nullptr) {
@@ -759,8 +757,8 @@ J2DTevBlock1::J2DTevBlock1()
     , mSwapModeTables()
     , mIndStages()
 {
-	mTextures[0] = nullptr;
-	_5C          = 0;
+	mTextures[0]  = nullptr;
+	mUndeleteFlag = 0;
 	initialize();
 }
 
@@ -865,11 +863,11 @@ J2DTevSwapModeTable::J2DTevSwapModeTable()
  */
 J2DTevBlock1::~J2DTevBlock1()
 {
-	if ((_5C & 0x01) != 0) {
+	if ((mUndeleteFlag & 0x01) != 0) {
 		delete mTextures[0];
 	}
 	delete mPalettes[0];
-	if ((_5C & 0x80) != 0) {
+	if ((mUndeleteFlag & 0x80) != 0) {
 		delete mFont;
 	}
 }
@@ -1107,7 +1105,7 @@ bool J2DTevBlock1::prepareTexture(unsigned char count)
 		if (mTextures[0] == nullptr) {
 			return false;
 		}
-		_5C = _5C & 0x80 | 1;
+		mUndeleteFlag = mUndeleteFlag & 0x80 | 1;
 	}
 	return count <= 1;
 }
@@ -1430,11 +1428,11 @@ bool J2DTevBlock1::setTexture(unsigned long index, JUTTexture* texture)
 	if (index != 0) {
 		return false;
 	}
-	if ((_5C & 1) != 0) {
+	if ((mUndeleteFlag & 1) != 0) {
 		delete mTextures[0];
 	}
 	mTextures[0] = texture;
-	_5C &= 0x80;
+	mUndeleteFlag &= 0x80;
 	delete mPalettes[0];
 	mPalettes[0]   = nullptr;
 	mTexIndices[0] = 0xFFFF;
@@ -1505,11 +1503,11 @@ bool J2DTevBlock1::setFont(ResFONT* font)
 	if (jutFont == nullptr) {
 		return false;
 	}
-	if ((_5C & 0x80) != 0) {
+	if ((mUndeleteFlag & 0x80) != 0) {
 		delete mFont;
 	}
-	mFont = jutFont;
-	_5C   = _5C & 0x7F | 0x80;
+	mFont         = jutFont;
+	mUndeleteFlag = mUndeleteFlag & 0x7F | 0x80;
 	return true;
 }
 
@@ -1524,11 +1522,11 @@ bool J2DTevBlock1::setFont(JUTFont* font)
 	if (font == nullptr) {
 		return false;
 	}
-	if ((_5C & 0x80) != 0) {
+	if ((mUndeleteFlag & 0x80) != 0) {
 		delete mFont;
 	}
 	mFont = static_cast<JUTResFont*>(font);
-	_5C &= 0x7F;
+	mUndeleteFlag &= 0x7F;
 	return true;
 }
 
@@ -1568,7 +1566,7 @@ bool J2DTevBlock1::setPalette(unsigned long index, const ResTLUT* lut)
  * Size:	000010
  * shiftDeleteFlag__12J2DTevBlock1FUcb
  */
-void J2DTevBlock1::shiftDeleteFlag(unsigned char flag, bool direction) { _5C = _5C & 0x80; }
+void J2DTevBlock1::shiftDeleteFlag(unsigned char flag, bool direction) { mUndeleteFlag = mUndeleteFlag & 0x80; }
 
 /*
  * --INFO--
@@ -1753,7 +1751,7 @@ lbl_8004AF9C:
  */
 void J2DTevBlock1::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	if (index == 0 && mTextures[index] != nullptr && mTextures[index]->_20 != nullptr) {
+	if (index == 0 && mTextures[index] != nullptr && mTextures[index]->mTexInfo != nullptr) {
 		mTextures[index]->load(id);
 	}
 }
@@ -1776,7 +1774,7 @@ J2DTevBlock2::J2DTevBlock2()
 	for (int i = 0; i < 2; i++) {
 		mTextures[i] = nullptr;
 	}
-	_78 = 0;
+	mUndeleteFlag = 0;
 	initialize();
 }
 
@@ -1788,15 +1786,15 @@ J2DTevBlock2::J2DTevBlock2()
  */
 J2DTevBlock2::~J2DTevBlock2()
 {
-	if ((_78 & 1) != 0) {
+	if ((mUndeleteFlag & 1) != 0) {
 		delete mTextures[0];
 	}
-	if ((_78 & 2) != 0) {
+	if ((mUndeleteFlag & 2) != 0) {
 		delete mTextures[1];
 	}
 	delete mPalettes[0];
 	delete mPalettes[1];
-	if ((_78 & 0x80) != 0) {
+	if ((mUndeleteFlag & 0x80) != 0) {
 		delete mFont;
 	}
 }
@@ -2044,7 +2042,7 @@ bool J2DTevBlock2::prepareTexture(unsigned char count)
 			if (mTextures[i] == nullptr) {
 				return false;
 			}
-			_78 |= (1 << i);
+			mUndeleteFlag |= (1 << i);
 		}
 	}
 	return true;
@@ -2593,11 +2591,11 @@ bool J2DTevBlock2::setTexture(unsigned long index, JUTTexture* texture)
 	if (index >= 2) {
 		return false;
 	}
-	if ((_78 & 1 << index) != 0) {
+	if ((mUndeleteFlag & 1 << index) != 0) {
 		delete mTextures[index];
 	}
 	mTextures[index] = texture;
-	_78 &= ~(1 << index);
+	mUndeleteFlag &= ~(1 << index);
 	delete mPalettes[index];
 	mPalettes[index]   = nullptr;
 	mTexIndices[index] = 0xFFFF;
@@ -2692,11 +2690,11 @@ bool J2DTevBlock2::setFont(ResFONT* font)
 	if (jutFont == nullptr) {
 		return false;
 	}
-	if ((_78 & 0x80) != 0) {
+	if ((mUndeleteFlag & 0x80) != 0) {
 		delete mFont;
 	}
-	mFont = jutFont;
-	_78   = _78 & 0x7F | 0x80;
+	mFont         = jutFont;
+	mUndeleteFlag = mUndeleteFlag & 0x7F | 0x80;
 	return true;
 }
 
@@ -2711,11 +2709,11 @@ bool J2DTevBlock2::setFont(JUTFont* font)
 	if (font == nullptr) {
 		return false;
 	}
-	if ((_78 & 0x80) != 0) {
+	if ((mUndeleteFlag & 0x80) != 0) {
 		delete mFont;
 	}
 	mFont = static_cast<JUTResFont*>(font);
-	_78 &= 0x7F;
+	mUndeleteFlag &= 0x7F;
 	return true;
 }
 
@@ -2757,15 +2755,15 @@ bool J2DTevBlock2::setPalette(unsigned long index, const ResTLUT* lut)
  */
 void J2DTevBlock2::shiftDeleteFlag(unsigned char p1, bool p2)
 {
-	u8 fontFlag = _78 & 0x80;
-	_78 &= 0x7F;
+	u8 fontFlag = mUndeleteFlag & 0x80;
+	mUndeleteFlag &= 0x7F;
 	if (p2) {
-		u32 v1 = ((1 << p1) - 1);
-		_78    = (_78 & v1) | ((_78 & ~v1) << 1);
+		u32 v1        = ((1 << p1) - 1);
+		mUndeleteFlag = (mUndeleteFlag & v1) | ((mUndeleteFlag & ~v1) << 1);
 	} else {
-		_78 = (_78 & (1 << p1) - 1) | ((_78 & ~((1 << (p1 + 1)) - 1)) >> 1);
+		mUndeleteFlag = (mUndeleteFlag & (1 << p1) - 1) | ((mUndeleteFlag & ~((1 << (p1 + 1)) - 1)) >> 1);
 	}
-	_78 = _78 | fontFlag;
+	mUndeleteFlag = mUndeleteFlag | fontFlag;
 }
 
 /*
@@ -3008,7 +3006,7 @@ lbl_8004C36C:
  */
 void J2DTevBlock2::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	if (index < 2 && mTextures[index] != nullptr && mTextures[index]->_20 != nullptr) {
+	if (index < 2 && mTextures[index] != nullptr && mTextures[index]->mTexInfo != nullptr) {
 		mTextures[index]->load(id);
 	}
 }
@@ -3030,7 +3028,7 @@ J2DTevBlock4::J2DTevBlock4()
 	for (int i = 0; i < 4; i++) {
 		mTextures[i] = nullptr;
 	}
-	_B0 = 0;
+	mUndeleteFlag = 0;
 	initialize();
 }
 
@@ -3042,12 +3040,12 @@ J2DTevBlock4::J2DTevBlock4()
 J2DTevBlock4::~J2DTevBlock4()
 {
 	for (int i = 0; i < 4; i++) {
-		if ((_B0 & 1 << i) != 0) {
+		if ((mUndeleteFlag & 1 << i) != 0) {
 			delete mTextures[i];
 		}
 		delete mPalettes[i];
 	}
-	if ((_B0 & 0x80) != 0) {
+	if ((mUndeleteFlag & 0x80) != 0) {
 		delete mFont;
 	}
 }
@@ -3367,7 +3365,7 @@ bool J2DTevBlock4::prepareTexture(unsigned char count)
 			if (mTextures[i] == nullptr) {
 				return false;
 			}
-			_B0 |= (1 << i);
+			mUndeleteFlag |= (1 << i);
 		}
 	}
 	return true;
@@ -4062,11 +4060,11 @@ bool J2DTevBlock4::setTexture(unsigned long index, JUTTexture* texture)
 	if (index >= 4) {
 		return false;
 	}
-	if ((_B0 & 1 << index) != 0) {
+	if ((mUndeleteFlag & 1 << index) != 0) {
 		delete mTextures[index];
 	}
 	mTextures[index] = texture;
-	_B0 &= ~(1 << index);
+	mUndeleteFlag &= ~(1 << index);
 	delete mPalettes[index];
 	mPalettes[index]   = nullptr;
 	mTexIndices[index] = 0xFFFF;
@@ -4245,11 +4243,11 @@ bool J2DTevBlock4::setFont(ResFONT* font)
 	if (jutFont == nullptr) {
 		return false;
 	}
-	if ((_B0 & 0x80) != 0) {
+	if ((mUndeleteFlag & 0x80) != 0) {
 		delete mFont;
 	}
-	mFont = jutFont;
-	_B0   = _B0 & 0x7F | 0x80;
+	mFont         = jutFont;
+	mUndeleteFlag = mUndeleteFlag & 0x7F | 0x80;
 	return true;
 }
 
@@ -4264,11 +4262,11 @@ bool J2DTevBlock4::setFont(JUTFont* font)
 	if (font == nullptr) {
 		return false;
 	}
-	if ((_B0 & 0x80) != 0) {
+	if ((mUndeleteFlag & 0x80) != 0) {
 		delete mFont;
 	}
 	mFont = static_cast<JUTResFont*>(font);
-	_B0 &= 0x7F;
+	mUndeleteFlag &= 0x7F;
 	return true;
 }
 
@@ -4309,15 +4307,15 @@ bool J2DTevBlock4::setPalette(unsigned long index, const ResTLUT* lut)
  */
 void J2DTevBlock4::shiftDeleteFlag(unsigned char p1, bool p2)
 {
-	u8 fontFlag = _B0 & 0x80;
-	_B0 &= 0x7F;
+	u8 fontFlag = mUndeleteFlag & 0x80;
+	mUndeleteFlag &= 0x7F;
 	if (p2) {
-		u32 v1 = ((1 << p1) - 1);
-		_B0    = (_B0 & v1) | ((_B0 & ~v1) << 1);
+		u32 v1        = ((1 << p1) - 1);
+		mUndeleteFlag = (mUndeleteFlag & v1) | ((mUndeleteFlag & ~v1) << 1);
 	} else {
-		_B0 = (_B0 & (1 << p1) - 1) | ((_B0 & ~((1 << (p1 + 1)) - 1)) >> 1);
+		mUndeleteFlag = (mUndeleteFlag & (1 << p1) - 1) | ((mUndeleteFlag & ~((1 << (p1 + 1)) - 1)) >> 1);
 	}
-	_B0 = _B0 | fontFlag;
+	mUndeleteFlag = mUndeleteFlag | fontFlag;
 	/*
 	lbz      r6, 0xb0(r3)
 	clrlwi.  r0, r5, 0x18
@@ -4599,7 +4597,7 @@ lbl_8004DA94:
  */
 void J2DTevBlock4::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	if (index < 4 && mTextures[index] != nullptr && mTextures[index]->_20 != nullptr) {
+	if (index < 4 && mTextures[index] != nullptr && mTextures[index]->mTexInfo != nullptr) {
 		mTextures[index]->load(id);
 	}
 }
@@ -4621,7 +4619,7 @@ J2DTevBlock8::J2DTevBlock8()
 	for (int i = 0; i < 8; i++) {
 		mTextures[i] = nullptr;
 	}
-	_120 = 0;
+	mUndeleteFlag = 0;
 	initialize();
 }
 
@@ -4633,12 +4631,12 @@ J2DTevBlock8::J2DTevBlock8()
 J2DTevBlock8::~J2DTevBlock8()
 {
 	for (int i = 0; i < 8; i++) {
-		if ((_120 & 1 << i) != 0) {
+		if ((mUndeleteFlag & 1 << i) != 0) {
 			delete mTextures[i];
 		}
 		delete mPalettes[i];
 	}
-	if (_121 != 0) {
+	if (mFontUndeleteFlag != 0) {
 		delete mFont;
 	}
 }
@@ -4971,7 +4969,7 @@ bool J2DTevBlock8::prepareTexture(unsigned char count)
 			if (mTextures[i] == nullptr) {
 				return false;
 			}
-			_120 |= (1 << i);
+			mUndeleteFlag |= (1 << i);
 		}
 	}
 	return true;
@@ -5673,11 +5671,11 @@ bool J2DTevBlock8::setTexture(unsigned long index, JUTTexture* texture)
 	if (index >= 8) {
 		return false;
 	}
-	if ((_120 & 1 << index) != 0) {
+	if ((mUndeleteFlag & 1 << index) != 0) {
 		delete mTextures[index];
 	}
 	mTextures[index] = texture;
-	_120 &= ~(1 << index);
+	mUndeleteFlag &= ~(1 << index);
 	delete mPalettes[index];
 	mPalettes[index]   = nullptr;
 	mTexIndices[index] = 0xFFFF;
@@ -5856,11 +5854,11 @@ bool J2DTevBlock8::setFont(ResFONT* font)
 	if (jutFont == nullptr) {
 		return false;
 	}
-	if (_121 != 0) {
+	if (mFontUndeleteFlag != 0) {
 		delete mFont;
 	}
-	mFont = jutFont;
-	_121  = 1;
+	mFont             = jutFont;
+	mFontUndeleteFlag = 1;
 	return true;
 }
 
@@ -5875,11 +5873,11 @@ bool J2DTevBlock8::setFont(JUTFont* font)
 	if (font == nullptr) {
 		return false;
 	}
-	if (_121 != 0) {
+	if (mFontUndeleteFlag != 0) {
 		delete mFont;
 	}
-	mFont = static_cast<JUTResFont*>(font);
-	_121  = 0;
+	mFont             = static_cast<JUTResFont*>(font);
+	mFontUndeleteFlag = 0;
 	return true;
 }
 
@@ -5921,10 +5919,10 @@ bool J2DTevBlock8::setPalette(unsigned long index, const ResTLUT* lut)
 void J2DTevBlock8::shiftDeleteFlag(unsigned char flag, bool direction)
 {
 	if (direction) {
-		u32 v1 = ((1 << flag) - 1);
-		_120   = (_120 & v1) | ((_120 & ~v1) << 1);
+		u32 v1        = ((1 << flag) - 1);
+		mUndeleteFlag = (mUndeleteFlag & v1) | ((mUndeleteFlag & ~v1) << 1);
 	} else {
-		_120 = (_120 & (1 << flag) - 1) | ((_120 & ~((1 << (flag + 1)) - 1)) >> 1);
+		mUndeleteFlag = (mUndeleteFlag & (1 << flag) - 1) | ((mUndeleteFlag & ~((1 << (flag + 1)) - 1)) >> 1);
 	}
 }
 
@@ -6167,7 +6165,7 @@ lbl_8004F2A4:
  */
 void J2DTevBlock8::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	if (index < 8 && mTextures[index] != nullptr && mTextures[index]->_20 != nullptr) {
+	if (index < 8 && mTextures[index] != nullptr && mTextures[index]->mTexInfo != nullptr) {
 		mTextures[index]->load(id);
 	}
 }
@@ -6189,7 +6187,7 @@ J2DTevBlock16::J2DTevBlock16()
 	for (int i = 0; i < 8; i++) {
 		mTextures[i] = nullptr;
 	}
-	_1B0 = 0;
+	mUndeleteFlag = 0;
 	initialize();
 }
 
@@ -6201,12 +6199,12 @@ J2DTevBlock16::J2DTevBlock16()
 J2DTevBlock16::~J2DTevBlock16()
 {
 	for (int i = 0; i < 8; i++) {
-		if ((_1B0 & 1 << i) != 0) {
+		if ((mUndeleteFlag & 1 << i) != 0) {
 			delete mTextures[i];
 		}
 		delete mPalettes[i];
 	}
-	if (_1B1 != 0) {
+	if (mFontUndeleteFlag != 0) {
 		delete mFont;
 	}
 }
@@ -6587,7 +6585,7 @@ bool J2DTevBlock16::prepareTexture(unsigned char count)
 			if (mTextures[i] == nullptr) {
 				return false;
 			}
-			_1B0 |= (1 << i);
+			mUndeleteFlag |= (1 << i);
 		}
 	}
 	return true;
@@ -7289,11 +7287,11 @@ bool J2DTevBlock16::setTexture(unsigned long index, JUTTexture* texture)
 	if (index >= 8) {
 		return false;
 	}
-	if ((_1B0 & 1 << index) != 0) {
+	if ((mUndeleteFlag & 1 << index) != 0) {
 		delete mTextures[index];
 	}
 	mTextures[index] = texture;
-	_1B0 &= ~(1 << index);
+	mUndeleteFlag &= ~(1 << index);
 	delete mPalettes[index];
 	mPalettes[index]   = nullptr;
 	mTexIndices[index] = 0xFFFF;
@@ -7472,11 +7470,11 @@ bool J2DTevBlock16::setFont(ResFONT* font)
 	if (jutFont == nullptr) {
 		return false;
 	}
-	if (_1B1 != 0) {
+	if (mFontUndeleteFlag != 0) {
 		delete mFont;
 	}
-	mFont = jutFont;
-	_1B1  = 1;
+	mFont             = jutFont;
+	mFontUndeleteFlag = 1;
 	return true;
 }
 
@@ -7491,11 +7489,11 @@ bool J2DTevBlock16::setFont(JUTFont* font)
 	if (font == nullptr) {
 		return false;
 	}
-	if (_1B1 != 0) {
+	if (mFontUndeleteFlag != 0) {
 		delete mFont;
 	}
-	mFont = static_cast<JUTResFont*>(font);
-	_1B1  = 0;
+	mFont             = static_cast<JUTResFont*>(font);
+	mFontUndeleteFlag = 0;
 	return true;
 }
 
@@ -7537,10 +7535,10 @@ bool J2DTevBlock16::setPalette(unsigned long index, const ResTLUT* lut)
 void J2DTevBlock16::shiftDeleteFlag(unsigned char flag, bool direction)
 {
 	if (direction) {
-		u32 v1 = ((1 << flag) - 1);
-		_1B0   = (_1B0 & v1) | ((_1B0 & ~v1) << 1);
+		u32 v1        = ((1 << flag) - 1);
+		mUndeleteFlag = (mUndeleteFlag & v1) | ((mUndeleteFlag & ~v1) << 1);
 	} else {
-		_1B0 = (_1B0 & (1 << flag) - 1) | ((_1B0 & ~((1 << (flag + 1)) - 1)) >> 1);
+		mUndeleteFlag = (mUndeleteFlag & (1 << flag) - 1) | ((mUndeleteFlag & ~((1 << (flag + 1)) - 1)) >> 1);
 	}
 }
 
@@ -7783,7 +7781,7 @@ lbl_80050B64:
  */
 void J2DTevBlock16::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	if (index < 8 && mTextures[index] != nullptr && mTextures[index]->_20 != nullptr) {
+	if (index < 8 && mTextures[index] != nullptr && mTextures[index]->mTexInfo != nullptr) {
 		mTextures[index]->load(id);
 	}
 }
@@ -7801,13 +7799,13 @@ void J2DIndBlockFull::initialize()
 		mTexOrders[i] = j2dDefaultIndTexOrderNull;
 	}
 	for (int i = 0; i < 3; i++) {
-		mTexMtxes[i]._00 = j2dDefaultIndTexMtxInfo._00;
-		mTexMtxes[i]._04 = j2dDefaultIndTexMtxInfo._04;
-		mTexMtxes[i]._08 = j2dDefaultIndTexMtxInfo._08;
-		mTexMtxes[i]._0C = j2dDefaultIndTexMtxInfo._0C;
-		mTexMtxes[i]._10 = j2dDefaultIndTexMtxInfo._10;
-		mTexMtxes[i]._14 = j2dDefaultIndTexMtxInfo._14;
-		mTexMtxes[i]._18 = j2dDefaultIndTexMtxInfo._18;
+		mTexMtxes[i].mMtxInfo = j2dDefaultIndTexMtxInfo;
+		// mTexMtxes[i]._04 = j2dDefaultIndTexMtxInfo._04;
+		// mTexMtxes[i]._08 = j2dDefaultIndTexMtxInfo._08;
+		// mTexMtxes[i]._0C = j2dDefaultIndTexMtxInfo._0C;
+		// mTexMtxes[i]._10 = j2dDefaultIndTexMtxInfo._10;
+		// mTexMtxes[i]._14 = j2dDefaultIndTexMtxInfo._14;
+		// mTexMtxes[i]._18 = j2dDefaultIndTexMtxInfo._18;
 	}
 	for (int i = 0; i < 4; i++) {
 		mTexCoordScales[i] = j2dDefaultIndTexCoordScaleInfo;
@@ -7929,7 +7927,7 @@ void J2DPEBlock::initialize()
 	mAlphaComp.mAlphaComp = j2dDefaultAlphaCmp;
 	mAlphaComp.mRef0      = 0;
 	mAlphaComp.mRef1      = 0;
-	mBlendInfo            = j2dDefaultBlendInfo;
+	mBlendInfo.mBlendInfo = j2dDefaultBlendInfo;
 	mDither               = j2dDefaultDither;
 }
 
@@ -7942,10 +7940,11 @@ void J2DPEBlock::initialize()
  */
 void J2DPEBlock::setGX()
 {
-	GXSetAlphaCompare(static_cast<GXCompare>(mAlphaComp._00 >> 5 & 7), mAlphaComp._02, static_cast<GXAlphaOp>(mAlphaComp._00 >> 3 & 3),
-	                  static_cast<GXCompare>(mAlphaComp._00 & 7), mAlphaComp._03);
-	GXSetBlendMode((GXBlendMode)mBlendInfo.mType, (GXBlendFactor)mBlendInfo.mSrcFactor, (GXBlendFactor)mBlendInfo.mDestFactor,
-	               (GXLogicOp)_07);
+	GXSetAlphaCompare(static_cast<GXCompare>(mAlphaComp.mAlphaComp >> 5 & 7), mAlphaComp.mRef0,
+	                  static_cast<GXAlphaOp>(mAlphaComp.mAlphaComp >> 3 & 3), static_cast<GXCompare>(mAlphaComp.mAlphaComp & 7),
+	                  mAlphaComp.mRef1);
+	GXSetBlendMode((GXBlendMode)mBlendInfo.mBlendInfo.mType, (GXBlendFactor)mBlendInfo.mBlendInfo.mSrcFactor,
+	               (GXBlendFactor)mBlendInfo.mBlendInfo.mDestFactor, (GXLogicOp)mBlendInfo.mOp);
 	GXSetDither(mDither);
 	/*
 	stwu     r1, -0x10(r1)
