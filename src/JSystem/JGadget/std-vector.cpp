@@ -6,7 +6,7 @@
     Generated from dpostproc
 */
 
-typedef JGadget::TVector<void*, JGadget::TAllocator<void*>> TVPVBase;
+typedef JGadget::TVector<void*, JGadget::TAllocator> TVPVBase;
 
 namespace JGadget {
 /*
@@ -14,7 +14,7 @@ namespace JGadget {
  * Address:	8002766C
  * Size:	000008
  */
-void vector::extend_default(unsigned long, unsigned long, unsigned long)
+u32 vector::extend_default(unsigned long, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -30,6 +30,7 @@ void vector::extend_default(unsigned long, unsigned long, unsigned long)
  * __ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>
  */
 TVector_pointer_void::TVector_pointer_void(const TAllocator<void*>& allocator)
+    : TVector(allocator)
 {
 	/*
 	.loc_0x0:
@@ -58,26 +59,26 @@ TVPVBase::~TVector()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-TVector_pointer_void::TVector_pointer_void(u32, void* const&, const JGadget::TAllocator<void*>& allocator)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000030
+//  */
+// TVector_pointer_void::TVector_pointer_void(u32, void* const&, const JGadget::TAllocator<void*>& allocator)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-template <>
-TVPVBase::TVector(u32, void* const&, const TAllocator<void*>&)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000064
+//  */
+// template <>
+// TVPVBase::TVector(u32, void* const&, const TAllocator<void*>&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -654,25 +655,25 @@ void TVPVBase::insert(void**, void* const&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void TVector_pointer_void::insert(void**, unsigned long, void* const&)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000020
+//  */
+// void TVector_pointer_void::insert(void**, unsigned long, void* const&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void TVector_pointer_void::erase(void**)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0000BC
+//  */
+// void TVector_pointer_void::erase(void**)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -743,15 +744,15 @@ lbl_80027DAC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void TVector_pointer_void::assign(unsigned long, void* const&)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000020
+//  */
+// void TVector_pointer_void::assign(unsigned long, void* const&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -764,15 +765,15 @@ void TVPVBase::assign(u32, void* const&)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void TVector_pointer_void::resize(unsigned long, void* const&)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000020
+//  */
+// void TVector_pointer_void::resize(unsigned long, void* const&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -796,25 +797,25 @@ void TVPVBase::Resize_raw(u32)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00013C
- */
-void JGadget::TVector_pointer_void::reserve(unsigned long)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00013C
+//  */
+// void JGadget::TVector_pointer_void::reserve(unsigned long)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000030
- */
-void JGadget::TVector_pointer_void::operator=(TVector_pointer_void const&)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000030
+//  */
+// void JGadget::TVector_pointer_void::operator=(TVector_pointer_void const&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -827,23 +828,23 @@ void TVPVBase::operator=(const TVPVBase& rhs)
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void JGadget::TVector_pointer_void::Insert_raw(void**, unsigned long)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000020
+//  */
+// void JGadget::TVector_pointer_void::Insert_raw(void**, unsigned long)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void JGadget::TVector_pointer_void::Resize_raw(unsigned long)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000020
+//  */
+// void JGadget::TVector_pointer_void::Resize_raw(unsigned long)
+// {
+// 	// UNUSED FUNCTION
+// }
 } // namespace JGadget
