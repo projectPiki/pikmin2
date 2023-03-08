@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global j3dDefaultTexCoordInfo
-j3dDefaultTexCoordInfo:
+.obj j3dDefaultTexCoordInfo, global
 	.4byte 0x01043C00
 	.4byte 0x01053C00
 	.4byte 0x01063C00
@@ -11,8 +10,8 @@ j3dDefaultTexCoordInfo:
 	.4byte 0x01093C00
 	.4byte 0x010A3C00
 	.4byte 0x010B3C00
-.global j3dDefaultTexMtxInfo
-j3dDefaultTexMtxInfo:
+.endobj j3dDefaultTexCoordInfo
+.obj j3dDefaultTexMtxInfo, global
 	.4byte 0x0100FFFF
 	.float 0.0
 	.float 0.0
@@ -39,8 +38,8 @@ j3dDefaultTexMtxInfo:
 	.float 0.0
 	.float 0.0
 	.float 1.0
-.global j3dDefaultIndTexMtxInfo
-j3dDefaultIndTexMtxInfo:
+.endobj j3dDefaultTexMtxInfo
+.obj j3dDefaultIndTexMtxInfo, global
 	.float 0.5
 	.float 0.0
 	.float 0.0
@@ -48,75 +47,76 @@ j3dDefaultIndTexMtxInfo:
 	.float 0.5
 	.float 0.0
 	.4byte 0x01000000
-.global j3dDefaultTevStageInfo
-j3dDefaultTevStageInfo:
+.endobj j3dDefaultIndTexMtxInfo
+.obj j3dDefaultTevStageInfo, global
 	.4byte 0x040A0F0F
 	.4byte 0x00000000
 	.4byte 0x01000507
 	.4byte 0x07000000
 	.4byte 0x00010000
-.global j3dDefaultIndTevStageInfo
-j3dDefaultIndTevStageInfo:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global j3dDefaultFogInfo
-j3dDefaultFogInfo:
-	.4byte 0x00000140
-	.4byte 0x00000000
-	.4byte 0x00000000
+.endobj j3dDefaultTevStageInfo
+.obj j3dDefaultIndTevStageInfo, global
+	.byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+.endobj j3dDefaultIndTevStageInfo
+.obj j3dDefaultFogInfo, global
+	.byte 0x00, 0x00
+	.2byte 0x0140
+	.float 0.0
+	.float 0.0
 	.float 0.1
-	.4byte 0x461C4000
+	.float 10000.0
 	.4byte 0xFFFFFF00
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global j3dDefaultNBTScaleInfo
-j3dDefaultNBTScaleInfo:
-	.4byte 0x00000000
+.endobj j3dDefaultFogInfo
+.obj j3dDefaultNBTScaleInfo, global
+	.byte 0
+.balign 4
 	.float 1.0
 	.float 1.0
 	.float 1.0
-.global lbl_804789A4
-lbl_804789A4:
+.endobj j3dDefaultNBTScaleInfo
+.obj lbl_804789A4, local
 	.4byte 0x1E212427
 	.4byte 0x2A2D3033
-	.4byte 0x36393C00
+	.2byte 0x3639
+	.byte 0x3C
+.endobj lbl_804789A4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global qMtx$1682
-qMtx$1682:
+.obj qMtx$1682, local
 	.float 0.5
 	.float 0.0
 	.float 0.5
 	.float 0.0
 	.float 0.0
-	.4byte 0xBF000000
+	.float -0.5
 	.float 0.5
 	.float 0.0
 	.float 0.0
 	.float 0.0
 	.float 1.0
 	.float 0.0
-.global qMtx2$1683
-qMtx2$1683:
+.endobj qMtx$1682
+.obj qMtx2$1683, local
 	.float 0.5
 	.float 0.0
 	.float 0.0
 	.float 0.5
 	.float 0.0
-	.4byte 0xBF000000
+	.float -0.5
 	.float 0.0
 	.float 0.5
 	.float 0.0
 	.float 0.0
 	.float 1.0
 	.float 0.0
-.global lbl_804A1870
-lbl_804A1870:
+.endobj qMtx2$1683
+.obj lbl_804A1870, local
 	.4byte .L_80064FB8
 	.4byte .L_80064EDC
 	.4byte .L_80064F20
@@ -129,13 +129,14 @@ lbl_804A1870:
 	.4byte .L_80064D5C
 	.4byte .L_80064E1C
 	.4byte .L_80064D5C
+.endobj lbl_804A1870
 .obj qMtx$1744, local
 	.float 0.5
 	.float 0.0
 	.float 0.5
 	.float 0.0
 	.float 0.0
-	.4byte 0xBF000000
+	.float -0.5
 	.float 0.5
 	.float 0.0
 	.float 0.0
@@ -149,7 +150,7 @@ lbl_804A1870:
 	.float 0.0
 	.float 0.5
 	.float 0.0
-	.4byte 0xBF000000
+	.float -0.5
 	.float 0.0
 	.float 0.5
 	.float 0.0
@@ -185,69 +186,68 @@ lbl_804A1870:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805169B0
-lbl_805169B0:
-	.4byte 0x3E000000
-.global lbl_805169B4
-lbl_805169B4:
-	.4byte 0x3C23D70A
-.global lbl_805169B8
-lbl_805169B8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global j3dDefaultColInfo
-j3dDefaultColInfo:
+.obj lbl_805169B0, local
+	.float 0.125
+.endobj lbl_805169B0
+.obj lbl_805169B4, local
+	.float 0.01
+.endobj lbl_805169B4
+.balign 8
+.obj lbl_805169B8, local
+	.8byte 0x4330000080000000
+.endobj lbl_805169B8
+.obj j3dDefaultColInfo, global
 	.4byte 0xFFFFFFFF
-.global j3dDefaultAmbInfo
-j3dDefaultAmbInfo:
+.endobj j3dDefaultColInfo
+.obj j3dDefaultAmbInfo, global
 	.4byte 0x32323232
-.global j3dDefaultColorChanNum
-j3dDefaultColorChanNum:
-	.4byte 0x01000000
-.global j3dDefaultTevOrderInfoNull
-j3dDefaultTevOrderInfoNull:
+.endobj j3dDefaultAmbInfo
+.obj j3dDefaultColorChanNum, global
+	.byte 0x01
+.endobj j3dDefaultColorChanNum
+.balign 4
+.obj j3dDefaultTevOrderInfoNull, global
 	.4byte 0xFFFFFF00
-.global j3dDefaultIndTexOrderNull
-j3dDefaultIndTexOrderNull:
+.endobj j3dDefaultTevOrderInfoNull
+.obj j3dDefaultIndTexOrderNull, global
 	.4byte 0xFFFF0000
-.global j3dDefaultTevColor
-j3dDefaultTevColor:
+.endobj j3dDefaultIndTexOrderNull
+.obj j3dDefaultTevColor, global
 	.4byte 0x00FF00FF
-.global lbl_805169D8
-lbl_805169D8:
 	.4byte 0x00FF00FF
-.global j3dDefaultIndTexCoordScaleInfo
-j3dDefaultIndTexCoordScaleInfo:
+.endobj j3dDefaultTevColor
+.obj j3dDefaultIndTexCoordScaleInfo, global
 	.4byte 0x00000000
-.global j3dDefaultTevKColor
-j3dDefaultTevKColor:
+.endobj j3dDefaultIndTexCoordScaleInfo
+.obj j3dDefaultTevKColor, global
 	.4byte 0xFFFFFFFF
-.global j3dDefaultTevSwapMode
-j3dDefaultTevSwapMode:
+.endobj j3dDefaultTevKColor
+.obj j3dDefaultTevSwapMode, global
 	.4byte 0x00000000
-.global j3dDefaultTevSwapModeTable
-j3dDefaultTevSwapModeTable:
+.endobj j3dDefaultTevSwapMode
+.obj j3dDefaultTevSwapModeTable, global
 	.4byte 0x00010203
-.global j3dDefaultBlendInfo
-j3dDefaultBlendInfo:
+.endobj j3dDefaultTevSwapModeTable
+.obj j3dDefaultBlendInfo, global
 	.4byte 0x01040505
-.global j3dDefaultColorChanInfo
-j3dDefaultColorChanInfo:
+.endobj j3dDefaultBlendInfo
+.obj j3dDefaultColorChanInfo, global
 	.4byte 0x00000002
 	.4byte 0x0200FFFF
-.global j3dDefaultTevSwapTableID
-j3dDefaultTevSwapTableID:
-	.2byte 0x1B00
-.global j3dDefaultAlphaCmpID
-j3dDefaultAlphaCmpID:
+.endobj j3dDefaultColorChanInfo
+.obj j3dDefaultTevSwapTableID, global
+	.byte 0x1B
+.endobj j3dDefaultTevSwapTableID
+.balign 2
+.obj j3dDefaultAlphaCmpID, global
 	.2byte 0x00E7
-.global j3dDefaultZModeID
-j3dDefaultZModeID:
-	.4byte 0x00170000
+.endobj j3dDefaultAlphaCmpID
+.obj j3dDefaultZModeID, global
+	.2byte 0x0017
+.endobj j3dDefaultZModeID
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global load__11J3DLightObjCFUl
-load__11J3DLightObjCFUl:
+.fn load__11J3DLightObjCFUl, global
 /* 80063B24 00060A64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80063B28 00060A68  7C 08 02 A6 */	mflr r0
 /* 80063B2C 00060A6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -294,9 +294,9 @@ load__11J3DLightObjCFUl:
 /* 80063BCC 00060B0C  7C 08 03 A6 */	mtlr r0
 /* 80063BD0 00060B10  38 21 00 20 */	addi r1, r1, 0x20
 /* 80063BD4 00060B14  4E 80 00 20 */	blr 
+.endfn load__11J3DLightObjCFUl
 
-.global loadTexCoordGens__FUlP11J3DTexCoord
-loadTexCoordGens__FUlP11J3DTexCoord:
+.fn loadTexCoordGens__FUlP11J3DTexCoord, global
 /* 80063BD8 00060B18  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80063BDC 00060B1C  7C 08 02 A6 */	mflr r0
 /* 80063BE0 00060B20  90 01 00 24 */	stw r0, 0x24(r1)
@@ -639,9 +639,9 @@ loadTexCoordGens__FUlP11J3DTexCoord:
 /* 800640FC 0006103C  7C 08 03 A6 */	mtlr r0
 /* 80064100 00061040  38 21 00 20 */	addi r1, r1, 0x20
 /* 80064104 00061044  4E 80 00 20 */	blr 
+.endfn loadTexCoordGens__FUlP11J3DTexCoord
 
-.global load__9J3DTexMtxCFUl
-load__9J3DTexMtxCFUl:
+.fn load__9J3DTexMtxCFUl, global
 /* 80064108 00061048  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006410C 0006104C  7C 08 02 A6 */	mflr r0
 /* 80064110 00061050  3C A0 80 51 */	lis r5, j3dSys@ha
@@ -659,9 +659,9 @@ load__9J3DTexMtxCFUl:
 /* 80064138 00061078  7C 08 03 A6 */	mtlr r0
 /* 8006413C 0006107C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80064140 00061080  4E 80 00 20 */	blr 
+.endfn load__9J3DTexMtxCFUl
 
-.global loadTexMtx__9J3DTexMtxCFUl
-loadTexMtx__9J3DTexMtxCFUl:
+.fn loadTexMtx__9J3DTexMtxCFUl, weak
 /* 80064144 00061084  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80064148 00061088  7C 08 02 A6 */	mflr r0
 /* 8006414C 0006108C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -688,9 +688,9 @@ loadTexMtx__9J3DTexMtxCFUl:
 /* 8006419C 000610DC  7C 08 03 A6 */	mtlr r0
 /* 800641A0 000610E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800641A4 000610E4  4E 80 00 20 */	blr 
+.endfn loadTexMtx__9J3DTexMtxCFUl
 
-.global J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType
-J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType:
+.fn J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType, weak
 /* 800641A8 000610E8  2C 05 00 01 */	cmpwi r5, 1
 /* 800641AC 000610EC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800641B0 000610F0  54 8B 14 3A */	rlwinm r11, r4, 2, 0x10, 0x1d
@@ -1045,9 +1045,9 @@ J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType:
 .L_80064720:
 /* 80064720 00061660  38 21 00 40 */	addi r1, r1, 0x40
 /* 80064724 00061664  4E 80 00 20 */	blr 
+.endfn J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType
 
-.global loadPostTexMtx__9J3DTexMtxCFUl
-loadPostTexMtx__9J3DTexMtxCFUl:
+.fn loadPostTexMtx__9J3DTexMtxCFUl, weak
 /* 80064728 00061668  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006472C 0006166C  7C 08 02 A6 */	mflr r0
 /* 80064730 00061670  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1073,9 +1073,9 @@ loadPostTexMtx__9J3DTexMtxCFUl:
 /* 8006477C 000616BC  7C 08 03 A6 */	mtlr r0
 /* 80064780 000616C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80064784 000616C4  4E 80 00 20 */	blr 
+.endfn loadPostTexMtx__9J3DTexMtxCFUl
 
-.global J3DGDLoadPostTexMtxImm__FPA4_fUl
-J3DGDLoadPostTexMtxImm__FPA4_fUl:
+.fn J3DGDLoadPostTexMtxImm__FPA4_fUl, weak
 /* 80064788 000616C8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8006478C 000616CC  38 04 FF C0 */	addi r0, r4, -64
 /* 80064790 000616D0  54 04 10 3A */	slwi r4, r0, 2
@@ -1423,9 +1423,9 @@ J3DGDLoadPostTexMtxImm__FPA4_fUl:
 /* 80064CE8 00061C28  98 E3 00 00 */	stb r7, 0(r3)
 /* 80064CEC 00061C2C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80064CF0 00061C30  4E 80 00 20 */	blr 
+.endfn J3DGDLoadPostTexMtxImm__FPA4_fUl
 
-.global calc__9J3DTexMtxFPA4_Cf
-calc__9J3DTexMtxFPA4_Cf:
+.fn calc__9J3DTexMtxFPA4_Cf, global
 /* 80064CF4 00061C34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80064CF8 00061C38  7C 08 02 A6 */	mflr r0
 /* 80064CFC 00061C3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1434,9 +1434,9 @@ calc__9J3DTexMtxFPA4_Cf:
 /* 80064D08 00061C48  7C 08 03 A6 */	mtlr r0
 /* 80064D0C 00061C4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80064D10 00061C50  4E 80 00 20 */	blr 
+.endfn calc__9J3DTexMtxFPA4_Cf
 
-.global calcTexMtx__9J3DTexMtxFPA4_Cf
-calcTexMtx__9J3DTexMtxFPA4_Cf:
+.fn calcTexMtx__9J3DTexMtxFPA4_Cf, global
 /* 80064D14 00061C54  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80064D18 00061C58  7C 08 02 A6 */	mflr r0
 /* 80064D1C 00061C5C  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1648,9 +1648,9 @@ calcTexMtx__9J3DTexMtxFPA4_Cf:
 /* 80064FF4 00061F34  7C 08 03 A6 */	mtlr r0
 /* 80064FF8 00061F38  38 21 00 90 */	addi r1, r1, 0x90
 /* 80064FFC 00061F3C  4E 80 00 20 */	blr 
+.endfn calcTexMtx__9J3DTexMtxFPA4_Cf
 
-.global calcPostTexMtx__9J3DTexMtxFPA4_Cf
-calcPostTexMtx__9J3DTexMtxFPA4_Cf:
+.fn calcPostTexMtx__9J3DTexMtxFPA4_Cf, global
 /* 80065000 00061F40  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80065004 00061F44  7C 08 02 A6 */	mflr r0
 /* 80065008 00061F48  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1894,9 +1894,9 @@ calcPostTexMtx__9J3DTexMtxFPA4_Cf:
 /* 8006534C 0006228C  7C 08 03 A6 */	mtlr r0
 /* 80065350 00062290  38 21 00 90 */	addi r1, r1, 0x90
 /* 80065354 00062294  4E 80 00 20 */	blr 
+.endfn calcPostTexMtx__9J3DTexMtxFPA4_Cf
 
-.global isTexNoReg__FPv
-isTexNoReg__FPv:
+.fn isTexNoReg__FPv, global
 /* 80065358 00062298  88 03 00 01 */	lbz r0, 1(r3)
 /* 8006535C 0006229C  28 00 00 80 */	cmplwi r0, 0x80
 /* 80065360 000622A0  41 80 00 14 */	blt .L_80065374
@@ -1907,15 +1907,15 @@ isTexNoReg__FPv:
 .L_80065374:
 /* 80065374 000622B4  38 60 00 00 */	li r3, 0
 /* 80065378 000622B8  4E 80 00 20 */	blr 
+.endfn isTexNoReg__FPv
 
-.global getTexNoReg__FPv
-getTexNoReg__FPv:
+.fn getTexNoReg__FPv, global
 /* 8006537C 000622BC  80 03 00 01 */	lwz r0, 1(r3)
 /* 80065380 000622C0  54 03 04 3E */	clrlwi r3, r0, 0x10
 /* 80065384 000622C4  4E 80 00 20 */	blr 
+.endfn getTexNoReg__FPv
 
-.global loadTexNo__FUlRCUs
-loadTexNo__FUlRCUs:
+.fn loadTexNo__FUlRCUs, global
 /* 80065388 000622C8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8006538C 000622CC  7C 08 02 A6 */	mflr r0
 /* 80065390 000622D0  3C A0 80 51 */	lis r5, j3dSys@ha
@@ -2030,9 +2030,9 @@ loadTexNo__FUlRCUs:
 /* 80065534 00062474  7C 08 03 A6 */	mtlr r0
 /* 80065538 00062478  38 21 00 30 */	addi r1, r1, 0x30
 /* 8006553C 0006247C  4E 80 00 20 */	blr 
+.endfn loadTexNo__FUlRCUs
 
-.global patchTexNo_PtrToIdx__FUlRCUs
-patchTexNo_PtrToIdx__FUlRCUs:
+.fn patchTexNo_PtrToIdx__FUlRCUs, global
 /* 80065540 00062480  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80065544 00062484  7C 08 02 A6 */	mflr r0
 /* 80065548 00062488  A0 84 00 00 */	lhz r4, 0(r4)
@@ -2042,9 +2042,9 @@ patchTexNo_PtrToIdx__FUlRCUs:
 /* 80065558 00062498  7C 08 03 A6 */	mtlr r0
 /* 8006555C 0006249C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80065560 000624A0  4E 80 00 20 */	blr 
+.endfn patchTexNo_PtrToIdx__FUlRCUs
 
-.global loadNBTScale__FR11J3DNBTScale
-loadNBTScale__FR11J3DNBTScale:
+.fn loadNBTScale__FR11J3DNBTScale, global
 /* 80065564 000624A4  88 03 00 00 */	lbz r0, 0(r3)
 /* 80065568 000624A8  28 00 00 01 */	cmplwi r0, 1
 /* 8006556C 000624AC  40 82 00 18 */	bne .L_80065584
@@ -2059,9 +2059,9 @@ loadNBTScale__FR11J3DNBTScale:
 /* 8006558C 000624CC  38 63 F2 30 */	addi r3, r3, j3dSys@l
 /* 80065590 000624D0  90 03 01 18 */	stw r0, 0x118(r3)
 /* 80065594 000624D4  4E 80 00 20 */	blr 
+.endfn loadNBTScale__FR11J3DNBTScale
 
-.global makeTexCoordTable__Fv
-makeTexCoordTable__Fv:
+.fn makeTexCoordTable__Fv, global
 /* 80065598 000624D8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8006559C 000624DC  3C 60 80 48 */	lis r3, lbl_804789A4@ha
 /* 800655A0 000624E0  39 03 89 A4 */	addi r8, r3, lbl_804789A4@l
@@ -2155,9 +2155,9 @@ makeTexCoordTable__Fv:
 /* 800656EC 0006262C  BB 01 00 20 */	lmw r24, 0x20(r1)
 /* 800656F0 00062630  38 21 00 40 */	addi r1, r1, 0x40
 /* 800656F4 00062634  4E 80 00 20 */	blr 
+.endfn makeTexCoordTable__Fv
 
-.global makeAlphaCmpTable__Fv
-makeAlphaCmpTable__Fv:
+.fn makeAlphaCmpTable__Fv, global
 /* 800656F8 00062638  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800656FC 0006263C  3C 80 80 51 */	lis r4, j3dAlphaCmpTable@ha
 /* 80065700 00062640  38 60 00 00 */	li r3, 0
@@ -2236,9 +2236,9 @@ makeAlphaCmpTable__Fv:
 /* 8006581C 0006275C  BB 41 00 08 */	lmw r26, 8(r1)
 /* 80065820 00062760  38 21 00 20 */	addi r1, r1, 0x20
 /* 80065824 00062764  4E 80 00 20 */	blr 
+.endfn makeAlphaCmpTable__Fv
 
-.global makeZModeTable__Fv
-makeZModeTable__Fv:
+.fn makeZModeTable__Fv, global
 /* 80065828 00062768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006582C 0006276C  3C 60 80 51 */	lis r3, j3dZModeTable@ha
 /* 80065830 00062770  39 03 20 94 */	addi r8, r3, j3dZModeTable@l
@@ -2319,9 +2319,9 @@ makeZModeTable__Fv:
 /* 80065954 00062894  83 C1 00 08 */	lwz r30, 8(r1)
 /* 80065958 00062898  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006595C 0006289C  4E 80 00 20 */	blr 
+.endfn makeZModeTable__Fv
 
-.global makeTevSwapTable__Fv
-makeTevSwapTable__Fv:
+.fn makeTevSwapTable__Fv, global
 /* 80065960 000628A0  3C 60 80 51 */	lis r3, j3dTevSwapTableTable@ha
 /* 80065964 000628A4  38 C0 00 00 */	li r6, 0
 /* 80065968 000628A8  38 03 19 94 */	addi r0, r3, j3dTevSwapTableTable@l
@@ -2340,3 +2340,4 @@ makeTevSwapTable__Fv:
 /* 80065998 000628D8  38 A5 00 04 */	addi r5, r5, 4
 /* 8006599C 000628DC  41 80 FF D4 */	blt .L_80065970
 /* 800659A0 000628E0  4E 80 00 20 */	blr 
+.endfn makeTevSwapTable__Fv

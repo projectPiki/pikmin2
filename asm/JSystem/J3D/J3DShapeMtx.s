@@ -5,22 +5,27 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A2C98
-lbl_804A2C98:
+.obj lbl_804A2C98, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxIndx_PNGP__11J3DShapeMtxCFiUs
+.endobj lbl_804A2C98
+.obj lbl_804A2CA4, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxIndx_PCPU__11J3DShapeMtxCFiUs
+.endobj lbl_804A2CA4
+.obj lbl_804A2CB0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxIndx_NCPU__11J3DShapeMtxCFiUs
+.endobj lbl_804A2CB0
+.obj lbl_804A2CBC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxIndx_PNCPU__11J3DShapeMtxCFiUs
-.global sMtxLoadPipeline__11J3DShapeMtx
-sMtxLoadPipeline__11J3DShapeMtx:
+.endobj lbl_804A2CBC
+.obj sMtxLoadPipeline__11J3DShapeMtx, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -33,20 +38,28 @@ sMtxLoadPipeline__11J3DShapeMtx:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj sMtxLoadPipeline__11J3DShapeMtx
+.obj lbl_804A2CF8, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs
+.endobj lbl_804A2CF8
+.obj lbl_804A2D04, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs
+.endobj lbl_804A2D04
+.obj lbl_804A2D10, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs
+.endobj lbl_804A2D10
+.obj lbl_804A2D1C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs
-.global sMtxLoadPipeline__21J3DShapeMtxConcatView
-sMtxLoadPipeline__21J3DShapeMtxConcatView:
+.endobj lbl_804A2D1C
+.obj sMtxLoadPipeline__21J3DShapeMtxConcatView, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -59,20 +72,28 @@ sMtxLoadPipeline__21J3DShapeMtxConcatView:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj sMtxLoadPipeline__21J3DShapeMtxConcatView
+.obj lbl_804A2D58, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs
+.endobj lbl_804A2D58
+.obj lbl_804A2D64, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs
+.endobj lbl_804A2D64
+.obj lbl_804A2D70, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs
+.endobj lbl_804A2D70
+.obj lbl_804A2D7C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs
-.global sMtxLoadLODPipeline__21J3DShapeMtxConcatView
-sMtxLoadLODPipeline__21J3DShapeMtxConcatView:
+.endobj lbl_804A2D7C
+.obj sMtxLoadLODPipeline__21J3DShapeMtxConcatView, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -85,36 +106,36 @@ sMtxLoadLODPipeline__21J3DShapeMtxConcatView:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global qMtx$1532
-qMtx$1532:
+.endobj sMtxLoadLODPipeline__21J3DShapeMtxConcatView
+.obj qMtx$1532, local
 	.float 0.5
-	.4byte 0x00000000
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0xBF000000
+	.float 0.0
+	.float 0.0
+	.float -0.5
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
-.global qMtx2$1533
-qMtx2$1533:
+	.float 0.0
+.endobj qMtx$1532
+.obj qMtx2$1533, local
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0xBF000000
-	.4byte 0x00000000
+	.float 0.0
+	.float -0.5
+	.float 0.0
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_804A2E18
-lbl_804A2E18:
+	.float 0.0
+.endobj qMtx2$1533
+.obj lbl_804A2E18, local
 	.4byte .L_800867CC
 	.4byte .L_800865A8
 	.4byte .L_800865E4
@@ -127,8 +148,8 @@ lbl_804A2E18:
 	.4byte .L_80086588
 	.4byte .L_80086728
 	.4byte .L_80086684
-.global lbl_804A2E48
-lbl_804A2E48:
+.endobj lbl_804A2E18
+.obj lbl_804A2E48, local
 	.4byte .L_80086504
 	.4byte .L_8008631C
 	.4byte .L_8008632C
@@ -141,15 +162,15 @@ lbl_804A2E48:
 	.4byte .L_8008630C
 	.4byte .L_80086470
 	.4byte .L_800863DC
-.global mtxCache$1887
-mtxCache$1887:
+.endobj lbl_804A2E48
+.obj mtxCache$1887, local
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
-.global __vt__28J3DShapeMtxYBBoardConcatView
-__vt__28J3DShapeMtxYBBoardConcatView:
+.endobj mtxCache$1887
+.obj __vt__28J3DShapeMtxYBBoardConcatView, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__28J3DShapeMtxYBBoardConcatViewFv
@@ -160,8 +181,8 @@ __vt__28J3DShapeMtxYBBoardConcatView:
 	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
 	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
 	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
-.global __vt__27J3DShapeMtxBBoardConcatView
-__vt__27J3DShapeMtxBBoardConcatView:
+.endobj __vt__28J3DShapeMtxYBBoardConcatView
+.obj __vt__27J3DShapeMtxBBoardConcatView, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__27J3DShapeMtxBBoardConcatViewFv
@@ -172,8 +193,8 @@ __vt__27J3DShapeMtxBBoardConcatView:
 	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
 	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
 	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
-.global __vt__26J3DShapeMtxMultiConcatView
-__vt__26J3DShapeMtxMultiConcatView:
+.endobj __vt__27J3DShapeMtxBBoardConcatView
+.obj __vt__26J3DShapeMtxMultiConcatView, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__26J3DShapeMtxMultiConcatViewFv
@@ -184,8 +205,8 @@ __vt__26J3DShapeMtxMultiConcatView:
 	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
 	.4byte loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUs
 	.4byte loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUsPA4_f
-.global __vt__16J3DShapeMtxMulti
-__vt__16J3DShapeMtxMulti:
+.endobj __vt__26J3DShapeMtxMultiConcatView
+.obj __vt__16J3DShapeMtxMulti, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__16J3DShapeMtxMultiFv
@@ -194,8 +215,8 @@ __vt__16J3DShapeMtxMulti:
 	.4byte getUseMtxIndex__16J3DShapeMtxMultiCFUs
 	.4byte load__16J3DShapeMtxMultiCFv
 	.4byte calcNBTScale__16J3DShapeMtxMultiFRC3VecPA3_A3_fPA3_A3_f
-.global __vt__21J3DShapeMtxConcatView
-__vt__21J3DShapeMtxConcatView:
+.endobj __vt__16J3DShapeMtxMulti
+.obj __vt__21J3DShapeMtxConcatView, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__21J3DShapeMtxConcatViewFv
@@ -206,8 +227,8 @@ __vt__21J3DShapeMtxConcatView:
 	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
 	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
 	.4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
-.global __vt__11J3DShapeMtx
-__vt__11J3DShapeMtx:
+.endobj __vt__21J3DShapeMtxConcatView
+.obj __vt__11J3DShapeMtx, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11J3DShapeMtxFv
@@ -216,6 +237,7 @@ __vt__11J3DShapeMtx:
 	.4byte getUseMtxIndex__11J3DShapeMtxCFUs
 	.4byte load__11J3DShapeMtxCFv
 	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+.endobj __vt__11J3DShapeMtx
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # J3DShapeMtx.cpp
@@ -223,43 +245,43 @@ __vt__11J3DShapeMtx:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sCurrentPipeline__11J3DShapeMtx
-sCurrentPipeline__11J3DShapeMtx:
+.obj sCurrentPipeline__11J3DShapeMtx, global
 	.skip 0x4
-.global sCurrentScaleFlag__11J3DShapeMtx
-sCurrentScaleFlag__11J3DShapeMtx:
+.endobj sCurrentPipeline__11J3DShapeMtx
+.obj sCurrentScaleFlag__11J3DShapeMtx, global
 	.skip 0x4
-.global sNBTFlag__11J3DShapeMtx
-sNBTFlag__11J3DShapeMtx:
+.endobj sCurrentScaleFlag__11J3DShapeMtx
+.obj sNBTFlag__11J3DShapeMtx, global
 	.skip 0x1
-.global sLODFlag__11J3DShapeMtx
-sLODFlag__11J3DShapeMtx:
-	.skip 0x3
-.global sTexMtxLoadType__11J3DShapeMtx
-sTexMtxLoadType__11J3DShapeMtx:
+.endobj sNBTFlag__11J3DShapeMtx
+.obj sLODFlag__11J3DShapeMtx, global
+	.skip 0x1
+.endobj sLODFlag__11J3DShapeMtx
+.balign 4
+.obj sTexMtxLoadType__11J3DShapeMtx, global
 	.skip 0x4
-.global sMtxPtrTbl__21J3DShapeMtxConcatView
-sMtxPtrTbl__21J3DShapeMtxConcatView:
+.endobj sTexMtxLoadType__11J3DShapeMtx
+.obj sMtxPtrTbl__21J3DShapeMtxConcatView, global
 	.skip 0x8
-.global sTexGenBlock__17J3DDifferedTexMtx
-sTexGenBlock__17J3DDifferedTexMtx:
+.endobj sMtxPtrTbl__21J3DShapeMtxConcatView
+.obj sTexGenBlock__17J3DDifferedTexMtx, global
 	.skip 0x4
-.global sTexMtxObj__17J3DDifferedTexMtx
-sTexMtxObj__17J3DDifferedTexMtx:
+.endobj sTexGenBlock__17J3DDifferedTexMtx
+.obj sTexMtxObj__17J3DDifferedTexMtx, global
 	.skip 0x4
+.endobj sTexMtxObj__17J3DDifferedTexMtx
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516AE8
-lbl_80516AE8:
-	.4byte 0x00000000
-.global lbl_80516AEC
-lbl_80516AEC:
+.obj lbl_80516AE8, local
+	.float 0.0
+.endobj lbl_80516AE8
+.obj lbl_80516AEC, local
 	.float 1.0
+.endobj lbl_80516AEC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global resetMtxLoadCache__11J3DShapeMtxFv
-resetMtxLoadCache__11J3DShapeMtxFv:
+.fn resetMtxLoadCache__11J3DShapeMtxFv, global
 /* 80086104 00083044  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 80086108 00083048  3C 60 80 51 */	lis r3, sMtxLoadCache__11J3DShapeMtx@ha
 /* 8008610C 0008304C  38 04 FF FF */	addi r0, r4, 0x0000FFFF@l
@@ -275,9 +297,9 @@ resetMtxLoadCache__11J3DShapeMtxFv:
 /* 80086134 00083074  B0 03 00 02 */	sth r0, 2(r3)
 /* 80086138 00083078  B0 03 00 00 */	sth r0, 0(r3)
 /* 8008613C 0008307C  4E 80 00 20 */	blr 
+.endfn resetMtxLoadCache__11J3DShapeMtxFv
 
-.global loadMtxIndx_PNGP__11J3DShapeMtxCFiUs
-loadMtxIndx_PNGP__11J3DShapeMtxCFiUs:
+.fn loadMtxIndx_PNGP__11J3DShapeMtxCFiUs, global
 /* 80086140 00083080  1C 64 00 0C */	mulli r3, r4, 0xc
 /* 80086144 00083084  38 00 00 20 */	li r0, 0x20
 /* 80086148 00083088  3C E0 CC 01 */	lis r7, 0xCC008000@ha
@@ -295,9 +317,9 @@ loadMtxIndx_PNGP__11J3DShapeMtxCFiUs:
 /* 80086178 000830B8  60 00 80 00 */	ori r0, r0, 0x8000
 /* 8008617C 000830BC  B0 07 80 00 */	sth r0, 0xCC008000@l(r7)
 /* 80086180 000830C0  4E 80 00 20 */	blr 
+.endfn loadMtxIndx_PNGP__11J3DShapeMtxCFiUs
 
-.global loadMtxIndx_PCPU__11J3DShapeMtxCFiUs
-loadMtxIndx_PCPU__11J3DShapeMtxCFiUs:
+.fn loadMtxIndx_PCPU__11J3DShapeMtxCFiUs, global
 /* 80086184 000830C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80086188 000830C8  7C 08 02 A6 */	mflr r0
 /* 8008618C 000830CC  3C 60 80 51 */	lis r3, j3dSys@ha
@@ -322,9 +344,9 @@ loadMtxIndx_PCPU__11J3DShapeMtxCFiUs:
 /* 800861D8 00083118  7C 08 03 A6 */	mtlr r0
 /* 800861DC 0008311C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800861E0 00083120  4E 80 00 20 */	blr 
+.endfn loadMtxIndx_PCPU__11J3DShapeMtxCFiUs
 
-.global loadMtxIndx_NCPU__11J3DShapeMtxCFiUs
-loadMtxIndx_NCPU__11J3DShapeMtxCFiUs:
+.fn loadMtxIndx_NCPU__11J3DShapeMtxCFiUs, global
 /* 800861E4 00083124  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800861E8 00083128  7C 08 02 A6 */	mflr r0
 /* 800861EC 0008312C  3C 60 80 51 */	lis r3, j3dSys@ha
@@ -344,9 +366,9 @@ loadMtxIndx_NCPU__11J3DShapeMtxCFiUs:
 /* 80086224 00083164  7C 08 03 A6 */	mtlr r0
 /* 80086228 00083168  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008622C 0008316C  4E 80 00 20 */	blr 
+.endfn loadMtxIndx_NCPU__11J3DShapeMtxCFiUs
 
-.global loadMtxIndx_PNCPU__11J3DShapeMtxCFiUs
-loadMtxIndx_PNCPU__11J3DShapeMtxCFiUs:
+.fn loadMtxIndx_PNCPU__11J3DShapeMtxCFiUs, global
 /* 80086230 00083170  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80086234 00083174  7C 08 02 A6 */	mflr r0
 /* 80086238 00083178  3C 60 80 51 */	lis r3, j3dSys@ha
@@ -369,9 +391,9 @@ loadMtxIndx_PNCPU__11J3DShapeMtxCFiUs:
 /* 8008627C 000831BC  7C 08 03 A6 */	mtlr r0
 /* 80086280 000831C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80086284 000831C4  4E 80 00 20 */	blr 
+.endfn loadMtxIndx_PNCPU__11J3DShapeMtxCFiUs
 
-.global loadExecute__17J3DDifferedTexMtxFPA4_Cf
-loadExecute__17J3DDifferedTexMtxFPA4_Cf:
+.fn loadExecute__17J3DDifferedTexMtxFPA4_Cf, global
 /* 80086288 000831C8  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 8008628C 000831CC  7C 08 02 A6 */	mflr r0
 /* 80086290 000831D0  3C 80 80 51 */	lis r4, j3dSys@ha
@@ -760,9 +782,9 @@ loadExecute__17J3DDifferedTexMtxFPA4_Cf:
 /* 80086804 00083744  7C 08 03 A6 */	mtlr r0
 /* 80086808 00083748  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 8008680C 0008374C  4E 80 00 20 */	blr 
+.endfn loadExecute__17J3DDifferedTexMtxFPA4_Cf
 
-.global loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs
-loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs:
+.fn loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs, global
 /* 80086810 00083750  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80086814 00083754  7C 08 02 A6 */	mflr r0
 /* 80086818 00083758  90 01 00 54 */	stw r0, 0x54(r1)
@@ -806,9 +828,9 @@ loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs:
 /* 800868AC 000837EC  7C 08 03 A6 */	mtlr r0
 /* 800868B0 000837F0  38 21 00 50 */	addi r1, r1, 0x50
 /* 800868B4 000837F4  4E 80 00 20 */	blr 
+.endfn loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs
 
-.global loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs
-loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs:
+.fn loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs, global
 /* 800868B8 000837F8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800868BC 000837FC  7C 08 02 A6 */	mflr r0
 /* 800868C0 00083800  90 01 00 54 */	stw r0, 0x54(r1)
@@ -855,9 +877,9 @@ loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs:
 /* 80086960 000838A0  7C 08 03 A6 */	mtlr r0
 /* 80086964 000838A4  38 21 00 50 */	addi r1, r1, 0x50
 /* 80086968 000838A8  4E 80 00 20 */	blr 
+.endfn loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs
 
-.global loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs
-loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs:
+.fn loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs, global
 /* 8008696C 000838AC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80086970 000838B0  7C 08 02 A6 */	mflr r0
 /* 80086974 000838B4  3C 60 80 51 */	lis r3, j3dSys@ha
@@ -902,9 +924,9 @@ loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs:
 /* 80086A08 00083948  7C 08 03 A6 */	mtlr r0
 /* 80086A0C 0008394C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80086A10 00083950  4E 80 00 20 */	blr 
+.endfn loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs
 
-.global loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs
-loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs:
+.fn loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs, global
 /* 80086A14 00083954  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80086A18 00083958  7C 08 02 A6 */	mflr r0
 /* 80086A1C 0008395C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -952,9 +974,9 @@ loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs:
 /* 80086ABC 000839FC  7C 08 03 A6 */	mtlr r0
 /* 80086AC0 00083A00  38 21 00 40 */	addi r1, r1, 0x40
 /* 80086AC4 00083A04  4E 80 00 20 */	blr 
+.endfn loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs
 
-.global loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs
-loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs:
+.fn loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs, global
 /* 80086AC8 00083A08  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80086ACC 00083A0C  7C 08 02 A6 */	mflr r0
 /* 80086AD0 00083A10  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1009,9 +1031,9 @@ loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs:
 /* 80086B90 00083AD0  7C 08 03 A6 */	mtlr r0
 /* 80086B94 00083AD4  38 21 00 50 */	addi r1, r1, 0x50
 /* 80086B98 00083AD8  4E 80 00 20 */	blr 
+.endfn loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs
 
-.global load__11J3DShapeMtxCFv
-load__11J3DShapeMtxCFv:
+.fn load__11J3DShapeMtxCFv, global
 /* 80086B9C 00083ADC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80086BA0 00083AE0  7C 08 02 A6 */	mflr r0
 /* 80086BA4 00083AE4  3C 80 80 4A */	lis r4, sMtxLoadPipeline__11J3DShapeMtx@ha
@@ -1035,9 +1057,9 @@ load__11J3DShapeMtxCFv:
 /* 80086BEC 00083B2C  7C 08 03 A6 */	mtlr r0
 /* 80086BF0 00083B30  38 21 00 20 */	addi r1, r1, 0x20
 /* 80086BF4 00083B34  4E 80 00 20 */	blr 
+.endfn load__11J3DShapeMtxCFv
 
-.global calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
-calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f:
+.fn calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f, global
 /* 80086BF8 00083B38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80086BFC 00083B3C  7C 08 02 A6 */	mflr r0
 /* 80086C00 00083B40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1063,9 +1085,9 @@ calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f:
 /* 80086C50 00083B90  7C 08 03 A6 */	mtlr r0
 /* 80086C54 00083B94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80086C58 00083B98  4E 80 00 20 */	blr 
+.endfn calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
 
-.global load__21J3DShapeMtxConcatViewCFv
-load__21J3DShapeMtxConcatViewCFv:
+.fn load__21J3DShapeMtxConcatViewCFv, global
 /* 80086C5C 00083B9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80086C60 00083BA0  7C 08 02 A6 */	mflr r0
 /* 80086C64 00083BA4  3C 80 80 51 */	lis r4, j3dSys@ha
@@ -1119,9 +1141,9 @@ load__21J3DShapeMtxConcatViewCFv:
 /* 80086D24 00083C64  7C 08 03 A6 */	mtlr r0
 /* 80086D28 00083C68  38 21 00 20 */	addi r1, r1, 0x20
 /* 80086D2C 00083C6C  4E 80 00 20 */	blr 
+.endfn load__21J3DShapeMtxConcatViewCFv
 
-.global loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
-loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f:
+.fn loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f, global
 /* 80086D30 00083C70  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80086D34 00083C74  7C 08 02 A6 */	mflr r0
 /* 80086D38 00083C78  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1201,9 +1223,9 @@ loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f:
 /* 80086E48 00083D88  7C 08 03 A6 */	mtlr r0
 /* 80086E4C 00083D8C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80086E50 00083D90  4E 80 00 20 */	blr 
+.endfn loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
 
-.global load__16J3DShapeMtxMultiCFv
-load__16J3DShapeMtxMultiCFv:
+.fn load__16J3DShapeMtxMultiCFv, global
 /* 80086E54 00083D94  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80086E58 00083D98  7C 08 02 A6 */	mflr r0
 /* 80086E5C 00083D9C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1250,9 +1272,9 @@ load__16J3DShapeMtxMultiCFv:
 /* 80086EF4 00083E34  7C 08 03 A6 */	mtlr r0
 /* 80086EF8 00083E38  38 21 00 30 */	addi r1, r1, 0x30
 /* 80086EFC 00083E3C  4E 80 00 20 */	blr 
+.endfn load__16J3DShapeMtxMultiCFv
 
-.global calcNBTScale__16J3DShapeMtxMultiFRC3VecPA3_A3_fPA3_A3_f
-calcNBTScale__16J3DShapeMtxMultiFRC3VecPA3_A3_fPA3_A3_f:
+.fn calcNBTScale__16J3DShapeMtxMultiFRC3VecPA3_A3_fPA3_A3_f, global
 /* 80086F00 00083E40  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80086F04 00083E44  7C 08 02 A6 */	mflr r0
 /* 80086F08 00083E48  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1300,9 +1322,9 @@ calcNBTScale__16J3DShapeMtxMultiFRC3VecPA3_A3_fPA3_A3_f:
 /* 80086FA4 00083EE4  7C 08 03 A6 */	mtlr r0
 /* 80086FA8 00083EE8  38 21 00 30 */	addi r1, r1, 0x30
 /* 80086FAC 00083EEC  4E 80 00 20 */	blr 
+.endfn calcNBTScale__16J3DShapeMtxMultiFRC3VecPA3_A3_fPA3_A3_f
 
-.global load__26J3DShapeMtxMultiConcatViewCFv
-load__26J3DShapeMtxMultiConcatViewCFv:
+.fn load__26J3DShapeMtxMultiConcatViewCFv, global
 /* 80086FB0 00083EF0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80086FB4 00083EF4  7C 08 02 A6 */	mflr r0
 /* 80086FB8 00083EF8  3C 80 80 51 */	lis r4, j3dSys@ha
@@ -1435,9 +1457,9 @@ load__26J3DShapeMtxMultiConcatViewCFv:
 /* 80087190 000840D0  7C 08 03 A6 */	mtlr r0
 /* 80087194 000840D4  38 21 00 50 */	addi r1, r1, 0x50
 /* 80087198 000840D8  4E 80 00 20 */	blr 
+.endfn load__26J3DShapeMtxMultiConcatViewCFv
 
-.global loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUsPA4_f
-loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUsPA4_f:
+.fn loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUsPA4_f, global
 /* 8008719C 000840DC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800871A0 000840E0  7C 08 02 A6 */	mflr r0
 /* 800871A4 000840E4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1522,9 +1544,9 @@ loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUsPA4_f:
 /* 800872C8 00084208  7C 08 03 A6 */	mtlr r0
 /* 800872CC 0008420C  38 21 00 60 */	addi r1, r1, 0x60
 /* 800872D0 00084210  4E 80 00 20 */	blr 
+.endfn loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUsPA4_f
 
-.global load__27J3DShapeMtxBBoardConcatViewCFv
-load__27J3DShapeMtxBBoardConcatViewCFv:
+.fn load__27J3DShapeMtxBBoardConcatViewCFv, global
 /* 800872D4 00084214  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800872D8 00084218  7C 08 02 A6 */	mflr r0
 /* 800872DC 0008421C  3C 80 80 51 */	lis r4, j3dSys@ha
@@ -1609,9 +1631,9 @@ load__27J3DShapeMtxBBoardConcatViewCFv:
 /* 800873FC 0008433C  7C 08 03 A6 */	mtlr r0
 /* 80087400 00084340  38 21 00 40 */	addi r1, r1, 0x40
 /* 80087404 00084344  4E 80 00 20 */	blr 
+.endfn load__27J3DShapeMtxBBoardConcatViewCFv
 
-.global load__28J3DShapeMtxYBBoardConcatViewCFv
-load__28J3DShapeMtxYBBoardConcatViewCFv:
+.fn load__28J3DShapeMtxYBBoardConcatViewCFv, global
 /* 80087408 00084348  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8008740C 0008434C  7C 08 02 A6 */	mflr r0
 /* 80087410 00084350  3C 80 80 51 */	lis r4, j3dSys@ha
@@ -1697,9 +1719,9 @@ load__28J3DShapeMtxYBBoardConcatViewCFv:
 /* 80087538 00084478  7C 08 03 A6 */	mtlr r0
 /* 8008753C 0008447C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80087540 00084480  4E 80 00 20 */	blr 
+.endfn load__28J3DShapeMtxYBBoardConcatViewCFv
 
-.global __dt__28J3DShapeMtxYBBoardConcatViewFv
-__dt__28J3DShapeMtxYBBoardConcatViewFv:
+.fn __dt__28J3DShapeMtxYBBoardConcatViewFv, weak
 /* 80087544 00084484  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80087548 00084488  7C 08 02 A6 */	mflr r0
 /* 8008754C 0008448C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1729,19 +1751,19 @@ __dt__28J3DShapeMtxYBBoardConcatViewFv:
 /* 800875A4 000844E4  7C 08 03 A6 */	mtlr r0
 /* 800875A8 000844E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800875AC 000844EC  4E 80 00 20 */	blr 
+.endfn __dt__28J3DShapeMtxYBBoardConcatViewFv
 
-.global getType__28J3DShapeMtxYBBoardConcatViewCFv
-getType__28J3DShapeMtxYBBoardConcatViewCFv:
+.fn getType__28J3DShapeMtxYBBoardConcatViewCFv, weak
 /* 800875B0 000844F0  3C 60 53 4D */	lis r3, 0x534D5942@ha
 /* 800875B4 000844F4  38 63 59 42 */	addi r3, r3, 0x534D5942@l
 /* 800875B8 000844F8  4E 80 00 20 */	blr 
+.endfn getType__28J3DShapeMtxYBBoardConcatViewCFv
 
-.global loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
-loadNrmMtx__21J3DShapeMtxConcatViewCFiUs:
+.fn loadNrmMtx__21J3DShapeMtxConcatViewCFiUs, weak
 /* 800875BC 000844FC  4E 80 00 20 */	blr 
+.endfn loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
 
-.global __dt__27J3DShapeMtxBBoardConcatViewFv
-__dt__27J3DShapeMtxBBoardConcatViewFv:
+.fn __dt__27J3DShapeMtxBBoardConcatViewFv, weak
 /* 800875C0 00084500  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800875C4 00084504  7C 08 02 A6 */	mflr r0
 /* 800875C8 00084508  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1771,15 +1793,15 @@ __dt__27J3DShapeMtxBBoardConcatViewFv:
 /* 80087620 00084560  7C 08 03 A6 */	mtlr r0
 /* 80087624 00084564  38 21 00 10 */	addi r1, r1, 0x10
 /* 80087628 00084568  4E 80 00 20 */	blr 
+.endfn __dt__27J3DShapeMtxBBoardConcatViewFv
 
-.global getType__27J3DShapeMtxBBoardConcatViewCFv
-getType__27J3DShapeMtxBBoardConcatViewCFv:
+.fn getType__27J3DShapeMtxBBoardConcatViewCFv, weak
 /* 8008762C 0008456C  3C 60 53 4D */	lis r3, 0x534D4242@ha
 /* 80087630 00084570  38 63 42 42 */	addi r3, r3, 0x534D4242@l
 /* 80087634 00084574  4E 80 00 20 */	blr 
+.endfn getType__27J3DShapeMtxBBoardConcatViewCFv
 
-.global __dt__26J3DShapeMtxMultiConcatViewFv
-__dt__26J3DShapeMtxMultiConcatViewFv:
+.fn __dt__26J3DShapeMtxMultiConcatViewFv, weak
 /* 80087638 00084578  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8008763C 0008457C  7C 08 02 A6 */	mflr r0
 /* 80087640 00084580  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1809,31 +1831,31 @@ __dt__26J3DShapeMtxMultiConcatViewFv:
 /* 80087698 000845D8  7C 08 03 A6 */	mtlr r0
 /* 8008769C 000845DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800876A0 000845E0  4E 80 00 20 */	blr 
+.endfn __dt__26J3DShapeMtxMultiConcatViewFv
 
-.global getType__26J3DShapeMtxMultiConcatViewCFv
-getType__26J3DShapeMtxMultiConcatViewCFv:
+.fn getType__26J3DShapeMtxMultiConcatViewCFv, weak
 /* 800876A4 000845E4  3C 60 53 4D */	lis r3, 0x534D4D43@ha
 /* 800876A8 000845E8  38 63 4D 43 */	addi r3, r3, 0x534D4D43@l
 /* 800876AC 000845EC  4E 80 00 20 */	blr 
+.endfn getType__26J3DShapeMtxMultiConcatViewCFv
 
-.global getUseMtxNum__26J3DShapeMtxMultiConcatViewCFv
-getUseMtxNum__26J3DShapeMtxMultiConcatViewCFv:
+.fn getUseMtxNum__26J3DShapeMtxMultiConcatViewCFv, weak
 /* 800876B0 000845F0  A0 63 00 08 */	lhz r3, 8(r3)
 /* 800876B4 000845F4  4E 80 00 20 */	blr 
+.endfn getUseMtxNum__26J3DShapeMtxMultiConcatViewCFv
 
-.global getUseMtxIndex__26J3DShapeMtxMultiConcatViewCFUs
-getUseMtxIndex__26J3DShapeMtxMultiConcatViewCFUs:
+.fn getUseMtxIndex__26J3DShapeMtxMultiConcatViewCFUs, weak
 /* 800876B8 000845F8  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 800876BC 000845FC  54 80 0B FC */	rlwinm r0, r4, 1, 0xf, 0x1e
 /* 800876C0 00084600  7C 63 02 2E */	lhzx r3, r3, r0
 /* 800876C4 00084604  4E 80 00 20 */	blr 
+.endfn getUseMtxIndex__26J3DShapeMtxMultiConcatViewCFUs
 
-.global loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUs
-loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUs:
+.fn loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUs, weak
 /* 800876C8 00084608  4E 80 00 20 */	blr 
+.endfn loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUs
 
-.global __dt__16J3DShapeMtxMultiFv
-__dt__16J3DShapeMtxMultiFv:
+.fn __dt__16J3DShapeMtxMultiFv, weak
 /* 800876CC 0008460C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800876D0 00084610  7C 08 02 A6 */	mflr r0
 /* 800876D4 00084614  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1859,30 +1881,31 @@ __dt__16J3DShapeMtxMultiFv:
 /* 8008771C 0008465C  7C 08 03 A6 */	mtlr r0
 /* 80087720 00084660  38 21 00 10 */	addi r1, r1, 0x10
 /* 80087724 00084664  4E 80 00 20 */	blr 
+.endfn __dt__16J3DShapeMtxMultiFv
 
-.global getType__16J3DShapeMtxMultiCFv
-getType__16J3DShapeMtxMultiCFv:
+.fn getType__16J3DShapeMtxMultiCFv, weak
 /* 80087728 00084668  3C 60 53 4D */	lis r3, 0x534D4D4C@ha
 /* 8008772C 0008466C  38 63 4D 4C */	addi r3, r3, 0x534D4D4C@l
 /* 80087730 00084670  4E 80 00 20 */	blr 
+.endfn getType__16J3DShapeMtxMultiCFv
 
-.global getUseMtxNum__16J3DShapeMtxMultiCFv
-getUseMtxNum__16J3DShapeMtxMultiCFv:
+.fn getUseMtxNum__16J3DShapeMtxMultiCFv, weak
 /* 80087734 00084674  A0 63 00 08 */	lhz r3, 8(r3)
 /* 80087738 00084678  4E 80 00 20 */	blr 
+.endfn getUseMtxNum__16J3DShapeMtxMultiCFv
 
-.global getUseMtxIndex__16J3DShapeMtxMultiCFUs
-getUseMtxIndex__16J3DShapeMtxMultiCFUs:
+.fn getUseMtxIndex__16J3DShapeMtxMultiCFUs, weak
 /* 8008773C 0008467C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80087740 00084680  54 80 0B FC */	rlwinm r0, r4, 1, 0xf, 0x1e
 /* 80087744 00084684  7C 63 02 2E */	lhzx r3, r3, r0
 /* 80087748 00084688  4E 80 00 20 */	blr 
+.endfn getUseMtxIndex__16J3DShapeMtxMultiCFUs
 
-.global getType__21J3DShapeMtxConcatViewCFv
-getType__21J3DShapeMtxConcatViewCFv:
+.fn getType__21J3DShapeMtxConcatViewCFv, weak
 /* 8008774C 0008468C  3C 60 53 4D */	lis r3, 0x534D4356@ha
 /* 80087750 00084690  38 63 43 56 */	addi r3, r3, 0x534D4356@l
 /* 80087754 00084694  4E 80 00 20 */	blr 
+.endfn getType__21J3DShapeMtxConcatViewCFv
 
 .fn __sinit_J3DShapeMtx_cpp, local
 /* 80087758 00084698  94 21 FF 80 */	stwu r1, -0x80(r1)
