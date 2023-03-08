@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__9JAIStream
-__vt__9JAIStream:
+.obj __vt__9JAIStream, global
 	.4byte 0
 	.4byte 0
 	.4byte setPortData__9JAIStreamFUcUs
@@ -56,8 +55,8 @@ __vt__9JAIStream:
 	.4byte initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
 	.4byte onGet__8JAISoundFv
 	.4byte onRelease__8JAISoundFv
-.global __vt__5JAISe
-__vt__5JAISe:
+.endobj __vt__9JAIStream
+.obj __vt__5JAISe, global
 	.4byte 0
 	.4byte 0
 	.4byte setPortData__5JAISeFUcUs
@@ -119,8 +118,8 @@ __vt__5JAISe:
 	.4byte setSeDistanceFir__5JAISeFUc
 	.4byte setSeDistanceDolby__5JAISeFUc
 	.4byte setSePositionDopplar__5JAISeFv
-.global __vt__11JAISequence
-__vt__11JAISequence:
+.endobj __vt__5JAISe
+.obj __vt__11JAISequence, global
 	.4byte 0
 	.4byte 0
 	.4byte setPortData__11JAISequenceFUcUs
@@ -174,8 +173,8 @@ __vt__11JAISequence:
 	.4byte initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
 	.4byte onGet__8JAISoundFv
 	.4byte onRelease__8JAISoundFv
-.global __vt__8JAISound
-__vt__8JAISound:
+.endobj __vt__11JAISequence
+.obj __vt__8JAISound, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -229,63 +228,81 @@ __vt__8JAISound:
 	.4byte initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
 	.4byte onGet__8JAISoundFv
 	.4byte onRelease__8JAISoundFv
+.endobj __vt__8JAISound
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-_port$2234:
+.obj _port$2234, local
 	.skip 0x2
-_port$2291:
+.endobj _port$2234
+.obj _port$2291, local
 	.skip 0x2
-init$2292:
+.endobj _port$2291
+.obj init$2292, local
 	.skip 0x1
+.endobj init$2292
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516FE0:
+.obj lbl_80516FE0, local
 	.float 1.0
-lbl_80516FE4:
+.endobj lbl_80516FE0
+.obj lbl_80516FE4, local
 	.float 0.0
-lbl_80516FE8:
+.endobj lbl_80516FE4
+.obj lbl_80516FE8, local
 	.float 0.5
+.endobj lbl_80516FE8
 .balign 8
-lbl_80516FF0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80516FF0, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516FF0
 .balign 8
-lbl_80516FF8:
+.obj lbl_80516FF8, local
 	.double 0.5
+.endobj lbl_80516FF8
 .balign 8
-lbl_80517000:
+.obj lbl_80517000, local
 	.double 3.0
+.endobj lbl_80517000
 .balign 8
-lbl_80517008:
+.obj lbl_80517008, local
 	.double 0.0
-lbl_80517010:
+.endobj lbl_80517008
+.obj lbl_80517010, local
 	.float 0.1
-lbl_80517014:
+.endobj lbl_80517010
+.obj lbl_80517014, local
 	.float 2.0
+.endobj lbl_80517014
 .balign 8
-lbl_80517018:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80517020:
+.obj lbl_80517018, local
+	.8byte 0x4330000000000000
+.endobj lbl_80517018
+.obj lbl_80517020, local
 	.float 127.0
-lbl_80517024:
+.endobj lbl_80517020
+.obj lbl_80517024, local
 	.float 4.2949673E9
-lbl_80517028:
+.endobj lbl_80517024
+.obj lbl_80517028, local
 	.float 1000.0
-lbl_8051702C:
+.endobj lbl_80517028
+.obj lbl_8051702C, local
 	.float 16.0
-lbl_80517030:
+.endobj lbl_8051702C
+.obj lbl_80517030, local
 	.float 192.0
-lbl_80517034:
+.endobj lbl_80517030
+.obj lbl_80517034, local
 	.float -1.0
-lbl_80517038:
+.endobj lbl_80517034
+.obj lbl_80517038, local
 	.float 10.0
+.endobj lbl_80517038
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__11JAISequenceFv
-__ct__11JAISequenceFv:
+.fn __ct__11JAISequenceFv, global
 /* 800B3838 000B0778  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B383C 000B077C  7C 08 02 A6 */	mflr r0
 /* 800B3840 000B0780  90 01 00 24 */	stw r0, 0x24(r1)
@@ -345,9 +362,9 @@ __ct__11JAISequenceFv:
 /* 800B3918 000B0858  7C 08 03 A6 */	mtlr r0
 /* 800B391C 000B085C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B3920 000B0860  4E 80 00 20 */	blr 
+.endfn __ct__11JAISequenceFv
 
-.global __ct__5JAISeFv
-__ct__5JAISeFv:
+.fn __ct__5JAISeFv, global
 /* 800B3924 000B0864  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B3928 000B0868  7C 08 02 A6 */	mflr r0
 /* 800B392C 000B086C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -433,9 +450,9 @@ __ct__5JAISeFv:
 /* 800B3A6C 000B09AC  7C 08 03 A6 */	mtlr r0
 /* 800B3A70 000B09B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B3A74 000B09B4  4E 80 00 20 */	blr 
+.endfn __ct__5JAISeFv
 
-.global __ct__9JAIStreamFv
-__ct__9JAIStreamFv:
+.fn __ct__9JAIStreamFv, global
 /* 800B3A78 000B09B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B3A7C 000B09BC  7C 08 02 A6 */	mflr r0
 /* 800B3A80 000B09C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -479,9 +496,9 @@ __ct__9JAIStreamFv:
 /* 800B3B18 000B0A58  7C 08 03 A6 */	mtlr r0
 /* 800B3B1C 000B0A5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B3B20 000B0A60  4E 80 00 20 */	blr 
+.endfn __ct__9JAIStreamFv
 
-.global getSeCategoryNumber__5JAISeFv
-getSeCategoryNumber__5JAISeFv:
+.fn getSeCategoryNumber__5JAISeFv, global
 /* 800B3B24 000B0A64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3B28 000B0A68  7C 08 02 A6 */	mflr r0
 /* 800B3B2C 000B0A6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -491,45 +508,45 @@ getSeCategoryNumber__5JAISeFv:
 /* 800B3B3C 000B0A7C  7C 08 03 A6 */	mtlr r0
 /* 800B3B40 000B0A80  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3B44 000B0A84  4E 80 00 20 */	blr 
+.endfn getSeCategoryNumber__5JAISeFv
 
-.global getSwBit__8JAISoundFv
-getSwBit__8JAISoundFv:
+.fn getSwBit__8JAISoundFv, global
 /* 800B3B48 000B0A88  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 800B3B4C 000B0A8C  80 63 00 00 */	lwz r3, 0(r3)
 /* 800B3B50 000B0A90  4E 80 00 20 */	blr 
+.endfn getSwBit__8JAISoundFv
 
-.global checkSwBit__8JAISoundFUl
-checkSwBit__8JAISoundFUl:
+.fn checkSwBit__8JAISoundFUl, global
 /* 800B3B54 000B0A94  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 800B3B58 000B0A98  80 03 00 00 */	lwz r0, 0(r3)
 /* 800B3B5C 000B0A9C  7C 83 00 38 */	and r3, r4, r0
 /* 800B3B60 000B0AA0  4E 80 00 20 */	blr 
+.endfn checkSwBit__8JAISoundFUl
 
-.global getInfoPriority__8JAISoundFv
-getInfoPriority__8JAISoundFv:
+.fn getInfoPriority__8JAISoundFv, global
 /* 800B3B64 000B0AA4  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 800B3B68 000B0AA8  88 63 00 04 */	lbz r3, 4(r3)
 /* 800B3B6C 000B0AAC  4E 80 00 20 */	blr 
+.endfn getInfoPriority__8JAISoundFv
 
-.global clearMainSoundPPointer__8JAISoundFv
-clearMainSoundPPointer__8JAISoundFv:
+.fn clearMainSoundPPointer__8JAISoundFv, global
 /* 800B3B70 000B0AB0  80 63 00 40 */	lwz r3, 0x40(r3)
 /* 800B3B74 000B0AB4  28 03 00 00 */	cmplwi r3, 0
 /* 800B3B78 000B0AB8  4D 82 00 20 */	beqlr 
 /* 800B3B7C 000B0ABC  38 00 00 00 */	li r0, 0
 /* 800B3B80 000B0AC0  90 03 00 00 */	stw r0, 0(r3)
 /* 800B3B84 000B0AC4  4E 80 00 20 */	blr 
+.endfn clearMainSoundPPointer__8JAISoundFv
 
-.global release__8JAISoundFv
-release__8JAISoundFv:
+.fn release__8JAISoundFv, global
 /* 800B3B88 000B0AC8  80 83 00 40 */	lwz r4, 0x40(r3)
 /* 800B3B8C 000B0ACC  38 00 00 00 */	li r0, 0
 /* 800B3B90 000B0AD0  90 04 00 00 */	stw r0, 0(r4)
 /* 800B3B94 000B0AD4  90 03 00 40 */	stw r0, 0x40(r3)
 /* 800B3B98 000B0AD8  4E 80 00 20 */	blr 
+.endfn release__8JAISoundFv
 
-.global start__8JAISoundFUl
-start__8JAISoundFUl:
+.fn start__8JAISoundFUl, global
 /* 800B3B9C 000B0ADC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3BA0 000B0AE0  7C 08 02 A6 */	mflr r0
 /* 800B3BA4 000B0AE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -549,9 +566,9 @@ start__8JAISoundFUl:
 /* 800B3BDC 000B0B1C  7C 08 03 A6 */	mtlr r0
 /* 800B3BE0 000B0B20  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3BE4 000B0B24  4E 80 00 20 */	blr 
+.endfn start__8JAISoundFUl
 
-.global stop__8JAISoundFUl
-stop__8JAISoundFUl:
+.fn stop__8JAISoundFUl, global
 /* 800B3BE8 000B0B28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3BEC 000B0B2C  7C 08 02 A6 */	mflr r0
 /* 800B3BF0 000B0B30  7C 85 23 78 */	mr r5, r4
@@ -564,9 +581,9 @@ stop__8JAISoundFUl:
 /* 800B3C0C 000B0B4C  7C 08 03 A6 */	mtlr r0
 /* 800B3C10 000B0B50  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3C14 000B0B54  4E 80 00 20 */	blr 
+.endfn stop__8JAISoundFUl
 
-.global setPrepareFlag__8JAISoundFUc
-setPrepareFlag__8JAISoundFUc:
+.fn setPrepareFlag__8JAISoundFUc, global
 /* 800B3C18 000B0B58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3C1C 000B0B5C  7C 08 02 A6 */	mflr r0
 /* 800B3C20 000B0B60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -601,9 +618,9 @@ setPrepareFlag__8JAISoundFUc:
 /* 800B3C84 000B0BC4  7C 08 03 A6 */	mtlr r0
 /* 800B3C88 000B0BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3C8C 000B0BCC  4E 80 00 20 */	blr 
+.endfn setPrepareFlag__8JAISoundFUc
 
-.global setPrepareFlag__9JAIStreamFUc
-setPrepareFlag__9JAIStreamFUc:
+.fn setPrepareFlag__9JAIStreamFUc, weak
 /* 800B3C90 000B0BD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3C94 000B0BD4  7C 08 02 A6 */	mflr r0
 /* 800B3C98 000B0BD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -612,9 +629,9 @@ setPrepareFlag__9JAIStreamFUc:
 /* 800B3CA4 000B0BE4  7C 08 03 A6 */	mtlr r0
 /* 800B3CA8 000B0BE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3CAC 000B0BEC  4E 80 00 20 */	blr 
+.endfn setPrepareFlag__9JAIStreamFUc
 
-.global setPrepareFlag__11JAISequenceFUc
-setPrepareFlag__11JAISequenceFUc:
+.fn setPrepareFlag__11JAISequenceFUc, weak
 /* 800B3CB0 000B0BF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3CB4 000B0BF4  7C 08 02 A6 */	mflr r0
 /* 800B3CB8 000B0BF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -623,9 +640,9 @@ setPrepareFlag__11JAISequenceFUc:
 /* 800B3CC4 000B0C04  7C 08 03 A6 */	mtlr r0
 /* 800B3CC8 000B0C08  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3CCC 000B0C0C  4E 80 00 20 */	blr 
+.endfn setPrepareFlag__11JAISequenceFUc
 
-.global checkReady__8JAISoundFv
-checkReady__8JAISoundFv:
+.fn checkReady__8JAISoundFv, global
 /* 800B3CD0 000B0C10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3CD4 000B0C14  7C 08 02 A6 */	mflr r0
 /* 800B3CD8 000B0C18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -660,9 +677,9 @@ checkReady__8JAISoundFv:
 /* 800B3D3C 000B0C7C  7C 08 03 A6 */	mtlr r0
 /* 800B3D40 000B0C80  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3D44 000B0C84  4E 80 00 20 */	blr 
+.endfn checkReady__8JAISoundFv
 
-.global checkReady__9JAIStreamFv
-checkReady__9JAIStreamFv:
+.fn checkReady__9JAIStreamFv, weak
 /* 800B3D48 000B0C88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3D4C 000B0C8C  7C 08 02 A6 */	mflr r0
 /* 800B3D50 000B0C90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -671,9 +688,9 @@ checkReady__9JAIStreamFv:
 /* 800B3D5C 000B0C9C  7C 08 03 A6 */	mtlr r0
 /* 800B3D60 000B0CA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3D64 000B0CA4  4E 80 00 20 */	blr 
+.endfn checkReady__9JAIStreamFv
 
-.global checkReady__11JAISequenceFv
-checkReady__11JAISequenceFv:
+.fn checkReady__11JAISequenceFv, weak
 /* 800B3D68 000B0CA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3D6C 000B0CAC  7C 08 02 A6 */	mflr r0
 /* 800B3D70 000B0CB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -682,9 +699,9 @@ checkReady__11JAISequenceFv:
 /* 800B3D7C 000B0CBC  7C 08 03 A6 */	mtlr r0
 /* 800B3D80 000B0CC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3D84 000B0CC4  4E 80 00 20 */	blr 
+.endfn checkReady__11JAISequenceFv
 
-.global setDistanceVolumeCommon__8JAISoundFfUc
-setDistanceVolumeCommon__8JAISoundFfUc:
+.fn setDistanceVolumeCommon__8JAISoundFfUc, global
 /* 800B3D88 000B0CC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3D8C 000B0CCC  88 03 00 18 */	lbz r0, 0x18(r3)
 /* 800B3D90 000B0CD0  28 00 00 04 */	cmplwi r0, 4
@@ -782,9 +799,9 @@ setDistanceVolumeCommon__8JAISoundFfUc:
 .L_800B3ED4:
 /* 800B3ED4 000B0E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B3ED8 000B0E18  4E 80 00 20 */	blr 
+.endfn setDistanceVolumeCommon__8JAISoundFfUc
 
-.global setDistancePanCommon__8JAISoundFv
-setDistancePanCommon__8JAISoundFv:
+.fn setDistancePanCommon__8JAISoundFv, global
 /* 800B3EDC 000B0E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B3EE0 000B0E20  80 0D 81 D4 */	lwz r0, audioCameraMax__18JAIGlobalParameter@sda21(r13)
 /* 800B3EE4 000B0E24  28 00 00 01 */	cmplwi r0, 1
@@ -882,9 +899,9 @@ setDistancePanCommon__8JAISoundFv:
 .L_800B4030:
 /* 800B4030 000B0F70  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B4034 000B0F74  4E 80 00 20 */	blr 
+.endfn setDistancePanCommon__8JAISoundFv
 
-.global setPositionDopplarCommon__8JAISoundFUl
-setPositionDopplarCommon__8JAISoundFUl:
+.fn setPositionDopplarCommon__8JAISoundFUl, global
 /* 800B4038 000B0F78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B403C 000B0F7C  C0 02 8C 84 */	lfs f0, lbl_80516FE4@sda21(r2)
 /* 800B4040 000B0F80  80 63 00 34 */	lwz r3, 0x34(r3)
@@ -1062,9 +1079,9 @@ setPositionDopplarCommon__8JAISoundFUl:
 .L_800B42A0:
 /* 800B42A0 000B11E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B42A4 000B11E4  4E 80 00 20 */	blr 
+.endfn setPositionDopplarCommon__8JAISoundFUl
 
-.global setDistanceDolbyCommon__8JAISoundFv
-setDistanceDolbyCommon__8JAISoundFv:
+.fn setDistanceDolbyCommon__8JAISoundFv, global
 /* 800B42A8 000B11E8  80 03 00 3C */	lwz r0, 0x3c(r3)
 /* 800B42AC 000B11EC  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 800B42B0 000B11F0  28 00 00 00 */	cmplwi r0, 0
@@ -1098,9 +1115,9 @@ setDistanceDolbyCommon__8JAISoundFv:
 .L_800B4314:
 /* 800B4314 000B1254  C0 22 8C C0 */	lfs f1, lbl_80517020@sda21(r2)
 /* 800B4318 000B1258  4E 80 00 20 */	blr 
+.endfn setDistanceDolbyCommon__8JAISoundFv
 
-.global setSeqInterVolume__11JAISequenceFUcfUl
-setSeqInterVolume__11JAISequenceFUcfUl:
+.fn setSeqInterVolume__11JAISequenceFUcfUl, global
 /* 800B431C 000B125C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B4320 000B1260  7C 08 02 A6 */	mflr r0
 /* 800B4324 000B1264  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1137,9 +1154,9 @@ setSeqInterVolume__11JAISequenceFUcfUl:
 /* 800B4398 000B12D8  7C 08 03 A6 */	mtlr r0
 /* 800B439C 000B12DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B43A0 000B12E0  4E 80 00 20 */	blr 
+.endfn setSeqInterVolume__11JAISequenceFUcfUl
 
-.global setSeqInterPan__11JAISequenceFUcfUl
-setSeqInterPan__11JAISequenceFUcfUl:
+.fn setSeqInterPan__11JAISequenceFUcfUl, global
 /* 800B43A4 000B12E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B43A8 000B12E8  7C 08 02 A6 */	mflr r0
 /* 800B43AC 000B12EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1176,9 +1193,9 @@ setSeqInterPan__11JAISequenceFUcfUl:
 /* 800B4420 000B1360  7C 08 03 A6 */	mtlr r0
 /* 800B4424 000B1364  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B4428 000B1368  4E 80 00 20 */	blr 
+.endfn setSeqInterPan__11JAISequenceFUcfUl
 
-.global setSeqInterPitch__11JAISequenceFUcfUl
-setSeqInterPitch__11JAISequenceFUcfUl:
+.fn setSeqInterPitch__11JAISequenceFUcfUl, global
 /* 800B442C 000B136C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B4430 000B1370  7C 08 02 A6 */	mflr r0
 /* 800B4434 000B1374  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1215,9 +1232,9 @@ setSeqInterPitch__11JAISequenceFUcfUl:
 /* 800B44A8 000B13E8  7C 08 03 A6 */	mtlr r0
 /* 800B44AC 000B13EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B44B0 000B13F0  4E 80 00 20 */	blr 
+.endfn setSeqInterPitch__11JAISequenceFUcfUl
 
-.global setTrackInterruptSwitch__11JAISequenceFUcUc
-setTrackInterruptSwitch__11JAISequenceFUcUc:
+.fn setTrackInterruptSwitch__11JAISequenceFUcUc, global
 /* 800B44B4 000B13F4  80 C3 03 00 */	lwz r6, 0x300(r3)
 /* 800B44B8 000B13F8  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800B44BC 000B13FC  7C A6 01 AE */	stbx r5, r6, r0
@@ -1228,9 +1245,9 @@ setTrackInterruptSwitch__11JAISequenceFUcUc:
 /* 800B44D0 000B1410  64 00 00 80 */	oris r0, r0, 0x80
 /* 800B44D4 000B1414  90 03 00 08 */	stw r0, 8(r3)
 /* 800B44D8 000B1418  4E 80 00 20 */	blr 
+.endfn setTrackInterruptSwitch__11JAISequenceFUcUc
 
-.global setTrackFxmix__11JAISequenceFUcfUl
-setTrackFxmix__11JAISequenceFUcfUl:
+.fn setTrackFxmix__11JAISequenceFUcfUl, global
 /* 800B44DC 000B141C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B44E0 000B1420  7C 08 02 A6 */	mflr r0
 /* 800B44E4 000B1424  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1278,9 +1295,9 @@ setTrackFxmix__11JAISequenceFUcfUl:
 /* 800B4580 000B14C0  7C 08 03 A6 */	mtlr r0
 /* 800B4584 000B14C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B4588 000B14C8  4E 80 00 20 */	blr 
+.endfn setTrackFxmix__11JAISequenceFUcfUl
 
-.global setTrackPortData__11JAISequenceFUcUcUs
-setTrackPortData__11JAISequenceFUcUcUs:
+.fn setTrackPortData__11JAISequenceFUcUcUs, global
 /* 800B458C 000B14CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B4590 000B14D0  7C 08 02 A6 */	mflr r0
 /* 800B4594 000B14D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1336,9 +1353,9 @@ setTrackPortData__11JAISequenceFUcUcUs:
 /* 800B4650 000B1590  7C 08 03 A6 */	mtlr r0
 /* 800B4654 000B1594  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B4658 000B1598  4E 80 00 20 */	blr 
+.endfn setTrackPortData__11JAISequenceFUcUcUs
 
-.global setSeInterVolume__5JAISeFUcfUlUc
-setSeInterVolume__5JAISeFUcfUlUc:
+.fn setSeInterVolume__5JAISeFUcfUlUc, global
 /* 800B465C 000B159C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800B4660 000B15A0  7C 08 02 A6 */	mflr r0
 /* 800B4664 000B15A4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1428,9 +1445,9 @@ setSeInterVolume__5JAISeFUcfUlUc:
 /* 800B47A8 000B16E8  7C 08 03 A6 */	mtlr r0
 /* 800B47AC 000B16EC  38 21 00 40 */	addi r1, r1, 0x40
 /* 800B47B0 000B16F0  4E 80 00 20 */	blr 
+.endfn setSeInterVolume__5JAISeFUcfUlUc
 
-.global setSeInterPan__5JAISeFUcfUlUc
-setSeInterPan__5JAISeFUcfUlUc:
+.fn setSeInterPan__5JAISeFUcfUlUc, global
 /* 800B47B4 000B16F4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800B47B8 000B16F8  7C 08 02 A6 */	mflr r0
 /* 800B47BC 000B16FC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1520,9 +1537,9 @@ setSeInterPan__5JAISeFUcfUlUc:
 /* 800B4900 000B1840  7C 08 03 A6 */	mtlr r0
 /* 800B4904 000B1844  38 21 00 40 */	addi r1, r1, 0x40
 /* 800B4908 000B1848  4E 80 00 20 */	blr 
+.endfn setSeInterPan__5JAISeFUcfUlUc
 
-.global setSeInterDolby__5JAISeFUcfUlUc
-setSeInterDolby__5JAISeFUcfUlUc:
+.fn setSeInterDolby__5JAISeFUcfUlUc, global
 /* 800B490C 000B184C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800B4910 000B1850  7C 08 02 A6 */	mflr r0
 /* 800B4914 000B1854  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1612,9 +1629,9 @@ setSeInterDolby__5JAISeFUcfUlUc:
 /* 800B4A58 000B1998  7C 08 03 A6 */	mtlr r0
 /* 800B4A5C 000B199C  38 21 00 40 */	addi r1, r1, 0x40
 /* 800B4A60 000B19A0  4E 80 00 20 */	blr 
+.endfn setSeInterDolby__5JAISeFUcfUlUc
 
-.global setSeDistanceParameters__5JAISeFv
-setSeDistanceParameters__5JAISeFv:
+.fn setSeDistanceParameters__5JAISeFv, global
 /* 800B4A64 000B19A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B4A68 000B19A8  7C 08 02 A6 */	mflr r0
 /* 800B4A6C 000B19AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1692,9 +1709,9 @@ setSeDistanceParameters__5JAISeFv:
 /* 800B4B84 000B1AC4  7C 08 03 A6 */	mtlr r0
 /* 800B4B88 000B1AC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B4B8C 000B1ACC  4E 80 00 20 */	blr 
+.endfn setSeDistanceParameters__5JAISeFv
 
-.global setFxmix__5JAISeFfUlUc
-setFxmix__5JAISeFfUlUc:
+.fn setFxmix__5JAISeFfUlUc, weak
 /* 800B4B90 000B1AD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B4B94 000B1AD4  7C 08 02 A6 */	mflr r0
 /* 800B4B98 000B1AD8  54 A5 25 36 */	rlwinm r5, r5, 4, 0x14, 0x1b
@@ -1707,9 +1724,9 @@ setFxmix__5JAISeFfUlUc:
 /* 800B4BB4 000B1AF4  7C 08 03 A6 */	mtlr r0
 /* 800B4BB8 000B1AF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B4BBC 000B1AFC  4E 80 00 20 */	blr 
+.endfn setFxmix__5JAISeFfUlUc
 
-.global setSeDistanceVolume__5JAISeFUc
-setSeDistanceVolume__5JAISeFUc:
+.fn setSeDistanceVolume__5JAISeFUc, global
 /* 800B4BC0 000B1B00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B4BC4 000B1B04  7C 08 02 A6 */	mflr r0
 /* 800B4BC8 000B1B08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1740,9 +1757,9 @@ setSeDistanceVolume__5JAISeFUc:
 /* 800B4C24 000B1B64  7C 08 03 A6 */	mtlr r0
 /* 800B4C28 000B1B68  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B4C2C 000B1B6C  4E 80 00 20 */	blr 
+.endfn setSeDistanceVolume__5JAISeFUc
 
-.global setSeDistancePan__5JAISeFUc
-setSeDistancePan__5JAISeFUc:
+.fn setSeDistancePan__5JAISeFUc, global
 /* 800B4C30 000B1B70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B4C34 000B1B74  7C 08 02 A6 */	mflr r0
 /* 800B4C38 000B1B78  C0 22 8C 88 */	lfs f1, lbl_80516FE8@sda21(r2)
@@ -1774,9 +1791,9 @@ setSeDistancePan__5JAISeFUc:
 /* 800B4C98 000B1BD8  7C 08 03 A6 */	mtlr r0
 /* 800B4C9C 000B1BDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B4CA0 000B1BE0  4E 80 00 20 */	blr 
+.endfn setSeDistancePan__5JAISeFUc
 
-.global setSeDistancePitch__5JAISeFUc
-setSeDistancePitch__5JAISeFUc:
+.fn setSeDistancePitch__5JAISeFUc, global
 /* 800B4CA4 000B1BE4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B4CA8 000B1BE8  7C 08 02 A6 */	mflr r0
 /* 800B4CAC 000B1BEC  C0 22 8C 80 */	lfs f1, lbl_80516FE0@sda21(r2)
@@ -1859,9 +1876,9 @@ setSeDistancePitch__5JAISeFUc:
 /* 800B4DD0 000B1D10  7C 08 03 A6 */	mtlr r0
 /* 800B4DD4 000B1D14  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B4DD8 000B1D18  4E 80 00 20 */	blr 
+.endfn setSeDistancePitch__5JAISeFUc
 
-.global setSePositionDopplar__5JAISeFv
-setSePositionDopplar__5JAISeFv:
+.fn setSePositionDopplar__5JAISeFv, global
 /* 800B4DDC 000B1D1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B4DE0 000B1D20  7C 08 02 A6 */	mflr r0
 /* 800B4DE4 000B1D24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1896,9 +1913,9 @@ setSePositionDopplar__5JAISeFv:
 /* 800B4E50 000B1D90  7C 08 03 A6 */	mtlr r0
 /* 800B4E54 000B1D94  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B4E58 000B1D98  4E 80 00 20 */	blr 
+.endfn setSePositionDopplar__5JAISeFv
 
-.global setSeDistanceFxmix__5JAISeFUc
-setSeDistanceFxmix__5JAISeFUc:
+.fn setSeDistanceFxmix__5JAISeFUc, global
 /* 800B4E5C 000B1D9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B4E60 000B1DA0  7C 08 02 A6 */	mflr r0
 /* 800B4E64 000B1DA4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1952,13 +1969,13 @@ setSeDistanceFxmix__5JAISeFUc:
 /* 800B4F18 000B1E58  7C 08 03 A6 */	mtlr r0
 /* 800B4F1C 000B1E5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B4F20 000B1E60  4E 80 00 20 */	blr 
+.endfn setSeDistanceFxmix__5JAISeFUc
 
-.global setSeDistanceFir__5JAISeFUc
-setSeDistanceFir__5JAISeFUc:
+.fn setSeDistanceFir__5JAISeFUc, global
 /* 800B4F24 000B1E64  4E 80 00 20 */	blr 
+.endfn setSeDistanceFir__5JAISeFUc
 
-.global setSeDistanceDolby__5JAISeFUc
-setSeDistanceDolby__5JAISeFUc:
+.fn setSeDistanceDolby__5JAISeFUc, global
 /* 800B4F28 000B1E68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B4F2C 000B1E6C  7C 08 02 A6 */	mflr r0
 /* 800B4F30 000B1E70  C0 22 8C 84 */	lfs f1, lbl_80516FE4@sda21(r2)
@@ -2002,15 +2019,15 @@ setSeDistanceDolby__5JAISeFUc:
 /* 800B4FC0 000B1F00  7C 08 03 A6 */	mtlr r0
 /* 800B4FC4 000B1F04  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B4FC8 000B1F08  4E 80 00 20 */	blr 
+.endfn setSeDistanceDolby__5JAISeFUc
 
-.global setStreamPrepareFlag__9JAIStreamFUc
-setStreamPrepareFlag__9JAIStreamFUc:
+.fn setStreamPrepareFlag__9JAIStreamFUc, global
 /* 800B4FCC 000B1F0C  80 6D 8C 48 */	lwz r3, streamUpdate__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B4FD0 000B1F10  98 83 00 02 */	stb r4, 2(r3)
 /* 800B4FD4 000B1F14  4E 80 00 20 */	blr 
+.endfn setStreamPrepareFlag__9JAIStreamFUc
 
-.global checkStreamReady__9JAIStreamFv
-checkStreamReady__9JAIStreamFv:
+.fn checkStreamReady__9JAIStreamFv, global
 /* 800B4FD8 000B1F18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B4FDC 000B1F1C  7C 08 02 A6 */	mflr r0
 /* 800B4FE0 000B1F20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2029,9 +2046,9 @@ checkStreamReady__9JAIStreamFv:
 /* 800B500C 000B1F4C  7C 08 03 A6 */	mtlr r0
 /* 800B5010 000B1F50  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5014 000B1F54  4E 80 00 20 */	blr 
+.endfn checkStreamReady__9JAIStreamFv
 
-.global setChannelVolume__9JAIStreamFUcfUl
-setChannelVolume__9JAIStreamFUcfUl:
+.fn setChannelVolume__9JAIStreamFUcfUl, global
 /* 800B5018 000B1F58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B501C 000B1F5C  7C 08 02 A6 */	mflr r0
 /* 800B5020 000B1F60  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2074,9 +2091,9 @@ setChannelVolume__9JAIStreamFUcfUl:
 /* 800B50AC 000B1FEC  7C 08 03 A6 */	mtlr r0
 /* 800B50B0 000B1FF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B50B4 000B1FF4  4E 80 00 20 */	blr 
+.endfn setChannelVolume__9JAIStreamFUcfUl
 
-.global setChannelPan__9JAIStreamFUcfUl
-setChannelPan__9JAIStreamFUcfUl:
+.fn setChannelPan__9JAIStreamFUcfUl, global
 /* 800B50B8 000B1FF8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B50BC 000B1FFC  7C 08 02 A6 */	mflr r0
 /* 800B50C0 000B2000  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2119,9 +2136,9 @@ setChannelPan__9JAIStreamFUcfUl:
 /* 800B514C 000B208C  7C 08 03 A6 */	mtlr r0
 /* 800B5150 000B2090  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B5154 000B2094  4E 80 00 20 */	blr 
+.endfn setChannelPan__9JAIStreamFUcfUl
 
-.global setPauseMode__8JAISoundFUcUc
-setPauseMode__8JAISoundFUcUc:
+.fn setPauseMode__8JAISoundFUcUc, global
 /* 800B5158 000B2098  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B515C 000B209C  7C 08 02 A6 */	mflr r0
 /* 800B5160 000B20A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2259,9 +2276,9 @@ setPauseMode__8JAISoundFUcUc:
 /* 800B5334 000B2274  7C 08 03 A6 */	mtlr r0
 /* 800B5338 000B2278  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B533C 000B227C  4E 80 00 20 */	blr 
+.endfn setPauseMode__8JAISoundFUcUc
 
-.global setVolume__9JAIStreamFfUlUc
-setVolume__9JAIStreamFfUlUc:
+.fn setVolume__9JAIStreamFfUlUc, weak
 /* 800B5340 000B2280  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5344 000B2284  7C 08 02 A6 */	mflr r0
 /* 800B5348 000B2288  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2297,9 +2314,9 @@ setVolume__9JAIStreamFfUlUc:
 /* 800B53B8 000B22F8  7C 08 03 A6 */	mtlr r0
 /* 800B53BC 000B22FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B53C0 000B2300  4E 80 00 20 */	blr 
+.endfn setVolume__9JAIStreamFfUlUc
 
-.global setVolumeU7__11JAISequenceFUcUlUc
-setVolumeU7__11JAISequenceFUcUlUc:
+.fn setVolumeU7__11JAISequenceFUcUlUc, weak
 /* 800B53C4 000B2304  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B53C8 000B2308  7C 08 02 A6 */	mflr r0
 /* 800B53CC 000B230C  54 84 06 3E */	clrlwi r4, r4, 0x18
@@ -2345,15 +2362,15 @@ setVolumeU7__11JAISequenceFUcUlUc:
 /* 800B5464 000B23A4  7C 08 03 A6 */	mtlr r0
 /* 800B5468 000B23A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B546C 000B23AC  4E 80 00 20 */	blr 
+.endfn setVolumeU7__11JAISequenceFUcUlUc
 
-.global setSeqPrepareFlag__11JAISequenceFUc
-setSeqPrepareFlag__11JAISequenceFUc:
+.fn setSeqPrepareFlag__11JAISequenceFUc, global
 /* 800B5470 000B23B0  80 63 03 08 */	lwz r3, 0x308(r3)
 /* 800B5474 000B23B4  98 83 00 02 */	stb r4, 2(r3)
 /* 800B5478 000B23B8  4E 80 00 20 */	blr 
+.endfn setSeqPrepareFlag__11JAISequenceFUc
 
-.global checkSeqReady__11JAISequenceFv
-checkSeqReady__11JAISequenceFv:
+.fn checkSeqReady__11JAISequenceFv, global
 /* 800B547C 000B23BC  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B5480 000B23C0  28 00 00 02 */	cmplwi r0, 2
 /* 800B5484 000B23C4  40 82 00 1C */	bne .L_800B54A0
@@ -2366,9 +2383,9 @@ checkSeqReady__11JAISequenceFv:
 .L_800B54A0:
 /* 800B54A0 000B23E0  38 60 00 00 */	li r3, 0
 /* 800B54A4 000B23E4  4E 80 00 20 */	blr 
+.endfn checkSeqReady__11JAISequenceFv
 
-.global getSeqInterVolume__11JAISequenceFUc
-getSeqInterVolume__11JAISequenceFUc:
+.fn getSeqInterVolume__11JAISequenceFUc, global
 /* 800B54A8 000B23E8  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B54AC 000B23EC  28 00 00 04 */	cmplwi r0, 4
 /* 800B54B0 000B23F0  41 82 00 0C */	beq .L_800B54BC
@@ -2382,9 +2399,9 @@ getSeqInterVolume__11JAISequenceFUc:
 .L_800B54CC:
 /* 800B54CC 000B240C  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B54D0 000B2410  4E 80 00 20 */	blr 
+.endfn getSeqInterVolume__11JAISequenceFUc
 
-.global getTrackPortRoute__8JAISoundFUcUc
-getTrackPortRoute__8JAISoundFUcUc:
+.fn getTrackPortRoute__8JAISoundFUcUc, global
 /* 800B54D4 000B2414  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 800B54D8 000B2418  54 00 05 29 */	rlwinm. r0, r0, 0, 0x14, 0x14
 /* 800B54DC 000B241C  41 82 00 20 */	beq .L_800B54FC
@@ -2401,9 +2418,9 @@ getTrackPortRoute__8JAISoundFUcUc:
 /* 800B5504 000B2444  3C 63 10 00 */	addis r3, r3, 0x1000
 /* 800B5508 000B2448  7C 63 02 14 */	add r3, r3, r0
 /* 800B550C 000B244C  4E 80 00 20 */	blr 
+.endfn getTrackPortRoute__8JAISoundFUcUc
 
-.global checkSoundHandle__8JAISoundFUlPv
-checkSoundHandle__8JAISoundFUlPv:
+.fn checkSoundHandle__8JAISoundFUlPv, global
 /* 800B5510 000B2450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5514 000B2454  7C 08 02 A6 */	mflr r0
 /* 800B5518 000B2458  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2441,9 +2458,9 @@ checkSoundHandle__8JAISoundFUlPv:
 /* 800B558C 000B24CC  7C 08 03 A6 */	mtlr r0
 /* 800B5590 000B24D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5594 000B24D4  4E 80 00 20 */	blr 
+.endfn checkSoundHandle__8JAISoundFUlPv
 
-.global getFadeCounter__11JAISequenceFv
-getFadeCounter__11JAISequenceFv:
+.fn getFadeCounter__11JAISequenceFv, global
 /* 800B5598 000B24D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B559C 000B24DC  7C 08 02 A6 */	mflr r0
 /* 800B55A0 000B24E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2465,15 +2482,15 @@ getFadeCounter__11JAISequenceFv:
 /* 800B55D8 000B2518  7C 08 03 A6 */	mtlr r0
 /* 800B55DC 000B251C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B55E0 000B2520  4E 80 00 20 */	blr 
+.endfn getFadeCounter__11JAISequenceFv
 
-.global getFadeCounter__5JAISeFv
-getFadeCounter__5JAISeFv:
+.fn getFadeCounter__5JAISeFv, global
 /* 800B55E4 000B2524  80 63 01 D8 */	lwz r3, 0x1d8(r3)
 /* 800B55E8 000B2528  38 63 FF FF */	addi r3, r3, -1
 /* 800B55EC 000B252C  4E 80 00 20 */	blr 
+.endfn getFadeCounter__5JAISeFv
 
-.global getFadeCounter__9JAIStreamFv
-getFadeCounter__9JAIStreamFv:
+.fn getFadeCounter__9JAIStreamFv, global
 /* 800B55F0 000B2530  80 83 01 B4 */	lwz r4, 0x1b4(r3)
 /* 800B55F4 000B2534  80 04 00 18 */	lwz r0, 0x18(r4)
 /* 800B55F8 000B2538  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
@@ -2484,9 +2501,9 @@ getFadeCounter__9JAIStreamFv:
 /* 800B5608 000B2548  80 63 00 E0 */	lwz r3, 0xe0(r3)
 /* 800B560C 000B254C  38 63 FF FF */	addi r3, r3, -1
 /* 800B5610 000B2550  4E 80 00 20 */	blr 
+.endfn getFadeCounter__9JAIStreamFv
 
-.global initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo:
+.fn initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo, global
 /* 800B5614 000B2554  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5618 000B2558  7C 08 02 A6 */	mflr r0
 /* 800B561C 000B255C  28 05 00 00 */	cmplwi r5, 0
@@ -2551,9 +2568,9 @@ initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo:
 /* 800B56F0 000B2630  7C 08 03 A6 */	mtlr r0
 /* 800B56F4 000B2634  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B56F8 000B2638  4E 80 00 20 */	blr 
+.endfn initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
 
-.global init__Q27JAInter9LinkSoundFv
-init__Q27JAInter9LinkSoundFv:
+.fn init__Q27JAInter9LinkSoundFv, global
 /* 800B56FC 000B263C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5700 000B2640  7C 08 02 A6 */	mflr r0
 /* 800B5704 000B2644  38 A0 00 20 */	li r5, 0x20
@@ -2584,9 +2601,9 @@ init__Q27JAInter9LinkSoundFv:
 /* 800B5760 000B26A0  7C 08 03 A6 */	mtlr r0
 /* 800B5764 000B26A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5768 000B26A8  4E 80 00 20 */	blr 
+.endfn init__Q27JAInter9LinkSoundFv
 
-.global getSound__Q27JAInter9LinkSoundFv
-getSound__Q27JAInter9LinkSoundFv:
+.fn getSound__Q27JAInter9LinkSoundFv, global
 /* 800B576C 000B26AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B5770 000B26B0  7C 08 02 A6 */	mflr r0
 /* 800B5774 000B26B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2619,13 +2636,13 @@ getSound__Q27JAInter9LinkSoundFv:
 /* 800B57DC 000B271C  7C 08 03 A6 */	mtlr r0
 /* 800B57E0 000B2720  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B57E4 000B2724  4E 80 00 20 */	blr 
+.endfn getSound__Q27JAInter9LinkSoundFv
 
-.global onGet__8JAISoundFv
-onGet__8JAISoundFv:
+.fn onGet__8JAISoundFv, weak
 /* 800B57E8 000B2728  4E 80 00 20 */	blr 
+.endfn onGet__8JAISoundFv
 
-.global releaseSound__Q27JAInter9LinkSoundFP8JAISound
-releaseSound__Q27JAInter9LinkSoundFP8JAISound:
+.fn releaseSound__Q27JAInter9LinkSoundFP8JAISound, global
 /* 800B57EC 000B272C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B57F0 000B2730  7C 08 02 A6 */	mflr r0
 /* 800B57F4 000B2734  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2653,13 +2670,13 @@ releaseSound__Q27JAInter9LinkSoundFP8JAISound:
 /* 800B5848 000B2788  7C 08 03 A6 */	mtlr r0
 /* 800B584C 000B278C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5850 000B2790  4E 80 00 20 */	blr 
+.endfn releaseSound__Q27JAInter9LinkSoundFP8JAISound
 
-.global onRelease__8JAISoundFv
-onRelease__8JAISoundFv:
+.fn onRelease__8JAISoundFv, weak
 /* 800B5854 000B2794  4E 80 00 20 */	blr 
+.endfn onRelease__8JAISoundFv
 
-.global set__Q27JAInter11MoveParaSetFfUl
-set__Q27JAInter11MoveParaSetFfUl:
+.fn set__Q27JAInter11MoveParaSetFfUl, global
 /* 800B5858 000B2798  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B585C 000B279C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 800B5860 000B27A0  28 00 00 00 */	cmplwi r0, 0
@@ -2702,9 +2719,9 @@ set__Q27JAInter11MoveParaSetFfUl:
 .L_800B58E8:
 /* 800B58E8 000B2828  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B58EC 000B282C  4E 80 00 20 */	blr 
+.endfn set__Q27JAInter11MoveParaSetFfUl
 
-.global move__Q27JAInter11MoveParaSetFv
-move__Q27JAInter11MoveParaSetFv:
+.fn move__Q27JAInter11MoveParaSetFv, global
 /* 800B58F0 000B2830  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 800B58F4 000B2834  28 04 00 00 */	cmplwi r4, 0
 /* 800B58F8 000B2838  40 82 00 0C */	bne .L_800B5904
@@ -2727,9 +2744,9 @@ move__Q27JAInter11MoveParaSetFv:
 .L_800B5934:
 /* 800B5934 000B2874  7C 03 03 78 */	mr r3, r0
 /* 800B5938 000B2878  4E 80 00 20 */	blr 
+.endfn move__Q27JAInter11MoveParaSetFv
 
-.global getVolume__9JAIStreamFUc
-getVolume__9JAIStreamFUc:
+.fn getVolume__9JAIStreamFUc, weak
 /* 800B593C 000B287C  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B5940 000B2880  28 00 00 04 */	cmplwi r0, 4
 /* 800B5944 000B2884  41 82 00 0C */	beq .L_800B5950
@@ -2743,9 +2760,9 @@ getVolume__9JAIStreamFUc:
 .L_800B5960:
 /* 800B5960 000B28A0  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B5964 000B28A4  4E 80 00 20 */	blr 
+.endfn getVolume__9JAIStreamFUc
 
-.global setPan__9JAIStreamFfUlUc
-setPan__9JAIStreamFfUlUc:
+.fn setPan__9JAIStreamFfUlUc, weak
 /* 800B5968 000B28A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B596C 000B28AC  54 A0 25 36 */	rlwinm r0, r5, 4, 0x14, 0x1b
 /* 800B5970 000B28B0  80 C3 01 A8 */	lwz r6, 0x1a8(r3)
@@ -2809,9 +2826,9 @@ setPan__9JAIStreamFfUlUc:
 .L_800B5A44:
 /* 800B5A44 000B2984  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5A48 000B2988  4E 80 00 20 */	blr 
+.endfn setPan__9JAIStreamFfUlUc
 
-.global getPan__9JAIStreamFUc
-getPan__9JAIStreamFUc:
+.fn getPan__9JAIStreamFUc, weak
 /* 800B5A4C 000B298C  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B5A50 000B2990  28 00 00 04 */	cmplwi r0, 4
 /* 800B5A54 000B2994  41 82 00 0C */	beq .L_800B5A60
@@ -2826,9 +2843,9 @@ getPan__9JAIStreamFUc:
 .L_800B5A74:
 /* 800B5A74 000B29B4  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B5A78 000B29B8  4E 80 00 20 */	blr 
+.endfn getPan__9JAIStreamFUc
 
-.global setPitch__9JAIStreamFfUlUc
-setPitch__9JAIStreamFfUlUc:
+.fn setPitch__9JAIStreamFfUlUc, weak
 /* 800B5A7C 000B29BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5A80 000B29C0  54 A0 25 36 */	rlwinm r0, r5, 4, 0x14, 0x1b
 /* 800B5A84 000B29C4  80 C3 01 A4 */	lwz r6, 0x1a4(r3)
@@ -2892,9 +2909,9 @@ setPitch__9JAIStreamFfUlUc:
 .L_800B5B58:
 /* 800B5B58 000B2A98  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5B5C 000B2A9C  4E 80 00 20 */	blr 
+.endfn setPitch__9JAIStreamFfUlUc
 
-.global getPitch__9JAIStreamFUc
-getPitch__9JAIStreamFUc:
+.fn getPitch__9JAIStreamFUc, weak
 /* 800B5B60 000B2AA0  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B5B64 000B2AA4  28 00 00 04 */	cmplwi r0, 4
 /* 800B5B68 000B2AA8  41 82 00 0C */	beq .L_800B5B74
@@ -2909,9 +2926,9 @@ getPitch__9JAIStreamFUc:
 .L_800B5B88:
 /* 800B5B88 000B2AC8  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B5B8C 000B2ACC  4E 80 00 20 */	blr 
+.endfn getPitch__9JAIStreamFUc
 
-.global setFxmix__9JAIStreamFfUlUc
-setFxmix__9JAIStreamFfUlUc:
+.fn setFxmix__9JAIStreamFfUlUc, weak
 /* 800B5B90 000B2AD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5B94 000B2AD4  54 A0 25 36 */	rlwinm r0, r5, 4, 0x14, 0x1b
 /* 800B5B98 000B2AD8  80 C3 01 AC */	lwz r6, 0x1ac(r3)
@@ -2975,9 +2992,9 @@ setFxmix__9JAIStreamFfUlUc:
 .L_800B5C6C:
 /* 800B5C6C 000B2BAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5C70 000B2BB0  4E 80 00 20 */	blr 
+.endfn setFxmix__9JAIStreamFfUlUc
 
-.global getFxmix__9JAIStreamFUc
-getFxmix__9JAIStreamFUc:
+.fn getFxmix__9JAIStreamFUc, weak
 /* 800B5C74 000B2BB4  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B5C78 000B2BB8  28 00 00 04 */	cmplwi r0, 4
 /* 800B5C7C 000B2BBC  41 82 00 0C */	beq .L_800B5C88
@@ -2992,9 +3009,9 @@ getFxmix__9JAIStreamFUc:
 .L_800B5C9C:
 /* 800B5C9C 000B2BDC  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B5CA0 000B2BE0  4E 80 00 20 */	blr 
+.endfn getFxmix__9JAIStreamFUc
 
-.global setDolby__9JAIStreamFfUlUc
-setDolby__9JAIStreamFfUlUc:
+.fn setDolby__9JAIStreamFfUlUc, weak
 /* 800B5CA4 000B2BE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5CA8 000B2BE8  54 A0 25 36 */	rlwinm r0, r5, 4, 0x14, 0x1b
 /* 800B5CAC 000B2BEC  80 C3 01 B0 */	lwz r6, 0x1b0(r3)
@@ -3058,9 +3075,9 @@ setDolby__9JAIStreamFfUlUc:
 .L_800B5D80:
 /* 800B5D80 000B2CC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5D84 000B2CC4  4E 80 00 20 */	blr 
+.endfn setDolby__9JAIStreamFfUlUc
 
-.global getDolby__9JAIStreamFUc
-getDolby__9JAIStreamFUc:
+.fn getDolby__9JAIStreamFUc, weak
 /* 800B5D88 000B2CC8  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B5D8C 000B2CCC  28 00 00 04 */	cmplwi r0, 4
 /* 800B5D90 000B2CD0  41 82 00 0C */	beq .L_800B5D9C
@@ -3075,9 +3092,9 @@ getDolby__9JAIStreamFUc:
 .L_800B5DB0:
 /* 800B5DB0 000B2CF0  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B5DB4 000B2CF4  4E 80 00 20 */	blr 
+.endfn getDolby__9JAIStreamFUc
 
-.global setVolumeU7__9JAIStreamFUcUlUc
-setVolumeU7__9JAIStreamFUcUlUc:
+.fn setVolumeU7__9JAIStreamFUcUlUc, weak
 /* 800B5DB8 000B2CF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5DBC 000B2CFC  7C 08 02 A6 */	mflr r0
 /* 800B5DC0 000B2D00  54 84 06 3E */	clrlwi r4, r4, 0x18
@@ -3100,9 +3117,9 @@ setVolumeU7__9JAIStreamFUcUlUc:
 /* 800B5E04 000B2D44  7C 08 03 A6 */	mtlr r0
 /* 800B5E08 000B2D48  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5E0C 000B2D4C  4E 80 00 20 */	blr 
+.endfn setVolumeU7__9JAIStreamFUcUlUc
 
-.global getVolumeU7__9JAIStreamFUc
-getVolumeU7__9JAIStreamFUc:
+.fn getVolumeU7__9JAIStreamFUc, weak
 /* 800B5E10 000B2D50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5E14 000B2D54  7C 08 02 A6 */	mflr r0
 /* 800B5E18 000B2D58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3119,9 +3136,9 @@ getVolumeU7__9JAIStreamFUc:
 /* 800B5E44 000B2D84  7C 08 03 A6 */	mtlr r0
 /* 800B5E48 000B2D88  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5E4C 000B2D8C  4E 80 00 20 */	blr 
+.endfn getVolumeU7__9JAIStreamFUc
 
-.global setPanU7__9JAIStreamFUcUlUc
-setPanU7__9JAIStreamFUcUlUc:
+.fn setPanU7__9JAIStreamFUcUlUc, weak
 /* 800B5E50 000B2D90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5E54 000B2D94  7C 08 02 A6 */	mflr r0
 /* 800B5E58 000B2D98  54 84 06 3E */	clrlwi r4, r4, 0x18
@@ -3144,9 +3161,9 @@ setPanU7__9JAIStreamFUcUlUc:
 /* 800B5E9C 000B2DDC  7C 08 03 A6 */	mtlr r0
 /* 800B5EA0 000B2DE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5EA4 000B2DE4  4E 80 00 20 */	blr 
+.endfn setPanU7__9JAIStreamFUcUlUc
 
-.global getPanU7__9JAIStreamFUc
-getPanU7__9JAIStreamFUc:
+.fn getPanU7__9JAIStreamFUc, weak
 /* 800B5EA8 000B2DE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5EAC 000B2DEC  7C 08 02 A6 */	mflr r0
 /* 800B5EB0 000B2DF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3163,9 +3180,9 @@ getPanU7__9JAIStreamFUc:
 /* 800B5EDC 000B2E1C  7C 08 03 A6 */	mtlr r0
 /* 800B5EE0 000B2E20  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5EE4 000B2E24  4E 80 00 20 */	blr 
+.endfn getPanU7__9JAIStreamFUc
 
-.global setFxmixU7__9JAIStreamFUcUlUc
-setFxmixU7__9JAIStreamFUcUlUc:
+.fn setFxmixU7__9JAIStreamFUcUlUc, weak
 /* 800B5EE8 000B2E28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5EEC 000B2E2C  7C 08 02 A6 */	mflr r0
 /* 800B5EF0 000B2E30  54 84 06 3E */	clrlwi r4, r4, 0x18
@@ -3188,9 +3205,9 @@ setFxmixU7__9JAIStreamFUcUlUc:
 /* 800B5F34 000B2E74  7C 08 03 A6 */	mtlr r0
 /* 800B5F38 000B2E78  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5F3C 000B2E7C  4E 80 00 20 */	blr 
+.endfn setFxmixU7__9JAIStreamFUcUlUc
 
-.global getFxmixU7__9JAIStreamFUc
-getFxmixU7__9JAIStreamFUc:
+.fn getFxmixU7__9JAIStreamFUc, weak
 /* 800B5F40 000B2E80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5F44 000B2E84  7C 08 02 A6 */	mflr r0
 /* 800B5F48 000B2E88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3207,9 +3224,9 @@ getFxmixU7__9JAIStreamFUc:
 /* 800B5F74 000B2EB4  7C 08 03 A6 */	mtlr r0
 /* 800B5F78 000B2EB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5F7C 000B2EBC  4E 80 00 20 */	blr 
+.endfn getFxmixU7__9JAIStreamFUc
 
-.global setDolbyU7__9JAIStreamFUcUlUc
-setDolbyU7__9JAIStreamFUcUlUc:
+.fn setDolbyU7__9JAIStreamFUcUlUc, weak
 /* 800B5F80 000B2EC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5F84 000B2EC4  7C 08 02 A6 */	mflr r0
 /* 800B5F88 000B2EC8  54 84 06 3E */	clrlwi r4, r4, 0x18
@@ -3232,9 +3249,9 @@ setDolbyU7__9JAIStreamFUcUlUc:
 /* 800B5FCC 000B2F0C  7C 08 03 A6 */	mtlr r0
 /* 800B5FD0 000B2F10  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B5FD4 000B2F14  4E 80 00 20 */	blr 
+.endfn setDolbyU7__9JAIStreamFUcUlUc
 
-.global getDolbyU7__9JAIStreamFUc
-getDolbyU7__9JAIStreamFUc:
+.fn getDolbyU7__9JAIStreamFUc, weak
 /* 800B5FD8 000B2F18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B5FDC 000B2F1C  7C 08 02 A6 */	mflr r0
 /* 800B5FE0 000B2F20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3251,28 +3268,28 @@ getDolbyU7__9JAIStreamFUc:
 /* 800B600C 000B2F4C  7C 08 03 A6 */	mtlr r0
 /* 800B6010 000B2F50  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6014 000B2F54  4E 80 00 20 */	blr 
+.endfn getDolbyU7__9JAIStreamFUc
 
-.global setPortData__9JAIStreamFUcUs
-setPortData__9JAIStreamFUcUs:
+.fn setPortData__9JAIStreamFUcUs, weak
 /* 800B6018 000B2F58  4E 80 00 20 */	blr 
+.endfn setPortData__9JAIStreamFUcUs
 
-.global getPortData__9JAIStreamFUc
-getPortData__9JAIStreamFUc:
+.fn getPortData__9JAIStreamFUc, weak
 /* 800B601C 000B2F5C  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
 /* 800B6020 000B2F60  38 63 FF FF */	addi r3, r3, 0x0000FFFF@l
 /* 800B6024 000B2F64  4E 80 00 20 */	blr 
+.endfn getPortData__9JAIStreamFUc
 
-.global setTempoProportion__8JAISoundFfUl
-setTempoProportion__8JAISoundFfUl:
+.fn setTempoProportion__8JAISoundFfUl, weak
 /* 800B6028 000B2F68  4E 80 00 20 */	blr 
+.endfn setTempoProportion__8JAISoundFfUl
 
-.global getTempoProportion__8JAISoundFv
-getTempoProportion__8JAISoundFv:
+.fn getTempoProportion__8JAISoundFv, weak
 /* 800B602C 000B2F6C  C0 22 8C 80 */	lfs f1, lbl_80516FE0@sda21(r2)
 /* 800B6030 000B2F70  4E 80 00 20 */	blr 
+.endfn getTempoProportion__8JAISoundFv
 
-.global setDirectVolume__8JAISoundFfUl
-setDirectVolume__8JAISoundFfUl:
+.fn setDirectVolume__8JAISoundFfUl, weak
 /* 800B6034 000B2F74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6038 000B2F78  7C 08 02 A6 */	mflr r0
 /* 800B603C 000B2F7C  38 A0 00 06 */	li r5, 6
@@ -3285,9 +3302,9 @@ setDirectVolume__8JAISoundFfUl:
 /* 800B6058 000B2F98  7C 08 03 A6 */	mtlr r0
 /* 800B605C 000B2F9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6060 000B2FA0  4E 80 00 20 */	blr 
+.endfn setDirectVolume__8JAISoundFfUl
 
-.global setDirectPan__8JAISoundFfUl
-setDirectPan__8JAISoundFfUl:
+.fn setDirectPan__8JAISoundFfUl, weak
 /* 800B6064 000B2FA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6068 000B2FA8  7C 08 02 A6 */	mflr r0
 /* 800B606C 000B2FAC  38 A0 00 06 */	li r5, 6
@@ -3300,9 +3317,9 @@ setDirectPan__8JAISoundFfUl:
 /* 800B6088 000B2FC8  7C 08 03 A6 */	mtlr r0
 /* 800B608C 000B2FCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6090 000B2FD0  4E 80 00 20 */	blr 
+.endfn setDirectPan__8JAISoundFfUl
 
-.global setDirectPitch__8JAISoundFfUl
-setDirectPitch__8JAISoundFfUl:
+.fn setDirectPitch__8JAISoundFfUl, weak
 /* 800B6094 000B2FD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6098 000B2FD8  7C 08 02 A6 */	mflr r0
 /* 800B609C 000B2FDC  38 A0 00 06 */	li r5, 6
@@ -3315,9 +3332,9 @@ setDirectPitch__8JAISoundFfUl:
 /* 800B60B8 000B2FF8  7C 08 03 A6 */	mtlr r0
 /* 800B60BC 000B2FFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B60C0 000B3000  4E 80 00 20 */	blr 
+.endfn setDirectPitch__8JAISoundFfUl
 
-.global setDirectFxmix__8JAISoundFfUl
-setDirectFxmix__8JAISoundFfUl:
+.fn setDirectFxmix__8JAISoundFfUl, weak
 /* 800B60C4 000B3004  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B60C8 000B3008  7C 08 02 A6 */	mflr r0
 /* 800B60CC 000B300C  38 A0 00 06 */	li r5, 6
@@ -3330,9 +3347,9 @@ setDirectFxmix__8JAISoundFfUl:
 /* 800B60E8 000B3028  7C 08 03 A6 */	mtlr r0
 /* 800B60EC 000B302C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B60F0 000B3030  4E 80 00 20 */	blr 
+.endfn setDirectFxmix__8JAISoundFfUl
 
-.global setDirectDolby__8JAISoundFfUl
-setDirectDolby__8JAISoundFfUl:
+.fn setDirectDolby__8JAISoundFfUl, weak
 /* 800B60F4 000B3034  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B60F8 000B3038  7C 08 02 A6 */	mflr r0
 /* 800B60FC 000B303C  38 A0 00 06 */	li r5, 6
@@ -3345,9 +3362,9 @@ setDirectDolby__8JAISoundFfUl:
 /* 800B6118 000B3058  7C 08 03 A6 */	mtlr r0
 /* 800B611C 000B305C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6120 000B3060  4E 80 00 20 */	blr 
+.endfn setDirectDolby__8JAISoundFfUl
 
-.global setDemoVolume__8JAISoundFfUl
-setDemoVolume__8JAISoundFfUl:
+.fn setDemoVolume__8JAISoundFfUl, weak
 /* 800B6124 000B3064  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6128 000B3068  7C 08 02 A6 */	mflr r0
 /* 800B612C 000B306C  38 A0 00 02 */	li r5, 2
@@ -3360,9 +3377,9 @@ setDemoVolume__8JAISoundFfUl:
 /* 800B6148 000B3088  7C 08 03 A6 */	mtlr r0
 /* 800B614C 000B308C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6150 000B3090  4E 80 00 20 */	blr 
+.endfn setDemoVolume__8JAISoundFfUl
 
-.global setDemoPan__8JAISoundFfUl
-setDemoPan__8JAISoundFfUl:
+.fn setDemoPan__8JAISoundFfUl, weak
 /* 800B6154 000B3094  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6158 000B3098  7C 08 02 A6 */	mflr r0
 /* 800B615C 000B309C  38 A0 00 02 */	li r5, 2
@@ -3375,9 +3392,9 @@ setDemoPan__8JAISoundFfUl:
 /* 800B6178 000B30B8  7C 08 03 A6 */	mtlr r0
 /* 800B617C 000B30BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6180 000B30C0  4E 80 00 20 */	blr 
+.endfn setDemoPan__8JAISoundFfUl
 
-.global setDemoPitch__8JAISoundFfUl
-setDemoPitch__8JAISoundFfUl:
+.fn setDemoPitch__8JAISoundFfUl, weak
 /* 800B6184 000B30C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6188 000B30C8  7C 08 02 A6 */	mflr r0
 /* 800B618C 000B30CC  38 A0 00 02 */	li r5, 2
@@ -3390,9 +3407,9 @@ setDemoPitch__8JAISoundFfUl:
 /* 800B61A8 000B30E8  7C 08 03 A6 */	mtlr r0
 /* 800B61AC 000B30EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B61B0 000B30F0  4E 80 00 20 */	blr 
+.endfn setDemoPitch__8JAISoundFfUl
 
-.global setDemoFxmix__8JAISoundFfUl
-setDemoFxmix__8JAISoundFfUl:
+.fn setDemoFxmix__8JAISoundFfUl, weak
 /* 800B61B4 000B30F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B61B8 000B30F8  7C 08 02 A6 */	mflr r0
 /* 800B61BC 000B30FC  38 A0 00 02 */	li r5, 2
@@ -3405,9 +3422,9 @@ setDemoFxmix__8JAISoundFfUl:
 /* 800B61D8 000B3118  7C 08 03 A6 */	mtlr r0
 /* 800B61DC 000B311C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B61E0 000B3120  4E 80 00 20 */	blr 
+.endfn setDemoFxmix__8JAISoundFfUl
 
-.global setDemoDolby__8JAISoundFfUl
-setDemoDolby__8JAISoundFfUl:
+.fn setDemoDolby__8JAISoundFfUl, weak
 /* 800B61E4 000B3124  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B61E8 000B3128  7C 08 02 A6 */	mflr r0
 /* 800B61EC 000B312C  38 A0 00 02 */	li r5, 2
@@ -3420,9 +3437,9 @@ setDemoDolby__8JAISoundFfUl:
 /* 800B6208 000B3148  7C 08 03 A6 */	mtlr r0
 /* 800B620C 000B314C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6210 000B3150  4E 80 00 20 */	blr 
+.endfn setDemoDolby__8JAISoundFfUl
 
-.global setDemoVolumeU7__8JAISoundFUcUl
-setDemoVolumeU7__8JAISoundFUcUl:
+.fn setDemoVolumeU7__8JAISoundFUcUl, weak
 /* 800B6214 000B3154  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6218 000B3158  7C 08 02 A6 */	mflr r0
 /* 800B621C 000B315C  38 C0 00 02 */	li r6, 2
@@ -3435,9 +3452,9 @@ setDemoVolumeU7__8JAISoundFUcUl:
 /* 800B6238 000B3178  7C 08 03 A6 */	mtlr r0
 /* 800B623C 000B317C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6240 000B3180  4E 80 00 20 */	blr 
+.endfn setDemoVolumeU7__8JAISoundFUcUl
 
-.global setDemoPanU7__8JAISoundFUcUl
-setDemoPanU7__8JAISoundFUcUl:
+.fn setDemoPanU7__8JAISoundFUcUl, weak
 /* 800B6244 000B3184  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6248 000B3188  7C 08 02 A6 */	mflr r0
 /* 800B624C 000B318C  38 C0 00 02 */	li r6, 2
@@ -3450,9 +3467,9 @@ setDemoPanU7__8JAISoundFUcUl:
 /* 800B6268 000B31A8  7C 08 03 A6 */	mtlr r0
 /* 800B626C 000B31AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6270 000B31B0  4E 80 00 20 */	blr 
+.endfn setDemoPanU7__8JAISoundFUcUl
 
-.global setDemoFxmixU7__8JAISoundFUcUl
-setDemoFxmixU7__8JAISoundFUcUl:
+.fn setDemoFxmixU7__8JAISoundFUcUl, weak
 /* 800B6274 000B31B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6278 000B31B8  7C 08 02 A6 */	mflr r0
 /* 800B627C 000B31BC  38 C0 00 02 */	li r6, 2
@@ -3465,9 +3482,9 @@ setDemoFxmixU7__8JAISoundFUcUl:
 /* 800B6298 000B31D8  7C 08 03 A6 */	mtlr r0
 /* 800B629C 000B31DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B62A0 000B31E0  4E 80 00 20 */	blr 
+.endfn setDemoFxmixU7__8JAISoundFUcUl
 
-.global setDemoDolbyU7__8JAISoundFUcUl
-setDemoDolbyU7__8JAISoundFUcUl:
+.fn setDemoDolbyU7__8JAISoundFUcUl, weak
 /* 800B62A4 000B31E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B62A8 000B31E8  7C 08 02 A6 */	mflr r0
 /* 800B62AC 000B31EC  38 C0 00 02 */	li r6, 2
@@ -3480,26 +3497,26 @@ setDemoDolbyU7__8JAISoundFUcUl:
 /* 800B62C8 000B3208  7C 08 03 A6 */	mtlr r0
 /* 800B62CC 000B320C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B62D0 000B3210  4E 80 00 20 */	blr 
+.endfn setDemoDolbyU7__8JAISoundFUcUl
 
-.global setDistanceParameterMoveTime__8JAISoundFUc
-setDistanceParameterMoveTime__8JAISoundFUc:
+.fn setDistanceParameterMoveTime__8JAISoundFUc, weak
 /* 800B62D4 000B3214  98 83 00 19 */	stb r4, 0x19(r3)
 /* 800B62D8 000B3218  4E 80 00 20 */	blr 
+.endfn setDistanceParameterMoveTime__8JAISoundFUc
 
-.global setAdjustPriority__8JAISoundFs
-setAdjustPriority__8JAISoundFs:
+.fn setAdjustPriority__8JAISoundFs, weak
 /* 800B62DC 000B321C  B0 83 00 1C */	sth r4, 0x1c(r3)
 /* 800B62E0 000B3220  4E 80 00 20 */	blr 
+.endfn setAdjustPriority__8JAISoundFs
 
-.global getVolume__5JAISeFUc
-getVolume__5JAISeFUc:
+.fn getVolume__5JAISeFUc, weak
 /* 800B62E4 000B3224  54 80 25 36 */	rlwinm r0, r4, 4, 0x14, 0x1b
 /* 800B62E8 000B3228  7C 63 02 14 */	add r3, r3, r0
 /* 800B62EC 000B322C  C0 23 01 70 */	lfs f1, 0x170(r3)
 /* 800B62F0 000B3230  4E 80 00 20 */	blr 
+.endfn getVolume__5JAISeFUc
 
-.global setPan__5JAISeFfUlUc
-setPan__5JAISeFfUlUc:
+.fn setPan__5JAISeFfUlUc, weak
 /* 800B62F4 000B3234  54 A0 25 36 */	rlwinm r0, r5, 4, 0x14, 0x1b
 /* 800B62F8 000B3238  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B62FC 000B323C  7C C3 02 14 */	add r6, r3, r0
@@ -3540,16 +3557,16 @@ setPan__5JAISeFfUlUc:
 .L_800B637C:
 /* 800B637C 000B32BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6380 000B32C0  4E 80 00 20 */	blr 
+.endfn setPan__5JAISeFfUlUc
 
-.global getPan__5JAISeFUc
-getPan__5JAISeFUc:
+.fn getPan__5JAISeFUc, weak
 /* 800B6384 000B32C4  54 80 25 36 */	rlwinm r0, r4, 4, 0x14, 0x1b
 /* 800B6388 000B32C8  7C 63 02 14 */	add r3, r3, r0
 /* 800B638C 000B32CC  C0 23 01 F0 */	lfs f1, 0x1f0(r3)
 /* 800B6390 000B32D0  4E 80 00 20 */	blr 
+.endfn getPan__5JAISeFUc
 
-.global setPitch__5JAISeFfUlUc
-setPitch__5JAISeFfUlUc:
+.fn setPitch__5JAISeFfUlUc, weak
 /* 800B6394 000B32D4  54 A0 25 36 */	rlwinm r0, r5, 4, 0x14, 0x1b
 /* 800B6398 000B32D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B639C 000B32DC  7C C3 02 14 */	add r6, r3, r0
@@ -3590,23 +3607,23 @@ setPitch__5JAISeFfUlUc:
 .L_800B641C:
 /* 800B641C 000B335C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6420 000B3360  4E 80 00 20 */	blr 
+.endfn setPitch__5JAISeFfUlUc
 
-.global getPitch__5JAISeFUc
-getPitch__5JAISeFUc:
+.fn getPitch__5JAISeFUc, weak
 /* 800B6424 000B3364  54 80 25 36 */	rlwinm r0, r4, 4, 0x14, 0x1b
 /* 800B6428 000B3368  7C 63 02 14 */	add r3, r3, r0
 /* 800B642C 000B336C  C0 23 02 70 */	lfs f1, 0x270(r3)
 /* 800B6430 000B3370  4E 80 00 20 */	blr 
+.endfn getPitch__5JAISeFUc
 
-.global getFxmix__5JAISeFUc
-getFxmix__5JAISeFUc:
+.fn getFxmix__5JAISeFUc, weak
 /* 800B6434 000B3374  54 80 25 36 */	rlwinm r0, r4, 4, 0x14, 0x1b
 /* 800B6438 000B3378  7C 63 02 14 */	add r3, r3, r0
 /* 800B643C 000B337C  C0 23 02 F0 */	lfs f1, 0x2f0(r3)
 /* 800B6440 000B3380  4E 80 00 20 */	blr 
+.endfn getFxmix__5JAISeFUc
 
-.global setDolby__5JAISeFfUlUc
-setDolby__5JAISeFfUlUc:
+.fn setDolby__5JAISeFfUlUc, weak
 /* 800B6444 000B3384  54 A0 25 36 */	rlwinm r0, r5, 4, 0x14, 0x1b
 /* 800B6448 000B3388  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B644C 000B338C  7C C3 02 14 */	add r6, r3, r0
@@ -3647,16 +3664,16 @@ setDolby__5JAISeFfUlUc:
 .L_800B64CC:
 /* 800B64CC 000B340C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B64D0 000B3410  4E 80 00 20 */	blr 
+.endfn setDolby__5JAISeFfUlUc
 
-.global getDolby__5JAISeFUc
-getDolby__5JAISeFUc:
+.fn getDolby__5JAISeFUc, weak
 /* 800B64D4 000B3414  54 80 25 36 */	rlwinm r0, r4, 4, 0x14, 0x1b
 /* 800B64D8 000B3418  7C 63 02 14 */	add r3, r3, r0
 /* 800B64DC 000B341C  C0 23 03 F0 */	lfs f1, 0x3f0(r3)
 /* 800B64E0 000B3420  4E 80 00 20 */	blr 
+.endfn getDolby__5JAISeFUc
 
-.global setVolumeU7__5JAISeFUcUlUc
-setVolumeU7__5JAISeFUcUlUc:
+.fn setVolumeU7__5JAISeFUcUlUc, weak
 /* 800B64E4 000B3424  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B64E8 000B3428  54 84 06 3E */	clrlwi r4, r4, 0x18
 /* 800B64EC 000B342C  3C 00 43 30 */	lis r0, 0x4330
@@ -3706,9 +3723,9 @@ setVolumeU7__5JAISeFUcUlUc:
 .L_800B6590:
 /* 800B6590 000B34D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6594 000B34D4  4E 80 00 20 */	blr 
+.endfn setVolumeU7__5JAISeFUcUlUc
 
-.global getVolumeU7__5JAISeFUc
-getVolumeU7__5JAISeFUc:
+.fn getVolumeU7__5JAISeFUc, weak
 /* 800B6598 000B34D8  54 80 25 36 */	rlwinm r0, r4, 4, 0x14, 0x1b
 /* 800B659C 000B34DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B65A0 000B34E0  7C 63 02 14 */	add r3, r3, r0
@@ -3720,9 +3737,9 @@ getVolumeU7__5JAISeFUc:
 /* 800B65B8 000B34F8  80 61 00 0C */	lwz r3, 0xc(r1)
 /* 800B65BC 000B34FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B65C0 000B3500  4E 80 00 20 */	blr 
+.endfn getVolumeU7__5JAISeFUc
 
-.global setPanU7__5JAISeFUcUlUc
-setPanU7__5JAISeFUcUlUc:
+.fn setPanU7__5JAISeFUcUlUc, weak
 /* 800B65C4 000B3504  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B65C8 000B3508  54 84 06 3E */	clrlwi r4, r4, 0x18
 /* 800B65CC 000B350C  3C 00 43 30 */	lis r0, 0x4330
@@ -3772,9 +3789,9 @@ setPanU7__5JAISeFUcUlUc:
 .L_800B6670:
 /* 800B6670 000B35B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6674 000B35B4  4E 80 00 20 */	blr 
+.endfn setPanU7__5JAISeFUcUlUc
 
-.global getPanU7__5JAISeFUc
-getPanU7__5JAISeFUc:
+.fn getPanU7__5JAISeFUc, weak
 /* 800B6678 000B35B8  54 80 25 36 */	rlwinm r0, r4, 4, 0x14, 0x1b
 /* 800B667C 000B35BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6680 000B35C0  7C 63 02 14 */	add r3, r3, r0
@@ -3786,9 +3803,9 @@ getPanU7__5JAISeFUc:
 /* 800B6698 000B35D8  80 61 00 0C */	lwz r3, 0xc(r1)
 /* 800B669C 000B35DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B66A0 000B35E0  4E 80 00 20 */	blr 
+.endfn getPanU7__5JAISeFUc
 
-.global setFxmixU7__5JAISeFUcUlUc
-setFxmixU7__5JAISeFUcUlUc:
+.fn setFxmixU7__5JAISeFUcUlUc, weak
 /* 800B66A4 000B35E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B66A8 000B35E8  54 84 06 3E */	clrlwi r4, r4, 0x18
 /* 800B66AC 000B35EC  3C 00 43 30 */	lis r0, 0x4330
@@ -3838,9 +3855,9 @@ setFxmixU7__5JAISeFUcUlUc:
 .L_800B6750:
 /* 800B6750 000B3690  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6754 000B3694  4E 80 00 20 */	blr 
+.endfn setFxmixU7__5JAISeFUcUlUc
 
-.global getFxmixU7__5JAISeFUc
-getFxmixU7__5JAISeFUc:
+.fn getFxmixU7__5JAISeFUc, weak
 /* 800B6758 000B3698  54 80 25 36 */	rlwinm r0, r4, 4, 0x14, 0x1b
 /* 800B675C 000B369C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6760 000B36A0  7C 63 02 14 */	add r3, r3, r0
@@ -3852,9 +3869,9 @@ getFxmixU7__5JAISeFUc:
 /* 800B6778 000B36B8  80 61 00 0C */	lwz r3, 0xc(r1)
 /* 800B677C 000B36BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6780 000B36C0  4E 80 00 20 */	blr 
+.endfn getFxmixU7__5JAISeFUc
 
-.global setDolbyU7__5JAISeFUcUlUc
-setDolbyU7__5JAISeFUcUlUc:
+.fn setDolbyU7__5JAISeFUcUlUc, weak
 /* 800B6784 000B36C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6788 000B36C8  54 84 06 3E */	clrlwi r4, r4, 0x18
 /* 800B678C 000B36CC  3C 00 43 30 */	lis r0, 0x4330
@@ -3904,9 +3921,9 @@ setDolbyU7__5JAISeFUcUlUc:
 .L_800B6830:
 /* 800B6830 000B3770  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6834 000B3774  4E 80 00 20 */	blr 
+.endfn setDolbyU7__5JAISeFUcUlUc
 
-.global getDolbyU7__5JAISeFUc
-getDolbyU7__5JAISeFUc:
+.fn getDolbyU7__5JAISeFUc, weak
 /* 800B6838 000B3778  54 80 25 36 */	rlwinm r0, r4, 4, 0x14, 0x1b
 /* 800B683C 000B377C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6840 000B3780  7C 63 02 14 */	add r3, r3, r0
@@ -3918,9 +3935,9 @@ getDolbyU7__5JAISeFUc:
 /* 800B6858 000B3798  80 61 00 0C */	lwz r3, 0xc(r1)
 /* 800B685C 000B379C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6860 000B37A0  4E 80 00 20 */	blr 
+.endfn getDolbyU7__5JAISeFUc
 
-.global setPortData__5JAISeFUcUs
-setPortData__5JAISeFUcUs:
+.fn setPortData__5JAISeFUcUs, weak
 /* 800B6864 000B37A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B6868 000B37A8  7C 08 02 A6 */	mflr r0
 /* 800B686C 000B37AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4003,9 +4020,9 @@ setPortData__5JAISeFUcUs:
 /* 800B6988 000B38C8  7C 08 03 A6 */	mtlr r0
 /* 800B698C 000B38CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B6990 000B38D0  4E 80 00 20 */	blr 
+.endfn setPortData__5JAISeFUcUs
 
-.global getPortData__5JAISeFUc
-getPortData__5JAISeFUc:
+.fn getPortData__5JAISeFUc, weak
 /* 800B6994 000B38D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6998 000B38D8  7C 08 02 A6 */	mflr r0
 /* 800B699C 000B38DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4055,9 +4072,9 @@ getPortData__5JAISeFUc:
 /* 800B6A34 000B3974  7C 08 03 A6 */	mtlr r0
 /* 800B6A38 000B3978  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6A3C 000B397C  4E 80 00 20 */	blr 
+.endfn getPortData__5JAISeFUc
 
-.global getPan__11JAISequenceFUc
-getPan__11JAISequenceFUc:
+.fn getPan__11JAISequenceFUc, weak
 /* 800B6A40 000B3980  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B6A44 000B3984  28 00 00 04 */	cmplwi r0, 4
 /* 800B6A48 000B3988  41 82 00 0C */	beq .L_800B6A54
@@ -4072,9 +4089,9 @@ getPan__11JAISequenceFUc:
 .L_800B6A68:
 /* 800B6A68 000B39A8  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B6A6C 000B39AC  4E 80 00 20 */	blr 
+.endfn getPan__11JAISequenceFUc
 
-.global getPitch__11JAISequenceFUc
-getPitch__11JAISequenceFUc:
+.fn getPitch__11JAISequenceFUc, weak
 /* 800B6A70 000B39B0  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B6A74 000B39B4  28 00 00 04 */	cmplwi r0, 4
 /* 800B6A78 000B39B8  41 82 00 0C */	beq .L_800B6A84
@@ -4089,9 +4106,9 @@ getPitch__11JAISequenceFUc:
 .L_800B6A98:
 /* 800B6A98 000B39D8  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B6A9C 000B39DC  4E 80 00 20 */	blr 
+.endfn getPitch__11JAISequenceFUc
 
-.global setFxmix__11JAISequenceFfUlUc
-setFxmix__11JAISequenceFfUlUc:
+.fn setFxmix__11JAISequenceFfUlUc, weak
 /* 800B6AA0 000B39E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6AA4 000B39E4  54 A0 25 36 */	rlwinm r0, r5, 4, 0x14, 0x1b
 /* 800B6AA8 000B39E8  80 C3 02 A0 */	lwz r6, 0x2a0(r3)
@@ -4155,9 +4172,9 @@ setFxmix__11JAISequenceFfUlUc:
 .L_800B6B7C:
 /* 800B6B7C 000B3ABC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6B80 000B3AC0  4E 80 00 20 */	blr 
+.endfn setFxmix__11JAISequenceFfUlUc
 
-.global getFxmix__11JAISequenceFUc
-getFxmix__11JAISequenceFUc:
+.fn getFxmix__11JAISequenceFUc, weak
 /* 800B6B84 000B3AC4  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B6B88 000B3AC8  28 00 00 04 */	cmplwi r0, 4
 /* 800B6B8C 000B3ACC  41 82 00 0C */	beq .L_800B6B98
@@ -4172,9 +4189,9 @@ getFxmix__11JAISequenceFUc:
 .L_800B6BAC:
 /* 800B6BAC 000B3AEC  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B6BB0 000B3AF0  4E 80 00 20 */	blr 
+.endfn getFxmix__11JAISequenceFUc
 
-.global setDolby__11JAISequenceFfUlUc
-setDolby__11JAISequenceFfUlUc:
+.fn setDolby__11JAISequenceFfUlUc, weak
 /* 800B6BB4 000B3AF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6BB8 000B3AF8  80 CD 8B 68 */	lwz r6, msBasic__8JAIBasic@sda21(r13)
 /* 800B6BBC 000B3AFC  88 06 00 0D */	lbz r0, 0xd(r6)
@@ -4250,9 +4267,9 @@ setDolby__11JAISequenceFfUlUc:
 .L_800B6CBC:
 /* 800B6CBC 000B3BFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6CC0 000B3C00  4E 80 00 20 */	blr 
+.endfn setDolby__11JAISequenceFfUlUc
 
-.global getDolby__11JAISequenceFUc
-getDolby__11JAISequenceFUc:
+.fn getDolby__11JAISequenceFUc, weak
 /* 800B6CC4 000B3C04  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B6CC8 000B3C08  28 00 00 04 */	cmplwi r0, 4
 /* 800B6CCC 000B3C0C  41 82 00 0C */	beq .L_800B6CD8
@@ -4267,9 +4284,9 @@ getDolby__11JAISequenceFUc:
 .L_800B6CEC:
 /* 800B6CEC 000B3C2C  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B6CF0 000B3C30  4E 80 00 20 */	blr 
+.endfn getDolby__11JAISequenceFUc
 
-.global setTempoProportion__11JAISequenceFfUl
-setTempoProportion__11JAISequenceFfUl:
+.fn setTempoProportion__11JAISequenceFfUl, weak
 /* 800B6CF4 000B3C34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6CF8 000B3C38  80 03 00 54 */	lwz r0, 0x54(r3)
 /* 800B6CFC 000B3C3C  28 00 00 00 */	cmplwi r0, 0
@@ -4313,9 +4330,9 @@ setTempoProportion__11JAISequenceFfUl:
 .L_800B6D84:
 /* 800B6D84 000B3CC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6D88 000B3CC8  4E 80 00 20 */	blr 
+.endfn setTempoProportion__11JAISequenceFfUl
 
-.global getTempoProportion__11JAISequenceFv
-getTempoProportion__11JAISequenceFv:
+.fn getTempoProportion__11JAISequenceFv, weak
 /* 800B6D8C 000B3CCC  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B6D90 000B3CD0  28 00 00 04 */	cmplwi r0, 4
 /* 800B6D94 000B3CD4  41 82 00 0C */	beq .L_800B6DA0
@@ -4327,9 +4344,9 @@ getTempoProportion__11JAISequenceFv:
 .L_800B6DA8:
 /* 800B6DA8 000B3CE8  C0 22 8C D4 */	lfs f1, lbl_80517034@sda21(r2)
 /* 800B6DAC 000B3CEC  4E 80 00 20 */	blr 
+.endfn getTempoProportion__11JAISequenceFv
 
-.global getVolumeU7__11JAISequenceFUc
-getVolumeU7__11JAISequenceFUc:
+.fn getVolumeU7__11JAISequenceFUc, weak
 /* 800B6DB0 000B3CF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6DB4 000B3CF4  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B6DB8 000B3CF8  28 00 00 04 */	cmplwi r0, 4
@@ -4351,9 +4368,9 @@ getVolumeU7__11JAISequenceFUc:
 /* 800B6DEC 000B3D2C  80 61 00 0C */	lwz r3, 0xc(r1)
 /* 800B6DF0 000B3D30  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6DF4 000B3D34  4E 80 00 20 */	blr 
+.endfn getVolumeU7__11JAISequenceFUc
 
-.global setPanU7__11JAISequenceFUcUlUc
-setPanU7__11JAISequenceFUcUlUc:
+.fn setPanU7__11JAISequenceFUcUlUc, weak
 /* 800B6DF8 000B3D38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6DFC 000B3D3C  54 C0 25 36 */	rlwinm r0, r6, 4, 0x14, 0x1b
 /* 800B6E00 000B3D40  80 E3 02 98 */	lwz r7, 0x298(r3)
@@ -4442,9 +4459,9 @@ setPanU7__11JAISequenceFUcUlUc:
 .L_800B6F38:
 /* 800B6F38 000B3E78  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6F3C 000B3E7C  4E 80 00 20 */	blr 
+.endfn setPanU7__11JAISequenceFUcUlUc
 
-.global getPanU7__11JAISequenceFUc
-getPanU7__11JAISequenceFUc:
+.fn getPanU7__11JAISequenceFUc, weak
 /* 800B6F40 000B3E80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6F44 000B3E84  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B6F48 000B3E88  28 00 00 04 */	cmplwi r0, 4
@@ -4467,9 +4484,9 @@ getPanU7__11JAISequenceFUc:
 /* 800B6F80 000B3EC0  80 61 00 0C */	lwz r3, 0xc(r1)
 /* 800B6F84 000B3EC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B6F88 000B3EC8  4E 80 00 20 */	blr 
+.endfn getPanU7__11JAISequenceFUc
 
-.global setFxmixU7__11JAISequenceFUcUlUc
-setFxmixU7__11JAISequenceFUcUlUc:
+.fn setFxmixU7__11JAISequenceFUcUlUc, weak
 /* 800B6F8C 000B3ECC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B6F90 000B3ED0  54 C0 25 36 */	rlwinm r0, r6, 4, 0x14, 0x1b
 /* 800B6F94 000B3ED4  80 E3 02 A0 */	lwz r7, 0x2a0(r3)
@@ -4558,9 +4575,9 @@ setFxmixU7__11JAISequenceFUcUlUc:
 .L_800B70CC:
 /* 800B70CC 000B400C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B70D0 000B4010  4E 80 00 20 */	blr 
+.endfn setFxmixU7__11JAISequenceFUcUlUc
 
-.global getFxmixU7__11JAISequenceFUc
-getFxmixU7__11JAISequenceFUc:
+.fn getFxmixU7__11JAISequenceFUc, weak
 /* 800B70D4 000B4014  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B70D8 000B4018  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B70DC 000B401C  28 00 00 04 */	cmplwi r0, 4
@@ -4583,9 +4600,9 @@ getFxmixU7__11JAISequenceFUc:
 /* 800B7114 000B4054  80 61 00 0C */	lwz r3, 0xc(r1)
 /* 800B7118 000B4058  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B711C 000B405C  4E 80 00 20 */	blr 
+.endfn getFxmixU7__11JAISequenceFUc
 
-.global setDolbyU7__11JAISequenceFUcUlUc
-setDolbyU7__11JAISequenceFUcUlUc:
+.fn setDolbyU7__11JAISequenceFUcUlUc, weak
 /* 800B7120 000B4060  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B7124 000B4064  54 84 06 3E */	clrlwi r4, r4, 0x18
 /* 800B7128 000B4068  3C 00 43 30 */	lis r0, 0x4330
@@ -4670,9 +4687,9 @@ setDolbyU7__11JAISequenceFUcUlUc:
 .L_800B724C:
 /* 800B724C 000B418C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B7250 000B4190  4E 80 00 20 */	blr 
+.endfn setDolbyU7__11JAISequenceFUcUlUc
 
-.global getDolbyU7__11JAISequenceFUc
-getDolbyU7__11JAISequenceFUc:
+.fn getDolbyU7__11JAISequenceFUc, weak
 /* 800B7254 000B4194  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B7258 000B4198  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800B725C 000B419C  28 00 00 04 */	cmplwi r0, 4
@@ -4695,9 +4712,9 @@ getDolbyU7__11JAISequenceFUc:
 /* 800B7294 000B41D4  80 61 00 0C */	lwz r3, 0xc(r1)
 /* 800B7298 000B41D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B729C 000B41DC  4E 80 00 20 */	blr 
+.endfn getDolbyU7__11JAISequenceFUc
 
-.global setPortData__11JAISequenceFUcUs
-setPortData__11JAISequenceFUcUs:
+.fn setPortData__11JAISequenceFUcUs, weak
 /* 800B72A0 000B41E0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800B72A4 000B41E4  7C 08 02 A6 */	mflr r0
 /* 800B72A8 000B41E8  C0 22 8C 84 */	lfs f1, lbl_80516FE4@sda21(r2)
@@ -4799,9 +4816,9 @@ setPortData__11JAISequenceFUcUs:
 /* 800B7410 000B4350  7C 08 03 A6 */	mtlr r0
 /* 800B7414 000B4354  38 21 00 40 */	addi r1, r1, 0x40
 /* 800B7418 000B4358  4E 80 00 20 */	blr 
+.endfn setPortData__11JAISequenceFUcUs
 
-.global getPortData__11JAISequenceFUc
-getPortData__11JAISequenceFUc:
+.fn getPortData__11JAISequenceFUc, weak
 /* 800B741C 000B435C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B7420 000B4360  7C 08 02 A6 */	mflr r0
 /* 800B7424 000B4364  38 63 03 0C */	addi r3, r3, 0x30c
@@ -4814,3 +4831,4 @@ getPortData__11JAISequenceFUc:
 /* 800B7440 000B4380  7C 08 03 A6 */	mtlr r0
 /* 800B7444 000B4384  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B7448 000B4388  4E 80 00 20 */	blr 
+.endfn getPortData__11JAISequenceFUc

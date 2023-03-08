@@ -11,12 +11,12 @@ lbl_constructor:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80517050:
+.obj lbl_80517050, local
 	.float 0.0
+.endobj lbl_80517050
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global checkFileExsistence__Q27JAInter15SystemInterfaceFPc
-checkFileExsistence__Q27JAInter15SystemInterfaceFPc:
+.fn checkFileExsistence__Q27JAInter15SystemInterfaceFPc, global
 /* 800B8EE4 000B5E24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B8EE8 000B5E28  7C 08 02 A6 */	mflr r0
 /* 800B8EEC 000B5E2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -29,9 +29,9 @@ checkFileExsistence__Q27JAInter15SystemInterfaceFPc:
 /* 800B8F08 000B5E48  7C 08 03 A6 */	mtlr r0
 /* 800B8F0C 000B5E4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B8F10 000B5E50  4E 80 00 20 */	blr 
+.endfn checkFileExsistence__Q27JAInter15SystemInterfaceFPc
 
-.global checkSeqActiveFlag__Q27JAInter15SystemInterfaceFP8JASTrack
-checkSeqActiveFlag__Q27JAInter15SystemInterfaceFP8JASTrack:
+.fn checkSeqActiveFlag__Q27JAInter15SystemInterfaceFP8JASTrack, global
 /* 800B8F14 000B5E54  28 03 00 00 */	cmplwi r3, 0
 /* 800B8F18 000B5E58  41 82 00 E0 */	beq .L_800B8FF8
 /* 800B8F1C 000B5E5C  88 83 03 5B */	lbz r4, 0x35b(r3)
@@ -94,9 +94,9 @@ checkSeqActiveFlag__Q27JAInter15SystemInterfaceFP8JASTrack:
 .L_800B8FF8:
 /* 800B8FF8 000B5F38  38 60 00 00 */	li r3, 0
 /* 800B8FFC 000B5F3C  4E 80 00 20 */	blr 
+.endfn checkSeqActiveFlag__Q27JAInter15SystemInterfaceFP8JASTrack
 
-.global trackToSeqp__Q27JAInter15SystemInterfaceFP11JAISequenceUc
-trackToSeqp__Q27JAInter15SystemInterfaceFP11JAISequenceUc:
+.fn trackToSeqp__Q27JAInter15SystemInterfaceFP11JAISequenceUc, global
 /* 800B9000 000B5F40  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 800B9004 000B5F44  38 A0 00 00 */	li r5, 0
 /* 800B9008 000B5F48  54 00 05 29 */	rlwinm. r0, r0, 0, 0x14, 0x14
@@ -118,9 +118,9 @@ trackToSeqp__Q27JAInter15SystemInterfaceFP11JAISequenceUc:
 .L_800B9044:
 /* 800B9044 000B5F84  7C A3 2B 78 */	mr r3, r5
 /* 800B9048 000B5F88  4E 80 00 20 */	blr 
+.endfn trackToSeqp__Q27JAInter15SystemInterfaceFP11JAISequenceUc
 
-.global setSeqPortargsF32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcf
-setSeqPortargsF32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcf:
+.fn setSeqPortargsF32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcf, global
 /* 800B904C 000B5F8C  1C 84 00 48 */	mulli r4, r4, 0x48
 /* 800B9050 000B5F90  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 800B9054 000B5F94  54 A0 15 BA */	rlwinm r0, r5, 2, 0x16, 0x1d
@@ -128,9 +128,9 @@ setSeqPortargsF32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcf:
 /* 800B905C 000B5F9C  7C 63 02 14 */	add r3, r3, r0
 /* 800B9060 000B5FA0  D0 23 00 04 */	stfs f1, 4(r3)
 /* 800B9064 000B5FA4  4E 80 00 20 */	blr 
+.endfn setSeqPortargsF32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcf
 
-.global setSeqPortargsU32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcUl
-setSeqPortargsU32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcUl:
+.fn setSeqPortargsU32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcUl, global
 /* 800B9068 000B5FA8  1C 84 00 48 */	mulli r4, r4, 0x48
 /* 800B906C 000B5FAC  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 800B9070 000B5FB0  54 A0 15 BA */	rlwinm r0, r5, 2, 0x16, 0x1d
@@ -138,9 +138,9 @@ setSeqPortargsU32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcUl:
 /* 800B9078 000B5FB8  7C 63 02 14 */	add r3, r3, r0
 /* 800B907C 000B5FBC  90 C3 00 04 */	stw r6, 4(r3)
 /* 800B9080 000B5FC0  4E 80 00 20 */	blr 
+.endfn setSeqPortargsU32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcUl
 
-.global rootInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData
-rootInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData:
+.fn rootInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData, global
 /* 800B9084 000B5FC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B9088 000B5FC8  7C 08 02 A6 */	mflr r0
 /* 800B908C 000B5FCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -163,9 +163,9 @@ rootInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData:
 /* 800B90D0 000B6010  7C 08 03 A6 */	mtlr r0
 /* 800B90D4 000B6014  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B90D8 000B6018  4E 80 00 20 */	blr 
+.endfn rootInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData
 
-.global trackInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData
-trackInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData:
+.fn trackInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData, global
 /* 800B90DC 000B601C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B90E0 000B6020  7C 08 02 A6 */	mflr r0
 /* 800B90E4 000B6024  90 01 00 24 */	stw r0, 0x24(r1)
@@ -204,9 +204,9 @@ trackInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData:
 /* 800B9158 000B6098  7C 08 03 A6 */	mtlr r0
 /* 800B915C 000B609C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B9160 000B60A0  4E 80 00 20 */	blr 
+.endfn trackInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData
 
-.global outerInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataP8JASTrackUlUsUc
-outerInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataP8JASTrackUlUsUc:
+.fn outerInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataP8JASTrackUlUsUc, global
 /* 800B9164 000B60A4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800B9168 000B60A8  7C 08 02 A6 */	mflr r0
 /* 800B916C 000B60AC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -380,9 +380,9 @@ outerInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataP8JASTrackUlUsU
 /* 800B93E0 000B6320  7C 08 03 A6 */	mtlr r0
 /* 800B93E4 000B6324  38 21 00 30 */	addi r1, r1, 0x30
 /* 800B93E8 000B6328  4E 80 00 20 */	blr 
+.endfn outerInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataP8JASTrackUlUsUc
 
-.global setSePortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgs
-setSePortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgs:
+.fn setSePortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgs, global
 /* 800B93EC 000B632C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B93F0 000B6330  7C 08 02 A6 */	mflr r0
 /* 800B93F4 000B6334  90 01 00 24 */	stw r0, 0x24(r1)
@@ -504,6 +504,7 @@ setSePortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgs:
 /* 800B959C 000B64DC  7C 08 03 A6 */	mtlr r0
 /* 800B95A0 000B64E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B95A4 000B64E4  4E 80 00 20 */	blr 
+.endfn setSePortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgs
 
 .fn __sinit_JAISystemInterface_cpp, local
 /* 800B95A8 000B64E8  94 21 FF F0 */	stwu r1, -0x10(r1)

@@ -1,19 +1,18 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804796B0
-lbl_804796B0:
+.obj lbl_804796B0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_804796B0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A6638
-lbl_804A6638:
+.obj lbl_804A6638, local
 	.4byte .L_800B7EE4
 	.4byte .L_800B7DC8
 	.4byte .L_800B7DF8
@@ -22,92 +21,92 @@ lbl_804A6638:
 	.4byte .L_800B7ED0
 	.4byte .L_800B7E94
 	.4byte .L_800B7EB4
+.endobj lbl_804A6638
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sChannelMax__Q27JAInter9StreamMgr
-sChannelMax__Q27JAInter9StreamMgr:
+.obj sChannelMax__Q27JAInter9StreamMgr, global
 	.4byte 0x00000002
-.global decodedBufferBlocks__Q27JAInter9StreamMgr
-decodedBufferBlocks__Q27JAInter9StreamMgr:
+.endobj sChannelMax__Q27JAInter9StreamMgr
+.obj decodedBufferBlocks__Q27JAInter9StreamMgr, global
 	.4byte 0x00002760
+.endobj decodedBufferBlocks__Q27JAInter9StreamMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global flags__Q27JAInter9StreamMgr
-flags__Q27JAInter9StreamMgr:
+.obj flags__Q27JAInter9StreamMgr, global
 	.skip 0x2
-.global prepareSw__Q27JAInter9StreamMgr
-prepareSw__Q27JAInter9StreamMgr:
+.endobj flags__Q27JAInter9StreamMgr
+.obj prepareSw__Q27JAInter9StreamMgr, global
 	.skip 0x1
-.global prepareFlag__Q27JAInter9StreamMgr
-prepareFlag__Q27JAInter9StreamMgr:
+.endobj prepareSw__Q27JAInter9StreamMgr
+.obj prepareFlag__Q27JAInter9StreamMgr, global
 	.skip 0x1
-.global externalAram__Q27JAInter9StreamMgr
-externalAram__Q27JAInter9StreamMgr:
+.endobj prepareFlag__Q27JAInter9StreamMgr
+.obj externalAram__Q27JAInter9StreamMgr, global
 	.skip 0x1
-.global finishFlag__Q27JAInter9StreamMgr
-finishFlag__Q27JAInter9StreamMgr:
-	.skip 0x3
-.global streamUpdate__Q27JAInter9StreamMgr
-streamUpdate__Q27JAInter9StreamMgr:
+.endobj externalAram__Q27JAInter9StreamMgr
+.obj finishFlag__Q27JAInter9StreamMgr, global
+	.skip 0x1
+.endobj finishFlag__Q27JAInter9StreamMgr
+.balign 4
+.obj streamUpdate__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global streamList__Q27JAInter9StreamMgr
-streamList__Q27JAInter9StreamMgr:
+.endobj streamUpdate__Q27JAInter9StreamMgr
+.obj streamList__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global streamSound__Q27JAInter9StreamMgr
-streamSound__Q27JAInter9StreamMgr:
+.endobj streamList__Q27JAInter9StreamMgr
+.obj streamSound__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global initOnCodeStrm__Q27JAInter9StreamMgr
-initOnCodeStrm__Q27JAInter9StreamMgr:
+.endobj streamSound__Q27JAInter9StreamMgr
+.obj initOnCodeStrm__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global streamSystem__Q27JAInter9StreamMgr
-streamSystem__Q27JAInter9StreamMgr:
+.endobj initOnCodeStrm__Q27JAInter9StreamMgr
+.obj streamSystem__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global systemStatus__Q27JAInter9StreamMgr
-systemStatus__Q27JAInter9StreamMgr:
+.endobj streamSystem__Q27JAInter9StreamMgr
+.obj systemStatus__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global controlStatus__Q27JAInter9StreamMgr
-controlStatus__Q27JAInter9StreamMgr:
+.endobj systemStatus__Q27JAInter9StreamMgr
+.obj controlStatus__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global aramBufferHeap__Q27JAInter9StreamMgr
-aramBufferHeap__Q27JAInter9StreamMgr:
+.endobj controlStatus__Q27JAInter9StreamMgr
+.obj aramBufferHeap__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global aramParentHeap__Q27JAInter9StreamMgr
-aramParentHeap__Q27JAInter9StreamMgr:
+.endobj aramBufferHeap__Q27JAInter9StreamMgr
+.obj aramParentHeap__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global allocCallback__Q27JAInter9StreamMgr
-allocCallback__Q27JAInter9StreamMgr:
+.endobj aramParentHeap__Q27JAInter9StreamMgr
+.obj allocCallback__Q27JAInter9StreamMgr, local
 	.skip 0x4
-.global deallocCallback__Q27JAInter9StreamMgr
-deallocCallback__Q27JAInter9StreamMgr:
+.endobj allocCallback__Q27JAInter9StreamMgr
+.obj deallocCallback__Q27JAInter9StreamMgr, local
 	.skip 0x4
-.global externalAramCallback__Q27JAInter9StreamMgr
-externalAramCallback__Q27JAInter9StreamMgr:
+.endobj deallocCallback__Q27JAInter9StreamMgr
+.obj externalAramCallback__Q27JAInter9StreamMgr, local
 	.skip 0x4
-.global dataFileNumber__Q27JAInter9StreamMgr
-dataFileNumber__Q27JAInter9StreamMgr:
+.endobj externalAramCallback__Q27JAInter9StreamMgr
+.obj dataFileNumber__Q27JAInter9StreamMgr, global
 	.skip 0x4
-.global mgrCallback__Q27JAInter9StreamMgr
-mgrCallback__Q27JAInter9StreamMgr:
+.endobj dataFileNumber__Q27JAInter9StreamMgr
+.obj mgrCallback__Q27JAInter9StreamMgr, global
 	.skip 0x4
+.endobj mgrCallback__Q27JAInter9StreamMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517040
-lbl_80517040:
+.obj lbl_80517040, local
 	.float 1.0
-.global lbl_80517044
-lbl_80517044:
+.endobj lbl_80517040
+.obj lbl_80517044, local
 	.float 0.5
-.global lbl_80517048
-lbl_80517048:
-	.4byte 0x00000000
-	.4byte 0x00000000
+.endobj lbl_80517044
+.obj lbl_80517048, local
+	.float 0.0
+.endobj lbl_80517048
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q27JAInter9StreamMgrFv
-init__Q27JAInter9StreamMgrFv:
+.fn init__Q27JAInter9StreamMgrFv, global
 /* 800B764C 000B458C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800B7650 000B4590  7C 08 02 A6 */	mflr r0
 /* 800B7654 000B4594  90 01 00 34 */	stw r0, 0x34(r1)
@@ -312,9 +311,9 @@ init__Q27JAInter9StreamMgrFv:
 /* 800B795C 000B489C  7C 08 03 A6 */	mtlr r0
 /* 800B7960 000B48A0  38 21 00 30 */	addi r1, r1, 0x30
 /* 800B7964 000B48A4  4E 80 00 20 */	blr 
+.endfn init__Q27JAInter9StreamMgrFv
 
-.global storeStreamBuffer__Q27JAInter9StreamMgrFPP9JAIStreamPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-storeStreamBuffer__Q27JAInter9StreamMgrFPP9JAIStreamPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo:
+.fn storeStreamBuffer__Q27JAInter9StreamMgrFPP9JAIStreamPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo, global
 /* 800B7968 000B48A8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800B796C 000B48AC  7C 08 02 A6 */	mflr r0
 /* 800B7970 000B48B0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -536,9 +535,9 @@ storeStreamBuffer__Q27JAInter9StreamMgrFPP9JAIStreamPQ27JAInter5ActorUlUlUcPQ27J
 /* 800B7CB4 000B4BF4  7C 08 03 A6 */	mtlr r0
 /* 800B7CB8 000B4BF8  38 21 00 60 */	addi r1, r1, 0x60
 /* 800B7CBC 000B4BFC  4E 80 00 20 */	blr 
+.endfn storeStreamBuffer__Q27JAInter9StreamMgrFPP9JAIStreamPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
 
-.global releaseStreamBuffer__Q27JAInter9StreamMgrFP9JAIStreamUl
-releaseStreamBuffer__Q27JAInter9StreamMgrFP9JAIStreamUl:
+.fn releaseStreamBuffer__Q27JAInter9StreamMgrFP9JAIStreamUl, global
 /* 800B7CC0 000B4C00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B7CC4 000B4C04  7C 08 02 A6 */	mflr r0
 /* 800B7CC8 000B4C08  28 04 00 00 */	cmplwi r4, 0
@@ -576,9 +575,9 @@ releaseStreamBuffer__Q27JAInter9StreamMgrFP9JAIStreamUl:
 /* 800B7D3C 000B4C7C  7C 08 03 A6 */	mtlr r0
 /* 800B7D40 000B4C80  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B7D44 000B4C84  4E 80 00 20 */	blr 
+.endfn releaseStreamBuffer__Q27JAInter9StreamMgrFP9JAIStreamUl
 
-.global checkSystem__Q27JAInter9StreamMgrFv
-checkSystem__Q27JAInter9StreamMgrFv:
+.fn checkSystem__Q27JAInter9StreamMgrFv, global
 /* 800B7D48 000B4C88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B7D4C 000B4C8C  7C 08 02 A6 */	mflr r0
 /* 800B7D50 000B4C90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -703,9 +702,9 @@ checkSystem__Q27JAInter9StreamMgrFv:
 /* 800B7EE8 000B4E28  7C 08 03 A6 */	mtlr r0
 /* 800B7EEC 000B4E2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B7EF0 000B4E30  4E 80 00 20 */	blr 
+.endfn checkSystem__Q27JAInter9StreamMgrFv
 
-.global PlayingStream__Q27JAInter9StreamMgrFv
-PlayingStream__Q27JAInter9StreamMgrFv:
+.fn PlayingStream__Q27JAInter9StreamMgrFv, global
 /* 800B7EF4 000B4E34  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800B7EF8 000B4E38  7C 08 02 A6 */	mflr r0
 /* 800B7EFC 000B4E3C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1418,9 +1417,9 @@ PlayingStream__Q27JAInter9StreamMgrFv:
 /* 800B88E8 000B5828  7C 08 03 A6 */	mtlr r0
 /* 800B88EC 000B582C  38 21 00 60 */	addi r1, r1, 0x60
 /* 800B88F0 000B5830  4E 80 00 20 */	blr 
+.endfn PlayingStream__Q27JAInter9StreamMgrFv
 
-.global changeCallback__Q27JAInter9StreamMgrFv
-changeCallback__Q27JAInter9StreamMgrFv:
+.fn changeCallback__Q27JAInter9StreamMgrFv, global
 /* 800B88F4 000B5834  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B88F8 000B5838  7C 08 02 A6 */	mflr r0
 /* 800B88FC 000B583C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1469,9 +1468,9 @@ changeCallback__Q27JAInter9StreamMgrFv:
 /* 800B8990 000B58D0  7C 08 03 A6 */	mtlr r0
 /* 800B8994 000B58D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B8998 000B58D8  4E 80 00 20 */	blr 
+.endfn changeCallback__Q27JAInter9StreamMgrFv
 
-.global processGFrameStream__Q27JAInter9StreamMgrFv
-processGFrameStream__Q27JAInter9StreamMgrFv:
+.fn processGFrameStream__Q27JAInter9StreamMgrFv, global
 /* 800B899C 000B58DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B89A0 000B58E0  7C 08 02 A6 */	mflr r0
 /* 800B89A4 000B58E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1485,9 +1484,9 @@ processGFrameStream__Q27JAInter9StreamMgrFv:
 /* 800B89C0 000B5900  7C 08 03 A6 */	mtlr r0
 /* 800B89C4 000B5904  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B89C8 000B5908  4E 80 00 20 */	blr 
+.endfn processGFrameStream__Q27JAInter9StreamMgrFv
 
-.global checkEntriedStream__Q27JAInter9StreamMgrFv
-checkEntriedStream__Q27JAInter9StreamMgrFv:
+.fn checkEntriedStream__Q27JAInter9StreamMgrFv, global
 /* 800B89CC 000B590C  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 800B89D0 000B5910  7C 08 02 A6 */	mflr r0
 /* 800B89D4 000B5914  90 01 01 14 */	stw r0, 0x114(r1)
@@ -1548,9 +1547,9 @@ checkEntriedStream__Q27JAInter9StreamMgrFv:
 /* 800B8AA8 000B59E8  7C 08 03 A6 */	mtlr r0
 /* 800B8AAC 000B59EC  38 21 01 10 */	addi r1, r1, 0x110
 /* 800B8AB0 000B59F0  4E 80 00 20 */	blr 
+.endfn checkEntriedStream__Q27JAInter9StreamMgrFv
 
-.global systemCallBack__Q27JAInter9StreamMgrFUlP13JASAramStreamPv
-systemCallBack__Q27JAInter9StreamMgrFUlP13JASAramStreamPv:
+.fn systemCallBack__Q27JAInter9StreamMgrFUlP13JASAramStreamPv, global
 /* 800B8AB4 000B59F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B8AB8 000B59F8  7C 08 02 A6 */	mflr r0
 /* 800B8ABC 000B59FC  28 03 00 00 */	cmplwi r3, 0
@@ -1582,9 +1581,9 @@ systemCallBack__Q27JAInter9StreamMgrFUlP13JASAramStreamPv:
 /* 800B8B18 000B5A58  7C 08 03 A6 */	mtlr r0
 /* 800B8B1C 000B5A5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B8B20 000B5A60  4E 80 00 20 */	blr 
+.endfn systemCallBack__Q27JAInter9StreamMgrFUlP13JASAramStreamPv
 
-.global prepareSystem__Q27JAInter9StreamMgrFl
-prepareSystem__Q27JAInter9StreamMgrFl:
+.fn prepareSystem__Q27JAInter9StreamMgrFl, global
 /* 800B8B24 000B5A64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B8B28 000B5A68  7C 08 02 A6 */	mflr r0
 /* 800B8B2C 000B5A6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1638,9 +1637,9 @@ prepareSystem__Q27JAInter9StreamMgrFl:
 /* 800B8BE0 000B5B20  7C 08 03 A6 */	mtlr r0
 /* 800B8BE4 000B5B24  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B8BE8 000B5B28  4E 80 00 20 */	blr 
+.endfn prepareSystem__Q27JAInter9StreamMgrFl
 
-.global playDirect__Q27JAInter9StreamMgrFPc
-playDirect__Q27JAInter9StreamMgrFPc:
+.fn playDirect__Q27JAInter9StreamMgrFPc, global
 /* 800B8BEC 000B5B2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B8BF0 000B5B30  7C 08 02 A6 */	mflr r0
 /* 800B8BF4 000B5B34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1751,9 +1750,9 @@ playDirect__Q27JAInter9StreamMgrFPc:
 /* 800B8D78 000B5CB8  7C 08 03 A6 */	mtlr r0
 /* 800B8D7C 000B5CBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B8D80 000B5CC0  4E 80 00 20 */	blr 
+.endfn playDirect__Q27JAInter9StreamMgrFPc
 
-.global stopDirect__Q27JAInter9StreamMgrFv
-stopDirect__Q27JAInter9StreamMgrFv:
+.fn stopDirect__Q27JAInter9StreamMgrFv, global
 /* 800B8D84 000B5CC4  80 0D 8C 60 */	lwz r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B8D88 000B5CC8  28 00 00 05 */	cmplwi r0, 5
 /* 800B8D8C 000B5CCC  40 82 00 10 */	bne .L_800B8D9C
@@ -1772,9 +1771,9 @@ stopDirect__Q27JAInter9StreamMgrFv:
 /* 800B8DB4 000B5CF4  38 00 00 00 */	li r0, 0
 /* 800B8DB8 000B5CF8  90 0D 8C 78 */	stw r0, dataFileNumber__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B8DBC 000B5CFC  4E 80 00 20 */	blr 
+.endfn stopDirect__Q27JAInter9StreamMgrFv
 
-.global initChannel__Q27JAInter9StreamMgrFv
-initChannel__Q27JAInter9StreamMgrFv:
+.fn initChannel__Q27JAInter9StreamMgrFv, global
 /* 800B8DC0 000B5D00  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B8DC4 000B5D04  7C 08 02 A6 */	mflr r0
 /* 800B8DC8 000B5D08  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1841,32 +1840,33 @@ initChannel__Q27JAInter9StreamMgrFv:
 /* 800B8EA0 000B5DE0  7C 08 03 A6 */	mtlr r0
 /* 800B8EA4 000B5DE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B8EA8 000B5DE8  4E 80 00 20 */	blr 
+.endfn initChannel__Q27JAInter9StreamMgrFv
 
-.global getStreamObjectPointer__Q27JAInter9StreamMgrFv
-getStreamObjectPointer__Q27JAInter9StreamMgrFv:
+.fn getStreamObjectPointer__Q27JAInter9StreamMgrFv, global
 /* 800B8EAC 000B5DEC  80 6D 8C 58 */	lwz r3, streamSystem__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B8EB0 000B5DF0  4E 80 00 20 */	blr 
+.endfn getStreamObjectPointer__Q27JAInter9StreamMgrFv
 
-.global getSystemStatus__Q27JAInter9StreamMgrFv
-getSystemStatus__Q27JAInter9StreamMgrFv:
+.fn getSystemStatus__Q27JAInter9StreamMgrFv, global
 /* 800B8EB4 000B5DF4  80 6D 8C 5C */	lwz r3, systemStatus__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B8EB8 000B5DF8  4E 80 00 20 */	blr 
+.endfn getSystemStatus__Q27JAInter9StreamMgrFv
 
-.global getDecodedBufferBlocks__Q27JAInter9StreamMgrFv
-getDecodedBufferBlocks__Q27JAInter9StreamMgrFv:
+.fn getDecodedBufferBlocks__Q27JAInter9StreamMgrFv, global
 /* 800B8EBC 000B5DFC  80 6D 82 14 */	lwz r3, decodedBufferBlocks__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B8EC0 000B5E00  4E 80 00 20 */	blr 
+.endfn getDecodedBufferBlocks__Q27JAInter9StreamMgrFv
 
-.global getDecodedBufferSize__Q27JAInter9StreamMgrFUl
-getDecodedBufferSize__Q27JAInter9StreamMgrFUl:
+.fn getDecodedBufferSize__Q27JAInter9StreamMgrFUl, global
 /* 800B8EC4 000B5E04  80 0D 82 14 */	lwz r0, decodedBufferBlocks__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B8EC8 000B5E08  80 8D 82 10 */	lwz r4, sChannelMax__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B8ECC 000B5E0C  7C 00 19 D6 */	mullw r0, r0, r3
 /* 800B8ED0 000B5E10  7C 04 01 D6 */	mullw r0, r4, r0
 /* 800B8ED4 000B5E14  54 03 F8 7E */	srwi r3, r0, 1
 /* 800B8ED8 000B5E18  4E 80 00 20 */	blr 
+.endfn getDecodedBufferSize__Q27JAInter9StreamMgrFUl
 
-.global getChannelMax__Q27JAInter9StreamMgrFv
-getChannelMax__Q27JAInter9StreamMgrFv:
+.fn getChannelMax__Q27JAInter9StreamMgrFv, global
 /* 800B8EDC 000B5E1C  80 6D 82 10 */	lwz r3, sChannelMax__Q27JAInter9StreamMgr@sda21(r13)
 /* 800B8EE0 000B5E20  4E 80 00 20 */	blr 
+.endfn getChannelMax__Q27JAInter9StreamMgrFv

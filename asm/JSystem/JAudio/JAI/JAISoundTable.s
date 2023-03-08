@@ -1,29 +1,28 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mVersion__Q27JAInter10SoundTable
-mVersion__Q27JAInter10SoundTable:
+.obj mVersion__Q27JAInter10SoundTable, global
 	.skip 0x1
-.global mCategotyMax__Q27JAInter10SoundTable
-mCategotyMax__Q27JAInter10SoundTable:
+.endobj mVersion__Q27JAInter10SoundTable
+.obj mCategotyMax__Q27JAInter10SoundTable, global
 	.skip 0x1
+.endobj mCategotyMax__Q27JAInter10SoundTable
 .balign 4
-.global mSoundMax__Q27JAInter10SoundTable
-mSoundMax__Q27JAInter10SoundTable:
+.obj mSoundMax__Q27JAInter10SoundTable, global
 	.skip 0x4
-.global mDatasize__Q27JAInter10SoundTable
-mDatasize__Q27JAInter10SoundTable:
+.endobj mSoundMax__Q27JAInter10SoundTable
+.obj mDatasize__Q27JAInter10SoundTable, global
 	.skip 0x4
-.global mPointerCategory__Q27JAInter10SoundTable
-mPointerCategory__Q27JAInter10SoundTable:
+.endobj mDatasize__Q27JAInter10SoundTable
+.obj mPointerCategory__Q27JAInter10SoundTable, global
 	.skip 0x4
-.global mAddress__Q27JAInter10SoundTable
-mAddress__Q27JAInter10SoundTable:
+.endobj mPointerCategory__Q27JAInter10SoundTable
+.obj mAddress__Q27JAInter10SoundTable, global
 	.skip 0x4
+.endobj mAddress__Q27JAInter10SoundTable
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q27JAInter10SoundTableFPUcUl
-init__Q27JAInter10SoundTableFPUcUl:
+.fn init__Q27JAInter10SoundTableFPUcUl, global
 /* 800B744C 000B438C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B7450 000B4390  7C 08 02 A6 */	mflr r0
 /* 800B7454 000B4394  38 A0 00 04 */	li r5, 4
@@ -78,9 +77,9 @@ init__Q27JAInter10SoundTableFPUcUl:
 /* 800B750C 000B444C  7C 08 03 A6 */	mtlr r0
 /* 800B7510 000B4450  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B7514 000B4454  4E 80 00 20 */	blr 
+.endfn init__Q27JAInter10SoundTableFPUcUl
 
-.global getInfoPointer__Q27JAInter10SoundTableFUl
-getInfoPointer__Q27JAInter10SoundTableFUl:
+.fn getInfoPointer__Q27JAInter10SoundTableFUl, global
 /* 800B7518 000B4458  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B751C 000B445C  7C 08 02 A6 */	mflr r0
 /* 800B7520 000B4460  54 64 00 02 */	rlwinm r4, r3, 0, 0, 1
@@ -136,9 +135,9 @@ getInfoPointer__Q27JAInter10SoundTableFUl:
 /* 800B75D0 000B4510  7C 08 03 A6 */	mtlr r0
 /* 800B75D4 000B4514  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B75D8 000B4518  4E 80 00 20 */	blr 
+.endfn getInfoPointer__Q27JAInter10SoundTableFUl
 
-.global getInfoFormat__Q27JAInter10SoundTableFUl
-getInfoFormat__Q27JAInter10SoundTableFUl:
+.fn getInfoFormat__Q27JAInter10SoundTableFUl, global
 /* 800B75DC 000B451C  54 65 00 02 */	rlwinm r5, r3, 0, 0, 1
 /* 800B75E0 000B4520  3C 00 C0 00 */	lis r0, 0xc000
 /* 800B75E4 000B4524  7C 05 00 00 */	cmpw r5, r0
@@ -164,15 +163,16 @@ getInfoFormat__Q27JAInter10SoundTableFUl:
 /* 800B7628 000B4568  80 6D 8C 38 */	lwz r3, mAddress__Q27JAInter10SoundTable@sda21(r13)
 /* 800B762C 000B456C  88 63 00 02 */	lbz r3, 2(r3)
 /* 800B7630 000B4570  4E 80 00 20 */	blr 
+.endfn getInfoFormat__Q27JAInter10SoundTableFUl
 
-.global getCategotyMax__Q27JAInter10SoundTableFv
-getCategotyMax__Q27JAInter10SoundTableFv:
+.fn getCategotyMax__Q27JAInter10SoundTableFv, global
 /* 800B7634 000B4574  88 6D 8C 29 */	lbz r3, mCategotyMax__Q27JAInter10SoundTable@sda21(r13)
 /* 800B7638 000B4578  4E 80 00 20 */	blr 
+.endfn getCategotyMax__Q27JAInter10SoundTableFv
 
-.global getSoundMax__Q27JAInter10SoundTableFUc
-getSoundMax__Q27JAInter10SoundTableFUc:
+.fn getSoundMax__Q27JAInter10SoundTableFUc, global
 /* 800B763C 000B457C  80 8D 8C 2C */	lwz r4, mSoundMax__Q27JAInter10SoundTable@sda21(r13)
 /* 800B7640 000B4580  54 60 0D FC */	rlwinm r0, r3, 1, 0x17, 0x1e
 /* 800B7644 000B4584  7C 64 02 2E */	lhzx r3, r4, r0
 /* 800B7648 000B4588  4E 80 00 20 */	blr 
+.endfn getSoundMax__Q27JAInter10SoundTableFUc

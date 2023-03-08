@@ -1,22 +1,21 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sAutoHeap__Q27JAInter7HeapMgr
-sAutoHeap__Q27JAInter7HeapMgr:
+.obj sAutoHeap__Q27JAInter7HeapMgr, local
 	.skip 0x4
-.global sStayHeap__Q27JAInter7HeapMgr
-sStayHeap__Q27JAInter7HeapMgr:
+.endobj sAutoHeap__Q27JAInter7HeapMgr
+.obj sStayHeap__Q27JAInter7HeapMgr, local
 	.skip 0x4
-.global sAutoHeapCount__Q27JAInter7HeapMgr
-sAutoHeapCount__Q27JAInter7HeapMgr:
+.endobj sStayHeap__Q27JAInter7HeapMgr
+.obj sAutoHeapCount__Q27JAInter7HeapMgr, local
 	.skip 0x4
-.global sStayHeapCount__Q27JAInter7HeapMgr
-sStayHeapCount__Q27JAInter7HeapMgr:
+.endobj sAutoHeapCount__Q27JAInter7HeapMgr
+.obj sStayHeapCount__Q27JAInter7HeapMgr, local
 	.skip 0x4
+.endobj sStayHeapCount__Q27JAInter7HeapMgr
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q27JAInter7HeapMgrFUcUlUcUl
-init__Q27JAInter7HeapMgrFUcUlUcUl:
+.fn init__Q27JAInter7HeapMgrFUcUlUcUl, global
 /* 800B0340 000AD280  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800B0344 000AD284  7C 08 02 A6 */	mflr r0
 /* 800B0348 000AD288  90 01 00 34 */	stw r0, 0x34(r1)
@@ -172,14 +171,14 @@ init__Q27JAInter7HeapMgrFUcUlUcUl:
 /* 800B0588 000AD4C8  7C 08 03 A6 */	mtlr r0
 /* 800B058C 000AD4CC  38 21 00 30 */	addi r1, r1, 0x30
 /* 800B0590 000AD4D0  4E 80 00 20 */	blr 
+.endfn init__Q27JAInter7HeapMgrFUcUlUcUl
 
-.global getAutoHeapPointer__Q27JAInter7HeapMgrFv
-getAutoHeapPointer__Q27JAInter7HeapMgrFv:
+.fn getAutoHeapPointer__Q27JAInter7HeapMgrFv, global
 /* 800B0594 000AD4D4  80 6D 8B F8 */	lwz r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
 /* 800B0598 000AD4D8  4E 80 00 20 */	blr 
+.endfn getAutoHeapPointer__Q27JAInter7HeapMgrFv
 
-.global checkOnMemory__Q27JAInter7HeapMgrFUlPUc
-checkOnMemory__Q27JAInter7HeapMgrFUlPUc:
+.fn checkOnMemory__Q27JAInter7HeapMgrFUlPUc, global
 /* 800B059C 000AD4DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B05A0 000AD4E0  7C 08 02 A6 */	mflr r0
 /* 800B05A4 000AD4E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -254,9 +253,9 @@ checkOnMemory__Q27JAInter7HeapMgrFUlPUc:
 /* 800B0690 000AD5D0  7C 08 03 A6 */	mtlr r0
 /* 800B0694 000AD5D4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B0698 000AD5D8  4E 80 00 20 */	blr 
+.endfn checkOnMemory__Q27JAInter7HeapMgrFUlPUc
 
-.global releaseAutoHeapPointer__Q27JAInter7HeapMgrFUc
-releaseAutoHeapPointer__Q27JAInter7HeapMgrFUc:
+.fn releaseAutoHeapPointer__Q27JAInter7HeapMgrFUc, global
 /* 800B069C 000AD5DC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800B06A0 000AD5E0  28 00 00 FF */	cmplwi r0, 0xff
 /* 800B06A4 000AD5E4  4D 82 00 20 */	beqlr 
@@ -266,9 +265,9 @@ releaseAutoHeapPointer__Q27JAInter7HeapMgrFUc:
 /* 800B06B4 000AD5F4  38 03 00 10 */	addi r0, r3, 0x10
 /* 800B06B8 000AD5F8  7C A4 01 2E */	stwx r5, r4, r0
 /* 800B06BC 000AD5FC  4E 80 00 20 */	blr 
+.endfn releaseAutoHeapPointer__Q27JAInter7HeapMgrFUc
 
-.global checkUsefulAutoHeapPosition__Q27JAInter7HeapMgrFv
-checkUsefulAutoHeapPosition__Q27JAInter7HeapMgrFv:
+.fn checkUsefulAutoHeapPosition__Q27JAInter7HeapMgrFv, global
 /* 800B06C0 000AD600  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B06C4 000AD604  7C 08 02 A6 */	mflr r0
 /* 800B06C8 000AD608  90 01 00 24 */	stw r0, 0x24(r1)
@@ -334,9 +333,9 @@ checkUsefulAutoHeapPosition__Q27JAInter7HeapMgrFv:
 /* 800B079C 000AD6DC  7C 08 03 A6 */	mtlr r0
 /* 800B07A0 000AD6E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B07A4 000AD6E4  4E 80 00 20 */	blr 
+.endfn checkUsefulAutoHeapPosition__Q27JAInter7HeapMgrFv
 
-.global getFreeAutoHeapPointer__Q27JAInter7HeapMgrFUcUl
-getFreeAutoHeapPointer__Q27JAInter7HeapMgrFUcUl:
+.fn getFreeAutoHeapPointer__Q27JAInter7HeapMgrFUcUl, global
 /* 800B07A8 000AD6E8  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800B07AC 000AD6EC  80 6D 8B F8 */	lwz r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
 /* 800B07B0 000AD6F0  1C A0 00 14 */	mulli r5, r0, 0x14
@@ -355,15 +354,15 @@ getFreeAutoHeapPointer__Q27JAInter7HeapMgrFUcUl:
 /* 800B07E4 000AD724  38 04 00 01 */	addi r0, r4, 1
 /* 800B07E8 000AD728  90 0D 8C 00 */	stw r0, sAutoHeapCount__Q27JAInter7HeapMgr@sda21(r13)
 /* 800B07EC 000AD72C  4E 80 00 20 */	blr 
+.endfn getFreeAutoHeapPointer__Q27JAInter7HeapMgrFUcUl
 
-.global checkUsefulStayHeapPosition__Q27JAInter7HeapMgrFv
-checkUsefulStayHeapPosition__Q27JAInter7HeapMgrFv:
+.fn checkUsefulStayHeapPosition__Q27JAInter7HeapMgrFv, global
 /* 800B07F0 000AD730  80 0D 8C 04 */	lwz r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
 /* 800B07F4 000AD734  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 800B07F8 000AD738  4E 80 00 20 */	blr 
+.endfn checkUsefulStayHeapPosition__Q27JAInter7HeapMgrFv
 
-.global getFreeStayHeapPointer__Q27JAInter7HeapMgrFUlUl
-getFreeStayHeapPointer__Q27JAInter7HeapMgrFUlUl:
+.fn getFreeStayHeapPointer__Q27JAInter7HeapMgrFUlUl, global
 /* 800B07FC 000AD73C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B0800 000AD740  7C 08 02 A6 */	mflr r0
 /* 800B0804 000AD744  90 01 00 24 */	stw r0, 0x24(r1)
@@ -435,28 +434,29 @@ getFreeStayHeapPointer__Q27JAInter7HeapMgrFUlUl:
 /* 800B08F8 000AD838  7C 08 03 A6 */	mtlr r0
 /* 800B08FC 000AD83C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B0900 000AD840  4E 80 00 20 */	blr 
+.endfn getFreeStayHeapPointer__Q27JAInter7HeapMgrFUlUl
 
-.global setAutoHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc
-setAutoHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc:
+.fn setAutoHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc, global
 /* 800B0904 000AD844  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800B0908 000AD848  80 6D 8B F8 */	lwz r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
 /* 800B090C 000AD84C  1C 00 00 14 */	mulli r0, r0, 0x14
 /* 800B0910 000AD850  7C 83 01 AE */	stbx r4, r3, r0
 /* 800B0914 000AD854  4E 80 00 20 */	blr 
+.endfn setAutoHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc
 
-.global setStayHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc
-setStayHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc:
+.fn setStayHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc, global
 /* 800B0918 000AD858  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800B091C 000AD85C  80 6D 8B FC */	lwz r3, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
 /* 800B0920 000AD860  1C 00 00 14 */	mulli r0, r0, 0x14
 /* 800B0924 000AD864  7C 83 01 AE */	stbx r4, r3, r0
 /* 800B0928 000AD868  4E 80 00 20 */	blr 
+.endfn setStayHeapLoadedFlag__Q27JAInter7HeapMgrFUcUc
 
-.global __ct__Q27JAInter9HeapBlockFv
-__ct__Q27JAInter9HeapBlockFv:
+.fn __ct__Q27JAInter9HeapBlockFv, global
 /* 800B092C 000AD86C  38 80 00 00 */	li r4, 0
 /* 800B0930 000AD870  38 00 FF FF */	li r0, -1
 /* 800B0934 000AD874  90 83 00 0C */	stw r4, 0xc(r3)
 /* 800B0938 000AD878  90 03 00 08 */	stw r0, 8(r3)
 /* 800B093C 000AD87C  90 03 00 10 */	stw r0, 0x10(r3)
 /* 800B0940 000AD880  4E 80 00 20 */	blr 
+.endfn __ct__Q27JAInter9HeapBlockFv

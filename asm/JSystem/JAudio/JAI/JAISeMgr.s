@@ -1,84 +1,96 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global seStartCallback__Q27JAInter5SeMgr
-seStartCallback__Q27JAInter5SeMgr:
+.obj seStartCallback__Q27JAInter5SeMgr, global
 	.4byte startSeSequence__Q27JAInter5SeMgrFv
+.endobj seStartCallback__Q27JAInter5SeMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global seTrackUpdate__Q27JAInter5SeMgr
-seTrackUpdate__Q27JAInter5SeMgr:
+.obj seTrackUpdate__Q27JAInter5SeMgr, global
 	.skip 0x4
-.global categoryInfoTable__Q27JAInter5SeMgr
-categoryInfoTable__Q27JAInter5SeMgr:
+.endobj seTrackUpdate__Q27JAInter5SeMgr
+.obj categoryInfoTable__Q27JAInter5SeMgr, global
 	.skip 0x4
-.global sePlaySound__Q27JAInter5SeMgr
-sePlaySound__Q27JAInter5SeMgr:
+.endobj categoryInfoTable__Q27JAInter5SeMgr
+.obj sePlaySound__Q27JAInter5SeMgr, global
 	.skip 0x4
-.global seRegist__Q27JAInter5SeMgr
-seRegist__Q27JAInter5SeMgr:
+.endobj sePlaySound__Q27JAInter5SeMgr
+.obj seRegist__Q27JAInter5SeMgr, global
 	.skip 0x4
-.global seHandle__Q27JAInter5SeMgr
-seHandle__Q27JAInter5SeMgr:
+.endobj seRegist__Q27JAInter5SeMgr
+.obj seHandle__Q27JAInter5SeMgr, global
 	.skip 0x4
-.global seScene__Q27JAInter5SeMgr
-seScene__Q27JAInter5SeMgr:
+.endobj seHandle__Q27JAInter5SeMgr
+.obj seScene__Q27JAInter5SeMgr, global
 	.skip 0x1
+.endobj seScene__Q27JAInter5SeMgr
 .balign 4
-.global seqMuteFlagFromSe__Q27JAInter5SeMgr
-seqMuteFlagFromSe__Q27JAInter5SeMgr:
+.obj seqMuteFlagFromSe__Q27JAInter5SeMgr, global
 	.skip 0x4
-.global seCategoryVolume__Q27JAInter5SeMgr
-seCategoryVolume__Q27JAInter5SeMgr:
+.endobj seqMuteFlagFromSe__Q27JAInter5SeMgr
+.obj seCategoryVolume__Q27JAInter5SeMgr, global
 	.skip 0x4
-.global seEntryCancel__Q27JAInter5SeMgr
-seEntryCancel__Q27JAInter5SeMgr:
+.endobj seCategoryVolume__Q27JAInter5SeMgr
+.obj seEntryCancel__Q27JAInter5SeMgr, global
 	.skip 0x4
+.endobj seEntryCancel__Q27JAInter5SeMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516F48:
+.obj lbl_80516F48, local
 	.float 1.0
-lbl_80516F4C:
+.endobj lbl_80516F48
+.obj lbl_80516F4C, local
 	.float 0.0
-lbl_80516F50:
+.endobj lbl_80516F4C
+.obj lbl_80516F50, local
 	.float 0.5
-lbl_80516F54:
+.endobj lbl_80516F50
+.obj lbl_80516F54, local
 	.float 1000.0
-lbl_80516F58:
+.endobj lbl_80516F54
+.obj lbl_80516F58, local
 	.float 2.14748365E9
+.endobj lbl_80516F58
 .balign 8
-lbl_80516F60:
+.obj lbl_80516F60, local
 	.double 0.5
+.endobj lbl_80516F60
 .balign 8
-lbl_80516F68:
+.obj lbl_80516F68, local
 	.double 3.0
+.endobj lbl_80516F68
 .balign 8
-lbl_80516F70:
+.obj lbl_80516F70, local
 	.double 0.0
-lbl_80516F78:
+.endobj lbl_80516F70
+.obj lbl_80516F78, local
 	.float 6.0
-lbl_80516F7C:
+.endobj lbl_80516F78
+.obj lbl_80516F7C, local
 	.float 1.0E10
+.endobj lbl_80516F7C
 .balign 8
-lbl_80516F80:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80516F88:
+.obj lbl_80516F80, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516F80
+.obj lbl_80516F88, local
 	.float 255.0
-lbl_80516F8C:
+.endobj lbl_80516F88
+.obj lbl_80516F8C, local
 	.float 127.0
+.endobj lbl_80516F8C
 .balign 8
-lbl_80516F90:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80516F98:
+.obj lbl_80516F90, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516F90
+.obj lbl_80516F98, local
 	.float -1.0
+.endobj lbl_80516F98
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q27JAInter5SeMgrFv
-init__Q27JAInter5SeMgrFv:
+.fn init__Q27JAInter5SeMgrFv, global
 /* 800AE0A0 000AAFE0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800AE0A4 000AAFE4  7C 08 02 A6 */	mflr r0
 /* 800AE0A8 000AAFE8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -331,9 +343,9 @@ init__Q27JAInter5SeMgrFv:
 /* 800AE438 000AB378  7C 08 03 A6 */	mtlr r0
 /* 800AE43C 000AB37C  38 21 00 50 */	addi r1, r1, 0x50
 /* 800AE440 000AB380  4E 80 00 20 */	blr 
+.endfn init__Q27JAInter5SeMgrFv
 
-.global __ct__Q27JAInter11SeParameterFv
-__ct__Q27JAInter11SeParameterFv:
+.fn __ct__Q27JAInter11SeParameterFv, weak
 /* 800AE444 000AB384  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AE448 000AB388  7C 08 02 A6 */	mflr r0
 /* 800AE44C 000AB38C  3C 80 80 0B */	lis r4, __defctor__Q27JAInter11MoveParaSetFv@ha
@@ -394,36 +406,36 @@ __ct__Q27JAInter11SeParameterFv:
 /* 800AE528 000AB468  7C 08 03 A6 */	mtlr r0
 /* 800AE52C 000AB46C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AE530 000AB470  4E 80 00 20 */	blr 
+.endfn __ct__Q27JAInter11SeParameterFv
 
-.global __ct__Q27JAInter19MoveParaSetInitZeroFv
-__ct__Q27JAInter19MoveParaSetInitZeroFv:
+.fn __ct__Q27JAInter19MoveParaSetInitZeroFv, weak
 /* 800AE534 000AB474  C0 02 8B EC */	lfs f0, lbl_80516F4C@sda21(r2)
 /* 800AE538 000AB478  38 00 00 00 */	li r0, 0
 /* 800AE53C 000AB47C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 800AE540 000AB480  D0 03 00 00 */	stfs f0, 0(r3)
 /* 800AE544 000AB484  90 03 00 0C */	stw r0, 0xc(r3)
 /* 800AE548 000AB488  4E 80 00 20 */	blr 
+.endfn __ct__Q27JAInter19MoveParaSetInitZeroFv
 
-.global __ct__Q27JAInter19MoveParaSetInitHalfFv
-__ct__Q27JAInter19MoveParaSetInitHalfFv:
+.fn __ct__Q27JAInter19MoveParaSetInitHalfFv, weak
 /* 800AE54C 000AB48C  C0 02 8B F0 */	lfs f0, lbl_80516F50@sda21(r2)
 /* 800AE550 000AB490  38 00 00 00 */	li r0, 0
 /* 800AE554 000AB494  D0 03 00 04 */	stfs f0, 4(r3)
 /* 800AE558 000AB498  D0 03 00 00 */	stfs f0, 0(r3)
 /* 800AE55C 000AB49C  90 03 00 0C */	stw r0, 0xc(r3)
 /* 800AE560 000AB4A0  4E 80 00 20 */	blr 
+.endfn __ct__Q27JAInter19MoveParaSetInitHalfFv
 
-.global __defctor__Q27JAInter11MoveParaSetFv
-__defctor__Q27JAInter11MoveParaSetFv:
+.fn __defctor__Q27JAInter11MoveParaSetFv, weak
 /* 800AE564 000AB4A4  C0 02 8B E8 */	lfs f0, lbl_80516F48@sda21(r2)
 /* 800AE568 000AB4A8  38 00 00 00 */	li r0, 0
 /* 800AE56C 000AB4AC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 800AE570 000AB4B0  D0 03 00 00 */	stfs f0, 0(r3)
 /* 800AE574 000AB4B4  90 03 00 0C */	stw r0, 0xc(r3)
 /* 800AE578 000AB4B8  4E 80 00 20 */	blr 
+.endfn __defctor__Q27JAInter11MoveParaSetFv
 
-.global startSeSequence__Q27JAInter5SeMgrFv
-startSeSequence__Q27JAInter5SeMgrFv:
+.fn startSeSequence__Q27JAInter5SeMgrFv, global
 /* 800AE57C 000AB4BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AE580 000AB4C0  7C 08 02 A6 */	mflr r0
 /* 800AE584 000AB4C4  3C 60 80 00 */	lis r3, 0x80000800@ha
@@ -444,9 +456,9 @@ startSeSequence__Q27JAInter5SeMgrFv:
 /* 800AE5C0 000AB500  7C 08 03 A6 */	mtlr r0
 /* 800AE5C4 000AB504  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AE5C8 000AB508  4E 80 00 20 */	blr 
+.endfn startSeSequence__Q27JAInter5SeMgrFv
 
-.global processGFrameSe__Q27JAInter5SeMgrFv
-processGFrameSe__Q27JAInter5SeMgrFv:
+.fn processGFrameSe__Q27JAInter5SeMgrFv, global
 /* 800AE5CC 000AB50C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AE5D0 000AB510  7C 08 02 A6 */	mflr r0
 /* 800AE5D4 000AB514  90 01 00 14 */	stw r0, 0x14(r1)
@@ -461,9 +473,9 @@ processGFrameSe__Q27JAInter5SeMgrFv:
 /* 800AE5F4 000AB534  7C 08 03 A6 */	mtlr r0
 /* 800AE5F8 000AB538  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AE5FC 000AB53C  4E 80 00 20 */	blr 
+.endfn processGFrameSe__Q27JAInter5SeMgrFv
 
-.global checkNextFrameSe__Q27JAInter5SeMgrFv
-checkNextFrameSe__Q27JAInter5SeMgrFv:
+.fn checkNextFrameSe__Q27JAInter5SeMgrFv, global
 /* 800AE600 000AB540  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 800AE604 000AB544  7C 08 02 A6 */	mflr r0
 /* 800AE608 000AB548  90 01 01 44 */	stw r0, 0x144(r1)
@@ -1033,9 +1045,9 @@ checkNextFrameSe__Q27JAInter5SeMgrFv:
 /* 800AEDD8 000ABD18  7C 08 03 A6 */	mtlr r0
 /* 800AEDDC 000ABD1C  38 21 01 40 */	addi r1, r1, 0x140
 /* 800AEDE0 000ABD20  4E 80 00 20 */	blr 
+.endfn checkNextFrameSe__Q27JAInter5SeMgrFv
 
-.global checkPlayingSe__Q27JAInter5SeMgrFv
-checkPlayingSe__Q27JAInter5SeMgrFv:
+.fn checkPlayingSe__Q27JAInter5SeMgrFv, global
 /* 800AEDE4 000ABD24  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800AEDE8 000ABD28  7C 08 02 A6 */	mflr r0
 /* 800AEDEC 000ABD2C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1353,9 +1365,9 @@ checkPlayingSe__Q27JAInter5SeMgrFv:
 /* 800AF260 000AC1A0  7C 08 03 A6 */	mtlr r0
 /* 800AF264 000AC1A4  38 21 00 50 */	addi r1, r1, 0x50
 /* 800AF268 000AC1A8  4E 80 00 20 */	blr 
+.endfn checkPlayingSe__Q27JAInter5SeMgrFv
 
-.global setVolume__5JAISeFfUlUc
-setVolume__5JAISeFfUlUc:
+.fn setVolume__5JAISeFfUlUc, weak
 /* 800AF26C 000AC1AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AF270 000AC1B0  7C 08 02 A6 */	mflr r0
 /* 800AF274 000AC1B4  38 C0 00 00 */	li r6, 0
@@ -1368,9 +1380,9 @@ setVolume__5JAISeFfUlUc:
 /* 800AF290 000AC1D0  7C 08 03 A6 */	mtlr r0
 /* 800AF294 000AC1D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AF298 000AC1D8  4E 80 00 20 */	blr 
+.endfn setVolume__5JAISeFfUlUc
 
-.global setSeqMuteFromSeStart__Q27JAInter5SeMgrFP8JAISound
-setSeqMuteFromSeStart__Q27JAInter5SeMgrFP8JAISound:
+.fn setSeqMuteFromSeStart__Q27JAInter5SeMgrFP8JAISound, global
 /* 800AF29C 000AC1DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AF2A0 000AC1E0  7C 08 02 A6 */	mflr r0
 /* 800AF2A4 000AC1E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1434,9 +1446,9 @@ setSeqMuteFromSeStart__Q27JAInter5SeMgrFP8JAISound:
 /* 800AF380 000AC2C0  7C 08 03 A6 */	mtlr r0
 /* 800AF384 000AC2C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AF388 000AC2C8  4E 80 00 20 */	blr 
+.endfn setSeqMuteFromSeStart__Q27JAInter5SeMgrFP8JAISound
 
-.global setVolume__11JAISequenceFfUlUc
-setVolume__11JAISequenceFfUlUc:
+.fn setVolume__11JAISequenceFfUlUc, weak
 /* 800AF38C 000AC2CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AF390 000AC2D0  7C 08 02 A6 */	mflr r0
 /* 800AF394 000AC2D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1448,9 +1460,9 @@ setVolume__11JAISequenceFfUlUc:
 /* 800AF3AC 000AC2EC  7C 08 03 A6 */	mtlr r0
 /* 800AF3B0 000AC2F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AF3B4 000AC2F4  4E 80 00 20 */	blr 
+.endfn setVolume__11JAISequenceFfUlUc
 
-.global checkSeMovePara__Q27JAInter5SeMgrFv
-checkSeMovePara__Q27JAInter5SeMgrFv:
+.fn checkSeMovePara__Q27JAInter5SeMgrFv, global
 /* 800AF3B8 000AC2F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AF3BC 000AC2FC  7C 08 02 A6 */	mflr r0
 /* 800AF3C0 000AC300  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1512,9 +1524,9 @@ checkSeMovePara__Q27JAInter5SeMgrFv:
 /* 800AF480 000AC3C0  7C 08 03 A6 */	mtlr r0
 /* 800AF484 000AC3C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AF488 000AC3C8  4E 80 00 20 */	blr 
+.endfn checkSeMovePara__Q27JAInter5SeMgrFv
 
-.global sendSeAllParameter__Q27JAInter5SeMgrFP5JAISe
-sendSeAllParameter__Q27JAInter5SeMgrFP5JAISe:
+.fn sendSeAllParameter__Q27JAInter5SeMgrFP5JAISe, global
 /* 800AF48C 000AC3CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AF490 000AC3D0  7C 08 02 A6 */	mflr r0
 /* 800AF494 000AC3D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1606,9 +1618,9 @@ sendSeAllParameter__Q27JAInter5SeMgrFP5JAISe:
 /* 800AF5E8 000AC528  7C 08 03 A6 */	mtlr r0
 /* 800AF5EC 000AC52C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AF5F0 000AC530  4E 80 00 20 */	blr 
+.endfn sendSeAllParameter__Q27JAInter5SeMgrFP5JAISe
 
-.global checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf
-checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf:
+.fn checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf, global
 /* 800AF5F4 000AC534  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AF5F8 000AC538  7C 08 02 A6 */	mflr r0
 /* 800AF5FC 000AC53C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1680,9 +1692,9 @@ checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpda
 /* 800AF6F4 000AC634  7C 08 03 A6 */	mtlr r0
 /* 800AF6F8 000AC638  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AF6FC 000AC63C  4E 80 00 20 */	blr 
+.endfn checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf
 
-.global checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff
-checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff:
+.fn checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff, global
 /* 800AF700 000AC640  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AF704 000AC644  7C 08 02 A6 */	mflr r0
 /* 800AF708 000AC648  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1771,14 +1783,14 @@ checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateData
 /* 800AF840 000AC780  7C 08 03 A6 */	mtlr r0
 /* 800AF844 000AC784  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AF848 000AC788  4E 80 00 20 */	blr 
+.endfn checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff
 
-.global changeIDToCategory__Q27JAInter5SeMgrFUl
-changeIDToCategory__Q27JAInter5SeMgrFUl:
+.fn changeIDToCategory__Q27JAInter5SeMgrFUl, global
 /* 800AF84C 000AC78C  54 63 A6 3E */	rlwinm r3, r3, 0x14, 0x18, 0x1f
 /* 800AF850 000AC790  4E 80 00 20 */	blr 
+.endfn changeIDToCategory__Q27JAInter5SeMgrFUl
 
-.global releaseSeRegist__Q27JAInter5SeMgrFP5JAISe
-releaseSeRegist__Q27JAInter5SeMgrFP5JAISe:
+.fn releaseSeRegist__Q27JAInter5SeMgrFP5JAISe, global
 /* 800AF854 000AC794  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AF858 000AC798  7C 08 02 A6 */	mflr r0
 /* 800AF85C 000AC79C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1903,9 +1915,9 @@ releaseSeRegist__Q27JAInter5SeMgrFP5JAISe:
 /* 800AFA18 000AC958  7C 08 03 A6 */	mtlr r0
 /* 800AFA1C 000AC95C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AFA20 000AC960  4E 80 00 20 */	blr 
+.endfn releaseSeRegist__Q27JAInter5SeMgrFP5JAISe
 
-.global storeSeBuffer__Q27JAInter5SeMgrFPP5JAISePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
-storeSeBuffer__Q27JAInter5SeMgrFPP5JAISePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo:
+.fn storeSeBuffer__Q27JAInter5SeMgrFPP5JAISePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo, global
 /* 800AFA24 000AC964  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 800AFA28 000AC968  7C 08 02 A6 */	mflr r0
 /* 800AFA2C 000AC96C  90 01 00 94 */	stw r0, 0x94(r1)
@@ -2386,9 +2398,9 @@ storeSeBuffer__Q27JAInter5SeMgrFPP5JAISePQ27JAInter5ActorUlUlUcPQ27JAInter9Sound
 /* 800B0104 000AD044  7C 08 03 A6 */	mtlr r0
 /* 800B0108 000AD048  38 21 00 90 */	addi r1, r1, 0x90
 /* 800B010C 000AD04C  4E 80 00 20 */	blr 
+.endfn storeSeBuffer__Q27JAInter5SeMgrFPP5JAISePQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
 
-.global stop__5JAISeFUl
-stop__5JAISeFUl:
+.fn stop__5JAISeFUl, weak
 /* 800B0110 000AD050  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B0114 000AD054  7C 08 02 A6 */	mflr r0
 /* 800B0118 000AD058  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2397,9 +2409,9 @@ stop__5JAISeFUl:
 /* 800B0124 000AD064  7C 08 03 A6 */	mtlr r0
 /* 800B0128 000AD068  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B012C 000AD06C  4E 80 00 20 */	blr 
+.endfn stop__5JAISeFUl
 
-.global releaseSeBuffer__Q27JAInter5SeMgrFP5JAISeUl
-releaseSeBuffer__Q27JAInter5SeMgrFP5JAISeUl:
+.fn releaseSeBuffer__Q27JAInter5SeMgrFP5JAISeUl, global
 /* 800B0130 000AD070  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800B0134 000AD074  7C 08 02 A6 */	mflr r0
 /* 800B0138 000AD078  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2541,8 +2553,9 @@ releaseSeBuffer__Q27JAInter5SeMgrFP5JAISeUl:
 /* 800B032C 000AD26C  7C 08 03 A6 */	mtlr r0
 /* 800B0330 000AD270  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B0334 000AD274  4E 80 00 20 */	blr 
+.endfn releaseSeBuffer__Q27JAInter5SeMgrFP5JAISeUl
 
-.global setSeSequenceStartCallback__Q27JAInter5SeMgrFPFv_v
-setSeSequenceStartCallback__Q27JAInter5SeMgrFPFv_v:
+.fn setSeSequenceStartCallback__Q27JAInter5SeMgrFPFv_v, global
 /* 800B0338 000AD278  90 6D 82 08 */	stw r3, seStartCallback__Q27JAInter5SeMgr@sda21(r13)
 /* 800B033C 000AD27C  4E 80 00 20 */	blr 
+.endfn setSeSequenceStartCallback__Q27JAInter5SeMgrFPFv_v
