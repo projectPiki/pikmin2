@@ -333,7 +333,7 @@ LIBS = [
             "JSystem/JAudio/JAS/JASDriverIF",
             "JSystem/JAudio/JAS/JASDSPChannel",
             "JSystem/JAudio/JAS/JASDSPInterface",
-            "JSystem/JAudio/JAS/JASAudioThread",
+            ["JSystem/JAudio/JAS/JASAudioThread", True],
             "JSystem/JAudio/JAS/JASCalc",
             ["JSystem/JAudio/JAS/JASCallback", True],
             "JSystem/JAudio/JAS/JASCmdStack",

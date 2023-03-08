@@ -171,7 +171,7 @@ struct JASDSPChannel {
 	void free();
 	void start();
 	void drop();
-	void initAll();
+	static void initAll();
 	static JASDSPChannel* alloc(unsigned char, Callback, void*);
 	static JASDSPChannel* allocForce(unsigned char, Callback, void*);
 	void setPriority(unsigned char);

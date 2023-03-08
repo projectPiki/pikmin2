@@ -3,17 +3,23 @@
 
 #include "JSystem/JKernel/JKRThread.h"
 
+enum JASAudioMessage {
+	AUDIOMSG_DMA  = 0,
+	AUDIOMSG_DSP  = 1,
+	AUDIOMSG_Stop = 2,
+};
+
 /**
  * @size = 0x88
  */
 struct JASAudioThread : public JKRThread {
 	JASAudioThread(int, int, unsigned long); // unused/inlined
 
-	virtual ~JASAudioThread(); // _08 (weak)
-	virtual void* run();       // _0C
+	virtual ~JASAudioThread() { } // _08 (weak)
+	virtual void* run();          // _0C
 
-	void DMACallback();
-	void DSPCallback(void*);
+	static void DMACallback();
+	static void DSPCallback(void*);
 
 	static void create(long);
 	static void stop();
@@ -24,6 +30,10 @@ struct JASAudioThread : public JKRThread {
 	void getCurrentVCounter();
 
 	static JASAudioThread* sAudioThread;
+	static OSThreadQueue sThreadQueue;
+	static u32 sVFrameCounter;      // type unsure
+	static volatile int snIntCount; // type unsure
+	static bool sbPauseFlag;        // type unsure
 };
 
 #endif

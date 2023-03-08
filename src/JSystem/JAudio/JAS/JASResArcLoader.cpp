@@ -27,17 +27,18 @@ size_t JASResArcLoader::getResSize(JKRArchive* archive, u16 resourceID)
 static void JASResArcLoader::loadResourceCallback(void* args)
 {
 	CallbackArgs* castedArgs = static_cast<CallbackArgs*>(args);
-	u32 readResult           = castedArgs->mArchive->readResource(castedArgs->_08, castedArgs->_0C, castedArgs->_04);
+	u32 readResult           = castedArgs->mArchive->readResource(castedArgs->mBuffer, castedArgs->mBufferSize, castedArgs->mID);
 	if (castedArgs->mCallback) {
-		castedArgs->mCallback(readResult, castedArgs->_14);
+		castedArgs->mCallback(readResult, castedArgs->mCallbackArg);
 	}
+
 	if (readResult == 0) {
 		if (castedArgs->mQueue) {
-			OSSendMessage(castedArgs->mQueue, (void*)-1, OS_MESSAGE_BLOCK);
+			OSSendMessage(castedArgs->mQueue, (void*)RESARCMSG_Error, OS_MESSAGE_BLOCK);
 		}
 	} else {
 		if (castedArgs->mQueue) {
-			OSSendMessage(castedArgs->mQueue, (void*)0, OS_MESSAGE_BLOCK);
+			OSSendMessage(castedArgs->mQueue, (void*)RESARCMSG_Success, OS_MESSAGE_BLOCK);
 		}
 	}
 }
@@ -48,21 +49,22 @@ static void JASResArcLoader::loadResourceCallback(void* args)
  * Size:	0000D0
  * loadResource__15JASResArcLoaderFP10JKRArchiveUsPUcUl
  */
-int JASResArcLoader::loadResource(JKRArchive* archive, u16 p2, u8* p3, u32 p4)
+int JASResArcLoader::loadResource(JKRArchive* archive, u16 id, u8* buffer, u32 size)
 {
 	OSMessageQueue queue;
 	OSMessage queueBuffer;
 	OSMessage receiveBuffer;
 	OSInitMessageQueue(&queue, &queueBuffer, OS_MESSAGE_BLOCK);
-	CallbackArgs args(p2, p3, p4, archive);
+
+	CallbackArgs args(id, buffer, size, archive);
 	args.mQueue = &queue;
 
-	if (JASDvd::getThreadPointer()->sendCmdMsg(loadResourceCallback, &args, sizeof(CallbackArgs)) == false) {
+	if (JASDvd::getThreadPointer()->sendCmdMsg(loadResourceCallback, &args, sizeof(CallbackArgs)) == 0) {
 		return 0;
 	}
 
 	OSReceiveMessage(&queue, &receiveBuffer, OS_MESSAGE_BLOCK);
-	return (receiveBuffer) ? 0 : p4;
+	return ((int)receiveBuffer != RESARCMSG_Success) ? 0 : size;
 }
 
 /*
@@ -70,10 +72,11 @@ int JASResArcLoader::loadResource(JKRArchive* archive, u16 p2, u8* p3, u32 p4)
  * Address:	800A7810
  * Size:	00005C
  */
-int JASResArcLoader::loadResourceAsync(JKRArchive* archive, u16 p2, u8* p3, u32 p4, void (*callback)(u32, u32), u32 p6)
+int JASResArcLoader::loadResourceAsync(JKRArchive* archive, u16 id, u8* buffer, u32 size, LoadCallback callback, u32 cbArg)
 {
-	CallbackArgs args(p2, p3, p4, archive);
-	args.mCallback = callback;
-	args._14       = p6;
+	CallbackArgs args(id, buffer, size, archive);
+	args.mCallback    = callback;
+	args.mCallbackArg = cbArg;
+
 	return JASDvd::getThreadPointer()->sendCmdMsg(&loadResourceCallback, &args, sizeof(CallbackArgs));
 }

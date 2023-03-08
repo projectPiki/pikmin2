@@ -28,7 +28,7 @@ void subframeCallback();
 void DSPSyncCallback();
 void updateDacCallback();
 
-void initAI(void (*)());
+void initAI(void (*func)());
 void startDMA();
 void stopDMA();
 void updateDac();

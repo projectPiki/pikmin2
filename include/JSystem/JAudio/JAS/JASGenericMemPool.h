@@ -58,14 +58,12 @@ struct JASSingletonHolder {
 	 */
 	static T* getInstance()
 	{
-		T* instance = sInstance;
-		if (instance == nullptr) {
-			// int interrupts = OSDisableInterrupts();
+		T* instance;
+		if (sInstance == nullptr) {
 			instance = createInstance();
-			// OSRestoreInterrupts(interrupts);
 			instance = sInstance;
 		}
-		return instance;
+		return sInstance;
 	}
 
 	static T* sInstance;

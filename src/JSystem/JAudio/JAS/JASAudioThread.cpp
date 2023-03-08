@@ -4,63 +4,26 @@
 #include "JSystem/JAudio/JAS/JASDsp.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"
 #include "JSystem/JAudio/JAS/JASKernel.h"
+#include "JSystem/JAudio/JAS/JASDriver.h"
+#include "JSystem/JAudio/JAS/JASGenericMemPool.h"
+#include "JSystem/JAudio/JAS/JASChannel.h"
 #include "JSystem/JKernel/JKRThread.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804795D8
-    lbl_804795D8:
-        .4byte 0x55504441
-        .4byte 0x54452D44
-        .4byte 0x41430000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__14JASAudioThread
-    __vt__14JASAudioThread:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__14JASAudioThreadFv
-        .4byte run__14JASAudioThreadFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sAudioThread__14JASAudioThread
-    sAudioThread__14JASAudioThread:
-        .skip 0x4
-    .global sThreadQueue__14JASAudioThread
-    sThreadQueue__14JASAudioThread:
-        .skip 0x8
-    .global sVFrameCounter__14JASAudioThread
-    sVFrameCounter__14JASAudioThread:
-        .skip 0x4
-    .global snIntCount__14JASAudioThread
-    snIntCount__14JASAudioThread:
-        .skip 0x4
-    .global sbPauseFlag__14JASAudioThread
-    sbPauseFlag__14JASAudioThread:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516E60
-    lbl_80516E60:
-        .4byte 0x5346525F
-        .4byte 0x44535000
-*/
-
 JASAudioThread* JASAudioThread::sAudioThread;
+OSThreadQueue JASAudioThread::sThreadQueue;
+u32 JASAudioThread::sVFrameCounter;
+volatile int JASAudioThread::snIntCount;
+bool JASAudioThread::sbPauseFlag;
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000050
  */
-JASAudioThread::JASAudioThread(int stackSize, int msgCount, unsigned long threadPriority)
+JASAudioThread::JASAudioThread(int stackSize, int msgCount, u32 threadPriority)
     : JKRThread(JASDram, stackSize, msgCount, threadPriority)
 {
-	// UNUSED FUNCTION
 }
 
 /*
@@ -81,19 +44,9 @@ void JASAudioThread::create(long threadPriority)
  */
 void JASAudioThread::stop()
 {
-	if (sAudioThread != nullptr) {
-		OSJamMessage(&sAudioThread->mMsgQueue, (void*)2, OS_MESSAGE_BLOCKING);
+	if (sAudioThread) {
+		OSJamMessage(&sAudioThread->mMsgQueue, (void*)AUDIOMSG_Stop, OS_MESSAGE_BLOCK);
 	}
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void JASAudioThread::pause(bool)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -103,127 +56,47 @@ void JASAudioThread::pause(bool)
  */
 void* JASAudioThread::run()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	li       r3, 4
-	oris     r3, r3, 4
-	mtspr    0x392, r3
-	li       r3, 5
-	oris     r3, r3, 5
-	mtspr    0x393, r3
-	li       r3, 6
-	oris     r3, r3, 6
-	mtspr    0x394, r3
-	li       r3, 7
-	oris     r3, r3, 7
-	mtspr    0x395, r3
-	lis      r4, DMACallback__14JASAudioThreadFv@ha
-	addi     r3, r4, DMACallback__14JASAudioThreadFv@l
-	bl       initAI__9JASDriverFPFv_v
-	lis      r4, DSPCallback__14JASAudioThreadFPv@ha
-	addi     r3, r4, DSPCallback__14JASAudioThreadFPv@l
-	bl       boot__6JASDspFPFPv_v
-	bl       initBuffer__6JASDspFv
-	bl       initAll__13JASDSPChannelFv
-	lwz      r0,
-"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_800A5CE4
-	bl       OSDisableInterrupts
-	lwz      r0,
-"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
-	stw      r3, 8(r1)
-	cmplwi   r0, 0
-	bne      lbl_800A5CDC
-	lwz      r4, JASDram@sda21(r13)
-	li       r3, 0xc
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	or.      r31, r3, r3
-	beq      lbl_800A5CD8
-	bl       __ct__17JASGenericMemPoolFv
+	OSInitFastCast();
+	JASDriver::initAI(DMACallback);
+	JASDsp::boot(DSPCallback);
+	JASDsp::initBuffer();
+	JASDSPChannel::initAll();
 
-lbl_800A5CD8:
-	stw      r31,
-"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
+	JASSingletonHolder<JASMemPool<JASChannel, JASThreadingModel::SingleThreaded>, JASCreationPolicy::NewFromRootHeap>::getInstance()
+	    ->newMemPool(0x118, 0x48);
+	JASDriver::startDMA();
 
-lbl_800A5CDC:
-	lwz      r3, 8(r1)
-	bl       OSRestoreInterrupts
+	while (true) {
+		OSMessage msg;
+		OSReceiveMessage(&mMsgQueue, &msg, 1);
+		switch ((int)msg) {
+		case AUDIOMSG_DMA:
+			if (sbPauseFlag) {
+				JASDriver::stopDMA();
+				OSSleepThread(&sThreadQueue);
+			}
+			sVFrameCounter++;
+			JASDriver::updateDac();
+			JASDriver::updateDacCallback();
+			break;
 
-lbl_800A5CE4:
-	lwz      r3,
-"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
-	li       r4, 0x118
-	li       r5, 0x48
-	bl       newMemPool__17JASGenericMemPoolFUli
-	bl       startDMA__9JASDriverFv
+		case AUDIOMSG_DSP:
+			snIntCount--;
+			if (snIntCount == 0) {
+				JASKernel::probeFinish(7);
+				JASDriver::finishDSPFrame();
+			} else {
+				JASKernel::probeStart(2, "SFR_DSP");
+				JASDriver::updateDSP();
+				JASKernel::probeFinish(2);
+			}
+			break;
 
-lbl_800A5CF8:
-	addi     r3, r30, 0x30
-	addi     r4, r1, 0xc
-	li       r5, 1
-	bl       OSReceiveMessage
-	lwz      r0, 0xc(r1)
-	cmpwi    r0, 1
-	beq      lbl_800A5D60
-	bge      lbl_800A5D24
-	cmpwi    r0, 0
-	bge      lbl_800A5D30
-	b        lbl_800A5CF8
-
-lbl_800A5D24:
-	cmpwi    r0, 3
-	bge      lbl_800A5CF8
-	b        lbl_800A5DA4
-
-lbl_800A5D30:
-	lbz      r0, sbPauseFlag__14JASAudioThread@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800A5D48
-	bl       stopDMA__9JASDriverFv
-	addi     r3, r13, sThreadQueue__14JASAudioThread@sda21
-	bl       OSSleepThread
-
-lbl_800A5D48:
-	lwz      r4, sVFrameCounter__14JASAudioThread@sda21(r13)
-	addi     r0, r4, 1
-	stw      r0, sVFrameCounter__14JASAudioThread@sda21(r13)
-	bl       updateDac__9JASDriverFv
-	bl       updateDacCallback__9JASDriverFv
-	b        lbl_800A5CF8
-
-lbl_800A5D60:
-	lwz      r4, snIntCount__14JASAudioThread@sda21(r13)
-	addi     r0, r4, -1
-	stw      r0, snIntCount__14JASAudioThread@sda21(r13)
-	lwz      r0, snIntCount__14JASAudioThread@sda21(r13)
-	cmpwi    r0, 0
-	bne      lbl_800A5D88
-	li       r3, 7
-	bl       probeFinish__9JASKernelFl
-	bl       finishDSPFrame__9JASDriverFv
-	b        lbl_800A5CF8
-
-lbl_800A5D88:
-	li       r3, 2
-	addi     r4, r2, lbl_80516E60@sda21
-	bl       probeStart__9JASKernelFlPc
-	bl       updateDSP__9JASDriverFv
-	li       r3, 2
-	bl       probeFinish__9JASKernelFl
-	b        lbl_800A5CF8
-
-lbl_800A5DA4:
-	li       r3, 0
-	bl       OSExitThread
-	b        lbl_800A5CF8
-	*/
+		case AUDIOMSG_Stop:
+			OSExitThread(nullptr);
+			break;
+		}
+	}
 }
 
 /*
@@ -235,7 +108,7 @@ void JASAudioThread::DMACallback()
 {
 	JASKernel::probeFinish(4);
 	JASKernel::probeStart(4, "UPDATE-DAC");
-	OSSendMessage(&sAudioThread->mMsgQueue, nullptr, OS_MESSAGE_NON_BLOCKING);
+	OSSendMessage(&sAudioThread->mMsgQueue, (void*)AUDIOMSG_DMA, OS_MESSAGE_NOBLOCK);
 }
 
 /*
@@ -246,72 +119,13 @@ void JASAudioThread::DMACallback()
 void JASAudioThread::DSPCallback(void*)
 {
 	while (DSPCheckMailFromDSP() == 0) { }
-	u32 v1 = DSPReadMailFromDSP();
-	if (v1 >> 0x10 == 0xF355) {
-		if ((v1 & 0xFF00) == 0xFF00) {
-			OSSendMessage(&sAudioThread->mMsgQueue, (void*)1, OS_MESSAGE_NON_BLOCKING);
+
+	u32 mail = DSPReadMailFromDSP();
+	if (mail >> 0x10 == 0xF355) {
+		if ((mail & 0xFF00) == 0xFF00) {
+			OSSendMessage(&sAudioThread->mMsgQueue, (void*)AUDIOMSG_DSP, OS_MESSAGE_NOBLOCK);
 		} else {
-			JASDsp::finishWork(v1);
+			JASDsp::finishWork(mail);
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-
-lbl_800A5E04:
-	bl       DSPCheckMailFromDSP
-	cmplwi   r3, 0
-	beq      lbl_800A5E04
-	bl       DSPReadMailFromDSP
-	srwi     r0, r3, 0x10
-	cmplwi   r0, 0xf355
-	bne      lbl_800A5E4C
-	rlwinm   r0, r3, 0, 0x10, 0x17
-	cmplwi   r0, 0xff00
-	bne      lbl_800A5E44
-	lwz      r3, sAudioThread__14JASAudioThread@sda21(r13)
-	li       r4, 1
-	li       r5, 0
-	addi     r3, r3, 0x30
-	bl       OSSendMessage
-	b        lbl_800A5E4C
-
-lbl_800A5E44:
-	clrlwi   r3, r3, 0x10
-	bl       finishWork__6JASDspFUs
-
-lbl_800A5E4C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
- */
-void JASAudioThread::bootDSP()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void JASAudioThread::getCurrentVCounter()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800A5E5C
- * Size:	000060
- */
-JASAudioThread::~JASAudioThread() { }
