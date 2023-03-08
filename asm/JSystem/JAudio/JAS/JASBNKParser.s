@@ -19,10 +19,10 @@
 	.float 1.0
 .endobj lbl_80516CB8
 .obj lbl_80516CBC, local
-	.4byte 0x00000000
+	.float 0.0
 .endobj lbl_80516CBC
 .obj lbl_80516CC0, local
-	.4byte 0x42FE0000
+	.float 127.0
 .endobj lbl_80516CC0
 .balign 8
 .obj lbl_80516CC8, local
@@ -33,8 +33,7 @@
 .endobj lbl_80516CD0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global createBasicBank__12JASBNKParserFPv
-createBasicBank__12JASBNKParserFPv:
+.fn createBasicBank__12JASBNKParserFPv, global
 /* 8009A7DC 0009771C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8009A7E0 00097720  7C 08 02 A6 */	mflr r0
 /* 8009A7E4 00097724  90 01 00 64 */	stw r0, 0x64(r1)
@@ -505,9 +504,9 @@ createBasicBank__12JASBNKParserFPv:
 /* 8009AEA0 00097DE0  7C 08 03 A6 */	mtlr r0
 /* 8009AEA4 00097DE4  38 21 00 60 */	addi r1, r1, 0x60
 /* 8009AEA8 00097DE8  4E 80 00 20 */	blr 
+.endfn createBasicBank__12JASBNKParserFPv
 
-.global findOscPtr__12JASBNKParserFP12JASBasicBankPQ212JASBNKParser7THeaderPQ212JASBNKParser4TOsc
-findOscPtr__12JASBNKParserFP12JASBasicBankPQ212JASBNKParser7THeaderPQ212JASBNKParser4TOsc:
+.fn findOscPtr__12JASBNKParserFP12JASBasicBankPQ212JASBNKParser7THeaderPQ212JASBNKParser4TOsc, local
 /* 8009AEAC 00097DEC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8009AEB0 00097DF0  7C 08 02 A6 */	mflr r0
 /* 8009AEB4 00097DF4  90 01 00 54 */	stw r0, 0x54(r1)
@@ -585,17 +584,17 @@ findOscPtr__12JASBNKParserFP12JASBasicBankPQ212JASBNKParser7THeaderPQ212JASBNKPa
 /* 8009AFC0 00097F00  7C 08 03 A6 */	mtlr r0
 /* 8009AFC4 00097F04  38 21 00 50 */	addi r1, r1, 0x50
 /* 8009AFC8 00097F08  4E 80 00 20 */	blr 
+.endfn findOscPtr__12JASBNKParserFP12JASBasicBankPQ212JASBNKParser7THeaderPQ212JASBNKParser4TOsc
 
-.global getOscTableEndPtr__12JASBNKParserFPs
-getOscTableEndPtr__12JASBNKParserFPs:
+.fn getOscTableEndPtr__12JASBNKParserFPs, local
 /* 8009AFCC 00097F0C  A8 03 00 00 */	lha r0, 0(r3)
 /* 8009AFD0 00097F10  38 63 00 06 */	addi r3, r3, 6
 /* 8009AFD4 00097F14  2C 00 00 0A */	cmpwi r0, 0xa
 /* 8009AFD8 00097F18  40 81 FF F4 */	ble getOscTableEndPtr__12JASBNKParserFPs
 /* 8009AFDC 00097F1C  4E 80 00 20 */	blr 
+.endfn getOscTableEndPtr__12JASBNKParserFPs
 
-.global "JSUConvertOffsetToPtr<Q212JASBNKParser5TPmap>__FPCvUl"
-"JSUConvertOffsetToPtr<Q212JASBNKParser5TPmap>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q212JASBNKParser5TPmap>__FPCvUl", weak
 /* 8009AFE0 00097F20  28 04 00 00 */	cmplwi r4, 0
 /* 8009AFE4 00097F24  40 82 00 0C */	bne .L_8009AFF0
 /* 8009AFE8 00097F28  38 60 00 00 */	li r3, 0
@@ -603,9 +602,9 @@ getOscTableEndPtr__12JASBNKParserFPs:
 .L_8009AFF0:
 /* 8009AFF0 00097F30  7C 63 22 14 */	add r3, r3, r4
 /* 8009AFF4 00097F34  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q212JASBNKParser5TPmap>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q212JASBNKParser5TPerc>__FPCvUl"
-"JSUConvertOffsetToPtr<Q212JASBNKParser5TPerc>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q212JASBNKParser5TPerc>__FPCvUl", weak
 /* 8009AFF8 00097F38  28 04 00 00 */	cmplwi r4, 0
 /* 8009AFFC 00097F3C  40 82 00 0C */	bne .L_8009B008
 /* 8009B000 00097F40  38 60 00 00 */	li r3, 0
@@ -613,9 +612,9 @@ getOscTableEndPtr__12JASBNKParserFPs:
 .L_8009B008:
 /* 8009B008 00097F48  7C 63 22 14 */	add r3, r3, r4
 /* 8009B00C 00097F4C  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q212JASBNKParser5TPerc>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q212JASBNKParser5TVmap>__FPCvUl"
-"JSUConvertOffsetToPtr<Q212JASBNKParser5TVmap>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q212JASBNKParser5TVmap>__FPCvUl", weak
 /* 8009B010 00097F50  28 04 00 00 */	cmplwi r4, 0
 /* 8009B014 00097F54  40 82 00 0C */	bne .L_8009B020
 /* 8009B018 00097F58  38 60 00 00 */	li r3, 0
@@ -623,9 +622,9 @@ getOscTableEndPtr__12JASBNKParserFPs:
 .L_8009B020:
 /* 8009B020 00097F60  7C 63 22 14 */	add r3, r3, r4
 /* 8009B024 00097F64  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q212JASBNKParser5TVmap>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q212JASBNKParser7TKeymap>__FPCvUl"
-"JSUConvertOffsetToPtr<Q212JASBNKParser7TKeymap>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q212JASBNKParser7TKeymap>__FPCvUl", weak
 /* 8009B028 00097F68  28 04 00 00 */	cmplwi r4, 0
 /* 8009B02C 00097F6C  40 82 00 0C */	bne .L_8009B038
 /* 8009B030 00097F70  38 60 00 00 */	li r3, 0
@@ -633,9 +632,9 @@ getOscTableEndPtr__12JASBNKParserFPs:
 .L_8009B038:
 /* 8009B038 00097F78  7C 63 22 14 */	add r3, r3, r4
 /* 8009B03C 00097F7C  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q212JASBNKParser7TKeymap>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q212JASBNKParser6TSense>__FPCvUl"
-"JSUConvertOffsetToPtr<Q212JASBNKParser6TSense>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q212JASBNKParser6TSense>__FPCvUl", weak
 /* 8009B040 00097F80  28 04 00 00 */	cmplwi r4, 0
 /* 8009B044 00097F84  40 82 00 0C */	bne .L_8009B050
 /* 8009B048 00097F88  38 60 00 00 */	li r3, 0
@@ -643,9 +642,9 @@ getOscTableEndPtr__12JASBNKParserFPs:
 .L_8009B050:
 /* 8009B050 00097F90  7C 63 22 14 */	add r3, r3, r4
 /* 8009B054 00097F94  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q212JASBNKParser6TSense>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q212JASBNKParser5TRand>__FPCvUl"
-"JSUConvertOffsetToPtr<Q212JASBNKParser5TRand>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q212JASBNKParser5TRand>__FPCvUl", weak
 /* 8009B058 00097F98  28 04 00 00 */	cmplwi r4, 0
 /* 8009B05C 00097F9C  40 82 00 0C */	bne .L_8009B068
 /* 8009B060 00097FA0  38 60 00 00 */	li r3, 0
@@ -653,9 +652,9 @@ getOscTableEndPtr__12JASBNKParserFPs:
 .L_8009B068:
 /* 8009B068 00097FA8  7C 63 22 14 */	add r3, r3, r4
 /* 8009B06C 00097FAC  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q212JASBNKParser5TRand>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<s>__FPCvUl"
-"JSUConvertOffsetToPtr<s>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<s>__FPCvUl", weak
 /* 8009B070 00097FB0  28 04 00 00 */	cmplwi r4, 0
 /* 8009B074 00097FB4  40 82 00 0C */	bne .L_8009B080
 /* 8009B078 00097FB8  38 60 00 00 */	li r3, 0
@@ -663,9 +662,9 @@ getOscTableEndPtr__12JASBNKParserFPs:
 .L_8009B080:
 /* 8009B080 00097FC0  7C 63 22 14 */	add r3, r3, r4
 /* 8009B084 00097FC4  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<s>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q212JASBNKParser4TOsc>__FPCvUl"
-"JSUConvertOffsetToPtr<Q212JASBNKParser4TOsc>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q212JASBNKParser4TOsc>__FPCvUl", weak
 /* 8009B088 00097FC8  28 04 00 00 */	cmplwi r4, 0
 /* 8009B08C 00097FCC  40 82 00 0C */	bne .L_8009B098
 /* 8009B090 00097FD0  38 60 00 00 */	li r3, 0
@@ -673,9 +672,9 @@ getOscTableEndPtr__12JASBNKParserFPs:
 .L_8009B098:
 /* 8009B098 00097FD8  7C 63 22 14 */	add r3, r3, r4
 /* 8009B09C 00097FDC  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q212JASBNKParser4TOsc>__FPCvUl"
 
-.global "JSUConvertOffsetToPtr<Q212JASBNKParser5TInst>__FPCvUl"
-"JSUConvertOffsetToPtr<Q212JASBNKParser5TInst>__FPCvUl":
+.fn "JSUConvertOffsetToPtr<Q212JASBNKParser5TInst>__FPCvUl", weak
 /* 8009B0A0 00097FE0  28 04 00 00 */	cmplwi r4, 0
 /* 8009B0A4 00097FE4  40 82 00 0C */	bne .L_8009B0B0
 /* 8009B0A8 00097FE8  38 60 00 00 */	li r3, 0
@@ -683,3 +682,4 @@ getOscTableEndPtr__12JASBNKParserFPs:
 .L_8009B0B0:
 /* 8009B0B0 00097FF0  7C 63 22 14 */	add r3, r3, r4
 /* 8009B0B4 00097FF4  4E 80 00 20 */	blr 
+.endfn "JSUConvertOffsetToPtr<Q212JASBNKParser5TInst>__FPCvUl"

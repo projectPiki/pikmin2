@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global calc_sw_table__10JASChannel
-calc_sw_table__10JASChannel:
+.obj calc_sw_table__10JASChannel, global
 	.4byte 0x00000000
 	.4byte 0x00010000
 	.4byte 0x01000100
@@ -24,6 +23,7 @@ calc_sw_table__10JASChannel:
 	.4byte 0x02020002
 	.4byte 0x02010202
 	.byte 0x02
+.endobj calc_sw_table__10JASChannel
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

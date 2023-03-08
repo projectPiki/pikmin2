@@ -1,16 +1,15 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global s_key_table
-s_key_table:
+.obj s_key_table, local
 	.float 1.0
-	.4byte 0x3F801DD2
-	.4byte 0x3F803BAC
-	.4byte 0x3F80598E
-	.4byte 0x3F807770
-	.4byte 0x3F809564
-	.4byte 0x3F80B357
-	.4byte 0x3F80D152
+	.float 1.00091
+	.float 1.001821
+	.float 1.002733
+	.float 1.003645
+	.float 1.004559
+	.float 1.005473
+	.float 1.006388
 	.4byte 0x3F80EF56
 	.4byte 0x3F810D5A
 	.4byte 0x3F812B6F
@@ -67,6 +66,7 @@ s_key_table:
 	.4byte 0x3F874D9C
 	.4byte 0x3F876D22
 	.4byte 0x3F878CB0
+.endobj s_key_table
 .global sAdsrDef__9JASPlayer
 sAdsrDef__9JASPlayer:
 	.4byte 0x00000000

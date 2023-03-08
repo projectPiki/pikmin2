@@ -5,8 +5,7 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global Arglist
-Arglist:
+.obj Arglist, local
 	.4byte 0x00000000
 	.4byte 0x00020008
 	.4byte 0x00020008
@@ -71,6 +70,7 @@ Arglist:
 	.4byte 0x00010001
 	.4byte 0x00010001
 	.4byte 0x00000000
+.endobj Arglist
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -429,8 +429,7 @@ sCmdPList__12JASSeqParser:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_804A42E4
-lbl_804A42E4:
+.obj lbl_804A42E4, local
 	.4byte .L_8009DBBC
 	.4byte .L_8009DC34
 	.4byte .L_8009DC34
@@ -444,8 +443,8 @@ lbl_804A42E4:
 	.4byte .L_8009DC34
 	.4byte .L_8009DC34
 	.4byte .L_8009DC28
-.global lbl_804A4318
-lbl_804A4318:
+.endobj lbl_804A42E4
+.obj lbl_804A4318, local
 	.4byte .L_8009E420
 	.4byte .L_8009E498
 	.4byte .L_8009E498
@@ -459,7 +458,7 @@ lbl_804A4318:
 	.4byte .L_8009E498
 	.4byte .L_8009E498
 	.4byte .L_8009E48C
-	.4byte 0x00000000
+.endobj lbl_804A4318
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

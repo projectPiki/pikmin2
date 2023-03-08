@@ -1,24 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global OSC_RELEASE_TABLE
-OSC_RELEASE_TABLE:
+.obj OSC_RELEASE_TABLE, local
 	.4byte 0x00000002
 	.4byte 0x0000000F
 	.4byte 0x00000000
-.global OSC_ENV
-OSC_ENV:
+.endobj OSC_RELEASE_TABLE
+.obj OSC_ENV, local
 	.4byte 0x00000000
 	.float 1.0
 	.4byte 0x00000000
 	.4byte OSC_RELEASE_TABLE
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+.endobj OSC_ENV
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804A44A0:
+.obj lbl_804A44A0, local
 	.4byte .L_800A9AF8
 	.4byte .L_800A9AEC
 	.4byte .L_800A9B00
@@ -32,6 +31,7 @@ lbl_804A44A0:
 	.4byte .L_800A9AF8
 	.4byte .L_800A9AF8
 	.4byte .L_800A9AF8
+.endobj lbl_804A44A0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

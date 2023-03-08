@@ -2,15 +2,14 @@
 .if version == 2
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global zz_80514788
-zz_80514788:
-	.double 0.0078125
+.obj zz_80514788, local
+	.float 1.0
+.endobj zz_80514788
 .endif
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A4350
-lbl_804A4350:
+.obj lbl_804A4350, local
 	.4byte .L_800A184C
 	.4byte .L_800A185C
 	.4byte .L_800A186C
@@ -28,8 +27,8 @@ lbl_804A4350:
 	.4byte .L_800A19FC
 	.4byte .L_800A19FC
 	.4byte .L_800A19D4
-.global lbl_804A4394
-lbl_804A4394:
+.endobj lbl_804A4350
+.obj lbl_804A4394, local
 	.4byte .L_800A1C3C
 	.4byte .L_800A1CBC
 	.4byte .L_800A1CBC
@@ -47,10 +46,11 @@ lbl_804A4394:
 	.4byte .L_800A1CBC
 	.4byte .L_800A1CBC
 	.4byte .L_800A1CB8
+.endobj lbl_804A4394
 
 .if version == 1
 .balign 32
-c32:
+.obj c32, local
 	.float 1.0
 	.float 1.0
 	.float 1.0
@@ -59,6 +59,7 @@ c32:
 	.float 1.0
 	.float 1.0
 	.float 1.0
+.endobj c32
 .endif
 
 .section .sbss # 0x80514D80 - 0x80516360
@@ -78,66 +79,46 @@ sFreeListEnd__8JASTrack:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516D78
 lbl_80516D78:
 	.4byte 0x00000000
-.global lbl_80516D7C
 lbl_80516D7C:
 	.float 1.0
-.global lbl_80516D80
+.balign 8
 lbl_80516D80:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global lbl_80516D88
+	.8byte 0x4330000000000000
 lbl_80516D88:
 	.float 0.5
-.global lbl_80516D8C
 lbl_80516D8C:
 	.4byte 0x46FFFE00
-.global lbl_80516D90
 lbl_80516D90:
 	.4byte 0x43000000
-.global lbl_80516D94
 lbl_80516D94:
 	.4byte 0x3FAAAAAB
-.global lbl_80516D98
 lbl_80516D98:
 	.4byte 0x42C80000
-.global lbl_80516D9C
 lbl_80516D9C:
 	.4byte 0x42F00000
-.global lbl_80516DA0
 lbl_80516DA0:
 	.4byte 0x41200000
-	.4byte 0x00000000
-.global lbl_80516DA8
+.balign 8
 lbl_80516DA8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_80516DB0
+	.8byte 0x4330000080000000
 lbl_80516DB0:
 	.4byte 0x3D638E39
-	.4byte 0x00000000
-.global lbl_80516DB8
+.balign 8
 lbl_80516DB8:
 	.4byte 0x40100000
 	.4byte 0x00000000
-.global lbl_80516DC0
 lbl_80516DC0:
 	.4byte 0x40800000
-.global lbl_80516DC4
 lbl_80516DC4:
 	.4byte 0x3FC90FDB
-.global lbl_80516DC8
 lbl_80516DC8:
 	.4byte 0xC3A2F983
-.global lbl_80516DCC
 lbl_80516DCC:
 	.4byte 0x43A2F983
-.global lbl_80516DD0
 lbl_80516DD0:
 	.4byte 0x41400000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8JASTrackFv

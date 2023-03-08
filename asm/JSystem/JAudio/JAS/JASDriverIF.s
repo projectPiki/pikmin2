@@ -5,7 +5,7 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-C5BASE_PITCHTABLE__9JASDriver: # local object
+.obj C5BASE_PITCHTABLE__9JASDriver, local
 	.float 0.03125
 	.float 0.033108
 	.float 0.035077
@@ -134,10 +134,7 @@ C5BASE_PITCHTABLE__9JASDriver: # local object
 	.4byte 0x422ADC0A
 	.4byte 0x423504F5
 	.4byte 0x423FC889
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.endobj C5BASE_PITCHTABLE__9JASDriver
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .lcomm sDspSyncCallback__9JASDriver, 0x80, 4
@@ -146,24 +143,26 @@ C5BASE_PITCHTABLE__9JASDriver: # local object
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global MAX_MIXERLEVEL__9JASDriver
-MAX_MIXERLEVEL__9JASDriver:
+.obj MAX_MIXERLEVEL__9JASDriver, local
 	.2byte 0x2ee0
-.global MAX_AUTOMIXERLEVEL__9JASDriver
-MAX_AUTOMIXERLEVEL__9JASDriver:
+.endobj MAX_MIXERLEVEL__9JASDriver
+.obj MAX_AUTOMIXERLEVEL__9JASDriver, local
 	.2byte 0x2ee0
-.global JAS_SYSTEM_OUTPUT_MODE__9JASDriver
-JAS_SYSTEM_OUTPUT_MODE__9JASDriver:
+.endobj MAX_AUTOMIXERLEVEL__9JASDriver
+.balign 4
+.obj JAS_SYSTEM_OUTPUT_MODE__9JASDriver, local
 	.4byte 1
+.endobj JAS_SYSTEM_OUTPUT_MODE__9JASDriver
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516E50:
+.obj lbl_80516E50, local
 	.float 16383.5
+.endobj lbl_80516E50
 .balign 8
-lbl_80516E58:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.obj lbl_80516E58, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516E58
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global key2pitch_c5__9JASDriverFi

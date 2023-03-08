@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 8
-.global DSPADPCM_FILTER__6JASDsp
-DSPADPCM_FILTER__6JASDsp:
+.balign 32
+.obj DSPADPCM_FILTER__6JASDsp, local
 	.4byte 0x00000000
 	.4byte 0x08000000
 	.4byte 0x00000800
@@ -19,8 +18,9 @@ DSPADPCM_FILTER__6JASDsp:
 	.4byte 0xFC000400
 	.4byte 0xFC000000
 	.4byte 0xF8000000
-.global DSPRES_FILTER__6JASDsp
-DSPRES_FILTER__6JASDsp:
+.endobj DSPADPCM_FILTER__6JASDsp
+.balign 32
+.obj DSPRES_FILTER__6JASDsp, local
 	.4byte 0x0C3966AD
 	.4byte 0x0D46FFDF
 	.4byte 0x0B396696
@@ -341,58 +341,59 @@ DSPRES_FILTER__6JASDsp:
 	.4byte 0x7FA67FC1
 	.4byte 0x7FD87FE9
 	.4byte 0x7FF57FFD
-.global connect_table$774
-connect_table$774:
+.endobj DSPRES_FILTER__6JASDsp
+.balign 4
+.obj connect_table$774, local
 	.4byte 0x00000D00
 	.4byte 0x0D600DC0
 	.4byte 0x0E200E80
 	.4byte 0x0EE00CA0
 	.4byte 0x0F400FA0
 	.4byte 0x0B0009A0
+.endobj connect_table$774
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global SEND_TABLE__6JASDsp
-SEND_TABLE__6JASDsp:
+.obj SEND_TABLE__6JASDsp, local
 	.4byte 0x0D000D60
 	.4byte 0x0DC00E20
 	.4byte 0x0E800EE0
 	.4byte 0x0CA00F40
 	.4byte 0x0FA00B00
 	.4byte 0x09A00000
+.endobj SEND_TABLE__6JASDsp
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global COMP_BLOCKSAMPLES$600
-COMP_BLOCKSAMPLES$600:
+.obj COMP_BLOCKSAMPLES$600, local
 	.4byte 0x10100101
 	.4byte 0x01101001
-.global COMP_BLOCKBYTES$601
-COMP_BLOCKBYTES$601:
+.endobj COMP_BLOCKSAMPLES$600
+.obj COMP_BLOCKBYTES$601, local
 	.4byte 0x09050810
 	.4byte 0x01010101
+.endobj COMP_BLOCKBYTES$601
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global CH_BUF__6JASDsp
-CH_BUF__6JASDsp:
+.obj CH_BUF__6JASDsp, local
 	.skip 0x4
-.global FX_BUF__6JASDsp
-FX_BUF__6JASDsp:
+.endobj CH_BUF__6JASDsp
+.obj FX_BUF__6JASDsp, local
 	.skip 0x4
-.global sDSPVolume__6JASDsp
-sDSPVolume__6JASDsp:
+.endobj FX_BUF__6JASDsp
+.obj sDSPVolume__6JASDsp, local
 	.skip 0x4
-.global first$389
-first$389:
+.endobj sDSPVolume__6JASDsp
+.obj first$389, local
 	.skip 0x1
-.global init$390
-init$390:
+.endobj first$389
+.obj init$390, local
 	.skip 0x1
+.endobj init$390
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global boot__6JASDspFPFPv_v
-boot__6JASDspFPFPv_v:
+.fn boot__6JASDspFPFPv_v, global
 /* 800A5310 000A2250  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A5314 000A2254  7C 08 02 A6 */	mflr r0
 /* 800A5318 000A2258  90 01 00 14 */	stw r0, 0x14(r1)
@@ -414,9 +415,9 @@ boot__6JASDspFPFPv_v:
 /* 800A5350 000A2290  7C 08 03 A6 */	mtlr r0
 /* 800A5354 000A2294  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A5358 000A2298  4E 80 00 20 */	blr 
+.endfn boot__6JASDspFPFPv_v
 
-.global releaseHalt__6JASDspFUl
-releaseHalt__6JASDspFUl:
+.fn releaseHalt__6JASDspFUl, global
 /* 800A535C 000A229C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A5360 000A22A0  7C 08 02 A6 */	mflr r0
 /* 800A5364 000A22A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -425,9 +426,9 @@ releaseHalt__6JASDspFUl:
 /* 800A5370 000A22B0  7C 08 03 A6 */	mtlr r0
 /* 800A5374 000A22B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A5378 000A22B8  4E 80 00 20 */	blr 
+.endfn releaseHalt__6JASDspFUl
 
-.global finishWork__6JASDspFUs
-finishWork__6JASDspFUs:
+.fn finishWork__6JASDspFUs, global
 /* 800A537C 000A22BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A5380 000A22C0  7C 08 02 A6 */	mflr r0
 /* 800A5384 000A22C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -436,9 +437,9 @@ finishWork__6JASDspFUs:
 /* 800A5390 000A22D0  7C 08 03 A6 */	mtlr r0
 /* 800A5394 000A22D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A5398 000A22D8  4E 80 00 20 */	blr 
+.endfn finishWork__6JASDspFUs
 
-.global syncFrame__6JASDspFUlUlUl
-syncFrame__6JASDspFUlUlUl:
+.fn syncFrame__6JASDspFUlUlUl, global
 /* 800A539C 000A22DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A53A0 000A22E0  7C 08 02 A6 */	mflr r0
 /* 800A53A4 000A22E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -447,9 +448,9 @@ syncFrame__6JASDspFUlUlUl:
 /* 800A53B0 000A22F0  7C 08 03 A6 */	mtlr r0
 /* 800A53B4 000A22F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A53B8 000A22F8  4E 80 00 20 */	blr 
+.endfn syncFrame__6JASDspFUlUlUl
 
-.global setDSPMixerLevel__6JASDspFf
-setDSPMixerLevel__6JASDspFf:
+.fn setDSPMixerLevel__6JASDspFf, global
 /* 800A53BC 000A22FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A53C0 000A2300  7C 08 02 A6 */	mflr r0
 /* 800A53C4 000A2304  90 01 00 14 */	stw r0, 0x14(r1)
@@ -459,21 +460,21 @@ setDSPMixerLevel__6JASDspFf:
 /* 800A53D4 000A2314  7C 08 03 A6 */	mtlr r0
 /* 800A53D8 000A2318  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A53DC 000A231C  4E 80 00 20 */	blr 
+.endfn setDSPMixerLevel__6JASDspFf
 
-.global getDSPMixerLevel__6JASDspFv
-getDSPMixerLevel__6JASDspFv:
+.fn getDSPMixerLevel__6JASDspFv, global
 /* 800A53E0 000A2320  C0 2D 8A 90 */	lfs f1, sDSPVolume__6JASDsp@sda21(r13)
 /* 800A53E4 000A2324  4E 80 00 20 */	blr 
+.endfn getDSPMixerLevel__6JASDspFv
 
-.global getDSPHandle__6JASDspFi
-getDSPHandle__6JASDspFi:
+.fn getDSPHandle__6JASDspFi, global
 /* 800A53E8 000A2328  1C 03 01 80 */	mulli r0, r3, 0x180
 /* 800A53EC 000A232C  80 6D 8A 88 */	lwz r3, CH_BUF__6JASDsp@sda21(r13)
 /* 800A53F0 000A2330  7C 63 02 14 */	add r3, r3, r0
 /* 800A53F4 000A2334  4E 80 00 20 */	blr 
+.endfn getDSPHandle__6JASDspFi
 
-.global invalChannelAll__6JASDspFv
-invalChannelAll__6JASDspFv:
+.fn invalChannelAll__6JASDspFv, global
 /* 800A53F8 000A2338  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A53FC 000A233C  7C 08 02 A6 */	mflr r0
 /* 800A5400 000A2340  38 80 60 00 */	li r4, 0x6000
@@ -484,9 +485,9 @@ invalChannelAll__6JASDspFv:
 /* 800A5414 000A2354  7C 08 03 A6 */	mtlr r0
 /* 800A5418 000A2358  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A541C 000A235C  4E 80 00 20 */	blr 
+.endfn invalChannelAll__6JASDspFv
 
-.global initBuffer__6JASDspFv
-initBuffer__6JASDspFv:
+.fn initBuffer__6JASDspFv, global
 /* 800A5420 000A2360  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A5424 000A2364  7C 08 02 A6 */	mflr r0
 /* 800A5428 000A2368  38 60 60 00 */	li r3, 0x6000
@@ -538,9 +539,9 @@ initBuffer__6JASDspFv:
 /* 800A54D8 000A2418  7C 08 03 A6 */	mtlr r0
 /* 800A54DC 000A241C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A54E0 000A2420  4E 80 00 20 */	blr 
+.endfn initBuffer__6JASDspFv
 
-.global setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_
-setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_:
+.fn setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_, global
 /* 800A54E4 000A2424  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A54E8 000A2428  7C 08 02 A6 */	mflr r0
 /* 800A54EC 000A242C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -632,9 +633,9 @@ setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_:
 /* 800A562C 000A256C  7C 08 03 A6 */	mtlr r0
 /* 800A5630 000A2570  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A5634 000A2574  4E 80 00 20 */	blr 
+.endfn setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_
 
-.global init__Q26JASDsp8TChannelFv
-init__Q26JASDsp8TChannelFv:
+.fn init__Q26JASDsp8TChannelFv, global
 /* 800A5638 000A2578  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A563C 000A257C  7C 08 02 A6 */	mflr r0
 /* 800A5640 000A2580  90 01 00 14 */	stw r0, 0x14(r1)
@@ -650,9 +651,9 @@ init__Q26JASDsp8TChannelFv:
 /* 800A5668 000A25A8  7C 08 03 A6 */	mtlr r0
 /* 800A566C 000A25AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A5670 000A25B0  4E 80 00 20 */	blr 
+.endfn init__Q26JASDsp8TChannelFv
 
-.global playStart__Q26JASDsp8TChannelFv
-playStart__Q26JASDsp8TChannelFv:
+.fn playStart__Q26JASDsp8TChannelFv, global
 /* 800A5674 000A25B4  38 80 00 00 */	li r4, 0
 /* 800A5678 000A25B8  38 A0 00 00 */	li r5, 0
 /* 800A567C 000A25BC  90 83 01 0C */	stw r4, 0x10c(r3)
@@ -694,36 +695,36 @@ playStart__Q26JASDsp8TChannelFv:
 /* 800A5708 000A2648  38 00 00 01 */	li r0, 1
 /* 800A570C 000A264C  B0 03 00 00 */	sth r0, 0(r3)
 /* 800A5710 000A2650  4E 80 00 20 */	blr 
+.endfn playStart__Q26JASDsp8TChannelFv
 
-.global playStop__Q26JASDsp8TChannelFv
-playStop__Q26JASDsp8TChannelFv:
+.fn playStop__Q26JASDsp8TChannelFv, global
 /* 800A5714 000A2654  38 00 00 00 */	li r0, 0
 /* 800A5718 000A2658  B0 03 00 00 */	sth r0, 0(r3)
 /* 800A571C 000A265C  4E 80 00 20 */	blr 
+.endfn playStop__Q26JASDsp8TChannelFv
 
-.global replyFinishRequest__Q26JASDsp8TChannelFv
-replyFinishRequest__Q26JASDsp8TChannelFv:
+.fn replyFinishRequest__Q26JASDsp8TChannelFv, global
 /* 800A5720 000A2660  38 00 00 00 */	li r0, 0
 /* 800A5724 000A2664  B0 03 00 02 */	sth r0, 2(r3)
 /* 800A5728 000A2668  B0 03 00 00 */	sth r0, 0(r3)
 /* 800A572C 000A266C  4E 80 00 20 */	blr 
+.endfn replyFinishRequest__Q26JASDsp8TChannelFv
 
-.global forceStop__Q26JASDsp8TChannelFv
-forceStop__Q26JASDsp8TChannelFv:
+.fn forceStop__Q26JASDsp8TChannelFv, global
 /* 800A5730 000A2670  38 00 00 01 */	li r0, 1
 /* 800A5734 000A2674  B0 03 01 0A */	sth r0, 0x10a(r3)
 /* 800A5738 000A2678  4E 80 00 20 */	blr 
+.endfn forceStop__Q26JASDsp8TChannelFv
 
-.global isFinish__Q26JASDsp8TChannelCFv
-isFinish__Q26JASDsp8TChannelCFv:
+.fn isFinish__Q26JASDsp8TChannelCFv, global
 /* 800A573C 000A267C  A0 63 00 02 */	lhz r3, 2(r3)
 /* 800A5740 000A2680  7C 03 00 D0 */	neg r0, r3
 /* 800A5744 000A2684  7C 00 1B 78 */	or r0, r0, r3
 /* 800A5748 000A2688  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 800A574C 000A268C  4E 80 00 20 */	blr 
+.endfn isFinish__Q26JASDsp8TChannelCFv
 
-.global setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl
-setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl:
+.fn setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl, global
 /* 800A5750 000A2690  90 A3 01 18 */	stw r5, 0x118(r3)
 /* 800A5754 000A2694  38 ED 81 18 */	addi r7, r13, COMP_BLOCKSAMPLES$600@sda21
 /* 800A5758 000A2698  89 04 00 00 */	lbz r8, 0(r4)
@@ -815,18 +816,18 @@ setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl:
 /* 800A5894 000A27D4  B0 03 00 CC */	sth r0, 0xcc(r3)
 /* 800A5898 000A27D8  B0 03 00 CE */	sth r0, 0xce(r3)
 /* 800A589C 000A27DC  4E 80 00 20 */	blr 
+.endfn setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl
 
-.global setOscInfo__Q26JASDsp8TChannelFUl
-setOscInfo__Q26JASDsp8TChannelFUl:
+.fn setOscInfo__Q26JASDsp8TChannelFUl, global
 /* 800A58A0 000A27E0  38 A0 00 00 */	li r5, 0
 /* 800A58A4 000A27E4  38 00 00 10 */	li r0, 0x10
 /* 800A58A8 000A27E8  90 A3 01 18 */	stw r5, 0x118(r3)
 /* 800A58AC 000A27EC  B0 03 00 64 */	sth r0, 0x64(r3)
 /* 800A58B0 000A27F0  B0 83 01 00 */	sth r4, 0x100(r3)
 /* 800A58B4 000A27F4  4E 80 00 20 */	blr 
+.endfn setOscInfo__Q26JASDsp8TChannelFUl
 
-.global initAutoMixer__Q26JASDsp8TChannelFv
-initAutoMixer__Q26JASDsp8TChannelFv:
+.fn initAutoMixer__Q26JASDsp8TChannelFv, global
 /* 800A58B8 000A27F8  A0 03 00 58 */	lhz r0, 0x58(r3)
 /* 800A58BC 000A27FC  28 00 00 00 */	cmplwi r0, 0
 /* 800A58C0 000A2800  41 82 00 10 */	beq .L_800A58D0
@@ -839,9 +840,9 @@ initAutoMixer__Q26JASDsp8TChannelFv:
 /* 800A58D8 000A2818  B0 83 00 54 */	sth r4, 0x54(r3)
 /* 800A58DC 000A281C  B0 03 00 58 */	sth r0, 0x58(r3)
 /* 800A58E0 000A2820  4E 80 00 20 */	blr 
+.endfn initAutoMixer__Q26JASDsp8TChannelFv
 
-.global setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc
-setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc:
+.fn setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc, global
 /* 800A58E4 000A2824  54 C9 06 3E */	clrlwi r9, r6, 0x18
 /* 800A58E8 000A2828  54 E8 44 2E */	rlwinm r8, r7, 8, 0x10, 0x17
 /* 800A58EC 000A282C  50 A9 44 2E */	rlwimi r9, r5, 8, 0x10, 0x17
@@ -853,9 +854,9 @@ setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc:
 /* 800A5904 000A2844  B0 83 00 56 */	sth r4, 0x56(r3)
 /* 800A5908 000A2848  B0 03 00 58 */	sth r0, 0x58(r3)
 /* 800A590C 000A284C  4E 80 00 20 */	blr 
+.endfn setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc
 
-.global setPitch__Q26JASDsp8TChannelFUs
-setPitch__Q26JASDsp8TChannelFUs:
+.fn setPitch__Q26JASDsp8TChannelFUs, global
 /* 800A5910 000A2850  54 80 04 3E */	clrlwi r0, r4, 0x10
 /* 800A5914 000A2854  28 00 7F FF */	cmplwi r0, 0x7fff
 /* 800A5918 000A2858  41 80 00 08 */	blt .L_800A5920
@@ -863,15 +864,15 @@ setPitch__Q26JASDsp8TChannelFUs:
 .L_800A5920:
 /* 800A5920 000A2860  B0 83 00 04 */	sth r4, 4(r3)
 /* 800A5924 000A2864  4E 80 00 20 */	blr 
+.endfn setPitch__Q26JASDsp8TChannelFUs
 
-.global setMixerInitDelayMax__Q26JASDsp8TChannelFUc
-setMixerInitDelayMax__Q26JASDsp8TChannelFUc:
+.fn setMixerInitDelayMax__Q26JASDsp8TChannelFUc, global
 /* 800A5928 000A2868  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800A592C 000A286C  B0 03 00 0E */	sth r0, 0xe(r3)
 /* 800A5930 000A2870  4E 80 00 20 */	blr 
+.endfn setMixerInitDelayMax__Q26JASDsp8TChannelFUc
 
-.global setMixerInitVolume__Q26JASDsp8TChannelFUcs
-setMixerInitVolume__Q26JASDsp8TChannelFUcs:
+.fn setMixerInitVolume__Q26JASDsp8TChannelFUcs, global
 /* 800A5934 000A2874  54 84 1D 78 */	rlwinm r4, r4, 3, 0x15, 0x1c
 /* 800A5938 000A2878  38 00 00 00 */	li r0, 0
 /* 800A593C 000A287C  38 84 00 10 */	addi r4, r4, 0x10
@@ -880,18 +881,18 @@ setMixerInitVolume__Q26JASDsp8TChannelFUcs:
 /* 800A5948 000A2888  B0 A4 00 02 */	sth r5, 2(r4)
 /* 800A594C 000A288C  B0 04 00 06 */	sth r0, 6(r4)
 /* 800A5950 000A2890  4E 80 00 20 */	blr 
+.endfn setMixerInitVolume__Q26JASDsp8TChannelFUcs
 
-.global setMixerInitDelaySamples__Q26JASDsp8TChannelFUcUc
-setMixerInitDelaySamples__Q26JASDsp8TChannelFUcUc:
+.fn setMixerInitDelaySamples__Q26JASDsp8TChannelFUcUc, global
 /* 800A5954 000A2894  54 84 1D 78 */	rlwinm r4, r4, 3, 0x15, 0x1c
 /* 800A5958 000A2898  54 A6 44 2E */	rlwinm r6, r5, 8, 0x10, 0x17
 /* 800A595C 000A289C  50 A6 06 3E */	rlwimi r6, r5, 0, 0x18, 0x1f
 /* 800A5960 000A28A0  38 04 00 16 */	addi r0, r4, 0x16
 /* 800A5964 000A28A4  7C C3 03 2E */	sthx r6, r3, r0
 /* 800A5968 000A28A8  4E 80 00 20 */	blr 
+.endfn setMixerInitDelaySamples__Q26JASDsp8TChannelFUcUc
 
-.global setMixerDelaySamples__Q26JASDsp8TChannelFUcUc
-setMixerDelaySamples__Q26JASDsp8TChannelFUcUc:
+.fn setMixerDelaySamples__Q26JASDsp8TChannelFUcUc, global
 /* 800A596C 000A28AC  54 84 1D 78 */	rlwinm r4, r4, 3, 0x15, 0x1c
 /* 800A5970 000A28B0  38 84 00 10 */	addi r4, r4, 0x10
 /* 800A5974 000A28B4  7C 83 22 14 */	add r4, r3, r4
@@ -900,9 +901,9 @@ setMixerDelaySamples__Q26JASDsp8TChannelFUcUc:
 /* 800A5980 000A28C0  50 A0 44 2E */	rlwimi r0, r5, 8, 0x10, 0x17
 /* 800A5984 000A28C4  B0 04 00 06 */	sth r0, 6(r4)
 /* 800A5988 000A28C8  4E 80 00 20 */	blr 
+.endfn setMixerDelaySamples__Q26JASDsp8TChannelFUcUc
 
-.global setMixerVolume__Q26JASDsp8TChannelFUcs
-setMixerVolume__Q26JASDsp8TChannelFUcs:
+.fn setMixerVolume__Q26JASDsp8TChannelFUcs, global
 /* 800A598C 000A28CC  A0 03 01 0A */	lhz r0, 0x10a(r3)
 /* 800A5990 000A28D0  28 00 00 00 */	cmplwi r0, 0
 /* 800A5994 000A28D4  4C 82 00 20 */	bnelr 
@@ -914,15 +915,15 @@ setMixerVolume__Q26JASDsp8TChannelFUcs:
 /* 800A59AC 000A28EC  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 800A59B0 000A28F0  B0 04 00 06 */	sth r0, 6(r4)
 /* 800A59B4 000A28F4  4E 80 00 20 */	blr 
+.endfn setMixerVolume__Q26JASDsp8TChannelFUcs
 
-.global setPauseFlag__Q26JASDsp8TChannelFUc
-setPauseFlag__Q26JASDsp8TChannelFUc:
+.fn setPauseFlag__Q26JASDsp8TChannelFUc, global
 /* 800A59B8 000A28F8  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800A59BC 000A28FC  B0 03 00 0C */	sth r0, 0xc(r3)
 /* 800A59C0 000A2900  4E 80 00 20 */	blr 
+.endfn setPauseFlag__Q26JASDsp8TChannelFUc
 
-.global flush__Q26JASDsp8TChannelFv
-flush__Q26JASDsp8TChannelFv:
+.fn flush__Q26JASDsp8TChannelFv, global
 /* 800A59C4 000A2904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A59C8 000A2908  7C 08 02 A6 */	mflr r0
 /* 800A59CC 000A290C  38 80 01 80 */	li r4, 0x180
@@ -932,9 +933,9 @@ flush__Q26JASDsp8TChannelFv:
 /* 800A59DC 000A291C  7C 08 03 A6 */	mtlr r0
 /* 800A59E0 000A2920  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A59E4 000A2924  4E 80 00 20 */	blr 
+.endfn flush__Q26JASDsp8TChannelFv
 
-.global initFilter__Q26JASDsp8TChannelFv
-initFilter__Q26JASDsp8TChannelFv:
+.fn initFilter__Q26JASDsp8TChannelFv, global
 /* 800A59E8 000A2928  38 80 00 00 */	li r4, 0
 /* 800A59EC 000A292C  38 00 7F FF */	li r0, 0x7fff
 /* 800A59F0 000A2930  B0 83 01 20 */	sth r4, 0x120(r3)
@@ -953,9 +954,9 @@ initFilter__Q26JASDsp8TChannelFv:
 /* 800A5A24 000A2964  B0 03 01 48 */	sth r0, 0x148(r3)
 /* 800A5A28 000A2968  B0 83 01 50 */	sth r4, 0x150(r3)
 /* 800A5A2C 000A296C  4E 80 00 20 */	blr 
+.endfn initFilter__Q26JASDsp8TChannelFv
 
-.global setFilterMode__Q26JASDsp8TChannelFUs
-setFilterMode__Q26JASDsp8TChannelFUs:
+.fn setFilterMode__Q26JASDsp8TChannelFUs, global
 /* 800A5A30 000A2970  54 85 06 B5 */	rlwinm. r5, r4, 0, 0x1a, 0x1a
 /* 800A5A34 000A2974  54 80 06 FE */	clrlwi r0, r4, 0x1b
 /* 800A5A38 000A2978  41 82 00 14 */	beq .L_800A5A4C
@@ -972,9 +973,9 @@ setFilterMode__Q26JASDsp8TChannelFUs:
 /* 800A5A5C 000A299C  7C 05 02 14 */	add r0, r5, r0
 /* 800A5A60 000A29A0  B0 03 01 08 */	sth r0, 0x108(r3)
 /* 800A5A64 000A29A4  4E 80 00 20 */	blr 
+.endfn setFilterMode__Q26JASDsp8TChannelFUs
 
-.global setIIRFilterParam__Q26JASDsp8TChannelFPs
-setIIRFilterParam__Q26JASDsp8TChannelFPs:
+.fn setIIRFilterParam__Q26JASDsp8TChannelFPs, global
 /* 800A5A68 000A29A8  A8 04 00 00 */	lha r0, 0(r4)
 /* 800A5A6C 000A29AC  B0 03 01 48 */	sth r0, 0x148(r3)
 /* 800A5A70 000A29B0  A8 04 00 02 */	lha r0, 2(r4)
@@ -984,9 +985,9 @@ setIIRFilterParam__Q26JASDsp8TChannelFPs:
 /* 800A5A80 000A29C0  A8 04 00 06 */	lha r0, 6(r4)
 /* 800A5A84 000A29C4  B0 03 01 4E */	sth r0, 0x14e(r3)
 /* 800A5A88 000A29C8  4E 80 00 20 */	blr 
+.endfn setIIRFilterParam__Q26JASDsp8TChannelFPs
 
-.global setFIR8FilterParam__Q26JASDsp8TChannelFPs
-setFIR8FilterParam__Q26JASDsp8TChannelFPs:
+.fn setFIR8FilterParam__Q26JASDsp8TChannelFPs, global
 /* 800A5A8C 000A29CC  A8 04 00 00 */	lha r0, 0(r4)
 /* 800A5A90 000A29D0  B0 03 01 20 */	sth r0, 0x120(r3)
 /* 800A5A94 000A29D4  A8 04 00 02 */	lha r0, 2(r4)
@@ -1004,14 +1005,14 @@ setFIR8FilterParam__Q26JASDsp8TChannelFPs:
 /* 800A5AC4 000A2A04  A8 04 00 0E */	lha r0, 0xe(r4)
 /* 800A5AC8 000A2A08  B0 03 01 2E */	sth r0, 0x12e(r3)
 /* 800A5ACC 000A2A0C  4E 80 00 20 */	blr 
+.endfn setFIR8FilterParam__Q26JASDsp8TChannelFPs
 
-.global setDistFilter__Q26JASDsp8TChannelFs
-setDistFilter__Q26JASDsp8TChannelFs:
+.fn setDistFilter__Q26JASDsp8TChannelFs, global
 /* 800A5AD0 000A2A10  B0 83 01 50 */	sth r4, 0x150(r3)
 /* 800A5AD4 000A2A14  4E 80 00 20 */	blr 
+.endfn setDistFilter__Q26JASDsp8TChannelFs
 
-.global setBusConnect__Q26JASDsp8TChannelFUcUc
-setBusConnect__Q26JASDsp8TChannelFUcUc:
+.fn setBusConnect__Q26JASDsp8TChannelFUcUc, global
 /* 800A5AD8 000A2A18  3C C0 80 48 */	lis r6, connect_table$774@ha
 /* 800A5ADC 000A2A1C  54 84 1D 78 */	rlwinm r4, r4, 3, 0x15, 0x1c
 /* 800A5AE0 000A2A20  54 A7 0D FC */	rlwinm r7, r5, 1, 0x17, 0x1e
@@ -1020,9 +1021,9 @@ setBusConnect__Q26JASDsp8TChannelFUcUc:
 /* 800A5AEC 000A2A2C  7C 85 3A 2E */	lhzx r4, r5, r7
 /* 800A5AF0 000A2A30  7C 83 03 2E */	sthx r4, r3, r0
 /* 800A5AF4 000A2A34  4E 80 00 20 */	blr 
+.endfn setBusConnect__Q26JASDsp8TChannelFUcUc
 
-.global DSP_CreateMap2__FUl
-DSP_CreateMap2__FUl:
+.fn DSP_CreateMap2__FUl, global
 /* 800A5AF8 000A2A38  54 60 20 36 */	slwi r0, r3, 4
 /* 800A5AFC 000A2A3C  80 AD 8A 88 */	lwz r5, CH_BUF__6JASDsp@sda21(r13)
 /* 800A5B00 000A2A40  1C 80 01 80 */	mulli r4, r0, 0x180
@@ -1064,3 +1065,4 @@ DSP_CreateMap2__FUl:
 /* 800A5B7C 000A2ABC  38 C6 00 03 */	addi r6, r6, 3
 /* 800A5B80 000A2AC0  42 00 FF 98 */	bdnz .L_800A5B18
 /* 800A5B84 000A2AC4  4E 80 00 20 */	blr 
+.endfn DSP_CreateMap2__FUl
