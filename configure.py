@@ -199,7 +199,7 @@ LIBS = [
             "JSystem/J2D/J2DPicture",
             "JSystem/J2D/J2DPrint",
             "JSystem/J2D/J2DScreen",
-            "JSystem/J2D/J2DTextBox",
+            ["JSystem/J2D/J2DTextBox", True],
             "JSystem/J2D/J2DWindow",
             "JSystem/J2D/J2DWindowEx",
             "JSystem/J2D/J2DAnmLoader",
