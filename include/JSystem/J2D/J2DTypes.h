@@ -101,6 +101,8 @@ extern J2DColorChanInfo j2dDefaultColorChanInfo;
 struct J2DColorChan {
 	J2DColorChan() { mData = j2dDefaultColorChanInfo._01; }
 
+	u16 getMatSrc() const { return mData & 1; }
+
 	u16 mData; // _00, should this be J2DColorChanInfo?
 };
 

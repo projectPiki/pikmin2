@@ -31,7 +31,7 @@ struct J2DMaterial {
 	J2DMaterial();
 	J2DMaterial(u32);
 
-	virtual ~J2DMaterial(); // _00
+	virtual ~J2DMaterial(); // _08
 
 	void animation();
 	void makeAnmPointer();

@@ -845,7 +845,7 @@ struct J2DTextBoxEx : public J2DTextBox {
 
 	void setTevStage(bool);
 	void setStage(J2DTevStage*, stage_enum);
-	void getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
+	bool getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
 	void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
 
 	// _000      = VTBL
@@ -853,7 +853,7 @@ struct J2DTextBoxEx : public J2DTextBox {
 	J2DMaterial* mMaterial;               // _138
 	u16 _13C;                             // _13C
 	u16 _13E;                             // _13E
-	u8 _140[4];                           // _140
+	u8 _140;                              // _140
 	J2DAnmVisibilityFull* mAnmVisibility; // _144
 };
 
