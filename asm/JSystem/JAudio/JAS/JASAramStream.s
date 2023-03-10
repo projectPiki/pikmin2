@@ -7,7 +7,7 @@
 	.4byte 0x00000000
 .endobj OSC_RELEASE_TABLE
 .obj OSC_ENV, local
-	.4byte 0x00000000
+	.4byte 0
 	.float 1.0
 	.4byte 0x00000000
 	.4byte OSC_RELEASE_TABLE
@@ -35,50 +35,49 @@
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sLoadThread__13JASAramStream
-sLoadThread__13JASAramStream:
+.obj sLoadThread__13JASAramStream, global
 	.skip 0x4
-.global sReadBuffer__13JASAramStream
-sReadBuffer__13JASAramStream:
+.endobj sLoadThread__13JASAramStream
+.obj sReadBuffer__13JASAramStream, global
 	.skip 0x4
-.global sBlockSize__13JASAramStream
-sBlockSize__13JASAramStream:
+.endobj sReadBuffer__13JASAramStream
+.obj sBlockSize__13JASAramStream, global
 	.skip 0x4
-.global sChannelMax__13JASAramStream
-sChannelMax__13JASAramStream:
+.endobj sBlockSize__13JASAramStream
+.obj sChannelMax__13JASAramStream, global
 	.skip 0x4
-.global sSystemPauseFlag__13JASAramStream
-sSystemPauseFlag__13JASAramStream:
+.endobj sChannelMax__13JASAramStream
+.obj sSystemPauseFlag__13JASAramStream, global
 	.skip 0x1
-.global sFatalErrorFlag__13JASAramStream
-sFatalErrorFlag__13JASAramStream:
+.endobj sSystemPauseFlag__13JASAramStream
+.obj sFatalErrorFlag__13JASAramStream, global
 	.skip 0x1
+.endobj sFatalErrorFlag__13JASAramStream
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516EB0
-lbl_80516EB0:
-	.4byte 0x00000000
-.global lbl_80516EB4
-lbl_80516EB4:
+.obj lbl_80516EB0, local
+	.float 0.0
+.endobj lbl_80516EB0
+.obj lbl_80516EB4, local
 	.float 1.0
-.global lbl_80516EB8
-lbl_80516EB8:
+.endobj lbl_80516EB4
+.obj lbl_80516EB8, local
 	.float 0.5
-.global lbl_80516EBC
-lbl_80516EBC:
-	.4byte 0x42FE0000
-.global lbl_80516EC0
-lbl_80516EC0:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global one$870
-one$870:
+.endobj lbl_80516EB8
+.obj lbl_80516EBC, local
+	.float 127.0
+.endobj lbl_80516EBC
+.balign 8
+.obj lbl_80516EC0, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516EC0
+.obj one$870, local
 	.4byte 0x00000001
+.endobj one$870
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global initSystem__13JASAramStreamFUlUl
-initSystem__13JASAramStreamFUlUl:
+.fn initSystem__13JASAramStreamFUlUl, global
 /* 800A8FA4 000A5EE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A8FA8 000A5EE8  7C 08 02 A6 */	mflr r0
 /* 800A8FAC 000A5EEC  3C A0 80 0B */	lis r5, dvdErrorCheck__13JASAramStreamFPv@ha
@@ -117,9 +116,9 @@ initSystem__13JASAramStreamFUlUl:
 /* 800A9028 000A5F68  7C 08 03 A6 */	mtlr r0
 /* 800A902C 000A5F6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A9030 000A5F70  4E 80 00 20 */	blr 
+.endfn initSystem__13JASAramStreamFUlUl
 
-.global __ct__13JASAramStreamFv
-__ct__13JASAramStreamFv:
+.fn __ct__13JASAramStreamFv, global
 /* 800A9034 000A5F74  38 00 00 00 */	li r0, 0
 /* 800A9038 000A5F78  C0 62 8B 50 */	lfs f3, lbl_80516EB0@sda21(r2)
 /* 800A903C 000A5F7C  90 03 01 98 */	stw r0, 0x198(r3)
@@ -206,9 +205,9 @@ __ct__13JASAramStreamFv:
 /* 800A9180 000A60C0  B0 03 02 D4 */	sth r0, 0x2d4(r3)
 /* 800A9184 000A60C4  B0 03 02 D6 */	sth r0, 0x2d6(r3)
 /* 800A9188 000A60C8  4E 80 00 20 */	blr 
+.endfn __ct__13JASAramStreamFv
 
-.global init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv
-init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv:
+.fn init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv, global
 /* 800A918C 000A60CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A9190 000A60D0  7C 08 02 A6 */	mflr r0
 /* 800A9194 000A60D4  C0 02 8B 50 */	lfs f0, lbl_80516EB0@sda21(r2)
@@ -271,9 +270,9 @@ init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv:
 /* 800A9278 000A61B8  7C 08 03 A6 */	mtlr r0
 /* 800A927C 000A61BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A9280 000A61C0  4E 80 00 20 */	blr 
+.endfn init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv
 
-.global prepare__13JASAramStreamFli
-prepare__13JASAramStreamFli:
+.fn prepare__13JASAramStreamFli, global
 /* 800A9284 000A61C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A9288 000A61C8  7C 08 02 A6 */	mflr r0
 /* 800A928C 000A61CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -324,9 +323,9 @@ prepare__13JASAramStreamFli:
 /* 800A9330 000A6270  7C 08 03 A6 */	mtlr r0
 /* 800A9334 000A6274  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A9338 000A6278  4E 80 00 20 */	blr 
+.endfn prepare__13JASAramStreamFli
 
-.global start__13JASAramStreamFv
-start__13JASAramStreamFv:
+.fn start__13JASAramStreamFv, global
 /* 800A933C 000A627C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A9340 000A6280  7C 08 02 A6 */	mflr r0
 /* 800A9344 000A6284  38 80 00 00 */	li r4, 0
@@ -340,9 +339,9 @@ start__13JASAramStreamFv:
 /* 800A9364 000A62A4  7C 08 03 A6 */	mtlr r0
 /* 800A9368 000A62A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A936C 000A62AC  4E 80 00 20 */	blr 
+.endfn start__13JASAramStreamFv
 
-.global stop__13JASAramStreamFUs
-stop__13JASAramStreamFUs:
+.fn stop__13JASAramStreamFUs, global
 /* 800A9370 000A62B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A9374 000A62B4  7C 08 02 A6 */	mflr r0
 /* 800A9378 000A62B8  38 A0 00 00 */	li r5, 0
@@ -357,9 +356,9 @@ stop__13JASAramStreamFUs:
 /* 800A939C 000A62DC  7C 08 03 A6 */	mtlr r0
 /* 800A93A0 000A62E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A93A4 000A62E4  4E 80 00 20 */	blr 
+.endfn stop__13JASAramStreamFUs
 
-.global pause__13JASAramStreamFb
-pause__13JASAramStreamFb:
+.fn pause__13JASAramStreamFb, global
 /* 800A93A8 000A62E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A93AC 000A62EC  7C 08 02 A6 */	mflr r0
 /* 800A93B0 000A62F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -381,9 +380,9 @@ pause__13JASAramStreamFb:
 /* 800A93E4 000A6324  7C 08 03 A6 */	mtlr r0
 /* 800A93E8 000A6328  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A93EC 000A632C  4E 80 00 20 */	blr 
+.endfn pause__13JASAramStreamFb
 
-.global cancel__13JASAramStreamFv
-cancel__13JASAramStreamFv:
+.fn cancel__13JASAramStreamFv, global
 /* 800A93F0 000A6330  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A93F4 000A6334  7C 08 02 A6 */	mflr r0
 /* 800A93F8 000A6338  3C 80 80 0B */	lis r4, finishTask__13JASAramStreamFPv@ha
@@ -401,9 +400,9 @@ cancel__13JASAramStreamFv:
 /* 800A9428 000A6368  7C 08 03 A6 */	mtlr r0
 /* 800A942C 000A636C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A9430 000A6370  4E 80 00 20 */	blr 
+.endfn cancel__13JASAramStreamFv
 
-.global headerLoadTask__13JASAramStreamFPv
-headerLoadTask__13JASAramStreamFPv:
+.fn headerLoadTask__13JASAramStreamFPv, global
 /* 800A9434 000A6374  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A9438 000A6378  7C 08 02 A6 */	mflr r0
 /* 800A943C 000A637C  7C 65 1B 78 */	mr r5, r3
@@ -416,9 +415,9 @@ headerLoadTask__13JASAramStreamFPv:
 /* 800A9458 000A6398  7C 08 03 A6 */	mtlr r0
 /* 800A945C 000A639C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A9460 000A63A0  4E 80 00 20 */	blr 
+.endfn headerLoadTask__13JASAramStreamFPv
 
-.global firstLoadTask__13JASAramStreamFPv
-firstLoadTask__13JASAramStreamFPv:
+.fn firstLoadTask__13JASAramStreamFPv, global
 /* 800A9464 000A63A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A9468 000A63A8  7C 08 02 A6 */	mflr r0
 /* 800A946C 000A63AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -477,9 +476,9 @@ firstLoadTask__13JASAramStreamFPv:
 /* 800A9534 000A6474  7C 08 03 A6 */	mtlr r0
 /* 800A9538 000A6478  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A953C 000A647C  4E 80 00 20 */	blr 
+.endfn firstLoadTask__13JASAramStreamFPv
 
-.global loadToAramTask__13JASAramStreamFPv
-loadToAramTask__13JASAramStreamFPv:
+.fn loadToAramTask__13JASAramStreamFPv, global
 /* 800A9540 000A6480  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A9544 000A6484  7C 08 02 A6 */	mflr r0
 /* 800A9548 000A6488  90 01 00 14 */	stw r0, 0x14(r1)
@@ -488,9 +487,9 @@ loadToAramTask__13JASAramStreamFPv:
 /* 800A9554 000A6494  7C 08 03 A6 */	mtlr r0
 /* 800A9558 000A6498  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A955C 000A649C  4E 80 00 20 */	blr 
+.endfn loadToAramTask__13JASAramStreamFPv
 
-.global finishTask__13JASAramStreamFPv
-finishTask__13JASAramStreamFPv:
+.fn finishTask__13JASAramStreamFPv, global
 /* 800A9560 000A64A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A9564 000A64A4  7C 08 02 A6 */	mflr r0
 /* 800A9568 000A64A8  3C 80 80 0B */	lis r4, channelProcCallback__13JASAramStreamFPv@ha
@@ -516,9 +515,9 @@ finishTask__13JASAramStreamFPv:
 /* 800A95B4 000A64F4  7C 08 03 A6 */	mtlr r0
 /* 800A95B8 000A64F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A95BC 000A64FC  4E 80 00 20 */	blr 
+.endfn finishTask__13JASAramStreamFPv
 
-.global prepareFinishTask__13JASAramStreamFPv
-prepareFinishTask__13JASAramStreamFPv:
+.fn prepareFinishTask__13JASAramStreamFPv, global
 /* 800A95C0 000A6500  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A95C4 000A6504  7C 08 02 A6 */	mflr r0
 /* 800A95C8 000A6508  38 80 00 04 */	li r4, 4
@@ -542,9 +541,9 @@ prepareFinishTask__13JASAramStreamFPv:
 /* 800A960C 000A654C  7C 08 03 A6 */	mtlr r0
 /* 800A9610 000A6550  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A9614 000A6554  4E 80 00 20 */	blr 
+.endfn prepareFinishTask__13JASAramStreamFPv
 
-.global headerLoad__13JASAramStreamFUli
-headerLoad__13JASAramStreamFUli:
+.fn headerLoad__13JASAramStreamFUli, global
 /* 800A9618 000A6558  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A961C 000A655C  7C 08 02 A6 */	mflr r0
 /* 800A9620 000A6560  90 01 00 34 */	stw r0, 0x34(r1)
@@ -668,9 +667,9 @@ headerLoad__13JASAramStreamFUli:
 /* 800A97D8 000A6718  7C 08 03 A6 */	mtlr r0
 /* 800A97DC 000A671C  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A97E0 000A6720  4E 80 00 20 */	blr 
+.endfn headerLoad__13JASAramStreamFUli
 
-.global load__13JASAramStreamFv
-load__13JASAramStreamFv:
+.fn load__13JASAramStreamFv, global
 /* 800A97E4 000A6724  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A97E8 000A6728  7C 08 02 A6 */	mflr r0
 /* 800A97EC 000A672C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -867,9 +866,9 @@ load__13JASAramStreamFv:
 /* 800A9A8C 000A69CC  7C 08 03 A6 */	mtlr r0
 /* 800A9A90 000A69D0  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A9A94 000A69D4  4E 80 00 20 */	blr 
+.endfn load__13JASAramStreamFv
 
-.global channelProcCallback__13JASAramStreamFPv
-channelProcCallback__13JASAramStreamFPv:
+.fn channelProcCallback__13JASAramStreamFPv, global
 /* 800A9A98 000A69D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A9A9C 000A69DC  7C 08 02 A6 */	mflr r0
 /* 800A9AA0 000A69E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -878,9 +877,9 @@ channelProcCallback__13JASAramStreamFPv:
 /* 800A9AAC 000A69EC  7C 08 03 A6 */	mtlr r0
 /* 800A9AB0 000A69F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A9AB4 000A69F4  4E 80 00 20 */	blr 
+.endfn channelProcCallback__13JASAramStreamFPv
 
-.global dvdErrorCheck__13JASAramStreamFPv
-dvdErrorCheck__13JASAramStreamFPv:
+.fn dvdErrorCheck__13JASAramStreamFPv, global
 /* 800A9AB8 000A69F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A9ABC 000A69FC  7C 08 02 A6 */	mflr r0
 /* 800A9AC0 000A6A00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -907,9 +906,9 @@ dvdErrorCheck__13JASAramStreamFPv:
 /* 800A9B08 000A6A48  7C 08 03 A6 */	mtlr r0
 /* 800A9B0C 000A6A4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A9B10 000A6A50  4E 80 00 20 */	blr 
+.endfn dvdErrorCheck__13JASAramStreamFPv
 
-.global channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv
-channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv:
+.fn channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv, global
 /* 800A9B14 000A6A54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A9B18 000A6A58  7C 08 02 A6 */	mflr r0
 /* 800A9B1C 000A6A5C  7C 68 1B 78 */	mr r8, r3
@@ -925,9 +924,9 @@ channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv:
 /* 800A9B44 000A6A84  7C 08 03 A6 */	mtlr r0
 /* 800A9B48 000A6A88  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A9B4C 000A6A8C  4E 80 00 20 */	blr 
+.endfn channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv
 
-.global updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel
-updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel:
+.fn updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel, global
 /* 800A9B50 000A6A90  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800A9B54 000A6A94  7C 08 02 A6 */	mflr r0
 /* 800A9B58 000A6A98  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1443,9 +1442,9 @@ updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel:
 /* 800AA29C 000A71DC  7C 08 03 A6 */	mtlr r0
 /* 800AA2A0 000A71E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 800AA2A4 000A71E4  4E 80 00 20 */	blr 
+.endfn updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel
 
-.global channelProc__13JASAramStreamFv
-channelProc__13JASAramStreamFv:
+.fn channelProc__13JASAramStreamFv, global
 /* 800AA2A8 000A71E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AA2AC 000A71EC  7C 08 02 A6 */	mflr r0
 /* 800AA2B0 000A71F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1586,9 +1585,9 @@ channelProc__13JASAramStreamFv:
 /* 800AA480 000A73C0  7C 08 03 A6 */	mtlr r0
 /* 800AA484 000A73C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AA488 000A73C8  4E 80 00 20 */	blr 
+.endfn channelProc__13JASAramStreamFv
 
-.global channelStart__13JASAramStreamFv
-channelStart__13JASAramStreamFv:
+.fn channelStart__13JASAramStreamFv, global
 /* 800AA48C 000A73CC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 800AA490 000A73D0  7C 08 02 A6 */	mflr r0
 /* 800AA494 000A73D4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1745,9 +1744,9 @@ channelStart__13JASAramStreamFv:
 /* 800AA6C0 000A7600  7C 08 03 A6 */	mtlr r0
 /* 800AA6C4 000A7604  38 21 00 60 */	addi r1, r1, 0x60
 /* 800AA6C8 000A7608  4E 80 00 20 */	blr 
+.endfn channelStart__13JASAramStreamFv
 
-.global channelStop__13JASAramStreamFUs
-channelStop__13JASAramStreamFUs:
+.fn channelStop__13JASAramStreamFUs, global
 /* 800AA6CC 000A760C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800AA6D0 000A7610  7C 08 02 A6 */	mflr r0
 /* 800AA6D4 000A7614  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1781,3 +1780,4 @@ channelStop__13JASAramStreamFUs:
 /* 800AA738 000A7678  7C 08 03 A6 */	mtlr r0
 /* 800AA73C 000A767C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AA740 000A7680  4E 80 00 20 */	blr 
+.endfn channelStop__13JASAramStreamFUs

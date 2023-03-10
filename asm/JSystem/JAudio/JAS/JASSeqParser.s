@@ -74,169 +74,272 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A3D68
-lbl_804A3D68:
+.obj lbl_804A3D68, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdOpenTrack__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3D68
+.obj lbl_804A3D74, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdOpenTrackBros__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3D74
+.obj lbl_804A3D80, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdCall__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3D80
+.obj lbl_804A3D8C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdRet__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3D8C
+.obj lbl_804A3D98, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdJmp__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3D98
+.obj lbl_804A3DA4, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdLoopS__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3DA4
+.obj lbl_804A3DB0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdLoopE__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3DB0
+.obj lbl_804A3DBC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdReadPort__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3DBC
+.obj lbl_804A3DC8, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdWritePort__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3DC8
+.obj lbl_804A3DD4, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdCheckPortImport__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3DD4
+.obj lbl_804A3DE0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdCheckPortExport__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3DE0
+.obj lbl_804A3DEC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdWait__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3DEC
+.obj lbl_804A3DF8, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdParentWritePort__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3DF8
+.obj lbl_804A3E04, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdChildWritePort__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E04
+.obj lbl_804A3E10, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdSetLastNote__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E10
+.obj lbl_804A3E1C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdTimeRelate__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E1C
+.obj lbl_804A3E28, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdSimpleOsc__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E28
+.obj lbl_804A3E34, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdSimpleEnv__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E34
+.obj lbl_804A3E40, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdSimpleADSR__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E40
+.obj lbl_804A3E4C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdTranspose__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E4C
+.obj lbl_804A3E58, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdCloseTrack__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E58
+.obj lbl_804A3E64, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdOutSwitch__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E64
+.obj lbl_804A3E70, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdUpdateSync__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E70
+.obj lbl_804A3E7C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdBusConnect__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E7C
+.obj lbl_804A3E88, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdPauseStatus__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E88
+.obj lbl_804A3E94, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdSetInterrupt__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3E94
+.obj lbl_804A3EA0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdDisInterrupt__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3EA0
+.obj lbl_804A3EAC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdClrI__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3EAC
+.obj lbl_804A3EB8, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdSetI__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3EB8
+.obj lbl_804A3EC4, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdRetI__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3EC4
+.obj lbl_804A3ED0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdIntTimer__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3ED0
+.obj lbl_804A3EDC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdVibDepth__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3EDC
+.obj lbl_804A3EE8, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdVibDepthMidi__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3EE8
+.obj lbl_804A3EF4, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdSyncCPU__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3EF4
+.obj lbl_804A3F00, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdFlushAll__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F00
+.obj lbl_804A3F0C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdFlushRelease__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F0C
+.obj lbl_804A3F18, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdWait__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F18
+.obj lbl_804A3F24, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdPanPowSet__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F24
+.obj lbl_804A3F30, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdIIRSet__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F30
+.obj lbl_804A3F3C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdFIRSet__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F3C
+.obj lbl_804A3F48, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdEXTSet__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F48
+.obj lbl_804A3F54, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdPanSwSet__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F54
+.obj lbl_804A3F60, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdOscRoute__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F60
+.obj lbl_804A3F6C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdIIRCutOff__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F6C
+.obj lbl_804A3F78, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdOscFull__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F78
+.obj lbl_804A3F84, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdVolumeMode__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F84
+.obj lbl_804A3F90, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdVibPitch__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F90
+.obj lbl_804A3F9C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdCheckWave__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3F9C
+.obj lbl_804A3FA8, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdPrintf__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3FA8
+.obj lbl_804A3FB4, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdNop__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3FB4
+.obj lbl_804A3FC0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdTempo__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3FC0
+.obj lbl_804A3FCC, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdTimeBase__12JASSeqParserFP8JASTrackPUl
+.endobj lbl_804A3FCC
+.obj lbl_804A3FD8, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte cmdFinish__12JASSeqParserFP8JASTrackPUl
-.global sCmdPList__12JASSeqParser
-sCmdPList__12JASSeqParser:
+.endobj lbl_804A3FD8
+.obj sCmdPList__12JASSeqParser, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -429,6 +532,7 @@ sCmdPList__12JASSeqParser:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj sCmdPList__12JASSeqParser
 .obj lbl_804A42E4, local
 	.4byte .L_8009DBBC
 	.4byte .L_8009DC34
@@ -462,60 +566,50 @@ sCmdPList__12JASSeqParser:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516D30
-lbl_80516D30:
-	.4byte 0x43A3D5C3
-	.4byte 0x00000000
-.global lbl_80516D38
-lbl_80516D38:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global lbl_80516D40
-lbl_80516D40:
+.obj lbl_80516D30, local
+	.float 327.67
+.endobj lbl_80516D30
+.balign 8
+.obj lbl_80516D38, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516D38
+.obj lbl_80516D40, local
 	.4byte 0x00000001
-.global lbl_80516D44
-lbl_80516D44:
 	.2byte 0x0102
-.global lbl_80516D46
-lbl_80516D46:
-	.2byte 0x0200
-.global lbl_80516D48
-lbl_80516D48:
+	.byte 0x02
+.endobj lbl_80516D40
+.balign 4
+.obj lbl_80516D48, local
 	.4byte 0x00010200
-.global lbl_80516D4C
-lbl_80516D4C:
 	.2byte 0x0200
-.global lbl_80516D4E
-lbl_80516D4E:
-	.2byte 0x0200
-.global lbl_80516D50
-lbl_80516D50:
-	.4byte 0x48BFFE80
-	.4byte 0x00000000
-.global lbl_80516D58
-lbl_80516D58:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_80516D60
-lbl_80516D60:
-	.4byte 0x488FFEE0
-.global lbl_80516D64
-lbl_80516D64:
-	.4byte 0x47000000
-.global lbl_80516D68
-lbl_80516D68:
-	.4byte 0x00000000
-.global lbl_80516D6C
-lbl_80516D6C:
+	.byte 0x02
+.endobj lbl_80516D48
+.balign 4
+.obj lbl_80516D50, local
+	.float 393204.0
+.endobj lbl_80516D50
+.balign 8
+.obj lbl_80516D58, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516D58
+.obj lbl_80516D60, local
+	.float 294903.0
+.endobj lbl_80516D60
+.obj lbl_80516D64, local
+	.float 32768.0
+.endobj lbl_80516D64
+.obj lbl_80516D68, local
+	.float 0.0
+.endobj lbl_80516D68
+.obj lbl_80516D6C, local
 	.float 1.0
-.global lbl_80516D70
-lbl_80516D70:
-	.4byte 0x46FFFE00
-	.4byte 0x00000000
+.endobj lbl_80516D6C
+.obj lbl_80516D70, local
+	.float 32767.0
+.endobj lbl_80516D70
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global cmdOpenTrack__12JASSeqParserFP8JASTrackPUl
-cmdOpenTrack__12JASSeqParserFP8JASTrackPUl:
+.fn cmdOpenTrack__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CAB8 000999F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CABC 000999FC  7C 08 02 A6 */	mflr r0
 /* 8009CAC0 00099A00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -538,9 +632,9 @@ cmdOpenTrack__12JASSeqParserFP8JASTrackPUl:
 /* 8009CB04 00099A44  7C 08 03 A6 */	mtlr r0
 /* 8009CB08 00099A48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CB0C 00099A4C  4E 80 00 20 */	blr 
+.endfn cmdOpenTrack__12JASSeqParserFP8JASTrackPUl
 
-.global cmdOpenTrackBros__12JASSeqParserFP8JASTrackPUl
-cmdOpenTrackBros__12JASSeqParserFP8JASTrackPUl:
+.fn cmdOpenTrackBros__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CB10 00099A50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CB14 00099A54  7C 08 02 A6 */	mflr r0
 /* 8009CB18 00099A58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -569,9 +663,9 @@ cmdOpenTrackBros__12JASSeqParserFP8JASTrackPUl:
 /* 8009CB6C 00099AAC  7C 08 03 A6 */	mtlr r0
 /* 8009CB70 00099AB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CB74 00099AB4  4E 80 00 20 */	blr 
+.endfn cmdOpenTrackBros__12JASSeqParserFP8JASTrackPUl
 
-.global cmdCall__12JASSeqParserFP8JASTrackPUl
-cmdCall__12JASSeqParserFP8JASTrackPUl:
+.fn cmdCall__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CB78 00099AB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009CB7C 00099ABC  7C 08 02 A6 */	mflr r0
 /* 8009CB80 00099AC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -643,9 +737,9 @@ cmdCall__12JASSeqParserFP8JASTrackPUl:
 /* 8009CC74 00099BB4  7C 08 03 A6 */	mtlr r0
 /* 8009CC78 00099BB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8009CC7C 00099BBC  4E 80 00 20 */	blr 
+.endfn cmdCall__12JASSeqParserFP8JASTrackPUl
 
-.global cmdRet__12JASSeqParserFP8JASTrackPUl
-cmdRet__12JASSeqParserFP8JASTrackPUl:
+.fn cmdRet__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CC80 00099BC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CC84 00099BC4  7C 08 02 A6 */	mflr r0
 /* 8009CC88 00099BC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -683,9 +777,9 @@ cmdRet__12JASSeqParserFP8JASTrackPUl:
 /* 8009CCF8 00099C38  7C 08 03 A6 */	mtlr r0
 /* 8009CCFC 00099C3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CD00 00099C40  4E 80 00 20 */	blr 
+.endfn cmdRet__12JASSeqParserFP8JASTrackPUl
 
-.global cmdJmp__12JASSeqParserFP8JASTrackPUl
-cmdJmp__12JASSeqParserFP8JASTrackPUl:
+.fn cmdJmp__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CD04 00099C44  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8009CD08 00099C48  7C 08 02 A6 */	mflr r0
 /* 8009CD0C 00099C4C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -775,9 +869,9 @@ cmdJmp__12JASSeqParserFP8JASTrackPUl:
 /* 8009CE3C 00099D7C  7C 08 03 A6 */	mtlr r0
 /* 8009CE40 00099D80  38 21 00 30 */	addi r1, r1, 0x30
 /* 8009CE44 00099D84  4E 80 00 20 */	blr 
+.endfn cmdJmp__12JASSeqParserFP8JASTrackPUl
 
-.global cmdLoopS__12JASSeqParserFP8JASTrackPUl
-cmdLoopS__12JASSeqParserFP8JASTrackPUl:
+.fn cmdLoopS__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CE48 00099D88  80 04 00 18 */	lwz r0, 0x18(r4)
 /* 8009CE4C 00099D8C  38 E4 00 0C */	addi r7, r4, 0xc
 /* 8009CE50 00099D90  80 C5 00 00 */	lwz r6, 0(r5)
@@ -793,9 +887,9 @@ cmdLoopS__12JASSeqParserFP8JASTrackPUl:
 /* 8009CE78 00099DB8  7C 87 02 14 */	add r4, r7, r0
 /* 8009CE7C 00099DBC  B0 C4 00 30 */	sth r6, 0x30(r4)
 /* 8009CE80 00099DC0  4E 80 00 20 */	blr 
+.endfn cmdLoopS__12JASSeqParserFP8JASTrackPUl
 
-.global cmdLoopE__12JASSeqParserFP8JASTrackPUl
-cmdLoopE__12JASSeqParserFP8JASTrackPUl:
+.fn cmdLoopE__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CE84 00099DC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CE88 00099DC8  7C 08 02 A6 */	mflr r0
 /* 8009CE8C 00099DCC  38 64 00 0C */	addi r3, r4, 0xc
@@ -806,9 +900,9 @@ cmdLoopE__12JASSeqParserFP8JASTrackPUl:
 /* 8009CEA0 00099DE0  7C 08 03 A6 */	mtlr r0
 /* 8009CEA4 00099DE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CEA8 00099DE8  4E 80 00 20 */	blr 
+.endfn cmdLoopE__12JASSeqParserFP8JASTrackPUl
 
-.global cmdReadPort__12JASSeqParserFP8JASTrackPUl
-cmdReadPort__12JASSeqParserFP8JASTrackPUl:
+.fn cmdReadPort__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CEAC 00099DEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CEB0 00099DF0  7C 08 02 A6 */	mflr r0
 /* 8009CEB4 00099DF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -831,9 +925,9 @@ cmdReadPort__12JASSeqParserFP8JASTrackPUl:
 /* 8009CEF8 00099E38  7C 08 03 A6 */	mtlr r0
 /* 8009CEFC 00099E3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CF00 00099E40  4E 80 00 20 */	blr 
+.endfn cmdReadPort__12JASSeqParserFP8JASTrackPUl
 
-.global cmdWritePort__12JASSeqParserFP8JASTrackPUl
-cmdWritePort__12JASSeqParserFP8JASTrackPUl:
+.fn cmdWritePort__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CF04 00099E44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CF08 00099E48  7C 08 02 A6 */	mflr r0
 /* 8009CF0C 00099E4C  7C 83 23 78 */	mr r3, r4
@@ -847,9 +941,9 @@ cmdWritePort__12JASSeqParserFP8JASTrackPUl:
 /* 8009CF2C 00099E6C  7C 08 03 A6 */	mtlr r0
 /* 8009CF30 00099E70  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CF34 00099E74  4E 80 00 20 */	blr 
+.endfn cmdWritePort__12JASSeqParserFP8JASTrackPUl
 
-.global cmdParentWritePort__12JASSeqParserFP8JASTrackPUl
-cmdParentWritePort__12JASSeqParserFP8JASTrackPUl:
+.fn cmdParentWritePort__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CF38 00099E78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CF3C 00099E7C  7C 08 02 A6 */	mflr r0
 /* 8009CF40 00099E80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -864,9 +958,9 @@ cmdParentWritePort__12JASSeqParserFP8JASTrackPUl:
 /* 8009CF64 00099EA4  7C 08 03 A6 */	mtlr r0
 /* 8009CF68 00099EA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CF6C 00099EAC  4E 80 00 20 */	blr 
+.endfn cmdParentWritePort__12JASSeqParserFP8JASTrackPUl
 
-.global cmdChildWritePort__12JASSeqParserFP8JASTrackPUl
-cmdChildWritePort__12JASSeqParserFP8JASTrackPUl:
+.fn cmdChildWritePort__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CF70 00099EB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CF74 00099EB4  7C 08 02 A6 */	mflr r0
 /* 8009CF78 00099EB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -884,36 +978,36 @@ cmdChildWritePort__12JASSeqParserFP8JASTrackPUl:
 /* 8009CFA8 00099EE8  7C 08 03 A6 */	mtlr r0
 /* 8009CFAC 00099EEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CFB0 00099EF0  4E 80 00 20 */	blr 
+.endfn cmdChildWritePort__12JASSeqParserFP8JASTrackPUl
 
-.global cmdCheckPortImport__12JASSeqParserFP8JASTrackPUl
-cmdCheckPortImport__12JASSeqParserFP8JASTrackPUl:
+.fn cmdCheckPortImport__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CFB4 00099EF4  80 05 00 00 */	lwz r0, 0(r5)
 /* 8009CFB8 00099EF8  38 60 00 00 */	li r3, 0
 /* 8009CFBC 00099EFC  7C A4 02 14 */	add r5, r4, r0
 /* 8009CFC0 00099F00  88 05 00 54 */	lbz r0, 0x54(r5)
 /* 8009CFC4 00099F04  B0 04 02 6E */	sth r0, 0x26e(r4)
 /* 8009CFC8 00099F08  4E 80 00 20 */	blr 
+.endfn cmdCheckPortImport__12JASSeqParserFP8JASTrackPUl
 
-.global cmdCheckPortExport__12JASSeqParserFP8JASTrackPUl
-cmdCheckPortExport__12JASSeqParserFP8JASTrackPUl:
+.fn cmdCheckPortExport__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CFCC 00099F0C  80 05 00 00 */	lwz r0, 0(r5)
 /* 8009CFD0 00099F10  38 60 00 00 */	li r3, 0
 /* 8009CFD4 00099F14  7C A4 02 14 */	add r5, r4, r0
 /* 8009CFD8 00099F18  88 05 00 64 */	lbz r0, 0x64(r5)
 /* 8009CFDC 00099F1C  B0 04 02 6E */	sth r0, 0x26e(r4)
 /* 8009CFE0 00099F20  4E 80 00 20 */	blr 
+.endfn cmdCheckPortExport__12JASSeqParserFP8JASTrackPUl
 
-.global cmdWait__12JASSeqParserFP8JASTrackPUl
-cmdWait__12JASSeqParserFP8JASTrackPUl:
+.fn cmdWait__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CFE4 00099F24  80 65 00 00 */	lwz r3, 0(r5)
 /* 8009CFE8 00099F28  7C 03 00 D0 */	neg r0, r3
 /* 8009CFEC 00099F2C  90 64 00 14 */	stw r3, 0x14(r4)
 /* 8009CFF0 00099F30  7C 00 1B 78 */	or r0, r0, r3
 /* 8009CFF4 00099F34  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8009CFF8 00099F38  4E 80 00 20 */	blr 
+.endfn cmdWait__12JASSeqParserFP8JASTrackPUl
 
-.global cmdSetLastNote__12JASSeqParserFP8JASTrackPUl
-cmdSetLastNote__12JASSeqParserFP8JASTrackPUl:
+.fn cmdSetLastNote__12JASSeqParserFP8JASTrackPUl, global
 /* 8009CFFC 00099F3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D000 00099F40  7C 08 02 A6 */	mflr r0
 /* 8009D004 00099F44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -932,9 +1026,9 @@ cmdSetLastNote__12JASSeqParserFP8JASTrackPUl:
 /* 8009D038 00099F78  7C 08 03 A6 */	mtlr r0
 /* 8009D03C 00099F7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D040 00099F80  4E 80 00 20 */	blr 
+.endfn cmdSetLastNote__12JASSeqParserFP8JASTrackPUl
 
-.global cmdTimeRelate__12JASSeqParserFP8JASTrackPUl
-cmdTimeRelate__12JASSeqParserFP8JASTrackPUl:
+.fn cmdTimeRelate__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D044 00099F84  80 A5 00 00 */	lwz r5, 0(r5)
 /* 8009D048 00099F88  38 60 00 00 */	li r3, 0
 /* 8009D04C 00099F8C  7C 05 00 D0 */	neg r0, r5
@@ -942,9 +1036,9 @@ cmdTimeRelate__12JASSeqParserFP8JASTrackPUl:
 /* 8009D054 00099F94  54 00 0F FE */	srwi r0, r0, 0x1f
 /* 8009D058 00099F98  98 04 03 64 */	stb r0, 0x364(r4)
 /* 8009D05C 00099F9C  4E 80 00 20 */	blr 
+.endfn cmdTimeRelate__12JASSeqParserFP8JASTrackPUl
 
-.global cmdSimpleOsc__12JASSeqParserFP8JASTrackPUl
-cmdSimpleOsc__12JASSeqParserFP8JASTrackPUl:
+.fn cmdSimpleOsc__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D060 00099FA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D064 00099FA4  7C 08 02 A6 */	mflr r0
 /* 8009D068 00099FA8  7C 83 23 78 */	mr r3, r4
@@ -957,9 +1051,9 @@ cmdSimpleOsc__12JASSeqParserFP8JASTrackPUl:
 /* 8009D084 00099FC4  7C 08 03 A6 */	mtlr r0
 /* 8009D088 00099FC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D08C 00099FCC  4E 80 00 20 */	blr 
+.endfn cmdSimpleOsc__12JASSeqParserFP8JASTrackPUl
 
-.global cmdSimpleEnv__12JASSeqParserFP8JASTrackPUl
-cmdSimpleEnv__12JASSeqParserFP8JASTrackPUl:
+.fn cmdSimpleEnv__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D090 00099FD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D094 00099FD4  7C 08 02 A6 */	mflr r0
 /* 8009D098 00099FD8  7C 83 23 78 */	mr r3, r4
@@ -973,9 +1067,9 @@ cmdSimpleEnv__12JASSeqParserFP8JASTrackPUl:
 /* 8009D0B8 00099FF8  7C 08 03 A6 */	mtlr r0
 /* 8009D0BC 00099FFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D0C0 0009A000  4E 80 00 20 */	blr 
+.endfn cmdSimpleEnv__12JASSeqParserFP8JASTrackPUl
 
-.global cmdSimpleADSR__12JASSeqParserFP8JASTrackPUl
-cmdSimpleADSR__12JASSeqParserFP8JASTrackPUl:
+.fn cmdSimpleADSR__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D0C4 0009A004  3C 60 80 48 */	lis r3, sAdsrDef__9JASPlayer@ha
 /* 8009D0C8 0009A008  38 04 02 E0 */	addi r0, r4, 0x2e0
 /* 8009D0CC 0009A00C  39 03 8B E0 */	addi r8, r3, sAdsrDef__9JASPlayer@l
@@ -1004,16 +1098,16 @@ cmdSimpleADSR__12JASSeqParserFP8JASTrackPUl:
 /* 8009D128 0009A068  80 05 00 10 */	lwz r0, 0x10(r5)
 /* 8009D12C 0009A06C  B0 04 03 50 */	sth r0, 0x350(r4)
 /* 8009D130 0009A070  4E 80 00 20 */	blr 
+.endfn cmdSimpleADSR__12JASSeqParserFP8JASTrackPUl
 
-.global cmdTranspose__12JASSeqParserFP8JASTrackPUl
-cmdTranspose__12JASSeqParserFP8JASTrackPUl:
+.fn cmdTranspose__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D134 0009A074  80 05 00 00 */	lwz r0, 0(r5)
 /* 8009D138 0009A078  38 60 00 00 */	li r3, 0
 /* 8009D13C 0009A07C  98 04 03 56 */	stb r0, 0x356(r4)
 /* 8009D140 0009A080  4E 80 00 20 */	blr 
+.endfn cmdTranspose__12JASSeqParserFP8JASTrackPUl
 
-.global cmdCloseTrack__12JASSeqParserFP8JASTrackPUl
-cmdCloseTrack__12JASSeqParserFP8JASTrackPUl:
+.fn cmdCloseTrack__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D144 0009A084  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D148 0009A088  7C 08 02 A6 */	mflr r0
 /* 8009D14C 0009A08C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1037,9 +1131,9 @@ cmdCloseTrack__12JASSeqParserFP8JASTrackPUl:
 /* 8009D18C 0009A0CC  7C 08 03 A6 */	mtlr r0
 /* 8009D190 0009A0D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D194 0009A0D4  4E 80 00 20 */	blr 
+.endfn cmdCloseTrack__12JASSeqParserFP8JASTrackPUl
 
-.global cmdOutSwitch__12JASSeqParserFP8JASTrackPUl
-cmdOutSwitch__12JASSeqParserFP8JASTrackPUl:
+.fn cmdOutSwitch__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D198 0009A0D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D19C 0009A0DC  7C 08 02 A6 */	mflr r0
 /* 8009D1A0 0009A0E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1062,9 +1156,9 @@ cmdOutSwitch__12JASSeqParserFP8JASTrackPUl:
 /* 8009D1E0 0009A120  7C 08 03 A6 */	mtlr r0
 /* 8009D1E4 0009A124  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D1E8 0009A128  4E 80 00 20 */	blr 
+.endfn cmdOutSwitch__12JASSeqParserFP8JASTrackPUl
 
-.global cmdUpdateSync__12JASSeqParserFP8JASTrackPUl
-cmdUpdateSync__12JASSeqParserFP8JASTrackPUl:
+.fn cmdUpdateSync__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D1EC 0009A12C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D1F0 0009A130  7C 08 02 A6 */	mflr r0
 /* 8009D1F4 0009A134  7C 83 23 78 */	mr r3, r4
@@ -1076,9 +1170,9 @@ cmdUpdateSync__12JASSeqParserFP8JASTrackPUl:
 /* 8009D20C 0009A14C  7C 08 03 A6 */	mtlr r0
 /* 8009D210 0009A150  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D214 0009A154  4E 80 00 20 */	blr 
+.endfn cmdUpdateSync__12JASSeqParserFP8JASTrackPUl
 
-.global cmdBusConnect__12JASSeqParserFP8JASTrackPUl
-cmdBusConnect__12JASSeqParserFP8JASTrackPUl:
+.fn cmdBusConnect__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D218 0009A158  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D21C 0009A15C  7C 08 02 A6 */	mflr r0
 /* 8009D220 0009A160  7C 83 23 78 */	mr r3, r4
@@ -1091,23 +1185,23 @@ cmdBusConnect__12JASSeqParserFP8JASTrackPUl:
 /* 8009D23C 0009A17C  7C 08 03 A6 */	mtlr r0
 /* 8009D240 0009A180  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D244 0009A184  4E 80 00 20 */	blr 
+.endfn cmdBusConnect__12JASSeqParserFP8JASTrackPUl
 
-.global cmdPauseStatus__12JASSeqParserFP8JASTrackPUl
-cmdPauseStatus__12JASSeqParserFP8JASTrackPUl:
+.fn cmdPauseStatus__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D248 0009A188  80 05 00 00 */	lwz r0, 0(r5)
 /* 8009D24C 0009A18C  38 60 00 00 */	li r3, 0
 /* 8009D250 0009A190  98 04 03 58 */	stb r0, 0x358(r4)
 /* 8009D254 0009A194  4E 80 00 20 */	blr 
+.endfn cmdPauseStatus__12JASSeqParserFP8JASTrackPUl
 
-.global cmdVolumeMode__12JASSeqParserFP8JASTrackPUl
-cmdVolumeMode__12JASSeqParserFP8JASTrackPUl:
+.fn cmdVolumeMode__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D258 0009A198  80 05 00 00 */	lwz r0, 0(r5)
 /* 8009D25C 0009A19C  38 60 00 00 */	li r3, 0
 /* 8009D260 0009A1A0  98 04 03 59 */	stb r0, 0x359(r4)
 /* 8009D264 0009A1A4  4E 80 00 20 */	blr 
+.endfn cmdVolumeMode__12JASSeqParserFP8JASTrackPUl
 
-.global cmdSetInterrupt__12JASSeqParserFP8JASTrackPUl
-cmdSetInterrupt__12JASSeqParserFP8JASTrackPUl:
+.fn cmdSetInterrupt__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D268 0009A1A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D26C 0009A1AC  7C 08 02 A6 */	mflr r0
 /* 8009D270 0009A1B0  38 64 00 94 */	addi r3, r4, 0x94
@@ -1122,9 +1216,9 @@ cmdSetInterrupt__12JASSeqParserFP8JASTrackPUl:
 /* 8009D294 0009A1D4  7C 08 03 A6 */	mtlr r0
 /* 8009D298 0009A1D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D29C 0009A1DC  4E 80 00 20 */	blr 
+.endfn cmdSetInterrupt__12JASSeqParserFP8JASTrackPUl
 
-.global cmdDisInterrupt__12JASSeqParserFP8JASTrackPUl
-cmdDisInterrupt__12JASSeqParserFP8JASTrackPUl:
+.fn cmdDisInterrupt__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D2A0 0009A1E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D2A4 0009A1E4  7C 08 02 A6 */	mflr r0
 /* 8009D2A8 0009A1E8  38 64 00 94 */	addi r3, r4, 0x94
@@ -1136,25 +1230,25 @@ cmdDisInterrupt__12JASSeqParserFP8JASTrackPUl:
 /* 8009D2C0 0009A200  7C 08 03 A6 */	mtlr r0
 /* 8009D2C4 0009A204  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D2C8 0009A208  4E 80 00 20 */	blr 
+.endfn cmdDisInterrupt__12JASSeqParserFP8JASTrackPUl
 
-.global cmdClrI__12JASSeqParserFP8JASTrackPUl
-cmdClrI__12JASSeqParserFP8JASTrackPUl:
+.fn cmdClrI__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D2CC 0009A20C  38 60 00 01 */	li r3, 1
 /* 8009D2D0 0009A210  38 00 00 00 */	li r0, 0
 /* 8009D2D4 0009A214  98 64 00 94 */	stb r3, 0x94(r4)
 /* 8009D2D8 0009A218  38 60 00 00 */	li r3, 0
 /* 8009D2DC 0009A21C  90 04 00 50 */	stw r0, 0x50(r4)
 /* 8009D2E0 0009A220  4E 80 00 20 */	blr 
+.endfn cmdClrI__12JASSeqParserFP8JASTrackPUl
 
-.global cmdSetI__12JASSeqParserFP8JASTrackPUl
-cmdSetI__12JASSeqParserFP8JASTrackPUl:
+.fn cmdSetI__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D2E4 0009A224  38 00 00 00 */	li r0, 0
 /* 8009D2E8 0009A228  38 60 00 00 */	li r3, 0
 /* 8009D2EC 0009A22C  98 04 00 94 */	stb r0, 0x94(r4)
 /* 8009D2F0 0009A230  4E 80 00 20 */	blr 
+.endfn cmdSetI__12JASSeqParserFP8JASTrackPUl
 
-.global cmdRetI__12JASSeqParserFP8JASTrackPUl
-cmdRetI__12JASSeqParserFP8JASTrackPUl:
+.fn cmdRetI__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D2F4 0009A234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D2F8 0009A238  7C 08 02 A6 */	mflr r0
 /* 8009D2FC 0009A23C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1175,9 +1269,9 @@ cmdRetI__12JASSeqParserFP8JASTrackPUl:
 /* 8009D338 0009A278  7C 08 03 A6 */	mtlr r0
 /* 8009D33C 0009A27C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D340 0009A280  4E 80 00 20 */	blr 
+.endfn cmdRetI__12JASSeqParserFP8JASTrackPUl
 
-.global cmdIntTimer__12JASSeqParserFP8JASTrackPUl
-cmdIntTimer__12JASSeqParserFP8JASTrackPUl:
+.fn cmdIntTimer__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D344 0009A284  80 05 00 00 */	lwz r0, 0(r5)
 /* 8009D348 0009A288  38 60 00 00 */	li r3, 0
 /* 8009D34C 0009A28C  80 A5 00 04 */	lwz r5, 4(r5)
@@ -1185,9 +1279,9 @@ cmdIntTimer__12JASSeqParserFP8JASTrackPUl:
 /* 8009D354 0009A294  90 A4 00 98 */	stw r5, 0x98(r4)
 /* 8009D358 0009A298  90 A4 00 9C */	stw r5, 0x9c(r4)
 /* 8009D35C 0009A29C  4E 80 00 20 */	blr 
+.endfn cmdIntTimer__12JASSeqParserFP8JASTrackPUl
 
-.global cmdSyncCPU__12JASSeqParserFP8JASTrackPUl
-cmdSyncCPU__12JASSeqParserFP8JASTrackPUl:
+.fn cmdSyncCPU__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D360 0009A2A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D364 0009A2A4  7C 08 02 A6 */	mflr r0
 /* 8009D368 0009A2A8  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
@@ -1211,19 +1305,19 @@ cmdSyncCPU__12JASSeqParserFP8JASTrackPUl:
 /* 8009D3AC 0009A2EC  7C 08 03 A6 */	mtlr r0
 /* 8009D3B0 0009A2F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D3B4 0009A2F4  4E 80 00 20 */	blr 
+.endfn cmdSyncCPU__12JASSeqParserFP8JASTrackPUl
 
-.global cmdFlushAll__12JASSeqParserFP8JASTrackPUl
-cmdFlushAll__12JASSeqParserFP8JASTrackPUl:
+.fn cmdFlushAll__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D3B8 0009A2F8  38 60 00 00 */	li r3, 0
 /* 8009D3BC 0009A2FC  4E 80 00 20 */	blr 
+.endfn cmdFlushAll__12JASSeqParserFP8JASTrackPUl
 
-.global cmdFlushRelease__12JASSeqParserFP8JASTrackPUl
-cmdFlushRelease__12JASSeqParserFP8JASTrackPUl:
+.fn cmdFlushRelease__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D3C0 0009A300  38 60 00 00 */	li r3, 0
 /* 8009D3C4 0009A304  4E 80 00 20 */	blr 
+.endfn cmdFlushRelease__12JASSeqParserFP8JASTrackPUl
 
-.global cmdTimeBase__12JASSeqParserFP8JASTrackPUl
-cmdTimeBase__12JASSeqParserFP8JASTrackPUl:
+.fn cmdTimeBase__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D3C8 0009A308  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D3CC 0009A30C  7C 08 02 A6 */	mflr r0
 /* 8009D3D0 0009A310  7C 83 23 78 */	mr r3, r4
@@ -1236,9 +1330,9 @@ cmdTimeBase__12JASSeqParserFP8JASTrackPUl:
 /* 8009D3EC 0009A32C  7C 08 03 A6 */	mtlr r0
 /* 8009D3F0 0009A330  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D3F4 0009A334  4E 80 00 20 */	blr 
+.endfn cmdTimeBase__12JASSeqParserFP8JASTrackPUl
 
-.global cmdTempo__12JASSeqParserFP8JASTrackPUl
-cmdTempo__12JASSeqParserFP8JASTrackPUl:
+.fn cmdTempo__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D3F8 0009A338  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D3FC 0009A33C  7C 08 02 A6 */	mflr r0
 /* 8009D400 0009A340  7C 83 23 78 */	mr r3, r4
@@ -1251,19 +1345,19 @@ cmdTempo__12JASSeqParserFP8JASTrackPUl:
 /* 8009D41C 0009A35C  7C 08 03 A6 */	mtlr r0
 /* 8009D420 0009A360  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D424 0009A364  4E 80 00 20 */	blr 
+.endfn cmdTempo__12JASSeqParserFP8JASTrackPUl
 
-.global cmdFinish__12JASSeqParserFP8JASTrackPUl
-cmdFinish__12JASSeqParserFP8JASTrackPUl:
+.fn cmdFinish__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D428 0009A368  38 60 00 03 */	li r3, 3
 /* 8009D42C 0009A36C  4E 80 00 20 */	blr 
+.endfn cmdFinish__12JASSeqParserFP8JASTrackPUl
 
-.global cmdNop__12JASSeqParserFP8JASTrackPUl
-cmdNop__12JASSeqParserFP8JASTrackPUl:
+.fn cmdNop__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D430 0009A370  38 60 00 00 */	li r3, 0
 /* 8009D434 0009A374  4E 80 00 20 */	blr 
+.endfn cmdNop__12JASSeqParserFP8JASTrackPUl
 
-.global cmdPanPowSet__12JASSeqParserFP8JASTrackPUl
-cmdPanPowSet__12JASSeqParserFP8JASTrackPUl:
+.fn cmdPanPowSet__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D438 0009A378  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8009D43C 0009A37C  3C 00 43 30 */	lis r0, 0x4330
 /* 8009D440 0009A380  C8 22 89 D8 */	lfd f1, lbl_80516D38@sda21(r2)
@@ -1297,9 +1391,9 @@ cmdPanPowSet__12JASSeqParserFP8JASTrackPUl:
 /* 8009D4B0 0009A3F0  B0 04 02 80 */	sth r0, 0x280(r4)
 /* 8009D4B4 0009A3F4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8009D4B8 0009A3F8  4E 80 00 20 */	blr 
+.endfn cmdPanPowSet__12JASSeqParserFP8JASTrackPUl
 
-.global cmdFIRSet__12JASSeqParserFP8JASTrackPUl
-cmdFIRSet__12JASSeqParserFP8JASTrackPUl:
+.fn cmdFIRSet__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D4BC 0009A3FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D4C0 0009A400  7C 08 02 A6 */	mflr r0
 /* 8009D4C4 0009A404  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1313,9 +1407,9 @@ cmdFIRSet__12JASSeqParserFP8JASTrackPUl:
 /* 8009D4E4 0009A424  7C 08 03 A6 */	mtlr r0
 /* 8009D4E8 0009A428  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D4EC 0009A42C  4E 80 00 20 */	blr 
+.endfn cmdFIRSet__12JASSeqParserFP8JASTrackPUl
 
-.global cmdEXTSet__12JASSeqParserFP8JASTrackPUl
-cmdEXTSet__12JASSeqParserFP8JASTrackPUl:
+.fn cmdEXTSet__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D4F0 0009A430  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D4F4 0009A434  7C 08 02 A6 */	mflr r0
 /* 8009D4F8 0009A438  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1337,22 +1431,22 @@ cmdEXTSet__12JASSeqParserFP8JASTrackPUl:
 /* 8009D538 0009A478  7C 08 03 A6 */	mtlr r0
 /* 8009D53C 0009A47C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D540 0009A480  4E 80 00 20 */	blr 
+.endfn cmdEXTSet__12JASSeqParserFP8JASTrackPUl
 
-.global cmdPanSwSet__12JASSeqParserFP8JASTrackPUl
-cmdPanSwSet__12JASSeqParserFP8JASTrackPUl:
+.fn cmdPanSwSet__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D544 0009A484  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009D548 0009A488  38 60 00 00 */	li r3, 0
 /* 8009D54C 0009A48C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8009D550 0009A490  38 E1 00 10 */	addi r7, r1, 0x10
 /* 8009D554 0009A494  38 C1 00 08 */	addi r6, r1, 8
 /* 8009D558 0009A498  83 E2 89 E0 */	lwz r31, lbl_80516D40@sda21(r2)
-/* 8009D55C 0009A49C  A1 82 89 E4 */	lhz r12, lbl_80516D44@sda21(r2)
-/* 8009D560 0009A4A0  89 62 89 E6 */	lbz r11, lbl_80516D46@sda21(r2)
+/* 8009D55C 0009A49C  A1 82 89 E4 */	lhz r12, (lbl_80516D40+4)@sda21(r2)
+/* 8009D560 0009A4A0  89 62 89 E6 */	lbz r11, (lbl_80516D40+6)@sda21(r2)
 /* 8009D564 0009A4A4  80 05 00 00 */	lwz r0, 0(r5)
 /* 8009D568 0009A4A8  81 42 89 E8 */	lwz r10, lbl_80516D48@sda21(r2)
-/* 8009D56C 0009A4AC  A1 22 89 EC */	lhz r9, lbl_80516D4C@sda21(r2)
+/* 8009D56C 0009A4AC  A1 22 89 EC */	lhz r9, (lbl_80516D48+4)@sda21(r2)
 /* 8009D570 0009A4B0  54 00 D9 7E */	srwi r0, r0, 5
-/* 8009D574 0009A4B4  89 02 89 EE */	lbz r8, lbl_80516D4E@sda21(r2)
+/* 8009D574 0009A4B4  89 02 89 EE */	lbz r8, (lbl_80516D48+6)@sda21(r2)
 /* 8009D578 0009A4B8  93 E1 00 10 */	stw r31, 0x10(r1)
 /* 8009D57C 0009A4BC  B1 81 00 14 */	sth r12, 0x14(r1)
 /* 8009D580 0009A4C0  99 61 00 16 */	stb r11, 0x16(r1)
@@ -1402,9 +1496,9 @@ cmdPanSwSet__12JASSeqParserFP8JASTrackPUl:
 /* 8009D630 0009A570  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8009D634 0009A574  38 21 00 20 */	addi r1, r1, 0x20
 /* 8009D638 0009A578  4E 80 00 20 */	blr 
+.endfn cmdPanSwSet__12JASSeqParserFP8JASTrackPUl
 
-.global cmdOscRoute__12JASSeqParserFP8JASTrackPUl
-cmdOscRoute__12JASSeqParserFP8JASTrackPUl:
+.fn cmdOscRoute__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D63C 0009A57C  80 A5 00 00 */	lwz r5, 0(r5)
 /* 8009D640 0009A580  38 60 00 00 */	li r3, 0
 /* 8009D644 0009A584  54 A0 F6 BA */	rlwinm r0, r5, 0x1e, 0x1a, 0x1d
@@ -1412,9 +1506,9 @@ cmdOscRoute__12JASSeqParserFP8JASTrackPUl:
 /* 8009D64C 0009A58C  7C 84 02 14 */	add r4, r4, r0
 /* 8009D650 0009A590  90 A4 02 D8 */	stw r5, 0x2d8(r4)
 /* 8009D654 0009A594  4E 80 00 20 */	blr 
+.endfn cmdOscRoute__12JASSeqParserFP8JASTrackPUl
 
-.global cmdVibDepth__12JASSeqParserFP8JASTrackPUl
-cmdVibDepth__12JASSeqParserFP8JASTrackPUl:
+.fn cmdVibDepth__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D658 0009A598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D65C 0009A59C  3C 00 43 30 */	lis r0, 0x4330
 /* 8009D660 0009A5A0  C8 42 89 F8 */	lfd f2, lbl_80516D58@sda21(r2)
@@ -1433,9 +1527,9 @@ cmdVibDepth__12JASSeqParserFP8JASTrackPUl:
 /* 8009D694 0009A5D4  D0 24 00 EC */	stfs f1, 0xec(r4)
 /* 8009D698 0009A5D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D69C 0009A5DC  4E 80 00 20 */	blr 
+.endfn cmdVibDepth__12JASSeqParserFP8JASTrackPUl
 
-.global cmdVibDepthMidi__12JASSeqParserFP8JASTrackPUl
-cmdVibDepthMidi__12JASSeqParserFP8JASTrackPUl:
+.fn cmdVibDepthMidi__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D6A0 0009A5E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D6A4 0009A5E4  3C 00 43 30 */	lis r0, 0x4330
 /* 8009D6A8 0009A5E8  C8 42 89 D8 */	lfd f2, lbl_80516D38@sda21(r2)
@@ -1450,9 +1544,9 @@ cmdVibDepthMidi__12JASSeqParserFP8JASTrackPUl:
 /* 8009D6CC 0009A60C  D0 24 00 EC */	stfs f1, 0xec(r4)
 /* 8009D6D0 0009A610  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D6D4 0009A614  4E 80 00 20 */	blr 
+.endfn cmdVibDepthMidi__12JASSeqParserFP8JASTrackPUl
 
-.global cmdVibPitch__12JASSeqParserFP8JASTrackPUl
-cmdVibPitch__12JASSeqParserFP8JASTrackPUl:
+.fn cmdVibPitch__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D6D8 0009A618  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D6DC 0009A61C  3C 00 43 30 */	lis r0, 0x4330
 /* 8009D6E0 0009A620  C8 42 89 D8 */	lfd f2, lbl_80516D38@sda21(r2)
@@ -1471,9 +1565,9 @@ cmdVibPitch__12JASSeqParserFP8JASTrackPUl:
 /* 8009D714 0009A654  D0 24 00 F0 */	stfs f1, 0xf0(r4)
 /* 8009D718 0009A658  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D71C 0009A65C  4E 80 00 20 */	blr 
+.endfn cmdVibPitch__12JASSeqParserFP8JASTrackPUl
 
-.global cmdIIRSet__12JASSeqParserFP8JASTrackPUl
-cmdIIRSet__12JASSeqParserFP8JASTrackPUl:
+.fn cmdIIRSet__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D720 0009A660  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8009D724 0009A664  3C 00 43 30 */	lis r0, 0x4330
 /* 8009D728 0009A668  C8 82 89 F8 */	lfd f4, lbl_80516D58@sda21(r2)
@@ -1535,9 +1629,9 @@ cmdIIRSet__12JASSeqParserFP8JASTrackPUl:
 /* 8009D808 0009A748  D0 24 02 40 */	stfs f1, 0x240(r4)
 /* 8009D80C 0009A74C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8009D810 0009A750  4E 80 00 20 */	blr 
+.endfn cmdIIRSet__12JASSeqParserFP8JASTrackPUl
 
-.global cmdIIRCutOff__12JASSeqParserFP8JASTrackPUl
-cmdIIRCutOff__12JASSeqParserFP8JASTrackPUl:
+.fn cmdIIRCutOff__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D814 0009A754  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8009D818 0009A758  3C 00 43 30 */	lis r0, 0x4330
 /* 8009D81C 0009A75C  3C 60 80 4A */	lis r3, CUTOFF_TO_IIR_TABLE__9JASPlayer@ha
@@ -1600,9 +1694,9 @@ cmdIIRCutOff__12JASSeqParserFP8JASTrackPUl:
 /* 8009D900 0009A840  D0 24 02 40 */	stfs f1, 0x240(r4)
 /* 8009D904 0009A844  38 21 00 30 */	addi r1, r1, 0x30
 /* 8009D908 0009A848  4E 80 00 20 */	blr 
+.endfn cmdIIRCutOff__12JASSeqParserFP8JASTrackPUl
 
-.global cmdOscFull__12JASSeqParserFP8JASTrackPUl
-cmdOscFull__12JASSeqParserFP8JASTrackPUl:
+.fn cmdOscFull__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D90C 0009A84C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D910 0009A850  7C 08 02 A6 */	mflr r0
 /* 8009D914 0009A854  7C A6 2B 78 */	mr r6, r5
@@ -1618,16 +1712,16 @@ cmdOscFull__12JASSeqParserFP8JASTrackPUl:
 /* 8009D93C 0009A87C  7C 08 03 A6 */	mtlr r0
 /* 8009D940 0009A880  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D944 0009A884  4E 80 00 20 */	blr 
+.endfn cmdOscFull__12JASSeqParserFP8JASTrackPUl
 
-.global cmdCheckWave__12JASSeqParserFP8JASTrackPUl
-cmdCheckWave__12JASSeqParserFP8JASTrackPUl:
+.fn cmdCheckWave__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D948 0009A888  38 00 00 00 */	li r0, 0
 /* 8009D94C 0009A88C  38 60 00 00 */	li r3, 0
 /* 8009D950 0009A890  B0 04 02 6E */	sth r0, 0x26e(r4)
 /* 8009D954 0009A894  4E 80 00 20 */	blr 
+.endfn cmdCheckWave__12JASSeqParserFP8JASTrackPUl
 
-.global cmdPrintf__12JASSeqParserFP8JASTrackPUl
-cmdPrintf__12JASSeqParserFP8JASTrackPUl:
+.fn cmdPrintf__12JASSeqParserFP8JASTrackPUl, global
 /* 8009D958 0009A898  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8009D95C 0009A89C  7C 08 02 A6 */	mflr r0
 /* 8009D960 0009A8A0  38 A0 00 00 */	li r5, 0
@@ -1780,9 +1874,9 @@ cmdPrintf__12JASSeqParserFP8JASTrackPUl:
 /* 8009DB60 0009AAA0  7C 08 03 A6 */	mtlr r0
 /* 8009DB64 0009AAA4  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8009DB68 0009AAA8  4E 80 00 20 */	blr 
+.endfn cmdPrintf__12JASSeqParserFP8JASTrackPUl
 
-.global cmdSetParam__12JASSeqParserFP8JASTrackUc
-cmdSetParam__12JASSeqParserFP8JASTrackUc:
+.fn cmdSetParam__12JASSeqParserFP8JASTrackUc, global
 /* 8009DB6C 0009AAAC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8009DB70 0009AAB0  7C 08 02 A6 */	mflr r0
 /* 8009DB74 0009AAB4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1894,9 +1988,9 @@ cmdSetParam__12JASSeqParserFP8JASTrackUc:
 /* 8009DCEC 0009AC2C  7C 08 03 A6 */	mtlr r0
 /* 8009DCF0 0009AC30  38 21 00 30 */	addi r1, r1, 0x30
 /* 8009DCF4 0009AC34  4E 80 00 20 */	blr 
+.endfn cmdSetParam__12JASSeqParserFP8JASTrackUc
 
-.global cmdNoteOn__12JASSeqParserFP8JASTrackUc
-cmdNoteOn__12JASSeqParserFP8JASTrackUc:
+.fn cmdNoteOn__12JASSeqParserFP8JASTrackUc, global
 /* 8009DCF8 0009AC38  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8009DCFC 0009AC3C  7C 08 02 A6 */	mflr r0
 /* 8009DD00 0009AC40  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2168,9 +2262,9 @@ cmdNoteOn__12JASSeqParserFP8JASTrackUc:
 /* 8009E0C0 0009B000  7C 08 03 A6 */	mtlr r0
 /* 8009E0C4 0009B004  38 21 00 30 */	addi r1, r1, 0x30
 /* 8009E0C8 0009B008  4E 80 00 20 */	blr 
+.endfn cmdNoteOn__12JASSeqParserFP8JASTrackUc
 
-.global conditionCheck__12JASSeqParserFP8JASTrackUc
-conditionCheck__12JASSeqParserFP8JASTrackUc:
+.fn conditionCheck__12JASSeqParserFP8JASTrackUc, global
 /* 8009E0CC 0009B00C  54 A0 07 3E */	clrlwi r0, r5, 0x1c
 /* 8009E0D0 0009B010  A0 84 02 6E */	lhz r4, 0x26e(r4)
 /* 8009E0D4 0009B014  2C 00 00 03 */	cmpwi r0, 3
@@ -2224,9 +2318,9 @@ conditionCheck__12JASSeqParserFP8JASTrackUc:
 .L_8009E178:
 /* 8009E178 0009B0B8  38 60 00 00 */	li r3, 0
 /* 8009E17C 0009B0BC  4E 80 00 20 */	blr 
+.endfn conditionCheck__12JASSeqParserFP8JASTrackUc
 
-.global parseSeq__12JASSeqParserFP8JASTrack
-parseSeq__12JASSeqParserFP8JASTrack:
+.fn parseSeq__12JASSeqParserFP8JASTrack, global
 /* 8009E180 0009B0C0  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8009E184 0009B0C4  7C 08 02 A6 */	mflr r0
 /* 8009E188 0009B0C8  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -2720,6 +2814,7 @@ parseSeq__12JASSeqParserFP8JASTrack:
 /* 8009E848 0009B788  7C 08 03 A6 */	mtlr r0
 /* 8009E84C 0009B78C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8009E850 0009B790  4E 80 00 20 */	blr 
+.endfn parseSeq__12JASSeqParserFP8JASTrack
 
 .fn __sinit_JASSeqParser_cpp, local
 /* 8009E854 0009B794  94 21 FE E0 */	stwu r1, -0x120(r1)

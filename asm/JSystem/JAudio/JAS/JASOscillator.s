@@ -1,107 +1,104 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global relTableSampleCell__13JASOscillator
-relTableSampleCell__13JASOscillator:
+.obj relTableSampleCell__13JASOscillator, global
 	.float 1.0
-	.4byte 0x3F7871F8
-	.4byte 0x3F480193
-	.4byte 0x3F0BD912
-	.4byte 0x3ECCB189
-	.4byte 0x3E942118
-	.4byte 0x3E5931CA
-	.4byte 0x3E214163
-	.4byte 0x3DE6A1A5
-	.4byte 0x3DA7814E
-	.4byte 0x3D6D81E4
-	.4byte 0x3D32C16E
-	.4byte 0x3CFC81FC
-	.4byte 0x3CC2418E
-	.4byte 0x3C7A0225
-	.4byte 0x3C160129
-	.4byte 0x00000000
-.global relTableSqRoot__13JASOscillator
-relTableSqRoot__13JASOscillator:
+	.float 0.970489
+	.float 0.781274
+	.float 0.546281
+	.float 0.399792
+	.float 0.289315
+	.float 0.212104
+	.float 0.157476
+	.float 0.112613
+	.float 0.0817896
+	.float 0.0579852
+	.float 0.0436415
+	.float 0.0308237
+	.float 0.0237129
+	.float 0.0152593
+	.float 0.00915555
+	.float 0.0
+.endobj relTableSampleCell__13JASOscillator
+.obj relTableSqRoot__13JASOscillator, global
 	.float 1.0
-	.4byte 0x3F60FFFC
-	.4byte 0x3F440000
-	.4byte 0x3F28FFFC
-	.4byte 0x3F100000
-	.4byte 0x3EF1FFF8
-	.4byte 0x3EC80000
-	.4byte 0x3EA1FFF8
+	.float 0.878906
+	.float 0.765625
+	.float 0.660156
+	.float 0.5625
+	.float 0.472656
+	.float 0.390625
+	.float 0.316406
 	.float 0.25
-	.4byte 0x3E43FFEF
-	.4byte 0x3E100000
-	.4byte 0x3DC7FFF9
-	.4byte 0x3D800000
-	.4byte 0x3D0FFFF3
-	.4byte 0x3C800000
-	.4byte 0x3B800000
-	.4byte 0x00000000
-.global relTableSquare__13JASOscillator
-relTableSquare__13JASOscillator:
+	.float 0.191406
+	.float 0.140625
+	.float 0.0976562
+	.float 0.0625
+	.float 0.0351562
+	.float 0.015625
+	.float 0.00390625
+	.float 0.0
+.endobj relTableSqRoot__13JASOscillator
+.obj relTableSquare__13JASOscillator, global
 	.float 1.0
-	.4byte 0x3F77DEF8
-	.4byte 0x3F6F774B
-	.4byte 0x3F66C15D
-	.4byte 0x3F5DB3D0
-	.4byte 0x3F544391
-	.4byte 0x3F4A62BB
-	.4byte 0x3F400000
-	.4byte 0x3F3504F7
-	.4byte 0x3F295400
-	.4byte 0x3F1CC469
-	.4byte 0x3F0F1BBD
+	.float 0.968246
+	.float 0.935414
+	.float 0.901388
+	.float 0.866025
+	.float 0.829156
+	.float 0.790569
+	.float 0.75
+	.float 0.707107
+	.float 0.661438
+	.float 0.612372
+	.float 0.559017
 	.float 0.5
-	.4byte 0x3EDDB3E1
-	.4byte 0x3EB504E6
+	.float 0.433013
+	.float 0.353553
 	.float 0.25
-	.4byte 0x00000000
-.global oscTableForceStop__13JASOscillator
-oscTableForceStop__13JASOscillator:
+	.float 0.0
+.endobj relTableSquare__13JASOscillator
+.obj oscTableForceStop__13JASOscillator, global
 	.4byte 0x0000000F
 	.4byte 0x0000000F
 	.4byte 0x00000000
+.endobj oscTableForceStop__13JASOscillator
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516DD8
-lbl_80516DD8:
-	.4byte 0x00000000
-.global lbl_80516DDC
-lbl_80516DDC:
+.obj lbl_80516DD8, local
+	.float 0.0
+.endobj lbl_80516DD8
+.obj lbl_80516DDC, local
 	.float 1.0
-.global lbl_80516DE0
-lbl_80516DE0:
-	.4byte 0x42A00000
-.global lbl_80516DE4
-lbl_80516DE4:
-	.4byte 0x44160000
-.global lbl_80516DE8
-lbl_80516DE8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_80516DF0
-lbl_80516DF0:
-	.4byte 0x47000000
-	.4byte 0x00000000
-.global lbl_80516DF8
-lbl_80516DF8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80516E00
-lbl_80516E00:
-	.4byte 0x41800000
-	.4byte 0x00000000
-.global lbl_80516E08
-lbl_80516E08:
-	.4byte 0x43300000
-	.4byte 0x00000000
+.endobj lbl_80516DDC
+.obj lbl_80516DE0, local
+	.float 80.0
+.endobj lbl_80516DE0
+.obj lbl_80516DE4, local
+	.float 600.0
+.endobj lbl_80516DE4
+.balign 8
+.obj lbl_80516DE8, local
+	.8byte 0x4330000080000000
+.endobj lbl_80516DE8
+.obj lbl_80516DF0, local
+	.float 32768.0
+.endobj lbl_80516DF0
+.balign 8
+.obj lbl_80516DF8, local
+	.double 0.0
+.endobj lbl_80516DF8
+.obj lbl_80516E00, local
+	.float 16.0
+.endobj lbl_80516E00
+.balign 8
+.obj lbl_80516E08, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516E08
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__13JASOscillatorFv
-init__13JASOscillatorFv:
+.fn init__13JASOscillatorFv, global
 /* 800A2B78 0009FAB8  38 00 00 00 */	li r0, 0
 /* 800A2B7C 0009FABC  C0 02 8A 78 */	lfs f0, lbl_80516DD8@sda21(r2)
 /* 800A2B80 0009FAC0  90 03 00 00 */	stw r0, 0(r3)
@@ -115,9 +112,9 @@ init__13JASOscillatorFv:
 /* 800A2BA0 0009FAE0  B0 03 00 1A */	sth r0, 0x1a(r3)
 /* 800A2BA4 0009FAE4  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 800A2BA8 0009FAE8  4E 80 00 20 */	blr 
+.endfn init__13JASOscillatorFv
 
-.global initStart__13JASOscillatorFPCQ213JASOscillator4Data
-initStart__13JASOscillatorFPCQ213JASOscillator4Data:
+.fn initStart__13JASOscillatorFPCQ213JASOscillator4Data, global
 /* 800A2BAC 0009FAEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A2BB0 0009FAF0  7C 08 02 A6 */	mflr r0
 /* 800A2BB4 0009FAF4  28 04 00 00 */	cmplwi r4, 0
@@ -155,9 +152,9 @@ initStart__13JASOscillatorFPCQ213JASOscillator4Data:
 /* 800A2C28 0009FB68  7C 08 03 A6 */	mtlr r0
 /* 800A2C2C 0009FB6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A2C30 0009FB70  4E 80 00 20 */	blr 
+.endfn initStart__13JASOscillatorFPCQ213JASOscillator4Data
 
-.global incCounter__13JASOscillatorFv
-incCounter__13JASOscillatorFv:
+.fn incCounter__13JASOscillatorFv, global
 /* 800A2C34 0009FB74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A2C38 0009FB78  7C 08 02 A6 */	mflr r0
 /* 800A2C3C 0009FB7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -217,9 +214,9 @@ incCounter__13JASOscillatorFv:
 /* 800A2CF0 0009FC30  7C 08 03 A6 */	mtlr r0
 /* 800A2CF4 0009FC34  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A2CF8 0009FC38  4E 80 00 20 */	blr 
+.endfn incCounter__13JASOscillatorFv
 
-.global getValue__13JASOscillatorCFv
-getValue__13JASOscillatorCFv:
+.fn getValue__13JASOscillatorCFv, global
 /* 800A2CFC 0009FC3C  88 03 00 1C */	lbz r0, 0x1c(r3)
 /* 800A2D00 0009FC40  28 00 00 00 */	cmplwi r0, 0
 /* 800A2D04 0009FC44  40 82 00 0C */	bne .L_800A2D10
@@ -232,9 +229,9 @@ getValue__13JASOscillatorCFv:
 /* 800A2D1C 0009FC5C  C0 04 00 14 */	lfs f0, 0x14(r4)
 /* 800A2D20 0009FC60  EC 22 00 7A */	fmadds f1, f2, f1, f0
 /* 800A2D24 0009FC64  4E 80 00 20 */	blr 
+.endfn getValue__13JASOscillatorCFv
 
-.global release__13JASOscillatorFv
-release__13JASOscillatorFv:
+.fn release__13JASOscillatorFv, global
 /* 800A2D28 0009FC68  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A2D2C 0009FC6C  7C 08 02 A6 */	mflr r0
 /* 800A2D30 0009FC70  90 01 00 34 */	stw r0, 0x34(r1)
@@ -333,9 +330,9 @@ release__13JASOscillatorFv:
 /* 800A2E84 0009FDC4  7C 08 03 A6 */	mtlr r0
 /* 800A2E88 0009FDC8  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A2E8C 0009FDCC  4E 80 00 20 */	blr 
+.endfn release__13JASOscillatorFv
 
-.global calc__13JASOscillatorFPCs
-calc__13JASOscillatorFPCs:
+.fn calc__13JASOscillatorFPCs, global
 /* 800A2E90 0009FDD0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800A2E94 0009FDD4  7C 08 02 A6 */	mflr r0
 /* 800A2E98 0009FDD8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -584,3 +581,4 @@ calc__13JASOscillatorFPCs:
 /* 800A31F8 000A0138  7C 08 03 A6 */	mtlr r0
 /* 800A31FC 000A013C  38 21 00 50 */	addi r1, r1, 0x50
 /* 800A3200 000A0140  4E 80 00 20 */	blr 
+.endfn calc__13JASOscillatorFPCs

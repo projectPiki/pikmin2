@@ -27,8 +27,7 @@
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A43D8
-lbl_804A43D8:
+.obj lbl_804A43D8, local
 	.4byte .L_800A4580
 	.4byte .L_800A4554
 	.4byte .L_800A455C
@@ -37,8 +36,8 @@ lbl_804A43D8:
 	.4byte .L_800A456C
 	.4byte .L_800A4574
 	.4byte .L_800A457C
-.global lbl_804A43F8
-lbl_804A43F8:
+.endobj lbl_804A43D8
+.obj lbl_804A43F8, local
 	.4byte .L_800A44A0
 	.4byte .L_800A4474
 	.4byte .L_800A447C
@@ -47,66 +46,64 @@ lbl_804A43F8:
 	.4byte .L_800A448C
 	.4byte .L_800A4494
 	.4byte .L_800A449C
-.global __vt__10JASChannel
-__vt__10JASChannel:
+.endobj lbl_804A43F8
+.obj __vt__10JASChannel, global
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte "@16@__dt__10JASChannelFv"
 	.4byte __dt__10JASChannelFv
-.global "__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>"
-"__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>":
+.endobj __vt__10JASChannel
+.obj "__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv"
+.endobj "__vt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516E10
-lbl_80516E10:
+.obj lbl_80516E10, local
 	.float 1.0
-.global lbl_80516E14
-lbl_80516E14:
+.endobj lbl_80516E10
+.obj lbl_80516E14, local
 	.float 0.5
-.global lbl_80516E18
-lbl_80516E18:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80516E20
-lbl_80516E20:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
-.global lbl_80516E28
-lbl_80516E28:
-	.4byte 0x45800000
-.global lbl_80516E2C
-lbl_80516E2C:
-	.4byte 0x42FF0000
-.global lbl_80516E30
-lbl_80516E30:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global lbl_80516E38
-lbl_80516E38:
-	.4byte 0xC3A2F983
-.global lbl_80516E3C
-lbl_80516E3C:
-	.4byte 0x43A2F983
-.global lbl_80516E40
-lbl_80516E40:
-	.4byte 0x3FC90FDB
-.global lbl_80516E44
-lbl_80516E44:
-	.4byte 0x3EA6F933
-.global lbl_80516E48
-lbl_80516E48:
-	.4byte 0x3EB20D99
-	.4byte 0x00000000
+.endobj lbl_80516E14
+.obj lbl_80516E18, local
+	.float 0.0
+.endobj lbl_80516E18
+.balign 8
+.obj lbl_80516E20, local
+	.double 0.5
+.endobj lbl_80516E20
+.obj lbl_80516E28, local
+	.float 4096.0
+.endobj lbl_80516E28
+.obj lbl_80516E2C, local
+	.float 127.5
+.endobj lbl_80516E2C
+.balign 8
+.obj lbl_80516E30, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516E30
+.obj lbl_80516E38, local
+	.float -325.9493
+.endobj lbl_80516E38
+.obj lbl_80516E3C, local
+	.float 325.9493
+.endobj lbl_80516E3C
+.obj lbl_80516E40, local # half-pi
+	.float 1.5707964
+.endobj lbl_80516E40
+.obj lbl_80516E44, local
+	.float 0.32612
+.endobj lbl_80516E44
+.obj lbl_80516E48, local
+	.float 0.34776
+.endobj lbl_80516E48
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
-__ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
+.fn __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv, global
 /* 800A3204 000A0144  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A3208 000A0148  7C 08 02 A6 */	mflr r0
 /* 800A320C 000A014C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -196,9 +193,9 @@ __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
 /* 800A3358 000A0298  7C 08 03 A6 */	mtlr r0
 /* 800A335C 000A029C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A3360 000A02A0  4E 80 00 20 */	blr 
+.endfn __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
 
-.global __ct__13JASOscillatorFv
-__ct__13JASOscillatorFv:
+.fn __ct__13JASOscillatorFv, weak
 /* 800A3364 000A02A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A3368 000A02A8  7C 08 02 A6 */	mflr r0
 /* 800A336C 000A02AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -211,9 +208,9 @@ __ct__13JASOscillatorFv:
 /* 800A3388 000A02C8  7C 08 03 A6 */	mtlr r0
 /* 800A338C 000A02CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A3390 000A02D0  4E 80 00 20 */	blr 
+.endfn __ct__13JASOscillatorFv
 
-.global "__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv"
-"__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv":
+.fn "__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv", weak
 /* 800A3394 000A02D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A3398 000A02D8  7C 08 02 A6 */	mflr r0
 /* 800A339C 000A02DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -259,9 +256,9 @@ __ct__13JASOscillatorFv:
 /* 800A342C 000A036C  7C 08 03 A6 */	mtlr r0
 /* 800A3430 000A0370  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A3434 000A0374  4E 80 00 20 */	blr 
+.endfn "__dt__109JASPoolAllocObject<10JASChannel,Q217JASCreationPolicy15NewFromRootHeap,Q217JASThreadingModel14SingleThreaded>Fv"
 
-.global __dt__10JASChannelFv
-__dt__10JASChannelFv:
+.fn __dt__10JASChannelFv, global
 /* 800A3438 000A0378  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A343C 000A037C  7C 08 02 A6 */	mflr r0
 /* 800A3440 000A0380  90 01 00 24 */	stw r0, 0x24(r1)
@@ -337,9 +334,9 @@ __dt__10JASChannelFv:
 /* 800A3538 000A0478  7C 08 03 A6 */	mtlr r0
 /* 800A353C 000A047C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A3540 000A0480  4E 80 00 20 */	blr 
+.endfn __dt__10JASChannelFv
 
-.global setOscInit__10JASChannelFiPCQ213JASOscillator4Data
-setOscInit__10JASChannelFiPCQ213JASOscillator4Data:
+.fn setOscInit__10JASChannelFiPCQ213JASOscillator4Data, global
 /* 800A3544 000A0484  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A3548 000A0488  7C 08 02 A6 */	mflr r0
 /* 800A354C 000A048C  54 84 28 34 */	slwi r4, r4, 5
@@ -353,21 +350,21 @@ setOscInit__10JASChannelFiPCQ213JASOscillator4Data:
 /* 800A356C 000A04AC  7C 08 03 A6 */	mtlr r0
 /* 800A3570 000A04B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A3574 000A04B4  4E 80 00 20 */	blr 
+.endfn setOscInit__10JASChannelFiPCQ213JASOscillator4Data
 
-.global setMixConfig__10JASChannelFiUs
-setMixConfig__10JASChannelFiUs:
+.fn setMixConfig__10JASChannelFiUs, global
 /* 800A3578 000A04B8  54 80 08 3C */	slwi r0, r4, 1
 /* 800A357C 000A04BC  7C 63 02 14 */	add r3, r3, r0
 /* 800A3580 000A04C0  B0 A3 00 B0 */	sth r5, 0xb0(r3)
 /* 800A3584 000A04C4  4E 80 00 20 */	blr 
+.endfn setMixConfig__10JASChannelFiUs
 
-.global directReleaseOsc__10JASChannelFUs
-directReleaseOsc__10JASChannelFUs:
+.fn directReleaseOsc__10JASChannelFUs, global
 /* 800A3588 000A04C8  B0 83 00 4A */	sth r4, 0x4a(r3)
 /* 800A358C 000A04CC  4E 80 00 20 */	blr 
+.endfn directReleaseOsc__10JASChannelFUs
 
-.global copyOsc__10JASChannelFiPQ213JASOscillator4Data
-copyOsc__10JASChannelFiPQ213JASOscillator4Data:
+.fn copyOsc__10JASChannelFiPQ213JASOscillator4Data, global
 /* 800A3590 000A04D0  54 80 28 34 */	slwi r0, r4, 5
 /* 800A3594 000A04D4  7C 63 02 14 */	add r3, r3, r0
 /* 800A3598 000A04D8  80 63 00 30 */	lwz r3, 0x30(r3)
@@ -386,9 +383,9 @@ copyOsc__10JASChannelFiPQ213JASOscillator4Data:
 /* 800A35CC 000A050C  C0 03 00 14 */	lfs f0, 0x14(r3)
 /* 800A35D0 000A0510  D0 05 00 14 */	stfs f0, 0x14(r5)
 /* 800A35D4 000A0514  4E 80 00 20 */	blr 
+.endfn copyOsc__10JASChannelFiPQ213JASOscillator4Data
 
-.global overwriteOsc__10JASChannelFiPQ213JASOscillator4Data
-overwriteOsc__10JASChannelFiPQ213JASOscillator4Data:
+.fn overwriteOsc__10JASChannelFiPQ213JASOscillator4Data, global
 /* 800A35D8 000A0518  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A35DC 000A051C  7C 08 02 A6 */	mflr r0
 /* 800A35E0 000A0520  54 84 28 34 */	slwi r4, r4, 5
@@ -402,9 +399,9 @@ overwriteOsc__10JASChannelFiPQ213JASOscillator4Data:
 /* 800A3600 000A0540  7C 08 03 A6 */	mtlr r0
 /* 800A3604 000A0544  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A3608 000A0548  4E 80 00 20 */	blr 
+.endfn overwriteOsc__10JASChannelFiPQ213JASOscillator4Data
 
-.global setKeySweepTarget__10JASChannelFUcUl
-setKeySweepTarget__10JASChannelFUcUl:
+.fn setKeySweepTarget__10JASChannelFUcUl, global
 /* 800A360C 000A054C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A3610 000A0550  7C 08 02 A6 */	mflr r0
 /* 800A3614 000A0554  90 01 00 14 */	stw r0, 0x14(r1)
@@ -444,14 +441,14 @@ setKeySweepTarget__10JASChannelFUcUl:
 /* 800A3688 000A05C8  7C 08 03 A6 */	mtlr r0
 /* 800A368C 000A05CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A3690 000A05D0  4E 80 00 20 */	blr 
+.endfn setKeySweepTarget__10JASChannelFUcUl
 
-.global setPauseFlag__10JASChannelFb
-setPauseFlag__10JASChannelFb:
+.fn setPauseFlag__10JASChannelFb, global
 /* 800A3694 000A05D4  98 83 00 1C */	stb r4, 0x1c(r3)
 /* 800A3698 000A05D8  4E 80 00 20 */	blr 
+.endfn setPauseFlag__10JASChannelFb
 
-.global setPanPower__10JASChannelFfff
-setPanPower__10JASChannelFfff:
+.fn setPanPower__10JASChannelFfff, global
 /* 800A369C 000A05DC  EC 01 10 2A */	fadds f0, f1, f2
 /* 800A36A0 000A05E0  EC 83 00 2A */	fadds f4, f3, f0
 /* 800A36A4 000A05E4  EC 01 20 24 */	fdivs f0, f1, f4
@@ -461,9 +458,9 @@ setPanPower__10JASChannelFfff:
 /* 800A36B4 000A05F4  D0 23 01 10 */	stfs f1, 0x110(r3)
 /* 800A36B8 000A05F8  D0 03 01 14 */	stfs f0, 0x114(r3)
 /* 800A36BC 000A05FC  4E 80 00 20 */	blr 
+.endfn setPanPower__10JASChannelFfff
 
-.global play__10JASChannelFv
-play__10JASChannelFv:
+.fn play__10JASChannelFv, global
 /* 800A36C0 000A0600  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A36C4 000A0604  7C 08 02 A6 */	mflr r0
 /* 800A36C8 000A0608  90 01 00 14 */	stw r0, 0x14(r1)
@@ -500,9 +497,9 @@ play__10JASChannelFv:
 /* 800A3738 000A0678  7C 08 03 A6 */	mtlr r0
 /* 800A373C 000A067C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A3740 000A0680  4E 80 00 20 */	blr 
+.endfn play__10JASChannelFv
 
-.global playForce__10JASChannelFv
-playForce__10JASChannelFv:
+.fn playForce__10JASChannelFv, global
 /* 800A3744 000A0684  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A3748 000A0688  7C 08 02 A6 */	mflr r0
 /* 800A374C 000A068C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -539,9 +536,9 @@ playForce__10JASChannelFv:
 /* 800A37BC 000A06FC  7C 08 03 A6 */	mtlr r0
 /* 800A37C0 000A0700  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A37C4 000A0704  4E 80 00 20 */	blr 
+.endfn playForce__10JASChannelFv
 
-.global release__10JASChannelFUs
-release__10JASChannelFUs:
+.fn release__10JASChannelFUs, global
 /* 800A37C8 000A0708  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A37CC 000A070C  7C 08 02 A6 */	mflr r0
 /* 800A37D0 000A0710  90 01 00 24 */	stw r0, 0x24(r1)
@@ -584,9 +581,9 @@ release__10JASChannelFUs:
 /* 800A3854 000A0794  7C 08 03 A6 */	mtlr r0
 /* 800A3858 000A0798  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A385C 000A079C  4E 80 00 20 */	blr 
+.endfn release__10JASChannelFUs
 
-.global updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ210JASChannel14EffectOscParam
-updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ210JASChannel14EffectOscParam:
+.fn updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ210JASChannel14EffectOscParam, global
 /* 800A3860 000A07A0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800A3864 000A07A4  7C 08 02 A6 */	mflr r0
 /* 800A3868 000A07A8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -758,9 +755,9 @@ updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ210JASChannel14Effect
 /* 800A3AB0 000A09F0  7C 08 03 A6 */	mtlr r0
 /* 800A3AB4 000A09F4  38 21 00 70 */	addi r1, r1, 0x70
 /* 800A3AB8 000A09F8  4E 80 00 20 */	blr 
+.endfn updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ210JASChannel14EffectOscParam
 
-.global dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv
-dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv:
+.fn dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv, global
 /* 800A3ABC 000A09FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A3AC0 000A0A00  7C 08 02 A6 */	mflr r0
 /* 800A3AC4 000A0A04  2C 03 00 01 */	cmpwi r3, 1
@@ -808,9 +805,9 @@ dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv:
 /* 800A3B50 000A0A90  7C 08 03 A6 */	mtlr r0
 /* 800A3B54 000A0A94  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A3B58 000A0A98  4E 80 00 20 */	blr 
+.endfn dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv
 
-.global initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
-initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel:
+.fn initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel, global
 /* 800A3B5C 000A0A9C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 800A3B60 000A0AA0  7C 08 02 A6 */	mflr r0
 /* 800A3B64 000A0AA4  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1001,9 +998,9 @@ initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel:
 /* 800A3DF4 000A0D34  7C 08 03 A6 */	mtlr r0
 /* 800A3DF8 000A0D38  38 21 00 50 */	addi r1, r1, 0x50
 /* 800A3DFC 000A0D3C  4E 80 00 20 */	blr 
+.endfn initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
 
-.global updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
-updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel:
+.fn updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel, global
 /* 800A3E00 000A0D40  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800A3E04 000A0D44  7C 08 02 A6 */	mflr r0
 /* 800A3E08 000A0D48  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1196,9 +1193,9 @@ updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel:
 /* 800A40B0 000A0FF0  7C 08 03 A6 */	mtlr r0
 /* 800A40B4 000A0FF4  38 21 00 40 */	addi r1, r1, 0x40
 /* 800A40B8 000A0FF8  4E 80 00 20 */	blr 
+.endfn updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
 
-.global calcEffect__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc
-calcEffect__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc:
+.fn calcEffect__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc, global
 /* 800A40BC 000A0FFC  54 A0 06 3E */	clrlwi r0, r5, 0x18
 /* 800A40C0 000A1000  3C A0 80 48 */	lis r5, calc_sw_table__10JASChannel@ha
 /* 800A40C4 000A1004  1C C0 00 03 */	mulli r6, r0, 3
@@ -1257,9 +1254,9 @@ calcEffect__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc:
 /* 800A4170 000A10B0  C0 04 00 08 */	lfs f0, 8(r4)
 /* 800A4174 000A10B4  EC 22 08 3A */	fmadds f1, f2, f0, f1
 /* 800A4178 000A10B8  4E 80 00 20 */	blr 
+.endfn calcEffect__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc
 
-.global calcPan__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc
-calcPan__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc:
+.fn calcPan__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc, global
 /* 800A417C 000A10BC  54 A0 06 3E */	clrlwi r0, r5, 0x18
 /* 800A4180 000A10C0  3C A0 80 48 */	lis r5, calc_sw_table__10JASChannel@ha
 /* 800A4184 000A10C4  1C C0 00 03 */	mulli r6, r0, 3
@@ -1335,9 +1332,9 @@ calcPan__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc:
 /* 800A426C 000A11AC  C0 02 8A B4 */	lfs f0, lbl_80516E14@sda21(r2)
 /* 800A4270 000A11B0  EC 21 00 2A */	fadds f1, f1, f0
 /* 800A4274 000A11B4  4E 80 00 20 */	blr 
+.endfn calcPan__10JASChannelFPCQ210JASChannel9PanVectorPCQ210JASChannel9PanVectorUc
 
-.global updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff
-updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff:
+.fn updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff, global
 /* 800A4278 000A11B8  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 800A427C 000A11BC  7C 08 02 A6 */	mflr r0
 /* 800A4280 000A11C0  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1413,9 +1410,9 @@ updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff:
 /* 800A438C 000A12CC  7C 08 03 A6 */	mtlr r0
 /* 800A4390 000A12D0  38 21 00 80 */	addi r1, r1, 0x80
 /* 800A4394 000A12D4  4E 80 00 20 */	blr 
+.endfn updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff
 
-.global updateMixer__10JASChannelFffffPUs
-updateMixer__10JASChannelFffffPUs:
+.fn updateMixer__10JASChannelFffffPUs, global
 /* 800A4398 000A12D8  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 800A439C 000A12DC  7C 08 02 A6 */	mflr r0
 /* 800A43A0 000A12E0  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -1695,9 +1692,9 @@ updateMixer__10JASChannelFffffPUs:
 /* 800A4760 000A16A0  7C 08 03 A6 */	mtlr r0
 /* 800A4764 000A16A4  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 800A4768 000A16A8  4E 80 00 20 */	blr 
+.endfn updateMixer__10JASChannelFffffPUs
 
-.global sweepProc__10JASChannelFv
-sweepProc__10JASChannelFv:
+.fn sweepProc__10JASChannelFv, global
 /* 800A476C 000A16AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A4770 000A16B0  80 83 00 C4 */	lwz r4, 0xc4(r3)
 /* 800A4774 000A16B4  28 04 00 00 */	cmplwi r4, 0
@@ -1720,15 +1717,16 @@ sweepProc__10JASChannelFv:
 .L_800A47B8:
 /* 800A47B8 000A16F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A47BC 000A16FC  4E 80 00 20 */	blr 
+.endfn sweepProc__10JASChannelFv
 
-.global free__10JASChannelFv
-free__10JASChannelFv:
+.fn free__10JASChannelFv, global
 /* 800A47C0 000A1700  38 00 00 00 */	li r0, 0
 /* 800A47C4 000A1704  90 03 00 24 */	stw r0, 0x24(r3)
 /* 800A47C8 000A1708  90 03 00 28 */	stw r0, 0x28(r3)
 /* 800A47CC 000A170C  4E 80 00 20 */	blr 
+.endfn free__10JASChannelFv
 
-.global "@16@__dt__10JASChannelFv"
-"@16@__dt__10JASChannelFv":
+.fn "@16@__dt__10JASChannelFv", weak
 /* 800A47D0 000A1710  38 63 FF F0 */	addi r3, r3, -16
 /* 800A47D4 000A1714  4B FF EC 64 */	b __dt__10JASChannelFv
+.endfn "@16@__dt__10JASChannelFv"

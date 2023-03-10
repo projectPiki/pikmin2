@@ -1,61 +1,59 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global OSC_RELEASE_TABLE__10JASBankMgr
-OSC_RELEASE_TABLE__10JASBankMgr:
+.obj OSC_RELEASE_TABLE__10JASBankMgr, local
 	.4byte 0x0001000A
 	.4byte 0x0000000F
 	.4byte 0x00000000
-.global OSC_ENV__10JASBankMgr
-OSC_ENV__10JASBankMgr:
-	.4byte 0x00000000
+.endobj OSC_RELEASE_TABLE__10JASBankMgr
+.obj OSC_ENV__10JASBankMgr, local
+	.4byte 0
 	.float 1.0
 	.4byte 0x00000000
 	.4byte OSC_RELEASE_TABLE__10JASBankMgr
 	.float 1.0
-	.4byte 0x00000000
+	.float 0.0
+.endobj OSC_ENV__10JASBankMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sTableSize__10JASBankMgr
-sTableSize__10JASBankMgr:
+.obj sTableSize__10JASBankMgr, local
 	.skip 0x4
-.global sBankArray__10JASBankMgr
-sBankArray__10JASBankMgr:
+.endobj sTableSize__10JASBankMgr
+.obj sBankArray__10JASBankMgr, local
 	.skip 0x4
-.global sVir2PhyTable__10JASBankMgr
-sVir2PhyTable__10JASBankMgr:
+.endobj sBankArray__10JASBankMgr
+.obj sVir2PhyTable__10JASBankMgr, local
 	.skip 0x4
-.global "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"
-"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>":
+.endobj sVir2PhyTable__10JASBankMgr
+.obj "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>", weak
 	.skip 0x4
+.endobj "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516C88
-lbl_80516C88:
+.obj lbl_80516C88, local
 	.float 1.0
-.global lbl_80516C8C
-lbl_80516C8C:
+.endobj lbl_80516C88
+.obj lbl_80516C8C, local
 	.float 0.5
-.global lbl_80516C90
-lbl_80516C90:
-	.4byte 0x00000000
-.global lbl_80516C94
-lbl_80516C94:
-	.4byte 0x42FE0000
-.global lbl_80516C98
-lbl_80516C98:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global lbl_80516CA0
-lbl_80516CA0:
-	.4byte 0x4682C008
-	.4byte 0x00000000
+.endobj lbl_80516C8C
+.obj lbl_80516C90, local
+	.float 0.0
+.endobj lbl_80516C90
+.obj lbl_80516C94, local
+	.float 127.0
+.endobj lbl_80516C94
+.balign 8
+.obj lbl_80516C98, local
+	.8byte 0x4330000000000000
+.endobj lbl_80516C98
+.obj lbl_80516CA0, local
+	.float 16736.016
+.endobj lbl_80516CA0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__10JASBankMgrFi
-init__10JASBankMgrFi:
+.fn init__10JASBankMgrFi, global
 /* 80098F34 00095E74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80098F38 00095E78  7C 08 02 A6 */	mflr r0
 /* 80098F3C 00095E7C  38 A0 00 00 */	li r5, 0
@@ -138,9 +136,9 @@ init__10JASBankMgrFi:
 /* 80099060 00095FA0  7C 08 03 A6 */	mtlr r0
 /* 80099064 00095FA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80099068 00095FA8  4E 80 00 20 */	blr 
+.endfn init__10JASBankMgrFi
 
-.global registBankBNK__10JASBankMgrFiPv
-registBankBNK__10JASBankMgrFiPv:
+.fn registBankBNK__10JASBankMgrFiPv, global
 /* 8009906C 00095FAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80099070 00095FB0  7C 08 02 A6 */	mflr r0
 /* 80099074 00095FB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -169,25 +167,25 @@ registBankBNK__10JASBankMgrFiPv:
 /* 800990C8 00096008  7C 08 03 A6 */	mtlr r0
 /* 800990CC 0009600C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800990D0 00096010  4E 80 00 20 */	blr 
+.endfn registBankBNK__10JASBankMgrFiPv
 
-.global getPhysicalNumber__10JASBankMgrFUs
-getPhysicalNumber__10JASBankMgrFUs:
+.fn getPhysicalNumber__10JASBankMgrFUs, global
 /* 800990D4 00096014  80 8D 8A 20 */	lwz r4, sVir2PhyTable__10JASBankMgr@sda21(r13)
 /* 800990D8 00096018  54 60 0B FC */	rlwinm r0, r3, 1, 0xf, 0x1e
 /* 800990DC 0009601C  7C 64 02 2E */	lhzx r3, r4, r0
 /* 800990E0 00096020  4E 80 00 20 */	blr 
+.endfn getPhysicalNumber__10JASBankMgrFUs
 
-.global setVir2PhyTable__10JASBankMgrFUli
-setVir2PhyTable__10JASBankMgrFUli:
+.fn setVir2PhyTable__10JASBankMgrFUli, global
 /* 800990E4 00096024  28 03 FF FF */	cmplwi r3, 0xffff
 /* 800990E8 00096028  4D 82 00 20 */	beqlr 
 /* 800990EC 0009602C  80 AD 8A 20 */	lwz r5, sVir2PhyTable__10JASBankMgr@sda21(r13)
 /* 800990F0 00096030  54 60 08 3C */	slwi r0, r3, 1
 /* 800990F4 00096034  7C 85 03 2E */	sthx r4, r5, r0
 /* 800990F8 00096038  4E 80 00 20 */	blr 
+.endfn setVir2PhyTable__10JASBankMgrFUli
 
-.global assignWaveBank__10JASBankMgrFii
-assignWaveBank__10JASBankMgrFii:
+.fn assignWaveBank__10JASBankMgrFii, global
 /* 800990FC 0009603C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80099100 00096040  7C 08 02 A6 */	mflr r0
 /* 80099104 00096044  2C 03 00 00 */	cmpwi r3, 0
@@ -227,9 +225,9 @@ assignWaveBank__10JASBankMgrFii:
 /* 80099174 000960B4  7C 08 03 A6 */	mtlr r0
 /* 80099178 000960B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009917C 000960BC  4E 80 00 20 */	blr 
+.endfn assignWaveBank__10JASBankMgrFii
 
-.global noteOn__10JASBankMgrFiiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
-noteOn__10JASBankMgrFiiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
+.fn noteOn__10JASBankMgrFiiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv, global
 /* 80099180 000960C0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80099184 000960C4  7C 08 02 A6 */	mflr r0
 /* 80099188 000960C8  7C 8A 23 78 */	mr r10, r4
@@ -467,9 +465,9 @@ noteOn__10JASBankMgrFiiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
 /* 800994D4 00096414  7C 08 03 A6 */	mtlr r0
 /* 800994D8 00096418  38 21 00 60 */	addi r1, r1, 0x60
 /* 800994DC 0009641C  4E 80 00 20 */	blr 
+.endfn noteOn__10JASBankMgrFiiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
 
-.global noteOnOsc__10JASBankMgrFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
-noteOnOsc__10JASBankMgrFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
+.fn noteOnOsc__10JASBankMgrFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv, local
 /* 800994E0 00096420  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800994E4 00096424  7C 08 02 A6 */	mflr r0
 /* 800994E8 00096428  90 01 00 44 */	stw r0, 0x44(r1)
@@ -570,9 +568,9 @@ noteOnOsc__10JASBankMgrFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
 /* 80099648 00096588  7C 08 03 A6 */	mtlr r0
 /* 8009964C 0009658C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80099650 00096590  4E 80 00 20 */	blr 
+.endfn noteOnOsc__10JASBankMgrFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
 
-.global gateOn__10JASBankMgrFP10JASChannelUcUc
-gateOn__10JASBankMgrFP10JASChannelUcUc:
+.fn gateOn__10JASBankMgrFP10JASChannelUcUc, global
 /* 80099654 00096594  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80099658 00096598  7C 08 02 A6 */	mflr r0
 /* 8009965C 0009659C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -617,3 +615,4 @@ gateOn__10JASBankMgrFP10JASChannelUcUc:
 /* 800996F0 00096630  7C 08 03 A6 */	mtlr r0
 /* 800996F4 00096634  38 21 00 20 */	addi r1, r1, 0x20
 /* 800996F8 00096638  4E 80 00 20 */	blr 
+.endfn gateOn__10JASBankMgrFP10JASChannelUcUc

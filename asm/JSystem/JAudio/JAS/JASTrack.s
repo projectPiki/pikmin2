@@ -64,65 +64,82 @@
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sCallBackFunc__8JASTrack
-sCallBackFunc__8JASTrack:
+.obj sCallBackFunc__8JASTrack, global
 	.skip 0x4
-.global sParser__8JASTrack
-sParser__8JASTrack:
+.endobj sCallBackFunc__8JASTrack
+.obj sParser__8JASTrack, global
+	.skip 0x1
+.endobj sParser__8JASTrack
+.balign 4
+.obj sFreeList__8JASTrack, global
 	.skip 0x4
-.global sFreeList__8JASTrack
-sFreeList__8JASTrack:
+.endobj sFreeList__8JASTrack
+.obj sFreeListEnd__8JASTrack, global
 	.skip 0x4
-.global sFreeListEnd__8JASTrack
-sFreeListEnd__8JASTrack:
-	.skip 0x4
+.endobj sFreeListEnd__8JASTrack
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80516D78:
-	.4byte 0x00000000
-lbl_80516D7C:
+.obj lbl_80516D78, local
+	.float 0.0
+.endobj lbl_80516D78
+.obj lbl_80516D7C, local
 	.float 1.0
+.endobj lbl_80516D7C
 .balign 8
-lbl_80516D80:
+.obj lbl_80516D80, local
 	.8byte 0x4330000000000000
-lbl_80516D88:
+.endobj lbl_80516D80
+.obj lbl_80516D88, local
 	.float 0.5
-lbl_80516D8C:
-	.4byte 0x46FFFE00
-lbl_80516D90:
-	.4byte 0x43000000
-lbl_80516D94:
-	.4byte 0x3FAAAAAB
-lbl_80516D98:
-	.4byte 0x42C80000
-lbl_80516D9C:
-	.4byte 0x42F00000
-lbl_80516DA0:
-	.4byte 0x41200000
+.endobj lbl_80516D88
+.obj lbl_80516D8C, local
+	.float 32767.0
+.endobj lbl_80516D8C
+.obj lbl_80516D90, local
+	.float 128.0
+.endobj lbl_80516D90
+.obj lbl_80516D94, local
+	.float 1.3333334
+.endobj lbl_80516D94
+.obj lbl_80516D98, local
+	.float 100.0
+.endobj lbl_80516D98
+.obj lbl_80516D9C, local
+	.float 120.0
+.endobj lbl_80516D9C
+.obj lbl_80516DA0, local
+	.float 10.0
+.endobj lbl_80516DA0
 .balign 8
-lbl_80516DA8:
+.obj lbl_80516DA8, local
 	.8byte 0x4330000080000000
-lbl_80516DB0:
-	.4byte 0x3D638E39
+.endobj lbl_80516DA8
+.obj lbl_80516DB0, local
+	.float 0.055555556
+.endobj lbl_80516DB0
 .balign 8
-lbl_80516DB8:
-	.4byte 0x40100000
-	.4byte 0x00000000
-lbl_80516DC0:
-	.4byte 0x40800000
-lbl_80516DC4:
-	.4byte 0x3FC90FDB
-lbl_80516DC8:
-	.4byte 0xC3A2F983
-lbl_80516DCC:
-	.4byte 0x43A2F983
-lbl_80516DD0:
-	.4byte 0x41400000
+.obj lbl_80516DB8, local
+	.double 4.0
+.endobj lbl_80516DB8
+.obj lbl_80516DC0, local
+	.float 4.0
+.endobj lbl_80516DC0
+.obj lbl_80516DC4, local # pi/2
+	.float 1.5707964
+.endobj lbl_80516DC4
+.obj lbl_80516DC8, local
+	.float -325.9493
+.endobj lbl_80516DC8
+.obj lbl_80516DCC, local
+	.float 325.9493
+.endobj lbl_80516DCC
+.obj lbl_80516DD0, local
+	.float 12.0
+.endobj lbl_80516DD0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__8JASTrackFv
-__ct__8JASTrackFv:
+.fn __ct__8JASTrackFv, global
 /* 8009EF94 0009BED4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009EF98 0009BED8  7C 08 02 A6 */	mflr r0
 /* 8009EF9C 0009BEDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -198,9 +215,9 @@ __ct__8JASTrackFv:
 /* 8009F0B4 0009BFF4  7C 08 03 A6 */	mtlr r0
 /* 8009F0B8 0009BFF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009F0BC 0009BFFC  4E 80 00 20 */	blr 
+.endfn __ct__8JASTrackFv
 
-.global __ct__Q28JASTrack11TimedParam_Fv
-__ct__Q28JASTrack11TimedParam_Fv:
+.fn __ct__Q28JASTrack11TimedParam_Fv, weak
 /* 8009F0C0 0009C000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009F0C4 0009C004  7C 08 02 A6 */	mflr r0
 /* 8009F0C8 0009C008  90 01 00 14 */	stw r0, 0x14(r1)
@@ -220,18 +237,18 @@ __ct__Q28JASTrack11TimedParam_Fv:
 /* 8009F100 0009C040  7C 08 03 A6 */	mtlr r0
 /* 8009F104 0009C044  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009F108 0009C048  4E 80 00 20 */	blr 
+.endfn __ct__Q28JASTrack11TimedParam_Fv
 
-.global __ct__Q28JASTrack10MoveParam_Fv
-__ct__Q28JASTrack10MoveParam_Fv:
+.fn __ct__Q28JASTrack10MoveParam_Fv, weak
 /* 8009F10C 0009C04C  C0 02 8A 18 */	lfs f0, lbl_80516D78@sda21(r2)
 /* 8009F110 0009C050  D0 03 00 00 */	stfs f0, 0(r3)
 /* 8009F114 0009C054  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8009F118 0009C058  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8009F11C 0009C05C  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 8009F120 0009C060  4E 80 00 20 */	blr 
+.endfn __ct__Q28JASTrack10MoveParam_Fv
 
-.global __ct__Q28JASTrack12AInnerParam_Fv
-__ct__Q28JASTrack12AInnerParam_Fv:
+.fn __ct__Q28JASTrack12AInnerParam_Fv, weak
 /* 8009F124 0009C064  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009F128 0009C068  7C 08 02 A6 */	mflr r0
 /* 8009F12C 0009C06C  C0 02 8A 18 */	lfs f0, lbl_80516D78@sda21(r2)
@@ -308,9 +325,9 @@ __ct__Q28JASTrack12AInnerParam_Fv:
 /* 8009F248 0009C188  7C 08 03 A6 */	mtlr r0
 /* 8009F24C 0009C18C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009F250 0009C190  4E 80 00 20 */	blr 
+.endfn __ct__Q28JASTrack12AInnerParam_Fv
 
-.global init__8JASTrackFv
-init__8JASTrackFv:
+.fn init__8JASTrackFv, global
 /* 8009F254 0009C194  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009F258 0009C198  7C 08 02 A6 */	mflr r0
 /* 8009F25C 0009C19C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -434,9 +451,9 @@ init__8JASTrackFv:
 /* 8009F430 0009C370  7C 08 03 A6 */	mtlr r0
 /* 8009F434 0009C374  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009F438 0009C378  4E 80 00 20 */	blr 
+.endfn init__8JASTrackFv
 
-.global mainProc__8JASTrackFv
-mainProc__8JASTrackFv:
+.fn mainProc__8JASTrackFv, global
 /* 8009F43C 0009C37C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8009F440 0009C380  7C 08 02 A6 */	mflr r0
 /* 8009F444 0009C384  90 01 00 34 */	stw r0, 0x34(r1)
@@ -581,9 +598,9 @@ mainProc__8JASTrackFv:
 /* 8009F63C 0009C57C  7C 08 03 A6 */	mtlr r0
 /* 8009F640 0009C580  38 21 00 30 */	addi r1, r1, 0x30
 /* 8009F644 0009C584  4E 80 00 20 */	blr 
+.endfn mainProc__8JASTrackFv
 
-.global setInterrupt__8JASTrackFUs
-setInterrupt__8JASTrackFUs:
+.fn setInterrupt__8JASTrackFUs, global
 /* 8009F648 0009C588  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009F64C 0009C58C  7C 08 02 A6 */	mflr r0
 /* 8009F650 0009C590  38 63 00 94 */	addi r3, r3, 0x94
@@ -594,9 +611,9 @@ setInterrupt__8JASTrackFUs:
 /* 8009F664 0009C5A4  7C 08 03 A6 */	mtlr r0
 /* 8009F668 0009C5A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009F66C 0009C5AC  4E 80 00 20 */	blr 
+.endfn setInterrupt__8JASTrackFUs
 
-.global tryInterrupt__8JASTrackFv
-tryInterrupt__8JASTrackFv:
+.fn tryInterrupt__8JASTrackFv, global
 /* 8009F670 0009C5B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009F674 0009C5B4  7C 08 02 A6 */	mflr r0
 /* 8009F678 0009C5B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -624,14 +641,14 @@ tryInterrupt__8JASTrackFv:
 /* 8009F6C4 0009C604  7C 08 03 A6 */	mtlr r0
 /* 8009F6C8 0009C608  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009F6CC 0009C60C  4E 80 00 20 */	blr 
+.endfn tryInterrupt__8JASTrackFv
 
-.global assignExtBuffer__8JASTrackFP13JASOuterParam
-assignExtBuffer__8JASTrackFP13JASOuterParam:
+.fn assignExtBuffer__8JASTrackFP13JASOuterParam, global
 /* 8009F6D0 0009C610  90 83 03 3C */	stw r4, 0x33c(r3)
 /* 8009F6D4 0009C614  4E 80 00 20 */	blr 
+.endfn assignExtBuffer__8JASTrackFP13JASOuterParam
 
-.global initTimed__8JASTrackFv
-initTimed__8JASTrackFv:
+.fn initTimed__8JASTrackFv, global
 /* 8009F6D8 0009C618  C0 22 8A 18 */	lfs f1, lbl_80516D78@sda21(r2)
 /* 8009F6DC 0009C61C  38 A0 00 00 */	li r5, 0
 /* 8009F6E0 0009C620  C0 02 8A 1C */	lfs f0, lbl_80516D7C@sda21(r2)
@@ -685,16 +702,16 @@ initTimed__8JASTrackFv:
 /* 8009F798 0009C6D8  D0 23 01 98 */	stfs f1, 0x198(r3)
 /* 8009F79C 0009C6DC  D0 23 01 9C */	stfs f1, 0x19c(r3)
 /* 8009F7A0 0009C6E0  4E 80 00 20 */	blr 
+.endfn initTimed__8JASTrackFv
 
-.global connectBus__8JASTrackFii
-connectBus__8JASTrackFii:
+.fn connectBus__8JASTrackFii, global
 /* 8009F7A4 0009C6E4  54 80 08 3C */	slwi r0, r4, 1
 /* 8009F7A8 0009C6E8  7C 63 02 14 */	add r3, r3, r0
 /* 8009F7AC 0009C6EC  B0 A3 01 2A */	sth r5, 0x12a(r3)
 /* 8009F7B0 0009C6F0  4E 80 00 20 */	blr 
+.endfn connectBus__8JASTrackFii
 
-.global noteOn__8JASTrackFUclllUl
-noteOn__8JASTrackFUclllUl:
+.fn noteOn__8JASTrackFUclllUl, global
 /* 8009F7B4 0009C6F4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8009F7B8 0009C6F8  7C 08 02 A6 */	mflr r0
 /* 8009F7BC 0009C6FC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -807,9 +824,9 @@ noteOn__8JASTrackFUclllUl:
 /* 8009F94C 0009C88C  7C 08 03 A6 */	mtlr r0
 /* 8009F950 0009C890  38 21 00 40 */	addi r1, r1, 0x40
 /* 8009F954 0009C894  4E 80 00 20 */	blr 
+.endfn noteOn__8JASTrackFUclllUl
 
-.global overwriteOsc__8JASTrackFP10JASChannel
-overwriteOsc__8JASTrackFP10JASChannel:
+.fn overwriteOsc__8JASTrackFP10JASChannel, global
 /* 8009F958 0009C898  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009F95C 0009C89C  7C 08 02 A6 */	mflr r0
 /* 8009F960 0009C8A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -855,9 +872,9 @@ overwriteOsc__8JASTrackFP10JASChannel:
 /* 8009F9F0 0009C930  7C 08 03 A6 */	mtlr r0
 /* 8009F9F4 0009C934  38 21 00 20 */	addi r1, r1, 0x20
 /* 8009F9F8 0009C938  4E 80 00 20 */	blr 
+.endfn overwriteOsc__8JASTrackFP10JASChannel
 
-.global noteOff__8JASTrackFUcUs
-noteOff__8JASTrackFUcUs:
+.fn noteOff__8JASTrackFUcUs, global
 /* 8009F9FC 0009C93C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009FA00 0009C940  7C 08 02 A6 */	mflr r0
 /* 8009FA04 0009C944  90 01 00 14 */	stw r0, 0x14(r1)
@@ -888,9 +905,9 @@ noteOff__8JASTrackFUcUs:
 /* 8009FA58 0009C998  7C 08 03 A6 */	mtlr r0
 /* 8009FA5C 0009C99C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009FA60 0009C9A0  4E 80 00 20 */	blr 
+.endfn noteOff__8JASTrackFUcUs
 
-.global gateOn__8JASTrackFUclll
-gateOn__8JASTrackFUclll:
+.fn gateOn__8JASTrackFUclll, global
 /* 8009FA64 0009C9A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009FA68 0009C9A8  7C 08 02 A6 */	mflr r0
 /* 8009FA6C 0009C9AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -918,9 +935,9 @@ gateOn__8JASTrackFUclll:
 /* 8009FABC 0009C9FC  7C 08 03 A6 */	mtlr r0
 /* 8009FAC0 0009CA00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009FAC4 0009CA04  4E 80 00 20 */	blr 
+.endfn gateOn__8JASTrackFUclll
 
-.global checkNoteStop__8JASTrackFl
-checkNoteStop__8JASTrackFl:
+.fn checkNoteStop__8JASTrackFl, global
 /* 8009FAC8 0009CA08  54 80 10 3A */	slwi r0, r4, 2
 /* 8009FACC 0009CA0C  7C 63 02 14 */	add r3, r3, r0
 /* 8009FAD0 0009CA10  80 63 00 C0 */	lwz r3, 0xc0(r3)
@@ -933,9 +950,9 @@ checkNoteStop__8JASTrackFl:
 /* 8009FAE8 0009CA28  7C 00 00 34 */	cntlzw r0, r0
 /* 8009FAEC 0009CA2C  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8009FAF0 0009CA30  4E 80 00 20 */	blr 
+.endfn checkNoteStop__8JASTrackFl
 
-.global oscSetupFull__8JASTrackFUcUlUl
-oscSetupFull__8JASTrackFUcUlUl:
+.fn oscSetupFull__8JASTrackFUcUlUl, global
 /* 8009FAF4 0009CA34  54 80 CF FF */	rlwinm. r0, r4, 0x19, 0x1f, 0x1f
 /* 8009FAF8 0009CA38  54 88 E7 FE */	rlwinm r8, r4, 0x1c, 0x1f, 0x1f
 /* 8009FAFC 0009CA3C  54 8C 07 3E */	clrlwi r12, r4, 0x1c
@@ -997,9 +1014,9 @@ oscSetupFull__8JASTrackFUcUlUl:
 /* 8009FBC8 0009CB08  7C 63 02 14 */	add r3, r3, r0
 /* 8009FBCC 0009CB0C  90 83 02 B4 */	stw r4, 0x2b4(r3)
 /* 8009FBD0 0009CB10  4E 80 00 20 */	blr 
+.endfn oscSetupFull__8JASTrackFUcUlUl
 
-.global oscSetupSimpleEnv__8JASTrackFUcUl
-oscSetupSimpleEnv__8JASTrackFUcUl:
+.fn oscSetupSimpleEnv__8JASTrackFUcUl, global
 /* 8009FBD4 0009CB14  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 8009FBD8 0009CB18  2C 00 00 01 */	cmpwi r0, 1
 /* 8009FBDC 0009CB1C  41 82 00 58 */	beq .L_8009FC34
@@ -1029,9 +1046,9 @@ oscSetupSimpleEnv__8JASTrackFUcUl:
 /* 8009FC38 0009CB78  7C 00 2A 14 */	add r0, r0, r5
 /* 8009FC3C 0009CB7C  90 03 02 B4 */	stw r0, 0x2b4(r3)
 /* 8009FC40 0009CB80  4E 80 00 20 */	blr 
+.endfn oscSetupSimpleEnv__8JASTrackFUcUl
 
-.global oscSetupSimple__8JASTrackFUc
-oscSetupSimple__8JASTrackFUc:
+.fn oscSetupSimple__8JASTrackFUc, global
 /* 8009FC44 0009CB84  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 8009FC48 0009CB88  2C 00 00 01 */	cmpwi r0, 1
 /* 8009FC4C 0009CB8C  41 82 00 5C */	beq .L_8009FCA8
@@ -1091,9 +1108,9 @@ oscSetupSimple__8JASTrackFUc:
 /* 8009FD14 0009CC54  D0 23 02 D0 */	stfs f1, 0x2d0(r3)
 /* 8009FD18 0009CC58  D0 03 02 D4 */	stfs f0, 0x2d4(r3)
 /* 8009FD1C 0009CC5C  4E 80 00 20 */	blr 
+.endfn oscSetupSimple__8JASTrackFUc
 
-.global updateTimedParam__8JASTrackFv
-updateTimedParam__8JASTrackFv:
+.fn updateTimedParam__8JASTrackFv, global
 /* 8009FD20 0009CC60  38 00 00 12 */	li r0, 0x12
 /* 8009FD24 0009CC64  7C 65 1B 78 */	mr r5, r3
 /* 8009FD28 0009CC68  C0 62 8A 18 */	lfs f3, lbl_80516D78@sda21(r2)
@@ -1163,9 +1180,9 @@ updateTimedParam__8JASTrackFv:
 /* 8009FDFC 0009CD3C  60 00 00 02 */	ori r0, r0, 2
 /* 8009FE00 0009CD40  90 03 03 4C */	stw r0, 0x34c(r3)
 /* 8009FE04 0009CD44  4E 80 00 20 */	blr 
+.endfn updateTimedParam__8JASTrackFv
 
-.global updateTrackAll__8JASTrackFv
-updateTrackAll__8JASTrackFv:
+.fn updateTrackAll__8JASTrackFv, global
 /* 8009FE08 0009CD48  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8009FE0C 0009CD4C  7C 08 02 A6 */	mflr r0
 /* 8009FE10 0009CD50  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1430,9 +1447,9 @@ updateTrackAll__8JASTrackFv:
 /* 800A01E4 0009D124  7C 08 03 A6 */	mtlr r0
 /* 800A01E8 0009D128  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 800A01EC 0009D12C  4E 80 00 20 */	blr 
+.endfn updateTrackAll__8JASTrackFv
 
-.global updateTrack__8JASTrackFUl
-updateTrack__8JASTrackFUl:
+.fn updateTrack__8JASTrackFUl, global
 /* 800A01F0 0009D130  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 800A01F4 0009D134  7C 08 02 A6 */	mflr r0
 /* 800A01F8 0009D138  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -1772,9 +1789,9 @@ updateTrack__8JASTrackFUl:
 /* 800A06C4 0009D604  7C 08 03 A6 */	mtlr r0
 /* 800A06C8 0009D608  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 800A06CC 0009D60C  4E 80 00 20 */	blr 
+.endfn updateTrack__8JASTrackFUl
 
-.global updateTempo__8JASTrackFv
-updateTempo__8JASTrackFv:
+.fn updateTempo__8JASTrackFv, global
 /* 800A06D0 0009D610  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800A06D4 0009D614  7C 08 02 A6 */	mflr r0
 /* 800A06D8 0009D618  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2028,14 +2045,14 @@ updateTempo__8JASTrackFv:
 /* 800A0A78 0009D9B8  7C 08 03 A6 */	mtlr r0
 /* 800A0A7C 0009D9BC  38 21 00 40 */	addi r1, r1, 0x40
 /* 800A0A80 0009D9C0  4E 80 00 20 */	blr 
+.endfn updateTempo__8JASTrackFv
 
-.global getTempo__13JASOuterParamCFv
-getTempo__13JASOuterParamCFv:
+.fn getTempo__13JASOuterParamCFv, weak
 /* 800A0A84 0009D9C4  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 800A0A88 0009D9C8  4E 80 00 20 */	blr 
+.endfn getTempo__13JASOuterParamCFv
 
-.global updateSeq__8JASTrackFUlb
-updateSeq__8JASTrackFUlb:
+.fn updateSeq__8JASTrackFUlb, global
 /* 800A0A8C 0009D9CC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800A0A90 0009D9D0  7C 08 02 A6 */	mflr r0
 /* 800A0A94 0009D9D4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2221,9 +2238,9 @@ updateSeq__8JASTrackFUlb:
 /* 800A0D14 0009DC54  7C 08 03 A6 */	mtlr r0
 /* 800A0D18 0009DC58  38 21 00 40 */	addi r1, r1, 0x40
 /* 800A0D1C 0009DC5C  4E 80 00 20 */	blr 
+.endfn updateSeq__8JASTrackFUlb
 
-.global seqTimeToDspTime__8JASTrackFlUc
-seqTimeToDspTime__8JASTrackFlUc:
+.fn seqTimeToDspTime__8JASTrackFlUc, global
 /* 800A0D20 0009DC60  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A0D24 0009DC64  7C 08 02 A6 */	mflr r0
 /* 800A0D28 0009DC68  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2280,9 +2297,9 @@ seqTimeToDspTime__8JASTrackFlUc:
 /* 800A0DEC 0009DD2C  7C 08 03 A6 */	mtlr r0
 /* 800A0DF0 0009DD30  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A0DF4 0009DD34  4E 80 00 20 */	blr 
+.endfn seqTimeToDspTime__8JASTrackFlUc
 
-.global setParam__8JASTrackFifi
-setParam__8JASTrackFifi:
+.fn setParam__8JASTrackFifi, global
 /* 800A0DF8 0009DD38  54 84 20 36 */	slwi r4, r4, 4
 /* 800A0DFC 0009DD3C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A0E00 0009DD40  38 84 01 48 */	addi r4, r4, 0x148
@@ -2318,9 +2335,9 @@ setParam__8JASTrackFifi:
 .L_800A0E74:
 /* 800A0E74 0009DDB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A0E78 0009DDB8  4E 80 00 20 */	blr 
+.endfn setParam__8JASTrackFifi
 
-.global setSeqData__8JASTrackFPUcl
-setSeqData__8JASTrackFPUcl:
+.fn setSeqData__8JASTrackFPUcl, global
 /* 800A0E7C 0009DDBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A0E80 0009DDC0  7C 08 02 A6 */	mflr r0
 /* 800A0E84 0009DDC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2346,9 +2363,9 @@ setSeqData__8JASTrackFPUcl:
 /* 800A0ED4 0009DE14  7C 08 03 A6 */	mtlr r0
 /* 800A0ED8 0009DE18  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A0EDC 0009DE1C  4E 80 00 20 */	blr 
+.endfn setSeqData__8JASTrackFPUcl
 
-.global startSeq__8JASTrackFv
-startSeq__8JASTrackFv:
+.fn startSeq__8JASTrackFv, global
 /* 800A0EE0 0009DE20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A0EE4 0009DE24  7C 08 02 A6 */	mflr r0
 /* 800A0EE8 0009DE28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2386,9 +2403,9 @@ startSeq__8JASTrackFv:
 /* 800A0F4C 0009DE8C  7C 08 03 A6 */	mtlr r0
 /* 800A0F50 0009DE90  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A0F54 0009DE94  4E 80 00 20 */	blr 
+.endfn startSeq__8JASTrackFv
 
-.global stopSeq__8JASTrackFv
-stopSeq__8JASTrackFv:
+.fn stopSeq__8JASTrackFv, global
 /* 800A0F58 0009DE98  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A0F5C 0009DE9C  7C 08 02 A6 */	mflr r0
 /* 800A0F60 0009DEA0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2460,9 +2477,9 @@ stopSeq__8JASTrackFv:
 /* 800A1048 0009DF88  7C 08 03 A6 */	mtlr r0
 /* 800A104C 0009DF8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A1050 0009DF90  4E 80 00 20 */	blr 
+.endfn stopSeq__8JASTrackFv
 
-.global stopSeqMain__8JASTrackFv
-stopSeqMain__8JASTrackFv:
+.fn stopSeqMain__8JASTrackFv, global
 /* 800A1054 0009DF94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A1058 0009DF98  7C 08 02 A6 */	mflr r0
 /* 800A105C 0009DF9C  38 80 00 00 */	li r4, 0
@@ -2478,9 +2495,9 @@ stopSeqMain__8JASTrackFv:
 /* 800A1084 0009DFC4  7C 08 03 A6 */	mtlr r0
 /* 800A1088 0009DFC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A108C 0009DFCC  4E 80 00 20 */	blr 
+.endfn stopSeqMain__8JASTrackFv
 
-.global close__8JASTrackFv
-close__8JASTrackFv:
+.fn close__8JASTrackFv, global
 /* 800A1090 0009DFD0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A1094 0009DFD4  7C 08 02 A6 */	mflr r0
 /* 800A1098 0009DFD8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2616,9 +2633,9 @@ close__8JASTrackFv:
 /* 800A1258 0009E198  7C 08 03 A6 */	mtlr r0
 /* 800A125C 0009E19C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A1260 0009E1A0  4E 80 00 20 */	blr 
+.endfn close__8JASTrackFv
 
-.global setNoteMask__8JASTrackFUc
-setNoteMask__8JASTrackFUc:
+.fn setNoteMask__8JASTrackFUc, global
 /* 800A1264 0009E1A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A1268 0009E1A8  7C 08 02 A6 */	mflr r0
 /* 800A126C 0009E1AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2654,9 +2671,9 @@ setNoteMask__8JASTrackFUc:
 /* 800A12D8 0009E218  7C 08 03 A6 */	mtlr r0
 /* 800A12DC 0009E21C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A12E0 0009E220  4E 80 00 20 */	blr 
+.endfn setNoteMask__8JASTrackFUc
 
-.global muteTrack__8JASTrackFb
-muteTrack__8JASTrackFb:
+.fn muteTrack__8JASTrackFb, global
 /* 800A12E4 0009E224  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A12E8 0009E228  7C 08 02 A6 */	mflr r0
 /* 800A12EC 0009E22C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2821,9 +2838,9 @@ muteTrack__8JASTrackFb:
 /* 800A150C 0009E44C  7C 08 03 A6 */	mtlr r0
 /* 800A1510 0009E450  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A1514 0009E454  4E 80 00 20 */	blr 
+.endfn muteTrack__8JASTrackFb
 
-.global start__8JASTrackFPvUl
-start__8JASTrackFPvUl:
+.fn start__8JASTrackFPvUl, global
 /* 800A1518 0009E458  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A151C 0009E45C  7C 08 02 A6 */	mflr r0
 /* 800A1520 0009E460  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2841,9 +2858,9 @@ start__8JASTrackFPvUl:
 /* 800A1550 0009E490  7C 08 03 A6 */	mtlr r0
 /* 800A1554 0009E494  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A1558 0009E498  4E 80 00 20 */	blr 
+.endfn start__8JASTrackFPvUl
 
-.global openChild__8JASTrackFUcUc
-openChild__8JASTrackFUcUc:
+.fn openChild__8JASTrackFUcUc, global
 /* 800A155C 0009E49C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A1560 0009E4A0  7C 08 02 A6 */	mflr r0
 /* 800A1564 0009E4A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2970,9 +2987,9 @@ openChild__8JASTrackFUcUc:
 /* 800A172C 0009E66C  7C 08 03 A6 */	mtlr r0
 /* 800A1730 0009E670  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A1734 0009E674  4E 80 00 20 */	blr 
+.endfn openChild__8JASTrackFUcUc
 
-.global exchangeRegisterValue__8JASTrackFUc
-exchangeRegisterValue__8JASTrackFUc:
+.fn exchangeRegisterValue__8JASTrackFUc, global
 /* 800A1738 0009E678  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A173C 0009E67C  7C 08 02 A6 */	mflr r0
 /* 800A1740 0009E680  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2991,9 +3008,9 @@ exchangeRegisterValue__8JASTrackFUc:
 /* 800A176C 0009E6AC  7C 08 03 A6 */	mtlr r0
 /* 800A1770 0009E6B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A1774 0009E6B4  4E 80 00 20 */	blr 
+.endfn exchangeRegisterValue__8JASTrackFUc
 
-.global readReg32__8JASTrackFUc
-readReg32__8JASTrackFUc:
+.fn readReg32__8JASTrackFUc, global
 /* 800A1778 0009E6B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A177C 0009E6BC  7C 08 02 A6 */	mflr r0
 /* 800A1780 0009E6C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3035,9 +3052,9 @@ readReg32__8JASTrackFUc:
 /* 800A1800 0009E740  7C 08 03 A6 */	mtlr r0
 /* 800A1804 0009E744  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A1808 0009E748  4E 80 00 20 */	blr 
+.endfn readReg32__8JASTrackFUc
 
-.global readReg16__8JASTrackFUc
-readReg16__8JASTrackFUc:
+.fn readReg16__8JASTrackFUc, global
 /* 800A180C 0009E74C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A1810 0009E750  7C 08 02 A6 */	mflr r0
 /* 800A1814 0009E754  54 85 06 3E */	clrlwi r5, r4, 0x18
@@ -3194,9 +3211,9 @@ readReg16__8JASTrackFUc:
 /* 800A1A18 0009E958  7C 08 03 A6 */	mtlr r0
 /* 800A1A1C 0009E95C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A1A20 0009E960  4E 80 00 20 */	blr 
+.endfn readReg16__8JASTrackFUc
 
-.global writeRegDirect__8JASTrackFUcUs
-writeRegDirect__8JASTrackFUcUs:
+.fn writeRegDirect__8JASTrackFUcUs, global
 /* 800A1A24 0009E964  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A1A28 0009E968  7C 08 02 A6 */	mflr r0
 /* 800A1A2C 0009E96C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3255,9 +3272,9 @@ writeRegDirect__8JASTrackFUcUs:
 /* 800A1AE8 0009EA28  7C 08 03 A6 */	mtlr r0
 /* 800A1AEC 0009EA2C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A1AF0 0009EA30  4E 80 00 20 */	blr 
+.endfn writeRegDirect__8JASTrackFUcUs
 
-.global writeRegParam__8JASTrackFUc
-writeRegParam__8JASTrackFUc:
+.fn writeRegParam__8JASTrackFUc, global
 /* 800A1AF4 0009EA34  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A1AF8 0009EA38  7C 08 02 A6 */	mflr r0
 /* 800A1AFC 0009EA3C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3682,9 +3699,9 @@ writeRegParam__8JASTrackFUc:
 /* 800A2098 0009EFD8  7C 08 03 A6 */	mtlr r0
 /* 800A209C 0009EFDC  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A20A0 0009EFE0  4E 80 00 20 */	blr 
+.endfn writeRegParam__8JASTrackFUc
 
-.global readSelfPort__8JASTrackFi
-readSelfPort__8JASTrackFi:
+.fn readSelfPort__8JASTrackFi, global
 /* 800A20A4 0009EFE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A20A8 0009EFE8  7C 08 02 A6 */	mflr r0
 /* 800A20AC 0009EFEC  38 63 00 54 */	addi r3, r3, 0x54
@@ -3694,9 +3711,9 @@ readSelfPort__8JASTrackFi:
 /* 800A20BC 0009EFFC  7C 08 03 A6 */	mtlr r0
 /* 800A20C0 0009F000  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A20C4 0009F004  4E 80 00 20 */	blr 
+.endfn readSelfPort__8JASTrackFi
 
-.global writeSelfPort__8JASTrackFiUs
-writeSelfPort__8JASTrackFiUs:
+.fn writeSelfPort__8JASTrackFiUs, global
 /* 800A20C8 0009F008  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A20CC 0009F00C  7C 08 02 A6 */	mflr r0
 /* 800A20D0 0009F010  38 63 00 54 */	addi r3, r3, 0x54
@@ -3706,9 +3723,9 @@ writeSelfPort__8JASTrackFiUs:
 /* 800A20E0 0009F020  7C 08 03 A6 */	mtlr r0
 /* 800A20E4 0009F024  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A20E8 0009F028  4E 80 00 20 */	blr 
+.endfn writeSelfPort__8JASTrackFiUs
 
-.global writePortAppDirect__8JASTrackFUlUs
-writePortAppDirect__8JASTrackFUlUs:
+.fn writePortAppDirect__8JASTrackFUlUs, global
 /* 800A20EC 0009F02C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A20F0 0009F030  7C 08 02 A6 */	mflr r0
 /* 800A20F4 0009F034  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3738,9 +3755,9 @@ writePortAppDirect__8JASTrackFUlUs:
 /* 800A2148 0009F088  7C 08 03 A6 */	mtlr r0
 /* 800A214C 0009F08C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A2150 0009F090  4E 80 00 20 */	blr 
+.endfn writePortAppDirect__8JASTrackFUlUs
 
-.global readPortAppDirect__8JASTrackFUlPUs
-readPortAppDirect__8JASTrackFUlPUs:
+.fn readPortAppDirect__8JASTrackFUlPUs, global
 /* 800A2154 0009F094  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A2158 0009F098  7C 08 02 A6 */	mflr r0
 /* 800A215C 0009F09C  38 63 00 54 */	addi r3, r3, 0x54
@@ -3755,9 +3772,9 @@ readPortAppDirect__8JASTrackFUlPUs:
 /* 800A2180 0009F0C0  7C 08 03 A6 */	mtlr r0
 /* 800A2184 0009F0C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A2188 0009F0C8  4E 80 00 20 */	blr 
+.endfn readPortAppDirect__8JASTrackFUlPUs
 
-.global writePortApp__8JASTrackFUlUs
-writePortApp__8JASTrackFUlUs:
+.fn writePortApp__8JASTrackFUlUs, global
 /* 800A218C 0009F0CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A2190 0009F0D0  7C 08 02 A6 */	mflr r0
 /* 800A2194 0009F0D4  7C 87 23 78 */	mr r7, r4
@@ -3812,9 +3829,9 @@ writePortApp__8JASTrackFUlUs:
 /* 800A2234 0009F174  7C 08 03 A6 */	mtlr r0
 /* 800A2238 0009F178  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A223C 0009F17C  4E 80 00 20 */	blr 
+.endfn writePortApp__8JASTrackFUlUs
 
-.global readPortApp__8JASTrackFUlPUs
-readPortApp__8JASTrackFUlPUs:
+.fn readPortApp__8JASTrackFUlPUs, global
 /* 800A2240 0009F180  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A2244 0009F184  7C 08 02 A6 */	mflr r0
 /* 800A2248 0009F188  7C 86 23 78 */	mr r6, r4
@@ -3853,9 +3870,9 @@ readPortApp__8JASTrackFUlPUs:
 /* 800A22B8 0009F1F8  7C 08 03 A6 */	mtlr r0
 /* 800A22BC 0009F1FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A22C0 0009F200  4E 80 00 20 */	blr 
+.endfn readPortApp__8JASTrackFUlPUs
 
-.global pause__8JASTrackFbb
-pause__8JASTrackFbb:
+.fn pause__8JASTrackFbb, global
 /* 800A22C4 0009F204  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A22C8 0009F208  7C 08 02 A6 */	mflr r0
 /* 800A22CC 0009F20C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3960,9 +3977,9 @@ pause__8JASTrackFbb:
 /* 800A2420 0009F360  7C 08 03 A6 */	mtlr r0
 /* 800A2424 0009F364  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A2428 0009F368  4E 80 00 20 */	blr 
+.endfn pause__8JASTrackFbb
 
-.global getTranspose__8JASTrackCFv
-getTranspose__8JASTrackCFv:
+.fn getTranspose__8JASTrackCFv, global
 /* 800A242C 0009F36C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800A2430 0009F370  7C 08 02 A6 */	mflr r0
 /* 800A2434 0009F374  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4073,9 +4090,9 @@ getTranspose__8JASTrackCFv:
 /* 800A2590 0009F4D0  7C 08 03 A6 */	mtlr r0
 /* 800A2594 0009F4D4  38 21 00 30 */	addi r1, r1, 0x30
 /* 800A2598 0009F4D8  4E 80 00 20 */	blr 
+.endfn getTranspose__8JASTrackCFv
 
-.global setTempo__8JASTrackFUs
-setTempo__8JASTrackFUs:
+.fn setTempo__8JASTrackFUs, global
 /* 800A259C 0009F4DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A25A0 0009F4E0  7C 08 02 A6 */	mflr r0
 /* 800A25A4 0009F4E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4093,9 +4110,9 @@ setTempo__8JASTrackFUs:
 /* 800A25CC 0009F50C  7C 08 03 A6 */	mtlr r0
 /* 800A25D0 0009F510  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A25D4 0009F514  4E 80 00 20 */	blr 
+.endfn setTempo__8JASTrackFUs
 
-.global setTimebase__8JASTrackFUs
-setTimebase__8JASTrackFUs:
+.fn setTimebase__8JASTrackFUs, global
 /* 800A25D8 0009F518  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A25DC 0009F51C  7C 08 02 A6 */	mflr r0
 /* 800A25E0 0009F520  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4109,9 +4126,9 @@ setTimebase__8JASTrackFUs:
 /* 800A25FC 0009F53C  7C 08 03 A6 */	mtlr r0
 /* 800A2600 0009F540  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A2604 0009F544  4E 80 00 20 */	blr 
+.endfn setTimebase__8JASTrackFUs
 
-.global panCalc__8JASTrackFfffUc
-panCalc__8JASTrackFfffUc:
+.fn panCalc__8JASTrackFfffUc, global
 /* 800A2608 0009F548  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 800A260C 0009F54C  2C 00 00 01 */	cmpwi r0, 1
 /* 800A2610 0009F550  41 82 00 24 */	beq .L_800A2634
@@ -4136,10 +4153,10 @@ panCalc__8JASTrackFfffUc:
 .L_800A2650:
 /* 800A2650 0009F590  C0 22 8A 18 */	lfs f1, lbl_80516D78@sda21(r2)
 /* 800A2654 0009F594  4E 80 00 20 */	blr 
+.endfn panCalc__8JASTrackFfffUc
 
 .if version == 1
-.global rootCallback__8JASTrackFPv
-rootCallback__8JASTrackFPv:
+.fn rootCallback__8JASTrackFPv, global
 /* 800A2658 0009F598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A265C 0009F59C  7C 08 02 A6 */	mflr r0
 /* 800A2660 0009F5A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4205,10 +4222,10 @@ rootCallback__8JASTrackFPv:
 /* 800A2740 0009F680  7C 08 03 A6 */	mtlr r0
 /* 800A2744 0009F684  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A2748 0009F688  4E 80 00 20 */	blr 
+.endfn rootCallback__8JASTrackFPv
 
 .else
-.global rootCallback__8JASTrackFPv
-rootCallback__8JASTrackFPv:
+.fn rootCallback__8JASTrackFPv, global
 /* 800A2658 0009F598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A265C 0009F59C  7C 08 02 A6 */	mflr r0
 /* 800A2660 0009F5A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4277,15 +4294,15 @@ rootCallback__8JASTrackFPv:
 /* 800A2740 0009F680  7C 08 03 A6 */	mtlr r0
 /* 800A2744 0009F684  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A2748 0009F688  4E 80 00 20 */	blr 
+.endfn rootCallback__8JASTrackFPv
 .endif
 
-.global registerSeqCallback__8JASTrackFPFP8JASTrackUs_Us
-registerSeqCallback__8JASTrackFPFP8JASTrackUs_Us:
+.fn registerSeqCallback__8JASTrackFPFP8JASTrackUs_Us, global
 /* 800A274C 0009F68C  90 6D 8A 70 */	stw r3, sCallBackFunc__8JASTrack@sda21(r13)
 /* 800A2750 0009F690  4E 80 00 20 */	blr 
+.endfn registerSeqCallback__8JASTrackFPFP8JASTrackUs_Us
 
-.global newMemPool__8JASTrackFi
-newMemPool__8JASTrackFi:
+.fn newMemPool__8JASTrackFi, global
 /* 800A2754 0009F694  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A2758 0009F698  7C 08 02 A6 */	mflr r0
 /* 800A275C 0009F69C  38 A0 00 00 */	li r5, 0
@@ -4343,9 +4360,9 @@ newMemPool__8JASTrackFi:
 /* 800A281C 0009F75C  7C 08 03 A6 */	mtlr r0
 /* 800A2820 0009F760  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A2824 0009F764  4E 80 00 20 */	blr 
+.endfn newMemPool__8JASTrackFi
 
-.global __ct__10JASVibrateFv
-__ct__10JASVibrateFv:
+.fn __ct__10JASVibrateFv, global
 /* 800A2828 0009F768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A282C 0009F76C  7C 08 02 A6 */	mflr r0
 /* 800A2830 0009F770  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4358,18 +4375,18 @@ __ct__10JASVibrateFv:
 /* 800A284C 0009F78C  7C 08 03 A6 */	mtlr r0
 /* 800A2850 0009F790  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A2854 0009F794  4E 80 00 20 */	blr 
+.endfn __ct__10JASVibrateFv
 
-.global init__10JASVibrateFv
-init__10JASVibrateFv:
+.fn init__10JASVibrateFv, global
 /* 800A2858 0009F798  C0 22 8A 50 */	lfs f1, lbl_80516DB0@sda21(r2)
 /* 800A285C 0009F79C  C0 02 8A 18 */	lfs f0, lbl_80516D78@sda21(r2)
 /* 800A2860 0009F7A0  D0 23 00 08 */	stfs f1, 8(r3)
 /* 800A2864 0009F7A4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 800A2868 0009F7A8  D0 03 00 00 */	stfs f0, 0(r3)
 /* 800A286C 0009F7AC  4E 80 00 20 */	blr 
+.endfn init__10JASVibrateFv
 
-.global incCounter__10JASVibrateFv
-incCounter__10JASVibrateFv:
+.fn incCounter__10JASVibrateFv, global
 /* 800A2870 0009F7B0  C0 43 00 00 */	lfs f2, 0(r3)
 /* 800A2874 0009F7B4  C0 23 00 08 */	lfs f1, 8(r3)
 /* 800A2878 0009F7B8  C8 02 8A 58 */	lfd f0, lbl_80516DB8@sda21(r2)
@@ -4383,9 +4400,9 @@ incCounter__10JASVibrateFv:
 /* 800A2898 0009F7D8  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800A289C 0009F7DC  D0 03 00 00 */	stfs f0, 0(r3)
 /* 800A28A0 0009F7E0  4E 80 00 20 */	blr 
+.endfn incCounter__10JASVibrateFv
 
-.global getValue__10JASVibrateCFv
-getValue__10JASVibrateCFv:
+.fn getValue__10JASVibrateCFv, global
 /* 800A28A4 0009F7E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800A28A8 0009F7E8  7C 08 02 A6 */	mflr r0
 /* 800A28AC 0009F7EC  C0 42 8A 18 */	lfs f2, lbl_80516D78@sda21(r2)
@@ -4431,9 +4448,9 @@ getValue__10JASVibrateCFv:
 /* 800A293C 0009F87C  7C 08 03 A6 */	mtlr r0
 /* 800A2940 0009F880  38 21 00 20 */	addi r1, r1, 0x20
 /* 800A2944 0009F884  4E 80 00 20 */	blr 
+.endfn getValue__10JASVibrateCFv
 
-.global channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv
-channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv:
+.fn channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv, global
 /* 800A2948 0009F888  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A294C 0009F88C  7C 08 02 A6 */	mflr r0
 /* 800A2950 0009F890  2C 03 00 02 */	cmpwi r3, 2
@@ -4487,3 +4504,4 @@ channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv:
 /* 800A29EC 0009F92C  7C 08 03 A6 */	mtlr r0
 /* 800A29F0 0009F930  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A29F4 0009F934  4E 80 00 20 */	blr 
+.endfn channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv
