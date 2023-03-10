@@ -71,6 +71,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAI/JAISystemInterface.cpp">JAudio/JAI/JAISystemInterface.cpp</a> | 19726 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMessage/resource.cpp">JMessage/resource.cpp</a> | 20389 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelLoaderCalcSize.cpp">J3D/J3DModelLoaderCalcSize.cpp</a> | 21399 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DPacket.cpp">J3D/J3DPacket.cpp</a> | 21546 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JParticle/object-particle.cpp">JStudio_JParticle/object-particle.cpp</a> | 21745 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUtility/JUTDirectPrint.cpp">JUtility/JUTDirectPrint.cpp</a> | 22588 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAS/JASHeapCtrl.cpp">JAudio/JAS/JASHeapCtrl.cpp</a> | 22633 |
 
 ### <section id="plugProjectEbisawaU">plugProjectEbisawaU</section>
 | File | Size (bytes) | File | Size (bytes) |

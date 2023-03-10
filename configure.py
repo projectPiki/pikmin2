@@ -95,7 +95,7 @@ LIBS = [
         "mw_version": "2.6",
         "host": True,
         "objects": [
-            "JSystem/JKernel/JKRAram",
+            ["JSystem/JKernel/JKRAram", True],
             "JSystem/JKernel/JKRAramArchive",
             ["JSystem/JKernel/JKRAramBlock", True],
             ["JSystem/JKernel/JKRAramHeap", True],

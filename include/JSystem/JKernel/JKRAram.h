@@ -15,6 +15,20 @@ struct JKRAramHeap;
 struct JKRDecompCommand;
 struct JKRAMCommand;
 
+enum JKRAramMsg {
+	ARAMMSG_DMA = 1, // start DMA
+};
+
+struct JKRAramCommand {
+	void setting(int type, void* cmd)
+	{
+		mMsgType = (JKRAramMsg)type;
+		mCommand = cmd;
+	}
+	JKRAramMsg mMsgType; // _00
+	void* mCommand;      // _04
+};
+
 struct JKRAramBlock {
 	JKRAramBlock(u32, u32, u32, u8, bool);
 
@@ -54,6 +68,8 @@ struct JKRAramHeap : public JKRDisposer {
 	JKRAramBlock* allocFromTail(u32);
 	s32 getFreeSize();
 
+	void free(JKRAramBlock* block) { delete block; }
+
 	u8 getCurrentGroupID() const { return mGroupID; }
 	JKRHeap* getMgrHeap() const { return mHeap; }
 
@@ -81,6 +97,8 @@ struct JKRAram : public JKRThread {
 	virtual void* run(); // _0C
 
 	static JKRAram* create(u32, u32, long, long, long);
+	static void checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4);
+	static void changeGroupIdIfNeed(u8* data, int groupId);
 	static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
 	static u8* aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
 	static u8* aramToMainRam(JKRAramBlock*, u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
@@ -108,12 +126,13 @@ struct JKRAram : public JKRThread {
 
 	static u32 getSZSBufferSize() { return sSZSBufferSize; }
 	static void setSZSBufferSize(u32 size) { sSZSBufferSize = size; }
+	void resume() { OSResumeThread(mThread); }
 
 	static JKRAram* sAramObject;
-	static const OSMessageQueue sMessageQueue;
+	static OSMessageQueue sMessageQueue;
 	static JSUList<JKRAMCommand> sAramCommandList;
 	static u32 sSZSBufferSize;
-	static void* sMessageBuffer[4];
+	static OSMessage sMessageBuffer[4];
 
 	// _00     = VTBL
 	// _00-_7C = JKRThread
@@ -121,11 +140,10 @@ struct JKRAram : public JKRThread {
 	u32 mAudioMemorySize;   // _80
 	u32 mGraphMemoryPtr;    // _84
 	u32 mGraphMemorySize;   // _88
-	u32 mAramMemoryPtr;     // _8C
-	u32 mAramMemorySize;    // _90
+	u32 mUserMemoryPtr;     // _8C
+	u32 mUserMemorySize;    // _90
 	JKRAramHeap* mAramHeap; // _94
-	u32 mBlockLength;       // _98, NB: TP has this as an array of 3
-	u8 _9C[4];              // _9C
+	u32 mStackArray[3];     // 98
 };
 
 struct JKRAramArchive : public JKRArchive {
@@ -248,7 +266,18 @@ struct JKRAramPiece {
 	static void unlock() { OSUnlockMutex(&mMutex); }
 };
 
-inline void* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMode) { return JKRAram::getAramHeap()->alloc(size, allocMode); }
+int JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength, u32 offset, u32* resourceSize);
+
+inline JKRAramStream* JKRCreateAramStreamManager(s32 priority) { return JKRAramStream::create(priority); }
+
+inline JKRAramBlock* JKRAllocFromAram(u32 size, JKRAramHeap::EAllocMode allocMode)
+{
+	return JKRAram::getAramHeap()->alloc(size, allocMode);
+}
+
+inline void JKRFreeToAram(JKRAramBlock* block) { JKRAram::getAramHeap()->free(block); }
+
+inline JKRAramBlock* JKRMainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap* heap, int, u32);
 
 inline void JKRAramToMainRam(u32 p1, u8* p2, u32 p3, JKRExpandSwitch p4, u32 p5, JKRHeap* p6, int p7, u32* p8)
 {
