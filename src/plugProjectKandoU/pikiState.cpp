@@ -12,10 +12,12 @@
 #include "Game/Interaction.h"
 #include "Game/AIConstants.h"
 #include "Game/EnemyBase.h"
+#include "Game/Entities/ItemPikihead.h"
 #include "efx/TPiku.h"
 #include "efx/TPk.h"
 #include "efx/TEnemyDive.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "PSM/Navi.h"
 #include "Dolphin/rand.h"
 #include "trig.h"
 #include "System.h"
@@ -1350,7 +1352,7 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 		rumbleMgr->startRumble(0, (int)mNavi->mNaviIndex);
 
 		Vector3f position = piki->getPosition();
-		piki->_17C |= 0x10;
+		piki->setFPFlag(FPFLAGS_Unk5);
 		Sys::Sphere sphere(position, 10.0f);
 		WaterBox* wbox = piki->checkWater(nullptr, sphere);
 
@@ -1386,7 +1388,7 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
  * Address:	8018B6D0
  * Size:	000010
  */
-void PikiNukareState::cleanup(Piki* piki) { piki->_17C &= ~0x10; }
+void PikiNukareState::cleanup(Piki* piki) { piki->resetFPFlag(FPFLAGS_Unk5); }
 
 /*
  * --INFO--
@@ -1397,7 +1399,7 @@ void PikiDopeState::init(Piki* piki, StateArg* stateArg)
 {
 	DopeStateArg* dopeArg = static_cast<DopeStateArg*>(stateArg);
 	P2ASSERTLINE(1270, dopeArg != nullptr);
-	_18             = dopeArg->mDopeType;
+	_18             = dopeArg->_00;
 	_14             = 0.3f * randFloat();
 	_10             = false;
 	piki->mVelocity = Vector3f(0.0f);
@@ -1526,7 +1528,7 @@ inline void PikiPanicState::startSound(Piki* piki)
 		break;
 	}
 
-	piki->mSoundObj->startFreePikiSetSound(panicSound, PSGame::SeMgr::UNK_7, 90, 0);
+	piki->mSoundObj->startFreePikiSetSound(panicSound, PSGame::SeMgr::SETSE_PikiPanicRun, 90, 0);
 }
 
 /*
@@ -1775,7 +1777,7 @@ void PikiPanicState::cleanup(Piki* piki)
 		if (effectsObjFire->isFlag(PKEFF_Fire)) {
 			effectsObjFire->resetFlag(PKEFF_Fire);
 			effectsObjFire->createMoeSmoke_(effectsObjFire->_0C);
-			effectsObjFire->_24 = 60;
+			effectsObjFire->mMoeSmokeTimer = 60;
 			efx::createSimpleChinka(*effectsObjFire->_0C);
 		}
 
@@ -1819,7 +1821,7 @@ void PikiPanicState::onFlute(Piki* piki, Game::Navi*)
 		if (effectsObjFire->isFlag(PKEFF_Fire)) {
 			effectsObjFire->resetFlag(PKEFF_Fire);
 			effectsObjFire->createMoeSmoke_(effectsObjFire->_0C);
-			effectsObjFire->_24 = 60;
+			effectsObjFire->mMoeSmokeTimer = 60;
 			efx::createSimpleChinka(*effectsObjFire->_0C);
 		}
 		break;
@@ -2571,7 +2573,7 @@ void PikiHipDropState::init(Piki* piki, StateArg* stateArg)
 
 	efx::TPkEffect* effectsObj = piki->mEffectsObj;
 	effectsObj->killNage_();
-	effectsObj->createBlackDown_(effectsObj->_10);
+	effectsObj->createBlackDown_(effectsObj->mHamonPosPtr);
 	piki->mUpdateContext._09 = true;
 }
 
@@ -3251,7 +3253,7 @@ void PikiFallMeckState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
 	piki->endStick();
 	if (fallArg) {
-		_10 = fallArg->mSprayType;
+		_10 = fallArg->_00;
 	} else {
 		_10 = false;
 	}
@@ -3290,23 +3292,72 @@ void PikiFallMeckState::collisionCallback(Piki* piki, Game::CollEvent&) { }
  */
 void PikiFallMeckState::platCallback(Piki* piki, PlatEvent& platEvent) { transit(piki, PIKISTATE_Walk, nullptr); }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000284
-//  */
-// void PikiFallMeckState::becomePikihead(Piki* piki)
-// {
-// 	// UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000284
+ */
+bool PikiFallMeckState::becomePikihead(Piki* piki)
+{
+	bool check;
+	if (GameStat::mePikis >= 99) {
+		return false;
+	} else {
+		PikiMgr::mBirthMode        = 1;
+		ItemPikihead::Item* sprout = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
+		PikiMgr::mBirthMode        = 0;
+
+		Vector3f pikiPos = piki->getPosition();
+		pikiPos.y        = mapMgr->getMinY(pikiPos);
+		if (sprout) {
+			if (piki->inWater()) {
+				efx::TEnemyDive fxDive;
+				efx::ArgScale fxArg(pikiPos, 1.2f);
+
+				fxDive.create(&fxArg);
+			} else {
+				efx::createSimplePkAp(pikiPos);
+				piki->startSound(PSSE_PK_SE_ONY_SEED_GROUND, true);
+			}
+
+			ItemPikihead::InitArg initArg((EPikiKind)piki->mPikiKind, Vector3f::zero);
+
+			if (_10) {
+				initArg._1C = 10.0f + 3.0f * sys->mDeltaTime;
+			}
+			sprout->init(&initArg);
+			sprout->setPosition(pikiPos, false);
+
+			CreatureKillArg killArg(1);
+
+			piki->kill(&killArg);
+
+			return true;
+		}
+	}
+	return false;
+}
 
 /*
  * --INFO--
  * Address:	8018E584
  * Size:	00054C
  */
-void PikiFallMeckState::bounceCallback(Piki* piki, Sys::Triangle*)
+void PikiFallMeckState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 {
+	bool check;
+	if (_10 && triangle && ItemPikihead::mgr) {
+		if (becomePikihead(piki)) {
+			return;
+		}
+	} else if (triangle && !triangle->mCode.isBald() && piki->might_bury() && ItemPikihead::mgr) {
+		if (becomePikihead(piki)) {
+			return;
+		}
+	}
+
+	transit(piki, PIKISTATE_Walk, nullptr);
+
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -3690,7 +3741,7 @@ void PikiSuikomiState::init(Piki* piki, StateArg* stateArg)
 	SuikomiStateArg* suikomiArg = static_cast<SuikomiStateArg*>(stateArg);
 	P2ASSERTLINE(2572, suikomiArg != nullptr);
 	mCreature = suikomiArg->mCreature;
-	mCollpart = suikomiArg->mCollpart;
+	mCollpart = suikomiArg->_04;
 	_1C       = suikomiArg->_08;
 	_10       = 0;
 	piki->setMoveVelocity(false);
@@ -3740,7 +3791,7 @@ void PikiSuikomiState::execMouth(Piki* piki)
 
 	Vector3f pikiPos = piki->getPosition();
 	Vector3f diff    = position - pikiPos;
-	f32 length       = _normaliseVec(diff); // regswaps.
+	f32 length       = _normalise2(diff);
 
 	if (length < 10.0f) {
 		if (mCollpart == nullptr) {
@@ -3758,155 +3809,6 @@ void PikiSuikomiState::execMouth(Piki* piki)
 	} else {
 		piki->mSimVelocity = diff * 600.0f;
 	}
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lwz      r3, 0x18(r3)
-	cmplwi   r3, 0
-	bne      lbl_8018ECB8
-	lwz      r3, 0x1c(r30)
-	lfs      f30, 0x50(r3)
-	lfs      f0, 0x1c(r3)
-	lfs      f31, 0x4c(r3)
-	fsubs    f30, f30, f0
-	lfs      f29, 0x54(r3)
-	b        lbl_8018ECCC
-
-lbl_8018ECB8:
-	addi     r4, r1, 0x14
-	bl       getTube__8CollPartFRQ23Sys4Tube
-	lfs      f31, 0x14(r1)
-	lfs      f30, 0x18(r1)
-	lfs      f29, 0x1c(r1)
-
-lbl_8018ECCC:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 0x10(r1)
-	fsubs    f3, f30, f0
-	lfs      f1, 8(r1)
-	fsubs    f4, f29, f2
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fsubs    f2, f31, f1
-	fmuls    f1, f3, f3
-	fmuls    f5, f4, f4
-	fmadds   f1, f2, f2, f1
-	fadds    f1, f5, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8018ED28
-	ble      lbl_8018ED2C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8018ED2C
-
-lbl_8018ED28:
-	fmr      f1, f0
-
-lbl_8018ED2C:
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8018ED50
-	lfs      f0, lbl_80518DE4@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f2, f2, f0
-	fmuls    f3, f3, f0
-	fmuls    f4, f4, f0
-	b        lbl_8018ED54
-
-lbl_8018ED50:
-	fmr      f1, f0
-
-lbl_8018ED54:
-	lfs      f0, lbl_80518DCC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8018EE0C
-	lwz      r5, 0x18(r30)
-	cmplwi   r5, 0
-	bne      lbl_8018EDDC
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1e8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x1c(r30)
-	mr       r3, r31
-	bl       startCaptureStomach__Q24Game8FakePikiFP8CollPart
-	li       r0, 2
-	cmplwi   r31, 0
-	stb      r0, 0x10(r30)
-	mr       r6, r31
-	beq      lbl_8018EDA8
-	addi     r6, r31, 0x178
-
-lbl_8018EDA8:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 8
-	li       r5, 8
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lwz      r3, 0x6c(r3)
-	lfs      f0, 0x11c8(r3)
-	stfs     f0, 0x20(r30)
-	b        lbl_8018EE28
-
-lbl_8018EDDC:
-	lwz      r4, 0x14(r30)
-	mr       r3, r31
-	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1e8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stb      r0, 0x10(r30)
-	b        lbl_8018EE28
-
-lbl_8018EE0C:
-	lfs      f0, lbl_80518E68@sda21(r2)
-	fmuls    f2, f2, f0
-	fmuls    f1, f3, f0
-	fmuls    f0, f4, f0
-	stfs     f2, 0x200(r31)
-	stfs     f1, 0x204(r31)
-	stfs     f0, 0x208(r31)
-
-lbl_8018EE28:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -3916,8 +3818,8 @@ lbl_8018EE28:
  */
 void PikiSuikomiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	if ((u32)keyEvent.mType == 0) {
-		piki->startSound(PSSE_PK_VC_SWALLOWED, PSGame::SeMgr::UNK_4);
+	if (keyEvent.mType == KEYEVENT_NULL) {
+		piki->startSound(PSSE_PK_VC_SWALLOWED, PSGame::SeMgr::SETSE_PikiInJellyfloat);
 	}
 }
 
@@ -4027,87 +3929,30 @@ void PikiFlyingState::restartEffect() { }
  */
 void PikiFlyingState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0x23
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	li       r7, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0x23
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2c4(r31)
-	cmplwi   r3, 0
-	beq      lbl_8018F250
-	lbz      r0, 0x2b8(r31)
-	cmpwi    r0, 5
-	bne      lbl_8018F234
-	lwz      r3, 0x26c(r3)
-	li       r4, 0x286b
-	lwzu     r12, 0x30(r3)
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8018F250
+	piki->startMotion(IPikiAnims::ROLLJUMP, IPikiAnims::ROLLJUMP, nullptr, nullptr);
 
-lbl_8018F234:
-	lwz      r3, 0x26c(r3)
-	li       r4, 0x2802
-	lwzu     r12, 0x30(r3)
-	li       r5, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	Navi* navi = piki->mNavi;
+	if (navi) {
+		if ((int)piki->mPikiKind == Bulbmin) {
+			navi->mSoundObj->stopSound(PSSE_PK_HAPPA_THROW_WAIT, 0);
+		} else {
+			navi->mSoundObj->stopSound(PSSE_PK_VC_THROW_WAIT, 0);
+		}
+	}
 
-lbl_8018F250:
-	lwz      r3, 0x250(r31)
-	li       r4, 0x2803
-	li       r5, 0x5a
-	li       r6, 0
-	bl       startFreePikiSound__Q23PSM4PikiFUlUlUl
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x14(r30)
-	li       r4, 0
-	stw      r0, 0x30(r30)
-	stb      r0, 0x15(r30)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1e8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x258(r31)
-	lwz      r4, 0x10(r3)
-	lwz      r5, 0x1c(r3)
-	bl       "createNage___Q23efx9TPkEffectFP10Vector3<f>PA4_f"
-	li       r0, 1
-	stb      r0, 0x135(r31)
-	lbz      r0, throwPikiDebug__Q24Game7PikiMgr@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8018F2C8
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xdc(r12)
-	mtctr    r12
-	bctrl
+	piki->mSoundObj->startFreePikiSound(PSSE_PK_VC_THROWN, 90, 0);
 
-lbl_8018F2C8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_14 = 0;
+	_30 = 0;
+	_15 = 0;
+	piki->setMoveVelocity(false);
+
+	efx::TPkEffect* effectsObj = piki->mEffectsObj;
+	effectsObj->createNage_(effectsObj->mHamonPosPtr, effectsObj->_1C->mMatrix.mtxView);
+	piki->mUpdateContext._09 = 1;
+	if (PikiMgr::throwPikiDebug) {
+		piki->setDebugCollision(true);
+	}
 }
 
 /*
@@ -4130,7 +3975,7 @@ void PikiFlyingState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
  * Address:	8018F354
  * Size:	000328
  */
-void PikiFlyingState::collisionCallback(Piki* piki, Game::CollEvent&)
+void PikiFlyingState::collisionCallback(Piki* piki, CollEvent& event)
 {
 	/*
 	stwu     r1, -0x70(r1)

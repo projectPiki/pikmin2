@@ -90,6 +90,7 @@ enum FakePikiDynamics {
 	FPFLAGS_UpdateTrMatrixDisabled = 0x2,
 	FPFLAGS_MoveVelocityDisabled   = 0x4,
 	FPFLAGS_MapCollisionDisabled   = 0x8,
+	FPFLAGS_Unk5                   = 0x10,
 	FPFLAGS_Zikatu                 = 0x20,
 	FPFLAGS_WasZikatu              = 0x80,
 };

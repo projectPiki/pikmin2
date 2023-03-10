@@ -64,6 +64,7 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	void saveAllPikmins(PikiContainer&);
 
 	static int mBirthMode;
+	static bool throwPikiDebug;
 
 	s32 mDopedPikis;               // _30
 	s32* mStoredPikis;             // _34

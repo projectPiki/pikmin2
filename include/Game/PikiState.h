@@ -380,6 +380,8 @@ struct PikiFallMeckState : public PikiState {
 	virtual void platCallback(Piki*, PlatEvent&);       // _2C
 	virtual bool pressable() { return false; }          // _60 (weak)
 
+	bool becomePikihead(Piki* piki);
+
 	// _00     = VTBL
 	// _00-_10 = PikiState
 	bool _10; // _10
@@ -428,7 +430,12 @@ struct PikiFlyingState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x24]; // _10, unknown
+	u8 _10[0x4];  // _10, unknown
+	u8 _14;       // _14
+	u8 _15;       // _15
+	u8 _16[0x2];  // _16, unknown/padding
+	u8 _18[0x18]; // _18, unknown
+	u32 _30;      // _30
 };
 
 struct FountainonStateArg : public StateArg {
@@ -700,7 +707,7 @@ struct PikiPressedState : public PikiState {
 
 struct SuikomiStateArg : public StateArg {
 
-	inline SuikomiStateArg(Creature* c, u32 p3, CollPart* p2)
+	inline SuikomiStateArg(Creature* c, CollPart* p3, CollPart* p2)
 	{
 		mCreature = c;
 		_04       = p3;
@@ -708,7 +715,7 @@ struct SuikomiStateArg : public StateArg {
 	}
 
 	Creature* mCreature; // _00
-	u32 _04;             // _04
+	CollPart* _04;       // _04
 	CollPart* _08;       // _08
 };
 
