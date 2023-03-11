@@ -30,7 +30,5 @@ GROUP: {
 FORCEFILES {
 	__init_cpp_exceptions.o
 	targsupp.o
-	ctors.o
-	dtors.o
 	id32.o
 }
