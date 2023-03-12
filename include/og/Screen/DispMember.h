@@ -648,6 +648,12 @@ struct DispMemberUfoGroup : public DispMemberBase {
 	virtual u32 getSize() { return sizeof(DispMemberUfoGroup); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_UFO_GROUP; }       // _10 (weak)
+	virtual void doSetSubMemberAll()                             // _14 (weak)
+	{
+		setSubMember(&mUfoMenu);
+		setSubMember(&mContena1);
+		setSubMember(&mContena2);
+	}
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase

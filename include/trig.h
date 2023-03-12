@@ -86,4 +86,9 @@ inline int adjustValInt(int current, int dest, const int delta)
 	return (absVal(current - dest) < delta) ? dest : (current < dest ? current += delta : current -= delta);
 }
 
+inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle)
+{
+	return Vector3f(scale * pikmin2_sinf(angle), y, scale * pikmin2_cosf(angle));
+}
+
 #endif

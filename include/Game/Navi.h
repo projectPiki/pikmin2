@@ -149,7 +149,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void checkCave();
 	FakePiki* checkDemoNaviAndPiki(Sys::Sphere&);
 	void checkHole();
-	void checkOnyon();
+	Onyon* checkOnyon();
 	void clearKaisanDisable();
 	void clearThrowDisable();
 	bool commandOn();
@@ -176,7 +176,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void makeVelocity();
 	u32 ogGetNextThrowPiki();
 	bool procActionButton();
-	void releasePikis();
+	bool releasePikis();
 	void reviseController(Vector3f&);
 	void set_movie_draw(bool);
 	void setDeadLaydown();
