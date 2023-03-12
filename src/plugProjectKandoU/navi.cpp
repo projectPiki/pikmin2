@@ -225,8 +225,8 @@ void Navi::onKeyEvent(const SysShape::KeyEvent& event)
 		mCurrentState->onKeyEvent(this, event);
 	}
 
-	if (_248) {
-		int walkSound = _248->mCode.getAttribute();
+	if (mFakePikiBounceTriangle) {
+		int walkSound = mFakePikiBounceTriangle->mCode.getAttribute();
 		if (inWater()) {
 			walkSound = 4;
 		}

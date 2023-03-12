@@ -21,6 +21,7 @@ void createSimpleGedoku(Vector3f&);
 void createSimpleBlackDrop(Vector3f&);
 void createSimpleDive(Vector3f&);
 void createSimpleChiru(Vector3f&, long);
+void createSimpleInstick(Vector3f&);
 
 struct TPkAp : public TSimple2 {
 	inline TPkAp()

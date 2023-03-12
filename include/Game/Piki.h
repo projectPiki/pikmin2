@@ -191,7 +191,7 @@ struct Piki : public FakePiki {
 	int getCurrActionID();
 	int getFormationSlotID();
 	f32 getPelletCarryPower();
-	void getSpeed(f32);
+	f32 getSpeed(f32);
 	int getStateID();
 	f32 getThrowHeight();
 	Piki* getVsBattlePiki();

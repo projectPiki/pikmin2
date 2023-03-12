@@ -48,14 +48,14 @@ FakePiki::FakePiki()
  */
 void FakePiki::initFakePiki()
 {
-	mDoAnimCallback = nullptr;
-	mWaterBox       = nullptr;
-	mFaceDir        = 0.0f;
-	mPosition3      = Vector3f(0.0f);
-	mVelocity       = Vector3f(0.0f);
-	_1F0            = Vector3f(0.0f);
-	mSimVelocity    = Vector3f(0.0f);
-	_248            = nullptr;
+	mDoAnimCallback         = nullptr;
+	mWaterBox               = nullptr;
+	mFaceDir                = 0.0f;
+	mPosition3              = Vector3f(0.0f);
+	mVelocity               = Vector3f(0.0f);
+	_1F0                    = Vector3f(0.0f);
+	mSimVelocity            = Vector3f(0.0f);
+	mFakePikiBounceTriangle = nullptr;
 
 	if (shadowMgr) {
 		shadowMgr->addShadow(this);

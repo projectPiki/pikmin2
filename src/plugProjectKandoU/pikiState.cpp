@@ -13,10 +13,13 @@
 #include "Game/AIConstants.h"
 #include "Game/EnemyBase.h"
 #include "Game/Entities/ItemPikihead.h"
+#include "Game/Entities/ItemHoney.h"
+#include "Game/CPlate.h"
 #include "efx/TPiku.h"
 #include "efx/TPk.h"
 #include "efx/TEnemyDive.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "KandoLib/Choice.h"
 #include "PSM/Navi.h"
 #include "Dolphin/rand.h"
 #include "trig.h"
@@ -3266,8 +3269,8 @@ void PikiFallMeckState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiFallMeckState::exec(Piki* piki)
 {
-	if (piki->_248) {
-		bounceCallback(piki, piki->_248);
+	if (piki->mFakePikiBounceTriangle) {
+		bounceCallback(piki, piki->mFakePikiBounceTriangle);
 	}
 }
 
@@ -3977,226 +3980,60 @@ void PikiFlyingState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
  */
 void PikiFlyingState::collisionCallback(Piki* piki, CollEvent& event)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stmw     r27, 0x5c(r1)
-	mr       r28, r3
-	mr       r30, r5
-	mr       r29, r4
-	lwz      r3, 4(r5)
-	lwz      r31, 0(r5)
-	cmplwi   r3, 0
-	beq      lbl_8018F384
-	bl       isStickable__8CollPartFv
+	Creature* creature = event.mCollidingCreature;
+	if (event.mCollisionObj) {
+		event.mCollisionObj->isStickable();
+	}
 
-lbl_8018F384:
-	mr       r3, r29
-	lwz      r4, 0(r30)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x190(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018F534
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018F534
-	mr       r4, r29
-	addi     r3, r1, 0x1c
-	lwz      r12, 0(r29)
-	li       r27, 0
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x20(r1)
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8018F448
-	lwz      r5, 4(r30)
-	lis      r3, __vt__Q24Game11Interaction@ha
-	addi     r0, r3, __vt__Q24Game11Interaction@l
-	lfs      f0, lbl_80518DCC@sda21(r2)
-	lis      r3, __vt__Q24Game13InteractPress@ha
-	stw      r0, 0x44(r1)
-	addi     r0, r3, __vt__Q24Game13InteractPress@l
-	addi     r4, r1, 0x44
-	stw      r29, 0x48(r1)
-	stw      r0, 0x44(r1)
-	stfs     f0, 0x4c(r1)
-	stw      r5, 0x50(r1)
-	lwz      r3, 0(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	mr       r27, r3
+	piki->ignoreAtari(event.mCollidingCreature);
 
-lbl_8018F448:
-	clrlwi.  r0, r27, 0x18
-	bne      lbl_8018F498
-	lwz      r5, 4(r30)
-	lis      r3, __vt__Q24Game11Interaction@ha
-	addi     r0, r3, __vt__Q24Game11Interaction@l
-	lfs      f0, lbl_80518DCC@sda21(r2)
-	lis      r3, __vt__Q24Game20InteractFlyCollision@ha
-	stw      r0, 0x34(r1)
-	addi     r0, r3, __vt__Q24Game20InteractFlyCollision@l
-	addi     r4, r1, 0x34
-	stw      r29, 0x38(r1)
-	stw      r0, 0x34(r1)
-	stfs     f0, 0x3c(r1)
-	stw      r5, 0x40(r1)
-	lwz      r3, 0(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	mr       r27, r3
+	if (creature->isTeki() && creature->isAlive()) {
+		bool pressCheck = false;
 
-lbl_8018F498:
-	clrlwi.  r0, r27, 0x18
-	bne      lbl_8018F534
-	lwz      r3, 4(r30)
-	cmplwi   r3, 0
-	beq      lbl_8018F4FC
-	bl       isStickable__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018F4FC
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xd4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018F4FC
-	lwz      r4, 0(r30)
-	mr       r3, r29
-	lwz      r5, 4(r30)
-	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-	lwz      r4, 0(r30)
-	mr       r3, r29
-	li       r5, 0x2805
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	b        lbl_8018F534
+		Vector3f pikiVel = piki->getVelocity();
+		if (pikiVel.y < 0.0f) {
+			InteractPress press(piki, 10.0f, event.mCollisionObj);
+			pressCheck = event.mCollidingCreature->stimulate(press);
+		}
 
-lbl_8018F4FC:
-	mr       r4, r29
-	addi     r3, r1, 0x10
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x10(r1)
-	addi     r3, r1, 0x28
-	lfs      f1, 0x14(r1)
-	lfs      f0, 0x18(r1)
-	stfs     f2, 0x28(r1)
-	stfs     f1, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	bl       "createSimpleInstick__3efxFR10Vector3<f>"
+		if (!pressCheck) {
+			InteractFlyCollision flyCol(piki, 10.0f, event.mCollisionObj);
+			pressCheck = event.mCollidingCreature->stimulate(flyCol);
+		}
 
-lbl_8018F534:
-	lhz      r0, 0x128(r31)
-	cmplwi   r0, 0x408
-	bne      lbl_8018F5DC
-	lwz      r3, 4(r30)
-	cmplwi   r3, 0
-	beq      lbl_8018F5DC
-	lis      r4, 0x746F7073@ha
-	addi     r3, r3, 0x30
-	addi     r4, r4, 0x746F7073@l
-	li       r5, 0x2a
-	bl       match__4ID32FUlc
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018F5DC
-	lwz      r4, 0(r30)
-	mr       r3, r29
-	lwz      r5, 4(r30)
-	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-	lwz      r4, 0(r30)
-	mr       r3, r29
-	li       r5, 0x2805
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	mr       r3, r28
-	mr       r4, r29
-	lwz      r12, 0(r28)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q26PikiAI9ActionArg@ha
-	lis      r3, __vt__Q26PikiAI10ActCropArg@ha
-	addi     r4, r4, __vt__Q26PikiAI9ActionArg@l
-	stw      r31, 0xc(r1)
-	addi     r0, r3, __vt__Q26PikiAI10ActCropArg@l
-	addi     r5, r1, 8
-	stw      r4, 8(r1)
-	li       r4, 8
-	stw      r0, 8(r1)
-	lwz      r3, 0x294(r29)
-	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
-	b        lbl_8018F668
+		if (!pressCheck) {
+			if (event.mCollisionObj && event.mCollisionObj->isStickable() && creature->isLivingThing()) {
+				piki->startStick(event.mCollidingCreature, event.mCollisionObj);
+				piki->startSound(event.mCollidingCreature, PSSE_PK_SE_ATTACH, true);
+			} else {
+				Vector3f pikiPos = piki->getPosition();
+				efx::createSimpleInstick(pikiPos);
+			}
+		}
+	}
 
-lbl_8018F5DC:
-	mr       r3, r29
-	bl       getStateID__Q24Game4PikiFv
-	cmpwi    r3, 6
-	bne      lbl_8018F668
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018F668
-	mr       r3, r28
-	mr       r4, r29
-	lwz      r12, 0(r28)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 1
-	bl       invokeAI__Q24Game4PikiFPQ24Game9CollEventb
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8018F650
-	lwz      r3, 0x294(r29)
-	li       r4, 1
-	li       r5, 0
-	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
+	if (creature->mObjectTypeID == OBJTYPE_Plant && event.mCollisionObj && event.mCollisionObj->mCurrentID.match('tops', '*')) {
+		piki->startStick(event.mCollidingCreature, event.mCollisionObj);
+		piki->startSound(event.mCollidingCreature, PSSE_PK_SE_ATTACH, true);
 
-lbl_8018F650:
-	lwz      r3, 0x294(r29)
-	bl       getCurrAction__Q26PikiAI5BrainFv
-	cmplwi   r3, 0
-	beq      lbl_8018F668
-	lwz      r3, 0x294(r29)
-	bl       getCurrAction__Q26PikiAI5BrainFv
+		transit(piki, PIKISTATE_Walk, nullptr);
 
-lbl_8018F668:
-	lmw      r27, 0x5c(r1)
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+		PikiAI::ActCropArg cropArg;
+		cropArg.mCreature = creature;
+
+		piki->mBrain->start(PikiAI::ACT_Crop, &cropArg);
+
+	} else if (piki->getStateID() == PIKISTATE_Flying && creature->isCollisionFlick()) {
+		transit(piki, PIKISTATE_Walk, nullptr);
+		if (!piki->invokeAI(&event, true)) {
+			piki->mBrain->start(PikiAI::ACT_Free, nullptr);
+		}
+
+		// uh-huh.
+		if (piki->mBrain->getCurrAction()) {
+			piki->mBrain->getCurrAction();
+		}
+	}
 }
 
 /*
@@ -4219,6 +4056,61 @@ bool PikiFlyingState::ignoreAtari(Piki* piki, Creature* creature)
  */
 void PikiFlyingState::exec(Piki* piki)
 {
+	if (_30++ >= 240) {
+		bounceCallback(piki, nullptr);
+		return;
+	}
+
+	if ((int)piki->mPikiKind == Purple && piki->mSimVelocity.y <= 0.0f) {
+		transit(piki, PIKISTATE_HipDrop, nullptr);
+		return;
+	}
+
+	f32 gravityFactor    = 0.8f * _aiConstants->mGravity.mData;                                                           // f30
+	f32 flowerFallFactor = _aiConstants->mGravity.mData * static_cast<PikiParms*>(piki->mParms)->mPikiParms.mP048.mValue; // f29
+	f32 fallDiff         = gravityFactor - flowerFallFactor;
+	f32 thing            = (gravityFactor * 0.15f - 0.075f * fallDiff) - flowerFallFactor * 0.15f; // f28
+
+	if (_14 == 0 && (int)piki->mHappaKind == Flower && piki->mSimVelocity.y <= 0.0f) {
+		_14 = 1;
+		piki->startMotion(IPikiAnims::HANG, IPikiAnims::HANG, nullptr, nullptr);
+
+		f32 throwHeight;
+		if ((int)piki->mPikiKind == Yellow) {
+			throwHeight = naviMgr->mNaviParms->mNaviParms.mP054.mValue;
+		} else {
+			throwHeight = naviMgr->mNaviParms->mNaviParms.mP024.mValue;
+		}
+
+		f32 sqrVal = thing * thing + (2.0f * throwHeight) * flowerFallFactor;
+		sqrVal     = _sqrtf(sqrVal);
+
+		_1C.x = piki->mSimVelocity.x;
+		_1C.y = 0.0f;
+		_1C.z = piki->mSimVelocity.z;
+
+		_1C.normalise();
+
+		f32 xSpeed      = piki->mSimVelocity.x * piki->mSimVelocity.x;
+		f32 zSpeed      = piki->mSimVelocity.z * piki->mSimVelocity.z;
+		f32 groundSpeed = xSpeed + zSpeed;
+		groundSpeed     = _sqrtf(groundSpeed);
+		_28             = groundSpeed;
+		_2C             = 0.5f * groundSpeed;
+
+		piki->mSimVelocity.y = 0.0f;
+		piki->mVelocity.x    = piki->mSimVelocity.x;
+		piki->mVelocity.z    = piki->mSimVelocity.z;
+		piki->mVelocity      = 0.0f;
+		_10                  = 0.0f;
+	} else if (_14) {
+		piki->mFaceDir = roundAng(piki->mFaceDir + PI * sys->mDeltaTime / 0.42f);
+		_10 += sys->mDeltaTime;
+
+		if (_10 < randFloat() - 0.5f) {
+			piki->mSimVelocity += sys->mDeltaTime;
+		}
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -4516,102 +4408,20 @@ void PikiFlyingState::cleanup(Piki* piki)
  */
 void PikiFlickState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	lis      r7, lbl_8047EC60@ha
-	lis      r6, lbl_8047ED3C@ha
-	addi     r7, r7, lbl_8047EC60@l
-	mr       r29, r3
-	mr       r30, r4
-	addi     r0, r6, lbl_8047ED3C@l
-	mr       r31, r5
-	mr       r3, r7
-	mr       r5, r0
-	li       r4, 0xbf1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r0, 0
-	sth      r0, 0x14(r29)
-	lfs      f0, 0(r31)
-	stfs     f0, 0x1c(r29)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_80518DC8@sda21(r2)
-	lfd      f1, 8(r1)
-	lfs      f0, lbl_80518E3C@sda21(r2)
-	fsubs    f3, f1, f3
-	lfs      f1, lbl_80518E2C@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f0, f0, f2
-	fmuls    f0, f1, f0
-	stfs     f0, 0x20(r29)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f2, lbl_80518DC8@sda21(r2)
-	lfd      f0, 0x10(r1)
-	lfs      f1, lbl_80518E1C@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_80518E58@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x204(r30)
-	lfs      f31, 4(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	cmplwi   r29, 0
-	lfs      f0, lbl_80518E2C@sda21(r2)
-	mr       r6, r29
-	stw      r0, 0x18(r1)
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	fmuls    f0, f0, f31
-	lfd      f2, 0x18(r1)
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmadds   f0, f0, f1, f31
-	stfs     f0, 0x24(r29)
-	beq      lbl_8018FC3C
-	lwz      r6, 0x10(r29)
+	// ??
+	JUT_PANICLINE(3057, "flick:init:erase\n");
+	mState = FLICK_Start;
 
-lbl_8018FC3C:
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	li       r4, 0x16
-	li       r5, 0x16
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	stw      r30, 0x28(r29)
-	li       r0, 0
-	stb      r0, 0x2c(r29)
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	FlickStateArg* flickArg = static_cast<FlickStateArg*>(stateArg);
+	mKnockBackAngle         = flickArg->mAngle;
+	mFaceDirOffset          = 0.1f * (PI * randFloat());
+	piki->mSimVelocity.y    = 50.0f * randFloat() + 100.0f;
+	f32 baseSpeed           = flickArg->mSpeed;
+	mKnockBackSpeed         = (0.1f * baseSpeed) * randFloat() + baseSpeed;
+
+	piki->startMotion(IPikiAnims::JHIT, IPikiAnims::JHIT, this, nullptr);
+	mPiki       = piki;
+	mIsWhistled = false;
 }
 
 /*
@@ -4621,9 +4431,9 @@ lbl_8018FC3C:
  */
 void PikiFlickState::onFlute(Piki* piki, Navi* navi)
 {
-	_18         = 0.0f;
-	_2C         = true;
-	piki->mNavi = navi;
+	mKnockDownTimer = 0.0f;
+	mIsWhistled     = true;
+	piki->mNavi     = navi;
 }
 
 /*
@@ -4633,154 +4443,38 @@ void PikiFlickState::onFlute(Piki* piki, Navi* navi)
  */
 void PikiFlickState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, lbl_8047ED50@ha
-	lis      r6, lbl_8047EC60@ha
-	stw      r0, 0x34(r1)
-	addi     r0, r6, lbl_8047EC60@l
-	addi     r5, r5, lbl_8047ED50@l
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	li       r4, 0xc14
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	mr       r3, r0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	lhz      r0, 0x14(r30)
-	cmplwi   r0, 0
-	bne      lbl_8018FDB8
-	lfs      f1, 0x1c(r30)
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	lfs      f2, 0x24(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8018FD2C
-	lfs      f0, lbl_80518E38@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f1, f0
-	b        lbl_8018FD50
+	// ???
+	JUT_PANICLINE(3092, "flick:exec:erase\n");
+	if (mState == FLICK_Start) { // yeet the piki.
+		f32 speed            = mKnockBackSpeed;
+		piki->mSimVelocity.x = -speed * pikmin2_sinf(mKnockBackAngle);
+		piki->mSimVelocity.z = -speed * pikmin2_cosf(mKnockBackAngle);
 
-lbl_8018FD2C:
-	lfs      f0, lbl_80518E34@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r3, r0
+		piki->mFaceDir = roundAng(piki->mFaceDir + mFaceDirOffset);
+		return;
+	}
 
-lbl_8018FD50:
-	fneg     f2, f2
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x200(r31)
-	lfs      f1, 0x1c(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8018FD70
-	fneg     f1, f1
+	if (mState == FLICK_Land) { // piki has landed.
+		mKnockDownTimer -= sys->mDeltaTime;
+		if (mKnockDownTimer < 0.0f && piki->isAlive()) { // if knock down timer has expired + piki is alive (!), get up.
+			piki->startMotion(IPikiAnims::GETUP, IPikiAnims::GETUP, this, nullptr);
+			mState = FLICK_Stand;
+		}
 
-lbl_8018FD70:
-	lfs      f0, lbl_80518E34@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r3, r0
-	lfs      f0, 4(r3)
-	fmuls    f0, f2, f0
-	stfs     f0, 0x208(r31)
-	lfs      f1, 0x1fc(r31)
-	lfs      f0, 0x20(r30)
-	fadds    f1, f1, f0
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	b        lbl_8018FE94
+		// Adjust simulation velocity?
+		piki->mSimVelocity.x = 0.9f * piki->mSimVelocity.x;
+		piki->mSimVelocity.z = 0.9f * piki->mSimVelocity.z;
 
-lbl_8018FDB8:
-	cmplwi   r0, 2
-	bne      lbl_8018FE68
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x18(r30)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x18(r30)
-	lfs      f1, 0x18(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8018FE38
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018FE38
-	cmplwi   r30, 0
-	mr       r6, r30
-	beq      lbl_8018FE10
-	lwz      r6, 0x10(r30)
+		// set actual velocity to 0.
+		piki->mVelocity = Vector3f(0.0f);
+		return;
+	}
 
-lbl_8018FE10:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0xe
-	li       r5, 0xe
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 3
-	sth      r0, 0x14(r30)
+	// we're either flying through the air or standing up
+	piki->mSimVelocity.x = 0.9f * piki->mSimVelocity.x;
+	piki->mSimVelocity.z = 0.9f * piki->mSimVelocity.z;
 
-lbl_8018FE38:
-	lfs      f2, lbl_80518E84@sda21(r2)
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x200(r31)
-	lfs      f1, 0x208(r31)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x208(r31)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-	b        lbl_8018FE94
-
-lbl_8018FE68:
-	lfs      f2, lbl_80518E84@sda21(r2)
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x200(r31)
-	lfs      f1, 0x208(r31)
-	fmuls    f1, f2, f1
-	stfs     f1, 0x208(r31)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-
-lbl_8018FE94:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	piki->mVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -4788,93 +4482,31 @@ lbl_8018FE94:
  * Address:	8018FEAC
  * Size:	000124
  */
-void PikiFlickState::onKeyEvent(SysShape::KeyEvent const&)
+void PikiFlickState::onKeyEvent(SysShape::KeyEvent const& event)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	lwz      r0, 0x1c(r4)
-	mr       r30, r3
-	lwz      r31, 0x28(r3)
-	cmpwi    r0, 0x3e8
-	beq      lbl_8018FEE8
-	b        lbl_8018FFA8
+	Piki* piki = mPiki;
+	switch (event.mType) {
+	case KEYEVENT_END:
+		if (mState == FLICK_Start) { // initial flick anim ends
+			piki->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, this, nullptr);
+			mState = FLICK_InAir;
+			return;
+		}
 
-lbl_8018FEE8:
-	lhz      r0, 0x14(r30)
-	cmplwi   r0, 0
-	bne      lbl_8018FF30
-	cmplwi   r30, 0
-	mr       r6, r30
-	beq      lbl_8018FF04
-	lwz      r6, 0x10(r30)
+		if (mState == FLICK_InAir) { // thrown through air animation ends
+			mState      = FLICK_Land;
+			f32 minTime = static_cast<PikiParms*>(piki->mParms)->mPikiParms.mP074.mValue;
+			f32 maxTime = static_cast<PikiParms*>(piki->mParms)->mPikiParms.mP043.mValue;
 
-lbl_8018FF04:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x17
-	li       r5, 0x17
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	sth      r0, 0x14(r30)
-	b        lbl_8018FFA8
+			mKnockDownTimer = (maxTime - minTime) * randFloat() + minTime;
+			return;
+		}
 
-lbl_8018FF30:
-	cmplwi   r0, 1
-	bne      lbl_8018FF84
-	li       r0, 2
-	sth      r0, 0x14(r30)
-	lwz      r3, 0xc0(r31)
-	lfs      f31, 0xae8(r3)
-	lfs      f30, 0xac0(r3)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	fsubs    f0, f30, f31
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	lfd      f2, 8(r1)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmadds   f0, f0, f1, f31
-	stfs     f0, 0x18(r30)
-	b        lbl_8018FFA8
-
-lbl_8018FF84:
-	bl       rand
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8018FFA8:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		// getup animation ends
+		randFloat(); // something's gotten commented out here I assume
+		transit(piki, PIKISTATE_Walk, nullptr);
+		break;
+	}
 }
 
 /*
@@ -4884,10 +4516,11 @@ lbl_8018FFA8:
  */
 void PikiFlickState::cleanup(Piki* piki)
 {
-	if (piki->isAlive() && _2C) {
-		PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
+	// if piki is alive and has been whistled by a captain, put them in the party!
+	if (piki->isAlive() && mIsWhistled) {
+		PikiAI::ActFormationInitArg initArg(piki->mNavi);
 		initArg._09 = 1;
-		piki->mBrain->start(0, &initArg);
+		piki->mBrain->start(PikiAI::ACT_Formation, &initArg);
 	}
 }
 
@@ -4898,125 +4531,38 @@ void PikiFlickState::cleanup(Piki* piki)
  */
 void PikiBlowState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	bne      lbl_801900C0
-	lis      r3, lbl_8047EC60@ha
-	lis      r5, lbl_8047ED64@ha
-	addi     r3, r3, lbl_8047EC60@l
-	li       r4, 0xc97
-	addi     r5, r5, lbl_8047ED64@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_801900F8
+	BlowStateArg* blowArg = static_cast<BlowStateArg*>(stateArg);
+	if (!blowArg) {
+		JUT_PANICLINE(3223, "flick needs PikiBlowInitArg !\n");
+	} else {
+		_18       = blowArg->_00;
+		_24       = blowArg->_0C;
+		mIsLethal = blowArg->mIsLethal;
+		_2A       = blowArg->_12;
+		_14       = blowArg->_14;
+	}
 
-lbl_801900C0:
-	lfs      f0, 0(r5)
-	stfs     f0, 0x18(r30)
-	lfs      f0, 4(r5)
-	stfs     f0, 0x1c(r30)
-	lfs      f0, 8(r5)
-	stfs     f0, 0x20(r30)
-	lfs      f0, 0xc(r5)
-	stfs     f0, 0x24(r30)
-	lbz      r0, 0x10(r5)
-	stb      r0, 0x29(r30)
-	lhz      r0, 0x12(r5)
-	sth      r0, 0x2a(r30)
-	lwz      r0, 0x14(r5)
-	stw      r0, 0x14(r30)
+	mIsWhistled = false;
+	piki->startMotion(IPikiAnims::JHIT, IPikiAnims::JHIT, piki, nullptr);
+	mState = 0;
 
-lbl_801900F8:
-	li       r0, 0
-	cmplwi   r31, 0
-	stb      r0, 0x28(r30)
-	mr       r6, r31
-	beq      lbl_80190110
-	addi     r6, r31, 0x178
+	piki->mSimVelocity.y = _18.y * (0.1f * randFloat() + 1.0f);
+	piki->mFaceDir       = roundAng(JMath::atanTable_.atan2_(_18.x, _18.z) + PI);
 
-lbl_80190110:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x16
-	li       r5, 0x16
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x10(r30)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfd      f2, lbl_80518DD8@sda21(r2)
-	addi     r3, r3, atanTable___5JMath@l
-	stw      r0, 8(r1)
-	lfs      f3, lbl_80518DC8@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_80518E2C@sda21(r2)
-	fsubs    f4, f0, f2
-	lfs      f0, lbl_80518DE4@sda21(r2)
-	lfs      f2, 0x1c(r30)
-	fdivs    f3, f4, f3
-	fmadds   f0, f1, f3, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 0x204(r31)
-	lfs      f1, 0x18(r30)
-	lfs      f2, 0x20(r30)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	lfs      f0, lbl_80518E3C@sda21(r2)
-	fadds    f1, f0, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	lhz      r0, 0x2a(r30)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_801901E0
-	lbz      r0, 0x2b9(r31)
-	cmpwi    r0, 1
-	blt      lbl_801901F0
-	lwz      r4, 0x258(r31)
-	lwz      r3, 0xc(r4)
-	lwz      r4, 8(r4)
-	bl       "createSimpleChiru__3efxFR10Vector3<f>l"
-	mr       r3, r31
-	li       r4, 0x2846
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-	li       r0, 0
-	stb      r0, 0x2b9(r31)
-	b        lbl_801901F0
+	if (_2A & 0x4) {
+		if ((int)piki->mHappaKind >= Bud) {
+			efx::TPkEffect* effectObj = piki->mEffectsObj;
+			efx::createSimpleChiru(*effectObj->_0C, effectObj->mPikiColor);
+			piki->startSound(PSSE_PK_FLOWER_FALL_VOICE, true);
+			piki->mHappaKind = Leaf;
+		}
+	} else {
+		piki->startSound(PSSE_PK_VC_SCATTERED, true);
+	}
 
-lbl_801901E0:
-	mr       r3, r31
-	li       r4, 0x2854
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-
-lbl_801901F0:
-	mr       r3, r31
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80190208
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
-
-lbl_80190208:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (piki->isStickTo()) {
+		piki->endStick();
+	}
 }
 
 /*
@@ -5026,100 +4572,29 @@ lbl_80190208:
  */
 void PikiBlowState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80190254
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
+	if (piki->isStickTo()) {
+		piki->endStick();
+	}
 
-lbl_80190254:
-	lwz      r0, 0x10(r30)
-	cmpwi    r0, 1
-	beq      lbl_801902D0
-	bge      lbl_80190348
-	cmpwi    r0, 0
-	bge      lbl_80190270
-	b        lbl_80190348
-
-lbl_80190270:
-	lfs      f0, 0x18(r30)
-	mr       r3, r31
-	li       r4, 0x16
-	stfs     f0, 0x200(r31)
-	lfs      f0, 0x20(r30)
-	stfs     f0, 0x208(r31)
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80190348
-	li       r0, 1
-	cmplwi   r31, 0
-	stw      r0, 0x10(r30)
-	mr       r6, r31
-	beq      lbl_801902AC
-	addi     r6, r31, 0x178
-
-lbl_801902AC:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x17
-	li       r5, 0x17
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	b        lbl_80190348
-
-lbl_801902D0:
-	lfs      f0, 0x200(r31)
-	mr       r3, r31
-	lfs      f1, lbl_80518E84@sda21(r2)
-	li       r4, 0x17
-	fmuls    f0, f0, f1
-	stfs     f0, 0x200(r31)
-	lfs      f0, 0x208(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x208(r31)
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80190324
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80190348
-
-lbl_80190324:
-	lwz      r5, 0x248(r31)
-	cmplwi   r5, 0
-	beq      lbl_80190348
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80190348:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (mState) {
+	case BLOW_Start:
+		piki->mSimVelocity.x = _18.x;
+		piki->mSimVelocity.z = _18.z;
+		if (!piki->assertMotion(IPikiAnims::JHIT)) {
+			mState = BLOW_Knockback;
+			piki->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, piki, nullptr);
+		}
+		break;
+	case BLOW_Knockback:
+		piki->mSimVelocity.x *= 0.9f;
+		piki->mSimVelocity.z *= 0.9f;
+		if (!piki->assertMotion(IPikiAnims::JKOKE)) {
+			transit(piki, PIKISTATE_Walk, nullptr);
+		} else if (piki->mFakePikiBounceTriangle) {
+			bounceCallback(piki, piki->mFakePikiBounceTriangle);
+		}
+		break;
+	}
 }
 
 /*
@@ -5136,8 +4611,8 @@ void PikiBlowState::cleanup(Piki* piki) { }
  */
 void PikiBlowState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	if ((u32)keyEvent.mType == KEYEVENT_END && _10 == 0) {
-		_10 = 1;
+	if (keyEvent.mType == KEYEVENT_END && mState == BLOW_Start) {
+		mState = BLOW_Knockback;
 		piki->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, nullptr, nullptr);
 	}
 }
@@ -5149,7 +4624,7 @@ void PikiBlowState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
  */
 void PikiBlowState::onFlute(Piki* piki, Navi* navi)
 {
-	_28         = 1;
+	mIsWhistled = true;
 	piki->mNavi = navi;
 }
 
@@ -5158,8 +4633,33 @@ void PikiBlowState::onFlute(Piki* piki, Navi* navi)
  * Address:	801903D8
  * Size:	000168
  */
-void PikiBlowState::bounceCallback(Piki* piki, Sys::Triangle*)
+void PikiBlowState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 {
+	u16 flag = mIsLethal | (0x8000 & (mIsWhistled != false));
+	KokeDamageStateArg kokeArg(flag, 1.0f);
+	if (randFloat() < _24) {
+		if ((int)piki->mHappaKind >= Bud) {
+			efx::TPkEffect* effectsObj = piki->mEffectsObj;
+			efx::createSimpleChiru(*effectsObj->_0C, effectsObj->mPikiColor);
+			piki->mHappaKind = Leaf;
+		}
+
+		if (_14) {
+			piki->startSound(_14, PSSE_PK_VC_DAMAGED, true);
+		}
+	}
+
+	if (mIsLethal) {
+		piki->startSound(PSSE_PK_VC_PRESSED, true);
+		if (piki->isPikmin()) {
+			DeathMgr::inc(DeathCounter::COD_Explosion);
+		}
+		piki->kill(nullptr);
+		transit(piki, PIKISTATE_Dead, nullptr);
+
+	} else {
+		transit(piki, PIKISTATE_KokeDamage, &kokeArg);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -5271,49 +4771,18 @@ lbl_80190528:
  */
 void PikiKokeDamageState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bne      lbl_80190570
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0x10(r31)
-	sth      r0, 0x14(r31)
-	b        lbl_80190580
+	KokeDamageStateArg* kokeArg = static_cast<KokeDamageStateArg*>(stateArg);
+	if (!kokeArg) {
+		mTimer = 0.0f;
+		mFlags = 0;
 
-lbl_80190570:
-	lfs      f0, 4(r5)
-	stfs     f0, 0x10(r31)
-	lhz      r0, 0(r5)
-	sth      r0, 0x14(r31)
+	} else {
+		mTimer = kokeArg->mTime;
+		mFlags = kokeArg->mFlags;
+	}
 
-lbl_80190580:
-	cmplwi   r4, 0
-	mr       r6, r4
-	beq      lbl_80190590
-	addi     r6, r4, 0x178
-
-lbl_80190590:
-	lwz      r12, 0(r4)
-	mr       r3, r4
-	li       r4, 0x17
-	li       r5, 0x17
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x18(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, piki, nullptr);
+	mState = KOKEDAMAGE_Start;
 }
 
 /*
@@ -5323,105 +4792,30 @@ lbl_80190590:
  */
 void PikiKokeDamageState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f2, lbl_80518DE0@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stfs     f2, 0x1e4(r4)
-	stfs     f2, 0x1e8(r4)
-	stfs     f2, 0x1ec(r4)
-	stfs     f2, 0x200(r4)
-	stfs     f2, 0x204(r4)
-	stfs     f2, 0x208(r4)
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 1
-	bne      lbl_8019066C
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x10(r30)
-	lfs      f0, 0x54(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x10(r30)
-	lfs      f0, 0x10(r30)
-	fcmpo    cr0, f0, f2
-	cror     2, 0, 2
-	bne      lbl_8019066C
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_80190644
-	addi     r6, r6, 0x178
+	piki->mVelocity    = Vector3f(0.0f);
+	piki->mSimVelocity = Vector3f(0.0f);
 
-lbl_80190644:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0xe
-	li       r5, 0xe
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 2
-	stw      r0, 0x18(r30)
+	if (mState == KOKEDAMAGE_Unk1) {
+		mTimer -= sys->mDeltaTime;
+		if (mTimer <= 0.0f) {
+			piki->startMotion(IPikiAnims::GETUP, IPikiAnims::GETUP, piki, nullptr);
+			mState = KOKEDAMAGE_Unk2;
+		}
+	}
 
-lbl_8019066C:
-	lwz      r0, 0x18(r30)
-	cmpwi    r0, 0
-	bne      lbl_80190698
-	mr       r3, r31
-	li       r4, 0x17
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80190698
-	li       r0, 1
-	stw      r0, 0x18(r30)
-	b        lbl_80190710
+	if (mState == 0 && !piki->assertMotion(IPikiAnims::JKOKE)) {
+		mState = KOKEDAMAGE_Unk1;
+		return;
+	}
 
-lbl_80190698:
-	lwz      r0, 0x18(r30)
-	cmpwi    r0, 2
-	bne      lbl_80190710
-	mr       r3, r31
-	li       r4, 0xe
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80190710
-	lhz      r0, 0x14(r30)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	beq      lbl_801906F0
-	li       r0, 5
-	mr       r3, r30
-	sth      r0, 8(r1)
-	mr       r4, r31
-	addi     r6, r1, 8
-	li       r5, 0x13
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80190710
-
-lbl_801906F0:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80190710:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mState == KOKEDAMAGE_Unk2 && !piki->assertMotion(IPikiAnims::GETUP)) {
+		if (mFlags & 0x8) {
+			EmotionStateArg emotionArg(5);
+			transit(piki, PIKISTATE_Emotion, &emotionArg);
+		} else {
+			transit(piki, PIKISTATE_Walk, nullptr);
+		}
+	}
 }
 
 /*
@@ -5429,17 +4823,11 @@ lbl_80190710:
  * Address:	80190728
  * Size:	00001C
  */
-void PikiKokeDamageState::onFlute(Piki* piki, Game::Navi*)
+void PikiKokeDamageState::onFlute(Piki* piki, Navi* navi)
 {
-	/*
-	lhz      r0, 0x14(r3)
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	ori      r0, r0, 0x8000
-	sth      r0, 0x14(r3)
-	stfs     f0, 0x10(r3)
-	stw      r5, 0x2c4(r4)
-	blr
-	*/
+	mFlags |= 0x8000;
+	mTimer      = 0.0f;
+	piki->mNavi = navi;
 }
 
 /*
@@ -5449,72 +4837,19 @@ void PikiKokeDamageState::onFlute(Piki* piki, Game::Navi*)
  */
 void PikiKokeDamageState::cleanup(Piki* piki)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80190814
-	lhz      r3, 0x14(r30)
-	rlwinm.  r0, r3, 0, 0x10, 0x10
-	beq      lbl_801907DC
-	lwz      r7, 0x2c4(r31)
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	li       r3, 0
-	lis      r4, __vt__Q26PikiAI17CreatureActionArg@ha
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q26PikiAI17CreatureActionArg@l
-	lis      r4, __vt__Q26PikiAI19ActFormationInitArg@ha
-	stw      r0, 8(r1)
-	addi     r6, r4, __vt__Q26PikiAI19ActFormationInitArg@l
-	li       r0, 1
-	addi     r5, r1, 8
-	stb      r3, 0x11(r1)
-	li       r4, 0
-	stw      r7, 0xc(r1)
-	stw      r6, 8(r1)
-	stb      r3, 0x10(r1)
-	stb      r0, 0x11(r1)
-	lwz      r3, 0x294(r31)
-	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
-	b        lbl_80190814
-
-lbl_801907DC:
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	beq      lbl_80190804
-	lbz      r0, 0x2b8(r31)
-	cmpwi    r0, 5
-	beq      lbl_80190814
-	lwz      r3, 0x294(r31)
-	li       r4, 1
-	li       r5, 0
-	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
-	b        lbl_80190814
-
-lbl_80190804:
-	mr       r3, r31
-	li       r4, 0x283f
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-
-lbl_80190814:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (piki->isAlive()) {
+		if (mFlags & 0x8000) {
+			PikiAI::ActFormationInitArg formArg(piki->mNavi);
+			formArg._09 = 1;
+			piki->mBrain->start(PikiAI::ACT_Formation, &formArg);
+		} else if (mFlags & 0x2) {
+			if ((int)piki->mPikiKind != Bulbmin) {
+				piki->mBrain->start(PikiAI::ACT_Free, nullptr);
+			}
+		} else {
+			piki->startSound(PSSE_PK_VC_ANGRY1, true);
+		}
+	}
 }
 
 /*
@@ -5522,38 +4857,18 @@ lbl_80190814:
  * Address:	8019082C
  * Size:	000060
  */
-void PikiKokeDamageState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+void PikiKokeDamageState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8019087C
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_8019085C
-	li       r0, 1
-	stw      r0, 0x18(r3)
-	b        lbl_8019087C
+	if (event.mType == KEYEVENT_END) {
+		if (mState == KOKEDAMAGE_Start) {
+			mState = KOKEDAMAGE_Unk1;
+			return;
+		}
 
-lbl_8019085C:
-	cmpwi    r0, 2
-	bne      lbl_8019087C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8019087C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		if (mState == KOKEDAMAGE_Unk2) {
+			transit(piki, PIKISTATE_Walk, nullptr);
+		}
+	}
 }
 
 /*
@@ -5563,88 +4878,15 @@ lbl_8019087C:
  */
 void PikiKokeState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_80518E4C@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80190918
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_801908EC
-	addi     r6, r31, 0x178
+	if (randFloat() < 0.99f) {
+		piki->startMotion(IPikiAnims::KOROBU2, IPikiAnims::KOROBU2, piki, nullptr);
+		_11 = true;
+	} else {
+		piki->startMotion(IPikiAnims::KOROBU, IPikiAnims::KOROBU, piki, nullptr);
+		_11 = false;
+	}
 
-lbl_801908EC:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x3c
-	li       r5, 0x3c
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stb      r0, 0x11(r30)
-	b        lbl_80190950
-
-lbl_80190918:
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_80190928
-	addi     r6, r31, 0x178
-
-lbl_80190928:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x1a
-	li       r5, 0x1a
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x11(r30)
-
-lbl_80190950:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_80518DC8@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_80518E88@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_80518DD0@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	stb      r0, 0x10(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mTimer = 4.0f * randFloat() + 3.0f;
 }
 
 /*
@@ -5652,11 +4894,7 @@ lbl_80190950:
  * Address:	801909AC
  * Size:	00000C
  */
-void PikiKokeState::onFlute(Piki* piki, Game::Navi*)
-{
-	// Generated from stb r0, 0x10(r3)
-	// _10 = 0;
-}
+void PikiKokeState::onFlute(Piki* piki, Navi* navi) { mTimer = 0; }
 
 /*
  * --INFO--
@@ -5665,51 +4903,18 @@ void PikiKokeState::onFlute(Piki* piki, Game::Navi*)
  */
 void PikiKokeState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r4, 0x1b8(r4)
-	cmplwi   r4, 0
-	beq      lbl_801909E0
-	lha      r0, 0x20(r4)
-	b        lbl_801909E4
+	int animIdx;
+	if (piki->mAnimator.mSelfAnimator.mAnimInfo) {
+		animIdx = piki->mAnimator.mSelfAnimator.mAnimInfo->mId;
+	} else {
+		animIdx = IPikiAnims::NULLANIM;
+	}
 
-lbl_801909E0:
-	li       r0, -1
+	if (animIdx != IPikiAnims::KOROBU && animIdx != IPikiAnims::KOROBU2) {
+		transit(piki, PIKISTATE_Walk, nullptr);
+	}
 
-lbl_801909E4:
-	cmpwi    r0, 0x1a
-	beq      lbl_80190A10
-	cmpwi    r0, 0x3c
-	beq      lbl_80190A10
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80190A10:
-	lfs      f2, lbl_80518E8C@sda21(r2)
-	lfs      f0, 0x1e4(r31)
-	lfs      f1, 0x1e8(r31)
-	lfs      f3, 0x1ec(r31)
-	fmuls    f0, f0, f2
-	fmuls    f1, f1, f2
-	fmuls    f2, f3, f2
-	stfs     f0, 0x1e4(r31)
-	stfs     f1, 0x1e8(r31)
-	stfs     f2, 0x1ec(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->mVelocity *= 0.955f;
 }
 
 /*
@@ -5717,84 +4922,34 @@ lbl_80190A10:
  * Address:	80190A4C
  * Size:	0000F0
  */
-void PikiKokeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+void PikiKokeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1c(r5)
-	cmpwi    r0, 0xc8
-	beq      lbl_80190A8C
-	bge      lbl_80190A80
-	cmpwi    r0, 2
-	beq      lbl_80190AC0
-	bge      lbl_80190B2C
-	cmpwi    r0, 1
-	bge      lbl_80190AE0
-	b        lbl_80190B2C
+	switch (event.mType) {
+	case KEYEVENT_200:
+		if (_11) {
+			piki->startSound(PSSE_PK_VC_SLIP1, true);
+		} else {
+			piki->startSound(PSSE_PK_VC_SLIP2, true);
+		}
+		break;
 
-lbl_80190A80:
-	cmpwi    r0, 0x3e8
-	beq      lbl_80190B14
-	b        lbl_80190B2C
+	case KEYEVENT_2:
+		piki->mSimVelocity = Vector3f(0.0f);
+		piki->mVelocity    = Vector3f(0.0f);
+		break;
 
-lbl_80190A8C:
-	lbz      r0, 0x11(r3)
-	cmplwi   r0, 0
-	beq      lbl_80190AAC
-	mr       r3, r4
-	li       r4, 0x2843
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-	b        lbl_80190B2C
+	case KEYEVENT_1:
+		mTimer--;
+		if (mTimer <= 0) {
+			piki->mAnimator.mSelfAnimator.mFlags |= EANIM_FLAG_FINISHED;
+			piki->mAnimator.mBoundAnimator.mFlags |= EANIM_FLAG_FINISHED;
+		}
+		break;
 
-lbl_80190AAC:
-	mr       r3, r4
-	li       r4, 0x2844
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-	b        lbl_80190B2C
-
-lbl_80190AC0:
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	stfs     f0, 0x200(r4)
-	stfs     f0, 0x204(r4)
-	stfs     f0, 0x208(r4)
-	stfs     f0, 0x1e4(r4)
-	stfs     f0, 0x1e8(r4)
-	stfs     f0, 0x1ec(r4)
-	b        lbl_80190B2C
-
-lbl_80190AE0:
-	lbz      r5, 0x10(r3)
-	addi     r0, r5, -1
-	stb      r0, 0x10(r3)
-	lbz      r0, 0x10(r3)
-	extsb.   r0, r0
-	bgt      lbl_80190B2C
-	lbz      r0, 0x1c4(r4)
-	ori      r0, r0, 2
-	stb      r0, 0x1c4(r4)
-	lbz      r0, 0x1e0(r4)
-	ori      r0, r0, 2
-	stb      r0, 0x1e0(r4)
-	b        lbl_80190B2C
-
-lbl_80190B14:
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80190B2C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	case KEYEVENT_END:
+		transit(piki, PIKISTATE_Walk, nullptr);
+		break;
+	}
 }
 
 /*
@@ -5811,156 +4966,60 @@ void PikiKokeState::cleanup(Piki* piki) { }
  */
 void PikiDrownState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r3, 0x294(r4)
-	li       r4, 1
-	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_80190B7C
-	addi     r6, r31, 0x178
+	piki->mBrain->start(PikiAI::ACT_Free, nullptr);
+	piki->startMotion(IPikiAnims::TYAKUSUI, IPikiAnims::TYAKUSUI, piki, nullptr);
 
-lbl_80190B7C:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x25
-	li       r5, 0x25
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x1b8(r31)
-	cmplwi   r3, 0
-	beq      lbl_80190BB0
-	lha      r0, 0x20(r3)
-	b        lbl_80190BB4
+	int animIdx;
+	if (piki->mAnimator.mSelfAnimator.mAnimInfo) {
+		animIdx = piki->mAnimator.mSelfAnimator.mAnimInfo->mId;
+	} else {
+		animIdx = IPikiAnims::NULLANIM;
+	}
 
-lbl_80190BB0:
-	li       r0, -1
+	if (animIdx == IPikiAnims::TYAKUSUI) {
+		_10 = 0;
+	} else {
+		_10 = 1;
+		piki->startMotion(IPikiAnims::OBORERU, IPikiAnims::OBORERU, piki, nullptr);
+	}
 
-lbl_80190BB4:
-	cmpwi    r0, 0x25
-	bne      lbl_80190BC8
-	li       r0, 0
-	sth      r0, 0x10(r30)
-	b        lbl_80190C00
+	_12             = (u16)(2.0f * randFloat()) + 6;
+	piki->mVelocity = Vector3f(0.0f);
+	_14             = 0;
+	piki->mVelocity = Vector3f(0.0f);
 
-lbl_80190BC8:
-	li       r0, 1
-	cmplwi   r31, 0
-	sth      r0, 0x10(r30)
-	mr       r6, r31
-	beq      lbl_80190BE0
-	addi     r6, r31, 0x178
+	if (piki->isStickTo()) {
+		piki->endStick();
+	}
 
-lbl_80190BE0:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x26
-	li       r5, 0x26
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
+	mNavi = nullptr;
+	_30   = false;
+	_16   = 0;
+	_18   = 0.0f;
+	_1C   = false;
 
-lbl_80190C00:
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r4, 0x4330
-	stw      r0, 0xc(r1)
-	li       r0, 0
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	mr       r3, r31
-	stw      r4, 8(r1)
-	lfs      f2, lbl_80518DC8@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_80518E30@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fdivs    f2, f3, f2
-	fmuls    f1, f1, f2
-	fctiwz   f1, f1
-	stfd     f1, 0x10(r1)
-	lwz      r4, 0x14(r1)
-	addi     r4, r4, 6
-	sth      r4, 0x12(r30)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-	sth      r0, 0x14(r30)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80190C80
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
+	efx::TPkEffect* effectsObj = piki->mEffectsObj;
+	effectsObj->killMoe_();
+	if (effectsObj->isFlag(PKEFF_Fire)) {
+		effectsObj->resetFlag(PKEFF_Fire);
+		effectsObj->createMoeSmoke_(effectsObj->_0C);
+		effectsObj->mMoeSmokeTimer = 60;
+		efx::createSimpleChinka(*effectsObj->_0C);
+	}
 
-lbl_80190C80:
-	li       r0, 0
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	stw      r0, 0x20(r30)
-	stb      r0, 0x30(r30)
-	sth      r0, 0x16(r30)
-	stfs     f0, 0x18(r30)
-	stb      r0, 0x1c(r30)
-	lwz      r30, 0x258(r31)
-	mr       r3, r30
-	bl       killMoe___Q23efx9TPkEffectFv
-	lwz      r3, 0(r30)
-	rlwinm.  r0, r3, 0, 0x1d, 0x1d
-	beq      lbl_80190CD8
-	rlwinm   r0, r3, 0, 0x1e, 0x1c
-	mr       r3, r30
-	stw      r0, 0(r30)
-	lwz      r4, 0xc(r30)
-	bl       "createMoeSmoke___Q23efx9TPkEffectFP10Vector3<f>"
-	li       r0, 0x3c
-	stw      r0, 0x24(r30)
-	lwz      r3, 0xc(r30)
-	bl       "createSimpleChinka__3efxFR10Vector3<f>"
+	efx::TPkEffect* effectsObj2 = piki->mEffectsObj;
+	effectsObj2->killWater_();
+	if (effectsObj2->isFlag(PKEFF_Water)) {
+		effectsObj2->resetFlag(PKEFF_Water);
+		efx::createSimpleWaterOff(*effectsObj2->_14);
+	}
 
-lbl_80190CD8:
-	lwz      r30, 0x258(r31)
-	mr       r3, r30
-	bl       killWater___Q23efx9TPkEffectFv
-	lwz      r3, 0(r30)
-	rlwinm.  r0, r3, 0, 0x1b, 0x1b
-	beq      lbl_80190D00
-	rlwinm   r0, r3, 0, 0x1c, 0x1a
-	stw      r0, 0(r30)
-	lwz      r3, 0x14(r30)
-	bl       "createSimpleWaterOff__3efxFR10Vector3<f>"
-
-lbl_80190D00:
-	lwz      r30, 0x258(r31)
-	mr       r3, r30
-	bl       killChudoku___Q23efx9TPkEffectFv
-	lwz      r3, 0(r30)
-	rlwinm.  r0, r3, 0, 0x1c, 0x1c
-	beq      lbl_80190D28
-	rlwinm   r0, r3, 0, 0x1d, 0x1b
-	stw      r0, 0(r30)
-	lwz      r3, 0xc(r30)
-	bl       "createSimpleGedoku__3efxFR10Vector3<f>"
-
-lbl_80190D28:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	efx::TPkEffect* effectsObj3 = piki->mEffectsObj;
+	effectsObj3->killChudoku_();
+	if (effectsObj3->isFlag(PKEFF_Gas)) {
+		effectsObj3->resetFlag(PKEFF_Gas);
+		efx::createSimpleGedoku(*effectsObj3->_0C);
+	}
 }
 
 /*
@@ -5968,29 +5027,9 @@ lbl_80190D28:
  * Address:	80190D40
  * Size:	000040
  */
-bool PikiDrownState::soft_transittable(int)
+bool PikiDrownState::soft_transittable(int stateID)
 {
-	return false; // fake
-	              /*
-	              addi     r5, r4, -19
-	              li       r3, 1
-	              subfic   r0, r5, 1
-	              orc      r5, r3, r5
-	              mr       r6, r3
-	              srwi     r0, r0, 1
-	              subf     r0, r0, r5
-	              rlwinm.  r0, r0, 1, 0x1f, 0x1f
-	              bne      lbl_80190D68
-	              li       r6, 0
-	          
-	          lbl_80190D68:
-	              clrlwi.  r0, r6, 0x18
-	              bnelr
-	              cmpwi    r4, 5
-	              beqlr
-	              li       r3, 0
-	              blr
-	              */
+	return stateID == PIKISTATE_Emotion || stateID == PIKISTATE_Pressed || stateID == PIKISTATE_WaterHanged;
 }
 
 /*
@@ -5998,14 +5037,10 @@ bool PikiDrownState::soft_transittable(int)
  * Address:	80190D80
  * Size:	000010
  */
-void PikiDrownState::onFlute(Piki* piki, Game::Navi*)
+void PikiDrownState::onFlute(Piki* piki, Navi* navi)
 {
-	/*
-	stw      r5, 0x20(r3)
-	li       r0, 1
-	stb      r0, 0x30(r3)
-	blr
-	*/
+	mNavi = navi;
+	_30   = true;
 }
 
 /*
@@ -6013,11 +5048,7 @@ void PikiDrownState::onFlute(Piki* piki, Game::Navi*)
  * Address:	80190D90
  * Size:	00000C
  */
-void PikiDrownState::outWaterCallback(Piki* piki)
-{
-	// Generated from stb r0, 0x1C(r3)
-	// _1C = 1;
-}
+void PikiDrownState::outWaterCallback(Piki* piki) { _1C = true; }
 
 /*
  * --INFO--
@@ -6026,6 +5057,135 @@ void PikiDrownState::outWaterCallback(Piki* piki)
  */
 void PikiDrownState::exec(Piki* piki)
 {
+	if (_1C) {
+		if (mNavi) {
+			Vector3f naviPos = mNavi->getPosition();
+			Vector3f pikiPos = piki->getPosition();
+			piki->mFaceDir   = JMath::atanTable_.atan2_(naviPos.x - pikiPos.x, naviPos.z - pikiPos.z);
+		}
+
+		piki->mSimVelocity = Vector3f(100.0f * pikmin2_sinf(piki->mFaceDir), 160.0f, 100.0f * pikmin2_cosf(piki->mFaceDir));
+		EmotionStateArg emotionArg(5);
+		transit(piki, PIKISTATE_Emotion, &emotionArg);
+		return;
+	}
+
+	if (piki->mWaterBox) {
+		f32 level        = piki->mWaterBox->getSeaLevel();
+		Vector3f pikiPos = piki->getPosition();
+
+		if (_10 == 0) {
+			switch (_16) {
+			case 0:
+				piki->mSimVelocity.z = 0.0f;
+				piki->mSimVelocity.x = 0.0f;
+				if (piki->mSimVelocity.y < 60.0f) {
+					piki->mSimVelocity.y += 500.0f * sys->mDeltaTime;
+				}
+				piki->mVelocity = piki->mSimVelocity;
+				break;
+
+			case 2:
+				piki->mSimVelocity   = Vector3f(0.0f);
+				piki->mSimVelocity.y = 60.0f;
+				piki->mVelocity      = piki->mSimVelocity;
+
+				Vector3f newPikiPos = piki->getPosition();
+				if (newPikiPos.y >= level - 5.0f) {
+					piki->mPosition3.x = newPikiPos.x;
+					piki->mPosition3.y = level - 5.0f;
+					piki->mPosition3.z = newPikiPos.z;
+					_10                = 1;
+					piki->startMotion(IPikiAnims::OBORERU, IPikiAnims::OBORERU, piki, nullptr);
+					piki->mSoundObj->startFreePikiSetSound(PSSE_PK_VC_WATER_DROWN, PSGame::SeMgr::SETSE_PikiWorking, 0, 0);
+				}
+				break;
+			}
+		} else if (_10 == 2) {
+			piki->mSimVelocity.z = 0.0f;
+			piki->mSimVelocity.x = 0.0f;
+			piki->mSimVelocity.y = -5.0f;
+			piki->mVelocity.y    = piki->mSimVelocity.y;
+			piki->mVelocity.z    = 0.0f;
+			piki->mVelocity.x    = 0.0f;
+		} else {
+			Vector3f newPikiPos = piki->getPosition();
+			if (newPikiPos.y < level - 5.0f) {
+				piki->mPosition3.x = newPikiPos.x;
+				piki->mPosition3.y = level - 5.0f;
+				piki->mPosition3.z = newPikiPos.z;
+			}
+			piki->mSimVelocity.y = 0.0f;
+			piki->mVelocity.y    = 0.0f;
+		}
+	}
+
+	if (_10 == 1 && !piki->assertMotion(IPikiAnims::OBORERU)) {
+		_10 = 2;
+		piki->startMotion(IPikiAnims::SIZUMU, IPikiAnims::SIZUMU, piki, nullptr);
+
+	} else if (_10 == 2 && !piki->assertMotion(IPikiAnims::IPikiAnims::SIZUMU)) {
+		DeathMgr::inc(DeathCounter::COD_Water);
+		piki->mTekiKillID = -1;
+		piki->kill(nullptr);
+	}
+
+	if (_10 == 1) {
+		Navi* navi;
+		if (mNavi) {
+			navi = mNavi;
+		} else {
+			navi = piki->mNavi;
+		}
+
+		if (!navi) {
+			for (int i = 0; i < 2; i++) {
+				Navi* currNavi = naviMgr->getAt(i);
+				if (currNavi->isAlive()) {
+					Vector3f currNaviPos = currNavi->getPosition();
+					Vector3f currPikiPos = piki->getPosition();
+					// Vector3f sep = currNaviPos - currPikiPos;
+					if (_distanceBetween2(currNaviPos, currPikiPos) < 1000.0f) {
+						navi = currNavi;
+					}
+				}
+			}
+		}
+
+		if (!_30) {
+			piki->mVelocity.x    = 0.0f;
+			piki->mVelocity.z    = 0.0f;
+			piki->mSimVelocity.z = 0.0f;
+			piki->mSimVelocity.x = 0.0f;
+			return;
+		}
+
+		if (navi) {
+			Vector3f sep = navi->getPosition() - piki->getPosition();
+			_normalise2(sep);
+
+			_24 = sep * piki->getSpeed(1.0f);
+
+			Vector3f oldVel = piki->mVelocity;
+			Vector3f newSep = _24 - piki->mVelocity;
+			f32 speedDiff   = _normalise2(newSep);
+			f32 modifier    = 15.0f;
+			if (_30) {
+				speedDiff *= 2.0f;
+			}
+
+			if (speedDiff > speedDiff * sys->mDeltaTime) {
+				piki->mVelocity = newSep * speedDiff * sys->mDeltaTime + oldVel;
+			} else {
+				piki->mVelocity = newSep * sys->mDeltaTime + oldVel;
+			}
+
+			piki->mSimVelocity.x = piki->mVelocity.x;
+			piki->mSimVelocity.z = piki->mVelocity.z;
+			piki->mSimVelocity   = piki->mVelocity;
+		}
+	}
+
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -6581,98 +5741,42 @@ void PikiDrownState::cleanup(Piki* piki) { }
  * Address:	801914EC
  * Size:	000120
  */
-void PikiDrownState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+void PikiDrownState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1c(r5)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	cmpwi    r0, 2
-	beq      lbl_8019152C
-	bge      lbl_80191520
-	cmpwi    r0, 0
-	beq      lbl_80191544
-	bge      lbl_80191560
-	b        lbl_801915F8
+	switch (event.mType) {
+	case KEYEVENT_2:
+		if (_10 == 0) {
+			_16 = 2;
+		}
+		break;
 
-lbl_80191520:
-	cmpwi    r0, 0x3e8
-	beq      lbl_801915C0
-	b        lbl_801915F8
+	case KEYEVENT_NULL:
+		piki->mSoundObj->startFreePikiSetSound(PSSE_PK_VC_WATER_DROWN, PSGame::SeMgr::SETSE_PikiWorking, 0, 0);
+		break;
 
-lbl_8019152C:
-	lhz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_801915F8
-	li       r0, 2
-	sth      r0, 0x16(r3)
-	b        lbl_801915F8
+	case KEYEVENT_1:
+		if (_10 == 1) {
+			_12--;
+			if (_12 == 0) {
+				_10 = 2;
+				piki->startMotion(IPikiAnims::SIZUMU, IPikiAnims::SIZUMU, piki, nullptr);
+			}
+		}
+		break;
 
-lbl_80191544:
-	lwz      r3, 0x250(r31)
-	li       r4, 0x2812
-	li       r5, 2
-	li       r6, 0
-	li       r7, 0
-	bl       startFreePikiSetSound__Q23PSM4PikiFUlQ36PSGame5SeMgr7SetSeIdUlUl
-	b        lbl_801915F8
-
-lbl_80191560:
-	lhz      r0, 0x10(r3)
-	cmplwi   r0, 1
-	bne      lbl_801915F8
-	lhz      r4, 0x12(r3)
-	addi     r0, r4, -1
-	sth      r0, 0x12(r3)
-	lhz      r0, 0x12(r3)
-	cmplwi   r0, 0
-	bne      lbl_801915F8
-	li       r0, 2
-	cmplwi   r31, 0
-	sth      r0, 0x10(r3)
-	mr       r6, r31
-	beq      lbl_8019159C
-	addi     r6, r6, 0x178
-
-lbl_8019159C:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x27
-	li       r5, 0x27
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	b        lbl_801915F8
-
-lbl_801915C0:
-	lhz      r0, 0x10(r3)
-	cmpwi    r0, 1
-	beq      lbl_801915F8
-	bge      lbl_801915D4
-	b        lbl_801915F8
-
-lbl_801915D4:
-	cmpwi    r0, 3
-	bge      lbl_801915F8
-	li       r3, 3
-	bl       inc__Q24Game8DeathMgrFi
-	li       r0, -1
-	mr       r3, r31
-	sth      r0, 0x2a4(r31)
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_801915F8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	case KEYEVENT_END:
+		switch (_10) {
+		case 0:
+			// commented out code probably
+			break;
+		case 2:
+			DeathMgr::inc(DeathCounter::COD_Water);
+			piki->mTekiKillID = -1;
+			piki->kill(nullptr);
+			break;
+		}
+		break;
+	}
 }
 
 /*
@@ -6682,280 +5786,86 @@ lbl_801915F8:
  */
 void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	mr       r31, r4
-	stw      r30, 0x68(r1)
-	stw      r29, 0x64(r1)
-	mr       r29, r3
-	stw      r28, 0x60(r1)
-	or.      r28, r5, r5
-	lis      r5, lbl_8047EBE8@ha
-	addi     r30, r5, lbl_8047EBE8@l
-	bne      lbl_80191654
-	addi     r3, r30, 0x78
-	addi     r5, r30, 0xf4
-	li       r4, 0xf59
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	EmotionStateArg* emotionArg = static_cast<EmotionStateArg*>(stateArg);
+	P2ASSERTLINE(3929, emotionArg);
 
-lbl_80191654:
-	lhz      r3, 0(r28)
-	li       r0, 0
-	sth      r3, 0x24(r29)
-	stb      r0, 0x1c(r29)
-	lhz      r0, 0x24(r29)
-	cmplwi   r0, 9
-	beq      lbl_80191944
-	cmplwi   r0, 8
-	bgt      lbl_80191944
-	lis      r3, lbl_804B37DC@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804B37DC@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80191690
+	_24 = emotionArg->_00;
+	_1C = 0;
 
-lbl_80191690:
-	lwz      r9, 0x19c(r30)
-	addi     r3, r1, 0x40
-	lwz      r8, 0x1a0(r30)
-	li       r4, 3
-	lwz      r7, 0x1a4(r30)
-	lwz      r6, 0x1a8(r30)
-	lwz      r5, 0x1ac(r30)
-	lwz      r0, 0x1b0(r30)
-	stw      r9, 0x40(r1)
-	stw      r8, 0x44(r1)
-	stw      r7, 0x48(r1)
-	stw      r6, 0x4c(r1)
-	stw      r5, 0x50(r1)
-	stw      r0, 0x54(r1)
-	bl       getRandomChoice__8KandoLibFPQ28KandoLib6Choicei
-	mr       r4, r3
-	cmplwi   r31, 0
-	sth      r4, 0x26(r29)
-	mr       r6, r31
-	beq      lbl_801916E4
-	addi     r6, r31, 0x178
+	if (_24 == 9) {
+		return;
+	}
 
-lbl_801916E4:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	mr       r5, r4
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80191944
-	.global  lbl_80191704
+	switch (_24) {
+	case 0: {
+		KandoLib::Choice choiceList[3] = { { IPikiAnims::JUMPB1, 0.33f }, { IPikiAnims::JUMP, 0.33f }, { IPikiAnims::JUMPR1, 0.33f } };
 
-lbl_80191704:
-	lwz      r9, 0x1b4(r30)
-	addi     r3, r1, 0x28
-	lwz      r8, 0x1b8(r30)
-	li       r4, 3
-	lwz      r7, 0x1bc(r30)
-	lwz      r6, 0x1c0(r30)
-	lwz      r5, 0x1c4(r30)
-	lwz      r0, 0x1c8(r30)
-	stw      r9, 0x28(r1)
-	stw      r8, 0x2c(r1)
-	stw      r7, 0x30(r1)
-	stw      r6, 0x34(r1)
-	stw      r5, 0x38(r1)
-	stw      r0, 0x3c(r1)
-	bl       getRandomChoice__8KandoLibFPQ28KandoLib6Choicei
-	mr       r4, r3
-	cmplwi   r31, 0
-	sth      r4, 0x26(r29)
-	mr       r6, r31
-	beq      lbl_80191758
-	addi     r6, r31, 0x178
+		u32 choice = KandoLib::getRandomChoice(choiceList, 3);
+		_26        = choice;
 
-lbl_80191758:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	mr       r5, r4
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80191944
-	.global  lbl_80191778
+		piki->startMotion(choice, choice, piki, nullptr);
+		break;
+	}
 
-lbl_80191778:
-	lwz      r7, 0x1cc(r30)
-	addi     r3, r1, 0x18
-	lwz      r6, 0x1d0(r30)
-	li       r4, 2
-	lwz      r5, 0x1d4(r30)
-	lwz      r0, 0x1d8(r30)
-	stw      r7, 0x18(r1)
-	stw      r6, 0x1c(r1)
-	stw      r5, 0x20(r1)
-	stw      r0, 0x24(r1)
-	bl       getRandomChoice__8KandoLibFPQ28KandoLib6Choicei
-	mr       r4, r3
-	cmplwi   r31, 0
-	sth      r4, 0x26(r29)
-	mr       r6, r31
-	beq      lbl_801917BC
-	addi     r6, r31, 0x178
+	case 1: {
+		KandoLib::Choice choiceList[3] = { { IPikiAnims::JUMPB1, 0.33f }, { IPikiAnims::JUMP, 0.33f }, { IPikiAnims::JUMPR1, 0.33f } };
 
-lbl_801917BC:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	mr       r5, r4
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80191944
-	.global  lbl_801917DC
+		u32 choice = KandoLib::getRandomChoice(choiceList, 3);
+		_26        = choice;
 
-lbl_801917DC:
-	lwz      r7, 0x1dc(r30)
-	addi     r3, r1, 8
-	lwz      r6, 0x1e0(r30)
-	li       r4, 2
-	lwz      r5, 0x1e4(r30)
-	lwz      r0, 0x1e8(r30)
-	stw      r7, 8(r1)
-	stw      r6, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r0, 0x14(r1)
-	bl       getRandomChoice__8KandoLibFPQ28KandoLib6Choicei
-	mr       r4, r3
-	cmplwi   r31, 0
-	sth      r4, 0x26(r29)
-	mr       r6, r31
-	beq      lbl_80191820
-	addi     r6, r31, 0x178
+		piki->startMotion(choice, choice, piki, nullptr);
+		break;
+	}
 
-lbl_80191820:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	mr       r5, r4
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80191944
-	.global  lbl_80191840
+	case 2: {
+		KandoLib::Choice choiceList[2] = { { IPikiAnims::SAGASU, 0.5f }, { IPikiAnims::SAGASU2, 0.5f } };
 
-lbl_80191840:
-	li       r0, 0xc
-	cmplwi   r31, 0
-	sth      r0, 0x26(r29)
-	mr       r6, r31
-	beq      lbl_80191858
-	addi     r6, r31, 0x178
+		u32 choice = KandoLib::getRandomChoice(choiceList, 2);
+		_26        = choice;
 
-lbl_80191858:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0xc
-	li       r5, 0xc
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	b        lbl_80191944
-	.global  lbl_8019187C
+		piki->startMotion(choice, choice, piki, nullptr);
+		break;
+	}
 
-lbl_8019187C:
-	li       r0, 0x31
-	cmplwi   r31, 0
-	sth      r0, 0x26(r29)
-	mr       r6, r31
-	beq      lbl_80191894
-	addi     r6, r31, 0x178
+	case 4: {
+		KandoLib::Choice choiceList[2] = { { IPikiAnims::GAKKARI, 0.5f }, { IPikiAnims::SAGASU2, 0.5f } };
 
-lbl_80191894:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x31
-	li       r5, 0x31
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	b        lbl_80191944
-	.global  lbl_801918B8
+		u32 choice = KandoLib::getRandomChoice(choiceList, 2);
+		_26        = choice;
 
-lbl_801918B8:
-	li       r0, 0x33
-	cmplwi   r31, 0
-	sth      r0, 0x26(r29)
-	mr       r6, r31
-	beq      lbl_801918D0
-	addi     r6, r31, 0x178
+		piki->startMotion(choice, choice, piki, nullptr);
+		break;
+	}
 
-lbl_801918D0:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x33
-	li       r5, 0x33
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	b        lbl_80191944
-	.global  lbl_801918F4
+	case 3: {
+		_26 = IPikiAnims::GAKKARI;
+		piki->startMotion(IPikiAnims::GAKKARI, IPikiAnims::GAKKARI, piki, nullptr);
+		break;
+	}
 
-lbl_801918F4:
-	li       r0, 0x1f
-	cmplwi   r31, 0
-	sth      r0, 0x26(r29)
-	mr       r6, r31
-	beq      lbl_8019190C
-	addi     r6, r31, 0x178
+	case 5: {
+		_26 = IPikiAnims::MIZUAGE;
+		piki->startMotion(IPikiAnims::MIZUAGE, IPikiAnims::MIZUAGE, piki, nullptr);
+		break;
+	}
 
-lbl_8019190C:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x1f
-	li       r5, 0x1f
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	b        lbl_80191944
-	.global  lbl_80191930
+	case 6: {
+		_26 = IPikiAnims::JUMPB1;
+		piki->startMotion(IPikiAnims::JUMPB1, IPikiAnims::JUMPB1, piki, nullptr);
+		break;
+	}
 
-lbl_80191930:
-	addi     r3, r30, 0x78
-	addi     r5, r30, 0x1ec
-	li       r4, 0x1010
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	case 7: {
+		_26 = IPikiAnims::WAIT;
+		piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, piki, nullptr);
+		break;
+	}
 
-lbl_80191944:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	lwz      r28, 0x60(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	case 8:
+		JUT_PANICLINE(4112, "rapCnt ‚ÌŽg‚¢•û‚ª‚æ‚­‚È‚Ì‚Å“€Œ‹’†! (RAPTURE)\n");
+		break;
+	}
 }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000004
-//  */
-// void PikiEmotionState::doDump()
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /*
  * --INFO--
@@ -6964,54 +5874,12 @@ lbl_80191944:
  */
 void PikiEmotionState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	stfs     f0, 0x1e4(r4)
-	stfs     f0, 0x1e8(r4)
-	stfs     f0, 0x1ec(r4)
-	lha      r4, 0x26(r30)
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801919C8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801919F4
-
-lbl_801919C8:
-	lhz      r0, 0x24(r30)
-	cmplwi   r0, 9
-	bne      lbl_801919F4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801919F4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->mVelocity = Vector3f(0.0f);
+	if (!piki->assertMotion(_26)) {
+		transit(piki, PIKISTATE_Walk, nullptr);
+	} else if (_24 == 9) {
+		transit(piki, PIKISTATE_Walk, nullptr);
+	}
 }
 
 /*
@@ -7026,68 +5894,30 @@ void PikiEmotionState::cleanup(Piki* piki) { }
  * Address:	80191A10
  * Size:	0000C0
  */
-void PikiEmotionState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+void PikiEmotionState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1c(r5)
-	cmpwi    r0, 0x3e8
-	beq      lbl_80191A5C
-	bge      lbl_80191AC0
-	cmpwi    r0, 0xc8
-	beq      lbl_80191A38
-	b        lbl_80191AC0
+	switch (event.mType) {
+	case KEYEVENT_200:
+		switch (_26) {
+		case IPikiAnims::MIZUAGE:
+			piki->startSound(PSSE_PK_VC_BURUBURU, true);
+			break;
+		}
+		break;
 
-lbl_80191A38:
-	lha      r0, 0x26(r3)
-	cmpwi    r0, 0x31
-	beq      lbl_80191A48
-	b        lbl_80191AC0
-
-lbl_80191A48:
-	mr       r3, r4
-	li       r4, 0x2835
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-	b        lbl_80191AC0
-
-lbl_80191A5C:
-	lhz      r0, 0x24(r3)
-	cmplwi   r0, 8
-	bne      lbl_80191AA0
-	lbz      r5, 0x1d(r3)
-	addi     r0, r5, -1
-	stb      r0, 0x1d(r3)
-	lbz      r0, 0x1d(r3)
-	cmplwi   r0, 0
-	beq      lbl_80191AA0
-	lhz      r0, 0x24(r3)
-	addi     r5, r1, 8
-	sth      r0, 8(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80191AC0
-
-lbl_80191AA0:
-	li       r0, 0
-	li       r5, 0
-	stb      r0, 0x1d(r3)
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80191AC0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	case KEYEVENT_END:
+		if (_24 == 8) {
+			_1D--;
+			if (_1D) {
+				EmotionStateArg emotionArg(_24);
+				init(piki, &emotionArg);
+				return;
+			}
+		}
+		_1D = 0;
+		transit(piki, PIKISTATE_Walk, nullptr);
+		break;
+	}
 }
 
 /*
@@ -7097,108 +5927,19 @@ lbl_80191AC0:
  */
 void PikiAbsorbState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	stw      r29, 0x24(r1)
-	or.      r29, r5, r5
-	bne      lbl_80191B14
-	lis      r3, lbl_8047EC60@ha
-	lis      r5, lbl_8047ECDC@ha
-	addi     r3, r3, lbl_8047EC60@l
-	li       r4, 0x1072
-	addi     r5, r5, lbl_8047ECDC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	AbsorbStateArg* absorbArg = static_cast<AbsorbStateArg*>(stateArg);
+	P2ASSERTLINE(4210, absorbArg);
+	_14 = absorbArg->mCreature;
+	P2ASSERTLINE(4212, _14);
+	piki->startMotion(IPikiAnims::MIZUNOMI, IPikiAnims::MIZUNOMI, piki, nullptr);
+	_10                = 0;
+	_18                = 0;
+	Vector3f targetPos = _14->getPosition();
+	piki->turnTo(targetPos);
 
-lbl_80191B14:
-	lwz      r0, 0(r29)
-	stw      r0, 0x14(r30)
-	lwz      r0, 0x14(r30)
-	cmplwi   r0, 0
-	bne      lbl_80191B44
-	lis      r3, lbl_8047EC60@ha
-	lis      r5, lbl_8047ECDC@ha
-	addi     r3, r3, lbl_8047EC60@l
-	li       r4, 0x1074
-	addi     r5, r5, lbl_8047ECDC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80191B44:
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_80191B54
-	addi     r6, r31, 0x178
-
-lbl_80191B54:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x37
-	li       r5, 0x37
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	addi     r3, r1, 8
-	stb      r0, 0x10(r30)
-	stb      r0, 0x18(r30)
-	lwz      r4, 0x14(r30)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	mr       r3, r31
-	lfs      f1, 0xc(r1)
-	addi     r4, r1, 0x14
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "turnTo__Q24Game8FakePikiFR10Vector3<f>"
-	lwz      r3, 0x14(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	bne      lbl_80191BF4
-	lis      r3, lbl_8047EC60@ha
-	lis      r5, lbl_8047ECDC@ha
-	addi     r3, r3, lbl_8047EC60@l
-	li       r4, 0x107b
-	addi     r5, r5, lbl_8047ECDC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80191BF4:
-	lwz      r3, 0x14(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x250(r31)
-	li       r5, 0x2833
-	li       r6, 0
-	bl       startPikiSound__Q23PSM4PikiFPQ27JAInter6ObjectUlUl
-	li       r0, 0
-	stb      r0, 0x19(r30)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	P2ASSERTLINE(4219, _14->getJAIObject());
+	piki->mSoundObj->startPikiSound(_14->getJAIObject(), PSSE_PK_VC_DRINK, 0);
+	_19 = 0;
 }
 
 /*
@@ -7208,101 +5949,31 @@ lbl_80191BF4:
  */
 void PikiAbsorbState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stfs     f0, 0x208(r4)
-	stfs     f0, 0x200(r4)
-	stfs     f0, 0x1e4(r4)
-	stfs     f0, 0x1e8(r4)
-	stfs     f0, 0x1ec(r4)
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 1
-	bne      lbl_80191CE4
-	lwz      r3, 0x14(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80191CE4
-	lbz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	bne      lbl_80191CE4
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game14InteractAbsorb@ha
-	addi     r5, r4, __vt__Q24Game11Interaction@l
-	stw      r31, 0xc(r1)
-	addi     r0, r3, __vt__Q24Game14InteractAbsorb@l
-	addi     r4, r1, 8
-	stw      r5, 8(r1)
-	stw      r0, 8(r1)
-	lwz      r3, 0x14(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stb      r0, 0x18(r30)
+	piki->mSimVelocity.z = 0.0f;
+	piki->mSimVelocity.x = 0.0f;
+	piki->mVelocity      = Vector3f(0.0f);
 
-lbl_80191CE4:
-	lbz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	bne      lbl_80191D18
-	lbz      r3, 0x19(r30)
-	addi     r0, r3, 1
-	stb      r0, 0x19(r30)
-	lbz      r0, 0x19(r30)
-	cmplwi   r0, 0xb4
-	ble      lbl_80191D18
-	li       r3, 1
-	li       r0, 0xb4
-	stb      r3, 0x18(r30)
-	stb      r0, 0x19(r30)
+	if (_10 == 1 && _14->isAlive() && !_18) {
+		InteractAbsorb absorb(piki);
+		_14->stimulate(absorb);
+		_18 = 1;
+	}
 
-lbl_80191D18:
-	mr       r3, r31
-	li       r4, 0x37
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80191D7C
-	lbz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	beq      lbl_80191D5C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xe
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80191D7C
+	if (!_18) {
+		_19++;
+		if (_19 > 180) {
+			_18 = 1;
+			_19 = 180;
+		}
+	}
 
-lbl_80191D5C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80191D7C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (!piki->assertMotion(IPikiAnims::MIZUNOMI)) {
+		if (_18) {
+			transit(piki, PIKISTATE_Growup, nullptr);
+		} else {
+			transit(piki, PIKISTATE_Walk, nullptr);
+		}
+	}
 }
 
 /*
@@ -7310,101 +5981,32 @@ lbl_80191D7C:
  * Address:	80191D94
  * Size:	00012C
  */
-void PikiAbsorbState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+void PikiAbsorbState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lwz      r0, 0x1c(r5)
-	stw      r31, 0x1c(r1)
-	cmpwi    r0, 1
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	beq      lbl_80191DE8
-	bge      lbl_80191DD0
-	cmpwi    r0, 0
-	bge      lbl_80191DDC
-	b        lbl_80191EA4
+	switch (event.mType) {
+	case KEYEVENT_NULL:
+		_10 = 1;
+		break;
 
-lbl_80191DD0:
-	cmpwi    r0, 0x3e8
-	beq      lbl_80191E64
-	b        lbl_80191EA4
+	case KEYEVENT_1:
+		Creature* creature = _14;
+		P2ASSERTLINE(4261, creature->mObjectTypeID == OBJTYPE_Honey);
+		ItemHoney::Item* nectar = (ItemHoney::Item*)_14;
 
-lbl_80191DDC:
-	li       r0, 1
-	stb      r0, 0x10(r29)
-	b        lbl_80191EA4
+		if (!_14->isAlive() || _18 || !nectar->isShrinking()) {
+			_10 = 2;
+			piki->finishMotion();
+		}
+		break;
 
-lbl_80191DE8:
-	lwz      r3, 0x14(r29)
-	lhz      r0, 0x128(r3)
-	cmplwi   r0, 0x406
-	beq      lbl_80191E14
-	lis      r3, lbl_8047EC60@ha
-	lis      r5, lbl_8047ECDC@ha
-	addi     r3, r3, lbl_8047EC60@l
-	li       r4, 0x10a5
-	addi     r5, r5, lbl_8047ECDC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80191E14:
-	lwz      r3, 0x14(r29)
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80191E50
-	lbz      r0, 0x18(r29)
-	cmplwi   r0, 0
-	bne      lbl_80191E50
-	mr       r3, r31
-	bl       isShrinking__Q34Game9ItemHoney4ItemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80191EA4
-
-lbl_80191E50:
-	li       r0, 2
-	mr       r3, r30
-	stb      r0, 0x10(r29)
-	bl       finishMotion__Q24Game8FakePikiFv
-	b        lbl_80191EA4
-
-lbl_80191E64:
-	lbz      r0, 0x18(r29)
-	cmplwi   r0, 0
-	beq      lbl_80191E8C
-	lwz      r12, 0(r3)
-	li       r5, 0xe
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80191EA4
-
-lbl_80191E8C:
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80191EA4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	case KEYEVENT_END:
+		if (_18) {
+			transit(piki, PIKISTATE_Growup, nullptr);
+		} else {
+			transit(piki, PIKISTATE_Walk, nullptr);
+		}
+		break;
+	}
 }
 
 /*
@@ -7421,72 +6023,17 @@ void PikiAbsorbState::cleanup(Piki* piki) { }
  */
 void PikiGrowupState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_80518DF4@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_80191F20
-	li       r0, 0x12
-	sth      r0, 0x10(r30)
-	b        lbl_80191F28
+	if (randFloat() > 0.5f) {
+		mAnimIdx = IPikiAnims::GROWUP1;
+	} else {
+		mAnimIdx = IPikiAnims::GROWUP2;
+	}
 
-lbl_80191F20:
-	li       r0, 0x13
-	sth      r0, 0x10(r30)
+	piki->startMotion(mAnimIdx, mAnimIdx, piki, nullptr);
 
-lbl_80191F28:
-	cmplwi   r31, 0
-	mr       r6, r31
-	beq      lbl_80191F38
-	addi     r6, r31, 0x178
-
-lbl_80191F38:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lha      r4, 0x10(r30)
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mr       r5, r4
-	mtctr    r12
-	bctrl
-	lha      r4, 0x10(r30)
-	mr       r3, r31
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80191F8C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80191F8C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (!piki->assertMotion(mAnimIdx)) {
+		transit(piki, PIKISTATE_Walk, nullptr);
+	}
 }
 
 /*
@@ -7496,40 +6043,10 @@ lbl_80191F8C:
  */
 void PikiGrowupState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	stfs     f0, 0x1e4(r4)
-	stfs     f0, 0x1e8(r4)
-	stfs     f0, 0x1ec(r4)
-	lha      r4, 0x10(r30)
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80192004
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80192004:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->mVelocity = Vector3f(0.0f);
+	if (!piki->assertMotion(mAnimIdx)) {
+		transit(piki, PIKISTATE_Walk, nullptr);
+	}
 }
 
 /*
@@ -7537,126 +6054,38 @@ lbl_80192004:
  * Address:	8019201C
  * Size:	0001A0
  */
-void PikiGrowupState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+void PikiGrowupState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	lwz      r0, 0x1c(r5)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	cmpwi    r0, 0x3e8
-	beq      lbl_80192190
-	bge      lbl_801921A8
-	cmpwi    r0, 2
-	beq      lbl_8019204C
-	b        lbl_801921A8
+	switch (event.mType) {
+	case KEYEVENT_2:
+		if ((int)piki->mHappaKind != Flower) {
+			piki->changeHappa(Flower);
+			piki->startSound(PSSE_PK_FLOWER_VOICE, true);
+			if (piki->getCurrActionID() == 0) {
+				if (!piki->mNavi) {
+					piki->mNavi = naviMgr->getAliveOrima(0);
+				}
 
-lbl_8019204C:
-	lbz      r0, 0x2b9(r31)
-	cmpwi    r0, 2
-	beq      lbl_801921A8
-	mr       r3, r31
-	li       r4, 2
-	bl       changeHappa__Q24Game4PikiFi
-	mr       r3, r31
-	li       r4, 0x2845
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-	mr       r3, r31
-	bl       getCurrActionID__Q24Game4PikiFv
-	cmpwi    r3, 0
-	bne      lbl_801920B0
-	lwz      r0, 0x2c4(r31)
-	cmplwi   r0, 0
-	bne      lbl_801920A0
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       getAliveOrima__Q24Game7NaviMgrFi
-	stw      r3, 0x2c4(r31)
+				piki->mNavi->mCPlateMgr->changeFlower(piki);
+			}
 
-lbl_801920A0:
-	lwz      r3, 0x2c4(r31)
-	mr       r4, r31
-	lwz      r3, 0x254(r3)
-	bl       changeFlower__Q24Game6CPlateFPQ24Game8Creature
+			if (gameSystem->isFlag(GAMESYS_Unk6) && !playData->isDemoFlag(DEMO_First_Nectar_Use)) {
+				if (moviePlayer) {
+					MoviePlayArg movieArg("g34_yellow_extract", nullptr, nullptr, 0);
+					movieArg.setTarget(piki);
+					moviePlayer->mTargetObject = piki;
+					moviePlayer->play(movieArg);
+				}
 
-lbl_801920B0:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_801921A8
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x14
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801921A8
-	lwz      r0, moviePlayer__4Game@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80192180
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	lis      r3, lbl_8047EE04@ha
-	li       r0, 0
-	mr       r4, r31
-	addi     r5, r3, lbl_8047EE04@l
-	stw      r0, 0x18(r1)
-	addi     r3, r1, 8
-	stw      r5, 0x14(r1)
-	stw      r0, 0x20(r1)
-	stfs     f0, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	stw      r0, 0x3c(r1)
-	stw      r0, 0x24(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x40(r1)
-	stw      r0, 0x28(r1)
-	stw      r0, 0x44(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	mr       r3, r31
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x38(r1)
-	addi     r4, r1, 0x14
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	stw      r31, 0x194(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+				playData->setDemoFlag(DEMO_First_Nectar_Use);
+			}
+		}
+		break;
 
-lbl_80192180:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x14
-	bl       setDemoFlag__Q24Game8PlayDataFi
-	b        lbl_801921A8
-
-lbl_80192190:
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801921A8:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	case KEYEVENT_END:
+		transit(piki, PIKISTATE_Walk, nullptr);
+		break;
+	}
 }
 
 /*
@@ -7671,19 +6100,7 @@ void PikiGrowupState::cleanup(Piki* piki) { }
  * Address:	801921C0
  * Size:	000020
  */
-void PikiEscapeState::init(Piki* piki, StateArg* stateArg)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       initRun__Q24Game15PikiEscapeStateFPQ24Game4Piki
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiEscapeState::init(Piki* piki, StateArg* stateArg) { initRun(piki); }
 
 /*
  * --INFO--
@@ -7692,41 +6109,16 @@ void PikiEscapeState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiEscapeState::initRun(Piki* piki)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stb      r0, 0x11(r3)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_80518DF4@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_80192238
-	li       r0, 1
-	b        lbl_8019223C
+	_11 = 0;
 
-lbl_80192238:
-	li       r0, 0
+	u8 check;
+	if (randFloat() > 0.5f) {
+		check = 1;
+	} else {
+		check = 0;
+	}
 
-lbl_8019223C:
-	stb      r0, 0x10(r31)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_10 = check;
 }
 
 // /*
@@ -7739,15 +6131,40 @@ lbl_8019223C:
 // 	// UNUSED FUNCTION
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000190
-//  */
-// void PikiEscapeState::findTeki(Piki* piki)
-// {
-// 	// UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000190
+ */
+Creature* PikiEscapeState::findTeki(Piki* piki)
+{
+	Vector3f pikiPos = piki->getPosition();
+
+	Sys::Sphere sphere(pikiPos, 200.0f);
+
+	CellIteratorArg iterArg(sphere);
+	CellIterator iter(iterArg);
+
+	f32 minDist      = 200.0f;
+	Creature* target = nullptr;
+
+	CI_LOOP(iter)
+	{
+		Creature* creature = static_cast<Creature*>(*iter);
+		if (creature->isTeki() && creature->isLivingThing() && creature->isAlive()) {
+			Vector3f creaturePos = creature->getPosition();
+			Vector3f diff
+			    = Vector3f(creaturePos.y - sphere.mPosition.y, creaturePos.z - sphere.mPosition.z, creaturePos.x - sphere.mPosition.x);
+			f32 len = _length2(diff);
+			if (len < minDist) {
+				target  = creature;
+				minDist = len;
+			}
+		}
+	}
+
+	return target;
+}
 
 /*
  * --INFO--
@@ -7756,6 +6173,57 @@ lbl_8019223C:
  */
 void PikiEscapeState::exec(Piki* piki)
 {
+	switch (_11) {
+	case 1:
+	case 2:
+		piki->mVelocity *= 0.955f;
+		return;
+	}
+
+	Creature* target = findTeki(piki);
+
+	if (target) {
+		Vector3f targetPos = target->getPosition();
+		Vector3f pikiPos   = piki->getPosition();
+
+		Vector3f diff = pikiPos - targetPos;
+
+		f32 dist = diff.normalise();
+		f32 val  = 1.0f;
+		if ((u8)_10 != (u8)0) {
+			val = -1.0f;
+		}
+		Vector3f axis(0.0f, val, 0.0f);
+
+		// cross product needs fixing.
+		Vector3f vec = cross(diff, axis);
+		vec.normalise();
+
+		f32 randVal = randFloat();
+		if (dist - target->getBodyRadius() < 20.0f * randVal - 10.0f) {
+			piki->setSpeed(0.6f, diff);
+		} else {
+			piki->setSpeed(0.6f, vec);
+		}
+
+		if (randFloat() < 0.01f) {
+			if (randFloat() < 0.2f) {
+				piki->startMotion(IPikiAnims::KOROBU2, IPikiAnims::KOROBU2, piki, nullptr);
+				_11 = 2;
+			} else {
+				piki->startMotion(IPikiAnims::KOROBU, IPikiAnims::KOROBU, piki, nullptr);
+				_11 = 1;
+			}
+
+			_10 = 4.0f * randFloat() + 3.0f;
+			return;
+		}
+
+		if (randFloat() < 0.1f) {
+			_11 = 0;
+			_10 = (randFloat() > 0.5f) ? 1 : 0;
+		}
+	}
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -8185,131 +6653,44 @@ lbl_801927E4:
  * Address:	8019281C
  * Size:	00017C
  */
-void PikiEscapeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+void PikiEscapeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lwz      r0, 0x1c(r5)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	cmpwi    r0, 0xc8
-	beq      lbl_80192864
-	bge      lbl_80192858
-	cmpwi    r0, 2
-	beq      lbl_801928A8
-	bge      lbl_80192984
-	cmpwi    r0, 1
-	bge      lbl_801928DC
-	b        lbl_80192984
+	switch (event.mType) {
+	case KEYEVENT_200:
+		switch (_11) {
+		case 2:
+			piki->startSound(PSSE_PK_VC_SLIP1, true);
+			break;
+		case 1:
+			piki->startSound(PSSE_PK_VC_SLIP2, true);
+			break;
+		}
+		break;
 
-lbl_80192858:
-	cmpwi    r0, 0x3e8
-	beq      lbl_80192924
-	b        lbl_80192984
+	case KEYEVENT_2:
+		if (_11 == 1 || _11 == 2) {
+			piki->mSimVelocity = Vector3f(0.0f);
+			piki->mVelocity    = Vector3f(0.0f);
+		}
+		break;
 
-lbl_80192864:
-	lbz      r0, 0x11(r31)
-	cmpwi    r0, 2
-	beq      lbl_80192880
-	bge      lbl_80192984
-	cmpwi    r0, 1
-	bge      lbl_80192894
-	b        lbl_80192984
+	case KEYEVENT_1:
+		if (_11 == 1 || _11 == 2) {
+			_10--;
+			if (_10 <= 0) {
+				piki->mAnimator.mSelfAnimator.mFlags |= EANIM_FLAG_FINISHED;
+				piki->mAnimator.mBoundAnimator.mFlags |= EANIM_FLAG_FINISHED;
+			}
+		}
+		break;
 
-lbl_80192880:
-	mr       r3, r4
-	li       r4, 0x2843
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-	b        lbl_80192984
-
-lbl_80192894:
-	mr       r3, r4
-	li       r4, 0x2844
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-	b        lbl_80192984
-
-lbl_801928A8:
-	lbz      r0, 0x11(r31)
-	cmplwi   r0, 1
-	beq      lbl_801928BC
-	cmplwi   r0, 2
-	bne      lbl_80192984
-
-lbl_801928BC:
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	stfs     f0, 0x200(r4)
-	stfs     f0, 0x204(r4)
-	stfs     f0, 0x208(r4)
-	stfs     f0, 0x1e4(r4)
-	stfs     f0, 0x1e8(r4)
-	stfs     f0, 0x1ec(r4)
-	b        lbl_80192984
-
-lbl_801928DC:
-	lbz      r0, 0x11(r31)
-	cmplwi   r0, 1
-	beq      lbl_801928F0
-	cmplwi   r0, 2
-	bne      lbl_80192984
-
-lbl_801928F0:
-	lbz      r3, 0x10(r31)
-	addi     r0, r3, -1
-	stb      r0, 0x10(r31)
-	lbz      r0, 0x10(r31)
-	extsb.   r0, r0
-	bgt      lbl_80192984
-	lbz      r0, 0x1c4(r4)
-	ori      r0, r0, 2
-	stb      r0, 0x1c4(r4)
-	lbz      r0, 0x1e0(r4)
-	ori      r0, r0, 2
-	stb      r0, 0x1e0(r4)
-	b        lbl_80192984
-
-lbl_80192924:
-	lbz      r0, 0x11(r31)
-	cmplwi   r0, 1
-	beq      lbl_80192938
-	cmplwi   r0, 2
-	bne      lbl_80192984
-
-lbl_80192938:
-	li       r0, 0
-	stb      r0, 0x11(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_80518DF4@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8019297C
-	li       r0, 1
-	b        lbl_80192980
-
-lbl_8019297C:
-	li       r0, 0
-
-lbl_80192980:
-	stb      r0, 0x10(r31)
-
-lbl_80192984:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	case KEYEVENT_END:
+		if (_11 == 1 || _11 == 2) {
+			_11 = 0;
+			_10 = (randFloat() > 0.5f) ? 1 : 0;
+		}
+		break;
+	}
 }
 
 /*

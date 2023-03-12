@@ -14,74 +14,74 @@ struct J3DJoint;
 namespace Game {
 struct IPikiAnims {
 	enum PikiAnims {
-		NULLANIM = -1,
-		AKUBI    = 0, // yawn
-		ASIBUMI,      // stepped on
-		ATTACK1,
-		CHATTING,
-		DAMAGE,
-		DEAD,
-		DEAD2,
-		DEAD3,
-		ESA, // feed
-		FALL,
-		FUE,      // whistle
-		FURIMUKU, // look over shoulder
-		GAKKARI,  // disappointed
-		GATTU,    // agree
-		GETUP,
-		GFURI1,  // shake1
-		GFURI2,  // shake2
-		GNUKE,   // evade?
-		GROWUP1, // nectar (high jump)
-		GROWUP2, // nectar (low jump)
-		HNOBORU, // climb
-		IRAIRA,  // frustrated
-		JHIT,
-		JKOKE, // moss?
-		JOB1,
-		JOB2,
-		KOROBU,  // fall over
-		KUTTUKU, // go together
-		NIGERU,  // run away
-		RUN2,
-		WALK,
-		WAIT,
-		KIZUKU, // build
-		THROW,
-		THROWWWAIT,
-		ROLLJUMP, // throwing spin animation
-		HANG,
-		TYAKUSUI, // drowning
-		OBORERU,  // learn
-		SIZUMU,   // feel depressed
-		PICKLOOP,
-		PICK_PUT,
-		NUKU, // pull out
-		NUKU3,
-		NUKARERU, // to be removed from
-		NUKARE3,  // swept away
-		KAIFUKU,
-		KAIFUKU3,
-		KAIFUKU2,
-		MIZUAGE,
-		JUMP,
-		JUMPB1,
-		JUMPR1,
-		SAGASU,   // search
-		SAGASU2,  // search2
-		MIZUNOMI, // drinking
-		SUWARU,   // sit
-		NERU,     // sleep
-		HORU,     // leave alone? throw away
-		DOSIN,
-		KOROBU2, // falldown2
-		GASDEAD,
-		GDEAD,
-		SUWARERU,
-		PUNCH,
-		PUNCH2,
-		PUNCH3
+		NULLANIM   = -1,
+		AKUBI      = 0, // yawn
+		ASIBUMI    = 1, // stepped on
+		ATTACK1    = 2,
+		CHATTING   = 3,
+		DAMAGE     = 4,
+		DEAD       = 5,
+		DEAD2      = 6,
+		DEAD3      = 7,
+		ESA        = 8, // feed
+		FALL       = 9,
+		FUE        = 10, // whistle
+		FURIMUKU   = 11, // look over shoulder
+		GAKKARI    = 12, // disappointed
+		GATTU      = 13, // agree
+		GETUP      = 14,
+		GFURI1     = 15, // shake1
+		GFURI2     = 16, // shake2
+		GNUKE      = 17, // evade?
+		GROWUP1    = 18, // nectar (high jump)
+		GROWUP2    = 19, // nectar (low jump)
+		HNOBORU    = 20, // climb
+		IRAIRA     = 21, // frustrated
+		JHIT       = 22,
+		JKOKE      = 23, // moss?
+		JOB1       = 24,
+		JOB2       = 25,
+		KOROBU     = 26, // fall over
+		KUTTUKU    = 27, // go together
+		NIGERU     = 28, // run away
+		RUN2       = 29,
+		WALK       = 30,
+		WAIT       = 31,
+		KIZUKU     = 32, // build
+		THROW      = 33,
+		THROWWWAIT = 34,
+		ROLLJUMP   = 35, // throwing spin animation
+		HANG       = 36,
+		TYAKUSUI   = 37, // drowning
+		OBORERU    = 38, // learn
+		SIZUMU     = 39, // feel depressed
+		PICKLOOP   = 40,
+		PICK_PUT   = 41,
+		NUKU       = 42, // pull out
+		NUKU3      = 43,
+		NUKARERU   = 44, // to be removed from
+		NUKARE3    = 45, // swept away
+		KAIFUKU    = 46,
+		KAIFUKU3   = 47,
+		KAIFUKU2   = 48,
+		MIZUAGE    = 49,
+		JUMP       = 50,
+		JUMPB1     = 51,
+		JUMPR1     = 52,
+		SAGASU     = 53, // search
+		SAGASU2    = 54, // search2
+		MIZUNOMI   = 55, // drinking
+		SUWARU     = 56, // sit
+		NERU       = 57, // sleep
+		HORU       = 58, // leave alone? throw away
+		DOSIN      = 59,
+		KOROBU2    = 60, // falldown2
+		GASDEAD    = 61,
+		GDEAD      = 62,
+		SUWARERU   = 63,
+		PUNCH      = 64,
+		PUNCH2     = 65,
+		PUNCH3     = 66,
 	};
 };
 
@@ -183,32 +183,32 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	// _000      = VTBL
 	// _000-_178 = Creature
 	// _178-_17C = MotionListener
-	BitFlag<u32> mFakePikiFlags;     // _17C
-	f32 _180;                        // _180
-	u32 _184;                        // _184
-	IDelegate* mDoAnimCallback;      // _188
-	short mRoomIndex;                // _18C
-	WaterBox* mWaterBox;             // _190
-	CollPart* mTargetCollObj;        // _194
-	f32 mNeckTheta;                  // _198
-	f32 mNeckPhi;                    // _19C
-	Vector3f* mLookAtPosition;       // _1A0
-	u8 _1A4;                         // _1A4
-	Creature* mLookAtTargetCreature; // _1A8
-	PikiAnimator mAnimator;          // _1AC
-	Vector3f mVelocity;              // _1E4
-	Vector3f _1F0;                   // _1F0
-	f32 mFaceDir;                    // _1FC
-	Vector3f mSimVelocity;           // _200
-	Vector3f mPosition3;             // _20C, was mShadowParam.mPosition
-	Sys::Sphere mBoundingSphere;     // _218, was mShadowParam.mBoundingSphere
-	u32 mBoundAnimIdx;               // _228, current animIdx for held/bound object
-	u8 _22C[8];                      // _22C
-	f32 mAnimSpeed;                  // _234
-	Vector3f _238;                   // _238
-	f32 mFaceDirOffset;              // _244
-	Sys::Triangle* _248;             // _248
-	u32 _24C;                        // _24C, unknown
+	BitFlag<u32> mFakePikiFlags;            // _17C
+	f32 _180;                               // _180
+	u32 _184;                               // _184
+	IDelegate* mDoAnimCallback;             // _188
+	short mRoomIndex;                       // _18C
+	WaterBox* mWaterBox;                    // _190
+	CollPart* mTargetCollObj;               // _194
+	f32 mNeckTheta;                         // _198
+	f32 mNeckPhi;                           // _19C
+	Vector3f* mLookAtPosition;              // _1A0
+	u8 _1A4;                                // _1A4
+	Creature* mLookAtTargetCreature;        // _1A8
+	PikiAnimator mAnimator;                 // _1AC
+	Vector3f mVelocity;                     // _1E4
+	Vector3f _1F0;                          // _1F0
+	f32 mFaceDir;                           // _1FC
+	Vector3f mSimVelocity;                  // _200
+	Vector3f mPosition3;                    // _20C, was mShadowParam.mPosition
+	Sys::Sphere mBoundingSphere;            // _218, was mShadowParam.mBoundingSphere
+	u32 mBoundAnimIdx;                      // _228, current animIdx for held/bound object
+	u8 _22C[8];                             // _22C
+	f32 mAnimSpeed;                         // _234
+	Vector3f _238;                          // _238
+	f32 mFaceDirOffset;                     // _244
+	Sys::Triangle* mFakePikiBounceTriangle; // _248
+	u32 _24C;                               // _24C, unknown
 };
 
 struct FakePikiParms : public CreatureParms {
