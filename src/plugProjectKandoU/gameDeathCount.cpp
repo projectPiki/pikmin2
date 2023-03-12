@@ -5,76 +5,13 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_gameDeathCount_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804838F0
-    lbl_804838F0:
-        .4byte 0x42697274
-        .4byte 0x68436F75
-        .4byte 0x746E6572
-        .4byte 0x00000000
-    .global lbl_80483900
-    lbl_80483900:
-        .4byte 0x67616D65
-        .4byte 0x44656174
-        .4byte 0x68436F75
-        .4byte 0x6E742E63
-        .4byte 0x70700000
-    .global lbl_80483914
-    lbl_80483914:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80483920
-    lbl_80483920:
-        .4byte 0x44656174
-        .4byte 0x68436F75
-        .4byte 0x746E6572
-        .4byte 0x00000000
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global mToday__Q24Game8BirthMgr
-    mToday__Q24Game8BirthMgr:
-        .skip 0xC0
-    .global mCave__Q24Game8BirthMgr
-    mCave__Q24Game8BirthMgr:
-        .skip 0x1C
-    .global mTotal__Q24Game8BirthMgr
-    mTotal__Q24Game8BirthMgr:
-        .skip 0x1C
-    .global mToday__Q24Game8DeathMgr
-    mToday__Q24Game8DeathMgr:
-        .skip 0x24
-    .global mCave__Q24Game8DeathMgr
-    mCave__Q24Game8DeathMgr:
-        .skip 0x24
-    .global mTotal__Q24Game8DeathMgr
-    mTotal__Q24Game8DeathMgr:
-        .skip 0x24
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mSoundDeathCount__Q24Game8DeathMgr
-    mSoundDeathCount__Q24Game8DeathMgr:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A368
-    lbl_8051A368:
-        .4byte 0x0D0A0000
-        .4byte 0x00000000
-*/
-
 // sinit
-extern Game::BirthTodayCounter Game::BirthMgr::mToday;
-extern Game::BirthCounter Game::BirthMgr::mCave;
-extern Game::BirthCounter Game::BirthMgr::mTotal;
-extern Game::DeathCounter Game::DeathMgr::mToday;
-extern Game::DeathCounter Game::DeathMgr::mCave;
-extern Game::DeathCounter Game::DeathMgr::mTotal;
+Game::BirthCounter Game::BirthMgr::mToday;
+Game::BirthCounter Game::BirthMgr::mCave;
+Game::BirthCounter Game::BirthMgr::mTotal;
+Game::DeathCounter Game::DeathMgr::mToday;
+Game::DeathCounter Game::DeathMgr::mCave;
+Game::DeathCounter Game::DeathMgr::mTotal;
 
 int Game::DeathMgr::mSoundDeathCount;
 
@@ -478,7 +415,7 @@ void DeathMgr::clear()
  */
 void DeathMgr::inc(int cod)
 {
-	if (gameSystem == nullptr || (gameSystem->mFlags & 0x10) == 0 || cod == DeathCounter::COD_Unknown1 || cod == DeathCounter::COD_All) {
+	if (gameSystem == nullptr || (gameSystem->mFlags & 0x10) == 0 || cod == DeathCounter::COD_Sunset || cod == DeathCounter::COD_All) {
 		if (gameSystem->mIsInCave) {
 			inc_cave(cod);
 		} else {
@@ -590,70 +527,3 @@ void DeathMgr::write(Stream& output)
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80231214
- * Size:	0000E0
- */
-// void __sinit_gameDeathCount_cpp()
-// {
-// 	/*
-// 	li       r0, 0
-// 	lis      r8, mToday__Q24Game8BirthMgr@ha
-// 	stwu     r0, mToday__Q24Game8BirthMgr@l(r8)
-// 	lis      r7, mCave__Q24Game8BirthMgr@ha
-// 	lis      r6, mTotal__Q24Game8BirthMgr@ha
-// 	lis      r5, mToday__Q24Game8DeathMgr@ha
-// 	stwu     r0, mToday__Q24Game8DeathMgr@l(r5)
-// 	lis      r4, mCave__Q24Game8DeathMgr@ha
-// 	lis      r3, mTotal__Q24Game8DeathMgr@ha
-// 	stwu     r0, mCave__Q24Game8DeathMgr@l(r4)
-// 	stwu     r0, mTotal__Q24Game8DeathMgr@l(r3)
-// 	stwu     r0, mCave__Q24Game8BirthMgr@l(r7)
-// 	stwu     r0, mTotal__Q24Game8BirthMgr@l(r6)
-// 	stw      r0, 4(r8)
-// 	stw      r0, 8(r8)
-// 	stw      r0, 0xc(r8)
-// 	stw      r0, 0x10(r8)
-// 	stw      r0, 0x14(r8)
-// 	stw      r0, 0x18(r8)
-// 	stw      r0, 4(r7)
-// 	stw      r0, 8(r7)
-// 	stw      r0, 0xc(r7)
-// 	stw      r0, 0x10(r7)
-// 	stw      r0, 0x14(r7)
-// 	stw      r0, 0x18(r7)
-// 	stw      r0, 4(r6)
-// 	stw      r0, 8(r6)
-// 	stw      r0, 0xc(r6)
-// 	stw      r0, 0x10(r6)
-// 	stw      r0, 0x14(r6)
-// 	stw      r0, 0x18(r6)
-// 	stw      r0, 4(r5)
-// 	stw      r0, 8(r5)
-// 	stw      r0, 0xc(r5)
-// 	stw      r0, 0x10(r5)
-// 	stw      r0, 0x14(r5)
-// 	stw      r0, 0x18(r5)
-// 	stw      r0, 0x1c(r5)
-// 	stw      r0, 0x20(r5)
-// 	stw      r0, 4(r4)
-// 	stw      r0, 8(r4)
-// 	stw      r0, 0xc(r4)
-// 	stw      r0, 0x10(r4)
-// 	stw      r0, 0x14(r4)
-// 	stw      r0, 0x18(r4)
-// 	stw      r0, 0x1c(r4)
-// 	stw      r0, 0x20(r4)
-// 	stw      r0, 4(r3)
-// 	stw      r0, 8(r3)
-// 	stw      r0, 0xc(r3)
-// 	stw      r0, 0x10(r3)
-// 	stw      r0, 0x14(r3)
-// 	stw      r0, 0x18(r3)
-// 	stw      r0, 0x1c(r3)
-// 	stw      r0, 0x20(r3)
-// 	blr
-// 	*/
-// }

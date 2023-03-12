@@ -986,7 +986,7 @@ LIBS = [
             ["plugProjectKandoU/vsGS_VSGame", True],
             ["plugProjectKandoU/gameSoundEvent", True],
             "plugProjectKandoU/aiBattle",
-            "plugProjectKandoU/gameDeathCount",
+            ["plugProjectKandoU/gameDeathCount", True],
             "plugProjectKandoU/aiBore",
             ["plugProjectKandoU/mapPartsView", True],
             "plugProjectKandoU/singleGS_Ending",

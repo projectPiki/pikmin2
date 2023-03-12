@@ -96,8 +96,8 @@
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTeki.cpp">aiTeki.cpp</a> | 5793 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapMgrTraceMove.cpp">mapMgrTraceMove.cpp</a> | 9030 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameDeathCount.cpp">gameDeathCount.cpp</a> | 12428 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePelletList.cpp">gamePelletList.cpp</a> | 12567 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTeki.cpp">aiTeki.cpp</a> | 5793 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameDeathCount.cpp">gameDeathCount.cpp</a> | 8910 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapMgrTraceMove.cpp">mapMgrTraceMove.cpp</a> | 9030 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePelletList.cpp">gamePelletList.cpp</a> | 12567 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseHIOSection.cpp">baseHIOSection.cpp</a> | 13008 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellIterator.cpp">cellIterator.cpp</a> | 13113 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiBreakGate.cpp">aiBreakGate.cpp</a> | 13918 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/flockMgr.cpp">flockMgr.cpp</a> | 13955 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemTreasure.cpp">itemTreasure.cpp</a> | 14277 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiBattle.cpp">aiBattle.cpp</a> | 15669 |
