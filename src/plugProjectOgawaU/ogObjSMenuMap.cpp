@@ -134,7 +134,7 @@ void ObjSMenuMap::setMapTexture()
 		if (Game::Cave::randMapMgr) {
 			Game::Cave::randMapMgr->setCaptureOn();
 			mRadarMapTexture = Game::Cave::randMapMgr->getRadarMapTexture();
-			mMapTexPane->changeTexture(mRadarMapTexture->_20, 0);
+			mMapTexPane->changeTexture(mRadarMapTexture->mTexInfo, 0);
 			mUpdateCaveTex = 1;
 		} else {
 			JUT_PANICLINE(390, "SMenuMap : randMapMgr is not found!!!\n");
@@ -157,9 +157,9 @@ void ObjSMenuMap::setMapTexture()
 	}
 
 	JUTTexture* tex         = mMapTexPane->getTexture(0);
-	mMapTextureDimensions.x = (int)tex->_20->mSizeX;
+	mMapTextureDimensions.x = (int)tex->mTexInfo->mSizeX;
 	tex                     = mMapTexPane->getTexture(0);
-	mMapTextureDimensions.y = (int)tex->_20->mSizeY;
+	mMapTextureDimensions.y = (int)tex->mTexInfo->mSizeY;
 	mMapBounds.x            = mMapTexPane->mBounds.f.x - mMapTexPane->mBounds.i.x;
 	mMapBounds.y            = mMapTexPane->mBounds.f.y - mMapTexPane->mBounds.i.y;
 	mMapTexPane->resize(mMapTextureDimensions.x, mMapTextureDimensions.y);
@@ -2688,8 +2688,8 @@ void ObjSMenuMap::updateMap()
 		cPane->mScale.x = scaleFactor / scale;
 		cPane->mScale.y = scaleFactor / scale;
 		cPane->calcMtx();
-		cPane         = *mRadarPaneList[i];
-		cPane->mAngle = angleOffs - mMapAngle;
+		cPane          = *mRadarPaneList[i];
+		cPane->mAngleZ = angleOffs - mMapAngle;
 		cPane->calcMtx();
 	}
 
@@ -2701,17 +2701,17 @@ void ObjSMenuMap::updateMap()
 		pane->mScale.x = scaleFactor;
 		pane->mScale.y = scaleFactor;
 		pane->calcMtx();
-		pane         = mLouieArrow;
-		pane->mAngle = (facedir * 360.0f) / TAU + 45.0f;
-		facedir      = pane->mAngle;
+		pane          = mLouieArrow;
+		pane->mAngleZ = (facedir * 360.0f) / TAU + 45.0f;
+		facedir       = pane->mAngleZ;
 		pane->calcMtx();
 		mLouieArrow->setBasePosition(J2DPOS_Center);
 		pane           = mLouieArrow;
 		pane->mScale.x = scaleFactor;
 		pane->mScale.y = scaleFactor;
 		pane->calcMtx();
-		pane         = mLouieArrow;
-		pane->mAngle = facedir;
+		pane          = mLouieArrow;
+		pane->mAngleZ = facedir;
 		pane->calcMtx();
 		mLouieArrow->setAlpha(louieArrowAlpha);
 		mLouieGlow->setAlpha(louieArrowAlpha);
@@ -2725,17 +2725,17 @@ void ObjSMenuMap::updateMap()
 		pane->mScale.x = scaleFactor;
 		pane->mScale.y = scaleFactor;
 		pane->calcMtx();
-		pane         = mOlimarArrow;
-		pane->mAngle = (facedir * 360.0f) / TAU + 45.0f;
-		facedir      = pane->mAngle;
+		pane          = mOlimarArrow;
+		pane->mAngleZ = (facedir * 360.0f) / TAU + 45.0f;
+		facedir       = pane->mAngleZ;
 		pane->calcMtx();
 		mOlimarArrow->setBasePosition(J2DPOS_Center);
 		pane           = mOlimarArrow;
 		pane->mScale.x = scaleFactor;
 		pane->mScale.y = scaleFactor;
 		pane->calcMtx();
-		pane         = mOlimarArrow;
-		pane->mAngle = facedir;
+		pane          = mOlimarArrow;
+		pane->mAngleZ = facedir;
 		pane->calcMtx();
 		mOlimarArrow->setAlpha(olimarArrowAlpha);
 		mOlimarGlow->setAlpha(olimarArrowAlpha);
@@ -3362,16 +3362,16 @@ void ObjSMenuMap::drawMap(Graphics& gfx)
 	J2DPerspGraph* graf = &gfx.mPerspGraph;
 	if (mUpdateCaveTex) {
 		mRadarMapTexture = Game::Cave::randMapMgr->getRadarMapTexture();
-		mMapTexPane->changeTexture(mRadarMapTexture->_20, 0);
+		mMapTexPane->changeTexture(mRadarMapTexture->mTexInfo, 0);
 		mUpdateCaveTex          = false;
-		mMapTextureDimensions.x = mMapTexPane->getTexture(0)->_20->mSizeX;
-		mMapTextureDimensions.y = mMapTexPane->getTexture(0)->_20->mSizeY;
+		mMapTextureDimensions.x = mMapTexPane->getTexture(0)->mTexInfo->mSizeX;
+		mMapTextureDimensions.y = mMapTexPane->getTexture(0)->mTexInfo->mSizeY;
 		mMapTexScale.x          = mMapBounds.x / mMapTextureDimensions.x;
 		mMapTexScale.y          = mMapBounds.y / mMapTextureDimensions.y;
 	}
 
 	if (mMapTexPane) {
-		mMapTexPane->mAngle = mMapAngle;
+		mMapTexPane->mAngleZ = mMapAngle;
 		mMapTexPane->calcMtx();
 	}
 

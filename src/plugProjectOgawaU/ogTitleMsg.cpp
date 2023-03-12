@@ -787,12 +787,12 @@ lbl_8032EFE0:
 void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
 {
 	mPanes1[id] = og::Screen::CopyPictureToPane(pic, mRootPane, mCurrXpos, -10.0f, 'tFont000' + id);
-	mPanes1[id]->setBasePosition(POS_BOTTOM_CENTER);
+	mPanes1[id]->setBasePosition(J2DPOS_BottomCenter);
 	mPanes1[id]->setWhite(mPanes1White);
 
 	mPanes2[id] = og::Screen::CopyPictureToPane(pic, mPanes1[id], (pic->mBounds.f.x - pic->mBounds.i.x) * 0.5f - 3.0f,
 	                                            (pic->mBounds.f.y - pic->mBounds.i.y) * 0.5f - 3.0f, 'tBody000' + id);
-	mPanes2[id]->setBasePosition(POS_BOTTOM_CENTER);
+	mPanes2[id]->setBasePosition(J2DPOS_BottomCenter);
 	mPanes2[id]->setWhite(mPanes2White);
 	mPanes2[id]->setBlack(mPanes2Black);
 

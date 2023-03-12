@@ -747,7 +747,7 @@ void ObjDayEndResultItem::doDraw(Graphics& gfx)
 			panes[isOdd]->show();
 			panes[isEven]->add(0.0f, offs);
 
-			setTex(mScreenMain, icons[isOdd], cNode->mTexture->_20);
+			setTex(mScreenMain, icons[isOdd], cNode->mTexture->mTexInfo);
 			if (!cNode->mMesgTag) {
 				mScreenMain->search(names[isOdd])->hide();
 			} else {

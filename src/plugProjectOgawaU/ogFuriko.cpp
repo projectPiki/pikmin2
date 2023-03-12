@@ -106,7 +106,7 @@ void CallBack_Furiko::update()
 			f32 angle      = JMath::atanTable_.atan2_((mCurrPosition.y - mGoalPosition.y), -(mCurrPosition.x - mGoalPosition.x));
 			mCurrPaneAngle = angle * 57.295776f + 90.0f;
 			J2DPane* pane  = mPane;
-			pane->mAngle   = mCurrPaneAngle;
+			pane->mAngleZ  = mCurrPaneAngle;
 			pane->calcMtx();
 		}
 		mCanUpdate = false;

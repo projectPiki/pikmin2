@@ -464,7 +464,7 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 			paneList[isOdd]->hide();
 			paneList[isEven]->show();
 			paneList[isOdd]->add(0.0f, offs);
-			setTex(mScreenMain, icontags[isOdd], cNode->mTexture->_20);
+			setTex(mScreenMain, icontags[isOdd], cNode->mTexture->mTexInfo);
 			u64 tag = cNode->mMesgTag;
 			if (tag == 0) {
 				mScreenMain->search(icontags[isOdd])->hide();
@@ -499,7 +499,7 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 
 	FOREACH_NODE(Game::Result::TNode, mResultNode->mChild, cNode)
 	{
-		cNode->mItemMgr->draw(mScreenDropItem, 'iPicon00', cNode->mTexture->_20, gfx);
+		cNode->mItemMgr->draw(mScreenDropItem, 'iPicon00', cNode->mTexture->mTexInfo, gfx);
 	}
 
 	if (mAlpha) {

@@ -963,9 +963,9 @@ void CallBack_CounterRV::setValue(bool flag1, bool flag2)
 			}
 		}
 		J2DPictureEx* pic      = mPic1;
-		f32 f1                 = pic->_0B8;
-		f32 f2                 = pic->_0BC;
-		f32 angle              = pic->mAngle;
+		f32 f1                 = pic->mAngleX;
+		f32 f2                 = pic->mAngleY;
+		f32 angle              = pic->mAngleZ;
 		JUtility::TColor col1  = pic->getWhite();
 		JUtility::TColor col2  = pic->getBlack();
 		JGeometry::TBox2f* box = pic->getBounds();
@@ -1002,9 +1002,9 @@ void CallBack_CounterRV::setValue(bool flag1, bool flag2)
 					pane->setBasePosition((J2DBasePosition)mBasePosition);
 					pane->updateScale(_3C, mPaneScale.y);
 				}
-				pane->_0B8   = f1;
-				pane->_0BC   = f2;
-				pane->mAngle = angle;
+				pane->mAngleX = f1;
+				pane->mAngleY = f2;
+				pane->mAngleZ = angle;
 				pane->calcMtx();
 				pane->setWhite(col1);
 				pane->setBlack(col2);
