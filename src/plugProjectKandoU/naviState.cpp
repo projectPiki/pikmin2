@@ -8,6 +8,15 @@
 #include "KandoLib/Choice.h"
 #include "nans.h"
 
+namespace {
+SoundID se_taisos[3]    = { PSSE_PL_WAIT_TAISO_ORIMA, PSSE_PL_WAIT_TAISO_LUGI, PSSE_PL_WAIT_TAISO_SHACHO };
+SoundID se_chats[3]     = { PSSE_PL_WAIT_CHAT_ORIMA, PSSE_PL_WAIT_CHAT_LUGI, PSSE_PL_WAIT_CHAT_SHACHO };
+SoundID se_lookbacks[3] = { PSSE_PL_WAIT_LOOKBACK_ORIMA, PSSE_PL_WAIT_LOOKBACK_LUGI, PSSE_PL_WAIT_LOOKBACK_SHACHO };
+SoundID se_novis[3]     = { PSSE_PL_WAIT_NOVI_ORIMA, PSSE_PL_WAIT_NOVI_LUGI, PSSE_PL_WAIT_NOVI_SHACHO };
+SoundID se_jumps[3]     = { PSSE_PL_WAIT_JUMP_ORIMA, PSSE_PL_WAIT_JUMP_LUGI, PSSE_PL_WAIT_JUMP_SHACHO };
+SoundID se_kyoros[3]    = { PSSE_PL_WAIT_KYORO_ORIMA, PSSE_PL_WAIT_KYORO_LUGI, PSSE_PL_WAIT_KYORO_SHACHO };
+} // namespace
+
 namespace Game {
 
 /*
@@ -3097,25 +3106,9 @@ void NaviFollowState::cleanup(Navi* navi) { }
  */
 NaviPunchState::NaviPunchState()
     : NaviState(NSID_Punch)
+    , _24(0)
+    , _28(0)
 {
-	/*
-	lis      r4, "__vt__Q24Game22FSMState<Q24Game4Navi>"@ha
-	lis      r5, __vt__Q24Game9NaviState@ha
-	addi     r0, r4, "__vt__Q24Game22FSMState<Q24Game4Navi>"@l
-	lis      r4, __vt__Q24Game14NaviPunchState@ha
-	stw      r0, 0(r3)
-	li       r0, 2
-	li       r6, 0
-	addi     r5, r5, __vt__Q24Game9NaviState@l
-	stw      r0, 4(r3)
-	addi     r0, r4, __vt__Q24Game14NaviPunchState@l
-	stw      r6, 8(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stb      r6, 0x24(r3)
-	stw      r6, 0x28(r3)
-	blr
-	*/
 }
 
 /*
@@ -9422,73 +9415,7 @@ lbl_80185B30:
 NaviThrowWaitState::NaviThrowWaitState()
     : NaviState(NSID_ThrowWait)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	extsh.   r0, r4
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	beq      lbl_80185B90
-	addi     r0, r31, 0x3c
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r0, 0x10(r31)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	stw      r0, 0x3c(r31)
-
-lbl_80185B90:
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Navi>"@ha
-	lis      r5, __vt__Q24Game9NaviState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Navi>"@l
-	lis      r3, __vt__Q24Game18NaviThrowWaitState@ha
-	stw      r0, 0(r31)
-	li       r0, 6
-	addi     r4, r3, __vt__Q24Game18NaviThrowWaitState@l
-	li       r3, 0
-	stw      r0, 4(r31)
-	addi     r6, r5, __vt__Q24Game9NaviState@l
-	addi     r5, r4, 0x50
-	addi     r0, r31, 0x3c
-	stw      r3, 8(r31)
-	li       r3, 0x14
-	stw      r6, 0(r31)
-	stw      r4, 0(r31)
-	lwz      r4, 0x10(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x10(r31)
-	subf     r0, r4, r0
-	stw      r0, 4(r4)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80185C38
-	lis      r4, lbl_804B2DB0@ha
-	lis      r5, __vt__9IDelegate@ha
-	addi     r8, r4, lbl_804B2DB0@l
-	lis      r4, "__vt__37Delegate<Q24Game18NaviThrowWaitState>"@ha
-	lwz      r7, 0(r8)
-	addi     r5, r5, __vt__9IDelegate@l
-	lwz      r6, 4(r8)
-	addi     r0, r4, "__vt__37Delegate<Q24Game18NaviThrowWaitState>"@l
-	lwz      r4, 8(r8)
-	stw      r7, 8(r1)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stw      r31, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0xc(r1)
-	stw      r4, 0x10(r1)
-	stw      r4, 0x10(r3)
-
-lbl_80185C38:
-	stw      r3, 0x30(r31)
-	mr       r3, r31
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mDelegate = new Delegate<NaviThrowWaitState>(this, nullptr);
 }
 
 /*

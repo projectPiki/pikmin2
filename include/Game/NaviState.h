@@ -325,6 +325,7 @@ struct NaviFlickState : public NaviState {
 	u32 _10;            // _10
 	Creature* mFlicker; // _14
 	Vector3f _18;       // _18
+	u8 _24[0x4];        // _24, unknown
 };
 
 struct FollowStateArg : public StateArg {
@@ -515,7 +516,9 @@ struct NaviPunchState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x1C]; // _10, unknown
+	u8 _10[0x14]; // _10, unknown
+	u8 _24;       // _24
+	u32 _28;      // _28
 };
 
 struct NaviSaraiExitState : public NaviState {
@@ -581,10 +584,12 @@ struct NaviThrowState : public NaviState, virtual public SysShape::MotionListene
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0xC]; // _10, unknown
+	// _10-_14 = MotionListener VTBL
+	u8 _14[0xC]; // _14, unknown
+	             // _20 = MotionListener
 };
 
-struct NaviThrowWaitState : public NaviState {
+struct NaviThrowWaitState : public NaviState, virtual public SysShape::MotionListener {
 	NaviThrowWaitState();
 
 	virtual void init(Navi*, StateArg*);                      // _08
@@ -602,9 +607,12 @@ struct NaviThrowWaitState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x4];  // _10, unknown
-	Piki* mPiki;  // _14, held piki to be thrown
-	u8 _18[0x2C]; // _18, unknown
+	// _10-_14 = MotionListener VTBL
+	Piki* mPiki;                             // _14, held piki to be thrown
+	u8 _18[0x18];                            // _18, unknown
+	Delegate<NaviThrowWaitState>* mDelegate; // _30
+	u8 _34[0x8];                             // _34, unknown
+	                                         // _3C = MotionListener
 };
 
 struct NaviWalkState : public NaviState {
