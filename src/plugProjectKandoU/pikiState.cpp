@@ -1331,7 +1331,7 @@ void PikiNukareState::exec(Piki* piki)
 		position.y = mapMgr->getMinY(position);
 		piki->setPosition(position, false);
 
-		PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
+		PikiAI::ActFormationInitArg initArg(piki->mNavi);
 		piki->mBrain->start(0, &initArg);
 
 		int pikiType = piki->mPikiKind;
@@ -1442,7 +1442,7 @@ void PikiDopeState::exec(Piki* piki)
 
 		if (mNavi) {
 			piki->mNavi = mNavi;
-			PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
+			PikiAI::ActFormationInitArg initArg(piki->mNavi);
 			piki->mBrain->start(0, &initArg);
 		}
 
@@ -1464,7 +1464,7 @@ void PikiDopeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 	case 1000:
 		if (mNavi) {
 			piki->mNavi = mNavi;
-			PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
+			PikiAI::ActFormationInitArg initArg(piki->mNavi);
 			piki->mBrain->start(0, &initArg);
 		}
 
@@ -2100,7 +2100,7 @@ void PikiLookAtState::exec(Piki* piki)
 
 	case 2:
 		if (piki->mNavi) {
-			PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
+			PikiAI::ActFormationInitArg initArg(piki->mNavi);
 			initArg._09 = 1;
 			piki->mBrain->start(0, &initArg);
 			transit(piki, PIKISTATE_Walk, nullptr);
@@ -2150,7 +2150,6 @@ void PikiAutoNukiState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(IPikiAnims::KAIFUKU2, IPikiAnims::KAIFUKU2, piki, nullptr);
 	_14               = 1;
 	Vector3f position = piki->getPosition();
-	// piki->_17C |= 0x10;
 	Sys::Sphere sphere(position, 10.0f);
 	WaterBox* wbox = piki->checkWater(nullptr, sphere);
 
@@ -2212,7 +2211,7 @@ void PikiAutoNukiState::exec(Piki* piki)
 
 	case 2:
 		if (piki->mNavi) {
-			PikiAI::ActFormationInitArg initArg(piki->mNavi, 0);
+			PikiAI::ActFormationInitArg initArg(piki->mNavi);
 			initArg._09 = 1;
 			piki->mBrain->start(0, &initArg);
 
@@ -2280,16 +2279,15 @@ void PikiGoHangState::exec(Piki* piki)
 	CollPart* collpart = piki->mNavi->mCollTree->getCollPart('rhnd');
 	Vector3f position  = piki->getPosition();
 	Vector3f diff      = collpart->mPosition - position;
-	f32 length         = diff.normalise(); // can't use this bc no second round of fmadds - has to use a different normalise.
+	f32 length         = _normalise2(diff); // can't use this bc no second round of fmadds - has to use a different normalise.
 	f32 scale          = 1.0f;
 	if (length > 2.0f * naviMgr->mNaviParms->mNaviParms.mP037.mValue) {
 		scale = 2.0f;
 	}
 	Vector3f naviPos = piki->mNavi->mSimVelocity;
-	f32 factor       = static_cast<NaviParms*>(piki->mNavi->mParms)->mNaviParms.mP060.mValue * scale;
-	f32 dist         = naviPos.x * naviPos.x + naviPos.y * naviPos.y + naviPos.z * naviPos.z;
-	__sqrtf(dist, &dist);
-	piki->mVelocity = diff * (factor + dist);
+	f32 factor       = scale * static_cast<NaviParms*>(piki->mNavi->mParms)->mNaviParms.mP060.mValue;
+	f32 dist         = _length(naviPos);
+	piki->mVelocity  = diff * (factor + dist);
 
 	if (piki->mNavi->getStateID() != 6) {
 		transit(piki, PIKISTATE_Walk, nullptr);
@@ -2591,7 +2589,7 @@ void PikiHipDropState::exec(Piki* piki)
 		piki->mSimVelocity.y = 0.0f;
 		_10 -= sys->mDeltaTime;
 		if (_10 <= 0.0f) {
-			piki->mSimVelocity.y   = -_aiConstants->mGravity.mData / 2;
+			piki->mSimVelocity.y   = -_aiConstants->mGravity.mData * 0.5f;
 			Creature* closestEnemy = nullptr;
 			f32 minDist            = 12800.0f;
 			Vector3f position      = piki->getPosition();
@@ -2606,9 +2604,9 @@ void PikiHipDropState::exec(Piki* piki)
 				if (creature->isTeki() && creature->isAlive() && creature->isLivingThing()) {
 					Vector3f creaturePos = creature->getPosition();
 					Vector3f pikiPos     = piki->getPosition();
-					Vector3f diff        = creaturePos - pikiPos;
+					// Vector3f diff        = Vector3f(creaturePos.x - pikiPos.x, creaturePos.y - pikiPos.y, creaturePos.x - pikiPos.x);
 
-					f32 currDist = _lenVec(diff);
+					f32 currDist = _distanceBetween2(creaturePos, pikiPos);
 
 					if (currDist < minDist) {
 						minDist      = currDist;
@@ -3323,7 +3321,7 @@ bool PikiFallMeckState::becomePikihead(Piki* piki)
 				piki->startSound(PSSE_PK_SE_ONY_SEED_GROUND, true);
 			}
 
-			ItemPikihead::InitArg initArg((EPikiKind)piki->mPikiKind, Vector3f::zero);
+			ItemPikihead::InitArg initArg((EPikiKind)piki->mPikiKind, Vector3f::zero, 1, 0, -1.0f);
 
 			if (_10) {
 				initArg._1C = 10.0f + 3.0f * sys->mDeltaTime;
