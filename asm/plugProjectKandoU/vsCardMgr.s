@@ -5,46 +5,59 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80483AD0:
+.obj lbl_80483AD0, local
 	.skip 0xC
+.endobj lbl_80483AD0
 .balign 4
-lbl_80483ADC:
+.obj lbl_80483ADC, local
 	.asciz "vsCardMgr"
+.endobj lbl_80483ADC
 .balign 4
-lbl_80483AE8:
+.obj lbl_80483AE8, local
 	.asciz "pikmin_5.bti"
+.endobj lbl_80483AE8
 .balign 4
-lbl_80483AF8:
+.obj lbl_80483AF8, local
 	.asciz "pikmin_10.bti"
+.endobj lbl_80483AF8
 .balign 4
-lbl_80483B08:
+.obj lbl_80483B08, local
 	.asciz "all_flower.bti"
+.endobj lbl_80483B08
 .balign 4
-lbl_80483B18:
+.obj lbl_80483B18, local
 	.asciz "pikmin_xlu.bti"
+.endobj lbl_80483B18
 .balign 4
-lbl_80483B28:
+.obj lbl_80483B28, local
 	.asciz "dope_black.bti"
+.endobj lbl_80483B28
 .balign 4
-lbl_80483B38:
+.obj lbl_80483B38, local
 	.asciz "dope_red.bti"
+.endobj lbl_80483B38
 .balign 4
-lbl_80483B48:
+.obj lbl_80483B48, local
 	.asciz "reset_bedama.bti"
+.endobj lbl_80483B48
 .balign 4
-lbl_80483B5C:
+.obj lbl_80483B5C, local
 	.asciz "teki_hanachirashi"
+.endobj lbl_80483B5C
 .balign 4
-lbl_80483B70:
+.obj lbl_80483B70, local
 	.asciz "teki_sarai.bti"
+.endobj lbl_80483B70
 .balign 4
-lbl_80483B80:
+.obj lbl_80483B80, local
 	.asciz "teki_rock.bti"
+.endobj lbl_80483B80
 .balign 4
-lbl_80483B90:
+.obj lbl_80483B90, local
 	.asciz "teki_tank.bti"
+.endobj lbl_80483B90
 .balign 4
-"cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@":
+.obj "cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@", local
 	.4byte lbl_80483AE8
 	.4byte 0x00000001
 	.4byte lbl_80483AF8
@@ -69,47 +82,60 @@ lbl_80483B90:
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj "cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"
 .balign 4
-lbl_80483C00:
+.obj lbl_80483C00, local
 	.asciz "teki_hanachirashi.bti"
+.endobj lbl_80483C00
 .balign 4
-lbl_80483C18:
+.obj lbl_80483C18, local
 	.asciz "teki_bombotakara.bti"
+.endobj lbl_80483C18
 .balign 4
-lbl_80483C30:
+.obj lbl_80483C30, local
 	.asciz "user/Kando/vstex/arc.szs"
+.endobj lbl_80483C30
 .balign 4
-lbl_80483C4C:
+.obj lbl_80483C4C, local
 	.asciz "vsCardMgr.cpp"
+.endobj lbl_80483C4C
 .balign 4
-lbl_80483C5C:
+.obj lbl_80483C5C, local
 	.asciz "vstex/arc.szs not found !\n"
+.endobj lbl_80483C5C
 .balign 4
-lbl_80483C78:
+.obj lbl_80483C78, local
 	.asciz "%s not found !\n"
+.endobj lbl_80483C78
 .balign 4
-lbl_80483C88:
+.obj lbl_80483C88, local
 	.asciz "press_y.bti"
+.endobj lbl_80483C88
 .balign 4
-lbl_80483C94:
+.obj lbl_80483C94, local
 	.asciz "lamp_on.bti"
+.endobj lbl_80483C94
 .balign 4
-lbl_80483CA0:
+.obj lbl_80483CA0, local
 	.asciz "lamp_off.bti"
+.endobj lbl_80483CA0
 .balign 4
-lbl_80483CB0:
+.obj lbl_80483CB0, local
 	.asciz "P2Assert"
+.endobj lbl_80483CB0
 .balign 4
-lbl_80483CBC:
+.obj lbl_80483CBC, local
 	.asciz "ArgScaleColorColor"
+.endobj lbl_80483CBC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-"tex_names__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@":
+.endobj govNAN___Q24Game5P2JST
+.obj "tex_names__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@", local
 	.4byte lbl_80483AE8
 	.4byte lbl_80483AF8
 	.4byte lbl_80483B08
@@ -122,7 +148,8 @@ govNAN___Q24Game5P2JST:
 	.4byte lbl_80483B80
 	.4byte lbl_80483C18
 	.4byte lbl_80483B90
-lbl_804C14AC:
+.endobj "tex_names__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"
+.obj lbl_804C14AC, local
 	.4byte .L_80237714
 	.4byte .L_802370B0
 	.4byte .L_802370DC
@@ -134,193 +161,261 @@ lbl_804C14AC:
 	.4byte .L_80237488
 	.4byte .L_802374C0
 	.4byte .L_802376B0
-.global __vt__Q25efx2d5TBase
-__vt__Q25efx2d5TBase:
+.endobj lbl_804C14AC
+.obj __vt__Q25efx2d5TBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte setGroup__Q25efx2d5TBaseFUc
-.global __vt__Q25efx2d7TBaseIF
-__vt__Q25efx2d7TBaseIF:
+.endobj __vt__Q25efx2d5TBase
+.obj __vt__Q25efx2d7TBaseIF, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q25efx2d18ArgScaleColorColor
-__vt__Q25efx2d18ArgScaleColorColor:
+.endobj __vt__Q25efx2d7TBaseIF
+.obj __vt__Q25efx2d18ArgScaleColorColor, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q25efx2d18ArgScaleColorColorFv
-.global __vt__Q25efx2d3Arg
-__vt__Q25efx2d3Arg:
+.endobj __vt__Q25efx2d18ArgScaleColorColor
+.obj __vt__Q25efx2d3Arg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q25efx2d3ArgFv
-.global __vt__Q23efx8TPkGlow2
-__vt__Q23efx8TPkGlow2:
+.endobj __vt__Q25efx2d3Arg
+.obj __vt__Q23efx8TPkGlow2, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
+.endobj __vt__Q23efx8TPkGlow2
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A3D8:
+.obj lbl_8051A3D8, local
 	.float 0.0
-lbl_8051A3DC:
+.endobj lbl_8051A3D8
+.obj lbl_8051A3DC, local
 	.float -99.9
-lbl_8051A3E0:
+.endobj lbl_8051A3DC
+.obj lbl_8051A3E0, local
 	.float 32768.0
-lbl_8051A3E4:
+.endobj lbl_8051A3E0
+.obj lbl_8051A3E4, local
 	.float 12.0
+.endobj lbl_8051A3E4
 .balign 8
-lbl_8051A3E8:
+.obj lbl_8051A3E8, local
 	.8byte 0x4330000080000000
-lbl_8051A3F0:
+.endobj lbl_8051A3E8
+.obj lbl_8051A3F0, local
 	.float 40.0
+.endobj lbl_8051A3F0
 .balign 4
-lbl_8051A3F4:
+.obj lbl_8051A3F4, local
 	.asciz "test"
+.endobj lbl_8051A3F4
 .balign 4
-lbl_8051A3FC:
+.obj lbl_8051A3FC, local
 	.float -1.0
-lbl_8051A400:
+.endobj lbl_8051A3FC
+.obj lbl_8051A400, local
 	.float 555.0
-lbl_8051A404:
+.endobj lbl_8051A400
+.obj lbl_8051A404, local
 	.float -250.0
-lbl_8051A408:
+.endobj lbl_8051A404
+.obj lbl_8051A408, local
 	.float 4500.0
-lbl_8051A40C:
+.endobj lbl_8051A408
+.obj lbl_8051A40C, local
 	.float 0.98
+.endobj lbl_8051A40C
 .balign 4
-lbl_8051A410:
+.obj lbl_8051A410, local
 	.asciz "hl.bti"
+.endobj lbl_8051A410
 .balign 4
-lbl_8051A418:
+.obj lbl_8051A418, local
 	.float 515.0
-lbl_8051A41C:
+.endobj lbl_8051A418
+.obj lbl_8051A41C, local
 	.float 115.0
-lbl_8051A420:
+.endobj lbl_8051A41C
+.obj lbl_8051A420, local
 	.float 315.0
-lbl_8051A424:
+.endobj lbl_8051A420
+.obj lbl_8051A424, local
 	.float 80.0
-lbl_8051A428:
+.endobj lbl_8051A424
+.obj lbl_8051A428, local
 	.float 22.4
-lbl_8051A42C:
+.endobj lbl_8051A428
+.obj lbl_8051A42C, local
 	.float 2.0
-lbl_8051A430:
+.endobj lbl_8051A42C
+.obj lbl_8051A430, local
 	.float 8.0
-lbl_8051A434:
+.endobj lbl_8051A430
+.obj lbl_8051A434, local
 	.float 60.0
-lbl_8051A438:
+.endobj lbl_8051A434
+.obj lbl_8051A438, local
 	.float 30.0
-lbl_8051A43C:
+.endobj lbl_8051A438
+.obj lbl_8051A43C, local
 	.float 0.5
-lbl_8051A440:
+.endobj lbl_8051A43C
+.obj lbl_8051A440, local
 	.float 50.0
-lbl_8051A444:
+.endobj lbl_8051A440
+.obj lbl_8051A444, local
 	.float 100.0
-lbl_8051A448: # tau
+.endobj lbl_8051A444
+.obj lbl_8051A448, local # tau
 	.float 6.2831855
-lbl_8051A44C:
+.endobj lbl_8051A448
+.obj lbl_8051A44C, local
 	.float 325.9493
-lbl_8051A450:
+.endobj lbl_8051A44C
+.obj lbl_8051A450, local
 	.float -325.9493
-lbl_8051A454:
+.endobj lbl_8051A450
+.obj lbl_8051A454, local
 	.float 1.0
-lbl_8051A458:
+.endobj lbl_8051A454
+.obj lbl_8051A458, local
 	.float 90.0
-lbl_8051A45C:
+.endobj lbl_8051A458
+.obj lbl_8051A45C, local
 	.float 150.0
-lbl_8051A460:
+.endobj lbl_8051A45C
+.obj lbl_8051A460, local
 	.float 0.4
-lbl_8051A464:
+.endobj lbl_8051A460
+.obj lbl_8051A464, local
 	.float 5.0
-lbl_8051A468:
+.endobj lbl_8051A464
+.obj lbl_8051A468, local
 	.float 0.2
-lbl_8051A46C:
+.endobj lbl_8051A468
+.obj lbl_8051A46C, local
 	.float 0.7
-lbl_8051A470:
+.endobj lbl_8051A46C
+.obj lbl_8051A470, local
 	.float 0.8
-lbl_8051A474:
+.endobj lbl_8051A470
+.obj lbl_8051A474, local
 	.float 4.0
-lbl_8051A478:
+.endobj lbl_8051A474
+.obj lbl_8051A478, local
 	.float 1.2566371
-lbl_8051A47C: # -tau
+.endobj lbl_8051A478
+.obj lbl_8051A47C, local # -tau
 	.float -6.2831855
-lbl_8051A480:
+.endobj lbl_8051A47C
+.obj lbl_8051A480, local
 	.float 0.07
-lbl_8051A484:
+.endobj lbl_8051A480
+.obj lbl_8051A484, local
 	.float -12.566371
-lbl_8051A488:
+.endobj lbl_8051A484
+.obj lbl_8051A488, local
 	.float 3.0
-lbl_8051A48C:
+.endobj lbl_8051A488
+.obj lbl_8051A48C, local
 	.float 2.7
-lbl_8051A490:
+.endobj lbl_8051A48C
+.obj lbl_8051A490, local
 	.float -1.3823009
-lbl_8051A494:
+.endobj lbl_8051A490
+.obj lbl_8051A494, local
 	.float 1.2
-lbl_8051A498:
+.endobj lbl_8051A494
+.obj lbl_8051A498, local
 	.float 0.5235988
-lbl_8051A49C:
+.endobj lbl_8051A498
+.obj lbl_8051A49C, local
 	.float 300.0
-lbl_8051A4A0:
+.endobj lbl_8051A49C
+.obj lbl_8051A4A0, local
 	.float 20.0
-lbl_8051A4A4:
+.endobj lbl_8051A4A0
+.obj lbl_8051A4A4, local
 	.float 0.03125
-lbl_8051A4A8:
+.endobj lbl_8051A4A4
+.obj lbl_8051A4A8, local
 	.4byte 0x14141480
-lbl_8051A4AC:
+.endobj lbl_8051A4A8
+.obj lbl_8051A4AC, local
 	.4byte 0xFFFFFFCA
-lbl_8051A4B0:
+.endobj lbl_8051A4AC
+.obj lbl_8051A4B0, local
 	.4byte 0xFFFFFFFF
-lbl_8051A4B4:
+.endobj lbl_8051A4B0
+.obj lbl_8051A4B4, local
 	.4byte 0xFFFFFFFF
-lbl_8051A4B8:
+.endobj lbl_8051A4B4
+.obj lbl_8051A4B8, local
 	.float 0.2617994
+.endobj lbl_8051A4B8
 .balign 4
-lbl_8051A4BC:
+.obj lbl_8051A4BC, local
 	.asciz "%d"
+.endobj lbl_8051A4BC
 .balign 8
-lbl_8051A4C0:
+.obj lbl_8051A4C0, local
 	.double 127.5
-lbl_8051A4C8:
+.endobj lbl_8051A4C0
+.obj lbl_8051A4C8, local
 	.float 0.35
-lbl_8051A4CC:
+.endobj lbl_8051A4C8
+.obj lbl_8051A4CC, local
 	.float -15.0
-lbl_8051A4D0:
+.endobj lbl_8051A4CC
+.obj lbl_8051A4D0, local
 	.float -7.0
-lbl_8051A4D4:
+.endobj lbl_8051A4D0
+.obj lbl_8051A4D4, local
 	.float -24.0
-lbl_8051A4D8:
+.endobj lbl_8051A4D4
+.obj lbl_8051A4D8, local
 	.float 16.0
-lbl_8051A4DC:
+.endobj lbl_8051A4D8
+.obj lbl_8051A4DC, local
 	.float 10.0
-lbl_8051A4E0: # pi
+.endobj lbl_8051A4DC
+.obj lbl_8051A4E0, local # pi
 	.float 3.1415927
-lbl_8051A4E4:
+.endobj lbl_8051A4E0
+.obj lbl_8051A4E4, local
 	.float 0.0055555557
-lbl_8051A4E8:
+.endobj lbl_8051A4E4
+.obj lbl_8051A4E8, local
 	.float 360.0
+.endobj lbl_8051A4E8
 .balign 4
-lbl_8051A4EC:
+.obj lbl_8051A4EC, local
 	.asciz "Arg"
+.endobj lbl_8051A4EC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr
-__ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr:
+.fn __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr, global
 /* 8023550C 0023244C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80235510 00232450  7C 08 02 A6 */	mflr r0
 /* 80235514 00232454  3C C0 80 23 */	lis r6, __ct__Q44Game6VsGame7CardMgr11SlotMachineFv@ha
@@ -404,9 +499,9 @@ __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr:
 /* 80235648 00232588  7C 08 03 A6 */	mtlr r0
 /* 8023564C 0023258C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80235650 00232590  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game6VsGame7CardMgrFPQ24Game13VsGameSectionPQ34Game6VsGame7TekiMgr
 
-.global __ct__Q44Game6VsGame7CardMgr11SlotMachineFv
-__ct__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn __ct__Q44Game6VsGame7CardMgr11SlotMachineFv, weak
 /* 80235654 00232594  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80235658 00232598  7C 08 02 A6 */	mflr r0
 /* 8023565C 0023259C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -429,9 +524,9 @@ __ct__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 802356A0 002325E0  7C 08 03 A6 */	mtlr r0
 /* 802356A4 002325E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802356A8 002325E8  4E 80 00 20 */	blr 
+.endfn __ct__Q44Game6VsGame7CardMgr11SlotMachineFv
 
-.global loadResource__Q34Game6VsGame7CardMgrFv
-loadResource__Q34Game6VsGame7CardMgrFv:
+.fn loadResource__Q34Game6VsGame7CardMgrFv, global
 /* 802356AC 002325EC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802356B0 002325F0  7C 08 02 A6 */	mflr r0
 /* 802356B4 002325F4  3C 80 80 48 */	lis r4, lbl_80483AD0@ha
@@ -620,9 +715,9 @@ loadResource__Q34Game6VsGame7CardMgrFv:
 /* 80235958 00232898  7C 08 03 A6 */	mtlr r0
 /* 8023595C 0023289C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80235960 002328A0  4E 80 00 20 */	blr 
+.endfn loadResource__Q34Game6VsGame7CardMgrFv
 
-.global update__Q34Game6VsGame7CardMgrFv
-update__Q34Game6VsGame7CardMgrFv:
+.fn update__Q34Game6VsGame7CardMgrFv, global
 /* 80235964 002328A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80235968 002328A8  7C 08 02 A6 */	mflr r0
 /* 8023596C 002328AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -642,9 +737,9 @@ update__Q34Game6VsGame7CardMgrFv:
 /* 802359A0 002328E0  7C 08 03 A6 */	mtlr r0
 /* 802359A4 002328E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802359A8 002328E8  4E 80 00 20 */	blr 
+.endfn update__Q34Game6VsGame7CardMgrFv
 
-.global draw__Q34Game6VsGame7CardMgrFR8Graphics
-draw__Q34Game6VsGame7CardMgrFR8Graphics:
+.fn draw__Q34Game6VsGame7CardMgrFR8Graphics, global
 /* 802359AC 002328EC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802359B0 002328F0  7C 08 02 A6 */	mflr r0
 /* 802359B4 002328F4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -688,9 +783,9 @@ draw__Q34Game6VsGame7CardMgrFR8Graphics:
 /* 80235A44 00232984  7C 08 03 A6 */	mtlr r0
 /* 80235A48 00232988  38 21 00 30 */	addi r1, r1, 0x30
 /* 80235A4C 0023298C  4E 80 00 20 */	blr 
+.endfn draw__Q34Game6VsGame7CardMgrFR8Graphics
 
-.global stopSlot__Q34Game6VsGame7CardMgrFi
-stopSlot__Q34Game6VsGame7CardMgrFi:
+.fn stopSlot__Q34Game6VsGame7CardMgrFi, global
 /* 80235A50 00232990  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80235A54 00232994  7C 08 02 A6 */	mflr r0
 /* 80235A58 00232998  1C 84 00 70 */	mulli r4, r4, 0x70
@@ -703,10 +798,10 @@ stopSlot__Q34Game6VsGame7CardMgrFi:
 /* 80235A74 002329B4  7C 08 03 A6 */	mtlr r0
 /* 80235A78 002329B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80235A7C 002329BC  4E 80 00 20 */	blr 
+.endfn stopSlot__Q34Game6VsGame7CardMgrFi
 
 .if version == 1
-.global usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr
-usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr:
+.fn usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr, global
 /* 80235A80 002329C0  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 80235A84 002329C4  7C 08 02 A6 */	mflr r0
 /* 80235A88 002329C8  90 01 01 64 */	stw r0, 0x164(r1)
@@ -1637,9 +1732,9 @@ usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr:
 /* 80236800 00233740  7C 08 03 A6 */	mtlr r0
 /* 80236804 00233744  38 21 01 60 */	addi r1, r1, 0x160
 /* 80236808 00233748  4E 80 00 20 */	blr 
+.endfn usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr
 .else
-.global usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr
-usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr:
+.fn usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr, global
 /* 80235A80 002329C0  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 80235A84 002329C4  7C 08 02 A6 */	mflr r0
 /* 80235A88 002329C8  90 01 01 64 */	stw r0, 0x164(r1)
@@ -2570,10 +2665,10 @@ usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr:
 /* 80236800 00233740  7C 08 03 A6 */	mtlr r0
 /* 80236804 00233744  38 21 01 60 */	addi r1, r1, 0x160
 /* 80236808 00233748  4E 80 00 20 */	blr 
+.endfn usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr
 .endif
 
-.global gotPlayerCard__Q34Game6VsGame7CardMgrFi
-gotPlayerCard__Q34Game6VsGame7CardMgrFi:
+.fn gotPlayerCard__Q34Game6VsGame7CardMgrFi, global
 /* 8023680C 0023374C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80236810 00233750  7C 08 02 A6 */	mflr r0
 /* 80236814 00233754  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2689,9 +2784,9 @@ gotPlayerCard__Q34Game6VsGame7CardMgrFi:
 /* 802369BC 002338FC  7C 08 03 A6 */	mtlr r0
 /* 802369C0 00233900  38 21 00 70 */	addi r1, r1, 0x70
 /* 802369C4 00233904  4E 80 00 20 */	blr 
+.endfn gotPlayerCard__Q34Game6VsGame7CardMgrFi
 
-.global clear__Q44Game6VsGame7CardMgr11SlotMachineFv
-clear__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn clear__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 802369C8 00233908  C0 22 C0 78 */	lfs f1, lbl_8051A3D8@sda21(r2)
 /* 802369CC 0023390C  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 802369D0 00233910  38 A0 00 00 */	li r5, 0
@@ -2714,10 +2809,10 @@ clear__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 80236A14 00233954  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 80236A18 00233958  98 A3 00 51 */	stb r5, 0x51(r3)
 /* 80236A1C 0023395C  4E 80 00 20 */	blr 
+.endfn clear__Q44Game6VsGame7CardMgr11SlotMachineFv
 
 .if version == 1
-.global start__Q44Game6VsGame7CardMgr11SlotMachineFv
-start__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn start__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80236A20 00233960  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80236A24 00233964  7C 08 02 A6 */	mflr r0
 /* 80236A28 00233968  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -3127,9 +3222,9 @@ start__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 80237004 00233F44  7C 08 03 A6 */	mtlr r0
 /* 80237008 00233F48  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8023700C 00233F4C  4E 80 00 20 */	blr 
+.endfn start__Q44Game6VsGame7CardMgr11SlotMachineFv
 .else
-.global start__Q44Game6VsGame7CardMgr11SlotMachineFv
-start__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn start__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80236A20 00233960  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80236A24 00233964  7C 08 02 A6 */	mflr r0
 /* 80236A28 00233968  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -3539,10 +3634,10 @@ start__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 80237004 00233F44  7C 08 03 A6 */	mtlr r0
 /* 80237008 00233F48  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8023700C 00233F4C  4E 80 00 20 */	blr 
+.endfn start__Q44Game6VsGame7CardMgr11SlotMachineFv
 .endif
 
-.global startStop__Q44Game6VsGame7CardMgr11SlotMachineFv
-startStop__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn startStop__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80237010 00233F50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237014 00233F54  7C 08 02 A6 */	mflr r0
 /* 80237018 00233F58  C0 02 C0 78 */	lfs f0, lbl_8051A3D8@sda21(r2)
@@ -3564,9 +3659,9 @@ startStop__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 80237054 00233F94  7C 08 03 A6 */	mtlr r0
 /* 80237058 00233F98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023705C 00233F9C  4E 80 00 20 */	blr 
+.endfn startStop__Q44Game6VsGame7CardMgr11SlotMachineFv
 
-.global update__Q44Game6VsGame7CardMgr11SlotMachineFv
-update__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn update__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80237060 00233FA0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80237064 00233FA4  7C 08 02 A6 */	mflr r0
 /* 80237068 00233FA8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4088,9 +4183,9 @@ update__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 8023780C 0023474C  7C 08 03 A6 */	mtlr r0
 /* 80237810 00234750  38 21 00 30 */	addi r1, r1, 0x30
 /* 80237814 00234754  4E 80 00 20 */	blr 
+.endfn update__Q44Game6VsGame7CardMgr11SlotMachineFv
 
-.global updateAppear__Q44Game6VsGame7CardMgr11SlotMachineFv
-updateAppear__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn updateAppear__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80237818 00234758  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023781C 0023475C  7C 08 02 A6 */	mflr r0
 /* 80237820 00234760  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4182,9 +4277,9 @@ updateAppear__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 8023795C 0023489C  7C 08 03 A6 */	mtlr r0
 /* 80237960 002348A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237964 002348A4  4E 80 00 20 */	blr 
+.endfn updateAppear__Q44Game6VsGame7CardMgr11SlotMachineFv
 
-.global initDraw__Q34Game6VsGame7CardMgrFv
-initDraw__Q34Game6VsGame7CardMgrFv:
+.fn initDraw__Q34Game6VsGame7CardMgrFv, global
 /* 80237968 002348A8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8023796C 002348AC  7C 08 02 A6 */	mflr r0
 /* 80237970 002348B0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -4410,9 +4505,9 @@ initDraw__Q34Game6VsGame7CardMgrFv:
 /* 80237CB0 00234BF0  7C 08 03 A6 */	mtlr r0
 /* 80237CB4 00234BF4  38 21 00 70 */	addi r1, r1, 0x70
 /* 80237CB8 00234BF8  4E 80 00 20 */	blr 
+.endfn initDraw__Q34Game6VsGame7CardMgrFv
 
-.global "drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3<f>RQ44Game6VsGame7CardMgr11SlotMachine"
-"drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3<f>RQ44Game6VsGame7CardMgr11SlotMachine":
+.fn "drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3<f>RQ44Game6VsGame7CardMgr11SlotMachine", global
 /* 80237CBC 00234BFC  94 21 FD D0 */	stwu r1, -0x230(r1)
 /* 80237CC0 00234C00  7C 08 02 A6 */	mflr r0
 /* 80237CC4 00234C04  90 01 02 34 */	stw r0, 0x234(r1)
@@ -5343,13 +5438,13 @@ initDraw__Q34Game6VsGame7CardMgrFv:
 /* 80238AFC 00235A3C  7C 08 03 A6 */	mtlr r0
 /* 80238B00 00235A40  38 21 02 30 */	addi r1, r1, 0x230
 /* 80238B04 00235A44  4E 80 00 20 */	blr 
+.endfn "drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3<f>RQ44Game6VsGame7CardMgr11SlotMachine"
 
-.global update__8LightObjFv
-update__8LightObjFv: # weak function
+.fn update__8LightObjFv, weak
 /* 80238B08 00235A48  4E 80 00 20 */	blr 
+.endfn update__8LightObjFv
 
-.global startZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv
-startZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn startZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80238B0C 00235A4C  C0 22 C1 40 */	lfs f1, lbl_8051A4A0@sda21(r2)
 /* 80238B10 00235A50  38 80 00 01 */	li r4, 1
 /* 80238B14 00235A54  C0 02 C0 78 */	lfs f0, lbl_8051A3D8@sda21(r2)
@@ -5360,9 +5455,9 @@ startZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 80238B28 00235A68  D0 03 00 3C */	stfs f0, 0x3c(r3)
 /* 80238B2C 00235A6C  98 03 00 50 */	stb r0, 0x50(r3)
 /* 80238B30 00235A70  4E 80 00 20 */	blr 
+.endfn startZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv
 
-.global startZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv
-startZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn startZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80238B34 00235A74  C0 22 C0 78 */	lfs f1, lbl_8051A3D8@sda21(r2)
 /* 80238B38 00235A78  38 00 00 02 */	li r0, 2
 /* 80238B3C 00235A7C  C0 02 C0 D8 */	lfs f0, lbl_8051A438@sda21(r2)
@@ -5371,9 +5466,9 @@ startZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 80238B48 00235A88  D0 23 00 3C */	stfs f1, 0x3c(r3)
 /* 80238B4C 00235A8C  D0 03 00 48 */	stfs f0, 0x48(r3)
 /* 80238B50 00235A90  4E 80 00 20 */	blr 
+.endfn startZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv
 
-.global updateZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv
-updateZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn updateZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80238B54 00235A94  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80238B58 00235A98  88 03 00 50 */	lbz r0, 0x50(r3)
 /* 80238B5C 00235A9C  28 00 00 00 */	cmplwi r0, 0
@@ -5506,9 +5601,9 @@ updateZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 80238D38 00235C78  D0 03 00 40 */	stfs f0, 0x40(r3)
 /* 80238D3C 00235C7C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80238D40 00235C80  4E 80 00 20 */	blr 
+.endfn updateZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv
 
-.global updateZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv
-updateZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv:
+.fn updateZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv, global
 /* 80238D44 00235C84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80238D48 00235C88  C0 62 C1 28 */	lfs f3, lbl_8051A488@sda21(r2)
 /* 80238D4C 00235C8C  80 8D 9A EC */	lwz r4, sys@sda21(r13)
@@ -5587,24 +5682,25 @@ updateZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 80238E60 00235DA0  D0 03 00 40 */	stfs f0, 0x40(r3)
 /* 80238E64 00235DA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80238E68 00235DA8  4E 80 00 20 */	blr 
+.endfn updateZoomUse__Q44Game6VsGame7CardMgr11SlotMachineFv
 
-.global setGroup__Q25efx2d5TBaseFUc
-setGroup__Q25efx2d5TBaseFUc: # weak function
+.fn setGroup__Q25efx2d5TBaseFUc, weak
 /* 80238E6C 00235DAC  98 83 00 05 */	stb r4, 5(r3)
 /* 80238E70 00235DB0  4E 80 00 20 */	blr 
+.endfn setGroup__Q25efx2d5TBaseFUc
 
-.global getName__Q25efx2d18ArgScaleColorColorFv
-getName__Q25efx2d18ArgScaleColorColorFv: # weak function
+.fn getName__Q25efx2d18ArgScaleColorColorFv, weak
 /* 80238E74 00235DB4  3C 60 80 48 */	lis r3, lbl_80483CBC@ha
 /* 80238E78 00235DB8  38 63 3C BC */	addi r3, r3, lbl_80483CBC@l
 /* 80238E7C 00235DBC  4E 80 00 20 */	blr 
+.endfn getName__Q25efx2d18ArgScaleColorColorFv
 
-.global getName__Q25efx2d3ArgFv
-getName__Q25efx2d3ArgFv: # weak function
+.fn getName__Q25efx2d3ArgFv, weak
 /* 80238E80 00235DC0  38 62 C1 8C */	addi r3, r2, lbl_8051A4EC@sda21
 /* 80238E84 00235DC4  4E 80 00 20 */	blr 
+.endfn getName__Q25efx2d3ArgFv
 
-__sinit_vsCardMgr_cpp: # static initializer
+.fn __sinit_vsCardMgr_cpp, local
 /* 80238E88 00235DC8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80238E8C 00235DCC  38 00 FF FF */	li r0, -1
 /* 80238E90 00235DD0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -5615,3 +5711,4 @@ __sinit_vsCardMgr_cpp: # static initializer
 /* 80238EA4 00235DE4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80238EA8 00235DE8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80238EAC 00235DEC  4E 80 00 20 */	blr 
+.endfn __sinit_vsCardMgr_cpp

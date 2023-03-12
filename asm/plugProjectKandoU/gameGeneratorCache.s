@@ -1,13 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80481480
 lbl_80481480:
 	.4byte 0x67656E65
 	.4byte 0x7261746F
 	.4byte 0x72436163
 	.4byte 0x68650000
-.global lbl_80481490
 lbl_80481490:
 	.4byte 0x67616D65
 	.4byte 0x47656E65
@@ -48,11 +46,9 @@ lbl_80481490:
 	.4byte 0x20696E76
 	.4byte 0x616C6964
 	.4byte 0x20210A00
-.global lbl_8048152C
 lbl_8048152C:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80481538
+.balign 4
 lbl_80481538:
 	.4byte 0x2867656E
 	.4byte 0x206E756D
@@ -97,7 +93,6 @@ lbl_80481538:
 	.4byte 0x6520666C
 	.4byte 0x61672825
 	.4byte 0x78290A00
-.global lbl_804815E4
 lbl_804815E4:
 	.4byte 0x436F7572
 	.4byte 0x73654361
@@ -155,31 +150,32 @@ lbl_804815E4:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game11CourseCache
-__vt__Q24Game11CourseCache:
+.obj __vt__Q24Game11CourseCache, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game11CourseCacheFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q24Game11CourseCache
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global generatorCache__4Game
-generatorCache__4Game:
-	.skip 0x8
+.obj generatorCache__4Game, global
+	.skip 0x4
+.endobj generatorCache__4Game
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519BC0
-lbl_80519BC0:
-	.4byte 0x6E6F6E65
-	.4byte 0x00000000
-.global lbl_80519BC8
-lbl_80519BC8:
-	.4byte 0xBF800000
-.global lbl_80519BCC
-lbl_80519BCC:
-	.4byte 0x0D0A0000
+.obj lbl_80519BC0, local
+	.asciz "none"
+.endobj lbl_80519BC0
+.balign 4
+.obj lbl_80519BC8, local
+	.float -1.0
+.endobj lbl_80519BC8
+.balign 4
+.obj lbl_80519BCC, local
+	.asciz "\r\n"
+.endobj lbl_80519BCC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14GeneratorCacheFv

@@ -1,24 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047CFE0:
-	.4byte 0x63656C6C
-	.4byte 0x50797261
-	.4byte 0x6D696400
-lbl_8047CFEC:
-	.4byte 0x63656C6C
-	.4byte 0x50797261
-	.4byte 0x6D69642E
-	.4byte 0x63707000
-lbl_8047CFFC:
+.obj lbl_8047CFE0, local
+	.asciz "cellPyramid"
+.endobj lbl_8047CFE0
+.balign 4
+.obj lbl_8047CFEC, local
+	.asciz "cellPyramid.cpp"
+.endobj lbl_8047CFEC
+.balign 4
+.obj lbl_8047CFFC, local
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x6C656720
-	.4byte 0x656E7472
-	.4byte 0x79206661
-	.4byte 0x696C6564
-	.4byte 0x20210A00
-lbl_8047D01C:
+.endobj lbl_8047CFFC
+.balign 4
+.obj lbl_8047D008, local
+	.asciz "leg entry failed !\n"
+.endobj lbl_8047D008
+.balign 4
+.obj lbl_8047D01C, local # Shift-JIS
 	.4byte 0x696C6C65
 	.4byte 0x67616C20
 	.4byte 0x6C617965
@@ -30,7 +29,10 @@ lbl_8047D01C:
 	.4byte 0x6F756E64
 	.4byte 0x73203081
 	.4byte 0x6025640A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D01C
+.balign 4
+.obj lbl_8047D04C, local # Shift-JIS
 	.4byte 0x43656C6C
 	.4byte 0x20496E66
 	.4byte 0x2D4C6F6F
@@ -38,92 +40,100 @@ lbl_8047D01C:
 	.4byte 0x82E082B5
 	.4byte 0x82EA82C8
 	.4byte 0x82A20A00
-	.4byte 0x6C656720
-	.4byte 0x656E7472
-	.4byte 0x79206661
-	.4byte 0x696C6564
-	.4byte 0x20212121
-	.4byte 0x21212121
-	.4byte 0x2121210A
-	.4byte 0x00000000
+.endobj lbl_8047D04C
+.balign 4
+.obj lbl_8047D068, local
+	.asciz "leg entry failed !!!!!!!!!!\n"
+.endobj lbl_8047D068
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__13SweepCallback
-__vt__13SweepCallback:
+.obj __vt__13SweepCallback, weak
 	.4byte 0
 	.4byte 0
 	.4byte invoke__13SweepCallbackFPQ210SweepPrune6ObjectPQ210SweepPrune6Object
-.global __vt__Q310SweepPrune5World8Callback
-__vt__Q310SweepPrune5World8Callback:
+.endobj __vt__13SweepCallback
+.obj __vt__Q310SweepPrune5World8Callback, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj __vt__Q310SweepPrune5World8Callback
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sOptResolveColl__Q24Game11CellPyramid
-sOptResolveColl__Q24Game11CellPyramid:
-	.4byte 0x02000000
-.global sCellBugName__Q24Game11CellPyramid
-sCellBugName__Q24Game11CellPyramid:
+.obj sOptResolveColl__Q24Game11CellPyramid, global
+	.byte 2
+.endobj sOptResolveColl__Q24Game11CellPyramid
+.balign 4
+.obj sCellBugName__Q24Game11CellPyramid, global
 	.4byte lbl_80518640
+.endobj sCellBugName__Q24Game11CellPyramid
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global cellMgr__4Game
-cellMgr__4Game:
+.obj cellMgr__4Game, global
 	.skip 0x4
-.global platCellMgr__4Game
-platCellMgr__4Game:
+.endobj cellMgr__4Game
+.obj platCellMgr__4Game, global
 	.skip 0x4
-.global mapRoomCellMgr__4Game
-mapRoomCellMgr__4Game:
+.endobj platCellMgr__4Game
+.obj mapRoomCellMgr__4Game, global
 	.skip 0x4
-.global disableAICulling__Q24Game11CellPyramid
-disableAICulling__Q24Game11CellPyramid:
+.endobj mapRoomCellMgr__4Game
+.obj disableAICulling__Q24Game11CellPyramid, global
 	.skip 0x1
-.global sSpeedUpResolveColl__Q24Game11CellPyramid
-sSpeedUpResolveColl__Q24Game11CellPyramid:
-	.skip 0x3
-.global sCurrCellMgr__Q24Game4Cell
-sCurrCellMgr__Q24Game4Cell:
+.endobj disableAICulling__Q24Game11CellPyramid
+.obj sSpeedUpResolveColl__Q24Game11CellPyramid, global
+	.skip 0x1
+.endobj sSpeedUpResolveColl__Q24Game11CellPyramid
+.balign 4
+.obj sCurrCellMgr__Q24Game4Cell, global
 	.skip 0x4
-.global sCellBugID__Q24Game11CellPyramid
-sCellBugID__Q24Game11CellPyramid:
+.endobj sCurrCellMgr__Q24Game4Cell
+.obj sCellBugID__Q24Game11CellPyramid, global
 	.skip 0x4
+.endobj sCellBugID__Q24Game11CellPyramid
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518628:
+.obj lbl_80518628, local
 	.float 0.0
-lbl_8051862C:
-	.4byte 0x47C35000
-lbl_80518630:
+.endobj lbl_80518628
+.obj lbl_8051862C, local
+	.float 100000.0
+.endobj lbl_8051862C
+.obj lbl_80518630, local
 	.float 0.5
-	.4byte 0x00000000
-lbl_80518638:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80518640:
+.endobj lbl_80518630
+.balign 8
+.obj lbl_80518638, local
+	.8byte 0x4330000000000000
+.endobj lbl_80518638
+.balign 4
+.obj lbl_80518640, local
 	.asciz "none"
-	.skip 3
-lbl_80518648:
+.endobj lbl_80518640
+.balign 4
+.obj lbl_80518648, local
 	.float 2.0
-	.4byte 0x00000000
-lbl_80518650:
+.endobj lbl_80518648
+.balign 8
+.obj lbl_80518650, local
 	.double 2.0
-lbl_80518658:
+.endobj lbl_80518650
+.obj lbl_80518658, local
 	.float 1.0
-lbl_8051865C:
+.endobj lbl_80518658
+.obj lbl_8051865C, local
 	.float 1.5
-lbl_80518660:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.endobj lbl_8051865C
+.balign 8
+.obj lbl_80518660, local
+	.8byte 0x4330000080000000
+.endobj lbl_80518660
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>"
-"mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>":
+.fn "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>", global
 /* 801565C8 00153508  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801565CC 0015350C  7C 08 02 A6 */	mflr r0
 /* 801565D0 00153510  90 01 00 44 */	stw r0, 0x44(r1)
@@ -179,9 +189,9 @@ lbl_80518660:
 /* 80156680 001535C0  7C 08 03 A6 */	mtlr r0
 /* 80156684 001535C4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80156688 001535C8  4E 80 00 20 */	blr 
+.endfn "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>"
 
-.global exitCell__Q24Game10CellObjectFv
-exitCell__Q24Game10CellObjectFv:
+.fn exitCell__Q24Game10CellObjectFv, global
 /* 8015668C 001535CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80156690 001535D0  7C 08 02 A6 */	mflr r0
 /* 80156694 001535D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -230,9 +240,9 @@ exitCell__Q24Game10CellObjectFv:
 /* 80156734 00153674  7C 08 03 A6 */	mtlr r0
 /* 80156738 00153678  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015673C 0015367C  4E 80 00 20 */	blr 
+.endfn exitCell__Q24Game10CellObjectFv
 
-.global __ct__Q24Game4CellFv
-__ct__Q24Game4CellFv:
+.fn __ct__Q24Game4CellFv, global
 /* 80156740 00153680  38 80 00 00 */	li r4, 0
 /* 80156744 00153684  38 00 FF FF */	li r0, -1
 /* 80156748 00153688  90 83 00 0C */	stw r4, 0xc(r3)
@@ -248,9 +258,9 @@ __ct__Q24Game4CellFv:
 /* 80156770 001536B0  90 83 00 20 */	stw r4, 0x20(r3)
 /* 80156774 001536B4  B0 03 00 28 */	sth r0, 0x28(r3)
 /* 80156778 001536B8  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game4CellFv
 
-.global "mapSearch__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
-"mapSearch__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul":
+.fn "mapSearch__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul", global
 /* 8015677C 001536BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80156780 001536C0  7C 08 02 A6 */	mflr r0
 /* 80156784 001536C4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -307,9 +317,9 @@ __ct__Q24Game4CellFv:
 /* 80156834 00153774  7C 08 03 A6 */	mtlr r0
 /* 80156838 00153778  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015683C 0015377C  4E 80 00 20 */	blr 
+.endfn "mapSearch__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
 
-.global "mapSearchUp__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
-"mapSearchUp__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul":
+.fn "mapSearchUp__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul", global
 /* 80156840 00153780  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80156844 00153784  7C 08 02 A6 */	mflr r0
 /* 80156848 00153788  90 01 00 34 */	stw r0, 0x34(r1)
@@ -482,9 +492,9 @@ __ct__Q24Game4CellFv:
 /* 80156A6C 001539AC  7C 08 03 A6 */	mtlr r0
 /* 80156A70 001539B0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80156A74 001539B4  4E 80 00 20 */	blr 
+.endfn "mapSearchUp__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
 
-.global "mapSearchDown__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
-"mapSearchDown__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul":
+.fn "mapSearchDown__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul", global
 /* 80156A78 001539B8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80156A7C 001539BC  7C 08 02 A6 */	mflr r0
 /* 80156A80 001539C0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -675,9 +685,9 @@ __ct__Q24Game4CellFv:
 /* 80156CEC 00153C2C  7C 08 03 A6 */	mtlr r0
 /* 80156CF0 00153C30  38 21 00 40 */	addi r1, r1, 0x40
 /* 80156CF4 00153C34  4E 80 00 20 */	blr 
+.endfn "mapSearchDown__Q24Game4CellFP32IDelegate1<PQ24Game10CellObject>Ul"
 
-.global resolveCollision__Q24Game4CellFv
-resolveCollision__Q24Game4CellFv:
+.fn resolveCollision__Q24Game4CellFv, global
 /* 80156CF8 00153C38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80156CFC 00153C3C  7C 08 02 A6 */	mflr r0
 /* 80156D00 00153C40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -700,13 +710,13 @@ resolveCollision__Q24Game4CellFv:
 /* 80156D38 00153C78  7C 08 03 A6 */	mtlr r0
 /* 80156D3C 00153C7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80156D40 00153C80  4E 80 00 20 */	blr 
+.endfn resolveCollision__Q24Game4CellFv
 
-.global initFrame__Q24Game11CellPyramidFv
-initFrame__Q24Game11CellPyramidFv:
+.fn initFrame__Q24Game11CellPyramidFv, global
 /* 80156D44 00153C84  4E 80 00 20 */	blr 
+.endfn initFrame__Q24Game11CellPyramidFv
 
-.global updateCollisionBuffer__Q24Game10CellObjectFPQ24Game10CellObject
-updateCollisionBuffer__Q24Game10CellObjectFPQ24Game10CellObject:
+.fn updateCollisionBuffer__Q24Game10CellObjectFPQ24Game10CellObject, global
 /* 80156D48 00153C88  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80156D4C 00153C8C  7C 08 02 A6 */	mflr r0
 /* 80156D50 00153C90  90 01 00 34 */	stw r0, 0x34(r1)
@@ -761,18 +771,18 @@ updateCollisionBuffer__Q24Game10CellObjectFPQ24Game10CellObject:
 /* 80156E0C 00153D4C  7C 08 03 A6 */	mtlr r0
 /* 80156E10 00153D50  38 21 00 30 */	addi r1, r1, 0x30
 /* 80156E14 00153D54  4E 80 00 20 */	blr 
+.endfn updateCollisionBuffer__Q24Game10CellObjectFPQ24Game10CellObject
 
-.global __ct__Q24Game15CollisionBufferFv
-__ct__Q24Game15CollisionBufferFv:
+.fn __ct__Q24Game15CollisionBufferFv, global
 /* 80156E18 00153D58  38 00 00 00 */	li r0, 0
 /* 80156E1C 00153D5C  90 03 00 0C */	stw r0, 0xc(r3)
 /* 80156E20 00153D60  90 03 00 08 */	stw r0, 8(r3)
 /* 80156E24 00153D64  90 03 00 04 */	stw r0, 4(r3)
 /* 80156E28 00153D68  90 03 00 00 */	stw r0, 0(r3)
 /* 80156E2C 00153D6C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15CollisionBufferFv
 
-.global alloc__Q24Game15CollisionBufferFPQ24Game10CellObjecti
-alloc__Q24Game15CollisionBufferFPQ24Game10CellObjecti:
+.fn alloc__Q24Game15CollisionBufferFPQ24Game10CellObjecti, global
 /* 80156E30 00153D70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80156E34 00153D74  7C 08 02 A6 */	mflr r0
 /* 80156E38 00153D78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -800,17 +810,17 @@ alloc__Q24Game15CollisionBufferFPQ24Game10CellObjecti:
 /* 80156E90 00153DD0  7C 08 03 A6 */	mtlr r0
 /* 80156E94 00153DD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80156E98 00153DD8  4E 80 00 20 */	blr 
+.endfn alloc__Q24Game15CollisionBufferFPQ24Game10CellObjecti
 
-.global __ct__Q24Game8CollNodeFv
-__ct__Q24Game8CollNodeFv:
+.fn __ct__Q24Game8CollNodeFv, weak
 /* 80156E9C 00153DDC  38 00 00 00 */	li r0, 0
 /* 80156EA0 00153DE0  C0 02 A2 C8 */	lfs f0, lbl_80518628@sda21(r2)
 /* 80156EA4 00153DE4  90 03 00 00 */	stw r0, 0(r3)
 /* 80156EA8 00153DE8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80156EAC 00153DEC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game8CollNodeFv
 
-.global insert__Q24Game15CollisionBufferFPQ24Game10CellObjectf
-insert__Q24Game15CollisionBufferFPQ24Game10CellObjectf:
+.fn insert__Q24Game15CollisionBufferFPQ24Game10CellObjectf, global
 /* 80156EB0 00153DF0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80156EB4 00153DF4  7C 08 02 A6 */	mflr r0
 /* 80156EB8 00153DF8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -860,9 +870,9 @@ insert__Q24Game15CollisionBufferFPQ24Game10CellObjectf:
 /* 80156F5C 00153E9C  7C 08 03 A6 */	mtlr r0
 /* 80156F60 00153EA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80156F64 00153EA4  4E 80 00 20 */	blr 
+.endfn insert__Q24Game15CollisionBufferFPQ24Game10CellObjectf
 
-.global pikiInsertPiki__Q24Game15CollisionBufferFPQ24Game10CellObjectf
-pikiInsertPiki__Q24Game15CollisionBufferFPQ24Game10CellObjectf:
+.fn pikiInsertPiki__Q24Game15CollisionBufferFPQ24Game10CellObjectf, global
 /* 80156F68 00153EA8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80156F6C 00153EAC  7C 08 02 A6 */	mflr r0
 /* 80156F70 00153EB0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -942,9 +952,9 @@ pikiInsertPiki__Q24Game15CollisionBufferFPQ24Game10CellObjectf:
 /* 80157084 00153FC4  7C 08 03 A6 */	mtlr r0
 /* 80157088 00153FC8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8015708C 00153FCC  4E 80 00 20 */	blr 
+.endfn pikiInsertPiki__Q24Game15CollisionBufferFPQ24Game10CellObjectf
 
-.global pikiInsertOther__Q24Game15CollisionBufferFPQ24Game10CellObjectf
-pikiInsertOther__Q24Game15CollisionBufferFPQ24Game10CellObjectf:
+.fn pikiInsertOther__Q24Game15CollisionBufferFPQ24Game10CellObjectf, global
 /* 80157090 00153FD0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80157094 00153FD4  7C 08 02 A6 */	mflr r0
 /* 80157098 00153FD8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1025,9 +1035,9 @@ pikiInsertOther__Q24Game15CollisionBufferFPQ24Game10CellObjectf:
 /* 801571AC 001540EC  7C 08 03 A6 */	mtlr r0
 /* 801571B0 001540F0  38 21 00 30 */	addi r1, r1, 0x30
 /* 801571B4 001540F4  4E 80 00 20 */	blr 
+.endfn pikiInsertOther__Q24Game15CollisionBufferFPQ24Game10CellObjectf
 
-.global insertSort__Q24Game15CollisionBufferFPQ24Game10CellObjectf
-insertSort__Q24Game15CollisionBufferFPQ24Game10CellObjectf:
+.fn insertSort__Q24Game15CollisionBufferFPQ24Game10CellObjectf, global
 /* 801571B8 001540F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801571BC 001540FC  7C 08 02 A6 */	mflr r0
 /* 801571C0 00154100  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1094,9 +1104,9 @@ insertSort__Q24Game15CollisionBufferFPQ24Game10CellObjectf:
 /* 801572A4 001541E4  7C 08 03 A6 */	mtlr r0
 /* 801572A8 001541E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801572AC 001541EC  4E 80 00 20 */	blr 
+.endfn insertSort__Q24Game15CollisionBufferFPQ24Game10CellObjectf
 
-.global findIndex__Q24Game15CollisionBufferFPQ24Game10CellObject
-findIndex__Q24Game15CollisionBufferFPQ24Game10CellObject:
+.fn findIndex__Q24Game15CollisionBufferFPQ24Game10CellObject, global
 /* 801572B0 001541F0  80 03 00 04 */	lwz r0, 4(r3)
 /* 801572B4 001541F4  38 E0 00 00 */	li r7, 0
 /* 801572B8 001541F8  38 C0 00 00 */	li r6, 0
@@ -1117,9 +1127,9 @@ findIndex__Q24Game15CollisionBufferFPQ24Game10CellObject:
 .L_801572EC:
 /* 801572EC 0015422C  38 60 FF FF */	li r3, -1
 /* 801572F0 00154230  4E 80 00 20 */	blr 
+.endfn findIndex__Q24Game15CollisionBufferFPQ24Game10CellObject
 
-.global resolveCollision__Q24Game11CellPyramidFv
-resolveCollision__Q24Game11CellPyramidFv:
+.fn resolveCollision__Q24Game11CellPyramidFv, global
 /* 801572F4 00154234  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801572F8 00154238  7C 08 02 A6 */	mflr r0
 /* 801572FC 0015423C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1292,9 +1302,9 @@ resolveCollision__Q24Game11CellPyramidFv:
 /* 8015752C 0015446C  7C 08 03 A6 */	mtlr r0
 /* 80157530 00154470  38 21 00 30 */	addi r1, r1, 0x30
 /* 80157534 00154474  4E 80 00 20 */	blr 
+.endfn resolveCollision__Q24Game11CellPyramidFv
 
-.global rec_resolveColl__Q24Game4CellFv
-rec_resolveColl__Q24Game4CellFv:
+.fn rec_resolveColl__Q24Game4CellFv, global
 /* 80157538 00154478  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8015753C 0015447C  7C 08 02 A6 */	mflr r0
 /* 80157540 00154480  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1483,19 +1493,19 @@ rec_resolveColl__Q24Game4CellFv:
 /* 801577C0 00154700  7C 08 03 A6 */	mtlr r0
 /* 801577C4 00154704  38 21 00 50 */	addi r1, r1, 0x50
 /* 801577C8 00154708  4E 80 00 20 */	blr 
+.endfn rec_resolveColl__Q24Game4CellFv
 
-.global "__cl__7Parm<b>Fv"
-"__cl__7Parm<b>Fv":
+.fn "__cl__7Parm<b>Fv", weak
 /* 801577CC 0015470C  38 63 00 18 */	addi r3, r3, 0x18
 /* 801577D0 00154710  4E 80 00 20 */	blr 
+.endfn "__cl__7Parm<b>Fv"
 
-.global getInstance__12CellMgrParmsFv
-getInstance__12CellMgrParmsFv:
+.fn getInstance__12CellMgrParmsFv, weak
 /* 801577D4 00154714  80 6D 96 08 */	lwz r3, mInstance__12CellMgrParms@sda21(r13)
 /* 801577D8 00154718  4E 80 00 20 */	blr 
+.endfn getInstance__12CellMgrParmsFv
 
-.global clearAllCollBuffer__Q24Game11CellPyramidFv
-clearAllCollBuffer__Q24Game11CellPyramidFv:
+.fn clearAllCollBuffer__Q24Game11CellPyramidFv, global
 /* 801577DC 0015471C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801577E0 00154720  39 80 00 00 */	li r12, 0
 /* 801577E4 00154724  93 E1 00 0C */	stw r31, 0xc(r1)
@@ -1561,9 +1571,9 @@ clearAllCollBuffer__Q24Game11CellPyramidFv:
 /* 801578AC 001547EC  83 C1 00 08 */	lwz r30, 8(r1)
 /* 801578B0 001547F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801578B4 001547F4  4E 80 00 20 */	blr 
+.endfn clearAllCollBuffer__Q24Game11CellPyramidFv
 
-.global exit__Q24Game4CellFPQ24Game7CellLegb
-exit__Q24Game4CellFPQ24Game7CellLegb:
+.fn exit__Q24Game4CellFPQ24Game7CellLegb, global
 /* 801578B8 001547F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801578BC 001547FC  7C 08 02 A6 */	mflr r0
 /* 801578C0 00154800  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1661,9 +1671,9 @@ exit__Q24Game4CellFPQ24Game7CellLegb:
 /* 80157A04 00154944  7C 08 03 A6 */	mtlr r0
 /* 80157A08 00154948  38 21 00 10 */	addi r1, r1, 0x10
 /* 80157A0C 0015494C  4E 80 00 20 */	blr 
+.endfn exit__Q24Game4CellFPQ24Game7CellLegb
 
-.global entry__Q24Game4CellFPQ24Game7CellLegb
-entry__Q24Game4CellFPQ24Game7CellLegb:
+.fn entry__Q24Game4CellFPQ24Game7CellLegb, global
 /* 80157A10 00154950  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80157A14 00154954  7C 08 02 A6 */	mflr r0
 /* 80157A18 00154958  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1878,9 +1888,9 @@ entry__Q24Game4CellFPQ24Game7CellLegb:
 /* 80157CF0 00154C30  7C 08 03 A6 */	mtlr r0
 /* 80157CF4 00154C34  38 21 00 20 */	addi r1, r1, 0x20
 /* 80157CF8 00154C38  4E 80 00 20 */	blr 
+.endfn entry__Q24Game4CellFPQ24Game7CellLegb
 
-.global __cl__Q24Game9CellLayerFii
-__cl__Q24Game9CellLayerFii:
+.fn __cl__Q24Game9CellLayerFii, global
 /* 80157CFC 00154C3C  2C 04 00 00 */	cmpwi r4, 0
 /* 80157D00 00154C40  41 80 00 24 */	blt .L_80157D24
 /* 80157D04 00154C44  2C 05 00 00 */	cmpwi r5, 0
@@ -1901,9 +1911,9 @@ __cl__Q24Game9CellLayerFii:
 /* 80157D38 00154C78  1C 00 00 2C */	mulli r0, r0, 0x2c
 /* 80157D3C 00154C7C  7C 63 02 14 */	add r3, r3, r0
 /* 80157D40 00154C80  4E 80 00 20 */	blr 
+.endfn __cl__Q24Game9CellLayerFii
 
-.global pileup__Q24Game9CellLayerFRQ24Game9CellLayer
-pileup__Q24Game9CellLayerFRQ24Game9CellLayer:
+.fn pileup__Q24Game9CellLayerFRQ24Game9CellLayer, global
 /* 80157D44 00154C84  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80157D48 00154C88  7C 08 02 A6 */	mflr r0
 /* 80157D4C 00154C8C  C8 42 A2 D8 */	lfd f2, lbl_80518638@sda21(r2)
@@ -2303,9 +2313,9 @@ pileup__Q24Game9CellLayerFRQ24Game9CellLayer:
 /* 801582B0 001551F0  7C 08 03 A6 */	mtlr r0
 /* 801582B4 001551F4  38 21 00 40 */	addi r1, r1, 0x40
 /* 801582B8 001551F8  4E 80 00 20 */	blr 
+.endfn pileup__Q24Game9CellLayerFRQ24Game9CellLayer
 
-.global __ct__Q24Game11CellPyramidFv
-__ct__Q24Game11CellPyramidFv:
+.fn __ct__Q24Game11CellPyramidFv, global
 /* 801582BC 001551FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801582C0 00155200  7C 08 02 A6 */	mflr r0
 /* 801582C4 00155204  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2321,9 +2331,9 @@ __ct__Q24Game11CellPyramidFv:
 /* 801582EC 0015522C  7C 08 03 A6 */	mtlr r0
 /* 801582F0 00155230  38 21 00 10 */	addi r1, r1, 0x10
 /* 801582F4 00155234  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11CellPyramidFv
 
-.global clear__Q24Game11CellPyramidFv
-clear__Q24Game11CellPyramidFv:
+.fn clear__Q24Game11CellPyramidFv, global
 /* 801582F8 00155238  39 60 00 00 */	li r11, 0
 /* 801582FC 0015523C  39 40 00 00 */	li r10, 0
 /* 80158300 00155240  48 00 00 68 */	b .L_80158368
@@ -2366,9 +2376,9 @@ clear__Q24Game11CellPyramidFv:
 /* 80158384 001552C4  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 80158388 001552C8  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8015838C 001552CC  4E 80 00 20 */	blr 
+.endfn clear__Q24Game11CellPyramidFv
 
-.global "calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>"
-"calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>":
+.fn "calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>", global
 /* 80158390 001552D0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80158394 001552D4  7C 08 02 A6 */	mflr r0
 /* 80158398 001552D8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2471,9 +2481,9 @@ clear__Q24Game11CellPyramidFv:
 /* 80158514 00155454  7C 08 03 A6 */	mtlr r0
 /* 80158518 00155458  38 21 00 70 */	addi r1, r1, 0x70
 /* 8015851C 0015545C  4E 80 00 20 */	blr 
+.endfn "calcExtent__Q24Game11CellPyramidFRQ23Sys6SphereRiR7Rect<i>"
 
-.global entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere
-entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere:
+.fn entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere, global
 /* 80158520 00155460  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80158524 00155464  7C 08 02 A6 */	mflr r0
 /* 80158528 00155468  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2487,9 +2497,9 @@ entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere:
 /* 80158548 00155488  7C 08 03 A6 */	mtlr r0
 /* 8015854C 0015548C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80158550 00155490  4E 80 00 20 */	blr 
+.endfn entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere
 
-.global "entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<i>"
-"entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<i>":
+.fn "entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<i>", global
 /* 80158554 00155494  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80158558 00155498  7C 08 02 A6 */	mflr r0
 /* 8015855C 0015549C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -2826,9 +2836,9 @@ entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6Sphere:
 /* 80158A00 00155940  7C 08 03 A6 */	mtlr r0
 /* 80158A04 00155944  38 21 00 80 */	addi r1, r1, 0x80
 /* 80158A08 00155948  4E 80 00 20 */	blr 
+.endfn "entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<i>"
 
-.global create__Q24Game11CellPyramidFR10BoundBox2df
-create__Q24Game11CellPyramidFR10BoundBox2df:
+.fn create__Q24Game11CellPyramidFR10BoundBox2df, global
 /* 80158A0C 0015594C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80158A10 00155950  7C 08 02 A6 */	mflr r0
 /* 80158A14 00155954  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3023,9 +3033,9 @@ create__Q24Game11CellPyramidFR10BoundBox2df:
 /* 80158CEC 00155C2C  7C 08 03 A6 */	mtlr r0
 /* 80158CF0 00155C30  38 21 00 70 */	addi r1, r1, 0x70
 /* 80158CF4 00155C34  4E 80 00 20 */	blr 
+.endfn create__Q24Game11CellPyramidFR10BoundBox2df
 
-.global __ct__Q24Game9CellLayerFv
-__ct__Q24Game9CellLayerFv:
+.fn __ct__Q24Game9CellLayerFv, weak
 /* 80158CF8 00155C38  38 80 00 00 */	li r4, 0
 /* 80158CFC 00155C3C  38 00 FF FF */	li r0, -1
 /* 80158D00 00155C40  90 83 00 18 */	stw r4, 0x18(r3)
@@ -3041,9 +3051,9 @@ __ct__Q24Game9CellLayerFv:
 /* 80158D28 00155C68  90 83 00 2C */	stw r4, 0x2c(r3)
 /* 80158D2C 00155C6C  B0 03 00 34 */	sth r0, 0x34(r3)
 /* 80158D30 00155C70  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game9CellLayerFv
 
-.global "getPikiCount__Q24Game11CellPyramidFiR7Rect<i>"
-"getPikiCount__Q24Game11CellPyramidFiR7Rect<i>":
+.fn "getPikiCount__Q24Game11CellPyramidFiR7Rect<i>", global
 /* 80158D34 00155C74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80158D38 00155C78  7C 08 02 A6 */	mflr r0
 /* 80158D3C 00155C7C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3133,9 +3143,9 @@ __ct__Q24Game9CellLayerFv:
 /* 80158E5C 00155D9C  7C 08 03 A6 */	mtlr r0
 /* 80158E60 00155DA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80158E64 00155DA4  4E 80 00 20 */	blr 
+.endfn "getPikiCount__Q24Game11CellPyramidFiR7Rect<i>"
 
-.global resolveCollision_2__Q24Game4CellFv
-resolveCollision_2__Q24Game4CellFv:
+.fn resolveCollision_2__Q24Game4CellFv, global
 /* 80158E68 00155DA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80158E6C 00155DAC  7C 08 02 A6 */	mflr r0
 /* 80158E70 00155DB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3208,9 +3218,9 @@ resolveCollision_2__Q24Game4CellFv:
 /* 80158F54 00155E94  7C 08 03 A6 */	mtlr r0
 /* 80158F58 00155E98  38 21 00 20 */	addi r1, r1, 0x20
 /* 80158F5C 00155E9C  4E 80 00 20 */	blr 
+.endfn resolveCollision_2__Q24Game4CellFv
 
-.global resolveCollision_1__Q24Game4CellFv
-resolveCollision_1__Q24Game4CellFv:
+.fn resolveCollision_1__Q24Game4CellFv, global
 /* 80158F60 00155EA0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80158F64 00155EA4  7C 08 02 A6 */	mflr r0
 /* 80158F68 00155EA8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3285,9 +3295,9 @@ resolveCollision_1__Q24Game4CellFv:
 /* 80159054 00155F94  7C 08 03 A6 */	mtlr r0
 /* 80159058 00155F98  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015905C 00155F9C  4E 80 00 20 */	blr 
+.endfn resolveCollision_1__Q24Game4CellFv
 
-.global resolveCollision_3__Q24Game4CellFv
-resolveCollision_3__Q24Game4CellFv:
+.fn resolveCollision_3__Q24Game4CellFv, global
 /* 80159060 00155FA0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80159064 00155FA4  7C 08 02 A6 */	mflr r0
 /* 80159068 00155FA8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3424,9 +3434,9 @@ resolveCollision_3__Q24Game4CellFv:
 /* 80159234 00156174  7C 08 03 A6 */	mtlr r0
 /* 80159238 00156178  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015923C 0015617C  4E 80 00 20 */	blr 
+.endfn resolveCollision_3__Q24Game4CellFv
 
-.global invoke__13SweepCallbackFPQ210SweepPrune6ObjectPQ210SweepPrune6Object
-invoke__13SweepCallbackFPQ210SweepPrune6ObjectPQ210SweepPrune6Object:
+.fn invoke__13SweepCallbackFPQ210SweepPrune6ObjectPQ210SweepPrune6Object, weak
 /* 80159240 00156180  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80159244 00156184  7C 08 02 A6 */	mflr r0
 /* 80159248 00156188  28 04 00 00 */	cmplwi r4, 0
@@ -3448,3 +3458,4 @@ invoke__13SweepCallbackFPQ210SweepPrune6ObjectPQ210SweepPrune6Object:
 /* 80159280 001561C0  7C 08 03 A6 */	mtlr r0
 /* 80159284 001561C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80159288 001561C8  4E 80 00 20 */	blr 
+.endfn invoke__13SweepCallbackFPQ210SweepPrune6ObjectPQ210SweepPrune6Object

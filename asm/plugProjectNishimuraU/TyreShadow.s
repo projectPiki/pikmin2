@@ -1,54 +1,49 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048DCA8
-lbl_8048DCA8:
-	.4byte 0x74797265
-	.4byte 0x66726F6E
-	.4byte 0x74000000
-.global lbl_8048DCB4
-lbl_8048DCB4:
-	.4byte 0x74797265
-	.4byte 0x6261636B
-	.4byte 0x00000000
+.obj lbl_8048DCA8, local
+	.asciz "tyrefront"
+.endobj lbl_8048DCA8
+.balign 4
+.obj lbl_8048DCB4, local
+	.asciz "tyreback"
+.endobj lbl_8048DCB4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game18TyreTubeShadowNode
-__vt__Q24Game18TyreTubeShadowNode:
+.obj __vt__Q24Game18TyreTubeShadowNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game18TyreTubeShadowNodeFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q24Game18TyreTubeShadowNode
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D4E8
-lbl_8051D4E8:
-	.4byte 0x00000000
-.global lbl_8051D4EC
-lbl_8051D4EC:
+.obj lbl_8051D4E8, local
+	.float 0.0
+.endobj lbl_8051D4E8
+.obj lbl_8051D4EC, local
 	.float 1.0
-.global lbl_8051D4F0
-lbl_8051D4F0:
-	.4byte 0x41200000
-.global lbl_8051D4F4
-lbl_8051D4F4:
-	.4byte 0x40A00000
-.global lbl_8051D4F8
-lbl_8051D4F8:
-	.4byte 0x41FC0000
-.global lbl_8051D4FC
-lbl_8051D4FC:
-	.4byte 0x418C0000
-.global lbl_8051D500
-lbl_8051D500:
-	.4byte 0xC18C0000
-	.4byte 0x00000000
+.endobj lbl_8051D4EC
+.obj lbl_8051D4F0, local
+	.float 10.0
+.endobj lbl_8051D4F0
+.obj lbl_8051D4F4, local
+	.float 5.0
+.endobj lbl_8051D4F4
+.obj lbl_8051D4F8, local
+	.float 31.5
+.endobj lbl_8051D4F8
+.obj lbl_8051D4FC, local
+	.float 17.5
+.endobj lbl_8051D4FC
+.obj lbl_8051D500, local
+	.float -17.5
+.endobj lbl_8051D500
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf
-makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf:
+.fn makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf, global
 /* 803019EC 002FE92C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803019F0 002FE930  7C 08 02 A6 */	mflr r0
 /* 803019F4 002FE934  C0 02 F1 88 */	lfs f0, lbl_8051D4E8@sda21(r2)
@@ -208,9 +203,9 @@ makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf:
 /* 80301C3C 002FEB7C  7C 08 03 A6 */	mtlr r0
 /* 80301C40 002FEB80  38 21 00 40 */	addi r1, r1, 0x40
 /* 80301C44 002FEB84  4E 80 00 20 */	blr 
+.endfn makeShadowSRT__Q24Game18TyreTubeShadowNodeFRQ24Game15JointShadowParmP7Matrixf
 
-.global __ct__Q34Game4Tyre13TyreShadowMgrFPQ34Game4Tyre3Obj
-__ct__Q34Game4Tyre13TyreShadowMgrFPQ34Game4Tyre3Obj:
+.fn __ct__Q34Game4Tyre13TyreShadowMgrFPQ34Game4Tyre3Obj, global
 /* 80301C48 002FEB88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80301C4C 002FEB8C  7C 08 02 A6 */	mflr r0
 /* 80301C50 002FEB90  C0 02 F1 8C */	lfs f0, lbl_8051D4EC@sda21(r2)
@@ -271,9 +266,9 @@ __ct__Q34Game4Tyre13TyreShadowMgrFPQ34Game4Tyre3Obj:
 /* 80301D20 002FEC60  7C 08 03 A6 */	mtlr r0
 /* 80301D24 002FEC64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80301D28 002FEC68  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Tyre13TyreShadowMgrFPQ34Game4Tyre3Obj
 
-.global init__Q34Game4Tyre13TyreShadowMgrFv
-init__Q34Game4Tyre13TyreShadowMgrFv:
+.fn init__Q34Game4Tyre13TyreShadowMgrFv, global
 /* 80301D2C 002FEC6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80301D30 002FEC70  7C 08 02 A6 */	mflr r0
 /* 80301D34 002FEC74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -300,9 +295,9 @@ init__Q34Game4Tyre13TyreShadowMgrFv:
 /* 80301D88 002FECC8  7C 08 03 A6 */	mtlr r0
 /* 80301D8C 002FECCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80301D90 002FECD0  4E 80 00 20 */	blr 
+.endfn init__Q34Game4Tyre13TyreShadowMgrFv
 
-.global update__Q34Game4Tyre13TyreShadowMgrFv
-update__Q34Game4Tyre13TyreShadowMgrFv:
+.fn update__Q34Game4Tyre13TyreShadowMgrFv, global
 /* 80301D94 002FECD4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80301D98 002FECD8  7C 08 02 A6 */	mflr r0
 /* 80301D9C 002FECDC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -348,9 +343,9 @@ update__Q34Game4Tyre13TyreShadowMgrFv:
 /* 80301E3C 002FED7C  7C 08 03 A6 */	mtlr r0
 /* 80301E40 002FED80  38 21 00 50 */	addi r1, r1, 0x50
 /* 80301E44 002FED84  4E 80 00 20 */	blr 
+.endfn update__Q34Game4Tyre13TyreShadowMgrFv
 
-.global __dt__Q24Game18TyreTubeShadowNodeFv
-__dt__Q24Game18TyreTubeShadowNodeFv:
+.fn __dt__Q24Game18TyreTubeShadowNodeFv, weak
 /* 80301E48 002FED88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80301E4C 002FED8C  7C 08 02 A6 */	mflr r0
 /* 80301E50 002FED90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -381,3 +376,4 @@ __dt__Q24Game18TyreTubeShadowNodeFv:
 /* 80301EAC 002FEDEC  7C 08 03 A6 */	mtlr r0
 /* 80301EB0 002FEDF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80301EB4 002FEDF4  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game18TyreTubeShadowNodeFv

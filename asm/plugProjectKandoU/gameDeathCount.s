@@ -5,17 +5,21 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804838F0:
+.obj lbl_804838F0, local
 	.asciz "BirthCoutner"
+.endobj lbl_804838F0
 .balign 4
-lbl_80483900:
+.obj lbl_80483900, local
 	.asciz "gameDeathCount.cpp"
+.endobj lbl_80483900
 .balign 4
-lbl_80483914:
+.obj lbl_80483914, local
 	.asciz "P2Assert"
+.endobj lbl_80483914
 .balign 4
-lbl_80483920:
+.obj lbl_80483920, local
 	.asciz "DeathCoutner"
+.endobj lbl_80483920
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # gameDeathCount.cpp
@@ -28,18 +32,18 @@ lbl_80483920:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mSoundDeathCount__Q24Game8DeathMgr
-mSoundDeathCount__Q24Game8DeathMgr:
+.obj mSoundDeathCount__Q24Game8DeathMgr, global
 	.skip 0x4
+.endobj mSoundDeathCount__Q24Game8DeathMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A368:
+.obj lbl_8051A368, local
 	.asciz "\r\n"
+.endobj lbl_8051A368
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global clear__Q24Game8BirthMgrFv
-clear__Q24Game8BirthMgrFv:
+.fn clear__Q24Game8BirthMgrFv, global
 /* 8022F9FC 0022C93C  38 00 00 00 */	li r0, 0
 /* 8022FA00 0022C940  3C A0 80 51 */	lis r5, mToday__Q24Game8BirthMgr@ha
 /* 8022FA04 0022C944  94 05 26 4C */	stwu r0, mToday__Q24Game8BirthMgr@l(r5)
@@ -66,9 +70,9 @@ clear__Q24Game8BirthMgrFv:
 /* 8022FA58 0022C998  90 03 00 14 */	stw r0, 0x14(r3)
 /* 8022FA5C 0022C99C  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8022FA60 0022C9A0  4E 80 00 20 */	blr 
+.endfn clear__Q24Game8BirthMgrFv
 
-.global inc__Q24Game8BirthMgrFi
-inc__Q24Game8BirthMgrFi:
+.fn inc__Q24Game8BirthMgrFi, global
 /* 8022FA64 0022C9A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022FA68 0022C9A8  7C 08 02 A6 */	mflr r0
 /* 8022FA6C 0022C9AC  2C 03 00 00 */	cmpwi r3, 0
@@ -89,9 +93,9 @@ inc__Q24Game8BirthMgrFi:
 /* 8022FAA0 0022C9E0  7C 08 03 A6 */	mtlr r0
 /* 8022FAA4 0022C9E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022FAA8 0022C9E8  4E 80 00 20 */	blr 
+.endfn inc__Q24Game8BirthMgrFi
 
-.global dec__Q24Game8BirthMgrFi
-dec__Q24Game8BirthMgrFi:
+.fn dec__Q24Game8BirthMgrFi, global
 /* 8022FAAC 0022C9EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022FAB0 0022C9F0  7C 08 02 A6 */	mflr r0
 /* 8022FAB4 0022C9F4  2C 03 00 00 */	cmpwi r3, 0
@@ -112,9 +116,9 @@ dec__Q24Game8BirthMgrFi:
 /* 8022FAE8 0022CA28  7C 08 03 A6 */	mtlr r0
 /* 8022FAEC 0022CA2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022FAF0 0022CA30  4E 80 00 20 */	blr 
+.endfn dec__Q24Game8BirthMgrFi
 
-.global inc_today__Q24Game8BirthMgrFi
-inc_today__Q24Game8BirthMgrFi:
+.fn inc_today__Q24Game8BirthMgrFi, global
 /* 8022FAF4 0022CA34  2C 03 00 05 */	cmpwi r3, 5
 /* 8022FAF8 0022CA38  40 82 00 54 */	bne .L_8022FB4C
 /* 8022FAFC 0022CA3C  3C 80 80 51 */	lis r4, mToday__Q24Game8BirthMgr@ha
@@ -169,9 +173,9 @@ inc_today__Q24Game8BirthMgrFi:
 /* 8022FBB8 0022CAF8  38 03 00 01 */	addi r0, r3, 1
 /* 8022FBBC 0022CAFC  90 04 00 18 */	stw r0, 0x18(r4)
 /* 8022FBC0 0022CB00  4E 80 00 20 */	blr 
+.endfn inc_today__Q24Game8BirthMgrFi
 
-.global inc_cave__Q24Game8BirthMgrFi
-inc_cave__Q24Game8BirthMgrFi:
+.fn inc_cave__Q24Game8BirthMgrFi, global
 /* 8022FBC4 0022CB04  2C 03 00 05 */	cmpwi r3, 5
 /* 8022FBC8 0022CB08  40 82 00 54 */	bne .L_8022FC1C
 /* 8022FBCC 0022CB0C  3C 80 80 51 */	lis r4, mCave__Q24Game8BirthMgr@ha
@@ -226,9 +230,9 @@ inc_cave__Q24Game8BirthMgrFi:
 /* 8022FC88 0022CBC8  38 03 00 01 */	addi r0, r3, 1
 /* 8022FC8C 0022CBCC  90 04 00 18 */	stw r0, 0x18(r4)
 /* 8022FC90 0022CBD0  4E 80 00 20 */	blr 
+.endfn inc_cave__Q24Game8BirthMgrFi
 
-.global dec_today__Q24Game8BirthMgrFi
-dec_today__Q24Game8BirthMgrFi:
+.fn dec_today__Q24Game8BirthMgrFi, global
 /* 8022FC94 0022CBD4  2C 03 00 05 */	cmpwi r3, 5
 /* 8022FC98 0022CBD8  40 82 00 54 */	bne .L_8022FCEC
 /* 8022FC9C 0022CBDC  3C 80 80 51 */	lis r4, mToday__Q24Game8BirthMgr@ha
@@ -283,9 +287,9 @@ dec_today__Q24Game8BirthMgrFi:
 /* 8022FD58 0022CC98  38 03 FF FF */	addi r0, r3, -1
 /* 8022FD5C 0022CC9C  90 04 00 18 */	stw r0, 0x18(r4)
 /* 8022FD60 0022CCA0  4E 80 00 20 */	blr 
+.endfn dec_today__Q24Game8BirthMgrFi
 
-.global dec_cave__Q24Game8BirthMgrFi
-dec_cave__Q24Game8BirthMgrFi:
+.fn dec_cave__Q24Game8BirthMgrFi, global
 /* 8022FD64 0022CCA4  2C 03 00 05 */	cmpwi r3, 5
 /* 8022FD68 0022CCA8  40 82 00 54 */	bne .L_8022FDBC
 /* 8022FD6C 0022CCAC  3C 80 80 51 */	lis r4, mCave__Q24Game8BirthMgr@ha
@@ -340,9 +344,9 @@ dec_cave__Q24Game8BirthMgrFi:
 /* 8022FE28 0022CD68  38 03 FF FF */	addi r0, r3, -1
 /* 8022FE2C 0022CD6C  90 04 00 18 */	stw r0, 0x18(r4)
 /* 8022FE30 0022CD70  4E 80 00 20 */	blr 
+.endfn dec_cave__Q24Game8BirthMgrFi
 
-.global account_cave__Q24Game8BirthMgrFv
-account_cave__Q24Game8BirthMgrFv:
+.fn account_cave__Q24Game8BirthMgrFv, global
 /* 8022FE34 0022CD74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022FE38 0022CD78  3C 60 80 51 */	lis r3, mCave__Q24Game8BirthMgr@ha
 /* 8022FE3C 0022CD7C  38 63 27 0C */	addi r3, r3, mCave__Q24Game8BirthMgr@l
@@ -428,9 +432,9 @@ account_cave__Q24Game8BirthMgrFv:
 /* 8022FF68 0022CEA8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8022FF6C 0022CEAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022FF70 0022CEB0  4E 80 00 20 */	blr 
+.endfn account_cave__Q24Game8BirthMgrFv
 
-.global account_today_adjust__Q24Game8BirthMgrFv
-account_today_adjust__Q24Game8BirthMgrFv:
+.fn account_today_adjust__Q24Game8BirthMgrFv, global
 /* 8022FF74 0022CEB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022FF78 0022CEB8  3C 80 80 51 */	lis r4, mToday__Q24Game8BirthMgr@ha
 /* 8022FF7C 0022CEBC  39 04 26 4C */	addi r8, r4, mToday__Q24Game8BirthMgr@l
@@ -617,9 +621,9 @@ account_today_adjust__Q24Game8BirthMgrFv:
 /* 8023021C 0022D15C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80230220 0022D160  38 21 00 10 */	addi r1, r1, 0x10
 /* 80230224 0022D164  4E 80 00 20 */	blr 
+.endfn account_today_adjust__Q24Game8BirthMgrFv
 
-.global account_today__Q24Game8BirthMgrFv
-account_today__Q24Game8BirthMgrFv:
+.fn account_today__Q24Game8BirthMgrFv, global
 /* 80230228 0022D168  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023022C 0022D16C  3C 80 80 51 */	lis r4, mTotal__Q24Game8BirthMgr@ha
 /* 80230230 0022D170  38 E4 27 28 */	addi r7, r4, mTotal__Q24Game8BirthMgr@l
@@ -757,9 +761,9 @@ account_today__Q24Game8BirthMgrFv:
 /* 80230420 0022D360  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80230424 0022D364  38 21 00 10 */	addi r1, r1, 0x10
 /* 80230428 0022D368  4E 80 00 20 */	blr 
+.endfn account_today__Q24Game8BirthMgrFv
 
-.global get_total__Q24Game8BirthMgrFi
-get_total__Q24Game8BirthMgrFi:
+.fn get_total__Q24Game8BirthMgrFi, global
 /* 8023042C 0022D36C  2C 03 00 05 */	cmpwi r3, 5
 /* 80230430 0022D370  40 82 00 54 */	bne .L_80230484
 /* 80230434 0022D374  3C 60 80 51 */	lis r3, mTotal__Q24Game8BirthMgr@ha
@@ -790,9 +794,9 @@ get_total__Q24Game8BirthMgrFi:
 .L_80230494:
 /* 80230494 0022D3D4  80 65 00 00 */	lwz r3, 0(r5)
 /* 80230498 0022D3D8  4E 80 00 20 */	blr 
+.endfn get_total__Q24Game8BirthMgrFi
 
-.global read__Q24Game8BirthMgrFR6Stream
-read__Q24Game8BirthMgrFR6Stream:
+.fn read__Q24Game8BirthMgrFR6Stream, global
 /* 8023049C 0022D3DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802304A0 0022D3E0  7C 08 02 A6 */	mflr r0
 /* 802304A4 0022D3E4  3C 80 80 51 */	lis r4, mCave__Q24Game8BirthMgr@ha
@@ -840,9 +844,9 @@ read__Q24Game8BirthMgrFR6Stream:
 /* 80230540 0022D480  7C 08 03 A6 */	mtlr r0
 /* 80230544 0022D484  38 21 00 20 */	addi r1, r1, 0x20
 /* 80230548 0022D488  4E 80 00 20 */	blr 
+.endfn read__Q24Game8BirthMgrFR6Stream
 
-.global write__Q24Game8BirthMgrFR6Stream
-write__Q24Game8BirthMgrFR6Stream:
+.fn write__Q24Game8BirthMgrFR6Stream, global
 /* 8023054C 0022D48C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80230550 0022D490  7C 08 02 A6 */	mflr r0
 /* 80230554 0022D494  3C 80 80 48 */	lis r4, lbl_804838F0@ha
@@ -928,9 +932,9 @@ write__Q24Game8BirthMgrFR6Stream:
 /* 80230688 0022D5C8  7C 08 03 A6 */	mtlr r0
 /* 8023068C 0022D5CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80230690 0022D5D0  4E 80 00 20 */	blr 
+.endfn write__Q24Game8BirthMgrFR6Stream
 
-.global clear__Q24Game8DeathMgrFv
-clear__Q24Game8DeathMgrFv:
+.fn clear__Q24Game8DeathMgrFv, global
 /* 80230694 0022D5D4  38 00 00 00 */	li r0, 0
 /* 80230698 0022D5D8  3C A0 80 51 */	lis r5, mToday__Q24Game8DeathMgr@ha
 /* 8023069C 0022D5DC  94 05 27 44 */	stwu r0, mToday__Q24Game8DeathMgr@l(r5)
@@ -964,9 +968,9 @@ clear__Q24Game8DeathMgrFv:
 /* 8023070C 0022D64C  90 03 00 20 */	stw r0, 0x20(r3)
 /* 80230710 0022D650  90 0D 96 18 */	stw r0, mSoundDeathCount__Q24Game8DeathMgr@sda21(r13)
 /* 80230714 0022D654  4E 80 00 20 */	blr 
+.endfn clear__Q24Game8DeathMgrFv
 
-.global inc__Q24Game8DeathMgrFi
-inc__Q24Game8DeathMgrFi:
+.fn inc__Q24Game8DeathMgrFi, global
 /* 80230718 0022D658  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023071C 0022D65C  7C 08 02 A6 */	mflr r0
 /* 80230720 0022D660  90 01 00 14 */	stw r0, 0x14(r1)
@@ -993,9 +997,9 @@ inc__Q24Game8DeathMgrFi:
 /* 80230768 0022D6A8  7C 08 03 A6 */	mtlr r0
 /* 8023076C 0022D6AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80230770 0022D6B0  4E 80 00 20 */	blr 
+.endfn inc__Q24Game8DeathMgrFi
 
-.global inc_today__Q24Game8DeathMgrFi
-inc_today__Q24Game8DeathMgrFi:
+.fn inc_today__Q24Game8DeathMgrFi, global
 /* 80230774 0022D6B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80230778 0022D6B8  7C 08 02 A6 */	mflr r0
 /* 8023077C 0022D6BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1063,9 +1067,9 @@ inc_today__Q24Game8DeathMgrFi:
 /* 80230864 0022D7A4  7C 08 03 A6 */	mtlr r0
 /* 80230868 0022D7A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023086C 0022D7AC  4E 80 00 20 */	blr 
+.endfn inc_today__Q24Game8DeathMgrFi
 
-.global inc_cave__Q24Game8DeathMgrFi
-inc_cave__Q24Game8DeathMgrFi:
+.fn inc_cave__Q24Game8DeathMgrFi, global
 /* 80230870 0022D7B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80230874 0022D7B4  7C 08 02 A6 */	mflr r0
 /* 80230878 0022D7B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1133,9 +1137,9 @@ inc_cave__Q24Game8DeathMgrFi:
 /* 80230960 0022D8A0  7C 08 03 A6 */	mtlr r0
 /* 80230964 0022D8A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80230968 0022D8A8  4E 80 00 20 */	blr 
+.endfn inc_cave__Q24Game8DeathMgrFi
 
-.global account_cave__Q24Game8DeathMgrFv
-account_cave__Q24Game8DeathMgrFv:
+.fn account_cave__Q24Game8DeathMgrFv, global
 /* 8023096C 0022D8AC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80230970 0022D8B0  7C 08 02 A6 */	mflr r0
 /* 80230974 0022D8B4  3C 60 80 51 */	lis r3, mCave__Q24Game8DeathMgr@ha
@@ -1272,9 +1276,9 @@ account_cave__Q24Game8DeathMgrFv:
 /* 80230B5C 0022DA9C  7C 08 03 A6 */	mtlr r0
 /* 80230B60 0022DAA0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80230B64 0022DAA4  4E 80 00 20 */	blr 
+.endfn account_cave__Q24Game8DeathMgrFv
 
-.global account_today__Q24Game8DeathMgrFv
-account_today__Q24Game8DeathMgrFv:
+.fn account_today__Q24Game8DeathMgrFv, global
 /* 80230B68 0022DAA8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80230B6C 0022DAAC  7C 08 02 A6 */	mflr r0
 /* 80230B70 0022DAB0  3C 60 80 51 */	lis r3, mToday__Q24Game8DeathMgr@ha
@@ -1411,9 +1415,9 @@ account_today__Q24Game8DeathMgrFv:
 /* 80230D58 0022DC98  7C 08 03 A6 */	mtlr r0
 /* 80230D5C 0022DC9C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80230D60 0022DCA0  4E 80 00 20 */	blr 
+.endfn account_today__Q24Game8DeathMgrFv
 
-.global get_cave__Q24Game8DeathMgrFi
-get_cave__Q24Game8DeathMgrFi:
+.fn get_cave__Q24Game8DeathMgrFi, global
 /* 80230D64 0022DCA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80230D68 0022DCA8  7C 08 02 A6 */	mflr r0
 /* 80230D6C 0022DCAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1476,9 +1480,9 @@ get_cave__Q24Game8DeathMgrFi:
 /* 80230E40 0022DD80  7C 08 03 A6 */	mtlr r0
 /* 80230E44 0022DD84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80230E48 0022DD88  4E 80 00 20 */	blr 
+.endfn get_cave__Q24Game8DeathMgrFi
 
-.global get_today__Q24Game8DeathMgrFi
-get_today__Q24Game8DeathMgrFi:
+.fn get_today__Q24Game8DeathMgrFi, global
 /* 80230E4C 0022DD8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80230E50 0022DD90  7C 08 02 A6 */	mflr r0
 /* 80230E54 0022DD94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1541,9 +1545,9 @@ get_today__Q24Game8DeathMgrFi:
 /* 80230F28 0022DE68  7C 08 03 A6 */	mtlr r0
 /* 80230F2C 0022DE6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80230F30 0022DE70  4E 80 00 20 */	blr 
+.endfn get_today__Q24Game8DeathMgrFi
 
-.global get_total__Q24Game8DeathMgrFi
-get_total__Q24Game8DeathMgrFi:
+.fn get_total__Q24Game8DeathMgrFi, global
 /* 80230F34 0022DE74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80230F38 0022DE78  7C 08 02 A6 */	mflr r0
 /* 80230F3C 0022DE7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1606,9 +1610,9 @@ get_total__Q24Game8DeathMgrFi:
 /* 80231010 0022DF50  7C 08 03 A6 */	mtlr r0
 /* 80231014 0022DF54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80231018 0022DF58  4E 80 00 20 */	blr 
+.endfn get_total__Q24Game8DeathMgrFi
 
-.global read__Q24Game8DeathMgrFR6Stream
-read__Q24Game8DeathMgrFR6Stream:
+.fn read__Q24Game8DeathMgrFR6Stream, global
 /* 8023101C 0022DF5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80231020 0022DF60  7C 08 02 A6 */	mflr r0
 /* 80231024 0022DF64  3C 80 80 51 */	lis r4, mCave__Q24Game8DeathMgr@ha
@@ -1656,9 +1660,9 @@ read__Q24Game8DeathMgrFR6Stream:
 /* 802310C0 0022E000  7C 08 03 A6 */	mtlr r0
 /* 802310C4 0022E004  38 21 00 20 */	addi r1, r1, 0x20
 /* 802310C8 0022E008  4E 80 00 20 */	blr 
+.endfn read__Q24Game8DeathMgrFR6Stream
 
-.global write__Q24Game8DeathMgrFR6Stream
-write__Q24Game8DeathMgrFR6Stream:
+.fn write__Q24Game8DeathMgrFR6Stream, global
 /* 802310CC 0022E00C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802310D0 0022E010  7C 08 02 A6 */	mflr r0
 /* 802310D4 0022E014  3C 80 80 48 */	lis r4, lbl_80483920@ha
@@ -1744,8 +1748,9 @@ write__Q24Game8DeathMgrFR6Stream:
 /* 80231208 0022E148  7C 08 03 A6 */	mtlr r0
 /* 8023120C 0022E14C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80231210 0022E150  4E 80 00 20 */	blr 
+.endfn write__Q24Game8DeathMgrFR6Stream
 
-__sinit_gameDeathCount_cpp: # static initializer
+.fn __sinit_gameDeathCount_cpp, local
 /* 80231214 0022E154  38 00 00 00 */	li r0, 0
 /* 80231218 0022E158  3D 00 80 51 */	lis r8, mToday__Q24Game8BirthMgr@ha
 /* 8023121C 0022E15C  94 08 26 4C */	stwu r0, mToday__Q24Game8BirthMgr@l(r8)
@@ -1802,3 +1807,4 @@ __sinit_gameDeathCount_cpp: # static initializer
 /* 802312E8 0022E228  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 802312EC 0022E22C  90 03 00 20 */	stw r0, 0x20(r3)
 /* 802312F0 0022E230  4E 80 00 20 */	blr 
+.endfn __sinit_gameDeathCount_cpp

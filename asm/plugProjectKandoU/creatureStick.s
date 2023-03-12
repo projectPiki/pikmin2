@@ -1,34 +1,25 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047F218
-lbl_8047F218:
-	.4byte 0x63726561
-	.4byte 0x74757265
-	.4byte 0x53746963
-	.4byte 0x6B000000
-.global lbl_8047F228
-lbl_8047F228:
-	.4byte 0x63726561
-	.4byte 0x74757265
-	.4byte 0x53746963
-	.4byte 0x6B2E6370
-	.4byte 0x70000000
-.global lbl_8047F23C
-lbl_8047F23C:
+.obj lbl_8047F218, local
+	.asciz "creatureStick"
+.endobj lbl_8047F218
+.balign 4
+.obj lbl_8047F228, local
+	.asciz "creatureStick.cpp"
+.endobj lbl_8047F228
+.balign 4
+.obj lbl_8047F23C, local
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x746F6F20
-	.4byte 0x6D616E79
-	.4byte 0x20737469
-	.4byte 0x636B6572
-	.4byte 0x7320210A
-	.4byte 0x00000000
+.endobj lbl_8047F23C
+.balign 4
+.obj lbl_8047F248, local
+	.asciz "too many stickers !\n"
+.endobj lbl_8047F248
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game8Stickers
-__vt__Q24Game8Stickers:
+.obj __vt__Q24Game8Stickers, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game8StickersFv
@@ -40,48 +31,47 @@ __vt__Q24Game8Stickers:
 	.4byte get__Q24Game8StickersFPv
 	.4byte "getAt__27Container<Q24Game8Creature>Fi"
 	.4byte "getTo__27Container<Q24Game8Creature>Fv"
-	.4byte 0
+.endobj __vt__Q24Game8Stickers
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global maxBuffer__Q24Game8Stickers
-maxBuffer__Q24Game8Stickers:
+.obj maxBuffer__Q24Game8Stickers, global
 	.4byte 0x0000006E
+.endobj maxBuffer__Q24Game8Stickers
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global numBuffer__Q24Game8Stickers
-numBuffer__Q24Game8Stickers:
+.obj numBuffer__Q24Game8Stickers, global
 	.skip 0x4
-.global mutex__Q24Game8Stickers
-mutex__Q24Game8Stickers:
+.endobj numBuffer__Q24Game8Stickers
+.obj mutex__Q24Game8Stickers, global
+	.skip 0x1
+.endobj mutex__Q24Game8Stickers
+.balign 4
+.obj buffer__Q24Game8Stickers, global
 	.skip 0x4
-.global buffer__Q24Game8Stickers
-buffer__Q24Game8Stickers:
-	.skip 0x8
+.endobj buffer__Q24Game8Stickers
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519040
-lbl_80519040:
+.obj lbl_80519040, local
 	.float 1.0
-.global lbl_80519044
-lbl_80519044:
-	.4byte 0x3FA66666
-.global lbl_80519048
-lbl_80519048:
-	.4byte 0x3FC00000
-.global lbl_8051904C
-lbl_8051904C:
-	.4byte 0x00000000
-.global lbl_80519050
-lbl_80519050:
-	.4byte 0x3FC90FDB
-	.4byte 0x00000000
+.endobj lbl_80519040
+.obj lbl_80519044, local
+	.float 1.3
+.endobj lbl_80519044
+.obj lbl_80519048, local
+	.float 1.5
+.endobj lbl_80519048
+.obj lbl_8051904C, local
+	.float 0.0
+.endobj lbl_8051904C
+.obj lbl_80519050, local # pi/2
+	.float 1.5707964
+.endobj lbl_80519050
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global clearStick__Q24Game8CreatureFv
-clearStick__Q24Game8CreatureFv:
+.fn clearStick__Q24Game8CreatureFv, global
 /* 8019EE94 0019BDD4  38 80 00 00 */	li r4, 0
 /* 8019EE98 0019BDD8  38 00 FF FF */	li r0, -1
 /* 8019EE9C 0019BDDC  90 83 01 00 */	stw r4, 0x100(r3)
@@ -91,9 +81,9 @@ clearStick__Q24Game8CreatureFv:
 /* 8019EEAC 0019BDEC  90 83 00 F8 */	stw r4, 0xf8(r3)
 /* 8019EEB0 0019BDF0  B0 03 01 10 */	sth r0, 0x110(r3)
 /* 8019EEB4 0019BDF4  4E 80 00 20 */	blr 
+.endfn clearStick__Q24Game8CreatureFv
 
-.global releaseAllStickers__Q24Game8CreatureFv
-releaseAllStickers__Q24Game8CreatureFv:
+.fn releaseAllStickers__Q24Game8CreatureFv, global
 /* 8019EEB8 0019BDF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019EEBC 0019BDFC  7C 08 02 A6 */	mflr r0
 /* 8019EEC0 0019BE00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -111,9 +101,9 @@ releaseAllStickers__Q24Game8CreatureFv:
 /* 8019EEE8 0019BE28  7C 08 03 A6 */	mtlr r0
 /* 8019EEEC 0019BE2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019EEF0 0019BE30  4E 80 00 20 */	blr 
+.endfn releaseAllStickers__Q24Game8CreatureFv
 
-.global startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart:
+.fn startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart, global
 /* 8019EEF4 0019BE34  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8019EEF8 0019BE38  7C 08 02 A6 */	mflr r0
 /* 8019EEFC 0019BE3C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -214,9 +204,9 @@ startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart:
 /* 8019F05C 0019BF9C  7C 08 03 A6 */	mtlr r0
 /* 8019F060 0019BFA0  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019F064 0019BFA4  4E 80 00 20 */	blr 
+.endfn startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
 
-.global startStickMouth__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-startStickMouth__Q24Game8CreatureFPQ24Game8CreatureP8CollPart:
+.fn startStickMouth__Q24Game8CreatureFPQ24Game8CreatureP8CollPart, global
 /* 8019F068 0019BFA8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8019F06C 0019BFAC  7C 08 02 A6 */	mflr r0
 /* 8019F070 0019BFB0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -333,9 +323,9 @@ startStickMouth__Q24Game8CreatureFPQ24Game8CreatureP8CollPart:
 /* 8019F20C 0019C14C  7C 08 03 A6 */	mtlr r0
 /* 8019F210 0019C150  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019F214 0019C154  4E 80 00 20 */	blr 
+.endfn startStickMouth__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
 
-.global startStick__Q24Game8CreatureFPQ24Game8Creatures
-startStick__Q24Game8CreatureFPQ24Game8Creatures:
+.fn startStick__Q24Game8CreatureFPQ24Game8Creatures, global
 /* 8019F218 0019C158  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8019F21C 0019C15C  7C 08 02 A6 */	mflr r0
 /* 8019F220 0019C160  90 01 00 34 */	stw r0, 0x34(r1)
@@ -478,9 +468,9 @@ startStick__Q24Game8CreatureFPQ24Game8Creatures:
 /* 8019F418 0019C358  7C 08 03 A6 */	mtlr r0
 /* 8019F41C 0019C35C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019F420 0019C360  4E 80 00 20 */	blr 
+.endfn startStick__Q24Game8CreatureFPQ24Game8Creatures
 
-.global endStick__Q24Game8CreatureFv
-endStick__Q24Game8CreatureFv:
+.fn endStick__Q24Game8CreatureFv, global
 /* 8019F424 0019C364  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019F428 0019C368  7C 08 02 A6 */	mflr r0
 /* 8019F42C 0019C36C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -571,17 +561,17 @@ endStick__Q24Game8CreatureFv:
 /* 8019F568 0019C4A8  7C 08 03 A6 */	mtlr r0
 /* 8019F56C 0019C4AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019F570 0019C4B0  4E 80 00 20 */	blr 
+.endfn endStick__Q24Game8CreatureFv
 
-.global isStickTo__Q24Game8CreatureFv
-isStickTo__Q24Game8CreatureFv:
+.fn isStickTo__Q24Game8CreatureFv, global
 /* 8019F574 0019C4B4  80 63 00 F4 */	lwz r3, 0xf4(r3)
 /* 8019F578 0019C4B8  7C 03 00 D0 */	neg r0, r3
 /* 8019F57C 0019C4BC  7C 00 1B 78 */	or r0, r0, r3
 /* 8019F580 0019C4C0  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8019F584 0019C4C4  4E 80 00 20 */	blr 
+.endfn isStickTo__Q24Game8CreatureFv
 
-.global isStickToMouth__Q24Game8CreatureFv
-isStickToMouth__Q24Game8CreatureFv:
+.fn isStickToMouth__Q24Game8CreatureFv, global
 /* 8019F588 0019C4C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019F58C 0019C4CC  7C 08 02 A6 */	mflr r0
 /* 8019F590 0019C4D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -607,9 +597,9 @@ isStickToMouth__Q24Game8CreatureFv:
 /* 8019F5DC 0019C51C  7C 08 03 A6 */	mtlr r0
 /* 8019F5E0 0019C520  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019F5E4 0019C524  4E 80 00 20 */	blr 
+.endfn isStickToMouth__Q24Game8CreatureFv
 
-.global "updateStick__Q24Game8CreatureFR10Vector3<f>"
-"updateStick__Q24Game8CreatureFR10Vector3<f>":
+.fn "updateStick__Q24Game8CreatureFR10Vector3<f>", global
 /* 8019F5E8 0019C528  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 8019F5EC 0019C52C  7C 08 02 A6 */	mflr r0
 /* 8019F5F0 0019C530  90 01 01 14 */	stw r0, 0x114(r1)
@@ -924,15 +914,15 @@ isStickToMouth__Q24Game8CreatureFv:
 /* 8019FA90 0019C9D0  7C 08 03 A6 */	mtlr r0
 /* 8019FA94 0019C9D4  38 21 01 10 */	addi r1, r1, 0x110
 /* 8019FA98 0019C9D8  4E 80 00 20 */	blr 
+.endfn "updateStick__Q24Game8CreatureFR10Vector3<f>"
 
-.global clearCapture__Q24Game8CreatureFv
-clearCapture__Q24Game8CreatureFv:
+.fn clearCapture__Q24Game8CreatureFv, global
 /* 8019FA9C 0019C9DC  38 00 00 00 */	li r0, 0
 /* 8019FAA0 0019C9E0  90 03 00 B8 */	stw r0, 0xb8(r3)
 /* 8019FAA4 0019C9E4  4E 80 00 20 */	blr 
+.endfn clearCapture__Q24Game8CreatureFv
 
-.global startCapture__Q24Game8CreatureFP7Matrixf
-startCapture__Q24Game8CreatureFP7Matrixf:
+.fn startCapture__Q24Game8CreatureFP7Matrixf, global
 /* 8019FAA8 0019C9E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019FAAC 0019C9EC  7C 08 02 A6 */	mflr r0
 /* 8019FAB0 0019C9F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -954,9 +944,9 @@ startCapture__Q24Game8CreatureFP7Matrixf:
 /* 8019FAF0 0019CA30  7C 08 03 A6 */	mtlr r0
 /* 8019FAF4 0019CA34  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019FAF8 0019CA38  4E 80 00 20 */	blr 
+.endfn startCapture__Q24Game8CreatureFP7Matrixf
 
-.global updateCapture__Q24Game8CreatureFR7Matrixf
-updateCapture__Q24Game8CreatureFR7Matrixf:
+.fn updateCapture__Q24Game8CreatureFR7Matrixf, global
 /* 8019FAFC 0019CA3C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8019FB00 0019CA40  7C 08 02 A6 */	mflr r0
 /* 8019FB04 0019CA44  90 01 00 54 */	stw r0, 0x54(r1)
@@ -998,9 +988,9 @@ updateCapture__Q24Game8CreatureFR7Matrixf:
 /* 8019FB90 0019CAD0  7C 08 03 A6 */	mtlr r0
 /* 8019FB94 0019CAD4  38 21 00 50 */	addi r1, r1, 0x50
 /* 8019FB98 0019CAD8  4E 80 00 20 */	blr 
+.endfn updateCapture__Q24Game8CreatureFR7Matrixf
 
-.global endCapture__Q24Game8CreatureFv
-endCapture__Q24Game8CreatureFv:
+.fn endCapture__Q24Game8CreatureFv, global
 /* 8019FB9C 0019CADC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019FBA0 0019CAE0  7C 08 02 A6 */	mflr r0
 /* 8019FBA4 0019CAE4  38 80 00 01 */	li r4, 1
@@ -1023,9 +1013,9 @@ endCapture__Q24Game8CreatureFv:
 /* 8019FBE8 0019CB28  7C 08 03 A6 */	mtlr r0
 /* 8019FBEC 0019CB2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019FBF0 0019CB30  4E 80 00 20 */	blr 
+.endfn endCapture__Q24Game8CreatureFv
 
-.global initialise__Q24Game8StickersFv
-initialise__Q24Game8StickersFv:
+.fn initialise__Q24Game8StickersFv, global
 /* 8019FBF4 0019CB34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019FBF8 0019CB38  7C 08 02 A6 */	mflr r0
 /* 8019FBFC 0019CB3C  38 80 00 00 */	li r4, 0
@@ -1054,9 +1044,9 @@ initialise__Q24Game8StickersFv:
 /* 8019FC50 0019CB90  7C 08 03 A6 */	mtlr r0
 /* 8019FC54 0019CB94  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019FC58 0019CB98  4E 80 00 20 */	blr 
+.endfn initialise__Q24Game8StickersFv
 
-.global __ct__Q24Game8StickersFPQ24Game8Creature
-__ct__Q24Game8StickersFPQ24Game8Creature:
+.fn __ct__Q24Game8StickersFPQ24Game8Creature, global
 /* 8019FC5C 0019CB9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019FC60 0019CBA0  7C 08 02 A6 */	mflr r0
 /* 8019FC64 0019CBA4  3C A0 80 48 */	lis r5, lbl_8047F218@ha
@@ -1127,9 +1117,9 @@ __ct__Q24Game8StickersFPQ24Game8Creature:
 /* 8019FD58 0019CC98  7C 08 03 A6 */	mtlr r0
 /* 8019FD5C 0019CC9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019FD60 0019CCA0  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game8StickersFPQ24Game8Creature
 
-.global __dt__Q24Game8StickersFv
-__dt__Q24Game8StickersFv:
+.fn __dt__Q24Game8StickersFv, global
 /* 8019FD64 0019CCA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019FD68 0019CCA8  7C 08 02 A6 */	mflr r0
 /* 8019FD6C 0019CCAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1167,9 +1157,9 @@ __dt__Q24Game8StickersFv:
 /* 8019FDE4 0019CD24  7C 08 03 A6 */	mtlr r0
 /* 8019FDE8 0019CD28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019FDEC 0019CD2C  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game8StickersFv
 
-.global get__Q24Game8StickersFPv
-get__Q24Game8StickersFPv:
+.fn get__Q24Game8StickersFPv, global
 /* 8019FDF0 0019CD30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019FDF4 0019CD34  7C 08 02 A6 */	mflr r0
 /* 8019FDF8 0019CD38  38 60 00 00 */	li r3, 0
@@ -1200,18 +1190,19 @@ get__Q24Game8StickersFPv:
 /* 8019FE54 0019CD94  7C 08 03 A6 */	mtlr r0
 /* 8019FE58 0019CD98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019FE5C 0019CD9C  4E 80 00 20 */	blr 
+.endfn get__Q24Game8StickersFPv
 
-.global getNext__Q24Game8StickersFPv
-getNext__Q24Game8StickersFPv:
+.fn getNext__Q24Game8StickersFPv, global
 /* 8019FE60 0019CDA0  38 64 00 01 */	addi r3, r4, 1
 /* 8019FE64 0019CDA4  4E 80 00 20 */	blr 
+.endfn getNext__Q24Game8StickersFPv
 
-.global getStart__Q24Game8StickersFv
-getStart__Q24Game8StickersFv:
+.fn getStart__Q24Game8StickersFv, global
 /* 8019FE68 0019CDA8  38 60 00 00 */	li r3, 0
 /* 8019FE6C 0019CDAC  4E 80 00 20 */	blr 
+.endfn getStart__Q24Game8StickersFv
 
-.global getEnd__Q24Game8StickersFv
-getEnd__Q24Game8StickersFv:
+.fn getEnd__Q24Game8StickersFv, global
 /* 8019FE70 0019CDB0  80 6D 93 70 */	lwz r3, numBuffer__Q24Game8Stickers@sda21(r13)
 /* 8019FE74 0019CDB4  4E 80 00 20 */	blr 
+.endfn getEnd__Q24Game8StickersFv

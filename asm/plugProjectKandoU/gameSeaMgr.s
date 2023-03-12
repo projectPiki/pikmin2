@@ -232,14 +232,11 @@ __vt__Q24Game8WaterBox:
 	.4byte doDirectDraw__Q24Game8WaterBoxFR8Graphics
 	.4byte attachModel__Q24Game8WaterBoxFP12J3DModelDataPQ23Sys15MatTexAnimationf
 	.4byte calcMatrix__Q24Game8WaterBoxFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515A50
 lbl_80515A50:
 	.skip 0x4
-.global lbl_80515A54
 lbl_80515A54:
 	.skip 0x4
 
