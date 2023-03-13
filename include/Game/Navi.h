@@ -24,6 +24,14 @@
 
 struct Controller;
 
+enum NaviIndex {
+	NAVIID_Olimar    = 0,
+	NAVIID_Louie     = 1,
+	NAVIID_President = 2,
+};
+
+#define GET_OTHER_NAVI(navi) (1 - (navi)->mNaviIndex)
+
 namespace PSM {
 struct DirectorUpdator;
 struct Navi;
@@ -56,7 +64,7 @@ struct NaviFSM : public StateMachine<Navi> {
 
 	// _00     = VTBL
 	// _00-_1C = StateMachine
-	int _1C; // _1C
+	int mBackupStateID; // _1C
 };
 
 struct NaviWhistle {

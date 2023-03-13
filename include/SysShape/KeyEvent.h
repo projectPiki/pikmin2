@@ -28,16 +28,16 @@ namespace SysShape {
 struct KeyEvent : public CNode {
 	inline KeyEvent()
 	{
-		mFrame = 0;
-		mType  = 0;
-		_20    = -1;
+		mFrame   = 0;
+		mType    = 0;
+		mAnimIdx = -1;
 	}
 
 	virtual ~KeyEvent() { } // _08 (weak)
 
-	int mFrame; // _18
-	u32 mType;  // _1C
-	s16 _20;    // _20
+	int mFrame;   // _18
+	u32 mType;    // _1C
+	s16 mAnimIdx; // _20
 };
 
 } // namespace SysShape

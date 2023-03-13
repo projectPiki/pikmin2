@@ -92,8 +92,8 @@ void NaviFSM::transit(Navi* navi, int stateID, StateArg* stateArg)
 	int currID = getCurrID(navi);
 
 	if (currID == NSID_Walk || currID == NSID_Follow) {
-		if (_1C != currID) {
-			_1C = currID;
+		if (mBackupStateID != currID) {
+			mBackupStateID = currID;
 		}
 	}
 
@@ -107,7 +107,7 @@ void NaviFSM::transit(Navi* navi, int stateID, StateArg* stateArg)
  */
 void NaviFSM::init(Navi* navi)
 {
-	_1C = NSID_NULL;
+	mBackupStateID = NSID_NULL;
 	create(NSID_StateCount);
 
 	registerState(new NaviWalkState);
@@ -116,7 +116,6 @@ void NaviFSM::init(Navi* navi)
 	registerState(new NaviChangeState);
 	registerState(new NaviGatherState);
 	registerState(new NaviThrowState);
-	// need to load 1 into r4 here somehow?????????? but NaviThrowWaitState doesn't take any arguments??????
 	registerState(new NaviThrowWaitState);
 	registerState(new NaviDopeState);
 	registerState(new NaviNukuState);
@@ -151,7 +150,7 @@ void NaviCarryBombState::init(Navi* navi, StateArg* stateArg)
 	if (!mBomb) {
 		transit(navi, NSID_Walk, nullptr);
 	} else {
-		navi->startMotion(41, 41, navi, nullptr);
+		navi->startMotion(IPikiAnims::PICK_PUT, IPikiAnims::PICK_PUT, navi, nullptr);
 		navi->enableMotionBlend();
 
 		navi->mSoundObj->startSound(PSSE_PL_PICKUP_BOMB, 0);
@@ -159,7 +158,7 @@ void NaviCarryBombState::init(Navi* navi, StateArg* stateArg)
 		updateMatrix(navi);
 		mBomb->startCapture(&mCaptureMatrix);
 	}
-	_44 = 0;
+	mDoThrow = false;
 }
 
 /*
@@ -196,7 +195,7 @@ void NaviCarryBombState::exec(Navi* navi)
 		mBomb->updateCapture(mat);
 	}
 
-	if (!_44) {
+	if (!mDoThrow) {
 		if (!mBomb->mCaptureMatrix || !mBomb) {
 			transit(navi, NSID_Walk, nullptr);
 			return;
@@ -204,7 +203,7 @@ void NaviCarryBombState::exec(Navi* navi)
 
 		if (navi->mController1 && navi->mController1->isButtonDown(JUTGamePad::PRESS_A)) {
 			navi->finishMotion();
-			_44 = 1;
+			mDoThrow = true;
 		} else if (navi->mController1 && navi->mController1->isButtonDown(JUTGamePad::PRESS_B)) {
 			transit(navi, NSID_Walk, nullptr);
 		}
@@ -220,7 +219,7 @@ void NaviCarryBombState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 {
 	switch (event.mType) {
 	case KEYEVENT_1:
-		if (_44 && mBomb) {
+		if (mDoThrow && mBomb) {
 			f32 faceDir     = navi->getFaceDir();
 			Vector3f offset = getRotationOffset(260.0f, 340.0f, (const f32)faceDir);
 
@@ -256,10 +255,10 @@ void NaviCarryBombState::cleanup(Navi* navi)
  */
 void NaviStuckState::init(Navi* navi, StateArg* stateArg)
 {
-	_20 = 0;
-	_1C = 0.45f;
+	mWiggleCounter = 0;
+	mIdleTimer     = 0.45f;
 	if (navi->mController1) {
-		_10 = Vector3f(navi->mController1->getMainStickX(), 0.0f, navi->mController1->getMainStickY());
+		mPrevStickDirection = Vector3f(navi->mController1->getMainStickX(), 0.0f, navi->mController1->getMainStickY());
 	}
 
 	navi->releasePikis();
@@ -279,14 +278,14 @@ void NaviStuckState::exec(Navi* navi)
 
 	navi->control();
 
-	Vector3f vec(navi->mController1->getMainStickX(), 0.0f, navi->mController1->getMainStickY());
-	f32 mag = _lenVec(vec);
+	Vector3f stickVals(navi->mController1->getMainStickX(), 0.0f, navi->mController1->getMainStickY());
+	f32 stickMag = _lenVec(stickVals);
 
-	if (mag > 0.3f) {
-		f32 dir = dot(vec, _10);
+	if (stickMag > 0.3f) {
+		f32 dir = dot(stickVals, mPrevStickDirection);
 		if (dir < 0.5f) {
-			_20++;
-			if (_20 > 9) {
+			mWiggleCounter++;
+			if (mWiggleCounter > 9) {
 				Stickers stickers(navi);
 
 				Iterator<Creature> iter(&stickers);
@@ -295,31 +294,31 @@ void NaviStuckState::exec(Navi* navi)
 					Creature* creature = *iter;
 					if (creature) {
 						if (randFloat() > 0.05f) {
-							f32 val  = 120.0f + 100.0f * randFloat();
-							f32 val2 = -1000.0f;
+							f32 knockback = 120.0f + 100.0f * randFloat();
+							f32 angle     = -1000.0f;
 							if (randFloat() > 0.1f) {
-								val2 = JMath::atanTable_.atan2_(vec.x, vec.z);
-								val2 = roundAng(0.9424779f * (randFloat() - 0.5f) + val2);
+								angle = JMath::atanTable_.atan2_(stickVals.x, stickVals.z);
+								angle = roundAng(0.9424779f * (randFloat() - 0.5f) + angle);
 							}
 
-							InteractFlick flick(navi, val, 5.0f, val2);
+							InteractFlick flick(navi, knockback, 5.0f, angle);
 							creature->stimulate(flick);
 						}
 					}
 				}
 
-				_20 = 0;
+				mWiggleCounter = 0;
 			}
-			_10 = Vector3f(vec.x, 0.0f, vec.z);
-			_1C = 0.2f;
+			mPrevStickDirection = Vector3f(stickVals.x, 0.0f, stickVals.z);
+			mIdleTimer          = 0.2f;
 		}
 	}
 
-	_1C -= sys->mDeltaTime;
-	if (_1C < 0.0f) {
-		_10 = Vector3f(vec.x, 0.0f, vec.z);
-		_20 = 0;
-		_1C = 0.5f;
+	mIdleTimer -= sys->mDeltaTime;
+	if (mIdleTimer < 0.0f) {
+		mPrevStickDirection = Vector3f(stickVals.x, 0.0f, stickVals.z);
+		mWiggleCounter      = 0;
+		mIdleTimer          = 0.5f;
 	}
 }
 
@@ -338,13 +337,13 @@ void NaviStuckState::cleanup(Navi* navi) { }
 void NaviWalkState::init(Navi* navi, StateArg* stateArg)
 {
 	if (navi->isAlive() && !navi->isMovieActor()) {
-		navi->startMotion(30, 30, nullptr, nullptr);
+		navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 	}
 
 	mAIState        = WALKAI_Control;
-	_14             = 3.0f;
+	mIdleTimer      = 3.0f;
 	mTarget         = nullptr;
-	_1C             = navi->getPosition();
+	mPosition       = navi->getPosition();
 	mCollisionTimer = 0;
 }
 
@@ -365,19 +364,20 @@ void NaviWalkState::exec(Navi* navi)
 
 		if (!navi->mController1 && !navi->isMovieActor()) {
 			if (mAIState == WALKAI_Control) {
-				mAIState = WALKAI_Wait;
-				_14      = 2.0f;
+				mAIState   = WALKAI_Wait;
+				mIdleTimer = 2.0f;
 			}
-
 			execAI(navi);
+
 		} else if (navi->mController1 && !navi->isMovieActor() && navi->_308 > 9.0f) {
 			if (mAIState == WALKAI_Control) {
 				initAI_animation(navi);
 			}
 			execAI(navi);
+
 		} else if (navi->mController1 && mAIState && navi->_308 <= 9.0f) {
 			mAIState = WALKAI_Control;
-			navi->startMotion(31, 31, nullptr, nullptr);
+			navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 		}
 
 		if (!navi->mController1 || navi->isMovieActor()) {
@@ -428,18 +428,18 @@ void NaviWalkState::exec(Navi* navi)
 
 			if (navi->mController1->isButtonDown(JUTGamePad::PRESS_X)) {
 				if (!navi->releasePikis()) {
-					_2B = 20;
+					mDismissTimer = 20;
 				} else {
-					_2B = 1;
+					mDismissTimer = 1;
 				}
 			}
 
 			if (navi->mController1->isButton(JUTGamePad::PRESS_X)) {
-				if (_2B) {
-					_2B++;
+				if (mDismissTimer != 0) {
+					mDismissTimer++;
 
-					if (_2B > 35) {
-						_2B = 0;
+					if (mDismissTimer > 35) {
+						mDismissTimer = 0;
 						if (playData->mOlimarData->hasItem(OlimarData::ODII_FiveManNapsack) || gameSystem->mMode != GSM_STORY_MODE) {
 							transit(navi, NSID_Pellet, nullptr);
 							return;
@@ -447,19 +447,19 @@ void NaviWalkState::exec(Navi* navi)
 					}
 				}
 			} else {
-				_2B = 0;
+				mDismissTimer = 0;
 			}
 
 			if (!gameSystem->paused_soft() && moviePlayer->mDemoState == 0 && !gameSystem->isMultiplayerMode()
 			    && navi->mController1->isButtonDown(JUTGamePad::PRESS_Y) && playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
 
-				Navi* currNavi = naviMgr->getAt(1 - navi->mNaviIndex);
+				Navi* currNavi = naviMgr->getAt(GET_OTHER_NAVI(navi));
 				int currID     = currNavi->getStateID();
 
 				if (currNavi->isAlive() && currID != NSID_Nuku && currID != NSID_NukuAdjust && currID != NSID_Punch) {
 					gameSystem->mSection->pmTogglePlayer();
 
-					if (currNavi->mNaviIndex == 0) { // OLIMAR
+					if (currNavi->mNaviIndex == NAVIID_Olimar) { // OLIMAR
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_CHANGE_ORIMA, 0);
 
 					} else if (playData->isStoryFlag(STORY_DebtPaid)) { // PRESIDENT
@@ -469,7 +469,7 @@ void NaviWalkState::exec(Navi* navi)
 						PSSystem::spSysIF->playSystemSe(PSSE_SY_CHANGE_LUI, 0);
 					}
 
-					if (currNavi->mNaviIndex == 0) { // OLIMAR
+					if (currNavi->mNaviIndex == NAVIID_Olimar) { // OLIMAR
 						currNavi->mSoundObj->startSound(PSSE_PL_PIKON_ORIMA, 0);
 
 					} else if (playData->isStoryFlag(STORY_DebtPaid)) { // PRESIDENT
@@ -640,11 +640,13 @@ void NaviWalkState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 		return;
 	}
 
-	if (event._20 == 50 && event.mType == KEYEVENT_200) {
+	if (event.mAnimIdx == IPikiAnims::JUMP && event.mType == KEYEVENT_200) {
 		if (navi->mNaviIndex == 0) {
 			navi->mSoundObj->startSound(PSSE_PL_WAIT_LAND_ORIMA, 0);
+
 		} else if (playData->isStoryFlag(STORY_DebtPaid)) {
 			navi->mSoundObj->startSound(PSSE_PL_WAIT_LAND_SHACHO, 0);
+
 		} else {
 			navi->mSoundObj->startSound(PSSE_PL_WAIT_LAND_LUGI, 0);
 		}
@@ -658,9 +660,9 @@ void NaviWalkState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
  */
 void NaviWalkState::wallCallback(Navi* navi, Vector3f&)
 {
-	if (mAIState == WALKAI_Escape && _29 == 0) {
-		_28 = (!_28);
-		_29 = 10;
+	if (mAIState == WALKAI_Escape && mEscapeTimer == 0) {
+		mIsEscapeCCW = (!mIsEscapeCCW);
+		mEscapeTimer = 10;
 	}
 }
 
@@ -672,7 +674,7 @@ void NaviWalkState::wallCallback(Navi* navi, Vector3f&)
 void NaviWalkState::initAI_wait(Navi* navi)
 {
 	mAIState = WALKAI_Wait;
-	navi->startMotion(1, 1, nullptr, nullptr);
+	navi->startMotion(IPikiAnims::ASIBUMI, IPikiAnims::ASIBUMI, nullptr, nullptr);
 }
 
 /*
@@ -683,11 +685,11 @@ void NaviWalkState::initAI_wait(Navi* navi)
 void NaviWalkState::execAI_wait(Navi* navi)
 {
 	blendVelocity(navi, Vector3f::zero);
-	_14 -= sys->mDeltaTime;
+	mIdleTimer -= sys->mDeltaTime;
 
-	if (_14 <= 0.0f) {
+	if (mIdleTimer <= 0.0f) {
 		initAI_animation(navi);
-		_14 = 2.0f + randFloat();
+		mIdleTimer = 2.0f + randFloat();
 		return;
 	}
 
@@ -843,8 +845,10 @@ void NaviWalkState::initAI_animation(Navi* navi)
 {
 	mAIState = WALKAI_Animation;
 
-	KandoLib::Choice choiceListIdle[4]    = { { 0, 0.25f }, { 11, 0.25f }, { 54, 0.25f }, { 50, 0.25f } };
-	KandoLib::Choice choiceListControl[4] = { { 0, 0.25f }, { 11, 0.25f }, { 54, 0.25f }, { 13, 0.25f } };
+	KandoLib::Choice choiceListIdle[4]
+	    = { { IPikiAnims::AKUBI, 0.25f }, { IPikiAnims::FURIMUKU, 0.25f }, { IPikiAnims::SAGASU2, 0.25f }, { IPikiAnims::JUMP, 0.25f } };
+	KandoLib::Choice choiceListControl[4]
+	    = { { IPikiAnims::AKUBI, 0.25f }, { IPikiAnims::FURIMUKU, 0.25f }, { IPikiAnims::SAGASU2, 0.25f }, { IPikiAnims::GATTU, 0.25f } };
 
 	int animIdx;
 	if (navi->mController1) {
@@ -853,7 +857,7 @@ void NaviWalkState::initAI_animation(Navi* navi)
 		animIdx = KandoLib::getRandomChoice(choiceListIdle, 4);
 	}
 
-	_2A = animIdx;
+	mAnimIdx = animIdx;
 
 	navi->startMotion(animIdx, animIdx, navi, nullptr);
 
@@ -867,19 +871,19 @@ void NaviWalkState::initAI_animation(Navi* navi)
 	}
 
 	switch (animIdx) {
-	case 11:
+	case IPikiAnims::FURIMUKU:
 		navi->mSoundObj->startSound(se_lookbacks[naviIdx], 0);
 		break;
-	case 0:
+	case IPikiAnims::AKUBI:
 		navi->mSoundObj->startSound(se_novis[naviIdx], 0);
 		break;
-	case 50:
+	case IPikiAnims::JUMP:
 		navi->mSoundObj->startSound(se_jumps[naviIdx], 0);
 		break;
-	case 54:
+	case IPikiAnims::SAGASU2:
 		navi->mSoundObj->startSound(se_kyoros[naviIdx], 0);
 		break;
-	case 13:
+	case IPikiAnims::GATTU:
 		navi->mSoundObj->startSound(se_taisos[naviIdx], 0);
 		break;
 	}
@@ -893,9 +897,9 @@ void NaviWalkState::initAI_animation(Navi* navi)
 void NaviWalkState::execAI_animation(Navi* navi)
 {
 	blendVelocity(navi, Vector3f::zero);
-	if (!navi->assertMotion(_2A)) {
+	if (!navi->assertMotion(mAnimIdx)) {
 		mAIState = WALKAI_Wait;
-		navi->startMotion(1, 1, nullptr, nullptr);
+		navi->startMotion(IPikiAnims::ASIBUMI, IPikiAnims::ASIBUMI, nullptr, nullptr);
 	}
 }
 
@@ -918,7 +922,7 @@ void NaviWalkState::execAI_attack(Navi* navi)
 {
 	if (!mTarget->isAlive()) {
 		mAIState = WALKAI_Wait;
-		navi->startMotion(1, 1, nullptr, nullptr);
+		navi->startMotion(IPikiAnims::ASIBUMI, IPikiAnims::ASIBUMI, nullptr, nullptr);
 		mTarget = nullptr;
 		return;
 	}
@@ -952,10 +956,10 @@ void NaviWalkState::execAI_attack(Navi* navi)
  */
 void NaviWalkState::initAI_escape(Navi* navi)
 {
-	mAIState = WALKAI_Escape;
-	_14      = 0.0f;
-	_28      = (int)(2.0f * randFloat()) != 0;
-	_29      = 0;
+	mAIState     = WALKAI_Escape;
+	mIdleTimer   = 0.0f;
+	mIsEscapeCCW = (int)(2.0f * randFloat()) != 0; // 75% chance true (CCW), 25% chance false (CW)
+	mEscapeTimer = 0;
 }
 
 /*
@@ -966,15 +970,15 @@ void NaviWalkState::initAI_escape(Navi* navi)
 void NaviWalkState::execAI_escape(Navi* navi)
 {
 	if (!mTarget->isAlive()) {
-		_14      = 5.0f;
-		mAIState = WALKAI_Wait;
-		navi->startMotion(1, 1, nullptr, nullptr);
+		mIdleTimer = 5.0f;
+		mAIState   = WALKAI_Wait;
+		navi->startMotion(IPikiAnims::ASIBUMI, IPikiAnims::ASIBUMI, nullptr, nullptr);
 		mTarget = nullptr;
 		return;
 	}
 
-	if (_29) {
-		_29--;
+	if (mEscapeTimer != 0) {
+		mEscapeTimer--;
 	}
 
 	Vector3f targetPos = mTarget->getPosition();
@@ -990,9 +994,9 @@ void NaviWalkState::execAI_escape(Navi* navi)
 	mTarget->isTeki(); // probably some commented out code around here.
 
 	if (dist > 35.0f) {
-		_14      = 5.0f;
-		mAIState = WALKAI_Wait;
-		navi->startMotion(1, 1, nullptr, nullptr);
+		mIdleTimer = 5.0f;
+		mAIState   = WALKAI_Wait;
+		navi->startMotion(IPikiAnims::ASIBUMI, IPikiAnims::ASIBUMI, nullptr, nullptr);
 		return;
 	}
 
@@ -1002,7 +1006,7 @@ void NaviWalkState::execAI_escape(Navi* navi)
 		f32 z = sep.z;
 		sep.x = z;
 		sep.z = x;
-		if (!_28) {
+		if (!mIsEscapeCCW) {
 			f32 x2 = -(f32)(f64)x;
 			f32 z2 = -z;
 			sep.x  = z2;
@@ -1224,10 +1228,10 @@ void NaviWalkState::blendVelocity(Navi* navi, Vector3f& targetVel) { navi->mVelo
 void NaviChangeState::init(Navi* navi, StateArg* stateArg)
 {
 	if (!navi->isMovieActor()) {
-		navi->startMotion(32, 32, navi, nullptr);
+		navi->startMotion(IPikiAnims::KIZUKU, IPikiAnims::KIZUKU, navi, nullptr);
 	}
 
-	mNewNavi    = naviMgr->getAt(1 - navi->mNaviIndex);
+	mNewNavi    = naviMgr->getAt(GET_OTHER_NAVI(navi));
 	mIsFinished = false;
 }
 
@@ -1240,7 +1244,7 @@ void NaviChangeState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 {
 	if (event.mType == KEYEVENT_END) {
 		mIsFinished = true;
-		navi->startMotion(30, 30, nullptr, nullptr);
+		navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 	}
 }
 
@@ -1277,21 +1281,23 @@ void NaviFollowState::init(Navi* navi, StateArg* stateArg)
 {
 	NaviFollowArg* followArg = static_cast<NaviFollowArg*>(stateArg);
 	if (followArg && followArg->_00) {
-		navi->startMotion(32, 32, navi, nullptr);
+		navi->startMotion(IPikiAnims::KIZUKU, IPikiAnims::KIZUKU, navi, nullptr);
 		_14 = 0;
-		if (navi->mNaviIndex == 0) {
+		if (navi->mNaviIndex == NAVIID_Olimar) {
 			navi->mSoundObj->startSound(PSSE_PL_BIKU_ORIMA, 0);
+
 		} else if (playData->isStoryFlag(STORY_DebtPaid)) {
 			navi->mSoundObj->startSound(PSSE_PL_BIKU_SHACHO, 0);
+
 		} else {
 			navi->mSoundObj->startSound(PSSE_PL_BIKU_LUGI, 0);
 		}
 	} else {
 		_14 = 1;
-		navi->startMotion(30, 30, nullptr, nullptr);
+		navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 	}
 
-	mTargetNavi = naviMgr->getAt(1 - navi->mNaviIndex);
+	mTargetNavi = naviMgr->getAt(GET_OTHER_NAVI(navi));
 	navi->setMoveRotation(true);
 	_1C = 0;
 	_18 = nullptr;
@@ -1308,13 +1314,13 @@ void NaviFollowState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 		switch (_14) {
 		case 0:
 			_14 = 1;
-			navi->startMotion(30, 30, nullptr, nullptr);
+			navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
 			break;
 
 		case 2:
 			_1C = 0;
 			_14 = 1;
-			navi->startMotion(31, 31, nullptr, nullptr);
+			navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 			break;
 		}
 	}
@@ -1323,14 +1329,14 @@ void NaviFollowState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 		return;
 	}
 
-	if (event._20 == 50 && event.mType == KEYEVENT_200) {
-		if (navi->mNaviIndex == 0) {
+	if (event.mAnimIdx == IPikiAnims::JUMP && event.mType == KEYEVENT_200) {
+		if (navi->mNaviIndex == NAVIID_Olimar) { // OLIMAR
 			navi->mSoundObj->startSound(PSSE_PL_WAIT_LAND_ORIMA, 0);
 
-		} else if (playData->isStoryFlag(STORY_DebtPaid)) {
+		} else if (playData->isStoryFlag(STORY_DebtPaid)) { // PRESIDENT
 			navi->mSoundObj->startSound(PSSE_PL_WAIT_LAND_SHACHO, 0);
 
-		} else {
+		} else { // LOUIE
 			navi->mSoundObj->startSound(PSSE_PL_WAIT_LAND_LUGI, 0);
 		}
 	}
@@ -2241,7 +2247,7 @@ void NaviPunchState::init(Navi* navi, StateArg* stateArg)
 		_28 = 0;
 	}
 
-	navi->startMotion(64, 64, navi, nullptr);
+	navi->startMotion(IPikiAnims::PUNCH, IPikiAnims::PUNCH, navi, nullptr);
 	navi->mSoundObj->startSound(PSSE_PL_ORIMA_PUNCH_SWING, 0);
 	navi->enableMotionBlend();
 	_10     = 0;
@@ -2273,20 +2279,20 @@ void NaviPunchState::hitCallback(CollPart* collpart)
 {
 	if (playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && collpart) {
 		bool isRocketFist = false;
-		f32 val           = 7.5f;
+		f32 damage        = 7.5f;
 		int animIdx;
 		if (mNavi->mAnimator.mSelfAnimator.mAnimInfo) {
 			animIdx = mNavi->mAnimator.mSelfAnimator.mAnimInfo->mId;
 		} else {
-			animIdx = -1;
+			animIdx = IPikiAnims::NULLANIM;
 		}
 
-		if (animIdx == 66) {
+		if (animIdx == IPikiAnims::PUNCH3) {
 			isRocketFist = true;
-			val *= 2.5f;
+			damage *= 2.5f;
 		}
 
-		InteractAttack attack(mNavi, val, collpart);
+		InteractAttack attack(mNavi, damage, collpart);
 		if (mTarget->stimulate(attack)) {
 			Vector3f targetColVec = collpart->mPosition;
 			Vector3f naviColVec   = mNavi->mCollTree->getCollPart('rhnd')->mPosition;
@@ -2311,7 +2317,7 @@ void NaviPunchState::hitCallback(CollPart* collpart)
 			_1F = 1;
 
 			if (!_24) {
-				Navi* otherNavi = naviMgr->getAt(1 - mNavi->mNaviIndex);
+				Navi* otherNavi = naviMgr->getAt(GET_OTHER_NAVI(mNavi));
 				if (otherNavi && otherNavi->isAlive() && otherNavi->getStateID() == NSID_Follow) {
 					NaviFollowState* otherNaviState = static_cast<NaviFollowState*>(otherNavi->mCurrentState);
 					Creature* target                = mTarget;
@@ -2558,7 +2564,7 @@ void NaviPunchState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 		f32 val1   = 15.0f;
 		f32 radius = 20.0f;
 
-		if (event._20 == 66) {
+		if (event.mAnimIdx == IPikiAnims::PUNCH3) {
 			val1   = 25.0f;
 			radius = 35.0f;
 		}
@@ -2595,10 +2601,10 @@ void NaviPunchState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 		if (_1D) {
 			if (playData->mOlimarData->hasItem(OlimarData::ODII_BruteKnuckles)) {
 				if (++_1E <= 1) {
-					navi->startMotion(65, 65, navi, nullptr);
+					navi->startMotion(IPikiAnims::PUNCH2, IPikiAnims::PUNCH2, navi, nullptr);
 					navi->mSoundObj->startSound(PSSE_PL_ORIMA_PUNCH_SWING, 0);
 				} else {
-					navi->startMotion(66, 66, navi, nullptr);
+					navi->startMotion(IPikiAnims::PUNCH3, IPikiAnims::PUNCH3, navi, nullptr);
 					navi->mSoundObj->startSound(PSSE_PL_ORIMA_PUNCH_SWING, 0);
 				}
 
@@ -2610,11 +2616,11 @@ void NaviPunchState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& event)
 				_1F     = 0;
 			} else {
 				_20 = 4;
-				mNavi->startMotion(31, 31, nullptr, nullptr);
+				mNavi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 			}
 		} else {
 			_20 = 4;
-			mNavi->startMotion(31, 31, nullptr, nullptr);
+			mNavi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 		}
 		break;
 	}

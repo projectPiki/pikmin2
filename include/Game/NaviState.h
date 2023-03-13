@@ -118,7 +118,7 @@ struct NaviCarryBombState : public NaviState {
 	// _00-_10 = NaviState
 	Creature* mBomb;        // _10
 	Matrixf mCaptureMatrix; // _14, capture matrix for bomb
-	u8 _44;                 // _44
+	bool mDoThrow;          // _44
 };
 
 struct NaviChangeState : public NaviState {
@@ -594,9 +594,9 @@ struct NaviStuckState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	Vector3f _10; // _10
-	f32 _1C;      // _1C
-	int _20;      // _20
+	Vector3f mPrevStickDirection; // _10
+	f32 mIdleTimer;               // _1C
+	int mWiggleCounter;           // _20
 };
 
 struct NaviThrowState : public NaviState, virtual public SysShape::MotionListener {
@@ -680,13 +680,13 @@ struct NaviWalkState : public NaviState {
 	// _00     = VTBL
 	// _00-_10 = NaviState
 	u8 mAIState;        // _10, see AIState enum
-	f32 _14;            // _14
+	f32 mIdleTimer;     // _14, counts down to 0; once at 0, do idle animation.
 	Creature* mTarget;  // _18
-	Vector3f _1C;       // _1C
-	bool _28;           // _28
-	u8 _29;             // _29
-	u8 _2A;             // _2A
-	u8 _2B;             // _2B
+	Vector3f mPosition; // _1C, gets set and never used?
+	bool mIsEscapeCCW;  // _28, do we run counter clockwise (true) or clockwise (false) around enemy? flips on wall hit
+	u8 mEscapeTimer;    // _29, counts number of frames since starting escaping
+	u8 mAnimIdx;        // _2A, anim id for current AI_animation
+	u8 mDismissTimer;   // _2B, counts number of frames since dismiss (starts at 20 if no pikis); > 35, try and napsack
 	u8 mCollisionTimer; // _2C, increases (x3) per frame when walking into an object, decreases (x1) per frame walking
 };
 
