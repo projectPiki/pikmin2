@@ -16,8 +16,8 @@ namespace Game {
 enum HoneyKind {
 	// type of the honey
 	HONEY_Y, // yellow nectar
-	HONEY_R, // red nectar
-	HONEY_B  // black nectar
+	HONEY_R, // red nectar (spicy)
+	HONEY_B  // black nectar (bitter)
 };
 
 namespace ItemHoney {
@@ -63,7 +63,7 @@ struct Item : public CFSMItem {
 	virtual void onSetPosition();                             // _21C
 	virtual CItemFSM* createFSM();                            // _220
 	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _224 (weak)
-	virtual void absorbable();                                // _228
+	virtual bool absorbable();                                // _228
 	virtual bool demoOK();                                    // _22C
 
 	bool isShrinking();

@@ -73,15 +73,15 @@ struct NaviWhistle {
 	void updateWhistle();
 	void update(Vector3f&, bool);
 
-	Vector3f mNaviAngleVec; // _00
-	Vector3f mPosition;     // _0C
-	Vector3f mNormal;       // _18
-	f32 mRadius;            // _24
-	u16 mState;             // _28
-	f32 mActiveTime;        // _2C
-	bool _30;               // _30
-	Navi* mNavi;            // _34
-	Color4 mColor;          // _38
+	Vector3f mNaviOffsetVec; // _00
+	Vector3f mPosition;      // _0C
+	Vector3f mNormal;        // _18
+	f32 mRadius;             // _24
+	u16 mState;              // _28
+	f32 mActiveTime;         // _2C
+	bool _30;                // _30
+	Navi* mNavi;             // _34
+	Color4 mColor;           // _38
 };
 
 #define NAVI_THROWTIMER_LENGTH (10)

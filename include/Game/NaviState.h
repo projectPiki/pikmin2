@@ -3,6 +3,7 @@
 
 #include "Game/StateMachine.h"
 #include "Game/Navi.h"
+#include "Game/Entities/ItemHoney.h"
 #include "SysShape/KeyEvent.h"
 
 namespace Game {
@@ -62,6 +63,15 @@ struct NaviState : public FSMState<Navi> {
 	char* mName; // _0C
 };
 
+struct NaviAbsorbArg : public StateArg {
+	inline NaviAbsorbArg(ItemHoney::Item* drop)
+	    : mDrop(drop)
+	{
+	}
+
+	ItemHoney::Item* mDrop; // _00
+};
+
 struct NaviAbsorbState : public NaviState {
 	inline NaviAbsorbState()
 	    : NaviState(NSID_Absorb)
@@ -82,6 +92,11 @@ struct NaviAbsorbState : public NaviState {
 };
 
 struct NaviCarryBombArg : public StateArg {
+	inline NaviCarryBombArg(Creature* bomb)
+	    : mBomb(bomb)
+	{
+	}
+
 	Creature* mBomb; // _00
 };
 
@@ -328,7 +343,7 @@ struct NaviFlickState : public NaviState {
 	u8 _24[0x4];        // _24, unknown
 };
 
-struct FollowStateArg : public StateArg {
+struct NaviFollowArg : public StateArg {
 	bool _00; // _00
 	bool _01; // _01
 };
@@ -348,8 +363,8 @@ struct NaviFollowState : public NaviState {
 	// _00     = VTBL
 	// _00-_10 = NaviState
 	Navi* mTargetNavi; // _10
-	bool mIsFinished;  // _14
-	Navi* _18;         // _18, unk navi?
+	u8 _14;            // _14
+	Creature* _18;     // _18
 	u8 _1C;            // _1C, counter?
 	u8 _1D;            // _1D, motion?
 	u8 _1E;            // _1E, counter 2?
@@ -504,6 +519,11 @@ struct NaviPressedState : public NaviState {
 	u8 _10[0x14]; // _10, unknown
 };
 
+struct NaviPunchArg : public StateArg {
+	u8 _00;  // _00
+	u32 _04; // _04
+};
+
 struct NaviPunchState : public NaviState {
 	NaviPunchState();
 
@@ -516,9 +536,17 @@ struct NaviPunchState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10[0x14]; // _10, unknown
-	u8 _24;       // _24
-	u32 _28;      // _28
+	u8 _10;            // _10
+	Creature* mTarget; // _14
+	Navi* mNavi;       // _18
+	u8 _1C;            // _1C
+	u8 _1D;            // _1D
+	u8 _1E;            // _1E
+	u8 _1F;            // _1F
+	u8 _20;            // _20
+	u8 _21[0x3];       // _21, unknown/padding
+	u8 _24;            // _24
+	u32 _28;           // _28
 };
 
 struct NaviSaraiExitState : public NaviState {
@@ -616,6 +644,14 @@ struct NaviThrowWaitState : public NaviState, virtual public SysShape::MotionLis
 };
 
 struct NaviWalkState : public NaviState {
+	enum AIState {
+		WALKAI_Control   = 0,
+		WALKAI_Wait      = 1,
+		WALKAI_Animation = 2,
+		WALKAI_Escape    = 3,
+		WALKAI_Attack    = 4,
+	};
+
 	inline NaviWalkState()
 	    : NaviState(NSID_Walk)
 	{
@@ -631,7 +667,7 @@ struct NaviWalkState : public NaviState {
 	virtual bool needYChangeMotion();                          // _40 (weak)
 
 	void execAI(Navi*);
-	void checkAI(Navi*);
+	bool checkAI(Navi*);
 	void initAI_wait(Navi*);
 	void execAI_wait(Navi*);
 	void initAI_animation(Navi*);
@@ -643,15 +679,15 @@ struct NaviWalkState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u8 _10;       // _10
-	f32 _14;      // _14
-	u32 _18;      // _18
-	Vector3f _1C; // _1C
-	bool _28;     // _28
-	u8 _29;       // _29
-	u8 _2A;       // _2A
-	u8 _2B;       // _2B
-	u8 _2C;       // _2C
+	u8 mAIState;        // _10, see AIState enum
+	f32 _14;            // _14
+	Creature* mTarget;  // _18
+	Vector3f _1C;       // _1C
+	bool _28;           // _28
+	u8 _29;             // _29
+	u8 _2A;             // _2A
+	u8 _2B;             // _2B
+	u8 mCollisionTimer; // _2C, increases (x3) per frame when walking into an object, decreases (x1) per frame walking
 };
 
 } // namespace Game

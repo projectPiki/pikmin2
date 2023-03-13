@@ -46,7 +46,10 @@ struct TOrimadamage : public TChaseMtxT2 {
 };
 
 struct TOrimapunch : public TSimple1 {
-	// NB: has a weirdly large (empty) vtable - 8 empty slots after fade()...
+	inline TOrimapunch()
+	    : TSimple1(PID_OrimaPunch)
+	{
+	}
 
 	// _00		= VTBL
 	// _00-_0C	= TSimple1

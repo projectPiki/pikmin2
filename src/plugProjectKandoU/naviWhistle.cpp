@@ -77,7 +77,7 @@ void NaviWhistle::init()
 	f32 faceDir      = mNavi->getFaceDir();
 	NaviParms* parms = static_cast<NaviParms*>(mNavi->mParms);
 	f32 v1           = parms->mNaviParms.mP046.mValue * 0.5f;
-	mNaviAngleVec    = Vector3f(pikmin2_sinf(faceDir) * v1, 0.0f, pikmin2_cosf(faceDir) * v1);
+	mNaviOffsetVec   = Vector3f(pikmin2_sinf(faceDir) * v1, 0.0f, pikmin2_cosf(faceDir) * v1);
 
 	updatePosition();
 	/*
@@ -171,7 +171,7 @@ lbl_801651B4:
  */
 void NaviWhistle::updatePosition()
 {
-	mPosition = mNavi->getPosition() + mNaviAngleVec;
+	mPosition = mNavi->getPosition() + mNaviOffsetVec;
 
 	CurrTriInfo info;
 	f32 y          = 0.0f;
@@ -364,9 +364,9 @@ bool NaviWhistle::timeout() { return mState == Whistle_Inactive; }
  */
 void NaviWhistle::setFaceDir(f32 dir)
 {
-	f32 dist = mNaviAngleVec.length();
+	f32 dist = mNaviOffsetVec.length();
 
-	mNaviAngleVec = Vector3f(dist * pikmin2_sinf(dir), 0.0f, dist * pikmin2_cosf(dir));
+	mNaviOffsetVec = Vector3f(dist * pikmin2_sinf(dir), 0.0f, dist * pikmin2_cosf(dir));
 }
 
 /*
@@ -587,14 +587,14 @@ void NaviWhistle::update(Vector3f& stick, bool active)
 		res *= parms->mNaviParms.mP047.mValue;
 		f32 time = sys->mDeltaTime;
 		res *= time;
-		res += mNaviAngleVec;
+		res += mNaviOffsetVec;
 		dist = res.normalise();
 		res *= dist;
 		res *= time;
-		res += mNaviAngleVec;
+		res += mNaviOffsetVec;
 		// wtf is this
 	}
-	mNaviAngleVec = res;
+	mNaviOffsetVec = res;
 
 	updatePosition(); // why... wont... you... NOT INLINE
 	updateWhistle();
