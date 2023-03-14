@@ -87,7 +87,7 @@ PelletList::Mgr::~Mgr()
 void PelletList::Mgr::loadResource()
 {
 	JKRArchive* archive;
-	if (Game::gGameConfig.mParms.mPelletMultiLang.mData != 0) {
+	if (Game::gGameConfig.mParms.mPelletMultiLang.mData) {
 		char pathBuffer[0x200];
 		switch (sys->mRegion) {
 		case System::LANG_FRENCH:
