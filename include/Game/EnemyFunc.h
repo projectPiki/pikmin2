@@ -2,6 +2,7 @@
 #define _GAME_ENEMYFUNC_H
 
 #include "Game/Piki.h"
+#include "Game/EnemyBase.h"
 #include "Condition.h"
 #include "types.h"
 

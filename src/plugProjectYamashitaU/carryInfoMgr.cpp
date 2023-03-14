@@ -1062,7 +1062,7 @@ void CarryInfoMgr::loadResource()
 	JKRArchive* arc = JKRArchive::mount("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
 	void* timg      = JKRFileLoader::getGlbResource("item_0_0.bti", arc);
 	JUTTexture* tex = new JUTTexture;
-	tex->_20        = static_cast<ResTIMG*>(timg);
+	tex->mTexInfo   = static_cast<ResTIMG*>(timg);
 	mTexture        = tex;
 	/*
 	stwu     r1, -0x20(r1)

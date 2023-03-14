@@ -1,5 +1,6 @@
 #include "types.h"
 #include "nans.h"
+#include "Game/EnemyFunc.h"
 
 /*
     Generated from dpostproc
@@ -111,7 +112,7 @@ namespace Game {
  * Address:	801126F4
  * Size:	000424
  */
-void EnemyFunc::getNearestNavi(Game::Creature*, float, float, float*, Condition<Game::Navi>*)
+Navi* EnemyFunc::getNearestNavi(Game::Creature*, float, float, float*, Condition<Game::Navi>*)
 {
 	/*
 	.loc_0x0:
@@ -413,46 +414,12 @@ void EnemyFunc::getNearestNavi(Game::Creature*, float, float, float*, Condition<
 	*/
 }
 
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	80112B18
- * Size:	00004C
- */
-void Iterator<Game::Navi>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
 /*
  * --INFO--
  * Address:	80112B64
  * Size:	000484
  */
-void EnemyFunc::getNearestPikmin(Game::Creature*, float, float, float*, Condition<Game::Piki>*)
+Piki* EnemyFunc::getNearestPikmin(Game::Creature*, float, float, float*, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -785,7 +752,7 @@ void EnemyFunc::getNearestPikmin(Game::Creature*, float, float, float*, Conditio
  * Address:	80112FE8
  * Size:	00001C
  */
-void FakePiki::getPosition()
+Vector3f FakePiki::getPosition()
 {
 	/*
 	lfs      f0, 0x20c(r4)
@@ -798,46 +765,12 @@ void FakePiki::getPosition()
 	*/
 }
 
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	80113004
- * Size:	00004C
- */
-void Iterator<Game::Piki>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
 /*
  * --INFO--
  * Address:	80113050
  * Size:	0000C4
  */
-void EnemyFunc::getNearestPikminOrNavi(Game::Creature*, float, float, float*, Condition<Game::Navi>*, Condition<Game::Piki>*)
+Creature* EnemyFunc::getNearestPikminOrNavi(Game::Creature*, float, float, float*, Condition<Game::Navi>*, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -898,13 +831,6 @@ void EnemyFunc::getNearestPikminOrNavi(Game::Creature*, float, float, float*, Co
 	  blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	80113114
- * Size:	000008
- */
-u32 Creature::stimulate(Game::Interaction&) { return 0x0; }
 
 /*
  * --INFO--
@@ -1156,40 +1082,6 @@ void EnemyFunc::flickStickPikmin(Game::Creature*, float, float, float, float, Co
 	  blr
 	*/
 }
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	80113488
- * Size:	00004C
- */
-void Iterator<Game::Creature>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
 
 /*
  * --INFO--
@@ -1664,7 +1556,7 @@ void EnemyFunc::flickNearbyNavi(Game::Creature*, float, float, float, float, Con
  * Address:	80113B34
  * Size:	000350
  */
-void EnemyFunc::eatPikmin(Game::EnemyBase*, Condition<Game::Piki>*)
+int EnemyFunc::eatPikmin(Game::EnemyBase*, Condition<Game::Piki>*)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2487,7 +2379,7 @@ void EnemyFunc::attackNavi(Game::Creature*, float, float, float, CollPart*, Cond
  * Address:	80114658
  * Size:	0000DC
  */
-void EnemyFunc::isStartFlick(Game::EnemyBase*, bool)
+bool EnemyFunc::isStartFlick(Game::EnemyBase*, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2567,7 +2459,7 @@ lbl_80114728:
  * Address:	80114734
  * Size:	00038C
  */
-void EnemyFunc::isTherePikmin(Game::Creature*, float, Condition<Game::Piki>*)
+bool EnemyFunc::isTherePikmin(Game::Creature*, float, Condition<Game::Piki>*)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -2827,7 +2719,7 @@ lbl_80114A74:
  * Address:	80114AC0
  * Size:	000330
  */
-void EnemyFunc::isThereOlimar(Game::Creature*, float, Condition<Game::Navi>*)
+bool EnemyFunc::isThereOlimar(Game::Creature*, float, Condition<Game::Navi>*)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -3062,7 +2954,7 @@ lbl_80114DA8:
  * Address:	80114DF0
  * Size:	0003C4
  */
-void EnemyFunc::getSurroundPikminNum(Game::Creature*, float, Condition<Game::Piki>*)
+int EnemyFunc::getSurroundPikminNum(Game::Creature*, float, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -3335,7 +3227,7 @@ void EnemyFunc::getSurroundPikminNum(Game::Creature*, float, Condition<Game::Pik
  * Address:	801151B4
  * Size:	00024C
  */
-void EnemyFunc::getStickPikminColorNum(Game::Creature*, int)
+int EnemyFunc::getStickPikminColorNum(Game::Creature*, int)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3772,7 +3664,7 @@ lbl_801156D4:
  * Address:	80115798
  * Size:	000080
  */
-void EnemyFunc::EatPikminDefaultCondition::satisfy(Game::Piki* p)
+bool EnemyFunc::EatPikminDefaultCondition::satisfy(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3817,7 +3709,7 @@ lbl_801157F8:
  * Address:	80115818
  * Size:	000168
  */
-void EnemyFunc::ConditionPikminNearby::satisfy(Game::Creature*)
+bool EnemyFunc::ConditionPikminNearby::satisfy(Game::Creature*)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -3918,528 +3810,3 @@ lbl_80115940:
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80115980
- * Size:	000038
- */
-void Iterator<Game::Creature>::operator*()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801159B8
- * Size:	0000E4
- */
-void Iterator<Game::Creature>::next()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_801159F8
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115A88
-
-lbl_801159F8:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115A6C
-
-lbl_80115A18:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80115A88
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_80115A6C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80115A18
-
-lbl_80115A88:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80115A9C
- * Size:	0000DC
- */
-void Iterator<Game::Creature>::first()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80115AD8
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115B64
-
-lbl_80115AD8:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115B48
-
-lbl_80115AF4:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80115B64
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_80115B48:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80115AF4
-
-lbl_80115B64:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80115B78
- * Size:	000038
- */
-void Iterator<Game::Piki>::operator*()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80115BB0
- * Size:	0000E4
- */
-void Iterator<Game::Piki>::next()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80115BF0
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115C80
-
-lbl_80115BF0:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115C64
-
-lbl_80115C10:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80115C80
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_80115C64:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80115C10
-
-lbl_80115C80:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80115C94
- * Size:	0000DC
- */
-void Iterator<Game::Piki>::first()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80115CD0
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115D5C
-
-lbl_80115CD0:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115D40
-
-lbl_80115CEC:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80115D5C
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_80115D40:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80115CEC
-
-lbl_80115D5C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80115D70
- * Size:	000038
- */
-void Iterator<Game::Navi>::operator*()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80115DA8
- * Size:	0000E4
- */
-void Iterator<Game::Navi>::next()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80115DE8
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115E78
-
-lbl_80115DE8:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115E5C
-
-lbl_80115E08:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80115E78
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_80115E5C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80115E08
-
-lbl_80115E78:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80115E8C
- * Size:	0000DC
- */
-void Iterator<Game::Navi>::first()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80115EC8
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115F54
-
-lbl_80115EC8:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80115F38
-
-lbl_80115EE4:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80115F54
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_80115F38:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80115EE4
-
-lbl_80115F54:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
