@@ -1,36 +1,26 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047F630
-lbl_8047F630:
-	.4byte 0x64796E43
-	.4byte 0x72656174
-	.4byte 0x7572652E
-	.4byte 0x63707000
-.global lbl_8047F640
-lbl_8047F640:
-	.4byte 0x70206973
-	.4byte 0x206E756C
-	.4byte 0x6C206E20
-	.4byte 0x69732025
-	.4byte 0x640A0000
-.global lbl_8047F654
-lbl_8047F654:
-	.4byte 0x73696D75
-	.4byte 0x6C617465
-	.4byte 0x20657272
-	.4byte 0x6F720A00
-	.4byte 0x00000000
+.obj lbl_8047F630, local
+	.asciz "dynCreature.cpp"
+.endobj lbl_8047F630
+.balign 4
+.obj lbl_8047F640, local
+	.asciz "p is null n is %d\n"
+.endobj lbl_8047F640
+.balign 4
+.obj lbl_8047F654, local
+	.asciz "simulate error\n"
+.endobj lbl_8047F654
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B5218
-lbl_804B5218:
+.obj lbl_804B5218, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte "tracemoveCallback__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
-.global __vt__Q24Game11DynCreature
-__vt__Q24Game11DynCreature:
+.endobj lbl_804B5218
+.obj __vt__Q24Game11DynCreature, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game11DynCreatureFv
@@ -140,18 +130,18 @@ __vt__Q24Game11DynCreature:
 	.4byte getCreatureName__Q24Game8CreatureFv
 	.4byte getCreatureID__Q24Game8CreatureFv
 	.4byte onSetPosition__Q24Game11DynCreatureFv
-.global "__vt__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>"
-"__vt__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>":
+.endobj __vt__Q24Game11DynCreature
+.obj "__vt__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>FR10Vector3<f>R10Vector3<f>"
-.global "__vt__39IDelegate2<R10Vector3<f>,R10Vector3<f>>"
-"__vt__39IDelegate2<R10Vector3<f>,R10Vector3<f>>":
+.endobj "__vt__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>"
+.obj "__vt__39IDelegate2<R10Vector3<f>,R10Vector3<f>>", weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q24Game14DynParticleMgr
-__vt__Q24Game14DynParticleMgr:
+.endobj "__vt__39IDelegate2<R10Vector3<f>,R10Vector3<f>>"
+.obj __vt__Q24Game14DynParticleMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game14DynParticleMgrFv
@@ -187,8 +177,8 @@ __vt__Q24Game14DynParticleMgr:
 	.4byte resetMgr__Q24Game14DynParticleMgrFv
 	.4byte "clearMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 	.4byte "onAlloc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-.global "__vt__31Container<Q24Game11DynParticle>"
-"__vt__31Container<Q24Game11DynParticle>":
+.endobj __vt__Q24Game14DynParticleMgr
+.obj "__vt__31Container<Q24Game11DynParticle>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__31Container<Q24Game11DynParticle>Fv"
@@ -200,8 +190,8 @@ __vt__Q24Game14DynParticleMgr:
 	.4byte 0
 	.4byte "getAt__31Container<Q24Game11DynParticle>Fi"
 	.4byte "getTo__31Container<Q24Game11DynParticle>Fv"
-.global "__vt__31ObjectMgr<Q24Game11DynParticle>"
-"__vt__31ObjectMgr<Q24Game11DynParticle>":
+.endobj "__vt__31Container<Q24Game11DynParticle>"
+.obj "__vt__31ObjectMgr<Q24Game11DynParticle>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__31ObjectMgr<Q24Game11DynParticle>Fv"
@@ -233,8 +223,8 @@ __vt__Q24Game14DynParticleMgr:
 	.4byte "doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv"
 	.4byte "doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff"
 	.4byte "doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics"
-.global "__vt__35MonoObjectMgr<Q24Game11DynParticle>"
-"__vt__35MonoObjectMgr<Q24Game11DynParticle>":
+.endobj "__vt__31ObjectMgr<Q24Game11DynParticle>"
+.obj "__vt__35MonoObjectMgr<Q24Game11DynParticle>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__35MonoObjectMgr<Q24Game11DynParticle>Fv"
@@ -270,8 +260,8 @@ __vt__Q24Game14DynParticleMgr:
 	.4byte "resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 	.4byte "clearMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 	.4byte "onAlloc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-.global __vt__Q24Game11DynParticle
-__vt__Q24Game11DynParticle:
+.endobj "__vt__35MonoObjectMgr<Q24Game11DynParticle>"
+.obj __vt__Q24Game11DynParticle, weak
 	.4byte 0
 	.4byte 0
 	.4byte constructor__Q24Game11DynParticleFv
@@ -281,50 +271,49 @@ __vt__Q24Game11DynParticle:
 	.4byte doViewCalc__Q24Game11DynParticleFv
 	.4byte doSimulation__Q24Game11DynParticleFf
 	.4byte doDirectDraw__Q24Game11DynParticleFR8Graphics
-.global "__vt__30Iterator<Q24Game11DynParticle>"
-"__vt__30Iterator<Q24Game11DynParticle>":
+.endobj __vt__Q24Game11DynParticle
+.obj "__vt__30Iterator<Q24Game11DynParticle>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__30Iterator<Q24Game11DynParticle>Fv"
 	.4byte "next__30Iterator<Q24Game11DynParticle>Fv"
 	.4byte "isDone__30Iterator<Q24Game11DynParticle>Fv"
 	.4byte "__ml__30Iterator<Q24Game11DynParticle>Fv"
-	.4byte 0
+.endobj "__vt__30Iterator<Q24Game11DynParticle>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global dynParticleMgr__4Game
-dynParticleMgr__4Game:
-	.skip 0x8
+.obj dynParticleMgr__4Game, global
+	.skip 0x4
+.endobj dynParticleMgr__4Game
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519238
-lbl_80519238:
-	.4byte 0x00000000
-.global lbl_8051923C
-lbl_8051923C:
+.obj lbl_80519238, local
+	.float 0.0
+.endobj lbl_80519238
+.obj lbl_8051923C, local
 	.float 1.0
-.global lbl_80519240
-lbl_80519240:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_80519248
-lbl_80519248:
-	.4byte 0xC7FA0000
-.global lbl_8051924C
-lbl_8051924C:
-	.4byte 0x47FA0000
-.global lbl_80519250
-lbl_80519250:
-	.4byte 0x42480000
-.global lbl_80519254
-lbl_80519254:
-	.4byte 0x3F19999A
+.endobj lbl_8051923C
+.balign 8
+.obj lbl_80519240, local
+	.8byte 0x4330000080000000
+.endobj lbl_80519240
+.obj lbl_80519248, local
+	.float -128000.0
+.endobj lbl_80519248
+.obj lbl_8051924C, local
+	.float 128000.0
+.endobj lbl_8051924C
+.obj lbl_80519250, local
+	.float 50.0
+.endobj lbl_80519250
+.obj lbl_80519254, local
+	.float 0.6
+.endobj lbl_80519254
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game14DynParticleMgrFi
-__ct__Q24Game14DynParticleMgrFi:
+.fn __ct__Q24Game14DynParticleMgrFi, global
 /* 801A7F3C 001A4E7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A7F40 001A4E80  7C 08 02 A6 */	mflr r0
 /* 801A7F44 001A4E84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -348,9 +337,9 @@ __ct__Q24Game14DynParticleMgrFi:
 /* 801A7F8C 001A4ECC  7C 08 03 A6 */	mtlr r0
 /* 801A7F90 001A4ED0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A7F94 001A4ED4  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game14DynParticleMgrFi
 
-.global "__dt__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"__dt__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "__dt__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A7F98 001A4ED8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A7F9C 001A4EDC  7C 08 02 A6 */	mflr r0
 /* 801A7FA0 001A4EE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -393,9 +382,9 @@ __ct__Q24Game14DynParticleMgrFi:
 /* 801A802C 001A4F6C  7C 08 03 A6 */	mtlr r0
 /* 801A8030 001A4F70  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A8034 001A4F74  4E 80 00 20 */	blr 
+.endfn "__dt__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global resetMgr__Q24Game14DynParticleMgrFv
-resetMgr__Q24Game14DynParticleMgrFv:
+.fn resetMgr__Q24Game14DynParticleMgrFv, global
 /* 801A8038 001A4F78  38 C0 00 00 */	li r6, 0
 /* 801A803C 001A4F7C  38 A0 00 01 */	li r5, 1
 /* 801A8040 001A4F80  48 00 00 10 */	b .L_801A8050
@@ -410,9 +399,9 @@ resetMgr__Q24Game14DynParticleMgrFv:
 /* 801A805C 001A4F9C  38 00 00 00 */	li r0, 0
 /* 801A8060 001A4FA0  90 03 00 20 */	stw r0, 0x20(r3)
 /* 801A8064 001A4FA4  4E 80 00 20 */	blr 
+.endfn resetMgr__Q24Game14DynParticleMgrFv
 
-.global getAt__Q24Game11DynParticleFi
-getAt__Q24Game11DynParticleFi:
+.fn getAt__Q24Game11DynParticleFi, global
 /* 801A8068 001A4FA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A806C 001A4FAC  7C 08 02 A6 */	mflr r0
 /* 801A8070 001A4FB0  3C C0 80 48 */	lis r6, lbl_8047F630@ha
@@ -446,9 +435,9 @@ getAt__Q24Game11DynParticleFi:
 /* 801A80D4 001A5014  7C 08 03 A6 */	mtlr r0
 /* 801A80D8 001A5018  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A80DC 001A501C  4E 80 00 20 */	blr 
+.endfn getAt__Q24Game11DynParticleFi
 
-.global __ct__Q24Game11DynCreatureFv
-__ct__Q24Game11DynCreatureFv:
+.fn __ct__Q24Game11DynCreatureFv, global
 /* 801A80E0 001A5020  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A80E4 001A5024  7C 08 02 A6 */	mflr r0
 /* 801A80E8 001A5028  90 01 00 14 */	stw r0, 0x14(r1)
@@ -478,9 +467,9 @@ __ct__Q24Game11DynCreatureFv:
 /* 801A8148 001A5088  7C 08 03 A6 */	mtlr r0
 /* 801A814C 001A508C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A8150 001A5090  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11DynCreatureFv
 
-.global createParticles__Q24Game11DynCreatureFi
-createParticles__Q24Game11DynCreatureFi:
+.fn createParticles__Q24Game11DynCreatureFi, global
 /* 801A8154 001A5094  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A8158 001A5098  7C 08 02 A6 */	mflr r0
 /* 801A815C 001A509C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -531,9 +520,9 @@ createParticles__Q24Game11DynCreatureFi:
 /* 801A81F8 001A5138  7C 08 03 A6 */	mtlr r0
 /* 801A81FC 001A513C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A8200 001A5140  4E 80 00 20 */	blr 
+.endfn createParticles__Q24Game11DynCreatureFi
 
-.global releaseParticles__Q24Game11DynCreatureFv
-releaseParticles__Q24Game11DynCreatureFv:
+.fn releaseParticles__Q24Game11DynCreatureFv, global
 /* 801A8204 001A5144  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A8208 001A5148  7C 08 02 A6 */	mflr r0
 /* 801A820C 001A514C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -566,9 +555,9 @@ releaseParticles__Q24Game11DynCreatureFv:
 /* 801A826C 001A51AC  7C 08 03 A6 */	mtlr r0
 /* 801A8270 001A51B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A8274 001A51B4  4E 80 00 20 */	blr 
+.endfn releaseParticles__Q24Game11DynCreatureFv
 
-.global updateParticlePositions__Q24Game11DynCreatureFv
-updateParticlePositions__Q24Game11DynCreatureFv:
+.fn updateParticlePositions__Q24Game11DynCreatureFv, global
 /* 801A8278 001A51B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A827C 001A51BC  7C 08 02 A6 */	mflr r0
 /* 801A8280 001A51C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -598,9 +587,9 @@ updateParticlePositions__Q24Game11DynCreatureFv:
 /* 801A82D8 001A5218  7C 08 03 A6 */	mtlr r0
 /* 801A82DC 001A521C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A82E0 001A5220  4E 80 00 20 */	blr 
+.endfn updateParticlePositions__Q24Game11DynCreatureFv
 
-.global computeForces__Q24Game11DynCreatureFf
-computeForces__Q24Game11DynCreatureFf:
+.fn computeForces__Q24Game11DynCreatureFf, global
 /* 801A82E4 001A5224  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A82E8 001A5228  80 CD 92 68 */	lwz r6, mInstance__13DynamicsParms@sda21(r13)
 /* 801A82EC 001A522C  88 06 00 3C */	lbz r0, 0x3c(r6)
@@ -943,9 +932,9 @@ computeForces__Q24Game11DynCreatureFf:
 .L_801A87D0:
 /* 801A87D0 001A5710  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A87D4 001A5714  4E 80 00 20 */	blr 
+.endfn computeForces__Q24Game11DynCreatureFf
 
-.global "tracemoveCallback__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
-"tracemoveCallback__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>":
+.fn "tracemoveCallback__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>", global
 /* 801A87D8 001A5718  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A87DC 001A571C  7C 08 02 A6 */	mflr r0
 /* 801A87E0 001A5720  90 01 00 14 */	stw r0, 0x14(r1)
@@ -993,9 +982,9 @@ computeForces__Q24Game11DynCreatureFf:
 /* 801A8880 001A57C0  7C 08 03 A6 */	mtlr r0
 /* 801A8884 001A57C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A8888 001A57C8  4E 80 00 20 */	blr 
+.endfn "tracemoveCallback__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
 
-.global simulate__Q24Game11DynCreatureFf
-simulate__Q24Game11DynCreatureFf:
+.fn simulate__Q24Game11DynCreatureFf, global
 /* 801A888C 001A57CC  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 801A8890 001A57D0  7C 08 02 A6 */	mflr r0
 /* 801A8894 001A57D4  90 01 01 94 */	stw r0, 0x194(r1)
@@ -1324,9 +1313,9 @@ simulate__Q24Game11DynCreatureFf:
 /* 801A8D28 001A5C68  7C 08 03 A6 */	mtlr r0
 /* 801A8D2C 001A5C6C  38 21 01 90 */	addi r1, r1, 0x190
 /* 801A8D30 001A5C70  4E 80 00 20 */	blr 
+.endfn simulate__Q24Game11DynCreatureFf
 
-.global getPosition__Q24Game11DynCreatureFv
-getPosition__Q24Game11DynCreatureFv:
+.fn getPosition__Q24Game11DynCreatureFv, global
 /* 801A8D34 001A5C74  C0 04 01 B0 */	lfs f0, 0x1b0(r4)
 /* 801A8D38 001A5C78  D0 03 00 00 */	stfs f0, 0(r3)
 /* 801A8D3C 001A5C7C  C0 04 01 B4 */	lfs f0, 0x1b4(r4)
@@ -1334,9 +1323,9 @@ getPosition__Q24Game11DynCreatureFv:
 /* 801A8D44 001A5C84  C0 04 01 B8 */	lfs f0, 0x1b8(r4)
 /* 801A8D48 001A5C88  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801A8D4C 001A5C8C  4E 80 00 20 */	blr 
+.endfn getPosition__Q24Game11DynCreatureFv
 
-.global "onSetPosition__Q24Game11DynCreatureFR10Vector3<f>"
-"onSetPosition__Q24Game11DynCreatureFR10Vector3<f>":
+.fn "onSetPosition__Q24Game11DynCreatureFR10Vector3<f>", global
 /* 801A8D50 001A5C90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A8D54 001A5C94  7C 08 02 A6 */	mflr r0
 /* 801A8D58 001A5C98  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
@@ -1380,13 +1369,13 @@ getPosition__Q24Game11DynCreatureFv:
 /* 801A8DF0 001A5D30  7C 08 03 A6 */	mtlr r0
 /* 801A8DF4 001A5D34  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A8DF8 001A5D38  4E 80 00 20 */	blr 
+.endfn "onSetPosition__Q24Game11DynCreatureFR10Vector3<f>"
 
-.global onSetPosition__Q24Game11DynCreatureFv
-onSetPosition__Q24Game11DynCreatureFv:
+.fn onSetPosition__Q24Game11DynCreatureFv, weak
 /* 801A8DFC 001A5D3C  4E 80 00 20 */	blr 
+.endfn onSetPosition__Q24Game11DynCreatureFv
 
-.global getVelocity__Q24Game11DynCreatureFv
-getVelocity__Q24Game11DynCreatureFv:
+.fn getVelocity__Q24Game11DynCreatureFv, global
 /* 801A8E00 001A5D40  C0 04 01 BC */	lfs f0, 0x1bc(r4)
 /* 801A8E04 001A5D44  D0 03 00 00 */	stfs f0, 0(r3)
 /* 801A8E08 001A5D48  C0 04 01 C0 */	lfs f0, 0x1c0(r4)
@@ -1394,9 +1383,9 @@ getVelocity__Q24Game11DynCreatureFv:
 /* 801A8E10 001A5D50  C0 04 01 C4 */	lfs f0, 0x1c4(r4)
 /* 801A8E14 001A5D54  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801A8E18 001A5D58  4E 80 00 20 */	blr 
+.endfn getVelocity__Q24Game11DynCreatureFv
 
-.global "setVelocity__Q24Game11DynCreatureFR10Vector3<f>"
-"setVelocity__Q24Game11DynCreatureFR10Vector3<f>":
+.fn "setVelocity__Q24Game11DynCreatureFR10Vector3<f>", global
 /* 801A8E1C 001A5D5C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 801A8E20 001A5D60  D0 03 01 BC */	stfs f0, 0x1bc(r3)
 /* 801A8E24 001A5D64  C0 04 00 04 */	lfs f0, 4(r4)
@@ -1404,9 +1393,9 @@ getVelocity__Q24Game11DynCreatureFv:
 /* 801A8E2C 001A5D6C  C0 04 00 08 */	lfs f0, 8(r4)
 /* 801A8E30 001A5D70  D0 03 01 C4 */	stfs f0, 0x1c4(r3)
 /* 801A8E34 001A5D74  4E 80 00 20 */	blr 
+.endfn "setVelocity__Q24Game11DynCreatureFR10Vector3<f>"
 
-.global "getVelocityAt__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
-"getVelocityAt__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>":
+.fn "getVelocityAt__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>", global
 /* 801A8E38 001A5D78  C0 03 01 BC */	lfs f0, 0x1bc(r3)
 /* 801A8E3C 001A5D7C  D0 05 00 00 */	stfs f0, 0(r5)
 /* 801A8E40 001A5D80  C0 03 01 C0 */	lfs f0, 0x1c0(r3)
@@ -1441,14 +1430,14 @@ getVelocity__Q24Game11DynCreatureFv:
 /* 801A8EB4 001A5DF4  D0 45 00 04 */	stfs f2, 4(r5)
 /* 801A8EB8 001A5DF8  D0 05 00 08 */	stfs f0, 8(r5)
 /* 801A8EBC 001A5DFC  4E 80 00 20 */	blr 
+.endfn "getVelocityAt__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
 
-.global "getAngularEffect__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
-"getAngularEffect__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>":
+.fn "getAngularEffect__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>", global
 /* 801A8EC0 001A5E00  C0 22 AE D8 */	lfs f1, lbl_80519238@sda21(r2)
 /* 801A8EC4 001A5E04  4E 80 00 20 */	blr 
+.endfn "getAngularEffect__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
 
-.global "applyImpulse__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
-"applyImpulse__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>":
+.fn "applyImpulse__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>", global
 /* 801A8EC8 001A5E08  C0 C3 01 18 */	lfs f6, 0x118(r3)
 /* 801A8ECC 001A5E0C  C0 05 00 00 */	lfs f0, 0(r5)
 /* 801A8ED0 001A5E10  C0 45 00 04 */	lfs f2, 4(r5)
@@ -1466,9 +1455,9 @@ getVelocity__Q24Game11DynCreatureFv:
 /* 801A8F00 001A5E40  D0 43 01 C0 */	stfs f2, 0x1c0(r3)
 /* 801A8F04 001A5E44  D0 03 01 C4 */	stfs f0, 0x1c4(r3)
 /* 801A8F08 001A5E48  4E 80 00 20 */	blr 
+.endfn "applyImpulse__Q24Game11DynCreatureFR10Vector3<f>R10Vector3<f>"
 
-.global __dt__Q24Game14DynParticleMgrFv
-__dt__Q24Game14DynParticleMgrFv:
+.fn __dt__Q24Game14DynParticleMgrFv, weak
 /* 801A8F0C 001A5E4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A8F10 001A5E50  7C 08 02 A6 */	mflr r0
 /* 801A8F14 001A5E54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1517,9 +1506,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A8FB8 001A5EF8  7C 08 03 A6 */	mtlr r0
 /* 801A8FBC 001A5EFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A8FC0 001A5F00  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game14DynParticleMgrFv
 
-.global "__dt__31Container<Q24Game11DynParticle>Fv"
-"__dt__31Container<Q24Game11DynParticle>Fv":
+.fn "__dt__31Container<Q24Game11DynParticle>Fv", weak
 /* 801A8FC4 001A5F04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A8FC8 001A5F08  7C 08 02 A6 */	mflr r0
 /* 801A8FCC 001A5F0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1550,9 +1539,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9028 001A5F68  7C 08 03 A6 */	mtlr r0
 /* 801A902C 001A5F6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A9030 001A5F70  4E 80 00 20 */	blr 
+.endfn "__dt__31Container<Q24Game11DynParticle>Fv"
 
-.global "__dt__31ObjectMgr<Q24Game11DynParticle>Fv"
-"__dt__31ObjectMgr<Q24Game11DynParticle>Fv":
+.fn "__dt__31ObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A9034 001A5F74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A9038 001A5F78  7C 08 02 A6 */	mflr r0
 /* 801A903C 001A5F7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1589,9 +1578,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A90B0 001A5FF0  7C 08 03 A6 */	mtlr r0
 /* 801A90B4 001A5FF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A90B8 001A5FF8  4E 80 00 20 */	blr 
+.endfn "__dt__31ObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "birth__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"birth__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "birth__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A90BC 001A5FFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A90C0 001A6000  7C 08 02 A6 */	mflr r0
 /* 801A90C4 001A6004  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1618,9 +1607,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9110 001A6050  7C 08 03 A6 */	mtlr r0
 /* 801A9114 001A6054  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A9118 001A6058  4E 80 00 20 */	blr 
+.endfn "birth__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "kill__35MonoObjectMgr<Q24Game11DynParticle>FPQ24Game11DynParticle"
-"kill__35MonoObjectMgr<Q24Game11DynParticle>FPQ24Game11DynParticle":
+.fn "kill__35MonoObjectMgr<Q24Game11DynParticle>FPQ24Game11DynParticle", weak
 /* 801A911C 001A605C  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801A9120 001A6060  38 C0 00 00 */	li r6, 0
 /* 801A9124 001A6064  38 A0 00 00 */	li r5, 0
@@ -1644,9 +1633,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9164 001A60A4  38 C6 00 01 */	addi r6, r6, 1
 /* 801A9168 001A60A8  42 00 FF CC */	bdnz .L_801A9134
 /* 801A916C 001A60AC  4E 80 00 20 */	blr 
+.endfn "kill__35MonoObjectMgr<Q24Game11DynParticle>FPQ24Game11DynParticle"
 
-.global "getNext__35MonoObjectMgr<Q24Game11DynParticle>FPv"
-"getNext__35MonoObjectMgr<Q24Game11DynParticle>FPv":
+.fn "getNext__35MonoObjectMgr<Q24Game11DynParticle>FPv", weak
 /* 801A9170 001A60B0  80 A3 00 24 */	lwz r5, 0x24(r3)
 /* 801A9174 001A60B4  38 C4 00 01 */	addi r6, r4, 1
 /* 801A9178 001A60B8  7C 06 28 50 */	subf r0, r6, r5
@@ -1666,9 +1655,9 @@ __dt__Q24Game14DynParticleMgrFv:
 .L_801A91A8:
 /* 801A91A8 001A60E8  7C A3 2B 78 */	mr r3, r5
 /* 801A91AC 001A60EC  4E 80 00 20 */	blr 
+.endfn "getNext__35MonoObjectMgr<Q24Game11DynParticle>FPv"
 
-.global "getStart__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"getStart__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "getStart__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A91B0 001A60F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A91B4 001A60F4  7C 08 02 A6 */	mflr r0
 /* 801A91B8 001A60F8  38 80 FF FF */	li r4, -1
@@ -1681,26 +1670,26 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A91D4 001A6114  7C 08 03 A6 */	mtlr r0
 /* 801A91D8 001A6118  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A91DC 001A611C  4E 80 00 20 */	blr 
+.endfn "getStart__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "getEnd__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"getEnd__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "getEnd__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A91E0 001A6120  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801A91E4 001A6124  4E 80 00 20 */	blr 
+.endfn "getEnd__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "getAt__35MonoObjectMgr<Q24Game11DynParticle>Fi"
-"getAt__35MonoObjectMgr<Q24Game11DynParticle>Fi":
+.fn "getAt__35MonoObjectMgr<Q24Game11DynParticle>Fi", weak
 /* 801A91E8 001A6128  1C 04 00 34 */	mulli r0, r4, 0x34
 /* 801A91EC 001A612C  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801A91F0 001A6130  7C 63 02 14 */	add r3, r3, r0
 /* 801A91F4 001A6134  4E 80 00 20 */	blr 
+.endfn "getAt__35MonoObjectMgr<Q24Game11DynParticle>Fi"
 
-.global "getTo__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"getTo__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "getTo__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A91F8 001A6138  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801A91FC 001A613C  4E 80 00 20 */	blr 
+.endfn "getTo__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A9200 001A6140  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9204 001A6144  7C 08 02 A6 */	mflr r0
 /* 801A9208 001A6148  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1736,9 +1725,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9274 001A61B4  7C 08 03 A6 */	mtlr r0
 /* 801A9278 001A61B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A927C 001A61BC  4E 80 00 20 */	blr 
+.endfn "doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A9280 001A61C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9284 001A61C4  7C 08 02 A6 */	mflr r0
 /* 801A9288 001A61C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1774,9 +1763,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A92F4 001A6234  7C 08 03 A6 */	mtlr r0
 /* 801A92F8 001A6238  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A92FC 001A623C  4E 80 00 20 */	blr 
+.endfn "doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi"
-"doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi":
+.fn "doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi", weak
 /* 801A9300 001A6240  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9304 001A6244  7C 08 02 A6 */	mflr r0
 /* 801A9308 001A6248  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1816,9 +1805,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9384 001A62C4  7C 08 03 A6 */	mtlr r0
 /* 801A9388 001A62C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A938C 001A62CC  4E 80 00 20 */	blr 
+.endfn "doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi"
 
-.global "doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A9390 001A62D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9394 001A62D4  7C 08 02 A6 */	mflr r0
 /* 801A9398 001A62D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1854,9 +1843,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9404 001A6344  7C 08 03 A6 */	mtlr r0
 /* 801A9408 001A6348  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A940C 001A634C  4E 80 00 20 */	blr 
+.endfn "doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff"
-"doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff":
+.fn "doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff", weak
 /* 801A9410 001A6350  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9414 001A6354  7C 08 02 A6 */	mflr r0
 /* 801A9418 001A6358  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1896,9 +1885,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9494 001A63D4  7C 08 03 A6 */	mtlr r0
 /* 801A9498 001A63D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A949C 001A63DC  4E 80 00 20 */	blr 
+.endfn "doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff"
 
-.global "doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics"
-"doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics":
+.fn "doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics", weak
 /* 801A94A0 001A63E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A94A4 001A63E4  7C 08 02 A6 */	mflr r0
 /* 801A94A8 001A63E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1938,18 +1927,18 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9524 001A6464  7C 08 03 A6 */	mtlr r0
 /* 801A9528 001A6468  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A952C 001A646C  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics"
 
-.global "resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A9530 001A6470  38 00 00 00 */	li r0, 0
 /* 801A9534 001A6474  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801A9538 001A6478  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801A953C 001A647C  90 03 00 20 */	stw r0, 0x20(r3)
 /* 801A9540 001A6480  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801A9544 001A6484  4E 80 00 20 */	blr 
+.endfn "resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "clearMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"clearMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "clearMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A9548 001A6488  38 00 00 00 */	li r0, 0
 /* 801A954C 001A648C  38 C0 00 00 */	li r6, 0
 /* 801A9550 001A6490  90 03 00 20 */	stw r0, 0x20(r3)
@@ -1964,13 +1953,13 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A956C 001A64AC  7C 06 00 00 */	cmpw r6, r0
 /* 801A9570 001A64B0  41 80 FF EC */	blt .L_801A955C
 /* 801A9574 001A64B4  4E 80 00 20 */	blr 
+.endfn "clearMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "onAlloc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"onAlloc__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "onAlloc__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A9578 001A64B8  4E 80 00 20 */	blr 
+.endfn "onAlloc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "getEmptyIndex__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"getEmptyIndex__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "getEmptyIndex__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A957C 001A64BC  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801A9580 001A64C0  38 A0 00 00 */	li r5, 0
 /* 801A9584 001A64C4  7C 09 03 A6 */	mtctr r0
@@ -1989,16 +1978,16 @@ __dt__Q24Game14DynParticleMgrFv:
 .L_801A95B0:
 /* 801A95B0 001A64F0  38 60 FF FF */	li r3, -1
 /* 801A95B4 001A64F4  4E 80 00 20 */	blr 
+.endfn "getEmptyIndex__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "get__35MonoObjectMgr<Q24Game11DynParticle>FPv"
-"get__35MonoObjectMgr<Q24Game11DynParticle>FPv":
+.fn "get__35MonoObjectMgr<Q24Game11DynParticle>FPv", weak
 /* 801A95B8 001A64F8  1C 04 00 34 */	mulli r0, r4, 0x34
 /* 801A95BC 001A64FC  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801A95C0 001A6500  7C 63 02 14 */	add r3, r3, r0
 /* 801A95C4 001A6504  4E 80 00 20 */	blr 
+.endfn "get__35MonoObjectMgr<Q24Game11DynParticle>FPv"
 
-.global "getObject__31Container<Q24Game11DynParticle>FPv"
-"getObject__31Container<Q24Game11DynParticle>FPv":
+.fn "getObject__31Container<Q24Game11DynParticle>FPv", weak
 /* 801A95C8 001A6508  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A95CC 001A650C  7C 08 02 A6 */	mflr r0
 /* 801A95D0 001A6510  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2010,19 +1999,19 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A95E8 001A6528  7C 08 03 A6 */	mtlr r0
 /* 801A95EC 001A652C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A95F0 001A6530  4E 80 00 20 */	blr 
+.endfn "getObject__31Container<Q24Game11DynParticle>FPv"
 
-.global "getAt__31Container<Q24Game11DynParticle>Fi"
-"getAt__31Container<Q24Game11DynParticle>Fi":
+.fn "getAt__31Container<Q24Game11DynParticle>Fi", weak
 /* 801A95F4 001A6534  38 60 00 00 */	li r3, 0
 /* 801A95F8 001A6538  4E 80 00 20 */	blr 
+.endfn "getAt__31Container<Q24Game11DynParticle>Fi"
 
-.global "getTo__31Container<Q24Game11DynParticle>Fv"
-"getTo__31Container<Q24Game11DynParticle>Fv":
+.fn "getTo__31Container<Q24Game11DynParticle>Fv", weak
 /* 801A95FC 001A653C  38 60 00 00 */	li r3, 0
 /* 801A9600 001A6540  4E 80 00 20 */	blr 
+.endfn "getTo__31Container<Q24Game11DynParticle>Fv"
 
-.global "invoke__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>FR10Vector3<f>R10Vector3<f>"
-"invoke__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>FR10Vector3<f>R10Vector3<f>":
+.fn "invoke__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>FR10Vector3<f>R10Vector3<f>", weak
 /* 801A9604 001A6544  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A9608 001A6548  7C 08 02 A6 */	mflr r0
 /* 801A960C 001A654C  7C 66 1B 78 */	mr r6, r3
@@ -2035,9 +2024,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9628 001A6568  7C 08 03 A6 */	mtlr r0
 /* 801A962C 001A656C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A9630 001A6570  4E 80 00 20 */	blr 
+.endfn "invoke__59Delegate2<Q24Game11DynCreature,R10Vector3<f>,R10Vector3<f>>FR10Vector3<f>R10Vector3<f>"
 
-.global "doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics"
-"doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics":
+.fn "doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics", weak
 /* 801A9634 001A6574  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9638 001A6578  7C 08 02 A6 */	mflr r0
 /* 801A963C 001A657C  3C A0 80 4B */	lis r5, "__vt__30Iterator<Q24Game11DynParticle>"@ha
@@ -2171,9 +2160,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A981C 001A675C  7C 08 03 A6 */	mtlr r0
 /* 801A9820 001A6760  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A9824 001A6764  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics"
 
-.global "isDone__30Iterator<Q24Game11DynParticle>Fv"
-"isDone__30Iterator<Q24Game11DynParticle>Fv":
+.fn "isDone__30Iterator<Q24Game11DynParticle>Fv", weak
 /* 801A9828 001A6768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A982C 001A676C  7C 08 02 A6 */	mflr r0
 /* 801A9830 001A6770  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2193,9 +2182,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9868 001A67A8  7C 08 03 A6 */	mtlr r0
 /* 801A986C 001A67AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801A9870 001A67B0  4E 80 00 20 */	blr 
+.endfn "isDone__30Iterator<Q24Game11DynParticle>Fv"
 
-.global "doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff"
-"doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff":
+.fn "doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff", weak
 /* 801A9874 001A67B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9878 001A67B8  7C 08 02 A6 */	mflr r0
 /* 801A987C 001A67BC  3C 80 80 4B */	lis r4, "__vt__30Iterator<Q24Game11DynParticle>"@ha
@@ -2329,9 +2318,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9A5C 001A699C  7C 08 03 A6 */	mtlr r0
 /* 801A9A60 001A69A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A9A64 001A69A4  4E 80 00 20 */	blr 
+.endfn "doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff"
 
-.global "doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv"
-"doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv":
+.fn "doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A9A68 001A69A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9A6C 001A69AC  7C 08 02 A6 */	mflr r0
 /* 801A9A70 001A69B0  3C 80 80 4B */	lis r4, "__vt__30Iterator<Q24Game11DynParticle>"@ha
@@ -2461,9 +2450,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9C40 001A6B80  7C 08 03 A6 */	mtlr r0
 /* 801A9C44 001A6B84  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A9C48 001A6B88  4E 80 00 20 */	blr 
+.endfn "doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "doSetView__31ObjectMgr<Q24Game11DynParticle>Fi"
-"doSetView__31ObjectMgr<Q24Game11DynParticle>Fi":
+.fn "doSetView__31ObjectMgr<Q24Game11DynParticle>Fi", weak
 /* 801A9C4C 001A6B8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9C50 001A6B90  7C 08 02 A6 */	mflr r0
 /* 801A9C54 001A6B94  3C A0 80 4B */	lis r5, "__vt__30Iterator<Q24Game11DynParticle>"@ha
@@ -2597,9 +2586,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801A9E34 001A6D74  7C 08 03 A6 */	mtlr r0
 /* 801A9E38 001A6D78  38 21 00 20 */	addi r1, r1, 0x20
 /* 801A9E3C 001A6D7C  4E 80 00 20 */	blr 
+.endfn "doSetView__31ObjectMgr<Q24Game11DynParticle>Fi"
 
-.global "doEntry__31ObjectMgr<Q24Game11DynParticle>Fv"
-"doEntry__31ObjectMgr<Q24Game11DynParticle>Fv":
+.fn "doEntry__31ObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801A9E40 001A6D80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801A9E44 001A6D84  7C 08 02 A6 */	mflr r0
 /* 801A9E48 001A6D88  3C 80 80 4B */	lis r4, "__vt__30Iterator<Q24Game11DynParticle>"@ha
@@ -2729,9 +2718,9 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801AA018 001A6F58  7C 08 03 A6 */	mtlr r0
 /* 801AA01C 001A6F5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801AA020 001A6F60  4E 80 00 20 */	blr 
+.endfn "doEntry__31ObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv"
-"doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv":
+.fn "doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801AA024 001A6F64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801AA028 001A6F68  7C 08 02 A6 */	mflr r0
 /* 801AA02C 001A6F6C  3C 80 80 4B */	lis r4, "__vt__30Iterator<Q24Game11DynParticle>"@ha
@@ -2861,33 +2850,33 @@ __dt__Q24Game14DynParticleMgrFv:
 /* 801AA1FC 001A713C  7C 08 03 A6 */	mtlr r0
 /* 801AA200 001A7140  38 21 00 20 */	addi r1, r1, 0x20
 /* 801AA204 001A7144  4E 80 00 20 */	blr 
+.endfn "doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv"
 
-.global doDirectDraw__Q24Game11DynParticleFR8Graphics
-doDirectDraw__Q24Game11DynParticleFR8Graphics:
+.fn doDirectDraw__Q24Game11DynParticleFR8Graphics, weak
 /* 801AA208 001A7148  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game11DynParticleFR8Graphics
 
-.global doSimulation__Q24Game11DynParticleFf
-doSimulation__Q24Game11DynParticleFf:
+.fn doSimulation__Q24Game11DynParticleFf, weak
 /* 801AA20C 001A714C  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game11DynParticleFf
 
-.global doViewCalc__Q24Game11DynParticleFv
-doViewCalc__Q24Game11DynParticleFv:
+.fn doViewCalc__Q24Game11DynParticleFv, weak
 /* 801AA210 001A7150  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game11DynParticleFv
 
-.global doSetView__Q24Game11DynParticleFUl
-doSetView__Q24Game11DynParticleFUl:
+.fn doSetView__Q24Game11DynParticleFUl, weak
 /* 801AA214 001A7154  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game11DynParticleFUl
 
-.global doEntry__Q24Game11DynParticleFv
-doEntry__Q24Game11DynParticleFv:
+.fn doEntry__Q24Game11DynParticleFv, weak
 /* 801AA218 001A7158  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game11DynParticleFv
 
-.global doAnimation__Q24Game11DynParticleFv
-doAnimation__Q24Game11DynParticleFv:
+.fn doAnimation__Q24Game11DynParticleFv, weak
 /* 801AA21C 001A715C  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game11DynParticleFv
 
-.global "alloc__35MonoObjectMgr<Q24Game11DynParticle>Fi"
-"alloc__35MonoObjectMgr<Q24Game11DynParticle>Fi":
+.fn "alloc__35MonoObjectMgr<Q24Game11DynParticle>Fi", weak
 /* 801AA220 001A7160  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801AA224 001A7164  7C 08 02 A6 */	mflr r0
 /* 801AA228 001A7168  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2992,13 +2981,13 @@ doAnimation__Q24Game11DynParticleFv:
 /* 801AA39C 001A72DC  7C 08 03 A6 */	mtlr r0
 /* 801AA3A0 001A72E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801AA3A4 001A72E4  4E 80 00 20 */	blr 
+.endfn "alloc__35MonoObjectMgr<Q24Game11DynParticle>Fi"
 
-.global constructor__Q24Game11DynParticleFv
-constructor__Q24Game11DynParticleFv:
+.fn constructor__Q24Game11DynParticleFv, weak
 /* 801AA3A8 001A72E8  4E 80 00 20 */	blr 
+.endfn constructor__Q24Game11DynParticleFv
 
-.global __ct__Q24Game11DynParticleFv
-__ct__Q24Game11DynParticleFv:
+.fn __ct__Q24Game11DynParticleFv, weak
 /* 801AA3AC 001A72EC  3C 80 80 4B */	lis r4, __vt__Q24Game11DynParticle@ha
 /* 801AA3B0 001A72F0  C0 22 AE DC */	lfs f1, lbl_8051923C@sda21(r2)
 /* 801AA3B4 001A72F4  38 84 55 B0 */	addi r4, r4, __vt__Q24Game11DynParticle@l
@@ -3012,9 +3001,9 @@ __ct__Q24Game11DynParticleFv:
 /* 801AA3D4 001A7314  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 801AA3D8 001A7318  D0 03 00 28 */	stfs f0, 0x28(r3)
 /* 801AA3DC 001A731C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11DynParticleFv
 
-.global "__ct__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"__ct__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "__ct__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801AA3E0 001A7320  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA3E4 001A7324  7C 08 02 A6 */	mflr r0
 /* 801AA3E8 001A7328  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3054,9 +3043,9 @@ __ct__Q24Game11DynParticleFv:
 /* 801AA470 001A73B0  7C 08 03 A6 */	mtlr r0
 /* 801AA474 001A73B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AA478 001A73B8  4E 80 00 20 */	blr 
+.endfn "__ct__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "__ml__30Iterator<Q24Game11DynParticle>Fv"
-"__ml__30Iterator<Q24Game11DynParticle>Fv":
+.fn "__ml__30Iterator<Q24Game11DynParticle>Fv", weak
 /* 801AA47C 001A73BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA480 001A73C0  7C 08 02 A6 */	mflr r0
 /* 801AA484 001A73C4  7C 64 1B 78 */	mr r4, r3
@@ -3071,9 +3060,9 @@ __ct__Q24Game11DynParticleFv:
 /* 801AA4A8 001A73E8  7C 08 03 A6 */	mtlr r0
 /* 801AA4AC 001A73EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AA4B0 001A73F0  4E 80 00 20 */	blr 
+.endfn "__ml__30Iterator<Q24Game11DynParticle>Fv"
 
-.global "next__30Iterator<Q24Game11DynParticle>Fv"
-"next__30Iterator<Q24Game11DynParticle>Fv":
+.fn "next__30Iterator<Q24Game11DynParticle>Fv", weak
 /* 801AA4B4 001A73F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA4B8 001A73F8  7C 08 02 A6 */	mflr r0
 /* 801AA4BC 001A73FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3135,9 +3124,9 @@ __ct__Q24Game11DynParticleFv:
 /* 801AA58C 001A74CC  7C 08 03 A6 */	mtlr r0
 /* 801AA590 001A74D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AA594 001A74D4  4E 80 00 20 */	blr 
+.endfn "next__30Iterator<Q24Game11DynParticle>Fv"
 
-.global "first__30Iterator<Q24Game11DynParticle>Fv"
-"first__30Iterator<Q24Game11DynParticle>Fv":
+.fn "first__30Iterator<Q24Game11DynParticle>Fv", weak
 /* 801AA598 001A74D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA59C 001A74DC  7C 08 02 A6 */	mflr r0
 /* 801AA5A0 001A74E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3197,73 +3186,74 @@ __ct__Q24Game11DynParticleFv:
 /* 801AA668 001A75A8  7C 08 03 A6 */	mtlr r0
 /* 801AA66C 001A75AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AA670 001A75B0  4E 80 00 20 */	blr 
+.endfn "first__30Iterator<Q24Game11DynParticle>Fv"
 
-.global "@28@resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"@28@resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "@28@resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801AA674 001A75B4  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA678 001A75B8  4B FF EE B8 */	b "resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+.endfn "@28@resetMgr__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "@28@doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics"
-"@28@doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics":
+.fn "@28@doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics", weak
 /* 801AA67C 001A75BC  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA680 001A75C0  4B FF EF B4 */	b "doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics"
+.endfn "@28@doDirectDraw__31ObjectMgr<Q24Game11DynParticle>FR8Graphics"
 
-.global "@28@doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff"
-"@28@doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff":
+.fn "@28@doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff", weak
 /* 801AA684 001A75C4  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA688 001A75C8  4B FF F1 EC */	b "doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff"
+.endfn "@28@doSimulation__31ObjectMgr<Q24Game11DynParticle>Ff"
 
-.global "@28@doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv"
-"@28@doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv":
+.fn "@28@doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801AA68C 001A75CC  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA690 001A75D0  4B FF F3 D8 */	b "doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv"
+.endfn "@28@doViewCalc__31ObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "@28@doSetView__31ObjectMgr<Q24Game11DynParticle>Fi"
-"@28@doSetView__31ObjectMgr<Q24Game11DynParticle>Fi":
+.fn "@28@doSetView__31ObjectMgr<Q24Game11DynParticle>Fi", weak
 /* 801AA694 001A75D4  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA698 001A75D8  4B FF F5 B4 */	b "doSetView__31ObjectMgr<Q24Game11DynParticle>Fi"
+.endfn "@28@doSetView__31ObjectMgr<Q24Game11DynParticle>Fi"
 
-.global "@28@doEntry__31ObjectMgr<Q24Game11DynParticle>Fv"
-"@28@doEntry__31ObjectMgr<Q24Game11DynParticle>Fv":
+.fn "@28@doEntry__31ObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801AA69C 001A75DC  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA6A0 001A75E0  4B FF F7 A0 */	b "doEntry__31ObjectMgr<Q24Game11DynParticle>Fv"
+.endfn "@28@doEntry__31ObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "@28@doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv"
-"@28@doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv":
+.fn "@28@doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801AA6A4 001A75E4  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA6A8 001A75E8  4B FF F9 7C */	b "doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv"
+.endfn "@28@doAnimation__31ObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "@28@resetMgr__Q24Game14DynParticleMgrFv"
-"@28@resetMgr__Q24Game14DynParticleMgrFv":
+.fn "@28@resetMgr__Q24Game14DynParticleMgrFv", weak
 /* 801AA6AC 001A75EC  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA6B0 001A75F0  4B FF D9 88 */	b resetMgr__Q24Game14DynParticleMgrFv
+.endfn "@28@resetMgr__Q24Game14DynParticleMgrFv"
 
-.global "@28@doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics"
-"@28@doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics":
+.fn "@28@doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics", weak
 /* 801AA6B4 001A75F4  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA6B8 001A75F8  4B FF ED E8 */	b "doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics"
+.endfn "@28@doDirectDraw__35MonoObjectMgr<Q24Game11DynParticle>FR8Graphics"
 
-.global "@28@doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff"
-"@28@doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff":
+.fn "@28@doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff", weak
 /* 801AA6BC 001A75FC  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA6C0 001A7600  4B FF ED 50 */	b "doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff"
+.endfn "@28@doSimulation__35MonoObjectMgr<Q24Game11DynParticle>Ff"
 
-.global "@28@doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"@28@doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "@28@doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801AA6C4 001A7604  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA6C8 001A7608  4B FF EC C8 */	b "doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+.endfn "@28@doViewCalc__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "@28@doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi"
-"@28@doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi":
+.fn "@28@doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi", weak
 /* 801AA6CC 001A760C  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA6D0 001A7610  4B FF EC 30 */	b "doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi"
+.endfn "@28@doSetView__35MonoObjectMgr<Q24Game11DynParticle>Fi"
 
-.global "@28@doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"@28@doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "@28@doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801AA6D4 001A7614  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA6D8 001A7618  4B FF EB A8 */	b "doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+.endfn "@28@doEntry__35MonoObjectMgr<Q24Game11DynParticle>Fv"
 
-.global "@28@doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv"
-"@28@doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv":
+.fn "@28@doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv", weak
 /* 801AA6DC 001A761C  38 63 FF E4 */	addi r3, r3, -28
 /* 801AA6E0 001A7620  4B FF EB 20 */	b "doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv"
+.endfn "@28@doAnimation__35MonoObjectMgr<Q24Game11DynParticle>Fv"
