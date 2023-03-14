@@ -77,11 +77,11 @@ void FSMStateExpansion::exec(DrawInfo* drawInfo)
 			efx::ArgScale argScale(pos, scale);
 
 			switch (drawInfo->mObjInfo->mSize) {
-			case 0:
+			case ENEMYSTONE_FX_SIZE_LARGE:
 				efx::TSekikaLOn stoneFXL;
 				stoneFXL.create(&argScale);
 				break;
-			case 1:
+			case ENEMYSTONE_FX_SIZE_SMALL:
 				efx::TSekikaSOn stoneFXS;
 				stoneFXS.create(&argScale);
 				break;
@@ -254,7 +254,7 @@ void FSMStateShake::exec(DrawInfo* drawInfo)
 			return;
 		}
 
-		PSSystem::getSeMgrInstance()->_04[3]->startSound(DrawInfo::sOwnerEnemy->mSoundObj, PSSE_EN_DOPING_ROCK_FLICK, 0);
+		PSSystem::getSeMgrInstance()->mSetSeList[3]->startSound(DrawInfo::sOwnerEnemy->mSoundObj, PSSE_EN_DOPING_ROCK_FLICK, 0);
 		break;
 	case 4:
 		intRatio = (int)(ratio * 100.0f);
@@ -262,7 +262,7 @@ void FSMStateShake::exec(DrawInfo* drawInfo)
 			return;
 		}
 
-		PSSystem::getSeMgrInstance()->_04[3]->startSound(DrawInfo::sOwnerEnemy->mSoundObj, PSSE_EN_DOPING_FLICK_LAST, 0);
+		PSSystem::getSeMgrInstance()->mSetSeList[3]->startSound(DrawInfo::sOwnerEnemy->mSoundObj, PSSE_EN_DOPING_FLICK_LAST, 0);
 		break;
 	}
 }
@@ -579,13 +579,13 @@ void FSMStateDisappear::init(DrawInfo* drawInfo, StateArg* stateArg)
 		efx::ArgScale scaleArg(pos, scale);
 
 		switch (drawInfo->mObjInfo->mSize) {
-		case 0: {
+		case ENEMYSTONE_FX_SIZE_LARGE: {
 			efx::TSekikaLOff fxOff;
 			fxOff.create(&scaleArg);
 			break;
 		}
 
-		case 1: {
+		case ENEMYSTONE_FX_SIZE_SMALL: {
 			efx::TSekikaSOff fxOff;
 			fxOff.create(&scaleArg);
 			break;
@@ -629,13 +629,13 @@ void FSMStateDead::init(DrawInfo* drawInfo, StateArg* stateArg)
 		efx::ArgScale scaleArg(pos, scale);
 
 		switch (drawInfo->mObjInfo->mSize) {
-		case 0: {
+		case ENEMYSTONE_FX_SIZE_LARGE: {
 			efx::TSekikaLOff fxOff;
 			fxOff.create(&scaleArg);
 			break;
 		}
 
-		case 1: {
+		case ENEMYSTONE_FX_SIZE_SMALL: {
 			efx::TSekikaSOff fxOff;
 			fxOff.create(&scaleArg);
 			break;

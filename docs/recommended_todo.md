@@ -171,7 +171,7 @@
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/singleGS_ZukanParms.cpp">singleGS_ZukanParms.cpp</a> | 21445 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneDrawInfo.cpp">enemyStoneDrawInfo.cpp</a> | 21787 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/singleGS_ZukanParms.cpp">singleGS_ZukanParms.cpp</a> | 21445 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneDrawInfo.cpp">enemyStoneDrawInfo.cpp</a> | 21939 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 25420 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 35497 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">carryInfoMgr.cpp</a> | 47646 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/generalEnemyMgr.cpp">generalEnemyMgr.cpp</a> | 56000 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 58847 |
