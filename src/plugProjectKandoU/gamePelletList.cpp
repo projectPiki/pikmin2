@@ -1,136 +1,20 @@
 #include "Dolphin/stl.h"
 #include "Game/pelletConfig.h"
 #include "Game/GameConfig.h"
+#include "Game/PelletList.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "System.h"
 #include "stream.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game10PelletList3Mgr
-    __vt__Q34Game10PelletList3Mgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game10PelletList3MgrFv
-        .4byte 0
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483320
-    lbl_80483320:
-        .asciz "gamePelletList"
-        .skip 1
-    .global lbl_80483330
-    lbl_80483330:
-        .asciz "gamePelletList.cpp"
-        .skip 1
-    .global lbl_80483344
-    lbl_80483344:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80483350
-    lbl_80483350:
-        .asciz "numberpellet_config.txt"
-    .global lbl_80483368
-    lbl_80483368:
-        .asciz "carcass_config.txt"
-        .skip 1
-    .global lbl_8048337C
-    lbl_8048337C:
-        .asciz "fruit_config.txt"
-        .skip 3
-    .global lbl_80483390
-    lbl_80483390:
-        .asciz "otakara_config.txt"
-        .skip 1
-    .global lbl_804833A4
-    lbl_804833A4:
-        .asciz "itemConfig.txt"
-        .4byte lbl_80483350
-        .4byte lbl_80483368
-        .4byte lbl_8048337C
-        .4byte lbl_80483390
-        .4byte lbl_804833A4
-        .asciz "/user/Abe/Pellet/%s/pelletlist_%s.szs"
-        .skip 2
-        .asciz "don't use this !\n"
-        .skip 2
-        .asciz "/user/Kando/pelletlist.szs"
-        .skip 1
-        .asciz "no pelletlist.szs\n"
-        .skip 1
-        .asciz "no config file [%s]\n"
-        .skip 3
-    .global lbl_8048344C
-    lbl_8048344C:
-        .asciz "dictNo:%d \n"
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mInstance__Q34Game10PelletList3Mgr
-    mInstance__Q34Game10PelletList3Mgr:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A248
-    lbl_8051A248:
-        .asciz "jpn"
-    .global lbl_8051A24C
-    lbl_8051A24C:
-        .asciz "us"
-        .skip 1
-*/
+static const char unusedPelletListName[] = "gamePelletList";
 
 namespace Game {
-struct PelletList {
-	enum cKind {
-		NUMBER_PELLET = 0,
-		CARCASS,
-		FRUIT,
-		OTAKARA,
-		ITEM,
-		SIZE,
-
-		// Force the compiler to use an int to represent the enum
-		DONT_USE_1 = -1,
-		DONT_USE_2 = 0xFFFFFFFF,
-	};
-
-	struct Mgr {
-		static PelletConfigList* getConfigList(cKind);
-		static s32 getCount(cKind);
-
-		static PelletConfig* getConfigAndKind(char* config, cKind& kind);
-		static void globalInstance();
-		void loadResource();
-		int getDictionaryNum();
-		PelletConfig* getConfigFromDictionaryNo(int);
-		int getOffsetFromDictionaryNo(int);
-
-		inline Mgr()
-		{
-			mConfigList = new PelletConfigList[5];
-			loadResource();
-		}
-		virtual ~Mgr();
-
-		PelletConfigList* mConfigList; // _04
-
-		static Mgr* mInstance;
-	};
-};
-
-#define DICT_OTAKARA mInstance->mConfigList[ITEM].mConfigCnt + mInstance->mConfigList[OTAKARA].mConfigCnt
 
 PelletList::Mgr* PelletList::Mgr::mInstance;
 
-inline void checkKindValidity(PelletList::cKind kind)
-{
-	bool isValid = ((s32)kind) >= 0 && ((s32)kind) < 5;
-	P2ASSERTLINE(16, isValid);
-}
+static int gLoadedPelletData;
 
 /*
  * --INFO--
@@ -139,7 +23,8 @@ inline void checkKindValidity(PelletList::cKind kind)
  */
 PelletConfigList* PelletList::Mgr::getConfigList(PelletList::cKind kind)
 {
-	checkKindValidity(kind);
+	bool isValid = (kind) >= 0 && (kind) < 5;
+	P2ASSERTLINE(16, isValid);
 	return &PelletList::Mgr::mInstance->mConfigList[kind];
 }
 
@@ -148,13 +33,7 @@ PelletConfigList* PelletList::Mgr::getConfigList(PelletList::cKind kind)
  * Address:	80227DCC
  * Size:	000074
  */
-s32 PelletList::Mgr::getCount(PelletList::cKind kind)
-{
-	checkKindValidity(kind);
-
-	PelletConfigList& list = PelletList::Mgr::mInstance->mConfigList[kind];
-	return list.mConfigCnt;
-}
+int PelletList::Mgr::getCount(PelletList::cKind kind) { return getConfigList(kind)->mConfigCnt; }
 
 /*
  * --INFO--
@@ -167,13 +46,9 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config, PelletList::cKind&
 	bool isValid;
 	PelletList::cKind kindCopy;
 
-	for (s32 i = 0; i < 5; i++) {
-		kind     = (PelletList::cKind)i;
-		kindCopy = kind;
-		isValid  = kind >= 0 && kindCopy < 5;
-		P2ASSERTLINE(16, isValid);
-
-		PelletConfig* list = PelletList::Mgr::mInstance->mConfigList[kindCopy].getPelletConfig(config);
+	for (int i = 0; i < 5; i++) {
+		kind               = (PelletList::cKind)i;
+		PelletConfig* list = getConfigList(kind)->getPelletConfig(config);
 		if (list) {
 			return list;
 		}
@@ -184,23 +59,37 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config, PelletList::cKind&
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000068
+ */
+PelletList::Mgr::Mgr()
+{
+	mConfigList = new PelletConfigList[5];
+	loadResource();
+}
+
+/*
+ * --INFO--
  * Address:	80227F00
  * Size:	000070
  */
-PelletList::Mgr::~Mgr() { delete[] mConfigList; }
+PelletList::Mgr::~Mgr()
+{
+	delete[] mConfigList;
+	mConfigList = nullptr;
+}
 
 // /*
 //  * --INFO--
 //  * Address:	80227F70
 //  * Size:	0001D8
 //  */
-static int gLoadedPelletData;
 void PelletList::Mgr::loadResource()
 {
 	JKRArchive* archive;
 	if (Game::gGameConfig.mParms.mPelletMultiLang.mData != 0) {
 		char pathBuffer[0x200];
-		switch ((uint)sys->mRegion) {
+		switch (sys->mRegion) {
 		case System::LANG_FRENCH:
 		case System::LANG_GERMAN:
 		case System::LANG_ITALIAN:
@@ -211,33 +100,24 @@ void PelletList::Mgr::loadResource()
 		case System::LANG_ENGLISH:
 			sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "us", "us");
 			break;
-		// case System::LANG_ENGLISH:
-		// 	sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "us", "us");
-		// 	break;
-		// 	break;
-		// case System::LANG_JAPANESE:
-		// 	sprintf(pathBuffer, "/user/Abe/Pellet/%s/pelletlist_%s.szs", "jpn", "jpn");
-		// 	break;
 		case System::LANG_SPANISH:
 			// // default:
 			break;
 		}
-		archive = JKRArchive::mount(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Tail);
+		archive = JKRArchive::mount(pathBuffer, JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 	} else {
 		JUT_PANICLINE(145, "don\'t use this !\n");
-		archive = JKRArchive::mount("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Tail);
+		archive = JKRArchive::mount("/user/Kando/pelletlist.szs", JKRArchive::EMM_Mem, JKRHeap::getCurrentHeap(), JKRArchive::EMD_Tail);
 	}
-	JUT_ASSERTLINE(154, archive != nullptr, "no pelletlist.szs\n");
 
-	const char* configs[] = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt", "otakara_config.txt", "itemConfig.txt" };
+	JUT_ASSERTLINE(154, archive, "no pelletlist.szs\n");
+
+	char* configs[] = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt", "otakara_config.txt", "item_config.txt" };
 	for (int i = 0; i < 5; i++) {
 		void* data = archive->getResource(configs[i]);
-		JUT_ASSERTLINE(168, data != nullptr, "no config file [%s]\n", configs[i]);
+		JUT_ASSERTLINE(168, data, "no config file [%s]\n", configs[i]);
 		RamStream stream(data, -1);
-		stream.mMode = STREAM_MODE_TEXT;
-		if (stream.mMode == STREAM_MODE_TEXT) {
-			stream.mTabCount = 0;
-		}
+		stream.resetPosition(STREAM_MODE_TEXT, STREAM_MODE_TEXT);
 		mConfigList[i].read(stream);
 	}
 	archive->unmount();
@@ -403,7 +283,7 @@ int PelletList::Mgr::getDictionaryNum()
  */
 PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int dictNo)
 {
-	bool isValid = dictNo >= 0 && dictNo < DICT_OTAKARA;
+	bool isValid = dictNo >= 0 && dictNo < getDictionaryNum();
 	P2ASSERTLINE(188, isValid);
 	PelletConfig* result = mInstance->mConfigList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
 	if (!result) {
@@ -427,54 +307,6 @@ int Game::PelletList::Mgr::getOffsetFromDictionaryNo(int dictNo)
 	}
 	JUT_ASSERTLINE(210, config != nullptr, "dictNo:%d \n", dictNo);
 	return offset + config->mParams.mIndex;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r4, r29
-	  lwz       r5, -0x6A28(r13)
-	  lwz       r3, 0x4(r5)
-	  addi      r3, r3, 0x60
-	  bl        -0x73D10
-	  mr.       r30, r3
-	  bne-      .loc_0x58
-	  lwz       r3, -0x6A28(r13)
-	  mr        r4, r29
-	  lwz       r3, 0x4(r3)
-	  lwz       r31, 0x78(r3)
-	  addi      r3, r3, 0x80
-	  bl        -0x73D30
-	  mr        r30, r3
-
-	.loc_0x58:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x80
-	  lis       r3, 0x8048
-	  lis       r4, 0x8048
-	  addi      r5, r4, 0x344C
-	  mr        r6, r29
-	  addi      r3, r3, 0x3330
-	  li        r4, 0xD2
-	  crclr     6, 0x6
-	  bl        -0x1FDC40
-
-	.loc_0x80:
-	  lha       r0, 0x258(r30)
-	  add       r3, r31, r0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
