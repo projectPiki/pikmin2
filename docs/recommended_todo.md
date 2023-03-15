@@ -96,7 +96,7 @@
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTeki.cpp">aiTeki.cpp</a> | 5793 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePelletList.cpp">gamePelletList.cpp</a> | 8313 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTeki.cpp">aiTeki.cpp</a> | 5793 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePelletList.cpp">gamePelletList.cpp</a> | 8308 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapMgrTraceMove.cpp">mapMgrTraceMove.cpp</a> | 9030 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseHIOSection.cpp">baseHIOSection.cpp</a> | 13008 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellIterator.cpp">cellIterator.cpp</a> | 13113 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiBreakGate.cpp">aiBreakGate.cpp</a> | 13918 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/flockMgr.cpp">flockMgr.cpp</a> | 13955 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/itemTreasure.cpp">itemTreasure.cpp</a> | 14277 |
@@ -111,13 +111,13 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Ending.cpp">singleGS_Ending.cpp</a> | 31110 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiEnter.cpp">aiEnter.cpp</a> | 31721 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_DayEnd.cpp">singleGS_DayEnd.cpp</a> | 32347 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameDynamics.cpp">gameDynamics.cpp</a> | 34058 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiBore.cpp">aiBore.cpp</a> | 34883 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseGameSectionKantei.cpp">baseGameSectionKantei.cpp</a> | 35202 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePlayDataMemCard.cpp">gamePlayDataMemCard.cpp</a> | 36061 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiWeed.cpp">aiWeed.cpp</a> | 38056 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/collinfo.cpp">collinfo.cpp</a> | 42272 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiFormation.cpp">aiFormation.cpp</a> | 43348 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameCPlate.cpp">gameCPlate.cpp</a> | 43761 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameGeneratorCache.cpp">gameGeneratorCache.cpp</a> | 46523 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameCaveInfo.cpp">gameCaveInfo.cpp</a> | 49577 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletCarcass.cpp">pelletCarcass.cpp</a> | 55314 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameGenerator.cpp">gameGenerator.cpp</a> | 55928 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellPyramid.cpp">cellPyramid.cpp</a> | 57895 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameSeaMgr.cpp">gameSeaMgr.cpp</a> | 60181 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletState.cpp">pelletState.cpp</a> | 65147 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/dynCreature.cpp">dynCreature.cpp</a> | 65156 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/piki.cpp">piki.cpp</a> | 35842 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePlayDataMemCard.cpp">gamePlayDataMemCard.cpp</a> | 36061 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiWeed.cpp">aiWeed.cpp</a> | 38056 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/collinfo.cpp">collinfo.cpp</a> | 42272 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiFormation.cpp">aiFormation.cpp</a> | 43348 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameCPlate.cpp">gameCPlate.cpp</a> | 43761 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameGeneratorCache.cpp">gameGeneratorCache.cpp</a> | 46523 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameCaveInfo.cpp">gameCaveInfo.cpp</a> | 49577 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletCarcass.cpp">pelletCarcass.cpp</a> | 55314 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameGenerator.cpp">gameGenerator.cpp</a> | 55928 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellPyramid.cpp">cellPyramid.cpp</a> | 57895 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameSeaMgr.cpp">gameSeaMgr.cpp</a> | 60181 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletState.cpp">pelletState.cpp</a> | 65147 |
 
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |

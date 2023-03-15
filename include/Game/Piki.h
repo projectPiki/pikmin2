@@ -73,9 +73,9 @@ typedef enum EMovieUserCommands {
 } EMovieUserCommands;
 
 struct PikiInitArg : public CreatureInitArg {
-	inline PikiInitArg(int p1)
+	inline PikiInitArg(int stateID)
 	    : mLeader(nullptr)
-	    , _04(p1)
+	    , mState(stateID)
 	{
 	}
 
@@ -85,7 +85,7 @@ struct PikiInitArg : public CreatureInitArg {
 	}
 
 	// _00 VTBL
-	int _04;           // _04
+	int mState;        // _04, state to start in
 	Creature* mLeader; // _08
 };
 
@@ -127,12 +127,10 @@ struct Piki : public FakePiki {
 		u8 _01;
 	};
 
-	static Color4 pikiColorsCursor[PikiColorCount];
-
 	Piki();
 
 	// vtable 1 (Creature)
-	virtual bool deferPikiCollision();                              // _20 (weak)
+	virtual bool deferPikiCollision() { return true; }              // _20 (weak)
 	virtual void onInit(CreatureInitArg* settings);                 // _30
 	virtual void onKill(CreatureKillArg* settings);                 // _34
 	virtual void doAnimation();                                     // _3C
@@ -159,8 +157,8 @@ struct Piki : public FakePiki {
 	virtual void onStickEndSelf(Creature* c);              // _164
 	virtual bool ignoreAtari(Creature* toIgnore);          // _190
 	virtual bool stimulate(Interaction& data);             // _1A4
-	virtual char* getCreatureName();                       // _1A8 (weak)
-	virtual s32 getCreatureID();                           // _1AC (weak)
+	virtual char* getCreatureName() { return "pikmin"; }   // _1A8 (weak)
+	virtual s32 getCreatureID() { return mMgrIndex; }      // _1AC (weak)
 	// vtable 2 (MotionListener + FakePiki + self)
 	virtual int getDownfloorMass();           // _1BC
 	virtual bool isPikmin();                  // _1C0
@@ -170,7 +168,7 @@ struct Piki : public FakePiki {
 	virtual void wallCallback(Vector3f& pos); // _204
 	virtual void startMotion(int anim1Idx, int anim2Idx, SysShape::MotionListener* ml1,
 	                         SysShape::MotionListener* ml2);  // _208
-	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _20C (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _20C
 	virtual void do_updateLookCreature();                     // _214
 	virtual void onSetPosition();                             // _218
 	virtual bool isWalking();                                 // _21C
@@ -192,6 +190,7 @@ struct Piki : public FakePiki {
 	int getFormationSlotID();
 	f32 getPelletCarryPower();
 	f32 getSpeed(f32);
+	f32 getSpeed(f32, f32);
 	int getStateID();
 	f32 getThrowHeight();
 	Piki* getVsBattlePiki();
@@ -214,12 +213,12 @@ struct Piki : public FakePiki {
 	void setSpeed(f32, Vector3f&, f32);
 	void setSpeed(f32, Vector3f&);
 	void setTekiKillID(int);
-	void startDope(int);
+	bool startDope(int);
 	void startSound(Creature*, u32, bool);
 	void startSound(Creature*, u32, PSGame::SeMgr::SetSeId);
 	void startSound(u32, bool);
 	void startSound(u32, PSGame::SeMgr::SetSeId);
-	void surviveDayEnd();
+	bool surviveDayEnd();
 	void updateGasInvincible();
 	void updateDope();
 	void updateColor();
@@ -228,28 +227,33 @@ struct Piki : public FakePiki {
 	inline u16 getKind() { return (u16)mPikiKind; }
 	inline u16 getHappa() { return (u16)mHappaKind; }
 
+	inline efx::TPkEffect* getEffectObj() { return mEffectsObj; }
+
+	static Color4 pikiColors[PikiColorCount + 1];
+	static Color4 pikiColorsCursor[PikiColorCount + 1];
+
 	// _000			 = VTBL
 	// _000-_24C = FakePiki
 	PSM::Piki* mSoundObj;             // _250
-	f32 mTargetLookAngle;             // _254
+	f32 mTargetLookTimer;             // _254
 	efx::TPkEffect* mEffectsObj;      // _258
 	Vector3f _25C;                    // _25C
 	SysShape::Joint* mHappaJoint3;    // _268
 	Vector3f _26C;                    // _26C
 	SysShape::Joint* mHappaJoint1;    // _278
-	::efx::Context* mEffectsContext;  // _27C
+	efx::Context* mEffectsContext;    // _27C
 	u8 _280[4];                       // _280
-	short mIsDoped;                   // _284
+	s16 mIsDoped;                     // _284
 	f32 mDopeTime;                    // _288
 	PikiFSM* mFsm;                    // _28C
 	PikiState* mCurrentState;         // _290
 	PikiAI::Brain* mBrain;            // _294
 	UpdateContext mPikiUpdateContext; // _298
-	short mTekiKillID;                // _2A4
+	s16 mTekiKillID;                  // _2A4
 	u8 mGasInvincible;                // _2A6
-	JUtility::TColor _2A7;            // _2A7
-	JUtility::TColor _2AB;            // _2AB
-	JUtility::TColor mPikiColor;      // _2AF
+	Color4 _2A7;                      // _2A7
+	Color4 _2AB;                      // _2AB
+	Color4 mPikiColor;                // _2AF
 	f32 mColorFloat;                  // _2B4
 	u8 mPikiKind;                     // _2B8,  aka Piki kind (Blue, Yellow, Red, etc.)
 	u8 mHappaKind;                    // _2B9, aka Happa kind (leaf, bud, flower)

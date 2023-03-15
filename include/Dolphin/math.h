@@ -122,4 +122,6 @@ static inline f32 dolsqrtf(f32 x)
 
 #define ispositive(x) ((((u8*)&x)[0] & 0x80) != 0)
 
+static inline f32 scaleValue(f32 scale, f32 value) { return scale * value; }
+
 #endif

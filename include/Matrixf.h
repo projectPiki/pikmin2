@@ -172,4 +172,12 @@ inline void scaleMatrix(Matrixf* mtx, f32 scale)
 	mtx->mMatrix.structView.yz *= scale;
 	mtx->mMatrix.structView.zz *= scale;
 }
+
+inline void MatrixMultiplyVec(Matrixf* mat, Vector3f& vec)
+{
+	Vector3f resVec;
+	PSMTXMultVec(mat->mMatrix.mtxView, (Vec*)&vec, (Vec*)&resVec);
+
+	vec = Vector3f(resVec);
+}
 #endif

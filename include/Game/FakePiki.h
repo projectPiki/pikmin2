@@ -93,6 +93,7 @@ enum FakePikiDynamics {
 	FPFLAGS_Unk5                   = 0x10,
 	FPFLAGS_Zikatu                 = 0x20,
 	FPFLAGS_WasZikatu              = 0x80,
+	FPFLAGS_Unk8                   = 0x100,
 };
 
 struct FakePiki : public Creature, public SysShape::MotionListener {
@@ -168,7 +169,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	void clearDoAnimCallback();
 	void updateWalkAnimation();
 
-	void sNeckCallback(J3DJoint*, int);
+	static bool sNeckCallback(J3DJoint*, int);
 
 	void startLookCreature(Creature*);
 	void finishLook();

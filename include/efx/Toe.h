@@ -5,6 +5,8 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "Vector3.h"
 
+// yes, most of these have size 1 arrays. take it up with the devs.
+
 namespace efx {
 struct TOEContextS : public JSUPtrLink {
 	TOEContextS();
@@ -20,7 +22,7 @@ struct ToeChudoku {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[1];
 };
 
 struct ToeDoping {
@@ -28,7 +30,7 @@ struct ToeDoping {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[1];
 };
 
 struct ToeHamonA {
@@ -36,7 +38,7 @@ struct ToeHamonA {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[1]; // yes this is a size 1 array. take it up with the devs.
+	ContextChasePos _00[1];
 };
 
 struct ToeHamonB {
@@ -44,7 +46,7 @@ struct ToeHamonB {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[1]; // yes this is a size 1 array. take it up with the devs.
+	ContextChasePos _00[1];
 };
 
 struct ToeKourin {
@@ -52,7 +54,7 @@ struct ToeKourin {
 	void create(Vector3f*, long);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[1];
 };
 
 struct ToeMoeBC {
@@ -60,7 +62,7 @@ struct ToeMoeBC {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[2];
 };
 
 struct ToeMoeSmoke {
@@ -68,7 +70,7 @@ struct ToeMoeSmoke {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[1];
 };
 
 struct ToeNagekira {
@@ -76,7 +78,7 @@ struct ToeNagekira {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[1];
 };
 
 struct ToeTanekira {
@@ -84,7 +86,7 @@ struct ToeTanekira {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[1];
 };
 
 struct ToeWater {
@@ -92,7 +94,7 @@ struct ToeWater {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[2];
 };
 } // namespace efx
 

@@ -23,6 +23,7 @@ struct Navi;
 struct Creature;
 
 enum PikiStateID {
+	PIKISTATE_NULL        = -1,
 	PIKISTATE_Walk        = 0, // 'default' walk/follow
 	PIKISTATE_DemoWait    = 1, // during cutscenes
 	PIKISTATE_LookAt      = 2, // whistled
