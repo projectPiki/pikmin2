@@ -886,7 +886,7 @@ LIBS = [
             "plugProjectKandoU/naviMgr",
             "plugProjectKandoU/pikiMgr",
             "plugProjectKandoU/mapMgr",
-            "plugProjectKandoU/baseHIOSection",
+            ["plugProjectKandoU/baseHIOSection", True],
             "plugProjectKandoU/naviWhistle",
             "plugProjectKandoU/pelletMgr",
             "plugProjectKandoU/routeMgr",

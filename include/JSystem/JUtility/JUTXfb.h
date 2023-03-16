@@ -61,6 +61,8 @@ struct JUTXfb {
 	void setDrawnXfbIndex(s16 index) { mDrawnXfbIndex = index; }
 	void setDrawingXfbIndex(s16 index) { mDrawingXfbIndex = index; }
 
+	u8* getBufferPtr(int i) { return mBuffers[i]; }
+
 	static JUTXfb* getManager() { return sManager; }
 
 	static JUTXfb* sManager;

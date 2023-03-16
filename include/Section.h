@@ -29,22 +29,25 @@ struct Section : public ISection {
 
 	Section(JFWDisplay*, JKRHeap*, bool);
 
-	virtual ~Section();                              // _08
-	virtual void run();                              // _0C
-	virtual bool update();                           // _10
-	virtual void draw(Graphics&);                    // _14
-	virtual void init();                             // _18
-	virtual void drawInit(Graphics&);                // _1C (weak)
-	virtual void drawInit(Graphics&, EDrawInitMode); // _20 (weak)
-	virtual void doExit();                           // _24 (weak)
-	virtual bool forceFinish();                      // _28 (weak)
-	virtual bool forceReset();                       // _2C (weak)
-	virtual Section* getCurrentSection();            // _30 (weak)
-	virtual void doLoadingStart();                   // _34 (weak)
-	virtual bool doLoading();                        // _38 (weak)
-	virtual bool doUpdate()            = 0;          // _3C
-	virtual void doDraw(Graphics& gfx) = 0;          // _40
-	virtual bool isFinishable();                     // _44 (weak)
+	virtual ~Section();                                      // _08
+	virtual void run();                                      // _0C
+	virtual bool update();                                   // _10
+	virtual void draw(Graphics&);                            // _14
+	virtual void init();                                     // _18
+	virtual void drawInit(Graphics&);                        // _1C (weak)
+	virtual void drawInit(Graphics& gfx, EDrawInitMode mode) // _20 (weak)
+	{
+		drawInit(gfx);
+	}
+	virtual void doExit();                       // _24 (weak)
+	virtual bool forceFinish() { return false; } // _28 (weak)
+	virtual bool forceReset();                   // _2C (weak)
+	virtual Section* getCurrentSection();        // _30 (weak)
+	virtual void doLoadingStart();               // _34 (weak)
+	virtual bool doLoading();                    // _38 (weak)
+	virtual bool doUpdate()            = 0;      // _3C
+	virtual void doDraw(Graphics& gfx) = 0;      // _40
+	virtual bool isFinishable();                 // _44 (weak)
 
 	bool beginFrame();
 	void beginRender();
