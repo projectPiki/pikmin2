@@ -9,6 +9,7 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "JSystem/J2D/J2DPrint.h"
 #include "P2JME/P2JME.h"
+#include "Game/MemoryCard/Mgr.h"
 
 extern P2JME::Mgr* gP2JMEMgr;
 
@@ -35,7 +36,7 @@ DvdStatus::DvdStatus()
 bool DvdStatus::isErrorOccured()
 {
 	bool retval = false;
-	if (!((mFader == nullptr) || (sys->mCardMgr->_E4 & 1))) {
+	if (!((mFader == nullptr) || (sys->mCardMgr->mFlags.typeView & 1))) {
 		retval = true;
 	}
 	return retval;

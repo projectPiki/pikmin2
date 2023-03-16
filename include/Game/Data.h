@@ -132,7 +132,7 @@ struct Mgr : public PlayCommonData {
 	void setDefault();
 	void setCardSerialNo(u64);
 	void resetCardSerialNo();
-	void resetPlayer(signed char);
+	void resetPlayer(s8);
 
 	void read(Stream&);
 	void write(Stream&);
@@ -150,7 +150,7 @@ struct Mgr : public PlayCommonData {
 	u32 mTime;           // _1C
 	char mFileIndex;     // _20
 	char padding;        // _21
-	short _22;           // _22
+	u16 _22;             // _22
 	u32 _24;             // _24
 	u32 _28;             // _28
 	u32 _2C;             // _2C

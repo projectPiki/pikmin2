@@ -3,122 +3,18 @@
 #include "Game/MemoryCard/Player.h"
 #include "Game/MemoryCard/PlayerFileInfo.h"
 #include "Game/MemoryCard/Resource.h"
+#include "Game/Data.h"
+#include "Game/gamePlayData.h"
+#include "Game/GameSystem.h"
 #include "JSystem/JKernel/JKRArchive.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049ADB8
-    lbl_8049ADB8:
-        .asciz "Pikmin2_SaveData"
-        .skip 3
-    .global gStrMemoryCardMgrCpp
-    gStrMemoryCardMgrCpp:
-        .asciz "pikmin2MemoryCardMgr.cpp"
-        .skip 3
-    .global gStrMemoryCardMgrP2Assert
-    gStrMemoryCardMgrP2Assert:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_8049ADF4
-    lbl_8049ADF4:
-        .asciz "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
-        .skip 3
-    .global lbl_8049AE28
-    lbl_8049AE28:
-        .asciz "/memoryCard/memoryCardHeader.szs"
-        .skip 3
-        .asciz "banner.dat"
-        .skip 1
-        .asciz "icon.dat"
-        .skip 3
-    .global lbl_8049AE64
-    lbl_8049AE64:
-        .asciz "MemoryCardModify Error"
-        .skip 1
-        .asciz "card [%d] memory[%d]\n"
-        .skip 2
-    .global lbl_8049AE94
-    lbl_8049AE94:
-        .asciz "PIKMIN 2"
-        .skip 3
-    .global lbl_8049AEA0
-    lbl_8049AEA0:
-        .asciz "%02d/%02d/%04d %02d:%02d:%02d"
-        .skip 2
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804ECF58
-    lbl_804ECF58:
-        .4byte lbl_80443790
-        .4byte lbl_804437EC
-        .4byte lbl_80443768
-        .4byte lbl_804437FC
-        .4byte lbl_8044385C
-        .4byte lbl_804438BC
-        .4byte lbl_804438D4
-        .4byte lbl_80443930
-        .4byte lbl_80443994
-        .4byte lbl_804439A8
-        .4byte lbl_804439B8
-        .4byte lbl_804439C8
-    .global __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader
-    __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader:
-        .4byte 0
-        .4byte 0
-        .4byte getClassSize__Q34Game10MemoryCard25MgrCommandGetPlayerHeaderFv
-    .global __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer
-    __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer:
-        .4byte 0
-        .4byte 0
-        .4byte getClassSize__Q34Game10MemoryCard20MgrCommandCopyPlayerFv
-    .global __vt__Q34Game10MemoryCard18MgrCommandPlayerNo
-    __vt__Q34Game10MemoryCard18MgrCommandPlayerNo:
-        .4byte 0
-        .4byte 0
-        .4byte getClassSize__Q34Game10MemoryCard18MgrCommandPlayerNoFv
-    .global __vt__Q34Game10MemoryCard3Mgr
-    __vt__Q34Game10MemoryCard3Mgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game10MemoryCard3MgrFv
-        .4byte update__Q34Game10MemoryCard3MgrFv
-        .4byte doInit__13MemoryCardMgrFv
-        .4byte doCardProc__Q34Game10MemoryCard3MgrFPvP20MemoryCardMgrCommand
-        .4byte getHeaderSize__Q34Game10MemoryCard3MgrFv
-        .4byte doMakeHeader__Q34Game10MemoryCard3MgrFPUc
-        .4byte doSetCardStat__Q34Game10MemoryCard3MgrFP8CARDStat
-        .4byte doCheckCardStat__Q34Game10MemoryCard3MgrFP8CARDStat
-        .4byte isErrorOccured__Q34Game10MemoryCard3MgrFv
-    .global __vt__Q34Game10MemoryCard8Resource
-    __vt__Q34Game10MemoryCard8Resource:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game10MemoryCard8ResourceFv
-        .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global cFileName__Q24Game10MemoryCard
-    cFileName__Q24Game10MemoryCard:
-        .4byte lbl_8049ADB8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520978
-    lbl_80520978:
-        .asciz "dameck\n"
-*/
-
-static const char unusedCardMgrName[] = "Pikmin2_SaveData";
+#include "JSystem/JKernel/JKRHeap.h"
+#include "System.h"
 
 namespace Game {
 namespace MemoryCard {
 
-inline void checkValidity(int idx)
-{
-	bool valid = idx >= 0 && idx < 3;
-	P2ASSERTLINE(396, valid);
-}
+char* cFileName = "Pikmin2_SaveData";
+
 /*
  * --INFO--
  * Address:	804428AC
@@ -155,7 +51,7 @@ PlayerFileInfo::PlayerFileInfo() { }
  */
 Player* PlayerFileInfo::getPlayer(int idx)
 {
-	checkValidity(idx);
+	P2ASSERTBOUNDSLINE(396, 0, idx, 3);
 	return &mPlayers[idx];
 }
 
@@ -164,11 +60,7 @@ Player* PlayerFileInfo::getPlayer(int idx)
  * Address:	804429A0
  * Size:	000080
  */
-u8 PlayerFileInfo::isBrokenFile(int idx)
-{
-	checkValidity(idx);
-	return mPlayers[idx]._00 != 0;
-}
+u8 PlayerFileInfo::isBrokenFile(int idx) { return getPlayer(idx)->_00 != 0; }
 
 /*
  * --INFO--
@@ -177,8 +69,7 @@ u8 PlayerFileInfo::isBrokenFile(int idx)
  */
 bool PlayerFileInfo::isNewFile(int idx)
 {
-	checkValidity(idx);
-	Player* curPlayer = &mPlayers[idx];
+	Player* curPlayer = getPlayer(idx);
 	return !curPlayer->_00 && !curPlayer->_04;
 }
 
@@ -196,15 +87,10 @@ Resource::~Resource() { mMgr->destroyResource(); }
  */
 Mgr::Mgr()
     : MemoryCardMgr()
+    , _D8(0)
+    , mBannerImageFile(0)
+    , mIconImageFile(0)
 {
-	// _D8 = 0;
-	// _DC = 0;
-	// _E0 = 0;
-	// _E4 = 0;
-	// _E5 = 0;
-	// _E6 = 0;
-	// _E7 = 0;
-
 	OSReport("sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n", 0xC000, 0xC000, 0x3C);
 }
 
@@ -213,113 +99,23 @@ Mgr::Mgr()
  * Address:	80442B9C
  * Size:	000030
  */
-bool Mgr::isErrorOccured() { return !(getCardStatus() == MCS_Ready); }
+bool Mgr::isErrorOccured() { return getCardStatus() != MCS_IOError; }
 
 /*
  * --INFO--
  * Address:	80442BCC
  * Size:	000120
  */
-void Mgr::loadResource(JKRHeap*)
+void Mgr::loadResource(JKRHeap* heap)
 {
-	//     Resource* resource = new (heap, 0) Resource(this);
-	//     if (!resource) {
-	//         JUTException::panic_f(gStrMemoryCardMgrCpp, 533,
-	//                               gStrMemoryCardMgrP2Assert);
-	//     }
-
-	//     u32* file = JKRArchive::mount("/memoryCard/memoryCardHeader.szs",
-	//     (JKRArchive::EMountMode)1,
-	//                                   heap, (JKRArchive::EMountDirection)1);
-	//     if (!file) {
-	//         JUTException::panic_f(gStrMemoryCardMgrCpp, 540,
-	//                               gStrMemoryCardMgrP2Assert);
-	//     }
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    lis      r5, lbl_8049ADB8@ha
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    stw      r30, 0x18(r1)
-	    addi     r30, r5, lbl_8049ADB8@l
-	    li       r5, 0
-	    stw      r29, 0x14(r1)
-	    mr       r29, r4
-	    stw      r28, 0x10(r1)
-	    mr       r28, r3
-	    li       r3, 0x1c
-	    bl       __nw__FUlP7JKRHeapi
-	    or.      r31, r3, r3
-	    beq      lbl_80442C20
-	    bl       __ct__11JKRDisposerFv
-	    lis      r3, __vt__Q34Game10MemoryCard8Resource@ha
-	    addi     r0, r3, __vt__Q34Game10MemoryCard8Resource@l
-	    stw      r0, 0(r31)
-	    stw      r28, 0x18(r31)
-
-	lbl_80442C20:
-	    cmplwi   r31, 0
-	    bne      lbl_80442C3C
-	    addi     r3, r30, 0x14
-	    addi     r5, r30, 0x30
-	    li       r4, 0x215
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80442C3C:
-	    mr       r5, r29
-	    addi     r3, r30, 0x70
-	    li       r4, 1
-	    li       r6, 1
-	    bl
-	mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	    or.      r31, r3, r3
-	    bne      lbl_80442C6C
-	    addi     r3, r30, 0x14
-	    addi     r5, r30, 0x30
-	    li       r4, 0x21c
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80442C6C:
-	    mr       r4, r31
-	    addi     r3, r30, 0x94
-	    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	    stw      r3, 0xdc(r28)
-	    mr       r4, r31
-	    addi     r3, r30, 0xa0
-	    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	    stw      r3, 0xe0(r28)
-	    lwz      r0, 0xdc(r28)
-	    cmplwi   r0, 0
-	    bne      lbl_80442CAC
-	    addi     r3, r30, 0x14
-	    addi     r5, r30, 0x30
-	    li       r4, 0x21f
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80442CAC:
-	    lwz      r0, 0xe0(r28)
-	    cmplwi   r0, 0
-	    bne      lbl_80442CCC
-	    addi     r3, r30, 0x14
-	    addi     r5, r30, 0x30
-	    li       r4, 0x220
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80442CCC:
-	    lwz      r0, 0x24(r1)
-	    lwz      r31, 0x1c(r1)
-	    lwz      r30, 0x18(r1)
-	    lwz      r29, 0x14(r1)
-	    lwz      r28, 0x10(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	    */
+	Resource* resource = new (heap, 0) Resource(this);
+	P2ASSERTLINE(533, resource);
+	JKRArchive* memCardHeader = JKRArchive::mount("/memoryCard/memoryCardHeader.szs", JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Head);
+	P2ASSERTLINE(540, memCardHeader);
+	mBannerImageFile = JKRFileLoader::getGlbResource("banner.dat", memCardHeader);
+	mIconImageFile   = JKRFileLoader::getGlbResource("icon.dat", memCardHeader);
+	P2ASSERTLINE(543, mBannerImageFile);
+	P2ASSERTLINE(544, mIconImageFile);
 }
 
 /*
@@ -329,12 +125,8 @@ void Mgr::loadResource(JKRHeap*)
  */
 void Mgr::destroyResource()
 {
-	/*
-	    li       r0, 0
-	    stw      r0, 0xdc(r3)
-	    stw      r0, 0xe0(r3)
-	    blr
-	*/
+	mBannerImageFile = nullptr;
+	mIconImageFile   = nullptr;
 }
 
 /*
@@ -342,19 +134,7 @@ void Mgr::destroyResource()
  * Address:	80442CFC
  * Size:	000020
  */
-void Mgr::update()
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    bl       update__13MemoryCardMgrFv
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
+void Mgr::update() { MemoryCardMgr::update(); }
 
 /*
  * --INFO--
@@ -363,37 +143,13 @@ void Mgr::update()
  */
 bool Mgr::format()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    li       r31, 0
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    addi     r3, r30, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80442D6C
-	    mr       r3, r30
-	    li       r4, 0
-	    bl       cardFormat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
-	    mr       r0, r3
-	    addi     r3, r30, 0xac
-	    mr       r31, r0
-	    bl       OSUnlockMutex
-	    addi     r3, r30, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80442D6C:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	bool result = false;
+	if (OSTryLockMutex(&mOsMutex)) {
+		result = MemoryCardMgr::cardFormat(CARDSLOT_Unk0);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 // /*
@@ -421,41 +177,16 @@ bool Mgr::format()
  * Address:	80442D88
  * Size:	000074
  */
-void Mgr::checkBeforeSave()
+bool Mgr::checkBeforeSave()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    li       r31, 0
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    bl       checkError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80442DE0
-	    addi     r3, r30, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80442DE0
-	    mr       r3, r30
-	    li       r31, 1
-	    li       r4, 0xf
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r30, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r30, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80442DE0:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	bool isCheck = false;
+	if (checkError() && OSTryLockMutex(&mOsMutex)) {
+		isCheck = true;
+		setCommand(15);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return isCheck;
 }
 
 /*
@@ -463,41 +194,16 @@ void Mgr::checkBeforeSave()
  * Address:	80442DFC
  * Size:	000074
  */
-void Mgr::checkError()
+bool Mgr::checkError()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    li       r31, 0
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    bl       resetError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80442E54
-	    addi     r3, r30, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80442E54
-	    mr       r3, r30
-	    li       r31, 1
-	    li       r4, 0x10
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r30, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r30, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80442E54:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	bool isError = false;
+	if (resetError() && OSTryLockMutex(&mOsMutex)) {
+		isError = true;
+		setCommand(16);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return isError;
 }
 
 /*
@@ -507,39 +213,14 @@ void Mgr::checkError()
  */
 bool Mgr::createNewFile()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    li       r31, 0
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    bl       resetError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80442EC8
-	    addi     r3, r30, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80442EC8
-	    mr       r3, r30
-	    li       r31, 1
-	    li       r4, 7
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r30, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r30, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80442EC8:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	bool result = false;
+	if (resetError() && OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		setCommand(7);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 /*
@@ -547,60 +228,16 @@ bool Mgr::createNewFile()
  * Address:	80442EE4
  * Size:	0000B8
  */
-void Mgr::saveGameOption()
+bool Mgr::saveGameOption()
 {
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    li       r31, 0
-	    stw      r30, 0x18(r1)
-	    li       r30, 0
-	    stw      r29, 0x14(r1)
-	    mr       r29, r3
-	    bl       resetError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80442F44
-	    addi     r3, r29, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80442F44
-	    mr       r3, r29
-	    li       r31, 1
-	    li       r4, 0x10
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r29, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r29, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80442F44:
-	    clrlwi.  r0, r31, 0x18
-	    beq      lbl_80442F7C
-	    addi     r3, r29, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80442F7C
-	    mr       r3, r29
-	    li       r30, 1
-	    li       r4, 5
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r29, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r29, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80442F7C:
-	    lwz      r0, 0x24(r1)
-	    mr       r3, r30
-	    lwz      r31, 0x1c(r1)
-	    lwz      r30, 0x18(r1)
-	    lwz      r29, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
+	bool result = false;
+	if (checkError() && OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		setCommand(5);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 /*
@@ -608,60 +245,16 @@ void Mgr::saveGameOption()
  * Address:	80442F9C
  * Size:	0000B8
  */
-void Mgr::loadGameOption()
+bool Mgr::loadGameOption()
 {
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    li       r31, 0
-	    stw      r30, 0x18(r1)
-	    li       r30, 0
-	    stw      r29, 0x14(r1)
-	    mr       r29, r3
-	    bl       resetError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80442FFC
-	    addi     r3, r29, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80442FFC
-	    mr       r3, r29
-	    li       r31, 1
-	    li       r4, 0x10
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r29, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r29, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80442FFC:
-	    clrlwi.  r0, r31, 0x18
-	    beq      lbl_80443034
-	    addi     r3, r29, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80443034
-	    mr       r3, r29
-	    li       r30, 1
-	    li       r4, 6
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r29, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r29, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80443034:
-	    lwz      r0, 0x24(r1)
-	    mr       r3, r30
-	    lwz      r31, 0x1c(r1)
-	    lwz      r30, 0x18(r1)
-	    lwz      r29, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
+	bool result = false;
+	if (checkError() && OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		setCommand(6);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 /*
@@ -669,95 +262,26 @@ void Mgr::loadGameOption()
  * Address:	80443054
  * Size:	000124
  */
-void Mgr::savePlayerNoCheckSerialNumber(int)
+bool Mgr::savePlayerNoCheckSerialNumber(int fileIndex)
 {
-	/*
-	    stwu     r1, -0x30(r1)
-	    mflr     r0
-	    stw      r0, 0x34(r1)
-	    stw      r31, 0x2c(r1)
-	    stw      r30, 0x28(r1)
-	    li       r30, 0
-	    stw      r29, 0x24(r1)
-	    or.      r29, r4, r4
-	    stw      r28, 0x20(r1)
-	    mr       r28, r3
-	    blt      lbl_80443088
-	    cmpwi    r29, 3
-	    blt      lbl_804430B4
+	bool result = false;
 
-	lbl_80443088:
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    lbz      r3, 0x20(r3)
-	    extsb.   r0, r3
-	    blt      lbl_804430A8
-	    extsb    r0, r3
-	    cmpwi    r0, 3
-	    blt      lbl_804430B0
+	if ((fileIndex < 0 || fileIndex >= 3)) {
+		if ((sys->mPlayData->mFileIndex < 0 || (int)sys->mPlayData->mFileIndex >= 3)) {
+			fileIndex = 0;
+		} else {
+			fileIndex = sys->mPlayData->mFileIndex;
+		}
+	}
 
-	lbl_804430A8:
-	    li       r29, 0
-	    b        lbl_804430B4
-
-	lbl_804430B0:
-	    mr       r29, r0
-
-	lbl_804430B4:
-	    mr       r3, r28
-	    li       r31, 0
-	    bl       resetError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804430F8
-	    addi     r3, r28, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_804430F8
-	    mr       r3, r28
-	    li       r31, 1
-	    li       r4, 0x10
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r28, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r28, 0xc4
-	    bl       OSSignalCond
-
-	lbl_804430F8:
-	    clrlwi.  r0, r31, 0x18
-	    beq      lbl_80443154
-	    addi     r3, r28, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80443154
-	    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
-	    lis      r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@ha
-	    addi     r0, r4, __vt__24MemoryCardMgrCommandBase@l
-	    li       r5, 9
-	    stw      r0, 0xc(r1)
-	    addi     r0, r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@l
-	    mr       r3, r28
-	    addi     r4, r1, 8
-	    stw      r5, 8(r1)
-	    li       r30, 1
-	    stw      r0, 0xc(r1)
-	    stw      r29, 0x10(r1)
-	    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
-	    addi     r3, r28, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r28, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80443154:
-	    lwz      r0, 0x34(r1)
-	    mr       r3, r30
-	    lwz      r31, 0x2c(r1)
-	    lwz      r30, 0x28(r1)
-	    lwz      r29, 0x24(r1)
-	    lwz      r28, 0x20(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x30
-	    blr
-	*/
+	if (checkError() && OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		MgrCommandPlayerNo command(9, fileIndex);
+		setCommand(&command);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 /*
@@ -765,95 +289,28 @@ void Mgr::savePlayerNoCheckSerialNumber(int)
  * Address:	80443178
  * Size:	000114
  */
-void Mgr::savePlayer(int)
+bool Mgr::savePlayer(int fileIndex)
 {
-	/*
-	    stwu     r1, -0x30(r1)
-	    mflr     r0
-	    stw      r0, 0x34(r1)
-	    stmw     r27, 0x1c(r1)
-	    or.      r28, r4, r4
-	    mr       r27, r3
-	    li       r30, 0
-	    li       r29, 8
-	    blt      lbl_804431A4
-	    cmpwi    r28, 3
-	    blt      lbl_804431D4
+	bool result = false;
+	u32 index   = 8;
+	if (fileIndex < 0 || fileIndex >= 3) {
+		if (sys->mPlayData->mFileIndex < 0 || sys->mPlayData->mFileIndex >= 3) {
+			return false;
+		} else {
+			fileIndex = sys->mPlayData->mFileIndex;
+		}
+	} else {
+		index = 9;
+	}
 
-	lbl_804431A4:
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    lbz      r3, 0x20(r3)
-	    extsb.   r0, r3
-	    blt      lbl_804431C4
-	    extsb    r0, r3
-	    cmpwi    r0, 3
-	    blt      lbl_804431CC
-
-	lbl_804431C4:
-	    li       r3, 0
-	    b        lbl_80443278
-
-	lbl_804431CC:
-	    mr       r28, r0
-	    b        lbl_804431D8
-
-	lbl_804431D4:
-	    li       r29, 9
-
-	lbl_804431D8:
-	    mr       r3, r27
-	    li       r31, 0
-	    bl       resetError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_8044321C
-	    addi     r3, r27, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_8044321C
-	    mr       r3, r27
-	    li       r31, 1
-	    li       r4, 0x10
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r27, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r27, 0xc4
-	    bl       OSSignalCond
-
-	lbl_8044321C:
-	    clrlwi.  r0, r31, 0x18
-	    beq      lbl_80443274
-	    addi     r3, r27, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80443274
-	    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
-	    lis      r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@ha
-	    addi     r4, r4, __vt__24MemoryCardMgrCommandBase@l
-	    stw      r29, 8(r1)
-	    addi     r0, r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@l
-	    mr       r3, r27
-	    stw      r4, 0xc(r1)
-	    addi     r4, r1, 8
-	    li       r30, 1
-	    stw      r0, 0xc(r1)
-	    stw      r28, 0x10(r1)
-	    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
-	    addi     r3, r27, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r27, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80443274:
-	    mr       r3, r30
-
-	lbl_80443278:
-	    lmw      r27, 0x1c(r1)
-	    lwz      r0, 0x34(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x30
-	    blr
-	*/
+	if (checkError() && OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		MgrCommandPlayerNo command(index, fileIndex);
+		setCommand(&command);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 /*
@@ -861,91 +318,18 @@ void Mgr::savePlayer(int)
  * Address:	8044328C
  * Size:	000124
  */
-void Mgr::loadPlayer(int)
+bool Mgr::loadPlayer(int fileIndex)
 {
-	/*
-	    stwu     r1, -0x30(r1)
-	    mflr     r0
-	    stw      r0, 0x34(r1)
-	    li       r0, 0
-	    stw      r31, 0x2c(r1)
-	    stw      r30, 0x28(r1)
-	    li       r30, 0
-	    stw      r29, 0x24(r1)
-	    or.      r29, r4, r4
-	    stw      r28, 0x20(r1)
-	    mr       r28, r3
-	    blt      lbl_804432C8
-	    cmpwi    r29, 3
-	    bge      lbl_804432C8
-	    li       r0, 1
-
-	lbl_804432C8:
-	    clrlwi.  r0, r0, 0x18
-	    bne      lbl_804432EC
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x32f
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_804432EC:
-	    mr       r3, r28
-	    li       r31, 0
-	    bl       resetError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443330
-	    addi     r3, r28, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80443330
-	    mr       r3, r28
-	    li       r31, 1
-	    li       r4, 0x10
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r28, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r28, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80443330:
-	    clrlwi.  r0, r31, 0x18
-	    beq      lbl_8044338C
-	    addi     r3, r28, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_8044338C
-	    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
-	    lis      r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@ha
-	    addi     r0, r4, __vt__24MemoryCardMgrCommandBase@l
-	    li       r5, 0xa
-	    stw      r0, 0xc(r1)
-	    addi     r0, r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@l
-	    mr       r3, r28
-	    addi     r4, r1, 8
-	    stw      r5, 8(r1)
-	    li       r30, 1
-	    stw      r0, 0xc(r1)
-	    stw      r29, 0x10(r1)
-	    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
-	    addi     r3, r28, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r28, 0xc4
-	    bl       OSSignalCond
-
-	lbl_8044338C:
-	    lwz      r0, 0x34(r1)
-	    mr       r3, r30
-	    lwz      r31, 0x2c(r1)
-	    lwz      r30, 0x28(r1)
-	    lwz      r29, 0x24(r1)
-	    lwz      r28, 0x20(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x30
-	    blr
-	*/
+	bool result = false;
+	P2ASSERTBOUNDSLINE(815, 0, fileIndex, 3);
+	if (checkError() && OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		MgrCommandPlayerNo command(10, fileIndex);
+		setCommand(&command);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 /*
@@ -953,91 +337,18 @@ void Mgr::loadPlayer(int)
  * Address:	804433B0
  * Size:	000124
  */
-void Mgr::deletePlayer(int)
+bool Mgr::deletePlayer(int fileIndex)
 {
-	/*
-	    stwu     r1, -0x30(r1)
-	    mflr     r0
-	    stw      r0, 0x34(r1)
-	    li       r0, 0
-	    stw      r31, 0x2c(r1)
-	    stw      r30, 0x28(r1)
-	    li       r30, 0
-	    stw      r29, 0x24(r1)
-	    or.      r29, r4, r4
-	    stw      r28, 0x20(r1)
-	    mr       r28, r3
-	    blt      lbl_804433EC
-	    cmpwi    r29, 3
-	    bge      lbl_804433EC
-	    li       r0, 1
-
-	lbl_804433EC:
-	    clrlwi.  r0, r0, 0x18
-	    bne      lbl_80443410
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x347
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80443410:
-	    mr       r3, r28
-	    li       r31, 0
-	    bl       resetError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443454
-	    addi     r3, r28, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_80443454
-	    mr       r3, r28
-	    li       r31, 1
-	    li       r4, 0x10
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r28, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r28, 0xc4
-	    bl       OSSignalCond
-
-	lbl_80443454:
-	    clrlwi.  r0, r31, 0x18
-	    beq      lbl_804434B0
-	    addi     r3, r28, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_804434B0
-	    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
-	    lis      r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@ha
-	    addi     r0, r4, __vt__24MemoryCardMgrCommandBase@l
-	    li       r5, 0xb
-	    stw      r0, 0xc(r1)
-	    addi     r0, r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@l
-	    mr       r3, r28
-	    addi     r4, r1, 8
-	    stw      r5, 8(r1)
-	    li       r30, 1
-	    stw      r0, 0xc(r1)
-	    stw      r29, 0x10(r1)
-	    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
-	    addi     r3, r28, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r28, 0xc4
-	    bl       OSSignalCond
-
-	lbl_804434B0:
-	    lwz      r0, 0x34(r1)
-	    mr       r3, r30
-	    lwz      r31, 0x2c(r1)
-	    lwz      r30, 0x28(r1)
-	    lwz      r29, 0x24(r1)
-	    lwz      r28, 0x20(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x30
-	    blr
-	*/
+	bool result = false;
+	P2ASSERTBOUNDSLINE(839, 0, fileIndex, 3);
+	if (checkError() && OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		MgrCommandPlayerNo command(0xB, fileIndex);
+		setCommand(&command);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 /*
@@ -1045,106 +356,19 @@ void Mgr::deletePlayer(int)
  * Address:	804434D4
  * Size:	000150
  */
-void Mgr::copyPlayer(int, int)
+bool Mgr::copyPlayer(int fileIndex1, int fileIndex2)
 {
-	/*
-	    stwu     r1, -0x30(r1)
-	    mflr     r0
-	    stw      r0, 0x34(r1)
-	    li       r0, 0
-	    stmw     r27, 0x1c(r1)
-	    or.      r29, r4, r4
-	    mr       r28, r3
-	    mr       r30, r5
-	    li       r31, 0
-	    blt      lbl_80443508
-	    cmpwi    r29, 2
-	    bgt      lbl_80443508
-	    li       r0, 1
-
-	lbl_80443508:
-	    clrlwi.  r0, r0, 0x18
-	    bne      lbl_8044352C
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x35e
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_8044352C:
-	    cmpwi    r30, 0
-	    li       r0, 0
-	    blt      lbl_80443544
-	    cmpwi    r30, 2
-	    bgt      lbl_80443544
-	    li       r0, 1
-
-	lbl_80443544:
-	    clrlwi.  r0, r0, 0x18
-	    bne      lbl_80443568
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x35f
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80443568:
-	    mr       r3, r28
-	    li       r27, 0
-	    bl       resetError__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804435AC
-	    addi     r3, r28, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_804435AC
-	    mr       r3, r28
-	    li       r27, 1
-	    li       r4, 0x10
-	    bl       setCommand__13MemoryCardMgrFi
-	    addi     r3, r28, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r28, 0xc4
-	    bl       OSSignalCond
-
-	lbl_804435AC:
-	    clrlwi.  r0, r27, 0x18
-	    beq      lbl_8044360C
-	    addi     r3, r28, 0xac
-	    bl       OSTryLockMutex
-	    cmpwi    r3, 0
-	    beq      lbl_8044360C
-	    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
-	    lis      r3, __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer@ha
-	    addi     r0, r4, __vt__24MemoryCardMgrCommandBase@l
-	    sth      r29, 0x10(r1)
-	    li       r4, 0xc
-	    li       r31, 1
-	    stw      r0, 0xc(r1)
-	    addi     r0, r3, __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer@l
-	    mr       r3, r28
-	    stw      r4, 8(r1)
-	    addi     r4, r1, 8
-	    stw      r0, 0xc(r1)
-	    sth      r30, 0x12(r1)
-	    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
-	    addi     r3, r28, 0xac
-	    bl       OSUnlockMutex
-	    addi     r3, r28, 0xc4
-	    bl       OSSignalCond
-
-	lbl_8044360C:
-	    mr       r3, r31
-	    lmw      r27, 0x1c(r1)
-	    lwz      r0, 0x34(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x30
-	    blr
-	*/
+	bool result = false;
+	P2ASSERTBOUNDSINCLUSIVELINE(862, 0, fileIndex1, 2);
+	P2ASSERTBOUNDSINCLUSIVELINE(863, 0, fileIndex2, 2);
+	if (checkError() && OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		MgrCommandCopyPlayer command(12, fileIndex1, fileIndex2);
+		setCommand(&command);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 /*
@@ -1152,73 +376,17 @@ void Mgr::copyPlayer(int, int)
  * Address:	80443624
  * Size:	0000E8
  */
-bool Mgr::getPlayerHeader(PlayerFileInfo*)
+bool Mgr::getPlayerHeader(PlayerFileInfo* playerInfo)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  li        r31, 0
-	  stw       r30, 0x28(r1)
-	  li        r30, 0
-	  stw       r29, 0x24(r1)
-	  mr        r29, r4
-	  stw       r28, 0x20(r1)
-	  mr        r28, r3
-	  bl        0x3214
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x68
-	  addi      r3, r28, 0xAC
-	  bl        -0x3538E4
-	  cmpwi     r3, 0
-	  beq-      .loc_0x68
-	  mr        r3, r28
-	  li        r31, 0x1
-	  li        r4, 0x10
-	  bl        -0x2FC4
-	  addi      r3, r28, 0xAC
-	  bl        -0x353A3C
-	  addi      r3, r28, 0xC4
-	  bl        -0x35375C
-
-	.loc_0x68:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0xC4
-	  addi      r3, r28, 0xAC
-	  bl        -0x35391C
-	  cmpwi     r3, 0
-	  beq-      .loc_0xC4
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x30B8
-	  li        r5, 0xD
-	  stw       r0, 0xC(r1)
-	  subi      r0, r3, 0x3078
-	  mr        r3, r28
-	  addi      r4, r1, 0x8
-	  stw       r5, 0x8(r1)
-	  li        r30, 0x1
-	  stw       r0, 0xC(r1)
-	  stw       r29, 0x10(r1)
-	  bl        -0x2FE0
-	  addi      r3, r28, 0xAC
-	  bl        -0x353A98
-	  addi      r3, r28, 0xC4
-	  bl        -0x3537B8
-
-	.loc_0xC4:
-	  lwz       r0, 0x34(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	bool result = false;
+	if (checkError() && OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		MgrCommandGetPlayerHeader command(13, playerInfo);
+		setCommand(&command);
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+	}
+	return result;
 }
 
 /*
@@ -1226,266 +394,81 @@ bool Mgr::getPlayerHeader(PlayerFileInfo*)
  * Address:	8044370C
  * Size:	000354
  */
-void Mgr::doCardProc(void*, MemoryCardMgrCommand*)
+bool Mgr::doCardProc(void*, MemoryCardMgrCommand* command)
 {
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    stw      r0, 0x24(r1)
-	    stmw     r26, 8(r1)
-	    mr       r26, r3
-	    mr       r27, r5
-	    li       r28, 0
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getTotalFreeSize__7JKRHeapFv
-	    lwz      r29, sCurrentHeap__7JKRHeap@sda21(r13)
-	    li       r31, 0
-	    mr       r30, r3
-	    stw      r31, 0xd8(r26)
-	    lwz      r3, 0(r27)
-	    addi     r0, r3, -5
-	    cmplwi   r0, 0xb
-	    bgt      lbl_804439D8
-	    lis      r3, lbl_804ECF58@ha
-	    slwi     r0, r0, 2
-	    addi     r3, r3, lbl_804ECF58@l
-	    lwzx     r0, r3, r0
-	    mtctr    r0
-	    bctr
+	bool result       = false;
+	int heapSize      = JKRHeap::getCurrentHeap()->getTotalFreeSize();
+	JKRHeap* currHeap = JKRHeap::getCurrentHeap();
 
-	lbl_80443768:
-	    lwz      r0, 0xe4(r26)
-	    mr       r3, r26
-	    ori      r0, r0, 1
-	    stw      r0, 0xe4(r26)
-	    bl       commandCreateNewFile__Q34Game10MemoryCard3MgrFv
-	    lwz      r0, 0xe4(r26)
-	    mr       r28, r3
-	    rlwinm   r0, r0, 0, 0, 0x1e
-	    stw      r0, 0xe4(r26)
-	    b        lbl_804439F4
+	_D8 = 0;
+	switch (command->_00) {
+	case 7:
+		setFlag(MCMFLAG_Unk1);
+		result = commandCreateNewFile();
+		resetFlag(MCMFLAG_Unk1);
+		break;
 
-	lbl_80443790:
-	    lwz      r0, 0xe4(r26)
-	    mr       r3, r26
-	    ori      r0, r0, 1
-	    stw      r0, 0xe4(r26)
-	    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804437D8
-	    mr       r3, r26
-	    li       r4, 0
-	    li       r5, 0
-	    bl       commandSaveGameOption__Q34Game10MemoryCard3MgrFbb
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804437D8
-	    mr       r3, r26
-	    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804437D8
-	    li       r31, 1
+	case 5:
+		setFlag(MCMFLAG_Unk1);
+		result = varifyCardStatus() && commandSaveGameOption(false, false) && commandSaveHeader();
+		resetFlag(MCMFLAG_Unk1);
+		break;
 
-	lbl_804437D8:
-	    lwz      r0, 0xe4(r26)
-	    mr       r28, r31
-	    rlwinm   r0, r0, 0, 0, 0x1e
-	    stw      r0, 0xe4(r26)
-	    b        lbl_804439F4
+	case 6:
+		result = commandLoadGameOption();
+		break;
 
-	lbl_804437EC:
-	    mr       r3, r26
-	    bl       commandLoadGameOption__Q34Game10MemoryCard3MgrFv
-	    mr       r28, r3
-	    b        lbl_804439F4
+	case 8:
+		setFlag(MCMFLAG_Unk1);
+		result = varifyCardStatus() && commandSavePlayer(command->mData.intView, true) && commandSaveHeader();
+		resetFlag(MCMFLAG_Unk1);
+		break;
 
-	lbl_804437FC:
-	    lwz      r0, 0xe4(r26)
-	    mr       r3, r26
-	    ori      r0, r0, 1
-	    stw      r0, 0xe4(r26)
-	    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443848
-	    lwz      r0, 8(r27)
-	    mr       r3, r26
-	    li       r5, 1
-	    extsb    r4, r0
-	    bl       commandSavePlayer__Q34Game10MemoryCard3MgrFScb
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443848
-	    mr       r3, r26
-	    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443848
-	    li       r31, 1
+	case 9:
+		setFlag(MCMFLAG_Unk1);
+		result = varifyCardStatus() && commandSavePlayerNoCheckSerialNo(command->mData.intView, true) && commandSaveHeader();
+		resetFlag(MCMFLAG_Unk1);
+		break;
 
-	lbl_80443848:
-	    lwz      r0, 0xe4(r26)
-	    mr       r28, r31
-	    rlwinm   r0, r0, 0, 0, 0x1e
-	    stw      r0, 0xe4(r26)
-	    b        lbl_804439F4
+	case 10:
+		result = commandLoadPlayer(command->mData.intView);
+		break;
 
-	lbl_8044385C:
-	    lwz      r0, 0xe4(r26)
-	    mr       r3, r26
-	    ori      r0, r0, 1
-	    stw      r0, 0xe4(r26)
-	    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804438A8
-	    lwz      r0, 8(r27)
-	    mr       r3, r26
-	    li       r5, 1
-	    extsb    r4, r0
-	    bl       commandSavePlayerNoCheckSerialNo__Q34Game10MemoryCard3MgrFScb
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804438A8
-	    mr       r3, r26
-	    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804438A8
-	    li       r31, 1
+	case 11:
+		setFlag(MCMFLAG_Unk1);
+		result = varifyCardStatus() && commandDeletePlayer(command->mData.intView) && commandSaveHeader();
+		resetFlag(MCMFLAG_Unk1);
+		break;
 
-	lbl_804438A8:
-	    lwz      r0, 0xe4(r26)
-	    mr       r28, r31
-	    rlwinm   r0, r0, 0, 0, 0x1e
-	    stw      r0, 0xe4(r26)
-	    b        lbl_804439F4
+	case 12:
+		setFlag(MCMFLAG_Unk1);
+		result = varifyCardStatus() && commandCopyPlayer(command->mData.shortView[0], command->mData.shortView[1]) && commandSaveHeader();
+		resetFlag(MCMFLAG_Unk1);
+		break;
 
-	lbl_804438BC:
-	    lwz      r0, 8(r27)
-	    mr       r3, r26
-	    extsb    r4, r0
-	    bl       commandLoadPlayer__Q34Game10MemoryCard3MgrFSc
-	    mr       r28, r3
-	    b        lbl_804439F4
+	case 13:
+		result = commandUpdatePlayerHeader((PlayerFileInfo*)command->mData.dataView);
+		break;
 
-	lbl_804438D4:
-	    lwz      r0, 0xe4(r26)
-	    mr       r3, r26
-	    ori      r0, r0, 1
-	    stw      r0, 0xe4(r26)
-	    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_8044391C
-	    lwz      r0, 8(r27)
-	    mr       r3, r26
-	    extsb    r4, r0
-	    bl       commandDeletePlayer__Q34Game10MemoryCard3MgrFSc
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_8044391C
-	    mr       r3, r26
-	    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_8044391C
-	    li       r31, 1
+	case 14:
+		result = commandCheckSerialNo();
+		break;
 
-	lbl_8044391C:
-	    lwz      r0, 0xe4(r26)
-	    mr       r28, r31
-	    rlwinm   r0, r0, 0, 0, 0x1e
-	    stw      r0, 0xe4(r26)
-	    b        lbl_804439F4
+	case 15:
+		result = commandCheckBeforeSave();
+		break;
 
-	lbl_80443930:
-	    lwz      r0, 0xe4(r26)
-	    mr       r3, r26
-	    ori      r0, r0, 1
-	    stw      r0, 0xe4(r26)
-	    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443980
-	    lha      r4, 8(r27)
-	    mr       r3, r26
-	    lha      r0, 0xa(r27)
-	    extsb    r4, r4
-	    extsb    r5, r0
-	    bl       commandCopyPlayer__Q34Game10MemoryCard3MgrFScSc
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443980
-	    mr       r3, r26
-	    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443980
-	    li       r31, 1
+	case 16:
+		result = commandCheckError();
+		break;
 
-	lbl_80443980:
-	    lwz      r0, 0xe4(r26)
-	    mr       r28, r31
-	    rlwinm   r0, r0, 0, 0, 0x1e
-	    stw      r0, 0xe4(r26)
-	    b        lbl_804439F4
+	default:
+		P2ASSERTLINE(995, false);
+	}
+	P2ASSERTLINE(1008, currHeap == JKRHeap::getCurrentHeap());
+	P2ASSERTLINE(1010, heapSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
 
-	lbl_80443994:
-	    lwz      r4, 8(r27)
-	    mr       r3, r26
-	    bl
-	commandUpdatePlayerHeader__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard14PlayerFileInfo
-	    mr       r28, r3
-	    b        lbl_804439F4
-
-	lbl_804439A8:
-	    mr       r3, r26
-	    bl       commandCheckSerialNo__Q34Game10MemoryCard3MgrFv
-	    mr       r28, r3
-	    b        lbl_804439F4
-
-	lbl_804439B8:
-	    mr       r3, r26
-	    bl       commandCheckBeforeSave__Q34Game10MemoryCard3MgrFv
-	    mr       r28, r3
-	    b        lbl_804439F4
-
-	lbl_804439C8:
-	    mr       r3, r26
-	    bl       commandCheckError__Q34Game10MemoryCard3MgrFv
-	    mr       r28, r3
-	    b        lbl_804439F4
-
-	lbl_804439D8:
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x3e3
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_804439F4:
-	    lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-	    cmplw    r29, r0
-	    beq      lbl_80443A1C
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x3f0
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80443A1C:
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getTotalFreeSize__7JKRHeapFv
-	    cmpw     r30, r3
-	    beq      lbl_80443A48
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x3f2
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80443A48:
-	    mr       r3, r28
-	    lmw      r26, 8(r1)
-	    lwz      r0, 0x24(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
+	return result;
 }
 
 /*
@@ -1493,275 +476,53 @@ void Mgr::doCardProc(void*, MemoryCardMgrCommand*)
  * Address:	80443A60
  * Size:	000390
  */
-void Mgr::commandUpdatePlayerHeader(PlayerFileInfo*)
+bool Mgr::commandUpdatePlayerHeader(PlayerFileInfo* playerInfo)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stmw      r26, 0x58(r1)
-	  mr.       r28, r4
-	  mr        r27, r3
-	  li        r30, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5234
-	  li        r4, 0x407
-	  subi      r5, r5, 0x5218
-	  crclr     6, 0x6
-	  bl        -0x419458
+	bool result = false;
+	Player* players;
+	P2ASSERTLINE(1031, playerInfo);
+	bool check;
+	do {
+		check = false;
+		for (s8 i = 0; i < 3; i++) {
+			PlayerInfoHeader infoHeader;
+			if (getPlayerInfo(i, &infoHeader, &check)) {
+				*playerInfo->getPlayer(i) = infoHeader.mPlayer;
+			} else if (isErrorOccured()) {
+				break;
+			} else if (infoHeader._00 == 'PlIn') {
+				bool tagCheck  = (infoHeader._00 != 'PlIn');
+				Player* player = playerInfo->getPlayer(i);
+				player->_00    = tagCheck;
+				player->_01    = 0;
+				player->_02    = 0;
+				player->_04    = 0;
+				player->_08    = 0;
+				player->_0C    = 0;
+				player->_10    = 0;
+				player->_14    = 0;
+				player->_18    = 0;
+				player->_1C    = 0;
+				player->_20    = 10000;
+				player->_28    = 0;
+				player->_2C    = 0;
+				player->_30    = 0;
+			} else {
+				infoHeader.mPlayer._00    = 1;
+				*playerInfo->getPlayer(i) = infoHeader.mPlayer;
+			}
+		}
+	} while (check);
 
-	.loc_0x3C:
-	  li        r0, 0
-	  mr        r31, r28
-	  stb       r0, 0x8(r1)
-	  li        r29, 0
-	  b         .loc_0x2E4
+	for (s8 i = 0; i < 3; i++) {
+		playerInfo->getPlayer(i);
+	}
 
-	.loc_0x50:
-	  li        r0, 0
-	  mr        r3, r27
-	  stb       r0, 0x18(r1)
-	  mr        r4, r29
-	  addi      r5, r1, 0xC
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x20(r1)
-	  stw       r0, 0x24(r1)
-	  stw       r0, 0x28(r1)
-	  stw       r0, 0x2C(r1)
-	  stw       r0, 0x30(r1)
-	  stw       r0, 0x34(r1)
-	  stw       r0, 0x38(r1)
-	  stw       r0, 0x3C(r1)
-	  stw       r0, 0x40(r1)
-	  stw       r0, 0x44(r1)
-	  stw       r0, 0x48(r1)
-	  bl        0x12E0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x15C
-	  extsb.    r3, r29
-	  li        r0, 0
-	  blt-      .loc_0xBC
-	  cmpwi     r3, 0x3
-	  bge-      .loc_0xBC
-	  li        r0, 0x1
+	if (!isErrorOccured()) {
+		result = true;
+	}
 
-	.loc_0xBC:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0xE0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5234
-	  li        r4, 0x18C
-	  subi      r5, r5, 0x5218
-	  crclr     6, 0x6
-	  bl        -0x4194FC
-
-	.loc_0xE0:
-	  lbz       r0, 0x18(r1)
-	  stb       r0, 0x0(r31)
-	  lbz       r0, 0x19(r1)
-	  stb       r0, 0x1(r31)
-	  lhz       r0, 0x1A(r1)
-	  sth       r0, 0x2(r31)
-	  lwz       r0, 0x1C(r1)
-	  stw       r0, 0x4(r31)
-	  lwz       r0, 0x20(r1)
-	  stw       r0, 0x8(r31)
-	  lwz       r0, 0x24(r1)
-	  stw       r0, 0xC(r31)
-	  lwz       r0, 0x28(r1)
-	  stw       r0, 0x10(r31)
-	  lwz       r0, 0x2C(r1)
-	  stw       r0, 0x14(r31)
-	  lwz       r0, 0x30(r1)
-	  stw       r0, 0x18(r31)
-	  lwz       r0, 0x34(r1)
-	  stw       r0, 0x1C(r31)
-	  lwz       r0, 0x38(r1)
-	  stw       r0, 0x20(r31)
-	  lwz       r0, 0x3C(r1)
-	  stw       r0, 0x24(r31)
-	  lwz       r0, 0x40(r1)
-	  stw       r0, 0x28(r31)
-	  lwz       r0, 0x44(r1)
-	  stw       r0, 0x2C(r31)
-	  lwz       r0, 0x48(r1)
-	  stw       r0, 0x30(r31)
-	  b         .loc_0x2DC
-
-	.loc_0x15C:
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2F0
-	  lwz       r5, 0xC(r1)
-	  subis     r0, r5, 0x506C
-	  cmplwi    r0, 0x496E
-	  bne-      .loc_0x220
-	  lis       r3, 0x506C
-	  extsb.    r6, r29
-	  addi      r3, r3, 0x496E
-	  li        r0, 0
-	  sub       r4, r3, r5
-	  sub       r3, r5, r3
-	  or        r3, r4, r3
-	  rlwinm    r26,r3,1,31,31
-	  blt-      .loc_0x1B8
-	  cmpwi     r6, 0x3
-	  bge-      .loc_0x1B8
-	  li        r0, 0x1
-
-	.loc_0x1B8:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x1DC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5234
-	  li        r4, 0x18C
-	  subi      r5, r5, 0x5218
-	  crclr     6, 0x6
-	  bl        -0x4195F8
-
-	.loc_0x1DC:
-	  stb       r26, 0x0(r31)
-	  li        r3, 0
-	  li        r0, 0x2710
-	  stb       r3, 0x1(r31)
-	  sth       r3, 0x2(r31)
-	  stw       r3, 0x4(r31)
-	  stw       r3, 0x8(r31)
-	  stw       r3, 0xC(r31)
-	  stw       r3, 0x10(r31)
-	  stw       r3, 0x14(r31)
-	  stw       r3, 0x18(r31)
-	  stw       r3, 0x1C(r31)
-	  stw       r0, 0x20(r31)
-	  stw       r3, 0x28(r31)
-	  stw       r3, 0x2C(r31)
-	  stw       r3, 0x30(r31)
-	  b         .loc_0x2DC
-
-	.loc_0x220:
-	  li        r3, 0x1
-	  extsb.    r4, r29
-	  stb       r3, 0x18(r1)
-	  li        r0, 0
-	  blt-      .loc_0x240
-	  cmpwi     r4, 0x3
-	  bge-      .loc_0x240
-	  mr        r0, r3
-
-	.loc_0x240:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x264
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5234
-	  li        r4, 0x18C
-	  subi      r5, r5, 0x5218
-	  crclr     6, 0x6
-	  bl        -0x419680
-
-	.loc_0x264:
-	  lbz       r0, 0x18(r1)
-	  stb       r0, 0x0(r31)
-	  lbz       r0, 0x19(r1)
-	  stb       r0, 0x1(r31)
-	  lhz       r0, 0x1A(r1)
-	  sth       r0, 0x2(r31)
-	  lwz       r0, 0x1C(r1)
-	  stw       r0, 0x4(r31)
-	  lwz       r0, 0x20(r1)
-	  stw       r0, 0x8(r31)
-	  lwz       r0, 0x24(r1)
-	  stw       r0, 0xC(r31)
-	  lwz       r0, 0x28(r1)
-	  stw       r0, 0x10(r31)
-	  lwz       r0, 0x2C(r1)
-	  stw       r0, 0x14(r31)
-	  lwz       r0, 0x30(r1)
-	  stw       r0, 0x18(r31)
-	  lwz       r0, 0x34(r1)
-	  stw       r0, 0x1C(r31)
-	  lwz       r0, 0x38(r1)
-	  stw       r0, 0x20(r31)
-	  lwz       r0, 0x3C(r1)
-	  stw       r0, 0x24(r31)
-	  lwz       r0, 0x40(r1)
-	  stw       r0, 0x28(r31)
-	  lwz       r0, 0x44(r1)
-	  stw       r0, 0x2C(r31)
-	  lwz       r0, 0x48(r1)
-	  stw       r0, 0x30(r31)
-
-	.loc_0x2DC:
-	  addi      r31, r31, 0x34
-	  addi      r29, r29, 0x1
-
-	.loc_0x2E4:
-	  extsb     r0, r29
-	  cmpwi     r0, 0x3
-	  blt+      .loc_0x50
-
-	.loc_0x2F0:
-	  lbz       r0, 0x8(r1)
-	  cmplwi    r0, 0
-	  bne+      .loc_0x3C
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  subi      r29, r4, 0x5234
-	  li        r26, 0
-	  subi      r28, r3, 0x5218
-	  b         .loc_0x34C
-
-	.loc_0x314:
-	  extsb.    r3, r26
-	  li        r0, 0
-	  blt-      .loc_0x32C
-	  cmpwi     r3, 0x3
-	  bge-      .loc_0x32C
-	  li        r0, 0x1
-
-	.loc_0x32C:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x348
-	  mr        r3, r29
-	  mr        r5, r28
-	  li        r4, 0x18C
-	  crclr     6, 0x6
-	  bl        -0x419764
-
-	.loc_0x348:
-	  addi      r26, r26, 0x1
-
-	.loc_0x34C:
-	  extsb     r0, r26
-	  cmpwi     r0, 0x3
-	  blt+      .loc_0x314
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x378
-	  li        r30, 0x1
-
-	.loc_0x378:
-	  mr        r3, r30
-	  lmw       r26, 0x58(r1)
-	  lwz       r0, 0x74(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
-	*/
+	return result;
 }
 
 /*
@@ -1769,47 +530,20 @@ void Mgr::commandUpdatePlayerHeader(PlayerFileInfo*)
  * Address:	80443DF0
  * Size:	00007C
  */
-void Mgr::commandCheckBeforeSave()
+bool Mgr::commandCheckBeforeSave()
 {
-	/*
-	    stwu     r1, -0x30(r1)
-	    mflr     r0
-	    li       r5, 0
-	    stw      r0, 0x34(r1)
-	    addi     r4, r1, 8
-	    stw      r31, 0x2c(r1)
-	    mr       r31, r3
-	    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443E30
-	    addi     r3, r1, 8
-	    bl       CARDClose
-	    mr       r3, r31
-	    bl       commandCheckSerialNo__Q34Game10MemoryCard3MgrFv
-	    b        lbl_80443E58
+	CARDFileInfo fileInfo;
+	if (fileOpen(&fileInfo, CARDSLOT_Unk0, cFileName)) {
+		CARDClose(&fileInfo);
+		return commandCheckSerialNo();
 
-	lbl_80443E30:
-	    mr       r3, r31
-	    li       r4, 0
-	    bl       checkSpace__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot
-	    lwz      r0, 0xd4(r31)
-	    cmpwi    r0, 2
-	    bne      lbl_80443E54
-	    mr       r3, r31
-	    li       r4, 3
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-
-	lbl_80443E54:
-	    li       r3, 0
-
-	lbl_80443E58:
-	    lwz      r0, 0x34(r1)
-	    lwz      r31, 0x2c(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x30
-	    blr
-	*/
+	} else {
+		checkSpace(CARDSLOT_Unk0);
+		if (mStatusFlag == INSIDESTATUS_Unk2) {
+			setInsideStatusFlag(INSIDESTATUS_Unk3);
+		}
+		return false;
+	}
 }
 
 /*
@@ -1817,48 +551,19 @@ void Mgr::commandCheckBeforeSave()
  * Address:	80443E6C
  * Size:	000080
  */
-void Mgr::commandCheckError()
+bool Mgr::commandCheckError()
 {
-	/*
-	    stwu     r1, -0x30(r1)
-	    mflr     r0
-	    li       r5, 0
-	    stw      r0, 0x34(r1)
-	    addi     r4, r1, 8
-	    stw      r31, 0x2c(r1)
-	    li       r31, 1
-	    stw      r30, 0x28(r1)
-	    mr       r30, r3
-	    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443EAC
-	    addi     r3, r1, 8
-	    bl       CARDClose
-	    b        lbl_80443ED0
-
-	lbl_80443EAC:
-	    mr       r3, r30
-	    li       r4, 0
-	    bl       checkSpace__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80443ECC
-	    mr       r3, r30
-	    li       r4, 3
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-
-	lbl_80443ECC:
-	    li       r31, 0
-
-	lbl_80443ED0:
-	    lwz      r0, 0x34(r1)
-	    mr       r3, r31
-	    lwz      r31, 0x2c(r1)
-	    lwz      r30, 0x28(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x30
-	    blr
-	*/
+	CARDFileInfo fileInfo[1];
+	bool result = true;
+	if (fileOpen(fileInfo, CARDSLOT_Unk0, cFileName)) {
+		CARDClose(fileInfo);
+	} else {
+		if (checkSpace(CARDSLOT_Unk0)) {
+			setInsideStatusFlag(INSIDESTATUS_Unk3);
+		}
+		result = false;
+	}
+	return result;
 }
 
 /*
@@ -1866,68 +571,28 @@ void Mgr::commandCheckError()
  * Address:	80443EEC
  * Size:	0000B8
  */
-void Mgr::checkSpace(MemoryCardMgr::ECardSlot)
+bool Mgr::checkSpace(MemoryCardMgr::ECardSlot cardSlot)
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    lis      r5, 0x00036000@ha
-	    stw      r0, 0x14(r1)
-	    addi     r5, r5, 0x00036000@l
-	    stw      r31, 0xc(r1)
-	    li       r31, 0
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    bl       checkSpace__13MemoryCardMgrFQ213MemoryCardMgr9ECardSloti
-	    cmpwi    r3, 1
-	    beq      lbl_80443F4C
-	    bge      lbl_80443F2C
-	    cmpwi    r3, 0
-	    bge      lbl_80443F38
-	    b        lbl_80443F6C
+	bool result = false;
+	switch (MemoryCardMgr::checkSpace(cardSlot, 0x36000)) {
+	case 0:
+		setInsideStatusFlag(INSIDESTATUS_Unk2);
+		result = true;
+		break;
 
-	lbl_80443F2C:
-	    cmpwi    r3, 3
-	    bge      lbl_80443F6C
-	    b        lbl_80443F5C
+	case 1:
+		setInsideStatusFlag(INSIDESTATUS_Unk6);
+		break;
 
-	lbl_80443F38:
-	    mr       r3, r30
-	    li       r4, 2
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	    li       r31, 1
-	    b        lbl_80443F88
+	case 2:
+		setInsideStatusFlag(INSIDESTATUS_Unk7);
+		break;
 
-	lbl_80443F4C:
-	    mr       r3, r30
-	    li       r4, 6
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	    b        lbl_80443F88
+	default:
+		JUT_PANICLINE(1220, "P2Assert");
+	}
 
-	lbl_80443F5C:
-	    mr       r3, r30
-	    li       r4, 7
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	    b        lbl_80443F88
-
-	lbl_80443F6C:
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x4c4
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80443F88:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	return result;
 }
 
 /*
@@ -1935,88 +600,29 @@ void Mgr::checkSpace(MemoryCardMgr::ECardSlot)
  * Address:	80443FA4
  * Size:	000118
  */
-void Mgr::commandSaveHeader()
+bool Mgr::commandSaveHeader()
 {
-	/*
-	    stwu     r1, -0x30(r1)
-	    mflr     r0
-	    stw      r0, 0x34(r1)
-	    stw      r31, 0x2c(r1)
-	    li       r31, 0
-	    stw      r30, 0x28(r1)
-	    mr       r30, r3
-	    lwz      r12, 0(r3)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804440A0
-	    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r30
-	    addi     r4, r1, 8
-	    li       r5, 0
-	    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80444078
-	    addi     r3, r1, 8
-	    bl       CARDClose
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80444028
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r30
-	    li       r4, 0
-	    bl       writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
-
-	lbl_80444028:
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80444054
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r30
-	    li       r4, 0
-	    bl       writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
-
-	lbl_80444054:
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804440A0
-	    li       r31, 1
-	    b        lbl_804440A0
-
-	lbl_80444078:
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804440A0
-	    mr       r3, r30
-	    li       r4, 3
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-
-	lbl_804440A0:
-	    lwz      r0, 0x34(r1)
-	    mr       r3, r31
-	    lwz      r31, 0x2c(r1)
-	    lwz      r30, 0x28(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x30
-	    blr
-	*/
+	bool result = false;
+	CARDFileInfo fileInfo;
+	if (!isErrorOccured()) {
+		if (fileOpen(&fileInfo, CARDSLOT_Unk0, cFileName)) {
+			CARDClose(&fileInfo);
+			if (!isErrorOccured()) {
+				writeHeader(CARDSLOT_Unk0, cFileName);
+			}
+			if (!isErrorOccured()) {
+				writeCardStatus(CARDSLOT_Unk0, cFileName);
+			}
+			if (!isErrorOccured()) {
+				result = true;
+			}
+		} else {
+			if (!isErrorOccured()) {
+				setInsideStatusFlag(INSIDESTATUS_Unk3);
+			}
+		}
+	}
+	return result;
 }
 
 /*
@@ -2024,138 +630,39 @@ void Mgr::commandSaveHeader()
  * Address:	804440BC
  * Size:	0001A0
  */
-void Mgr::commandCreateNewFile()
+bool Mgr::commandCreateNewFile()
 {
-	/*
-	    stwu     r1, -0x40(r1)
-	    mflr     r0
-	    li       r5, 0
-	    stw      r0, 0x44(r1)
-	    addi     r4, r1, 0x10
-	    stw      r31, 0x3c(r1)
-	    stw      r30, 0x38(r1)
-	    li       r30, 0
-	    stw      r29, 0x34(r1)
-	    mr       r29, r3
-	    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80444104
-	    addi     r3, r1, 0x10
-	    bl       CARDClose
-	    li       r30, 1
-	    b        lbl_8044423C
+	CARDFileInfo fileInfo;
+	u64 serial;
+	bool result = false;
+	if (fileOpen(&fileInfo, CARDSLOT_Unk0, cFileName)) {
+		CARDClose(&fileInfo);
+		result = true;
+	} else {
+		checkSpace(CARDSLOT_Unk0);
 
-	lbl_80444104:
-	    lis      r4, 0x00036000@ha
-	    mr       r3, r29
-	    addi     r5, r4, 0x00036000@l
-	    li       r4, 0
-	    bl       checkSpace__13MemoryCardMgrFQ213MemoryCardMgr9ECardSloti
-	    cmpwi    r3, 1
-	    beq      lbl_8044414C
-	    bge      lbl_80444130
-	    cmpwi    r3, 0
-	    bge      lbl_8044413C
-	    b        lbl_8044416C
+		if (readCardSerialNo(&serial, CARDSLOT_Unk0)) {
+			sys->mPlayData->setCardSerialNo(serial);
+		}
 
-	lbl_80444130:
-	    cmpwi    r3, 3
-	    bge      lbl_8044416C
-	    b        lbl_8044415C
+		if (checkStatus() == INSIDESTATUS_Unk2) {
+			int createResult = CARDCreate(0, cFileName, 0x36000, &fileInfo);
+			CARDClose(&fileInfo);
+			if (!createResult) {
+				dataFormat(CARDSLOT_Unk0);
+			} else {
+				setInsideStatusFlag(INSIDESTATUS_Unk10);
+			}
+		}
 
-	lbl_8044413C:
-	    mr       r3, r29
-	    li       r4, 2
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	    b        lbl_80444188
+		if (!isErrorOccured()) {
+			result = true;
+		} else {
+			setInsideStatusFlag(INSIDESTATUS_Unk10);
+		}
+	}
 
-	lbl_8044414C:
-	    mr       r3, r29
-	    li       r4, 6
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	    b        lbl_80444188
-
-	lbl_8044415C:
-	    mr       r3, r29
-	    li       r4, 7
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-	    b        lbl_80444188
-
-	lbl_8044416C:
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x4c4
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80444188:
-	    mr       r3, r29
-	    addi     r4, r1, 8
-	    li       r5, 0
-	    bl       readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804441B4
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r5, 8(r1)
-	    lwz      r3, 0x60(r3)
-	    lwz      r6, 0xc(r1)
-	    bl       setCardSerialNo__Q34Game14CommonSaveData3MgrFUx
-
-	lbl_804441B4:
-	    mr       r3, r29
-	    bl       checkStatus__13MemoryCardMgrFv
-	    cmplwi   r3, 2
-	    bne      lbl_8044420C
-	    lis      r3, 0x00036000@ha
-	    lwz      r4, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    addi     r5, r3, 0x00036000@l
-	    addi     r6, r1, 0x10
-	    li       r3, 0
-	    bl       CARDCreate
-	    mr       r31, r3
-	    addi     r3, r1, 0x10
-	    bl       CARDClose
-	    cmpwi    r31, 0
-	    bne      lbl_80444200
-	    mr       r3, r29
-	    li       r4, 0
-	    bl       dataFormat__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot
-	    b        lbl_8044420C
-
-	lbl_80444200:
-	    mr       r3, r29
-	    li       r4, 0xa
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-
-	lbl_8044420C:
-	    mr       r3, r29
-	    lwz      r12, 0(r29)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80444230
-	    li       r30, 1
-	    b        lbl_8044423C
-
-	lbl_80444230:
-	    mr       r3, r29
-	    li       r4, 0xa
-	    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
-
-	lbl_8044423C:
-	    lwz      r0, 0x44(r1)
-	    mr       r3, r30
-	    lwz      r31, 0x3c(r1)
-	    lwz      r30, 0x38(r1)
-	    lwz      r29, 0x34(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x40
-	    blr
-	*/
+	return result;
 }
 
 /*
@@ -2163,209 +670,78 @@ void Mgr::commandCreateNewFile()
  * Address:	8044425C
  * Size:	000100
  */
-void Mgr::dataFormat(MemoryCardMgr::ECardSlot)
+bool Mgr::dataFormat(MemoryCardMgr::ECardSlot cardSlot)
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r4
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    lwz      r12, 0(r3)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804442A0
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r30
-	    mr       r4, r31
-	    bl       writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
+	if (!isErrorOccured()) {
+		writeHeader(cardSlot, cFileName);
+	}
 
-	lbl_804442A0:
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804442D4
-	    mr       r3, r30
-	    bl       writeInvalidGameOption__Q34Game10MemoryCard3MgrFv
-	    mr       r3, r30
-	    li       r4, 0
-	    li       r5, 1
-	    bl       commandSaveGameOption__Q34Game10MemoryCard3MgrFbb
+	if (!isErrorOccured()) {
+		writeInvalidGameOption();
+		commandSaveGameOption(false, true);
+	}
 
-	lbl_804442D4:
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804442F8
-	    mr       r3, r30
-	    bl       writeInvalidPlayerInfoAll__Q34Game10MemoryCard3MgrFv
+	if (!isErrorOccured()) {
+		writeInvalidPlayerInfoAll();
+	}
 
-	lbl_804442F8:
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80444324
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r30
-	    mr       r4, r31
-	    bl       writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
+	if (!isErrorOccured()) {
+		writeCardStatus(cardSlot, cFileName);
+	}
 
-	lbl_80444324:
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi   r0, r3, 0x18
-	    lwz      r31, 0xc(r1)
-	    cntlzw   r0, r0
-	    lwz      r30, 8(r1)
-	    srwi     r3, r0, 5
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	return !isErrorOccured();
 }
 
 /*
-* --INFO--
-* Address:	........
-* Size:	000114
-
-void Mgr::writeBrokenData(MemoryCardMgr::ECardSlot)
+ * --INFO--
+ * Address:	........
+ * Size:	000114
+ */
+bool Mgr::writeBrokenData(MemoryCardMgr::ECardSlot slot)
 {
-// UNUSED FUNCTION
+	u8* buffer = new u8[0x2000];
+	memset(buffer, 0xCD, 0x2000);
+
+	for (int i = 0; i < 0x1B; i++) {
+		if (!isErrorOccured()) {
+			write(slot, cFileName, buffer, 0x2000, i * 0x2000);
+		}
+	}
+
+	delete (buffer);
+
+	if (!isErrorOccured()) {
+		writeHeader(slot, cFileName);
+	}
+
+	if (!isErrorOccured()) {
+		writeCardStatus(slot, cFileName);
+	}
+
+	return !isErrorOccured();
 }
 
 /*
-* --INFO--
-* Address:	8044435C
-* Size:	000170
-*/
-void Mgr::varifyCardStatus()
+ * --INFO--
+ * Address:	8044435C
+ * Size:	000170
+ */
+bool Mgr::varifyCardStatus()
 {
-	/*
-	    stwu     r1, -0x30(r1)
-	    mflr     r0
-	    li       r5, 0
-	    stw      r0, 0x34(r1)
-	    addi     r4, r1, 8
-	    stw      r31, 0x2c(r1)
-	    stw      r30, 0x28(r1)
-	    stw      r29, 0x24(r1)
-	    stw      r28, 0x20(r1)
-	    mr       r28, r3
-	    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804443AC
-	    mr       r3, r28
-	    addi     r5, r1, 8
-	    li       r4, 0
-	    bl checkCardStat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotP12CARDFileInfo
-	    addi     r3, r1, 8
-	    bl       CARDClose
+	CARDFileInfo fileInfo;
+	bool result;
+	if (fileOpen(&fileInfo, CARDSLOT_Unk0, cFileName)) {
+		checkCardStat(CARDSLOT_Unk0, &fileInfo);
+		CARDClose(&fileInfo);
+	}
 
-	lbl_804443AC:
-	    lbz      r0, 0xd0(r28)
-	    cmplwi   r0, 0
-	    beq      lbl_804443C0
-	    li       r3, 1
-	    b        lbl_804444AC
+	if (_D0) {
+		result = true;
+	} else {
+		result = writeBrokenData(CARDSLOT_Unk0);
+	}
 
-	lbl_804443C0:
-	    li       r3, 0x2000
-	    bl       __nwa__FUl
-	    li       r4, 0xcd
-	    mr       r30, r3
-	    li       r5, 0x2000
-	    bl       memset
-	    li       r31, 0
-	    mr       r29, r31
-
-	lbl_804443E0:
-	    mr       r3, r28
-	    lwz      r12, 0(r28)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80444418
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r28
-	    mr       r6, r30
-	    mr       r8, r29
-	    li       r4, 0
-	    li       r7, 0x2000
-	    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-
-	lbl_80444418:
-	    addi     r31, r31, 1
-	    addi     r29, r29, 0x2000
-	    cmpwi    r31, 0x1b
-	    blt      lbl_804443E0
-	    mr       r3, r30
-	    bl       __dl__FPv
-	    mr       r3, r28
-	    lwz      r12, 0(r28)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_8044445C
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r28
-	    li       r4, 0
-	    bl       writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
-
-	lbl_8044445C:
-	    mr       r3, r28
-	    lwz      r12, 0(r28)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80444488
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r28
-	    li       r4, 0
-	    bl       writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
-
-	lbl_80444488:
-	    mr       r3, r28
-	    lwz      r12, 0(r28)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi   r0, r3, 0x18
-	    cntlzw   r0, r0
-	    srwi     r0, r0, 5
-	    mr       r3, r0
-
-	lbl_804444AC:
-	    lwz      r0, 0x34(r1)
-	    lwz      r31, 0x2c(r1)
-	    lwz      r30, 0x28(r1)
-	    lwz      r29, 0x24(r1)
-	    lwz      r28, 0x20(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x30
-	    blr
-	*/
+	return result;
 }
 
 /*
@@ -2373,143 +749,47 @@ void Mgr::varifyCardStatus()
  * Address:	804444CC
  * Size:	0001C0
  */
-void Mgr::commandSaveGameOption(bool, bool)
+bool Mgr::commandSaveGameOption(bool param_1, bool param_2)
 {
-	/*
-	    stwu     r1, -0x450(r1)
-	    mflr     r0
-	    stw      r0, 0x454(r1)
-	    clrlwi.  r0, r4, 0x18
-	    stmw     r25, 0x434(r1)
-	    mr       r28, r3
-	    mr       r25, r5
-	    li       r31, 0
-	    bne      lbl_80444500
-	    li       r4, 0
-	    bl       checkSerialNo__Q34Game10MemoryCard3MgrFb
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80444664
-
-	lbl_80444500:
-	    lwz      r4, 0xcc(r28)
-	    li       r3, 0x2000
-	    li       r5, -32
-	    bl       __nwa__FUlP7JKRHeapi
-	    or.      r30, r3, r3
-	    bne      lbl_80444534
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x5dc
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80444534:
-	    clrlwi.  r0, r25, 0x18
-	    li       r29, -1
-	    li       r26, 0
-	    bne      lbl_804445AC
-	    li       r25, 0
-	    li       r27, 0x2000
-
-	lbl_8044454C:
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r28
-	    mr       r6, r30
-	    mr       r8, r27
-	    li       r4, 0
-	    li       r7, 0x2000
-	    bl       read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80444578
-	    li       r26, 1
-	    b        lbl_804445AC
-
-	lbl_80444578:
-	    mr       r3, r28
-	    mr       r4, r30
-	    bl checkOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
-	    clrlwi   r0, r3, 0x18
-	    cntlzw   r0, r0
-	    rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	    beq      lbl_8044459C
-	    mr       r29, r25
-	    b        lbl_804445AC
-
-	lbl_8044459C:
-	    addi     r25, r25, 1
-	    addi     r27, r27, 0x2000
-	    cmpwi    r25, 2
-	    blt      lbl_8044454C
-
-	lbl_804445AC:
-	    cmpwi    r29, -1
-	    bne      lbl_804445C8
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    lwz      r3, 0x28(r3)
-	    addi     r0, r3, 1
-	    clrlwi   r29, r0, 0x1f
-
-	lbl_804445C8:
-	    clrlwi.  r0, r26, 0x18
-	    bne      lbl_8044465C
-	    lwz      r6, sys@sda21(r13)
-	    lis      r5, 0x4F705661@ha
-	    lis      r4, 0x30303032@ha
-	    addi     r3, r1, 8
-	    lwz      r8, 0x60(r6)
-	    addi     r6, r5, 0x4F705661@l
-	    addi     r0, r4, 0x30303032@l
-	    addi     r4, r30, 0xc
-	    lwz      r7, 0x28(r8)
-	    li       r5, 0x1c00
-	    addi     r7, r7, 1
-	    stw      r7, 0x28(r8)
-	    stw      r6, 0(r30)
-	    stw      r0, 4(r30)
-	    lwz      r6, sys@sda21(r13)
-	    lwz      r6, 0x60(r6)
-	    lwz      r0, 0x28(r6)
-	    stw      r0, 8(r30)
-	    bl       __ct__9RamStreamFPvi
-	    mr       r3, r28
-	    addi     r4, r1, 8
-	    bl       writeGameOption__Q34Game10MemoryCard3MgrFR6Stream
-	    mr       r3, r28
-	    mr       r4, r30
-	    bl
-	calcCheckSumOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
-	    stw      r3, 0x1ffc(r30)
-	    slwi     r4, r29, 0xd
-	    mr       r3, r28
-	    mr       r6, r30
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    addi     r8, r4, 0x2000
-	    li       r4, 0
-	    li       r7, 0x2000
-	    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-	    mr       r31, r3
-
-	lbl_8044465C:
-	    mr       r3, r30
-	    bl       __dl__FPv
-
-	lbl_80444664:
-	    clrlwi.  r0, r31, 0x18
-	    beq      lbl_80444674
-	    lwz      r3, sys@sda21(r13)
-	    bl       clearOptionBlockSaveFlag__6SystemFv
-
-	lbl_80444674:
-	    mr       r3, r31
-	    lmw      r25, 0x434(r1)
-	    lwz      r0, 0x454(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x450
-	    blr
-	*/
+	bool result = false;
+	if (param_1 || checkSerialNo(false)) {
+		u32* buffer = new (mHeap, -32) u32[0x800];
+		P2ASSERTLINE(1500, buffer);
+		int icheck = -1;
+		bool check = false;
+		if (!param_2) {
+			for (int i = 0; i < 2; i++) {
+				if (!read(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0x2000, i * 0x2000 + 0x2000)) {
+					check = true;
+					break;
+				}
+				bool checkOption = checkOptionInfo((OptionInfo*)buffer) == 0; // sigh. sure, why not.
+				if (checkOption) {
+					icheck = i;
+					break;
+				}
+			}
+		}
+		if (icheck == -1) {
+			icheck = sys->mPlayData->_28 + 1 & 1;
+		}
+		if (!check) {
+			sys->mPlayData->_28++;
+			buffer[0] = 'OpVa';
+			buffer[1] = '0002';
+			buffer[2] = sys->mPlayData->_28;
+			RamStream ramStream(&buffer[3], 0x1C00);
+			writeGameOption(ramStream);
+			buffer[0x7FF] = calcCheckSumOptionInfo((OptionInfo*)buffer);
+			check         = write(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0x2000, icheck * 0x2000 + 0x2000);
+			result        = check;
+		}
+		delete (buffer);
+	}
+	if (result) {
+		sys->clearOptionBlockSaveFlag();
+	}
+	return result;
 }
 
 /*
@@ -2517,180 +797,80 @@ void Mgr::commandSaveGameOption(bool, bool)
  * Address:	8044468C
  * Size:	000248
  */
-void Mgr::commandLoadGameOption()
+bool Mgr::commandLoadGameOption()
 {
-	/*
-	    stwu     r1, -0x460(r1)
-	    mflr     r0
-	    li       r5, 0
-	    stw      r0, 0x464(r1)
-	    addi     r4, r1, 0x10
-	    stmw     r25, 0x444(r1)
-	    mr       r29, r3
-	    li       r30, 0
-	    bl       readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804448B0
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getTotalFreeSize__7JKRHeapFv
-	    lwz      r4, 0xcc(r29)
-	    mr       r31, r3
-	    li       r3, 0x2000
-	    li       r5, -32
-	    bl       __nwa__FUlP7JKRHeapi
-	    cmplwi   r3, 0
-	    stw      r3, 8(r1)
-	    bne      lbl_804446FC
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x650
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
+	bool result = false;
 
-	lbl_804446FC:
-	    lwz      r4, 0xcc(r29)
-	    li       r3, 0x2000
-	    li       r5, -32
-	    bl       __nwa__FUlP7JKRHeapi
-	    cmplwi   r3, 0
-	    stw      r3, 0xc(r1)
-	    bne      lbl_80444734
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x652
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
+	u64 serial;
+	if (readCardSerialNo(&serial, CARDSLOT_Unk0)) {
+		int freeSize = JKRHeap::getCurrentHeap()->getTotalFreeSize();
 
-	lbl_80444734:
-	    addi     r27, r1, 8
-	    li       r25, 0
-	    li       r26, 0
-	    li       r28, 0x2000
+		u32* infoBuffers[2];
+		infoBuffers[0] = new (mHeap, -32) u32[0x800];
+		P2ASSERTLINE(1616, infoBuffers[0]);
+		infoBuffers[1] = new (mHeap, -32) u32[0x800];
+		P2ASSERTLINE(1618, infoBuffers[1]);
 
-	lbl_80444744:
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r29
-	    lwz      r6, 0(r27)
-	    mr       r8, r28
-	    li       r4, 0
-	    li       r7, 0x2000
-	    bl       read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80444770
-	    li       r30, 0
-	    li       r25, 1
+		int i;
+		bool readError = false;
+		for (i = 0; i < 2; i++) {
+			if (!read(CARDSLOT_Unk0, cFileName, (u8*)infoBuffers[i], 0x2000, i * 0x2000 + 0x2000)) {
+				result    = false;
+				readError = true;
+			}
+		}
 
-	lbl_80444770:
-	    addi     r26, r26, 1
-	    addi     r27, r27, 4
-	    cmpwi    r26, 2
-	    addi     r28, r28, 0x2000
-	    blt      lbl_80444744
-	    clrlwi.  r0, r25, 0x18
-	    bne      lbl_80444874
-	    lwz      r26, 8(r1)
-	    mr       r3, r29
-	    lwz      r25, 0xc(r1)
-	    li       r27, 0
-	    mr       r4, r26
-	    bl checkOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
-	    mr       r28, r3
-	    mr       r3, r29
-	    mr       r4, r25
-	    bl checkOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
-	    clrlwi.  r0, r28, 0x18
-	    beq      lbl_804447E4
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804447E4
-	    lwz      r3, 8(r26)
-	    lwz      r0, 8(r25)
-	    cmplw    r3, r0
-	    blt      lbl_804447DC
-	    mr       r27, r26
-	    b        lbl_80444810
+		if (!readError) {
+			OptionInfo* info2;
+			OptionInfo* info1;
+			info1                    = (OptionInfo*)infoBuffers[0];
+			info2                    = (OptionInfo*)infoBuffers[1];
+			OptionInfo* optionResult = nullptr;
 
-	lbl_804447DC:
-	    mr       r27, r25
-	    b        lbl_80444810
+			bool check1 = checkOptionInfo(info1);
+			bool check2 = checkOptionInfo(info2);
+			// if both checks pass, pick buffer with higher value at 0xC, or first if equal
+			if (check1 && check2) {
+				if (info1[1]._00 >= info2[1]._00) {
+					optionResult = info1;
+				} else {
+					optionResult = info2;
+				}
 
-	lbl_804447E4:
-	    clrlwi.  r0, r28, 0x18
-	    beq      lbl_804447FC
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804447FC
-	    mr       r27, r26
-	    b        lbl_80444810
+				// if only first passed, use first
+			} else if (check1 && !check2) {
+				optionResult = info1;
 
-	lbl_804447FC:
-	    clrlwi.  r0, r28, 0x18
-	    bne      lbl_80444810
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80444810
-	    mr       r27, r25
+				// if only second passed, use second
+			} else if (!check1 && check2) {
+				optionResult = info2;
+			}
 
-	lbl_80444810:
-	    cmplwi   r27, 0
-	    bne      lbl_80444830
-	    li       r0, 1
-	    stw      r0, 0xd8(r29)
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    bl       setDefault__Q34Game14CommonSaveData3MgrFv
-	    b        lbl_80444860
+			// if none passed, set default
+			if (!optionResult) {
+				_D8 = 1;
+				sys->mPlayData->setDefault();
 
-	lbl_80444830:
-	    lwz      r5, sys@sda21(r13)
-	    addi     r3, r1, 0x18
-	    lwz      r0, 8(r27)
-	    addi     r4, r27, 0xc
-	    lwz      r6, 0x60(r5)
-	    li       r30, 1
-	    li       r5, 0x1c00
-	    stw      r0, 0x28(r6)
-	    bl       __ct__9RamStreamFPvi
-	    mr       r3, r29
-	    addi     r4, r1, 0x18
-	    bl       readGameOption__Q34Game10MemoryCard3MgrFR6Stream
+				// use buffer info to set playData variable
+			} else {
+				result              = true;
+				sys->mPlayData->_28 = optionResult[1]._00;
+				RamStream ramStream((void*)&optionResult[1]._04, 0x1c00);
+				readGameOption(ramStream);
+			}
 
-	lbl_80444860:
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r5, 0x10(r1)
-	    lwz      r3, 0x60(r3)
-	    lwz      r6, 0x14(r1)
-	    bl       setCardSerialNo__Q34Game14CommonSaveData3MgrFUx
+			sys->mPlayData->setCardSerialNo(serial);
+		}
 
-	lbl_80444874:
-	    lwz      r3, 8(r1)
-	    bl       __dl__FPv
-	    lwz      r3, 0xc(r1)
-	    bl       __dl__FPv
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getTotalFreeSize__7JKRHeapFv
-	    cmpw     r31, r3
-	    beq      lbl_804448B0
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x6ab
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
+		delete (infoBuffers[0]);
+		delete (infoBuffers[1]);
 
-	lbl_804448B0:
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    bl       setup__Q34Game14CommonSaveData3MgrFv
-	    mr       r3, r30
-	    lmw      r25, 0x444(r1)
-	    lwz      r0, 0x464(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x460
-	    blr
-	*/
+		// check we successfully deleted the buffers
+		P2ASSERTLINE(1707, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
+	}
+
+	sys->mPlayData->setup();
+	return result;
 }
 
 /*
@@ -2698,87 +878,34 @@ void Mgr::commandLoadGameOption()
  * Address:	804448D4
  * Size:	000028
  */
-void Mgr::writeGameOption(Stream&)
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    bl       write__Q34Game14CommonSaveData3MgrFR6Stream
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
+void Mgr::writeGameOption(Stream& stream) { sys->mPlayData->write(stream); }
 
 /*
  * --INFO--
  * Address:	804448FC
  * Size:	000028
  */
-void Mgr::readGameOption(Stream&)
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    bl       read__Q34Game14CommonSaveData3MgrFR6Stream
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
+void Mgr::readGameOption(Stream& stream) { sys->mPlayData->read(stream); }
 
 /*
  * --INFO--
  * Address:	80444924
  * Size:	000070
  */
-void Mgr::checkSerialNo(bool)
+bool Mgr::checkSerialNo(bool param_1)
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    li       r31, 0
-	    lwz      r5, sys@sda21(r13)
-	    lwz      r5, 0x60(r5)
-	    lhz      r0, 0x40(r5)
-	    clrlwi.  r0, r0, 0x1f
-	    bne      lbl_80444964
-	    clrlwi.  r0, r4, 0x18
-	    beq      lbl_8044495C
-	    li       r0, 3
-	    stw      r0, 0xd8(r3)
-
-	lbl_8044495C:
-	    li       r31, 1
-	    b        lbl_8044497C
-
-	lbl_80444964:
-	    addi     r4, r5, 0x30
-	    li       r5, 0
-	    bl
-	verifyCardSerialNo__Q34Game10MemoryCard3MgrFPUxQ213MemoryCardMgr9ECardSlot
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_8044497C
-	    li       r31, 1
-
-	lbl_8044497C:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	bool result = false;
+	if (!(sys->mPlayData->mFlags.typeView & 1)) {
+		if (param_1) {
+			_D8 = 3;
+		}
+		result = true;
+	} else {
+		if (verifyCardSerialNo(&sys->mPlayData->mCardSerialNo, CARDSLOT_Unk0)) {
+			result = true;
+		}
+	}
+	return result;
 }
 
 /*
@@ -2786,73 +913,15 @@ void Mgr::checkSerialNo(bool)
  * Address:	80444994
  * Size:	0000D0
  */
-void Mgr::commandSavePlayer(s8, bool)
+bool Mgr::commandSavePlayer(s8 fileIndex, bool param_2)
 {
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    stw      r0, 0x24(r1)
-	    stmw     r27, 0xc(r1)
-	    mr       r31, r4
-	    mr       r30, r3
-	    mr       r27, r5
-	    extsb.   r0, r31
-	    li       r28, 0
-	    li       r3, 0
-	    blt      lbl_804449D0
-	    extsb    r0, r31
-	    cmpwi    r0, 3
-	    bge      lbl_804449D0
-	    li       r3, 1
+	bool result = false;
+	P2ASSERTBOUNDSLINE(1914, 0, fileIndex, 3);
+	if (checkSerialNo(false)) {
+		result = commandSavePlayerNoCheckSerialNo(fileIndex, param_2);
+	}
 
-	lbl_804449D0:
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804449F4
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x77a
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_804449F4:
-	    lwz      r3, sys@sda21(r13)
-	    li       r29, 0
-	    lwz      r4, 0x60(r3)
-	    lhz      r0, 0x40(r4)
-	    clrlwi.  r0, r0, 0x1f
-	    bne      lbl_80444A14
-	    li       r29, 1
-	    b        lbl_80444A30
-
-	lbl_80444A14:
-	    mr       r3, r30
-	    addi     r4, r4, 0x30
-	    li       r5, 0
-	    bl
-	verifyCardSerialNo__Q34Game10MemoryCard3MgrFPUxQ213MemoryCardMgr9ECardSlot
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80444A30
-	    li       r29, 1
-
-	lbl_80444A30:
-	    clrlwi.  r0, r29, 0x18
-	    beq      lbl_80444A4C
-	    mr       r3, r30
-	    mr       r4, r31
-	    mr       r5, r27
-	    bl       commandSavePlayerNoCheckSerialNo__Q34Game10MemoryCard3MgrFScb
-	    mr       r28, r3
-
-	lbl_80444A4C:
-	    mr       r3, r28
-	    lmw      r27, 0xc(r1)
-	    lwz      r0, 0x24(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
+	return result;
 }
 
 /*
@@ -2860,252 +929,92 @@ void Mgr::commandSavePlayer(s8, bool)
  * Address:	80444A64
  * Size:	000374
  */
-void Mgr::commandSavePlayerNoCheckSerialNo(s8, bool)
+bool Mgr::commandSavePlayerNoCheckSerialNo(s8 fileIndex, bool param_2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x460(r1)
-	  mflr      r0
-	  stw       r0, 0x464(r1)
-	  stmw      r27, 0x44C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  li        r30, 0
-	  lwz       r3, -0x77D4(r13)
-	  bl        -0x4212A8
-	  mr        r31, r3
-	  mr        r3, r27
-	  addi      r4, r1, 0x10
-	  li        r5, 0
-	  bl        -0x2314
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  lis       r3, 0x1
-	  lwz       r4, 0xCC(r27)
-	  subi      r3, r3, 0x4000
-	  li        r5, -0x20
-	  bl        -0x420A70
-	  mr.       r30, r3
-	  bne-      .loc_0x7C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5234
-	  li        r4, 0x793
-	  subi      r5, r5, 0x5218
-	  crclr     6, 0x6
-	  bl        -0x41A49C
+	bool result  = false;
+	int freeSize = JKRHeap::getCurrentHeap()->getTotalFreeSize();
+	u64 serial;
+	if (readCardSerialNo(&serial, CARDSLOT_Unk0)) {
+		u32* buffer = new (mHeap, -32) u32[0x3000];
+		P2ASSERTLINE(1939, buffer);
+		sys->mPlayData->_18++;
+		buffer[0]                   = 'PlVa'; // Magic Word
+		buffer[1]                   = '0003'; // Version
+		buffer[4]                   = sys->mPlayData->_18;
+		((u8*)buffer)[8]            = fileIndex; // File Index
+		((u8*)buffer)[12]           = 0;
+		((u8*)buffer)[13]           = param_2;
+		*(u16*)&(((u8*)buffer)[14]) = sys->mPlayData->_22;
 
-	.loc_0x7C:
-	  lwz       r5, -0x6514(r13)
-	  lis       r4, 0x506C
-	  lis       r3, 0x3030
-	  li        r0, 0
-	  lwz       r6, 0x60(r5)
-	  addi      r4, r4, 0x5661
-	  addi      r3, r3, 0x3033
-	  lwz       r5, 0x18(r6)
-	  addi      r5, r5, 0x1
-	  stw       r5, 0x18(r6)
-	  stw       r4, 0x0(r30)
-	  stw       r3, 0x4(r30)
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x60(r3)
-	  lwz       r3, 0x18(r3)
-	  stw       r3, 0x10(r30)
-	  stb       r28, 0x8(r30)
-	  stb       r0, 0xC(r30)
-	  stb       r29, 0xD(r30)
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x60(r3)
-	  lhz       r0, 0x22(r3)
-	  sth       r0, 0xE(r30)
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x254
-	  lwz       r3, 0x40(r3)
-	  lwz       r3, 0x218(r3)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x14(r30)
-	  lwz       r4, -0x6514(r13)
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r29, 0x60(r4)
-	  bl        -0x25DC0C
-	  lwz       r5, -0x6B70(r13)
-	  lwz       r4, 0x1C(r29)
-	  lbz       r0, 0x4C(r5)
-	  add       r29, r4, r3
-	  cmplwi    r0, 0
-	  beq-      .loc_0x180
-	  addi      r3, r5, 0x60
-	  li        r4, 0x1
-	  bl        -0x2535D8
-	  stw       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0x60
-	  bl        -0x2535EC
-	  stw       r3, 0x1C(r30)
-	  li        r4, 0x2
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0x60
-	  bl        -0x253600
-	  stw       r3, 0x20(r30)
-	  li        r4, 0x4
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0x60
-	  bl        -0x253614
-	  stw       r3, 0x24(r30)
-	  li        r4, 0x3
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0x60
-	  bl        -0x253628
-	  stw       r3, 0x28(r30)
-	  b         .loc_0x1E0
+		int time;
+		int playMinutes;
+		if (gameSystem) {
+			buffer[5]                      = gameSystem->mTimeMgr->mDayCount + 1; // Day Count
+			CommonSaveData::Mgr* localSave = sys->mPlayData;
+			time                           = localSave->mTime + playData->calcPlayMinutes();
+			int pikiCount;
+			if (playData->mCaveSaveData.mIsInCave) {
+				buffer[6]  = playData->mCaveSaveData.mCavePikis.getColorSum(Red);
+				buffer[7]  = playData->mCaveSaveData.mCavePikis.getColorSum(Blue);
+				buffer[8]  = playData->mCaveSaveData.mCavePikis.getColorSum(Yellow);
+				buffer[9]  = playData->mCaveSaveData.mCavePikis.getColorSum(White);
+				buffer[10] = playData->mCaveSaveData.mCavePikis.getColorSum(Purple);
+			} else {
+				buffer[6]  = playData->mPikiContainer.getColorSum(Red);
+				buffer[7]  = playData->mPikiContainer.getColorSum(Blue);
+				buffer[8]  = playData->mPikiContainer.getColorSum(Yellow);
+				buffer[9]  = playData->mPikiContainer.getColorSum(White);
+				buffer[10] = playData->mPikiContainer.getColorSum(Purple);
+			}
 
-	.loc_0x180:
-	  addi      r3, r5, 0xA8
-	  li        r4, 0x1
-	  bl        -0x25363C
-	  stw       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        -0x253650
-	  stw       r3, 0x1C(r30)
-	  li        r4, 0x2
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        -0x253664
-	  stw       r3, 0x20(r30)
-	  li        r4, 0x4
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        -0x253678
-	  stw       r3, 0x24(r30)
-	  li        r4, 0x3
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        -0x25368C
-	  stw       r3, 0x28(r30)
+			buffer[11] = playData->mPokoCount;
 
-	.loc_0x1E0:
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r0, 0xE8(r3)
-	  stw       r0, 0x2C(r30)
-	  lwz       r3, -0x6B70(r13)
-	  lbz       r0, 0x4C(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x22C
-	  addi      r3, r1, 0x18
-	  bl        -0x319F4
-	  lwz       r3, -0x6B70(r13)
-	  addi      r4, r1, 0x18
-	  addi      r5, r1, 0x8
-	  bl        -0x25D758
-	  lwz       r0, 0x20(r1)
-	  stw       r0, 0x34(r30)
-	  lwz       r3, 0x8(r1)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x38(r30)
-	  b         .loc_0x23C
+			// Register Cave Information
+			if (playData->mCaveSaveData.mIsInCave) {
+				ID32 id;
+				int caveFloor;
+				playData->getCurrentCave(id, caveFloor);
+				buffer[13] = id.getID();
+				buffer[14] = caveFloor + 1;
+			} else {
+				buffer[13] = 0;
+				buffer[14] = 123;
+			}
+			buffer[12] = playData->mZukanStat->calcEarnKinds();
+			buffer[15] = time;
+		} else {
+			JUT_PANICLINE(2042, "dameck\n");
 
-	.loc_0x22C:
-	  li        r3, 0
-	  li        r0, 0x7B
-	  stw       r3, 0x34(r30)
-	  stw       r0, 0x38(r30)
+			// this code never gets reached smh.
+			buffer[5]  = 0;
+			buffer[6]  = 1;
+			buffer[7]  = 2;
+			buffer[8]  = 3;
+			buffer[9]  = 4;
+			buffer[10] = 5;
+			buffer[11] = 12345;
+			buffer[13] = 1;
+			buffer[14] = 99;
+			buffer[12] = 0;
+		}
 
-	.loc_0x23C:
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r3, 0xB0(r3)
-	  bl        -0x25F3F8
-	  stw       r3, 0x30(r30)
-	  stw       r29, 0x3C(r30)
-	  b         .loc_0x2B4
+		RamStream ramStream(&buffer[16], 0xBF80);
+		writePlayer(ramStream);
+		result = savePlayerProc(fileIndex, (u8*)buffer, true);
+		delete (buffer);
 
-	.loc_0x254:
-	  lis       r3, 0x804A
-	  li        r4, 0x7FA
-	  subi      r3, r3, 0x5234
-	  addi      r5, r2, 0x2618
-	  crclr     6, 0x6
-	  bl        -0x41A68C
-	  li        r9, 0
-	  li        r8, 0x1
-	  stw       r9, 0x14(r30)
-	  li        r7, 0x2
-	  li        r6, 0x3
-	  li        r5, 0x4
-	  stw       r8, 0x18(r30)
-	  li        r4, 0x5
-	  li        r3, 0x3039
-	  li        r0, 0x63
-	  stw       r7, 0x1C(r30)
-	  stw       r6, 0x20(r30)
-	  stw       r5, 0x24(r30)
-	  stw       r4, 0x28(r30)
-	  stw       r3, 0x2C(r30)
-	  stw       r8, 0x34(r30)
-	  stw       r0, 0x38(r30)
-	  stw       r9, 0x30(r30)
+		if (result) {
+			sys->mPlayData->setCardSerialNo(serial);
+		}
+	}
 
-	.loc_0x2B4:
-	  lis       r5, 0x1
-	  addi      r3, r1, 0x24
-	  addi      r4, r30, 0x40
-	  subi      r5, r5, 0x4080
-	  bl        -0x2F430
-	  mr        r3, r27
-	  addi      r4, r1, 0x24
-	  bl        0xBD4
-	  mr        r3, r27
-	  mr        r4, r28
-	  mr        r5, r30
-	  li        r6, 0x1
-	  bl        0x7F4
-	  mr        r0, r3
-	  mr        r3, r30
-	  mr        r30, r0
-	  bl        -0x420CA4
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0x314
-	  lwz       r3, -0x6514(r13)
-	  lwz       r5, 0x10(r1)
-	  lwz       r3, 0x60(r3)
-	  lwz       r6, 0x14(r1)
-	  bl        0x1FB0
+	P2ASSERTLINE(2079, freeSize == (int)JKRHeap::getCurrentHeap()->getTotalFreeSize());
 
-	.loc_0x314:
-	  lwz       r3, -0x77D4(r13)
-	  bl        -0x42159C
-	  cmpw      r31, r3
-	  beq-      .loc_0x340
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5234
-	  li        r4, 0x81F
-	  subi      r5, r5, 0x5218
-	  crclr     6, 0x6
-	  bl        -0x41A760
+	if (result) {
+		result = commandSaveGameOption(true, false);
+	}
 
-	.loc_0x340:
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0x35C
-	  mr        r3, r27
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        -0x8EC
-	  mr        r30, r3
-
-	.loc_0x35C:
-	  mr        r3, r30
-	  lmw       r27, 0x44C(r1)
-	  lwz       r0, 0x464(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x460
-	  blr
-	*/
+	return result;
 }
 
 /*
@@ -3113,43 +1022,10 @@ void Mgr::commandSavePlayerNoCheckSerialNo(s8, bool)
  * Address:	80444DD8
  * Size:	000070
  */
-void Mgr::getPlayerInfo(s8, PlayerInfoHeader*, bool*)
+bool Mgr::getPlayerInfo(s8 fileIndex, PlayerInfoHeader* playerInfo, bool* param_1)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  bl        .loc_0x70
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  li        r31, 0
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x54
-	  cmpwi     r30, 0
-	  blt-      .loc_0x54
-	  cmpwi     r30, 0x4
-	  bge-      .loc_0x54
-	  li        r31, 0x1
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x70:
-	*/
+	int index = getIndexPlayerInfo(fileIndex, playerInfo, param_1);
+	return !isErrorOccured() && (index >= 0 && index < 4);
 }
 
 /*
@@ -3157,205 +1033,57 @@ void Mgr::getPlayerInfo(s8, PlayerInfoHeader*, bool*)
  * Address:	80444E48
  * Size:	0002B0
  */
-void Mgr::getIndexPlayerInfo(signed char, PlayerInfoHeader*, bool*)
+int Mgr::getIndexPlayerInfo(s8 fileIndex, PlayerInfoHeader* infoHeader, bool* param_1)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  li        r0, 0
-	  stmw      r23, 0x4C(r1)
-	  mr.       r25, r5
-	  mr        r23, r3
-	  mr        r24, r4
-	  mr        r26, r6
-	  li        r31, -0x1
-	  li        r29, 0
-	  li        r28, 0
-	  stb       r0, 0x14(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x20(r1)
-	  stw       r0, 0x24(r1)
-	  stw       r0, 0x28(r1)
-	  stw       r0, 0x2C(r1)
-	  stw       r0, 0x30(r1)
-	  stw       r0, 0x34(r1)
-	  stw       r0, 0x38(r1)
-	  stw       r0, 0x3C(r1)
-	  stw       r0, 0x40(r1)
-	  stw       r0, 0x44(r1)
-	  beq-      .loc_0x78
-	  mr        r3, r25
-	  li        r4, 0xCD
-	  li        r5, 0x40
-	  bl        -0x43FE08
-
-	.loc_0x78:
-	  li        r30, 0x1
-	  b         .loc_0x290
-
-	.loc_0x80:
-	  addi      r28, r28, 0x1
-	  cmplwi    r28, 0x5
-	  blt-      .loc_0xA8
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5234
-	  li        r4, 0x873
-	  subi      r5, r5, 0x519C
-	  crclr     6, 0x6
-	  bl        -0x41A8AC
-
-	.loc_0xA8:
-	  li        r30, 0
-	  li        r27, 0
-
-	.loc_0xB0:
-	  mr        r3, r23
-	  mr        r4, r27
-	  mr        r5, r24
-	  addi      r6, r1, 0x8
-	  bl        0xEF4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x19C
-	  cmpwi     r31, -0x1
-	  li        r29, 0x1
-	  bne-      .loc_0x168
-	  cmplwi    r25, 0
-	  mr        r31, r27
-	  beq-      .loc_0x284
-	  lwz       r0, 0x8(r1)
-	  stw       r0, 0x0(r25)
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x4(r25)
-	  lbz       r0, 0x10(r1)
-	  stb       r0, 0x8(r25)
-	  lwz       r3, 0x14(r1)
-	  lwz       r0, 0x18(r1)
-	  stw       r3, 0xC(r25)
-	  stw       r0, 0x10(r25)
-	  lwz       r3, 0x1C(r1)
-	  lwz       r0, 0x20(r1)
-	  stw       r3, 0x14(r25)
-	  stw       r0, 0x18(r25)
-	  lwz       r3, 0x24(r1)
-	  lwz       r0, 0x28(r1)
-	  stw       r3, 0x1C(r25)
-	  stw       r0, 0x20(r25)
-	  lwz       r3, 0x2C(r1)
-	  lwz       r0, 0x30(r1)
-	  stw       r3, 0x24(r25)
-	  stw       r0, 0x28(r25)
-	  lwz       r3, 0x34(r1)
-	  lwz       r0, 0x38(r1)
-	  stw       r3, 0x2C(r25)
-	  stw       r0, 0x30(r25)
-	  lwz       r3, 0x3C(r1)
-	  lwz       r0, 0x40(r1)
-	  stw       r3, 0x34(r25)
-	  stw       r0, 0x38(r25)
-	  lwz       r0, 0x44(r1)
-	  stw       r0, 0x3C(r25)
-	  b         .loc_0x284
-
-	.loc_0x168:
-	  mr        r3, r23
-	  mr        r4, r24
-	  mr        r5, r26
-	  bl        0x1368
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x18C
-	  li        r31, -0x1
-	  li        r30, 0x1
-	  b         .loc_0x290
-
-	.loc_0x18C:
-	  li        r0, 0x2
-	  li        r31, -0x1
-	  stw       r0, 0xD8(r23)
-	  b         .loc_0x290
-
-	.loc_0x19C:
-	  cmplwi    r25, 0
-	  beq-      .loc_0x284
-	  lwz       r3, 0x0(r25)
-	  subis     r4, r3, 0x506C
-	  cmplwi    r4, 0x5661
-	  beq-      .loc_0x284
-	  lbz       r3, 0x10(r1)
-	  extsb     r0, r24
-	  li        r5, 0
-	  extsb     r3, r3
-	  cmpw      r3, r0
-	  bne-      .loc_0x1F8
-	  rlwinm.   r0,r29,0,24,31
-	  bne-      .loc_0x1DC
-	  li        r5, 0x1
-	  b         .loc_0x1F8
-
-	.loc_0x1DC:
-	  cmplwi    r4, 0x496E
-	  beq-      .loc_0x1F8
-	  lwz       r3, 0x8(r1)
-	  subis     r0, r3, 0x506C
-	  cmplwi    r0, 0x496E
-	  bne-      .loc_0x1F8
-	  li        r5, 0x1
-
-	.loc_0x1F8:
-	  rlwinm.   r0,r5,0,24,31
-	  beq-      .loc_0x284
-	  lwz       r0, 0x8(r1)
-	  li        r29, 0x1
-	  stw       r0, 0x0(r25)
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x4(r25)
-	  lbz       r0, 0x10(r1)
-	  stb       r0, 0x8(r25)
-	  lwz       r3, 0x14(r1)
-	  lwz       r0, 0x18(r1)
-	  stw       r3, 0xC(r25)
-	  stw       r0, 0x10(r25)
-	  lwz       r3, 0x1C(r1)
-	  lwz       r0, 0x20(r1)
-	  stw       r3, 0x14(r25)
-	  stw       r0, 0x18(r25)
-	  lwz       r3, 0x24(r1)
-	  lwz       r0, 0x28(r1)
-	  stw       r3, 0x1C(r25)
-	  stw       r0, 0x20(r25)
-	  lwz       r3, 0x2C(r1)
-	  lwz       r0, 0x30(r1)
-	  stw       r3, 0x24(r25)
-	  stw       r0, 0x28(r25)
-	  lwz       r3, 0x34(r1)
-	  lwz       r0, 0x38(r1)
-	  stw       r3, 0x2C(r25)
-	  stw       r0, 0x30(r25)
-	  lwz       r3, 0x3C(r1)
-	  lwz       r0, 0x40(r1)
-	  stw       r3, 0x34(r25)
-	  stw       r0, 0x38(r25)
-	  lwz       r0, 0x44(r1)
-	  stw       r0, 0x3C(r25)
-
-	.loc_0x284:
-	  addi      r27, r27, 0x1
-	  cmpwi     r27, 0x4
-	  blt+      .loc_0xB0
-
-	.loc_0x290:
-	  rlwinm.   r0,r30,0,24,31
-	  bne+      .loc_0x80
-	  mr        r3, r31
-	  lmw       r23, 0x4C(r1)
-	  lwz       r0, 0x74(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
-	*/
+	int index = -1;
+	bool doLoop;
+	bool noPlayerInfoCheck = false;
+	u32 i                  = 0;
+	PlayerInfoHeader localHeader;
+	if (infoHeader) {
+		memset(infoHeader, 0xCD, 0x40);
+	}
+	doLoop = true;
+	while (doLoop) {
+		i++;
+		JUT_ASSERTLINE(2163, i < 5, "MemoryCardModify Error");
+		doLoop = false;
+		for (int j = 0; j < 4; j++) {
+			if (checkPlayerNoPlayerInfo(j, fileIndex, &localHeader)) {
+				noPlayerInfoCheck = true;
+				if (index == -1) {
+					index = j;
+					if (infoHeader) {
+						*infoHeader = localHeader;
+					}
+				} else if (modifyPlayerInfo(fileIndex, param_1)) {
+					index  = -1;
+					doLoop = true;
+					break;
+				} else {
+					index = -1;
+					_D8   = 2;
+					break;
+				}
+			} else {
+				if (infoHeader && infoHeader->_00 != 'PlVa') {
+					bool fileIndexCheck = false;
+					if ((s8)localHeader._08 == fileIndex) {
+						if (!noPlayerInfoCheck) {
+							fileIndexCheck = true;
+						} else if (infoHeader->_00 != 'PlIn' && localHeader._00 == 'PlIn') {
+							fileIndexCheck = true;
+						}
+					}
+					if (fileIndexCheck) {
+						noPlayerInfoCheck = true;
+						*infoHeader       = localHeader;
+					}
+				}
+			}
+		}
+	}
+	return index;
 }
 
 /*
@@ -3363,125 +1091,31 @@ void Mgr::getIndexPlayerInfo(signed char, PlayerInfoHeader*, bool*)
  * Address:	804450F8
  * Size:	00019C
  */
-void Mgr::commandLoadPlayer(signed char)
+bool Mgr::commandLoadPlayer(s8 fileIndex)
 {
-	/*
-	    stwu     r1, -0x440(r1)
-	    mflr     r0
-	    stw      r0, 0x444(r1)
-	    stw      r31, 0x43c(r1)
-	    mr       r31, r4
-	    extsb.   r0, r31
-	    stw      r30, 0x438(r1)
-	    mr       r30, r3
-	    li       r3, 0
-	    stw      r29, 0x434(r1)
-	    blt      lbl_80445134
-	    extsb    r0, r31
-	    cmpwi    r0, 3
-	    bge      lbl_80445134
-	    li       r3, 1
-
-	lbl_80445134:
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80445158
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x8d8
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80445158:
-	    mr       r3, r30
-	    bl       commandLoadGameOption__Q34Game10MemoryCard3MgrFv
-	    lwz      r0, 0xd8(r30)
-	    cmpwi    r0, 1
-	    bne      lbl_80445174
-	    li       r0, 0
-	    stw      r0, 0xd8(r30)
-
-	lbl_80445174:
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80445258
-	    mr       r3, r30
-	    addi     r4, r1, 8
-	    li       r5, 0
-	    bl       readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80445258
-	    lis      r3, 0x0000C000@ha
-	    lwz      r4, 0xcc(r30)
-	    addi     r3, r3, 0x0000C000@l
-	    li       r5, -32
-	    bl       __nwa__FUlP7JKRHeapi
-	    or.      r29, r3, r3
-	    bne      lbl_804451E0
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x8f2
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_804451E0:
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r5, 8(r1)
-	    lwz      r3, 0x60(r3)
-	    lwz      r6, 0xc(r1)
-	    bl       setCardSerialNo__Q34Game14CommonSaveData3MgrFUx
-	    mr       r3, r30
-	    mr       r4, r31
-	    mr       r5, r29
-	    bl       loadPlayerProc__Q34Game10MemoryCard3MgrFScPUc
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80445250
-	    lis      r5, 0x0000BF80@ha
-	    addi     r3, r1, 0x10
-	    addi     r4, r29, 0x40
-	    addi     r5, r5, 0x0000BF80@l
-	    bl       __ct__9RamStreamFPvi
-	    mr       r3, r30
-	    addi     r4, r1, 0x10
-	    bl       readPlayer__Q34Game10MemoryCard3MgrFR6Stream
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    stb      r31, 0x20(r3)
-	    lwz      r0, 0x10(r29)
-	    stw      r0, 0x18(r3)
-	    lwz      r0, 0x3c(r29)
-	    stw      r0, 0x1c(r3)
-	    lhz      r0, 0xe(r29)
-	    sth      r0, 0x22(r3)
-
-	lbl_80445250:
-	    mr       r3, r29
-	    bl       __dl__FPv
-
-	lbl_80445258:
-	    mr       r3, r30
-	    lwz      r12, 0(r30)
-	    lwz      r12, 0x28(r12)
-	    mtctr    r12
-	    bctrl
-	    clrlwi   r0, r3, 0x18
-	    lwz      r31, 0x43c(r1)
-	    cntlzw   r0, r0
-	    lwz      r30, 0x438(r1)
-	    srwi     r3, r0, 5
-	    lwz      r0, 0x444(r1)
-	    lwz      r29, 0x434(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x440
-	    blr
-	*/
+	u64 serial;
+	P2ASSERTBOUNDSLINE(2264, 0, fileIndex, 3);
+	commandLoadGameOption();
+	if ((s32)_D8 == 1)
+		_D8 = 0;
+	if (!isErrorOccured()) {
+		if (readCardSerialNo(&serial, CARDSLOT_Unk0)) {
+			u32* buffer = new (mHeap, -32) u32[0x3000];
+			P2ASSERTLINE(2290, buffer);
+			sys->mPlayData->setCardSerialNo(serial);
+			if (loadPlayerProc(fileIndex, (u8*)buffer)) {
+				RamStream ramStream(&buffer[0x10], 0xBF80);
+				readPlayer(ramStream);
+				CommonSaveData::Mgr* saveMgr = sys->mPlayData;
+				saveMgr->mFileIndex          = fileIndex;
+				saveMgr->_18                 = buffer[4];
+				saveMgr->mTime               = buffer[0xF];
+				saveMgr->_22                 = *(u16*)&((u8*)buffer)[0xE]; // hmm.
+			}
+			delete (buffer);
+		}
+	}
+	return !isErrorOccured();
 }
 
 /*
@@ -3489,53 +1123,14 @@ void Mgr::commandLoadPlayer(signed char)
  * Address:	80445294
  * Size:	00009C
  */
-void Mgr::loadPlayerForNoCard(signed char)
+bool Mgr::loadPlayerForNoCard(s8 fileIndex)
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    li       r3, 0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r4
-	    extsb.   r0, r31
-	    blt      lbl_804452C4
-	    extsb    r0, r31
-	    cmpwi    r0, 3
-	    bge      lbl_804452C4
-	    li       r3, 1
-
-	lbl_804452C4:
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804452E8
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x94e
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_804452E8:
-	    lwz      r3, sys@sda21(r13)
-	    extsb    r4, r31
-	    lwz      r3, 0x60(r3)
-	    stb      r31, 0x20(r3)
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    bl       resetPlayer__Q34Game14CommonSaveData3MgrFSc
-	    lwz      r3, playData__4Game@sda21(r13)
-	    bl       reset__Q24Game8PlayDataFv
-	    lwz      r3, sys@sda21(r13)
-	    lwz      r3, 0x60(r3)
-	    bl       resetCardSerialNo__Q34Game14CommonSaveData3MgrFv
-	    lwz      r0, 0x14(r1)
-	    li       r3, 1
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	P2ASSERTBOUNDSLINE(2382, 0, fileIndex, 3);
+	sys->mPlayData->mFileIndex = fileIndex;
+	sys->mPlayData->resetPlayer((s8)fileIndex);
+	playData->reset();
+	sys->mPlayData->resetCardSerialNo();
+	return true;
 }
 
 /*
@@ -3543,115 +1138,28 @@ void Mgr::loadPlayerForNoCard(signed char)
  * Address:	80445330
  * Size:	000178
  */
-void Mgr::loadPlayerProc(signed char, unsigned char*)
+bool Mgr::loadPlayerProc(s8 fileIndex, u8* param_2)
 {
-	/*
-	    stwu     r1, -0x60(r1)
-	    mflr     r0
-	    stw      r0, 0x64(r1)
-	    stw      r31, 0x5c(r1)
-	    li       r31, 0
-	    stw      r30, 0x58(r1)
-	    mr       r30, r3
-	    li       r3, 0
-	    stw      r29, 0x54(r1)
-	    mr       r29, r5
-	    stw      r28, 0x50(r1)
-	    mr       r28, r4
-	    extsb.   r0, r28
-	    blt      lbl_80445378
-	    extsb    r0, r28
-	    cmpwi    r0, 3
-	    bge      lbl_80445378
-	    li       r3, 1
-
-	lbl_80445378:
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_8044539C
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x967
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_8044539C:
-	    li       r0, 0
-	    mr       r3, r30
-	    stb      r0, 0x14(r1)
-	    mr       r4, r28
-	    addi     r5, r1, 8
-	    li       r6, 0
-	    stw      r0, 0x18(r1)
-	    stw      r0, 0x1c(r1)
-	    stw      r0, 0x20(r1)
-	    stw      r0, 0x24(r1)
-	    stw      r0, 0x28(r1)
-	    stw      r0, 0x2c(r1)
-	    stw      r0, 0x30(r1)
-	    stw      r0, 0x34(r1)
-	    stw      r0, 0x38(r1)
-	    stw      r0, 0x3c(r1)
-	    stw      r0, 0x40(r1)
-	    stw      r0, 0x44(r1)
-	    bl
-	getIndexPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerInfoHeaderPb
-	    or.      r0, r3, r3
-	    blt      lbl_8044544C
-	    cmpwi    r0, 4
-	    bge      lbl_8044544C
-	    lis      r3, 0x0000C000@ha
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    addi     r7, r3, 0x0000C000@l
-	    mr       r3, r30
-	    mullw    r8, r0, r7
-	    mr       r6, r29
-	    li       r4, 0
-	    addi     r8, r8, 0x6000
-	    bl       read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-	    clrlwi.  r0, r3, 0x18
-	    mr       r31, r3
-	    beq      lbl_80445484
-	    mr       r3, r30
-	    mr       r4, r29
-	    bl checkPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80445484
-	    li       r0, 2
-	    li       r31, 0
-	    stw      r0, 0xd8(r30)
-	    b        lbl_80445484
-
-	lbl_8044544C:
-	    lwz      r3, 8(r1)
-	    addis    r0, r3, 0xaf94
-	    cmplwi   r0, 0x496e
-	    bne      lbl_80445478
-	    lwz      r3, sys@sda21(r13)
-	    extsb    r4, r28
-	    lwz      r3, 0x60(r3)
-	    bl       resetPlayer__Q34Game14CommonSaveData3MgrFSc
-	    lwz      r3, playData__4Game@sda21(r13)
-	    bl       reset__Q24Game8PlayDataFv
-	    b        lbl_80445484
-
-	lbl_80445478:
-	    li       r0, 2
-	    li       r31, 0
-	    stw      r0, 0xd8(r30)
-
-	lbl_80445484:
-	    lwz      r0, 0x64(r1)
-	    mr       r3, r31
-	    lwz      r31, 0x5c(r1)
-	    lwz      r30, 0x58(r1)
-	    lwz      r29, 0x54(r1)
-	    lwz      r28, 0x50(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x60
-	    blr
-	*/
+	bool result = false;
+	P2ASSERTBOUNDSLINE(2407, 0, fileIndex, 3);
+	PlayerInfoHeader infoHeader;
+	int playerInfo = getIndexPlayerInfo(fileIndex, &infoHeader, nullptr);
+	if (playerInfo >= 0 && playerInfo < 4) {
+		if ((result = read(CARDSLOT_Unk0, cFileName, param_2, 0xC000, playerInfo * 0xC000 + 0x6000), result)
+		    && !checkPlayerInfo((PlayerInfo*)param_2)) {
+			result = false;
+			_D8    = 2;
+		}
+	} else {
+		if (infoHeader._00 == 'PlIn') {
+			sys->mPlayData->resetPlayer((s8)fileIndex);
+			playData->reset();
+		} else {
+			result = false;
+			_D8    = 2;
+		}
+	}
+	return result;
 }
 
 /*
@@ -3659,52 +1167,18 @@ void Mgr::loadPlayerProc(signed char, unsigned char*)
  * Address:	804454A8
  * Size:	000094
  */
-void Mgr::commandDeletePlayer(signed char)
+bool Mgr::commandDeletePlayer(s8 fileIndex)
 {
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    li       r5, 0
-	    li       r6, 0
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    li       r31, 0
-	    stw      r30, 0x18(r1)
-	    mr       r30, r4
-	    stw      r29, 0x14(r1)
-	    mr       r29, r3
-	    bl
-	getIndexPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerInfoHeaderPb
-	    or.      r4, r3, r3
-	    blt      lbl_804454FC
-	    cmpwi    r4, 4
-	    bge      lbl_804454FC
-	    mr       r3, r29
-	    extsb    r5, r30
-	    bl       writeInvalidPlayerInfo__Q34Game10MemoryCard3MgrFiSc
-	    mr       r31, r3
-	    b        lbl_8044551C
-
-	lbl_804454FC:
-	    mr       r3, r29
-	    mr       r4, r30
-	    li       r5, 0
-	    bl       modifyPlayerInfo__Q34Game10MemoryCard3MgrFScPb
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_8044551C
-	    li       r0, 2
-	    stw      r0, 0xd8(r29)
-
-	lbl_8044551C:
-	    lwz      r0, 0x24(r1)
-	    mr       r3, r31
-	    lwz      r31, 0x1c(r1)
-	    lwz      r30, 0x18(r1)
-	    lwz      r29, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
+	bool result    = false;
+	int playerInfo = getIndexPlayerInfo(fileIndex, nullptr, nullptr);
+	if (playerInfo >= 0 && playerInfo < 4) {
+		result = writeInvalidPlayerInfo(playerInfo, (s8)fileIndex);
+	} else {
+		if (!modifyPlayerInfo(fileIndex, nullptr)) {
+			_D8 = 2;
+		}
+	}
+	return result;
 }
 
 /*
@@ -3712,130 +1186,35 @@ void Mgr::commandDeletePlayer(signed char)
  * Address:	8044553C
  * Size:	00019C
  */
-void Mgr::savePlayerProc(signed char, unsigned char*, bool)
+bool Mgr::savePlayerProc(s8 fileIndex, u8* param_2, bool param_3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r30, r4
-	  li        r4, -0x1
-	  mr        r29, r3
-	  extsb.    r0, r30
-	  mr        r28, r5
-	  mr        r27, r6
-	  li        r31, 0
-	  li        r3, 0
-	  stb       r4, 0x8(r1)
-	  blt-      .loc_0x48
-	  extsb     r0, r30
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x48
-	  li        r3, 0x1
+	s8 tempIndex = -1;
+	int idx;
+	bool result = false;
 
-	.loc_0x48:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x6C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5234
-	  li        r4, 0x9CA
-	  subi      r5, r5, 0x5218
-	  crclr     6, 0x6
-	  bl        -0x41AF64
-
-	.loc_0x6C:
-	  lwz       r7, 0x10(r28)
-	  mr        r3, r29
-	  mr        r6, r30
-	  mr        r8, r27
-	  addi      r4, r1, 0xC
-	  addi      r5, r1, 0x8
-	  bl        0x9E4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x184
-	  lwz       r0, 0xC(r1)
-	  cmpwi     r0, 0
-	  blt-      .loc_0xA4
-	  cmpwi     r0, 0x4
-	  blt-      .loc_0xC0
-
-	.loc_0xA4:
-	  li        r0, 0x2
-	  mr        r3, r29
-	  stw       r0, 0xD8(r29)
-	  mr        r4, r30
-	  li        r5, 0
-	  bl        0xD30
-	  b         .loc_0x184
-
-	.loc_0xC0:
-	  mr        r3, r29
-	  mr        r4, r28
-	  bl        0x498
-	  addis     r5, r28, 0x1
-	  lis       r4, 0x1
-	  stw       r3, -0x4004(r5)
-	  subi      r7, r4, 0x4000
-	  mr        r3, r29
-	  mr        r6, r28
-	  lwz       r0, 0xC(r1)
-	  li        r4, 0
-	  lwz       r5, -0x7978(r13)
-	  mullw     r8, r0, r7
-	  addi      r8, r8, 0x6000
-	  bl        -0x3B98
-	  lbz       r4, 0x8(r1)
-	  mr        r31, r3
-	  mr        r28, r30
-	  extsb.    r0, r4
-	  blt-      .loc_0x120
-	  extsb     r0, r4
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x120
-	  mr        r28, r4
-
-	.loc_0x120:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x184
-	  li        r27, 0
-
-	.loc_0x12C:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x178
-	  lwz       r0, 0xC(r1)
-	  cmpw      r27, r0
-	  beq-      .loc_0x178
-	  mr        r3, r29
-	  mr        r4, r27
-	  mr        r5, r30
-	  li        r6, 0
-	  bl        0x770
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x178
-	  mr        r3, r29
-	  mr        r4, r27
-	  mr        r5, r28
-	  bl        0x648
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x178
-	  li        r31, 0
-
-	.loc_0x178:
-	  addi      r27, r27, 0x1
-	  cmpwi     r27, 0x4
-	  blt+      .loc_0x12C
-
-	.loc_0x184:
-	  mr        r3, r31
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	P2ASSERTBOUNDSLINE(2506, 0, fileIndex, 3);
+	if (getIndexInvalidPlayerInfo(&idx, &tempIndex, fileIndex, ((u32*)param_2)[4], param_3)) {
+		if (idx < 0 || idx >= 4) {
+			_D8 = 2;
+			modifyPlayerInfo(fileIndex, nullptr);
+		} else {
+			((u32*)param_2)[0x2FFF] = calcCheckSumPlayerInfo((PlayerInfo*)param_2);
+			s8 newFileIndex         = fileIndex;
+			result                  = write(CARDSLOT_Unk0, cFileName, param_2, 0xC000, idx * 0xC000 + 0x6000);
+			newFileIndex            = fileIndex;
+			if (tempIndex >= 0 && tempIndex < 3) {
+				newFileIndex = tempIndex;
+			}
+			if (result) {
+				for (int i = 0; i < 4; i++) {
+					if (result && i != idx && checkPlayerNoPlayerInfo(i, fileIndex, nullptr) && !writeInvalidPlayerInfo(i, newFileIndex)) {
+						result = false;
+					}
+				}
+			}
+		}
+	}
+	return result;
 }
 
 /*
@@ -3843,41 +1222,18 @@ void Mgr::savePlayerProc(signed char, unsigned char*, bool)
  * Address:	804456D8
  * Size:	000068
  */
-void Mgr::commandCheckSerialNo()
+bool Mgr::commandCheckSerialNo()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    li       r31, 0
-	    lwz      r4, sys@sda21(r13)
-	    lwz      r4, 0x60(r4)
-	    lhz      r0, 0x40(r4)
-	    clrlwi.  r0, r0, 0x1f
-	    bne      lbl_80445710
-	    li       r0, 3
-	    li       r31, 1
-	    stw      r0, 0xd8(r3)
-	    b        lbl_80445728
-
-	lbl_80445710:
-	    addi     r4, r4, 0x30
-	    li       r5, 0
-	    bl
-	verifyCardSerialNo__Q34Game10MemoryCard3MgrFPUxQ213MemoryCardMgr9ECardSlot
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80445728
-	    li       r31, 1
-
-	lbl_80445728:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	bool result = false;
+	if (!(sys->mPlayData->mFlags.typeView & 1)) {
+		result = true;
+		_D8    = 3;
+	} else {
+		if (verifyCardSerialNo(&sys->mPlayData->mCardSerialNo, CARDSLOT_Unk0)) {
+			result = true;
+		}
+	}
+	return result;
 }
 
 /*
@@ -3885,139 +1241,19 @@ void Mgr::commandCheckSerialNo()
  * Address:	80445740
  * Size:	0001C8
  */
-void Mgr::commandCopyPlayer(s8, s8)
+bool Mgr::commandCopyPlayer(s8 fileIndex, s8 param_1)
 {
-	/*
-	    stwu     r1, -0x60(r1)
-	    mflr     r0
-	    stw      r0, 0x64(r1)
-	    stmw     r27, 0x4c(r1)
-	    mr       r27, r3
-	    mr       r28, r4
-	    lis      r3, 0x0000C000@ha
-	    mr       r29, r5
-	    li       r5, -32
-	    addi     r3, r3, 0x0000C000@l
-	    lwz      r4, 0xcc(r27)
-	    bl       __nwa__FUlP7JKRHeapi
-	    or.      r30, r3, r3
-	    bne      lbl_80445794
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0xa5a
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
+	u32* buffer = new (mHeap, -0x20) u32[0x3000];
+	P2ASSERTLINE(2650, buffer);
 
-	lbl_80445794:
-	    extsb.   r0, r28
-	    li       r31, 0
-	    mr       r3, r31
-	    blt      lbl_804457B4
-	    extsb    r0, r28
-	    cmpwi    r0, 3
-	    bge      lbl_804457B4
-	    li       r3, 1
+	bool result = loadPlayerProc(fileIndex, (u8*)buffer);
+	if (result) {
+		((u8*)buffer)[8] = param_1;
+		result           = savePlayerProc(param_1, (u8*)buffer, false);
+	}
+	delete (buffer);
 
-	lbl_804457B4:
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804457D8
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0x967
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_804457D8:
-	    li       r0, 0
-	    mr       r3, r27
-	    stb      r0, 0x14(r1)
-	    mr       r4, r28
-	    addi     r5, r1, 8
-	    li       r6, 0
-	    stw      r0, 0x18(r1)
-	    stw      r0, 0x1c(r1)
-	    stw      r0, 0x20(r1)
-	    stw      r0, 0x24(r1)
-	    stw      r0, 0x28(r1)
-	    stw      r0, 0x2c(r1)
-	    stw      r0, 0x30(r1)
-	    stw      r0, 0x34(r1)
-	    stw      r0, 0x38(r1)
-	    stw      r0, 0x3c(r1)
-	    stw      r0, 0x40(r1)
-	    stw      r0, 0x44(r1)
-	    bl
-	getIndexPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerInfoHeaderPb
-	    or.      r0, r3, r3
-	    blt      lbl_80445888
-	    cmpwi    r0, 4
-	    bge      lbl_80445888
-	    lis      r3, 0x0000C000@ha
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    addi     r7, r3, 0x0000C000@l
-	    mr       r3, r27
-	    mullw    r8, r0, r7
-	    mr       r6, r30
-	    li       r4, 0
-	    addi     r8, r8, 0x6000
-	    bl       read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-	    clrlwi.  r0, r3, 0x18
-	    mr       r31, r3
-	    beq      lbl_804458C0
-	    mr       r3, r27
-	    mr       r4, r30
-	    bl checkPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_804458C0
-	    li       r0, 2
-	    li       r31, 0
-	    stw      r0, 0xd8(r27)
-	    b        lbl_804458C0
-
-	lbl_80445888:
-	    lwz      r3, 8(r1)
-	    addis    r0, r3, 0xaf94
-	    cmplwi   r0, 0x496e
-	    bne      lbl_804458B4
-	    lwz      r3, sys@sda21(r13)
-	    extsb    r4, r28
-	    lwz      r3, 0x60(r3)
-	    bl       resetPlayer__Q34Game14CommonSaveData3MgrFSc
-	    lwz      r3, playData__4Game@sda21(r13)
-	    bl       reset__Q24Game8PlayDataFv
-	    b        lbl_804458C0
-
-	lbl_804458B4:
-	    li       r0, 2
-	    li       r31, 0
-	    stw      r0, 0xd8(r27)
-
-	lbl_804458C0:
-	    clrlwi.  r0, r31, 0x18
-	    mr       r28, r31
-	    beq      lbl_804458E8
-	    stb      r29, 8(r30)
-	    mr       r3, r27
-	    mr       r4, r29
-	    mr       r5, r30
-	    li       r6, 0
-	    bl       savePlayerProc__Q34Game10MemoryCard3MgrFScPUcb
-	    mr       r28, r3
-
-	lbl_804458E8:
-	    mr       r3, r30
-	    bl       __dl__FPv
-	    mr       r3, r28
-	    lmw      r27, 0x4c(r1)
-	    lwz      r0, 0x64(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x60
-	    blr
-	*/
+	return result;
 }
 
 /*
@@ -4025,82 +1261,23 @@ void Mgr::commandCopyPlayer(s8, s8)
  * Address:	80445908
  * Size:	000024
  */
-void Mgr::writePlayer(Stream&)
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    lwz      r3, playData__4Game@sda21(r13)
-	    bl       write__Q24Game8PlayDataFR6Stream
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
+void Mgr::writePlayer(Stream& stream) { playData->write(stream); }
 
 /*
  * --INFO--
  * Address:	8044592C
  * Size:	000024
  */
-void Mgr::readPlayer(Stream&)
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    lwz      r3, playData__4Game@sda21(r13)
-	    bl       read__Q24Game8PlayDataFR6Stream
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
+void Mgr::readPlayer(Stream& stream) { playData->read(stream); }
 
 /*
  * --INFO--
  * Address:	80445950
  * Size:	000074
  */
-void Mgr::checkOptionInfo(OptionInfo*)
+bool Mgr::checkOptionInfo(OptionInfo* optionInfo)
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    li       r31, 0
-	    stw      r30, 8(r1)
-	    mr       r30, r4
-	    lbz      r0, 0xd0(r3)
-	    cmplwi   r0, 0
-	    beq      lbl_804459A8
-	    bl
-	testCheckSumOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_804459A8
-	    lwz      r3, 0(r30)
-	    addis    r0, r3, 0xb090
-	    cmplwi   r0, 0x5661
-	    bne      lbl_804459A8
-	    lwz      r3, 4(r30)
-	    addis    r0, r3, 0xcfd0
-	    cmplwi   r0, 0x3032
-	    bne      lbl_804459A8
-	    li       r31, 1
-
-	lbl_804459A8:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	return _D0 && testCheckSumOptionInfo(optionInfo) && optionInfo->_00 == 'OpVa' && optionInfo->_04 == '0002';
 }
 
 /*
@@ -4108,91 +1285,27 @@ void Mgr::checkOptionInfo(OptionInfo*)
  * Address:	804459C4
  * Size:	000024
  */
-void Mgr::calcCheckSumOptionInfo(OptionInfo*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x1FFC
-	  stw       r0, 0x14(r1)
-	  bl        -0x3344
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+u32 Mgr::calcCheckSumOptionInfo(OptionInfo* optionInfo) { return calcCheckSum(optionInfo, 0x1FFC); }
 
 /*
  * --INFO--
  * Address:	804459E8
  * Size:	000040
  */
-void Mgr::testCheckSumOptionInfo(OptionInfo*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x1FFC
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  bl        -0x3370
-	  lwz       r0, 0x1FFC(r31)
-	  sub       r0, r3, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+bool Mgr::testCheckSumOptionInfo(OptionInfo* optionInfo) { return (calcCheckSum(optionInfo, 0x1FFC) == optionInfo[0x3FF]._04); }
 
 /*
  * --INFO--
  * Address:	80445A28
  * Size:	000074
  */
-void Mgr::checkPlayerInfo(PlayerInfo*)
+bool Mgr::checkPlayerInfo(PlayerInfo* playerInfo)
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    li       r31, 0
-	    stw      r30, 8(r1)
-	    mr       r30, r4
-	    lbz      r0, 0xd0(r3)
-	    cmplwi   r0, 0
-	    beq      lbl_80445A80
-	    bl
-	testCheckSumPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80445A80
-	    lwz      r3, 0(r30)
-	    addis    r0, r3, 0xaf94
-	    cmplwi   r0, 0x5661
-	    bne      lbl_80445A80
-	    lwz      r3, 4(r30)
-	    addis    r0, r3, 0xcfd0
-	    cmplwi   r0, 0x3033
-	    bne      lbl_80445A80
-	    li       r31, 1
-
-	lbl_80445A80:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	bool result = false;
+	if (_D0 != 0 && testCheckSumPlayerInfo(playerInfo) && playerInfo->_00 == 'PlVa' && playerInfo->_04 == '0003') {
+		result = true;
+	}
+	return result;
 }
 
 /*
@@ -4200,52 +1313,14 @@ void Mgr::checkPlayerInfo(PlayerInfo*)
  * Address:	80445A9C
  * Size:	000028
  */
-void Mgr::calcCheckSumPlayerInfo(PlayerInfo*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x1
-	  stw       r0, 0x14(r1)
-	  subi      r5, r5, 0x4004
-	  bl        -0x3420
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+u32 Mgr::calcCheckSumPlayerInfo(PlayerInfo* playerInfo) { return calcCheckSum(playerInfo, 0xBFFC); }
 
 /*
  * --INFO--
  * Address:	80445AC4
  * Size:	000048
  */
-void Mgr::testCheckSumPlayerInfo(PlayerInfo*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x1
-	  stw       r0, 0x14(r1)
-	  subi      r5, r5, 0x4004
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  bl        -0x3450
-	  addis     r4, r31, 0x1
-	  lwz       r0, -0x4004(r4)
-	  sub       r0, r3, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+bool Mgr::testCheckSumPlayerInfo(PlayerInfo* playerInfo) { return (calcCheckSum(playerInfo, 0xBFFC) == playerInfo[0x17FF]._04); }
 
 /*
  * --INFO--
@@ -4254,70 +1329,28 @@ void Mgr::testCheckSumPlayerInfo(PlayerInfo*)
  */
 u32 Mgr::getCardStatus()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    bl       checkStatus__13MemoryCardMgrFv
-	    cmplwi   r3, 2
-	    bne      lbl_80445B9C
-	    lwz      r0, 0xd8(r30)
-	    cmpwi    r0, 2
-	    beq      lbl_80445B6C
-	    bge      lbl_80445B50
-	    cmpwi    r0, 0
-	    beq      lbl_80445B5C
-	    bge      lbl_80445B64
-	    b        lbl_80445B7C
-
-	lbl_80445B50:
-	    cmpwi    r0, 4
-	    bge      lbl_80445B7C
-	    b        lbl_80445B74
-
-	lbl_80445B5C:
-	    li       r31, 2
-	    b        lbl_80445BA8
-
-	lbl_80445B64:
-	    li       r31, 0xc
-	    b        lbl_80445BA8
-
-	lbl_80445B6C:
-	    li       r31, 0xd
-	    b        lbl_80445BA8
-
-	lbl_80445B74:
-	    li       r31, 0xe
-	    b        lbl_80445BA8
-
-	lbl_80445B7C:
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0xb10
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-	    b        lbl_80445BA8
-
-	lbl_80445B9C:
-	    mr       r3, r30
-	    bl       checkStatus__13MemoryCardMgrFv
-	    mr       r31, r3
-
-	lbl_80445BA8:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	u32 result;
+	if (checkStatus() == 2) {
+		switch (_D8) {
+		case 0:
+			result = 2;
+			break;
+		case 1:
+			result = 12;
+			break;
+		case 2:
+			result = 13;
+			break;
+		case 3:
+			result = 14;
+			break;
+		default:
+			P2ASSERTLINE(2832, false);
+		}
+	} else {
+		result = checkStatus();
+	}
+	return result;
 }
 
 /*
@@ -4325,62 +1358,24 @@ u32 Mgr::getCardStatus()
  * Address:	80445BC4
  * Size:	0000B8
  */
-void Mgr::writeInvalidGameOption()
+bool Mgr::writeInvalidGameOption()
 {
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    li       r5, -32
-	    stw      r0, 0x24(r1)
-	    stmw     r27, 0xc(r1)
-	    mr       r27, r3
-	    li       r3, 0x2000
-	    lwz      r4, 0xcc(r27)
-	    bl       __nwa__FUlP7JKRHeapi
-	    or.      r29, r3, r3
-	    bne      lbl_80445C0C
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0xb29
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
+	bool result;
+	u32* buffer = new (mHeap, -32) u32[0x800];
+	P2ASSERTLINE(2857, buffer);
 
-	lbl_80445C0C:
-	    lis      r3, 0x4F70496E@ha
-	    li       r30, 1
-	    addi     r0, r3, 0x4F70496E@l
-	    li       r28, 0
-	    stw      r0, 0(r29)
-	    li       r31, 0x2000
+	result    = true;
+	buffer[0] = 'OpIn';
 
-	lbl_80445C24:
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    mr       r3, r27
-	    mr       r6, r29
-	    mr       r8, r31
-	    li       r4, 0
-	    li       r7, 0x2000
-	    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80445C4C
-	    li       r30, 0
+	for (int i = 0; i < 2; i++) {
+		if (!write(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0x2000, i * 0x2000 + 0x2000)) {
+			result = false;
+		}
+	}
 
-	lbl_80445C4C:
-	    addi     r28, r28, 1
-	    addi     r31, r31, 0x2000
-	    cmpwi    r28, 2
-	    blt      lbl_80445C24
-	    mr       r3, r29
-	    bl       __dl__FPv
-	    mr       r3, r30
-	    lmw      r27, 0xc(r1)
-	    lwz      r0, 0x24(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
+	delete (buffer);
+
+	return result;
 }
 
 /*
@@ -4388,42 +1383,15 @@ void Mgr::writeInvalidGameOption()
  * Address:	80445C7C
  * Size:	000070
  */
-void Mgr::writeInvalidPlayerInfoAll()
+bool Mgr::writeInvalidPlayerInfoAll()
 {
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    stw      r0, 0x24(r1)
-	    stw      r31, 0x1c(r1)
-	    li       r31, 1
-	    stw      r30, 0x18(r1)
-	    li       r30, 0
-	    stw      r29, 0x14(r1)
-	    mr       r29, r3
-
-	lbl_80445CA0:
-	    addi     r0, r30, -1
-	    mr       r3, r29
-	    mr       r4, r30
-	    extsb    r5, r0
-	    bl       writeInvalidPlayerInfo__Q34Game10MemoryCard3MgrFiSc
-	    clrlwi.  r0, r3, 0x18
-	    bne      lbl_80445CC0
-	    li       r31, 0
-
-	lbl_80445CC0:
-	    addi     r30, r30, 1
-	    cmpwi    r30, 4
-	    blt      lbl_80445CA0
-	    lwz      r0, 0x24(r1)
-	    mr       r3, r31
-	    lwz      r31, 0x1c(r1)
-	    lwz      r30, 0x18(r1)
-	    lwz      r29, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
+	bool result = true;
+	for (int i = 0; i < 4; i++) {
+		if (!(writeInvalidPlayerInfo(i, i - 1))) {
+			result = false;
+		}
+	}
+	return result;
 }
 
 /*
@@ -4431,84 +1399,17 @@ void Mgr::writeInvalidPlayerInfoAll()
  * Address:	80445CEC
  * Size:	000110
  */
-void Mgr::writeInvalidPlayerInfo(int, signed char)
+bool Mgr::writeInvalidPlayerInfo(int fileIndex, s8 param_2)
 {
-	/*
-	    stwu     r1, -0x20(r1)
-	    mflr     r0
-	    stw      r0, 0x24(r1)
-	    li       r0, 0
-	    stw      r31, 0x1c(r1)
-	    stw      r30, 0x18(r1)
-	    mr       r30, r5
-	    stw      r29, 0x14(r1)
-	    or.      r29, r4, r4
-	    stw      r28, 0x10(r1)
-	    mr       r28, r3
-	    blt      lbl_80445D28
-	    cmpwi    r29, 4
-	    bge      lbl_80445D28
-	    li       r0, 1
-
-	lbl_80445D28:
-	    clrlwi.  r0, r0, 0x18
-	    bne      lbl_80445D4C
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0xb6a
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80445D4C:
-	    lwz      r4, 0xcc(r28)
-	    li       r3, 0x2000
-	    li       r5, -32
-	    bl       __nwa__FUlP7JKRHeapi
-	    or.      r31, r3, r3
-	    bne      lbl_80445D80
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0xb6d
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_80445D80:
-	    mr       r3, r31
-	    li       r4, 0xcd
-	    li       r5, 0x2000
-	    bl       memset
-	    lis      r3, 0x506C496E@ha
-	    lis      r4, 0x0000C000@ha
-	    addi     r5, r3, 0x506C496E@l
-	    mr       r3, r28
-	    addi     r0, r4, 0x0000C000@l
-	    stw      r5, 0(r31)
-	    mullw    r8, r29, r0
-	    mr       r6, r31
-	    stb      r30, 8(r31)
-	    li       r4, 0
-	    li       r7, 0x2000
-	    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
-	    addi     r8, r8, 0x6000
-	    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
-	    mr       r0, r3
-	    mr       r3, r31
-	    mr       r31, r0
-	    bl       __dl__FPv
-	    lwz      r0, 0x24(r1)
-	    mr       r3, r31
-	    lwz      r31, 0x1c(r1)
-	    lwz      r30, 0x18(r1)
-	    lwz      r29, 0x14(r1)
-	    lwz      r28, 0x10(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x20
-	    blr
-	*/
+	P2ASSERTBOUNDSLINE(2922, 0, fileIndex, 4);
+	s8* buffer = new (mHeap, -32) s8[0x2000];
+	P2ASSERTLINE(2925, buffer);
+	memset(buffer, 0xCD, 0x2000);
+	((u32*)buffer)[0] = 'PlIn';
+	buffer[8]         = param_2;
+	bool result       = write(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0x2000, (fileIndex * 0xC000) + 0x6000);
+	delete (buffer);
+	return result;
 }
 
 /*
@@ -4516,129 +1417,31 @@ void Mgr::writeInvalidPlayerInfo(int, signed char)
  * Address:	80445DFC
  * Size:	0001A8
  */
-void Mgr::checkPlayerNoPlayerInfo(int, signed char, PlayerInfoHeader*)
+bool Mgr::checkPlayerNoPlayerInfo(int param_1, s8 param_2, PlayerInfoHeader* infoHeader)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r25, 0x24(r1)
-	  mr        r26, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  mr        r25, r3
-	  addi      r4, r1, 0x8
-	  li        r31, 0
-	  li        r5, 0
-	  lwz       r0, -0x7978(r13)
-	  mr        r27, r0
-	  mr        r6, r0
-	  bl        -0x4A0C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x5C
-	  mr        r3, r25
-	  addi      r5, r1, 0x8
-	  li        r4, 0
-	  bl        -0x41AC
-	  addi      r3, r1, 0x8
-	  bl        -0x36C3F8
-
-	.loc_0x5C:
-	  lbz       r0, 0xD0(r25)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x188
-	  lwz       r4, 0xCC(r25)
-	  li        r3, 0x2000
-	  li        r5, -0x20
-	  bl        -0x421E28
-	  mr.       r30, r3
-	  bne-      .loc_0x9C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5234
-	  li        r4, 0xB9F
-	  subi      r5, r5, 0x5218
-	  crclr     6, 0x6
-	  bl        -0x41B854
-
-	.loc_0x9C:
-	  lis       r4, 0x1
-	  mr        r3, r25
-	  subi      r0, r4, 0x4000
-	  mr        r5, r27
-	  mullw     r8, r26, r0
-	  mr        r6, r30
-	  li        r4, 0
-	  li        r7, 0x200
-	  addi      r8, r8, 0x6000
-	  bl        -0x4158
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x17C
-	  cmplwi    r29, 0
-	  beq-      .loc_0x154
-	  lwz       r0, 0x0(r30)
-	  stw       r0, 0x0(r29)
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x4(r29)
-	  lbz       r0, 0x8(r30)
-	  stb       r0, 0x8(r29)
-	  lwz       r3, 0xC(r30)
-	  lwz       r0, 0x10(r30)
-	  stw       r3, 0xC(r29)
-	  stw       r0, 0x10(r29)
-	  lwz       r3, 0x14(r30)
-	  lwz       r0, 0x18(r30)
-	  stw       r3, 0x14(r29)
-	  stw       r0, 0x18(r29)
-	  lwz       r3, 0x1C(r30)
-	  lwz       r0, 0x20(r30)
-	  stw       r3, 0x1C(r29)
-	  stw       r0, 0x20(r29)
-	  lwz       r3, 0x24(r30)
-	  lwz       r0, 0x28(r30)
-	  stw       r3, 0x24(r29)
-	  stw       r0, 0x28(r29)
-	  lwz       r3, 0x2C(r30)
-	  lwz       r0, 0x30(r30)
-	  stw       r3, 0x2C(r29)
-	  stw       r0, 0x30(r29)
-	  lwz       r3, 0x34(r30)
-	  lwz       r0, 0x38(r30)
-	  stw       r3, 0x34(r29)
-	  stw       r0, 0x38(r29)
-	  lwz       r0, 0x3C(r30)
-	  stw       r0, 0x3C(r29)
-
-	.loc_0x154:
-	  lbz       r3, 0x8(r30)
-	  extsb     r0, r28
-	  extsb     r3, r3
-	  cmpw      r3, r0
-	  bne-      .loc_0x17C
-	  lwz       r3, 0x0(r30)
-	  subis     r0, r3, 0x506C
-	  cmplwi    r0, 0x5661
-	  bne-      .loc_0x17C
-	  li        r31, 0x1
-
-	.loc_0x17C:
-	  mr        r3, r30
-	  bl        -0x421EC8
-	  b         .loc_0x190
-
-	.loc_0x188:
-	  li        r0, -0x1
-	  stw       r0, 0x0(r29)
-
-	.loc_0x190:
-	  mr        r3, r31
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	bool result     = false;
+	char* localName = cFileName;
+	CARDFileInfo fileInfo;
+	if (fileOpen(&fileInfo, CARDSLOT_Unk0, cFileName)) {
+		checkCardStat(CARDSLOT_Unk0, &fileInfo);
+		CARDClose(&fileInfo);
+	}
+	if (_D0) {
+		u32* buffer = new (mHeap, -32) u32[0x800];
+		P2ASSERTLINE(2975, buffer);
+		if (read(CARDSLOT_Unk0, localName, (u8*)buffer, 0x200, param_1 * 0xC000 + 0x6000)) {
+			if (infoHeader) {
+				*infoHeader = *(PlayerInfoHeader*)buffer;
+			}
+			if ((s8)((PlayerInfoHeader*)buffer)->_08 == (s8)param_2 && buffer[0] == 'PlVa') {
+				result = true;
+			}
+		}
+		delete (buffer);
+	} else {
+		infoHeader->_00 = -1;
+	}
+	return result;
 }
 
 // /*
@@ -4646,7 +1449,7 @@ void Mgr::checkPlayerNoPlayerInfo(int, signed char, PlayerInfoHeader*)
 // * Address:	........
 // * Size:	000040
 // */
-// void Mgr::loadPlayerHeaderProc(int, unsigned char*)
+// void Mgr::loadPlayerHeaderProc(int, u8*)
 // {
 // // UNUSED FUNCTION
 // }
@@ -4656,283 +1459,108 @@ void Mgr::checkPlayerNoPlayerInfo(int, signed char, PlayerInfoHeader*)
  * Address:	80445FA4
  * Size:	000380
  */
-void Mgr::getIndexInvalidPlayerInfo(int*, signed char*, signed char, unsigned long, bool)
+bool Mgr::getIndexInvalidPlayerInfo(int* param_1, s8* param_2, s8 param_3, u32 param_4, bool param_5)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  li        r10, -0x1
-	  lis       r9, 0xCDCE
-	  stw       r0, 0x84(r1)
-	  subi      r0, r9, 0x3233
-	  stmw      r15, 0x3C(r1)
-	  mr        r25, r3
-	  mr        r15, r4
-	  lis       r3, 0x804A
-	  mr        r26, r5
-	  stw       r10, 0x24(r1)
-	  subi      r23, r3, 0x5248
-	  mr        r27, r6
-	  stw       r0, 0x14(r1)
-	  mr        r28, r7
-	  mr        r29, r8
-	  addi      r19, r1, 0x24
-	  stw       r10, 0x28(r1)
-	  addi      r18, r1, 0x14
-	  li        r31, 0x1
-	  li        r30, -0x1
-	  stw       r0, 0x18(r1)
-	  li        r3, 0x200
-	  li        r5, -0x20
-	  stw       r10, 0x2C(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r10, 0x30(r1)
-	  stw       r0, 0x20(r1)
-	  lwz       r4, 0xCC(r25)
-	  bl        -0x421FD4
-	  mr.       r17, r3
-	  bne-      .loc_0x98
-	  addi      r3, r23, 0x14
-	  addi      r5, r23, 0x30
-	  li        r4, 0xBFF
-	  crclr     6, 0x6
-	  bl        -0x41B9F8
+	int array1[4]; // _24
+	int array2[4]; // _14
 
-	.loc_0x98:
-	  mr        r21, r19
-	  mr        r20, r18
-	  extsb     r24, r27
-	  li        r16, 0
-	  li        r22, 0x6000
+	for (int i = 0; i < 4; i++) {
+		array1[i] = -1;
+		array2[i] = 0xCDCDCDCD;
+	}
 
-	.loc_0xAC:
-	  lwz       r5, -0x7978(r13)
-	  mr        r3, r25
-	  mr        r6, r17
-	  mr        r8, r22
-	  li        r4, 0
-	  li        r7, 0x200
-	  bl        -0x4304
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x170
-	  lbz       r0, 0x8(r17)
-	  cmpwi     r30, -0x1
-	  lwz       r3, 0x0(r17)
-	  extsb     r4, r0
-	  stw       r4, 0x0(r21)
-	  stw       r3, 0x0(r20)
-	  bne-      .loc_0x10C
-	  extsb     r0, r27
-	  cmpw      r4, r0
-	  bne-      .loc_0x10C
-	  subis     r0, r3, 0x506C
-	  cmplwi    r0, 0x5661
-	  beq-      .loc_0x10C
-	  stb       r27, 0x0(r26)
-	  mr        r30, r16
+	bool result = true;
+	int idx     = -1;
 
-	.loc_0x10C:
-	  lbz       r0, 0x8(r17)
-	  extsb     r0, r0
-	  cmpw      r0, r24
-	  bne-      .loc_0x178
-	  lwz       r3, 0x0(r17)
-	  subis     r0, r3, 0x506C
-	  cmplwi    r0, 0x5661
-	  bne-      .loc_0x178
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x178
-	  lwz       r6, 0x10(r17)
-	  cmplw     r6, r28
-	  blt-      .loc_0x178
-	  cmplwi    r28, 0x1
-	  beq-      .loc_0x160
-	  mr        r7, r28
-	  addi      r3, r23, 0x14
-	  addi      r5, r23, 0xC4
-	  li        r4, 0xC4C
-	  crclr     6, 0x6
-	  bl        -0x41BAC0
+	u32* buffer = new (mHeap, -32) u32[0x80];
+	P2ASSERTLINE(3071, buffer);
 
-	.loc_0x160:
-	  li        r0, 0x3
-	  li        r31, 0
-	  stw       r0, 0xD8(r25)
-	  b         .loc_0x194
+	for (int i = 0; i < 4; i++) {
+		if (read(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0x200, 0x6000 + (i * 0xC000))) {
+			u32 bufVal = buffer[0];
+			s8 bufByte = ((u8*)buffer)[8];
 
-	.loc_0x170:
-	  li        r31, 0
-	  b         .loc_0x194
+			array1[i] = bufByte;
 
-	.loc_0x178:
-	  addi      r16, r16, 0x1
-	  addis     r22, r22, 0x1
-	  cmpwi     r16, 0x4
-	  addi      r21, r21, 0x4
-	  subi      r22, r22, 0x4000
-	  addi      r20, r20, 0x4
-	  blt+      .loc_0xAC
+			array2[i] = bufVal;
+			if (idx == -1 && bufByte == param_3 && bufVal != 'PlVa') {
+				*param_2 = param_3;
+				idx      = i;
+			}
+			if (*(s8*)(buffer + 2) == param_3 && buffer[0] == 'PlVa' && param_5 && buffer[4] >= param_4) {
+				JUT_ASSERTLINE(3148, param_4 == 1, "card [%d] memory[%d]\n", buffer[4], param_4);
+				result = false;
+				_D8    = 3;
+				break;
+			}
+		} else {
+			result = false;
+			break;
+		}
+	}
 
-	.loc_0x194:
-	  mr        r3, r17
-	  bl        -0x422088
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x364
-	  cmpwi     r30, -0x1
-	  bne-      .loc_0x364
-	  li        r6, -0x1
-	  li        r0, 0x4
-	  mr        r3, r19
-	  mr        r4, r18
-	  stw       r6, 0x8(r1)
-	  li        r5, 0
-	  stw       r6, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  mtctr     r0
+	delete (buffer);
 
-	.loc_0x1D0:
-	  lwz       r0, 0x0(r3)
-	  cmpwi     r0, 0
-	  blt-      .loc_0x294
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x294
-	  rlwinm    r0,r0,2,0,29
-	  addi      r6, r1, 0x8
-	  lwzx      r7, r6, r0
-	  cmpwi     r7, -0x1
-	  bne-      .loc_0x200
-	  stwx      r5, r6, r0
-	  b         .loc_0x294
+	if (result && idx == -1) {
+		int array3[3];
+		array3[0] = -1;
+		array3[1] = -1;
+		array3[2] = -1;
+		u32 check = idx;
+		for (int i = 0; i < 4; i++) {
+			if (array1[i] >= 0 && array1[i] < 3) {
+				if (array3[array1[i]] == -1) {
+					array3[array1[i]] = i;
+					continue;
+				} else if (array2[i] == 'PlVa' && array2[array3[array1[i]]] != 'PlVa') {
+					idx = array3[array1[i]];
+				} else if (array2[i] != 'PlVa' && array2[array3[array1[i]]] == 'PlVa') {
+					idx = i;
+				} else if (array2[i] != 'PlVa' && array2[array3[array1[i]]] != 'PlVa') {
+					idx = i;
+				}
 
-	.loc_0x200:
-	  lwz       r8, 0x0(r4)
-	  subis     r0, r8, 0x506C
-	  cmplwi    r0, 0x5661
-	  bne-      .loc_0x230
-	  rlwinm    r0,r7,2,0,29
-	  addi      r6, r1, 0x14
-	  lwzx      r6, r6, r0
-	  subis     r0, r6, 0x506C
-	  cmplwi    r0, 0x5661
-	  beq-      .loc_0x230
-	  mr        r30, r7
-	  b         .loc_0x284
+				if (idx != -1) {
+					param_2[0] = param_3;
+					break;
+				}
+			}
+		}
+		if (result && idx == -1) {
+			for (int i = 0; i < 4; i++) {
+				if (array1[i] < 0 || array1[i] > 2) {
+					idx = i;
+				} else if (array2[i] != 'PlVa' && array2[i] != 'PlIn') {
+					idx = i;
+				}
 
-	.loc_0x230:
-	  subis     r0, r8, 0x506C
-	  cmplwi    r0, 0x5661
-	  beq-      .loc_0x25C
-	  rlwinm    r0,r7,2,0,29
-	  addi      r6, r1, 0x14
-	  lwzx      r6, r6, r0
-	  subis     r0, r6, 0x506C
-	  cmplwi    r0, 0x5661
-	  bne-      .loc_0x25C
-	  mr        r30, r5
-	  b         .loc_0x284
+				if (idx != -1) {
+					param_2[0] = param_3;
+					break;
+				}
+			}
+		}
+	}
 
-	.loc_0x25C:
-	  subis     r0, r8, 0x506C
-	  cmplwi    r0, 0x5661
-	  beq-      .loc_0x284
-	  rlwinm    r0,r7,2,0,29
-	  addi      r6, r1, 0x14
-	  lwzx      r6, r6, r0
-	  subis     r0, r6, 0x506C
-	  cmplwi    r0, 0x5661
-	  beq-      .loc_0x284
-	  mr        r30, r5
+	*param_1 = idx;
+	return result;
+}
 
-	.loc_0x284:
-	  cmpwi     r30, -0x1
-	  beq-      .loc_0x294
-	  stb       r27, 0x0(r26)
-	  b         .loc_0x2A4
+inline bool Mgr::checkCheckSum(u32* buffer) { return _D0 && buffer[0x2FFF] == calcCheckSum(buffer, 0xBFFC); }
 
-	.loc_0x294:
-	  addi      r3, r3, 0x4
-	  addi      r4, r4, 0x4
-	  addi      r5, r5, 0x1
-	  bdnz+     .loc_0x1D0
+// this might be a few inlines stacked together? unsure
+inline bool Mgr::checkInfo(u32* buffer)
+{
+	bool checkPlVa    = false;
+	bool checkVersion = false;
+	if (checkCheckSum(buffer) && buffer[0] == 'PlVa') {
+		checkPlVa = true;
+	}
+	if (checkPlVa && buffer[1] == '0003') {
+		checkVersion = true;
+	}
 
-	.loc_0x2A4:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x364
-	  cmpwi     r30, -0x1
-	  bne-      .loc_0x364
-	  li        r0, 0x2
-	  li        r4, 0
-	  mtctr     r0
-
-	.loc_0x2C0:
-	  lwz       r0, 0x0(r19)
-	  cmpwi     r0, 0
-	  blt-      .loc_0x2D4
-	  cmpwi     r0, 0x2
-	  ble-      .loc_0x2DC
-
-	.loc_0x2D4:
-	  mr        r30, r4
-	  b         .loc_0x2F8
-
-	.loc_0x2DC:
-	  lwz       r3, 0x0(r18)
-	  subis     r0, r3, 0x506C
-	  cmplwi    r0, 0x5661
-	  beq-      .loc_0x2F8
-	  cmplwi    r0, 0x496E
-	  beq-      .loc_0x2F8
-	  mr        r30, r4
-
-	.loc_0x2F8:
-	  cmpwi     r30, -0x1
-	  beq-      .loc_0x308
-	  stb       r27, 0x0(r26)
-	  b         .loc_0x364
-
-	.loc_0x308:
-	  lwz       r0, 0x4(r19)
-	  addi      r4, r4, 0x1
-	  cmpwi     r0, 0
-	  blt-      .loc_0x320
-	  cmpwi     r0, 0x2
-	  ble-      .loc_0x328
-
-	.loc_0x320:
-	  mr        r30, r4
-	  b         .loc_0x344
-
-	.loc_0x328:
-	  lwz       r3, 0x4(r18)
-	  subis     r0, r3, 0x506C
-	  cmplwi    r0, 0x5661
-	  beq-      .loc_0x344
-	  cmplwi    r0, 0x496E
-	  beq-      .loc_0x344
-	  mr        r30, r4
-
-	.loc_0x344:
-	  cmpwi     r30, -0x1
-	  beq-      .loc_0x354
-	  stb       r27, 0x0(r26)
-	  b         .loc_0x364
-
-	.loc_0x354:
-	  addi      r19, r19, 0x8
-	  addi      r18, r18, 0x8
-	  addi      r4, r4, 0x1
-	  bdnz+     .loc_0x2C0
-
-	.loc_0x364:
-	  stw       r30, 0x0(r15)
-	  mr        r3, r31
-	  lmw       r15, 0x3C(r1)
-	  lwz       r0, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
-	*/
+	return checkVersion;
 }
 
 /*
@@ -4940,8 +1568,91 @@ void Mgr::getIndexInvalidPlayerInfo(int*, signed char*, signed char, unsigned lo
  * Address:	80446324
  * Size:	0004BC
  */
-void Mgr::modifyPlayerInfo(signed char, bool*)
+bool Mgr::modifyPlayerInfo(s8 fileIndex, bool* param_2)
 {
+	bool result;
+	u32 array1[3]; // 0x1C
+	int array2[3]; // 0x10
+	u8 array4[4];  // 0xC
+	u8 array3[3];  // 0x8
+
+	if (param_2) {
+		*param_2 = false;
+	}
+
+	for (int i = 0; i < 3; i++) {
+		array1[i] = 0;
+		array3[i] = 0;
+		array2[i] = -1;
+	}
+
+	for (int i = 0; i < 4; i++) {
+		array4[i] = 0;
+	}
+
+	for (int i = 0; i < 4; i++) {
+		u32* buffer = new (mHeap, -32) u32[0x3000];
+		P2ASSERTLINE(3445, buffer);
+		result = read(CARDSLOT_Unk0, cFileName, (u8*)buffer, 0xC000, 0x6000 + (0xC000 * i));
+		if (result) {
+			if (checkInfo(buffer)) {
+				const int bufferPos = ((char*)buffer)[8];
+				if (!array1[bufferPos] || buffer[4] > array1[bufferPos]) {
+					if (array2[bufferPos] != -1) {
+						array4[array2[bufferPos]] = 1;
+					}
+					array2[bufferPos] = i;
+					array1[bufferPos] = buffer[4];
+				} else {
+					array4[i] = 1;
+				}
+			} else if (buffer[0] == 'PlIn' && ((char*)buffer)[8] >= 0 && ((char*)buffer)[8] < 3) {
+				if (array3[((char*)buffer)[8]]) {
+					array4[i] = 1;
+				}
+
+				array3[((char*)buffer)[8]] = 1;
+			} else {
+				array4[i] = 1;
+			}
+		}
+		memset(buffer, 0xCD, 0xC000);
+		delete (buffer);
+
+		if (!result) {
+			break;
+		}
+	}
+
+	if (result) {
+		for (int i = 0; i < 4; i++) {
+			if (array4[i]) {
+				bool checkWrite;
+				if (!array3[fileIndex] && (int)array2[fileIndex] == -1) {
+					checkWrite = writeInvalidPlayerInfo(i, fileIndex);
+				} else {
+					s8 someChar = fileIndex;
+					for (int j = 0; j < 3; j++) {
+						if (!array3[j] && array2[j] == -1) {
+							someChar = j;
+							break;
+						}
+					}
+					checkWrite = writeInvalidPlayerInfo(i, someChar);
+				}
+				if (checkWrite) {
+					if (!param_2) {
+						break;
+					}
+					*param_2 = true;
+					break;
+				}
+				result = false;
+			}
+		}
+	}
+
+	return result;
 	/*
 	    stwu     r1, -0x60(r1)
 	    mflr     r0
@@ -5312,48 +2023,18 @@ void Mgr::modifyPlayerInfo(signed char, bool*)
  * Address:	804467E0
  * Size:	000084
  */
-void Mgr::verifyCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot)
+bool Mgr::verifyCardSerialNo(u64* serial, MemoryCardMgr::ECardSlot cardSlot)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  addi      r4, r1, 0x8
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x4080
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x64
-	  lwz       r4, 0x8(r1)
-	  lwz       r0, 0x0(r30)
-	  lwz       r5, 0xC(r1)
-	  lwz       r3, 0x4(r30)
-	  xor       r0, r4, r0
-	  xor       r3, r5, r3
-	  or.       r0, r3, r0
-	  bne-      .loc_0x5C
-	  li        r31, 0x1
-	  b         .loc_0x64
-
-	.loc_0x5C:
-	  li        r0, 0x3
-	  stw       r0, 0xD8(r29)
-
-	.loc_0x64:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	bool result = false;
+	u64 serialDat;
+	if (readCardSerialNo(&serialDat, cardSlot)) {
+		if (serialDat == *serial) {
+			result = true;
+		} else {
+			_D8 = 3;
+		}
+	}
+	return result;
 }
 
 /*
@@ -5363,45 +2044,15 @@ void Mgr::verifyCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot)
  */
 bool Mgr::resetError()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r3
-	    li       r3, 0
-	    bl       CARDProbe
-	    cmpwi    r3, 0
-	    beq      lbl_804468A0
-	    mr       r3, r31
-	    bl       cardMount__13MemoryCardMgrFv
-	    li       r0, 0
-	    stw      r0, 0xd8(r31)
-	    mr       r31, r3
-	    b        lbl_804468A4
-
-	lbl_804468A0:
-	    li       r31, 1
-
-	lbl_804468A4:
-	    clrlwi.  r0, r31, 0x18
-	    bne      lbl_804468C8
-	    lis      r3, gStrMemoryCardMgrCpp@ha
-	    lis      r5, gStrMemoryCardMgrP2Assert@ha
-	    addi     r3, r3, gStrMemoryCardMgrCpp@l
-	    li       r4, 0xebd
-	    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
-	    crclr    6
-	    bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_804468C8:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	bool result;
+	if (CARDProbe(0)) {
+		result = cardMount();
+		_D8    = 0;
+	} else {
+		result = true;
+	}
+	P2ASSERTLINE(3773, result);
+	return result;
 }
 
 /*
@@ -5409,8 +2060,26 @@ bool Mgr::resetError()
  * Address:	804468E0
  * Size:	00012C
  */
-void Mgr::doMakeHeader(unsigned char*)
+void Mgr::doMakeHeader(u8* param_1)
 {
+	OSCalendarTime calendar;
+	snprintf((char*)(param_1 + 0x1800), 0x20, "PIKMIN 2");
+	OSTime time = OSGetTime();
+	OSTicksToCalendarTime(time, &calendar);
+	snprintf((char*)(param_1 + 0x1820), 0x20, "%02d/%02d/%04d %02d:%02d:%02d", calendar.mon + 1, calendar.mday, calendar.year,
+	         calendar.hour, calendar.min, calendar.sec);
+	if (mBannerImageFile && mIconImageFile) {
+		memcpy(param_1, mBannerImageFile, 0xe00);
+		memcpy(param_1 + 0xe00, mIconImageFile, 0x400);
+		memcpy(param_1 + 0x1200, mIconImageFile, 0x400);
+		memcpy(param_1 + 0x1600, (void*)((u32)mIconImageFile + 0x400), 0x200);
+	} else {
+		memset(param_1, 0, 0xc00);
+		memset(param_1 + 0xc00, 0xff, 0x200);
+		memset(param_1 + 0xe00, 0x0, 0x2000);
+		memset(param_1 + 0x2e00, 0xff, 0x200);
+	}
+	return;
 	/*
 	    stwu     r1, -0x40(r1)
 	    mflr     r0
@@ -5499,75 +2168,30 @@ void Mgr::doMakeHeader(unsigned char*)
  * Address:	80446A0C
  * Size:	000104
  */
-void Mgr::doSetCardStat(CARDStat*)
+void Mgr::doSetCardStat(CARDStat* cardStat)
 {
-	/*
-	    li       r3, 0
-	    li       r0, 0x1800
-	    stw      r3, 0x30(r4)
-	    stw      r0, 0x38(r4)
-	    lbz      r0, 0x2e(r4)
-	    rlwinm   r0, r0, 0, 0, 0x1d
-	    ori      r0, r0, 1
-	    stb      r0, 0x2e(r4)
-	    lbz      r0, 0x2e(r4)
-	    rlwinm   r0, r0, 0, 0x1e, 0x1c
-	    ori      r0, r0, 4
-	    stb      r0, 0x2e(r4)
-	    lhz      r0, 0x34(r4)
-	    rlwinm   r0, r0, 0, 0, 0x1d
-	    ori      r0, r0, 1
-	    sth      r0, 0x34(r4)
-	    lhz      r0, 0x34(r4)
-	    rlwinm   r0, r0, 0, 0x1e, 0x1b
-	    ori      r0, r0, 4
-	    sth      r0, 0x34(r4)
-	    lhz      r0, 0x34(r4)
-	    rlwinm   r0, r0, 0, 0x1c, 0x19
-	    sth      r0, 0x34(r4)
-	    lhz      r0, 0x34(r4)
-	    rlwinm   r0, r0, 0, 0x1a, 0x17
-	    sth      r0, 0x34(r4)
-	    lhz      r0, 0x34(r4)
-	    rlwinm   r0, r0, 0, 0x18, 0x15
-	    sth      r0, 0x34(r4)
-	    lhz      r0, 0x34(r4)
-	    rlwinm   r0, r0, 0, 0x16, 0x13
-	    sth      r0, 0x34(r4)
-	    lhz      r0, 0x34(r4)
-	    rlwinm   r0, r0, 0, 0x14, 0x11
-	    sth      r0, 0x34(r4)
-	    lhz      r0, 0x34(r4)
-	    clrlwi   r0, r0, 0x12
-	    sth      r0, 0x34(r4)
-	    lhz      r0, 0x36(r4)
-	    rlwinm   r0, r0, 0, 0, 0x1d
-	    ori      r0, r0, 3
-	    sth      r0, 0x36(r4)
-	    lhz      r0, 0x36(r4)
-	    rlwinm   r0, r0, 0, 0x1e, 0x1b
-	    ori      r0, r0, 0xc
-	    sth      r0, 0x36(r4)
-	    lhz      r0, 0x36(r4)
-	    rlwinm   r0, r0, 0, 0x1c, 0x19
-	    sth      r0, 0x36(r4)
-	    lhz      r0, 0x36(r4)
-	    rlwinm   r0, r0, 0, 0x1a, 0x17
-	    sth      r0, 0x36(r4)
-	    lhz      r0, 0x36(r4)
-	    rlwinm   r0, r0, 0, 0x18, 0x15
-	    sth      r0, 0x36(r4)
-	    lhz      r0, 0x36(r4)
-	    rlwinm   r0, r0, 0, 0x16, 0x13
-	    sth      r0, 0x36(r4)
-	    lhz      r0, 0x36(r4)
-	    rlwinm   r0, r0, 0, 0x14, 0x11
-	    sth      r0, 0x36(r4)
-	    lhz      r0, 0x36(r4)
-	    clrlwi   r0, r0, 0x12
-	    sth      r0, 0x36(r4)
-	    blr
-	*/
+	CARDSetIconAddress(cardStat, 0);
+	CARDSetCommentAddress(cardStat, 0x1800);
+	CARDSetBannerFormat(cardStat, BannerColorCI8);
+	CARDSetIconAnim(cardStat, IconAnimationPingPong);
+
+	CARDSetIconFormat(cardStat, 0, 1);
+	CARDSetIconFormat(cardStat, 1, 1);
+	CARDSetIconFormat(cardStat, 2, 0);
+	CARDSetIconFormat(cardStat, 3, 0);
+	CARDSetIconFormat(cardStat, 4, 0);
+	CARDSetIconFormat(cardStat, 5, 0);
+	CARDSetIconFormat(cardStat, 6, 0);
+	CARDSetIconFormat(cardStat, 7, 0);
+
+	CARDSetIconSpeed(cardStat, 0, 3);
+	CARDSetIconSpeed(cardStat, 1, 3);
+	CARDSetIconSpeed(cardStat, 2, 0);
+	CARDSetIconSpeed(cardStat, 3, 0);
+	CARDSetIconSpeed(cardStat, 4, 0);
+	CARDSetIconSpeed(cardStat, 5, 0);
+	CARDSetIconSpeed(cardStat, 6, 0);
+	CARDSetIconSpeed(cardStat, 7, 0);
 }
 
 /*
@@ -5575,135 +2199,20 @@ void Mgr::doSetCardStat(CARDStat*)
  * Address:	80446B10
  * Size:	0000DC
  */
-void MemoryCard::Mgr::doCheckCardStat(CARDStat*)
+bool MemoryCard::Mgr::doCheckCardStat(CARDStat* cardStat)
 {
-	/*
-	    lwz      r0, 0x30(r4)
-	    cmplwi   r0, 0
-	    bne      lbl_80446BDC
-	    lwz      r0, 0x38(r4)
-	    cmplwi   r0, 0x1800
-	    bne      lbl_80446BDC
-	    lbz      r3, 0x2e(r4)
-	    clrlwi   r0, r3, 0x1e
-	    cmpwi    r0, 1
-	    bne      lbl_80446BDC
-	    rlwinm   r0, r3, 0, 0x1d, 0x1d
-	    cmpwi    r0, 4
-	    bne      lbl_80446BDC
-	    lhz      r3, 0x34(r4)
-	    clrlwi   r0, r3, 0x1e
-	    cmpwi    r0, 1
-	    bne      lbl_80446BDC
-	    rlwinm   r0, r3, 0x1e, 0x1e, 0x1f
-	    cmpwi    r0, 1
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x1c, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x1a, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x18, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x16, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x14, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x12, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    lhz      r3, 0x36(r4)
-	    clrlwi   r0, r3, 0x1e
-	    cmpwi    r0, 3
-	    bne      lbl_80446BDC
-	    rlwinm   r0, r3, 0x1e, 0x1e, 0x1f
-	    cmpwi    r0, 3
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x1c, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x1a, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x18, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x16, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x14, 0x1e, 0x1f
-	    bne      lbl_80446BDC
-	    rlwinm.  r0, r3, 0x12, 0x1e, 0x1f
-	    beq      lbl_80446BE4
+	if (cardStat->iconAddr != 0 || cardStat->commentAddr != 0x1800 || CARDGetBannerFormat(cardStat) != BannerColorCI8
+	    || CARDGetIconAnim(cardStat) != IconAnimationPingPong || CARDGetIconFormat(cardStat, 0) != 1 || CARDGetIconFormat(cardStat, 1) != 1
+	    || CARDGetIconFormat(cardStat, 2) != 0 || CARDGetIconFormat(cardStat, 3) != 0 || CARDGetIconFormat(cardStat, 4) != 0
+	    || CARDGetIconFormat(cardStat, 5) != 0 || CARDGetIconFormat(cardStat, 6) != 0 || CARDGetIconFormat(cardStat, 7) != 0
+	    || CARDGetIconSpeed(cardStat, 0) != 3 || CARDGetIconSpeed(cardStat, 1) != 3 || CARDGetIconSpeed(cardStat, 2) != 0
+	    || CARDGetIconSpeed(cardStat, 3) != 0 || CARDGetIconSpeed(cardStat, 4) != 0 || CARDGetIconSpeed(cardStat, 5) != 0
+	    || CARDGetIconSpeed(cardStat, 6) != 0 || CARDGetIconSpeed(cardStat, 7) != 0) {
+		return false;
+	}
 
-	lbl_80446BDC:
-	    li       r3, 0
-	    blr
-
-	lbl_80446BE4:
-	    li       r3, 1
-	    blr
-	*/
+	return true;
 }
 
-/*
- * --INFO--
- * Address:	80446BEC
- * Size:	000008
- */
-u32 MgrCommandGetPlayerHeader::getClassSize() { return 0xC; }
-
-/*
- * --INFO--
- * Address:	80446BF4
- * Size:	000008
- */
-u32 MgrCommandCopyPlayer::getClassSize() { return 0xC; }
-
-/*
- * --INFO--
- * Address:	80446BFC
- * Size:	000008
- */
-u32 MgrCommandPlayerNo::getClassSize() { return 0xC; }
-
-/*
- * --INFO--
- * Address:	80446C04
- * Size:	00005C
- */
-Mgr::~Mgr()
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    or.      r31, r3, r3
-	    beq      lbl_80446C48
-	    lis      r3, __vt__Q34Game10MemoryCard3Mgr@ha
-	    addi     r0, r3, __vt__Q34Game10MemoryCard3Mgr@l
-	    stw      r0, 0(r31)
-	    beq      lbl_80446C38
-	    lis      r3, __vt__13MemoryCardMgr@ha
-	    addi     r0, r3, __vt__13MemoryCardMgr@l
-	    stw      r0, 0(r31)
-
-	lbl_80446C38:
-	    extsh.   r0, r4
-	    ble      lbl_80446C48
-	    mr       r3, r31
-	    bl       __dl__FPv
-
-	lbl_80446C48:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r31
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80446C60
- * Size:	000008
- */
-u32 Mgr::getHeaderSize() { return 0x2000; }
 } // namespace MemoryCard
 } // namespace Game

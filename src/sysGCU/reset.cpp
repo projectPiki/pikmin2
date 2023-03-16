@@ -9,6 +9,7 @@
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "JSystem/JUtility/JUTVideo.h"
 #include "MemoryCardMgr.h"
+#include "Game/MemoryCard/Mgr.h"
 
 /*
  * --INFO--
@@ -170,7 +171,7 @@ void ResetManager::draw()
  * Address:	8042A2BC
  * Size:	000014
  */
-bool ResetManager::isWritingMemoryCard() { return sys->mCardMgr->_E4 & 1; }
+bool ResetManager::isWritingMemoryCard() { return sys->mCardMgr->mFlags.typeView & 1; }
 
 /*
  * --INFO--

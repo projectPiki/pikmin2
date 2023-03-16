@@ -10,112 +10,168 @@ struct Stream;
 
 namespace Game {
 namespace MemoryCard {
-
 struct PlayerFileInfo;
 struct PlayerInfoHeader;
-struct PlayerInfo;
-struct OptionInfo;
+
+struct PlayerInfo {
+	u32 _00; // _00
+	u32 _04; // _04
+};
+struct OptionInfo {
+	u32 _00; // _00
+	u32 _04; // _04
+};
+
+enum MemoryCardMgrFlags {
+	MCMFLAG_Unk1 = 0x1, // possibly InUse?
+};
 
 struct Mgr : public MemoryCardMgr {
 	Mgr();
 
-	virtual ~Mgr();                                        // _08 (weak)
+	virtual ~Mgr() { }                                     // _08 (weak)
 	virtual void update();                                 // _0C
-	virtual void doCardProc(void*, MemoryCardMgrCommand*); // _14
-	virtual u32 getHeaderSize();                           // _18 (weak)
-	virtual void doMakeHeader(unsigned char*);             // _1C
+	virtual bool doCardProc(void*, MemoryCardMgrCommand*); // _14
+	virtual u32 getHeaderSize() { return 0x2000; }         // _18 (weak)
+	virtual void doMakeHeader(u8*);                        // _1C
 	virtual void doSetCardStat(CARDStat*);                 // _20
-	virtual void doCheckCardStat(CARDStat*);               // _24
+	virtual bool doCheckCardStat(CARDStat*);               // _24
 	virtual bool isErrorOccured();                         // _28
 
 	enum MemoryCardStatus {
-		MCS_Ready,
-		MCS_NoCard,
-		MCS_IOError,
-		MCS_WrongDevice,
-		MCS_WrongSector,
-		MCS_Broken,
-		MCS_Encoding,
-		MCS_NoFileSpace,
-		MCS_NoFileEntry,
-		MCS_FileOpenError,
-		MCS_SerialNoError,
-		MCS_11,
-		MCS_12,
-		MCS_13,
-		MCS_PlayerDataBroken
+		MCS_Ready            = 0,
+		MCS_NoCard           = 1,
+		MCS_IOError          = 2,
+		MCS_WrongDevice      = 3,
+		MCS_WrongSector      = 4,
+		MCS_Broken           = 5,
+		MCS_Encoding         = 6,
+		MCS_NoFileSpace      = 7,
+		MCS_NoFileEntry      = 8,
+		MCS_FileOpenError    = 9,
+		MCS_SerialNoError    = 10,
+		MCS_11               = 11,
+		MCS_12               = 12,
+		MCS_13               = 13,
+		MCS_PlayerDataBroken = 14,
 	};
 
 	void loadResource(JKRHeap*);
 	void destroyResource();
 	u32 getCardStatus();
 	bool format();
-	void checkBeforeSave();
-	void checkError();
+	bool checkBeforeSave();
+	bool checkError();
 	bool createNewFile();
-	void saveGameOption();
-	void loadGameOption();
-	void savePlayerNoCheckSerialNumber(int);
-	void savePlayer(int);
-	void loadPlayer(int);
-	void deletePlayer(int);
-	void copyPlayer(int, int);
+	bool saveGameOption();
+	bool loadGameOption();
+	bool savePlayerNoCheckSerialNumber(int);
+	bool savePlayer(int);
+	bool loadPlayer(int);
+	bool deletePlayer(int);
+	bool copyPlayer(int, int);
 	bool getPlayerHeader(PlayerFileInfo*);
-	void commandUpdatePlayerHeader(PlayerFileInfo*);
-	void commandCheckBeforeSave();
-	void commandCheckError();
-	void checkSpace(MemoryCardMgr::ECardSlot);
-	void commandSaveHeader();
-	void commandCreateNewFile();
-	void dataFormat(MemoryCardMgr::ECardSlot);
-	void varifyCardStatus();
-	void commandSaveGameOption(bool, bool);
-	void commandLoadGameOption();
+	bool commandUpdatePlayerHeader(PlayerFileInfo*);
+	bool commandCheckBeforeSave();
+	bool commandCheckError();
+	bool checkSpace(MemoryCardMgr::ECardSlot);
+	bool commandSaveHeader();
+	bool commandCreateNewFile();
+	bool dataFormat(MemoryCardMgr::ECardSlot);
+	bool varifyCardStatus();
+	bool commandSaveGameOption(bool, bool);
+	bool commandLoadGameOption();
 	void writeGameOption(Stream&);
 	void readGameOption(Stream&);
-	void checkSerialNo(bool);
-	void commandSavePlayer(s8, bool);
-	void commandSavePlayerNoCheckSerialNo(s8, bool);
-	void getPlayerInfo(s8, PlayerInfoHeader*, bool*);
-	void getIndexPlayerInfo(s8, PlayerInfoHeader*, bool*);
-	void commandLoadPlayer(s8);
-	void loadPlayerForNoCard(s8);
-	void loadPlayerProc(s8, unsigned char*);
-	void commandDeletePlayer(s8);
-	void savePlayerProc(s8, unsigned char*, bool);
-	void commandCheckSerialNo();
-	void commandCopyPlayer(s8, s8);
+	bool checkSerialNo(bool);
+	bool commandSavePlayer(s8, bool);
+	bool commandSavePlayerNoCheckSerialNo(s8, bool);
+	bool getPlayerInfo(s8, PlayerInfoHeader*, bool*);
+	int getIndexPlayerInfo(s8, PlayerInfoHeader*, bool*);
+	bool commandLoadPlayer(s8);
+	bool loadPlayerForNoCard(signed char);
+	bool loadPlayerProc(s8, unsigned char*);
+	bool commandDeletePlayer(s8);
+	bool savePlayerProc(s8, unsigned char*, bool);
+	bool commandCheckSerialNo();
+	bool commandCopyPlayer(s8, s8);
 	void writePlayer(Stream&);
 	void readPlayer(Stream&);
-	void checkOptionInfo(OptionInfo*);
-	void calcCheckSumOptionInfo(OptionInfo*);
-	void testCheckSumOptionInfo(OptionInfo*);
-	void checkPlayerInfo(PlayerInfo*);
-	void calcCheckSumPlayerInfo(PlayerInfo*);
-	void testCheckSumPlayerInfo(PlayerInfo*);
-	void writeInvalidGameOption();
-	void writeInvalidPlayerInfoAll();
-	void writeInvalidPlayerInfo(int, s8);
-	void checkPlayerNoPlayerInfo(int, s8, PlayerInfoHeader*);
-	void getIndexInvalidPlayerInfo(int*, s8*, s8, unsigned long, bool);
-	void modifyPlayerInfo(s8, bool*);
-	void verifyCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot);
+	bool writeBrokenData(MemoryCardMgr::ECardSlot);
+	bool checkOptionInfo(OptionInfo*);
+	u32 calcCheckSumOptionInfo(OptionInfo*);
+	bool testCheckSumOptionInfo(OptionInfo*);
+	bool checkPlayerInfo(PlayerInfo*);
+	u32 calcCheckSumPlayerInfo(PlayerInfo*);
+	bool testCheckSumPlayerInfo(PlayerInfo*);
+	bool writeInvalidGameOption();
+	bool writeInvalidPlayerInfoAll();
+	bool writeInvalidPlayerInfo(int, s8);
+	bool checkPlayerNoPlayerInfo(int, s8, PlayerInfoHeader*);
+	bool getIndexInvalidPlayerInfo(int*, s8*, s8, unsigned long, bool);
+	bool modifyPlayerInfo(s8, bool*);
+	bool verifyCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot);
 	bool resetError();
 
+	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
+	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
+
+	inline bool checkCheckSum(u32* buffer);
+	inline bool checkInfo(u32* buffer);
+
 	// _00-_E8 = MemoryCardMgr
+	u32 _D8;                // _D8
+	void* mBannerImageFile; // _DC
+	void* mIconImageFile;   // _E0
+	BitFlag<u32> mFlags;    // _E4
 };
 
-struct MgrCommandCopyPlayer : public MemoryCardMgrCommand {
-	virtual u32 getClassSize(); // _08 (weak)
+struct MgrCommandCopyPlayer : public MemoryCardMgrCommandBase {
+	MgrCommandCopyPlayer(int val, int p1, int p2)
+	    : MemoryCardMgrCommandBase(val)
+	    , _08(p1)
+	    , _0A(p2)
+	{
+	}
+
+	virtual u32 getClassSize() { return sizeof(MgrCommandCopyPlayer); } // _08 (weak)
+
+	// _04     = VTBL
+	// _00-_08 = MemoryCardMgrCommandBase
+	u16 _08; // _08
+	u16 _0A; // _0A
 };
 
-struct MgrCommandPlayerNo : public MemoryCardMgrCommand {
-	virtual u32 getClassSize(); // _08 (weak)
+struct MgrCommandPlayerNo : public MemoryCardMgrCommandBase {
+	MgrCommandPlayerNo(int val, int fileIndex)
+	    : MemoryCardMgrCommandBase(val)
+	    , mFileIndex(fileIndex)
+	{
+	}
+
+	virtual u32 getClassSize() { return sizeof(MgrCommandPlayerNo); } // _08 (weak)
+
+	// _04     = VTBL
+	// _00-_08 = MemoryCardMgrCommandBase
+	int mFileIndex; // _08
 };
 
-struct MgrCommandGetPlayerHeader : public MemoryCardMgrCommand {
-	virtual u32 getClassSize(); // _08 (weak)
+struct MgrCommandGetPlayerHeader : public MemoryCardMgrCommandBase {
+	MgrCommandGetPlayerHeader(int val, PlayerFileInfo* info)
+	    : MemoryCardMgrCommandBase(val)
+	    , mPlayerInfo(info)
+	{
+	}
+
+	virtual u32 getClassSize() { return sizeof(MgrCommandGetPlayerHeader); } // _08 (weak)
+
+	// _04     = VTBL
+	// _00-_08 = MemoryCardMgrCommandBase
+	PlayerFileInfo* mPlayerInfo; // _08
 };
+
+extern char* cFileName;
 
 } // namespace MemoryCard
 } // namespace Game

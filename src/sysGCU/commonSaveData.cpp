@@ -145,7 +145,7 @@ void CommonSaveData::Mgr::setup()
  * Address:	80446FB4
  * Size:	000014
  */
-void CommonSaveData::Mgr::resetPlayer(signed char fileIndex)
+void CommonSaveData::Mgr::resetPlayer(s8 fileIndex)
 {
 	mFileIndex = fileIndex;
 	mTime      = 0;
