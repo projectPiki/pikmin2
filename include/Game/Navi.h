@@ -294,7 +294,7 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	Navi* getDeadOrima(int);
 	void informOrimaDead(int);
 	void load();
-	void loadResources_f32();
+	void loadResources_float();
 	void setMovieDraw(bool);
 	void setupSoundViewerAndBas();
 	void setupNavi(Navi*);

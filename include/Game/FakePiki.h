@@ -214,7 +214,20 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 
 struct FakePikiParms : public CreatureParms {
 	struct Parms : public Parameters {
-		Parms(); // _(weak)
+		Parms()
+		    : Parameters(nullptr, "FakePiki::Parms")
+		    , _0E8(this, 'fp01', "ASIBUMI 開始スピード", 5.0f, 0.0f, 500.0f)        // 'ASIBUMI start speed' (stepping?)
+		    , _110(this, 'fp02', "WALK 開始スピード", 8.0f, 0.0f, 500.0f)           // 'WALK start speed'
+		    , _138(this, 'fp03', "RUN 開始スピード", 20.0f, 0.0f, 500.0f)           // 'RUN start speed'
+		    , _160(this, 'fp04', "ESCAPE 開始スピード", 95.0f, 0.0f, 500.0f)        // 'ESCAPE start speed'
+		    , _188(this, 'fp04', "WALK 再生フレーム数(min)", 60.0f, 0.0f, 300.0f)   // 'WALK playback frame count (min)'
+		    , _1B0(this, 'fp05', "WALK 再生フレーム数(max)", 90.0f, 0.0f, 300.0f)   // 'WALK  playback frame count (max)'
+		    , _1D8(this, 'fp06', "RUN 再生フレーム数(min)", 40.0f, 0.0f, 300.0f)    // 'RUN playback frame count (min)'
+		    , _200(this, 'fp07', "RUN 再生フレーム数(max)", 60.0f, 0.0f, 300.0f)    // 'RUN playback frame count (max)'
+		    , _228(this, 'fp08', "ESCAPE 再生フレーム数(min)", 60.0f, 0.0f, 300.0f) // 'ESCAPE playback frame count (min)'
+		    , _250(this, 'fp09', "ESCAPE 再生フレーム数(max)", 90.0f, 0.0f, 300.0f) // 'ESCAPE playback frame count (max)'
+		{
+		}
 
 		// _DC-_E8 = Parameters
 		Parm<f32> _0E8; // _0E8
@@ -230,7 +243,10 @@ struct FakePikiParms : public CreatureParms {
 		                // _278 = IParameters ptr
 	};
 
-	FakePikiParms(); // (weak)
+	FakePikiParms()
+	    : mFakePikiParms()
+	{
+	}
 
 	virtual void read(Stream&); // _08 (weak)
 
