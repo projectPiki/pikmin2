@@ -34,7 +34,7 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	virtual void onAlloc();               // _88
 	virtual void doSimpleDraw(Viewport*); // _8C (weak)
 	virtual u32 getMatrixLoadType();      // _90 (weak)
-	virtual void getMgrName();            // _94 (weak)
+	virtual char* getMgrName();           // _94 (weak)
 	virtual void loadResources();         // _98 (weak)
 	virtual void loadResources(int);      // _9C
 
@@ -68,7 +68,7 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 
 	s32 mDopedPikis;               // _30
 	s32* mStoredPikis;             // _34
-	u8 mFlags[4];                  // _38
+	u8 mFlags[2];                  // _38
 	J3DModelData* mBluPikiModel;   // _3C, blue
 	J3DModelData* mRedPikiModel;   // _40, red
 	J3DModelData* mYelPikiModel;   // _44, yellow

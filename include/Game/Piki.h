@@ -257,7 +257,7 @@ struct Piki : public FakePiki {
 	f32 mColorFloat;                  // _2B4
 	u8 mPikiKind;                     // _2B8,  aka Piki kind (Blue, Yellow, Red, etc.)
 	u8 mHappaKind;                    // _2B9, aka Happa kind (leaf, bud, flower)
-	u32 mLeafModel;                   // _2BC
+	SysShape::Model* mLeafModel;      // _2BC
 	int mMgrIndex;                    // _2C0
 	Navi* mNavi;                      // _2C4
 };
