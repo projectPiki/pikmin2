@@ -92,7 +92,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	virtual void doSave(Stream&);                           // _E0
 	virtual void doLoad(Stream&);                           // _E4
 	virtual void getLODCylinder(Sys::Cylinder&);            // _144
-	virtual u32* getMabiki();                               // _150 (weak)
+	virtual int* getMabiki();                               // _150 (weak)
 	virtual char* getCreatureName();                        // _1A8 (weak)
 	virtual void makeTrMatrix();                            // _1C4 (weak)
 	virtual void doAI();                                    // _1C8

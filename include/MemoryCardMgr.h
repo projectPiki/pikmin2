@@ -109,6 +109,4 @@ struct MemoryCardMgr {
 	EInsideStatusFlag mStatusFlag;     // _D4
 };
 
-static CARDMemoryCard sCardWorkArea;
-
 #endif

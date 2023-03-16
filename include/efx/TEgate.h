@@ -6,6 +6,10 @@
 
 namespace efx {
 struct TEgateA : public TChaseMtx {
+	inline TEgateA()
+	    : TChaseMtx(PID_EgateA, nullptr)
+	{
+	}
 	virtual ~TEgateA(); // _48 (weak)
 
 	// _00      = VTBL
@@ -13,6 +17,10 @@ struct TEgateA : public TChaseMtx {
 };
 
 struct TEgateBC : public TForever2 {
+	inline TEgateBC()
+	    : TForever2(PID_EgateBC1, PID_EgateBC2)
+	{
+	}
 	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL

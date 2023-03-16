@@ -42,7 +42,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void doAnimation();                  // _3C (weak)
 	virtual void doEntry();                      // _40
 	virtual void doSimulation(f32);              // _4C
-	virtual f32 getFaceDir();                    // _64 (weak)
+	virtual f32 getFaceDir() { return 0.0f; };   // _64 (weak)
 	virtual void setVelocity(Vector3f& velocity) // _60 (weak)
 	{
 		mVelocity = velocity;
@@ -56,7 +56,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void movieSetAnimationLastFrame();                      // _120
 	virtual void movieSetTranslation(Vector3f& dest, f32 faceDir);  // _124
 	virtual bool stimulate(Interaction& data);                      // _1A4
-	virtual char* getCreatureName();                                // _1A8 (weak)
+	virtual char* getCreatureName() { return "item"; }              // _1A8 (weak)
 	virtual s32 getCreatureID() { return -1; }                      // _1AC (weak)
 
 	// vtable 2 (MotionListener + self)
@@ -65,7 +65,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void makeTrMatrix();                                                      // _1C4
 	virtual void doAI();                                                              // _1C8 (weak)
 	virtual void move(f32);                                                           // _1CC
-	virtual void changeMaterial();                                                    // _1D0 (weak)
+	virtual void changeMaterial() {};                                                 // _1D0 (weak)
 	virtual void do_updateLOD();                                                      // _1D4
 	virtual void do_setLODParm(AILODParm&) { }                                        // _1D8 (weak)
 	virtual f32 getMapCollisionRadius() { return mBoundingSphere.mRadius; }           // _1DC (weak)
@@ -80,7 +80,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual bool interactGotKey(InteractGotKey&) { return false; }                    // _200 (weak)
 	virtual bool getVectorField(Sys::Sphere&, Vector3f&) { return true; }             // _204 (weak)
 	virtual f32 getWorkDistance(Sys::Sphere&) { return 128000.0f; }                   // _208 (weak)
-	virtual void do_doAnimation();                                                    // _20C (weak)
+	virtual void do_doAnimation() { }                                                 // _20C (weak)
 	virtual void bounceCallback(Sys::Triangle* tri) { }                               // _E8 (weak)
 	virtual void collisionCallback(CollEvent& event) { }                              // _EC (weak)
 	virtual void platCallback(PlatEvent& event) { }                                   // _F0 (weak)
@@ -237,7 +237,6 @@ template <typename ItemClass, typename FSMClass, typename StateClass>
 struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
 	inline WorkItem(int objTypeID)
 	    : FSMItem<ItemClass, FSMClass, StateClass>(objTypeID)
-	    , mSoundEvent()
 	{
 	}
 

@@ -7,7 +7,15 @@
 #include "Game/PlatInstance.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
-#include "efx/TForever.h"
+#include "efx/TEgate.h"
+#include "efx/TGate.h"
+
+enum GateStates {
+	GATESTATE_Wait    = 0,
+	GATESTATE_Damaged = 1,
+	GATESTATE_Down    = 2,
+	GATESTATE_MAX, // 3
+};
 
 namespace Game {
 struct ItemGate;
@@ -19,7 +27,7 @@ struct ItemGateInitArg : public CreatureInitArg {
 	f32 _04; // _04
 };
 
-struct GateFSM : public StateMachine<ItemGate> {
+struct GateFSM : public ItemFSM<ItemGate> {
 	virtual void init(ItemGate*); // _08
 
 	// _00     = VTBL
@@ -40,33 +48,47 @@ struct GateState : public ItemState<ItemGate> {
 };
 
 struct GateDamagedState : public GateState {
-	// needs an inline ctor probably
+	GateDamagedState()
+	    : GateState(GATESTATE_Damaged)
+	{
+	}
 
 	virtual void init(ItemGate*, StateArg*);                       // _08
 	virtual void exec(ItemGate*);                                  // _0C
 	virtual void cleanup(ItemGate*);                               // _10
 	virtual void onDamage(ItemGate*, f32);                         // _20
 	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&); // _24
+
+	unknown _0C;     // _0C
+	bool mNotInAnim; // _10
 
 	// _00     = VTBL
 	// _00-_0C = GateState
 };
 
 struct GateDownState : public GateState {
-	// needs an inline ctor probably
+	GateDownState()
+	    : GateState(GATESTATE_Down)
+	{
+	}
 
 	virtual void init(ItemGate*, StateArg*);                       // _08
 	virtual void exec(ItemGate*);                                  // _0C
 	virtual void cleanup(ItemGate*);                               // _10
 	virtual void onDamage(ItemGate*, f32);                         // _20
 	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&); // _24
+
+	unknown _10; // _10
 
 	// _00     = VTBL
 	// _00-_0C = GateState
 };
 
 struct GateWaitState : public GateState {
-	// needs an inline ctor probably
+	GateWaitState()
+	    : GateState(GATESTATE_Wait)
+	{
+	}
 
 	virtual void init(ItemGate*, StateArg*);                       // _08
 	virtual void exec(ItemGate*);                                  // _0C
@@ -74,15 +96,14 @@ struct GateWaitState : public GateState {
 	virtual void onDamage(ItemGate*, f32);                         // _20
 	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&); // _24
 
+	unknown _10; // _10
+
 	// _00     = VTBL
 	// _00-_0C = GateState
 };
 
-struct ItemGate : public FSMItem<ItemGate, GateFSM, GateState> {
-	inline ItemGate(int objType)
-	    : FSMItem(objType)
-	{ // probably needs things in here, just an initial guess
-	}
+struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
+	ItemGate();
 
 	virtual void constructor();                               // _2C
 	virtual void onInit(CreatureInitArg*);                    // _30
@@ -90,7 +111,7 @@ struct ItemGate : public FSMItem<ItemGate, GateFSM, GateState> {
 	virtual void doSave(Stream&);                             // _E0
 	virtual void doLoad(Stream&);                             // _E4
 	virtual void getLifeGaugeParam(LifeGaugeParam&);          // _13C
-	virtual u32* getMabiki();                                 // _150 (weak)
+	virtual int* getMabiki();                                 // _150 (weak)
 	virtual char* getCreatureName();                          // _1A8 (weak)
 	virtual void makeTrMatrix();                              // _1C4 (weak)
 	virtual void doAI();                                      // _1C8
@@ -106,27 +127,28 @@ struct ItemGate : public FSMItem<ItemGate, GateFSM, GateState> {
 	void initMotion();
 	void initPlanes();
 
+	inline f32 getGateHealth();
+
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
-	TSoundEvent mSoundEvent;            // _1E0
-	u32 _1EC;                           // _1EC, mabiki? might be size 0x8?
+	int _1EC;                           // _1EC, mabiki? might be size 0x8?
 	int _1F0;                           // _1F0
 	PlatInstance* mCentrePlatInstance;  // _1F4
 	PlatInstance* mSidePlatInstance;    // _1F8
 	WayPoint* mWayPoint;                // _1FC
-	f32 mMaxHealth;                     // _200
-	f32 _204;                           // _204
-	f32 mHealth;                        // _208
-	int mGateType;                      // _20C, enum?
-	int _210;                           // _210
+	f32 mHealth;                        // _200
+	f32 mMaxSegmentHealth;              // _204
+	f32 mDamage;                        // _208
+	int mSegmentsDown;                  // _20C, enum?
+	int mMaxSegments;                   // _210
 	f32 mFaceDir;                       // _214
 	bool mIsElectric;                   // _218
-	efx::TChaseMtx* _21C;               // _21C
-	efx::TForever2* _220;               // _220
+	efx::TEgateA* mEgateEfxA;           // _21C
+	efx::TEgateBC* mEgateEfxBC;         // _220
 	Plane mPlanes[4];                   // _224
 	Vector3f _264;                      // _264
 	Vector3f _270;                      // _270
-	u8 _27C;                            // _27C, unknown
+	u8 mColor;                          // _27C, unknown
 	Sys::MatBaseAnimator* mMatAnimator; // _280
 };
 
@@ -146,8 +168,8 @@ struct ItemGateMgr : public BaseItemMgr {
 	virtual void generatorRead(Stream&, GenItemParm*, unsigned long);     // _64
 	virtual u32 generatorLocalVersion();                                  // _68 (weak)
 	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual void getCaveName(int);                                        // _74
-	virtual void getCaveID(char*);                                        // _78
+	virtual char* getCaveName(int);                                       // _74
+	virtual int getCaveID(char*);                                         // _78
 
 	void setupGate(ItemGate*);
 	void setupPlatform(ItemGate*);
@@ -165,10 +187,15 @@ extern ItemGateMgr* itemGateMgr;
 } // namespace Game
 
 struct GenGateParm : public Game::GenItemParm {
+	inline GenGateParm()
+	{
+		mLife  = 100.0f;
+		mColor = 0;
+	}
 
 	// _00     = VTBL
-	f32 _04;    // _04
-	u16 mColor; // _08
+	f32 mLife;  // _04
+	s16 mColor; // _08
 };
 
 #endif

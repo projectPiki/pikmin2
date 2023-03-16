@@ -2,6 +2,8 @@
 #include "System.h"
 #include "types.h"
 
+static CARDMemoryCard sCardWorkArea;
+
 /*
  * --INFO--
  * Address:	........

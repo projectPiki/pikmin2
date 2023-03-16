@@ -281,6 +281,12 @@ struct ArgRotY : public Arg {
 		mFaceDir = faceDir;
 	}
 
+	ArgRotY(const Vector3f& position, f32 faceDir)
+	    : Arg(position)
+	{
+		mFaceDir = faceDir;
+	}
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgRotY";

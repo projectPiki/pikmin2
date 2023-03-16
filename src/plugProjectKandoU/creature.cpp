@@ -90,7 +90,7 @@ void Creature::init(CreatureInitArg* arg)
 	clearCapture();
 
 	if (getMabiki()) {
-		u32* mabiki = getMabiki();
+		int* mabiki = getMabiki();
 		mabiki[1]   = 0;
 		mabiki[0]   = 0;
 	}

@@ -17,7 +17,7 @@ struct Mgr : public NodeItemMgr<ItemGate> {
 	virtual GenItemParm* generatorNewItemParm();                          // _70
 	virtual ~Mgr();                                                       // _B4 (weak)
 	virtual char* getCaveName(int);                                       // _B8
-	virtual void getCaveID(char*);                                        // _BC
+	virtual int getCaveID(char*);                                         // _BC
 
 	void setupGate(ItemGate*);
 	void setupPlatform(ItemGate*);

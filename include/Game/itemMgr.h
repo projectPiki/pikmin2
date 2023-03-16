@@ -102,7 +102,7 @@ struct NodeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual void* getNext(void*); // _A8 (weak)
 	virtual void* getStart();     // _AC (weak)
 	virtual void* getEnd();       // _B0 (weak)
-	virtual ~NodeItemMgr();       // _B4 (weak)
+	virtual ~NodeItemMgr() { }    // _B4 (weak)
 
 	T* birth(); // weak
 

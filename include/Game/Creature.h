@@ -249,7 +249,7 @@ struct Creature : public CellObject {
 	virtual void getLODCylinder(Sys::Cylinder&) { }            // _144 (weak)
 	virtual void startPick() { }                               // _148 (weak)
 	virtual void endPick(bool) { }                             // _14C (weak)
-	virtual u32* getMabiki() { return nullptr; }               // _150 (weak) - maybe shouldn't be u32*
+	virtual int* getMabiki() { return nullptr; }               // _150 (weak) - maybe shouldn't be u32*
 	virtual Footmarks* getFootmarks() { return nullptr; }      // _154 (weak)
 	virtual void onStickStart(Creature*) { }                   // _158 (weak)
 	virtual void onStickEnd(Creature*) { }                     // _15C (weak)
