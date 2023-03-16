@@ -10,6 +10,7 @@
 #include "Vector2.h"
 #include "Vector3.h"
 #include "BoundBox.h"
+#include "Condition.h"
 
 namespace Game {
 struct Cell;
@@ -41,7 +42,7 @@ struct CollisionBuffer {
 	void insertSort(CellObject*, f32);
 	int findIndex(CellObject*);
 
-	int mNodeCount;          // _00/
+	int mNodeCount;          // _00
 	int mUsedNodeCount;      // _04
 	CollNode* mCollNodes;    // _08
 	CellObject* mCellObject; // _0C
@@ -166,7 +167,7 @@ struct CellLayer {
 
 	u16 mSizeX;   // _00
 	u16 mSizeY;   // _02
-	short _04;    // _04
+	u16 _04;      // _04
 	u16 _06;      // _06
 	Cell* mCells; // _08
 	Cell mCell;   // _0C // maybe this is a Cell?
@@ -211,16 +212,21 @@ struct CellPyramid : public SweepPrune::World {
 	static bool disableAICulling;
 };
 
+// fabricated
+struct CellIteratorCondition {
+	virtual bool satisfy(CellObject* obj) { return true; } // _08
+};
+
 struct CellIteratorArg {
 	CellIteratorArg();
 	CellIteratorArg(Sys::Sphere& sphere);
 
-	Sys::Sphere mSphere;   // _00
-	u32 _10;               // _10
-	u32 _14;               // _14
-	CellPyramid* mCellMgr; // _18
-	u8 _1C;                // _1C
-	u8 _1D;                // _1D
+	Sys::Sphere mSphere;               // _00
+	CellIteratorCondition* mCondition; // _10, this is a ptr to something with a vtable, and 0x8 of vtable returns a bool ._.
+	int _14;                           // _14
+	CellPyramid* mCellMgr;             // _18
+	u8 _1C;                            // _1C
+	u8 _1D;                            // _1D
 };
 
 #define CI_LOOP(it) for (it.first(); !it.isDone(); it.next())
@@ -232,21 +238,21 @@ struct CellIterator {
 	void dump();
 	bool find();
 	void first();
-	void getCellObject();
+	CellObject* getCellObject();
 	bool isDone();
 	bool next();
 	CellObject* operator*();
-	void satisfy();
-	void step();
+	bool satisfy();
+	bool step();
 
 	CellLeg* _00;         // _00
-	u32 _04;              // _04
-	u32 _08;              // _08
-	u32 _0C;              // _0C
-	u32 _10;              // _10
-	u32 _14;              // _14
-	u32 _18;              // _18
-	u32 _1C;              // _1C
+	int _04;              // _04
+	int _08;              // _08
+	int _0C;              // _0C
+	int _10;              // _10
+	int _14;              // _14
+	int _18;              // _18
+	int _1C;              // _1C
 	u32 mPassID;          // _20
 	CellIteratorArg mArg; // _24
 	u32 _44;              // _44
