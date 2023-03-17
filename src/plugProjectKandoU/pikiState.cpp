@@ -1547,7 +1547,7 @@ void PikiPanicState::init(Piki* piki, StateArg* stateArg)
 	_20        = false;
 	_21        = true;
 	piki->setMoveRotation(true);
-	mDeathTimer = piki->getParms()->mPikiParms.mP055.mValue;
+	mDeathTimer = piki->getParms()->mPikiParms.mPanicMaxTime.mValue;
 	mDeathTimer *= (0.1f * randFloat() + 1.0f);
 	mDramaTimer = 0.1f;
 	mAngle      = piki->mFaceDir;
@@ -2011,7 +2011,7 @@ bool PikiPressedState::transittable(int stateID) { return (u8)(stateID == PIKIST
  */
 void PikiPressedState::init(Piki* piki, StateArg* stateArg)
 {
-	f32 pressedScale = piki->getParms()->mPikiParms.mP038.mValue;
+	f32 pressedScale = piki->getParms()->mPikiParms.mPressedScale.mValue;
 	piki->mScale     = Vector3f(pressedScale, pressedScale, 0.01f);
 	_10              = 1.5f;
 	piki->setUpdateTrMatrix(false);
@@ -2963,7 +2963,7 @@ void PikiHipDropState::collisionCallback(Piki* piki, CollEvent& collEvent)
 		}
 
 		if (collEvent.mCollidingCreature->isTeki()) {
-			InteractHipdrop hipdrop(piki, piki->getParms()->mPikiParms._1200.mValue, collEvent.mCollisionObj);
+			InteractHipdrop hipdrop(piki, piki->getParms()->mPikiParms.mPoundDamage.mValue, collEvent.mCollisionObj);
 			bool check        = false;
 			Vector3f velocity = piki->getVelocity();
 			if (velocity.y < 0.0f) {
@@ -3227,7 +3227,7 @@ void PikiHipDropState::dosin(Piki* piki)
 void PikiHipDropState::earthquake(Piki* piki)
 {
 	Vector3f position = piki->getPosition();
-	f32 rad           = pikiMgr->mParms->mPikiParms._11D8.mValue;
+	f32 rad           = pikiMgr->mParms->mPikiParms.mPoundAOERange.mValue;
 	Sys::Sphere sphere(position, rad);
 	CellIteratorArg iterArg(sphere);
 	iterArg._14 = 1;
@@ -3800,7 +3800,7 @@ void PikiSuikomiState::execMouth(Piki* piki)
 			piki->startCaptureStomach(_1C);
 			_10 = 2;
 			piki->startMotion(IPikiAnims::ESA, IPikiAnims::ESA, piki, nullptr);
-			_20 = pikiMgr->mParms->mPikiParms._11B0.mValue;
+			_20 = pikiMgr->mParms->mPikiParms.mKurageKillTime.mValue;
 		} else {
 			piki->startStick(mCreature, mCollpart);
 			piki->setMoveVelocity(true);
@@ -3847,7 +3847,7 @@ void PikiSuikomiState::execString(Piki* piki)
 		piki->startCaptureStomach(_1C);
 		_10 = 2;
 		piki->startMotion(IPikiAnims::ESA, IPikiAnims::ESA, nullptr, nullptr);
-		_20 = pikiMgr->mParms->mPikiParms._11B0.mValue;
+		_20 = pikiMgr->mParms->mPikiParms.mKurageKillTime.mValue;
 	}
 }
 
@@ -4064,10 +4064,11 @@ void PikiFlyingState::exec(Piki* piki)
 		return;
 	}
 
-	f32 gravityFactor    = 0.8f * _aiConstants->mGravity.mData;                                                           // f30
-	f32 flowerFallFactor = _aiConstants->mGravity.mData * static_cast<PikiParms*>(piki->mParms)->mPikiParms.mP048.mValue; // f29
-	f32 fallDiff         = gravityFactor - flowerFallFactor;
-	f32 thing            = (gravityFactor * 0.15f - 0.075f * fallDiff) - flowerFallFactor * 0.15f; // f28
+	f32 gravityFactor = 0.8f * _aiConstants->mGravity.mData; // f30
+	f32 flowerFallFactor
+	    = _aiConstants->mGravity.mData * static_cast<PikiParms*>(piki->mParms)->mPikiParms.mFlowerPikiGravity.mValue; // f29
+	f32 fallDiff = gravityFactor - flowerFallFactor;
+	f32 thing    = (gravityFactor * 0.15f - 0.075f * fallDiff) - flowerFallFactor * 0.15f; // f28
 
 	if (_14 == 0 && (int)piki->mHappaKind == Flower && piki->mSimVelocity.y <= 0.0f) {
 		_14 = 1;
@@ -4493,8 +4494,8 @@ void PikiFlickState::onKeyEvent(SysShape::KeyEvent const& event)
 
 		if (mState == FLICK_InAir) { // thrown through air animation ends
 			mState      = FLICK_Land;
-			f32 minTime = static_cast<PikiParms*>(piki->mParms)->mPikiParms.mP074.mValue;
-			f32 maxTime = static_cast<PikiParms*>(piki->mParms)->mPikiParms.mP043.mValue;
+			f32 minTime = static_cast<PikiParms*>(piki->mParms)->mPikiParms.mKnockdownRecoverTimeMin.mValue;
+			f32 maxTime = static_cast<PikiParms*>(piki->mParms)->mPikiParms.mKnockdownRecoverTimeMax.mValue;
 
 			mKnockDownTimer = (maxTime - minTime) * randFloat() + minTime;
 			return;

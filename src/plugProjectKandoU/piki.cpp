@@ -709,25 +709,25 @@ int Piki::getStateID()
 f32 Piki::getSpeed(f32 multiplier)
 {
 	if (doped()) {
-		return pikiMgr->mParms->mPikiParms._1188.mValue;
+		return pikiMgr->mParms->mPikiParms.mDopeRunSpeed.mValue;
 	}
 
-	f32 baseSpeed = scaleValue(1.0f, pikiMgr->mParms->mPikiParms.mRunningSpeed.mValue);
+	f32 baseSpeed = scaleValue(1.0f, pikiMgr->mParms->mPikiParms.mRunSpeed.mValue);
 
 	if (mHappaKind == Flower) {
-		baseSpeed = pikiMgr->mParms->mPikiParms.mP054.mValue;
+		baseSpeed = pikiMgr->mParms->mPikiParms.mFlowerRunSpeed.mValue;
 	} else if (mHappaKind == Bud) {
-		baseSpeed = pikiMgr->mParms->mPikiParms.mP065.mValue;
+		baseSpeed = pikiMgr->mParms->mPikiParms.mBudRunSpeed.mValue;
 	}
 
 	int pikiType = mPikiKind;
-	f32 drag     = scaleValue(1.0f, pikiMgr->mParms->mPikiParms.mP000.mValue);
+	f32 drag     = scaleValue(1.0f, pikiMgr->mParms->mPikiParms.mWalkSpeed.mValue);
 	f32 speed    = multiplier * (baseSpeed - drag) + drag;
 
 	if (pikiType == White) {
-		speed *= pikiMgr->mParms->mPikiParms._FF8.mValue;
+		speed *= pikiMgr->mParms->mPikiParms.mWhiteRunSpeedMultiplier.mValue;
 	} else if (pikiType == Purple) {
-		speed *= pikiMgr->mParms->mPikiParms._1020.mValue;
+		speed *= pikiMgr->mParms->mPikiParms.mPurpleRunSpeedMultiplier.mValue;
 	}
 
 	return speed;
@@ -918,27 +918,27 @@ void Piki::updateGasInvincible()
 f32 Piki::getAttackDamage()
 {
 	if (doped()) {
-		return pikiMgr->mParms->mPikiParms._1160.mValue;
+		return pikiMgr->mParms->mPikiParms.mDopeAttackDamage.mValue;
 	}
 
 	if (gameSystem && gameSystem->mMode == GSM_VERSUS_MODE) {
-		return pikiMgr->mParms->mPikiParms.mP012.mValue;
+		return pikiMgr->mParms->mPikiParms.mRedAttackDamage.mValue;
 	}
 
 	switch ((int)mPikiKind) {
 	case Red:
-		return pikiMgr->mParms->mPikiParms.mP012.mValue;
+		return pikiMgr->mParms->mPikiParms.mRedAttackDamage.mValue;
 	case Blue:
-		return pikiMgr->mParms->mPikiParms.mP004.mValue;
+		return pikiMgr->mParms->mPikiParms.mBlueAttackDamage.mValue;
 	case Yellow:
-		return pikiMgr->mParms->mPikiParms.mP013.mValue;
+		return pikiMgr->mParms->mPikiParms.mYellowAttackDamage.mValue;
 	case Purple:
-		return pikiMgr->mParms->mPikiParms._440.mValue;
+		return pikiMgr->mParms->mPikiParms.mPurpleAttackDamage.mValue;
 	case White:
-		return pikiMgr->mParms->mPikiParms._468.mValue;
+		return pikiMgr->mParms->mPikiParms.mWhiteAttackDamage.mValue;
 	}
-
-	return pikiMgr->mParms->mPikiParms.mP004.mValue;
+	// Used for bulbmin + carrots
+	return pikiMgr->mParms->mPikiParms.mBlueAttackDamage.mValue;
 }
 
 /*
@@ -976,10 +976,10 @@ f32 Piki::getPelletCarryPower()
 	f32 carryPower;
 	switch ((int)mPikiKind) {
 	case White:
-		carryPower = pikiMgr->mParms->mPikiParms._1070.mValue;
+		carryPower = pikiMgr->mParms->mPikiParms.mWhiteCarryPower.mValue;
 		break;
 	case Purple:
-		carryPower = pikiMgr->mParms->mPikiParms._1048.mValue;
+		carryPower = pikiMgr->mParms->mPikiParms.mPurpleCarryPower.mValue;
 		break;
 	default:
 		carryPower = 1.0f;
@@ -987,9 +987,9 @@ f32 Piki::getPelletCarryPower()
 	}
 
 	if (doped() || (int)mHappaKind == Flower) {
-		carryPower += pikiMgr->mParms->mPikiParms._10C0.mValue;
+		carryPower += pikiMgr->mParms->mPikiParms.mFlowerCarrySpeedBonus.mValue;
 	} else if ((int)mHappaKind == Bud) {
-		carryPower += pikiMgr->mParms->mPikiParms._1098.mValue;
+		carryPower += pikiMgr->mParms->mPikiParms.mBudCarrySpeedBonus.mValue;
 	}
 
 	return carryPower;
@@ -1177,7 +1177,7 @@ void Piki::clearDope()
  * Address:	80149E30
  * Size:	000014
  */
-void Piki::extendDopeTime() { mDopeTime = pikiMgr->mParms->mPikiParms._1138.mValue; }
+void Piki::extendDopeTime() { mDopeTime = pikiMgr->mParms->mPikiParms.mDopeMaxDuration.mValue; }
 
 /*
  * --INFO--

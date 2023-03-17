@@ -195,7 +195,7 @@ int Piki::graspSituation_Fast(Game::Creature** localCreatures)
 			if (creature->isAlive()) {
 				f32 dist = creature->getPosition().distance(mShadowParam.mPosition);
 
-				if (dist < cDist && dist < pikiMgr->mParms->mPikiParms._9B8.mValue) {
+				if (dist < cDist && dist < pikiMgr->mParms->mPikiParms.mNectarRockSearchRange.mValue) {
 					cDist     = dist;
 					cCreature = creature;
 					retVal    = 8;
