@@ -10,22 +10,22 @@ namespace PSM {
  * Intended size: 1 byte
  */
 enum CreatureCastType {
-	CCT_CreatureObj = 0x0,
-	CCT_CreatureAnime,
-	CCT_Enemy,
-	CCT_EnemyHekoi,
-	CCT_EnemyBoss,
-	CCT_Unknown5,
-	CCT_EnemyMidBoss,
-	CCT_EnemyBigBoss,
-	CCT_EnemyBig,
-	CCT_EnemyNotAggressive,
-	CCT_WorkItem,
-	CCT_Otakara,
-	CCT_PelletOtakara,
-	CCT_PelletItem,
-	CCT_Piki,
-	CCT_Navi,
+	CCT_CreatureObj        = 0,
+	CCT_CreatureAnime      = 1,
+	CCT_Enemy              = 2,
+	CCT_EnemyHekoi         = 3,
+	CCT_EnemyBoss          = 4,
+	CCT_Unknown5           = 5,
+	CCT_EnemyMidBoss       = 6,
+	CCT_EnemyBigBoss       = 7,
+	CCT_EnemyBig           = 8,
+	CCT_EnemyNotAggressive = 9,
+	CCT_WorkItem           = 10,
+	CCT_Otakara            = 11,
+	CCT_PelletOtakara      = 12,
+	CCT_PelletItem         = 13,
+	CCT_Piki               = 14,
+	CCT_Navi               = 15,
 };
 #pragma enumalwaysint reset
 

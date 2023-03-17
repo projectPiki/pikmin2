@@ -68,7 +68,8 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	JKRArchive* openTextArc(char*);
 	void closeTextArc(JKRArchive*);
 
-	// end address _04
+	// _00 = VTBL
+	// _04 = ptr to _BaseItemMgrParent2
 	char* mItemName;                   // _08
 	LoadResource::Node* mResourceNode; // _0C
 	u32 _10;                           // _10
@@ -79,6 +80,7 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	CollPartFactory* mCollPartFactory; // _24
 	char* mObjectPathComponent;        // _28
 	JKRMemArchive* mArchive;           // _2C
+	                                   // _30 = _BaseItemMgrParent2
 };
 
 // surprisingly this is not related to TNodeItemMgr, for whatever reason.
@@ -106,6 +108,10 @@ struct NodeItemMgr : public BaseItemMgr, public Container<T> {
 
 	T* birth(); // weak
 
+	// _00     = VTBL (BaseItemMgr)
+	// _00-_30 = BaseItemMgr
+	// _30     = VTBL (Container)
+	// _30-_4C = Container
 	NodeObjectMgr<T> mNodeObjectMgr; // _4C
 };
 
@@ -134,6 +140,10 @@ struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
 	BaseItem* birth();
 	void entry(BaseItem*);
 
+	// _00     = VTBL (BaseItemMgr)
+	// _00-_30 = BaseItemMgr
+	// _30     = VTBL (Container)
+	// _30-_4C = Container
 	NodeObjectMgr<BaseItem> mNodeObjectMgr; // _4C
 };
 
@@ -196,6 +206,10 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	void createMgr(int, u32);
 	void onAlloc();
 
+	// _00     = VTBL (BaseItemMgr)
+	// _00-_30 = BaseItemMgr
+	// _30     = VTBL (Container)
+	// _30-_4C = Container
 	MonoObjectMgr<T> mMonoObjectMgr; // _4C
 };
 

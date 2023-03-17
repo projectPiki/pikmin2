@@ -16,19 +16,24 @@ struct Item;
 /**
  * @fabricated
  */
-enum StateID { Barrel_Normal = 0, Barrel_Damaged, Barrel_Dead, BARREL_STATE_COUNT };
+enum StateID {
+	Barrel_Normal  = 0,
+	Barrel_Damaged = 1,
+	Barrel_Dead    = 2,
+	BARREL_STATE_COUNT, // 3
+};
 
 /**
  * @size{0x1C}
  */
-struct FSM : ItemFSM<Item> {
+struct FSM : public ItemFSM<Item> {
 	virtual void init(Item*); // _08
 
 	// _00     = VTBL
 	// _00-_1C = ItemFSM
 };
 
-struct State : ItemState<Item> {
+struct State : public ItemState<Item> {
 	inline State(int stateID)
 	    : ItemState(stateID)
 	{
@@ -38,13 +43,13 @@ struct State : ItemState<Item> {
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
-	u8 _0C[4];
+	char* mName; // _0C
 };
 
 /**
  * @size{0x10}
  */
-struct NormalState : State {
+struct NormalState : public State {
 	inline NormalState()
 	    : State(Barrel_Normal)
 	{
@@ -63,7 +68,7 @@ struct NormalState : State {
 /**
  * @size{0x14}
  */
-struct DamagedState : State {
+struct DamagedState : public State {
 	inline DamagedState()
 	    : State(Barrel_Damaged)
 	{
@@ -77,13 +82,13 @@ struct DamagedState : State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	u8 _10;
+	u8 mBuffer; // _10, seemingly unused, just for size
 };
 
 /**
  * @size{0x14}
  */
-struct DeadState : State {
+struct DeadState : public State {
 	inline DeadState()
 	    : State(Barrel_Dead)
 	{
@@ -97,18 +102,18 @@ struct DeadState : State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	u8 _10[4]; // _10
+	u8 mBuffer; // _10, seemingly unused, just for size
 };
 
 struct BarrelParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Barrel::Parms")
-		    , p000(this, 'p000', "ライフ", 100.0f, 1.0f, 60000.0f)
+		    , mHealth(this, 'p000', "ライフ", 100.0f, 1.0f, 60000.0f) // 'life'
 		{
 		}
 
-		Parm<f32> p000;
+		Parm<f32> mHealth; // _E8, p000
 	};
 
 	BarrelParms() { }
@@ -127,11 +132,7 @@ struct BarrelParms : public CreatureParms {
  * @size{0x1F8}
  */
 struct Item : public WorkItem<Item, FSM, State> {
-	inline Item()
-	    : WorkItem(0x410)
-	{
-		mMass = 0.0f;
-	}
+	Item();
 
 	// vtable 1
 	virtual void constructor();                          // _2C
@@ -153,10 +154,10 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	f32 _1EC;   // _1EC
-	f32 _1F0;   // _1F0
-	f32 _1F4;   // _1F4
-	u8 _1F8[4]; // _1F8
+	f32 mHealth;       // _1EC
+	f32 mBackupHealth; // _1F0, set to same value as mHealth in createBarrel then never used
+	f32 mStoredDamage; // _1F4, gets added here, then applied in NormalState::OnDamage (then reset)
+	u32 mBuffer;       // _1F8, never used/referenced, only here for size.
 };
 
 /**
@@ -175,6 +176,9 @@ struct Mgr : public TNodeItemMgr {
 	virtual ~Mgr() { }                               // _B8 (weak, thunked at _00)
 	virtual BaseItem* birth();                       // _BC (Yes, TNodeItemMgr::birth() isn't virtual, but this is. Deal with it.)
 
+	// _00     = VTBL 1
+	// _30     = VTBL 2
+	// _00-_88 = TNodeItemMgr
 	BarrelParms* mParms; // _88
 };
 
