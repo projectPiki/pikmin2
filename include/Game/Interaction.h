@@ -467,7 +467,7 @@ struct InteractSuckFinish : public Interaction {
 };
 
 struct InteractSuikomi_Test : public Interaction {
-	inline InteractSuikomi_Test(Creature* parent, Vector3f* vec, u32 p1, CollPart* collpart) // probably
+	inline InteractSuikomi_Test(Creature* parent, Vector3f* vec, CollPart* p1, CollPart* collpart) // probably
 	    : Interaction(parent)
 	{
 		_08.x     = vec->x;
@@ -482,7 +482,7 @@ struct InteractSuikomi_Test : public Interaction {
 	// _00 = VTBL
 	// _04 = Creature* (EnemyBase*)
 	Vector3f _08;        // _08
-	u32 _14;             // _14, unknown
+	CollPart* _14;       // _14, unknown
 	CollPart* mCollPart; // _18
 };
 

@@ -287,7 +287,7 @@ bool InteractHanaChirashi::actPiki(Game::Piki* piki)
 	if (pikiKind == Purple) {
 		int pikiHappa = piki->mHappaKind;
 		if (pikiHappa >= Bud) {
-			efx::createSimpleChiru(*piki->mEffectsObj->_0C, piki->mEffectsObj->_08);
+			efx::createSimpleChiru(*piki->mEffectsObj->_0C, piki->mEffectsObj->mPikiColor);
 			piki->startSound(PSSE_PK_FLOWER_FALL_VOICE, true);
 			piki->mHappaKind = Leaf;
 		}
@@ -391,7 +391,7 @@ bool InteractBury::actPiki(Game::Piki* piki)
 		return false;
 	}
 
-	Sys::Triangle* currTriangle = piki->_248;
+	Sys::Triangle* currTriangle = piki->mFakePikiBounceTriangle;
 	if (!currTriangle) {
 		CurrTriInfo currTriInfo;
 		currTriInfo.mPosition = piki->getPosition();
