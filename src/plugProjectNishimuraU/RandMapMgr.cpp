@@ -58,18 +58,31 @@ void RandMapMgr::loadResource(MapUnitInterface* interface, int p1, FloorInfo* fl
  */
 void RandMapMgr::create()
 {
+	// The CaveGen Function (tm)
+
+	// Round 1: place map tiles + set ship spawn
 	mRandMapUnit->setMapUnit();
 	mRandMapScore->setStartSlot();
+	// Calculate score after round 1 (just distance score based on map tile layout)
 	mRandMapScore->setMapUnitScore();
+
+	// Round 2: place hole (and geyser), then place enemies
 	mRandMapScore->setGoalSlot();
 	mRandEnemyUnit->setEnemySlot();
+	// Calculate score after round 2 (now includes enemies as well as distance score)
 	mRandMapScore->setMapUnitScore();
+
+	// Round 3: place plants, then treasures, then cap enemies
 	mRandPlantUnit->setPlantSlot();
 	mRandItemUnit->setItemSlot();
 	mRandCapEnemyUnit->setCapEnemySlot();
+	// Calculate score after round 3 (doesn't get used again though)
 	mRandMapScore->setMapUnitScore();
+
+	// Round 4: place gates
 	mRandGateUnit->setGateDoor();
 
+	// With all units placed, determine radar texture size + allocate
 	int x;
 	int y;
 	mRandMapUnit->getTextureSize(x, y);
@@ -78,10 +91,8 @@ void RandMapMgr::create()
 	y <<= 3;
 
 	sys->heapStatusStart("Radar Map Texture", nullptr);
-	mRadarMapTexture = new JUTTexture(x, y, GX_TF_I4);
-
+	mRadarMapTexture                          = new JUTTexture(x, y, GX_TF_I4);
 	mRadarMapTexture->mTexInfo->mTransparency = Transparency_2;
-
 	sys->heapStatusEnd("Radar Map Texture");
 }
 
