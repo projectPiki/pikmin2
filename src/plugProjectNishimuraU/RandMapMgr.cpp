@@ -1,115 +1,31 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80484070
-    lbl_80484070:
-        .4byte 0x52616E64
-        .4byte 0x4D61704D
-        .4byte 0x67720000
-    .global lbl_8048407C
-    lbl_8048407C:
-        .4byte 0x52616461
-        .4byte 0x72204D61
-        .4byte 0x70205465
-        .4byte 0x78747572
-        .4byte 0x65000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game8RoomLink
-    __vt__Q24Game8RoomLink:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game8RoomLinkFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q34Game4Cave10RandMapMgr
-    __vt__Q34Game4Cave10RandMapMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave10RandMapMgrFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global randMapMgr__Q24Game4Cave
-    randMapMgr__Q24Game4Cave:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A728
-    lbl_8051A728:
-        .4byte 0x42480000
-    .global lbl_8051A72C
-    lbl_8051A72C:
-        .4byte 0x47000000
-    .global lbl_8051A730
-    lbl_8051A730:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051A738
-    lbl_8051A738:
-        .float 0.5
-    .global lbl_8051A73C
-    lbl_8051A73C:
-        .4byte 0x00000000
-    .global lbl_8051A740
-    lbl_8051A740:
-        .4byte 0x40000000
-    .global lbl_8051A744
-    lbl_8051A744:
-        .4byte 0x41000000
-    .global lbl_8051A748
-    lbl_8051A748:
-        .4byte 0x3D40C0C1
-        .4byte 0x00000000
-*/
+#include "Game/Cave/RandMapMgr.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
+namespace Cave {
+
+RandMapMgr* randMapMgr;
 
 /*
  * --INFO--
  * Address:	80244528
  * Size:	000088
  */
-Cave::RandMapMgr::RandMapMgr(bool)
+RandMapMgr::RandMapMgr(bool isVersusHiba)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q34Game4Cave10RandMapMgr@ha
-	lis      r3, lbl_80484070@ha
-	addi     r0, r4, __vt__Q34Game4Cave10RandMapMgr@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	addi     r0, r3, lbl_80484070@l
-	mr       r3, r30
-	stw      r4, 0x18(r30)
-	stw      r4, 0x1c(r30)
-	stw      r4, 0x20(r30)
-	stw      r4, 0x24(r30)
-	stw      r4, 0x28(r30)
-	stw      r4, 0x2c(r30)
-	stw      r4, 0x30(r30)
-	stw      r4, 0x34(r30)
-	stw      r4, 0x38(r30)
-	stb      r4, 0x3c(r30)
-	stw      r4, 0x40(r30)
-	stb      r31, 0x44(r30)
-	stw      r0, 0x14(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mMapUnitGenerator = nullptr;
+	mRandMapUnit      = nullptr;
+	mRandEnemyUnit    = nullptr;
+	mRandCapEnemyUnit = nullptr;
+	mRandPlantUnit    = nullptr;
+	mRandGateUnit     = nullptr;
+	mRandItemUnit     = nullptr;
+	mRandMapScore     = nullptr;
+	mRandMapDraw      = nullptr;
+	mIsCaptureOn      = false;
+	mRadarMapTexture  = nullptr;
+	mIsVersusHiba     = isVersusHiba;
+	mName             = "RandMapMgr";
 }
 
 /*
@@ -117,134 +33,22 @@ Cave::RandMapMgr::RandMapMgr(bool)
  * Address:	802445B0
  * Size:	0001A4
  */
-void Cave::RandMapMgr::loadResource(Game::MapUnitInterface*, int, Game::Cave::FloorInfo*, bool, Game::Cave::EditMapUnit*)
+void RandMapMgr::loadResource(MapUnitInterface* interface, int p1, FloorInfo* floorInfo, bool check, EditMapUnit* editMU)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r31, r3
-	  mr        r26, r4
-	  mr        r27, r5
-	  mr        r28, r6
-	  mr        r29, r7
-	  mr        r30, r8
-	  li        r3, 0x34
-	  bl        -0x220738
-	  mr.       r0, r3
-	  beq-      .loc_0x54
-	  mr        r4, r26
-	  mr        r5, r27
-	  mr        r6, r28
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        0x74B0
-	  mr        r0, r3
+	mMapUnitGenerator = new MapUnitGenerator(interface, p1, floorInfo, check, editMU);
+	mRandMapUnit      = new RandMapUnit(mMapUnitGenerator);
+	mRandEnemyUnit    = new RandEnemyUnit(mMapUnitGenerator, mIsVersusHiba);
+	mRandCapEnemyUnit = new RandCapEnemyUnit(mMapUnitGenerator);
+	mRandPlantUnit    = new RandPlantUnit(mMapUnitGenerator);
+	mRandGateUnit     = new RandGateUnit(mMapUnitGenerator);
+	mRandItemUnit     = new RandItemUnit(mMapUnitGenerator);
+	mRandMapScore     = new RandMapScore(mMapUnitGenerator);
+	mRandMapDraw      = new RandMapDraw(mMapUnitGenerator);
 
-	.loc_0x54:
-	  stw       r0, 0x18(r31)
-	  li        r3, 0x2C
-	  bl        -0x220768
-	  mr.       r0, r3
-	  beq-      .loc_0x74
-	  lwz       r4, 0x18(r31)
-	  bl        0x1964
-	  mr        r0, r3
-
-	.loc_0x74:
-	  stw       r0, 0x1C(r31)
-	  li        r3, 0x40
-	  bl        -0x220788
-	  mr.       r0, r3
-	  beq-      .loc_0x98
-	  lwz       r4, 0x18(r31)
-	  lbz       r5, 0x44(r31)
-	  bl        0x42D4
-	  mr        r0, r3
-
-	.loc_0x98:
-	  stw       r0, 0x20(r31)
-	  li        r3, 0x18
-	  bl        -0x2207AC
-	  mr.       r0, r3
-	  beq-      .loc_0xB8
-	  lwz       r4, 0x18(r31)
-	  bl        0xBC808
-	  mr        r0, r3
-
-	.loc_0xB8:
-	  stw       r0, 0x24(r31)
-	  li        r3, 0xC
-	  bl        -0x2207CC
-	  mr.       r0, r3
-	  beq-      .loc_0xD8
-	  lwz       r4, 0x18(r31)
-	  bl        0x5A88C
-	  mr        r0, r3
-
-	.loc_0xD8:
-	  stw       r0, 0x28(r31)
-	  li        r3, 0x18
-	  bl        -0x2207EC
-	  mr.       r0, r3
-	  beq-      .loc_0xF8
-	  lwz       r4, 0x18(r31)
-	  bl        0xB7D0
-	  mr        r0, r3
-
-	.loc_0xF8:
-	  stw       r0, 0x2C(r31)
-	  li        r3, 0x18
-	  bl        -0x22080C
-	  mr.       r0, r3
-	  beq-      .loc_0x118
-	  lwz       r4, 0x18(r31)
-	  bl        0x9CCC
-	  mr        r0, r3
-
-	.loc_0x118:
-	  stw       r0, 0x30(r31)
-	  li        r3, 0x14
-	  bl        -0x22082C
-	  mr.       r0, r3
-	  beq-      .loc_0x138
-	  lwz       r4, 0x18(r31)
-	  bl        0x8198
-	  mr        r0, r3
-
-	.loc_0x138:
-	  stw       r0, 0x34(r31)
-	  li        r3, 0x4
-	  bl        -0x22084C
-	  mr.       r0, r3
-	  beq-      .loc_0x158
-	  lwz       r4, 0x18(r31)
-	  bl        0xD18
-	  mr        r0, r3
-
-	.loc_0x158:
-	  stw       r0, 0x38(r31)
-	  lwz       r3, 0x20(r31)
-	  lwz       r4, 0x34(r31)
-	  bl        0x42A8
-	  lwz       r3, 0x24(r31)
-	  lwz       r4, 0x30(r31)
-	  bl        0xBC774
-	  lwz       r3, 0x2C(r31)
-	  lwz       r4, 0x34(r31)
-	  lwz       r5, 0x30(r31)
-	  bl        0xB7B4
-	  lwz       r3, 0x30(r31)
-	  lwz       r4, 0x34(r31)
-	  bl        0x9CB4
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	mRandEnemyUnit->setManageClassPtr(mRandMapScore);
+	mRandCapEnemyUnit->setManageClassPtr(mRandItemUnit);
+	mRandGateUnit->setManageClassPtr(mRandMapScore, mRandItemUnit);
+	mRandItemUnit->setManageClassPtr(mRandMapScore);
 }
 
 /*
@@ -252,77 +56,33 @@ void Cave::RandMapMgr::loadResource(Game::MapUnitInterface*, int, Game::Cave::Fl
  * Address:	80244754
  * Size:	000104
  */
-void Cave::RandMapMgr::create()
+void RandMapMgr::create()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 0x1c(r3)
-	bl       setMapUnit__Q34Game4Cave11RandMapUnitFv
-	lwz      r3, 0x34(r31)
-	bl       setStartSlot__Q34Game4Cave12RandMapScoreFv
-	lwz      r3, 0x34(r31)
-	bl       setMapUnitScore__Q34Game4Cave12RandMapScoreFv
-	lwz      r3, 0x34(r31)
-	bl       setGoalSlot__Q34Game4Cave12RandMapScoreFv
-	lwz      r3, 0x20(r31)
-	bl       setEnemySlot__Q34Game4Cave13RandEnemyUnitFv
-	lwz      r3, 0x34(r31)
-	bl       setMapUnitScore__Q34Game4Cave12RandMapScoreFv
-	lwz      r3, 0x28(r31)
-	bl       setPlantSlot__Q34Game4Cave13RandPlantUnitFv
-	lwz      r3, 0x30(r31)
-	bl       setItemSlot__Q34Game4Cave12RandItemUnitFv
-	lwz      r3, 0x24(r31)
-	bl       setCapEnemySlot__Q34Game4Cave16RandCapEnemyUnitFv
-	lwz      r3, 0x34(r31)
-	bl       setMapUnitScore__Q34Game4Cave12RandMapScoreFv
-	lwz      r3, 0x2c(r31)
-	bl       setGateDoor__Q34Game4Cave12RandGateUnitFv
-	lwz      r3, 0x1c(r31)
-	addi     r4, r1, 0xc
-	addi     r5, r1, 8
-	bl       getTextureSize__Q34Game4Cave11RandMapUnitFRiRi
-	lwz      r5, 0xc(r1)
-	lis      r3, lbl_8048407C@ha
-	lwz      r0, 8(r1)
-	addi     r4, r3, lbl_8048407C@l
-	slwi     r5, r5, 3
-	lwz      r3, sys@sda21(r13)
-	slwi     r0, r0, 3
-	stw      r5, 0xc(r1)
-	li       r5, 0
-	stw      r0, 8(r1)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80244820
-	lwz      r4, 0xc(r1)
-	li       r6, 0
-	lwz      r5, 8(r1)
-	bl       __ct__10JUTTextureFii9_GXTexFmt
-	mr       r0, r3
+	mRandMapUnit->setMapUnit();
+	mRandMapScore->setStartSlot();
+	mRandMapScore->setMapUnitScore();
+	mRandMapScore->setGoalSlot();
+	mRandEnemyUnit->setEnemySlot();
+	mRandMapScore->setMapUnitScore();
+	mRandPlantUnit->setPlantSlot();
+	mRandItemUnit->setItemSlot();
+	mRandCapEnemyUnit->setCapEnemySlot();
+	mRandMapScore->setMapUnitScore();
+	mRandGateUnit->setGateDoor();
 
-lbl_80244820:
-	stw      r0, 0x40(r31)
-	lis      r3, lbl_8048407C@ha
-	addi     r4, r3, lbl_8048407C@l
-	li       r0, 2
-	lwz      r3, 0x40(r31)
-	lwz      r3, 0x20(r3)
-	stb      r0, 1(r3)
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int x;
+	int y;
+	mRandMapUnit->getTextureSize(x, y);
+
+	x <<= 3;
+	y <<= 3;
+
+	sys->heapStatusStart("Radar Map Texture", nullptr);
+	mRadarMapTexture = new JUTTexture(x, y, GX_TF_I4);
+
+	mRadarMapTexture->mTexInfo->mTransparency = Transparency_2;
+
+	sys->heapStatusEnd("Radar Map Texture");
 }
 
 /*
@@ -330,53 +90,21 @@ lbl_80244820:
  * Address:	80244858
  * Size:	000034
  */
-void Cave::RandMapMgr::getNumRooms()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x18(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+int RandMapMgr::getNumRooms() { return mMapUnitGenerator->mPlacedMapNodes->getChildCount(); }
 
 /*
  * --INFO--
  * Address:	8024488C
  * Size:	00003C
  */
-void Cave::RandMapMgr::getUseUnitName(int)
+char* RandMapMgr::getUseUnitName(int idx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x18(r3)
-	lwz      r3, 0x28(r3)
-	bl       getChildAt__5CNodeFi
-	cmplwi   r3, 0
-	beq      lbl_802448B4
-	bl       getUnitName__Q34Game4Cave7MapNodeFv
-	b        lbl_802448B8
+	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	if (node) {
+		return node->getUnitName();
+	}
 
-lbl_802448B4:
-	li       r3, 0
-
-lbl_802448B8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -384,47 +112,16 @@ lbl_802448B8:
  * Address:	802448C8
  * Size:	000084
  */
-void Cave::RandMapMgr::getRoomData(int, float&, float&, int&)
+char* RandMapMgr::getRoomData(int idx, float& x, float& y, int& dir)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r7
-	stw      r29, 0x14(r1)
-	mr       r29, r6
-	stw      r28, 0x10(r1)
-	mr       r28, r5
-	lwz      r3, 0x18(r3)
-	lwz      r3, 0x28(r3)
-	bl       getChildAt__5CNodeFi
-	or.      r31, r3, r3
-	beq      lbl_80244928
-	mr       r4, r28
-	mr       r5, r29
-	bl       getNodeCentreOffset__Q34Game4Cave7MapNodeFRfRf
-	mr       r3, r31
-	bl       getDirection__Q34Game4Cave7MapNodeFv
-	stw      r3, 0(r30)
-	mr       r3, r31
-	bl       getUnitName__Q34Game4Cave7MapNodeFv
-	b        lbl_8024492C
+	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	if (node) {
+		node->getNodeCentreOffset(x, y);
+		dir = node->getDirection();
+		return node->getUnitName();
+	}
 
-lbl_80244928:
-	li       r3, 0
-
-lbl_8024492C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -432,79 +129,26 @@ lbl_8024492C:
  * Address:	8024494C
  * Size:	0000E4
  */
-void Cave::RandMapMgr::makeRoomLink(int)
+RoomLink* RandMapMgr::makeRoomLink(int idx)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r31, r3
-	lwz      r3, 0x18(r3)
-	lwz      r3, 0x28(r3)
-	bl       getChildAt__5CNodeFi
-	or.      r26, r3, r3
-	beq      lbl_80244A18
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_80244994
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8RoomLink@ha
-	addi     r0, r3, __vt__Q24Game8RoomLink@l
-	stw      r0, 0(r29)
+	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	if (node) {
+		RoomLink* parentLink = new RoomLink;
 
-lbl_80244994:
-	mr       r3, r26
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	mr       r30, r3
-	li       r25, 0
-	li       r27, 0
-	b        lbl_80244A08
+		int numDoors = node->getNumDoors();
 
-lbl_802449AC:
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_802449CC
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8RoomLink@ha
-	addi     r0, r3, __vt__Q24Game8RoomLink@l
-	stw      r0, 0(r28)
+		for (int i = 0; i < numDoors; i++) {
+			RoomLink* childLink        = new RoomLink;
+			childLink->mLinkIndex      = i;
+			childLink->mBirthDoorIndex = node->mAdjustInfo[i].mBirthDoorIndex;
+			childLink->mAliveMapIndex  = mRandMapUnit->getAliveMapIndex(node->mAdjustInfo[i].mNode);
+			parentLink->add(childLink);
+		}
 
-lbl_802449CC:
-	sth      r25, 0x18(r28)
-	addi     r0, r27, 4
-	lwz      r3, 0x28(r26)
-	lwzx     r0, r3, r0
-	sth      r0, 0x1a(r28)
-	lwz      r4, 0x28(r26)
-	lwz      r3, 0x1c(r31)
-	lwzx     r4, r4, r27
-	bl       getAliveMapIndex__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNode
-	sth      r3, 0x1c(r28)
-	mr       r3, r29
-	mr       r4, r28
-	bl       add__5CNodeFP5CNode
-	addi     r27, r27, 0xc
-	addi     r25, r25, 1
+		return parentLink;
+	}
 
-lbl_80244A08:
-	cmpw     r25, r30
-	blt      lbl_802449AC
-	mr       r3, r29
-	b        lbl_80244A1C
-
-lbl_80244A18:
-	li       r3, 0
-
-lbl_80244A1C:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -512,103 +156,35 @@ lbl_80244A1C:
  * Address:	80244A30
  * Size:	000084
  */
-void Cave::RandMapMgr::makeObjectLayoutInfo(int)
+ObjectLayoutInfo* RandMapMgr::makeObjectLayoutInfo(int idx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x18(r3)
-	lwz      r3, 0x28(r3)
-	bl       getChildAt__5CNodeFi
-	or.      r30, r3, r3
-	beq      lbl_80244A94
-	li       r3, 8
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80244A7C
-	mr       r4, r30
-	bl       __ct__Q34Game4Cave12ObjectLayoutFPQ34Game4Cave7MapNode
-	mr       r31, r3
-
-lbl_80244A7C:
-	lwz      r3, 0x34(r29)
-	mr       r4, r30
-	mr       r5, r31
-	bl
-makeObjectLayout__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodePQ34Game4Cave12ObjectLayout
-	mr       r3, r31
-	b        lbl_80244A98
-
-lbl_80244A94:
-	li       r3, 0
-
-lbl_80244A98:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	if (node) {
+		ObjectLayout* layout = new ObjectLayout(node);
+		mRandMapScore->makeObjectLayout(node, layout);
+		return layout;
+	}
+	return nullptr;
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	80244AB4
  * Size:	000088
  */
-void getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3f i()
+void RandMapMgr::getStartPosition(Vector3f& position, int idx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r4, 0x18(r3)
-	lbz      r0, 2(r4)
-	cmplwi   r0, 0
-	beq      lbl_80244B08
-	cmpwi    r5, 0
-	bne      lbl_80244AF4
-	lwz      r3, 0x34(r3)
-	mr       r5, r31
-	li       r4, 3
-	bl       "getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<f>"
-	b        lbl_80244B18
+	if (mMapUnitGenerator->mIsVersusMode) {
+		if (idx == 0) {
+			mRandMapScore->getGlobalPosition(3, position);
+		} else {
+			mRandMapScore->getGlobalPosition(4, position);
+		}
+	} else {
+		mRandMapScore->getGlobalPosition(0, position);
+	}
 
-lbl_80244AF4:
-	lwz      r3, 0x34(r3)
-	mr       r5, r31
-	li       r4, 4
-	bl       "getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<f>"
-	b        lbl_80244B18
-
-lbl_80244B08:
-	lwz      r3, 0x34(r3)
-	mr       r5, r31
-	li       r4, 0
-	bl       "getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3<f>"
-
-lbl_80244B18:
-	lfs      f1, 4(r31)
-	lfs      f0, lbl_8051A728@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	position.y += 50.0f;
 }
 
 /*
@@ -616,50 +192,9 @@ lbl_80244B18:
  * Address:	80244B3C
  * Size:	0000A0
  */
-void getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3f ff()
+void RandMapMgr::getItemDropPosition(Vector3f& position, f32 minDist, f32 maxDist)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	fmr      f30, f1
-	mr       r30, r3
-	fmr      f31, f2
-	mr       r31, r4
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	fsubs    f1, f31, f30
-	lfd      f3, lbl_8051A730@sda21(r2)
-	mr       r4, r31
-	stw      r0, 8(r1)
-	li       r5, -1
-	lfs      f0, lbl_8051A72C@sda21(r2)
-	lfd      f2, 8(r1)
-	lwz      r3, 0x30(r30)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f0, f1, f0
-	fadds    f1, f30, f0
-	bl       "getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi"
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	mRandItemUnit->getItemDropPosition(position, minDist + randWeightFloat(maxDist - minDist), -1);
 }
 
 /*
@@ -667,8 +202,29 @@ void getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3f ff()
  * Address:	80244BDC
  * Size:	000188
  */
-void getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3f iff()
+void RandMapMgr::getItemDropPosition(Vector3f* positions, int count, f32 p1, f32 p2)
 {
+	f32 avg    = 0.5f * (p1 + p2);
+	f32 weight = (p2 - avg > 0.0f) ? p2 - avg : -(p2 - avg);
+
+	MapNode* nodeList[16];
+	BaseGen* genList[16];
+
+	int randVal  = 2.0f * randFloat();
+	int absCount = ((count < 0) ? -count : count) - 1; // ?? what even is this
+	mRandItemUnit->setItemDropPositionList(nodeList, genList);
+
+	for (int i = 0; i < count; i++) {
+		f32 val = avg;
+		if (((i < 0) ? -i : i) != absCount) { // ?? again, what
+			if (i == randVal) {
+				val = avg + randWeightFloat(weight);
+			} else {
+				val = avg - randWeightFloat(weight);
+			}
+		}
+		mRandItemUnit->getItemDropPosition(positions[i], val, i);
+	}
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -784,37 +340,17 @@ lbl_80244D38:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	80244D64
  * Size:	000048
  */
-void Cave::RandMapMgr::setUnitTexture(int, JUTTexture*)
+void RandMapMgr::setUnitTexture(int idx, JUTTexture* texture)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	lwz      r3, 0x18(r3)
-	lwz      r3, 0x28(r3)
-	bl       getChildAt__5CNodeFi
-	cmplwi   r3, 0
-	beq      lbl_80244D98
-	lwz      r3, 0x18(r3)
-	mr       r4, r31
-	bl       setUnitTexture__Q34Game4Cave8UnitInfoFP10JUTTexture
-
-lbl_80244D98:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	if (node) {
+		node->mUnitInfo->setUnitTexture(texture);
+	}
 }
 
 /*
@@ -822,78 +358,26 @@ lbl_80244D98:
  * Address:	80244DAC
  * Size:	00000C
  */
-void Cave::RandMapMgr::setCaptureOn()
-{
-	// Generated from stb r0, 0x3C(r3)
-	_3C = 1;
-}
+void RandMapMgr::setCaptureOn() { mIsCaptureOn = true; }
 
 /*
  * --INFO--
  * Address:	80244DB8
  * Size:	0000DC
  */
-void Cave::RandMapMgr::captureRadarMap(Graphics&)
+void RandMapMgr::captureRadarMap(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lbz      r0, 0x3c(r3)
-	cmplwi   r0, 0
-	beq      lbl_80244E7C
-	bl       drawFrameBuffer__Q34Game4Cave10RandMapMgrFR8Graphics
-	mr       r3, r31
-	bl       setTextureGX__8GraphicsFv
-	li       r0, 0xff
-	addi     r4, r1, 0xc
-	stb      r0, 8(r1)
-	li       r3, 4
-	stb      r0, 9(r1)
-	stb      r0, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetChanMatColor
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	lfs      f1, lbl_8051A73C@sda21(r2)
-	mr       r4, r31
-	lwz      r3, 0x38(r30)
-	fmr      f2, f1
-	lfs      f3, lbl_8051A744@sda21(r2)
-	bl       draw__Q34Game4Cave11RandMapDrawFR8Graphicsfff
-	lwz      r3, 0x40(r30)
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0x20
-	li       r7, 0
-	li       r8, 0
-	bl       capture__10JUTTextureFii9_GXTexFmtbUc
-	mr       r3, r30
-	mr       r4, r31
-	bl       drawFrameBuffer__Q34Game4Cave10RandMapMgrFR8Graphics
-	li       r0, 0
-	stb      r0, 0x3c(r30)
+	if (mIsCaptureOn) {
+		drawFrameBuffer(gfx);
+		gfx.setTextureGX();
 
-lbl_80244E7C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		GXSetChanMatColor(GX_COLOR0A0, JUtility::TColor(255, 255, 255, 255));
+		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+		mRandMapDraw->draw(gfx, 0.0f, 0.0f, 8.0f);
+		mRadarMapTexture->capture(0, 0, GX_CTF_R4, false, 0);
+		drawFrameBuffer(gfx);
+		mIsCaptureOn = false;
+	}
 }
 
 /*
@@ -901,19 +385,12 @@ lbl_80244E7C:
  * Address:	80244E94
  * Size:	00001C
  */
-bool Cave::RandMapMgr::isLastFloor()
+bool RandMapMgr::isLastFloor()
 {
-	/*
-	lwz      r3, 0x18(r3)
-	cmplwi   r3, 0
-	beq      lbl_80244EA8
-	lbz      r3, 0(r3)
-	blr
-
-lbl_80244EA8:
-	li       r3, 0
-	blr
-	*/
+	if (mMapUnitGenerator) {
+		return mMapUnitGenerator->mIsFinalFloor;
+	}
+	return false;
 }
 
 /*
@@ -921,66 +398,31 @@ lbl_80244EA8:
  * Address:	80244EB0
  * Size:	000008
  */
-bool Cave::RandMapMgr::isVersusHiba()
-{
-	/*
-	lbz      r3, 0x44(r3)
-	blr
-	*/
-}
+bool RandMapMgr::isVersusHiba() { return mIsVersusHiba; }
 
 /*
  * --INFO--
  * Address:	80244EB8
  * Size:	000008
  */
-void Cave::RandMapMgr::getRadarMapTexture()
-{
-	/*
-	lwz      r3, 0x40(r3)
-	blr
-	*/
-}
-
-} // namespace Game
+JUTTexture* RandMapMgr::getRadarMapTexture() { return mRadarMapTexture; }
 
 /*
  * --INFO--
  * Address:	80244EC0
  * Size:	000024
  */
-void radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3f()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x38(r3)
-	bl       "radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void RandMapMgr::radarMapPartsOpen(Vector3f& vec) { mRandMapDraw->radarMapPartsOpen(vec); }
 
 /*
  * --INFO--
  * Address:	80244EE4
  * Size:	000020
  */
-void getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3f RfRf()
+void RandMapMgr::getPositionOnTex(Vector3f& pos, f32& x, f32& y)
 {
-	/*
-	lfs      f1, lbl_8051A748@sda21(r2)
-	lfs      f0, 0(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0(r5)
-	lfs      f0, 8(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0(r6)
-	blr
-	*/
+	x = pos.x * (4.0f / 85.0f);
+	y = pos.z * (4.0f / 85.0f);
 }
 
 /*
@@ -988,8 +430,55 @@ void getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3f RfRf()
  * Address:	80244F04
  * Size:	000254
  */
-void getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3f Pf()
+void RandMapMgr::getBaseGenData(Vector3f* positions, f32* dirs)
 {
+	f32 floatList[512];
+	MapNode* nodeList[512];
+	BaseGen* genList[512];
+
+	f32 total   = 0.0f;
+	int counter = 0;
+
+	MapNode* startNodes[2];
+	startNodes[0] = mMapUnitGenerator->mPlacedMapNodes;
+	startNodes[1] = mMapUnitGenerator->mVisitedMapNodes;
+
+	for (int i = 0; i < 2; i++) {
+		FOREACH_NODE(MapNode, startNodes[i]->mChild, currNode)
+		{
+			BaseGen* baseGen = currNode->mUnitInfo->getBaseGen();
+			if (baseGen) {
+
+				FOREACH_NODE(BaseGen, baseGen->mChild, currGen)
+				{
+					if (currGen->mSpawnType == BaseGen::TekiA__Easy || currGen->mSpawnType == BaseGen::TekiB__Hard) {
+						Vector3f globalPos = currNode->getBaseGenGlobalPosition(currGen);
+						Vector3f sep       = Vector3f(positions->y - globalPos.y, positions->z - globalPos.z, positions->x - globalPos.x);
+						nodeList[counter]  = currNode;
+						genList[counter]   = currGen;
+						floatList[counter] = _length2(sep);
+
+						total += floatList[counter];
+						counter++;
+					}
+				}
+			}
+		}
+	}
+
+	if (counter) {
+		f32 tally   = 0.0f;
+		f32 randVal = randWeightFloat(total);
+		for (int i = 0; i < counter; i++) {
+			tally += floatList[i];
+			if (tally > randVal) {
+				*positions = nodeList[i]->getBaseGenGlobalPosition(genList[i]);
+				*dirs      = nodeList[i]->getBaseGenGlobalDirection(genList[i]);
+				return;
+			}
+		}
+	}
+
 	/*
 	stwu     r1, -0x18a0(r1)
 	mflr     r0
@@ -1148,218 +637,39 @@ lbl_8024512C:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	80245158
  * Size:	000200
  */
-void Cave::RandMapMgr::drawFrameBuffer(Graphics&)
+void RandMapMgr::drawFrameBuffer(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	addi     r3, r4, 0xbc
-	lwz      r12, 0xbc(r4)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	bl       GXSetColorUpdate
-	li       r3, 1
-	bl       GXSetAlphaUpdate
-	li       r3, 1
-	li       r4, 0
-	bl       GXSetDstAlpha
-	li       r3, 2
-	bl       GXSetCullMode
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0
-	bl       GXSetBlendMode
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r5, 0
-	li       r0, 0xff
-	stb      r5, 8(r1)
-	addi     r4, r1, 0xc
-	li       r3, 4
-	stb      r5, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       GXSetChanMatColor
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	bl       GXClearVtxDesc
-	bl       GXInvalidateVtxCache
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lfs      f3, lbl_8051A73C@sda21(r2)
-	lis      r0, 0x4330
-	lis      r6, 0xCC008000@ha
-	stw      r0, 0x10(r1)
-	lfd      f2, lbl_8051A730@sda21(r2)
-	li       r3, 0
-	stfs     f3, 0xCC008000@l(r6)
-	li       r4, 0
-	stfs     f3, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	lwz      r5, 0x40(r31)
-	stw      r0, 0x18(r1)
-	lwz      r5, 0x20(r5)
-	stw      r0, 0x20(r1)
-	lhz      r5, 2(r5)
-	stw      r0, 0x28(r1)
-	xoris    r0, r5, 0x8000
-	stw      r0, 0x14(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	stfs     f0, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	lwz      r5, 0x40(r31)
-	lwz      r5, 0x20(r5)
-	lhz      r0, 2(r5)
-	lhz      r5, 4(r5)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x1c(r1)
-	xoris    r0, r5, 0x8000
-	stw      r0, 0x24(r1)
-	lfd      f1, 0x18(r1)
-	lfd      f0, 0x20(r1)
-	fsubs    f1, f1, f2
-	fsubs    f0, f0, f2
-	stfs     f1, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	lwz      r5, 0x40(r31)
-	lwz      r5, 0x20(r5)
-	lhz      r0, 4(r5)
-	xoris    r0, r0, 0x8000
-	stfs     f3, -0x8000(r6)
-	stw      r0, 0x2c(r1)
-	lfd      f0, 0x28(r1)
-	fsubs    f0, f0, f2
-	stfs     f0, -0x8000(r6)
-	stfs     f3, -0x8000(r6)
-	bl       GXSetDstAlpha
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	gfx.mOrthoGraph.setPort();
+
+	GXSetColorUpdate(GX_TRUE);
+	GXSetAlphaUpdate(GX_TRUE);
+	GXSetDstAlpha(GX_TRUE, 0);
+	GXSetCullMode(GX_CULL_BACK);
+	GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
+	GXSetNumChans(1);
+	GXSetChanMatColor(GX_COLOR0A0, JUtility::TColor(0, 0, 0, 255));
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+	GXSetNumTevStages(1);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP_NULL, GX_COLOR0A0);
+	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+	GXClearVtxDesc();
+	GXInvalidateVtxCache();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	GXPosition3f32(0.0f, 0.0f, 0.0f);                                                 // bottom left
+	GXPosition3f32(mRadarMapTexture->getSizeX(), 0.0f, 0.0f);                         // bottom right
+	GXPosition3f32(mRadarMapTexture->getSizeX(), mRadarMapTexture->getSizeY(), 0.0f); // top right
+	GXPosition3f32(0.0f, mRadarMapTexture->getSizeY(), 0.0f);                         // top left
+	GXSetDstAlpha(GX_FALSE, 0);
 }
-
-/*
- * --INFO--
- * Address:	80245358
- * Size:	000060
- */
-RoomLink::~RoomLink()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8024539C
-	lis      r5, __vt__Q24Game8RoomLink@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game8RoomLink@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8024539C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8024539C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802453B8
- * Size:	000060
- */
-Cave::RandMapMgr::~RandMapMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802453FC
-	lis      r5, __vt__Q34Game4Cave10RandMapMgr@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game4Cave10RandMapMgr@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_802453FC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802453FC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+} // namespace Cave
 } // namespace Game

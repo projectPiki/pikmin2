@@ -88,7 +88,13 @@ struct RoomDoorInfo {
 };
 
 struct RoomLink : public CNode {
-	virtual ~RoomLink(); // _08 (weak)
+	virtual ~RoomLink() { } // _08 (weak)
+
+	// _00     = VTBL
+	// _00-_18 = CNode
+	s16 mLinkIndex;      // _18
+	s16 mBirthDoorIndex; // _1A
+	s16 mAliveMapIndex;  // _1C
 };
 
 // Size: 0xF0
@@ -236,7 +242,7 @@ struct RoomMapMgr : public MapMgr {
 	virtual bool hasHiddenCollision();                        // _08
 	virtual void constraintBoundBox(Sys::Sphere&);            // _0C
 	virtual void getStartPosition(Vector3f&, int);            // _10 (weak)
-	virtual void getDemoMatrix();                             // _14 (weak)
+	virtual Matrixf* getDemoMatrix();                         // _14 (weak)
 	virtual void getBoundBox2d(BoundBox2d&);                  // _18
 	virtual void getBoundBox(BoundBox&);                      // _1C
 	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20

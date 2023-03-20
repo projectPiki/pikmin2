@@ -21,6 +21,49 @@ struct EnemyUnit;
 
 struct GateUnit;
 
+struct RandEnemyUnit {
+	RandEnemyUnit(MapUnitGenerator* generator, bool isVersusHiba);
+
+	void setManageClassPtr(RandMapScore*);
+	void setEnemySlot();
+	void setEnemyTypeWeight();
+	void setEnemyTypeC();
+	void setEnemyTypeF();
+	void setEnemyTypeB();
+	void setEnemyTypeA();
+	void setVersusHibaTypeC();
+	void setVersusEnemyTypeC();
+	void setSlotEnemyTypeC(int&, int);
+	void setUnitRandEnemyTypeC();
+	void makeSetEnemyTypeC(MapNode*, int, EnemyUnit*);
+	void setVersusEnemyTypeF();
+	void setSlotEnemyTypeF(int);
+	void setUnitRandEnemyTypeF();
+	void makeSetEnemyTypeF(MapNode*, BaseGen*, EnemyUnit*);
+	void setVersusEnemyTypeB();
+	void setSlotEnemyTypeB(int);
+	void setUnitRandEnemyTypeB();
+	void makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*);
+	void setVersusEasyEnemy();
+	void getVersusEasyEnemyBaseGen(MapNode*, BaseGen*);
+	void setVersusEnemyTypeA();
+	void setSlotEnemyTypeA(int&, int&, int);
+	void setUnitRandEnemyTypeA(int&, int, int);
+	void makeSetEnemyTypeA(MapNode*, BaseGen*, EnemyUnit*, int);
+	bool isEnemySetGen(MapNode*, BaseGen*);
+
+	MapUnitGenerator* mGenerator; // _00
+	RandMapScore* mScore;         // _04
+	int mTotalCount;              // _08, count of all types
+	int mMaxEnemies;              // _0C
+	int mCount[4];                // _10, current count of type 0=A, 1=B, 2=C, 3=F
+	int mMaxCount[4];             // _20, max for type 0=A, 1=B, 2=C, 3=F
+	MapNode* mMapNode;            // _30
+	BaseGen* mBaseGen;            // _34
+	EnemyUnit* mEnemyUnit;        // _38
+	bool _3C;                     // _3C
+};
+
 /**
  * @size{0x18}
  */

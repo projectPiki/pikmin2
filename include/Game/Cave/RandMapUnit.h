@@ -44,6 +44,7 @@ struct MapUnitGenerator {
 	void createCaveLevel();
 
 	inline MapNode* getPlacedNodes() { return mPlacedMapNodes; }
+	inline MapNode* getVisitedNodes() { return mVisitedMapNodes; }
 
 	inline MapNode* getStartNode() { return mMapNode->getChild(); }
 

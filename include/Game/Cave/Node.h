@@ -214,7 +214,7 @@ struct MapNode : public CNode {
 	void getVersusScore();
 	char* getUnitName();
 	void getNodeCentreOffset(f32&, f32&);
-	void getDirection();
+	int getDirection();
 	Vector3f getBaseGenGlobalPosition(BaseGen*);
 	void getDoorGlobalPosition(int);
 	f32 getBaseGenGlobalDirection(BaseGen*);
