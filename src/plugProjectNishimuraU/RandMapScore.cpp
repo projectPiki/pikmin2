@@ -1,156 +1,26 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804840F8
-    lbl_804840F8:
-        .4byte 0x00000004
-        .4byte 0x00000003
-        .4byte 0x00000005
-        .4byte 0x00000006
-        .4byte 0x00000007
-    .global lbl_8048410C
-    lbl_8048410C:
-        .4byte 0x00000001
-        .4byte 0x00000000
-        .4byte 0x00000002
-    .global lbl_80484118
-    lbl_80484118:
-        .4byte 0x00000001
-        .4byte 0x00000000
-        .4byte 0x00000002
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game4Cave10FixObjNode
-    __vt__Q34Game4Cave10FixObjNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave10FixObjNodeFv
-        .4byte getChildCount__5CNodeFv
-        .4byte getObjectId__Q34Game4Cave10FixObjNodeFv
-        .4byte getObjectType__Q34Game4Cave10FixObjNodeFv
-        .4byte getBirthCount__Q34Game4Cave10FixObjNodeFv
-        .4byte getDirection__Q34Game4Cave10FixObjNodeFv
-        .4byte getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv
-        .4byte getBirthPosition__Q34Game4Cave10FixObjNodeFRfRf
-        .4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
-        .4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A7F8
-    lbl_8051A7F8:
-        .4byte 0x47000000
-        .4byte 0x00000000
-    .global lbl_8051A800
-    lbl_8051A800:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051A808
-    lbl_8051A808:
-        .float 1.0
-    .global lbl_8051A80C
-    lbl_8051A80C:
-        .float 0.5
-    .global lbl_8051A810
-    lbl_8051A810:
-        .4byte 0x00000001
-    .global lbl_8051A814
-    lbl_8051A814:
-        .4byte 0x00000002
-    .global lbl_8051A818
-    lbl_8051A818:
-        .4byte 0x01010000
-    .global lbl_8051A81C
-    lbl_8051A81C:
-        .4byte 0x00000000
-    .global lbl_8051A820
-    lbl_8051A820:
-        .4byte 0x6974656D
-        .4byte 0x00000000
-    .global lbl_8051A828
-    lbl_8051A828:
-        .4byte 0x00000001
-    .global lbl_8051A82C
-    lbl_8051A82C:
-        .4byte 0x00000002
-    .global lbl_8051A830
-    lbl_8051A830:
-        .4byte 0x01010000
-    .global lbl_8051A834
-    lbl_8051A834:
-        .4byte 0x43160000
-
-    .section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
-    .global lbl_80520EA8
-    lbl_80520EA8:
-        .skip 0x4
-    .global lbl_80520EAC
-    lbl_80520EAC:
-        .skip 0x4
-    .global lbl_80520EB0
-    lbl_80520EB0:
-        .skip 0x4
-    .global lbl_80520EB4
-    lbl_80520EB4:
-        .skip 0x4
-*/
+#include "Game/Cave/RandMapMgr.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
+namespace Cave {
 
 /*
  * --INFO--
  * Address:	8024C878
  * Size:	0000A8
  */
-Cave::RandMapScore::RandMapScore(Game::Cave::MapUnitGenerator*)
+RandMapScore::RandMapScore(MapUnitGenerator* generator)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0(r3)
-	li       r3, 0x14
-	stw      r0, 0xc(r31)
-	stw      r0, 0x10(r31)
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	li       r3, 0x14
-	bl       __nwa__FUl
-	stw      r3, 8(r31)
-	li       r0, 0
-	mr       r3, r31
-	lwz      r4, 4(r31)
-	stw      r0, 0(r4)
-	lwz      r4, 8(r31)
-	stw      r0, 0(r4)
-	lwz      r4, 4(r31)
-	stw      r0, 4(r4)
-	lwz      r4, 8(r31)
-	stw      r0, 4(r4)
-	lwz      r4, 4(r31)
-	stw      r0, 8(r4)
-	lwz      r4, 8(r31)
-	stw      r0, 8(r4)
-	lwz      r4, 4(r31)
-	stw      r0, 0xc(r4)
-	lwz      r4, 8(r31)
-	stw      r0, 0xc(r4)
-	lwz      r4, 4(r31)
-	stw      r0, 0x10(r4)
-	lwz      r4, 8(r31)
-	stw      r0, 0x10(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mGenerator       = generator;
+	mVersusHighScore = 0;
+	mVersusLowScore  = 0;
+	mFixObjNodes     = new MapNode*[5];
+	mFixObjGens      = new BaseGen*[5];
+
+	for (int i = 0; i < 5; i++) {
+		mFixObjNodes[i] = nullptr;
+		mFixObjGens[i]  = nullptr;
+	}
 }
 
 /*
@@ -158,41 +28,17 @@ Cave::RandMapScore::RandMapScore(Game::Cave::MapUnitGenerator*)
  * Address:	8024C920
  * Size:	00006C
  */
-void Cave::RandMapScore::setMapUnitScore()
+void RandMapScore::setMapUnitScore()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       clearRoomAndDoorScore__Q34Game4Cave12RandMapScoreFv
-	mr       r3, r30
-	bl       isScoreSetDone__Q34Game4Cave12RandMapScoreFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8024C974
-	li       r31, 0
-
-lbl_8024C950:
-	mr       r3, r30
-	bl       setUnitAndDoorScore__Q34Game4Cave12RandMapScoreFv
-	mr       r3, r30
-	bl       isScoreSetDone__Q34Game4Cave12RandMapScoreFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8024C974
-	addi     r31, r31, 1
-	cmpwi    r31, 0x1f4
-	blt      lbl_8024C950
-
-lbl_8024C974:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	clearRoomAndDoorScore();
+	if (!isScoreSetDone()) {
+		for (int i = 0; i < 500; i++) {
+			setUnitAndDoorScore();
+			if (isScoreSetDone()) {
+				return;
+			}
+		}
+	}
 }
 
 /*
@@ -200,28 +46,13 @@ lbl_8024C974:
  * Address:	8024C98C
  * Size:	000038
  */
-void Cave::RandMapScore::setStartSlot()
+void RandMapScore::setStartSlot()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0(r3)
-	lbz      r0, 2(r4)
-	cmplwi   r0, 0
-	beq      lbl_8024C9B0
-	bl       setVersusOnyon__Q34Game4Cave12RandMapScoreFv
-	b        lbl_8024C9B4
-
-lbl_8024C9B0:
-	bl       setChallengePod__Q34Game4Cave12RandMapScoreFv
-
-lbl_8024C9B4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mGenerator->mIsVersusMode) {
+		setVersusOnyon();
+	} else {
+		setChallengePod();
+	}
 }
 
 /*
@@ -229,36 +60,15 @@ lbl_8024C9B4:
  * Address:	8024C9C4
  * Size:	000058
  */
-void Cave::RandMapScore::setGoalSlot()
+void RandMapScore::setGoalSlot()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 0(r3)
-	lbz      r0, 2(r4)
-	cmplwi   r0, 0
-	bne      lbl_8024CA08
-	bl       isGoalSetHard__Q34Game4Cave12RandMapScoreFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8024CA00
-	mr       r3, r31
-	bl       setChallengeFixObjHard__Q34Game4Cave12RandMapScoreFv
-	b        lbl_8024CA08
-
-lbl_8024CA00:
-	mr       r3, r31
-	bl       setChallengeFixObjNormal__Q34Game4Cave12RandMapScoreFv
-
-lbl_8024CA08:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!mGenerator->mIsVersusMode) {
+		if (isGoalSetHard()) {
+			setChallengeFixObjHard();
+		} else {
+			setChallengeFixObjNormal();
+		}
+	}
 }
 
 /*
@@ -266,118 +76,23 @@ lbl_8024CA08:
  * Address:	8024CA1C
  * Size:	00018C
  */
-void Cave::RandMapScore::makeObjectLayout(Game::Cave::MapNode*, Game::Cave::ObjectLayout*)
+void RandMapScore::makeObjectLayout(MapNode* mapNode, ObjectLayout* layout)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stfd      f30, 0x60(r1)
-	  psq_st    f30,0x68(r1),0,0
-	  stfd      f29, 0x50(r1)
-	  psq_st    f29,0x58(r1),0,0
-	  stmw      r24, 0x30(r1)
-	  mr        r25, r3
-	  mr        r26, r4
-	  mr        r27, r5
-	  addi      r29, r1, 0x14
-	  li        r28, 0
-	  li        r30, 0
+	for (int i = 0; i < 5; i++) {
+		if (mapNode == mFixObjNodes[i]) {
+			int layoutTypes[5]       = { OBJLAYOUT_Pod, OBJLAYOUT_Hole, OBJLAYOUT_Fountain, OBJLAYOUT_VsRedOnyon, OBJLAYOUT_VsBlueOnyon };
+			FixObjNode* rootObjNode  = new FixObjNode(layoutTypes[i]);
+			FixObjNode* childObjNode = new FixObjNode(layoutTypes[i]);
 
-	.loc_0x40:
-	  lwz       r3, 0x4(r25)
-	  lwzx      r0, r3, r30
-	  cmplw     r26, r0
-	  bne-      .loc_0x14C
-	  lis       r4, 0x8048
-	  li        r3, 0x2C
-	  addi      r8, r4, 0x40F8
-	  lwz       r7, 0x0(r8)
-	  lwz       r6, 0x4(r8)
-	  lwz       r5, 0x8(r8)
-	  lwz       r4, 0xC(r8)
-	  lwz       r0, 0x10(r8)
-	  stw       r7, 0x14(r1)
-	  stw       r6, 0x18(r1)
-	  stw       r5, 0x1C(r1)
-	  stw       r4, 0x20(r1)
-	  stw       r0, 0x24(r1)
-	  bl        -0x228BFC
-	  mr.       r31, r3
-	  beq-      .loc_0xB4
-	  bl        0x1C48E4
-	  lis       r4, 0x804C
-	  lis       r3, 0x804C
-	  addi      r4, r4, 0x1AA8
-	  lwz       r0, 0x0(r29)
-	  stw       r4, 0x0(r31)
-	  addi      r3, r3, 0x1B18
-	  stw       r3, 0x0(r31)
-	  stw       r0, 0x18(r31)
+			Vector3f globalPos       = mFixObjNodes[i]->getBaseGenGlobalPosition(mFixObjGens[i]);
+			f32 dir                  = mFixObjNodes[i]->getBaseGenGlobalDirection(mFixObjGens[i]);
+			childObjNode->mPosition  = globalPos;
+			childObjNode->mDirection = dir;
 
-	.loc_0xB4:
-	  li        r3, 0x2C
-	  bl        -0x228C30
-	  mr.       r24, r3
-	  beq-      .loc_0xE8
-	  bl        0x1C48B0
-	  lis       r4, 0x804C
-	  lis       r3, 0x804C
-	  addi      r4, r4, 0x1AA8
-	  lwz       r0, 0x0(r29)
-	  stw       r4, 0x0(r24)
-	  addi      r3, r3, 0x1B18
-	  stw       r3, 0x0(r24)
-	  stw       r0, 0x18(r24)
-
-	.loc_0xE8:
-	  lwz       r4, 0x4(r25)
-	  addi      r3, r1, 0x8
-	  lwz       r5, 0x8(r25)
-	  lwzx      r4, r4, r30
-	  lwzx      r5, r5, r30
-	  bl        -0x903C
-	  lwz       r3, 0x4(r25)
-	  lwz       r4, 0x8(r25)
-	  lfs       f31, 0x8(r1)
-	  lfs       f30, 0xC(r1)
-	  lfs       f29, 0x10(r1)
-	  lwzx      r3, r3, r30
-	  lwzx      r4, r4, r30
-	  bl        -0x8C3C
-	  stfs      f31, 0x20(r24)
-	  mr        r3, r31
-	  mr        r4, r24
-	  stfs      f30, 0x24(r24)
-	  stfs      f29, 0x28(r24)
-	  stfs      f1, 0x1C(r24)
-	  bl        0x1C48B4
-	  lwz       r4, 0x0(r29)
-	  mr        r3, r27
-	  mr        r5, r31
-	  bl        0x3D8C
-
-	.loc_0x14C:
-	  addi      r28, r28, 0x1
-	  addi      r29, r29, 0x4
-	  cmpwi     r28, 0x5
-	  addi      r30, r30, 0x4
-	  blt+      .loc_0x40
-	  psq_l     f31,0x78(r1),0,0
-	  lfd       f31, 0x70(r1)
-	  psq_l     f30,0x68(r1),0,0
-	  lfd       f30, 0x60(r1)
-	  psq_l     f29,0x58(r1),0,0
-	  lfd       f29, 0x50(r1)
-	  lmw       r24, 0x30(r1)
-	  lwz       r0, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
-	*/
+			rootObjNode->add(childObjNode);
+			layout->setNode(layoutTypes[i], rootObjNode);
+		}
+	}
 }
 
 /*
@@ -385,149 +100,59 @@ void Cave::RandMapScore::makeObjectLayout(Game::Cave::MapNode*, Game::Cave::Obje
  * Address:	8024CBA8
  * Size:	000010
  */
-void Cave::RandMapScore::getFixObjNode(int)
-{
-	/*
-	lwz      r3, 4(r3)
-	slwi     r0, r4, 2
-	lwzx     r3, r3, r0
-	blr
-	*/
-}
+MapNode* RandMapScore::getFixObjNode(int idx) { return mFixObjNodes[idx]; }
 
 /*
  * --INFO--
  * Address:	8024CBB8
  * Size:	000010
  */
-void Cave::RandMapScore::getFixObjGen(int)
-{
-	/*
-	lwz      r3, 8(r3)
-	slwi     r0, r4, 2
-	lwzx     r3, r3, r0
-	blr
-	*/
-}
-
-} // namespace Game
+BaseGen* RandMapScore::getFixObjGen(int idx) { return mFixObjGens[idx]; }
 
 /*
  * --INFO--
  * Address:	8024CBC8
  * Size:	000064
  */
-void getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3f()
+void RandMapScore::getGlobalPosition(int idx, Vector3f& position)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	slwi     r0, r4, 2
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	lwz      r4, 4(r3)
-	lwzx     r4, r4, r0
-	cmplwi   r4, 0
-	beq      lbl_8024CC18
-	lwz      r5, 8(r3)
-	addi     r3, r1, 8
-	lwzx     r5, r5, r0
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f0, 8(r1) stfs     f0, 0(r31) lfs      f0, 0xc(r1) stfs     f0, 4(r31) lfs f0,
-0x10(r1) stfs     f0, 8(r31)
-
-lbl_8024CC18:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	MapNode* node = getFixObjNode(idx);
+	if (node) {
+		position = node->getBaseGenGlobalPosition(getFixObjGen(idx));
+	}
 }
-
-namespace Game {
 
 /*
  * --INFO--
  * Address:	8024CC2C
  * Size:	000008
  */
-void Cave::RandMapScore::getVersusHighScore()
-{
-	/*
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+int RandMapScore::getVersusHighScore() { return mVersusHighScore; }
 
 /*
  * --INFO--
  * Address:	8024CC34
  * Size:	000008
  */
-void Cave::RandMapScore::getVersusLowScore()
-{
-	/*
-	lwz      r3, 0x10(r3)
-	blr
-	*/
-}
+int RandMapScore::getVersusLowScore() { return mVersusLowScore; }
 
 /*
  * --INFO--
  * Address:	8024CC3C
  * Size:	000084
  */
-void Cave::RandMapScore::isScoreSetDone()
+bool RandMapScore::isScoreSetDone()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lwz      r3, 0(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_8024CC9C
+	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currNode)
+	{
+		for (int i = 0; i < currNode->getNumDoors(); i++) {
+			if (!currNode->isDoorScoreSetDone(i)) {
+				return false;
+			}
+		}
+	}
 
-lbl_8024CC60:
-	li       r30, 0
-	b        lbl_8024CC88
-
-lbl_8024CC68:
-	mr       r3, r31
-	mr       r4, r30
-	bl       isDoorScoreSetDone__Q34Game4Cave7MapNodeFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8024CC84
-	li       r3, 0
-	b        lbl_8024CCA8
-
-lbl_8024CC84:
-	addi     r30, r30, 1
-
-lbl_8024CC88:
-	mr       r3, r31
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	cmpw     r30, r3
-	blt      lbl_8024CC68
-	lwz      r31, 4(r31)
-
-lbl_8024CC9C:
-	cmplwi   r31, 0
-	bne      lbl_8024CC60
-	li       r3, 1
-
-lbl_8024CCA8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return true;
 }
 
 /*
@@ -535,69 +160,27 @@ lbl_8024CCA8:
  * Address:	8024CCC0
  * Size:	0000C4
  */
-void Cave::RandMapScore::clearRoomAndDoorScore()
+void RandMapScore::clearRoomAndDoorScore()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_8024CD08
+	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currNode)
+	{
+		currNode->setEnemyScore();
+		currNode->setNodeScore(-1);
+		currNode->resetDoorScore();
+	}
 
-lbl_8024CCE8:
-	mr       r3, r31
-	bl       setEnemyScore__Q34Game4Cave7MapNodeFv
-	mr       r3, r31
-	li       r4, -1
-	bl       setNodeScore__Q34Game4Cave7MapNodeFi
-	mr       r3, r31
-	bl       resetDoorScore__Q34Game4Cave7MapNodeFv
-	lwz      r31, 4(r31)
+	if (mGenerator->mIsVersusMode) {
+		// if in versus mode, start calculating map score from both red and blue onyons (if set)
+		if (getFixObjNode(FIXNODE_VsRedOnyon)) {
+			setStartMapNodeScore(getFixObjNode(FIXNODE_VsRedOnyon));
+		}
+		if (getFixObjNode(FIXNODE_VsBlueOnyon)) {
+			setStartMapNodeScore(getFixObjNode(FIXNODE_VsBlueOnyon));
+		}
 
-lbl_8024CD08:
-	cmplwi   r31, 0
-	bne      lbl_8024CCE8
-	lwz      r3, 0(r30)
-	lbz      r0, 2(r3)
-	cmplwi   r0, 0
-	beq      lbl_8024CD54
-	lwz      r3, 4(r30)
-	lwz      r4, 0xc(r3)
-	cmplwi   r4, 0
-	beq      lbl_8024CD38
-	mr       r3, r30
-	bl setStartMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode
-
-lbl_8024CD38:
-	lwz      r3, 4(r30)
-	lwz      r4, 0x10(r3)
-	cmplwi   r4, 0
-	beq      lbl_8024CD6C
-	mr       r3, r30
-	bl setStartMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode b
-lbl_8024CD6C
-
-lbl_8024CD54:
-	lwz      r3, 4(r30)
-	lwz      r4, 0(r3)
-	cmplwi   r4, 0
-	beq      lbl_8024CD6C
-	mr       r3, r30
-	bl setStartMapNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode
-
-lbl_8024CD6C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	} else if (getFixObjNode(FIXNODE_Pod)) { // not versus mode, so start from pod/ship.
+		setStartMapNodeScore(getFixObjNode(FIXNODE_Pod));
+	}
 }
 
 /*
@@ -605,8 +188,43 @@ lbl_8024CD6C:
  * Address:	8024CD84
  * Size:	000154
  */
-void Cave::RandMapScore::setUnitAndDoorScore()
+void RandMapScore::setUnitAndDoorScore()
 {
+
+	MapNode* minScoreNode = nullptr;
+	int minScoreDoor      = -1;
+	int minScore          = 12800000;
+
+	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currNode)
+	{
+		currNode->getNodeScore();
+		int numDoors = currNode->getNumDoors();
+		for (int i = 0; i < numDoors; i++) {
+			if (currNode->isDoorScoreSetDone(i)) {
+				FOREACH_NODE(AdjustNode, currNode->getAdjustNode(i)->mChild, adjNode)
+				{
+					int doorID = adjNode->mNode->mDoorID;
+					if (!currNode->isDoorScoreSetDone(doorID)) {
+						Adjust* adj       = adjNode->mNode;
+						int enemyScore    = adj->mTekiFlags * currNode->getEnemyScore();
+						int distanceScore = adj->mDistance;
+						int tempScore     = enemyScore + currNode->mAdjustInfo[i].mDoorScore;
+						int currScore     = currNode->getGateScore(doorID) + tempScore + distanceScore;
+						if (minScore > currScore) {
+							minScore     = currScore;
+							minScoreNode = currNode;
+							minScoreDoor = doorID;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if (minScoreNode) {
+		minScoreNode->setDoorScore(minScoreDoor, minScore);
+		setMapNodeScore(minScoreNode->mAdjustInfo[minScoreDoor].mNode, minScore);
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -719,8 +337,20 @@ lbl_8024CEC4:
  * Address:	8024CED8
  * Size:	0000B0
  */
-void Cave::RandMapScore::setStartMapNodeScore(Game::Cave::MapNode*)
+void RandMapScore::setStartMapNodeScore(MapNode* mapNode)
 {
+	setMapNodeScore(mapNode, 0);
+	for (int i = 0; i < mapNode->getNumDoors(); i++) {
+		if (!mapNode->isDoorScoreSetDone(i)) {
+			int score = mapNode->getGateScore(i);
+
+			int nodeScore = mapNode->getNodeScore();
+			score++;
+			score += nodeScore;
+			mapNode->setDoorScore(i, score);
+			setMapNodeScore(mapNode->mAdjustInfo[i].mNode, score);
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -780,7 +410,7 @@ lbl_8024CF64:
  * Address:	........
  * Size:	0000DC
  */
-void Cave::RandMapScore::getRandRoomMapNode()
+MapNode* RandMapScore::getRandRoomMapNode()
 {
 	// UNUSED FUNCTION
 }
@@ -790,107 +420,38 @@ void Cave::RandMapScore::getRandRoomMapNode()
  * Address:	8024CF88
  * Size:	00013C
  */
-void Cave::RandMapScore::setChallengePod()
+void RandMapScore::setChallengePod()
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	stw      r29, 0x64(r1)
-	mr       r29, r3
-	lwz      r3, 4(r3)
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	bne      lbl_8024D0A8
-	lwz      r3, 0(r29)
-	li       r31, 0
-	lwz      r3, 0x28(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_8024CFE8
+	BaseGen* genList[16];
+	if (!getFixObjNode(FIXNODE_Pod)) {
+		int counter = 0;
+		FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
+		{
+			if (currNode->mUnitInfo->getUnitKind() == 1) {
+				mFixObjNodes[FIXNODE_Pod] = currNode;
+				break;
+			}
+		}
 
-lbl_8024CFC8:
-	lwz      r3, 0x18(r30)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_8024CFE4
-	lwz      r3, 4(r29)
-	stw      r30, 0(r3)
-	b        lbl_8024CFF0
+		if (getFixObjNode(FIXNODE_Pod)) {
+			BaseGen* gen = getFixObjNode(FIXNODE_Pod)->mUnitInfo->getBaseGen();
+			if (gen) {
 
-lbl_8024CFE4:
-	lwz      r30, 4(r30)
+				FOREACH_NODE(BaseGen, gen->mChild, currGen)
+				{
+					if (currGen->mSpawnType == BaseGen::Start) {
+						genList[counter] = currGen;
+						counter++;
+					}
+				}
+			}
 
-lbl_8024CFE8:
-	cmplwi   r30, 0
-	bne      lbl_8024CFC8
-
-lbl_8024CFF0:
-	lwz      r3, 4(r29)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_8024D0A8
-	lwz      r3, 0x18(r3)
-	bl       getBaseGen__Q34Game4Cave8UnitInfoFv
-	cmplwi   r3, 0
-	beq      lbl_8024D040
-	lwz      r4, 0x10(r3)
-	addi     r3, r1, 8
-	b        lbl_8024D038
-
-lbl_8024D01C:
-	lwz      r0, 0x18(r4)
-	cmpwi    r0, 7
-	bne      lbl_8024D034
-	stw      r4, 0(r3)
-	addi     r3, r3, 4
-	addi     r31, r31, 1
-
-lbl_8024D034:
-	lwz      r4, 4(r4)
-
-lbl_8024D038:
-	cmplwi   r4, 0
-	bne      lbl_8024D01C
-
-lbl_8024D040:
-	cmpwi    r31, 0
-	beq      lbl_8024D0A8
-	bl       rand
-	lis      r5, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x4c(r1)
-	xoris    r0, r31, 0x8000
-	lfd      f2, lbl_8051A800@sda21(r2)
-	addi     r4, r1, 8
-	stw      r5, 0x48(r1)
-	lfs      f0, lbl_8051A7F8@sda21(r2)
-	lfd      f1, 0x48(r1)
-	stw      r0, 0x54(r1)
-	fsubs    f1, f1, f2
-	lwz      r3, 8(r29)
-	stw      r5, 0x50(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x50(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x58(r1)
-	lwz      r0, 0x5c(r1)
-	slwi     r0, r0, 2
-	lwzx     r0, r4, r0
-	stw      r0, 0(r3)
-
-lbl_8024D0A8:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+			if (counter) {
+				int randIdx              = counter * randFloat();
+				mFixObjGens[FIXNODE_Pod] = genList[randIdx];
+			}
+		}
+	}
 }
 
 /*
@@ -898,7 +459,7 @@ lbl_8024D0A8:
  * Address:	8024D0C4
  * Size:	0001B8
  */
-void Cave::RandMapScore::setVersusOnyon()
+void RandMapScore::setVersusOnyon()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1033,88 +594,31 @@ lbl_8024D25C:
  * Address:	8024D27C
  * Size:	0000FC
  */
-void Cave::RandMapScore::getMaxScoreRoomMapNode(Game::Cave::MapNode*, Game::Cave::BaseGen**)
+MapNode* RandMapScore::getMaxScoreRoomMapNode(MapNode* mapNode, BaseGen** maxScoreGen)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r25, r4
-	  mr        r26, r5
-	  li        r31, 0
-	  li        r30, 0
-	  lwz       r3, 0x0(r3)
-	  lwz       r3, 0x28(r3)
-	  lwz       r29, 0x10(r3)
-	  b         .loc_0xDC
+	MapNode* maxScoreNode = nullptr;
+	int maxScore          = 0;
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
+	{
+		if (currNode != mapNode && currNode->mUnitInfo->getUnitKind() == 1) {
+			int nodeScore = currNode->getNodeScore() + 10;
+			BaseGen* gen  = currNode->mUnitInfo->getBaseGen();
+			if (gen) {
+				FOREACH_NODE(BaseGen, gen->mChild, currGen)
+				{
+					if (currGen->mSpawnType == BaseGen::Start) {
+						if (nodeScore > maxScore || (nodeScore == maxScore && randWeightFloat(1.0f) < 0.5f)) {
+							*maxScoreGen = currGen;
+							maxScoreNode = currNode;
+							maxScore     = nodeScore;
+						}
+					}
+				}
+			}
+		}
+	}
 
-	.loc_0x30:
-	  cmplw     r29, r25
-	  beq-      .loc_0xD8
-	  lwz       r3, 0x18(r29)
-	  bl        -0xA740
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0xD8
-	  mr        r3, r29
-	  bl        -0x9914
-	  addi      r28, r3, 0xA
-	  lwz       r3, 0x18(r29)
-	  bl        -0xA714
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD8
-	  lwz       r27, 0x10(r3)
-	  b         .loc_0xD0
-
-	.loc_0x6C:
-	  lwz       r0, 0x18(r27)
-	  cmpwi     r0, 0x7
-	  bne-      .loc_0xCC
-	  cmpw      r28, r30
-	  bgt-      .loc_0xC0
-	  bne-      .loc_0xCC
-	  bl        -0x183D60
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x3B60(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x3B58(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x3B68(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, -0x3B54(r2)
-	  fmuls     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xCC
-
-	.loc_0xC0:
-	  stw       r27, 0x0(r26)
-	  mr        r31, r29
-	  mr        r30, r28
-
-	.loc_0xCC:
-	  lwz       r27, 0x4(r27)
-
-	.loc_0xD0:
-	  cmplwi    r27, 0
-	  bne+      .loc_0x6C
-
-	.loc_0xD8:
-	  lwz       r29, 0x4(r29)
-
-	.loc_0xDC:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x30
-	  mr        r3, r31
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	return maxScoreNode;
 }
 
 /*
@@ -1122,7 +626,7 @@ void Cave::RandMapScore::getMaxScoreRoomMapNode(Game::Cave::MapNode*, Game::Cave
  * Address:	8024D378
  * Size:	0003B0
  */
-void Cave::RandMapScore::calcNodeScore(Game::Cave::MapNode*)
+void RandMapScore::calcNodeScore(MapNode*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1431,32 +935,9 @@ lbl_8024D714:
  * Address:	8024D728
  * Size:	000048
  */
-void Cave::RandMapScore::copyNodeScore()
+void RandMapScore::copyNodeScore()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r3, 0(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_8024D754
-
-lbl_8024D748:
-	mr       r3, r31
-	bl       copyNodeScoreToVersusScore__Q34Game4Cave7MapNodeFv
-	lwz      r31, 4(r31)
-
-lbl_8024D754:
-	cmplwi   r31, 0
-	bne      lbl_8024D748
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode) { currNode->copyNodeScoreToVersusScore(); }
 }
 
 /*
@@ -1464,53 +945,17 @@ lbl_8024D754:
  * Address:	8024D770
  * Size:	00008C
  */
-void Cave::RandMapScore::subNodeScore()
+void RandMapScore::subNodeScore()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_8024D7DC
-
-lbl_8024D798:
-	mr       r3, r31
-	bl       subNodeScoreToVersusScore__Q34Game4Cave7MapNodeFv
-	lwz      r3, 4(r30)
-	lwz      r0, 0xc(r3)
-	cmplw    r31, r0
-	bne      lbl_8024D7C0
-	mr       r3, r31
-	bl       getVersusScore__Q34Game4Cave7MapNodeFv
-	stw      r3, 0x10(r30)
-	b        lbl_8024D7D8
-
-lbl_8024D7C0:
-	lwz      r0, 0x10(r3)
-	cmplw    r31, r0
-	bne      lbl_8024D7D8
-	mr       r3, r31
-	bl       getVersusScore__Q34Game4Cave7MapNodeFv
-	stw      r3, 0xc(r30)
-
-lbl_8024D7D8:
-	lwz      r31, 4(r31)
-
-lbl_8024D7DC:
-	cmplwi   r31, 0
-	bne      lbl_8024D798
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
+	{
+		currNode->subNodeScoreToVersusScore();
+		if (currNode == getFixObjNode(FIXNODE_VsRedOnyon)) {
+			mVersusLowScore = currNode->getVersusScore();
+		} else if (currNode == getFixObjNode(FIXNODE_VsBlueOnyon)) {
+			mVersusHighScore = currNode->getVersusScore();
+		}
+	}
 }
 
 /*
@@ -1518,39 +963,13 @@ lbl_8024D7DC:
  * Address:	8024D7FC
  * Size:	000064
  */
-void Cave::RandMapScore::setMapNodeScore(Game::Cave::MapNode*, int)
+void RandMapScore::setMapNodeScore(MapNode* mapNode, int score)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r4
-	mr       r3, r30
-	bl       getEnemyScore__Q34Game4Cave7MapNodeFv
-	add      r31, r31, r3
-	mr       r3, r30
-	bl       getNodeScore__Q34Game4Cave7MapNodeFv
-	cmpwi    r3, 0
-	blt      lbl_8024D83C
-	cmpw     r3, r31
-	ble      lbl_8024D848
-
-lbl_8024D83C:
-	mr       r3, r30
-	mr       r4, r31
-	bl       setNodeScore__Q34Game4Cave7MapNodeFi
-
-lbl_8024D848:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	score += mapNode->getEnemyScore();
+	int nodeScore = mapNode->getNodeScore();
+	if (nodeScore < 0 || nodeScore > score) {
+		mapNode->setNodeScore(score);
+	}
 }
 
 /*
@@ -1558,7 +977,7 @@ lbl_8024D848:
  * Address:	8024D860
  * Size:	0003BC
  */
-void Cave::RandMapScore::setChallengeFixObjNormal()
+void RandMapScore::setChallengeFixObjNormal()
 {
 	/*
 	stwu     r1, -0x1880(r1)
@@ -1853,7 +1272,7 @@ lbl_8024DC08:
  * Address:	8024DC1C
  * Size:	000324
  */
-void Cave::RandMapScore::setChallengeFixObjHard()
+void RandMapScore::setChallengeFixObjHard()
 {
 	/*
 	stwu     r1, -0x1070(r1)
@@ -2108,49 +1527,26 @@ lbl_8024DF2C:
  * Address:	8024DF40
  * Size:	000064
  */
-void Cave::RandMapScore::isGoalSetHard()
+bool RandMapScore::isGoalSetHard()
 {
-	/*
-	lwz      r3, 0(r3)
-	lwz      r0, 4(r3)
-	cmpwi    r0, 2
-	beq      lbl_8024DF84
-	bge      lbl_8024DF64
-	cmpwi    r0, 0
-	beq      lbl_8024DF74
-	bge      lbl_8024DF7C
-	b        lbl_8024DF9C
+	switch (mGenerator->mRandItemType) {
+	case 0:
+		return false;
 
-lbl_8024DF64:
-	cmpwi    r0, 4
-	beq      lbl_8024DF94
-	bge      lbl_8024DF9C
-	b        lbl_8024DF8C
+	case 1:
+		return true;
 
-lbl_8024DF74:
-	li       r3, 0
-	blr
+	case 2:
+		return false;
 
-lbl_8024DF7C:
-	li       r3, 1
-	blr
+	case 3:
+		return true;
 
-lbl_8024DF84:
-	li       r3, 0
-	blr
+	case 4:
+		return true;
+	}
 
-lbl_8024DF8C:
-	li       r3, 1
-	blr
-
-lbl_8024DF94:
-	li       r3, 1
-	blr
-
-lbl_8024DF9C:
-	li       r3, 0
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -2158,7 +1554,7 @@ lbl_8024DF9C:
  * Address:	8024DFA4
  * Size:	000128
  */
-void Cave::RandMapScore::isFixObjSet(Game::Cave::MapNode*, Game::Cave::BaseGen*)
+bool RandMapScore::isFixObjSet(MapNode*, BaseGen*)
 {
 	/*
 	lwz      r7, 4(r3)
@@ -2251,103 +1647,5 @@ lbl_8024E0C4:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	8024E0CC
- * Size:	000070
- */
-Cave::FixObjNode::~FixObjNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8024E120
-	lis      r4, __vt__Q34Game4Cave10FixObjNode@ha
-	addi     r0, r4, __vt__Q34Game4Cave10FixObjNode@l
-	stw      r0, 0(r30)
-	beq      lbl_8024E110
-	lis      r5, __vt__Q24Game16ObjectLayoutNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game16ObjectLayoutNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8024E110:
-	extsh.   r0, r31
-	ble      lbl_8024E120
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8024E120:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8024E13C
- * Size:	000008
- */
-u32 Cave::FixObjNode::getObjectId() { return 0x1; }
-
-/*
- * --INFO--
- * Address:	8024E144
- * Size:	000008
- */
-void Cave::FixObjNode::getObjectType()
-{
-	/*
-	lwz      r3, 0x18(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8024E14C
- * Size:	000008
- */
-u32 Cave::FixObjNode::getBirthCount() { return 0x1; }
-
-/*
- * --INFO--
- * Address:	8024E154
- * Size:	000008
- */
-void Cave::FixObjNode::getDirection()
-{
-	/*
-	lfs      f1, 0x1c(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8024E15C
- * Size:	000014
- */
-void Cave::FixObjNode::getBirthPosition(float&, float&)
-{
-	/*
-	lfs      f0, 0x20(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x28(r3)
-	stfs     f0, 0(r5)
-	blr
-	*/
-}
+} // namespace Cave
 } // namespace Game

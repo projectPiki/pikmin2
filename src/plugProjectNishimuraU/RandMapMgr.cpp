@@ -87,8 +87,8 @@ void RandMapMgr::create()
 	int y;
 	mRandMapUnit->getTextureSize(x, y);
 
-	x <<= 3;
-	y <<= 3;
+	x *= 8;
+	y *= 8;
 
 	sys->heapStatusStart("Radar Map Texture", nullptr);
 	mRadarMapTexture                          = new JUTTexture(x, y, GX_TF_I4);

@@ -209,6 +209,14 @@ struct RandMapDraw {
 };
 
 struct RandMapScore {
+	enum FixObjNodeTypes {
+		FIXNODE_Pod         = 0,
+		FIXNODE_Hole        = 1,
+		FIXNODE_Fountain    = 2,
+		FIXNODE_VsRedOnyon  = 3,
+		FIXNODE_VsBlueOnyon = 4,
+	};
+
 	RandMapScore(MapUnitGenerator*);
 
 	void setMapUnitScore();
@@ -216,7 +224,7 @@ struct RandMapScore {
 	void setGoalSlot();
 	void makeObjectLayout(MapNode*, ObjectLayout*);
 	MapNode* getFixObjNode(int);
-	void getFixObjGen(int);
+	BaseGen* getFixObjGen(int);
 	void getGlobalPosition(int, Vector3f&);
 	int getVersusHighScore();
 	int getVersusLowScore();
@@ -226,7 +234,7 @@ struct RandMapScore {
 	void setStartMapNodeScore(MapNode*);
 	void setChallengePod();
 	void setVersusOnyon();
-	void getMaxScoreRoomMapNode(MapNode*, BaseGen**);
+	MapNode* getMaxScoreRoomMapNode(MapNode*, BaseGen**);
 	void calcNodeScore(MapNode*);
 	void copyNodeScore();
 	void subNodeScore();
@@ -235,10 +243,11 @@ struct RandMapScore {
 	void setChallengeFixObjHard();
 	bool isGoalSetHard();
 	bool isFixObjSet(MapNode*, BaseGen*);
+	MapNode* getRandRoomMapNode();
 
 	MapUnitGenerator* mGenerator; // _00
-	MapNode** mFixObjNodes;       // _04, array of 5 map nodes
-	BaseGen** mFixObjGens;        // _08, array of 5 gens
+	MapNode** mFixObjNodes;       // _04, array of 5 map nodes, see FixObjNodeTypes enum
+	BaseGen** mFixObjGens;        // _08, array of 5 gens, see FixObjNodeTypes enum
 	u32 mVersusHighScore;         // _0C
 	u32 mVersusLowScore;          // _10
 };

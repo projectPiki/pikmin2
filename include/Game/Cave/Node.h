@@ -78,12 +78,25 @@ struct DoorNode : public CNode {
  * @size{0x18}
  */
 struct FixObjNode : public ObjectLayoutNode {
-	virtual ~FixObjNode() { }                  // _08 (weak)
-	virtual int getObjectId();                 // _10 (weak)
-	virtual u32 getObjectType();               // _14 (weak)
-	virtual int getBirthCount();               // _18 (weak)
-	virtual f32 getDirection();                // _1C (weak)
-	virtual void getBirthPosition(f32&, f32&); // _24 (weak)
+	inline FixObjNode(int objType)
+	    : mObjectType(objType)
+	{
+	}
+
+	virtual ~FixObjNode() { }                           // _08 (weak)
+	virtual int getObjectId() { return 1; }             // _10 (weak)
+	virtual u32 getObjectType() { return mObjectType; } // _14 (weak)
+	virtual int getBirthCount() { return 1; }           // _18 (weak)
+	virtual f32 getDirection() { return mDirection; }   // _1C (weak)
+	virtual void getBirthPosition(f32& x, f32& y)       // _24 (weak)
+	{
+		x = mPosition.x;
+		y = mPosition.z;
+	}
+
+	u32 mObjectType;    // _18
+	f32 mDirection;     // _1C
+	Vector3f mPosition; // _20
 };
 
 /**
@@ -197,11 +210,11 @@ struct MapNode : public CNode {
 	bool isDoorClose(int);
 	void resetDoorScore();
 	void setDoorScore(int, int);
-	void isDoorScoreSetDone(int);
+	bool isDoorScoreSetDone(int);
 	DoorNode* getDoorNode(int);
-	void getAdjustNode(int);
+	AdjustNode* getAdjustNode(int);
 	bool isGateSetDoor(int);
-	void getGateScore(int);
+	int getGateScore(int);
 	void setEnemyScore();
 	void setNodeScore(int);
 	void copyNodeScoreToVersusScore();
@@ -209,9 +222,9 @@ struct MapNode : public CNode {
 	void draw(f32, f32, f32);
 	int getNodeOffsetX();
 	int getNodeOffsetY();
-	void getEnemyScore();
+	int getEnemyScore();
 	int getNodeScore();
-	void getVersusScore();
+	int getVersusScore();
 	char* getUnitName();
 	void getNodeCentreOffset(f32&, f32&);
 	int getDirection();
