@@ -27,6 +27,14 @@ struct Adjust {
  * @size{0xC}
  */
 struct AdjustInfo {
+	AdjustInfo();
+
+	inline void resetDoor()
+	{
+		mNode           = nullptr;
+		mBirthDoorIndex = -1;
+	}
+
 	MapNode* mNode;      // _00
 	int mBirthDoorIndex; // _04
 	int mDoorScore;      // _08
@@ -199,13 +207,13 @@ struct MapUnits {
 struct MapNode : public CNode {
 	MapNode(UnitInfo* info = nullptr);
 
-	virtual ~MapNode(); // _08 (weak)
+	virtual ~MapNode() { } // _08 (weak)
 
 	void setOffset(int, int);
 	CardinalDirection getDoorDirect(int);
-	int getDoorOffset(int, int&, int&);
-	void isDoorSet(Game::Cave::DoorNode*, int, int, int);
-	void setDoorClose(int, Game::Cave::MapNode*, int);
+	void getDoorOffset(int, int&, int&);
+	bool isDoorSet(DoorNode*, int, int, int);
+	void setDoorClose(int, MapNode*, int);
 	void detachDoorClose();
 	bool isDoorClose(int);
 	void resetDoorScore();
@@ -229,22 +237,19 @@ struct MapNode : public CNode {
 	void getNodeCentreOffset(f32&, f32&);
 	int getDirection();
 	Vector3f getBaseGenGlobalPosition(BaseGen*);
-	void getDoorGlobalPosition(int);
+	Vector3f getDoorGlobalPosition(int);
 	f32 getBaseGenGlobalDirection(BaseGen*);
-	void getDoorGlobalDirection(int);
+	f32 getDoorGlobalDirection(int);
 	int getNumDoors();
 
 	inline MapNode* getChild() { return static_cast<MapNode*>(mChild); }
 
 	inline MapNode* getNext() { return static_cast<MapNode*>(mNext); }
 
-	UnitInfo* mUnitInfo; // _18
-
-	// types are EnemyNode, GateNode, ItemNode;
-	ObjectLayoutNode* mEnemyNode; // _1C
-	ObjectLayoutNode* mGateNode;  // _20
-	ObjectLayoutNode* mItemNode;  // _24
-
+	UnitInfo* mUnitInfo;     // _18
+	EnemyNode* mEnemyNode;   // _1C
+	GateNode* mGateNode;     // _20
+	ItemNode* mItemNode;     // _24
 	AdjustInfo* mAdjustInfo; // _28, array of AdjustInfos
 	int mXGridOffset;        // _2C
 	int mYGridOffset;        // _30
