@@ -42,7 +42,7 @@ void RandMapDraw::radarMapPartsOpen(Vector3f& pos)
 				MapNode* currMapNode = childNode->mAdjustInfo[i].mNode;
 
 				// If the node has a door that leads to a dead end, we've discovered it too
-				if ((placedMapNodes == currMapNode->mParent) && (currMapNode->mUnitInfo->getUnitKind() == 0)) {
+				if ((placedMapNodes == currMapNode->mParent) && (currMapNode->mUnitInfo->getUnitKind() == UNITKIND_Cap)) {
 					currMapNode->del();
 					visitedNodes->add(currMapNode);
 				}

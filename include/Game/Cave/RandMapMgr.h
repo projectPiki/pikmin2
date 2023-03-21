@@ -215,6 +215,7 @@ struct RandMapScore {
 		FIXNODE_Fountain    = 2,
 		FIXNODE_VsRedOnyon  = 3,
 		FIXNODE_VsBlueOnyon = 4,
+		FIXNODE_Count, // 5
 	};
 
 	RandMapScore(MapUnitGenerator*);

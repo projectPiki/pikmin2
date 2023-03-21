@@ -6,13 +6,13 @@
 #include "Dolphin/rand.h"
 
 namespace Game {
-
+namespace Cave {
 /*
  * --INFO--
  * Address:	8029EF0C
  * Size:	00005C
  */
-Game::Cave::RandPlantUnit::RandPlantUnit(Game::Cave::MapUnitGenerator* generator)
+RandPlantUnit::RandPlantUnit(MapUnitGenerator* generator)
 {
 	// Constructor for RandPlantUnit
 	//     - takes a MapUnitGenerator as input
@@ -31,7 +31,7 @@ Game::Cave::RandPlantUnit::RandPlantUnit(Game::Cave::MapUnitGenerator* generator
 	for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->mNext) {
 
 		// if TekiInfo exists and the Teki type is 6 (plant), add its weight to desiredPlantCount
-		if ((currEnemyNode->mEnemyUnit->mTekiInfo) && (currEnemyNode->mEnemyUnit->mTekiInfo->mType == 6)) {
+		if ((currEnemyNode->mEnemyUnit->mTekiInfo) && (currEnemyNode->mEnemyUnit->mTekiInfo->mType == BaseGen::Plant)) {
 			mDesiredPlantCount += currEnemyNode->mEnemyUnit->mTekiInfo->mWeight;
 		}
 	}
@@ -88,7 +88,7 @@ void Game::Cave::RandPlantUnit::setPlantSlot()
  * Address:	8029F044
  * Size:	000134
  */
-Game::Cave::MapNode* Game::Cave::RandPlantUnit::getPlantSetMapNode(Game::Cave::BaseGen** baseGenOut)
+MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** baseGenOut)
 {
 	// make list of EMPTY plant spawns and pick one at random
 	// returns mapnode of randomly selected plant spawn and puts pointer to basegen for plant in baseGenOut
@@ -137,7 +137,7 @@ Game::Cave::MapNode* Game::Cave::RandPlantUnit::getPlantSetMapNode(Game::Cave::B
  * Address:	8029F178
  * Size:	000068
  */
-Game::Cave::EnemyUnit* Game::Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseGen* plantBaseGen)
+EnemyUnit* RandPlantUnit::getPlantUnit(BaseGen* plantBaseGen)
 {
 	// gets the (next) plant unit
 
@@ -150,7 +150,7 @@ Game::Cave::EnemyUnit* Game::Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseG
 		EnemyNode* currEnemyNode = (EnemyNode*)mGenerator->mEnemyNodeA->mChild;
 		for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->mNext) {
 			// if TekiInfo exists and Teki type = 6 (plant), add weight to desiredPlantCount
-			if (currEnemyNode->mEnemyUnit->mTekiInfo && (currEnemyNode->mEnemyUnit->mTekiInfo->mType == 6)) {
+			if (currEnemyNode->mEnemyUnit->mTekiInfo && (currEnemyNode->mEnemyUnit->mTekiInfo->mType == BaseGen::Plant)) {
 				desiredPlantCount += currEnemyNode->mEnemyUnit->mTekiInfo->mWeight;
 
 				// if we've gotten further than currentPlantCount, return plant
@@ -161,7 +161,7 @@ Game::Cave::EnemyUnit* Game::Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseG
 		}
 	}
 	// if BaseGen was null, return null ptr
-	return 0;
+	return nullptr;
 }
 
 /*
@@ -169,7 +169,7 @@ Game::Cave::EnemyUnit* Game::Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseG
  * Address:	8029F1E0
  * Size:	000048
  */
-bool Game::Cave::RandPlantUnit::isPlantSet(Game::Cave::MapNode* testMapNode, Game::Cave::BaseGen* testBaseGen)
+bool RandPlantUnit::isPlantSet(MapNode* testMapNode, BaseGen* testBaseGen)
 {
 	// check if there's no plant
 	// returns 0 if a plant exists in testMapNode with given testBaseGen
@@ -187,12 +187,12 @@ bool Game::Cave::RandPlantUnit::isPlantSet(Game::Cave::MapNode* testMapNode, Gam
 			}
 		}
 		// no more enemy nodes to check, we have free space, so return true
-		// (this is a stupid control flow but it matches)
-		goto end_section;
+
 	} else { // given BaseGen doesn't exist, return false
 		return false;
 	}
-end_section: // don't ask
+
 	return true;
 }
+} // namespace Cave
 } // namespace Game

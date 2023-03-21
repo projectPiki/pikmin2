@@ -52,6 +52,13 @@ struct AdjustNode;
 struct MapUnits;
 struct MapNode;
 
+enum UnitKind {
+	UNITKIND_Cap      = 0,
+	UNITKIND_Room     = 1,
+	UNITKIND_Corridor = 2,
+	UNITKIND_Count, // 3
+};
+
 /**
  * @size{0x18}
  */

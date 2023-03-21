@@ -14,10 +14,10 @@ RandMapScore::RandMapScore(MapUnitGenerator* generator)
 	mGenerator       = generator;
 	mVersusHighScore = 0;
 	mVersusLowScore  = 0;
-	mFixObjNodes     = new MapNode*[5];
-	mFixObjGens      = new BaseGen*[5];
+	mFixObjNodes     = new MapNode*[FIXNODE_Count];
+	mFixObjGens      = new BaseGen*[FIXNODE_Count];
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < FIXNODE_Count; i++) {
 		mFixObjNodes[i] = nullptr;
 		mFixObjGens[i]  = nullptr;
 	}
@@ -78,9 +78,10 @@ void RandMapScore::setGoalSlot()
  */
 void RandMapScore::makeObjectLayout(MapNode* mapNode, ObjectLayout* layout)
 {
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < FIXNODE_Count; i++) {
 		if (mapNode == mFixObjNodes[i]) {
-			int layoutTypes[5]       = { OBJLAYOUT_Pod, OBJLAYOUT_Hole, OBJLAYOUT_Fountain, OBJLAYOUT_VsRedOnyon, OBJLAYOUT_VsBlueOnyon };
+			int layoutTypes[FIXNODE_Count]
+			    = { OBJLAYOUT_Pod, OBJLAYOUT_Hole, OBJLAYOUT_Fountain, OBJLAYOUT_VsRedOnyon, OBJLAYOUT_VsBlueOnyon };
 			FixObjNode* rootObjNode  = new FixObjNode(layoutTypes[i]);
 			FixObjNode* childObjNode = new FixObjNode(layoutTypes[i]);
 
@@ -412,7 +413,22 @@ lbl_8024CF64:
  */
 MapNode* RandMapScore::getRandRoomMapNode()
 {
-	// UNUSED FUNCTION
+	int counter = 0;
+	MapNode* mapList[16];
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
+	{
+		if (currNode->mUnitInfo->getUnitKind() == UNITKIND_Room) {
+			mapList[counter] = currNode;
+			counter++;
+		}
+	}
+
+	MapNode* targetNode;
+	if (counter) {
+		return mapList[(int)(counter * randFloat())];
+	}
+
+	return nullptr;
 }
 
 /*
@@ -427,7 +443,7 @@ void RandMapScore::setChallengePod()
 		int counter = 0;
 		FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
 		{
-			if (currNode->mUnitInfo->getUnitKind() == 1) {
+			if (currNode->mUnitInfo->getUnitKind() == UNITKIND_Room) {
 				mFixObjNodes[FIXNODE_Pod] = currNode;
 				break;
 			}
@@ -461,132 +477,32 @@ void RandMapScore::setChallengePod()
  */
 void RandMapScore::setVersusOnyon()
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stw      r31, 0x7c(r1)
-	mr       r31, r3
-	stw      r30, 0x78(r1)
-	stw      r29, 0x74(r1)
-	stw      r28, 0x70(r1)
-	lwz      r3, 4(r3)
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8024D25C
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_8024D25C
-	lwz      r3, 0(r31)
-	addi     r28, r1, 0x18
-	li       r29, 0
-	lwz      r3, 0x28(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_8024D138
 
-lbl_8024D118:
-	lwz      r3, 0x18(r30)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_8024D134
-	stw      r30, 0(r28)
-	addi     r28, r28, 4
-	addi     r29, r29, 1
+	if (!getFixObjNode(FIXNODE_VsRedOnyon) && !getFixObjNode(FIXNODE_VsBlueOnyon)) {
+		MapNode* targetNode    = getRandRoomMapNode();
+		MapNode* onyonNodes[2] = { nullptr, nullptr };
+		BaseGen* onyonGens[2]  = { nullptr, nullptr };
 
-lbl_8024D134:
-	lwz      r30, 4(r30)
+		if (targetNode) {
+			calcNodeScore(targetNode);
 
-lbl_8024D138:
-	cmplwi   r30, 0
-	bne      lbl_8024D118
-	cmpwi    r29, 0
-	beq      lbl_8024D1A4
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x5c(r1)
-	xoris    r0, r29, 0x8000
-	lfd      f2, lbl_8051A800@sda21(r2)
-	addi     r3, r1, 0x18
-	stw      r4, 0x58(r1)
-	lfs      f0, lbl_8051A7F8@sda21(r2)
-	lfd      f1, 0x58(r1)
-	stw      r0, 0x64(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x60(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x60(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x68(r1)
-	lwz      r0, 0x6c(r1)
-	slwi     r0, r0, 2
-	lwzx     r30, r3, r0
-	b        lbl_8024D1A8
+			onyonNodes[0] = getMaxScoreRoomMapNode(targetNode, &onyonGens[0]);
+			calcNodeScore(onyonNodes[0]);
 
-lbl_8024D1A4:
-	li       r30, 0
+			copyNodeScore();
 
-lbl_8024D1A8:
-	lwz      r5, lbl_80520EA8@sda21(r2)
-	cmplwi   r30, 0
-	lwz      r4, lbl_80520EAC@sda21(r2)
-	lwz      r3, lbl_80520EB0@sda21(r2)
-	lwz      r0, lbl_80520EB4@sda21(r2)
-	stw      r5, 0x10(r1)
-	stw      r4, 0x14(r1)
-	stw      r3, 8(r1)
-	stw      r0, 0xc(r1)
-	beq      lbl_8024D25C
-	mr       r3, r31
-	mr       r4, r30
-	bl       calcNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode
-	mr       r3, r31
-	mr       r4, r30
-	addi     r5, r1, 8
-	bl
-getMaxScoreRoomMapNode__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGen
-	mr       r4, r3
-	mr       r3, r31
-	stw      r4, 0x10(r1)
-	bl       calcNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode
-	mr       r3, r31
-	bl       copyNodeScore__Q34Game4Cave12RandMapScoreFv
-	lwz      r4, 0x10(r1)
-	addi     r5, r1, 0xc
-	mr       r3, r31
-	bl
-getMaxScoreRoomMapNode__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGen
-	mr       r30, r3
-	mr       r3, r31
-	stw      r30, 0x14(r1)
-	mr       r4, r30
-	bl       calcNodeScore__Q34Game4Cave12RandMapScoreFPQ34Game4Cave7MapNode
-	lwz      r0, 0x10(r1)
-	mr       r3, r31
-	lwz      r4, 4(r31)
-	stw      r0, 0xc(r4)
-	lwz      r4, 4(r31)
-	stw      r30, 0x10(r4)
-	lwz      r0, 8(r1)
-	lwz      r4, 8(r31)
-	stw      r0, 0xc(r4)
-	lwz      r0, 0xc(r1)
-	lwz      r4, 8(r31)
-	stw      r0, 0x10(r4)
-	bl       subNodeScore__Q34Game4Cave12RandMapScoreFv
+			onyonNodes[1] = getMaxScoreRoomMapNode(onyonNodes[0], &onyonGens[1]);
+			calcNodeScore(onyonNodes[1]);
 
-lbl_8024D25C:
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	lwz      r29, 0x74(r1)
-	lwz      r28, 0x70(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+			mFixObjNodes[FIXNODE_VsRedOnyon]  = onyonNodes[0];
+			mFixObjNodes[FIXNODE_VsBlueOnyon] = onyonNodes[1];
+
+			mFixObjGens[FIXNODE_VsRedOnyon]  = onyonGens[0];
+			mFixObjGens[FIXNODE_VsBlueOnyon] = onyonGens[1];
+
+			subNodeScore();
+		}
+	}
 }
 
 /*
@@ -600,7 +516,7 @@ MapNode* RandMapScore::getMaxScoreRoomMapNode(MapNode* mapNode, BaseGen** maxSco
 	int maxScore          = 0;
 	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
 	{
-		if (currNode != mapNode && currNode->mUnitInfo->getUnitKind() == 1) {
+		if (currNode != mapNode && currNode->mUnitInfo->getUnitKind() == UNITKIND_Room) {
 			int nodeScore = currNode->getNodeScore() + 10;
 			BaseGen* gen  = currNode->mUnitInfo->getBaseGen();
 			if (gen) {
@@ -626,8 +542,18 @@ MapNode* RandMapScore::getMaxScoreRoomMapNode(MapNode* mapNode, BaseGen** maxSco
  * Address:	8024D378
  * Size:	0003B0
  */
-void RandMapScore::calcNodeScore(MapNode*)
+void RandMapScore::calcNodeScore(MapNode* mapNode)
 {
+	clearRoomAndDoorScore();
+	setStartMapNodeScore(mapNode);
+	if (!isScoreSetDone()) {
+		for (int i = 0; i < 500; i++) {
+			setUnitAndDoorScore();
+			if (isScoreSetDone()) {
+				return;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -979,6 +905,95 @@ void RandMapScore::setMapNodeScore(MapNode* mapNode, int score)
  */
 void RandMapScore::setChallengeFixObjNormal()
 {
+	if (getFixObjNode(FIXNODE_Hole) || getFixObjNode(FIXNODE_Fountain)) {
+		return;
+	}
+
+	MapNode* placedNodes  = mGenerator->getPlacedNodes();
+	int fixObjIdx[2]      = { FIXNODE_Hole, FIXNODE_Fountain };
+	bool fixObjEnabled[2] = { false, false };
+
+	if (mGenerator->mIsFinalFloor) {
+		fixObjEnabled[0] = false;
+	} else if (!mGenerator->mHasEscapeFountain) {
+		fixObjEnabled[1] = false;
+	}
+
+	for (int i = 0; i < 2; i++) {
+		if (fixObjEnabled[i] && !getFixObjNode(fixObjIdx[i])) {
+			MapNode* mapList[512];
+			BaseGen* genList[512];
+			int scoreList[512];
+
+			int roomTypes[UNITKIND_Count] = { UNITKIND_Room, UNITKIND_Cap, UNITKIND_Corridor };
+			int counter                   = 0;
+			int tally                     = 0;
+			mapList[0]                    = nullptr;
+			// loop over room types
+			for (int j = 0; j < UNITKIND_Count; j++) {
+				if (!mapList[0] || j < 2) {
+					FOREACH_NODE(MapNode, placedNodes->mChild, currNode)
+					{
+						if (roomTypes[j] == currNode->mUnitInfo->getUnitKind()) {
+							f32 val;
+							if (currNode->getNodeScore() > 0) {
+								val = currNode->getNodeScore();
+								val = sqrtf(val);
+							} else {
+								val = 0.0f;
+							}
+
+							int score = (int)val + 10;
+
+							if (roomTypes[j] == UNITKIND_Room) {
+								BaseGen* gen = currNode->mUnitInfo->getBaseGen();
+								if (gen) {
+									FOREACH_NODE(BaseGen, gen->mChild, currGen)
+									{
+										if (currGen->mSpawnType == BaseGen::HoleOrGeyser && isFixObjSet(currNode, currGen)) {
+											scoreList[counter] = score;
+											tally += scoreList[counter];
+											mapList[counter] = currNode;
+											genList[counter] = currGen;
+											counter++;
+										}
+									}
+								}
+
+							} else if (roomTypes[j] == UNITKIND_Cap) {
+								if (strncmp(currNode->getUnitName(), "item", 4) == 0 && isFixObjSet(currNode, nullptr)) {
+									scoreList[counter] = score;
+									tally += scoreList[counter];
+									mapList[counter] = currNode;
+									genList[counter] = nullptr;
+									counter++;
+								}
+							} else if (isFixObjSet(currNode, nullptr)) {
+								scoreList[counter] = score;
+								tally += scoreList[counter];
+								mapList[counter] = currNode;
+								genList[counter] = nullptr;
+								counter++;
+							}
+						}
+					}
+				}
+			}
+
+			if (tally) {
+				int randIdx  = tally * randFloat();
+				int newTally = 0;
+				for (int k = 0; k < counter; k++) {
+					newTally += scoreList[k];
+					if (newTally > randIdx) {
+						mFixObjNodes[fixObjIdx[i]] = mapList[k];
+						mFixObjGens[fixObjIdx[i]]  = genList[k];
+						break;
+					}
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x1880(r1)
 	mflr     r0
@@ -1274,6 +1289,92 @@ lbl_8024DC08:
  */
 void RandMapScore::setChallengeFixObjHard()
 {
+	if (getFixObjNode(FIXNODE_Hole) || getFixObjNode(FIXNODE_Fountain)) {
+		return;
+	}
+
+	MapNode* placedNodes  = mGenerator->getPlacedNodes();
+	int fixObjIdx[2]      = { FIXNODE_Hole, FIXNODE_Fountain };
+	bool fixObjEnabled[2] = { false, false };
+
+	if (mGenerator->mIsFinalFloor) {
+		fixObjEnabled[0] = false;
+	} else if (!mGenerator->mHasEscapeFountain) {
+		fixObjEnabled[1] = false;
+	}
+
+	for (int i = 0; i < 2; i++) {
+		if (fixObjEnabled[i] && !getFixObjNode(fixObjIdx[i])) {
+			MapNode* mapList[512];
+			BaseGen* genList[512];
+			// int scoreList[512];
+
+			int roomTypes[UNITKIND_Count] = { UNITKIND_Room, UNITKIND_Cap, UNITKIND_Corridor };
+			int counter                   = 0;
+			mapList[0]                    = nullptr;
+			int maxScore                  = -1;
+			// loop over room types
+			for (int j = 0; j < UNITKIND_Count; j++) {
+				if (!mapList[0] || j < 2) {
+					FOREACH_NODE(MapNode, placedNodes->mChild, currNode)
+					{
+						if (roomTypes[j] == currNode->mUnitInfo->getUnitKind()) {
+							int score = currNode->getNodeScore();
+
+							if (roomTypes[j] == UNITKIND_Room) {
+								BaseGen* gen = currNode->mUnitInfo->getBaseGen();
+								if (gen) {
+									FOREACH_NODE(BaseGen, gen->mChild, currGen)
+									{
+										if (currGen->mSpawnType == BaseGen::HoleOrGeyser && isFixObjSet(currNode, currGen)) {
+											if (score >= maxScore) {
+												if (score > maxScore) {
+													counter  = 0;
+													maxScore = score;
+												}
+												mapList[counter] = currNode;
+												genList[counter] = currGen;
+												counter++;
+											}
+										}
+									}
+								}
+
+							} else if (roomTypes[j] == UNITKIND_Cap) {
+								if (strncmp(currNode->getUnitName(), "item", 4) == 0 && isFixObjSet(currNode, nullptr)) {
+									if (score >= maxScore) {
+										if (score > maxScore) {
+											counter  = 0;
+											maxScore = score;
+										}
+										mapList[counter] = currNode;
+										genList[counter] = nullptr;
+										counter++;
+									}
+								}
+							} else if (isFixObjSet(currNode, nullptr)) {
+								if (score >= maxScore) {
+									if (score > maxScore) {
+										counter  = 0;
+										maxScore = score;
+									}
+									mapList[counter] = currNode;
+									genList[counter] = nullptr;
+									counter++;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			if (counter) {
+				int randIdx                = counter * randFloat();
+				mFixObjNodes[fixObjIdx[i]] = mapList[randIdx];
+				mFixObjGens[fixObjIdx[i]]  = genList[randIdx];
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x1070(r1)
 	mflr     r0
@@ -1554,98 +1655,26 @@ bool RandMapScore::isGoalSetHard()
  * Address:	8024DFA4
  * Size:	000128
  */
-bool RandMapScore::isFixObjSet(MapNode*, BaseGen*)
+bool RandMapScore::isFixObjSet(MapNode* mapNode, BaseGen* baseGen)
 {
-	/*
-	lwz      r7, 4(r3)
-	lwz      r0, 0(r7)
-	cmplw    r4, r0
-	bne      lbl_8024E034
-	cmplwi   r5, 0
-	beq      lbl_8024E034
-	lwz      r6, 8(r3)
-	lwz      r6, 0(r6)
-	cmplwi   r6, 0
-	beq      lbl_8024E034
-	lfs      f1, 0x20(r6)
-	lfs      f0, 0x20(r5)
-	lfs      f3, 0x1c(r6)
-	fsubs    f4, f1, f0
-	lfs      f2, 0x1c(r5)
-	lfs      f1, 0x24(r6)
-	lfs      f0, 0x24(r5)
-	fsubs    f3, f3, f2
-	fmuls    f4, f4, f4
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_8051A81C@sda21(r2)
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8024E01C
-	ble      lbl_8024E020
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8024E020
+	// test 0 (pod/ship) separately
+	if (mapNode == getFixObjNode(FIXNODE_Pod) && baseGen && getFixObjGen(FIXNODE_Pod)) {
+		Vector3f fixPos  = getFixObjGen(FIXNODE_Pod)->mPosition;
+		Vector3f testPos = baseGen->mPosition;
+		Vector3f sep     = Vector3f(fixPos.y - testPos.y, fixPos.z - testPos.z, fixPos.x - testPos.x);
+		if (_length2(sep) < 150.0f) {
+			return false;
+		}
+	}
 
-lbl_8024E01C:
-	fmr      f1, f0
+	// test remaining fix obj nodes
+	for (int i = 1; i < FIXNODE_Count; i++) {
+		if (mapNode == getFixObjNode(i) && baseGen == getFixObjGen(i)) {
+			return false;
+		}
+	}
 
-lbl_8024E020:
-	lfs      f0, lbl_8051A834@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8024E034
-	li       r3, 0
-	blr
-
-lbl_8024E034:
-	lwz      r0, 4(r7)
-	cmplw    r4, r0
-	bne      lbl_8024E058
-	lwz      r6, 8(r3)
-	lwz      r0, 4(r6)
-	cmplw    r5, r0
-	bne      lbl_8024E058
-	li       r3, 0
-	blr
-
-lbl_8024E058:
-	lwz      r0, 8(r7)
-	cmplw    r4, r0
-	bne      lbl_8024E07C
-	lwz      r6, 8(r3)
-	lwz      r0, 8(r6)
-	cmplw    r5, r0
-	bne      lbl_8024E07C
-	li       r3, 0
-	blr
-
-lbl_8024E07C:
-	lwz      r0, 0xc(r7)
-	cmplw    r4, r0
-	bne      lbl_8024E0A0
-	lwz      r6, 8(r3)
-	lwz      r0, 0xc(r6)
-	cmplw    r5, r0
-	bne      lbl_8024E0A0
-	li       r3, 0
-	blr
-
-lbl_8024E0A0:
-	lwz      r0, 0x10(r7)
-	cmplw    r4, r0
-	bne      lbl_8024E0C4
-	lwz      r6, 8(r3)
-	lwz      r0, 0x10(r6)
-	cmplw    r5, r0
-	bne      lbl_8024E0C4
-	li       r3, 0
-	blr
-
-lbl_8024E0C4:
-	li       r3, 1
-	blr
-	*/
+	return true;
 }
 } // namespace Cave
 } // namespace Game

@@ -239,7 +239,7 @@ MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 
 	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currMapNode)
 	{
-		if (currMapNode->mUnitInfo->getUnitKind() == 1) {
+		if (currMapNode->mUnitInfo->getUnitKind() == UNITKIND_Room) {
 			int slotNum = getItemSlotNum(currMapNode);
 			if (slotNum) {
 				BaseGen* baseGen = currMapNode->mUnitInfo->getBaseGen();
@@ -590,7 +590,7 @@ MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 
 	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currMapNode)
 	{
-		if (currMapNode->mUnitInfo->getUnitKind() == 1) {
+		if (currMapNode->mUnitInfo->getUnitKind() == UNITKIND_Room) {
 			int currItemCount = static_cast<ItemNode*>(currMapNode->mItemNode)->getChildCount() + 1;
 			int currScore     = currMapNode->getNodeScore() / currItemCount;
 			BaseGen* baseGen  = currMapNode->mUnitInfo->getBaseGen();

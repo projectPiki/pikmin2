@@ -52,7 +52,7 @@ void RandCapEnemyUnit::setCapEnemySlot()
 
 	// Ground teki check
 	while (groundNode) {
-		if (groundNode->mUnitInfo->getUnitKind() == 0) { // make sure we're in a cap
+		if (groundNode->mUnitInfo->getUnitKind() == UNITKIND_Cap) { // make sure we're in a cap
 			char* unitName = groundNode->getUnitName();
 			// make sure no treasure/hole placed && make sure no ground cap teki already placed
 			if ((strncmp(unitName, "item", 4) == 0) && (mRandItemUnit->isGroundCapEnemySetDone(groundNode) == false)) {
@@ -66,7 +66,7 @@ void RandCapEnemyUnit::setCapEnemySlot()
 
 	// Falling teki check
 	while (fallingNode) {
-		if (fallingNode->mUnitInfo->getUnitKind() == 0) { // make sure we're in a cap
+		if (fallingNode->mUnitInfo->getUnitKind() == UNITKIND_Cap) { // make sure we're in a cap
 			char* unitName = fallingNode->getUnitName();
 			// make sure no treasure/hole placed && make sure no falling cap teki already placed
 			if ((strncmp(unitName, "item", 4) == 0) && (mRandItemUnit->isFallCapEnemySetDone(fallingNode) == false)) {
