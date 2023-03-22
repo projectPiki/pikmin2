@@ -1,5 +1,6 @@
 #include "Game/Cave/RandMapUnit.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include "Dolphin/rand.h"
 #include "types.h"
 
 namespace Game {
@@ -116,7 +117,7 @@ RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 {
 	mMapUnitGenerator    = generator;
 	MapNode* nodeArray   = mMapUnitGenerator->mMapNodeArr;
-	MapNode* placedNodes = mMapUnitGenerator->mPlacedMapNodes;
+	MapNode* placedNodes = mMapUnitGenerator->getPlacedNodes();
 
 	_24 = new int[3];
 
@@ -392,209 +393,79 @@ MapNode* RandMapUnit::getRandMapUnit()
  */
 void RandMapUnit::changeCapToRootLoopMapUnit()
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stmw     r20, 0x60(r1)
-	mr       r31, r3
-	addi     r30, r1, 8
-	li       r27, 0
-	lwz      r3, 0x20(r3)
-	lwz      r28, 0x10(r3)
-	lwz      r29, 0x28(r3)
-	lwz      r26, 0x90(r28)
-	b        lbl_802463F0
+	char* unitNames[16];
 
-lbl_80246380:
-	lwz      r3, 0x18(r26)
-	bl       getUnitSizeX__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_802463EC
-	lwz      r3, 0x18(r26)
-	bl       getUnitSizeY__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_802463EC
-	mr       r3, r26
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	cmpwi    r3, 2
-	bne      lbl_802463EC
-	mr       r3, r26
-	li       r4, 0
-	bl       getDoorDirect__Q34Game4Cave7MapNodeFi
-	cmpwi    r3, 0
-	bne      lbl_802463EC
-	mr       r3, r26
-	li       r4, 1
-	bl       getDoorDirect__Q34Game4Cave7MapNodeFi
-	cmpwi    r3, 2
-	bne      lbl_802463EC
-	lwz      r3, 0x18(r26)
-	bl       getUnitName__Q34Game4Cave8UnitInfoFv
-	stw      r3, 0(r30)
-	addi     r30, r30, 4
-	addi     r27, r27, 1
+	// MapNode* placedNodes;
+	MapNode* nodeArray   = mMapUnitGenerator->mMapNodeArr;
+	MapNode* placedNodes = mMapUnitGenerator->getPlacedNodes();
+	int nameCount        = 0;
+	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
+	{
+		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 1 && currNode->getNumDoors() == 2
+		    && currNode->getDoorDirect(0) == 0 && currNode->getDoorDirect(1) == 2) {
+			unitNames[nameCount] = currNode->mUnitInfo->getUnitName();
+			nameCount++;
+		}
+	}
 
-lbl_802463EC:
-	lwz      r26, 4(r26)
+	if (nameCount) {
+		FOREACH_NODE(MapNode, placedNodes->mChild, currNode)
+		{
+			if (currNode->mUnitInfo->getUnitKind() == UNITKIND_Cap) {
+				MapNode* tile = nullptr;
+				int X         = currNode->getNodeOffsetX();
+				int Y         = currNode->getNodeOffsetY();
 
-lbl_802463F0:
-	cmplwi   r26, 0
-	bne      lbl_80246380
-	cmpwi    r27, 0
-	beq      lbl_802465C0
-	lwz      r26, 0x10(r29)
-	b        lbl_802465B8
+				int newX = X;
+				int newY = Y;
 
-lbl_80246408:
-	lwz      r3, 0x18(r26)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 0
-	bne      lbl_802465B4
-	mr       r3, r26
-	li       r25, 0
-	bl       getNodeOffsetX__Q34Game4Cave7MapNodeFv
-	mr       r0, r3
-	mr       r3, r26
-	mr       r24, r0
-	bl       getNodeOffsetY__Q34Game4Cave7MapNodeFv
-	mr       r23, r3
-	mr       r22, r24
-	mr       r3, r26
-	li       r4, 0
-	mr       r21, r23
-	bl       getDoorDirect__Q34Game4Cave7MapNodeFi
-	mr       r30, r3
-	cmpwi    r30, 2
-	beq      lbl_80246488
-	bge      lbl_8024646C
-	cmpwi    r30, 0
-	beq      lbl_80246478
-	bge      lbl_80246480
-	b        lbl_80246494
+				int doorDirect = (int)currNode->getDoorDirect(0);
+				switch (doorDirect) {
+				case CD_UP:
+					newY++;
+					break;
 
-lbl_8024646C:
-	cmpwi    r30, 4
-	bge      lbl_80246494
-	b        lbl_80246490
+				case CD_RIGHT:
+					newX = X - 1;
+					break;
 
-lbl_80246478:
-	addi     r21, r21, 1
-	b        lbl_80246494
+				case CD_DOWN:
+					newY--;
+					break;
 
-lbl_80246480:
-	addi     r22, r24, -1
-	b        lbl_80246494
+				case CD_LEFT:
+					newX = X + 1;
+					break;
+				}
 
-lbl_80246488:
-	addi     r21, r21, -1
-	b        lbl_80246494
+				FOREACH_NODE(MapNode, placedNodes->mChild, otherNode)
+				{
+					if (currNode != otherNode && otherNode->mUnitInfo->getUnitKind() == UNITKIND_Corridor) {
+						if (otherNode->getNodeOffsetX() == newX && otherNode->getNodeOffsetY() == newY) {
+							tile = otherNode;
+							break;
+						}
+					}
+				}
 
-lbl_80246490:
-	addi     r22, r24, 1
+				if (tile) {
+					deleteMapNode(currNode);
+					deleteMapNode(tile);
 
-lbl_80246494:
-	lwz      r20, 0x10(r29)
-	b        lbl_802464E0
+					int randIdx    = nameCount * randFloat();
+					char* randName = unitNames[randIdx];
 
-lbl_8024649C:
-	cmplw    r26, r20
-	beq      lbl_802464DC
-	lwz      r3, 0x18(r20)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 2
-	bne      lbl_802464DC
-	mr       r3, r20
-	bl       getNodeOffsetX__Q34Game4Cave7MapNodeFv
-	cmpw     r22, r3
-	bne      lbl_802464DC
-	mr       r3, r20
-	bl       getNodeOffsetY__Q34Game4Cave7MapNodeFv
-	cmpw     r21, r3
-	bne      lbl_802464DC
-	mr       r25, r20
-	b        lbl_802464E8
-
-lbl_802464DC:
-	lwz      r20, 4(r20)
-
-lbl_802464E0:
-	cmplwi   r20, 0
-	bne      lbl_8024649C
-
-lbl_802464E8:
-	cmplwi   r25, 0
-	beq      lbl_802465B4
-	mr       r3, r31
-	mr       r4, r26
-	bl       deleteMapNode__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNode
-	mr       r3, r31
-	mr       r4, r25
-	bl       deleteMapNode__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNode
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x4c(r1)
-	xoris    r0, r27, 0x8000
-	lfd      f2, lbl_8051A770@sda21(r2)
-	addi     r3, r1, 8
-	stw      r4, 0x48(r1)
-	lfs      f0, lbl_8051A778@sda21(r2)
-	lfd      f1, 0x48(r1)
-	stw      r0, 0x54(r1)
-	fsubs    f1, f1, f2
-	lwz      r21, 0x90(r28)
-	stw      r4, 0x50(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x50(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x58(r1)
-	lwz      r0, 0x5c(r1)
-	slwi     r0, r0, 2
-	lwzx     r20, r3, r0
-	b        lbl_802465AC
-
-lbl_80246568:
-	lwz      r3, 0x18(r21)
-	bl       getUnitName__Q34Game4Cave8UnitInfoFv
-	cmplw    r3, r20
-	bne      lbl_802465A8
-	mr       r3, r21
-	li       r4, 0
-	bl       getDoorDirect__Q34Game4Cave7MapNodeFi
-	cmpw     r30, r3
-	bne      lbl_802465A8
-	lwz      r4, 0x18(r21)
-	mr       r3, r31
-	mr       r5, r24
-	mr       r6, r23
-	li       r7, 1
-	bl       addMap__Q34Game4Cave11RandMapUnitFPQ34Game4Cave8UnitInfoiib
-	b        lbl_802465C0
-
-lbl_802465A8:
-	lwz      r21, 4(r21)
-
-lbl_802465AC:
-	cmplwi   r21, 0
-	bne      lbl_80246568
-
-lbl_802465B4:
-	lwz      r26, 4(r26)
-
-lbl_802465B8:
-	cmplwi   r26, 0
-	bne      lbl_80246408
-
-lbl_802465C0:
-	lmw      r20, 0x60(r1)
-	lwz      r0, 0x94(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+					FOREACH_NODE(MapNode, nodeArray[2].mChild, anotherNode)
+					{
+						if (anotherNode->mUnitInfo->getUnitName() == randName && doorDirect == anotherNode->getDoorDirect(0)) {
+							addMap(anotherNode->mUnitInfo, X, Y, true);
+							return;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -604,6 +475,92 @@ lbl_802465C0:
  */
 void RandMapUnit::changeTwoToOneMapUnit()
 {
+	char* firstUnitNames[16];
+	int firstNamesCount  = 0;
+	int secondNamesCount = 0;
+
+	MapNode* nodeArray   = mMapUnitGenerator->mMapNodeArr;
+	MapNode* placedNodes = mMapUnitGenerator->mPlacedMapNodes;
+
+	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
+	{
+		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 1 && currNode->getNumDoors() == 2
+		    && currNode->getDoorDirect(0) == 0 && currNode->getDoorDirect(1) == 2) {
+			firstUnitNames[firstNamesCount] = currNode->mUnitInfo->getUnitName();
+			firstNamesCount++;
+		}
+	}
+
+	char* secondUnitNames[16];
+
+	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
+	{
+		if (currNode->mUnitInfo->getUnitSizeX() == 1 && currNode->mUnitInfo->getUnitSizeY() == 1 && currNode->getNumDoors() == 2
+		    && currNode->getDoorDirect(0) == 0 && currNode->getDoorDirect(1) == 2) {
+			secondUnitNames[secondNamesCount] = currNode->mUnitInfo->getUnitName();
+			secondNamesCount++;
+		}
+	}
+
+	if (firstNamesCount && secondNamesCount) {
+		MapNode* currNode = static_cast<MapNode*>(placedNodes->mChild);
+		while (currNode) {
+			MapNode* nextNode = static_cast<MapNode*>(currNode->mNext);
+			bool check        = false;
+			for (int i = 0; i < firstNamesCount; i++) {
+				if (currNode->mUnitInfo->getUnitName() == firstUnitNames[i]) {
+					check = true;
+				}
+			}
+
+			MapNode* targetNode = nullptr;
+			if (check) {
+				for (int i = 0; i < 2; i++) {
+					if (!targetNode && currNode->mAdjustInfo[i].mNode) {
+						for (int j = 0; j < firstNamesCount; j++) {
+							if (currNode->mAdjustInfo[i].mNode->mUnitInfo->getUnitName() == firstUnitNames[j]) {
+								targetNode = currNode->mAdjustInfo[i].mNode;
+								break;
+							}
+						}
+					}
+				}
+			}
+
+			if (targetNode) {
+				int X     = targetNode->getNodeOffsetX();
+				int currX = currNode->getNodeOffsetX();
+				if (currX < X) {
+					X = currX;
+				}
+
+				int Y     = targetNode->getNodeOffsetY();
+				int currY = currNode->getNodeOffsetY();
+				if (Y < currY) {
+					Y = currY;
+				}
+
+				int xDiff = (targetNode->getNodeOffsetX() != currNode->getNodeOffsetX());
+
+				deleteMapNode(currNode);
+				deleteMapNode(targetNode);
+
+				int randIdx    = secondNamesCount * randFloat();
+				char* randName = secondUnitNames[randIdx];
+				FOREACH_NODE(MapNode, nodeArray[2].mChild, anotherNode)
+				{
+					if (anotherNode->mUnitInfo->getUnitName() == randName && xDiff == anotherNode->getDoorDirect(0)) {
+						addMap(anotherNode->mUnitInfo, X, Y, true);
+						break;
+					}
+				}
+
+				nextNode = static_cast<MapNode*>(placedNodes->mChild);
+			}
+
+			currNode = nextNode;
+		}
+	}
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -881,6 +838,25 @@ lbl_80246920:
  */
 void RandMapUnit::setEditorMapUnit()
 {
+	EditMapUnit* editUnit = mMapUnitGenerator->getEditMapUnit();
+	MapNode* mapNode      = mMapUnitGenerator->getMapNode();
+
+	int editNo = editUnit->mEditNum;
+	if (editNo < 0) {
+		int count = editUnit->_04;
+		editNo    = count * randFloat();
+	}
+
+	int val = editUnit->_08[editNo] - 1;
+
+	for (int i = 0; i < editUnit->_08[editNo]; i++) {
+		FOREACH_NODE(MapNode, mapNode->mChild, currNode)
+		{
+			if (editUnit->_10[editNo][i] == currNode->getDirection() && strcmp(currNode->getUnitName(), editUnit->_0C[editNo][i]) == 0) {
+				addMap(currNode->mUnitInfo, editUnit->_14[editNo][i], editUnit->_18[editNo][i], i == val);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

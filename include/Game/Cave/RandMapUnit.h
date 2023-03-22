@@ -55,6 +55,9 @@ struct MapUnitGenerator {
 	inline MapNode* getStartNode() { return mMapNode->getChild(); }
 
 	inline MapNode* getMapNodeItem(int i) { return &mMapNodeArr[i]; }
+	inline MapNode* getMapNode() { return mMapNode; }
+
+	inline EditMapUnit* getEditMapUnit() { return mEditMapUnit; }
 
 	bool mIsFinalFloor;        // _00
 	bool mHasEscapeFountain;   // _01
