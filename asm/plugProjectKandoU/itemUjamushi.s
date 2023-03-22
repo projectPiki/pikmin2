@@ -5,125 +5,156 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80481D40:
+.obj lbl_80481D40, local
 	.skip 0xC
+.endobj lbl_80481D40
 .balign 4
-lbl_80481D4C:
+.obj lbl_80481D4C, local
 	.asciz "itemUjamushi"
+.endobj lbl_80481D4C
 .balign 4
-lbl_80481D5C:
+.obj lbl_80481D5C, local
 	.asciz "BoidParms"
+.endobj lbl_80481D5C
 .balign 4
-lbl_80481D68:
+.obj lbl_80481D68, local
 	.asciz "Cohension"
+.endobj lbl_80481D68
 .balign 4
-lbl_80481D74:
+.obj lbl_80481D74, local
 	.asciz "Alignment"
+.endobj lbl_80481D74
 .balign 4
-lbl_80481D80:
+.obj lbl_80481D80, local
 	.asciz "Separation"
+.endobj lbl_80481D80
 .balign 4
-lbl_80481D8C:
+.obj lbl_80481D8C, local
 	.asciz "Collision"
+.endobj lbl_80481D8C
 .balign 4
-lbl_80481D98:
+.obj lbl_80481D98, local
 	.asciz "MaxSpeed"
+.endobj lbl_80481D98
 .balign 4
-lbl_80481DA4:
+.obj lbl_80481DA4, local
 	.asciz "Distance"
+.endobj lbl_80481DA4
 .balign 4
-lbl_80481DB0:
+.obj lbl_80481DB0, local
 	.asciz "Rotation/s"
+.endobj lbl_80481DB0
 .balign 4
-lbl_80481DBC:
+.obj lbl_80481DBC, local
 	.asciz "RandomAngle"
+.endobj lbl_80481DBC
 .balign 4
-lbl_80481DC8:
+.obj lbl_80481DC8, local
 	.asciz "itemUjamushi.cpp"
+.endobj lbl_80481DC8
 .balign 4
-lbl_80481DDC:
+.obj lbl_80481DDC, local
 	.asciz "P2Assert"
+.endobj lbl_80481DDC
 .balign 4
-lbl_80481DE8:
+.obj lbl_80481DE8, local
 	.asciz "\t# num parms\r\n"
+.endobj lbl_80481DE8
 .balign 4
-lbl_80481DF8:
+.obj lbl_80481DF8, local
 	.asciz "UjaParms"
+.endobj lbl_80481DF8
 .balign 4
-lbl_80481E04: # Shift-JIS
+.obj lbl_80481E04, local # Shift-JIS
 	.4byte 0x955C8EA6
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.byte 0x00
+.endobj lbl_80481E04
 .balign 4
-lbl_80481E14: # Shift-JIS
+.obj lbl_80481E14, local # Shift-JIS
 	.4byte 0x93E4204D
 	.4byte 0x756C7469
 	.4byte 0x706C7900
+.endobj lbl_80481E14
 .balign 4
-lbl_80481E20: # Shift-JIS
+.obj lbl_80481E20, local # Shift-JIS
 	.4byte 0x8382815B
 	.4byte 0x83568387
 	.4byte 0x839391AC
 	.byte 0x93,0x78,0x00
+.endobj lbl_80481E20
 .balign 4
-lbl_80481E30: # Shift-JIS
+.obj lbl_80481E30, local # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x8362834E
 	.2byte 0x0A00
+.endobj lbl_80481E30
 .balign 4
-lbl_80481E3C:
+.obj lbl_80481E3C, local
 	.asciz "flockMgr.h"
+.endobj lbl_80481E3C
 .balign 4
-lbl_80481E48:
+.obj lbl_80481E48, local
 	.asciz "Ujamushi"
+.endobj lbl_80481E48
 .balign 4
-lbl_80481E54:
+.obj lbl_80481E54, local
 	.asciz "user/Kando/objects/ujamushi"
+.endobj lbl_80481E54
 .balign 4
-lbl_80481E70:
+.obj lbl_80481E70, local
 	.asciz "ujamushi_poly.bmd"
+.endobj lbl_80481E70
 .balign 4
-lbl_80481E84:
+.obj lbl_80481E84, local
 	.asciz "ujamushi_bill.bmd"
+.endobj lbl_80481E84
 .balign 4
-lbl_80481E98:
+.obj lbl_80481E98, local
 	.asciz "texts.szs"
+.endobj lbl_80481E98
 .balign 4
-lbl_80481EA4:
+.obj lbl_80481EA4, local
 	.asciz "parms.txt"
+.endobj lbl_80481EA4
 .balign 4
-lbl_80481EB0:
+.obj lbl_80481EB0, local
 	.asciz "ujamushi"
+.endobj lbl_80481EB0
 .balign 4
-lbl_80481EBC: # Shift-JIS
+.obj lbl_80481EBC, local # Shift-JIS
 	.4byte 0x092382A4
 	.4byte 0x82B682E1
 	.4byte 0x89A49094
 	.4byte 0x0D0A0000
+.endobj lbl_80481EBC
 .balign 4
-lbl_80481ECC:
+.obj lbl_80481ECC, local
 	.asciz "ItemUjamushi::InitArg"
+.endobj lbl_80481ECC
 .balign 4
-lbl_80481EE4:
+.obj lbl_80481EE4, local
 	.asciz "CreatureKillArg"
+.endobj lbl_80481EE4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q34Game12ItemUjamushi7InitArg
-__vt__Q34Game12ItemUjamushi7InitArg:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game12ItemUjamushi7InitArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q34Game12ItemUjamushi7InitArgFv
-.global __vt__15GenUjamushiParm
-__vt__15GenUjamushiParm:
+.endobj __vt__Q34Game12ItemUjamushi7InitArg
+.obj __vt__15GenUjamushiParm, weak
 	.4byte 0
 	.4byte 0
 	.4byte getShapeID__Q24Game11GenItemParmFv
+.endobj __vt__15GenUjamushiParm
 .global __vt__Q34Game12ItemUjamushi8DigState
 __vt__Q34Game12ItemUjamushi8DigState:
 	.4byte 0
@@ -898,13 +929,15 @@ __vt__Q34Game12ItemUjamushi13BoidParameter:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global mgr__Q24Game12ItemUjamushi
-mgr__Q24Game12ItemUjamushi:
-	.skip 0x8
+.endobj gfNAN___Q24Game5P2JST
+.obj mgr__Q24Game12ItemUjamushi, global
+	.skip 0x4
+.endobj mgr__Q24Game12ItemUjamushi
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -1105,8 +1138,9 @@ lbl_80519EB0:
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 .balign 8
-lbl_80520E80:
+.obj lbl_80520E80, local
 	.skip 0x4
+.endobj lbl_80520E80
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12ItemUjamushi9BoidParmsFv

@@ -5,42 +5,41 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804839B0
-lbl_804839B0:
+.obj lbl_804839B0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x53696E67
-	.4byte 0x6C654753
-	.4byte 0x5F456E64
-	.4byte 0x696E6700
-.global lbl_804839CC
-lbl_804839CC:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-.global lbl_804839D8
-lbl_804839D8:
+.endobj lbl_804839B0
+.balign 4
+.obj lbl_804839BC, local
+	.asciz "SingleGS_Ending"
+.endobj lbl_804839BC
+.balign 4
+.obj lbl_804839CC, local
+	.asciz "PSGame.h"
+.endobj lbl_804839CC
+.balign 4
+.obj lbl_804839D8, local
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
+.endobj lbl_804839D8
+.balign 4
+.obj lbl_804839E4, local
+	.asciz "PSScene.h"
+.endobj lbl_804839E4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C1370
-lbl_804C1370:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804C137C
-lbl_804C137C:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804C137C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdload__Q34Game10SingleGame11EndingStateFv
-.global lbl_804C1388
-lbl_804C1388:
+.endobj lbl_804C137C
+.obj lbl_804C1388, local
 	.4byte .L_80232A9C
 	.4byte .L_80232B20
 	.4byte .L_80232BDC
@@ -52,16 +51,16 @@ lbl_804C1388:
 	.4byte .L_80232FA4
 	.4byte .L_802330E4
 	.4byte .L_80233224
-.global __vt__Q32og6Screen22DispMemberFinalMessage
-__vt__Q32og6Screen22DispMemberFinalMessage:
+.endobj lbl_804C1388
+.obj __vt__Q32og6Screen22DispMemberFinalMessage, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen22DispMemberFinalMessageFv
 	.4byte getOwnerID__Q32og6Screen22DispMemberFinalMessageFv
 	.4byte getMemberID__Q32og6Screen22DispMemberFinalMessageFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q34Game10SingleGame11EndingState
-__vt__Q34Game10SingleGame11EndingState:
+.endobj __vt__Q32og6Screen22DispMemberFinalMessage
+.obj __vt__Q34Game10SingleGame11EndingState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
@@ -81,25 +80,24 @@ __vt__Q34Game10SingleGame11EndingState:
 	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
 	.4byte do_dvdload__Q34Game10SingleGame11EndingStateFv
-.global "__vt__42Delegate<Q34Game10SingleGame11EndingState>"
-"__vt__42Delegate<Q34Game10SingleGame11EndingState>":
+.endobj __vt__Q34Game10SingleGame11EndingState
+.obj "__vt__42Delegate<Q34Game10SingleGame11EndingState>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__42Delegate<Q34Game10SingleGame11EndingState>Fv"
-	.4byte 0
+.endobj "__vt__42Delegate<Q34Game10SingleGame11EndingState>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515CA0
-lbl_80515CA0:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515CA4
-lbl_80515CA4:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game10SingleGame11EndingStateFv
-__ct__Q34Game10SingleGame11EndingStateFv:
+.fn __ct__Q34Game10SingleGame11EndingStateFv, global
 /* 802326A8 0022F5E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802326AC 0022F5EC  7C 08 02 A6 */	mflr r0
 /* 802326B0 0022F5F0  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
@@ -158,9 +156,9 @@ __ct__Q34Game10SingleGame11EndingStateFv:
 /* 8023277C 0022F6BC  7C 08 03 A6 */	mtlr r0
 /* 80232780 0022F6C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80232784 0022F6C4  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game10SingleGame11EndingStateFv
 
-.global init__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 80232788 0022F6C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023278C 0022F6CC  7C 08 02 A6 */	mflr r0
 /* 80232790 0022F6D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -215,9 +213,9 @@ init__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionPQ24Game8State
 /* 80232850 0022F790  7C 08 03 A6 */	mtlr r0
 /* 80232854 0022F794  38 21 00 10 */	addi r1, r1, 0x10
 /* 80232858 0022F798  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 
-.global dvdload__Q34Game10SingleGame11EndingStateFv
-dvdload__Q34Game10SingleGame11EndingStateFv:
+.fn dvdload__Q34Game10SingleGame11EndingStateFv, global
 /* 8023285C 0022F79C  94 21 FE B0 */	stwu r1, -0x150(r1)
 /* 80232860 0022F7A0  7C 08 02 A6 */	mflr r0
 /* 80232864 0022F7A4  3C 80 80 48 */	lis r4, lbl_804839B0@ha
@@ -339,14 +337,14 @@ dvdload__Q34Game10SingleGame11EndingStateFv:
 /* 80232A18 0022F958  7C 08 03 A6 */	mtlr r0
 /* 80232A1C 0022F95C  38 21 01 50 */	addi r1, r1, 0x150
 /* 80232A20 0022F960  4E 80 00 20 */	blr 
+.endfn dvdload__Q34Game10SingleGame11EndingStateFv
 
-.global do_dvdload__Q34Game10SingleGame11EndingStateFv
-do_dvdload__Q34Game10SingleGame11EndingStateFv:
+.fn do_dvdload__Q34Game10SingleGame11EndingStateFv, weak
 /* 80232A24 0022F964  4E 80 00 20 */	blr 
+.endfn do_dvdload__Q34Game10SingleGame11EndingStateFv
 
 .if version == 1
-.global exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection, global
 /* 80232A28 0022F968  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80232A2C 0022F96C  7C 08 02 A6 */	mflr r0
 /* 80232A30 0022F970  90 01 00 84 */	stw r0, 0x84(r1)
@@ -914,9 +912,9 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 8023326C 002301AC  7C 08 03 A6 */	mtlr r0
 /* 80233270 002301B0  38 21 00 80 */	addi r1, r1, 0x80
 /* 80233274 002301B4  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection
 .else
-.global exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection, global
 /* 80232A28 0022F968  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80232A2C 0022F96C  7C 08 02 A6 */	mflr r0
 /* 80232A30 0022F970  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1484,10 +1482,10 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 8023326C 002301AC  7C 08 03 A6 */	mtlr r0
 /* 80233270 002301B0  38 21 00 80 */	addi r1, r1, 0x80
 /* 80233274 002301B4  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection
 .endif
 
-.global draw__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionR8Graphics
-draw__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn draw__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 80233278 002301B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023327C 002301BC  7C 08 02 A6 */	mflr r0
 /* 80233280 002301C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1543,9 +1541,9 @@ draw__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionR8Graphics:
 /* 80233340 00230280  7C 08 03 A6 */	mtlr r0
 /* 80233344 00230284  38 21 00 10 */	addi r1, r1, 0x10
 /* 80233348 00230288  4E 80 00 20 */	blr 
+.endfn draw__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionR8Graphics
 
-.global cleanup__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection, global
 /* 8023334C 0023028C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80233350 00230290  7C 08 02 A6 */	mflr r0
 /* 80233354 00230294  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1595,28 +1593,28 @@ cleanup__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 802333F8 00230338  7C 08 03 A6 */	mtlr r0
 /* 802333FC 0023033C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80233400 00230340  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection
 
-.global getSize__Q32og6Screen22DispMemberFinalMessageFv
-getSize__Q32og6Screen22DispMemberFinalMessageFv:
+.fn getSize__Q32og6Screen22DispMemberFinalMessageFv, weak
 /* 80233404 00230344  38 60 00 0C */	li r3, 0xc
 /* 80233408 00230348  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen22DispMemberFinalMessageFv
 
-.global getOwnerID__Q32og6Screen22DispMemberFinalMessageFv
-getOwnerID__Q32og6Screen22DispMemberFinalMessageFv:
+.fn getOwnerID__Q32og6Screen22DispMemberFinalMessageFv, weak
 /* 8023340C 0023034C  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 80233410 00230350  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 80233414 00230354  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen22DispMemberFinalMessageFv
 
-.global getMemberID__Q32og6Screen22DispMemberFinalMessageFv
-getMemberID__Q32og6Screen22DispMemberFinalMessageFv:
+.fn getMemberID__Q32og6Screen22DispMemberFinalMessageFv, weak
 /* 80233418 00230358  3C 80 4C 4D */	lis r4, 0x4C4D5347@ha
 /* 8023341C 0023035C  3C 60 46 49 */	lis r3, 0x46494E41@ha
 /* 80233420 00230360  38 84 53 47 */	addi r4, r4, 0x4C4D5347@l
 /* 80233424 00230364  38 63 4E 41 */	addi r3, r3, 0x46494E41@l
 /* 80233428 00230368  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen22DispMemberFinalMessageFv
 
-.global "invoke__42Delegate<Q34Game10SingleGame11EndingState>Fv"
-"invoke__42Delegate<Q34Game10SingleGame11EndingState>Fv":
+.fn "invoke__42Delegate<Q34Game10SingleGame11EndingState>Fv", weak
 /* 8023342C 0023036C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80233430 00230370  7C 08 02 A6 */	mflr r0
 /* 80233434 00230374  7C 64 1B 78 */	mr r4, r3
@@ -1629,16 +1627,17 @@ getMemberID__Q32og6Screen22DispMemberFinalMessageFv:
 /* 80233450 00230390  7C 08 03 A6 */	mtlr r0
 /* 80233454 00230394  38 21 00 10 */	addi r1, r1, 0x10
 /* 80233458 00230398  4E 80 00 20 */	blr 
+.endfn "invoke__42Delegate<Q34Game10SingleGame11EndingState>Fv"
 
-.global __sinit_singleGS_Ending_cpp
-__sinit_singleGS_Ending_cpp:
+.fn __sinit_singleGS_Ending_cpp, local
 /* 8023345C 0023039C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80233460 002303A0  38 00 FF FF */	li r0, -1
 /* 80233464 002303A4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80233468 002303A8  3C 60 80 4C */	lis r3, lbl_804C1370@ha
-/* 8023346C 002303AC  90 0D 96 20 */	stw r0, lbl_80515CA0@sda21(r13)
-/* 80233470 002303B0  D4 03 13 70 */	stfsu f0, lbl_804C1370@l(r3)
-/* 80233474 002303B4  D0 0D 96 24 */	stfs f0, lbl_80515CA4@sda21(r13)
+/* 80233468 002303A8  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8023346C 002303AC  90 0D 96 20 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80233470 002303B0  D4 03 13 70 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80233474 002303B4  D0 0D 96 24 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80233478 002303B8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8023347C 002303BC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80233480 002303C0  4E 80 00 20 */	blr 
+.endfn __sinit_singleGS_Ending_cpp

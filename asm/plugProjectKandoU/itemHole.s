@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80480520
 lbl_80480520:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -13,13 +12,11 @@ lbl_80480520:
 	.4byte 0x6974656D
 	.4byte 0x486F6C65
 	.4byte 0x00000000
-.global lbl_80480538
 lbl_80480538:
 	.4byte 0x6732465F
 	.4byte 0x61707065
 	.4byte 0x61725F68
 	.4byte 0x6F6C6500
-.global lbl_80480548
 lbl_80480548:
 	.4byte 0x75736572
 	.4byte 0x2F4B616E
@@ -50,11 +47,12 @@ lbl_80480548:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B7970
-lbl_804B7970:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.balign 4
 .global __vt__Q34Game8ItemHole3Mgr
 __vt__Q34Game8ItemHole3Mgr:
 	.4byte 0
@@ -387,10 +385,8 @@ __vt__Q34Game8ItemHole3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515AC0
 lbl_80515AC0:
 	.skip 0x4
-.global lbl_80515AC4
 lbl_80515AC4:
 	.skip 0x4
 .global mgr__Q24Game8ItemHole
@@ -399,51 +395,36 @@ mgr__Q24Game8ItemHole:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519638
 lbl_80519638:
 	.4byte 0x00000000
-.global lbl_8051963C
 lbl_8051963C:
 	.4byte 0x41C80000
-.global lbl_80519640
 lbl_80519640:
 	.float 1.0
-.global lbl_80519644
 lbl_80519644:
 	.4byte 0x3F555555
-.global lbl_80519648
 lbl_80519648:
 	.4byte 0x42700000
-.global lbl_8051964C
 lbl_8051964C:
 	.4byte 0x42F00000
-.global lbl_80519650
 lbl_80519650:
 	.4byte 0x666C6167
 	.4byte 0x00000000
-.global lbl_80519658
 lbl_80519658:
 	.4byte 0x42480000
-.global lbl_8051965C
 lbl_8051965C:
 	.4byte 0x42960000
-.global lbl_80519660
 lbl_80519660:
 	.4byte 0x42200000
-.global lbl_80519664
 lbl_80519664:
 	.4byte 0x3D99999A
-.global lbl_80519668
 lbl_80519668:
 	.4byte 0x3D2E147B
-.global lbl_8051966C
 lbl_8051966C:
 	.4byte 0x41200000
-.global lbl_80519670
 lbl_80519670:
 	.4byte 0x486F6C65
 	.4byte 0x00000000
-.global lbl_80519678
 lbl_80519678:
 	.asciz "arc.szs"
 
@@ -2116,9 +2097,9 @@ __sinit_itemHole_cpp:
 /* 801D2D3C 001CFC7C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801D2D40 001CFC80  38 00 FF FF */	li r0, -1
 /* 801D2D44 001CFC84  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801D2D48 001CFC88  3C 60 80 4B */	lis r3, lbl_804B7970@ha
+/* 801D2D48 001CFC88  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 801D2D4C 001CFC8C  90 0D 94 40 */	stw r0, lbl_80515AC0@sda21(r13)
-/* 801D2D50 001CFC90  D4 03 79 70 */	stfsu f0, lbl_804B7970@l(r3)
+/* 801D2D50 001CFC90  D4 03 79 70 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
 /* 801D2D54 001CFC94  D0 0D 94 44 */	stfs f0, lbl_80515AC4@sda21(r13)
 /* 801D2D58 001CFC98  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801D2D5C 001CFC9C  D0 03 00 08 */	stfs f0, 8(r3)

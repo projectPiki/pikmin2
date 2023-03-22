@@ -5,145 +5,130 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80482D30
-lbl_80482D30:
+.obj lbl_80482D30, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6E617669
-	.4byte 0x44656D6F
-	.4byte 0x43686563
-	.4byte 0x6B000000
-	.4byte 0x6733385F
-	.4byte 0x66696E64
-	.4byte 0x5F776869
-	.4byte 0x7465706F
-	.4byte 0x6D000000
-	.4byte 0x6733395F
-	.4byte 0x66696E64
-	.4byte 0x5F626C61
-	.4byte 0x636B706F
-	.4byte 0x6D000000
-	.4byte 0x7830335F
-	.4byte 0x66696E64
-	.4byte 0x5F726564
-	.4byte 0x5F6F6E79
-	.4byte 0x6F6E0000
-	.4byte 0x7831305F
-	.4byte 0x66696E64
-	.4byte 0x5F79656C
-	.4byte 0x6C6F775F
-	.4byte 0x6F6E796F
-	.4byte 0x6E000000
-	.4byte 0x7831315F
-	.4byte 0x66696E64
-	.4byte 0x5F626C75
-	.4byte 0x655F6F6E
-	.4byte 0x796F6E00
-	.4byte 0x6730345F
-	.4byte 0x66696E64
-	.4byte 0x5F747265
-	.4byte 0x61737572
-	.4byte 0x65000000
-	.4byte 0x7331365F
-	.4byte 0x66696E64
-	.4byte 0x5F697465
-	.4byte 0x6D5F2530
-	.4byte 0x32640000
-	.4byte 0x6733375F
-	.4byte 0x6765745F
-	.4byte 0x6C6F7569
-	.4byte 0x65000000
-	.4byte 0x6730355F
-	.4byte 0x66696E64
-	.4byte 0x5F636176
-	.4byte 0x655F2573
-	.4byte 0x00000000
-	.4byte 0x6730415F
-	.4byte 0x63765F66
-	.4byte 0x696E645F
-	.4byte 0x686F6C65
-	.4byte 0x00000000
-	.4byte 0x6730425F
-	.4byte 0x63765F66
-	.4byte 0x696E645F
-	.4byte 0x666F756E
-	.4byte 0x7461696E
-	.4byte 0x00000000
-	.4byte 0x6731395F
-	.4byte 0x66696E64
-	.4byte 0x5F726F63
-	.4byte 0x6B000000
-	.4byte 0x6732445F
-	.4byte 0x7265645F
-	.4byte 0x65787472
-	.4byte 0x61637400
-	.4byte 0x6732455F
-	.4byte 0x626C6163
-	.4byte 0x6B5F6578
-	.4byte 0x74726163
-	.4byte 0x74000000
+.endobj lbl_80482D30
+.balign 4
+.obj lbl_80482D3C, local
+	.asciz "naviDemoCheck"
+.endobj lbl_80482D3C
+.balign 4
+.obj lbl_80482D4C, local
+	.asciz "g38_find_whitepom"
+.endobj lbl_80482D4C
+.balign 4
+.obj lbl_80482D60, local
+	.asciz "g39_find_blackpom"
+.endobj lbl_80482D60
+.balign 4
+.obj lbl_80482D74, local
+	.asciz "x03_find_red_onyon"
+.endobj lbl_80482D74
+.balign 4
+.obj lbl_80482D88, local
+	.asciz "x10_find_yellow_onyon"
+.endobj lbl_80482D88
+.balign 4
+.obj lbl_80482DA0, local
+	.asciz "x11_find_blue_onyon"
+.endobj lbl_80482DA0
+.balign 4
+.obj lbl_80482DB4, local
+	.asciz "g04_find_treasure"
+.endobj lbl_80482DB4
+.balign 4
+.obj lbl_80482DC8, local
+	.asciz "s16_find_item_%02d"
+.endobj lbl_80482DC8
+.balign 4
+.obj lbl_80482DDC, local
+	.asciz "g37_get_louie"
+.endobj lbl_80482DDC
+.balign 4
+.obj lbl_80482DEC, local
+	.asciz "g05_find_cave_%s"
+.endobj lbl_80482DEC
+.balign 4
+.obj lbl_80482E00, local
+	.asciz "g0A_cv_find_hole"
+.endobj lbl_80482E00
+.balign 4
+.obj lbl_80482E14, local
+	.asciz "g0B_cv_find_fountain"
+.endobj lbl_80482E14
+.balign 4
+.obj lbl_80482E2C, local
+	.asciz "g19_find_rock"
+.endobj lbl_80482E2C
+.balign 4
+.obj lbl_80482E3C, local
+	.asciz "g2D_red_extract"
+.endobj lbl_80482E3C
+.balign 4
+.obj lbl_80482E4C, local
+	.asciz "g2E_black_extract"
+.endobj lbl_80482E4C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C0A18
-lbl_804C0A18:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global "__vt__Q24Game30EnemyIterator<Q34Game3Pom3Obj>"
-"__vt__Q24Game30EnemyIterator<Q34Game3Pom3Obj>":
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj "__vt__Q24Game30EnemyIterator<Q34Game3Pom3Obj>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
 	.4byte "next__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
 	.4byte "isDone__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
 	.4byte "__ml__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
-	.4byte 0
+.endobj "__vt__Q24Game30EnemyIterator<Q34Game3Pom3Obj>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C40
-lbl_80515C40:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515C44
-lbl_80515C44:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A0D8
-lbl_8051A0D8:
+.obj lbl_8051A0D8, local
 	.float 350.0
-.global lbl_8051A0DC
-lbl_8051A0DC:
+.endobj lbl_8051A0D8
+.obj lbl_8051A0DC, local
 	.float 125.0
-.global lbl_8051A0E0
-lbl_8051A0E0:
+.endobj lbl_8051A0DC
+.obj lbl_8051A0E0, local
 	.float 1600.0
-.global lbl_8051A0E4
-lbl_8051A0E4:
+.endobj lbl_8051A0E0
+.obj lbl_8051A0E4, local
 	.float 750.0
-.global lbl_8051A0E8
-lbl_8051A0E8:
+.endobj lbl_8051A0E4
+.obj lbl_8051A0E8, local
 	.float 200.0
-.global lbl_8051A0EC
-lbl_8051A0EC:
+.endobj lbl_8051A0E8
+.obj lbl_8051A0EC, local
 	.float 100.0
-.global lbl_8051A0F0
-lbl_8051A0F0:
+.endobj lbl_8051A0EC
+.obj lbl_8051A0F0, local
 	.float 60.0
-.global lbl_8051A0F4
-lbl_8051A0F4:
+.endobj lbl_8051A0F0
+.obj lbl_8051A0F4, local
 	.float 40.0
-.global lbl_8051A0F8
-lbl_8051A0F8:
+.endobj lbl_8051A0F4
+.obj lbl_8051A0F8, local
 	.float 0.0
+.endobj lbl_8051A0F8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
-.global demoCheck__Q24Game4NaviFv
-demoCheck__Q24Game4NaviFv:
+.fn demoCheck__Q24Game4NaviFv, global
 /* 8021F3D0 0021C310  94 21 F7 A0 */	stwu r1, -0x860(r1)
 /* 8021F3D4 0021C314  7C 08 02 A6 */	mflr r0
 /* 8021F3D8 0021C318  90 01 08 64 */	stw r0, 0x864(r1)
@@ -1735,9 +1720,9 @@ demoCheck__Q24Game4NaviFv:
 /* 80220B54 0021DA94  7C 08 03 A6 */	mtlr r0
 /* 80220B58 0021DA98  38 21 08 60 */	addi r1, r1, 0x860
 /* 80220B5C 0021DA9C  4E 80 00 20 */	blr 
+.endfn demoCheck__Q24Game4NaviFv
 .else
-.global demoCheck__Q24Game4NaviFv
-demoCheck__Q24Game4NaviFv:
+.fn demoCheck__Q24Game4NaviFv, global
 /* 8021F3D0 0021C310  94 21 F7 A0 */	stwu r1, -0x860(r1)
 /* 8021F3D4 0021C314  7C 08 02 A6 */	mflr r0
 /* 8021F3D8 0021C318  90 01 08 64 */	stw r0, 0x864(r1)
@@ -3329,10 +3314,10 @@ demoCheck__Q24Game4NaviFv:
 /* 80220B54 0021DA94  7C 08 03 A6 */	mtlr r0
 /* 80220B58 0021DA98  38 21 08 60 */	addi r1, r1, 0x860
 /* 80220B5C 0021DA9C  4E 80 00 20 */	blr 
+.endfn demoCheck__Q24Game4NaviFv
 .endif
 
-.global "distance__10Vector3<f>FR10Vector3<f>"
-"distance__10Vector3<f>FR10Vector3<f>":
+.fn "distance__10Vector3<f>FR10Vector3<f>", weak
 /* 80220B60 0021DAA0  C0 23 00 04 */	lfs f1, 4(r3)
 /* 80220B64 0021DAA4  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80220B68 0021DAA8  C0 63 00 00 */	lfs f3, 0(r3)
@@ -3356,9 +3341,9 @@ demoCheck__Q24Game4NaviFv:
 .L_80220BB0:
 /* 80220BB0 0021DAF0  FC 20 00 90 */	fmr f1, f0
 /* 80220BB4 0021DAF4  4E 80 00 20 */	blr 
+.endfn "distance__10Vector3<f>FR10Vector3<f>"
 
-.global "next__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
-"next__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv":
+.fn "next__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv", weak
 /* 80220BB8 0021DAF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80220BBC 0021DAFC  7C 08 02 A6 */	mflr r0
 /* 80220BC0 0021DB00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3420,9 +3405,9 @@ demoCheck__Q24Game4NaviFv:
 /* 80220C90 0021DBD0  7C 08 03 A6 */	mtlr r0
 /* 80220C94 0021DBD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80220C98 0021DBD8  4E 80 00 20 */	blr 
+.endfn "next__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
 
-.global "isDone__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
-"isDone__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv":
+.fn "isDone__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv", weak
 /* 80220C9C 0021DBDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80220CA0 0021DBE0  7C 08 02 A6 */	mflr r0
 /* 80220CA4 0021DBE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3442,9 +3427,9 @@ demoCheck__Q24Game4NaviFv:
 /* 80220CDC 0021DC1C  7C 08 03 A6 */	mtlr r0
 /* 80220CE0 0021DC20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80220CE4 0021DC24  4E 80 00 20 */	blr 
+.endfn "isDone__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
 
-.global "__ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>Ul"
-"__ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>Ul":
+.fn "__ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>Ul", weak
 /* 80220CE8 0021DC28  90 83 00 00 */	stw r4, 0(r3)
 /* 80220CEC 0021DC2C  38 00 00 00 */	li r0, 0
 /* 80220CF0 0021DC30  C0 02 BD 98 */	lfs f0, lbl_8051A0F8@sda21(r2)
@@ -3461,9 +3446,9 @@ demoCheck__Q24Game4NaviFv:
 /* 80220D1C 0021DC5C  90 03 00 14 */	stw r0, 0x14(r3)
 /* 80220D20 0021DC60  90 03 00 30 */	stw r0, 0x30(r3)
 /* 80220D24 0021DC64  4E 80 00 20 */	blr 
+.endfn "__ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>Ul"
 
-.global "first__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
-"first__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv":
+.fn "first__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv", weak
 /* 80220D28 0021DC68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80220D2C 0021DC6C  7C 08 02 A6 */	mflr r0
 /* 80220D30 0021DC70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3523,9 +3508,9 @@ demoCheck__Q24Game4NaviFv:
 /* 80220DF8 0021DD38  7C 08 03 A6 */	mtlr r0
 /* 80220DFC 0021DD3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80220E00 0021DD40  4E 80 00 20 */	blr 
+.endfn "first__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
 
-.global checkDemoNaviAndPiki__Q24Game4NaviFRQ23Sys6Sphere
-checkDemoNaviAndPiki__Q24Game4NaviFRQ23Sys6Sphere:
+.fn checkDemoNaviAndPiki__Q24Game4NaviFRQ23Sys6Sphere, global
 /* 80220E04 0021DD44  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80220E08 0021DD48  7C 08 02 A6 */	mflr r0
 /* 80220E0C 0021DD4C  90 01 00 94 */	stw r0, 0x94(r1)
@@ -3648,9 +3633,9 @@ checkDemoNaviAndPiki__Q24Game4NaviFRQ23Sys6Sphere:
 /* 80220FBC 0021DEFC  7C 08 03 A6 */	mtlr r0
 /* 80220FC0 0021DF00  38 21 00 90 */	addi r1, r1, 0x90
 /* 80220FC4 0021DF04  4E 80 00 20 */	blr 
+.endfn checkDemoNaviAndPiki__Q24Game4NaviFRQ23Sys6Sphere
 
-.global "__ml__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
-"__ml__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv":
+.fn "__ml__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv", weak
 /* 80220FC8 0021DF08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80220FCC 0021DF0C  7C 08 02 A6 */	mflr r0
 /* 80220FD0 0021DF10  7C 64 1B 78 */	mr r4, r3
@@ -3665,15 +3650,16 @@ checkDemoNaviAndPiki__Q24Game4NaviFRQ23Sys6Sphere:
 /* 80220FF4 0021DF34  7C 08 03 A6 */	mtlr r0
 /* 80220FF8 0021DF38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80220FFC 0021DF3C  4E 80 00 20 */	blr 
+.endfn "__ml__Q24Game30EnemyIterator<Q34Game3Pom3Obj>Fv"
 
 .fn __sinit_navi_demoCheck_cpp, local
 /* 80221000 0021DF40  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80221004 0021DF44  38 00 FF FF */	li r0, -1
 /* 80221008 0021DF48  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8022100C 0021DF4C  3C 60 80 4C */	lis r3, lbl_804C0A18@ha
-/* 80221010 0021DF50  90 0D 95 C0 */	stw r0, lbl_80515C40@sda21(r13)
-/* 80221014 0021DF54  D4 03 0A 18 */	stfsu f0, lbl_804C0A18@l(r3)
-/* 80221018 0021DF58  D0 0D 95 C4 */	stfs f0, lbl_80515C44@sda21(r13)
+/* 8022100C 0021DF4C  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80221010 0021DF50  90 0D 95 C0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80221014 0021DF54  D4 03 0A 18 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80221018 0021DF58  D0 0D 95 C4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8022101C 0021DF5C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80221020 0021DF60  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80221024 0021DF64  4E 80 00 20 */	blr 

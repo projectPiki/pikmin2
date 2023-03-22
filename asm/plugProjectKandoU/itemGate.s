@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80480188
 lbl_80480188:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -13,22 +12,18 @@ lbl_80480188:
 	.4byte 0x6974656D
 	.4byte 0x47617465
 	.4byte 0x00000000
-.global lbl_804801A0
 lbl_804801A0:
 	.4byte 0x6974656D
 	.4byte 0x47617465
 	.4byte 0x2E637070
 	.4byte 0x00000000
-.global lbl_804801B0
 lbl_804801B0:
 	.4byte 0x6E6F2073
 	.4byte 0x68617065
 	.4byte 0x20210A00
-.global lbl_804801BC
 lbl_804801BC:
 	.asciz "P2Assert"
 .balign 4
-.global lbl_804801C8
 lbl_804801C8:
 	.4byte 0x4974656D
 	.4byte 0x47617465
@@ -78,17 +73,14 @@ lbl_804801C8:
 	.4byte 0x5F736F66
 	.4byte 0x742E6272
 	.4byte 0x6B000000
-.global lbl_80480288
 lbl_80480288:
 	.4byte 0x6E657720
 	.4byte 0x4D6F6465
 	.4byte 0x6C000000
-.global lbl_80480294
 lbl_80480294:
 	.4byte 0x506C6174
 	.4byte 0x666F726D
 	.4byte 0x00000000
-.global lbl_804802A0
 lbl_804802A0:
 	.4byte 0x436C6F6E
 	.4byte 0x652D506C
@@ -99,7 +91,6 @@ lbl_804802A0:
 	.4byte 0x0923436F
 	.4byte 0x6C6F720D
 	.4byte 0x0A000000
-.global lbl_804802C4
 lbl_804802C4:
 	.4byte 0x6731385F
 	.4byte 0x66696E64
@@ -155,10 +146,12 @@ lbl_804802C4:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.balign 4
 .global __vt__Q34Game15ItemDengekiGate3Mgr
 __vt__Q34Game15ItemDengekiGate3Mgr:
 	.4byte 0
@@ -950,98 +943,76 @@ __vt__Q24Game7GateFSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global itemGateMgr__4Game
-itemGateMgr__4Game:
+.endobj gfNAN___Q24Game5P2JST
+.obj itemGateMgr__4Game, global
 	.skip 0x4
-.global mgr__Q24Game15ItemDengekiGate
-mgr__Q24Game15ItemDengekiGate:
+.endobj itemGateMgr__4Game
+.obj mgr__Q24Game15ItemDengekiGate, global
 	.skip 0x4
+.endobj mgr__Q24Game15ItemDengekiGate
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519590
 lbl_80519590:
 	.4byte 0x432A0000
-.global lbl_80519594
 lbl_80519594:
 	.4byte 0x42C80000
-.global lbl_80519598
 lbl_80519598:
 	.4byte 0x00000000
-.global lbl_8051959C
 lbl_8051959C:
 	.4byte 0x47000000
-.global lbl_805195A0
 lbl_805195A0:
 	.4byte 0x40C90FDB
 	.4byte 0x00000000
-.global lbl_805195A8
 lbl_805195A8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805195B0
 lbl_805195B0:
 	.4byte 0x41200000
-.global lbl_805195B4
 lbl_805195B4:
 	.4byte 0x67617465
 	.4byte 0x00000000
-.global lbl_805195BC
 lbl_805195BC:
 	.4byte 0x41F00000
-.global lbl_805195C0
 lbl_805195C0:
 	.4byte 0x46480000
-.global lbl_805195C4
 lbl_805195C4:
 	.4byte 0x42480000
-.global lbl_805195C8
 lbl_805195C8:
 	.4byte 0x43A2F983
-.global lbl_805195CC
 lbl_805195CC:
 	.4byte 0xC3A2F983
-.global lbl_805195D0
 lbl_805195D0:
 	.4byte 0x41A00000
-.global lbl_805195D4
 lbl_805195D4:
 	.4byte 0x42990000
-.global lbl_805195D8
 lbl_805195D8:
 	.4byte 0x6D6F7665
 	.4byte 0x00000000
-.global lbl_805195E0
 lbl_805195E0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_805195E8
 lbl_805195E8:
 	.4byte 0x42F00000
-.global lbl_805195EC
 lbl_805195EC:
 	.4byte 0x47617465
 	.4byte 0x00000000
-.global lbl_805195F4
 lbl_805195F4:
 	.4byte 0x66697800
-.global lbl_805195F8
 lbl_805195F8:
 	.4byte 0x706F6C65
 	.4byte 0x00000000
-.global lbl_80519600
 lbl_80519600:
 	.4byte 0x652D6761
 	.4byte 0x74650000
-.global lbl_80519608
 lbl_80519608:
 	.4byte 0x41726752
 	.4byte 0x6F745900
-.global lbl_80519610
 lbl_80519610:
 	.4byte 0x6974656D
 	.4byte 0x00000000
