@@ -647,6 +647,46 @@ MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
  */
 ItemUnit* RandItemUnit::getItemUnit()
 {
+	ItemUnit* unitList[512];
+	int weightList[512];
+	int total   = 0;
+	int counter = 0;
+	int tally   = 0;
+	FOREACH_NODE(ItemNode, mMapUnitGenerator->mItemNode->mChild, currItem)
+	{
+		ItemUnit* unit = currItem->mUnit;
+		if (unit->mInfo) {
+			int weight = unit->mInfo->mWeight % 10;
+			int val    = unit->mInfo->mWeight / 10;
+			if (weight) {
+				weightList[counter] = weight;
+				tally += weightList[counter];
+				unitList[counter] = unit;
+				counter++;
+			}
+
+			if (val) {
+				total += val;
+				if (mItems < total) {
+					return currItem->mUnit;
+				}
+			}
+		}
+	}
+
+	if (tally) {
+
+		int randLimit = tally * randFloat();
+		int newTally  = 0;
+		for (int i = 0; i < counter; i++) {
+			newTally += weightList[i];
+			if (newTally > randLimit) {
+				return unitList[i];
+			}
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x1030(r1)
 	mflr     r0
@@ -812,8 +852,36 @@ bool RandItemUnit::isItemSetHard()
  * Address:	8024F300
  * Size:	000148
  */
-void RandItemUnit::getItemDropMapNode(MapNode*, MapNode**, int, int&)
+void RandItemUnit::getItemDropMapNode(MapNode* testNode, MapNode** outNode, int score, int& outScore)
 {
+	bool check   = false;
+	int unitKind = testNode->mUnitInfo->getUnitKind();
+	if (unitKind == UNITKIND_Room) {
+		check = true;
+	} else if (unitKind == UNITKIND_Cap) {
+		if (strncmp(testNode->getUnitName(), "item", 4) == 0) {
+			check = true;
+		}
+	} else if (unitKind == UNITKIND_Corridor) {
+		if (testNode->getNumDoors() == 2) {
+			// something funky going on here
+			int sum = (testNode->getDoorDirect(0) + testNode->getDoorDirect(1)) & 1;
+			if (absVal(sum) == 0) {
+				check = true;
+			}
+		} else {
+			check = true;
+		}
+	}
+
+	if (check) {
+		int scoreDiff = testNode->getVersusScore() - score;
+		int absScore  = absVal(scoreDiff);
+		if (absScore < outScore || (absScore == outScore && randWeightFloat(1.0f) < 0.5f)) {
+			*outNode = testNode;
+			outScore = absScore;
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -918,219 +986,60 @@ void RandItemUnit::getItemDropMapNode(MapNode*, MapNode**, int, int&)
  * Address:	8024F448
  * Size:	000314
  */
-Vector3f RandItemUnit::getItemBaseGenPosition(MapNode*, int)
+Vector3f RandItemUnit::getItemBaseGenPosition(MapNode* node, int score)
 {
-	/*
-	stwu     r1, -0x330(r1)
-	mflr     r0
-	stw      r0, 0x334(r1)
-	stfd     f31, 0x320(r1)
-	psq_st   f31, 808(r1), 0, qr0
-	stfd     f30, 0x310(r1)
-	psq_st   f30, 792(r1), 0, qr0
-	stfd     f29, 0x300(r1)
-	psq_st   f29, 776(r1), 0, qr0
-	stfd     f28, 0x2f0(r1)
-	psq_st   f28, 760(r1), 0, qr0
-	stmw     r25, 0x2d4(r1)
-	mr       r31, r5
-	mr       r30, r3
-	mr       r26, r4
-	mr       r25, r6
-	mr       r4, r31
-	addi     r3, r1, 0x2c
-	li       r27, 0
-	li       r29, 0
-	li       r5, 0
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f31, 0x2c(r1) lfs      f30, 0x30(r1) lfs      f29, 0x34(r1) lwz      r3,
-0x18(r31) bl       getBaseGen__Q34Game4Cave8UnitInfoFv cmplwi   r3, 0 beq
-lbl_8024F51C lwz      r4, 0x10(r3) addi     r3, r1, 0x38 b        lbl_8024F514
+	BaseGen* genList[64];
+	int counter        = 0;
+	Vector3f globalPos = node->getBaseGenGlobalPosition(nullptr);
+	BaseGen* gen       = node->mUnitInfo->getBaseGen();
+	if (gen) {
+		FOREACH_NODE(BaseGen, gen->mChild, currGen)
+		{
+			if (currGen->mSpawnType == BaseGen::Treasure__Item) {
+				genList[counter] = currGen;
+				counter++;
+			} else if (currGen->mSpawnType == BaseGen::TekiA__Easy) {
+				genList[counter] = currGen;
+				counter++;
+			} else if (currGen->mSpawnType == BaseGen::TekiB__Hard) {
+				genList[counter] = currGen;
+				counter++;
+			}
+		}
+	}
 
-lbl_8024F4C8:
-	lwz      r0, 0x18(r4)
-	cmpwi    r0, 2
-	bne      lbl_8024F4E4
-	stwx     r4, r3, r29
-	addi     r27, r27, 1
-	addi     r29, r29, 4
-	b        lbl_8024F510
+	if (counter > 0) {
+		Vector3f positions[32];
+		Vector3f onyonPos;
+		if (node->getVersusScore() - score > 0) {
+			onyonPos = mRandMapScore->getFixObjNode(RandMapScore::FIXNODE_VsRedOnyon)
+			               ->getBaseGenGlobalPosition(mRandMapScore->getFixObjGen(RandMapScore::FIXNODE_VsRedOnyon));
+		} else {
+			onyonPos = mRandMapScore->getFixObjNode(RandMapScore::FIXNODE_VsBlueOnyon)
+			               ->getBaseGenGlobalPosition(mRandMapScore->getFixObjGen(RandMapScore::FIXNODE_VsBlueOnyon));
+		}
 
-lbl_8024F4E4:
-	cmpwi    r0, 0
-	bne      lbl_8024F4FC
-	stwx     r4, r3, r29
-	addi     r27, r27, 1
-	addi     r29, r29, 4
-	b        lbl_8024F510
+		int counter2 = 0;
+		f32 sqrDist  = sqrDistanceXZ(onyonPos, globalPos);
+		for (int i = 0; i < counter; i++) {
+			Vector3f genPos = node->getBaseGenGlobalPosition(genList[i]);
+			if (sqrDistanceXZ(onyonPos, genPos) < sqrDist) {
+				positions[counter2] = genPos;
+				counter2++;
+			}
+		}
 
-lbl_8024F4FC:
-	cmpwi    r0, 1
-	bne      lbl_8024F510
-	stwx     r4, r3, r29
-	addi     r27, r27, 1
-	addi     r29, r29, 4
-
-lbl_8024F510:
-	lwz      r4, 4(r4)
-
-lbl_8024F514:
-	cmplwi   r4, 0
-	bne      lbl_8024F4C8
-
-lbl_8024F51C:
-	cmpwi    r27, 0
-	ble      lbl_8024F71C
-	lis      r4, "__ct__10Vector3<f>Fv"@ha
-	addi     r3, r1, 0x138
-	addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-	li       r5, 0
-	li       r6, 0xc
-	li       r7, 0x20
-	bl       __construct_array
-	mr       r3, r31
-	bl       getVersusScore__Q34Game4Cave7MapNodeFv
-	subf.    r0, r25, r3
-	ble      lbl_8024F588
-	lwz      r3, 0xc(r26)
-	li       r4, 3
-	bl       getFixObjGen__Q34Game4Cave12RandMapScoreFi
-	mr       r29, r3
-	lwz      r3, 0xc(r26)
-	li       r4, 3
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	mr       r4, r3
-	mr       r5, r29
-	addi     r3, r1, 0x20
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f30, 0x20(r1) lfs      f28, 0x28(r1) b        lbl_8024F5BC
-
-lbl_8024F588:
-	lwz      r3, 0xc(r26)
-	li       r4, 4
-	bl       getFixObjGen__Q34Game4Cave12RandMapScoreFi
-	mr       r29, r3
-	lwz      r3, 0xc(r26)
-	li       r4, 4
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	mr       r4, r3
-	mr       r5, r29
-	addi     r3, r1, 0x14
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f30, 0x14(r1) lfs      f28, 0x1c(r1)
-
-lbl_8024F5BC:
-	fsubs    f0, f28, f29
-	addi     r29, r1, 0x38
-	fsubs    f1, f30, f31
-	addi     r28, r1, 0x138
-	li       r26, 0
-	li       r25, 0
-	fmuls    f0, f0, f0
-	fmadds   f31, f1, f1, f0
-	b        lbl_8024F630
-
-lbl_8024F5E0:
-	lwz      r5, 0(r29)
-	mr       r4, r31
-	addi     r3, r1, 8
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen lfs
-f3, 0x10(r1) lfs      f4, 8(r1) fsubs    f0, f28, f3 lfs      f2, 0xc(r1) fsubs
-f1, f30, f4 fmuls    f0, f0, f0 fmadds   f0, f1, f1, f0 fcmpo    cr0, f0, f31
-	bge      lbl_8024F628
-	stfs     f4, 0(r28)
-	addi     r26, r26, 1
-	stfs     f2, 4(r28)
-	stfs     f3, 8(r28)
-	addi     r28, r28, 0xc
-
-lbl_8024F628:
-	addi     r29, r29, 4
-	addi     r25, r25, 1
-
-lbl_8024F630:
-	cmpw     r25, r27
-	blt      lbl_8024F5E0
-	cmpwi    r26, 0
-	beq      lbl_8024F6B4
-	bl       rand
-	lis      r4, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x2bc(r1)
-	xoris    r0, r26, 0x8000
-	lfd      f2, lbl_8051A848@sda21(r2)
-	addi     r3, r1, 0x138
-	stw      r4, 0x2b8(r1)
-	lfs      f0, lbl_8051A858@sda21(r2)
-	lfd      f1, 0x2b8(r1)
-	stw      r0, 0x2c4(r1)
-	fsubs    f1, f1, f2
-	stw      r4, 0x2c0(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x2c0(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x2c8(r1)
-	lwz      r0, 0x2cc(r1)
-	mulli    r0, r0, 0xc
-	add      r3, r3, r0
-	lfs      f0, 0(r3)
-	stfs     f0, 0(r30)
-	lfs      f0, 4(r3)
-	stfs     f0, 4(r30)
-	lfs      f0, 8(r3)
-	stfs     f0, 8(r30)
-	b        lbl_8024F728
-
-lbl_8024F6B4:
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r6, 0x4330
-	stw      r0, 0x2cc(r1)
-	xoris    r0, r27, 0x8000
-	lfd      f2, lbl_8051A848@sda21(r2)
-	addi     r5, r1, 0x38
-	stw      r6, 0x2c8(r1)
-	mr       r3, r30
-	lfs      f0, lbl_8051A858@sda21(r2)
-	mr       r4, r31
-	lfd      f1, 0x2c8(r1)
-	stw      r0, 0x2c4(r1)
-	fsubs    f1, f1, f2
-	stw      r6, 0x2c0(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x2c0(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x2b8(r1)
-	lwz      r0, 0x2bc(r1)
-	slwi     r0, r0, 2
-	lwzx     r5, r5, r0
-	bl getBaseGenGlobalPosition__Q34Game4Cave7MapNodeFPQ34Game4Cave7BaseGen b
-lbl_8024F728
-
-lbl_8024F71C:
-	stfs     f31, 0(r30)
-	stfs     f30, 4(r30)
-	stfs     f29, 8(r30)
-
-lbl_8024F728:
-	psq_l    f31, 808(r1), 0, qr0
-	lfd      f31, 0x320(r1)
-	psq_l    f30, 792(r1), 0, qr0
-	lfd      f30, 0x310(r1)
-	psq_l    f29, 776(r1), 0, qr0
-	lfd      f29, 0x300(r1)
-	psq_l    f28, 760(r1), 0, qr0
-	lfd      f28, 0x2f0(r1)
-	lmw      r25, 0x2d4(r1)
-	lwz      r0, 0x334(r1)
-	mtlr     r0
-	addi     r1, r1, 0x330
-	blr
-	*/
+		if (counter2) {
+			int randIdx      = counter2 * randFloat();
+			Vector3f* outVec = &positions[randIdx];
+			return *outVec;
+		} else {
+			int randIdx = counter * randFloat();
+			return node->getBaseGenGlobalPosition(genList[randIdx]);
+		}
+	} else {
+		return globalPos;
+	}
 }
 
 /*
@@ -1138,8 +1047,41 @@ lbl_8024F728:
  * Address:	8024F75C
  * Size:	00018C
  */
-void RandItemUnit::getItemDropList(MapNode*, MapNode**, BaseGen**, int&)
+void RandItemUnit::getItemDropList(MapNode* testNode, MapNode** nodeList, BaseGen** outGen, int& idx)
 {
+	int unitKind = testNode->mUnitInfo->getUnitKind();
+	if (unitKind == UNITKIND_Room) {
+		BaseGen* gen = testNode->mUnitInfo->getBaseGen();
+		if (gen) {
+			FOREACH_NODE(BaseGen, gen->mChild, currGen)
+			{
+				if (currGen->mSpawnType == BaseGen::Treasure__Item) {
+					nodeList[idx] = testNode;
+					outGen[idx]   = currGen;
+					idx++;
+				}
+			}
+		}
+	} else if (unitKind == UNITKIND_Cap) {
+		if (strncmp(testNode->getUnitName(), "item", 4) == 0) {
+			nodeList[idx] = testNode;
+			outGen[idx]   = nullptr;
+			idx++;
+		}
+	} else if (unitKind == UNITKIND_Corridor) {
+		if (testNode->getNumDoors() == 2) {
+			// same funkiness as function earlier
+			if (absVal(testNode->getDoorDirect(0) + testNode->getDoorDirect(1)) == 0) {
+				nodeList[idx] = testNode;
+				outGen[idx]   = nullptr;
+				idx++;
+			}
+		} else {
+			nodeList[idx] = testNode;
+			outGen[idx]   = nullptr;
+			idx++;
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1263,226 +1205,59 @@ void RandItemUnit::getItemDropList(MapNode*, MapNode**, BaseGen**, int&)
  * Address:	8024F8E8
  * Size:	0002CC
  */
-Vector3f RandItemUnit::getItemBaseGenPosition(MapNode**, BaseGen**, int, int, int)
+Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** nodes, BaseGen** gens, int count, int minScore, int idx)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x260(r1)
-	  mflr      r0
-	  stw       r0, 0x264(r1)
-	  stfd      f31, 0x250(r1)
-	  psq_st    f31,0x258(r1),0,0
-	  stmw      r17, 0x214(r1)
-	  mr        r17, r4
-	  mr        r31, r3
-	  lwz       r3, 0xC(r4)
-	  mr        r18, r5
-	  mr        r19, r6
-	  mr        r20, r7
-	  mr        r21, r8
-	  mr        r22, r9
-	  li        r4, 0x3
-	  bl        -0x2D7C
-	  mr        r27, r3
-	  lwz       r3, 0xC(r17)
-	  li        r4, 0x4
-	  bl        -0x2D8C
-	  mr        r28, r3
-	  lwz       r3, 0xC(r17)
-	  li        r4, 0x3
-	  bl        -0x2D8C
-	  mr        r29, r3
-	  lwz       r3, 0xC(r17)
-	  li        r4, 0x4
-	  bl        -0x2D9C
-	  lfs       f31, -0x3B00(r2)
-	  mr        r30, r3
-	  mr        r26, r18
-	  mr        r25, r19
-	  addi      r24, r1, 0x8
-	  li        r23, 0
-	  b         .loc_0x1A8
+	MapNode* redOnyonNode  = mRandMapScore->getFixObjNode(RandMapScore::FIXNODE_VsRedOnyon);  // r27
+	MapNode* blueOnyonNode = mRandMapScore->getFixObjNode(RandMapScore::FIXNODE_VsBlueOnyon); // r28
 
-	.loc_0x8C:
-	  lwz       r3, 0x0(r26)
-	  lfs       f0, -0x3B00(r2)
-	  cmplw     r27, r3
-	  bne-      .loc_0xFC
-	  lwz       r4, 0x0(r25)
-	  lfs       f1, 0x20(r29)
-	  lfs       f0, 0x20(r4)
-	  lfs       f3, 0x1C(r29)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x1C(r4)
-	  lfs       f1, 0x24(r29)
-	  lfs       f0, 0x24(r4)
-	  fsubs     f3, f3, f2
-	  fmuls     f4, f4, f4
-	  fsubs     f2, f1, f0
-	  lfs       f0, -0x3AFC(r2)
-	  fmadds    f1, f3, f3, f4
-	  fmuls     f2, f2, f2
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xF0
-	  ble-      .loc_0xF4
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0xF4
+	BaseGen* redOnyonGen  = mRandMapScore->getFixObjGen(RandMapScore::FIXNODE_VsRedOnyon);  // r29
+	BaseGen* blueOnyonGen = mRandMapScore->getFixObjGen(RandMapScore::FIXNODE_VsBlueOnyon); // r30
 
-	.loc_0xF0:
-	  fmr       f1, f0
+	f32 maxDist = 400.0f;
+	int distScores[128];
 
-	.loc_0xF4:
-	  fmr       f0, f1
-	  b         .loc_0x160
+	for (int i = 0; i < count; i++) {
+		MapNode* currNode = nodes[i];
+		f32 len           = 400.0f;
+		if (redOnyonNode == currNode) {
+			Vector3f onyonPos = redOnyonGen->mPosition;
+			Vector3f genPos   = gens[i]->mPosition;
+			Vector3f sep      = Vector3f(onyonPos.y - genPos.y, onyonPos.z - genPos.z, onyonPos.x - genPos.x);
+			len               = _length2(sep);
+		} else if (blueOnyonNode == currNode) {
+			Vector3f onyonPos = blueOnyonGen->mPosition;
+			Vector3f genPos   = gens[i]->mPosition;
+			Vector3f sep      = Vector3f(onyonPos.y - genPos.y, onyonPos.z - genPos.z, onyonPos.x - genPos.x);
+			len               = _length2(sep);
+		}
 
-	.loc_0xFC:
-	  cmplw     r28, r3
-	  bne-      .loc_0x160
-	  lwz       r4, 0x0(r25)
-	  lfs       f1, 0x20(r30)
-	  lfs       f0, 0x20(r4)
-	  lfs       f3, 0x1C(r30)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x1C(r4)
-	  lfs       f1, 0x24(r30)
-	  lfs       f0, 0x24(r4)
-	  fsubs     f3, f3, f2
-	  fmuls     f4, f4, f4
-	  fsubs     f2, f1, f0
-	  lfs       f0, -0x3AFC(r2)
-	  fmadds    f1, f3, f3, f4
-	  fmuls     f2, f2, f2
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x158
-	  ble-      .loc_0x15C
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x15C
+		if (len < maxDist) {
+			distScores[i] = 12800 - (int)len;
+		} else {
+			distScores[i] = absVal(currNode->getVersusScore() - minScore);
+		}
+	}
 
-	.loc_0x158:
-	  fmr       f1, f0
+	getItemDropSortingList(nodes, gens, distScores, count);
 
-	.loc_0x15C:
-	  fmr       f0, f1
+	for (int i = 0; i < count; i++) {
+		bool check = true;
+		for (int j = 0; j < idx; j++) {
+			if (nodes[i] == mMapNode[j] && gens[i] == mBaseGen[j]) {
+				check = false;
+			}
+		}
 
-	.loc_0x160:
-	  fcmpo     cr0, f0, f31
-	  bge-      .loc_0x180
-	  fctiwz    f0, f0
-	  stfd      f0, 0x208(r1)
-	  lwz       r0, 0x20C(r1)
-	  subfic    r0, r0, 0x3200
-	  stw       r0, 0x0(r24)
-	  b         .loc_0x198
+		if (check) {
+			mMapNode[idx] = nodes[i];
+			mBaseGen[idx] = gens[i];
 
-	.loc_0x180:
-	  bl        -0xC0AC
-	  sub       r0, r3, r21
-	  srawi     r3, r0, 0x1F
-	  xor       r0, r3, r0
-	  sub       r0, r0, r3
-	  stw       r0, 0x0(r24)
+			return mMapNode[idx]->getBaseGenGlobalPosition(mBaseGen[idx]);
+		}
+	}
 
-	.loc_0x198:
-	  addi      r26, r26, 0x4
-	  addi      r25, r25, 0x4
-	  addi      r24, r24, 0x4
-	  addi      r23, r23, 0x1
-
-	.loc_0x1A8:
-	  cmpw      r23, r20
-	  blt+      .loc_0x8C
-	  mr        r3, r17
-	  mr        r4, r18
-	  mr        r5, r19
-	  mr        r7, r20
-	  addi      r6, r1, 0x8
-	  bl        .loc_0x2CC
-	  mr        r6, r18
-	  mr        r7, r19
-	  li        r8, 0
-	  b         .loc_0x270
-
-	.loc_0x1D8:
-	  li        r9, 0x1
-	  li        r5, 0
-	  mtctr     r22
-	  cmpwi     r22, 0
-	  ble-      .loc_0x220
-
-	.loc_0x1EC:
-	  lwz       r3, 0x10(r17)
-	  lwz       r4, 0x0(r6)
-	  lwzx      r0, r3, r5
-	  cmplw     r4, r0
-	  bne-      .loc_0x218
-	  lwz       r3, 0x14(r17)
-	  lwz       r4, 0x0(r7)
-	  lwzx      r0, r3, r5
-	  cmplw     r4, r0
-	  bne-      .loc_0x218
-	  li        r9, 0
-
-	.loc_0x218:
-	  addi      r5, r5, 0x4
-	  bdnz+     .loc_0x1EC
-
-	.loc_0x220:
-	  rlwinm.   r0,r9,0,24,31
-	  beq-      .loc_0x264
-	  rlwinm    r5,r8,2,0,29
-	  lwz       r4, 0x10(r17)
-	  lwzx      r0, r18, r5
-	  rlwinm    r6,r22,2,0,29
-	  mr        r3, r31
-	  stwx      r0, r4, r6
-	  lwzx      r0, r19, r5
-	  lwz       r4, 0x14(r17)
-	  stwx      r0, r4, r6
-	  lwz       r4, 0x10(r17)
-	  lwz       r5, 0x14(r17)
-	  lwzx      r4, r4, r6
-	  lwzx      r5, r5, r6
-	  bl        -0xC068
-	  b         .loc_0x2B0
-
-	.loc_0x264:
-	  addi      r6, r6, 0x4
-	  addi      r7, r7, 0x4
-	  addi      r8, r8, 0x1
-
-	.loc_0x270:
-	  cmpw      r8, r20
-	  blt+      .loc_0x1D8
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x413C
-	  li        r4, 0x3A0
-	  addi      r5, r5, 0x4178
-	  crclr     6, 0x6
-	  bl        -0x225538
-	  lis       r3, 0x8051
-	  lfsu      f0, 0x41E4(r3)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r3)
-	  stfs      f0, 0x8(r31)
-
-	.loc_0x2B0:
-	  psq_l     f31,0x258(r1),0,0
-	  lfd       f31, 0x250(r1)
-	  lmw       r17, 0x214(r1)
-	  lwz       r0, 0x264(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x260
-	  blr
-
-	.loc_0x2CC:
-	*/
+	JUT_PANICLINE(928, "not search item slot\n");
+	return Vector3f::zero;
 }
 
 /*
@@ -1490,92 +1265,24 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode**, BaseGen**, int, int, in
  * Address:	8024FBB4
  * Size:	000114
  */
-void RandItemUnit::getItemDropSortingList(MapNode**, BaseGen**, int*, int)
+void RandItemUnit::getItemDropSortingList(MapNode** nodes, BaseGen** gens, int* scores, int count)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stmw      r19, 0x1C(r1)
-	  mr        r19, r4
-	  mr        r20, r5
-	  mr        r21, r6
-	  mr        r22, r7
-	  mr        r27, r19
-	  mr        r28, r21
-	  mr        r26, r20
-	  subi      r25, r22, 0x1
-	  li        r24, 0
-	  b         .loc_0xF8
-
-	.loc_0x38:
-	  addi      r23, r24, 0x1
-	  rlwinm    r0,r23,2,0,29
-	  add       r31, r21, r0
-	  add       r30, r19, r0
-	  add       r29, r20, r0
-	  b         .loc_0xE0
-
-	.loc_0x50:
-	  lwz       r3, 0x0(r28)
-	  lwz       r0, 0x0(r31)
-	  cmpw      r3, r0
-	  bgt-      .loc_0xA0
-	  bne-      .loc_0xD0
-	  bl        -0x186678
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x3B18(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x3B20(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x3B08(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, -0x3B04(r2)
-	  fmuls     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xD0
-
-	.loc_0xA0:
-	  lwz       r3, 0x0(r27)
-	  lwz       r4, 0x0(r26)
-	  lwz       r5, 0x0(r28)
-	  lwz       r0, 0x0(r30)
-	  stw       r0, 0x0(r27)
-	  lwz       r0, 0x0(r29)
-	  stw       r0, 0x0(r26)
-	  lwz       r0, 0x0(r31)
-	  stw       r0, 0x0(r28)
-	  stw       r3, 0x0(r30)
-	  stw       r4, 0x0(r29)
-	  stw       r5, 0x0(r31)
-
-	.loc_0xD0:
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x4
-	  addi      r29, r29, 0x4
-	  addi      r23, r23, 0x1
-
-	.loc_0xE0:
-	  cmpw      r23, r22
-	  blt+      .loc_0x50
-	  addi      r28, r28, 0x4
-	  addi      r27, r27, 0x4
-	  addi      r26, r26, 0x4
-	  addi      r24, r24, 0x1
-
-	.loc_0xF8:
-	  cmpw      r24, r25
-	  blt+      .loc_0x38
-	  lmw       r19, 0x1C(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
+	int max = count - 1;
+	for (int i = 0; i < max; i++) {
+		for (int j = i + 1; j < count; j++) {
+			if (scores[i] > scores[j] || (scores[i] == scores[j] && randWeightFloat(1.0f) < 0.5f)) {
+				MapNode* oldNode = nodes[i];
+				BaseGen* oldGen  = gens[i];
+				int oldScore     = scores[i];
+				nodes[i]         = nodes[j];
+				gens[i]          = gens[j];
+				scores[i]        = scores[j];
+				nodes[j]         = oldNode;
+				gens[j]          = oldGen;
+				scores[j]        = oldScore;
+			}
+		}
+	}
 }
 } // namespace Cave
 } // namespace Game
