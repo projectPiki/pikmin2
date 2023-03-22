@@ -16,14 +16,14 @@ struct EditMapUnit {
 	void read(Stream* stream);
 	void setEditNumber(int);
 
-	f32 mChanceOfUse; // _00
-	int _04;          // _04, row numbers for double arrays below?
-	int* _08;         // _08, col numbers for double arrays below?
-	char*** _0C;      // _0C, double array of strings
-	int** _10;        // _10
-	int** _14;        // _14
-	int** _18;        // _18
-	int mEditNum;     // _1C
+	f32 mChanceOfUse;   // _00
+	int mEditCount;     // _04, row numbers for double arrays below
+	int* mUnitCounts;   // _08, col numbers for double arrays below, indexed by mEditCount
+	char*** mUnitNames; // _0C, double array of strings
+	int** mDirections;  // _10
+	int** mXOffsets;    // _14
+	int** mYOffsets;    // _18
+	int mEditNum;       // _1C
 };
 
 struct EnemyNode;

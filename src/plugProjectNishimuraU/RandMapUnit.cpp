@@ -14,12 +14,12 @@ namespace Cave {
 EditMapUnit::EditMapUnit()
 {
 	mChanceOfUse = 0.0f;
-	_04          = 0;
-	_08          = nullptr;
-	_0C          = nullptr;
-	_10          = nullptr;
-	_14          = nullptr;
-	_18          = nullptr;
+	mEditCount   = 0;
+	mUnitCounts  = nullptr;
+	mUnitNames   = nullptr;
+	mDirections  = nullptr;
+	mXOffsets    = nullptr;
+	mYOffsets    = nullptr;
 	mEditNum     = -128;
 }
 
@@ -51,28 +51,28 @@ void EditMapUnit::read(Stream* stream)
 {
 	stream->resetPosition(true, true);
 	mChanceOfUse = stream->readFloat();
-	_04          = stream->readInt();
-	_08          = new int[_04];
-	_0C          = new char**[_04];
-	_10          = new int*[_04];
-	_14          = new int*[_04];
-	_18          = new int*[_04];
+	mEditCount   = stream->readInt();
+	mUnitCounts  = new int[mEditCount];
+	mUnitNames   = new char**[mEditCount];
+	mDirections  = new int*[mEditCount];
+	mXOffsets    = new int*[mEditCount];
+	mYOffsets    = new int*[mEditCount];
 
-	for (int i = 0; i < _04; i++) {
-		_08[i] = stream->readInt();
-		_0C[i] = new char*[_08[i]];
-		_10[i] = new int[_08[i]];
-		_14[i] = new int[_08[i]];
-		_18[i] = new int[_08[i]];
+	for (int i = 0; i < mEditCount; i++) {
+		mUnitCounts[i] = stream->readInt();
+		mUnitNames[i]  = new char*[mUnitCounts[i]];
+		mDirections[i] = new int[mUnitCounts[i]];
+		mXOffsets[i]   = new int[mUnitCounts[i]];
+		mYOffsets[i]   = new int[mUnitCounts[i]];
 
-		for (int j = 0; j < _08[i]; j++) {
-			char* str = stream->readString(nullptr, 0);
-			_0C[i][j] = new char[strlen(str) + 1];
-			strcpy(_0C[i][j], str);
+		for (int j = 0; j < mUnitCounts[i]; j++) {
+			char* name       = stream->readString(nullptr, 0);
+			mUnitNames[i][j] = new char[strlen(name) + 1];
+			strcpy(mUnitNames[i][j], name);
 
-			_10[i][j] = stream->readInt();
-			_14[i][j] = stream->readInt();
-			_18[i][j] = stream->readInt();
+			mDirections[i][j] = stream->readInt();
+			mXOffsets[i][j]   = stream->readInt();
+			mYOffsets[i][j]   = stream->readInt();
 		}
 	}
 
@@ -91,10 +91,10 @@ void EditMapUnit::setEditNumber(int editNo)
 		return;
 	}
 
-	if (_04 > 0) {
+	if (mEditCount > 0) {
 		if (editNo >= 0) {
 			// make 0 <= editNo < _04
-			int ceil = _04 - 1;
+			int ceil = mEditCount - 1;
 			if (editNo < 0) {
 				editNo = 0;
 			} else if (editNo > ceil) {
@@ -843,17 +843,18 @@ void RandMapUnit::setEditorMapUnit()
 
 	int editNo = editUnit->mEditNum;
 	if (editNo < 0) {
-		int count = editUnit->_04;
+		int count = editUnit->mEditCount;
 		editNo    = count * randFloat();
 	}
 
-	int val = editUnit->_08[editNo] - 1;
+	int last = editUnit->mUnitCounts[editNo] - 1;
 
-	for (int i = 0; i < editUnit->_08[editNo]; i++) {
+	for (int i = 0; i < editUnit->mUnitCounts[editNo]; i++) {
 		FOREACH_NODE(MapNode, mapNode->mChild, currNode)
 		{
-			if (editUnit->_10[editNo][i] == currNode->getDirection() && strcmp(currNode->getUnitName(), editUnit->_0C[editNo][i]) == 0) {
-				addMap(currNode->mUnitInfo, editUnit->_14[editNo][i], editUnit->_18[editNo][i], i == val);
+			if (editUnit->mDirections[editNo][i] == currNode->getDirection()
+			    && strcmp(currNode->getUnitName(), editUnit->mUnitNames[editNo][i]) == 0) {
+				addMap(currNode->mUnitInfo, editUnit->mXOffsets[editNo][i], editUnit->mYOffsets[editNo][i], i == last);
 			}
 		}
 	}
