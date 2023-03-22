@@ -65,13 +65,13 @@ void MapUnitGenerator::createEditMapInfo(EditMapUnit* editInfo)
 	mEditMapUnit = nullptr;
 
 	if (mIsVersusMode && editInfo) {
-		if (editInfo->_1C < -1) {
+		if (editInfo->mEditNum < -1) {
 			float randcomp = 1.0f;
 			randcomp       = randWeightFloat(randcomp);
 			if (randcomp < editInfo->mChanceOfUse) {
 				mEditMapUnit = editInfo;
 			}
-		} else if (editInfo->_1C >= 0) {
+		} else if (editInfo->mEditNum >= 0) {
 			mEditMapUnit = editInfo;
 		}
 	}

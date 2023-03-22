@@ -10,14 +10,20 @@
 namespace Game {
 namespace Cave {
 struct EditMapUnit {
+	EditMapUnit();
+
+	void read(char*);
+	void read(Stream* stream);
+	void setEditNumber(int);
+
 	f32 mChanceOfUse; // _00
-	u32 _04;          // _04
-	u32 _08;          // _08
-	u32 _0C;          // _0C
-	u32 _10;          // _10
-	u32 _14;          // _14
-	u32 _18;          // _18
-	int _1C;          // _1C
+	int _04;          // _04, row numbers for double arrays below?
+	int* _08;         // _08, col numbers for double arrays below?
+	char*** _0C;      // _0C, double array of strings
+	int** _10;        // _10
+	int** _14;        // _14
+	int** _18;        // _18
+	int mEditNum;     // _1C
 };
 
 struct EnemyNode;

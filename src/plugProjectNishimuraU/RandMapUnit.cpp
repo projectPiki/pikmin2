@@ -1,55 +1,6 @@
 #include "Game/Cave/RandMapUnit.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80484090
-    lbl_80484090:
-        .4byte 0x52616E64
-        .4byte 0x4D617055
-        .4byte 0x6E69742E
-        .4byte 0x63707000
-    .global lbl_804840A0
-    lbl_804840A0:
-        .4byte 0x65646974
-        .4byte 0x206D6170
-        .4byte 0x206E6F6E
-        .4byte 0x65203A20
-        .4byte 0x25730A00
-    .global lbl_804840B4
-    lbl_804840B4:
-        .4byte 0x00000000
-        .4byte 0x00000002
-        .4byte 0x00000001
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A760
-    lbl_8051A760:
-        .4byte 0x00000000
-    .global lbl_8051A764
-    lbl_8051A764:
-        .4byte 0x3C23D70A
-    .global lbl_8051A768
-    lbl_8051A768:
-        .float 1.0
-        .4byte 0x00000000
-    .global lbl_8051A770
-    lbl_8051A770:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051A778
-    lbl_8051A778:
-        .4byte 0x47000000
-    .global lbl_8051A77C
-    lbl_8051A77C:
-        .4byte 0x40000000
-    .global lbl_8051A780
-    lbl_8051A780:
-        .4byte 0x40800000
-        .4byte 0x00000000
-*/
 
 namespace Game {
 namespace Cave {
@@ -61,20 +12,14 @@ namespace Cave {
  */
 EditMapUnit::EditMapUnit()
 {
-	/*
-	lfs      f0, lbl_8051A760@sda21(r2)
-	li       r4, 0
-	li       r0, -128
-	stfs     f0, 0(r3)
-	stw      r4, 4(r3)
-	stw      r4, 8(r3)
-	stw      r4, 0xc(r3)
-	stw      r4, 0x10(r3)
-	stw      r4, 0x14(r3)
-	stw      r4, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	blr
-	*/
+	mChanceOfUse = 0.0f;
+	_04          = 0;
+	_08          = nullptr;
+	_0C          = nullptr;
+	_10          = nullptr;
+	_14          = nullptr;
+	_18          = nullptr;
+	mEditNum     = -128;
 }
 
 /*
@@ -82,61 +27,18 @@ EditMapUnit::EditMapUnit()
  * Address:	80245C8C
  * Size:	0000B8
  */
-void EditMapUnit::read(char*)
+void EditMapUnit::read(char* filepath)
 {
-	/*
-	stwu     r1, -0x440(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x444(r1)
-	li       r0, 0
-	li       r7, 0
-	li       r8, 2
-	stw      r31, 0x43c(r1)
-	li       r9, 0
-	li       r10, 0
-	stw      r30, 0x438(r1)
-	mr       r30, r4
-	li       r4, 0
-	stw      r29, 0x434(r1)
-	mr       r29, r3
-	mr       r3, r30
-	stw      r0, 8(r1)
-	bl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	or.      r31, r3, r3
-	beq      lbl_80245D08
-	mr       r4, r31
-	addi     r3, r1, 0x10
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	mr       r3, r29
-	addi     r4, r1, 0x10
-	bl       read__Q34Game4Cave11EditMapUnitFP6Stream
-	mr       r3, r31
-	bl       __dla__FPv
-	b        lbl_80245D28
+	void* resource
+	    = JKRDvdRipper::loadToMainRAM(filepath, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	if (resource) {
+		RamStream stream(resource, -1);
+		read(&stream);
+		delete[] resource;
 
-lbl_80245D08:
-	lis      r3, lbl_80484090@ha
-	lis      r4, lbl_804840A0@ha
-	addi     r5, r4, lbl_804840A0@l
-	mr       r6, r30
-	addi     r3, r3, lbl_80484090@l
-	li       r4, 0x55
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80245D28:
-	lwz      r0, 0x444(r1)
-	lwz      r31, 0x43c(r1)
-	lwz      r30, 0x438(r1)
-	lwz      r29, 0x434(r1)
-	mtlr     r0
-	addi     r1, r1, 0x440
-	blr
-	*/
+	} else {
+		JUT_PANICLINE(85, "edit map none : %s\n", filepath);
+	}
 }
 
 /*
@@ -144,142 +46,36 @@ lbl_80245D28:
  * Address:	80245D44
  * Size:	0001E8
  */
-void EditMapUnit::read(Stream*)
+void EditMapUnit::read(Stream* stream)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	li       r0, 1
-	stmw     r25, 0x14(r1)
-	mr       r27, r4
-	mr       r26, r3
-	stw      r0, 0xc(r4)
-	lwz      r0, 0xc(r4)
-	cmpwi    r0, 1
-	bne      lbl_80245D78
-	li       r0, 0
-	stw      r0, 0x414(r27)
+	stream->resetPosition(true, true);
+	mChanceOfUse = stream->readFloat();
+	_04          = stream->readInt();
+	_08          = new int[_04];
+	_0C          = new char**[_04];
+	_10          = new int*[_04];
+	_14          = new int*[_04];
+	_18          = new int*[_04];
 
-lbl_80245D78:
-	mr       r3, r27
-	bl       readFloat__6StreamFv
-	stfs     f1, 0(r26)
-	mr       r3, r27
-	bl       readInt__6StreamFv
-	stw      r3, 4(r26)
-	lwz      r0, 4(r26)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 8(r26)
-	lwz      r0, 4(r26)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0xc(r26)
-	lwz      r0, 4(r26)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r26)
-	lwz      r0, 4(r26)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r26)
-	lwz      r0, 4(r26)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x18(r26)
-	li       r29, 0
-	li       r30, 0
-	b        lbl_80245F04
+	for (int i = 0; i < _04; i++) {
+		_08[i] = stream->readInt();
+		_0C[i] = new char*[_08[i]];
+		_10[i] = new int[_08[i]];
+		_14[i] = new int[_08[i]];
+		_18[i] = new int[_08[i]];
 
-lbl_80245DEC:
-	mr       r3, r27
-	bl       readInt__6StreamFv
-	lwz      r4, 8(r26)
-	stwx     r3, r4, r30
-	lwz      r3, 8(r26)
-	lwzx     r0, r3, r30
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	lwz      r4, 0xc(r26)
-	stwx     r3, r4, r30
-	lwz      r3, 8(r26)
-	lwzx     r0, r3, r30
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	lwz      r4, 0x10(r26)
-	stwx     r3, r4, r30
-	lwz      r3, 8(r26)
-	lwzx     r0, r3, r30
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	lwz      r4, 0x14(r26)
-	stwx     r3, r4, r30
-	lwz      r3, 8(r26)
-	lwzx     r0, r3, r30
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	lwz      r4, 0x18(r26)
-	li       r28, 0
-	li       r31, 0
-	stwx     r3, r4, r30
-	b        lbl_80245EEC
+		for (int j = 0; j < _08[i]; j++) {
+			char* str = stream->readString(nullptr, 0);
+			_0C[i][j] = new char[strlen(str) + 1];
+			strcpy(_0C[i][j], str);
 
-lbl_80245E68:
-	mr       r3, r27
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r25, r3
-	bl       strlen
-	addi     r3, r3, 1
-	bl       __nwa__FUl
-	lwz      r0, 0xc(r26)
-	mr       r4, r25
-	lwzx     r5, r30, r0
-	stwx     r3, r5, r31
-	lwz      r0, 0xc(r26)
-	lwzx     r3, r30, r0
-	lwzx     r3, r3, r31
-	bl       strcpy
-	mr       r3, r27
-	bl       readInt__6StreamFv
-	lwz      r0, 0x10(r26)
-	lwzx     r4, r30, r0
-	stwx     r3, r4, r31
-	mr       r3, r27
-	bl       readInt__6StreamFv
-	lwz      r0, 0x14(r26)
-	lwzx     r4, r30, r0
-	stwx     r3, r4, r31
-	mr       r3, r27
-	bl       readInt__6StreamFv
-	lwz      r0, 0x18(r26)
-	addi     r28, r28, 1
-	lwzx     r4, r30, r0
-	stwx     r3, r4, r31
-	addi     r31, r31, 4
+			_10[i][j] = stream->readInt();
+			_14[i][j] = stream->readInt();
+			_18[i][j] = stream->readInt();
+		}
+	}
 
-lbl_80245EEC:
-	lwz      r0, 8(r26)
-	lwzx     r0, r30, r0
-	cmpw     r28, r0
-	blt      lbl_80245E68
-	addi     r30, r30, 4
-	addi     r29, r29, 1
-
-lbl_80245F04:
-	lwz      r0, 4(r26)
-	cmpw     r29, r0
-	blt      lbl_80245DEC
-	li       r0, -128
-	stw      r0, 0x1c(r26)
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mEditNum = -128;
 }
 
 /*
@@ -287,39 +83,28 @@ lbl_80245F04:
  * Address:	80245F2C
  * Size:	000054
  */
-void EditMapUnit::setEditNumber(int)
+void EditMapUnit::setEditNumber(int editNo)
 {
-	/*
-	cmpwi    r4, -1
-	bne      lbl_80245F3C
-	stw      r4, 0x1c(r3)
-	blr
+	if (editNo == -1) {
+		mEditNum = editNo;
+		return;
+	}
 
-lbl_80245F3C:
-	lwz      r5, 4(r3)
-	cmpwi    r5, 0
-	ble      lbl_80245F74
-	cmpwi    r4, 0
-	bltlr
-	addi     r0, r5, -1
-	bge      lbl_80245F60
-	li       r4, 0
-	b        lbl_80245F6C
+	if (_04 > 0) {
+		if (editNo >= 0) {
+			// make 0 <= editNo < _04
+			int ceil = _04 - 1;
+			if (editNo < 0) {
+				editNo = 0;
+			} else if (editNo > ceil) {
+				editNo = ceil;
+			}
+			mEditNum = editNo;
+		}
 
-lbl_80245F60:
-	cmpw     r4, r0
-	ble      lbl_80245F6C
-	mr       r4, r0
-
-lbl_80245F6C:
-	stw      r4, 0x1c(r3)
-	blr
-
-lbl_80245F74:
-	li       r0, -1
-	stw      r0, 0x1c(r3)
-	blr
-	*/
+	} else {
+		mEditNum = -1;
+	}
 }
 
 /*
@@ -327,8 +112,48 @@ lbl_80245F74:
  * Address:	80245F80
  * Size:	00019C
  */
-RandMapUnit::RandMapUnit(MapUnitGenerator*)
+RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 {
+	mMapUnitGenerator    = generator;
+	MapNode* nodeArray   = mMapUnitGenerator->mMapNodeArr;
+	MapNode* placedNodes = mMapUnitGenerator->mPlacedMapNodes;
+
+	_24 = new int[3];
+
+	for (int i = 0; i < 3; i++) {
+		_24[i] = nodeArray[i].getChildCount();
+	}
+
+	FloorInfo* info = mMapUnitGenerator->mFloorInfo;
+	if (info) {
+		mRoomCount  = info->getRoomNum();
+		mRouteRatio = info->getRouteRatio();
+		f32 tempMax = 0.01f * info->getCapMax();
+		// bound between 0.0f and 1.0f.
+		mCapMax = (tempMax < 0.0f) ? 0.0f : (tempMax > 1.0f) ? 1.0f : tempMax;
+	} else {
+		mRoomCount  = 2;
+		mRouteRatio = 0.0f;
+		mCapMax     = 0.0f;
+	}
+
+	mMapHasDiameter36 = false;
+	mDoorCount        = 0;
+
+	FOREACH_NODE(MapNode, generator->mMapNode->mChild, currNode)
+	{
+		int numDoors = currNode->getNumDoors();
+		if (numDoors > mDoorCount) {
+			mDoorCount = numDoors;
+		}
+	}
+
+	mChecker = new RandMapChecker(placedNodes);
+
+	mNeedsLoopMapNodeCheck   = true;
+	mCapCandidateCount       = 0;
+	mCapCandidateNodes       = new MapNode*[16];
+	mCapCandidateDoorIndices = new int[16];
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -463,81 +288,32 @@ lbl_802460D8:
  */
 void RandMapUnit::setMapUnit()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r4, 0x20(r3)
-	lwz      r0, 0x30(r4)
-	cmplwi   r0, 0
-	beq      lbl_80246154
-	bl       setEditorMapUnit__Q34Game4Cave11RandMapUnitFv
-	b        lbl_80246158
+	if (mMapUnitGenerator->mEditMapUnit) {
+		setEditorMapUnit();
+	} else {
+		setFirstMapUnit();
+	}
 
-lbl_80246154:
-	bl       setFirstMapUnit__Q34Game4Cave11RandMapUnitFv
+	if (getOpenDoorNum() != 0) {
+		for (int i = 0; i < 500; i++) {
+			MapNode* tile = getRandMapUnit();
+			if (tile) {
+				addMap(tile->mUnitInfo, tile->getNodeOffsetX(), tile->getNodeOffsetY(), true);
+			}
 
-lbl_80246158:
-	mr       r3, r28
-	bl       getOpenDoorNum__Q34Game4Cave11RandMapUnitFv
-	cmpwi    r3, 0
-	beq      lbl_802461F0
-	li       r30, 0
+			if (getOpenDoorNum() == 0) {
+				changeCapToRootLoopMapUnit();
 
-lbl_8024616C:
-	mr       r3, r28
-	bl       getRandMapUnit__Q34Game4Cave11RandMapUnitFv
-	or.      r29, r3, r3
-	beq      lbl_802461A4
-	bl       getNodeOffsetY__Q34Game4Cave7MapNodeFv
-	mr       r31, r3
-	mr       r3, r29
-	bl       getNodeOffsetX__Q34Game4Cave7MapNodeFv
-	lwz      r4, 0x18(r29)
-	mr       r5, r3
-	mr       r3, r28
-	mr       r6, r31
-	li       r7, 1
-	bl       addMap__Q34Game4Cave11RandMapUnitFPQ34Game4Cave8UnitInfoiib
+				if (getOpenDoorNum() == 0) {
+					changeTwoToOneMapUnit();
 
-lbl_802461A4:
-	mr       r3, r28
-	bl       getOpenDoorNum__Q34Game4Cave11RandMapUnitFv
-	cmpwi    r3, 0
-	bne      lbl_802461E4
-	mr       r3, r28
-	bl       changeCapToRootLoopMapUnit__Q34Game4Cave11RandMapUnitFv
-	mr       r3, r28
-	bl       getOpenDoorNum__Q34Game4Cave11RandMapUnitFv
-	cmpwi    r3, 0
-	bne      lbl_802461E4
-	mr       r3, r28
-	bl       changeTwoToOneMapUnit__Q34Game4Cave11RandMapUnitFv
-	mr       r3, r28
-	bl       getOpenDoorNum__Q34Game4Cave11RandMapUnitFv
-	cmpwi    r3, 0
-	beq      lbl_802461F0
-
-lbl_802461E4:
-	addi     r30, r30, 1
-	cmpwi    r30, 0x1f4
-	blt      lbl_8024616C
-
-lbl_802461F0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+					if (getOpenDoorNum() == 0) {
+						return;
+					}
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -545,27 +321,19 @@ lbl_802461F0:
  * Address:	80246210
  * Size:	000034
  */
-int RandMapUnit::getAliveMapIndex(MapNode*)
+int RandMapUnit::getAliveMapIndex(MapNode* tile)
 {
-	/*
-	lwz      r5, 0x20(r3)
-	li       r3, 0
-	lwz      r5, 0x28(r5)
-	lwz      r5, 0x10(r5)
-	b        lbl_80246234
+	int index = 0;
+	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currNode)
+	{
+		if (tile == currNode) {
+			return index;
+		}
 
-lbl_80246224:
-	cmplw    r4, r5
-	beqlr
-	lwz      r5, 4(r5)
-	addi     r3, r3, 1
+		index++;
+	}
 
-lbl_80246234:
-	cmplwi   r5, 0
-	bne      lbl_80246224
-	li       r3, -1
-	blr
-	*/
+	return -1;
 }
 
 /*
@@ -573,58 +341,27 @@ lbl_80246234:
  * Address:	80246244
  * Size:	0000A0
  */
-void RandMapUnit::getTextureSize(int&, int&)
+void RandMapUnit::getTextureSize(int& x, int& y)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r25, r4
-	mr       r26, r5
-	li       r30, -12800
-	li       r29, -12800
-	lwz      r3, 0x20(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r28, 0x10(r3)
-	b        lbl_802462C0
+	int tempX = -12800;
+	int tempY = -12800;
 
-lbl_80246274:
-	lwz      r3, 0x18(r28)
-	bl       getUnitSizeX__Q34Game4Cave8UnitInfoFv
-	mr       r31, r3
-	mr       r3, r28
-	bl       getNodeOffsetX__Q34Game4Cave7MapNodeFv
-	add      r27, r3, r31
-	lwz      r3, 0x18(r28)
-	bl       getUnitSizeY__Q34Game4Cave8UnitInfoFv
-	mr       r31, r3
-	mr       r3, r28
-	bl       getNodeOffsetY__Q34Game4Cave7MapNodeFv
-	cmpw     r27, r30
-	add      r0, r3, r31
-	ble      lbl_802462B0
-	mr       r30, r27
+	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currNode)
+	{
+		int newX = currNode->getNodeOffsetX() + currNode->mUnitInfo->getUnitSizeX();
+		int newY = currNode->getNodeOffsetY() + currNode->mUnitInfo->getUnitSizeY();
 
-lbl_802462B0:
-	cmpw     r0, r29
-	ble      lbl_802462BC
-	mr       r29, r0
+		if (newX > tempX) {
+			tempX = newX;
+		}
 
-lbl_802462BC:
-	lwz      r28, 4(r28)
+		if (newY > tempY) {
+			tempY = newY;
+		}
+	}
 
-lbl_802462C0:
-	cmplwi   r28, 0
-	bne      lbl_80246274
-	stw      r30, 0(r25)
-	stw      r29, 0(r26)
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	x = tempX;
+	y = tempY;
 }
 
 /*
@@ -634,41 +371,18 @@ lbl_802462C0:
  */
 MapNode* RandMapUnit::getRandMapUnit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getPartsKindNum__Q34Game4Cave11RandMapUnitFi
-	lwz      r0, 4(r31)
-	cmpw     r3, r0
-	bge      lbl_80246318
-	mr       r3, r31
-	bl       getNormalRandMapUnit__Q34Game4Cave11RandMapUnitFv
-	b        lbl_8024633C
+	if (getPartsKindNum(UNITKIND_Room) < mRoomCount) {
+		return getNormalRandMapUnit();
+	}
 
-lbl_80246318:
-	mr       r3, r31
-	bl       createLoopMapNodeCheck__Q34Game4Cave11RandMapUnitFv
-	mr       r3, r31
-	bl       getLoopRandMapUnit__Q34Game4Cave11RandMapUnitFv
-	cmplwi   r3, 0
-	beq      lbl_80246334
-	b        lbl_8024633C
+	createLoopMapNodeCheck();
 
-lbl_80246334:
-	mr       r3, r31
-	bl       getLoopEndMapUnit__Q34Game4Cave11RandMapUnitFv
+	MapNode* loopNode = getLoopRandMapUnit();
+	if (loopNode) {
+		return loopNode;
+	}
 
-lbl_8024633C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return getLoopEndMapUnit();
 }
 
 /*
@@ -1271,37 +985,10 @@ lbl_80246A54:
  */
 void RandMapUnit::setFirstMapUnit()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       getFirstMapUnit__Q34Game4Cave11RandMapUnitFv
-	or.      r30, r3, r3
-	beq      lbl_80246AC8
-	bl       getNodeOffsetY__Q34Game4Cave7MapNodeFv
-	mr       r31, r3
-	mr       r3, r30
-	bl       getNodeOffsetX__Q34Game4Cave7MapNodeFv
-	lwz      r4, 0x18(r30)
-	mr       r5, r3
-	mr       r3, r29
-	mr       r6, r31
-	li       r7, 1
-	bl       addMap__Q34Game4Cave11RandMapUnitFPQ34Game4Cave8UnitInfoiib
-
-lbl_80246AC8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	MapNode* firstUnit = getFirstMapUnit();
+	if (firstUnit) {
+		addMap(firstUnit->mUnitInfo, firstUnit->getNodeOffsetX(), firstUnit->getNodeOffsetY(), true);
+	}
 }
 
 /*
@@ -1311,57 +998,21 @@ lbl_80246AC8:
  */
 MapNode* RandMapUnit::getFirstMapUnit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r3, 0x10(r3)
-	lwz      r31, 0x50(r3)
-	b        lbl_80246B50
+	FOREACH_NODE(MapNode, mMapUnitGenerator->mMapNodeArr[1].mChild, currNode)
+	{
+		BaseGen* gen = currNode->mUnitInfo->getBaseGen();
+		if (gen) {
+			FOREACH_NODE(BaseGen, gen->mChild, currGen)
+			{
+				if (currGen->mSpawnType == BaseGen::Start) {
+					currNode->setOffset(0, 0);
+					return currNode;
+				}
+			}
+		}
+	}
 
-lbl_80246B04:
-	lwz      r3, 0x18(r31)
-	bl       getBaseGen__Q34Game4Cave8UnitInfoFv
-	cmplwi   r3, 0
-	beq      lbl_80246B4C
-	lwz      r3, 0x10(r3)
-	b        lbl_80246B44
-
-lbl_80246B1C:
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 7
-	bne      lbl_80246B40
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       setOffset__Q34Game4Cave7MapNodeFii
-	mr       r3, r31
-	b        lbl_80246B5C
-
-lbl_80246B40:
-	lwz      r3, 4(r3)
-
-lbl_80246B44:
-	cmplwi   r3, 0
-	bne      lbl_80246B1C
-
-lbl_80246B4C:
-	lwz      r31, 4(r31)
-
-lbl_80246B50:
-	cmplwi   r31, 0
-	bne      lbl_80246B04
-	li       r3, 0
-
-lbl_80246B5C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -2332,7 +1983,7 @@ lbl_802476FC:
  * Address:	80247704
  * Size:	000130
  */
-i32 RandMapUnit::getLoopMapNode(MapNode**)
+u32 RandMapUnit::getLoopMapNode(MapNode**)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -3084,44 +2735,17 @@ lbl_80247EE8:
  * Address:	80247F0C
  * Size:	000070
  */
-int RandMapUnit::getPartsKindNum(int)
+int RandMapUnit::getPartsKindNum(int kind)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r3, 0x20(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_80247F54
+	int counter = 0;
+	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currNode)
+	{
+		if (currNode->mUnitInfo->getUnitKind() == kind) {
+			counter++;
+		}
+	}
 
-lbl_80247F3C:
-	lwz      r3, 0x18(r30)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpw     r29, r3
-	bne      lbl_80247F50
-	addi     r31, r31, 1
-
-lbl_80247F50:
-	lwz      r30, 4(r30)
-
-lbl_80247F54:
-	cmplwi   r30, 0
-	bne      lbl_80247F3C
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return counter;
 }
 
 /*
@@ -3131,53 +2755,17 @@ lbl_80247F54:
  */
 int RandMapUnit::getOpenDoorNum()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_80247FE0
+	int counter = 0;
+	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currNode)
+	{
+		for (int i = 0; i < currNode->getNumDoors(); i++) {
+			if (!currNode->isDoorClose(i)) {
+				counter++;
+			}
+		}
+	}
 
-lbl_80247FA8:
-	li       r29, 0
-	b        lbl_80247FCC
-
-lbl_80247FB0:
-	mr       r3, r30
-	mr       r4, r29
-	bl       isDoorClose__Q34Game4Cave7MapNodeFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80247FC8
-	addi     r31, r31, 1
-
-lbl_80247FC8:
-	addi     r29, r29, 1
-
-lbl_80247FCC:
-	mr       r3, r30
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	cmpw     r29, r3
-	blt      lbl_80247FB0
-	lwz      r30, 4(r30)
-
-lbl_80247FE0:
-	cmplwi   r30, 0
-	bne      lbl_80247FA8
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return counter;
 }
 
 /*
@@ -3185,61 +2773,20 @@ lbl_80247FE0:
  * Address:	80248008
  * Size:	0000B4
  */
-void RandMapUnit::addMap(UnitInfo*, int, int, bool)
+void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool check)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r26, r3
-	mr       r27, r4
-	mr       r28, r5
-	mr       r29, r6
-	mr       r30, r7
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80248048
-	mr       r4, r27
-	bl       __ct__Q34Game4Cave7MapNodeFPQ34Game4Cave8UnitInfo
-	mr       r31, r3
+	MapNode* newTile = new MapNode(info);
+	if (newTile) {
+		newTile->clearRelations();
+		newTile->setOffset(x, y);
+		mMapUnitGenerator->mPlacedMapNodes->add(newTile);
+	}
 
-lbl_80248048:
-	cmplwi   r31, 0
-	beq      lbl_80248084
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x10(r31)
-	mr       r4, r28
-	mr       r5, r29
-	stw      r0, 0xc(r31)
-	stw      r0, 8(r31)
-	stw      r0, 4(r31)
-	bl       setOffset__Q34Game4Cave7MapNodeFii
-	lwz      r3, 0x20(r26)
-	mr       r4, r31
-	lwz      r3, 0x28(r3)
-	bl       add__5CNodeFP5CNode
-
-lbl_80248084:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_802480A8
-	mr       r3, r26
-	bl       closeDoorCheck__Q34Game4Cave11RandMapUnitFv
-	mr       r3, r26
-	bl       moveCentre__Q34Game4Cave11RandMapUnitFv
-	mr       r3, r26
-	mr       r4, r27
-	bl changeMapPriority__Q34Game4Cave11RandMapUnitFPQ34Game4Cave8UnitInfo
-
-lbl_802480A8:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (check) {
+		closeDoorCheck();
+		moveCentre();
+		changeMapPriority(info);
+	}
 }
 
 /*
@@ -3247,7 +2794,7 @@ lbl_802480A8:
  * Address:	802480BC
  * Size:	0003DC
  */
-void RandMapUnit::changeMapPriority(UnitInfo*)
+void RandMapUnit::changeMapPriority(UnitInfo* info)
 {
 	/*
 	stwu     r1, -0x480(r1)
@@ -3773,24 +3320,10 @@ lbl_802486DC:
  * Address:	802486F8
  * Size:	000038
  */
-void RandMapUnit::deleteMapNode(MapNode*)
+void RandMapUnit::deleteMapNode(MapNode* tile)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       detachDoorClose__Q34Game4Cave7MapNodeFv
-	mr       r3, r31
-	bl       del__5CNodeFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	tile->detachDoorClose();
+	tile->del();
 }
 
 /*
@@ -3943,35 +3476,15 @@ lbl_802488B4:
  * Address:	802488C8
  * Size:	00004C
  */
-bool RandMapUnit::isLoopMapNodeCheck(MapNode*, int)
+bool RandMapUnit::isLoopMapNodeCheck(MapNode* tile, int idx)
 {
-	/*
-	lwz      r0, 0x10(r3)
-	li       r7, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_8024890C
+	for (int i = 0; i < mCapCandidateCount; i++) {
+		if (tile == mCapCandidateNodes[i] && idx == mCapCandidateDoorIndices[i]) {
+			return false;
+		}
+	}
 
-lbl_802488DC:
-	lwz      r6, 0x18(r3)
-	lwzx     r0, r6, r7
-	cmplw    r4, r0
-	bne      lbl_80248904
-	lwz      r6, 0x1c(r3)
-	lwzx     r0, r6, r7
-	cmpw     r5, r0
-	bne      lbl_80248904
-	li       r3, 0
-	blr
-
-lbl_80248904:
-	addi     r7, r7, 4
-	bdnz     lbl_802488DC
-
-lbl_8024890C:
-	li       r3, 1
-	blr
-	*/
+	return true;
 }
 } // namespace Cave
 } // namespace Game

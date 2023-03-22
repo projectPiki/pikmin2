@@ -81,6 +81,14 @@ struct Stream {
 		}
 	}
 
+	inline void resetPosition(bool a1, int a2)
+	{
+		mMode = a1;
+		if (mMode == a2) {
+			mTabCount = 0;
+		}
+	}
+
 	inline int getStreamDistance(int startPos) const { return mPosition - startPos; }
 
 	int mEndian;                      // _04
@@ -100,14 +108,6 @@ struct RamStream : Stream {
 	// virtual void getPending(); // from Stream
 
 	void set(u8*, int);
-
-	inline void resetPosition(bool a1, int a2)
-	{
-		mMode = a1;
-		if (mMode == a2) {
-			mTabCount = 0;
-		}
-	}
 
 	void* mRamBufferStart; // _418
 	int mBounds;           // _41C
