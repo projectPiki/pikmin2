@@ -2,12 +2,13 @@
 #include "Dolphin/math.h"
 
 namespace Game {
+namespace Cave {
 /*
  * --INFO--
  * Address:	8024FCC8
  * Size:	00005C
  */
-Cave::GateNode::GateNode()
+GateNode::GateNode()
 {
 	mUnit      = nullptr;
 	mIndex     = 0;
@@ -19,7 +20,7 @@ Cave::GateNode::GateNode()
  * Address:	8024FD24
  * Size:	00009C
  */
-Cave::GateNode::GateNode(Cave::GateUnit* unit, int index, int dir)
+GateNode::GateNode(GateUnit* unit, int index, int dir)
 {
 	mUnit      = unit;
 	mIndex     = index;
@@ -31,7 +32,7 @@ Cave::GateNode::GateNode(Cave::GateUnit* unit, int index, int dir)
  * Address:	8024FDC0
  * Size:	000020
  */
-int Cave::GateNode::getObjectId()
+int GateNode::getObjectId()
 {
 	if (mUnit->mInfo) {
 		return mUnit->mInfo->mCaveID;
@@ -45,26 +46,27 @@ int Cave::GateNode::getObjectId()
  * Address:	8024FDE0
  * Size:	000008
  */
-u32 Cave::GateNode::getObjectType() { return Gate; }
+u32 GateNode::getObjectType() { return NODE_Gate; }
 
 /*
  * --INFO--
  * Address:	8024FDE8
  * Size:	000008
  */
-int Cave::GateNode::getBirthCount() { return 1; }
+int GateNode::getBirthCount() { return 1; }
 
 /*
  * --INFO--
  * Address:	8024FDF0
  * Size:	000008
  */
-float Cave::GateNode::getDirection() { return mDirection; }
+f32 GateNode::getDirection() { return mDirection; }
 
 /*
  * --INFO--
  * Address:	8024FDF8
  * Size:	000008
  */
-int Cave::GateNode::getBirthDoorIndex() { return mIndex; }
+int GateNode::getBirthDoorIndex() { return mIndex; }
+} // namespace Cave
 } // namespace Game

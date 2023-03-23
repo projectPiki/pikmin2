@@ -6,6 +6,8 @@
 #include "Game/Cave/RandMapUnit.h"
 #include "JSystem/JUtility/JUTTexture.h"
 
+struct Graphics;
+
 namespace Game {
 namespace Cave {
 struct RandEnemyUnit;
@@ -53,15 +55,15 @@ struct RandEnemyUnit {
 	bool isEnemySetGen(MapNode*, BaseGen*);
 
 	MapUnitGenerator* mGenerator; // _00
-	RandMapScore* mScore;         // _04
+	RandMapScore* mMapScore;      // _04
 	int mTotalCount;              // _08, count of all types
 	int mMaxEnemies;              // _0C
-	int mCount[4];                // _10, current count of type 0=A, 1=B, 2=C, 3=F
-	int mMaxCount[4];             // _20, max for type 0=A, 1=B, 2=C, 3=F
-	MapNode* mMapNode;            // _30
-	BaseGen* mBaseGen;            // _34
+	int mTypeCount[4];            // _10, current count of type, see MapTekiTypes enum
+	int mTypeMax[4];              // _20, max for type, see MapTekiTypes enum
+	MapNode* mMapTile;            // _30
+	BaseGen* mSpawn;              // _34
 	EnemyUnit* mEnemyUnit;        // _38
-	bool _3C;                     // _3C
+	bool mIsVersusHiba;           // _3C
 };
 
 /**
@@ -99,8 +101,8 @@ struct RandPlantUnit {
 	bool isPlantSet(MapNode*, BaseGen*);
 
 	MapUnitGenerator* mGenerator; // _00
-	int mCurrentPlantCount;       // _04
-	int mDesiredPlantCount;       // _08
+	int mCount;                   // _04, current number of plants
+	int mGoalCount;               // _08, desired number of plants
 };
 
 /**
@@ -128,18 +130,23 @@ struct RandItemUnit {
 	Vector3f getItemBaseGenPosition(MapNode**, BaseGen**, int, int, int);
 	void getItemDropSortingList(MapNode**, BaseGen**, int*, int);
 
-	int mItems;                          // _00
-	int mMax;                            // _04
-	MapUnitGenerator* mMapUnitGenerator; // _08
-	RandMapScore* mRandMapScore;         // _0C
-	MapNode** mMapNode;                  // _10
-	BaseGen** mBaseGen;                  // _14
+	int mItemCount;               // _00
+	int mMax;                     // _04
+	MapUnitGenerator* mGenerator; // _08
+	RandMapScore* mMapScore;      // _0C
+	MapNode** mMapTileList;       // _10
+	BaseGen** mSpawnList;         // _14
 };
 
 /**
  * @size{0x18}
  */
 struct RandCapEnemyUnit {
+	enum SpawnType {
+		SPAWN_Ground  = 0,
+		SPAWN_Falling = 1,
+	};
+
 	RandCapEnemyUnit(MapUnitGenerator*);
 
 	void setManageClassPtr(RandItemUnit*);
@@ -147,10 +154,10 @@ struct RandCapEnemyUnit {
 	void setCapCommonEnemySlot(MapNode*, int);
 	void setCapEnemy(MapNode*, EnemyUnit*, int, int);
 
-	MapUnitGenerator* mMapUnitGenerator; // _00
-	RandItemUnit* mRandItemUnit;         // _04
-	EnemyNode* mEnemyNode[2];            // _08
-	int mPerSpawn[2];                    // _10
+	MapUnitGenerator* mGenerator; // _00
+	RandItemUnit* mRandItemUnit;  // _04
+	EnemyNode* mEnemies[2];       // _08, indexed by SpawnType
+	int mEnemyCounts[2];          // _10, indexed by SpawnType
 };
 
 /**
@@ -182,7 +189,7 @@ struct RandMapMgr : public CNode {
 	void getBaseGenData(Vector3f*, f32*);
 	void drawFrameBuffer(Graphics&);
 
-	MapUnitGenerator* mMapUnitGenerator; // _18
+	MapUnitGenerator* mGenerator;        // _18
 	RandMapUnit* mRandMapUnit;           // _1C
 	RandEnemyUnit* mRandEnemyUnit;       // _20
 	RandCapEnemyUnit* mRandCapEnemyUnit; // _24
@@ -203,21 +210,12 @@ struct RandMapDraw {
 	RandMapDraw(MapUnitGenerator* generator);
 
 	void radarMapPartsOpen(Vector3f& vec);
-	void draw(struct Graphics& gfx, f32 x, f32 y, f32 z);
+	void draw(Graphics& gfx, f32 x, f32 y, f32 z);
 
 	MapUnitGenerator* mGenerator; // _00
 };
 
 struct RandMapScore {
-	enum FixObjNodeTypes {
-		FIXNODE_Pod         = 0,
-		FIXNODE_Hole        = 1,
-		FIXNODE_Fountain    = 2,
-		FIXNODE_VsRedOnyon  = 3,
-		FIXNODE_VsBlueOnyon = 4,
-		FIXNODE_Count, // 5
-	};
-
 	RandMapScore(MapUnitGenerator*);
 
 	void setMapUnitScore();

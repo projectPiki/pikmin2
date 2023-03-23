@@ -17,15 +17,15 @@ static const char randItemUnitName[] = "246-RandItemUnit";
  */
 RandItemUnit::RandItemUnit(MapUnitGenerator* generator)
 {
-	mMapUnitGenerator = generator;
-	mItems            = 0;
-	if (mMapUnitGenerator->mFloorInfo) {
-		mMax = mMapUnitGenerator->mFloorInfo->getItemMax();
+	mGenerator = generator;
+	mItemCount = 0;
+	if (mGenerator->mFloorInfo) {
+		mMax = mGenerator->mFloorInfo->getItemMax();
 	} else {
 		mMax = 0;
 	}
-	mMapNode = nullptr;
-	mBaseGen = nullptr;
+	mMapTileList = nullptr;
+	mSpawnList   = nullptr;
 }
 
 /*
@@ -33,7 +33,7 @@ RandItemUnit::RandItemUnit(MapUnitGenerator* generator)
  * Address:	8024E3F0
  * Size:	000008
  */
-void RandItemUnit::setManageClassPtr(RandMapScore* ptr) { mRandMapScore = ptr; }
+void RandItemUnit::setManageClassPtr(RandMapScore* ptr) { mMapScore = ptr; }
 
 /*
  * --INFO--
@@ -43,7 +43,7 @@ void RandItemUnit::setManageClassPtr(RandMapScore* ptr) { mRandMapScore = ptr; }
 void RandItemUnit::setItemSlot()
 {
 	// check that we have space for new items
-	if (mItems < mMax) {
+	if (mItemCount < mMax) {
 		// only try to place a max of 100 items, regardless of desired item count
 		for (int i = 0; i < 100; i++) {
 			// initially null basegen pointer
@@ -68,8 +68,8 @@ void RandItemUnit::setItemSlot()
 				// add item to nodes
 				currMapNode->mItemNode->add((ItemNode*)newitem);
 				// increment item count and check we haven't hit our item limit
-				mItems++;
-				if (mItems < mMax) {
+				mItemCount++;
+				if (mItemCount < mMax) {
 					continue;
 				} else {
 					return;
@@ -95,10 +95,10 @@ bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
 			}
 		}
 	} else {
-		if (mapNode == mRandMapScore->getFixObjNode(1)) {
+		if (mapNode == mMapScore->getFixObjNode(FIXNODE_Hole)) {
 			return true;
 		}
-		if (mapNode == mRandMapScore->getFixObjNode(2)) {
+		if (mapNode == mMapScore->getFixObjNode(FIXNODE_Fountain)) {
 			return true;
 		}
 		if (mapNode->mItemNode->mChild) {
@@ -123,10 +123,10 @@ bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
  */
 bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
 {
-	if (mapNode == mRandMapScore->getFixObjNode(1)) {
+	if (mapNode == mMapScore->getFixObjNode(FIXNODE_Hole)) {
 		return true;
 	}
-	if (mapNode == mRandMapScore->getFixObjNode(2)) {
+	if (mapNode == mMapScore->getFixObjNode(FIXNODE_Fountain)) {
 		return true;
 	}
 	if (mapNode->mItemNode->mChild) {
@@ -137,7 +137,7 @@ bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
 	{
 		TekiInfo* info = node->mEnemyUnit->mTekiInfo;
 		if (info && (info->mType != BaseGen::Seam__Door) && (info->mType != BaseGen::Plant)
-		    && (info->mDropMode == 0 || (mMapUnitGenerator->isPomGroup(info)))) {
+		    && (info->mDropMode == 0 || (mGenerator->isPomGroup(info)))) {
 			return true;
 		}
 	}
@@ -151,10 +151,10 @@ bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
  */
 bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
 {
-	if (mapNode == mRandMapScore->getFixObjNode(1)) {
+	if (mapNode == mMapScore->getFixObjNode(FIXNODE_Hole)) {
 		return true;
 	}
-	if (mapNode == mRandMapScore->getFixObjNode(2)) {
+	if (mapNode == mMapScore->getFixObjNode(FIXNODE_Fountain)) {
 		return true;
 	}
 
@@ -162,7 +162,7 @@ bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
 	{
 		TekiInfo* info = node->mEnemyUnit->mTekiInfo;
 		if (info && (info->mType != BaseGen::Seam__Door) && (info->mType != BaseGen::Plant)
-		    && (info->mDropMode != 0 || (mMapUnitGenerator->isPomGroup(info)))) {
+		    && (info->mDropMode != 0 || (mGenerator->isPomGroup(info)))) {
 			return true;
 		}
 	}
@@ -176,8 +176,8 @@ bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
  */
 void RandItemUnit::setItemDropPositionList(MapNode** node, BaseGen** gen)
 {
-	mMapNode = node;
-	mBaseGen = gen;
+	mMapTileList = node;
+	mSpawnList   = gen;
 }
 
 /*
@@ -192,10 +192,10 @@ void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floor
 	MapNode* dropList[256];
 	MapNode* dropNode;
 
-	nodes[0] = mMapUnitGenerator->mPlacedMapNodes;
-	nodes[1] = mMapUnitGenerator->mVisitedMapNodes;
+	nodes[0] = mGenerator->mPlacedMapNodes;
+	nodes[1] = mGenerator->mVisitedMapNodes;
 
-	int score = weight * (f32)mRandMapScore->getVersusLowScore() + (1.0f - weight) * (f32)mRandMapScore->getVersusHighScore();
+	int score = weight * (f32)mMapScore->getVersusLowScore() + (1.0f - weight) * (f32)mMapScore->getVersusHighScore();
 
 	if (floorIndex < 0) {
 		int dropIndex = 1280000;
@@ -237,7 +237,7 @@ MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 	int nodeScoreList[512];
 	int totalScore = 0;
 
-	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currMapNode)
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currMapNode)
 	{
 		if (currMapNode->mUnitInfo->getUnitKind() == UNITKIND_Room) {
 			int slotNum = getItemSlotNum(currMapNode);
@@ -588,7 +588,7 @@ MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 	BaseGen* baseGenList[512];
 	int totalScore = -1;
 
-	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currMapNode)
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currMapNode)
 	{
 		if (currMapNode->mUnitInfo->getUnitKind() == UNITKIND_Room) {
 			int currItemCount = static_cast<ItemNode*>(currMapNode->mItemNode)->getChildCount() + 1;
@@ -652,7 +652,7 @@ ItemUnit* RandItemUnit::getItemUnit()
 	int total   = 0;
 	int counter = 0;
 	int tally   = 0;
-	FOREACH_NODE(ItemNode, mMapUnitGenerator->mItemNode->mChild, currItem)
+	FOREACH_NODE(ItemNode, mGenerator->mItemNode->mChild, currItem)
 	{
 		ItemUnit* unit = currItem->mUnit;
 		if (unit->mInfo) {
@@ -667,7 +667,7 @@ ItemUnit* RandItemUnit::getItemUnit()
 
 			if (val) {
 				total += val;
-				if (mItems < total) {
+				if (mItemCount < total) {
 					return currItem->mUnit;
 				}
 			}
@@ -830,13 +830,13 @@ int RandItemUnit::getItemSlotNum(MapNode* mapNode)
  */
 bool RandItemUnit::isItemSetHard()
 {
-	switch (mMapUnitGenerator->mRandItemType) {
+	switch (mGenerator->mRandItemType) {
 	case 0:
 	case 1:
 		return false;
 	case 2:
 	case 3:
-		if (mItems != 0) {
+		if (mItemCount != 0) {
 			return false;
 		}
 		return true;
@@ -1012,11 +1012,10 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode* node, int score)
 		Vector3f positions[32];
 		Vector3f onyonPos;
 		if (node->getVersusScore() - score > 0) {
-			onyonPos = mRandMapScore->getFixObjNode(RandMapScore::FIXNODE_VsRedOnyon)
-			               ->getBaseGenGlobalPosition(mRandMapScore->getFixObjGen(RandMapScore::FIXNODE_VsRedOnyon));
+			onyonPos = mMapScore->getFixObjNode(FIXNODE_VsRedOnyon)->getBaseGenGlobalPosition(mMapScore->getFixObjGen(FIXNODE_VsRedOnyon));
 		} else {
-			onyonPos = mRandMapScore->getFixObjNode(RandMapScore::FIXNODE_VsBlueOnyon)
-			               ->getBaseGenGlobalPosition(mRandMapScore->getFixObjGen(RandMapScore::FIXNODE_VsBlueOnyon));
+			onyonPos
+			    = mMapScore->getFixObjNode(FIXNODE_VsBlueOnyon)->getBaseGenGlobalPosition(mMapScore->getFixObjGen(FIXNODE_VsBlueOnyon));
 		}
 
 		int counter2 = 0;
@@ -1207,11 +1206,11 @@ void RandItemUnit::getItemDropList(MapNode* testNode, MapNode** nodeList, BaseGe
  */
 Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** nodes, BaseGen** gens, int count, int minScore, int idx)
 {
-	MapNode* redOnyonNode  = mRandMapScore->getFixObjNode(RandMapScore::FIXNODE_VsRedOnyon);  // r27
-	MapNode* blueOnyonNode = mRandMapScore->getFixObjNode(RandMapScore::FIXNODE_VsBlueOnyon); // r28
+	MapNode* redOnyonNode  = mMapScore->getFixObjNode(FIXNODE_VsRedOnyon);  // r27
+	MapNode* blueOnyonNode = mMapScore->getFixObjNode(FIXNODE_VsBlueOnyon); // r28
 
-	BaseGen* redOnyonGen  = mRandMapScore->getFixObjGen(RandMapScore::FIXNODE_VsRedOnyon);  // r29
-	BaseGen* blueOnyonGen = mRandMapScore->getFixObjGen(RandMapScore::FIXNODE_VsBlueOnyon); // r30
+	BaseGen* redOnyonGen  = mMapScore->getFixObjGen(FIXNODE_VsRedOnyon);  // r29
+	BaseGen* blueOnyonGen = mMapScore->getFixObjGen(FIXNODE_VsBlueOnyon); // r30
 
 	f32 maxDist = 400.0f;
 	int distScores[128];
@@ -1243,16 +1242,16 @@ Vector3f RandItemUnit::getItemBaseGenPosition(MapNode** nodes, BaseGen** gens, i
 	for (int i = 0; i < count; i++) {
 		bool check = true;
 		for (int j = 0; j < idx; j++) {
-			if (nodes[i] == mMapNode[j] && gens[i] == mBaseGen[j]) {
+			if (nodes[i] == mMapTileList[j] && gens[i] == mSpawnList[j]) {
 				check = false;
 			}
 		}
 
 		if (check) {
-			mMapNode[idx] = nodes[i];
-			mBaseGen[idx] = gens[i];
+			mMapTileList[idx] = nodes[i];
+			mSpawnList[idx]   = gens[i];
 
-			return mMapNode[idx]->getBaseGenGlobalPosition(mBaseGen[idx]);
+			return mMapTileList[idx]->getBaseGenGlobalPosition(mSpawnList[idx]);
 		}
 	}
 

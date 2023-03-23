@@ -209,8 +209,8 @@ void UnitInfo::create()
 	DoorNode* mapDoorNode = (DoorNode*)mMapUnits->mDoorNode->mChild;
 	for (mapDoorNode; mapDoorNode; mapDoorNode = (DoorNode*)mapDoorNode->mNext) {
 		DoorNode* newDoorNode         = new DoorNode();
-		newDoorNode->mNode.mDirection = mapDoorNode->mNode.mDirection;
-		newDoorNode->mNode.mOffset    = mapDoorNode->mNode.mOffset;
+		newDoorNode->mDoor.mDirection = mapDoorNode->mDoor.mDirection;
+		newDoorNode->mDoor.mOffset    = mapDoorNode->mDoor.mOffset;
 		mDoorNode->add(newDoorNode);
 	}
 
@@ -234,26 +234,26 @@ void UnitInfo::create()
 	DoorNode* unitDoorNode = (DoorNode*)mDoorNode->mChild;
 	for (unitDoorNode; unitDoorNode; unitDoorNode = (DoorNode*)unitDoorNode->mNext) {
 
-		int doorDir      = unitDoorNode->mNode.mDirection; // default direction
+		int doorDir      = unitDoorNode->mDoor.mDirection; // default direction
 		int newDirection = (doorDir + mUnitRotation) % 4;  // rotate with unit
 
-		unitDoorNode->mNode.mDirection = newDirection; // set as new door direction
+		unitDoorNode->mDoor.mDirection = newDirection; // set as new door direction
 		// set offset based on new direction vs old direction
-		if (doorDir == 0) {                                   // old = up
-			if ((newDirection == 2) || (newDirection == 3)) { // new = down or left
-				unitDoorNode->mNode.mOffset = (X - unitDoorNode->mNode.mOffset);
+		if (doorDir == CD_UP) {
+			if ((newDirection == CD_DOWN) || (newDirection == CD_LEFT)) {
+				unitDoorNode->mDoor.mOffset = (X - unitDoorNode->mDoor.mOffset);
 			}
-		} else if (doorDir == 1) {                            // old = right
-			if ((newDirection == 2) || (newDirection == 3)) { // new = down or left
-				unitDoorNode->mNode.mOffset = (Y - unitDoorNode->mNode.mOffset);
+		} else if (doorDir == CD_RIGHT) {
+			if ((newDirection == CD_DOWN) || (newDirection == CD_LEFT)) {
+				unitDoorNode->mDoor.mOffset = (Y - unitDoorNode->mDoor.mOffset);
 			}
-		} else if (doorDir == 2) {                            // old = down
-			if ((newDirection == 0) || (newDirection == 1)) { // new = up or right
-				unitDoorNode->mNode.mOffset = (X - unitDoorNode->mNode.mOffset);
+		} else if (doorDir == CD_DOWN) {
+			if ((newDirection == CD_UP) || (newDirection == CD_RIGHT)) {
+				unitDoorNode->mDoor.mOffset = (X - unitDoorNode->mDoor.mOffset);
 			}
-		} else if (doorDir == 3) {                            // old = left
-			if ((newDirection == 0) || (newDirection == 1)) { // new = up or right
-				unitDoorNode->mNode.mOffset = (Y - unitDoorNode->mNode.mOffset);
+		} else if (doorDir == CD_LEFT) {
+			if ((newDirection == CD_UP) || (newDirection == CD_RIGHT)) {
+				unitDoorNode->mDoor.mOffset = (Y - unitDoorNode->mDoor.mOffset);
 			}
 		}
 	}
@@ -323,8 +323,7 @@ BaseGen* UnitInfo::getBaseGen() { return mMapUnits->mBaseGen; }
  * Address:	80242BCC
  * Size:	00018C
  */
-// shout outs to encounter for adding the GXFifo stuff from SMB
-void UnitInfo::draw(float p0, float p1, float p2, float p3)
+void UnitInfo::draw(f32 x0, f32 y0, f32 x1, f32 y1)
 {
 	// Draw texture for UnitInfo based on rotation and
 	// mMapUnits->mTexture
@@ -376,17 +375,21 @@ void UnitInfo::draw(float p0, float p1, float p2, float p3)
 		texture->load(GX_TEXMAP0);
 
 		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-		float z = 0;
-		GXPosition3f32(p0, p1, z);
+
+		// bottom left
+		GXPosition3f32(x0, y0, 0.0f);
 		GXTexCoord2s8(u0, v0);
 
-		GXPosition3f32(p2, p1, z);
+		// bottom right
+		GXPosition3f32(x1, y0, 0.0f);
 		GXTexCoord2s8(u1, v1);
 
-		GXPosition3f32(p2, p3, z);
+		// top right
+		GXPosition3f32(x1, y1, 0.0f);
 		GXTexCoord2s8(u2, v2);
 
-		GXPosition3f32(p0, p3, z);
+		// top left
+		GXPosition3f32(x0, y1, 0.0f);
 		GXTexCoord2s8(u3, v3);
 	}
 }

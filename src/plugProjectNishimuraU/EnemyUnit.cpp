@@ -14,45 +14,35 @@ namespace Cave {
  */
 EnemyNode::EnemyNode()
 {
-	// Constructor for EnemyNode
-	//     - default = 0 for all, except birthDoorIndex = -1
-
-	mEnemyUnit      = 0;
-	mBaseGen        = 0;
+	mEnemyUnit      = nullptr;
+	mSpawn          = nullptr;
 	mBirthDoorIndex = -1;
 	mBirthCount     = 0;
-	mDirection      = 0.0f;
-	mBirthPos.z     = 0.0f;
-	mBirthPos.y     = 0.0f;
-	mBirthPos.x     = 0.0f;
-}
 
-// /*
-//  * --INFO--
-//  * Address:	80244168
-//  * Size:	000060
-//  */
-// WEAK - Game/Cave/ObjectLayout.h
-// ObjectLayoutNode::~ObjectLayoutNode() { }
+	mDirection = 0.0f;
+
+	mBirthPos.z = 0.0f;
+	mBirthPos.y = 0.0f;
+	mBirthPos.x = 0.0f;
+}
 
 /*
  * --INFO--
  * Address:	802441C8
  * Size:	000094
  */
-EnemyNode::EnemyNode(EnemyUnit* inputEnemyUnit, BaseGen* inputBaseGen, int birthCount)
+EnemyNode::EnemyNode(EnemyUnit* unit, BaseGen* spawn, int count)
 {
-	// Constructor for EnemyNode with inputs
-	//     - sets mEnemyUnit, mBaseGen and mBirthCount based on inputs, everything else to 0
-	//     - (except mBirthDoorIndex to -1)
-	mEnemyUnit      = inputEnemyUnit;
-	mBaseGen        = inputBaseGen;
+	mEnemyUnit      = unit;
+	mSpawn          = spawn;
 	mBirthDoorIndex = -1;
-	mBirthCount     = birthCount;
-	mDirection      = 0.0f;
-	mBirthPos.z     = 0.0f;
-	mBirthPos.y     = 0.0f;
-	mBirthPos.x     = 0.0f;
+	mBirthCount     = count;
+
+	mDirection = 0.0f;
+
+	mBirthPos.z = 0.0f;
+	mBirthPos.y = 0.0f;
+	mBirthPos.x = 0.0f;
 }
 
 /*
@@ -60,26 +50,24 @@ EnemyNode::EnemyNode(EnemyUnit* inputEnemyUnit, BaseGen* inputBaseGen, int birth
  * Address:	8024425C
  * Size:	0001A8
  */
-void EnemyNode::makeGlobalData(MapNode* mapNode)
+void EnemyNode::makeGlobalData(MapNode* mapTile)
 {
-	// get global position and direction from mapNode
-	mBirthPos  = mapNode->getBaseGenGlobalPosition(mBaseGen);
-	mDirection = mapNode->getBaseGenGlobalDirection(mBaseGen);
+	// get global position and direction from mapTile
+	mBirthPos  = mapTile->getBaseGenGlobalPosition(mSpawn);
+	mDirection = mapTile->getBaseGenGlobalDirection(mSpawn);
 
-	// if teki type is 0 (easy), give it a random distance from spawn within radius + random direction
-	if ((mBaseGen) && (mBaseGen->mSpawnType == 0)) {
+	// if teki type is 0 (easy), give it a random distance + direction from spawn centre, within radius
+	if (mSpawn && mSpawn->mSpawnType == BaseGen::TekiA__Easy) {
 
-		// get max radius of spawn
-		float radius = mBaseGen->mRadius;
 		// get random radius between 0 and max radius
-		radius = randWeightFloat(radius);
+		f32 radius = randWeightFloat(mSpawn->mRadius);
 
-		// set random direction from 0 to 2pi (0 to 360 degrees)
+		// set random direction from 0 to 2*pi
 		mDirection = randWeightFloat(TAU);
 
-		// move position x and y (z) according to random radius and random direction
-		mBirthPos.x += radius * pikmin2_sinf(mDirection); // inlined in header
-		mBirthPos.z += radius * pikmin2_cosf(mDirection); // inlined in header
+		// move 2D position according to random radius and random direction
+		mBirthPos.x += radius * pikmin2_sinf(mDirection);
+		mBirthPos.z += radius * pikmin2_cosf(mDirection);
 	}
 }
 
@@ -88,9 +76,8 @@ void EnemyNode::makeGlobalData(MapNode* mapNode)
  * Address:	80244404
  * Size:	000020
  */
-void EnemyNode::setGlobalData(Vector3f& pos, float direction)
+void EnemyNode::setGlobalData(Vector3f& pos, f32 direction)
 {
-	// set position and direction based on inputs
 	mBirthPos  = pos;
 	mDirection = direction;
 }
@@ -109,7 +96,6 @@ void EnemyNode::setBirthDoorIndex(int idx) { mBirthDoorIndex = idx; }
  */
 int EnemyNode::getObjectId()
 {
-	// get enemy ID from mTekiInfo; if no teki info, set to -1
 	TekiInfo* tekiInfo = mEnemyUnit->mTekiInfo;
 	if (tekiInfo) {
 		return mEnemyUnit->mTekiInfo->mEnemyID;
@@ -124,7 +110,6 @@ int EnemyNode::getObjectId()
  */
 u32 EnemyNode::getExtraCode()
 {
-	// return code of item dweevil is carrying, if any
 	TekiInfo* tekiInfo = mEnemyUnit->mTekiInfo;
 	if (tekiInfo) {
 		return tekiInfo->mOtakaraItemCode.mValue;
@@ -144,7 +129,7 @@ u32 EnemyNode::getObjectType()
 	if (tekiInfo) {
 		return tekiInfo->mDropMode;
 	}
-	return 0;
+	return DROP_NoDrop;
 }
 
 /*
@@ -159,9 +144,8 @@ int EnemyNode::getBirthCount() { return mBirthCount; }
  * Address:	80244494
  * Size:	000014
  */
-void EnemyNode::getBirthPosition(float& x, float& y)
+void EnemyNode::getBirthPosition(f32& x, f32& y)
 {
-	// get x and y (z) positions
 	x = mBirthPos.x;
 	y = mBirthPos.z;
 }
@@ -171,7 +155,7 @@ void EnemyNode::getBirthPosition(float& x, float& y)
  * Address:	802444A8
  * Size:	000008
  */
-float EnemyNode::getDirection() { return mDirection; }
+f32 EnemyNode::getDirection() { return mDirection; }
 
 /*
  * --INFO--
@@ -179,14 +163,5 @@ float EnemyNode::getDirection() { return mDirection; }
  * Size:	000008
  */
 int EnemyNode::getBirthDoorIndex() { return mBirthDoorIndex; }
-
-/*
- * --INFO--
- * Address:	802444B8
- * Size:	000070
- */
-// WEAK - in Game/Cave/Node.h
-// EnemyNode::~EnemyNode() { }
-
 } // namespace Cave
 } // namespace Game

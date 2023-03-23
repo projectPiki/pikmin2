@@ -14,6 +14,15 @@
 namespace Game {
 namespace Cave {
 
+enum EnemyDropMode {
+	DROP_NoDrop         = 0,
+	DROP_PikminOrLeader = 1,
+	DROP_Pikmin         = 2,
+	DROP_Leader         = 3,
+	DROP_CarryPikmin    = 4,
+	DROP_Earthquake     = 5,
+};
+
 /**
  * @size{0x38}
  */
@@ -23,7 +32,18 @@ struct BaseGen : public CNode {
 	 * UNUSED_3 is player 1 spawn in vs mode? (see
 	 * Game::Cave::RandMapMgr::getStartPosition)
 	 */
-	enum Type { TekiA__Easy = 0, TekiB__Hard, Treasure__Item, Unused3, HoleOrGeyser, Seam__Door, Plant, Start, TekiF__Special, Alcove };
+	enum Type {
+		TekiA__Easy    = 0,
+		TekiB__Hard    = 1,
+		Treasure__Item = 2,
+		Unused3        = 3,
+		HoleOrGeyser   = 4,
+		Seam__Door     = 5,
+		Plant          = 6,
+		Start          = 7,
+		TekiF__Special = 8,
+		Alcove         = 9
+	};
 
 	BaseGen();
 
@@ -31,6 +51,8 @@ struct BaseGen : public CNode {
 	virtual void read(Stream&);             // _10
 	virtual void draw(Graphics&, Matrixf*); // _14
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	Type mSpawnType;    // _18
 	Vector3f mPosition; // _1C
 	f32 mAngle;         // _28
@@ -42,14 +64,12 @@ struct BaseGen : public CNode {
 /**
  * @size{0x28}
  */
-struct TekiInfo : CNode {
-	// need to make this a define list eventually
-	// enum DropMode { NoDrop = 0, DropOnPikminOrLeader, DropOnPikmin, DropOnLeader, DropOnCarryingPikmin,
-	// DropFromPurpleEarthquake };
-
+struct TekiInfo : public CNode {
 	virtual ~TekiInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	EnemyTypeID::EEnemyTypeID mEnemyID; // _18
 	int mWeight;                        // _1C
 	BaseGen::Type mType;                // _20
@@ -61,10 +81,12 @@ struct TekiInfo : CNode {
 /**
  * @size{0x20}
  */
-struct ItemInfo : CNode {
+struct ItemInfo : public CNode {
 	virtual ~ItemInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	int mCaveID; // _18
 	int mWeight; // _1C
 };
@@ -72,10 +94,12 @@ struct ItemInfo : CNode {
 /**
  * @size{0x24}
  */
-struct GateInfo : CNode {
+struct GateInfo : public CNode {
 	virtual ~GateInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	int mCaveID; // _18
 	f32 mLife;   // _1C
 	int mWeight; // _20
@@ -84,20 +108,22 @@ struct GateInfo : CNode {
 /**
  * @size{0x20}
  */
-struct CapInfo : CNode {
+struct CapInfo : public CNode {
 	virtual ~CapInfo() { }      // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	TekiInfo* getTekiInfo();
 
-	bool mTekiEmpty;     // _18, AKA does not have a teki
+	// _00     = VTBL
+	// _00-_18 = CNode
+	bool mIsTekiEmpty;   // _18, AKA does not have a teki
 	TekiInfo* mTekiInfo; // _1C
 };
 
 /**
  * @size{0x388}
  */
-struct FloorInfo : CNode {
+struct FloorInfo : public CNode {
 	struct Parms : Parameters {
 		Parms();
 
@@ -156,6 +182,8 @@ struct FloorInfo : CNode {
 	bool hasHiddenCollision();
 	bool useKaidanBarrel();
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	Parms mParms;       // _018
 	TekiInfo mTekiInfo; // _2FC
 	ItemInfo mItemInfo; // _324
@@ -166,7 +194,7 @@ struct FloorInfo : CNode {
 /**
  * @size{0x3D8}
  */
-struct CaveInfo : CNode {
+struct CaveInfo : public CNode {
 	/* Erased? */
 	struct Parms : Parameters {
 		inline Parms();
@@ -185,6 +213,8 @@ struct CaveInfo : CNode {
 	FloorInfo* getFloorInfo(int);
 	void load(char*);
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	Parms mParms;         // _18
 	FloorInfo mFloorInfo; // _50
 };

@@ -1,21 +1,23 @@
 #include "Game/Cave/Node.h"
+
 namespace Game {
+namespace Cave {
 /*
  * --INFO--
  * Address:	8024E170
  * Size:	00006C
  */
-Cave::ItemNode::ItemNode()
+ItemNode::ItemNode()
 {
 	mUnit       = nullptr;
-	mGenerator  = nullptr;
+	mSpawn      = nullptr;
 	mBirthCount = 0;
 
-	mDirection = 0;
+	mDirection = 0.0f;
 
-	mPosition.z = 0;
-	mPosition.y = 0;
-	mPosition.x = 0;
+	mPosition.z = 0.0f;
+	mPosition.y = 0.0f;
+	mPosition.x = 0.0f;
 }
 
 /*
@@ -23,17 +25,17 @@ Cave::ItemNode::ItemNode()
  * Address:	8024E1DC
  * Size:	00008C
  */
-Cave::ItemNode::ItemNode(Cave::ItemUnit* unit, Cave::BaseGen* generator, int count)
+ItemNode::ItemNode(ItemUnit* unit, BaseGen* spawn, int count)
 {
 	mUnit       = unit;
-	mGenerator  = generator;
+	mSpawn      = spawn;
 	mBirthCount = count;
 
-	mDirection = 0;
+	mDirection = 0.0f;
 
-	mPosition.z = 0;
-	mPosition.y = 0;
-	mPosition.x = 0;
+	mPosition.z = 0.0f;
+	mPosition.y = 0.0f;
+	mPosition.x = 0.0f;
 }
 
 /*
@@ -41,10 +43,10 @@ Cave::ItemNode::ItemNode(Cave::ItemUnit* unit, Cave::BaseGen* generator, int cou
  * Address:	8024E268
  * Size:	000068
  */
-void Cave::ItemNode::makeGlobalData(Cave::MapNode* node)
+void ItemNode::makeGlobalData(MapNode* mapTile)
 {
-	mPosition  = node->getBaseGenGlobalPosition(mGenerator);
-	mDirection = node->getBaseGenGlobalDirection(mGenerator);
+	mPosition  = mapTile->getBaseGenGlobalPosition(mSpawn);
+	mDirection = mapTile->getBaseGenGlobalDirection(mSpawn);
 }
 
 /*
@@ -52,7 +54,7 @@ void Cave::ItemNode::makeGlobalData(Cave::MapNode* node)
  * Address:	8024E2D0
  * Size:	000020
  */
-int Cave::ItemNode::getObjectId()
+int ItemNode::getObjectId()
 {
 	if (mUnit->mInfo) {
 		return mUnit->mInfo->mCaveID;
@@ -66,24 +68,24 @@ int Cave::ItemNode::getObjectId()
  * Address:	8024E2F0
  * Size:	000008
  */
-u32 Cave::ItemNode::getObjectType() { return Item; }
+u32 ItemNode::getObjectType() { return NODE_Item; }
 
 /*
  * --INFO--
  * Address:	8024E2F8
  * Size:	000008
  */
-int Cave::ItemNode::getBirthCount() { return mBirthCount; }
+int ItemNode::getBirthCount() { return mBirthCount; }
 
 /*
  * --INFO--
  * Address:	8024E300
  * Size:	000014
  */
-void Cave::ItemNode::getBirthPosition(float& x, float& z)
+void ItemNode::getBirthPosition(f32& x, f32& y)
 {
 	x = mPosition.x;
-	z = mPosition.z;
+	y = mPosition.z;
 }
 
 /*
@@ -91,5 +93,6 @@ void Cave::ItemNode::getBirthPosition(float& x, float& z)
  * Address:	8024E314
  * Size:	000008
  */
-f32 Cave::ItemNode::getDirection() { return mDirection; }
+f32 ItemNode::getDirection() { return mDirection; }
+} // namespace Cave
 } // namespace Game

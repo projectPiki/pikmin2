@@ -10,19 +10,17 @@ namespace Game {
 namespace Cave {
 
 /**
- * Constructor for RandCapEnemyUnit.
- *
  * --INFO--
  * Address:	80300E68
  * Size:	00002C
  */
 RandCapEnemyUnit::RandCapEnemyUnit(MapUnitGenerator* mapUnitGenerator)
 {
-	mMapUnitGenerator = mapUnitGenerator;
-	mEnemyNode[0]     = mMapUnitGenerator->mEnemyNodeB;
-	mEnemyNode[1]     = mMapUnitGenerator->mEnemyNodeC;
-	mPerSpawn[0]      = 0;
-	mPerSpawn[1]      = 0;
+	mGenerator                  = mapUnitGenerator;
+	mEnemies[SPAWN_Ground]      = mGenerator->mCapEnemiesGround;
+	mEnemies[SPAWN_Falling]     = mGenerator->mCapEnemiesFalling;
+	mEnemyCounts[SPAWN_Ground]  = 0;
+	mEnemyCounts[SPAWN_Falling] = 0;
 }
 
 /**
@@ -43,38 +41,28 @@ void RandCapEnemyUnit::setManageClassPtr(RandItemUnit* randItemUnit) { mRandItem
  */
 void RandCapEnemyUnit::setCapEnemySlot()
 {
-	MapNode* placedMapNode;
-	MapNode* groundNode;
-	MapNode* fallingNode;
+	MapNode* placedMapNode = mGenerator->getPlacedNodes();
 
-	placedMapNode = mMapUnitGenerator->mPlacedMapNodes;
-	groundNode    = (MapNode*)placedMapNode->mChild;
-
-	// Ground teki check
-	while (groundNode) {
-		if (groundNode->mUnitInfo->getUnitKind() == UNITKIND_Cap) { // make sure we're in a cap
-			char* unitName = groundNode->getUnitName();
+	FOREACH_NODE(MapNode, placedMapNode->mChild, currTile)
+	{
+		if (currTile->mUnitInfo->getUnitKind() == UNITKIND_Cap) { // make sure we're in a cap
 			// make sure no treasure/hole placed && make sure no ground cap teki already placed
-			if ((strncmp(unitName, "item", 4) == 0) && (mRandItemUnit->isGroundCapEnemySetDone(groundNode) == false)) {
+			if ((strncmp(currTile->getUnitName(), "item", 4) == 0) && !mRandItemUnit->isGroundCapEnemySetDone(currTile)) {
 				// set the enemy slot (0 for ground teki)
-				setCapCommonEnemySlot(groundNode, 0);
+				setCapCommonEnemySlot(currTile, SPAWN_Ground);
 			}
 		}
-		groundNode = (MapNode*)groundNode->mNext;
 	}
-	fallingNode = (MapNode*)placedMapNode->mChild;
 
-	// Falling teki check
-	while (fallingNode) {
-		if (fallingNode->mUnitInfo->getUnitKind() == UNITKIND_Cap) { // make sure we're in a cap
-			char* unitName = fallingNode->getUnitName();
+	FOREACH_NODE(MapNode, placedMapNode->mChild, currTile)
+	{
+		if (currTile->mUnitInfo->getUnitKind() == UNITKIND_Cap) { // make sure we're in a cap
 			// make sure no treasure/hole placed && make sure no falling cap teki already placed
-			if ((strncmp(unitName, "item", 4) == 0) && (mRandItemUnit->isFallCapEnemySetDone(fallingNode) == false)) {
+			if ((strncmp(currTile->getUnitName(), "item", 4) == 0) && !mRandItemUnit->isFallCapEnemySetDone(currTile)) {
 				// set the enemy slot (1 for falling teki)
-				setCapCommonEnemySlot(fallingNode, 1);
+				setCapCommonEnemySlot(currTile, SPAWN_Falling);
 			}
 		}
-		fallingNode = (MapNode*)fallingNode->mNext;
 	}
 }
 
@@ -85,28 +73,29 @@ void RandCapEnemyUnit::setCapEnemySlot()
  * Address:	80300FA4
  * Size:	0001BC
  */
-void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* inputMapNode, int spawnType)
+void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* mapTile, int spawnType)
 {
 	EnemyNode* node;
 
 	int tekiWeight  = 0;
 	int tekiCount_1 = 0;
 
-	for (node = (EnemyNode*)mEnemyNode[spawnType]->mChild; node; node = (EnemyNode*)node->mNext) {
+	// NB: can't use the FOREACH_NODE macro here bc of regswap shenanigans
+	for (node = (EnemyNode*)mEnemies[spawnType]->mChild; node; node = (EnemyNode*)node->mNext) {
 		if (TekiInfo* tekiInfo = node->getTekiInfo()) {
 
 			tekiCount_1 += tekiInfo->mWeight / 10; // max number to place
 			tekiWeight += tekiInfo->mWeight % 10;  // weighting
 
 			// check if we have any left to place of that type
-			if (tekiCount_1 > mPerSpawn[spawnType]) {
+			if (tekiCount_1 > mEnemyCounts[spawnType]) {
 				int setCount = 1; // default to 1
 				                  // if teki type is 0 and we have room for another, make it 2
-				if ((tekiInfo->mType == 0) && ((tekiCount_1 - mPerSpawn[spawnType]) > 1)) {
+				if ((tekiInfo->mType == BaseGen::TekiA__Easy) && ((tekiCount_1 - mEnemyCounts[spawnType]) > 1)) {
 					setCount = 2;
 				}
 				// set the cap enemy
-				setCapEnemy(inputMapNode, node->mEnemyUnit, spawnType, setCount);
+				setCapEnemy(mapTile, node->mEnemyUnit, spawnType, setCount);
 				return;
 			}
 		}
@@ -118,7 +107,8 @@ void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* inputMapNode, int spawnTyp
 	TekiInfo* tekiInfo;
 	int tekiCount_2 = 0;
 
-	for (EnemyNode* node = (EnemyNode*)mEnemyNode[spawnType]->mChild; node; node = (EnemyNode*)node->mNext) {
+	FOREACH_NODE(EnemyNode, mEnemies[spawnType]->mChild, node)
+	{
 		tekiInfo = node->mEnemyUnit->mTekiInfo;
 		if (tekiInfo) {
 			tekiCount_2 += tekiInfo->mWeight % 10; // add up the weightings as we go
@@ -127,11 +117,11 @@ void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* inputMapNode, int spawnTyp
 			if (tekiCount_2 > randWeight) {
 				int setCount = 1; // default to 1
 				                  // if teki type is 0, we can place more, so make it 2
-				if (tekiInfo->mType == 0) {
+				if (tekiInfo->mType == BaseGen::TekiA__Easy) {
 					setCount = 2;
 				}
 				// set the cap enemy
-				setCapEnemy(inputMapNode, node->mEnemyUnit, spawnType, setCount);
+				setCapEnemy(mapTile, node->mEnemyUnit, spawnType, setCount);
 				return;
 			}
 		}
@@ -145,19 +135,18 @@ void RandCapEnemyUnit::setCapCommonEnemySlot(MapNode* inputMapNode, int spawnTyp
  * Address:	80301160
  * Size:	000098
  */
-void RandCapEnemyUnit::setCapEnemy(MapNode* inputMapNode, EnemyUnit* inputEnemyUnit, int spawnType, int setCount)
+void RandCapEnemyUnit::setCapEnemy(MapNode* mapTile, EnemyUnit* enemyUnit, int spawnType, int setCount)
 {
 	// also keep track of if it's grounded or falling
 	// setCount = how many to place
 	for (int i = 0; i < setCount; i++) {
-		// make a new EnemyNode for the enemy
-		EnemyNode* newNode = new EnemyNode(inputEnemyUnit, nullptr, 1);
-		newNode->makeGlobalData(inputMapNode);
+		// make a new enemy
+		EnemyNode* enemy = new EnemyNode(enemyUnit, nullptr, 1);
+		enemy->makeGlobalData(mapTile);
+		mapTile->mEnemyNode->add(enemy);
 
-		inputMapNode->mEnemyNode->add(newNode);
-
-		// increment total ground/falling teki count
-		mPerSpawn[spawnType]++;
+		// increment total ground/falling teki count as appropriate
+		mEnemyCounts[spawnType]++;
 	}
 }
 

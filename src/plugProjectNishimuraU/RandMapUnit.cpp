@@ -115,9 +115,9 @@ void EditMapUnit::setEditNumber(int editNo)
  */
 RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 {
-	mMapUnitGenerator    = generator;
-	MapNode* nodeArray   = mMapUnitGenerator->mMapNodeArr;
-	MapNode* placedNodes = mMapUnitGenerator->getPlacedNodes();
+	mGenerator           = generator;
+	MapNode* nodeArray   = mGenerator->mMapNodeKinds;
+	MapNode* placedNodes = mGenerator->getPlacedNodes();
 
 	_24 = new int[3];
 
@@ -125,7 +125,7 @@ RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 		_24[i] = nodeArray[i].getChildCount();
 	}
 
-	FloorInfo* info = mMapUnitGenerator->mFloorInfo;
+	FloorInfo* info = mGenerator->mFloorInfo;
 	if (info) {
 		mRoomCount  = info->getRoomNum();
 		mRouteRatio = info->getRouteRatio();
@@ -141,7 +141,7 @@ RandMapUnit::RandMapUnit(MapUnitGenerator* generator)
 	mMapHasDiameter36 = false;
 	mDoorCount        = 0;
 
-	FOREACH_NODE(MapNode, generator->mMapNode->mChild, currNode)
+	FOREACH_NODE(MapNode, generator->mMemMapList->mChild, currNode)
 	{
 		int numDoors = currNode->getNumDoors();
 		if (numDoors > mDoorCount) {
@@ -289,7 +289,7 @@ lbl_802460D8:
  */
 void RandMapUnit::setMapUnit()
 {
-	if (mMapUnitGenerator->mEditMapUnit) {
+	if (mGenerator->mEditMapUnit) {
 		setEditorMapUnit();
 	} else {
 		setFirstMapUnit();
@@ -325,7 +325,7 @@ void RandMapUnit::setMapUnit()
 int RandMapUnit::getAliveMapIndex(MapNode* tile)
 {
 	int index = 0;
-	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currNode)
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
 	{
 		if (tile == currNode) {
 			return index;
@@ -347,7 +347,7 @@ void RandMapUnit::getTextureSize(int& x, int& y)
 	int tempX = -12800;
 	int tempY = -12800;
 
-	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currNode)
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
 	{
 		int newX = currNode->getNodeOffsetX() + currNode->mUnitInfo->getUnitSizeX();
 		int newY = currNode->getNodeOffsetY() + currNode->mUnitInfo->getUnitSizeY();
@@ -396,8 +396,8 @@ void RandMapUnit::changeCapToRootLoopMapUnit()
 	char* unitNames[16];
 
 	// MapNode* placedNodes;
-	MapNode* nodeArray   = mMapUnitGenerator->mMapNodeArr;
-	MapNode* placedNodes = mMapUnitGenerator->getPlacedNodes();
+	MapNode* nodeArray   = mGenerator->mMapNodeKinds;
+	MapNode* placedNodes = mGenerator->getPlacedNodes();
 	int nameCount        = 0;
 	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
 	{
@@ -479,8 +479,8 @@ void RandMapUnit::changeTwoToOneMapUnit()
 	int firstNamesCount  = 0;
 	int secondNamesCount = 0;
 
-	MapNode* nodeArray   = mMapUnitGenerator->mMapNodeArr;
-	MapNode* placedNodes = mMapUnitGenerator->mPlacedMapNodes;
+	MapNode* nodeArray   = mGenerator->mMapNodeKinds;
+	MapNode* placedNodes = mGenerator->mPlacedMapNodes;
 
 	FOREACH_NODE(MapNode, nodeArray[2].mChild, currNode)
 	{
@@ -516,10 +516,10 @@ void RandMapUnit::changeTwoToOneMapUnit()
 			MapNode* targetNode = nullptr;
 			if (check) {
 				for (int i = 0; i < 2; i++) {
-					if (!targetNode && currNode->mAdjustInfo[i].mNode) {
+					if (!targetNode && currNode->mAdjustInfo[i].mMapTile) {
 						for (int j = 0; j < firstNamesCount; j++) {
-							if (currNode->mAdjustInfo[i].mNode->mUnitInfo->getUnitName() == firstUnitNames[j]) {
-								targetNode = currNode->mAdjustInfo[i].mNode;
+							if (currNode->mAdjustInfo[i].mMapTile->mUnitInfo->getUnitName() == firstUnitNames[j]) {
+								targetNode = currNode->mAdjustInfo[i].mMapTile;
 								break;
 							}
 						}
@@ -838,8 +838,8 @@ lbl_80246920:
  */
 void RandMapUnit::setEditorMapUnit()
 {
-	EditMapUnit* editUnit = mMapUnitGenerator->getEditMapUnit();
-	MapNode* mapNode      = mMapUnitGenerator->getMapNode();
+	EditMapUnit* editUnit = mGenerator->getEditMapUnit();
+	MapNode* mapNode      = mGenerator->getMemMapList();
 
 	int editNo = editUnit->mEditNum;
 	if (editNo < 0) {
@@ -975,7 +975,7 @@ void RandMapUnit::setFirstMapUnit()
  */
 MapNode* RandMapUnit::getFirstMapUnit()
 {
-	FOREACH_NODE(MapNode, mMapUnitGenerator->mMapNodeArr[1].mChild, currNode)
+	FOREACH_NODE(MapNode, mGenerator->mMapNodeKinds[1].mChild, currNode)
 	{
 		BaseGen* gen = currNode->mUnitInfo->getBaseGen();
 		if (gen) {
@@ -999,122 +999,38 @@ MapNode* RandMapUnit::getFirstMapUnit()
  */
 MapNode* RandMapUnit::getNormalRandMapUnit()
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stmw     r23, 0x7c(r1)
-	mr       r31, r3
-	bl       getOpenDoorNum__Q34Game4Cave11RandMapUnitFv
-	mr       r30, r3
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r8, 0x4330
-	stw      r0, 0x64(r1)
-	xoris    r0, r30, 0x8000
-	lwz      r7, 0x20(r31)
-	mr       r3, r31
-	stw      r8, 0x60(r1)
-	addi     r4, r1, 0x10
-	lfd      f2, lbl_8051A770@sda21(r2)
-	addi     r5, r1, 0xc
-	lfd      f1, 0x60(r1)
-	addi     r6, r1, 8
-	lfs      f0, lbl_8051A778@sda21(r2)
-	fsubs    f1, f1, f2
-	stw      r0, 0x6c(r1)
-	lwz      r30, 0x10(r7)
-	stw      r8, 0x68(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x68(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x70(r1)
-	lwz      r7, 0x74(r1)
-	bl       getCalcDoorIndex__Q34Game4Cave11RandMapUnitFRiRiRii
-	lwz      r4, 0x10(r1)
-	mr       r28, r3
-	bl       getDoorNode__Q34Game4Cave7MapNodeFi
-	cmplwi   r28, 0
-	mr       r27, r3
-	beq      lbl_80246CE0
-	cmplwi   r27, 0
-	beq      lbl_80246CE0
-	mr       r3, r31
-	mr       r4, r28
-	addi     r5, r1, 0x14
-	bl setUnitKindOrder__Q34Game4Cave11RandMapUnitFPQ34Game4Cave7MapNodePi
-	li       r26, 0
-	addi     r28, r1, 0x14
+	int intArr[16];
+	int kindOrder[3];
+	int doorNum  = getOpenDoorNum();
+	int randDoor = doorNum * randFloat();
 
-lbl_80246C2C:
-	lwz      r4, 0(r28)
-	mr       r3, r31
-	bl       setUnitDoorSorting__Q34Game4Cave11RandMapUnitFi
-	lwz      r0, 0(r28)
-	slwi     r3, r0, 6
-	addi     r0, r3, 0x10
-	lwzx     r25, r30, r0
-	b        lbl_80246CC8
+	MapNode* nodeArray = mGenerator->getMapNodeKind(0);
 
-lbl_80246C4C:
-	mr       r3, r25
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	mr       r0, r3
-	mr       r3, r31
-	mr       r24, r0
-	addi     r4, r1, 0x20
-	mr       r5, r24
-	bl       setRandomDoorIndex__Q34Game4Cave11RandMapUnitFPii
-	addi     r29, r1, 0x20
-	li       r23, 0
-	b        lbl_80246CBC
+	int a;
+	int b;
+	int c;
+	MapNode* node  = getCalcDoorIndex(a, b, c, randDoor);
+	DoorNode* door = node->getDoorNode(a);
 
-lbl_80246C78:
-	lwz      r5, 0xc(r1)
-	mr       r3, r25
-	lwz      r6, 8(r1)
-	mr       r4, r27
-	lwz      r7, 0(r29)
-	bl       isDoorSet__Q34Game4Cave7MapNodeFPQ34Game4Cave8DoorNodeiii
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80246CB4
-	lwz      r3, 0x28(r31)
-	mr       r4, r25
-	bl       isPutOnMap__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80246CB4
-	mr       r3, r25
-	b        lbl_80246CE4
+	if (node && door) {
+		setUnitKindOrder(node, kindOrder);
+		for (int i = 0; i < 3; i++) {
+			setUnitDoorSorting(kindOrder[i]);
+			FOREACH_NODE(MapNode, nodeArray[kindOrder[i]].mChild, currNode)
+			{
+				int currDoorNum = currNode->getNumDoors();
+				setRandomDoorIndex(intArr, currDoorNum);
 
-lbl_80246CB4:
-	addi     r29, r29, 4
-	addi     r23, r23, 1
+				for (int j = 0; j < currDoorNum; j++) {
+					if (currNode->isDoorSet(door, b, c, intArr[j]) && mChecker->isPutOnMap(currNode)) {
+						return currNode;
+					}
+				}
+			}
+		}
+	}
 
-lbl_80246CBC:
-	cmpw     r23, r24
-	blt      lbl_80246C78
-	lwz      r25, 4(r25)
-
-lbl_80246CC8:
-	cmplwi   r25, 0
-	bne      lbl_80246C4C
-	addi     r26, r26, 1
-	addi     r28, r28, 4
-	cmpwi    r26, 3
-	blt      lbl_80246C2C
-
-lbl_80246CE0:
-	li       r3, 0
-
-lbl_80246CE4:
-	lmw      r23, 0x7c(r1)
-	lwz      r0, 0xa4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -1122,68 +1038,26 @@ lbl_80246CE4:
  * Address:	80246CF8
  * Size:	0000C8
  */
-void RandMapUnit::setUnitKindOrder(MapNode*, int*)
+void RandMapUnit::setUnitKindOrder(MapNode* node, int* list)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	lbz      r0, 0xc(r3)
-	mr       r31, r5
-	lfs      f31, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_80246D28
-	lfs      f31, lbl_8051A760@sda21(r2)
+	f32 ratio = mRouteRatio;
 
-lbl_80246D28:
-	lwz      r3, 0x18(r4)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_80246D40
-	lfs      f0, lbl_8051A77C@sda21(r2)
-	fmuls    f31, f31, f0
+	if (mMapHasDiameter36) {
+		ratio = 0.0f;
+	}
 
-lbl_80246D40:
-	li       r0, 0
-	stw      r0, 8(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051A770@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_8051A768@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_8051A778@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f0, f1, f0
-	fcmpo    cr0, f0, f31
-	bge      lbl_80246D94
-	li       r3, 2
-	li       r0, 1
-	stw      r3, 0(r31)
-	stw      r0, 4(r31)
-	b        lbl_80246DA4
+	if (node->mUnitInfo->getUnitKind() == UNITKIND_Room) {
+		ratio *= 2.0f;
+	}
 
-lbl_80246D94:
-	li       r3, 1
-	li       r0, 2
-	stw      r3, 0(r31)
-	stw      r0, 4(r31)
-
-lbl_80246DA4:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	list[2] = UNITKIND_Cap;
+	if (randWeightFloat(1.0f) < ratio) {
+		list[0] = UNITKIND_Corridor;
+		list[1] = UNITKIND_Room;
+	} else {
+		list[0] = UNITKIND_Room;
+		list[1] = UNITKIND_Corridor;
+	}
 }
 
 /*
@@ -2059,7 +1933,7 @@ lbl_8024780C:
  * Address:	80247834
  * Size:	0000EC
  */
-CardinalDirection RandMapUnit::getLinkDoorDirection(MapNode*, int, MapNode*, int)
+int RandMapUnit::getLinkDoorDirection(MapNode*, int, MapNode*, int)
 {
 	/*
 	.loc_0x0:
@@ -2142,7 +2016,7 @@ CardinalDirection RandMapUnit::getLinkDoorDirection(MapNode*, int, MapNode*, int
  * Address:	80247920
  * Size:	0000BC
  */
-CardinalDirection RandMapUnit::getUpToLinkDoorDir(int, int, int)
+int RandMapUnit::getUpToLinkDoorDir(int, int, int)
 {
 	/*
 	cmpwi    r6, -2
@@ -2222,7 +2096,7 @@ lbl_802479C0:
  * Address:	802479DC
  * Size:	0000C4
  */
-CardinalDirection RandMapUnit::getRightToLinkDoorDir(int, int, int)
+int RandMapUnit::getRightToLinkDoorDir(int, int, int)
 {
 	/*
 	cmpwi    r5, 0
@@ -2304,7 +2178,7 @@ lbl_80247A80:
  * Address:	80247AA0
  * Size:	0000BC
  */
-CardinalDirection RandMapUnit::getDownToLinkDoorDir(int, int, int)
+int RandMapUnit::getDownToLinkDoorDir(int, int, int)
 {
 	/*
 	cmpwi    r6, 0
@@ -2384,7 +2258,7 @@ lbl_80247B40:
  * Address:	80247B5C
  * Size:	0000C0
  */
-CardinalDirection RandMapUnit::getLeftToLinkDoorDir(int, int, int)
+int RandMapUnit::getLeftToLinkDoorDir(int, int, int)
 {
 	/*
 	cmpwi    r5, -2
@@ -2715,7 +2589,7 @@ lbl_80247EE8:
 int RandMapUnit::getPartsKindNum(int kind)
 {
 	int counter = 0;
-	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currNode)
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
 	{
 		if (currNode->mUnitInfo->getUnitKind() == kind) {
 			counter++;
@@ -2733,7 +2607,7 @@ int RandMapUnit::getPartsKindNum(int kind)
 int RandMapUnit::getOpenDoorNum()
 {
 	int counter = 0;
-	FOREACH_NODE(MapNode, mMapUnitGenerator->mPlacedMapNodes->mChild, currNode)
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currNode)
 	{
 		for (int i = 0; i < currNode->getNumDoors(); i++) {
 			if (!currNode->isDoorClose(i)) {
@@ -2756,7 +2630,7 @@ void RandMapUnit::addMap(UnitInfo* info, int x, int y, bool check)
 	if (newTile) {
 		newTile->clearRelations();
 		newTile->setOffset(x, y);
-		mMapUnitGenerator->mPlacedMapNodes->add(newTile);
+		mGenerator->mPlacedMapNodes->add(newTile);
 	}
 
 	if (check) {

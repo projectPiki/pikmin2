@@ -204,9 +204,9 @@ void RandMapScore::setUnitAndDoorScore()
 			if (currNode->isDoorScoreSetDone(i)) {
 				FOREACH_NODE(AdjustNode, currNode->getAdjustNode(i)->mChild, adjNode)
 				{
-					int doorID = adjNode->mNode->mDoorID;
+					int doorID = adjNode->mAdjust->mDoorID;
 					if (!currNode->isDoorScoreSetDone(doorID)) {
-						Adjust* adj       = adjNode->mNode;
+						Adjust* adj       = adjNode->mAdjust;
 						int enemyScore    = adj->mTekiFlags * currNode->getEnemyScore();
 						int distanceScore = adj->mDistance;
 						int tempScore     = enemyScore + currNode->mAdjustInfo[i].mDoorScore;
@@ -224,7 +224,7 @@ void RandMapScore::setUnitAndDoorScore()
 
 	if (minScoreNode) {
 		minScoreNode->setDoorScore(minScoreDoor, minScore);
-		setMapNodeScore(minScoreNode->mAdjustInfo[minScoreDoor].mNode, minScore);
+		setMapNodeScore(minScoreNode->mAdjustInfo[minScoreDoor].mMapTile, minScore);
 	}
 	/*
 	stwu     r1, -0x40(r1)
@@ -349,7 +349,7 @@ void RandMapScore::setStartMapNodeScore(MapNode* mapNode)
 			score++;
 			score += nodeScore;
 			mapNode->setDoorScore(i, score);
-			setMapNodeScore(mapNode->mAdjustInfo[i].mNode, score);
+			setMapNodeScore(mapNode->mAdjustInfo[i].mMapTile, score);
 		}
 	}
 	/*

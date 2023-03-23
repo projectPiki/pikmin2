@@ -1,4 +1,4 @@
-#include "types.h"
+#include "Game/Cave/RandMapMgr.h"
 
 /*
     Generated from dpostproc
@@ -170,10 +170,10 @@ lbl_80248998:
  * Address:	802489BC
  * Size:	000008
  */
-void Cave::RandEnemyUnit::setManageClassPtr(Game::Cave::RandMapScore* a1)
+void Cave::RandEnemyUnit::setManageClassPtr(Game::Cave::RandMapScore* score)
 {
 	// Generated from stw r4, 0x4(r3)
-	_04 = a1;
+	mMapScore = score;
 }
 
 /*
@@ -3825,7 +3825,7 @@ void Cave::RandEnemyUnit::makeSetEnemyTypeA(Game::Cave::MapNode*, Game::Cave::Ba
  * Address:	8024B838
  * Size:	00003C
  */
-void Cave::RandEnemyUnit::isEnemySetGen(Game::Cave::MapNode*, Game::Cave::BaseGen*)
+bool Cave::RandEnemyUnit::isEnemySetGen(Game::Cave::MapNode*, Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:

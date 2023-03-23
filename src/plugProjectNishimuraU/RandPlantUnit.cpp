@@ -14,25 +14,16 @@ namespace Cave {
  */
 RandPlantUnit::RandPlantUnit(MapUnitGenerator* generator)
 {
-	// Constructor for RandPlantUnit
-	//     - takes a MapUnitGenerator as input
-	//     - initialises mCurrentPlantCount to 0
-	//     - adds up all plant teki weights to get mDesiredPlantCount
-
-	// set base attributes
-	mGenerator         = generator;
-	mCurrentPlantCount = 0; // initial plant count = 0
-	mDesiredPlantCount = 0; // initial desired plant count = 0
+	mGenerator = generator;
+	mCount     = 0;
+	mGoalCount = 0;
 
 	// calculate desired plant count from plant weights
-
-	// loop through the enemy nodes for the MapUnitGenerator
-	EnemyNode* currEnemyNode = (EnemyNode*)mGenerator->mEnemyNodeA->mChild;
-	for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->mNext) {
-
-		// if TekiInfo exists and the Teki type is 6 (plant), add its weight to desiredPlantCount
-		if ((currEnemyNode->mEnemyUnit->mTekiInfo) && (currEnemyNode->mEnemyUnit->mTekiInfo->mType == BaseGen::Plant)) {
-			mDesiredPlantCount += currEnemyNode->mEnemyUnit->mTekiInfo->mWeight;
+	FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
+	{
+		// if TekiInfo exists and the Teki type is 6 (plant), add its weight to goal count
+		if ((currEnemy->mEnemyUnit->mTekiInfo) && (currEnemy->mEnemyUnit->mTekiInfo->mType == BaseGen::Plant)) {
+			mGoalCount += currEnemy->mEnemyUnit->mTekiInfo->mWeight;
 		}
 	}
 }
@@ -47,35 +38,30 @@ void Game::Cave::RandPlantUnit::setPlantSlot()
 	// make nodes for new plants if there's room for them
 
 	// check that we have space for new plants
-	if (mCurrentPlantCount < mDesiredPlantCount) {
+	if (mCount < mGoalCount) {
 
 		// only try to place a max of 100 plants, regardless of desired plant count
 		for (int i = 0; i < 100; i++) {
-			// initially null basegen pointer
-			BaseGen* currBaseGen = nullptr;
-			// get an empty plant spot and basegen pointer
-			MapNode* currMapNode = getPlantSetMapNode(&currBaseGen);
-			// get a plant unit/type
-			EnemyUnit* currPlantUnit = getPlantUnit(currBaseGen);
 
-			// if mapnode and plant type exist, make a new plant node
-			if (currPlantUnit && currMapNode) {
-				// make plant
-				EnemyNode* newPlant = new EnemyNode(currPlantUnit, currBaseGen, 1);
-				// make data global on map node
-				newPlant->makeGlobalData(currMapNode);
-				// add plant to enemy nodes
-				currMapNode->mEnemyNode->add((EnemyNode*)newPlant);
-				// increment plant count
-				mCurrentPlantCount++;
+			BaseGen* spawn       = nullptr;
+			MapNode* mapTile     = getPlantSetMapNode(&spawn);
+			EnemyUnit* plantUnit = getPlantUnit(spawn);
+
+			// if we have a plant and a spawn tile, add plant
+			if (plantUnit && mapTile) {
+				EnemyNode* newPlant = new EnemyNode(plantUnit, spawn, 1);
+				newPlant->makeGlobalData(mapTile);
+				mapTile->mEnemyNode->add(newPlant);
+				mCount++;
 
 				// check we haven't hit our plant limit
-				if (!(mCurrentPlantCount < mDesiredPlantCount)) {
+				if (!(mCount < mGoalCount)) {
 					return;
 				} else {
 					continue;
 				}
 			}
+
 			// if plant type doesn't exist or there aren't any empty spots left
 			// don't bother trying again
 			return;
@@ -88,48 +74,43 @@ void Game::Cave::RandPlantUnit::setPlantSlot()
  * Address:	8029F044
  * Size:	000134
  */
-MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** baseGenOut)
+MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** outSpawn)
 {
 	// make list of EMPTY plant spawns and pick one at random
-	// returns mapnode of randomly selected plant spawn and puts pointer to basegen for plant in baseGenOut
+	// returns mapnode of randomly selected plant spawn and puts pointer to basegen for plant in outSpawn
 
-	// set up some arrays to hold the mapnodes and basegen for plants
-	// hopefully we don't have more than 512 of each lol
-	MapNode* mapNodeArr[512];
-	BaseGen* baseGenArr[512];
+	// hopefully we don't have more than 512 open spawns...
+	MapNode* tileList[512];
+	BaseGen* spawnList[512];
 
 	// counter for how many plant spawns we find
 	int count = 0;
 
-	// loop through all the map nodes
-	MapNode* currMapNode = (MapNode*)mGenerator->mPlacedMapNodes->mChild;
-	for (currMapNode; currMapNode; currMapNode = (MapNode*)currMapNode->mNext) {
-
-		// get the 'base' base gen for current map node
-		BaseGen* mapBaseGen = currMapNode->mUnitInfo->getBaseGen();
-		if (mapBaseGen) { // if it exists, loop through the base gen for the map node
-			BaseGen* currBaseGen = (BaseGen*)mapBaseGen->mChild;
-			for (currBaseGen; currBaseGen; currBaseGen = (BaseGen*)currBaseGen->mNext) {
-
-				// if the spawn type is 6 (plant) and it DOESN'T have a plant, add it to the list
-				if ((currBaseGen->mSpawnType == 6) && (isPlantSet(currMapNode, currBaseGen))) {
-					mapNodeArr[count] = currMapNode;
-					baseGenArr[count] = currBaseGen;
-					count += 1;
+	// loop through all the map tiles and spawn spots and find empty plant slots
+	FOREACH_NODE(MapNode, mGenerator->mPlacedMapNodes->mChild, currTile)
+	{
+		BaseGen* spawn = currTile->mUnitInfo->getBaseGen();
+		if (spawn) {
+			FOREACH_NODE(BaseGen, spawn->mChild, currSpawn)
+			{
+				if ((currSpawn->mSpawnType == BaseGen::Plant) && (isPlantSet(currTile, currSpawn))) {
+					tileList[count]  = currTile;
+					spawnList[count] = currSpawn;
+					count++;
 				}
 			}
 		}
 	}
 
-	// assuming we hit a plant spawn, pick one from the list at random
+	// assuming we hit at least one plant spawn, pick one from the list at random
 	// return the map node pointer, and put the basegen pointer into *baseGenOut
 	if (count) {
-		int randBase = (int)(count * randFloat());
-		*baseGenOut  = baseGenArr[randBase];
-		return mapNodeArr[randBase];
+		int randBase = count * randFloat();
+		*outSpawn    = spawnList[randBase];
+		return tileList[randBase];
 	}
 	// if we didn't hit any empty spawns, return nullptr
-	return 0;
+	return nullptr;
 }
 
 /*
@@ -137,30 +118,29 @@ MapNode* RandPlantUnit::getPlantSetMapNode(BaseGen** baseGenOut)
  * Address:	8029F178
  * Size:	000068
  */
-EnemyUnit* RandPlantUnit::getPlantUnit(BaseGen* plantBaseGen)
+EnemyUnit* RandPlantUnit::getPlantUnit(BaseGen* spawn)
 {
-	// gets the (next) plant unit
+	// gets the (next) plant unit to place
 
-	int desiredPlantCount = 0;
+	int slotCount = 0;
 
-	// check given BaseGen isn't null
-	if (plantBaseGen) {
+	// check given spawn isn't null
+	if (spawn) {
+		FOREACH_NODE(EnemyNode, mGenerator->mMainEnemies->mChild, currEnemy)
+		{
+			// if TekiInfo exists and Teki type = plant, add weight to slotCount
+			if (currEnemy->mEnemyUnit->mTekiInfo && (currEnemy->mEnemyUnit->mTekiInfo->mType == BaseGen::Plant)) {
+				slotCount += currEnemy->mEnemyUnit->mTekiInfo->mWeight;
 
-		// loop through the enemy nodes for the MapUnitGenerator
-		EnemyNode* currEnemyNode = (EnemyNode*)mGenerator->mEnemyNodeA->mChild;
-		for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->mNext) {
-			// if TekiInfo exists and Teki type = 6 (plant), add weight to desiredPlantCount
-			if (currEnemyNode->mEnemyUnit->mTekiInfo && (currEnemyNode->mEnemyUnit->mTekiInfo->mType == BaseGen::Plant)) {
-				desiredPlantCount += currEnemyNode->mEnemyUnit->mTekiInfo->mWeight;
-
-				// if we've gotten further than currentPlantCount, return plant
-				if (mCurrentPlantCount < desiredPlantCount) {
-					return currEnemyNode->mEnemyUnit;
+				// if we've gotten further than current plant count, we've hit the next plant type to add
+				if (mCount < slotCount) {
+					return currEnemy->mEnemyUnit;
 				}
 			}
 		}
 	}
-	// if BaseGen was null, return null ptr
+
+	// if spawn was null, return nullptr
 	return nullptr;
 }
 
@@ -169,29 +149,25 @@ EnemyUnit* RandPlantUnit::getPlantUnit(BaseGen* plantBaseGen)
  * Address:	8029F1E0
  * Size:	000048
  */
-bool RandPlantUnit::isPlantSet(MapNode* testMapNode, BaseGen* testBaseGen)
+bool RandPlantUnit::isPlantSet(MapNode* testTile, BaseGen* testSpawn)
 {
-	// check if there's no plant
-	// returns 0 if a plant exists in testMapNode with given testBaseGen
-	// returns 1 if not
+	// check if a given spawn is empty (i.e. if a plant can be set there)
 
-	// check given BaseGen exists
-	if (testBaseGen) {
-		// loop through all the enemy nodes for given map node
-		EnemyNode* currEnemyNode = (EnemyNode*)testMapNode->mEnemyNode->mChild;
-		for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->mNext) {
-
-			// if enemy node basegen matches given basegen, plant exists, no free space
-			if (currEnemyNode->mBaseGen == testBaseGen) {
+	// check given spawn exists
+	if (testSpawn) {
+		// loop through all the enemy nodes for given map tile and check if one exists in given spawn
+		FOREACH_NODE(EnemyNode, testTile->mEnemyNode->mChild, currEnemy)
+		{
+			if (currEnemy->mSpawn == testSpawn) {
 				return false;
 			}
 		}
-		// no more enemy nodes to check, we have free space, so return true
 
-	} else { // given BaseGen doesn't exist, return false
+	} else { // given spawn doesn't exist, return false
 		return false;
 	}
 
+	// we checked all current enemies, none are in given spawn location, so it must be free.
 	return true;
 }
 } // namespace Cave

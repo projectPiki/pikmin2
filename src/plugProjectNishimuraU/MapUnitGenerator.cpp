@@ -10,18 +10,15 @@ namespace Cave {
  * Address:	8024BAAC
  * Size:	000200
  */
-MapUnitGenerator::MapUnitGenerator(MapUnitInterface* interface, int p1, FloorInfo* floorInfo, bool isFinalFloor, EditMapUnit* editInfo)
+MapUnitGenerator::MapUnitGenerator(MapUnitInterface* interface, int interfaceCount, FloorInfo* floorInfo, bool isFinalFloor,
+                                   EditMapUnit* editInfo)
 {
-	// Constructor for MapUnitGenerator
-	//     - creates new mapnodes, enemynodes, gatenode, itemnode and sets some bools
-	//     - calls all default functions to create The Map
+	mMemMapList   = new MapNode;
+	mMapNodeKinds = new MapNode[UNITKIND_Count];
 
-	mMapNode    = new MapNode;
-	mMapNodeArr = new MapNode[3];
-
-	mEnemyNodeA = new EnemyNode;
-	mEnemyNodeB = new EnemyNode;
-	mEnemyNodeC = new EnemyNode;
+	mMainEnemies       = new EnemyNode;
+	mCapEnemiesGround  = new EnemyNode;
+	mCapEnemiesFalling = new EnemyNode;
 
 	mGateNode = new GateNode;
 	mItemNode = new ItemNode;
@@ -45,7 +42,7 @@ MapUnitGenerator::MapUnitGenerator(MapUnitInterface* interface, int p1, FloorInf
 	}
 
 	createEditMapInfo(editInfo);
-	createMemList(interface, p1);
+	createMemList(interface, interfaceCount);
 	memMapListSorting();
 	createMapPartsList();
 	createEnemyList();
@@ -66,9 +63,7 @@ void MapUnitGenerator::createEditMapInfo(EditMapUnit* editInfo)
 
 	if (mIsVersusMode && editInfo) {
 		if (editInfo->mEditNum < -1) {
-			float randcomp = 1.0f;
-			randcomp       = randWeightFloat(randcomp);
-			if (randcomp < editInfo->mChanceOfUse) {
+			if (randWeightFloat(1.0f) < editInfo->mChanceOfUse) {
 				mEditMapUnit = editInfo;
 			}
 		} else if (editInfo->mEditNum >= 0) {
@@ -133,7 +128,7 @@ void MapUnitGenerator::createMemList(MapUnitInterface* interface, int interfaceC
 				currInfo->create();
 				MapNode* currMapNode = new MapNode(currInfo);
 
-				mMapNode->add(currMapNode);
+				mMemMapList->add(currMapNode);
 			}
 		}
 	}
@@ -154,14 +149,15 @@ bool Cave::MapUnitGenerator::isCreateList(Game::MapUnitInterface* interface)
 		return true;
 	}
 
-	if (interface->mUnitKind != 1) {
+	if (interface->mUnitKind != UNITKIND_Room) {
 		return true;
 	}
-	BaseGen* currBaseGen = interface->mBaseGen;
-	if (currBaseGen) {
-		BaseGen* childGen = (BaseGen*)currBaseGen->mChild;
-		for (childGen; childGen; childGen = (BaseGen*)childGen->mNext) {
-			if (childGen->mSpawnType == 7) {
+
+	BaseGen* spawn = interface->mBaseGen;
+	if (spawn) {
+		FOREACH_NODE(BaseGen, spawn->mChild, currSpawn)
+		{
+			if (currSpawn->mSpawnType == BaseGen::Start) {
 				return true;
 			}
 		}
@@ -179,7 +175,7 @@ void MapUnitGenerator::memMapListSorting()
 	MapNode* childMap;
 	MapNode* nextNode;
 	CNode* childMap_CNode;
-	for (childMap = mMapNode->getChild(); childMap; childMap = nextNode) {
+	for (childMap = mMemMapList->getChild(); childMap; childMap = nextNode) {
 		nextNode       = childMap->getNext();
 		childMap_CNode = (CNode*)childMap;
 
@@ -194,7 +190,7 @@ void MapUnitGenerator::memMapListSorting()
 
 			if ((childArea > nextArea) || (childArea == nextArea) && (childDoors > nextDoors)) {
 				childMap_CNode->del();
-				mMapNode->add(childMap_CNode);
+				mMemMapList->add(childMap_CNode);
 				break;
 			}
 		}
@@ -208,24 +204,24 @@ void MapUnitGenerator::memMapListSorting()
  */
 void MapUnitGenerator::createMapPartsList()
 {
-	for (int i = 0; i < 3; i++) {
-		CNode* childNode = getStartNode();
-		CNode* currNode  = getMapNodeItem(i);
+	for (int i = 0; i < UNITKIND_Count; i++) {
+		CNode* memTile      = getStartNode();
+		CNode* currKindList = getMapNodeKind(i);
 
-		MapNode* currMapNode = static_cast<MapNode*>(currNode);
-		for (childNode; childNode; childNode = childNode->mNext) {
-			MapNode* mapNode = static_cast<MapNode*>(childNode);
+		MapNode* currMapKind = static_cast<MapNode*>(currKindList);
+		for (memTile; memTile; memTile = memTile->mNext) {
+			MapNode* mapNode = static_cast<MapNode*>(memTile);
 			if (i == mapNode->mUnitInfo->getUnitKind()) {
-				currMapNode->add(new MapNode(mapNode->mUnitInfo));
+				currMapKind->add(new MapNode(mapNode->mUnitInfo));
 			}
 		}
 
-		for (int childCount = currMapNode->getChildCount(), j = 0; j < childCount; j++) {
+		for (int childCount = currMapKind->getChildCount(), j = 0; j < childCount; j++) {
 			int randIdx = (childCount * randFloat());
 
-			if (CNode* randNode = static_cast<MapNode*>(currMapNode->getChildAt(randIdx))) {
+			if (CNode* randNode = static_cast<MapNode*>(currMapKind->getChildAt(randIdx))) {
 				randNode->del();
-				currNode->add(randNode);
+				currKindList->add(randNode);
 			}
 		}
 	}
@@ -242,9 +238,9 @@ void MapUnitGenerator::createEnemyList()
 	EnemyUnit* enemyUnit;
 	for (int i = 0; i < mFloorInfo->getTekiInfoNum(); i++) {
 		enemyUnit            = new EnemyUnit;
-		enemyNode            = new EnemyNode(enemyUnit, 0, i);
+		enemyNode            = new EnemyNode(enemyUnit, nullptr, i);
 		enemyUnit->mTekiInfo = mFloorInfo->getTekiInfo(i);
-		mEnemyNodeA->add(enemyNode);
+		mMainEnemies->add(enemyNode);
 	}
 }
 
@@ -258,15 +254,15 @@ void MapUnitGenerator::createCapEnemyList()
 	for (int i = 0; i < mFloorInfo->getCapInfoNum(); i++) {
 		CapInfo* capInfo = mFloorInfo->getCapInfo(i);
 		TekiInfo* tekiInfo;
-		if (capInfo && (!capInfo->mTekiEmpty) && (tekiInfo = capInfo->getTekiInfo())) {
+		if (capInfo && (!capInfo->mIsTekiEmpty) && (tekiInfo = capInfo->getTekiInfo())) {
 			EnemyUnit* enemyUnit = new EnemyUnit;
 
-			EnemyNode* enemyNode = new EnemyNode(enemyUnit, 0, i);
+			EnemyNode* enemyNode = new EnemyNode(enemyUnit, nullptr, i);
 			enemyUnit->mTekiInfo = tekiInfo;
-			if (tekiInfo->mDropMode == 0 || isPomGroup(tekiInfo)) {
-				mEnemyNodeB->add(enemyNode);
+			if (tekiInfo->mDropMode == DROP_NoDrop || isPomGroup(tekiInfo)) {
+				mCapEnemiesGround->add(enemyNode);
 			} else {
-				mEnemyNodeC->add(enemyNode);
+				mCapEnemiesFalling->add(enemyNode);
 			}
 		}
 	}

@@ -5,277 +5,6 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80480640
-    lbl_80480640:
-        .4byte 0x63617665
-        .4byte 0x496E666F
-        .4byte 0x00000000
-    .global lbl_8048064C
-    lbl_8048064C:
-        .4byte 0x67616D65
-        .4byte 0x43617665
-        .4byte 0x496E666F
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_80480660
-    lbl_80480660:
-        .4byte 0x95CF82C8
-        .4byte 0x8379838C
-        .4byte 0x83628367
-        .4byte 0x836C815B
-        .4byte 0x838082C5
-        .4byte 0x82B7210A
-        .4byte 0x00000000
-    .global lbl_8048067C
-    lbl_8048067C:
-        .asciz "floorInfo"
-        .skip 2
-    .global lbl_80480688
-    lbl_80480688:
-        .4byte 0x83528393
-        .4byte 0x834E838A
-        .4byte 0x815B8363
-        .4byte 0x00000000
-    .global lbl_80480698
-    lbl_80480698:
-        .4byte 0x82E282B7
-        .4byte 0x82E782AC
-        .4byte 0x00000000
-        .4byte 0x466C6F6F
-        .4byte 0x72496E66
-        .4byte 0x6F000000
-        .4byte 0x8A4B82CD
-        .4byte 0x82B682DF
-        .4byte 0x00000000
-        .4byte 0x8A4B82A8
-        .4byte 0x82ED82E8
-        .4byte 0x00000000
-        .4byte 0x93478DC5
-        .4byte 0x91E59094
-        .4byte 0x00000000
-        .4byte 0x83418343
-        .4byte 0x83658380
-        .4byte 0x8DC591E5
-        .4byte 0x90940000
-        .4byte 0x8351815B
-        .4byte 0x83678DC5
-        .4byte 0x91E59094
-        .4byte 0x00000000
-        .4byte 0x834C8383
-        .4byte 0x83628376
-        .4byte 0x8DC591E5
-        .4byte 0x90940000
-        .4byte 0x838B815B
-        .4byte 0x83809094
-        .4byte 0x00000000
-        .4byte 0x838B815B
-        .4byte 0x836782CC
-        .4byte 0x8A848D87
-        .4byte 0x00000000
-        .4byte 0x8B418AD2
-        .4byte 0x95AC9085
-        .4byte 0x28313D82
-        .4byte 0xA082E829
-        .4byte 0x00000000
-        .4byte 0x756E6974
-        .4byte 0x732E7478
-        .4byte 0x74000000
-        .4byte 0x8E679770
-        .4byte 0x8386836A
-        .4byte 0x83628367
-        .4byte 0x00000000
-        .4byte 0x6C696768
-        .4byte 0x742E696E
-        .4byte 0x69000000
-        .4byte 0x8E679770
-        .4byte 0x83898343
-        .4byte 0x83670000
-        .4byte 0x8A4B9269
-        .4byte 0x82F089F3
-        .4byte 0x82B78AE2
-        .4byte 0x82C58942
-        .4byte 0x82B72830
-        .4byte 0x3D834983
-        .4byte 0x7420313D
-        .4byte 0x83498393
-        .4byte 0x29000000
-        .4byte 0x426C6163
-        .4byte 0x6B4D616E
-        .4byte 0x54696D65
-        .4byte 0x72000000
-    .global lbl_8048079C
-    lbl_8048079C:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_804807A8
-    lbl_804807A8:
-        .4byte 0x43617665
-        .4byte 0x496E666F
-        .4byte 0x00000000
-    .global lbl_804807B4
-    lbl_804807B4:
-        .4byte 0x2573206E
-        .4byte 0x6F742066
-        .4byte 0x6F756E64
-        .4byte 0x20210A00
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@"
-    "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@":
-        .4byte lbl_805196CC
-        .4byte lbl_805196D0
-        .4byte lbl_80480688
-        .4byte lbl_805196D8
-        .4byte 0
-        .4byte 0
-    .global "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@"
-    "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@":
-        .4byte lbl_805196E0
-        .4byte lbl_805196E8
-        .4byte lbl_80480698
-    .global __vt__Q34Game4Cave8CaveInfo
-    __vt__Q34Game4Cave8CaveInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave8CaveInfoFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game4Cave8CaveInfoFR6Stream
-    .global __vt__Q34Game4Cave9FloorInfo
-    __vt__Q34Game4Cave9FloorInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave9FloorInfoFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game4Cave9FloorInfoFR6Stream
-    .global __vt__Q34Game4Cave7CapInfo
-    __vt__Q34Game4Cave7CapInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave7CapInfoFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game4Cave7CapInfoFR6Stream
-    .global __vt__Q34Game4Cave8GateInfo
-    __vt__Q34Game4Cave8GateInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave8GateInfoFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game4Cave8GateInfoFR6Stream
-    .global __vt__Q34Game4Cave8ItemInfo
-    __vt__Q34Game4Cave8ItemInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave8ItemInfoFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game4Cave8ItemInfoFR6Stream
-    .global __vt__Q34Game4Cave8TekiInfo
-    __vt__Q34Game4Cave8TekiInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave8TekiInfoFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game4Cave8TekiInfoFR6Stream
-    .global __vt__Q34Game4Cave7BaseGen
-    __vt__Q34Game4Cave7BaseGen:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave7BaseGenFv
-        .4byte getChildCount__5CNodeFv
-        .4byte read__Q34Game4Cave7BaseGenFR6Stream
-        .4byte draw__Q34Game4Cave7BaseGenFR8GraphicsP7Matrixf
-        .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global "enumFloor_hiddens__26@unnamed@gameCaveInfo_cpp@"
-    "enumFloor_hiddens__26@unnamed@gameCaveInfo_cpp@":
-        .4byte lbl_805196F0
-        .4byte lbl_805196F8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805196C0
-    lbl_805196C0:
-        .asciz "BaseGen"
-    .global lbl_805196C8
-    lbl_805196C8:
-        .float 0.0
-    .global lbl_805196CC
-    lbl_805196CC:
-        .4byte 0x93790000
-    .global lbl_805196D0
-    lbl_805196D0:
-        .4byte 0x8381835E
-        .4byte 0x838B0000
-    .global lbl_805196D8
-    lbl_805196D8:
-        .4byte 0x835E8343
-        .4byte 0x838B0000
-    .global lbl_805196E0
-    lbl_805196E0:
-        .4byte 0x92CA8FED
-        .4byte 0x00000000
-    .global lbl_805196E8
-    lbl_805196E8:
-        .4byte 0x837B8358
-        .4byte 0x00000000
-    .global lbl_805196F0
-    lbl_805196F0:
-        .4byte 0x82C882B5
-        .4byte 0x00000000
-    .global lbl_805196F8
-    lbl_805196F8:
-        .4byte 0x82A082E8
-        .4byte 0x00000000
-    .global lbl_80519700
-    lbl_80519700:
-        .float 1.0
-    .global lbl_80519704
-    lbl_80519704:
-        .asciz "test"
-        .skip 3
-    .global lbl_8051970C
-    lbl_8051970C:
-        .asciz "VRBOX"
-        .skip 2
-    .global lbl_80519714
-    lbl_80519714:
-        .4byte 0x83BF91AE
-        .4byte 0x90AB0000
-    .global lbl_8051971C
-    lbl_8051971C:
-        .4byte 0x83C091AE
-        .4byte 0x90AB0000
-    .global lbl_80519724
-    lbl_80519724:
-        .4byte 0x894282B5
-        .4byte 0x8FB00000
-    .global lbl_8051972C
-    lbl_8051972C:
-        .4byte 0x56657273
-        .4byte 0x696F6E00
-    .global lbl_80519734
-    lbl_80519734:
-        .4byte 0x461C4000
-    .global lbl_80519738
-    lbl_80519738:
-        .4byte 0x92BE82DE
-        .4byte 0x95C70000
-    .global lbl_80519740
-    lbl_80519740:
-        .4byte 0x8A4B9177
-        .4byte 0x00000000
-    .global lbl_80519748
-    lbl_80519748:
-        .asciz "%s"
-        .skip 1
-*/
-
-#pragma auto_inline on
-
 namespace Game {
 namespace Cave {
 /*
@@ -286,15 +15,13 @@ namespace Cave {
  */
 BaseGen::BaseGen()
 {
-	mName       = "BaseGen";
-	mPosition.x = 0.0f;
-	mPosition.y = 0.0f;
-	mPosition.z = 0.0f;
-	mRadius     = 0.0f;
-	mAngle      = 0.0f;
-	mMinimum    = 1;
-	mMaximum    = 1;
-	mSpawnType  = TekiA__Easy;
+	mName      = "BaseGen";
+	mPosition  = Vector3f(0.0f);
+	mRadius    = 0.0f;
+	mAngle     = 0.0f;
+	mMinimum   = 1;
+	mMaximum   = 1;
+	mSpawnType = TekiA__Easy;
 }
 
 /*
@@ -340,13 +67,13 @@ void TekiInfo::read(Stream& stream)
 		char rawDropMode = inputString[1];
 		if ((rawDropMode < '1') || (rawDropMode > '9')) {
 			inputString++;
-			mDropMode = DropOnPikminOrLeader;
+			mDropMode = DROP_PikminOrLeader;
 		} else {
 			inputString += 2;
-			mDropMode = DropMode(rawDropMode - '0');
+			mDropMode = (rawDropMode - '0');
 		}
 	} else {
-		mDropMode = NoDrop;
+		mDropMode = DROP_NoDrop;
 	}
 	buffer1[0]   = '\0';
 	char* _s2    = buffer2;
@@ -357,7 +84,7 @@ void TekiInfo::read(Stream& stream)
 		size_t sVar4 = strlen(inputString);
 		if (sVar4 <= uVar9) {
 			_s2[iVar10] = '\0';
-			mEnemyID    = generalEnemyMgr->getEnemyID(buffer2, 4);
+			mEnemyID    = (EnemyTypeID::EEnemyTypeID)generalEnemyMgr->getEnemyID(buffer2, 4);
 			if (buffer1[0] != '\0') {
 				pelletMgr->makeOtakaraItemCode(buffer1, mOtakaraItemCode);
 			}
@@ -642,7 +369,7 @@ blr
  * Address:	801D64E8
  * Size:	00001C
  */
-TekiInfo* CapInfo::getTekiInfo() { return (!mDoesNotHaveTeki ? mTekiInfo : nullptr); }
+TekiInfo* CapInfo::getTekiInfo() { return (!mIsTekiEmpty) ? mTekiInfo : nullptr; }
 
 /*
  * --INFO--
@@ -651,10 +378,10 @@ TekiInfo* CapInfo::getTekiInfo() { return (!mDoesNotHaveTeki ? mTekiInfo : nullp
  */
 void CapInfo::read(Stream& input)
 {
-	mDoesNotHaveTeki = input.readByte();
-	if (mDoesNotHaveTeki == false) {
-		mTekiInfo      = new TekiInfo();
-		mTekiInfo->_0C = mTekiInfo;
+	mIsTekiEmpty = input.readByte();
+	if (!mIsTekiEmpty) {
+		mTekiInfo          = new TekiInfo();
+		mTekiInfo->mParent = mTekiInfo;
 		getTekiInfo()->read(input);
 	}
 
@@ -972,278 +699,278 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D68C0
- * Size:	000410
- */
-FloorInfo::Parms::Parms()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-extsh.   r0, r4
-lis      r4, lbl_80480640@ha
-stw      r31, 0xc(r1)
-addi     r31, r4, lbl_80480640@l
-stw      r30, 8(r1)
-mr       r30, r3
-beq      lbl_801D68F0
-addi     r0, r30, 0x2e0
-stw      r0, 0(r30)
+// /*
+//  * --INFO--
+//  * Address:	801D68C0
+//  * Size:	000410
+//  */
+// FloorInfo::Parms::Parms()
+// {
+// 	/*
+// stwu     r1, -0x10(r1)
+// mflr     r0
+// stw      r0, 0x14(r1)
+// extsh.   r0, r4
+// lis      r4, lbl_80480640@ha
+// stw      r31, 0xc(r1)
+// addi     r31, r4, lbl_80480640@l
+// stw      r30, 8(r1)
+// mr       r30, r3
+// beq      lbl_801D68F0
+// addi     r0, r30, 0x2e0
+// stw      r0, 0(r30)
 
-lbl_801D68F0:
-li       r0, 0
-lis      r5, 0x66303030@ha
-stw      r0, 4(r30)
-addi     r0, r31, 0x64
-mr       r4, r30
-addi     r3, r30, 0xc
-stw      r0, 8(r30)
-addi     r5, r5, 0x66303030@l
-addi     r6, r31, 0x70
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-lis      r5, 0x66303031@ha
-addi     r0, r3, "__vt__7Parm<i>"@l
-li       r7, 0
-stw      r0, 0xc(r30)
-li       r0, 0x7f
-mr       r4, r30
-addi     r3, r30, 0x34
-stw      r7, 0x24(r30)
-addi     r5, r5, 0x66303031@l
-addi     r6, r31, 0x7c
-stw      r7, 0x2c(r30)
-stw      r0, 0x30(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-lis      r5, 0x66303032@ha
-addi     r0, r3, "__vt__7Parm<i>"@l
-li       r3, 1
-stw      r0, 0x34(r30)
-li       r7, 0
-li       r0, 0x7f
-mr       r4, r30
-stw      r3, 0x4c(r30)
-addi     r3, r30, 0x5c
-addi     r5, r5, 0x66303032@l
-addi     r6, r31, 0x88
-stw      r7, 0x54(r30)
-stw      r0, 0x58(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-lis      r5, 0x66303033@ha
-addi     r0, r3, "__vt__7Parm<i>"@l
-li       r7, 0
-stw      r0, 0x5c(r30)
-li       r0, 0x80
-mr       r4, r30
-addi     r3, r30, 0x84
-stw      r7, 0x74(r30)
-addi     r5, r5, 0x66303033@l
-addi     r6, r31, 0x94
-stw      r7, 0x7c(r30)
-stw      r0, 0x80(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-lis      r5, 0x66303034@ha
-addi     r0, r3, "__vt__7Parm<i>"@l
-li       r7, 0
-stw      r0, 0x84(r30)
-li       r0, 0x80
-mr       r4, r30
-addi     r3, r30, 0xac
-stw      r7, 0x9c(r30)
-addi     r5, r5, 0x66303034@l
-addi     r6, r31, 0xa4
-stw      r7, 0xa4(r30)
-stw      r0, 0xa8(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-lis      r5, 0x66303134@ha
-addi     r0, r3, "__vt__7Parm<i>"@l
-li       r7, 0
-stw      r0, 0xac(r30)
-li       r0, 0x20
-mr       r4, r30
-addi     r3, r30, 0xd4
-stw      r7, 0xc4(r30)
-addi     r5, r5, 0x66303134@l
-addi     r6, r31, 0xb4
-stw      r7, 0xcc(r30)
-stw      r0, 0xd0(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-lis      r5, 0x66303035@ha
-addi     r0, r3, "__vt__7Parm<i>"@l
-li       r7, 0
-stw      r0, 0xd4(r30)
-li       r0, 0x80
-mr       r4, r30
-addi     r3, r30, 0xfc
-stw      r7, 0xec(r30)
-addi     r5, r5, 0x66303035@l
-addi     r6, r31, 0xc4
-stw      r7, 0xf4(r30)
-stw      r0, 0xf8(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-lis      r5, 0x66303036@ha
-addi     r0, r3, "__vt__7Parm<i>"@l
-li       r3, 4
-stw      r0, 0xfc(r30)
-li       r7, 1
-li       r0, 0xf
-mr       r4, r30
-stw      r3, 0x114(r30)
-addi     r3, r30, 0x124
-addi     r5, r5, 0x66303036@l
-addi     r6, r31, 0xd0
-stw      r7, 0x11c(r30)
-stw      r0, 0x120(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x66303037@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f1, lbl_805196C8@sda21(r2)
-stw      r0, 0x124(r30)
-mr       r4, r30
-lfs      f0, lbl_80519700@sda21(r2)
-addi     r3, r30, 0x14c
-stfs     f1, 0x13c(r30)
-addi     r5, r5, 0x66303037@l
-addi     r6, r31, 0xe0
-stfs     f1, 0x144(r30)
-stfs     f0, 0x148(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-lis      r6, 0x66303038@ha
-addi     r0, r3, "__vt__7Parm<i>"@l
-li       r9, 0
-stw      r0, 0x14c(r30)
-li       r0, 1
-mr       r4, r30
-addi     r3, r30, 0x174
-stw      r9, 0x164(r30)
-addi     r5, r31, 0xf4
-addi     r7, r6, 0x66303038@l
-addi     r8, r31, 0x100
-stw      r9, 0x16c(r30)
-li       r6, 0x40
-stw      r0, 0x170(r30)
-bl       __ct__10ParmStringFP10ParametersPciUlPc
-lis      r6, 0x66303039@ha
-mr       r4, r30
-addi     r3, r30, 0x194
-addi     r5, r31, 0x110
-addi     r7, r6, 0x66303039@l
-addi     r8, r31, 0x11c
-li       r6, 0x40
-bl       __ct__10ParmStringFP10ParametersPciUlPc
-lis      r6, 0x66303041@ha
-mr       r4, r30
-addi     r3, r30, 0x1b4
-addi     r5, r2, lbl_80519704@sda21
-addi     r7, r6, 0x66303041@l
-li       r6, 0x40
-addi     r8, r2, lbl_8051970C@sda21
-bl       __ct__10ParmStringFP10ParametersPciUlPc
-lis      r5, 0x66303130@ha
-mr       r4, r30
-addi     r3, r30, 0x1d4
-addi     r6, r31, 0x128
-addi     r5, r5, 0x66303130@l
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r4, "__vt__7Parm<i>"@ha
-lis      r3, "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@"@ha
-addi     r0, r4, "__vt__7Parm<i>"@l
-lis      r6, 0x66303131@ha
-stw      r0, 0x1d4(r30)
-li       r7, 0
-addi     r5, r3, "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@"@l
-addi     r8, r6, 0x66303131@l
-stw      r7, 0x1ec(r30)
-li       r0, 1
-mr       r4, r30
-addi     r3, r30, 0x1fc
-stw      r7, 0x1f4(r30)
-li       r6, 0
-li       r7, 6
-addi     r9, r2, lbl_80519714@sda21
-stw      r0, 0x1f8(r30)
-bl       __ct__8ParmEnumFP10ParametersPPcUlilPc
-lis      r3, "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@"@ha
-lis      r6, 0x66303132@ha
-addi     r5, r3, "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@"@l
-mr       r4, r30
-addi     r8, r6, 0x66303132@l
-addi     r3, r30, 0x220
-li       r6, 0
-li       r7, 3
-addi     r9, r2, lbl_8051971C@sda21
-bl       __ct__8ParmEnumFP10ParametersPPcUlilPc
-lis      r6, 0x66303133@ha
-mr       r4, r30
-addi     r3, r30, 0x244
-addi     r5, r13, "enumFloor_hiddens__26@unnamed@gameCaveInfo_cpp@"@sda21
-addi     r8, r6, 0x66303133@l
-li       r6, 0
-li       r7, 2
-addi     r9, r2, lbl_80519724@sda21
-bl       __ct__8ParmEnumFP10ParametersPPcUlilPc
-lis      r5, 0x66303135@ha
-mr       r4, r30
-addi     r3, r30, 0x268
-addi     r6, r2, lbl_8051972C@sda21
-addi     r5, r5, 0x66303135@l
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-lis      r5, 0x66303136@ha
-addi     r0, r3, "__vt__7Parm<i>"@l
-li       r7, 0
-stw      r0, 0x268(r30)
-li       r0, 0x2710
-mr       r4, r30
-addi     r3, r30, 0x290
-stw      r7, 0x280(r30)
-addi     r5, r5, 0x66303136@l
-addi     r6, r31, 0x14c
-stw      r7, 0x288(r30)
-stw      r0, 0x28c(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x66303137@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f1, lbl_805196C8@sda21(r2)
-stw      r0, 0x290(r30)
-mr       r4, r30
-lfs      f0, lbl_80519734@sda21(r2)
-addi     r3, r30, 0x2b8
-stfs     f1, 0x2a8(r30)
-addi     r5, r5, 0x66303137@l
-addi     r6, r2, lbl_80519738@sda21
-stfs     f1, 0x2b0(r30)
-stfs     f0, 0x2b4(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<i>"@ha
-li       r4, 0
-addi     r3, r3, "__vt__7Parm<i>"@l
-li       r0, 1
-stw      r3, 0x2b8(r30)
-mr       r3, r30
-stw      r4, 0x2d0(r30)
-stw      r4, 0x2d8(r30)
-stw      r0, 0x2dc(r30)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// lbl_801D68F0:
+// li       r0, 0
+// lis      r5, 0x66303030@ha
+// stw      r0, 4(r30)
+// addi     r0, r31, 0x64
+// mr       r4, r30
+// addi     r3, r30, 0xc
+// stw      r0, 8(r30)
+// addi     r5, r5, 0x66303030@l
+// addi     r6, r31, 0x70
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// lis      r5, 0x66303031@ha
+// addi     r0, r3, "__vt__7Parm<i>"@l
+// li       r7, 0
+// stw      r0, 0xc(r30)
+// li       r0, 0x7f
+// mr       r4, r30
+// addi     r3, r30, 0x34
+// stw      r7, 0x24(r30)
+// addi     r5, r5, 0x66303031@l
+// addi     r6, r31, 0x7c
+// stw      r7, 0x2c(r30)
+// stw      r0, 0x30(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// lis      r5, 0x66303032@ha
+// addi     r0, r3, "__vt__7Parm<i>"@l
+// li       r3, 1
+// stw      r0, 0x34(r30)
+// li       r7, 0
+// li       r0, 0x7f
+// mr       r4, r30
+// stw      r3, 0x4c(r30)
+// addi     r3, r30, 0x5c
+// addi     r5, r5, 0x66303032@l
+// addi     r6, r31, 0x88
+// stw      r7, 0x54(r30)
+// stw      r0, 0x58(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// lis      r5, 0x66303033@ha
+// addi     r0, r3, "__vt__7Parm<i>"@l
+// li       r7, 0
+// stw      r0, 0x5c(r30)
+// li       r0, 0x80
+// mr       r4, r30
+// addi     r3, r30, 0x84
+// stw      r7, 0x74(r30)
+// addi     r5, r5, 0x66303033@l
+// addi     r6, r31, 0x94
+// stw      r7, 0x7c(r30)
+// stw      r0, 0x80(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// lis      r5, 0x66303034@ha
+// addi     r0, r3, "__vt__7Parm<i>"@l
+// li       r7, 0
+// stw      r0, 0x84(r30)
+// li       r0, 0x80
+// mr       r4, r30
+// addi     r3, r30, 0xac
+// stw      r7, 0x9c(r30)
+// addi     r5, r5, 0x66303034@l
+// addi     r6, r31, 0xa4
+// stw      r7, 0xa4(r30)
+// stw      r0, 0xa8(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// lis      r5, 0x66303134@ha
+// addi     r0, r3, "__vt__7Parm<i>"@l
+// li       r7, 0
+// stw      r0, 0xac(r30)
+// li       r0, 0x20
+// mr       r4, r30
+// addi     r3, r30, 0xd4
+// stw      r7, 0xc4(r30)
+// addi     r5, r5, 0x66303134@l
+// addi     r6, r31, 0xb4
+// stw      r7, 0xcc(r30)
+// stw      r0, 0xd0(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// lis      r5, 0x66303035@ha
+// addi     r0, r3, "__vt__7Parm<i>"@l
+// li       r7, 0
+// stw      r0, 0xd4(r30)
+// li       r0, 0x80
+// mr       r4, r30
+// addi     r3, r30, 0xfc
+// stw      r7, 0xec(r30)
+// addi     r5, r5, 0x66303035@l
+// addi     r6, r31, 0xc4
+// stw      r7, 0xf4(r30)
+// stw      r0, 0xf8(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// lis      r5, 0x66303036@ha
+// addi     r0, r3, "__vt__7Parm<i>"@l
+// li       r3, 4
+// stw      r0, 0xfc(r30)
+// li       r7, 1
+// li       r0, 0xf
+// mr       r4, r30
+// stw      r3, 0x114(r30)
+// addi     r3, r30, 0x124
+// addi     r5, r5, 0x66303036@l
+// addi     r6, r31, 0xd0
+// stw      r7, 0x11c(r30)
+// stw      r0, 0x120(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<f>"@ha
+// lis      r5, 0x66303037@ha
+// addi     r0, r3, "__vt__7Parm<f>"@l
+// lfs      f1, lbl_805196C8@sda21(r2)
+// stw      r0, 0x124(r30)
+// mr       r4, r30
+// lfs      f0, lbl_80519700@sda21(r2)
+// addi     r3, r30, 0x14c
+// stfs     f1, 0x13c(r30)
+// addi     r5, r5, 0x66303037@l
+// addi     r6, r31, 0xe0
+// stfs     f1, 0x144(r30)
+// stfs     f0, 0x148(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// lis      r6, 0x66303038@ha
+// addi     r0, r3, "__vt__7Parm<i>"@l
+// li       r9, 0
+// stw      r0, 0x14c(r30)
+// li       r0, 1
+// mr       r4, r30
+// addi     r3, r30, 0x174
+// stw      r9, 0x164(r30)
+// addi     r5, r31, 0xf4
+// addi     r7, r6, 0x66303038@l
+// addi     r8, r31, 0x100
+// stw      r9, 0x16c(r30)
+// li       r6, 0x40
+// stw      r0, 0x170(r30)
+// bl       __ct__10ParmStringFP10ParametersPciUlPc
+// lis      r6, 0x66303039@ha
+// mr       r4, r30
+// addi     r3, r30, 0x194
+// addi     r5, r31, 0x110
+// addi     r7, r6, 0x66303039@l
+// addi     r8, r31, 0x11c
+// li       r6, 0x40
+// bl       __ct__10ParmStringFP10ParametersPciUlPc
+// lis      r6, 0x66303041@ha
+// mr       r4, r30
+// addi     r3, r30, 0x1b4
+// addi     r5, r2, lbl_80519704@sda21
+// addi     r7, r6, 0x66303041@l
+// li       r6, 0x40
+// addi     r8, r2, lbl_8051970C@sda21
+// bl       __ct__10ParmStringFP10ParametersPciUlPc
+// lis      r5, 0x66303130@ha
+// mr       r4, r30
+// addi     r3, r30, 0x1d4
+// addi     r6, r31, 0x128
+// addi     r5, r5, 0x66303130@l
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r4, "__vt__7Parm<i>"@ha
+// lis      r3, "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@"@ha
+// addi     r0, r4, "__vt__7Parm<i>"@l
+// lis      r6, 0x66303131@ha
+// stw      r0, 0x1d4(r30)
+// li       r7, 0
+// addi     r5, r3, "enumFloor_alpha_types__26@unnamed@gameCaveInfo_cpp@"@l
+// addi     r8, r6, 0x66303131@l
+// stw      r7, 0x1ec(r30)
+// li       r0, 1
+// mr       r4, r30
+// addi     r3, r30, 0x1fc
+// stw      r7, 0x1f4(r30)
+// li       r6, 0
+// li       r7, 6
+// addi     r9, r2, lbl_80519714@sda21
+// stw      r0, 0x1f8(r30)
+// bl       __ct__8ParmEnumFP10ParametersPPcUlilPc
+// lis      r3, "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@"@ha
+// lis      r6, 0x66303132@ha
+// addi     r5, r3, "enumFloor_beta_types__26@unnamed@gameCaveInfo_cpp@"@l
+// mr       r4, r30
+// addi     r8, r6, 0x66303132@l
+// addi     r3, r30, 0x220
+// li       r6, 0
+// li       r7, 3
+// addi     r9, r2, lbl_8051971C@sda21
+// bl       __ct__8ParmEnumFP10ParametersPPcUlilPc
+// lis      r6, 0x66303133@ha
+// mr       r4, r30
+// addi     r3, r30, 0x244
+// addi     r5, r13, "enumFloor_hiddens__26@unnamed@gameCaveInfo_cpp@"@sda21
+// addi     r8, r6, 0x66303133@l
+// li       r6, 0
+// li       r7, 2
+// addi     r9, r2, lbl_80519724@sda21
+// bl       __ct__8ParmEnumFP10ParametersPPcUlilPc
+// lis      r5, 0x66303135@ha
+// mr       r4, r30
+// addi     r3, r30, 0x268
+// addi     r6, r2, lbl_8051972C@sda21
+// addi     r5, r5, 0x66303135@l
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// lis      r5, 0x66303136@ha
+// addi     r0, r3, "__vt__7Parm<i>"@l
+// li       r7, 0
+// stw      r0, 0x268(r30)
+// li       r0, 0x2710
+// mr       r4, r30
+// addi     r3, r30, 0x290
+// stw      r7, 0x280(r30)
+// addi     r5, r5, 0x66303136@l
+// addi     r6, r31, 0x14c
+// stw      r7, 0x288(r30)
+// stw      r0, 0x28c(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<f>"@ha
+// lis      r5, 0x66303137@ha
+// addi     r0, r3, "__vt__7Parm<f>"@l
+// lfs      f1, lbl_805196C8@sda21(r2)
+// stw      r0, 0x290(r30)
+// mr       r4, r30
+// lfs      f0, lbl_80519734@sda21(r2)
+// addi     r3, r30, 0x2b8
+// stfs     f1, 0x2a8(r30)
+// addi     r5, r5, 0x66303137@l
+// addi     r6, r2, lbl_80519738@sda21
+// stfs     f1, 0x2b0(r30)
+// stfs     f0, 0x2b4(r30)
+// bl       __ct__8BaseParmFP10ParametersUlPc
+// lis      r3, "__vt__7Parm<i>"@ha
+// li       r4, 0
+// addi     r3, r3, "__vt__7Parm<i>"@l
+// li       r0, 1
+// stw      r3, 0x2b8(r30)
+// mr       r3, r30
+// stw      r4, 0x2d0(r30)
+// stw      r4, 0x2d8(r30)
+// stw      r0, 0x2dc(r30)
+// lwz      r31, 0xc(r1)
+// lwz      r30, 8(r1)
+// lwz      r0, 0x14(r1)
+// mtlr     r0
+// addi     r1, r1, 0x10
+// blr
+// 	*/
+// }
 
 /*
  * --INFO--

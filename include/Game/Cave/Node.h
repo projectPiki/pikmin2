@@ -10,37 +10,47 @@ struct RandMapScore;
 struct EnemyNode;
 struct MapNode;
 
-enum NodeType { Item = 1, Gate };
+enum NodeType {
+	// 0 = enemy, but unused - enemy instead uses EnemyDropMode enum
+	NODE_Item = 1,
+	NODE_Gate = 2,
+};
+
+enum FixObjNodeTypes {
+	FIXNODE_Pod         = 0,
+	FIXNODE_Hole        = 1,
+	FIXNODE_Fountain    = 2,
+	FIXNODE_VsRedOnyon  = 3,
+	FIXNODE_VsBlueOnyon = 4,
+	FIXNODE_Count, // 5
+};
+
+enum MapTekiTypes {
+	TEKITYPE_A = 0,
+	TEKITYPE_B = 1,
+	TEKITYPE_C = 2,
+	TEKITYPE_F = 3,
+};
 
 /**
+ * Basic details about an adjacent door.
+ *
+ * This information is set when two doors become one door, i.e. when two rooms are adjacent/connected.
+ * This is to keep track of the 'partner' door.
+ *
  * @size{0xC}
  */
 struct Adjust {
 	Adjust();
 
-	s32 mDoorID;    // _00
-	s32 mDistance;  // _04
-	s32 mTekiFlags; // _08
+	int mDoorID;    // _00, door identifier
+	int mDistance;  // _04
+	int mTekiFlags; // _08, whether door contains a seam teki
 };
 
 /**
- * @size{0xC}
- */
-struct AdjustInfo {
-	AdjustInfo();
-
-	inline void resetDoor()
-	{
-		mNode           = nullptr;
-		mBirthDoorIndex = -1;
-	}
-
-	MapNode* mNode;      // _00
-	int mBirthDoorIndex; // _04
-	int mDoorScore;      // _08
-};
-
-/**
+ * Linked list of adjacent door information.
+ *
  * @size{0x24}
  */
 struct AdjustNode : public CNode {
@@ -49,7 +59,30 @@ struct AdjustNode : public CNode {
 
 	virtual ~AdjustNode() { } // _08 (weak)
 
-	Adjust* mNode; // _18
+	// _00     = VTBL
+	// _00-_18 = CNode
+	Adjust* mAdjust; // _18
+};
+
+/**
+ * More detailed information on an adjacent door.
+ *
+ * This is more placement- and tile-oriented than the Adjust struct.
+ *
+ * @size{0xC}
+ */
+struct AdjustInfo {
+	AdjustInfo();
+
+	inline void resetDoor()
+	{
+		mMapTile        = nullptr;
+		mBirthDoorIndex = -1;
+	}
+
+	MapNode* mMapTile;   // _00
+	int mBirthDoorIndex; // _04
+	int mDoorScore;      // _08
 };
 
 /**
@@ -69,17 +102,19 @@ struct DoorNode : public CNode {
 	DoorNode();
 	DoorNode(Door&);
 
-	~DoorNode() {};
+	virtual ~DoorNode() { }
 
 	bool isDoorAdjust(DoorNode*);
 
 	inline void reset()
 	{
-		mNode.mDirection = -1;
-		mNode.mOffset    = -1;
+		mDoor.mDirection = -1;
+		mDoor.mOffset    = -1;
 	}
 
-	Door mNode; // _18
+	// _00     = VTBL
+	// _00-_18 = CNode
+	Door mDoor; // _18
 };
 
 /**
@@ -102,6 +137,8 @@ struct FixObjNode : public ObjectLayoutNode {
 		y = mPosition.z;
 	}
 
+	// _00     = VTBL
+	// _00-_18 = ObjectLayoutNode
 	u32 mObjectType;    // _18
 	f32 mDirection;     // _1C
 	Vector3f mPosition; // _20
@@ -130,8 +167,10 @@ struct GateNode : public ObjectLayoutNode {
 	virtual f32 getDirection();      // _1C
 	virtual int getBirthDoorIndex(); // _20
 
+	// _00     = VTBL
+	// _00-_18 = ObjectLayoutNode
 	GateUnit* mUnit; // _18
-	f32 mDirection;  // _1C
+	f32 mDirection;  // _1C, direction gate 'lies' (not faces) - if gate is on CD_RIGHT door, direction will be 'up'
 	int mIndex;      // _20
 };
 
@@ -160,11 +199,13 @@ struct ItemNode : public ObjectLayoutNode {
 
 	void makeGlobalData(MapNode*);
 
-	ItemUnit* mUnit;     // _18
-	BaseGen* mGenerator; // _1C
-	u32 mBirthCount;     // _20
-	f32 mDirection;      // _24
-	Vector3f mPosition;  // _28
+	// _00     = VTBL
+	// _00-_18 = ObjectLayoutNode
+	ItemUnit* mUnit;    // _18
+	BaseGen* mSpawn;    // _1C
+	u32 mBirthCount;    // _20
+	f32 mDirection;     // _24
+	Vector3f mPosition; // _28
 };
 
 /**
@@ -210,7 +251,7 @@ struct MapNode : public CNode {
 	virtual ~MapNode() { } // _08 (weak)
 
 	void setOffset(int, int);
-	CardinalDirection getDoorDirect(int);
+	int getDoorDirect(int);
 	void getDoorOffset(int, int&, int&);
 	bool isDoorSet(DoorNode*, int, int, int);
 	void setDoorClose(int, MapNode*, int);
@@ -246,6 +287,8 @@ struct MapNode : public CNode {
 
 	inline MapNode* getNext() { return static_cast<MapNode*>(mNext); }
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	UnitInfo* mUnitInfo;     // _18
 	EnemyNode* mEnemyNode;   // _1C
 	GateNode* mGateNode;     // _20
@@ -289,8 +332,10 @@ struct EnemyNode : public ObjectLayoutNode {
 
 	inline TekiInfo* getTekiInfo() { return mEnemyUnit->mTekiInfo; }
 
+	// _00     = VTBL
+	// _00-_18 = ObjectLayoutNode
 	EnemyUnit* mEnemyUnit; // _18
-	BaseGen* mBaseGen;     // _1C
+	BaseGen* mSpawn;       // _1C
 	int mBirthDoorIndex;   // _20
 	int mBirthCount;       // _24
 	f32 mDirection;        // _28

@@ -8,10 +8,10 @@ namespace Cave {
  * Size:	000014
  */
 Adjust::Adjust()
+    : mDoorID(-1)
+    , mDistance(-1)
+    , mTekiFlags(-1)
 {
-	mDoorID    = -1;
-	mDistance  = -1;
-	mTekiFlags = -1;
 }
 
 /*
@@ -19,22 +19,14 @@ Adjust::Adjust()
  * Address:	8024B888
  * Size:	000044
  */
-AdjustNode::AdjustNode()
-    : CNode()
-{
-	mNode = nullptr;
-}
+AdjustNode::AdjustNode() { mAdjust = nullptr; }
 
 /*
  * --INFO--
  * Address:	8024B8CC
  * Size:	00004C
  */
-AdjustNode::AdjustNode(Adjust* node)
-    : CNode()
-{
-	mNode = node;
-}
+AdjustNode::AdjustNode(Adjust* adj) { mAdjust = adj; }
 
 /*
  * --INFO--
@@ -52,11 +44,7 @@ Door::Door()
  * Address:	8024B928
  * Size:	000050
  */
-DoorNode::DoorNode()
-    : CNode()
-{
-	reset();
-}
+DoorNode::DoorNode() { reset(); }
 
 /*
  * --INFO--
@@ -65,8 +53,8 @@ DoorNode::DoorNode()
  */
 DoorNode::DoorNode(Door& door)
 {
-	mNode.mDirection = door.mDirection;
-	mNode.mOffset    = door.mOffset;
+	mDoor.mDirection = door.mDirection;
+	mDoor.mOffset    = door.mOffset;
 }
 
 /*
@@ -76,8 +64,8 @@ DoorNode::DoorNode(Door& door)
  */
 bool DoorNode::isDoorAdjust(DoorNode* other)
 {
-	CardinalDirection x = static_cast<CardinalDirection>(mNode.mDirection);
-	CardinalDirection y = static_cast<CardinalDirection>(other->mNode.mDirection);
+	int x = mDoor.mDirection;
+	int y = other->mDoor.mDirection;
 
 	if (x == CD_UP && y == CD_DOWN) {
 		return true;

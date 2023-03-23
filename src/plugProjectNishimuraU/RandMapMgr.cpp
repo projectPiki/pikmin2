@@ -13,7 +13,7 @@ RandMapMgr* randMapMgr;
  */
 RandMapMgr::RandMapMgr(bool isVersusHiba)
 {
-	mMapUnitGenerator = nullptr;
+	mGenerator        = nullptr;
 	mRandMapUnit      = nullptr;
 	mRandEnemyUnit    = nullptr;
 	mRandCapEnemyUnit = nullptr;
@@ -35,15 +35,15 @@ RandMapMgr::RandMapMgr(bool isVersusHiba)
  */
 void RandMapMgr::loadResource(MapUnitInterface* interface, int p1, FloorInfo* floorInfo, bool check, EditMapUnit* editMU)
 {
-	mMapUnitGenerator = new MapUnitGenerator(interface, p1, floorInfo, check, editMU);
-	mRandMapUnit      = new RandMapUnit(mMapUnitGenerator);
-	mRandEnemyUnit    = new RandEnemyUnit(mMapUnitGenerator, mIsVersusHiba);
-	mRandCapEnemyUnit = new RandCapEnemyUnit(mMapUnitGenerator);
-	mRandPlantUnit    = new RandPlantUnit(mMapUnitGenerator);
-	mRandGateUnit     = new RandGateUnit(mMapUnitGenerator);
-	mRandItemUnit     = new RandItemUnit(mMapUnitGenerator);
-	mRandMapScore     = new RandMapScore(mMapUnitGenerator);
-	mRandMapDraw      = new RandMapDraw(mMapUnitGenerator);
+	mGenerator        = new MapUnitGenerator(interface, p1, floorInfo, check, editMU);
+	mRandMapUnit      = new RandMapUnit(mGenerator);
+	mRandEnemyUnit    = new RandEnemyUnit(mGenerator, mIsVersusHiba);
+	mRandCapEnemyUnit = new RandCapEnemyUnit(mGenerator);
+	mRandPlantUnit    = new RandPlantUnit(mGenerator);
+	mRandGateUnit     = new RandGateUnit(mGenerator);
+	mRandItemUnit     = new RandItemUnit(mGenerator);
+	mRandMapScore     = new RandMapScore(mGenerator);
+	mRandMapDraw      = new RandMapDraw(mGenerator);
 
 	mRandEnemyUnit->setManageClassPtr(mRandMapScore);
 	mRandCapEnemyUnit->setManageClassPtr(mRandItemUnit);
@@ -101,7 +101,7 @@ void RandMapMgr::create()
  * Address:	80244858
  * Size:	000034
  */
-int RandMapMgr::getNumRooms() { return mMapUnitGenerator->mPlacedMapNodes->getChildCount(); }
+int RandMapMgr::getNumRooms() { return mGenerator->mPlacedMapNodes->getChildCount(); }
 
 /*
  * --INFO--
@@ -110,7 +110,7 @@ int RandMapMgr::getNumRooms() { return mMapUnitGenerator->mPlacedMapNodes->getCh
  */
 char* RandMapMgr::getUseUnitName(int idx)
 {
-	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->getChildAt(idx));
 	if (node) {
 		return node->getUnitName();
 	}
@@ -125,7 +125,7 @@ char* RandMapMgr::getUseUnitName(int idx)
  */
 char* RandMapMgr::getRoomData(int idx, float& x, float& y, int& dir)
 {
-	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->getChildAt(idx));
 	if (node) {
 		node->getNodeCentreOffset(x, y);
 		dir = node->getDirection();
@@ -142,7 +142,7 @@ char* RandMapMgr::getRoomData(int idx, float& x, float& y, int& dir)
  */
 RoomLink* RandMapMgr::makeRoomLink(int idx)
 {
-	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->getChildAt(idx));
 	if (node) {
 		RoomLink* parentLink = new RoomLink;
 
@@ -152,7 +152,7 @@ RoomLink* RandMapMgr::makeRoomLink(int idx)
 			RoomLink* childLink        = new RoomLink;
 			childLink->mLinkIndex      = i;
 			childLink->mBirthDoorIndex = node->mAdjustInfo[i].mBirthDoorIndex;
-			childLink->mAliveMapIndex  = mRandMapUnit->getAliveMapIndex(node->mAdjustInfo[i].mNode);
+			childLink->mAliveMapIndex  = mRandMapUnit->getAliveMapIndex(node->mAdjustInfo[i].mMapTile);
 			parentLink->add(childLink);
 		}
 
@@ -169,7 +169,7 @@ RoomLink* RandMapMgr::makeRoomLink(int idx)
  */
 ObjectLayoutInfo* RandMapMgr::makeObjectLayoutInfo(int idx)
 {
-	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->getChildAt(idx));
 	if (node) {
 		ObjectLayout* layout = new ObjectLayout(node);
 		mRandMapScore->makeObjectLayout(node, layout);
@@ -185,7 +185,7 @@ ObjectLayoutInfo* RandMapMgr::makeObjectLayoutInfo(int idx)
  */
 void RandMapMgr::getStartPosition(Vector3f& position, int idx)
 {
-	if (mMapUnitGenerator->mIsVersusMode) {
+	if (mGenerator->mIsVersusMode) {
 		if (idx == 0) {
 			mRandMapScore->getGlobalPosition(3, position);
 		} else {
@@ -358,7 +358,7 @@ lbl_80244D38:
  */
 void RandMapMgr::setUnitTexture(int idx, JUTTexture* texture)
 {
-	MapNode* node = static_cast<MapNode*>(mMapUnitGenerator->mPlacedMapNodes->getChildAt(idx));
+	MapNode* node = static_cast<MapNode*>(mGenerator->mPlacedMapNodes->getChildAt(idx));
 	if (node) {
 		node->mUnitInfo->setUnitTexture(texture);
 	}
@@ -398,8 +398,8 @@ void RandMapMgr::captureRadarMap(Graphics& gfx)
  */
 bool RandMapMgr::isLastFloor()
 {
-	if (mMapUnitGenerator) {
-		return mMapUnitGenerator->mIsFinalFloor;
+	if (mGenerator) {
+		return mGenerator->mIsFinalFloor;
 	}
 	return false;
 }
@@ -451,8 +451,8 @@ void RandMapMgr::getBaseGenData(Vector3f* positions, f32* dirs)
 	int counter = 0;
 
 	MapNode* startNodes[2];
-	startNodes[0] = mMapUnitGenerator->mPlacedMapNodes;
-	startNodes[1] = mMapUnitGenerator->mVisitedMapNodes;
+	startNodes[0] = mGenerator->mPlacedMapNodes;
+	startNodes[1] = mGenerator->mVisitedMapNodes;
 
 	for (int i = 0; i < 2; i++) {
 		FOREACH_NODE(MapNode, startNodes[i]->mChild, currNode)

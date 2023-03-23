@@ -9,7 +9,7 @@ namespace Cave {
  */
 AdjustInfo::AdjustInfo()
 {
-	mNode           = nullptr;
+	mMapTile        = nullptr;
 	mBirthDoorIndex = -1;
 	mDoorScore      = -1;
 }
@@ -39,7 +39,7 @@ MapNode::MapNode(UnitInfo* info)
 		int numDoors = getNumDoors();
 		mAdjustInfo  = new AdjustInfo[numDoors];
 		for (int i = 0; i < numDoors; i++) {
-			mAdjustInfo[i].mNode           = nullptr;
+			mAdjustInfo[i].mMapTile        = nullptr;
 			mAdjustInfo[i].mBirthDoorIndex = -1;
 			mAdjustInfo[i].mDoorScore      = -1;
 		}
@@ -62,7 +62,7 @@ void MapNode::setOffset(int x, int y)
  * Address:	80243028
  * Size:	000024
  */
-CardinalDirection MapNode::getDoorDirect(int idx) { return (CardinalDirection)getDoorNode(idx)->mNode.mDirection; }
+int MapNode::getDoorDirect(int idx) { return getDoorNode(idx)->mDoor.mDirection; }
 
 /*
  * --INFO--
@@ -87,25 +87,25 @@ void MapNode::getDoorOffset(int idx, int& x, int& y)
 	*/
 	// clang-format on
 
-	switch (door->mNode.mDirection) {
+	switch (door->mDoor.mDirection) {
 	case CD_UP:
-		x = mXGridOffset + door->mNode.mOffset;
+		x = mXGridOffset + door->mDoor.mOffset;
 		y = mYGridOffset;
 		break;
 
 	case CD_RIGHT:
 		x = mXGridOffset + mUnitInfo->getUnitSizeX();
-		y = mYGridOffset + door->mNode.mOffset;
+		y = mYGridOffset + door->mDoor.mOffset;
 		break;
 
 	case CD_DOWN:
-		x = mXGridOffset + door->mNode.mOffset;
+		x = mXGridOffset + door->mDoor.mOffset;
 		y = mYGridOffset + mUnitInfo->getUnitSizeY();
 		break;
 
 	case CD_LEFT:
 		x = mXGridOffset;
-		y = mYGridOffset + door->mNode.mOffset;
+		y = mYGridOffset + door->mDoor.mOffset;
 		break;
 	}
 }
@@ -121,19 +121,19 @@ bool MapNode::isDoorSet(DoorNode* testDoor, int x, int y, int idx)
 	if (door->isDoorAdjust(testDoor)) {
 		setOffset(x, y);
 
-		if (door->mNode.mDirection == CD_UP) {
-			mXGridOffset -= door->mNode.mOffset;
+		if (door->mDoor.mDirection == CD_UP) {
+			mXGridOffset -= door->mDoor.mOffset;
 
-		} else if (door->mNode.mDirection == CD_DOWN) {
-			mXGridOffset -= door->mNode.mOffset;
+		} else if (door->mDoor.mDirection == CD_DOWN) {
+			mXGridOffset -= door->mDoor.mOffset;
 			mYGridOffset -= mUnitInfo->getUnitSizeY();
 
-		} else if (door->mNode.mDirection == CD_LEFT) {
-			mYGridOffset -= door->mNode.mOffset;
+		} else if (door->mDoor.mDirection == CD_LEFT) {
+			mYGridOffset -= door->mDoor.mOffset;
 
-		} else if (door->mNode.mDirection == CD_RIGHT) {
+		} else if (door->mDoor.mDirection == CD_RIGHT) {
 			mXGridOffset -= mUnitInfo->getUnitSizeX();
-			mYGridOffset -= door->mNode.mOffset;
+			mYGridOffset -= door->mDoor.mOffset;
 		}
 
 		return true;
@@ -149,10 +149,10 @@ bool MapNode::isDoorSet(DoorNode* testDoor, int x, int y, int idx)
  */
 void MapNode::setDoorClose(int idx, MapNode* partner, int partnerIdx)
 {
-	mAdjustInfo[idx].mNode           = partner;
+	mAdjustInfo[idx].mMapTile        = partner;
 	mAdjustInfo[idx].mBirthDoorIndex = partnerIdx;
 
-	partner->mAdjustInfo[partnerIdx].mNode           = this;
+	partner->mAdjustInfo[partnerIdx].mMapTile        = this;
 	partner->mAdjustInfo[partnerIdx].mBirthDoorIndex = idx;
 }
 
@@ -166,14 +166,14 @@ void MapNode::detachDoorClose()
 	int numDoors = getNumDoors();
 	for (int i = 0; i < numDoors; i++) {
 		// if door is connected to another door, need to detach that first
-		if (mAdjustInfo[i].mNode) {
-			int idx                                                = mAdjustInfo[i].mBirthDoorIndex;
-			mAdjustInfo[i].mNode->mAdjustInfo[idx].mNode           = nullptr;
-			mAdjustInfo[i].mNode->mAdjustInfo[idx].mBirthDoorIndex = -1;
+		if (mAdjustInfo[i].mMapTile) {
+			int idx                                                   = mAdjustInfo[i].mBirthDoorIndex;
+			mAdjustInfo[i].mMapTile->mAdjustInfo[idx].mMapTile        = nullptr;
+			mAdjustInfo[i].mMapTile->mAdjustInfo[idx].mBirthDoorIndex = -1;
 		}
 
 		// detach door
-		mAdjustInfo[i].mNode           = nullptr;
+		mAdjustInfo[i].mMapTile        = nullptr;
 		mAdjustInfo[i].mBirthDoorIndex = -1;
 	}
 }
@@ -183,7 +183,7 @@ void MapNode::detachDoorClose()
  * Address:	80243318
  * Size:	00001C
  */
-bool MapNode::isDoorClose(int idx) { return mAdjustInfo[idx].mNode; }
+bool MapNode::isDoorClose(int idx) { return mAdjustInfo[idx].mMapTile; }
 
 /*
  * --INFO--
@@ -208,7 +208,7 @@ void MapNode::setDoorScore(int idx, int score)
 	// set door score
 	mAdjustInfo[idx].mDoorScore = score;
 	// set partner door score as well
-	mAdjustInfo[idx].mNode->mAdjustInfo[mAdjustInfo[idx].mBirthDoorIndex].mDoorScore = score;
+	mAdjustInfo[idx].mMapTile->mAdjustInfo[mAdjustInfo[idx].mBirthDoorIndex].mDoorScore = score;
 }
 
 /*
@@ -248,7 +248,7 @@ bool MapNode::isGateSetDoor(int idx)
 	}
 
 	// check partner door for a gate
-	FOREACH_NODE(GateNode, mAdjustInfo[idx].mNode->mGateNode->mChild, partnerGate)
+	FOREACH_NODE(GateNode, mAdjustInfo[idx].mMapTile->mGateNode->mChild, partnerGate)
 	{
 		if (partnerGate->getBirthDoorIndex() == mAdjustInfo[idx].mBirthDoorIndex) {
 			return true;
@@ -264,7 +264,7 @@ bool MapNode::isGateSetDoor(int idx)
 	}
 
 	// check partner door for a seam teki
-	FOREACH_NODE(EnemyNode, mAdjustInfo[idx].mNode->mEnemyNode->mChild, partnerEnemy)
+	FOREACH_NODE(EnemyNode, mAdjustInfo[idx].mMapTile->mEnemyNode->mChild, partnerEnemy)
 	{
 		if (partnerEnemy->getBirthDoorIndex() == mAdjustInfo[idx].mBirthDoorIndex) {
 			return true;
@@ -297,7 +297,7 @@ int MapNode::getGateScore(int idx)
 	}
 
 	// if partner door has a gate, increase score by health of gate (or 1000 if no info)
-	FOREACH_NODE(GateNode, mAdjustInfo[idx].mNode->mGateNode->mChild, partnerGate)
+	FOREACH_NODE(GateNode, mAdjustInfo[idx].mMapTile->mGateNode->mChild, partnerGate)
 	{
 		if (partnerGate->getBirthDoorIndex() == mAdjustInfo[idx].mBirthDoorIndex) {
 			int inc = 1000;
@@ -319,7 +319,7 @@ int MapNode::getGateScore(int idx)
 	}
 
 	// if partner door has a seam teki, increase score by 5
-	FOREACH_NODE(EnemyNode, mAdjustInfo[idx].mNode->mEnemyNode->mChild, partnerEnemy)
+	FOREACH_NODE(EnemyNode, mAdjustInfo[idx].mMapTile->mEnemyNode->mChild, partnerEnemy)
 	{
 		if (partnerEnemy->getBirthDoorIndex() == mAdjustInfo[idx].mBirthDoorIndex) {
 			gateScore += 5;
@@ -340,7 +340,7 @@ void MapNode::setEnemyScore()
 	mEnemyScore = 0;
 	FOREACH_NODE(EnemyNode, mEnemyNode->mChild, currEnemy)
 	{
-		BaseGen* gen = currEnemy->mBaseGen;
+		BaseGen* gen = currEnemy->mSpawn;
 		int score    = 0;
 		if (gen) {
 			if (gen->mSpawnType == BaseGen::TekiA__Easy) {
@@ -563,7 +563,7 @@ Vector3f MapNode::getDoorGlobalPosition(int idx)
 	f32 x = 0.0f;
 	f32 y = 0.0f;
 
-	CardinalDirection direction = getDoorDirect(idx);
+	int direction = getDoorDirect(idx);
 
 	int xInt;
 	int yInt;
