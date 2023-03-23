@@ -1,35 +1,46 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051BFA0:
-	.4byte 0x00000000
-lbl_8051BFA4:
-	.4byte 0x40000000
-lbl_8051BFA8:
+.obj lbl_8051BFA0, local
+	.float 0.0
+.endobj lbl_8051BFA0
+.obj lbl_8051BFA4, local
+	.float 2.0
+.endobj lbl_8051BFA4
+.obj lbl_8051BFA8, local
 	.float 1.0
-lbl_8051BFAC:
-	.4byte 0xC6480000
-lbl_8051BFB0:
-	.4byte 0x40C90FDB
-lbl_8051BFB4:
-	.4byte 0x43A2F983
-lbl_8051BFB8:
-	.4byte 0xC3A2F983
+.endobj lbl_8051BFA8
+.obj lbl_8051BFAC, local
+	.float -12800.0
+.endobj lbl_8051BFAC
+.obj lbl_8051BFB0, local # tau
+	.float 6.2831855
+.endobj lbl_8051BFB0
+.obj lbl_8051BFB4, local
+	.float 325.9493
+.endobj lbl_8051BFB4
+.obj lbl_8051BFB8, local
+	.float -325.9493
+.endobj lbl_8051BFB8
 .balign 8
-lbl_8051BFC0:
+.obj lbl_8051BFC0, local
 	.8byte 0x4330000080000000
-lbl_8051BFC8:
-	.4byte 0x3FAA3D71
-lbl_8051BFCC:
+.endobj lbl_8051BFC0
+.obj lbl_8051BFC8, local
+	.float 1.33
+.endobj lbl_8051BFC8
+.obj lbl_8051BFCC, local
 	.float 0.25
-lbl_8051BFD0:
-	.4byte 0x42C80000
-lbl_8051BFD4:
-	.4byte 0xBF800000
+.endobj lbl_8051BFCC
+.obj lbl_8051BFD0, local
+	.float 100.0
+.endobj lbl_8051BFD0
+.obj lbl_8051BFD4, local
+	.float -1.0
+.endobj lbl_8051BFD4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game12IKSystemBaseFv
-__ct__Q24Game12IKSystemBaseFv:
+.fn __ct__Q24Game12IKSystemBaseFv, global
 /* 802A9E5C 002A6D9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A9E60 002A6DA0  7C 08 02 A6 */	mflr r0
 /* 802A9E64 002A6DA4  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
@@ -58,9 +69,9 @@ __ct__Q24Game12IKSystemBaseFv:
 /* 802A9EC0 002A6E00  7C 08 03 A6 */	mtlr r0
 /* 802A9EC4 002A6E04  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A9EC8 002A6E08  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12IKSystemBaseFv
 
-.global init__Q24Game12IKSystemBaseFv
-init__Q24Game12IKSystemBaseFv:
+.fn init__Q24Game12IKSystemBaseFv, global
 /* 802A9ECC 002A6E0C  38 80 00 00 */	li r4, 0
 /* 802A9ED0 002A6E10  38 00 00 01 */	li r0, 1
 /* 802A9ED4 002A6E14  98 83 00 00 */	stb r4, 0(r3)
@@ -73,21 +84,21 @@ init__Q24Game12IKSystemBaseFv:
 /* 802A9EF0 002A6E30  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 802A9EF4 002A6E34  90 83 00 58 */	stw r4, 0x58(r3)
 /* 802A9EF8 002A6E38  4E 80 00 20 */	blr 
+.endfn init__Q24Game12IKSystemBaseFv
 
-.global setLegJointMatrix__Q24Game12IKSystemBaseFiP7Matrixf
-setLegJointMatrix__Q24Game12IKSystemBaseFiP7Matrixf:
+.fn setLegJointMatrix__Q24Game12IKSystemBaseFiP7Matrixf, global
 /* 802A9EFC 002A6E3C  54 80 10 3A */	slwi r0, r4, 2
 /* 802A9F00 002A6E40  7C 63 02 14 */	add r3, r3, r0
 /* 802A9F04 002A6E44  90 A3 00 4C */	stw r5, 0x4c(r3)
 /* 802A9F08 002A6E48  4E 80 00 20 */	blr 
+.endfn setLegJointMatrix__Q24Game12IKSystemBaseFiP7Matrixf
 
-.global setParameters__Q24Game12IKSystemBaseFPQ24Game13IKSystemParms
-setParameters__Q24Game12IKSystemBaseFPQ24Game13IKSystemParms:
+.fn setParameters__Q24Game12IKSystemBaseFPQ24Game13IKSystemParms, global
 /* 802A9F0C 002A6E4C  90 83 00 58 */	stw r4, 0x58(r3)
 /* 802A9F10 002A6E50  4E 80 00 20 */	blr 
+.endfn setParameters__Q24Game12IKSystemBaseFPQ24Game13IKSystemParms
 
-.global startProgramedIK__Q24Game12IKSystemBaseFv
-startProgramedIK__Q24Game12IKSystemBaseFv:
+.fn startProgramedIK__Q24Game12IKSystemBaseFv, global
 /* 802A9F14 002A6E54  38 80 00 01 */	li r4, 1
 /* 802A9F18 002A6E58  38 00 00 00 */	li r0, 0
 /* 802A9F1C 002A6E5C  98 83 00 00 */	stb r4, 0(r3)
@@ -152,9 +163,9 @@ startProgramedIK__Q24Game12IKSystemBaseFv:
 .L_802A9FFC:
 /* 802A9FFC 002A6F3C  D0 23 00 18 */	stfs f1, 0x18(r3)
 /* 802AA000 002A6F40  4E 80 00 20 */	blr 
+.endfn startProgramedIK__Q24Game12IKSystemBaseFv
 
-.global "startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>"
-"startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>":
+.fn "startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>", global
 /* 802AA004 002A6F44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802AA008 002A6F48  7C 08 02 A6 */	mflr r0
 /* 802AA00C 002A6F4C  C0 02 DC 40 */	lfs f0, lbl_8051BFA0@sda21(r2)
@@ -216,27 +227,27 @@ startProgramedIK__Q24Game12IKSystemBaseFv:
 /* 802AA0EC 002A702C  7C 08 03 A6 */	mtlr r0
 /* 802AA0F0 002A7030  38 21 00 10 */	addi r1, r1, 0x10
 /* 802AA0F4 002A7034  4E 80 00 20 */	blr 
+.endfn "startMovePosition__Q24Game12IKSystemBaseFR10Vector3<f>"
 
-.global startBlendMotion__Q24Game12IKSystemBaseFv
-startBlendMotion__Q24Game12IKSystemBaseFv:
+.fn startBlendMotion__Q24Game12IKSystemBaseFv, global
 /* 802AA0F8 002A7038  38 00 00 01 */	li r0, 1
 /* 802AA0FC 002A703C  98 03 00 01 */	stb r0, 1(r3)
 /* 802AA100 002A7040  4E 80 00 20 */	blr 
+.endfn startBlendMotion__Q24Game12IKSystemBaseFv
 
-.global finishBlendMotion__Q24Game12IKSystemBaseFv
-finishBlendMotion__Q24Game12IKSystemBaseFv:
+.fn finishBlendMotion__Q24Game12IKSystemBaseFv, global
 /* 802AA104 002A7044  38 00 00 00 */	li r0, 0
 /* 802AA108 002A7048  98 03 00 01 */	stb r0, 1(r3)
 /* 802AA10C 002A704C  4E 80 00 20 */	blr 
+.endfn finishBlendMotion__Q24Game12IKSystemBaseFv
 
-.global checkJointScaleOn__Q24Game12IKSystemBaseFv
-checkJointScaleOn__Q24Game12IKSystemBaseFv:
+.fn checkJointScaleOn__Q24Game12IKSystemBaseFv, global
 /* 802AA110 002A7050  38 00 00 01 */	li r0, 1
 /* 802AA114 002A7054  98 03 00 04 */	stb r0, 4(r3)
 /* 802AA118 002A7058  4E 80 00 20 */	blr 
+.endfn checkJointScaleOn__Q24Game12IKSystemBaseFv
 
-.global update__Q24Game12IKSystemBaseFv
-update__Q24Game12IKSystemBaseFv:
+.fn update__Q24Game12IKSystemBaseFv, global
 /* 802AA11C 002A705C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802AA120 002A7060  7C 08 02 A6 */	mflr r0
 /* 802AA124 002A7064  90 01 00 14 */	stw r0, 0x14(r1)
@@ -270,9 +281,9 @@ update__Q24Game12IKSystemBaseFv:
 /* 802AA18C 002A70CC  7C 08 03 A6 */	mtlr r0
 /* 802AA190 002A70D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802AA194 002A70D4  4E 80 00 20 */	blr 
+.endfn update__Q24Game12IKSystemBaseFv
 
-.global makeMatrix__Q24Game12IKSystemBaseFv
-makeMatrix__Q24Game12IKSystemBaseFv:
+.fn makeMatrix__Q24Game12IKSystemBaseFv, global
 /* 802AA198 002A70D8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802AA19C 002A70DC  7C 08 02 A6 */	mflr r0
 /* 802AA1A0 002A70E0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -336,9 +347,9 @@ makeMatrix__Q24Game12IKSystemBaseFv:
 /* 802AA284 002A71C4  7C 08 03 A6 */	mtlr r0
 /* 802AA288 002A71C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 802AA28C 002A71CC  4E 80 00 20 */	blr 
+.endfn makeMatrix__Q24Game12IKSystemBaseFv
 
-.global moveBottomJointPosition__Q24Game12IKSystemBaseFv
-moveBottomJointPosition__Q24Game12IKSystemBaseFv:
+.fn moveBottomJointPosition__Q24Game12IKSystemBaseFv, global
 /* 802AA290 002A71D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802AA294 002A71D4  7C 08 02 A6 */	mflr r0
 /* 802AA298 002A71D8  C0 02 DC 48 */	lfs f0, lbl_8051BFA8@sda21(r2)
@@ -393,14 +404,14 @@ moveBottomJointPosition__Q24Game12IKSystemBaseFv:
 /* 802AA348 002A7288  7C 08 03 A6 */	mtlr r0
 /* 802AA34C 002A728C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802AA350 002A7290  4E 80 00 20 */	blr 
+.endfn moveBottomJointPosition__Q24Game12IKSystemBaseFv
 
-.global onGround__Q24Game12IKSystemBaseFv
-onGround__Q24Game12IKSystemBaseFv:
+.fn onGround__Q24Game12IKSystemBaseFv, global
 /* 802AA354 002A7294  88 63 00 02 */	lbz r3, 2(r3)
 /* 802AA358 002A7298  4E 80 00 20 */	blr 
+.endfn onGround__Q24Game12IKSystemBaseFv
 
-.global getBottomJointPosition__Q24Game12IKSystemBaseFv
-getBottomJointPosition__Q24Game12IKSystemBaseFv:
+.fn getBottomJointPosition__Q24Game12IKSystemBaseFv, global
 /* 802AA35C 002A729C  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 802AA360 002A72A0  D0 03 00 00 */	stfs f0, 0(r3)
 /* 802AA364 002A72A4  C0 04 00 20 */	lfs f0, 0x20(r4)
@@ -408,9 +419,9 @@ getBottomJointPosition__Q24Game12IKSystemBaseFv:
 /* 802AA36C 002A72AC  C0 04 00 24 */	lfs f0, 0x24(r4)
 /* 802AA370 002A72B0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802AA374 002A72B4  4E 80 00 20 */	blr 
+.endfn getBottomJointPosition__Q24Game12IKSystemBaseFv
 
-.global getCollisionCentre__Q24Game12IKSystemBaseFv
-getCollisionCentre__Q24Game12IKSystemBaseFv:
+.fn getCollisionCentre__Q24Game12IKSystemBaseFv, global
 /* 802AA378 002A72B8  80 A4 00 54 */	lwz r5, 0x54(r4)
 /* 802AA37C 002A72BC  80 84 00 58 */	lwz r4, 0x58(r4)
 /* 802AA380 002A72C0  C0 65 00 00 */	lfs f3, 0(r5)
@@ -430,14 +441,14 @@ getCollisionCentre__Q24Game12IKSystemBaseFv:
 /* 802AA3B8 002A72F8  D0 83 00 04 */	stfs f4, 4(r3)
 /* 802AA3BC 002A72FC  D0 A3 00 08 */	stfs f5, 8(r3)
 /* 802AA3C0 002A7300  4E 80 00 20 */	blr 
+.endfn getCollisionCentre__Q24Game12IKSystemBaseFv
 
-.global getMoveRatio__Q24Game12IKSystemBaseFv
-getMoveRatio__Q24Game12IKSystemBaseFv:
+.fn getMoveRatio__Q24Game12IKSystemBaseFv, global
 /* 802AA3C4 002A7304  C0 23 00 0C */	lfs f1, 0xc(r3)
 /* 802AA3C8 002A7308  4E 80 00 20 */	blr 
+.endfn getMoveRatio__Q24Game12IKSystemBaseFv
 
-.global onGroundPosition__Q24Game12IKSystemBaseFv
-onGroundPosition__Q24Game12IKSystemBaseFv:
+.fn onGroundPosition__Q24Game12IKSystemBaseFv, global
 /* 802AA3CC 002A730C  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 802AA3D0 002A7310  7C 08 02 A6 */	mflr r0
 /* 802AA3D4 002A7314  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -607,9 +618,9 @@ onGroundPosition__Q24Game12IKSystemBaseFv:
 /* 802AA640 002A7580  7C 08 03 A6 */	mtlr r0
 /* 802AA644 002A7584  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 802AA648 002A7588  4E 80 00 20 */	blr 
+.endfn onGroundPosition__Q24Game12IKSystemBaseFv
 
-.global makeBendRatio__Q24Game12IKSystemBaseFv
-makeBendRatio__Q24Game12IKSystemBaseFv:
+.fn makeBendRatio__Q24Game12IKSystemBaseFv, global
 /* 802AA64C 002A758C  88 03 00 02 */	lbz r0, 2(r3)
 /* 802AA650 002A7590  28 00 00 00 */	cmplwi r0, 0
 /* 802AA654 002A7594  41 82 00 10 */	beq .L_802AA664
@@ -649,9 +660,9 @@ makeBendRatio__Q24Game12IKSystemBaseFv:
 /* 802AA6C4 002A7604  EC 01 00 32 */	fmuls f0, f1, f0
 /* 802AA6C8 002A7608  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802AA6CC 002A760C  4E 80 00 20 */	blr 
+.endfn makeBendRatio__Q24Game12IKSystemBaseFv
 
-.global "getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3<f>"
-"getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3<f>":
+.fn "getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3<f>", global
 /* 802AA6D0 002A7610  88 04 00 01 */	lbz r0, 1(r4)
 /* 802AA6D4 002A7614  28 00 00 00 */	cmplwi r0, 0
 /* 802AA6D8 002A7618  41 82 00 18 */	beq .L_802AA6F0
@@ -696,9 +707,9 @@ makeBendRatio__Q24Game12IKSystemBaseFv:
 /* 802AA760 002A76A0  D0 63 00 04 */	stfs f3, 4(r3)
 /* 802AA764 002A76A4  D0 83 00 08 */	stfs f4, 8(r3)
 /* 802AA768 002A76A8  4E 80 00 20 */	blr 
+.endfn "getMiddleDirection__Q24Game12IKSystemBaseFR10Vector3<f>"
 
-.global "setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>"
-"setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>":
+.fn "setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>", global
 /* 802AA76C 002A76AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802AA770 002A76B0  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 802AA774 002A76B4  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0
@@ -880,9 +891,9 @@ makeBendRatio__Q24Game12IKSystemBaseFv:
 /* 802AA9F4 002A7934  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 802AA9F8 002A7938  38 21 00 20 */	addi r1, r1, 0x20
 /* 802AA9FC 002A793C  4E 80 00 20 */	blr 
+.endfn "setTopJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>"
 
-.global "setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>"
-"setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>":
+.fn "setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>", global
 /* 802AAA00 002A7940  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802AAA04 002A7944  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 802AAA08 002A7948  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0
@@ -1064,9 +1075,9 @@ makeBendRatio__Q24Game12IKSystemBaseFv:
 /* 802AAC88 002A7BC8  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 802AAC8C 002A7BCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802AAC90 002A7BD0  4E 80 00 20 */	blr 
+.endfn "setMiddleJointRotation__Q24Game12IKSystemBaseFR10Vector3<f>R10Vector3<f>"
 
-.global "makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3<f>"
-"makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3<f>":
+.fn "makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3<f>", global
 /* 802AAC94 002A7BD4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802AAC98 002A7BD8  7C 08 02 A6 */	mflr r0
 /* 802AAC9C 002A7BDC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1135,3 +1146,4 @@ makeBendRatio__Q24Game12IKSystemBaseFv:
 /* 802AAD88 002A7CC8  7C 08 03 A6 */	mtlr r0
 /* 802AAD8C 002A7CCC  38 21 00 40 */	addi r1, r1, 0x40
 /* 802AAD90 002A7CD0  4E 80 00 20 */	blr 
+.endfn "makeBottomMatrix__Q24Game12IKSystemBaseFR10Vector3<f>"

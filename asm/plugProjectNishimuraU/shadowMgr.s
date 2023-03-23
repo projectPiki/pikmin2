@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483FF8
 lbl_80483FF8:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -14,7 +13,6 @@ lbl_80483FF8:
 	.4byte 0x53686164
 	.4byte 0x6F774D67
 	.4byte 0x72000000
-.global lbl_80484014
 lbl_80484014:
 	.4byte 0x53686164
 	.4byte 0x6F774D67
@@ -42,7 +40,6 @@ lbl_80484014:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C19E8
 lbl_804C19E8:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -83,10 +80,8 @@ __vt__Q24Game19JointShadowRootNode:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515CF8
 lbl_80515CF8:
 	.skip 0x4
-.global lbl_80515CFC
 lbl_80515CFC:
 	.skip 0x4
 .global shadowMgr__4Game
@@ -95,19 +90,14 @@ shadowMgr__4Game:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A6C0
 lbl_8051A6C0:
 	.float 0.1
-.global lbl_8051A6C4
 lbl_8051A6C4:
 	.4byte 0x00000000
-.global lbl_8051A6C8
 lbl_8051A6C8:
 	.4byte 0x3E4CCCCD
-.global lbl_8051A6CC
 lbl_8051A6CC:
 	.4byte 0x3CA3D70A
-.global lbl_8051A6D0
 lbl_8051A6D0:
 	.4byte 0x73686164
 	.4byte 0x6F770000

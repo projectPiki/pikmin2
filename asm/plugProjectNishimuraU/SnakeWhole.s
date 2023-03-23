@@ -1,13 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048BB38
 lbl_8048BB38:
 	.4byte 0x3234362D
 	.4byte 0x536E616B
 	.4byte 0x6557686F
 	.4byte 0x6C650000
-.global lbl_8048BB48
 lbl_8048BB48:
 	.4byte 0x6B757469
 	.4byte 0x6A6E7431
@@ -27,7 +25,6 @@ lbl_8048BB78:
 	.4byte 0x435C0000
 	.4byte 0x42F00000
 	.4byte 0x42F00000
-.global lbl_8048BB8C
 lbl_8048BB8C:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -94,7 +91,6 @@ lbl_8048BB8C:
 	.4byte 0xC2200000
 	.4byte 0xC2200000
 	.4byte 0xC2200000
-.global lbl_8048BC90
 lbl_8048BC90:
 	.4byte 0x50534D61
 	.4byte 0x696E5369
@@ -102,11 +98,9 @@ lbl_8048BC90:
 	.4byte 0x626A536F
 	.4byte 0x756E642E
 	.4byte 0x68000000
-.global lbl_8048BCA8
 lbl_8048BCA8:
 	.asciz "P2Assert"
 	.skip 3
-.global lbl_8048BCB4
 lbl_8048BCB4:
 	.asciz "foot_joint1"
 
@@ -337,86 +331,59 @@ __vt__Q34Game10SnakeWhole3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051C868
 lbl_8051C868:
 	.4byte 0x00000000
-.global lbl_8051C86C
 lbl_8051C86C:
 	.4byte 0x40200000
-.global lbl_8051C870
 lbl_8051C870:
 	.float 1.0
-.global lbl_8051C874
 lbl_8051C874:
 	.4byte 0x42480000
-.global lbl_8051C878
 lbl_8051C878:
 	.4byte 0x41A00000
-.global lbl_8051C87C
 lbl_8051C87C:
 	.4byte 0x41B40000
-.global lbl_8051C880
 lbl_8051C880:
 	.float 0.1
-.global lbl_8051C884
 lbl_8051C884:
 	.4byte 0x41200000
-.global lbl_8051C888
 lbl_8051C888:
 	.4byte 0xC47A0000
-.global lbl_8051C88C
 lbl_8051C88C:
 	.4byte 0x41700000
-.global lbl_8051C890
 lbl_8051C890:
 	.4byte 0x3FC90FDB
-.global lbl_8051C894
 lbl_8051C894:
 	.4byte 0x41B00000
-.global lbl_8051C898
 lbl_8051C898:
 	.4byte 0x3F060A92
-.global lbl_8051C89C
 lbl_8051C89C:
 	.4byte 0x3F3BBBBC
-.global lbl_8051C8A0
 lbl_8051C8A0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051C8A8
 lbl_8051C8A8:
 	.4byte 0x40C90FDB
-.global lbl_8051C8AC
 lbl_8051C8AC:
 	.float 0.5
-.global lbl_8051C8B0
 lbl_8051C8B0:
 	.4byte 0x47000000
-.global lbl_8051C8B4
 lbl_8051C8B4:
 	.4byte 0x43A2F983
-.global lbl_8051C8B8
 lbl_8051C8B8:
 	.4byte 0xC3A2F983
-.global lbl_8051C8BC
 lbl_8051C8BC:
 	.4byte 0x42F00000
-.global lbl_8051C8C0
 lbl_8051C8C0:
 	.4byte 0x40490FDB
-.global lbl_8051C8C4
 lbl_8051C8C4:
 	.4byte 0x47FA0000
-.global lbl_8051C8C8
 lbl_8051C8C8:
 	.4byte 0xC7FA0000
-.global lbl_8051C8CC
 lbl_8051C8CC:
 	.4byte 0x43340000
-.global lbl_8051C8D0
 lbl_8051C8D0:
 	.float 0.25
-.global lbl_8051C8D4
 lbl_8051C8D4:
 	.4byte 0x3F666666
 

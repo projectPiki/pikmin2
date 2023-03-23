@@ -1,64 +1,82 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804840C0:
+.obj lbl_804840C0, local
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000005
 	.4byte 0x00000008
-lbl_804840D0:
+.endobj lbl_804840C0
+.obj lbl_804840D0, local
 	.float 300.0
 	.float 150.0
 	.float 150.0
-lbl_804840DC:
+.endobj lbl_804840D0
+.obj lbl_804840DC, local
 	.float 300.0
 	.float 200.0
 	.float 200.0
-lbl_804840E8:
+.endobj lbl_804840DC
+.obj lbl_804840E8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_804840E8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A788:
-	.4byte 0x47000000
-	.4byte 0x00000000
-lbl_8051A790:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051A798:
-	.4byte 0x40000000
-lbl_8051A79C:
-	.4byte 0x43C80000
-lbl_8051A7A0:
-	.4byte 0x00000000
-lbl_8051A7A4:
+.obj lbl_8051A788, local
+	.float 32768.0
+.endobj lbl_8051A788
+.balign 8
+.obj lbl_8051A790, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051A790
+.obj lbl_8051A798, local
+	.float 2.0
+.endobj lbl_8051A798
+.obj lbl_8051A79C, local
+	.float 400.0
+.endobj lbl_8051A79C
+.obj lbl_8051A7A0, local
+	.float 0.0
+.endobj lbl_8051A7A0
+.obj lbl_8051A7A4, local
 	.4byte 0x00000000
 	.4byte 0x0000000C
-lbl_8051A7AC:
-	.4byte 0x46480000
-lbl_8051A7B0:
-	.4byte 0x43480000
-lbl_8051A7B4:
-	.4byte 0x43C80000
-lbl_8051A7B8:
-	.4byte 0x43C80000
-lbl_8051A7BC:
-	.4byte 0x43960000
-lbl_8051A7C0:
-	.4byte 0x40C90FDB
-lbl_8051A7C4:
-	.4byte 0xC3A2F983
-lbl_8051A7C8:
-	.4byte 0x43A2F983
-lbl_8051A7CC:
-	.4byte 0x420C0000
-lbl_8051A7D0:
+.endobj lbl_8051A7A4
+.obj lbl_8051A7AC, local
+	.float 12800.0
+.endobj lbl_8051A7AC
+.obj lbl_8051A7B0, local
+	.float 200.0
+.endobj lbl_8051A7B0
+.obj lbl_8051A7B4, local
+	.float 400.0
+	.float 400.0
+.endobj lbl_8051A7B4
+.obj lbl_8051A7BC, local
+	.float 300.0
+.endobj lbl_8051A7BC
+.obj lbl_8051A7C0, local
+	.float 6.2831855
+.endobj lbl_8051A7C0
+.obj lbl_8051A7C4, local
+	.float -325.9493
+.endobj lbl_8051A7C4
+.obj lbl_8051A7C8, local
+	.float 325.9493
+.endobj lbl_8051A7C8
+.obj lbl_8051A7CC, local
+	.float 35.0
+.endobj lbl_8051A7CC
+.obj lbl_8051A7D0, local
 	.float 1.0
-lbl_8051A7D4:
+.endobj lbl_8051A7D0
+.obj lbl_8051A7D4, local
 	.float 0.5
+.endobj lbl_8051A7D4
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 .balign 8
@@ -73,8 +91,7 @@ lbl_8051A7D4:
 .endobj lbl_80520EA0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave16MapUnitGeneratorb
-__ct__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave16MapUnitGeneratorb:
+.fn __ct__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave16MapUnitGeneratorb, global
 /* 80248914 00245854  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80248918 00245858  7C 08 02 A6 */	mflr r0
 /* 8024891C 0024585C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -121,14 +138,14 @@ __ct__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave16MapUnitGeneratorb:
 /* 802489B0 002458F0  7C 08 03 A6 */	mtlr r0
 /* 802489B4 002458F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802489B8 002458F8  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave16MapUnitGeneratorb
 
-.global setManageClassPtr__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave12RandMapScore
-setManageClassPtr__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave12RandMapScore:
+.fn setManageClassPtr__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave12RandMapScore, global
 /* 802489BC 002458FC  90 83 00 04 */	stw r4, 4(r3)
 /* 802489C0 00245900  4E 80 00 20 */	blr 
+.endfn setManageClassPtr__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave12RandMapScore
 
-.global setEnemySlot__Q34Game4Cave13RandEnemyUnitFv
-setEnemySlot__Q34Game4Cave13RandEnemyUnitFv:
+.fn setEnemySlot__Q34Game4Cave13RandEnemyUnitFv, global
 /* 802489C4 00245904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802489C8 00245908  7C 08 02 A6 */	mflr r0
 /* 802489CC 0024590C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -151,9 +168,9 @@ setEnemySlot__Q34Game4Cave13RandEnemyUnitFv:
 /* 80248A0C 0024594C  7C 08 03 A6 */	mtlr r0
 /* 80248A10 00245950  38 21 00 10 */	addi r1, r1, 0x10
 /* 80248A14 00245954  4E 80 00 20 */	blr 
+.endfn setEnemySlot__Q34Game4Cave13RandEnemyUnitFv
 
-.global setEnemyTypeWeight__Q34Game4Cave13RandEnemyUnitFv
-setEnemyTypeWeight__Q34Game4Cave13RandEnemyUnitFv:
+.fn setEnemyTypeWeight__Q34Game4Cave13RandEnemyUnitFv, global
 /* 80248A18 00245958  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80248A1C 0024595C  7C 08 02 A6 */	mflr r0
 /* 80248A20 00245960  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -323,9 +340,9 @@ setEnemyTypeWeight__Q34Game4Cave13RandEnemyUnitFv:
 /* 80248C84 00245BC4  7C 08 03 A6 */	mtlr r0
 /* 80248C88 00245BC8  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80248C8C 00245BCC  4E 80 00 20 */	blr 
+.endfn setEnemyTypeWeight__Q34Game4Cave13RandEnemyUnitFv
 
-.global setEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv
-setEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv:
+.fn setEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv, global
 /* 80248C90 00245BD0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80248C94 00245BD4  7C 08 02 A6 */	mflr r0
 /* 80248C98 00245BD8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -391,9 +408,9 @@ setEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv:
 /* 80248D74 00245CB4  7C 08 03 A6 */	mtlr r0
 /* 80248D78 00245CB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80248D7C 00245CBC  4E 80 00 20 */	blr 
+.endfn setEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv
 
-.global setEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv
-setEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv:
+.fn setEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv, global
 /* 80248D80 00245CC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80248D84 00245CC4  7C 08 02 A6 */	mflr r0
 /* 80248D88 00245CC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -449,9 +466,9 @@ setEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv:
 /* 80248E40 00245D80  7C 08 03 A6 */	mtlr r0
 /* 80248E44 00245D84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80248E48 00245D88  4E 80 00 20 */	blr 
+.endfn setEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv
 
-.global setEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv
-setEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv:
+.fn setEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv, global
 /* 80248E4C 00245D8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80248E50 00245D90  7C 08 02 A6 */	mflr r0
 /* 80248E54 00245D94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -507,9 +524,9 @@ setEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv:
 /* 80248F0C 00245E4C  7C 08 03 A6 */	mtlr r0
 /* 80248F10 00245E50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80248F14 00245E54  4E 80 00 20 */	blr 
+.endfn setEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv
 
-.global setEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv
-setEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv:
+.fn setEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv, global
 /* 80248F18 00245E58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80248F1C 00245E5C  7C 08 02 A6 */	mflr r0
 /* 80248F20 00245E60  90 01 00 24 */	stw r0, 0x24(r1)
@@ -579,9 +596,9 @@ setEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv:
 /* 80249010 00245F50  7C 08 03 A6 */	mtlr r0
 /* 80249014 00245F54  38 21 00 20 */	addi r1, r1, 0x20
 /* 80249018 00245F58  4E 80 00 20 */	blr 
+.endfn setEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv
 
-.global setVersusHibaTypeC__Q34Game4Cave13RandEnemyUnitFv
-setVersusHibaTypeC__Q34Game4Cave13RandEnemyUnitFv:
+.fn setVersusHibaTypeC__Q34Game4Cave13RandEnemyUnitFv, global
 /* 8024901C 00245F5C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80249020 00245F60  7C 08 02 A6 */	mflr r0
 /* 80249024 00245F64  90 01 00 54 */	stw r0, 0x54(r1)
@@ -692,9 +709,9 @@ setVersusHibaTypeC__Q34Game4Cave13RandEnemyUnitFv:
 /* 802491A0 002460E0  7C 08 03 A6 */	mtlr r0
 /* 802491A4 002460E4  38 21 00 50 */	addi r1, r1, 0x50
 /* 802491A8 002460E8  4E 80 00 20 */	blr 
+.endfn setVersusHibaTypeC__Q34Game4Cave13RandEnemyUnitFv
 
-.global setVersusEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv
-setVersusEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv:
+.fn setVersusEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv, global
 /* 802491AC 002460EC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802491B0 002460F0  7C 08 02 A6 */	mflr r0
 /* 802491B4 002460F4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -807,9 +824,9 @@ setVersusEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv:
 /* 80249344 00246284  7C 08 03 A6 */	mtlr r0
 /* 80249348 00246288  38 21 00 40 */	addi r1, r1, 0x40
 /* 8024934C 0024628C  4E 80 00 20 */	blr 
+.endfn setVersusEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv
 
-.global setSlotEnemyTypeC__Q34Game4Cave13RandEnemyUnitFRii
-setSlotEnemyTypeC__Q34Game4Cave13RandEnemyUnitFRii:
+.fn setSlotEnemyTypeC__Q34Game4Cave13RandEnemyUnitFRii, global
 /* 80249350 00246290  94 21 F3 A0 */	stwu r1, -0xc60(r1)
 /* 80249354 00246294  7C 08 02 A6 */	mflr r0
 /* 80249358 00246298  90 01 0C 64 */	stw r0, 0xc64(r1)
@@ -1023,9 +1040,9 @@ setSlotEnemyTypeC__Q34Game4Cave13RandEnemyUnitFRii:
 /* 8024963C 0024657C  7C 08 03 A6 */	mtlr r0
 /* 80249640 00246580  38 21 0C 60 */	addi r1, r1, 0xc60
 /* 80249644 00246584  4E 80 00 20 */	blr 
+.endfn setSlotEnemyTypeC__Q34Game4Cave13RandEnemyUnitFRii
 
-.global setUnitRandEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv
-setUnitRandEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv:
+.fn setUnitRandEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv, global
 /* 80249648 00246588  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 8024964C 0024658C  7C 08 02 A6 */	mflr r0
 /* 80249650 00246590  39 20 00 00 */	li r9, 0
@@ -1137,9 +1154,9 @@ setUnitRandEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv:
 /* 802497DC 0024671C  7C 08 03 A6 */	mtlr r0
 /* 802497E0 00246720  38 21 04 30 */	addi r1, r1, 0x430
 /* 802497E4 00246724  4E 80 00 20 */	blr 
+.endfn setUnitRandEnemyTypeC__Q34Game4Cave13RandEnemyUnitFv
 
-.global makeSetEnemyTypeC__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodeiPQ34Game4Cave9EnemyUnit
-makeSetEnemyTypeC__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodeiPQ34Game4Cave9EnemyUnit:
+.fn makeSetEnemyTypeC__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodeiPQ34Game4Cave9EnemyUnit, global
 /* 802497E8 00246728  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802497EC 0024672C  7C 08 02 A6 */	mflr r0
 /* 802497F0 00246730  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1195,9 +1212,9 @@ makeSetEnemyTypeC__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodeiPQ34Game4Ca
 /* 802498B4 002467F4  7C 08 03 A6 */	mtlr r0
 /* 802498B8 002467F8  38 21 00 50 */	addi r1, r1, 0x50
 /* 802498BC 002467FC  4E 80 00 20 */	blr 
+.endfn makeSetEnemyTypeC__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodeiPQ34Game4Cave9EnemyUnit
 
-.global setVersusEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv
-setVersusEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv:
+.fn setVersusEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv, global
 /* 802498C0 00246800  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802498C4 00246804  7C 08 02 A6 */	mflr r0
 /* 802498C8 00246808  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1300,9 +1317,9 @@ setVersusEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv:
 /* 80249A30 00246970  7C 08 03 A6 */	mtlr r0
 /* 80249A34 00246974  38 21 00 40 */	addi r1, r1, 0x40
 /* 80249A38 00246978  4E 80 00 20 */	blr 
+.endfn setVersusEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv
 
-.global setSlotEnemyTypeF__Q34Game4Cave13RandEnemyUnitFi
-setSlotEnemyTypeF__Q34Game4Cave13RandEnemyUnitFi:
+.fn setSlotEnemyTypeF__Q34Game4Cave13RandEnemyUnitFi, global
 /* 80249A3C 0024697C  94 21 F9 30 */	stwu r1, -0x6d0(r1)
 /* 80249A40 00246980  7C 08 02 A6 */	mflr r0
 /* 80249A44 00246984  90 01 06 D4 */	stw r0, 0x6d4(r1)
@@ -1574,9 +1591,9 @@ setSlotEnemyTypeF__Q34Game4Cave13RandEnemyUnitFi:
 /* 80249E10 00246D50  7C 08 03 A6 */	mtlr r0
 /* 80249E14 00246D54  38 21 06 D0 */	addi r1, r1, 0x6d0
 /* 80249E18 00246D58  4E 80 00 20 */	blr 
+.endfn setSlotEnemyTypeF__Q34Game4Cave13RandEnemyUnitFi
 
-.global setUnitRandEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv
-setUnitRandEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv:
+.fn setUnitRandEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv, global
 /* 80249E1C 00246D5C  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 80249E20 00246D60  7C 08 02 A6 */	mflr r0
 /* 80249E24 00246D64  39 20 00 00 */	li r9, 0
@@ -1688,9 +1705,9 @@ setUnitRandEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv:
 /* 80249FB0 00246EF0  7C 08 03 A6 */	mtlr r0
 /* 80249FB4 00246EF4  38 21 04 30 */	addi r1, r1, 0x430
 /* 80249FB8 00246EF8  4E 80 00 20 */	blr 
+.endfn setUnitRandEnemyTypeF__Q34Game4Cave13RandEnemyUnitFv
 
-.global makeSetEnemyTypeF__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit
-makeSetEnemyTypeF__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit:
+.fn makeSetEnemyTypeF__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit, global
 /* 80249FBC 00246EFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80249FC0 00246F00  7C 08 02 A6 */	mflr r0
 /* 80249FC4 00246F04  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1726,9 +1743,9 @@ makeSetEnemyTypeF__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cav
 /* 8024A038 00246F78  7C 08 03 A6 */	mtlr r0
 /* 8024A03C 00246F7C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8024A040 00246F80  4E 80 00 20 */	blr 
+.endfn makeSetEnemyTypeF__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit
 
-.global setVersusEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv
-setVersusEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv:
+.fn setVersusEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv, global
 /* 8024A044 00246F84  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8024A048 00246F88  7C 08 02 A6 */	mflr r0
 /* 8024A04C 00246F8C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1831,9 +1848,9 @@ setVersusEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv:
 /* 8024A1B4 002470F4  7C 08 03 A6 */	mtlr r0
 /* 8024A1B8 002470F8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8024A1BC 002470FC  4E 80 00 20 */	blr 
+.endfn setVersusEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv
 
-.global setSlotEnemyTypeB__Q34Game4Cave13RandEnemyUnitFi
-setSlotEnemyTypeB__Q34Game4Cave13RandEnemyUnitFi:
+.fn setSlotEnemyTypeB__Q34Game4Cave13RandEnemyUnitFi, global
 /* 8024A1C0 00247100  94 21 F9 30 */	stwu r1, -0x6d0(r1)
 /* 8024A1C4 00247104  7C 08 02 A6 */	mflr r0
 /* 8024A1C8 00247108  90 01 06 D4 */	stw r0, 0x6d4(r1)
@@ -2105,9 +2122,9 @@ setSlotEnemyTypeB__Q34Game4Cave13RandEnemyUnitFi:
 /* 8024A594 002474D4  7C 08 03 A6 */	mtlr r0
 /* 8024A598 002474D8  38 21 06 D0 */	addi r1, r1, 0x6d0
 /* 8024A59C 002474DC  4E 80 00 20 */	blr 
+.endfn setSlotEnemyTypeB__Q34Game4Cave13RandEnemyUnitFi
 
-.global setUnitRandEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv
-setUnitRandEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv:
+.fn setUnitRandEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv, global
 /* 8024A5A0 002474E0  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 8024A5A4 002474E4  7C 08 02 A6 */	mflr r0
 /* 8024A5A8 002474E8  39 20 00 00 */	li r9, 0
@@ -2219,9 +2236,9 @@ setUnitRandEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv:
 /* 8024A734 00247674  7C 08 03 A6 */	mtlr r0
 /* 8024A738 00247678  38 21 04 30 */	addi r1, r1, 0x430
 /* 8024A73C 0024767C  4E 80 00 20 */	blr 
+.endfn setUnitRandEnemyTypeB__Q34Game4Cave13RandEnemyUnitFv
 
-.global makeSetEnemyTypeB__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit
-makeSetEnemyTypeB__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit:
+.fn makeSetEnemyTypeB__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit, global
 /* 8024A740 00247680  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8024A744 00247684  7C 08 02 A6 */	mflr r0
 /* 8024A748 00247688  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2257,9 +2274,9 @@ makeSetEnemyTypeB__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cav
 /* 8024A7BC 002476FC  7C 08 03 A6 */	mtlr r0
 /* 8024A7C0 00247700  38 21 00 20 */	addi r1, r1, 0x20
 /* 8024A7C4 00247704  4E 80 00 20 */	blr 
+.endfn makeSetEnemyTypeB__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUnit
 
-.global setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv
-setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv:
+.fn setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv, global
 /* 8024A7C8 00247708  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8024A7CC 0024770C  7C 08 02 A6 */	mflr r0
 /* 8024A7D0 00247710  38 80 00 03 */	li r4, 3
@@ -2448,9 +2465,9 @@ setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv:
 /* 8024AA88 002479C8  7C 08 03 A6 */	mtlr r0
 /* 8024AA8C 002479CC  38 21 00 70 */	addi r1, r1, 0x70
 /* 8024AA90 002479D0  4E 80 00 20 */	blr 
+.endfn setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv
 
-.global getVersusEasyEnemyBaseGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen
-getVersusEasyEnemyBaseGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen:
+.fn getVersusEasyEnemyBaseGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen, global
 /* 8024AA94 002479D4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8024AA98 002479D8  7C 08 02 A6 */	mflr r0
 /* 8024AA9C 002479DC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2543,9 +2560,9 @@ getVersusEasyEnemyBaseGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34
 /* 8024ABCC 00247B0C  7C 08 03 A6 */	mtlr r0
 /* 8024ABD0 00247B10  38 21 00 40 */	addi r1, r1, 0x40
 /* 8024ABD4 00247B14  4E 80 00 20 */	blr 
+.endfn getVersusEasyEnemyBaseGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen
 
-.global setVersusEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv
-setVersusEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv:
+.fn setVersusEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv, global
 /* 8024ABD8 00247B18  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8024ABDC 00247B1C  7C 08 02 A6 */	mflr r0
 /* 8024ABE0 00247B20  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2673,9 +2690,9 @@ setVersusEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv:
 /* 8024ADA0 00247CE0  7C 08 03 A6 */	mtlr r0
 /* 8024ADA4 00247CE4  38 21 00 50 */	addi r1, r1, 0x50
 /* 8024ADA8 00247CE8  4E 80 00 20 */	blr 
+.endfn setVersusEnemyTypeA__Q34Game4Cave13RandEnemyUnitFv
 
-.global setSlotEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiRii
-setSlotEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiRii:
+.fn setSlotEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiRii, global
 /* 8024ADAC 00247CEC  94 21 F9 40 */	stwu r1, -0x6c0(r1)
 /* 8024ADB0 00247CF0  7C 08 02 A6 */	mflr r0
 /* 8024ADB4 00247CF4  90 01 06 C4 */	stw r0, 0x6c4(r1)
@@ -2692,7 +2709,7 @@ setSlotEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiRii:
 /* 8024ADE0 00247D20  81 03 00 00 */	lwz r8, 0(r3)
 /* 8024ADE4 00247D24  80 E2 C4 54 */	lwz r7, lbl_8051A7B4@sda21(r2)
 /* 8024ADE8 00247D28  88 08 00 02 */	lbz r0, 2(r8)
-/* 8024ADEC 00247D2C  80 62 C4 58 */	lwz r3, lbl_8051A7B8@sda21(r2)
+/* 8024ADEC 00247D2C  80 62 C4 58 */	lwz r3, (lbl_8051A7B4+4)@sda21(r2)
 /* 8024ADF0 00247D30  28 00 00 00 */	cmplwi r0, 0
 /* 8024ADF4 00247D34  90 E1 00 10 */	stw r7, 0x10(r1)
 /* 8024ADF8 00247D38  82 08 00 28 */	lwz r16, 0x28(r8)
@@ -2942,9 +2959,9 @@ setSlotEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiRii:
 /* 8024B174 002480B4  7C 08 03 A6 */	mtlr r0
 /* 8024B178 002480B8  38 21 06 C0 */	addi r1, r1, 0x6c0
 /* 8024B17C 002480BC  4E 80 00 20 */	blr 
+.endfn setSlotEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiRii
 
-.global setUnitRandEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiii
-setUnitRandEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiii:
+.fn setUnitRandEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiii, global
 /* 8024B180 002480C0  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 8024B184 002480C4  7C 08 02 A6 */	mflr r0
 /* 8024B188 002480C8  39 20 00 00 */	li r9, 0
@@ -3122,9 +3139,9 @@ setUnitRandEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiii:
 /* 8024B40C 0024834C  7C 08 03 A6 */	mtlr r0
 /* 8024B410 00248350  38 21 04 40 */	addi r1, r1, 0x440
 /* 8024B414 00248354  4E 80 00 20 */	blr 
+.endfn setUnitRandEnemyTypeA__Q34Game4Cave13RandEnemyUnitFRiii
 
-.global makeSetEnemyTypeA__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUniti
-makeSetEnemyTypeA__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUniti:
+.fn makeSetEnemyTypeA__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUniti, global
 /* 8024B418 00248358  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 8024B41C 0024835C  7C 08 02 A6 */	mflr r0
 /* 8024B420 00248360  90 01 01 D4 */	stw r0, 0x1d4(r1)
@@ -3408,9 +3425,9 @@ makeSetEnemyTypeA__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cav
 /* 8024B82C 0024876C  7C 08 03 A6 */	mtlr r0
 /* 8024B830 00248770  38 21 01 D0 */	addi r1, r1, 0x1d0
 /* 8024B834 00248774  4E 80 00 20 */	blr 
+.endfn makeSetEnemyTypeA__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGenPQ34Game4Cave9EnemyUniti
 
-.global isEnemySetGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen
-isEnemySetGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen:
+.fn isEnemySetGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen, global
 /* 8024B838 00248778  28 05 00 00 */	cmplwi r5, 0
 /* 8024B83C 0024877C  41 82 00 30 */	beq .L_8024B86C
 /* 8024B840 00248780  80 64 00 1C */	lwz r3, 0x1c(r4)
@@ -3430,3 +3447,4 @@ isEnemySetGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7Ba
 .L_8024B86C:
 /* 8024B86C 002487AC  38 60 00 00 */	li r3, 0
 /* 8024B870 002487B0  4E 80 00 20 */	blr 
+.endfn isEnemySetGen__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen

@@ -16,32 +16,42 @@
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051BF70:
-	.4byte 0x42C80000
-lbl_8051BF74:
-	.4byte 0x00000000
-lbl_8051BF78:
+.obj lbl_8051BF70, local
+	.float 100.0
+.endobj lbl_8051BF70
+.obj lbl_8051BF74, local
+	.float 0.0
+.endobj lbl_8051BF74
+.obj lbl_8051BF78, local
 	.float 1.0
-lbl_8051BF7C:
-	.4byte 0x40A00000
-lbl_8051BF80:
-	.4byte 0x40490FDB
-lbl_8051BF84:
-	.4byte 0x3BB60B61
-lbl_8051BF88:
-	.4byte 0x43A2F983
-lbl_8051BF8C:
-	.4byte 0xC3A2F983
-lbl_8051BF90:
+.endobj lbl_8051BF78
+.obj lbl_8051BF7C, local
+	.float 5.0
+.endobj lbl_8051BF7C
+.obj lbl_8051BF80, local # pi
+	.float 3.1415927
+.endobj lbl_8051BF80
+.obj lbl_8051BF84, local
+	.float 0.0055555557
+.endobj lbl_8051BF84
+.obj lbl_8051BF88, local
+	.float 325.9493
+.endobj lbl_8051BF88
+.obj lbl_8051BF8C, local
+	.float -325.9493
+.endobj lbl_8051BF8C
+.obj lbl_8051BF90, local
 	.float 0.5
-lbl_8051BF94:
-	.4byte 0x40C90FDB
-lbl_8051BF98:
+.endobj lbl_8051BF90
+.obj lbl_8051BF94, local # tau
+	.float 6.2831855
+.endobj lbl_8051BF94
+.obj lbl_8051BF98, local
 	.float 0.25
+.endobj lbl_8051BF98
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global IKJointCallBack__4GameFP8J3DJointi
-IKJointCallBack__4GameFP8J3DJointi:
+.fn IKJointCallBack__4GameFP8J3DJointi, local
 /* 802A8A80 002A59C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A8A84 002A59C4  7C 08 02 A6 */	mflr r0
 /* 802A8A88 002A59C8  2C 04 00 01 */	cmpwi r4, 1
@@ -57,9 +67,9 @@ IKJointCallBack__4GameFP8J3DJointi:
 /* 802A8AAC 002A59EC  7C 08 03 A6 */	mtlr r0
 /* 802A8AB0 002A59F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A8AB4 002A59F4  4E 80 00 20 */	blr 
+.endfn IKJointCallBack__4GameFP8J3DJointi
 
-.global __ct__Q24Game11IKSystemMgrFv
-__ct__Q24Game11IKSystemMgrFv:
+.fn __ct__Q24Game11IKSystemMgrFv, global
 /* 802A8AB8 002A59F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A8ABC 002A59FC  7C 08 02 A6 */	mflr r0
 /* 802A8AC0 002A5A00  3C 80 80 12 */	lis r4, "__ct__10Vector3<f>Fv"@ha
@@ -91,9 +101,9 @@ __ct__Q24Game11IKSystemMgrFv:
 /* 802A8B28 002A5A68  7C 08 03 A6 */	mtlr r0
 /* 802A8B2C 002A5A6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A8B30 002A5A70  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11IKSystemMgrFv
 
-.global init__Q24Game11IKSystemMgrFPQ24Game9EnemyBasePQ24Game19JointGroundCallBack
-init__Q24Game11IKSystemMgrFPQ24Game9EnemyBasePQ24Game19JointGroundCallBack:
+.fn init__Q24Game11IKSystemMgrFPQ24Game9EnemyBasePQ24Game19JointGroundCallBack, global
 /* 802A8B34 002A5A74  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802A8B38 002A5A78  7C 08 02 A6 */	mflr r0
 /* 802A8B3C 002A5A7C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -176,9 +186,9 @@ init__Q24Game11IKSystemMgrFPQ24Game9EnemyBasePQ24Game19JointGroundCallBack:
 /* 802A8C6C 002A5BAC  7C 08 03 A6 */	mtlr r0
 /* 802A8C70 002A5BB0  38 21 00 30 */	addi r1, r1, 0x30
 /* 802A8C74 002A5BB4  4E 80 00 20 */	blr 
+.endfn init__Q24Game11IKSystemMgrFPQ24Game9EnemyBasePQ24Game19JointGroundCallBack
 
-.global setupJoint__Q24Game11IKSystemMgrFPQ28SysShape5ModeliPPc
-setupJoint__Q24Game11IKSystemMgrFPQ28SysShape5ModeliPPc:
+.fn setupJoint__Q24Game11IKSystemMgrFPQ28SysShape5ModeliPPc, global
 /* 802A8C78 002A5BB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A8C7C 002A5BBC  7C 08 02 A6 */	mflr r0
 /* 802A8C80 002A5BC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -207,9 +217,9 @@ setupJoint__Q24Game11IKSystemMgrFPQ28SysShape5ModeliPPc:
 /* 802A8CD8 002A5C18  7C 08 03 A6 */	mtlr r0
 /* 802A8CDC 002A5C1C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A8CE0 002A5C20  4E 80 00 20 */	blr 
+.endfn setupJoint__Q24Game11IKSystemMgrFPQ28SysShape5ModeliPPc
 
-.global setupCallBack__Q24Game11IKSystemMgrFPQ28SysShape5ModelPc
-setupCallBack__Q24Game11IKSystemMgrFPQ28SysShape5ModelPc:
+.fn setupCallBack__Q24Game11IKSystemMgrFPQ28SysShape5ModelPc, global
 /* 802A8CE4 002A5C24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A8CE8 002A5C28  7C 08 02 A6 */	mflr r0
 /* 802A8CEC 002A5C2C  7C 83 23 78 */	mr r3, r4
@@ -224,9 +234,9 @@ setupCallBack__Q24Game11IKSystemMgrFPQ28SysShape5ModelPc:
 /* 802A8D10 002A5C50  7C 08 03 A6 */	mtlr r0
 /* 802A8D14 002A5C54  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A8D18 002A5C58  4E 80 00 20 */	blr 
+.endfn setupCallBack__Q24Game11IKSystemMgrFPQ28SysShape5ModelPc
 
-.global setParameters__Q24Game11IKSystemMgrFPQ24Game13IKSystemParms
-setParameters__Q24Game11IKSystemMgrFPQ24Game13IKSystemParms:
+.fn setParameters__Q24Game11IKSystemMgrFPQ24Game13IKSystemParms, global
 /* 802A8D1C 002A5C5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A8D20 002A5C60  7C 08 02 A6 */	mflr r0
 /* 802A8D24 002A5C64  90 01 00 24 */	stw r0, 0x24(r1)
@@ -253,9 +263,9 @@ setParameters__Q24Game11IKSystemMgrFPQ24Game13IKSystemParms:
 /* 802A8D74 002A5CB4  7C 08 03 A6 */	mtlr r0
 /* 802A8D78 002A5CB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A8D7C 002A5CBC  4E 80 00 20 */	blr 
+.endfn setParameters__Q24Game11IKSystemMgrFPQ24Game13IKSystemParms
 
-.global startProgramedIK__Q24Game11IKSystemMgrFv
-startProgramedIK__Q24Game11IKSystemMgrFv:
+.fn startProgramedIK__Q24Game11IKSystemMgrFv, global
 /* 802A8D80 002A5CC0  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802A8D84 002A5CC4  7C 08 02 A6 */	mflr r0
 /* 802A8D88 002A5CC8  90 01 00 84 */	stw r0, 0x84(r1)
@@ -358,9 +368,9 @@ startProgramedIK__Q24Game11IKSystemMgrFv:
 /* 802A8EFC 002A5E3C  7C 08 03 A6 */	mtlr r0
 /* 802A8F00 002A5E40  38 21 00 80 */	addi r1, r1, 0x80
 /* 802A8F04 002A5E44  4E 80 00 20 */	blr 
+.endfn startProgramedIK__Q24Game11IKSystemMgrFv
 
-.global startIKMotion__Q24Game11IKSystemMgrFv
-startIKMotion__Q24Game11IKSystemMgrFv:
+.fn startIKMotion__Q24Game11IKSystemMgrFv, global
 /* 802A8F08 002A5E48  38 80 00 01 */	li r4, 1
 /* 802A8F0C 002A5E4C  38 00 00 00 */	li r0, 0
 /* 802A8F10 002A5E50  98 83 00 01 */	stb r4, 1(r3)
@@ -370,23 +380,23 @@ startIKMotion__Q24Game11IKSystemMgrFv:
 /* 802A8F20 002A5E60  90 03 00 24 */	stw r0, 0x24(r3)
 /* 802A8F24 002A5E64  90 03 00 28 */	stw r0, 0x28(r3)
 /* 802A8F28 002A5E68  4E 80 00 20 */	blr 
+.endfn startIKMotion__Q24Game11IKSystemMgrFv
 
-.global finishIKMotion__Q24Game11IKSystemMgrFv
-finishIKMotion__Q24Game11IKSystemMgrFv:
+.fn finishIKMotion__Q24Game11IKSystemMgrFv, global
 /* 802A8F2C 002A5E6C  38 00 00 00 */	li r0, 0
 /* 802A8F30 002A5E70  98 03 00 01 */	stb r0, 1(r3)
 /* 802A8F34 002A5E74  4E 80 00 20 */	blr 
+.endfn finishIKMotion__Q24Game11IKSystemMgrFv
 
-.global forceFinishIKMotion__Q24Game11IKSystemMgrFv
-forceFinishIKMotion__Q24Game11IKSystemMgrFv:
+.fn forceFinishIKMotion__Q24Game11IKSystemMgrFv, global
 /* 802A8F38 002A5E78  38 80 00 00 */	li r4, 0
 /* 802A8F3C 002A5E7C  38 00 00 01 */	li r0, 1
 /* 802A8F40 002A5E80  98 83 00 01 */	stb r4, 1(r3)
 /* 802A8F44 002A5E84  98 03 00 02 */	stb r0, 2(r3)
 /* 802A8F48 002A5E88  4E 80 00 20 */	blr 
+.endfn forceFinishIKMotion__Q24Game11IKSystemMgrFv
 
-.global startBlendMotion__Q24Game11IKSystemMgrFv
-startBlendMotion__Q24Game11IKSystemMgrFv:
+.fn startBlendMotion__Q24Game11IKSystemMgrFv, global
 /* 802A8F4C 002A5E8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A8F50 002A5E90  7C 08 02 A6 */	mflr r0
 /* 802A8F54 002A5E94  90 01 00 24 */	stw r0, 0x24(r1)
@@ -411,9 +421,9 @@ startBlendMotion__Q24Game11IKSystemMgrFv:
 /* 802A8F9C 002A5EDC  7C 08 03 A6 */	mtlr r0
 /* 802A8FA0 002A5EE0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A8FA4 002A5EE4  4E 80 00 20 */	blr 
+.endfn startBlendMotion__Q24Game11IKSystemMgrFv
 
-.global finishBlendMotion__Q24Game11IKSystemMgrFv
-finishBlendMotion__Q24Game11IKSystemMgrFv:
+.fn finishBlendMotion__Q24Game11IKSystemMgrFv, global
 /* 802A8FA8 002A5EE8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A8FAC 002A5EEC  7C 08 02 A6 */	mflr r0
 /* 802A8FB0 002A5EF0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -438,9 +448,9 @@ finishBlendMotion__Q24Game11IKSystemMgrFv:
 /* 802A8FF8 002A5F38  7C 08 03 A6 */	mtlr r0
 /* 802A8FFC 002A5F3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A9000 002A5F40  4E 80 00 20 */	blr 
+.endfn finishBlendMotion__Q24Game11IKSystemMgrFv
 
-.global checkJointScaleOn__Q24Game11IKSystemMgrFv
-checkJointScaleOn__Q24Game11IKSystemMgrFv:
+.fn checkJointScaleOn__Q24Game11IKSystemMgrFv, global
 /* 802A9004 002A5F44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A9008 002A5F48  7C 08 02 A6 */	mflr r0
 /* 802A900C 002A5F4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -465,9 +475,9 @@ checkJointScaleOn__Q24Game11IKSystemMgrFv:
 /* 802A9054 002A5F94  7C 08 03 A6 */	mtlr r0
 /* 802A9058 002A5F98  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A905C 002A5F9C  4E 80 00 20 */	blr 
+.endfn checkJointScaleOn__Q24Game11IKSystemMgrFv
 
-.global isFinishIKMotion__Q24Game11IKSystemMgrFv
-isFinishIKMotion__Q24Game11IKSystemMgrFv:
+.fn isFinishIKMotion__Q24Game11IKSystemMgrFv, global
 /* 802A9060 002A5FA0  88 03 00 01 */	lbz r0, 1(r3)
 /* 802A9064 002A5FA4  28 00 00 00 */	cmplwi r0, 0
 /* 802A9068 002A5FA8  40 82 00 60 */	bne .L_802A90C8
@@ -501,20 +511,20 @@ isFinishIKMotion__Q24Game11IKSystemMgrFv:
 .L_802A90C8:
 /* 802A90C8 002A6008  38 60 00 00 */	li r3, 0
 /* 802A90CC 002A600C  4E 80 00 20 */	blr 
+.endfn isFinishIKMotion__Q24Game11IKSystemMgrFv
 
-.global resetAnimationCallBack__Q24Game11IKSystemMgrFv
-resetAnimationCallBack__Q24Game11IKSystemMgrFv:
+.fn resetAnimationCallBack__Q24Game11IKSystemMgrFv, global
 /* 802A90D0 002A6010  38 00 00 00 */	li r0, 0
 /* 802A90D4 002A6014  90 0D 96 F8 */	stw r0, gIKSystemMgr__4Game@sda21(r13)
 /* 802A90D8 002A6018  4E 80 00 20 */	blr 
+.endfn resetAnimationCallBack__Q24Game11IKSystemMgrFv
 
-.global setAnimationCallBack__Q24Game11IKSystemMgrFv
-setAnimationCallBack__Q24Game11IKSystemMgrFv:
+.fn setAnimationCallBack__Q24Game11IKSystemMgrFv, global
 /* 802A90DC 002A601C  90 6D 96 F8 */	stw r3, gIKSystemMgr__4Game@sda21(r13)
 /* 802A90E0 002A6020  4E 80 00 20 */	blr 
+.endfn setAnimationCallBack__Q24Game11IKSystemMgrFv
 
-.global doUpdate__Q24Game11IKSystemMgrFv
-doUpdate__Q24Game11IKSystemMgrFv:
+.fn doUpdate__Q24Game11IKSystemMgrFv, global
 /* 802A90E4 002A6024  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A90E8 002A6028  7C 08 02 A6 */	mflr r0
 /* 802A90EC 002A602C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -547,9 +557,9 @@ doUpdate__Q24Game11IKSystemMgrFv:
 /* 802A9154 002A6094  7C 08 03 A6 */	mtlr r0
 /* 802A9158 002A6098  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A915C 002A609C  4E 80 00 20 */	blr 
+.endfn doUpdate__Q24Game11IKSystemMgrFv
 
-.global makeMatrix__Q24Game11IKSystemMgrFv
-makeMatrix__Q24Game11IKSystemMgrFv:
+.fn makeMatrix__Q24Game11IKSystemMgrFv, global
 /* 802A9160 002A60A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A9164 002A60A4  7C 08 02 A6 */	mflr r0
 /* 802A9168 002A60A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -574,9 +584,9 @@ makeMatrix__Q24Game11IKSystemMgrFv:
 /* 802A91B0 002A60F0  7C 08 03 A6 */	mtlr r0
 /* 802A91B4 002A60F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A91B8 002A60F8  4E 80 00 20 */	blr 
+.endfn makeMatrix__Q24Game11IKSystemMgrFv
 
-.global getCollisionCentre__Q24Game11IKSystemMgrFi
-getCollisionCentre__Q24Game11IKSystemMgrFi:
+.fn getCollisionCentre__Q24Game11IKSystemMgrFi, global
 /* 802A91BC 002A60FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A91C0 002A6100  7C 08 02 A6 */	mflr r0
 /* 802A91C4 002A6104  90 01 00 14 */	stw r0, 0x14(r1)
@@ -591,9 +601,9 @@ getCollisionCentre__Q24Game11IKSystemMgrFi:
 /* 802A91E8 002A6128  7C 08 03 A6 */	mtlr r0
 /* 802A91EC 002A612C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A91F0 002A6130  4E 80 00 20 */	blr 
+.endfn getCollisionCentre__Q24Game11IKSystemMgrFi
 
-.global isCollisionCheck__Q24Game11IKSystemMgrFP8CollPart
-isCollisionCheck__Q24Game11IKSystemMgrFP8CollPart:
+.fn isCollisionCheck__Q24Game11IKSystemMgrFP8CollPart, global
 /* 802A91F4 002A6134  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A91F8 002A6138  7C 08 02 A6 */	mflr r0
 /* 802A91FC 002A613C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -668,9 +678,9 @@ isCollisionCheck__Q24Game11IKSystemMgrFP8CollPart:
 /* 802A92F4 002A6234  7C 08 03 A6 */	mtlr r0
 /* 802A92F8 002A6238  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A92FC 002A623C  4E 80 00 20 */	blr 
+.endfn isCollisionCheck__Q24Game11IKSystemMgrFP8CollPart
 
-.global updateController__Q24Game11IKSystemMgrFv
-updateController__Q24Game11IKSystemMgrFv:
+.fn updateController__Q24Game11IKSystemMgrFv, global
 /* 802A9300 002A6240  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802A9304 002A6244  7C 08 02 A6 */	mflr r0
 /* 802A9308 002A6248  90 01 00 84 */	stw r0, 0x84(r1)
@@ -881,9 +891,9 @@ updateController__Q24Game11IKSystemMgrFv:
 /* 802A95FC 002A653C  7C 08 03 A6 */	mtlr r0
 /* 802A9600 002A6540  38 21 00 80 */	addi r1, r1, 0x80
 /* 802A9604 002A6544  4E 80 00 20 */	blr 
+.endfn updateController__Q24Game11IKSystemMgrFv
 
-.global setNextCentrePosition__Q24Game11IKSystemMgrFv
-setNextCentrePosition__Q24Game11IKSystemMgrFv:
+.fn setNextCentrePosition__Q24Game11IKSystemMgrFv, global
 /* 802A9608 002A6548  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 802A960C 002A654C  7C 08 02 A6 */	mflr r0
 /* 802A9610 002A6550  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1147,9 +1157,9 @@ setNextCentrePosition__Q24Game11IKSystemMgrFv:
 /* 802A99D8 002A6918  7C 08 03 A6 */	mtlr r0
 /* 802A99DC 002A691C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 802A99E0 002A6920  4E 80 00 20 */	blr 
+.endfn setNextCentrePosition__Q24Game11IKSystemMgrFv
 
-.global calcFaceDir__Q24Game11IKSystemMgrFv
-calcFaceDir__Q24Game11IKSystemMgrFv:
+.fn calcFaceDir__Q24Game11IKSystemMgrFv, global
 /* 802A99E4 002A6924  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802A99E8 002A6928  7C 08 02 A6 */	mflr r0
 /* 802A99EC 002A692C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1217,9 +1227,9 @@ calcFaceDir__Q24Game11IKSystemMgrFv:
 /* 802A9AD4 002A6A14  7C 08 03 A6 */	mtlr r0
 /* 802A9AD8 002A6A18  38 21 00 50 */	addi r1, r1, 0x50
 /* 802A9ADC 002A6A1C  4E 80 00 20 */	blr 
+.endfn calcFaceDir__Q24Game11IKSystemMgrFv
 
-.global calcCentrePosition__Q24Game11IKSystemMgrFv
-calcCentrePosition__Q24Game11IKSystemMgrFv:
+.fn calcCentrePosition__Q24Game11IKSystemMgrFv, global
 /* 802A9AE0 002A6A20  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 802A9AE4 002A6A24  7C 08 02 A6 */	mflr r0
 /* 802A9AE8 002A6A28  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1392,9 +1402,9 @@ calcCentrePosition__Q24Game11IKSystemMgrFv:
 /* 802A9D6C 002A6CAC  7C 08 03 A6 */	mtlr r0
 /* 802A9D70 002A6CB0  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 802A9D74 002A6CB4  4E 80 00 20 */	blr 
+.endfn calcCentrePosition__Q24Game11IKSystemMgrFv
 
-.global calcTraceCentrePosition__Q24Game11IKSystemMgrFv
-calcTraceCentrePosition__Q24Game11IKSystemMgrFv:
+.fn calcTraceCentrePosition__Q24Game11IKSystemMgrFv, global
 /* 802A9D78 002A6CB8  88 03 00 00 */	lbz r0, 0(r3)
 /* 802A9D7C 002A6CBC  28 00 00 00 */	cmplwi r0, 0
 /* 802A9D80 002A6CC0  41 82 00 C0 */	beq .L_802A9E40
@@ -1453,3 +1463,4 @@ calcTraceCentrePosition__Q24Game11IKSystemMgrFv:
 /* 802A9E50 002A6D90  C0 03 00 40 */	lfs f0, 0x40(r3)
 /* 802A9E54 002A6D94  D0 03 00 4C */	stfs f0, 0x4c(r3)
 /* 802A9E58 002A6D98  4E 80 00 20 */	blr 
+.endfn calcTraceCentrePosition__Q24Game11IKSystemMgrFv
