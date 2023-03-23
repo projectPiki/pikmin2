@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q34Game8MaroFrog3Obj
-__vt__Q34Game8MaroFrog3Obj:
+.obj __vt__Q34Game8MaroFrog3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -208,20 +207,20 @@ __vt__Q34Game8MaroFrog3Obj:
 	.4byte "@736@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@736@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
+.endobj __vt__Q34Game8MaroFrog3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051AD40
-lbl_8051AD40:
-	.4byte 0x40490FDB
-.global lbl_8051AD44
-lbl_8051AD44:
-	.4byte 0x3BB60B61
+.obj lbl_8051AD40, local
+	.float 3.1415927
+.endobj lbl_8051AD40
+.balign 4
+.obj lbl_8051AD44, local
+	.float 0.0055555557
+.endobj lbl_8051AD44
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game8MaroFrog3ObjFv
-__ct__Q34Game8MaroFrog3ObjFv:
+.fn __ct__Q34Game8MaroFrog3ObjFv, global
 /* 802617E0 0025E720  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802617E4 0025E724  7C 08 02 A6 */	mflr r0
 /* 802617E8 0025E728  90 01 00 14 */	stw r0, 0x14(r1)
@@ -261,9 +260,9 @@ __ct__Q34Game8MaroFrog3ObjFv:
 /* 8026186C 0025E7AC  7C 08 03 A6 */	mtlr r0
 /* 80261870 0025E7B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80261874 0025E7B4  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game8MaroFrog3ObjFv
 
-.global attackNaviPosition__Q34Game8MaroFrog3ObjFv
-attackNaviPosition__Q34Game8MaroFrog3ObjFv:
+.fn attackNaviPosition__Q34Game8MaroFrog3ObjFv, global
 /* 80261878 0025E7B8  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 8026187C 0025E7BC  7C 08 02 A6 */	mflr r0
 /* 80261880 0025E7C0  90 01 01 14 */	stw r0, 0x114(r1)
@@ -553,9 +552,9 @@ attackNaviPosition__Q34Game8MaroFrog3ObjFv:
 /* 80261CC8 0025EC08  7C 08 03 A6 */	mtlr r0
 /* 80261CCC 0025EC0C  38 21 01 10 */	addi r1, r1, 0x110
 /* 80261CD0 0025EC10  4E 80 00 20 */	blr 
+.endfn attackNaviPosition__Q34Game8MaroFrog3ObjFv
 
-.global createEffect__Q34Game8MaroFrog3ObjFv
-createEffect__Q34Game8MaroFrog3ObjFv:
+.fn createEffect__Q34Game8MaroFrog3ObjFv, global
 /* 80261CD4 0025EC14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80261CD8 0025EC18  7C 08 02 A6 */	mflr r0
 /* 80261CDC 0025EC1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -601,8 +600,9 @@ createEffect__Q34Game8MaroFrog3ObjFv:
 /* 80261D78 0025ECB8  7C 08 03 A6 */	mtlr r0
 /* 80261D7C 0025ECBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80261D80 0025ECC0  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game8MaroFrog3ObjFv
 
-.global getEnemyTypeID__Q34Game8MaroFrog3ObjFv
-getEnemyTypeID__Q34Game8MaroFrog3ObjFv:
+.fn getEnemyTypeID__Q34Game8MaroFrog3ObjFv, weak
 /* 80261D84 0025ECC4  38 60 00 12 */	li r3, 0x12
 /* 80261D88 0025ECC8  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game8MaroFrog3ObjFv

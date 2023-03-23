@@ -1,44 +1,43 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80484850
-lbl_80484850:
-	.4byte 0x3ECCCCCD
-	.4byte 0x3F0CCCCD
+.obj lbl_80484850, local
+	.float 0.4
+	.float 0.55
 	.float 1.0
-.global lbl_8048485C
-lbl_8048485C:
-	.4byte 0x3E4CCCCD
-	.4byte 0x3EB33333
+.endobj lbl_80484850
+.obj lbl_8048485C, local
+	.float 0.2
+	.float 0.35
 	.float 0.5
+.endobj lbl_8048485C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game10RumbleNode
-__vt__Q24Game10RumbleNode:
+.obj __vt__Q24Game10RumbleNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game10RumbleNodeFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q24Game10RumbleNode
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A968
-lbl_8051A968:
-	.4byte 0x00000000
-.global lbl_8051A96C
-lbl_8051A96C:
+.obj lbl_8051A968, local
+	.float 0.0
+.endobj lbl_8051A968
+.obj lbl_8051A96C, local
 	.float 1.0
-.global lbl_8051A970
-lbl_8051A970:
-	.4byte 0x40400000
-.global lbl_8051A974
-lbl_8051A974:
-	.4byte 0x41F00000
+.endobj lbl_8051A96C
+.obj lbl_8051A970, local
+	.float 3.0
+.endobj lbl_8051A970
+.obj lbl_8051A974, local
+	.float 30.0
+.endobj lbl_8051A974
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game10ContRumbleFii
-__ct__Q24Game10ContRumbleFii:
+.fn __ct__Q24Game10ContRumbleFii, global
 /* 80252B20 0024FA60  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80252B24 0024FA64  7C 08 02 A6 */	mflr r0
 /* 80252B28 0024FA68  90 01 00 44 */	stw r0, 0x44(r1)
@@ -130,9 +129,9 @@ __ct__Q24Game10ContRumbleFii:
 /* 80252C6C 0024FBAC  7C 08 03 A6 */	mtlr r0
 /* 80252C70 0024FBB0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80252C74 0024FBB4  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game10ContRumbleFii
 
-.global init__Q24Game10ContRumbleFv
-init__Q24Game10ContRumbleFv:
+.fn init__Q24Game10ContRumbleFv, global
 /* 80252C78 0024FBB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80252C7C 0024FBBC  7C 08 02 A6 */	mflr r0
 /* 80252C80 0024FBC0  C0 02 C6 08 */	lfs f0, lbl_8051A968@sda21(r2)
@@ -170,9 +169,9 @@ init__Q24Game10ContRumbleFv:
 /* 80252CF8 0024FC38  7C 08 03 A6 */	mtlr r0
 /* 80252CFC 0024FC3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80252D00 0024FC40  4E 80 00 20 */	blr 
+.endfn init__Q24Game10ContRumbleFv
 
-.global update__Q24Game10ContRumbleFv
-update__Q24Game10ContRumbleFv:
+.fn update__Q24Game10ContRumbleFv, global
 /* 80252D04 0024FC44  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80252D08 0024FC48  7C 08 02 A6 */	mflr r0
 /* 80252D0C 0024FC4C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -353,9 +352,9 @@ update__Q24Game10ContRumbleFv:
 /* 80252F88 0024FEC8  7C 08 03 A6 */	mtlr r0
 /* 80252F8C 0024FECC  38 21 00 40 */	addi r1, r1, 0x40
 /* 80252F90 0024FED0  4E 80 00 20 */	blr 
+.endfn update__Q24Game10ContRumbleFv
 
-.global setController__Q24Game10ContRumbleFb
-setController__Q24Game10ContRumbleFb:
+.fn setController__Q24Game10ContRumbleFb, global
 /* 80252F94 0024FED4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80252F98 0024FED8  7C 08 02 A6 */	mflr r0
 /* 80252F9C 0024FEDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -379,9 +378,9 @@ setController__Q24Game10ContRumbleFb:
 /* 80252FE0 0024FF20  7C 08 03 A6 */	mtlr r0
 /* 80252FE4 0024FF24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80252FE8 0024FF28  4E 80 00 20 */	blr 
+.endfn setController__Q24Game10ContRumbleFb
 
-.global startRumble__Q24Game10ContRumbleFif
-startRumble__Q24Game10ContRumbleFif:
+.fn startRumble__Q24Game10ContRumbleFif, global
 /* 80252FEC 0024FF2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80252FF0 0024FF30  7C 08 02 A6 */	mflr r0
 /* 80252FF4 0024FF34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -450,9 +449,9 @@ startRumble__Q24Game10ContRumbleFif:
 /* 802530E4 00250024  7C 08 03 A6 */	mtlr r0
 /* 802530E8 00250028  38 21 00 20 */	addi r1, r1, 0x20
 /* 802530EC 0025002C  4E 80 00 20 */	blr 
+.endfn startRumble__Q24Game10ContRumbleFif
 
-.global rumbleStop__Q24Game10ContRumbleFv
-rumbleStop__Q24Game10ContRumbleFv:
+.fn rumbleStop__Q24Game10ContRumbleFv, global
 /* 802530F0 00250030  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802530F4 00250034  7C 08 02 A6 */	mflr r0
 /* 802530F8 00250038  90 01 00 24 */	stw r0, 0x24(r1)
@@ -490,9 +489,9 @@ rumbleStop__Q24Game10ContRumbleFv:
 /* 8025316C 002500AC  7C 08 03 A6 */	mtlr r0
 /* 80253170 002500B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80253174 002500B4  4E 80 00 20 */	blr 
+.endfn rumbleStop__Q24Game10ContRumbleFv
 
-.global rumbleStop__Q24Game10ContRumbleFi
-rumbleStop__Q24Game10ContRumbleFi:
+.fn rumbleStop__Q24Game10ContRumbleFi, global
 /* 80253178 002500B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025317C 002500BC  7C 08 02 A6 */	mflr r0
 /* 80253180 002500C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -533,9 +532,9 @@ rumbleStop__Q24Game10ContRumbleFi:
 /* 802531FC 0025013C  7C 08 03 A6 */	mtlr r0
 /* 80253200 00250140  38 21 00 20 */	addi r1, r1, 0x20
 /* 80253204 00250144  4E 80 00 20 */	blr 
+.endfn rumbleStop__Q24Game10ContRumbleFi
 
-.global getRumbleParameter__Q24Game10ContRumbleFiRfRf
-getRumbleParameter__Q24Game10ContRumbleFiRfRf:
+.fn getRumbleParameter__Q24Game10ContRumbleFiRfRf, global
 /* 80253208 00250148  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8025320C 0025014C  3C 60 55 55 */	lis r3, 0x55555556@ha
 /* 80253210 00250150  3C E0 80 48 */	lis r7, lbl_80484850@ha
@@ -575,9 +574,9 @@ getRumbleParameter__Q24Game10ContRumbleFiRfRf:
 /* 80253298 002501D8  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 8025329C 002501DC  38 21 00 30 */	addi r1, r1, 0x30
 /* 802532A0 002501E0  4E 80 00 20 */	blr 
+.endfn getRumbleParameter__Q24Game10ContRumbleFiRfRf
 
-.global __dt__Q24Game10RumbleNodeFv
-__dt__Q24Game10RumbleNodeFv:
+.fn __dt__Q24Game10RumbleNodeFv, weak
 /* 802532A4 002501E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802532A8 002501E8  7C 08 02 A6 */	mflr r0
 /* 802532AC 002501EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -603,3 +602,4 @@ __dt__Q24Game10RumbleNodeFv:
 /* 802532F8 00250238  7C 08 03 A6 */	mtlr r0
 /* 802532FC 0025023C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80253300 00250240  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game10RumbleNodeFv
