@@ -1,20 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80484090
 lbl_80484090:
 	.4byte 0x52616E64
 	.4byte 0x4D617055
 	.4byte 0x6E69742E
 	.4byte 0x63707000
-.global lbl_804840A0
 lbl_804840A0:
 	.4byte 0x65646974
 	.4byte 0x206D6170
 	.4byte 0x206E6F6E
 	.4byte 0x65203A20
 	.4byte 0x25730A00
-.global lbl_804840B4
 lbl_804840B4:
 	.4byte 0x00000000
 	.4byte 0x00000002
@@ -22,30 +19,21 @@ lbl_804840B4:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A760
 lbl_8051A760:
 	.4byte 0x00000000
-.global lbl_8051A764
 lbl_8051A764:
 	.4byte 0x3C23D70A
-.global lbl_8051A768
 lbl_8051A768:
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_8051A770
+.balign 8
 lbl_8051A770:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_8051A778
+	.8byte 0x4330000080000000
 lbl_8051A778:
 	.4byte 0x47000000
-.global lbl_8051A77C
 lbl_8051A77C:
 	.4byte 0x40000000
-.global lbl_8051A780
 lbl_8051A780:
 	.4byte 0x40800000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave11EditMapUnitFv

@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80484190
 lbl_80484190:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -14,12 +13,10 @@ lbl_80484190:
 	.4byte 0x43616D65
 	.4byte 0x72614D67
 	.4byte 0x72000000
-.global lbl_804841AC
 lbl_804841AC:
 	.4byte 0x43616D65
 	.4byte 0x72614D67
 	.4byte 0x72000000
-.global lbl_804841B8
 lbl_804841B8:
 	.4byte 0x2F757365
 	.4byte 0x722F4E69
@@ -32,7 +29,6 @@ lbl_804841B8:
 	.4byte 0x61506172
 	.4byte 0x6D732E74
 	.4byte 0x78740000
-.global lbl_804841E4
 lbl_804841E4:
 	.4byte 0x2F757365
 	.4byte 0x722F4E69
@@ -424,13 +420,11 @@ lbl_804841E4:
 	.4byte 0x89F1935D
 	.4byte 0x8CB8908A
 	.4byte 0x97A60000
-.global lbl_804847FC
 lbl_804847FC:
 	.4byte 0x43616D65
 	.4byte 0x72614D67
 	.4byte 0x722E6370
 	.4byte 0x70000000
-.global lbl_8048480C
 lbl_8048480C:
 	.asciz "P2Assert"
 	.skip 3
@@ -438,13 +432,11 @@ lbl_8048480C:
 	.4byte 0x72612069
 	.4byte 0x73206E6F
 	.4byte 0x6E650A00
-.global lbl_80484828
 lbl_80484828:
 	.4byte 0x6E6F7420
 	.4byte 0x7A756B61
 	.4byte 0x6E206D6F
 	.4byte 0x64650A00
-.global lbl_80484838
 lbl_80484838:
 	.4byte 0x63616D65
 	.4byte 0x72612070
@@ -455,187 +447,131 @@ lbl_80484838:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C1BC8
-lbl_804C1BC8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q24Game9CameraMgr
 __vt__Q24Game9CameraMgr:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game9CameraMgrFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515D18
-lbl_80515D18:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515D1C
-lbl_80515D1C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global cameraMgr__4Game
 cameraMgr__4Game:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A898
 lbl_8051A898:
 	.float 1.0
-.global lbl_8051A89C
 lbl_8051A89C:
 	.4byte 0x00000000
-.global lbl_8051A8A0
 lbl_8051A8A0:
 	.4byte 0x41200000
-.global lbl_8051A8A4
 lbl_8051A8A4:
 	.4byte 0x40400000
-.global lbl_8051A8A8
 lbl_8051A8A8:
 	.4byte 0x40A00000
-.global lbl_8051A8AC
 lbl_8051A8AC:
 	.4byte 0x41700000
-.global lbl_8051A8B0
 lbl_8051A8B0:
 	.4byte 0x42C80000
-.global lbl_8051A8B4
 lbl_8051A8B4:
 	.4byte 0x41C80000
-.global lbl_8051A8B8
 lbl_8051A8B8:
 	.4byte 0x420C0000
-.global lbl_8051A8BC
 lbl_8051A8BC:
 	.float 0.3
-.global lbl_8051A8C0
 lbl_8051A8C0:
 	.4byte 0x3F400000
-.global lbl_8051A8C4
 lbl_8051A8C4:
 	.4byte 0x3FC00000
-.global lbl_8051A8C8
 lbl_8051A8C8:
 	.4byte 0x41A00000
-.global lbl_8051A8CC
 lbl_8051A8CC:
 	.4byte 0x42480000
-.global lbl_8051A8D0
 lbl_8051A8D0:
 	.float 0.25
-.global lbl_8051A8D4
 lbl_8051A8D4:
 	.float 0.06
-.global lbl_8051A8D8
 lbl_8051A8D8:
 	.4byte 0x42200000
-.global lbl_8051A8DC
 lbl_8051A8DC:
 	.4byte 0x443B8000
-.global lbl_8051A8E0
 lbl_8051A8E0:
 	.4byte 0x447A0000
-.global lbl_8051A8E4
 lbl_8051A8E4:
 	.4byte 0x44160000
-.global lbl_8051A8E8
 lbl_8051A8E8:
 	.4byte 0x459C4000
-.global lbl_8051A8EC
 lbl_8051A8EC:
 	.4byte 0x42B40000
-.global lbl_8051A8F0
 lbl_8051A8F0:
 	.4byte 0x42700000
-.global lbl_8051A8F4
 lbl_8051A8F4:
 	.4byte 0x43FA0000
-.global lbl_8051A8F8
 lbl_8051A8F8:
 	.4byte 0x418C0000
-.global lbl_8051A8FC
 lbl_8051A8FC:
 	.4byte 0x46480000
-.global lbl_8051A900
 lbl_8051A900:
 	.4byte 0x41A80000
-.global lbl_8051A904
 lbl_8051A904:
 	.4byte 0x41B80000
-.global lbl_8051A908
 lbl_8051A908:
 	.4byte 0x42180000
-.global lbl_8051A90C
 lbl_8051A90C:
 	.4byte 0x425C0000
-.global lbl_8051A910
 lbl_8051A910:
 	.4byte 0x44610000
-.global lbl_8051A914
 lbl_8051A914:
 	.4byte 0x41D00000
-.global lbl_8051A918
 lbl_8051A918:
 	.4byte 0x42040000
-.global lbl_8051A91C
 lbl_8051A91C:
 	.4byte 0x43C80000
-.global lbl_8051A920
 lbl_8051A920:
 	.4byte 0x43020000
-.global lbl_8051A924
 lbl_8051A924:
 	.4byte 0x41DC0000
-.global lbl_8051A928
 lbl_8051A928:
 	.4byte 0x428C0000
-.global lbl_8051A92C
 lbl_8051A92C:
 	.4byte 0x42960000
-.global lbl_8051A930
 lbl_8051A930:
 	.4byte 0x44960000
-.global lbl_8051A934
 lbl_8051A934:
 	.4byte 0x41F00000
-.global lbl_8051A938
 lbl_8051A938:
 	.4byte 0x43480000
-.global lbl_8051A93C
 lbl_8051A93C:
 	.4byte 0x43250000
-.global lbl_8051A940
 lbl_8051A940:
 	.4byte 0x437A0000
-.global lbl_8051A944
 lbl_8051A944:
 	.4byte 0x41400000
-.global lbl_8051A948
 lbl_8051A948:
 	.4byte 0x43960000
-.global lbl_8051A94C
 lbl_8051A94C:
 	.4byte 0x3BA3D70A
-.global lbl_8051A950
 lbl_8051A950:
 	.4byte 0x3A83126F
-.global lbl_8051A954
 lbl_8051A954:
 	.float 0.1
-.global lbl_8051A958
 lbl_8051A958:
 	.4byte 0x3E4CCCCD
-.global lbl_8051A95C
 lbl_8051A95C:
 	.4byte 0x3F19999A
-.global lbl_8051A960
 lbl_8051A960:
 	.4byte 0x3F666666
-.global lbl_8051A964
 lbl_8051A964:
 	.4byte 0x3F59999A
 
@@ -2928,10 +2864,10 @@ __sinit_CameraMgr_cpp:
 /* 80252AF8 0024FA38  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80252AFC 0024FA3C  38 00 FF FF */	li r0, -1
 /* 80252B00 0024FA40  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80252B04 0024FA44  3C 60 80 4C */	lis r3, lbl_804C1BC8@ha
-/* 80252B08 0024FA48  90 0D 96 98 */	stw r0, lbl_80515D18@sda21(r13)
-/* 80252B0C 0024FA4C  D4 03 1B C8 */	stfsu f0, lbl_804C1BC8@l(r3)
-/* 80252B10 0024FA50  D0 0D 96 9C */	stfs f0, lbl_80515D1C@sda21(r13)
+/* 80252B04 0024FA44  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80252B08 0024FA48  90 0D 96 98 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80252B0C 0024FA4C  D4 03 1B C8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80252B10 0024FA50  D0 0D 96 9C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80252B14 0024FA54  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80252B18 0024FA58  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80252B1C 0024FA5C  4E 80 00 20 */	blr 

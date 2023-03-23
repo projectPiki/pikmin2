@@ -5,23 +5,26 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80483FD0:
+.obj lbl_80483FD0, local
 	.asciz "PlayCamera"
+.endobj lbl_80483FD0
 .balign 4
-lbl_80483FDC:
+.obj lbl_80483FDC, local
 	.asciz "playCamera.cpp"
+.endobj lbl_80483FDC
 .balign 4
-lbl_80483FEC:
+.obj lbl_80483FEC, local
 	.asciz "P2Assert"
+.endobj lbl_80483FEC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q24Game10PlayCamera
-__vt__Q24Game10PlayCamera:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q24Game10PlayCamera, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game10PlayCameraFv
@@ -55,6 +58,7 @@ __vt__Q24Game10PlayCamera:
 	.4byte doUpdate__Q24Game10PlayCameraFv
 	.4byte startVibration__Q24Game10PlayCameraFi
 	.4byte init__Q24Game10PlayCameraFv
+.endobj __vt__Q24Game10PlayCamera
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -67,55 +71,76 @@ __vt__Q24Game10PlayCamera:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A660:
+.obj lbl_8051A660, local
 	.float 100.0
-lbl_8051A664:
+.endobj lbl_8051A660
+.obj lbl_8051A664, local
 	.float 0.0
-lbl_8051A668:
+.endobj lbl_8051A664
+.obj lbl_8051A668, local
 	.float 30.0
-lbl_8051A66C:
+.endobj lbl_8051A668
+.obj lbl_8051A66C, local
 	.float 1.0
-lbl_8051A670:
+.endobj lbl_8051A66C
+.obj lbl_8051A670, local
 	.float 12800.0
-lbl_8051A674: # pi
+.endobj lbl_8051A670
+.obj lbl_8051A674, local # pi
 	.float 3.1415927
-lbl_8051A678: # tau
+.endobj lbl_8051A674
+.obj lbl_8051A678, local # tau
 	.float 6.2831855
-lbl_8051A67C:
+.endobj lbl_8051A678
+.obj lbl_8051A67C, local
 	.float 0.017453292
-lbl_8051A680:
+.endobj lbl_8051A67C
+.obj lbl_8051A680, local
 	.float 10.0
-lbl_8051A684:
+.endobj lbl_8051A680
+.obj lbl_8051A684, local
 	.float 1000.0
-lbl_8051A688:
+.endobj lbl_8051A684
+.obj lbl_8051A688, local
 	.float 27.5
-lbl_8051A68C:
+.endobj lbl_8051A688
+.obj lbl_8051A68C, local
 	.float 0.1
-lbl_8051A690:
+.endobj lbl_8051A68C
+.obj lbl_8051A690, local
 	.float 0.175
-lbl_8051A694:
+.endobj lbl_8051A690
+.obj lbl_8051A694, local
 	.float 0.825
-lbl_8051A698:
+.endobj lbl_8051A694
+.obj lbl_8051A698, local
 	.float 0.5
-lbl_8051A69C:
+.endobj lbl_8051A698
+.obj lbl_8051A69C, local
 	.float -325.9493
-lbl_8051A6A0:
+.endobj lbl_8051A69C
+.obj lbl_8051A6A0, local
 	.float 325.9493
-lbl_8051A6A4:
+.endobj lbl_8051A6A0
+.obj lbl_8051A6A4, local
 	.float 50.0
-lbl_8051A6A8:
+.endobj lbl_8051A6A4
+.obj lbl_8051A6A8, local
 	.float 15.0
-lbl_8051A6AC:
+.endobj lbl_8051A6A8
+.obj lbl_8051A6AC, local
 	.float 128000.0
-lbl_8051A6B0:
+.endobj lbl_8051A6AC
+.obj lbl_8051A6B0, local
 	.float -128000.0
+.endobj lbl_8051A6B0
 .balign 8
-lbl_8051A6B8:
+.obj lbl_8051A6B8, local
 	.8byte 0x4330000080000000
+.endobj lbl_8051A6B8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game10PlayCameraFPQ24Game4Navi
-__ct__Q24Game10PlayCameraFPQ24Game4Navi:
+.fn __ct__Q24Game10PlayCameraFPQ24Game4Navi, global
 /* 8023F3F0 0023C330  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023F3F4 0023C334  7C 08 02 A6 */	mflr r0
 /* 8023F3F8 0023C338  90 01 00 14 */	stw r0, 0x14(r1)
@@ -194,19 +219,19 @@ __ct__Q24Game10PlayCameraFPQ24Game4Navi:
 /* 8023F51C 0023C45C  7C 08 03 A6 */	mtlr r0
 /* 8023F520 0023C460  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023F524 0023C464  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game10PlayCameraFPQ24Game4Navi
 
-.global setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms
-setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms:
+.fn setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms, global
 /* 8023F528 0023C468  90 83 02 4C */	stw r4, 0x24c(r3)
 /* 8023F52C 0023C46C  4E 80 00 20 */	blr 
+.endfn setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms
 
-.global setVibrationParms__Q24Game10PlayCameraFPQ24Game14VibrationParms
-setVibrationParms__Q24Game10PlayCameraFPQ24Game14VibrationParms:
+.fn setVibrationParms__Q24Game10PlayCameraFPQ24Game14VibrationParms, global
 /* 8023F530 0023C470  90 83 02 50 */	stw r4, 0x250(r3)
 /* 8023F534 0023C474  4E 80 00 20 */	blr 
+.endfn setVibrationParms__Q24Game10PlayCameraFPQ24Game14VibrationParms
 
-.global init__Q24Game10PlayCameraFv
-init__Q24Game10PlayCameraFv:
+.fn init__Q24Game10PlayCameraFv, global
 /* 8023F538 0023C478  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023F53C 0023C47C  7C 08 02 A6 */	mflr r0
 /* 8023F540 0023C480  90 01 00 14 */	stw r0, 0x14(r1)
@@ -303,9 +328,9 @@ init__Q24Game10PlayCameraFv:
 /* 8023F698 0023C5D8  7C 08 03 A6 */	mtlr r0
 /* 8023F69C 0023C5DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023F6A0 0023C5E0  4E 80 00 20 */	blr 
+.endfn init__Q24Game10PlayCameraFv
 
-.global setCameraAngle__Q24Game10PlayCameraFf
-setCameraAngle__Q24Game10PlayCameraFf:
+.fn setCameraAngle__Q24Game10PlayCameraFf, global
 /* 8023F6A4 0023C5E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023F6A8 0023C5E8  7C 08 02 A6 */	mflr r0
 /* 8023F6AC 0023C5EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -319,9 +344,9 @@ setCameraAngle__Q24Game10PlayCameraFf:
 /* 8023F6CC 0023C60C  7C 08 03 A6 */	mtlr r0
 /* 8023F6D0 0023C610  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023F6D4 0023C614  4E 80 00 20 */	blr 
+.endfn setCameraAngle__Q24Game10PlayCameraFf
 
-.global getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
-getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData:
+.fn getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData, global
 /* 8023F6D8 0023C618  C0 03 01 A8 */	lfs f0, 0x1a8(r3)
 /* 8023F6DC 0023C61C  D0 04 00 00 */	stfs f0, 0(r4)
 /* 8023F6E0 0023C620  C0 03 01 B0 */	lfs f0, 0x1b0(r3)
@@ -345,9 +370,9 @@ getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData:
 /* 8023F728 0023C668  80 03 01 A4 */	lwz r0, 0x1a4(r3)
 /* 8023F72C 0023C66C  90 04 00 28 */	stw r0, 0x28(r4)
 /* 8023F730 0023C670  4E 80 00 20 */	blr 
+.endfn getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
 
-.global setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
-setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData:
+.fn setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData, global
 /* 8023F734 0023C674  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8023F738 0023C678  D0 03 01 A8 */	stfs f0, 0x1a8(r3)
 /* 8023F73C 0023C67C  C0 04 00 04 */	lfs f0, 4(r4)
@@ -371,9 +396,9 @@ setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData:
 /* 8023F784 0023C6C4  80 04 00 28 */	lwz r0, 0x28(r4)
 /* 8023F788 0023C6C8  90 03 01 A4 */	stw r0, 0x1a4(r3)
 /* 8023F78C 0023C6CC  4E 80 00 20 */	blr 
+.endfn setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
 
-.global changePlayerMode__Q24Game10PlayCameraFb
-changePlayerMode__Q24Game10PlayCameraFb:
+.fn changePlayerMode__Q24Game10PlayCameraFb, global
 /* 8023F790 0023C6D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023F794 0023C6D4  7C 08 02 A6 */	mflr r0
 /* 8023F798 0023C6D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -408,9 +433,9 @@ changePlayerMode__Q24Game10PlayCameraFb:
 /* 8023F804 0023C744  7C 08 03 A6 */	mtlr r0
 /* 8023F808 0023C748  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023F80C 0023C74C  4E 80 00 20 */	blr 
+.endfn changePlayerMode__Q24Game10PlayCameraFb
 
-.global isSpecialCamera__Q24Game10PlayCameraFv
-isSpecialCamera__Q24Game10PlayCameraFv:
+.fn isSpecialCamera__Q24Game10PlayCameraFv, global
 /* 8023F810 0023C750  80 83 01 98 */	lwz r4, 0x198(r3)
 /* 8023F814 0023C754  80 04 02 78 */	lwz r0, 0x278(r4)
 /* 8023F818 0023C758  28 00 00 00 */	cmplwi r0, 0
@@ -431,9 +456,9 @@ isSpecialCamera__Q24Game10PlayCameraFv:
 .L_8023F854:
 /* 8023F854 0023C794  38 60 00 00 */	li r3, 0
 /* 8023F858 0023C798  4E 80 00 20 */	blr 
+.endfn isSpecialCamera__Q24Game10PlayCameraFv
 
-.global doUpdate__Q24Game10PlayCameraFv
-doUpdate__Q24Game10PlayCameraFv:
+.fn doUpdate__Q24Game10PlayCameraFv, global
 /* 8023F85C 0023C79C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023F860 0023C7A0  7C 08 02 A6 */	mflr r0
 /* 8023F864 0023C7A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -499,9 +524,9 @@ doUpdate__Q24Game10PlayCameraFv:
 /* 8023F938 0023C878  7C 08 03 A6 */	mtlr r0
 /* 8023F93C 0023C87C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023F940 0023C880  4E 80 00 20 */	blr 
+.endfn doUpdate__Q24Game10PlayCameraFv
 
-.global updateMatrix__Q24Game10PlayCameraFv
-updateMatrix__Q24Game10PlayCameraFv:
+.fn updateMatrix__Q24Game10PlayCameraFv, global
 /* 8023F944 0023C884  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 8023F948 0023C888  7C 08 02 A6 */	mflr r0
 /* 8023F94C 0023C88C  38 80 00 5A */	li r4, 0x5a
@@ -558,9 +583,9 @@ updateMatrix__Q24Game10PlayCameraFv:
 /* 8023FA18 0023C958  7C 08 03 A6 */	mtlr r0
 /* 8023FA1C 0023C95C  38 21 01 00 */	addi r1, r1, 0x100
 /* 8023FA20 0023C960  4E 80 00 20 */	blr 
+.endfn updateMatrix__Q24Game10PlayCameraFv
 
-.global noUpdate__Q24Game10PlayCameraFv
-noUpdate__Q24Game10PlayCameraFv:
+.fn noUpdate__Q24Game10PlayCameraFv, global
 /* 8023FA24 0023C964  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023FA28 0023C968  7C 08 02 A6 */	mflr r0
 /* 8023FA2C 0023C96C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -592,9 +617,9 @@ noUpdate__Q24Game10PlayCameraFv:
 /* 8023FA94 0023C9D4  7C 08 03 A6 */	mtlr r0
 /* 8023FA98 0023C9D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023FA9C 0023C9DC  4E 80 00 20 */	blr 
+.endfn noUpdate__Q24Game10PlayCameraFv
 
-.global isVibration__Q24Game10PlayCameraFv
-isVibration__Q24Game10PlayCameraFv:
+.fn isVibration__Q24Game10PlayCameraFv, global
 /* 8023FAA0 0023C9E0  88 03 01 F0 */	lbz r0, 0x1f0(r3)
 /* 8023FAA4 0023C9E4  28 00 00 00 */	cmplwi r0, 0
 /* 8023FAA8 0023C9E8  41 82 00 0C */	beq .L_8023FAB4
@@ -615,9 +640,9 @@ isVibration__Q24Game10PlayCameraFv:
 .L_8023FADC:
 /* 8023FADC 0023CA1C  38 60 00 00 */	li r3, 0
 /* 8023FAE0 0023CA20  4E 80 00 20 */	blr 
+.endfn isVibration__Q24Game10PlayCameraFv
 
-.global startVibration__Q24Game10PlayCameraFif
-startVibration__Q24Game10PlayCameraFif:
+.fn startVibration__Q24Game10PlayCameraFif, global
 /* 8023FAE4 0023CA24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023FAE8 0023CA28  7C 08 02 A6 */	mflr r0
 /* 8023FAEC 0023CA2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -760,9 +785,9 @@ startVibration__Q24Game10PlayCameraFif:
 /* 8023FCE0 0023CC20  7C 08 03 A6 */	mtlr r0
 /* 8023FCE4 0023CC24  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023FCE8 0023CC28  4E 80 00 20 */	blr 
+.endfn startVibration__Q24Game10PlayCameraFif
 
-.global startDemoCamera__Q24Game10PlayCameraFi
-startDemoCamera__Q24Game10PlayCameraFi:
+.fn startDemoCamera__Q24Game10PlayCameraFi, global
 /* 8023FCEC 0023CC2C  2C 04 00 01 */	cmpwi r4, 1
 /* 8023FCF0 0023CC30  41 82 00 08 */	beq .L_8023FCF8
 /* 8023FCF4 0023CC34  48 00 00 5C */	b .L_8023FD50
@@ -817,9 +842,9 @@ startDemoCamera__Q24Game10PlayCameraFi:
 /* 8023FDB0 0023CCF0  C0 04 00 EC */	lfs f0, 0xec(r4)
 /* 8023FDB4 0023CCF4  D0 03 01 D4 */	stfs f0, 0x1d4(r3)
 /* 8023FDB8 0023CCF8  4E 80 00 20 */	blr 
+.endfn startDemoCamera__Q24Game10PlayCameraFi
 
-.global finishDemoCamera__Q24Game10PlayCameraFv
-finishDemoCamera__Q24Game10PlayCameraFv:
+.fn finishDemoCamera__Q24Game10PlayCameraFv, global
 /* 8023FDBC 0023CCFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023FDC0 0023CD00  7C 08 02 A6 */	mflr r0
 /* 8023FDC4 0023CD04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -828,9 +853,9 @@ finishDemoCamera__Q24Game10PlayCameraFv:
 /* 8023FDD0 0023CD10  7C 08 03 A6 */	mtlr r0
 /* 8023FDD4 0023CD14  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023FDD8 0023CD18  4E 80 00 20 */	blr 
+.endfn finishDemoCamera__Q24Game10PlayCameraFv
 
-.global updateCameraMode__Q24Game10PlayCameraFv
-updateCameraMode__Q24Game10PlayCameraFv:
+.fn updateCameraMode__Q24Game10PlayCameraFv, global
 /* 8023FDDC 0023CD1C  80 83 01 98 */	lwz r4, 0x198(r3)
 /* 8023FDE0 0023CD20  38 C0 00 00 */	li r6, 0
 /* 8023FDE4 0023CD24  80 A4 02 78 */	lwz r5, 0x278(r4)
@@ -898,9 +923,9 @@ updateCameraMode__Q24Game10PlayCameraFv:
 .L_8023FEC0:
 /* 8023FEC0 0023CE00  7C C3 33 78 */	mr r3, r6
 /* 8023FEC4 0023CE04  4E 80 00 20 */	blr 
+.endfn updateCameraMode__Q24Game10PlayCameraFv
 
-.global startZoomCamera__Q24Game10PlayCameraFv
-startZoomCamera__Q24Game10PlayCameraFv:
+.fn startZoomCamera__Q24Game10PlayCameraFv, global
 /* 8023FEC8 0023CE08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023FECC 0023CE0C  7C 08 02 A6 */	mflr r0
 /* 8023FED0 0023CE10  C0 A2 C3 1C */	lfs f5, lbl_8051A67C@sda21(r2)
@@ -933,9 +958,9 @@ startZoomCamera__Q24Game10PlayCameraFv:
 /* 8023FF3C 0023CE7C  7C 08 03 A6 */	mtlr r0
 /* 8023FF40 0023CE80  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023FF44 0023CE84  4E 80 00 20 */	blr 
+.endfn startZoomCamera__Q24Game10PlayCameraFv
 
-.global startGameCamera__Q24Game10PlayCameraFi
-startGameCamera__Q24Game10PlayCameraFi:
+.fn startGameCamera__Q24Game10PlayCameraFi, global
 /* 8023FF48 0023CE88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023FF4C 0023CE8C  7C 08 02 A6 */	mflr r0
 /* 8023FF50 0023CE90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -971,9 +996,9 @@ startGameCamera__Q24Game10PlayCameraFi:
 /* 8023FFC0 0023CF00  7C 08 03 A6 */	mtlr r0
 /* 8023FFC4 0023CF04  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023FFC8 0023CF08  4E 80 00 20 */	blr 
+.endfn startGameCamera__Q24Game10PlayCameraFi
 
-.global setTargetParms__Q24Game10PlayCameraFv
-setTargetParms__Q24Game10PlayCameraFv:
+.fn setTargetParms__Q24Game10PlayCameraFv, global
 /* 8023FFCC 0023CF0C  C0 02 C3 04 */	lfs f0, lbl_8051A664@sda21(r2)
 /* 8023FFD0 0023CF10  D0 03 01 E0 */	stfs f0, 0x1e0(r3)
 /* 8023FFD4 0023CF14  80 03 01 A4 */	lwz r0, 0x1a4(r3)
@@ -1173,9 +1198,9 @@ setTargetParms__Q24Game10PlayCameraFv:
 /* 802402B8 0023D1F8  C0 04 07 2C */	lfs f0, 0x72c(r4)
 /* 802402BC 0023D1FC  D0 03 01 D4 */	stfs f0, 0x1d4(r3)
 /* 802402C0 0023D200  4E 80 00 20 */	blr 
+.endfn setTargetParms__Q24Game10PlayCameraFv
 
-.global setTargetThetaToWhistle__Q24Game10PlayCameraFv
-setTargetThetaToWhistle__Q24Game10PlayCameraFv:
+.fn setTargetThetaToWhistle__Q24Game10PlayCameraFv, global
 /* 802402C4 0023D204  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802402C8 0023D208  7C 08 02 A6 */	mflr r0
 /* 802402CC 0023D20C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1204,16 +1229,16 @@ setTargetThetaToWhistle__Q24Game10PlayCameraFv:
 /* 80240328 0023D268  7C 08 03 A6 */	mtlr r0
 /* 8024032C 0023D26C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80240330 0023D270  4E 80 00 20 */	blr 
+.endfn setTargetThetaToWhistle__Q24Game10PlayCameraFv
 
-.global setFollowTime__Q24Game10PlayCameraFv
-setFollowTime__Q24Game10PlayCameraFv:
+.fn setFollowTime__Q24Game10PlayCameraFv, global
 /* 80240334 0023D274  80 83 02 4C */	lwz r4, 0x24c(r3)
 /* 80240338 0023D278  C0 04 09 0C */	lfs f0, 0x90c(r4)
 /* 8024033C 0023D27C  D0 03 01 DC */	stfs f0, 0x1dc(r3)
 /* 80240340 0023D280  4E 80 00 20 */	blr 
+.endfn setFollowTime__Q24Game10PlayCameraFv
 
-.global setSmoothThetaSpeed__Q24Game10PlayCameraFv
-setSmoothThetaSpeed__Q24Game10PlayCameraFv:
+.fn setSmoothThetaSpeed__Q24Game10PlayCameraFv, global
 /* 80240344 0023D284  80 83 01 98 */	lwz r4, 0x198(r3)
 /* 80240348 0023D288  80 C4 02 78 */	lwz r6, 0x278(r4)
 /* 8024034C 0023D28C  28 06 00 00 */	cmplwi r6, 0
@@ -1243,9 +1268,9 @@ setSmoothThetaSpeed__Q24Game10PlayCameraFv:
 .L_802403A4:
 /* 802403A4 0023D2E4  D0 23 01 D8 */	stfs f1, 0x1d8(r3)
 /* 802403A8 0023D2E8  4E 80 00 20 */	blr 
+.endfn setSmoothThetaSpeed__Q24Game10PlayCameraFv
 
-.global changeTargetTheta__Q24Game10PlayCameraFv
-changeTargetTheta__Q24Game10PlayCameraFv:
+.fn changeTargetTheta__Q24Game10PlayCameraFv, global
 /* 802403AC 0023D2EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802403B0 0023D2F0  7C 08 02 A6 */	mflr r0
 /* 802403B4 0023D2F4  C0 42 C3 04 */	lfs f2, lbl_8051A664@sda21(r2)
@@ -1306,9 +1331,9 @@ changeTargetTheta__Q24Game10PlayCameraFv:
 /* 80240480 0023D3C0  7C 08 03 A6 */	mtlr r0
 /* 80240484 0023D3C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80240488 0023D3C8  4E 80 00 20 */	blr 
+.endfn changeTargetTheta__Q24Game10PlayCameraFv
 
-.global changeTargetAtPosition__Q24Game10PlayCameraFv
-changeTargetAtPosition__Q24Game10PlayCameraFv:
+.fn changeTargetAtPosition__Q24Game10PlayCameraFv, global
 /* 8024048C 0023D3CC  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80240490 0023D3D0  7C 08 02 A6 */	mflr r0
 /* 80240494 0023D3D4  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -1546,9 +1571,9 @@ changeTargetAtPosition__Q24Game10PlayCameraFv:
 /* 80240804 0023D744  7C 08 03 A6 */	mtlr r0
 /* 80240808 0023D748  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 8024080C 0023D74C  4E 80 00 20 */	blr 
+.endfn changeTargetAtPosition__Q24Game10PlayCameraFv
 
-.global updateParms__Q24Game10PlayCameraFi
-updateParms__Q24Game10PlayCameraFi:
+.fn updateParms__Q24Game10PlayCameraFi, global
 /* 80240810 0023D750  80 A3 02 4C */	lwz r5, 0x24c(r3)
 /* 80240814 0023D754  54 80 06 B5 */	rlwinm. r0, r4, 0, 0x1a, 0x1a
 /* 80240818 0023D758  C0 22 C3 0C */	lfs f1, lbl_8051A66C@sda21(r2)
@@ -1643,9 +1668,9 @@ updateParms__Q24Game10PlayCameraFi:
 .L_8024096C:
 /* 8024096C 0023D8AC  D0 23 01 B0 */	stfs f1, 0x1b0(r3)
 /* 80240970 0023D8B0  4E 80 00 20 */	blr 
+.endfn updateParms__Q24Game10PlayCameraFi
 
-.global updateVibration__Q24Game10PlayCameraFi
-updateVibration__Q24Game10PlayCameraFi:
+.fn updateVibration__Q24Game10PlayCameraFi, global
 /* 80240974 0023D8B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80240978 0023D8B8  54 86 10 3A */	slwi r6, r4, 2
 /* 8024097C 0023D8BC  7C E3 32 14 */	add r7, r3, r6
@@ -1725,9 +1750,9 @@ updateVibration__Q24Game10PlayCameraFi:
 /* 80240A94 0023D9D4  D0 03 02 00 */	stfs f0, 0x200(r3)
 /* 80240A98 0023D9D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80240A9C 0023D9DC  4E 80 00 20 */	blr 
+.endfn updateVibration__Q24Game10PlayCameraFi
 
-.global otherVibFinished__Q24Game10PlayCameraFi
-otherVibFinished__Q24Game10PlayCameraFi:
+.fn otherVibFinished__Q24Game10PlayCameraFi, global
 /* 80240AA0 0023D9E0  88 03 01 F0 */	lbz r0, 0x1f0(r3)
 /* 80240AA4 0023D9E4  38 A0 00 00 */	li r5, 0
 /* 80240AA8 0023D9E8  C0 22 C3 10 */	lfs f1, lbl_8051A670@sda21(r2)
@@ -1759,9 +1784,9 @@ otherVibFinished__Q24Game10PlayCameraFi:
 /* 80240B08 0023DA48  EC 00 08 2A */	fadds f0, f0, f1
 /* 80240B0C 0023DA4C  D0 03 02 20 */	stfs f0, 0x220(r3)
 /* 80240B10 0023DA50  4E 80 00 20 */	blr 
+.endfn otherVibFinished__Q24Game10PlayCameraFi
 
-.global isModCameraFinished__Q24Game10PlayCameraFv
-isModCameraFinished__Q24Game10PlayCameraFv:
+.fn isModCameraFinished__Q24Game10PlayCameraFv, global
 /* 80240B14 0023DA54  80 03 01 9C */	lwz r0, 0x19c(r3)
 /* 80240B18 0023DA58  2C 00 00 01 */	cmpwi r0, 1
 /* 80240B1C 0023DA5C  40 82 01 64 */	bne .L_80240C80
@@ -1868,9 +1893,9 @@ isModCameraFinished__Q24Game10PlayCameraFv:
 .L_80240C80:
 /* 80240C80 0023DBC0  38 60 00 00 */	li r3, 0
 /* 80240C84 0023DBC4  4E 80 00 20 */	blr 
+.endfn isModCameraFinished__Q24Game10PlayCameraFv
 
-.global setCollisionCameraTargetPhi__Q24Game10PlayCameraFi
-setCollisionCameraTargetPhi__Q24Game10PlayCameraFi:
+.fn setCollisionCameraTargetPhi__Q24Game10PlayCameraFi, global
 /* 80240C88 0023DBC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80240C8C 0023DBCC  7C 08 02 A6 */	mflr r0
 /* 80240C90 0023DBD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1973,9 +1998,9 @@ setCollisionCameraTargetPhi__Q24Game10PlayCameraFi:
 /* 80240DD4 0023DD14  7C 08 03 A6 */	mtlr r0
 /* 80240DD8 0023DD18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80240DDC 0023DD1C  4E 80 00 20 */	blr 
+.endfn setCollisionCameraTargetPhi__Q24Game10PlayCameraFi
 
-.global getCollisionCameraTargetPhi__Q24Game10PlayCameraFff
-getCollisionCameraTargetPhi__Q24Game10PlayCameraFff:
+.fn getCollisionCameraTargetPhi__Q24Game10PlayCameraFff, global
 /* 80240DE0 0023DD20  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 80240DE4 0023DD24  7C 08 02 A6 */	mflr r0
 /* 80240DE8 0023DD28  90 01 01 64 */	stw r0, 0x164(r1)
@@ -2212,9 +2237,9 @@ getCollisionCameraTargetPhi__Q24Game10PlayCameraFff:
 /* 80241158 0023E098  7C 08 03 A6 */	mtlr r0
 /* 8024115C 0023E09C  38 21 01 60 */	addi r1, r1, 0x160
 /* 80241160 0023E0A0  4E 80 00 20 */	blr 
+.endfn getCollisionCameraTargetPhi__Q24Game10PlayCameraFff
 
-.global __dt__Q24Game10PlayCameraFv
-__dt__Q24Game10PlayCameraFv: # weak function
+.fn __dt__Q24Game10PlayCameraFv, weak
 /* 80241164 0023E0A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80241168 0023E0A8  7C 08 02 A6 */	mflr r0
 /* 8024116C 0023E0AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2269,13 +2294,13 @@ __dt__Q24Game10PlayCameraFv: # weak function
 /* 80241228 0023E168  7C 08 03 A6 */	mtlr r0
 /* 8024122C 0023E16C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80241230 0023E170  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game10PlayCameraFv
 
-.global startVibration__Q24Game10PlayCameraFi
-startVibration__Q24Game10PlayCameraFi: # weak function
+.fn startVibration__Q24Game10PlayCameraFi, weak
 /* 80241234 0023E174  4E 80 00 20 */	blr 
+.endfn startVibration__Q24Game10PlayCameraFi
 
-.global getLookAtPosition___Q24Game10PlayCameraFv
-getLookAtPosition___Q24Game10PlayCameraFv: # weak function
+.fn getLookAtPosition___Q24Game10PlayCameraFv, weak
 /* 80241238 0023E178  C0 04 01 80 */	lfs f0, 0x180(r4)
 /* 8024123C 0023E17C  D0 03 00 00 */	stfs f0, 0(r3)
 /* 80241240 0023E180  C0 04 01 84 */	lfs f0, 0x184(r4)
@@ -2283,8 +2308,9 @@ getLookAtPosition___Q24Game10PlayCameraFv: # weak function
 /* 80241248 0023E188  C0 04 01 88 */	lfs f0, 0x188(r4)
 /* 8024124C 0023E18C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80241250 0023E190  4E 80 00 20 */	blr 
+.endfn getLookAtPosition___Q24Game10PlayCameraFv
 
-__sinit_playCamera_cpp: # static initializer
+.fn __sinit_playCamera_cpp, local
 /* 80241254 0023E194  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80241258 0023E198  38 00 FF FF */	li r0, -1
 /* 8024125C 0023E19C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2295,3 +2321,4 @@ __sinit_playCamera_cpp: # static initializer
 /* 80241270 0023E1B0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80241274 0023E1B4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80241278 0023E1B8  4E 80 00 20 */	blr 
+.endfn __sinit_playCamera_cpp

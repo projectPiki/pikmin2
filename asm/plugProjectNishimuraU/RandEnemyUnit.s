@@ -22,71 +22,55 @@ lbl_804840E8:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A788
 lbl_8051A788:
 	.4byte 0x47000000
 	.4byte 0x00000000
-.global lbl_8051A790
 lbl_8051A790:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051A798
 lbl_8051A798:
 	.4byte 0x40000000
-.global lbl_8051A79C
 lbl_8051A79C:
 	.4byte 0x43C80000
-.global lbl_8051A7A0
 lbl_8051A7A0:
 	.4byte 0x00000000
-.global lbl_8051A7A4
 lbl_8051A7A4:
 	.4byte 0x00000000
-.global lbl_8051A7A8
-lbl_8051A7A8:
 	.4byte 0x0000000C
-.global lbl_8051A7AC
 lbl_8051A7AC:
 	.4byte 0x46480000
-.global lbl_8051A7B0
 lbl_8051A7B0:
 	.4byte 0x43480000
-.global lbl_8051A7B4
 lbl_8051A7B4:
 	.4byte 0x43C80000
-.global lbl_8051A7B8
 lbl_8051A7B8:
 	.4byte 0x43C80000
-.global lbl_8051A7BC
 lbl_8051A7BC:
 	.4byte 0x43960000
-.global lbl_8051A7C0
 lbl_8051A7C0:
 	.4byte 0x40C90FDB
-.global lbl_8051A7C4
 lbl_8051A7C4:
 	.4byte 0xC3A2F983
-.global lbl_8051A7C8
 lbl_8051A7C8:
 	.4byte 0x43A2F983
-.global lbl_8051A7CC
 lbl_8051A7CC:
 	.4byte 0x420C0000
-.global lbl_8051A7D0
 lbl_8051A7D0:
 	.float 1.0
-.global lbl_8051A7D4
 lbl_8051A7D4:
 	.float 0.5
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 .balign 8
-lbl_80520E90:
+.obj lbl_80520E90, local
 	.skip 0x8
-lbl_80520E98:
+.endobj lbl_80520E90
+.obj lbl_80520E98, local
 	.skip 0x8
-lbl_80520EA0:
+.endobj lbl_80520E98
+.obj lbl_80520EA0, local
 	.skip 0x8
+.endobj lbl_80520EA0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave16MapUnitGeneratorb
@@ -2309,7 +2293,7 @@ setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv:
 /* 8024A840 00247780  85 05 40 E8 */	lwzu r8, lbl_804840E8@l(r5)
 /* 8024A844 00247784  83 C4 00 14 */	lwz r30, 0x14(r4)
 /* 8024A848 00247788  81 22 C4 44 */	lwz r9, lbl_8051A7A4@sda21(r2)
-/* 8024A84C 0024778C  83 E2 C4 48 */	lwz r31, lbl_8051A7A8@sda21(r2)
+/* 8024A84C 0024778C  83 E2 C4 48 */	lwz r31, (lbl_8051A7A4+4)@sda21(r2)
 /* 8024A850 00247790  80 E5 00 04 */	lwz r7, 4(r5)
 /* 8024A854 00247794  80 C5 00 08 */	lwz r6, 8(r5)
 /* 8024A858 00247798  80 A5 00 0C */	lwz r5, 0xc(r5)

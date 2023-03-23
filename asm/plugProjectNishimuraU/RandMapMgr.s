@@ -1,72 +1,65 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80484070
-lbl_80484070:
-	.4byte 0x52616E64
-	.4byte 0x4D61704D
-	.4byte 0x67720000
-.global lbl_8048407C
-lbl_8048407C:
-	.4byte 0x52616461
-	.4byte 0x72204D61
-	.4byte 0x70205465
-	.4byte 0x78747572
-	.4byte 0x65000000
+.obj lbl_80484070, local
+	.asciz "RandMapMgr"
+.endobj lbl_80484070
+.balign 4
+.obj lbl_8048407C, local
+	.asciz "Radar Map Texture"
+.endobj lbl_8048407C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game8RoomLink
-__vt__Q24Game8RoomLink:
+.obj __vt__Q24Game8RoomLink, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game8RoomLinkFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q34Game4Cave10RandMapMgr
-__vt__Q34Game4Cave10RandMapMgr:
+.endobj __vt__Q24Game8RoomLink
+.obj __vt__Q34Game4Cave10RandMapMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game4Cave10RandMapMgrFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q34Game4Cave10RandMapMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global randMapMgr__Q24Game4Cave
-randMapMgr__Q24Game4Cave:
-	.skip 0x8
+.obj randMapMgr__Q24Game4Cave, global
+	.skip 0x4
+.endobj randMapMgr__Q24Game4Cave
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A728
-lbl_8051A728:
-	.4byte 0x42480000
-.global lbl_8051A72C
-lbl_8051A72C:
-	.4byte 0x47000000
-.global lbl_8051A730
-lbl_8051A730:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_8051A738
-lbl_8051A738:
+.obj lbl_8051A728, local
+	.float 50.0
+.endobj lbl_8051A728
+.obj lbl_8051A72C, local
+	.float 32768.0
+.endobj lbl_8051A72C
+.balign 8
+.obj lbl_8051A730, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051A730
+.obj lbl_8051A738, local
 	.float 0.5
-.global lbl_8051A73C
-lbl_8051A73C:
-	.4byte 0x00000000
-.global lbl_8051A740
-lbl_8051A740:
-	.4byte 0x40000000
-.global lbl_8051A744
-lbl_8051A744:
-	.4byte 0x41000000
-.global lbl_8051A748
-lbl_8051A748:
-	.4byte 0x3D40C0C1
-	.4byte 0x00000000
+.endobj lbl_8051A738
+.obj lbl_8051A73C, local
+	.float 0.0
+.endobj lbl_8051A73C
+.obj lbl_8051A740, local
+	.float 2.0
+.endobj lbl_8051A740
+.obj lbl_8051A744, local
+	.float 8.0
+.endobj lbl_8051A744
+.obj lbl_8051A748, local
+	.float 0.047058824
+.endobj lbl_8051A748
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game4Cave10RandMapMgrFb
-__ct__Q34Game4Cave10RandMapMgrFb:
+.fn __ct__Q34Game4Cave10RandMapMgrFb, global
 /* 80244528 00241468  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024452C 0024146C  7C 08 02 A6 */	mflr r0
 /* 80244530 00241470  90 01 00 14 */	stw r0, 0x14(r1)
@@ -101,9 +94,9 @@ __ct__Q34Game4Cave10RandMapMgrFb:
 /* 802445A4 002414E4  7C 08 03 A6 */	mtlr r0
 /* 802445A8 002414E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802445AC 002414EC  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Cave10RandMapMgrFb
 
-.global loadResource__Q34Game4Cave10RandMapMgrFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9FloorInfobPQ34Game4Cave11EditMapUnit
-loadResource__Q34Game4Cave10RandMapMgrFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9FloorInfobPQ34Game4Cave11EditMapUnit:
+.fn loadResource__Q34Game4Cave10RandMapMgrFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9FloorInfobPQ34Game4Cave11EditMapUnit, global
 /* 802445B0 002414F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802445B4 002414F4  7C 08 02 A6 */	mflr r0
 /* 802445B8 002414F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -218,9 +211,9 @@ loadResource__Q34Game4Cave10RandMapMgrFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9
 /* 80244748 00241688  7C 08 03 A6 */	mtlr r0
 /* 8024474C 0024168C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80244750 00241690  4E 80 00 20 */	blr 
+.endfn loadResource__Q34Game4Cave10RandMapMgrFPQ24Game16MapUnitInterfaceiPQ34Game4Cave9FloorInfobPQ34Game4Cave11EditMapUnit
 
-.global create__Q34Game4Cave10RandMapMgrFv
-create__Q34Game4Cave10RandMapMgrFv:
+.fn create__Q34Game4Cave10RandMapMgrFv, global
 /* 80244754 00241694  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80244758 00241698  7C 08 02 A6 */	mflr r0
 /* 8024475C 0024169C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -287,9 +280,9 @@ create__Q34Game4Cave10RandMapMgrFv:
 /* 8024484C 0024178C  7C 08 03 A6 */	mtlr r0
 /* 80244850 00241790  38 21 00 20 */	addi r1, r1, 0x20
 /* 80244854 00241794  4E 80 00 20 */	blr 
+.endfn create__Q34Game4Cave10RandMapMgrFv
 
-.global getNumRooms__Q34Game4Cave10RandMapMgrFv
-getNumRooms__Q34Game4Cave10RandMapMgrFv:
+.fn getNumRooms__Q34Game4Cave10RandMapMgrFv, global
 /* 80244858 00241798  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024485C 0024179C  7C 08 02 A6 */	mflr r0
 /* 80244860 002417A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -303,9 +296,9 @@ getNumRooms__Q34Game4Cave10RandMapMgrFv:
 /* 80244880 002417C0  7C 08 03 A6 */	mtlr r0
 /* 80244884 002417C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80244888 002417C8  4E 80 00 20 */	blr 
+.endfn getNumRooms__Q34Game4Cave10RandMapMgrFv
 
-.global getUseUnitName__Q34Game4Cave10RandMapMgrFi
-getUseUnitName__Q34Game4Cave10RandMapMgrFi:
+.fn getUseUnitName__Q34Game4Cave10RandMapMgrFi, global
 /* 8024488C 002417CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80244890 002417D0  7C 08 02 A6 */	mflr r0
 /* 80244894 002417D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -323,9 +316,9 @@ getUseUnitName__Q34Game4Cave10RandMapMgrFi:
 /* 802448BC 002417FC  7C 08 03 A6 */	mtlr r0
 /* 802448C0 00241800  38 21 00 10 */	addi r1, r1, 0x10
 /* 802448C4 00241804  4E 80 00 20 */	blr 
+.endfn getUseUnitName__Q34Game4Cave10RandMapMgrFi
 
-.global getRoomData__Q34Game4Cave10RandMapMgrFiRfRfRi
-getRoomData__Q34Game4Cave10RandMapMgrFiRfRfRi:
+.fn getRoomData__Q34Game4Cave10RandMapMgrFiRfRfRi, global
 /* 802448C8 00241808  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802448CC 0024180C  7C 08 02 A6 */	mflr r0
 /* 802448D0 00241810  90 01 00 24 */	stw r0, 0x24(r1)
@@ -361,9 +354,9 @@ getRoomData__Q34Game4Cave10RandMapMgrFiRfRfRi:
 /* 80244940 00241880  7C 08 03 A6 */	mtlr r0
 /* 80244944 00241884  38 21 00 20 */	addi r1, r1, 0x20
 /* 80244948 00241888  4E 80 00 20 */	blr 
+.endfn getRoomData__Q34Game4Cave10RandMapMgrFiRfRfRi
 
-.global makeRoomLink__Q34Game4Cave10RandMapMgrFi
-makeRoomLink__Q34Game4Cave10RandMapMgrFi:
+.fn makeRoomLink__Q34Game4Cave10RandMapMgrFi, global
 /* 8024494C 0024188C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80244950 00241890  7C 08 02 A6 */	mflr r0
 /* 80244954 00241894  90 01 00 34 */	stw r0, 0x34(r1)
@@ -427,9 +420,9 @@ makeRoomLink__Q34Game4Cave10RandMapMgrFi:
 /* 80244A24 00241964  7C 08 03 A6 */	mtlr r0
 /* 80244A28 00241968  38 21 00 30 */	addi r1, r1, 0x30
 /* 80244A2C 0024196C  4E 80 00 20 */	blr 
+.endfn makeRoomLink__Q34Game4Cave10RandMapMgrFi
 
-.global makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi
-makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi:
+.fn makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi, global
 /* 80244A30 00241970  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80244A34 00241974  7C 08 02 A6 */	mflr r0
 /* 80244A38 00241978  90 01 00 24 */	stw r0, 0x24(r1)
@@ -466,9 +459,9 @@ makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi:
 /* 80244AA8 002419E8  7C 08 03 A6 */	mtlr r0
 /* 80244AAC 002419EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80244AB0 002419F0  4E 80 00 20 */	blr 
+.endfn makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi
 
-.global "getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>i"
-"getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>i":
+.fn "getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>i", global
 /* 80244AB4 002419F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80244AB8 002419F8  7C 08 02 A6 */	mflr r0
 /* 80244ABC 002419FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -506,9 +499,9 @@ makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi:
 /* 80244B30 00241A70  7C 08 03 A6 */	mtlr r0
 /* 80244B34 00241A74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80244B38 00241A78  4E 80 00 20 */	blr 
+.endfn "getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>i"
 
-.global "getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>ff"
-"getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>ff":
+.fn "getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>ff", global
 /* 80244B3C 00241A7C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80244B40 00241A80  7C 08 02 A6 */	mflr r0
 /* 80244B44 00241A84  90 01 00 44 */	stw r0, 0x44(r1)
@@ -549,9 +542,9 @@ makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi:
 /* 80244BD0 00241B10  7C 08 03 A6 */	mtlr r0
 /* 80244BD4 00241B14  38 21 00 40 */	addi r1, r1, 0x40
 /* 80244BD8 00241B18  4E 80 00 20 */	blr 
+.endfn "getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>ff"
 
-.global "getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3<f>iff"
-"getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3<f>iff":
+.fn "getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3<f>iff", global
 /* 80244BDC 00241B1C  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80244BE0 00241B20  7C 08 02 A6 */	mflr r0
 /* 80244BE4 00241B24  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -656,9 +649,9 @@ makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi:
 /* 80244D58 00241C98  7C 08 03 A6 */	mtlr r0
 /* 80244D5C 00241C9C  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 80244D60 00241CA0  4E 80 00 20 */	blr 
+.endfn "getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3<f>iff"
 
-.global setUnitTexture__Q34Game4Cave10RandMapMgrFiP10JUTTexture
-setUnitTexture__Q34Game4Cave10RandMapMgrFiP10JUTTexture:
+.fn setUnitTexture__Q34Game4Cave10RandMapMgrFiP10JUTTexture, global
 /* 80244D64 00241CA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80244D68 00241CA8  7C 08 02 A6 */	mflr r0
 /* 80244D6C 00241CAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -678,15 +671,15 @@ setUnitTexture__Q34Game4Cave10RandMapMgrFiP10JUTTexture:
 /* 80244DA0 00241CE0  7C 08 03 A6 */	mtlr r0
 /* 80244DA4 00241CE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80244DA8 00241CE8  4E 80 00 20 */	blr 
+.endfn setUnitTexture__Q34Game4Cave10RandMapMgrFiP10JUTTexture
 
-.global setCaptureOn__Q34Game4Cave10RandMapMgrFv
-setCaptureOn__Q34Game4Cave10RandMapMgrFv:
+.fn setCaptureOn__Q34Game4Cave10RandMapMgrFv, global
 /* 80244DAC 00241CEC  38 00 00 01 */	li r0, 1
 /* 80244DB0 00241CF0  98 03 00 3C */	stb r0, 0x3c(r3)
 /* 80244DB4 00241CF4  4E 80 00 20 */	blr 
+.endfn setCaptureOn__Q34Game4Cave10RandMapMgrFv
 
-.global captureRadarMap__Q34Game4Cave10RandMapMgrFR8Graphics
-captureRadarMap__Q34Game4Cave10RandMapMgrFR8Graphics:
+.fn captureRadarMap__Q34Game4Cave10RandMapMgrFR8Graphics, global
 /* 80244DB8 00241CF8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80244DBC 00241CFC  7C 08 02 A6 */	mflr r0
 /* 80244DC0 00241D00  90 01 00 24 */	stw r0, 0x24(r1)
@@ -743,9 +736,9 @@ captureRadarMap__Q34Game4Cave10RandMapMgrFR8Graphics:
 /* 80244E88 00241DC8  7C 08 03 A6 */	mtlr r0
 /* 80244E8C 00241DCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80244E90 00241DD0  4E 80 00 20 */	blr 
+.endfn captureRadarMap__Q34Game4Cave10RandMapMgrFR8Graphics
 
-.global isLastFloor__Q34Game4Cave10RandMapMgrFv
-isLastFloor__Q34Game4Cave10RandMapMgrFv:
+.fn isLastFloor__Q34Game4Cave10RandMapMgrFv, global
 /* 80244E94 00241DD4  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 80244E98 00241DD8  28 03 00 00 */	cmplwi r3, 0
 /* 80244E9C 00241DDC  41 82 00 0C */	beq .L_80244EA8
@@ -754,19 +747,19 @@ isLastFloor__Q34Game4Cave10RandMapMgrFv:
 .L_80244EA8:
 /* 80244EA8 00241DE8  38 60 00 00 */	li r3, 0
 /* 80244EAC 00241DEC  4E 80 00 20 */	blr 
+.endfn isLastFloor__Q34Game4Cave10RandMapMgrFv
 
-.global isVersusHiba__Q34Game4Cave10RandMapMgrFv
-isVersusHiba__Q34Game4Cave10RandMapMgrFv:
+.fn isVersusHiba__Q34Game4Cave10RandMapMgrFv, global
 /* 80244EB0 00241DF0  88 63 00 44 */	lbz r3, 0x44(r3)
 /* 80244EB4 00241DF4  4E 80 00 20 */	blr 
+.endfn isVersusHiba__Q34Game4Cave10RandMapMgrFv
 
-.global getRadarMapTexture__Q34Game4Cave10RandMapMgrFv
-getRadarMapTexture__Q34Game4Cave10RandMapMgrFv:
+.fn getRadarMapTexture__Q34Game4Cave10RandMapMgrFv, global
 /* 80244EB8 00241DF8  80 63 00 40 */	lwz r3, 0x40(r3)
 /* 80244EBC 00241DFC  4E 80 00 20 */	blr 
+.endfn getRadarMapTexture__Q34Game4Cave10RandMapMgrFv
 
-.global "radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3<f>"
-"radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3<f>":
+.fn "radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3<f>", global
 /* 80244EC0 00241E00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80244EC4 00241E04  7C 08 02 A6 */	mflr r0
 /* 80244EC8 00241E08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -776,9 +769,9 @@ getRadarMapTexture__Q34Game4Cave10RandMapMgrFv:
 /* 80244ED8 00241E18  7C 08 03 A6 */	mtlr r0
 /* 80244EDC 00241E1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80244EE0 00241E20  4E 80 00 20 */	blr 
+.endfn "radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3<f>"
 
-.global "getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3<f>RfRf"
-"getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3<f>RfRf":
+.fn "getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3<f>RfRf", global
 /* 80244EE4 00241E24  C0 22 C3 E8 */	lfs f1, lbl_8051A748@sda21(r2)
 /* 80244EE8 00241E28  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80244EEC 00241E2C  EC 01 00 32 */	fmuls f0, f1, f0
@@ -787,9 +780,9 @@ getRadarMapTexture__Q34Game4Cave10RandMapMgrFv:
 /* 80244EF8 00241E38  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80244EFC 00241E3C  D0 06 00 00 */	stfs f0, 0(r6)
 /* 80244F00 00241E40  4E 80 00 20 */	blr 
+.endfn "getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3<f>RfRf"
 
-.global "getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<f>Pf"
-"getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<f>Pf":
+.fn "getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<f>Pf", global
 /* 80244F04 00241E44  94 21 E7 60 */	stwu r1, -0x18a0(r1)
 /* 80244F08 00241E48  7C 08 02 A6 */	mflr r0
 /* 80244F0C 00241E4C  90 01 18 A4 */	stw r0, 0x18a4(r1)
@@ -952,9 +945,9 @@ getRadarMapTexture__Q34Game4Cave10RandMapMgrFv:
 /* 8024514C 0024208C  7C 08 03 A6 */	mtlr r0
 /* 80245150 00242090  38 21 18 A0 */	addi r1, r1, 0x18a0
 /* 80245154 00242094  4E 80 00 20 */	blr 
+.endfn "getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<f>Pf"
 
-.global drawFrameBuffer__Q34Game4Cave10RandMapMgrFR8Graphics
-drawFrameBuffer__Q34Game4Cave10RandMapMgrFR8Graphics:
+.fn drawFrameBuffer__Q34Game4Cave10RandMapMgrFR8Graphics, global
 /* 80245158 00242098  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8024515C 0024209C  7C 08 02 A6 */	mflr r0
 /* 80245160 002420A0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1083,9 +1076,9 @@ drawFrameBuffer__Q34Game4Cave10RandMapMgrFR8Graphics:
 /* 8024534C 0024228C  7C 08 03 A6 */	mtlr r0
 /* 80245350 00242290  38 21 00 40 */	addi r1, r1, 0x40
 /* 80245354 00242294  4E 80 00 20 */	blr 
+.endfn drawFrameBuffer__Q34Game4Cave10RandMapMgrFR8Graphics
 
-.global __dt__Q24Game8RoomLinkFv
-__dt__Q24Game8RoomLinkFv:
+.fn __dt__Q24Game8RoomLinkFv, weak
 /* 80245358 00242298  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024535C 0024229C  7C 08 02 A6 */	mflr r0
 /* 80245360 002422A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1111,9 +1104,9 @@ __dt__Q24Game8RoomLinkFv:
 /* 802453AC 002422EC  7C 08 03 A6 */	mtlr r0
 /* 802453B0 002422F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802453B4 002422F4  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game8RoomLinkFv
 
-.global __dt__Q34Game4Cave10RandMapMgrFv
-__dt__Q34Game4Cave10RandMapMgrFv:
+.fn __dt__Q34Game4Cave10RandMapMgrFv, weak
 /* 802453B8 002422F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802453BC 002422FC  7C 08 02 A6 */	mflr r0
 /* 802453C0 00242300  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1139,3 +1132,4 @@ __dt__Q34Game4Cave10RandMapMgrFv:
 /* 8024540C 0024234C  7C 08 03 A6 */	mtlr r0
 /* 80245410 00242350  38 21 00 10 */	addi r1, r1, 0x10
 /* 80245414 00242354  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game4Cave10RandMapMgrFv

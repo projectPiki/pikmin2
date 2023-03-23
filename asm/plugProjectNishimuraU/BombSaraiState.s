@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80489E80
 lbl_80489E80:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -34,7 +33,6 @@ lbl_80489E80:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804CE658
 lbl_804CE658:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -207,105 +205,75 @@ __vt__Q34Game9BombSarai3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515D88
 lbl_80515D88:
 	.skip 0x4
-.global lbl_80515D8C
 lbl_80515D8C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051C130
 lbl_8051C130:
 	.4byte 0x64656164
 	.4byte 0x00000000
-.global lbl_8051C138
 lbl_8051C138:
 	.4byte 0x64616D61
 	.4byte 0x67650000
-.global lbl_8051C140
 lbl_8051C140:
 	.4byte 0x77616974
 	.4byte 0x00000000
-.global lbl_8051C148
 lbl_8051C148:
 	.4byte 0x6D6F7665
 	.4byte 0x00000000
-.global lbl_8051C150
 lbl_8051C150:
 	.4byte 0x73757070
 	.4byte 0x6C790000
-.global lbl_8051C158
 lbl_8051C158:
 	.4byte 0x72656C65
 	.4byte 0x61736500
-.global lbl_8051C160
 lbl_8051C160:
 	.4byte 0x66616C6C
 	.4byte 0x00000000
-.global lbl_8051C168
 lbl_8051C168:
 	.4byte 0x666C6963
 	.4byte 0x6B000000
-.global lbl_8051C170
 lbl_8051C170:
 	.4byte 0x00000000
-.global lbl_8051C174
 lbl_8051C174:
 	.4byte 0x3F666666
-.global lbl_8051C178
 lbl_8051C178:
 	.4byte 0x3F4CCCCD
-.global lbl_8051C17C
 lbl_8051C17C:
 	.float 0.5
-.global lbl_8051C180
 lbl_8051C180:
 	.4byte 0x40400000
-.global lbl_8051C184
 lbl_8051C184:
 	.4byte 0x40A00000
-.global lbl_8051C188
 lbl_8051C188:
 	.4byte 0x41700000
-.global lbl_8051C18C
 lbl_8051C18C:
 	.4byte 0x40490FDB
-.global lbl_8051C190
 lbl_8051C190:
 	.4byte 0x3BB60B61
-.global lbl_8051C194
 lbl_8051C194:
 	.4byte 0x441C4000
-.global lbl_8051C198
 lbl_8051C198:
 	.4byte 0x42480000
-.global lbl_8051C19C
 lbl_8051C19C:
 	.4byte 0x43A2F983
-.global lbl_8051C1A0
 lbl_8051C1A0:
 	.4byte 0xC3A2F983
-.global lbl_8051C1A4
 lbl_8051C1A4:
 	.4byte 0x42C80000
-.global lbl_8051C1A8
 lbl_8051C1A8:
 	.4byte 0x420C0000
-.global lbl_8051C1AC
 lbl_8051C1AC:
 	.float 1.0
-.global lbl_8051C1B0
 lbl_8051C1B0:
 	.4byte 0x43960000
-.global lbl_8051C1B4
 lbl_8051C1B4:
 	.4byte 0x42340000
-.global lbl_8051C1B8
 lbl_8051C1B8:
 	.4byte 0x41A80000
-.global lbl_8051C1BC
 lbl_8051C1BC:
 	.4byte 0xC47A0000
 

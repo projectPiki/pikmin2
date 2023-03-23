@@ -1,69 +1,68 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@"
-"cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@":
+.obj "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@", local
 	.float 0.0
 	.float 0.2
 	.float 0.4
 	.float 0.6
 	.float 0.8
 	.float 1.0
-.global lbl_8048BCD8
-lbl_8048BCD8:
+.endobj "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@"
+.balign 4
+.obj lbl_8048BCD8, local
 	.asciz "bodyjnt3"
-	.skip 3
-.global lbl_8048BCE4
-lbl_8048BCE4:
+.endobj lbl_8048BCD8
+.balign 4
+.obj lbl_8048BCE4, local
 	.asciz "bodyjnt4"
-	.skip 3
-.global lbl_8048BCF0
-lbl_8048BCF0:
+.endobj lbl_8048BCE4
+.balign 4
+.obj lbl_8048BCF0, local
 	.asciz "bodyjnt5"
-	.skip 3
-.global lbl_8048BCFC
-lbl_8048BCFC:
+.endobj lbl_8048BCF0
+.balign 4
+.obj lbl_8048BCFC, local
 	.asciz "bodyjnt6"
-	.skip 3
-.global lbl_8048BD08
-lbl_8048BD08:
+.endobj lbl_8048BCFC
+.balign 4
+.obj lbl_8048BD08, local
 	.asciz "bodyjnt7"
-	.skip 3
-.global lbl_8048BD14
-lbl_8048BD14:
+.endobj lbl_8048BD08
+.balign 4
+.obj lbl_8048BD14, local
 	.asciz "bodyjnt8"
-	.skip 3
-.global lbl_8048BD20
-lbl_8048BD20:
+.endobj lbl_8048BD14
+.balign 4
+.obj lbl_8048BD20, local
 	.4byte lbl_8048BCD8
 	.4byte lbl_8048BCE4
 	.4byte lbl_8048BCF0
 	.4byte lbl_8048BCFC
 	.4byte lbl_8048BD08
 	.4byte lbl_8048BD14
+.endobj lbl_8048BD20
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sSnakeJointMgr__4Game
-sSnakeJointMgr__4Game:
-	.skip 0x8
+.obj sSnakeJointMgr__4Game, local
+	.skip 0x4
+.endobj sSnakeJointMgr__4Game
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051C8D8
-lbl_8051C8D8:
-	.4byte 0x00000000
-.global lbl_8051C8DC
-lbl_8051C8DC:
+.obj lbl_8051C8D8, local
+	.float 0.0
+.endobj lbl_8051C8D8
+.obj lbl_8051C8DC, local
 	.float 1.0
-.global lbl_8051C8E0
-lbl_8051C8E0:
-	.4byte 0x41F00000
-	.4byte 0x00000000
+.endobj lbl_8051C8DC
+.obj lbl_8051C8E0, local
+	.float 30.0
+.endobj lbl_8051C8E0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global SnakeJointCallBack__4GameFP8J3DJointi
-SnakeJointCallBack__4GameFP8J3DJointi:
+.fn SnakeJointCallBack__4GameFP8J3DJointi, local
 /* 802D1634 002CE574  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D1638 002CE578  7C 08 02 A6 */	mflr r0
 /* 802D163C 002CE57C  2C 04 00 00 */	cmpwi r4, 0
@@ -79,9 +78,9 @@ SnakeJointCallBack__4GameFP8J3DJointi:
 /* 802D1660 002CE5A0  7C 08 03 A6 */	mtlr r0
 /* 802D1664 002CE5A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D1668 002CE5A8  4E 80 00 20 */	blr 
+.endfn SnakeJointCallBack__4GameFP8J3DJointi
 
-.global __ct__Q24Game13SnakeJointMgrFPQ24Game9EnemyBase
-__ct__Q24Game13SnakeJointMgrFPQ24Game9EnemyBase:
+.fn __ct__Q24Game13SnakeJointMgrFPQ24Game9EnemyBase, global
 /* 802D166C 002CE5AC  38 00 00 00 */	li r0, 0
 /* 802D1670 002CE5B0  C0 02 E5 78 */	lfs f0, lbl_8051C8D8@sda21(r2)
 /* 802D1674 002CE5B4  90 0D 97 40 */	stw r0, sSnakeJointMgr__4Game@sda21(r13)
@@ -97,9 +96,9 @@ __ct__Q24Game13SnakeJointMgrFPQ24Game9EnemyBase:
 /* 802D169C 002CE5DC  D0 03 00 28 */	stfs f0, 0x28(r3)
 /* 802D16A0 002CE5E0  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 802D16A4 002CE5E4  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game13SnakeJointMgrFPQ24Game9EnemyBase
 
-.global setupCallBackJoint__Q24Game13SnakeJointMgrFv
-setupCallBackJoint__Q24Game13SnakeJointMgrFv:
+.fn setupCallBackJoint__Q24Game13SnakeJointMgrFv, global
 /* 802D16A8 002CE5E8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802D16AC 002CE5EC  7C 08 02 A6 */	mflr r0
 /* 802D16B0 002CE5F0  3C 80 80 49 */	lis r4, lbl_8048BD20@ha
@@ -148,9 +147,9 @@ setupCallBackJoint__Q24Game13SnakeJointMgrFv:
 /* 802D1754 002CE694  7C 08 03 A6 */	mtlr r0
 /* 802D1758 002CE698  38 21 00 40 */	addi r1, r1, 0x40
 /* 802D175C 002CE69C  4E 80 00 20 */	blr 
+.endfn setupCallBackJoint__Q24Game13SnakeJointMgrFv
 
-.global startModify__Q24Game13SnakeJointMgrFff
-startModify__Q24Game13SnakeJointMgrFff:
+.fn startModify__Q24Game13SnakeJointMgrFff, global
 /* 802D1760 002CE6A0  38 00 00 01 */	li r0, 1
 /* 802D1764 002CE6A4  C0 02 E5 78 */	lfs f0, lbl_8051C8D8@sda21(r2)
 /* 802D1768 002CE6A8  90 03 00 1C */	stw r0, 0x1c(r3)
@@ -159,9 +158,9 @@ startModify__Q24Game13SnakeJointMgrFff:
 /* 802D1774 002CE6B4  D0 43 00 24 */	stfs f2, 0x24(r3)
 /* 802D1778 002CE6B8  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 802D177C 002CE6BC  4E 80 00 20 */	blr 
+.endfn startModify__Q24Game13SnakeJointMgrFff
 
-.global returnModify__Q24Game13SnakeJointMgrFf
-returnModify__Q24Game13SnakeJointMgrFf:
+.fn returnModify__Q24Game13SnakeJointMgrFf, global
 /* 802D1780 002CE6C0  38 00 00 02 */	li r0, 2
 /* 802D1784 002CE6C4  C0 02 E5 7C */	lfs f0, lbl_8051C8DC@sda21(r2)
 /* 802D1788 002CE6C8  90 03 00 1C */	stw r0, 0x1c(r3)
@@ -169,15 +168,15 @@ returnModify__Q24Game13SnakeJointMgrFf:
 /* 802D1790 002CE6D0  D0 23 00 24 */	stfs f1, 0x24(r3)
 /* 802D1794 002CE6D4  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 802D1798 002CE6D8  4E 80 00 20 */	blr 
+.endfn returnModify__Q24Game13SnakeJointMgrFf
 
-.global finishModify__Q24Game13SnakeJointMgrFv
-finishModify__Q24Game13SnakeJointMgrFv:
+.fn finishModify__Q24Game13SnakeJointMgrFv, global
 /* 802D179C 002CE6DC  38 00 00 00 */	li r0, 0
 /* 802D17A0 002CE6E0  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 802D17A4 002CE6E4  4E 80 00 20 */	blr 
+.endfn finishModify__Q24Game13SnakeJointMgrFv
 
-.global doAnimation__Q24Game13SnakeJointMgrFv
-doAnimation__Q24Game13SnakeJointMgrFv:
+.fn doAnimation__Q24Game13SnakeJointMgrFv, global
 /* 802D17A8 002CE6E8  90 6D 97 40 */	stw r3, sSnakeJointMgr__4Game@sda21(r13)
 /* 802D17AC 002CE6EC  80 03 00 1C */	lwz r0, 0x1c(r3)
 /* 802D17B0 002CE6F0  2C 00 00 00 */	cmpwi r0, 0
@@ -212,15 +211,15 @@ doAnimation__Q24Game13SnakeJointMgrFv:
 /* 802D181C 002CE75C  EC 01 00 24 */	fdivs f0, f1, f0
 /* 802D1820 002CE760  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 802D1824 002CE764  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game13SnakeJointMgrFv
 
-.global finishAnimation__Q24Game13SnakeJointMgrFv
-finishAnimation__Q24Game13SnakeJointMgrFv:
+.fn finishAnimation__Q24Game13SnakeJointMgrFv, global
 /* 802D1828 002CE768  38 00 00 00 */	li r0, 0
 /* 802D182C 002CE76C  90 0D 97 40 */	stw r0, sSnakeJointMgr__4Game@sda21(r13)
 /* 802D1830 002CE770  4E 80 00 20 */	blr 
+.endfn finishAnimation__Q24Game13SnakeJointMgrFv
 
-.global makeMatrix__Q24Game13SnakeJointMgrFv
-makeMatrix__Q24Game13SnakeJointMgrFv:
+.fn makeMatrix__Q24Game13SnakeJointMgrFv, global
 /* 802D1834 002CE774  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802D1838 002CE778  7C 08 02 A6 */	mflr r0
 /* 802D183C 002CE77C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -408,3 +407,4 @@ makeMatrix__Q24Game13SnakeJointMgrFv:
 /* 802D1AD4 002CEA14  7C 08 03 A6 */	mtlr r0
 /* 802D1AD8 002CEA18  38 21 00 30 */	addi r1, r1, 0x30
 /* 802D1ADC 002CEA1C  4E 80 00 20 */	blr 
+.endfn makeMatrix__Q24Game13SnakeJointMgrFv

@@ -1,11 +1,9 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80488C10
-lbl_80488C10:
-	.4byte 0x73747275
-	.4byte 0x67676C65
-	.4byte 0x00000000
+.obj lbl_80488C10, local
+	.asciz "struggle"
+.endobj lbl_80488C10
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -130,86 +128,62 @@ __vt__Q34Game7Fuefuki3FSM:
 	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051BBF0
 lbl_8051BBF0:
 	.4byte 0x64656164
 	.4byte 0x00000000
-.global lbl_8051BBF8
 lbl_8051BBF8:
 	.4byte 0x73746179
 	.4byte 0x00000000
-.global lbl_8051BC00
 lbl_8051BC00:
 	.4byte 0x6C616E64
 	.4byte 0x00000000
-.global lbl_8051BC08
 lbl_8051BC08:
 	.4byte 0x6A756D70
 	.4byte 0x00000000
-.global lbl_8051BC10
 lbl_8051BC10:
 	.4byte 0x77616974
 	.4byte 0x00000000
-.global lbl_8051BC18
 lbl_8051BC18:
 	.4byte 0x7475726E
 	.4byte 0x00000000
-.global lbl_8051BC20
 lbl_8051BC20:
 	.4byte 0x77616C6B
 	.4byte 0x00000000
-.global lbl_8051BC28
 lbl_8051BC28:
 	.4byte 0x77686973
 	.4byte 0x6C650000
-.global lbl_8051BC30
 lbl_8051BC30:
 	.4byte 0x00000000
-.global lbl_8051BC34
 lbl_8051BC34:
 	.4byte 0x40C90FDB
-.global lbl_8051BC38
 lbl_8051BC38:
 	.4byte 0x47000000
-.global lbl_8051BC3C
 lbl_8051BC3C:
 	.float 1.0
-.global lbl_8051BC40
 lbl_8051BC40:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051BC48
 lbl_8051BC48:
 	.4byte 0x3F59999A
-.global lbl_8051BC4C
 lbl_8051BC4C:
 	.4byte 0x44BB8000
-.global lbl_8051BC50
 lbl_8051BC50:
 	.4byte 0xC47A0000
-.global lbl_8051BC54
 lbl_8051BC54:
 	.float 0.7
-.global lbl_8051BC58
 lbl_8051BC58:
 	.4byte 0x40490FDB
-.global lbl_8051BC5C
 lbl_8051BC5C:
 	.4byte 0x3BB60B61
-.global lbl_8051BC60
 lbl_8051BC60:
 	.4byte 0x3F060A92
-.global lbl_8051BC64
 lbl_8051BC64:
 	.4byte 0x40A00000
-.global lbl_8051BC68
 lbl_8051BC68:
 	.4byte 0x40400000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game7Fuefuki3FSMFPQ24Game9EnemyBase

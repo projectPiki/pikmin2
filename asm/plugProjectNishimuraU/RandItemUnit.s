@@ -1,69 +1,55 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80484128
-lbl_80484128:
-	.4byte 0x3234362D
-	.4byte 0x52616E64
-	.4byte 0x4974656D
-	.4byte 0x556E6974
-	.4byte 0x00000000
-.global lbl_8048413C
-lbl_8048413C:
-	.4byte 0x52616E64
-	.4byte 0x4974656D
-	.4byte 0x556E6974
-	.4byte 0x2E637070
-	.4byte 0x00000000
-	.4byte 0x6974656D
-	.4byte 0x20736C6F
-	.4byte 0x74206E6F
-	.4byte 0x6E650A00
-	.4byte 0x6974656D
-	.4byte 0x20736C6F
-	.4byte 0x74206E6F
-	.4byte 0x7420656E
-	.4byte 0x6F756768
-	.4byte 0x0A000000
-.global lbl_80484178
-lbl_80484178:
-	.4byte 0x6E6F7420
-	.4byte 0x73656172
-	.4byte 0x63682069
-	.4byte 0x74656D20
-	.4byte 0x736C6F74
-	.4byte 0x0A000000
+.obj lbl_80484128, local
+	.asciz "246-RandItemUnit"
+.endobj lbl_80484128
+.balign 4
+.obj lbl_8048413C, local
+	.asciz "RandItemUnit.cpp"
+.endobj lbl_8048413C
+.balign 4
+.obj lbl_80484150, local
+	.asciz "item slot none\n"
+.endobj lbl_80484150
+.balign 4
+.obj lbl_80484160, local
+	.asciz "item slot not enough\n"
+.endobj lbl_80484160
+.balign 4
+.obj lbl_80484178, local
+	.asciz "not search item slot\n"
+.endobj lbl_80484178
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A840
-lbl_8051A840:
+.obj lbl_8051A840, local
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_8051A848
-lbl_8051A848:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_8051A850
-lbl_8051A850:
-	.4byte 0x6974656D
-	.4byte 0x00000000
-.global lbl_8051A858
-lbl_8051A858:
-	.4byte 0x47000000
-.global lbl_8051A85C
-lbl_8051A85C:
+.endobj lbl_8051A840
+.balign 8
+.obj lbl_8051A848, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051A848
+.balign 4
+.obj lbl_8051A850, local
+	.asciz "item"
+.endobj lbl_8051A850
+.balign 4
+.obj lbl_8051A858, local
+	.float 32768.0
+.endobj lbl_8051A858
+.obj lbl_8051A85C, local
 	.float 0.5
-.global lbl_8051A860
-lbl_8051A860:
-	.4byte 0x43C80000
-.global lbl_8051A864
-lbl_8051A864:
-	.4byte 0x00000000
+.endobj lbl_8051A85C
+.obj lbl_8051A860, local
+	.float 400.0
+.endobj lbl_8051A860
+.obj lbl_8051A864, local
+	.float 0.0
+.endobj lbl_8051A864
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator
-__ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator:
+.fn __ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator, global
 /* 8024E38C 0024B2CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024E390 0024B2D0  7C 08 02 A6 */	mflr r0
 /* 8024E394 0024B2D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -91,14 +77,14 @@ __ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator:
 /* 8024E3E4 0024B324  7C 08 03 A6 */	mtlr r0
 /* 8024E3E8 0024B328  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024E3EC 0024B32C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Cave12RandItemUnitFPQ34Game4Cave16MapUnitGenerator
 
-.global setManageClassPtr__Q34Game4Cave12RandItemUnitFPQ34Game4Cave12RandMapScore
-setManageClassPtr__Q34Game4Cave12RandItemUnitFPQ34Game4Cave12RandMapScore:
+.fn setManageClassPtr__Q34Game4Cave12RandItemUnitFPQ34Game4Cave12RandMapScore, global
 /* 8024E3F0 0024B330  90 83 00 0C */	stw r4, 0xc(r3)
 /* 8024E3F4 0024B334  4E 80 00 20 */	blr 
+.endfn setManageClassPtr__Q34Game4Cave12RandItemUnitFPQ34Game4Cave12RandMapScore
 
-.global setItemSlot__Q34Game4Cave12RandItemUnitFv
-setItemSlot__Q34Game4Cave12RandItemUnitFv:
+.fn setItemSlot__Q34Game4Cave12RandItemUnitFv, global
 /* 8024E3F8 0024B338  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8024E3FC 0024B33C  7C 08 02 A6 */	mflr r0
 /* 8024E400 0024B340  90 01 00 34 */	stw r0, 0x34(r1)
@@ -170,9 +156,9 @@ setItemSlot__Q34Game4Cave12RandItemUnitFv:
 /* 8024E4F0 0024B430  7C 08 03 A6 */	mtlr r0
 /* 8024E4F4 0024B434  38 21 00 30 */	addi r1, r1, 0x30
 /* 8024E4F8 0024B438  4E 80 00 20 */	blr 
+.endfn setItemSlot__Q34Game4Cave12RandItemUnitFv
 
-.global isItemSetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen
-isItemSetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen:
+.fn isItemSetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen, global
 /* 8024E4FC 0024B43C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024E500 0024B440  7C 08 02 A6 */	mflr r0
 /* 8024E504 0024B444  28 05 00 00 */	cmplwi r5, 0
@@ -253,9 +239,9 @@ isItemSetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7Bas
 /* 8024E600 0024B540  7C 08 03 A6 */	mtlr r0
 /* 8024E604 0024B544  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024E608 0024B548  4E 80 00 20 */	blr 
+.endfn isItemSetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen
 
-.global isGroundCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode
-isGroundCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode:
+.fn isGroundCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode, global
 /* 8024E60C 0024B54C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024E610 0024B550  7C 08 02 A6 */	mflr r0
 /* 8024E614 0024B554  90 01 00 14 */	stw r0, 0x14(r1)
@@ -322,9 +308,9 @@ isGroundCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode:
 /* 8024E6E8 0024B628  7C 08 03 A6 */	mtlr r0
 /* 8024E6EC 0024B62C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024E6F0 0024B630  4E 80 00 20 */	blr 
+.endfn isGroundCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode
 
-.global isFallCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode
-isFallCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode:
+.fn isFallCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode, global
 /* 8024E6F4 0024B634  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024E6F8 0024B638  7C 08 02 A6 */	mflr r0
 /* 8024E6FC 0024B63C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -384,15 +370,15 @@ isFallCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode:
 /* 8024E7B8 0024B6F8  7C 08 03 A6 */	mtlr r0
 /* 8024E7BC 0024B6FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024E7C0 0024B700  4E 80 00 20 */	blr 
+.endfn isFallCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode
 
-.global setItemDropPositionList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGen
-setItemDropPositionList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGen:
+.fn setItemDropPositionList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGen, global
 /* 8024E7C4 0024B704  90 83 00 10 */	stw r4, 0x10(r3)
 /* 8024E7C8 0024B708  90 A3 00 14 */	stw r5, 0x14(r3)
 /* 8024E7CC 0024B70C  4E 80 00 20 */	blr 
+.endfn setItemDropPositionList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGen
 
-.global "getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi"
-"getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi":
+.fn "getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi", global
 /* 8024E7D0 0024B710  94 21 F7 70 */	stwu r1, -0x890(r1)
 /* 8024E7D4 0024B714  7C 08 02 A6 */	mflr r0
 /* 8024E7D8 0024B718  90 01 08 94 */	stw r0, 0x894(r1)
@@ -541,9 +527,9 @@ setItemDropPositionList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34G
 /* 8024E9EC 0024B92C  7C 08 03 A6 */	mtlr r0
 /* 8024E9F0 0024B930  38 21 08 90 */	addi r1, r1, 0x890
 /* 8024E9F4 0024B934  4E 80 00 20 */	blr 
+.endfn "getItemDropPosition__Q34Game4Cave12RandItemUnitFR10Vector3<f>fi"
 
-.global getItemNormalSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen
-getItemNormalSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen:
+.fn getItemNormalSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen, global
 /* 8024E9F8 0024B938  94 21 E7 B0 */	stwu r1, -0x1850(r1)
 /* 8024E9FC 0024B93C  7C 08 02 A6 */	mflr r0
 /* 8024EA00 0024B940  90 01 18 54 */	stw r0, 0x1854(r1)
@@ -801,9 +787,9 @@ getItemNormalSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen:
 /* 8024ED78 0024BCB8  7C 08 03 A6 */	mtlr r0
 /* 8024ED7C 0024BCBC  38 21 18 50 */	addi r1, r1, 0x1850
 /* 8024ED80 0024BCC0  4E 80 00 20 */	blr 
+.endfn getItemNormalSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen
 
-.global getItemHardSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen
-getItemHardSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen:
+.fn getItemHardSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen, global
 /* 8024ED84 0024BCC4  94 21 EF C0 */	stwu r1, -0x1040(r1)
 /* 8024ED88 0024BCC8  7C 08 02 A6 */	mflr r0
 /* 8024ED8C 0024BCCC  90 01 10 44 */	stw r0, 0x1044(r1)
@@ -1042,9 +1028,9 @@ getItemHardSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen:
 /* 8024F0B8 0024BFF8  7C 08 03 A6 */	mtlr r0
 /* 8024F0BC 0024BFFC  38 21 10 40 */	addi r1, r1, 0x1040
 /* 8024F0C0 0024C000  4E 80 00 20 */	blr 
+.endfn getItemHardSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen
 
-.global getItemUnit__Q34Game4Cave12RandItemUnitFv
-getItemUnit__Q34Game4Cave12RandItemUnitFv:
+.fn getItemUnit__Q34Game4Cave12RandItemUnitFv, global
 /* 8024F0C4 0024C004  94 21 EF D0 */	stwu r1, -0x1030(r1)
 /* 8024F0C8 0024C008  7C 08 02 A6 */	mflr r0
 /* 8024F0CC 0024C00C  39 40 00 00 */	li r10, 0
@@ -1149,9 +1135,9 @@ getItemUnit__Q34Game4Cave12RandItemUnitFv:
 /* 8024F238 0024C178  7C 08 03 A6 */	mtlr r0
 /* 8024F23C 0024C17C  38 21 10 30 */	addi r1, r1, 0x1030
 /* 8024F240 0024C180  4E 80 00 20 */	blr 
+.endfn getItemUnit__Q34Game4Cave12RandItemUnitFv
 
-.global getItemSlotNum__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode
-getItemSlotNum__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode:
+.fn getItemSlotNum__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode, global
 /* 8024F244 0024C184  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024F248 0024C188  7C 08 02 A6 */	mflr r0
 /* 8024F24C 0024C18C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1180,9 +1166,9 @@ getItemSlotNum__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode:
 /* 8024F298 0024C1D8  7C 08 03 A6 */	mtlr r0
 /* 8024F29C 0024C1DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024F2A0 0024C1E0  4E 80 00 20 */	blr 
+.endfn getItemSlotNum__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode
 
-.global isItemSetHard__Q34Game4Cave12RandItemUnitFv
-isItemSetHard__Q34Game4Cave12RandItemUnitFv:
+.fn isItemSetHard__Q34Game4Cave12RandItemUnitFv, global
 /* 8024F2A4 0024C1E4  80 83 00 08 */	lwz r4, 8(r3)
 /* 8024F2A8 0024C1E8  80 04 00 04 */	lwz r0, 4(r4)
 /* 8024F2AC 0024C1EC  2C 00 00 04 */	cmpwi r0, 4
@@ -1211,9 +1197,9 @@ isItemSetHard__Q34Game4Cave12RandItemUnitFv:
 .L_8024F2F8:
 /* 8024F2F8 0024C238  38 60 00 00 */	li r3, 0
 /* 8024F2FC 0024C23C  4E 80 00 20 */	blr 
+.endfn isItemSetHard__Q34Game4Cave12RandItemUnitFv
 
-.global getItemDropMapNode__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodeiRi
-getItemDropMapNode__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodeiRi:
+.fn getItemDropMapNode__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodeiRi, global
 /* 8024F300 0024C240  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8024F304 0024C244  7C 08 02 A6 */	mflr r0
 /* 8024F308 0024C248  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1302,9 +1288,9 @@ getItemDropMapNode__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Ca
 /* 8024F43C 0024C37C  7C 08 03 A6 */	mtlr r0
 /* 8024F440 0024C380  38 21 00 30 */	addi r1, r1, 0x30
 /* 8024F444 0024C384  4E 80 00 20 */	blr 
+.endfn getItemDropMapNode__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodeiRi
 
-.global getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodei
-getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodei:
+.fn getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodei, global
 /* 8024F448 0024C388  94 21 FC D0 */	stwu r1, -0x330(r1)
 /* 8024F44C 0024C38C  7C 08 02 A6 */	mflr r0
 /* 8024F450 0024C390  90 01 03 34 */	stw r0, 0x334(r1)
@@ -1516,9 +1502,9 @@ getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodei:
 /* 8024F750 0024C690  7C 08 03 A6 */	mtlr r0
 /* 8024F754 0024C694  38 21 03 30 */	addi r1, r1, 0x330
 /* 8024F758 0024C698  4E 80 00 20 */	blr 
+.endfn getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodei
 
-.global getItemDropList__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenRi
-getItemDropList__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenRi:
+.fn getItemDropList__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenRi, global
 /* 8024F75C 0024C69C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8024F760 0024C6A0  7C 08 02 A6 */	mflr r0
 /* 8024F764 0024C6A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1625,9 +1611,9 @@ getItemDropList__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7
 /* 8024F8DC 0024C81C  7C 08 03 A6 */	mtlr r0
 /* 8024F8E0 0024C820  38 21 00 20 */	addi r1, r1, 0x20
 /* 8024F8E4 0024C824  4E 80 00 20 */	blr 
+.endfn getItemDropList__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenRi
 
-.global getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGeniii
-getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGeniii:
+.fn getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGeniii, global
 /* 8024F8E8 0024C828  94 21 FD A0 */	stwu r1, -0x260(r1)
 /* 8024F8EC 0024C82C  7C 08 02 A6 */	mflr r0
 /* 8024F8F0 0024C830  90 01 02 64 */	stw r0, 0x264(r1)
@@ -1824,9 +1810,9 @@ getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Ga
 /* 8024FBA8 0024CAE8  7C 08 03 A6 */	mtlr r0
 /* 8024FBAC 0024CAEC  38 21 02 60 */	addi r1, r1, 0x260
 /* 8024FBB0 0024CAF0  4E 80 00 20 */	blr 
+.endfn getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGeniii
 
-.global getItemDropSortingList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenPii
-getItemDropSortingList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenPii:
+.fn getItemDropSortingList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenPii, global
 /* 8024FBB4 0024CAF4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8024FBB8 0024CAF8  7C 08 02 A6 */	mflr r0
 /* 8024FBBC 0024CAFC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1902,3 +1888,4 @@ getItemDropSortingList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Ga
 /* 8024FCBC 0024CBFC  7C 08 03 A6 */	mtlr r0
 /* 8024FCC0 0024CC00  38 21 00 50 */	addi r1, r1, 0x50
 /* 8024FCC4 0024CC04  4E 80 00 20 */	blr 
+.endfn getItemDropSortingList__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenPii
