@@ -365,15 +365,14 @@ void StateRolling::exec(EnemyBase* enemy)
 
 		if (dotProd > territory) {
 			queen->mTargetVelocity = Vector3f(otherVec.y);
-		} else {
+		} else { // mismatch lives here
 			f32 increasedRad     = 10.0f + territory;
 			Vector3f weightedSep = otherVec * increasedRad + (queen->mHomePosition - position);
 			_normalise(weightedSep);
 
-			f32 speed                = parms->mGeneral.mMoveSpeed.mValue;
-			queen->mTargetVelocity.x = weightedSep.x * speed;
-			queen->mTargetVelocity.y = weightedSep.y;
-			queen->mTargetVelocity.z = weightedSep.z * speed;
+			f32 speed = parms->mGeneral.mMoveSpeed.mValue;
+			weightVecXZ(weightedSep, speed);
+			queen->mTargetVelocity = weightedSep;
 		}
 
 		queen->flickPikmin(-1000.0f);
