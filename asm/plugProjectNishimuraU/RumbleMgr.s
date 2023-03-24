@@ -1,13 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80484868
 lbl_80484868:
 	.4byte 0x3234362D
 	.4byte 0x52756D62
 	.4byte 0x6C654D67
 	.4byte 0x72000000
-.global lbl_80484878
 lbl_80484878:
 	.4byte 0x52756D62
 	.4byte 0x6C654D67
@@ -39,19 +37,16 @@ lbl_80484878:
 	.4byte 0x65446174
 	.4byte 0x612E7478
 	.4byte 0x74000000
-.global lbl_804848F0
 lbl_804848F0:
 	.4byte 0x52756D62
 	.4byte 0x6C654D67
 	.4byte 0x722E6370
 	.4byte 0x70000000
-.global lbl_80484900
 lbl_80484900:
 	.4byte 0x6E6F7420
 	.4byte 0x7A756B61
 	.4byte 0x6E206D6F
 	.4byte 0x64650A00
-.global lbl_80484910
 lbl_80484910:
 	.4byte 0x72756D62
 	.4byte 0x6C652070
@@ -59,7 +54,6 @@ lbl_80484910:
 	.4byte 0x65746572
 	.4byte 0x206E6F6E
 	.4byte 0x650A0000
-.global lbl_80484928
 lbl_80484928:
 	.4byte 0x72756D62
 	.4byte 0x6C652064
@@ -81,23 +75,18 @@ __vt__Q24Game9RumbleMgr:
 .balign 8
 .global rumbleMgr__4Game
 rumbleMgr__4Game:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A978
 lbl_8051A978:
 	.4byte 0x443B8000
-.global lbl_8051A97C
 lbl_8051A97C:
 	.4byte 0x00000000
-.global lbl_8051A980
 lbl_8051A980:
 	.4byte 0x447A0000
-.global lbl_8051A984
 lbl_8051A984:
 	.4byte 0x40000000
-.global lbl_8051A988
 lbl_8051A988:
 	.float 1.0
 	.4byte 0x00000000

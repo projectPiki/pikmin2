@@ -5,82 +5,102 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80482E60
-lbl_80482E60:
-	.skip 0xC
+.obj lbl_80482E60, local
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.endobj lbl_80482E60
+.balign 4
+.obj lbl_80482E6C, local
 	.asciz "SingleGS_Zukan"
-	.skip 1
-.global lbl_80482E7C
-lbl_80482E7C:
+.endobj lbl_80482E6C
+.balign 4
+.obj lbl_80482E7C, local
 	.asciz "tutorial"
-	.skip 3
-.global lbl_80482E88
-lbl_80482E88:
+.endobj lbl_80482E7C
+.balign 4
+.obj lbl_80482E88, local
 	.asciz "yakushima"
-	.skip 2
+.endobj lbl_80482E88
+.balign 4
+.obj lbl_80482E94, local # Shift-JIS
 	.4byte 0x907D8AD3
 	.4byte 0x8366836F
 	.4byte 0x8362834F
 	.4byte 0x00000000
+.endobj lbl_80482E94
+.balign 4
+.obj lbl_80482EA4, local
 	.asciz "/user/Yamashita/enemyTex/arc.szs"
-	.skip 3
+.endobj lbl_80482EA4
+.balign 4
+.obj lbl_80482EC8, local
 	.asciz "ZZDummy/texture.bti"
-.global lbl_80482EDC
-lbl_80482EDC:
+.endobj lbl_80482EC8
+.balign 4
+.obj lbl_80482EDC, local
 	.asciz "singleGS_Zukan.cpp"
-	.skip 1
+.endobj lbl_80482EDC
+.balign 4
+.obj lbl_80482EF0, local
 	.asciz "P2Assert"
-	.skip 3
+.endobj lbl_80482EF0
+.balign 4
+.obj lbl_80482EFC, local
 	.asciz "%s/texture.bti"
-	.skip 1
-.global lbl_80482F0C
-lbl_80482F0C:
+.endobj lbl_80482EFC
+.balign 4
+.obj lbl_80482F0C, local # Shift-JIS
 	.4byte 0x907D8AD3
 	.4byte 0x834A8381
 	.4byte 0x83890000
-.global lbl_80482F18
-lbl_80482F18:
+.endobj lbl_80482F0C
+.balign 4
+.obj lbl_80482F18, local
 	.asciz "radius:%6.3f"
-	.skip 3
-.global lbl_80482F28
-lbl_80482F28:
+.endobj lbl_80482F18
+.balign 4
+.obj lbl_80482F28, local
 	.asciz "angle :%6.3f"
-	.skip 3
-.global lbl_80482F38
-lbl_80482F38:
+.endobj lbl_80482F28
+.balign 4
+.obj lbl_80482F38, local
 	.asciz "height:%6.3f"
-	.skip 3
-.global lbl_80482F48
-lbl_80482F48:
+.endobj lbl_80482F38
+.balign 4
+.obj lbl_80482F48, local
 	.asciz "fovy  :%6.3f"
-	.skip 3
-.global lbl_80482F58
-lbl_80482F58:
+.endobj lbl_80482F48
+.balign 4
+.obj lbl_80482F58, local
 	.asciz "ExtraHeapFor2D null\n"
-	.skip 3
-.global lbl_80482F70
-lbl_80482F70:
+.endobj lbl_80482F58
+.balign 4
+.obj lbl_80482F70, local
 	.asciz "StartTeki"
-	.skip 2
-.global lbl_80482F7C
-lbl_80482F7C:
+.endobj lbl_80482F70
+.balign 4
+.obj lbl_80482F7C, local
 	.asciz "StartPellet"
-.global lbl_80482F88
-lbl_80482F88:
+.endobj lbl_80482F7C
+.balign 4
+.obj lbl_80482F88, local
 	.asciz "ModeChangeToTeki"
-	.skip 3
-.global lbl_80482F9C
-lbl_80482F9C:
+.endobj lbl_80482F88
+.balign 4
+.obj lbl_80482F9C, local
 	.asciz "ChangeTeki"
-	.skip 1
-.global lbl_80482FA8
-lbl_80482FA8:
+.endobj lbl_80482F9C
+.balign 4
+.obj lbl_80482FA8, local
 	.asciz "ModeChangeToPellet"
-	.skip 1
-.global lbl_80482FBC
-lbl_80482FBC:
+.endobj lbl_80482FA8
+.balign 4
+.obj lbl_80482FBC, local
 	.asciz "ChangePellet"
-	.skip 3
+.endobj lbl_80482FBC
+.balign 4
+.obj lbl_80482FCC, local
 	.4byte lbl_80482F70
 	.4byte lbl_80482F7C
 	.4byte lbl_80482F88
@@ -90,32 +110,61 @@ lbl_80482FBC:
 	.4byte lbl_8051A1CC
 	.4byte lbl_80482FBC
 	.4byte lbl_8051A1D4
+.endobj lbl_80482FCC
+.balign 4
+.obj lbl_80482FF0, local
 	.asciz "PSGame.h"
-	.skip 3
+.endobj lbl_80482FF0
+.balign 4
+.obj lbl_80482FFC, local
 	.asciz "PSScene.h"
-	.skip 2
+.endobj lbl_80482FFC
+.balign 4
+.obj lbl_80483008, local
 	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_80483008
+.balign 4
+.obj lbl_8048302C, local
 	.asciz "Unknown mode : %d \n"
-.global lbl_80483040
-lbl_80483040:
+.endobj lbl_8048302C
+.balign 4
+.obj lbl_80483040, local
 	.asciz "Illegal next mode. %d \n"
+.endobj lbl_80483040
+.balign 4
+.obj lbl_80483058, local
 	.asciz "READY:%d Enemy:%d Item:%d"
-	.skip 2
+.endobj lbl_80483058
+.balign 4
+.obj lbl_80483074, local
 	.asciz "enemy:%d item:%d"
-	.skip 3
+.endobj lbl_80483074
+.balign 4
+.obj lbl_80483088, local
 	.asciz "heapA %d"
-	.skip 3
+.endobj lbl_80483088
+.balign 4
+.obj lbl_80483094, local
 	.asciz "heapB %d"
-	.skip 3
+.endobj lbl_80483094
+.balign 4
+.obj lbl_804830A0, local
 	.asciz "user/Yamashita/zukan/%s/%s/arc.szs"
-	.skip 1
+.endobj lbl_804830A0
+.balign 4
+.obj lbl_804830C4, local
 	.asciz "PSCommon.h"
-	.skip 1
+.endobj lbl_804830C4
+.balign 4
+.obj lbl_804830D0, local
 	.asciz "course.txt"
-	.skip 1
-.global lbl_804830DC
-lbl_804830DC:
+.endobj lbl_804830D0
+.balign 4
+.obj lbl_804830DC, local
 	.asciz "FreeSizeA :%d \n"
+.endobj lbl_804830DC
+.balign 4
+.obj lbl_804830EC, local # Shift-JIS
 	.4byte 0x8379838C
 	.4byte 0x83628367
 	.4byte 0x919082C8
@@ -128,12 +177,18 @@ lbl_804830DC:
 	.4byte 0x82B72066
 	.4byte 0x7265653A
 	.4byte 0x2564200A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804830EC
+.balign 4
+.obj lbl_80483120, local # Shift-JIS
 	.4byte 0x82BE82B5
 	.4byte 0x82BD2066
 	.4byte 0x7265653A
 	.4byte 0x2564200A
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80483120
+.balign 4
+.obj lbl_80483134, local # Shift-JIS
 	.4byte 0x934782F0
 	.4byte 0x8341838D
 	.4byte 0x8362834E
@@ -141,138 +196,104 @@ lbl_804830DC:
 	.4byte 0x43814066
 	.4byte 0x7265653A
 	.4byte 0x2564200A
-	.4byte 0x00000000
-	.4byte 0x2A2A2042
-	.4byte 0x49525448
-	.4byte 0x20464149
-	.4byte 0x4C454420
-	.4byte 0x21212049
-	.4byte 0x443A2564
-	.4byte 0x200A0000
-.global lbl_80483170
-lbl_80483170:
-	.4byte 0x746F6F20
-	.4byte 0x6D616E79
-	.4byte 0x2070656C
-	.4byte 0x6C65740A
-	.4byte 0x00000000
-	.4byte 0x50696B69
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-	.4byte 0x50656C6C
-	.4byte 0x6574496E
-	.4byte 0x69744172
-	.4byte 0x67000000
-	.4byte 0x50696B69
-	.4byte 0x496E6974
-	.4byte 0x41726700
-	.4byte 0x23202564
-	.4byte 0x2F25640D
-	.4byte 0x0A000000
+	.byte 0
+.endobj lbl_80483134
+.balign 4
+.obj lbl_80483154, local
+	.asciz "** BIRTH FAILED !! ID:%d \n"
+.endobj lbl_80483154
+.balign 4
+.obj lbl_80483170, local
+	.asciz "too many pellet\n"
+.endobj lbl_80483170
+.balign 4
+.obj lbl_80483184, local
+	.asciz "PikiKillArg"
+.endobj lbl_80483184
+.balign 4
+.obj lbl_80483190, local
+	.asciz "CreatureKillArg"
+.endobj lbl_80483190
+.balign 4
+.obj lbl_804831A0, local
+	.asciz "PelletInitArg"
+.endobj lbl_804831A0
+.balign 4
+.obj lbl_804831B0, local
+	.asciz "PikiInitArg"
+.endobj lbl_804831B0
+.balign 4
+.obj lbl_804831BC, local
+	.asciz "# %d/%d\r\n"
+.endobj lbl_804831BC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C0A40
-lbl_804C0A40:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804C0A4C, local # does not show in map. may be autogenerated due to pooled data
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000003
 	.4byte 0x00000000
-.global "sDirName__28@unnamed@singleGS_Zukan_cpp@"
-"sDirName__28@unnamed@singleGS_Zukan_cpp@":
+.endobj lbl_804C0A4C
+.obj "sDirName__28@unnamed@singleGS_Zukan_cpp@", local
 	.4byte lbl_80482E7C
 	.4byte lbl_8051A100
 	.4byte lbl_80482E88
 	.4byte lbl_8051A108
+.endobj "sDirName__28@unnamed@singleGS_Zukan_cpp@"
+.obj lbl_804C0A6C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdloadA__Q34Game10SingleGame10ZukanStateFv
+.endobj lbl_804C0A6C
+.obj lbl_804C0A78, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv
+.endobj lbl_804C0A78
+.obj lbl_804C0A84, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q28Morimura19DispMemberZukanItem
-__vt__Q28Morimura19DispMemberZukanItem:
+.endobj lbl_804C0A84
+	.skip 0x84
+.obj __vt__Q28Morimura19DispMemberZukanItem, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q28Morimura19DispMemberZukanItemFv
 	.4byte getOwnerID__Q28Morimura19DispMemberZukanItemFv
 	.4byte getMemberID__Q28Morimura19DispMemberZukanItemFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q28Morimura20DispMemberZukanEnemy
-__vt__Q28Morimura20DispMemberZukanEnemy:
+.endobj __vt__Q28Morimura19DispMemberZukanItem
+.obj __vt__Q28Morimura20DispMemberZukanEnemy, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q28Morimura20DispMemberZukanEnemyFv
 	.4byte getOwnerID__Q28Morimura20DispMemberZukanEnemyFv
 	.4byte getMemberID__Q28Morimura20DispMemberZukanEnemyFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q28Morimura19DispMemberZukanBase
-__vt__Q28Morimura19DispMemberZukanBase:
+.endobj __vt__Q28Morimura20DispMemberZukanEnemy
+.obj __vt__Q28Morimura19DispMemberZukanBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-.global "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"
-"__vt__41Delegate<Q34Game10SingleGame10ZukanState>":
+.endobj __vt__Q28Morimura19DispMemberZukanBase
+	.skip 0x18
+.obj "__vt__41Delegate<Q34Game10SingleGame10ZukanState>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__41Delegate<Q34Game10SingleGame10ZukanState>Fv"
-	.4byte 0
-	.4byte 0
-	.4byte 0
-.global __vt__Q34Game10SingleGame10ZukanState
-__vt__Q34Game10SingleGame10ZukanState:
+.endobj "__vt__41Delegate<Q34Game10SingleGame10ZukanState>"
+	.skip 0xC
+.obj __vt__Q34Game10SingleGame10ZukanState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
@@ -291,34 +312,9 @@ __vt__Q34Game10SingleGame10ZukanState:
 	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-.global __vt__Q34Game15IllustratedBook6Camera
-__vt__Q34Game15IllustratedBook6Camera:
+.endobj __vt__Q34Game10SingleGame10ZukanState
+	.skip 0x68
+.obj __vt__Q34Game15IllustratedBook6Camera, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game15IllustratedBook6CameraFv
@@ -351,296 +347,243 @@ __vt__Q34Game15IllustratedBook6Camera:
 	.4byte updateMatrix__12LookAtCameraFv
 	.4byte doUpdate__Q34Game15IllustratedBook6CameraFv
 	.4byte startVibration__Q34Game15IllustratedBook6CameraFi
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-.global __vt__Q34Game15IllustratedBook11EnemyTexMgr
-__vt__Q34Game15IllustratedBook11EnemyTexMgr:
+.endobj __vt__Q34Game15IllustratedBook6Camera
+	.skip 0xDC
+.obj __vt__Q34Game15IllustratedBook11EnemyTexMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game15IllustratedBook11EnemyTexMgrFv
-.global __vt__Q34Game15IllustratedBook10DebugParms
-__vt__Q34Game15IllustratedBook10DebugParms:
+.endobj __vt__Q34Game15IllustratedBook11EnemyTexMgr
+.obj __vt__Q34Game15IllustratedBook10DebugParms, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game15IllustratedBook10DebugParmsFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
+.endobj __vt__Q34Game15IllustratedBook10DebugParms
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C48
-lbl_80515C48:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515C4C
-lbl_80515C4C:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global sParentHeapFreeSize_1
-sParentHeapFreeSize_1:
-	.skip 0x8
+.endobj gfNAN___Q24Game5P2JST
+.obj sParentHeapFreeSize, local
+	.skip 0x4
+.endobj sParentHeapFreeSize
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A100
-lbl_8051A100:
+.obj lbl_8051A100, local
 	.asciz "forest"
-	.skip 1
-.global lbl_8051A108
-lbl_8051A108:
+.endobj lbl_8051A100
+.balign 4
+.obj lbl_8051A108, local
 	.asciz "last"
-	.skip 3
-.global lbl_8051A110
-lbl_8051A110:
+.endobj lbl_8051A108
+.balign 4
+.obj lbl_8051A110, local
 	.float 0.05
-.global lbl_8051A114
-lbl_8051A114:
-	.4byte 0x42200000
-.global lbl_8051A118
-lbl_8051A118:
-	.4byte 0xC2C80000
-.global lbl_8051A11C
-lbl_8051A11C:
+.endobj lbl_8051A110
+.obj lbl_8051A114, local
+	.float 40.0
+.endobj lbl_8051A114
+.obj lbl_8051A118, local
+	.float -100.0
+.endobj lbl_8051A118
+.obj lbl_8051A11C, local
 	.float 1.0
-.global lbl_8051A120
-lbl_8051A120:
-	.4byte 0x43960000
-.global lbl_8051A124
-lbl_8051A124:
-	.4byte 0x42C80000
-.global lbl_8051A128
-lbl_8051A128:
-	.4byte 0x00000000
-.global lbl_8051A12C
-lbl_8051A12C:
-	.4byte 0x43AF0000
-.global lbl_8051A130
-lbl_8051A130:
-	.4byte 0x43FA0000
-.global lbl_8051A134
-lbl_8051A134:
-	.4byte 0x442F0000
-.global lbl_8051A138
-lbl_8051A138:
-	.4byte 0x42340000
-.global lbl_8051A13C
-lbl_8051A13C:
+.endobj lbl_8051A11C
+.obj lbl_8051A120, local
+	.float 300.0
+.endobj lbl_8051A120
+.obj lbl_8051A124, local
+	.float 100.0
+.endobj lbl_8051A124
+.obj lbl_8051A128, local
+	.float 0.0
+.endobj lbl_8051A128
+.obj lbl_8051A12C, local
+	.float 350.0
+.endobj lbl_8051A12C
+.obj lbl_8051A130, local
+	.float 500.0
+.endobj lbl_8051A130
+.obj lbl_8051A134, local
+	.float 700.0
+.endobj lbl_8051A134
+.obj lbl_8051A138, local
+	.float 45.0
+.endobj lbl_8051A138
+.obj lbl_8051A13C, local
 	.float 0.1
-.global lbl_8051A140
-lbl_8051A140:
-	.4byte 0x42B40000
-.global lbl_8051A144
-lbl_8051A144:
-	.4byte 0x3F4CCCCD
-.global lbl_8051A148
-lbl_8051A148:
+.endobj lbl_8051A13C
+.obj lbl_8051A140, local
+	.float 90.0
+.endobj lbl_8051A140
+.obj lbl_8051A144, local
+	.float 0.8
+.endobj lbl_8051A144
+.obj lbl_8051A148, local
 	.float 0.5
-.global lbl_8051A14C
-lbl_8051A14C:
-	.4byte 0x3C03126F
-.global lbl_8051A150
-lbl_8051A150:
-	.4byte 0x40E00000
-.global lbl_8051A154
-lbl_8051A154:
-	.4byte 0x3DF5C28F
-.global lbl_8051A158
-lbl_8051A158:
-	.4byte 0x3F733333
-.global lbl_8051A15C
-lbl_8051A15C:
-	.4byte 0x41700000
-.global lbl_8051A160
-lbl_8051A160:
+.endobj lbl_8051A148
+.obj lbl_8051A14C, local
+	.float 0.008
+.endobj lbl_8051A14C
+.obj lbl_8051A150, local
+	.float 7.0
+.endobj lbl_8051A150
+.obj lbl_8051A154, local
+	.float 0.12
+.endobj lbl_8051A154
+.obj lbl_8051A158, local
+	.float 0.95
+.endobj lbl_8051A158
+.obj lbl_8051A15C, local
+	.float 15.0
+.endobj lbl_8051A15C
+.obj lbl_8051A160, local
 	.float 0.3
-.global lbl_8051A164
-lbl_8051A164:
-	.4byte 0x3EB33333
-.global lbl_8051A168
-lbl_8051A168:
+.endobj lbl_8051A160
+.obj lbl_8051A164, local
+	.float 0.35
+.endobj lbl_8051A164
+.obj lbl_8051A168, local
 	.float 0.15
-.global lbl_8051A16C
-lbl_8051A16C:
-	.4byte 0x3F2147AE
-.global lbl_8051A170
-lbl_8051A170:
-	.4byte 0x3F451EB8
-.global lbl_8051A174
-lbl_8051A174:
-	.4byte 0x41E80000
-.global lbl_8051A178
-lbl_8051A178:
-	.4byte 0x47000000
-.global lbl_8051A17C
-lbl_8051A17C:
-	.4byte 0xBF800000
-.global lbl_8051A180
-lbl_8051A180:
-	.4byte 0x41200000
-	.4byte 0x00000000
-.global lbl_8051A188
-lbl_8051A188:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_8051A190
-lbl_8051A190:
-	.4byte 0x41F00000
-.global lbl_8051A194
-lbl_8051A194:
-	.4byte 0x43A2F983
-.global lbl_8051A198
-lbl_8051A198:
-	.4byte 0xC3A2F983
-.global lbl_8051A19C
-lbl_8051A19C:
-	.4byte 0x3F19999A
-.global lbl_8051A1A0
-lbl_8051A1A0:
-	.4byte 0x40C90FDB
-.global lbl_8051A1A4
-lbl_8051A1A4:
-	.4byte 0x38D1B717
-.global lbl_8051A1A8
-lbl_8051A1A8:
-	.4byte 0x3F400000
-.global lbl_8051A1AC
-lbl_8051A1AC:
-	.4byte 0x3CA3D70A
-.global lbl_8051A1B0
-lbl_8051A1B0:
-	.4byte 0x3E4CCCCD
-.global lbl_8051A1B4
-lbl_8051A1B4:
-	.4byte 0xBF000000
-.global lbl_8051A1B8
-lbl_8051A1B8:
-	.4byte 0x3F666666
-.global lbl_8051A1BC
-lbl_8051A1BC:
+.endobj lbl_8051A168
+.obj lbl_8051A16C, local
+	.float 0.63
+.endobj lbl_8051A16C
+.obj lbl_8051A170, local
+	.float 0.77
+.endobj lbl_8051A170
+.obj lbl_8051A174, local
+	.float 29.0
+.endobj lbl_8051A174
+.obj lbl_8051A178, local
+	.float 32768.0
+.endobj lbl_8051A178
+.obj lbl_8051A17C, local
+	.float -1.0
+.endobj lbl_8051A17C
+.obj lbl_8051A180, local
+	.float 10.0
+.endobj lbl_8051A180
+.balign 8
+.obj lbl_8051A188, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051A188
+.obj lbl_8051A190, local
+	.float 30.0
+.endobj lbl_8051A190
+.obj lbl_8051A194, local
+	.float 325.9493
+.endobj lbl_8051A194
+.obj lbl_8051A198, local
+	.float -325.9493
+.endobj lbl_8051A198
+.obj lbl_8051A19C, local
+	.float 0.6
+.endobj lbl_8051A19C
+.obj lbl_8051A1A0, local # tau
+	.float 6.2831855
+.endobj lbl_8051A1A0
+.obj lbl_8051A1A4, local
+	.float 1.0E-4
+.endobj lbl_8051A1A4
+.obj lbl_8051A1A8, local
+	.float 0.75
+.endobj lbl_8051A1A8
+.obj lbl_8051A1AC, local
+	.float 0.02
+.endobj lbl_8051A1AC
+.obj lbl_8051A1B0, local
+	.float 0.2
+.endobj lbl_8051A1B0
+.obj lbl_8051A1B4, local
+	.float -0.5
+.endobj lbl_8051A1B4
+.obj lbl_8051A1B8, local
+	.float 0.9
+.endobj lbl_8051A1B8
+.balign 4
+.obj lbl_8051A1BC, local
 	.asciz "zukan"
-	.skip 2
-.global lbl_8051A1C4
-lbl_8051A1C4:
+.endobj lbl_8051A1BC
+.balign 4
+.obj lbl_8051A1C4, local
 	.asciz "Teki"
-	.skip 3
-.global lbl_8051A1CC
-lbl_8051A1CC:
+.endobj lbl_8051A1C4
+.balign 4
+.obj lbl_8051A1CC, local
 	.asciz "Pellet"
-	.skip 1
-.global lbl_8051A1D4
-lbl_8051A1D4:
+.endobj lbl_8051A1CC
+.balign 4
+.obj lbl_8051A1D4, local
 	.asciz "None"
-	.skip 3
-.global lbl_8051A1DC
-lbl_8051A1DC:
-	.4byte 0x40400000
-.global lbl_8051A1E0
-lbl_8051A1E0:
-	.4byte 0x41100000
-	.4byte 0x00000000
-.global lbl_8051A1E8
-lbl_8051A1E8:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global lbl_8051A1F0
-lbl_8051A1F0:
+.endobj lbl_8051A1D4
+.balign 4
+.obj lbl_8051A1DC, local
+	.float 3.0
+.endobj lbl_8051A1DC
+.obj lbl_8051A1E0, local
+	.float 9.0
+.endobj lbl_8051A1E0
+.balign 8
+.obj lbl_8051A1E8, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051A1E8
+.obj lbl_8051A1F0, local
 	.float 0.25
-.global lbl_8051A1F4
-lbl_8051A1F4:
-	.4byte 0x3BA3D70A
-.global lbl_8051A1F8
-lbl_8051A1F8:
-	.4byte 0x75730000
-.global lbl_8051A1FC
-lbl_8051A1FC:
-	.4byte 0xC47A0000
-.global lbl_8051A200
-lbl_8051A200:
-	.4byte 0x447A0000
-.global lbl_8051A204
-lbl_8051A204:
-	.4byte 0x4B435000
-.global lbl_8051A208
-lbl_8051A208:
-	.4byte 0xCB435000
-.global lbl_8051A20C
-lbl_8051A20C:
-	.4byte 0x42800000
-.global lbl_8051A210
-lbl_8051A210:
-	.4byte 0x0A000000
-.global lbl_8051A214
-lbl_8051A214:
-	.4byte 0x420C0000
-.global lbl_8051A218
-lbl_8051A218:
-	.4byte 0x40490FDB
-.global lbl_8051A21C
-lbl_8051A21C:
-	.4byte 0x3BB60B61
-.global lbl_8051A220
-lbl_8051A220:
-	.4byte 0x43480000
-.global lbl_8051A224
-lbl_8051A224:
-	.4byte 0x64616D65
-	.4byte 0x6B0A0000
-	.4byte 0x00000000
+.endobj lbl_8051A1F0
+.obj lbl_8051A1F4, local
+	.float 0.005
+.endobj lbl_8051A1F4
+.balign 4
+.obj lbl_8051A1F8, local
+	.asciz "us"
+.endobj lbl_8051A1F8
+.balign 4
+.obj lbl_8051A1FC, local
+	.float -1000.0
+.endobj lbl_8051A1FC
+.obj lbl_8051A200, local
+	.float 1000.0
+.endobj lbl_8051A200
+.obj lbl_8051A204, local
+	.float 1.28E7
+.endobj lbl_8051A204
+.obj lbl_8051A208, local
+	.float -1.28E7
+.endobj lbl_8051A208
+.obj lbl_8051A20C, local
+	.float 64.0
+.endobj lbl_8051A20C
+.balign 4
+.obj lbl_8051A210, local
+	.asciz "\n"
+.endobj lbl_8051A210
+.balign 4
+.obj lbl_8051A214, local
+	.float 35.0
+.endobj lbl_8051A214
+.obj lbl_8051A218, local # pi
+	.float 3.1415927
+.endobj lbl_8051A218
+.obj lbl_8051A21C, local
+	.float 0.0055555557
+.endobj lbl_8051A21C
+.obj lbl_8051A220, local
+	.float 200.0
+.endobj lbl_8051A220
+.balign 4
+.obj lbl_8051A224, local
+	.asciz "damek\n"
+.endobj lbl_8051A224
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game15IllustratedBook6CameraFP10Controller
-__ct__Q34Game15IllustratedBook6CameraFP10Controller:
+.fn __ct__Q34Game15IllustratedBook6CameraFP10Controller, global
 /* 80221028 0021DF68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022102C 0021DF6C  7C 08 02 A6 */	mflr r0
 /* 80221030 0021DF70  90 01 00 24 */	stw r0, 0x24(r1)
@@ -802,9 +745,9 @@ __ct__Q34Game15IllustratedBook6CameraFP10Controller:
 /* 802212A0 0021E1E0  7C 08 03 A6 */	mtlr r0
 /* 802212A4 0021E1E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802212A8 0021E1E8  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game15IllustratedBook6CameraFP10Controller
 
-.global startVibration__Q34Game15IllustratedBook6CameraFi
-startVibration__Q34Game15IllustratedBook6CameraFi:
+.fn startVibration__Q34Game15IllustratedBook6CameraFi, global
 /* 802212AC 0021E1EC  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802212B0 0021E1F0  7C 08 02 A6 */	mflr r0
 /* 802212B4 0021E1F4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -928,9 +871,9 @@ startVibration__Q34Game15IllustratedBook6CameraFi:
 /* 80221478 0021E3B8  7C 08 03 A6 */	mtlr r0
 /* 8022147C 0021E3BC  38 21 00 70 */	addi r1, r1, 0x70
 /* 80221480 0021E3C0  4E 80 00 20 */	blr 
+.endfn startVibration__Q34Game15IllustratedBook6CameraFi
 
-.global "move__Q34Game15IllustratedBook6CameraFRC10Vector3<f>"
-"move__Q34Game15IllustratedBook6CameraFRC10Vector3<f>":
+.fn "move__Q34Game15IllustratedBook6CameraFRC10Vector3<f>", global
 /* 80221484 0021E3C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80221488 0021E3C8  7C 08 02 A6 */	mflr r0
 /* 8022148C 0021E3CC  C0 04 00 00 */	lfs f0, 0(r4)
@@ -965,9 +908,9 @@ startVibration__Q34Game15IllustratedBook6CameraFi:
 /* 80221500 0021E440  7C 08 03 A6 */	mtlr r0
 /* 80221504 0021E444  38 21 00 10 */	addi r1, r1, 0x10
 /* 80221508 0021E448  4E 80 00 20 */	blr 
+.endfn "move__Q34Game15IllustratedBook6CameraFRC10Vector3<f>"
 
-.global setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature
-setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature:
+.fn setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature, global
 /* 8022150C 0021E44C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80221510 0021E450  7C 08 02 A6 */	mflr r0
 /* 80221514 0021E454  28 04 00 00 */	cmplwi r4, 0
@@ -1044,9 +987,9 @@ setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature:
 /* 80221628 0021E568  7C 08 03 A6 */	mtlr r0
 /* 8022162C 0021E56C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80221630 0021E570  4E 80 00 20 */	blr 
+.endfn setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature
 
-.global resetControl__Q34Game15IllustratedBook6CameraFv
-resetControl__Q34Game15IllustratedBook6CameraFv:
+.fn resetControl__Q34Game15IllustratedBook6CameraFv, global
 /* 80221634 0021E574  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80221638 0021E578  7C 08 02 A6 */	mflr r0
 /* 8022163C 0021E57C  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
@@ -1208,9 +1151,9 @@ resetControl__Q34Game15IllustratedBook6CameraFv:
 /* 8022189C 0021E7DC  7C 08 03 A6 */	mtlr r0
 /* 802218A0 0021E7E0  38 21 00 30 */	addi r1, r1, 0x30
 /* 802218A4 0021E7E4  4E 80 00 20 */	blr 
+.endfn resetControl__Q34Game15IllustratedBook6CameraFv
 
-.global doUpdate__Q34Game15IllustratedBook6CameraFv
-doUpdate__Q34Game15IllustratedBook6CameraFv:
+.fn doUpdate__Q34Game15IllustratedBook6CameraFv, global
 /* 802218A8 0021E7E8  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 802218AC 0021E7EC  7C 08 02 A6 */	mflr r0
 /* 802218B0 0021E7F0  90 01 01 24 */	stw r0, 0x124(r1)
@@ -1808,9 +1751,9 @@ doUpdate__Q34Game15IllustratedBook6CameraFv:
 /* 802221A0 0021F0E0  7C 08 03 A6 */	mtlr r0
 /* 802221A4 0021F0E4  38 21 01 20 */	addi r1, r1, 0x120
 /* 802221A8 0021F0E8  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game15IllustratedBook6CameraFv
 
-.global updateCameraShake__Q34Game15IllustratedBook6CameraFv
-updateCameraShake__Q34Game15IllustratedBook6CameraFv:
+.fn updateCameraShake__Q34Game15IllustratedBook6CameraFv, global
 /* 802221AC 0021F0EC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802221B0 0021F0F0  7C 08 02 A6 */	mflr r0
 /* 802221B4 0021F0F4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1942,9 +1885,9 @@ updateCameraShake__Q34Game15IllustratedBook6CameraFv:
 /* 802223A4 0021F2E4  7C 08 03 A6 */	mtlr r0
 /* 802223A8 0021F2E8  38 21 00 40 */	addi r1, r1, 0x40
 /* 802223AC 0021F2EC  4E 80 00 20 */	blr 
+.endfn updateCameraShake__Q34Game15IllustratedBook6CameraFv
 
-.global updateFocus__Q34Game15IllustratedBook6CameraFv
-updateFocus__Q34Game15IllustratedBook6CameraFv:
+.fn updateFocus__Q34Game15IllustratedBook6CameraFv, global
 /* 802223B0 0021F2F0  C0 23 02 88 */	lfs f1, 0x288(r3)
 /* 802223B4 0021F2F4  C0 03 00 28 */	lfs f0, 0x28(r3)
 /* 802223B8 0021F2F8  C0 63 02 7C */	lfs f3, 0x27c(r3)
@@ -2007,9 +1950,9 @@ updateFocus__Q34Game15IllustratedBook6CameraFv:
 /* 8022248C 0021F3CC  4C 81 00 20 */	blelr 
 /* 80222490 0021F3D0  D0 03 02 94 */	stfs f0, 0x294(r3)
 /* 80222494 0021F3D4  4E 80 00 20 */	blr 
+.endfn updateFocus__Q34Game15IllustratedBook6CameraFv
 
-.global addFovy__Q34Game15IllustratedBook6CameraFf
-addFovy__Q34Game15IllustratedBook6CameraFf:
+.fn addFovy__Q34Game15IllustratedBook6CameraFf, global
 /* 80222498 0021F3D8  C0 43 03 04 */	lfs f2, 0x304(r3)
 /* 8022249C 0021F3DC  C0 03 02 88 */	lfs f0, 0x288(r3)
 /* 802224A0 0021F3E0  EC 01 00 BA */	fmadds f0, f1, f2, f0
@@ -2033,9 +1976,9 @@ addFovy__Q34Game15IllustratedBook6CameraFf:
 /* 802224E0 0021F420  EC 02 08 3A */	fmadds f0, f2, f0, f1
 /* 802224E4 0021F424  D0 03 00 28 */	stfs f0, 0x28(r3)
 /* 802224E8 0021F428  4E 80 00 20 */	blr 
+.endfn addFovy__Q34Game15IllustratedBook6CameraFf
 
-.global __ct__Q34Game10SingleGame10ZukanStateFv
-__ct__Q34Game10SingleGame10ZukanStateFv:
+.fn __ct__Q34Game10SingleGame10ZukanStateFv, global
 /* 802224EC 0021F42C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802224F0 0021F430  7C 08 02 A6 */	mflr r0
 /* 802224F4 0021F434  3C 80 80 4B */	lis r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
@@ -2096,21 +2039,21 @@ __ct__Q34Game10SingleGame10ZukanStateFv:
 /* 802225CC 0021F50C  7C 08 03 A6 */	mtlr r0
 /* 802225D0 0021F510  38 21 00 10 */	addi r1, r1, 0x10
 /* 802225D4 0021F514  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game10SingleGame10ZukanStateFv
 
 .if version == 1
-.global init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 802225D8 0021F518  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802225DC 0021F51C  7C 08 02 A6 */	mflr r0
 /* 802225E0 0021F520  3C C0 80 48 */	lis r6, lbl_80482E60@ha
 /* 802225E4 0021F524  90 01 00 54 */	stw r0, 0x54(r1)
 /* 802225E8 0021F528  BF 41 00 38 */	stmw r26, 0x38(r1)
 /* 802225EC 0021F52C  7C 7C 1B 78 */	mr r28, r3
-/* 802225F0 0021F530  3C 60 80 4C */	lis r3, lbl_804C0A40@ha
+/* 802225F0 0021F530  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 802225F4 0021F534  7C 9D 23 78 */	mr r29, r4
 /* 802225F8 0021F538  7C BE 2B 78 */	mr r30, r5
 /* 802225FC 0021F53C  3B 66 2E 60 */	addi r27, r6, lbl_80482E60@l
-/* 80222600 0021F540  3B E3 0A 40 */	addi r31, r3, lbl_804C0A40@l
+/* 80222600 0021F540  3B E3 0A 40 */	addi r31, r3, govNAN___Q24Game5P2JST@l
 /* 80222604 0021F544  38 80 00 00 */	li r4, 0
 /* 80222608 0021F548  38 A2 BE 5C */	addi r5, r2, lbl_8051A1BC@sda21
 /* 8022260C 0021F54C  38 C0 00 03 */	li r6, 3
@@ -2128,7 +2071,7 @@ init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateA
 /* 8022263C 0021F57C  4B F9 29 49 */	bl setMoviePause__Q24Game10GameSystemFbPc
 /* 80222640 0021F580  80 7C 00 E0 */	lwz r3, 0xe0(r28)
 /* 80222644 0021F584  4B E0 11 71 */	bl getFreeSize__7JKRHeapFv
-/* 80222648 0021F588  90 6D 95 D0 */	stw r3, sParentHeapFreeSize_1@sda21(r13)
+/* 80222648 0021F588  90 6D 95 D0 */	stw r3, sParentHeapFreeSize@sda21(r13)
 /* 8022264C 0021F58C  83 5C 00 E0 */	lwz r26, 0xe0(r28)
 /* 80222650 0021F590  7F 43 D3 78 */	mr r3, r26
 /* 80222654 0021F594  4B E0 11 61 */	bl getFreeSize__7JKRHeapFv
@@ -2327,20 +2270,20 @@ init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateA
 /* 80222938 0021F878  7C 08 03 A6 */	mtlr r0
 /* 8022293C 0021F87C  38 21 00 50 */	addi r1, r1, 0x50
 /* 80222940 0021F880  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .else
-.global init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 802225D8 0021F518  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802225DC 0021F51C  7C 08 02 A6 */	mflr r0
 /* 802225E0 0021F520  3C C0 80 48 */	lis r6, lbl_80482E60@ha
 /* 802225E4 0021F524  90 01 00 54 */	stw r0, 0x54(r1)
 /* 802225E8 0021F528  BF 41 00 38 */	stmw r26, 0x38(r1)
 /* 802225EC 0021F52C  7C 7C 1B 78 */	mr r28, r3
-/* 802225F0 0021F530  3C 60 80 4C */	lis r3, lbl_804C0A40@ha
+/* 802225F0 0021F530  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 802225F4 0021F534  7C 9D 23 78 */	mr r29, r4
 /* 802225F8 0021F538  7C BE 2B 78 */	mr r30, r5
 /* 802225FC 0021F53C  3B 66 2E 60 */	addi r27, r6, lbl_80482E60@l
-/* 80222600 0021F540  3B E3 0A 40 */	addi r31, r3, lbl_804C0A40@l
+/* 80222600 0021F540  3B E3 0A 40 */	addi r31, r3, govNAN___Q24Game5P2JST@l
 /* 80222604 0021F544  38 80 00 00 */	li r4, 0
 /* 80222608 0021F548  38 A2 BE 5C */	addi r5, r2, lbl_8051A1BC@sda21
 /* 8022260C 0021F54C  38 C0 00 03 */	li r6, 3
@@ -2358,7 +2301,7 @@ init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateA
 /* 8022263C 0021F57C  4B F9 29 49 */	bl setMoviePause__Q24Game10GameSystemFbPc
 /* 80222640 0021F580  80 7C 00 E0 */	lwz r3, 0xe0(r28)
 /* 80222644 0021F584  4B E0 11 71 */	bl getFreeSize__7JKRHeapFv
-/* 80222648 0021F588  90 6D 95 D0 */	stw r3, sParentHeapFreeSize_1@sda21(r13)
+/* 80222648 0021F588  90 6D 95 D0 */	stw r3, sParentHeapFreeSize@sda21(r13)
 /* 8022264C 0021F58C  83 5C 00 E0 */	lwz r26, 0xe0(r28)
 /* 80222650 0021F590  7F 43 D3 78 */	mr r3, r26
 /* 80222654 0021F594  4B E0 11 61 */	bl getFreeSize__7JKRHeapFv
@@ -2557,18 +2500,18 @@ init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateA
 /* 80222938 0021F878  7C 08 03 A6 */	mtlr r0
 /* 8022293C 0021F87C  38 21 00 50 */	addi r1, r1, 0x50
 /* 80222940 0021F880  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .endif
 
-.global setMode__Q34Game10SingleGame10ZukanStateFQ44Game10SingleGame10ZukanState5CMode
-setMode__Q34Game10SingleGame10ZukanStateFQ44Game10SingleGame10ZukanState5CMode:
+.fn setMode__Q34Game10SingleGame10ZukanStateFQ44Game10SingleGame10ZukanState5CMode, global
 /* 80222944 0021F884  80 03 00 9C */	lwz r0, 0x9c(r3)
 /* 80222948 0021F888  7C 00 20 00 */	cmpw r0, r4
 /* 8022294C 0021F88C  4D 82 00 20 */	beqlr 
 /* 80222950 0021F890  90 83 00 9C */	stw r4, 0x9c(r3)
 /* 80222954 0021F894  4E 80 00 20 */	blr 
+.endfn setMode__Q34Game10SingleGame10ZukanStateFQ44Game10SingleGame10ZukanState5CMode
 
-.global exec__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection, global
 /* 80222958 0021F898  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8022295C 0021F89C  7C 08 02 A6 */	mflr r0
 /* 80222960 0021F8A0  3C C0 80 48 */	lis r6, lbl_80482E60@ha
@@ -3069,9 +3012,9 @@ exec__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
 /* 80223078 0021FFB8  7C 08 03 A6 */	mtlr r0
 /* 8022307C 0021FFBC  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80223080 0021FFC0  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
 
-.global execModeChange__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionQ44Game10SingleGame10ZukanState5CMode
-execModeChange__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionQ44Game10SingleGame10ZukanState5CMode:
+.fn execModeChange__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionQ44Game10SingleGame10ZukanState5CMode, global
 /* 80223084 0021FFC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80223088 0021FFC8  7C 08 02 A6 */	mflr r0
 /* 8022308C 0021FFCC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3173,9 +3116,9 @@ execModeChange__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionQ44Ga
 /* 802231E4 00220124  7C 08 03 A6 */	mtlr r0
 /* 802231E8 00220128  38 21 00 20 */	addi r1, r1, 0x20
 /* 802231EC 0022012C  4E 80 00 20 */	blr 
+.endfn execModeChange__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionQ44Game10SingleGame10ZukanState5CMode
 
-.global execChangeTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
-execChangeTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
+.fn execChangeTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection, global
 /* 802231F0 00220130  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802231F4 00220134  7C 08 02 A6 */	mflr r0
 /* 802231F8 00220138  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3239,9 +3182,9 @@ execChangeTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
 /* 802232C4 00220204  7C 08 03 A6 */	mtlr r0
 /* 802232C8 00220208  38 21 00 10 */	addi r1, r1, 0x10
 /* 802232CC 0022020C  4E 80 00 20 */	blr 
+.endfn execChangeTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
 
-.global execTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
-execTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
+.fn execTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection, global
 /* 802232D0 00220210  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 802232D4 00220214  7C 08 02 A6 */	mflr r0
 /* 802232D8 00220218  90 01 01 34 */	stw r0, 0x134(r1)
@@ -3617,18 +3560,18 @@ execTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
 /* 80223868 002207A8  7C 08 03 A6 */	mtlr r0
 /* 8022386C 002207AC  38 21 01 30 */	addi r1, r1, 0x130
 /* 80223870 002207B0  4E 80 00 20 */	blr 
+.endfn execTeki__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
 
-.global startWipe__Q34Game10SingleGame10ZukanStateFf
-startWipe__Q34Game10SingleGame10ZukanStateFf:
+.fn startWipe__Q34Game10SingleGame10ZukanStateFf, global
 /* 80223874 002207B4  38 00 00 00 */	li r0, 0
 /* 80223878 002207B8  C0 02 BD C8 */	lfs f0, lbl_8051A128@sda21(r2)
 /* 8022387C 002207BC  90 03 00 FC */	stw r0, 0xfc(r3)
 /* 80223880 002207C0  D0 03 00 F4 */	stfs f0, 0xf4(r3)
 /* 80223884 002207C4  D0 23 00 F8 */	stfs f1, 0xf8(r3)
 /* 80223888 002207C8  4E 80 00 20 */	blr 
+.endfn startWipe__Q34Game10SingleGame10ZukanStateFf
 
-.global createEnemy__Q34Game10SingleGame10ZukanStateFi
-createEnemy__Q34Game10SingleGame10ZukanStateFi:
+.fn createEnemy__Q34Game10SingleGame10ZukanStateFi, global
 /* 8022388C 002207CC  80 03 00 9C */	lwz r0, 0x9c(r3)
 /* 80223890 002207D0  2C 00 00 03 */	cmpwi r0, 3
 /* 80223894 002207D4  4C 82 00 20 */	bnelr 
@@ -3645,9 +3588,9 @@ createEnemy__Q34Game10SingleGame10ZukanStateFi:
 /* 802238BC 002207FC  D0 03 00 F4 */	stfs f0, 0xf4(r3)
 /* 802238C0 00220800  D0 03 00 F8 */	stfs f0, 0xf8(r3)
 /* 802238C4 00220804  4E 80 00 20 */	blr 
+.endfn createEnemy__Q34Game10SingleGame10ZukanStateFi
 
-.global execChangePellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
-execChangePellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
+.fn execChangePellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection, global
 /* 802238C8 00220808  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802238CC 0022080C  7C 08 02 A6 */	mflr r0
 /* 802238D0 00220810  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3714,9 +3657,9 @@ execChangePellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
 /* 802239A8 002208E8  7C 08 03 A6 */	mtlr r0
 /* 802239AC 002208EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802239B0 002208F0  4E 80 00 20 */	blr 
+.endfn execChangePellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
 
-.global execPellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
-execPellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
+.fn execPellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection, global
 /* 802239B4 002208F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802239B8 002208F8  7C 08 02 A6 */	mflr r0
 /* 802239BC 002208FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3765,9 +3708,9 @@ execPellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
 /* 80223A5C 0022099C  7C 08 03 A6 */	mtlr r0
 /* 80223A60 002209A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80223A64 002209A4  4E 80 00 20 */	blr 
+.endfn execPellet__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
 
-.global getMaxPelletID__Q34Game10SingleGame10ZukanStateFv
-getMaxPelletID__Q34Game10SingleGame10ZukanStateFv:
+.fn getMaxPelletID__Q34Game10SingleGame10ZukanStateFv, global
 /* 80223A68 002209A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80223A6C 002209AC  7C 08 02 A6 */	mflr r0
 /* 80223A70 002209B0  38 60 00 03 */	li r3, 3
@@ -3783,9 +3726,9 @@ getMaxPelletID__Q34Game10SingleGame10ZukanStateFv:
 /* 80223A98 002209D8  7C 08 03 A6 */	mtlr r0
 /* 80223A9C 002209DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80223AA0 002209E0  4E 80 00 20 */	blr 
+.endfn getMaxPelletID__Q34Game10SingleGame10ZukanStateFv
 
-.global getCurrentPelletConfig__Q34Game10SingleGame10ZukanStateFi
-getCurrentPelletConfig__Q34Game10SingleGame10ZukanStateFi:
+.fn getCurrentPelletConfig__Q34Game10SingleGame10ZukanStateFi, global
 /* 80223AA4 002209E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80223AA8 002209E8  7C 08 02 A6 */	mflr r0
 /* 80223AAC 002209EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3819,9 +3762,9 @@ getCurrentPelletConfig__Q34Game10SingleGame10ZukanStateFi:
 /* 80223B14 00220A54  7C 08 03 A6 */	mtlr r0
 /* 80223B18 00220A58  38 21 00 20 */	addi r1, r1, 0x20
 /* 80223B1C 00220A5C  4E 80 00 20 */	blr 
+.endfn getCurrentPelletConfig__Q34Game10SingleGame10ZukanStateFi
 
-.global convertPelletID__Q34Game10SingleGame10ZukanStateFRii
-convertPelletID__Q34Game10SingleGame10ZukanStateFRii:
+.fn convertPelletID__Q34Game10SingleGame10ZukanStateFRii, global
 /* 80223B20 00220A60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80223B24 00220A64  7C 08 02 A6 */	mflr r0
 /* 80223B28 00220A68  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3856,9 +3799,9 @@ convertPelletID__Q34Game10SingleGame10ZukanStateFRii:
 /* 80223B94 00220AD4  7C 08 03 A6 */	mtlr r0
 /* 80223B98 00220AD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80223B9C 00220ADC  4E 80 00 20 */	blr 
+.endfn convertPelletID__Q34Game10SingleGame10ZukanStateFRii
 
-.global draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
-draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 80223BA0 00220AE0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80223BA4 00220AE4  7C 08 02 A6 */	mflr r0
 /* 80223BA8 00220AE8  90 01 00 64 */	stw r0, 0x64(r1)
@@ -4017,9 +3960,9 @@ draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics:
 /* 80223E08 00220D48  7C 08 03 A6 */	mtlr r0
 /* 80223E0C 00220D4C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80223E10 00220D50  4E 80 00 20 */	blr 
+.endfn draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
 
-.global drawGradationEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
-drawGradationEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn drawGradationEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 80223E14 00220D54  94 21 FC 70 */	stwu r1, -0x390(r1)
 /* 80223E18 00220D58  7C 08 02 A6 */	mflr r0
 /* 80223E1C 00220D5C  90 01 03 94 */	stw r0, 0x394(r1)
@@ -4373,9 +4316,9 @@ drawGradationEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
 /* 80224380 002212C0  7C 08 03 A6 */	mtlr r0
 /* 80224384 002212C4  38 21 03 90 */	addi r1, r1, 0x390
 /* 80224388 002212C8  4E 80 00 20 */	blr 
+.endfn drawGradationEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
 
-.global drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
-drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 8022438C 002212CC  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 80224390 002212D0  7C 08 02 A6 */	mflr r0
 /* 80224394 002212D4  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -4885,10 +4828,10 @@ drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Gr
 /* 80224B40 00221A80  7C 08 03 A6 */	mtlr r0
 /* 80224B44 00221A84  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 80224B48 00221A88  4E 80 00 20 */	blr 
+.endfn drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
 
 .if version == 1
-.global dvdloadA__Q34Game10SingleGame10ZukanStateFv
-dvdloadA__Q34Game10SingleGame10ZukanStateFv:
+.fn dvdloadA__Q34Game10SingleGame10ZukanStateFv, global
 /* 80224B4C 00221A8C  94 21 F9 00 */	stwu r1, -0x700(r1)
 /* 80224B50 00221A90  7C 08 02 A6 */	mflr r0
 /* 80224B54 00221A94  90 01 07 04 */	stw r0, 0x704(r1)
@@ -5534,9 +5477,9 @@ dvdloadA__Q34Game10SingleGame10ZukanStateFv:
 /* 802254D4 00222414  7C 08 03 A6 */	mtlr r0
 /* 802254D8 00222418  38 21 07 00 */	addi r1, r1, 0x700
 /* 802254DC 0022241C  4E 80 00 20 */	blr 
+.endfn dvdloadA__Q34Game10SingleGame10ZukanStateFv
 .else
-.global dvdloadA__Q34Game10SingleGame10ZukanStateFv
-dvdloadA__Q34Game10SingleGame10ZukanStateFv:
+.fn dvdloadA__Q34Game10SingleGame10ZukanStateFv, global
 /* 80224B4C 00221A8C  94 21 F9 00 */	stwu r1, -0x700(r1)
 /* 80224B50 00221A90  7C 08 02 A6 */	mflr r0
 /* 80224B54 00221A94  90 01 07 04 */	stw r0, 0x704(r1)
@@ -6182,10 +6125,10 @@ dvdloadA__Q34Game10SingleGame10ZukanStateFv:
 /* 802254D4 00222414  7C 08 03 A6 */	mtlr r0
 /* 802254D8 00222418  38 21 07 00 */	addi r1, r1, 0x700
 /* 802254DC 0022241C  4E 80 00 20 */	blr 
+.endfn dvdloadA__Q34Game10SingleGame10ZukanStateFv
 .endif
 
-.global createTeki__Q34Game10SingleGame10ZukanStateFi
-createTeki__Q34Game10SingleGame10ZukanStateFi:
+.fn createTeki__Q34Game10SingleGame10ZukanStateFi, global
 /* 802254E0 00222420  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802254E4 00222424  7C 08 02 A6 */	mflr r0
 /* 802254E8 00222428  3C 80 80 48 */	lis r4, lbl_80482E60@ha
@@ -6247,9 +6190,9 @@ createTeki__Q34Game10SingleGame10ZukanStateFi:
 /* 802255B8 002224F8  7C 08 03 A6 */	mtlr r0
 /* 802255BC 002224FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802255C0 00222500  4E 80 00 20 */	blr 
+.endfn createTeki__Q34Game10SingleGame10ZukanStateFi
 
-.global createPellet__Q34Game10SingleGame10ZukanStateFi
-createPellet__Q34Game10SingleGame10ZukanStateFi:
+.fn createPellet__Q34Game10SingleGame10ZukanStateFi, global
 /* 802255C4 00222504  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802255C8 00222508  7C 08 02 A6 */	mflr r0
 /* 802255CC 0022250C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6266,10 +6209,10 @@ createPellet__Q34Game10SingleGame10ZukanStateFi:
 /* 802255F8 00222538  7C 08 03 A6 */	mtlr r0
 /* 802255FC 0022253C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80225600 00222540  4E 80 00 20 */	blr 
+.endfn createPellet__Q34Game10SingleGame10ZukanStateFi
 
 .if version == 1
-.global dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv
-dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv:
+.fn dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv, global
 /* 80225604 00222544  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 80225608 00222548  7C 08 02 A6 */	mflr r0
 /* 8022560C 0022254C  90 01 01 84 */	stw r0, 0x184(r1)
@@ -7153,9 +7096,9 @@ dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv:
 /* 802262D4 00223214  7C 08 03 A6 */	mtlr r0
 /* 802262D8 00223218  38 21 01 80 */	addi r1, r1, 0x180
 /* 802262DC 0022321C  4E 80 00 20 */	blr 
+.endfn dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv
 .else
-.global dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv
-dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv:
+.fn dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv, global
 /* 80225604 00222544  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 80225608 00222548  7C 08 02 A6 */	mflr r0
 /* 8022560C 0022254C  90 01 01 84 */	stw r0, 0x184(r1)
@@ -8039,11 +7982,11 @@ dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv:
 /* 802262D4 00223214  7C 08 03 A6 */	mtlr r0
 /* 802262D8 00223218  38 21 01 80 */	addi r1, r1, 0x180
 /* 802262DC 0022321C  4E 80 00 20 */	blr 
+.endfn dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv
 .endif
 
 .if version == 1
-.global dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv
-dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv:
+.fn dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv, global
 /* 802262E0 00223220  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802262E4 00223224  7C 08 02 A6 */	mflr r0
 /* 802262E8 00223228  90 01 00 84 */	stw r0, 0x84(r1)
@@ -8359,9 +8302,9 @@ dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv:
 /* 80226784 002236C4  7C 08 03 A6 */	mtlr r0
 /* 80226788 002236C8  38 21 00 80 */	addi r1, r1, 0x80
 /* 8022678C 002236CC  4E 80 00 20 */	blr 
+.endfn dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv
 .else
-.global dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv
-dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv:
+.fn dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv, global
 /* 802262E0 00223220  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802262E4 00223224  7C 08 02 A6 */	mflr r0
 /* 802262E8 00223228  90 01 00 84 */	stw r0, 0x84(r1)
@@ -8677,10 +8620,10 @@ dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv:
 /* 80226784 002236C4  7C 08 03 A6 */	mtlr r0
 /* 80226788 002236C8  38 21 00 80 */	addi r1, r1, 0x80
 /* 8022678C 002236CC  4E 80 00 20 */	blr 
+.endfn dvdloadB_pellet__Q34Game10SingleGame10ZukanStateFv
 .endif
 
-.global clearHeapB_common__Q34Game10SingleGame10ZukanStateFv
-clearHeapB_common__Q34Game10SingleGame10ZukanStateFv:
+.fn clearHeapB_common__Q34Game10SingleGame10ZukanStateFv, global
 /* 80226790 002236D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80226794 002236D4  7C 08 02 A6 */	mflr r0
 /* 80226798 002236D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8718,9 +8661,9 @@ clearHeapB_common__Q34Game10SingleGame10ZukanStateFv:
 /* 80226814 00223754  7C 08 03 A6 */	mtlr r0
 /* 80226818 00223758  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022681C 0022375C  4E 80 00 20 */	blr 
+.endfn clearHeapB_common__Q34Game10SingleGame10ZukanStateFv
 
-.global clearHeapB_teki__Q34Game10SingleGame10ZukanStateFv
-clearHeapB_teki__Q34Game10SingleGame10ZukanStateFv:
+.fn clearHeapB_teki__Q34Game10SingleGame10ZukanStateFv, global
 /* 80226820 00223760  94 21 F9 70 */	stwu r1, -0x690(r1)
 /* 80226824 00223764  7C 08 02 A6 */	mflr r0
 /* 80226828 00223768  90 01 06 94 */	stw r0, 0x694(r1)
@@ -8980,9 +8923,9 @@ clearHeapB_teki__Q34Game10SingleGame10ZukanStateFv:
 /* 80226BD0 00223B10  7C 08 03 A6 */	mtlr r0
 /* 80226BD4 00223B14  38 21 06 90 */	addi r1, r1, 0x690
 /* 80226BD8 00223B18  4E 80 00 20 */	blr 
+.endfn clearHeapB_teki__Q34Game10SingleGame10ZukanStateFv
 
-.global clearHeapB_pellet__Q34Game10SingleGame10ZukanStateFv
-clearHeapB_pellet__Q34Game10SingleGame10ZukanStateFv:
+.fn clearHeapB_pellet__Q34Game10SingleGame10ZukanStateFv, global
 /* 80226BDC 00223B1C  94 21 FC B0 */	stwu r1, -0x350(r1)
 /* 80226BE0 00223B20  7C 08 02 A6 */	mflr r0
 /* 80226BE4 00223B24  90 01 03 54 */	stw r0, 0x354(r1)
@@ -9085,10 +9028,10 @@ clearHeapB_pellet__Q34Game10SingleGame10ZukanStateFv:
 /* 80226D44 00223C84  7C 08 03 A6 */	mtlr r0
 /* 80226D48 00223C88  38 21 03 50 */	addi r1, r1, 0x350
 /* 80226D4C 00223C8C  4E 80 00 20 */	blr 
+.endfn clearHeapB_pellet__Q34Game10SingleGame10ZukanStateFv
 
 .if version == 1
-.global clearHeaps__Q34Game10SingleGame10ZukanStateFv
-clearHeaps__Q34Game10SingleGame10ZukanStateFv:
+.fn clearHeaps__Q34Game10SingleGame10ZukanStateFv, global
 /* 80226D50 00223C90  94 21 FC B0 */	stwu r1, -0x350(r1)
 /* 80226D54 00223C94  7C 08 02 A6 */	mflr r0
 /* 80226D58 00223C98  3C 80 80 48 */	lis r4, lbl_80482E60@ha
@@ -9344,9 +9287,9 @@ clearHeaps__Q34Game10SingleGame10ZukanStateFv:
 /* 802270F0 00224030  7C 08 03 A6 */	mtlr r0
 /* 802270F4 00224034  38 21 03 50 */	addi r1, r1, 0x350
 /* 802270F8 00224038  4E 80 00 20 */	blr 
+.endfn clearHeaps__Q34Game10SingleGame10ZukanStateFv
 .else
-.global clearHeaps__Q34Game10SingleGame10ZukanStateFv
-clearHeaps__Q34Game10SingleGame10ZukanStateFv:
+.fn clearHeaps__Q34Game10SingleGame10ZukanStateFv, global
 /* 80226D50 00223C90  94 21 FC B0 */	stwu r1, -0x350(r1)
 /* 80226D54 00223C94  7C 08 02 A6 */	mflr r0
 /* 80226D58 00223C98  3C 80 80 48 */	lis r4, lbl_80482E60@ha
@@ -9602,10 +9545,10 @@ clearHeaps__Q34Game10SingleGame10ZukanStateFv:
 /* 802270F0 00224030  7C 08 03 A6 */	mtlr r0
 /* 802270F4 00224034  38 21 03 50 */	addi r1, r1, 0x350
 /* 802270F8 00224038  4E 80 00 20 */	blr 
+.endfn clearHeaps__Q34Game10SingleGame10ZukanStateFv
 .endif
 
-.global cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection, global
 /* 802270FC 0022403C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227100 00224040  7C 08 02 A6 */	mflr r0
 /* 80227104 00224044  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9634,7 +9577,7 @@ cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
 /* 80227160 002240A0  4B DF C4 45 */	bl becomeCurrentHeap__7JKRHeapFv
 /* 80227164 002240A4  80 7F 00 E0 */	lwz r3, 0xe0(r31)
 /* 80227168 002240A8  4B DF C6 4D */	bl getFreeSize__7JKRHeapFv
-/* 8022716C 002240AC  80 0D 95 D0 */	lwz r0, sParentHeapFreeSize_1@sda21(r13)
+/* 8022716C 002240AC  80 0D 95 D0 */	lwz r0, sParentHeapFreeSize@sda21(r13)
 /* 80227170 002240B0  7C 00 18 00 */	cmpw r0, r3
 /* 80227174 002240B4  41 82 00 1C */	beq .L_80227190
 /* 80227178 002240B8  3C 60 80 48 */	lis r3, lbl_80482EDC@ha
@@ -9649,45 +9592,45 @@ cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection:
 /* 80227198 002240D8  7C 08 03 A6 */	mtlr r0
 /* 8022719C 002240DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802271A0 002240E0  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSection
 
-.global getSize__Q28Morimura19DispMemberZukanItemFv
-getSize__Q28Morimura19DispMemberZukanItemFv:
+.fn getSize__Q28Morimura19DispMemberZukanItemFv, weak
 /* 802271A4 002240E4  38 60 00 20 */	li r3, 0x20
 /* 802271A8 002240E8  4E 80 00 20 */	blr 
+.endfn getSize__Q28Morimura19DispMemberZukanItemFv
 
-.global getOwnerID__Q28Morimura19DispMemberZukanItemFv
-getOwnerID__Q28Morimura19DispMemberZukanItemFv:
+.fn getOwnerID__Q28Morimura19DispMemberZukanItemFv, weak
 /* 802271AC 002240EC  3C 60 4D 52 */	lis r3, 0x4D524D52@ha
 /* 802271B0 002240F0  38 63 4D 52 */	addi r3, r3, 0x4D524D52@l
 /* 802271B4 002240F4  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q28Morimura19DispMemberZukanItemFv
 
-.global getMemberID__Q28Morimura19DispMemberZukanItemFv
-getMemberID__Q28Morimura19DispMemberZukanItemFv:
+.fn getMemberID__Q28Morimura19DispMemberZukanItemFv, weak
 /* 802271B8 002240F8  3C 80 49 54 */	lis r4, 0x4954454D@ha
 /* 802271BC 002240FC  38 60 00 44 */	li r3, 0x44
 /* 802271C0 00224100  38 84 45 4D */	addi r4, r4, 0x4954454D@l
 /* 802271C4 00224104  4E 80 00 20 */	blr 
+.endfn getMemberID__Q28Morimura19DispMemberZukanItemFv
 
-.global getSize__Q28Morimura20DispMemberZukanEnemyFv
-getSize__Q28Morimura20DispMemberZukanEnemyFv:
+.fn getSize__Q28Morimura20DispMemberZukanEnemyFv, weak
 /* 802271C8 00224108  38 60 00 20 */	li r3, 0x20
 /* 802271CC 0022410C  4E 80 00 20 */	blr 
+.endfn getSize__Q28Morimura20DispMemberZukanEnemyFv
 
-.global getOwnerID__Q28Morimura20DispMemberZukanEnemyFv
-getOwnerID__Q28Morimura20DispMemberZukanEnemyFv:
+.fn getOwnerID__Q28Morimura20DispMemberZukanEnemyFv, weak
 /* 802271D0 00224110  3C 60 4D 52 */	lis r3, 0x4D524D52@ha
 /* 802271D4 00224114  38 63 4D 52 */	addi r3, r3, 0x4D524D52@l
 /* 802271D8 00224118  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q28Morimura20DispMemberZukanEnemyFv
 
-.global getMemberID__Q28Morimura20DispMemberZukanEnemyFv
-getMemberID__Q28Morimura20DispMemberZukanEnemyFv:
+.fn getMemberID__Q28Morimura20DispMemberZukanEnemyFv, weak
 /* 802271DC 0022411C  3C 80 4E 45 */	lis r4, 0x4E454D59@ha
 /* 802271E0 00224120  38 60 44 45 */	li r3, 0x4445
 /* 802271E4 00224124  38 84 4D 59 */	addi r4, r4, 0x4E454D59@l
 /* 802271E8 00224128  4E 80 00 20 */	blr 
+.endfn getMemberID__Q28Morimura20DispMemberZukanEnemyFv
 
-.global __dt__Q34Game15IllustratedBook6CameraFv
-__dt__Q34Game15IllustratedBook6CameraFv:
+.fn __dt__Q34Game15IllustratedBook6CameraFv, weak
 /* 802271EC 0022412C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802271F0 00224130  7C 08 02 A6 */	mflr r0
 /* 802271F4 00224134  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9742,9 +9685,9 @@ __dt__Q34Game15IllustratedBook6CameraFv:
 /* 802272B0 002241F0  7C 08 03 A6 */	mtlr r0
 /* 802272B4 002241F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802272B8 002241F8  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game15IllustratedBook6CameraFv
 
-.global getLookAtPosition___12LookAtCameraFv
-getLookAtPosition___12LookAtCameraFv:
+.fn getLookAtPosition___12LookAtCameraFv, weak
 /* 802272BC 002241FC  C0 04 01 80 */	lfs f0, 0x180(r4)
 /* 802272C0 00224200  D0 03 00 00 */	stfs f0, 0(r3)
 /* 802272C4 00224204  C0 04 01 84 */	lfs f0, 0x184(r4)
@@ -9752,24 +9695,24 @@ getLookAtPosition___12LookAtCameraFv:
 /* 802272CC 0022420C  C0 04 01 88 */	lfs f0, 0x188(r4)
 /* 802272D0 00224210  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802272D4 00224214  4E 80 00 20 */	blr 
+.endfn getLookAtPosition___12LookAtCameraFv
 
-.global on_getPositionPtr__12LookAtCameraFv
-on_getPositionPtr__12LookAtCameraFv:
+.fn on_getPositionPtr__12LookAtCameraFv, weak
 /* 802272D8 00224218  38 63 01 74 */	addi r3, r3, 0x174
 /* 802272DC 0022421C  4E 80 00 20 */	blr 
+.endfn on_getPositionPtr__12LookAtCameraFv
 
-.global getTargetDistance__6CameraFv
-getTargetDistance__6CameraFv:
+.fn getTargetDistance__6CameraFv, weak
 /* 802272E0 00224220  C0 22 BD C8 */	lfs f1, lbl_8051A128@sda21(r2)
 /* 802272E4 00224224  4E 80 00 20 */	blr 
+.endfn getTargetDistance__6CameraFv
 
-.global isSpecialCamera__6CameraFv
-isSpecialCamera__6CameraFv:
+.fn isSpecialCamera__6CameraFv, weak
 /* 802272E8 00224228  38 60 00 00 */	li r3, 0
 /* 802272EC 0022422C  4E 80 00 20 */	blr 
+.endfn isSpecialCamera__6CameraFv
 
-.global __dt__Q34Game15IllustratedBook11EnemyTexMgrFv
-__dt__Q34Game15IllustratedBook11EnemyTexMgrFv:
+.fn __dt__Q34Game15IllustratedBook11EnemyTexMgrFv, weak
 /* 802272F0 00224230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802272F4 00224234  7C 08 02 A6 */	mflr r0
 /* 802272F8 00224238  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9799,9 +9742,9 @@ __dt__Q34Game15IllustratedBook11EnemyTexMgrFv:
 /* 80227354 00224294  7C 08 03 A6 */	mtlr r0
 /* 80227358 00224298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022735C 0022429C  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game15IllustratedBook11EnemyTexMgrFv
 
-.global __dt__Q34Game15IllustratedBook10DebugParmsFv
-__dt__Q34Game15IllustratedBook10DebugParmsFv:
+.fn __dt__Q34Game15IllustratedBook10DebugParmsFv, weak
 /* 80227360 002242A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80227364 002242A4  7C 08 02 A6 */	mflr r0
 /* 80227368 002242A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9827,9 +9770,9 @@ __dt__Q34Game15IllustratedBook10DebugParmsFv:
 /* 802273B4 002242F4  7C 08 03 A6 */	mtlr r0
 /* 802273B8 002242F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802273BC 002242FC  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game15IllustratedBook10DebugParmsFv
 
-.global "invoke__41Delegate<Q34Game10SingleGame10ZukanState>Fv"
-"invoke__41Delegate<Q34Game10SingleGame10ZukanState>Fv":
+.fn "invoke__41Delegate<Q34Game10SingleGame10ZukanState>Fv", weak
 /* 802273C0 00224300  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802273C4 00224304  7C 08 02 A6 */	mflr r0
 /* 802273C8 00224308  7C 64 1B 78 */	mr r4, r3
@@ -9842,15 +9785,16 @@ __dt__Q34Game15IllustratedBook10DebugParmsFv:
 /* 802273E4 00224324  7C 08 03 A6 */	mtlr r0
 /* 802273E8 00224328  38 21 00 10 */	addi r1, r1, 0x10
 /* 802273EC 0022432C  4E 80 00 20 */	blr 
+.endfn "invoke__41Delegate<Q34Game10SingleGame10ZukanState>Fv"
 
 .fn __sinit_singleGS_Zukan_cpp, local
 /* 802273F0 00224330  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802273F4 00224334  38 00 FF FF */	li r0, -1
 /* 802273F8 00224338  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 802273FC 0022433C  3C 60 80 4C */	lis r3, lbl_804C0A40@ha
-/* 80227400 00224340  90 0D 95 C8 */	stw r0, lbl_80515C48@sda21(r13)
-/* 80227404 00224344  D4 03 0A 40 */	stfsu f0, lbl_804C0A40@l(r3)
-/* 80227408 00224348  D0 0D 95 CC */	stfs f0, lbl_80515C4C@sda21(r13)
+/* 802273FC 0022433C  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80227400 00224340  90 0D 95 C8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80227404 00224344  D4 03 0A 40 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80227408 00224348  D0 0D 95 CC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8022740C 0022434C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80227410 00224350  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80227414 00224354  4E 80 00 20 */	blr 

@@ -340,15 +340,13 @@ __vt__Q34Game13PelletCarcass6Object:
 .balign 8
 .global mgr__Q24Game13PelletCarcass
 mgr__Q24Game13PelletCarcass:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519CF8
 lbl_80519CF8:
 	.4byte 0x43617263
 	.4byte 0x61737300
-.global lbl_80519D00
 lbl_80519D00:
 	.4byte 0x63617263
 	.4byte 0x61737300

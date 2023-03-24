@@ -220,61 +220,87 @@
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051B2E8:
-	.4byte 0x43000000
-lbl_8051B2EC:
-	.4byte 0x686F7070
-	.4byte 0x65000000
-lbl_8051B2F4:
-	.4byte 0x00000000
-lbl_8051B2F8:
+.obj lbl_8051B2E8, local
+	.float 128.0
+.endobj lbl_8051B2E8
+.balign 4
+.obj lbl_8051B2EC, local
+	.asciz "hoppe"
+.endobj lbl_8051B2EC
+.balign 4
+.obj lbl_8051B2F4, local
+	.float 0.0
+.endobj lbl_8051B2F4
+.obj lbl_8051B2F8, local
 	.float 1.0
-lbl_8051B2FC:
-	.4byte 0x40200000
-lbl_8051B300:
-	.4byte 0x42480000
-lbl_8051B304:
-	.4byte 0x41A00000
-lbl_8051B308:
-	.4byte 0x41700000
-lbl_8051B30C:
-	.4byte 0x7273756E
-	.4byte 0x65520000
-lbl_8051B314:
-	.4byte 0x40000000
-lbl_8051B318:
-	.4byte 0x7273756E
-	.4byte 0x654C0000
-lbl_8051B320:
-	.4byte 0x6673756E
-	.4byte 0x65520000
-lbl_8051B328:
-	.4byte 0x40400000
-lbl_8051B32C:
-	.4byte 0x6673756E
-	.4byte 0x654C0000
-lbl_8051B334:
-	.4byte 0x43A2F983
-lbl_8051B338:
-	.4byte 0xC3A2F983
-lbl_8051B33C:
+.endobj lbl_8051B2F8
+.obj lbl_8051B2FC, local
+	.float 2.5
+.endobj lbl_8051B2FC
+.obj lbl_8051B300, local
+	.float 50.0
+.endobj lbl_8051B300
+.obj lbl_8051B304, local
+	.float 20.0
+.endobj lbl_8051B304
+.obj lbl_8051B308, local
+	.float 15.0
+.endobj lbl_8051B308
+.balign 4
+.obj lbl_8051B30C, local
+	.asciz "rsuneR"
+.endobj lbl_8051B30C
+.balign 4
+.obj lbl_8051B314, local
+	.float 2.0
+.endobj lbl_8051B314
+.balign 4
+.obj lbl_8051B318, local
+	.asciz "rsuneL"
+.endobj lbl_8051B318
+.balign 4
+.obj lbl_8051B320, local
+	.asciz "fsuneR"
+.endobj lbl_8051B320
+.balign 4
+.obj lbl_8051B328, local
+	.float 3.0
+.endobj lbl_8051B328
+.balign 4
+.obj lbl_8051B32C, local
+	.asciz "fsuneL"
+.endobj lbl_8051B32C
+.balign 4
+.obj lbl_8051B334, local
+	.float 325.9493
+.endobj lbl_8051B334
+.obj lbl_8051B338, local
+	.float -325.9493
+.endobj lbl_8051B338
+.obj lbl_8051B33C, local
 	.float 0.5
-lbl_8051B340:
-	.4byte 0x3A83126F
-lbl_8051B344:
-	.4byte 0x41200000
-lbl_8051B348:
-	.4byte 0x3F19999A
-lbl_8051B34C:
-	.4byte 0x40A00000
-lbl_8051B350:
-	.4byte 0x43340000
-lbl_8051B354:
-	.4byte 0x3F0CCCCD
+.endobj lbl_8051B33C
+.obj lbl_8051B340, local
+	.float 0.001
+.endobj lbl_8051B340
+.obj lbl_8051B344, local
+	.float 10.0
+.endobj lbl_8051B344
+.obj lbl_8051B348, local
+	.float 0.6
+.endobj lbl_8051B348
+.obj lbl_8051B34C, local
+	.float 5.0
+.endobj lbl_8051B34C
+.obj lbl_8051B350, local
+	.float 180.0
+.endobj lbl_8051B350
+.obj lbl_8051B354, local
+	.float 0.55
+.endobj lbl_8051B354
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game4Tank3ObjFv
-__ct__Q34Game4Tank3ObjFv:
+.fn __ct__Q34Game4Tank3ObjFv, global
 /* 80275D8C 00272CCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80275D90 00272CD0  7C 08 02 A6 */	mflr r0
 /* 80275D94 00272CD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -356,13 +382,13 @@ __ct__Q34Game4Tank3ObjFv:
 /* 80275EB8 00272DF8  7C 08 03 A6 */	mtlr r0
 /* 80275EBC 00272DFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80275EC0 00272E00  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Tank3ObjFv
 
-.global setInitialSetting__Q34Game4Tank3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game4Tank3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game4Tank3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 80275EC4 00272E04  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game4Tank3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game4Tank3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game4Tank3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game4Tank3ObjFPQ24Game15CreatureInitArg, global
 /* 80275EC8 00272E08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80275ECC 00272E0C  7C 08 02 A6 */	mflr r0
 /* 80275ED0 00272E10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -402,13 +428,13 @@ onInit__Q34Game4Tank3ObjFPQ24Game15CreatureInitArg:
 /* 80275F58 00272E98  7C 08 03 A6 */	mtlr r0
 /* 80275F5C 00272E9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80275F60 00272EA0  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game4Tank3ObjFPQ24Game15CreatureInitArg
 
-.global setupEffect__Q34Game4Tank3ObjFv
-setupEffect__Q34Game4Tank3ObjFv:
+.fn setupEffect__Q34Game4Tank3ObjFv, weak
 /* 80275F64 00272EA4  4E 80 00 20 */	blr 
+.endfn setupEffect__Q34Game4Tank3ObjFv
 
-.global onKill__Q34Game4Tank3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game4Tank3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game4Tank3ObjFPQ24Game15CreatureKillArg, global
 /* 80275F68 00272EA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80275F6C 00272EAC  7C 08 02 A6 */	mflr r0
 /* 80275F70 00272EB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -429,9 +455,9 @@ onKill__Q34Game4Tank3ObjFPQ24Game15CreatureKillArg:
 /* 80275FAC 00272EEC  7C 08 03 A6 */	mtlr r0
 /* 80275FB0 00272EF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80275FB4 00272EF4  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game4Tank3ObjFPQ24Game15CreatureKillArg
 
-.global doUpdate__Q34Game4Tank3ObjFv
-doUpdate__Q34Game4Tank3ObjFv:
+.fn doUpdate__Q34Game4Tank3ObjFv, global
 /* 80275FB8 00272EF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80275FBC 00272EFC  7C 08 02 A6 */	mflr r0
 /* 80275FC0 00272F00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -451,13 +477,13 @@ doUpdate__Q34Game4Tank3ObjFv:
 /* 80275FF8 00272F38  7C 08 03 A6 */	mtlr r0
 /* 80275FFC 00272F3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276000 00272F40  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game4Tank3ObjFv
 
-.global doDirectDraw__Q34Game4Tank3ObjFR8Graphics
-doDirectDraw__Q34Game4Tank3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game4Tank3ObjFR8Graphics, global
 /* 80276004 00272F44  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game4Tank3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game4Tank3ObjFR8Graphics
-doDebugDraw__Q34Game4Tank3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game4Tank3ObjFR8Graphics, global
 /* 80276008 00272F48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027600C 00272F4C  7C 08 02 A6 */	mflr r0
 /* 80276010 00272F50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -466,9 +492,9 @@ doDebugDraw__Q34Game4Tank3ObjFR8Graphics:
 /* 8027601C 00272F5C  7C 08 03 A6 */	mtlr r0
 /* 80276020 00272F60  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276024 00272F64  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game4Tank3ObjFR8Graphics
 
-.global setFSM__Q34Game4Tank3ObjFPQ34Game4Tank3FSM
-setFSM__Q34Game4Tank3ObjFPQ34Game4Tank3FSM:
+.fn setFSM__Q34Game4Tank3ObjFPQ34Game4Tank3FSM, global
 /* 80276028 00272F68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027602C 00272F6C  7C 08 02 A6 */	mflr r0
 /* 80276030 00272F70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -488,9 +514,9 @@ setFSM__Q34Game4Tank3ObjFPQ34Game4Tank3FSM:
 /* 80276068 00272FA8  7C 08 03 A6 */	mtlr r0
 /* 8027606C 00272FAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276070 00272FB0  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game4Tank3ObjFPQ34Game4Tank3FSM
 
-.global getShadowParam__Q34Game4Tank3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game4Tank3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game4Tank3ObjFRQ24Game11ShadowParam, global
 /* 80276074 00272FB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80276078 00272FB8  7C 08 02 A6 */	mflr r0
 /* 8027607C 00272FBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -529,9 +555,9 @@ getShadowParam__Q34Game4Tank3ObjFRQ24Game11ShadowParam:
 /* 802760F8 00273038  7C 08 03 A6 */	mtlr r0
 /* 802760FC 0027303C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276100 00273040  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game4Tank3ObjFRQ24Game11ShadowParam
 
-.global doStartStoneState__Q34Game4Tank3ObjFv
-doStartStoneState__Q34Game4Tank3ObjFv:
+.fn doStartStoneState__Q34Game4Tank3ObjFv, global
 /* 80276104 00273044  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80276108 00273048  7C 08 02 A6 */	mflr r0
 /* 8027610C 0027304C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -554,9 +580,9 @@ doStartStoneState__Q34Game4Tank3ObjFv:
 /* 8027614C 0027308C  7C 08 03 A6 */	mtlr r0
 /* 80276150 00273090  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276154 00273094  4E 80 00 20 */	blr 
+.endfn doStartStoneState__Q34Game4Tank3ObjFv
 
-.global doFinishStoneState__Q34Game4Tank3ObjFv
-doFinishStoneState__Q34Game4Tank3ObjFv:
+.fn doFinishStoneState__Q34Game4Tank3ObjFv, global
 /* 80276158 00273098  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027615C 0027309C  7C 08 02 A6 */	mflr r0
 /* 80276160 002730A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -577,9 +603,9 @@ doFinishStoneState__Q34Game4Tank3ObjFv:
 /* 80276198 002730D8  7C 08 03 A6 */	mtlr r0
 /* 8027619C 002730DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802761A0 002730E0  4E 80 00 20 */	blr 
+.endfn doFinishStoneState__Q34Game4Tank3ObjFv
 
-.global doStartEarthquakeFitState__Q34Game4Tank3ObjFv
-doStartEarthquakeFitState__Q34Game4Tank3ObjFv:
+.fn doStartEarthquakeFitState__Q34Game4Tank3ObjFv, global
 /* 802761A4 002730E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802761A8 002730E8  7C 08 02 A6 */	mflr r0
 /* 802761AC 002730EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -602,9 +628,9 @@ doStartEarthquakeFitState__Q34Game4Tank3ObjFv:
 /* 802761EC 0027312C  7C 08 03 A6 */	mtlr r0
 /* 802761F0 00273130  38 21 00 10 */	addi r1, r1, 0x10
 /* 802761F4 00273134  4E 80 00 20 */	blr 
+.endfn doStartEarthquakeFitState__Q34Game4Tank3ObjFv
 
-.global doFinishEarthquakeFitState__Q34Game4Tank3ObjFv
-doFinishEarthquakeFitState__Q34Game4Tank3ObjFv:
+.fn doFinishEarthquakeFitState__Q34Game4Tank3ObjFv, global
 /* 802761F8 00273138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802761FC 0027313C  7C 08 02 A6 */	mflr r0
 /* 80276200 00273140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -625,9 +651,9 @@ doFinishEarthquakeFitState__Q34Game4Tank3ObjFv:
 /* 80276238 00273178  7C 08 03 A6 */	mtlr r0
 /* 8027623C 0027317C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276240 00273180  4E 80 00 20 */	blr 
+.endfn doFinishEarthquakeFitState__Q34Game4Tank3ObjFv
 
-.global doStartWaitingBirthTypeDrop__Q34Game4Tank3ObjFv
-doStartWaitingBirthTypeDrop__Q34Game4Tank3ObjFv:
+.fn doStartWaitingBirthTypeDrop__Q34Game4Tank3ObjFv, global
 /* 80276244 00273184  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80276248 00273188  7C 08 02 A6 */	mflr r0
 /* 8027624C 0027318C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -644,13 +670,13 @@ doStartWaitingBirthTypeDrop__Q34Game4Tank3ObjFv:
 /* 80276278 002731B8  7C 08 03 A6 */	mtlr r0
 /* 8027627C 002731BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276280 002731C0  4E 80 00 20 */	blr 
+.endfn doStartWaitingBirthTypeDrop__Q34Game4Tank3ObjFv
 
-.global effectDrawOff__Q34Game4Tank3ObjFv
-effectDrawOff__Q34Game4Tank3ObjFv:
+.fn effectDrawOff__Q34Game4Tank3ObjFv, weak
 /* 80276284 002731C4  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game4Tank3ObjFv
 
-.global doFinishWaitingBirthTypeDrop__Q34Game4Tank3ObjFv
-doFinishWaitingBirthTypeDrop__Q34Game4Tank3ObjFv:
+.fn doFinishWaitingBirthTypeDrop__Q34Game4Tank3ObjFv, global
 /* 80276288 002731C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027628C 002731CC  7C 08 02 A6 */	mflr r0
 /* 80276290 002731D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -667,13 +693,13 @@ doFinishWaitingBirthTypeDrop__Q34Game4Tank3ObjFv:
 /* 802762BC 002731FC  7C 08 03 A6 */	mtlr r0
 /* 802762C0 00273200  38 21 00 10 */	addi r1, r1, 0x10
 /* 802762C4 00273204  4E 80 00 20 */	blr 
+.endfn doFinishWaitingBirthTypeDrop__Q34Game4Tank3ObjFv
 
-.global effectDrawOn__Q34Game4Tank3ObjFv
-effectDrawOn__Q34Game4Tank3ObjFv:
+.fn effectDrawOn__Q34Game4Tank3ObjFv, weak
 /* 802762C8 00273208  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game4Tank3ObjFv
 
-.global startCarcassMotion__Q34Game4Tank3ObjFv
-startCarcassMotion__Q34Game4Tank3ObjFv:
+.fn startCarcassMotion__Q34Game4Tank3ObjFv, global
 /* 802762CC 0027320C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802762D0 00273210  7C 08 02 A6 */	mflr r0
 /* 802762D4 00273214  38 80 00 06 */	li r4, 6
@@ -684,9 +710,9 @@ startCarcassMotion__Q34Game4Tank3ObjFv:
 /* 802762E8 00273228  7C 08 03 A6 */	mtlr r0
 /* 802762EC 0027322C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802762F0 00273230  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game4Tank3ObjFv
 
-.global doStartMovie__Q34Game4Tank3ObjFv
-doStartMovie__Q34Game4Tank3ObjFv:
+.fn doStartMovie__Q34Game4Tank3ObjFv, global
 /* 802762F4 00273234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802762F8 00273238  7C 08 02 A6 */	mflr r0
 /* 802762FC 0027323C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -698,9 +724,9 @@ doStartMovie__Q34Game4Tank3ObjFv:
 /* 80276314 00273254  7C 08 03 A6 */	mtlr r0
 /* 80276318 00273258  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027631C 0027325C  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game4Tank3ObjFv
 
-.global doEndMovie__Q34Game4Tank3ObjFv
-doEndMovie__Q34Game4Tank3ObjFv:
+.fn doEndMovie__Q34Game4Tank3ObjFv, global
 /* 80276320 00273260  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80276324 00273264  7C 08 02 A6 */	mflr r0
 /* 80276328 00273268  90 01 00 14 */	stw r0, 0x14(r1)
@@ -712,9 +738,9 @@ doEndMovie__Q34Game4Tank3ObjFv:
 /* 80276340 00273280  7C 08 03 A6 */	mtlr r0
 /* 80276344 00273284  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276348 00273288  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game4Tank3ObjFv
 
-.global getOffsetForMapCollision__Q34Game4Tank3ObjFv
-getOffsetForMapCollision__Q34Game4Tank3ObjFv:
+.fn getOffsetForMapCollision__Q34Game4Tank3ObjFv, global
 /* 8027634C 0027328C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80276350 00273290  7C 08 02 A6 */	mflr r0
 /* 80276354 00273294  90 01 00 24 */	stw r0, 0x24(r1)
@@ -766,9 +792,9 @@ getOffsetForMapCollision__Q34Game4Tank3ObjFv:
 /* 80276404 00273344  7C 08 03 A6 */	mtlr r0
 /* 80276408 00273348  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027640C 0027334C  4E 80 00 20 */	blr 
+.endfn getOffsetForMapCollision__Q34Game4Tank3ObjFv
 
-.global initWalkSmokeEffect__Q34Game4Tank3ObjFv
-initWalkSmokeEffect__Q34Game4Tank3ObjFv:
+.fn initWalkSmokeEffect__Q34Game4Tank3ObjFv, global
 /* 80276410 00273350  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80276414 00273354  7C 08 02 A6 */	mflr r0
 /* 80276418 00273358  38 80 00 04 */	li r4, 4
@@ -806,14 +832,14 @@ initWalkSmokeEffect__Q34Game4Tank3ObjFv:
 /* 80276498 002733D8  7C 08 03 A6 */	mtlr r0
 /* 8027649C 002733DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802764A0 002733E0  4E 80 00 20 */	blr 
+.endfn initWalkSmokeEffect__Q34Game4Tank3ObjFv
 
-.global getWalkSmokeEffectMgr__Q34Game4Tank3ObjFv
-getWalkSmokeEffectMgr__Q34Game4Tank3ObjFv:
+.fn getWalkSmokeEffectMgr__Q34Game4Tank3ObjFv, global
 /* 802764A4 002733E4  38 63 02 C4 */	addi r3, r3, 0x2c4
 /* 802764A8 002733E8  4E 80 00 20 */	blr 
+.endfn getWalkSmokeEffectMgr__Q34Game4Tank3ObjFv
 
-.global "getCommonEffectPos__Q34Game4Tank3ObjFR10Vector3<f>"
-"getCommonEffectPos__Q34Game4Tank3ObjFR10Vector3<f>":
+.fn "getCommonEffectPos__Q34Game4Tank3ObjFR10Vector3<f>", global
 /* 802764AC 002733EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802764B0 002733F0  7C 08 02 A6 */	mflr r0
 /* 802764B4 002733F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -835,9 +861,9 @@ getWalkSmokeEffectMgr__Q34Game4Tank3ObjFv:
 /* 802764F4 00273434  7C 08 03 A6 */	mtlr r0
 /* 802764F8 00273438  38 21 00 20 */	addi r1, r1, 0x20
 /* 802764FC 0027343C  4E 80 00 20 */	blr 
+.endfn "getCommonEffectPos__Q34Game4Tank3ObjFR10Vector3<f>"
 
-.global isAttackable__Q34Game4Tank3ObjFb
-isAttackable__Q34Game4Tank3ObjFb:
+.fn isAttackable__Q34Game4Tank3ObjFb, global
 /* 80276500 00273440  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 80276504 00273444  7C 08 02 A6 */	mflr r0
 /* 80276508 00273448  90 01 01 04 */	stw r0, 0x104(r1)
@@ -1058,13 +1084,13 @@ isAttackable__Q34Game4Tank3ObjFb:
 /* 8027682C 0027376C  7C 08 03 A6 */	mtlr r0
 /* 80276830 00273770  38 21 01 00 */	addi r1, r1, 0x100
 /* 80276834 00273774  4E 80 00 20 */	blr 
+.endfn isAttackable__Q34Game4Tank3ObjFb
 
-.global interactCreature__Q34Game4Tank3ObjFPQ24Game8Creature
-interactCreature__Q34Game4Tank3ObjFPQ24Game8Creature:
+.fn interactCreature__Q34Game4Tank3ObjFPQ24Game8Creature, weak
 /* 80276838 00273778  4E 80 00 20 */	blr 
+.endfn interactCreature__Q34Game4Tank3ObjFPQ24Game8Creature
 
-.global "emitCollideRatio__Q34Game4Tank3ObjFR10Vector3<f>R10Vector3<f>f"
-"emitCollideRatio__Q34Game4Tank3ObjFR10Vector3<f>R10Vector3<f>f":
+.fn "emitCollideRatio__Q34Game4Tank3ObjFR10Vector3<f>R10Vector3<f>f", global
 /* 8027683C 0027377C  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 80276840 00273780  7C 08 02 A6 */	mflr r0
 /* 80276844 00273784  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -1210,13 +1236,13 @@ interactCreature__Q34Game4Tank3ObjFPQ24Game8Creature:
 /* 80276A58 00273998  7C 08 03 A6 */	mtlr r0
 /* 80276A5C 0027399C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80276A60 002739A0  4E 80 00 20 */	blr 
+.endfn "emitCollideRatio__Q34Game4Tank3ObjFR10Vector3<f>R10Vector3<f>f"
 
-.global stopEffectRadius__Q34Game4Tank3ObjFf
-stopEffectRadius__Q34Game4Tank3ObjFf:
+.fn stopEffectRadius__Q34Game4Tank3ObjFf, weak
 /* 80276A64 002739A4  4E 80 00 20 */	blr 
+.endfn stopEffectRadius__Q34Game4Tank3ObjFf
 
-.global updateEmit__Q34Game4Tank3ObjFv
-updateEmit__Q34Game4Tank3ObjFv:
+.fn updateEmit__Q34Game4Tank3ObjFv, global
 /* 80276A68 002739A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80276A6C 002739AC  7C 08 02 A6 */	mflr r0
 /* 80276A70 002739B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1297,9 +1323,9 @@ updateEmit__Q34Game4Tank3ObjFv:
 /* 80276B8C 00273ACC  7C 08 03 A6 */	mtlr r0
 /* 80276B90 00273AD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276B94 00273AD4  4E 80 00 20 */	blr 
+.endfn updateEmit__Q34Game4Tank3ObjFv
 
-.global updateCaution__Q34Game4Tank3ObjFv
-updateCaution__Q34Game4Tank3ObjFv:
+.fn updateCaution__Q34Game4Tank3ObjFv, global
 /* 80276B98 00273AD8  80 83 01 E0 */	lwz r4, 0x1e0(r3)
 /* 80276B9C 00273ADC  54 80 06 F7 */	rlwinm. r0, r4, 0, 0x1b, 0x1b
 /* 80276BA0 00273AE0  40 82 00 18 */	bne .L_80276BB8
@@ -1322,9 +1348,9 @@ updateCaution__Q34Game4Tank3ObjFv:
 /* 80276BDC 00273B1C  EC 01 00 2A */	fadds f0, f1, f0
 /* 80276BE0 00273B20  D0 03 02 EC */	stfs f0, 0x2ec(r3)
 /* 80276BE4 00273B24  4E 80 00 20 */	blr 
+.endfn updateCaution__Q34Game4Tank3ObjFv
 
-.global getViewAngle__Q34Game4Tank3ObjFv
-getViewAngle__Q34Game4Tank3ObjFv:
+.fn getViewAngle__Q34Game4Tank3ObjFv, global
 /* 80276BE8 00273B28  80 83 00 C0 */	lwz r4, 0xc0(r3)
 /* 80276BEC 00273B2C  C0 23 02 EC */	lfs f1, 0x2ec(r3)
 /* 80276BF0 00273B30  C0 04 06 2C */	lfs f0, 0x62c(r4)
@@ -1335,9 +1361,9 @@ getViewAngle__Q34Game4Tank3ObjFv:
 .L_80276C04:
 /* 80276C04 00273B44  C0 24 04 24 */	lfs f1, 0x424(r4)
 /* 80276C08 00273B48  4E 80 00 20 */	blr 
+.endfn getViewAngle__Q34Game4Tank3ObjFv
 
-.global __dt__Q34Game4Tank3ObjFv
-__dt__Q34Game4Tank3ObjFv:
+.fn __dt__Q34Game4Tank3ObjFv, weak
 /* 80276C0C 00273B4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80276C10 00273B50  7C 08 02 A6 */	mflr r0
 /* 80276C14 00273B54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1387,65 +1413,66 @@ __dt__Q34Game4Tank3ObjFv:
 /* 80276CBC 00273BFC  7C 08 03 A6 */	mtlr r0
 /* 80276CC0 00273C00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80276CC4 00273C04  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game4Tank3ObjFv
 
-.global getDownSmokeScale__Q34Game4Tank3ObjFv
-getDownSmokeScale__Q34Game4Tank3ObjFv:
+.fn getDownSmokeScale__Q34Game4Tank3ObjFv, weak
 /* 80276CC8 00273C08  C0 22 CF F4 */	lfs f1, lbl_8051B354@sda21(r2)
 /* 80276CCC 00273C0C  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game4Tank3ObjFv
 
-.global getEnemyTypeID__Q34Game4Tank3ObjFv
-getEnemyTypeID__Q34Game4Tank3ObjFv:
+.fn getEnemyTypeID__Q34Game4Tank3ObjFv, weak
 /* 80276CD0 00273C10  38 60 00 18 */	li r3, 0x18
 /* 80276CD4 00273C14  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game4Tank3ObjFv
 
-.global createEffect__Q34Game4Tank3ObjFv
-createEffect__Q34Game4Tank3ObjFv:
+.fn createEffect__Q34Game4Tank3ObjFv, weak
 /* 80276CD8 00273C18  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game4Tank3ObjFv
 
-.global "@776@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-"@776@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
+.fn "@776@12@viewOnPelletKilled__Q24Game9EnemyBaseFv", weak
 /* 80276CDC 00273C1C  39 60 00 0C */	li r11, 0xc
 /* 80276CE0 00273C20  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80276CE4 00273C24  7C 63 5A 14 */	add r3, r3, r11
 /* 80276CE8 00273C28  38 63 FC F8 */	addi r3, r3, -776
 /* 80276CEC 00273C2C  4B E8 FC 30 */	b viewOnPelletKilled__Q24Game9EnemyBaseFv
+.endfn "@776@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 
-.global "@776@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-"@776@12@viewStartCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@776@12@viewStartCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 80276CF0 00273C30  39 60 00 0C */	li r11, 0xc
 /* 80276CF4 00273C34  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80276CF8 00273C38  7C 63 5A 14 */	add r3, r3, r11
 /* 80276CFC 00273C3C  38 63 FC F8 */	addi r3, r3, -776
 /* 80276D00 00273C40  4B E8 F9 A8 */	b viewStartCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@776@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@776@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-"@776@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@776@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 80276D04 00273C44  39 60 00 0C */	li r11, 0xc
 /* 80276D08 00273C48  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80276D0C 00273C4C  7C 63 5A 14 */	add r3, r3, r11
 /* 80276D10 00273C50  38 63 FC F8 */	addi r3, r3, -776
 /* 80276D14 00273C54  4B E8 F9 B4 */	b viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@776@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@776@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-"@776@12@view_finish_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@776@12@view_finish_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 80276D18 00273C58  39 60 00 0C */	li r11, 0xc
 /* 80276D1C 00273C5C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80276D20 00273C60  7C 63 5A 14 */	add r3, r3, r11
 /* 80276D24 00273C64  38 63 FC F8 */	addi r3, r3, -776
 /* 80276D28 00273C68  4B E8 FD 50 */	b view_finish_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@776@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@776@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-"@776@12@view_start_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@776@12@view_start_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 80276D2C 00273C6C  39 60 00 0C */	li r11, 0xc
 /* 80276D30 00273C70  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80276D34 00273C74  7C 63 5A 14 */	add r3, r3, r11
 /* 80276D38 00273C78  38 63 FC F8 */	addi r3, r3, -776
 /* 80276D3C 00273C7C  4B E8 FD 10 */	b view_start_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@776@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@776@12@viewGetShape__Q24Game9EnemyBaseFv"
-"@776@12@viewGetShape__Q24Game9EnemyBaseFv":
+.fn "@776@12@viewGetShape__Q24Game9EnemyBaseFv", weak
 /* 80276D40 00273C80  39 60 00 0C */	li r11, 0xc
 /* 80276D44 00273C84  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80276D48 00273C88  7C 63 5A 14 */	add r3, r3, r11
 /* 80276D4C 00273C8C  38 63 FC F8 */	addi r3, r3, -776
 /* 80276D50 00273C90  4B E8 F9 50 */	b viewGetShape__Q24Game9EnemyBaseFv
+.endfn "@776@12@viewGetShape__Q24Game9EnemyBaseFv"

@@ -1,12 +1,10 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80480168
 lbl_80480168:
 	.4byte 0x706C6174
 	.4byte 0x2D6F6262
 	.4byte 0x00000000
-.global lbl_80480174
 lbl_80480174:
 	.4byte 0x706C6174
 	.4byte 0x696E7374
@@ -186,10 +184,8 @@ platMgr__4Game:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519588
 lbl_80519588:
 	.4byte 0x00000000
-.global lbl_8051958C
 lbl_8051958C:
 	.4byte 0x4B435000
 

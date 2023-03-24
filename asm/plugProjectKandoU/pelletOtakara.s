@@ -5,24 +5,20 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80481B50
 lbl_80481B50:
 	.4byte 0x70656C6C
 	.4byte 0x65744F74
 	.4byte 0x616B6172
 	.4byte 0x612E6370
 	.4byte 0x70000000
-.global lbl_80481B64
 lbl_80481B64:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80481B70
+.balign 4
 lbl_80481B70:
 	.4byte 0x696E6469
 	.4byte 0x72656374
 	.4byte 0x5F746578
 	.4byte 0x00000000
-.global lbl_80481B80
 lbl_80481B80:
 	.4byte 0x6F74616B
 	.4byte 0x6172615F
@@ -33,7 +29,6 @@ lbl_80481B80:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BE4E0
 lbl_804BE4E0:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -368,10 +363,8 @@ __vt__Q34Game13PelletOtakara6Object:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515B98
 lbl_80515B98:
 	.skip 0x4
-.global lbl_80515B9C
 lbl_80515B9C:
 	.skip 0x4
 .global mgr__Q24Game13PelletOtakara
@@ -380,24 +373,18 @@ mgr__Q24Game13PelletOtakara:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519D18
 lbl_80519D18:
 	.4byte 0x66627465
 	.4byte 0x78000000
-.global lbl_80519D20
 lbl_80519D20:
 	.4byte 0x00000000
-.global lbl_80519D24
 lbl_80519D24:
 	.float 1.0
-.global lbl_80519D28
 lbl_80519D28:
 	.4byte 0x4F74616B
 	.4byte 0x61726100
-.global lbl_80519D30
 lbl_80519D30:
 	.float 0.5
-.global lbl_80519D34
 lbl_80519D34:
 	.4byte 0x6F74616B
 	.4byte 0x61726100

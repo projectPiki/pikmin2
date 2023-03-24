@@ -1,12 +1,10 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80480390
 lbl_80480390:
 	.4byte 0x6974656D
 	.4byte 0x4D67722E
 	.4byte 0x63707000
-.global lbl_8048039C
 lbl_8048039C:
 	.4byte 0x28257329
 	.4byte 0x206E6F20
@@ -14,7 +12,6 @@ lbl_8048039C:
 	.4byte 0x6E644372
 	.4byte 0x65617475
 	.4byte 0x72650A00
-.global lbl_804803B4
 lbl_804803B4:
 	.4byte 0x63656C6C
 	.4byte 0x4C617965
@@ -23,11 +20,9 @@ lbl_804803B4:
 	.4byte 0x76657266
 	.4byte 0x6C6F770A
 	.4byte 0x00000000
-.global lbl_804803D0
 lbl_804803D0:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_804803DC
+.balign 4
 lbl_804803DC:
 	.4byte 0x42617365
 	.4byte 0x4974656D
@@ -36,7 +31,6 @@ lbl_804803DC:
 	.4byte 0x6C206572
 	.4byte 0x726F720A
 	.4byte 0x00000000
-.global lbl_804803F8
 lbl_804803F8:
 	.4byte 0x416E696D
 	.4byte 0x4D677220
@@ -46,7 +40,6 @@ lbl_804803F8:
 	.4byte 0x6C656420
 	.4byte 0x21202573
 	.4byte 0x0A000000
-.global lbl_80480418
 lbl_80480418:
 	.4byte 0x706C6174
 	.4byte 0x41747461
@@ -56,7 +49,6 @@ lbl_80480418:
 	.4byte 0x666F756E
 	.4byte 0x6420210A
 	.4byte 0x00000000
-.global lbl_80480438
 lbl_80480438:
 	.4byte 0x83418343
 	.4byte 0x83658380
@@ -626,19 +618,14 @@ itemMgr__4Game:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519618
 lbl_80519618:
 	.4byte 0x00000000
-.global lbl_8051961C
 lbl_8051961C:
 	.float 1.0
-.global lbl_80519620
 lbl_80519620:
 	.4byte 0x3F19999A
-.global lbl_80519624
 lbl_80519624:
 	.4byte 0x41F00000
-.global lbl_80519628
 lbl_80519628:
 	.4byte 0x25732F25
 	.4byte 0x73000000

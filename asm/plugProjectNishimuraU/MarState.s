@@ -1,14 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80487800
-lbl_80487800:
+.obj lbl_80487800, local
 	.asciz "246-MarState"
-	.skip 3
+.endobj lbl_80487800
+.balign 4
+.obj lbl_80487810, local
 	.asciz "chaseinside"
+.endobj lbl_80487810
+.balign 4
+.obj lbl_8048781C, local
 	.asciz "flyflick"
-	.skip 3
+.endobj lbl_8048781C
+.balign 4
+.obj lbl_80487828, local
 	.asciz "groundflick"
+.endobj lbl_80487828
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -169,79 +176,57 @@ __vt__Q34Game3Mar3FSM:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051B640
 lbl_8051B640:
 	.4byte 0x64656164
 	.4byte 0x00000000
-.global lbl_8051B648
 lbl_8051B648:
 	.4byte 0x77616974
 	.4byte 0x00000000
-.global lbl_8051B650
 lbl_8051B650:
 	.4byte 0x6D6F7665
 	.4byte 0x00000000
-.global lbl_8051B658
 lbl_8051B658:
 	.4byte 0x63686173
 	.4byte 0x65000000
-.global lbl_8051B660
 lbl_8051B660:
 	.4byte 0x61747461
 	.4byte 0x636B0000
-.global lbl_8051B668
 lbl_8051B668:
 	.4byte 0x66616C6C
 	.4byte 0x00000000
-.global lbl_8051B670
 lbl_8051B670:
 	.4byte 0x6C616E64
 	.4byte 0x00000000
-.global lbl_8051B678
 lbl_8051B678:
 	.4byte 0x67726F75
 	.4byte 0x6E640000
-.global lbl_8051B680
 lbl_8051B680:
 	.4byte 0x74616B65
 	.4byte 0x6F666600
-.global lbl_8051B688
 lbl_8051B688:
 	.4byte 0x00000000
-.global lbl_8051B68C
 lbl_8051B68C:
 	.4byte 0x42340000
-.global lbl_8051B690
 lbl_8051B690:
 	.4byte 0x461C4000
-.global lbl_8051B694
 lbl_8051B694:
 	.4byte 0x40F00000
-.global lbl_8051B698
 lbl_8051B698:
 	.float 1.0
-.global lbl_8051B69C
 lbl_8051B69C:
 	.4byte 0x40490FDB
-.global lbl_8051B6A0
 lbl_8051B6A0:
 	.4byte 0x3BB60B61
-.global lbl_8051B6A4
 lbl_8051B6A4:
 	.4byte 0x43610000
-.global lbl_8051B6A8
 lbl_8051B6A8:
 	.4byte 0xC3A2F983
-.global lbl_8051B6AC
 lbl_8051B6AC:
 	.4byte 0x43A2F983
-.global lbl_8051B6B0
 lbl_8051B6B0:
 	.4byte 0x42480000
-.global lbl_8051B6B4
 lbl_8051B6B4:
 	.4byte 0x3F400000
-.global lbl_8051B6B8
 lbl_8051B6B8:
 	.4byte 0xC47A0000
 	.4byte 0x00000000

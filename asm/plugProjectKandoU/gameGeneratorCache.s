@@ -1,152 +1,121 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80481480:
-	.4byte 0x67656E65
-	.4byte 0x7261746F
-	.4byte 0x72436163
-	.4byte 0x68650000
-lbl_80481490:
-	.4byte 0x67616D65
-	.4byte 0x47656E65
-	.4byte 0x7261746F
-	.4byte 0x72436163
-	.4byte 0x68652E63
-	.4byte 0x70700000
-	.4byte 0x6E6F2072
-	.4byte 0x616D2067
-	.4byte 0x656E6572
-	.4byte 0x61746F72
-	.4byte 0x20256420
-	.4byte 0x25640A00
-	.4byte 0x6C6F6164
-	.4byte 0x435B2573
-	.4byte 0x5D286E6F
-	.4byte 0x2564293A
-	.4byte 0x25730000
-	.4byte 0x6C6F6164
-	.4byte 0x43286E6F
-	.4byte 0x2564290A
-	.4byte 0x00000000
-	.4byte 0x42656769
-	.4byte 0x6E536176
-	.4byte 0x653A3A43
-	.4byte 0x61636865
-	.4byte 0x20282564
-	.4byte 0x29206973
-	.4byte 0x20616C69
-	.4byte 0x76652021
-	.4byte 0x0A000000
-	.4byte 0x42656769
-	.4byte 0x6E536176
-	.4byte 0x653A3A43
-	.4byte 0x61636865
-	.4byte 0x20282564
-	.4byte 0x29206973
-	.4byte 0x20696E76
-	.4byte 0x616C6964
-	.4byte 0x20210A00
-lbl_8048152C:
-	.asciz "P2Assert"
+.obj lbl_80481480, local
+	.asciz "generatorCache"
+.endobj lbl_80481480
 .balign 4
-lbl_80481538:
-	.4byte 0x2867656E
-	.4byte 0x206E756D
-	.4byte 0x62657220
-	.4byte 0x6C617267
-	.4byte 0x65202564
-	.4byte 0x3E3D2564
-	.4byte 0x0A000000
-	.4byte 0x09232041
-	.4byte 0x6C697665
-	.4byte 0x0D0A0000
-	.4byte 0x6E6F2063
-	.4byte 0x61636865
-	.4byte 0x203A2025
-	.4byte 0x640A0000
-	.4byte 0x09232044
-	.4byte 0x6561640D
-	.4byte 0x0A000000
-	.4byte 0x09232068
-	.4byte 0x65617053
-	.4byte 0x697A650D
-	.4byte 0x0A000000
-	.4byte 0x09232066
-	.4byte 0x7265654F
-	.4byte 0x66667365
-	.4byte 0x740D0A00
-	.4byte 0x09232066
-	.4byte 0x72656553
-	.4byte 0x697A650D
-	.4byte 0x0A000000
-	.4byte 0x63616368
-	.4byte 0x65202564
-	.4byte 0x20697320
-	.4byte 0x6E6F7420
-	.4byte 0x696E2064
-	.4byte 0x65616420
-	.4byte 0x6C697374
-	.4byte 0x0A000000
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x63616368
-	.4byte 0x6520666C
-	.4byte 0x61672825
-	.4byte 0x78290A00
-lbl_804815E4:
-	.4byte 0x436F7572
-	.4byte 0x73654361
-	.4byte 0x63686520
-	.4byte 0x25640000
-	.4byte 0x2320636F
-	.4byte 0x75727365
-	.4byte 0x696E6465
-	.4byte 0x780D0A00
-	.4byte 0x23206F66
-	.4byte 0x66736574
-	.4byte 0x0D0A0000
-	.4byte 0x23207369
-	.4byte 0x7A650D0A
-	.4byte 0x00000000
-	.4byte 0x23206E75
-	.4byte 0x6D47656E
-	.4byte 0x65726174
-	.4byte 0x6F72730D
-	.4byte 0x0A000000
-	.4byte 0x23206765
-	.4byte 0x6E657261
-	.4byte 0x746F7253
-	.4byte 0x697A650D
-	.4byte 0x0A000000
-	.4byte 0x23206E75
-	.4byte 0x6D437265
-	.4byte 0x61747572
-	.4byte 0x65730D0A
-	.4byte 0x00000000
-	.4byte 0x23206372
-	.4byte 0x65617475
-	.4byte 0x72655369
-	.4byte 0x7A650D0A
-	.4byte 0x00000000
-	.4byte 0x23206E75
-	.4byte 0x6D50696B
-	.4byte 0x69686561
-	.4byte 0x64730D0A
-	.4byte 0x00000000
-	.4byte 0x23207069
-	.4byte 0x6B696865
-	.4byte 0x61645369
-	.4byte 0x7A650D0A
-	.4byte 0x00000000
-	.4byte 0x4974656D
-	.4byte 0x50696B69
-	.4byte 0x48656164
-	.4byte 0x3A3A496E
-	.4byte 0x69744172
-	.4byte 0x67000000
-	.4byte 0x4974656D
-	.4byte 0x496E6974
-	.4byte 0x41726700
+.obj lbl_80481490, local
+	.asciz "gameGeneratorCache.cpp"
+.endobj lbl_80481490
+.balign 4
+.obj lbl_804814A8, local
+	.asciz "no ram generator %d %d\n"
+.endobj lbl_804814A8
+.balign 4
+.obj lbl_804814C0, local
+	.asciz "loadC[%s](no%d):%s"
+.endobj lbl_804814C0
+.balign 4
+.obj lbl_804814D4, local
+	.asciz "loadC(no%d)\n"
+.endobj lbl_804814D4
+.balign 4
+.obj lbl_804814E4, local
+	.asciz "BeginSave::Cache (%d) is alive !\n"
+.endobj lbl_804814E4
+.balign 4
+.obj lbl_80481508, local
+	.asciz "BeginSave::Cache (%d) is invalid !\n"
+.endobj lbl_80481508
+.balign 4
+.obj lbl_8048152C, local
+	.asciz "P2Assert"
+.endobj lbl_8048152C
+.balign 4
+.obj lbl_80481538, local
+	.asciz "(gen number large %d>=%d\n"
+.endobj lbl_80481538
+.balign 4
+.obj lbl_80481554, local
+	.asciz "\t# Alive\r\n"
+.endobj lbl_80481554
+.balign 4
+.obj lbl_80481560, local
+	.asciz "no cache : %d\n"
+.endobj lbl_80481560
+.balign 4
+.obj lbl_80481570, local
+	.asciz "\t# Dead\r\n"
+.endobj lbl_80481570
+.balign 4
+.obj lbl_8048157C, local
+	.asciz "\t# heapSize\r\n"
+.endobj lbl_8048157C
+.balign 4
+.obj lbl_8048158C, local
+	.asciz "\t# freeOffset\r\n"
+.endobj lbl_8048158C
+.balign 4
+.obj lbl_8048159C, local
+	.asciz "\t# freeSize\r\n"
+.endobj lbl_8048159C
+.balign 4
+.obj lbl_804815AC, local
+	.asciz "cache %d is not in dead list\n"
+.endobj lbl_804815AC
+.balign 4
+.obj lbl_804815CC, local
+	.asciz "illegal cache flag(%x)\n"
+.endobj lbl_804815CC
+.balign 4
+.obj lbl_804815E4, local
+	.asciz "CourseCache %d"
+.endobj lbl_804815E4
+.balign 4
+.obj lbl_804815F4, local
+	.asciz "# courseindex\r\n"
+.endobj lbl_804815F4
+.balign 4
+.obj lbl_80481604, local
+	.asciz "# offset\r\n"
+.endobj lbl_80481604
+.balign 4
+.obj lbl_80481610, local
+	.asciz "# size\r\n"
+.endobj lbl_80481610
+.balign 4
+.obj lbl_8048161C, local
+	.asciz "# numGenerators\r\n"
+.endobj lbl_8048161C
+.balign 4
+.obj lbl_80481630, local
+	.asciz "# generatorSize\r\n"
+.endobj lbl_80481630
+.balign 4
+.obj lbl_80481644, local
+	.asciz "# numCreatures\r\n"
+.endobj lbl_80481644
+.balign 4
+.obj lbl_80481658, local
+	.asciz "# creatureSize\r\n"
+.endobj lbl_80481658
+.balign 4
+.obj lbl_8048166C, local
+	.asciz "# numPikiheads\r\n"
+.endobj lbl_8048166C
+.balign 4
+.obj lbl_80481680, local
+	.asciz "# pikiheadSize\r\n"
+.endobj lbl_80481680
+.balign 4
+.obj lbl_80481694, local
+	.asciz "ItemPikiHead::InitArg"
+.endobj lbl_80481694
+.balign 4
+.obj lbl_804816AC, local
+	.asciz "ItemInitArg"
+.endobj lbl_804816AC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -178,8 +147,7 @@ lbl_804815E4:
 .endobj lbl_80519BCC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game14GeneratorCacheFv
-__ct__Q24Game14GeneratorCacheFv:
+.fn __ct__Q24Game14GeneratorCacheFv, global
 /* 801F1908 001EE848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F190C 001EE84C  7C 08 02 A6 */	mflr r0
 /* 801F1910 001EE850  38 80 FF FF */	li r4, -1
@@ -214,9 +182,9 @@ __ct__Q24Game14GeneratorCacheFv:
 /* 801F1984 001EE8C4  7C 08 03 A6 */	mtlr r0
 /* 801F1988 001EE8C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F198C 001EE8CC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game14GeneratorCacheFv
 
-.global __dt__Q24Game11CourseCacheFv
-__dt__Q24Game11CourseCacheFv:
+.fn __dt__Q24Game11CourseCacheFv, weak
 /* 801F1990 001EE8D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F1994 001EE8D4  7C 08 02 A6 */	mflr r0
 /* 801F1998 001EE8D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -242,9 +210,9 @@ __dt__Q24Game11CourseCacheFv:
 /* 801F19E4 001EE924  7C 08 03 A6 */	mtlr r0
 /* 801F19E8 001EE928  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F19EC 001EE92C  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game11CourseCacheFv
 
-.global clearCache__Q24Game14GeneratorCacheFv
-clearCache__Q24Game14GeneratorCacheFv:
+.fn clearCache__Q24Game14GeneratorCacheFv, global
 /* 801F19F0 001EE930  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801F19F4 001EE934  7C 08 02 A6 */	mflr r0
 /* 801F19F8 001EE938  90 01 00 24 */	stw r0, 0x24(r1)
@@ -286,18 +254,18 @@ clearCache__Q24Game14GeneratorCacheFv:
 /* 801F1A7C 001EE9BC  7C 08 03 A6 */	mtlr r0
 /* 801F1A80 001EE9C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F1A84 001EE9C4  4E 80 00 20 */	blr 
+.endfn clearCache__Q24Game14GeneratorCacheFv
 
-.global clearGeneratorList__Q24Game14GeneratorCacheFv
-clearGeneratorList__Q24Game14GeneratorCacheFv:
+.fn clearGeneratorList__Q24Game14GeneratorCacheFv, global
 /* 801F1A88 001EE9C8  38 00 00 00 */	li r0, 0
 /* 801F1A8C 001EE9CC  90 03 00 9C */	stw r0, 0x9c(r3)
 /* 801F1A90 001EE9D0  90 03 00 98 */	stw r0, 0x98(r3)
 /* 801F1A94 001EE9D4  90 03 00 94 */	stw r0, 0x94(r3)
 /* 801F1A98 001EE9D8  90 03 00 90 */	stw r0, 0x90(r3)
 /* 801F1A9C 001EE9DC  4E 80 00 20 */	blr 
+.endfn clearGeneratorList__Q24Game14GeneratorCacheFv
 
-.global addGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator
-addGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator:
+.fn addGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator, global
 /* 801F1AA0 001EE9E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801F1AA4 001EE9E4  7C 08 02 A6 */	mflr r0
 /* 801F1AA8 001EE9E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -332,14 +300,14 @@ addGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator:
 /* 801F1B0C 001EEA4C  7C 08 03 A6 */	mtlr r0
 /* 801F1B10 001EEA50  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F1B14 001EEA54  4E 80 00 20 */	blr 
+.endfn addGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator
 
-.global getFirstGenerator__Q24Game14GeneratorCacheFv
-getFirstGenerator__Q24Game14GeneratorCacheFv:
+.fn getFirstGenerator__Q24Game14GeneratorCacheFv, global
 /* 801F1B18 001EEA58  80 63 00 9C */	lwz r3, 0x9c(r3)
 /* 801F1B1C 001EEA5C  4E 80 00 20 */	blr 
+.endfn getFirstGenerator__Q24Game14GeneratorCacheFv
 
-.global getTotalMePikmins__Q24Game14GeneratorCacheFv
-getTotalMePikmins__Q24Game14GeneratorCacheFv:
+.fn getTotalMePikmins__Q24Game14GeneratorCacheFv, global
 /* 801F1B20 001EEA60  80 83 00 10 */	lwz r4, 0x10(r3)
 /* 801F1B24 001EEA64  38 60 00 00 */	li r3, 0
 /* 801F1B28 001EEA68  48 00 00 10 */	b .L_801F1B38
@@ -351,9 +319,9 @@ getTotalMePikmins__Q24Game14GeneratorCacheFv:
 /* 801F1B38 001EEA78  28 04 00 00 */	cmplwi r4, 0
 /* 801F1B3C 001EEA7C  40 82 FF F0 */	bne .L_801F1B2C
 /* 801F1B40 001EEA80  4E 80 00 20 */	blr 
+.endfn getTotalMePikmins__Q24Game14GeneratorCacheFv
 
-.global getColorMePikmins__Q24Game14GeneratorCacheFi
-getColorMePikmins__Q24Game14GeneratorCacheFi:
+.fn getColorMePikmins__Q24Game14GeneratorCacheFi, global
 /* 801F1B44 001EEA84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801F1B48 001EEA88  7C 08 02 A6 */	mflr r0
 /* 801F1B4C 001EEA8C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -385,9 +353,9 @@ getColorMePikmins__Q24Game14GeneratorCacheFi:
 /* 801F1BAC 001EEAEC  7C 08 03 A6 */	mtlr r0
 /* 801F1BB0 001EEAF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F1BB4 001EEAF4  4E 80 00 20 */	blr 
+.endfn getColorMePikmins__Q24Game14GeneratorCacheFi
 
-.global getColorMePikmins__Q24Game11CourseCacheFPUci
-getColorMePikmins__Q24Game11CourseCacheFPUci:
+.fn getColorMePikmins__Q24Game11CourseCacheFPUci, global
 /* 801F1BB8 001EEAF8  94 21 FB B0 */	stwu r1, -0x450(r1)
 /* 801F1BBC 001EEAFC  7C 08 02 A6 */	mflr r0
 /* 801F1BC0 001EEB00  7C 86 23 78 */	mr r6, r4
@@ -430,9 +398,9 @@ getColorMePikmins__Q24Game11CourseCacheFPUci:
 /* 801F1C48 001EEB88  7C 08 03 A6 */	mtlr r0
 /* 801F1C4C 001EEB8C  38 21 04 50 */	addi r1, r1, 0x450
 /* 801F1C50 001EEB90  4E 80 00 20 */	blr 
+.endfn getColorMePikmins__Q24Game11CourseCacheFPUci
 
-.global createHeap__Q24Game14GeneratorCacheFv
-createHeap__Q24Game14GeneratorCacheFv:
+.fn createHeap__Q24Game14GeneratorCacheFv, global
 /* 801F1C54 001EEB94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F1C58 001EEB98  7C 08 02 A6 */	mflr r0
 /* 801F1C5C 001EEB9C  3C 80 00 01 */	lis r4, 0x0000A000@ha
@@ -475,9 +443,9 @@ createHeap__Q24Game14GeneratorCacheFv:
 /* 801F1CE4 001EEC24  7C 08 03 A6 */	mtlr r0
 /* 801F1CE8 001EEC28  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F1CEC 001EEC2C  4E 80 00 20 */	blr 
+.endfn createHeap__Q24Game14GeneratorCacheFv
 
-.global findCache__Q24Game14GeneratorCacheFRQ24Game11CourseCachei
-findCache__Q24Game14GeneratorCacheFRQ24Game11CourseCachei:
+.fn findCache__Q24Game14GeneratorCacheFRQ24Game11CourseCachei, global
 /* 801F1CF0 001EEC30  80 64 00 10 */	lwz r3, 0x10(r4)
 /* 801F1CF4 001EEC34  48 00 00 24 */	b .L_801F1D18
 .L_801F1CF8:
@@ -495,9 +463,9 @@ findCache__Q24Game14GeneratorCacheFRQ24Game11CourseCachei:
 /* 801F1D1C 001EEC5C  40 82 FF DC */	bne .L_801F1CF8
 /* 801F1D20 001EEC60  38 60 00 00 */	li r3, 0
 /* 801F1D24 001EEC64  4E 80 00 20 */	blr 
+.endfn findCache__Q24Game14GeneratorCacheFRQ24Game11CourseCachei
 
-.global loadGenerators__Q24Game14GeneratorCacheFi
-loadGenerators__Q24Game14GeneratorCacheFi:
+.fn loadGenerators__Q24Game14GeneratorCacheFi, global
 /* 801F1D28 001EEC68  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 801F1D2C 001EEC6C  7C 08 02 A6 */	mflr r0
 /* 801F1D30 001EEC70  90 01 04 44 */	stw r0, 0x444(r1)
@@ -585,9 +553,9 @@ loadGenerators__Q24Game14GeneratorCacheFi:
 /* 801F1E44 001EED84  7C 08 03 A6 */	mtlr r0
 /* 801F1E48 001EED88  38 21 04 40 */	addi r1, r1, 0x440
 /* 801F1E4C 001EED8C  4E 80 00 20 */	blr 
+.endfn loadGenerators__Q24Game14GeneratorCacheFi
 
-.global loadCreatures__Q24Game14GeneratorCacheFi
-loadCreatures__Q24Game14GeneratorCacheFi:
+.fn loadCreatures__Q24Game14GeneratorCacheFi, global
 /* 801F1E50 001EED90  94 21 F9 B0 */	stwu r1, -0x650(r1)
 /* 801F1E54 001EED94  7C 08 02 A6 */	mflr r0
 /* 801F1E58 001EED98  90 01 06 54 */	stw r0, 0x654(r1)
@@ -713,9 +681,9 @@ loadCreatures__Q24Game14GeneratorCacheFi:
 /* 801F1FFC 001EEF3C  7C 08 03 A6 */	mtlr r0
 /* 801F2000 001EEF40  38 21 06 50 */	addi r1, r1, 0x650
 /* 801F2004 001EEF44  4E 80 00 20 */	blr 
+.endfn loadCreatures__Q24Game14GeneratorCacheFi
 
-.global loadPikiheads__Q24Game14GeneratorCacheFv
-loadPikiheads__Q24Game14GeneratorCacheFv:
+.fn loadPikiheads__Q24Game14GeneratorCacheFv, global
 /* 801F2008 001EEF48  94 21 FB 80 */	stwu r1, -0x480(r1)
 /* 801F200C 001EEF4C  7C 08 02 A6 */	mflr r0
 /* 801F2010 001EEF50  90 01 04 84 */	stw r0, 0x484(r1)
@@ -787,9 +755,9 @@ loadPikiheads__Q24Game14GeneratorCacheFv:
 /* 801F2110 001EF050  7C 08 03 A6 */	mtlr r0
 /* 801F2114 001EF054  38 21 04 80 */	addi r1, r1, 0x480
 /* 801F2118 001EF058  4E 80 00 20 */	blr 
+.endfn loadPikiheads__Q24Game14GeneratorCacheFv
 
-.global slideCache__Q24Game14GeneratorCacheFv
-slideCache__Q24Game14GeneratorCacheFv:
+.fn slideCache__Q24Game14GeneratorCacheFv, global
 /* 801F211C 001EF05C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F2120 001EF060  7C 08 02 A6 */	mflr r0
 /* 801F2124 001EF064  90 01 00 14 */	stw r0, 0x14(r1)
@@ -842,9 +810,9 @@ slideCache__Q24Game14GeneratorCacheFv:
 /* 801F21D0 001EF110  7C 08 03 A6 */	mtlr r0
 /* 801F21D4 001EF114  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F21D8 001EF118  4E 80 00 20 */	blr 
+.endfn slideCache__Q24Game14GeneratorCacheFv
 
-.global updateUseList__Q24Game14GeneratorCacheFv
-updateUseList__Q24Game14GeneratorCacheFv:
+.fn updateUseList__Q24Game14GeneratorCacheFv, global
 /* 801F21DC 001EF11C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F21E0 001EF120  7C 08 02 A6 */	mflr r0
 /* 801F21E4 001EF124  90 01 00 14 */	stw r0, 0x14(r1)
@@ -867,9 +835,9 @@ updateUseList__Q24Game14GeneratorCacheFv:
 /* 801F221C 001EF15C  7C 08 03 A6 */	mtlr r0
 /* 801F2220 001EF160  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F2224 001EF164  4E 80 00 20 */	blr 
+.endfn updateUseList__Q24Game14GeneratorCacheFv
 
-.global createNumberGenerators__Q24Game14GeneratorCacheFv
-createNumberGenerators__Q24Game14GeneratorCacheFv:
+.fn createNumberGenerators__Q24Game14GeneratorCacheFv, global
 /* 801F2228 001EF168  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801F222C 001EF16C  7C 08 02 A6 */	mflr r0
 /* 801F2230 001EF170  90 01 00 24 */	stw r0, 0x24(r1)
@@ -903,9 +871,9 @@ createNumberGenerators__Q24Game14GeneratorCacheFv:
 /* 801F2294 001EF1D4  7C 08 03 A6 */	mtlr r0
 /* 801F2298 001EF1D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F229C 001EF1DC  4E 80 00 20 */	blr 
+.endfn createNumberGenerators__Q24Game14GeneratorCacheFv
 
-.global beginSave__Q24Game14GeneratorCacheFi
-beginSave__Q24Game14GeneratorCacheFi:
+.fn beginSave__Q24Game14GeneratorCacheFi, global
 /* 801F22A0 001EF1E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F22A4 001EF1E4  7C 08 02 A6 */	mflr r0
 /* 801F22A8 001EF1E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -980,9 +948,9 @@ beginSave__Q24Game14GeneratorCacheFi:
 /* 801F238C 001EF2CC  7C 08 03 A6 */	mtlr r0
 /* 801F2390 001EF2D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F2394 001EF2D4  4E 80 00 20 */	blr 
+.endfn beginSave__Q24Game14GeneratorCacheFi
 
-.global endSave__Q24Game14GeneratorCacheFv
-endSave__Q24Game14GeneratorCacheFv:
+.fn endSave__Q24Game14GeneratorCacheFv, global
 /* 801F2398 001EF2D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F239C 001EF2DC  7C 08 02 A6 */	mflr r0
 /* 801F23A0 001EF2E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1040,9 +1008,9 @@ endSave__Q24Game14GeneratorCacheFv:
 /* 801F2454 001EF394  7C 08 03 A6 */	mtlr r0
 /* 801F2458 001EF398  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F245C 001EF39C  4E 80 00 20 */	blr 
+.endfn endSave__Q24Game14GeneratorCacheFv
 
-.global saveGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator
-saveGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator:
+.fn saveGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator, global
 /* 801F2460 001EF3A0  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 801F2464 001EF3A4  7C 08 02 A6 */	mflr r0
 /* 801F2468 001EF3A8  90 01 04 34 */	stw r0, 0x434(r1)
@@ -1105,9 +1073,9 @@ saveGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator:
 /* 801F2544 001EF484  7C 08 03 A6 */	mtlr r0
 /* 801F2548 001EF488  38 21 04 30 */	addi r1, r1, 0x430
 /* 801F254C 001EF48C  4E 80 00 20 */	blr 
+.endfn saveGenerator__Q24Game14GeneratorCacheFPQ24Game9Generator
 
-.global saveCreature__Q24Game14GeneratorCacheFPQ24Game9Generator
-saveCreature__Q24Game14GeneratorCacheFPQ24Game9Generator:
+.fn saveCreature__Q24Game14GeneratorCacheFPQ24Game9Generator, global
 /* 801F2550 001EF490  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 801F2554 001EF494  7C 08 02 A6 */	mflr r0
 /* 801F2558 001EF498  90 01 04 34 */	stw r0, 0x434(r1)
@@ -1192,9 +1160,9 @@ saveCreature__Q24Game14GeneratorCacheFPQ24Game9Generator:
 /* 801F2684 001EF5C4  7C 08 03 A6 */	mtlr r0
 /* 801F2688 001EF5C8  38 21 04 30 */	addi r1, r1, 0x430
 /* 801F268C 001EF5CC  4E 80 00 20 */	blr 
+.endfn saveCreature__Q24Game14GeneratorCacheFPQ24Game9Generator
 
-.global savePikiheads__Q24Game14GeneratorCacheFv
-savePikiheads__Q24Game14GeneratorCacheFv:
+.fn savePikiheads__Q24Game14GeneratorCacheFv, global
 /* 801F2690 001EF5D0  94 21 FB B0 */	stwu r1, -0x450(r1)
 /* 801F2694 001EF5D4  7C 08 02 A6 */	mflr r0
 /* 801F2698 001EF5D8  90 01 04 54 */	stw r0, 0x454(r1)
@@ -1386,9 +1354,9 @@ savePikiheads__Q24Game14GeneratorCacheFv:
 /* 801F2954 001EF894  7C 08 03 A6 */	mtlr r0
 /* 801F2958 001EF898  38 21 04 50 */	addi r1, r1, 0x450
 /* 801F295C 001EF89C  4E 80 00 20 */	blr 
+.endfn savePikiheads__Q24Game14GeneratorCacheFv
 
-.global __ct__Q24Game11CourseCacheFi
-__ct__Q24Game11CourseCacheFi:
+.fn __ct__Q24Game11CourseCacheFi, global
 /* 801F2960 001EF8A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F2964 001EF8A4  7C 08 02 A6 */	mflr r0
 /* 801F2968 001EF8A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1417,9 +1385,9 @@ __ct__Q24Game11CourseCacheFi:
 /* 801F29C4 001EF904  7C 08 03 A6 */	mtlr r0
 /* 801F29C8 001EF908  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F29CC 001EF90C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11CourseCacheFi
 
-.global beginSave__Q24Game11CourseCacheFi
-beginSave__Q24Game11CourseCacheFi:
+.fn beginSave__Q24Game11CourseCacheFi, global
 /* 801F29D0 001EF910  90 83 00 1C */	stw r4, 0x1c(r3)
 /* 801F29D4 001EF914  38 00 00 00 */	li r0, 0
 /* 801F29D8 001EF918  90 03 00 20 */	stw r0, 0x20(r3)
@@ -1430,9 +1398,9 @@ beginSave__Q24Game11CourseCacheFi:
 /* 801F29EC 001EF92C  90 03 00 34 */	stw r0, 0x34(r3)
 /* 801F29F0 001EF930  90 03 00 38 */	stw r0, 0x38(r3)
 /* 801F29F4 001EF934  4E 80 00 20 */	blr 
+.endfn beginSave__Q24Game11CourseCacheFi
 
-.global write__Q24Game14GeneratorCacheFR6Stream
-write__Q24Game14GeneratorCacheFR6Stream:
+.fn write__Q24Game14GeneratorCacheFR6Stream, global
 /* 801F29F8 001EF938  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801F29FC 001EF93C  7C 08 02 A6 */	mflr r0
 /* 801F2A00 001EF940  3C A0 80 48 */	lis r5, lbl_80481480@ha
@@ -1594,9 +1562,9 @@ write__Q24Game14GeneratorCacheFR6Stream:
 /* 801F2C20 001EFB60  7C 08 03 A6 */	mtlr r0
 /* 801F2C24 001EFB64  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F2C28 001EFB68  4E 80 00 20 */	blr 
+.endfn write__Q24Game14GeneratorCacheFR6Stream
 
-.global read__Q24Game14GeneratorCacheFR6Stream
-read__Q24Game14GeneratorCacheFR6Stream:
+.fn read__Q24Game14GeneratorCacheFR6Stream, global
 /* 801F2C2C 001EFB6C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 801F2C30 001EFB70  7C 08 02 A6 */	mflr r0
 /* 801F2C34 001EFB74  3C A0 80 48 */	lis r5, lbl_80481480@ha
@@ -1796,9 +1764,9 @@ read__Q24Game14GeneratorCacheFR6Stream:
 /* 801F2ED0 001EFE10  7C 08 03 A6 */	mtlr r0
 /* 801F2ED4 001EFE14  38 21 00 60 */	addi r1, r1, 0x60
 /* 801F2ED8 001EFE18  4E 80 00 20 */	blr 
+.endfn read__Q24Game14GeneratorCacheFR6Stream
 
-.global write__Q24Game11CourseCacheFR6Stream
-write__Q24Game11CourseCacheFR6Stream:
+.fn write__Q24Game11CourseCacheFR6Stream, global
 /* 801F2EDC 001EFE1C  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 801F2EE0 001EFE20  7C 08 02 A6 */	mflr r0
 /* 801F2EE4 001EFE24  90 01 01 24 */	stw r0, 0x124(r1)
@@ -1916,9 +1884,9 @@ write__Q24Game11CourseCacheFR6Stream:
 /* 801F30A4 001EFFE4  7C 08 03 A6 */	mtlr r0
 /* 801F30A8 001EFFE8  38 21 01 20 */	addi r1, r1, 0x120
 /* 801F30AC 001EFFEC  4E 80 00 20 */	blr 
+.endfn write__Q24Game11CourseCacheFR6Stream
 
-.global read__Q24Game11CourseCacheFR6Stream
-read__Q24Game11CourseCacheFR6Stream:
+.fn read__Q24Game11CourseCacheFR6Stream, global
 /* 801F30B0 001EFFF0  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 801F30B4 001EFFF4  7C 08 02 A6 */	mflr r0
 /* 801F30B8 001EFFF8  90 01 01 14 */	stw r0, 0x114(r1)
@@ -1966,3 +1934,4 @@ read__Q24Game11CourseCacheFR6Stream:
 /* 801F3160 001F00A0  7C 08 03 A6 */	mtlr r0
 /* 801F3164 001F00A4  38 21 01 10 */	addi r1, r1, 0x110
 /* 801F3168 001F00A8  4E 80 00 20 */	blr 
+.endfn read__Q24Game11CourseCacheFR6Stream

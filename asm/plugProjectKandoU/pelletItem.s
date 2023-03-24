@@ -1,22 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80481C50
-lbl_80481C50:
+.obj lbl_80481C50, local
 	.asciz "pelletItem.cpp"
-	.skip 1
-.global lbl_80481C60
-lbl_80481C60:
+.endobj lbl_80481C50
+.balign 4
+.obj lbl_80481C60, local
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80481C6C
-lbl_80481C6C:
+.endobj lbl_80481C60
+.balign 4
+.obj lbl_80481C6C, local
 	.asciz "Equipment"
-	.skip 2
-.global lbl_80481C78
-lbl_80481C78:
+.endobj lbl_80481C6C
+.balign 4
+.obj lbl_80481C78, local
 	.asciz "item_texts.szs"
-	.skip 1
+.endobj lbl_80481C78
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -355,13 +354,10 @@ mgr__Q24Game10PelletItem:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519D50
 lbl_80519D50:
 	.4byte 0x6B657900
-.global lbl_80519D54
 lbl_80519D54:
 	.float 0.5
-.global lbl_80519D58
 lbl_80519D58:
 	.4byte 0x6974656D
 	.4byte 0x00000000

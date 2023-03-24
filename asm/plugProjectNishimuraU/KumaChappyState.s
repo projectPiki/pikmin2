@@ -1,12 +1,10 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804888C8
 lbl_804888C8:
 	.4byte 0x7475726E
 	.4byte 0x70617468
 	.4byte 0x00000000
-.global lbl_804888D4
 lbl_804888D4:
 	.4byte 0x77616C6B
 	.4byte 0x70617468
@@ -135,69 +133,50 @@ __vt__Q34Game10KumaChappy3FSM:
 	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051BAE0
 lbl_8051BAE0:
 	.4byte 0x64656164
 	.4byte 0x00000000
-.global lbl_8051BAE8
 lbl_8051BAE8:
 	.4byte 0x72656269
 	.4byte 0x72746800
-.global lbl_8051BAF0
 lbl_8051BAF0:
 	.4byte 0x6C6F7374
 	.4byte 0x00000000
-.global lbl_8051BAF8
 lbl_8051BAF8:
 	.4byte 0x61747461
 	.4byte 0x636B0000
-.global lbl_8051BB00
 lbl_8051BB00:
 	.4byte 0x666C6963
 	.4byte 0x6B000000
-.global lbl_8051BB08
 lbl_8051BB08:
 	.4byte 0x7475726E
 	.4byte 0x00000000
-.global lbl_8051BB10
 lbl_8051BB10:
 	.4byte 0x77616C6B
 	.4byte 0x00000000
-.global lbl_8051BB18
 lbl_8051BB18:
 	.4byte 0x00000000
-.global lbl_8051BB1C
 lbl_8051BB1C:
 	.4byte 0xC47A0000
-.global lbl_8051BB20
 lbl_8051BB20:
 	.4byte 0x40490FDB
-.global lbl_8051BB24
 lbl_8051BB24:
 	.4byte 0x3BB60B61
-.global lbl_8051BB28
 lbl_8051BB28:
 	.4byte 0x3F490FDB
-.global lbl_8051BB2C
 lbl_8051BB2C:
 	.4byte 0x42700000
-.global lbl_8051BB30
 lbl_8051BB30:
 	.4byte 0x41F00000
-.global lbl_8051BB34
 lbl_8051BB34:
 	.4byte 0x42340000
-.global lbl_8051BB38
 lbl_8051BB38:
 	.4byte 0x3C23D70A
-.global lbl_8051BB3C
 lbl_8051BB3C:
 	.float 1.0
-.global lbl_8051BB40
 lbl_8051BB40:
 	.float 0.5
 	.4byte 0x00000000

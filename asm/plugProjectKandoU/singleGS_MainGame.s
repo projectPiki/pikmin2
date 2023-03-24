@@ -5,207 +5,249 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80482150:
+.obj lbl_80482150, local
 	.skip 0xC
+.endobj lbl_80482150
 .balign 4
-lbl_8048215C:
+.obj lbl_8048215C, local
 	.asciz "SingleGS_Game"
+.endobj lbl_8048215C
 .balign 4
-lbl_8048216C:
+.obj lbl_8048216C, local
 	.asciz "x01_gamestart"
+.endobj lbl_8048216C
 .balign 4
-lbl_8048217C:
+.obj lbl_8048217C, local
 	.asciz "x01_coursein_forest"
+.endobj lbl_8048217C
 .balign 4
-lbl_80482190:
+.obj lbl_80482190, local
 	.asciz "x01_coursein_yakushima"
+.endobj lbl_80482190
 .balign 4
-lbl_804821A8:
+.obj lbl_804821A8, local
 	.asciz "x01_coursein_last"
+.endobj lbl_804821A8
 .balign 4
-lbl_804821BC:
+.obj lbl_804821BC, local
 	.4byte lbl_8048216C
 	.4byte lbl_8048217C
 	.4byte lbl_80482190
 	.4byte lbl_804821A8
+.endobj lbl_804821BC
 .balign 4
-lbl_804821CC:
+.obj lbl_804821CC, local
 	.asciz "singleGS_MainGame.cpp"
+.endobj lbl_804821CC
 .balign 4
-lbl_804821E4:
+.obj lbl_804821E4, local
 	.asciz "P2Assert"
+.endobj lbl_804821E4
 .balign 4
-lbl_804821F0:
+.obj lbl_804821F0, local
 	.asciz "BGS::GAME START"
+.endobj lbl_804821F0
 .balign 4
-lbl_80482200:
+.obj lbl_80482200, local
 	.asciz "s00_coursein"
+.endobj lbl_80482200
 .balign 4
-lbl_80482210:
+.obj lbl_80482210, local
 	.asciz "s0E_return_cave"
+.endobj lbl_80482210
 .balign 4
-lbl_80482220:
+.obj lbl_80482220, local
 	.asciz "illegal state GameState::init\n"
+.endobj lbl_80482220
 .balign 4
-lbl_80482240:
+.obj lbl_80482240, local
 	.asciz "PSGame.h"
+.endobj lbl_80482240
 .balign 4
-lbl_8048224C:
+.obj lbl_8048224C, local
 	.asciz "PSScene.h"
+.endobj lbl_8048224C
 .balign 4
-lbl_80482258:
+.obj lbl_80482258, local
 	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_80482258
 .balign 4
-lbl_8048227C:
+.obj lbl_8048227C, local
 	.asciz "PSMainSide_Scene.h"
+.endobj lbl_8048227C
 .balign 4
-lbl_80482290:
+.obj lbl_80482290, local
 	.asciz "g26_inout_black"
+.endobj lbl_80482290
 .balign 4
-lbl_804822A0:
+.obj lbl_804822A0, local
 	.asciz "g29_inout_white"
+.endobj lbl_804822A0
 .balign 4
-lbl_804822B0:
+.obj lbl_804822B0, local
 	.asciz "g2C_inout_red"
+.endobj lbl_804822B0
 .balign 4
-lbl_804822C0:
+.obj lbl_804822C0, local
 	.asciz "no down floor 20\n"
+.endobj lbl_804822C0
 .balign 4
-lbl_804822D4:
+.obj lbl_804822D4, local
 	.asciz "x17_join_guide"
+.endobj lbl_804822D4
 .balign 4
-lbl_804822E4:
+.obj lbl_804822E4, local
 	.asciz "x15_exp_x"
+.endobj lbl_804822E4
 .balign 4
-lbl_804822F0:
+.obj lbl_804822F0, local
 	.asciz "x02_watch_red_pikmin"
+.endobj lbl_804822F0
 .balign 4
-lbl_80482308:
+.obj lbl_80482308, local
 	.asciz "x04_exp_y"
+.endobj lbl_80482308
 .balign 4
-lbl_80482314:
+.obj lbl_80482314, local
 	.asciz "g01_pick_me"
+.endobj lbl_80482314
 .balign 4
-lbl_80482320:
+.obj lbl_80482320, local
 	.asciz "g33_camera_demo"
+.endobj lbl_80482320
 .balign 4
-lbl_80482330:
+.obj lbl_80482330, local
 	.asciz "repay-done"
+.endobj lbl_80482330
 .balign 4
-lbl_8048233C:
+.obj lbl_8048233C, local
 	.asciz "smenu_escape\n"
+.endobj lbl_8048233C
 .balign 4
-lbl_8048234C:
+.obj lbl_8048234C, local
 	.asciz "s05_pikminzero"
+.endobj lbl_8048234C
 .balign 4
-lbl_8048235C:
+.obj lbl_8048235C, local
 	.asciz "s03_orimadown"
+.endobj lbl_8048235C
 .balign 4
-lbl_8048236C:
+.obj lbl_8048236C, local
 	.asciz "s09_holein"
+.endobj lbl_8048236C
 .balign 4
-lbl_80482378:
+.obj lbl_80482378, local
 	.asciz "s10_suck_treasure"
+.endobj lbl_80482378
 .balign 4
-lbl_8048238C:
+.obj lbl_8048238C, local
 	.asciz "x07_first_recovery"
+.endobj lbl_8048238C
 .balign 4
-lbl_804823A0:
+.obj lbl_804823A0, local
 	.asciz "g08_first_return"
+.endobj lbl_804823A0
 .balign 4
-lbl_804823B4:
+.obj lbl_804823B4, local
 	.asciz "g32_get_map"
+.endobj lbl_804823B4
 .balign 4
-lbl_804823C0:
+.obj lbl_804823C0, local
 	.asciz "s13_pikmin_supply"
+.endobj lbl_804823C0
 .balign 4
-lbl_804823D4:
+.obj lbl_804823D4, local
 	.asciz "x03_find_red_onyon"
+.endobj lbl_804823D4
 .balign 4
-lbl_804823E8:
+.obj lbl_804823E8, local
 	.asciz "g35_president_gamestart"
+.endobj lbl_804823E8
 .balign 4
-lbl_80482400:
+.obj lbl_80482400, local
 	.asciz "start-repay"
+.endobj lbl_80482400
 .balign 4
-lbl_8048240C:
+.obj lbl_8048240C, local
 	.asciz "check-repay"
+.endobj lbl_8048240C
 .balign 4
-lbl_80482418:
+.obj lbl_80482418, local
 	.asciz "gamestate::cleanup"
+.endobj lbl_80482418
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q32og6Screen14DispMemberSave
-__vt__Q32og6Screen14DispMemberSave:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q32og6Screen14DispMemberSave, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen14DispMemberSaveFv
 	.4byte getOwnerID__Q32og6Screen14DispMemberSaveFv
 	.4byte getMemberID__Q32og6Screen14DispMemberSaveFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q32og6Screen19DispMemberSMenuCont
-__vt__Q32og6Screen19DispMemberSMenuCont:
+.endobj __vt__Q32og6Screen14DispMemberSave
+.obj __vt__Q32og6Screen19DispMemberSMenuCont, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen19DispMemberSMenuContFv
 	.4byte getOwnerID__Q32og6Screen19DispMemberSMenuContFv
 	.4byte getMemberID__Q32og6Screen19DispMemberSMenuContFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q32og6Screen22DispMemberSMenuPauseVS
-__vt__Q32og6Screen22DispMemberSMenuPauseVS:
+.endobj __vt__Q32og6Screen19DispMemberSMenuCont
+.obj __vt__Q32og6Screen22DispMemberSMenuPauseVS, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen22DispMemberSMenuPauseVSFv
 	.4byte getOwnerID__Q32og6Screen22DispMemberSMenuPauseVSFv
 	.4byte getMemberID__Q32og6Screen22DispMemberSMenuPauseVSFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q32og6Screen18DispMemberSMenuMap
-__vt__Q32og6Screen18DispMemberSMenuMap:
+.endobj __vt__Q32og6Screen22DispMemberSMenuPauseVS
+.obj __vt__Q32og6Screen18DispMemberSMenuMap, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen18DispMemberSMenuMapFv
 	.4byte getOwnerID__Q32og6Screen18DispMemberSMenuMapFv
 	.4byte getMemberID__Q32og6Screen18DispMemberSMenuMapFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q32og6Screen19DispMemberSMenuItem
-__vt__Q32og6Screen19DispMemberSMenuItem:
+.endobj __vt__Q32og6Screen18DispMemberSMenuMap
+.obj __vt__Q32og6Screen19DispMemberSMenuItem, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen19DispMemberSMenuItemFv
 	.4byte getOwnerID__Q32og6Screen19DispMemberSMenuItemFv
 	.4byte getMemberID__Q32og6Screen19DispMemberSMenuItemFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q32og6Screen27DispMemberSMenuPauseDoukutu
-__vt__Q32og6Screen27DispMemberSMenuPauseDoukutu:
+.endobj __vt__Q32og6Screen19DispMemberSMenuItem
+.obj __vt__Q32og6Screen27DispMemberSMenuPauseDoukutu, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
 	.4byte getOwnerID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
 	.4byte getMemberID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q32og6Screen20DispMemberSMenuPause
-__vt__Q32og6Screen20DispMemberSMenuPause:
+.endobj __vt__Q32og6Screen27DispMemberSMenuPauseDoukutu
+.obj __vt__Q32og6Screen20DispMemberSMenuPause, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen20DispMemberSMenuPauseFv
 	.4byte getOwnerID__Q32og6Screen20DispMemberSMenuPauseFv
 	.4byte getMemberID__Q32og6Screen20DispMemberSMenuPauseFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-.global __vt__Q32og6Screen18DispMemberSMenuAll
-__vt__Q32og6Screen18DispMemberSMenuAll:
+.endobj __vt__Q32og6Screen20DispMemberSMenuPause
+.obj __vt__Q32og6Screen18DispMemberSMenuAll, weak
 	.4byte 0
 	.4byte 0
 	.4byte getSize__Q32og6Screen18DispMemberSMenuAllFv
 	.4byte getOwnerID__Q32og6Screen18DispMemberSMenuAllFv
 	.4byte getMemberID__Q32og6Screen18DispMemberSMenuAllFv
 	.4byte doSetSubMemberAll__Q32og6Screen18DispMemberSMenuAllFv
-.global __vt__Q34Game10SingleGame9GameState
-__vt__Q34Game10SingleGame9GameState:
+.endobj __vt__Q32og6Screen18DispMemberSMenuAll
+.obj __vt__Q34Game10SingleGame9GameState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
@@ -224,62 +266,82 @@ __vt__Q34Game10SingleGame9GameState:
 	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl
+.endobj __vt__Q34Game10SingleGame9GameState
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519FA8:
+.obj lbl_80519FA8, local
 	.float 0.0
-lbl_80519FAC:
+.endobj lbl_80519FA8
+.obj lbl_80519FAC, local
 	.float 6.0
-lbl_80519FB0:
+.endobj lbl_80519FAC
+.obj lbl_80519FB0, local
 	.float 128000.0
-lbl_80519FB4:
+.endobj lbl_80519FB0
+.obj lbl_80519FB4, local
 	.float 180.0
+.endobj lbl_80519FB4
 .balign 4
-lbl_80519FB8:
+.obj lbl_80519FB8, local
 	.asciz "sm-canc"
+.endobj lbl_80519FB8
 .balign 4
-lbl_80519FC0:
+.obj lbl_80519FC0, local
 	.asciz "sm-ugot"
+.endobj lbl_80519FC0
 .balign 4
-lbl_80519FC8:
+.obj lbl_80519FC8, local
 	.asciz "sm-zenk"
+.endobj lbl_80519FC8
 .balign 4
-lbl_80519FD0:
+.obj lbl_80519FD0, local
 	.asciz "open-sm"
+.endobj lbl_80519FD0
 .balign 4
-lbl_80519FD8:
+.obj lbl_80519FD8, local
 	.float 20.0
-lbl_80519FDC:
+.endobj lbl_80519FD8
+.obj lbl_80519FDC, local
 	.float 1.0
-lbl_80519FE0:
+.endobj lbl_80519FDC
+.obj lbl_80519FE0, local
 	.float 0.9
-lbl_80519FE4:
+.endobj lbl_80519FE0
+.obj lbl_80519FE4, local
 	.float 0.8
-lbl_80519FE8:
+.endobj lbl_80519FE4
+.obj lbl_80519FE8, local
 	.float 900.0
-lbl_80519FEC: # Louie Start X
+.endobj lbl_80519FE8
+.obj lbl_80519FEC, local # Louie Start X
 	.float -1260.0
-lbl_80519FF0: # Louie Start Y
+.endobj lbl_80519FEC
+.obj lbl_80519FF0, local # Louie Start Y
 	.float -80.0
-lbl_80519FF4: # Louie Start Z
+.endobj lbl_80519FF0
+.obj lbl_80519FF4, local # Louie Start Z
 	.float 4350.0
-lbl_80519FF8:
+.endobj lbl_80519FF4
+.obj lbl_80519FF8, local
 	.float 7.6969023
-lbl_80519FFC:
+.endobj lbl_80519FF8
+.obj lbl_80519FFC, local
 	.float 5.0
+.endobj lbl_80519FFC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
-.global init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 802135AC 002104EC  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 802135B0 002104F0  7C 08 02 A6 */	mflr r0
 /* 802135B4 002104F4  3C C0 80 48 */	lis r6, lbl_80482150@ha
@@ -877,9 +939,9 @@ init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 /* 80213E50 00210D90  7C 08 03 A6 */	mtlr r0
 /* 80213E54 00210D94  38 21 01 40 */	addi r1, r1, 0x140
 /* 80213E58 00210D98  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .else
-.global init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 802135AC 002104EC  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 802135B0 002104F0  7C 08 02 A6 */	mflr r0
 /* 802135B4 002104F4  3C C0 80 48 */	lis r6, lbl_80482150@ha
@@ -1477,11 +1539,11 @@ init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 /* 80213E50 00210D90  7C 08 03 A6 */	mtlr r0
 /* 80213E54 00210D94  38 21 01 40 */	addi r1, r1, 0x140
 /* 80213E58 00210D98  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .endif
 
 .if version == 1
-.global check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
-check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
+.fn check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection, global
 /* 80213E5C 00210D9C  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80213E60 00210DA0  7C 08 02 A6 */	mflr r0
 /* 80213E64 00210DA4  3C A0 80 48 */	lis r5, lbl_80482150@ha
@@ -1652,9 +1714,9 @@ check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 /* 802140D8 00211018  7C 08 03 A6 */	mtlr r0
 /* 802140DC 0021101C  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 802140E0 00211020  4E 80 00 20 */	blr 
+.endfn check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
 .else
-.global check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
-check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
+.fn check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection, global
 /* 80213E5C 00210D9C  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80213E60 00210DA0  7C 08 02 A6 */	mflr r0
 /* 80213E64 00210DA4  3C A0 80 48 */	lis r5, lbl_80482150@ha
@@ -1825,17 +1887,17 @@ check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 /* 802140D8 00211018  7C 08 03 A6 */	mtlr r0
 /* 802140DC 0021101C  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 802140E0 00211020  4E 80 00 20 */	blr 
+.endfn check_DemoInout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
 .endif
 
-.global on_section_fadeout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
-on_section_fadeout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
+.fn on_section_fadeout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection, global
 /* 802140E4 00211024  38 00 00 01 */	li r0, 1
 /* 802140E8 00211028  98 03 00 18 */	stb r0, 0x18(r3)
 /* 802140EC 0021102C  4E 80 00 20 */	blr 
+.endfn on_section_fadeout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
 
 .if version == 1
-.global on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl
-on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl:
+.fn on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl, global
 /* 802140F0 00211030  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 802140F4 00211034  7C 08 02 A6 */	mflr r0
 /* 802140F8 00211038  3C 60 80 48 */	lis r3, lbl_80482150@ha
@@ -2592,9 +2654,9 @@ on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl:
 /* 80214C0C 00211B4C  7C 08 03 A6 */	mtlr r0
 /* 80214C10 00211B50  38 21 01 D0 */	addi r1, r1, 0x1d0
 /* 80214C14 00211B54  4E 80 00 20 */	blr 
+.endfn on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl
 .else
-.global on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl
-on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl:
+.fn on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl, global
 /* 802140F0 00211030  94 21 FE 30 */	stwu r1, -0x1d0(r1)
 /* 802140F4 00211034  7C 08 02 A6 */	mflr r0
 /* 802140F8 00211038  3C 60 80 48 */	lis r3, lbl_80482150@ha
@@ -3351,11 +3413,11 @@ on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl:
 /* 80214C0C 00211B4C  7C 08 03 A6 */	mtlr r0
 /* 80214C10 00211B50  38 21 01 D0 */	addi r1, r1, 0x1d0
 /* 80214C14 00211B54  4E 80 00 20 */	blr 
+.endfn on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl
 .endif
 
 .if version == 1
-.global exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection, global
 /* 80214C18 00211B58  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 80214C1C 00211B5C  7C 08 02 A6 */	mflr r0
 /* 80214C20 00211B60  90 01 01 44 */	stw r0, 0x144(r1)
@@ -3819,9 +3881,9 @@ exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 /* 802152EC 0021222C  7C 08 03 A6 */	mtlr r0
 /* 802152F0 00212230  38 21 01 40 */	addi r1, r1, 0x140
 /* 802152F4 00212234  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
 .else
-.global exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection, global
 /* 80214C18 00211B58  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 80214C1C 00211B5C  7C 08 02 A6 */	mflr r0
 /* 80214C20 00211B60  90 01 01 44 */	stw r0, 0x144(r1)
@@ -4285,10 +4347,10 @@ exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 /* 802152EC 0021222C  7C 08 03 A6 */	mtlr r0
 /* 802152F0 00212230  38 21 01 40 */	addi r1, r1, 0x140
 /* 802152F4 00212234  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
 .endif
 
-.global __ct__Q32og6Screen18DispMemberSMenuAllFv
-__ct__Q32og6Screen18DispMemberSMenuAllFv:
+.fn __ct__Q32og6Screen18DispMemberSMenuAllFv, weak
 /* 802152F8 00212238  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802152FC 0021223C  3C 80 80 4B */	lis r4, __vt__Q32og6Screen14DispMemberBase@ha
 /* 80215300 00212240  38 A4 11 48 */	addi r5, r4, __vt__Q32og6Screen14DispMemberBase@l
@@ -4408,10 +4470,10 @@ __ct__Q32og6Screen18DispMemberSMenuAllFv:
 /* 802154C8 00212408  BB 01 00 10 */	lmw r24, 0x10(r1)
 /* 802154CC 0021240C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802154D0 00212410  4E 80 00 20 */	blr 
+.endfn __ct__Q32og6Screen18DispMemberSMenuAllFv
 
 .if version == 1
-.global onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
-onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni:
+.fn onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni, global
 /* 802154D4 00212414  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802154D8 00212418  7C 08 02 A6 */	mflr r0
 /* 802154DC 0021241C  3C 60 80 48 */	lis r3, lbl_8048235C@ha
@@ -4467,9 +4529,9 @@ onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni:
 /* 8021559C 002124DC  7C 08 03 A6 */	mtlr r0
 /* 802155A0 002124E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 802155A4 002124E4  4E 80 00 20 */	blr 
+.endfn onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
 .else
-.global onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
-onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni:
+.fn onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni, global
 /* 802154D4 00212414  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802154D8 00212418  7C 08 02 A6 */	mflr r0
 /* 802154DC 0021241C  3C 60 80 48 */	lis r3, lbl_8048235C@ha
@@ -4525,11 +4587,11 @@ onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni:
 /* 8021559C 002124DC  7C 08 03 A6 */	mtlr r0
 /* 802155A0 002124E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 802155A4 002124E4  4E 80 00 20 */	blr 
+.endfn onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
 .endif
 
 .if version == 1
-.global onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item:
+.fn onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item, global
 /* 802155A8 002124E8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802155AC 002124EC  7C 08 02 A6 */	mflr r0
 /* 802155B0 002124F0  3C 60 80 48 */	lis r3, lbl_8048236C@ha
@@ -4585,9 +4647,9 @@ onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8Item
 /* 80215678 002125B8  7C 08 03 A6 */	mtlr r0
 /* 8021567C 002125BC  38 21 00 50 */	addi r1, r1, 0x50
 /* 80215680 002125C0  4E 80 00 20 */	blr 
+.endfn onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
 .else
-.global onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item:
+.fn onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item, global
 /* 802155A8 002124E8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802155AC 002124EC  7C 08 02 A6 */	mflr r0
 /* 802155B0 002124F0  3C 60 80 48 */	lis r3, lbl_8048236C@ha
@@ -4643,15 +4705,15 @@ onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8Item
 /* 80215678 002125B8  7C 08 03 A6 */	mtlr r0
 /* 8021567C 002125BC  38 21 00 50 */	addi r1, r1, 0x50
 /* 80215680 002125C0  4E 80 00 20 */	blr 
+.endfn onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
 .endif
 
-.global onMovieCommand__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
-onMovieCommand__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni:
+.fn onMovieCommand__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni, global
 /* 80215684 002125C4  4E 80 00 20 */	blr 
+.endfn onMovieCommand__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
 
 .if version == 1
-.global onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 80215688 002125C8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8021568C 002125CC  7C 08 02 A6 */	mflr r0
 /* 80215690 002125D0  3C C0 80 48 */	lis r6, lbl_80482150@ha
@@ -4746,9 +4808,9 @@ onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game1
 /* 802157D4 00212714  7C 08 03 A6 */	mtlr r0
 /* 802157D8 00212718  38 21 00 40 */	addi r1, r1, 0x40
 /* 802157DC 0021271C  4E 80 00 20 */	blr 
+.endfn onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .else
-.global onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 80215688 002125C8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8021568C 002125CC  7C 08 02 A6 */	mflr r0
 /* 80215690 002125D0  3C C0 80 48 */	lis r6, lbl_80482150@ha
@@ -4843,11 +4905,11 @@ onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game1
 /* 802157D4 00212714  7C 08 03 A6 */	mtlr r0
 /* 802157D8 00212718  38 21 00 40 */	addi r1, r1, 0x40
 /* 802157DC 0021271C  4E 80 00 20 */	blr 
+.endfn onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .endif
 
 .if version == 1
-.global onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 802157E0 00212720  94 21 FA 80 */	stwu r1, -0x580(r1)
 /* 802157E4 00212724  7C 08 02 A6 */	mflr r0
 /* 802157E8 00212728  3C C0 80 48 */	lis r6, lbl_80482150@ha
@@ -6636,9 +6698,9 @@ onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11
 /* 80217250 00214190  7C 08 03 A6 */	mtlr r0
 /* 80217254 00214194  38 21 05 80 */	addi r1, r1, 0x580
 /* 80217258 00214198  4E 80 00 20 */	blr 
+.endfn onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .else
-.global onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 802157E0 00212720  94 21 FA 80 */	stwu r1, -0x580(r1)
 /* 802157E4 00212724  7C 08 02 A6 */	mflr r0
 /* 802157E8 00212728  3C C0 80 48 */	lis r6, lbl_80482150@ha
@@ -8427,10 +8489,10 @@ onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11
 /* 80217250 00214190  7C 08 03 A6 */	mtlr r0
 /* 80217254 00214194  38 21 05 80 */	addi r1, r1, 0x580
 /* 80217258 00214198  4E 80 00 20 */	blr 
+.endfn onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .endif
 
-.global needRepayDemo__Q34Game10SingleGame9GameStateFv
-needRepayDemo__Q34Game10SingleGame9GameStateFv:
+.fn needRepayDemo__Q34Game10SingleGame9GameStateFv, global
 /* 8021725C 0021419C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80217260 002141A0  7C 08 02 A6 */	mflr r0
 /* 80217264 002141A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8464,9 +8526,9 @@ needRepayDemo__Q34Game10SingleGame9GameStateFv:
 /* 802172C4 00214204  7C 08 03 A6 */	mtlr r0
 /* 802172C8 00214208  38 21 00 10 */	addi r1, r1, 0x10
 /* 802172CC 0021420C  4E 80 00 20 */	blr 
+.endfn needRepayDemo__Q34Game10SingleGame9GameStateFv
 
-.global startRepayDemo__Q34Game10SingleGame9GameStateFv
-startRepayDemo__Q34Game10SingleGame9GameStateFv:
+.fn startRepayDemo__Q34Game10SingleGame9GameStateFv, global
 /* 802172D0 00214210  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802172D4 00214214  7C 08 02 A6 */	mflr r0
 /* 802172D8 00214218  90 01 00 64 */	stw r0, 0x64(r1)
@@ -8551,9 +8613,9 @@ startRepayDemo__Q34Game10SingleGame9GameStateFv:
 /* 80217404 00214344  7C 08 03 A6 */	mtlr r0
 /* 80217408 00214348  38 21 00 60 */	addi r1, r1, 0x60
 /* 8021740C 0021434C  4E 80 00 20 */	blr 
+.endfn startRepayDemo__Q34Game10SingleGame9GameStateFv
 
-.global updateRepayDemo__Q34Game10SingleGame9GameStateFv
-updateRepayDemo__Q34Game10SingleGame9GameStateFv:
+.fn updateRepayDemo__Q34Game10SingleGame9GameStateFv, global
 /* 80217410 00214350  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80217414 00214354  7C 08 02 A6 */	mflr r0
 /* 80217418 00214358  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8600,9 +8662,9 @@ updateRepayDemo__Q34Game10SingleGame9GameStateFv:
 /* 802174AC 002143EC  7C 08 03 A6 */	mtlr r0
 /* 802174B0 002143F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802174B4 002143F4  4E 80 00 20 */	blr 
+.endfn updateRepayDemo__Q34Game10SingleGame9GameStateFv
 
-.global draw__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionR8Graphics
-draw__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn draw__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 802174B8 002143F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802174BC 002143FC  7C 08 02 A6 */	mflr r0
 /* 802174C0 00214400  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8635,10 +8697,10 @@ draw__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionR8Graphics:
 /* 80217524 00214464  7C 08 03 A6 */	mtlr r0
 /* 80217528 00214468  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021752C 0021446C  4E 80 00 20 */	blr 
+.endfn draw__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionR8Graphics
 
 .if version == 1
-.global cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection, global
 /* 80217530 00214470  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80217534 00214474  7C 08 02 A6 */	mflr r0
 /* 80217538 00214478  3C 60 80 48 */	lis r3, lbl_80482418@ha
@@ -8666,9 +8728,9 @@ cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 /* 8021758C 002144CC  7C 08 03 A6 */	mtlr r0
 /* 80217590 002144D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80217594 002144D4  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
 .else
-.global cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection, global
 /* 80217530 00214470  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80217534 00214474  7C 08 02 A6 */	mflr r0
 /* 80217538 00214478  3C 60 80 48 */	lis r3, lbl_80482418@ha
@@ -8696,159 +8758,159 @@ cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 /* 8021758C 002144CC  7C 08 03 A6 */	mtlr r0
 /* 80217590 002144D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80217594 002144D4  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
 .endif
 
-.global getSize__Q32og6Screen14DispMemberSaveFv
-getSize__Q32og6Screen14DispMemberSaveFv:
+.fn getSize__Q32og6Screen14DispMemberSaveFv, weak
 /* 80217598 002144D8  38 60 00 0C */	li r3, 0xc
 /* 8021759C 002144DC  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen14DispMemberSaveFv
 
-.global getOwnerID__Q32og6Screen14DispMemberSaveFv
-getOwnerID__Q32og6Screen14DispMemberSaveFv:
+.fn getOwnerID__Q32og6Screen14DispMemberSaveFv, weak
 /* 802175A0 002144E0  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 802175A4 002144E4  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 802175A8 002144E8  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen14DispMemberSaveFv
 
-.global getMemberID__Q32og6Screen14DispMemberSaveFv
-getMemberID__Q32og6Screen14DispMemberSaveFv:
+.fn getMemberID__Q32og6Screen14DispMemberSaveFv, weak
 /* 802175AC 002144EC  3C 80 53 41 */	lis r4, 0x53415645@ha
 /* 802175B0 002144F0  38 60 00 00 */	li r3, 0
 /* 802175B4 002144F4  38 84 56 45 */	addi r4, r4, 0x53415645@l
 /* 802175B8 002144F8  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen14DispMemberSaveFv
 
-.global getSize__Q32og6Screen19DispMemberSMenuContFv
-getSize__Q32og6Screen19DispMemberSMenuContFv:
+.fn getSize__Q32og6Screen19DispMemberSMenuContFv, weak
 /* 802175BC 002144FC  38 60 00 08 */	li r3, 8
 /* 802175C0 00214500  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen19DispMemberSMenuContFv
 
-.global getOwnerID__Q32og6Screen19DispMemberSMenuContFv
-getOwnerID__Q32og6Screen19DispMemberSMenuContFv:
+.fn getOwnerID__Q32og6Screen19DispMemberSMenuContFv, weak
 /* 802175C4 00214504  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 802175C8 00214508  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 802175CC 0021450C  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen19DispMemberSMenuContFv
 
-.global getMemberID__Q32og6Screen19DispMemberSMenuContFv
-getMemberID__Q32og6Screen19DispMemberSMenuContFv:
+.fn getMemberID__Q32og6Screen19DispMemberSMenuContFv, weak
 /* 802175D0 00214510  3C 80 43 4F */	lis r4, 0x434F4E54@ha
 /* 802175D4 00214514  3C 60 00 53 */	lis r3, 0x00534D5F@ha
 /* 802175D8 00214518  38 84 4E 54 */	addi r4, r4, 0x434F4E54@l
 /* 802175DC 0021451C  38 63 4D 5F */	addi r3, r3, 0x00534D5F@l
 /* 802175E0 00214520  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen19DispMemberSMenuContFv
 
-.global getSize__Q32og6Screen22DispMemberSMenuPauseVSFv
-getSize__Q32og6Screen22DispMemberSMenuPauseVSFv:
+.fn getSize__Q32og6Screen22DispMemberSMenuPauseVSFv, weak
 /* 802175E4 00214524  38 60 00 0C */	li r3, 0xc
 /* 802175E8 00214528  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen22DispMemberSMenuPauseVSFv
 
-.global getOwnerID__Q32og6Screen22DispMemberSMenuPauseVSFv
-getOwnerID__Q32og6Screen22DispMemberSMenuPauseVSFv:
+.fn getOwnerID__Q32og6Screen22DispMemberSMenuPauseVSFv, weak
 /* 802175EC 0021452C  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 802175F0 00214530  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 802175F4 00214534  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen22DispMemberSMenuPauseVSFv
 
-.global getMemberID__Q32og6Screen22DispMemberSMenuPauseVSFv
-getMemberID__Q32og6Screen22DispMemberSMenuPauseVSFv:
+.fn getMemberID__Q32og6Screen22DispMemberSMenuPauseVSFv, weak
 /* 802175F8 00214538  3C 80 53 5F */	lis r4, 0x535F5653@ha
 /* 802175FC 0021453C  3C 60 53 4D */	lis r3, 0x534D5F50@ha
 /* 80217600 00214540  38 84 56 53 */	addi r4, r4, 0x535F5653@l
 /* 80217604 00214544  38 63 5F 50 */	addi r3, r3, 0x534D5F50@l
 /* 80217608 00214548  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen22DispMemberSMenuPauseVSFv
 
-.global getSize__Q32og6Screen18DispMemberSMenuMapFv
-getSize__Q32og6Screen18DispMemberSMenuMapFv:
+.fn getSize__Q32og6Screen18DispMemberSMenuMapFv, weak
 /* 8021760C 0021454C  38 60 00 4C */	li r3, 0x4c
 /* 80217610 00214550  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen18DispMemberSMenuMapFv
 
-.global getOwnerID__Q32og6Screen18DispMemberSMenuMapFv
-getOwnerID__Q32og6Screen18DispMemberSMenuMapFv:
+.fn getOwnerID__Q32og6Screen18DispMemberSMenuMapFv, weak
 /* 80217614 00214554  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 80217618 00214558  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 8021761C 0021455C  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen18DispMemberSMenuMapFv
 
-.global getMemberID__Q32og6Screen18DispMemberSMenuMapFv
-getMemberID__Q32og6Screen18DispMemberSMenuMapFv:
+.fn getMemberID__Q32og6Screen18DispMemberSMenuMapFv, weak
 /* 80217620 00214560  3C 80 5F 4D */	lis r4, 0x5F4D4150@ha
 /* 80217624 00214564  38 60 53 4D */	li r3, 0x534d
 /* 80217628 00214568  38 84 41 50 */	addi r4, r4, 0x5F4D4150@l
 /* 8021762C 0021456C  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen18DispMemberSMenuMapFv
 
-.global getSize__Q32og6Screen19DispMemberSMenuItemFv
-getSize__Q32og6Screen19DispMemberSMenuItemFv:
+.fn getSize__Q32og6Screen19DispMemberSMenuItemFv, weak
 /* 80217630 00214570  38 60 00 28 */	li r3, 0x28
 /* 80217634 00214574  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen19DispMemberSMenuItemFv
 
-.global getOwnerID__Q32og6Screen19DispMemberSMenuItemFv
-getOwnerID__Q32og6Screen19DispMemberSMenuItemFv:
+.fn getOwnerID__Q32og6Screen19DispMemberSMenuItemFv, weak
 /* 80217638 00214578  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 8021763C 0021457C  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 80217640 00214580  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen19DispMemberSMenuItemFv
 
-.global getMemberID__Q32og6Screen19DispMemberSMenuItemFv
-getMemberID__Q32og6Screen19DispMemberSMenuItemFv:
+.fn getMemberID__Q32og6Screen19DispMemberSMenuItemFv, weak
 /* 80217644 00214584  3C 80 49 54 */	lis r4, 0x4954454D@ha
 /* 80217648 00214588  3C 60 00 53 */	lis r3, 0x00534D5F@ha
 /* 8021764C 0021458C  38 84 45 4D */	addi r4, r4, 0x4954454D@l
 /* 80217650 00214590  38 63 4D 5F */	addi r3, r3, 0x00534D5F@l
 /* 80217654 00214594  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen19DispMemberSMenuItemFv
 
-.global getSize__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
-getSize__Q32og6Screen27DispMemberSMenuPauseDoukutuFv:
+.fn getSize__Q32og6Screen27DispMemberSMenuPauseDoukutuFv, weak
 /* 80217658 00214598  38 60 00 18 */	li r3, 0x18
 /* 8021765C 0021459C  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
 
-.global getOwnerID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
-getOwnerID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv:
+.fn getOwnerID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv, weak
 /* 80217660 002145A0  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 80217664 002145A4  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 80217668 002145A8  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
 
-.global getMemberID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
-getMemberID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv:
+.fn getMemberID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv, weak
 /* 8021766C 002145AC  3C 80 53 45 */	lis r4, 0x53455F44@ha
 /* 80217670 002145B0  3C 60 00 50 */	lis r3, 0x00504155@ha
 /* 80217674 002145B4  38 84 5F 44 */	addi r4, r4, 0x53455F44@l
 /* 80217678 002145B8  38 63 41 55 */	addi r3, r3, 0x00504155@l
 /* 8021767C 002145BC  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
 
-.global getSize__Q32og6Screen20DispMemberSMenuPauseFv
-getSize__Q32og6Screen20DispMemberSMenuPauseFv:
+.fn getSize__Q32og6Screen20DispMemberSMenuPauseFv, weak
 /* 80217680 002145C0  38 60 00 14 */	li r3, 0x14
 /* 80217684 002145C4  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen20DispMemberSMenuPauseFv
 
-.global getOwnerID__Q32og6Screen20DispMemberSMenuPauseFv
-getOwnerID__Q32og6Screen20DispMemberSMenuPauseFv:
+.fn getOwnerID__Q32og6Screen20DispMemberSMenuPauseFv, weak
 /* 80217688 002145C8  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 8021768C 002145CC  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 80217690 002145D0  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen20DispMemberSMenuPauseFv
 
-.global getMemberID__Q32og6Screen20DispMemberSMenuPauseFv
-getMemberID__Q32og6Screen20DispMemberSMenuPauseFv:
+.fn getMemberID__Q32og6Screen20DispMemberSMenuPauseFv, weak
 /* 80217694 002145D4  3C 80 41 55 */	lis r4, 0x41555345@ha
 /* 80217698 002145D8  3C 60 53 4D */	lis r3, 0x534D5F50@ha
 /* 8021769C 002145DC  38 84 53 45 */	addi r4, r4, 0x41555345@l
 /* 802176A0 002145E0  38 63 5F 50 */	addi r3, r3, 0x534D5F50@l
 /* 802176A4 002145E4  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen20DispMemberSMenuPauseFv
 
-.global getSize__Q32og6Screen18DispMemberSMenuAllFv
-getSize__Q32og6Screen18DispMemberSMenuAllFv:
+.fn getSize__Q32og6Screen18DispMemberSMenuAllFv, weak
 /* 802176A8 002145E8  38 60 00 C4 */	li r3, 0xc4
 /* 802176AC 002145EC  4E 80 00 20 */	blr 
+.endfn getSize__Q32og6Screen18DispMemberSMenuAllFv
 
-.global getOwnerID__Q32og6Screen18DispMemberSMenuAllFv
-getOwnerID__Q32og6Screen18DispMemberSMenuAllFv:
+.fn getOwnerID__Q32og6Screen18DispMemberSMenuAllFv, weak
 /* 802176B0 002145F0  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 802176B4 002145F4  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 802176B8 002145F8  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q32og6Screen18DispMemberSMenuAllFv
 
-.global getMemberID__Q32og6Screen18DispMemberSMenuAllFv
-getMemberID__Q32og6Screen18DispMemberSMenuAllFv:
+.fn getMemberID__Q32og6Screen18DispMemberSMenuAllFv, weak
 /* 802176BC 002145FC  3C 80 5F 41 */	lis r4, 0x5F414C4C@ha
 /* 802176C0 00214600  38 60 53 4D */	li r3, 0x534d
 /* 802176C4 00214604  38 84 4C 4C */	addi r4, r4, 0x5F414C4C@l
 /* 802176C8 00214608  4E 80 00 20 */	blr 
+.endfn getMemberID__Q32og6Screen18DispMemberSMenuAllFv
 
-.global doSetSubMemberAll__Q32og6Screen18DispMemberSMenuAllFv
-doSetSubMemberAll__Q32og6Screen18DispMemberSMenuAllFv:
+.fn doSetSubMemberAll__Q32og6Screen18DispMemberSMenuAllFv, weak
 /* 802176CC 0021460C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802176D0 00214610  7C 08 02 A6 */	mflr r0
 /* 802176D4 00214614  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8876,8 +8938,9 @@ doSetSubMemberAll__Q32og6Screen18DispMemberSMenuAllFv:
 /* 8021772C 0021466C  7C 08 03 A6 */	mtlr r0
 /* 80217730 00214670  38 21 00 10 */	addi r1, r1, 0x10
 /* 80217734 00214674  4E 80 00 20 */	blr 
+.endfn doSetSubMemberAll__Q32og6Screen18DispMemberSMenuAllFv
 
-__sinit_singleGS_MainGame_cpp: # static initializer
+.fn __sinit_singleGS_MainGame_cpp, local
 /* 80217738 00214678  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8021773C 0021467C  38 00 FF FF */	li r0, -1
 /* 80217740 00214680  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -8888,3 +8951,4 @@ __sinit_singleGS_MainGame_cpp: # static initializer
 /* 80217754 00214694  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80217758 00214698  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8021775C 0021469C  4E 80 00 20 */	blr 
+.endfn __sinit_singleGS_MainGame_cpp

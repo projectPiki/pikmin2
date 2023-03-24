@@ -100,7 +100,7 @@ lbl_8048BC90:
 	.4byte 0x68000000
 lbl_8048BCA8:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 lbl_8048BCB4:
 	.asciz "foot_joint1"
 

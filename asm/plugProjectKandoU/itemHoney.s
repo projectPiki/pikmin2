@@ -1,29 +1,24 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804805B0
 lbl_804805B0:
 	.4byte 0x6974656D
 	.4byte 0x486F6E65
 	.4byte 0x79000000
-.global lbl_804805BC
 lbl_804805BC:
 	.4byte 0x6974656D
 	.4byte 0x486F6E65
 	.4byte 0x792E6370
 	.4byte 0x70000000
-.global lbl_804805CC
 lbl_804805CC:
 	.4byte 0x6E6F206D
 	.4byte 0x6174206D
 	.4byte 0x69747531
 	.4byte 0x0A000000
-.global lbl_804805DC
 lbl_804805DC:
 	.4byte 0x3FC00000
 	.4byte 0x3FE00000
 	.4byte 0x3FE00000
-.global lbl_804805E8
 lbl_804805E8:
 	.4byte 0x75736572
 	.4byte 0x2F4B616E
@@ -530,7 +525,6 @@ __vt__Q34Game9ItemHoney3FSM:
 	.4byte "start__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
 	.4byte "transit__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
-.global lbl_804B8528
 lbl_804B8528:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
@@ -557,40 +551,29 @@ mgr__Q24Game9ItemHoney:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519680
 lbl_80519680:
 	.float 0.0
-.global lbl_80519684
 lbl_80519684:
 	.float 100.0
-.global lbl_80519688
 lbl_80519688:
 	.float 15.0
-.global lbl_8051968C
 lbl_8051968C:
 	.float 32768.0
-.global lbl_80519690
 lbl_80519690:
 	.float 3.0
-.global lbl_80519694
 lbl_80519694:
 	.float 30.0
-.global lbl_80519698
 lbl_80519698:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805196A0
 lbl_805196A0:
 	.float 7.5
-.global lbl_805196A4
 lbl_805196A4:
 	.asciz "mitu1"
 	.skip 2
-.global lbl_805196AC
 lbl_805196AC:
 	.asciz "Honey"
 	.skip 2
-.global lbl_805196B4
 lbl_805196B4:
 	.asciz "arc.szs"
 

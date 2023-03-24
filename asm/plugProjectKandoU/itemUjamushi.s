@@ -941,195 +941,135 @@ __vt__Q34Game12ItemUjamushi13BoidParameter:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519D90
 lbl_80519D90:
 	.4byte 0x3E8A3D71
-.global lbl_80519D94
 lbl_80519D94:
 	.4byte 0x00000000
-.global lbl_80519D98
 lbl_80519D98:
 	.4byte 0x41200000
-.global lbl_80519D9C
 lbl_80519D9C:
 	.float 0.15
-.global lbl_80519DA0
 lbl_80519DA0:
 	.float 1.0
-.global lbl_80519DA4
 lbl_80519DA4:
 	.4byte 0x426F756E
 	.4byte 0x64730000
-.global lbl_80519DAC
 lbl_80519DAC:
 	.4byte 0x54617267
 	.4byte 0x65740000
-.global lbl_80519DB4
 lbl_80519DB4:
 	.4byte 0x52616E64
 	.4byte 0x6F6D0000
-.global lbl_80519DBC
 lbl_80519DBC:
 	.4byte 0x3FC00000
-.global lbl_80519DC0
 lbl_80519DC0:
 	.4byte 0x476F686F
 	.4byte 0x6D650000
-.global lbl_80519DC8
 lbl_80519DC8:
 	.4byte 0x50696B69
 	.4byte 0x00000000
-.global lbl_80519DD0
 lbl_80519DD0:
 	.4byte 0x3E4CCCCD
-.global lbl_80519DD4
 lbl_80519DD4:
 	.4byte 0x4E617669
 	.4byte 0x00000000
-.global lbl_80519DDC
 lbl_80519DDC:
 	.float 0.1
-.global lbl_80519DE0
 lbl_80519DE0:
 	.4byte 0x41F00000
-.global lbl_80519DE4
 lbl_80519DE4:
 	.4byte 0x43480000
-.global lbl_80519DE8
 lbl_80519DE8:
 	.4byte 0x466F7600
-.global lbl_80519DEC
 lbl_80519DEC:
 	.4byte 0x43340000
-.global lbl_80519DF0
 lbl_80519DF0:
 	.4byte 0x42480000
-.global lbl_80519DF4
 lbl_80519DF4:
 	.4byte 0x447A0000
-.global lbl_80519DF8
 lbl_80519DF8:
 	.4byte 0x44870000
-.global lbl_80519DFC
 lbl_80519DFC:
 	.4byte 0x41800000
-.global lbl_80519E00
 lbl_80519E00:
 	.float 0.3
-.global lbl_80519E04
 lbl_80519E04:
 	.4byte 0x83898343
 	.4byte 0x83740000
-.global lbl_80519E0C
 lbl_80519E0C:
 	.4byte 0x44160000
-.global lbl_80519E10
 lbl_80519E10:
 	.float 0.5
-.global lbl_80519E14
 lbl_80519E14:
 	.4byte 0x47000000
-.global lbl_80519E18
 lbl_80519E18:
 	.4byte 0x40C90FDB
-.global lbl_80519E1C
 lbl_80519E1C:
 	.4byte 0x42C80000
-.global lbl_80519E20
 lbl_80519E20:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80519E28
 lbl_80519E28:
 	.4byte 0x46480000
-.global lbl_80519E2C
 lbl_80519E2C:
 	.4byte 0x42700000
-.global lbl_80519E30
 lbl_80519E30:
 	.4byte 0x40800000
-.global lbl_80519E34
 lbl_80519E34:
 	.4byte 0x40490FDB
-.global lbl_80519E38
 lbl_80519E38:
 	.4byte 0x41A00000
-.global lbl_80519E3C
 lbl_80519E3C:
 	.4byte 0x3E0F5C29
-.global lbl_80519E40
 lbl_80519E40:
 	.4byte 0xC3A2F983
-.global lbl_80519E44
 lbl_80519E44:
 	.4byte 0x43A2F983
-.global lbl_80519E48
 lbl_80519E48:
 	.4byte 0x3FC90FDB
-.global lbl_80519E4C
 lbl_80519E4C:
 	.4byte 0xC1700000
-.global lbl_80519E50
 lbl_80519E50:
 	.4byte 0x41492050
 	.4byte 0x494B4900
-.global lbl_80519E58
 lbl_80519E58:
 	.4byte 0x44A00000
-.global lbl_80519E5C
 lbl_80519E5C:
 	.4byte 0x41492041
 	.4byte 0x4C4E0000
-.global lbl_80519E64
 lbl_80519E64:
 	.4byte 0x40000000
-.global lbl_80519E68
 lbl_80519E68:
 	.4byte 0x3BB60B61
-.global lbl_80519E6C
 lbl_80519E6C:
 	.4byte 0x41000000
-.global lbl_80519E70
 lbl_80519E70:
 	.4byte 0x3F4CCCCD
-.global lbl_80519E74
 lbl_80519E74:
 	.4byte 0x40C00000
-.global lbl_80519E78
 lbl_80519E78:
 	.4byte 0xBF800000
-.global lbl_80519E7C
 lbl_80519E7C:
 	.4byte 0x42200000
-.global lbl_80519E80
 lbl_80519E80:
 	.4byte 0x42900000
-.global lbl_80519E84
 lbl_80519E84:
 	.4byte 0x3F7D70A4
-.global lbl_80519E88
 lbl_80519E88:
 	.4byte 0x440C0000
-.global lbl_80519E8C
 lbl_80519E8C:
 	.4byte 0x42F00000
-.global lbl_80519E90
 lbl_80519E90:
 	.4byte 0x756A6141
 	.4byte 0x49000000
-.global lbl_80519E98
 lbl_80519E98:
 	.4byte 0x43FA0000
-.global lbl_80519E9C
 lbl_80519E9C:
 	.4byte 0x42B40000
-.global lbl_80519EA0
 lbl_80519EA0:
 	.4byte 0x3ECCCCCD
-.global lbl_80519EA4
 lbl_80519EA4:
 	.4byte 0x40400000
-.global lbl_80519EA8
 lbl_80519EA8:
 	.4byte 0x6172632E
 	.4byte 0x737A7300

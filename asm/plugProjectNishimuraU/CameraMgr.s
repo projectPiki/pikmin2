@@ -9,151 +9,61 @@ lbl_80484190:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3234362D
-	.4byte 0x43616D65
-	.4byte 0x72614D67
-	.4byte 0x72000000
+.balign 4
+lbl_8048419C:
+	.asciz "246-CameraMgr"
+.balign 4
 lbl_804841AC:
-	.4byte 0x43616D65
-	.4byte 0x72614D67
-	.4byte 0x72000000
+	.asciz "CameraMgr"
+.balign 4
 lbl_804841B8:
-	.4byte 0x2F757365
-	.4byte 0x722F4E69
-	.4byte 0x7368696D
-	.4byte 0x7572612F
-	.4byte 0x43616D65
-	.4byte 0x72612F63
-	.4byte 0x61766543
-	.4byte 0x616D6572
-	.4byte 0x61506172
-	.4byte 0x6D732E74
-	.4byte 0x78740000
+	.asciz "/user/Nishimura/Camera/caveCameraParms.txt"
+.balign 4
 lbl_804841E4:
-	.4byte 0x2F757365
-	.4byte 0x722F4E69
-	.4byte 0x7368696D
-	.4byte 0x7572612F
-	.4byte 0x43616D65
-	.4byte 0x72612F67
-	.4byte 0x726F756E
-	.4byte 0x6443616D
-	.4byte 0x65726150
-	.4byte 0x61726D73
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x56696272
-	.4byte 0x6174696F
-	.4byte 0x6E506172
-	.4byte 0x6D730000
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4C49
-	.4byte 0x47485428
-	.4byte 0x76696229
-	.4byte 0x00000000
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4D49
-	.4byte 0x44444C45
-	.4byte 0x28766962
-	.4byte 0x29000000
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4841
-	.4byte 0x52442876
-	.4byte 0x69622900
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F534C
-	.4byte 0x4F572873
-	.4byte 0x70656564
-	.4byte 0x29000000
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4D49
-	.4byte 0x44444C45
-	.4byte 0x28737065
-	.4byte 0x65642900
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4641
-	.4byte 0x53542873
-	.4byte 0x70656564
-	.4byte 0x29000000
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F5348
-	.4byte 0x4F525428
-	.4byte 0x74696D65
-	.4byte 0x29000000
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4D49
-	.4byte 0x44444C45
-	.4byte 0x2874696D
-	.4byte 0x65290000
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4C4F
-	.4byte 0x4E472874
-	.4byte 0x696D6529
-	.4byte 0x00000000
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4841
-	.4byte 0x52442856
-	.4byte 0x69622900
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4841
-	.4byte 0x52442853
-	.4byte 0x70656564
-	.4byte 0x29000000
-	.4byte 0x454C4556
-	.4byte 0x4154494F
-	.4byte 0x4E5F4841
-	.4byte 0x52442854
-	.4byte 0x696D6529
-	.4byte 0x00000000
-	.4byte 0x5A4F4F4D
-	.4byte 0x5F53484F
-	.4byte 0x52542856
-	.4byte 0x69622900
-	.4byte 0x5A4F4F4D
-	.4byte 0x5F53484F
-	.4byte 0x52542853
-	.4byte 0x70656564
-	.4byte 0x29000000
-	.4byte 0x5A4F4F4D
-	.4byte 0x5F53484F
-	.4byte 0x52542854
-	.4byte 0x696D6529
-	.4byte 0x00000000
-	.4byte 0x415A494D
-	.4byte 0x5554485F
-	.4byte 0x53484F52
-	.4byte 0x54285669
-	.4byte 0x62290000
-	.4byte 0x415A494D
-	.4byte 0x5554485F
-	.4byte 0x53484F52
-	.4byte 0x54285370
-	.4byte 0x65656429
-	.4byte 0x00000000
-	.4byte 0x415A494D
-	.4byte 0x5554485F
-	.4byte 0x53484F52
-	.4byte 0x54285469
-	.4byte 0x6D652900
-	.4byte 0x56696220
-	.4byte 0x4D617820
-	.4byte 0x44697374
-	.4byte 0x616E6365
-	.4byte 0x00000000
-	.4byte 0x43616D65
-	.4byte 0x72615061
-	.4byte 0x726D7300
+	.asciz "/user/Nishimura/Camera/groundCameraParms.txt"
+.balign 4
+	.asciz "VibrationParms"
+.balign 4
+	.asciz "ELEVATION_LIGHT(vib)"
+.balign 4
+	.asciz "ELEVATION_MIDDLE(vib)"
+.balign 4
+	.asciz "ELEVATION_HARD(vib)"
+.balign 4
+	.asciz "ELEVATION_SLOW(speed)"
+.balign 4
+	.asciz "ELEVATION_MIDDLE(speed)"
+.balign 4
+	.asciz "ELEVATION_FAST(speed)"
+.balign 4
+	.asciz "ELEVATION_SHORT(time)"
+.balign 4
+	.asciz "ELEVATION_MIDDLE(time)"
+.balign 4
+	.asciz "ELEVATION_LONG(time)"
+.balign 4
+	.asciz "ELEVATION_HARD(Vib)"
+.balign 4
+	.asciz "ELEVATION_HARD(Speed)"
+.balign 4
+	.asciz "ELEVATION_HARD(Time)"
+.balign 4
+	.asciz "ZOOM_SHORT(Vib)"
+.balign 4
+	.asciz "ZOOM_SHORT(Speed)"
+.balign 4
+	.asciz "ZOOM_SHORT(Time)"
+.balign 4
+	.asciz "AZIMUTH_SHORT(Vib)"
+.balign 4
+	.asciz "AZIMUTH_SHORT(Speed)"
+.balign 4
+	.asciz "AZIMUTH_SHORT(Time)"
+.balign 4
+	.asciz "Vib Max Distance"
+.balign 4
+	.asciz "CameraParms"
+.balign 4
 	.4byte 0x4E656172
 	.4byte 0x284C6F77
 	.4byte 0x298B9797
@@ -420,30 +330,20 @@ lbl_804841E4:
 	.4byte 0x89F1935D
 	.4byte 0x8CB8908A
 	.4byte 0x97A60000
+.balign 4
 lbl_804847FC:
-	.4byte 0x43616D65
-	.4byte 0x72614D67
-	.4byte 0x722E6370
-	.4byte 0x70000000
+	.asciz "CameraMgr.cpp"
+.balign 4
 lbl_8048480C:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x63616D65
-	.4byte 0x72612069
-	.4byte 0x73206E6F
-	.4byte 0x6E650A00
+.balign 4
+	.asciz "camera is none\n"
+.balign 4
 lbl_80484828:
-	.4byte 0x6E6F7420
-	.4byte 0x7A756B61
-	.4byte 0x6E206D6F
-	.4byte 0x64650A00
+	.asciz "not zukan mode\n"
+.balign 4
 lbl_80484838:
-	.4byte 0x63616D65
-	.4byte 0x72612070
-	.4byte 0x6172616D
-	.4byte 0x65746572
-	.4byte 0x206E6F6E
-	.4byte 0x650A0000
+	.asciz "camera parameter none\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

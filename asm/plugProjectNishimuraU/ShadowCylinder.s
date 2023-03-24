@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483F58
 lbl_80483F58:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -15,17 +14,15 @@ lbl_80483F58:
 	.4byte 0x6F774379
 	.4byte 0x6C696E64
 	.4byte 0x65720000
-.global lbl_80483F78
 lbl_80483F78:
 	.4byte 0x53686164
 	.4byte 0x6F774379
 	.4byte 0x6C696E64
 	.4byte 0x65722E63
 	.4byte 0x70700000
-.global lbl_80483F8C
 lbl_80483F8C:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x00000000
 	.float 1.0
 	.4byte 0x00000000
@@ -35,7 +32,6 @@ lbl_80483F8C:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.float 1.0
-.global lbl_80483FBC
 lbl_80483FBC:
 	.4byte 0x53686164
 	.4byte 0x6F772054
@@ -45,7 +41,6 @@ lbl_80483FBC:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 32
-.global lbl_804C1780
 lbl_804C1780:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -191,51 +186,36 @@ gfNAN___Q24Game5P2JST:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A618
 lbl_8051A618:
 	.4byte 0x40C90FDB
-.global lbl_8051A61C
 lbl_8051A61C:
 	.float 0.5
-.global lbl_8051A620
 lbl_8051A620:
 	.4byte 0x00000000
-.global lbl_8051A624
 lbl_8051A624:
 	.4byte 0x43A2F983
-.global lbl_8051A628
 lbl_8051A628:
 	.4byte 0xC3A2F983
-.global lbl_8051A62C
 lbl_8051A62C:
 	.4byte 0xBF800000
-.global lbl_8051A630
 lbl_8051A630:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051A638
 lbl_8051A638:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051A640
 lbl_8051A640:
 	.float 1.0
-.global lbl_8051A644
 lbl_8051A644:
 	.4byte 0x3F866666
-.global lbl_8051A648
 lbl_8051A648:
 	.4byte 0x3FACCCCD
-.global lbl_8051A64C
 lbl_8051A64C:
 	.4byte 0x46480000
-.global lbl_8051A650
 lbl_8051A650:
 	.4byte 0x40000000
-.global lbl_8051A654
 lbl_8051A654:
 	.4byte 0xFFFFFF04
-.global lbl_8051A658
 lbl_8051A658:
 	.4byte 0xFFFFFF7F
 	.4byte 0x00000000

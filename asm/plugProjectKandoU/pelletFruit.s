@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80481B40
 lbl_80481B40:
 	.4byte 0x50656C6C
 	.4byte 0x65744672
@@ -14,7 +13,6 @@ lbl_80481B40:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BDFD0
 lbl_804BDFD0:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -357,25 +355,20 @@ __vt__Q34Game11PelletFruit6Object:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515B88
 lbl_80515B88:
 	.skip 0x4
-.global lbl_80515B8C
 lbl_80515B8C:
 	.skip 0x4
 .global mgr__Q24Game11PelletFruit
 mgr__Q24Game11PelletFruit:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519D08
 lbl_80519D08:
 	.4byte 0x42C80000
-.global lbl_80519D0C
 lbl_80519D0C:
 	.4byte 0x00000000
-.global lbl_80519D10
 lbl_80519D10:
 	.4byte 0x66727569
 	.4byte 0x74000000

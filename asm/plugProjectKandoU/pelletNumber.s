@@ -1,27 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80481AE0
 lbl_80481AE0:
 	.4byte 0x4E756D62
 	.4byte 0x65725065
 	.4byte 0x6C6C6574
 	.4byte 0x00000000
-.global lbl_80481AF0
 lbl_80481AF0:
 	.4byte 0x70656C6C
 	.4byte 0x65745F74
 	.4byte 0x65787473
 	.4byte 0x2E737A73
 	.4byte 0x00000000
-.global lbl_80481B04
 lbl_80481B04:
 	.4byte 0x70656C6C
 	.4byte 0x65744E75
 	.4byte 0x6D626572
 	.4byte 0x2E637070
 	.4byte 0x00000000
-.global lbl_80481B18
 lbl_80481B18:
 	.4byte 0x4E756D62
 	.4byte 0x65725065
@@ -30,7 +26,6 @@ lbl_80481B18:
 	.4byte 0x65202564
 	.4byte 0x20657272
 	.4byte 0x6F720A00
-.global lbl_80481B34
 lbl_80481B34:
 	.4byte 0x41726750
 	.4byte 0x656C5479
@@ -38,7 +33,6 @@ lbl_80481B34:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BD570
 lbl_804BD570:
 	.4byte .L_801F99D0
 	.4byte .L_801F99A0
@@ -409,14 +403,11 @@ mgr__Q24Game12PelletNumber:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519CE0
 lbl_80519CE0:
 	.4byte 0x6270656C
 	.4byte 0x31000000
-.global lbl_80519CE8
 lbl_80519CE8:
 	.float 0.5
-.global lbl_80519CEC
 lbl_80519CEC:
 	.4byte 0x6E756D62
 	.4byte 0x65720000

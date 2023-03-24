@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80488730
 lbl_80488730:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -14,7 +13,6 @@ lbl_80488730:
 	.4byte 0x536E616B
 	.4byte 0x6543726F
 	.4byte 0x77000000
-.global lbl_8048874C
 lbl_8048874C:
 	.4byte 0x6B757469
 	.4byte 0x6A6E7431
@@ -34,7 +32,6 @@ lbl_8048877C:
 	.4byte 0x433E0000
 	.4byte 0x42B40000
 	.4byte 0x42B40000
-.global lbl_80488790
 lbl_80488790:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -101,7 +98,6 @@ lbl_80488790:
 	.4byte 0xC2200000
 	.4byte 0xC2200000
 	.4byte 0xC2200000
-.global lbl_80488894
 lbl_80488894:
 	.4byte 0x50534D61
 	.4byte 0x696E5369
@@ -109,11 +105,9 @@ lbl_80488894:
 	.4byte 0x626A536F
 	.4byte 0x756E642E
 	.4byte 0x68000000
-.global lbl_804888AC
 lbl_804888AC:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_804888B8
+.balign 4
 lbl_804888B8:
 	.4byte 0x626F6479
 	.4byte 0x6A6E7433
@@ -121,7 +115,6 @@ lbl_804888B8:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804CB570
 lbl_804CB570:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -432,68 +425,48 @@ __vt__Q34Game9SnakeCrow3Obj:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515D60
 lbl_80515D60:
 	.skip 0x4
-.global lbl_80515D64
 lbl_80515D64:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051BA90
 lbl_8051BA90:
 	.4byte 0x00000000
-.global lbl_8051BA94
 lbl_8051BA94:
 	.4byte 0x40200000
-.global lbl_8051BA98
 lbl_8051BA98:
 	.float 1.0
-.global lbl_8051BA9C
 lbl_8051BA9C:
 	.4byte 0x41A00000
-.global lbl_8051BAA0
 lbl_8051BAA0:
 	.4byte 0x418C0000
-.global lbl_8051BAA4
 lbl_8051BAA4:
 	.float 0.1
-.global lbl_8051BAA8
 lbl_8051BAA8:
 	.4byte 0x41200000
-.global lbl_8051BAAC
 lbl_8051BAAC:
 	.4byte 0xC47A0000
-.global lbl_8051BAB0
 lbl_8051BAB0:
 	.4byte 0x41700000
-.global lbl_8051BAB4
 lbl_8051BAB4:
 	.4byte 0x40C90FDB
-.global lbl_8051BAB8
 lbl_8051BAB8:
 	.4byte 0x47000000
-.global lbl_8051BABC
 lbl_8051BABC:
 	.4byte 0x43A2F983
-.global lbl_8051BAC0
 lbl_8051BAC0:
 	.4byte 0xC3A2F983
-.global lbl_8051BAC4
 lbl_8051BAC4:
 	.4byte 0x42F00000
-.global lbl_8051BAC8
 lbl_8051BAC8:
 	.4byte 0x40490FDB
-.global lbl_8051BACC
 lbl_8051BACC:
 	.4byte 0x3FC90FDB
-.global lbl_8051BAD0
 lbl_8051BAD0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051BAD8
 lbl_8051BAD8:
 	.float 0.25
 	.4byte 0x00000000

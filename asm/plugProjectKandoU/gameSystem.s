@@ -5,20 +5,18 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047FBB8
 lbl_8047FBB8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_8047FBC4:
 	.4byte 0x67616D65
 	.4byte 0x53797374
 	.4byte 0x656D0000
-.global lbl_8047FBD0
 lbl_8047FBD0:
 	.4byte 0x44796E50
 	.4byte 0x61727469
 	.4byte 0x636C6500
-.global lbl_8047FBDC
 lbl_8047FBDC:
 	.4byte 0x75736572
 	.4byte 0x2F416265
@@ -26,27 +24,28 @@ lbl_8047FBDC:
 	.4byte 0x652F7469
 	.4byte 0x6D652E69
 	.4byte 0x6E690000
+lbl_8047FBF4:
 	.4byte 0x44796E61
 	.4byte 0x6D696373
 	.4byte 0x00000000
+lbl_8047FC00:
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x8EF10000
+lbl_8047FC0C:
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x8393836F
 	.4byte 0x83628374
 	.4byte 0x8340974C
 	.4byte 0x8CF80000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B5B50
-lbl_804B5B50:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q24Game18OptimiseController
 __vt__Q24Game18OptimiseController:
 	.4byte 0
@@ -95,22 +94,21 @@ __vt__Q24Game10GameSystem:
 	.4byte startFadeoutin__Q24Game10GameSystemFf
 	.4byte startFadeblack__Q24Game10GameSystemFv
 	.4byte startFadewhite__Q24Game10GameSystemFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515A60
-lbl_80515A60:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515A64
-lbl_80515A64:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global gameSystem__4Game
-gameSystem__4Game:
+.endobj gfNAN___Q24Game5P2JST
+.obj gameSystem__4Game, global
 	.skip 0x4
-.global mInstance__Q24Game18OptimiseController
-mInstance__Q24Game18OptimiseController:
+.endobj gameSystem__4Game
+.obj mInstance__Q24Game18OptimiseController, global
 	.skip 0x4
+.endobj mInstance__Q24Game18OptimiseController
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection
@@ -1861,10 +1859,10 @@ __sinit_gameSystem_cpp:
 /* 801B6250 001B3190  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801B6254 001B3194  38 00 FF FF */	li r0, -1
 /* 801B6258 001B3198  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801B625C 001B319C  3C 60 80 4B */	lis r3, lbl_804B5B50@ha
-/* 801B6260 001B31A0  90 0D 93 E0 */	stw r0, lbl_80515A60@sda21(r13)
-/* 801B6264 001B31A4  D4 03 5B 50 */	stfsu f0, lbl_804B5B50@l(r3)
-/* 801B6268 001B31A8  D0 0D 93 E4 */	stfs f0, lbl_80515A64@sda21(r13)
+/* 801B625C 001B319C  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801B6260 001B31A0  90 0D 93 E0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801B6264 001B31A4  D4 03 5B 50 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801B6268 001B31A8  D0 0D 93 E4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801B626C 001B31AC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801B6270 001B31B0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801B6274 001B31B4  4E 80 00 20 */	blr 

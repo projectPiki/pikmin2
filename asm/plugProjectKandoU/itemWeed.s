@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80481FC0
 lbl_80481FC0:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -13,22 +12,18 @@ lbl_80481FC0:
 	.4byte 0x6974656D
 	.4byte 0x57656564
 	.4byte 0x00000000
-.global lbl_80481FD8
 lbl_80481FD8:
 	.4byte 0x6974656D
 	.4byte 0x57656564
 	.4byte 0x2E637070
 	.4byte 0x00000000
-.global lbl_80481FE8
 lbl_80481FE8:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80481FF4
+.balign 4
 lbl_80481FF4:
 	.4byte 0x835F8381
 	.4byte 0x8362834E
 	.4byte 0x0A000000
-.global lbl_80482000
 lbl_80482000:
 	.4byte 0x666C6F63
 	.4byte 0x6B4D6772
@@ -62,7 +57,6 @@ lbl_80482000:
 	.4byte 0x82A99190
 	.4byte 0x82A90D0A
 	.4byte 0x00000000
-.global lbl_80482080
 lbl_80482080:
 	.4byte 0x4974656D
 	.4byte 0x57656564
@@ -77,7 +71,6 @@ lbl_80482080:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BFBA0
 lbl_804BFBA0:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -672,10 +665,8 @@ __vt__Q34Game8ItemWeed4Weed:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515BD8
 lbl_80515BD8:
 	.skip 0x4
-.global lbl_80515BDC
 lbl_80515BDC:
 	.skip 0x4
 .global mgr__Q24Game8ItemWeed
@@ -684,64 +675,45 @@ mgr__Q24Game8ItemWeed:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519EF8
 lbl_80519EF8:
 	.4byte 0x00000000
-.global lbl_80519EFC
 lbl_80519EFC:
 	.float 1.0
-.global lbl_80519F00
 lbl_80519F00:
 	.4byte 0x47000000
-.global lbl_80519F04
 lbl_80519F04:
 	.4byte 0x40C90FDB
-.global lbl_80519F08
 lbl_80519F08:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80519F10
 lbl_80519F10:
 	.4byte 0x42700000
-.global lbl_80519F14
 lbl_80519F14:
 	.4byte 0x40400000
-.global lbl_80519F18
 lbl_80519F18:
 	.4byte 0x43A2F983
-.global lbl_80519F1C
 lbl_80519F1C:
 	.4byte 0xC3A2F983
-.global lbl_80519F20
 lbl_80519F20:
 	.4byte 0x42960000
-.global lbl_80519F24
 lbl_80519F24:
 	.4byte 0x3F6B851F
-.global lbl_80519F28
 lbl_80519F28:
 	.4byte 0x41200000
-.global lbl_80519F2C
 lbl_80519F2C:
 	.4byte 0x40000000
-.global lbl_80519F30
 lbl_80519F30:
 	.4byte 0x40490FDB
-.global lbl_80519F34
 lbl_80519F34:
 	.4byte 0x41F00000
-.global lbl_80519F38
 lbl_80519F38:
 	.4byte 0x43480000
-.global lbl_80519F3C
 lbl_80519F3C:
 	.4byte 0x6172632E
 	.4byte 0x737A7300
-.global lbl_80519F44
 lbl_80519F44:
 	.4byte 0x77656564
 	.4byte 0x00000000
-.global lbl_80519F4C
 lbl_80519F4C:
 	.4byte 0x57656564
 	.4byte 0x00000000

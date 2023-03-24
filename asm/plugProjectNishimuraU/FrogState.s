@@ -1,12 +1,10 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80484D08
 lbl_80484D08:
 	.4byte 0x6A756D70
 	.4byte 0x77616974
 	.4byte 0x00000000
-.global lbl_80484D14
 lbl_80484D14:
 	.4byte 0x7475726E
 	.4byte 0x746F686F
@@ -149,74 +147,54 @@ __vt__Q34Game4Frog3FSM:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051AA28
 lbl_8051AA28:
 	.4byte 0x64656164
 	.4byte 0x00000000
-.global lbl_8051AA30
 lbl_8051AA30:
 	.4byte 0x77616974
 	.4byte 0x00000000
-.global lbl_8051AA38
 lbl_8051AA38:
 	.4byte 0x7475726E
 	.4byte 0x00000000
-.global lbl_8051AA40
 lbl_8051AA40:
 	.4byte 0x6A756D70
 	.4byte 0x00000000
-.global lbl_8051AA48
 lbl_8051AA48:
 	.4byte 0x66616C6C
 	.4byte 0x00000000
-.global lbl_8051AA50
 lbl_8051AA50:
 	.4byte 0x61747461
 	.4byte 0x636B0000
-.global lbl_8051AA58
 lbl_8051AA58:
 	.4byte 0x6661696C
 	.4byte 0x00000000
-.global lbl_8051AA60
 lbl_8051AA60:
 	.4byte 0x676F686F
 	.4byte 0x6D650000
-.global lbl_8051AA68
 lbl_8051AA68:
 	.4byte 0x00000000
-.global lbl_8051AA6C
 lbl_8051AA6C:
 	.4byte 0x3F1EB852
-.global lbl_8051AA70
 lbl_8051AA70:
 	.float 1.0
-.global lbl_8051AA74
 lbl_8051AA74:
 	.4byte 0x47000000
-.global lbl_8051AA78
 lbl_8051AA78:
 	.4byte 0x3E4CCCCD
 	.4byte 0x00000000
-.global lbl_8051AA80
 lbl_8051AA80:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051AA88
 lbl_8051AA88:
 	.4byte 0x40490FDB
-.global lbl_8051AA8C
 lbl_8051AA8C:
 	.4byte 0x3BB60B61
-.global lbl_8051AA90
 lbl_8051AA90:
 	.4byte 0x3E32B8C3
-.global lbl_8051AA94
 lbl_8051AA94:
 	.4byte 0xC47A0000
-.global lbl_8051AA98
 lbl_8051AA98:
 	.4byte 0x40F00000
-.global lbl_8051AA9C
 lbl_8051AA9C:
 	.float 0.5
 

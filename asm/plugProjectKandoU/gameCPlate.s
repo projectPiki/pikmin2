@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047EFA8
 lbl_8047EFA8:
 	.4byte 0x4E617669
 	.4byte 0x3A3A5061
@@ -21,22 +20,18 @@ lbl_8047EFA8:
 	.4byte 0x82B3288D
 	.4byte 0xC591E529
 	.4byte 0x00000000
-.global lbl_8047EFF0
 lbl_8047EFF0:
 	.4byte 0x67616D65
 	.4byte 0x43506C61
 	.4byte 0x74652E63
 	.4byte 0x70700000
-.global lbl_8047F000
 lbl_8047F000:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8047F00C
+.balign 4
 lbl_8047F00C:
 	.4byte 0x20736F72
 	.4byte 0x7279202E
 	.4byte 0x2E2E0A00
-.global lbl_8047F018
 lbl_8047F018:
 	.4byte 0x636F6C20
 	.4byte 0x2564203A
@@ -44,7 +39,6 @@ lbl_8047F018:
 	.4byte 0x74206661
 	.4byte 0x696C6564
 	.4byte 0x20210A00
-.global lbl_8047F030
 lbl_8047F030:
 	.4byte 0x696E7661
 	.4byte 0x6C696420
@@ -84,66 +78,46 @@ __vt__Q24Game6CPlate:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518EF0
 lbl_80518EF0:
 	.4byte 0x418C0000
-.global lbl_80518EF4
 lbl_80518EF4:
 	.4byte 0x00000000
-.global lbl_80518EF8
 lbl_80518EF8:
 	.4byte 0x42C80000
-.global lbl_80518EFC
 lbl_80518EFC:
 	.4byte 0x43020000
-.global lbl_80518F00
 lbl_80518F00:
 	.4byte 0x41200000
-.global lbl_80518F04
 lbl_80518F04:
 	.4byte 0x447A0000
-.global lbl_80518F08
 lbl_80518F08:
 	.4byte 0x40C00000
-.global lbl_80518F0C
 lbl_80518F0C:
 	.float 1.0
-.global lbl_80518F10
 lbl_80518F10:
 	.4byte 0x42480000
-.global lbl_80518F14
 lbl_80518F14:
 	.4byte 0x40A00000
-.global lbl_80518F18
 lbl_80518F18:
 	.4byte 0x43A2F983
-.global lbl_80518F1C
 lbl_80518F1C:
 	.4byte 0xC3A2F983
-.global lbl_80518F20
 lbl_80518F20:
 	.float 0.5
-.global lbl_80518F24
 lbl_80518F24:
 	.4byte 0x40490FDB
-.global lbl_80518F28
 lbl_80518F28:
 	.4byte 0x40066666
-.global lbl_80518F2C
 lbl_80518F2C:
 	.4byte 0x3FF33333
-.global lbl_80518F30
 lbl_80518F30:
 	.4byte 0x40800000
 	.4byte 0x00000000
-.global lbl_80518F38
 lbl_80518F38:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80518F40
 lbl_80518F40:
 	.4byte 0x40000000
-.global lbl_80518F44
 lbl_80518F44:
 	.float 0.1
 

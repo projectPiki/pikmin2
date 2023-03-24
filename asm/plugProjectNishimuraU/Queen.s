@@ -5,22 +5,20 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80487FF8
-lbl_80487FF8:
+.obj lbl_80487FF8, local
 	.asciz "body_end"
-	.skip 3
-.global lbl_80488004
-lbl_80488004:
+.endobj lbl_80487FF8
+.balign 4
+.obj lbl_80488004, local
 	.asciz "PSMainSide_ObjSound.h"
-	.skip 2
-.global lbl_8048801C
-lbl_8048801C:
+.endobj lbl_80488004
+.balign 4
+.obj lbl_8048801C, local
 	.asciz "P2Assert"
-	.skip 3
+.endobj lbl_8048801C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C9D20
 lbl_804C9D20:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -451,89 +449,63 @@ __vt__Q34Game5Queen3Obj:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515D50
 lbl_80515D50:
 	.skip 0x4
-.global lbl_80515D54
 lbl_80515D54:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051B818
 lbl_8051B818:
 	.4byte 0x00000000
-.global lbl_8051B81C
 lbl_8051B81C:
 	.4byte 0x41F00000
-.global lbl_8051B820
 lbl_8051B820:
 	.4byte 0x41700000
-.global lbl_8051B824
 lbl_8051B824:
 	.float 1.0
-.global lbl_8051B828
 lbl_8051B828:
 	.4byte 0x42480000
-.global lbl_8051B82C
 lbl_8051B82C:
 	.4byte 0x42340000
-.global lbl_8051B830
 lbl_8051B830:
 	.float 0.1
-.global lbl_8051B834
 lbl_8051B834:
 	.4byte 0x3E4CCCCD
-.global lbl_8051B838
 lbl_8051B838:
 	.4byte 0x41200000
-.global lbl_8051B83C
 lbl_8051B83C:
 	.4byte 0xC47A0000
-.global lbl_8051B840
 lbl_8051B840:
 	.4byte 0x43A2F983
-.global lbl_8051B844
 lbl_8051B844:
 	.4byte 0xC3A2F983
-.global lbl_8051B848
 lbl_8051B848:
 	.4byte 0x437A0000
-.global lbl_8051B84C
 lbl_8051B84C:
 	.4byte 0x40490FDB
-.global lbl_8051B850
 lbl_8051B850:
 	.4byte 0x3FC90FDB
-.global lbl_8051B854
 lbl_8051B854:
 	.4byte 0x47000000
-.global lbl_8051B858
 lbl_8051B858:
 	.float 0.5
 	.4byte 0x00000000
-.global lbl_8051B860
 lbl_8051B860:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051B868
 lbl_8051B868:
 	.4byte 0x43610000
-.global lbl_8051B86C
 lbl_8051B86C:
 	.4byte 0x43160000
-.global lbl_8051B870
 lbl_8051B870:
 	.4byte 0x447A0000
-.global lbl_8051B874
 lbl_8051B874:
 	.4byte 0x626F6479
 	.4byte 0x35000000
-.global lbl_8051B87C
 lbl_8051B87C:
 	.4byte 0x68656164
 	.4byte 0x00000000
-.global lbl_8051B884
 lbl_8051B884:
 	.float 0.25
 

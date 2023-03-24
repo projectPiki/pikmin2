@@ -5,59 +5,90 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483D70
-lbl_80483D70:
+.obj lbl_80483D70, local
 	.skip 0xC
+.endobj lbl_80483D70
+.balign 4
+.obj lbl_80483D7C, local
 	.asciz "singleGS_DayEnd"
-.global lbl_80483D8C
-lbl_80483D8C:
+.endobj lbl_80483D7C
+.balign 4
+.obj lbl_80483D8C, local
 	.asciz "singleGS_DayEnd.cpp"
-.global lbl_80483DA0
-lbl_80483DA0:
+.endobj lbl_80483D8C
+.balign 4
+.obj lbl_80483DA0, local
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80483DAC
-lbl_80483DAC:
+.endobj lbl_80483DA0
+.balign 4
+.obj lbl_80483DAC, local
 	.asciz "s01_dayend"
-	.skip 1
+.endobj lbl_80483DAC
+.balign 4
+.obj lbl_80483DB8, local
 	.asciz "no alive:s01_dayend"
+.endobj lbl_80483DB8
+.balign 4
+.obj lbl_80483DCC, local
 	.asciz "s06_dayend_pikminzero"
-	.skip 2
+.endobj lbl_80483DCC
+.balign 4
+.obj lbl_80483DE4, local
 	.asciz "s06_dayend"
-	.skip 1
+.endobj lbl_80483DE4
+.balign 4
+.obj lbl_80483DF0, local
 	.asciz "s04_dayend_orimadown"
-	.skip 3
+.endobj lbl_80483DF0
+.balign 4
+.obj lbl_80483E08, local
 	.asciz "s04_dayend"
-	.skip 1
+.endobj lbl_80483E08
+.balign 4
+.obj lbl_80483E14, local
 	.asciz "dayend-cache"
-	.skip 3
+.endobj lbl_80483E14
+.balign 4
+.obj lbl_80483E28, local
 	.asciz "no alive navi"
-	.skip 2
-.global lbl_80483E34
-lbl_80483E34:
+.endobj lbl_80483E28
+.balign 4
+.obj lbl_80483E34, local
 	.asciz "s21_dayend_takeoff"
-	.skip 1
-.global lbl_80483E48
-lbl_80483E48:
+.endobj lbl_80483E34
+.balign 4
+.obj lbl_80483E48, local
 	.asciz "dayend;cln"
-	.skip 1
+.endobj lbl_80483E48
+.balign 4
+.obj lbl_80483E54, local
 	.asciz "PikiInitArg"
+.endobj lbl_80483E54
+.balign 4
+.obj lbl_80483E60, local
 	.asciz "CreatureActionArg"
-	.skip 2
+.endobj lbl_80483E60
+.balign 4
+.obj lbl_80483E74, local
 	.asciz "ActionArg"
-	.skip 2
+.endobj lbl_80483E74
+.balign 4
+.obj lbl_80483E80, local
 	.asciz "PikiKillArg"
+.endobj lbl_80483E80
+.balign 4
+.obj lbl_80483E8C, local
 	.asciz "CreatureKillArg"
+.endobj lbl_80483E8C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C1630
-lbl_804C1630:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q34Game10SingleGame11DayEndState
-__vt__Q34Game10SingleGame11DayEndState:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game10SingleGame11DayEndState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
@@ -76,66 +107,65 @@ __vt__Q34Game10SingleGame11DayEndState:
 	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-	.4byte 0
+.endobj __vt__Q34Game10SingleGame11DayEndState
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515CC0
-lbl_80515CC0:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515CC4
-lbl_80515CC4:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A538
-lbl_8051A538:
-	.4byte 0x00000000
-.global lbl_8051A53C
-lbl_8051A53C:
-	.4byte 0x64617965
-	.4byte 0x6E640000
-.global lbl_8051A544
-lbl_8051A544:
-	.4byte 0x40800000
-.global lbl_8051A548
-lbl_8051A548:
-	.4byte 0x431C0000
-.global lbl_8051A54C
-lbl_8051A54C:
-	.4byte 0x43260000
-.global lbl_8051A550
-lbl_8051A550:
-	.4byte 0x42480000
-.global lbl_8051A554
-lbl_8051A554:
-	.4byte 0x43340000
-.global lbl_8051A558
-lbl_8051A558:
-	.4byte 0x47000000
-.global lbl_8051A55C
-lbl_8051A55C:
-	.4byte 0x40C90FDB
-.global lbl_8051A560
-lbl_8051A560:
-	.4byte 0x41F00000
-.global lbl_8051A564
-lbl_8051A564:
-	.4byte 0x43A2F983
-.global lbl_8051A568
-lbl_8051A568:
-	.4byte 0xC3A2F983
-	.4byte 0x00000000
-.global lbl_8051A570
-lbl_8051A570:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_8051A538, local
+	.float 0.0
+.endobj lbl_8051A538
+.balign 4
+.obj lbl_8051A53C, local
+	.asciz "dayend"
+.endobj lbl_8051A53C
+.balign 4
+.obj lbl_8051A544, local
+	.float 4.0
+.endobj lbl_8051A544
+.obj lbl_8051A548, local
+	.float 156.0
+.endobj lbl_8051A548
+.obj lbl_8051A54C, local
+	.float 166.0
+.endobj lbl_8051A54C
+.obj lbl_8051A550, local
+	.float 50.0
+.endobj lbl_8051A550
+.obj lbl_8051A554, local
+	.float 180.0
+.endobj lbl_8051A554
+.obj lbl_8051A558, local
+	.float 32768.0
+.endobj lbl_8051A558
+.obj lbl_8051A55C, local # tau
+	.float 6.2831855
+.endobj lbl_8051A55C
+.obj lbl_8051A560, local
+	.float 30.0
+.endobj lbl_8051A560
+.obj lbl_8051A564, local
+	.float 325.9493
+.endobj lbl_8051A564
+.obj lbl_8051A568, local
+	.float -325.9493
+.endobj lbl_8051A568
+.balign 8
+.obj lbl_8051A570, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051A570
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
-.global init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 8023A250 00237190  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8023A254 00237194  7C 08 02 A6 */	mflr r0
 /* 8023A258 00237198  90 01 00 54 */	stw r0, 0x54(r1)
@@ -449,9 +479,9 @@ init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8State
 /* 8023A6E4 00237624  7C 08 03 A6 */	mtlr r0
 /* 8023A6E8 00237628  38 21 00 50 */	addi r1, r1, 0x50
 /* 8023A6EC 0023762C  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .else
-.global init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg:
+.fn init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg, global
 /* 8023A250 00237190  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8023A254 00237194  7C 08 02 A6 */	mflr r0
 /* 8023A258 00237198  90 01 00 54 */	stw r0, 0x54(r1)
@@ -765,11 +795,11 @@ init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8State
 /* 8023A6E4 00237624  7C 08 03 A6 */	mtlr r0
 /* 8023A6E8 00237628  38 21 00 50 */	addi r1, r1, 0x50
 /* 8023A6EC 0023762C  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 .endif
 
 .if version == 1
-.global exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection, global
 /* 8023A6F0 00237630  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8023A6F4 00237634  7C 08 02 A6 */	mflr r0
 /* 8023A6F8 00237638  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -1048,9 +1078,9 @@ exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection:
 /* 8023AAF0 00237A30  7C 08 03 A6 */	mtlr r0
 /* 8023AAF4 00237A34  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8023AAF8 00237A38  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection
 .else
-.global exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection
-exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection:
+.fn exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection, global
 /* 8023A6F0 00237630  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8023A6F4 00237634  7C 08 02 A6 */	mflr r0
 /* 8023A6F8 00237638  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -1329,10 +1359,10 @@ exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection:
 /* 8023AAF0 00237A30  7C 08 03 A6 */	mtlr r0
 /* 8023AAF4 00237A34  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8023AAF8 00237A38  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection
 .endif
 
-.global onMovieStart__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieStart__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieStart__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 8023AAFC 00237A3C  94 21 FD F0 */	stwu r1, -0x210(r1)
 /* 8023AB00 00237A40  7C 08 02 A6 */	mflr r0
 /* 8023AB04 00237A44  3C 80 80 48 */	lis r4, lbl_80483D70@ha
@@ -1723,10 +1753,10 @@ onMovieStart__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Ga
 /* 8023B0A8 00237FE8  7C 08 03 A6 */	mtlr r0
 /* 8023B0AC 00237FEC  38 21 02 10 */	addi r1, r1, 0x210
 /* 8023B0B0 00237FF0  4E 80 00 20 */	blr 
+.endfn onMovieStart__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 
 .if version == 1
-.global onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 8023B0B4 00237FF4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8023B0B8 00237FF8  7C 08 02 A6 */	mflr r0
 /* 8023B0BC 00237FFC  3C 60 80 48 */	lis r3, lbl_80483DAC@ha
@@ -1791,9 +1821,9 @@ onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Gam
 /* 8023B19C 002380DC  7C 08 03 A6 */	mtlr r0
 /* 8023B1A0 002380E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 8023B1A4 002380E4  4E 80 00 20 */	blr 
+.endfn onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .else
-.global onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl:
+.fn onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl, global
 /* 8023B0B4 00237FF4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8023B0B8 00237FF8  7C 08 02 A6 */	mflr r0
 /* 8023B0BC 00237FFC  3C 60 80 48 */	lis r3, lbl_80483DAC@ha
@@ -1858,10 +1888,10 @@ onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Gam
 /* 8023B19C 002380DC  7C 08 03 A6 */	mtlr r0
 /* 8023B1A0 002380E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 8023B1A4 002380E4  4E 80 00 20 */	blr 
+.endfn onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
 .endif
 
-.global onMovieCommand__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectioni
-onMovieCommand__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectioni:
+.fn onMovieCommand__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectioni, global
 /* 8023B1A8 002380E8  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8023B1AC 002380EC  7C 08 02 A6 */	mflr r0
 /* 8023B1B0 002380F0  2C 05 00 01 */	cmpwi r5, 1
@@ -2050,9 +2080,9 @@ onMovieCommand__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectioni:
 /* 8023B45C 0023839C  7C 08 03 A6 */	mtlr r0
 /* 8023B460 002383A0  38 21 00 80 */	addi r1, r1, 0x80
 /* 8023B464 002383A4  4E 80 00 20 */	blr 
+.endfn onMovieCommand__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectioni
 
-.global draw__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionR8Graphics
-draw__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionR8Graphics:
+.fn draw__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionR8Graphics, global
 /* 8023B468 002383A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023B46C 002383AC  7C 08 02 A6 */	mflr r0
 /* 8023B470 002383B0  7C 83 23 78 */	mr r3, r4
@@ -2063,9 +2093,9 @@ draw__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionR8Graphics:
 /* 8023B484 002383C4  7C 08 03 A6 */	mtlr r0
 /* 8023B488 002383C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023B48C 002383CC  4E 80 00 20 */	blr 
+.endfn draw__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionR8Graphics
 
-.global cleanup__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection
-cleanup__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection:
+.fn cleanup__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection, global
 /* 8023B490 002383D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023B494 002383D4  7C 08 02 A6 */	mflr r0
 /* 8023B498 002383D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2097,16 +2127,17 @@ cleanup__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection:
 /* 8023B500 00238440  7C 08 03 A6 */	mtlr r0
 /* 8023B504 00238444  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023B508 00238448  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection
 
-.global __sinit_singleGS_DayEnd_cpp
-__sinit_singleGS_DayEnd_cpp:
+.fn __sinit_singleGS_DayEnd_cpp, local
 /* 8023B50C 0023844C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8023B510 00238450  38 00 FF FF */	li r0, -1
 /* 8023B514 00238454  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8023B518 00238458  3C 60 80 4C */	lis r3, lbl_804C1630@ha
-/* 8023B51C 0023845C  90 0D 96 40 */	stw r0, lbl_80515CC0@sda21(r13)
-/* 8023B520 00238460  D4 03 16 30 */	stfsu f0, lbl_804C1630@l(r3)
-/* 8023B524 00238464  D0 0D 96 44 */	stfs f0, lbl_80515CC4@sda21(r13)
+/* 8023B518 00238458  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8023B51C 0023845C  90 0D 96 40 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8023B520 00238460  D4 03 16 30 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8023B524 00238464  D0 0D 96 44 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8023B528 00238468  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8023B52C 0023846C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8023B530 00238470  4E 80 00 20 */	blr 
+.endfn __sinit_singleGS_DayEnd_cpp

@@ -218,87 +218,62 @@ __vt__Q34Game10KumaChappy3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051BB68
 lbl_8051BB68:
 	.4byte 0x00000000
-.global lbl_8051BB6C
 lbl_8051BB6C:
 	.4byte 0x61676F00
-.global lbl_8051BB70
 lbl_8051BB70:
 	.4byte 0x418C0000
-.global lbl_8051BB74
 lbl_8051BB74:
 	.4byte 0x40A00000
-.global lbl_8051BB78
 lbl_8051BB78:
 	.float 1.0
-.global lbl_8051BB7C
 lbl_8051BB7C:
 	.4byte 0x42C80000
-.global lbl_8051BB80
 lbl_8051BB80:
 	.4byte 0x42960000
-.global lbl_8051BB84
 lbl_8051BB84:
 	.4byte 0x41F00000
-.global lbl_8051BB88
 lbl_8051BB88:
 	.float 0.1
-.global lbl_8051BB8C
 lbl_8051BB8C:
 	.4byte 0x6B616D75
 	.4byte 0x31000000
-.global lbl_8051BB94
 lbl_8051BB94:
 	.4byte 0x6B616D75
 	.4byte 0x32000000
-.global lbl_8051BB9C
 lbl_8051BB9C:
 	.4byte 0x6B616D75
 	.4byte 0x33000000
-.global lbl_8051BBA4
 lbl_8051BBA4:
 	.4byte 0x6B616D75
 	.4byte 0x34000000
-.global lbl_8051BBAC
 lbl_8051BBAC:
 	.4byte 0x6B616D75
 	.4byte 0x35000000
-.global lbl_8051BBB4
 lbl_8051BBB4:
 	.4byte 0x420C0000
-.global lbl_8051BBB8
 lbl_8051BBB8:
 	.4byte 0x6173694C
 	.4byte 0x00000000
-.global lbl_8051BBC0
 lbl_8051BBC0:
 	.4byte 0x41200000
-.global lbl_8051BBC4
 lbl_8051BBC4:
 	.4byte 0x61736952
 	.4byte 0x00000000
-.global lbl_8051BBCC
 lbl_8051BBCC:
 	.4byte 0x42480000
-.global lbl_8051BBD0
 lbl_8051BBD0:
 	.4byte 0x43340000
-.global lbl_8051BBD4
 lbl_8051BBD4:
 	.4byte 0x47000000
-.global lbl_8051BBD8
 lbl_8051BBD8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051BBE0
 lbl_8051BBE0:
 	.4byte 0x43A2F983
-.global lbl_8051BBE4
 lbl_8051BBE4:
 	.4byte 0xC3A2F983
-.global lbl_8051BBE8
 lbl_8051BBE8:
 	.4byte 0x3F400000
 	.4byte 0x00000000

@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804816B8
 lbl_804816B8:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -14,24 +13,20 @@ lbl_804816B8:
 	.4byte 0x54726561
 	.4byte 0x73757265
 	.4byte 0x00000000
-.global lbl_804816D4
 lbl_804816D4:
 	.4byte 0x7831345F
 	.4byte 0x77686974
 	.4byte 0x655F6469
 	.4byte 0x67000000
-.global lbl_804816E4
 lbl_804816E4:
 	.4byte 0x6974656D
 	.4byte 0x54726561
 	.4byte 0x73757265
 	.4byte 0x2E637070
 	.4byte 0x00000000
-.global lbl_804816F8
 lbl_804816F8:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80481704
+.balign 4
 lbl_80481704:
 	.4byte 0x54726561
 	.4byte 0x73757265
@@ -99,7 +94,6 @@ lbl_80481704:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BBC18
 lbl_804BBC18:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -670,10 +664,8 @@ __vt__Q34Game12ItemTreasure3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515B48
 lbl_80515B48:
 	.skip 0x4
-.global lbl_80515B4C
 lbl_80515B4C:
 	.skip 0x4
 .global mgr__Q24Game12ItemTreasure
@@ -682,73 +674,51 @@ mgr__Q24Game12ItemTreasure:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519BD0
 lbl_80519BD0:
 	.4byte 0x00000000
-.global lbl_80519BD4
 lbl_80519BD4:
 	.float 0.25
-.global lbl_80519BD8
 lbl_80519BD8:
 	.float 0.5
-.global lbl_80519BDC
 lbl_80519BDC:
 	.4byte 0x47000000
-.global lbl_80519BE0
 lbl_80519BE0:
 	.4byte 0x41200000
-.global lbl_80519BE4
 lbl_80519BE4:
 	.4byte 0x43160000
-.global lbl_80519BE8
 lbl_80519BE8:
 	.4byte 0x40400000
 	.4byte 0x00000000
-.global lbl_80519BF0
 lbl_80519BF0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80519BF8
 lbl_80519BF8:
 	.float 1.0
-.global lbl_80519BFC
 lbl_80519BFC:
 	.4byte 0x40A00000
-.global lbl_80519C00
 lbl_80519C00:
 	.4byte 0x3F400000
-.global lbl_80519C04
 lbl_80519C04:
 	.4byte 0x3F59999A
-.global lbl_80519C08
 lbl_80519C08:
 	.4byte 0x61636365
 	.4byte 0x6C000000
-.global lbl_80519C10
 lbl_80519C10:
 	.float 0.1
-.global lbl_80519C14
 lbl_80519C14:
 	.4byte 0x3C23D70A
-.global lbl_80519C18
 lbl_80519C18:
 	.4byte 0x40000000
-.global lbl_80519C1C
 lbl_80519C1C:
 	.float 0.3
-.global lbl_80519C20
 lbl_80519C20:
 	.4byte 0x437A0000
-.global lbl_80519C24
 lbl_80519C24:
 	.4byte 0x476A6000
-.global lbl_80519C28
 lbl_80519C28:
 	.4byte 0x443B8000
-.global lbl_80519C2C
 lbl_80519C2C:
 	.4byte 0x44960000
-.global lbl_80519C30
 lbl_80519C30:
 	.4byte 0x44BB8000
 	.4byte 0x00000000

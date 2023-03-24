@@ -5,144 +5,147 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80480188:
+.obj lbl_80480188, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6974656D
-	.4byte 0x47617465
-	.4byte 0x00000000
-lbl_804801A0:
-	.4byte 0x6974656D
-	.4byte 0x47617465
-	.4byte 0x2E637070
-	.4byte 0x00000000
-lbl_804801B0:
-	.4byte 0x6E6F2073
-	.4byte 0x68617065
-	.4byte 0x20210A00
-lbl_804801BC:
-	.asciz "P2Assert"
+.endobj lbl_80480188
 .balign 4
-lbl_804801C8:
-	.4byte 0x4974656D
-	.4byte 0x47617465
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F67
-	.4byte 0x61746573
-	.4byte 0x00000000
-	.4byte 0x67617465
-	.4byte 0x2D617263
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x67617465
-	.4byte 0x5F736F66
-	.4byte 0x742E626D
-	.4byte 0x64000000
-	.4byte 0x67617465
-	.4byte 0x2D746578
-	.4byte 0x74732E73
-	.4byte 0x7A730000
-	.4byte 0x67617465
-	.4byte 0x416E696D
-	.4byte 0x4D67722E
-	.4byte 0x74787400
-	.4byte 0x67617465
-	.4byte 0x436F6C6C
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x63656E74
-	.4byte 0x2E706C61
-	.4byte 0x00000000
-	.4byte 0x73696465
-	.4byte 0x2E706C61
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F67
-	.4byte 0x61746573
-	.4byte 0x2F676174
-	.4byte 0x652D6172
-	.4byte 0x632E737A
-	.4byte 0x73000000
-	.4byte 0x67617465
-	.4byte 0x5F736F66
-	.4byte 0x742E6272
-	.4byte 0x6B000000
-lbl_80480288:
-	.4byte 0x6E657720
-	.4byte 0x4D6F6465
-	.4byte 0x6C000000
-lbl_80480294:
-	.4byte 0x506C6174
-	.4byte 0x666F726D
-	.4byte 0x00000000
-lbl_804802A0:
-	.4byte 0x436C6F6E
-	.4byte 0x652D506C
-	.4byte 0x61740000
+.obj lbl_80480194, local
+	.asciz "itemGate"
+.endobj lbl_80480194
+.balign 4
+.obj lbl_804801A0, local
+	.asciz "itemGate.cpp"
+.endobj lbl_804801A0
+.balign 4
+.obj lbl_804801B0, local
+	.asciz "no shape !\n"
+.endobj lbl_804801B0
+.balign 4
+.obj lbl_804801BC, local
+	.asciz "P2Assert"
+.endobj lbl_804801BC
+.balign 4
+.obj lbl_804801C8, local
+	.asciz "ItemGate"
+.endobj lbl_804801C8
+.balign 4
+.obj lbl_804801D4, local
+	.asciz "user/Kando/objects/gates"
+.endobj lbl_804801D4
+.balign 4
+.obj lbl_804801F0, local
+	.asciz "gate-arc.szs"
+.endobj lbl_804801F0
+.balign 4
+.obj lbl_80480200, local
+	.asciz "gate_soft.bmd"
+.endobj lbl_80480200
+.balign 4
+.obj lbl_80480210, local
+	.asciz "gate-texts.szs"
+.endobj lbl_80480210
+.balign 4
+.obj lbl_80480220, local
+	.asciz "gateAnimMgr.txt"
+.endobj lbl_80480220
+.balign 4
+.obj lbl_80480230, local
+	.asciz "gateColl.txt"
+.endobj lbl_80480230
+.balign 4
+.obj lbl_80480240, local
+	.asciz "cent.pla"
+.endobj lbl_80480240
+.balign 4
+.obj lbl_8048024C, local
+	.asciz "side.pla"
+.endobj lbl_8048024C
+.balign 4
+.obj lbl_80480258, local
+	.asciz "user/Kando/gates/gate-arc.szs"
+.endobj lbl_80480258
+.balign 4
+.obj lbl_80480278, local
+	.asciz "gate_soft.brk"
+.endobj lbl_80480278
+.balign 4
+.obj lbl_80480288, local
+	.asciz "new Model"
+.endobj lbl_80480288
+.balign 4
+.obj lbl_80480294, local
+	.asciz "Platform"
+.endobj lbl_80480294
+.balign 4
+.obj lbl_804802A0, local
+	.asciz "Clone-Plat"
+.endobj lbl_804802A0
+.balign 4
+.obj lbl_804802AC, local # Shift-JIS
 	.4byte 0x09238389
 	.4byte 0x83438374
 	.4byte 0x0D0A0000
-	.4byte 0x0923436F
-	.4byte 0x6C6F720D
-	.4byte 0x0A000000
-lbl_804802C4:
-	.4byte 0x6731385F
-	.4byte 0x66696E64
-	.4byte 0x5F676174
-	.4byte 0x65000000
+.endobj lbl_804802AC
+.balign 4
+.obj lbl_804802B8, local
+	.asciz "\t#Color\r\n"
+.endobj lbl_804802B8
+.balign 4
+.obj lbl_804802C4, local
+	.asciz "g18_find_gate"
+.endobj lbl_804802C4
+.balign 4
+.obj lbl_804802D4, local # Shift-JIS
 	.4byte 0x93648C82
 	.4byte 0x8351815B
 	.4byte 0x83670000
-	.4byte 0x4974656D
-	.4byte 0x44656E67
-	.4byte 0x656B6947
-	.4byte 0x61746500
-	.4byte 0x652D6761
-	.4byte 0x74652D61
-	.4byte 0x72632E73
-	.4byte 0x7A730000
-	.4byte 0x652D6761
-	.4byte 0x74652E62
-	.4byte 0x6D640000
-	.4byte 0x652D6761
-	.4byte 0x74652D74
-	.4byte 0x65787473
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x652D616E
-	.4byte 0x696D6D67
-	.4byte 0x722E7478
-	.4byte 0x74000000
-	.4byte 0x652D636F
-	.4byte 0x6C6C2E74
-	.4byte 0x78740000
-	.4byte 0x652D6365
-	.4byte 0x6E742E70
-	.4byte 0x6C610000
-	.4byte 0x652D7369
-	.4byte 0x64652E70
-	.4byte 0x6C610000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F67
-	.4byte 0x61746573
-	.4byte 0x2F652D67
-	.4byte 0x6174652D
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-	.4byte 0x652D6761
-	.4byte 0x74652E62
-	.4byte 0x746B0000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
+.endobj lbl_804802D4
+.balign 4
+.obj lbl_804802E0, local
+	.asciz "ItemDengekiGate"
+.endobj lbl_804802E0
+.balign 4
+.obj lbl_804802F0, local
+	.asciz "e-gate-arc.szs"
+.endobj lbl_804802F0
+.balign 4
+.obj lbl_80480300, local
+	.asciz "e-gate.bmd"
+.endobj lbl_80480300
+.balign 4
+.obj lbl_8048030C, local
+	.asciz "e-gate-texts.szs"
+.endobj lbl_8048030C
+.balign 4
+.obj lbl_80480320, local
+	.asciz "e-animmgr.txt"
+.endobj lbl_80480320
+.balign 4
+.obj lbl_80480330, local
+	.asciz "e-coll.txt"
+.endobj lbl_80480330
+.balign 4
+.obj lbl_8048033C, local
+	.asciz "e-cent.pla"
+.endobj lbl_8048033C
+.balign 4
+.obj lbl_80480348, local
+	.asciz "e-side.pla"
+.endobj lbl_80480348
+.balign 4
+.obj lbl_80480354, local
+	.asciz "user/Kando/gates/e-gate-arc.szs"
+.endobj lbl_80480354
+.balign 4
+.obj lbl_80480374, local
+	.asciz "e-gate.btk"
+.endobj lbl_80480374
+.balign 4
+.obj lbl_80480380, local
+	.asciz "CreatureKillArg"
+.endobj lbl_80480380
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -1018,8 +1021,7 @@ lbl_80519610:
 	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q24Game7GateFSMFPQ24Game8ItemGate
-init__Q24Game7GateFSMFPQ24Game8ItemGate:
+.fn init__Q24Game7GateFSMFPQ24Game8ItemGate, global
 /* 801C7604 001C4544  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C7608 001C4548  7C 08 02 A6 */	mflr r0
 /* 801C760C 001C454C  38 80 00 03 */	li r4, 3
@@ -1100,9 +1102,9 @@ init__Q24Game7GateFSMFPQ24Game8ItemGate:
 /* 801C772C 001C466C  7C 08 03 A6 */	mtlr r0
 /* 801C7730 001C4670  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C7734 001C4674  4E 80 00 20 */	blr 
+.endfn init__Q24Game7GateFSMFPQ24Game8ItemGate
 
-.global constructor__Q24Game8ItemGateFv
-constructor__Q24Game8ItemGateFv:
+.fn constructor__Q24Game8ItemGateFv, global
 /* 801C7738 001C4678  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C773C 001C467C  7C 08 02 A6 */	mflr r0
 /* 801C7740 001C4680  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1122,9 +1124,9 @@ constructor__Q24Game8ItemGateFv:
 /* 801C7774 001C46B4  7C 08 03 A6 */	mtlr r0
 /* 801C7778 001C46B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C777C 001C46BC  4E 80 00 20 */	blr 
+.endfn constructor__Q24Game8ItemGateFv
 
-.global onInit__Q24Game8ItemGateFPQ24Game15CreatureInitArg
-onInit__Q24Game8ItemGateFPQ24Game15CreatureInitArg:
+.fn onInit__Q24Game8ItemGateFPQ24Game15CreatureInitArg, global
 /* 801C7780 001C46C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C7784 001C46C4  7C 08 02 A6 */	mflr r0
 /* 801C7788 001C46C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1282,9 +1284,9 @@ onInit__Q24Game8ItemGateFPQ24Game15CreatureInitArg:
 /* 801C79BC 001C48FC  7C 08 03 A6 */	mtlr r0
 /* 801C79C0 001C4900  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C79C4 001C4904  4E 80 00 20 */	blr 
+.endfn onInit__Q24Game8ItemGateFPQ24Game15CreatureInitArg
 
-.global "start__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
-"start__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg":
+.fn "start__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg", weak
 /* 801C79C8 001C4908  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C79CC 001C490C  7C 08 02 A6 */	mflr r0
 /* 801C79D0 001C4910  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1298,9 +1300,9 @@ onInit__Q24Game8ItemGateFPQ24Game15CreatureInitArg:
 /* 801C79F0 001C4930  7C 08 03 A6 */	mtlr r0
 /* 801C79F4 001C4934  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C79F8 001C4938  4E 80 00 20 */	blr 
+.endfn "start__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
 
-.global onSetPosition__Q24Game8ItemGateFv
-onSetPosition__Q24Game8ItemGateFv:
+.fn onSetPosition__Q24Game8ItemGateFv, global
 /* 801C79FC 001C493C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 801C7A00 001C4940  7C 08 02 A6 */	mflr r0
 /* 801C7A04 001C4944  C0 02 B2 38 */	lfs f0, lbl_80519598@sda21(r2)
@@ -1428,6 +1430,7 @@ onSetPosition__Q24Game8ItemGateFv:
 /* 801C7BD4 001C4B14  7C 08 03 A6 */	mtlr r0
 /* 801C7BD8 001C4B18  38 21 00 60 */	addi r1, r1, 0x60
 /* 801C7BDC 001C4B1C  4E 80 00 20 */	blr 
+.endfn onSetPosition__Q24Game8ItemGateFv
 
 .global doLoad__Q24Game8ItemGateFR6Stream
 doLoad__Q24Game8ItemGateFR6Stream:

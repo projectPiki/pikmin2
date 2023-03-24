@@ -1,23 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80486D20:
-	.4byte 0x3234362D
-	.4byte 0x456C6563
-	.4byte 0x42756753
-	.4byte 0x74617465
-	.4byte 0x00000000
-	.4byte 0x64697363
-	.4byte 0x68617267
-	.4byte 0x65000000
-	.4byte 0x6368696C
-	.4byte 0x64636861
-	.4byte 0x72676500
-	.4byte 0x6368696C
-	.4byte 0x64646973
-	.4byte 0x63686172
-	.4byte 0x67650000
-	.4byte 0x00000000
+.obj lbl_80486D20, local
+	.asciz "246-ElecBugState"
+.endobj lbl_80486D20
+.balign 4
+.obj lbl_80486D34, local
+	.asciz "discharge"
+.endobj lbl_80486D34
+.balign 4
+.obj lbl_80486D40, local
+	.asciz "childcharge"
+.endobj lbl_80486D40
+.balign 4
+.obj lbl_80486D4C, local
+	.asciz "childdischarge"
+.endobj lbl_80486D4C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
