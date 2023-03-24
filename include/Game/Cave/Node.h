@@ -10,12 +10,6 @@ struct RandMapScore;
 struct EnemyNode;
 struct MapNode;
 
-enum NodeType {
-	// 0 = enemy, but unused - enemy instead uses EnemyDropMode enum
-	NODE_Item = 1,
-	NODE_Gate = 2,
-};
-
 enum FixObjNodeTypes {
 	FIXNODE_Pod         = 0,
 	FIXNODE_Hole        = 1,
@@ -26,10 +20,10 @@ enum FixObjNodeTypes {
 };
 
 enum MapTekiTypes {
-	TEKITYPE_A = 0,
-	TEKITYPE_B = 1,
-	TEKITYPE_C = 2,
-	TEKITYPE_F = 3,
+	TEKITYPE_A = 0, // easy
+	TEKITYPE_B = 1, // hard
+	TEKITYPE_C = 2, // seam/door
+	TEKITYPE_F = 3, // special
 };
 
 /**

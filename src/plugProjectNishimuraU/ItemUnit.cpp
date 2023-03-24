@@ -68,7 +68,7 @@ int ItemNode::getObjectId()
  * Address:	8024E2F0
  * Size:	000008
  */
-u32 ItemNode::getObjectType() { return NODE_Item; }
+u32 ItemNode::getObjectType() { return OBJLAYOUT_Item; }
 
 /*
  * --INFO--

@@ -46,7 +46,7 @@ int GateNode::getObjectId()
  * Address:	8024FDE0
  * Size:	000008
  */
-u32 GateNode::getObjectType() { return NODE_Gate; }
+u32 GateNode::getObjectType() { return OBJLAYOUT_Gate; }
 
 /*
  * --INFO--

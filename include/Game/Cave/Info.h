@@ -65,6 +65,14 @@ struct BaseGen : public CNode {
  * @size{0x28}
  */
 struct TekiInfo : public CNode {
+	inline TekiInfo()
+	{
+		mEnemyID  = EnemyTypeID::EnemyID_Pelplant;
+		mWeight   = 1;
+		mType     = BaseGen::TekiA__Easy;
+		mDropMode = DROP_NoDrop;
+	}
+
 	virtual ~TekiInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
