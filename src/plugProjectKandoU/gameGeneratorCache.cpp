@@ -5,189 +5,11 @@
 #include "stream.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80481480
-    lbl_80481480:
-        .4byte 0x67656E65
-        .4byte 0x7261746F
-        .4byte 0x72436163
-        .4byte 0x68650000
-    .global lbl_80481490
-    lbl_80481490:
-        .4byte 0x67616D65
-        .4byte 0x47656E65
-        .4byte 0x7261746F
-        .4byte 0x72436163
-        .4byte 0x68652E63
-        .4byte 0x70700000
-        .4byte 0x6E6F2072
-        .4byte 0x616D2067
-        .4byte 0x656E6572
-        .4byte 0x61746F72
-        .4byte 0x20256420
-        .4byte 0x25640A00
-        .4byte 0x6C6F6164
-        .4byte 0x435B2573
-        .4byte 0x5D286E6F
-        .4byte 0x2564293A
-        .4byte 0x25730000
-        .4byte 0x6C6F6164
-        .4byte 0x43286E6F
-        .4byte 0x2564290A
-        .4byte 0x00000000
-        .4byte 0x42656769
-        .4byte 0x6E536176
-        .4byte 0x653A3A43
-        .4byte 0x61636865
-        .4byte 0x20282564
-        .4byte 0x29206973
-        .4byte 0x20616C69
-        .4byte 0x76652021
-        .4byte 0x0A000000
-        .4byte 0x42656769
-        .4byte 0x6E536176
-        .4byte 0x653A3A43
-        .4byte 0x61636865
-        .4byte 0x20282564
-        .4byte 0x29206973
-        .4byte 0x20696E76
-        .4byte 0x616C6964
-        .4byte 0x20210A00
-    .global lbl_8048152C
-    lbl_8048152C:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80481538
-    lbl_80481538:
-        .4byte 0x2867656E
-        .4byte 0x206E756D
-        .4byte 0x62657220
-        .4byte 0x6C617267
-        .4byte 0x65202564
-        .4byte 0x3E3D2564
-        .4byte 0x0A000000
-        .4byte 0x09232041
-        .4byte 0x6C697665
-        .4byte 0x0D0A0000
-        .4byte 0x6E6F2063
-        .4byte 0x61636865
-        .4byte 0x203A2025
-        .4byte 0x640A0000
-        .4byte 0x09232044
-        .4byte 0x6561640D
-        .4byte 0x0A000000
-        .4byte 0x09232068
-        .4byte 0x65617053
-        .4byte 0x697A650D
-        .4byte 0x0A000000
-        .4byte 0x09232066
-        .4byte 0x7265654F
-        .4byte 0x66667365
-        .4byte 0x740D0A00
-        .4byte 0x09232066
-        .4byte 0x72656553
-        .4byte 0x697A650D
-        .4byte 0x0A000000
-        .4byte 0x63616368
-        .4byte 0x65202564
-        .4byte 0x20697320
-        .4byte 0x6E6F7420
-        .4byte 0x696E2064
-        .4byte 0x65616420
-        .4byte 0x6C697374
-        .4byte 0x0A000000
-        .4byte 0x696C6C65
-        .4byte 0x67616C20
-        .4byte 0x63616368
-        .4byte 0x6520666C
-        .4byte 0x61672825
-        .4byte 0x78290A00
-    .global lbl_804815E4
-    lbl_804815E4:
-        .4byte 0x436F7572
-        .4byte 0x73654361
-        .4byte 0x63686520
-        .4byte 0x25640000
-        .4byte 0x2320636F
-        .4byte 0x75727365
-        .4byte 0x696E6465
-        .4byte 0x780D0A00
-        .4byte 0x23206F66
-        .4byte 0x66736574
-        .4byte 0x0D0A0000
-        .4byte 0x23207369
-        .4byte 0x7A650D0A
-        .4byte 0x00000000
-        .4byte 0x23206E75
-        .4byte 0x6D47656E
-        .4byte 0x65726174
-        .4byte 0x6F72730D
-        .4byte 0x0A000000
-        .4byte 0x23206765
-        .4byte 0x6E657261
-        .4byte 0x746F7253
-        .4byte 0x697A650D
-        .4byte 0x0A000000
-        .4byte 0x23206E75
-        .4byte 0x6D437265
-        .4byte 0x61747572
-        .4byte 0x65730D0A
-        .4byte 0x00000000
-        .4byte 0x23206372
-        .4byte 0x65617475
-        .4byte 0x72655369
-        .4byte 0x7A650D0A
-        .4byte 0x00000000
-        .4byte 0x23206E75
-        .4byte 0x6D50696B
-        .4byte 0x69686561
-        .4byte 0x64730D0A
-        .4byte 0x00000000
-        .4byte 0x23207069
-        .4byte 0x6B696865
-        .4byte 0x61645369
-        .4byte 0x7A650D0A
-        .4byte 0x00000000
-        .4byte 0x4974656D
-        .4byte 0x50696B69
-        .4byte 0x48656164
-        .4byte 0x3A3A496E
-        .4byte 0x69744172
-        .4byte 0x67000000
-        .4byte 0x4974656D
-        .4byte 0x496E6974
-        .4byte 0x41726700
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game11CourseCache
-    __vt__Q24Game11CourseCache:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game11CourseCacheFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global generatorCache__4Game
-    generatorCache__4Game:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519BC0
-    lbl_80519BC0:
-        .4byte 0x6E6F6E65
-        .4byte 0x00000000
-    .global lbl_80519BC8
-    lbl_80519BC8:
-        .4byte 0xBF800000
-    .global lbl_80519BCC
-    lbl_80519BCC:
-        .4byte 0x0D0A0000
-*/
-
 namespace Game {
+
+static const char unusedGenCacheName[] = "generatorCache";
+
+GeneratorCache* generatorCache;
 
 /*
  * --INFO--
@@ -215,104 +37,23 @@ GeneratorCache::GeneratorCache()
 
 /*
  * --INFO--
- * Address:	801F1990
- * Size:	000060
- */
-CourseCache::~CourseCache()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801F19D4
-	lis      r5, __vt__Q24Game11CourseCache@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game11CourseCache@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801F19D4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801F19D4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	801F19F0
  * Size:	000098
  */
 void GeneratorCache::clearCache()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_801F1A40
+	for (int i = 0; i < stageList->mCourseCount; i++) {
+		CourseCache* course = findCache(_00, i);
+		if (course) {
+			course->del();
+			_3C.add(course);
+		}
+	}
 
-lbl_801F1A14:
-	mr       r3, r29
-	mr       r4, r29
-	mr       r5, r31
-	bl       findCache__Q24Game14GeneratorCacheFRQ24Game11CourseCachei
-	or.      r30, r3, r3
-	beq      lbl_801F1A3C
-	bl       del__5CNodeFv
-	mr       r4, r30
-	addi     r3, r29, 0x3c
-	bl       add__5CNodeFP5CNode
-
-lbl_801F1A3C:
-	addi     r31, r31, 1
-
-lbl_801F1A40:
-	lwz      r3, stageList__4Game@sda21(r13)
-	lhz      r0, 0x100(r3)
-	cmpw     r31, r0
-	blt      lbl_801F1A14
-	mr       r3, r29
-	bl       clearGeneratorList__Q24Game14GeneratorCacheFv
-	li       r3, 0
-	stw      r3, 0x84(r29)
-	lwz      r0, 0x80(r29)
-	stw      r0, 0x88(r29)
-	stw      r3, 0x78(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
- */
-GeneratorCache::~GeneratorCache()
-{
-	// UNUSED FUNCTION
+	clearGeneratorList();
+	mFreeOffset = 0;
+	mFreeSize   = mHeapSize;
+	_78         = nullptr;
 }
 
 /*
@@ -320,13 +61,7 @@ GeneratorCache::~GeneratorCache()
  * Address:	801F1A88
  * Size:	000018
  */
-void GeneratorCache::clearGeneratorList()
-{
-	mGenerator.mChild  = nullptr;
-	mGenerator.mParent = nullptr;
-	mGenerator.mPrev   = nullptr;
-	mGenerator.mNext   = nullptr;
-}
+void GeneratorCache::clearGeneratorList() { mGenerator.clearRelations(); }
 
 /*
  * --INFO--
@@ -336,14 +71,15 @@ void GeneratorCache::clearGeneratorList()
 void GeneratorCache::addGenerator(Game::Generator* newGenerator)
 {
 	int count = 0;
-	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->mNext) {
+	FOREACH_NODE(Generator, getFirstGenerator(), gen)
+	{
 		if (gen->_AC == 0) {
 			count++;
 		}
 	}
 	// TODO: Remove magic number
 	// TODO: Move this to checkOverflow.
-	if (count < 0x50) {
+	if (count < 80) {
 		mGenerator.add(newGenerator);
 	}
 }
@@ -373,25 +109,8 @@ void GeneratorCache::findRamGenerator(int)
 int GeneratorCache::getTotalMePikmins()
 {
 	int count = 0;
-	for (CourseCache* cache = (CourseCache*)_00.mChild; cache != nullptr; cache = (CourseCache*)cache->mNext) {
-		count += cache->mPikiheadCount;
-	}
+	FOREACH_NODE(CourseCache, _00.mChild, cache) { count += cache->mPikiheadCount; }
 	return count;
-	/*
-	lwz      r4, 0x10(r3)
-	li       r3, 0
-	b        lbl_801F1B38
-
-lbl_801F1B2C:
-	lwz      r0, 0x34(r4)
-	lwz      r4, 4(r4)
-	add      r3, r3, r0
-
-lbl_801F1B38:
-	cmplwi   r4, 0
-	bne      lbl_801F1B2C
-	blr
-	*/
 }
 
 /*
@@ -415,16 +134,17 @@ int GeneratorCache::getColorMePikmins(int pikminType)
  * Address:	801F1BB8
  * Size:	00009C
  */
-int CourseCache::getColorMePikmins(unsigned char* buffer, int pikminType)
+int CourseCache::getColorMePikmins(u8* buffer, int pikminType)
 {
-	int count = 0;
-	RamStream stream(buffer + mGeneratorSize + mOffset + mCreatureSize, mPikiheadSize);
+	int count     = 0;
+	int totalSize = mCreatureSize + mOffset + mGeneratorSize;
+	RamStream stream(&buffer[totalSize], mPikiheadSize);
 	for (int i = 0; i < mPikiheadCount; i++) {
 		u8 pikiheadFlags = stream.readByte();
 		Vector3f position;
 		position.read(stream);
 		// TODO: Replace 0xf with define for ItemPikiheadTypeMask?
-		if ((pikiheadFlags & 0xF) == (u8)pikminType) {
+		if ((pikiheadFlags & 0xF) == pikminType) {
 			count++;
 		}
 	}
@@ -492,54 +212,6 @@ void GeneratorCache::createHeap()
 	for (int i = 0; i < stageList->mCourseCount; i++) {
 		_3C.add(new CourseCache(i));
 	}
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x0000A000@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r4, 0x0000A000@l
-	bl       __nwa__FUl
-	lis      r4, 0x0000A000@ha
-	stw      r3, 0x7c(r30)
-	addi     r3, r4, 0x0000A000@l
-	li       r0, 0
-	stw      r3, 0x80(r30)
-	li       r31, 0
-	stw      r0, 0x84(r30)
-	lwz      r0, 0x80(r30)
-	stw      r0, 0x88(r30)
-	b        lbl_801F1CC8
-
-lbl_801F1CA0:
-	li       r3, 0x3c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801F1CBC
-	mr       r4, r31
-	bl       __ct__Q24Game11CourseCacheFi
-	mr       r4, r3
-
-lbl_801F1CBC:
-	addi     r3, r30, 0x3c
-	bl       add__5CNodeFP5CNode
-	addi     r31, r31, 1
-
-lbl_801F1CC8:
-	lwz      r3, stageList__4Game@sda21(r13)
-	lhz      r0, 0x100(r3)
-	cmpw     r31, r0
-	blt      lbl_801F1CA0
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -560,7 +232,8 @@ void GeneratorCache::destroyHeap()
 CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack, int courseIndex)
 {
 	// TODO: Perhaps one check is checking the child before assigning?
-	for (CourseCache* cache = (CourseCache*)haystack.mChild; cache != nullptr; cache = (CourseCache*)cache->mNext) {
+	FOREACH_NODE(CourseCache, haystack.mChild, cache)
+	{
 		if (cache == nullptr) {
 			return nullptr;
 		}
@@ -569,28 +242,6 @@ CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack, int courseIn
 		}
 	}
 	return nullptr;
-	/*
-	lwz      r3, 0x10(r4)
-	b        lbl_801F1D18
-
-lbl_801F1CF8:
-	cmplwi   r3, 0
-	bne      lbl_801F1D08
-	li       r3, 0
-	blr
-
-lbl_801F1D08:
-	lwz      r0, 0x18(r3)
-	cmpw     r0, r5
-	beqlr
-	lwz      r3, 4(r3)
-
-lbl_801F1D18:
-	cmplwi   r3, 0
-	bne      lbl_801F1CF8
-	li       r3, 0
-	blr
-	*/
 }
 
 /*
@@ -1167,87 +818,10 @@ lbl_801F2378:
  */
 void GeneratorCache::endSave()
 {
-	P2ASSERTLINE(554, _78 != nullptr);
-	CourseCache* cache = (CourseCache*)_3C.mChild;
-	for (; cache != nullptr; cache = (CourseCache*)cache->mNext) {
-		if (cache == nullptr) {
-			break;
-		}
-		if (cache->mCourseIndex == _78->mCourseIndex) {
-			break;
-		}
-	}
-	// TODO: This is immediately after previous assert? How???
-	P2ASSERTLINE(555, cache != nullptr);
+	P2ASSERTLINE(554, _78);
+	P2ASSERTLINE(555, findCache(_3C, _78->mCourseIndex));
 	_78->del();
 	_00.add(_78);
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x78(r3)
-	cmplwi   r0, 0
-	bne      lbl_801F23D4
-	lis      r3, lbl_80481490@ha
-	lis      r5, lbl_8048152C@ha
-	addi     r3, r3, lbl_80481490@l
-	li       r4, 0x22a
-	addi     r5, r5, lbl_8048152C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801F23D4:
-	lwz      r3, 0x78(r31)
-	lwz      r4, 0x4c(r31)
-	lwz      r3, 0x18(r3)
-	b        lbl_801F2408
-
-lbl_801F23E4:
-	cmplwi   r4, 0
-	bne      lbl_801F23F4
-	li       r4, 0
-	b        lbl_801F2414
-
-lbl_801F23F4:
-	lwz      r0, 0x18(r4)
-	cmpw     r0, r3
-	bne      lbl_801F2404
-	b        lbl_801F2414
-
-lbl_801F2404:
-	lwz      r4, 4(r4)
-
-lbl_801F2408:
-	cmplwi   r4, 0
-	bne      lbl_801F23E4
-	li       r4, 0
-
-lbl_801F2414:
-	cmplwi   r4, 0
-	bne      lbl_801F2438
-	lis      r3, lbl_80481490@ha
-	lis      r5, lbl_8048152C@ha
-	addi     r3, r3, lbl_80481490@l
-	li       r4, 0x22b
-	addi     r5, r5, lbl_8048152C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801F2438:
-	lwz      r3, 0x78(r31)
-	bl       del__5CNodeFv
-	lwz      r4, 0x78(r31)
-	mr       r3, r31
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1257,20 +831,19 @@ lbl_801F2438:
  */
 void GeneratorCache::saveGenerator(Game::Generator* generator)
 {
-	if (generator->isExpired()) {
-		return;
-	}
-	if (generator->need_saveCreature()) {
-		RamStream output(mHeapBuffer + mFreeOffset, mFreeSize);
-		generator->mGeneratorIndexMaybe = _78->mGeneratorCount;
-		Generator::ramMode              = 1;
-		generator->write(output);
-		Generator::ramMode = 0;
-		mFreeOffset += output.mPosition;
-		mFreeSize -= output.mPosition;
-		_78->mGeneratorCount++;
-		_78->mSize += output.mPosition;
-		_78->mGeneratorSize += output.mPosition;
+	if (generator->mDayLimitMaybe == -1 || gameSystem->mTimeMgr->mDayCount < generator->mDayLimitMaybe) {
+		if (generator->need_saveCreature()) {
+			RamStream output(mHeapBuffer + mFreeOffset, mFreeSize);
+			generator->mGeneratorIndexMaybe = _78->mGeneratorCount;
+			Generator::ramMode              = 1;
+			generator->write(output);
+			Generator::ramMode = 0;
+			mFreeOffset += output.mPosition;
+			mFreeSize -= output.mPosition;
+			_78->mGeneratorCount++;
+			_78->mSize += output.mPosition;
+			_78->mGeneratorSize += output.mPosition;
+		}
 	}
 	/*
 	stwu     r1, -0x430(r1)
