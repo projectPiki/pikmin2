@@ -1000,7 +1000,7 @@ MapNode* RandMapUnit::getFirstMapUnit()
 MapNode* RandMapUnit::getNormalRandMapUnit()
 {
 	int intArr[16];
-	int kindOrder[3];
+	int kindOrder[UNITKIND_Count];
 	int doorNum  = getOpenDoorNum();
 	int randDoor = doorNum * randFloat();
 
@@ -1014,7 +1014,7 @@ MapNode* RandMapUnit::getNormalRandMapUnit()
 
 	if (node && door) {
 		setUnitKindOrder(node, kindOrder);
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < UNITKIND_Count; i++) {
 			setUnitDoorSorting(kindOrder[i]);
 			FOREACH_NODE(MapNode, nodeArray[kindOrder[i]].mChild, currNode)
 			{
@@ -1065,8 +1065,52 @@ void RandMapUnit::setUnitKindOrder(MapNode* node, int* list)
  * Address:	80246DC0
  * Size:	000314
  */
-void RandMapUnit::setUnitDoorSorting(int)
+void RandMapUnit::setUnitDoorSorting(int kind)
 {
+	if (kind == UNITKIND_Corridor) {
+		MapNode* corrTiles = mGenerator->getMapNodeKind(kind);
+		int doorOffsets[16];
+		int openDoorNum = getOpenDoorNum();
+		if (openDoorNum < 4) {
+			for (int i = 0; i < mDoorCount; i++) {
+				doorOffsets[i] = mDoorCount - i;
+			}
+		} else {
+			for (int i = 0; i < mDoorCount; i++) {
+				doorOffsets[i] = i + 1;
+			}
+
+			if (openDoorNum < 10) {
+				int doorCount;
+				for (int i = 0; i < (doorCount = mDoorCount); i++) {
+					int randIdx          = doorCount * randFloat();
+					int currOffset       = doorOffsets[i];
+					doorOffsets[i]       = doorOffsets[randIdx];
+					doorOffsets[randIdx] = currOffset;
+				}
+			}
+		}
+
+		for (int i = 0; i < mDoorCount; i++) {
+			int counter = 0;
+			FOREACH_NODE(MapNode, corrTiles->mChild, currTile)
+			{
+				if (doorOffsets[i] == currTile->getNumDoors()) {
+					counter++;
+				}
+			}
+
+			for (int j = 0; j < counter; j++) {
+				FOREACH_NODE(MapNode, corrTiles->mChild, currTile)
+				{
+					if (doorOffsets[i] == currTile->getNumDoors()) {
+						currTile->del();
+						corrTiles->add(currTile);
+					}
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -1321,111 +1365,18 @@ lbl_802470B0:
  * Address:	802470D4
  * Size:	000164
  */
-void RandMapUnit::setRandomDoorIndex(int*, int)
+void RandMapUnit::setRandomDoorIndex(int* list, int max)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stmw     r26, 0x28(r1)
-	or.      r31, r5, r5
-	mr       r30, r4
-	li       r8, 0
-	ble      lbl_80247198
-	cmpwi    r31, 8
-	addi     r3, r31, -8
-	ble      lbl_80247170
-	addi     r0, r3, 7
-	mr       r7, r30
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80247170
+	for (int i = 0; i < max; i++) {
+		list[i] = i;
+	}
 
-lbl_80247128:
-	stw      r8, 0(r7)
-	addi     r3, r8, 1
-	addi     r0, r8, 2
-	addi     r6, r8, 3
-	stw      r3, 4(r7)
-	addi     r5, r8, 4
-	addi     r4, r8, 5
-	addi     r3, r8, 6
-	stw      r0, 8(r7)
-	addi     r0, r8, 7
-	addi     r8, r8, 8
-	stw      r6, 0xc(r7)
-	stw      r5, 0x10(r7)
-	stw      r4, 0x14(r7)
-	stw      r3, 0x18(r7)
-	stw      r0, 0x1c(r7)
-	addi     r7, r7, 0x20
-	bdnz     lbl_80247128
-
-lbl_80247170:
-	slwi     r3, r8, 2
-	subf     r0, r8, r31
-	add      r3, r30, r3
-	mtctr    r0
-	cmpw     r8, r31
-	bge      lbl_80247198
-
-lbl_80247188:
-	stw      r8, 0(r3)
-	addi     r3, r3, 4
-	addi     r8, r8, 1
-	bdnz     lbl_80247188
-
-lbl_80247198:
-	lfd      f30, lbl_8051A770@sda21(r2)
-	mr       r27, r30
-	lfs      f31, lbl_8051A778@sda21(r2)
-	xoris    r29, r31, 0x8000
-	li       r26, 0
-	lis      r28, 0x4330
-	b        lbl_8024720C
-
-lbl_802471B4:
-	bl       rand
-	xoris    r0, r3, 0x8000
-	stw      r28, 8(r1)
-	lwz      r4, 0(r27)
-	addi     r26, r26, 1
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r29, 0x14(r1)
-	fsubs    f0, f0, f30
-	stw      r28, 0x10(r1)
-	fdivs    f1, f0, f31
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f30
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	slwi     r3, r0, 2
-	lwzx     r0, r30, r3
-	stw      r0, 0(r27)
-	addi     r27, r27, 4
-	stwx     r4, r30, r3
-
-lbl_8024720C:
-	cmpw     r26, r31
-	blt      lbl_802471B4
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	lmw      r26, 0x28(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	for (int i = 0; i < max; i++) {
+		int randIdx    = max * randFloat();
+		int currOffset = list[i];
+		list[i]        = list[randIdx];
+		list[randIdx]  = currOffset;
+	}
 }
 
 /*
@@ -1435,6 +1386,52 @@ lbl_8024720C:
  */
 MapNode* RandMapUnit::getLoopRandMapUnit()
 {
+	MapNode* tileList[512];
+	int openDoorNum = getOpenDoorNum();
+	int loopCount   = getLoopMapNode(tileList);
+
+	for (int i = 0; i < openDoorNum; i++) {
+		int doorIdx;
+		int b;
+		int c;
+		MapNode* firstLink;
+		MapNode* tile = getCalcDoorIndex(doorIdx, b, c, i);
+
+		if (isLoopMapNodeCheck(tile, doorIdx)) {
+			DoorNode* door = tile->getDoorNode(doorIdx);
+			int d;
+			firstLink = getLinkDoorNodeFirst(tile, doorIdx, b, c, d);
+			if (firstLink) {
+				int directions[2];
+
+				int tileDir = tile->getDoorDirect(doorIdx);
+				int linkDir = getLinkDoorDirection(tile, doorIdx, firstLink, d);
+
+				directions[0] = linkDir;
+				directions[1] = tileDir;
+
+				int oppDir = (tileDir + 2) % 4; // will end up being opposite cardinal direction (left -> right, up -> down, etc)
+
+				for (int j = 0; j < 2; j++) {
+					for (int k = 0; k < loopCount; k++) {
+						int loopDir0 = tileList[k]->getDoorDirect(0);
+						int loopDir1 = tileList[k]->getDoorDirect(1);
+						if (loopDir0 == oppDir && loopDir1 == directions[j]) {
+							if (tileList[k]->isDoorSet(door, b, c, 0) && mChecker->isPutOnMap(tileList[k])) {
+								return tileList[k];
+							}
+						} else if (loopDir1 == oppDir && loopDir0 == directions[j]) {
+							if (tileList[k]->isDoorSet(door, b, c, 1) && mChecker->isPutOnMap(tileList[k])) {
+								return tileList[k];
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x850(r1)
 	mflr     r0
@@ -1583,8 +1580,27 @@ lbl_8024742C:
  * Address:	80247440
  * Size:	0000C8
  */
-MapNode* RandMapUnit::getCalcDoorIndex(int&, int&, int&, int)
+MapNode* RandMapUnit::getCalcDoorIndex(int& doorIdx, int& b, int& c, int d)
 {
+	int counter = 0;
+
+	FOREACH_NODE(MapNode, mGenerator->getPlacedNodes()->mChild, currTile)
+	{
+		doorIdx = 0;
+		while (doorIdx < currTile->getNumDoors()) {
+			if (!currTile->isDoorClose(doorIdx)) {
+				if (counter == d) {
+					currTile->getDoorNode(doorIdx);
+					currTile->getDoorOffset(doorIdx, b, c);
+					return currTile;
+				}
+				counter++;
+			}
+			doorIdx++;
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1658,8 +1674,9 @@ lbl_802474F4:
  * Address:	80247508
  * Size:	00012C
  */
-MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode*, int, int, int, int&)
+MapNode* RandMapUnit::getLinkDoorNodeFirst(MapNode* tile, int a, int b, int c, int& d)
 {
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
