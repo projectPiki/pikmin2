@@ -37,4 +37,4 @@ Which, for enemies, you may want to look at the ```isCreatureWithinRange``` func
 - ```CG_PARMS(x)``` is shorthand for ```static_cast<Parms*>(x->mParms)```.
 - ```C_PARMS``` is shorthand for ```static_cast<Parms*>(this->mParms)```.
 - ```CG_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(x->mParms)->mProperParms```.
-- ```C_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(this->mParms)->mProperParms```.
+- ```C_PROPERPARMS``` is shorthand for ```static_cast<Parms*>(this->mParms)->mProperParms```.
