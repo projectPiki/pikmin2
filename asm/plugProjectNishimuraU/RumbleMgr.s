@@ -64,18 +64,18 @@ lbl_80484928:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game9RumbleMgr
-__vt__Q24Game9RumbleMgr:
+.obj __vt__Q24Game9RumbleMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game9RumbleMgrFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q24Game9RumbleMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global rumbleMgr__4Game
-rumbleMgr__4Game:
+.obj rumbleMgr__4Game, global
 	.skip 0x4
+.endobj rumbleMgr__4Game
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

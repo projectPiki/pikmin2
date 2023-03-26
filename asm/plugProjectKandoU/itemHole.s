@@ -385,13 +385,13 @@ __vt__Q34Game8ItemHole3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515AC0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_80515AC4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global mgr__Q24Game8ItemHole
 mgr__Q24Game8ItemHole:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -2098,9 +2098,9 @@ __sinit_itemHole_cpp:
 /* 801D2D40 001CFC80  38 00 FF FF */	li r0, -1
 /* 801D2D44 001CFC84  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 801D2D48 001CFC88  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
-/* 801D2D4C 001CFC8C  90 0D 94 40 */	stw r0, lbl_80515AC0@sda21(r13)
+/* 801D2D4C 001CFC8C  90 0D 94 40 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 801D2D50 001CFC90  D4 03 79 70 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
-/* 801D2D54 001CFC94  D0 0D 94 44 */	stfs f0, lbl_80515AC4@sda21(r13)
+/* 801D2D54 001CFC94  D0 0D 94 44 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801D2D58 001CFC98  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801D2D5C 001CFC9C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801D2D60 001CFCA0  4E 80 00 20 */	blr 

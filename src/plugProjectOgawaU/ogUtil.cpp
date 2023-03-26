@@ -89,10 +89,3 @@ void makeLanguageResName(char* languageResName, char const* path)
 }
 } // namespace newScreen
 } // namespace og
-
-/*
- * --INFO--
- * Address:	80318028
- * Size:	000028
- * __sinit_ogUtil_cpp
- */

@@ -42,17 +42,17 @@ lbl_8047FC0C:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q24Game18OptimiseController
-__vt__Q24Game18OptimiseController:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q24Game18OptimiseController, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game18OptimiseControllerFv
-.global __vt__Q24Game10GameSystem
-__vt__Q24Game10GameSystem:
+.endobj __vt__Q24Game18OptimiseController
+.obj __vt__Q24Game10GameSystem, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game10GameSystemFv
@@ -94,6 +94,7 @@ __vt__Q24Game10GameSystem:
 	.4byte startFadeoutin__Q24Game10GameSystemFf
 	.4byte startFadeblack__Q24Game10GameSystemFv
 	.4byte startFadewhite__Q24Game10GameSystemFv
+.endobj __vt__Q24Game10GameSystem
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

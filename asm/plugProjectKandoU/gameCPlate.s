@@ -49,8 +49,7 @@ lbl_8047F030:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global "__vt__27Container<Q24Game8Creature>"
-"__vt__27Container<Q24Game8Creature>":
+.obj "__vt__27Container<Q24Game8Creature>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__27Container<Q24Game8Creature>Fv"
@@ -62,8 +61,8 @@ lbl_8047F030:
 	.4byte 0
 	.4byte "getAt__27Container<Q24Game8Creature>Fi"
 	.4byte "getTo__27Container<Q24Game8Creature>Fv"
-.global __vt__Q24Game6CPlate
-__vt__Q24Game6CPlate:
+.endobj "__vt__27Container<Q24Game8Creature>"
+.obj __vt__Q24Game6CPlate, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game6CPlateFv
@@ -75,6 +74,7 @@ __vt__Q24Game6CPlate:
 	.4byte get__Q24Game6CPlateFPv
 	.4byte "getAt__27Container<Q24Game8Creature>Fi"
 	.4byte "getTo__27Container<Q24Game8Creature>Fv"
+.endobj __vt__Q24Game6CPlate
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

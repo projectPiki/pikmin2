@@ -155,8 +155,7 @@ lbl_constructor:
 	.float 0.0
 .endobj govNAN___Q24Game5P2JST
 .balign 4
-.global __vt__Q34Game15ItemDengekiGate3Mgr
-__vt__Q34Game15ItemDengekiGate3Mgr:
+.obj __vt__Q34Game15ItemDengekiGate3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte "doAnimation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
@@ -205,8 +204,8 @@ __vt__Q34Game15ItemDengekiGate3Mgr:
 	.4byte __dt__Q34Game15ItemDengekiGate3MgrFv
 	.4byte getCaveName__Q34Game15ItemDengekiGate3MgrFi
 	.4byte getCaveID__Q34Game15ItemDengekiGate3MgrFPc
-.global "__vt__Q24Game29NodeItemMgr<Q24Game8ItemGate>"
-"__vt__Q24Game29NodeItemMgr<Q24Game8ItemGate>":
+.endobj __vt__Q34Game15ItemDengekiGate3Mgr
+.obj "__vt__Q24Game29NodeItemMgr<Q24Game8ItemGate>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "doAnimation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
@@ -253,8 +252,8 @@ __vt__Q34Game15ItemDengekiGate3Mgr:
 	.4byte "getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 	.4byte "getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 	.4byte "__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-.global __vt__Q24Game13GateDownState
-__vt__Q24Game13GateDownState:
+.endobj "__vt__Q24Game29NodeItemMgr<Q24Game8ItemGate>"
+.obj __vt__Q24Game13GateDownState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13GateDownStateFPQ24Game8ItemGatePQ24Game8StateArg
@@ -268,8 +267,8 @@ __vt__Q24Game13GateDownState:
 	.4byte "onBounce__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9CollEvent"
-.global __vt__Q24Game16GateDamagedState
-__vt__Q24Game16GateDamagedState:
+.endobj __vt__Q24Game13GateDownState
+.obj __vt__Q24Game16GateDamagedState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game16GateDamagedStateFPQ24Game8ItemGatePQ24Game8StateArg
@@ -283,8 +282,8 @@ __vt__Q24Game16GateDamagedState:
 	.4byte "onBounce__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9CollEvent"
-.global __vt__Q24Game13GateWaitState
-__vt__Q24Game13GateWaitState:
+.endobj __vt__Q24Game16GateDamagedState
+.obj __vt__Q24Game13GateWaitState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13GateWaitStateFPQ24Game8ItemGatePQ24Game8StateArg
@@ -298,13 +297,13 @@ __vt__Q24Game13GateWaitState:
 	.4byte "onBounce__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9CollEvent"
-.global __vt__11GenGateParm
-__vt__11GenGateParm:
+.endobj __vt__Q24Game13GateWaitState
+.obj __vt__11GenGateParm, weak
 	.4byte 0
 	.4byte 0
 	.4byte getShapeID__Q24Game11GenItemParmFv
-.global __vt__Q24Game11ItemGateMgr
-__vt__Q24Game11ItemGateMgr:
+.endobj __vt__11GenGateParm
+.obj __vt__Q24Game11ItemGateMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q24Game11ItemGateMgrFv
@@ -336,14 +335,14 @@ __vt__Q24Game11ItemGateMgr:
 	.4byte generatorNewItemParm__Q24Game11ItemGateMgrFv
 	.4byte getCaveName__Q24Game11ItemGateMgrFi
 	.4byte getCaveID__Q24Game11ItemGateMgrFPc
-.global "__vt__29TObjectNode<Q24Game8ItemGate>"
-"__vt__29TObjectNode<Q24Game8ItemGate>":
+.endobj __vt__Q24Game11ItemGateMgr
+.obj "__vt__29TObjectNode<Q24Game8ItemGate>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__29TObjectNode<Q24Game8ItemGate>Fv"
 	.4byte getChildCount__5CNodeFv
-.global "__vt__31NodeObjectMgr<Q24Game8ItemGate>"
-"__vt__31NodeObjectMgr<Q24Game8ItemGate>":
+.endobj "__vt__29TObjectNode<Q24Game8ItemGate>"
+.obj "__vt__31NodeObjectMgr<Q24Game8ItemGate>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__31NodeObjectMgr<Q24Game8ItemGate>Fv"
@@ -376,8 +375,8 @@ __vt__Q24Game11ItemGateMgr:
 	.4byte "doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff"
 	.4byte "doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics"
 	.4byte "resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv"
-.global "__vt__27ObjectMgr<Q24Game8ItemGate>"
-"__vt__27ObjectMgr<Q24Game8ItemGate>":
+.endobj "__vt__31NodeObjectMgr<Q24Game8ItemGate>"
+.obj "__vt__27ObjectMgr<Q24Game8ItemGate>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__27ObjectMgr<Q24Game8ItemGate>Fv"
@@ -409,8 +408,8 @@ __vt__Q24Game11ItemGateMgr:
 	.4byte "doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv"
 	.4byte "doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff"
 	.4byte "doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics"
-.global "__vt__27Container<Q24Game8ItemGate>"
-"__vt__27Container<Q24Game8ItemGate>":
+.endobj "__vt__27ObjectMgr<Q24Game8ItemGate>"
+.obj "__vt__27Container<Q24Game8ItemGate>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__27Container<Q24Game8ItemGate>Fv"
@@ -422,27 +421,27 @@ __vt__Q24Game11ItemGateMgr:
 	.4byte 0
 	.4byte "getAt__27Container<Q24Game8ItemGate>Fi"
 	.4byte "getTo__27Container<Q24Game8ItemGate>Fv"
-.global __vt__Q23efx10TGate2Down
-__vt__Q23efx10TGate2Down:
+.endobj "__vt__27Container<Q24Game8ItemGate>"
+.obj __vt__Q23efx10TGate2Down, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx10TGate1Down
-__vt__Q23efx10TGate1Down:
+.endobj __vt__Q23efx10TGate2Down
+.obj __vt__Q23efx10TGate1Down, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx7ArgRotY
-__vt__Q23efx7ArgRotY:
+.endobj __vt__Q23efx10TGate1Down
+.obj __vt__Q23efx7ArgRotY, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q23efx7ArgRotYFv
-.global __vt__Q23efx7TEgateA
-__vt__Q23efx7TEgateA:
+.endobj __vt__Q23efx7ArgRotY
+.obj __vt__Q23efx7TEgateA, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -462,8 +461,8 @@ __vt__Q23efx7TEgateA:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx7TEgateAFv
-.global __vt__Q24Game8ItemGate
-__vt__Q24Game8ItemGate:
+.endobj __vt__Q23efx7TEgateA
+.obj __vt__Q24Game8ItemGate, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -601,8 +600,8 @@ __vt__Q24Game8ItemGate:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q24Game8ItemGateFv
 	.4byte onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent
-.global "__vt__Q24Game60WorkItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>"
-"__vt__Q24Game60WorkItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>":
+.endobj __vt__Q24Game8ItemGate
+.obj "__vt__Q24Game60WorkItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>", weak
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -740,24 +739,24 @@ __vt__Q24Game8ItemGate:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q24Game8BaseItemFv
 	.4byte "onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent"
-.global "__vt__Q24Game25ItemFSM<Q24Game8ItemGate>"
-"__vt__Q24Game25ItemFSM<Q24Game8ItemGate>":
+.endobj "__vt__Q24Game60WorkItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>"
+.obj "__vt__Q24Game25ItemFSM<Q24Game8ItemGate>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
 	.4byte "start__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
 	.4byte "exec__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
 	.4byte "transit__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
-.global "__vt__Q24Game30StateMachine<Q24Game8ItemGate>"
-"__vt__Q24Game30StateMachine<Q24Game8ItemGate>":
+.endobj "__vt__Q24Game25ItemFSM<Q24Game8ItemGate>"
+.obj "__vt__Q24Game30StateMachine<Q24Game8ItemGate>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
 	.4byte "start__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
 	.4byte "exec__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
 	.4byte "transit__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
-.global "__vt__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>"
-"__vt__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>":
+.endobj "__vt__Q24Game30StateMachine<Q24Game8ItemGate>"
+.obj "__vt__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>", weak
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -895,8 +894,8 @@ __vt__Q24Game8ItemGate:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q24Game8BaseItemFv
 	.4byte "onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent"
-.global __vt__Q24Game9GateState
-__vt__Q24Game9GateState:
+.endobj "__vt__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>"
+.obj __vt__Q24Game9GateState, weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ24Game8StateArg"
@@ -910,8 +909,8 @@ __vt__Q24Game9GateState:
 	.4byte "onBounce__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9CollEvent"
-.global "__vt__Q24Game27ItemState<Q24Game8ItemGate>"
-"__vt__Q24Game27ItemState<Q24Game8ItemGate>":
+.endobj __vt__Q24Game9GateState
+.obj "__vt__Q24Game27ItemState<Q24Game8ItemGate>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ24Game8StateArg"
@@ -925,8 +924,8 @@ __vt__Q24Game9GateState:
 	.4byte "onBounce__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9CollEvent"
-.global "__vt__Q24Game26FSMState<Q24Game8ItemGate>"
-"__vt__Q24Game26FSMState<Q24Game8ItemGate>":
+.endobj "__vt__Q24Game27ItemState<Q24Game8ItemGate>"
+.obj "__vt__Q24Game26FSMState<Q24Game8ItemGate>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ24Game8StateArg"
@@ -935,14 +934,15 @@ __vt__Q24Game9GateState:
 	.4byte "resume__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
 	.4byte "restart__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
 	.4byte "transit__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
-.global __vt__Q24Game7GateFSM
-__vt__Q24Game7GateFSM:
+.endobj "__vt__Q24Game26FSMState<Q24Game8ItemGate>"
+.obj __vt__Q24Game7GateFSM, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game7GateFSMFPQ24Game8ItemGate
 	.4byte "start__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
 	.4byte "exec__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
 	.4byte "transit__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
+.endobj __vt__Q24Game7GateFSM
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -961,64 +961,89 @@ __vt__Q24Game7GateFSM:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519590:
-	.4byte 0x432A0000
-lbl_80519594:
-	.4byte 0x42C80000
-lbl_80519598:
-	.4byte 0x00000000
-lbl_8051959C:
-	.4byte 0x47000000
-lbl_805195A0:
-	.4byte 0x40C90FDB
-	.4byte 0x00000000
-lbl_805195A8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_805195B0:
-	.4byte 0x41200000
-lbl_805195B4:
-	.4byte 0x67617465
-	.4byte 0x00000000
-lbl_805195BC:
-	.4byte 0x41F00000
-lbl_805195C0:
-	.4byte 0x46480000
-lbl_805195C4:
-	.4byte 0x42480000
-lbl_805195C8:
-	.4byte 0x43A2F983
-lbl_805195CC:
-	.4byte 0xC3A2F983
-lbl_805195D0:
-	.4byte 0x41A00000
-lbl_805195D4:
-	.4byte 0x42990000
-lbl_805195D8:
-	.4byte 0x6D6F7665
-	.4byte 0x00000000
-lbl_805195E0:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_805195E8:
-	.4byte 0x42F00000
-lbl_805195EC:
-	.4byte 0x47617465
-	.4byte 0x00000000
-lbl_805195F4:
-	.4byte 0x66697800
-lbl_805195F8:
-	.4byte 0x706F6C65
-	.4byte 0x00000000
-lbl_80519600:
-	.4byte 0x652D6761
-	.4byte 0x74650000
-lbl_80519608:
-	.4byte 0x41726752
-	.4byte 0x6F745900
-lbl_80519610:
-	.4byte 0x6974656D
-	.4byte 0x00000000
+.obj lbl_80519590, local
+	.float 170.0
+.endobj lbl_80519590
+.obj lbl_80519594, local
+	.float 100.0
+.endobj lbl_80519594
+.obj lbl_80519598, local
+	.float 0.0
+.endobj lbl_80519598
+.obj lbl_8051959C, local
+	.float 32768.0
+.endobj lbl_8051959C
+.obj lbl_805195A0, local # tau
+	.float 6.2831855
+.endobj lbl_805195A0
+.balign 8
+.obj lbl_805195A8, local
+	.8byte 0x4330000080000000
+.endobj lbl_805195A8
+.obj lbl_805195B0, local
+	.float 10.0
+.endobj lbl_805195B0
+.balign 4
+.obj lbl_805195B4, local
+	.asciz "gate"
+.endobj lbl_805195B4
+.balign 4
+.obj lbl_805195BC, local
+	.float 30.0
+.endobj lbl_805195BC
+.obj lbl_805195C0, local
+	.float 12800.0
+.endobj lbl_805195C0
+.obj lbl_805195C4, local
+	.float 50.0
+.endobj lbl_805195C4
+.obj lbl_805195C8, local
+	.float 325.9493
+.endobj lbl_805195C8
+.obj lbl_805195CC, local
+	.float -325.9493
+.endobj lbl_805195CC
+.obj lbl_805195D0, local
+	.float 20.0
+.endobj lbl_805195D0
+.obj lbl_805195D4, local
+	.float 76.5
+.endobj lbl_805195D4
+.balign 4
+.obj lbl_805195D8, local
+	.asciz "move"
+.endobj lbl_805195D8
+.balign 8
+.obj lbl_805195E0, local
+	.8byte 0x4330000000000000
+.endobj lbl_805195E0
+.obj lbl_805195E8, local
+	.float 120.0
+.endobj lbl_805195E8
+.balign 4
+.obj lbl_805195EC, local
+	.asciz "Gate"
+.endobj lbl_805195EC
+.balign 4
+.obj lbl_805195F4, local
+	.asciz "fix"
+.endobj lbl_805195F4
+.balign 4
+.obj lbl_805195F8, local
+	.asciz "pole"
+.endobj lbl_805195F8
+.balign 4
+.obj lbl_80519600, local
+	.asciz "e-gate"
+.endobj lbl_80519600
+.balign 4
+.obj lbl_80519608, local
+	.asciz "ArgRotY"
+.endobj lbl_80519608
+.balign 4
+.obj lbl_80519610, local
+	.asciz "item"
+.endobj lbl_80519610
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .fn init__Q24Game7GateFSMFPQ24Game8ItemGate, global
@@ -1432,8 +1457,7 @@ lbl_80519610:
 /* 801C7BDC 001C4B1C  4E 80 00 20 */	blr 
 .endfn onSetPosition__Q24Game8ItemGateFv
 
-.global doLoad__Q24Game8ItemGateFR6Stream
-doLoad__Q24Game8ItemGateFR6Stream:
+.fn doLoad__Q24Game8ItemGateFR6Stream, global
 /* 801C7BE0 001C4B20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C7BE4 001C4B24  7C 08 02 A6 */	mflr r0
 /* 801C7BE8 001C4B28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1495,9 +1519,9 @@ doLoad__Q24Game8ItemGateFR6Stream:
 /* 801C7CBC 001C4BFC  7C 08 03 A6 */	mtlr r0
 /* 801C7CC0 001C4C00  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C7CC4 001C4C04  4E 80 00 20 */	blr 
+.endfn doLoad__Q24Game8ItemGateFR6Stream
 
-.global doSave__Q24Game8ItemGateFR6Stream
-doSave__Q24Game8ItemGateFR6Stream:
+.fn doSave__Q24Game8ItemGateFR6Stream, global
 /* 801C7CC8 001C4C08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C7CCC 001C4C0C  7C 08 02 A6 */	mflr r0
 /* 801C7CD0 001C4C10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1517,9 +1541,9 @@ doSave__Q24Game8ItemGateFR6Stream:
 /* 801C7D08 001C4C48  7C 08 03 A6 */	mtlr r0
 /* 801C7D0C 001C4C4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C7D10 001C4C50  4E 80 00 20 */	blr 
+.endfn doSave__Q24Game8ItemGateFR6Stream
 
-.global updateBoundSphere__Q24Game8ItemGateFv
-updateBoundSphere__Q24Game8ItemGateFv:
+.fn updateBoundSphere__Q24Game8ItemGateFv, global
 /* 801C7D14 001C4C54  C0 03 01 9C */	lfs f0, 0x19c(r3)
 /* 801C7D18 001C4C58  D0 03 01 C4 */	stfs f0, 0x1c4(r3)
 /* 801C7D1C 001C4C5C  C0 03 01 A0 */	lfs f0, 0x1a0(r3)
@@ -1527,9 +1551,9 @@ updateBoundSphere__Q24Game8ItemGateFv:
 /* 801C7D24 001C4C64  C0 03 01 A4 */	lfs f0, 0x1a4(r3)
 /* 801C7D28 001C4C68  D0 03 01 CC */	stfs f0, 0x1cc(r3)
 /* 801C7D2C 001C4C6C  4E 80 00 20 */	blr 
+.endfn updateBoundSphere__Q24Game8ItemGateFv
 
-.global update__Q24Game8ItemGateFv
-update__Q24Game8ItemGateFv:
+.fn update__Q24Game8ItemGateFv, global
 /* 801C7D30 001C4C70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C7D34 001C4C74  7C 08 02 A6 */	mflr r0
 /* 801C7D38 001C4C78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1561,9 +1585,9 @@ update__Q24Game8ItemGateFv:
 /* 801C7DA0 001C4CE0  7C 08 03 A6 */	mtlr r0
 /* 801C7DA4 001C4CE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C7DA8 001C4CE8  4E 80 00 20 */	blr 
+.endfn update__Q24Game8ItemGateFv
 
-.global doAI__Q24Game8ItemGateFv
-doAI__Q24Game8ItemGateFv:
+.fn doAI__Q24Game8ItemGateFv, global
 /* 801C7DAC 001C4CEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C7DB0 001C4CF0  7C 08 02 A6 */	mflr r0
 /* 801C7DB4 001C4CF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1646,9 +1670,9 @@ doAI__Q24Game8ItemGateFv:
 /* 801C7ED0 001C4E10  7C 08 03 A6 */	mtlr r0
 /* 801C7ED4 001C4E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C7ED8 001C4E18  4E 80 00 20 */	blr 
+.endfn doAI__Q24Game8ItemGateFv
 
-.global onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent, global
 /* 801C7EDC 001C4E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C7EE0 001C4E20  7C 08 02 A6 */	mflr r0
 /* 801C7EE4 001C4E24  7C 66 1B 78 */	mr r6, r3
@@ -1667,13 +1691,13 @@ onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent:
 /* 801C7F14 001C4E54  7C 08 03 A6 */	mtlr r0
 /* 801C7F18 001C4E58  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C7F1C 001C4E5C  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent
 
-.global onKeyEvent__Q24Game9GateStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game9GateStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game9GateStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent, weak
 /* 801C7F20 001C4E60  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game9GateStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent
 
-.global interactAttack__Q24Game8ItemGateFRQ24Game14InteractAttack
-interactAttack__Q24Game8ItemGateFRQ24Game14InteractAttack:
+.fn interactAttack__Q24Game8ItemGateFRQ24Game14InteractAttack, global
 /* 801C7F24 001C4E64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C7F28 001C4E68  7C 08 02 A6 */	mflr r0
 /* 801C7F2C 001C4E6C  7C 85 23 78 */	mr r5, r4
@@ -1751,13 +1775,13 @@ interactAttack__Q24Game8ItemGateFRQ24Game14InteractAttack:
 /* 801C8034 001C4F74  7C 08 03 A6 */	mtlr r0
 /* 801C8038 001C4F78  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C803C 001C4F7C  4E 80 00 20 */	blr 
+.endfn interactAttack__Q24Game8ItemGateFRQ24Game14InteractAttack
 
-.global onDamage__Q24Game9GateStateFPQ24Game8ItemGatef
-onDamage__Q24Game9GateStateFPQ24Game8ItemGatef:
+.fn onDamage__Q24Game9GateStateFPQ24Game8ItemGatef, weak
 /* 801C8040 001C4F80  4E 80 00 20 */	blr 
+.endfn onDamage__Q24Game9GateStateFPQ24Game8ItemGatef
 
-.global initMotion__Q24Game8ItemGateFv
-initMotion__Q24Game8ItemGateFv:
+.fn initMotion__Q24Game8ItemGateFv, global
 /* 801C8044 001C4F84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C8048 001C4F88  7C 08 02 A6 */	mflr r0
 /* 801C804C 001C4F8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1787,9 +1811,9 @@ initMotion__Q24Game8ItemGateFv:
 /* 801C80A4 001C4FE4  7C 08 03 A6 */	mtlr r0
 /* 801C80A8 001C4FE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C80AC 001C4FEC  4E 80 00 20 */	blr 
+.endfn initMotion__Q24Game8ItemGateFv
 
-.global "getVectorField__Q24Game8ItemGateFRQ23Sys6SphereR10Vector3<f>"
-"getVectorField__Q24Game8ItemGateFRQ23Sys6SphereR10Vector3<f>":
+.fn "getVectorField__Q24Game8ItemGateFRQ23Sys6SphereR10Vector3<f>", global
 /* 801C80B0 001C4FF0  C0 04 00 04 */	lfs f0, 4(r4)
 /* 801C80B4 001C4FF4  C0 23 02 28 */	lfs f1, 0x228(r3)
 /* 801C80B8 001C4FF8  C0 44 00 0C */	lfs f2, 0xc(r4)
@@ -1963,9 +1987,9 @@ initMotion__Q24Game8ItemGateFv:
 .L_801C8338:
 /* 801C8338 001C5278  38 60 00 01 */	li r3, 1
 /* 801C833C 001C527C  4E 80 00 20 */	blr 
+.endfn "getVectorField__Q24Game8ItemGateFRQ23Sys6SphereR10Vector3<f>"
 
-.global getWorkDistance__Q24Game8ItemGateFRQ23Sys6Sphere
-getWorkDistance__Q24Game8ItemGateFRQ23Sys6Sphere:
+.fn getWorkDistance__Q24Game8ItemGateFRQ23Sys6Sphere, global
 /* 801C8340 001C5280  C0 A4 00 04 */	lfs f5, 4(r4)
 /* 801C8344 001C5284  C0 03 02 48 */	lfs f0, 0x248(r3)
 /* 801C8348 001C5288  C0 63 02 28 */	lfs f3, 0x228(r3)
@@ -2043,9 +2067,9 @@ getWorkDistance__Q24Game8ItemGateFRQ23Sys6Sphere:
 .L_801C8454:
 /* 801C8454 001C5394  C0 22 B2 60 */	lfs f1, lbl_805195C0@sda21(r2)
 /* 801C8458 001C5398  4E 80 00 20 */	blr 
+.endfn getWorkDistance__Q24Game8ItemGateFRQ23Sys6Sphere
 
-.global initPlanes__Q24Game8ItemGateFv
-initPlanes__Q24Game8ItemGateFv:
+.fn initPlanes__Q24Game8ItemGateFv, global
 /* 801C845C 001C539C  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 801C8460 001C53A0  7C 08 02 A6 */	mflr r0
 /* 801C8464 001C53A4  C0 02 B2 38 */	lfs f0, lbl_80519598@sda21(r2)
@@ -2286,9 +2310,9 @@ initPlanes__Q24Game8ItemGateFv:
 /* 801C87F8 001C5738  7C 08 03 A6 */	mtlr r0
 /* 801C87FC 001C573C  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 801C8800 001C5740  4E 80 00 20 */	blr 
+.endfn initPlanes__Q24Game8ItemGateFv
 
-.global changeMaterial__Q24Game8ItemGateFv
-changeMaterial__Q24Game8ItemGateFv:
+.fn changeMaterial__Q24Game8ItemGateFv, global
 /* 801C8804 001C5744  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C8808 001C5748  7C 08 02 A6 */	mflr r0
 /* 801C880C 001C574C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2347,9 +2371,9 @@ changeMaterial__Q24Game8ItemGateFv:
 /* 801C88CC 001C580C  7C 08 03 A6 */	mtlr r0
 /* 801C88D0 001C5810  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C88D4 001C5814  4E 80 00 20 */	blr 
+.endfn changeMaterial__Q24Game8ItemGateFv
 
-.global getLifeGaugeParam__Q24Game8ItemGateFRQ24Game14LifeGaugeParam
-getLifeGaugeParam__Q24Game8ItemGateFRQ24Game14LifeGaugeParam:
+.fn getLifeGaugeParam__Q24Game8ItemGateFRQ24Game14LifeGaugeParam, global
 /* 801C88D8 001C5818  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C88DC 001C581C  3C 00 43 30 */	lis r0, 0x4330
 /* 801C88E0 001C5820  C0 22 B2 88 */	lfs f1, lbl_805195E8@sda21(r2)
@@ -2390,9 +2414,9 @@ getLifeGaugeParam__Q24Game8ItemGateFRQ24Game14LifeGaugeParam:
 /* 801C896C 001C58AC  98 04 00 14 */	stb r0, 0x14(r4)
 /* 801C8970 001C58B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C8974 001C58B4  4E 80 00 20 */	blr 
+.endfn getLifeGaugeParam__Q24Game8ItemGateFRQ24Game14LifeGaugeParam
 
-.global __ct__Q24Game11ItemGateMgrFv
-__ct__Q24Game11ItemGateMgrFv:
+.fn __ct__Q24Game11ItemGateMgrFv, global
 /* 801C8978 001C58B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C897C 001C58BC  7C 08 02 A6 */	mflr r0
 /* 801C8980 001C58C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2521,9 +2545,9 @@ __ct__Q24Game11ItemGateMgrFv:
 /* 801C8B68 001C5AA8  7C 08 03 A6 */	mtlr r0
 /* 801C8B6C 001C5AAC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C8B70 001C5AB0  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11ItemGateMgrFv
 
-.global "__dt__31NodeObjectMgr<Q24Game8ItemGate>Fv"
-"__dt__31NodeObjectMgr<Q24Game8ItemGate>Fv":
+.fn "__dt__31NodeObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801C8B74 001C5AB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C8B78 001C5AB8  7C 08 02 A6 */	mflr r0
 /* 801C8B7C 001C5ABC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2577,9 +2601,9 @@ __ct__Q24Game11ItemGateMgrFv:
 /* 801C8C30 001C5B70  7C 08 03 A6 */	mtlr r0
 /* 801C8C34 001C5B74  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C8C38 001C5B78  4E 80 00 20 */	blr 
+.endfn "__dt__31NodeObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "__dt__29TObjectNode<Q24Game8ItemGate>Fv"
-"__dt__29TObjectNode<Q24Game8ItemGate>Fv":
+.fn "__dt__29TObjectNode<Q24Game8ItemGate>Fv", weak
 /* 801C8C3C 001C5B7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C8C40 001C5B80  7C 08 02 A6 */	mflr r0
 /* 801C8C44 001C5B84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2605,9 +2629,9 @@ __ct__Q24Game11ItemGateMgrFv:
 /* 801C8C90 001C5BD0  7C 08 03 A6 */	mtlr r0
 /* 801C8C94 001C5BD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C8C98 001C5BD8  4E 80 00 20 */	blr 
+.endfn "__dt__29TObjectNode<Q24Game8ItemGate>Fv"
 
-.global "__dt__27ObjectMgr<Q24Game8ItemGate>Fv"
-"__dt__27ObjectMgr<Q24Game8ItemGate>Fv":
+.fn "__dt__27ObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801C8C9C 001C5BDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C8CA0 001C5BE0  7C 08 02 A6 */	mflr r0
 /* 801C8CA4 001C5BE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2644,9 +2668,9 @@ __ct__Q24Game11ItemGateMgrFv:
 /* 801C8D18 001C5C58  7C 08 03 A6 */	mtlr r0
 /* 801C8D1C 001C5C5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C8D20 001C5C60  4E 80 00 20 */	blr 
+.endfn "__dt__27ObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "__dt__27Container<Q24Game8ItemGate>Fv"
-"__dt__27Container<Q24Game8ItemGate>Fv":
+.fn "__dt__27Container<Q24Game8ItemGate>Fv", weak
 /* 801C8D24 001C5C64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C8D28 001C5C68  7C 08 02 A6 */	mflr r0
 /* 801C8D2C 001C5C6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2677,9 +2701,9 @@ __ct__Q24Game11ItemGateMgrFv:
 /* 801C8D88 001C5CC8  7C 08 03 A6 */	mtlr r0
 /* 801C8D8C 001C5CCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C8D90 001C5CD0  4E 80 00 20 */	blr 
+.endfn "__dt__27Container<Q24Game8ItemGate>Fv"
 
-.global setupGate__Q24Game11ItemGateMgrFPQ24Game8ItemGate
-setupGate__Q24Game11ItemGateMgrFPQ24Game8ItemGate:
+.fn setupGate__Q24Game11ItemGateMgrFPQ24Game8ItemGate, global
 /* 801C8D94 001C5CD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C8D98 001C5CD8  7C 08 02 A6 */	mflr r0
 /* 801C8D9C 001C5CDC  3C A0 80 48 */	lis r5, lbl_80480288@ha
@@ -2721,9 +2745,9 @@ setupGate__Q24Game11ItemGateMgrFPQ24Game8ItemGate:
 /* 801C8E28 001C5D68  7C 08 03 A6 */	mtlr r0
 /* 801C8E2C 001C5D6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C8E30 001C5D70  4E 80 00 20 */	blr 
+.endfn setupGate__Q24Game11ItemGateMgrFPQ24Game8ItemGate
 
-.global setupPlatform__Q24Game11ItemGateMgrFPQ24Game8ItemGate
-setupPlatform__Q24Game11ItemGateMgrFPQ24Game8ItemGate:
+.fn setupPlatform__Q24Game11ItemGateMgrFPQ24Game8ItemGate, global
 /* 801C8E34 001C5D74  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801C8E38 001C5D78  7C 08 02 A6 */	mflr r0
 /* 801C8E3C 001C5D7C  3C A0 80 48 */	lis r5, lbl_80480294@ha
@@ -2810,9 +2834,9 @@ setupPlatform__Q24Game11ItemGateMgrFPQ24Game8ItemGate:
 /* 801C8F80 001C5EC0  7C 08 03 A6 */	mtlr r0
 /* 801C8F84 001C5EC4  38 21 00 70 */	addi r1, r1, 0x70
 /* 801C8F88 001C5EC8  4E 80 00 20 */	blr 
+.endfn setupPlatform__Q24Game11ItemGateMgrFPQ24Game8ItemGate
 
-.global birth__Q24Game11ItemGateMgrFv
-birth__Q24Game11ItemGateMgrFv:
+.fn birth__Q24Game11ItemGateMgrFv, global
 /* 801C8F8C 001C5ECC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C8F90 001C5ED0  7C 08 02 A6 */	mflr r0
 /* 801C8F94 001C5ED4  3C 80 80 48 */	lis r4, lbl_804801C8@ha
@@ -2934,9 +2958,9 @@ birth__Q24Game11ItemGateMgrFv:
 /* 801C9154 001C6094  7C 08 03 A6 */	mtlr r0
 /* 801C9158 001C6098  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C915C 001C609C  4E 80 00 20 */	blr 
+.endfn birth__Q24Game11ItemGateMgrFv
 
-.global initDependency__Q24Game11ItemGateMgrFv
-initDependency__Q24Game11ItemGateMgrFv:
+.fn initDependency__Q24Game11ItemGateMgrFv, global
 /* 801C9160 001C60A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C9164 001C60A4  7C 08 02 A6 */	mflr r0
 /* 801C9168 001C60A8  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
@@ -3067,9 +3091,9 @@ initDependency__Q24Game11ItemGateMgrFv:
 /* 801C933C 001C627C  7C 08 03 A6 */	mtlr r0
 /* 801C9340 001C6280  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C9344 001C6284  4E 80 00 20 */	blr 
+.endfn initDependency__Q24Game11ItemGateMgrFv
 
-.global generatorNewItemParm__Q24Game11ItemGateMgrFv
-generatorNewItemParm__Q24Game11ItemGateMgrFv:
+.fn generatorNewItemParm__Q24Game11ItemGateMgrFv, global
 /* 801C9348 001C6288  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C934C 001C628C  7C 08 02 A6 */	mflr r0
 /* 801C9350 001C6290  38 60 00 0C */	li r3, 0xc
@@ -3092,9 +3116,9 @@ generatorNewItemParm__Q24Game11ItemGateMgrFv:
 /* 801C9390 001C62D0  7C 08 03 A6 */	mtlr r0
 /* 801C9394 001C62D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C9398 001C62D8  4E 80 00 20 */	blr 
+.endfn generatorNewItemParm__Q24Game11ItemGateMgrFv
 
-.global generatorWrite__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParm
-generatorWrite__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParm:
+.fn generatorWrite__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParm, global
 /* 801C939C 001C62DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C93A0 001C62E0  7C 08 02 A6 */	mflr r0
 /* 801C93A4 001C62E4  3C 60 80 48 */	lis r3, lbl_80480188@ha
@@ -3140,9 +3164,9 @@ generatorWrite__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParm:
 /* 801C9440 001C6380  7C 08 03 A6 */	mtlr r0
 /* 801C9444 001C6384  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C9448 001C6388  4E 80 00 20 */	blr 
+.endfn generatorWrite__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParm
 
-.global generatorRead__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParmUl
-generatorRead__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParmUl:
+.fn generatorRead__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParmUl, global
 /* 801C944C 001C638C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C9450 001C6390  7C 08 02 A6 */	mflr r0
 /* 801C9454 001C6394  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3189,9 +3213,9 @@ generatorRead__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParmUl:
 /* 801C94E8 001C6428  7C 08 03 A6 */	mtlr r0
 /* 801C94EC 001C642C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C94F0 001C6430  4E 80 00 20 */	blr 
+.endfn generatorRead__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParmUl
 
-.global "generatorBirth__Q24Game11ItemGateMgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-"generatorBirth__Q24Game11ItemGateMgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
+.fn "generatorBirth__Q24Game11ItemGateMgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm", global
 /* 801C94F4 001C6434  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801C94F8 001C6438  7C 08 02 A6 */	mflr r0
 /* 801C94FC 001C643C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3335,17 +3359,17 @@ generatorRead__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParmUl:
 /* 801C9710 001C6650  7C 08 03 A6 */	mtlr r0
 /* 801C9714 001C6654  38 21 00 30 */	addi r1, r1, 0x30
 /* 801C9718 001C6658  4E 80 00 20 */	blr 
+.endfn "generatorBirth__Q24Game11ItemGateMgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
 
-.global getCaveName__Q24Game11ItemGateMgrFi
-getCaveName__Q24Game11ItemGateMgrFi:
+.fn getCaveName__Q24Game11ItemGateMgrFi, global
 /* 801C971C 001C665C  2C 04 00 00 */	cmpwi r4, 0
 /* 801C9720 001C6660  38 60 00 00 */	li r3, 0
 /* 801C9724 001C6664  4C 82 00 20 */	bnelr 
 /* 801C9728 001C6668  38 62 B2 54 */	addi r3, r2, lbl_805195B4@sda21
 /* 801C972C 001C666C  4E 80 00 20 */	blr 
+.endfn getCaveName__Q24Game11ItemGateMgrFi
 
-.global getCaveID__Q24Game11ItemGateMgrFPc
-getCaveID__Q24Game11ItemGateMgrFPc:
+.fn getCaveID__Q24Game11ItemGateMgrFPc, global
 /* 801C9730 001C6670  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C9734 001C6674  7C 08 02 A6 */	mflr r0
 /* 801C9738 001C6678  38 62 B2 54 */	addi r3, r2, lbl_805195B4@sda21
@@ -3365,21 +3389,21 @@ getCaveID__Q24Game11ItemGateMgrFPc:
 /* 801C9770 001C66B0  7C 08 03 A6 */	mtlr r0
 /* 801C9774 001C66B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C9778 001C66B8  4E 80 00 20 */	blr 
+.endfn getCaveID__Q24Game11ItemGateMgrFPc
 
-.global init__Q24Game13GateWaitStateFPQ24Game8ItemGatePQ24Game8StateArg
-init__Q24Game13GateWaitStateFPQ24Game8ItemGatePQ24Game8StateArg:
+.fn init__Q24Game13GateWaitStateFPQ24Game8ItemGatePQ24Game8StateArg, global
 /* 801C977C 001C66BC  4E 80 00 20 */	blr 
+.endfn init__Q24Game13GateWaitStateFPQ24Game8ItemGatePQ24Game8StateArg
 
-.global exec__Q24Game13GateWaitStateFPQ24Game8ItemGate
-exec__Q24Game13GateWaitStateFPQ24Game8ItemGate:
+.fn exec__Q24Game13GateWaitStateFPQ24Game8ItemGate, global
 /* 801C9780 001C66C0  4E 80 00 20 */	blr 
+.endfn exec__Q24Game13GateWaitStateFPQ24Game8ItemGate
 
-.global cleanup__Q24Game13GateWaitStateFPQ24Game8ItemGate
-cleanup__Q24Game13GateWaitStateFPQ24Game8ItemGate:
+.fn cleanup__Q24Game13GateWaitStateFPQ24Game8ItemGate, global
 /* 801C9784 001C66C4  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game13GateWaitStateFPQ24Game8ItemGate
 
-.global onDamage__Q24Game13GateWaitStateFPQ24Game8ItemGatef
-onDamage__Q24Game13GateWaitStateFPQ24Game8ItemGatef:
+.fn onDamage__Q24Game13GateWaitStateFPQ24Game8ItemGatef, global
 /* 801C9788 001C66C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C978C 001C66CC  7C 08 02 A6 */	mflr r0
 /* 801C9790 001C66D0  38 A0 00 01 */	li r5, 1
@@ -3396,9 +3420,9 @@ onDamage__Q24Game13GateWaitStateFPQ24Game8ItemGatef:
 /* 801C97BC 001C66FC  7C 08 03 A6 */	mtlr r0
 /* 801C97C0 001C6700  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C97C4 001C6704  4E 80 00 20 */	blr 
+.endfn onDamage__Q24Game13GateWaitStateFPQ24Game8ItemGatef
 
-.global "transit__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
-"transit__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg":
+.fn "transit__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg", weak
 /* 801C97C8 001C6708  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C97CC 001C670C  7C 08 02 A6 */	mflr r0
 /* 801C97D0 001C6710  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3411,13 +3435,13 @@ onDamage__Q24Game13GateWaitStateFPQ24Game8ItemGatef:
 /* 801C97EC 001C672C  7C 08 03 A6 */	mtlr r0
 /* 801C97F0 001C6730  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C97F4 001C6734  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
 
-.global onKeyEvent__Q24Game13GateWaitStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game13GateWaitStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game13GateWaitStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent, global
 /* 801C97F8 001C6738  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game13GateWaitStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent
 
-.global init__Q24Game16GateDamagedStateFPQ24Game8ItemGatePQ24Game8StateArg
-init__Q24Game16GateDamagedStateFPQ24Game8ItemGatePQ24Game8StateArg:
+.fn init__Q24Game16GateDamagedStateFPQ24Game8ItemGatePQ24Game8StateArg, global
 /* 801C97FC 001C673C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C9800 001C6740  7C 08 02 A6 */	mflr r0
 /* 801C9804 001C6744  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3442,9 +3466,9 @@ init__Q24Game16GateDamagedStateFPQ24Game8ItemGatePQ24Game8StateArg:
 /* 801C984C 001C678C  7C 08 03 A6 */	mtlr r0
 /* 801C9850 001C6790  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C9854 001C6794  4E 80 00 20 */	blr 
+.endfn init__Q24Game16GateDamagedStateFPQ24Game8ItemGatePQ24Game8StateArg
 
-.global exec__Q24Game16GateDamagedStateFPQ24Game8ItemGate
-exec__Q24Game16GateDamagedStateFPQ24Game8ItemGate:
+.fn exec__Q24Game16GateDamagedStateFPQ24Game8ItemGate, global
 /* 801C9858 001C6798  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C985C 001C679C  7C 08 02 A6 */	mflr r0
 /* 801C9860 001C67A0  C0 22 B2 38 */	lfs f1, lbl_80519598@sda21(r2)
@@ -3497,26 +3521,26 @@ exec__Q24Game16GateDamagedStateFPQ24Game8ItemGate:
 /* 801C990C 001C684C  7C 08 03 A6 */	mtlr r0
 /* 801C9910 001C6850  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C9914 001C6854  4E 80 00 20 */	blr 
+.endfn exec__Q24Game16GateDamagedStateFPQ24Game8ItemGate
 
-.global cleanup__Q24Game16GateDamagedStateFPQ24Game8ItemGate
-cleanup__Q24Game16GateDamagedStateFPQ24Game8ItemGate:
+.fn cleanup__Q24Game16GateDamagedStateFPQ24Game8ItemGate, global
 /* 801C9918 001C6858  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game16GateDamagedStateFPQ24Game8ItemGate
 
-.global onDamage__Q24Game16GateDamagedStateFPQ24Game8ItemGatef
-onDamage__Q24Game16GateDamagedStateFPQ24Game8ItemGatef:
+.fn onDamage__Q24Game16GateDamagedStateFPQ24Game8ItemGatef, global
 /* 801C991C 001C685C  C0 04 02 08 */	lfs f0, 0x208(r4)
 /* 801C9920 001C6860  EC 00 08 2A */	fadds f0, f0, f1
 /* 801C9924 001C6864  D0 04 02 08 */	stfs f0, 0x208(r4)
 /* 801C9928 001C6868  4E 80 00 20 */	blr 
+.endfn onDamage__Q24Game16GateDamagedStateFPQ24Game8ItemGatef
 
-.global onKeyEvent__Q24Game16GateDamagedStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game16GateDamagedStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game16GateDamagedStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent, global
 /* 801C992C 001C686C  38 00 00 01 */	li r0, 1
 /* 801C9930 001C6870  98 03 00 10 */	stb r0, 0x10(r3)
 /* 801C9934 001C6874  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game16GateDamagedStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent
 
-.global init__Q24Game13GateDownStateFPQ24Game8ItemGatePQ24Game8StateArg
-init__Q24Game13GateDownStateFPQ24Game8ItemGatePQ24Game8StateArg:
+.fn init__Q24Game13GateDownStateFPQ24Game8ItemGatePQ24Game8StateArg, global
 /* 801C9938 001C6878  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 801C993C 001C687C  7C 08 02 A6 */	mflr r0
 /* 801C9940 001C6880  90 01 00 84 */	stw r0, 0x84(r1)
@@ -3658,29 +3682,29 @@ init__Q24Game13GateDownStateFPQ24Game8ItemGatePQ24Game8StateArg:
 /* 801C9B50 001C6A90  7C 08 03 A6 */	mtlr r0
 /* 801C9B54 001C6A94  38 21 00 80 */	addi r1, r1, 0x80
 /* 801C9B58 001C6A98  4E 80 00 20 */	blr 
+.endfn init__Q24Game13GateDownStateFPQ24Game8ItemGatePQ24Game8StateArg
 
-.global getFaceDir__Q24Game8ItemGateFv
-getFaceDir__Q24Game8ItemGateFv:
+.fn getFaceDir__Q24Game8ItemGateFv, weak
 /* 801C9B5C 001C6A9C  C0 23 02 14 */	lfs f1, 0x214(r3)
 /* 801C9B60 001C6AA0  4E 80 00 20 */	blr 
+.endfn getFaceDir__Q24Game8ItemGateFv
 
-.global exec__Q24Game13GateDownStateFPQ24Game8ItemGate
-exec__Q24Game13GateDownStateFPQ24Game8ItemGate:
+.fn exec__Q24Game13GateDownStateFPQ24Game8ItemGate, global
 /* 801C9B64 001C6AA4  4E 80 00 20 */	blr 
+.endfn exec__Q24Game13GateDownStateFPQ24Game8ItemGate
 
-.global cleanup__Q24Game13GateDownStateFPQ24Game8ItemGate
-cleanup__Q24Game13GateDownStateFPQ24Game8ItemGate:
+.fn cleanup__Q24Game13GateDownStateFPQ24Game8ItemGate, global
 /* 801C9B68 001C6AA8  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game13GateDownStateFPQ24Game8ItemGate
 
-.global onDamage__Q24Game13GateDownStateFPQ24Game8ItemGatef
-onDamage__Q24Game13GateDownStateFPQ24Game8ItemGatef:
+.fn onDamage__Q24Game13GateDownStateFPQ24Game8ItemGatef, global
 /* 801C9B6C 001C6AAC  C0 04 02 08 */	lfs f0, 0x208(r4)
 /* 801C9B70 001C6AB0  EC 00 08 2A */	fadds f0, f0, f1
 /* 801C9B74 001C6AB4  D0 04 02 08 */	stfs f0, 0x208(r4)
 /* 801C9B78 001C6AB8  4E 80 00 20 */	blr 
+.endfn onDamage__Q24Game13GateDownStateFPQ24Game8ItemGatef
 
-.global onKeyEvent__Q24Game13GateDownStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game13GateDownStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game13GateDownStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent, global
 /* 801C9B7C 001C6ABC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C9B80 001C6AC0  7C 08 02 A6 */	mflr r0
 /* 801C9B84 001C6AC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3776,9 +3800,9 @@ onKeyEvent__Q24Game13GateDownStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent:
 /* 801C9CD8 001C6C18  7C 08 03 A6 */	mtlr r0
 /* 801C9CDC 001C6C1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C9CE0 001C6C20  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game13GateDownStateFPQ24Game8ItemGateRCQ28SysShape8KeyEvent
 
-.global __ct__Q34Game15ItemDengekiGate3MgrFv
-__ct__Q34Game15ItemDengekiGate3MgrFv:
+.fn __ct__Q34Game15ItemDengekiGate3MgrFv, global
 /* 801C9CE4 001C6C24  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C9CE8 001C6C28  7C 08 02 A6 */	mflr r0
 /* 801C9CEC 001C6C2C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3876,9 +3900,9 @@ __ct__Q34Game15ItemDengekiGate3MgrFv:
 /* 801C9E58 001C6D98  7C 08 03 A6 */	mtlr r0
 /* 801C9E5C 001C6D9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C9E60 001C6DA0  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game15ItemDengekiGate3MgrFv
 
-.global "__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801C9E64 001C6DA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C9E68 001C6DA8  7C 08 02 A6 */	mflr r0
 /* 801C9E6C 001C6DAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3954,9 +3978,9 @@ __ct__Q34Game15ItemDengekiGate3MgrFv:
 /* 801C9F74 001C6EB4  7C 08 03 A6 */	mtlr r0
 /* 801C9F78 001C6EB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C9F7C 001C6EBC  4E 80 00 20 */	blr 
+.endfn "__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global setupGate__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate
-setupGate__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate:
+.fn setupGate__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate, global
 /* 801C9F80 001C6EC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C9F84 001C6EC4  7C 08 02 A6 */	mflr r0
 /* 801C9F88 001C6EC8  38 A0 00 00 */	li r5, 0
@@ -3999,9 +4023,9 @@ setupGate__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate:
 /* 801CA018 001C6F58  7C 08 03 A6 */	mtlr r0
 /* 801CA01C 001C6F5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA020 001C6F60  4E 80 00 20 */	blr 
+.endfn setupGate__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate
 
-.global setupPlatform__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate
-setupPlatform__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate:
+.fn setupPlatform__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate, global
 /* 801CA024 001C6F64  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801CA028 001C6F68  7C 08 02 A6 */	mflr r0
 /* 801CA02C 001C6F6C  3C A0 80 48 */	lis r5, lbl_80480294@ha
@@ -4088,9 +4112,9 @@ setupPlatform__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate:
 /* 801CA170 001C70B0  7C 08 03 A6 */	mtlr r0
 /* 801CA174 001C70B4  38 21 00 70 */	addi r1, r1, 0x70
 /* 801CA178 001C70B8  4E 80 00 20 */	blr 
+.endfn setupPlatform__Q34Game15ItemDengekiGate3MgrFPQ24Game8ItemGate
 
-.global generatorNewItemParm__Q34Game15ItemDengekiGate3MgrFv
-generatorNewItemParm__Q34Game15ItemDengekiGate3MgrFv:
+.fn generatorNewItemParm__Q34Game15ItemDengekiGate3MgrFv, global
 /* 801CA17C 001C70BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA180 001C70C0  7C 08 02 A6 */	mflr r0
 /* 801CA184 001C70C4  38 60 00 0C */	li r3, 0xc
@@ -4113,9 +4137,9 @@ generatorNewItemParm__Q34Game15ItemDengekiGate3MgrFv:
 /* 801CA1C4 001C7104  7C 08 03 A6 */	mtlr r0
 /* 801CA1C8 001C7108  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA1CC 001C710C  4E 80 00 20 */	blr 
+.endfn generatorNewItemParm__Q34Game15ItemDengekiGate3MgrFv
 
-.global generatorWrite__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParm
-generatorWrite__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParm:
+.fn generatorWrite__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParm, global
 /* 801CA1D0 001C7110  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CA1D4 001C7114  7C 08 02 A6 */	mflr r0
 /* 801CA1D8 001C7118  3C 60 80 48 */	lis r3, lbl_80480188@ha
@@ -4150,9 +4174,9 @@ generatorWrite__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParm:
 /* 801CA248 001C7188  7C 08 03 A6 */	mtlr r0
 /* 801CA24C 001C718C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CA250 001C7190  4E 80 00 20 */	blr 
+.endfn generatorWrite__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParm
 
-.global generatorRead__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParmUl
-generatorRead__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParmUl:
+.fn generatorRead__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParmUl, global
 /* 801CA254 001C7194  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA258 001C7198  7C 08 02 A6 */	mflr r0
 /* 801CA25C 001C719C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4178,9 +4202,9 @@ generatorRead__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParmUl:
 /* 801CA2A8 001C71E8  7C 08 03 A6 */	mtlr r0
 /* 801CA2AC 001C71EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA2B0 001C71F0  4E 80 00 20 */	blr 
+.endfn generatorRead__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParmUl
 
-.global "generatorBirth__Q34Game15ItemDengekiGate3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-"generatorBirth__Q34Game15ItemDengekiGate3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
+.fn "generatorBirth__Q34Game15ItemDengekiGate3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm", global
 /* 801CA2B4 001C71F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CA2B8 001C71F8  7C 08 02 A6 */	mflr r0
 /* 801CA2BC 001C71FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4228,17 +4252,17 @@ generatorRead__Q34Game15ItemDengekiGate3MgrFR6StreamPQ24Game11GenItemParmUl:
 /* 801CA360 001C72A0  7C 08 03 A6 */	mtlr r0
 /* 801CA364 001C72A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CA368 001C72A8  4E 80 00 20 */	blr 
+.endfn "generatorBirth__Q34Game15ItemDengekiGate3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
 
-.global getCaveName__Q34Game15ItemDengekiGate3MgrFi
-getCaveName__Q34Game15ItemDengekiGate3MgrFi:
+.fn getCaveName__Q34Game15ItemDengekiGate3MgrFi, global
 /* 801CA36C 001C72AC  2C 04 00 00 */	cmpwi r4, 0
 /* 801CA370 001C72B0  38 60 00 00 */	li r3, 0
 /* 801CA374 001C72B4  4C 82 00 20 */	bnelr 
 /* 801CA378 001C72B8  38 62 B2 A0 */	addi r3, r2, lbl_80519600@sda21
 /* 801CA37C 001C72BC  4E 80 00 20 */	blr 
+.endfn getCaveName__Q34Game15ItemDengekiGate3MgrFi
 
-.global getCaveID__Q34Game15ItemDengekiGate3MgrFPc
-getCaveID__Q34Game15ItemDengekiGate3MgrFPc:
+.fn getCaveID__Q34Game15ItemDengekiGate3MgrFPc, global
 /* 801CA380 001C72C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA384 001C72C4  7C 08 02 A6 */	mflr r0
 /* 801CA388 001C72C8  38 62 B2 A0 */	addi r3, r2, lbl_80519600@sda21
@@ -4258,9 +4282,9 @@ getCaveID__Q34Game15ItemDengekiGate3MgrFPc:
 /* 801CA3C0 001C7300  7C 08 03 A6 */	mtlr r0
 /* 801CA3C4 001C7304  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA3C8 001C7308  4E 80 00 20 */	blr 
+.endfn getCaveID__Q34Game15ItemDengekiGate3MgrFPc
 
-.global __dt__Q34Game15ItemDengekiGate3MgrFv
-__dt__Q34Game15ItemDengekiGate3MgrFv:
+.fn __dt__Q34Game15ItemDengekiGate3MgrFv, weak
 /* 801CA3CC 001C730C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA3D0 001C7310  7C 08 02 A6 */	mflr r0
 /* 801CA3D4 001C7314  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4342,33 +4366,33 @@ __dt__Q34Game15ItemDengekiGate3MgrFv:
 /* 801CA4F4 001C7434  7C 08 03 A6 */	mtlr r0
 /* 801CA4F8 001C7438  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA4FC 001C743C  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game15ItemDengekiGate3MgrFv
 
-.global generatorGetID__Q34Game15ItemDengekiGate3MgrFv
-generatorGetID__Q34Game15ItemDengekiGate3MgrFv:
+.fn generatorGetID__Q34Game15ItemDengekiGate3MgrFv, weak
 /* 801CA500 001C7440  3C 60 64 67 */	lis r3, 0x64676174@ha
 /* 801CA504 001C7444  38 63 61 74 */	addi r3, r3, 0x64676174@l
 /* 801CA508 001C7448  4E 80 00 20 */	blr 
+.endfn generatorGetID__Q34Game15ItemDengekiGate3MgrFv
 
-.global generatorLocalVersion__Q34Game15ItemDengekiGate3MgrFv
-generatorLocalVersion__Q34Game15ItemDengekiGate3MgrFv:
+.fn generatorLocalVersion__Q34Game15ItemDengekiGate3MgrFv, weak
 /* 801CA50C 001C744C  3C 60 30 30 */	lis r3, 0x30303030@ha
 /* 801CA510 001C7450  38 63 30 30 */	addi r3, r3, 0x30303030@l
 /* 801CA514 001C7454  4E 80 00 20 */	blr 
+.endfn generatorLocalVersion__Q34Game15ItemDengekiGate3MgrFv
 
-.global generatorGetID__Q24Game11ItemGateMgrFv
-generatorGetID__Q24Game11ItemGateMgrFv:
+.fn generatorGetID__Q24Game11ItemGateMgrFv, weak
 /* 801CA518 001C7458  3C 60 67 61 */	lis r3, 0x67617465@ha
 /* 801CA51C 001C745C  38 63 74 65 */	addi r3, r3, 0x67617465@l
 /* 801CA520 001C7460  4E 80 00 20 */	blr 
+.endfn generatorGetID__Q24Game11ItemGateMgrFv
 
-.global generatorLocalVersion__Q24Game11ItemGateMgrFv
-generatorLocalVersion__Q24Game11ItemGateMgrFv:
+.fn generatorLocalVersion__Q24Game11ItemGateMgrFv, weak
 /* 801CA524 001C7464  3C 60 30 30 */	lis r3, 0x30303032@ha
 /* 801CA528 001C7468  38 63 30 32 */	addi r3, r3, 0x30303032@l
 /* 801CA52C 001C746C  4E 80 00 20 */	blr 
+.endfn generatorLocalVersion__Q24Game11ItemGateMgrFv
 
-.global doAnimation__Q24Game11ItemGateMgrFv
-doAnimation__Q24Game11ItemGateMgrFv:
+.fn doAnimation__Q24Game11ItemGateMgrFv, weak
 /* 801CA530 001C7470  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA534 001C7474  7C 08 02 A6 */	mflr r0
 /* 801CA538 001C7478  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4380,9 +4404,9 @@ doAnimation__Q24Game11ItemGateMgrFv:
 /* 801CA550 001C7490  7C 08 03 A6 */	mtlr r0
 /* 801CA554 001C7494  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA558 001C7498  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game11ItemGateMgrFv
 
-.global doEntry__Q24Game11ItemGateMgrFv
-doEntry__Q24Game11ItemGateMgrFv:
+.fn doEntry__Q24Game11ItemGateMgrFv, weak
 /* 801CA55C 001C749C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA560 001C74A0  7C 08 02 A6 */	mflr r0
 /* 801CA564 001C74A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4394,9 +4418,9 @@ doEntry__Q24Game11ItemGateMgrFv:
 /* 801CA57C 001C74BC  7C 08 03 A6 */	mtlr r0
 /* 801CA580 001C74C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA584 001C74C4  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game11ItemGateMgrFv
 
-.global doSetView__Q24Game11ItemGateMgrFi
-doSetView__Q24Game11ItemGateMgrFi:
+.fn doSetView__Q24Game11ItemGateMgrFi, weak
 /* 801CA588 001C74C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA58C 001C74CC  7C 08 02 A6 */	mflr r0
 /* 801CA590 001C74D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4408,9 +4432,9 @@ doSetView__Q24Game11ItemGateMgrFi:
 /* 801CA5A8 001C74E8  7C 08 03 A6 */	mtlr r0
 /* 801CA5AC 001C74EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA5B0 001C74F0  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game11ItemGateMgrFi
 
-.global doViewCalc__Q24Game11ItemGateMgrFv
-doViewCalc__Q24Game11ItemGateMgrFv:
+.fn doViewCalc__Q24Game11ItemGateMgrFv, weak
 /* 801CA5B4 001C74F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA5B8 001C74F8  7C 08 02 A6 */	mflr r0
 /* 801CA5BC 001C74FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4422,9 +4446,9 @@ doViewCalc__Q24Game11ItemGateMgrFv:
 /* 801CA5D4 001C7514  7C 08 03 A6 */	mtlr r0
 /* 801CA5D8 001C7518  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA5DC 001C751C  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game11ItemGateMgrFv
 
-.global doSimulation__Q24Game11ItemGateMgrFf
-doSimulation__Q24Game11ItemGateMgrFf:
+.fn doSimulation__Q24Game11ItemGateMgrFf, weak
 /* 801CA5E0 001C7520  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA5E4 001C7524  7C 08 02 A6 */	mflr r0
 /* 801CA5E8 001C7528  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4436,9 +4460,9 @@ doSimulation__Q24Game11ItemGateMgrFf:
 /* 801CA600 001C7540  7C 08 03 A6 */	mtlr r0
 /* 801CA604 001C7544  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA608 001C7548  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game11ItemGateMgrFf
 
-.global doDirectDraw__Q24Game11ItemGateMgrFR8Graphics
-doDirectDraw__Q24Game11ItemGateMgrFR8Graphics:
+.fn doDirectDraw__Q24Game11ItemGateMgrFR8Graphics, weak
 /* 801CA60C 001C754C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA610 001C7550  7C 08 02 A6 */	mflr r0
 /* 801CA614 001C7554  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4450,14 +4474,14 @@ doDirectDraw__Q24Game11ItemGateMgrFR8Graphics:
 /* 801CA62C 001C756C  7C 08 03 A6 */	mtlr r0
 /* 801CA630 001C7570  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA634 001C7574  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game11ItemGateMgrFR8Graphics
 
-.global getName__Q23efx7ArgRotYFv
-getName__Q23efx7ArgRotYFv:
+.fn getName__Q23efx7ArgRotYFv, weak
 /* 801CA638 001C7578  38 62 B2 A8 */	addi r3, r2, lbl_80519608@sda21
 /* 801CA63C 001C757C  4E 80 00 20 */	blr 
+.endfn getName__Q23efx7ArgRotYFv
 
-.global __dt__Q23efx7TEgateAFv
-__dt__Q23efx7TEgateAFv:
+.fn __dt__Q23efx7TEgateAFv, weak
 /* 801CA640 001C7580  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA644 001C7584  7C 08 02 A6 */	mflr r0
 /* 801CA648 001C7588  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4499,27 +4523,27 @@ __dt__Q23efx7TEgateAFv:
 /* 801CA6D0 001C7610  7C 08 03 A6 */	mtlr r0
 /* 801CA6D4 001C7614  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA6D8 001C7618  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx7TEgateAFv
 
-.global getCreatureName__Q24Game8ItemGateFv
-getCreatureName__Q24Game8ItemGateFv:
+.fn getCreatureName__Q24Game8ItemGateFv, weak
 /* 801CA6DC 001C761C  38 62 B2 8C */	addi r3, r2, lbl_805195EC@sda21
 /* 801CA6E0 001C7620  4E 80 00 20 */	blr 
+.endfn getCreatureName__Q24Game8ItemGateFv
 
-.global getMabiki__Q24Game8ItemGateFv
-getMabiki__Q24Game8ItemGateFv:
+.fn getMabiki__Q24Game8ItemGateFv, weak
 /* 801CA6E4 001C7624  38 63 01 EC */	addi r3, r3, 0x1ec
 /* 801CA6E8 001C7628  4E 80 00 20 */	blr 
+.endfn getMabiki__Q24Game8ItemGateFv
 
-.global makeTrMatrix__Q24Game8ItemGateFv
-makeTrMatrix__Q24Game8ItemGateFv:
+.fn makeTrMatrix__Q24Game8ItemGateFv, weak
 /* 801CA6EC 001C762C  4E 80 00 20 */	blr 
+.endfn makeTrMatrix__Q24Game8ItemGateFv
 
-.global do_doAnimation__Q24Game8BaseItemFv
-do_doAnimation__Q24Game8BaseItemFv:
+.fn do_doAnimation__Q24Game8BaseItemFv, weak
 /* 801CA6F0 001C7630  4E 80 00 20 */	blr 
+.endfn do_doAnimation__Q24Game8BaseItemFv
 
-.global "doAI__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>Fv"
-"doAI__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>Fv":
+.fn "doAI__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>Fv", weak
 /* 801CA6F4 001C7634  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CA6F8 001C7638  7C 08 02 A6 */	mflr r0
 /* 801CA6FC 001C763C  7C 64 1B 78 */	mr r4, r3
@@ -4533,23 +4557,23 @@ do_doAnimation__Q24Game8BaseItemFv:
 /* 801CA71C 001C765C  7C 08 03 A6 */	mtlr r0
 /* 801CA720 001C7660  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CA724 001C7664  4E 80 00 20 */	blr 
+.endfn "doAI__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>Fv"
 
-.global getCreatureName__Q24Game8BaseItemFv
-getCreatureName__Q24Game8BaseItemFv:
+.fn getCreatureName__Q24Game8BaseItemFv, weak
 /* 801CA728 001C7668  38 62 B2 B0 */	addi r3, r2, lbl_80519610@sda21
 /* 801CA72C 001C766C  4E 80 00 20 */	blr 
+.endfn getCreatureName__Q24Game8BaseItemFv
 
-.global changeMaterial__Q24Game8BaseItemFv
-changeMaterial__Q24Game8BaseItemFv:
+.fn changeMaterial__Q24Game8BaseItemFv, weak
 /* 801CA730 001C7670  4E 80 00 20 */	blr 
+.endfn changeMaterial__Q24Game8BaseItemFv
 
-.global getFaceDir__Q24Game8BaseItemFv
-getFaceDir__Q24Game8BaseItemFv:
+.fn getFaceDir__Q24Game8BaseItemFv, weak
 /* 801CA734 001C7674  C0 22 B2 38 */	lfs f1, lbl_80519598@sda21(r2)
 /* 801CA738 001C7678  4E 80 00 20 */	blr 
+.endfn getFaceDir__Q24Game8BaseItemFv
 
-.global "__ct__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"__ct__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "__ct__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CA73C 001C767C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CA740 001C7680  7C 08 02 A6 */	mflr r0
 /* 801CA744 001C7684  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4620,9 +4644,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CA844 001C7784  7C 08 03 A6 */	mtlr r0
 /* 801CA848 001C7788  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CA84C 001C778C  4E 80 00 20 */	blr 
+.endfn "__ct__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "birth__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"birth__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "birth__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CA850 001C7790  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CA854 001C7794  7C 08 02 A6 */	mflr r0
 /* 801CA858 001C7798  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4736,9 +4760,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CA9F8 001C7938  7C 08 03 A6 */	mtlr r0
 /* 801CA9FC 001C793C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CAA00 001C7940  4E 80 00 20 */	blr 
+.endfn "birth__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "initDependency__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"initDependency__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "initDependency__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CAA04 001C7944  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CAA08 001C7948  7C 08 02 A6 */	mflr r0
 /* 801CAA0C 001C794C  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
@@ -4869,9 +4893,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CABE0 001C7B20  7C 08 03 A6 */	mtlr r0
 /* 801CABE4 001C7B24  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CABE8 001C7B28  4E 80 00 20 */	blr 
+.endfn "initDependency__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "kill__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPQ24Game8ItemGate"
-"kill__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPQ24Game8ItemGate":
+.fn "kill__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPQ24Game8ItemGate", weak
 /* 801CABEC 001C7B2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CABF0 001C7B30  7C 08 02 A6 */	mflr r0
 /* 801CABF4 001C7B34  38 63 00 4C */	addi r3, r3, 0x4c
@@ -4881,9 +4905,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CAC04 001C7B44  7C 08 03 A6 */	mtlr r0
 /* 801CAC08 001C7B48  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CAC0C 001C7B4C  4E 80 00 20 */	blr 
+.endfn "kill__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPQ24Game8ItemGate"
 
-.global "doAnimation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"doAnimation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "doAnimation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CAC10 001C7B50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CAC14 001C7B54  7C 08 02 A6 */	mflr r0
 /* 801CAC18 001C7B58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4895,9 +4919,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CAC30 001C7B70  7C 08 03 A6 */	mtlr r0
 /* 801CAC34 001C7B74  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CAC38 001C7B78  4E 80 00 20 */	blr 
+.endfn "doAnimation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "doEntry__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"doEntry__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "doEntry__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CAC3C 001C7B7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CAC40 001C7B80  7C 08 02 A6 */	mflr r0
 /* 801CAC44 001C7B84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4909,9 +4933,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CAC5C 001C7B9C  7C 08 03 A6 */	mtlr r0
 /* 801CAC60 001C7BA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CAC64 001C7BA4  4E 80 00 20 */	blr 
+.endfn "doEntry__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "doSetView__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fi"
-"doSetView__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fi":
+.fn "doSetView__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fi", weak
 /* 801CAC68 001C7BA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CAC6C 001C7BAC  7C 08 02 A6 */	mflr r0
 /* 801CAC70 001C7BB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4923,9 +4947,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CAC88 001C7BC8  7C 08 03 A6 */	mtlr r0
 /* 801CAC8C 001C7BCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CAC90 001C7BD0  4E 80 00 20 */	blr 
+.endfn "doSetView__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fi"
 
-.global "doViewCalc__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"doViewCalc__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "doViewCalc__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CAC94 001C7BD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CAC98 001C7BD8  7C 08 02 A6 */	mflr r0
 /* 801CAC9C 001C7BDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4937,9 +4961,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CACB4 001C7BF4  7C 08 03 A6 */	mtlr r0
 /* 801CACB8 001C7BF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CACBC 001C7BFC  4E 80 00 20 */	blr 
+.endfn "doViewCalc__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "doSimulation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Ff"
-"doSimulation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Ff":
+.fn "doSimulation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Ff", weak
 /* 801CACC0 001C7C00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CACC4 001C7C04  7C 08 02 A6 */	mflr r0
 /* 801CACC8 001C7C08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4951,9 +4975,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CACE0 001C7C20  7C 08 03 A6 */	mtlr r0
 /* 801CACE4 001C7C24  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CACE8 001C7C28  4E 80 00 20 */	blr 
+.endfn "doSimulation__Q24Game29NodeItemMgr<Q24Game8ItemGate>Ff"
 
-.global "doDirectDraw__Q24Game29NodeItemMgr<Q24Game8ItemGate>FR8Graphics"
-"doDirectDraw__Q24Game29NodeItemMgr<Q24Game8ItemGate>FR8Graphics":
+.fn "doDirectDraw__Q24Game29NodeItemMgr<Q24Game8ItemGate>FR8Graphics", weak
 /* 801CACEC 001C7C2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CACF0 001C7C30  7C 08 02 A6 */	mflr r0
 /* 801CACF4 001C7C34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4965,9 +4989,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CAD0C 001C7C4C  7C 08 03 A6 */	mtlr r0
 /* 801CAD10 001C7C50  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CAD14 001C7C54  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__Q24Game29NodeItemMgr<Q24Game8ItemGate>FR8Graphics"
 
-.global "onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent", weak
 /* 801CAD18 001C7C58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CAD1C 001C7C5C  7C 08 02 A6 */	mflr r0
 /* 801CAD20 001C7C60  7C 66 1B 78 */	mr r6, r3
@@ -4986,53 +5010,53 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CAD50 001C7C90  7C 08 03 A6 */	mtlr r0
 /* 801CAD54 001C7C94  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CAD58 001C7C98  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent"
 
-.global "onDamage__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatef"
-"onDamage__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatef":
+.fn "onDamage__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatef", weak
 /* 801CAD5C 001C7C9C  4E 80 00 20 */	blr 
+.endfn "onDamage__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatef"
 
-.global "onKeyEvent__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRCQ28SysShape8KeyEvent", weak
 /* 801CAD60 001C7CA0  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRCQ28SysShape8KeyEvent"
 
-.global "onBounce__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ23Sys8Triangle"
-"onBounce__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ23Sys8Triangle":
+.fn "onBounce__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ23Sys8Triangle", weak
 /* 801CAD64 001C7CA4  4E 80 00 20 */	blr 
+.endfn "onBounce__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ23Sys8Triangle"
 
-.global "onPlatCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9PlatEvent"
-"onPlatCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9PlatEvent":
+.fn "onPlatCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9PlatEvent", weak
 /* 801CAD68 001C7CA8  4E 80 00 20 */	blr 
+.endfn "onPlatCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9PlatEvent"
 
-.global "onCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9CollEvent"
-"onCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9CollEvent":
+.fn "onCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9CollEvent", weak
 /* 801CAD6C 001C7CAC  4E 80 00 20 */	blr 
+.endfn "onCollision__Q24Game27ItemState<Q24Game8ItemGate>FPQ24Game8ItemGateRQ24Game9CollEvent"
 
-.global "init__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ24Game8StateArg"
-"init__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ24Game8StateArg":
+.fn "init__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ24Game8StateArg", weak
 /* 801CAD70 001C7CB0  4E 80 00 20 */	blr 
+.endfn "init__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGatePQ24Game8StateArg"
 
-.global "exec__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
-"exec__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate":
+.fn "exec__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate", weak
 /* 801CAD74 001C7CB4  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
 
-.global "cleanup__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
-"cleanup__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate":
+.fn "cleanup__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate", weak
 /* 801CAD78 001C7CB8  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
 
-.global "resume__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
-"resume__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate":
+.fn "resume__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate", weak
 /* 801CAD7C 001C7CBC  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
 
-.global "restart__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
-"restart__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate":
+.fn "restart__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate", weak
 /* 801CAD80 001C7CC0  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game26FSMState<Q24Game8ItemGate>FPQ24Game8ItemGate"
 
-.global "init__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
-"init__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate":
+.fn "init__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate", weak
 /* 801CAD84 001C7CC4  4E 80 00 20 */	blr 
+.endfn "init__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
 
-.global "exec__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
-"exec__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate":
+.fn "exec__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate", weak
 /* 801CAD88 001C7CC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CAD8C 001C7CCC  7C 08 02 A6 */	mflr r0
 /* 801CAD90 001C7CD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5048,9 +5072,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CADB4 001C7CF4  7C 08 03 A6 */	mtlr r0
 /* 801CADB8 001C7CF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CADBC 001C7CFC  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGate"
 
-.global "create__Q24Game30StateMachine<Q24Game8ItemGate>Fi"
-"create__Q24Game30StateMachine<Q24Game8ItemGate>Fi":
+.fn "create__Q24Game30StateMachine<Q24Game8ItemGate>Fi", weak
 /* 801CADC0 001C7D00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CADC4 001C7D04  7C 08 02 A6 */	mflr r0
 /* 801CADC8 001C7D08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5076,29 +5100,29 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CAE18 001C7D58  7C 08 03 A6 */	mtlr r0
 /* 801CAE1C 001C7D5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CAE20 001C7D60  4E 80 00 20 */	blr 
+.endfn "create__Q24Game30StateMachine<Q24Game8ItemGate>Fi"
 
-.global "get__31NodeObjectMgr<Q24Game8ItemGate>FPv"
-"get__31NodeObjectMgr<Q24Game8ItemGate>FPv":
+.fn "get__31NodeObjectMgr<Q24Game8ItemGate>FPv", weak
 /* 801CAE24 001C7D64  80 64 00 18 */	lwz r3, 0x18(r4)
 /* 801CAE28 001C7D68  4E 80 00 20 */	blr 
+.endfn "get__31NodeObjectMgr<Q24Game8ItemGate>FPv"
 
-.global "getNext__31NodeObjectMgr<Q24Game8ItemGate>FPv"
-"getNext__31NodeObjectMgr<Q24Game8ItemGate>FPv":
+.fn "getNext__31NodeObjectMgr<Q24Game8ItemGate>FPv", weak
 /* 801CAE2C 001C7D6C  80 64 00 04 */	lwz r3, 4(r4)
 /* 801CAE30 001C7D70  4E 80 00 20 */	blr 
+.endfn "getNext__31NodeObjectMgr<Q24Game8ItemGate>FPv"
 
-.global "getStart__31NodeObjectMgr<Q24Game8ItemGate>Fv"
-"getStart__31NodeObjectMgr<Q24Game8ItemGate>Fv":
+.fn "getStart__31NodeObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CAE34 001C7D74  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 801CAE38 001C7D78  4E 80 00 20 */	blr 
+.endfn "getStart__31NodeObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "getEnd__31NodeObjectMgr<Q24Game8ItemGate>Fv"
-"getEnd__31NodeObjectMgr<Q24Game8ItemGate>Fv":
+.fn "getEnd__31NodeObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CAE3C 001C7D7C  38 60 00 00 */	li r3, 0
 /* 801CAE40 001C7D80  4E 80 00 20 */	blr 
+.endfn "getEnd__31NodeObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "delNode__31NodeObjectMgr<Q24Game8ItemGate>FPQ24Game8ItemGate"
-"delNode__31NodeObjectMgr<Q24Game8ItemGate>FPQ24Game8ItemGate":
+.fn "delNode__31NodeObjectMgr<Q24Game8ItemGate>FPQ24Game8ItemGate", weak
 /* 801CAE44 001C7D84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CAE48 001C7D88  7C 08 02 A6 */	mflr r0
 /* 801CAE4C 001C7D8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5120,18 +5144,18 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CAE7C 001C7DBC  7C 08 03 A6 */	mtlr r0
 /* 801CAE80 001C7DC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CAE84 001C7DC4  4E 80 00 20 */	blr 
+.endfn "delNode__31NodeObjectMgr<Q24Game8ItemGate>FPQ24Game8ItemGate"
 
-.global "resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv"
-"resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv":
+.fn "resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CAE88 001C7DC8  38 00 00 00 */	li r0, 0
 /* 801CAE8C 001C7DCC  90 03 00 30 */	stw r0, 0x30(r3)
 /* 801CAE90 001C7DD0  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801CAE94 001C7DD4  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801CAE98 001C7DD8  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801CAE9C 001C7DDC  4E 80 00 20 */	blr 
+.endfn "resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "doAnimation__27ObjectMgr<Q24Game8ItemGate>Fv"
-"doAnimation__27ObjectMgr<Q24Game8ItemGate>Fv":
+.fn "doAnimation__27ObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CAEA0 001C7DE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CAEA4 001C7DE4  7C 08 02 A6 */	mflr r0
 /* 801CAEA8 001C7DE8  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
@@ -5261,9 +5285,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CB078 001C7FB8  7C 08 03 A6 */	mtlr r0
 /* 801CB07C 001C7FBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CB080 001C7FC0  4E 80 00 20 */	blr 
+.endfn "doAnimation__27ObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "doEntry__27ObjectMgr<Q24Game8ItemGate>Fv"
-"doEntry__27ObjectMgr<Q24Game8ItemGate>Fv":
+.fn "doEntry__27ObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CB084 001C7FC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB088 001C7FC8  7C 08 02 A6 */	mflr r0
 /* 801CB08C 001C7FCC  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
@@ -5393,9 +5417,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CB25C 001C819C  7C 08 03 A6 */	mtlr r0
 /* 801CB260 001C81A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CB264 001C81A4  4E 80 00 20 */	blr 
+.endfn "doEntry__27ObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "doSetView__27ObjectMgr<Q24Game8ItemGate>Fi"
-"doSetView__27ObjectMgr<Q24Game8ItemGate>Fi":
+.fn "doSetView__27ObjectMgr<Q24Game8ItemGate>Fi", weak
 /* 801CB268 001C81A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB26C 001C81AC  7C 08 02 A6 */	mflr r0
 /* 801CB270 001C81B0  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8ItemGate>"@ha
@@ -5529,9 +5553,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CB450 001C8390  7C 08 03 A6 */	mtlr r0
 /* 801CB454 001C8394  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CB458 001C8398  4E 80 00 20 */	blr 
+.endfn "doSetView__27ObjectMgr<Q24Game8ItemGate>Fi"
 
-.global "doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv"
-"doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv":
+.fn "doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CB45C 001C839C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB460 001C83A0  7C 08 02 A6 */	mflr r0
 /* 801CB464 001C83A4  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
@@ -5661,9 +5685,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CB634 001C8574  7C 08 03 A6 */	mtlr r0
 /* 801CB638 001C8578  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CB63C 001C857C  4E 80 00 20 */	blr 
+.endfn "doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff"
-"doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff":
+.fn "doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff", weak
 /* 801CB640 001C8580  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB644 001C8584  7C 08 02 A6 */	mflr r0
 /* 801CB648 001C8588  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
@@ -5797,9 +5821,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CB828 001C8768  7C 08 03 A6 */	mtlr r0
 /* 801CB82C 001C876C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CB830 001C8770  4E 80 00 20 */	blr 
+.endfn "doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff"
 
-.global "doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics"
-"doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics":
+.fn "doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics", weak
 /* 801CB834 001C8774  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CB838 001C8778  7C 08 02 A6 */	mflr r0
 /* 801CB83C 001C877C  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8ItemGate>"@ha
@@ -5933,9 +5957,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBA1C 001C895C  7C 08 03 A6 */	mtlr r0
 /* 801CBA20 001C8960  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CBA24 001C8964  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics"
 
-.global "getObject__27Container<Q24Game8ItemGate>FPv"
-"getObject__27Container<Q24Game8ItemGate>FPv":
+.fn "getObject__27Container<Q24Game8ItemGate>FPv", weak
 /* 801CBA28 001C8968  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CBA2C 001C896C  7C 08 02 A6 */	mflr r0
 /* 801CBA30 001C8970  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5947,19 +5971,19 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBA48 001C8988  7C 08 03 A6 */	mtlr r0
 /* 801CBA4C 001C898C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CBA50 001C8990  4E 80 00 20 */	blr 
+.endfn "getObject__27Container<Q24Game8ItemGate>FPv"
 
-.global "getAt__27Container<Q24Game8ItemGate>Fi"
-"getAt__27Container<Q24Game8ItemGate>Fi":
+.fn "getAt__27Container<Q24Game8ItemGate>Fi", weak
 /* 801CBA54 001C8994  38 60 00 00 */	li r3, 0
 /* 801CBA58 001C8998  4E 80 00 20 */	blr 
+.endfn "getAt__27Container<Q24Game8ItemGate>Fi"
 
-.global "getTo__27Container<Q24Game8ItemGate>Fv"
-"getTo__27Container<Q24Game8ItemGate>Fv":
+.fn "getTo__27Container<Q24Game8ItemGate>Fv", weak
 /* 801CBA5C 001C899C  38 60 00 00 */	li r3, 0
 /* 801CBA60 001C89A0  4E 80 00 20 */	blr 
+.endfn "getTo__27Container<Q24Game8ItemGate>Fv"
 
-.global "transit__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
-"transit__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg":
+.fn "transit__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg", weak
 /* 801CBA64 001C89A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CBA68 001C89A8  7C 08 02 A6 */	mflr r0
 /* 801CBA6C 001C89AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6002,9 +6026,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBAF4 001C8A34  7C 08 03 A6 */	mtlr r0
 /* 801CBAF8 001C8A38  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CBAFC 001C8A3C  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game8ItemGateiPQ24Game8StateArg"
 
-.global "registerState__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game26FSMState<Q24Game8ItemGate>"
-"registerState__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game26FSMState<Q24Game8ItemGate>":
+.fn "registerState__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game26FSMState<Q24Game8ItemGate>", weak
 /* 801CBB00 001C8A40  80 C3 00 08 */	lwz r6, 8(r3)
 /* 801CBB04 001C8A44  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 801CBB08 001C8A48  7C 06 00 00 */	cmpw r6, r0
@@ -6041,9 +6065,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBB78 001C8AB8  38 04 00 01 */	addi r0, r4, 1
 /* 801CBB7C 001C8ABC  90 03 00 08 */	stw r0, 8(r3)
 /* 801CBB80 001C8AC0  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game30StateMachine<Q24Game8ItemGate>FPQ24Game26FSMState<Q24Game8ItemGate>"
 
-.global "platCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRQ24Game9PlatEvent"
-"platCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRQ24Game9PlatEvent":
+.fn "platCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRQ24Game9PlatEvent", weak
 /* 801CBB84 001C8AC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CBB88 001C8AC8  7C 08 02 A6 */	mflr r0
 /* 801CBB8C 001C8ACC  7C 66 1B 78 */	mr r6, r3
@@ -6062,9 +6086,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBBBC 001C8AFC  7C 08 03 A6 */	mtlr r0
 /* 801CBBC0 001C8B00  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CBBC4 001C8B04  4E 80 00 20 */	blr 
+.endfn "platCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRQ24Game9PlatEvent"
 
-.global "collisionCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRQ24Game9CollEvent"
-"collisionCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRQ24Game9CollEvent":
+.fn "collisionCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRQ24Game9CollEvent", weak
 /* 801CBBC8 001C8B08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CBBCC 001C8B0C  7C 08 02 A6 */	mflr r0
 /* 801CBBD0 001C8B10  7C 66 1B 78 */	mr r6, r3
@@ -6083,9 +6107,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBC00 001C8B40  7C 08 03 A6 */	mtlr r0
 /* 801CBC04 001C8B44  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CBC08 001C8B48  4E 80 00 20 */	blr 
+.endfn "collisionCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRQ24Game9CollEvent"
 
-.global "bounceCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FPQ23Sys8Triangle"
-"bounceCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FPQ23Sys8Triangle":
+.fn "bounceCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FPQ23Sys8Triangle", weak
 /* 801CBC0C 001C8B4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CBC10 001C8B50  7C 08 02 A6 */	mflr r0
 /* 801CBC14 001C8B54  7C 66 1B 78 */	mr r6, r3
@@ -6104,9 +6128,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBC44 001C8B84  7C 08 03 A6 */	mtlr r0
 /* 801CBC48 001C8B88  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CBC4C 001C8B8C  4E 80 00 20 */	blr 
+.endfn "bounceCallback__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FPQ23Sys8Triangle"
 
-.global "getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBC50 001C8B90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CBC54 001C8B94  7C 08 02 A6 */	mflr r0
 /* 801CBC58 001C8B98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6118,9 +6142,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBC70 001C8BB0  7C 08 03 A6 */	mtlr r0
 /* 801CBC74 001C8BB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CBC78 001C8BB8  4E 80 00 20 */	blr 
+.endfn "getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBC7C 001C8BBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CBC80 001C8BC0  7C 08 02 A6 */	mflr r0
 /* 801CBC84 001C8BC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6132,9 +6156,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBC9C 001C8BDC  7C 08 03 A6 */	mtlr r0
 /* 801CBCA0 001C8BE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CBCA4 001C8BE4  4E 80 00 20 */	blr 
+.endfn "getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "getNext__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
-"getNext__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv":
+.fn "getNext__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv", weak
 /* 801CBCA8 001C8BE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CBCAC 001C8BEC  7C 08 02 A6 */	mflr r0
 /* 801CBCB0 001C8BF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6146,9 +6170,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBCC8 001C8C08  7C 08 03 A6 */	mtlr r0
 /* 801CBCCC 001C8C0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CBCD0 001C8C10  4E 80 00 20 */	blr 
+.endfn "getNext__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
 
-.global "get__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
-"get__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv":
+.fn "get__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv", weak
 /* 801CBCD4 001C8C14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CBCD8 001C8C18  7C 08 02 A6 */	mflr r0
 /* 801CBCDC 001C8C1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6160,9 +6184,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBCF4 001C8C34  7C 08 03 A6 */	mtlr r0
 /* 801CBCF8 001C8C38  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CBCFC 001C8C3C  4E 80 00 20 */	blr 
+.endfn "get__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
 
-.global "killAll__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"killAll__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "killAll__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBD00 001C8C40  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801CBD04 001C8C44  7C 08 02 A6 */	mflr r0
 /* 801CBD08 001C8C48  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8ItemGate>"@ha
@@ -6318,9 +6342,9 @@ getFaceDir__Q24Game8BaseItemFv:
 /* 801CBF34 001C8E74  7C 08 03 A6 */	mtlr r0
 /* 801CBF38 001C8E78  38 21 00 30 */	addi r1, r1, 0x30
 /* 801CBF3C 001C8E7C  4E 80 00 20 */	blr 
+.endfn "killAll__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global __sinit_itemGate_cpp
-__sinit_itemGate_cpp:
+.fn __sinit_itemGate_cpp, local
 /* 801CBF40 001C8E80  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801CBF44 001C8E84  38 00 FF FF */	li r0, -1
 /* 801CBF48 001C8E88  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -6331,83 +6355,84 @@ __sinit_itemGate_cpp:
 /* 801CBF5C 001C8E9C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801CBF60 001C8EA0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801CBF64 001C8EA4  4E 80 00 20 */	blr 
+.endfn __sinit_itemGate_cpp
 
-.global "@376@onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent", weak
 /* 801CBF68 001C8EA8  38 63 FE 88 */	addi r3, r3, -376
 /* 801CBF6C 001C8EAC  4B FF ED AC */	b "onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent"
+.endfn "@376@onKeyEvent__Q24Game59FSMItem<Q24Game8ItemGate,Q24Game7GateFSM,Q24Game9GateState>FRCQ28SysShape8KeyEvent"
 
-.global "@376@onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent", weak
 /* 801CBF70 001C8EB0  38 63 FE 88 */	addi r3, r3, -376
 /* 801CBF74 001C8EB4  4B FF BF 68 */	b onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent
+.endfn "@376@onKeyEvent__Q24Game8ItemGateFRCQ28SysShape8KeyEvent"
 
-.global "@4@__dt__Q23efx7TEgateAFv"
-"@4@__dt__Q23efx7TEgateAFv":
+.fn "@4@__dt__Q23efx7TEgateAFv", weak
 /* 801CBF78 001C8EB8  38 63 FF FC */	addi r3, r3, -4
 /* 801CBF7C 001C8EBC  4B FF E6 C4 */	b __dt__Q23efx7TEgateAFv
+.endfn "@4@__dt__Q23efx7TEgateAFv"
 
-.global "@28@resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv"
-"@28@resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv":
+.fn "@28@resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBF80 001C8EC0  38 63 FF E4 */	addi r3, r3, -28
 /* 801CBF84 001C8EC4  4B FF EF 04 */	b "resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv"
+.endfn "@28@resetMgr__31NodeObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "@28@doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics"
-"@28@doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics":
+.fn "@28@doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics", weak
 /* 801CBF88 001C8EC8  38 63 FF E4 */	addi r3, r3, -28
 /* 801CBF8C 001C8ECC  4B FF F8 A8 */	b "doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics"
+.endfn "@28@doDirectDraw__27ObjectMgr<Q24Game8ItemGate>FR8Graphics"
 
-.global "@28@doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff"
-"@28@doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff":
+.fn "@28@doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff", weak
 /* 801CBF90 001C8ED0  38 63 FF E4 */	addi r3, r3, -28
 /* 801CBF94 001C8ED4  4B FF F6 AC */	b "doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff"
+.endfn "@28@doSimulation__27ObjectMgr<Q24Game8ItemGate>Ff"
 
-.global "@28@doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv"
-"@28@doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv":
+.fn "@28@doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBF98 001C8ED8  38 63 FF E4 */	addi r3, r3, -28
 /* 801CBF9C 001C8EDC  4B FF F4 C0 */	b "doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv"
+.endfn "@28@doViewCalc__27ObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "@28@doSetView__27ObjectMgr<Q24Game8ItemGate>Fi"
-"@28@doSetView__27ObjectMgr<Q24Game8ItemGate>Fi":
+.fn "@28@doSetView__27ObjectMgr<Q24Game8ItemGate>Fi", weak
 /* 801CBFA0 001C8EE0  38 63 FF E4 */	addi r3, r3, -28
 /* 801CBFA4 001C8EE4  4B FF F2 C4 */	b "doSetView__27ObjectMgr<Q24Game8ItemGate>Fi"
+.endfn "@28@doSetView__27ObjectMgr<Q24Game8ItemGate>Fi"
 
-.global "@28@doEntry__27ObjectMgr<Q24Game8ItemGate>Fv"
-"@28@doEntry__27ObjectMgr<Q24Game8ItemGate>Fv":
+.fn "@28@doEntry__27ObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBFA8 001C8EE8  38 63 FF E4 */	addi r3, r3, -28
 /* 801CBFAC 001C8EEC  4B FF F0 D8 */	b "doEntry__27ObjectMgr<Q24Game8ItemGate>Fv"
+.endfn "@28@doEntry__27ObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "@28@doAnimation__27ObjectMgr<Q24Game8ItemGate>Fv"
-"@28@doAnimation__27ObjectMgr<Q24Game8ItemGate>Fv":
+.fn "@28@doAnimation__27ObjectMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBFB0 001C8EF0  38 63 FF E4 */	addi r3, r3, -28
 /* 801CBFB4 001C8EF4  4B FF EE EC */	b "doAnimation__27ObjectMgr<Q24Game8ItemGate>Fv"
+.endfn "@28@doAnimation__27ObjectMgr<Q24Game8ItemGate>Fv"
 
-.global "@48@__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"@48@__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "@48@__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBFB8 001C8EF8  38 63 FF D0 */	addi r3, r3, -48
 /* 801CBFBC 001C8EFC  4B FF DE A8 */	b "__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
+.endfn "@48@__dt__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "@48@getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"@48@getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "@48@getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBFC0 001C8F00  38 63 FF D0 */	addi r3, r3, -48
 /* 801CBFC4 001C8F04  4B FF FC 8C */	b "getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
+.endfn "@48@getEnd__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "@48@getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
-"@48@getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv":
+.fn "@48@getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv", weak
 /* 801CBFC8 001C8F08  38 63 FF D0 */	addi r3, r3, -48
 /* 801CBFCC 001C8F0C  4B FF FC B0 */	b "getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
+.endfn "@48@getStart__Q24Game29NodeItemMgr<Q24Game8ItemGate>Fv"
 
-.global "@48@getNext__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
-"@48@getNext__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv":
+.fn "@48@getNext__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv", weak
 /* 801CBFD0 001C8F10  38 63 FF D0 */	addi r3, r3, -48
 /* 801CBFD4 001C8F14  4B FF FC D4 */	b "getNext__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
+.endfn "@48@getNext__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
 
-.global "@48@get__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
-"@48@get__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv":
+.fn "@48@get__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv", weak
 /* 801CBFD8 001C8F18  38 63 FF D0 */	addi r3, r3, -48
 /* 801CBFDC 001C8F1C  4B FF FC F8 */	b "get__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
+.endfn "@48@get__Q24Game29NodeItemMgr<Q24Game8ItemGate>FPv"
 
-.global "@48@__dt__Q34Game15ItemDengekiGate3MgrFv"
-"@48@__dt__Q34Game15ItemDengekiGate3MgrFv":
+.fn "@48@__dt__Q34Game15ItemDengekiGate3MgrFv", weak
 /* 801CBFE0 001C8F20  38 63 FF D0 */	addi r3, r3, -48
 /* 801CBFE4 001C8F24  4B FF E3 E8 */	b __dt__Q34Game15ItemDengekiGate3MgrFv
+.endfn "@48@__dt__Q34Game15ItemDengekiGate3MgrFv"

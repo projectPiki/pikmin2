@@ -107,7 +107,6 @@ __vt__Q34Game12KumaKochappy3FSM:
 	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

@@ -155,8 +155,7 @@ lbl_constructor:
 	.4byte 0
 	.4byte getShapeID__Q24Game11GenItemParmFv
 .endobj __vt__15GenUjamushiParm
-.global __vt__Q34Game12ItemUjamushi8DigState
-__vt__Q34Game12ItemUjamushi8DigState:
+.obj __vt__Q34Game12ItemUjamushi8DigState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game12ItemUjamushi8DigStateFPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg
@@ -170,8 +169,8 @@ __vt__Q34Game12ItemUjamushi8DigState:
 	.4byte "onBounce__Q24Game37ItemState<Q34Game12ItemUjamushi4Item>FPQ34Game12ItemUjamushi4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game37ItemState<Q34Game12ItemUjamushi4Item>FPQ34Game12ItemUjamushi4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game37ItemState<Q34Game12ItemUjamushi4Item>FPQ34Game12ItemUjamushi4ItemRQ24Game9CollEvent"
-.global __vt__Q34Game12ItemUjamushi11ActiveState
-__vt__Q34Game12ItemUjamushi11ActiveState:
+.endobj __vt__Q34Game12ItemUjamushi8DigState
+.obj __vt__Q34Game12ItemUjamushi11ActiveState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game12ItemUjamushi11ActiveStateFPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg
@@ -185,8 +184,8 @@ __vt__Q34Game12ItemUjamushi11ActiveState:
 	.4byte "onBounce__Q24Game37ItemState<Q34Game12ItemUjamushi4Item>FPQ34Game12ItemUjamushi4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game37ItemState<Q34Game12ItemUjamushi4Item>FPQ34Game12ItemUjamushi4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game37ItemState<Q34Game12ItemUjamushi4Item>FPQ34Game12ItemUjamushi4ItemRQ24Game9CollEvent"
-.global __vt__Q34Game12ItemUjamushi9WaitState
-__vt__Q34Game12ItemUjamushi9WaitState:
+.endobj __vt__Q34Game12ItemUjamushi11ActiveState
+.obj __vt__Q34Game12ItemUjamushi9WaitState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game12ItemUjamushi9WaitStateFPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg
@@ -200,8 +199,8 @@ __vt__Q34Game12ItemUjamushi9WaitState:
 	.4byte "onBounce__Q24Game37ItemState<Q34Game12ItemUjamushi4Item>FPQ34Game12ItemUjamushi4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game37ItemState<Q34Game12ItemUjamushi4Item>FPQ34Game12ItemUjamushi4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game37ItemState<Q34Game12ItemUjamushi4Item>FPQ34Game12ItemUjamushi4ItemRQ24Game9CollEvent"
-.global __vt__Q34Game12ItemUjamushi3Mgr
-__vt__Q34Game12ItemUjamushi3Mgr:
+.endobj __vt__Q34Game12ItemUjamushi9WaitState
+.obj __vt__Q34Game12ItemUjamushi3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte "doAnimation__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>Fv"
@@ -250,14 +249,15 @@ __vt__Q34Game12ItemUjamushi3Mgr:
 	.4byte __dt__Q34Game12ItemUjamushi3MgrFv
 	.4byte getCaveName__Q34Game12ItemUjamushi3MgrFi
 	.4byte getCaveID__Q34Game12ItemUjamushi3MgrFPc
-.global "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"
-"__vt__36Iterator<Q34Game12ItemUjamushi4Item>":
+.endobj __vt__Q34Game12ItemUjamushi3Mgr
+.obj "__vt__36Iterator<Q34Game12ItemUjamushi4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__36Iterator<Q34Game12ItemUjamushi4Item>Fv"
 	.4byte "next__36Iterator<Q34Game12ItemUjamushi4Item>Fv"
 	.4byte "isDone__36Iterator<Q34Game12ItemUjamushi4Item>Fv"
 	.4byte "__ml__36Iterator<Q34Game12ItemUjamushi4Item>Fv"
+.endobj "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"
 .global "__vt__37Container<Q34Game12ItemUjamushi4Item>"
 "__vt__37Container<Q34Game12ItemUjamushi4Item>":
 	.4byte 0

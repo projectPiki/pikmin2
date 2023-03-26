@@ -78,10 +78,11 @@ lbl_8047E1A8:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804B18A8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
 .global __vt__Q24Game11ShapeMapMgr
 __vt__Q24Game11ShapeMapMgr:
 	.4byte 0
@@ -166,20 +167,21 @@ __vt__Q24Game6MapMgr:
 	.4byte "next__26Iterator<Q24Game8WaterBox>Fv"
 	.4byte "isDone__26Iterator<Q24Game8WaterBox>Fv"
 	.4byte "__ml__26Iterator<Q24Game8WaterBox>Fv"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515980:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-lbl_80515984:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global mapMgr__4Game
-mapMgr__4Game:
+.endobj gfNAN___Q24Game5P2JST
+.obj mapMgr__4Game, global
 	.skip 0x4
-.global traceMoveDebug__Q24Game6MapMgr
-traceMoveDebug__Q24Game6MapMgr:
-	.skip 0x4
+.endobj mapMgr__4Game
+.obj traceMoveDebug__Q24Game6MapMgr, global
+	.skip 0x1
+.endobj traceMoveDebug__Q24Game6MapMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -3034,10 +3036,10 @@ __sinit_mapMgr_cpp:
 /* 80164B00 00161A40  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80164B04 00161A44  38 00 FF FF */	li r0, -1
 /* 80164B08 00161A48  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80164B0C 00161A4C  3C 60 80 4B */	lis r3, lbl_804B18A8@ha
-/* 80164B10 00161A50  90 0D 93 00 */	stw r0, lbl_80515980@sda21(r13)
-/* 80164B14 00161A54  D4 03 18 A8 */	stfsu f0, lbl_804B18A8@l(r3)
-/* 80164B18 00161A58  D0 0D 93 04 */	stfs f0, lbl_80515984@sda21(r13)
+/* 80164B0C 00161A4C  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80164B10 00161A50  90 0D 93 00 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80164B14 00161A54  D4 03 18 A8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80164B18 00161A58  D0 0D 93 04 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80164B1C 00161A5C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80164B20 00161A60  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80164B24 00161A64  4E 80 00 20 */	blr 
