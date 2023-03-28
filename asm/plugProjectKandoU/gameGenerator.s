@@ -5,70 +5,87 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047F668:
+.obj lbl_8047F668, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047F668
 .balign 4
-lbl_8047F674:
+.obj lbl_8047F674, local
 	.asciz "generator"
+.endobj lbl_8047F674
 .balign 4
-lbl_8047F680:
+.obj lbl_8047F680, local
 	.asciz "gen base"
+.endobj lbl_8047F680
 .balign 4
-lbl_8047F68C:
+.obj lbl_8047F68C, local
 	.asciz "gameGenerator.cpp"
+.endobj lbl_8047F68C
 .balign 4
-lbl_8047F6A0:
+.obj lbl_8047F6A0, local # "Generator" typo
 	.asciz "Generaotr::saveCreature creature is 0\n"
+.endobj lbl_8047F6A0
 .balign 4
-lbl_8047F6C8:
+.obj lbl_8047F6C8, local
 	.asciz "Creature"
+.endobj lbl_8047F6C8
 .balign 4
-lbl_8047F6D4:
+.obj lbl_8047F6D4, local
 	.asciz "\t# version\r\n"
+.endobj lbl_8047F6D4
 .balign 4
-lbl_8047F6E4:
+.obj lbl_8047F6E4, local
 	.asciz "\t# reserved\r\n"
+.endobj lbl_8047F6E4
 .balign 4
-lbl_8047F6F4: # Shift-JIS
+.obj lbl_8047F6F4, local # Shift-JIS
 	.4byte 0x09232095
 	.4byte 0x9C8A8893
 	.4byte 0xFA90940D
-	.4byte 0x0A000000
+	.2byte 0x0A00
+.endobj lbl_8047F6F4
 .balign 4
-lbl_8047F704:
+.obj lbl_8047F704, local
 	.asciz "\t# <%s>\r\n"
+.endobj lbl_8047F704
 .balign 4
-lbl_8047F710:
+.obj lbl_8047F710, local
 	.asciz "\t# pos\r\n"
+.endobj lbl_8047F710
 .balign 4
-lbl_8047F71C:
+.obj lbl_8047F71C, local
 	.asciz "\t# offset\r\n"
+.endobj lbl_8047F71C
 .balign 4
-lbl_8047F728:
+.obj lbl_8047F728, local
 	.asciz "GeneratorMgr"
+.endobj lbl_8047F728
 .balign 4
-lbl_8047F738:
+.obj lbl_8047F738, local
 	.asciz "# generatorMgr <%s>\r\n"
+.endobj lbl_8047F738
 .balign 4
-lbl_8047F750:
+.obj lbl_8047F750, local
 	.asciz "\t# startPos\r\n"
+.endobj lbl_8047F750
 .balign 4
-lbl_8047F760:
+.obj lbl_8047F760, local
 	.asciz "\t# startDir\r\n"
+.endobj lbl_8047F760
 .balign 4
-lbl_8047F770:
+.obj lbl_8047F770, local
 	.asciz "\t# %d generators\r\n"
+.endobj lbl_8047F770
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q24Game12GeneratorMgr
-__vt__Q24Game12GeneratorMgr:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q24Game12GeneratorMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game12GeneratorMgrFv
@@ -77,8 +94,8 @@ __vt__Q24Game12GeneratorMgr:
 	.4byte doEntry__Q24Game12GeneratorMgrFv
 	.4byte doSetView__Q24Game12GeneratorMgrFi
 	.4byte doViewCalc__Q24Game12GeneratorMgrFv
-.global __vt__Q24Game9Generator
-__vt__Q24Game9Generator:
+.endobj __vt__Q24Game12GeneratorMgr
+.obj __vt__Q24Game9Generator, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game9GeneratorFv
@@ -87,8 +104,8 @@ __vt__Q24Game9Generator:
 	.4byte doEntry__Q24Game9GeneratorFv
 	.4byte doSetView__Q24Game9GeneratorFi
 	.4byte doViewCalc__Q24Game9GeneratorFv
-.global __vt__Q24Game9GenObject
-__vt__Q24Game9GenObject:
+.endobj __vt__Q24Game9Generator
+.obj __vt__Q24Game9GenObject, global
 	.4byte 0
 	.4byte 0
 	.4byte doWrite__Q24Game7GenBaseFR6Stream
@@ -105,8 +122,8 @@ __vt__Q24Game9GenObject:
 	.4byte 0
 	.4byte "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
 	.4byte getDebugInfo__Q24Game9GenObjectFPc
-.global __vt__Q24Game7GenBase
-__vt__Q24Game7GenBase:
+.endobj __vt__Q24Game9GenObject
+.obj __vt__Q24Game7GenBase, global
 	.4byte 0
 	.4byte 0
 	.4byte doWrite__Q24Game7GenBaseFR6Stream
@@ -118,63 +135,68 @@ __vt__Q24Game7GenBase:
 	.4byte render__Q24Game7GenBaseFR8GraphicsPQ24Game9Generator
 	.4byte getLatestVersion__Q24Game7GenBaseFv
 	.4byte getShape__Q24Game7GenBaseFv
+.endobj __vt__Q24Game7GenBase
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global GeneratorCurrentVersion
-GeneratorCurrentVersion:
+.obj GeneratorCurrentVersion, global
 	.ascii "v0.3"
+.endobj GeneratorCurrentVersion
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global factory__Q24Game16GenObjectFactory
-factory__Q24Game16GenObjectFactory:
+.endobj gfNAN___Q24Game5P2JST
+.obj factory__Q24Game16GenObjectFactory, global
 	.skip 0x4
-.global ramMode__Q24Game9Generator
-ramMode__Q24Game9Generator:
+.endobj factory__Q24Game16GenObjectFactory
+.obj ramMode__Q24Game9Generator, global
 	.skip 0x1
+.endobj ramMode__Q24Game9Generator
 .balign 4
-.global generatorMgr__4Game
-generatorMgr__4Game:
+.obj generatorMgr__4Game, global
 	.skip 0x4
-.global onceGeneratorMgr__4Game
-onceGeneratorMgr__4Game:
+.endobj generatorMgr__4Game
+.obj onceGeneratorMgr__4Game, global
 	.skip 0x4
-.global limitGeneratorMgr__4Game
-limitGeneratorMgr__4Game:
+.endobj onceGeneratorMgr__4Game
+.obj limitGeneratorMgr__4Game, global
 	.skip 0x4
-.global plantsGeneratorMgr__4Game
-plantsGeneratorMgr__4Game:
+.endobj limitGeneratorMgr__4Game
+.obj plantsGeneratorMgr__4Game, global
 	.skip 0x4
-.global dayGeneratorMgr__4Game
-dayGeneratorMgr__4Game:
+.endobj plantsGeneratorMgr__4Game
+.obj dayGeneratorMgr__4Game, global
 	.skip 0x4
-.global cursorCallback__Q24Game12GeneratorMgr
-cursorCallback__Q24Game12GeneratorMgr:
+.endobj dayGeneratorMgr__4Game
+.obj cursorCallback__Q24Game12GeneratorMgr, global
 	.skip 0x4
+.endobj cursorCallback__Q24Game12GeneratorMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519258:
+.obj lbl_80519258, local
 	.float 0.0
+.endobj lbl_80519258
 .balign 4
-lbl_8051925C:
+.obj lbl_8051925C, local
 	.asciz "unset"
+.endobj lbl_8051925C
 .balign 8
-lbl_80519268:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80519268, local
+	.8byte 0x4330000080000000
+.endobj lbl_80519268
 .balign 4
-lbl_80519270:
+.obj lbl_80519270, local
 	.asciz "genMgr"
+.endobj lbl_80519270
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game7GenBaseFUlPcPc
-__ct__Q24Game7GenBaseFUlPcPc:
+.fn __ct__Q24Game7GenBaseFUlPcPc, global
 /* 801AA6E4 001A7624  7C 80 07 35 */	extsh. r0, r4
 /* 801AA6E8 001A7628  41 82 00 0C */	beq .L_801AA6F4
 /* 801AA6EC 001A762C  38 03 00 24 */	addi r0, r3, 0x24
@@ -196,19 +218,19 @@ __ct__Q24Game7GenBaseFUlPcPc:
 /* 801AA728 001A7668  90 03 00 14 */	stw r0, 0x14(r3)
 /* 801AA72C 001A766C  91 23 00 20 */	stw r9, 0x20(r3)
 /* 801AA730 001A7670  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game7GenBaseFUlPcPc
 
-.global getLatestVersion__Q24Game7GenBaseFv
-getLatestVersion__Q24Game7GenBaseFv:
+.fn getLatestVersion__Q24Game7GenBaseFv, weak
 /* 801AA734 001A7674  3C 60 75 64 */	lis r3, 0x75646566@ha
 /* 801AA738 001A7678  38 63 65 66 */	addi r3, r3, 0x75646566@l
 /* 801AA73C 001A767C  4E 80 00 20 */	blr 
+.endfn getLatestVersion__Q24Game7GenBaseFv
 
-.global doWrite__Q24Game7GenBaseFR6Stream
-doWrite__Q24Game7GenBaseFR6Stream:
+.fn doWrite__Q24Game7GenBaseFR6Stream, weak
 /* 801AA740 001A7680  4E 80 00 20 */	blr 
+.endfn doWrite__Q24Game7GenBaseFR6Stream
 
-.global ramSaveParameters__Q24Game7GenBaseFR6Stream
-ramSaveParameters__Q24Game7GenBaseFR6Stream:
+.fn ramSaveParameters__Q24Game7GenBaseFR6Stream, global
 /* 801AA744 001A7684  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA748 001A7688  7C 08 02 A6 */	mflr r0
 /* 801AA74C 001A768C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -217,9 +239,9 @@ ramSaveParameters__Q24Game7GenBaseFR6Stream:
 /* 801AA758 001A7698  7C 08 03 A6 */	mtlr r0
 /* 801AA75C 001A769C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AA760 001A76A0  4E 80 00 20 */	blr 
+.endfn ramSaveParameters__Q24Game7GenBaseFR6Stream
 
-.global ramLoadParameters__Q24Game7GenBaseFR6Stream
-ramLoadParameters__Q24Game7GenBaseFR6Stream:
+.fn ramLoadParameters__Q24Game7GenBaseFR6Stream, global
 /* 801AA764 001A76A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA768 001A76A8  7C 08 02 A6 */	mflr r0
 /* 801AA76C 001A76AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -228,13 +250,13 @@ ramLoadParameters__Q24Game7GenBaseFR6Stream:
 /* 801AA778 001A76B8  7C 08 03 A6 */	mtlr r0
 /* 801AA77C 001A76BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AA780 001A76C0  4E 80 00 20 */	blr 
+.endfn ramLoadParameters__Q24Game7GenBaseFR6Stream
 
-.global doRead__Q24Game7GenBaseFR6Stream
-doRead__Q24Game7GenBaseFR6Stream:
+.fn doRead__Q24Game7GenBaseFR6Stream, weak
 /* 801AA784 001A76C4  4E 80 00 20 */	blr 
+.endfn doRead__Q24Game7GenBaseFR6Stream
 
-.global getLatestVersion__Q24Game9GenObjectFv
-getLatestVersion__Q24Game9GenObjectFv:
+.fn getLatestVersion__Q24Game9GenObjectFv, global
 /* 801AA788 001A76C8  80 ED 93 A0 */	lwz r7, factory__Q24Game16GenObjectFactory@sda21(r13)
 /* 801AA78C 001A76CC  38 80 00 00 */	li r4, 0
 /* 801AA790 001A76D0  7C 85 23 78 */	mr r5, r4
@@ -257,15 +279,15 @@ getLatestVersion__Q24Game9GenObjectFv:
 /* 801AA7CC 001A770C  38 84 00 01 */	addi r4, r4, 1
 /* 801AA7D0 001A7710  42 00 FF D8 */	bdnz .L_801AA7A8
 /* 801AA7D4 001A7714  4E 80 00 20 */	blr 
+.endfn getLatestVersion__Q24Game9GenObjectFv
 
-.global initialiseSystem__Q24Game9GeneratorFv
-initialiseSystem__Q24Game9GeneratorFv:
+.fn initialiseSystem__Q24Game9GeneratorFv, global
 /* 801AA7D8 001A7718  38 00 00 00 */	li r0, 0
 /* 801AA7DC 001A771C  90 0D 93 A0 */	stw r0, factory__Q24Game16GenObjectFactory@sda21(r13)
 /* 801AA7E0 001A7720  4E 80 00 20 */	blr 
+.endfn initialiseSystem__Q24Game9GeneratorFv
 
-.global __ct__Q24Game9GeneratorFv
-__ct__Q24Game9GeneratorFv:
+.fn __ct__Q24Game9GeneratorFv, global
 /* 801AA7E4 001A7724  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA7E8 001A7728  7C 08 02 A6 */	mflr r0
 /* 801AA7EC 001A772C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -321,9 +343,9 @@ __ct__Q24Game9GeneratorFv:
 /* 801AA8B4 001A77F4  7C 08 03 A6 */	mtlr r0
 /* 801AA8B8 001A77F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AA8BC 001A77FC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game9GeneratorFv
 
-.global __dt__Q24Game9GeneratorFv
-__dt__Q24Game9GeneratorFv:
+.fn __dt__Q24Game9GeneratorFv, global
 /* 801AA8C0 001A7800  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA8C4 001A7804  7C 08 02 A6 */	mflr r0
 /* 801AA8C8 001A7808  90 01 00 14 */	stw r0, 0x14(r1)
@@ -351,9 +373,9 @@ __dt__Q24Game9GeneratorFv:
 /* 801AA91C 001A785C  7C 08 03 A6 */	mtlr r0
 /* 801AA920 001A7860  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AA924 001A7864  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game9GeneratorFv
 
-.global updateUseList__Q24Game9GeneratorFv
-updateUseList__Q24Game9GeneratorFv:
+.fn updateUseList__Q24Game9GeneratorFv, global
 /* 801AA928 001A7868  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA92C 001A786C  7C 08 02 A6 */	mflr r0
 /* 801AA930 001A7870  90 01 00 14 */	stw r0, 0x14(r1)
@@ -377,13 +399,13 @@ updateUseList__Q24Game9GeneratorFv:
 /* 801AA974 001A78B4  7C 08 03 A6 */	mtlr r0
 /* 801AA978 001A78B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AA97C 001A78BC  4E 80 00 20 */	blr 
+.endfn updateUseList__Q24Game9GeneratorFv
 
-.global updateUseList__Q24Game9GenObjectFPQ24Game9Generatori
-updateUseList__Q24Game9GenObjectFPQ24Game9Generatori:
+.fn updateUseList__Q24Game9GenObjectFPQ24Game9Generatori, weak
 /* 801AA980 001A78C0  4E 80 00 20 */	blr 
+.endfn updateUseList__Q24Game9GenObjectFPQ24Game9Generatori
 
-.global isExpired__Q24Game9GeneratorFv
-isExpired__Q24Game9GeneratorFv:
+.fn isExpired__Q24Game9GeneratorFv, global
 /* 801AA984 001A78C4  80 03 00 84 */	lwz r0, 0x84(r3)
 /* 801AA988 001A78C8  2C 00 FF FF */	cmpwi r0, -1
 /* 801AA98C 001A78CC  40 82 00 0C */	bne .L_801AA998
@@ -398,9 +420,9 @@ isExpired__Q24Game9GeneratorFv:
 /* 801AA9AC 001A78EC  7C 60 00 30 */	slw r0, r3, r0
 /* 801AA9B0 001A78F0  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 801AA9B4 001A78F4  4E 80 00 20 */	blr 
+.endfn isExpired__Q24Game9GeneratorFv
 
-.global loadCreature__Q24Game9GeneratorFR6Stream
-loadCreature__Q24Game9GeneratorFR6Stream:
+.fn loadCreature__Q24Game9GeneratorFR6Stream, global
 /* 801AA9B8 001A78F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AA9BC 001A78FC  7C 08 02 A6 */	mflr r0
 /* 801AA9C0 001A7900  90 01 00 14 */	stw r0, 0x14(r1)
@@ -452,14 +474,14 @@ loadCreature__Q24Game9GeneratorFR6Stream:
 /* 801AAA64 001A79A4  7C 08 03 A6 */	mtlr r0
 /* 801AAA68 001A79A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AAA6C 001A79AC  4E 80 00 20 */	blr 
+.endfn loadCreature__Q24Game9GeneratorFR6Stream
 
-.global generate__Q24Game9GenObjectFPQ24Game9Generator
-generate__Q24Game9GenObjectFPQ24Game9Generator:
+.fn generate__Q24Game9GenObjectFPQ24Game9Generator, weak
 /* 801AAA70 001A79B0  38 60 00 00 */	li r3, 0
 /* 801AAA74 001A79B4  4E 80 00 20 */	blr 
+.endfn generate__Q24Game9GenObjectFPQ24Game9Generator
 
-.global need_saveCreature__Q24Game9GeneratorFv
-need_saveCreature__Q24Game9GeneratorFv:
+.fn need_saveCreature__Q24Game9GeneratorFv, global
 /* 801AAA78 001A79B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AAA7C 001A79BC  7C 08 02 A6 */	mflr r0
 /* 801AAA80 001A79C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -494,9 +516,9 @@ need_saveCreature__Q24Game9GeneratorFv:
 /* 801AAAE8 001A7A28  7C 08 03 A6 */	mtlr r0
 /* 801AAAEC 001A7A2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AAAF0 001A7A30  4E 80 00 20 */	blr 
+.endfn need_saveCreature__Q24Game9GeneratorFv
 
-.global saveCreature__Q24Game9GeneratorFR6Stream
-saveCreature__Q24Game9GeneratorFR6Stream:
+.fn saveCreature__Q24Game9GeneratorFR6Stream, global
 /* 801AAAF4 001A7A34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801AAAF8 001A7A38  7C 08 02 A6 */	mflr r0
 /* 801AAAFC 001A7A3C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -550,9 +572,9 @@ saveCreature__Q24Game9GeneratorFR6Stream:
 /* 801AABB0 001A7AF0  7C 08 03 A6 */	mtlr r0
 /* 801AABB4 001A7AF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801AABB8 001A7AF8  4E 80 00 20 */	blr 
+.endfn saveCreature__Q24Game9GeneratorFR6Stream
 
-.global generate__Q24Game9GeneratorFv
-generate__Q24Game9GeneratorFv:
+.fn generate__Q24Game9GeneratorFv, global
 /* 801AABBC 001A7AFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AABC0 001A7B00  7C 08 02 A6 */	mflr r0
 /* 801AABC4 001A7B04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -639,9 +661,9 @@ generate__Q24Game9GeneratorFv:
 /* 801AACE8 001A7C28  7C 08 03 A6 */	mtlr r0
 /* 801AACEC 001A7C2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AACF0 001A7C30  4E 80 00 20 */	blr 
+.endfn generate__Q24Game9GeneratorFv
 
-.global informDeath__Q24Game9GeneratorFPQ24Game8Creature
-informDeath__Q24Game9GeneratorFPQ24Game8Creature:
+.fn informDeath__Q24Game9GeneratorFPQ24Game8Creature, global
 /* 801AACF4 001A7C34  80 03 00 6C */	lwz r0, 0x6c(r3)
 /* 801AACF8 001A7C38  7C 04 00 40 */	cmplw r4, r0
 /* 801AACFC 001A7C3C  40 82 00 0C */	bne .L_801AAD08
@@ -652,9 +674,9 @@ informDeath__Q24Game9GeneratorFPQ24Game8Creature:
 /* 801AAD0C 001A7C4C  38 04 00 01 */	addi r0, r4, 1
 /* 801AAD10 001A7C50  90 03 00 74 */	stw r0, 0x74(r3)
 /* 801AAD14 001A7C54  4E 80 00 20 */	blr 
+.endfn informDeath__Q24Game9GeneratorFPQ24Game8Creature
 
-.global read__Q24Game9GeneratorFR6Stream
-read__Q24Game9GeneratorFR6Stream:
+.fn read__Q24Game9GeneratorFR6Stream, global
 /* 801AAD18 001A7C58  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801AAD1C 001A7C5C  7C 08 02 A6 */	mflr r0
 /* 801AAD20 001A7C60  90 01 00 54 */	stw r0, 0x54(r1)
@@ -914,9 +936,9 @@ read__Q24Game9GeneratorFR6Stream:
 /* 801AB0B0 001A7FF0  7C 08 03 A6 */	mtlr r0
 /* 801AB0B4 001A7FF4  38 21 00 50 */	addi r1, r1, 0x50
 /* 801AB0B8 001A7FF8  4E 80 00 20 */	blr 
+.endfn read__Q24Game9GeneratorFR6Stream
 
-.global write__Q24Game9GeneratorFR6Stream
-write__Q24Game9GeneratorFR6Stream:
+.fn write__Q24Game9GeneratorFR6Stream, global
 /* 801AB0BC 001A7FFC  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 801AB0C0 001A8000  7C 08 02 A6 */	mflr r0
 /* 801AB0C4 001A8004  3C A0 80 48 */	lis r5, lbl_8047F668@ha
@@ -1157,9 +1179,9 @@ write__Q24Game9GeneratorFR6Stream:
 /* 801AB44C 001A838C  7C 08 03 A6 */	mtlr r0
 /* 801AB450 001A8390  38 21 00 90 */	addi r1, r1, 0x90
 /* 801AB454 001A8394  4E 80 00 20 */	blr 
+.endfn write__Q24Game9GeneratorFR6Stream
 
-.global __ct__Q24Game12GeneratorMgrFv
-__ct__Q24Game12GeneratorMgrFv:
+.fn __ct__Q24Game12GeneratorMgrFv, global
 /* 801AB458 001A8398  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AB45C 001A839C  7C 08 02 A6 */	mflr r0
 /* 801AB460 001A83A0  3C 80 80 4F */	lis r4, __vt__5CNode@ha
@@ -1234,9 +1256,9 @@ __ct__Q24Game12GeneratorMgrFv:
 /* 801AB56C 001A84AC  7C 08 03 A6 */	mtlr r0
 /* 801AB570 001A84B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AB574 001A84B4  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12GeneratorMgrFv
 
-.global addMgr__Q24Game12GeneratorMgrFPQ24Game12GeneratorMgr
-addMgr__Q24Game12GeneratorMgrFPQ24Game12GeneratorMgr:
+.fn addMgr__Q24Game12GeneratorMgrFPQ24Game12GeneratorMgr, global
 /* 801AB578 001A84B8  80 03 00 1C */	lwz r0, 0x1c(r3)
 /* 801AB57C 001A84BC  28 00 00 00 */	cmplwi r0, 0
 /* 801AB580 001A84C0  40 82 00 10 */	bne .L_801AB590
@@ -1255,9 +1277,9 @@ addMgr__Q24Game12GeneratorMgrFPQ24Game12GeneratorMgr:
 /* 801AB5A8 001A84E8  90 85 00 18 */	stw r4, 0x18(r5)
 /* 801AB5AC 001A84EC  90 64 00 20 */	stw r3, 0x20(r4)
 /* 801AB5B0 001A84F0  4E 80 00 20 */	blr 
+.endfn addMgr__Q24Game12GeneratorMgrFPQ24Game12GeneratorMgr
 
-.global generate__Q24Game12GeneratorMgrFv
-generate__Q24Game12GeneratorMgrFv:
+.fn generate__Q24Game12GeneratorMgrFv, global
 /* 801AB5B4 001A84F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AB5B8 001A84F8  7C 08 02 A6 */	mflr r0
 /* 801AB5BC 001A84FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1350,9 +1372,9 @@ generate__Q24Game12GeneratorMgrFv:
 /* 801AB6F0 001A8630  7C 08 03 A6 */	mtlr r0
 /* 801AB6F4 001A8634  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AB6F8 001A8638  4E 80 00 20 */	blr 
+.endfn generate__Q24Game12GeneratorMgrFv
 
-.global setDayLimit__Q24Game12GeneratorMgrFi
-setDayLimit__Q24Game12GeneratorMgrFi:
+.fn setDayLimit__Q24Game12GeneratorMgrFi, global
 /* 801AB6FC 001A863C  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 801AB700 001A8640  48 00 00 0C */	b .L_801AB70C
 .L_801AB704:
@@ -1362,9 +1384,9 @@ setDayLimit__Q24Game12GeneratorMgrFi:
 /* 801AB70C 001A864C  28 03 00 00 */	cmplwi r3, 0
 /* 801AB710 001A8650  40 82 FF F4 */	bne .L_801AB704
 /* 801AB714 001A8654  4E 80 00 20 */	blr 
+.endfn setDayLimit__Q24Game12GeneratorMgrFi
 
-.global updateUseList__Q24Game12GeneratorMgrFv
-updateUseList__Q24Game12GeneratorMgrFv:
+.fn updateUseList__Q24Game12GeneratorMgrFv, global
 /* 801AB718 001A8658  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AB71C 001A865C  7C 08 02 A6 */	mflr r0
 /* 801AB720 001A8660  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1409,19 +1431,19 @@ updateUseList__Q24Game12GeneratorMgrFv:
 /* 801AB7A4 001A86E4  7C 08 03 A6 */	mtlr r0
 /* 801AB7A8 001A86E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AB7AC 001A86EC  4E 80 00 20 */	blr 
+.endfn updateUseList__Q24Game12GeneratorMgrFv
 
-.global getNext__Q24Game12GeneratorMgrFv
-getNext__Q24Game12GeneratorMgrFv:
+.fn getNext__Q24Game12GeneratorMgrFv, weak
 /* 801AB7B0 001A86F0  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 801AB7B4 001A86F4  4E 80 00 20 */	blr 
+.endfn getNext__Q24Game12GeneratorMgrFv
 
-.global getChild__Q24Game12GeneratorMgrFv
-getChild__Q24Game12GeneratorMgrFv:
+.fn getChild__Q24Game12GeneratorMgrFv, weak
 /* 801AB7B8 001A86F8  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 801AB7BC 001A86FC  4E 80 00 20 */	blr 
+.endfn getChild__Q24Game12GeneratorMgrFv
 
-.global "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-"updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>":
+.fn "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>", global
 /* 801AB7C0 001A8700  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801AB7C4 001A8704  7C 08 02 A6 */	mflr r0
 /* 801AB7C8 001A8708  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1709,9 +1731,9 @@ getChild__Q24Game12GeneratorMgrFv:
 /* 801ABBF0 001A8B30  7C 08 03 A6 */	mtlr r0
 /* 801ABBF4 001A8B34  38 21 00 20 */	addi r1, r1, 0x20
 /* 801ABBF8 001A8B38  4E 80 00 20 */	blr 
+.endfn "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
 
-.global "__as__10Vector3<f>FRC10Vector3<f>"
-"__as__10Vector3<f>FRC10Vector3<f>":
+.fn "__as__10Vector3<f>FRC10Vector3<f>", weak
 /* 801ABBFC 001A8B3C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 801ABC00 001A8B40  C0 24 00 04 */	lfs f1, 4(r4)
 /* 801ABC04 001A8B44  D0 03 00 00 */	stfs f0, 0(r3)
@@ -1719,9 +1741,9 @@ getChild__Q24Game12GeneratorMgrFv:
 /* 801ABC0C 001A8B4C  D0 23 00 04 */	stfs f1, 4(r3)
 /* 801ABC10 001A8B50  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801ABC14 001A8B54  4E 80 00 20 */	blr 
+.endfn "__as__10Vector3<f>FRC10Vector3<f>"
 
-.global read__Q24Game12GeneratorMgrFR6Streamb
-read__Q24Game12GeneratorMgrFR6Streamb:
+.fn read__Q24Game12GeneratorMgrFR6Streamb, global
 /* 801ABC18 001A8B58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801ABC1C 001A8B5C  7C 08 02 A6 */	mflr r0
 /* 801ABC20 001A8B60  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1921,9 +1943,9 @@ read__Q24Game12GeneratorMgrFR6Streamb:
 /* 801ABEFC 001A8E3C  7C 08 03 A6 */	mtlr r0
 /* 801ABF00 001A8E40  38 21 00 20 */	addi r1, r1, 0x20
 /* 801ABF04 001A8E44  4E 80 00 20 */	blr 
+.endfn read__Q24Game12GeneratorMgrFR6Streamb
 
-.global doAnimation__Q24Game9GeneratorFv
-doAnimation__Q24Game9GeneratorFv:
+.fn doAnimation__Q24Game9GeneratorFv, global
 /* 801ABF08 001A8E48  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801ABF0C 001A8E4C  7C 08 02 A6 */	mflr r0
 /* 801ABF10 001A8E50  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1980,9 +2002,9 @@ doAnimation__Q24Game9GeneratorFv:
 /* 801ABFD4 001A8F14  7C 08 03 A6 */	mtlr r0
 /* 801ABFD8 001A8F18  38 21 00 50 */	addi r1, r1, 0x50
 /* 801ABFDC 001A8F1C  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game9GeneratorFv
 
-.global doEntry__Q24Game9GeneratorFv
-doEntry__Q24Game9GeneratorFv:
+.fn doEntry__Q24Game9GeneratorFv, global
 /* 801ABFE0 001A8F20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ABFE4 001A8F24  7C 08 02 A6 */	mflr r0
 /* 801ABFE8 001A8F28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2013,9 +2035,9 @@ doEntry__Q24Game9GeneratorFv:
 /* 801AC044 001A8F84  7C 08 03 A6 */	mtlr r0
 /* 801AC048 001A8F88  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AC04C 001A8F8C  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game9GeneratorFv
 
-.global doSetView__Q24Game9GeneratorFi
-doSetView__Q24Game9GeneratorFi:
+.fn doSetView__Q24Game9GeneratorFi, global
 /* 801AC050 001A8F90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AC054 001A8F94  7C 08 02 A6 */	mflr r0
 /* 801AC058 001A8F98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2046,9 +2068,9 @@ doSetView__Q24Game9GeneratorFi:
 /* 801AC0B4 001A8FF4  7C 08 03 A6 */	mtlr r0
 /* 801AC0B8 001A8FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AC0BC 001A8FFC  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game9GeneratorFi
 
-.global doViewCalc__Q24Game9GeneratorFv
-doViewCalc__Q24Game9GeneratorFv:
+.fn doViewCalc__Q24Game9GeneratorFv, global
 /* 801AC0C0 001A9000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AC0C4 001A9004  7C 08 02 A6 */	mflr r0
 /* 801AC0C8 001A9008  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2075,9 +2097,9 @@ doViewCalc__Q24Game9GeneratorFv:
 /* 801AC114 001A9054  7C 08 03 A6 */	mtlr r0
 /* 801AC118 001A9058  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AC11C 001A905C  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game9GeneratorFv
 
-.global doAnimation__Q24Game12GeneratorMgrFv
-doAnimation__Q24Game12GeneratorMgrFv:
+.fn doAnimation__Q24Game12GeneratorMgrFv, global
 /* 801AC120 001A9060  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AC124 001A9064  7C 08 02 A6 */	mflr r0
 /* 801AC128 001A9068  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2112,9 +2134,9 @@ doAnimation__Q24Game12GeneratorMgrFv:
 /* 801AC190 001A90D0  7C 08 03 A6 */	mtlr r0
 /* 801AC194 001A90D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AC198 001A90D8  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game12GeneratorMgrFv
 
-.global doEntry__Q24Game12GeneratorMgrFv
-doEntry__Q24Game12GeneratorMgrFv:
+.fn doEntry__Q24Game12GeneratorMgrFv, global
 /* 801AC19C 001A90DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AC1A0 001A90E0  7C 08 02 A6 */	mflr r0
 /* 801AC1A4 001A90E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2149,9 +2171,9 @@ doEntry__Q24Game12GeneratorMgrFv:
 /* 801AC20C 001A914C  7C 08 03 A6 */	mtlr r0
 /* 801AC210 001A9150  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AC214 001A9154  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game12GeneratorMgrFv
 
-.global doSetView__Q24Game12GeneratorMgrFi
-doSetView__Q24Game12GeneratorMgrFi:
+.fn doSetView__Q24Game12GeneratorMgrFi, global
 /* 801AC218 001A9158  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AC21C 001A915C  7C 08 02 A6 */	mflr r0
 /* 801AC220 001A9160  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2191,9 +2213,9 @@ doSetView__Q24Game12GeneratorMgrFi:
 /* 801AC29C 001A91DC  7C 08 03 A6 */	mtlr r0
 /* 801AC2A0 001A91E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AC2A4 001A91E4  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game12GeneratorMgrFi
 
-.global doViewCalc__Q24Game12GeneratorMgrFv
-doViewCalc__Q24Game12GeneratorMgrFv:
+.fn doViewCalc__Q24Game12GeneratorMgrFv, global
 /* 801AC2A8 001A91E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AC2AC 001A91EC  7C 08 02 A6 */	mflr r0
 /* 801AC2B0 001A91F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2228,9 +2250,9 @@ doViewCalc__Q24Game12GeneratorMgrFv:
 /* 801AC318 001A9258  7C 08 03 A6 */	mtlr r0
 /* 801AC31C 001A925C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AC320 001A9260  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game12GeneratorMgrFv
 
-.global __dt__Q24Game12GeneratorMgrFv
-__dt__Q24Game12GeneratorMgrFv:
+.fn __dt__Q24Game12GeneratorMgrFv, weak
 /* 801AC324 001A9264  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AC328 001A9268  7C 08 02 A6 */	mflr r0
 /* 801AC32C 001A926C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2256,25 +2278,26 @@ __dt__Q24Game12GeneratorMgrFv:
 /* 801AC378 001A92B8  7C 08 03 A6 */	mtlr r0
 /* 801AC37C 001A92BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AC380 001A92C0  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game12GeneratorMgrFv
 
-.global render__Q24Game9GenObjectFR8GraphicsPQ24Game9Generator
-render__Q24Game9GenObjectFR8GraphicsPQ24Game9Generator:
+.fn render__Q24Game9GenObjectFR8GraphicsPQ24Game9Generator, weak
 /* 801AC384 001A92C4  4E 80 00 20 */	blr 
+.endfn render__Q24Game9GenObjectFR8GraphicsPQ24Game9Generator
 
-.global getShape__Q24Game7GenBaseFv
-getShape__Q24Game7GenBaseFv:
+.fn getShape__Q24Game7GenBaseFv, weak
 /* 801AC388 001A92C8  38 60 00 00 */	li r3, 0
 /* 801AC38C 001A92CC  4E 80 00 20 */	blr 
+.endfn getShape__Q24Game7GenBaseFv
 
-.global update__Q24Game7GenBaseFPQ24Game9Generator
-update__Q24Game7GenBaseFPQ24Game9Generator:
+.fn update__Q24Game7GenBaseFPQ24Game9Generator, weak
 /* 801AC390 001A92D0  4E 80 00 20 */	blr 
+.endfn update__Q24Game7GenBaseFPQ24Game9Generator
 
-.global render__Q24Game7GenBaseFR8GraphicsPQ24Game9Generator
-render__Q24Game7GenBaseFR8GraphicsPQ24Game9Generator:
+.fn render__Q24Game7GenBaseFR8GraphicsPQ24Game9Generator, weak
 /* 801AC394 001A92D4  4E 80 00 20 */	blr 
+.endfn render__Q24Game7GenBaseFR8GraphicsPQ24Game9Generator
 
-__sinit_gameGenerator_cpp: # static initializer
+.fn __sinit_gameGenerator_cpp, local
 /* 801AC398 001A92D8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801AC39C 001A92DC  38 00 FF FF */	li r0, -1
 /* 801AC3A0 001A92E0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2285,3 +2308,4 @@ __sinit_gameGenerator_cpp: # static initializer
 /* 801AC3B4 001A92F4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801AC3B8 001A92F8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801AC3BC 001A92FC  4E 80 00 20 */	blr 
+.endfn __sinit_gameGenerator_cpp

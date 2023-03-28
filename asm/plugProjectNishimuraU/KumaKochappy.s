@@ -1,16 +1,15 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global "__vt__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>"
-"__vt__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>":
+.obj "__vt__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
 	.4byte "next__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
 	.4byte "isDone__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
 	.4byte "__ml__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
-.global __vt__Q34Game12KumaKochappy3Obj
-__vt__Q34Game12KumaKochappy3Obj:
+.endobj "__vt__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>"
+.obj __vt__Q34Game12KumaKochappy3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -214,48 +213,66 @@ __vt__Q34Game12KumaKochappy3Obj:
 	.4byte "@744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game12KumaKochappy3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051CEC0:
-	.4byte 0x61676F00
-lbl_8051CEC4:
-	.4byte 0x40A00000
-lbl_8051CEC8:
-	.4byte 0x00000000
-lbl_8051CECC:
+.obj lbl_8051CEC0, local
+	.asciz "ago"
+.endobj lbl_8051CEC0
+.balign 4
+.obj lbl_8051CEC4, local
+	.float 5.0
+.endobj lbl_8051CEC4
+.obj lbl_8051CEC8, local
+	.float 0.0
+.endobj lbl_8051CEC8
+.obj lbl_8051CECC, local
 	.float 1.0
-lbl_8051CED0:
-	.4byte 0x42480000
-lbl_8051CED4:
-	.4byte 0x41A00000
-lbl_8051CED8:
-	.4byte 0x41200000
-lbl_8051CEDC:
-	.4byte 0x6B616D75
-	.4byte 0x00000000
-lbl_8051CEE4:
-	.4byte 0x41700000
-lbl_8051CEE8:
-	.4byte 0x6173694C
-	.4byte 0x00000000
-lbl_8051CEF0:
-	.4byte 0x40800000
-lbl_8051CEF4:
-	.4byte 0x61736952
-	.4byte 0x00000000
-lbl_8051CEFC:
-	.4byte 0x47000000
-lbl_8051CF00:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051CF08:
-	.4byte 0x3ECCCCCD
-	.4byte 0x00000000
+.endobj lbl_8051CECC
+.obj lbl_8051CED0, local
+	.float 50.0
+.endobj lbl_8051CED0
+.obj lbl_8051CED4, local
+	.float 20.0
+.endobj lbl_8051CED4
+.obj lbl_8051CED8, local
+	.float 10.0
+.endobj lbl_8051CED8
+.balign 4
+.obj lbl_8051CEDC, local
+	.asciz "kamu"
+.endobj lbl_8051CEDC
+.balign 4
+.obj lbl_8051CEE4, local
+	.float 15.0
+.endobj lbl_8051CEE4
+.balign 4
+.obj lbl_8051CEE8, local
+	.asciz "asiL"
+.endobj lbl_8051CEE8
+.balign 4
+.obj lbl_8051CEF0, local
+	.float 4.0
+.endobj lbl_8051CEF0
+.balign 4
+.obj lbl_8051CEF4, local
+	.asciz "asiR"
+.endobj lbl_8051CEF4
+.balign 4
+.obj lbl_8051CEFC, local
+	.float 32768.0
+.endobj lbl_8051CEFC
+.balign 8
+.obj lbl_8051CF00, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051CF00
+.obj lbl_8051CF08, local
+	.float 0.4
+.endobj lbl_8051CF08
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game12KumaKochappy3ObjFv
-__ct__Q34Game12KumaKochappy3ObjFv:
+.fn __ct__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7050 002E3F90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7054 002E3F94  7C 08 02 A6 */	mflr r0
 /* 802E7058 002E3F98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -341,13 +358,13 @@ __ct__Q34Game12KumaKochappy3ObjFv:
 /* 802E718C 002E40CC  7C 08 03 A6 */	mtlr r0
 /* 802E7190 002E40D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7194 002E40D4  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game12KumaKochappy3ObjFv
 
-.global setInitialSetting__Q34Game12KumaKochappy3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game12KumaKochappy3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game12KumaKochappy3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 802E7198 002E40D8  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game12KumaKochappy3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureInitArg, global
 /* 802E719C 002E40DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E71A0 002E40E0  7C 08 02 A6 */	mflr r0
 /* 802E71A4 002E40E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -374,9 +391,9 @@ onInit__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureInitArg:
 /* 802E71F8 002E4138  7C 08 03 A6 */	mtlr r0
 /* 802E71FC 002E413C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7200 002E4140  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureInitArg
 
-.global onKill__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureKillArg, global
 /* 802E7204 002E4144  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7208 002E4148  7C 08 02 A6 */	mflr r0
 /* 802E720C 002E414C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -394,9 +411,9 @@ onKill__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureKillArg:
 /* 802E723C 002E417C  7C 08 03 A6 */	mtlr r0
 /* 802E7240 002E4180  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7244 002E4184  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game12KumaKochappy3ObjFPQ24Game15CreatureKillArg
 
-.global doUpdate__Q34Game12KumaKochappy3ObjFv
-doUpdate__Q34Game12KumaKochappy3ObjFv:
+.fn doUpdate__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7248 002E4188  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E724C 002E418C  7C 08 02 A6 */	mflr r0
 /* 802E7250 002E4190  90 01 00 14 */	stw r0, 0x14(r1)
@@ -416,13 +433,13 @@ doUpdate__Q34Game12KumaKochappy3ObjFv:
 /* 802E7288 002E41C8  7C 08 03 A6 */	mtlr r0
 /* 802E728C 002E41CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7290 002E41D0  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game12KumaKochappy3ObjFv
 
-.global doDirectDraw__Q34Game12KumaKochappy3ObjFR8Graphics
-doDirectDraw__Q34Game12KumaKochappy3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game12KumaKochappy3ObjFR8Graphics, global
 /* 802E7294 002E41D4  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game12KumaKochappy3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game12KumaKochappy3ObjFR8Graphics
-doDebugDraw__Q34Game12KumaKochappy3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game12KumaKochappy3ObjFR8Graphics, global
 /* 802E7298 002E41D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E729C 002E41DC  7C 08 02 A6 */	mflr r0
 /* 802E72A0 002E41E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -431,9 +448,9 @@ doDebugDraw__Q34Game12KumaKochappy3ObjFR8Graphics:
 /* 802E72AC 002E41EC  7C 08 03 A6 */	mtlr r0
 /* 802E72B0 002E41F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E72B4 002E41F4  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game12KumaKochappy3ObjFR8Graphics
 
-.global setFSM__Q34Game12KumaKochappy3ObjFPQ34Game12KumaKochappy3FSM
-setFSM__Q34Game12KumaKochappy3ObjFPQ34Game12KumaKochappy3FSM:
+.fn setFSM__Q34Game12KumaKochappy3ObjFPQ34Game12KumaKochappy3FSM, global
 /* 802E72B8 002E41F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E72BC 002E41FC  7C 08 02 A6 */	mflr r0
 /* 802E72C0 002E4200  90 01 00 14 */	stw r0, 0x14(r1)
@@ -453,9 +470,9 @@ setFSM__Q34Game12KumaKochappy3ObjFPQ34Game12KumaKochappy3FSM:
 /* 802E72F8 002E4238  7C 08 03 A6 */	mtlr r0
 /* 802E72FC 002E423C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7300 002E4240  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game12KumaKochappy3ObjFPQ34Game12KumaKochappy3FSM
 
-.global getShadowParam__Q34Game12KumaKochappy3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game12KumaKochappy3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game12KumaKochappy3ObjFRQ24Game11ShadowParam, global
 /* 802E7304 002E4244  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7308 002E4248  7C 08 02 A6 */	mflr r0
 /* 802E730C 002E424C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -500,9 +517,9 @@ getShadowParam__Q34Game12KumaKochappy3ObjFRQ24Game11ShadowParam:
 /* 802E73A0 002E42E0  7C 08 03 A6 */	mtlr r0
 /* 802E73A4 002E42E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E73A8 002E42E8  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game12KumaKochappy3ObjFRQ24Game11ShadowParam
 
-.global pressCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart
-pressCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart:
+.fn pressCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 802E73AC 002E42EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E73B0 002E42F0  7C 08 02 A6 */	mflr r0
 /* 802E73B4 002E42F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -539,9 +556,9 @@ pressCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart:
 /* 802E7428 002E4368  7C 08 03 A6 */	mtlr r0
 /* 802E742C 002E436C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7430 002E4370  4E 80 00 20 */	blr 
+.endfn pressCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart
 
-.global hipdropCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart
-hipdropCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart:
+.fn hipdropCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 802E7434 002E4374  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7438 002E4378  7C 08 02 A6 */	mflr r0
 /* 802E743C 002E437C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -553,9 +570,9 @@ hipdropCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart:
 /* 802E7454 002E4394  7C 08 03 A6 */	mtlr r0
 /* 802E7458 002E4398  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E745C 002E439C  4E 80 00 20 */	blr 
+.endfn hipdropCallBack__Q34Game12KumaKochappy3ObjFPQ24Game8CreaturefP8CollPart
 
-.global startCarcassMotion__Q34Game12KumaKochappy3ObjFv
-startCarcassMotion__Q34Game12KumaKochappy3ObjFv:
+.fn startCarcassMotion__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7460 002E43A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7464 002E43A4  7C 08 02 A6 */	mflr r0
 /* 802E7468 002E43A8  38 80 00 05 */	li r4, 5
@@ -566,9 +583,9 @@ startCarcassMotion__Q34Game12KumaKochappy3ObjFv:
 /* 802E747C 002E43BC  7C 08 03 A6 */	mtlr r0
 /* 802E7480 002E43C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7484 002E43C4  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game12KumaKochappy3ObjFv
 
-.global initMouthSlots__Q34Game12KumaKochappy3ObjFv
-initMouthSlots__Q34Game12KumaKochappy3ObjFv:
+.fn initMouthSlots__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7488 002E43C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E748C 002E43CC  7C 08 02 A6 */	mflr r0
 /* 802E7490 002E43D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -606,9 +623,9 @@ initMouthSlots__Q34Game12KumaKochappy3ObjFv:
 /* 802E7508 002E4448  7C 08 03 A6 */	mtlr r0
 /* 802E750C 002E444C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E7510 002E4450  4E 80 00 20 */	blr 
+.endfn initMouthSlots__Q34Game12KumaKochappy3ObjFv
 
-.global initWalkSmokeEffect__Q34Game12KumaKochappy3ObjFv
-initWalkSmokeEffect__Q34Game12KumaKochappy3ObjFv:
+.fn initWalkSmokeEffect__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7514 002E4454  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7518 002E4458  7C 08 02 A6 */	mflr r0
 /* 802E751C 002E445C  38 80 00 02 */	li r4, 2
@@ -634,14 +651,14 @@ initWalkSmokeEffect__Q34Game12KumaKochappy3ObjFv:
 /* 802E756C 002E44AC  7C 08 03 A6 */	mtlr r0
 /* 802E7570 002E44B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7574 002E44B4  4E 80 00 20 */	blr 
+.endfn initWalkSmokeEffect__Q34Game12KumaKochappy3ObjFv
 
-.global getWalkSmokeEffectMgr__Q34Game12KumaKochappy3ObjFv
-getWalkSmokeEffectMgr__Q34Game12KumaKochappy3ObjFv:
+.fn getWalkSmokeEffectMgr__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7578 002E44B8  38 63 02 C0 */	addi r3, r3, 0x2c0
 /* 802E757C 002E44BC  4E 80 00 20 */	blr 
+.endfn getWalkSmokeEffectMgr__Q34Game12KumaKochappy3ObjFv
 
-.global resetZukanAnimationFrame__Q34Game12KumaKochappy3ObjFv
-resetZukanAnimationFrame__Q34Game12KumaKochappy3ObjFv:
+.fn resetZukanAnimationFrame__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7580 002E44C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E7584 002E44C4  7C 08 02 A6 */	mflr r0
 /* 802E7588 002E44C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -673,9 +690,9 @@ resetZukanAnimationFrame__Q34Game12KumaKochappy3ObjFv:
 /* 802E75EC 002E452C  7C 08 03 A6 */	mtlr r0
 /* 802E75F0 002E4530  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E75F4 002E4534  4E 80 00 20 */	blr 
+.endfn resetZukanAnimationFrame__Q34Game12KumaKochappy3ObjFv
 
-.global setNearestParent__Q34Game12KumaKochappy3ObjFv
-setNearestParent__Q34Game12KumaKochappy3ObjFv:
+.fn setNearestParent__Q34Game12KumaKochappy3ObjFv, global
 /* 802E75F8 002E4538  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 802E75FC 002E453C  7C 08 02 A6 */	mflr r0
 /* 802E7600 002E4540  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -911,9 +928,9 @@ setNearestParent__Q34Game12KumaKochappy3ObjFv:
 /* 802E796C 002E48AC  7C 08 03 A6 */	mtlr r0
 /* 802E7970 002E48B0  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 802E7974 002E48B4  4E 80 00 20 */	blr 
+.endfn setNearestParent__Q34Game12KumaKochappy3ObjFv
 
-.global "isDone__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
-"isDone__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv":
+.fn "isDone__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv", weak
 /* 802E7978 002E48B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E797C 002E48BC  7C 08 02 A6 */	mflr r0
 /* 802E7980 002E48C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -933,9 +950,9 @@ setNearestParent__Q34Game12KumaKochappy3ObjFv:
 /* 802E79B8 002E48F8  7C 08 03 A6 */	mtlr r0
 /* 802E79BC 002E48FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E79C0 002E4900  4E 80 00 20 */	blr 
+.endfn "isDone__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
 
-.global setTargetParentPosition__Q34Game12KumaKochappy3ObjFv
-setTargetParentPosition__Q34Game12KumaKochappy3ObjFv:
+.fn setTargetParentPosition__Q34Game12KumaKochappy3ObjFv, global
 /* 802E79C4 002E4904  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802E79C8 002E4908  7C 08 02 A6 */	mflr r0
 /* 802E79CC 002E490C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1047,9 +1064,9 @@ setTargetParentPosition__Q34Game12KumaKochappy3ObjFv:
 /* 802E7B60 002E4AA0  7C 08 03 A6 */	mtlr r0
 /* 802E7B64 002E4AA4  38 21 00 30 */	addi r1, r1, 0x30
 /* 802E7B68 002E4AA8  4E 80 00 20 */	blr 
+.endfn setTargetParentPosition__Q34Game12KumaKochappy3ObjFv
 
-.global updateHomePosition__Q34Game12KumaKochappy3ObjFv
-updateHomePosition__Q34Game12KumaKochappy3ObjFv:
+.fn updateHomePosition__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7B6C 002E4AAC  C0 03 01 8C */	lfs f0, 0x18c(r3)
 /* 802E7B70 002E4AB0  D0 03 01 98 */	stfs f0, 0x198(r3)
 /* 802E7B74 002E4AB4  C0 03 01 90 */	lfs f0, 0x190(r3)
@@ -1057,9 +1074,9 @@ updateHomePosition__Q34Game12KumaKochappy3ObjFv:
 /* 802E7B7C 002E4ABC  C0 03 01 94 */	lfs f0, 0x194(r3)
 /* 802E7B80 002E4AC0  D0 03 01 A0 */	stfs f0, 0x1a0(r3)
 /* 802E7B84 002E4AC4  4E 80 00 20 */	blr 
+.endfn updateHomePosition__Q34Game12KumaKochappy3ObjFv
 
-.global getSearchedTarget__Q34Game12KumaKochappy3ObjFv
-getSearchedTarget__Q34Game12KumaKochappy3ObjFv:
+.fn getSearchedTarget__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7B88 002E4AC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7B8C 002E4ACC  7C 08 02 A6 */	mflr r0
 /* 802E7B90 002E4AD0  38 80 00 00 */	li r4, 0
@@ -1074,9 +1091,9 @@ getSearchedTarget__Q34Game12KumaKochappy3ObjFv:
 /* 802E7BB4 002E4AF4  7C 08 03 A6 */	mtlr r0
 /* 802E7BB8 002E4AF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7BBC 002E4AFC  4E 80 00 20 */	blr 
+.endfn getSearchedTarget__Q34Game12KumaKochappy3ObjFv
 
-.global createChappyRelation__Q34Game12KumaKochappy3ObjFv
-createChappyRelation__Q34Game12KumaKochappy3ObjFv:
+.fn createChappyRelation__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7BC0 002E4B00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7BC4 002E4B04  7C 08 02 A6 */	mflr r0
 /* 802E7BC8 002E4B08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1106,9 +1123,9 @@ createChappyRelation__Q34Game12KumaKochappy3ObjFv:
 /* 802E7C24 002E4B64  7C 08 03 A6 */	mtlr r0
 /* 802E7C28 002E4B68  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7C2C 002E4B6C  4E 80 00 20 */	blr 
+.endfn createChappyRelation__Q34Game12KumaKochappy3ObjFv
 
-.global releaseParent__Q34Game12KumaKochappy3ObjFv
-releaseParent__Q34Game12KumaKochappy3ObjFv:
+.fn releaseParent__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7C30 002E4B70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7C34 002E4B74  7C 08 02 A6 */	mflr r0
 /* 802E7C38 002E4B78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1118,15 +1135,15 @@ releaseParent__Q34Game12KumaKochappy3ObjFv:
 /* 802E7C48 002E4B88  7C 08 03 A6 */	mtlr r0
 /* 802E7C4C 002E4B8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7C50 002E4B90  4E 80 00 20 */	blr 
+.endfn releaseParent__Q34Game12KumaKochappy3ObjFv
 
-.global getParentRelation__Q34Game12KumaKochappy3ObjFv
-getParentRelation__Q34Game12KumaKochappy3ObjFv:
+.fn getParentRelation__Q34Game12KumaKochappy3ObjFv, global
 /* 802E7C54 002E4B94  80 63 02 E4 */	lwz r3, 0x2e4(r3)
 /* 802E7C58 002E4B98  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 802E7C5C 002E4B9C  4E 80 00 20 */	blr 
+.endfn getParentRelation__Q34Game12KumaKochappy3ObjFv
 
-.global getEnemyIndex__Q34Game12KumaKochappy3ObjFRi
-getEnemyIndex__Q34Game12KumaKochappy3ObjFRi:
+.fn getEnemyIndex__Q34Game12KumaKochappy3ObjFRi, global
 /* 802E7C60 002E4BA0  80 A3 02 E4 */	lwz r5, 0x2e4(r3)
 /* 802E7C64 002E4BA4  38 C0 00 00 */	li r6, 0
 /* 802E7C68 002E4BA8  80 A5 00 0C */	lwz r5, 0xc(r5)
@@ -1145,9 +1162,9 @@ getEnemyIndex__Q34Game12KumaKochappy3ObjFRi:
 /* 802E7C90 002E4BD0  40 82 FF E4 */	bne .L_802E7C74
 /* 802E7C94 002E4BD4  38 60 FF FF */	li r3, -1
 /* 802E7C98 002E4BD8  4E 80 00 20 */	blr 
+.endfn getEnemyIndex__Q34Game12KumaKochappy3ObjFRi
 
-.global addParentEnemy__Q34Game12KumaKochappy3ObjFPQ34Game10KumaChappy3Obj
-addParentEnemy__Q34Game12KumaKochappy3ObjFPQ34Game10KumaChappy3Obj:
+.fn addParentEnemy__Q34Game12KumaKochappy3ObjFPQ34Game10KumaChappy3Obj, global
 /* 802E7C9C 002E4BDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E7CA0 002E4BE0  7C 08 02 A6 */	mflr r0
 /* 802E7CA4 002E4BE4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1190,9 +1207,9 @@ addParentEnemy__Q34Game12KumaKochappy3ObjFPQ34Game10KumaChappy3Obj:
 /* 802E7D30 002E4C70  7C 08 03 A6 */	mtlr r0
 /* 802E7D34 002E4C74  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E7D38 002E4C78  4E 80 00 20 */	blr 
+.endfn addParentEnemy__Q34Game12KumaKochappy3ObjFPQ34Game10KumaChappy3Obj
 
-.global "__ml__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
-"__ml__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv":
+.fn "__ml__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv", weak
 /* 802E7D3C 002E4C7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7D40 002E4C80  7C 08 02 A6 */	mflr r0
 /* 802E7D44 002E4C84  7C 64 1B 78 */	mr r4, r3
@@ -1207,9 +1224,9 @@ addParentEnemy__Q34Game12KumaKochappy3ObjFPQ34Game10KumaChappy3Obj:
 /* 802E7D68 002E4CA8  7C 08 03 A6 */	mtlr r0
 /* 802E7D6C 002E4CAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7D70 002E4CB0  4E 80 00 20 */	blr 
+.endfn "__ml__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
 
-.global "next__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
-"next__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv":
+.fn "next__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv", weak
 /* 802E7D74 002E4CB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7D78 002E4CB8  7C 08 02 A6 */	mflr r0
 /* 802E7D7C 002E4CBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1271,9 +1288,9 @@ addParentEnemy__Q34Game12KumaKochappy3ObjFPQ34Game10KumaChappy3Obj:
 /* 802E7E4C 002E4D8C  7C 08 03 A6 */	mtlr r0
 /* 802E7E50 002E4D90  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7E54 002E4D94  4E 80 00 20 */	blr 
+.endfn "next__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
 
-.global "first__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
-"first__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv":
+.fn "first__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv", weak
 /* 802E7E58 002E4D98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E7E5C 002E4D9C  7C 08 02 A6 */	mflr r0
 /* 802E7E60 002E4DA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1333,18 +1350,19 @@ addParentEnemy__Q34Game12KumaKochappy3ObjFPQ34Game10KumaChappy3Obj:
 /* 802E7F28 002E4E68  7C 08 03 A6 */	mtlr r0
 /* 802E7F2C 002E4E6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E7F30 002E4E70  4E 80 00 20 */	blr 
+.endfn "first__Q24Game38EnemyIterator<Q34Game10KumaChappy3Obj>Fv"
 
-.global getMouthSlots__Q34Game12KumaKochappy3ObjFv
-getMouthSlots__Q34Game12KumaKochappy3ObjFv:
+.fn getMouthSlots__Q34Game12KumaKochappy3ObjFv, weak
 /* 802E7F34 002E4E74  38 63 02 D0 */	addi r3, r3, 0x2d0
 /* 802E7F38 002E4E78  4E 80 00 20 */	blr 
+.endfn getMouthSlots__Q34Game12KumaKochappy3ObjFv
 
-.global getDownSmokeScale__Q34Game12KumaKochappy3ObjFv
-getDownSmokeScale__Q34Game12KumaKochappy3ObjFv:
+.fn getDownSmokeScale__Q34Game12KumaKochappy3ObjFv, weak
 /* 802E7F3C 002E4E7C  C0 22 EB A8 */	lfs f1, lbl_8051CF08@sda21(r2)
 /* 802E7F40 002E4E80  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game12KumaKochappy3ObjFv
 
-.global getEnemyTypeID__Q34Game12KumaKochappy3ObjFv
-getEnemyTypeID__Q34Game12KumaKochappy3ObjFv:
+.fn getEnemyTypeID__Q34Game12KumaKochappy3ObjFv, weak
 /* 802E7F44 002E4E84  38 60 00 4C */	li r3, 0x4c
 /* 802E7F48 002E4E88  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game12KumaKochappy3ObjFv

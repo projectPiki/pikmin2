@@ -5,479 +5,708 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80484190:
+.obj lbl_80484190, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_80484190
 .balign 4
-lbl_8048419C:
+.obj lbl_8048419C, local
 	.asciz "246-CameraMgr"
+.endobj lbl_8048419C
 .balign 4
-lbl_804841AC:
+.obj lbl_804841AC, local
 	.asciz "CameraMgr"
+.endobj lbl_804841AC
 .balign 4
-lbl_804841B8:
+.obj lbl_804841B8, local
 	.asciz "/user/Nishimura/Camera/caveCameraParms.txt"
+.endobj lbl_804841B8
 .balign 4
-lbl_804841E4:
+.obj lbl_804841E4, local
 	.asciz "/user/Nishimura/Camera/groundCameraParms.txt"
+.endobj lbl_804841E4
 .balign 4
+.obj lbl_80484214, local
 	.asciz "VibrationParms"
+.endobj lbl_80484214
 .balign 4
+.obj lbl_80484224, local
 	.asciz "ELEVATION_LIGHT(vib)"
+.endobj lbl_80484224
 .balign 4
+.obj lbl_8048423C, local
 	.asciz "ELEVATION_MIDDLE(vib)"
+.endobj lbl_8048423C
 .balign 4
+.obj lbl_80484254, local
 	.asciz "ELEVATION_HARD(vib)"
+.endobj lbl_80484254
 .balign 4
+.obj lbl_80484268, local
 	.asciz "ELEVATION_SLOW(speed)"
+.endobj lbl_80484268
 .balign 4
+.obj lbl_80484280, local
 	.asciz "ELEVATION_MIDDLE(speed)"
+.endobj lbl_80484280
 .balign 4
+.obj lbl_80484298, local
 	.asciz "ELEVATION_FAST(speed)"
+.endobj lbl_80484298
 .balign 4
+.obj lbl_804842B0, local
 	.asciz "ELEVATION_SHORT(time)"
+.endobj lbl_804842B0
 .balign 4
+.obj lbl_804842C8, local
 	.asciz "ELEVATION_MIDDLE(time)"
+.endobj lbl_804842C8
 .balign 4
+.obj lbl_804842E0, local
 	.asciz "ELEVATION_LONG(time)"
+.endobj lbl_804842E0
 .balign 4
+.obj lbl_804842F8, local
 	.asciz "ELEVATION_HARD(Vib)"
+.endobj lbl_804842F8
 .balign 4
+.obj lbl_8048430C, local
 	.asciz "ELEVATION_HARD(Speed)"
+.endobj lbl_8048430C
 .balign 4
+.obj lbl_80484324, local
 	.asciz "ELEVATION_HARD(Time)"
+.endobj lbl_80484324
 .balign 4
+.obj lbl_8048433C, local
 	.asciz "ZOOM_SHORT(Vib)"
+.endobj lbl_8048433C
 .balign 4
+.obj lbl_8048434C, local
 	.asciz "ZOOM_SHORT(Speed)"
+.endobj lbl_8048434C
 .balign 4
+.obj lbl_80484360, local
 	.asciz "ZOOM_SHORT(Time)"
+.endobj lbl_80484360
 .balign 4
+.obj lbl_80484374, local
 	.asciz "AZIMUTH_SHORT(Vib)"
+.endobj lbl_80484374
 .balign 4
+.obj lbl_80484388, local
 	.asciz "AZIMUTH_SHORT(Speed)"
+.endobj lbl_80484388
 .balign 4
+.obj lbl_804843A0, local
 	.asciz "AZIMUTH_SHORT(Time)"
+.endobj lbl_804843A0
 .balign 4
+.obj lbl_804843B4, local
 	.asciz "Vib Max Distance"
+.endobj lbl_804843B4
 .balign 4
+.obj lbl_804843C8, local
 	.asciz "CameraParms"
+.endobj lbl_804843C8
 .balign 4
+.obj lbl_804843D4, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x284C6F77
 	.4byte 0x298B9797
-	.4byte 0xA3000000
+	.2byte 0xA300
+.endobj lbl_804843D4
+.balign 4
+.obj lbl_804843E4, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x284C6F77
 	.4byte 0x29834183
 	.4byte 0x93834F83
-	.4byte 0x8B000000
+	.2byte 0x8B00
+.endobj lbl_804843E4
+.balign 4
+.obj lbl_804843F8, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x284C6F77
 	.4byte 0x29826582
 	.4byte 0x6E827500
+.endobj lbl_804843F8
+.balign 4
+.obj lbl_80484408, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x284C6F77
 	.4byte 0x29834983
 	.4byte 0x74835A83
 	.4byte 0x62836700
+.endobj lbl_80484408
+.balign 4
+.obj lbl_8048441C, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x284C6F77
 	.4byte 0x29834583
 	.4byte 0x46834383
-	.4byte 0x67000000
-	.4byte 0x4E656172
-	.4byte 0x284C6F77
-	.4byte 0x29446574
-	.4byte 0x61636865
-	.4byte 0x64000000
-	.4byte 0x4E656172
-	.4byte 0x284C6F77
-	.4byte 0x294E6561
-	.4byte 0x72000000
-	.4byte 0x4E656172
-	.4byte 0x284C6F77
-	.4byte 0x29466172
-	.4byte 0x00000000
+	.2byte 0x6700
+.endobj lbl_8048441C
+.balign 4
+.obj lbl_80484430, local
+	.asciz "Near(Low)Detached"
+.endobj lbl_80484430
+.balign 4
+.obj lbl_80484444, local
+	.asciz "Near(Low)Near"
+.endobj lbl_80484444
+.balign 4
+.obj lbl_80484454, local
+	.asciz "Near(Low)Far"
+.endobj lbl_80484454
+.balign 4
+.obj lbl_80484464, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x4C6F7729
 	.4byte 0x8B9797A3
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80484464
+.balign 4
+.obj lbl_80484474, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x4C6F7729
 	.4byte 0x83418393
 	.4byte 0x834F838B
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80484474
+.balign 4
+.obj lbl_80484488, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x4C6F7729
 	.4byte 0x8265826E
 	.4byte 0x82750000
+.endobj lbl_80484488
+.balign 4
+.obj lbl_80484498, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x4C6F7729
 	.4byte 0x83498374
 	.4byte 0x835A8362
 	.4byte 0x83670000
+.endobj lbl_80484498
+.balign 4
+.obj lbl_804844AC, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x4C6F7729
 	.4byte 0x83458346
 	.4byte 0x83438367
-	.4byte 0x00000000
-	.4byte 0x4D696428
-	.4byte 0x4C6F7729
-	.4byte 0x44657461
-	.4byte 0x63686564
-	.4byte 0x00000000
-	.4byte 0x4D696428
-	.4byte 0x4C6F7729
-	.4byte 0x4E656172
-	.4byte 0x00000000
-	.4byte 0x4D696428
-	.4byte 0x4C6F7729
-	.4byte 0x46617200
+	.byte 0
+.endobj lbl_804844AC
+.balign 4
+.obj lbl_804844C0, local
+	.asciz "Mid(Low)Detached"
+.endobj lbl_804844C0
+.balign 4
+.obj lbl_804844D4, local
+	.asciz "Mid(Low)Near"
+.endobj lbl_804844D4
+.balign 4
+.obj lbl_804844E4, local
+	.asciz "Mid(Low)Far"
+.endobj lbl_804844E4
+.balign 4
+.obj lbl_804844F0, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x4C6F7729
 	.4byte 0x8B9797A3
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804844F0
+.balign 4
+.obj lbl_80484500, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x4C6F7729
 	.4byte 0x83418393
 	.4byte 0x834F838B
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80484500
+.balign 4
+.obj lbl_80484514, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x4C6F7729
 	.4byte 0x8265826E
 	.4byte 0x82750000
+.endobj lbl_80484514
+.balign 4
+.obj lbl_80484524, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x4C6F7729
 	.4byte 0x83498374
 	.4byte 0x835A8362
 	.4byte 0x83670000
+.endobj lbl_80484524
+.balign 4
+.obj lbl_80484538, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x4C6F7729
 	.4byte 0x83458346
 	.4byte 0x83438367
-	.4byte 0x00000000
-	.4byte 0x46617228
-	.4byte 0x4C6F7729
-	.4byte 0x44657461
-	.4byte 0x63686564
-	.4byte 0x00000000
-	.4byte 0x46617228
-	.4byte 0x4C6F7729
-	.4byte 0x4E656172
-	.4byte 0x00000000
-	.4byte 0x46617228
-	.4byte 0x4C6F7729
-	.4byte 0x46617200
+	.byte 0
+.endobj lbl_80484538
+.balign 4
+.obj lbl_8048454C, local
+	.asciz "Far(Low)Detached"
+.endobj lbl_8048454C
+.balign 4
+.obj lbl_80484560, local
+	.asciz "Far(Low)Near"
+.endobj lbl_80484560
+.balign 4
+.obj lbl_80484570, local
+	.asciz "Far(Low)Far"
+.endobj lbl_80484570
+.balign 4
+.obj lbl_8048457C, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x28486967
 	.4byte 0x68298B97
 	.4byte 0x97A30000
+.endobj lbl_8048457C
+.balign 4
+.obj lbl_8048458C, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x28486967
 	.4byte 0x68298341
 	.4byte 0x8393834F
 	.4byte 0x838B0000
+.endobj lbl_8048458C
+.balign 4
+.obj lbl_804845A0, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x28486967
 	.4byte 0x68298265
 	.4byte 0x826E8275
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804845A0
+.balign 4
+.obj lbl_804845B4, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x28486967
 	.4byte 0x68298349
 	.4byte 0x8374835A
 	.4byte 0x83628367
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804845B4
+.balign 4
+.obj lbl_804845CC, local # Shift-JIS
 	.4byte 0x4E656172
 	.4byte 0x28486967
 	.4byte 0x68298345
 	.4byte 0x83468343
 	.4byte 0x83670000
-	.4byte 0x4E656172
-	.4byte 0x28486967
-	.4byte 0x68294465
-	.4byte 0x74616368
-	.4byte 0x65640000
-	.4byte 0x4E656172
-	.4byte 0x28486967
-	.4byte 0x68294E65
-	.4byte 0x61720000
-	.4byte 0x4E656172
-	.4byte 0x28486967
-	.4byte 0x68294661
-	.4byte 0x72000000
+.endobj lbl_804845CC
+.balign 4
+.obj lbl_804845E0, local
+	.asciz "Near(High)Detached"
+.endobj lbl_804845E0
+.balign 4
+.obj lbl_804845F4, local
+	.asciz "Near(High)Near"
+.endobj lbl_804845F4
+.balign 4
+.obj lbl_80484604, local
+	.asciz "Near(High)Far"
+.endobj lbl_80484604
+.balign 4
+.obj lbl_80484614, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x48696768
 	.4byte 0x298B9797
-	.4byte 0xA3000000
+	.2byte 0xA300
+.endobj lbl_80484614
+.balign 4
+.obj lbl_80484624, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x48696768
 	.4byte 0x29834183
 	.4byte 0x93834F83
-	.4byte 0x8B000000
+	.2byte 0x8B00
+.endobj lbl_80484624
+.balign 4
+.obj lbl_80484638, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x48696768
 	.4byte 0x29826582
 	.4byte 0x6E827500
+.endobj lbl_80484638
+.balign 4
+.obj lbl_80484648, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x48696768
 	.4byte 0x29834983
 	.4byte 0x74835A83
 	.4byte 0x62836700
+.endobj lbl_80484648
+.balign 4
+.obj lbl_8048465C, local # Shift-JIS
 	.4byte 0x4D696428
 	.4byte 0x48696768
 	.4byte 0x29834583
 	.4byte 0x46834383
-	.4byte 0x67000000
-	.4byte 0x4D696428
-	.4byte 0x48696768
-	.4byte 0x29446574
-	.4byte 0x61636865
-	.4byte 0x64000000
-	.4byte 0x4D696428
-	.4byte 0x48696768
-	.4byte 0x294E6561
-	.4byte 0x72000000
-	.4byte 0x4D696428
-	.4byte 0x48696768
-	.4byte 0x29466172
-	.4byte 0x00000000
+	.2byte 0x6700
+.endobj lbl_8048465C
+.balign 4
+.obj lbl_80484670, local
+	.asciz "Mid(High)Detached"
+.endobj lbl_80484670
+.balign 4
+.obj lbl_80484684, local
+	.asciz "Mid(High)Near"
+.endobj lbl_80484684
+.balign 4
+.obj lbl_80484694, local
+	.asciz "Mid(High)Far"
+.endobj lbl_80484694
+.balign 4
+.obj lbl_804846A4, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x48696768
 	.4byte 0x298B9797
-	.4byte 0xA3000000
+	.2byte 0xA300
+.endobj lbl_804846A4
+.balign 4
+.obj lbl_804846B4, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x48696768
 	.4byte 0x29834183
 	.4byte 0x93834F83
-	.4byte 0x8B000000
+	.2byte 0x8B00
+.endobj lbl_804846B4
+.balign 4
+.obj lbl_804846C8, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x48696768
 	.4byte 0x29826582
 	.4byte 0x6E827500
+.endobj lbl_804846C8
+.balign 4
+.obj lbl_804846D8, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x48696768
 	.4byte 0x29834983
 	.4byte 0x74835A83
 	.4byte 0x62836700
+.endobj lbl_804846D8
+.balign 4
+.obj lbl_804846EC, local # Shift-JIS
 	.4byte 0x46617228
 	.4byte 0x48696768
 	.4byte 0x29834583
 	.4byte 0x46834383
-	.4byte 0x67000000
-	.4byte 0x46617228
-	.4byte 0x48696768
-	.4byte 0x29446574
-	.4byte 0x61636865
-	.4byte 0x64000000
-	.4byte 0x46617228
-	.4byte 0x48696768
-	.4byte 0x294E6561
-	.4byte 0x72000000
-	.4byte 0x46617228
-	.4byte 0x48696768
-	.4byte 0x29466172
-	.4byte 0x00000000
+	.2byte 0x6700
+.endobj lbl_804846EC
+.balign 4
+.obj lbl_80484700, local
+	.asciz "Far(High)Detached"
+.endobj lbl_80484700
+.balign 4
+.obj lbl_80484714, local
+	.asciz "Far(High)Near"
+.endobj lbl_80484714
+.balign 4
+.obj lbl_80484724, local
+	.asciz "Far(High)Far"
+.endobj lbl_80484724
+.balign 4
+.obj lbl_80484734, local # Shift-JIS
 	.4byte 0x5A4F4F4D
 	.4byte 0x208B9797
-	.4byte 0xA3000000
+	.2byte 0xA300
+.endobj lbl_80484734
+.balign 4
+.obj lbl_80484740, local # Shift-JIS
 	.4byte 0x5A4F4F4D
 	.4byte 0x20834183
 	.4byte 0x93834F83
-	.4byte 0x8B000000
+	.2byte 0x8B00
+.endobj lbl_80484740
+.balign 4
+.obj lbl_80484750, local # Shift-JIS
 	.4byte 0x5A4F4F4D
 	.4byte 0x20826582
 	.4byte 0x6E827500
+.endobj lbl_80484750
+.balign 4
+lbl_8048475C: # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839394BC
 	.4byte 0x8C610000
+.balign 4
+.obj lbl_8048476C, local # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839395E2
 	.4byte 0x8AD491AC
 	.4byte 0x93780000
+.endobj lbl_8048476C
+.balign 4
+.obj lbl_80484780, local # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839395E2
 	.4byte 0x90B38D82
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80484780
+.balign 4
+.obj lbl_80484794, local # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839396B3
 	.4byte 0x82B58D82
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80484794
+.balign 4
+.obj lbl_804847A8, local # Shift-JIS
 	.4byte 0x90DD92E8
 	.4byte 0x95CF8D58
 	.4byte 0x91AC9378
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804847A8
+.balign 4
+.obj lbl_804847B8, local # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x91AC9378
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804847B8
+.balign 4
+.obj lbl_804847C4, local # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x92C78F5D
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804847C4
+.balign 4
+lbl_804847D4: # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x89C191AC
 	.4byte 0x93780000
+.balign 4
+.obj lbl_804847E0, local # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x8DC58D82
 	.4byte 0x91AC9378
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804847E0
+.balign 4
+.obj lbl_804847F0, local # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x8CB8908A
 	.4byte 0x97A60000
+.endobj lbl_804847F0
 .balign 4
-lbl_804847FC:
+.obj lbl_804847FC, local
 	.asciz "CameraMgr.cpp"
+.endobj lbl_804847FC
 .balign 4
-lbl_8048480C:
+.obj lbl_8048480C, local
 	.asciz "P2Assert"
+.endobj lbl_8048480C
 .balign 4
+.obj lbl_80484818, local
 	.asciz "camera is none\n"
+.endobj lbl_80484818
 .balign 4
-lbl_80484828:
+.obj lbl_80484828, local
 	.asciz "not zukan mode\n"
+.endobj lbl_80484828
 .balign 4
-lbl_80484838:
+.obj lbl_80484838, local
 	.asciz "camera parameter none\n"
+.endobj lbl_80484838
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__Q24Game9CameraMgr
-__vt__Q24Game9CameraMgr:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q24Game9CameraMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game9CameraMgrFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q24Game9CameraMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global cameraMgr__4Game
-cameraMgr__4Game:
+.endobj gfNAN___Q24Game5P2JST
+.obj cameraMgr__4Game, global
 	.skip 0x4
+.endobj cameraMgr__4Game
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A898:
+.obj lbl_8051A898, local
 	.float 1.0
-lbl_8051A89C:
-	.4byte 0x00000000
-lbl_8051A8A0:
-	.4byte 0x41200000
-lbl_8051A8A4:
-	.4byte 0x40400000
-lbl_8051A8A8:
-	.4byte 0x40A00000
-lbl_8051A8AC:
-	.4byte 0x41700000
-lbl_8051A8B0:
-	.4byte 0x42C80000
-lbl_8051A8B4:
-	.4byte 0x41C80000
-lbl_8051A8B8:
-	.4byte 0x420C0000
-lbl_8051A8BC:
+.endobj lbl_8051A898
+.obj lbl_8051A89C, local
+	.float 0.0
+.endobj lbl_8051A89C
+.obj lbl_8051A8A0, local
+	.float 10.0
+.endobj lbl_8051A8A0
+.obj lbl_8051A8A4, local
+	.float 3.0
+.endobj lbl_8051A8A4
+.obj lbl_8051A8A8, local
+	.float 5.0
+.endobj lbl_8051A8A8
+.obj lbl_8051A8AC, local
+	.float 15.0
+.endobj lbl_8051A8AC
+.obj lbl_8051A8B0, local
+	.float 100.0
+.endobj lbl_8051A8B0
+.obj lbl_8051A8B4, local
+	.float 25.0
+.endobj lbl_8051A8B4
+.obj lbl_8051A8B8, local
+	.float 35.0
+.endobj lbl_8051A8B8
+.obj lbl_8051A8BC, local
 	.float 0.3
-lbl_8051A8C0:
-	.4byte 0x3F400000
-lbl_8051A8C4:
-	.4byte 0x3FC00000
-lbl_8051A8C8:
-	.4byte 0x41A00000
-lbl_8051A8CC:
-	.4byte 0x42480000
-lbl_8051A8D0:
+.endobj lbl_8051A8BC
+.obj lbl_8051A8C0, local
+	.float 0.75
+.endobj lbl_8051A8C0
+.obj lbl_8051A8C4, local
+	.float 1.5
+.endobj lbl_8051A8C4
+.obj lbl_8051A8C8, local
+	.float 20.0
+.endobj lbl_8051A8C8
+.obj lbl_8051A8CC, local
+	.float 50.0
+.endobj lbl_8051A8CC
+.obj lbl_8051A8D0, local
 	.float 0.25
-lbl_8051A8D4:
+.endobj lbl_8051A8D0
+.obj lbl_8051A8D4, local
 	.float 0.06
-lbl_8051A8D8:
-	.4byte 0x42200000
-lbl_8051A8DC:
-	.4byte 0x443B8000
-lbl_8051A8E0:
-	.4byte 0x447A0000
-lbl_8051A8E4:
-	.4byte 0x44160000
-lbl_8051A8E8:
-	.4byte 0x459C4000
-lbl_8051A8EC:
-	.4byte 0x42B40000
-lbl_8051A8F0:
-	.4byte 0x42700000
-lbl_8051A8F4:
-	.4byte 0x43FA0000
-lbl_8051A8F8:
-	.4byte 0x418C0000
-lbl_8051A8FC:
-	.4byte 0x46480000
-lbl_8051A900:
-	.4byte 0x41A80000
-lbl_8051A904:
-	.4byte 0x41B80000
-lbl_8051A908:
-	.4byte 0x42180000
-lbl_8051A90C:
-	.4byte 0x425C0000
-lbl_8051A910:
-	.4byte 0x44610000
-lbl_8051A914:
-	.4byte 0x41D00000
-lbl_8051A918:
-	.4byte 0x42040000
-lbl_8051A91C:
-	.4byte 0x43C80000
-lbl_8051A920:
-	.4byte 0x43020000
-lbl_8051A924:
-	.4byte 0x41DC0000
-lbl_8051A928:
-	.4byte 0x428C0000
-lbl_8051A92C:
-	.4byte 0x42960000
-lbl_8051A930:
-	.4byte 0x44960000
-lbl_8051A934:
-	.4byte 0x41F00000
-lbl_8051A938:
-	.4byte 0x43480000
-lbl_8051A93C:
-	.4byte 0x43250000
-lbl_8051A940:
-	.4byte 0x437A0000
-lbl_8051A944:
-	.4byte 0x41400000
-lbl_8051A948:
-	.4byte 0x43960000
-lbl_8051A94C:
-	.4byte 0x3BA3D70A
-lbl_8051A950:
-	.4byte 0x3A83126F
-lbl_8051A954:
+.endobj lbl_8051A8D4
+.obj lbl_8051A8D8, local
+	.float 40.0
+.endobj lbl_8051A8D8
+.obj lbl_8051A8DC, local
+	.float 750.0
+.endobj lbl_8051A8DC
+.obj lbl_8051A8E0, local
+	.float 1000.0
+.endobj lbl_8051A8E0
+.obj lbl_8051A8E4, local
+	.float 600.0
+.endobj lbl_8051A8E4
+.obj lbl_8051A8E8, local
+	.float 5000.0
+.endobj lbl_8051A8E8
+.obj lbl_8051A8EC, local
+	.float 90.0
+.endobj lbl_8051A8EC
+.obj lbl_8051A8F0, local
+	.float 60.0
+.endobj lbl_8051A8F0
+.obj lbl_8051A8F4, local
+	.float 500.0
+.endobj lbl_8051A8F4
+.obj lbl_8051A8F8, local
+	.float 17.5
+.endobj lbl_8051A8F8
+.obj lbl_8051A8FC, local
+	.float 12800.0
+.endobj lbl_8051A8FC
+.obj lbl_8051A900, local
+	.float 21.0
+.endobj lbl_8051A900
+.obj lbl_8051A904, local
+	.float 23.0
+.endobj lbl_8051A904
+.obj lbl_8051A908, local
+	.float 38.0
+.endobj lbl_8051A908
+.obj lbl_8051A90C, local
+	.float 55.0
+.endobj lbl_8051A90C
+.obj lbl_8051A910, local
+	.float 900.0
+.endobj lbl_8051A910
+.obj lbl_8051A914, local
+	.float 26.0
+.endobj lbl_8051A914
+.obj lbl_8051A918, local
+	.float 33.0
+.endobj lbl_8051A918
+.obj lbl_8051A91C, local
+	.float 400.0
+.endobj lbl_8051A91C
+.obj lbl_8051A920, local
+	.float 130.0
+.endobj lbl_8051A920
+.obj lbl_8051A924, local
+	.float 27.5
+.endobj lbl_8051A924
+.obj lbl_8051A928, local
+	.float 70.0
+.endobj lbl_8051A928
+.obj lbl_8051A92C, local
+	.float 75.0
+.endobj lbl_8051A92C
+.obj lbl_8051A930, local
+	.float 1200.0
+.endobj lbl_8051A930
+.obj lbl_8051A934, local
+	.float 30.0
+.endobj lbl_8051A934
+.obj lbl_8051A938, local
+	.float 200.0
+.endobj lbl_8051A938
+.obj lbl_8051A93C, local
+	.float 165.0
+.endobj lbl_8051A93C
+.obj lbl_8051A940, local
+	.float 250.0
+.endobj lbl_8051A940
+.obj lbl_8051A944, local
+	.float 12.0
+.endobj lbl_8051A944
+.obj lbl_8051A948, local
+	.float 300.0
+.endobj lbl_8051A948
+.obj lbl_8051A94C, local
+	.float 0.005
+.endobj lbl_8051A94C
+.obj lbl_8051A950, local
+	.float 0.001
+.endobj lbl_8051A950
+.obj lbl_8051A954, local
 	.float 0.1
-lbl_8051A958:
-	.4byte 0x3E4CCCCD
-lbl_8051A95C:
-	.4byte 0x3F19999A
-lbl_8051A960:
-	.4byte 0x3F666666
-lbl_8051A964:
-	.4byte 0x3F59999A
+.endobj lbl_8051A954
+.obj lbl_8051A958, local
+	.float 0.2
+.endobj lbl_8051A958
+.obj lbl_8051A95C, local
+	.float 0.6
+.endobj lbl_8051A95C
+.obj lbl_8051A960, local
+	.float 0.9
+.endobj lbl_8051A960
+.obj lbl_8051A964, local
+	.float 0.85
+.endobj lbl_8051A964
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game9CameraMgrFv
-__ct__Q24Game9CameraMgrFv:
+.fn __ct__Q24Game9CameraMgrFv, global
 /* 80250988 0024D8C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025098C 0024D8CC  7C 08 02 A6 */	mflr r0
 /* 80250990 0024D8D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -496,9 +725,9 @@ __ct__Q24Game9CameraMgrFv:
 /* 802509C4 0024D904  7C 08 03 A6 */	mtlr r0
 /* 802509C8 0024D908  38 21 00 10 */	addi r1, r1, 0x10
 /* 802509CC 0024D90C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game9CameraMgrFv
 
-.global loadResource__Q24Game9CameraMgrFv
-loadResource__Q24Game9CameraMgrFv:
+.fn loadResource__Q24Game9CameraMgrFv, global
 /* 802509D0 0024D910  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802509D4 0024D914  7C 08 02 A6 */	mflr r0
 /* 802509D8 0024D918  90 01 00 14 */	stw r0, 0x14(r1)
@@ -579,9 +808,9 @@ loadResource__Q24Game9CameraMgrFv:
 /* 80250AF0 0024DA30  7C 08 03 A6 */	mtlr r0
 /* 80250AF4 0024DA34  38 21 00 10 */	addi r1, r1, 0x10
 /* 80250AF8 0024DA38  4E 80 00 20 */	blr 
+.endfn loadResource__Q24Game9CameraMgrFv
 
-.global __ct__Q24Game14VibrationParmsFv
-__ct__Q24Game14VibrationParmsFv:
+.fn __ct__Q24Game14VibrationParmsFv, weak
 /* 80250AFC 0024DA3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80250B00 0024DA40  7C 08 02 A6 */	mflr r0
 /* 80250B04 0024DA44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -891,9 +1120,9 @@ __ct__Q24Game14VibrationParmsFv:
 /* 80250FC0 0024DF00  7C 08 03 A6 */	mtlr r0
 /* 80250FC4 0024DF04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80250FC8 0024DF08  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game14VibrationParmsFv
 
-.global __ct__Q24Game11CameraParmsFv
-__ct__Q24Game11CameraParmsFv:
+.fn __ct__Q24Game11CameraParmsFv, weak
 /* 80250FCC 0024DF0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80250FD0 0024DF10  7C 08 02 A6 */	mflr r0
 /* 80250FD4 0024DF14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1821,9 +2050,9 @@ __ct__Q24Game11CameraParmsFv:
 /* 80251E38 0024ED78  7C 08 03 A6 */	mtlr r0
 /* 80251E3C 0024ED7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80251E40 0024ED80  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game11CameraParmsFv
 
-.global setViewport__Q24Game9CameraMgrFP8Viewporti
-setViewport__Q24Game9CameraMgrFP8Viewporti:
+.fn setViewport__Q24Game9CameraMgrFP8Viewporti, global
 /* 80251E44 0024ED84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80251E48 0024ED88  7C 08 02 A6 */	mflr r0
 /* 80251E4C 0024ED8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1868,9 +2097,9 @@ setViewport__Q24Game9CameraMgrFP8Viewporti:
 /* 80251EE0 0024EE20  7C 08 03 A6 */	mtlr r0
 /* 80251EE4 0024EE24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80251EE8 0024EE28  4E 80 00 20 */	blr 
+.endfn setViewport__Q24Game9CameraMgrFP8Viewporti
 
-.global init__Q24Game9CameraMgrFi
-init__Q24Game9CameraMgrFi:
+.fn init__Q24Game9CameraMgrFi, global
 /* 80251EEC 0024EE2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80251EF0 0024EE30  7C 08 02 A6 */	mflr r0
 /* 80251EF4 0024EE34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1962,9 +2191,9 @@ init__Q24Game9CameraMgrFi:
 /* 8025202C 0024EF6C  7C 08 03 A6 */	mtlr r0
 /* 80252030 0024EF70  38 21 00 20 */	addi r1, r1, 0x20
 /* 80252034 0024EF74  4E 80 00 20 */	blr 
+.endfn init__Q24Game9CameraMgrFi
 
-.global setCameraAngle__Q24Game9CameraMgrFfi
-setCameraAngle__Q24Game9CameraMgrFfi:
+.fn setCameraAngle__Q24Game9CameraMgrFfi, global
 /* 80252038 0024EF78  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8025203C 0024EF7C  7C 08 02 A6 */	mflr r0
 /* 80252040 0024EF80  7C 85 23 78 */	mr r5, r4
@@ -2006,9 +2235,9 @@ setCameraAngle__Q24Game9CameraMgrFfi:
 /* 802520C0 0024F000  7C 08 03 A6 */	mtlr r0
 /* 802520C4 0024F004  38 21 00 30 */	addi r1, r1, 0x30
 /* 802520C8 0024F008  4E 80 00 20 */	blr 
+.endfn setCameraAngle__Q24Game9CameraMgrFfi
 
-.global update__Q24Game9CameraMgrFv
-update__Q24Game9CameraMgrFv:
+.fn update__Q24Game9CameraMgrFv, global
 /* 802520CC 0024F00C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802520D0 0024F010  7C 08 02 A6 */	mflr r0
 /* 802520D4 0024F014  90 01 00 84 */	stw r0, 0x84(r1)
@@ -2107,9 +2336,9 @@ update__Q24Game9CameraMgrFv:
 /* 80252230 0024F170  7C 08 03 A6 */	mtlr r0
 /* 80252234 0024F174  38 21 00 80 */	addi r1, r1, 0x80
 /* 80252238 0024F178  4E 80 00 20 */	blr 
+.endfn update__Q24Game9CameraMgrFv
 
-.global "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-"startVibration__Q24Game9CameraMgrFiR10Vector3<f>i":
+.fn "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i", global
 /* 8025223C 0024F17C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80252240 0024F180  7C 08 02 A6 */	mflr r0
 /* 80252244 0024F184  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2202,9 +2431,9 @@ update__Q24Game9CameraMgrFv:
 /* 80252384 0024F2C4  7C 08 03 A6 */	mtlr r0
 /* 80252388 0024F2C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8025238C 0024F2CC  4E 80 00 20 */	blr 
+.endfn "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 
-.global startVibration__Q24Game9CameraMgrFii
-startVibration__Q24Game9CameraMgrFii:
+.fn startVibration__Q24Game9CameraMgrFii, global
 /* 80252390 0024F2D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80252394 0024F2D4  7C 08 02 A6 */	mflr r0
 /* 80252398 0024F2D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2265,9 +2494,9 @@ startVibration__Q24Game9CameraMgrFii:
 /* 80252460 0024F3A0  7C 08 03 A6 */	mtlr r0
 /* 80252464 0024F3A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80252468 0024F3A8  4E 80 00 20 */	blr 
+.endfn startVibration__Q24Game9CameraMgrFii
 
-.global controllerLock__Q24Game9CameraMgrFi
-controllerLock__Q24Game9CameraMgrFi:
+.fn controllerLock__Q24Game9CameraMgrFi, global
 /* 8025246C 0024F3AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80252470 0024F3B0  7C 08 02 A6 */	mflr r0
 /* 80252474 0024F3B4  7C 85 23 78 */	mr r5, r4
@@ -2299,9 +2528,9 @@ controllerLock__Q24Game9CameraMgrFi:
 /* 802524D0 0024F410  7C 08 03 A6 */	mtlr r0
 /* 802524D4 0024F414  38 21 00 20 */	addi r1, r1, 0x20
 /* 802524D8 0024F418  4E 80 00 20 */	blr 
+.endfn controllerLock__Q24Game9CameraMgrFi
 
-.global controllerUnLock__Q24Game9CameraMgrFi
-controllerUnLock__Q24Game9CameraMgrFi:
+.fn controllerUnLock__Q24Game9CameraMgrFi, global
 /* 802524DC 0024F41C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802524E0 0024F420  7C 08 02 A6 */	mflr r0
 /* 802524E4 0024F424  7C 85 23 78 */	mr r5, r4
@@ -2333,9 +2562,9 @@ controllerUnLock__Q24Game9CameraMgrFi:
 /* 80252540 0024F480  7C 08 03 A6 */	mtlr r0
 /* 80252544 0024F484  38 21 00 20 */	addi r1, r1, 0x20
 /* 80252548 0024F488  4E 80 00 20 */	blr 
+.endfn controllerUnLock__Q24Game9CameraMgrFi
 
-.global startDemoCamera__Q24Game9CameraMgrFii
-startDemoCamera__Q24Game9CameraMgrFii:
+.fn startDemoCamera__Q24Game9CameraMgrFii, global
 /* 8025254C 0024F48C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80252550 0024F490  7C 08 02 A6 */	mflr r0
 /* 80252554 0024F494  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2375,9 +2604,9 @@ startDemoCamera__Q24Game9CameraMgrFii:
 /* 802525D0 0024F510  7C 08 03 A6 */	mtlr r0
 /* 802525D4 0024F514  38 21 00 20 */	addi r1, r1, 0x20
 /* 802525D8 0024F518  4E 80 00 20 */	blr 
+.endfn startDemoCamera__Q24Game9CameraMgrFii
 
-.global finishDemoCamera__Q24Game9CameraMgrFi
-finishDemoCamera__Q24Game9CameraMgrFi:
+.fn finishDemoCamera__Q24Game9CameraMgrFi, global
 /* 802525DC 0024F51C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802525E0 0024F520  7C 08 02 A6 */	mflr r0
 /* 802525E4 0024F524  7C 85 23 78 */	mr r5, r4
@@ -2412,9 +2641,9 @@ finishDemoCamera__Q24Game9CameraMgrFi:
 /* 8025264C 0024F58C  7C 08 03 A6 */	mtlr r0
 /* 80252650 0024F590  38 21 00 20 */	addi r1, r1, 0x20
 /* 80252654 0024F594  4E 80 00 20 */	blr 
+.endfn finishDemoCamera__Q24Game9CameraMgrFi
 
-.global "changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<PQ24Game9CameraArg>"
-"changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<PQ24Game9CameraArg>":
+.fn "changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<PQ24Game9CameraArg>", global
 /* 80252658 0024F598  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8025265C 0024F59C  7C 08 02 A6 */	mflr r0
 /* 80252660 0024F5A0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2510,9 +2739,9 @@ finishDemoCamera__Q24Game9CameraMgrFi:
 /* 802527AC 0024F6EC  7C 08 03 A6 */	mtlr r0
 /* 802527B0 0024F6F0  38 21 00 70 */	addi r1, r1, 0x70
 /* 802527B4 0024F6F4  4E 80 00 20 */	blr 
+.endfn "changePlayerMode__Q24Game9CameraMgrFiP30IDelegate1<PQ24Game9CameraArg>"
 
-.global isChangePlayer__Q24Game9CameraMgrFv
-isChangePlayer__Q24Game9CameraMgrFv:
+.fn isChangePlayer__Q24Game9CameraMgrFv, global
 /* 802527B8 0024F6F8  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 802527BC 0024F6FC  28 00 00 00 */	cmplwi r0, 0
 /* 802527C0 0024F700  41 82 00 0C */	beq .L_802527CC
@@ -2538,9 +2767,9 @@ isChangePlayer__Q24Game9CameraMgrFv:
 .L_80252808:
 /* 80252808 0024F748  38 60 00 00 */	li r3, 0
 /* 8025280C 0024F74C  4E 80 00 20 */	blr 
+.endfn isChangePlayer__Q24Game9CameraMgrFv
 
-.global setZukanCamera__Q24Game9CameraMgrFP12LookAtCamera
-setZukanCamera__Q24Game9CameraMgrFP12LookAtCamera:
+.fn setZukanCamera__Q24Game9CameraMgrFP12LookAtCamera, global
 /* 80252810 0024F750  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80252814 0024F754  7C 08 02 A6 */	mflr r0
 /* 80252818 0024F758  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2565,9 +2794,9 @@ setZukanCamera__Q24Game9CameraMgrFP12LookAtCamera:
 /* 8025285C 0024F79C  7C 08 03 A6 */	mtlr r0
 /* 80252860 0024F7A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80252864 0024F7A4  4E 80 00 20 */	blr 
+.endfn setZukanCamera__Q24Game9CameraMgrFP12LookAtCamera
 
-.global isCameraUpdateOn__Q24Game9CameraMgrFv
-isCameraUpdateOn__Q24Game9CameraMgrFv:
+.fn isCameraUpdateOn__Q24Game9CameraMgrFv, global
 /* 80252868 0024F7A8  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
 /* 8025286C 0024F7AC  28 03 00 00 */	cmplwi r3, 0
 /* 80252870 0024F7B0  41 82 00 18 */	beq .L_80252888
@@ -2579,9 +2808,9 @@ isCameraUpdateOn__Q24Game9CameraMgrFv:
 .L_80252888:
 /* 80252888 0024F7C8  38 60 00 00 */	li r3, 0
 /* 8025288C 0024F7CC  4E 80 00 20 */	blr 
+.endfn isCameraUpdateOn__Q24Game9CameraMgrFv
 
-.global isStartAndEnd__Q24Game9CameraMgrFPii
-isStartAndEnd__Q24Game9CameraMgrFPii:
+.fn isStartAndEnd__Q24Game9CameraMgrFPii, global
 /* 80252890 0024F7D0  2C 05 00 02 */	cmpwi r5, 2
 /* 80252894 0024F7D4  40 82 00 1C */	bne .L_802528B0
 /* 80252898 0024F7D8  38 60 00 00 */	li r3, 0
@@ -2611,9 +2840,9 @@ isStartAndEnd__Q24Game9CameraMgrFPii:
 .L_802528F0:
 /* 802528F0 0024F830  38 60 00 00 */	li r3, 0
 /* 802528F4 0024F834  4E 80 00 20 */	blr 
+.endfn isStartAndEnd__Q24Game9CameraMgrFPii
 
-.global isVibrationStart__Q24Game9CameraMgrFii
-isVibrationStart__Q24Game9CameraMgrFii:
+.fn isVibrationStart__Q24Game9CameraMgrFii, global
 /* 802528F8 0024F838  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802528FC 0024F83C  7C 08 02 A6 */	mflr r0
 /* 80252900 0024F840  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2650,9 +2879,9 @@ isVibrationStart__Q24Game9CameraMgrFii:
 /* 80252970 0024F8B0  7C 08 03 A6 */	mtlr r0
 /* 80252974 0024F8B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80252978 0024F8B8  4E 80 00 20 */	blr 
+.endfn isVibrationStart__Q24Game9CameraMgrFii
 
-.global readCameraParms__Q24Game9CameraMgrFPc
-readCameraParms__Q24Game9CameraMgrFPc:
+.fn readCameraParms__Q24Game9CameraMgrFPc, global
 /* 8025297C 0024F8BC  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 80252980 0024F8C0  7C 08 02 A6 */	mflr r0
 /* 80252984 0024F8C4  38 A0 00 00 */	li r5, 0
@@ -2697,9 +2926,9 @@ readCameraParms__Q24Game9CameraMgrFPc:
 /* 80252A18 0024F958  7C 08 03 A6 */	mtlr r0
 /* 80252A1C 0024F95C  38 21 04 40 */	addi r1, r1, 0x440
 /* 80252A20 0024F960  4E 80 00 20 */	blr 
+.endfn readCameraParms__Q24Game9CameraMgrFPc
 
-.global readParameter__Q24Game9CameraMgrFR6Stream
-readParameter__Q24Game9CameraMgrFR6Stream:
+.fn readParameter__Q24Game9CameraMgrFR6Stream, global
 /* 80252A24 0024F964  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80252A28 0024F968  7C 08 02 A6 */	mflr r0
 /* 80252A2C 0024F96C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2730,9 +2959,9 @@ readParameter__Q24Game9CameraMgrFR6Stream:
 /* 80252A8C 0024F9CC  7C 08 03 A6 */	mtlr r0
 /* 80252A90 0024F9D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80252A94 0024F9D4  4E 80 00 20 */	blr 
+.endfn readParameter__Q24Game9CameraMgrFR6Stream
 
-.global __dt__Q24Game9CameraMgrFv
-__dt__Q24Game9CameraMgrFv:
+.fn __dt__Q24Game9CameraMgrFv, weak
 /* 80252A98 0024F9D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80252A9C 0024F9DC  7C 08 02 A6 */	mflr r0
 /* 80252AA0 0024F9E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2758,9 +2987,9 @@ __dt__Q24Game9CameraMgrFv:
 /* 80252AEC 0024FA2C  7C 08 03 A6 */	mtlr r0
 /* 80252AF0 0024FA30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80252AF4 0024FA34  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game9CameraMgrFv
 
-.global __sinit_CameraMgr_cpp
-__sinit_CameraMgr_cpp:
+.fn __sinit_CameraMgr_cpp, local
 /* 80252AF8 0024FA38  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80252AFC 0024FA3C  38 00 FF FF */	li r0, -1
 /* 80252B00 0024FA40  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2771,3 +3000,4 @@ __sinit_CameraMgr_cpp:
 /* 80252B14 0024FA54  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80252B18 0024FA58  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80252B1C 0024FA5C  4E 80 00 20 */	blr 
+.endfn __sinit_CameraMgr_cpp

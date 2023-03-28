@@ -1,85 +1,127 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80480640:
-	.4byte 0x63617665
-	.4byte 0x496E666F
-	.4byte 0x00000000
-lbl_8048064C:
-	.4byte 0x67616D65
-	.4byte 0x43617665
-	.4byte 0x496E666F
-	.4byte 0x2E637070
-	.4byte 0x00000000
-lbl_80480660:
+.obj lbl_80480640, local
+	.asciz "caveInfo"
+.endobj lbl_80480640
+.balign 4
+.obj lbl_8048064C, local
+	.asciz "gameCaveInfo.cpp"
+.endobj lbl_8048064C
+.balign 4
+.obj lbl_80480660, local # Shift-JIS
 	.4byte 0x95CF82C8
 	.4byte 0x8379838C
 	.4byte 0x83628367
 	.4byte 0x836C815B
 	.4byte 0x838082C5
 	.4byte 0x82B7210A
-	.4byte 0x00000000
-lbl_8048067C:
-	.asciz "floorInfo"
+	.byte 0
+.endobj lbl_80480660
 .balign 4
-lbl_80480688:
+.obj lbl_8048067C, local
+	.asciz "floorInfo"
+.endobj lbl_8048067C
+.balign 4
+.obj lbl_80480688, local # Shift-JIS
 	.4byte 0x83528393
 	.4byte 0x834E838A
 	.4byte 0x815B8363
-	.4byte 0x00000000
-lbl_80480698:
+	.byte 0
+.endobj lbl_80480688
+.balign 4
+.obj lbl_80480698, local # Shift-JIS
 	.4byte 0x82E282B7
 	.4byte 0x82E782AC
-	.4byte 0x00000000
-	.4byte 0x466C6F6F
-	.4byte 0x72496E66
-	.4byte 0x6F000000
+	.byte 0
+.endobj lbl_80480698
+.balign 4
+.obj lbl_804806A4, local
+	.asciz "FloorInfo"
+.endobj lbl_804806A4
+.balign 4
+.obj lbl_804806B0, local # Shift-JIS
 	.4byte 0x8A4B82CD
 	.4byte 0x82B682DF
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804806B0
+.balign 4
+.obj lbl_804806BC, local # Shift-JIS
 	.4byte 0x8A4B82A8
 	.4byte 0x82ED82E8
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804806BC
+.balign 4
+.obj lbl_804806C8, local # Shift-JIS
 	.4byte 0x93478DC5
 	.4byte 0x91E59094
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804806C8
+.balign 4
+.obj lbl_804806D4, local # Shift-JIS
 	.4byte 0x83418343
 	.4byte 0x83658380
 	.4byte 0x8DC591E5
 	.4byte 0x90940000
+.endobj lbl_804806D4
+.balign 4
+.obj lbl_804806E4, local # Shift-JIS
 	.4byte 0x8351815B
 	.4byte 0x83678DC5
 	.4byte 0x91E59094
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_804806E4
+.balign 4
+.obj lbl_804806F4, local # Shift-JIS
 	.4byte 0x834C8383
 	.4byte 0x83628376
 	.4byte 0x8DC591E5
 	.4byte 0x90940000
+.endobj lbl_804806F4
+.balign 4
+.obj lbl_80480704, local # Shift-JIS
 	.4byte 0x838B815B
 	.4byte 0x83809094
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480704
+.balign 4
+.obj lbl_80480710, local # Shift-JIS
 	.4byte 0x838B815B
 	.4byte 0x836782CC
 	.4byte 0x8A848D87
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480710
+.balign 4
+.obj lbl_80480720, local # Shift-JIS
 	.4byte 0x8B418AD2
 	.4byte 0x95AC9085
 	.4byte 0x28313D82
 	.4byte 0xA082E829
-	.4byte 0x00000000
-	.4byte 0x756E6974
-	.4byte 0x732E7478
-	.4byte 0x74000000
+	.byte 0
+.endobj lbl_80480720
+.balign 4
+.obj lbl_80480734, local
+	.asciz "units.txt"
+.endobj lbl_80480734
+.balign 4
+.obj lbl_80480740, local # Shift-JIS
 	.4byte 0x8E679770
 	.4byte 0x8386836A
 	.4byte 0x83628367
-	.4byte 0x00000000
-	.4byte 0x6C696768
-	.4byte 0x742E696E
-	.4byte 0x69000000
+	.byte 0
+.endobj lbl_80480740
+.balign 4
+.obj lbl_80480750, local
+	.asciz "light.ini"
+.endobj lbl_80480750
+.balign 4
+.obj lbl_8048075C, local # Shift-JIS
 	.4byte 0x8E679770
 	.4byte 0x83898343
 	.4byte 0x83670000
+.endobj lbl_8048075C
+.balign 4
+.obj lbl_80480768, local # Shift-JIS
 	.4byte 0x8A4B9269
 	.4byte 0x82F089F3
 	.4byte 0x82B78AE2
@@ -88,160 +130,193 @@ lbl_80480698:
 	.4byte 0x3D834983
 	.4byte 0x7420313D
 	.4byte 0x83498393
-	.4byte 0x29000000
-	.4byte 0x426C6163
-	.4byte 0x6B4D616E
-	.4byte 0x54696D65
-	.4byte 0x72000000
-lbl_8048079C:
-	.asciz "P2Assert"
+	.2byte 0x2900
+.endobj lbl_80480768
 .balign 4
-lbl_804807A8:
-	.4byte 0x43617665
-	.4byte 0x496E666F
-	.4byte 0x00000000
-lbl_804807B4:
-	.4byte 0x2573206E
-	.4byte 0x6F742066
-	.4byte 0x6F756E64
-	.4byte 0x20210A00
-	.4byte 0x00000000
+.obj lbl_8048078C, local
+	.asciz "BlackManTimer"
+.endobj lbl_8048078C
+.balign 4
+.obj lbl_8048079C, local
+	.asciz "P2Assert"
+.endobj lbl_8048079C
+.balign 4
+.obj lbl_804807A8, local
+	.asciz "CaveInfo"
+.endobj lbl_804807A8
+.balign 4
+.obj lbl_804807B4, local
+	.asciz "%s not found !\n"
+.endobj lbl_804807B4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@"
-"enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@":
+.obj "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@", local
 	.4byte lbl_805196CC
 	.4byte lbl_805196D0
 	.4byte lbl_80480688
 	.4byte lbl_805196D8
 	.4byte 0
 	.4byte 0
-.global "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@"
-"enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@":
+.endobj "enum_floor_alpha_types__26@unnamed@gameCaveInfo_cpp@"
+.obj "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@", local
 	.4byte lbl_805196E0
 	.4byte lbl_805196E8
 	.4byte lbl_80480698
-.global __vt__Q34Game4Cave8CaveInfo
-__vt__Q34Game4Cave8CaveInfo:
+.endobj "enum_floor_beta_types__26@unnamed@gameCaveInfo_cpp@"
+.obj __vt__Q34Game4Cave8CaveInfo, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game4Cave8CaveInfoFv
 	.4byte getChildCount__5CNodeFv
 	.4byte read__Q34Game4Cave8CaveInfoFR6Stream
-.global __vt__Q34Game4Cave9FloorInfo
-__vt__Q34Game4Cave9FloorInfo:
+.endobj __vt__Q34Game4Cave8CaveInfo
+.obj __vt__Q34Game4Cave9FloorInfo, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game4Cave9FloorInfoFv
 	.4byte getChildCount__5CNodeFv
 	.4byte read__Q34Game4Cave9FloorInfoFR6Stream
-.global __vt__Q34Game4Cave7CapInfo
-__vt__Q34Game4Cave7CapInfo:
+.endobj __vt__Q34Game4Cave9FloorInfo
+.obj __vt__Q34Game4Cave7CapInfo, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game4Cave7CapInfoFv
 	.4byte getChildCount__5CNodeFv
 	.4byte read__Q34Game4Cave7CapInfoFR6Stream
-.global __vt__Q34Game4Cave8GateInfo
-__vt__Q34Game4Cave8GateInfo:
+.endobj __vt__Q34Game4Cave7CapInfo
+.obj __vt__Q34Game4Cave8GateInfo, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game4Cave8GateInfoFv
 	.4byte getChildCount__5CNodeFv
 	.4byte read__Q34Game4Cave8GateInfoFR6Stream
-.global __vt__Q34Game4Cave8ItemInfo
-__vt__Q34Game4Cave8ItemInfo:
+.endobj __vt__Q34Game4Cave8GateInfo
+.obj __vt__Q34Game4Cave8ItemInfo, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game4Cave8ItemInfoFv
 	.4byte getChildCount__5CNodeFv
 	.4byte read__Q34Game4Cave8ItemInfoFR6Stream
-.global __vt__Q34Game4Cave8TekiInfo
-__vt__Q34Game4Cave8TekiInfo:
+.endobj __vt__Q34Game4Cave8ItemInfo
+.obj __vt__Q34Game4Cave8TekiInfo, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game4Cave8TekiInfoFv
 	.4byte getChildCount__5CNodeFv
 	.4byte read__Q34Game4Cave8TekiInfoFR6Stream
-.global __vt__Q34Game4Cave7BaseGen
-__vt__Q34Game4Cave7BaseGen:
+.endobj __vt__Q34Game4Cave8TekiInfo
+.obj __vt__Q34Game4Cave7BaseGen, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game4Cave7BaseGenFv
 	.4byte getChildCount__5CNodeFv
 	.4byte read__Q34Game4Cave7BaseGenFR6Stream
 	.4byte draw__Q34Game4Cave7BaseGenFR8GraphicsP7Matrixf
+.endobj __vt__Q34Game4Cave7BaseGen
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@"
-"enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@":
+.obj "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@", local
 	.4byte lbl_805196F0
 	.4byte lbl_805196F8
+.endobj "enum_floor_hiddens__26@unnamed@gameCaveInfo_cpp@"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805196C0:
+.obj lbl_805196C0, local
 	.asciz "BaseGen"
+.endobj lbl_805196C0
 .balign 4
-lbl_805196C8:
+.obj lbl_805196C8, local
 	.float 0.0
-lbl_805196CC:
+.endobj lbl_805196C8
+.balign 4
+.obj lbl_805196CC, local # Shift-JIS
 	.4byte 0x93790000
-lbl_805196D0:
+.endobj lbl_805196CC
+.balign 4
+.obj lbl_805196D0, local # Shift-JIS
 	.4byte 0x8381835E
 	.4byte 0x838B0000
-lbl_805196D8:
+.endobj lbl_805196D0
+.balign 4
+.obj lbl_805196D8, local # Shift-JIS
 	.4byte 0x835E8343
 	.4byte 0x838B0000
-lbl_805196E0:
+.endobj lbl_805196D8
+.balign 4
+.obj lbl_805196E0, local # Shift-JIS
 	.4byte 0x92CA8FED
-	.4byte 0x00000000
-lbl_805196E8:
+	.byte 0
+.endobj lbl_805196E0
+.balign 4
+.obj lbl_805196E8, local # Shift-JIS
 	.4byte 0x837B8358
-	.4byte 0x00000000
-lbl_805196F0:
+	.byte 0
+.endobj lbl_805196E8
+.balign 4
+.obj lbl_805196F0, local # Shift-JIS
 	.4byte 0x82C882B5
-	.4byte 0x00000000
-lbl_805196F8:
+	.byte 0
+.endobj lbl_805196F0
+.balign 4
+.obj lbl_805196F8, local # Shift-JIS
 	.4byte 0x82A082E8
-	.4byte 0x00000000
-lbl_80519700:
+	.byte 0
+.endobj lbl_805196F8
+.balign 4
+.obj lbl_80519700, local
 	.float 1.0
+.endobj lbl_80519700
 .balign 4
-lbl_80519704:
+.obj lbl_80519704, local
 	.asciz "test"
+.endobj lbl_80519704
 .balign 4
-lbl_8051970C:
+.obj lbl_8051970C, local
 	.asciz "VRBOX"
+.endobj lbl_8051970C
 .balign 4
-lbl_80519714:
+.obj lbl_80519714, local # Shift-JIS
 	.4byte 0x83BF91AE
 	.4byte 0x90AB0000
-lbl_8051971C:
+.endobj lbl_80519714
+.balign 4
+.obj lbl_8051971C, local # Shift-JIS
 	.4byte 0x83C091AE
 	.4byte 0x90AB0000
-lbl_80519724:
+.endobj lbl_8051971C
+.balign 4
+.obj lbl_80519724, local # Shift-JIS
 	.4byte 0x894282B5
 	.4byte 0x8FB00000
-lbl_8051972C:
-	.4byte 0x56657273
-	.4byte 0x696F6E00
-lbl_80519734:
-	.4byte 0x461C4000
-lbl_80519738:
+.endobj lbl_80519724
+.balign 4
+.obj lbl_8051972C, local
+	.asciz "Version"
+.endobj lbl_8051972C
+.balign 4
+.obj lbl_80519734, local
+	.float 10000.0
+.endobj lbl_80519734
+.balign 4
+.obj lbl_80519738, local # Shift-JIS
 	.4byte 0x92BE82DE
 	.4byte 0x95C70000
-lbl_80519740:
+.endobj lbl_80519738
+.balign 4
+.obj lbl_80519740, local # Shift-JIS
 	.4byte 0x8A4B9177
-	.4byte 0x00000000
-lbl_80519748:
+	.byte 0
+.endobj lbl_80519740
+.balign 4
+.obj lbl_80519748, local
 	.asciz "%s"
+.endobj lbl_80519748
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game4Cave7BaseGenFv
-__ct__Q34Game4Cave7BaseGenFv:
+.fn __ct__Q34Game4Cave7BaseGenFv, global
 /* 801D60A4 001D2FE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D60A8 001D2FE8  7C 08 02 A6 */	mflr r0
 /* 801D60AC 001D2FEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -270,9 +345,9 @@ __ct__Q34Game4Cave7BaseGenFv:
 /* 801D6108 001D3048  7C 08 03 A6 */	mtlr r0
 /* 801D610C 001D304C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D6110 001D3050  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Cave7BaseGenFv
 
-.global read__Q34Game4Cave7BaseGenFR6Stream
-read__Q34Game4Cave7BaseGenFR6Stream:
+.fn read__Q34Game4Cave7BaseGenFR6Stream, global
 /* 801D6114 001D3054  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D6118 001D3058  7C 08 02 A6 */	mflr r0
 /* 801D611C 001D305C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -337,13 +412,13 @@ read__Q34Game4Cave7BaseGenFR6Stream:
 /* 801D61FC 001D313C  7C 08 03 A6 */	mtlr r0
 /* 801D6200 001D3140  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D6204 001D3144  4E 80 00 20 */	blr 
+.endfn read__Q34Game4Cave7BaseGenFR6Stream
 
-.global draw__Q34Game4Cave7BaseGenFR8GraphicsP7Matrixf
-draw__Q34Game4Cave7BaseGenFR8GraphicsP7Matrixf:
+.fn draw__Q34Game4Cave7BaseGenFR8GraphicsP7Matrixf, global
 /* 801D6208 001D3148  4E 80 00 20 */	blr 
+.endfn draw__Q34Game4Cave7BaseGenFR8GraphicsP7Matrixf
 
-.global read__Q34Game4Cave8TekiInfoFR6Stream
-read__Q34Game4Cave8TekiInfoFR6Stream:
+.fn read__Q34Game4Cave8TekiInfoFR6Stream, global
 /* 801D620C 001D314C  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 801D6210 001D3150  7C 08 02 A6 */	mflr r0
 /* 801D6214 001D3154  38 A0 00 00 */	li r5, 0
@@ -462,9 +537,9 @@ read__Q34Game4Cave8TekiInfoFR6Stream:
 /* 801D63A8 001D32E8  7C 08 03 A6 */	mtlr r0
 /* 801D63AC 001D32EC  38 21 01 30 */	addi r1, r1, 0x130
 /* 801D63B0 001D32F0  4E 80 00 20 */	blr 
+.endfn read__Q34Game4Cave8TekiInfoFR6Stream
 
-.global read__Q34Game4Cave8ItemInfoFR6Stream
-read__Q34Game4Cave8ItemInfoFR6Stream:
+.fn read__Q34Game4Cave8ItemInfoFR6Stream, global
 /* 801D63B4 001D32F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D63B8 001D32F8  7C 08 02 A6 */	mflr r0
 /* 801D63BC 001D32FC  38 A0 00 00 */	li r5, 0
@@ -508,9 +583,9 @@ read__Q34Game4Cave8ItemInfoFR6Stream:
 /* 801D6450 001D3390  7C 08 03 A6 */	mtlr r0
 /* 801D6454 001D3394  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D6458 001D3398  4E 80 00 20 */	blr 
+.endfn read__Q34Game4Cave8ItemInfoFR6Stream
 
-.global read__Q34Game4Cave8GateInfoFR6Stream
-read__Q34Game4Cave8GateInfoFR6Stream:
+.fn read__Q34Game4Cave8GateInfoFR6Stream, global
 /* 801D645C 001D339C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D6460 001D33A0  7C 08 02 A6 */	mflr r0
 /* 801D6464 001D33A4  38 A0 00 00 */	li r5, 0
@@ -546,9 +621,9 @@ read__Q34Game4Cave8GateInfoFR6Stream:
 /* 801D64DC 001D341C  7C 08 03 A6 */	mtlr r0
 /* 801D64E0 001D3420  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D64E4 001D3424  4E 80 00 20 */	blr 
+.endfn read__Q34Game4Cave8GateInfoFR6Stream
 
-.global getTekiInfo__Q34Game4Cave7CapInfoFv
-getTekiInfo__Q34Game4Cave7CapInfoFv:
+.fn getTekiInfo__Q34Game4Cave7CapInfoFv, global
 /* 801D64E8 001D3428  88 03 00 18 */	lbz r0, 0x18(r3)
 /* 801D64EC 001D342C  28 00 00 00 */	cmplwi r0, 0
 /* 801D64F0 001D3430  40 82 00 0C */	bne .L_801D64FC
@@ -557,9 +632,9 @@ getTekiInfo__Q34Game4Cave7CapInfoFv:
 .L_801D64FC:
 /* 801D64FC 001D343C  38 60 00 00 */	li r3, 0
 /* 801D6500 001D3440  4E 80 00 20 */	blr 
+.endfn getTekiInfo__Q34Game4Cave7CapInfoFv
 
-.global read__Q34Game4Cave7CapInfoFR6Stream
-read__Q34Game4Cave7CapInfoFR6Stream:
+.fn read__Q34Game4Cave7CapInfoFR6Stream, global
 /* 801D6504 001D3444  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D6508 001D3448  7C 08 02 A6 */	mflr r0
 /* 801D650C 001D344C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -614,9 +689,9 @@ read__Q34Game4Cave7CapInfoFR6Stream:
 /* 801D65C0 001D3500  7C 08 03 A6 */	mtlr r0
 /* 801D65C4 001D3504  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D65C8 001D3508  4E 80 00 20 */	blr 
+.endfn read__Q34Game4Cave7CapInfoFR6Stream
 
-.global __ct__Q34Game4Cave9FloorInfoFv
-__ct__Q34Game4Cave9FloorInfoFv:
+.fn __ct__Q34Game4Cave9FloorInfoFv, global
 /* 801D65CC 001D350C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D65D0 001D3510  7C 08 02 A6 */	mflr r0
 /* 801D65D4 001D3514  3C 80 80 4F */	lis r4, __vt__5CNode@ha
@@ -710,9 +785,9 @@ __ct__Q34Game4Cave9FloorInfoFv:
 /* 801D6734 001D3674  7C 08 03 A6 */	mtlr r0
 /* 801D6738 001D3678  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D673C 001D367C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Cave9FloorInfoFv
 
-.global __dt__Q34Game4Cave7CapInfoFv
-__dt__Q34Game4Cave7CapInfoFv:
+.fn __dt__Q34Game4Cave7CapInfoFv, weak
 /* 801D6740 001D3680  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D6744 001D3684  7C 08 02 A6 */	mflr r0
 /* 801D6748 001D3688  90 01 00 14 */	stw r0, 0x14(r1)
@@ -738,9 +813,9 @@ __dt__Q34Game4Cave7CapInfoFv:
 /* 801D6794 001D36D4  7C 08 03 A6 */	mtlr r0
 /* 801D6798 001D36D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D679C 001D36DC  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game4Cave7CapInfoFv
 
-.global __dt__Q34Game4Cave8GateInfoFv
-__dt__Q34Game4Cave8GateInfoFv:
+.fn __dt__Q34Game4Cave8GateInfoFv, weak
 /* 801D67A0 001D36E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D67A4 001D36E4  7C 08 02 A6 */	mflr r0
 /* 801D67A8 001D36E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -766,9 +841,9 @@ __dt__Q34Game4Cave8GateInfoFv:
 /* 801D67F4 001D3734  7C 08 03 A6 */	mtlr r0
 /* 801D67F8 001D3738  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D67FC 001D373C  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game4Cave8GateInfoFv
 
-.global __dt__Q34Game4Cave8ItemInfoFv
-__dt__Q34Game4Cave8ItemInfoFv:
+.fn __dt__Q34Game4Cave8ItemInfoFv, weak
 /* 801D6800 001D3740  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D6804 001D3744  7C 08 02 A6 */	mflr r0
 /* 801D6808 001D3748  90 01 00 14 */	stw r0, 0x14(r1)
@@ -794,9 +869,9 @@ __dt__Q34Game4Cave8ItemInfoFv:
 /* 801D6854 001D3794  7C 08 03 A6 */	mtlr r0
 /* 801D6858 001D3798  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D685C 001D379C  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game4Cave8ItemInfoFv
 
-.global __dt__Q34Game4Cave8TekiInfoFv
-__dt__Q34Game4Cave8TekiInfoFv:
+.fn __dt__Q34Game4Cave8TekiInfoFv, weak
 /* 801D6860 001D37A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D6864 001D37A4  7C 08 02 A6 */	mflr r0
 /* 801D6868 001D37A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -822,9 +897,9 @@ __dt__Q34Game4Cave8TekiInfoFv:
 /* 801D68B4 001D37F4  7C 08 03 A6 */	mtlr r0
 /* 801D68B8 001D37F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D68BC 001D37FC  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game4Cave8TekiInfoFv
 
-.global __ct__Q44Game4Cave9FloorInfo5ParmsFv
-__ct__Q44Game4Cave9FloorInfo5ParmsFv:
+.fn __ct__Q44Game4Cave9FloorInfo5ParmsFv, global
 /* 801D68C0 001D3800  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D68C4 001D3804  7C 08 02 A6 */	mflr r0
 /* 801D68C8 001D3808  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1086,22 +1161,22 @@ __ct__Q44Game4Cave9FloorInfo5ParmsFv:
 /* 801D6CC4 001D3C04  7C 08 03 A6 */	mtlr r0
 /* 801D6CC8 001D3C08  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D6CCC 001D3C0C  4E 80 00 20 */	blr 
+.endfn __ct__Q44Game4Cave9FloorInfo5ParmsFv
 
-.global hasHiddenCollision__Q34Game4Cave9FloorInfoFv
-hasHiddenCollision__Q34Game4Cave9FloorInfoFv:
+.fn hasHiddenCollision__Q34Game4Cave9FloorInfoFv, global
 /* 801D6CD0 001D3C10  80 03 02 74 */	lwz r0, 0x274(r3)
 /* 801D6CD4 001D3C14  20 00 00 01 */	subfic r0, r0, 1
 /* 801D6CD8 001D3C18  7C 00 00 34 */	cntlzw r0, r0
 /* 801D6CDC 001D3C1C  54 03 D9 7E */	srwi r3, r0, 5
 /* 801D6CE0 001D3C20  4E 80 00 20 */	blr 
+.endfn hasHiddenCollision__Q34Game4Cave9FloorInfoFv
 
-.global getTekiMax__Q34Game4Cave9FloorInfoFv
-getTekiMax__Q34Game4Cave9FloorInfoFv:
+.fn getTekiMax__Q34Game4Cave9FloorInfoFv, global
 /* 801D6CE4 001D3C24  80 63 00 8C */	lwz r3, 0x8c(r3)
 /* 801D6CE8 001D3C28  4E 80 00 20 */	blr 
+.endfn getTekiMax__Q34Game4Cave9FloorInfoFv
 
-.global getTekiInfoNum__Q34Game4Cave9FloorInfoFv
-getTekiInfoNum__Q34Game4Cave9FloorInfoFv:
+.fn getTekiInfoNum__Q34Game4Cave9FloorInfoFv, global
 /* 801D6CEC 001D3C2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D6CF0 001D3C30  7C 08 02 A6 */	mflr r0
 /* 801D6CF4 001D3C34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1113,9 +1188,9 @@ getTekiInfoNum__Q34Game4Cave9FloorInfoFv:
 /* 801D6D0C 001D3C4C  7C 08 03 A6 */	mtlr r0
 /* 801D6D10 001D3C50  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D6D14 001D3C54  4E 80 00 20 */	blr 
+.endfn getTekiInfoNum__Q34Game4Cave9FloorInfoFv
 
-.global getTekiInfo__Q34Game4Cave9FloorInfoFi
-getTekiInfo__Q34Game4Cave9FloorInfoFi:
+.fn getTekiInfo__Q34Game4Cave9FloorInfoFi, global
 /* 801D6D18 001D3C58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D6D1C 001D3C5C  7C 08 02 A6 */	mflr r0
 /* 801D6D20 001D3C60  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1155,9 +1230,9 @@ getTekiInfo__Q34Game4Cave9FloorInfoFi:
 /* 801D6DA0 001D3CE0  7C 08 03 A6 */	mtlr r0
 /* 801D6DA4 001D3CE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D6DA8 001D3CE8  4E 80 00 20 */	blr 
+.endfn getTekiInfo__Q34Game4Cave9FloorInfoFi
 
-.global getTekiWeightSum__Q34Game4Cave9FloorInfoFv
-getTekiWeightSum__Q34Game4Cave9FloorInfoFv:
+.fn getTekiWeightSum__Q34Game4Cave9FloorInfoFv, global
 /* 801D6DAC 001D3CEC  80 83 03 0C */	lwz r4, 0x30c(r3)
 /* 801D6DB0 001D3CF0  38 60 00 00 */	li r3, 0
 /* 801D6DB4 001D3CF4  48 00 00 10 */	b .L_801D6DC4
@@ -1169,14 +1244,14 @@ getTekiWeightSum__Q34Game4Cave9FloorInfoFv:
 /* 801D6DC4 001D3D04  28 04 00 00 */	cmplwi r4, 0
 /* 801D6DC8 001D3D08  40 82 FF F0 */	bne .L_801D6DB8
 /* 801D6DCC 001D3D0C  4E 80 00 20 */	blr 
+.endfn getTekiWeightSum__Q34Game4Cave9FloorInfoFv
 
-.global getItemMax__Q34Game4Cave9FloorInfoFv
-getItemMax__Q34Game4Cave9FloorInfoFv:
+.fn getItemMax__Q34Game4Cave9FloorInfoFv, global
 /* 801D6DD0 001D3D10  80 63 00 B4 */	lwz r3, 0xb4(r3)
 /* 801D6DD4 001D3D14  4E 80 00 20 */	blr 
+.endfn getItemMax__Q34Game4Cave9FloorInfoFv
 
-.global getItemInfoNum__Q34Game4Cave9FloorInfoFv
-getItemInfoNum__Q34Game4Cave9FloorInfoFv:
+.fn getItemInfoNum__Q34Game4Cave9FloorInfoFv, global
 /* 801D6DD8 001D3D18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D6DDC 001D3D1C  7C 08 02 A6 */	mflr r0
 /* 801D6DE0 001D3D20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1188,9 +1263,9 @@ getItemInfoNum__Q34Game4Cave9FloorInfoFv:
 /* 801D6DF8 001D3D38  7C 08 03 A6 */	mtlr r0
 /* 801D6DFC 001D3D3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D6E00 001D3D40  4E 80 00 20 */	blr 
+.endfn getItemInfoNum__Q34Game4Cave9FloorInfoFv
 
-.global getItemInfo__Q34Game4Cave9FloorInfoFi
-getItemInfo__Q34Game4Cave9FloorInfoFi:
+.fn getItemInfo__Q34Game4Cave9FloorInfoFi, global
 /* 801D6E04 001D3D44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D6E08 001D3D48  7C 08 02 A6 */	mflr r0
 /* 801D6E0C 001D3D4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1230,9 +1305,9 @@ getItemInfo__Q34Game4Cave9FloorInfoFi:
 /* 801D6E8C 001D3DCC  7C 08 03 A6 */	mtlr r0
 /* 801D6E90 001D3DD0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D6E94 001D3DD4  4E 80 00 20 */	blr 
+.endfn getItemInfo__Q34Game4Cave9FloorInfoFi
 
-.global getItemWeightSum__Q34Game4Cave9FloorInfoFv
-getItemWeightSum__Q34Game4Cave9FloorInfoFv:
+.fn getItemWeightSum__Q34Game4Cave9FloorInfoFv, global
 /* 801D6E98 001D3DD8  80 83 03 34 */	lwz r4, 0x334(r3)
 /* 801D6E9C 001D3DDC  38 60 00 00 */	li r3, 0
 /* 801D6EA0 001D3DE0  48 00 00 10 */	b .L_801D6EB0
@@ -1244,14 +1319,14 @@ getItemWeightSum__Q34Game4Cave9FloorInfoFv:
 /* 801D6EB0 001D3DF0  28 04 00 00 */	cmplwi r4, 0
 /* 801D6EB4 001D3DF4  40 82 FF F0 */	bne .L_801D6EA4
 /* 801D6EB8 001D3DF8  4E 80 00 20 */	blr 
+.endfn getItemWeightSum__Q34Game4Cave9FloorInfoFv
 
-.global getGateMax__Q34Game4Cave9FloorInfoFv
-getGateMax__Q34Game4Cave9FloorInfoFv:
+.fn getGateMax__Q34Game4Cave9FloorInfoFv, global
 /* 801D6EBC 001D3DFC  80 63 00 DC */	lwz r3, 0xdc(r3)
 /* 801D6EC0 001D3E00  4E 80 00 20 */	blr 
+.endfn getGateMax__Q34Game4Cave9FloorInfoFv
 
-.global getGateInfoNum__Q34Game4Cave9FloorInfoFv
-getGateInfoNum__Q34Game4Cave9FloorInfoFv:
+.fn getGateInfoNum__Q34Game4Cave9FloorInfoFv, global
 /* 801D6EC4 001D3E04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D6EC8 001D3E08  7C 08 02 A6 */	mflr r0
 /* 801D6ECC 001D3E0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1263,9 +1338,9 @@ getGateInfoNum__Q34Game4Cave9FloorInfoFv:
 /* 801D6EE4 001D3E24  7C 08 03 A6 */	mtlr r0
 /* 801D6EE8 001D3E28  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D6EEC 001D3E2C  4E 80 00 20 */	blr 
+.endfn getGateInfoNum__Q34Game4Cave9FloorInfoFv
 
-.global getGateInfo__Q34Game4Cave9FloorInfoFi
-getGateInfo__Q34Game4Cave9FloorInfoFi:
+.fn getGateInfo__Q34Game4Cave9FloorInfoFi, global
 /* 801D6EF0 001D3E30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D6EF4 001D3E34  7C 08 02 A6 */	mflr r0
 /* 801D6EF8 001D3E38  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1305,9 +1380,9 @@ getGateInfo__Q34Game4Cave9FloorInfoFi:
 /* 801D6F78 001D3EB8  7C 08 03 A6 */	mtlr r0
 /* 801D6F7C 001D3EBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D6F80 001D3EC0  4E 80 00 20 */	blr 
+.endfn getGateInfo__Q34Game4Cave9FloorInfoFi
 
-.global getGateWeightSum__Q34Game4Cave9FloorInfoFv
-getGateWeightSum__Q34Game4Cave9FloorInfoFv:
+.fn getGateWeightSum__Q34Game4Cave9FloorInfoFv, global
 /* 801D6F84 001D3EC4  80 83 03 54 */	lwz r4, 0x354(r3)
 /* 801D6F88 001D3EC8  38 60 00 00 */	li r3, 0
 /* 801D6F8C 001D3ECC  48 00 00 10 */	b .L_801D6F9C
@@ -1319,14 +1394,14 @@ getGateWeightSum__Q34Game4Cave9FloorInfoFv:
 /* 801D6F9C 001D3EDC  28 04 00 00 */	cmplwi r4, 0
 /* 801D6FA0 001D3EE0  40 82 FF F0 */	bne .L_801D6F90
 /* 801D6FA4 001D3EE4  4E 80 00 20 */	blr 
+.endfn getGateWeightSum__Q34Game4Cave9FloorInfoFv
 
-.global getCapMax__Q34Game4Cave9FloorInfoFv
-getCapMax__Q34Game4Cave9FloorInfoFv:
+.fn getCapMax__Q34Game4Cave9FloorInfoFv, global
 /* 801D6FA8 001D3EE8  80 63 01 04 */	lwz r3, 0x104(r3)
 /* 801D6FAC 001D3EEC  4E 80 00 20 */	blr 
+.endfn getCapMax__Q34Game4Cave9FloorInfoFv
 
-.global getCapInfoNum__Q34Game4Cave9FloorInfoFv
-getCapInfoNum__Q34Game4Cave9FloorInfoFv:
+.fn getCapInfoNum__Q34Game4Cave9FloorInfoFv, global
 /* 801D6FB0 001D3EF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D6FB4 001D3EF4  7C 08 02 A6 */	mflr r0
 /* 801D6FB8 001D3EF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1338,9 +1413,9 @@ getCapInfoNum__Q34Game4Cave9FloorInfoFv:
 /* 801D6FD0 001D3F10  7C 08 03 A6 */	mtlr r0
 /* 801D6FD4 001D3F14  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D6FD8 001D3F18  4E 80 00 20 */	blr 
+.endfn getCapInfoNum__Q34Game4Cave9FloorInfoFv
 
-.global getCapInfo__Q34Game4Cave9FloorInfoFi
-getCapInfo__Q34Game4Cave9FloorInfoFi:
+.fn getCapInfo__Q34Game4Cave9FloorInfoFi, global
 /* 801D6FDC 001D3F1C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D6FE0 001D3F20  7C 08 02 A6 */	mflr r0
 /* 801D6FE4 001D3F24  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1380,19 +1455,19 @@ getCapInfo__Q34Game4Cave9FloorInfoFi:
 /* 801D7064 001D3FA4  7C 08 03 A6 */	mtlr r0
 /* 801D7068 001D3FA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D706C 001D3FAC  4E 80 00 20 */	blr 
+.endfn getCapInfo__Q34Game4Cave9FloorInfoFi
 
-.global getRoomNum__Q34Game4Cave9FloorInfoFv
-getRoomNum__Q34Game4Cave9FloorInfoFv:
+.fn getRoomNum__Q34Game4Cave9FloorInfoFv, global
 /* 801D7070 001D3FB0  80 63 01 2C */	lwz r3, 0x12c(r3)
 /* 801D7074 001D3FB4  4E 80 00 20 */	blr 
+.endfn getRoomNum__Q34Game4Cave9FloorInfoFv
 
-.global getRouteRatio__Q34Game4Cave9FloorInfoFv
-getRouteRatio__Q34Game4Cave9FloorInfoFv:
+.fn getRouteRatio__Q34Game4Cave9FloorInfoFv, global
 /* 801D7078 001D3FB8  C0 23 01 54 */	lfs f1, 0x154(r3)
 /* 801D707C 001D3FBC  4E 80 00 20 */	blr 
+.endfn getRouteRatio__Q34Game4Cave9FloorInfoFv
 
-.global hasEscapeFountain__Q34Game4Cave9FloorInfoFi
-hasEscapeFountain__Q34Game4Cave9FloorInfoFi:
+.fn hasEscapeFountain__Q34Game4Cave9FloorInfoFi, global
 /* 801D7080 001D3FC0  80 03 01 7C */	lwz r0, 0x17c(r3)
 /* 801D7084 001D3FC4  2C 04 FF FF */	cmpwi r4, -1
 /* 801D7088 001D3FC8  20 00 00 01 */	subfic r0, r0, 1
@@ -1412,17 +1487,17 @@ hasEscapeFountain__Q34Game4Cave9FloorInfoFi:
 .L_801D70BC:
 /* 801D70BC 001D3FFC  38 60 00 00 */	li r3, 0
 /* 801D70C0 001D4000  4E 80 00 20 */	blr 
+.endfn hasEscapeFountain__Q34Game4Cave9FloorInfoFi
 
-.global useKaidanBarrel__Q34Game4Cave9FloorInfoFv
-useKaidanBarrel__Q34Game4Cave9FloorInfoFv:
+.fn useKaidanBarrel__Q34Game4Cave9FloorInfoFv, global
 /* 801D70C4 001D4004  80 03 02 04 */	lwz r0, 0x204(r3)
 /* 801D70C8 001D4008  20 00 00 01 */	subfic r0, r0, 1
 /* 801D70CC 001D400C  7C 00 00 34 */	cntlzw r0, r0
 /* 801D70D0 001D4010  54 03 D9 7E */	srwi r3, r0, 5
 /* 801D70D4 001D4014  4E 80 00 20 */	blr 
+.endfn useKaidanBarrel__Q34Game4Cave9FloorInfoFv
 
-.global read__Q34Game4Cave9FloorInfoFR6Stream
-read__Q34Game4Cave9FloorInfoFR6Stream:
+.fn read__Q34Game4Cave9FloorInfoFR6Stream, global
 /* 801D70D8 001D4018  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D70DC 001D401C  7C 08 02 A6 */	mflr r0
 /* 801D70E0 001D4020  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1573,9 +1648,9 @@ read__Q34Game4Cave9FloorInfoFR6Stream:
 /* 801D72F0 001D4230  7C 08 03 A6 */	mtlr r0
 /* 801D72F4 001D4234  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D72F8 001D4238  4E 80 00 20 */	blr 
+.endfn read__Q34Game4Cave9FloorInfoFR6Stream
 
-.global __ct__Q34Game4Cave8CaveInfoFv
-__ct__Q34Game4Cave8CaveInfoFv:
+.fn __ct__Q34Game4Cave8CaveInfoFv, global
 /* 801D72FC 001D423C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D7300 001D4240  7C 08 02 A6 */	mflr r0
 /* 801D7304 001D4244  3C E0 80 48 */	lis r7, lbl_80480640@ha
@@ -1628,9 +1703,9 @@ __ct__Q34Game4Cave8CaveInfoFv:
 /* 801D73C0 001D4300  7C 08 03 A6 */	mtlr r0
 /* 801D73C4 001D4304  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D73C8 001D4308  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Cave8CaveInfoFv
 
-.global __dt__Q34Game4Cave9FloorInfoFv
-__dt__Q34Game4Cave9FloorInfoFv:
+.fn __dt__Q34Game4Cave9FloorInfoFv, weak
 /* 801D73CC 001D430C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D73D0 001D4310  7C 08 02 A6 */	mflr r0
 /* 801D73D4 001D4314  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1693,9 +1768,9 @@ __dt__Q34Game4Cave9FloorInfoFv:
 /* 801D74A4 001D43E4  7C 08 03 A6 */	mtlr r0
 /* 801D74A8 001D43E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D74AC 001D43EC  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game4Cave9FloorInfoFv
 
-.global disablePelplant__Q34Game4Cave8CaveInfoFv
-disablePelplant__Q34Game4Cave8CaveInfoFv:
+.fn disablePelplant__Q34Game4Cave8CaveInfoFv, global
 /* 801D74B0 001D43F0  80 83 00 60 */	lwz r4, 0x60(r3)
 /* 801D74B4 001D43F4  38 00 00 00 */	li r0, 0
 /* 801D74B8 001D43F8  48 00 00 2C */	b .L_801D74E4
@@ -1717,14 +1792,14 @@ disablePelplant__Q34Game4Cave8CaveInfoFv:
 /* 801D74E4 001D4424  28 04 00 00 */	cmplwi r4, 0
 /* 801D74E8 001D4428  40 82 FF D4 */	bne .L_801D74BC
 /* 801D74EC 001D442C  4E 80 00 20 */	blr 
+.endfn disablePelplant__Q34Game4Cave8CaveInfoFv
 
-.global getFloorMax__Q34Game4Cave8CaveInfoFv
-getFloorMax__Q34Game4Cave8CaveInfoFv:
+.fn getFloorMax__Q34Game4Cave8CaveInfoFv, global
 /* 801D74F0 001D4430  80 63 00 3C */	lwz r3, 0x3c(r3)
 /* 801D74F4 001D4434  4E 80 00 20 */	blr 
+.endfn getFloorMax__Q34Game4Cave8CaveInfoFv
 
-.global getFloorInfo__Q34Game4Cave8CaveInfoFi
-getFloorInfo__Q34Game4Cave8CaveInfoFi:
+.fn getFloorInfo__Q34Game4Cave8CaveInfoFi, global
 /* 801D74F8 001D4438  80 63 00 60 */	lwz r3, 0x60(r3)
 /* 801D74FC 001D443C  48 00 00 20 */	b .L_801D751C
 .L_801D7500:
@@ -1741,9 +1816,9 @@ getFloorInfo__Q34Game4Cave8CaveInfoFi:
 /* 801D7520 001D4460  40 82 FF E0 */	bne .L_801D7500
 /* 801D7524 001D4464  38 60 00 00 */	li r3, 0
 /* 801D7528 001D4468  4E 80 00 20 */	blr 
+.endfn getFloorInfo__Q34Game4Cave8CaveInfoFi
 
-.global load__Q34Game4Cave8CaveInfoFPc
-load__Q34Game4Cave8CaveInfoFPc:
+.fn load__Q34Game4Cave8CaveInfoFPc, global
 /* 801D752C 001D446C  94 21 F9 C0 */	stwu r1, -0x640(r1)
 /* 801D7530 001D4470  7C 08 02 A6 */	mflr r0
 /* 801D7534 001D4474  7C 65 1B 78 */	mr r5, r3
@@ -1809,9 +1884,9 @@ load__Q34Game4Cave8CaveInfoFPc:
 /* 801D7618 001D4558  7C 08 03 A6 */	mtlr r0
 /* 801D761C 001D455C  38 21 06 40 */	addi r1, r1, 0x640
 /* 801D7620 001D4560  4E 80 00 20 */	blr 
+.endfn load__Q34Game4Cave8CaveInfoFPc
 
-.global read__Q34Game4Cave8CaveInfoFR6Stream
-read__Q34Game4Cave8CaveInfoFR6Stream:
+.fn read__Q34Game4Cave8CaveInfoFR6Stream, global
 /* 801D7624 001D4564  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801D7628 001D4568  7C 08 02 A6 */	mflr r0
 /* 801D762C 001D456C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1851,9 +1926,9 @@ read__Q34Game4Cave8CaveInfoFR6Stream:
 /* 801D76A8 001D45E8  7C 08 03 A6 */	mtlr r0
 /* 801D76AC 001D45EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D76B0 001D45F0  4E 80 00 20 */	blr 
+.endfn read__Q34Game4Cave8CaveInfoFR6Stream
 
-.global __dt__Q34Game4Cave8CaveInfoFv
-__dt__Q34Game4Cave8CaveInfoFv:
+.fn __dt__Q34Game4Cave8CaveInfoFv, weak
 /* 801D76B4 001D45F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D76B8 001D45F8  7C 08 02 A6 */	mflr r0
 /* 801D76BC 001D45FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1921,9 +1996,9 @@ __dt__Q34Game4Cave8CaveInfoFv:
 /* 801D779C 001D46DC  7C 08 03 A6 */	mtlr r0
 /* 801D77A0 001D46E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D77A4 001D46E4  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game4Cave8CaveInfoFv
 
-.global __dt__Q34Game4Cave7BaseGenFv
-__dt__Q34Game4Cave7BaseGenFv:
+.fn __dt__Q34Game4Cave7BaseGenFv, weak
 /* 801D77A8 001D46E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D77AC 001D46EC  7C 08 02 A6 */	mflr r0
 /* 801D77B0 001D46F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1949,3 +2024,4 @@ __dt__Q34Game4Cave7BaseGenFv:
 /* 801D77FC 001D473C  7C 08 03 A6 */	mtlr r0
 /* 801D7800 001D4740  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D7804 001D4744  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game4Cave7BaseGenFv

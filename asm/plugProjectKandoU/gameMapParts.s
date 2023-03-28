@@ -614,8 +614,8 @@ lbl_80519484:
 	.4byte 0x4B435000
 lbl_80519488:
 	.4byte 0x48A02800
-lbl_8051948C:
-	.4byte 0x40490FDB
+lbl_8051948C: # pi
+	.float 3.1415927
 lbl_80519490:
 	.4byte 0x3BB60B61
 lbl_80519494:

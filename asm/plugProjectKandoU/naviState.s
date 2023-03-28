@@ -961,8 +961,8 @@ lbl_80518C9C:
 	.4byte 0xC3C80000
 lbl_80518CA0:
 	.4byte 0xC2C80000
-lbl_80518CA4:
-	.4byte 0x40490FDB
+lbl_80518CA4: # pi
+	.float 3.1415927
 lbl_80518CA8:
 	.4byte 0x3F666666
 lbl_80518CAC:

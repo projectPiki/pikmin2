@@ -5,40 +5,42 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047FBB8:
+.obj lbl_8047FBB8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_8047FBC4:
-	.4byte 0x67616D65
-	.4byte 0x53797374
-	.4byte 0x656D0000
-lbl_8047FBD0:
-	.4byte 0x44796E50
-	.4byte 0x61727469
-	.4byte 0x636C6500
-lbl_8047FBDC:
-	.4byte 0x75736572
-	.4byte 0x2F416265
-	.4byte 0x2F74696D
-	.4byte 0x652F7469
-	.4byte 0x6D652E69
-	.4byte 0x6E690000
-lbl_8047FBF4:
-	.4byte 0x44796E61
-	.4byte 0x6D696373
-	.4byte 0x00000000
-lbl_8047FC00:
+.endobj lbl_8047FBB8
+.balign 4
+.obj lbl_8047FBC4, local
+	.asciz "gameSystem"
+.endobj lbl_8047FBC4
+.balign 4
+.obj lbl_8047FBD0, local
+	.asciz "DynParticle"
+.endobj lbl_8047FBD0
+.balign 4
+.obj lbl_8047FBDC, local
+	.asciz "user/Abe/time/time.ini"
+.endobj lbl_8047FBDC
+.balign 4
+.obj lbl_8047FBF4, local
+	.asciz "Dynamics"
+.endobj lbl_8047FBF4
+.balign 4
+.obj lbl_8047FC00, local # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x8EF10000
-lbl_8047FC0C:
+.endobj lbl_8047FC00
+.balign 4
+.obj lbl_8047FC0C, local # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x8393836F
 	.4byte 0x83628374
 	.4byte 0x8340974C
 	.4byte 0x8CF80000
+.endobj lbl_8047FC0C
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -112,8 +114,7 @@ lbl_8047FC0C:
 .endobj mInstance__Q24Game18OptimiseController
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection
-__ct__Q24Game10GameSystemFPQ24Game15BaseGameSection:
+.fn __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection, global
 /* 801B4A80 001B19C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B4A84 001B19C4  7C 08 02 A6 */	mflr r0
 /* 801B4A88 001B19C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -178,9 +179,9 @@ __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection:
 /* 801B4B74 001B1AB4  7C 08 03 A6 */	mtlr r0
 /* 801B4B78 001B1AB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B4B7C 001B1ABC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game10GameSystemFPQ24Game15BaseGameSection
 
-.global __dt__Q24Game10GameSystemFv
-__dt__Q24Game10GameSystemFv:
+.fn __dt__Q24Game10GameSystemFv, global
 /* 801B4B80 001B1AC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B4B84 001B1AC4  7C 08 02 A6 */	mflr r0
 /* 801B4B88 001B1AC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -242,9 +243,9 @@ __dt__Q24Game10GameSystemFv:
 /* 801B4C5C 001B1B9C  7C 08 03 A6 */	mtlr r0
 /* 801B4C60 001B1BA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B4C64 001B1BA4  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game10GameSystemFv
 
-.global init__Q24Game10GameSystemFv
-init__Q24Game10GameSystemFv:
+.fn init__Q24Game10GameSystemFv, global
 /* 801B4C68 001B1BA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B4C6C 001B1BAC  7C 08 02 A6 */	mflr r0
 /* 801B4C70 001B1BB0  38 A0 00 00 */	li r5, 0
@@ -308,9 +309,9 @@ init__Q24Game10GameSystemFv:
 /* 801B4D4C 001B1C8C  7C 08 03 A6 */	mtlr r0
 /* 801B4D50 001B1C90  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B4D54 001B1C94  4E 80 00 20 */	blr 
+.endfn init__Q24Game10GameSystemFv
 
-.global calcFrameDist__Q24Game10GameSystemFi
-calcFrameDist__Q24Game10GameSystemFi:
+.fn calcFrameDist__Q24Game10GameSystemFi, global
 /* 801B4D58 001B1C98  80 A3 00 50 */	lwz r5, 0x50(r3)
 /* 801B4D5C 001B1C9C  3C 00 40 00 */	lis r0, 0x4000
 /* 801B4D60 001B1CA0  7C 04 00 50 */	subf r0, r4, r0
@@ -319,9 +320,9 @@ calcFrameDist__Q24Game10GameSystemFi:
 /* 801B4D6C 001B1CAC  4D 80 00 20 */	bltlr 
 /* 801B4D70 001B1CB0  7C 64 28 50 */	subf r3, r4, r5
 /* 801B4D74 001B1CB4  4E 80 00 20 */	blr 
+.endfn calcFrameDist__Q24Game10GameSystemFi
 
-.global startFrame__Q24Game10GameSystemFv
-startFrame__Q24Game10GameSystemFv:
+.fn startFrame__Q24Game10GameSystemFv, global
 /* 801B4D78 001B1CB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B4D7C 001B1CBC  7C 08 02 A6 */	mflr r0
 /* 801B4D80 001B1CC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -381,18 +382,18 @@ startFrame__Q24Game10GameSystemFv:
 /* 801B4E48 001B1D88  7C 08 03 A6 */	mtlr r0
 /* 801B4E4C 001B1D8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B4E50 001B1D90  4E 80 00 20 */	blr 
+.endfn startFrame__Q24Game10GameSystemFv
 
-.global endFrame__Q24Game10GameSystemFv
-endFrame__Q24Game10GameSystemFv:
+.fn endFrame__Q24Game10GameSystemFv, global
 /* 801B4E54 001B1D94  88 83 00 4B */	lbz r4, 0x4b(r3)
 /* 801B4E58 001B1D98  28 04 00 00 */	cmplwi r4, 0
 /* 801B4E5C 001B1D9C  4D 82 00 20 */	beqlr 
 /* 801B4E60 001B1DA0  38 04 FF FF */	addi r0, r4, -1
 /* 801B4E64 001B1DA4  98 03 00 4B */	stb r0, 0x4b(r3)
 /* 801B4E68 001B1DA8  4E 80 00 20 */	blr 
+.endfn endFrame__Q24Game10GameSystemFv
 
-.global startFadeout__Q24Game10GameSystemFf
-startFadeout__Q24Game10GameSystemFf:
+.fn startFadeout__Q24Game10GameSystemFf, global
 /* 801B4E6C 001B1DAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B4E70 001B1DB0  7C 08 02 A6 */	mflr r0
 /* 801B4E74 001B1DB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -408,9 +409,9 @@ startFadeout__Q24Game10GameSystemFf:
 /* 801B4E98 001B1DD8  7C 08 03 A6 */	mtlr r0
 /* 801B4E9C 001B1DDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B4EA0 001B1DE0  4E 80 00 20 */	blr 
+.endfn startFadeout__Q24Game10GameSystemFf
 
-.global startFadein__Q24Game10GameSystemFf
-startFadein__Q24Game10GameSystemFf:
+.fn startFadein__Q24Game10GameSystemFf, global
 /* 801B4EA4 001B1DE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B4EA8 001B1DE8  7C 08 02 A6 */	mflr r0
 /* 801B4EAC 001B1DEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -426,9 +427,9 @@ startFadein__Q24Game10GameSystemFf:
 /* 801B4ED0 001B1E10  7C 08 03 A6 */	mtlr r0
 /* 801B4ED4 001B1E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B4ED8 001B1E18  4E 80 00 20 */	blr 
+.endfn startFadein__Q24Game10GameSystemFf
 
-.global startFadeoutin__Q24Game10GameSystemFf
-startFadeoutin__Q24Game10GameSystemFf:
+.fn startFadeoutin__Q24Game10GameSystemFf, global
 /* 801B4EDC 001B1E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B4EE0 001B1E20  7C 08 02 A6 */	mflr r0
 /* 801B4EE4 001B1E24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -444,9 +445,9 @@ startFadeoutin__Q24Game10GameSystemFf:
 /* 801B4F08 001B1E48  7C 08 03 A6 */	mtlr r0
 /* 801B4F0C 001B1E4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B4F10 001B1E50  4E 80 00 20 */	blr 
+.endfn startFadeoutin__Q24Game10GameSystemFf
 
-.global startFadeblack__Q24Game10GameSystemFv
-startFadeblack__Q24Game10GameSystemFv:
+.fn startFadeblack__Q24Game10GameSystemFv, global
 /* 801B4F14 001B1E54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B4F18 001B1E58  7C 08 02 A6 */	mflr r0
 /* 801B4F1C 001B1E5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -462,9 +463,9 @@ startFadeblack__Q24Game10GameSystemFv:
 /* 801B4F40 001B1E80  7C 08 03 A6 */	mtlr r0
 /* 801B4F44 001B1E84  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B4F48 001B1E88  4E 80 00 20 */	blr 
+.endfn startFadeblack__Q24Game10GameSystemFv
 
-.global startFadewhite__Q24Game10GameSystemFv
-startFadewhite__Q24Game10GameSystemFv:
+.fn startFadewhite__Q24Game10GameSystemFv, global
 /* 801B4F4C 001B1E8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B4F50 001B1E90  7C 08 02 A6 */	mflr r0
 /* 801B4F54 001B1E94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -480,19 +481,19 @@ startFadewhite__Q24Game10GameSystemFv:
 /* 801B4F78 001B1EB8  7C 08 03 A6 */	mtlr r0
 /* 801B4F7C 001B1EBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B4F80 001B1EC0  4E 80 00 20 */	blr 
+.endfn startFadewhite__Q24Game10GameSystemFv
 
-.global setMoviePause__Q24Game10GameSystemFbPc
-setMoviePause__Q24Game10GameSystemFbPc:
+.fn setMoviePause__Q24Game10GameSystemFbPc, global
 /* 801B4F84 001B1EC4  98 83 00 4D */	stb r4, 0x4d(r3)
 /* 801B4F88 001B1EC8  4E 80 00 20 */	blr 
+.endfn setMoviePause__Q24Game10GameSystemFbPc
 
-.global setFrozen__Q24Game10GameSystemFbPc
-setFrozen__Q24Game10GameSystemFbPc:
+.fn setFrozen__Q24Game10GameSystemFbPc, global
 /* 801B4F8C 001B1ECC  98 83 00 4A */	stb r4, 0x4a(r3)
 /* 801B4F90 001B1ED0  4E 80 00 20 */	blr 
+.endfn setFrozen__Q24Game10GameSystemFbPc
 
-.global setPause__Q24Game10GameSystemFbPci
-setPause__Q24Game10GameSystemFbPci:
+.fn setPause__Q24Game10GameSystemFbPci, global
 /* 801B4F94 001B1ED4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B4F98 001B1ED8  7C 08 02 A6 */	mflr r0
 /* 801B4F9C 001B1EDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -504,14 +505,14 @@ setPause__Q24Game10GameSystemFbPci:
 /* 801B4FB4 001B1EF4  7C 08 03 A6 */	mtlr r0
 /* 801B4FB8 001B1EF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B4FBC 001B1EFC  4E 80 00 20 */	blr 
+.endfn setPause__Q24Game10GameSystemFbPci
 
-.global paused_soft__Q24Game10GameSystemFv
-paused_soft__Q24Game10GameSystemFv:
+.fn paused_soft__Q24Game10GameSystemFv, global
 /* 801B4FC0 001B1F00  88 63 00 4C */	lbz r3, 0x4c(r3)
 /* 801B4FC4 001B1F04  4E 80 00 20 */	blr 
+.endfn paused_soft__Q24Game10GameSystemFv
 
-.global paused__Q24Game10GameSystemFv
-paused__Q24Game10GameSystemFv:
+.fn paused__Q24Game10GameSystemFv, global
 /* 801B4FC8 001B1F08  88 03 00 4B */	lbz r0, 0x4b(r3)
 /* 801B4FCC 001B1F0C  28 00 00 00 */	cmplwi r0, 0
 /* 801B4FD0 001B1F10  40 82 00 18 */	bne .L_801B4FE8
@@ -523,9 +524,9 @@ paused__Q24Game10GameSystemFv:
 .L_801B4FE8:
 /* 801B4FE8 001B1F28  38 60 00 00 */	li r3, 0
 /* 801B4FEC 001B1F2C  4E 80 00 20 */	blr 
+.endfn paused__Q24Game10GameSystemFv
 
-.global startPause__Q24Game10GameSystemFbiPc
-startPause__Q24Game10GameSystemFbiPc:
+.fn startPause__Q24Game10GameSystemFbiPc, global
 /* 801B4FF0 001B1F30  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 801B4FF4 001B1F34  41 82 00 38 */	beq .L_801B502C
 /* 801B4FF8 001B1F38  88 03 00 4B */	lbz r0, 0x4b(r3)
@@ -549,9 +550,9 @@ startPause__Q24Game10GameSystemFbiPc:
 /* 801B5034 001B1F74  98 83 00 4C */	stb r4, 0x4c(r3)
 /* 801B5038 001B1F78  7C 03 03 78 */	mr r3, r0
 /* 801B503C 001B1F7C  4E 80 00 20 */	blr 
+.endfn startPause__Q24Game10GameSystemFbiPc
 
-.global setDrawBuffer__Q24Game10GameSystemFi
-setDrawBuffer__Q24Game10GameSystemFi:
+.fn setDrawBuffer__Q24Game10GameSystemFi, global
 /* 801B5040 001B1F80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B5044 001B1F84  7C 08 02 A6 */	mflr r0
 /* 801B5048 001B1F88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -564,23 +565,23 @@ setDrawBuffer__Q24Game10GameSystemFi:
 /* 801B5060 001B1FA0  7C 08 03 A6 */	mtlr r0
 /* 801B5064 001B1FA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B5068 001B1FA8  4E 80 00 20 */	blr 
+.endfn setDrawBuffer__Q24Game10GameSystemFi
 
 .if version == 1
-.global getLightMgr__Q24Game10GameSystemFv
-getLightMgr__Q24Game10GameSystemFv:
+.fn getLightMgr__Q24Game10GameSystemFv, global
 /* 801B506C 001B1FAC  80 63 00 58 */	lwz r3, 0x58(r3)
 /* 801B5070 001B1FB0  80 63 01 28 */	lwz r3, 0x148(r3)
 /* 801B5074 001B1FB4  4E 80 00 20 */	blr 
+.endfn getLightMgr__Q24Game10GameSystemFv
 .else
-.global getLightMgr__Q24Game10GameSystemFv
-getLightMgr__Q24Game10GameSystemFv:
+.fn getLightMgr__Q24Game10GameSystemFv, global
 /* 801B506C 001B1FAC  80 63 00 58 */	lwz r3, 0x58(r3)
 /* 801B5070 001B1FB0  80 63 01 28 */	lwz r3, 0x128(r3)
 /* 801B5074 001B1FB4  4E 80 00 20 */	blr 
+.endfn getLightMgr__Q24Game10GameSystemFv
 .endif
 
-.global doAnimation__Q24Game10GameSystemFv
-doAnimation__Q24Game10GameSystemFv:
+.fn doAnimation__Q24Game10GameSystemFv, global
 /* 801B5078 001B1FB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B507C 001B1FBC  7C 08 02 A6 */	mflr r0
 /* 801B5080 001B1FC0  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -751,9 +752,9 @@ doAnimation__Q24Game10GameSystemFv:
 /* 801B52E0 001B2220  7C 08 03 A6 */	mtlr r0
 /* 801B52E4 001B2224  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B52E8 001B2228  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game10GameSystemFv
 
-.global doEntry__Q24Game10GameSystemFv
-doEntry__Q24Game10GameSystemFv:
+.fn doEntry__Q24Game10GameSystemFv, global
 /* 801B52EC 001B222C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B52F0 001B2230  7C 08 02 A6 */	mflr r0
 /* 801B52F4 001B2234  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -883,9 +884,9 @@ doEntry__Q24Game10GameSystemFv:
 /* 801B54C4 001B2404  7C 08 03 A6 */	mtlr r0
 /* 801B54C8 001B2408  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B54CC 001B240C  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game10GameSystemFv
 
-.global doSetView__Q24Game10GameSystemFi
-doSetView__Q24Game10GameSystemFi:
+.fn doSetView__Q24Game10GameSystemFi, global
 /* 801B54D0 001B2410  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B54D4 001B2414  7C 08 02 A6 */	mflr r0
 /* 801B54D8 001B2418  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -1019,9 +1020,9 @@ doSetView__Q24Game10GameSystemFi:
 /* 801B56B8 001B25F8  7C 08 03 A6 */	mtlr r0
 /* 801B56BC 001B25FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B56C0 001B2600  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game10GameSystemFi
 
-.global doViewCalc__Q24Game10GameSystemFv
-doViewCalc__Q24Game10GameSystemFv:
+.fn doViewCalc__Q24Game10GameSystemFv, global
 /* 801B56C4 001B2604  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801B56C8 001B2608  7C 08 02 A6 */	mflr r0
 /* 801B56CC 001B260C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1300,9 +1301,9 @@ doViewCalc__Q24Game10GameSystemFv:
 /* 801B5ABC 001B29FC  7C 08 03 A6 */	mtlr r0
 /* 801B5AC0 001B2A00  38 21 00 30 */	addi r1, r1, 0x30
 /* 801B5AC4 001B2A04  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game10GameSystemFv
 
-.global doSimulation__Q24Game10GameSystemFf
-doSimulation__Q24Game10GameSystemFf:
+.fn doSimulation__Q24Game10GameSystemFf, global
 /* 801B5AC8 001B2A08  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801B5ACC 001B2A0C  7C 08 02 A6 */	mflr r0
 /* 801B5AD0 001B2A10  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -1477,9 +1478,9 @@ doSimulation__Q24Game10GameSystemFf:
 /* 801B5D40 001B2C80  7C 08 03 A6 */	mtlr r0
 /* 801B5D44 001B2C84  38 21 00 30 */	addi r1, r1, 0x30
 /* 801B5D48 001B2C88  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game10GameSystemFf
 
-.global doSimpleDraw__Q24Game10GameSystemFP8Viewport
-doSimpleDraw__Q24Game10GameSystemFP8Viewport:
+.fn doSimpleDraw__Q24Game10GameSystemFP8Viewport, global
 /* 801B5D4C 001B2C8C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B5D50 001B2C90  7C 08 02 A6 */	mflr r0
 /* 801B5D54 001B2C94  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -1613,17 +1614,17 @@ doSimpleDraw__Q24Game10GameSystemFP8Viewport:
 /* 801B5F34 001B2E74  7C 08 03 A6 */	mtlr r0
 /* 801B5F38 001B2E78  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B5F3C 001B2E7C  4E 80 00 20 */	blr 
+.endfn doSimpleDraw__Q24Game10GameSystemFP8Viewport
 
-.global doDirectDraw__Q24Game10GameSystemFR8Graphics
-doDirectDraw__Q24Game10GameSystemFR8Graphics:
+.fn doDirectDraw__Q24Game10GameSystemFR8Graphics, global
 /* 801B5F40 001B2E80  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game10GameSystemFR8Graphics
 
-.global directDraw__Q24Game10GameSystemFR8Graphics
-directDraw__Q24Game10GameSystemFR8Graphics:
+.fn directDraw__Q24Game10GameSystemFR8Graphics, global
 /* 801B5F44 001B2E84  4E 80 00 20 */	blr 
+.endfn directDraw__Q24Game10GameSystemFR8Graphics
 
-.global addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr:
+.fn addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr, global
 /* 801B5F48 001B2E88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B5F4C 001B2E8C  7C 08 02 A6 */	mflr r0
 /* 801B5F50 001B2E90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1652,9 +1653,9 @@ addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr:
 /* 801B5FA8 001B2EE8  7C 08 03 A6 */	mtlr r0
 /* 801B5FAC 001B2EEC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B5FB0 001B2EF0  4E 80 00 20 */	blr 
+.endfn addObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
 
-.global detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
-detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr:
+.fn detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr, global
 /* 801B5FB4 001B2EF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B5FB8 001B2EF8  7C 08 02 A6 */	mflr r0
 /* 801B5FBC 001B2EFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1663,9 +1664,9 @@ detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr:
 /* 801B5FC8 001B2F08  7C 08 03 A6 */	mtlr r0
 /* 801B5FCC 001B2F0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B5FD0 001B2F10  4E 80 00 20 */	blr 
+.endfn detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
 
-.global "addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<16GenericObjectMgr>"
-"addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<16GenericObjectMgr>":
+.fn "addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<16GenericObjectMgr>", global
 /* 801B5FD4 001B2F14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B5FD8 001B2F18  7C 08 02 A6 */	mflr r0
 /* 801B5FDC 001B2F1C  38 63 00 20 */	addi r3, r3, 0x20
@@ -1675,9 +1676,9 @@ detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr:
 /* 801B5FEC 001B2F2C  7C 08 03 A6 */	mtlr r0
 /* 801B5FF0 001B2F30  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B5FF4 001B2F34  4E 80 00 20 */	blr 
+.endfn "addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<16GenericObjectMgr>"
 
-.global detachObjectMgr_reuse__Q24Game10GameSystemFP16GenericObjectMgr
-detachObjectMgr_reuse__Q24Game10GameSystemFP16GenericObjectMgr:
+.fn detachObjectMgr_reuse__Q24Game10GameSystemFP16GenericObjectMgr, global
 /* 801B5FF8 001B2F38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B5FFC 001B2F3C  7C 08 02 A6 */	mflr r0
 /* 801B6000 001B2F40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1704,9 +1705,9 @@ detachObjectMgr_reuse__Q24Game10GameSystemFP16GenericObjectMgr:
 /* 801B6044 001B2F84  7C 08 03 A6 */	mtlr r0
 /* 801B6048 001B2F88  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B604C 001B2F8C  4E 80 00 20 */	blr 
+.endfn detachObjectMgr_reuse__Q24Game10GameSystemFP16GenericObjectMgr
 
-.global __dt__Q24Game18OptimiseControllerFv
-__dt__Q24Game18OptimiseControllerFv:
+.fn __dt__Q24Game18OptimiseControllerFv, global
 /* 801B6050 001B2F90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B6054 001B2F94  7C 08 02 A6 */	mflr r0
 /* 801B6058 001B2F98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1734,9 +1735,9 @@ __dt__Q24Game18OptimiseControllerFv:
 /* 801B60AC 001B2FEC  7C 08 03 A6 */	mtlr r0
 /* 801B60B0 001B2FF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B60B4 001B2FF4  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game18OptimiseControllerFv
 
-.global globalInstance__Q24Game18OptimiseControllerFv
-globalInstance__Q24Game18OptimiseControllerFv:
+.fn globalInstance__Q24Game18OptimiseControllerFv, global
 /* 801B60B8 001B2FF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B60BC 001B2FFC  7C 08 02 A6 */	mflr r0
 /* 801B60C0 001B3000  3C 60 80 48 */	lis r3, lbl_8047FBB8@ha
@@ -1808,9 +1809,9 @@ globalInstance__Q24Game18OptimiseControllerFv:
 /* 801B61B8 001B30F8  7C 08 03 A6 */	mtlr r0
 /* 801B61BC 001B30FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B61C0 001B3100  4E 80 00 20 */	blr 
+.endfn globalInstance__Q24Game18OptimiseControllerFv
 
-.global deleteInstance__Q24Game18OptimiseControllerFv
-deleteInstance__Q24Game18OptimiseControllerFv:
+.fn deleteInstance__Q24Game18OptimiseControllerFv, global
 /* 801B61C4 001B3104  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B61C8 001B3108  7C 08 02 A6 */	mflr r0
 /* 801B61CC 001B310C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1830,9 +1831,9 @@ deleteInstance__Q24Game18OptimiseControllerFv:
 /* 801B6200 001B3140  7C 08 03 A6 */	mtlr r0
 /* 801B6204 001B3144  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B6208 001B3148  4E 80 00 20 */	blr 
+.endfn deleteInstance__Q24Game18OptimiseControllerFv
 
-.global "delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr"
-"delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr":
+.fn "delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr", weak
 /* 801B620C 001B314C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B6210 001B3150  7C 08 02 A6 */	mflr r0
 /* 801B6214 001B3154  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1854,9 +1855,9 @@ deleteInstance__Q24Game18OptimiseControllerFv:
 /* 801B6244 001B3184  7C 08 03 A6 */	mtlr r0
 /* 801B6248 001B3188  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B624C 001B318C  4E 80 00 20 */	blr 
+.endfn "delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr"
 
-.global __sinit_gameSystem_cpp
-__sinit_gameSystem_cpp:
+.fn __sinit_gameSystem_cpp, local
 /* 801B6250 001B3190  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801B6254 001B3194  38 00 FF FF */	li r0, -1
 /* 801B6258 001B3198  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1867,38 +1868,39 @@ __sinit_gameSystem_cpp:
 /* 801B626C 001B31AC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801B6270 001B31B0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801B6274 001B31B4  4E 80 00 20 */	blr 
+.endfn __sinit_gameSystem_cpp
 
-.global "@28@doSimpleDraw__Q24Game10GameSystemFP8Viewport"
-"@28@doSimpleDraw__Q24Game10GameSystemFP8Viewport":
+.fn "@28@doSimpleDraw__Q24Game10GameSystemFP8Viewport", weak
 /* 801B6278 001B31B8  38 63 FF E4 */	addi r3, r3, -28
 /* 801B627C 001B31BC  4B FF FA D0 */	b doSimpleDraw__Q24Game10GameSystemFP8Viewport
+.endfn "@28@doSimpleDraw__Q24Game10GameSystemFP8Viewport"
 
-.global "@28@doDirectDraw__Q24Game10GameSystemFR8Graphics"
-"@28@doDirectDraw__Q24Game10GameSystemFR8Graphics":
+.fn "@28@doDirectDraw__Q24Game10GameSystemFR8Graphics", weak
 /* 801B6280 001B31C0  38 63 FF E4 */	addi r3, r3, -28
 /* 801B6284 001B31C4  4B FF FC BC */	b doDirectDraw__Q24Game10GameSystemFR8Graphics
+.endfn "@28@doDirectDraw__Q24Game10GameSystemFR8Graphics"
 
-.global "@28@doSimulation__Q24Game10GameSystemFf"
-"@28@doSimulation__Q24Game10GameSystemFf":
+.fn "@28@doSimulation__Q24Game10GameSystemFf", weak
 /* 801B6288 001B31C8  38 63 FF E4 */	addi r3, r3, -28
 /* 801B628C 001B31CC  4B FF F8 3C */	b doSimulation__Q24Game10GameSystemFf
+.endfn "@28@doSimulation__Q24Game10GameSystemFf"
 
-.global "@28@doViewCalc__Q24Game10GameSystemFv"
-"@28@doViewCalc__Q24Game10GameSystemFv":
+.fn "@28@doViewCalc__Q24Game10GameSystemFv", weak
 /* 801B6290 001B31D0  38 63 FF E4 */	addi r3, r3, -28
 /* 801B6294 001B31D4  4B FF F4 30 */	b doViewCalc__Q24Game10GameSystemFv
+.endfn "@28@doViewCalc__Q24Game10GameSystemFv"
 
-.global "@28@doSetView__Q24Game10GameSystemFi"
-"@28@doSetView__Q24Game10GameSystemFi":
+.fn "@28@doSetView__Q24Game10GameSystemFi", weak
 /* 801B6298 001B31D8  38 63 FF E4 */	addi r3, r3, -28
 /* 801B629C 001B31DC  4B FF F2 34 */	b doSetView__Q24Game10GameSystemFi
+.endfn "@28@doSetView__Q24Game10GameSystemFi"
 
-.global "@28@doEntry__Q24Game10GameSystemFv"
-"@28@doEntry__Q24Game10GameSystemFv":
+.fn "@28@doEntry__Q24Game10GameSystemFv", weak
 /* 801B62A0 001B31E0  38 63 FF E4 */	addi r3, r3, -28
 /* 801B62A4 001B31E4  4B FF F0 48 */	b doEntry__Q24Game10GameSystemFv
+.endfn "@28@doEntry__Q24Game10GameSystemFv"
 
-.global "@28@doAnimation__Q24Game10GameSystemFv"
-"@28@doAnimation__Q24Game10GameSystemFv":
+.fn "@28@doAnimation__Q24Game10GameSystemFv", weak
 /* 801B62A8 001B31E8  38 63 FF E4 */	addi r3, r3, -28
 /* 801B62AC 001B31EC  4B FF ED CC */	b doAnimation__Q24Game10GameSystemFv
+.endfn "@28@doAnimation__Q24Game10GameSystemFv"

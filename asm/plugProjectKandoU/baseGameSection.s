@@ -20,7 +20,8 @@ lbl_8047C978: # Shift-JIS
 	.4byte 0x825189F1
 	.4byte 0x82CD96B3
 	.4byte 0x979D8297
-	.4byte 0x0A000000
+	.2byte 0x0A00
+.balign 4
 lbl_8047C988: # Shift-JIS
 	.4byte 0x75736553
 	.4byte 0x70656369
@@ -30,7 +31,7 @@ lbl_8047C988: # Shift-JIS
 	.4byte 0x2082B582
 	.4byte 0xC482C882
 	.4byte 0xA282970A
-	.4byte 0x00000000
+	.byte 0
 .balign 4
 lbl_8047C9AC:
 	.asciz "PSGame.h"
@@ -520,173 +521,231 @@ __vt__Q24Game15BaseGameSection:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sOptDraw__Q24Game15BaseGameSection
-sOptDraw__Q24Game15BaseGameSection:
+.obj sOptDraw__Q24Game15BaseGameSection, global
 	.byte 3
+.endobj sOptDraw__Q24Game15BaseGameSection
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 4
-.global cameraMgrCallback
-cameraMgrCallback:
+.endobj gfNAN___Q24Game5P2JST
+.obj cameraMgrCallback, global
 	.skip 4
-theExpHeap:
+.endobj cameraMgrCallback
+.obj theExpHeap, local
 	.skip 4
-col$4567:
+.endobj theExpHeap
+.obj col$4567, local
 	.skip 4
-init$4568:
+.endobj col$4567
+.obj init$4568, local
 	.skip 1
+.endobj init$4568
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518498:
+.obj lbl_80518498, local
 	.float 0.0
-lbl_8051849C:
+.endobj lbl_80518498
+.obj lbl_8051849C, local
 	.float 608.0
-lbl_805184A0:
+.endobj lbl_8051849C
+.obj lbl_805184A0, local
 	.float 480.0
-lbl_805184A4:
+.endobj lbl_805184A0
+.obj lbl_805184A4, local
 	.float 1.0
+.endobj lbl_805184A4
 .balign 4
-lbl_805184A8:
+.obj lbl_805184A8, local
 	.asciz "doAnim"
+.endobj lbl_805184A8
 .balign 4
-lbl_805184B0:
+.obj lbl_805184B0, local
 	.asciz "ENT"
+.endobj lbl_805184B0
 .balign 4
-lbl_805184B4:
+.obj lbl_805184B4, local
 	.asciz "ENT-A"
+.endobj lbl_805184B4
 .balign 4
-lbl_805184BC:
+.obj lbl_805184BC, local
 	.asciz "ENT-B"
+.endobj lbl_805184BC
 .balign 4
-lbl_805184C4:
+.obj lbl_805184C4, local
 	.asciz "doSim"
+.endobj lbl_805184C4
 .balign 4
-lbl_805184CC:
+.obj lbl_805184CC, local
 	.asciz "coll"
+.endobj lbl_805184CC
 .balign 4
-lbl_805184D4:
+.obj lbl_805184D4, local
 	.asciz "2d"
+.endobj lbl_805184D4
 .balign 4
-lbl_805184D8:
+.obj lbl_805184D8, local
 	.asciz "OPA"
+.endobj lbl_805184D8
 .balign 4
-lbl_805184DC:
+.obj lbl_805184DC, local
 	.asciz "noname"
+.endobj lbl_805184DC
 .balign 4
-lbl_805184E4:
+.obj lbl_805184E4, local
 	.asciz "normal"
+.endobj lbl_805184E4
 .balign 4
-lbl_805184EC:
+.obj lbl_805184EC, local
 	.asciz "map"
+.endobj lbl_805184EC
 .balign 4
-lbl_805184F0:
+.obj lbl_805184F0, local
 	.asciz "piki"
+.endobj lbl_805184F0
 .balign 4
-lbl_805184F8:
+.obj lbl_805184F8, local
 	.asciz "post"
+.endobj lbl_805184F8
 .balign 4
-lbl_80518500:
+.obj lbl_80518500, local
 	.asciz "first"
+.endobj lbl_80518500
 .balign 4
-lbl_80518508:
+.obj lbl_80518508, local
 	.asciz "farm"
+.endobj lbl_80518508
 .balign 4
-lbl_80518510:
+.obj lbl_80518510, local
 	.asciz "XLU"
+.endobj lbl_80518510
 .balign 4
-lbl_80518514:
+.obj lbl_80518514, local
 	.asciz "poyo1"
+.endobj lbl_80518514
 .balign 4
-lbl_8051851C:
+.obj lbl_8051851C, local
 	.float 80.0
+.endobj lbl_8051851C
 .balign 8
-lbl_80518520:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80518528:
+.obj lbl_80518520, local
+	.8byte 0x4330000000000000
+.endobj lbl_80518520
+.obj lbl_80518528, local
 	.float -40.0
-lbl_8051852C:
+.endobj lbl_80518528
+.obj lbl_8051852C, local
 	.float 2.0
-lbl_80518530:
+.endobj lbl_8051852C
+.obj lbl_80518530, local
 	.float 8.5
-lbl_80518534:
+.endobj lbl_80518530
+.obj lbl_80518534, local
 	.float -4.526
-lbl_80518538:
+.endobj lbl_80518534
+.obj lbl_80518538, local
 	.float 7.453
-lbl_8051853C:
+.endobj lbl_80518538
+.obj lbl_8051853C, local
 	.float -60.0
-lbl_80518540:
+.endobj lbl_8051853C
+.obj lbl_80518540, local
 	.float -10.0
-lbl_80518544:
+.endobj lbl_80518540
+.obj lbl_80518544, local
 	.float 18.082
-lbl_80518548:
+.endobj lbl_80518544
+.obj lbl_80518548, local
 	.float -11.482
-lbl_8051854C:
+.endobj lbl_80518548
+.obj lbl_8051854C, local
 	.float 0.5
-lbl_80518550:
+.endobj lbl_8051854C
+.obj lbl_80518550, local
 	.float 32768.0
-lbl_80518554:
+.endobj lbl_80518550
+.obj lbl_80518554, local
 	.float -32768.0
-lbl_80518558: # tau
+.endobj lbl_80518554
+.obj lbl_80518558, local # tau
 	.float 6.2831855
-lbl_8051855C:
+.endobj lbl_80518558
+.obj lbl_8051855C, local
 	.float 50.0
-lbl_80518560:
+.endobj lbl_8051855C
+.obj lbl_80518560, local
 	.float 325.9493
-lbl_80518564:
+.endobj lbl_80518560
+.obj lbl_80518564, local
 	.float -325.9493
+.endobj lbl_80518564
 .balign 8
-lbl_80518568:
-	.4byte 0x43300000
-	.4byte 0x80000000
+.obj lbl_80518568, local
+	.8byte 0x4330000080000000
+.endobj lbl_80518568
 .balign 4
-lbl_80518570:
+.obj lbl_80518570, local
 	.asciz "2ddraw"
+.endobj lbl_80518570
 .balign 4
-lbl_80518578:
+.obj lbl_80518578, local
 	.float 0.2
-lbl_8051857C:
+.endobj lbl_80518578
+.obj lbl_8051857C, local
 	.float 999.0
+.endobj lbl_8051857C
 .balign 4
-lbl_80518580:
+.obj lbl_80518580, local
 	.asciz "itemMgr"
+.endobj lbl_80518580
 .balign 4
-lbl_80518588:
+.obj lbl_80518588, local
 	.asciz "random"
+.endobj lbl_80518588
 .balign 4
-lbl_80518590:
+.obj lbl_80518590, local
 	.asciz "mapMgr"
+.endobj lbl_80518590
 .balign 4
-lbl_80518598:
+.obj lbl_80518598, local
 	.asciz "CellMgr"
+.endobj lbl_80518598
 .balign 4
-lbl_805185A0:
+.obj lbl_805185A0, local
 	.float 1.28E7
-lbl_805185A4:
+.endobj lbl_805185A0
+.obj lbl_805185A4, local
 	.float -1.28E7
-lbl_805185A8:
+.endobj lbl_805185A4
+.obj lbl_805185A8, local
 	.float 128.0
-lbl_805185AC:
+.endobj lbl_805185A8
+.obj lbl_805185AC, local
 	.float 170.0
-lbl_805185B0:
+.endobj lbl_805185AC
+.obj lbl_805185B0, local
 	.float 108.0
-lbl_805185B4: # pi
+.endobj lbl_805185B0
+.obj lbl_805185B4, local # pi
 	.float 3.1415927
-lbl_805185B8:
+.endobj lbl_805185B4
+.obj lbl_805185B8, local
 	.float 0.0055555557
+.endobj lbl_805185B8
 .balign 4
-lbl_805185BC:
+.obj lbl_805185BC, local
 	.asciz "\r\n"
+.endobj lbl_805185BC
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-lbl_80520E58:
+.obj lbl_80520E58, local
 	.skip 8
-
+.endobj lbl_80520E58
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1

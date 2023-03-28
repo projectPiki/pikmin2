@@ -1,66 +1,45 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80484868:
-	.4byte 0x3234362D
-	.4byte 0x52756D62
-	.4byte 0x6C654D67
-	.4byte 0x72000000
-lbl_80484878:
-	.4byte 0x52756D62
-	.4byte 0x6C654D67
-	.4byte 0x72000000
-	.4byte 0x52756D62
-	.4byte 0x6C655061
-	.4byte 0x726D7300
-	.4byte 0x4D617820
-	.4byte 0x44697374
-	.4byte 0x616E6365
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4E69
-	.4byte 0x7368696D
-	.4byte 0x7572612F
-	.4byte 0x52756D62
-	.4byte 0x6C652F72
-	.4byte 0x756D626C
-	.4byte 0x65506172
-	.4byte 0x6D732E74
-	.4byte 0x78740000
-	.4byte 0x2F757365
-	.4byte 0x722F4E69
-	.4byte 0x7368696D
-	.4byte 0x7572612F
-	.4byte 0x52756D62
-	.4byte 0x6C652F72
-	.4byte 0x756D626C
-	.4byte 0x65446174
-	.4byte 0x612E7478
-	.4byte 0x74000000
-lbl_804848F0:
-	.4byte 0x52756D62
-	.4byte 0x6C654D67
-	.4byte 0x722E6370
-	.4byte 0x70000000
-lbl_80484900:
-	.4byte 0x6E6F7420
-	.4byte 0x7A756B61
-	.4byte 0x6E206D6F
-	.4byte 0x64650A00
-lbl_80484910:
-	.4byte 0x72756D62
-	.4byte 0x6C652070
-	.4byte 0x6172616D
-	.4byte 0x65746572
-	.4byte 0x206E6F6E
-	.4byte 0x650A0000
-lbl_80484928:
-	.4byte 0x72756D62
-	.4byte 0x6C652064
-	.4byte 0x61746120
-	.4byte 0x6E6F6E65
-	.4byte 0x0A000000
-	.4byte 0x00000000
+.obj lbl_80484868, local
+	.asciz "246-RumbleMgr"
+.endobj lbl_80484868
+.balign 4
+.obj lbl_80484878, local
+	.asciz "RumbleMgr"
+.endobj lbl_80484878
+.balign 4
+.obj lbl_80484884, local
+	.asciz "RumbleParms"
+.endobj lbl_80484884
+.balign 4
+.obj lbl_80484890, local
+	.asciz "Max Distance"
+.endobj lbl_80484890
+.balign 4
+.obj lbl_804848A0, local
+	.asciz "/user/Nishimura/Rumble/rumbleParms.txt"
+.endobj lbl_804848A0
+.balign 4
+.obj lbl_804848C8, local
+	.asciz "/user/Nishimura/Rumble/rumbleData.txt"
+.endobj lbl_804848C8
+.balign 4
+.obj lbl_804848F0, local
+	.asciz "RumbleMgr.cpp"
+.endobj lbl_804848F0
+.balign 4
+.obj lbl_80484900, local
+	.asciz "not zukan mode\n"
+.endobj lbl_80484900
+.balign 4
+.obj lbl_80484910, local
+	.asciz "rumble parameter none\n"
+.endobj lbl_80484910
+.balign 4
+.obj lbl_80484928, local
+	.asciz "rumble data none\n"
+.endobj lbl_80484928
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -79,21 +58,24 @@ lbl_80484928:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A978:
-	.4byte 0x443B8000
-lbl_8051A97C:
-	.4byte 0x00000000
-lbl_8051A980:
-	.4byte 0x447A0000
-lbl_8051A984:
-	.4byte 0x40000000
-lbl_8051A988:
+.obj lbl_8051A978, local
+	.float 750.0
+.endobj lbl_8051A978
+.obj lbl_8051A97C, local
+	.float 0.0
+.endobj lbl_8051A97C
+.obj lbl_8051A980, local
+	.float 1000.0
+.endobj lbl_8051A980
+.obj lbl_8051A984, local
+	.float 2.0
+.endobj lbl_8051A984
+.obj lbl_8051A988, local
 	.float 1.0
-	.4byte 0x00000000
+.endobj lbl_8051A988
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game9RumbleMgrFv
-__ct__Q24Game9RumbleMgrFv:
+.fn __ct__Q24Game9RumbleMgrFv, global
 /* 80253304 00250244  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80253308 00250248  7C 08 02 A6 */	mflr r0
 /* 8025330C 0025024C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -112,9 +94,9 @@ __ct__Q24Game9RumbleMgrFv:
 /* 80253340 00250280  7C 08 03 A6 */	mtlr r0
 /* 80253344 00250284  38 21 00 10 */	addi r1, r1, 0x10
 /* 80253348 00250288  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game9RumbleMgrFv
 
-.global loadResource__Q24Game9RumbleMgrFv
-loadResource__Q24Game9RumbleMgrFv:
+.fn loadResource__Q24Game9RumbleMgrFv, global
 /* 8025334C 0025028C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80253350 00250290  7C 08 02 A6 */	mflr r0
 /* 80253354 00250294  3C 80 80 48 */	lis r4, lbl_80484868@ha
@@ -205,9 +187,9 @@ loadResource__Q24Game9RumbleMgrFv:
 /* 80253498 002503D8  7C 08 03 A6 */	mtlr r0
 /* 8025349C 002503DC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802534A0 002503E0  4E 80 00 20 */	blr 
+.endfn loadResource__Q24Game9RumbleMgrFv
 
-.global init__Q24Game9RumbleMgrFv
-init__Q24Game9RumbleMgrFv:
+.fn init__Q24Game9RumbleMgrFv, global
 /* 802534A4 002503E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802534A8 002503E8  7C 08 02 A6 */	mflr r0
 /* 802534AC 002503EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -279,9 +261,9 @@ init__Q24Game9RumbleMgrFv:
 /* 802535A0 002504E0  7C 08 03 A6 */	mtlr r0
 /* 802535A4 002504E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802535A8 002504E8  4E 80 00 20 */	blr 
+.endfn init__Q24Game9RumbleMgrFv
 
-.global update__Q24Game9RumbleMgrFv
-update__Q24Game9RumbleMgrFv:
+.fn update__Q24Game9RumbleMgrFv, global
 /* 802535AC 002504EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802535B0 002504F0  7C 08 02 A6 */	mflr r0
 /* 802535B4 002504F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -410,9 +392,9 @@ update__Q24Game9RumbleMgrFv:
 /* 80253774 002506B4  7C 08 03 A6 */	mtlr r0
 /* 80253778 002506B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025377C 002506BC  4E 80 00 20 */	blr 
+.endfn update__Q24Game9RumbleMgrFv
 
-.global "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-"startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i":
+.fn "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i", global
 /* 80253780 002506C0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80253784 002506C4  7C 08 02 A6 */	mflr r0
 /* 80253788 002506C8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -527,9 +509,9 @@ update__Q24Game9RumbleMgrFv:
 /* 80253918 00250858  7C 08 03 A6 */	mtlr r0
 /* 8025391C 0025085C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80253920 00250860  4E 80 00 20 */	blr 
+.endfn "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 
-.global startRumble__Q24Game9RumbleMgrFii
-startRumble__Q24Game9RumbleMgrFii:
+.fn startRumble__Q24Game9RumbleMgrFii, global
 /* 80253924 00250864  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80253928 00250868  7C 08 02 A6 */	mflr r0
 /* 8025392C 0025086C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -580,9 +562,9 @@ startRumble__Q24Game9RumbleMgrFii:
 /* 802539D0 00250910  7C 08 03 A6 */	mtlr r0
 /* 802539D4 00250914  38 21 00 20 */	addi r1, r1, 0x20
 /* 802539D8 00250918  4E 80 00 20 */	blr 
+.endfn startRumble__Q24Game9RumbleMgrFii
 
-.global stopRumble__Q24Game9RumbleMgrFii
-stopRumble__Q24Game9RumbleMgrFii:
+.fn stopRumble__Q24Game9RumbleMgrFii, global
 /* 802539DC 0025091C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802539E0 00250920  7C 08 02 A6 */	mflr r0
 /* 802539E4 00250924  90 01 00 24 */	stw r0, 0x24(r1)
@@ -623,9 +605,9 @@ stopRumble__Q24Game9RumbleMgrFii:
 /* 80253A64 002509A4  7C 08 03 A6 */	mtlr r0
 /* 80253A68 002509A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80253A6C 002509AC  4E 80 00 20 */	blr 
+.endfn stopRumble__Q24Game9RumbleMgrFii
 
-.global stopRumble__Q24Game9RumbleMgrFi
-stopRumble__Q24Game9RumbleMgrFi:
+.fn stopRumble__Q24Game9RumbleMgrFi, global
 /* 80253A70 002509B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80253A74 002509B4  7C 08 02 A6 */	mflr r0
 /* 80253A78 002509B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -663,9 +645,9 @@ stopRumble__Q24Game9RumbleMgrFi:
 /* 80253AEC 00250A2C  7C 08 03 A6 */	mtlr r0
 /* 80253AF0 00250A30  38 21 00 20 */	addi r1, r1, 0x20
 /* 80253AF4 00250A34  4E 80 00 20 */	blr 
+.endfn stopRumble__Q24Game9RumbleMgrFi
 
-.global isRumbleUpdateOn__Q24Game9RumbleMgrFv
-isRumbleUpdateOn__Q24Game9RumbleMgrFv:
+.fn isRumbleUpdateOn__Q24Game9RumbleMgrFv, global
 /* 80253AF8 00250A38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80253AFC 00250A3C  7C 08 02 A6 */	mflr r0
 /* 80253B00 00250A40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -700,9 +682,9 @@ isRumbleUpdateOn__Q24Game9RumbleMgrFv:
 /* 80253B68 00250AA8  7C 08 03 A6 */	mtlr r0
 /* 80253B6C 00250AAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80253B70 00250AB0  4E 80 00 20 */	blr 
+.endfn isRumbleUpdateOn__Q24Game9RumbleMgrFv
 
-.global "setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<f>"
-"setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<f>":
+.fn "setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<f>", global
 /* 80253B74 00250AB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80253B78 00250AB8  7C 08 02 A6 */	mflr r0
 /* 80253B7C 00250ABC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -728,9 +710,9 @@ isRumbleUpdateOn__Q24Game9RumbleMgrFv:
 /* 80253BC4 00250B04  7C 08 03 A6 */	mtlr r0
 /* 80253BC8 00250B08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80253BCC 00250B0C  4E 80 00 20 */	blr 
+.endfn "setZukanRumble__Q24Game9RumbleMgrFP10ControllerP10Vector3<f>"
 
-.global isStartAndEnd__Q24Game9RumbleMgrFPii
-isStartAndEnd__Q24Game9RumbleMgrFPii:
+.fn isStartAndEnd__Q24Game9RumbleMgrFPii, global
 /* 80253BD0 00250B10  2C 05 00 02 */	cmpwi r5, 2
 /* 80253BD4 00250B14  40 82 00 1C */	bne .L_80253BF0
 /* 80253BD8 00250B18  38 60 00 00 */	li r3, 0
@@ -760,9 +742,9 @@ isStartAndEnd__Q24Game9RumbleMgrFPii:
 .L_80253C30:
 /* 80253C30 00250B70  38 60 00 00 */	li r3, 0
 /* 80253C34 00250B74  4E 80 00 20 */	blr 
+.endfn isStartAndEnd__Q24Game9RumbleMgrFPii
 
-.global readRumbleParms__Q24Game9RumbleMgrFPc
-readRumbleParms__Q24Game9RumbleMgrFPc:
+.fn readRumbleParms__Q24Game9RumbleMgrFPc, global
 /* 80253C38 00250B78  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 80253C3C 00250B7C  7C 08 02 A6 */	mflr r0
 /* 80253C40 00250B80  38 A0 00 00 */	li r5, 0
@@ -814,9 +796,9 @@ readRumbleParms__Q24Game9RumbleMgrFPc:
 /* 80253CEC 00250C2C  7C 08 03 A6 */	mtlr r0
 /* 80253CF0 00250C30  38 21 04 40 */	addi r1, r1, 0x440
 /* 80253CF4 00250C34  4E 80 00 20 */	blr 
+.endfn readRumbleParms__Q24Game9RumbleMgrFPc
 
-.global readRumbleData__Q24Game9RumbleMgrFPc
-readRumbleData__Q24Game9RumbleMgrFPc:
+.fn readRumbleData__Q24Game9RumbleMgrFPc, global
 /* 80253CF8 00250C38  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 80253CFC 00250C3C  7C 08 02 A6 */	mflr r0
 /* 80253D00 00250C40  38 A0 00 00 */	li r5, 0
@@ -868,9 +850,9 @@ readRumbleData__Q24Game9RumbleMgrFPc:
 /* 80253DAC 00250CEC  7C 08 03 A6 */	mtlr r0
 /* 80253DB0 00250CF0  38 21 04 40 */	addi r1, r1, 0x440
 /* 80253DB4 00250CF4  4E 80 00 20 */	blr 
+.endfn readRumbleData__Q24Game9RumbleMgrFPc
 
-.global __dt__Q24Game9RumbleMgrFv
-__dt__Q24Game9RumbleMgrFv:
+.fn __dt__Q24Game9RumbleMgrFv, weak
 /* 80253DB8 00250CF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80253DBC 00250CFC  7C 08 02 A6 */	mflr r0
 /* 80253DC0 00250D00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -896,3 +878,4 @@ __dt__Q24Game9RumbleMgrFv:
 /* 80253E0C 00250D4C  7C 08 03 A6 */	mtlr r0
 /* 80253E10 00250D50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80253E14 00250D54  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game9RumbleMgrFv

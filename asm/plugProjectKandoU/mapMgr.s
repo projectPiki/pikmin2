@@ -5,76 +5,87 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047E190:
+.obj lbl_8047E190, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_8047E19C:
-	.4byte 0x6D61704D
-	.4byte 0x67722E63
-	.4byte 0x70700000
-lbl_8047E1A8:
-	.asciz "P2Assert"
+.endobj lbl_8047E190
 .balign 4
-	.4byte 0x25732F61
-	.4byte 0x72632E73
-	.4byte 0x7A730000
-	.4byte 0x25732F61
-	.4byte 0x72632E61
-	.4byte 0x72630000
-	.4byte 0x6D617020
-	.4byte 0x6D6F6465
-	.4byte 0x6C000000
-	.4byte 0x6D6F6465
-	.4byte 0x6C2E626D
-	.4byte 0x64000000
-	.4byte 0x6661726D
-	.4byte 0x5F25642E
-	.4byte 0x626D6400
-	.4byte 0x74657861
-	.4byte 0x6E6D5F25
-	.4byte 0x642E6274
-	.4byte 0x6B000000
-	.4byte 0x25732F6C
-	.4byte 0x69676874
-	.4byte 0x2E696E69
-	.4byte 0x00000000
-	.4byte 0x25732F74
-	.4byte 0x65787473
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x67726964
-	.4byte 0x2E62696E
-	.4byte 0x00000000
-	.4byte 0x6D617020
-	.4byte 0x636F6C6C
-	.4byte 0x6973696F
-	.4byte 0x6E000000
-	.4byte 0x77617465
-	.4byte 0x72626F78
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x77617465
-	.4byte 0x72626F78
-	.4byte 0x00000000
-	.4byte 0x6D617063
-	.4byte 0x6F64652E
-	.4byte 0x62696E00
-	.4byte 0x726F7574
-	.4byte 0x65496E66
-	.4byte 0x6F000000
-	.4byte 0x6C6F6F70
-	.4byte 0x2061762E
-	.4byte 0x20252E31
-	.4byte 0x66000000
-	.4byte 0x25642025
-	.4byte 0x64202564
-	.4byte 0x3C25643E
-	.4byte 0x00000000
-	.4byte 0x74726973
-	.4byte 0x2061762E
-	.4byte 0x20252E31
-	.4byte 0x66000000
+.obj lbl_8047E19C, local
+	.asciz "mapMgr.cpp"
+.endobj lbl_8047E19C
+.balign 4
+.obj lbl_8047E1A8, local
+	.asciz "P2Assert"
+.endobj lbl_8047E1A8
+.balign 4
+.obj lbl_8047E1B4, local
+	.asciz "%s/arc.szs"
+.endobj lbl_8047E1B4
+.balign 4
+.obj lbl_8047E1C0, local
+	.asciz "%s/arc.arc"
+.endobj lbl_8047E1C0
+.balign 4
+.obj lbl_8047E1CC, local
+	.asciz "map model"
+.endobj lbl_8047E1CC
+.balign 4
+.obj lbl_8047E1D8, local
+	.asciz "model.bmd"
+.endobj lbl_8047E1D8
+.balign 4
+.obj lbl_8047E1E4, local
+	.asciz "farm_%d.bmd"
+.endobj lbl_8047E1E4
+.balign 4
+.obj lbl_8047E1F0, local
+	.asciz "texanm_%d.btk"
+.endobj lbl_8047E1F0
+.balign 4
+.obj lbl_8047E200, local
+	.asciz "%s/light.ini"
+.endobj lbl_8047E200
+.balign 4
+.obj lbl_8047E210, local
+	.asciz "%s/texts.szs"
+.endobj lbl_8047E210
+.balign 4
+.obj lbl_8047E220, local
+	.asciz "grid.bin"
+.endobj lbl_8047E220
+.balign 4
+.obj lbl_8047E22C, local
+	.asciz "map collision"
+.endobj lbl_8047E22C
+.balign 4
+.obj lbl_8047E23C, local
+	.asciz "waterbox.txt"
+.endobj lbl_8047E23C
+.balign 4
+.obj lbl_8047E24C, local
+	.asciz "waterbox"
+.endobj lbl_8047E24C
+.balign 4
+.obj lbl_8047E258, local
+	.asciz "mapcode.bin"
+.endobj lbl_8047E258
+.balign 4
+.obj lbl_8047E264, local
+	.asciz "routeInfo"
+.endobj lbl_8047E264
+.balign 4
+.obj lbl_8047E270, local
+	.asciz "loop av. %.1f"
+.endobj lbl_8047E270
+.balign 4
+.obj lbl_8047E280, local
+	.asciz "%d %d %d<%d>"
+.endobj lbl_8047E280
+.balign 4
+.obj lbl_8047E290, local
+	.asciz "tris av. %.1f"
+.endobj lbl_8047E290
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -83,8 +94,7 @@ lbl_8047E1A8:
 	.float 0.0
 	.float 0.0
 .endobj govNAN___Q24Game5P2JST
-.global __vt__Q24Game11ShapeMapMgr
-__vt__Q24Game11ShapeMapMgr:
+.obj __vt__Q24Game11ShapeMapMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte hasHiddenCollision__Q24Game6MapMgrFv
@@ -123,8 +133,8 @@ __vt__Q24Game11ShapeMapMgr:
 	.4byte pausable__16GenericObjectMgrFv
 	.4byte "@84@4@frozenable__Q24Game6MapMgrFv"
 	.4byte getMatrixLoadType__16GenericObjectMgrFv
-.global __vt__Q24Game6MapMgr
-__vt__Q24Game6MapMgr:
+.endobj __vt__Q24Game11ShapeMapMgr
+.obj __vt__Q24Game6MapMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte hasHiddenCollision__Q24Game6MapMgrFv
@@ -159,14 +169,15 @@ __vt__Q24Game6MapMgr:
 	.4byte pausable__16GenericObjectMgrFv
 	.4byte "@36@4@frozenable__Q24Game6MapMgrFv"
 	.4byte getMatrixLoadType__16GenericObjectMgrFv
-.global "__vt__26Iterator<Q24Game8WaterBox>"
-"__vt__26Iterator<Q24Game8WaterBox>":
+.endobj __vt__Q24Game6MapMgr
+.obj "__vt__26Iterator<Q24Game8WaterBox>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__26Iterator<Q24Game8WaterBox>Fv"
 	.4byte "next__26Iterator<Q24Game8WaterBox>Fv"
 	.4byte "isDone__26Iterator<Q24Game8WaterBox>Fv"
 	.4byte "__ml__26Iterator<Q24Game8WaterBox>Fv"
+.endobj "__vt__26Iterator<Q24Game8WaterBox>"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -185,64 +196,87 @@ __vt__Q24Game6MapMgr:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518860:
-	.4byte 0x6D61704D
-	.4byte 0x67720000
-lbl_80518868:
-	.4byte 0x41080000
-lbl_8051886C:
-	.4byte 0x00000000
-lbl_80518870:
-	.4byte 0x40490FDB
-lbl_80518874:
-	.4byte 0x3BB60B61
-lbl_80518878:
-	.4byte 0x41700000
-lbl_8051887C:
-	.4byte 0x3EC90FDB
-lbl_80518880:
-	.4byte 0x43A2F983
-lbl_80518884:
-	.4byte 0xC3A2F983
-lbl_80518888:
-	.4byte 0x41200000
-lbl_8051888C:
-	.4byte 0x40400000
-lbl_80518890:
-	.4byte 0x47FA0000
-	.4byte 0x00000000
-lbl_80518898:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_805188A0:
-	.4byte 0x51BA43B7
-lbl_805188A4:
+.obj lbl_80518860, local
+	.asciz "mapMgr"
+.endobj lbl_80518860
+.balign 4
+.obj lbl_80518868, local
+	.float 8.5
+.endobj lbl_80518868
+.obj lbl_8051886C, local
+	.float 0.0
+.endobj lbl_8051886C
+.obj lbl_80518870, local # pi
+	.float 3.1415927
+.endobj lbl_80518870
+.obj lbl_80518874, local
+	.float 0.0055555557
+.endobj lbl_80518874
+.obj lbl_80518878, local
+	.float 15.0
+.endobj lbl_80518878
+.obj lbl_8051887C, local
+	.float 0.3926991
+.endobj lbl_8051887C
+.obj lbl_80518880, local
+	.float 325.9493
+.endobj lbl_80518880
+.obj lbl_80518884, local
+	.float -325.9493
+.endobj lbl_80518884
+.obj lbl_80518888, local
+	.float 10.0
+.endobj lbl_80518888
+.obj lbl_8051888C, local
+	.float 3.0
+.endobj lbl_8051888C
+.obj lbl_80518890, local
+	.float 128000.0
+.endobj lbl_80518890
+.balign 8
+.obj lbl_80518898, local
+	.8byte 0x4330000080000000
+.endobj lbl_80518898
+.obj lbl_805188A0, local
+	.float 9.9999998E10
+.endobj lbl_805188A0
+.obj lbl_805188A4, local
 	.float 1.0
-lbl_805188A8:
-	.4byte 0x41F00000
-lbl_805188AC:
-	.4byte 0x3F19999A
-lbl_805188B0:
-	.4byte 0x6D617020
-	.4byte 0x61726300
-lbl_805188B8:
-	.4byte 0xC7FA0000
-lbl_805188BC:
-	.4byte 0x454E542D
-	.4byte 0x4D415000
-lbl_805188C4:
+.endobj lbl_805188A4
+.obj lbl_805188A8, local
+	.float 30.0
+.endobj lbl_805188A8
+.obj lbl_805188AC, local
+	.float 0.6
+.endobj lbl_805188AC
+.balign 4
+.obj lbl_805188B0, local
+	.asciz "map arc"
+.endobj lbl_805188B0
+.balign 4
+.obj lbl_805188B8, local
+	.float -128000.0
+.endobj lbl_805188B8
+.balign 4
+.obj lbl_805188BC, local
+	.asciz "ENT-MAP"
+.endobj lbl_805188BC
+.balign 4
+.obj lbl_805188C4, local
 	.float 0.5
-lbl_805188C8:
-	.4byte 0x4B435000
-lbl_805188CC:
-	.4byte 0x47000000
-lbl_805188D0:
-	.4byte 0xC7000000
-	.4byte 0x00000000
+.endobj lbl_805188C4
+.obj lbl_805188C8, local
+	.float 1.28E7
+.endobj lbl_805188C8
+.obj lbl_805188CC, local
+	.float 32768.0
+.endobj lbl_805188CC
+.obj lbl_805188D0, local
+	.float -32768.0
+.endobj lbl_805188D0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei
-store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei:
+.fn store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei, global
 /* 8016239C 0015F2DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801623A0 0015F2E0  7C 08 02 A6 */	mflr r0
 /* 801623A4 0015F2E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -261,9 +295,9 @@ store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei:
 /* 801623D4 0015F314  7C 08 03 A6 */	mtlr r0
 /* 801623D8 0015F318  38 21 00 10 */	addi r1, r1, 0x10
 /* 801623DC 0015F31C  4E 80 00 20 */	blr 
+.endfn store__Q24Game18TDispTriangleArrayFRQ23Sys8TriangleRQ23Sys11VertexTablei
 
-.global store__Q24Game18TDispTriangleArrayFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei
-store__Q24Game18TDispTriangleArrayFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei:
+.fn store__Q24Game18TDispTriangleArrayFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei, global
 /* 801623E0 0015F320  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801623E4 0015F324  7C 08 02 A6 */	mflr r0
 /* 801623E8 0015F328  90 01 00 14 */	stw r0, 0x14(r1)
@@ -282,9 +316,9 @@ store__Q24Game18TDispTriangleArrayFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTable
 /* 80162418 0015F358  7C 08 03 A6 */	mtlr r0
 /* 8016241C 0015F35C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80162420 0015F360  4E 80 00 20 */	blr 
+.endfn store__Q24Game18TDispTriangleArrayFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei
 
-.global store__Q24Game13TDispTriangleFRQ23Sys8TriangleRQ23Sys11VertexTablei
-store__Q24Game13TDispTriangleFRQ23Sys8TriangleRQ23Sys11VertexTablei:
+.fn store__Q24Game13TDispTriangleFRQ23Sys8TriangleRQ23Sys11VertexTablei, global
 /* 80162424 0015F364  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80162428 0015F368  7C 08 02 A6 */	mflr r0
 /* 8016242C 0015F36C  7C 69 1B 78 */	mr r9, r3
@@ -333,9 +367,9 @@ store__Q24Game13TDispTriangleFRQ23Sys8TriangleRQ23Sys11VertexTablei:
 /* 801624D8 0015F418  7C 08 03 A6 */	mtlr r0
 /* 801624DC 0015F41C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801624E0 0015F420  4E 80 00 20 */	blr 
+.endfn store__Q24Game13TDispTriangleFRQ23Sys8TriangleRQ23Sys11VertexTablei
 
-.global store__Q24Game13TDispTriangleFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei
-store__Q24Game13TDispTriangleFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei:
+.fn store__Q24Game13TDispTriangleFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei, global
 /* 801624E4 0015F424  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801624E8 0015F428  7C 08 02 A6 */	mflr r0
 /* 801624EC 0015F42C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -400,9 +434,9 @@ store__Q24Game13TDispTriangleFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei:
 /* 801625D8 0015F518  7C 08 03 A6 */	mtlr r0
 /* 801625DC 0015F51C  38 21 00 50 */	addi r1, r1, 0x50
 /* 801625E0 0015F520  4E 80 00 20 */	blr 
+.endfn store__Q24Game13TDispTriangleFR7MatrixfRQ23Sys8TriangleRQ23Sys11VertexTablei
 
-.global __ct__Q24Game6MapMgrFv
-__ct__Q24Game6MapMgrFv:
+.fn __ct__Q24Game6MapMgrFv, global
 /* 801625E4 0015F524  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801625E8 0015F528  7C 08 02 A6 */	mflr r0
 /* 801625EC 0015F52C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -443,9 +477,9 @@ __ct__Q24Game6MapMgrFv:
 /* 80162670 0015F5B0  7C 08 03 A6 */	mtlr r0
 /* 80162674 0015F5B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80162678 0015F5B8  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game6MapMgrFv
 
-.global "getStartPosition__Q24Game6MapMgrFR10Vector3<f>i"
-"getStartPosition__Q24Game6MapMgrFR10Vector3<f>i":
+.fn "getStartPosition__Q24Game6MapMgrFR10Vector3<f>i", global
 /* 8016267C 0015F5BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80162680 0015F5C0  7C 08 02 A6 */	mflr r0
 /* 80162684 0015F5C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -479,9 +513,9 @@ __ct__Q24Game6MapMgrFv:
 /* 801626EC 0015F62C  7C 08 03 A6 */	mtlr r0
 /* 801626F0 0015F630  38 21 00 10 */	addi r1, r1, 0x10
 /* 801626F4 0015F634  4E 80 00 20 */	blr 
+.endfn "getStartPosition__Q24Game6MapMgrFR10Vector3<f>i"
 
-.global getMapRotation__Q24Game6MapMgrFv
-getMapRotation__Q24Game6MapMgrFv:
+.fn getMapRotation__Q24Game6MapMgrFv, global
 /* 801626F8 0015F638  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 801626FC 0015F63C  28 03 00 00 */	cmplwi r3, 0
 /* 80162700 0015F640  41 82 00 1C */	beq .L_8016271C
@@ -494,9 +528,9 @@ getMapRotation__Q24Game6MapMgrFv:
 .L_8016271C:
 /* 8016271C 0015F65C  C0 22 A5 0C */	lfs f1, lbl_8051886C@sda21(r2)
 /* 80162720 0015F660  4E 80 00 20 */	blr 
+.endfn getMapRotation__Q24Game6MapMgrFv
 
-.global getDemoMatrix__Q24Game6MapMgrFv
-getDemoMatrix__Q24Game6MapMgrFv:
+.fn getDemoMatrix__Q24Game6MapMgrFv, global
 /* 80162724 0015F664  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80162728 0015F668  28 03 00 00 */	cmplwi r3, 0
 /* 8016272C 0015F66C  41 82 00 0C */	beq .L_80162738
@@ -505,9 +539,9 @@ getDemoMatrix__Q24Game6MapMgrFv:
 .L_80162738:
 /* 80162738 0015F678  38 60 00 00 */	li r3, 0
 /* 8016273C 0015F67C  4E 80 00 20 */	blr 
+.endfn getDemoMatrix__Q24Game6MapMgrFv
 
-.global "getBestAngle__Q24Game6MapMgrFR10Vector3<f>ff"
-"getBestAngle__Q24Game6MapMgrFR10Vector3<f>ff":
+.fn "getBestAngle__Q24Game6MapMgrFR10Vector3<f>ff", global
 /* 80162740 0015F680  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 80162744 0015F684  7C 08 02 A6 */	mflr r0
 /* 80162748 0015F688  90 01 01 84 */	stw r0, 0x184(r1)
@@ -972,9 +1006,9 @@ getDemoMatrix__Q24Game6MapMgrFv:
 /* 80162E38 0015FD78  7C 08 03 A6 */	mtlr r0
 /* 80162E3C 0015FD7C  38 21 01 80 */	addi r1, r1, 0x180
 /* 80162E40 0015FD80  4E 80 00 20 */	blr 
+.endfn "getBestAngle__Q24Game6MapMgrFR10Vector3<f>ff"
 
-.global checkBeamCollision__Q24Game6MapMgrFRQ34Game6MapMgr16BeamCollisionArg
-checkBeamCollision__Q24Game6MapMgrFRQ34Game6MapMgr16BeamCollisionArg:
+.fn checkBeamCollision__Q24Game6MapMgrFRQ34Game6MapMgr16BeamCollisionArg, global
 /* 80162E44 0015FD84  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 80162E48 0015FD88  7C 08 02 A6 */	mflr r0
 /* 80162E4C 0015FD8C  90 01 01 14 */	stw r0, 0x114(r1)
@@ -1156,9 +1190,9 @@ checkBeamCollision__Q24Game6MapMgrFRQ34Game6MapMgr16BeamCollisionArg:
 /* 801630DC 0016001C  7C 08 03 A6 */	mtlr r0
 /* 801630E0 00160020  38 21 01 10 */	addi r1, r1, 0x110
 /* 801630E4 00160024  4E 80 00 20 */	blr 
+.endfn checkBeamCollision__Q24Game6MapMgrFRQ34Game6MapMgr16BeamCollisionArg
 
-.global load__Q24Game11ShapeMapMgrFRQ34Game11ShapeMapMgr7LoadArg
-load__Q24Game11ShapeMapMgrFRQ34Game11ShapeMapMgr7LoadArg:
+.fn load__Q24Game11ShapeMapMgrFRQ34Game11ShapeMapMgr7LoadArg, global
 /* 801630E8 00160028  94 21 D4 D0 */	stwu r1, -0x2b30(r1)
 /* 801630EC 0016002C  7C 08 02 A6 */	mflr r0
 /* 801630F0 00160030  3C A0 80 48 */	lis r5, lbl_8047E190@ha
@@ -1705,9 +1739,9 @@ load__Q24Game11ShapeMapMgrFRQ34Game11ShapeMapMgr7LoadArg:
 /* 801638E0 00160820  7C 08 03 A6 */	mtlr r0
 /* 801638E4 00160824  38 21 2B 30 */	addi r1, r1, 0x2b30
 /* 801638E8 00160828  4E 80 00 20 */	blr 
+.endfn load__Q24Game11ShapeMapMgrFRQ34Game11ShapeMapMgr7LoadArg
 
-.global __ct__Q23Sys15MatLoopAnimatorFv
-__ct__Q23Sys15MatLoopAnimatorFv:
+.fn __ct__Q23Sys15MatLoopAnimatorFv, weak
 /* 801638EC 0016082C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801638F0 00160830  7C 08 02 A6 */	mflr r0
 /* 801638F4 00160834  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1723,9 +1757,9 @@ __ct__Q23Sys15MatLoopAnimatorFv:
 /* 8016391C 0016085C  7C 08 03 A6 */	mtlr r0
 /* 80163920 00160860  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163924 00160864  4E 80 00 20 */	blr 
+.endfn __ct__Q23Sys15MatLoopAnimatorFv
 
-.global findWater__Q24Game6MapMgrFRQ23Sys6Sphere
-findWater__Q24Game6MapMgrFRQ23Sys6Sphere:
+.fn findWater__Q24Game6MapMgrFRQ23Sys6Sphere, global
 /* 80163928 00160868  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016392C 0016086C  7C 08 02 A6 */	mflr r0
 /* 80163930 00160870  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1741,9 +1775,9 @@ findWater__Q24Game6MapMgrFRQ23Sys6Sphere:
 /* 80163950 00160890  7C 08 03 A6 */	mtlr r0
 /* 80163954 00160894  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163958 00160898  4E 80 00 20 */	blr 
+.endfn findWater__Q24Game6MapMgrFRQ23Sys6Sphere
 
-.global do_update__Q24Game11ShapeMapMgrFv
-do_update__Q24Game11ShapeMapMgrFv:
+.fn do_update__Q24Game11ShapeMapMgrFv, global
 /* 8016395C 0016089C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80163960 001608A0  7C 08 02 A6 */	mflr r0
 /* 80163964 001608A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1786,9 +1820,9 @@ do_update__Q24Game11ShapeMapMgrFv:
 /* 801639EC 0016092C  7C 08 03 A6 */	mtlr r0
 /* 801639F0 00160930  38 21 00 20 */	addi r1, r1, 0x20
 /* 801639F4 00160934  4E 80 00 20 */	blr 
+.endfn do_update__Q24Game11ShapeMapMgrFv
 
-.global update__Q24Game6MapMgrFv
-update__Q24Game6MapMgrFv:
+.fn update__Q24Game6MapMgrFv, global
 /* 801639F8 00160938  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801639FC 0016093C  7C 08 02 A6 */	mflr r0
 /* 80163A00 00160940  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1810,22 +1844,22 @@ update__Q24Game6MapMgrFv:
 /* 80163A3C 0016097C  7C 08 03 A6 */	mtlr r0
 /* 80163A40 00160980  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163A44 00160984  4E 80 00 20 */	blr 
+.endfn update__Q24Game6MapMgrFv
 
-.global do_update__Q24Game6MapMgrFv
-do_update__Q24Game6MapMgrFv:
+.fn do_update__Q24Game6MapMgrFv, weak
 /* 80163A48 00160988  4E 80 00 20 */	blr 
+.endfn do_update__Q24Game6MapMgrFv
 
-.global clearPerfMonitor__Q24Game6MapMgrFv
-clearPerfMonitor__Q24Game6MapMgrFv:
+.fn clearPerfMonitor__Q24Game6MapMgrFv, global
 /* 80163A4C 0016098C  38 00 00 00 */	li r0, 0
 /* 80163A50 00160990  90 03 00 14 */	stw r0, 0x14(r3)
 /* 80163A54 00160994  90 03 00 18 */	stw r0, 0x18(r3)
 /* 80163A58 00160998  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 80163A5C 0016099C  90 03 00 20 */	stw r0, 0x20(r3)
 /* 80163A60 001609A0  4E 80 00 20 */	blr 
+.endfn clearPerfMonitor__Q24Game6MapMgrFv
 
-.global drawCollision__Q24Game11ShapeMapMgrFR8GraphicsRQ23Sys6Sphere
-drawCollision__Q24Game11ShapeMapMgrFR8GraphicsRQ23Sys6Sphere:
+.fn drawCollision__Q24Game11ShapeMapMgrFR8GraphicsRQ23Sys6Sphere, global
 /* 80163A64 001609A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80163A68 001609A8  7C 08 02 A6 */	mflr r0
 /* 80163A6C 001609AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1870,9 +1904,9 @@ drawCollision__Q24Game11ShapeMapMgrFR8GraphicsRQ23Sys6Sphere:
 /* 80163B04 00160A44  7C 08 03 A6 */	mtlr r0
 /* 80163B08 00160A48  38 21 00 20 */	addi r1, r1, 0x20
 /* 80163B0C 00160A4C  4E 80 00 20 */	blr 
+.endfn drawCollision__Q24Game11ShapeMapMgrFR8GraphicsRQ23Sys6Sphere
 
-.global createTriangles__Q24Game11ShapeMapMgrFRQ23Sys17CreateTriangleArg
-createTriangles__Q24Game11ShapeMapMgrFRQ23Sys17CreateTriangleArg:
+.fn createTriangles__Q24Game11ShapeMapMgrFRQ23Sys17CreateTriangleArg, global
 /* 80163B10 00160A50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80163B14 00160A54  7C 08 02 A6 */	mflr r0
 /* 80163B18 00160A58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1884,9 +1918,9 @@ createTriangles__Q24Game11ShapeMapMgrFRQ23Sys17CreateTriangleArg:
 /* 80163B30 00160A70  7C 08 03 A6 */	mtlr r0
 /* 80163B34 00160A74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163B38 00160A78  4E 80 00 20 */	blr 
+.endfn createTriangles__Q24Game11ShapeMapMgrFRQ23Sys17CreateTriangleArg
 
-.global createTriangles__12MapCollisionFRQ23Sys17CreateTriangleArg
-createTriangles__12MapCollisionFRQ23Sys17CreateTriangleArg:
+.fn createTriangles__12MapCollisionFRQ23Sys17CreateTriangleArg, weak
 /* 80163B3C 00160A7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80163B40 00160A80  7C 08 02 A6 */	mflr r0
 /* 80163B44 00160A84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1899,13 +1933,13 @@ createTriangles__12MapCollisionFRQ23Sys17CreateTriangleArg:
 /* 80163B60 00160AA0  7C 08 03 A6 */	mtlr r0
 /* 80163B64 00160AA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163B68 00160AA8  4E 80 00 20 */	blr 
+.endfn createTriangles__12MapCollisionFRQ23Sys17CreateTriangleArg
 
-.global createTriangles__Q23Sys10TriDividerFRQ23Sys17CreateTriangleArg
-createTriangles__Q23Sys10TriDividerFRQ23Sys17CreateTriangleArg:
+.fn createTriangles__Q23Sys10TriDividerFRQ23Sys17CreateTriangleArg, weak
 /* 80163B6C 00160AAC  4E 80 00 20 */	blr 
+.endfn createTriangles__Q23Sys10TriDividerFRQ23Sys17CreateTriangleArg
 
-.global "getMinY__Q24Game11ShapeMapMgrFR10Vector3<f>"
-"getMinY__Q24Game11ShapeMapMgrFR10Vector3<f>":
+.fn "getMinY__Q24Game11ShapeMapMgrFR10Vector3<f>", global
 /* 80163B70 00160AB0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80163B74 00160AB4  7C 08 02 A6 */	mflr r0
 /* 80163B78 00160AB8  C0 22 A5 0C */	lfs f1, lbl_8051886C@sda21(r2)
@@ -1941,9 +1975,9 @@ createTriangles__Q23Sys10TriDividerFRQ23Sys17CreateTriangleArg:
 /* 80163BF0 00160B30  7C 08 03 A6 */	mtlr r0
 /* 80163BF4 00160B34  38 21 00 40 */	addi r1, r1, 0x40
 /* 80163BF8 00160B38  4E 80 00 20 */	blr 
+.endfn "getMinY__Q24Game11ShapeMapMgrFR10Vector3<f>"
 
-.global getCurrTri__Q24Game11ShapeMapMgrFRQ24Game11CurrTriInfo
-getCurrTri__Q24Game11ShapeMapMgrFRQ24Game11CurrTriInfo:
+.fn getCurrTri__Q24Game11ShapeMapMgrFRQ24Game11CurrTriInfo, global
 /* 80163BFC 00160B3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80163C00 00160B40  7C 08 02 A6 */	mflr r0
 /* 80163C04 00160B44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1955,9 +1989,9 @@ getCurrTri__Q24Game11ShapeMapMgrFRQ24Game11CurrTriInfo:
 /* 80163C1C 00160B5C  7C 08 03 A6 */	mtlr r0
 /* 80163C20 00160B60  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163C24 00160B64  4E 80 00 20 */	blr 
+.endfn getCurrTri__Q24Game11ShapeMapMgrFRQ24Game11CurrTriInfo
 
-.global doAnimation__Q24Game11ShapeMapMgrFv
-doAnimation__Q24Game11ShapeMapMgrFv:
+.fn doAnimation__Q24Game11ShapeMapMgrFv, global
 /* 80163C28 00160B68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80163C2C 00160B6C  7C 08 02 A6 */	mflr r0
 /* 80163C30 00160B70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1973,9 +2007,9 @@ doAnimation__Q24Game11ShapeMapMgrFv:
 /* 80163C54 00160B94  7C 08 03 A6 */	mtlr r0
 /* 80163C58 00160B98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163C5C 00160B9C  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game11ShapeMapMgrFv
 
-.global doSetView__Q24Game11ShapeMapMgrFi
-doSetView__Q24Game11ShapeMapMgrFi:
+.fn doSetView__Q24Game11ShapeMapMgrFi, global
 /* 80163C60 00160BA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80163C64 00160BA4  7C 08 02 A6 */	mflr r0
 /* 80163C68 00160BA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2001,9 +2035,9 @@ doSetView__Q24Game11ShapeMapMgrFi:
 /* 80163CB4 00160BF4  7C 08 03 A6 */	mtlr r0
 /* 80163CB8 00160BF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163CBC 00160BFC  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game11ShapeMapMgrFi
 
-.global doViewCalc__Q24Game11ShapeMapMgrFv
-doViewCalc__Q24Game11ShapeMapMgrFv:
+.fn doViewCalc__Q24Game11ShapeMapMgrFv, global
 /* 80163CC0 00160C00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80163CC4 00160C04  7C 08 02 A6 */	mflr r0
 /* 80163CC8 00160C08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2024,9 +2058,9 @@ doViewCalc__Q24Game11ShapeMapMgrFv:
 /* 80163D00 00160C40  7C 08 03 A6 */	mtlr r0
 /* 80163D04 00160C44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163D08 00160C48  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game11ShapeMapMgrFv
 
-.global doEntry__Q24Game11ShapeMapMgrFv
-doEntry__Q24Game11ShapeMapMgrFv:
+.fn doEntry__Q24Game11ShapeMapMgrFv, global
 /* 80163D0C 00160C4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80163D10 00160C50  7C 08 02 A6 */	mflr r0
 /* 80163D14 00160C54  38 82 A5 5C */	addi r4, r2, lbl_805188BC@sda21
@@ -2078,9 +2112,9 @@ doEntry__Q24Game11ShapeMapMgrFv:
 /* 80163DC0 00160D00  7C 08 03 A6 */	mtlr r0
 /* 80163DC4 00160D04  38 21 00 10 */	addi r1, r1, 0x10
 /* 80163DC8 00160D08  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game11ShapeMapMgrFv
 
-.global findRayIntersection__Q24Game11ShapeMapMgrFRQ23Sys16RayIntersectInfo
-findRayIntersection__Q24Game11ShapeMapMgrFRQ23Sys16RayIntersectInfo:
+.fn findRayIntersection__Q24Game11ShapeMapMgrFRQ23Sys16RayIntersectInfo, global
 /* 80163DCC 00160D0C  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80163DD0 00160D10  7C 08 02 A6 */	mflr r0
 /* 80163DD4 00160D14  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -2221,9 +2255,9 @@ findRayIntersection__Q24Game11ShapeMapMgrFRQ23Sys16RayIntersectInfo:
 /* 80163FD4 00160F14  7C 08 03 A6 */	mtlr r0
 /* 80163FD8 00160F18  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80163FDC 00160F1C  4E 80 00 20 */	blr 
+.endfn findRayIntersection__Q24Game11ShapeMapMgrFRQ23Sys16RayIntersectInfo
 
-.global getBoundBox2d__Q24Game11ShapeMapMgrFR10BoundBox2d
-getBoundBox2d__Q24Game11ShapeMapMgrFR10BoundBox2d:
+.fn getBoundBox2d__Q24Game11ShapeMapMgrFR10BoundBox2d, weak
 /* 80163FE0 00160F20  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80163FE4 00160F24  7C 08 02 A6 */	mflr r0
 /* 80163FE8 00160F28  C0 22 A5 6C */	lfs f1, lbl_805188CC@sda21(r2)
@@ -2256,9 +2290,9 @@ getBoundBox2d__Q24Game11ShapeMapMgrFR10BoundBox2d:
 /* 80164054 00160F94  7C 08 03 A6 */	mtlr r0
 /* 80164058 00160F98  38 21 00 30 */	addi r1, r1, 0x30
 /* 8016405C 00160F9C  4E 80 00 20 */	blr 
+.endfn getBoundBox2d__Q24Game11ShapeMapMgrFR10BoundBox2d
 
-.global getBoundBox__Q24Game11ShapeMapMgrFR8BoundBox
-getBoundBox__Q24Game11ShapeMapMgrFR8BoundBox:
+.fn getBoundBox__Q24Game11ShapeMapMgrFR8BoundBox, weak
 /* 80164060 00160FA0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80164064 00160FA4  7C 08 02 A6 */	mflr r0
 /* 80164068 00160FA8  C0 22 A5 6C */	lfs f1, lbl_805188CC@sda21(r2)
@@ -2295,31 +2329,31 @@ getBoundBox__Q24Game11ShapeMapMgrFR8BoundBox:
 /* 801640E4 00161024  7C 08 03 A6 */	mtlr r0
 /* 801640E8 00161028  38 21 00 30 */	addi r1, r1, 0x30
 /* 801640EC 0016102C  4E 80 00 20 */	blr 
+.endfn getBoundBox__Q24Game11ShapeMapMgrFR8BoundBox
 
-.global frozenable__Q24Game6MapMgrFv
-frozenable__Q24Game6MapMgrFv:
+.fn frozenable__Q24Game6MapMgrFv, weak
 /* 801640F0 00161030  38 60 00 00 */	li r3, 0
 /* 801640F4 00161034  4E 80 00 20 */	blr 
+.endfn frozenable__Q24Game6MapMgrFv
 
-.global doDirectDraw__Q24Game6MapMgrFR8Graphics
-doDirectDraw__Q24Game6MapMgrFR8Graphics:
+.fn doDirectDraw__Q24Game6MapMgrFR8Graphics, weak
 /* 801640F8 00161038  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game6MapMgrFR8Graphics
 
-.global doSimulation__Q24Game6MapMgrFf
-doSimulation__Q24Game6MapMgrFf:
+.fn doSimulation__Q24Game6MapMgrFf, weak
 /* 801640FC 0016103C  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game6MapMgrFf
 
-.global findRayIntersection__Q24Game6MapMgrFRQ23Sys16RayIntersectInfo
-findRayIntersection__Q24Game6MapMgrFRQ23Sys16RayIntersectInfo:
+.fn findRayIntersection__Q24Game6MapMgrFRQ23Sys16RayIntersectInfo, weak
 /* 80164100 00161040  38 60 00 00 */	li r3, 0
 /* 80164104 00161044  4E 80 00 20 */	blr 
+.endfn findRayIntersection__Q24Game6MapMgrFRQ23Sys16RayIntersectInfo
 
-.global createTriangles__Q24Game6MapMgrFRQ23Sys17CreateTriangleArg
-createTriangles__Q24Game6MapMgrFRQ23Sys17CreateTriangleArg:
+.fn createTriangles__Q24Game6MapMgrFRQ23Sys17CreateTriangleArg, weak
 /* 80164108 00161048  4E 80 00 20 */	blr 
+.endfn createTriangles__Q24Game6MapMgrFRQ23Sys17CreateTriangleArg
 
-.global "doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
-"doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv":
+.fn "doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv", weak
 /* 8016410C 0016104C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80164110 00161050  7C 08 02 A6 */	mflr r0
 /* 80164114 00161054  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8WaterBox>"@ha
@@ -2449,13 +2483,13 @@ createTriangles__Q24Game6MapMgrFRQ23Sys17CreateTriangleArg:
 /* 801642E4 00161224  7C 08 03 A6 */	mtlr r0
 /* 801642E8 00161228  38 21 00 20 */	addi r1, r1, 0x20
 /* 801642EC 0016122C  4E 80 00 20 */	blr 
+.endfn "doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
 
-.global doViewCalc__Q24Game8WaterBoxFv
-doViewCalc__Q24Game8WaterBoxFv:
+.fn doViewCalc__Q24Game8WaterBoxFv, weak
 /* 801642F0 00161230  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game8WaterBoxFv
 
-.global "isDone__26Iterator<Q24Game8WaterBox>Fv"
-"isDone__26Iterator<Q24Game8WaterBox>Fv":
+.fn "isDone__26Iterator<Q24Game8WaterBox>Fv", weak
 /* 801642F4 00161234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801642F8 00161238  7C 08 02 A6 */	mflr r0
 /* 801642FC 0016123C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2475,9 +2509,9 @@ doViewCalc__Q24Game8WaterBoxFv:
 /* 80164334 00161274  7C 08 03 A6 */	mtlr r0
 /* 80164338 00161278  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016433C 0016127C  4E 80 00 20 */	blr 
+.endfn "isDone__26Iterator<Q24Game8WaterBox>Fv"
 
-.global "doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
-"doSetView__27ObjectMgr<Q24Game8WaterBox>Fi":
+.fn "doSetView__27ObjectMgr<Q24Game8WaterBox>Fi", weak
 /* 80164340 00161280  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80164344 00161284  7C 08 02 A6 */	mflr r0
 /* 80164348 00161288  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8WaterBox>"@ha
@@ -2611,13 +2645,13 @@ doViewCalc__Q24Game8WaterBoxFv:
 /* 80164528 00161468  7C 08 03 A6 */	mtlr r0
 /* 8016452C 0016146C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80164530 00161470  4E 80 00 20 */	blr 
+.endfn "doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
 
-.global doSetView__Q24Game8WaterBoxFi
-doSetView__Q24Game8WaterBoxFi:
+.fn doSetView__Q24Game8WaterBoxFi, weak
 /* 80164534 00161474  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game8WaterBoxFi
 
-.global "doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
-"doEntry__27ObjectMgr<Q24Game8WaterBox>Fv":
+.fn "doEntry__27ObjectMgr<Q24Game8WaterBox>Fv", weak
 /* 80164538 00161478  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016453C 0016147C  7C 08 02 A6 */	mflr r0
 /* 80164540 00161480  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8WaterBox>"@ha
@@ -2747,13 +2781,13 @@ doSetView__Q24Game8WaterBoxFi:
 /* 80164710 00161650  7C 08 03 A6 */	mtlr r0
 /* 80164714 00161654  38 21 00 20 */	addi r1, r1, 0x20
 /* 80164718 00161658  4E 80 00 20 */	blr 
+.endfn "doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
 
-.global doEntry__Q24Game8WaterBoxFv
-doEntry__Q24Game8WaterBoxFv:
+.fn doEntry__Q24Game8WaterBoxFv, weak
 /* 8016471C 0016165C  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game8WaterBoxFv
 
-.global "doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
-"doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv":
+.fn "doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv", weak
 /* 80164720 00161660  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80164724 00161664  7C 08 02 A6 */	mflr r0
 /* 80164728 00161668  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8WaterBox>"@ha
@@ -2883,13 +2917,13 @@ doEntry__Q24Game8WaterBoxFv:
 /* 801648F8 00161838  7C 08 03 A6 */	mtlr r0
 /* 801648FC 0016183C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80164900 00161840  4E 80 00 20 */	blr 
+.endfn "doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
 
-.global doAnimation__Q24Game8WaterBoxFv
-doAnimation__Q24Game8WaterBoxFv:
+.fn doAnimation__Q24Game8WaterBoxFv, weak
 /* 80164904 00161844  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game8WaterBoxFv
 
-.global "__ml__26Iterator<Q24Game8WaterBox>Fv"
-"__ml__26Iterator<Q24Game8WaterBox>Fv":
+.fn "__ml__26Iterator<Q24Game8WaterBox>Fv", weak
 /* 80164908 00161848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016490C 0016184C  7C 08 02 A6 */	mflr r0
 /* 80164910 00161850  7C 64 1B 78 */	mr r4, r3
@@ -2904,9 +2938,9 @@ doAnimation__Q24Game8WaterBoxFv:
 /* 80164934 00161874  7C 08 03 A6 */	mtlr r0
 /* 80164938 00161878  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016493C 0016187C  4E 80 00 20 */	blr 
+.endfn "__ml__26Iterator<Q24Game8WaterBox>Fv"
 
-.global "next__26Iterator<Q24Game8WaterBox>Fv"
-"next__26Iterator<Q24Game8WaterBox>Fv":
+.fn "next__26Iterator<Q24Game8WaterBox>Fv", weak
 /* 80164940 00161880  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164944 00161884  7C 08 02 A6 */	mflr r0
 /* 80164948 00161888  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2968,9 +3002,9 @@ doAnimation__Q24Game8WaterBoxFv:
 /* 80164A18 00161958  7C 08 03 A6 */	mtlr r0
 /* 80164A1C 0016195C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80164A20 00161960  4E 80 00 20 */	blr 
+.endfn "next__26Iterator<Q24Game8WaterBox>Fv"
 
-.global "first__26Iterator<Q24Game8WaterBox>Fv"
-"first__26Iterator<Q24Game8WaterBox>Fv":
+.fn "first__26Iterator<Q24Game8WaterBox>Fv", weak
 /* 80164A24 00161964  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164A28 00161968  7C 08 02 A6 */	mflr r0
 /* 80164A2C 0016196C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3030,9 +3064,9 @@ doAnimation__Q24Game8WaterBoxFv:
 /* 80164AF4 00161A34  7C 08 03 A6 */	mtlr r0
 /* 80164AF8 00161A38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80164AFC 00161A3C  4E 80 00 20 */	blr 
+.endfn "first__26Iterator<Q24Game8WaterBox>Fv"
 
-.global __sinit_mapMgr_cpp
-__sinit_mapMgr_cpp:
+.fn __sinit_mapMgr_cpp, local
 /* 80164B00 00161A40  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80164B04 00161A44  38 00 FF FF */	li r0, -1
 /* 80164B08 00161A48  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3043,83 +3077,84 @@ __sinit_mapMgr_cpp:
 /* 80164B1C 00161A5C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80164B20 00161A60  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80164B24 00161A64  4E 80 00 20 */	blr 
+.endfn __sinit_mapMgr_cpp
 
-.global "@36@4@frozenable__Q24Game6MapMgrFv"
-"@36@4@frozenable__Q24Game6MapMgrFv":
+.fn "@36@4@frozenable__Q24Game6MapMgrFv", weak
 /* 80164B28 00161A68  39 60 00 04 */	li r11, 4
 /* 80164B2C 00161A6C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164B30 00161A70  7C 63 5A 14 */	add r3, r3, r11
 /* 80164B34 00161A74  38 63 FF DC */	addi r3, r3, -36
 /* 80164B38 00161A78  4B FF F5 B8 */	b frozenable__Q24Game6MapMgrFv
+.endfn "@36@4@frozenable__Q24Game6MapMgrFv"
 
-.global "@36@4@doDirectDraw__Q24Game6MapMgrFR8Graphics"
-"@36@4@doDirectDraw__Q24Game6MapMgrFR8Graphics":
+.fn "@36@4@doDirectDraw__Q24Game6MapMgrFR8Graphics", weak
 /* 80164B3C 00161A7C  39 60 00 04 */	li r11, 4
 /* 80164B40 00161A80  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164B44 00161A84  7C 63 5A 14 */	add r3, r3, r11
 /* 80164B48 00161A88  38 63 FF DC */	addi r3, r3, -36
 /* 80164B4C 00161A8C  4B FF F5 AC */	b doDirectDraw__Q24Game6MapMgrFR8Graphics
+.endfn "@36@4@doDirectDraw__Q24Game6MapMgrFR8Graphics"
 
-.global "@36@4@doSimulation__Q24Game6MapMgrFf"
-"@36@4@doSimulation__Q24Game6MapMgrFf":
+.fn "@36@4@doSimulation__Q24Game6MapMgrFf", weak
 /* 80164B50 00161A90  39 60 00 04 */	li r11, 4
 /* 80164B54 00161A94  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164B58 00161A98  7C 63 5A 14 */	add r3, r3, r11
 /* 80164B5C 00161A9C  38 63 FF DC */	addi r3, r3, -36
 /* 80164B60 00161AA0  4B FF F5 9C */	b doSimulation__Q24Game6MapMgrFf
+.endfn "@36@4@doSimulation__Q24Game6MapMgrFf"
 
-.global "@84@4@frozenable__Q24Game6MapMgrFv"
-"@84@4@frozenable__Q24Game6MapMgrFv":
+.fn "@84@4@frozenable__Q24Game6MapMgrFv", weak
 /* 80164B64 00161AA4  39 60 00 04 */	li r11, 4
 /* 80164B68 00161AA8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164B6C 00161AAC  7C 63 5A 14 */	add r3, r3, r11
 /* 80164B70 00161AB0  38 63 FF AC */	addi r3, r3, -84
 /* 80164B74 00161AB4  4B FF F5 7C */	b frozenable__Q24Game6MapMgrFv
+.endfn "@84@4@frozenable__Q24Game6MapMgrFv"
 
-.global "@84@4@doDirectDraw__Q24Game6MapMgrFR8Graphics"
-"@84@4@doDirectDraw__Q24Game6MapMgrFR8Graphics":
+.fn "@84@4@doDirectDraw__Q24Game6MapMgrFR8Graphics", weak
 /* 80164B78 00161AB8  39 60 00 04 */	li r11, 4
 /* 80164B7C 00161ABC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164B80 00161AC0  7C 63 5A 14 */	add r3, r3, r11
 /* 80164B84 00161AC4  38 63 FF AC */	addi r3, r3, -84
 /* 80164B88 00161AC8  4B FF F5 70 */	b doDirectDraw__Q24Game6MapMgrFR8Graphics
+.endfn "@84@4@doDirectDraw__Q24Game6MapMgrFR8Graphics"
 
-.global "@84@4@doSimulation__Q24Game6MapMgrFf"
-"@84@4@doSimulation__Q24Game6MapMgrFf":
+.fn "@84@4@doSimulation__Q24Game6MapMgrFf", weak
 /* 80164B8C 00161ACC  39 60 00 04 */	li r11, 4
 /* 80164B90 00161AD0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164B94 00161AD4  7C 63 5A 14 */	add r3, r3, r11
 /* 80164B98 00161AD8  38 63 FF AC */	addi r3, r3, -84
 /* 80164B9C 00161ADC  4B FF F5 60 */	b doSimulation__Q24Game6MapMgrFf
+.endfn "@84@4@doSimulation__Q24Game6MapMgrFf"
 
-.global "@84@4@doViewCalc__Q24Game11ShapeMapMgrFv"
-"@84@4@doViewCalc__Q24Game11ShapeMapMgrFv":
+.fn "@84@4@doViewCalc__Q24Game11ShapeMapMgrFv", weak
 /* 80164BA0 00161AE0  39 60 00 04 */	li r11, 4
 /* 80164BA4 00161AE4  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164BA8 00161AE8  7C 63 5A 14 */	add r3, r3, r11
 /* 80164BAC 00161AEC  38 63 FF AC */	addi r3, r3, -84
 /* 80164BB0 00161AF0  4B FF F1 10 */	b doViewCalc__Q24Game11ShapeMapMgrFv
+.endfn "@84@4@doViewCalc__Q24Game11ShapeMapMgrFv"
 
-.global "@84@4@doSetView__Q24Game11ShapeMapMgrFi"
-"@84@4@doSetView__Q24Game11ShapeMapMgrFi":
+.fn "@84@4@doSetView__Q24Game11ShapeMapMgrFi", weak
 /* 80164BB4 00161AF4  39 60 00 04 */	li r11, 4
 /* 80164BB8 00161AF8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164BBC 00161AFC  7C 63 5A 14 */	add r3, r3, r11
 /* 80164BC0 00161B00  38 63 FF AC */	addi r3, r3, -84
 /* 80164BC4 00161B04  4B FF F0 9C */	b doSetView__Q24Game11ShapeMapMgrFi
+.endfn "@84@4@doSetView__Q24Game11ShapeMapMgrFi"
 
-.global "@84@4@doEntry__Q24Game11ShapeMapMgrFv"
-"@84@4@doEntry__Q24Game11ShapeMapMgrFv":
+.fn "@84@4@doEntry__Q24Game11ShapeMapMgrFv", weak
 /* 80164BC8 00161B08  39 60 00 04 */	li r11, 4
 /* 80164BCC 00161B0C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164BD0 00161B10  7C 63 5A 14 */	add r3, r3, r11
 /* 80164BD4 00161B14  38 63 FF AC */	addi r3, r3, -84
 /* 80164BD8 00161B18  4B FF F1 34 */	b doEntry__Q24Game11ShapeMapMgrFv
+.endfn "@84@4@doEntry__Q24Game11ShapeMapMgrFv"
 
-.global "@84@4@doAnimation__Q24Game11ShapeMapMgrFv"
-"@84@4@doAnimation__Q24Game11ShapeMapMgrFv":
+.fn "@84@4@doAnimation__Q24Game11ShapeMapMgrFv", weak
 /* 80164BDC 00161B1C  39 60 00 04 */	li r11, 4
 /* 80164BE0 00161B20  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80164BE4 00161B24  7C 63 5A 14 */	add r3, r3, r11
 /* 80164BE8 00161B28  38 63 FF AC */	addi r3, r3, -84
 /* 80164BEC 00161B2C  4B FF F0 3C */	b doAnimation__Q24Game11ShapeMapMgrFv
+.endfn "@84@4@doAnimation__Q24Game11ShapeMapMgrFv"

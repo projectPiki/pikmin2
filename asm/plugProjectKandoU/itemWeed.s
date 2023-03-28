@@ -702,8 +702,8 @@ lbl_80519F28:
 	.4byte 0x41200000
 lbl_80519F2C:
 	.4byte 0x40000000
-lbl_80519F30:
-	.4byte 0x40490FDB
+lbl_80519F30: # pi
+	.float 3.1415927
 lbl_80519F34:
 	.4byte 0x41F00000
 lbl_80519F38:
