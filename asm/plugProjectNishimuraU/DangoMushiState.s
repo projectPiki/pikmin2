@@ -5,10 +5,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804D5E60:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game10DangoMushi10StateFlick
 __vt__Q34Game10DangoMushi10StateFlick:
 	.4byte 0
@@ -133,10 +133,12 @@ __vt__Q34Game10DangoMushi3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515E08:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-lbl_80515E0C:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -192,7 +194,6 @@ lbl_8051D36C:
 	.4byte 0xC47A0000
 lbl_8051D370:
 	.4byte 0x41F00000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10DangoMushi3FSMFPQ24Game9EnemyBase
@@ -2567,10 +2568,10 @@ __sinit_DangoMushiState_cpp:
 /* 802FBCF4 002F8C34  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802FBCF8 002F8C38  38 00 FF FF */	li r0, -1
 /* 802FBCFC 002F8C3C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 802FBD00 002F8C40  3C 60 80 4D */	lis r3, lbl_804D5E60@ha
-/* 802FBD04 002F8C44  90 0D 97 88 */	stw r0, lbl_80515E08@sda21(r13)
-/* 802FBD08 002F8C48  D4 03 5E 60 */	stfsu f0, lbl_804D5E60@l(r3)
-/* 802FBD0C 002F8C4C  D0 0D 97 8C */	stfs f0, lbl_80515E0C@sda21(r13)
+/* 802FBD00 002F8C40  3C 60 80 4D */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 802FBD04 002F8C44  90 0D 97 88 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 802FBD08 002F8C48  D4 03 5E 60 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 802FBD0C 002F8C4C  D0 0D 97 8C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 802FBD10 002F8C50  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802FBD14 002F8C54  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802FBD18 002F8C58  4E 80 00 20 */	blr 

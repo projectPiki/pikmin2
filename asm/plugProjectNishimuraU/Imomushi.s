@@ -247,10 +247,9 @@ lbl_8051C3DC:
 	.float 0.5
 lbl_8051C3E0:
 	.4byte 0x47000000
-	.4byte 0x00000000
+.balign 8
 lbl_8051C3E8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051C3F0:
 	.4byte 0x43160000
 lbl_8051C3F4:

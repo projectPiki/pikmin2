@@ -205,10 +205,12 @@ __vt__Q34Game9BombSarai3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515D88:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-lbl_80515D8C:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -2846,9 +2848,9 @@ __sinit_BombSaraiState_cpp:
 /* 802B210C 002AF04C  38 00 FF FF */	li r0, -1
 /* 802B2110 002AF050  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 802B2114 002AF054  3C 60 80 4D */	lis r3, lbl_804CE658@ha
-/* 802B2118 002AF058  90 0D 97 08 */	stw r0, lbl_80515D88@sda21(r13)
+/* 802B2118 002AF058  90 0D 97 08 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 802B211C 002AF05C  D4 03 E6 58 */	stfsu f0, lbl_804CE658@l(r3)
-/* 802B2120 002AF060  D0 0D 97 0C */	stfs f0, lbl_80515D8C@sda21(r13)
+/* 802B2120 002AF060  D0 0D 97 0C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 802B2124 002AF064  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802B2128 002AF068  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802B212C 002AF06C  4E 80 00 20 */	blr 

@@ -136,8 +136,7 @@ lbl_8051B3A0:
 .endobj lbl_8051B3D8
 .balign 8
 .obj lbl_8051B3E0, local
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 .endobj lbl_8051B3E0
 .obj lbl_8051B3E8, local
 	.float 15.0

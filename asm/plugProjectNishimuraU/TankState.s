@@ -111,7 +111,6 @@ __vt__Q34Game4Tank3FSM:
 	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -140,10 +139,9 @@ lbl_8051B29C:
 	.4byte 0x47000000
 lbl_8051B2A0:
 	.4byte 0x3E4CCCCD
-	.4byte 0x00000000
+.balign 8
 lbl_8051B2A8:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051B2B0:
 	.4byte 0x41F00000
 lbl_8051B2B4:

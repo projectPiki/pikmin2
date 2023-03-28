@@ -249,10 +249,9 @@ lbl_8051B224:
 	.4byte 0x41480000
 lbl_8051B228:
 	.4byte 0x41700000
-	.4byte 0x00000000
+.balign 8
 lbl_8051B230:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051B238:
 	.4byte 0x47000000
 lbl_8051B23C:
@@ -275,7 +274,6 @@ lbl_8051B25C:
 	.4byte 0x3BB60B61
 lbl_8051B260:
 	.4byte 0x3F266666
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5Sarai3ObjFv

@@ -213,7 +213,6 @@ lbl_8047FF64:
 	.4byte 0x23202564
 	.4byte 0x2F25640D
 	.4byte 0x0A000000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -565,16 +564,18 @@ __vt__Q24Game8DoorLink:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global numRoomCulled__Q24Game10RoomMapMgr
-numRoomCulled__Q24Game10RoomMapMgr:
+.endobj gfNAN___Q24Game5P2JST
+.obj numRoomCulled__Q24Game10RoomMapMgr, global
 	.skip 0x4
-.global mUseCylinderViewCulling__Q24Game10RoomMapMgr
-mUseCylinderViewCulling__Q24Game10RoomMapMgr:
-	.skip 0x4
+.endobj numRoomCulled__Q24Game10RoomMapMgr
+.obj mUseCylinderViewCulling__Q24Game10RoomMapMgr, global
+	.skip 0x1
+.endobj mUseCylinderViewCulling__Q24Game10RoomMapMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -600,10 +601,9 @@ lbl_80519464:
 	.4byte 0x43A00000
 lbl_80519468:
 	.4byte 0xC2B40000
-	.4byte 0x00000000
+.balign 8
 lbl_80519470:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_80519478:
 	.4byte 0x41200000
 lbl_8051947C:

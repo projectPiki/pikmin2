@@ -200,8 +200,7 @@ lbl_8051B174:
 	.float 0.5
 .balign 8
 lbl_8051B178:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051B180:
 	.float 3.0
 lbl_8051B184:

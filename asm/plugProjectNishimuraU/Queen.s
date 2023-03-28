@@ -19,10 +19,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804C9D20:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global "__vt__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>"
 "__vt__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>":
 	.4byte 0
@@ -449,10 +449,12 @@ __vt__Q34Game5Queen3Obj:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515D50:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-lbl_80515D54:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -490,10 +492,9 @@ lbl_8051B854:
 	.4byte 0x47000000
 lbl_8051B858:
 	.float 0.5
-	.4byte 0x00000000
+.balign 8
 lbl_8051B860:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051B868:
 	.4byte 0x43610000
 lbl_8051B86C:
@@ -3923,10 +3924,10 @@ __sinit_Queen_cpp:
 /* 8028C4AC 002893EC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8028C4B0 002893F0  38 00 FF FF */	li r0, -1
 /* 8028C4B4 002893F4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8028C4B8 002893F8  3C 60 80 4D */	lis r3, lbl_804C9D20@ha
-/* 8028C4BC 002893FC  90 0D 96 D0 */	stw r0, lbl_80515D50@sda21(r13)
-/* 8028C4C0 00289400  D4 03 9D 20 */	stfsu f0, lbl_804C9D20@l(r3)
-/* 8028C4C4 00289404  D0 0D 96 D4 */	stfs f0, lbl_80515D54@sda21(r13)
+/* 8028C4B8 002893F8  3C 60 80 4D */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8028C4BC 002893FC  90 0D 96 D0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8028C4C0 00289400  D4 03 9D 20 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8028C4C4 00289404  D0 0D 96 D4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8028C4C8 00289408  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8028C4CC 0028940C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8028C4D0 00289410  4E 80 00 20 */	blr 

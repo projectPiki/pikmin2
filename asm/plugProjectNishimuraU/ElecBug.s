@@ -248,7 +248,6 @@ __vt__Q34Game7ElecBug3Obj:
 	.4byte "@736@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@736@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -258,10 +257,9 @@ lbl_8051B4E4:
 	.4byte 0x47000000
 lbl_8051B4E8:
 	.4byte 0x00000000
-	.4byte 0x00000000
+.balign 8
 lbl_8051B4F0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051B4F8:
 	.4byte 0x626F6479
 	.4byte 0x00000000

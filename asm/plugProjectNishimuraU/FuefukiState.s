@@ -163,9 +163,9 @@ lbl_8051BC38:
 	.4byte 0x47000000
 lbl_8051BC3C:
 	.float 1.0
+.balign 8
 lbl_8051BC40:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051BC48:
 	.4byte 0x3F59999A
 lbl_8051BC4C:

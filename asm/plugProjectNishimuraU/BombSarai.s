@@ -269,7 +269,6 @@ __vt__Q34Game9BombSarai3Obj:
 	.4byte "@740@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@740@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -293,9 +292,9 @@ lbl_8051C218:
 	.4byte 0xC3A2F983
 lbl_8051C21C:
 	.4byte 0x43A2F983
+.balign 8
 lbl_8051C220:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051C228:
 	.4byte 0x47000000
 lbl_8051C22C:
@@ -310,7 +309,6 @@ lbl_8051C23C:
 	.float 0.25
 lbl_8051C240:
 	.4byte 0x3F666666
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game9BombSarai3ObjFv
