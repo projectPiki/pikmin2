@@ -557,12 +557,12 @@ void Obj::onInit(CreatureInitArg* arg)
 	EnemyBase::onInit(arg);
 	mEvents.mFlags->typeView |= 1;
 	mEvents.mFlags->typeView &= 0xFFFFFFBF;
-	_2C0 = 0;
-	mVel.z = 0.0f;
-	mVel.y = 0.0f;
-	mVel.x = 0.0f;
-	_2C4 = 0.0f;
-	_2CC = -1;
+	_2C0         = 0;
+	mVel.z       = 0.0f;
+	mVel.y       = 0.0f;
+	mVel.x       = 0.0f;
+	_2C4         = 0.0f;
+	_2CC         = -1;
 	mShadowScale = 0.0f;
 	setupCollision();
 	setBodyCollision(false);
@@ -641,7 +641,7 @@ void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
 	J3DModel* model = mModel->mJ3dModel;
-	modelData = model->mModelData;
+	modelData       = model->mModelData;
 	model->calcMaterial();
 	mMatLoopAnimator->animate(30.0f);
 	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
@@ -740,14 +740,13 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& param)
 {
-	Matrixf* mat = mModel->getJoint("world_root")->getWorldMatrix();
-	param.mPosition = Vector3f(mat->mMatrix.mtxView[0][3], mat->mMatrix.mtxView[1][3], mat->mMatrix.mtxView[2][3]);
-	param.mPosition.y = mPosition.y + 10.0f;
+	Matrixf* mat                    = mModel->getJoint("world_root")->getWorldMatrix();
+	param.mPosition                 = Vector3f(mat->mMatrix.mtxView[0][3], mat->mMatrix.mtxView[1][3], mat->mMatrix.mtxView[2][3]);
+	param.mPosition.y               = mPosition.y + 10.0f;
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isEvent(1, EB2_IsEarthquake)) {
 		param.mBoundingSphere.mRadius = 100.0f;
-	}
-	else {
+	} else {
 		param.mBoundingSphere.mRadius = 50.0f;
 	}
 	param.mSize = 45.0f * mShadowScale;
@@ -902,8 +901,8 @@ void Obj::wallCallback(const MoveInfo& mvInfo)
 		f32 velX = mVel.x;
 		f32 velY = mVel.y;
 		f32 velZ = mVel.z;
-		f32 f1 = velY * velY;
-		f32 f2 = velZ * velZ;
+		f32 f1   = velY * velY;
+		f32 f2   = velZ * velZ;
 		// f32 dist = (velX * velX) + ((f1));
 		f32 dist = (velZ * velZ) + ((velX * velX) + (velY * velY));
 		if (dist && dist > 0.0f) {
@@ -919,7 +918,8 @@ void Obj::wallCallback(const MoveInfo& mvInfo)
 		} else {
 			dist = 1.0f;
 		}
-		if ((dist > 1.0f) && (((velZ * mvInfo.mReflectPosition.z) + ((velX * mvInfo.mReflectPosition.x) + (velY * mvInfo.mReflectPosition.y))) < -0.5f)) {
+		if ((dist > 1.0f)
+		    && (((velZ * mvInfo.mReflectPosition.z) + ((velX * mvInfo.mReflectPosition.x) + (velY * mvInfo.mReflectPosition.y))) < -0.5f)) {
 			createBodyWallCrashEffect(mvInfo.mReflectPosition);
 			mFsm->transit(this, 6, 0);
 		}
@@ -1265,8 +1265,8 @@ bool Obj::isReachedTarget()
 Creature* Obj::getSearchedTarget()
 {
 	Parms* parms = static_cast<Parms*>(mParms);
-	return EnemyFunc::getNearestPikminOrNavi(this, parms->mGeneral.mViewAngle.mValue, parms->mGeneral.mSightRadius.mValue,
-												nullptr, nullptr, nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, parms->mGeneral.mViewAngle.mValue, parms->mGeneral.mSightRadius.mValue, nullptr, nullptr,
+	                                         nullptr);
 }
 
 /*
@@ -1282,7 +1282,8 @@ void Obj::rollingMove()
 	Navi* navi = naviMgr->getActiveNavi();
 	if (!navi) {
 		Parms* parms = static_cast<Parms*>(mParms);
-		navi = static_cast<Navi*>(EnemyFunc::getNearestPikminOrNavi(this, 180.0f, parms->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr));
+		navi         = static_cast<Navi*>(
+            EnemyFunc::getNearestPikminOrNavi(this, 180.0f, parms->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr));
 	}
 	if (navi) {
 		pos = navi->getPosition();
@@ -1855,13 +1856,13 @@ lbl_802FD7EC:
  */
 int Obj::getFallEggNum()
 {
-	f32 var = 0.0f;
+	f32 var       = 0.0f;
 	f32 pikiCount = (f32)pikiMgr->mActiveCount;
-	Navi* navi = naviMgr->getActiveNavi();
+	Navi* navi    = naviMgr->getActiveNavi();
 	if (navi) {
-		var = (f32) navi->mCPlateMgr->_BC;
+		var = (f32)navi->mCPlateMgr->_BC;
 	}
-	if ((pikiCount > 0.0f) && (((1.0f * (f32) rand()) / RAND_MAX) < (var / pikiCount))) {
+	if ((pikiCount > 0.0f) && (((1.0f * (f32)rand()) / RAND_MAX) < (var / pikiCount))) {
 		return 1;
 	}
 	return 0;
@@ -2583,23 +2584,23 @@ void Obj::resetMapCollisionSize(bool arg0)
 void Obj::updateMapCollisionSize()
 {
 	if (_2C2) {
-		Parms* parms = static_cast<Parms*>(mParms);
+		Parms* parms  = static_cast<Parms*>(mParms);
 		f32 heightOff = parms->mGeneral.mHeightOffsetFromFloor.mValue;
 		if (heightOff > 60.0f) {
-			parms->mGeneral.mHeightOffsetFromFloor.mValue = - ((250.0f * sys->mDeltaTime) - heightOff);
-			parms = static_cast<Parms*>(mParms);
-			heightOff = parms->mGeneral.mHeightOffsetFromFloor.mValue;
+			parms->mGeneral.mHeightOffsetFromFloor.mValue = -((250.0f * sys->mDeltaTime) - heightOff);
+			parms                                         = static_cast<Parms*>(mParms);
+			heightOff                                     = parms->mGeneral.mHeightOffsetFromFloor.mValue;
 			if (heightOff < 60.0f) {
 				parms->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
 			}
 		}
 	} else {
-		Parms* parms = static_cast<Parms*>(mParms);
+		Parms* parms  = static_cast<Parms*>(mParms);
 		f32 heightOff = parms->mGeneral.mHeightOffsetFromFloor.mValue;
 		if (heightOff < 120.0f) {
 			parms->mGeneral.mHeightOffsetFromFloor.mValue = ((250.0f * sys->mDeltaTime) + heightOff);
-			parms = static_cast<Parms*>(mParms);
-			heightOff = parms->mGeneral.mHeightOffsetFromFloor.mValue;
+			parms                                         = static_cast<Parms*>(mParms);
+			heightOff                                     = parms->mGeneral.mHeightOffsetFromFloor.mValue;
 			if (heightOff > 120.0f) {
 				parms->mGeneral.mHeightOffsetFromFloor.mValue = 120.0f;
 			}
@@ -2889,7 +2890,7 @@ lbl_802FE5A8:
 void Obj::startBlendAnimation(int animIdx, bool blendAnim)
 {
 	if (blendAnim) {
-		SysShape::Animator& anim = mAnimator->getAnimator(0);
+		SysShape::Animator& anim     = mAnimator->getAnimator(0);
 		SysShape::AnimInfo* animInfo = anim.mAnimInfo;
 		f32 f1;
 		if (animInfo) {
@@ -2924,7 +2925,7 @@ void Obj::startBlendAnimation(int animIdx, bool blendAnim)
  */
 void Obj::endBlendAnimation()
 {
-	SysShape::Animator& anim = static_cast<ProperAnimator*>(mAnimator)->getAnimator(1);
+	SysShape::Animator& anim     = static_cast<ProperAnimator*>(mAnimator)->getAnimator(1);
 	SysShape::AnimInfo* animInfo = anim.mAnimInfo;
 	int animId;
 	if (animInfo) {
@@ -3023,8 +3024,8 @@ void Obj::setBossAppearBGM()
 void Obj::createEffect()
 {
 	mEfxWallBreak = new efx::TDangoWallBreak;
-	mEfxAttack2 = new efx::TDangoAttack2;
-	mEfxRun = new efx::TDangoRun;
+	mEfxAttack2   = new efx::TDangoAttack2;
+	mEfxRun       = new efx::TDangoRun;
 }
 
 /*
@@ -3035,7 +3036,7 @@ void Obj::createEffect()
 void Obj::setupEffect()
 {
 	mEfxWallBreak->mMtx = mModel->getJoint("hand_R")->getWorldMatrix();
-	mEfxAttack2->mMtx = mModel->getJoint("arm_R02")->getWorldMatrix();
+	mEfxAttack2->mMtx   = mModel->getJoint("arm_R02")->getWorldMatrix();
 	mEfxRun->setPosptr(&mPosition);
 }
 
@@ -3225,10 +3226,7 @@ void Obj::finishRollingMoveEffect() { mEfxRun->fade(); }
  * Address:	802FF274
  * Size:	000044
  */
-void Obj::createEnemyBounceEffect()
-{
-	createBounceEffect(mPosition, getDownSmokeScale());
-}
+void Obj::createEnemyBounceEffect() { createBounceEffect(mPosition, getDownSmokeScale()); }
 
 /*
  * --INFO--

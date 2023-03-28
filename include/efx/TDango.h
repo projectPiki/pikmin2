@@ -75,7 +75,7 @@ struct TDangoRun : public TChasePos2 {
 	    : TChasePos2(nullptr, PID_DangoRun_1, PID_DangoRun_2)
 	{
 	}
-	
+
 	// _00      = VTBL
 	// _00-_2C  = TChasePos2
 };

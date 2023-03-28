@@ -96,11 +96,11 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                           	// _2BC
+	FSM* mFsm;                              // _2BC
 	u8 _2C0;                                // _2C0
 	u8 _2C1;                                // _2C1
 	u8 _2C2;                                // _2C2
-	u8 _2C3;								// _2C3
+	u8 _2C3;                                // _2C3
 	f32 _2C4;                               // _2C4, timer?
 	f32 mShadowScale;                       // _2C8, unknown
 	int _2CC;                               // _2CC
@@ -110,7 +110,7 @@ struct Obj : public EnemyBase {
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2F0
 	efx::TDangoWallBreak* mEfxWallBreak;    // _2F4
 	efx::TDangoAttack2* mEfxAttack2;        // _2F8
-	efx::TDangoRun* mEfxRun;               // _2FC, TDangoRun?
+	efx::TDangoRun* mEfxRun;                // _2FC, TDangoRun?
 	                                        // _308 = PelletView
 };
 
