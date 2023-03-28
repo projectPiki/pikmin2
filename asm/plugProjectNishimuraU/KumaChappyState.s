@@ -179,7 +179,6 @@ lbl_8051BB3C:
 	.float 1.0
 lbl_8051BB40:
 	.float 0.5
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10KumaChappy3FSMFPQ24Game9EnemyBase

@@ -1,11 +1,9 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80485358:
-	.4byte 0x756A696E
-	.4byte 0x6E6B6F5F
-	.4byte 0x6F000000
-	.4byte 0x00000000
+.obj lbl_80485358, local
+	.asciz "ujinnko_o"
+.endobj lbl_80485358
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -242,7 +240,6 @@ __vt__Q34Game4Ujib3Obj:
 	.4byte "@732@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@732@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -270,10 +267,9 @@ lbl_8051AB5C:
 	.4byte 0x41F00000
 lbl_8051AB60:
 	.4byte 0x47000000
-	.4byte 0x00000000
+.balign 8
 lbl_8051AB68:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051AB70:
 	.4byte 0x41A00000
 lbl_8051AB74:

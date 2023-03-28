@@ -229,7 +229,6 @@ lbl_8051B6B4:
 	.4byte 0x3F400000
 lbl_8051B6B8:
 	.4byte 0xC47A0000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game3Mar3FSMFPQ24Game9EnemyBase

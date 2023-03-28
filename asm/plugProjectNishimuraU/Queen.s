@@ -19,12 +19,12 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global "__vt__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>"
-"__vt__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>":
+.endobj govNAN___Q24Game5P2JST
+.obj "__vt__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
@@ -32,8 +32,8 @@ govNAN___Q24Game5P2JST:
 	.4byte "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx14TChasePosYRot3
-__vt__Q23efx14TChasePosYRot3:
+.endobj "__vt__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>"
+.obj __vt__Q23efx14TChasePosYRot3, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
@@ -41,8 +41,8 @@ __vt__Q23efx14TChasePosYRot3:
 	.4byte "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx13TQueenHanacho
-__vt__Q23efx13TQueenHanacho:
+.endobj __vt__Q23efx14TChasePosYRot3
+.obj __vt__Q23efx13TQueenHanacho, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -62,8 +62,8 @@ __vt__Q23efx13TQueenHanacho:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx13TQueenHanachoFv
-.global __vt__Q23efx12TQueenWakeup
-__vt__Q23efx12TQueenWakeup:
+.endobj __vt__Q23efx13TQueenHanacho
+.obj __vt__Q23efx12TQueenWakeup, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -83,6 +83,7 @@ __vt__Q23efx12TQueenWakeup:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TQueenWakeupFv
+.endobj __vt__Q23efx12TQueenWakeup
 .global __vt__Q23efx10TQueenDead
 __vt__Q23efx10TQueenDead:
 	.4byte 0

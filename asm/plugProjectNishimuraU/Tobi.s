@@ -1,16 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80485E80:
-	.4byte 0x746F6269
-	.4byte 0x6E6E6B6F
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj lbl_80485E80, local
+	.asciz "tobinnko"
+.endobj lbl_80485E80
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q34Game4Tobi3Obj
-__vt__Q34Game4Tobi3Obj:
+.obj __vt__Q34Game4Tobi3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -214,6 +211,7 @@ __vt__Q34Game4Tobi3Obj:
 	.4byte "@744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game4Tobi3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -251,9 +249,9 @@ lbl_8051AFA8:
 	.4byte 0xC3A2F983
 lbl_8051AFAC:
 	.4byte 0x40000000
+.balign 8
 lbl_8051AFB0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_8051AFB8:
 	.4byte 0x41A00000
 lbl_8051AFBC:
@@ -272,7 +270,6 @@ lbl_8051AFD4:
 	.float 0.7
 lbl_8051AFD8:
 	.4byte 0x3EB33333
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Tobi3ObjFv

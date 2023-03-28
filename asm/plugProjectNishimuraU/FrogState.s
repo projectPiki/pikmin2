@@ -1,14 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80484D08:
-	.4byte 0x6A756D70
-	.4byte 0x77616974
-	.4byte 0x00000000
-lbl_80484D14:
-	.4byte 0x7475726E
-	.4byte 0x746F686F
-	.4byte 0x6D650000
+.obj lbl_80484D08, local
+	.asciz "jumpwait"
+.endobj lbl_80484D08
+.balign 4
+.obj lbl_80484D14, local
+	.asciz "turntohome"
+.endobj lbl_80484D14
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

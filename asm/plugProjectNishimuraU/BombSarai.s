@@ -1,50 +1,52 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048A250:
-	.4byte 0x3234362D
-	.4byte 0x426F6D62
-	.4byte 0x53617261
-	.4byte 0x69000000
-lbl_8048A260:
-	.4byte 0x626F6479
-	.4byte 0x5F6A6F69
-	.4byte 0x6E743100
-lbl_8048A26C:
-	.4byte 0x6B616D75
-	.4byte 0x5F6A6E74
-	.4byte 0x31000000
-lbl_8048A278:
-	.4byte 0x6B757469
-	.4byte 0x5F6A6F69
-	.4byte 0x6E743100
-	.4byte 0x62616C6C
-	.4byte 0x6F6F6E31
-	.4byte 0x00000000
-	.4byte 0x62616C6C
-	.4byte 0x6F6F6E32
-	.4byte 0x00000000
-	.4byte 0x62616C6C
-	.4byte 0x6F6F6E33
-	.4byte 0x00000000
-	.4byte 0x62616C6C
-	.4byte 0x6F6F6E34
-	.4byte 0x00000000
-	.4byte 0x62616C6C
-	.4byte 0x6F6F6E35
-	.4byte 0x00000000
+.obj lbl_8048A250, local
+	.asciz "246-BombSarai"
+.endobj lbl_8048A250
+.balign 4
+.obj lbl_8048A260, local
+	.asciz "body_joint1"
+.endobj lbl_8048A260
+.balign 4
+.obj lbl_8048A26C, local
+	.asciz "kamu_jnt1"
+.endobj lbl_8048A26C
+.balign 4
+.obj lbl_8048A278, local
+	.asciz "kuti_joint1"
+.endobj lbl_8048A278
+.balign 4
+.obj lbl_8048A284, local
+	.asciz "balloon1"
+.endobj lbl_8048A284
+.balign 4
+.obj lbl_8048A290, local
+	.asciz "balloon2"
+.endobj lbl_8048A290
+.balign 4
+.obj lbl_8048A29C, local
+	.asciz "balloon3"
+.endobj lbl_8048A29C
+.balign 4
+.obj lbl_8048A2A8, local
+	.asciz "balloon4"
+.endobj lbl_8048A2A8
+.balign 4
+.obj lbl_8048A2B4, local
+	.asciz "balloon5"
+.endobj lbl_8048A2B4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx11TBsaraiDead
-__vt__Q23efx11TBsaraiDead:
+.obj __vt__Q23efx11TBsaraiDead, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx12TBsaraiSupli
-__vt__Q23efx12TBsaraiSupli:
+.endobj __vt__Q23efx11TBsaraiDead
+.obj __vt__Q23efx12TBsaraiSupli, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -64,8 +66,8 @@ __vt__Q23efx12TBsaraiSupli:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TBsaraiSupliFv
-.global __vt__Q34Game9BombSarai3Obj
-__vt__Q34Game9BombSarai3Obj:
+.endobj __vt__Q23efx12TBsaraiSupli
+.obj __vt__Q34Game9BombSarai3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -269,50 +271,68 @@ __vt__Q34Game9BombSarai3Obj:
 	.4byte "@740@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@740@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game9BombSarai3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051C1F8:
-	.4byte 0x00000000
-lbl_8051C1FC:
-	.4byte 0x41700000
-lbl_8051C200:
-	.4byte 0x40A00000
-lbl_8051C204:
+.obj lbl_8051C1F8, local
+	.float 0.0
+.endobj lbl_8051C1F8
+.obj lbl_8051C1FC, local
+	.float 15.0
+.endobj lbl_8051C1FC
+.obj lbl_8051C200, local
+	.float 5.0
+.endobj lbl_8051C200
+.obj lbl_8051C204, local
 	.float 1.0
-lbl_8051C208:
-	.4byte 0x42480000
-lbl_8051C20C:
-	.4byte 0x418C0000
-lbl_8051C210:
+.endobj lbl_8051C204
+.obj lbl_8051C208, local
+	.float 50.0
+.endobj lbl_8051C208
+.obj lbl_8051C20C, local
+	.float 17.5
+.endobj lbl_8051C20C
+.obj lbl_8051C210, local
 	.float 0.5
-lbl_8051C214:
-	.4byte 0x40C00000
-lbl_8051C218:
-	.4byte 0xC3A2F983
-lbl_8051C21C:
-	.4byte 0x43A2F983
+.endobj lbl_8051C210
+.obj lbl_8051C214, local
+	.float 6.0
+.endobj lbl_8051C214
+.obj lbl_8051C218, local
+	.float -325.9493
+.endobj lbl_8051C218
+.obj lbl_8051C21C, local
+	.float 325.9493
+.endobj lbl_8051C21C
 .balign 8
-lbl_8051C220:
+.obj lbl_8051C220, local
 	.8byte 0x4330000080000000
-lbl_8051C228:
-	.4byte 0x47000000
-lbl_8051C22C:
-	.4byte 0x40490FDB
-lbl_8051C230:
-	.4byte 0x3FC90FDB
-lbl_8051C234:
-	.4byte 0x40C90FDB
-lbl_8051C238:
-	.4byte 0x40800000
-lbl_8051C23C:
+.endobj lbl_8051C220
+.obj lbl_8051C228, local
+	.float 32768.0
+.endobj lbl_8051C228
+.obj lbl_8051C22C, local # pi
+	.float 3.1415927
+.endobj lbl_8051C22C
+.obj lbl_8051C230, local # pi/2
+	.float 1.5707964
+.endobj lbl_8051C230
+.obj lbl_8051C234, local # tau
+	.float 6.2831855
+.endobj lbl_8051C234
+.obj lbl_8051C238, local
+	.float 4.0
+.endobj lbl_8051C238
+.obj lbl_8051C23C, local
 	.float 0.25
-lbl_8051C240:
-	.4byte 0x3F666666
+.endobj lbl_8051C23C
+.obj lbl_8051C240, local
+	.float 0.9
+.endobj lbl_8051C240
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game9BombSarai3ObjFv
-__ct__Q34Game9BombSarai3ObjFv:
+.fn __ct__Q34Game9BombSarai3ObjFv, global
 /* 802B27CC 002AF70C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B27D0 002AF710  7C 08 02 A6 */	mflr r0
 /* 802B27D4 002AF714  90 01 00 14 */	stw r0, 0x14(r1)
@@ -394,13 +414,13 @@ __ct__Q34Game9BombSarai3ObjFv:
 /* 802B28F8 002AF838  7C 08 03 A6 */	mtlr r0
 /* 802B28FC 002AF83C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2900 002AF840  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game9BombSarai3ObjFv
 
-.global setInitialSetting__Q34Game9BombSarai3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game9BombSarai3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game9BombSarai3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 802B2904 002AF844  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game9BombSarai3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game9BombSarai3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game9BombSarai3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game9BombSarai3ObjFPQ24Game15CreatureInitArg, global
 /* 802B2908 002AF848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B290C 002AF84C  7C 08 02 A6 */	mflr r0
 /* 802B2910 002AF850  90 01 00 14 */	stw r0, 0x14(r1)
@@ -440,9 +460,9 @@ onInit__Q34Game9BombSarai3ObjFPQ24Game15CreatureInitArg:
 /* 802B2994 002AF8D4  7C 08 03 A6 */	mtlr r0
 /* 802B2998 002AF8D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B299C 002AF8DC  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game9BombSarai3ObjFPQ24Game15CreatureInitArg
 
-.global onKill__Q34Game9BombSarai3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game9BombSarai3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game9BombSarai3ObjFPQ24Game15CreatureKillArg, global
 /* 802B29A0 002AF8E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B29A4 002AF8E4  7C 08 02 A6 */	mflr r0
 /* 802B29A8 002AF8E8  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
@@ -463,9 +483,9 @@ onKill__Q34Game9BombSarai3ObjFPQ24Game15CreatureKillArg:
 /* 802B29E4 002AF924  7C 08 03 A6 */	mtlr r0
 /* 802B29E8 002AF928  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B29EC 002AF92C  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game9BombSarai3ObjFPQ24Game15CreatureKillArg
 
-.global doUpdate__Q34Game9BombSarai3ObjFv
-doUpdate__Q34Game9BombSarai3ObjFv:
+.fn doUpdate__Q34Game9BombSarai3ObjFv, global
 /* 802B29F0 002AF930  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B29F4 002AF934  7C 08 02 A6 */	mflr r0
 /* 802B29F8 002AF938  90 01 00 14 */	stw r0, 0x14(r1)
@@ -508,13 +528,13 @@ doUpdate__Q34Game9BombSarai3ObjFv:
 /* 802B2A88 002AF9C8  7C 08 03 A6 */	mtlr r0
 /* 802B2A8C 002AF9CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2A90 002AF9D0  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game9BombSarai3ObjFv
 
-.global doDirectDraw__Q34Game9BombSarai3ObjFR8Graphics
-doDirectDraw__Q34Game9BombSarai3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game9BombSarai3ObjFR8Graphics, global
 /* 802B2A94 002AF9D4  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game9BombSarai3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game9BombSarai3ObjFR8Graphics
-doDebugDraw__Q34Game9BombSarai3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game9BombSarai3ObjFR8Graphics, global
 /* 802B2A98 002AF9D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2A9C 002AF9DC  7C 08 02 A6 */	mflr r0
 /* 802B2AA0 002AF9E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -523,9 +543,9 @@ doDebugDraw__Q34Game9BombSarai3ObjFR8Graphics:
 /* 802B2AAC 002AF9EC  7C 08 03 A6 */	mtlr r0
 /* 802B2AB0 002AF9F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2AB4 002AF9F4  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game9BombSarai3ObjFR8Graphics
 
-.global setFSM__Q34Game9BombSarai3ObjFPQ34Game9BombSarai3FSM
-setFSM__Q34Game9BombSarai3ObjFPQ34Game9BombSarai3FSM:
+.fn setFSM__Q34Game9BombSarai3ObjFPQ34Game9BombSarai3FSM, global
 /* 802B2AB8 002AF9F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2ABC 002AF9FC  7C 08 02 A6 */	mflr r0
 /* 802B2AC0 002AFA00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -545,9 +565,9 @@ setFSM__Q34Game9BombSarai3ObjFPQ34Game9BombSarai3FSM:
 /* 802B2AF8 002AFA38  7C 08 03 A6 */	mtlr r0
 /* 802B2AFC 002AFA3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2B00 002AFA40  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game9BombSarai3ObjFPQ34Game9BombSarai3FSM
 
-.global getShadowParam__Q34Game9BombSarai3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game9BombSarai3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game9BombSarai3ObjFRQ24Game11ShadowParam, global
 /* 802B2B04 002AFA44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2B08 002AFA48  7C 08 02 A6 */	mflr r0
 /* 802B2B0C 002AFA4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -603,9 +623,9 @@ getShadowParam__Q34Game9BombSarai3ObjFRQ24Game11ShadowParam:
 /* 802B2BCC 002AFB0C  7C 08 03 A6 */	mtlr r0
 /* 802B2BD0 002AFB10  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2BD4 002AFB14  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game9BombSarai3ObjFRQ24Game11ShadowParam
 
-.global "bombCallBack__Q34Game9BombSarai3ObjFPQ24Game8CreatureR10Vector3<f>f"
-"bombCallBack__Q34Game9BombSarai3ObjFPQ24Game8CreatureR10Vector3<f>f":
+.fn "bombCallBack__Q34Game9BombSarai3ObjFPQ24Game8CreatureR10Vector3<f>f", global
 /* 802B2BD8 002AFB18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2BDC 002AFB1C  7C 08 02 A6 */	mflr r0
 /* 802B2BE0 002AFB20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -623,9 +643,9 @@ getShadowParam__Q34Game9BombSarai3ObjFRQ24Game11ShadowParam:
 /* 802B2C08 002AFB48  7C 08 03 A6 */	mtlr r0
 /* 802B2C0C 002AFB4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2C10 002AFB50  4E 80 00 20 */	blr 
+.endfn "bombCallBack__Q34Game9BombSarai3ObjFPQ24Game8CreatureR10Vector3<f>f"
 
-.global doFinishStoneState__Q34Game9BombSarai3ObjFv
-doFinishStoneState__Q34Game9BombSarai3ObjFv:
+.fn doFinishStoneState__Q34Game9BombSarai3ObjFv, global
 /* 802B2C14 002AFB54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2C18 002AFB58  7C 08 02 A6 */	mflr r0
 /* 802B2C1C 002AFB5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -663,9 +683,9 @@ doFinishStoneState__Q34Game9BombSarai3ObjFv:
 /* 802B2C94 002AFBD4  7C 08 03 A6 */	mtlr r0
 /* 802B2C98 002AFBD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2C9C 002AFBDC  4E 80 00 20 */	blr 
+.endfn doFinishStoneState__Q34Game9BombSarai3ObjFv
 
-.global doStartWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv
-doStartWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv:
+.fn doStartWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv, global
 /* 802B2CA0 002AFBE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2CA4 002AFBE4  7C 08 02 A6 */	mflr r0
 /* 802B2CA8 002AFBE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -679,9 +699,9 @@ doStartWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv:
 /* 802B2CC8 002AFC08  7C 08 03 A6 */	mtlr r0
 /* 802B2CCC 002AFC0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2CD0 002AFC10  4E 80 00 20 */	blr 
+.endfn doStartWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv
 
-.global doFinishWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv
-doFinishWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv:
+.fn doFinishWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv, global
 /* 802B2CD4 002AFC14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2CD8 002AFC18  7C 08 02 A6 */	mflr r0
 /* 802B2CDC 002AFC1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -695,9 +715,9 @@ doFinishWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv:
 /* 802B2CFC 002AFC3C  7C 08 03 A6 */	mtlr r0
 /* 802B2D00 002AFC40  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2D04 002AFC44  4E 80 00 20 */	blr 
+.endfn doFinishWaitingBirthTypeDrop__Q34Game9BombSarai3ObjFv
 
-.global startCarcassMotion__Q34Game9BombSarai3ObjFv
-startCarcassMotion__Q34Game9BombSarai3ObjFv:
+.fn startCarcassMotion__Q34Game9BombSarai3ObjFv, global
 /* 802B2D08 002AFC48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2D0C 002AFC4C  7C 08 02 A6 */	mflr r0
 /* 802B2D10 002AFC50  38 80 00 0B */	li r4, 0xb
@@ -708,9 +728,9 @@ startCarcassMotion__Q34Game9BombSarai3ObjFv:
 /* 802B2D24 002AFC64  7C 08 03 A6 */	mtlr r0
 /* 802B2D28 002AFC68  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2D2C 002AFC6C  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game9BombSarai3ObjFv
 
-.global doStartMovie__Q34Game9BombSarai3ObjFv
-doStartMovie__Q34Game9BombSarai3ObjFv:
+.fn doStartMovie__Q34Game9BombSarai3ObjFv, global
 /* 802B2D30 002AFC70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2D34 002AFC74  7C 08 02 A6 */	mflr r0
 /* 802B2D38 002AFC78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -719,9 +739,9 @@ doStartMovie__Q34Game9BombSarai3ObjFv:
 /* 802B2D44 002AFC84  7C 08 03 A6 */	mtlr r0
 /* 802B2D48 002AFC88  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2D4C 002AFC8C  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game9BombSarai3ObjFv
 
-.global doEndMovie__Q34Game9BombSarai3ObjFv
-doEndMovie__Q34Game9BombSarai3ObjFv:
+.fn doEndMovie__Q34Game9BombSarai3ObjFv, global
 /* 802B2D50 002AFC90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B2D54 002AFC94  7C 08 02 A6 */	mflr r0
 /* 802B2D58 002AFC98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -730,9 +750,9 @@ doEndMovie__Q34Game9BombSarai3ObjFv:
 /* 802B2D64 002AFCA4  7C 08 03 A6 */	mtlr r0
 /* 802B2D68 002AFCA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B2D6C 002AFCAC  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game9BombSarai3ObjFv
 
-.global setHeightVelocity__Q34Game9BombSarai3ObjFb
-setHeightVelocity__Q34Game9BombSarai3ObjFb:
+.fn setHeightVelocity__Q34Game9BombSarai3ObjFb, global
 /* 802B2D70 002AFCB0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802B2D74 002AFCB4  7C 08 02 A6 */	mflr r0
 /* 802B2D78 002AFCB8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -843,9 +863,9 @@ setHeightVelocity__Q34Game9BombSarai3ObjFb:
 /* 802B2F04 002AFE44  7C 08 03 A6 */	mtlr r0
 /* 802B2F08 002AFE48  38 21 00 50 */	addi r1, r1, 0x50
 /* 802B2F0C 002AFE4C  4E 80 00 20 */	blr 
+.endfn setHeightVelocity__Q34Game9BombSarai3ObjFb
 
-.global setRandTarget__Q34Game9BombSarai3ObjFv
-setRandTarget__Q34Game9BombSarai3ObjFv:
+.fn setRandTarget__Q34Game9BombSarai3ObjFv, global
 /* 802B2F10 002AFE50  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802B2F14 002AFE54  7C 08 02 A6 */	mflr r0
 /* 802B2F18 002AFE58  90 01 00 54 */	stw r0, 0x54(r1)
@@ -973,9 +993,9 @@ setRandTarget__Q34Game9BombSarai3ObjFv:
 /* 802B30EC 002B002C  7C 08 03 A6 */	mtlr r0
 /* 802B30F0 002B0030  38 21 00 50 */	addi r1, r1, 0x50
 /* 802B30F4 002B0034  4E 80 00 20 */	blr 
+.endfn setRandTarget__Q34Game9BombSarai3ObjFv
 
-.global addPitchRatio__Q34Game9BombSarai3ObjFv
-addPitchRatio__Q34Game9BombSarai3ObjFv:
+.fn addPitchRatio__Q34Game9BombSarai3ObjFv, global
 /* 802B30F8 002B0038  80 A3 00 C0 */	lwz r5, 0xc0(r3)
 /* 802B30FC 002B003C  80 8D 9A EC */	lwz r4, sys@sda21(r13)
 /* 802B3100 002B0040  C0 65 08 6C */	lfs f3, 0x86c(r5)
@@ -990,9 +1010,9 @@ addPitchRatio__Q34Game9BombSarai3ObjFv:
 /* 802B3124 002B0064  EC 01 00 28 */	fsubs f0, f1, f0
 /* 802B3128 002B0068  D0 03 02 C0 */	stfs f0, 0x2c0(r3)
 /* 802B312C 002B006C  4E 80 00 20 */	blr 
+.endfn addPitchRatio__Q34Game9BombSarai3ObjFv
 
-.global supplyBomb__Q34Game9BombSarai3ObjFv
-supplyBomb__Q34Game9BombSarai3ObjFv:
+.fn supplyBomb__Q34Game9BombSarai3ObjFv, global
 /* 802B3130 002B0070  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802B3134 002B0074  7C 08 02 A6 */	mflr r0
 /* 802B3138 002B0078  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1044,9 +1064,9 @@ supplyBomb__Q34Game9BombSarai3ObjFv:
 /* 802B31EC 002B012C  7C 08 03 A6 */	mtlr r0
 /* 802B31F0 002B0130  38 21 00 50 */	addi r1, r1, 0x50
 /* 802B31F4 002B0134  4E 80 00 20 */	blr 
+.endfn supplyBomb__Q34Game9BombSarai3ObjFv
 
-.global "throwBomb__Q34Game9BombSarai3ObjFR10Vector3<f>"
-"throwBomb__Q34Game9BombSarai3ObjFR10Vector3<f>":
+.fn "throwBomb__Q34Game9BombSarai3ObjFR10Vector3<f>", global
 /* 802B31F8 002B0138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B31FC 002B013C  7C 08 02 A6 */	mflr r0
 /* 802B3200 002B0140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1078,9 +1098,9 @@ supplyBomb__Q34Game9BombSarai3ObjFv:
 /* 802B3264 002B01A4  7C 08 03 A6 */	mtlr r0
 /* 802B3268 002B01A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B326C 002B01AC  4E 80 00 20 */	blr 
+.endfn "throwBomb__Q34Game9BombSarai3ObjFR10Vector3<f>"
 
-.global getAttackablePikmin__Q34Game9BombSarai3ObjFv
-getAttackablePikmin__Q34Game9BombSarai3ObjFv:
+.fn getAttackablePikmin__Q34Game9BombSarai3ObjFv, global
 /* 802B3270 002B01B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B3274 002B01B4  7C 08 02 A6 */	mflr r0
 /* 802B3278 002B01B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1111,9 +1131,9 @@ getAttackablePikmin__Q34Game9BombSarai3ObjFv:
 /* 802B32D4 002B0214  7C 08 03 A6 */	mtlr r0
 /* 802B32D8 002B0218  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B32DC 002B021C  4E 80 00 20 */	blr 
+.endfn getAttackablePikmin__Q34Game9BombSarai3ObjFv
 
-.global getNextStateOnHeight__Q34Game9BombSarai3ObjFv
-getNextStateOnHeight__Q34Game9BombSarai3ObjFv:
+.fn getNextStateOnHeight__Q34Game9BombSarai3ObjFv, global
 /* 802B32E0 002B0220  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802B32E4 002B0224  7C 08 02 A6 */	mflr r0
 /* 802B32E8 002B0228  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1202,9 +1222,9 @@ getNextStateOnHeight__Q34Game9BombSarai3ObjFv:
 /* 802B3418 002B0358  7C 08 03 A6 */	mtlr r0
 /* 802B341C 002B035C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802B3420 002B0360  4E 80 00 20 */	blr 
+.endfn getNextStateOnHeight__Q34Game9BombSarai3ObjFv
 
-.global createEffect__Q34Game9BombSarai3ObjFv
-createEffect__Q34Game9BombSarai3ObjFv:
+.fn createEffect__Q34Game9BombSarai3ObjFv, global
 /* 802B3424 002B0364  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B3428 002B0368  7C 08 02 A6 */	mflr r0
 /* 802B342C 002B036C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1250,9 +1270,9 @@ createEffect__Q34Game9BombSarai3ObjFv:
 /* 802B34C8 002B0408  7C 08 03 A6 */	mtlr r0
 /* 802B34CC 002B040C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B34D0 002B0410  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game9BombSarai3ObjFv
 
-.global setupEffect__Q34Game9BombSarai3ObjFv
-setupEffect__Q34Game9BombSarai3ObjFv:
+.fn setupEffect__Q34Game9BombSarai3ObjFv, global
 /* 802B34D4 002B0414  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B34D8 002B0418  7C 08 02 A6 */	mflr r0
 /* 802B34DC 002B041C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1270,9 +1290,9 @@ setupEffect__Q34Game9BombSarai3ObjFv:
 /* 802B350C 002B044C  7C 08 03 A6 */	mtlr r0
 /* 802B3510 002B0450  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B3514 002B0454  4E 80 00 20 */	blr 
+.endfn setupEffect__Q34Game9BombSarai3ObjFv
 
-.global createSupliEffect__Q34Game9BombSarai3ObjFv
-createSupliEffect__Q34Game9BombSarai3ObjFv:
+.fn createSupliEffect__Q34Game9BombSarai3ObjFv, global
 /* 802B3518 002B0458  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B351C 002B045C  7C 08 02 A6 */	mflr r0
 /* 802B3520 002B0460  38 80 00 00 */	li r4, 0
@@ -1286,9 +1306,9 @@ createSupliEffect__Q34Game9BombSarai3ObjFv:
 /* 802B3540 002B0480  7C 08 03 A6 */	mtlr r0
 /* 802B3544 002B0484  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B3548 002B0488  4E 80 00 20 */	blr 
+.endfn createSupliEffect__Q34Game9BombSarai3ObjFv
 
-.global createBalloonEffect__Q34Game9BombSarai3ObjFi
-createBalloonEffect__Q34Game9BombSarai3ObjFi:
+.fn createBalloonEffect__Q34Game9BombSarai3ObjFi, global
 /* 802B354C 002B048C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802B3550 002B0490  7C 08 02 A6 */	mflr r0
 /* 802B3554 002B0494  2C 04 00 00 */	cmpwi r4, 0
@@ -1366,9 +1386,9 @@ createBalloonEffect__Q34Game9BombSarai3ObjFi:
 /* 802B365C 002B059C  7C 08 03 A6 */	mtlr r0
 /* 802B3660 002B05A0  38 21 00 30 */	addi r1, r1, 0x30
 /* 802B3664 002B05A4  4E 80 00 20 */	blr 
+.endfn createBalloonEffect__Q34Game9BombSarai3ObjFi
 
-.global createDownEffect__Q34Game9BombSarai3ObjFf
-createDownEffect__Q34Game9BombSarai3ObjFf:
+.fn createDownEffect__Q34Game9BombSarai3ObjFf, global
 /* 802B3668 002B05A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B366C 002B05AC  7C 08 02 A6 */	mflr r0
 /* 802B3670 002B05B0  38 83 01 8C */	addi r4, r3, 0x18c
@@ -1378,9 +1398,9 @@ createDownEffect__Q34Game9BombSarai3ObjFf:
 /* 802B3680 002B05C0  7C 08 03 A6 */	mtlr r0
 /* 802B3684 002B05C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B3688 002B05C8  4E 80 00 20 */	blr 
+.endfn createDownEffect__Q34Game9BombSarai3ObjFf
 
-.global effectDrawOn__Q34Game9BombSarai3ObjFv
-effectDrawOn__Q34Game9BombSarai3ObjFv:
+.fn effectDrawOn__Q34Game9BombSarai3ObjFv, global
 /* 802B368C 002B05CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B3690 002B05D0  7C 08 02 A6 */	mflr r0
 /* 802B3694 002B05D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1393,9 +1413,9 @@ effectDrawOn__Q34Game9BombSarai3ObjFv:
 /* 802B36B0 002B05F0  7C 08 03 A6 */	mtlr r0
 /* 802B36B4 002B05F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B36B8 002B05F8  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game9BombSarai3ObjFv
 
-.global effectDrawOff__Q34Game9BombSarai3ObjFv
-effectDrawOff__Q34Game9BombSarai3ObjFv:
+.fn effectDrawOff__Q34Game9BombSarai3ObjFv, global
 /* 802B36BC 002B05FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B36C0 002B0600  7C 08 02 A6 */	mflr r0
 /* 802B36C4 002B0604  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1408,9 +1428,9 @@ effectDrawOff__Q34Game9BombSarai3ObjFv:
 /* 802B36E0 002B0620  7C 08 03 A6 */	mtlr r0
 /* 802B36E4 002B0624  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B36E8 002B0628  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game9BombSarai3ObjFv
 
-.global __dt__Q23efx12TBsaraiSupliFv
-__dt__Q23efx12TBsaraiSupliFv:
+.fn __dt__Q23efx12TBsaraiSupliFv, weak
 /* 802B36EC 002B062C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B36F0 002B0630  7C 08 02 A6 */	mflr r0
 /* 802B36F4 002B0634  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1452,26 +1472,27 @@ __dt__Q23efx12TBsaraiSupliFv:
 /* 802B377C 002B06BC  7C 08 03 A6 */	mtlr r0
 /* 802B3780 002B06C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B3784 002B06C4  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TBsaraiSupliFv
 
-.global inWaterCallback__Q34Game9BombSarai3ObjFPQ24Game8WaterBox
-inWaterCallback__Q34Game9BombSarai3ObjFPQ24Game8WaterBox:
+.fn inWaterCallback__Q34Game9BombSarai3ObjFPQ24Game8WaterBox, weak
 /* 802B3788 002B06C8  4E 80 00 20 */	blr 
+.endfn inWaterCallback__Q34Game9BombSarai3ObjFPQ24Game8WaterBox
 
-.global outWaterCallback__Q34Game9BombSarai3ObjFv
-outWaterCallback__Q34Game9BombSarai3ObjFv:
+.fn outWaterCallback__Q34Game9BombSarai3ObjFv, weak
 /* 802B378C 002B06CC  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q34Game9BombSarai3ObjFv
 
-.global getDownSmokeScale__Q34Game9BombSarai3ObjFv
-getDownSmokeScale__Q34Game9BombSarai3ObjFv:
+.fn getDownSmokeScale__Q34Game9BombSarai3ObjFv, weak
 /* 802B3790 002B06D0  C0 22 DE E0 */	lfs f1, lbl_8051C240@sda21(r2)
 /* 802B3794 002B06D4  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game9BombSarai3ObjFv
 
-.global getEnemyTypeID__Q34Game9BombSarai3ObjFv
-getEnemyTypeID__Q34Game9BombSarai3ObjFv:
+.fn getEnemyTypeID__Q34Game9BombSarai3ObjFv, weak
 /* 802B3798 002B06D8  38 60 00 3A */	li r3, 0x3a
 /* 802B379C 002B06DC  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game9BombSarai3ObjFv
 
-.global "@4@__dt__Q23efx12TBsaraiSupliFv"
-"@4@__dt__Q23efx12TBsaraiSupliFv":
+.fn "@4@__dt__Q23efx12TBsaraiSupliFv", weak
 /* 802B37A0 002B06E0  38 63 FF FC */	addi r3, r3, -4
 /* 802B37A4 002B06E4  4B FF FF 48 */	b __dt__Q23efx12TBsaraiSupliFv
+.endfn "@4@__dt__Q23efx12TBsaraiSupliFv"
