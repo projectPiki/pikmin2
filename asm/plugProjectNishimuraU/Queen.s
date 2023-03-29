@@ -84,8 +84,7 @@ lbl_constructor:
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TQueenWakeupFv
 .endobj __vt__Q23efx12TQueenWakeup
-.global __vt__Q23efx10TQueenDead
-__vt__Q23efx10TQueenDead:
+.obj __vt__Q23efx10TQueenDead, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>FPQ23efx3Arg"
@@ -93,8 +92,8 @@ __vt__Q23efx10TQueenDead:
 	.4byte "fade__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx11TQueenFlick
-__vt__Q23efx11TQueenFlick:
+.endobj __vt__Q23efx10TQueenDead
+.obj __vt__Q23efx11TQueenFlick, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
@@ -102,8 +101,8 @@ __vt__Q23efx11TQueenFlick:
 	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx12TQueenDamage
-__vt__Q23efx12TQueenDamage:
+.endobj __vt__Q23efx11TQueenFlick
+.obj __vt__Q23efx12TQueenDamage, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -123,8 +122,8 @@ __vt__Q23efx12TQueenDamage:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TQueenDamageFv
-.global __vt__Q23efx15TQueenCrashRock
-__vt__Q23efx15TQueenCrashRock:
+.endobj __vt__Q23efx12TQueenDamage
+.obj __vt__Q23efx15TQueenCrashRock, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -144,8 +143,8 @@ __vt__Q23efx15TQueenCrashRock:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx15TQueenCrashRockFv
-.global __vt__Q23efx12TQueenCrashL
-__vt__Q23efx12TQueenCrashL:
+.endobj __vt__Q23efx15TQueenCrashRock
+.obj __vt__Q23efx12TQueenCrashL, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -165,8 +164,8 @@ __vt__Q23efx12TQueenCrashL:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TQueenCrashLFv
-.global __vt__Q23efx12TQueenCrashR
-__vt__Q23efx12TQueenCrashR:
+.endobj __vt__Q23efx12TQueenCrashL
+.obj __vt__Q23efx12TQueenCrashR, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -186,8 +185,8 @@ __vt__Q23efx12TQueenCrashR:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TQueenCrashRFv
-.global __vt__Q23efx10TQueenRoll
-__vt__Q23efx10TQueenRoll:
+.endobj __vt__Q23efx12TQueenCrashR
+.obj __vt__Q23efx10TQueenRoll, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
@@ -195,8 +194,8 @@ __vt__Q23efx10TQueenRoll:
 	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx12TQueenRollCL
-__vt__Q23efx12TQueenRollCL:
+.endobj __vt__Q23efx10TQueenRoll
+.obj __vt__Q23efx12TQueenRollCL, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
@@ -204,8 +203,8 @@ __vt__Q23efx12TQueenRollCL:
 	.4byte "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx12TQueenRollCR
-__vt__Q23efx12TQueenRollCR:
+.endobj __vt__Q23efx12TQueenRollCL
+.obj __vt__Q23efx12TQueenRollCR, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
@@ -213,8 +212,8 @@ __vt__Q23efx12TQueenRollCR:
 	.4byte "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx9TQueenLay
-__vt__Q23efx9TQueenLay:
+.endobj __vt__Q23efx12TQueenRollCR
+.obj __vt__Q23efx9TQueenLay, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -234,16 +233,16 @@ __vt__Q23efx9TQueenLay:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx9TQueenLayFv
-.global "__vt__Q24Game31EnemyIterator<Q34Game4Baby3Obj>"
-"__vt__Q24Game31EnemyIterator<Q34Game4Baby3Obj>":
+.endobj __vt__Q23efx9TQueenLay
+.obj "__vt__Q24Game31EnemyIterator<Q34Game4Baby3Obj>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
 	.4byte "next__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
 	.4byte "isDone__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
 	.4byte "__ml__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
-.global __vt__Q34Game5Queen3Obj
-__vt__Q34Game5Queen3Obj:
+.endobj "__vt__Q24Game31EnemyIterator<Q34Game4Baby3Obj>"
+.obj __vt__Q34Game5Queen3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -447,6 +446,7 @@ __vt__Q34Game5Queen3Obj:
 	.4byte "@784@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@784@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game5Queen3Obj
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -459,61 +459,85 @@ __vt__Q34Game5Queen3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051B818:
-	.4byte 0x00000000
-lbl_8051B81C:
-	.4byte 0x41F00000
-lbl_8051B820:
-	.4byte 0x41700000
-lbl_8051B824:
+.obj lbl_8051B818, local
+	.float 0.0
+.endobj lbl_8051B818
+.obj lbl_8051B81C, local
+	.float 30.0
+.endobj lbl_8051B81C
+.obj lbl_8051B820, local
+	.float 15.0
+.endobj lbl_8051B820
+.obj lbl_8051B824, local
 	.float 1.0
-lbl_8051B828:
-	.4byte 0x42480000
-lbl_8051B82C:
-	.4byte 0x42340000
-lbl_8051B830:
+.endobj lbl_8051B824
+.obj lbl_8051B828, local
+	.float 50.0
+.endobj lbl_8051B828
+.obj lbl_8051B82C, local
+	.float 45.0
+.endobj lbl_8051B82C
+.obj lbl_8051B830, local
 	.float 0.1
-lbl_8051B834:
-	.4byte 0x3E4CCCCD
-lbl_8051B838:
-	.4byte 0x41200000
-lbl_8051B83C:
-	.4byte 0xC47A0000
-lbl_8051B840:
-	.4byte 0x43A2F983
-lbl_8051B844:
-	.4byte 0xC3A2F983
-lbl_8051B848:
-	.4byte 0x437A0000
-lbl_8051B84C:
-	.4byte 0x40490FDB
-lbl_8051B850:
-	.4byte 0x3FC90FDB
-lbl_8051B854:
-	.4byte 0x47000000
-lbl_8051B858:
+.endobj lbl_8051B830
+.obj lbl_8051B834, local
+	.float 0.2
+.endobj lbl_8051B834
+.obj lbl_8051B838, local
+	.float 10.0
+.endobj lbl_8051B838
+.obj lbl_8051B83C, local
+	.float -1000.0
+.endobj lbl_8051B83C
+.obj lbl_8051B840, local
+	.float 325.9493
+.endobj lbl_8051B840
+.obj lbl_8051B844, local
+	.float -325.9493
+.endobj lbl_8051B844
+.obj lbl_8051B848, local
+	.float 250.0
+.endobj lbl_8051B848
+.obj lbl_8051B84C, local # pi
+	.float 3.1415927
+.endobj lbl_8051B84C
+.obj lbl_8051B850, local # pi/2
+	.float 1.5707964
+.endobj lbl_8051B850
+.obj lbl_8051B854, local
+	.float 32768.0
+.endobj lbl_8051B854
+.obj lbl_8051B858, local
 	.float 0.5
+.endobj lbl_8051B858
 .balign 8
-lbl_8051B860:
+.obj lbl_8051B860, local
 	.8byte 0x4330000080000000
-lbl_8051B868:
-	.4byte 0x43610000
-lbl_8051B86C:
-	.4byte 0x43160000
-lbl_8051B870:
-	.4byte 0x447A0000
-lbl_8051B874:
-	.4byte 0x626F6479
-	.4byte 0x35000000
-lbl_8051B87C:
-	.4byte 0x68656164
-	.4byte 0x00000000
-lbl_8051B884:
+.endobj lbl_8051B860
+.obj lbl_8051B868, local
+	.float 225.0
+.endobj lbl_8051B868
+.obj lbl_8051B86C, local
+	.float 150.0
+.endobj lbl_8051B86C
+.obj lbl_8051B870, local
+	.float 1000.0
+.endobj lbl_8051B870
+.balign 4
+.obj lbl_8051B874, local
+	.asciz "body5"
+.endobj lbl_8051B874
+.balign 4
+.obj lbl_8051B87C, local
+	.asciz "head"
+.endobj lbl_8051B87C
+.balign 4
+.obj lbl_8051B884, local
 	.float 0.25
+.endobj lbl_8051B884
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game5Queen3ObjFv
-__ct__Q34Game5Queen3ObjFv:
+.fn __ct__Q34Game5Queen3ObjFv, global
 /* 802894D4 00286414  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802894D8 00286418  7C 08 02 A6 */	mflr r0
 /* 802894DC 0028641C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -614,13 +638,13 @@ __ct__Q34Game5Queen3ObjFv:
 /* 80289644 00286584  7C 08 03 A6 */	mtlr r0
 /* 80289648 00286588  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028964C 0028658C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game5Queen3ObjFv
 
-.global setInitialSetting__Q34Game5Queen3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game5Queen3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game5Queen3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 80289650 00286590  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game5Queen3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game5Queen3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game5Queen3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game5Queen3ObjFPQ24Game15CreatureInitArg, global
 /* 80289654 00286594  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289658 00286598  7C 08 02 A6 */	mflr r0
 /* 8028965C 0028659C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -687,9 +711,9 @@ onInit__Q34Game5Queen3ObjFPQ24Game15CreatureInitArg:
 /* 80289748 00286688  7C 08 03 A6 */	mtlr r0
 /* 8028974C 0028668C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80289750 00286690  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game5Queen3ObjFPQ24Game15CreatureInitArg
 
-.global onKill__Q34Game5Queen3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game5Queen3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game5Queen3ObjFPQ24Game15CreatureKillArg, global
 /* 80289754 00286694  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289758 00286698  7C 08 02 A6 */	mflr r0
 /* 8028975C 0028669C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -712,9 +736,9 @@ onKill__Q34Game5Queen3ObjFPQ24Game15CreatureKillArg:
 /* 802897A0 002866E0  7C 08 03 A6 */	mtlr r0
 /* 802897A4 002866E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802897A8 002866E8  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game5Queen3ObjFPQ24Game15CreatureKillArg
 
-.global setParameters__Q34Game5Queen3ObjFv
-setParameters__Q34Game5Queen3ObjFv:
+.fn setParameters__Q34Game5Queen3ObjFv, global
 /* 802897AC 002866EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802897B0 002866F0  7C 08 02 A6 */	mflr r0
 /* 802897B4 002866F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -763,9 +787,9 @@ setParameters__Q34Game5Queen3ObjFv:
 /* 80289858 00286798  7C 08 03 A6 */	mtlr r0
 /* 8028985C 0028679C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80289860 002867A0  4E 80 00 20 */	blr 
+.endfn setParameters__Q34Game5Queen3ObjFv
 
-.global doUpdate__Q34Game5Queen3ObjFv
-doUpdate__Q34Game5Queen3ObjFv:
+.fn doUpdate__Q34Game5Queen3ObjFv, global
 /* 80289864 002867A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289868 002867A8  7C 08 02 A6 */	mflr r0
 /* 8028986C 002867AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -786,9 +810,9 @@ doUpdate__Q34Game5Queen3ObjFv:
 /* 802898A8 002867E8  7C 08 03 A6 */	mtlr r0
 /* 802898AC 002867EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802898B0 002867F0  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game5Queen3ObjFv
 
-.global doUpdateCommon__Q34Game5Queen3ObjFv
-doUpdateCommon__Q34Game5Queen3ObjFv:
+.fn doUpdateCommon__Q34Game5Queen3ObjFv, global
 /* 802898B4 002867F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802898B8 002867F8  7C 08 02 A6 */	mflr r0
 /* 802898BC 002867FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -802,9 +826,9 @@ doUpdateCommon__Q34Game5Queen3ObjFv:
 /* 802898DC 0028681C  7C 08 03 A6 */	mtlr r0
 /* 802898E0 00286820  38 21 00 10 */	addi r1, r1, 0x10
 /* 802898E4 00286824  4E 80 00 20 */	blr 
+.endfn doUpdateCommon__Q34Game5Queen3ObjFv
 
-.global doAnimationCullingOff__Q34Game5Queen3ObjFv
-doAnimationCullingOff__Q34Game5Queen3ObjFv:
+.fn doAnimationCullingOff__Q34Game5Queen3ObjFv, global
 /* 802898E8 00286828  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802898EC 0028682C  7C 08 02 A6 */	mflr r0
 /* 802898F0 00286830  90 01 00 14 */	stw r0, 0x14(r1)
@@ -827,13 +851,13 @@ doAnimationCullingOff__Q34Game5Queen3ObjFv:
 /* 80289930 00286870  7C 08 03 A6 */	mtlr r0
 /* 80289934 00286874  38 21 00 10 */	addi r1, r1, 0x10
 /* 80289938 00286878  4E 80 00 20 */	blr 
+.endfn doAnimationCullingOff__Q34Game5Queen3ObjFv
 
-.global doDirectDraw__Q34Game5Queen3ObjFR8Graphics
-doDirectDraw__Q34Game5Queen3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game5Queen3ObjFR8Graphics, global
 /* 8028993C 0028687C  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game5Queen3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game5Queen3ObjFR8Graphics
-doDebugDraw__Q34Game5Queen3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game5Queen3ObjFR8Graphics, global
 /* 80289940 00286880  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289944 00286884  7C 08 02 A6 */	mflr r0
 /* 80289948 00286888  90 01 00 14 */	stw r0, 0x14(r1)
@@ -842,9 +866,9 @@ doDebugDraw__Q34Game5Queen3ObjFR8Graphics:
 /* 80289954 00286894  7C 08 03 A6 */	mtlr r0
 /* 80289958 00286898  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028995C 0028689C  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game5Queen3ObjFR8Graphics
 
-.global setFSM__Q34Game5Queen3ObjFPQ34Game5Queen3FSM
-setFSM__Q34Game5Queen3ObjFPQ34Game5Queen3FSM:
+.fn setFSM__Q34Game5Queen3ObjFPQ34Game5Queen3FSM, global
 /* 80289960 002868A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289964 002868A4  7C 08 02 A6 */	mflr r0
 /* 80289968 002868A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -864,9 +888,9 @@ setFSM__Q34Game5Queen3ObjFPQ34Game5Queen3FSM:
 /* 802899A0 002868E0  7C 08 03 A6 */	mtlr r0
 /* 802899A4 002868E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802899A8 002868E8  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game5Queen3ObjFPQ34Game5Queen3FSM
 
-.global getShadowParam__Q34Game5Queen3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game5Queen3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game5Queen3ObjFRQ24Game11ShadowParam, global
 /* 802899AC 002868EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802899B0 002868F0  7C 08 02 A6 */	mflr r0
 /* 802899B4 002868F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -902,9 +926,9 @@ getShadowParam__Q34Game5Queen3ObjFRQ24Game11ShadowParam:
 /* 80289A2C 0028696C  7C 08 03 A6 */	mtlr r0
 /* 80289A30 00286970  38 21 00 20 */	addi r1, r1, 0x20
 /* 80289A34 00286974  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game5Queen3ObjFRQ24Game11ShadowParam
 
-.global damageCallBack__Q34Game5Queen3ObjFPQ24Game8CreaturefP8CollPart
-damageCallBack__Q34Game5Queen3ObjFPQ24Game8CreaturefP8CollPart:
+.fn damageCallBack__Q34Game5Queen3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 80289A38 00286978  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80289A3C 0028697C  7C 08 02 A6 */	mflr r0
 /* 80289A40 00286980  90 01 00 24 */	stw r0, 0x24(r1)
@@ -953,14 +977,14 @@ damageCallBack__Q34Game5Queen3ObjFPQ24Game8CreaturefP8CollPart:
 /* 80289ADC 00286A1C  7C 08 03 A6 */	mtlr r0
 /* 80289AE0 00286A20  38 21 00 20 */	addi r1, r1, 0x20
 /* 80289AE4 00286A24  4E 80 00 20 */	blr 
+.endfn damageCallBack__Q34Game5Queen3ObjFPQ24Game8CreaturefP8CollPart
 
-.global earthquakeCallBack__Q34Game5Queen3ObjFPQ24Game8Creaturef
-earthquakeCallBack__Q34Game5Queen3ObjFPQ24Game8Creaturef:
+.fn earthquakeCallBack__Q34Game5Queen3ObjFPQ24Game8Creaturef, global
 /* 80289AE8 00286A28  38 60 00 00 */	li r3, 0
 /* 80289AEC 00286A2C  4E 80 00 20 */	blr 
+.endfn earthquakeCallBack__Q34Game5Queen3ObjFPQ24Game8Creaturef
 
-.global doStartStoneState__Q34Game5Queen3ObjFv
-doStartStoneState__Q34Game5Queen3ObjFv:
+.fn doStartStoneState__Q34Game5Queen3ObjFv, global
 /* 80289AF0 00286A30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289AF4 00286A34  7C 08 02 A6 */	mflr r0
 /* 80289AF8 00286A38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -980,9 +1004,9 @@ doStartStoneState__Q34Game5Queen3ObjFv:
 /* 80289B30 00286A70  7C 08 03 A6 */	mtlr r0
 /* 80289B34 00286A74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80289B38 00286A78  4E 80 00 20 */	blr 
+.endfn doStartStoneState__Q34Game5Queen3ObjFv
 
-.global doFinishStoneState__Q34Game5Queen3ObjFv
-doFinishStoneState__Q34Game5Queen3ObjFv:
+.fn doFinishStoneState__Q34Game5Queen3ObjFv, global
 /* 80289B3C 00286A7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289B40 00286A80  7C 08 02 A6 */	mflr r0
 /* 80289B44 00286A84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1019,9 +1043,9 @@ doFinishStoneState__Q34Game5Queen3ObjFv:
 /* 80289BB8 00286AF8  7C 08 03 A6 */	mtlr r0
 /* 80289BBC 00286AFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80289BC0 00286B00  4E 80 00 20 */	blr 
+.endfn doFinishStoneState__Q34Game5Queen3ObjFv
 
-.global ignoreAtari__Q34Game5Queen3ObjFPQ24Game8Creature
-ignoreAtari__Q34Game5Queen3ObjFPQ24Game8Creature:
+.fn ignoreAtari__Q34Game5Queen3ObjFPQ24Game8Creature, global
 /* 80289BC4 00286B04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289BC8 00286B08  7C 08 02 A6 */	mflr r0
 /* 80289BCC 00286B0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1058,9 +1082,9 @@ ignoreAtari__Q34Game5Queen3ObjFPQ24Game8Creature:
 /* 80289C3C 00286B7C  7C 08 03 A6 */	mtlr r0
 /* 80289C40 00286B80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80289C44 00286B84  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q34Game5Queen3ObjFPQ24Game8Creature
 
-.global startCarcassMotion__Q34Game5Queen3ObjFv
-startCarcassMotion__Q34Game5Queen3ObjFv:
+.fn startCarcassMotion__Q34Game5Queen3ObjFv, global
 /* 80289C48 00286B88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289C4C 00286B8C  7C 08 02 A6 */	mflr r0
 /* 80289C50 00286B90  38 80 00 08 */	li r4, 8
@@ -1071,9 +1095,9 @@ startCarcassMotion__Q34Game5Queen3ObjFv:
 /* 80289C64 00286BA4  7C 08 03 A6 */	mtlr r0
 /* 80289C68 00286BA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80289C6C 00286BAC  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game5Queen3ObjFv
 
-.global doStartMovie__Q34Game5Queen3ObjFv
-doStartMovie__Q34Game5Queen3ObjFv:
+.fn doStartMovie__Q34Game5Queen3ObjFv, global
 /* 80289C70 00286BB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289C74 00286BB4  7C 08 02 A6 */	mflr r0
 /* 80289C78 00286BB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1082,9 +1106,9 @@ doStartMovie__Q34Game5Queen3ObjFv:
 /* 80289C84 00286BC4  7C 08 03 A6 */	mtlr r0
 /* 80289C88 00286BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80289C8C 00286BCC  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game5Queen3ObjFv
 
-.global doEndMovie__Q34Game5Queen3ObjFv
-doEndMovie__Q34Game5Queen3ObjFv:
+.fn doEndMovie__Q34Game5Queen3ObjFv, global
 /* 80289C90 00286BD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80289C94 00286BD4  7C 08 02 A6 */	mflr r0
 /* 80289C98 00286BD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1093,9 +1117,9 @@ doEndMovie__Q34Game5Queen3ObjFv:
 /* 80289CA4 00286BE4  7C 08 03 A6 */	mtlr r0
 /* 80289CA8 00286BE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80289CAC 00286BEC  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game5Queen3ObjFv
 
-.global rollingAttack__Q34Game5Queen3ObjFv
-rollingAttack__Q34Game5Queen3ObjFv:
+.fn rollingAttack__Q34Game5Queen3ObjFv, global
 /* 80289CB0 00286BF0  94 21 FE B0 */	stwu r1, -0x150(r1)
 /* 80289CB4 00286BF4  7C 08 02 A6 */	mflr r0
 /* 80289CB8 00286BF8  90 01 01 54 */	stw r0, 0x154(r1)
@@ -1295,9 +1319,9 @@ rollingAttack__Q34Game5Queen3ObjFv:
 /* 80289F90 00286ED0  7C 08 03 A6 */	mtlr r0
 /* 80289F94 00286ED4  38 21 01 50 */	addi r1, r1, 0x150
 /* 80289F98 00286ED8  4E 80 00 20 */	blr 
+.endfn rollingAttack__Q34Game5Queen3ObjFv
 
-.global flickPikmin__Q34Game5Queen3ObjFf
-flickPikmin__Q34Game5Queen3ObjFf:
+.fn flickPikmin__Q34Game5Queen3ObjFf, global
 /* 80289F9C 00286EDC  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80289FA0 00286EE0  7C 08 02 A6 */	mflr r0
 /* 80289FA4 00286EE4  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1544,9 +1568,9 @@ flickPikmin__Q34Game5Queen3ObjFf:
 /* 8028A338 00287278  7C 08 03 A6 */	mtlr r0
 /* 8028A33C 0028727C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8028A340 00287280  4E 80 00 20 */	blr 
+.endfn flickPikmin__Q34Game5Queen3ObjFf
 
-.global isRollingAttackLeft__Q34Game5Queen3ObjFv
-isRollingAttackLeft__Q34Game5Queen3ObjFv:
+.fn isRollingAttackLeft__Q34Game5Queen3ObjFv, global
 /* 8028A344 00287284  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8028A348 00287288  7C 08 02 A6 */	mflr r0
 /* 8028A34C 0028728C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1659,9 +1683,9 @@ isRollingAttackLeft__Q34Game5Queen3ObjFv:
 /* 8028A4E0 00287420  7C 08 03 A6 */	mtlr r0
 /* 8028A4E4 00287424  38 21 00 60 */	addi r1, r1, 0x60
 /* 8028A4E8 00287428  4E 80 00 20 */	blr 
+.endfn isRollingAttackLeft__Q34Game5Queen3ObjFv
 
-.global createCrashFallRock__Q34Game5Queen3ObjFv
-createCrashFallRock__Q34Game5Queen3ObjFv:
+.fn createCrashFallRock__Q34Game5Queen3ObjFv, global
 /* 8028A4EC 0028742C  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 8028A4F0 00287430  7C 08 02 A6 */	mflr r0
 /* 8028A4F4 00287434  90 01 01 44 */	stw r0, 0x144(r1)
@@ -1849,9 +1873,9 @@ createCrashFallRock__Q34Game5Queen3ObjFv:
 /* 8028A7B4 002876F4  7C 08 03 A6 */	mtlr r0
 /* 8028A7B8 002876F8  38 21 01 40 */	addi r1, r1, 0x140
 /* 8028A7BC 002876FC  4E 80 00 20 */	blr 
+.endfn createCrashFallRock__Q34Game5Queen3ObjFv
 
-.global createBabyChappy__Q34Game5Queen3ObjFv
-createBabyChappy__Q34Game5Queen3ObjFv:
+.fn createBabyChappy__Q34Game5Queen3ObjFv, global
 /* 8028A7C0 00287700  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8028A7C4 00287704  7C 08 02 A6 */	mflr r0
 /* 8028A7C8 00287708  38 80 00 1F */	li r4, 0x1f
@@ -1959,9 +1983,9 @@ createBabyChappy__Q34Game5Queen3ObjFv:
 /* 8028A950 00287890  7C 08 03 A6 */	mtlr r0
 /* 8028A954 00287894  38 21 00 70 */	addi r1, r1, 0x70
 /* 8028A958 00287898  4E 80 00 20 */	blr 
+.endfn createBabyChappy__Q34Game5Queen3ObjFv
 
-.global "isDone__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
-"isDone__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv":
+.fn "isDone__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv", weak
 /* 8028A95C 0028789C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028A960 002878A0  7C 08 02 A6 */	mflr r0
 /* 8028A964 002878A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1981,9 +2005,9 @@ createBabyChappy__Q34Game5Queen3ObjFv:
 /* 8028A99C 002878DC  7C 08 03 A6 */	mtlr r0
 /* 8028A9A0 002878E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028A9A4 002878E4  4E 80 00 20 */	blr 
+.endfn "isDone__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
 
-.global updateCreateBaby__Q34Game5Queen3ObjFv
-updateCreateBaby__Q34Game5Queen3ObjFv:
+.fn updateCreateBaby__Q34Game5Queen3ObjFv, global
 /* 8028A9A8 002878E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028A9AC 002878EC  7C 08 02 A6 */	mflr r0
 /* 8028A9B0 002878F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2154,9 +2178,9 @@ updateCreateBaby__Q34Game5Queen3ObjFv:
 /* 8028AC10 00287B50  7C 08 03 A6 */	mtlr r0
 /* 8028AC14 00287B54  38 21 00 20 */	addi r1, r1, 0x20
 /* 8028AC18 00287B58  4E 80 00 20 */	blr 
+.endfn updateCreateBaby__Q34Game5Queen3ObjFv
 
-.global isCreateBaby__Q34Game5Queen3ObjFv
-isCreateBaby__Q34Game5Queen3ObjFv:
+.fn isCreateBaby__Q34Game5Queen3ObjFv, global
 /* 8028AC1C 00287B5C  88 03 02 C0 */	lbz r0, 0x2c0(r3)
 /* 8028AC20 00287B60  28 00 00 00 */	cmplwi r0, 0
 /* 8028AC24 00287B64  41 82 00 2C */	beq .L_8028AC50
@@ -2173,18 +2197,18 @@ isCreateBaby__Q34Game5Queen3ObjFv:
 .L_8028AC50:
 /* 8028AC50 00287B90  38 60 00 00 */	li r3, 0
 /* 8028AC54 00287B94  4E 80 00 20 */	blr 
+.endfn isCreateBaby__Q34Game5Queen3ObjFv
 
-.global isHitCounterUp__Q34Game5Queen3ObjFv
-isHitCounterUp__Q34Game5Queen3ObjFv:
+.fn isHitCounterUp__Q34Game5Queen3ObjFv, global
 /* 8028AC58 00287B98  C0 23 02 0C */	lfs f1, 0x20c(r3)
 /* 8028AC5C 00287B9C  C0 03 02 D0 */	lfs f0, 0x2d0(r3)
 /* 8028AC60 00287BA0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8028AC64 00287BA4  7C 00 00 26 */	mfcr r0
 /* 8028AC68 00287BA8  54 03 17 FE */	rlwinm r3, r0, 2, 0x1f, 0x1f
 /* 8028AC6C 00287BAC  4E 80 00 20 */	blr 
+.endfn isHitCounterUp__Q34Game5Queen3ObjFv
 
-.global resetJointShadow__Q34Game5Queen3ObjFv
-resetJointShadow__Q34Game5Queen3ObjFv:
+.fn resetJointShadow__Q34Game5Queen3ObjFv, global
 /* 8028AC70 00287BB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028AC74 00287BB4  7C 08 02 A6 */	mflr r0
 /* 8028AC78 00287BB8  7C 64 1B 78 */	mr r4, r3
@@ -2195,9 +2219,9 @@ resetJointShadow__Q34Game5Queen3ObjFv:
 /* 8028AC8C 00287BCC  7C 08 03 A6 */	mtlr r0
 /* 8028AC90 00287BD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028AC94 00287BD4  4E 80 00 20 */	blr 
+.endfn resetJointShadow__Q34Game5Queen3ObjFv
 
-.global releaseJointShadow__Q34Game5Queen3ObjFv
-releaseJointShadow__Q34Game5Queen3ObjFv:
+.fn releaseJointShadow__Q34Game5Queen3ObjFv, global
 /* 8028AC98 00287BD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028AC9C 00287BDC  7C 08 02 A6 */	mflr r0
 /* 8028ACA0 00287BE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2214,9 +2238,9 @@ releaseJointShadow__Q34Game5Queen3ObjFv:
 /* 8028ACCC 00287C0C  7C 08 03 A6 */	mtlr r0
 /* 8028ACD0 00287C10  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028ACD4 00287C14  4E 80 00 20 */	blr 
+.endfn releaseJointShadow__Q34Game5Queen3ObjFv
 
-.global startBossChargeBGM__Q34Game5Queen3ObjFv
-startBossChargeBGM__Q34Game5Queen3ObjFv:
+.fn startBossChargeBGM__Q34Game5Queen3ObjFv, global
 /* 8028ACD8 00287C18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028ACDC 00287C1C  7C 08 02 A6 */	mflr r0
 /* 8028ACE0 00287C20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2270,9 +2294,9 @@ startBossChargeBGM__Q34Game5Queen3ObjFv:
 /* 8028AD94 00287CD4  7C 08 03 A6 */	mtlr r0
 /* 8028AD98 00287CD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028AD9C 00287CDC  4E 80 00 20 */	blr 
+.endfn startBossChargeBGM__Q34Game5Queen3ObjFv
 
-.global startBossAttackLoopBGM__Q34Game5Queen3ObjFv
-startBossAttackLoopBGM__Q34Game5Queen3ObjFv:
+.fn startBossAttackLoopBGM__Q34Game5Queen3ObjFv, global
 /* 8028ADA0 00287CE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028ADA4 00287CE4  7C 08 02 A6 */	mflr r0
 /* 8028ADA8 00287CE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2332,9 +2356,9 @@ startBossAttackLoopBGM__Q34Game5Queen3ObjFv:
 /* 8028AE70 00287DB0  7C 08 03 A6 */	mtlr r0
 /* 8028AE74 00287DB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028AE78 00287DB8  4E 80 00 20 */	blr 
+.endfn startBossAttackLoopBGM__Q34Game5Queen3ObjFv
 
-.global finishBossAttackLoopBGM__Q34Game5Queen3ObjFv
-finishBossAttackLoopBGM__Q34Game5Queen3ObjFv:
+.fn finishBossAttackLoopBGM__Q34Game5Queen3ObjFv, global
 /* 8028AE7C 00287DBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028AE80 00287DC0  7C 08 02 A6 */	mflr r0
 /* 8028AE84 00287DC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2393,9 +2417,9 @@ finishBossAttackLoopBGM__Q34Game5Queen3ObjFv:
 /* 8028AF48 00287E88  7C 08 03 A6 */	mtlr r0
 /* 8028AF4C 00287E8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028AF50 00287E90  4E 80 00 20 */	blr 
+.endfn finishBossAttackLoopBGM__Q34Game5Queen3ObjFv
 
-.global startStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv
-startStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv:
+.fn startStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv, global
 /* 8028AF54 00287E94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028AF58 00287E98  7C 08 02 A6 */	mflr r0
 /* 8028AF5C 00287E9C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2453,9 +2477,9 @@ startStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv:
 /* 8028B01C 00287F5C  7C 08 03 A6 */	mtlr r0
 /* 8028B020 00287F60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028B024 00287F64  4E 80 00 20 */	blr 
+.endfn startStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv
 
-.global finishStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv
-finishStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv:
+.fn finishStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv, global
 /* 8028B028 00287F68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028B02C 00287F6C  7C 08 02 A6 */	mflr r0
 /* 8028B030 00287F70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2513,9 +2537,9 @@ finishStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv:
 /* 8028B0F0 00288030  7C 08 03 A6 */	mtlr r0
 /* 8028B0F4 00288034  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028B0F8 00288038  4E 80 00 20 */	blr 
+.endfn finishStoneStateBossAttackLoopBGM__Q34Game5Queen3ObjFv
 
-.global updateBossBGM__Q34Game5Queen3ObjFv
-updateBossBGM__Q34Game5Queen3ObjFv:
+.fn updateBossBGM__Q34Game5Queen3ObjFv, global
 /* 8028B0FC 0028803C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028B100 00288040  7C 08 02 A6 */	mflr r0
 /* 8028B104 00288044  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2584,9 +2608,9 @@ updateBossBGM__Q34Game5Queen3ObjFv:
 /* 8028B1EC 0028812C  7C 08 03 A6 */	mtlr r0
 /* 8028B1F0 00288130  38 21 00 20 */	addi r1, r1, 0x20
 /* 8028B1F4 00288134  4E 80 00 20 */	blr 
+.endfn updateBossBGM__Q34Game5Queen3ObjFv
 
-.global resetMidBossAppearBGM__Q34Game5Queen3ObjFv
-resetMidBossAppearBGM__Q34Game5Queen3ObjFv:
+.fn resetMidBossAppearBGM__Q34Game5Queen3ObjFv, global
 /* 8028B1F8 00288138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028B1FC 0028813C  7C 08 02 A6 */	mflr r0
 /* 8028B200 00288140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2631,9 +2655,9 @@ resetMidBossAppearBGM__Q34Game5Queen3ObjFv:
 /* 8028B294 002881D4  7C 08 03 A6 */	mtlr r0
 /* 8028B298 002881D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028B29C 002881DC  4E 80 00 20 */	blr 
+.endfn resetMidBossAppearBGM__Q34Game5Queen3ObjFv
 
-.global setMidBossAppearBGM__Q34Game5Queen3ObjFv
-setMidBossAppearBGM__Q34Game5Queen3ObjFv:
+.fn setMidBossAppearBGM__Q34Game5Queen3ObjFv, global
 /* 8028B2A0 002881E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028B2A4 002881E4  7C 08 02 A6 */	mflr r0
 /* 8028B2A8 002881E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2668,9 +2692,9 @@ setMidBossAppearBGM__Q34Game5Queen3ObjFv:
 /* 8028B314 00288254  7C 08 03 A6 */	mtlr r0
 /* 8028B318 00288258  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028B31C 0028825C  4E 80 00 20 */	blr 
+.endfn setMidBossAppearBGM__Q34Game5Queen3ObjFv
 
-.global createEffect__Q34Game5Queen3ObjFv
-createEffect__Q34Game5Queen3ObjFv:
+.fn createEffect__Q34Game5Queen3ObjFv, global
 /* 8028B320 00288260  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028B324 00288264  7C 08 02 A6 */	mflr r0
 /* 8028B328 00288268  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3016,9 +3040,9 @@ createEffect__Q34Game5Queen3ObjFv:
 /* 8028B848 00288788  7C 08 03 A6 */	mtlr r0
 /* 8028B84C 0028878C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028B850 00288790  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game5Queen3ObjFv
 
-.global setupEffect__Q34Game5Queen3ObjFv
-setupEffect__Q34Game5Queen3ObjFv:
+.fn setupEffect__Q34Game5Queen3ObjFv, global
 /* 8028B854 00288794  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028B858 00288798  7C 08 02 A6 */	mflr r0
 /* 8028B85C 0028879C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3049,9 +3073,9 @@ setupEffect__Q34Game5Queen3ObjFv:
 /* 8028B8C0 00288800  7C 08 03 A6 */	mtlr r0
 /* 8028B8C4 00288804  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028B8C8 00288808  4E 80 00 20 */	blr 
+.endfn setupEffect__Q34Game5Queen3ObjFv
 
-.global createBornEffect__Q34Game5Queen3ObjFv
-createBornEffect__Q34Game5Queen3ObjFv:
+.fn createBornEffect__Q34Game5Queen3ObjFv, global
 /* 8028B8CC 0028880C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028B8D0 00288810  7C 08 02 A6 */	mflr r0
 /* 8028B8D4 00288814  38 80 00 00 */	li r4, 0
@@ -3065,9 +3089,9 @@ createBornEffect__Q34Game5Queen3ObjFv:
 /* 8028B8F4 00288834  7C 08 03 A6 */	mtlr r0
 /* 8028B8F8 00288838  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028B8FC 0028883C  4E 80 00 20 */	blr 
+.endfn createBornEffect__Q34Game5Queen3ObjFv
 
-.global startRollingEffect__Q34Game5Queen3ObjFv
-startRollingEffect__Q34Game5Queen3ObjFv:
+.fn startRollingEffect__Q34Game5Queen3ObjFv, global
 /* 8028B900 00288840  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028B904 00288844  7C 08 02 A6 */	mflr r0
 /* 8028B908 00288848  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3102,9 +3126,9 @@ startRollingEffect__Q34Game5Queen3ObjFv:
 /* 8028B974 002888B4  7C 08 03 A6 */	mtlr r0
 /* 8028B978 002888B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028B97C 002888BC  4E 80 00 20 */	blr 
+.endfn startRollingEffect__Q34Game5Queen3ObjFv
 
-.global finishRollingEffect__Q34Game5Queen3ObjFb
-finishRollingEffect__Q34Game5Queen3ObjFb:
+.fn finishRollingEffect__Q34Game5Queen3ObjFb, global
 /* 8028B980 002888C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028B984 002888C4  7C 08 02 A6 */	mflr r0
 /* 8028B988 002888C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3166,9 +3190,9 @@ finishRollingEffect__Q34Game5Queen3ObjFb:
 /* 8028BA54 00288994  7C 08 03 A6 */	mtlr r0
 /* 8028BA58 00288998  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BA5C 0028899C  4E 80 00 20 */	blr 
+.endfn finishRollingEffect__Q34Game5Queen3ObjFb
 
-.global forceFinishRollingEffect__Q34Game5Queen3ObjFv
-forceFinishRollingEffect__Q34Game5Queen3ObjFv:
+.fn forceFinishRollingEffect__Q34Game5Queen3ObjFv, global
 /* 8028BA60 002889A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BA64 002889A4  7C 08 02 A6 */	mflr r0
 /* 8028BA68 002889A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3194,9 +3218,9 @@ forceFinishRollingEffect__Q34Game5Queen3ObjFv:
 /* 8028BAB8 002889F8  7C 08 03 A6 */	mtlr r0
 /* 8028BABC 002889FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BAC0 00288A00  4E 80 00 20 */	blr 
+.endfn forceFinishRollingEffect__Q34Game5Queen3ObjFv
 
-.global startDamageEffect__Q34Game5Queen3ObjFv
-startDamageEffect__Q34Game5Queen3ObjFv:
+.fn startDamageEffect__Q34Game5Queen3ObjFv, global
 /* 8028BAC4 00288A04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BAC8 00288A08  7C 08 02 A6 */	mflr r0
 /* 8028BACC 00288A0C  38 80 00 00 */	li r4, 0
@@ -3210,9 +3234,9 @@ startDamageEffect__Q34Game5Queen3ObjFv:
 /* 8028BAEC 00288A2C  7C 08 03 A6 */	mtlr r0
 /* 8028BAF0 00288A30  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BAF4 00288A34  4E 80 00 20 */	blr 
+.endfn startDamageEffect__Q34Game5Queen3ObjFv
 
-.global finishDamageEffect__Q34Game5Queen3ObjFv
-finishDamageEffect__Q34Game5Queen3ObjFv:
+.fn finishDamageEffect__Q34Game5Queen3ObjFv, global
 /* 8028BAF8 00288A38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BAFC 00288A3C  7C 08 02 A6 */	mflr r0
 /* 8028BB00 00288A40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3225,9 +3249,9 @@ finishDamageEffect__Q34Game5Queen3ObjFv:
 /* 8028BB1C 00288A5C  7C 08 03 A6 */	mtlr r0
 /* 8028BB20 00288A60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BB24 00288A64  4E 80 00 20 */	blr 
+.endfn finishDamageEffect__Q34Game5Queen3ObjFv
 
-.global createFlickEffect__Q34Game5Queen3ObjFv
-createFlickEffect__Q34Game5Queen3ObjFv:
+.fn createFlickEffect__Q34Game5Queen3ObjFv, global
 /* 8028BB28 00288A68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BB2C 00288A6C  7C 08 02 A6 */	mflr r0
 /* 8028BB30 00288A70  38 80 00 00 */	li r4, 0
@@ -3241,9 +3265,9 @@ createFlickEffect__Q34Game5Queen3ObjFv:
 /* 8028BB50 00288A90  7C 08 03 A6 */	mtlr r0
 /* 8028BB54 00288A94  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BB58 00288A98  4E 80 00 20 */	blr 
+.endfn createFlickEffect__Q34Game5Queen3ObjFv
 
-.global createDeadEffect__Q34Game5Queen3ObjFv
-createDeadEffect__Q34Game5Queen3ObjFv:
+.fn createDeadEffect__Q34Game5Queen3ObjFv, global
 /* 8028BB5C 00288A9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BB60 00288AA0  7C 08 02 A6 */	mflr r0
 /* 8028BB64 00288AA4  38 80 00 00 */	li r4, 0
@@ -3257,9 +3281,9 @@ createDeadEffect__Q34Game5Queen3ObjFv:
 /* 8028BB84 00288AC4  7C 08 03 A6 */	mtlr r0
 /* 8028BB88 00288AC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BB8C 00288ACC  4E 80 00 20 */	blr 
+.endfn createDeadEffect__Q34Game5Queen3ObjFv
 
-.global createWakeUpEffect__Q34Game5Queen3ObjFv
-createWakeUpEffect__Q34Game5Queen3ObjFv:
+.fn createWakeUpEffect__Q34Game5Queen3ObjFv, global
 /* 8028BB90 00288AD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BB94 00288AD4  7C 08 02 A6 */	mflr r0
 /* 8028BB98 00288AD8  38 80 00 00 */	li r4, 0
@@ -3273,9 +3297,9 @@ createWakeUpEffect__Q34Game5Queen3ObjFv:
 /* 8028BBB8 00288AF8  7C 08 03 A6 */	mtlr r0
 /* 8028BBBC 00288AFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BBC0 00288B00  4E 80 00 20 */	blr 
+.endfn createWakeUpEffect__Q34Game5Queen3ObjFv
 
-.global startSleepEffect__Q34Game5Queen3ObjFv
-startSleepEffect__Q34Game5Queen3ObjFv:
+.fn startSleepEffect__Q34Game5Queen3ObjFv, global
 /* 8028BBC4 00288B04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BBC8 00288B08  7C 08 02 A6 */	mflr r0
 /* 8028BBCC 00288B0C  38 80 00 00 */	li r4, 0
@@ -3289,9 +3313,9 @@ startSleepEffect__Q34Game5Queen3ObjFv:
 /* 8028BBEC 00288B2C  7C 08 03 A6 */	mtlr r0
 /* 8028BBF0 00288B30  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BBF4 00288B34  4E 80 00 20 */	blr 
+.endfn startSleepEffect__Q34Game5Queen3ObjFv
 
-.global finishSleepEffect__Q34Game5Queen3ObjFv
-finishSleepEffect__Q34Game5Queen3ObjFv:
+.fn finishSleepEffect__Q34Game5Queen3ObjFv, global
 /* 8028BBF8 00288B38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BBFC 00288B3C  7C 08 02 A6 */	mflr r0
 /* 8028BC00 00288B40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3304,9 +3328,9 @@ finishSleepEffect__Q34Game5Queen3ObjFv:
 /* 8028BC1C 00288B5C  7C 08 03 A6 */	mtlr r0
 /* 8028BC20 00288B60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BC24 00288B64  4E 80 00 20 */	blr 
+.endfn finishSleepEffect__Q34Game5Queen3ObjFv
 
-.global effectDrawOn__Q34Game5Queen3ObjFv
-effectDrawOn__Q34Game5Queen3ObjFv:
+.fn effectDrawOn__Q34Game5Queen3ObjFv, global
 /* 8028BC28 00288B68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BC2C 00288B6C  7C 08 02 A6 */	mflr r0
 /* 8028BC30 00288B70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3377,9 +3401,9 @@ effectDrawOn__Q34Game5Queen3ObjFv:
 /* 8028BD34 00288C74  7C 08 03 A6 */	mtlr r0
 /* 8028BD38 00288C78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BD3C 00288C7C  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game5Queen3ObjFv
 
-.global effectDrawOff__Q34Game5Queen3ObjFv
-effectDrawOff__Q34Game5Queen3ObjFv:
+.fn effectDrawOff__Q34Game5Queen3ObjFv, global
 /* 8028BD40 00288C80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BD44 00288C84  7C 08 02 A6 */	mflr r0
 /* 8028BD48 00288C88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3450,9 +3474,9 @@ effectDrawOff__Q34Game5Queen3ObjFv:
 /* 8028BE4C 00288D8C  7C 08 03 A6 */	mtlr r0
 /* 8028BE50 00288D90  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BE54 00288D94  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game5Queen3ObjFv
 
-.global __dt__Q23efx13TQueenHanachoFv
-__dt__Q23efx13TQueenHanachoFv:
+.fn __dt__Q23efx13TQueenHanachoFv, weak
 /* 8028BE58 00288D98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BE5C 00288D9C  7C 08 02 A6 */	mflr r0
 /* 8028BE60 00288DA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3494,9 +3518,9 @@ __dt__Q23efx13TQueenHanachoFv:
 /* 8028BEE8 00288E28  7C 08 03 A6 */	mtlr r0
 /* 8028BEEC 00288E2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BEF0 00288E30  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx13TQueenHanachoFv
 
-.global __dt__Q23efx12TQueenWakeupFv
-__dt__Q23efx12TQueenWakeupFv:
+.fn __dt__Q23efx12TQueenWakeupFv, weak
 /* 8028BEF4 00288E34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BEF8 00288E38  7C 08 02 A6 */	mflr r0
 /* 8028BEFC 00288E3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3538,9 +3562,9 @@ __dt__Q23efx12TQueenWakeupFv:
 /* 8028BF84 00288EC4  7C 08 03 A6 */	mtlr r0
 /* 8028BF88 00288EC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028BF8C 00288ECC  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TQueenWakeupFv
 
-.global __dt__Q23efx12TQueenDamageFv
-__dt__Q23efx12TQueenDamageFv:
+.fn __dt__Q23efx12TQueenDamageFv, weak
 /* 8028BF90 00288ED0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028BF94 00288ED4  7C 08 02 A6 */	mflr r0
 /* 8028BF98 00288ED8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3582,9 +3606,9 @@ __dt__Q23efx12TQueenDamageFv:
 /* 8028C020 00288F60  7C 08 03 A6 */	mtlr r0
 /* 8028C024 00288F64  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028C028 00288F68  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TQueenDamageFv
 
-.global __dt__Q23efx15TQueenCrashRockFv
-__dt__Q23efx15TQueenCrashRockFv:
+.fn __dt__Q23efx15TQueenCrashRockFv, weak
 /* 8028C02C 00288F6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028C030 00288F70  7C 08 02 A6 */	mflr r0
 /* 8028C034 00288F74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3626,9 +3650,9 @@ __dt__Q23efx15TQueenCrashRockFv:
 /* 8028C0BC 00288FFC  7C 08 03 A6 */	mtlr r0
 /* 8028C0C0 00289000  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028C0C4 00289004  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx15TQueenCrashRockFv
 
-.global __dt__Q23efx12TQueenCrashLFv
-__dt__Q23efx12TQueenCrashLFv:
+.fn __dt__Q23efx12TQueenCrashLFv, weak
 /* 8028C0C8 00289008  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028C0CC 0028900C  7C 08 02 A6 */	mflr r0
 /* 8028C0D0 00289010  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3670,9 +3694,9 @@ __dt__Q23efx12TQueenCrashLFv:
 /* 8028C158 00289098  7C 08 03 A6 */	mtlr r0
 /* 8028C15C 0028909C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028C160 002890A0  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TQueenCrashLFv
 
-.global __dt__Q23efx12TQueenCrashRFv
-__dt__Q23efx12TQueenCrashRFv:
+.fn __dt__Q23efx12TQueenCrashRFv, weak
 /* 8028C164 002890A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028C168 002890A8  7C 08 02 A6 */	mflr r0
 /* 8028C16C 002890AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3714,9 +3738,9 @@ __dt__Q23efx12TQueenCrashRFv:
 /* 8028C1F4 00289134  7C 08 03 A6 */	mtlr r0
 /* 8028C1F8 00289138  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028C1FC 0028913C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TQueenCrashRFv
 
-.global __dt__Q23efx9TQueenLayFv
-__dt__Q23efx9TQueenLayFv:
+.fn __dt__Q23efx9TQueenLayFv, weak
 /* 8028C200 00289140  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028C204 00289144  7C 08 02 A6 */	mflr r0
 /* 8028C208 00289148  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3758,9 +3782,9 @@ __dt__Q23efx9TQueenLayFv:
 /* 8028C290 002891D0  7C 08 03 A6 */	mtlr r0
 /* 8028C294 002891D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028C298 002891D8  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx9TQueenLayFv
 
-.global "__ml__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
-"__ml__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv":
+.fn "__ml__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv", weak
 /* 8028C29C 002891DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028C2A0 002891E0  7C 08 02 A6 */	mflr r0
 /* 8028C2A4 002891E4  7C 64 1B 78 */	mr r4, r3
@@ -3775,9 +3799,9 @@ __dt__Q23efx9TQueenLayFv:
 /* 8028C2C8 00289208  7C 08 03 A6 */	mtlr r0
 /* 8028C2CC 0028920C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028C2D0 00289210  4E 80 00 20 */	blr 
+.endfn "__ml__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
 
-.global "next__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
-"next__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv":
+.fn "next__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv", weak
 /* 8028C2D4 00289214  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028C2D8 00289218  7C 08 02 A6 */	mflr r0
 /* 8028C2DC 0028921C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3839,9 +3863,9 @@ __dt__Q23efx9TQueenLayFv:
 /* 8028C3AC 002892EC  7C 08 03 A6 */	mtlr r0
 /* 8028C3B0 002892F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028C3B4 002892F4  4E 80 00 20 */	blr 
+.endfn "next__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
 
-.global "first__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
-"first__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv":
+.fn "first__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv", weak
 /* 8028C3B8 002892F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028C3BC 002892FC  7C 08 02 A6 */	mflr r0
 /* 8028C3C0 00289300  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3901,27 +3925,27 @@ __dt__Q23efx9TQueenLayFv:
 /* 8028C488 002893C8  7C 08 03 A6 */	mtlr r0
 /* 8028C48C 002893CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028C490 002893D0  4E 80 00 20 */	blr 
+.endfn "first__Q24Game31EnemyIterator<Q34Game4Baby3Obj>Fv"
 
-.global inWaterCallback__Q34Game5Queen3ObjFPQ24Game8WaterBox
-inWaterCallback__Q34Game5Queen3ObjFPQ24Game8WaterBox:
+.fn inWaterCallback__Q34Game5Queen3ObjFPQ24Game8WaterBox, weak
 /* 8028C494 002893D4  4E 80 00 20 */	blr 
+.endfn inWaterCallback__Q34Game5Queen3ObjFPQ24Game8WaterBox
 
-.global outWaterCallback__Q34Game5Queen3ObjFv
-outWaterCallback__Q34Game5Queen3ObjFv:
+.fn outWaterCallback__Q34Game5Queen3ObjFv, weak
 /* 8028C498 002893D8  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q34Game5Queen3ObjFv
 
-.global getDamageCoeStoneState__Q34Game5Queen3ObjFv
-getDamageCoeStoneState__Q34Game5Queen3ObjFv:
+.fn getDamageCoeStoneState__Q34Game5Queen3ObjFv, weak
 /* 8028C49C 002893DC  C0 22 D5 24 */	lfs f1, lbl_8051B884@sda21(r2)
 /* 8028C4A0 002893E0  4E 80 00 20 */	blr 
+.endfn getDamageCoeStoneState__Q34Game5Queen3ObjFv
 
-.global getEnemyTypeID__Q34Game5Queen3ObjFv
-getEnemyTypeID__Q34Game5Queen3ObjFv:
+.fn getEnemyTypeID__Q34Game5Queen3ObjFv, weak
 /* 8028C4A4 002893E4  38 60 00 1E */	li r3, 0x1e
 /* 8028C4A8 002893E8  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game5Queen3ObjFv
 
-.global __sinit_Queen_cpp
-__sinit_Queen_cpp:
+.fn __sinit_Queen_cpp, local
 /* 8028C4AC 002893EC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8028C4B0 002893F0  38 00 FF FF */	li r0, -1
 /* 8028C4B4 002893F4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3932,86 +3956,87 @@ __sinit_Queen_cpp:
 /* 8028C4C8 00289408  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8028C4CC 0028940C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8028C4D0 00289410  4E 80 00 20 */	blr 
+.endfn __sinit_Queen_cpp
 
-.global "@784@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-"@784@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
+.fn "@784@12@viewOnPelletKilled__Q24Game9EnemyBaseFv", weak
 /* 8028C4D4 00289414  39 60 00 0C */	li r11, 0xc
 /* 8028C4D8 00289418  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8028C4DC 0028941C  7C 63 5A 14 */	add r3, r3, r11
 /* 8028C4E0 00289420  38 63 FC F0 */	addi r3, r3, -784
 /* 8028C4E4 00289424  4B E7 A4 38 */	b viewOnPelletKilled__Q24Game9EnemyBaseFv
+.endfn "@784@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 
-.global "@784@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-"@784@12@viewStartCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@784@12@viewStartCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 8028C4E8 00289428  39 60 00 0C */	li r11, 0xc
 /* 8028C4EC 0028942C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8028C4F0 00289430  7C 63 5A 14 */	add r3, r3, r11
 /* 8028C4F4 00289434  38 63 FC F0 */	addi r3, r3, -784
 /* 8028C4F8 00289438  4B E7 A1 B0 */	b viewStartCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@784@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@784@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-"@784@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@784@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 8028C4FC 0028943C  39 60 00 0C */	li r11, 0xc
 /* 8028C500 00289440  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8028C504 00289444  7C 63 5A 14 */	add r3, r3, r11
 /* 8028C508 00289448  38 63 FC F0 */	addi r3, r3, -784
 /* 8028C50C 0028944C  4B E7 A1 BC */	b viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@784@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@784@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-"@784@12@view_finish_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@784@12@view_finish_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 8028C510 00289450  39 60 00 0C */	li r11, 0xc
 /* 8028C514 00289454  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8028C518 00289458  7C 63 5A 14 */	add r3, r3, r11
 /* 8028C51C 0028945C  38 63 FC F0 */	addi r3, r3, -784
 /* 8028C520 00289460  4B E7 A5 58 */	b view_finish_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@784@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@784@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-"@784@12@view_start_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@784@12@view_start_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 8028C524 00289464  39 60 00 0C */	li r11, 0xc
 /* 8028C528 00289468  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8028C52C 0028946C  7C 63 5A 14 */	add r3, r3, r11
 /* 8028C530 00289470  38 63 FC F0 */	addi r3, r3, -784
 /* 8028C534 00289474  4B E7 A5 18 */	b view_start_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@784@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@784@12@viewGetShape__Q24Game9EnemyBaseFv"
-"@784@12@viewGetShape__Q24Game9EnemyBaseFv":
+.fn "@784@12@viewGetShape__Q24Game9EnemyBaseFv", weak
 /* 8028C538 00289478  39 60 00 0C */	li r11, 0xc
 /* 8028C53C 0028947C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8028C540 00289480  7C 63 5A 14 */	add r3, r3, r11
 /* 8028C544 00289484  38 63 FC F0 */	addi r3, r3, -784
 /* 8028C548 00289488  4B E7 A1 58 */	b viewGetShape__Q24Game9EnemyBaseFv
+.endfn "@784@12@viewGetShape__Q24Game9EnemyBaseFv"
 
-.global "@4@__dt__Q23efx9TQueenLayFv"
-"@4@__dt__Q23efx9TQueenLayFv":
+.fn "@4@__dt__Q23efx9TQueenLayFv", weak
 /* 8028C54C 0028948C  38 63 FF FC */	addi r3, r3, -4
 /* 8028C550 00289490  4B FF FC B0 */	b __dt__Q23efx9TQueenLayFv
+.endfn "@4@__dt__Q23efx9TQueenLayFv"
 
-.global "@4@__dt__Q23efx12TQueenCrashRFv"
-"@4@__dt__Q23efx12TQueenCrashRFv":
+.fn "@4@__dt__Q23efx12TQueenCrashRFv", weak
 /* 8028C554 00289494  38 63 FF FC */	addi r3, r3, -4
 /* 8028C558 00289498  4B FF FC 0C */	b __dt__Q23efx12TQueenCrashRFv
+.endfn "@4@__dt__Q23efx12TQueenCrashRFv"
 
-.global "@4@__dt__Q23efx12TQueenCrashLFv"
-"@4@__dt__Q23efx12TQueenCrashLFv":
+.fn "@4@__dt__Q23efx12TQueenCrashLFv", weak
 /* 8028C55C 0028949C  38 63 FF FC */	addi r3, r3, -4
 /* 8028C560 002894A0  4B FF FB 68 */	b __dt__Q23efx12TQueenCrashLFv
+.endfn "@4@__dt__Q23efx12TQueenCrashLFv"
 
-.global "@4@__dt__Q23efx15TQueenCrashRockFv"
-"@4@__dt__Q23efx15TQueenCrashRockFv":
+.fn "@4@__dt__Q23efx15TQueenCrashRockFv", weak
 /* 8028C564 002894A4  38 63 FF FC */	addi r3, r3, -4
 /* 8028C568 002894A8  4B FF FA C4 */	b __dt__Q23efx15TQueenCrashRockFv
+.endfn "@4@__dt__Q23efx15TQueenCrashRockFv"
 
-.global "@4@__dt__Q23efx12TQueenDamageFv"
-"@4@__dt__Q23efx12TQueenDamageFv":
+.fn "@4@__dt__Q23efx12TQueenDamageFv", weak
 /* 8028C56C 002894AC  38 63 FF FC */	addi r3, r3, -4
 /* 8028C570 002894B0  4B FF FA 20 */	b __dt__Q23efx12TQueenDamageFv
+.endfn "@4@__dt__Q23efx12TQueenDamageFv"
 
-.global "@4@__dt__Q23efx12TQueenWakeupFv"
-"@4@__dt__Q23efx12TQueenWakeupFv":
+.fn "@4@__dt__Q23efx12TQueenWakeupFv", weak
 /* 8028C574 002894B4  38 63 FF FC */	addi r3, r3, -4
 /* 8028C578 002894B8  4B FF F9 7C */	b __dt__Q23efx12TQueenWakeupFv
+.endfn "@4@__dt__Q23efx12TQueenWakeupFv"
 
-.global "@4@__dt__Q23efx13TQueenHanachoFv"
-"@4@__dt__Q23efx13TQueenHanachoFv":
+.fn "@4@__dt__Q23efx13TQueenHanachoFv", weak
 /* 8028C57C 002894BC  38 63 FF FC */	addi r3, r3, -4
 /* 8028C580 002894C0  4B FF F8 D8 */	b __dt__Q23efx13TQueenHanachoFv
+.endfn "@4@__dt__Q23efx13TQueenHanachoFv"

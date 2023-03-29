@@ -60,58 +60,84 @@ lbl_constructor:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051D020:
-	.4byte 0x00000000
-lbl_8051D024:
+.obj lbl_8051D020, local
+	.float 0.0
+.endobj lbl_8051D020
+.obj lbl_8051D024, local
 	.float 1.0
-lbl_8051D028:
-	.4byte 0x41200000
-lbl_8051D02C:
-	.4byte 0x3F19999A
-lbl_8051D030:
-	.4byte 0x41A00000
-lbl_8051D034:
-	.4byte 0x3FA66666
-lbl_8051D038:
+.endobj lbl_8051D024
+.obj lbl_8051D028, local
+	.float 10.0
+.endobj lbl_8051D028
+.obj lbl_8051D02C, local
+	.float 0.6
+.endobj lbl_8051D02C
+.obj lbl_8051D030, local
+	.float 20.0
+.endobj lbl_8051D030
+.obj lbl_8051D034, local
+	.float 1.3
+.endobj lbl_8051D034
+.obj lbl_8051D038, local
 	.float 0.7
-lbl_8051D03C:
-	.4byte 0x447A0000
-lbl_8051D040:
+.endobj lbl_8051D038
+.obj lbl_8051D03C, local
+	.float 1000.0
+.endobj lbl_8051D03C
+.obj lbl_8051D040, local
 	.float 0.5
-lbl_8051D044:
-	.4byte 0x43160000
-lbl_8051D048:
-	.4byte 0x42C80000
-lbl_8051D04C:
-	.4byte 0x42960000
-lbl_8051D050:
-	.4byte 0x6B757469
-	.4byte 0x00000000
-lbl_8051D058:
-	.4byte 0x41C80000
-lbl_8051D05C:
-	.4byte 0x40000000
-lbl_8051D060:
-	.4byte 0x47000000
+.endobj lbl_8051D040
+.obj lbl_8051D044, local
+	.float 150.0
+.endobj lbl_8051D044
+.obj lbl_8051D048, local
+	.float 100.0
+.endobj lbl_8051D048
+.obj lbl_8051D04C, local
+	.float 75.0
+.endobj lbl_8051D04C
+.balign 4
+.obj lbl_8051D050, local
+	.asciz "kuti"
+.endobj lbl_8051D050
+.balign 4
+.obj lbl_8051D058, local
+	.float 25.0
+.endobj lbl_8051D058
+.obj lbl_8051D05C, local
+	.float 2.0
+.endobj lbl_8051D05C
+.obj lbl_8051D060, local
+	.float 32768.0
+.endobj lbl_8051D060
 .balign 8
-lbl_8051D068:
+.obj lbl_8051D068, local
 	.8byte 0x4330000080000000
-lbl_8051D070:
-	.4byte 0x42480000
-lbl_8051D074:
-	.4byte 0x437A0000
-lbl_8051D078:
+.endobj lbl_8051D068
+.obj lbl_8051D070, local
+	.float 50.0
+.endobj lbl_8051D070
+.obj lbl_8051D074, local
+	.float 250.0
+.endobj lbl_8051D074
+.obj lbl_8051D078, local
 	.float 0.1
-lbl_8051D07C:
-	.4byte 0x3EE66666
-lbl_8051D080:
-	.4byte 0x3FC90FDB
-lbl_8051D084:
-	.4byte 0x40C90FDB
-lbl_8051D088:
-	.4byte 0x3C23D70A
-lbl_8051D08C:
-	.4byte 0x3CCCCCCD
+.endobj lbl_8051D078
+.obj lbl_8051D07C, local
+	.float 0.45
+.endobj lbl_8051D07C
+.obj lbl_8051D080, local # pi/2
+	.float 1.5707964
+.endobj lbl_8051D080
+.obj lbl_8051D084, local # tau
+	.float 6.2831855
+.endobj lbl_8051D084
+.obj lbl_8051D088, local
+	.float 0.01
+.endobj lbl_8051D088
+.obj lbl_8051D08C, local
+	.float 0.025
+.endobj lbl_8051D08C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .fn verticalRotationCallBack__Q24Game10MiniHoudaiFP8J3DJointi, local
@@ -1023,8 +1049,7 @@ lbl_8051D08C:
 /* 802EE9EC 002EB92C  4E 80 00 20 */	blr 
 .endfn update__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv
 
-.global __ct__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFPQ34Game10MiniHoudai3Obj
-__ct__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFPQ34Game10MiniHoudai3Obj:
+.fn __ct__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFPQ34Game10MiniHoudai3Obj, global
 /* 802EE9F0 002EB930  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802EE9F4 002EB934  7C 08 02 A6 */	mflr r0
 /* 802EE9F8 002EB938  C0 02 EC C0 */	lfs f0, lbl_8051D020@sda21(r2)
@@ -1150,9 +1175,9 @@ __ct__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFPQ34Game10MiniHoudai3Obj:
 /* 802EEBC4 002EBB04  7C 08 03 A6 */	mtlr r0
 /* 802EEBC8 002EBB08  38 21 00 30 */	addi r1, r1, 0x30
 /* 802EEBCC 002EBB0C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFPQ34Game10MiniHoudai3Obj
 
-.global setupShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-setupShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn setupShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EEBD0 002EBB10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EEBD4 002EBB14  7C 08 02 A6 */	mflr r0
 /* 802EEBD8 002EBB18  C0 02 EC C0 */	lfs f0, lbl_8051D020@sda21(r2)
@@ -1180,20 +1205,20 @@ setupShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EEC30 002EBB70  7C 08 03 A6 */	mtlr r0
 /* 802EEC34 002EBB74  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EEC38 002EBB78  4E 80 00 20 */	blr 
+.endfn setupShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global resetCallBack__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-resetCallBack__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn resetCallBack__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EEC3C 002EBB7C  38 00 00 00 */	li r0, 0
 /* 802EEC40 002EBB80  90 0D 97 78 */	stw r0, sMiniHoudaiShotGunMgr__Q24Game10MiniHoudai@sda21(r13)
 /* 802EEC44 002EBB84  4E 80 00 20 */	blr 
+.endfn resetCallBack__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global setCallBack__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-setCallBack__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn setCallBack__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EEC48 002EBB88  90 6D 97 78 */	stw r3, sMiniHoudaiShotGunMgr__Q24Game10MiniHoudai@sda21(r13)
 /* 802EEC4C 002EBB8C  4E 80 00 20 */	blr 
+.endfn setCallBack__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global startRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-startRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn startRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EEC50 002EBB90  38 80 00 01 */	li r4, 1
 /* 802EEC54 002EBB94  38 00 00 00 */	li r0, 0
 /* 802EEC58 002EBB98  98 83 00 04 */	stb r4, 4(r3)
@@ -1203,32 +1228,32 @@ startRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EEC68 002EBBA8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802EEC6C 002EBBAC  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 802EEC70 002EBBB0  4E 80 00 20 */	blr 
+.endfn startRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global finishRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-finishRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn finishRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EEC74 002EBBB4  38 80 00 00 */	li r4, 0
 /* 802EEC78 002EBBB8  38 00 00 01 */	li r0, 1
 /* 802EEC7C 002EBBBC  98 83 00 05 */	stb r4, 5(r3)
 /* 802EEC80 002EBBC0  98 03 00 06 */	stb r0, 6(r3)
 /* 802EEC84 002EBBC4  4E 80 00 20 */	blr 
+.endfn finishRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global isShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-isShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn isShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EEC88 002EBBC8  88 63 00 04 */	lbz r3, 4(r3)
 /* 802EEC8C 002EBBCC  4E 80 00 20 */	blr 
+.endfn isShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global isShotGunLockOn__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-isShotGunLockOn__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn isShotGunLockOn__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EEC90 002EBBD0  88 63 00 05 */	lbz r3, 5(r3)
 /* 802EEC94 002EBBD4  4E 80 00 20 */	blr 
+.endfn isShotGunLockOn__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global isFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-isFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn isFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EEC98 002EBBD8  88 63 00 06 */	lbz r3, 6(r3)
 /* 802EEC9C 002EBBDC  4E 80 00 20 */	blr 
+.endfn isFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global "setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<f>"
-"setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<f>":
+.fn "setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<f>", global
 /* 802EECA0 002EBBE0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 802EECA4 002EBBE4  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 802EECA8 002EBBE8  C0 04 00 04 */	lfs f0, 4(r4)
@@ -1236,9 +1261,9 @@ isFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EECB0 002EBBF0  C0 04 00 08 */	lfs f0, 8(r4)
 /* 802EECB4 002EBBF4  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 802EECB8 002EBBF8  4E 80 00 20 */	blr 
+.endfn "setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<f>"
 
-.global emitShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-emitShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn emitShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EECBC 002EBBFC  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 802EECC0 002EBC00  7C 08 02 A6 */	mflr r0
 /* 802EECC4 002EBC04  90 01 01 14 */	stw r0, 0x114(r1)
@@ -1560,9 +1585,9 @@ emitShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EF174 002EC0B4  7C 08 03 A6 */	mtlr r0
 /* 802EF178 002EC0B8  38 21 01 10 */	addi r1, r1, 0x110
 /* 802EF17C 002EC0BC  4E 80 00 20 */	blr 
+.endfn emitShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global doUpdate__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-doUpdate__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn doUpdate__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EF180 002EC0C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EF184 002EC0C4  7C 08 02 A6 */	mflr r0
 /* 802EF188 002EC0C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1594,9 +1619,9 @@ doUpdate__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EF1E8 002EC128  7C 08 03 A6 */	mtlr r0
 /* 802EF1EC 002EC12C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EF1F0 002EC130  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global doUpdateCommon__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-doUpdateCommon__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn doUpdateCommon__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EF1F4 002EC134  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802EF1F8 002EC138  7C 08 02 A6 */	mflr r0
 /* 802EF1FC 002EC13C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1630,9 +1655,9 @@ doUpdateCommon__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EF260 002EC1A0  7C 08 03 A6 */	mtlr r0
 /* 802EF264 002EC1A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802EF268 002EC1A8  4E 80 00 20 */	blr 
+.endfn doUpdateCommon__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global forceFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-forceFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn forceFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EF26C 002EC1AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802EF270 002EC1B0  7C 08 02 A6 */	mflr r0
 /* 802EF274 002EC1B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1666,9 +1691,9 @@ forceFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EF2DC 002EC21C  7C 08 03 A6 */	mtlr r0
 /* 802EF2E0 002EC220  38 21 00 20 */	addi r1, r1, 0x20
 /* 802EF2E4 002EC224  4E 80 00 20 */	blr 
+.endfn forceFinishShotGun__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global getShotGunPosition__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-getShotGunPosition__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn getShotGunPosition__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EF2E8 002EC228  80 84 00 10 */	lwz r4, 0x10(r4)
 /* 802EF2EC 002EC22C  C0 44 00 2C */	lfs f2, 0x2c(r4)
 /* 802EF2F0 002EC230  C0 24 00 1C */	lfs f1, 0x1c(r4)
@@ -1677,9 +1702,9 @@ getShotGunPosition__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EF2FC 002EC23C  D0 23 00 04 */	stfs f1, 4(r3)
 /* 802EF300 002EC240  D0 43 00 08 */	stfs f2, 8(r3)
 /* 802EF304 002EC244  4E 80 00 20 */	blr 
+.endfn getShotGunPosition__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global searchShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-searchShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn searchShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EF308 002EC248  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EF30C 002EC24C  7C 08 02 A6 */	mflr r0
 /* 802EF310 002EC250  C0 02 EC C0 */	lfs f0, lbl_8051D020@sda21(r2)
@@ -1805,9 +1830,9 @@ searchShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EF4C0 002EC400  7C 08 03 A6 */	mtlr r0
 /* 802EF4C4 002EC404  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EF4C8 002EC408  4E 80 00 20 */	blr 
+.endfn searchShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global returnShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-returnShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn returnShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EF4CC 002EC40C  C0 62 EC C0 */	lfs f3, lbl_8051D020@sda21(r2)
 /* 802EF4D0 002EC410  C0 83 00 0C */	lfs f4, 0xc(r3)
 /* 802EF4D4 002EC414  FC 03 20 40 */	fcmpo cr0, f3, f4
@@ -1867,9 +1892,9 @@ returnShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 .L_802EF588:
 /* 802EF588 002EC4C8  38 60 00 00 */	li r3, 0
 /* 802EF58C 002EC4CC  4E 80 00 20 */	blr 
+.endfn returnShotGunRotation__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global rotateVertical__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFP8J3DJoint
-rotateVertical__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFP8J3DJoint:
+.fn rotateVertical__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFP8J3DJoint, global
 /* 802EF590 002EC4D0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802EF594 002EC4D4  7C 08 02 A6 */	mflr r0
 /* 802EF598 002EC4D8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2033,9 +2058,9 @@ rotateVertical__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFP8J3DJoint:
 /* 802EF7DC 002EC71C  7C 08 03 A6 */	mtlr r0
 /* 802EF7E0 002EC720  38 21 00 70 */	addi r1, r1, 0x70
 /* 802EF7E4 002EC724  4E 80 00 20 */	blr 
+.endfn rotateVertical__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFP8J3DJoint
 
-.global effectDrawOn__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-effectDrawOn__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn effectDrawOn__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EF7E8 002EC728  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EF7EC 002EC72C  7C 08 02 A6 */	mflr r0
 /* 802EF7F0 002EC730  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2074,9 +2099,9 @@ effectDrawOn__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EF864 002EC7A4  7C 08 03 A6 */	mtlr r0
 /* 802EF868 002EC7A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EF86C 002EC7AC  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global effectDrawOff__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
-effectDrawOff__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
+.fn effectDrawOff__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv, global
 /* 802EF870 002EC7B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EF874 002EC7B4  7C 08 02 A6 */	mflr r0
 /* 802EF878 002EC7B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2115,9 +2140,9 @@ effectDrawOff__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv:
 /* 802EF8EC 002EC82C  7C 08 03 A6 */	mtlr r0
 /* 802EF8F0 002EC830  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EF8F4 002EC834  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFv
 
-.global __dt__Q23efx11TChibiShellFv
-__dt__Q23efx11TChibiShellFv:
+.fn __dt__Q23efx11TChibiShellFv, weak
 /* 802EF8F8 002EC838  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EF8FC 002EC83C  7C 08 02 A6 */	mflr r0
 /* 802EF900 002EC840  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2159,9 +2184,9 @@ __dt__Q23efx11TChibiShellFv:
 /* 802EF988 002EC8C8  7C 08 03 A6 */	mtlr r0
 /* 802EF98C 002EC8CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EF990 002EC8D0  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx11TChibiShellFv
 
-.global __dt__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv
-__dt__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv:
+.fn __dt__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv, weak
 /* 802EF994 002EC8D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EF998 002EC8D8  7C 08 02 A6 */	mflr r0
 /* 802EF99C 002EC8DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2187,6 +2212,7 @@ __dt__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv:
 /* 802EF9E8 002EC928  7C 08 03 A6 */	mtlr r0
 /* 802EF9EC 002EC92C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EF9F0 002EC930  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv
 
 .fn __sinit_MiniHoudaiShotGun_cpp, local
 /* 802EF9F4 002EC934  3C 80 80 51 */	lis r4, __float_nan@ha

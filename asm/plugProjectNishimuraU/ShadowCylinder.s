@@ -5,53 +5,53 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80483F58:
+.obj lbl_80483F58, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3234362D
-	.4byte 0x53686164
-	.4byte 0x6F774379
-	.4byte 0x6C696E64
-	.4byte 0x65720000
-lbl_80483F78:
-	.4byte 0x53686164
-	.4byte 0x6F774379
-	.4byte 0x6C696E64
-	.4byte 0x65722E63
-	.4byte 0x70700000
-lbl_80483F8C:
-	.asciz "P2Assert"
+.endobj lbl_80483F58
 .balign 4
-	.4byte 0x00000000
+.obj lbl_80483F64, local
+	.asciz "246-ShadowCylinder"
+.endobj lbl_80483F64
+.balign 4
+.obj lbl_80483F78, local
+	.asciz "ShadowCylinder.cpp"
+.endobj lbl_80483F78
+.balign 4
+.obj lbl_80483F8C, local
+	.asciz "P2Assert"
+.endobj lbl_80483F8C
+.balign 4
+.obj lbl_80483F98, local
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+.endobj lbl_80483F98
+.obj lbl_80483FA4, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj lbl_80483FA4
+.obj lbl_80483FB0, local
+	.float 0.0
+	.float 0.0
 	.float 1.0
-lbl_80483FBC:
-	.4byte 0x53686164
-	.4byte 0x6F772054
-	.4byte 0x65787475
-	.4byte 0x72650000
-	.4byte 0x00000000
+.endobj lbl_80483FB0
+.balign 4
+.obj lbl_80483FBC, local
+	.asciz "Shadow Texture"
+.endobj lbl_80483FBC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 32
-lbl_804C1780:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global sHighCylinderDL__4Game
-sHighCylinderDL__4Game:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.balign 32
+.obj sHighCylinderDL__4Game, local
 	.4byte 0xA0000C00
 	.4byte 0x00000100
 	.4byte 0x02000300
@@ -87,13 +87,10 @@ sHighCylinderDL__4Game:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global sMidCylinderDL__4Game
-sMidCylinderDL__4Game:
+	.byte 0
+.endobj sHighCylinderDL__4Game
+.balign 32
+.obj sMidCylinderDL__4Game, local
 	.4byte 0xA0000800
 	.4byte 0x18001900
 	.4byte 0x1A001B00
@@ -121,13 +118,10 @@ sMidCylinderDL__4Game:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global sLowCylinderDL__4Game
-sLowCylinderDL__4Game:
+	.byte 0
+.endobj sMidCylinderDL__4Game
+.balign 32
+.obj sLowCylinderDL__4Game, local
 	.4byte 0xA0000400
 	.4byte 0x28002900
 	.4byte 0x2A002BA0
@@ -147,31 +141,33 @@ sLowCylinderDL__4Game:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q24Game15ShadowCylinder3
-__vt__Q24Game15ShadowCylinder3:
+	.byte 0
+.endobj sLowCylinderDL__4Game
+.balign 4
+.obj __vt__Q24Game15ShadowCylinder3, global
 	.4byte 0
 	.4byte 0
 	.4byte setFilterTextureID__Q24Game15ShadowCylinder3Fi
 	.4byte drawInit__Q24Game15ShadowCylinder3Fv
 	.4byte drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi
 	.4byte drawFinish__Q24Game15ShadowCylinder3Fv
-.global __vt__Q24Game15ShadowCylinder2
-__vt__Q24Game15ShadowCylinder2:
+.endobj __vt__Q24Game15ShadowCylinder3
+.obj __vt__Q24Game15ShadowCylinder2, global
 	.4byte 0
 	.4byte 0
 	.4byte setFilterTextureID__Q24Game15ShadowCylinder2Fi
 	.4byte drawInit__Q24Game15ShadowCylinder2Fv
 	.4byte drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi
 	.4byte drawFinish__Q24Game15ShadowCylinder2Fv
-.global __vt__Q24Game12CylinderBase
-__vt__Q24Game12CylinderBase:
+.endobj __vt__Q24Game15ShadowCylinder2
+.obj __vt__Q24Game12CylinderBase, global
 	.4byte 0
 	.4byte 0
 	.4byte setFilterTextureID__Q24Game12CylinderBaseFi
 	.4byte drawInit__Q24Game12CylinderBaseFv
 	.4byte drawCylinder__Q24Game12CylinderBaseFR7Matrixfi
 	.4byte drawFinish__Q24Game12CylinderBaseFv
+.endobj __vt__Q24Game12CylinderBase
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
@@ -179,55 +175,73 @@ __vt__Q24Game12CylinderBase:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A618:
-	.4byte 0x40C90FDB
-lbl_8051A61C:
+.obj lbl_8051A618, local # tau
+	.float 6.2831855
+.endobj lbl_8051A618
+.obj lbl_8051A61C, local
 	.float 0.5
-lbl_8051A620:
-	.4byte 0x00000000
-lbl_8051A624:
-	.4byte 0x43A2F983
-lbl_8051A628:
-	.4byte 0xC3A2F983
-lbl_8051A62C:
-	.4byte 0xBF800000
-lbl_8051A630:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_8051A638:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051A640:
+.endobj lbl_8051A61C
+.obj lbl_8051A620, local
+	.float 0.0
+.endobj lbl_8051A620
+.obj lbl_8051A624, local
+	.float 325.9493
+.endobj lbl_8051A624
+.obj lbl_8051A628, local
+	.float -325.9493
+.endobj lbl_8051A628
+.obj lbl_8051A62C, local
+	.float -1.0
+.endobj lbl_8051A62C
+.balign 8
+.obj lbl_8051A630, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051A630
+.balign 8
+.obj lbl_8051A638, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051A638
+.obj lbl_8051A640, local
 	.float 1.0
-lbl_8051A644:
-	.4byte 0x3F866666
-lbl_8051A648:
-	.4byte 0x3FACCCCD
-lbl_8051A64C:
-	.4byte 0x46480000
-lbl_8051A650:
-	.4byte 0x40000000
-lbl_8051A654:
-	.4byte 0xFFFFFF04
-lbl_8051A658:
-	.4byte 0xFFFFFF7F
-	.4byte 0x00000000
+.endobj lbl_8051A640
+.obj lbl_8051A644, local
+	.float 1.05
+.endobj lbl_8051A644
+.obj lbl_8051A648, local
+	.float 1.35
+.endobj lbl_8051A648
+.obj lbl_8051A64C, local
+	.float 12800.0
+.endobj lbl_8051A64C
+.obj lbl_8051A650, local
+	.float 2.0
+.endobj lbl_8051A650
+.balign 4
+.obj lbl_8051A654, local # TColor
+	.byte 0xFF, 0xFF, 0xFF, 0x04
+.endobj lbl_8051A654
+.balign 4
+.obj lbl_8051A658, local # TColor
+	.byte 0xFF, 0xFF, 0xFF, 0x7F
+.endobj lbl_8051A658
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 .balign 8
-lbl_80520E88:
+.obj lbl_80520E88, local
 	.skip 0x4
+.endobj lbl_80520E88
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game12CylinderBaseFv
-__ct__Q24Game12CylinderBaseFv:
+.fn __ct__Q24Game12CylinderBaseFv, global
 /* 8023DA30 0023A970  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 8023DA34 0023A974  7C 08 02 A6 */	mflr r0
 /* 8023DA38 0023A978  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -254,9 +268,9 @@ __ct__Q24Game12CylinderBaseFv:
 /* 8023DA8C 0023A9CC  3C 60 80 12 */	lis r3, "__ct__10Vector3<f>Fv"@ha
 /* 8023DA90 0023A9D0  38 83 F3 48 */	addi r4, r3, "__ct__10Vector3<f>Fv"@l
 /* 8023DA94 0023A9D4  90 18 00 00 */	stw r0, 0(r24)
-/* 8023DA98 0023A9D8  3C 60 80 4C */	lis r3, lbl_804C1780@ha
+/* 8023DA98 0023A9D8  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 8023DA9C 0023A9DC  38 A0 00 00 */	li r5, 0
-/* 8023DAA0 0023A9E0  3B 63 17 80 */	addi r27, r3, lbl_804C1780@l
+/* 8023DAA0 0023A9E0  3B 63 17 80 */	addi r27, r3, govNAN___Q24Game5P2JST@l
 /* 8023DAA4 0023A9E4  38 C0 00 0C */	li r6, 0xc
 /* 8023DAA8 0023A9E8  38 78 00 20 */	addi r3, r24, 0x20
 /* 8023DAAC 0023A9EC  38 E0 00 02 */	li r7, 2
@@ -563,14 +577,14 @@ __ct__Q24Game12CylinderBaseFv:
 /* 8023DF00 0023AE40  7C 08 03 A6 */	mtlr r0
 /* 8023DF04 0023AE44  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 8023DF08 0023AE48  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12CylinderBaseFv
 
-.global setColor__Q24Game12CylinderBaseFP6Color4
-setColor__Q24Game12CylinderBaseFP6Color4:
+.fn setColor__Q24Game12CylinderBaseFP6Color4, global
 /* 8023DF0C 0023AE4C  90 83 00 08 */	stw r4, 8(r3)
 /* 8023DF10 0023AE50  4E 80 00 20 */	blr 
+.endfn setColor__Q24Game12CylinderBaseFP6Color4
 
-.global "setShadowRect__Q24Game12CylinderBaseFR7Rect<f>"
-"setShadowRect__Q24Game12CylinderBaseFR7Rect<f>":
+.fn "setShadowRect__Q24Game12CylinderBaseFR7Rect<f>", global
 /* 8023DF14 0023AE54  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8023DF18 0023AE58  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 8023DF1C 0023AE5C  C0 04 00 04 */	lfs f0, 4(r4)
@@ -580,9 +594,9 @@ setColor__Q24Game12CylinderBaseFP6Color4:
 /* 8023DF2C 0023AE6C  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 8023DF30 0023AE70  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 8023DF34 0023AE74  4E 80 00 20 */	blr 
+.endfn "setShadowRect__Q24Game12CylinderBaseFR7Rect<f>"
 
-.global setCameraParms__Q24Game12CylinderBaseFP6Camerai
-setCameraParms__Q24Game12CylinderBaseFP6Camerai:
+.fn setCameraParms__Q24Game12CylinderBaseFP6Camerai, global
 /* 8023DF38 0023AE78  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8023DF3C 0023AE7C  7C 08 02 A6 */	mflr r0
 /* 8023DF40 0023AE80  90 01 00 34 */	stw r0, 0x34(r1)
@@ -628,9 +642,9 @@ setCameraParms__Q24Game12CylinderBaseFP6Camerai:
 /* 8023DFE0 0023AF20  7C 08 03 A6 */	mtlr r0
 /* 8023DFE4 0023AF24  38 21 00 30 */	addi r1, r1, 0x30
 /* 8023DFE8 0023AF28  4E 80 00 20 */	blr 
+.endfn setCameraParms__Q24Game12CylinderBaseFP6Camerai
 
-.global makeSRT__Q24Game12CylinderBaseFR7MatrixfRQ24Game11ShadowParam
-makeSRT__Q24Game12CylinderBaseFR7MatrixfRQ24Game11ShadowParam:
+.fn makeSRT__Q24Game12CylinderBaseFR7MatrixfRQ24Game11ShadowParam, global
 /* 8023DFEC 0023AF2C  C0 25 00 10 */	lfs f1, 0x10(r5)
 /* 8023DFF0 0023AF30  C0 02 C2 E0 */	lfs f0, lbl_8051A640@sda21(r2)
 /* 8023DFF4 0023AF34  C0 65 00 00 */	lfs f3, 0(r5)
@@ -684,9 +698,9 @@ makeSRT__Q24Game12CylinderBaseFR7MatrixfRQ24Game11ShadowParam:
 /* 8023E0AC 0023AFEC  D0 84 00 1C */	stfs f4, 0x1c(r4)
 /* 8023E0B0 0023AFF0  D0 A4 00 2C */	stfs f5, 0x2c(r4)
 /* 8023E0B4 0023AFF4  4E 80 00 20 */	blr 
+.endfn makeSRT__Q24Game12CylinderBaseFR7MatrixfRQ24Game11ShadowParam
 
-.global getCylinderType__Q24Game12CylinderBaseFRQ24Game11ShadowParami
-getCylinderType__Q24Game12CylinderBaseFRQ24Game11ShadowParami:
+.fn getCylinderType__Q24Game12CylinderBaseFRQ24Game11ShadowParami, global
 /* 8023E0B8 0023AFF8  1C C5 00 0C */	mulli r6, r5, 0xc
 /* 8023E0BC 0023AFFC  54 A0 10 3A */	slwi r0, r5, 2
 /* 8023E0C0 0023B000  80 E3 00 0C */	lwz r7, 0xc(r3)
@@ -731,25 +745,25 @@ getCylinderType__Q24Game12CylinderBaseFRQ24Game11ShadowParami:
 .L_8023E154:
 /* 8023E154 0023B094  38 60 00 00 */	li r3, 0
 /* 8023E158 0023B098  4E 80 00 20 */	blr 
+.endfn getCylinderType__Q24Game12CylinderBaseFRQ24Game11ShadowParami
 
-.global setFilterTextureID__Q24Game12CylinderBaseFi
-setFilterTextureID__Q24Game12CylinderBaseFi:
+.fn setFilterTextureID__Q24Game12CylinderBaseFi, global
 /* 8023E15C 0023B09C  4E 80 00 20 */	blr 
+.endfn setFilterTextureID__Q24Game12CylinderBaseFi
 
-.global drawInit__Q24Game12CylinderBaseFv
-drawInit__Q24Game12CylinderBaseFv:
+.fn drawInit__Q24Game12CylinderBaseFv, global
 /* 8023E160 0023B0A0  4E 80 00 20 */	blr 
+.endfn drawInit__Q24Game12CylinderBaseFv
 
-.global drawCylinder__Q24Game12CylinderBaseFR7Matrixfi
-drawCylinder__Q24Game12CylinderBaseFR7Matrixfi:
+.fn drawCylinder__Q24Game12CylinderBaseFR7Matrixfi, global
 /* 8023E164 0023B0A4  4E 80 00 20 */	blr 
+.endfn drawCylinder__Q24Game12CylinderBaseFR7Matrixfi
 
-.global drawFinish__Q24Game12CylinderBaseFv
-drawFinish__Q24Game12CylinderBaseFv:
+.fn drawFinish__Q24Game12CylinderBaseFv, global
 /* 8023E168 0023B0A8  4E 80 00 20 */	blr 
+.endfn drawFinish__Q24Game12CylinderBaseFv
 
-.global __ct__Q24Game15ShadowCylinder2FPQ24Game11ShadowParmsP6Color4
-__ct__Q24Game15ShadowCylinder2FPQ24Game11ShadowParmsP6Color4:
+.fn __ct__Q24Game15ShadowCylinder2FPQ24Game11ShadowParmsP6Color4, global
 /* 8023E16C 0023B0AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023E170 0023B0B0  7C 08 02 A6 */	mflr r0
 /* 8023E174 0023B0B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -843,9 +857,9 @@ __ct__Q24Game15ShadowCylinder2FPQ24Game11ShadowParmsP6Color4:
 /* 8023E2C4 0023B204  7C 08 03 A6 */	mtlr r0
 /* 8023E2C8 0023B208  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023E2CC 0023B20C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15ShadowCylinder2FPQ24Game11ShadowParmsP6Color4
 
-.global setFilterTextureID__Q24Game15ShadowCylinder2Fi
-setFilterTextureID__Q24Game15ShadowCylinder2Fi:
+.fn setFilterTextureID__Q24Game15ShadowCylinder2Fi, global
 /* 8023E2D0 0023B210  80 AD 93 E8 */	lwz r5, gameSystem__4Game@sda21(r13)
 /* 8023E2D4 0023B214  28 05 00 00 */	cmplwi r5, 0
 /* 8023E2D8 0023B218  41 82 00 34 */	beq .L_8023E30C
@@ -866,9 +880,9 @@ setFilterTextureID__Q24Game15ShadowCylinder2Fi:
 .L_8023E30C:
 /* 8023E30C 0023B24C  90 83 00 60 */	stw r4, 0x60(r3)
 /* 8023E310 0023B250  4E 80 00 20 */	blr 
+.endfn setFilterTextureID__Q24Game15ShadowCylinder2Fi
 
-.global drawInit__Q24Game15ShadowCylinder2Fv
-drawInit__Q24Game15ShadowCylinder2Fv:
+.fn drawInit__Q24Game15ShadowCylinder2Fv, global
 /* 8023E314 0023B254  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 8023E318 0023B258  7C 08 02 A6 */	mflr r0
 /* 8023E31C 0023B25C  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -1081,9 +1095,9 @@ drawInit__Q24Game15ShadowCylinder2Fv:
 /* 8023E658 0023B598  7C 08 03 A6 */	mtlr r0
 /* 8023E65C 0023B59C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 8023E660 0023B5A0  4E 80 00 20 */	blr 
+.endfn drawInit__Q24Game15ShadowCylinder2Fv
 
-.global drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi
-drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi:
+.fn drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi, global
 /* 8023E664 0023B5A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023E668 0023B5A8  7C 08 02 A6 */	mflr r0
 /* 8023E66C 0023B5AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1132,9 +1146,9 @@ drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi:
 /* 8023E718 0023B658  7C 08 03 A6 */	mtlr r0
 /* 8023E71C 0023B65C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023E720 0023B660  4E 80 00 20 */	blr 
+.endfn drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi
 
-.global drawFinish__Q24Game15ShadowCylinder2Fv
-drawFinish__Q24Game15ShadowCylinder2Fv:
+.fn drawFinish__Q24Game15ShadowCylinder2Fv, global
 /* 8023E724 0023B664  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 8023E728 0023B668  7C 08 02 A6 */	mflr r0
 /* 8023E72C 0023B66C  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -1256,9 +1270,9 @@ drawFinish__Q24Game15ShadowCylinder2Fv:
 /* 8023E8FC 0023B83C  7C 08 03 A6 */	mtlr r0
 /* 8023E900 0023B840  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 8023E904 0023B844  4E 80 00 20 */	blr 
+.endfn drawFinish__Q24Game15ShadowCylinder2Fv
 
-.global copyShadowTexture__Q24Game15ShadowCylinder2Fv
-copyShadowTexture__Q24Game15ShadowCylinder2Fv:
+.fn copyShadowTexture__Q24Game15ShadowCylinder2Fv, global
 /* 8023E908 0023B848  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8023E90C 0023B84C  7C 08 02 A6 */	mflr r0
 /* 8023E910 0023B850  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1351,9 +1365,9 @@ copyShadowTexture__Q24Game15ShadowCylinder2Fv:
 /* 8023EA6C 0023B9AC  7C 08 03 A6 */	mtlr r0
 /* 8023EA70 0023B9B0  38 21 00 50 */	addi r1, r1, 0x50
 /* 8023EA74 0023B9B4  4E 80 00 20 */	blr 
+.endfn copyShadowTexture__Q24Game15ShadowCylinder2Fv
 
-.global setupTextureFilterGX__Q24Game15ShadowCylinder2Fv
-setupTextureFilterGX__Q24Game15ShadowCylinder2Fv:
+.fn setupTextureFilterGX__Q24Game15ShadowCylinder2Fv, global
 /* 8023EA78 0023B9B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023EA7C 0023B9BC  7C 08 02 A6 */	mflr r0
 /* 8023EA80 0023B9C0  38 80 00 00 */	li r4, 0
@@ -1417,9 +1431,9 @@ setupTextureFilterGX__Q24Game15ShadowCylinder2Fv:
 /* 8023EB68 0023BAA8  7C 08 03 A6 */	mtlr r0
 /* 8023EB6C 0023BAAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023EB70 0023BAB0  4E 80 00 20 */	blr 
+.endfn setupTextureFilterGX__Q24Game15ShadowCylinder2Fv
 
-.global drawTextureFilter__Q24Game15ShadowCylinder2Fv
-drawTextureFilter__Q24Game15ShadowCylinder2Fv:
+.fn drawTextureFilter__Q24Game15ShadowCylinder2Fv, global
 /* 8023EB74 0023BAB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023EB78 0023BAB8  7C 08 02 A6 */	mflr r0
 /* 8023EB7C 0023BABC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1486,9 +1500,9 @@ drawTextureFilter__Q24Game15ShadowCylinder2Fv:
 /* 8023EC70 0023BBB0  7C 08 03 A6 */	mtlr r0
 /* 8023EC74 0023BBB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023EC78 0023BBB8  4E 80 00 20 */	blr 
+.endfn drawTextureFilter__Q24Game15ShadowCylinder2Fv
 
-.global __ct__Q24Game15ShadowCylinder3FPQ24Game11ShadowParmsP6Color4
-__ct__Q24Game15ShadowCylinder3FPQ24Game11ShadowParmsP6Color4:
+.fn __ct__Q24Game15ShadowCylinder3FPQ24Game11ShadowParmsP6Color4, global
 /* 8023EC7C 0023BBBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023EC80 0023BBC0  7C 08 02 A6 */	mflr r0
 /* 8023EC84 0023BBC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1512,9 +1526,9 @@ __ct__Q24Game15ShadowCylinder3FPQ24Game11ShadowParmsP6Color4:
 /* 8023ECCC 0023BC0C  7C 08 03 A6 */	mtlr r0
 /* 8023ECD0 0023BC10  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023ECD4 0023BC14  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15ShadowCylinder3FPQ24Game11ShadowParmsP6Color4
 
-.global drawInit__Q24Game15ShadowCylinder3Fv
-drawInit__Q24Game15ShadowCylinder3Fv:
+.fn drawInit__Q24Game15ShadowCylinder3Fv, global
 /* 8023ECD8 0023BC18  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 8023ECDC 0023BC1C  7C 08 02 A6 */	mflr r0
 /* 8023ECE0 0023BC20  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -1727,9 +1741,9 @@ drawInit__Q24Game15ShadowCylinder3Fv:
 /* 8023F01C 0023BF5C  7C 08 03 A6 */	mtlr r0
 /* 8023F020 0023BF60  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 8023F024 0023BF64  4E 80 00 20 */	blr 
+.endfn drawInit__Q24Game15ShadowCylinder3Fv
 
-.global drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi
-drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi:
+.fn drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi, global
 /* 8023F028 0023BF68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023F02C 0023BF6C  7C 08 02 A6 */	mflr r0
 /* 8023F030 0023BF70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1792,9 +1806,9 @@ drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi:
 /* 8023F114 0023C054  7C 08 03 A6 */	mtlr r0
 /* 8023F118 0023C058  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023F11C 0023C05C  4E 80 00 20 */	blr 
+.endfn drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi
 
-.global drawFinish__Q24Game15ShadowCylinder3Fv
-drawFinish__Q24Game15ShadowCylinder3Fv:
+.fn drawFinish__Q24Game15ShadowCylinder3Fv, global
 /* 8023F120 0023C060  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 8023F124 0023C064  7C 08 02 A6 */	mflr r0
 /* 8023F128 0023C068  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -1912,9 +1926,9 @@ drawFinish__Q24Game15ShadowCylinder3Fv:
 /* 8023F2E8 0023C228  7C 08 03 A6 */	mtlr r0
 /* 8023F2EC 0023C22C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 8023F2F0 0023C230  4E 80 00 20 */	blr 
+.endfn drawFinish__Q24Game15ShadowCylinder3Fv
 
-.global drawScreenFilter__Q24Game15ShadowCylinder3Fv
-drawScreenFilter__Q24Game15ShadowCylinder3Fv:
+.fn drawScreenFilter__Q24Game15ShadowCylinder3Fv, global
 /* 8023F2F4 0023C234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023F2F8 0023C238  7C 08 02 A6 */	mflr r0
 /* 8023F2FC 0023C23C  38 80 00 06 */	li r4, 6
@@ -1967,19 +1981,21 @@ drawScreenFilter__Q24Game15ShadowCylinder3Fv:
 /* 8023F3B8 0023C2F8  7C 08 03 A6 */	mtlr r0
 /* 8023F3BC 0023C2FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023F3C0 0023C300  4E 80 00 20 */	blr 
+.endfn drawScreenFilter__Q24Game15ShadowCylinder3Fv
 
-.global setFilterTextureID__Q24Game15ShadowCylinder3Fi
-setFilterTextureID__Q24Game15ShadowCylinder3Fi:
+.fn setFilterTextureID__Q24Game15ShadowCylinder3Fi, weak
 /* 8023F3C4 0023C304  4E 80 00 20 */	blr 
+.endfn setFilterTextureID__Q24Game15ShadowCylinder3Fi
 
-__sinit_ShadowCylinder_cpp: # static initializer
+.fn __sinit_ShadowCylinder_cpp, local
 /* 8023F3C8 0023C308  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8023F3CC 0023C30C  38 00 FF FF */	li r0, -1
 /* 8023F3D0 0023C310  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8023F3D4 0023C314  3C 60 80 4C */	lis r3, lbl_804C1780@ha
+/* 8023F3D4 0023C314  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 8023F3D8 0023C318  90 0D 96 68 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
-/* 8023F3DC 0023C31C  D4 03 17 80 */	stfsu f0, lbl_804C1780@l(r3)
+/* 8023F3DC 0023C31C  D4 03 17 80 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
 /* 8023F3E0 0023C320  D0 0D 96 6C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8023F3E4 0023C324  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8023F3E8 0023C328  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8023F3EC 0023C32C  4E 80 00 20 */	blr 
+.endfn __sinit_ShadowCylinder_cpp
