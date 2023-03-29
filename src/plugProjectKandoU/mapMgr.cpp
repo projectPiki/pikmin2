@@ -2249,54 +2249,35 @@ void TriDivider::createTriangles(Sys::CreateTriangleArg&) { }
 
 } // namespace Sys
 
+namespace Game {
 /*
  * --INFO--
  * Address:	80163B70
  * Size:	00008C
  */
 // void getMinY__Q24Game11ShapeMapMgrFR10Vector3f()
-float ShapeMapMgr::getMinY(Vector3f&)
+float ShapeMapMgr::getMinY(Vector3f& origin)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lfs      f1, lbl_8051886C@sda21(r2)
-	li       r5, 0
-	stw      r0, 0x44(r1)
-	li       r0, 1
-	lfs      f3, lbl_80518890@sda21(r2)
-	lfs      f2, lbl_805188B8@sda21(r2)
-	lfs      f0, lbl_805188A4@sda21(r2)
-	stw      r5, 0x1c(r1)
-	stfs     f3, 0x20(r1)
-	stfs     f2, 0x24(r1)
-	stw      r5, 0x18(r1)
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	stb      r0, 0x14(r1)
-	stb      r5, 0x15(r1)
-	lfs      f0, 0(r4)
-	stfs     f0, 8(r1)
-	lfs      f0, 4(r4)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 8(r4)
-	addi     r4, r1, 8
-	stfs     f0, 0x10(r1)
-	stb      r5, 0x14(r1)
-	lwzu     r12, 0x38(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x44(r1)
-	lfs      f1, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
-}
+	CurrTriInfo info;
+	// FROM HERE
+	info.mTriangle = nullptr;
+	info.mMaxY     = 128000.0f;
+	info.mMinY     = -128000.0f;
+	info.mTable    = nullptr;
 
-namespace Game {
+	info.mNormalVec = Vector3f(0.0f, 1.0f, 0.0f);
+
+	info._0C = true;
+	info._0D = false;
+	// TO HERE
+	// IS CONSTRUCTOR!!!
+
+	info.mPosition = origin;
+	info._0C       = false;
+
+	getCurrTri(info);
+	return info.mMinY;
+}
 
 /*
  * --INFO--
