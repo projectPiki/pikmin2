@@ -1021,7 +1021,7 @@ LIBS = [
             "plugProjectNishimuraU/playCamera",
             "plugProjectNishimuraU/shadowMgr",
             ["plugProjectNishimuraU/MapUnit", True],
-            "plugProjectNishimuraU/MapNode",
+            ["plugProjectNishimuraU/MapNode", True],
             ["plugProjectNishimuraU/EnemyUnit", True],
             "plugProjectNishimuraU/RandMapMgr",
             ["plugProjectNishimuraU/RandMapDraw", True],

@@ -4,7 +4,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/shadowMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/MapUnit.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapNode.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/MapNode.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/EnemyUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandMapDraw.o\

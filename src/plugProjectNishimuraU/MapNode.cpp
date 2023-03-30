@@ -338,10 +338,11 @@ int MapNode::getGateScore(int idx)
 void MapNode::setEnemyScore()
 {
 	mEnemyScore = 0;
-	FOREACH_NODE(EnemyNode, mEnemyNode->mChild, currEnemy)
+	FOREACH_NODE(CNode, mEnemyNode->mChild, currEnemy)
 	{
-		BaseGen* gen = currEnemy->mSpawn;
-		int score    = 0;
+		EnemyNode* enemy = static_cast<EnemyNode*>(currEnemy);
+		BaseGen* gen     = enemy->mSpawn;
+		int score        = 0;
 		if (gen) {
 			if (gen->mSpawnType == BaseGen::TekiA__Easy) {
 				score = 2;
@@ -350,61 +351,8 @@ void MapNode::setEnemyScore()
 			}
 		}
 
-		mEnemyScore += score * currEnemy->getBirthCount();
+		mEnemyScore += score * enemy->getBirthCount();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r0, 0x34(r3)
-	lwz      r3, 0x1c(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_80243840
-
-lbl_802437E8:
-	lwz      r4, 0x1c(r31)
-	mr       r3, r31
-	li       r30, 0
-	cmplwi   r4, 0
-	beq      lbl_8024381C
-	lwz      r0, 0x18(r4)
-	cmpwi    r0, 0
-	bne      lbl_80243810
-	li       r30, 2
-	b        lbl_8024381C
-
-lbl_80243810:
-	cmpwi    r0, 1
-	bne      lbl_8024381C
-	li       r30, 0xa
-
-lbl_8024381C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	mullw    r3, r30, r3
-	lwz      r0, 0x34(r29)
-	add      r0, r0, r3
-	stw      r0, 0x34(r29)
-	lwz      r31, 4(r31)
-
-lbl_80243840:
-	cmplwi   r31, 0
-	bne      lbl_802437E8
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
