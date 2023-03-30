@@ -5,47 +5,48 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80483FF8:
+.obj lbl_80483FF8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3234362D
-	.4byte 0x53686164
-	.4byte 0x6F774D67
-	.4byte 0x72000000
-lbl_80484014:
-	.4byte 0x53686164
-	.4byte 0x6F774D67
-	.4byte 0x72000000
-	.4byte 0x53686164
-	.4byte 0x6F775061
-	.4byte 0x726D7300
+.endobj lbl_80483FF8
+.balign 4
+.obj lbl_80484004, local
+	.asciz "246-ShadowMgr"
+.endobj lbl_80484004
+.balign 4
+.obj lbl_80484014, local
+	.asciz "ShadowMgr"
+.endobj lbl_80484014
+.balign 4
+.obj lbl_80484020, local
+	.asciz "ShadowParms"
+.endobj lbl_80484020
+.balign 4
+.obj lbl_8048402C, local # Shift-JIS
 	.4byte 0x4C4F4420
 	.4byte 0x4E656172
 	.4byte 0x81460000
+.endobj lbl_8048402C
+.balign 4
+.obj lbl_80484038, local # Shift-JIS
 	.4byte 0x4C4F4420
 	.4byte 0x46617281
-	.4byte 0x46000000
-	.4byte 0x2F757365
-	.4byte 0x722F4E69
-	.4byte 0x7368696D
-	.4byte 0x7572612F
-	.4byte 0x53686164
-	.4byte 0x6F772F73
-	.4byte 0x6861646F
-	.4byte 0x77506172
-	.4byte 0x6D732E74
-	.4byte 0x78740000
-	.4byte 0x00000000
+	.2byte 0x4600
+.endobj lbl_80484038
+.balign 4
+.obj lbl_80484044, local
+	.asciz "/user/Nishimura/Shadow/shadowParms.txt"
+.endobj lbl_80484044
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804C19E8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q24Game9ShadowMgr
-__vt__Q24Game9ShadowMgr:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q24Game9ShadowMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game9ShadowMgrFv
@@ -58,53 +59,59 @@ __vt__Q24Game9ShadowMgr:
 	.4byte isDone__Q24Game9ShadowMgrFi
 	.4byte write__Q24Game9ShadowMgrFR6Stream
 	.4byte read__Q24Game9ShadowMgrFR6Stream
-.global __vt__Q24Game10ShadowNode
-__vt__Q24Game10ShadowNode:
+.endobj __vt__Q24Game9ShadowMgr
+.obj __vt__Q24Game10ShadowNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game10ShadowNodeFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q24Game15JointShadowNode
-__vt__Q24Game15JointShadowNode:
+.endobj __vt__Q24Game10ShadowNode
+.obj __vt__Q24Game15JointShadowNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game15JointShadowNodeFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q24Game19JointShadowRootNode
-__vt__Q24Game19JointShadowRootNode:
+.endobj __vt__Q24Game15JointShadowNode
+.obj __vt__Q24Game19JointShadowRootNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game19JointShadowRootNodeFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
+.endobj __vt__Q24Game19JointShadowRootNode
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515CF8:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-lbl_80515CFC:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global shadowMgr__4Game
-shadowMgr__4Game:
-	.skip 0x8
+.endobj gfNAN___Q24Game5P2JST
+.obj shadowMgr__4Game, global
+	.skip 0x4
+.endobj shadowMgr__4Game
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051A6C0:
+.obj lbl_8051A6C0, local
 	.float 0.1
-lbl_8051A6C4:
-	.4byte 0x00000000
-lbl_8051A6C8:
-	.4byte 0x3E4CCCCD
-lbl_8051A6CC:
-	.4byte 0x3CA3D70A
-lbl_8051A6D0:
-	.4byte 0x73686164
-	.4byte 0x6F770000
+.endobj lbl_8051A6C0
+.obj lbl_8051A6C4, local
+	.float 0.0
+.endobj lbl_8051A6C4
+.obj lbl_8051A6C8, local
+	.float 0.2
+.endobj lbl_8051A6C8
+.obj lbl_8051A6CC, local
+	.float 0.02
+.endobj lbl_8051A6CC
+.balign 4
+.obj lbl_8051A6D0, local
+	.asciz "shadow"
+.endobj lbl_8051A6D0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
-__ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature:
+.fn __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature, global
 /* 8024127C 0023E1BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80241280 0023E1C0  7C 08 02 A6 */	mflr r0
 /* 80241284 0023E1C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -129,9 +136,9 @@ __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature:
 /* 802412D0 0023E210  7C 08 03 A6 */	mtlr r0
 /* 802412D4 0023E214  38 21 00 10 */	addi r1, r1, 0x10
 /* 802412D8 0023E218  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
 
-.global __ct__Q24Game15JointShadowNodeFi
-__ct__Q24Game15JointShadowNodeFi:
+.fn __ct__Q24Game15JointShadowNodeFi, global
 /* 802412DC 0023E21C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802412E0 0023E220  7C 08 02 A6 */	mflr r0
 /* 802412E4 0023E224  90 01 00 14 */	stw r0, 0x14(r1)
@@ -161,9 +168,9 @@ __ct__Q24Game15JointShadowNodeFi:
 /* 80241344 0023E284  7C 08 03 A6 */	mtlr r0
 /* 80241348 0023E288  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024134C 0023E28C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15JointShadowNodeFi
 
-.global init__Q24Game15JointShadowNodeFi
-init__Q24Game15JointShadowNodeFi:
+.fn init__Q24Game15JointShadowNodeFi, global
 /* 80241350 0023E290  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80241354 0023E294  7C 08 02 A6 */	mflr r0
 /* 80241358 0023E298  90 01 00 24 */	stw r0, 0x24(r1)
@@ -195,9 +202,9 @@ init__Q24Game15JointShadowNodeFi:
 /* 802413B8 0023E2F8  7C 08 03 A6 */	mtlr r0
 /* 802413BC 0023E2FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802413C0 0023E300  4E 80 00 20 */	blr 
+.endfn init__Q24Game15JointShadowNodeFi
 
-.global __ct__Q24Game9ShadowMgrFi
-__ct__Q24Game9ShadowMgrFi:
+.fn __ct__Q24Game9ShadowMgrFi, global
 /* 802413C4 0023E304  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802413C8 0023E308  7C 08 02 A6 */	mflr r0
 /* 802413CC 0023E30C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -230,9 +237,9 @@ __ct__Q24Game9ShadowMgrFi:
 /* 80241438 0023E378  7C 08 03 A6 */	mtlr r0
 /* 8024143C 0023E37C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80241440 0023E380  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game9ShadowMgrFi
 
-.global loadResource__Q24Game9ShadowMgrFv
-loadResource__Q24Game9ShadowMgrFv:
+.fn loadResource__Q24Game9ShadowMgrFv, global
 /* 80241444 0023E384  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80241448 0023E388  7C 08 02 A6 */	mflr r0
 /* 8024144C 0023E38C  3C 80 80 48 */	lis r4, lbl_80483FF8@ha
@@ -372,20 +379,20 @@ loadResource__Q24Game9ShadowMgrFv:
 /* 80241648 0023E588  7C 08 03 A6 */	mtlr r0
 /* 8024164C 0023E58C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80241650 0023E590  4E 80 00 20 */	blr 
+.endfn loadResource__Q24Game9ShadowMgrFv
 
-.global init__Q24Game9ShadowMgrFv
-init__Q24Game9ShadowMgrFv:
+.fn init__Q24Game9ShadowMgrFv, global
 /* 80241654 0023E594  4E 80 00 20 */	blr 
+.endfn init__Q24Game9ShadowMgrFv
 
-.global setViewport__Q24Game9ShadowMgrFP8Viewporti
-setViewport__Q24Game9ShadowMgrFP8Viewporti:
+.fn setViewport__Q24Game9ShadowMgrFP8Viewporti, global
 /* 80241658 0023E598  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 8024165C 0023E59C  54 A0 10 3A */	slwi r0, r5, 2
 /* 80241660 0023E5A0  7C 83 01 2E */	stwx r4, r3, r0
 /* 80241664 0023E5A4  4E 80 00 20 */	blr 
+.endfn setViewport__Q24Game9ShadowMgrFP8Viewporti
 
-.global setShadowColor__Q24Game9ShadowMgrFP6Color4
-setShadowColor__Q24Game9ShadowMgrFP6Color4:
+.fn setShadowColor__Q24Game9ShadowMgrFP6Color4, global
 /* 80241668 0023E5A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024166C 0023E5AC  7C 08 02 A6 */	mflr r0
 /* 80241670 0023E5B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -404,9 +411,9 @@ setShadowColor__Q24Game9ShadowMgrFP6Color4:
 /* 802416A4 0023E5E4  7C 08 03 A6 */	mtlr r0
 /* 802416A8 0023E5E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802416AC 0023E5EC  4E 80 00 20 */	blr 
+.endfn setShadowColor__Q24Game9ShadowMgrFP6Color4
 
-.global update__Q24Game9ShadowMgrFv
-update__Q24Game9ShadowMgrFv:
+.fn update__Q24Game9ShadowMgrFv, global
 /* 802416B0 0023E5F0  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802416B4 0023E5F4  7C 08 02 A6 */	mflr r0
 /* 802416B8 0023E5F8  90 01 00 84 */	stw r0, 0x84(r1)
@@ -577,9 +584,9 @@ update__Q24Game9ShadowMgrFv:
 /* 80241904 0023E844  7C 08 03 A6 */	mtlr r0
 /* 80241908 0023E848  38 21 00 80 */	addi r1, r1, 0x80
 /* 8024190C 0023E84C  4E 80 00 20 */	blr 
+.endfn update__Q24Game9ShadowMgrFv
 
-.global draw__Q24Game9ShadowMgrFR8Graphicsi
-draw__Q24Game9ShadowMgrFR8Graphicsi:
+.fn draw__Q24Game9ShadowMgrFR8Graphicsi, global
 /* 80241910 0023E850  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80241914 0023E854  7C 08 02 A6 */	mflr r0
 /* 80241918 0023E858  38 82 C3 70 */	addi r4, r2, lbl_8051A6D0@sda21
@@ -721,9 +728,9 @@ draw__Q24Game9ShadowMgrFR8Graphicsi:
 /* 80241B14 0023EA54  7C 08 03 A6 */	mtlr r0
 /* 80241B18 0023EA58  38 21 00 30 */	addi r1, r1, 0x30
 /* 80241B1C 0023EA5C  4E 80 00 20 */	blr 
+.endfn draw__Q24Game9ShadowMgrFR8Graphicsi
 
-.global createShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-createShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn createShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80241B20 0023EA60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80241B24 0023EA64  7C 08 02 A6 */	mflr r0
 /* 80241B28 0023EA68  90 01 00 24 */	stw r0, 0x24(r1)
@@ -792,9 +799,9 @@ createShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 80241C04 0023EB44  7C 08 03 A6 */	mtlr r0
 /* 80241C08 0023EB48  38 21 00 20 */	addi r1, r1, 0x20
 /* 80241C0C 0023EB4C  4E 80 00 20 */	blr 
+.endfn createShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global killAll__Q24Game9ShadowMgrFv
-killAll__Q24Game9ShadowMgrFv:
+.fn killAll__Q24Game9ShadowMgrFv, global
 /* 80241C10 0023EB50  80 83 00 34 */	lwz r4, 0x34(r3)
 /* 80241C14 0023EB54  38 00 00 00 */	li r0, 0
 /* 80241C18 0023EB58  90 04 00 10 */	stw r0, 0x10(r4)
@@ -817,9 +824,9 @@ killAll__Q24Game9ShadowMgrFv:
 /* 80241C5C 0023EB9C  90 03 00 08 */	stw r0, 8(r3)
 /* 80241C60 0023EBA0  90 03 00 04 */	stw r0, 4(r3)
 /* 80241C64 0023EBA4  4E 80 00 20 */	blr 
+.endfn killAll__Q24Game9ShadowMgrFv
 
-.global killShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-killShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn killShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80241C68 0023EBA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80241C6C 0023EBAC  7C 08 02 A6 */	mflr r0
 /* 80241C70 0023EBB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -837,9 +844,9 @@ killShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 80241CA0 0023EBE0  7C 08 03 A6 */	mtlr r0
 /* 80241CA4 0023EBE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80241CA8 0023EBE8  4E 80 00 20 */	blr 
+.endfn killShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global addShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-addShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn addShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80241CAC 0023EBEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80241CB0 0023EBF0  7C 08 02 A6 */	mflr r0
 /* 80241CB4 0023EBF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -857,9 +864,9 @@ addShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 80241CE4 0023EC24  7C 08 03 A6 */	mtlr r0
 /* 80241CE8 0023EC28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80241CEC 0023EC2C  4E 80 00 20 */	blr 
+.endfn addShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global delShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-delShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn delShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80241CF0 0023EC30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80241CF4 0023EC34  7C 08 02 A6 */	mflr r0
 /* 80241CF8 0023EC38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -877,9 +884,9 @@ delShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 80241D28 0023EC68  7C 08 03 A6 */	mtlr r0
 /* 80241D2C 0023EC6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80241D30 0023EC70  4E 80 00 20 */	blr 
+.endfn delShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global addNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-addNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn addNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80241D34 0023EC74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80241D38 0023EC78  7C 08 02 A6 */	mflr r0
 /* 80241D3C 0023EC7C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -929,9 +936,9 @@ addNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 80241DD4 0023ED14  7C 08 03 A6 */	mtlr r0
 /* 80241DD8 0023ED18  38 21 00 20 */	addi r1, r1, 0x20
 /* 80241DDC 0023ED1C  4E 80 00 20 */	blr 
+.endfn addNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80241DE0 0023ED20  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80241DE4 0023ED24  7C 08 02 A6 */	mflr r0
 /* 80241DE8 0023ED28  90 01 00 34 */	stw r0, 0x34(r1)
@@ -985,9 +992,9 @@ addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 80241E8C 0023EDCC  7C 08 03 A6 */	mtlr r0
 /* 80241E90 0023EDD0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80241E94 0023EDD4  4E 80 00 20 */	blr 
+.endfn addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global delNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-delNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn delNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80241E98 0023EDD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80241E9C 0023EDDC  7C 08 02 A6 */	mflr r0
 /* 80241EA0 0023EDE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1019,9 +1026,9 @@ delNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 80241EF8 0023EE38  7C 08 03 A6 */	mtlr r0
 /* 80241EFC 0023EE3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80241F00 0023EE40  4E 80 00 20 */	blr 
+.endfn delNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global delJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-delJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn delJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80241F04 0023EE44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80241F08 0023EE48  7C 08 02 A6 */	mflr r0
 /* 80241F0C 0023EE4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1057,9 +1064,9 @@ delJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 80241F78 0023EEB8  7C 08 03 A6 */	mtlr r0
 /* 80241F7C 0023EEBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80241F80 0023EEC0  4E 80 00 20 */	blr 
+.endfn delJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global killNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-killNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn killNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80241F84 0023EEC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80241F88 0023EEC8  7C 08 02 A6 */	mflr r0
 /* 80241F8C 0023EECC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1109,9 +1116,9 @@ killNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 80242024 0023EF64  7C 08 03 A6 */	mtlr r0
 /* 80242028 0023EF68  38 21 00 20 */	addi r1, r1, 0x20
 /* 8024202C 0023EF6C  4E 80 00 20 */	blr 
+.endfn killNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global killJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-killJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
+.fn killJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature, global
 /* 80242030 0023EF70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80242034 0023EF74  7C 08 02 A6 */	mflr r0
 /* 80242038 0023EF78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1161,9 +1168,9 @@ killJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature:
 /* 802420D0 0023F010  7C 08 03 A6 */	mtlr r0
 /* 802420D4 0023F014  38 21 00 20 */	addi r1, r1, 0x20
 /* 802420D8 0023F018  4E 80 00 20 */	blr 
+.endfn killJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
 
-.global setJointShadowRootNode__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNode
-setJointShadowRootNode__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNode:
+.fn setJointShadowRootNode__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNode, global
 /* 802420DC 0023F01C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802420E0 0023F020  7C 08 02 A6 */	mflr r0
 /* 802420E4 0023F024  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1173,9 +1180,9 @@ setJointShadowRootNode__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNode:
 /* 802420F4 0023F034  7C 08 03 A6 */	mtlr r0
 /* 802420F8 0023F038  38 21 00 10 */	addi r1, r1, 0x10
 /* 802420FC 0023F03C  4E 80 00 20 */	blr 
+.endfn setJointShadowRootNode__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNode
 
-.global setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb
-setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb:
+.fn setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb, global
 /* 80242100 0023F040  80 C3 00 20 */	lwz r6, 0x20(r3)
 /* 80242104 0023F044  80 C6 00 10 */	lwz r6, 0x10(r6)
 /* 80242108 0023F048  48 00 00 3C */	b .L_80242144
@@ -1252,9 +1259,9 @@ setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb:
 /* 802421E4 0023F124  28 03 00 00 */	cmplwi r3, 0
 /* 802421E8 0023F128  40 82 FF E8 */	bne .L_802421D0
 /* 802421EC 0023F12C  4E 80 00 20 */	blr 
+.endfn setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb
 
-.global getSize__Q24Game9ShadowMgrFv
-getSize__Q24Game9ShadowMgrFv:
+.fn getSize__Q24Game9ShadowMgrFv, global
 /* 802421F0 0023F130  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802421F4 0023F134  7C 08 02 A6 */	mflr r0
 /* 802421F8 0023F138  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1267,14 +1274,14 @@ getSize__Q24Game9ShadowMgrFv:
 /* 80242214 0023F154  7C 08 03 A6 */	mtlr r0
 /* 80242218 0023F158  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024221C 0023F15C  4E 80 00 20 */	blr 
+.endfn getSize__Q24Game9ShadowMgrFv
 
-.global getMax__Q24Game9ShadowMgrFv
-getMax__Q24Game9ShadowMgrFv:
+.fn getMax__Q24Game9ShadowMgrFv, global
 /* 80242220 0023F160  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80242224 0023F164  4E 80 00 20 */	blr 
+.endfn getMax__Q24Game9ShadowMgrFv
 
-.global getCreature__Q24Game9ShadowMgrFi
-getCreature__Q24Game9ShadowMgrFi:
+.fn getCreature__Q24Game9ShadowMgrFi, global
 /* 80242228 0023F168  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024222C 0023F16C  7C 08 02 A6 */	mflr r0
 /* 80242230 0023F170  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1291,19 +1298,19 @@ getCreature__Q24Game9ShadowMgrFi:
 /* 80242254 0023F194  7C 08 03 A6 */	mtlr r0
 /* 80242258 0023F198  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024225C 0023F19C  4E 80 00 20 */	blr 
+.endfn getCreature__Q24Game9ShadowMgrFi
 
-.global getFirst__Q24Game9ShadowMgrFv
-getFirst__Q24Game9ShadowMgrFv:
+.fn getFirst__Q24Game9ShadowMgrFv, global
 /* 80242260 0023F1A0  38 60 00 00 */	li r3, 0
 /* 80242264 0023F1A4  4E 80 00 20 */	blr 
+.endfn getFirst__Q24Game9ShadowMgrFv
 
-.global getNext__Q24Game9ShadowMgrFi
-getNext__Q24Game9ShadowMgrFi:
+.fn getNext__Q24Game9ShadowMgrFi, global
 /* 80242268 0023F1A8  38 64 00 01 */	addi r3, r4, 1
 /* 8024226C 0023F1AC  4E 80 00 20 */	blr 
+.endfn getNext__Q24Game9ShadowMgrFi
 
-.global isDone__Q24Game9ShadowMgrFi
-isDone__Q24Game9ShadowMgrFi:
+.fn isDone__Q24Game9ShadowMgrFi, global
 /* 80242270 0023F1B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80242274 0023F1B4  7C 08 02 A6 */	mflr r0
 /* 80242278 0023F1B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1323,9 +1330,9 @@ isDone__Q24Game9ShadowMgrFi:
 /* 802422B0 0023F1F0  7C 08 03 A6 */	mtlr r0
 /* 802422B4 0023F1F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802422B8 0023F1F8  4E 80 00 20 */	blr 
+.endfn isDone__Q24Game9ShadowMgrFi
 
-.global getShadowMaskType__Q24Game9ShadowMgrFii
-getShadowMaskType__Q24Game9ShadowMgrFii:
+.fn getShadowMaskType__Q24Game9ShadowMgrFii, global
 /* 802422BC 0023F1FC  2C 05 00 00 */	cmpwi r5, 0
 /* 802422C0 0023F200  40 82 00 0C */	bne .L_802422CC
 /* 802422C4 0023F204  7C 83 23 78 */	mr r3, r4
@@ -1348,9 +1355,9 @@ getShadowMaskType__Q24Game9ShadowMgrFii:
 /* 802422FC 0023F23C  7C 63 FE 70 */	srawi r3, r3, 0x1f
 /* 80242300 0023F240  7C 03 18 38 */	and r3, r0, r3
 /* 80242304 0023F244  4E 80 00 20 */	blr 
+.endfn getShadowMaskType__Q24Game9ShadowMgrFii
 
-.global getShadowType__Q24Game9ShadowMgrFii
-getShadowType__Q24Game9ShadowMgrFii:
+.fn getShadowType__Q24Game9ShadowMgrFii, global
 /* 80242308 0023F248  2C 05 00 00 */	cmpwi r5, 0
 /* 8024230C 0023F24C  40 82 00 0C */	bne .L_80242318
 /* 80242310 0023F250  54 83 07 3E */	clrlwi r3, r4, 0x1c
@@ -1373,9 +1380,9 @@ getShadowType__Q24Game9ShadowMgrFii:
 /* 80242348 0023F288  7C 63 FE 70 */	srawi r3, r3, 0x1f
 /* 8024234C 0023F28C  7C 03 18 38 */	and r3, r0, r3
 /* 80242350 0023F290  4E 80 00 20 */	blr 
+.endfn getShadowType__Q24Game9ShadowMgrFii
 
-.global isDrawNormalShadow__Q24Game9ShadowMgrFPQ24Game10ShadowNodei
-isDrawNormalShadow__Q24Game9ShadowMgrFPQ24Game10ShadowNodei:
+.fn isDrawNormalShadow__Q24Game9ShadowMgrFPQ24Game10ShadowNodei, global
 /* 80242354 0023F294  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80242358 0023F298  7C 08 02 A6 */	mflr r0
 /* 8024235C 0023F29C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1411,9 +1418,9 @@ isDrawNormalShadow__Q24Game9ShadowMgrFPQ24Game10ShadowNodei:
 /* 802423C8 0023F308  7C 08 03 A6 */	mtlr r0
 /* 802423CC 0023F30C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802423D0 0023F310  4E 80 00 20 */	blr 
+.endfn isDrawNormalShadow__Q24Game9ShadowMgrFPQ24Game10ShadowNodei
 
-.global isDrawJointShadow__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNodei
-isDrawJointShadow__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNodei:
+.fn isDrawJointShadow__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNodei, global
 /* 802423D4 0023F314  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802423D8 0023F318  7C 08 02 A6 */	mflr r0
 /* 802423DC 0023F31C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1449,9 +1456,9 @@ isDrawJointShadow__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNodei:
 /* 80242448 0023F388  7C 08 03 A6 */	mtlr r0
 /* 8024244C 0023F38C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80242450 0023F390  4E 80 00 20 */	blr 
+.endfn isDrawJointShadow__Q24Game9ShadowMgrFPQ24Game19JointShadowRootNodei
 
-.global readShadowParms__Q24Game9ShadowMgrFPc
-readShadowParms__Q24Game9ShadowMgrFPc:
+.fn readShadowParms__Q24Game9ShadowMgrFPc, global
 /* 80242454 0023F394  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 80242458 0023F398  7C 08 02 A6 */	mflr r0
 /* 8024245C 0023F39C  38 A0 00 00 */	li r5, 0
@@ -1497,9 +1504,9 @@ readShadowParms__Q24Game9ShadowMgrFPc:
 /* 802424F4 0023F434  7C 08 03 A6 */	mtlr r0
 /* 802424F8 0023F438  38 21 04 40 */	addi r1, r1, 0x440
 /* 802424FC 0023F43C  4E 80 00 20 */	blr 
+.endfn readShadowParms__Q24Game9ShadowMgrFPc
 
-.global write__Q24Game9ShadowMgrFR6Stream
-write__Q24Game9ShadowMgrFR6Stream:
+.fn write__Q24Game9ShadowMgrFR6Stream, global
 /* 80242500 0023F440  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80242504 0023F444  7C 08 02 A6 */	mflr r0
 /* 80242508 0023F448  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1533,9 +1540,9 @@ write__Q24Game9ShadowMgrFR6Stream:
 /* 80242578 0023F4B8  7C 08 03 A6 */	mtlr r0
 /* 8024257C 0023F4BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80242580 0023F4C0  4E 80 00 20 */	blr 
+.endfn write__Q24Game9ShadowMgrFR6Stream
 
-.global read__Q24Game9ShadowMgrFR6Stream
-read__Q24Game9ShadowMgrFR6Stream:
+.fn read__Q24Game9ShadowMgrFR6Stream, global
 /* 80242584 0023F4C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80242588 0023F4C8  7C 08 02 A6 */	mflr r0
 /* 8024258C 0023F4CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1567,9 +1574,9 @@ read__Q24Game9ShadowMgrFR6Stream:
 /* 802425F4 0023F534  7C 08 03 A6 */	mtlr r0
 /* 802425F8 0023F538  38 21 00 10 */	addi r1, r1, 0x10
 /* 802425FC 0023F53C  4E 80 00 20 */	blr 
+.endfn read__Q24Game9ShadowMgrFR6Stream
 
-.global __dt__Q24Game9ShadowMgrFv
-__dt__Q24Game9ShadowMgrFv:
+.fn __dt__Q24Game9ShadowMgrFv, weak
 /* 80242600 0023F540  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80242604 0023F544  7C 08 02 A6 */	mflr r0
 /* 80242608 0023F548  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1595,9 +1602,9 @@ __dt__Q24Game9ShadowMgrFv:
 /* 80242654 0023F594  7C 08 03 A6 */	mtlr r0
 /* 80242658 0023F598  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024265C 0023F59C  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game9ShadowMgrFv
 
-.global __dt__Q24Game10ShadowNodeFv
-__dt__Q24Game10ShadowNodeFv:
+.fn __dt__Q24Game10ShadowNodeFv, weak
 /* 80242660 0023F5A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80242664 0023F5A4  7C 08 02 A6 */	mflr r0
 /* 80242668 0023F5A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1623,9 +1630,9 @@ __dt__Q24Game10ShadowNodeFv:
 /* 802426B4 0023F5F4  7C 08 03 A6 */	mtlr r0
 /* 802426B8 0023F5F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802426BC 0023F5FC  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game10ShadowNodeFv
 
-.global __dt__Q24Game15JointShadowNodeFv
-__dt__Q24Game15JointShadowNodeFv:
+.fn __dt__Q24Game15JointShadowNodeFv, weak
 /* 802426C0 0023F600  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802426C4 0023F604  7C 08 02 A6 */	mflr r0
 /* 802426C8 0023F608  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1651,9 +1658,9 @@ __dt__Q24Game15JointShadowNodeFv:
 /* 80242714 0023F654  7C 08 03 A6 */	mtlr r0
 /* 80242718 0023F658  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024271C 0023F65C  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game15JointShadowNodeFv
 
-.global __dt__Q24Game19JointShadowRootNodeFv
-__dt__Q24Game19JointShadowRootNodeFv:
+.fn __dt__Q24Game19JointShadowRootNodeFv, weak
 /* 80242720 0023F660  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80242724 0023F664  7C 08 02 A6 */	mflr r0
 /* 80242728 0023F668  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1679,16 +1686,17 @@ __dt__Q24Game19JointShadowRootNodeFv:
 /* 80242774 0023F6B4  7C 08 03 A6 */	mtlr r0
 /* 80242778 0023F6B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8024277C 0023F6BC  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game19JointShadowRootNodeFv
 
-.global __sinit_shadowMgr_cpp
-__sinit_shadowMgr_cpp:
+.fn __sinit_shadowMgr_cpp, local
 /* 80242780 0023F6C0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80242784 0023F6C4  38 00 FF FF */	li r0, -1
 /* 80242788 0023F6C8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8024278C 0023F6CC  3C 60 80 4C */	lis r3, lbl_804C19E8@ha
-/* 80242790 0023F6D0  90 0D 96 78 */	stw r0, lbl_80515CF8@sda21(r13)
-/* 80242794 0023F6D4  D4 03 19 E8 */	stfsu f0, lbl_804C19E8@l(r3)
-/* 80242798 0023F6D8  D0 0D 96 7C */	stfs f0, lbl_80515CFC@sda21(r13)
+/* 8024278C 0023F6CC  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80242790 0023F6D0  90 0D 96 78 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80242794 0023F6D4  D4 03 19 E8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80242798 0023F6D8  D0 0D 96 7C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8024279C 0023F6DC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802427A0 0023F6E0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802427A4 0023F6E4  4E 80 00 20 */	blr 
+.endfn __sinit_shadowMgr_cpp

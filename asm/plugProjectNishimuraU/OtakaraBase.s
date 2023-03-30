@@ -1,13 +1,12 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game30ConditionNotStickClientAndItem
-__vt__Q24Game30ConditionNotStickClientAndItem:
+.obj __vt__Q24Game30ConditionNotStickClientAndItem, weak
 	.4byte 0
 	.4byte 0
 	.4byte satisfy__Q24Game30ConditionNotStickClientAndItemFPQ24Game4Piki
-.global __vt__Q34Game11OtakaraBase3Obj
-__vt__Q34Game11OtakaraBase3Obj:
+.endobj __vt__Q24Game30ConditionNotStickClientAndItem
+.obj __vt__Q34Game11OtakaraBase3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -221,55 +220,77 @@ __vt__Q34Game11OtakaraBase3Obj:
 	.4byte "@756@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@756@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game11OtakaraBase3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051C290:
-	.4byte 0x00000000
-lbl_8051C294:
-	.4byte 0x46480000
-lbl_8051C298:
+.obj lbl_8051C290, local
+	.float 0.0
+.endobj lbl_8051C290
+.obj lbl_8051C294, local
+	.float 12800.0
+.endobj lbl_8051C294
+.obj lbl_8051C298, local
 	.float 1.0
-lbl_8051C29C:
-	.4byte 0x6F74616B
-	.4byte 0x61726100
-lbl_8051C2A4:
-	.4byte 0x40A00000
-lbl_8051C2A8:
-	.4byte 0x41F00000
-lbl_8051C2AC:
-	.4byte 0x42480000
-lbl_8051C2B0:
-	.4byte 0x41C80000
-lbl_8051C2B4:
-	.4byte 0x41480000
-lbl_8051C2B8:
-	.4byte 0x41200000
-lbl_8051C2BC:
-	.4byte 0x41A00000
-lbl_8051C2C0:
-	.4byte 0xC47A0000
-lbl_8051C2C4:
+.endobj lbl_8051C298
+.balign 4
+.obj lbl_8051C29C, local
+	.asciz "otakara"
+.endobj lbl_8051C29C
+.balign 4
+.obj lbl_8051C2A4, local
+	.float 5.0
+.endobj lbl_8051C2A4
+.obj lbl_8051C2A8, local
+	.float 30.0
+.endobj lbl_8051C2A8
+.obj lbl_8051C2AC, local
+	.float 50.0
+.endobj lbl_8051C2AC
+.obj lbl_8051C2B0, local
+	.float 25.0
+.endobj lbl_8051C2B0
+.obj lbl_8051C2B4, local
+	.float 12.5
+.endobj lbl_8051C2B4
+.obj lbl_8051C2B8, local
+	.float 10.0
+.endobj lbl_8051C2B8
+.obj lbl_8051C2BC, local
+	.float 20.0
+.endobj lbl_8051C2BC
+.obj lbl_8051C2C0, local
+	.float -1000.0
+.endobj lbl_8051C2C0
+.obj lbl_8051C2C4, local
 	.float 0.5
-lbl_8051C2C8:
-	.4byte 0x42C80000
-lbl_8051C2CC:
-	.4byte 0x63656E74
-	.4byte 0x65720000
-lbl_8051C2D4:
-	.4byte 0x3CE978D5
-lbl_8051C2D8:
-	.4byte 0x40400000
-lbl_8051C2DC:
-	.4byte 0x41700000
-lbl_8051C2E0:
-	.4byte 0x3FC00000
-lbl_8051C2E4:
+.endobj lbl_8051C2C4
+.obj lbl_8051C2C8, local
+	.float 100.0
+.endobj lbl_8051C2C8
+.balign 4
+.obj lbl_8051C2CC, local
+	.asciz "center"
+.endobj lbl_8051C2CC
+.balign 4
+.obj lbl_8051C2D4, local
+	.float 0.0285
+.endobj lbl_8051C2D4
+.obj lbl_8051C2D8, local
+	.float 3.0
+.endobj lbl_8051C2D8
+.obj lbl_8051C2DC, local
+	.float 15.0
+.endobj lbl_8051C2DC
+.obj lbl_8051C2E0, local
+	.float 1.5
+.endobj lbl_8051C2E0
+.obj lbl_8051C2E4, local
 	.float 0.7
+.endobj lbl_8051C2E4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game11OtakaraBase3ObjFv
-__ct__Q34Game11OtakaraBase3ObjFv:
+.fn __ct__Q34Game11OtakaraBase3ObjFv, global
 /* 802B624C 002B318C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6250 002B3190  7C 08 02 A6 */	mflr r0
 /* 802B6254 002B3194  90 01 00 14 */	stw r0, 0x14(r1)
@@ -349,13 +370,13 @@ __ct__Q34Game11OtakaraBase3ObjFv:
 /* 802B6370 002B32B0  7C 08 03 A6 */	mtlr r0
 /* 802B6374 002B32B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6378 002B32B8  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game11OtakaraBase3ObjFv
 
-.global setInitialSetting__Q34Game11OtakaraBase3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game11OtakaraBase3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game11OtakaraBase3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 802B637C 002B32BC  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game11OtakaraBase3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureInitArg, global
 /* 802B6380 002B32C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6384 002B32C4  7C 08 02 A6 */	mflr r0
 /* 802B6388 002B32C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -424,18 +445,18 @@ onInit__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureInitArg:
 /* 802B6478 002B33B8  7C 08 03 A6 */	mtlr r0
 /* 802B647C 002B33BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6480 002B33C0  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureInitArg
 
-.global getEnemyTypeID__Q34Game11OtakaraBase3ObjFv
-getEnemyTypeID__Q34Game11OtakaraBase3ObjFv:
+.fn getEnemyTypeID__Q34Game11OtakaraBase3ObjFv, weak
 /* 802B6484 002B33C4  38 60 00 3B */	li r3, 0x3b
 /* 802B6488 002B33C8  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game11OtakaraBase3ObjFv
 
-.global setupEffect__Q34Game11OtakaraBase3ObjFv
-setupEffect__Q34Game11OtakaraBase3ObjFv:
+.fn setupEffect__Q34Game11OtakaraBase3ObjFv, weak
 /* 802B648C 002B33CC  4E 80 00 20 */	blr 
+.endfn setupEffect__Q34Game11OtakaraBase3ObjFv
 
-.global onKill__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureKillArg, global
 /* 802B6490 002B33D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6494 002B33D4  7C 08 02 A6 */	mflr r0
 /* 802B6498 002B33D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -459,9 +480,9 @@ onKill__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureKillArg:
 /* 802B64E0 002B3420  7C 08 03 A6 */	mtlr r0
 /* 802B64E4 002B3424  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B64E8 002B3428  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game11OtakaraBase3ObjFPQ24Game15CreatureKillArg
 
-.global doUpdate__Q34Game11OtakaraBase3ObjFv
-doUpdate__Q34Game11OtakaraBase3ObjFv:
+.fn doUpdate__Q34Game11OtakaraBase3ObjFv, global
 /* 802B64EC 002B342C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B64F0 002B3430  7C 08 02 A6 */	mflr r0
 /* 802B64F4 002B3434  7C 64 1B 78 */	mr r4, r3
@@ -475,9 +496,9 @@ doUpdate__Q34Game11OtakaraBase3ObjFv:
 /* 802B6514 002B3454  7C 08 03 A6 */	mtlr r0
 /* 802B6518 002B3458  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B651C 002B345C  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game11OtakaraBase3ObjFv
 
-.global doUpdateCommon__Q34Game11OtakaraBase3ObjFv
-doUpdateCommon__Q34Game11OtakaraBase3ObjFv:
+.fn doUpdateCommon__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6520 002B3460  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6524 002B3464  7C 08 02 A6 */	mflr r0
 /* 802B6528 002B3468  90 01 00 14 */	stw r0, 0x14(r1)
@@ -542,13 +563,13 @@ doUpdateCommon__Q34Game11OtakaraBase3ObjFv:
 /* 802B6604 002B3544  7C 08 03 A6 */	mtlr r0
 /* 802B6608 002B3548  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B660C 002B354C  4E 80 00 20 */	blr 
+.endfn doUpdateCommon__Q34Game11OtakaraBase3ObjFv
 
-.global startDisChargeSE__Q34Game11OtakaraBase3ObjFv
-startDisChargeSE__Q34Game11OtakaraBase3ObjFv:
+.fn startDisChargeSE__Q34Game11OtakaraBase3ObjFv, weak
 /* 802B6610 002B3550  4E 80 00 20 */	blr 
+.endfn startDisChargeSE__Q34Game11OtakaraBase3ObjFv
 
-.global doAnimationCullingOff__Q34Game11OtakaraBase3ObjFv
-doAnimationCullingOff__Q34Game11OtakaraBase3ObjFv:
+.fn doAnimationCullingOff__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6614 002B3554  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802B6618 002B3558  7C 08 02 A6 */	mflr r0
 /* 802B661C 002B355C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -582,13 +603,13 @@ doAnimationCullingOff__Q34Game11OtakaraBase3ObjFv:
 /* 802B6684 002B35C4  7C 08 03 A6 */	mtlr r0
 /* 802B6688 002B35C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 802B668C 002B35CC  4E 80 00 20 */	blr 
+.endfn doAnimationCullingOff__Q34Game11OtakaraBase3ObjFv
 
-.global doDirectDraw__Q34Game11OtakaraBase3ObjFR8Graphics
-doDirectDraw__Q34Game11OtakaraBase3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game11OtakaraBase3ObjFR8Graphics, global
 /* 802B6690 002B35D0  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game11OtakaraBase3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game11OtakaraBase3ObjFR8Graphics
-doDebugDraw__Q34Game11OtakaraBase3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game11OtakaraBase3ObjFR8Graphics, global
 /* 802B6694 002B35D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6698 002B35D8  7C 08 02 A6 */	mflr r0
 /* 802B669C 002B35DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -597,9 +618,9 @@ doDebugDraw__Q34Game11OtakaraBase3ObjFR8Graphics:
 /* 802B66A8 002B35E8  7C 08 03 A6 */	mtlr r0
 /* 802B66AC 002B35EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B66B0 002B35F0  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game11OtakaraBase3ObjFR8Graphics
 
-.global setFSM__Q34Game11OtakaraBase3ObjFPQ34Game11OtakaraBase3FSM
-setFSM__Q34Game11OtakaraBase3ObjFPQ34Game11OtakaraBase3FSM:
+.fn setFSM__Q34Game11OtakaraBase3ObjFPQ34Game11OtakaraBase3FSM, global
 /* 802B66B4 002B35F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B66B8 002B35F8  7C 08 02 A6 */	mflr r0
 /* 802B66BC 002B35FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -619,9 +640,9 @@ setFSM__Q34Game11OtakaraBase3ObjFPQ34Game11OtakaraBase3FSM:
 /* 802B66F4 002B3634  7C 08 03 A6 */	mtlr r0
 /* 802B66F8 002B3638  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B66FC 002B363C  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game11OtakaraBase3ObjFPQ34Game11OtakaraBase3FSM
 
-.global getShadowParam__Q34Game11OtakaraBase3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game11OtakaraBase3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game11OtakaraBase3ObjFRQ24Game11ShadowParam, global
 /* 802B6700 002B3640  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6704 002B3644  7C 08 02 A6 */	mflr r0
 /* 802B6708 002B3648  90 01 00 14 */	stw r0, 0x14(r1)
@@ -686,9 +707,9 @@ getShadowParam__Q34Game11OtakaraBase3ObjFRQ24Game11ShadowParam:
 /* 802B67E0 002B3720  7C 08 03 A6 */	mtlr r0
 /* 802B67E4 002B3724  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B67E8 002B3728  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game11OtakaraBase3ObjFRQ24Game11ShadowParam
 
-.global damageCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart
-damageCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart:
+.fn damageCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 802B67EC 002B372C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B67F0 002B3730  7C 08 02 A6 */	mflr r0
 /* 802B67F4 002B3734  28 05 00 00 */	cmplwi r5, 0
@@ -704,9 +725,9 @@ damageCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart:
 /* 802B6814 002B3754  7C 08 03 A6 */	mtlr r0
 /* 802B6818 002B3758  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B681C 002B375C  4E 80 00 20 */	blr 
+.endfn damageCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart
 
-.global hipdropCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart
-hipdropCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart:
+.fn hipdropCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 802B6820 002B3760  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802B6824 002B3764  7C 08 02 A6 */	mflr r0
 /* 802B6828 002B3768  90 01 00 24 */	stw r0, 0x24(r1)
@@ -739,9 +760,9 @@ hipdropCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart:
 /* 802B688C 002B37CC  7C 08 03 A6 */	mtlr r0
 /* 802B6890 002B37D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802B6894 002B37D4  4E 80 00 20 */	blr 
+.endfn hipdropCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreaturefP8CollPart
 
-.global earthquakeCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8Creaturef
-earthquakeCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8Creaturef:
+.fn earthquakeCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8Creaturef, global
 /* 802B6898 002B37D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802B689C 002B37DC  7C 08 02 A6 */	mflr r0
 /* 802B68A0 002B37E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -771,9 +792,9 @@ earthquakeCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8Creaturef:
 /* 802B68FC 002B383C  7C 08 03 A6 */	mtlr r0
 /* 802B6900 002B3840  38 21 00 20 */	addi r1, r1, 0x20
 /* 802B6904 002B3844  4E 80 00 20 */	blr 
+.endfn earthquakeCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8Creaturef
 
-.global "bombCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreatureR10Vector3<f>f"
-"bombCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreatureR10Vector3<f>f":
+.fn "bombCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreatureR10Vector3<f>f", global
 /* 802B6908 002B3848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B690C 002B384C  7C 08 02 A6 */	mflr r0
 /* 802B6910 002B3850  90 01 00 14 */	stw r0, 0x14(r1)
@@ -783,9 +804,9 @@ earthquakeCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8Creaturef:
 /* 802B6920 002B3860  7C 08 03 A6 */	mtlr r0
 /* 802B6924 002B3864  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6928 002B3868  4E 80 00 20 */	blr 
+.endfn "bombCallBack__Q34Game11OtakaraBase3ObjFPQ24Game8CreatureR10Vector3<f>f"
 
-.global doStartStoneState__Q34Game11OtakaraBase3ObjFv
-doStartStoneState__Q34Game11OtakaraBase3ObjFv:
+.fn doStartStoneState__Q34Game11OtakaraBase3ObjFv, global
 /* 802B692C 002B386C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6930 002B3870  7C 08 02 A6 */	mflr r0
 /* 802B6934 002B3874  90 01 00 14 */	stw r0, 0x14(r1)
@@ -805,9 +826,9 @@ doStartStoneState__Q34Game11OtakaraBase3ObjFv:
 /* 802B696C 002B38AC  7C 08 03 A6 */	mtlr r0
 /* 802B6970 002B38B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6974 002B38B4  4E 80 00 20 */	blr 
+.endfn doStartStoneState__Q34Game11OtakaraBase3ObjFv
 
-.global doFinishStoneState__Q34Game11OtakaraBase3ObjFv
-doFinishStoneState__Q34Game11OtakaraBase3ObjFv:
+.fn doFinishStoneState__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6978 002B38B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B697C 002B38BC  7C 08 02 A6 */	mflr r0
 /* 802B6980 002B38C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -828,9 +849,9 @@ doFinishStoneState__Q34Game11OtakaraBase3ObjFv:
 /* 802B69B8 002B38F8  7C 08 03 A6 */	mtlr r0
 /* 802B69BC 002B38FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B69C0 002B3900  4E 80 00 20 */	blr 
+.endfn doFinishStoneState__Q34Game11OtakaraBase3ObjFv
 
-.global doStartEarthquakeState__Q34Game11OtakaraBase3ObjFf
-doStartEarthquakeState__Q34Game11OtakaraBase3ObjFf:
+.fn doStartEarthquakeState__Q34Game11OtakaraBase3ObjFf, global
 /* 802B69C4 002B3904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B69C8 002B3908  7C 08 02 A6 */	mflr r0
 /* 802B69CC 002B390C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -850,9 +871,9 @@ doStartEarthquakeState__Q34Game11OtakaraBase3ObjFf:
 /* 802B6A04 002B3944  7C 08 03 A6 */	mtlr r0
 /* 802B6A08 002B3948  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6A0C 002B394C  4E 80 00 20 */	blr 
+.endfn doStartEarthquakeState__Q34Game11OtakaraBase3ObjFf
 
-.global doFinishEarthquakeState__Q34Game11OtakaraBase3ObjFv
-doFinishEarthquakeState__Q34Game11OtakaraBase3ObjFv:
+.fn doFinishEarthquakeState__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6A10 002B3950  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6A14 002B3954  7C 08 02 A6 */	mflr r0
 /* 802B6A18 002B3958  90 01 00 14 */	stw r0, 0x14(r1)
@@ -873,9 +894,9 @@ doFinishEarthquakeState__Q34Game11OtakaraBase3ObjFv:
 /* 802B6A50 002B3990  7C 08 03 A6 */	mtlr r0
 /* 802B6A54 002B3994  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6A58 002B3998  4E 80 00 20 */	blr 
+.endfn doFinishEarthquakeState__Q34Game11OtakaraBase3ObjFv
 
-.global doStartEarthquakeFitState__Q34Game11OtakaraBase3ObjFv
-doStartEarthquakeFitState__Q34Game11OtakaraBase3ObjFv:
+.fn doStartEarthquakeFitState__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6A5C 002B399C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6A60 002B39A0  7C 08 02 A6 */	mflr r0
 /* 802B6A64 002B39A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -895,9 +916,9 @@ doStartEarthquakeFitState__Q34Game11OtakaraBase3ObjFv:
 /* 802B6A9C 002B39DC  7C 08 03 A6 */	mtlr r0
 /* 802B6AA0 002B39E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6AA4 002B39E4  4E 80 00 20 */	blr 
+.endfn doStartEarthquakeFitState__Q34Game11OtakaraBase3ObjFv
 
-.global doFinishEarthquakeFitState__Q34Game11OtakaraBase3ObjFv
-doFinishEarthquakeFitState__Q34Game11OtakaraBase3ObjFv:
+.fn doFinishEarthquakeFitState__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6AA8 002B39E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6AAC 002B39EC  7C 08 02 A6 */	mflr r0
 /* 802B6AB0 002B39F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -918,9 +939,9 @@ doFinishEarthquakeFitState__Q34Game11OtakaraBase3ObjFv:
 /* 802B6AE8 002B3A28  7C 08 03 A6 */	mtlr r0
 /* 802B6AEC 002B3A2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6AF0 002B3A30  4E 80 00 20 */	blr 
+.endfn doFinishEarthquakeFitState__Q34Game11OtakaraBase3ObjFv
 
-.global doStartWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv
-doStartWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv:
+.fn doStartWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6AF4 002B3A34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6AF8 002B3A38  7C 08 02 A6 */	mflr r0
 /* 802B6AFC 002B3A3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -937,13 +958,13 @@ doStartWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv:
 /* 802B6B28 002B3A68  7C 08 03 A6 */	mtlr r0
 /* 802B6B2C 002B3A6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6B30 002B3A70  4E 80 00 20 */	blr 
+.endfn doStartWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv
 
-.global effectDrawOff__Q34Game11OtakaraBase3ObjFv
-effectDrawOff__Q34Game11OtakaraBase3ObjFv:
+.fn effectDrawOff__Q34Game11OtakaraBase3ObjFv, weak
 /* 802B6B34 002B3A74  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game11OtakaraBase3ObjFv
 
-.global doFinishWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv
-doFinishWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv:
+.fn doFinishWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6B38 002B3A78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6B3C 002B3A7C  7C 08 02 A6 */	mflr r0
 /* 802B6B40 002B3A80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -970,13 +991,13 @@ doFinishWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv:
 /* 802B6B90 002B3AD0  7C 08 03 A6 */	mtlr r0
 /* 802B6B94 002B3AD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6B98 002B3AD8  4E 80 00 20 */	blr 
+.endfn doFinishWaitingBirthTypeDrop__Q34Game11OtakaraBase3ObjFv
 
-.global effectDrawOn__Q34Game11OtakaraBase3ObjFv
-effectDrawOn__Q34Game11OtakaraBase3ObjFv:
+.fn effectDrawOn__Q34Game11OtakaraBase3ObjFv, weak
 /* 802B6B9C 002B3ADC  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game11OtakaraBase3ObjFv
 
-.global startCarcassMotion__Q34Game11OtakaraBase3ObjFv
-startCarcassMotion__Q34Game11OtakaraBase3ObjFv:
+.fn startCarcassMotion__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6BA0 002B3AE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6BA4 002B3AE4  7C 08 02 A6 */	mflr r0
 /* 802B6BA8 002B3AE8  38 80 00 0B */	li r4, 0xb
@@ -987,9 +1008,9 @@ startCarcassMotion__Q34Game11OtakaraBase3ObjFv:
 /* 802B6BBC 002B3AFC  7C 08 03 A6 */	mtlr r0
 /* 802B6BC0 002B3B00  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6BC4 002B3B04  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game11OtakaraBase3ObjFv
 
-.global doStartMovie__Q34Game11OtakaraBase3ObjFv
-doStartMovie__Q34Game11OtakaraBase3ObjFv:
+.fn doStartMovie__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6BC8 002B3B08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6BCC 002B3B0C  7C 08 02 A6 */	mflr r0
 /* 802B6BD0 002B3B10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1001,9 +1022,9 @@ doStartMovie__Q34Game11OtakaraBase3ObjFv:
 /* 802B6BE8 002B3B28  7C 08 03 A6 */	mtlr r0
 /* 802B6BEC 002B3B2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6BF0 002B3B30  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game11OtakaraBase3ObjFv
 
-.global doEndMovie__Q34Game11OtakaraBase3ObjFv
-doEndMovie__Q34Game11OtakaraBase3ObjFv:
+.fn doEndMovie__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6BF4 002B3B34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6BF8 002B3B38  7C 08 02 A6 */	mflr r0
 /* 802B6BFC 002B3B3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1015,9 +1036,9 @@ doEndMovie__Q34Game11OtakaraBase3ObjFv:
 /* 802B6C14 002B3B54  7C 08 03 A6 */	mtlr r0
 /* 802B6C18 002B3B58  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B6C1C 002B3B5C  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game11OtakaraBase3ObjFv
 
-.global isMovePositionSet__Q34Game11OtakaraBase3ObjFb
-isMovePositionSet__Q34Game11OtakaraBase3ObjFb:
+.fn isMovePositionSet__Q34Game11OtakaraBase3ObjFb, global
 /* 802B6C20 002B3B60  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802B6C24 002B3B64  7C 08 02 A6 */	mflr r0
 /* 802B6C28 002B3B68  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1105,9 +1126,9 @@ isMovePositionSet__Q34Game11OtakaraBase3ObjFb:
 /* 802B6D54 002B3C94  7C 08 03 A6 */	mtlr r0
 /* 802B6D58 002B3C98  38 21 00 40 */	addi r1, r1, 0x40
 /* 802B6D5C 002B3C9C  4E 80 00 20 */	blr 
+.endfn isMovePositionSet__Q34Game11OtakaraBase3ObjFb
 
-.global getNearestTreasure__Q34Game11OtakaraBase3ObjFv
-getNearestTreasure__Q34Game11OtakaraBase3ObjFv:
+.fn getNearestTreasure__Q34Game11OtakaraBase3ObjFv, global
 /* 802B6D60 002B3CA0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802B6D64 002B3CA4  7C 08 02 A6 */	mflr r0
 /* 802B6D68 002B3CA8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1193,9 +1214,9 @@ getNearestTreasure__Q34Game11OtakaraBase3ObjFv:
 /* 802B6E9C 002B3DDC  7C 08 03 A6 */	mtlr r0
 /* 802B6EA0 002B3DE0  38 21 00 50 */	addi r1, r1, 0x50
 /* 802B6EA4 002B3DE4  4E 80 00 20 */	blr 
+.endfn getNearestTreasure__Q34Game11OtakaraBase3ObjFv
 
-.global getTargetPosition__Q34Game11OtakaraBase3ObjFPQ24Game8Creature
-getTargetPosition__Q34Game11OtakaraBase3ObjFPQ24Game8Creature:
+.fn getTargetPosition__Q34Game11OtakaraBase3ObjFPQ24Game8Creature, global
 /* 802B6EA8 002B3DE8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802B6EAC 002B3DEC  7C 08 02 A6 */	mflr r0
 /* 802B6EB0 002B3DF0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1317,9 +1338,9 @@ getTargetPosition__Q34Game11OtakaraBase3ObjFPQ24Game8Creature:
 /* 802B7064 002B3FA4  7C 08 03 A6 */	mtlr r0
 /* 802B7068 002B3FA8  38 21 00 60 */	addi r1, r1, 0x60
 /* 802B706C 002B3FAC  4E 80 00 20 */	blr 
+.endfn getTargetPosition__Q34Game11OtakaraBase3ObjFPQ24Game8Creature
 
-.global resetTreasure__Q34Game11OtakaraBase3ObjFv
-resetTreasure__Q34Game11OtakaraBase3ObjFv:
+.fn resetTreasure__Q34Game11OtakaraBase3ObjFv, global
 /* 802B7070 002B3FB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B7074 002B3FB4  7C 08 02 A6 */	mflr r0
 /* 802B7078 002B3FB8  C0 02 DF 30 */	lfs f0, lbl_8051C290@sda21(r2)
@@ -1357,9 +1378,9 @@ resetTreasure__Q34Game11OtakaraBase3ObjFv:
 /* 802B70F8 002B4038  7C 08 03 A6 */	mtlr r0
 /* 802B70FC 002B403C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B7100 002B4040  4E 80 00 20 */	blr 
+.endfn resetTreasure__Q34Game11OtakaraBase3ObjFv
 
-.global isTakeTreasure__Q34Game11OtakaraBase3ObjFv
-isTakeTreasure__Q34Game11OtakaraBase3ObjFv:
+.fn isTakeTreasure__Q34Game11OtakaraBase3ObjFv, global
 /* 802B7104 002B4044  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802B7108 002B4048  7C 08 02 A6 */	mflr r0
 /* 802B710C 002B404C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1432,9 +1453,9 @@ isTakeTreasure__Q34Game11OtakaraBase3ObjFv:
 /* 802B7204 002B4144  7C 08 03 A6 */	mtlr r0
 /* 802B7208 002B4148  38 21 00 50 */	addi r1, r1, 0x50
 /* 802B720C 002B414C  4E 80 00 20 */	blr 
+.endfn isTakeTreasure__Q34Game11OtakaraBase3ObjFv
 
-.global takeTreasure__Q34Game11OtakaraBase3ObjFv
-takeTreasure__Q34Game11OtakaraBase3ObjFv:
+.fn takeTreasure__Q34Game11OtakaraBase3ObjFv, global
 /* 802B7210 002B4150  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802B7214 002B4154  7C 08 02 A6 */	mflr r0
 /* 802B7218 002B4158  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1591,9 +1612,9 @@ takeTreasure__Q34Game11OtakaraBase3ObjFv:
 /* 802B7450 002B4390  7C 08 03 A6 */	mtlr r0
 /* 802B7454 002B4394  38 21 00 60 */	addi r1, r1, 0x60
 /* 802B7458 002B4398  4E 80 00 20 */	blr 
+.endfn takeTreasure__Q34Game11OtakaraBase3ObjFv
 
-.global fallTreasure__Q34Game11OtakaraBase3ObjFb
-fallTreasure__Q34Game11OtakaraBase3ObjFb:
+.fn fallTreasure__Q34Game11OtakaraBase3ObjFb, global
 /* 802B745C 002B439C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802B7460 002B43A0  7C 08 02 A6 */	mflr r0
 /* 802B7464 002B43A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1659,9 +1680,9 @@ fallTreasure__Q34Game11OtakaraBase3ObjFb:
 /* 802B7548 002B4488  7C 08 03 A6 */	mtlr r0
 /* 802B754C 002B448C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802B7550 002B4490  4E 80 00 20 */	blr 
+.endfn fallTreasure__Q34Game11OtakaraBase3ObjFb
 
-.global isDropTreasure__Q34Game11OtakaraBase3ObjFv
-isDropTreasure__Q34Game11OtakaraBase3ObjFv:
+.fn isDropTreasure__Q34Game11OtakaraBase3ObjFv, global
 /* 802B7554 002B4494  C0 23 02 E4 */	lfs f1, 0x2e4(r3)
 /* 802B7558 002B4498  C0 02 DF 30 */	lfs f0, lbl_8051C290@sda21(r2)
 /* 802B755C 002B449C  FC 01 00 00 */	fcmpu cr0, f1, f0
@@ -1673,9 +1694,9 @@ isDropTreasure__Q34Game11OtakaraBase3ObjFv:
 .L_802B7574:
 /* 802B7574 002B44B4  38 60 00 01 */	li r3, 1
 /* 802B7578 002B44B8  4E 80 00 20 */	blr 
+.endfn isDropTreasure__Q34Game11OtakaraBase3ObjFv
 
-.global damageTreasure__Q34Game11OtakaraBase3ObjFf
-damageTreasure__Q34Game11OtakaraBase3ObjFf:
+.fn damageTreasure__Q34Game11OtakaraBase3ObjFf, global
 /* 802B757C 002B44BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B7580 002B44C0  7C 08 02 A6 */	mflr r0
 /* 802B7584 002B44C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1699,9 +1720,9 @@ damageTreasure__Q34Game11OtakaraBase3ObjFf:
 /* 802B75C4 002B4504  7C 08 03 A6 */	mtlr r0
 /* 802B75C8 002B4508  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B75CC 002B450C  4E 80 00 20 */	blr 
+.endfn damageTreasure__Q34Game11OtakaraBase3ObjFf
 
-.global attackTarget__Q34Game11OtakaraBase3ObjFv
-attackTarget__Q34Game11OtakaraBase3ObjFv:
+.fn attackTarget__Q34Game11OtakaraBase3ObjFv, global
 /* 802B75D0 002B4510  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 802B75D4 002B4514  7C 08 02 A6 */	mflr r0
 /* 802B75D8 002B4518  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -1812,13 +1833,13 @@ attackTarget__Q34Game11OtakaraBase3ObjFv:
 /* 802B776C 002B46AC  7C 08 03 A6 */	mtlr r0
 /* 802B7770 002B46B0  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 802B7774 002B46B4  4E 80 00 20 */	blr 
+.endfn attackTarget__Q34Game11OtakaraBase3ObjFv
 
-.global interactCreature__Q34Game11OtakaraBase3ObjFPQ24Game8Creature
-interactCreature__Q34Game11OtakaraBase3ObjFPQ24Game8Creature:
+.fn interactCreature__Q34Game11OtakaraBase3ObjFPQ24Game8Creature, weak
 /* 802B7778 002B46B8  4E 80 00 20 */	blr 
+.endfn interactCreature__Q34Game11OtakaraBase3ObjFPQ24Game8Creature
 
-.global createTreasureFallEffect__Q34Game11OtakaraBase3ObjFv
-createTreasureFallEffect__Q34Game11OtakaraBase3ObjFv:
+.fn createTreasureFallEffect__Q34Game11OtakaraBase3ObjFv, global
 /* 802B777C 002B46BC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802B7780 002B46C0  7C 08 02 A6 */	mflr r0
 /* 802B7784 002B46C4  38 82 DF 6C */	addi r4, r2, lbl_8051C2CC@sda21
@@ -1897,9 +1918,9 @@ createTreasureFallEffect__Q34Game11OtakaraBase3ObjFv:
 /* 802B78A4 002B47E4  7C 08 03 A6 */	mtlr r0
 /* 802B78A8 002B47E8  38 21 00 50 */	addi r1, r1, 0x50
 /* 802B78AC 002B47EC  4E 80 00 20 */	blr 
+.endfn createTreasureFallEffect__Q34Game11OtakaraBase3ObjFv
 
-.global startEscapeSE__Q34Game11OtakaraBase3ObjFv
-startEscapeSE__Q34Game11OtakaraBase3ObjFv:
+.fn startEscapeSE__Q34Game11OtakaraBase3ObjFv, global
 /* 802B78B0 002B47F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B78B4 002B47F4  7C 08 02 A6 */	mflr r0
 /* 802B78B8 002B47F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1936,9 +1957,9 @@ startEscapeSE__Q34Game11OtakaraBase3ObjFv:
 /* 802B792C 002B486C  7C 08 03 A6 */	mtlr r0
 /* 802B7930 002B4870  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B7934 002B4874  4E 80 00 20 */	blr 
+.endfn startEscapeSE__Q34Game11OtakaraBase3ObjFv
 
-.global initBombOtakara__Q34Game11OtakaraBase3ObjFv
-initBombOtakara__Q34Game11OtakaraBase3ObjFv:
+.fn initBombOtakara__Q34Game11OtakaraBase3ObjFv, global
 /* 802B7938 002B4878  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802B793C 002B487C  7C 08 02 A6 */	mflr r0
 /* 802B7940 002B4880  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2003,9 +2024,9 @@ initBombOtakara__Q34Game11OtakaraBase3ObjFv:
 /* 802B7A28 002B4968  7C 08 03 A6 */	mtlr r0
 /* 802B7A2C 002B496C  38 21 00 50 */	addi r1, r1, 0x50
 /* 802B7A30 002B4970  4E 80 00 20 */	blr 
+.endfn initBombOtakara__Q34Game11OtakaraBase3ObjFv
 
-.global isTransitChaseState__Q34Game11OtakaraBase3ObjFv
-isTransitChaseState__Q34Game11OtakaraBase3ObjFv:
+.fn isTransitChaseState__Q34Game11OtakaraBase3ObjFv, global
 /* 802B7A34 002B4974  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B7A38 002B4978  7C 08 02 A6 */	mflr r0
 /* 802B7A3C 002B497C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2035,9 +2056,9 @@ isTransitChaseState__Q34Game11OtakaraBase3ObjFv:
 /* 802B7A90 002B49D0  7C 08 03 A6 */	mtlr r0
 /* 802B7A94 002B49D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B7A98 002B49D8  4E 80 00 20 */	blr 
+.endfn isTransitChaseState__Q34Game11OtakaraBase3ObjFv
 
-.global stimulateBomb__Q34Game11OtakaraBase3ObjFv
-stimulateBomb__Q34Game11OtakaraBase3ObjFv:
+.fn stimulateBomb__Q34Game11OtakaraBase3ObjFv, global
 /* 802B7A9C 002B49DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B7AA0 002B49E0  7C 08 02 A6 */	mflr r0
 /* 802B7AA4 002B49E4  C0 02 DF 80 */	lfs f0, lbl_8051C2E0@sda21(r2)
@@ -2074,9 +2095,9 @@ stimulateBomb__Q34Game11OtakaraBase3ObjFv:
 /* 802B7B1C 002B4A5C  7C 08 03 A6 */	mtlr r0
 /* 802B7B20 002B4A60  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B7B24 002B4A64  4E 80 00 20 */	blr 
+.endfn stimulateBomb__Q34Game11OtakaraBase3ObjFv
 
-.global getChaseTargetCreature__Q34Game11OtakaraBase3ObjFv
-getChaseTargetCreature__Q34Game11OtakaraBase3ObjFv:
+.fn getChaseTargetCreature__Q34Game11OtakaraBase3ObjFv, global
 /* 802B7B28 002B4A68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B7B2C 002B4A6C  7C 08 02 A6 */	mflr r0
 /* 802B7B30 002B4A70  38 80 00 00 */	li r4, 0
@@ -2091,9 +2112,9 @@ getChaseTargetCreature__Q34Game11OtakaraBase3ObjFv:
 /* 802B7B54 002B4A94  7C 08 03 A6 */	mtlr r0
 /* 802B7B58 002B4A98  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B7B5C 002B4A9C  4E 80 00 20 */	blr 
+.endfn getChaseTargetCreature__Q34Game11OtakaraBase3ObjFv
 
-.global satisfy__Q24Game30ConditionNotStickClientAndItemFPQ24Game4Piki
-satisfy__Q24Game30ConditionNotStickClientAndItemFPQ24Game4Piki:
+.fn satisfy__Q24Game30ConditionNotStickClientAndItemFPQ24Game4Piki, weak
 /* 802B7B60 002B4AA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B7B64 002B4AA4  7C 08 02 A6 */	mflr r0
 /* 802B7B68 002B4AA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2136,9 +2157,9 @@ satisfy__Q24Game30ConditionNotStickClientAndItemFPQ24Game4Piki:
 /* 802B7BF0 002B4B30  7C 08 03 A6 */	mtlr r0
 /* 802B7BF4 002B4B34  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B7BF8 002B4B38  4E 80 00 20 */	blr 
+.endfn satisfy__Q24Game30ConditionNotStickClientAndItemFPQ24Game4Piki
 
-.global __dt__Q34Game11OtakaraBase3ObjFv
-__dt__Q34Game11OtakaraBase3ObjFv:
+.fn __dt__Q34Game11OtakaraBase3ObjFv, weak
 /* 802B7BFC 002B4B3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B7C00 002B4B40  7C 08 02 A6 */	mflr r0
 /* 802B7C04 002B4B44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2188,17 +2209,18 @@ __dt__Q34Game11OtakaraBase3ObjFv:
 /* 802B7CAC 002B4BEC  7C 08 03 A6 */	mtlr r0
 /* 802B7CB0 002B4BF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B7CB4 002B4BF4  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game11OtakaraBase3ObjFv
 
-.global getDownSmokeScale__Q34Game11OtakaraBase3ObjFv
-getDownSmokeScale__Q34Game11OtakaraBase3ObjFv:
+.fn getDownSmokeScale__Q34Game11OtakaraBase3ObjFv, weak
 /* 802B7CB8 002B4BF8  C0 22 DF 84 */	lfs f1, lbl_8051C2E4@sda21(r2)
 /* 802B7CBC 002B4BFC  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game11OtakaraBase3ObjFv
 
-.global getCellRadius__Q34Game11OtakaraBase3ObjFv
-getCellRadius__Q34Game11OtakaraBase3ObjFv:
+.fn getCellRadius__Q34Game11OtakaraBase3ObjFv, weak
 /* 802B7CC0 002B4C00  C0 23 02 F0 */	lfs f1, 0x2f0(r3)
 /* 802B7CC4 002B4C04  4E 80 00 20 */	blr 
+.endfn getCellRadius__Q34Game11OtakaraBase3ObjFv
 
-.global createEffect__Q34Game11OtakaraBase3ObjFv
-createEffect__Q34Game11OtakaraBase3ObjFv:
+.fn createEffect__Q34Game11OtakaraBase3ObjFv, weak
 /* 802B7CC8 002B4C08  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game11OtakaraBase3ObjFv

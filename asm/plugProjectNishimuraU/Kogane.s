@@ -1,16 +1,15 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804853D8:
+.obj lbl_804853D8, local
 	.4byte 0x00000001
 	.4byte 0x00000001
 	.4byte 0x00000001
-	.4byte 0x00000000
+.endobj lbl_804853D8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q34Game6Kogane3Obj
-__vt__Q34Game6Kogane3Obj:
+.obj __vt__Q34Game6Kogane3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -223,58 +222,79 @@ __vt__Q34Game6Kogane3Obj:
 	.4byte "@732@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@732@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game6Kogane3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051AC28:
-	.4byte 0x38D1B717
-lbl_8051AC2C:
-	.4byte 0x00000000
-lbl_8051AC30:
-	.4byte 0xC6480000
-lbl_8051AC34:
-	.4byte 0x40A00000
-lbl_8051AC38:
+.obj lbl_8051AC28, local
+	.float 1.0E-4
+.endobj lbl_8051AC28
+.obj lbl_8051AC2C, local
+	.float 0.0
+.endobj lbl_8051AC2C
+.obj lbl_8051AC30, local
+	.float -12800.0
+.endobj lbl_8051AC30
+.obj lbl_8051AC34, local
+	.float 5.0
+.endobj lbl_8051AC34
+.obj lbl_8051AC38, local
 	.float 1.0
-lbl_8051AC3C:
-	.4byte 0x41700000
-lbl_8051AC40:
-	.4byte 0x626F6479
-	.4byte 0x00000000
-lbl_8051AC48:
-	.4byte 0x41200000
-lbl_8051AC4C:
-	.4byte 0x447A0000
-lbl_8051AC50:
+.endobj lbl_8051AC38
+.obj lbl_8051AC3C, local
+	.float 15.0
+.endobj lbl_8051AC3C
+.balign 4
+.obj lbl_8051AC40, local
+	.asciz "body"
+.endobj lbl_8051AC40
+.balign 4
+.obj lbl_8051AC48, local
+	.float 10.0
+.endobj lbl_8051AC48
+.obj lbl_8051AC4C, local
+	.float 1000.0
+.endobj lbl_8051AC4C
+.obj lbl_8051AC50, local
 	.float 0.1
-lbl_8051AC54:
-	.4byte 0x40000000
-lbl_8051AC58:
-	.4byte 0x47000000
-lbl_8051AC5C:
-	.4byte 0x40490FDB
-lbl_8051AC60:
-	.4byte 0x3BB60B61
-lbl_8051AC64:
-	.4byte 0xC3A2F983
-lbl_8051AC68:
-	.4byte 0x43A2F983
-	.4byte 0x00000000
-lbl_8051AC70:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051AC78:
-	.4byte 0x437A0000
-lbl_8051AC7C:
-	.4byte 0x46480000
-lbl_8051AC80:
-	.4byte 0x40060A92
-lbl_8051AC84:
-	.4byte 0x42480000
+.endobj lbl_8051AC50
+.obj lbl_8051AC54, local
+	.float 2.0
+.endobj lbl_8051AC54
+.obj lbl_8051AC58, local
+	.float 32768.0
+.endobj lbl_8051AC58
+.obj lbl_8051AC5C, local # pi
+	.float 3.1415927
+.endobj lbl_8051AC5C
+.obj lbl_8051AC60, local
+	.float 0.0055555557
+.endobj lbl_8051AC60
+.obj lbl_8051AC64, local
+	.float -325.9493
+.endobj lbl_8051AC64
+.obj lbl_8051AC68, local
+	.float 325.9493
+.endobj lbl_8051AC68
+.balign 8
+.obj lbl_8051AC70, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051AC70
+.obj lbl_8051AC78, local
+	.float 250.0
+.endobj lbl_8051AC78
+.obj lbl_8051AC7C, local
+	.float 12800.0
+.endobj lbl_8051AC7C
+.obj lbl_8051AC80, local
+	.float 2.0943952
+.endobj lbl_8051AC80
+.obj lbl_8051AC84, local
+	.float 50.0
+.endobj lbl_8051AC84
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game6Kogane3ObjFv
-__ct__Q34Game6Kogane3ObjFv:
+.fn __ct__Q34Game6Kogane3ObjFv, global
 /* 8025DC8C 0025ABCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025DC90 0025ABD0  7C 08 02 A6 */	mflr r0
 /* 8025DC94 0025ABD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -354,13 +374,13 @@ __ct__Q34Game6Kogane3ObjFv:
 /* 8025DDB0 0025ACF0  7C 08 03 A6 */	mtlr r0
 /* 8025DDB4 0025ACF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025DDB8 0025ACF8  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game6Kogane3ObjFv
 
-.global setInitialSetting__Q34Game6Kogane3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game6Kogane3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game6Kogane3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 8025DDBC 0025ACFC  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game6Kogane3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game6Kogane3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game6Kogane3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game6Kogane3ObjFPQ24Game15CreatureInitArg, global
 /* 8025DDC0 0025AD00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025DDC4 0025AD04  7C 08 02 A6 */	mflr r0
 /* 8025DDC8 0025AD08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -439,13 +459,13 @@ onInit__Q34Game6Kogane3ObjFPQ24Game15CreatureInitArg:
 /* 8025DEE4 0025AE24  7C 08 03 A6 */	mtlr r0
 /* 8025DEE8 0025AE28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025DEEC 0025AE2C  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game6Kogane3ObjFPQ24Game15CreatureInitArg
 
-.global resetFartTimer__Q34Game6Kogane3ObjFv
-resetFartTimer__Q34Game6Kogane3ObjFv:
+.fn resetFartTimer__Q34Game6Kogane3ObjFv, weak
 /* 8025DEF0 0025AE30  4E 80 00 20 */	blr 
+.endfn resetFartTimer__Q34Game6Kogane3ObjFv
 
-.global onKill__Q34Game6Kogane3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game6Kogane3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game6Kogane3ObjFPQ24Game15CreatureKillArg, global
 /* 8025DEF4 0025AE34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025DEF8 0025AE38  7C 08 02 A6 */	mflr r0
 /* 8025DEFC 0025AE3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -466,9 +486,9 @@ onKill__Q34Game6Kogane3ObjFPQ24Game15CreatureKillArg:
 /* 8025DF38 0025AE78  7C 08 03 A6 */	mtlr r0
 /* 8025DF3C 0025AE7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025DF40 0025AE80  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game6Kogane3ObjFPQ24Game15CreatureKillArg
 
-.global doUpdate__Q34Game6Kogane3ObjFv
-doUpdate__Q34Game6Kogane3ObjFv:
+.fn doUpdate__Q34Game6Kogane3ObjFv, global
 /* 8025DF44 0025AE84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025DF48 0025AE88  7C 08 02 A6 */	mflr r0
 /* 8025DF4C 0025AE8C  7C 64 1B 78 */	mr r4, r3
@@ -482,9 +502,9 @@ doUpdate__Q34Game6Kogane3ObjFv:
 /* 8025DF6C 0025AEAC  7C 08 03 A6 */	mtlr r0
 /* 8025DF70 0025AEB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025DF74 0025AEB4  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game6Kogane3ObjFv
 
-.global doUpdateCommon__Q34Game6Kogane3ObjFv
-doUpdateCommon__Q34Game6Kogane3ObjFv:
+.fn doUpdateCommon__Q34Game6Kogane3ObjFv, global
 /* 8025DF78 0025AEB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025DF7C 0025AEBC  7C 08 02 A6 */	mflr r0
 /* 8025DF80 0025AEC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -493,13 +513,13 @@ doUpdateCommon__Q34Game6Kogane3ObjFv:
 /* 8025DF8C 0025AECC  7C 08 03 A6 */	mtlr r0
 /* 8025DF90 0025AED0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025DF94 0025AED4  4E 80 00 20 */	blr 
+.endfn doUpdateCommon__Q34Game6Kogane3ObjFv
 
-.global doDirectDraw__Q34Game6Kogane3ObjFR8Graphics
-doDirectDraw__Q34Game6Kogane3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game6Kogane3ObjFR8Graphics, global
 /* 8025DF98 0025AED8  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game6Kogane3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game6Kogane3ObjFR8Graphics
-doDebugDraw__Q34Game6Kogane3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game6Kogane3ObjFR8Graphics, global
 /* 8025DF9C 0025AEDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025DFA0 0025AEE0  7C 08 02 A6 */	mflr r0
 /* 8025DFA4 0025AEE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -508,9 +528,9 @@ doDebugDraw__Q34Game6Kogane3ObjFR8Graphics:
 /* 8025DFB0 0025AEF0  7C 08 03 A6 */	mtlr r0
 /* 8025DFB4 0025AEF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025DFB8 0025AEF8  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game6Kogane3ObjFR8Graphics
 
-.global setFSM__Q34Game6Kogane3ObjFPQ34Game6Kogane3FSM
-setFSM__Q34Game6Kogane3ObjFPQ34Game6Kogane3FSM:
+.fn setFSM__Q34Game6Kogane3ObjFPQ34Game6Kogane3FSM, global
 /* 8025DFBC 0025AEFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025DFC0 0025AF00  7C 08 02 A6 */	mflr r0
 /* 8025DFC4 0025AF04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -530,9 +550,9 @@ setFSM__Q34Game6Kogane3ObjFPQ34Game6Kogane3FSM:
 /* 8025DFFC 0025AF3C  7C 08 03 A6 */	mtlr r0
 /* 8025E000 0025AF40  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E004 0025AF44  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game6Kogane3ObjFPQ34Game6Kogane3FSM
 
-.global getShadowParam__Q34Game6Kogane3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game6Kogane3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game6Kogane3ObjFRQ24Game11ShadowParam, global
 /* 8025E008 0025AF48  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025E00C 0025AF4C  7C 08 02 A6 */	mflr r0
 /* 8025E010 0025AF50  90 01 00 24 */	stw r0, 0x24(r1)
@@ -573,9 +593,9 @@ getShadowParam__Q34Game6Kogane3ObjFRQ24Game11ShadowParam:
 /* 8025E09C 0025AFDC  7C 08 03 A6 */	mtlr r0
 /* 8025E0A0 0025AFE0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025E0A4 0025AFE4  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game6Kogane3ObjFRQ24Game11ShadowParam
 
-.global pressCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart
-pressCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart:
+.fn pressCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 8025E0A8 0025AFE8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025E0AC 0025AFEC  7C 08 02 A6 */	mflr r0
 /* 8025E0B0 0025AFF0  28 04 00 00 */	cmplwi r4, 0
@@ -605,9 +625,9 @@ pressCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8025E108 0025B048  7C 08 03 A6 */	mtlr r0
 /* 8025E10C 0025B04C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025E110 0025B050  4E 80 00 20 */	blr 
+.endfn pressCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart
 
-.global wallCallback__Q34Game6Kogane3ObjFRCQ24Game8MoveInfo
-wallCallback__Q34Game6Kogane3ObjFRCQ24Game8MoveInfo:
+.fn wallCallback__Q34Game6Kogane3ObjFRCQ24Game8MoveInfo, global
 /* 8025E114 0025B054  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025E118 0025B058  7C 08 02 A6 */	mflr r0
 /* 8025E11C 0025B05C  C0 44 00 5C */	lfs f2, 0x5c(r4)
@@ -623,9 +643,9 @@ wallCallback__Q34Game6Kogane3ObjFRCQ24Game8MoveInfo:
 /* 8025E144 0025B084  7C 08 03 A6 */	mtlr r0
 /* 8025E148 0025B088  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025E14C 0025B08C  4E 80 00 20 */	blr 
+.endfn wallCallback__Q34Game6Kogane3ObjFRCQ24Game8MoveInfo
 
-.global earthquakeCallBack__Q34Game6Kogane3ObjFPQ24Game8Creaturef
-earthquakeCallBack__Q34Game6Kogane3ObjFPQ24Game8Creaturef:
+.fn earthquakeCallBack__Q34Game6Kogane3ObjFPQ24Game8Creaturef, global
 /* 8025E150 0025B090  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025E154 0025B094  7C 08 02 A6 */	mflr r0
 /* 8025E158 0025B098  28 04 00 00 */	cmplwi r4, 0
@@ -652,9 +672,9 @@ earthquakeCallBack__Q34Game6Kogane3ObjFPQ24Game8Creaturef:
 /* 8025E1A4 0025B0E4  7C 08 03 A6 */	mtlr r0
 /* 8025E1A8 0025B0E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E1AC 0025B0EC  4E 80 00 20 */	blr 
+.endfn earthquakeCallBack__Q34Game6Kogane3ObjFPQ24Game8Creaturef
 
-.global hipdropCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart
-hipdropCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart:
+.fn hipdropCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 8025E1B0 0025B0F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025E1B4 0025B0F4  7C 08 02 A6 */	mflr r0
 /* 8025E1B8 0025B0F8  28 04 00 00 */	cmplwi r4, 0
@@ -684,9 +704,9 @@ hipdropCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8025E210 0025B150  7C 08 03 A6 */	mtlr r0
 /* 8025E214 0025B154  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025E218 0025B158  4E 80 00 20 */	blr 
+.endfn hipdropCallBack__Q34Game6Kogane3ObjFPQ24Game8CreaturefP8CollPart
 
-.global doStartStoneState__Q34Game6Kogane3ObjFv
-doStartStoneState__Q34Game6Kogane3ObjFv:
+.fn doStartStoneState__Q34Game6Kogane3ObjFv, global
 /* 8025E21C 0025B15C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025E220 0025B160  7C 08 02 A6 */	mflr r0
 /* 8025E224 0025B164  90 01 00 14 */	stw r0, 0x14(r1)
@@ -707,9 +727,9 @@ doStartStoneState__Q34Game6Kogane3ObjFv:
 /* 8025E260 0025B1A0  7C 08 03 A6 */	mtlr r0
 /* 8025E264 0025B1A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E268 0025B1A8  4E 80 00 20 */	blr 
+.endfn doStartStoneState__Q34Game6Kogane3ObjFv
 
-.global doFinishStoneState__Q34Game6Kogane3ObjFv
-doFinishStoneState__Q34Game6Kogane3ObjFv:
+.fn doFinishStoneState__Q34Game6Kogane3ObjFv, global
 /* 8025E26C 0025B1AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025E270 0025B1B0  7C 08 02 A6 */	mflr r0
 /* 8025E274 0025B1B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -730,9 +750,9 @@ doFinishStoneState__Q34Game6Kogane3ObjFv:
 /* 8025E2B0 0025B1F0  7C 08 03 A6 */	mtlr r0
 /* 8025E2B4 0025B1F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E2B8 0025B1F8  4E 80 00 20 */	blr 
+.endfn doFinishStoneState__Q34Game6Kogane3ObjFv
 
-.global doStartMovie__Q34Game6Kogane3ObjFv
-doStartMovie__Q34Game6Kogane3ObjFv:
+.fn doStartMovie__Q34Game6Kogane3ObjFv, global
 /* 8025E2BC 0025B1FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025E2C0 0025B200  7C 08 02 A6 */	mflr r0
 /* 8025E2C4 0025B204  90 01 00 14 */	stw r0, 0x14(r1)
@@ -744,13 +764,13 @@ doStartMovie__Q34Game6Kogane3ObjFv:
 /* 8025E2DC 0025B21C  7C 08 03 A6 */	mtlr r0
 /* 8025E2E0 0025B220  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E2E4 0025B224  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game6Kogane3ObjFv
 
-.global effectDrawOff__Q34Game6Kogane3ObjFv
-effectDrawOff__Q34Game6Kogane3ObjFv:
+.fn effectDrawOff__Q34Game6Kogane3ObjFv, weak
 /* 8025E2E8 0025B228  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game6Kogane3ObjFv
 
-.global doEndMovie__Q34Game6Kogane3ObjFv
-doEndMovie__Q34Game6Kogane3ObjFv:
+.fn doEndMovie__Q34Game6Kogane3ObjFv, global
 /* 8025E2EC 0025B22C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025E2F0 0025B230  7C 08 02 A6 */	mflr r0
 /* 8025E2F4 0025B234  90 01 00 14 */	stw r0, 0x14(r1)
@@ -762,13 +782,13 @@ doEndMovie__Q34Game6Kogane3ObjFv:
 /* 8025E30C 0025B24C  7C 08 03 A6 */	mtlr r0
 /* 8025E310 0025B250  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E314 0025B254  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game6Kogane3ObjFv
 
-.global effectDrawOn__Q34Game6Kogane3ObjFv
-effectDrawOn__Q34Game6Kogane3ObjFv:
+.fn effectDrawOn__Q34Game6Kogane3ObjFv, weak
 /* 8025E318 0025B258  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game6Kogane3ObjFv
 
-.global transitDamageState__Q34Game6Kogane3ObjFf
-transitDamageState__Q34Game6Kogane3ObjFf:
+.fn transitDamageState__Q34Game6Kogane3ObjFf, global
 /* 8025E31C 0025B25C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025E320 0025B260  7C 08 02 A6 */	mflr r0
 /* 8025E324 0025B264  90 01 00 14 */	stw r0, 0x14(r1)
@@ -806,9 +826,9 @@ transitDamageState__Q34Game6Kogane3ObjFf:
 /* 8025E394 0025B2D4  7C 08 03 A6 */	mtlr r0
 /* 8025E398 0025B2D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E39C 0025B2DC  4E 80 00 20 */	blr 
+.endfn transitDamageState__Q34Game6Kogane3ObjFf
 
-.global transitDisappear__Q34Game6Kogane3ObjFv
-transitDisappear__Q34Game6Kogane3ObjFv:
+.fn transitDisappear__Q34Game6Kogane3ObjFv, global
 /* 8025E3A0 0025B2E0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8025E3A4 0025B2E4  7C 08 02 A6 */	mflr r0
 /* 8025E3A8 0025B2E8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -877,9 +897,9 @@ transitDisappear__Q34Game6Kogane3ObjFv:
 /* 8025E49C 0025B3DC  7C 08 03 A6 */	mtlr r0
 /* 8025E4A0 0025B3E0  38 21 00 40 */	addi r1, r1, 0x40
 /* 8025E4A4 0025B3E4  4E 80 00 20 */	blr 
+.endfn transitDisappear__Q34Game6Kogane3ObjFv
 
-.global getBodyJointPos__Q34Game6Kogane3ObjFv
-getBodyJointPos__Q34Game6Kogane3ObjFv:
+.fn getBodyJointPos__Q34Game6Kogane3ObjFv, global
 /* 8025E4A8 0025B3E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025E4AC 0025B3EC  7C 08 02 A6 */	mflr r0
 /* 8025E4B0 0025B3F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -900,9 +920,9 @@ getBodyJointPos__Q34Game6Kogane3ObjFv:
 /* 8025E4EC 0025B42C  7C 08 03 A6 */	mtlr r0
 /* 8025E4F0 0025B430  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E4F4 0025B434  4E 80 00 20 */	blr 
+.endfn getBodyJointPos__Q34Game6Kogane3ObjFv
 
-.global koganeScaleUp__Q34Game6Kogane3ObjFv
-koganeScaleUp__Q34Game6Kogane3ObjFv:
+.fn koganeScaleUp__Q34Game6Kogane3ObjFv, global
 /* 8025E4F8 0025B438  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025E4FC 0025B43C  7C 08 02 A6 */	mflr r0
 /* 8025E500 0025B440  90 01 00 14 */	stw r0, 0x14(r1)
@@ -946,9 +966,9 @@ koganeScaleUp__Q34Game6Kogane3ObjFv:
 /* 8025E590 0025B4D0  7C 08 03 A6 */	mtlr r0
 /* 8025E594 0025B4D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E598 0025B4D8  4E 80 00 20 */	blr 
+.endfn koganeScaleUp__Q34Game6Kogane3ObjFv
 
-.global koganeScaleDown__Q34Game6Kogane3ObjFv
-koganeScaleDown__Q34Game6Kogane3ObjFv:
+.fn koganeScaleDown__Q34Game6Kogane3ObjFv, global
 /* 8025E59C 0025B4DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025E5A0 0025B4E0  7C 08 02 A6 */	mflr r0
 /* 8025E5A4 0025B4E4  C0 42 C8 C8 */	lfs f2, lbl_8051AC28@sda21(r2)
@@ -986,9 +1006,9 @@ koganeScaleDown__Q34Game6Kogane3ObjFv:
 /* 8025E61C 0025B55C  7C 08 03 A6 */	mtlr r0
 /* 8025E620 0025B560  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025E624 0025B564  4E 80 00 20 */	blr 
+.endfn koganeScaleDown__Q34Game6Kogane3ObjFv
 
-.global "setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<f>"
-"setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<f>":
+.fn "setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<f>", global
 /* 8025E628 0025B568  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8025E62C 0025B56C  7C 08 02 A6 */	mflr r0
 /* 8025E630 0025B570  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1102,9 +1122,9 @@ koganeScaleDown__Q34Game6Kogane3ObjFv:
 /* 8025E7C8 0025B708  7C 08 03 A6 */	mtlr r0
 /* 8025E7CC 0025B70C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8025E7D0 0025B710  4E 80 00 20 */	blr 
+.endfn "setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<f>"
 
-.global resetAppearTimer__Q34Game6Kogane3ObjFv
-resetAppearTimer__Q34Game6Kogane3ObjFv:
+.fn resetAppearTimer__Q34Game6Kogane3ObjFv, global
 /* 8025E7D4 0025B714  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8025E7D8 0025B718  7C 08 02 A6 */	mflr r0
 /* 8025E7DC 0025B71C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1135,9 +1155,9 @@ resetAppearTimer__Q34Game6Kogane3ObjFv:
 /* 8025E840 0025B780  7C 08 03 A6 */	mtlr r0
 /* 8025E844 0025B784  38 21 00 30 */	addi r1, r1, 0x30
 /* 8025E848 0025B788  4E 80 00 20 */	blr 
+.endfn resetAppearTimer__Q34Game6Kogane3ObjFv
 
-.global isAppear__Q34Game6Kogane3ObjFv
-isAppear__Q34Game6Kogane3ObjFv:
+.fn isAppear__Q34Game6Kogane3ObjFv, global
 /* 8025E84C 0025B78C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025E850 0025B790  7C 08 02 A6 */	mflr r0
 /* 8025E854 0025B794  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1173,9 +1193,9 @@ isAppear__Q34Game6Kogane3ObjFv:
 /* 8025E8C0 0025B800  7C 08 03 A6 */	mtlr r0
 /* 8025E8C4 0025B804  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025E8C8 0025B808  4E 80 00 20 */	blr 
+.endfn isAppear__Q34Game6Kogane3ObjFv
 
-.global resetMoveTimer__Q34Game6Kogane3ObjFff
-resetMoveTimer__Q34Game6Kogane3ObjFff:
+.fn resetMoveTimer__Q34Game6Kogane3ObjFff, global
 /* 8025E8CC 0025B80C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8025E8D0 0025B810  7C 08 02 A6 */	mflr r0
 /* 8025E8D4 0025B814  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1209,9 +1229,9 @@ resetMoveTimer__Q34Game6Kogane3ObjFff:
 /* 8025E944 0025B884  7C 08 03 A6 */	mtlr r0
 /* 8025E948 0025B888  38 21 00 40 */	addi r1, r1, 0x40
 /* 8025E94C 0025B88C  4E 80 00 20 */	blr 
+.endfn resetMoveTimer__Q34Game6Kogane3ObjFff
 
-.global createTreasureItem__Q34Game6Kogane3ObjFv
-createTreasureItem__Q34Game6Kogane3ObjFv:
+.fn createTreasureItem__Q34Game6Kogane3ObjFv, global
 /* 8025E950 0025B890  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8025E954 0025B894  7C 08 02 A6 */	mflr r0
 /* 8025E958 0025B898  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1316,9 +1336,9 @@ createTreasureItem__Q34Game6Kogane3ObjFv:
 /* 8025EAD8 0025BA18  7C 08 03 A6 */	mtlr r0
 /* 8025EADC 0025BA1C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8025EAE0 0025BA20  4E 80 00 20 */	blr 
+.endfn createTreasureItem__Q34Game6Kogane3ObjFv
 
-.global createPellet__Q34Game6Kogane3ObjFii
-createPellet__Q34Game6Kogane3ObjFii:
+.fn createPellet__Q34Game6Kogane3ObjFii, global
 /* 8025EAE4 0025BA24  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 8025EAE8 0025BA28  7C 08 02 A6 */	mflr r0
 /* 8025EAEC 0025BA2C  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -1492,9 +1512,9 @@ createPellet__Q34Game6Kogane3ObjFii:
 /* 8025ED6C 0025BCAC  7C 08 03 A6 */	mtlr r0
 /* 8025ED70 0025BCB0  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 8025ED74 0025BCB4  4E 80 00 20 */	blr 
+.endfn createPellet__Q34Game6Kogane3ObjFii
 
-.global createDoping__Q34Game6Kogane3ObjFUci
-createDoping__Q34Game6Kogane3ObjFUci:
+.fn createDoping__Q34Game6Kogane3ObjFUci, global
 /* 8025ED78 0025BCB8  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8025ED7C 0025BCBC  7C 08 02 A6 */	mflr r0
 /* 8025ED80 0025BCC0  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1620,9 +1640,9 @@ createDoping__Q34Game6Kogane3ObjFUci:
 /* 8025EF48 0025BE88  7C 08 03 A6 */	mtlr r0
 /* 8025EF4C 0025BE8C  38 21 00 80 */	addi r1, r1, 0x80
 /* 8025EF50 0025BE90  4E 80 00 20 */	blr 
+.endfn createDoping__Q34Game6Kogane3ObjFUci
 
-.global __dt__Q34Game6Kogane3ObjFv
-__dt__Q34Game6Kogane3ObjFv:
+.fn __dt__Q34Game6Kogane3ObjFv, weak
 /* 8025EF54 0025BE94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025EF58 0025BE98  7C 08 02 A6 */	mflr r0
 /* 8025EF5C 0025BE9C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1672,16 +1692,17 @@ __dt__Q34Game6Kogane3ObjFv:
 /* 8025F004 0025BF44  7C 08 03 A6 */	mtlr r0
 /* 8025F008 0025BF48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025F00C 0025BF4C  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game6Kogane3ObjFv
 
-.global inWaterCallback__Q34Game6Kogane3ObjFPQ24Game8WaterBox
-inWaterCallback__Q34Game6Kogane3ObjFPQ24Game8WaterBox:
+.fn inWaterCallback__Q34Game6Kogane3ObjFPQ24Game8WaterBox, weak
 /* 8025F010 0025BF50  4E 80 00 20 */	blr 
+.endfn inWaterCallback__Q34Game6Kogane3ObjFPQ24Game8WaterBox
 
-.global outWaterCallback__Q34Game6Kogane3ObjFv
-outWaterCallback__Q34Game6Kogane3ObjFv:
+.fn outWaterCallback__Q34Game6Kogane3ObjFv, weak
 /* 8025F014 0025BF54  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q34Game6Kogane3ObjFv
 
-.global getEnemyTypeID__Q34Game6Kogane3ObjFv
-getEnemyTypeID__Q34Game6Kogane3ObjFv:
+.fn getEnemyTypeID__Q34Game6Kogane3ObjFv, weak
 /* 8025F018 0025BF58  38 60 00 09 */	li r3, 9
 /* 8025F01C 0025BF5C  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game6Kogane3ObjFv

@@ -1,22 +1,20 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80485760:
-	.4byte 0x626F6479
-	.4byte 0x5F6A6E74
-	.4byte 0x32000000
+.obj lbl_80485760, local
+	.asciz "body_jnt2"
+.endobj lbl_80485760
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx8TQuriHit
-__vt__Q23efx8TQuriHit:
+.obj __vt__Q23efx8TQuriHit, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx10TQuriDisap
-__vt__Q23efx10TQuriDisap:
+.endobj __vt__Q23efx8TQuriHit
+.obj __vt__Q23efx10TQuriDisap, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -36,8 +34,8 @@ __vt__Q23efx10TQuriDisap:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx10TQuriDisapFv
-.global __vt__Q23efx8TQuriApp
-__vt__Q23efx8TQuriApp:
+.endobj __vt__Q23efx10TQuriDisap
+.obj __vt__Q23efx8TQuriApp, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -57,8 +55,8 @@ __vt__Q23efx8TQuriApp:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx8TQuriAppFv
-.global __vt__Q23efx9TQuriGlow
-__vt__Q23efx9TQuriGlow:
+.endobj __vt__Q23efx8TQuriApp
+.obj __vt__Q23efx9TQuriGlow, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -78,8 +76,8 @@ __vt__Q23efx9TQuriGlow:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx9TQuriGlowFv
-.global __vt__Q34Game7Qurione3Obj
-__vt__Q34Game7Qurione3Obj:
+.endobj __vt__Q23efx9TQuriGlow
+.obj __vt__Q34Game7Qurione3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -283,49 +281,64 @@ __vt__Q34Game7Qurione3Obj:
 	.4byte "@764@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@764@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game7Qurione3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051ACF0:
-	.4byte 0x43480000
-lbl_8051ACF4:
-	.4byte 0x41F00000
-lbl_8051ACF8:
-	.4byte 0x00000000
-lbl_8051ACFC:
-	.4byte 0x41C80000
-lbl_8051AD00:
+.obj lbl_8051ACF0, local
+	.float 200.0
+.endobj lbl_8051ACF0
+.obj lbl_8051ACF4, local
+	.float 30.0
+.endobj lbl_8051ACF4
+.obj lbl_8051ACF8, local
+	.float 0.0
+.endobj lbl_8051ACF8
+.obj lbl_8051ACFC, local
+	.float 25.0
+.endobj lbl_8051ACFC
+.obj lbl_8051AD00, local
 	.float 1.0
-lbl_8051AD04:
-	.4byte 0x40F00000
-lbl_8051AD08:
-	.4byte 0xC3A2F983
-lbl_8051AD0C:
-	.4byte 0x43A2F983
-lbl_8051AD10:
-	.4byte 0x3FC90FDB
-lbl_8051AD14:
-	.4byte 0x40200000
-lbl_8051AD18:
-	.4byte 0x40C90FDB
-lbl_8051AD1C:
-	.4byte 0x40000000
-lbl_8051AD20:
-	.4byte 0x47000000
-	.4byte 0x00000000
-lbl_8051AD28:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051AD30:
-	.4byte 0x77617465
-	.4byte 0x72000000
-lbl_8051AD38:
-	.4byte 0x3FA99999
-	.4byte 0x9999999A
+.endobj lbl_8051AD00
+.obj lbl_8051AD04, local
+	.float 7.5
+.endobj lbl_8051AD04
+.obj lbl_8051AD08, local
+	.float -325.9493
+.endobj lbl_8051AD08
+.obj lbl_8051AD0C, local
+	.float 325.9493
+.endobj lbl_8051AD0C
+.obj lbl_8051AD10, local # pi/2
+	.float 1.5707964
+.endobj lbl_8051AD10
+.obj lbl_8051AD14, local
+	.float 2.5
+.endobj lbl_8051AD14
+.obj lbl_8051AD18, local # tau
+	.float 6.2831855
+.endobj lbl_8051AD18
+.obj lbl_8051AD1C, local
+	.float 2.0
+.endobj lbl_8051AD1C
+.obj lbl_8051AD20, local
+	.float 32768.0
+.endobj lbl_8051AD20
+.balign 8
+.obj lbl_8051AD28, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051AD28
+.balign 4
+.obj lbl_8051AD30, local
+	.asciz "water"
+.endobj lbl_8051AD30
+.balign 8
+.obj lbl_8051AD38, local
+	.double 0.05
+.endobj lbl_8051AD38
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game7Qurione3ObjFv
-__ct__Q34Game7Qurione3ObjFv:
+.fn __ct__Q34Game7Qurione3ObjFv, global
 /* 80260178 0025D0B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026017C 0025D0BC  7C 08 02 A6 */	mflr r0
 /* 80260180 0025D0C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -414,9 +427,9 @@ __ct__Q34Game7Qurione3ObjFv:
 /* 802602C0 0025D200  7C 08 03 A6 */	mtlr r0
 /* 802602C4 0025D204  38 21 00 10 */	addi r1, r1, 0x10
 /* 802602C8 0025D208  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game7Qurione3ObjFv
 
-.global "birth__Q34Game7Qurione3ObjFR10Vector3<f>f"
-"birth__Q34Game7Qurione3ObjFR10Vector3<f>f":
+.fn "birth__Q34Game7Qurione3ObjFR10Vector3<f>f", global
 /* 802602CC 0025D20C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802602D0 0025D210  7C 08 02 A6 */	mflr r0
 /* 802602D4 0025D214  90 01 00 24 */	stw r0, 0x24(r1)
@@ -440,9 +453,9 @@ __ct__Q34Game7Qurione3ObjFv:
 /* 8026031C 0025D25C  7C 08 03 A6 */	mtlr r0
 /* 80260320 0025D260  38 21 00 20 */	addi r1, r1, 0x20
 /* 80260324 0025D264  4E 80 00 20 */	blr 
+.endfn "birth__Q34Game7Qurione3ObjFR10Vector3<f>f"
 
-.global setInitialSetting__Q34Game7Qurione3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game7Qurione3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game7Qurione3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 80260328 0025D268  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026032C 0025D26C  7C 08 02 A6 */	mflr r0
 /* 80260330 0025D270  90 01 00 14 */	stw r0, 0x14(r1)
@@ -454,9 +467,9 @@ setInitialSetting__Q34Game7Qurione3ObjFPQ24Game21EnemyInitialParamBase:
 /* 80260348 0025D288  7C 08 03 A6 */	mtlr r0
 /* 8026034C 0025D28C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260350 0025D290  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game7Qurione3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game7Qurione3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game7Qurione3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game7Qurione3ObjFPQ24Game15CreatureInitArg, global
 /* 80260354 0025D294  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260358 0025D298  7C 08 02 A6 */	mflr r0
 /* 8026035C 0025D29C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -516,9 +529,9 @@ onInit__Q34Game7Qurione3ObjFPQ24Game15CreatureInitArg:
 /* 80260434 0025D374  7C 08 03 A6 */	mtlr r0
 /* 80260438 0025D378  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026043C 0025D37C  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game7Qurione3ObjFPQ24Game15CreatureInitArg
 
-.global onKill__Q34Game7Qurione3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game7Qurione3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game7Qurione3ObjFPQ24Game15CreatureKillArg, global
 /* 80260440 0025D380  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260444 0025D384  7C 08 02 A6 */	mflr r0
 /* 80260448 0025D388  90 01 00 14 */	stw r0, 0x14(r1)
@@ -536,9 +549,9 @@ onKill__Q34Game7Qurione3ObjFPQ24Game15CreatureKillArg:
 /* 80260478 0025D3B8  7C 08 03 A6 */	mtlr r0
 /* 8026047C 0025D3BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260480 0025D3C0  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game7Qurione3ObjFPQ24Game15CreatureKillArg
 
-.global doUpdate__Q34Game7Qurione3ObjFv
-doUpdate__Q34Game7Qurione3ObjFv:
+.fn doUpdate__Q34Game7Qurione3ObjFv, global
 /* 80260484 0025D3C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260488 0025D3C8  7C 08 02 A6 */	mflr r0
 /* 8026048C 0025D3CC  7C 64 1B 78 */	mr r4, r3
@@ -552,9 +565,9 @@ doUpdate__Q34Game7Qurione3ObjFv:
 /* 802604AC 0025D3EC  7C 08 03 A6 */	mtlr r0
 /* 802604B0 0025D3F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802604B4 0025D3F4  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game7Qurione3ObjFv
 
-.global setFSM__Q34Game7Qurione3ObjFPQ34Game7Qurione3FSM
-setFSM__Q34Game7Qurione3ObjFPQ34Game7Qurione3FSM:
+.fn setFSM__Q34Game7Qurione3ObjFPQ34Game7Qurione3FSM, global
 /* 802604B8 0025D3F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802604BC 0025D3FC  7C 08 02 A6 */	mflr r0
 /* 802604C0 0025D400  90 01 00 14 */	stw r0, 0x14(r1)
@@ -574,13 +587,13 @@ setFSM__Q34Game7Qurione3ObjFPQ34Game7Qurione3FSM:
 /* 802604F8 0025D438  7C 08 03 A6 */	mtlr r0
 /* 802604FC 0025D43C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260500 0025D440  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game7Qurione3ObjFPQ34Game7Qurione3FSM
 
-.global doDirectDraw__Q34Game7Qurione3ObjFR8Graphics
-doDirectDraw__Q34Game7Qurione3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game7Qurione3ObjFR8Graphics, global
 /* 80260504 0025D444  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game7Qurione3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game7Qurione3ObjFR8Graphics
-doDebugDraw__Q34Game7Qurione3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game7Qurione3ObjFR8Graphics, global
 /* 80260508 0025D448  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026050C 0025D44C  7C 08 02 A6 */	mflr r0
 /* 80260510 0025D450  90 01 00 14 */	stw r0, 0x14(r1)
@@ -589,9 +602,9 @@ doDebugDraw__Q34Game7Qurione3ObjFR8Graphics:
 /* 8026051C 0025D45C  7C 08 03 A6 */	mtlr r0
 /* 80260520 0025D460  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260524 0025D464  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game7Qurione3ObjFR8Graphics
 
-.global getShadowParam__Q34Game7Qurione3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game7Qurione3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game7Qurione3ObjFRQ24Game11ShadowParam, global
 /* 80260528 0025D468  C0 03 01 8C */	lfs f0, 0x18c(r3)
 /* 8026052C 0025D46C  C0 22 C9 9C */	lfs f1, lbl_8051ACFC@sda21(r2)
 /* 80260530 0025D470  D0 04 00 00 */	stfs f0, 0(r4)
@@ -615,9 +628,9 @@ getShadowParam__Q34Game7Qurione3ObjFRQ24Game11ShadowParam:
 /* 80260578 0025D4B8  EC 01 00 2A */	fadds f0, f1, f0
 /* 8026057C 0025D4BC  D0 04 00 18 */	stfs f0, 0x18(r4)
 /* 80260580 0025D4C0  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game7Qurione3ObjFRQ24Game11ShadowParam
 
-.global flyCollisionCallBack__Q34Game7Qurione3ObjFPQ24Game8CreaturefP8CollPart
-flyCollisionCallBack__Q34Game7Qurione3ObjFPQ24Game8CreaturefP8CollPart:
+.fn flyCollisionCallBack__Q34Game7Qurione3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 80260584 0025D4C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260588 0025D4C8  7C 08 02 A6 */	mflr r0
 /* 8026058C 0025D4CC  28 04 00 00 */	cmplwi r4, 0
@@ -654,9 +667,9 @@ flyCollisionCallBack__Q34Game7Qurione3ObjFPQ24Game8CreaturefP8CollPart:
 /* 80260600 0025D540  7C 08 03 A6 */	mtlr r0
 /* 80260604 0025D544  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260608 0025D548  4E 80 00 20 */	blr 
+.endfn flyCollisionCallBack__Q34Game7Qurione3ObjFPQ24Game8CreaturefP8CollPart
 
-.global doStartWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv
-doStartWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv:
+.fn doStartWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv, global
 /* 8026060C 0025D54C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260610 0025D550  7C 08 02 A6 */	mflr r0
 /* 80260614 0025D554  90 01 00 14 */	stw r0, 0x14(r1)
@@ -670,9 +683,9 @@ doStartWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv:
 /* 80260634 0025D574  7C 08 03 A6 */	mtlr r0
 /* 80260638 0025D578  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026063C 0025D57C  4E 80 00 20 */	blr 
+.endfn doStartWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv
 
-.global doFinishWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv
-doFinishWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv:
+.fn doFinishWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv, global
 /* 80260640 0025D580  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260644 0025D584  7C 08 02 A6 */	mflr r0
 /* 80260648 0025D588  90 01 00 14 */	stw r0, 0x14(r1)
@@ -686,9 +699,9 @@ doFinishWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv:
 /* 80260668 0025D5A8  7C 08 03 A6 */	mtlr r0
 /* 8026066C 0025D5AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260670 0025D5B0  4E 80 00 20 */	blr 
+.endfn doFinishWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv
 
-.global doStartMovie__Q34Game7Qurione3ObjFv
-doStartMovie__Q34Game7Qurione3ObjFv:
+.fn doStartMovie__Q34Game7Qurione3ObjFv, global
 /* 80260674 0025D5B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260678 0025D5B8  7C 08 02 A6 */	mflr r0
 /* 8026067C 0025D5BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -697,9 +710,9 @@ doStartMovie__Q34Game7Qurione3ObjFv:
 /* 80260688 0025D5C8  7C 08 03 A6 */	mtlr r0
 /* 8026068C 0025D5CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260690 0025D5D0  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game7Qurione3ObjFv
 
-.global doEndMovie__Q34Game7Qurione3ObjFv
-doEndMovie__Q34Game7Qurione3ObjFv:
+.fn doEndMovie__Q34Game7Qurione3ObjFv, global
 /* 80260694 0025D5D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260698 0025D5D8  7C 08 02 A6 */	mflr r0
 /* 8026069C 0025D5DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -708,9 +721,9 @@ doEndMovie__Q34Game7Qurione3ObjFv:
 /* 802606A8 0025D5E8  7C 08 03 A6 */	mtlr r0
 /* 802606AC 0025D5EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802606B0 0025D5F0  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game7Qurione3ObjFv
 
-.global setQurioneStartPos__Q34Game7Qurione3ObjFf
-setQurioneStartPos__Q34Game7Qurione3ObjFf:
+.fn setQurioneStartPos__Q34Game7Qurione3ObjFf, global
 /* 802606B4 0025D5F4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802606B8 0025D5F8  C0 02 C9 98 */	lfs f0, lbl_8051ACF8@sda21(r2)
 /* 802606BC 0025D5FC  C0 43 01 8C */	lfs f2, 0x18c(r3)
@@ -815,9 +828,9 @@ setQurioneStartPos__Q34Game7Qurione3ObjFf:
 /* 80260830 0025D770  D0 03 02 E8 */	stfs f0, 0x2e8(r3)
 /* 80260834 0025D774  38 21 00 40 */	addi r1, r1, 0x40
 /* 80260838 0025D778  4E 80 00 20 */	blr 
+.endfn setQurioneStartPos__Q34Game7Qurione3ObjFf
 
-.global moveFaceDir__Q34Game7Qurione3ObjFv
-moveFaceDir__Q34Game7Qurione3ObjFv:
+.fn moveFaceDir__Q34Game7Qurione3ObjFv, global
 /* 8026083C 0025D77C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80260840 0025D780  7C 08 02 A6 */	mflr r0
 /* 80260844 0025D784  90 01 00 64 */	stw r0, 0x64(r1)
@@ -911,9 +924,9 @@ moveFaceDir__Q34Game7Qurione3ObjFv:
 /* 8026099C 0025D8DC  7C 08 03 A6 */	mtlr r0
 /* 802609A0 0025D8E0  38 21 00 60 */	addi r1, r1, 0x60
 /* 802609A4 0025D8E4  4E 80 00 20 */	blr 
+.endfn moveFaceDir__Q34Game7Qurione3ObjFv
 
-.global addPitchRatio__Q34Game7Qurione3ObjFv
-addPitchRatio__Q34Game7Qurione3ObjFv:
+.fn addPitchRatio__Q34Game7Qurione3ObjFv, global
 /* 802609A8 0025D8E8  80 A3 00 C0 */	lwz r5, 0xc0(r3)
 /* 802609AC 0025D8EC  80 8D 9A EC */	lwz r4, sys@sda21(r13)
 /* 802609B0 0025D8F0  C0 65 08 44 */	lfs f3, 0x844(r5)
@@ -928,9 +941,9 @@ addPitchRatio__Q34Game7Qurione3ObjFv:
 /* 802609D4 0025D914  EC 01 00 28 */	fsubs f0, f1, f0
 /* 802609D8 0025D918  D0 03 02 C8 */	stfs f0, 0x2c8(r3)
 /* 802609DC 0025D91C  4E 80 00 20 */	blr 
+.endfn addPitchRatio__Q34Game7Qurione3ObjFv
 
-.global resetUtilityTimer__Q34Game7Qurione3ObjFv
-resetUtilityTimer__Q34Game7Qurione3ObjFv:
+.fn resetUtilityTimer__Q34Game7Qurione3ObjFv, global
 /* 802609E0 0025D920  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802609E4 0025D924  7C 08 02 A6 */	mflr r0
 /* 802609E8 0025D928  90 01 00 24 */	stw r0, 0x24(r1)
@@ -967,9 +980,9 @@ resetUtilityTimer__Q34Game7Qurione3ObjFv:
 /* 80260A5C 0025D99C  7C 08 03 A6 */	mtlr r0
 /* 80260A60 0025D9A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80260A64 0025D9A4  4E 80 00 20 */	blr 
+.endfn resetUtilityTimer__Q34Game7Qurione3ObjFv
 
-.global isAppear__Q34Game7Qurione3ObjFv
-isAppear__Q34Game7Qurione3ObjFv:
+.fn isAppear__Q34Game7Qurione3ObjFv, global
 /* 80260A68 0025D9A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260A6C 0025D9AC  7C 08 02 A6 */	mflr r0
 /* 80260A70 0025D9B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1000,9 +1013,9 @@ isAppear__Q34Game7Qurione3ObjFv:
 /* 80260AC8 0025DA08  7C 08 03 A6 */	mtlr r0
 /* 80260ACC 0025DA0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260AD0 0025DA10  4E 80 00 20 */	blr 
+.endfn isAppear__Q34Game7Qurione3ObjFv
 
-.global isFlyKill__Q34Game7Qurione3ObjFv
-isFlyKill__Q34Game7Qurione3ObjFv:
+.fn isFlyKill__Q34Game7Qurione3ObjFv, global
 /* 80260AD4 0025DA14  88 03 00 D8 */	lbz r0, 0xd8(r3)
 /* 80260AD8 0025DA18  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 80260ADC 0025DA1C  41 82 00 18 */	beq .L_80260AF4
@@ -1017,9 +1030,9 @@ isFlyKill__Q34Game7Qurione3ObjFv:
 .L_80260AFC:
 /* 80260AFC 0025DA3C  38 60 00 00 */	li r3, 0
 /* 80260B00 0025DA40  4E 80 00 20 */	blr 
+.endfn isFlyKill__Q34Game7Qurione3ObjFv
 
-.global attachItem__Q34Game7Qurione3ObjFv
-attachItem__Q34Game7Qurione3ObjFv:
+.fn attachItem__Q34Game7Qurione3ObjFv, global
 /* 80260B04 0025DA44  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80260B08 0025DA48  7C 08 02 A6 */	mflr r0
 /* 80260B0C 0025DA4C  38 82 C9 D0 */	addi r4, r2, lbl_8051AD30@sda21
@@ -1062,9 +1075,9 @@ attachItem__Q34Game7Qurione3ObjFv:
 /* 80260B9C 0025DADC  7C 08 03 A6 */	mtlr r0
 /* 80260BA0 0025DAE0  38 21 00 50 */	addi r1, r1, 0x50
 /* 80260BA4 0025DAE4  4E 80 00 20 */	blr 
+.endfn attachItem__Q34Game7Qurione3ObjFv
 
-.global dropItem__Q34Game7Qurione3ObjFv
-dropItem__Q34Game7Qurione3ObjFv:
+.fn dropItem__Q34Game7Qurione3ObjFv, global
 /* 80260BA8 0025DAE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260BAC 0025DAEC  7C 08 02 A6 */	mflr r0
 /* 80260BB0 0025DAF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1085,9 +1098,9 @@ dropItem__Q34Game7Qurione3ObjFv:
 /* 80260BE8 0025DB28  7C 08 03 A6 */	mtlr r0
 /* 80260BEC 0025DB2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260BF0 0025DB30  4E 80 00 20 */	blr 
+.endfn dropItem__Q34Game7Qurione3ObjFv
 
-.global addQurioneScale__Q34Game7Qurione3ObjFv
-addQurioneScale__Q34Game7Qurione3ObjFv:
+.fn addQurioneScale__Q34Game7Qurione3ObjFv, global
 /* 80260BF4 0025DB34  C0 43 02 C0 */	lfs f2, 0x2c0(r3)
 /* 80260BF8 0025DB38  C8 22 C9 D8 */	lfd f1, lbl_8051AD38@sda21(r2)
 /* 80260BFC 0025DB3C  C0 02 C9 A0 */	lfs f0, lbl_8051AD00@sda21(r2)
@@ -1099,9 +1112,9 @@ addQurioneScale__Q34Game7Qurione3ObjFv:
 /* 80260C14 0025DB54  4C 81 00 20 */	blelr 
 /* 80260C18 0025DB58  D0 03 02 C0 */	stfs f0, 0x2c0(r3)
 /* 80260C1C 0025DB5C  4E 80 00 20 */	blr 
+.endfn addQurioneScale__Q34Game7Qurione3ObjFv
 
-.global subQurioneScale__Q34Game7Qurione3ObjFv
-subQurioneScale__Q34Game7Qurione3ObjFv:
+.fn subQurioneScale__Q34Game7Qurione3ObjFv, global
 /* 80260C20 0025DB60  C0 43 02 C0 */	lfs f2, 0x2c0(r3)
 /* 80260C24 0025DB64  C8 22 C9 D8 */	lfd f1, lbl_8051AD38@sda21(r2)
 /* 80260C28 0025DB68  C0 02 C9 98 */	lfs f0, lbl_8051ACF8@sda21(r2)
@@ -1113,9 +1126,9 @@ subQurioneScale__Q34Game7Qurione3ObjFv:
 /* 80260C40 0025DB80  4C 80 00 20 */	bgelr 
 /* 80260C44 0025DB84  D0 03 02 C0 */	stfs f0, 0x2c0(r3)
 /* 80260C48 0025DB88  4E 80 00 20 */	blr 
+.endfn subQurioneScale__Q34Game7Qurione3ObjFv
 
-.global createEffect__Q34Game7Qurione3ObjFv
-createEffect__Q34Game7Qurione3ObjFv:
+.fn createEffect__Q34Game7Qurione3ObjFv, global
 /* 80260C4C 0025DB8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260C50 0025DB90  7C 08 02 A6 */	mflr r0
 /* 80260C54 0025DB94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1231,9 +1244,9 @@ createEffect__Q34Game7Qurione3ObjFv:
 /* 80260E00 0025DD40  7C 08 03 A6 */	mtlr r0
 /* 80260E04 0025DD44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260E08 0025DD48  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game7Qurione3ObjFv
 
-.global setupEffect__Q34Game7Qurione3ObjFv
-setupEffect__Q34Game7Qurione3ObjFv:
+.fn setupEffect__Q34Game7Qurione3ObjFv, global
 /* 80260E0C 0025DD4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260E10 0025DD50  7C 08 02 A6 */	mflr r0
 /* 80260E14 0025DD54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1255,9 +1268,9 @@ setupEffect__Q34Game7Qurione3ObjFv:
 /* 80260E54 0025DD94  7C 08 03 A6 */	mtlr r0
 /* 80260E58 0025DD98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260E5C 0025DD9C  4E 80 00 20 */	blr 
+.endfn setupEffect__Q34Game7Qurione3ObjFv
 
-.global createHitEffect__Q34Game7Qurione3ObjFv
-createHitEffect__Q34Game7Qurione3ObjFv:
+.fn createHitEffect__Q34Game7Qurione3ObjFv, global
 /* 80260E60 0025DDA0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80260E64 0025DDA4  7C 08 02 A6 */	mflr r0
 /* 80260E68 0025DDA8  3C 80 80 48 */	lis r4, lbl_80485760@ha
@@ -1298,9 +1311,9 @@ createHitEffect__Q34Game7Qurione3ObjFv:
 /* 80260EF4 0025DE34  7C 08 03 A6 */	mtlr r0
 /* 80260EF8 0025DE38  38 21 00 30 */	addi r1, r1, 0x30
 /* 80260EFC 0025DE3C  4E 80 00 20 */	blr 
+.endfn createHitEffect__Q34Game7Qurione3ObjFv
 
-.global startGlowEffect__Q34Game7Qurione3ObjFv
-startGlowEffect__Q34Game7Qurione3ObjFv:
+.fn startGlowEffect__Q34Game7Qurione3ObjFv, global
 /* 80260F00 0025DE40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260F04 0025DE44  7C 08 02 A6 */	mflr r0
 /* 80260F08 0025DE48  38 80 00 00 */	li r4, 0
@@ -1320,9 +1333,9 @@ startGlowEffect__Q34Game7Qurione3ObjFv:
 /* 80260F40 0025DE80  7C 08 03 A6 */	mtlr r0
 /* 80260F44 0025DE84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260F48 0025DE88  4E 80 00 20 */	blr 
+.endfn startGlowEffect__Q34Game7Qurione3ObjFv
 
-.global setGlowEffectScale__Q34Game7Qurione3ObjFv
-setGlowEffectScale__Q34Game7Qurione3ObjFv:
+.fn setGlowEffectScale__Q34Game7Qurione3ObjFv, global
 /* 80260F4C 0025DE8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260F50 0025DE90  7C 08 02 A6 */	mflr r0
 /* 80260F54 0025DE94  7C 64 1B 78 */	mr r4, r3
@@ -1334,9 +1347,9 @@ setGlowEffectScale__Q34Game7Qurione3ObjFv:
 /* 80260F6C 0025DEAC  7C 08 03 A6 */	mtlr r0
 /* 80260F70 0025DEB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260F74 0025DEB4  4E 80 00 20 */	blr 
+.endfn setGlowEffectScale__Q34Game7Qurione3ObjFv
 
-.global finishGlowEffect__Q34Game7Qurione3ObjFv
-finishGlowEffect__Q34Game7Qurione3ObjFv:
+.fn finishGlowEffect__Q34Game7Qurione3ObjFv, global
 /* 80260F78 0025DEB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260F7C 0025DEBC  7C 08 02 A6 */	mflr r0
 /* 80260F80 0025DEC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1349,9 +1362,9 @@ finishGlowEffect__Q34Game7Qurione3ObjFv:
 /* 80260F9C 0025DEDC  7C 08 03 A6 */	mtlr r0
 /* 80260FA0 0025DEE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260FA4 0025DEE4  4E 80 00 20 */	blr 
+.endfn finishGlowEffect__Q34Game7Qurione3ObjFv
 
-.global createAppearEffect__Q34Game7Qurione3ObjFv
-createAppearEffect__Q34Game7Qurione3ObjFv:
+.fn createAppearEffect__Q34Game7Qurione3ObjFv, global
 /* 80260FA8 0025DEE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260FAC 0025DEEC  7C 08 02 A6 */	mflr r0
 /* 80260FB0 0025DEF0  38 80 00 00 */	li r4, 0
@@ -1365,9 +1378,9 @@ createAppearEffect__Q34Game7Qurione3ObjFv:
 /* 80260FD0 0025DF10  7C 08 03 A6 */	mtlr r0
 /* 80260FD4 0025DF14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80260FD8 0025DF18  4E 80 00 20 */	blr 
+.endfn createAppearEffect__Q34Game7Qurione3ObjFv
 
-.global createDisppearEffect__Q34Game7Qurione3ObjFv
-createDisppearEffect__Q34Game7Qurione3ObjFv:
+.fn createDisppearEffect__Q34Game7Qurione3ObjFv, global
 /* 80260FDC 0025DF1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80260FE0 0025DF20  7C 08 02 A6 */	mflr r0
 /* 80260FE4 0025DF24  38 80 00 00 */	li r4, 0
@@ -1381,9 +1394,9 @@ createDisppearEffect__Q34Game7Qurione3ObjFv:
 /* 80261004 0025DF44  7C 08 03 A6 */	mtlr r0
 /* 80261008 0025DF48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026100C 0025DF4C  4E 80 00 20 */	blr 
+.endfn createDisppearEffect__Q34Game7Qurione3ObjFv
 
-.global effectDrawOn__Q34Game7Qurione3ObjFv
-effectDrawOn__Q34Game7Qurione3ObjFv:
+.fn effectDrawOn__Q34Game7Qurione3ObjFv, global
 /* 80261010 0025DF50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80261014 0025DF54  7C 08 02 A6 */	mflr r0
 /* 80261018 0025DF58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1409,9 +1422,9 @@ effectDrawOn__Q34Game7Qurione3ObjFv:
 /* 80261068 0025DFA8  7C 08 03 A6 */	mtlr r0
 /* 8026106C 0025DFAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80261070 0025DFB0  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game7Qurione3ObjFv
 
-.global effectDrawOff__Q34Game7Qurione3ObjFv
-effectDrawOff__Q34Game7Qurione3ObjFv:
+.fn effectDrawOff__Q34Game7Qurione3ObjFv, global
 /* 80261074 0025DFB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80261078 0025DFB8  7C 08 02 A6 */	mflr r0
 /* 8026107C 0025DFBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1437,9 +1450,9 @@ effectDrawOff__Q34Game7Qurione3ObjFv:
 /* 802610CC 0025E00C  7C 08 03 A6 */	mtlr r0
 /* 802610D0 0025E010  38 21 00 10 */	addi r1, r1, 0x10
 /* 802610D4 0025E014  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game7Qurione3ObjFv
 
-.global __dt__Q23efx10TQuriDisapFv
-__dt__Q23efx10TQuriDisapFv:
+.fn __dt__Q23efx10TQuriDisapFv, weak
 /* 802610D8 0025E018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802610DC 0025E01C  7C 08 02 A6 */	mflr r0
 /* 802610E0 0025E020  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1481,9 +1494,9 @@ __dt__Q23efx10TQuriDisapFv:
 /* 80261168 0025E0A8  7C 08 03 A6 */	mtlr r0
 /* 8026116C 0025E0AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80261170 0025E0B0  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx10TQuriDisapFv
 
-.global __dt__Q23efx8TQuriAppFv
-__dt__Q23efx8TQuriAppFv:
+.fn __dt__Q23efx8TQuriAppFv, weak
 /* 80261174 0025E0B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80261178 0025E0B8  7C 08 02 A6 */	mflr r0
 /* 8026117C 0025E0BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1525,9 +1538,9 @@ __dt__Q23efx8TQuriAppFv:
 /* 80261204 0025E144  7C 08 03 A6 */	mtlr r0
 /* 80261208 0025E148  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026120C 0025E14C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx8TQuriAppFv
 
-.global __dt__Q23efx9TQuriGlowFv
-__dt__Q23efx9TQuriGlowFv:
+.fn __dt__Q23efx9TQuriGlowFv, weak
 /* 80261210 0025E150  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80261214 0025E154  7C 08 02 A6 */	mflr r0
 /* 80261218 0025E158  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1569,79 +1582,80 @@ __dt__Q23efx9TQuriGlowFv:
 /* 802612A0 0025E1E0  7C 08 03 A6 */	mtlr r0
 /* 802612A4 0025E1E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802612A8 0025E1E8  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx9TQuriGlowFv
 
-.global inWaterCallback__Q34Game7Qurione3ObjFPQ24Game8WaterBox
-inWaterCallback__Q34Game7Qurione3ObjFPQ24Game8WaterBox:
+.fn inWaterCallback__Q34Game7Qurione3ObjFPQ24Game8WaterBox, weak
 /* 802612AC 0025E1EC  4E 80 00 20 */	blr 
+.endfn inWaterCallback__Q34Game7Qurione3ObjFPQ24Game8WaterBox
 
-.global outWaterCallback__Q34Game7Qurione3ObjFv
-outWaterCallback__Q34Game7Qurione3ObjFv:
+.fn outWaterCallback__Q34Game7Qurione3ObjFv, weak
 /* 802612B0 0025E1F0  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q34Game7Qurione3ObjFv
 
-.global getEnemyTypeID__Q34Game7Qurione3ObjFv
-getEnemyTypeID__Q34Game7Qurione3ObjFv:
+.fn getEnemyTypeID__Q34Game7Qurione3ObjFv, weak
 /* 802612B4 0025E1F4  38 60 00 10 */	li r3, 0x10
 /* 802612B8 0025E1F8  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game7Qurione3ObjFv
 
-.global "@764@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-"@764@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
+.fn "@764@12@viewOnPelletKilled__Q24Game9EnemyBaseFv", weak
 /* 802612BC 0025E1FC  39 60 00 0C */	li r11, 0xc
 /* 802612C0 0025E200  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802612C4 0025E204  7C 63 5A 14 */	add r3, r3, r11
 /* 802612C8 0025E208  38 63 FD 04 */	addi r3, r3, -764
 /* 802612CC 0025E20C  4B EA 56 50 */	b viewOnPelletKilled__Q24Game9EnemyBaseFv
+.endfn "@764@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 
-.global "@764@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-"@764@12@viewStartCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@764@12@viewStartCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 802612D0 0025E210  39 60 00 0C */	li r11, 0xc
 /* 802612D4 0025E214  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802612D8 0025E218  7C 63 5A 14 */	add r3, r3, r11
 /* 802612DC 0025E21C  38 63 FD 04 */	addi r3, r3, -764
 /* 802612E0 0025E220  4B EA 53 C8 */	b viewStartCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@764@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@764@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-"@764@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@764@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 802612E4 0025E224  39 60 00 0C */	li r11, 0xc
 /* 802612E8 0025E228  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802612EC 0025E22C  7C 63 5A 14 */	add r3, r3, r11
 /* 802612F0 0025E230  38 63 FD 04 */	addi r3, r3, -764
 /* 802612F4 0025E234  4B EA 53 D4 */	b viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@764@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@764@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-"@764@12@view_finish_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@764@12@view_finish_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 802612F8 0025E238  39 60 00 0C */	li r11, 0xc
 /* 802612FC 0025E23C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80261300 0025E240  7C 63 5A 14 */	add r3, r3, r11
 /* 80261304 0025E244  38 63 FD 04 */	addi r3, r3, -764
 /* 80261308 0025E248  4B EA 57 70 */	b view_finish_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@764@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@764@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-"@764@12@view_start_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@764@12@view_start_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 8026130C 0025E24C  39 60 00 0C */	li r11, 0xc
 /* 80261310 0025E250  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80261314 0025E254  7C 63 5A 14 */	add r3, r3, r11
 /* 80261318 0025E258  38 63 FD 04 */	addi r3, r3, -764
 /* 8026131C 0025E25C  4B EA 57 30 */	b view_start_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@764@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@764@12@viewGetShape__Q24Game9EnemyBaseFv"
-"@764@12@viewGetShape__Q24Game9EnemyBaseFv":
+.fn "@764@12@viewGetShape__Q24Game9EnemyBaseFv", weak
 /* 80261320 0025E260  39 60 00 0C */	li r11, 0xc
 /* 80261324 0025E264  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80261328 0025E268  7C 63 5A 14 */	add r3, r3, r11
 /* 8026132C 0025E26C  38 63 FD 04 */	addi r3, r3, -764
 /* 80261330 0025E270  4B EA 53 70 */	b viewGetShape__Q24Game9EnemyBaseFv
+.endfn "@764@12@viewGetShape__Q24Game9EnemyBaseFv"
 
-.global "@4@__dt__Q23efx9TQuriGlowFv"
-"@4@__dt__Q23efx9TQuriGlowFv":
+.fn "@4@__dt__Q23efx9TQuriGlowFv", weak
 /* 80261334 0025E274  38 63 FF FC */	addi r3, r3, -4
 /* 80261338 0025E278  4B FF FE D8 */	b __dt__Q23efx9TQuriGlowFv
+.endfn "@4@__dt__Q23efx9TQuriGlowFv"
 
-.global "@4@__dt__Q23efx8TQuriAppFv"
-"@4@__dt__Q23efx8TQuriAppFv":
+.fn "@4@__dt__Q23efx8TQuriAppFv", weak
 /* 8026133C 0025E27C  38 63 FF FC */	addi r3, r3, -4
 /* 80261340 0025E280  4B FF FE 34 */	b __dt__Q23efx8TQuriAppFv
+.endfn "@4@__dt__Q23efx8TQuriAppFv"
 
-.global "@4@__dt__Q23efx10TQuriDisapFv"
-"@4@__dt__Q23efx10TQuriDisapFv":
+.fn "@4@__dt__Q23efx10TQuriDisapFv", weak
 /* 80261344 0025E284  38 63 FF FC */	addi r3, r3, -4
 /* 80261348 0025E288  4B FF FD 90 */	b __dt__Q23efx10TQuriDisapFv
+.endfn "@4@__dt__Q23efx10TQuriDisapFv"

@@ -1,15 +1,14 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx11THdamaShoot
-__vt__Q23efx11THdamaShoot:
+.obj __vt__Q23efx11THdamaShoot, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx3FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q23efx11THdamaSight
-__vt__Q23efx11THdamaSight:
+.endobj __vt__Q23efx11THdamaShoot
+.obj __vt__Q23efx11THdamaSight, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -29,103 +28,128 @@ __vt__Q23efx11THdamaSight:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx11THdamaSightFv
-.global __vt__Q23efx10THdamaHit1
-__vt__Q23efx10THdamaHit1:
+.endobj __vt__Q23efx11THdamaSight
+.obj __vt__Q23efx10THdamaHit1, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple5FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple5Fv
 	.4byte fade__Q23efx8TSimple5Fv
-.global __vt__Q23efx10THdamaHit2
-__vt__Q23efx10THdamaHit2:
+.endobj __vt__Q23efx10THdamaHit1
+.obj __vt__Q23efx10THdamaHit2, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple4FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple4Fv
 	.4byte fade__Q23efx8TSimple4Fv
-.global __vt__Q23efx10THdamaHit3
-__vt__Q23efx10THdamaHit3:
+.endobj __vt__Q23efx10THdamaHit2
+.obj __vt__Q23efx10THdamaHit3, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple4FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple4Fv
 	.4byte fade__Q23efx8TSimple4Fv
-.global __vt__Q23efx6ArgDir
-__vt__Q23efx6ArgDir:
+.endobj __vt__Q23efx10THdamaHit3
+.obj __vt__Q23efx6ArgDir, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q23efx6ArgDirFv
-.global __vt__Q34Game6Houdai17HoudaiShotGunNode
-__vt__Q34Game6Houdai17HoudaiShotGunNode:
+.endobj __vt__Q23efx6ArgDir
+.obj __vt__Q34Game6Houdai17HoudaiShotGunNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game6Houdai17HoudaiShotGunNodeFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q34Game6Houdai17HoudaiShotGunNode
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sHoudaiShotGunMgr__Q24Game6Houdai
-sHoudaiShotGunMgr__Q24Game6Houdai:
+.obj sHoudaiShotGunMgr__Q24Game6Houdai, local
 	.skip 0x4
+.endobj sHoudaiShotGunMgr__Q24Game6Houdai
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051C588:
-	.4byte 0x00000000
-lbl_8051C58C:
+.obj lbl_8051C588, local
+	.float 0.0
+.endobj lbl_8051C588
+.obj lbl_8051C58C, local
 	.float 1.0
-lbl_8051C590:
-	.4byte 0x41200000
-lbl_8051C594:
-	.4byte 0x3F19999A
-lbl_8051C598:
-	.4byte 0x41A00000
-lbl_8051C59C:
-	.4byte 0x44BB8000
-lbl_8051C5A0:
-	.4byte 0x447A0000
-lbl_8051C5A4:
+.endobj lbl_8051C58C
+.obj lbl_8051C590, local
+	.float 10.0
+.endobj lbl_8051C590
+.obj lbl_8051C594, local
+	.float 0.6
+.endobj lbl_8051C594
+.obj lbl_8051C598, local
+	.float 20.0
+.endobj lbl_8051C598
+.obj lbl_8051C59C, local
+	.float 1500.0
+.endobj lbl_8051C59C
+.obj lbl_8051C5A0, local
+	.float 1000.0
+.endobj lbl_8051C5A0
+.obj lbl_8051C5A4, local
 	.float 0.5
-lbl_8051C5A8:
-	.4byte 0x42C80000
-lbl_8051C5AC:
-	.4byte 0x43FA0000
-lbl_8051C5B0:
-	.4byte 0x74616D61
-	.4byte 0x6A6E7400
-lbl_8051C5B8:
-	.4byte 0x67756E00
-lbl_8051C5BC:
-	.4byte 0x40000000
-lbl_8051C5C0:
-	.4byte 0x47000000
-lbl_8051C5C4:
-	.4byte 0x42340000
-lbl_8051C5C8:
-	.4byte 0x44160000
-	.4byte 0x00000000
-lbl_8051C5D0:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051C5D8:
+.endobj lbl_8051C5A4
+.obj lbl_8051C5A8, local
+	.float 100.0
+.endobj lbl_8051C5A8
+.obj lbl_8051C5AC, local
+	.float 500.0
+.endobj lbl_8051C5AC
+.balign 4
+.obj lbl_8051C5B0, local
+	.asciz "tamajnt"
+.endobj lbl_8051C5B0
+.balign 4
+.obj lbl_8051C5B8, local
+	.asciz "gun"
+.endobj lbl_8051C5B8
+.balign 4
+.obj lbl_8051C5BC, local
+	.float 2.0
+.endobj lbl_8051C5BC
+.obj lbl_8051C5C0, local
+	.float 32768.0
+.endobj lbl_8051C5C0
+.obj lbl_8051C5C4, local
+	.float 45.0
+.endobj lbl_8051C5C4
+.obj lbl_8051C5C8, local
+	.float 600.0
+.endobj lbl_8051C5C8
+.balign 8
+.obj lbl_8051C5D0, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051C5D0
+.obj lbl_8051C5D8, local
 	.float 0.05
-lbl_8051C5DC:
-	.4byte 0x40C90FDB
-lbl_8051C5E0:
-	.4byte 0x40490FDB
-lbl_8051C5E4:
-	.4byte 0x3CCCCCCD
-lbl_8051C5E8:
-	.4byte 0x3C23D70A
-lbl_8051C5EC:
-	.4byte 0x42480000
-lbl_8051C5F0:
-	.4byte 0x41726744
-	.4byte 0x69720000
+.endobj lbl_8051C5D8
+.obj lbl_8051C5DC, local # tau
+	.float 6.2831855
+.endobj lbl_8051C5DC
+.obj lbl_8051C5E0, local # pi
+	.float 3.1415927
+.endobj lbl_8051C5E0
+.obj lbl_8051C5E4, local
+	.float 0.025
+.endobj lbl_8051C5E4
+.obj lbl_8051C5E8, local
+	.float 0.01
+.endobj lbl_8051C5E8
+.obj lbl_8051C5EC, local
+	.float 50.0
+.endobj lbl_8051C5EC
+.balign 4
+.obj lbl_8051C5F0, local
+	.asciz "ArgDir"
+.endobj lbl_8051C5F0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi
-levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi:
+.fn levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi, local
 /* 802C394C 002C088C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C3950 002C0890  7C 08 02 A6 */	mflr r0
 /* 802C3954 002C0894  2C 04 00 00 */	cmpwi r4, 0
@@ -142,9 +166,9 @@ levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi:
 /* 802C397C 002C08BC  7C 08 03 A6 */	mtlr r0
 /* 802C3980 002C08C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C3984 002C08C4  4E 80 00 20 */	blr 
+.endfn levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi
 
-.global verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi
-verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi:
+.fn verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi, local
 /* 802C3988 002C08C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C398C 002C08CC  7C 08 02 A6 */	mflr r0
 /* 802C3990 002C08D0  2C 04 00 00 */	cmpwi r4, 0
@@ -161,9 +185,9 @@ verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi:
 /* 802C39B8 002C08F8  7C 08 03 A6 */	mtlr r0
 /* 802C39BC 002C08FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C39C0 002C0900  4E 80 00 20 */	blr 
+.endfn verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi
 
-.global update__Q34Game6Houdai17HoudaiShotGunNodeFv
-update__Q34Game6Houdai17HoudaiShotGunNodeFv:
+.fn update__Q34Game6Houdai17HoudaiShotGunNodeFv, global
 /* 802C39C4 002C0904  94 21 FC 80 */	stwu r1, -0x380(r1)
 /* 802C39C8 002C0908  7C 08 02 A6 */	mflr r0
 /* 802C39CC 002C090C  90 01 03 84 */	stw r0, 0x384(r1)
@@ -914,9 +938,9 @@ update__Q34Game6Houdai17HoudaiShotGunNodeFv:
 /* 802C44C8 002C1408  7C 08 03 A6 */	mtlr r0
 /* 802C44CC 002C140C  38 21 03 80 */	addi r1, r1, 0x380
 /* 802C44D0 002C1410  4E 80 00 20 */	blr 
+.endfn update__Q34Game6Houdai17HoudaiShotGunNodeFv
 
-.global __ct__Q34Game6Houdai16HoudaiShotGunMgrFPQ34Game6Houdai3Obj
-__ct__Q34Game6Houdai16HoudaiShotGunMgrFPQ34Game6Houdai3Obj:
+.fn __ct__Q34Game6Houdai16HoudaiShotGunMgrFPQ34Game6Houdai3Obj, global
 /* 802C44D4 002C1414  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802C44D8 002C1418  7C 08 02 A6 */	mflr r0
 /* 802C44DC 002C141C  C0 02 E2 28 */	lfs f0, lbl_8051C588@sda21(r2)
@@ -1067,9 +1091,9 @@ __ct__Q34Game6Houdai16HoudaiShotGunMgrFPQ34Game6Houdai3Obj:
 /* 802C4708 002C1648  7C 08 03 A6 */	mtlr r0
 /* 802C470C 002C164C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802C4710 002C1650  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game6Houdai16HoudaiShotGunMgrFPQ34Game6Houdai3Obj
 
-.global setupShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
-setupShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn setupShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4714 002C1654  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802C4718 002C1658  7C 08 02 A6 */	mflr r0
 /* 802C471C 002C165C  C0 02 E2 28 */	lfs f0, lbl_8051C588@sda21(r2)
@@ -1115,20 +1139,20 @@ setupShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C47BC 002C16FC  7C 08 03 A6 */	mtlr r0
 /* 802C47C0 002C1700  38 21 00 20 */	addi r1, r1, 0x20
 /* 802C47C4 002C1704  4E 80 00 20 */	blr 
+.endfn setupShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global resetCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv
-resetCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn resetCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C47C8 002C1708  38 00 00 00 */	li r0, 0
 /* 802C47CC 002C170C  90 0D 97 20 */	stw r0, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
 /* 802C47D0 002C1710  4E 80 00 20 */	blr 
+.endfn resetCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global setCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv
-setCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn setCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C47D4 002C1714  90 6D 97 20 */	stw r3, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
 /* 802C47D8 002C1718  4E 80 00 20 */	blr 
+.endfn setCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global startRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-startRotation__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn startRotation__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C47DC 002C171C  38 80 00 01 */	li r4, 1
 /* 802C47E0 002C1720  38 00 00 00 */	li r0, 0
 /* 802C47E4 002C1724  98 83 00 04 */	stb r4, 4(r3)
@@ -1138,32 +1162,32 @@ startRotation__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C47F4 002C1734  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 802C47F8 002C1738  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802C47FC 002C173C  4E 80 00 20 */	blr 
+.endfn startRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global finishRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-finishRotation__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn finishRotation__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4800 002C1740  38 80 00 00 */	li r4, 0
 /* 802C4804 002C1744  38 00 00 01 */	li r0, 1
 /* 802C4808 002C1748  98 83 00 05 */	stb r4, 5(r3)
 /* 802C480C 002C174C  98 03 00 06 */	stb r0, 6(r3)
 /* 802C4810 002C1750  4E 80 00 20 */	blr 
+.endfn finishRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global isShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-isShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn isShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4814 002C1754  88 63 00 04 */	lbz r3, 4(r3)
 /* 802C4818 002C1758  4E 80 00 20 */	blr 
+.endfn isShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global isShotGunLockOn__Q34Game6Houdai16HoudaiShotGunMgrFv
-isShotGunLockOn__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn isShotGunLockOn__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C481C 002C175C  88 63 00 05 */	lbz r3, 5(r3)
 /* 802C4820 002C1760  4E 80 00 20 */	blr 
+.endfn isShotGunLockOn__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global isFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
-isFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn isFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4824 002C1764  88 63 00 06 */	lbz r3, 6(r3)
 /* 802C4828 002C1768  4E 80 00 20 */	blr 
+.endfn isFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global "setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<f>"
-"setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<f>":
+.fn "setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<f>", global
 /* 802C482C 002C176C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 802C4830 002C1770  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 802C4834 002C1774  C0 04 00 04 */	lfs f0, 4(r4)
@@ -1171,9 +1195,9 @@ isFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C483C 002C177C  C0 04 00 08 */	lfs f0, 8(r4)
 /* 802C4840 002C1780  D0 03 00 20 */	stfs f0, 0x20(r3)
 /* 802C4844 002C1784  4E 80 00 20 */	blr 
+.endfn "setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<f>"
 
-.global emitShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
-emitShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn emitShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4848 002C1788  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 802C484C 002C178C  7C 08 02 A6 */	mflr r0
 /* 802C4850 002C1790  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -1424,9 +1448,9 @@ emitShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C4BFC 002C1B3C  7C 08 03 A6 */	mtlr r0
 /* 802C4C00 002C1B40  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 802C4C04 002C1B44  4E 80 00 20 */	blr 
+.endfn emitShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global doUpdate__Q34Game6Houdai16HoudaiShotGunMgrFv
-doUpdate__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn doUpdate__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4C08 002C1B48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C4C0C 002C1B4C  7C 08 02 A6 */	mflr r0
 /* 802C4C10 002C1B50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1464,9 +1488,9 @@ doUpdate__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C4C80 002C1BC0  7C 08 03 A6 */	mtlr r0
 /* 802C4C84 002C1BC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C4C88 002C1BC8  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global doUpdateCommon__Q34Game6Houdai16HoudaiShotGunMgrFv
-doUpdateCommon__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn doUpdateCommon__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4C8C 002C1BCC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802C4C90 002C1BD0  7C 08 02 A6 */	mflr r0
 /* 802C4C94 002C1BD4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1500,9 +1524,9 @@ doUpdateCommon__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C4CF8 002C1C38  7C 08 03 A6 */	mtlr r0
 /* 802C4CFC 002C1C3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802C4D00 002C1C40  4E 80 00 20 */	blr 
+.endfn doUpdateCommon__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global forceFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
-forceFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn forceFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4D04 002C1C44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802C4D08 002C1C48  7C 08 02 A6 */	mflr r0
 /* 802C4D0C 002C1C4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1538,9 +1562,9 @@ forceFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C4D7C 002C1CBC  7C 08 03 A6 */	mtlr r0
 /* 802C4D80 002C1CC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802C4D84 002C1CC4  4E 80 00 20 */	blr 
+.endfn forceFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4D88 002C1CC8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802C4D8C 002C1CCC  7C 08 02 A6 */	mflr r0
 /* 802C4D90 002C1CD0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1698,9 +1722,9 @@ searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C4FB0 002C1EF0  7C 08 03 A6 */	mtlr r0
 /* 802C4FB4 002C1EF4  38 21 00 50 */	addi r1, r1, 0x50
 /* 802C4FB8 002C1EF8  4E 80 00 20 */	blr 
+.endfn searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global returnShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-returnShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn returnShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C4FBC 002C1EFC  C0 62 E2 28 */	lfs f3, lbl_8051C588@sda21(r2)
 /* 802C4FC0 002C1F00  C0 83 00 08 */	lfs f4, 8(r3)
 /* 802C4FC4 002C1F04  FC 03 20 40 */	fcmpo cr0, f3, f4
@@ -1814,9 +1838,9 @@ returnShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv:
 .L_802C512C:
 /* 802C512C 002C206C  38 60 00 00 */	li r3, 0
 /* 802C5130 002C2070  4E 80 00 20 */	blr 
+.endfn returnShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global rotateLevel__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint
-rotateLevel__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint:
+.fn rotateLevel__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint, global
 /* 802C5134 002C2074  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802C5138 002C2078  7C 08 02 A6 */	mflr r0
 /* 802C513C 002C207C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1844,9 +1868,9 @@ rotateLevel__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint:
 /* 802C5190 002C20D0  7C 08 03 A6 */	mtlr r0
 /* 802C5194 002C20D4  38 21 00 40 */	addi r1, r1, 0x40
 /* 802C5198 002C20D8  4E 80 00 20 */	blr 
+.endfn rotateLevel__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint
 
-.global rotateVertical__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint
-rotateVertical__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint:
+.fn rotateVertical__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint, global
 /* 802C519C 002C20DC  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802C51A0 002C20E0  7C 08 02 A6 */	mflr r0
 /* 802C51A4 002C20E4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2010,9 +2034,9 @@ rotateVertical__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint:
 /* 802C53E8 002C2328  7C 08 03 A6 */	mtlr r0
 /* 802C53EC 002C232C  38 21 00 70 */	addi r1, r1, 0x70
 /* 802C53F0 002C2330  4E 80 00 20 */	blr 
+.endfn rotateVertical__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint
 
-.global finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv
-finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C53F4 002C2334  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C53F8 002C2338  7C 08 02 A6 */	mflr r0
 /* 802C53FC 002C233C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2025,9 +2049,9 @@ finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C5418 002C2358  7C 08 03 A6 */	mtlr r0
 /* 802C541C 002C235C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C5420 002C2360  4E 80 00 20 */	blr 
+.endfn finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global setShotGunLockOnPosition__Q34Game6Houdai16HoudaiShotGunMgrFv
-setShotGunLockOnPosition__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn setShotGunLockOnPosition__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C5424 002C2364  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802C5428 002C2368  7C 08 02 A6 */	mflr r0
 /* 802C542C 002C236C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2184,9 +2208,9 @@ setShotGunLockOnPosition__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C5668 002C25A8  7C 08 03 A6 */	mtlr r0
 /* 802C566C 002C25AC  38 21 00 70 */	addi r1, r1, 0x70
 /* 802C5670 002C25B0  4E 80 00 20 */	blr 
+.endfn setShotGunLockOnPosition__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global effectDrawOn__Q34Game6Houdai16HoudaiShotGunMgrFv
-effectDrawOn__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn effectDrawOn__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C5674 002C25B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C5678 002C25B8  7C 08 02 A6 */	mflr r0
 /* 802C567C 002C25BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2230,9 +2254,9 @@ effectDrawOn__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C5704 002C2644  7C 08 03 A6 */	mtlr r0
 /* 802C5708 002C2648  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C570C 002C264C  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global effectDrawOff__Q34Game6Houdai16HoudaiShotGunMgrFv
-effectDrawOff__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn effectDrawOff__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C5710 002C2650  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C5714 002C2654  7C 08 02 A6 */	mflr r0
 /* 802C5718 002C2658  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2276,9 +2300,9 @@ effectDrawOff__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C57A0 002C26E0  7C 08 03 A6 */	mtlr r0
 /* 802C57A4 002C26E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C57A8 002C26E8  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global startStoneStateEffectOff__Q34Game6Houdai16HoudaiShotGunMgrFv
-startStoneStateEffectOff__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn startStoneStateEffectOff__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C57AC 002C26EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C57B0 002C26F0  7C 08 02 A6 */	mflr r0
 /* 802C57B4 002C26F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2291,9 +2315,9 @@ startStoneStateEffectOff__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C57D0 002C2710  7C 08 03 A6 */	mtlr r0
 /* 802C57D4 002C2714  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C57D8 002C2718  4E 80 00 20 */	blr 
+.endfn startStoneStateEffectOff__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global finishStoneStateEffectOn__Q34Game6Houdai16HoudaiShotGunMgrFv
-finishStoneStateEffectOn__Q34Game6Houdai16HoudaiShotGunMgrFv:
+.fn finishStoneStateEffectOn__Q34Game6Houdai16HoudaiShotGunMgrFv, global
 /* 802C57DC 002C271C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C57E0 002C2720  7C 08 02 A6 */	mflr r0
 /* 802C57E4 002C2724  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2306,9 +2330,9 @@ finishStoneStateEffectOn__Q34Game6Houdai16HoudaiShotGunMgrFv:
 /* 802C5800 002C2740  7C 08 03 A6 */	mtlr r0
 /* 802C5804 002C2744  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C5808 002C2748  4E 80 00 20 */	blr 
+.endfn finishStoneStateEffectOn__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-.global __dt__Q23efx11THdamaSightFv
-__dt__Q23efx11THdamaSightFv:
+.fn __dt__Q23efx11THdamaSightFv, weak
 /* 802C580C 002C274C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C5810 002C2750  7C 08 02 A6 */	mflr r0
 /* 802C5814 002C2754  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2350,14 +2374,14 @@ __dt__Q23efx11THdamaSightFv:
 /* 802C589C 002C27DC  7C 08 03 A6 */	mtlr r0
 /* 802C58A0 002C27E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C58A4 002C27E4  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx11THdamaSightFv
 
-.global getName__Q23efx6ArgDirFv
-getName__Q23efx6ArgDirFv:
+.fn getName__Q23efx6ArgDirFv, weak
 /* 802C58A8 002C27E8  38 62 E2 90 */	addi r3, r2, lbl_8051C5F0@sda21
 /* 802C58AC 002C27EC  4E 80 00 20 */	blr 
+.endfn getName__Q23efx6ArgDirFv
 
-.global __dt__Q34Game6Houdai17HoudaiShotGunNodeFv
-__dt__Q34Game6Houdai17HoudaiShotGunNodeFv:
+.fn __dt__Q34Game6Houdai17HoudaiShotGunNodeFv, weak
 /* 802C58B0 002C27F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802C58B4 002C27F4  7C 08 02 A6 */	mflr r0
 /* 802C58B8 002C27F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2383,8 +2407,9 @@ __dt__Q34Game6Houdai17HoudaiShotGunNodeFv:
 /* 802C5904 002C2844  7C 08 03 A6 */	mtlr r0
 /* 802C5908 002C2848  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C590C 002C284C  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game6Houdai17HoudaiShotGunNodeFv
 
-.global "@4@__dt__Q23efx11THdamaSightFv"
-"@4@__dt__Q23efx11THdamaSightFv":
+.fn "@4@__dt__Q23efx11THdamaSightFv", weak
 /* 802C5910 002C2850  38 63 FF FC */	addi r3, r3, -4
 /* 802C5914 002C2854  4B FF FE F8 */	b __dt__Q23efx11THdamaSightFv
+.endfn "@4@__dt__Q23efx11THdamaSightFv"

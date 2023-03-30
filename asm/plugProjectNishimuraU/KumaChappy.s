@@ -1,14 +1,13 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game14ChappyRelation
-__vt__Q24Game14ChappyRelation:
+.obj __vt__Q24Game14ChappyRelation, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game14ChappyRelationFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q34Game10KumaChappy3Obj
-__vt__Q34Game10KumaChappy3Obj:
+.endobj __vt__Q24Game14ChappyRelation
+.obj __vt__Q34Game10KumaChappy3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -215,72 +214,101 @@ __vt__Q34Game10KumaChappy3Obj:
 	.4byte "@760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game10KumaChappy3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051BB68:
-	.4byte 0x00000000
-lbl_8051BB6C:
-	.4byte 0x61676F00
-lbl_8051BB70:
-	.4byte 0x418C0000
-lbl_8051BB74:
-	.4byte 0x40A00000
-lbl_8051BB78:
+.obj lbl_8051BB68, local
+	.float 0.0
+.endobj lbl_8051BB68
+.balign 4
+.obj lbl_8051BB6C, local
+	.asciz "ago"
+.endobj lbl_8051BB6C
+.balign 4
+.obj lbl_8051BB70, local
+	.float 17.5
+.endobj lbl_8051BB70
+.obj lbl_8051BB74, local
+	.float 5.0
+.endobj lbl_8051BB74
+.obj lbl_8051BB78, local
 	.float 1.0
-lbl_8051BB7C:
-	.4byte 0x42C80000
-lbl_8051BB80:
-	.4byte 0x42960000
-lbl_8051BB84:
-	.4byte 0x41F00000
-lbl_8051BB88:
+.endobj lbl_8051BB78
+.obj lbl_8051BB7C, local
+	.float 100.0
+.endobj lbl_8051BB7C
+.obj lbl_8051BB80, local
+	.float 75.0
+.endobj lbl_8051BB80
+.obj lbl_8051BB84, local
+	.float 30.0
+.endobj lbl_8051BB84
+.obj lbl_8051BB88, local
 	.float 0.1
-lbl_8051BB8C:
-	.4byte 0x6B616D75
-	.4byte 0x31000000
-lbl_8051BB94:
-	.4byte 0x6B616D75
-	.4byte 0x32000000
-lbl_8051BB9C:
-	.4byte 0x6B616D75
-	.4byte 0x33000000
-lbl_8051BBA4:
-	.4byte 0x6B616D75
-	.4byte 0x34000000
-lbl_8051BBAC:
-	.4byte 0x6B616D75
-	.4byte 0x35000000
-lbl_8051BBB4:
-	.4byte 0x420C0000
-lbl_8051BBB8:
-	.4byte 0x6173694C
-	.4byte 0x00000000
-lbl_8051BBC0:
-	.4byte 0x41200000
-lbl_8051BBC4:
-	.4byte 0x61736952
-	.4byte 0x00000000
-lbl_8051BBCC:
-	.4byte 0x42480000
-lbl_8051BBD0:
-	.4byte 0x43340000
-lbl_8051BBD4:
-	.4byte 0x47000000
-lbl_8051BBD8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051BBE0:
-	.4byte 0x43A2F983
-lbl_8051BBE4:
-	.4byte 0xC3A2F983
-lbl_8051BBE8:
-	.4byte 0x3F400000
-	.4byte 0x00000000
+.endobj lbl_8051BB88
+.balign 4
+.obj lbl_8051BB8C, local
+	.asciz "kamu1"
+.endobj lbl_8051BB8C
+.balign 4
+.obj lbl_8051BB94, local
+	.asciz "kamu2"
+.endobj lbl_8051BB94
+.balign 4
+.obj lbl_8051BB9C, local
+	.asciz "kamu3"
+.endobj lbl_8051BB9C
+.balign 4
+.obj lbl_8051BBA4, local
+	.asciz "kamu4"
+.endobj lbl_8051BBA4
+.balign 4
+.obj lbl_8051BBAC, local
+	.asciz "kamu5"
+.endobj lbl_8051BBAC
+.balign 4
+.obj lbl_8051BBB4, local
+	.float 35.0
+.endobj lbl_8051BBB4
+.balign 4
+.obj lbl_8051BBB8, local
+	.asciz "asiL"
+.endobj lbl_8051BBB8
+.balign 4
+.obj lbl_8051BBC0, local
+	.float 10.0
+.endobj lbl_8051BBC0
+.balign 4
+.obj lbl_8051BBC4, local
+	.asciz "asiR"
+.endobj lbl_8051BBC4
+.balign 4
+.obj lbl_8051BBCC, local
+	.float 50.0
+.endobj lbl_8051BBCC
+.obj lbl_8051BBD0, local
+	.float 180.0
+.endobj lbl_8051BBD0
+.obj lbl_8051BBD4, local
+	.float 32768.0
+.endobj lbl_8051BBD4
+.balign 8
+.obj lbl_8051BBD8, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051BBD8
+.obj lbl_8051BBE0, local
+	.float 325.9493
+.endobj lbl_8051BBE0
+.obj lbl_8051BBE4, local
+	.float -325.9493
+.endobj lbl_8051BBE4
+.obj lbl_8051BBE8, local
+	.float 0.75
+.endobj lbl_8051BBE8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game10KumaChappy3ObjFv
-__ct__Q34Game10KumaChappy3ObjFv:
+.fn __ct__Q34Game10KumaChappy3ObjFv, global
 /* 802996A0 002965E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802996A4 002965E4  7C 08 02 A6 */	mflr r0
 /* 802996A8 002965E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -369,13 +397,13 @@ __ct__Q34Game10KumaChappy3ObjFv:
 /* 802997E8 00296728  7C 08 03 A6 */	mtlr r0
 /* 802997EC 0029672C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802997F0 00296730  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game10KumaChappy3ObjFv
 
-.global setInitialSetting__Q34Game10KumaChappy3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game10KumaChappy3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game10KumaChappy3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 802997F4 00296734  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game10KumaChappy3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game10KumaChappy3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game10KumaChappy3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game10KumaChappy3ObjFPQ24Game15CreatureInitArg, global
 /* 802997F8 00296738  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802997FC 0029673C  7C 08 02 A6 */	mflr r0
 /* 80299800 00296740  90 01 00 14 */	stw r0, 0x14(r1)
@@ -407,9 +435,9 @@ onInit__Q34Game10KumaChappy3ObjFPQ24Game15CreatureInitArg:
 /* 80299868 002967A8  7C 08 03 A6 */	mtlr r0
 /* 8029986C 002967AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80299870 002967B0  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game10KumaChappy3ObjFPQ24Game15CreatureInitArg
 
-.global doUpdate__Q34Game10KumaChappy3ObjFv
-doUpdate__Q34Game10KumaChappy3ObjFv:
+.fn doUpdate__Q34Game10KumaChappy3ObjFv, global
 /* 80299874 002967B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80299878 002967B8  7C 08 02 A6 */	mflr r0
 /* 8029987C 002967BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -434,13 +462,13 @@ doUpdate__Q34Game10KumaChappy3ObjFv:
 /* 802998C8 00296808  7C 08 03 A6 */	mtlr r0
 /* 802998CC 0029680C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802998D0 00296810  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game10KumaChappy3ObjFv
 
-.global doDirectDraw__Q34Game10KumaChappy3ObjFR8Graphics
-doDirectDraw__Q34Game10KumaChappy3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game10KumaChappy3ObjFR8Graphics, global
 /* 802998D4 00296814  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game10KumaChappy3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game10KumaChappy3ObjFR8Graphics
-doDebugDraw__Q34Game10KumaChappy3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game10KumaChappy3ObjFR8Graphics, global
 /* 802998D8 00296818  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802998DC 0029681C  7C 08 02 A6 */	mflr r0
 /* 802998E0 00296820  90 01 00 14 */	stw r0, 0x14(r1)
@@ -449,9 +477,9 @@ doDebugDraw__Q34Game10KumaChappy3ObjFR8Graphics:
 /* 802998EC 0029682C  7C 08 03 A6 */	mtlr r0
 /* 802998F0 00296830  38 21 00 10 */	addi r1, r1, 0x10
 /* 802998F4 00296834  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game10KumaChappy3ObjFR8Graphics
 
-.global setFSM__Q34Game10KumaChappy3ObjFPQ34Game10KumaChappy3FSM
-setFSM__Q34Game10KumaChappy3ObjFPQ34Game10KumaChappy3FSM:
+.fn setFSM__Q34Game10KumaChappy3ObjFPQ34Game10KumaChappy3FSM, global
 /* 802998F8 00296838  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802998FC 0029683C  7C 08 02 A6 */	mflr r0
 /* 80299900 00296840  90 01 00 14 */	stw r0, 0x14(r1)
@@ -471,9 +499,9 @@ setFSM__Q34Game10KumaChappy3ObjFPQ34Game10KumaChappy3FSM:
 /* 80299938 00296878  7C 08 03 A6 */	mtlr r0
 /* 8029993C 0029687C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80299940 00296880  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game10KumaChappy3ObjFPQ34Game10KumaChappy3FSM
 
-.global getShadowParam__Q34Game10KumaChappy3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game10KumaChappy3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game10KumaChappy3ObjFRQ24Game11ShadowParam, global
 /* 80299944 00296884  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80299948 00296888  7C 08 02 A6 */	mflr r0
 /* 8029994C 0029688C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -526,9 +554,9 @@ getShadowParam__Q34Game10KumaChappy3ObjFRQ24Game11ShadowParam:
 /* 802999FC 0029693C  7C 08 03 A6 */	mtlr r0
 /* 80299A00 00296940  38 21 00 10 */	addi r1, r1, 0x10
 /* 80299A04 00296944  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game10KumaChappy3ObjFRQ24Game11ShadowParam
 
-.global damageCallBack__Q34Game10KumaChappy3ObjFPQ24Game8CreaturefP8CollPart
-damageCallBack__Q34Game10KumaChappy3ObjFPQ24Game8CreaturefP8CollPart:
+.fn damageCallBack__Q34Game10KumaChappy3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 80299A08 00296948  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80299A0C 0029694C  7C 08 02 A6 */	mflr r0
 /* 80299A10 00296950  28 05 00 00 */	cmplwi r5, 0
@@ -544,9 +572,9 @@ damageCallBack__Q34Game10KumaChappy3ObjFPQ24Game8CreaturefP8CollPart:
 /* 80299A34 00296974  7C 08 03 A6 */	mtlr r0
 /* 80299A38 00296978  38 21 00 10 */	addi r1, r1, 0x10
 /* 80299A3C 0029697C  4E 80 00 20 */	blr 
+.endfn damageCallBack__Q34Game10KumaChappy3ObjFPQ24Game8CreaturefP8CollPart
 
-.global startCarcassMotion__Q34Game10KumaChappy3ObjFv
-startCarcassMotion__Q34Game10KumaChappy3ObjFv:
+.fn startCarcassMotion__Q34Game10KumaChappy3ObjFv, global
 /* 80299A40 00296980  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80299A44 00296984  7C 08 02 A6 */	mflr r0
 /* 80299A48 00296988  38 80 00 04 */	li r4, 4
@@ -557,9 +585,9 @@ startCarcassMotion__Q34Game10KumaChappy3ObjFv:
 /* 80299A5C 0029699C  7C 08 03 A6 */	mtlr r0
 /* 80299A60 002969A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80299A64 002969A4  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game10KumaChappy3ObjFv
 
-.global getOffsetForMapCollision__Q34Game10KumaChappy3ObjFv
-getOffsetForMapCollision__Q34Game10KumaChappy3ObjFv:
+.fn getOffsetForMapCollision__Q34Game10KumaChappy3ObjFv, global
 /* 80299A68 002969A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80299A6C 002969AC  7C 08 02 A6 */	mflr r0
 /* 80299A70 002969B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -604,9 +632,9 @@ getOffsetForMapCollision__Q34Game10KumaChappy3ObjFv:
 /* 80299B04 00296A44  7C 08 03 A6 */	mtlr r0
 /* 80299B08 00296A48  38 21 00 10 */	addi r1, r1, 0x10
 /* 80299B0C 00296A4C  4E 80 00 20 */	blr 
+.endfn getOffsetForMapCollision__Q34Game10KumaChappy3ObjFv
 
-.global initMouthSlots__Q34Game10KumaChappy3ObjFv
-initMouthSlots__Q34Game10KumaChappy3ObjFv:
+.fn initMouthSlots__Q34Game10KumaChappy3ObjFv, global
 /* 80299B10 00296A50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80299B14 00296A54  7C 08 02 A6 */	mflr r0
 /* 80299B18 00296A58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -664,9 +692,9 @@ initMouthSlots__Q34Game10KumaChappy3ObjFv:
 /* 80299BE0 00296B20  7C 08 03 A6 */	mtlr r0
 /* 80299BE4 00296B24  38 21 00 20 */	addi r1, r1, 0x20
 /* 80299BE8 00296B28  4E 80 00 20 */	blr 
+.endfn initMouthSlots__Q34Game10KumaChappy3ObjFv
 
-.global initWalkSmokeEffect__Q34Game10KumaChappy3ObjFv
-initWalkSmokeEffect__Q34Game10KumaChappy3ObjFv:
+.fn initWalkSmokeEffect__Q34Game10KumaChappy3ObjFv, global
 /* 80299BEC 00296B2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80299BF0 00296B30  7C 08 02 A6 */	mflr r0
 /* 80299BF4 00296B34  38 80 00 02 */	li r4, 2
@@ -692,22 +720,22 @@ initWalkSmokeEffect__Q34Game10KumaChappy3ObjFv:
 /* 80299C44 00296B84  7C 08 03 A6 */	mtlr r0
 /* 80299C48 00296B88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80299C4C 00296B8C  4E 80 00 20 */	blr 
+.endfn initWalkSmokeEffect__Q34Game10KumaChappy3ObjFv
 
-.global getWalkSmokeEffectMgr__Q34Game10KumaChappy3ObjFv
-getWalkSmokeEffectMgr__Q34Game10KumaChappy3ObjFv:
+.fn getWalkSmokeEffectMgr__Q34Game10KumaChappy3ObjFv, global
 /* 80299C50 00296B90  38 63 02 C0 */	addi r3, r3, 0x2c0
 /* 80299C54 00296B94  4E 80 00 20 */	blr 
+.endfn getWalkSmokeEffectMgr__Q34Game10KumaChappy3ObjFv
 
-.global doBecomeCarcass__Q34Game10KumaChappy3ObjFv
-doBecomeCarcass__Q34Game10KumaChappy3ObjFv:
+.fn doBecomeCarcass__Q34Game10KumaChappy3ObjFv, global
 /* 80299C58 00296B98  C0 02 D8 08 */	lfs f0, lbl_8051BB68@sda21(r2)
 /* 80299C5C 00296B9C  D0 03 02 C8 */	stfs f0, 0x2c8(r3)
 /* 80299C60 00296BA0  D0 03 02 00 */	stfs f0, 0x200(r3)
 /* 80299C64 00296BA4  38 60 00 01 */	li r3, 1
 /* 80299C68 00296BA8  4E 80 00 20 */	blr 
+.endfn doBecomeCarcass__Q34Game10KumaChappy3ObjFv
 
-.global doUpdateCarcass__Q34Game10KumaChappy3ObjFv
-doUpdateCarcass__Q34Game10KumaChappy3ObjFv:
+.fn doUpdateCarcass__Q34Game10KumaChappy3ObjFv, global
 /* 80299C6C 00296BAC  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80299C70 00296BB0  7C 08 02 A6 */	mflr r0
 /* 80299C74 00296BB4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -838,9 +866,9 @@ doUpdateCarcass__Q34Game10KumaChappy3ObjFv:
 /* 80299E5C 00296D9C  7C 08 03 A6 */	mtlr r0
 /* 80299E60 00296DA0  38 21 00 70 */	addi r1, r1, 0x70
 /* 80299E64 00296DA4  4E 80 00 20 */	blr 
+.endfn doUpdateCarcass__Q34Game10KumaChappy3ObjFv
 
-.global doGetLifeGaugeParam__Q34Game10KumaChappy3ObjFRQ24Game14LifeGaugeParam
-doGetLifeGaugeParam__Q34Game10KumaChappy3ObjFRQ24Game14LifeGaugeParam:
+.fn doGetLifeGaugeParam__Q34Game10KumaChappy3ObjFRQ24Game14LifeGaugeParam, global
 /* 80299E68 00296DA8  C0 03 01 8C */	lfs f0, 0x18c(r3)
 /* 80299E6C 00296DAC  D0 04 00 00 */	stfs f0, 0(r4)
 /* 80299E70 00296DB0  80 A3 01 7C */	lwz r5, 0x17c(r3)
@@ -868,9 +896,9 @@ doGetLifeGaugeParam__Q34Game10KumaChappy3ObjFRQ24Game14LifeGaugeParam:
 /* 80299EC0 00296E00  D0 24 00 0C */	stfs f1, 0xc(r4)
 /* 80299EC4 00296E04  D0 04 00 10 */	stfs f0, 0x10(r4)
 /* 80299EC8 00296E08  4E 80 00 20 */	blr 
+.endfn doGetLifeGaugeParam__Q34Game10KumaChappy3ObjFRQ24Game14LifeGaugeParam
 
-.global getViewAngle__Q34Game10KumaChappy3ObjFv
-getViewAngle__Q34Game10KumaChappy3ObjFv:
+.fn getViewAngle__Q34Game10KumaChappy3ObjFv, global
 /* 80299ECC 00296E0C  80 83 00 C0 */	lwz r4, 0xc0(r3)
 /* 80299ED0 00296E10  C0 23 02 C8 */	lfs f1, 0x2c8(r3)
 /* 80299ED4 00296E14  C0 04 06 2C */	lfs f0, 0x62c(r4)
@@ -881,16 +909,16 @@ getViewAngle__Q34Game10KumaChappy3ObjFv:
 .L_80299EE8:
 /* 80299EE8 00296E28  C0 24 04 24 */	lfs f1, 0x424(r4)
 /* 80299EEC 00296E2C  4E 80 00 20 */	blr 
+.endfn getViewAngle__Q34Game10KumaChappy3ObjFv
 
-.global resetWayPoint__Q34Game10KumaChappy3ObjFv
-resetWayPoint__Q34Game10KumaChappy3ObjFv:
+.fn resetWayPoint__Q34Game10KumaChappy3ObjFv, global
 /* 80299EF0 00296E30  38 00 00 00 */	li r0, 0
 /* 80299EF4 00296E34  90 03 02 EC */	stw r0, 0x2ec(r3)
 /* 80299EF8 00296E38  90 03 02 F0 */	stw r0, 0x2f0(r3)
 /* 80299EFC 00296E3C  4E 80 00 20 */	blr 
+.endfn resetWayPoint__Q34Game10KumaChappy3ObjFv
 
-.global setNearestWayPoint__Q34Game10KumaChappy3ObjFv
-setNearestWayPoint__Q34Game10KumaChappy3ObjFv:
+.fn setNearestWayPoint__Q34Game10KumaChappy3ObjFv, global
 /* 80299F00 00296E40  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80299F04 00296E44  7C 08 02 A6 */	mflr r0
 /* 80299F08 00296E48  C0 02 D8 60 */	lfs f0, lbl_8051BBC0@sda21(r2)
@@ -937,9 +965,9 @@ setNearestWayPoint__Q34Game10KumaChappy3ObjFv:
 /* 80299FA4 00296EE4  7C 08 03 A6 */	mtlr r0
 /* 80299FA8 00296EE8  38 21 00 30 */	addi r1, r1, 0x30
 /* 80299FAC 00296EEC  4E 80 00 20 */	blr 
+.endfn setNearestWayPoint__Q34Game10KumaChappy3ObjFv
 
-.global setLinkWayPoint__Q34Game10KumaChappy3ObjFv
-setLinkWayPoint__Q34Game10KumaChappy3ObjFv:
+.fn setLinkWayPoint__Q34Game10KumaChappy3ObjFv, global
 /* 80299FB0 00296EF0  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80299FB4 00296EF4  7C 08 02 A6 */	mflr r0
 /* 80299FB8 00296EF8  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1100,9 +1128,9 @@ setLinkWayPoint__Q34Game10KumaChappy3ObjFv:
 /* 8029A204 00297144  7C 08 03 A6 */	mtlr r0
 /* 8029A208 00297148  38 21 00 80 */	addi r1, r1, 0x80
 /* 8029A20C 0029714C  4E 80 00 20 */	blr 
+.endfn setLinkWayPoint__Q34Game10KumaChappy3ObjFv
 
-.global getSearchedTarget__Q34Game10KumaChappy3ObjFv
-getSearchedTarget__Q34Game10KumaChappy3ObjFv:
+.fn getSearchedTarget__Q34Game10KumaChappy3ObjFv, global
 /* 8029A210 00297150  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029A214 00297154  7C 08 02 A6 */	mflr r0
 /* 8029A218 00297158  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1133,9 +1161,9 @@ getSearchedTarget__Q34Game10KumaChappy3ObjFv:
 /* 8029A270 002971B0  7C 08 03 A6 */	mtlr r0
 /* 8029A274 002971B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029A278 002971B8  4E 80 00 20 */	blr 
+.endfn getSearchedTarget__Q34Game10KumaChappy3ObjFv
 
-.global updateTargetDistance__Q34Game10KumaChappy3ObjFv
-updateTargetDistance__Q34Game10KumaChappy3ObjFv:
+.fn updateTargetDistance__Q34Game10KumaChappy3ObjFv, global
 /* 8029A27C 002971BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8029A280 002971C0  7C 08 02 A6 */	mflr r0
 /* 8029A284 002971C4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1216,9 +1244,9 @@ updateTargetDistance__Q34Game10KumaChappy3ObjFv:
 /* 8029A398 002972D8  7C 08 03 A6 */	mtlr r0
 /* 8029A39C 002972DC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8029A3A0 002972E0  4E 80 00 20 */	blr 
+.endfn updateTargetDistance__Q34Game10KumaChappy3ObjFv
 
-.global updateHomePosition__Q34Game10KumaChappy3ObjFv
-updateHomePosition__Q34Game10KumaChappy3ObjFv:
+.fn updateHomePosition__Q34Game10KumaChappy3ObjFv, global
 /* 8029A3A4 002972E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029A3A8 002972E8  C0 02 D8 08 */	lfs f0, lbl_8051BB68@sda21(r2)
 /* 8029A3AC 002972EC  C0 A3 01 FC */	lfs f5, 0x1fc(r3)
@@ -1269,9 +1297,9 @@ updateHomePosition__Q34Game10KumaChappy3ObjFv:
 /* 8029A454 00297394  D0 83 01 A0 */	stfs f4, 0x1a0(r3)
 /* 8029A458 00297398  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029A45C 0029739C  4E 80 00 20 */	blr 
+.endfn updateHomePosition__Q34Game10KumaChappy3ObjFv
 
-.global createChappyRelation__Q34Game10KumaChappy3ObjFv
-createChappyRelation__Q34Game10KumaChappy3ObjFv:
+.fn createChappyRelation__Q34Game10KumaChappy3ObjFv, global
 /* 8029A460 002973A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029A464 002973A4  7C 08 02 A6 */	mflr r0
 /* 8029A468 002973A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1301,9 +1329,9 @@ createChappyRelation__Q34Game10KumaChappy3ObjFv:
 /* 8029A4C4 00297404  7C 08 03 A6 */	mtlr r0
 /* 8029A4C8 00297408  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029A4CC 0029740C  4E 80 00 20 */	blr 
+.endfn createChappyRelation__Q34Game10KumaChappy3ObjFv
 
-.global startEnemyRumble__Q34Game10KumaChappy3ObjFv
-startEnemyRumble__Q34Game10KumaChappy3ObjFv:
+.fn startEnemyRumble__Q34Game10KumaChappy3ObjFv, global
 /* 8029A4D0 00297410  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029A4D4 00297414  7C 08 02 A6 */	mflr r0
 /* 8029A4D8 00297418  38 82 D8 0C */	addi r4, r2, lbl_8051BB6C@sda21
@@ -1335,9 +1363,9 @@ startEnemyRumble__Q34Game10KumaChappy3ObjFv:
 /* 8029A540 00297480  7C 08 03 A6 */	mtlr r0
 /* 8029A544 00297484  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029A548 00297488  4E 80 00 20 */	blr 
+.endfn startEnemyRumble__Q34Game10KumaChappy3ObjFv
 
-.global __dt__Q24Game14ChappyRelationFv
-__dt__Q24Game14ChappyRelationFv:
+.fn __dt__Q24Game14ChappyRelationFv, weak
 /* 8029A54C 0029748C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029A550 00297490  7C 08 02 A6 */	mflr r0
 /* 8029A554 00297494  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1363,66 +1391,67 @@ __dt__Q24Game14ChappyRelationFv:
 /* 8029A5A0 002974E0  7C 08 03 A6 */	mtlr r0
 /* 8029A5A4 002974E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029A5A8 002974E8  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game14ChappyRelationFv
 
-.global getMouthSlots__Q34Game10KumaChappy3ObjFv
-getMouthSlots__Q34Game10KumaChappy3ObjFv:
+.fn getMouthSlots__Q34Game10KumaChappy3ObjFv, weak
 /* 8029A5AC 002974EC  38 63 02 D8 */	addi r3, r3, 0x2d8
 /* 8029A5B0 002974F0  4E 80 00 20 */	blr 
+.endfn getMouthSlots__Q34Game10KumaChappy3ObjFv
 
-.global getDownSmokeScale__Q34Game10KumaChappy3ObjFv
-getDownSmokeScale__Q34Game10KumaChappy3ObjFv:
+.fn getDownSmokeScale__Q34Game10KumaChappy3ObjFv, weak
 /* 8029A5B4 002974F4  C0 22 D8 18 */	lfs f1, lbl_8051BB78@sda21(r2)
 /* 8029A5B8 002974F8  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game10KumaChappy3ObjFv
 
-.global getChappyRelation__Q34Game10KumaChappy3ObjFv
-getChappyRelation__Q34Game10KumaChappy3ObjFv:
+.fn getChappyRelation__Q34Game10KumaChappy3ObjFv, weak
 /* 8029A5BC 002974FC  80 63 02 F4 */	lwz r3, 0x2f4(r3)
 /* 8029A5C0 00297500  4E 80 00 20 */	blr 
+.endfn getChappyRelation__Q34Game10KumaChappy3ObjFv
 
-.global "@760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-"@760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
+.fn "@760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv", weak
 /* 8029A5C4 00297504  39 60 00 0C */	li r11, 0xc
 /* 8029A5C8 00297508  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8029A5CC 0029750C  7C 63 5A 14 */	add r3, r3, r11
 /* 8029A5D0 00297510  38 63 FD 08 */	addi r3, r3, -760
 /* 8029A5D4 00297514  4B E6 C3 48 */	b viewOnPelletKilled__Q24Game9EnemyBaseFv
+.endfn "@760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 
-.global "@760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-"@760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 8029A5D8 00297518  39 60 00 0C */	li r11, 0xc
 /* 8029A5DC 0029751C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8029A5E0 00297520  7C 63 5A 14 */	add r3, r3, r11
 /* 8029A5E4 00297524  38 63 FD 08 */	addi r3, r3, -760
 /* 8029A5E8 00297528  4B E6 C0 C0 */	b viewStartCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@760@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-"@760@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@760@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 8029A5EC 0029752C  39 60 00 0C */	li r11, 0xc
 /* 8029A5F0 00297530  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8029A5F4 00297534  7C 63 5A 14 */	add r3, r3, r11
 /* 8029A5F8 00297538  38 63 FD 08 */	addi r3, r3, -760
 /* 8029A5FC 0029753C  4B E6 C0 CC */	b viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@760@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@760@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-"@760@12@view_finish_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@760@12@view_finish_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 8029A600 00297540  39 60 00 0C */	li r11, 0xc
 /* 8029A604 00297544  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8029A608 00297548  7C 63 5A 14 */	add r3, r3, r11
 /* 8029A60C 0029754C  38 63 FD 08 */	addi r3, r3, -760
 /* 8029A610 00297550  4B E6 C4 68 */	b view_finish_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@760@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@760@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-"@760@12@view_start_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@760@12@view_start_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 8029A614 00297554  39 60 00 0C */	li r11, 0xc
 /* 8029A618 00297558  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8029A61C 0029755C  7C 63 5A 14 */	add r3, r3, r11
 /* 8029A620 00297560  38 63 FD 08 */	addi r3, r3, -760
 /* 8029A624 00297564  4B E6 C4 28 */	b view_start_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@760@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@760@12@viewGetShape__Q24Game9EnemyBaseFv"
-"@760@12@viewGetShape__Q24Game9EnemyBaseFv":
+.fn "@760@12@viewGetShape__Q24Game9EnemyBaseFv", weak
 /* 8029A628 00297568  39 60 00 0C */	li r11, 0xc
 /* 8029A62C 0029756C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 8029A630 00297570  7C 63 5A 14 */	add r3, r3, r11
 /* 8029A634 00297574  38 63 FD 08 */	addi r3, r3, -760
 /* 8029A638 00297578  4B E6 C0 68 */	b viewGetShape__Q24Game9EnemyBaseFv
+.endfn "@760@12@viewGetShape__Q24Game9EnemyBaseFv"

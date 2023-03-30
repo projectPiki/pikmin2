@@ -1,15 +1,14 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx9TRockDead
-__vt__Q23efx9TRockDead:
+.obj __vt__Q23efx9TRockDead, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global "__vt__Q23efx29TSyncGroup3<Q23efx9TChasePos>"
-"__vt__Q23efx29TSyncGroup3<Q23efx9TChasePos>":
+.endobj __vt__Q23efx9TRockDead
+.obj "__vt__Q23efx29TSyncGroup3<Q23efx9TChasePos>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup3<Q23efx9TChasePos>FPQ23efx3Arg"
@@ -17,8 +16,8 @@ __vt__Q23efx9TRockDead:
 	.4byte "fade__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
-.global __vt__Q23efx10TChasePos3
-__vt__Q23efx10TChasePos3:
+.endobj "__vt__Q23efx29TSyncGroup3<Q23efx9TChasePos>"
+.obj __vt__Q23efx10TChasePos3, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup3<Q23efx9TChasePos>FPQ23efx3Arg"
@@ -26,8 +25,8 @@ __vt__Q23efx10TChasePos3:
 	.4byte "fade__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
-.global __vt__Q23efx17TRockWRunChasePos
-__vt__Q23efx17TRockWRunChasePos:
+.endobj __vt__Q23efx10TChasePos3
+.obj __vt__Q23efx17TRockWRunChasePos, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup3<Q23efx9TChasePos>FPQ23efx3Arg"
@@ -35,15 +34,15 @@ __vt__Q23efx17TRockWRunChasePos:
 	.4byte "fade__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup3<Q23efx9TChasePos>Fv"
-.global __vt__Q23efx9TRockWRun
-__vt__Q23efx9TRockWRun:
+.endobj __vt__Q23efx17TRockWRunChasePos
+.obj __vt__Q23efx9TRockWRun, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx9TRockWRunFPQ23efx3Arg
 	.4byte forceKill__Q23efx9TRockWRunFv
 	.4byte fade__Q23efx9TRockWRunFv
-.global __vt__Q23efx10TRockGrRun
-__vt__Q23efx10TRockGrRun:
+.endobj __vt__Q23efx9TRockWRun
+.obj __vt__Q23efx10TRockGrRun, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -63,8 +62,8 @@ __vt__Q23efx10TRockGrRun:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx10TRockGrRunFv
-.global __vt__Q23efx8TRockRun
-__vt__Q23efx8TRockRun:
+.endobj __vt__Q23efx10TRockGrRun
+.obj __vt__Q23efx8TRockRun, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -84,8 +83,8 @@ __vt__Q23efx8TRockRun:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx8TRockRunFv
-.global __vt__Q34Game4Rock3Obj
-__vt__Q34Game4Rock3Obj:
+.endobj __vt__Q23efx8TRockRun
+.obj __vt__Q34Game4Rock3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -289,62 +288,83 @@ __vt__Q34Game4Rock3Obj:
 	.4byte "@744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game4Rock3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051ADA0:
-	.4byte 0x42C80000
-lbl_8051ADA4:
-	.4byte 0x43FA0000
-lbl_8051ADA8:
-	.4byte 0x3ECCCCCD
-lbl_8051ADAC:
-	.4byte 0x38D1B717
-lbl_8051ADB0:
-	.4byte 0x00000000
-lbl_8051ADB4:
-	.4byte 0x3FC00000
-lbl_8051ADB8:
-	.4byte 0x47000000
-	.4byte 0x00000000
-lbl_8051ADC0:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051ADC8:
-	.4byte 0x42480000
-lbl_8051ADCC:
-	.4byte 0x40A00000
-lbl_8051ADD0:
-	.4byte 0x41A00000
-lbl_8051ADD4:
+.obj lbl_8051ADA0, local
+	.float 100.0
+.endobj lbl_8051ADA0
+.obj lbl_8051ADA4, local
+	.float 500.0
+.endobj lbl_8051ADA4
+.obj lbl_8051ADA8, local
+	.float 0.4
+.endobj lbl_8051ADA8
+.obj lbl_8051ADAC, local
+	.float 1.0E-4
+.endobj lbl_8051ADAC
+.obj lbl_8051ADB0, local
+	.float 0.0
+.endobj lbl_8051ADB0
+.obj lbl_8051ADB4, local
+	.float 1.5
+.endobj lbl_8051ADB4
+.obj lbl_8051ADB8, local
+	.float 32768.0
+.endobj lbl_8051ADB8
+.balign 8
+.obj lbl_8051ADC0, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051ADC0
+.obj lbl_8051ADC8, local
+	.float 50.0
+.endobj lbl_8051ADC8
+.obj lbl_8051ADCC, local
+	.float 5.0
+.endobj lbl_8051ADCC
+.obj lbl_8051ADD0, local
+	.float 20.0
+.endobj lbl_8051ADD0
+.obj lbl_8051ADD4, local
 	.float 1.0
-lbl_8051ADD8:
-	.4byte 0x41C80000
-lbl_8051ADDC:
-	.4byte 0x437A0000
-lbl_8051ADE0:
-	.4byte 0x43A2F983
-lbl_8051ADE4:
-	.4byte 0xC3A2F983
-lbl_8051ADE8:
-	.4byte 0x43340000
-lbl_8051ADEC:
-	.4byte 0x40490FDB
-lbl_8051ADF0:
-	.4byte 0x3BB60B61
-lbl_8051ADF4:
-	.4byte 0x3C23D70A
-lbl_8051ADF8:
-	.4byte 0x3F7D70A4
-lbl_8051ADFC:
-	.4byte 0x41000000
-lbl_8051AE00:
-	.4byte 0x42340000
-	.4byte 0x00000000
+.endobj lbl_8051ADD4
+.obj lbl_8051ADD8, local
+	.float 25.0
+.endobj lbl_8051ADD8
+.obj lbl_8051ADDC, local
+	.float 250.0
+.endobj lbl_8051ADDC
+.obj lbl_8051ADE0, local
+	.float 325.9493
+.endobj lbl_8051ADE0
+.obj lbl_8051ADE4, local
+	.float -325.9493
+.endobj lbl_8051ADE4
+.obj lbl_8051ADE8, local
+	.float 180.0
+.endobj lbl_8051ADE8
+.obj lbl_8051ADEC, local # pi
+	.float 3.1415927
+.endobj lbl_8051ADEC
+.obj lbl_8051ADF0, local
+	.float 0.0055555557
+.endobj lbl_8051ADF0
+.obj lbl_8051ADF4, local
+	.float 0.01
+.endobj lbl_8051ADF4
+.obj lbl_8051ADF8, local
+	.float 0.99
+.endobj lbl_8051ADF8
+.obj lbl_8051ADFC, local
+	.float 8.0
+.endobj lbl_8051ADFC
+.obj lbl_8051AE00, local
+	.float 45.0
+.endobj lbl_8051AE00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game4Rock3ObjFv
-__ct__Q34Game4Rock3ObjFv:
+.fn __ct__Q34Game4Rock3ObjFv, global
 /* 80262FF0 0025FF30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80262FF4 0025FF34  7C 08 02 A6 */	mflr r0
 /* 80262FF8 0025FF38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -426,9 +446,9 @@ __ct__Q34Game4Rock3ObjFv:
 /* 8026311C 0026005C  7C 08 03 A6 */	mtlr r0
 /* 80263120 00260060  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263124 00260064  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Rock3ObjFv
 
-.global "birth__Q34Game4Rock3ObjFR10Vector3<f>f"
-"birth__Q34Game4Rock3ObjFR10Vector3<f>f":
+.fn "birth__Q34Game4Rock3ObjFR10Vector3<f>f", global
 /* 80263128 00260068  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8026312C 0026006C  7C 08 02 A6 */	mflr r0
 /* 80263130 00260070  90 01 00 24 */	stw r0, 0x24(r1)
@@ -452,9 +472,9 @@ __ct__Q34Game4Rock3ObjFv:
 /* 80263178 002600B8  7C 08 03 A6 */	mtlr r0
 /* 8026317C 002600BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80263180 002600C0  4E 80 00 20 */	blr 
+.endfn "birth__Q34Game4Rock3ObjFR10Vector3<f>f"
 
-.global setInitialSetting__Q34Game4Rock3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game4Rock3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game4Rock3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 80263184 002600C4  80 83 00 C0 */	lwz r4, 0xc0(r3)
 /* 80263188 002600C8  C0 04 04 4C */	lfs f0, 0x44c(r4)
 /* 8026318C 002600CC  D0 03 02 CC */	stfs f0, 0x2cc(r3)
@@ -465,9 +485,9 @@ setInitialSetting__Q34Game4Rock3ObjFPQ24Game21EnemyInitialParamBase:
 /* 802631A0 002600E0  C0 04 04 9C */	lfs f0, 0x49c(r4)
 /* 802631A4 002600E4  D0 03 02 D4 */	stfs f0, 0x2d4(r3)
 /* 802631A8 002600E8  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game4Rock3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game4Rock3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game4Rock3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game4Rock3ObjFPQ24Game15CreatureInitArg, global
 /* 802631AC 002600EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802631B0 002600F0  7C 08 02 A6 */	mflr r0
 /* 802631B4 002600F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -594,14 +614,14 @@ onInit__Q34Game4Rock3ObjFPQ24Game15CreatureInitArg:
 /* 80263380 002602C0  7C 08 03 A6 */	mtlr r0
 /* 80263384 002602C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80263388 002602C8  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game4Rock3ObjFPQ24Game15CreatureInitArg
 
-.global getEnemyTypeID__Q34Game4Rock3ObjFv
-getEnemyTypeID__Q34Game4Rock3ObjFv:
+.fn getEnemyTypeID__Q34Game4Rock3ObjFv, weak
 /* 8026338C 002602CC  80 63 02 E4 */	lwz r3, 0x2e4(r3)
 /* 80263390 002602D0  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game4Rock3ObjFv
 
-.global onKill__Q34Game4Rock3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game4Rock3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game4Rock3ObjFPQ24Game15CreatureKillArg, global
 /* 80263394 002602D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263398 002602D8  7C 08 02 A6 */	mflr r0
 /* 8026339C 002602DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -623,9 +643,9 @@ onKill__Q34Game4Rock3ObjFPQ24Game15CreatureKillArg:
 /* 802633DC 0026031C  7C 08 03 A6 */	mtlr r0
 /* 802633E0 00260320  38 21 00 10 */	addi r1, r1, 0x10
 /* 802633E4 00260324  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game4Rock3ObjFPQ24Game15CreatureKillArg
 
-.global doUpdate__Q34Game4Rock3ObjFv
-doUpdate__Q34Game4Rock3ObjFv:
+.fn doUpdate__Q34Game4Rock3ObjFv, global
 /* 802633E8 00260328  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802633EC 0026032C  7C 08 02 A6 */	mflr r0
 /* 802633F0 00260330  7C 64 1B 78 */	mr r4, r3
@@ -639,9 +659,9 @@ doUpdate__Q34Game4Rock3ObjFv:
 /* 80263410 00260350  7C 08 03 A6 */	mtlr r0
 /* 80263414 00260354  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263418 00260358  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game4Rock3ObjFv
 
-.global setFSM__Q34Game4Rock3ObjFPQ34Game4Rock3FSM
-setFSM__Q34Game4Rock3ObjFPQ34Game4Rock3FSM:
+.fn setFSM__Q34Game4Rock3ObjFPQ34Game4Rock3FSM, global
 /* 8026341C 0026035C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263420 00260360  7C 08 02 A6 */	mflr r0
 /* 80263424 00260364  90 01 00 14 */	stw r0, 0x14(r1)
@@ -661,13 +681,13 @@ setFSM__Q34Game4Rock3ObjFPQ34Game4Rock3FSM:
 /* 8026345C 0026039C  7C 08 03 A6 */	mtlr r0
 /* 80263460 002603A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263464 002603A4  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game4Rock3ObjFPQ34Game4Rock3FSM
 
-.global doDirectDraw__Q34Game4Rock3ObjFR8Graphics
-doDirectDraw__Q34Game4Rock3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game4Rock3ObjFR8Graphics, global
 /* 80263468 002603A8  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game4Rock3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game4Rock3ObjFR8Graphics
-doDebugDraw__Q34Game4Rock3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game4Rock3ObjFR8Graphics, global
 /* 8026346C 002603AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263470 002603B0  7C 08 02 A6 */	mflr r0
 /* 80263474 002603B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -676,9 +696,9 @@ doDebugDraw__Q34Game4Rock3ObjFR8Graphics:
 /* 80263480 002603C0  7C 08 03 A6 */	mtlr r0
 /* 80263484 002603C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263488 002603C8  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game4Rock3ObjFR8Graphics
 
-.global getShadowParam__Q34Game4Rock3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game4Rock3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game4Rock3ObjFRQ24Game11ShadowParam, global
 /* 8026348C 002603CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263490 002603D0  7C 08 02 A6 */	mflr r0
 /* 80263494 002603D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -739,9 +759,9 @@ getShadowParam__Q34Game4Rock3ObjFRQ24Game11ShadowParam:
 /* 80263564 002604A4  7C 08 03 A6 */	mtlr r0
 /* 80263568 002604A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026356C 002604AC  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game4Rock3ObjFRQ24Game11ShadowParam
 
-.global needShadow__Q34Game4Rock3ObjFv
-needShadow__Q34Game4Rock3ObjFv:
+.fn needShadow__Q34Game4Rock3ObjFv, global
 /* 80263570 002604B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263574 002604B4  7C 08 02 A6 */	mflr r0
 /* 80263578 002604B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -770,9 +790,9 @@ needShadow__Q34Game4Rock3ObjFv:
 /* 802635C4 00260504  7C 08 03 A6 */	mtlr r0
 /* 802635C8 00260508  38 21 00 10 */	addi r1, r1, 0x10
 /* 802635CC 0026050C  4E 80 00 20 */	blr 
+.endfn needShadow__Q34Game4Rock3ObjFv
 
-.global hipdropCallBack__Q34Game4Rock3ObjFPQ24Game8CreaturefP8CollPart
-hipdropCallBack__Q34Game4Rock3ObjFPQ24Game8CreaturefP8CollPart:
+.fn hipdropCallBack__Q34Game4Rock3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 802635D0 00260510  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802635D4 00260514  7C 08 02 A6 */	mflr r0
 /* 802635D8 00260518  90 01 00 14 */	stw r0, 0x14(r1)
@@ -809,9 +829,9 @@ hipdropCallBack__Q34Game4Rock3ObjFPQ24Game8CreaturefP8CollPart:
 /* 8026364C 0026058C  7C 08 03 A6 */	mtlr r0
 /* 80263650 00260590  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263654 00260594  4E 80 00 20 */	blr 
+.endfn hipdropCallBack__Q34Game4Rock3ObjFPQ24Game8CreaturefP8CollPart
 
-.global collisionCallback__Q34Game4Rock3ObjFRQ24Game9CollEvent
-collisionCallback__Q34Game4Rock3ObjFRQ24Game9CollEvent:
+.fn collisionCallback__Q34Game4Rock3ObjFRQ24Game9CollEvent, global
 /* 80263658 00260598  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8026365C 0026059C  7C 08 02 A6 */	mflr r0
 /* 80263660 002605A0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -923,9 +943,9 @@ collisionCallback__Q34Game4Rock3ObjFRQ24Game9CollEvent:
 /* 802637F0 00260730  7C 08 03 A6 */	mtlr r0
 /* 802637F4 00260734  38 21 00 40 */	addi r1, r1, 0x40
 /* 802637F8 00260738  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q34Game4Rock3ObjFRQ24Game9CollEvent
 
-.global wallCallback__Q34Game4Rock3ObjFRCQ24Game8MoveInfo
-wallCallback__Q34Game4Rock3ObjFRCQ24Game8MoveInfo:
+.fn wallCallback__Q34Game4Rock3ObjFRCQ24Game8MoveInfo, global
 /* 802637FC 0026073C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263800 00260740  7C 08 02 A6 */	mflr r0
 /* 80263804 00260744  90 01 00 14 */	stw r0, 0x14(r1)
@@ -948,9 +968,9 @@ wallCallback__Q34Game4Rock3ObjFRCQ24Game8MoveInfo:
 /* 80263844 00260784  7C 08 03 A6 */	mtlr r0
 /* 80263848 00260788  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026384C 0026078C  4E 80 00 20 */	blr 
+.endfn wallCallback__Q34Game4Rock3ObjFRCQ24Game8MoveInfo
 
-.global inWaterCallback__Q34Game4Rock3ObjFPQ24Game8WaterBox
-inWaterCallback__Q34Game4Rock3ObjFPQ24Game8WaterBox:
+.fn inWaterCallback__Q34Game4Rock3ObjFPQ24Game8WaterBox, global
 /* 80263850 00260790  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263854 00260794  7C 08 02 A6 */	mflr r0
 /* 80263858 00260798  90 01 00 14 */	stw r0, 0x14(r1)
@@ -979,9 +999,9 @@ inWaterCallback__Q34Game4Rock3ObjFPQ24Game8WaterBox:
 /* 802638B0 002607F0  7C 08 03 A6 */	mtlr r0
 /* 802638B4 002607F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802638B8 002607F8  4E 80 00 20 */	blr 
+.endfn inWaterCallback__Q34Game4Rock3ObjFPQ24Game8WaterBox
 
-.global outWaterCallback__Q34Game4Rock3ObjFv
-outWaterCallback__Q34Game4Rock3ObjFv:
+.fn outWaterCallback__Q34Game4Rock3ObjFv, global
 /* 802638BC 002607FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802638C0 00260800  7C 08 02 A6 */	mflr r0
 /* 802638C4 00260804  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1007,9 +1027,9 @@ outWaterCallback__Q34Game4Rock3ObjFv:
 /* 80263910 00260850  7C 08 03 A6 */	mtlr r0
 /* 80263914 00260854  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263918 00260858  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q34Game4Rock3ObjFv
 
-.global doStartMovie__Q34Game4Rock3ObjFv
-doStartMovie__Q34Game4Rock3ObjFv:
+.fn doStartMovie__Q34Game4Rock3ObjFv, global
 /* 8026391C 0026085C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263920 00260860  7C 08 02 A6 */	mflr r0
 /* 80263924 00260864  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1018,9 +1038,9 @@ doStartMovie__Q34Game4Rock3ObjFv:
 /* 80263930 00260870  7C 08 03 A6 */	mtlr r0
 /* 80263934 00260874  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263938 00260878  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game4Rock3ObjFv
 
-.global doEndMovie__Q34Game4Rock3ObjFv
-doEndMovie__Q34Game4Rock3ObjFv:
+.fn doEndMovie__Q34Game4Rock3ObjFv, global
 /* 8026393C 0026087C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263940 00260880  7C 08 02 A6 */	mflr r0
 /* 80263944 00260884  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1029,9 +1049,9 @@ doEndMovie__Q34Game4Rock3ObjFv:
 /* 80263950 00260890  7C 08 03 A6 */	mtlr r0
 /* 80263954 00260894  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263958 00260898  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game4Rock3ObjFv
 
-.global ignoreAtari__Q34Game4Rock3ObjFPQ24Game8Creature
-ignoreAtari__Q34Game4Rock3ObjFPQ24Game8Creature:
+.fn ignoreAtari__Q34Game4Rock3ObjFPQ24Game8Creature, global
 /* 8026395C 0026089C  80 03 02 C0 */	lwz r0, 0x2c0(r3)
 /* 80263960 002608A0  7C 04 00 40 */	cmplw r4, r0
 /* 80263964 002608A4  40 82 00 1C */	bne .L_80263980
@@ -1044,9 +1064,9 @@ ignoreAtari__Q34Game4Rock3ObjFPQ24Game8Creature:
 .L_80263980:
 /* 80263980 002608C0  38 60 00 00 */	li r3, 0
 /* 80263984 002608C4  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q34Game4Rock3ObjFPQ24Game8Creature
 
-.global fallRockScaleUp__Q34Game4Rock3ObjFv
-fallRockScaleUp__Q34Game4Rock3ObjFv:
+.fn fallRockScaleUp__Q34Game4Rock3ObjFv, global
 /* 80263988 002608C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026398C 002608CC  7C 08 02 A6 */	mflr r0
 /* 80263990 002608D0  C0 42 CA 74 */	lfs f2, lbl_8051ADD4@sda21(r2)
@@ -1080,9 +1100,9 @@ fallRockScaleUp__Q34Game4Rock3ObjFv:
 /* 802639F8 00260938  7C 08 03 A6 */	mtlr r0
 /* 802639FC 0026093C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263A00 00260940  4E 80 00 20 */	blr 
+.endfn fallRockScaleUp__Q34Game4Rock3ObjFv
 
-.global moveRockScaleUp__Q34Game4Rock3ObjFv
-moveRockScaleUp__Q34Game4Rock3ObjFv:
+.fn moveRockScaleUp__Q34Game4Rock3ObjFv, global
 /* 80263A04 00260944  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263A08 00260948  7C 08 02 A6 */	mflr r0
 /* 80263A0C 0026094C  C0 42 CA 74 */	lfs f2, lbl_8051ADD4@sda21(r2)
@@ -1116,9 +1136,9 @@ moveRockScaleUp__Q34Game4Rock3ObjFv:
 /* 80263A74 002609B4  7C 08 03 A6 */	mtlr r0
 /* 80263A78 002609B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263A7C 002609BC  4E 80 00 20 */	blr 
+.endfn moveRockScaleUp__Q34Game4Rock3ObjFv
 
-.global initMoveVelocity__Q34Game4Rock3ObjFv
-initMoveVelocity__Q34Game4Rock3ObjFv:
+.fn initMoveVelocity__Q34Game4Rock3ObjFv, global
 /* 80263A80 002609C0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80263A84 002609C4  7C 08 02 A6 */	mflr r0
 /* 80263A88 002609C8  C0 02 CA 50 */	lfs f0, lbl_8051ADB0@sda21(r2)
@@ -1186,9 +1206,9 @@ initMoveVelocity__Q34Game4Rock3ObjFv:
 /* 80263B74 00260AB4  7C 08 03 A6 */	mtlr r0
 /* 80263B78 00260AB8  38 21 00 30 */	addi r1, r1, 0x30
 /* 80263B7C 00260ABC  4E 80 00 20 */	blr 
+.endfn initMoveVelocity__Q34Game4Rock3ObjFv
 
-.global updateMoveVelocity__Q34Game4Rock3ObjFv
-updateMoveVelocity__Q34Game4Rock3ObjFv:
+.fn updateMoveVelocity__Q34Game4Rock3ObjFv, global
 /* 80263B80 00260AC0  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80263B84 00260AC4  7C 08 02 A6 */	mflr r0
 /* 80263B88 00260AC8  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1433,9 +1453,9 @@ updateMoveVelocity__Q34Game4Rock3ObjFv:
 /* 80263F14 00260E54  7C 08 03 A6 */	mtlr r0
 /* 80263F18 00260E58  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80263F1C 00260E5C  4E 80 00 20 */	blr 
+.endfn updateMoveVelocity__Q34Game4Rock3ObjFv
 
-.global createEffect__Q34Game4Rock3ObjFv
-createEffect__Q34Game4Rock3ObjFv:
+.fn createEffect__Q34Game4Rock3ObjFv, global
 /* 80263F20 00260E60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80263F24 00260E64  7C 08 02 A6 */	mflr r0
 /* 80263F28 00260E68  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1544,18 +1564,18 @@ createEffect__Q34Game4Rock3ObjFv:
 /* 802640B8 00260FF8  7C 08 03 A6 */	mtlr r0
 /* 802640BC 00260FFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802640C0 00261000  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game4Rock3ObjFv
 
-.global setupEffect__Q34Game4Rock3ObjFv
-setupEffect__Q34Game4Rock3ObjFv:
+.fn setupEffect__Q34Game4Rock3ObjFv, global
 /* 802640C4 00261004  80 83 02 D8 */	lwz r4, 0x2d8(r3)
 /* 802640C8 00261008  38 03 01 8C */	addi r0, r3, 0x18c
 /* 802640CC 0026100C  90 04 00 10 */	stw r0, 0x10(r4)
 /* 802640D0 00261010  80 63 02 DC */	lwz r3, 0x2dc(r3)
 /* 802640D4 00261014  90 03 00 10 */	stw r0, 0x10(r3)
 /* 802640D8 00261018  4E 80 00 20 */	blr 
+.endfn setupEffect__Q34Game4Rock3ObjFv
 
-.global startFallEffect__Q34Game4Rock3ObjFv
-startFallEffect__Q34Game4Rock3ObjFv:
+.fn startFallEffect__Q34Game4Rock3ObjFv, global
 /* 802640DC 0026101C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802640E0 00261020  7C 08 02 A6 */	mflr r0
 /* 802640E4 00261024  38 80 00 00 */	li r4, 0
@@ -1569,9 +1589,9 @@ startFallEffect__Q34Game4Rock3ObjFv:
 /* 80264104 00261044  7C 08 03 A6 */	mtlr r0
 /* 80264108 00261048  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026410C 0026104C  4E 80 00 20 */	blr 
+.endfn startFallEffect__Q34Game4Rock3ObjFv
 
-.global finishFallEffect__Q34Game4Rock3ObjFv
-finishFallEffect__Q34Game4Rock3ObjFv:
+.fn finishFallEffect__Q34Game4Rock3ObjFv, global
 /* 80264110 00261050  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80264114 00261054  7C 08 02 A6 */	mflr r0
 /* 80264118 00261058  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1584,9 +1604,9 @@ finishFallEffect__Q34Game4Rock3ObjFv:
 /* 80264134 00261074  7C 08 03 A6 */	mtlr r0
 /* 80264138 00261078  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026413C 0026107C  4E 80 00 20 */	blr 
+.endfn finishFallEffect__Q34Game4Rock3ObjFv
 
-.global startRollingGroundEffect__Q34Game4Rock3ObjFv
-startRollingGroundEffect__Q34Game4Rock3ObjFv:
+.fn startRollingGroundEffect__Q34Game4Rock3ObjFv, global
 /* 80264140 00261080  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80264144 00261084  7C 08 02 A6 */	mflr r0
 /* 80264148 00261088  38 80 00 00 */	li r4, 0
@@ -1600,9 +1620,9 @@ startRollingGroundEffect__Q34Game4Rock3ObjFv:
 /* 80264168 002610A8  7C 08 03 A6 */	mtlr r0
 /* 8026416C 002610AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80264170 002610B0  4E 80 00 20 */	blr 
+.endfn startRollingGroundEffect__Q34Game4Rock3ObjFv
 
-.global finishRollingGroundEffect__Q34Game4Rock3ObjFv
-finishRollingGroundEffect__Q34Game4Rock3ObjFv:
+.fn finishRollingGroundEffect__Q34Game4Rock3ObjFv, global
 /* 80264174 002610B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80264178 002610B8  7C 08 02 A6 */	mflr r0
 /* 8026417C 002610BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1615,9 +1635,9 @@ finishRollingGroundEffect__Q34Game4Rock3ObjFv:
 /* 80264198 002610D8  7C 08 03 A6 */	mtlr r0
 /* 8026419C 002610DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802641A0 002610E0  4E 80 00 20 */	blr 
+.endfn finishRollingGroundEffect__Q34Game4Rock3ObjFv
 
-.global startRollingWaterEffect__Q34Game4Rock3ObjFv
-startRollingWaterEffect__Q34Game4Rock3ObjFv:
+.fn startRollingWaterEffect__Q34Game4Rock3ObjFv, global
 /* 802641A4 002610E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802641A8 002610E8  7C 08 02 A6 */	mflr r0
 /* 802641AC 002610EC  C0 02 CA 50 */	lfs f0, lbl_8051ADB0@sda21(r2)
@@ -1679,16 +1699,16 @@ startRollingWaterEffect__Q34Game4Rock3ObjFv:
 /* 80264280 002611C0  7C 08 03 A6 */	mtlr r0
 /* 80264284 002611C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80264288 002611C8  4E 80 00 20 */	blr 
+.endfn startRollingWaterEffect__Q34Game4Rock3ObjFv
 
-.global create__Q23efx9TRockWRunFPQ23efx3Arg
-create__Q23efx9TRockWRunFPQ23efx3Arg:
+.fn create__Q23efx9TRockWRunFPQ23efx3Arg, weak
 /* 8026428C 002611CC  38 00 00 01 */	li r0, 1
 /* 80264290 002611D0  98 03 00 54 */	stb r0, 0x54(r3)
 /* 80264294 002611D4  38 60 00 01 */	li r3, 1
 /* 80264298 002611D8  4E 80 00 20 */	blr 
+.endfn create__Q23efx9TRockWRunFPQ23efx3Arg
 
-.global finishRollingWaterEffect__Q34Game4Rock3ObjFv
-finishRollingWaterEffect__Q34Game4Rock3ObjFv:
+.fn finishRollingWaterEffect__Q34Game4Rock3ObjFv, global
 /* 8026429C 002611DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802642A0 002611E0  7C 08 02 A6 */	mflr r0
 /* 802642A4 002611E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1701,9 +1721,9 @@ finishRollingWaterEffect__Q34Game4Rock3ObjFv:
 /* 802642C0 00261200  7C 08 03 A6 */	mtlr r0
 /* 802642C4 00261204  38 21 00 10 */	addi r1, r1, 0x10
 /* 802642C8 00261208  4E 80 00 20 */	blr 
+.endfn finishRollingWaterEffect__Q34Game4Rock3ObjFv
 
-.global fade__Q23efx9TRockWRunFv
-fade__Q23efx9TRockWRunFv:
+.fn fade__Q23efx9TRockWRunFv, weak
 /* 802642CC 0026120C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802642D0 00261210  7C 08 02 A6 */	mflr r0
 /* 802642D4 00261214  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1721,9 +1741,9 @@ fade__Q23efx9TRockWRunFv:
 /* 80264304 00261244  7C 08 03 A6 */	mtlr r0
 /* 80264308 00261248  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026430C 0026124C  4E 80 00 20 */	blr 
+.endfn fade__Q23efx9TRockWRunFv
 
-.global updateWaterEffectPosition__Q34Game4Rock3ObjFv
-updateWaterEffectPosition__Q34Game4Rock3ObjFv:
+.fn updateWaterEffectPosition__Q34Game4Rock3ObjFv, global
 /* 80264310 00261250  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80264314 00261254  7C 08 02 A6 */	mflr r0
 /* 80264318 00261258  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1767,9 +1787,9 @@ updateWaterEffectPosition__Q34Game4Rock3ObjFv:
 /* 802643A8 002612E8  7C 08 03 A6 */	mtlr r0
 /* 802643AC 002612EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802643B0 002612F0  4E 80 00 20 */	blr 
+.endfn updateWaterEffectPosition__Q34Game4Rock3ObjFv
 
-.global createRockDeadEffect__Q34Game4Rock3ObjFv
-createRockDeadEffect__Q34Game4Rock3ObjFv:
+.fn createRockDeadEffect__Q34Game4Rock3ObjFv, global
 /* 802643B4 002612F4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802643B8 002612F8  7C 08 02 A6 */	mflr r0
 /* 802643BC 002612FC  3C C0 80 4B */	lis r6, __vt__Q23efx5TBase@ha
@@ -1808,9 +1828,9 @@ createRockDeadEffect__Q34Game4Rock3ObjFv:
 /* 80264440 00261380  7C 08 03 A6 */	mtlr r0
 /* 80264444 00261384  38 21 00 30 */	addi r1, r1, 0x30
 /* 80264448 00261388  4E 80 00 20 */	blr 
+.endfn createRockDeadEffect__Q34Game4Rock3ObjFv
 
-.global effectDrawOn__Q34Game4Rock3ObjFv
-effectDrawOn__Q34Game4Rock3ObjFv:
+.fn effectDrawOn__Q34Game4Rock3ObjFv, global
 /* 8026444C 0026138C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80264450 00261390  7C 08 02 A6 */	mflr r0
 /* 80264454 00261394  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1836,9 +1856,9 @@ effectDrawOn__Q34Game4Rock3ObjFv:
 /* 802644A4 002613E4  7C 08 03 A6 */	mtlr r0
 /* 802644A8 002613E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802644AC 002613EC  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game4Rock3ObjFv
 
-.global effectDrawOff__Q34Game4Rock3ObjFv
-effectDrawOff__Q34Game4Rock3ObjFv:
+.fn effectDrawOff__Q34Game4Rock3ObjFv, global
 /* 802644B0 002613F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802644B4 002613F4  7C 08 02 A6 */	mflr r0
 /* 802644B8 002613F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1864,9 +1884,9 @@ effectDrawOff__Q34Game4Rock3ObjFv:
 /* 80264508 00261448  7C 08 03 A6 */	mtlr r0
 /* 8026450C 0026144C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80264510 00261450  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game4Rock3ObjFv
 
-.global forceKill__Q23efx9TRockWRunFv
-forceKill__Q23efx9TRockWRunFv:
+.fn forceKill__Q23efx9TRockWRunFv, weak
 /* 80264514 00261454  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80264518 00261458  7C 08 02 A6 */	mflr r0
 /* 8026451C 0026145C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1884,9 +1904,9 @@ forceKill__Q23efx9TRockWRunFv:
 /* 8026454C 0026148C  7C 08 03 A6 */	mtlr r0
 /* 80264550 00261490  38 21 00 10 */	addi r1, r1, 0x10
 /* 80264554 00261494  4E 80 00 20 */	blr 
+.endfn forceKill__Q23efx9TRockWRunFv
 
-.global __dt__Q23efx10TRockGrRunFv
-__dt__Q23efx10TRockGrRunFv:
+.fn __dt__Q23efx10TRockGrRunFv, weak
 /* 80264558 00261498  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026455C 0026149C  7C 08 02 A6 */	mflr r0
 /* 80264560 002614A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1928,9 +1948,9 @@ __dt__Q23efx10TRockGrRunFv:
 /* 802645E8 00261528  7C 08 03 A6 */	mtlr r0
 /* 802645EC 0026152C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802645F0 00261530  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx10TRockGrRunFv
 
-.global __dt__Q23efx8TRockRunFv
-__dt__Q23efx8TRockRunFv:
+.fn __dt__Q23efx8TRockRunFv, weak
 /* 802645F4 00261534  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802645F8 00261538  7C 08 02 A6 */	mflr r0
 /* 802645FC 0026153C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1972,66 +1992,67 @@ __dt__Q23efx8TRockRunFv:
 /* 80264684 002615C4  7C 08 03 A6 */	mtlr r0
 /* 80264688 002615C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026468C 002615CC  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx8TRockRunFv
 
-.global isLivingThing__Q34Game4Rock3ObjFv
-isLivingThing__Q34Game4Rock3ObjFv:
+.fn isLivingThing__Q34Game4Rock3ObjFv, weak
 /* 80264690 002615D0  38 60 00 00 */	li r3, 0
 /* 80264694 002615D4  4E 80 00 20 */	blr 
+.endfn isLivingThing__Q34Game4Rock3ObjFv
 
-.global "@744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-"@744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
+.fn "@744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv", weak
 /* 80264698 002615D8  39 60 00 0C */	li r11, 0xc
 /* 8026469C 002615DC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802646A0 002615E0  7C 63 5A 14 */	add r3, r3, r11
 /* 802646A4 002615E4  38 63 FD 18 */	addi r3, r3, -744
 /* 802646A8 002615E8  4B EA 22 74 */	b viewOnPelletKilled__Q24Game9EnemyBaseFv
+.endfn "@744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 
-.global "@744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-"@744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 802646AC 002615EC  39 60 00 0C */	li r11, 0xc
 /* 802646B0 002615F0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802646B4 002615F4  7C 63 5A 14 */	add r3, r3, r11
 /* 802646B8 002615F8  38 63 FD 18 */	addi r3, r3, -744
 /* 802646BC 002615FC  4B EA 1F EC */	b viewStartCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@744@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-"@744@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv":
+.fn "@744@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv", weak
 /* 802646C0 00261600  39 60 00 0C */	li r11, 0xc
 /* 802646C4 00261604  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802646C8 00261608  7C 63 5A 14 */	add r3, r3, r11
 /* 802646CC 0026160C  38 63 FD 18 */	addi r3, r3, -744
 /* 802646D0 00261610  4B EA 1F F8 */	b viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+.endfn "@744@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
 
-.global "@744@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-"@744@12@view_finish_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@744@12@view_finish_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 802646D4 00261614  39 60 00 0C */	li r11, 0xc
 /* 802646D8 00261618  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802646DC 0026161C  7C 63 5A 14 */	add r3, r3, r11
 /* 802646E0 00261620  38 63 FD 18 */	addi r3, r3, -744
 /* 802646E4 00261624  4B EA 23 94 */	b view_finish_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@744@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@744@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-"@744@12@view_start_carrymotion__Q24Game9EnemyBaseFv":
+.fn "@744@12@view_start_carrymotion__Q24Game9EnemyBaseFv", weak
 /* 802646E8 00261628  39 60 00 0C */	li r11, 0xc
 /* 802646EC 0026162C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802646F0 00261630  7C 63 5A 14 */	add r3, r3, r11
 /* 802646F4 00261634  38 63 FD 18 */	addi r3, r3, -744
 /* 802646F8 00261638  4B EA 23 54 */	b view_start_carrymotion__Q24Game9EnemyBaseFv
+.endfn "@744@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
 
-.global "@744@12@viewGetShape__Q24Game9EnemyBaseFv"
-"@744@12@viewGetShape__Q24Game9EnemyBaseFv":
+.fn "@744@12@viewGetShape__Q24Game9EnemyBaseFv", weak
 /* 802646FC 0026163C  39 60 00 0C */	li r11, 0xc
 /* 80264700 00261640  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80264704 00261644  7C 63 5A 14 */	add r3, r3, r11
 /* 80264708 00261648  38 63 FD 18 */	addi r3, r3, -744
 /* 8026470C 0026164C  4B EA 1F 94 */	b viewGetShape__Q24Game9EnemyBaseFv
+.endfn "@744@12@viewGetShape__Q24Game9EnemyBaseFv"
 
-.global "@4@__dt__Q23efx8TRockRunFv"
-"@4@__dt__Q23efx8TRockRunFv":
+.fn "@4@__dt__Q23efx8TRockRunFv", weak
 /* 80264710 00261650  38 63 FF FC */	addi r3, r3, -4
 /* 80264714 00261654  4B FF FE E0 */	b __dt__Q23efx8TRockRunFv
+.endfn "@4@__dt__Q23efx8TRockRunFv"
 
-.global "@4@__dt__Q23efx10TRockGrRunFv"
-"@4@__dt__Q23efx10TRockGrRunFv":
+.fn "@4@__dt__Q23efx10TRockGrRunFv", weak
 /* 80264718 00261658  38 63 FF FC */	addi r3, r3, -4
 /* 8026471C 0026165C  4B FF FE 3C */	b __dt__Q23efx10TRockGrRunFv
+.endfn "@4@__dt__Q23efx10TRockGrRunFv"

@@ -5,23 +5,22 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8048B7F0:
-	.4byte 0x64697361
-	.4byte 0x70706561
-	.4byte 0x72000000
-lbl_8048B7FC:
-	.4byte 0x73747275
-	.4byte 0x67676C65
-	.4byte 0x00000000
+.obj lbl_8048B7F0, local
+	.asciz "disappear"
+.endobj lbl_8048B7F0
+.balign 4
+.obj lbl_8048B7FC, local
+	.asciz "struggle"
+.endobj lbl_8048B7FC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804D2150:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q34Game10SnakeWhole13StateStruggle
-__vt__Q34Game10SnakeWhole13StateStruggle:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game10SnakeWhole13StateStruggle, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -31,8 +30,8 @@ __vt__Q34Game10SnakeWhole13StateStruggle:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole8StateEat
-__vt__Q34Game10SnakeWhole8StateEat:
+.endobj __vt__Q34Game10SnakeWhole13StateStruggle
+.obj __vt__Q34Game10SnakeWhole8StateEat, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -42,8 +41,8 @@ __vt__Q34Game10SnakeWhole8StateEat:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole11StateAttack
-__vt__Q34Game10SnakeWhole11StateAttack:
+.endobj __vt__Q34Game10SnakeWhole8StateEat
+.obj __vt__Q34Game10SnakeWhole11StateAttack, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -53,8 +52,8 @@ __vt__Q34Game10SnakeWhole11StateAttack:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole9StateHome
-__vt__Q34Game10SnakeWhole9StateHome:
+.endobj __vt__Q34Game10SnakeWhole11StateAttack
+.obj __vt__Q34Game10SnakeWhole9StateHome, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -64,8 +63,8 @@ __vt__Q34Game10SnakeWhole9StateHome:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole9StateWalk
-__vt__Q34Game10SnakeWhole9StateWalk:
+.endobj __vt__Q34Game10SnakeWhole9StateHome
+.obj __vt__Q34Game10SnakeWhole9StateWalk, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -75,8 +74,8 @@ __vt__Q34Game10SnakeWhole9StateWalk:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole9StateWait
-__vt__Q34Game10SnakeWhole9StateWait:
+.endobj __vt__Q34Game10SnakeWhole9StateWalk
+.obj __vt__Q34Game10SnakeWhole9StateWait, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -86,8 +85,8 @@ __vt__Q34Game10SnakeWhole9StateWait:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole14StateDisappear
-__vt__Q34Game10SnakeWhole14StateDisappear:
+.endobj __vt__Q34Game10SnakeWhole9StateWait
+.obj __vt__Q34Game10SnakeWhole14StateDisappear, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -97,8 +96,8 @@ __vt__Q34Game10SnakeWhole14StateDisappear:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole12StateAppear2
-__vt__Q34Game10SnakeWhole12StateAppear2:
+.endobj __vt__Q34Game10SnakeWhole14StateDisappear
+.obj __vt__Q34Game10SnakeWhole12StateAppear2, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg
@@ -108,8 +107,8 @@ __vt__Q34Game10SnakeWhole12StateAppear2:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole12StateAppear1
-__vt__Q34Game10SnakeWhole12StateAppear1:
+.endobj __vt__Q34Game10SnakeWhole12StateAppear2
+.obj __vt__Q34Game10SnakeWhole12StateAppear1, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg
@@ -119,8 +118,8 @@ __vt__Q34Game10SnakeWhole12StateAppear1:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole9StateStay
-__vt__Q34Game10SnakeWhole9StateStay:
+.endobj __vt__Q34Game10SnakeWhole12StateAppear1
+.obj __vt__Q34Game10SnakeWhole9StateStay, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -130,8 +129,8 @@ __vt__Q34Game10SnakeWhole9StateStay:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole9StateDead
-__vt__Q34Game10SnakeWhole9StateDead:
+.endobj __vt__Q34Game10SnakeWhole9StateStay
+.obj __vt__Q34Game10SnakeWhole9StateDead, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -141,8 +140,8 @@ __vt__Q34Game10SnakeWhole9StateDead:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole5State
-__vt__Q34Game10SnakeWhole5State:
+.endobj __vt__Q34Game10SnakeWhole9StateDead
+.obj __vt__Q34Game10SnakeWhole5State, weak
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
@@ -152,8 +151,8 @@ __vt__Q34Game10SnakeWhole5State:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game10SnakeWhole3FSM
-__vt__Q34Game10SnakeWhole3FSM:
+.endobj __vt__Q34Game10SnakeWhole5State
+.obj __vt__Q34Game10SnakeWhole3FSM, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game10SnakeWhole3FSMFPQ24Game9EnemyBase
@@ -163,69 +162,89 @@ __vt__Q34Game10SnakeWhole3FSM:
 	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+.endobj __vt__Q34Game10SnakeWhole3FSM
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515DB8:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-lbl_80515DBC:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051C7D0:
-	.4byte 0x64656164
-	.4byte 0x00000000
-lbl_8051C7D8:
-	.4byte 0x73746179
-	.4byte 0x00000000
-lbl_8051C7E0:
-	.4byte 0x61707065
-	.4byte 0x61723100
-lbl_8051C7E8:
-	.4byte 0x61707065
-	.4byte 0x61723200
-lbl_8051C7F0:
-	.4byte 0x77616974
-	.4byte 0x00000000
-lbl_8051C7F8:
-	.4byte 0x77616C6B
-	.4byte 0x00000000
-lbl_8051C800:
-	.4byte 0x686F6D65
-	.4byte 0x00000000
-lbl_8051C808:
-	.4byte 0x61747461
-	.4byte 0x636B0000
-lbl_8051C810:
-	.4byte 0x65617400
-lbl_8051C814:
-	.4byte 0x00000000
-lbl_8051C818:
-	.4byte 0x3F666666
-lbl_8051C81C:
-	.4byte 0x3F400000
-lbl_8051C820:
-	.4byte 0x481C4000
-lbl_8051C824:
+.obj lbl_8051C7D0, local
+	.asciz "dead"
+.endobj lbl_8051C7D0
+.balign 4
+.obj lbl_8051C7D8, local
+	.asciz "stay"
+.endobj lbl_8051C7D8
+.balign 4
+.obj lbl_8051C7E0, local
+	.asciz "appear1"
+.endobj lbl_8051C7E0
+.balign 4
+.obj lbl_8051C7E8, local
+	.asciz "appear2"
+.endobj lbl_8051C7E8
+.balign 4
+.obj lbl_8051C7F0, local
+	.asciz "wait"
+.endobj lbl_8051C7F0
+.balign 4
+.obj lbl_8051C7F8, local
+	.asciz "walk"
+.endobj lbl_8051C7F8
+.balign 4
+.obj lbl_8051C800, local
+	.asciz "home"
+.endobj lbl_8051C800
+.balign 4
+.obj lbl_8051C808, local
+	.asciz "attack"
+.endobj lbl_8051C808
+.balign 4
+.obj lbl_8051C810, local
+	.asciz "eat"
+.endobj lbl_8051C810
+.balign 4
+.obj lbl_8051C814, local
+	.float 0.0
+.endobj lbl_8051C814
+.obj lbl_8051C818, local
+	.float 0.9
+.endobj lbl_8051C818
+.obj lbl_8051C81C, local
+	.float 0.75
+.endobj lbl_8051C81C
+.obj lbl_8051C820, local
+	.float 160000.0
+.endobj lbl_8051C820
+.obj lbl_8051C824, local
 	.float 1.0
-lbl_8051C828:
-	.4byte 0x47000000
-	.4byte 0x00000000
-lbl_8051C830:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051C838:
-	.4byte 0xC47A0000
-lbl_8051C83C:
-	.4byte 0x41200000
-lbl_8051C840:
-	.4byte 0x3FC00000
-	.4byte 0x00000000
+.endobj lbl_8051C824
+.obj lbl_8051C828, local
+	.float 32768.0
+.endobj lbl_8051C828
+.balign 8
+.obj lbl_8051C830, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051C830
+.obj lbl_8051C838, local
+	.float -1000.0
+.endobj lbl_8051C838
+.obj lbl_8051C83C, local
+	.float 10.0
+.endobj lbl_8051C83C
+.obj lbl_8051C840, local
+	.float 1.5
+.endobj lbl_8051C840
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q34Game10SnakeWhole3FSMFPQ24Game9EnemyBase
-init__Q34Game10SnakeWhole3FSMFPQ24Game9EnemyBase:
+.fn init__Q34Game10SnakeWhole3FSMFPQ24Game9EnemyBase, global
 /* 802CB94C 002C888C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CB950 002C8890  7C 08 02 A6 */	mflr r0
 /* 802CB954 002C8894  38 80 00 0B */	li r4, 0xb
@@ -481,9 +500,9 @@ init__Q34Game10SnakeWhole3FSMFPQ24Game9EnemyBase:
 /* 802CBD10 002C8C50  7C 08 03 A6 */	mtlr r0
 /* 802CBD14 002C8C54  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CBD18 002C8C58  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole3FSMFPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CBD1C 002C8C5C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802CBD20 002C8C60  7C 08 02 A6 */	mflr r0
 /* 802CBD24 002C8C64  90 01 00 34 */	stw r0, 0x34(r1)
@@ -533,9 +552,9 @@ init__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CBDD4 002C8D14  7C 08 03 A6 */	mtlr r0
 /* 802CBDD8 002C8D18  38 21 00 30 */	addi r1, r1, 0x30
 /* 802CBDDC 002C8D1C  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase, global
 /* 802CBDE0 002C8D20  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802CBDE4 002C8D24  7C 08 02 A6 */	mflr r0
 /* 802CBDE8 002C8D28  90 01 00 64 */	stw r0, 0x64(r1)
@@ -653,13 +672,13 @@ exec__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase:
 /* 802CBF94 002C8ED4  7C 08 03 A6 */	mtlr r0
 /* 802CBF98 002C8ED8  38 21 00 60 */	addi r1, r1, 0x60
 /* 802CBF9C 002C8EDC  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase, global
 /* 802CBFA0 002C8EE0  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CBFA4 002C8EE4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802CBFA8 002C8EE8  7C 08 02 A6 */	mflr r0
 /* 802CBFAC 002C8EEC  C0 02 E4 B4 */	lfs f0, lbl_8051C814@sda21(r2)
@@ -736,9 +755,9 @@ init__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CC0C4 002C9004  7C 08 03 A6 */	mtlr r0
 /* 802CC0C8 002C9008  38 21 00 30 */	addi r1, r1, 0x30
 /* 802CC0CC 002C900C  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase, global
 /* 802CC0D0 002C9010  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 802CC0D4 002C9014  7C 08 02 A6 */	mflr r0
 /* 802CC0D8 002C9018  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1154,9 +1173,9 @@ exec__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase:
 /* 802CC6DC 002C961C  7C 08 03 A6 */	mtlr r0
 /* 802CC6E0 002C9620  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 802CC6E4 002C9624  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase, global
 /* 802CC6E8 002C9628  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CC6EC 002C962C  7C 08 02 A6 */	mflr r0
 /* 802CC6F0 002C9630  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1195,9 +1214,9 @@ cleanup__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase:
 /* 802CC774 002C96B4  7C 08 03 A6 */	mtlr r0
 /* 802CC778 002C96B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CC77C 002C96BC  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CC780 002C96C0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802CC784 002C96C4  7C 08 02 A6 */	mflr r0
 /* 802CC788 002C96C8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1251,9 +1270,9 @@ init__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CC848 002C9788  7C 08 03 A6 */	mtlr r0
 /* 802CC84C 002C978C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802CC850 002C9790  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase, global
 /* 802CC854 002C9794  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802CC858 002C9798  7C 08 02 A6 */	mflr r0
 /* 802CC85C 002C979C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1455,9 +1474,9 @@ exec__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase:
 /* 802CCB40 002C9A80  7C 08 03 A6 */	mtlr r0
 /* 802CCB44 002C9A84  38 21 00 60 */	addi r1, r1, 0x60
 /* 802CCB48 002C9A88  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase, global
 /* 802CCB4C 002C9A8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CCB50 002C9A90  7C 08 02 A6 */	mflr r0
 /* 802CCB54 002C9A94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1485,9 +1504,9 @@ cleanup__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase:
 /* 802CCBA8 002C9AE8  7C 08 03 A6 */	mtlr r0
 /* 802CCBAC 002C9AEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CCBB0 002C9AF0  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CCBB4 002C9AF4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802CCBB8 002C9AF8  7C 08 02 A6 */	mflr r0
 /* 802CCBBC 002C9AFC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1541,9 +1560,9 @@ init__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CCC7C 002C9BBC  7C 08 03 A6 */	mtlr r0
 /* 802CCC80 002C9BC0  38 21 00 30 */	addi r1, r1, 0x30
 /* 802CCC84 002C9BC4  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase, global
 /* 802CCC88 002C9BC8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802CCC8C 002C9BCC  7C 08 02 A6 */	mflr r0
 /* 802CCC90 002C9BD0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1754,9 +1773,9 @@ exec__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase:
 /* 802CCF94 002C9ED4  7C 08 03 A6 */	mtlr r0
 /* 802CCF98 002C9ED8  38 21 00 60 */	addi r1, r1, 0x60
 /* 802CCF9C 002C9EDC  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase, global
 /* 802CCFA0 002C9EE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CCFA4 002C9EE4  7C 08 02 A6 */	mflr r0
 /* 802CCFA8 002C9EE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1784,9 +1803,9 @@ cleanup__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase:
 /* 802CCFFC 002C9F3C  7C 08 03 A6 */	mtlr r0
 /* 802CD000 002C9F40  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD004 002C9F44  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CD008 002C9F48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD00C 002C9F4C  7C 08 02 A6 */	mflr r0
 /* 802CD010 002C9F50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1812,9 +1831,9 @@ init__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CD060 002C9FA0  7C 08 03 A6 */	mtlr r0
 /* 802CD064 002C9FA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD068 002C9FA8  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase, global
 /* 802CD06C 002C9FAC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802CD070 002C9FB0  7C 08 02 A6 */	mflr r0
 /* 802CD074 002C9FB4  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1953,9 +1972,9 @@ exec__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase:
 /* 802CD274 002CA1B4  7C 08 03 A6 */	mtlr r0
 /* 802CD278 002CA1B8  38 21 00 60 */	addi r1, r1, 0x60
 /* 802CD27C 002CA1BC  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase, global
 /* 802CD280 002CA1C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD284 002CA1C4  7C 08 02 A6 */	mflr r0
 /* 802CD288 002CA1C8  C0 22 E4 C4 */	lfs f1, lbl_8051C824@sda21(r2)
@@ -1986,9 +2005,9 @@ cleanup__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase:
 /* 802CD2EC 002CA22C  7C 08 03 A6 */	mtlr r0
 /* 802CD2F0 002CA230  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD2F4 002CA234  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CD2F8 002CA238  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD2FC 002CA23C  7C 08 02 A6 */	mflr r0
 /* 802CD300 002CA240  C0 02 E4 B4 */	lfs f0, lbl_8051C814@sda21(r2)
@@ -2015,9 +2034,9 @@ init__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CD354 002CA294  7C 08 03 A6 */	mtlr r0
 /* 802CD358 002CA298  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD35C 002CA29C  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase, global
 /* 802CD360 002CA2A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD364 002CA2A4  7C 08 02 A6 */	mflr r0
 /* 802CD368 002CA2A8  C0 02 E4 B4 */	lfs f0, lbl_8051C814@sda21(r2)
@@ -2130,13 +2149,13 @@ exec__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase:
 /* 802CD4EC 002CA42C  7C 08 03 A6 */	mtlr r0
 /* 802CD4F0 002CA430  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD4F4 002CA434  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase, global
 /* 802CD4F8 002CA438  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CD4FC 002CA43C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD500 002CA440  7C 08 02 A6 */	mflr r0
 /* 802CD504 002CA444  C0 02 E4 B4 */	lfs f0, lbl_8051C814@sda21(r2)
@@ -2155,9 +2174,9 @@ init__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CD538 002CA478  7C 08 03 A6 */	mtlr r0
 /* 802CD53C 002CA47C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD540 002CA480  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase, global
 /* 802CD544 002CA484  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802CD548 002CA488  7C 08 02 A6 */	mflr r0
 /* 802CD54C 002CA48C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2333,16 +2352,16 @@ exec__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase:
 /* 802CD7C0 002CA700  7C 08 03 A6 */	mtlr r0
 /* 802CD7C4 002CA704  38 21 00 40 */	addi r1, r1, 0x40
 /* 802CD7C8 002CA708  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase, global
 /* 802CD7CC 002CA70C  80 04 01 E0 */	lwz r0, 0x1e0(r4)
 /* 802CD7D0 002CA710  54 00 02 D2 */	rlwinm r0, r0, 0, 0xb, 9
 /* 802CD7D4 002CA714  90 04 01 E0 */	stw r0, 0x1e0(r4)
 /* 802CD7D8 002CA718  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CD7DC 002CA71C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD7E0 002CA720  7C 08 02 A6 */	mflr r0
 /* 802CD7E4 002CA724  C0 02 E4 B4 */	lfs f0, lbl_8051C814@sda21(r2)
@@ -2361,9 +2380,9 @@ init__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CD818 002CA758  7C 08 03 A6 */	mtlr r0
 /* 802CD81C 002CA75C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD820 002CA760  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase, global
 /* 802CD824 002CA764  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802CD828 002CA768  7C 08 02 A6 */	mflr r0
 /* 802CD82C 002CA76C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2477,16 +2496,16 @@ exec__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase:
 /* 802CD9BC 002CA8FC  7C 08 03 A6 */	mtlr r0
 /* 802CD9C0 002CA900  38 21 00 20 */	addi r1, r1, 0x20
 /* 802CD9C4 002CA904  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase, global
 /* 802CD9C8 002CA908  80 04 01 E0 */	lwz r0, 0x1e0(r4)
 /* 802CD9CC 002CA90C  54 00 02 D2 */	rlwinm r0, r0, 0, 0xb, 9
 /* 802CD9D0 002CA910  90 04 01 E0 */	stw r0, 0x1e0(r4)
 /* 802CD9D4 002CA914  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CD9D8 002CA918  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD9DC 002CA91C  7C 08 02 A6 */	mflr r0
 /* 802CD9E0 002CA920  C0 02 E4 B4 */	lfs f0, lbl_8051C814@sda21(r2)
@@ -2506,9 +2525,9 @@ init__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CDA18 002CA958  7C 08 03 A6 */	mtlr r0
 /* 802CDA1C 002CA95C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CDA20 002CA960  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase, global
 /* 802CDA24 002CA964  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802CDA28 002CA968  7C 08 02 A6 */	mflr r0
 /* 802CDA2C 002CA96C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2773,16 +2792,16 @@ exec__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase:
 /* 802CDDE8 002CAD28  7C 08 03 A6 */	mtlr r0
 /* 802CDDEC 002CAD2C  38 21 00 40 */	addi r1, r1, 0x40
 /* 802CDDF0 002CAD30  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase, global
 /* 802CDDF4 002CAD34  80 04 01 E0 */	lwz r0, 0x1e0(r4)
 /* 802CDDF8 002CAD38  60 00 00 40 */	ori r0, r0, 0x40
 /* 802CDDFC 002CAD3C  90 04 01 E0 */	stw r0, 0x1e0(r4)
 /* 802CDE00 002CAD40  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CDE04 002CAD44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CDE08 002CAD48  7C 08 02 A6 */	mflr r0
 /* 802CDE0C 002CAD4C  7C 83 23 78 */	mr r3, r4
@@ -2798,9 +2817,9 @@ init__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CDE34 002CAD74  7C 08 03 A6 */	mtlr r0
 /* 802CDE38 002CAD78  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CDE3C 002CAD7C  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase, global
 /* 802CDE40 002CAD80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CDE44 002CAD84  7C 08 02 A6 */	mflr r0
 /* 802CDE48 002CAD88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2934,13 +2953,13 @@ exec__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase:
 /* 802CE024 002CAF64  7C 08 03 A6 */	mtlr r0
 /* 802CE028 002CAF68  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CE02C 002CAF6C  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase, global
 /* 802CE030 002CAF70  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase
 
-.global init__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg:
+.fn init__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg, global
 /* 802CE034 002CAF74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CE038 002CAF78  7C 08 02 A6 */	mflr r0
 /* 802CE03C 002CAF7C  7C 83 23 78 */	mr r3, r4
@@ -2957,9 +2976,9 @@ init__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 802CE068 002CAFA8  7C 08 03 A6 */	mtlr r0
 /* 802CE06C 002CAFAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CE070 002CAFB0  4E 80 00 20 */	blr 
+.endfn init__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg
 
-.global exec__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase
-exec__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase:
+.fn exec__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase, global
 /* 802CE074 002CAFB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CE078 002CAFB8  7C 08 02 A6 */	mflr r0
 /* 802CE07C 002CAFBC  C0 02 E4 E0 */	lfs f0, lbl_8051C840@sda21(r2)
@@ -3082,20 +3101,21 @@ exec__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase:
 /* 802CE230 002CB170  7C 08 03 A6 */	mtlr r0
 /* 802CE234 002CB174  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CE238 002CB178  4E 80 00 20 */	blr 
+.endfn exec__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase
 
-.global cleanup__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase
-cleanup__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase:
+.fn cleanup__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase, global
 /* 802CE23C 002CB17C  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase
 
-.global __sinit_SnakeWholeState_cpp
-__sinit_SnakeWholeState_cpp:
+.fn __sinit_SnakeWholeState_cpp, local
 /* 802CE240 002CB180  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802CE244 002CB184  38 00 FF FF */	li r0, -1
 /* 802CE248 002CB188  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 802CE24C 002CB18C  3C 60 80 4D */	lis r3, lbl_804D2150@ha
-/* 802CE250 002CB190  90 0D 97 38 */	stw r0, lbl_80515DB8@sda21(r13)
-/* 802CE254 002CB194  D4 03 21 50 */	stfsu f0, lbl_804D2150@l(r3)
-/* 802CE258 002CB198  D0 0D 97 3C */	stfs f0, lbl_80515DBC@sda21(r13)
+/* 802CE24C 002CB18C  3C 60 80 4D */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 802CE250 002CB190  90 0D 97 38 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 802CE254 002CB194  D4 03 21 50 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 802CE258 002CB198  D0 0D 97 3C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 802CE25C 002CB19C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802CE260 002CB1A0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802CE264 002CB1A4  4E 80 00 20 */	blr 
+.endfn __sinit_SnakeWholeState_cpp

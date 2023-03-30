@@ -1,43 +1,42 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q23efx12TChibiDeadSe
-__vt__Q23efx12TChibiDeadSe:
+.obj __vt__Q23efx12TChibiDeadSe, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx15TChibiDeadMouth
-__vt__Q23efx15TChibiDeadMouth:
+.endobj __vt__Q23efx12TChibiDeadSe
+.obj __vt__Q23efx15TChibiDeadMouth, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx11TChibiShoot
-__vt__Q23efx11TChibiShoot:
+.endobj __vt__Q23efx15TChibiDeadMouth
+.obj __vt__Q23efx11TChibiShoot, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx3FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q23efx12TChibiSmokeL
-__vt__Q23efx12TChibiSmokeL:
+.endobj __vt__Q23efx11TChibiShoot
+.obj __vt__Q23efx12TChibiSmokeL, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx12TChibiSmokeS
-__vt__Q23efx12TChibiSmokeS:
+.endobj __vt__Q23efx12TChibiSmokeL
+.obj __vt__Q23efx12TChibiSmokeS, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx15TChibiDeadLight
-__vt__Q23efx15TChibiDeadLight:
+.endobj __vt__Q23efx12TChibiSmokeS
+.obj __vt__Q23efx15TChibiDeadLight, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -57,8 +56,8 @@ __vt__Q23efx15TChibiDeadLight:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx15TChibiDeadLightFv
-.global __vt__Q23efx12TChibiCharge
-__vt__Q23efx12TChibiCharge:
+.endobj __vt__Q23efx15TChibiDeadLight
+.obj __vt__Q23efx12TChibiCharge, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -78,8 +77,8 @@ __vt__Q23efx12TChibiCharge:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx12TChibiChargeFv
-.global __vt__Q34Game10MiniHoudai3Obj
-__vt__Q34Game10MiniHoudai3Obj:
+.endobj __vt__Q23efx12TChibiCharge
+.obj __vt__Q34Game10MiniHoudai3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -283,79 +282,108 @@ __vt__Q34Game10MiniHoudai3Obj:
 	.4byte "@776@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@776@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game10MiniHoudai3Obj
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051CF88:
-	.4byte 0x43000000
-lbl_8051CF8C:
-	.4byte 0x00000000
-lbl_8051CF90:
-	.4byte 0x6B6F7369
-	.4byte 0x00000000
-lbl_8051CF98:
-	.4byte 0x418C0000
-lbl_8051CF9C:
-	.4byte 0x40A00000
-lbl_8051CFA0:
+.obj lbl_8051CF88, local
+	.float 128.0
+.endobj lbl_8051CF88
+.obj lbl_8051CF8C, local
+	.float 0.0
+.endobj lbl_8051CF8C
+.balign 4
+.obj lbl_8051CF90, local
+	.asciz "kosi"
+.endobj lbl_8051CF90
+.balign 4
+.obj lbl_8051CF98, local
+	.float 17.5
+.endobj lbl_8051CF98
+.obj lbl_8051CF9C, local
+	.float 5.0
+.endobj lbl_8051CF9C
+.obj lbl_8051CFA0, local
 	.float 1.0
-lbl_8051CFA4:
-	.4byte 0x42C80000
-lbl_8051CFA8:
-	.4byte 0x42960000
-lbl_8051CFAC:
-	.4byte 0x42480000
-lbl_8051CFB0:
-	.4byte 0x41F00000
-lbl_8051CFB4:
+.endobj lbl_8051CFA0
+.obj lbl_8051CFA4, local
+	.float 100.0
+.endobj lbl_8051CFA4
+.obj lbl_8051CFA8, local
+	.float 75.0
+.endobj lbl_8051CFA8
+.obj lbl_8051CFAC, local
+	.float 50.0
+.endobj lbl_8051CFAC
+.obj lbl_8051CFB0, local
+	.float 30.0
+.endobj lbl_8051CFB0
+.obj lbl_8051CFB4, local
 	.float 0.25
-lbl_8051CFB8:
-	.4byte 0x68616E64
-	.4byte 0x4C000000
-lbl_8051CFC0:
-	.4byte 0x68616E64
-	.4byte 0x52000000
-lbl_8051CFC8:
-	.4byte 0x41200000
-lbl_8051CFCC:
-	.4byte 0x43340000
-lbl_8051CFD0:
-	.4byte 0x47000000
-	.4byte 0x00000000
-lbl_8051CFD8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_8051CFE0:
-	.4byte 0x43A2F983
-lbl_8051CFE4:
-	.4byte 0xC3A2F983
-lbl_8051CFE8:
+.endobj lbl_8051CFB4
+.balign 4
+.obj lbl_8051CFB8, local
+	.asciz "handL"
+.endobj lbl_8051CFB8
+.balign 4
+.obj lbl_8051CFC0, local
+	.asciz "handR"
+.endobj lbl_8051CFC0
+.balign 4
+.obj lbl_8051CFC8, local
+	.float 10.0
+.endobj lbl_8051CFC8
+.obj lbl_8051CFCC, local
+	.float 180.0
+.endobj lbl_8051CFCC
+.obj lbl_8051CFD0, local
+	.float 32768.0
+.endobj lbl_8051CFD0
+.balign 8
+.obj lbl_8051CFD8, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051CFD8
+.obj lbl_8051CFE0, local
+	.float 325.9493
+.endobj lbl_8051CFE0
+.obj lbl_8051CFE4, local
+	.float -325.9493
+.endobj lbl_8051CFE4
+.obj lbl_8051CFE8, local
 	.float 0.5
-lbl_8051CFEC:
-	.4byte 0x3F400000
-lbl_8051CFF0:
-	.4byte 0x43480000
-lbl_8051CFF4:
-	.4byte 0x41C80000
-lbl_8051CFF8:
-	.4byte 0x6B757469
-	.4byte 0x00000000
-lbl_8051D000:
-	.4byte 0x68656164
-	.4byte 0x00000000
-lbl_8051D008:
-	.4byte 0x73656269
-	.4byte 0x72653100
-lbl_8051D010:
-	.4byte 0x73656269
-	.4byte 0x72653200
-lbl_8051D018:
-	.4byte 0x3F666666
-	.4byte 0x00000000
+.endobj lbl_8051CFE8
+.obj lbl_8051CFEC, local
+	.float 0.75
+.endobj lbl_8051CFEC
+.obj lbl_8051CFF0, local
+	.float 200.0
+.endobj lbl_8051CFF0
+.obj lbl_8051CFF4, local
+	.float 25.0
+.endobj lbl_8051CFF4
+.balign 4
+.obj lbl_8051CFF8, local
+	.asciz "kuti"
+.endobj lbl_8051CFF8
+.balign 4
+.obj lbl_8051D000, local
+	.asciz "head"
+.endobj lbl_8051D000
+.balign 4
+.obj lbl_8051D008, local
+	.asciz "sebire1"
+.endobj lbl_8051D008
+.balign 4
+.obj lbl_8051D010, local
+	.asciz "sebire2"
+.endobj lbl_8051D010
+.balign 4
+.obj lbl_8051D018, local
+	.float 0.9
+.endobj lbl_8051D018
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game10MiniHoudai3ObjFv
-__ct__Q34Game10MiniHoudai3ObjFv:
+.fn __ct__Q34Game10MiniHoudai3ObjFv, global
 /* 802EBFF8 002E8F38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EBFFC 002E8F3C  7C 08 02 A6 */	mflr r0
 /* 802EC000 002E8F40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -441,13 +469,13 @@ __ct__Q34Game10MiniHoudai3ObjFv:
 /* 802EC134 002E9074  7C 08 03 A6 */	mtlr r0
 /* 802EC138 002E9078  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC13C 002E907C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game10MiniHoudai3ObjFv
 
-.global setInitialSetting__Q34Game10MiniHoudai3ObjFPQ24Game21EnemyInitialParamBase
-setInitialSetting__Q34Game10MiniHoudai3ObjFPQ24Game21EnemyInitialParamBase:
+.fn setInitialSetting__Q34Game10MiniHoudai3ObjFPQ24Game21EnemyInitialParamBase, global
 /* 802EC140 002E9080  4E 80 00 20 */	blr 
+.endfn setInitialSetting__Q34Game10MiniHoudai3ObjFPQ24Game21EnemyInitialParamBase
 
-.global onInit__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureInitArg, global
 /* 802EC144 002E9084  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC148 002E9088  7C 08 02 A6 */	mflr r0
 /* 802EC14C 002E908C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -499,9 +527,9 @@ onInit__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureInitArg:
 /* 802EC200 002E9140  7C 08 03 A6 */	mtlr r0
 /* 802EC204 002E9144  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC208 002E9148  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureInitArg
 
-.global onKill__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureKillArg
-onKill__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureKillArg, global
 /* 802EC20C 002E914C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC210 002E9150  7C 08 02 A6 */	mflr r0
 /* 802EC214 002E9154  90 01 00 14 */	stw r0, 0x14(r1)
@@ -521,9 +549,9 @@ onKill__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureKillArg:
 /* 802EC24C 002E918C  7C 08 03 A6 */	mtlr r0
 /* 802EC250 002E9190  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC254 002E9194  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game10MiniHoudai3ObjFPQ24Game15CreatureKillArg
 
-.global doUpdate__Q34Game10MiniHoudai3ObjFv
-doUpdate__Q34Game10MiniHoudai3ObjFv:
+.fn doUpdate__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC258 002E9198  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC25C 002E919C  7C 08 02 A6 */	mflr r0
 /* 802EC260 002E91A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -545,9 +573,9 @@ doUpdate__Q34Game10MiniHoudai3ObjFv:
 /* 802EC2A0 002E91E0  7C 08 03 A6 */	mtlr r0
 /* 802EC2A4 002E91E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC2A8 002E91E8  4E 80 00 20 */	blr 
+.endfn doUpdate__Q34Game10MiniHoudai3ObjFv
 
-.global doUpdateCommon__Q34Game10MiniHoudai3ObjFv
-doUpdateCommon__Q34Game10MiniHoudai3ObjFv:
+.fn doUpdateCommon__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC2AC 002E91EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC2B0 002E91F0  7C 08 02 A6 */	mflr r0
 /* 802EC2B4 002E91F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -561,9 +589,9 @@ doUpdateCommon__Q34Game10MiniHoudai3ObjFv:
 /* 802EC2D4 002E9214  7C 08 03 A6 */	mtlr r0
 /* 802EC2D8 002E9218  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC2DC 002E921C  4E 80 00 20 */	blr 
+.endfn doUpdateCommon__Q34Game10MiniHoudai3ObjFv
 
-.global doAnimationCullingOff__Q34Game10MiniHoudai3ObjFv
-doAnimationCullingOff__Q34Game10MiniHoudai3ObjFv:
+.fn doAnimationCullingOff__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC2E0 002E9220  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC2E4 002E9224  7C 08 02 A6 */	mflr r0
 /* 802EC2E8 002E9228  90 01 00 14 */	stw r0, 0x14(r1)
@@ -579,13 +607,13 @@ doAnimationCullingOff__Q34Game10MiniHoudai3ObjFv:
 /* 802EC310 002E9250  7C 08 03 A6 */	mtlr r0
 /* 802EC314 002E9254  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC318 002E9258  4E 80 00 20 */	blr 
+.endfn doAnimationCullingOff__Q34Game10MiniHoudai3ObjFv
 
-.global doDirectDraw__Q34Game10MiniHoudai3ObjFR8Graphics
-doDirectDraw__Q34Game10MiniHoudai3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game10MiniHoudai3ObjFR8Graphics, global
 /* 802EC31C 002E925C  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game10MiniHoudai3ObjFR8Graphics
 
-.global doDebugDraw__Q34Game10MiniHoudai3ObjFR8Graphics
-doDebugDraw__Q34Game10MiniHoudai3ObjFR8Graphics:
+.fn doDebugDraw__Q34Game10MiniHoudai3ObjFR8Graphics, global
 /* 802EC320 002E9260  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC324 002E9264  7C 08 02 A6 */	mflr r0
 /* 802EC328 002E9268  90 01 00 14 */	stw r0, 0x14(r1)
@@ -594,9 +622,9 @@ doDebugDraw__Q34Game10MiniHoudai3ObjFR8Graphics:
 /* 802EC334 002E9274  7C 08 03 A6 */	mtlr r0
 /* 802EC338 002E9278  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC33C 002E927C  4E 80 00 20 */	blr 
+.endfn doDebugDraw__Q34Game10MiniHoudai3ObjFR8Graphics
 
-.global setFSM__Q34Game10MiniHoudai3ObjFPQ34Game10MiniHoudai3FSM
-setFSM__Q34Game10MiniHoudai3ObjFPQ34Game10MiniHoudai3FSM:
+.fn setFSM__Q34Game10MiniHoudai3ObjFPQ34Game10MiniHoudai3FSM, global
 /* 802EC340 002E9280  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC344 002E9284  7C 08 02 A6 */	mflr r0
 /* 802EC348 002E9288  90 01 00 14 */	stw r0, 0x14(r1)
@@ -616,9 +644,9 @@ setFSM__Q34Game10MiniHoudai3ObjFPQ34Game10MiniHoudai3FSM:
 /* 802EC380 002E92C0  7C 08 03 A6 */	mtlr r0
 /* 802EC384 002E92C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC388 002E92C8  4E 80 00 20 */	blr 
+.endfn setFSM__Q34Game10MiniHoudai3ObjFPQ34Game10MiniHoudai3FSM
 
-.global getShadowParam__Q34Game10MiniHoudai3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game10MiniHoudai3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game10MiniHoudai3ObjFRQ24Game11ShadowParam, global
 /* 802EC38C 002E92CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC390 002E92D0  7C 08 02 A6 */	mflr r0
 /* 802EC394 002E92D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -679,9 +707,9 @@ getShadowParam__Q34Game10MiniHoudai3ObjFRQ24Game11ShadowParam:
 /* 802EC460 002E93A0  7C 08 03 A6 */	mtlr r0
 /* 802EC464 002E93A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC468 002E93A8  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game10MiniHoudai3ObjFRQ24Game11ShadowParam
 
-.global damageCallBack__Q34Game10MiniHoudai3ObjFPQ24Game8CreaturefP8CollPart
-damageCallBack__Q34Game10MiniHoudai3ObjFPQ24Game8CreaturefP8CollPart:
+.fn damageCallBack__Q34Game10MiniHoudai3ObjFPQ24Game8CreaturefP8CollPart, global
 /* 802EC46C 002E93AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC470 002E93B0  7C 08 02 A6 */	mflr r0
 /* 802EC474 002E93B4  28 05 00 00 */	cmplwi r5, 0
@@ -701,9 +729,9 @@ damageCallBack__Q34Game10MiniHoudai3ObjFPQ24Game8CreaturefP8CollPart:
 /* 802EC4A4 002E93E4  7C 08 03 A6 */	mtlr r0
 /* 802EC4A8 002E93E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC4AC 002E93EC  4E 80 00 20 */	blr 
+.endfn damageCallBack__Q34Game10MiniHoudai3ObjFPQ24Game8CreaturefP8CollPart
 
-.global doStartStoneState__Q34Game10MiniHoudai3ObjFv
-doStartStoneState__Q34Game10MiniHoudai3ObjFv:
+.fn doStartStoneState__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC4B0 002E93F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC4B4 002E93F4  7C 08 02 A6 */	mflr r0
 /* 802EC4B8 002E93F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -717,9 +745,9 @@ doStartStoneState__Q34Game10MiniHoudai3ObjFv:
 /* 802EC4D8 002E9418  7C 08 03 A6 */	mtlr r0
 /* 802EC4DC 002E941C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC4E0 002E9420  4E 80 00 20 */	blr 
+.endfn doStartStoneState__Q34Game10MiniHoudai3ObjFv
 
-.global doFinishStoneState__Q34Game10MiniHoudai3ObjFv
-doFinishStoneState__Q34Game10MiniHoudai3ObjFv:
+.fn doFinishStoneState__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC4E4 002E9424  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC4E8 002E9428  7C 08 02 A6 */	mflr r0
 /* 802EC4EC 002E942C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -728,9 +756,9 @@ doFinishStoneState__Q34Game10MiniHoudai3ObjFv:
 /* 802EC4F8 002E9438  7C 08 03 A6 */	mtlr r0
 /* 802EC4FC 002E943C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC500 002E9440  4E 80 00 20 */	blr 
+.endfn doFinishStoneState__Q34Game10MiniHoudai3ObjFv
 
-.global doStartEarthquakeFitState__Q34Game10MiniHoudai3ObjFv
-doStartEarthquakeFitState__Q34Game10MiniHoudai3ObjFv:
+.fn doStartEarthquakeFitState__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC504 002E9444  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC508 002E9448  7C 08 02 A6 */	mflr r0
 /* 802EC50C 002E944C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -744,9 +772,9 @@ doStartEarthquakeFitState__Q34Game10MiniHoudai3ObjFv:
 /* 802EC52C 002E946C  7C 08 03 A6 */	mtlr r0
 /* 802EC530 002E9470  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC534 002E9474  4E 80 00 20 */	blr 
+.endfn doStartEarthquakeFitState__Q34Game10MiniHoudai3ObjFv
 
-.global doFinishEarthquakeFitState__Q34Game10MiniHoudai3ObjFv
-doFinishEarthquakeFitState__Q34Game10MiniHoudai3ObjFv:
+.fn doFinishEarthquakeFitState__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC538 002E9478  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC53C 002E947C  7C 08 02 A6 */	mflr r0
 /* 802EC540 002E9480  90 01 00 14 */	stw r0, 0x14(r1)
@@ -755,9 +783,9 @@ doFinishEarthquakeFitState__Q34Game10MiniHoudai3ObjFv:
 /* 802EC54C 002E948C  7C 08 03 A6 */	mtlr r0
 /* 802EC550 002E9490  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC554 002E9494  4E 80 00 20 */	blr 
+.endfn doFinishEarthquakeFitState__Q34Game10MiniHoudai3ObjFv
 
-.global doStartWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv
-doStartWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv:
+.fn doStartWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC558 002E9498  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC55C 002E949C  7C 08 02 A6 */	mflr r0
 /* 802EC560 002E94A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -771,9 +799,9 @@ doStartWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv:
 /* 802EC580 002E94C0  7C 08 03 A6 */	mtlr r0
 /* 802EC584 002E94C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC588 002E94C8  4E 80 00 20 */	blr 
+.endfn doStartWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv
 
-.global doFinishWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv
-doFinishWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv:
+.fn doFinishWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC58C 002E94CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC590 002E94D0  7C 08 02 A6 */	mflr r0
 /* 802EC594 002E94D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -787,9 +815,9 @@ doFinishWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv:
 /* 802EC5B4 002E94F4  7C 08 03 A6 */	mtlr r0
 /* 802EC5B8 002E94F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC5BC 002E94FC  4E 80 00 20 */	blr 
+.endfn doFinishWaitingBirthTypeDrop__Q34Game10MiniHoudai3ObjFv
 
-.global startCarcassMotion__Q34Game10MiniHoudai3ObjFv
-startCarcassMotion__Q34Game10MiniHoudai3ObjFv:
+.fn startCarcassMotion__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC5C0 002E9500  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC5C4 002E9504  7C 08 02 A6 */	mflr r0
 /* 802EC5C8 002E9508  38 80 00 06 */	li r4, 6
@@ -800,9 +828,9 @@ startCarcassMotion__Q34Game10MiniHoudai3ObjFv:
 /* 802EC5DC 002E951C  7C 08 03 A6 */	mtlr r0
 /* 802EC5E0 002E9520  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC5E4 002E9524  4E 80 00 20 */	blr 
+.endfn startCarcassMotion__Q34Game10MiniHoudai3ObjFv
 
-.global doStartMovie__Q34Game10MiniHoudai3ObjFv
-doStartMovie__Q34Game10MiniHoudai3ObjFv:
+.fn doStartMovie__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC5E8 002E9528  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC5EC 002E952C  7C 08 02 A6 */	mflr r0
 /* 802EC5F0 002E9530  90 01 00 14 */	stw r0, 0x14(r1)
@@ -811,9 +839,9 @@ doStartMovie__Q34Game10MiniHoudai3ObjFv:
 /* 802EC5FC 002E953C  7C 08 03 A6 */	mtlr r0
 /* 802EC600 002E9540  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC604 002E9544  4E 80 00 20 */	blr 
+.endfn doStartMovie__Q34Game10MiniHoudai3ObjFv
 
-.global doEndMovie__Q34Game10MiniHoudai3ObjFv
-doEndMovie__Q34Game10MiniHoudai3ObjFv:
+.fn doEndMovie__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC608 002E9548  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC60C 002E954C  7C 08 02 A6 */	mflr r0
 /* 802EC610 002E9550  90 01 00 14 */	stw r0, 0x14(r1)
@@ -822,9 +850,9 @@ doEndMovie__Q34Game10MiniHoudai3ObjFv:
 /* 802EC61C 002E955C  7C 08 03 A6 */	mtlr r0
 /* 802EC620 002E9560  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC624 002E9564  4E 80 00 20 */	blr 
+.endfn doEndMovie__Q34Game10MiniHoudai3ObjFv
 
-.global initWalkSmokeEffect__Q34Game10MiniHoudai3ObjFv
-initWalkSmokeEffect__Q34Game10MiniHoudai3ObjFv:
+.fn initWalkSmokeEffect__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC628 002E9568  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EC62C 002E956C  7C 08 02 A6 */	mflr r0
 /* 802EC630 002E9570  38 80 00 02 */	li r4, 2
@@ -850,22 +878,22 @@ initWalkSmokeEffect__Q34Game10MiniHoudai3ObjFv:
 /* 802EC680 002E95C0  7C 08 03 A6 */	mtlr r0
 /* 802EC684 002E95C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EC688 002E95C8  4E 80 00 20 */	blr 
+.endfn initWalkSmokeEffect__Q34Game10MiniHoudai3ObjFv
 
-.global getWalkSmokeEffectMgr__Q34Game10MiniHoudai3ObjFv
-getWalkSmokeEffectMgr__Q34Game10MiniHoudai3ObjFv:
+.fn getWalkSmokeEffectMgr__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC68C 002E95CC  38 63 02 C0 */	addi r3, r3, 0x2c0
 /* 802EC690 002E95D0  4E 80 00 20 */	blr 
+.endfn getWalkSmokeEffectMgr__Q34Game10MiniHoudai3ObjFv
 
-.global doBecomeCarcass__Q34Game10MiniHoudai3ObjFv
-doBecomeCarcass__Q34Game10MiniHoudai3ObjFv:
+.fn doBecomeCarcass__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC694 002E95D4  C0 02 EC 2C */	lfs f0, lbl_8051CF8C@sda21(r2)
 /* 802EC698 002E95D8  D0 03 02 C8 */	stfs f0, 0x2c8(r3)
 /* 802EC69C 002E95DC  D0 03 02 00 */	stfs f0, 0x200(r3)
 /* 802EC6A0 002E95E0  38 60 00 01 */	li r3, 1
 /* 802EC6A4 002E95E4  4E 80 00 20 */	blr 
+.endfn doBecomeCarcass__Q34Game10MiniHoudai3ObjFv
 
-.global doUpdateCarcass__Q34Game10MiniHoudai3ObjFv
-doUpdateCarcass__Q34Game10MiniHoudai3ObjFv:
+.fn doUpdateCarcass__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC6A8 002E95E8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802EC6AC 002E95EC  7C 08 02 A6 */	mflr r0
 /* 802EC6B0 002E95F0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -996,9 +1024,9 @@ doUpdateCarcass__Q34Game10MiniHoudai3ObjFv:
 /* 802EC898 002E97D8  7C 08 03 A6 */	mtlr r0
 /* 802EC89C 002E97DC  38 21 00 70 */	addi r1, r1, 0x70
 /* 802EC8A0 002E97E0  4E 80 00 20 */	blr 
+.endfn doUpdateCarcass__Q34Game10MiniHoudai3ObjFv
 
-.global doGetLifeGaugeParam__Q34Game10MiniHoudai3ObjFRQ24Game14LifeGaugeParam
-doGetLifeGaugeParam__Q34Game10MiniHoudai3ObjFRQ24Game14LifeGaugeParam:
+.fn doGetLifeGaugeParam__Q34Game10MiniHoudai3ObjFRQ24Game14LifeGaugeParam, global
 /* 802EC8A4 002E97E4  C0 03 01 8C */	lfs f0, 0x18c(r3)
 /* 802EC8A8 002E97E8  D0 04 00 00 */	stfs f0, 0(r4)
 /* 802EC8AC 002E97EC  80 A3 01 7C */	lwz r5, 0x17c(r3)
@@ -1026,9 +1054,9 @@ doGetLifeGaugeParam__Q34Game10MiniHoudai3ObjFRQ24Game14LifeGaugeParam:
 /* 802EC8FC 002E983C  D0 24 00 0C */	stfs f1, 0xc(r4)
 /* 802EC900 002E9840  D0 04 00 10 */	stfs f0, 0x10(r4)
 /* 802EC904 002E9844  4E 80 00 20 */	blr 
+.endfn doGetLifeGaugeParam__Q34Game10MiniHoudai3ObjFRQ24Game14LifeGaugeParam
 
-.global updateCaution__Q34Game10MiniHoudai3ObjFv
-updateCaution__Q34Game10MiniHoudai3ObjFv:
+.fn updateCaution__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC908 002E9848  80 83 01 E0 */	lwz r4, 0x1e0(r3)
 /* 802EC90C 002E984C  54 80 06 F7 */	rlwinm. r0, r4, 0, 0x1b, 0x1b
 /* 802EC910 002E9850  40 82 00 18 */	bne .L_802EC928
@@ -1051,9 +1079,9 @@ updateCaution__Q34Game10MiniHoudai3ObjFv:
 /* 802EC94C 002E988C  EC 01 00 2A */	fadds f0, f1, f0
 /* 802EC950 002E9890  D0 03 02 C8 */	stfs f0, 0x2c8(r3)
 /* 802EC954 002E9894  4E 80 00 20 */	blr 
+.endfn updateCaution__Q34Game10MiniHoudai3ObjFv
 
-.global getViewAngle__Q34Game10MiniHoudai3ObjFv
-getViewAngle__Q34Game10MiniHoudai3ObjFv:
+.fn getViewAngle__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC958 002E9898  80 83 00 C0 */	lwz r4, 0xc0(r3)
 /* 802EC95C 002E989C  C0 23 02 C8 */	lfs f1, 0x2c8(r3)
 /* 802EC960 002E98A0  C0 04 06 2C */	lfs f0, 0x62c(r4)
@@ -1064,16 +1092,16 @@ getViewAngle__Q34Game10MiniHoudai3ObjFv:
 .L_802EC974:
 /* 802EC974 002E98B4  C0 24 04 24 */	lfs f1, 0x424(r4)
 /* 802EC978 002E98B8  4E 80 00 20 */	blr 
+.endfn getViewAngle__Q34Game10MiniHoudai3ObjFv
 
-.global resetWayPoint__Q34Game10MiniHoudai3ObjFv
-resetWayPoint__Q34Game10MiniHoudai3ObjFv:
+.fn resetWayPoint__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC97C 002E98BC  38 00 00 00 */	li r0, 0
 /* 802EC980 002E98C0  90 03 02 F0 */	stw r0, 0x2f0(r3)
 /* 802EC984 002E98C4  90 03 02 F4 */	stw r0, 0x2f4(r3)
 /* 802EC988 002E98C8  4E 80 00 20 */	blr 
+.endfn resetWayPoint__Q34Game10MiniHoudai3ObjFv
 
-.global setNearestWayPoint__Q34Game10MiniHoudai3ObjFv
-setNearestWayPoint__Q34Game10MiniHoudai3ObjFv:
+.fn setNearestWayPoint__Q34Game10MiniHoudai3ObjFv, global
 /* 802EC98C 002E98CC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802EC990 002E98D0  7C 08 02 A6 */	mflr r0
 /* 802EC994 002E98D4  C0 02 EC 68 */	lfs f0, lbl_8051CFC8@sda21(r2)
@@ -1120,9 +1148,9 @@ setNearestWayPoint__Q34Game10MiniHoudai3ObjFv:
 /* 802ECA30 002E9970  7C 08 03 A6 */	mtlr r0
 /* 802ECA34 002E9974  38 21 00 30 */	addi r1, r1, 0x30
 /* 802ECA38 002E9978  4E 80 00 20 */	blr 
+.endfn setNearestWayPoint__Q34Game10MiniHoudai3ObjFv
 
-.global setLinkWayPoint__Q34Game10MiniHoudai3ObjFv
-setLinkWayPoint__Q34Game10MiniHoudai3ObjFv:
+.fn setLinkWayPoint__Q34Game10MiniHoudai3ObjFv, global
 /* 802ECA3C 002E997C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802ECA40 002E9980  7C 08 02 A6 */	mflr r0
 /* 802ECA44 002E9984  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1283,9 +1311,9 @@ setLinkWayPoint__Q34Game10MiniHoudai3ObjFv:
 /* 802ECC90 002E9BD0  7C 08 03 A6 */	mtlr r0
 /* 802ECC94 002E9BD4  38 21 00 80 */	addi r1, r1, 0x80
 /* 802ECC98 002E9BD8  4E 80 00 20 */	blr 
+.endfn setLinkWayPoint__Q34Game10MiniHoudai3ObjFv
 
-.global getSearchedTarget__Q34Game10MiniHoudai3ObjFv
-getSearchedTarget__Q34Game10MiniHoudai3ObjFv:
+.fn getSearchedTarget__Q34Game10MiniHoudai3ObjFv, global
 /* 802ECC9C 002E9BDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ECCA0 002E9BE0  7C 08 02 A6 */	mflr r0
 /* 802ECCA4 002E9BE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1316,9 +1344,9 @@ getSearchedTarget__Q34Game10MiniHoudai3ObjFv:
 /* 802ECCFC 002E9C3C  7C 08 03 A6 */	mtlr r0
 /* 802ECD00 002E9C40  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ECD04 002E9C44  4E 80 00 20 */	blr 
+.endfn getSearchedTarget__Q34Game10MiniHoudai3ObjFv
 
-.global updateTargetDistance__Q34Game10MiniHoudai3ObjFv
-updateTargetDistance__Q34Game10MiniHoudai3ObjFv:
+.fn updateTargetDistance__Q34Game10MiniHoudai3ObjFv, global
 /* 802ECD08 002E9C48  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802ECD0C 002E9C4C  7C 08 02 A6 */	mflr r0
 /* 802ECD10 002E9C50  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1399,9 +1427,9 @@ updateTargetDistance__Q34Game10MiniHoudai3ObjFv:
 /* 802ECE24 002E9D64  7C 08 03 A6 */	mtlr r0
 /* 802ECE28 002E9D68  38 21 00 30 */	addi r1, r1, 0x30
 /* 802ECE2C 002E9D6C  4E 80 00 20 */	blr 
+.endfn updateTargetDistance__Q34Game10MiniHoudai3ObjFv
 
-.global updateHomePosition__Q34Game10MiniHoudai3ObjFv
-updateHomePosition__Q34Game10MiniHoudai3ObjFv:
+.fn updateHomePosition__Q34Game10MiniHoudai3ObjFv, global
 /* 802ECE30 002E9D70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802ECE34 002E9D74  C0 02 EC 2C */	lfs f0, lbl_8051CF8C@sda21(r2)
 /* 802ECE38 002E9D78  C0 A3 01 FC */	lfs f5, 0x1fc(r3)
@@ -1452,9 +1480,9 @@ updateHomePosition__Q34Game10MiniHoudai3ObjFv:
 /* 802ECEE0 002E9E20  D0 83 01 A0 */	stfs f4, 0x1a0(r3)
 /* 802ECEE4 002E9E24  38 21 00 20 */	addi r1, r1, 0x20
 /* 802ECEE8 002E9E28  4E 80 00 20 */	blr 
+.endfn updateHomePosition__Q34Game10MiniHoudai3ObjFv
 
-.global isAttackableTarget__Q34Game10MiniHoudai3ObjFv
-isAttackableTarget__Q34Game10MiniHoudai3ObjFv:
+.fn isAttackableTarget__Q34Game10MiniHoudai3ObjFv, global
 /* 802ECEEC 002E9E2C  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 802ECEF0 002E9E30  7C 08 02 A6 */	mflr r0
 /* 802ECEF4 002E9E34  90 01 01 34 */	stw r0, 0x134(r1)
@@ -1670,9 +1698,9 @@ isAttackableTarget__Q34Game10MiniHoudai3ObjFv:
 /* 802ED20C 002EA14C  7C 08 03 A6 */	mtlr r0
 /* 802ED210 002EA150  38 21 01 30 */	addi r1, r1, 0x130
 /* 802ED214 002EA154  4E 80 00 20 */	blr 
+.endfn isAttackableTarget__Q34Game10MiniHoudai3ObjFv
 
-.global createShotGun__Q34Game10MiniHoudai3ObjFv
-createShotGun__Q34Game10MiniHoudai3ObjFv:
+.fn createShotGun__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED218 002EA158  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED21C 002EA15C  7C 08 02 A6 */	mflr r0
 /* 802ED220 002EA160  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1692,9 +1720,9 @@ createShotGun__Q34Game10MiniHoudai3ObjFv:
 /* 802ED254 002EA194  7C 08 03 A6 */	mtlr r0
 /* 802ED258 002EA198  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED25C 002EA19C  4E 80 00 20 */	blr 
+.endfn createShotGun__Q34Game10MiniHoudai3ObjFv
 
-.global setupShotGun__Q34Game10MiniHoudai3ObjFv
-setupShotGun__Q34Game10MiniHoudai3ObjFv:
+.fn setupShotGun__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED260 002EA1A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED264 002EA1A4  7C 08 02 A6 */	mflr r0
 /* 802ED268 002EA1A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1704,9 +1732,9 @@ setupShotGun__Q34Game10MiniHoudai3ObjFv:
 /* 802ED278 002EA1B8  7C 08 03 A6 */	mtlr r0
 /* 802ED27C 002EA1BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED280 002EA1C0  4E 80 00 20 */	blr 
+.endfn setupShotGun__Q34Game10MiniHoudai3ObjFv
 
-.global resetShotGunCallBack__Q34Game10MiniHoudai3ObjFv
-resetShotGunCallBack__Q34Game10MiniHoudai3ObjFv:
+.fn resetShotGunCallBack__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED284 002EA1C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED288 002EA1C8  7C 08 02 A6 */	mflr r0
 /* 802ED28C 002EA1CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1716,9 +1744,9 @@ resetShotGunCallBack__Q34Game10MiniHoudai3ObjFv:
 /* 802ED29C 002EA1DC  7C 08 03 A6 */	mtlr r0
 /* 802ED2A0 002EA1E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED2A4 002EA1E4  4E 80 00 20 */	blr 
+.endfn resetShotGunCallBack__Q34Game10MiniHoudai3ObjFv
 
-.global setShotGunCallBack__Q34Game10MiniHoudai3ObjFv
-setShotGunCallBack__Q34Game10MiniHoudai3ObjFv:
+.fn setShotGunCallBack__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED2A8 002EA1E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED2AC 002EA1EC  7C 08 02 A6 */	mflr r0
 /* 802ED2B0 002EA1F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1728,9 +1756,9 @@ setShotGunCallBack__Q34Game10MiniHoudai3ObjFv:
 /* 802ED2C0 002EA200  7C 08 03 A6 */	mtlr r0
 /* 802ED2C4 002EA204  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED2C8 002EA208  4E 80 00 20 */	blr 
+.endfn setShotGunCallBack__Q34Game10MiniHoudai3ObjFv
 
-.global doUpdateShotGun__Q34Game10MiniHoudai3ObjFv
-doUpdateShotGun__Q34Game10MiniHoudai3ObjFv:
+.fn doUpdateShotGun__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED2CC 002EA20C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED2D0 002EA210  7C 08 02 A6 */	mflr r0
 /* 802ED2D4 002EA214  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1740,9 +1768,9 @@ doUpdateShotGun__Q34Game10MiniHoudai3ObjFv:
 /* 802ED2E4 002EA224  7C 08 03 A6 */	mtlr r0
 /* 802ED2E8 002EA228  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED2EC 002EA22C  4E 80 00 20 */	blr 
+.endfn doUpdateShotGun__Q34Game10MiniHoudai3ObjFv
 
-.global doUpdateCommonShotGun__Q34Game10MiniHoudai3ObjFv
-doUpdateCommonShotGun__Q34Game10MiniHoudai3ObjFv:
+.fn doUpdateCommonShotGun__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED2F0 002EA230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED2F4 002EA234  7C 08 02 A6 */	mflr r0
 /* 802ED2F8 002EA238  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1752,9 +1780,9 @@ doUpdateCommonShotGun__Q34Game10MiniHoudai3ObjFv:
 /* 802ED308 002EA248  7C 08 03 A6 */	mtlr r0
 /* 802ED30C 002EA24C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED310 002EA250  4E 80 00 20 */	blr 
+.endfn doUpdateCommonShotGun__Q34Game10MiniHoudai3ObjFv
 
-.global startShotGunRotation__Q34Game10MiniHoudai3ObjFv
-startShotGunRotation__Q34Game10MiniHoudai3ObjFv:
+.fn startShotGunRotation__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED314 002EA254  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED318 002EA258  7C 08 02 A6 */	mflr r0
 /* 802ED31C 002EA25C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1764,9 +1792,9 @@ startShotGunRotation__Q34Game10MiniHoudai3ObjFv:
 /* 802ED32C 002EA26C  7C 08 03 A6 */	mtlr r0
 /* 802ED330 002EA270  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED334 002EA274  4E 80 00 20 */	blr 
+.endfn startShotGunRotation__Q34Game10MiniHoudai3ObjFv
 
-.global finishShotGunRotation__Q34Game10MiniHoudai3ObjFv
-finishShotGunRotation__Q34Game10MiniHoudai3ObjFv:
+.fn finishShotGunRotation__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED338 002EA278  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED33C 002EA27C  7C 08 02 A6 */	mflr r0
 /* 802ED340 002EA280  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1776,9 +1804,9 @@ finishShotGunRotation__Q34Game10MiniHoudai3ObjFv:
 /* 802ED350 002EA290  7C 08 03 A6 */	mtlr r0
 /* 802ED354 002EA294  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED358 002EA298  4E 80 00 20 */	blr 
+.endfn finishShotGunRotation__Q34Game10MiniHoudai3ObjFv
 
-.global isShotGunRotation__Q34Game10MiniHoudai3ObjFv
-isShotGunRotation__Q34Game10MiniHoudai3ObjFv:
+.fn isShotGunRotation__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED35C 002EA29C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED360 002EA2A0  7C 08 02 A6 */	mflr r0
 /* 802ED364 002EA2A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1788,9 +1816,9 @@ isShotGunRotation__Q34Game10MiniHoudai3ObjFv:
 /* 802ED374 002EA2B4  7C 08 03 A6 */	mtlr r0
 /* 802ED378 002EA2B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED37C 002EA2BC  4E 80 00 20 */	blr 
+.endfn isShotGunRotation__Q34Game10MiniHoudai3ObjFv
 
-.global isShotGunLockOn__Q34Game10MiniHoudai3ObjFv
-isShotGunLockOn__Q34Game10MiniHoudai3ObjFv:
+.fn isShotGunLockOn__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED380 002EA2C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED384 002EA2C4  7C 08 02 A6 */	mflr r0
 /* 802ED388 002EA2C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1800,9 +1828,9 @@ isShotGunLockOn__Q34Game10MiniHoudai3ObjFv:
 /* 802ED398 002EA2D8  7C 08 03 A6 */	mtlr r0
 /* 802ED39C 002EA2DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED3A0 002EA2E0  4E 80 00 20 */	blr 
+.endfn isShotGunLockOn__Q34Game10MiniHoudai3ObjFv
 
-.global isFinishShotGun__Q34Game10MiniHoudai3ObjFv
-isFinishShotGun__Q34Game10MiniHoudai3ObjFv:
+.fn isFinishShotGun__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED3A4 002EA2E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED3A8 002EA2E8  7C 08 02 A6 */	mflr r0
 /* 802ED3AC 002EA2EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1812,9 +1840,9 @@ isFinishShotGun__Q34Game10MiniHoudai3ObjFv:
 /* 802ED3BC 002EA2FC  7C 08 03 A6 */	mtlr r0
 /* 802ED3C0 002EA300  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED3C4 002EA304  4E 80 00 20 */	blr 
+.endfn isFinishShotGun__Q34Game10MiniHoudai3ObjFv
 
-.global emitShotGun__Q34Game10MiniHoudai3ObjFv
-emitShotGun__Q34Game10MiniHoudai3ObjFv:
+.fn emitShotGun__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED3C8 002EA308  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED3CC 002EA30C  7C 08 02 A6 */	mflr r0
 /* 802ED3D0 002EA310  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1824,9 +1852,9 @@ emitShotGun__Q34Game10MiniHoudai3ObjFv:
 /* 802ED3E0 002EA320  7C 08 03 A6 */	mtlr r0
 /* 802ED3E4 002EA324  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED3E8 002EA328  4E 80 00 20 */	blr 
+.endfn emitShotGun__Q34Game10MiniHoudai3ObjFv
 
-.global setShotGunTargetPosition__Q34Game10MiniHoudai3ObjFv
-setShotGunTargetPosition__Q34Game10MiniHoudai3ObjFv:
+.fn setShotGunTargetPosition__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED3EC 002EA32C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED3F0 002EA330  7C 08 02 A6 */	mflr r0
 /* 802ED3F4 002EA334  7C 64 1B 78 */	mr r4, r3
@@ -1838,9 +1866,9 @@ setShotGunTargetPosition__Q34Game10MiniHoudai3ObjFv:
 /* 802ED40C 002EA34C  7C 08 03 A6 */	mtlr r0
 /* 802ED410 002EA350  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED414 002EA354  4E 80 00 20 */	blr 
+.endfn setShotGunTargetPosition__Q34Game10MiniHoudai3ObjFv
 
-.global forceFinishShotGun__Q34Game10MiniHoudai3ObjFv
-forceFinishShotGun__Q34Game10MiniHoudai3ObjFv:
+.fn forceFinishShotGun__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED418 002EA358  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED41C 002EA35C  7C 08 02 A6 */	mflr r0
 /* 802ED420 002EA360  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1850,9 +1878,9 @@ forceFinishShotGun__Q34Game10MiniHoudai3ObjFv:
 /* 802ED430 002EA370  7C 08 03 A6 */	mtlr r0
 /* 802ED434 002EA374  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED438 002EA378  4E 80 00 20 */	blr 
+.endfn forceFinishShotGun__Q34Game10MiniHoudai3ObjFv
 
-.global createEffect__Q34Game10MiniHoudai3ObjFv
-createEffect__Q34Game10MiniHoudai3ObjFv:
+.fn createEffect__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED43C 002EA37C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED440 002EA380  7C 08 02 A6 */	mflr r0
 /* 802ED444 002EA384  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1933,9 +1961,9 @@ createEffect__Q34Game10MiniHoudai3ObjFv:
 /* 802ED568 002EA4A8  7C 08 03 A6 */	mtlr r0
 /* 802ED56C 002EA4AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED570 002EA4B0  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game10MiniHoudai3ObjFv
 
-.global setupEffect__Q34Game10MiniHoudai3ObjFv
-setupEffect__Q34Game10MiniHoudai3ObjFv:
+.fn setupEffect__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED574 002EA4B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED578 002EA4B8  7C 08 02 A6 */	mflr r0
 /* 802ED57C 002EA4BC  38 82 EC 98 */	addi r4, r2, lbl_8051CFF8@sda21
@@ -1958,9 +1986,9 @@ setupEffect__Q34Game10MiniHoudai3ObjFv:
 /* 802ED5C0 002EA500  7C 08 03 A6 */	mtlr r0
 /* 802ED5C4 002EA504  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED5C8 002EA508  4E 80 00 20 */	blr 
+.endfn setupEffect__Q34Game10MiniHoudai3ObjFv
 
-.global createSmokeSmallEffect__Q34Game10MiniHoudai3ObjFb
-createSmokeSmallEffect__Q34Game10MiniHoudai3ObjFb:
+.fn createSmokeSmallEffect__Q34Game10MiniHoudai3ObjFb, global
 /* 802ED5CC 002EA50C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802ED5D0 002EA510  7C 08 02 A6 */	mflr r0
 /* 802ED5D4 002EA514  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2003,9 +2031,9 @@ createSmokeSmallEffect__Q34Game10MiniHoudai3ObjFb:
 /* 802ED660 002EA5A0  7C 08 03 A6 */	mtlr r0
 /* 802ED664 002EA5A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802ED668 002EA5A8  4E 80 00 20 */	blr 
+.endfn createSmokeSmallEffect__Q34Game10MiniHoudai3ObjFb
 
-.global createSmokeLargeEffect__Q34Game10MiniHoudai3ObjFv
-createSmokeLargeEffect__Q34Game10MiniHoudai3ObjFv:
+.fn createSmokeLargeEffect__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED66C 002EA5AC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802ED670 002EA5B0  7C 08 02 A6 */	mflr r0
 /* 802ED674 002EA5B4  38 82 EC A8 */	addi r4, r2, lbl_8051D008@sda21
@@ -2064,9 +2092,9 @@ createSmokeLargeEffect__Q34Game10MiniHoudai3ObjFv:
 /* 802ED748 002EA688  7C 08 03 A6 */	mtlr r0
 /* 802ED74C 002EA68C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802ED750 002EA690  4E 80 00 20 */	blr 
+.endfn createSmokeLargeEffect__Q34Game10MiniHoudai3ObjFv
 
-.global createDownEffect__Q34Game10MiniHoudai3ObjFf
-createDownEffect__Q34Game10MiniHoudai3ObjFf:
+.fn createDownEffect__Q34Game10MiniHoudai3ObjFf, global
 /* 802ED754 002EA694  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED758 002EA698  7C 08 02 A6 */	mflr r0
 /* 802ED75C 002EA69C  38 83 01 8C */	addi r4, r3, 0x18c
@@ -2076,9 +2104,9 @@ createDownEffect__Q34Game10MiniHoudai3ObjFf:
 /* 802ED76C 002EA6AC  7C 08 03 A6 */	mtlr r0
 /* 802ED770 002EA6B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED774 002EA6B4  4E 80 00 20 */	blr 
+.endfn createDownEffect__Q34Game10MiniHoudai3ObjFf
 
-.global startChargeEffect__Q34Game10MiniHoudai3ObjFv
-startChargeEffect__Q34Game10MiniHoudai3ObjFv:
+.fn startChargeEffect__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED778 002EA6B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED77C 002EA6BC  7C 08 02 A6 */	mflr r0
 /* 802ED780 002EA6C0  38 80 00 00 */	li r4, 0
@@ -2092,9 +2120,9 @@ startChargeEffect__Q34Game10MiniHoudai3ObjFv:
 /* 802ED7A0 002EA6E0  7C 08 03 A6 */	mtlr r0
 /* 802ED7A4 002EA6E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED7A8 002EA6E8  4E 80 00 20 */	blr 
+.endfn startChargeEffect__Q34Game10MiniHoudai3ObjFv
 
-.global finishChargeEffect__Q34Game10MiniHoudai3ObjFv
-finishChargeEffect__Q34Game10MiniHoudai3ObjFv:
+.fn finishChargeEffect__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED7AC 002EA6EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED7B0 002EA6F0  7C 08 02 A6 */	mflr r0
 /* 802ED7B4 002EA6F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2107,9 +2135,9 @@ finishChargeEffect__Q34Game10MiniHoudai3ObjFv:
 /* 802ED7D0 002EA710  7C 08 03 A6 */	mtlr r0
 /* 802ED7D4 002EA714  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED7D8 002EA718  4E 80 00 20 */	blr 
+.endfn finishChargeEffect__Q34Game10MiniHoudai3ObjFv
 
-.global createDeadLightEffect__Q34Game10MiniHoudai3ObjFv
-createDeadLightEffect__Q34Game10MiniHoudai3ObjFv:
+.fn createDeadLightEffect__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED7DC 002EA71C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED7E0 002EA720  7C 08 02 A6 */	mflr r0
 /* 802ED7E4 002EA724  38 80 00 00 */	li r4, 0
@@ -2123,9 +2151,9 @@ createDeadLightEffect__Q34Game10MiniHoudai3ObjFv:
 /* 802ED804 002EA744  7C 08 03 A6 */	mtlr r0
 /* 802ED808 002EA748  38 21 00 10 */	addi r1, r1, 0x10
 /* 802ED80C 002EA74C  4E 80 00 20 */	blr 
+.endfn createDeadLightEffect__Q34Game10MiniHoudai3ObjFv
 
-.global createDeadBombEmitEffect__Q34Game10MiniHoudai3ObjFv
-createDeadBombEmitEffect__Q34Game10MiniHoudai3ObjFv:
+.fn createDeadBombEmitEffect__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED810 002EA750  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802ED814 002EA754  7C 08 02 A6 */	mflr r0
 /* 802ED818 002EA758  38 82 EC 98 */	addi r4, r2, lbl_8051CFF8@sda21
@@ -2243,9 +2271,9 @@ createDeadBombEmitEffect__Q34Game10MiniHoudai3ObjFv:
 /* 802ED9D8 002EA918  7C 08 03 A6 */	mtlr r0
 /* 802ED9DC 002EA91C  38 21 00 70 */	addi r1, r1, 0x70
 /* 802ED9E0 002EA920  4E 80 00 20 */	blr 
+.endfn createDeadBombEmitEffect__Q34Game10MiniHoudai3ObjFv
 
-.global effectDrawOn__Q34Game10MiniHoudai3ObjFv
-effectDrawOn__Q34Game10MiniHoudai3ObjFv:
+.fn effectDrawOn__Q34Game10MiniHoudai3ObjFv, global
 /* 802ED9E4 002EA924  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802ED9E8 002EA928  7C 08 02 A6 */	mflr r0
 /* 802ED9EC 002EA92C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2268,9 +2296,9 @@ effectDrawOn__Q34Game10MiniHoudai3ObjFv:
 /* 802EDA30 002EA970  7C 08 03 A6 */	mtlr r0
 /* 802EDA34 002EA974  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EDA38 002EA978  4E 80 00 20 */	blr 
+.endfn effectDrawOn__Q34Game10MiniHoudai3ObjFv
 
-.global effectDrawOff__Q34Game10MiniHoudai3ObjFv
-effectDrawOff__Q34Game10MiniHoudai3ObjFv:
+.fn effectDrawOff__Q34Game10MiniHoudai3ObjFv, global
 /* 802EDA3C 002EA97C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EDA40 002EA980  7C 08 02 A6 */	mflr r0
 /* 802EDA44 002EA984  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2293,9 +2321,9 @@ effectDrawOff__Q34Game10MiniHoudai3ObjFv:
 /* 802EDA88 002EA9C8  7C 08 03 A6 */	mtlr r0
 /* 802EDA8C 002EA9CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EDA90 002EA9D0  4E 80 00 20 */	blr 
+.endfn effectDrawOff__Q34Game10MiniHoudai3ObjFv
 
-.global __dt__Q23efx15TChibiDeadLightFv
-__dt__Q23efx15TChibiDeadLightFv:
+.fn __dt__Q23efx15TChibiDeadLightFv, weak
 /* 802EDA94 002EA9D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EDA98 002EA9D8  7C 08 02 A6 */	mflr r0
 /* 802EDA9C 002EA9DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2337,9 +2365,9 @@ __dt__Q23efx15TChibiDeadLightFv:
 /* 802EDB24 002EAA64  7C 08 03 A6 */	mtlr r0
 /* 802EDB28 002EAA68  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EDB2C 002EAA6C  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx15TChibiDeadLightFv
 
-.global __dt__Q23efx12TChibiChargeFv
-__dt__Q23efx12TChibiChargeFv:
+.fn __dt__Q23efx12TChibiChargeFv, weak
 /* 802EDB30 002EAA70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EDB34 002EAA74  7C 08 02 A6 */	mflr r0
 /* 802EDB38 002EAA78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2381,9 +2409,9 @@ __dt__Q23efx12TChibiChargeFv:
 /* 802EDBC0 002EAB00  7C 08 03 A6 */	mtlr r0
 /* 802EDBC4 002EAB04  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EDBC8 002EAB08  4E 80 00 20 */	blr 
+.endfn __dt__Q23efx12TChibiChargeFv
 
-.global __dt__Q34Game10MiniHoudai3ObjFv
-__dt__Q34Game10MiniHoudai3ObjFv:
+.fn __dt__Q34Game10MiniHoudai3ObjFv, weak
 /* 802EDBCC 002EAB0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EDBD0 002EAB10  7C 08 02 A6 */	mflr r0
 /* 802EDBD4 002EAB14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2433,18 +2461,19 @@ __dt__Q34Game10MiniHoudai3ObjFv:
 /* 802EDC7C 002EABBC  7C 08 03 A6 */	mtlr r0
 /* 802EDC80 002EABC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EDC84 002EABC4  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game10MiniHoudai3ObjFv
 
-.global getDownSmokeScale__Q34Game10MiniHoudai3ObjFv
-getDownSmokeScale__Q34Game10MiniHoudai3ObjFv:
+.fn getDownSmokeScale__Q34Game10MiniHoudai3ObjFv, weak
 /* 802EDC88 002EABC8  C0 22 EC B8 */	lfs f1, lbl_8051D018@sda21(r2)
 /* 802EDC8C 002EABCC  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game10MiniHoudai3ObjFv
 
-.global "@4@__dt__Q23efx12TChibiChargeFv"
-"@4@__dt__Q23efx12TChibiChargeFv":
+.fn "@4@__dt__Q23efx12TChibiChargeFv", weak
 /* 802EDC90 002EABD0  38 63 FF FC */	addi r3, r3, -4
 /* 802EDC94 002EABD4  4B FF FE 9C */	b __dt__Q23efx12TChibiChargeFv
+.endfn "@4@__dt__Q23efx12TChibiChargeFv"
 
-.global "@4@__dt__Q23efx15TChibiDeadLightFv"
-"@4@__dt__Q23efx15TChibiDeadLightFv":
+.fn "@4@__dt__Q23efx15TChibiDeadLightFv", weak
 /* 802EDC98 002EABD8  38 63 FF FC */	addi r3, r3, -4
 /* 802EDC9C 002EABDC  4B FF FD F8 */	b __dt__Q23efx15TChibiDeadLightFv
+.endfn "@4@__dt__Q23efx15TChibiDeadLightFv"
