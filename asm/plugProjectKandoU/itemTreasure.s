@@ -94,10 +94,11 @@ lbl_80481704:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804BBC18:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
 .global __vt__Q34Game12ItemTreasure3Mgr
 __vt__Q34Game12ItemTreasure3Mgr:
 	.4byte 0
@@ -664,13 +665,15 @@ __vt__Q34Game12ItemTreasure3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515B48:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-lbl_80515B4C:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global mgr__Q24Game12ItemTreasure
-mgr__Q24Game12ItemTreasure:
-	.skip 0x8
+.endobj gfNAN___Q24Game5P2JST
+.obj mgr__Q24Game12ItemTreasure, global
+	.skip 0x4
+.endobj mgr__Q24Game12ItemTreasure
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -688,10 +691,9 @@ lbl_80519BE4:
 	.4byte 0x43160000
 lbl_80519BE8:
 	.4byte 0x40400000
-	.4byte 0x00000000
+.balign 8
 lbl_80519BF0:
-	.4byte 0x43300000
-	.4byte 0x80000000
+	.8byte 0x4330000080000000
 lbl_80519BF8:
 	.float 1.0
 lbl_80519BFC:
@@ -721,7 +723,6 @@ lbl_80519C2C:
 	.4byte 0x44960000
 lbl_80519C30:
 	.4byte 0x44BB8000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game12ItemTreasure3FSMFPQ34Game12ItemTreasure4Item
@@ -2715,10 +2716,10 @@ __sinit_itemTreasure_cpp:
 /* 801F4CA4 001F1BE4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801F4CA8 001F1BE8  38 00 FF FF */	li r0, -1
 /* 801F4CAC 001F1BEC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801F4CB0 001F1BF0  3C 60 80 4C */	lis r3, lbl_804BBC18@ha
-/* 801F4CB4 001F1BF4  90 0D 94 C8 */	stw r0, lbl_80515B48@sda21(r13)
-/* 801F4CB8 001F1BF8  D4 03 BC 18 */	stfsu f0, lbl_804BBC18@l(r3)
-/* 801F4CBC 001F1BFC  D0 0D 94 CC */	stfs f0, lbl_80515B4C@sda21(r13)
+/* 801F4CB0 001F1BF0  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801F4CB4 001F1BF4  90 0D 94 C8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801F4CB8 001F1BF8  D4 03 BC 18 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801F4CBC 001F1BFC  D0 0D 94 CC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801F4CC0 001F1C00  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801F4CC4 001F1C04  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801F4CC8 001F1C08  4E 80 00 20 */	blr 

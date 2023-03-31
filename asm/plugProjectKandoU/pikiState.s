@@ -5,114 +5,143 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047EBE8:
+.obj lbl_8047EBE8, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047EBE8
 .balign 4
-lbl_8047EBF4:
+.obj lbl_8047EBF4, local
 	.asciz "pikiState"
+.endobj lbl_8047EBF4
 .balign 4
-lbl_8047EC00:
+.obj lbl_8047EC00, local
 	.asciz "DEMOWAIT"
+.endobj lbl_8047EC00
 .balign 4
-lbl_8047EC0C:
+.obj lbl_8047EC0C, local
 	.asciz "WATERHANGED"
+.endobj lbl_8047EC0C
 .balign 4
-lbl_8047EC18:
+.obj lbl_8047EC18, local
 	.asciz "KOKEDAMAGE"
+.endobj lbl_8047EC18
 .balign 4
-lbl_8047EC24:
+.obj lbl_8047EC24, local
 	.asciz "SWALLOWED"
+.endobj lbl_8047EC24
 .balign 4
-lbl_8047EC30:
+.obj lbl_8047EC30, local
 	.asciz "AUTONUKI"
+.endobj lbl_8047EC30
 .balign 4
-lbl_8047EC3C:
+.obj lbl_8047EC3C, local
 	.asciz "DENKI_DYING"
+.endobj lbl_8047EC3C
 .balign 4
-lbl_8047EC48:
+.obj lbl_8047EC48, local
 	.asciz "FALLMECK"
+.endobj lbl_8047EC48
 .balign 4
-lbl_8047EC54:
+.obj lbl_8047EC54, local
 	.asciz "FOUNTAINON"
+.endobj lbl_8047EC54
 .balign 4
-lbl_8047EC60:
+.obj lbl_8047EC60, local
 	.asciz "pikiState.cpp"
+.endobj lbl_8047EC60
 .balign 4
-lbl_8047EC70:
+.obj lbl_8047EC70, local
 	.asciz "*Transit(%d)(%d)\n(%s)=>(%s)\n"
+.endobj lbl_8047EC70
 .balign 4
-lbl_8047EC90: # Shift-JIS
+.obj lbl_8047EC90, local # Shift-JIS
 	.4byte 0x2D2D2D2D
 	.4byte 0x2D2D2D2D
 	.4byte 0x2D2D2082
 	.4byte 0xBE82DF82
 	.4byte 0xBE82E681
 	.4byte 0x600A0000
+.endobj lbl_8047EC90
 .balign 4
-lbl_8047ECA8:
+.obj lbl_8047ECA8, local
 	.asciz "need HoleinStateArg !\n"
+.endobj lbl_8047ECA8
 .balign 4
-lbl_8047ECC0:
+.obj lbl_8047ECC0, local
 	.asciz "need FountainonStateArg !\n"
+.endobj lbl_8047ECC0
 .balign 4
-lbl_8047ECDC:
+.obj lbl_8047ECDC, local
 	.asciz "P2Assert"
+.endobj lbl_8047ECDC
 .balign 4
-lbl_8047ECE8:
+.obj lbl_8047ECE8, local
 	.asciz "getNavi():pullW"
+.endobj lbl_8047ECE8
 .balign 4
-lbl_8047ECF8:
+.obj lbl_8047ECF8, local
 	.asciz "getNavi():Pull"
+.endobj lbl_8047ECF8
 .balign 4
-lbl_8047ED08:
+.obj lbl_8047ED08, local
 	.asciz "x16_hiba"
+.endobj lbl_8047ED08
 .balign 4
-lbl_8047ED14:
+.obj lbl_8047ED14, local
 	.asciz "s09_holein"
+.endobj lbl_8047ED14
 .balign 4
-lbl_8047ED20:
+.obj lbl_8047ED20, local
 	.asciz "not teki (%s)!"
+.endobj lbl_8047ED20
 .balign 4
-lbl_8047ED30:
+.obj lbl_8047ED30, local
 	.asciz "Creature"
+.endobj lbl_8047ED30
 .balign 4
-lbl_8047ED3C:
+.obj lbl_8047ED3C, local
 	.asciz "flick:init:erase\n"
+.endobj lbl_8047ED3C
 .balign 4
-lbl_8047ED50:
+.obj lbl_8047ED50, local
 	.asciz "flick:exec:erase\n"
+.endobj lbl_8047ED50
 .balign 4
-lbl_8047ED64:
+.obj lbl_8047ED64, local
 	.asciz "flick needs PikiBlowInitArg !\n"
+.endobj lbl_8047ED64
 .balign 4
-lbl_8047ED84:
+.obj lbl_8047ED84, local
 	.4byte 0x00000033 # value
 	.float 0.33       # chance
 	.4byte 0x00000032 # value
 	.float 0.33       # chance
 	.4byte 0x00000034 # value
 	.float 0.33       # chance
-lbl_8047ED9C:
+.endobj lbl_8047ED84
+.obj lbl_8047ED9C, local
 	.4byte 0x00000033 # value
 	.float 0.33       # chance
 	.4byte 0x00000032 # value
 	.float 0.33       # chance
 	.4byte 0x00000034 # value
 	.float 0.33       # chance
-lbl_8047EDB4:
+.endobj lbl_8047ED9C
+.obj lbl_8047EDB4, local
 	.4byte 0x00000035 # value
 	.float 0.5        # chance
 	.4byte 0x00000036 # value
 	.float 0.5        # chance
-lbl_8047EDC4:
+.endobj lbl_8047EDB4
+.obj lbl_8047EDC4, local
 	.4byte 0x0000000C # value
 	.float 0.5        # chance
 	.4byte 0x00000036 # value
 	.float 0.5        # chance
+.endobj lbl_8047EDC4
 .balign 4
-lbl_8047EDD4: # Shift-JIS
+.obj lbl_8047EDD4, local # Shift-JIS
 	.4byte 0x72617043
 	.4byte 0x6E742082
 	.4byte 0xCC8E6782
@@ -124,42 +153,53 @@ lbl_8047EDD4: # Shift-JIS
 	.4byte 0x86212028
 	.4byte 0x52415054
 	.4byte 0x55524529
-	.4byte 0x0A000000
+	.2byte 0x0A00
+.endobj lbl_8047EDD4
 .balign 4
-lbl_8047EE04:
+.obj lbl_8047EE04, local
 	.asciz "g34_yellow_extract"
+.endobj lbl_8047EE04
 .balign 4
-lbl_8047EE18:
+.obj lbl_8047EE18, local
 	.asciz "ActCropArg"
+.endobj lbl_8047EE18
 .balign 4
-lbl_8047EE24:
+.obj lbl_8047EE24, local
 	.asciz "ItemPikiHead::InitArg"
+.endobj lbl_8047EE24
 .balign 4
-lbl_8047EE3C:
+.obj lbl_8047EE3C, local
 	.asciz "ItemInitArg"
+.endobj lbl_8047EE3C
 .balign 4
-lbl_8047EE48:
+.obj lbl_8047EE48, local
 	.asciz "PikiKillArg"
+.endobj lbl_8047EE48
 .balign 4
-lbl_8047EE54:
+.obj lbl_8047EE54, local
 	.asciz "CreatureKillArg"
+.endobj lbl_8047EE54
 .balign 4
-lbl_8047EE64:
+.obj lbl_8047EE64, local
 	.asciz "ArgScale"
+.endobj lbl_8047EE64
 .balign 4
-lbl_8047EE70:
+.obj lbl_8047EE70, local
 	.asciz "CreatureActionArg"
+.endobj lbl_8047EE70
 .balign 4
-lbl_8047EE84:
+.obj lbl_8047EE84, local
 	.asciz "ActionArg"
+.endobj lbl_8047EE84
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804B37DC:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804B37DC, local
 	.4byte .L_80191690
 	.4byte .L_80191704
 	.4byte .L_80191778
@@ -169,8 +209,8 @@ lbl_804B37DC:
 	.4byte .L_801918B8
 	.4byte .L_801918F4
 	.4byte .L_80191930
-.global __vt__Q24Game15PikiEscapeState
-__vt__Q24Game15PikiEscapeState:
+.endobj lbl_804B37DC
+.obj __vt__Q24Game15PikiEscapeState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiEscapeStateFPQ24Game4PikiPQ24Game8StateArg
@@ -200,8 +240,8 @@ __vt__Q24Game15PikiEscapeState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game15PikiGrowupState
-__vt__Q24Game15PikiGrowupState:
+.endobj __vt__Q24Game15PikiEscapeState
+.obj __vt__Q24Game15PikiGrowupState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiGrowupStateFPQ24Game4PikiPQ24Game8StateArg
@@ -231,8 +271,8 @@ __vt__Q24Game15PikiGrowupState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game15PikiAbsorbState
-__vt__Q24Game15PikiAbsorbState:
+.endobj __vt__Q24Game15PikiGrowupState
+.obj __vt__Q24Game15PikiAbsorbState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiAbsorbStateFPQ24Game4PikiPQ24Game8StateArg
@@ -262,8 +302,8 @@ __vt__Q24Game15PikiAbsorbState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game16PikiEmotionState
-__vt__Q24Game16PikiEmotionState:
+.endobj __vt__Q24Game15PikiAbsorbState
+.obj __vt__Q24Game16PikiEmotionState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game16PikiEmotionStateFPQ24Game4PikiPQ24Game8StateArg
@@ -293,8 +333,8 @@ __vt__Q24Game16PikiEmotionState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game14PikiDrownState
-__vt__Q24Game14PikiDrownState:
+.endobj __vt__Q24Game16PikiEmotionState
+.obj __vt__Q24Game14PikiDrownState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game8StateArg
@@ -324,8 +364,8 @@ __vt__Q24Game14PikiDrownState:
 	.4byte soft_transittable__Q24Game14PikiDrownStateFi
 	.4byte onFlute__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game13PikiKokeState
-__vt__Q24Game13PikiKokeState:
+.endobj __vt__Q24Game14PikiDrownState
+.obj __vt__Q24Game13PikiKokeState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game8StateArg
@@ -355,8 +395,8 @@ __vt__Q24Game13PikiKokeState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game19PikiKokeDamageState
-__vt__Q24Game19PikiKokeDamageState:
+.endobj __vt__Q24Game13PikiKokeState
+.obj __vt__Q24Game19PikiKokeDamageState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game8StateArg
@@ -386,8 +426,8 @@ __vt__Q24Game19PikiKokeDamageState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game13PikiBlowState
-__vt__Q24Game13PikiBlowState:
+.endobj __vt__Q24Game19PikiKokeDamageState
+.obj __vt__Q24Game13PikiBlowState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game8StateArg
@@ -417,8 +457,8 @@ __vt__Q24Game13PikiBlowState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game14PikiFlickState
-__vt__Q24Game14PikiFlickState:
+.endobj __vt__Q24Game13PikiBlowState
+.obj __vt__Q24Game14PikiFlickState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game8StateArg
@@ -452,13 +492,13 @@ __vt__Q24Game14PikiFlickState:
 	.4byte 0
 	.4byte 0
 	.4byte "@48@4@onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent"
-.global __vt__Q26PikiAI10ActCropArg
-__vt__Q26PikiAI10ActCropArg:
+.endobj __vt__Q24Game14PikiFlickState
+.obj __vt__Q26PikiAI10ActCropArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI10ActCropArgFv
-.global __vt__Q24Game15PikiFlyingState
-__vt__Q24Game15PikiFlyingState:
+.endobj __vt__Q26PikiAI10ActCropArg
+.obj __vt__Q24Game15PikiFlyingState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8StateArg
@@ -490,8 +530,8 @@ __vt__Q24Game15PikiFlyingState:
 	.4byte dump__Q24Game9PikiStateFv
 	.4byte stopEffect__Q24Game15PikiFlyingStateFv
 	.4byte restartEffect__Q24Game15PikiFlyingStateFv
-.global __vt__Q24Game16PikiSuikomiState
-__vt__Q24Game16PikiSuikomiState:
+.endobj __vt__Q24Game15PikiFlyingState
+.obj __vt__Q24Game16PikiSuikomiState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8StateArg
@@ -521,8 +561,8 @@ __vt__Q24Game16PikiSuikomiState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game17PikiFallMeckState
-__vt__Q24Game17PikiFallMeckState:
+.endobj __vt__Q24Game16PikiSuikomiState
+.obj __vt__Q24Game17PikiFallMeckState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ24Game8StateArg
@@ -552,8 +592,8 @@ __vt__Q24Game17PikiFallMeckState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game16PikiHipDropState
-__vt__Q24Game16PikiHipDropState:
+.endobj __vt__Q24Game17PikiFallMeckState
+.obj __vt__Q24Game16PikiHipDropState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ24Game8StateArg
@@ -583,8 +623,8 @@ __vt__Q24Game16PikiHipDropState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game20PikiWaterHangedState
-__vt__Q24Game20PikiWaterHangedState:
+.endobj __vt__Q24Game16PikiHipDropState
+.obj __vt__Q24Game20PikiWaterHangedState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8StateArg
@@ -618,8 +658,8 @@ __vt__Q24Game20PikiWaterHangedState:
 	.4byte 0
 	.4byte 0
 	.4byte "@24@4@onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent"
-.global __vt__Q24Game15PikiHangedState
-__vt__Q24Game15PikiHangedState:
+.endobj __vt__Q24Game20PikiWaterHangedState
+.obj __vt__Q24Game15PikiHangedState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8StateArg
@@ -653,8 +693,8 @@ __vt__Q24Game15PikiHangedState:
 	.4byte 0
 	.4byte 0
 	.4byte "@20@4@onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent"
-.global __vt__Q24Game15PikiGoHangState
-__vt__Q24Game15PikiGoHangState:
+.endobj __vt__Q24Game15PikiHangedState
+.obj __vt__Q24Game15PikiGoHangState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiGoHangStateFPQ24Game4PikiPQ24Game8StateArg
@@ -684,8 +724,8 @@ __vt__Q24Game15PikiGoHangState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game17PikiAutoNukiState
-__vt__Q24Game17PikiAutoNukiState:
+.endobj __vt__Q24Game15PikiGoHangState
+.obj __vt__Q24Game17PikiAutoNukiState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game17PikiAutoNukiStateFPQ24Game4PikiPQ24Game8StateArg
@@ -715,8 +755,8 @@ __vt__Q24Game17PikiAutoNukiState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game15PikiLookAtState
-__vt__Q24Game15PikiLookAtState:
+.endobj __vt__Q24Game17PikiAutoNukiState
+.obj __vt__Q24Game15PikiLookAtState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game8StateArg
@@ -750,8 +790,8 @@ __vt__Q24Game15PikiLookAtState:
 	.4byte 0
 	.4byte 0
 	.4byte "@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent"
-.global __vt__Q24Game16PikiPressedState
-__vt__Q24Game16PikiPressedState:
+.endobj __vt__Q24Game15PikiLookAtState
+.obj __vt__Q24Game16PikiPressedState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game16PikiPressedStateFPQ24Game4PikiPQ24Game8StateArg
@@ -781,15 +821,15 @@ __vt__Q24Game16PikiPressedState:
 	.4byte soft_transittable__Q24Game16PikiPressedStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q23efx9TPkKanden
-__vt__Q23efx9TPkKanden:
+.endobj __vt__Q24Game16PikiPressedState
+.obj __vt__Q23efx9TPkKanden, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple3FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple3Fv
 	.4byte fade__Q23efx8TSimple3Fv
-.global __vt__Q24Game19PikiDenkiDyingState
-__vt__Q24Game19PikiDenkiDyingState:
+.endobj __vt__Q23efx9TPkKanden
+.obj __vt__Q24Game19PikiDenkiDyingState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game19PikiDenkiDyingStateFPQ24Game4PikiPQ24Game8StateArg
@@ -819,8 +859,8 @@ __vt__Q24Game19PikiDenkiDyingState:
 	.4byte soft_transittable__Q24Game19PikiDenkiDyingStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game14PikiDyingState
-__vt__Q24Game14PikiDyingState:
+.endobj __vt__Q24Game19PikiDenkiDyingState
+.obj __vt__Q24Game14PikiDyingState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game14PikiDyingStateFPQ24Game4PikiPQ24Game8StateArg
@@ -850,8 +890,8 @@ __vt__Q24Game14PikiDyingState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game13PikiDeadState
-__vt__Q24Game13PikiDeadState:
+.endobj __vt__Q24Game14PikiDyingState
+.obj __vt__Q24Game13PikiDeadState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13PikiDeadStateFPQ24Game4PikiPQ24Game8StateArg
@@ -881,8 +921,8 @@ __vt__Q24Game13PikiDeadState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game14PikiPanicState
-__vt__Q24Game14PikiPanicState:
+.endobj __vt__Q24Game13PikiDeadState
+.obj __vt__Q24Game14PikiPanicState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game8StateArg
@@ -912,8 +952,8 @@ __vt__Q24Game14PikiPanicState:
 	.4byte soft_transittable__Q24Game14PikiPanicStateFi
 	.4byte onFlute__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game13PikiDopeState
-__vt__Q24Game13PikiDopeState:
+.endobj __vt__Q24Game14PikiPanicState
+.obj __vt__Q24Game13PikiDopeState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game8StateArg
@@ -943,8 +983,8 @@ __vt__Q24Game13PikiDopeState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game15PikiNukareState
-__vt__Q24Game15PikiNukareState:
+.endobj __vt__Q24Game13PikiDopeState
+.obj __vt__Q24Game15PikiNukareState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiNukareStateFPQ24Game4PikiPQ24Game8StateArg
@@ -974,8 +1014,8 @@ __vt__Q24Game15PikiNukareState:
 	.4byte soft_transittable__Q24Game15PikiNukareStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game13PikiTaneState
-__vt__Q24Game13PikiTaneState:
+.endobj __vt__Q24Game15PikiNukareState
+.obj __vt__Q24Game13PikiTaneState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13PikiTaneStateFPQ24Game4PikiPQ24Game8StateArg
@@ -1005,8 +1045,8 @@ __vt__Q24Game13PikiTaneState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game19PikiFountainonState
-__vt__Q24Game19PikiFountainonState:
+.endobj __vt__Q24Game13PikiTaneState
+.obj __vt__Q24Game19PikiFountainonState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game19PikiFountainonStateFPQ24Game4PikiPQ24Game8StateArg
@@ -1036,8 +1076,8 @@ __vt__Q24Game19PikiFountainonState:
 	.4byte soft_transittable__Q24Game19PikiFountainonStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game15PikiHoleinState
-__vt__Q24Game15PikiHoleinState:
+.endobj __vt__Q24Game19PikiFountainonState
+.obj __vt__Q24Game15PikiHoleinState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiHoleinStateFPQ24Game4PikiPQ24Game8StateArg
@@ -1067,8 +1107,8 @@ __vt__Q24Game15PikiHoleinState:
 	.4byte soft_transittable__Q24Game15PikiHoleinStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game18PikiSwallowedState
-__vt__Q24Game18PikiSwallowedState:
+.endobj __vt__Q24Game15PikiHoleinState
+.obj __vt__Q24Game18PikiSwallowedState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8StateArg
@@ -1098,29 +1138,29 @@ __vt__Q24Game18PikiSwallowedState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q23efx5TPkAp
-__vt__Q23efx5TPkAp:
+.endobj __vt__Q24Game18PikiSwallowedState
+.obj __vt__Q23efx5TPkAp, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx9TPikuBomb
-__vt__Q23efx9TPikuBomb:
+.endobj __vt__Q23efx5TPkAp
+.obj __vt__Q23efx9TPikuBomb, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx9TPikuDead
-__vt__Q23efx9TPikuDead:
+.endobj __vt__Q23efx9TPikuBomb
+.obj __vt__Q23efx9TPikuDead, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q24Game15PikiCarrotState
-__vt__Q24Game15PikiCarrotState:
+.endobj __vt__Q23efx9TPikuDead
+.obj __vt__Q24Game15PikiCarrotState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ24Game8StateArg
@@ -1150,8 +1190,8 @@ __vt__Q24Game15PikiCarrotState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game17PikiDemoWaitState
-__vt__Q24Game17PikiDemoWaitState:
+.endobj __vt__Q24Game15PikiCarrotState
+.obj __vt__Q24Game17PikiDemoWaitState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game17PikiDemoWaitStateFPQ24Game4PikiPQ24Game8StateArg
@@ -1181,8 +1221,8 @@ __vt__Q24Game17PikiDemoWaitState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global __vt__Q24Game13PikiWalkState
-__vt__Q24Game13PikiWalkState:
+.endobj __vt__Q24Game17PikiDemoWaitState
+.obj __vt__Q24Game13PikiWalkState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game13PikiWalkStateFPQ24Game4PikiPQ24Game8StateArg
@@ -1212,8 +1252,8 @@ __vt__Q24Game13PikiWalkState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
-.global "__vt__Q24Game22FSMState<Q24Game4Piki>"
-"__vt__Q24Game22FSMState<Q24Game4Piki>":
+.endobj __vt__Q24Game13PikiWalkState
+.obj "__vt__Q24Game22FSMState<Q24Game4Piki>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg"
@@ -1222,16 +1262,16 @@ __vt__Q24Game13PikiWalkState:
 	.4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
 	.4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
 	.4byte "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-.global __vt__Q24Game7PikiFSM
-__vt__Q24Game7PikiFSM:
+.endobj "__vt__Q24Game22FSMState<Q24Game4Piki>"
+.obj __vt__Q24Game7PikiFSM, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q24Game7PikiFSMFPQ24Game4Piki
 	.4byte "start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
 	.4byte "exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
 	.4byte transit__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg
-.global __vt__Q24Game9PikiState
-__vt__Q24Game9PikiState:
+.endobj __vt__Q24Game7PikiFSM
+.obj __vt__Q24Game9PikiState, global
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg"
@@ -1261,213 +1301,295 @@ __vt__Q24Game9PikiState:
 	.4byte soft_transittable__Q24Game9PikiStateFi
 	.4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 	.4byte dump__Q24Game9PikiStateFv
+.endobj __vt__Q24Game9PikiState
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518D00:
+.obj lbl_80518D00, local
 	.asciz "%s"
+.endobj lbl_80518D00
 .balign 4
-lbl_80518D04:
+.obj lbl_80518D04, local
 	.asciz "WALK"
+.endobj lbl_80518D04
 .balign 4
-lbl_80518D0C:
+.obj lbl_80518D0C, local
 	.asciz "LOOKAT"
+.endobj lbl_80518D0C
 .balign 4
-lbl_80518D14:
+.obj lbl_80518D14, local
 	.asciz "GOHANG"
+.endobj lbl_80518D14
 .balign 4
-lbl_80518D1C:
+.obj lbl_80518D1C, local
 	.asciz "HANGED"
+.endobj lbl_80518D1C
 .balign 4
-lbl_80518D24:
+.obj lbl_80518D24, local
 	.asciz "FLYING"
+.endobj lbl_80518D24
 .balign 4
-lbl_80518D2C:
+.obj lbl_80518D2C, local
 	.asciz "BLOW"
+.endobj lbl_80518D2C
 .balign 4
-lbl_80518D34:
+.obj lbl_80518D34, local
 	.asciz "FLICK"
+.endobj lbl_80518D34
 .balign 4
-lbl_80518D3C:
+.obj lbl_80518D3C, local
 	.asciz "DROWN"
+.endobj lbl_80518D3C
 .balign 4
-lbl_80518D44:
+.obj lbl_80518D44, local
 	.asciz "NUKARE"
+.endobj lbl_80518D44
 .balign 4
-lbl_80518D4C:
+.obj lbl_80518D4C, local
 	.asciz "ABSORB"
+.endobj lbl_80518D4C
 .balign 4
-lbl_80518D54:
+.obj lbl_80518D54, local
 	.asciz "GROWUP"
+.endobj lbl_80518D54
 .balign 4
-lbl_80518D5C:
+.obj lbl_80518D5C, local
 	.asciz "TANE"
+.endobj lbl_80518D5C
 .balign 4
-lbl_80518D64:
+.obj lbl_80518D64, local
 	.asciz "DOPE"
+.endobj lbl_80518D64
 .balign 4
-lbl_80518D6C:
+.obj lbl_80518D6C, local
 	.asciz "HIPDROP"
+.endobj lbl_80518D6C
 .balign 4
-lbl_80518D74:
+.obj lbl_80518D74, local
 	.asciz "EMOTION"
+.endobj lbl_80518D74
 .balign 4
-lbl_80518D7C:
+.obj lbl_80518D7C, local
 	.asciz "PRESSED"
+.endobj lbl_80518D7C
 .balign 4
-lbl_80518D84:
+.obj lbl_80518D84, local
 	.asciz "PANIC"
+.endobj lbl_80518D84
 .balign 4
-lbl_80518D8C:
+.obj lbl_80518D8C, local
 	.asciz "DYING"
+.endobj lbl_80518D8C
 .balign 4
-lbl_80518D94:
+.obj lbl_80518D94, local
 	.asciz "DEAD"
+.endobj lbl_80518D94
 .balign 4
-lbl_80518D9C:
+.obj lbl_80518D9C, local
 	.asciz "SUIKOMI"
+.endobj lbl_80518D9C
 .balign 4
-lbl_80518DA4:
+.obj lbl_80518DA4, local
 	.asciz "HOLEIN"
+.endobj lbl_80518DA4
 .balign 4
-lbl_80518DAC:
+.obj lbl_80518DAC, local
 	.asciz "KOKE"
+.endobj lbl_80518DAC
 .balign 4
-lbl_80518DB4:
+.obj lbl_80518DB4, local
 	.asciz "ESCAPE"
+.endobj lbl_80518DB4
 .balign 4
-lbl_80518DBC:
+.obj lbl_80518DBC, local
 	.asciz "CARROT"
+.endobj lbl_80518DBC
 .balign 4
-lbl_80518DC4:
+.obj lbl_80518DC4, local
 	.float 0.3
-lbl_80518DC8:
+.endobj lbl_80518DC4
+.obj lbl_80518DC8, local
 	.float 32768.0
-lbl_80518DCC:
+.endobj lbl_80518DC8
+.obj lbl_80518DCC, local
 	.float 10.0
-lbl_80518DD0:
+.endobj lbl_80518DCC
+.obj lbl_80518DD0, local
 	.float 3.0
+.endobj lbl_80518DD0
 .balign 8
-lbl_80518DD8:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80518DE0:
+.obj lbl_80518DD8, local
+	.8byte 0x4330000080000000
+.endobj lbl_80518DD8
+.obj lbl_80518DE0, local
 	.float 0.0
-lbl_80518DE4:
+.endobj lbl_80518DE0
+.obj lbl_80518DE4, local
 	.float 1.0
-lbl_80518DE8:
+.endobj lbl_80518DE4
+.obj lbl_80518DE8, local
 	.float -1.0
-lbl_80518DEC:
+.endobj lbl_80518DE8
+.obj lbl_80518DEC, local
 	.float -10.0
-lbl_80518DF0:
+.endobj lbl_80518DEC
+.obj lbl_80518DF0, local
 	.float 8.0
-lbl_80518DF4:
+.endobj lbl_80518DF0
+.obj lbl_80518DF4, local
 	.float 0.5
-lbl_80518DF8:
+.endobj lbl_80518DF4
+.obj lbl_80518DF8, local
 	.float 40.0
-lbl_80518DFC:
+.endobj lbl_80518DF8
+.obj lbl_80518DFC, local
 	.float -40.0
-lbl_80518E00:
+.endobj lbl_80518DFC
+.obj lbl_80518E00, local
 	.float 80.0
-lbl_80518E04:
+.endobj lbl_80518E00
+.obj lbl_80518E04, local
 	.float 0.2
-lbl_80518E08:
+.endobj lbl_80518E04
+.obj lbl_80518E08, local
 	.float 1.5
-lbl_80518E0C:
+.endobj lbl_80518E08
+.obj lbl_80518E0C, local
 	.float 1.3
-lbl_80518E10:
+.endobj lbl_80518E0C
+.obj lbl_80518E10, local
 	.float 0.6
-lbl_80518E14:
+.endobj lbl_80518E10
+.obj lbl_80518E14, local
 	.float 0.39999998
-lbl_80518E18:
+.endobj lbl_80518E14
+.obj lbl_80518E18, local
 	.float -50.0
-lbl_80518E1C:
+.endobj lbl_80518E18
+.obj lbl_80518E1C, local
 	.float 50.0
-lbl_80518E20:
+.endobj lbl_80518E1C
+.obj lbl_80518E20, local
 	.float 400.0
-lbl_80518E24:
+.endobj lbl_80518E20
+.obj lbl_80518E24, local
 	.float 0.25
-lbl_80518E28:
+.endobj lbl_80518E24
+.obj lbl_80518E28, local
 	.float 1.2
-lbl_80518E2C:
+.endobj lbl_80518E28
+.obj lbl_80518E2C, local
 	.float 0.1
-lbl_80518E30:
+.endobj lbl_80518E2C
+.obj lbl_80518E30, local
 	.float 2.0
-lbl_80518E34:
+.endobj lbl_80518E30
+.obj lbl_80518E34, local
 	.float 325.9493
-lbl_80518E38:
+.endobj lbl_80518E34
+.obj lbl_80518E38, local
 	.float -325.9493
-lbl_80518E3C: # pi
+.endobj lbl_80518E38
+.obj lbl_80518E3C, local # pi
 	.float 3.1415927
-lbl_80518E40:
+.endobj lbl_80518E3C
+.obj lbl_80518E40, local
 	.float 0.0055555557
-lbl_80518E44:
+.endobj lbl_80518E40
+.obj lbl_80518E44, local
 	.float 30.0
-lbl_80518E48:
+.endobj lbl_80518E44
+.obj lbl_80518E48, local
 	.float 15.0
-lbl_80518E4C:
+.endobj lbl_80518E48
+.obj lbl_80518E4C, local
 	.float 0.99
-lbl_80518E50:
+.endobj lbl_80518E4C
+.obj lbl_80518E50, local
 	.float 120.0
-lbl_80518E54:
+.endobj lbl_80518E50
+.obj lbl_80518E54, local
 	.float 20.0
-lbl_80518E58:
+.endobj lbl_80518E54
+.obj lbl_80518E58, local
 	.float 100.0
-lbl_80518E5C:
+.endobj lbl_80518E58
+.obj lbl_80518E5C, local
 	.float 0.01
-lbl_80518E60: # -pi/2
+.endobj lbl_80518E5C
+.obj lbl_80518E60, local # -pi/2
 	.float -1.5707964
-lbl_80518E64:
+.endobj lbl_80518E60
+.obj lbl_80518E64, local
 	.float 12800.0
-lbl_80518E68:
+.endobj lbl_80518E64
+.obj lbl_80518E68, local
 	.float 600.0
-lbl_80518E6C:
+.endobj lbl_80518E68
+.obj lbl_80518E6C, local
 	.float 350.0
-lbl_80518E70:
+.endobj lbl_80518E6C
+.obj lbl_80518E70, local
 	.float -900.0
-lbl_80518E74:
+.endobj lbl_80518E70
+.obj lbl_80518E74, local
 	.float 0.8
-lbl_80518E78:
+.endobj lbl_80518E74
+.obj lbl_80518E78, local
 	.float 0.15
-lbl_80518E7C:
+.endobj lbl_80518E78
+.obj lbl_80518E7C, local
 	.float 0.075
-lbl_80518E80:
+.endobj lbl_80518E7C
+.obj lbl_80518E80, local
 	.float 0.42
-lbl_80518E84:
+.endobj lbl_80518E80
+.obj lbl_80518E84, local
 	.float 0.9
-lbl_80518E88:
+.endobj lbl_80518E84
+.obj lbl_80518E88, local
 	.float 4.0
-lbl_80518E8C:
+.endobj lbl_80518E88
+.obj lbl_80518E8C, local
 	.float 0.955
-lbl_80518E90:
+.endobj lbl_80518E8C
+.obj lbl_80518E90, local
 	.float 160.0
-lbl_80518E94:
+.endobj lbl_80518E90
+.obj lbl_80518E94, local
 	.float 60.0
-lbl_80518E98:
+.endobj lbl_80518E94
+.obj lbl_80518E98, local
 	.float 500.0
-lbl_80518E9C:
+.endobj lbl_80518E98
+.obj lbl_80518E9C, local
 	.float 5.0
-lbl_80518EA0:
+.endobj lbl_80518E9C
+.obj lbl_80518EA0, local
 	.float -5.0
-lbl_80518EA4:
+.endobj lbl_80518EA0
+.obj lbl_80518EA4, local
 	.float 1000.0
-lbl_80518EA8:
+.endobj lbl_80518EA4
+.obj lbl_80518EA8, local
 	.float 200.0
+.endobj lbl_80518EA8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global dump__Q24Game9PikiStateFv
-dump__Q24Game9PikiStateFv:
+.fn dump__Q24Game9PikiStateFv, global
 /* 80189378 001862B8  4E 80 00 20 */	blr 
+.endfn dump__Q24Game9PikiStateFv
 
-.global getInfo__Q24Game9PikiStateFPc
-getInfo__Q24Game9PikiStateFPc:
+.fn getInfo__Q24Game9PikiStateFPc, global
 /* 8018937C 001862BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80189380 001862C0  7C 08 02 A6 */	mflr r0
 /* 80189384 001862C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1480,9 +1602,9 @@ getInfo__Q24Game9PikiStateFPc:
 /* 801893A0 001862E0  7C 08 03 A6 */	mtlr r0
 /* 801893A4 001862E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801893A8 001862E8  4E 80 00 20 */	blr 
+.endfn getInfo__Q24Game9PikiStateFPc
 
-.global init__Q24Game7PikiFSMFPQ24Game4Piki
-init__Q24Game7PikiFSMFPQ24Game4Piki:
+.fn init__Q24Game7PikiFSMFPQ24Game4Piki, global
 /* 801893AC 001862EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801893B0 001862F0  7C 08 02 A6 */	mflr r0
 /* 801893B4 001862F4  3C 80 80 48 */	lis r4, lbl_8047EBE8@ha
@@ -2246,9 +2368,9 @@ init__Q24Game7PikiFSMFPQ24Game4Piki:
 /* 80189F0C 00186E4C  7C 08 03 A6 */	mtlr r0
 /* 80189F10 00186E50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80189F14 00186E54  4E 80 00 20 */	blr 
+.endfn init__Q24Game7PikiFSMFPQ24Game4Piki
 
-.global transit__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg
-transit__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg:
+.fn transit__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg, global
 /* 80189F18 00186E58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80189F1C 00186E5C  7C 08 02 A6 */	mflr r0
 /* 80189F20 00186E60  3C E0 80 48 */	lis r7, lbl_8047EBE8@ha
@@ -2322,9 +2444,9 @@ transit__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg:
 /* 8018A024 00186F64  7C 08 03 A6 */	mtlr r0
 /* 8018A028 00186F68  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018A02C 00186F6C  4E 80 00 20 */	blr 
+.endfn transit__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg
 
-.global transitForce__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg
-transitForce__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg:
+.fn transitForce__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg, global
 /* 8018A030 00186F70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018A034 00186F74  7C 08 02 A6 */	mflr r0
 /* 8018A038 00186F78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2347,9 +2469,9 @@ transitForce__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg:
 /* 8018A074 00186FB4  7C 08 03 A6 */	mtlr r0
 /* 8018A078 00186FB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018A07C 00186FBC  4E 80 00 20 */	blr 
+.endfn transitForce__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg
 
-.global init__Q24Game13PikiWalkStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game13PikiWalkStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game13PikiWalkStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018A080 00186FC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018A084 00186FC4  7C 08 02 A6 */	mflr r0
 /* 8018A088 00186FC8  7C 83 23 78 */	mr r3, r4
@@ -2366,9 +2488,9 @@ init__Q24Game13PikiWalkStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018A0B4 00186FF4  7C 08 03 A6 */	mtlr r0
 /* 8018A0B8 00186FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018A0BC 00186FFC  4E 80 00 20 */	blr 
+.endfn init__Q24Game13PikiWalkStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game13PikiWalkStateFPQ24Game4Piki
-exec__Q24Game13PikiWalkStateFPQ24Game4Piki:
+.fn exec__Q24Game13PikiWalkStateFPQ24Game4Piki, global
 /* 8018A0C0 00187000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018A0C4 00187004  7C 08 02 A6 */	mflr r0
 /* 8018A0C8 00187008  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2378,13 +2500,13 @@ exec__Q24Game13PikiWalkStateFPQ24Game4Piki:
 /* 8018A0D8 00187018  7C 08 03 A6 */	mtlr r0
 /* 8018A0DC 0018701C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018A0E0 00187020  4E 80 00 20 */	blr 
+.endfn exec__Q24Game13PikiWalkStateFPQ24Game4Piki
 
-.global cleanup__Q24Game13PikiWalkStateFPQ24Game4Piki
-cleanup__Q24Game13PikiWalkStateFPQ24Game4Piki:
+.fn cleanup__Q24Game13PikiWalkStateFPQ24Game4Piki, global
 /* 8018A0E4 00187024  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game13PikiWalkStateFPQ24Game4Piki
 
-.global init__Q24Game17PikiDemoWaitStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game17PikiDemoWaitStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game17PikiDemoWaitStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018A0E8 00187028  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018A0EC 0018702C  7C 08 02 A6 */	mflr r0
 /* 8018A0F0 00187030  7C 83 23 78 */	mr r3, r4
@@ -2401,9 +2523,9 @@ init__Q24Game17PikiDemoWaitStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018A11C 0018705C  7C 08 03 A6 */	mtlr r0
 /* 8018A120 00187060  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018A124 00187064  4E 80 00 20 */	blr 
+.endfn init__Q24Game17PikiDemoWaitStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game17PikiDemoWaitStateFPQ24Game4Piki
-exec__Q24Game17PikiDemoWaitStateFPQ24Game4Piki:
+.fn exec__Q24Game17PikiDemoWaitStateFPQ24Game4Piki, global
 /* 8018A128 00187068  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018A12C 0018706C  7C 08 02 A6 */	mflr r0
 /* 8018A130 00187070  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2413,13 +2535,13 @@ exec__Q24Game17PikiDemoWaitStateFPQ24Game4Piki:
 /* 8018A140 00187080  7C 08 03 A6 */	mtlr r0
 /* 8018A144 00187084  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018A148 00187088  4E 80 00 20 */	blr 
+.endfn exec__Q24Game17PikiDemoWaitStateFPQ24Game4Piki
 
-.global cleanup__Q24Game17PikiDemoWaitStateFPQ24Game4Piki
-cleanup__Q24Game17PikiDemoWaitStateFPQ24Game4Piki:
+.fn cleanup__Q24Game17PikiDemoWaitStateFPQ24Game4Piki, global
 /* 8018A14C 0018708C  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game17PikiDemoWaitStateFPQ24Game4Piki
 
-.global init__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018A150 00187090  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018A154 00187094  7C 08 02 A6 */	mflr r0
 /* 8018A158 00187098  38 A0 00 1F */	li r5, 0x1f
@@ -2484,9 +2606,9 @@ init__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018A244 00187184  7C 08 03 A6 */	mtlr r0
 /* 8018A248 00187188  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018A24C 0018718C  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game15PikiCarrotStateFPQ24Game4Piki
-exec__Q24Game15PikiCarrotStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiCarrotStateFPQ24Game4Piki, global
 /* 8018A250 00187190  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 8018A254 00187194  7C 08 02 A6 */	mflr r0
 /* 8018A258 00187198  90 01 01 24 */	stw r0, 0x124(r1)
@@ -2700,9 +2822,9 @@ exec__Q24Game15PikiCarrotStateFPQ24Game4Piki:
 /* 8018A578 001874B8  7C 08 03 A6 */	mtlr r0
 /* 8018A57C 001874BC  38 21 01 20 */	addi r1, r1, 0x120
 /* 8018A580 001874C0  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiCarrotStateFPQ24Game4Piki
 
-.global cleanup__Q24Game15PikiCarrotStateFPQ24Game4Piki
-cleanup__Q24Game15PikiCarrotStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiCarrotStateFPQ24Game4Piki, global
 /* 8018A584 001874C4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8018A588 001874C8  7C 08 02 A6 */	mflr r0
 /* 8018A58C 001874CC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2757,9 +2879,9 @@ cleanup__Q24Game15PikiCarrotStateFPQ24Game4Piki:
 /* 8018A650 00187590  7C 08 03 A6 */	mtlr r0
 /* 8018A654 00187594  38 21 00 40 */	addi r1, r1, 0x40
 /* 8018A658 00187598  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiCarrotStateFPQ24Game4Piki
 
-.global bounceCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ23Sys8Triangle, global
 /* 8018A65C 0018759C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8018A660 001875A0  7C 08 02 A6 */	mflr r0
 /* 8018A664 001875A4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2834,13 +2956,13 @@ bounceCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 8018A774 001876B4  7C 08 03 A6 */	mtlr r0
 /* 8018A778 001876B8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8018A77C 001876BC  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ23Sys8Triangle
 
-.global collisionCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 8018A780 001876C0  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiRQ24Game9CollEvent
 
-.global init__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018A784 001876C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018A788 001876C8  7C 08 02 A6 */	mflr r0
 /* 8018A78C 001876CC  28 05 00 00 */	cmplwi r5, 0
@@ -2899,9 +3021,9 @@ init__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018A850 00187790  7C 08 03 A6 */	mtlr r0
 /* 8018A854 00187794  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018A858 00187798  4E 80 00 20 */	blr 
+.endfn init__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game18PikiSwallowedStateFPQ24Game4Piki
-exec__Q24Game18PikiSwallowedStateFPQ24Game4Piki:
+.fn exec__Q24Game18PikiSwallowedStateFPQ24Game4Piki, global
 /* 8018A85C 0018779C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018A860 001877A0  7C 08 02 A6 */	mflr r0
 /* 8018A864 001877A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2932,9 +3054,9 @@ exec__Q24Game18PikiSwallowedStateFPQ24Game4Piki:
 /* 8018A8C4 00187804  7C 08 03 A6 */	mtlr r0
 /* 8018A8C8 00187808  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018A8CC 0018780C  4E 80 00 20 */	blr 
+.endfn exec__Q24Game18PikiSwallowedStateFPQ24Game4Piki
 
-.global "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-"transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg":
+.fn "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg", weak
 /* 8018A8D0 00187810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018A8D4 00187814  7C 08 02 A6 */	mflr r0
 /* 8018A8D8 00187818  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2947,9 +3069,9 @@ exec__Q24Game18PikiSwallowedStateFPQ24Game4Piki:
 /* 8018A8F4 00187834  7C 08 03 A6 */	mtlr r0
 /* 8018A8F8 00187838  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018A8FC 0018783C  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
 
-.global cleanup__Q24Game18PikiSwallowedStateFPQ24Game4Piki
-cleanup__Q24Game18PikiSwallowedStateFPQ24Game4Piki:
+.fn cleanup__Q24Game18PikiSwallowedStateFPQ24Game4Piki, global
 /* 8018A900 00187840  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018A904 00187844  7C 08 02 A6 */	mflr r0
 /* 8018A908 00187848  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2971,9 +3093,9 @@ cleanup__Q24Game18PikiSwallowedStateFPQ24Game4Piki:
 /* 8018A948 00187888  7C 08 03 A6 */	mtlr r0
 /* 8018A94C 0018788C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018A950 00187890  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game18PikiSwallowedStateFPQ24Game4Piki
 
-.global init__Q24Game15PikiHoleinStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiHoleinStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiHoleinStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018A954 00187894  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8018A958 00187898  7C 08 02 A6 */	mflr r0
 /* 8018A95C 0018789C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3110,9 +3232,9 @@ init__Q24Game15PikiHoleinStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018AB54 00187A94  7C 08 03 A6 */	mtlr r0
 /* 8018AB58 00187A98  38 21 00 30 */	addi r1, r1, 0x30
 /* 8018AB5C 00187A9C  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiHoleinStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game15PikiHoleinStateFPQ24Game4Piki
-exec__Q24Game15PikiHoleinStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiHoleinStateFPQ24Game4Piki, global
 /* 8018AB60 00187AA0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018AB64 00187AA4  7C 08 02 A6 */	mflr r0
 /* 8018AB68 00187AA8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3230,13 +3352,13 @@ exec__Q24Game15PikiHoleinStateFPQ24Game4Piki:
 /* 8018AD14 00187C54  7C 08 03 A6 */	mtlr r0
 /* 8018AD18 00187C58  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018AD1C 00187C5C  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiHoleinStateFPQ24Game4Piki
 
-.global cleanup__Q24Game15PikiHoleinStateFPQ24Game4Piki
-cleanup__Q24Game15PikiHoleinStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiHoleinStateFPQ24Game4Piki, global
 /* 8018AD20 00187C60  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiHoleinStateFPQ24Game4Piki
 
-.global init__Q24Game19PikiFountainonStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game19PikiFountainonStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game19PikiFountainonStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018AD24 00187C64  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8018AD28 00187C68  7C 08 02 A6 */	mflr r0
 /* 8018AD2C 00187C6C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3367,9 +3489,9 @@ init__Q24Game19PikiFountainonStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018AF0C 00187E4C  7C 08 03 A6 */	mtlr r0
 /* 8018AF10 00187E50  38 21 00 30 */	addi r1, r1, 0x30
 /* 8018AF14 00187E54  4E 80 00 20 */	blr 
+.endfn init__Q24Game19PikiFountainonStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game19PikiFountainonStateFPQ24Game4Piki
-exec__Q24Game19PikiFountainonStateFPQ24Game4Piki:
+.fn exec__Q24Game19PikiFountainonStateFPQ24Game4Piki, global
 /* 8018AF18 00187E58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018AF1C 00187E5C  7C 08 02 A6 */	mflr r0
 /* 8018AF20 00187E60  C0 22 AA 80 */	lfs f1, lbl_80518DE0@sda21(r2)
@@ -3478,13 +3600,13 @@ exec__Q24Game19PikiFountainonStateFPQ24Game4Piki:
 /* 8018B0AC 00187FEC  7C 08 03 A6 */	mtlr r0
 /* 8018B0B0 00187FF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018B0B4 00187FF4  4E 80 00 20 */	blr 
+.endfn exec__Q24Game19PikiFountainonStateFPQ24Game4Piki
 
-.global cleanup__Q24Game19PikiFountainonStateFPQ24Game4Piki
-cleanup__Q24Game19PikiFountainonStateFPQ24Game4Piki:
+.fn cleanup__Q24Game19PikiFountainonStateFPQ24Game4Piki, global
 /* 8018B0B8 00187FF8  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game19PikiFountainonStateFPQ24Game4Piki
 
-.global init__Q24Game13PikiTaneStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game13PikiTaneStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game13PikiTaneStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018B0BC 00187FFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018B0C0 00188000  7C 08 02 A6 */	mflr r0
 /* 8018B0C4 00188004  38 A0 00 24 */	li r5, 0x24
@@ -3535,9 +3657,9 @@ init__Q24Game13PikiTaneStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018B178 001880B8  7C 08 03 A6 */	mtlr r0
 /* 8018B17C 001880BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018B180 001880C0  4E 80 00 20 */	blr 
+.endfn init__Q24Game13PikiTaneStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game13PikiTaneStateFPQ24Game4Piki
-exec__Q24Game13PikiTaneStateFPQ24Game4Piki:
+.fn exec__Q24Game13PikiTaneStateFPQ24Game4Piki, global
 /* 8018B184 001880C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018B188 001880C8  7C 08 02 A6 */	mflr r0
 /* 8018B18C 001880CC  7C 66 1B 78 */	mr r6, r3
@@ -3552,9 +3674,9 @@ exec__Q24Game13PikiTaneStateFPQ24Game4Piki:
 /* 8018B1B0 001880F0  7C 08 03 A6 */	mtlr r0
 /* 8018B1B4 001880F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018B1B8 001880F8  4E 80 00 20 */	blr 
+.endfn exec__Q24Game13PikiTaneStateFPQ24Game4Piki
 
-.global cleanup__Q24Game13PikiTaneStateFPQ24Game4Piki
-cleanup__Q24Game13PikiTaneStateFPQ24Game4Piki:
+.fn cleanup__Q24Game13PikiTaneStateFPQ24Game4Piki, global
 /* 8018B1BC 001880FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018B1C0 00188100  7C 08 02 A6 */	mflr r0
 /* 8018B1C4 00188104  7C 83 23 78 */	mr r3, r4
@@ -3568,9 +3690,9 @@ cleanup__Q24Game13PikiTaneStateFPQ24Game4Piki:
 /* 8018B1E4 00188124  7C 08 03 A6 */	mtlr r0
 /* 8018B1E8 00188128  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018B1EC 0018812C  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game13PikiTaneStateFPQ24Game4Piki
 
-.global bounceCallback__Q24Game13PikiTaneStateFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q24Game13PikiTaneStateFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game13PikiTaneStateFPQ24Game4PikiPQ23Sys8Triangle, global
 /* 8018B1F0 00188130  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018B1F4 00188134  7C 08 02 A6 */	mflr r0
 /* 8018B1F8 00188138  38 A0 00 00 */	li r5, 0
@@ -3596,9 +3718,9 @@ bounceCallback__Q24Game13PikiTaneStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 8018B248 00188188  7C 08 03 A6 */	mtlr r0
 /* 8018B24C 0018818C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018B250 00188190  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game13PikiTaneStateFPQ24Game4PikiPQ23Sys8Triangle
 
-.global init__Q24Game15PikiNukareStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiNukareStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiNukareStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018B254 00188194  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018B258 00188198  7C 08 02 A6 */	mflr r0
 /* 8018B25C 0018819C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3673,15 +3795,15 @@ init__Q24Game15PikiNukareStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018B35C 0018829C  7C 08 03 A6 */	mtlr r0
 /* 8018B360 001882A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018B364 001882A4  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiNukareStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global soft_transittable__Q24Game15PikiNukareStateFi
-soft_transittable__Q24Game15PikiNukareStateFi:
+.fn soft_transittable__Q24Game15PikiNukareStateFi, global
 /* 8018B368 001882A8  7C 80 00 34 */	cntlzw r0, r4
 /* 8018B36C 001882AC  54 03 D9 7E */	srwi r3, r0, 5
 /* 8018B370 001882B0  4E 80 00 20 */	blr 
+.endfn soft_transittable__Q24Game15PikiNukareStateFi
 
-.global exec__Q24Game15PikiNukareStateFPQ24Game4Piki
-exec__Q24Game15PikiNukareStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiNukareStateFPQ24Game4Piki, global
 /* 8018B374 001882B4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8018B378 001882B8  7C 08 02 A6 */	mflr r0
 /* 8018B37C 001882BC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3768,9 +3890,9 @@ exec__Q24Game15PikiNukareStateFPQ24Game4Piki:
 /* 8018B4B8 001883F8  7C 08 03 A6 */	mtlr r0
 /* 8018B4BC 001883FC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8018B4C0 00188400  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiNukareStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game15PikiNukareStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game15PikiNukareStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game15PikiNukareStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8018B4C4 00188404  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8018B4C8 00188408  7C 08 02 A6 */	mflr r0
 /* 8018B4CC 0018840C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3908,16 +4030,16 @@ onKeyEvent__Q24Game15PikiNukareStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 8018B6C4 00188604  7C 08 03 A6 */	mtlr r0
 /* 8018B6C8 00188608  38 21 00 70 */	addi r1, r1, 0x70
 /* 8018B6CC 0018860C  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game15PikiNukareStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global cleanup__Q24Game15PikiNukareStateFPQ24Game4Piki
-cleanup__Q24Game15PikiNukareStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiNukareStateFPQ24Game4Piki, global
 /* 8018B6D0 00188610  80 04 01 7C */	lwz r0, 0x17c(r4)
 /* 8018B6D4 00188614  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a
 /* 8018B6D8 00188618  90 04 01 7C */	stw r0, 0x17c(r4)
 /* 8018B6DC 0018861C  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiNukareStateFPQ24Game4Piki
 
-.global init__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018B6E0 00188620  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018B6E4 00188624  7C 08 02 A6 */	mflr r0
 /* 8018B6E8 00188628  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3965,14 +4087,14 @@ init__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018B78C 001886CC  7C 08 03 A6 */	mtlr r0
 /* 8018B790 001886D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018B794 001886D4  4E 80 00 20 */	blr 
+.endfn init__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global onFlute__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game4Navi
-onFlute__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game4Navi:
+.fn onFlute__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game4Navi, global
 /* 8018B798 001886D8  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 8018B79C 001886DC  4E 80 00 20 */	blr 
+.endfn onFlute__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game4Navi
 
-.global exec__Q24Game13PikiDopeStateFPQ24Game4Piki
-exec__Q24Game13PikiDopeStateFPQ24Game4Piki:
+.fn exec__Q24Game13PikiDopeStateFPQ24Game4Piki, global
 /* 8018B7A0 001886E0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8018B7A4 001886E4  7C 08 02 A6 */	mflr r0
 /* 8018B7A8 001886E8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4078,9 +4200,9 @@ exec__Q24Game13PikiDopeStateFPQ24Game4Piki:
 /* 8018B920 00188860  7C 08 03 A6 */	mtlr r0
 /* 8018B924 00188864  38 21 00 30 */	addi r1, r1, 0x30
 /* 8018B928 00188868  4E 80 00 20 */	blr 
+.endfn exec__Q24Game13PikiDopeStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game13PikiDopeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game13PikiDopeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game13PikiDopeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8018B92C 0018886C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018B930 00188870  7C 08 02 A6 */	mflr r0
 /* 8018B934 00188874  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4139,13 +4261,13 @@ onKeyEvent__Q24Game13PikiDopeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 8018B9F8 00188938  7C 08 03 A6 */	mtlr r0
 /* 8018B9FC 0018893C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018BA00 00188940  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game13PikiDopeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global cleanup__Q24Game13PikiDopeStateFPQ24Game4Piki
-cleanup__Q24Game13PikiDopeStateFPQ24Game4Piki:
+.fn cleanup__Q24Game13PikiDopeStateFPQ24Game4Piki, global
 /* 8018BA04 00188944  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game13PikiDopeStateFPQ24Game4Piki
 
-.global soft_transittable__Q24Game14PikiPanicStateFi
-soft_transittable__Q24Game14PikiPanicStateFi:
+.fn soft_transittable__Q24Game14PikiPanicStateFi, global
 /* 8018BA08 00188948  2C 04 00 08 */	cmpwi r4, 8
 /* 8018BA0C 0018894C  38 60 00 00 */	li r3, 0
 /* 8018BA10 00188950  4D 82 00 20 */	beqlr 
@@ -4155,9 +4277,9 @@ soft_transittable__Q24Game14PikiPanicStateFi:
 /* 8018BA20 00188960  4D 82 00 20 */	beqlr 
 /* 8018BA24 00188964  38 60 00 01 */	li r3, 1
 /* 8018BA28 00188968  4E 80 00 20 */	blr 
+.endfn soft_transittable__Q24Game14PikiPanicStateFi
 
-.global transittable__Q24Game14PikiPanicStateFi
-transittable__Q24Game14PikiPanicStateFi:
+.fn transittable__Q24Game14PikiPanicStateFi, global
 /* 8018BA2C 0018896C  A0 03 00 24 */	lhz r0, 0x24(r3)
 /* 8018BA30 00188970  28 00 00 03 */	cmplwi r0, 3
 /* 8018BA34 00188974  40 82 00 14 */	bne .L_8018BA48
@@ -4189,9 +4311,9 @@ transittable__Q24Game14PikiPanicStateFi:
 /* 8018BA90 001889D0  7C 00 1B 78 */	or r0, r0, r3
 /* 8018BA94 001889D4  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8018BA98 001889D8  4E 80 00 20 */	blr 
+.endfn transittable__Q24Game14PikiPanicStateFi
 
-.global init__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018BA9C 001889DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018BAA0 001889E0  7C 08 02 A6 */	mflr r0
 /* 8018BAA4 001889E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4362,9 +4484,9 @@ init__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018BD10 00188C50  7C 08 03 A6 */	mtlr r0
 /* 8018BD14 00188C54  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018BD18 00188C58  4E 80 00 20 */	blr 
+.endfn init__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game14PikiPanicStateFPQ24Game4Piki
-exec__Q24Game14PikiPanicStateFPQ24Game4Piki:
+.fn exec__Q24Game14PikiPanicStateFPQ24Game4Piki, global
 /* 8018BD1C 00188C5C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8018BD20 00188C60  7C 08 02 A6 */	mflr r0
 /* 8018BD24 00188C64  90 01 00 64 */	stw r0, 0x64(r1)
@@ -4528,9 +4650,9 @@ exec__Q24Game14PikiPanicStateFPQ24Game4Piki:
 /* 8018BF70 00188EB0  7C 08 03 A6 */	mtlr r0
 /* 8018BF74 00188EB4  38 21 00 60 */	addi r1, r1, 0x60
 /* 8018BF78 00188EB8  4E 80 00 20 */	blr 
+.endfn exec__Q24Game14PikiPanicStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game14PikiPanicStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game14PikiPanicStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game14PikiPanicStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8018BF7C 00188EBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018BF80 00188EC0  7C 08 02 A6 */	mflr r0
 /* 8018BF84 00188EC4  38 A0 00 1E */	li r5, 0x1e
@@ -4549,9 +4671,9 @@ onKeyEvent__Q24Game14PikiPanicStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 8018BFB8 00188EF8  7C 08 03 A6 */	mtlr r0
 /* 8018BFBC 00188EFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018BFC0 00188F00  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game14PikiPanicStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global panicRun__Q24Game14PikiPanicStateFPQ24Game4Piki
-panicRun__Q24Game14PikiPanicStateFPQ24Game4Piki:
+.fn panicRun__Q24Game14PikiPanicStateFPQ24Game4Piki, global
 /* 8018BFC4 00188F04  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8018BFC8 00188F08  7C 08 02 A6 */	mflr r0
 /* 8018BFCC 00188F0C  C0 02 AA 80 */	lfs f0, lbl_80518DE0@sda21(r2)
@@ -4742,9 +4864,9 @@ panicRun__Q24Game14PikiPanicStateFPQ24Game4Piki:
 /* 8018C274 001891B4  7C 08 03 A6 */	mtlr r0
 /* 8018C278 001891B8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8018C27C 001891BC  4E 80 00 20 */	blr 
+.endfn panicRun__Q24Game14PikiPanicStateFPQ24Game4Piki
 
-.global panicLobster__Q24Game14PikiPanicStateFPQ24Game4Piki
-panicLobster__Q24Game14PikiPanicStateFPQ24Game4Piki:
+.fn panicLobster__Q24Game14PikiPanicStateFPQ24Game4Piki, global
 /* 8018C280 001891C0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8018C284 001891C4  7C 08 02 A6 */	mflr r0
 /* 8018C288 001891C8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -4938,9 +5060,9 @@ panicLobster__Q24Game14PikiPanicStateFPQ24Game4Piki:
 /* 8018C548 00189488  7C 08 03 A6 */	mtlr r0
 /* 8018C54C 0018948C  38 21 00 70 */	addi r1, r1, 0x70
 /* 8018C550 00189490  4E 80 00 20 */	blr 
+.endfn panicLobster__Q24Game14PikiPanicStateFPQ24Game4Piki
 
-.global cleanup__Q24Game14PikiPanicStateFPQ24Game4Piki
-cleanup__Q24Game14PikiPanicStateFPQ24Game4Piki:
+.fn cleanup__Q24Game14PikiPanicStateFPQ24Game4Piki, global
 /* 8018C554 00189494  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018C558 00189498  7C 08 02 A6 */	mflr r0
 /* 8018C55C 0018949C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5001,15 +5123,15 @@ cleanup__Q24Game14PikiPanicStateFPQ24Game4Piki:
 /* 8018C62C 0018956C  7C 08 03 A6 */	mtlr r0
 /* 8018C630 00189570  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018C634 00189574  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game14PikiPanicStateFPQ24Game4Piki
 
-.global bounceCallback__Q24Game14PikiPanicStateFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q24Game14PikiPanicStateFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game14PikiPanicStateFPQ24Game4PikiPQ23Sys8Triangle, global
 /* 8018C638 00189578  38 00 00 01 */	li r0, 1
 /* 8018C63C 0018957C  98 03 00 21 */	stb r0, 0x21(r3)
 /* 8018C640 00189580  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game14PikiPanicStateFPQ24Game4PikiPQ23Sys8Triangle
 
-.global onFlute__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game4Navi
-onFlute__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game4Navi:
+.fn onFlute__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game4Navi, global
 /* 8018C644 00189584  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018C648 00189588  7C 08 02 A6 */	mflr r0
 /* 8018C64C 0018958C  38 A0 00 00 */	li r5, 0
@@ -5086,24 +5208,24 @@ onFlute__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game4Navi:
 /* 8018C754 00189694  7C 08 03 A6 */	mtlr r0
 /* 8018C758 00189698  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018C75C 0018969C  4E 80 00 20 */	blr 
+.endfn onFlute__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game4Navi
 
-.global init__Q24Game13PikiDeadStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game13PikiDeadStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game13PikiDeadStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018C760 001896A0  4E 80 00 20 */	blr 
+.endfn init__Q24Game13PikiDeadStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game13PikiDeadStateFPQ24Game4Piki
-exec__Q24Game13PikiDeadStateFPQ24Game4Piki:
+.fn exec__Q24Game13PikiDeadStateFPQ24Game4Piki, global
 /* 8018C764 001896A4  4E 80 00 20 */	blr 
+.endfn exec__Q24Game13PikiDeadStateFPQ24Game4Piki
 
-.global transittable__Q24Game14PikiDyingStateFi
-transittable__Q24Game14PikiDyingStateFi:
+.fn transittable__Q24Game14PikiDyingStateFi, global
 /* 8018C768 001896A8  20 04 00 19 */	subfic r0, r4, 0x19
 /* 8018C76C 001896AC  7C 00 00 34 */	cntlzw r0, r0
 /* 8018C770 001896B0  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8018C774 001896B4  4E 80 00 20 */	blr 
+.endfn transittable__Q24Game14PikiDyingStateFi
 
-.global init__Q24Game14PikiDyingStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game14PikiDyingStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game14PikiDyingStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018C778 001896B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018C77C 001896BC  7C 08 02 A6 */	mflr r0
 /* 8018C780 001896C0  38 C0 00 05 */	li r6, 5
@@ -5151,9 +5273,9 @@ init__Q24Game14PikiDyingStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018C820 00189760  7C 08 03 A6 */	mtlr r0
 /* 8018C824 00189764  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018C828 00189768  4E 80 00 20 */	blr 
+.endfn init__Q24Game14PikiDyingStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game14PikiDyingStateFPQ24Game4Piki
-exec__Q24Game14PikiDyingStateFPQ24Game4Piki:
+.fn exec__Q24Game14PikiDyingStateFPQ24Game4Piki, global
 /* 8018C82C 0018976C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018C830 00189770  7C 08 02 A6 */	mflr r0
 /* 8018C834 00189774  C0 02 AA 80 */	lfs f0, lbl_80518DE0@sda21(r2)
@@ -5212,13 +5334,13 @@ exec__Q24Game14PikiDyingStateFPQ24Game4Piki:
 /* 8018C8FC 0018983C  7C 08 03 A6 */	mtlr r0
 /* 8018C900 00189840  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018C904 00189844  4E 80 00 20 */	blr 
+.endfn exec__Q24Game14PikiDyingStateFPQ24Game4Piki
 
-.global cleanup__Q24Game14PikiDyingStateFPQ24Game4Piki
-cleanup__Q24Game14PikiDyingStateFPQ24Game4Piki:
+.fn cleanup__Q24Game14PikiDyingStateFPQ24Game4Piki, global
 /* 8018C908 00189848  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game14PikiDyingStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game14PikiDyingStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game14PikiDyingStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game14PikiDyingStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8018C90C 0018984C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018C910 00189850  7C 08 02 A6 */	mflr r0
 /* 8018C914 00189854  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5246,23 +5368,23 @@ onKeyEvent__Q24Game14PikiDyingStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 8018C964 001898A4  7C 08 03 A6 */	mtlr r0
 /* 8018C968 001898A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018C96C 001898AC  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game14PikiDyingStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global soft_transittable__Q24Game19PikiDenkiDyingStateFi
-soft_transittable__Q24Game19PikiDenkiDyingStateFi:
+.fn soft_transittable__Q24Game19PikiDenkiDyingStateFi, global
 /* 8018C970 001898B0  20 04 00 19 */	subfic r0, r4, 0x19
 /* 8018C974 001898B4  7C 00 00 34 */	cntlzw r0, r0
 /* 8018C978 001898B8  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8018C97C 001898BC  4E 80 00 20 */	blr 
+.endfn soft_transittable__Q24Game19PikiDenkiDyingStateFi
 
-.global transittable__Q24Game19PikiDenkiDyingStateFi
-transittable__Q24Game19PikiDenkiDyingStateFi:
+.fn transittable__Q24Game19PikiDenkiDyingStateFi, global
 /* 8018C980 001898C0  20 04 00 19 */	subfic r0, r4, 0x19
 /* 8018C984 001898C4  7C 00 00 34 */	cntlzw r0, r0
 /* 8018C988 001898C8  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8018C98C 001898CC  4E 80 00 20 */	blr 
+.endfn transittable__Q24Game19PikiDenkiDyingStateFi
 
-.global init__Q24Game19PikiDenkiDyingStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game19PikiDenkiDyingStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game19PikiDenkiDyingStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018C990 001898D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018C994 001898D4  7C 08 02 A6 */	mflr r0
 /* 8018C998 001898D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5297,9 +5419,9 @@ init__Q24Game19PikiDenkiDyingStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018CA08 00189948  7C 08 03 A6 */	mtlr r0
 /* 8018CA0C 0018994C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018CA10 00189950  4E 80 00 20 */	blr 
+.endfn init__Q24Game19PikiDenkiDyingStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki
-exec__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki:
+.fn exec__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki, global
 /* 8018CA14 00189954  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8018CA18 00189958  7C 08 02 A6 */	mflr r0
 /* 8018CA1C 0018995C  C0 42 AA 80 */	lfs f2, lbl_80518DE0@sda21(r2)
@@ -5379,27 +5501,27 @@ exec__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki:
 /* 8018CB40 00189A80  7C 08 03 A6 */	mtlr r0
 /* 8018CB44 00189A84  38 21 00 50 */	addi r1, r1, 0x50
 /* 8018CB48 00189A88  4E 80 00 20 */	blr 
+.endfn exec__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki
 
-.global cleanup__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki
-cleanup__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki:
+.fn cleanup__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki, global
 /* 8018CB4C 00189A8C  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki
 
-.global soft_transittable__Q24Game16PikiPressedStateFi
-soft_transittable__Q24Game16PikiPressedStateFi:
+.fn soft_transittable__Q24Game16PikiPressedStateFi, global
 /* 8018CB50 00189A90  20 04 00 19 */	subfic r0, r4, 0x19
 /* 8018CB54 00189A94  7C 00 00 34 */	cntlzw r0, r0
 /* 8018CB58 00189A98  54 03 D9 7E */	srwi r3, r0, 5
 /* 8018CB5C 00189A9C  4E 80 00 20 */	blr 
+.endfn soft_transittable__Q24Game16PikiPressedStateFi
 
-.global transittable__Q24Game16PikiPressedStateFi
-transittable__Q24Game16PikiPressedStateFi:
+.fn transittable__Q24Game16PikiPressedStateFi, global
 /* 8018CB60 00189AA0  20 04 00 19 */	subfic r0, r4, 0x19
 /* 8018CB64 00189AA4  7C 00 00 34 */	cntlzw r0, r0
 /* 8018CB68 00189AA8  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8018CB6C 00189AAC  4E 80 00 20 */	blr 
+.endfn transittable__Q24Game16PikiPressedStateFi
 
-.global init__Q24Game16PikiPressedStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game16PikiPressedStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game16PikiPressedStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018CB70 00189AB0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8018CB74 00189AB4  7C 08 02 A6 */	mflr r0
 /* 8018CB78 00189AB8  C0 22 AA FC */	lfs f1, lbl_80518E5C@sda21(r2)
@@ -5450,9 +5572,9 @@ init__Q24Game16PikiPressedStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018CC2C 00189B6C  7C 08 03 A6 */	mtlr r0
 /* 8018CC30 00189B70  38 21 00 40 */	addi r1, r1, 0x40
 /* 8018CC34 00189B74  4E 80 00 20 */	blr 
+.endfn init__Q24Game16PikiPressedStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game16PikiPressedStateFPQ24Game4Piki
-exec__Q24Game16PikiPressedStateFPQ24Game4Piki:
+.fn exec__Q24Game16PikiPressedStateFPQ24Game4Piki, global
 /* 8018CC38 00189B78  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8018CC3C 00189B7C  7C 08 02 A6 */	mflr r0
 /* 8018CC40 00189B80  C0 22 AB 00 */	lfs f1, lbl_80518E60@sda21(r2)
@@ -5522,9 +5644,9 @@ exec__Q24Game16PikiPressedStateFPQ24Game4Piki:
 /* 8018CD38 00189C78  7C 08 03 A6 */	mtlr r0
 /* 8018CD3C 00189C7C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8018CD40 00189C80  4E 80 00 20 */	blr 
+.endfn exec__Q24Game16PikiPressedStateFPQ24Game4Piki
 
-.global cleanup__Q24Game16PikiPressedStateFPQ24Game4Piki
-cleanup__Q24Game16PikiPressedStateFPQ24Game4Piki:
+.fn cleanup__Q24Game16PikiPressedStateFPQ24Game4Piki, global
 /* 8018CD44 00189C84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018CD48 00189C88  7C 08 02 A6 */	mflr r0
 /* 8018CD4C 00189C8C  7C 83 23 78 */	mr r3, r4
@@ -5538,9 +5660,9 @@ cleanup__Q24Game16PikiPressedStateFPQ24Game4Piki:
 /* 8018CD6C 00189CAC  7C 08 03 A6 */	mtlr r0
 /* 8018CD70 00189CB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018CD74 00189CB4  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game16PikiPressedStateFPQ24Game4Piki
 
-.global init__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018CD78 00189CB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018CD7C 00189CBC  7C 08 02 A6 */	mflr r0
 /* 8018CD80 00189CC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5574,13 +5696,13 @@ init__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018CDF0 00189D30  7C 08 03 A6 */	mtlr r0
 /* 8018CDF4 00189D34  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018CDF8 00189D38  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global onFlute__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game4Navi
-onFlute__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game4Navi:
+.fn onFlute__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game4Navi, global
 /* 8018CDFC 00189D3C  4E 80 00 20 */	blr 
+.endfn onFlute__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game4Navi
 
-.global exec__Q24Game15PikiLookAtStateFPQ24Game4Piki
-exec__Q24Game15PikiLookAtStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiLookAtStateFPQ24Game4Piki, global
 /* 8018CE00 00189D40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018CE04 00189D44  7C 08 02 A6 */	mflr r0
 /* 8018CE08 00189D48  C0 42 AA 80 */	lfs f2, lbl_80518DE0@sda21(r2)
@@ -5684,9 +5806,9 @@ exec__Q24Game15PikiLookAtStateFPQ24Game4Piki:
 /* 8018CF74 00189EB4  7C 08 03 A6 */	mtlr r0
 /* 8018CF78 00189EB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018CF7C 00189EBC  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiLookAtStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent, global
 /* 8018CF80 00189EC0  80 04 00 1C */	lwz r0, 0x1c(r4)
 /* 8018CF84 00189EC4  2C 00 03 E8 */	cmpwi r0, 0x3e8
 /* 8018CF88 00189EC8  41 82 00 14 */	beq .L_8018CF9C
@@ -5698,13 +5820,13 @@ onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent:
 /* 8018CF9C 00189EDC  38 00 00 02 */	li r0, 2
 /* 8018CFA0 00189EE0  B0 03 00 18 */	sth r0, 0x18(r3)
 /* 8018CFA4 00189EE4  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent
 
-.global cleanup__Q24Game15PikiLookAtStateFPQ24Game4Piki
-cleanup__Q24Game15PikiLookAtStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiLookAtStateFPQ24Game4Piki, global
 /* 8018CFA8 00189EE8  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiLookAtStateFPQ24Game4Piki
 
-.global init__Q24Game17PikiAutoNukiStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game17PikiAutoNukiStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game17PikiAutoNukiStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018CFAC 00189EEC  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8018CFB0 00189EF0  7C 08 02 A6 */	mflr r0
 /* 8018CFB4 00189EF4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -5835,9 +5957,9 @@ init__Q24Game17PikiAutoNukiStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018D19C 0018A0DC  7C 08 03 A6 */	mtlr r0
 /* 8018D1A0 0018A0E0  38 21 00 70 */	addi r1, r1, 0x70
 /* 8018D1A4 0018A0E4  4E 80 00 20 */	blr 
+.endfn init__Q24Game17PikiAutoNukiStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game17PikiAutoNukiStateFPQ24Game4Piki
-exec__Q24Game17PikiAutoNukiStateFPQ24Game4Piki:
+.fn exec__Q24Game17PikiAutoNukiStateFPQ24Game4Piki, global
 /* 8018D1A8 0018A0E8  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8018D1AC 0018A0EC  7C 08 02 A6 */	mflr r0
 /* 8018D1B0 0018A0F0  90 01 00 84 */	stw r0, 0x84(r1)
@@ -6039,9 +6161,9 @@ exec__Q24Game17PikiAutoNukiStateFPQ24Game4Piki:
 /* 8018D49C 0018A3DC  7C 08 03 A6 */	mtlr r0
 /* 8018D4A0 0018A3E0  38 21 00 80 */	addi r1, r1, 0x80
 /* 8018D4A4 0018A3E4  4E 80 00 20 */	blr 
+.endfn exec__Q24Game17PikiAutoNukiStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game17PikiAutoNukiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game17PikiAutoNukiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game17PikiAutoNukiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8018D4A8 0018A3E8  80 05 00 1C */	lwz r0, 0x1c(r5)
 /* 8018D4AC 0018A3EC  2C 00 03 E8 */	cmpwi r0, 0x3e8
 /* 8018D4B0 0018A3F0  41 82 00 14 */	beq .L_8018D4C4
@@ -6053,13 +6175,13 @@ onKeyEvent__Q24Game17PikiAutoNukiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 8018D4C4 0018A404  38 00 00 02 */	li r0, 2
 /* 8018D4C8 0018A408  B0 03 00 14 */	sth r0, 0x14(r3)
 /* 8018D4CC 0018A40C  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game17PikiAutoNukiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global cleanup__Q24Game17PikiAutoNukiStateFPQ24Game4Piki
-cleanup__Q24Game17PikiAutoNukiStateFPQ24Game4Piki:
+.fn cleanup__Q24Game17PikiAutoNukiStateFPQ24Game4Piki, global
 /* 8018D4D0 0018A410  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game17PikiAutoNukiStateFPQ24Game4Piki
 
-.global init__Q24Game15PikiGoHangStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiGoHangStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiGoHangStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018D4D4 0018A414  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018D4D8 0018A418  7C 08 02 A6 */	mflr r0
 /* 8018D4DC 0018A41C  38 A0 00 1D */	li r5, 0x1d
@@ -6085,9 +6207,9 @@ init__Q24Game15PikiGoHangStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018D52C 0018A46C  7C 08 03 A6 */	mtlr r0
 /* 8018D530 0018A470  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018D534 0018A474  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiGoHangStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game15PikiGoHangStateFPQ24Game4Piki
-exec__Q24Game15PikiGoHangStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiGoHangStateFPQ24Game4Piki, global
 /* 8018D538 0018A478  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8018D53C 0018A47C  7C 08 02 A6 */	mflr r0
 /* 8018D540 0018A480  90 01 00 34 */	stw r0, 0x34(r1)
@@ -6211,9 +6333,9 @@ exec__Q24Game15PikiGoHangStateFPQ24Game4Piki:
 /* 8018D6F4 0018A634  7C 08 03 A6 */	mtlr r0
 /* 8018D6F8 0018A638  38 21 00 30 */	addi r1, r1, 0x30
 /* 8018D6FC 0018A63C  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiGoHangStateFPQ24Game4Piki
 
-.global cleanup__Q24Game15PikiGoHangStateFPQ24Game4Piki
-cleanup__Q24Game15PikiGoHangStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiGoHangStateFPQ24Game4Piki, global
 /* 8018D700 0018A640  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018D704 0018A644  7C 08 02 A6 */	mflr r0
 /* 8018D708 0018A648  7C 83 23 78 */	mr r3, r4
@@ -6227,13 +6349,13 @@ cleanup__Q24Game15PikiGoHangStateFPQ24Game4Piki:
 /* 8018D728 0018A668  7C 08 03 A6 */	mtlr r0
 /* 8018D72C 0018A66C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018D730 0018A670  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiGoHangStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent, global
 /* 8018D734 0018A674  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent
 
-.global init__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018D738 0018A678  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018D73C 0018A67C  7C 08 02 A6 */	mflr r0
 /* 8018D740 0018A680  38 A0 00 00 */	li r5, 0
@@ -6285,9 +6407,9 @@ init__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018D7F0 0018A730  7C 08 03 A6 */	mtlr r0
 /* 8018D7F4 0018A734  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018D7F8 0018A738  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game15PikiHangedStateFPQ24Game4Piki
-exec__Q24Game15PikiHangedStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiHangedStateFPQ24Game4Piki, global
 /* 8018D7FC 0018A73C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018D800 0018A740  7C 08 02 A6 */	mflr r0
 /* 8018D804 0018A744  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6316,9 +6438,9 @@ exec__Q24Game15PikiHangedStateFPQ24Game4Piki:
 /* 8018D85C 0018A79C  7C 08 03 A6 */	mtlr r0
 /* 8018D860 0018A7A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018D864 0018A7A4  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiHangedStateFPQ24Game4Piki
 
-.global cleanup__Q24Game15PikiHangedStateFPQ24Game4Piki
-cleanup__Q24Game15PikiHangedStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiHangedStateFPQ24Game4Piki, global
 /* 8018D868 0018A7A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018D86C 0018A7AC  7C 08 02 A6 */	mflr r0
 /* 8018D870 0018A7B0  7C 83 23 78 */	mr r3, r4
@@ -6332,9 +6454,9 @@ cleanup__Q24Game15PikiHangedStateFPQ24Game4Piki:
 /* 8018D890 0018A7D0  7C 08 03 A6 */	mtlr r0
 /* 8018D894 0018A7D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018D898 0018A7D8  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiHangedStateFPQ24Game4Piki
 
-.global ignoreAtari__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8Creature
-ignoreAtari__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8Creature:
+.fn ignoreAtari__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8Creature, global
 /* 8018D89C 0018A7DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018D8A0 0018A7E0  7C 08 02 A6 */	mflr r0
 /* 8018D8A4 0018A7E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6365,13 +6487,13 @@ ignoreAtari__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8Creature:
 /* 8018D8FC 0018A83C  7C 08 03 A6 */	mtlr r0
 /* 8018D900 0018A840  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018D904 0018A844  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8Creature
 
-.global onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent, global
 /* 8018D908 0018A848  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent
 
-.global init__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018D90C 0018A84C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018D910 0018A850  7C 08 02 A6 */	mflr r0
 /* 8018D914 0018A854  28 05 00 00 */	cmplwi r5, 0
@@ -6424,9 +6546,9 @@ init__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018D9C4 0018A904  7C 08 03 A6 */	mtlr r0
 /* 8018D9C8 0018A908  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018D9CC 0018A90C  4E 80 00 20 */	blr 
+.endfn init__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game20PikiWaterHangedStateFPQ24Game4Piki
-exec__Q24Game20PikiWaterHangedStateFPQ24Game4Piki:
+.fn exec__Q24Game20PikiWaterHangedStateFPQ24Game4Piki, global
 /* 8018D9D0 0018A910  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018D9D4 0018A914  7C 08 02 A6 */	mflr r0
 /* 8018D9D8 0018A918  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6472,9 +6594,9 @@ exec__Q24Game20PikiWaterHangedStateFPQ24Game4Piki:
 /* 8018DA6C 0018A9AC  7C 08 03 A6 */	mtlr r0
 /* 8018DA70 0018A9B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018DA74 0018A9B4  4E 80 00 20 */	blr 
+.endfn exec__Q24Game20PikiWaterHangedStateFPQ24Game4Piki
 
-.global cleanup__Q24Game20PikiWaterHangedStateFPQ24Game4Piki
-cleanup__Q24Game20PikiWaterHangedStateFPQ24Game4Piki:
+.fn cleanup__Q24Game20PikiWaterHangedStateFPQ24Game4Piki, global
 /* 8018DA78 0018A9B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018DA7C 0018A9BC  7C 08 02 A6 */	mflr r0
 /* 8018DA80 0018A9C0  7C 83 23 78 */	mr r3, r4
@@ -6488,9 +6610,9 @@ cleanup__Q24Game20PikiWaterHangedStateFPQ24Game4Piki:
 /* 8018DAA0 0018A9E0  7C 08 03 A6 */	mtlr r0
 /* 8018DAA4 0018A9E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018DAA8 0018A9E8  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game20PikiWaterHangedStateFPQ24Game4Piki
 
-.global ignoreAtari__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8Creature
-ignoreAtari__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8Creature:
+.fn ignoreAtari__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8Creature, global
 /* 8018DAAC 0018A9EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018DAB0 0018A9F0  7C 08 02 A6 */	mflr r0
 /* 8018DAB4 0018A9F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6521,9 +6643,9 @@ ignoreAtari__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8Creature:
 /* 8018DB0C 0018AA4C  7C 08 03 A6 */	mtlr r0
 /* 8018DB10 0018AA50  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018DB14 0018AA54  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8Creature
 
-.global init__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018DB18 0018AA58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018DB1C 0018AA5C  7C 08 02 A6 */	mflr r0
 /* 8018DB20 0018AA60  C0 22 AA 80 */	lfs f1, lbl_80518DE0@sda21(r2)
@@ -6552,9 +6674,9 @@ init__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018DB7C 0018AABC  7C 08 03 A6 */	mtlr r0
 /* 8018DB80 0018AAC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018DB84 0018AAC4  4E 80 00 20 */	blr 
+.endfn init__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game16PikiHipDropStateFPQ24Game4Piki
-exec__Q24Game16PikiHipDropStateFPQ24Game4Piki:
+.fn exec__Q24Game16PikiHipDropStateFPQ24Game4Piki, global
 /* 8018DB88 0018AAC8  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 8018DB8C 0018AACC  7C 08 02 A6 */	mflr r0
 /* 8018DB90 0018AAD0  90 01 01 24 */	stw r0, 0x124(r1)
@@ -6808,9 +6930,9 @@ exec__Q24Game16PikiHipDropStateFPQ24Game4Piki:
 /* 8018DF44 0018AE84  7C 08 03 A6 */	mtlr r0
 /* 8018DF48 0018AE88  38 21 01 20 */	addi r1, r1, 0x120
 /* 8018DF4C 0018AE8C  4E 80 00 20 */	blr 
+.endfn exec__Q24Game16PikiHipDropStateFPQ24Game4Piki
 
-.global cleanup__Q24Game16PikiHipDropStateFPQ24Game4Piki
-cleanup__Q24Game16PikiHipDropStateFPQ24Game4Piki:
+.fn cleanup__Q24Game16PikiHipDropStateFPQ24Game4Piki, global
 /* 8018DF50 0018AE90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018DF54 0018AE94  7C 08 02 A6 */	mflr r0
 /* 8018DF58 0018AE98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6825,13 +6947,13 @@ cleanup__Q24Game16PikiHipDropStateFPQ24Game4Piki:
 /* 8018DF7C 0018AEBC  7C 08 03 A6 */	mtlr r0
 /* 8018DF80 0018AEC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018DF84 0018AEC4  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game16PikiHipDropStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game16PikiHipDropStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game16PikiHipDropStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game16PikiHipDropStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8018DF88 0018AEC8  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game16PikiHipDropStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global bounceCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ23Sys8Triangle, global
 /* 8018DF8C 0018AECC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018DF90 0018AED0  7C 08 02 A6 */	mflr r0
 /* 8018DF94 0018AED4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6844,9 +6966,9 @@ bounceCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 8018DFAC 0018AEEC  7C 08 03 A6 */	mtlr r0
 /* 8018DFB0 0018AEF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018DFB4 0018AEF4  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ23Sys8Triangle
 
-.global collisionCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 8018DFB8 0018AEF8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8018DFBC 0018AEFC  7C 08 02 A6 */	mflr r0
 /* 8018DFC0 0018AF00  90 01 00 74 */	stw r0, 0x74(r1)
@@ -7036,9 +7158,9 @@ collisionCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9CollEvent:
 /* 8018E28C 0018B1CC  7C 08 03 A6 */	mtlr r0
 /* 8018E290 0018B1D0  38 21 00 70 */	addi r1, r1, 0x70
 /* 8018E294 0018B1D4  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9CollEvent
 
-.global platCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9PlatEvent
-platCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9PlatEvent:
+.fn platCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9PlatEvent, global
 /* 8018E298 0018B1D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018E29C 0018B1DC  7C 08 02 A6 */	mflr r0
 /* 8018E2A0 0018B1E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7051,9 +7173,9 @@ platCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9PlatEvent:
 /* 8018E2B8 0018B1F8  7C 08 03 A6 */	mtlr r0
 /* 8018E2BC 0018B1FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018E2C0 0018B200  4E 80 00 20 */	blr 
+.endfn platCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9PlatEvent
 
-.global dosin__Q24Game16PikiHipDropStateFPQ24Game4Piki
-dosin__Q24Game16PikiHipDropStateFPQ24Game4Piki:
+.fn dosin__Q24Game16PikiHipDropStateFPQ24Game4Piki, global
 /* 8018E2C4 0018B204  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8018E2C8 0018B208  7C 08 02 A6 */	mflr r0
 /* 8018E2CC 0018B20C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -7101,9 +7223,9 @@ dosin__Q24Game16PikiHipDropStateFPQ24Game4Piki:
 /* 8018E374 0018B2B4  7C 08 03 A6 */	mtlr r0
 /* 8018E378 0018B2B8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8018E37C 0018B2BC  4E 80 00 20 */	blr 
+.endfn dosin__Q24Game16PikiHipDropStateFPQ24Game4Piki
 
-.global earthquake__Q24Game16PikiHipDropStateFPQ24Game4Piki
-earthquake__Q24Game16PikiHipDropStateFPQ24Game4Piki:
+.fn earthquake__Q24Game16PikiHipDropStateFPQ24Game4Piki, global
 /* 8018E380 0018B2C0  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8018E384 0018B2C4  7C 08 02 A6 */	mflr r0
 /* 8018E388 0018B2C8  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -7172,9 +7294,9 @@ earthquake__Q24Game16PikiHipDropStateFPQ24Game4Piki:
 /* 8018E47C 0018B3BC  7C 08 03 A6 */	mtlr r0
 /* 8018E480 0018B3C0  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8018E484 0018B3C4  4E 80 00 20 */	blr 
+.endfn earthquake__Q24Game16PikiHipDropStateFPQ24Game4Piki
 
-.global init__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018E488 0018B3C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018E48C 0018B3CC  7C 08 02 A6 */	mflr r0
 /* 8018E490 0018B3D0  38 C0 00 00 */	li r6, 0
@@ -7211,9 +7333,9 @@ init__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018E504 0018B444  7C 08 03 A6 */	mtlr r0
 /* 8018E508 0018B448  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018E50C 0018B44C  4E 80 00 20 */	blr 
+.endfn init__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game17PikiFallMeckStateFPQ24Game4Piki
-exec__Q24Game17PikiFallMeckStateFPQ24Game4Piki:
+.fn exec__Q24Game17PikiFallMeckStateFPQ24Game4Piki, global
 /* 8018E510 0018B450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018E514 0018B454  7C 08 02 A6 */	mflr r0
 /* 8018E518 0018B458  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7229,17 +7351,17 @@ exec__Q24Game17PikiFallMeckStateFPQ24Game4Piki:
 /* 8018E53C 0018B47C  7C 08 03 A6 */	mtlr r0
 /* 8018E540 0018B480  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018E544 0018B484  4E 80 00 20 */	blr 
+.endfn exec__Q24Game17PikiFallMeckStateFPQ24Game4Piki
 
-.global cleanup__Q24Game17PikiFallMeckStateFPQ24Game4Piki
-cleanup__Q24Game17PikiFallMeckStateFPQ24Game4Piki:
+.fn cleanup__Q24Game17PikiFallMeckStateFPQ24Game4Piki, global
 /* 8018E548 0018B488  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game17PikiFallMeckStateFPQ24Game4Piki
 
-.global collisionCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 8018E54C 0018B48C  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9CollEvent
 
-.global platCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9PlatEvent
-platCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9PlatEvent:
+.fn platCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9PlatEvent, global
 /* 8018E550 0018B490  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018E554 0018B494  7C 08 02 A6 */	mflr r0
 /* 8018E558 0018B498  38 A0 00 00 */	li r5, 0
@@ -7253,9 +7375,9 @@ platCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9PlatEvent:
 /* 8018E578 0018B4B8  7C 08 03 A6 */	mtlr r0
 /* 8018E57C 0018B4BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018E580 0018B4C0  4E 80 00 20 */	blr 
+.endfn platCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9PlatEvent
 
-.global bounceCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ23Sys8Triangle, global
 /* 8018E584 0018B4C4  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 8018E588 0018B4C8  7C 08 02 A6 */	mflr r0
 /* 8018E58C 0018B4CC  90 01 01 04 */	stw r0, 0x104(r1)
@@ -7610,9 +7732,9 @@ bounceCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 8018EAC4 0018BA04  7C 08 03 A6 */	mtlr r0
 /* 8018EAC8 0018BA08  38 21 01 00 */	addi r1, r1, 0x100
 /* 8018EACC 0018BA0C  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ23Sys8Triangle
 
-.global init__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018EAD0 0018BA10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018EAD4 0018BA14  7C 08 02 A6 */	mflr r0
 /* 8018EAD8 0018BA18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7654,9 +7776,9 @@ init__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018EB64 0018BAA4  7C 08 03 A6 */	mtlr r0
 /* 8018EB68 0018BAA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8018EB6C 0018BAAC  4E 80 00 20 */	blr 
+.endfn init__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game16PikiSuikomiStateFPQ24Game4Piki
-exec__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
+.fn exec__Q24Game16PikiSuikomiStateFPQ24Game4Piki, global
 /* 8018EB70 0018BAB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018EB74 0018BAB4  7C 08 02 A6 */	mflr r0
 /* 8018EB78 0018BAB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7720,9 +7842,9 @@ exec__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
 /* 8018EC50 0018BB90  7C 08 03 A6 */	mtlr r0
 /* 8018EC54 0018BB94  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018EC58 0018BB98  4E 80 00 20 */	blr 
+.endfn exec__Q24Game16PikiSuikomiStateFPQ24Game4Piki
 
-.global execMouth__Q24Game16PikiSuikomiStateFPQ24Game4Piki
-execMouth__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
+.fn execMouth__Q24Game16PikiSuikomiStateFPQ24Game4Piki, global
 /* 8018EC5C 0018BB9C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8018EC60 0018BBA0  7C 08 02 A6 */	mflr r0
 /* 8018EC64 0018BBA4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -7860,9 +7982,9 @@ execMouth__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
 /* 8018EE4C 0018BD8C  7C 08 03 A6 */	mtlr r0
 /* 8018EE50 0018BD90  38 21 00 70 */	addi r1, r1, 0x70
 /* 8018EE54 0018BD94  4E 80 00 20 */	blr 
+.endfn execMouth__Q24Game16PikiSuikomiStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game16PikiSuikomiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game16PikiSuikomiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game16PikiSuikomiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8018EE58 0018BD98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018EE5C 0018BD9C  7C 08 02 A6 */	mflr r0
 /* 8018EE60 0018BDA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7878,9 +8000,9 @@ onKeyEvent__Q24Game16PikiSuikomiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 8018EE84 0018BDC4  7C 08 03 A6 */	mtlr r0
 /* 8018EE88 0018BDC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018EE8C 0018BDCC  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game16PikiSuikomiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global execString__Q24Game16PikiSuikomiStateFPQ24Game4Piki
-execString__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
+.fn execString__Q24Game16PikiSuikomiStateFPQ24Game4Piki, global
 /* 8018EE90 0018BDD0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8018EE94 0018BDD4  7C 08 02 A6 */	mflr r0
 /* 8018EE98 0018BDD8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -7948,17 +8070,17 @@ execString__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
 /* 8018EF8C 0018BECC  7C 08 03 A6 */	mtlr r0
 /* 8018EF90 0018BED0  38 21 00 40 */	addi r1, r1, 0x40
 /* 8018EF94 0018BED4  4E 80 00 20 */	blr 
+.endfn execString__Q24Game16PikiSuikomiStateFPQ24Game4Piki
 
-.global ignoreAtari__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8Creature
-ignoreAtari__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8Creature:
+.fn ignoreAtari__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8Creature, global
 /* 8018EF98 0018BED8  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 8018EF9C 0018BEDC  7C 00 28 50 */	subf r0, r0, r5
 /* 8018EFA0 0018BEE0  7C 00 00 34 */	cntlzw r0, r0
 /* 8018EFA4 0018BEE4  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8018EFA8 0018BEE8  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8Creature
 
-.global execStomach__Q24Game16PikiSuikomiStateFPQ24Game4Piki
-execStomach__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
+.fn execStomach__Q24Game16PikiSuikomiStateFPQ24Game4Piki, global
 /* 8018EFAC 0018BEEC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8018EFB0 0018BEF0  7C 08 02 A6 */	mflr r0
 /* 8018EFB4 0018BEF4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -8077,9 +8199,9 @@ execStomach__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
 /* 8018F160 0018C0A0  7C 08 03 A6 */	mtlr r0
 /* 8018F164 0018C0A4  38 21 00 40 */	addi r1, r1, 0x40
 /* 8018F168 0018C0A8  4E 80 00 20 */	blr 
+.endfn execStomach__Q24Game16PikiSuikomiStateFPQ24Game4Piki
 
-.global cleanup__Q24Game16PikiSuikomiStateFPQ24Game4Piki
-cleanup__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
+.fn cleanup__Q24Game16PikiSuikomiStateFPQ24Game4Piki, global
 /* 8018F16C 0018C0AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018F170 0018C0B0  7C 08 02 A6 */	mflr r0
 /* 8018F174 0018C0B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8098,17 +8220,17 @@ cleanup__Q24Game16PikiSuikomiStateFPQ24Game4Piki:
 /* 8018F1A8 0018C0E8  7C 08 03 A6 */	mtlr r0
 /* 8018F1AC 0018C0EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018F1B0 0018C0F0  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game16PikiSuikomiStateFPQ24Game4Piki
 
-.global stopEffect__Q24Game15PikiFlyingStateFv
-stopEffect__Q24Game15PikiFlyingStateFv:
+.fn stopEffect__Q24Game15PikiFlyingStateFv, global
 /* 8018F1B4 0018C0F4  4E 80 00 20 */	blr 
+.endfn stopEffect__Q24Game15PikiFlyingStateFv
 
-.global restartEffect__Q24Game15PikiFlyingStateFv
-restartEffect__Q24Game15PikiFlyingStateFv:
+.fn restartEffect__Q24Game15PikiFlyingStateFv, global
 /* 8018F1B8 0018C0F8  4E 80 00 20 */	blr 
+.endfn restartEffect__Q24Game15PikiFlyingStateFv
 
-.global init__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018F1BC 0018C0FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018F1C0 0018C100  7C 08 02 A6 */	mflr r0
 /* 8018F1C4 0018C104  38 A0 00 23 */	li r5, 0x23
@@ -8185,9 +8307,9 @@ init__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018F2D4 0018C214  7C 08 03 A6 */	mtlr r0
 /* 8018F2D8 0018C218  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018F2DC 0018C21C  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global bounceCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ23Sys8Triangle, global
 /* 8018F2E0 0018C220  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018F2E4 0018C224  7C 08 02 A6 */	mflr r0
 /* 8018F2E8 0018C228  38 A0 00 00 */	li r5, 0
@@ -8218,9 +8340,9 @@ bounceCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 8018F348 0018C288  7C 08 03 A6 */	mtlr r0
 /* 8018F34C 0018C28C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018F350 0018C290  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ23Sys8Triangle
 
-.global collisionCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiRQ24Game9CollEvent
-collisionCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiRQ24Game9CollEvent:
+.fn collisionCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiRQ24Game9CollEvent, global
 /* 8018F354 0018C294  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8018F358 0018C298  7C 08 02 A6 */	mflr r0
 /* 8018F35C 0018C29C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -8431,9 +8553,9 @@ collisionCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiRQ24Game9CollEvent:
 /* 8018F670 0018C5B0  7C 08 03 A6 */	mtlr r0
 /* 8018F674 0018C5B4  38 21 00 70 */	addi r1, r1, 0x70
 /* 8018F678 0018C5B8  4E 80 00 20 */	blr 
+.endfn collisionCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiRQ24Game9CollEvent
 
-.global ignoreAtari__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8Creature
-ignoreAtari__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8Creature:
+.fn ignoreAtari__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8Creature, global
 /* 8018F67C 0018C5BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018F680 0018C5C0  7C 08 02 A6 */	mflr r0
 /* 8018F684 0018C5C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8464,9 +8586,9 @@ ignoreAtari__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8Creature:
 /* 8018F6DC 0018C61C  7C 08 03 A6 */	mtlr r0
 /* 8018F6E0 0018C620  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018F6E4 0018C624  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8Creature
 
-.global exec__Q24Game15PikiFlyingStateFPQ24Game4Piki
-exec__Q24Game15PikiFlyingStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiFlyingStateFPQ24Game4Piki, global
 /* 8018F6E8 0018C628  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8018F6EC 0018C62C  7C 08 02 A6 */	mflr r0
 /* 8018F6F0 0018C630  90 01 00 64 */	stw r0, 0x64(r1)
@@ -8725,9 +8847,9 @@ exec__Q24Game15PikiFlyingStateFPQ24Game4Piki:
 /* 8018FAA8 0018C9E8  7C 08 03 A6 */	mtlr r0
 /* 8018FAAC 0018C9EC  38 21 00 60 */	addi r1, r1, 0x60
 /* 8018FAB0 0018C9F0  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiFlyingStateFPQ24Game4Piki
 
-.global cleanup__Q24Game15PikiFlyingStateFPQ24Game4Piki
-cleanup__Q24Game15PikiFlyingStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiFlyingStateFPQ24Game4Piki, global
 /* 8018FAB4 0018C9F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8018FAB8 0018C9F8  7C 08 02 A6 */	mflr r0
 /* 8018FABC 0018C9FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8754,9 +8876,9 @@ cleanup__Q24Game15PikiFlyingStateFPQ24Game4Piki:
 /* 8018FB10 0018CA50  7C 08 03 A6 */	mtlr r0
 /* 8018FB14 0018CA54  38 21 00 10 */	addi r1, r1, 0x10
 /* 8018FB18 0018CA58  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiFlyingStateFPQ24Game4Piki
 
-.global init__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8018FB1C 0018CA5C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8018FB20 0018CA60  7C 08 02 A6 */	mflr r0
 /* 8018FB24 0018CA64  90 01 00 44 */	stw r0, 0x44(r1)
@@ -8850,18 +8972,18 @@ init__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 8018FC80 0018CBC0  7C 08 03 A6 */	mtlr r0
 /* 8018FC84 0018CBC4  38 21 00 40 */	addi r1, r1, 0x40
 /* 8018FC88 0018CBC8  4E 80 00 20 */	blr 
+.endfn init__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global onFlute__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game4Navi
-onFlute__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game4Navi:
+.fn onFlute__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game4Navi, global
 /* 8018FC8C 0018CBCC  C0 02 AA 80 */	lfs f0, lbl_80518DE0@sda21(r2)
 /* 8018FC90 0018CBD0  38 00 00 01 */	li r0, 1
 /* 8018FC94 0018CBD4  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 8018FC98 0018CBD8  98 03 00 2C */	stb r0, 0x2c(r3)
 /* 8018FC9C 0018CBDC  90 A4 02 C4 */	stw r5, 0x2c4(r4)
 /* 8018FCA0 0018CBE0  4E 80 00 20 */	blr 
+.endfn onFlute__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game4Navi
 
-.global exec__Q24Game14PikiFlickStateFPQ24Game4Piki
-exec__Q24Game14PikiFlickStateFPQ24Game4Piki:
+.fn exec__Q24Game14PikiFlickStateFPQ24Game4Piki, global
 /* 8018FCA4 0018CBE4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8018FCA8 0018CBE8  7C 08 02 A6 */	mflr r0
 /* 8018FCAC 0018CBEC  3C A0 80 48 */	lis r5, lbl_8047ED50@ha
@@ -9000,9 +9122,9 @@ exec__Q24Game14PikiFlickStateFPQ24Game4Piki:
 /* 8018FEA0 0018CDE0  7C 08 03 A6 */	mtlr r0
 /* 8018FEA4 0018CDE4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8018FEA8 0018CDE8  4E 80 00 20 */	blr 
+.endfn exec__Q24Game14PikiFlickStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent, global
 /* 8018FEAC 0018CDEC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8018FEB0 0018CDF0  7C 08 02 A6 */	mflr r0
 /* 8018FEB4 0018CDF4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -9081,9 +9203,9 @@ onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent:
 /* 8018FFC4 0018CF04  7C 08 03 A6 */	mtlr r0
 /* 8018FFC8 0018CF08  38 21 00 40 */	addi r1, r1, 0x40
 /* 8018FFCC 0018CF0C  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent
 
-.global cleanup__Q24Game14PikiFlickStateFPQ24Game4Piki
-cleanup__Q24Game14PikiFlickStateFPQ24Game4Piki:
+.fn cleanup__Q24Game14PikiFlickStateFPQ24Game4Piki, global
 /* 8018FFD0 0018CF10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8018FFD4 0018CF14  7C 08 02 A6 */	mflr r0
 /* 8018FFD8 0018CF18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9128,9 +9250,9 @@ cleanup__Q24Game14PikiFlickStateFPQ24Game4Piki:
 /* 80190070 0018CFB0  7C 08 03 A6 */	mtlr r0
 /* 80190074 0018CFB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80190078 0018CFB8  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game14PikiFlickStateFPQ24Game4Piki
 
-.global init__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8019007C 0018CFBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80190080 0018CFC0  7C 08 02 A6 */	mflr r0
 /* 80190084 0018CFC4  28 05 00 00 */	cmplwi r5, 0
@@ -9242,9 +9364,9 @@ init__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 80190214 0018D154  7C 08 03 A6 */	mtlr r0
 /* 80190218 0018D158  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019021C 0018D15C  4E 80 00 20 */	blr 
+.endfn init__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game13PikiBlowStateFPQ24Game4Piki
-exec__Q24Game13PikiBlowStateFPQ24Game4Piki:
+.fn exec__Q24Game13PikiBlowStateFPQ24Game4Piki, global
 /* 80190220 0018D160  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80190224 0018D164  7C 08 02 A6 */	mflr r0
 /* 80190228 0018D168  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9331,13 +9453,13 @@ exec__Q24Game13PikiBlowStateFPQ24Game4Piki:
 /* 80190354 0018D294  7C 08 03 A6 */	mtlr r0
 /* 80190358 0018D298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019035C 0018D29C  4E 80 00 20 */	blr 
+.endfn exec__Q24Game13PikiBlowStateFPQ24Game4Piki
 
-.global cleanup__Q24Game13PikiBlowStateFPQ24Game4Piki
-cleanup__Q24Game13PikiBlowStateFPQ24Game4Piki:
+.fn cleanup__Q24Game13PikiBlowStateFPQ24Game4Piki, global
 /* 80190360 0018D2A0  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game13PikiBlowStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game13PikiBlowStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game13PikiBlowStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game13PikiBlowStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 80190364 0018D2A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80190368 0018D2A8  7C 08 02 A6 */	mflr r0
 /* 8019036C 0018D2AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9364,16 +9486,16 @@ onKeyEvent__Q24Game13PikiBlowStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 801903BC 0018D2FC  7C 08 03 A6 */	mtlr r0
 /* 801903C0 0018D300  38 21 00 10 */	addi r1, r1, 0x10
 /* 801903C4 0018D304  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game13PikiBlowStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global onFlute__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game4Navi
-onFlute__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game4Navi:
+.fn onFlute__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game4Navi, global
 /* 801903C8 0018D308  38 00 00 01 */	li r0, 1
 /* 801903CC 0018D30C  98 03 00 28 */	stb r0, 0x28(r3)
 /* 801903D0 0018D310  90 A4 02 C4 */	stw r5, 0x2c4(r4)
 /* 801903D4 0018D314  4E 80 00 20 */	blr 
+.endfn onFlute__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game4Navi
 
-.global bounceCallback__Q24Game13PikiBlowStateFPQ24Game4PikiPQ23Sys8Triangle
-bounceCallback__Q24Game13PikiBlowStateFPQ24Game4PikiPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game13PikiBlowStateFPQ24Game4PikiPQ23Sys8Triangle, global
 /* 801903D8 0018D318  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801903DC 0018D31C  7C 08 02 A6 */	mflr r0
 /* 801903E0 0018D320  C0 02 AA 84 */	lfs f0, lbl_80518DE4@sda21(r2)
@@ -9469,9 +9591,9 @@ bounceCallback__Q24Game13PikiBlowStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 80190534 0018D474  7C 08 03 A6 */	mtlr r0
 /* 80190538 0018D478  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019053C 0018D47C  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game13PikiBlowStateFPQ24Game4PikiPQ23Sys8Triangle
 
-.global init__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 80190540 0018D480  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80190544 0018D484  7C 08 02 A6 */	mflr r0
 /* 80190548 0018D488  28 05 00 00 */	cmplwi r5, 0
@@ -9510,9 +9632,9 @@ init__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 801905C0 0018D500  7C 08 03 A6 */	mtlr r0
 /* 801905C4 0018D504  38 21 00 10 */	addi r1, r1, 0x10
 /* 801905C8 0018D508  4E 80 00 20 */	blr 
+.endfn init__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game19PikiKokeDamageStateFPQ24Game4Piki
-exec__Q24Game19PikiKokeDamageStateFPQ24Game4Piki:
+.fn exec__Q24Game19PikiKokeDamageStateFPQ24Game4Piki, global
 /* 801905CC 0018D50C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801905D0 0018D510  7C 08 02 A6 */	mflr r0
 /* 801905D4 0018D514  C0 42 AA 80 */	lfs f2, lbl_80518DE0@sda21(r2)
@@ -9605,9 +9727,9 @@ exec__Q24Game19PikiKokeDamageStateFPQ24Game4Piki:
 /* 8019071C 0018D65C  7C 08 03 A6 */	mtlr r0
 /* 80190720 0018D660  38 21 00 20 */	addi r1, r1, 0x20
 /* 80190724 0018D664  4E 80 00 20 */	blr 
+.endfn exec__Q24Game19PikiKokeDamageStateFPQ24Game4Piki
 
-.global onFlute__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game4Navi
-onFlute__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game4Navi:
+.fn onFlute__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game4Navi, global
 /* 80190728 0018D668  A0 03 00 14 */	lhz r0, 0x14(r3)
 /* 8019072C 0018D66C  C0 02 AA 80 */	lfs f0, lbl_80518DE0@sda21(r2)
 /* 80190730 0018D670  60 00 80 00 */	ori r0, r0, 0x8000
@@ -9615,9 +9737,9 @@ onFlute__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game4Navi:
 /* 80190738 0018D678  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 8019073C 0018D67C  90 A4 02 C4 */	stw r5, 0x2c4(r4)
 /* 80190740 0018D680  4E 80 00 20 */	blr 
+.endfn onFlute__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game4Navi
 
-.global cleanup__Q24Game19PikiKokeDamageStateFPQ24Game4Piki
-cleanup__Q24Game19PikiKokeDamageStateFPQ24Game4Piki:
+.fn cleanup__Q24Game19PikiKokeDamageStateFPQ24Game4Piki, global
 /* 80190744 0018D684  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80190748 0018D688  7C 08 02 A6 */	mflr r0
 /* 8019074C 0018D68C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9679,9 +9801,9 @@ cleanup__Q24Game19PikiKokeDamageStateFPQ24Game4Piki:
 /* 80190820 0018D760  7C 08 03 A6 */	mtlr r0
 /* 80190824 0018D764  38 21 00 20 */	addi r1, r1, 0x20
 /* 80190828 0018D768  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game19PikiKokeDamageStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game19PikiKokeDamageStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game19PikiKokeDamageStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game19PikiKokeDamageStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8019082C 0018D76C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80190830 0018D770  7C 08 02 A6 */	mflr r0
 /* 80190834 0018D774  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9708,9 +9830,9 @@ onKeyEvent__Q24Game19PikiKokeDamageStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 80190880 0018D7C0  7C 08 03 A6 */	mtlr r0
 /* 80190884 0018D7C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80190888 0018D7C8  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game19PikiKokeDamageStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global init__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8019088C 0018D7CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80190890 0018D7D0  7C 08 02 A6 */	mflr r0
 /* 80190894 0018D7D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9787,15 +9909,15 @@ init__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 801909A0 0018D8E0  7C 08 03 A6 */	mtlr r0
 /* 801909A4 0018D8E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801909A8 0018D8E8  4E 80 00 20 */	blr 
+.endfn init__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global onFlute__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game4Navi
-onFlute__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game4Navi:
+.fn onFlute__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game4Navi, global
 /* 801909AC 0018D8EC  38 00 00 00 */	li r0, 0
 /* 801909B0 0018D8F0  98 03 00 10 */	stb r0, 0x10(r3)
 /* 801909B4 0018D8F4  4E 80 00 20 */	blr 
+.endfn onFlute__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game4Navi
 
-.global exec__Q24Game13PikiKokeStateFPQ24Game4Piki
-exec__Q24Game13PikiKokeStateFPQ24Game4Piki:
+.fn exec__Q24Game13PikiKokeStateFPQ24Game4Piki, global
 /* 801909B8 0018D8F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801909BC 0018D8FC  7C 08 02 A6 */	mflr r0
 /* 801909C0 0018D900  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9836,9 +9958,9 @@ exec__Q24Game13PikiKokeStateFPQ24Game4Piki:
 /* 80190A40 0018D980  7C 08 03 A6 */	mtlr r0
 /* 80190A44 0018D984  38 21 00 10 */	addi r1, r1, 0x10
 /* 80190A48 0018D988  4E 80 00 20 */	blr 
+.endfn exec__Q24Game13PikiKokeStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game13PikiKokeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game13PikiKokeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game13PikiKokeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 80190A4C 0018D98C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80190A50 0018D990  7C 08 02 A6 */	mflr r0
 /* 80190A54 0018D994  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9906,13 +10028,13 @@ onKeyEvent__Q24Game13PikiKokeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 80190B30 0018DA70  7C 08 03 A6 */	mtlr r0
 /* 80190B34 0018DA74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80190B38 0018DA78  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game13PikiKokeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global cleanup__Q24Game13PikiKokeStateFPQ24Game4Piki
-cleanup__Q24Game13PikiKokeStateFPQ24Game4Piki:
+.fn cleanup__Q24Game13PikiKokeStateFPQ24Game4Piki, global
 /* 80190B3C 0018DA7C  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game13PikiKokeStateFPQ24Game4Piki
 
-.global init__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 80190B40 0018DA80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80190B44 0018DA84  7C 08 02 A6 */	mflr r0
 /* 80190B48 0018DA88  38 A0 00 00 */	li r5, 0
@@ -10051,9 +10173,9 @@ init__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 80190D34 0018DC74  7C 08 03 A6 */	mtlr r0
 /* 80190D38 0018DC78  38 21 00 20 */	addi r1, r1, 0x20
 /* 80190D3C 0018DC7C  4E 80 00 20 */	blr 
+.endfn init__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global soft_transittable__Q24Game14PikiDrownStateFi
-soft_transittable__Q24Game14PikiDrownStateFi:
+.fn soft_transittable__Q24Game14PikiDrownStateFi, global
 /* 80190D40 0018DC80  38 A4 FF ED */	addi r5, r4, -19
 /* 80190D44 0018DC84  38 60 00 01 */	li r3, 1
 /* 80190D48 0018DC88  20 05 00 01 */	subfic r0, r5, 1
@@ -10071,22 +10193,22 @@ soft_transittable__Q24Game14PikiDrownStateFi:
 /* 80190D74 0018DCB4  4D 82 00 20 */	beqlr 
 /* 80190D78 0018DCB8  38 60 00 00 */	li r3, 0
 /* 80190D7C 0018DCBC  4E 80 00 20 */	blr 
+.endfn soft_transittable__Q24Game14PikiDrownStateFi
 
-.global onFlute__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game4Navi
-onFlute__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game4Navi:
+.fn onFlute__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game4Navi, global
 /* 80190D80 0018DCC0  90 A3 00 20 */	stw r5, 0x20(r3)
 /* 80190D84 0018DCC4  38 00 00 01 */	li r0, 1
 /* 80190D88 0018DCC8  98 03 00 30 */	stb r0, 0x30(r3)
 /* 80190D8C 0018DCCC  4E 80 00 20 */	blr 
+.endfn onFlute__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game4Navi
 
-.global outWaterCallback__Q24Game14PikiDrownStateFPQ24Game4Piki
-outWaterCallback__Q24Game14PikiDrownStateFPQ24Game4Piki:
+.fn outWaterCallback__Q24Game14PikiDrownStateFPQ24Game4Piki, global
 /* 80190D90 0018DCD0  38 00 00 01 */	li r0, 1
 /* 80190D94 0018DCD4  98 03 00 1C */	stb r0, 0x1c(r3)
 /* 80190D98 0018DCD8  4E 80 00 20 */	blr 
+.endfn outWaterCallback__Q24Game14PikiDrownStateFPQ24Game4Piki
 
-.global exec__Q24Game14PikiDrownStateFPQ24Game4Piki
-exec__Q24Game14PikiDrownStateFPQ24Game4Piki:
+.fn exec__Q24Game14PikiDrownStateFPQ24Game4Piki, global
 /* 80190D9C 0018DCDC  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 80190DA0 0018DCE0  7C 08 02 A6 */	mflr r0
 /* 80190DA4 0018DCE4  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -10590,13 +10712,13 @@ exec__Q24Game14PikiDrownStateFPQ24Game4Piki:
 /* 801914DC 0018E41C  7C 08 03 A6 */	mtlr r0
 /* 801914E0 0018E420  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 801914E4 0018E424  4E 80 00 20 */	blr 
+.endfn exec__Q24Game14PikiDrownStateFPQ24Game4Piki
 
-.global cleanup__Q24Game14PikiDrownStateFPQ24Game4Piki
-cleanup__Q24Game14PikiDrownStateFPQ24Game4Piki:
+.fn cleanup__Q24Game14PikiDrownStateFPQ24Game4Piki, global
 /* 801914E8 0018E428  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game14PikiDrownStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game14PikiDrownStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game14PikiDrownStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game14PikiDrownStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 801914EC 0018E42C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801914F0 0018E430  7C 08 02 A6 */	mflr r0
 /* 801914F4 0018E434  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10677,9 +10799,9 @@ onKeyEvent__Q24Game14PikiDrownStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 80191600 0018E540  7C 08 03 A6 */	mtlr r0
 /* 80191604 0018E544  38 21 00 10 */	addi r1, r1, 0x10
 /* 80191608 0018E548  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game14PikiDrownStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global init__Q24Game16PikiEmotionStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game16PikiEmotionStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game16PikiEmotionStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 8019160C 0018E54C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80191610 0018E550  7C 08 02 A6 */	mflr r0
 /* 80191614 0018E554  90 01 00 74 */	stw r0, 0x74(r1)
@@ -10913,9 +11035,9 @@ init__Q24Game16PikiEmotionStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 80191958 0018E898  7C 08 03 A6 */	mtlr r0
 /* 8019195C 0018E89C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80191960 0018E8A0  4E 80 00 20 */	blr 
+.endfn init__Q24Game16PikiEmotionStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game16PikiEmotionStateFPQ24Game4Piki
-exec__Q24Game16PikiEmotionStateFPQ24Game4Piki:
+.fn exec__Q24Game16PikiEmotionStateFPQ24Game4Piki, global
 /* 80191964 0018E8A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80191968 0018E8A8  7C 08 02 A6 */	mflr r0
 /* 8019196C 0018E8AC  C0 02 AA 80 */	lfs f0, lbl_80518DE0@sda21(r2)
@@ -10960,13 +11082,13 @@ exec__Q24Game16PikiEmotionStateFPQ24Game4Piki:
 /* 80191A00 0018E940  7C 08 03 A6 */	mtlr r0
 /* 80191A04 0018E944  38 21 00 10 */	addi r1, r1, 0x10
 /* 80191A08 0018E948  4E 80 00 20 */	blr 
+.endfn exec__Q24Game16PikiEmotionStateFPQ24Game4Piki
 
-.global cleanup__Q24Game16PikiEmotionStateFPQ24Game4Piki
-cleanup__Q24Game16PikiEmotionStateFPQ24Game4Piki:
+.fn cleanup__Q24Game16PikiEmotionStateFPQ24Game4Piki, global
 /* 80191A0C 0018E94C  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game16PikiEmotionStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game16PikiEmotionStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game16PikiEmotionStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game16PikiEmotionStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 80191A10 0018E950  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80191A14 0018E954  7C 08 02 A6 */	mflr r0
 /* 80191A18 0018E958  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11020,9 +11142,9 @@ onKeyEvent__Q24Game16PikiEmotionStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 80191AC4 0018EA04  7C 08 03 A6 */	mtlr r0
 /* 80191AC8 0018EA08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80191ACC 0018EA0C  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game16PikiEmotionStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global init__Q24Game15PikiAbsorbStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiAbsorbStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiAbsorbStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 80191AD0 0018EA10  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80191AD4 0018EA14  7C 08 02 A6 */	mflr r0
 /* 80191AD8 0018EA18  90 01 00 34 */	stw r0, 0x34(r1)
@@ -11119,9 +11241,9 @@ init__Q24Game15PikiAbsorbStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 80191C34 0018EB74  7C 08 03 A6 */	mtlr r0
 /* 80191C38 0018EB78  38 21 00 30 */	addi r1, r1, 0x30
 /* 80191C3C 0018EB7C  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiAbsorbStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game15PikiAbsorbStateFPQ24Game4Piki
-exec__Q24Game15PikiAbsorbStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiAbsorbStateFPQ24Game4Piki, global
 /* 80191C40 0018EB80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80191C44 0018EB84  7C 08 02 A6 */	mflr r0
 /* 80191C48 0018EB88  C0 02 AA 80 */	lfs f0, lbl_80518DE0@sda21(r2)
@@ -11211,9 +11333,9 @@ exec__Q24Game15PikiAbsorbStateFPQ24Game4Piki:
 /* 80191D88 0018ECC8  7C 08 03 A6 */	mtlr r0
 /* 80191D8C 0018ECCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80191D90 0018ECD0  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiAbsorbStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game15PikiAbsorbStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game15PikiAbsorbStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game15PikiAbsorbStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 80191D94 0018ECD4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80191D98 0018ECD8  7C 08 02 A6 */	mflr r0
 /* 80191D9C 0018ECDC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -11297,13 +11419,13 @@ onKeyEvent__Q24Game15PikiAbsorbStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 80191EB4 0018EDF4  7C 08 03 A6 */	mtlr r0
 /* 80191EB8 0018EDF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80191EBC 0018EDFC  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game15PikiAbsorbStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global cleanup__Q24Game15PikiAbsorbStateFPQ24Game4Piki
-cleanup__Q24Game15PikiAbsorbStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiAbsorbStateFPQ24Game4Piki, global
 /* 80191EC0 0018EE00  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiAbsorbStateFPQ24Game4Piki
 
-.global init__Q24Game15PikiGrowupStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiGrowupStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiGrowupStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 80191EC4 0018EE04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80191EC8 0018EE08  7C 08 02 A6 */	mflr r0
 /* 80191ECC 0018EE0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -11364,9 +11486,9 @@ init__Q24Game15PikiGrowupStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 80191F98 0018EED8  7C 08 03 A6 */	mtlr r0
 /* 80191F9C 0018EEDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80191FA0 0018EEE0  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiGrowupStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global exec__Q24Game15PikiGrowupStateFPQ24Game4Piki
-exec__Q24Game15PikiGrowupStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiGrowupStateFPQ24Game4Piki, global
 /* 80191FA4 0018EEE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80191FA8 0018EEE8  7C 08 02 A6 */	mflr r0
 /* 80191FAC 0018EEEC  C0 02 AA 80 */	lfs f0, lbl_80518DE0@sda21(r2)
@@ -11398,9 +11520,9 @@ exec__Q24Game15PikiGrowupStateFPQ24Game4Piki:
 /* 80192010 0018EF50  7C 08 03 A6 */	mtlr r0
 /* 80192014 0018EF54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80192018 0018EF58  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiGrowupStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game15PikiGrowupStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game15PikiGrowupStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game15PikiGrowupStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8019201C 0018EF5C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80192020 0018EF60  7C 08 02 A6 */	mflr r0
 /* 80192024 0018EF64  90 01 00 54 */	stw r0, 0x54(r1)
@@ -11511,13 +11633,13 @@ onKeyEvent__Q24Game15PikiGrowupStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 801921B0 0018F0F0  7C 08 03 A6 */	mtlr r0
 /* 801921B4 0018F0F4  38 21 00 50 */	addi r1, r1, 0x50
 /* 801921B8 0018F0F8  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game15PikiGrowupStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global cleanup__Q24Game15PikiGrowupStateFPQ24Game4Piki
-cleanup__Q24Game15PikiGrowupStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiGrowupStateFPQ24Game4Piki, global
 /* 801921BC 0018F0FC  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiGrowupStateFPQ24Game4Piki
 
-.global init__Q24Game15PikiEscapeStateFPQ24Game4PikiPQ24Game8StateArg
-init__Q24Game15PikiEscapeStateFPQ24Game4PikiPQ24Game8StateArg:
+.fn init__Q24Game15PikiEscapeStateFPQ24Game4PikiPQ24Game8StateArg, global
 /* 801921C0 0018F100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801921C4 0018F104  7C 08 02 A6 */	mflr r0
 /* 801921C8 0018F108  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11526,9 +11648,9 @@ init__Q24Game15PikiEscapeStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 801921D4 0018F114  7C 08 03 A6 */	mtlr r0
 /* 801921D8 0018F118  38 21 00 10 */	addi r1, r1, 0x10
 /* 801921DC 0018F11C  4E 80 00 20 */	blr 
+.endfn init__Q24Game15PikiEscapeStateFPQ24Game4PikiPQ24Game8StateArg
 
-.global initRun__Q24Game15PikiEscapeStateFPQ24Game4Piki
-initRun__Q24Game15PikiEscapeStateFPQ24Game4Piki:
+.fn initRun__Q24Game15PikiEscapeStateFPQ24Game4Piki, global
 /* 801921E0 0018F120  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801921E4 0018F124  7C 08 02 A6 */	mflr r0
 /* 801921E8 0018F128  90 01 00 24 */	stw r0, 0x24(r1)
@@ -11560,9 +11682,9 @@ initRun__Q24Game15PikiEscapeStateFPQ24Game4Piki:
 /* 80192248 0018F188  7C 08 03 A6 */	mtlr r0
 /* 8019224C 0018F18C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80192250 0018F190  4E 80 00 20 */	blr 
+.endfn initRun__Q24Game15PikiEscapeStateFPQ24Game4Piki
 
-.global exec__Q24Game15PikiEscapeStateFPQ24Game4Piki
-exec__Q24Game15PikiEscapeStateFPQ24Game4Piki:
+.fn exec__Q24Game15PikiEscapeStateFPQ24Game4Piki, global
 /* 80192254 0018F194  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 80192258 0018F198  7C 08 02 A6 */	mflr r0
 /* 8019225C 0018F19C  90 01 01 24 */	stw r0, 0x124(r1)
@@ -11958,9 +12080,9 @@ exec__Q24Game15PikiEscapeStateFPQ24Game4Piki:
 /* 80192810 0018F750  7C 08 03 A6 */	mtlr r0
 /* 80192814 0018F754  38 21 01 20 */	addi r1, r1, 0x120
 /* 80192818 0018F758  4E 80 00 20 */	blr 
+.endfn exec__Q24Game15PikiEscapeStateFPQ24Game4Piki
 
-.global onKeyEvent__Q24Game15PikiEscapeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game15PikiEscapeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game15PikiEscapeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent, global
 /* 8019281C 0018F75C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80192820 0018F760  7C 08 02 A6 */	mflr r0
 /* 80192824 0018F764  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12069,261 +12191,261 @@ onKeyEvent__Q24Game15PikiEscapeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 8019298C 0018F8CC  7C 08 03 A6 */	mtlr r0
 /* 80192990 0018F8D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80192994 0018F8D4  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game15PikiEscapeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
 
-.global cleanup__Q24Game15PikiEscapeStateFPQ24Game4Piki
-cleanup__Q24Game15PikiEscapeStateFPQ24Game4Piki:
+.fn cleanup__Q24Game15PikiEscapeStateFPQ24Game4Piki, global
 /* 80192998 0018F8D8  4E 80 00 20 */	blr 
+.endfn cleanup__Q24Game15PikiEscapeStateFPQ24Game4Piki
 
-.global callable__Q24Game15PikiEscapeStateFv
-callable__Q24Game15PikiEscapeStateFv:
+.fn callable__Q24Game15PikiEscapeStateFv, weak
 /* 8019299C 0018F8DC  38 60 00 00 */	li r3, 0
 /* 801929A0 0018F8E0  4E 80 00 20 */	blr 
+.endfn callable__Q24Game15PikiEscapeStateFv
 
-.global invincible__Q24Game9PikiStateFPQ24Game4Piki
-invincible__Q24Game9PikiStateFPQ24Game4Piki:
+.fn invincible__Q24Game9PikiStateFPQ24Game4Piki, weak
 /* 801929A4 0018F8E4  38 60 00 00 */	li r3, 0
 /* 801929A8 0018F8E8  4E 80 00 20 */	blr 
+.endfn invincible__Q24Game9PikiStateFPQ24Game4Piki
 
-.global dopable__Q24Game9PikiStateFv
-dopable__Q24Game9PikiStateFv:
+.fn dopable__Q24Game9PikiStateFv, weak
 /* 801929AC 0018F8EC  38 60 00 00 */	li r3, 0
 /* 801929B0 0018F8F0  4E 80 00 20 */	blr 
+.endfn dopable__Q24Game9PikiStateFv
 
-.global pressable__Q24Game9PikiStateFv
-pressable__Q24Game9PikiStateFv:
+.fn pressable__Q24Game9PikiStateFv, weak
 /* 801929B4 0018F8F4  38 60 00 01 */	li r3, 1
 /* 801929B8 0018F8F8  4E 80 00 20 */	blr 
+.endfn pressable__Q24Game9PikiStateFv
 
-.global onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi:
+.fn onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi, weak
 /* 801929BC 0018F8FC  4E 80 00 20 */	blr 
+.endfn onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
 
-.global callable__Q24Game9PikiStateFv
-callable__Q24Game9PikiStateFv:
+.fn callable__Q24Game9PikiStateFv, weak
 /* 801929C0 0018F900  38 60 00 00 */	li r3, 0
 /* 801929C4 0018F904  4E 80 00 20 */	blr 
+.endfn callable__Q24Game9PikiStateFv
 
-.global callable__Q24Game16PikiEmotionStateFv
-callable__Q24Game16PikiEmotionStateFv:
+.fn callable__Q24Game16PikiEmotionStateFv, weak
 /* 801929C8 0018F908  38 60 00 01 */	li r3, 1
 /* 801929CC 0018F90C  4E 80 00 20 */	blr 
+.endfn callable__Q24Game16PikiEmotionStateFv
 
-.global callable__Q24Game13PikiKokeStateFv
-callable__Q24Game13PikiKokeStateFv:
+.fn callable__Q24Game13PikiKokeStateFv, weak
 /* 801929D0 0018F910  38 60 00 00 */	li r3, 0
 /* 801929D4 0018F914  4E 80 00 20 */	blr 
+.endfn callable__Q24Game13PikiKokeStateFv
 
-.global callable__Q24Game19PikiKokeDamageStateFv
-callable__Q24Game19PikiKokeDamageStateFv:
+.fn callable__Q24Game19PikiKokeDamageStateFv, weak
 /* 801929D8 0018F918  38 60 00 00 */	li r3, 0
 /* 801929DC 0018F91C  4E 80 00 20 */	blr 
+.endfn callable__Q24Game19PikiKokeDamageStateFv
 
-.global pressable__Q24Game13PikiBlowStateFv
-pressable__Q24Game13PikiBlowStateFv:
+.fn pressable__Q24Game13PikiBlowStateFv, weak
 /* 801929E0 0018F920  38 60 00 00 */	li r3, 0
 /* 801929E4 0018F924  4E 80 00 20 */	blr 
+.endfn pressable__Q24Game13PikiBlowStateFv
 
-.global callable__Q24Game13PikiBlowStateFv
-callable__Q24Game13PikiBlowStateFv:
+.fn callable__Q24Game13PikiBlowStateFv, weak
 /* 801929E8 0018F928  38 60 00 00 */	li r3, 0
 /* 801929EC 0018F92C  4E 80 00 20 */	blr 
+.endfn callable__Q24Game13PikiBlowStateFv
 
-.global callable__Q24Game14PikiFlickStateFv
-callable__Q24Game14PikiFlickStateFv:
+.fn callable__Q24Game14PikiFlickStateFv, weak
 /* 801929F0 0018F930  38 60 00 00 */	li r3, 0
 /* 801929F4 0018F934  4E 80 00 20 */	blr 
+.endfn callable__Q24Game14PikiFlickStateFv
 
-.global getName__Q26PikiAI10ActCropArgFv
-getName__Q26PikiAI10ActCropArgFv:
+.fn getName__Q26PikiAI10ActCropArgFv, weak
 /* 801929F8 0018F938  3C 60 80 48 */	lis r3, lbl_8047EE18@ha
 /* 801929FC 0018F93C  38 63 EE 18 */	addi r3, r3, lbl_8047EE18@l
 /* 80192A00 0018F940  4E 80 00 20 */	blr 
+.endfn getName__Q26PikiAI10ActCropArgFv
 
-.global callable__Q24Game15PikiFlyingStateFv
-callable__Q24Game15PikiFlyingStateFv:
+.fn callable__Q24Game15PikiFlyingStateFv, weak
 /* 80192A04 0018F944  38 60 00 00 */	li r3, 0
 /* 80192A08 0018F948  4E 80 00 20 */	blr 
+.endfn callable__Q24Game15PikiFlyingStateFv
 
-.global pressable__Q24Game16PikiSuikomiStateFv
-pressable__Q24Game16PikiSuikomiStateFv:
+.fn pressable__Q24Game16PikiSuikomiStateFv, weak
 /* 80192A0C 0018F94C  38 60 00 00 */	li r3, 0
 /* 80192A10 0018F950  4E 80 00 20 */	blr 
+.endfn pressable__Q24Game16PikiSuikomiStateFv
 
-.global pressable__Q24Game17PikiFallMeckStateFv
-pressable__Q24Game17PikiFallMeckStateFv:
+.fn pressable__Q24Game17PikiFallMeckStateFv, weak
 /* 80192A14 0018F954  38 60 00 00 */	li r3, 0
 /* 80192A18 0018F958  4E 80 00 20 */	blr 
+.endfn pressable__Q24Game17PikiFallMeckStateFv
 
-.global throwable__Q24Game20PikiWaterHangedStateFv
-throwable__Q24Game20PikiWaterHangedStateFv:
+.fn throwable__Q24Game20PikiWaterHangedStateFv, weak
 /* 80192A1C 0018F95C  38 60 00 01 */	li r3, 1
 /* 80192A20 0018F960  4E 80 00 20 */	blr 
+.endfn throwable__Q24Game20PikiWaterHangedStateFv
 
-.global throwable__Q24Game15PikiHangedStateFv
-throwable__Q24Game15PikiHangedStateFv:
+.fn throwable__Q24Game15PikiHangedStateFv, weak
 /* 80192A24 0018F964  38 60 00 01 */	li r3, 1
 /* 80192A28 0018F968  4E 80 00 20 */	blr 
+.endfn throwable__Q24Game15PikiHangedStateFv
 
-.global callable__Q24Game15PikiGoHangStateFv
-callable__Q24Game15PikiGoHangStateFv:
+.fn callable__Q24Game15PikiGoHangStateFv, weak
 /* 80192A2C 0018F96C  38 60 00 01 */	li r3, 1
 /* 80192A30 0018F970  4E 80 00 20 */	blr 
+.endfn callable__Q24Game15PikiGoHangStateFv
 
-.global throwable__Q24Game15PikiGoHangStateFv
-throwable__Q24Game15PikiGoHangStateFv:
+.fn throwable__Q24Game15PikiGoHangStateFv, weak
 /* 80192A34 0018F974  38 60 00 01 */	li r3, 1
 /* 80192A38 0018F978  4E 80 00 20 */	blr 
+.endfn throwable__Q24Game15PikiGoHangStateFv
 
-.global callable__Q24Game17PikiAutoNukiStateFv
-callable__Q24Game17PikiAutoNukiStateFv:
+.fn callable__Q24Game17PikiAutoNukiStateFv, weak
 /* 80192A3C 0018F97C  38 60 00 00 */	li r3, 0
 /* 80192A40 0018F980  4E 80 00 20 */	blr 
+.endfn callable__Q24Game17PikiAutoNukiStateFv
 
-.global callable__Q24Game15PikiLookAtStateFv
-callable__Q24Game15PikiLookAtStateFv:
+.fn callable__Q24Game15PikiLookAtStateFv, weak
 /* 80192A44 0018F984  38 60 00 00 */	li r3, 0
 /* 80192A48 0018F988  4E 80 00 20 */	blr 
+.endfn callable__Q24Game15PikiLookAtStateFv
 
-.global pressable__Q24Game16PikiPressedStateFv
-pressable__Q24Game16PikiPressedStateFv:
+.fn pressable__Q24Game16PikiPressedStateFv, weak
 /* 80192A4C 0018F98C  38 60 00 00 */	li r3, 0
 /* 80192A50 0018F990  4E 80 00 20 */	blr 
+.endfn pressable__Q24Game16PikiPressedStateFv
 
-.global dead__Q24Game16PikiPressedStateFv
-dead__Q24Game16PikiPressedStateFv:
+.fn dead__Q24Game16PikiPressedStateFv, weak
 /* 80192A54 0018F994  38 60 00 01 */	li r3, 1
 /* 80192A58 0018F998  4E 80 00 20 */	blr 
+.endfn dead__Q24Game16PikiPressedStateFv
 
-.global pressable__Q24Game19PikiDenkiDyingStateFv
-pressable__Q24Game19PikiDenkiDyingStateFv:
+.fn pressable__Q24Game19PikiDenkiDyingStateFv, weak
 /* 80192A5C 0018F99C  38 60 00 00 */	li r3, 0
 /* 80192A60 0018F9A0  4E 80 00 20 */	blr 
+.endfn pressable__Q24Game19PikiDenkiDyingStateFv
 
-.global dead__Q24Game19PikiDenkiDyingStateFv
-dead__Q24Game19PikiDenkiDyingStateFv:
+.fn dead__Q24Game19PikiDenkiDyingStateFv, weak
 /* 80192A64 0018F9A4  38 60 00 01 */	li r3, 1
 /* 80192A68 0018F9A8  4E 80 00 20 */	blr 
+.endfn dead__Q24Game19PikiDenkiDyingStateFv
 
-.global pressable__Q24Game14PikiDyingStateFv
-pressable__Q24Game14PikiDyingStateFv:
+.fn pressable__Q24Game14PikiDyingStateFv, weak
 /* 80192A6C 0018F9AC  38 60 00 00 */	li r3, 0
 /* 80192A70 0018F9B0  4E 80 00 20 */	blr 
+.endfn pressable__Q24Game14PikiDyingStateFv
 
-.global dead__Q24Game14PikiDyingStateFv
-dead__Q24Game14PikiDyingStateFv:
+.fn dead__Q24Game14PikiDyingStateFv, weak
 /* 80192A74 0018F9B4  38 60 00 01 */	li r3, 1
 /* 80192A78 0018F9B8  4E 80 00 20 */	blr 
+.endfn dead__Q24Game14PikiDyingStateFv
 
-.global pressable__Q24Game13PikiDeadStateFv
-pressable__Q24Game13PikiDeadStateFv:
+.fn pressable__Q24Game13PikiDeadStateFv, weak
 /* 80192A7C 0018F9BC  38 60 00 00 */	li r3, 0
 /* 80192A80 0018F9C0  4E 80 00 20 */	blr 
+.endfn pressable__Q24Game13PikiDeadStateFv
 
-.global transittable__Q24Game13PikiDeadStateFi
-transittable__Q24Game13PikiDeadStateFi:
+.fn transittable__Q24Game13PikiDeadStateFi, weak
 /* 80192A84 0018F9C4  38 60 00 00 */	li r3, 0
 /* 80192A88 0018F9C8  4E 80 00 20 */	blr 
+.endfn transittable__Q24Game13PikiDeadStateFi
 
-.global dead__Q24Game13PikiDeadStateFv
-dead__Q24Game13PikiDeadStateFv:
+.fn dead__Q24Game13PikiDeadStateFv, weak
 /* 80192A8C 0018F9CC  38 60 00 01 */	li r3, 1
 /* 80192A90 0018F9D0  4E 80 00 20 */	blr 
+.endfn dead__Q24Game13PikiDeadStateFv
 
-.global callable__Q24Game13PikiTaneStateFv
-callable__Q24Game13PikiTaneStateFv:
+.fn callable__Q24Game13PikiTaneStateFv, weak
 /* 80192A94 0018F9D4  38 60 00 00 */	li r3, 0
 /* 80192A98 0018F9D8  4E 80 00 20 */	blr 
+.endfn callable__Q24Game13PikiTaneStateFv
 
-.global callable__Q24Game19PikiFountainonStateFv
-callable__Q24Game19PikiFountainonStateFv:
+.fn callable__Q24Game19PikiFountainonStateFv, weak
 /* 80192A9C 0018F9DC  38 60 00 00 */	li r3, 0
 /* 80192AA0 0018F9E0  4E 80 00 20 */	blr 
+.endfn callable__Q24Game19PikiFountainonStateFv
 
-.global soft_transittable__Q24Game19PikiFountainonStateFi
-soft_transittable__Q24Game19PikiFountainonStateFi:
+.fn soft_transittable__Q24Game19PikiFountainonStateFi, weak
 /* 80192AA4 0018F9E4  38 60 00 00 */	li r3, 0
 /* 80192AA8 0018F9E8  4E 80 00 20 */	blr 
+.endfn soft_transittable__Q24Game19PikiFountainonStateFi
 
-.global invincible__Q24Game19PikiFountainonStateFPQ24Game4Piki
-invincible__Q24Game19PikiFountainonStateFPQ24Game4Piki:
+.fn invincible__Q24Game19PikiFountainonStateFPQ24Game4Piki, weak
 /* 80192AAC 0018F9EC  38 60 00 01 */	li r3, 1
 /* 80192AB0 0018F9F0  4E 80 00 20 */	blr 
+.endfn invincible__Q24Game19PikiFountainonStateFPQ24Game4Piki
 
-.global callable__Q24Game15PikiHoleinStateFv
-callable__Q24Game15PikiHoleinStateFv:
+.fn callable__Q24Game15PikiHoleinStateFv, weak
 /* 80192AB4 0018F9F4  38 60 00 00 */	li r3, 0
 /* 80192AB8 0018F9F8  4E 80 00 20 */	blr 
+.endfn callable__Q24Game15PikiHoleinStateFv
 
-.global soft_transittable__Q24Game15PikiHoleinStateFi
-soft_transittable__Q24Game15PikiHoleinStateFi:
+.fn soft_transittable__Q24Game15PikiHoleinStateFi, weak
 /* 80192ABC 0018F9FC  38 60 00 00 */	li r3, 0
 /* 80192AC0 0018FA00  4E 80 00 20 */	blr 
+.endfn soft_transittable__Q24Game15PikiHoleinStateFi
 
-.global invincible__Q24Game15PikiHoleinStateFPQ24Game4Piki
-invincible__Q24Game15PikiHoleinStateFPQ24Game4Piki:
+.fn invincible__Q24Game15PikiHoleinStateFPQ24Game4Piki, weak
 /* 80192AC4 0018FA04  38 60 00 01 */	li r3, 1
 /* 80192AC8 0018FA08  4E 80 00 20 */	blr 
+.endfn invincible__Q24Game15PikiHoleinStateFPQ24Game4Piki
 
-.global dead__Q24Game18PikiSwallowedStateFv
-dead__Q24Game18PikiSwallowedStateFv:
+.fn dead__Q24Game18PikiSwallowedStateFv, weak
 /* 80192ACC 0018FA0C  38 60 00 01 */	li r3, 1
 /* 80192AD0 0018FA10  4E 80 00 20 */	blr 
+.endfn dead__Q24Game18PikiSwallowedStateFv
 
-.global ignoreAtari__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8Creature
-ignoreAtari__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8Creature:
+.fn ignoreAtari__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8Creature, weak
 /* 80192AD4 0018FA14  38 60 00 01 */	li r3, 1
 /* 80192AD8 0018FA18  4E 80 00 20 */	blr 
+.endfn ignoreAtari__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8Creature
 
-.global callable__Q24Game18PikiSwallowedStateFv
-callable__Q24Game18PikiSwallowedStateFv:
+.fn callable__Q24Game18PikiSwallowedStateFv, weak
 /* 80192ADC 0018FA1C  38 60 00 00 */	li r3, 0
 /* 80192AE0 0018FA20  4E 80 00 20 */	blr 
+.endfn callable__Q24Game18PikiSwallowedStateFv
 
-.global invincible__Q24Game17PikiDemoWaitStateFPQ24Game4Piki
-invincible__Q24Game17PikiDemoWaitStateFPQ24Game4Piki:
+.fn invincible__Q24Game17PikiDemoWaitStateFPQ24Game4Piki, weak
 /* 80192AE4 0018FA24  38 60 00 01 */	li r3, 1
 /* 80192AE8 0018FA28  4E 80 00 20 */	blr 
+.endfn invincible__Q24Game17PikiDemoWaitStateFPQ24Game4Piki
 
-.global dopable__Q24Game13PikiWalkStateFv
-dopable__Q24Game13PikiWalkStateFv:
+.fn dopable__Q24Game13PikiWalkStateFv, weak
 /* 80192AEC 0018FA2C  38 60 00 01 */	li r3, 1
 /* 80192AF0 0018FA30  4E 80 00 20 */	blr 
+.endfn dopable__Q24Game13PikiWalkStateFv
 
-.global aiActive__Q24Game13PikiWalkStateFv
-aiActive__Q24Game13PikiWalkStateFv:
+.fn aiActive__Q24Game13PikiWalkStateFv, weak
 /* 80192AF4 0018FA34  38 60 00 01 */	li r3, 1
 /* 80192AF8 0018FA38  4E 80 00 20 */	blr 
+.endfn aiActive__Q24Game13PikiWalkStateFv
 
-.global callable__Q24Game13PikiWalkStateFv
-callable__Q24Game13PikiWalkStateFv:
+.fn callable__Q24Game13PikiWalkStateFv, weak
 /* 80192AFC 0018FA3C  38 60 00 01 */	li r3, 1
 /* 80192B00 0018FA40  4E 80 00 20 */	blr 
+.endfn callable__Q24Game13PikiWalkStateFv
 
-.global releasable__Q24Game13PikiWalkStateFv
-releasable__Q24Game13PikiWalkStateFv:
+.fn releasable__Q24Game13PikiWalkStateFv, weak
 /* 80192B04 0018FA44  38 60 00 01 */	li r3, 1
 /* 80192B08 0018FA48  4E 80 00 20 */	blr 
+.endfn releasable__Q24Game13PikiWalkStateFv
 
-.global battleOK__Q24Game13PikiWalkStateFv
-battleOK__Q24Game13PikiWalkStateFv:
+.fn battleOK__Q24Game13PikiWalkStateFv, weak
 /* 80192B0C 0018FA4C  38 60 00 01 */	li r3, 1
 /* 80192B10 0018FA50  4E 80 00 20 */	blr 
+.endfn battleOK__Q24Game13PikiWalkStateFv
 
-.global throwable__Q24Game13PikiWalkStateFv
-throwable__Q24Game13PikiWalkStateFv:
+.fn throwable__Q24Game13PikiWalkStateFv, weak
 /* 80192B14 0018FA54  38 60 00 01 */	li r3, 1
 /* 80192B18 0018FA58  4E 80 00 20 */	blr 
+.endfn throwable__Q24Game13PikiWalkStateFv
 
-.global "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-"resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
+.fn "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki", weak
 /* 80192B1C 0018FA5C  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
 
-.global "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-"restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
+.fn "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki", weak
 /* 80192B20 0018FA60  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
 
-.global "create__Q24Game26StateMachine<Q24Game4Piki>Fi"
-"create__Q24Game26StateMachine<Q24Game4Piki>Fi":
+.fn "create__Q24Game26StateMachine<Q24Game4Piki>Fi", weak
 /* 80192B24 0018FA64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80192B28 0018FA68  7C 08 02 A6 */	mflr r0
 /* 80192B2C 0018FA6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12349,9 +12471,9 @@ throwable__Q24Game13PikiWalkStateFv:
 /* 80192B7C 0018FABC  7C 08 03 A6 */	mtlr r0
 /* 80192B80 0018FAC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80192B84 0018FAC4  4E 80 00 20 */	blr 
+.endfn "create__Q24Game26StateMachine<Q24Game4Piki>Fi"
 
-.global "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>":
+.fn "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>", weak
 /* 80192B88 0018FAC8  80 C3 00 08 */	lwz r6, 8(r3)
 /* 80192B8C 0018FACC  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 80192B90 0018FAD0  7C 06 00 00 */	cmpw r6, r0
@@ -12388,6 +12510,7 @@ throwable__Q24Game13PikiWalkStateFv:
 /* 80192C00 0018FB40  38 04 00 01 */	addi r0, r4, 1
 /* 80192C04 0018FB44  90 03 00 08 */	stw r0, 8(r3)
 /* 80192C08 0018FB48  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
 
 .fn __sinit_pikiState_cpp, local
 /* 80192C0C 0018FB4C  3C 80 80 51 */	lis r4, __float_nan@ha
@@ -12402,34 +12525,34 @@ throwable__Q24Game13PikiWalkStateFv:
 /* 80192C30 0018FB70  4E 80 00 20 */	blr 
 .endfn __sinit_pikiState_cpp
 
-.global "@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent"
-"@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent":
+.fn "@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent", weak
 /* 80192C34 0018FB74  39 60 00 04 */	li r11, 4
 /* 80192C38 0018FB78  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80192C3C 0018FB7C  7C 63 5A 14 */	add r3, r3, r11
 /* 80192C40 0018FB80  38 63 FF E4 */	addi r3, r3, -28
 /* 80192C44 0018FB84  4B FF A3 3C */	b onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent
+.endfn "@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent"
 
-.global "@20@4@onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent"
-"@20@4@onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent":
+.fn "@20@4@onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent", weak
 /* 80192C48 0018FB88  39 60 00 04 */	li r11, 4
 /* 80192C4C 0018FB8C  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80192C50 0018FB90  7C 63 5A 14 */	add r3, r3, r11
 /* 80192C54 0018FB94  38 63 FF EC */	addi r3, r3, -20
 /* 80192C58 0018FB98  4B FF AA DC */	b onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent
+.endfn "@20@4@onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent"
 
-.global "@24@4@onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent"
-"@24@4@onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent":
+.fn "@24@4@onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent", weak
 /* 80192C5C 0018FB9C  39 60 00 04 */	li r11, 4
 /* 80192C60 0018FBA0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80192C64 0018FBA4  7C 63 5A 14 */	add r3, r3, r11
 /* 80192C68 0018FBA8  38 63 FF E8 */	addi r3, r3, -24
 /* 80192C6C 0018FBAC  4B FF AC 9C */	b onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent
+.endfn "@24@4@onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent"
 
-.global "@48@4@onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent"
-"@48@4@onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent":
+.fn "@48@4@onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent", weak
 /* 80192C70 0018FBB0  39 60 00 04 */	li r11, 4
 /* 80192C74 0018FBB4  7D 63 58 2E */	lwzx r11, r3, r11
 /* 80192C78 0018FBB8  7C 63 5A 14 */	add r3, r3, r11
 /* 80192C7C 0018FBBC  38 63 FF D0 */	addi r3, r3, -48
 /* 80192C80 0018FBC0  4B FF D2 2C */	b onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent
+.endfn "@48@4@onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent"

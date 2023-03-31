@@ -163,24 +163,21 @@ __vt__Q24Game12PlatInstance:
 	.4byte doViewCalc__Q24Game12PlatInstanceFv
 	.4byte doSimulation__Q24Game12PlatInstanceFf
 	.4byte doDirectDraw__Q24Game12PlatInstanceFR8Graphics
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global useFixCollision__Q24Game12PlatInstance
-useFixCollision__Q24Game12PlatInstance:
+.obj useFixCollision__Q24Game12PlatInstance, global
 	.byte 0x1
-.global mUseCellMgr__Q24Game7PlatMgr
-mUseCellMgr__Q24Game7PlatMgr:
+.endobj useFixCollision__Q24Game12PlatInstance
+.obj mUseCellMgr__Q24Game7PlatMgr, global
 	.byte 0x1
-	.byte 0x0
-	.byte 0x0
+.endobj mUseCellMgr__Q24Game7PlatMgr
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global platMgr__4Game
-platMgr__4Game:
-	.skip 0x8
+.obj platMgr__4Game, global
+	.skip 0x4
+.endobj platMgr__4Game
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

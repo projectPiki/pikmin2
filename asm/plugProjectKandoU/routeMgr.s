@@ -1,43 +1,53 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047E548:
+.obj lbl_8047E548, local
 	.asciz "routeMgr"
+.endobj lbl_8047E548
 .balign 4
-lbl_8047E554:
+.obj lbl_8047E554, local
 	.asciz "routeMgr.cpp"
+.endobj lbl_8047E554
 .balign 4
-lbl_8047E564:
+.obj lbl_8047E564, local
 	.asciz "P2Assert"
+.endobj lbl_8047E564
 .balign 4
-lbl_8047E570:
+.obj lbl_8047E570, local
 	.asciz "waypoint %d"
+.endobj lbl_8047E570
 .balign 4
-lbl_8047E57C:
+.obj lbl_8047E57C, local
 	.asciz "\t# index\r\n"
+.endobj lbl_8047E57C
 .balign 4
-lbl_8047E588:
+.obj lbl_8047E588, local
 	.asciz "\t# numLinks\r\n"
+.endobj lbl_8047E588
 .balign 4
-lbl_8047E598:
+.obj lbl_8047E598, local
 	.asciz "\t# link %d\r\n"
+.endobj lbl_8047E598
 .balign 4
-lbl_8047E5A8:
+.obj lbl_8047E5A8, local
 	.asciz "RouteMgr"
+.endobj lbl_8047E5A8
 .balign 4
-lbl_8047E5B4:
+.obj lbl_8047E5B4, local
 	.asciz "too many to-links (wpB=%d) (wpA=%d)\n"
+.endobj lbl_8047E5B4
 .balign 4
-lbl_8047E5DC:
+.obj lbl_8047E5DC, local
 	.asciz "wpA(%d) and wpB(%d) cause singularity !\n"
+.endobj lbl_8047E5DC
 .balign 4
-lbl_8047E608:
+.obj lbl_8047E608, local
 	.asciz "\t# numWayPoints\r\n"
+.endobj lbl_8047E608
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game14EditorRouteMgr
-__vt__Q24Game14EditorRouteMgr:
+.obj __vt__Q24Game14EditorRouteMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game14EditorRouteMgrFv
@@ -52,12 +62,13 @@ __vt__Q24Game14EditorRouteMgr:
 	.4byte getWayPoint__Q24Game14EditorRouteMgrFs
 	.4byte read__Q24Game14EditorRouteMgrFR6Stream
 	.4byte write__Q24Game8RouteMgrFR6Stream
-.global __vt__Q34Game14EditorRouteMgr6WPNode
-__vt__Q34Game14EditorRouteMgr6WPNode:
+.endobj __vt__Q24Game14EditorRouteMgr
+.obj __vt__Q34Game14EditorRouteMgr6WPNode, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game14EditorRouteMgr6WPNodeFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q34Game14EditorRouteMgr6WPNode
 .global __vt__Q24Game12GameRouteMgr
 __vt__Q24Game12GameRouteMgr:
 	.4byte 0
