@@ -102,15 +102,15 @@ struct Obj : public EnemyBase {
 	u8 _2C2;                                // _2C2
 	u8 _2C3;                                // _2C3
 	f32 _2C4;                               // _2C4, timer?
-	f32 mShadowScale;                       // _2C8, unknown
+	f32 mShadowScale;                       // _2C8
 	int _2CC;                               // _2CC
 	Vector3f _2D0;                          // _2D0
-	Vector3f mVel;                          // _2DC, unknown
-	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // 2E8
+	Vector3f _2DC;                          // _2DC, unknown
+	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // _2E8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2F0
 	efx::TDangoWallBreak* mEfxWallBreak;    // _2F4
 	efx::TDangoAttack2* mEfxAttack2;        // _2F8
-	efx::TDangoRun* mEfxRun;                // _2FC, TDangoRun?
+	efx::TDangoRun* mEfxRun;                // _2FC
 	                                        // _308 = PelletView
 };
 

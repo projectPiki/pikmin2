@@ -555,12 +555,12 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
-	mEvents.mFlags->typeView |= 1;
-	mEvents.mFlags->typeView &= 0xFFFFFFBF;
+	enableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_IsCullable);
 	_2C0         = 0;
-	mVel.z       = 0.0f;
-	mVel.y       = 0.0f;
-	mVel.x       = 0.0f;
+	_2DC.z       = 0.0f;
+	_2DC.y       = 0.0f;
+	_2DC.x       = 0.0f;
 	_2C4         = 0.0f;
 	_2CC         = -1;
 	mShadowScale = 0.0f;
@@ -610,8 +610,8 @@ void Obj::doUpdate()
  */
 void Obj::doUpdateCommon()
 {
-	mVel.x = mCurrentVelocity.x;
-	mVel.z = mCurrentVelocity.z;
+	_2DC.x = mCurrentVelocity.x;
+	_2DC.z = mCurrentVelocity.z;
 	EnemyBase::doUpdateCommon();
 	updateBossBGM();
 }
@@ -759,12 +759,14 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::needShadow()
 {
-	s32 state;
 	if (EnemyBase::needShadow()) {
 		return true;
 	}
-	if (mShadowScale > 0.0f && ((state = getStateID(), state == 1) || state == 2)) {
-		return true;
+	if (mShadowScale > 0.0f) {
+		int state = getStateID();
+		if (state == 1 || state == 2) {
+			return true;
+		}
 	}
 	return false;
 }
@@ -807,7 +809,7 @@ void Obj::collisionCallback(CollEvent& evt)
 	if (!isEvent(0, EB_IsBittered)) {
 		Creature* collCreature = evt.mCollidingCreature;
 		if (collCreature && _2C0 && collCreature->mBounceTriangle) {
-			InteractPress press(this, static_cast<Parms*>(mParms)->mGeneral.mAttackDamage.mValue, nullptr);
+			InteractPress press(this, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
 			collCreature->stimulate(press);
 		} else if (_2C1) {
 			CollPart* part = evt.mHitPart;
@@ -898,13 +900,11 @@ lbl_802FCBB4:
 void Obj::wallCallback(const MoveInfo& mvInfo)
 {
 	if (_2C0) {
-		f32 velX = mVel.x;
-		f32 velY = mVel.y;
-		f32 velZ = mVel.z;
-		f32 f1   = velY * velY;
-		f32 f2   = velZ * velZ;
+		Vector3f vel(_2DC.x, _2DC.y, _2DC.z);
+		f32 f1 = vel.y * vel.y;
+		f32 f2 = vel.z * vel.z;
 		// f32 dist = (velX * velX) + ((f1));
-		f32 dist = (velZ * velZ) + ((velX * velX) + (velY * velY));
+		f32 dist = (vel.z * vel.z) + ((vel.x * vel.x) + (vel.y * vel.y));
 		if (dist && dist > 0.0f) {
 			dist *= __frsqrte(dist);
 		} else {
@@ -912,14 +912,15 @@ void Obj::wallCallback(const MoveInfo& mvInfo)
 		}
 		if (dist > 1.0f) {
 			f32 rsqrt = 1.0f / dist;
-			velX *= rsqrt;
-			velY *= rsqrt;
-			velZ *= rsqrt;
+			vel.x *= rsqrt;
+			vel.y *= rsqrt;
+			vel.z *= rsqrt;
 		} else {
 			dist = 1.0f;
 		}
 		if ((dist > 1.0f)
-		    && (((velZ * mvInfo.mReflectPosition.z) + ((velX * mvInfo.mReflectPosition.x) + (velY * mvInfo.mReflectPosition.y))) < -0.5f)) {
+		    && (((vel.z * mvInfo.mReflectPosition.z) + ((vel.x * mvInfo.mReflectPosition.x) + (vel.y * mvInfo.mReflectPosition.y)))
+		        < -0.5f)) {
 			createBodyWallCrashEffect(mvInfo.mReflectPosition);
 			mFsm->transit(this, 6, 0);
 		}
@@ -1090,11 +1091,12 @@ int Obj::addShadowScale()
 {
 	f32 scale = mShadowScale;
 	if (scale < 1.0f) {
-		mShadowScale = 0.600000023842f * sys->mDeltaTime + scale;
+		mShadowScale = 0.6f * sys->mDeltaTime + scale;
 		if (mShadowScale >= 1.0f) {
 			mShadowScale = 1.0f;
 			return 1;
 		}
+	} else {
 		return 1;
 	}
 	return 0;
@@ -1264,9 +1266,8 @@ bool Obj::isReachedTarget()
  */
 Creature* Obj::getSearchedTarget()
 {
-	Parms* parms = static_cast<Parms*>(mParms);
-	return EnemyFunc::getNearestPikminOrNavi(this, parms->mGeneral.mViewAngle.mValue, parms->mGeneral.mSightRadius.mValue, nullptr, nullptr,
-	                                         nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+	                                         nullptr, nullptr);
 }
 
 /*
@@ -1281,9 +1282,8 @@ void Obj::rollingMove()
 	f32 f2;
 	Navi* navi = naviMgr->getActiveNavi();
 	if (!navi) {
-		Parms* parms = static_cast<Parms*>(mParms);
-		navi         = static_cast<Navi*>(
-            EnemyFunc::getNearestPikminOrNavi(this, 180.0f, parms->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr));
+		navi = static_cast<Navi*>(
+		    EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr));
 	}
 	if (navi) {
 		pos = navi->getPosition();
@@ -2570,9 +2570,9 @@ void Obj::resetMapCollisionSize(bool arg0)
 {
 	_2C2 = arg0;
 	if (arg0) {
-		static_cast<Parms*>(mParms)->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
+		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
 	} else {
-		static_cast<Parms*>(mParms)->mGeneral.mHeightOffsetFromFloor.mValue = 120.0f;
+		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 120.0f;
 	}
 }
 
@@ -2584,25 +2584,21 @@ void Obj::resetMapCollisionSize(bool arg0)
 void Obj::updateMapCollisionSize()
 {
 	if (_2C2) {
-		Parms* parms  = static_cast<Parms*>(mParms);
-		f32 heightOff = parms->mGeneral.mHeightOffsetFromFloor.mValue;
+		f32 heightOff = C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue;
 		if (heightOff > 60.0f) {
-			parms->mGeneral.mHeightOffsetFromFloor.mValue = -((250.0f * sys->mDeltaTime) - heightOff);
-			parms                                         = static_cast<Parms*>(mParms);
-			heightOff                                     = parms->mGeneral.mHeightOffsetFromFloor.mValue;
+			C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = -((250.0f * sys->mDeltaTime) - heightOff);
+			heightOff                                       = C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue;
 			if (heightOff < 60.0f) {
-				parms->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
+				C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
 			}
 		}
 	} else {
-		Parms* parms  = static_cast<Parms*>(mParms);
-		f32 heightOff = parms->mGeneral.mHeightOffsetFromFloor.mValue;
+		f32 heightOff = C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue;
 		if (heightOff < 120.0f) {
-			parms->mGeneral.mHeightOffsetFromFloor.mValue = ((250.0f * sys->mDeltaTime) + heightOff);
-			parms                                         = static_cast<Parms*>(mParms);
-			heightOff                                     = parms->mGeneral.mHeightOffsetFromFloor.mValue;
+			C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = ((250.0f * sys->mDeltaTime) + heightOff);
+			heightOff                                       = C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue;
 			if (heightOff > 120.0f) {
-				parms->mGeneral.mHeightOffsetFromFloor.mValue = 120.0f;
+				C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 120.0f;
 			}
 		}
 	}
@@ -3235,7 +3231,7 @@ void Obj::createEnemyBounceEffect() { createBounceEffect(mPosition, getDownSmoke
  */
 void Obj::createMoveHandEffect()
 {
-	s32 state = getStateID();
+	int state = getStateID();
 	if (state == 4 || state == 5) {
 		Matrixf* mf = mModel->getJoint("hand_R")->getWorldMatrix();
 	}
