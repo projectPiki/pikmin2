@@ -1,4 +1,4 @@
-JAUDIO2_JAI_FILES:=\
+JAUDIO_JAI_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIAnimation.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIBankWave.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIBasic.o\
@@ -16,10 +16,10 @@ JAUDIO2_JAI_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAISystemInterface.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAI/JAIObject.o\
 
-DEPENDS += $(JAUDIO2_JAI_FILES:.o=.d)
+DEPENDS += $(JAUDIO_JAI_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAI.a: $(JAUDIO2_JAI_FILES)
+$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAI.a: $(JAUDIO_JAI_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
-	@echo $(JAUDIO2_JAI_FILES) > build/JAUDIO2_JAI_ofiles
-	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JAUDIO2_JAI_ofiles
+	@echo $(JAUDIO_JAI_FILES) > build/JAUDIO_JAI_ofiles
+	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JAUDIO_JAI_ofiles

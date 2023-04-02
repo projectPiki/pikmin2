@@ -300,7 +300,7 @@ LIBS = [
         ],
     },
     {
-        "lib": "JAudio2_JAS",
+        "lib": "JAudio_JAS",
         "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
@@ -349,7 +349,7 @@ LIBS = [
         ],
     },
     {
-        "lib": "JAudio2_DSP",
+        "lib": "JAudio_DSP",
         "cflags": "$cflags_pikmin -lang=c++ -func_align 32 -inline noauto -common off -use_lmw_stmw off",
         "mw_version": "2.6",
         "host": True,
@@ -361,7 +361,7 @@ LIBS = [
         ],
     },
     {
-        "lib": "JAudio2_JAI",
+        "lib": "JAudio_JAI",
         "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
@@ -385,7 +385,7 @@ LIBS = [
         ],
     },
     {
-        "lib": "JAudio2_JAD",
+        "lib": "JAudio_JAD",
         "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
@@ -394,7 +394,7 @@ LIBS = [
         ],
     },
     {
-        "lib": "JAudio2_JAL",
+        "lib": "JAudio_JAL",
         "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,
@@ -403,7 +403,7 @@ LIBS = [
         ],
     },
     {
-        "lib": "JAudio2_JAU",
+        "lib": "JAudio_JAU",
         "cflags": "$cflags_pikmin",
         "mw_version": "2.6",
         "host": True,

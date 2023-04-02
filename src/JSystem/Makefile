@@ -17,7 +17,7 @@ JSYSTEM_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JFramework/JFramework.a\
 	$(BUILD_DIR)/src/JSystem/JParticle/JParticle.a\
 	$(BUILD_DIR)/src/JSystem/JStage/JStage.a\
-	$(BUILD_DIR)/src/JSystem/JAudio/JAudio2.a\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAudio.a\
 
 $(BUILD_DIR)/src/JSystem/JSystem.a: $(JSYSTEM_FILES)
 	@echo Linking... $@

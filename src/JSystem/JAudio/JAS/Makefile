@@ -1,4 +1,4 @@
-JAUDIO2_JAS_FILES:=\
+JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASWSParser.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASBankMgr.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASBasicBank.o\
@@ -41,10 +41,10 @@ JAUDIO2_JAS_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASTaskThread.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASAramStream.o\
 
-DEPENDS += $(JAUDIO2_JAS_FILES:.o=.d)
+DEPENDS += $(JAUDIO_JAS_FILES:.o=.d)
 
-$(BUILD_DIR)/src/JSystem/JAudio/JAS/JAS.a: $(JAUDIO2_JAS_FILES)
+$(BUILD_DIR)/src/JSystem/JAudio/JAS/JAS.a: $(JAUDIO_JAS_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
-	@echo $(JAUDIO2_JAS_FILES) > build/JAUDIO2_JAS_ofiles
-	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JAUDIO2_JAS_ofiles
+	@echo $(JAUDIO_JAS_FILES) > build/JAUDIO_JAS_ofiles
+	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JAUDIO_JAS_ofiles

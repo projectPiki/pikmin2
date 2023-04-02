@@ -1,5 +1,5 @@
-# JAudio2, further divided into sublibraries
-JAUDIO2_FILES:=\
+# JAudio, further divided into sublibraries
+JAUDIO_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JAS.a\
 	$(BUILD_DIR)/src/JSystem/JAudio/dsp/dsp.a\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAI/JAI.a\
@@ -7,8 +7,8 @@ JAUDIO2_FILES:=\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAL/JAL.a\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAU/JAU.a\
 
-$(BUILD_DIR)/src/JSystem/JAudio/JAudio2.a: $(JAUDIO2_FILES)
+$(BUILD_DIR)/src/JSystem/JAudio/JAudio.a: $(JAUDIO_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
-	@echo $(JAUDIO2_FILES) > build/JAUDIO2_ofiles
-	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JAUDIO2_ofiles
+	@echo $(JAUDIO_FILES) > build/JAUDIO_ofiles
+	$(QUIET) $(LD) -library $(LIBRARY_LDFLAGS) -o $@ -lcf ldscript.lcf @build/JAUDIO_ofiles
