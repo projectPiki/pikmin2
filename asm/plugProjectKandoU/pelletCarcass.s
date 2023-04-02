@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q34Game13PelletCarcass3Mgr
-__vt__Q34Game13PelletCarcass3Mgr:
+.obj __vt__Q34Game13PelletCarcass3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte "doAnimation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
@@ -54,8 +53,8 @@ __vt__Q34Game13PelletCarcass3Mgr:
 	.4byte "getTo__40Container<Q34Game13PelletCarcass6Object>Fv"
 	.4byte "get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
 	.4byte __dt__Q34Game13PelletCarcass3MgrFv
-.global "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"
-"__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>":
+.endobj __vt__Q34Game13PelletCarcass3Mgr
+.obj "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
@@ -87,8 +86,8 @@ __vt__Q34Game13PelletCarcass3Mgr:
 	.4byte "doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 	.4byte "doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff"
 	.4byte "doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
-.global "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"
-"__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>":
+.endobj "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"
+.obj "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
@@ -124,8 +123,8 @@ __vt__Q34Game13PelletCarcass3Mgr:
 	.4byte "resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 	.4byte "clearMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 	.4byte "onAlloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-.global "__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>"
-"__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>":
+.endobj "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"
+.obj "__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "doAnimation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
@@ -177,8 +176,8 @@ __vt__Q34Game13PelletCarcass3Mgr:
 	.4byte "getTo__40Container<Q34Game13PelletCarcass6Object>Fv"
 	.4byte "get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
 	.4byte "__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-.global "__vt__40Container<Q34Game13PelletCarcass6Object>"
-"__vt__40Container<Q34Game13PelletCarcass6Object>":
+.endobj "__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>"
+.obj "__vt__40Container<Q34Game13PelletCarcass6Object>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__40Container<Q34Game13PelletCarcass6Object>Fv"
@@ -190,16 +189,16 @@ __vt__Q34Game13PelletCarcass3Mgr:
 	.4byte 0
 	.4byte "getAt__40Container<Q34Game13PelletCarcass6Object>Fi"
 	.4byte "getTo__40Container<Q34Game13PelletCarcass6Object>Fv"
-.global "__vt__39Iterator<Q34Game13PelletCarcass6Object>"
-"__vt__39Iterator<Q34Game13PelletCarcass6Object>":
+.endobj "__vt__40Container<Q34Game13PelletCarcass6Object>"
+.obj "__vt__39Iterator<Q34Game13PelletCarcass6Object>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__39Iterator<Q34Game13PelletCarcass6Object>Fv"
 	.4byte "next__39Iterator<Q34Game13PelletCarcass6Object>Fv"
 	.4byte "isDone__39Iterator<Q34Game13PelletCarcass6Object>Fv"
 	.4byte "__ml__39Iterator<Q34Game13PelletCarcass6Object>Fv"
-.global __vt__Q34Game13PelletCarcass6Object
-__vt__Q34Game13PelletCarcass6Object:
+.endobj "__vt__39Iterator<Q34Game13PelletCarcass6Object>"
+.obj __vt__Q34Game13PelletCarcass6Object, weak
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game6PelletFv
@@ -335,25 +334,26 @@ __vt__Q34Game13PelletCarcass6Object:
 	.4byte sound_otakaraEventRestart__Q24Game6PelletFv
 	.4byte sound_otakaraEventStop__Q24Game6PelletFv
 	.4byte sound_otakaraEventFinish__Q24Game6PelletFv
+.endobj __vt__Q34Game13PelletCarcass6Object
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mgr__Q24Game13PelletCarcass
-mgr__Q24Game13PelletCarcass:
+.obj mgr__Q24Game13PelletCarcass, global
 	.skip 0x4
+.endobj mgr__Q24Game13PelletCarcass
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519CF8:
-	.4byte 0x43617263
-	.4byte 0x61737300
-lbl_80519D00:
-	.4byte 0x63617263
-	.4byte 0x61737300
+.obj lbl_80519CF8, local
+	.asciz "Carcass"
+.endobj lbl_80519CF8
+.balign 4
+.obj lbl_80519D00, local
+	.asciz "carcass"
+.endobj lbl_80519D00
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game13PelletCarcass3MgrFv
-__ct__Q34Game13PelletCarcass3MgrFv:
+.fn __ct__Q34Game13PelletCarcass3MgrFv, global
 /* 801FB8CC 001F880C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FB8D0 001F8810  7C 08 02 A6 */	mflr r0
 /* 801FB8D4 001F8814  90 01 00 14 */	stw r0, 0x14(r1)
@@ -399,9 +399,9 @@ __ct__Q34Game13PelletCarcass3MgrFv:
 /* 801FB970 001F88B0  7C 08 03 A6 */	mtlr r0
 /* 801FB974 001F88B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FB978 001F88B8  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game13PelletCarcass3MgrFv
 
-.global "__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FB97C 001F88BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FB980 001F88C0  7C 08 02 A6 */	mflr r0
 /* 801FB984 001F88C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -509,9 +509,9 @@ __ct__Q34Game13PelletCarcass3MgrFv:
 /* 801FBB0C 001F8A4C  7C 08 03 A6 */	mtlr r0
 /* 801FBB10 001F8A50  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FBB14 001F8A54  4E 80 00 20 */	blr 
+.endfn "__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "__dt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"__dt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "__dt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FBB18 001F8A58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FBB1C 001F8A5C  7C 08 02 A6 */	mflr r0
 /* 801FBB20 001F8A60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -554,9 +554,9 @@ __ct__Q34Game13PelletCarcass3MgrFv:
 /* 801FBBAC 001F8AEC  7C 08 03 A6 */	mtlr r0
 /* 801FBBB0 001F8AF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FBBB4 001F8AF4  4E 80 00 20 */	blr 
+.endfn "__dt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "__dt__40Container<Q34Game13PelletCarcass6Object>Fv"
-"__dt__40Container<Q34Game13PelletCarcass6Object>Fv":
+.fn "__dt__40Container<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FBBB8 001F8AF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FBBBC 001F8AFC  7C 08 02 A6 */	mflr r0
 /* 801FBBC0 001F8B00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -587,9 +587,9 @@ __ct__Q34Game13PelletCarcass3MgrFv:
 /* 801FBC1C 001F8B5C  7C 08 03 A6 */	mtlr r0
 /* 801FBC20 001F8B60  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FBC24 001F8B64  4E 80 00 20 */	blr 
+.endfn "__dt__40Container<Q34Game13PelletCarcass6Object>Fv"
 
-.global setupResources__Q34Game13PelletCarcass3MgrFv
-setupResources__Q34Game13PelletCarcass3MgrFv:
+.fn setupResources__Q34Game13PelletCarcass3MgrFv, global
 /* 801FBC28 001F8B68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FBC2C 001F8B6C  7C 08 02 A6 */	mflr r0
 /* 801FBC30 001F8B70  38 82 B9 98 */	addi r4, r2, lbl_80519CF8@sda21
@@ -615,9 +615,9 @@ setupResources__Q34Game13PelletCarcass3MgrFv:
 /* 801FBC80 001F8BC0  7C 08 03 A6 */	mtlr r0
 /* 801FBC84 001F8BC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FBC88 001F8BC8  4E 80 00 20 */	blr 
+.endfn setupResources__Q34Game13PelletCarcass3MgrFv
 
-.global __dt__Q34Game13PelletCarcass3MgrFv
-__dt__Q34Game13PelletCarcass3MgrFv:
+.fn __dt__Q34Game13PelletCarcass3MgrFv, weak
 /* 801FBC8C 001F8BCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FBC90 001F8BD0  7C 08 02 A6 */	mflr r0
 /* 801FBC94 001F8BD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -731,24 +731,24 @@ __dt__Q34Game13PelletCarcass3MgrFv:
 /* 801FBE34 001F8D74  7C 08 03 A6 */	mtlr r0
 /* 801FBE38 001F8D78  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FBE3C 001F8D7C  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game13PelletCarcass3MgrFv
 
-.global createShape__Q34Game13PelletCarcass3MgrFii
-createShape__Q34Game13PelletCarcass3MgrFii:
+.fn createShape__Q34Game13PelletCarcass3MgrFii, weak
 /* 801FBE40 001F8D80  38 60 00 00 */	li r3, 0
 /* 801FBE44 001F8D84  4E 80 00 20 */	blr 
+.endfn createShape__Q34Game13PelletCarcass3MgrFii
 
-.global getMgrName__Q34Game13PelletCarcass3MgrFv
-getMgrName__Q34Game13PelletCarcass3MgrFv:
+.fn getMgrName__Q34Game13PelletCarcass3MgrFv, weak
 /* 801FBE48 001F8D88  38 62 B9 A0 */	addi r3, r2, lbl_80519D00@sda21
 /* 801FBE4C 001F8D8C  4E 80 00 20 */	blr 
+.endfn getMgrName__Q34Game13PelletCarcass3MgrFv
 
-.global getMgrID__Q34Game13PelletCarcass3MgrFv
-getMgrID__Q34Game13PelletCarcass3MgrFv:
+.fn getMgrID__Q34Game13PelletCarcass3MgrFv, weak
 /* 801FBE50 001F8D90  38 60 00 01 */	li r3, 1
 /* 801FBE54 001F8D94  4E 80 00 20 */	blr 
+.endfn getMgrID__Q34Game13PelletCarcass3MgrFv
 
-.global "__dt__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"__dt__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "__dt__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FBE58 001F8D98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FBE5C 001F8D9C  7C 08 02 A6 */	mflr r0
 /* 801FBE60 001F8DA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -785,9 +785,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FBED4 001F8E14  7C 08 03 A6 */	mtlr r0
 /* 801FBED8 001F8E18  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FBEDC 001F8E1C  4E 80 00 20 */	blr 
+.endfn "__dt__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FBEE0 001F8E20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FBEE4 001F8E24  7C 08 02 A6 */	mflr r0
 /* 801FBEE8 001F8E28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -830,13 +830,13 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FBF70 001F8EB0  7C 08 03 A6 */	mtlr r0
 /* 801FBF74 001F8EB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FBF78 001F8EB8  4E 80 00 20 */	blr 
+.endfn "resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "onCreateModel__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ28SysShape5Model"
-"onCreateModel__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ28SysShape5Model":
+.fn "onCreateModel__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ28SysShape5Model", weak
 /* 801FBF7C 001F8EBC  4E 80 00 20 */	blr 
+.endfn "onCreateModel__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ28SysShape5Model"
 
-.global "birth__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"birth__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "birth__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FBF80 001F8EC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FBF84 001F8EC4  7C 08 02 A6 */	mflr r0
 /* 801FBF88 001F8EC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -848,9 +848,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FBFA0 001F8EE0  7C 08 03 A6 */	mtlr r0
 /* 801FBFA4 001F8EE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FBFA8 001F8EE8  4E 80 00 20 */	blr 
+.endfn "birth__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doAnimation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"doAnimation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "doAnimation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FBFAC 001F8EEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FBFB0 001F8EF0  7C 08 02 A6 */	mflr r0
 /* 801FBFB4 001F8EF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -862,9 +862,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FBFCC 001F8F0C  7C 08 03 A6 */	mtlr r0
 /* 801FBFD0 001F8F10  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FBFD4 001F8F14  4E 80 00 20 */	blr 
+.endfn "doAnimation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doEntry__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"doEntry__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "doEntry__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FBFD8 001F8F18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FBFDC 001F8F1C  7C 08 02 A6 */	mflr r0
 /* 801FBFE0 001F8F20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -876,9 +876,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FBFF8 001F8F38  7C 08 03 A6 */	mtlr r0
 /* 801FBFFC 001F8F3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC000 001F8F40  4E 80 00 20 */	blr 
+.endfn "doEntry__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doSetView__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi"
-"doSetView__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi":
+.fn "doSetView__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FC004 001F8F44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC008 001F8F48  7C 08 02 A6 */	mflr r0
 /* 801FC00C 001F8F4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -890,9 +890,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC024 001F8F64  7C 08 03 A6 */	mtlr r0
 /* 801FC028 001F8F68  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC02C 001F8F6C  4E 80 00 20 */	blr 
+.endfn "doSetView__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi"
 
-.global "doViewCalc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"doViewCalc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "doViewCalc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC030 001F8F70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC034 001F8F74  7C 08 02 A6 */	mflr r0
 /* 801FC038 001F8F78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -904,9 +904,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC050 001F8F90  7C 08 03 A6 */	mtlr r0
 /* 801FC054 001F8F94  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC058 001F8F98  4E 80 00 20 */	blr 
+.endfn "doViewCalc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doSimulation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Ff"
-"doSimulation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Ff":
+.fn "doSimulation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Ff", weak
 /* 801FC05C 001F8F9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC060 001F8FA0  7C 08 02 A6 */	mflr r0
 /* 801FC064 001F8FA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -918,9 +918,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC07C 001F8FBC  7C 08 03 A6 */	mtlr r0
 /* 801FC080 001F8FC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC084 001F8FC4  4E 80 00 20 */	blr 
+.endfn "doSimulation__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Ff"
 
-.global "doDirectDraw__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
-"doDirectDraw__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FR8Graphics":
+.fn "doDirectDraw__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FR8Graphics", weak
 /* 801FC088 001F8FC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC08C 001F8FCC  7C 08 02 A6 */	mflr r0
 /* 801FC090 001F8FD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -932,9 +932,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC0A8 001F8FE8  7C 08 03 A6 */	mtlr r0
 /* 801FC0AC 001F8FEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC0B0 001F8FF0  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
 
-.global "kill__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
-"kill__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet":
+.fn "kill__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet", weak
 /* 801FC0B4 001F8FF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC0B8 001F8FF8  7C 08 02 A6 */	mflr r0
 /* 801FC0BC 001F8FFC  38 63 00 70 */	addi r3, r3, 0x70
@@ -944,9 +944,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC0CC 001F900C  7C 08 03 A6 */	mtlr r0
 /* 801FC0D0 001F9010  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC0D4 001F9014  4E 80 00 20 */	blr 
+.endfn "kill__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
 
-.global "getNext__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
-"getNext__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv":
+.fn "getNext__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv", weak
 /* 801FC0D8 001F9018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC0DC 001F901C  7C 08 02 A6 */	mflr r0
 /* 801FC0E0 001F9020  90 01 00 14 */	stw r0, 0x14(r1)
@@ -958,9 +958,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC0F8 001F9038  7C 08 03 A6 */	mtlr r0
 /* 801FC0FC 001F903C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC100 001F9040  4E 80 00 20 */	blr 
+.endfn "getNext__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
 
-.global "getStart__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"getStart__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "getStart__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC104 001F9044  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC108 001F9048  7C 08 02 A6 */	mflr r0
 /* 801FC10C 001F904C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -972,9 +972,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC124 001F9064  7C 08 03 A6 */	mtlr r0
 /* 801FC128 001F9068  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC12C 001F906C  4E 80 00 20 */	blr 
+.endfn "getStart__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "birth__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"birth__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "birth__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC130 001F9070  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC134 001F9074  7C 08 02 A6 */	mflr r0
 /* 801FC138 001F9078  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1001,9 +1001,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC184 001F90C4  7C 08 03 A6 */	mtlr r0
 /* 801FC188 001F90C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC18C 001F90CC  4E 80 00 20 */	blr 
+.endfn "birth__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "kill__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPQ34Game13PelletCarcass6Object"
-"kill__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPQ34Game13PelletCarcass6Object":
+.fn "kill__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPQ34Game13PelletCarcass6Object", weak
 /* 801FC190 001F90D0  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801FC194 001F90D4  38 C0 00 00 */	li r6, 0
 /* 801FC198 001F90D8  38 A0 00 00 */	li r5, 0
@@ -1027,9 +1027,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC1D8 001F9118  38 C6 00 01 */	addi r6, r6, 1
 /* 801FC1DC 001F911C  42 00 FF CC */	bdnz .L_801FC1A8
 /* 801FC1E0 001F9120  4E 80 00 20 */	blr 
+.endfn "kill__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPQ34Game13PelletCarcass6Object"
 
-.global "getNext__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPv"
-"getNext__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPv":
+.fn "getNext__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPv", weak
 /* 801FC1E4 001F9124  80 A3 00 24 */	lwz r5, 0x24(r3)
 /* 801FC1E8 001F9128  38 C4 00 01 */	addi r6, r4, 1
 /* 801FC1EC 001F912C  7C 06 28 50 */	subf r0, r6, r5
@@ -1049,9 +1049,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 .L_801FC21C:
 /* 801FC21C 001F915C  7C A3 2B 78 */	mr r3, r5
 /* 801FC220 001F9160  4E 80 00 20 */	blr 
+.endfn "getNext__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPv"
 
-.global "getStart__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"getStart__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "getStart__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC224 001F9164  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC228 001F9168  7C 08 02 A6 */	mflr r0
 /* 801FC22C 001F916C  38 80 FF FF */	li r4, -1
@@ -1064,26 +1064,26 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC248 001F9188  7C 08 03 A6 */	mtlr r0
 /* 801FC24C 001F918C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC250 001F9190  4E 80 00 20 */	blr 
+.endfn "getStart__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "getEnd__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"getEnd__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "getEnd__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC254 001F9194  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801FC258 001F9198  4E 80 00 20 */	blr 
+.endfn "getEnd__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "getAt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
-"getAt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi":
+.fn "getAt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FC25C 001F919C  1C 04 04 58 */	mulli r0, r4, 0x458
 /* 801FC260 001F91A0  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801FC264 001F91A4  7C 63 02 14 */	add r3, r3, r0
 /* 801FC268 001F91A8  4E 80 00 20 */	blr 
+.endfn "getAt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
 
-.global "getTo__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"getTo__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "getTo__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC26C 001F91AC  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801FC270 001F91B0  4E 80 00 20 */	blr 
+.endfn "getTo__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC274 001F91B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FC278 001F91B8  7C 08 02 A6 */	mflr r0
 /* 801FC27C 001F91BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1119,9 +1119,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC2E8 001F9228  7C 08 03 A6 */	mtlr r0
 /* 801FC2EC 001F922C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FC2F0 001F9230  4E 80 00 20 */	blr 
+.endfn "doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC2F4 001F9234  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FC2F8 001F9238  7C 08 02 A6 */	mflr r0
 /* 801FC2FC 001F923C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1157,9 +1157,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC368 001F92A8  7C 08 03 A6 */	mtlr r0
 /* 801FC36C 001F92AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FC370 001F92B0  4E 80 00 20 */	blr 
+.endfn "doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
-"doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi":
+.fn "doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FC374 001F92B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FC378 001F92B8  7C 08 02 A6 */	mflr r0
 /* 801FC37C 001F92BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1199,9 +1199,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC3F8 001F9338  7C 08 03 A6 */	mtlr r0
 /* 801FC3FC 001F933C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FC400 001F9340  4E 80 00 20 */	blr 
+.endfn "doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
 
-.global "doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC404 001F9344  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FC408 001F9348  7C 08 02 A6 */	mflr r0
 /* 801FC40C 001F934C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1237,9 +1237,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC478 001F93B8  7C 08 03 A6 */	mtlr r0
 /* 801FC47C 001F93BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FC480 001F93C0  4E 80 00 20 */	blr 
+.endfn "doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff"
-"doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff":
+.fn "doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff", weak
 /* 801FC484 001F93C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FC488 001F93C8  7C 08 02 A6 */	mflr r0
 /* 801FC48C 001F93CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1279,9 +1279,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC508 001F9448  7C 08 03 A6 */	mtlr r0
 /* 801FC50C 001F944C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FC510 001F9450  4E 80 00 20 */	blr 
+.endfn "doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff"
 
-.global "doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
-"doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics":
+.fn "doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics", weak
 /* 801FC514 001F9454  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FC518 001F9458  7C 08 02 A6 */	mflr r0
 /* 801FC51C 001F945C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1321,9 +1321,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC598 001F94D8  7C 08 03 A6 */	mtlr r0
 /* 801FC59C 001F94DC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FC5A0 001F94E0  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
 
-.global "clearMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"clearMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "clearMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC5A4 001F94E4  38 00 00 00 */	li r0, 0
 /* 801FC5A8 001F94E8  38 C0 00 00 */	li r6, 0
 /* 801FC5AC 001F94EC  90 03 00 20 */	stw r0, 0x20(r3)
@@ -1338,13 +1338,13 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC5C8 001F9508  7C 06 00 00 */	cmpw r6, r0
 /* 801FC5CC 001F950C  41 80 FF EC */	blt .L_801FC5B8
 /* 801FC5D0 001F9510  4E 80 00 20 */	blr 
+.endfn "clearMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "onAlloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"onAlloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "onAlloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC5D4 001F9514  4E 80 00 20 */	blr 
+.endfn "onAlloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "getEmptyIndex__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"getEmptyIndex__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "getEmptyIndex__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC5D8 001F9518  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801FC5DC 001F951C  38 A0 00 00 */	li r5, 0
 /* 801FC5E0 001F9520  7C 09 03 A6 */	mtctr r0
@@ -1363,16 +1363,16 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 .L_801FC60C:
 /* 801FC60C 001F954C  38 60 FF FF */	li r3, -1
 /* 801FC610 001F9550  4E 80 00 20 */	blr 
+.endfn "getEmptyIndex__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "get__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPv"
-"get__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPv":
+.fn "get__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPv", weak
 /* 801FC614 001F9554  1C 04 04 58 */	mulli r0, r4, 0x458
 /* 801FC618 001F9558  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801FC61C 001F955C  7C 63 02 14 */	add r3, r3, r0
 /* 801FC620 001F9560  4E 80 00 20 */	blr 
+.endfn "get__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FPv"
 
-.global "getObject__40Container<Q34Game13PelletCarcass6Object>FPv"
-"getObject__40Container<Q34Game13PelletCarcass6Object>FPv":
+.fn "getObject__40Container<Q34Game13PelletCarcass6Object>FPv", weak
 /* 801FC624 001F9564  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC628 001F9568  7C 08 02 A6 */	mflr r0
 /* 801FC62C 001F956C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1384,19 +1384,19 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC644 001F9584  7C 08 03 A6 */	mtlr r0
 /* 801FC648 001F9588  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC64C 001F958C  4E 80 00 20 */	blr 
+.endfn "getObject__40Container<Q34Game13PelletCarcass6Object>FPv"
 
-.global "getAt__40Container<Q34Game13PelletCarcass6Object>Fi"
-"getAt__40Container<Q34Game13PelletCarcass6Object>Fi":
+.fn "getAt__40Container<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FC650 001F9590  38 60 00 00 */	li r3, 0
 /* 801FC654 001F9594  4E 80 00 20 */	blr 
+.endfn "getAt__40Container<Q34Game13PelletCarcass6Object>Fi"
 
-.global "getTo__40Container<Q34Game13PelletCarcass6Object>Fv"
-"getTo__40Container<Q34Game13PelletCarcass6Object>Fv":
+.fn "getTo__40Container<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC658 001F9598  38 60 00 00 */	li r3, 0
 /* 801FC65C 001F959C  4E 80 00 20 */	blr 
+.endfn "getTo__40Container<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
-"doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics":
+.fn "doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics", weak
 /* 801FC660 001F95A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FC664 001F95A4  7C 08 02 A6 */	mflr r0
 /* 801FC668 001F95A8  3C A0 80 4C */	lis r5, "__vt__39Iterator<Q34Game13PelletCarcass6Object>"@ha
@@ -1530,9 +1530,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC848 001F9788  7C 08 03 A6 */	mtlr r0
 /* 801FC84C 001F978C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FC850 001F9790  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
 
-.global "isDone__39Iterator<Q34Game13PelletCarcass6Object>Fv"
-"isDone__39Iterator<Q34Game13PelletCarcass6Object>Fv":
+.fn "isDone__39Iterator<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FC854 001F9794  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FC858 001F9798  7C 08 02 A6 */	mflr r0
 /* 801FC85C 001F979C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1552,9 +1552,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FC894 001F97D4  7C 08 03 A6 */	mtlr r0
 /* 801FC898 001F97D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FC89C 001F97DC  4E 80 00 20 */	blr 
+.endfn "isDone__39Iterator<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff"
-"doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff":
+.fn "doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff", weak
 /* 801FC8A0 001F97E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FC8A4 001F97E4  7C 08 02 A6 */	mflr r0
 /* 801FC8A8 001F97E8  3C 80 80 4C */	lis r4, "__vt__39Iterator<Q34Game13PelletCarcass6Object>"@ha
@@ -1688,9 +1688,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FCA88 001F99C8  7C 08 03 A6 */	mtlr r0
 /* 801FCA8C 001F99CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FCA90 001F99D0  4E 80 00 20 */	blr 
+.endfn "doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff"
 
-.global "doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FCA94 001F99D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FCA98 001F99D8  7C 08 02 A6 */	mflr r0
 /* 801FCA9C 001F99DC  3C 80 80 4C */	lis r4, "__vt__39Iterator<Q34Game13PelletCarcass6Object>"@ha
@@ -1820,9 +1820,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FCC6C 001F9BAC  7C 08 03 A6 */	mtlr r0
 /* 801FCC70 001F9BB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FCC74 001F9BB4  4E 80 00 20 */	blr 
+.endfn "doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi"
-"doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi":
+.fn "doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FCC78 001F9BB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FCC7C 001F9BBC  7C 08 02 A6 */	mflr r0
 /* 801FCC80 001F9BC0  3C A0 80 4C */	lis r5, "__vt__39Iterator<Q34Game13PelletCarcass6Object>"@ha
@@ -1956,9 +1956,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FCE60 001F9DA0  7C 08 03 A6 */	mtlr r0
 /* 801FCE64 001F9DA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FCE68 001F9DA8  4E 80 00 20 */	blr 
+.endfn "doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi"
 
-.global "doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FCE6C 001F9DAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FCE70 001F9DB0  7C 08 02 A6 */	mflr r0
 /* 801FCE74 001F9DB4  3C 80 80 4C */	lis r4, "__vt__39Iterator<Q34Game13PelletCarcass6Object>"@ha
@@ -2088,9 +2088,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD044 001F9F84  7C 08 03 A6 */	mtlr r0
 /* 801FD048 001F9F88  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FD04C 001F9F8C  4E 80 00 20 */	blr 
+.endfn "doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD050 001F9F90  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FD054 001F9F94  7C 08 02 A6 */	mflr r0
 /* 801FD058 001F9F98  3C 80 80 4C */	lis r4, "__vt__39Iterator<Q34Game13PelletCarcass6Object>"@ha
@@ -2220,9 +2220,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD228 001FA168  7C 08 03 A6 */	mtlr r0
 /* 801FD22C 001FA16C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FD230 001FA170  4E 80 00 20 */	blr 
+.endfn "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "__ct__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"__ct__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "__ct__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD234 001FA174  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD238 001FA178  7C 08 02 A6 */	mflr r0
 /* 801FD23C 001FA17C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2262,9 +2262,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD2C4 001FA204  7C 08 03 A6 */	mtlr r0
 /* 801FD2C8 001FA208  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD2CC 001FA20C  4E 80 00 20 */	blr 
+.endfn "__ct__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "getFlag__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
-"getFlag__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet":
+.fn "getFlag__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet", weak
 /* 801FD2D0 001FA210  28 04 00 00 */	cmplwi r4, 0
 /* 801FD2D4 001FA214  41 82 00 14 */	beq .L_801FD2E8
 /* 801FD2D8 001FA218  80 63 00 9C */	lwz r3, 0x9c(r3)
@@ -2274,9 +2274,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 .L_801FD2E8:
 /* 801FD2E8 001FA228  38 60 FF FF */	li r3, -1
 /* 801FD2EC 001FA22C  4E 80 00 20 */	blr 
+.endfn "getFlag__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
 
-.global "setFromTeki__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
-"setFromTeki__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet":
+.fn "setFromTeki__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet", weak
 /* 801FD2F0 001FA230  28 04 00 00 */	cmplwi r4, 0
 /* 801FD2F4 001FA234  4D 82 00 20 */	beqlr 
 /* 801FD2F8 001FA238  80 63 00 9C */	lwz r3, 0x9c(r3)
@@ -2284,9 +2284,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD300 001FA240  80 04 04 40 */	lwz r0, 0x440(r4)
 /* 801FD304 001FA244  7C A3 01 AE */	stbx r5, r3, r0
 /* 801FD308 001FA248  4E 80 00 20 */	blr 
+.endfn "setFromTeki__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
 
-.global "setRevival__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
-"setRevival__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet":
+.fn "setRevival__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet", weak
 /* 801FD30C 001FA24C  28 04 00 00 */	cmplwi r4, 0
 /* 801FD310 001FA250  4D 82 00 20 */	beqlr 
 /* 801FD314 001FA254  80 63 00 9C */	lwz r3, 0x9c(r3)
@@ -2294,9 +2294,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD31C 001FA25C  80 04 04 40 */	lwz r0, 0x440(r4)
 /* 801FD320 001FA260  7C A3 01 AE */	stbx r5, r3, r0
 /* 801FD324 001FA264  4E 80 00 20 */	blr 
+.endfn "setRevival__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
 
-.global "setComeAlive__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
-"setComeAlive__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet":
+.fn "setComeAlive__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet", weak
 /* 801FD328 001FA268  28 04 00 00 */	cmplwi r4, 0
 /* 801FD32C 001FA26C  4D 82 00 20 */	beqlr 
 /* 801FD330 001FA270  80 63 00 9C */	lwz r3, 0x9c(r3)
@@ -2304,16 +2304,16 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD338 001FA278  80 04 04 40 */	lwz r0, 0x440(r4)
 /* 801FD33C 001FA27C  7C A3 01 AE */	stbx r5, r3, r0
 /* 801FD340 001FA280  4E 80 00 20 */	blr 
+.endfn "setComeAlive__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game6Pellet"
 
-.global "setComeAlive__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi"
-"setComeAlive__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi":
+.fn "setComeAlive__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FD344 001FA284  80 63 00 9C */	lwz r3, 0x9c(r3)
 /* 801FD348 001FA288  38 00 00 00 */	li r0, 0
 /* 801FD34C 001FA28C  7C 03 21 AE */	stbx r0, r3, r4
 /* 801FD350 001FA290  4E 80 00 20 */	blr 
+.endfn "setComeAlive__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi"
 
-.global "getEnd__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"getEnd__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "getEnd__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD354 001FA294  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD358 001FA298  7C 08 02 A6 */	mflr r0
 /* 801FD35C 001FA29C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2325,9 +2325,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD374 001FA2B4  7C 08 03 A6 */	mtlr r0
 /* 801FD378 001FA2B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD37C 001FA2BC  4E 80 00 20 */	blr 
+.endfn "getEnd__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
-"get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv":
+.fn "get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv", weak
 /* 801FD380 001FA2C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD384 001FA2C4  7C 08 02 A6 */	mflr r0
 /* 801FD388 001FA2C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2339,9 +2339,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD3A0 001FA2E0  7C 08 03 A6 */	mtlr r0
 /* 801FD3A4 001FA2E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD3A8 001FA2E8  4E 80 00 20 */	blr 
+.endfn "get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
 
-.global "getObjectPtr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
-"getObjectPtr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv":
+.fn "getObjectPtr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv", weak
 /* 801FD3AC 001FA2EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD3B0 001FA2F0  7C 08 02 A6 */	mflr r0
 /* 801FD3B4 001FA2F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2353,9 +2353,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD3CC 001FA30C  7C 08 03 A6 */	mtlr r0
 /* 801FD3D0 001FA310  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD3D4 001FA314  4E 80 00 20 */	blr 
+.endfn "getObjectPtr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
 
-.global "birthFromTeki__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game12PelletConfig"
-"birthFromTeki__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game12PelletConfig":
+.fn "birthFromTeki__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game12PelletConfig", weak
 /* 801FD3D8 001FA318  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FD3DC 001FA31C  7C 08 02 A6 */	mflr r0
 /* 801FD3E0 001FA320  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2396,9 +2396,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD45C 001FA39C  7C 08 03 A6 */	mtlr r0
 /* 801FD460 001FA3A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FD464 001FA3A4  4E 80 00 20 */	blr 
+.endfn "birthFromTeki__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPQ24Game12PelletConfig"
 
-.global "alloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi"
-"alloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi":
+.fn "alloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FD468 001FA3A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD46C 001FA3AC  7C 08 02 A6 */	mflr r0
 /* 801FD470 001FA3B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2433,9 +2433,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD4DC 001FA41C  7C 08 03 A6 */	mtlr r0
 /* 801FD4E0 001FA420  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD4E4 001FA424  4E 80 00 20 */	blr 
+.endfn "alloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi"
 
-.global "__ml__39Iterator<Q34Game13PelletCarcass6Object>Fv"
-"__ml__39Iterator<Q34Game13PelletCarcass6Object>Fv":
+.fn "__ml__39Iterator<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD4E8 001FA428  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD4EC 001FA42C  7C 08 02 A6 */	mflr r0
 /* 801FD4F0 001FA430  7C 64 1B 78 */	mr r4, r3
@@ -2450,9 +2450,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD514 001FA454  7C 08 03 A6 */	mtlr r0
 /* 801FD518 001FA458  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD51C 001FA45C  4E 80 00 20 */	blr 
+.endfn "__ml__39Iterator<Q34Game13PelletCarcass6Object>Fv"
 
-.global "next__39Iterator<Q34Game13PelletCarcass6Object>Fv"
-"next__39Iterator<Q34Game13PelletCarcass6Object>Fv":
+.fn "next__39Iterator<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD520 001FA460  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD524 001FA464  7C 08 02 A6 */	mflr r0
 /* 801FD528 001FA468  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2514,9 +2514,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD5F8 001FA538  7C 08 03 A6 */	mtlr r0
 /* 801FD5FC 001FA53C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD600 001FA540  4E 80 00 20 */	blr 
+.endfn "next__39Iterator<Q34Game13PelletCarcass6Object>Fv"
 
-.global "first__39Iterator<Q34Game13PelletCarcass6Object>Fv"
-"first__39Iterator<Q34Game13PelletCarcass6Object>Fv":
+.fn "first__39Iterator<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD604 001FA544  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD608 001FA548  7C 08 02 A6 */	mflr r0
 /* 801FD60C 001FA54C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2576,9 +2576,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD6D4 001FA614  7C 08 03 A6 */	mtlr r0
 /* 801FD6D8 001FA618  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD6DC 001FA61C  4E 80 00 20 */	blr 
+.endfn "first__39Iterator<Q34Game13PelletCarcass6Object>Fv"
 
-.global "onAlloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"onAlloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "onAlloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD6E0 001FA620  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD6E4 001FA624  7C 08 02 A6 */	mflr r0
 /* 801FD6E8 001FA628  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2606,9 +2606,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD738 001FA678  7C 08 03 A6 */	mtlr r0
 /* 801FD73C 001FA67C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD740 001FA680  4E 80 00 20 */	blr 
+.endfn "onAlloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "alloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
-"alloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi":
+.fn "alloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FD744 001FA684  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801FD748 001FA688  7C 08 02 A6 */	mflr r0
 /* 801FD74C 001FA68C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2713,9 +2713,9 @@ getMgrID__Q34Game13PelletCarcass3MgrFv:
 /* 801FD8C0 001FA800  7C 08 03 A6 */	mtlr r0
 /* 801FD8C4 001FA804  38 21 00 20 */	addi r1, r1, 0x20
 /* 801FD8C8 001FA808  4E 80 00 20 */	blr 
+.endfn "alloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
 
-.global __ct__Q34Game13PelletCarcass6ObjectFv
-__ct__Q34Game13PelletCarcass6ObjectFv:
+.fn __ct__Q34Game13PelletCarcass6ObjectFv, weak
 /* 801FD8CC 001FA80C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801FD8D0 001FA810  7C 08 02 A6 */	mflr r0
 /* 801FD8D4 001FA814  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2735,103 +2735,104 @@ __ct__Q34Game13PelletCarcass6ObjectFv:
 /* 801FD90C 001FA84C  7C 08 03 A6 */	mtlr r0
 /* 801FD910 001FA850  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FD914 001FA854  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game13PelletCarcass6ObjectFv
 
-.global getKind__Q34Game13PelletCarcass6ObjectFv
-getKind__Q34Game13PelletCarcass6ObjectFv:
+.fn getKind__Q34Game13PelletCarcass6ObjectFv, weak
 /* 801FD918 001FA858  38 60 00 01 */	li r3, 1
 /* 801FD91C 001FA85C  4E 80 00 20 */	blr 
+.endfn getKind__Q34Game13PelletCarcass6ObjectFv
 
-.global "@84@__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"@84@__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@84@__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD920 001FA860  38 63 FF AC */	addi r3, r3, -84
 /* 801FD924 001FA864  4B FF E0 58 */	b "__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@84@__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@28@resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"@28@resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@28@resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD928 001FA868  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD92C 001FA86C  4B F7 28 D4 */	b "resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@28@resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@28@doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
-"@28@doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics":
+.fn "@28@doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics", weak
 /* 801FD930 001FA870  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD934 001FA874  4B FF EB E0 */	b "doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
+.endfn "@28@doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
 
-.global "@28@doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff"
-"@28@doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff":
+.fn "@28@doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff", weak
 /* 801FD938 001FA878  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD93C 001FA87C  4B FF EB 48 */	b "doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff"
+.endfn "@28@doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff"
 
-.global "@28@doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"@28@doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@28@doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD940 001FA880  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD944 001FA884  4B FF EA C0 */	b "doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@28@doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@28@doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
-"@28@doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi":
+.fn "@28@doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FD948 001FA888  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD94C 001FA88C  4B FF EA 28 */	b "doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
+.endfn "@28@doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
 
-.global "@28@doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"@28@doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@28@doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD950 001FA890  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD954 001FA894  4B FF E9 A0 */	b "doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@28@doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@28@doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"@28@doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@28@doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD958 001FA898  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD95C 001FA89C  4B FF E9 18 */	b "doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@28@doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@28@doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
-"@28@doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics":
+.fn "@28@doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics", weak
 /* 801FD960 001FA8A0  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD964 001FA8A4  4B FF EC FC */	b "doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
+.endfn "@28@doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
 
-.global "@28@doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff"
-"@28@doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff":
+.fn "@28@doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff", weak
 /* 801FD968 001FA8A8  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD96C 001FA8AC  4B FF EF 34 */	b "doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff"
+.endfn "@28@doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff"
 
-.global "@28@doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"@28@doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@28@doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD970 001FA8B0  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD974 001FA8B4  4B FF F1 20 */	b "doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@28@doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@28@doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi"
-"@28@doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi":
+.fn "@28@doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi", weak
 /* 801FD978 001FA8B8  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD97C 001FA8BC  4B FF F2 FC */	b "doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi"
+.endfn "@28@doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi"
 
-.global "@28@doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"@28@doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@28@doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD980 001FA8C0  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD984 001FA8C4  4B FF F4 E8 */	b "doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@28@doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@28@doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"@28@doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@28@doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD988 001FA8C8  38 63 FF E4 */	addi r3, r3, -28
 /* 801FD98C 001FA8CC  4B FF F6 C4 */	b "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@28@doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@84@getEnd__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"@84@getEnd__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@84@getEnd__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD990 001FA8D0  38 63 FF AC */	addi r3, r3, -84
 /* 801FD994 001FA8D4  4B FF F9 C0 */	b "getEnd__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@84@getEnd__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@84@getStart__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"@84@getStart__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "@84@getStart__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 801FD998 001FA8D8  38 63 FF AC */	addi r3, r3, -84
 /* 801FD99C 001FA8DC  4B FF E7 68 */	b "getStart__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
+.endfn "@84@getStart__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "@84@getNext__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
-"@84@getNext__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv":
+.fn "@84@getNext__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv", weak
 /* 801FD9A0 001FA8E0  38 63 FF AC */	addi r3, r3, -84
 /* 801FD9A4 001FA8E4  4B FF E7 34 */	b "getNext__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
+.endfn "@84@getNext__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
 
-.global "@84@get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
-"@84@get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv":
+.fn "@84@get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv", weak
 /* 801FD9A8 001FA8E8  38 63 FF AC */	addi r3, r3, -84
 /* 801FD9AC 001FA8EC  4B FF F9 D4 */	b "get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
+.endfn "@84@get__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>FPv"
 
-.global "@84@__dt__Q34Game13PelletCarcass3MgrFv"
-"@84@__dt__Q34Game13PelletCarcass3MgrFv":
+.fn "@84@__dt__Q34Game13PelletCarcass3MgrFv", weak
 /* 801FD9B0 001FA8F0  38 63 FF AC */	addi r3, r3, -84
 /* 801FD9B4 001FA8F4  4B FF E2 D8 */	b __dt__Q34Game13PelletCarcass3MgrFv
+.endfn "@84@__dt__Q34Game13PelletCarcass3MgrFv"

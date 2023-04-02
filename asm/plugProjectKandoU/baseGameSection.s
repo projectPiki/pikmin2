@@ -5,24 +5,28 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047C948:
+.obj lbl_8047C948, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047C948
 .balign 4
-lbl_8047C954:
+.obj lbl_8047C954, local
 	.asciz "baseGameSection"
+.endobj lbl_8047C954
 .balign 4
-lbl_8047C964:
+.obj lbl_8047C964, local
 	.asciz "baseGameSection.cpp"
+.endobj lbl_8047C964
 .balign 4
-lbl_8047C978: # Shift-JIS
+.obj lbl_8047C978, local # Shift-JIS
 	.4byte 0x825189F1
 	.4byte 0x82CD96B3
 	.4byte 0x979D8297
 	.2byte 0x0A00
+.endobj lbl_8047C978
 .balign 4
-lbl_8047C988: # Shift-JIS
+.obj lbl_8047C988, local # Shift-JIS
 	.4byte 0x75736553
 	.4byte 0x70656369
 	.4byte 0x66696346
@@ -32,233 +36,297 @@ lbl_8047C988: # Shift-JIS
 	.4byte 0xC482C882
 	.4byte 0xA282970A
 	.byte 0
+.endobj lbl_8047C988
 .balign 4
-lbl_8047C9AC:
+.obj lbl_8047C9AC, local
 	.asciz "PSGame.h"
+.endobj lbl_8047C9AC
 .balign 4
-lbl_8047C9B8:
+.obj lbl_8047C9B8, local
 	.asciz "P2Assert"
+.endobj lbl_8047C9B8
 .balign 4
-lbl_8047C9C4:
+.obj lbl_8047C9C4, local
 	.asciz "waitSyncLoad"
+.endobj lbl_8047C9C4
 .balign 4
-lbl_8047C9D4:
+.obj lbl_8047C9D4, local
 	.asciz "BGS::init"
+.endobj lbl_8047C9D4
 .balign 4
-lbl_8047C9E0:
+.obj lbl_8047C9E0, local
 	.asciz "heapStatus"
+.endobj lbl_8047C9E0
 .balign 4
-lbl_8047C9EC:
+.obj lbl_8047C9EC, local
 	.asciz "baseGameSection::init"
+.endobj lbl_8047C9EC
 .balign 4
-lbl_8047CA04:
+.obj lbl_8047CA04, local
 	.asciz "BaseGameSection::initHIO"
+.endobj lbl_8047CA04
 .balign 4
-lbl_8047CA20:
+.obj lbl_8047CA20, local
 	.asciz "BaseGameSection::MoviePlayer"
+.endobj lbl_8047CA20
 .balign 4
-lbl_8047CA40:
+.obj lbl_8047CA40, local
 	.asciz "BaseGameSection::InitJ3D"
+.endobj lbl_8047CA40
 .balign 4
-lbl_8047CA5C:
+.obj lbl_8047CA5C, local
 	.asciz "BaseGameSection::Before 2D"
+.endobj lbl_8047CA5C
 .balign 4
-lbl_8047CA78:
+.obj lbl_8047CA78, local
 	.asciz "BaseGameSection::Game2DMgr"
+.endobj lbl_8047CA78
 .balign 4
-lbl_8047CA94:
+.obj lbl_8047CA94, local
 	.asciz "particle"
+.endobj lbl_8047CA94
 .balign 4
-lbl_8047CAA0:
+.obj lbl_8047CAA0, local
 	.asciz "_draw3D_"
+.endobj lbl_8047CAA0
 .balign 4
-lbl_8047CAAC:
+.obj lbl_8047CAAC, local
 	.asciz "normal-fogoff"
+.endobj lbl_8047CAAC
 .balign 4
-lbl_8047CABC:
+.obj lbl_8047CABC, local
 	.asciz "postshadow"
+.endobj lbl_8047CABC
 .balign 4
-lbl_8047CAC8:
+.obj lbl_8047CAC8, local
 	.asciz "objectlast"
+.endobj lbl_8047CAC8
 .balign 4
-lbl_8047CAD4:
+.obj lbl_8047CAD4, local
 	.asciz "Generator(Default)"
+.endobj lbl_8047CAD4
 .balign 4
-lbl_8047CAE8:
+.obj lbl_8047CAE8, local
 	.asciz "Generator(Init)"
+.endobj lbl_8047CAE8
 .balign 4
-lbl_8047CAF8:
+.obj lbl_8047CAF8, local
 	.asciz "Generator(Limit)"
+.endobj lbl_8047CAF8
 .balign 4
-lbl_8047CB0C: # Shift-JIS
+.obj lbl_8047CB0C, local # Shift-JIS
 	.4byte 0x47656E65
 	.4byte 0x7261746F
 	.4byte 0x72289041
 	.4byte 0x95A82900
+.endobj lbl_8047CB0C
 .balign 4
-lbl_8047CB1C:
+.obj lbl_8047CB1C, local
 	.asciz "Generator(DAY)"
+.endobj lbl_8047CB1C
 .balign 4
-lbl_8047CB2C:
+.obj lbl_8047CB2C, local
 	.asciz "%s/defaultgen.txt"
+.endobj lbl_8047CB2C
 .balign 4
-lbl_8047CB40:
+.obj lbl_8047CB40, local
 	.asciz "/%s/plantsgen.txt"
+.endobj lbl_8047CB40
 .balign 4
-lbl_8047CB54:
+.obj lbl_8047CB54, local
 	.asciz "%s/initgen.txt"
+.endobj lbl_8047CB54
 .balign 4
-lbl_8047CB64:
+.obj lbl_8047CB64, local
 	.asciz "%s/nonloop/%s"
+.endobj lbl_8047CB64
 .balign 4
-lbl_8047CB74:
+.obj lbl_8047CB74, local
 	.asciz "%s/loop/%s"
+.endobj lbl_8047CB74
 .balign 4
-lbl_8047CB80:
+.obj lbl_8047CB80, local
 	.asciz "%s/day/%d.txt"
+.endobj lbl_8047CB80
 .balign 4
-lbl_8047CB90:
+.obj lbl_8047CB90, local
 	.asciz "KESHIMASU!\n"
+.endobj lbl_8047CB90
 .balign 4
-lbl_8047CB9C:
+.obj lbl_8047CB9C, local
 	.asciz "no demomatrix\n"
+.endobj lbl_8047CB9C
 .balign 4
-lbl_8047CBAC:
+.obj lbl_8047CBAC, local
 	.asciz "louie null"
+.endobj lbl_8047CBAC
 .balign 4
-lbl_8047CBB8:
+.obj lbl_8047CBB8, local
 	.asciz "x05_louiestart"
+.endobj lbl_8047CBB8
 .balign 4
-lbl_8047CBC8: # Shift-JIS
+.obj lbl_8047CBC8, local # Shift-JIS
 	.4byte 0x8351815B
 	.4byte 0x83808389
 	.4byte 0x83438367
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
+.endobj lbl_8047CBC8
 .balign 4
-lbl_8047CBE0:
+.obj lbl_8047CBE0, local
 	.asciz "DON'T USE THIS !\n"
+.endobj lbl_8047CBE0
 .balign 4
-lbl_8047CBF4: # Shift-JIS
+.obj lbl_8047CBF4, local # Shift-JIS
 	.4byte 0x8E6782C1
 	.4byte 0x82C482C8
 	.4byte 0x82A282A9
 	.4byte 0x82E00A00
+.endobj lbl_8047CBF4
 .balign 4
-lbl_8047CC04:
+.obj lbl_8047CC04, local
 	.asciz "gameSys-da"
+.endobj lbl_8047CC04
 .balign 4
-lbl_8047CC10:
+.obj lbl_8047CC10, local
 	.asciz "ENT-GSYS"
+.endobj lbl_8047CC10
 .balign 4
-lbl_8047CC1C:
+.obj lbl_8047CC1C, local
 	.asciz "ENT-REST"
+.endobj lbl_8047CC1C
 .balign 4
-lbl_8047CC28:
+.obj lbl_8047CC28, local
 	.asciz "setupFixMemory"
+.endobj lbl_8047CC28
 .balign 4
-lbl_8047CC38:
+.obj lbl_8047CC38, local
 	.asciz "user/Kando/mizu.bti"
+.endobj lbl_8047CC38
 .balign 4
-lbl_8047CC4C:
+.obj lbl_8047CC4C, local
 	.asciz "fbTexture"
+.endobj lbl_8047CC4C
 .balign 4
-lbl_8047CC58:
+.obj lbl_8047CC58, local
 	.asciz "user/Ebisawa/effect/game.jpc"
+.endobj lbl_8047CC58
 .balign 4
-lbl_8047CC78:
+.obj lbl_8047CC78, local
 	.asciz "user/Ebisawa/effect/eff2d_game2d.jpc"
+.endobj lbl_8047CC78
 .balign 4
-lbl_8047CCA0:
+.obj lbl_8047CCA0, local
 	.asciz "navi-piki"
+.endobj lbl_8047CCA0
 .balign 4
-lbl_8047CCAC:
+.obj lbl_8047CCAC, local
 	.asciz "allocation dameck!\n%d/%d"
+.endobj lbl_8047CCAC
 .balign 4
-lbl_8047CCC8:
+.obj lbl_8047CCC8, local
 	.asciz "PSCommon.h"
+.endobj lbl_8047CCC8
 .balign 4
-lbl_8047CCD4:
+.obj lbl_8047CCD4, local
 	.asciz "setupFloatMemory"
+.endobj lbl_8047CCD4
 .balign 4
-lbl_8047CCE8:
+.obj lbl_8047CCE8, local
 	.asciz "Pikmin-PikiClass"
+.endobj lbl_8047CCE8
 .balign 4
-lbl_8047CCFC:
+.obj lbl_8047CCFC, local
 	.asciz "user/Mukki/mapunits/caveinfo/%s"
+.endobj lbl_8047CCFC
 .balign 4
-lbl_8047CD1C:
+.obj lbl_8047CD1C, local
 	.asciz "user/Abe/vs/%s"
+.endobj lbl_8047CD1C
 .balign 4
-lbl_8047CD2C:
+.obj lbl_8047CD2C, local
 	.asciz "PlatCellMgr"
+.endobj lbl_8047CD2C
 .balign 4
-lbl_8047CD38:
+.obj lbl_8047CD38, local
 	.asciz "MapRoomCellMgr"
+.endobj lbl_8047CD38
 .balign 4
-lbl_8047CD48:
+.obj lbl_8047CD48, local
 	.asciz "<float> Done\n"
+.endobj lbl_8047CD48
 .balign 4
-lbl_8047CD58:
+.obj lbl_8047CD58, local
 	.asciz "caveinfo.txt"
+.endobj lbl_8047CD58
 .balign 4
-lbl_8047CD68:
+.obj lbl_8047CD68, local
 	.asciz "CreatureActionArg"
+.endobj lbl_8047CD68
 .balign 4
-lbl_8047CD7C:
+.obj lbl_8047CD7C, local
 	.asciz "ActionArg"
+.endobj lbl_8047CD7C
 .balign 4
-lbl_8047CD88:
+.obj lbl_8047CD88, local
 	.asciz "# %d/%d\r\n"
+.endobj lbl_8047CD88
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global UfoMenuResult__Q22og6Screen
-UfoMenuResult__Q22og6Screen:
+.endobj govNAN___Q24Game5P2JST
+.obj UfoMenuResult__Q22og6Screen, global
 	.4byte 1
 	.4byte 2
 	.4byte 3
 	.4byte 0
-lbl_804B0C8C:
+.endobj UfoMenuResult__Q22og6Screen
+.obj lbl_804B0C8C, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>"
-lbl_804B0C98:
+.endobj lbl_804B0C8C
+.obj lbl_804B0C98, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg
-lbl_804B0CA4:
+.endobj lbl_804B0C98
+.obj lbl_804B0CA4, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdloadGameSystem__Q24Game15BaseGameSectionFv
-lbl_804B0CB0:
+.endobj lbl_804B0CA4
+.obj lbl_804B0CB0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
-lbl_804B0CBC:
+.endobj lbl_804B0CB0
+.obj lbl_804B0CBC, local
 	.4byte 0x00000000
 	.4byte 0x000000B0
 	.4byte 0x00000000
-lbl_804B0CC8:
+.endobj lbl_804B0CBC
+.obj lbl_804B0CC8, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte "changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<f>"
-lbl_804B0CD4:
+.endobj lbl_804B0CC8
+.obj lbl_804B0CD4, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte setupFixMemory_dvdload__Q24Game15BaseGameSectionFv
-.global "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"
-"__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>":
+.endobj lbl_804B0CD4
+.obj "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>Fv"
-.global __vt__15ModelEffectData
-__vt__15ModelEffectData:
+.endobj "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"
+.obj __vt__15ModelEffectData, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__15ModelEffectDataFv
@@ -266,88 +334,36 @@ __vt__15ModelEffectData:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__10Controller
-__vt__10Controller:
+.endobj __vt__15ModelEffectData
+.obj __vt__10Controller, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__10ControllerFv
-.global __vt__27PikiCond_ExceptChappyPikmin
-__vt__27PikiCond_ExceptChappyPikmin:
+.endobj __vt__10Controller
+.obj __vt__27PikiCond_ExceptChappyPikmin, weak
 	.4byte 0
 	.4byte 0
 	.4byte satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-.global __vt__Q26PikiAI19ActFormationInitArg
-__vt__Q26PikiAI19ActFormationInitArg:
+.endobj __vt__27PikiCond_ExceptChappyPikmin
+.skip 0x24
+.obj __vt__Q26PikiAI19ActFormationInitArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q26PikiAI17CreatureActionArgFv
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-.global "__vt__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>"
-"__vt__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>":
+.endobj __vt__Q26PikiAI19ActFormationInitArg
+.skip 0x98
+.obj "__vt__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>FR10Vector3<f>"
-.global "__vt__25IDelegate1<R10Vector3<f>>"
-"__vt__25IDelegate1<R10Vector3<f>>":
+.endobj "__vt__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>"
+.obj "__vt__25IDelegate1<R10Vector3<f>>", weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-.global "__vt__17Container<5Plane>"
-"__vt__17Container<5Plane>":
+.endobj "__vt__25IDelegate1<R10Vector3<f>>"
+.skip 0x20
+.obj "__vt__17Container<5Plane>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__17Container<5Plane>Fv"
@@ -359,8 +375,8 @@ __vt__Q26PikiAI19ActFormationInitArg:
 	.4byte 0
 	.4byte "getAt__17Container<5Plane>Fi"
 	.4byte "getTo__17Container<5Plane>Fv"
-.global "__vt__22ArrayContainer<5Plane>"
-"__vt__22ArrayContainer<5Plane>":
+.endobj "__vt__17Container<5Plane>"
+.obj "__vt__22ArrayContainer<5Plane>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__22ArrayContainer<5Plane>Fv"
@@ -379,8 +395,8 @@ __vt__Q26PikiAI19ActFormationInitArg:
 	.4byte "alloc__22ArrayContainer<5Plane>Fi"
 	.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
 	.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
-.global __vt__9CullPlane
-__vt__9CullPlane:
+.endobj "__vt__22ArrayContainer<5Plane>"
+.obj __vt__9CullPlane, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__9CullPlaneFv
@@ -399,28 +415,28 @@ __vt__9CullPlane:
 	.4byte "alloc__22ArrayContainer<5Plane>Fi"
 	.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
 	.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
-.global "__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"
-"__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>":
+.endobj __vt__9CullPlane
+.obj "__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>FPQ24Game11MovieConfigUlUl"
-.global "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"
-"__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>":
+.endobj "__vt__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>"
+.obj "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>", weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global "__vt__34Delegate<Q24Game15BaseGameSection>"
-"__vt__34Delegate<Q24Game15BaseGameSection>":
+.endobj "__vt__39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>"
+.obj "__vt__34Delegate<Q24Game15BaseGameSection>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__34Delegate<Q24Game15BaseGameSection>Fv"
-.global __vt__9IDelegate
-__vt__9IDelegate:
+.endobj "__vt__34Delegate<Q24Game15BaseGameSection>"
+.obj __vt__9IDelegate, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q24Game15BaseGameSection
-__vt__Q24Game15BaseGameSection:
+.endobj __vt__9IDelegate
+.obj __vt__Q24Game15BaseGameSection, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game15BaseGameSectionFv
@@ -498,26 +514,27 @@ __vt__Q24Game15BaseGameSection:
 	.4byte onSetSoundScene__Q24Game15BaseGameSectionFv
 	.4byte onStartHeap__Q24Game15BaseGameSectionFv
 	.4byte onClearHeap__Q24Game15BaseGameSectionFv
-.global "__vt__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>"
-"__vt__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>":
+.endobj __vt__Q24Game15BaseGameSection
+.obj "__vt__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>FPQ24Game9CameraArg"
-.global "__vt__30IDelegate1<PQ24Game9CameraArg>"
-"__vt__30IDelegate1<PQ24Game9CameraArg>":
+.endobj "__vt__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>"
+.obj "__vt__30IDelegate1<PQ24Game9CameraArg>", weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>"
-"__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>":
+.endobj "__vt__30IDelegate1<PQ24Game9CameraArg>"
+.obj "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>FR7Rect<f>"
-.global "__vt__21IDelegate1<R7Rect<f>>"
-"__vt__21IDelegate1<R7Rect<f>>":
+.endobj "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>"
+.obj "__vt__21IDelegate1<R7Rect<f>>", weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
+.endobj "__vt__21IDelegate1<R7Rect<f>>"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -749,8 +766,7 @@ __vt__Q24Game15BaseGameSection:
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
-.global __ct__Q24Game15BaseGameSectionFP7JKRHeap
-__ct__Q24Game15BaseGameSectionFP7JKRHeap:
+.fn __ct__Q24Game15BaseGameSectionFP7JKRHeap, global
 /* 8014ADA0 00147CE0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014ADA4 00147CE4  7C 08 02 A6 */	mflr r0
 /* 8014ADA8 00147CE8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -892,9 +908,9 @@ __ct__Q24Game15BaseGameSectionFP7JKRHeap:
 /* 8014AFB0 00147EF0  7C 08 03 A6 */	mtlr r0
 /* 8014AFB4 00147EF4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014AFB8 00147EF8  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15BaseGameSectionFP7JKRHeap
 .else
-.global __ct__Q24Game15BaseGameSectionFP7JKRHeap
-__ct__Q24Game15BaseGameSectionFP7JKRHeap:
+.fn __ct__Q24Game15BaseGameSectionFP7JKRHeap, global
 /* 8014ADA0 00147CE0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014ADA4 00147CE4  7C 08 02 A6 */	mflr r0
 /* 8014ADA8 00147CE8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1036,10 +1052,10 @@ __ct__Q24Game15BaseGameSectionFP7JKRHeap:
 /* 8014AFB0 00147EF0  7C 08 03 A6 */	mtlr r0
 /* 8014AFB4 00147EF4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014AFB8 00147EF8  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game15BaseGameSectionFP7JKRHeap
 .endif
 
-.global __dt__11WipeInFaderFv
-__dt__11WipeInFaderFv:
+.fn __dt__11WipeInFaderFv, weak
 /* 8014AFBC 00147EFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014AFC0 00147F00  7C 08 02 A6 */	mflr r0
 /* 8014AFC4 00147F04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1070,9 +1086,9 @@ __dt__11WipeInFaderFv:
 /* 8014B020 00147F60  7C 08 03 A6 */	mtlr r0
 /* 8014B024 00147F64  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B028 00147F68  4E 80 00 20 */	blr 
+.endfn __dt__11WipeInFaderFv
 
-.global __dt__12WipeOutFaderFv
-__dt__12WipeOutFaderFv:
+.fn __dt__12WipeOutFaderFv, weak
 /* 8014B02C 00147F6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B030 00147F70  7C 08 02 A6 */	mflr r0
 /* 8014B034 00147F74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1103,9 +1119,9 @@ __dt__12WipeOutFaderFv:
 /* 8014B090 00147FD0  7C 08 03 A6 */	mtlr r0
 /* 8014B094 00147FD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B098 00147FD8  4E 80 00 20 */	blr 
+.endfn __dt__12WipeOutFaderFv
 
-.global __dt__8WipeBaseFv
-__dt__8WipeBaseFv:
+.fn __dt__8WipeBaseFv, weak
 /* 8014B09C 00147FDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B0A0 00147FE0  7C 08 02 A6 */	mflr r0
 /* 8014B0A4 00147FE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1131,10 +1147,10 @@ __dt__8WipeBaseFv:
 /* 8014B0F0 00148030  7C 08 03 A6 */	mtlr r0
 /* 8014B0F4 00148034  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B0F8 00148038  4E 80 00 20 */	blr 
+.endfn __dt__8WipeBaseFv
 
 .if version == 1
-.global useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture
-useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture:
+.fn useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture, global
 /* 8014B0FC 0014803C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B100 00148040  7C 08 02 A6 */	mflr r0
 /* 8014B104 00148044  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1165,9 +1181,9 @@ useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture:
 /* 8014B164 001480A4  7C 08 03 A6 */	mtlr r0
 /* 8014B168 001480A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B16C 001480AC  4E 80 00 20 */	blr 
+.endfn useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture
 .else
-.global useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture
-useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture:
+.fn useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture, global
 /* 8014B0FC 0014803C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B100 00148040  7C 08 02 A6 */	mflr r0
 /* 8014B104 00148044  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1198,11 +1214,11 @@ useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture:
 /* 8014B164 001480A4  7C 08 03 A6 */	mtlr r0
 /* 8014B168 001480A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B16C 001480AC  4E 80 00 20 */	blr 
+.endfn useSpecificFBTexture__Q24Game15BaseGameSectionFP10JUTTexture
 .endif
 
 .if version == 1
-.global restoreFBTexture__Q24Game15BaseGameSectionFv
-restoreFBTexture__Q24Game15BaseGameSectionFv:
+.fn restoreFBTexture__Q24Game15BaseGameSectionFv, global
 /* 8014B170 001480B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B174 001480B4  7C 08 02 A6 */	mflr r0
 /* 8014B178 001480B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1231,9 +1247,9 @@ restoreFBTexture__Q24Game15BaseGameSectionFv:
 /* 8014B1D0 00148110  7C 08 03 A6 */	mtlr r0
 /* 8014B1D4 00148114  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B1D8 00148118  4E 80 00 20 */	blr 
+.endfn restoreFBTexture__Q24Game15BaseGameSectionFv
 .else
-.global restoreFBTexture__Q24Game15BaseGameSectionFv
-restoreFBTexture__Q24Game15BaseGameSectionFv:
+.fn restoreFBTexture__Q24Game15BaseGameSectionFv, global
 /* 8014B170 001480B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B174 001480B4  7C 08 02 A6 */	mflr r0
 /* 8014B178 001480B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1262,11 +1278,11 @@ restoreFBTexture__Q24Game15BaseGameSectionFv:
 /* 8014B1D0 00148110  7C 08 03 A6 */	mtlr r0
 /* 8014B1D4 00148114  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B1D8 00148118  4E 80 00 20 */	blr 
+.endfn restoreFBTexture__Q24Game15BaseGameSectionFv
 .endif
 
 .if version == 1
-.global __dt__Q24Game15BaseGameSectionFv
-__dt__Q24Game15BaseGameSectionFv:
+.fn __dt__Q24Game15BaseGameSectionFv, global
 /* 8014B1DC 0014811C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014B1E0 00148120  7C 08 02 A6 */	mflr r0
 /* 8014B1E4 00148124  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1340,9 +1356,9 @@ __dt__Q24Game15BaseGameSectionFv:
 /* 8014B2E4 00148224  7C 08 03 A6 */	mtlr r0
 /* 8014B2E8 00148228  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014B2EC 0014822C  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game15BaseGameSectionFv
 .else
-.global __dt__Q24Game15BaseGameSectionFv
-__dt__Q24Game15BaseGameSectionFv:
+.fn __dt__Q24Game15BaseGameSectionFv, global
 /* 8014B1DC 0014811C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014B1E0 00148120  7C 08 02 A6 */	mflr r0
 /* 8014B1E4 00148124  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1416,11 +1432,11 @@ __dt__Q24Game15BaseGameSectionFv:
 /* 8014B2E4 00148224  7C 08 03 A6 */	mtlr r0
 /* 8014B2E8 00148228  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014B2EC 0014822C  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game15BaseGameSectionFv
 .endif
 
 .if version == 1
-.global loadSync__Q24Game15BaseGameSectionFP9IDelegateb
-loadSync__Q24Game15BaseGameSectionFP9IDelegateb:
+.fn loadSync__Q24Game15BaseGameSectionFP9IDelegateb, global
 /* 8014B2F0 00148230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B2F4 00148234  7C 08 02 A6 */	mflr r0
 /* 8014B2F8 00148238  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1441,9 +1457,9 @@ loadSync__Q24Game15BaseGameSectionFP9IDelegateb:
 /* 8014B334 00148274  7C 08 03 A6 */	mtlr r0
 /* 8014B338 00148278  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B33C 0014827C  4E 80 00 20 */	blr 
+.endfn loadSync__Q24Game15BaseGameSectionFP9IDelegateb
 .else
-.global loadSync__Q24Game15BaseGameSectionFP9IDelegateb
-loadSync__Q24Game15BaseGameSectionFP9IDelegateb:
+.fn loadSync__Q24Game15BaseGameSectionFP9IDelegateb, global
 /* 8014B2F0 00148230  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B2F4 00148234  7C 08 02 A6 */	mflr r0
 /* 8014B2F8 00148238  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1464,11 +1480,11 @@ loadSync__Q24Game15BaseGameSectionFP9IDelegateb:
 /* 8014B334 00148274  7C 08 03 A6 */	mtlr r0
 /* 8014B338 00148278  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B33C 0014827C  4E 80 00 20 */	blr 
+.endfn loadSync__Q24Game15BaseGameSectionFP9IDelegateb
 .endif
 
 .if version == 1
-.global waitSyncLoad__Q24Game15BaseGameSectionFb
-waitSyncLoad__Q24Game15BaseGameSectionFb:
+.fn waitSyncLoad__Q24Game15BaseGameSectionFb, global
 /* 8014B340 00148280  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014B344 00148284  7C 08 02 A6 */	mflr r0
 /* 8014B348 00148288  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1546,9 +1562,9 @@ waitSyncLoad__Q24Game15BaseGameSectionFb:
 /* 8014B454 00148394  7C 08 03 A6 */	mtlr r0
 /* 8014B458 00148398  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014B45C 0014839C  4E 80 00 20 */	blr 
+.endfn waitSyncLoad__Q24Game15BaseGameSectionFb
 .else
-.global waitSyncLoad__Q24Game15BaseGameSectionFb
-waitSyncLoad__Q24Game15BaseGameSectionFb:
+.fn waitSyncLoad__Q24Game15BaseGameSectionFb, global
 /* 8014B340 00148280  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014B344 00148284  7C 08 02 A6 */	mflr r0
 /* 8014B348 00148288  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1626,10 +1642,10 @@ waitSyncLoad__Q24Game15BaseGameSectionFb:
 /* 8014B454 00148394  7C 08 03 A6 */	mtlr r0
 /* 8014B458 00148398  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014B45C 0014839C  4E 80 00 20 */	blr 
+.endfn waitSyncLoad__Q24Game15BaseGameSectionFb
 .endif
 
-.global dvdloadGameSystem__Q24Game15BaseGameSectionFv
-dvdloadGameSystem__Q24Game15BaseGameSectionFv:
+.fn dvdloadGameSystem__Q24Game15BaseGameSectionFv, global
 /* 8014B460 001483A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B464 001483A4  7C 08 02 A6 */	mflr r0
 /* 8014B468 001483A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1651,10 +1667,10 @@ dvdloadGameSystem__Q24Game15BaseGameSectionFv:
 /* 8014B4A4 001483E4  7C 08 03 A6 */	mtlr r0
 /* 8014B4A8 001483E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B4AC 001483EC  4E 80 00 20 */	blr 
+.endfn dvdloadGameSystem__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global init__Q24Game15BaseGameSectionFv
-init__Q24Game15BaseGameSectionFv:
+.fn init__Q24Game15BaseGameSectionFv, global
 /* 8014B4B0 001483F0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8014B4B4 001483F4  7C 08 02 A6 */	mflr r0
 /* 8014B4B8 001483F8  38 A0 00 00 */	li r5, 0
@@ -1890,9 +1906,9 @@ init__Q24Game15BaseGameSectionFv:
 /* 8014B834 00148774  7C 08 03 A6 */	mtlr r0
 /* 8014B838 00148778  38 21 00 60 */	addi r1, r1, 0x60
 /* 8014B83C 0014877C  4E 80 00 20 */	blr 
+.endfn init__Q24Game15BaseGameSectionFv
 .else
-.global init__Q24Game15BaseGameSectionFv
-init__Q24Game15BaseGameSectionFv:
+.fn init__Q24Game15BaseGameSectionFv, global
 /* 8014B4B0 001483F0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8014B4B4 001483F4  7C 08 02 A6 */	mflr r0
 /* 8014B4B8 001483F8  38 A0 00 00 */	li r5, 0
@@ -2128,14 +2144,14 @@ init__Q24Game15BaseGameSectionFv:
 /* 8014B834 00148774  7C 08 03 A6 */	mtlr r0
 /* 8014B838 00148778  38 21 00 60 */	addi r1, r1, 0x60
 /* 8014B83C 0014877C  4E 80 00 20 */	blr 
+.endfn init__Q24Game15BaseGameSectionFv
 .endif
 
-.global onInit__Q24Game15BaseGameSectionFv
-onInit__Q24Game15BaseGameSectionFv:
+.fn onInit__Q24Game15BaseGameSectionFv, weak
 /* 8014B840 00148780  4E 80 00 20 */	blr 
+.endfn onInit__Q24Game15BaseGameSectionFv
 
-.global drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode
-drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode:
+.fn drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode, global
 /* 8014B844 00148784  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014B848 00148788  7C 08 02 A6 */	mflr r0
 /* 8014B84C 0014878C  2C 05 00 02 */	cmpwi r5, 2
@@ -2150,14 +2166,14 @@ drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode:
 /* 8014B86C 001487AC  7C 08 03 A6 */	mtlr r0
 /* 8014B870 001487B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014B874 001487B4  4E 80 00 20 */	blr 
+.endfn drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode
 
-.global section_fadeout__Q24Game15BaseGameSectionFv
-section_fadeout__Q24Game15BaseGameSectionFv:
+.fn section_fadeout__Q24Game15BaseGameSectionFv, weak
 /* 8014B878 001487B8  4E 80 00 20 */	blr 
+.endfn section_fadeout__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global doUpdate__Q24Game15BaseGameSectionFv
-doUpdate__Q24Game15BaseGameSectionFv:
+.fn doUpdate__Q24Game15BaseGameSectionFv, global
 /* 8014B87C 001487BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014B880 001487C0  7C 08 02 A6 */	mflr r0
 /* 8014B884 001487C4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2411,9 +2427,9 @@ doUpdate__Q24Game15BaseGameSectionFv:
 /* 8014BC18 00148B58  7C 08 03 A6 */	mtlr r0
 /* 8014BC1C 00148B5C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014BC20 00148B60  4E 80 00 20 */	blr 
+.endfn doUpdate__Q24Game15BaseGameSectionFv
 .else
-.global doUpdate__Q24Game15BaseGameSectionFv
-doUpdate__Q24Game15BaseGameSectionFv:
+.fn doUpdate__Q24Game15BaseGameSectionFv, global
 /* 8014B87C 001487BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014B880 001487C0  7C 08 02 A6 */	mflr r0
 /* 8014B884 001487C4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2667,15 +2683,15 @@ doUpdate__Q24Game15BaseGameSectionFv:
 /* 8014BC18 00148B58  7C 08 03 A6 */	mtlr r0
 /* 8014BC1C 00148B5C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014BC20 00148B60  4E 80 00 20 */	blr 
+.endfn doUpdate__Q24Game15BaseGameSectionFv
 .endif
 
-.global onUpdate__Q24Game15BaseGameSectionFv
-onUpdate__Q24Game15BaseGameSectionFv:
+.fn onUpdate__Q24Game15BaseGameSectionFv, weak
 /* 8014BC24 00148B64  4E 80 00 20 */	blr 
+.endfn onUpdate__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global doDraw__Q24Game15BaseGameSectionFR8Graphics
-doDraw__Q24Game15BaseGameSectionFR8Graphics:
+.fn doDraw__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014BC28 00148B68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014BC2C 00148B6C  7C 08 02 A6 */	mflr r0
 /* 8014BC30 00148B70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2773,9 +2789,9 @@ doDraw__Q24Game15BaseGameSectionFR8Graphics:
 /* 8014BD8C 00148CCC  7C 08 03 A6 */	mtlr r0
 /* 8014BD90 00148CD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014BD94 00148CD4  4E 80 00 20 */	blr 
+.endfn doDraw__Q24Game15BaseGameSectionFR8Graphics
 .else
-.global doDraw__Q24Game15BaseGameSectionFR8Graphics
-doDraw__Q24Game15BaseGameSectionFR8Graphics:
+.fn doDraw__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014BC28 00148B68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014BC2C 00148B6C  7C 08 02 A6 */	mflr r0
 /* 8014BC30 00148B70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2873,15 +2889,15 @@ doDraw__Q24Game15BaseGameSectionFR8Graphics:
 /* 8014BD8C 00148CCC  7C 08 03 A6 */	mtlr r0
 /* 8014BD90 00148CD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014BD94 00148CD4  4E 80 00 20 */	blr 
+.endfn doDraw__Q24Game15BaseGameSectionFR8Graphics
 .endif
 
-.global pre2dDraw__Q24Game15BaseGameSectionFR8Graphics
-pre2dDraw__Q24Game15BaseGameSectionFR8Graphics:
+.fn pre2dDraw__Q24Game15BaseGameSectionFR8Graphics, weak
 /* 8014BD98 00148CD8  4E 80 00 20 */	blr 
+.endfn pre2dDraw__Q24Game15BaseGameSectionFR8Graphics
 
 .if version == 1
-.global movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
-movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl:
+.fn movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl, global
 /* 8014BD9C 00148CDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014BDA0 00148CE0  7C 08 02 A6 */	mflr r0
 /* 8014BDA4 00148CE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2913,9 +2929,9 @@ movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl:
 /* 8014BE08 00148D48  7C 08 03 A6 */	mtlr r0
 /* 8014BE0C 00148D4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014BE10 00148D50  4E 80 00 20 */	blr 
+.endfn movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
 .else
-.global movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
-movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl:
+.fn movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl, global
 /* 8014BD9C 00148CDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014BDA0 00148CE0  7C 08 02 A6 */	mflr r0
 /* 8014BDA4 00148CE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2947,14 +2963,14 @@ movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl:
 /* 8014BE08 00148D48  7C 08 03 A6 */	mtlr r0
 /* 8014BE0C 00148D4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014BE10 00148D50  4E 80 00 20 */	blr 
+.endfn movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
 .endif
 
-.global onMovieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
-onMovieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl:
+.fn onMovieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl, weak
 /* 8014BE14 00148D54  4E 80 00 20 */	blr 
+.endfn onMovieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
 
-.global onMovieCommand__Q24Game15BaseGameSectionFi
-onMovieCommand__Q24Game15BaseGameSectionFi:
+.fn onMovieCommand__Q24Game15BaseGameSectionFi, global
 /* 8014BE18 00148D58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014BE1C 00148D5C  7C 08 02 A6 */	mflr r0
 /* 8014BE20 00148D60  2C 04 00 02 */	cmpwi r4, 2
@@ -2994,10 +3010,10 @@ onMovieCommand__Q24Game15BaseGameSectionFi:
 /* 8014BE98 00148DD8  7C 08 03 A6 */	mtlr r0
 /* 8014BE9C 00148DDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014BEA0 00148DE0  4E 80 00 20 */	blr 
+.endfn onMovieCommand__Q24Game15BaseGameSectionFi
 
 .if version == 1
-.global initJ3D__Q24Game15BaseGameSectionFv
-initJ3D__Q24Game15BaseGameSectionFv:
+.fn initJ3D__Q24Game15BaseGameSectionFv, global
 /* 8014BEA4 00148DE4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8014BEA8 00148DE8  7C 08 02 A6 */	mflr r0
 /* 8014BEAC 00148DEC  3C 80 80 48 */	lis r4, lbl_8047C948@ha
@@ -3276,9 +3292,9 @@ initJ3D__Q24Game15BaseGameSectionFv:
 /* 8014C2E8 00149228  7C 08 03 A6 */	mtlr r0
 /* 8014C2EC 0014922C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8014C2F0 00149230  4E 80 00 20 */	blr 
+.endfn initJ3D__Q24Game15BaseGameSectionFv
 .else
-.global initJ3D__Q24Game15BaseGameSectionFv
-initJ3D__Q24Game15BaseGameSectionFv:
+.fn initJ3D__Q24Game15BaseGameSectionFv, global
 /* 8014BEA4 00148DE4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8014BEA8 00148DE8  7C 08 02 A6 */	mflr r0
 /* 8014BEAC 00148DEC  3C 80 80 48 */	lis r4, lbl_8047C948@ha
@@ -3557,10 +3573,10 @@ initJ3D__Q24Game15BaseGameSectionFv:
 /* 8014C2E8 00149228  7C 08 03 A6 */	mtlr r0
 /* 8014C2EC 0014922C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8014C2F0 00149230  4E 80 00 20 */	blr 
+.endfn initJ3D__Q24Game15BaseGameSectionFv
 .endif
 
-.global initResources__Q24Game15BaseGameSectionFv
-initResources__Q24Game15BaseGameSectionFv:
+.fn initResources__Q24Game15BaseGameSectionFv, global
 /* 8014C2F4 00149234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014C2F8 00149238  7C 08 02 A6 */	mflr r0
 /* 8014C2FC 0014923C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3574,10 +3590,10 @@ initResources__Q24Game15BaseGameSectionFv:
 /* 8014C31C 0014925C  7C 08 03 A6 */	mtlr r0
 /* 8014C320 00149260  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014C324 00149264  4E 80 00 20 */	blr 
+.endfn initResources__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global initViewports__Q24Game15BaseGameSectionFR8Graphics
-initViewports__Q24Game15BaseGameSectionFR8Graphics:
+.fn initViewports__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014C328 00149268  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8014C32C 0014926C  7C 08 02 A6 */	mflr r0
 /* 8014C330 00149270  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3702,9 +3718,9 @@ initViewports__Q24Game15BaseGameSectionFR8Graphics:
 /* 8014C500 00149440  7C 08 03 A6 */	mtlr r0
 /* 8014C504 00149444  38 21 00 40 */	addi r1, r1, 0x40
 /* 8014C508 00149448  4E 80 00 20 */	blr 
+.endfn initViewports__Q24Game15BaseGameSectionFR8Graphics
 .else
-.global initViewports__Q24Game15BaseGameSectionFR8Graphics
-initViewports__Q24Game15BaseGameSectionFR8Graphics:
+.fn initViewports__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014C328 00149268  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8014C32C 0014926C  7C 08 02 A6 */	mflr r0
 /* 8014C330 00149270  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3829,10 +3845,10 @@ initViewports__Q24Game15BaseGameSectionFR8Graphics:
 /* 8014C500 00149440  7C 08 03 A6 */	mtlr r0
 /* 8014C504 00149444  38 21 00 40 */	addi r1, r1, 0x40
 /* 8014C508 00149448  4E 80 00 20 */	blr 
+.endfn initViewports__Q24Game15BaseGameSectionFR8Graphics
 .endif
 
-.global __dt__12LookAtCameraFv
-__dt__12LookAtCameraFv:
+.fn __dt__12LookAtCameraFv, weak
 /* 8014C50C 0014944C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014C510 00149450  7C 08 02 A6 */	mflr r0
 /* 8014C514 00149454  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3883,10 +3899,10 @@ __dt__12LookAtCameraFv:
 /* 8014C5C0 00149500  7C 08 03 A6 */	mtlr r0
 /* 8014C5C4 00149504  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014C5C8 00149508  4E 80 00 20 */	blr 
+.endfn __dt__12LookAtCameraFv
 
 .if version == 1
-.global initGenerators__Q24Game15BaseGameSectionFv
-initGenerators__Q24Game15BaseGameSectionFv:
+.fn initGenerators__Q24Game15BaseGameSectionFv, global
 /* 8014C5CC 0014950C  94 21 E3 60 */	stwu r1, -0x1ca0(r1)
 /* 8014C5D0 00149510  7C 08 02 A6 */	mflr r0
 /* 8014C5D4 00149514  90 01 1C A4 */	stw r0, 0x1ca4(r1)
@@ -5041,9 +5057,9 @@ initGenerators__Q24Game15BaseGameSectionFv:
 /* 8014D6E0 0014A620  7C 08 03 A6 */	mtlr r0
 /* 8014D6E4 0014A624  38 21 1C A0 */	addi r1, r1, 0x1ca0
 /* 8014D6E8 0014A628  4E 80 00 20 */	blr 
+.endfn initGenerators__Q24Game15BaseGameSectionFv
 .else
-.global initGenerators__Q24Game15BaseGameSectionFv
-initGenerators__Q24Game15BaseGameSectionFv:
+.fn initGenerators__Q24Game15BaseGameSectionFv, global
 /* 8014C5CC 0014950C  94 21 E3 60 */	stwu r1, -0x1ca0(r1)
 /* 8014C5D0 00149510  7C 08 02 A6 */	mflr r0
 /* 8014C5D4 00149514  90 01 1C A4 */	stw r0, 0x1ca4(r1)
@@ -6198,10 +6214,10 @@ initGenerators__Q24Game15BaseGameSectionFv:
 /* 8014D6E0 0014A620  7C 08 03 A6 */	mtlr r0
 /* 8014D6E4 0014A624  38 21 1C A0 */	addi r1, r1, 0x1ca0
 /* 8014D6E8 0014A628  4E 80 00 20 */	blr 
+.endfn initGenerators__Q24Game15BaseGameSectionFv
 .endif
 
-.global advanceDayCount__Q24Game15BaseGameSectionFv
-advanceDayCount__Q24Game15BaseGameSectionFv:
+.fn advanceDayCount__Q24Game15BaseGameSectionFv, global
 /* 8014D6EC 0014A62C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014D6F0 0014A630  7C 08 02 A6 */	mflr r0
 /* 8014D6F4 0014A634  3C 60 88 89 */	lis r3, 0x88888889@ha
@@ -6245,9 +6261,9 @@ advanceDayCount__Q24Game15BaseGameSectionFv:
 /* 8014D784 0014A6C4  7C 08 03 A6 */	mtlr r0
 /* 8014D788 0014A6C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014D78C 0014A6CC  4E 80 00 20 */	blr 
+.endfn advanceDayCount__Q24Game15BaseGameSectionFv
 
-.global saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
-saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo:
+.fn saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo, global
 /* 8014D790 0014A6D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014D794 0014A6D4  7C 08 02 A6 */	mflr r0
 /* 8014D798 0014A6D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6308,10 +6324,10 @@ saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo:
 /* 8014D858 0014A798  7C 08 03 A6 */	mtlr r0
 /* 8014D85C 0014A79C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014D860 0014A7A0  4E 80 00 20 */	blr 
+.endfn saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
 
 .if version == 1
-.global pmTogglePlayer__Q24Game15BaseGameSectionFv
-pmTogglePlayer__Q24Game15BaseGameSectionFv:
+.fn pmTogglePlayer__Q24Game15BaseGameSectionFv, global
 /* 8014D864 0014A7A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014D868 0014A7A8  7C 08 02 A6 */	mflr r0
 /* 8014D86C 0014A7AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6357,9 +6373,9 @@ pmTogglePlayer__Q24Game15BaseGameSectionFv:
 /* 8014D904 0014A844  7C 08 03 A6 */	mtlr r0
 /* 8014D908 0014A848  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014D90C 0014A84C  4E 80 00 20 */	blr 
+.endfn pmTogglePlayer__Q24Game15BaseGameSectionFv
 .else
-.global pmTogglePlayer__Q24Game15BaseGameSectionFv
-pmTogglePlayer__Q24Game15BaseGameSectionFv:
+.fn pmTogglePlayer__Q24Game15BaseGameSectionFv, global
 /* 8014D864 0014A7A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014D868 0014A7A8  7C 08 02 A6 */	mflr r0
 /* 8014D86C 0014A7AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6405,19 +6421,19 @@ pmTogglePlayer__Q24Game15BaseGameSectionFv:
 /* 8014D904 0014A844  7C 08 03 A6 */	mtlr r0
 /* 8014D908 0014A848  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014D90C 0014A84C  4E 80 00 20 */	blr 
+.endfn pmTogglePlayer__Q24Game15BaseGameSectionFv
 .endif
 
-.global onTogglePlayer__Q24Game15BaseGameSectionFv
-onTogglePlayer__Q24Game15BaseGameSectionFv:
+.fn onTogglePlayer__Q24Game15BaseGameSectionFv, weak
 /* 8014D910 0014A850  4E 80 00 20 */	blr 
+.endfn onTogglePlayer__Q24Game15BaseGameSectionFv
 
-.global onPlayerJoin__Q24Game15BaseGameSectionFv
-onPlayerJoin__Q24Game15BaseGameSectionFv:
+.fn onPlayerJoin__Q24Game15BaseGameSectionFv, weak
 /* 8014D914 0014A854  4E 80 00 20 */	blr 
+.endfn onPlayerJoin__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global setPlayerMode__Q24Game15BaseGameSectionFi
-setPlayerMode__Q24Game15BaseGameSectionFi:
+.fn setPlayerMode__Q24Game15BaseGameSectionFi, global
 /* 8014D918 0014A858  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014D91C 0014A85C  7C 08 02 A6 */	mflr r0
 /* 8014D920 0014A860  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6600,9 +6616,9 @@ setPlayerMode__Q24Game15BaseGameSectionFi:
 /* 8014DBC4 0014AB04  7C 08 03 A6 */	mtlr r0
 /* 8014DBC8 0014AB08  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014DBCC 0014AB0C  4E 80 00 20 */	blr 
+.endfn setPlayerMode__Q24Game15BaseGameSectionFi
 .else
-.global setPlayerMode__Q24Game15BaseGameSectionFi
-setPlayerMode__Q24Game15BaseGameSectionFi:
+.fn setPlayerMode__Q24Game15BaseGameSectionFi, global
 /* 8014D918 0014A858  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014D91C 0014A85C  7C 08 02 A6 */	mflr r0
 /* 8014D920 0014A860  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6785,14 +6801,14 @@ setPlayerMode__Q24Game15BaseGameSectionFi:
 /* 8014DBC4 0014AB04  7C 08 03 A6 */	mtlr r0
 /* 8014DBC8 0014AB08  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014DBCC 0014AB0C  4E 80 00 20 */	blr 
+.endfn setPlayerMode__Q24Game15BaseGameSectionFi
 .endif
 
-.global split2__8SplitterFf
-split2__8SplitterFf:
+.fn split2__8SplitterFf, weak
 /* 8014DBD0 0014AB10  4E 80 00 20 */	blr 
+.endfn split2__8SplitterFf
 
-.global onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg
-onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg:
+.fn onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg, global
 /* 8014DBD4 0014AB14  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8014DBD8 0014AB18  7C 08 02 A6 */	mflr r0
 /* 8014DBDC 0014AB1C  3C 80 80 48 */	lis r4, lbl_8047C948@ha
@@ -6878,10 +6894,10 @@ onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg:
 /* 8014DD14 0014AC54  7C 08 03 A6 */	mtlr r0
 /* 8014DD18 0014AC58  38 21 00 50 */	addi r1, r1, 0x50
 /* 8014DD1C 0014AC5C  4E 80 00 20 */	blr 
+.endfn onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg
 
 .if version == 1
-.global setFixNearFar__Q24Game15BaseGameSectionFbff
-setFixNearFar__Q24Game15BaseGameSectionFbff:
+.fn setFixNearFar__Q24Game15BaseGameSectionFbff, global
 /* 8014DD20 0014AC60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014DD24 0014AC64  7C 08 02 A6 */	mflr r0
 /* 8014DD28 0014AC68  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6908,9 +6924,9 @@ setFixNearFar__Q24Game15BaseGameSectionFbff:
 /* 8014DD7C 0014ACBC  7C 08 03 A6 */	mtlr r0
 /* 8014DD80 0014ACC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014DD84 0014ACC4  4E 80 00 20 */	blr 
+.endfn setFixNearFar__Q24Game15BaseGameSectionFbff
 .else
-.global setFixNearFar__Q24Game15BaseGameSectionFbff
-setFixNearFar__Q24Game15BaseGameSectionFbff:
+.fn setFixNearFar__Q24Game15BaseGameSectionFbff, global
 /* 8014DD20 0014AC60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014DD24 0014AC64  7C 08 02 A6 */	mflr r0
 /* 8014DD28 0014AC68  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6937,11 +6953,11 @@ setFixNearFar__Q24Game15BaseGameSectionFbff:
 /* 8014DD7C 0014ACBC  7C 08 03 A6 */	mtlr r0
 /* 8014DD80 0014ACC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014DD84 0014ACC4  4E 80 00 20 */	blr 
+.endfn setFixNearFar__Q24Game15BaseGameSectionFbff
 .endif
 
 .if version == 1
-.global setCamController__Q24Game15BaseGameSectionFv
-setCamController__Q24Game15BaseGameSectionFv:
+.fn setCamController__Q24Game15BaseGameSectionFv, global
 /* 8014DD88 0014ACC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014DD8C 0014ACCC  7C 08 02 A6 */	mflr r0
 /* 8014DD90 0014ACD0  38 80 00 00 */	li r4, 0
@@ -7083,9 +7099,9 @@ setCamController__Q24Game15BaseGameSectionFv:
 /* 8014DF8C 0014AECC  7C 08 03 A6 */	mtlr r0
 /* 8014DF90 0014AED0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014DF94 0014AED4  4E 80 00 20 */	blr 
+.endfn setCamController__Q24Game15BaseGameSectionFv
 .else
-.global setCamController__Q24Game15BaseGameSectionFv
-setCamController__Q24Game15BaseGameSectionFv:
+.fn setCamController__Q24Game15BaseGameSectionFv, global
 /* 8014DD88 0014ACC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014DD8C 0014ACCC  7C 08 02 A6 */	mflr r0
 /* 8014DD90 0014ACD0  38 80 00 00 */	li r4, 0
@@ -7227,15 +7243,15 @@ setCamController__Q24Game15BaseGameSectionFv:
 /* 8014DF8C 0014AECC  7C 08 03 A6 */	mtlr r0
 /* 8014DF90 0014AED0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014DF94 0014AED4  4E 80 00 20 */	blr 
+.endfn setCamController__Q24Game15BaseGameSectionFv
 .endif
 
-.global on_setCamController__Q24Game15BaseGameSectionFi
-on_setCamController__Q24Game15BaseGameSectionFi:
+.fn on_setCamController__Q24Game15BaseGameSectionFi, weak
 /* 8014DF98 0014AED8  4E 80 00 20 */	blr 
+.endfn on_setCamController__Q24Game15BaseGameSectionFi
 
 .if version == 1
-.global setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo
-setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo:
+.fn setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo, global
 /* 8014DF9C 0014AEDC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014DFA0 0014AEE0  7C 08 02 A6 */	mflr r0
 /* 8014DFA4 0014AEE4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -7335,9 +7351,9 @@ setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo:
 /* 8014E114 0014B054  7C 08 03 A6 */	mtlr r0
 /* 8014E118 0014B058  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014E11C 0014B05C  4E 80 00 20 */	blr 
+.endfn setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo
 .else
-.global setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo
-setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo:
+.fn setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo, global
 /* 8014DF9C 0014AEDC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014DFA0 0014AEE0  7C 08 02 A6 */	mflr r0
 /* 8014DFA4 0014AEE4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -7437,20 +7453,20 @@ setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo:
 /* 8014E114 0014B054  7C 08 03 A6 */	mtlr r0
 /* 8014E118 0014B058  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014E11C 0014B05C  4E 80 00 20 */	blr 
+.endfn setDefaultPSSceneInfo__Q24Game15BaseGameSectionFRQ26PSGame9SceneInfo
 .endif
 
-.global getSoundMatrixPtr__6CameraFv
-getSoundMatrixPtr__6CameraFv:
+.fn getSoundMatrixPtr__6CameraFv, weak
 /* 8014E120 0014B060  38 63 00 84 */	addi r3, r3, 0x84
 /* 8014E124 0014B064  4E 80 00 20 */	blr 
+.endfn getSoundMatrixPtr__6CameraFv
 
-.global getSoundPositionPtr__6CameraFv
-getSoundPositionPtr__6CameraFv:
+.fn getSoundPositionPtr__6CameraFv, weak
 /* 8014E128 0014B068  38 63 00 78 */	addi r3, r3, 0x78
 /* 8014E12C 0014B06C  4E 80 00 20 */	blr 
+.endfn getSoundPositionPtr__6CameraFv
 
-.global "prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3<f>b"
-"prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3<f>b":
+.fn "prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3<f>b", global
 /* 8014E130 0014B070  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8014E134 0014B074  7C 08 02 A6 */	mflr r0
 /* 8014E138 0014B078  90 01 00 84 */	stw r0, 0x84(r1)
@@ -7898,9 +7914,9 @@ getSoundPositionPtr__6CameraFv:
 /* 8014E7B0 0014B6F0  7C 08 03 A6 */	mtlr r0
 /* 8014E7B4 0014B6F4  38 21 00 80 */	addi r1, r1, 0x80
 /* 8014E7B8 0014B6F8  4E 80 00 20 */	blr 
+.endfn "prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3<f>b"
 
-.global "prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<f>"
-"prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<f>":
+.fn "prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<f>", global
 /* 8014E7BC 0014B6FC  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8014E7C0 0014B700  7C 08 02 A6 */	mflr r0
 /* 8014E7C4 0014B704  90 01 00 64 */	stw r0, 0x64(r1)
@@ -8387,10 +8403,10 @@ getSoundPositionPtr__6CameraFv:
 /* 8014EEC4 0014BE04  7C 08 03 A6 */	mtlr r0
 /* 8014EEC8 0014BE08  38 21 00 60 */	addi r1, r1, 0x60
 /* 8014EECC 0014BE0C  4E 80 00 20 */	blr 
+.endfn "prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3<f>"
 
 .if version == 1
-.global initLights__Q24Game15BaseGameSectionFv
-initLights__Q24Game15BaseGameSectionFv:
+.fn initLights__Q24Game15BaseGameSectionFv, global
 /* 8014EED0 0014BE10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014EED4 0014BE14  7C 08 02 A6 */	mflr r0
 /* 8014EED8 0014BE18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8421,9 +8437,9 @@ initLights__Q24Game15BaseGameSectionFv:
 /* 8014EF38 0014BE78  7C 08 03 A6 */	mtlr r0
 /* 8014EF3C 0014BE7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014EF40 0014BE80  4E 80 00 20 */	blr 
+.endfn initLights__Q24Game15BaseGameSectionFv
 .else
-.global initLights__Q24Game15BaseGameSectionFv
-initLights__Q24Game15BaseGameSectionFv:
+.fn initLights__Q24Game15BaseGameSectionFv, global
 /* 8014EED0 0014BE10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014EED4 0014BE14  7C 08 02 A6 */	mflr r0
 /* 8014EED8 0014BE18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8454,10 +8470,10 @@ initLights__Q24Game15BaseGameSectionFv:
 /* 8014EF38 0014BE78  7C 08 03 A6 */	mtlr r0
 /* 8014EF3C 0014BE7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014EF40 0014BE80  4E 80 00 20 */	blr 
+.endfn initLights__Q24Game15BaseGameSectionFv
 .endif
 
-.global draw3D__Q24Game15BaseGameSectionFR8Graphics
-draw3D__Q24Game15BaseGameSectionFR8Graphics:
+.fn draw3D__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014EF44 0014BE84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014EF48 0014BE88  7C 08 02 A6 */	mflr r0
 /* 8014EF4C 0014BE8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8466,10 +8482,10 @@ draw3D__Q24Game15BaseGameSectionFR8Graphics:
 /* 8014EF58 0014BE98  7C 08 03 A6 */	mtlr r0
 /* 8014EF5C 0014BE9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014EF60 0014BEA0  4E 80 00 20 */	blr 
+.endfn draw3D__Q24Game15BaseGameSectionFR8Graphics
 
 .if version == 1
-.global drawParticle__Q24Game15BaseGameSectionFR8Graphicsi
-drawParticle__Q24Game15BaseGameSectionFR8Graphicsi:
+.fn drawParticle__Q24Game15BaseGameSectionFR8Graphicsi, global
 /* 8014EF64 0014BEA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014EF68 0014BEA8  7C 08 02 A6 */	mflr r0
 /* 8014EF6C 0014BEAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8598,9 +8614,9 @@ drawParticle__Q24Game15BaseGameSectionFR8Graphicsi:
 /* 8014F12C 0014C06C  7C 08 03 A6 */	mtlr r0
 /* 8014F130 0014C070  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014F134 0014C074  4E 80 00 20 */	blr 
+.endfn drawParticle__Q24Game15BaseGameSectionFR8Graphicsi
 .else
-.global drawParticle__Q24Game15BaseGameSectionFR8Graphicsi
-drawParticle__Q24Game15BaseGameSectionFR8Graphicsi:
+.fn drawParticle__Q24Game15BaseGameSectionFR8Graphicsi, global
 /* 8014EF64 0014BEA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014EF68 0014BEA8  7C 08 02 A6 */	mflr r0
 /* 8014EF6C 0014BEAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8729,10 +8745,10 @@ drawParticle__Q24Game15BaseGameSectionFR8Graphicsi:
 /* 8014F12C 0014C06C  7C 08 03 A6 */	mtlr r0
 /* 8014F130 0014C070  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014F134 0014C074  4E 80 00 20 */	blr 
+.endfn drawParticle__Q24Game15BaseGameSectionFR8Graphicsi
 .endif
 
-.global draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics
-draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics:
+.fn draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014F138 0014C078  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F13C 0014C07C  7C 08 02 A6 */	mflr r0
 /* 8014F140 0014C080  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8773,14 +8789,14 @@ draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics:
 /* 8014F1CC 0014C10C  7C 08 03 A6 */	mtlr r0
 /* 8014F1D0 0014C110  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014F1D4 0014C114  4E 80 00 20 */	blr 
+.endfn draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics
 
-.global test_draw_treasure_detector__Q24Game15BaseGameSectionFv
-test_draw_treasure_detector__Q24Game15BaseGameSectionFv:
+.fn test_draw_treasure_detector__Q24Game15BaseGameSectionFv, global
 /* 8014F1D8 0014C118  4E 80 00 20 */	blr 
+.endfn test_draw_treasure_detector__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global draw2D__Q24Game15BaseGameSectionFR8Graphics
-draw2D__Q24Game15BaseGameSectionFR8Graphics:
+.fn draw2D__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014F1DC 0014C11C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8014F1E0 0014C120  7C 08 02 A6 */	mflr r0
 /* 8014F1E4 0014C124  3C A0 80 51 */	lis r5, j3dSys@ha
@@ -8894,9 +8910,9 @@ draw2D__Q24Game15BaseGameSectionFR8Graphics:
 /* 8014F38C 0014C2CC  7C 08 03 A6 */	mtlr r0
 /* 8014F390 0014C2D0  38 21 00 80 */	addi r1, r1, 0x80
 /* 8014F394 0014C2D4  4E 80 00 20 */	blr 
+.endfn draw2D__Q24Game15BaseGameSectionFR8Graphics
 .else
-.global draw2D__Q24Game15BaseGameSectionFR8Graphics
-draw2D__Q24Game15BaseGameSectionFR8Graphics:
+.fn draw2D__Q24Game15BaseGameSectionFR8Graphics, global
 /* 8014F1DC 0014C11C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8014F1E0 0014C120  7C 08 02 A6 */	mflr r0
 /* 8014F1E4 0014C124  3C A0 80 51 */	lis r5, j3dSys@ha
@@ -9010,11 +9026,11 @@ draw2D__Q24Game15BaseGameSectionFR8Graphics:
 /* 8014F38C 0014C2CC  7C 08 03 A6 */	mtlr r0
 /* 8014F390 0014C2D0  38 21 00 80 */	addi r1, r1, 0x80
 /* 8014F394 0014C2D4  4E 80 00 20 */	blr 
+.endfn draw2D__Q24Game15BaseGameSectionFR8Graphics
 .endif
 
 .if version == 1
-.global directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
-directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport:
+.fn directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport, global
 /* 8014F398 0014C2D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014F39C 0014C2DC  7C 08 02 A6 */	mflr r0
 /* 8014F3A0 0014C2E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9062,9 +9078,9 @@ directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport:
 /* 8014F444 0014C384  7C 08 03 A6 */	mtlr r0
 /* 8014F448 0014C388  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014F44C 0014C38C  4E 80 00 20 */	blr 
+.endfn directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
 .else
-.global directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
-directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport:
+.fn directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport, global
 /* 8014F398 0014C2D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014F39C 0014C2DC  7C 08 02 A6 */	mflr r0
 /* 8014F3A0 0014C2E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9112,10 +9128,10 @@ directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport:
 /* 8014F444 0014C384  7C 08 03 A6 */	mtlr r0
 /* 8014F448 0014C388  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014F44C 0014C38C  4E 80 00 20 */	blr 
+.endfn directDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
 .endif
 
-.global directDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
-directDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport:
+.fn directDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport, global
 /* 8014F450 0014C390  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014F454 0014C394  7C 08 02 A6 */	mflr r0
 /* 8014F458 0014C398  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9146,9 +9162,9 @@ directDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport:
 /* 8014F4BC 0014C3FC  7C 08 03 A6 */	mtlr r0
 /* 8014F4C0 0014C400  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014F4C4 0014C404  4E 80 00 20 */	blr 
+.endfn directDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
 
-.global j3dSetView__Q24Game15BaseGameSectionFP8Viewportb
-j3dSetView__Q24Game15BaseGameSectionFP8Viewportb:
+.fn j3dSetView__Q24Game15BaseGameSectionFP8Viewportb, global
 /* 8014F4C8 0014C408  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F4CC 0014C40C  7C 08 02 A6 */	mflr r0
 /* 8014F4D0 0014C410  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9170,9 +9186,9 @@ j3dSetView__Q24Game15BaseGameSectionFP8Viewportb:
 /* 8014F510 0014C450  7C 08 03 A6 */	mtlr r0
 /* 8014F514 0014C454  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014F518 0014C458  4E 80 00 20 */	blr 
+.endfn j3dSetView__Q24Game15BaseGameSectionFP8Viewportb
 
-.global doSimulation__Q24Game15BaseGameSectionFf
-doSimulation__Q24Game15BaseGameSectionFf:
+.fn doSimulation__Q24Game15BaseGameSectionFf, global
 /* 8014F51C 0014C45C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F520 0014C460  7C 08 02 A6 */	mflr r0
 /* 8014F524 0014C464  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9185,9 +9201,9 @@ doSimulation__Q24Game15BaseGameSectionFf:
 /* 8014F540 0014C480  7C 08 03 A6 */	mtlr r0
 /* 8014F544 0014C484  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014F548 0014C488  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game15BaseGameSectionFf
 
-.global doSimpleDraw__Q24Game15BaseGameSectionFP8Viewport
-doSimpleDraw__Q24Game15BaseGameSectionFP8Viewport:
+.fn doSimpleDraw__Q24Game15BaseGameSectionFP8Viewport, global
 /* 8014F54C 0014C48C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F550 0014C490  7C 08 02 A6 */	mflr r0
 /* 8014F554 0014C494  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9200,9 +9216,9 @@ doSimpleDraw__Q24Game15BaseGameSectionFP8Viewport:
 /* 8014F570 0014C4B0  7C 08 03 A6 */	mtlr r0
 /* 8014F574 0014C4B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014F578 0014C4B8  4E 80 00 20 */	blr 
+.endfn doSimpleDraw__Q24Game15BaseGameSectionFP8Viewport
 
-.global doAnimation__Q24Game15BaseGameSectionFv
-doAnimation__Q24Game15BaseGameSectionFv:
+.fn doAnimation__Q24Game15BaseGameSectionFv, global
 /* 8014F57C 0014C4BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014F580 0014C4C0  7C 08 02 A6 */	mflr r0
 /* 8014F584 0014C4C4  38 80 00 00 */	li r4, 0
@@ -9326,9 +9342,9 @@ doAnimation__Q24Game15BaseGameSectionFv:
 /* 8014F748 0014C688  7C 08 03 A6 */	mtlr r0
 /* 8014F74C 0014C68C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8014F750 0014C690  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game15BaseGameSectionFv
 
-.global "changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<f>"
-"changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<f>":
+.fn "changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<f>", global
 /* 8014F754 0014C694  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F758 0014C698  7C 08 02 A6 */	mflr r0
 /* 8014F75C 0014C69C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9348,9 +9364,9 @@ doAnimation__Q24Game15BaseGameSectionFv:
 /* 8014F794 0014C6D4  7C 08 03 A6 */	mtlr r0
 /* 8014F798 0014C6D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014F79C 0014C6DC  4E 80 00 20 */	blr 
+.endfn "changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<f>"
 
-.global doEntry__Q24Game15BaseGameSectionFv
-doEntry__Q24Game15BaseGameSectionFv:
+.fn doEntry__Q24Game15BaseGameSectionFv, global
 /* 8014F7A0 0014C6E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F7A4 0014C6E4  7C 08 02 A6 */	mflr r0
 /* 8014F7A8 0014C6E8  38 80 00 00 */	li r4, 0
@@ -9402,10 +9418,10 @@ doEntry__Q24Game15BaseGameSectionFv:
 /* 8014F85C 0014C79C  7C 08 03 A6 */	mtlr r0
 /* 8014F860 0014C7A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014F864 0014C7A4  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global doSetView__Q24Game15BaseGameSectionFi
-doSetView__Q24Game15BaseGameSectionFi:
+.fn doSetView__Q24Game15BaseGameSectionFi, global
 /* 8014F868 0014C7A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F86C 0014C7AC  7C 08 02 A6 */	mflr r0
 /* 8014F870 0014C7B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9473,9 +9489,9 @@ doSetView__Q24Game15BaseGameSectionFi:
 /* 8014F95C 0014C89C  7C 08 03 A6 */	mtlr r0
 /* 8014F960 0014C8A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014F964 0014C8A4  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game15BaseGameSectionFi
 .else
-.global doSetView__Q24Game15BaseGameSectionFi
-doSetView__Q24Game15BaseGameSectionFi:
+.fn doSetView__Q24Game15BaseGameSectionFi, global
 /* 8014F868 0014C7A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F86C 0014C7AC  7C 08 02 A6 */	mflr r0
 /* 8014F870 0014C7B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9543,10 +9559,10 @@ doSetView__Q24Game15BaseGameSectionFi:
 /* 8014F95C 0014C89C  7C 08 03 A6 */	mtlr r0
 /* 8014F960 0014C8A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014F964 0014C8A4  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game15BaseGameSectionFi
 .endif
 
-.global doViewCalc__Q24Game15BaseGameSectionFv
-doViewCalc__Q24Game15BaseGameSectionFv:
+.fn doViewCalc__Q24Game15BaseGameSectionFv, global
 /* 8014F968 0014C8A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014F96C 0014C8AC  7C 08 02 A6 */	mflr r0
 /* 8014F970 0014C8B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9599,10 +9615,10 @@ doViewCalc__Q24Game15BaseGameSectionFv:
 /* 8014FA24 0014C964  7C 08 03 A6 */	mtlr r0
 /* 8014FA28 0014C968  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014FA2C 0014C96C  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global updateBlendCamera__Q24Game15BaseGameSectionFv
-updateBlendCamera__Q24Game15BaseGameSectionFv:
+.fn updateBlendCamera__Q24Game15BaseGameSectionFv, global
 /* 8014FA30 0014C970  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014FA34 0014C974  7C 08 02 A6 */	mflr r0
 /* 8014FA38 0014C978  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9701,9 +9717,9 @@ updateBlendCamera__Q24Game15BaseGameSectionFv:
 /* 8014FB98 0014CAD8  7C 08 03 A6 */	mtlr r0
 /* 8014FB9C 0014CADC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014FBA0 0014CAE0  4E 80 00 20 */	blr 
+.endfn updateBlendCamera__Q24Game15BaseGameSectionFv
 .else
-.global updateBlendCamera__Q24Game15BaseGameSectionFv
-updateBlendCamera__Q24Game15BaseGameSectionFv:
+.fn updateBlendCamera__Q24Game15BaseGameSectionFv, global
 /* 8014FA30 0014C970  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014FA34 0014C974  7C 08 02 A6 */	mflr r0
 /* 8014FA38 0014C978  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9802,11 +9818,11 @@ updateBlendCamera__Q24Game15BaseGameSectionFv:
 /* 8014FB98 0014CAD8  7C 08 03 A6 */	mtlr r0
 /* 8014FB9C 0014CADC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014FBA0 0014CAE0  4E 80 00 20 */	blr 
+.endfn updateBlendCamera__Q24Game15BaseGameSectionFv
 .endif
 
 .if version == 1
-.global setSplitter__Q24Game15BaseGameSectionFb
-setSplitter__Q24Game15BaseGameSectionFb:
+.fn setSplitter__Q24Game15BaseGameSectionFb, global
 /* 8014FBA4 0014CAE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FBA8 0014CAE8  7C 08 02 A6 */	mflr r0
 /* 8014FBAC 0014CAEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9836,9 +9852,9 @@ setSplitter__Q24Game15BaseGameSectionFb:
 /* 8014FC04 0014CB44  7C 08 03 A6 */	mtlr r0
 /* 8014FC08 0014CB48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014FC0C 0014CB4C  4E 80 00 20 */	blr 
+.endfn setSplitter__Q24Game15BaseGameSectionFb
 .else
-.global setSplitter__Q24Game15BaseGameSectionFb
-setSplitter__Q24Game15BaseGameSectionFb:
+.fn setSplitter__Q24Game15BaseGameSectionFb, global
 /* 8014FBA4 0014CAE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FBA8 0014CAE8  7C 08 02 A6 */	mflr r0
 /* 8014FBAC 0014CAEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9868,11 +9884,11 @@ setSplitter__Q24Game15BaseGameSectionFb:
 /* 8014FC04 0014CB44  7C 08 03 A6 */	mtlr r0
 /* 8014FC08 0014CB48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014FC0C 0014CB4C  4E 80 00 20 */	blr 
+.endfn setSplitter__Q24Game15BaseGameSectionFb
 .endif
 
 .if version == 1
-.global updateSplitter__Q24Game15BaseGameSectionFv
-updateSplitter__Q24Game15BaseGameSectionFv:
+.fn updateSplitter__Q24Game15BaseGameSectionFv, global
 /* 8014FC10 0014CB50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FC14 0014CB54  7C 08 02 A6 */	mflr r0
 /* 8014FC18 0014CB58  C0 02 A1 38 */	lfs f0, lbl_80518498@sda21(r2)
@@ -9955,9 +9971,9 @@ updateSplitter__Q24Game15BaseGameSectionFv:
 /* 8014FD38 0014CC78  7C 08 03 A6 */	mtlr r0
 /* 8014FD3C 0014CC7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014FD40 0014CC80  4E 80 00 20 */	blr 
+.endfn updateSplitter__Q24Game15BaseGameSectionFv
 .else
-.global updateSplitter__Q24Game15BaseGameSectionFv
-updateSplitter__Q24Game15BaseGameSectionFv:
+.fn updateSplitter__Q24Game15BaseGameSectionFv, global
 /* 8014FC10 0014CB50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FC14 0014CB54  7C 08 02 A6 */	mflr r0
 /* 8014FC18 0014CB58  C0 02 A1 38 */	lfs f0, lbl_80518498@sda21(r2)
@@ -10040,10 +10056,10 @@ updateSplitter__Q24Game15BaseGameSectionFv:
 /* 8014FD38 0014CC78  7C 08 03 A6 */	mtlr r0
 /* 8014FD3C 0014CC7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014FD40 0014CC80  4E 80 00 20 */	blr 
+.endfn updateSplitter__Q24Game15BaseGameSectionFv
 .endif
 
-.global doDirectDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
-doDirectDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport:
+.fn doDirectDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport, global
 /* 8014FD44 0014CC84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FD48 0014CC88  7C 08 02 A6 */	mflr r0
 /* 8014FD4C 0014CC8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10068,18 +10084,18 @@ doDirectDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport:
 /* 8014FD90 0014CCD0  7C 08 03 A6 */	mtlr r0
 /* 8014FD94 0014CCD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8014FD98 0014CCD8  4E 80 00 20 */	blr 
+.endfn doDirectDrawPost__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
 
-.global doDirectDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
-doDirectDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport:
+.fn doDirectDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport, global
 /* 8014FD9C 0014CCDC  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game15BaseGameSectionFR8GraphicsP8Viewport
 
-.global onStartHeap__Q24Game15BaseGameSectionFv
-onStartHeap__Q24Game15BaseGameSectionFv:
+.fn onStartHeap__Q24Game15BaseGameSectionFv, weak
 /* 8014FDA0 0014CCE0  4E 80 00 20 */	blr 
+.endfn onStartHeap__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global clearHeap__Q24Game15BaseGameSectionFv
-clearHeap__Q24Game15BaseGameSectionFv:
+.fn clearHeap__Q24Game15BaseGameSectionFv, global
 /* 8014FDA4 0014CCE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FDA8 0014CCE8  7C 08 02 A6 */	mflr r0
 /* 8014FDAC 0014CCEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10258,9 +10274,9 @@ clearHeap__Q24Game15BaseGameSectionFv:
 /* 80150040 0014CF80  7C 08 03 A6 */	mtlr r0
 /* 80150044 0014CF84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80150048 0014CF88  4E 80 00 20 */	blr 
+.endfn clearHeap__Q24Game15BaseGameSectionFv
 .else
-.global clearHeap__Q24Game15BaseGameSectionFv
-clearHeap__Q24Game15BaseGameSectionFv:
+.fn clearHeap__Q24Game15BaseGameSectionFv, global
 /* 8014FDA4 0014CCE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8014FDA8 0014CCE8  7C 08 02 A6 */	mflr r0
 /* 8014FDAC 0014CCEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10439,10 +10455,10 @@ clearHeap__Q24Game15BaseGameSectionFv:
 /* 80150040 0014CF80  7C 08 03 A6 */	mtlr r0
 /* 80150044 0014CF84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80150048 0014CF88  4E 80 00 20 */	blr 
+.endfn clearHeap__Q24Game15BaseGameSectionFv
 .endif
 
-.global __dt__10ControllerFv
-__dt__10ControllerFv:
+.fn __dt__10ControllerFv, weak
 /* 8015004C 0014CF8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80150050 0014CF90  7C 08 02 A6 */	mflr r0
 /* 80150054 0014CF94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10468,14 +10484,14 @@ __dt__10ControllerFv:
 /* 801500A0 0014CFE0  7C 08 03 A6 */	mtlr r0
 /* 801500A4 0014CFE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801500A8 0014CFE8  4E 80 00 20 */	blr 
+.endfn __dt__10ControllerFv
 
-.global onClearHeap__Q24Game15BaseGameSectionFv
-onClearHeap__Q24Game15BaseGameSectionFv:
+.fn onClearHeap__Q24Game15BaseGameSectionFv, weak
 /* 801500AC 0014CFEC  4E 80 00 20 */	blr 
+.endfn onClearHeap__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global startFadeout__Q24Game15BaseGameSectionFf
-startFadeout__Q24Game15BaseGameSectionFf:
+.fn startFadeout__Q24Game15BaseGameSectionFf, global
 /* 801500B0 0014CFF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801500B4 0014CFF4  7C 08 02 A6 */	mflr r0
 /* 801500B8 0014CFF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10487,9 +10503,9 @@ startFadeout__Q24Game15BaseGameSectionFf:
 /* 801500D0 0014D010  7C 08 03 A6 */	mtlr r0
 /* 801500D4 0014D014  38 21 00 10 */	addi r1, r1, 0x10
 /* 801500D8 0014D018  4E 80 00 20 */	blr 
+.endfn startFadeout__Q24Game15BaseGameSectionFf
 .else
-.global startFadeout__Q24Game15BaseGameSectionFf
-startFadeout__Q24Game15BaseGameSectionFf:
+.fn startFadeout__Q24Game15BaseGameSectionFf, global
 /* 801500B0 0014CFF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801500B4 0014CFF4  7C 08 02 A6 */	mflr r0
 /* 801500B8 0014CFF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10501,11 +10517,11 @@ startFadeout__Q24Game15BaseGameSectionFf:
 /* 801500D0 0014D010  7C 08 03 A6 */	mtlr r0
 /* 801500D4 0014D014  38 21 00 10 */	addi r1, r1, 0x10
 /* 801500D8 0014D018  4E 80 00 20 */	blr 
+.endfn startFadeout__Q24Game15BaseGameSectionFf
 .endif
 
 .if version == 1
-.global startFadein__Q24Game15BaseGameSectionFf
-startFadein__Q24Game15BaseGameSectionFf:
+.fn startFadein__Q24Game15BaseGameSectionFf, global
 /* 801500DC 0014D01C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801500E0 0014D020  7C 08 02 A6 */	mflr r0
 /* 801500E4 0014D024  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10517,9 +10533,9 @@ startFadein__Q24Game15BaseGameSectionFf:
 /* 801500FC 0014D03C  7C 08 03 A6 */	mtlr r0
 /* 80150100 0014D040  38 21 00 10 */	addi r1, r1, 0x10
 /* 80150104 0014D044  4E 80 00 20 */	blr 
+.endfn startFadein__Q24Game15BaseGameSectionFf
 .else
-.global startFadein__Q24Game15BaseGameSectionFf
-startFadein__Q24Game15BaseGameSectionFf:
+.fn startFadein__Q24Game15BaseGameSectionFf, global
 /* 801500DC 0014D01C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801500E0 0014D020  7C 08 02 A6 */	mflr r0
 /* 801500E4 0014D024  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10531,11 +10547,11 @@ startFadein__Q24Game15BaseGameSectionFf:
 /* 801500FC 0014D03C  7C 08 03 A6 */	mtlr r0
 /* 80150100 0014D040  38 21 00 10 */	addi r1, r1, 0x10
 /* 80150104 0014D044  4E 80 00 20 */	blr 
+.endfn startFadein__Q24Game15BaseGameSectionFf
 .endif
 
 .if version == 1
-.global startFadeoutin__Q24Game15BaseGameSectionFf
-startFadeoutin__Q24Game15BaseGameSectionFf:
+.fn startFadeoutin__Q24Game15BaseGameSectionFf, global
 /* 80150108 0014D048  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015010C 0014D04C  7C 08 02 A6 */	mflr r0
 /* 80150110 0014D050  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10547,9 +10563,9 @@ startFadeoutin__Q24Game15BaseGameSectionFf:
 /* 80150128 0014D068  7C 08 03 A6 */	mtlr r0
 /* 8015012C 0014D06C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80150130 0014D070  4E 80 00 20 */	blr 
+.endfn startFadeoutin__Q24Game15BaseGameSectionFf
 .else
-.global startFadeoutin__Q24Game15BaseGameSectionFf
-startFadeoutin__Q24Game15BaseGameSectionFf:
+.fn startFadeoutin__Q24Game15BaseGameSectionFf, global
 /* 80150108 0014D048  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015010C 0014D04C  7C 08 02 A6 */	mflr r0
 /* 80150110 0014D050  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10561,11 +10577,11 @@ startFadeoutin__Q24Game15BaseGameSectionFf:
 /* 80150128 0014D068  7C 08 03 A6 */	mtlr r0
 /* 8015012C 0014D06C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80150130 0014D070  4E 80 00 20 */	blr 
+.endfn startFadeoutin__Q24Game15BaseGameSectionFf
 .endif
 
 .if version == 1
-.global startFadeblack__Q24Game15BaseGameSectionFv
-startFadeblack__Q24Game15BaseGameSectionFv:
+.fn startFadeblack__Q24Game15BaseGameSectionFv, global
 /* 80150134 0014D074  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80150138 0014D078  7C 08 02 A6 */	mflr r0
 /* 8015013C 0014D07C  C0 22 A2 1C */	lfs f1, lbl_8051857C@sda21(r2)
@@ -10581,9 +10597,9 @@ startFadeblack__Q24Game15BaseGameSectionFv:
 /* 80150164 0014D0A4  7C 08 03 A6 */	mtlr r0
 /* 80150168 0014D0A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015016C 0014D0AC  4E 80 00 20 */	blr 
+.endfn startFadeblack__Q24Game15BaseGameSectionFv
 .else
-.global startFadeblack__Q24Game15BaseGameSectionFv
-startFadeblack__Q24Game15BaseGameSectionFv:
+.fn startFadeblack__Q24Game15BaseGameSectionFv, global
 /* 80150134 0014D074  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80150138 0014D078  7C 08 02 A6 */	mflr r0
 /* 8015013C 0014D07C  C0 22 A2 1C */	lfs f1, lbl_8051857C@sda21(r2)
@@ -10599,11 +10615,11 @@ startFadeblack__Q24Game15BaseGameSectionFv:
 /* 80150164 0014D0A4  7C 08 03 A6 */	mtlr r0
 /* 80150168 0014D0A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015016C 0014D0AC  4E 80 00 20 */	blr 
+.endfn startFadeblack__Q24Game15BaseGameSectionFv
 .endif
 
 .if version == 1
-.global startFadewhite__Q24Game15BaseGameSectionFv
-startFadewhite__Q24Game15BaseGameSectionFv:
+.fn startFadewhite__Q24Game15BaseGameSectionFv, global
 /* 80150170 0014D0B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80150174 0014D0B4  7C 08 02 A6 */	mflr r0
 /* 80150178 0014D0B8  C0 22 A2 1C */	lfs f1, lbl_8051857C@sda21(r2)
@@ -10619,9 +10635,9 @@ startFadewhite__Q24Game15BaseGameSectionFv:
 /* 801501A0 0014D0E0  7C 08 03 A6 */	mtlr r0
 /* 801501A4 0014D0E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801501A8 0014D0E8  4E 80 00 20 */	blr 
+.endfn startFadewhite__Q24Game15BaseGameSectionFv
 .else
-.global startFadewhite__Q24Game15BaseGameSectionFv
-startFadewhite__Q24Game15BaseGameSectionFv:
+.fn startFadewhite__Q24Game15BaseGameSectionFv, global
 /* 80150170 0014D0B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80150174 0014D0B4  7C 08 02 A6 */	mflr r0
 /* 80150178 0014D0B8  C0 22 A2 1C */	lfs f1, lbl_8051857C@sda21(r2)
@@ -10637,11 +10653,11 @@ startFadewhite__Q24Game15BaseGameSectionFv:
 /* 801501A0 0014D0E0  7C 08 03 A6 */	mtlr r0
 /* 801501A4 0014D0E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801501A8 0014D0E8  4E 80 00 20 */	blr 
+.endfn startFadewhite__Q24Game15BaseGameSectionFv
 .endif
 
 .if version == 1
-.global setupFixMemory__Q24Game15BaseGameSectionFv
-setupFixMemory__Q24Game15BaseGameSectionFv:
+.fn setupFixMemory__Q24Game15BaseGameSectionFv, global
 /* 801501AC 0014D0EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801501B0 0014D0F0  7C 08 02 A6 */	mflr r0
 /* 801501B4 0014D0F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10759,9 +10775,9 @@ setupFixMemory__Q24Game15BaseGameSectionFv:
 /* 80150360 0014D2A0  7C 08 03 A6 */	mtlr r0
 /* 80150364 0014D2A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80150368 0014D2A8  4E 80 00 20 */	blr 
+.endfn setupFixMemory__Q24Game15BaseGameSectionFv
 .else
-.global setupFixMemory__Q24Game15BaseGameSectionFv
-setupFixMemory__Q24Game15BaseGameSectionFv:
+.fn setupFixMemory__Q24Game15BaseGameSectionFv, global
 /* 801501AC 0014D0EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801501B0 0014D0F0  7C 08 02 A6 */	mflr r0
 /* 801501B4 0014D0F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10879,11 +10895,11 @@ setupFixMemory__Q24Game15BaseGameSectionFv:
 /* 80150360 0014D2A0  7C 08 03 A6 */	mtlr r0
 /* 80150364 0014D2A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80150368 0014D2A8  4E 80 00 20 */	blr 
+.endfn setupFixMemory__Q24Game15BaseGameSectionFv
 .endif
 
 .if version == 1
-.global setupFixMemory_dvdload__Q24Game15BaseGameSectionFv
-setupFixMemory_dvdload__Q24Game15BaseGameSectionFv:
+.fn setupFixMemory_dvdload__Q24Game15BaseGameSectionFv, global
 /* 8015036C 0014D2AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80150370 0014D2B0  7C 08 02 A6 */	mflr r0
 /* 80150374 0014D2B4  3C 80 80 48 */	lis r4, lbl_8047C948@ha
@@ -11099,9 +11115,9 @@ setupFixMemory_dvdload__Q24Game15BaseGameSectionFv:
 /* 80150694 0014D5D4  7C 08 03 A6 */	mtlr r0
 /* 80150698 0014D5D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015069C 0014D5DC  4E 80 00 20 */	blr 
+.endfn setupFixMemory_dvdload__Q24Game15BaseGameSectionFv
 .else
-.global setupFixMemory_dvdload__Q24Game15BaseGameSectionFv
-setupFixMemory_dvdload__Q24Game15BaseGameSectionFv:
+.fn setupFixMemory_dvdload__Q24Game15BaseGameSectionFv, global
 /* 8015036C 0014D2AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80150370 0014D2B0  7C 08 02 A6 */	mflr r0
 /* 80150374 0014D2B4  3C 80 80 48 */	lis r4, lbl_8047C948@ha
@@ -11317,10 +11333,10 @@ setupFixMemory_dvdload__Q24Game15BaseGameSectionFv:
 /* 80150694 0014D5D4  7C 08 03 A6 */	mtlr r0
 /* 80150698 0014D5D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015069C 0014D5DC  4E 80 00 20 */	blr 
+.endfn setupFixMemory_dvdload__Q24Game15BaseGameSectionFv
 .endif
 
-.global __dt__15ModelEffectDataFv
-__dt__15ModelEffectDataFv:
+.fn __dt__15ModelEffectDataFv, weak
 /* 801506A0 0014D5E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801506A4 0014D5E4  7C 08 02 A6 */	mflr r0
 /* 801506A8 0014D5E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11346,20 +11362,20 @@ __dt__15ModelEffectDataFv:
 /* 801506F4 0014D634  7C 08 03 A6 */	mtlr r0
 /* 801506F8 0014D638  38 21 00 10 */	addi r1, r1, 0x10
 /* 801506FC 0014D63C  4E 80 00 20 */	blr 
+.endfn __dt__15ModelEffectDataFv
 
-.global enableAllocHalt__Q24Game15BaseGameSectionFv
-enableAllocHalt__Q24Game15BaseGameSectionFv:
+.fn enableAllocHalt__Q24Game15BaseGameSectionFv, global
 /* 80150700 0014D640  38 60 00 00 */	li r3, 0
 /* 80150704 0014D644  4E 80 00 20 */	blr 
+.endfn enableAllocHalt__Q24Game15BaseGameSectionFv
 
-.global disableAllocHalt__Q24Game15BaseGameSectionFv
-disableAllocHalt__Q24Game15BaseGameSectionFv:
+.fn disableAllocHalt__Q24Game15BaseGameSectionFv, global
 /* 80150708 0014D648  38 60 00 00 */	li r3, 0
 /* 8015070C 0014D64C  4E 80 00 20 */	blr 
+.endfn disableAllocHalt__Q24Game15BaseGameSectionFv
 
 .if version == 1
-.global setupFloatMemory__Q24Game15BaseGameSectionFv
-setupFloatMemory__Q24Game15BaseGameSectionFv:
+.fn setupFloatMemory__Q24Game15BaseGameSectionFv, global
 /* 80150710 0014D650  94 21 FD 40 */	stwu r1, -0x2c0(r1)
 /* 80150714 0014D654  7C 08 02 A6 */	mflr r0
 /* 80150718 0014D658  90 01 02 C4 */	stw r0, 0x2c4(r1)
@@ -12227,9 +12243,9 @@ setupFloatMemory__Q24Game15BaseGameSectionFv:
 /* 801513C4 0014E304  7C 08 03 A6 */	mtlr r0
 /* 801513C8 0014E308  38 21 02 C0 */	addi r1, r1, 0x2c0
 /* 801513CC 0014E30C  4E 80 00 20 */	blr 
+.endfn setupFloatMemory__Q24Game15BaseGameSectionFv
 .else
-.global setupFloatMemory__Q24Game15BaseGameSectionFv
-setupFloatMemory__Q24Game15BaseGameSectionFv:
+.fn setupFloatMemory__Q24Game15BaseGameSectionFv, global
 /* 80150710 0014D650  94 21 FD 40 */	stwu r1, -0x2c0(r1)
 /* 80150714 0014D654  7C 08 02 A6 */	mflr r0
 /* 80150718 0014D658  90 01 02 C4 */	stw r0, 0x2c4(r1)
@@ -13097,49 +13113,49 @@ setupFloatMemory__Q24Game15BaseGameSectionFv:
 /* 801513C4 0014E304  7C 08 03 A6 */	mtlr r0
 /* 801513C8 0014E308  38 21 02 C0 */	addi r1, r1, 0x2c0
 /* 801513CC 0014E30C  4E 80 00 20 */	blr 
+.endfn setupFloatMemory__Q24Game15BaseGameSectionFv
 .endif
 
-.global onSetSoundScene__Q24Game15BaseGameSectionFv
-onSetSoundScene__Q24Game15BaseGameSectionFv:
+.fn onSetSoundScene__Q24Game15BaseGameSectionFv, weak
 /* 801513D0 0014E310  4E 80 00 20 */	blr 
+.endfn onSetSoundScene__Q24Game15BaseGameSectionFv
 
-.global getCurrFloor__Q24Game15BaseGameSectionFv
-getCurrFloor__Q24Game15BaseGameSectionFv:
+.fn getCurrFloor__Q24Game15BaseGameSectionFv, weak
 /* 801513D4 0014E314  38 60 FF FF */	li r3, -1
 /* 801513D8 0014E318  4E 80 00 20 */	blr 
+.endfn getCurrFloor__Q24Game15BaseGameSectionFv
 
-.global challengeDisablePelplant__Q24Game15BaseGameSectionFv
-challengeDisablePelplant__Q24Game15BaseGameSectionFv:
+.fn challengeDisablePelplant__Q24Game15BaseGameSectionFv, weak
 /* 801513DC 0014E31C  38 60 00 01 */	li r3, 1
 /* 801513E0 0014E320  4E 80 00 20 */	blr 
+.endfn challengeDisablePelplant__Q24Game15BaseGameSectionFv
 
-.global getVsEditNumber__Q24Game15BaseGameSectionFv
-getVsEditNumber__Q24Game15BaseGameSectionFv:
+.fn getVsEditNumber__Q24Game15BaseGameSectionFv, weak
 /* 801513E4 0014E324  38 60 FF FE */	li r3, -2
 /* 801513E8 0014E328  4E 80 00 20 */	blr 
+.endfn getVsEditNumber__Q24Game15BaseGameSectionFv
 
-.global getEditorFilename__Q24Game15BaseGameSectionFv
-getEditorFilename__Q24Game15BaseGameSectionFv:
+.fn getEditorFilename__Q24Game15BaseGameSectionFv, weak
 /* 801513EC 0014E32C  38 62 A2 28 */	addi r3, r2, lbl_80518588@sda21
 /* 801513F0 0014E330  4E 80 00 20 */	blr 
+.endfn getEditorFilename__Q24Game15BaseGameSectionFv
 
-.global getCaveFilename__Q24Game15BaseGameSectionFv
-getCaveFilename__Q24Game15BaseGameSectionFv:
+.fn getCaveFilename__Q24Game15BaseGameSectionFv, weak
 /* 801513F4 0014E334  3C 60 80 48 */	lis r3, lbl_8047CD58@ha
 /* 801513F8 0014E338  38 63 CD 58 */	addi r3, r3, lbl_8047CD58@l
 /* 801513FC 0014E33C  4E 80 00 20 */	blr 
+.endfn getCaveFilename__Q24Game15BaseGameSectionFv
 
-.global onSetupFloatMemory__Q24Game15BaseGameSectionFv
-onSetupFloatMemory__Q24Game15BaseGameSectionFv:
+.fn onSetupFloatMemory__Q24Game15BaseGameSectionFv, weak
 /* 80151400 0014E340  4E 80 00 20 */	blr 
+.endfn onSetupFloatMemory__Q24Game15BaseGameSectionFv
 
-.global isDevelopSection__Q24Game15BaseGameSectionFv
-isDevelopSection__Q24Game15BaseGameSectionFv:
+.fn isDevelopSection__Q24Game15BaseGameSectionFv, weak
 /* 80151404 0014E344  38 60 00 01 */	li r3, 1
 /* 80151408 0014E348  4E 80 00 20 */	blr 
+.endfn isDevelopSection__Q24Game15BaseGameSectionFv
 
-.global "__dt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>Fv"
-"__dt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>Fv":
+.fn "__dt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>Fv", weak
 /* 8015140C 0014E34C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151410 0014E350  7C 08 02 A6 */	mflr r0
 /* 80151414 0014E354  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13161,10 +13177,10 @@ isDevelopSection__Q24Game15BaseGameSectionFv:
 /* 80151450 0014E390  7C 08 03 A6 */	mtlr r0
 /* 80151454 0014E394  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151458 0014E398  4E 80 00 20 */	blr 
+.endfn "__dt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>Fv"
 
 .if version == 1
-.global setDrawBuffer__Q24Game15BaseGameSectionFi
-setDrawBuffer__Q24Game15BaseGameSectionFi:
+.fn setDrawBuffer__Q24Game15BaseGameSectionFi, global
 /* 8015145C 0014E39C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151460 0014E3A0  7C 08 02 A6 */	mflr r0
 /* 80151464 0014E3A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13208,9 +13224,9 @@ setDrawBuffer__Q24Game15BaseGameSectionFi:
 /* 801514F4 0014E434  7C 08 03 A6 */	mtlr r0
 /* 801514F8 0014E438  38 21 00 10 */	addi r1, r1, 0x10
 /* 801514FC 0014E43C  4E 80 00 20 */	blr 
+.endfn setDrawBuffer__Q24Game15BaseGameSectionFi
 .else
-.global setDrawBuffer__Q24Game15BaseGameSectionFi
-setDrawBuffer__Q24Game15BaseGameSectionFi:
+.fn setDrawBuffer__Q24Game15BaseGameSectionFi, global
 /* 8015145C 0014E39C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151460 0014E3A0  7C 08 02 A6 */	mflr r0
 /* 80151464 0014E3A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13254,10 +13270,10 @@ setDrawBuffer__Q24Game15BaseGameSectionFi:
 /* 801514F4 0014E434  7C 08 03 A6 */	mtlr r0
 /* 801514F8 0014E438  38 21 00 10 */	addi r1, r1, 0x10
 /* 801514FC 0014E43C  4E 80 00 20 */	blr 
+.endfn setDrawBuffer__Q24Game15BaseGameSectionFi
 .endif
 
-.global postSetupFloatMemory__Q24Game15BaseGameSectionFv
-postSetupFloatMemory__Q24Game15BaseGameSectionFv:
+.fn postSetupFloatMemory__Q24Game15BaseGameSectionFv, global
 /* 80151500 0014E440  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151504 0014E444  7C 08 02 A6 */	mflr r0
 /* 80151508 0014E448  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13270,13 +13286,13 @@ postSetupFloatMemory__Q24Game15BaseGameSectionFv:
 /* 80151524 0014E464  7C 08 03 A6 */	mtlr r0
 /* 80151528 0014E468  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015152C 0014E46C  4E 80 00 20 */	blr 
+.endfn postSetupFloatMemory__Q24Game15BaseGameSectionFv
 
-.global setupJUTTextures__Q24Game6MapMgrFv
-setupJUTTextures__Q24Game6MapMgrFv:
+.fn setupJUTTextures__Q24Game6MapMgrFv, weak
 /* 80151530 0014E470  4E 80 00 20 */	blr 
+.endfn setupJUTTextures__Q24Game6MapMgrFv
 
-.global createFallPikminSound__Q24Game15BaseGameSectionFv
-createFallPikminSound__Q24Game15BaseGameSectionFv:
+.fn createFallPikminSound__Q24Game15BaseGameSectionFv, global
 /* 80151534 0014E474  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80151538 0014E478  7C 08 02 A6 */	mflr r0
 /* 8015153C 0014E47C  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
@@ -13413,22 +13429,22 @@ createFallPikminSound__Q24Game15BaseGameSectionFv:
 /* 80151728 0014E668  7C 08 03 A6 */	mtlr r0
 /* 8015172C 0014E66C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80151730 0014E670  4E 80 00 20 */	blr 
+.endfn createFallPikminSound__Q24Game15BaseGameSectionFv
 
-.global captureRadarmap__Q24Game15BaseGameSectionFR8Graphics
-captureRadarmap__Q24Game15BaseGameSectionFR8Graphics:
+.fn captureRadarmap__Q24Game15BaseGameSectionFR8Graphics, global
 /* 80151734 0014E674  4E 80 00 20 */	blr 
+.endfn captureRadarmap__Q24Game15BaseGameSectionFR8Graphics
 
-.global satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki
-satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki:
+.fn satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki, weak
 /* 80151738 0014E678  88 84 02 B8 */	lbz r4, 0x2b8(r4)
 /* 8015173C 0014E67C  20 64 00 05 */	subfic r3, r4, 5
 /* 80151740 0014E680  38 04 FF FB */	addi r0, r4, -5
 /* 80151744 0014E684  7C 60 03 78 */	or r0, r3, r0
 /* 80151748 0014E688  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8015174C 0014E68C  4E 80 00 20 */	blr 
+.endfn satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki
 
-.global "__dt__17Container<5Plane>Fv"
-"__dt__17Container<5Plane>Fv":
+.fn "__dt__17Container<5Plane>Fv", weak
 /* 80151750 0014E690  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151754 0014E694  7C 08 02 A6 */	mflr r0
 /* 80151758 0014E698  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13459,9 +13475,9 @@ satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki:
 /* 801517B4 0014E6F4  7C 08 03 A6 */	mtlr r0
 /* 801517B8 0014E6F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801517BC 0014E6FC  4E 80 00 20 */	blr 
+.endfn "__dt__17Container<5Plane>Fv"
 
-.global "__dt__22ArrayContainer<5Plane>Fv"
-"__dt__22ArrayContainer<5Plane>Fv":
+.fn "__dt__22ArrayContainer<5Plane>Fv", weak
 /* 801517C0 0014E700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801517C4 0014E704  7C 08 02 A6 */	mflr r0
 /* 801517C8 0014E708  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13496,17 +13512,17 @@ satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki:
 /* 80151834 0014E774  7C 08 03 A6 */	mtlr r0
 /* 80151838 0014E778  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015183C 0014E77C  4E 80 00 20 */	blr 
+.endfn "__dt__22ArrayContainer<5Plane>Fv"
 
-.global readObject__9CullPlaneFR6StreamR5Plane
-readObject__9CullPlaneFR6StreamR5Plane:
+.fn readObject__9CullPlaneFR6StreamR5Plane, weak
 /* 80151840 0014E780  4E 80 00 20 */	blr 
+.endfn readObject__9CullPlaneFR6StreamR5Plane
 
-.global writeObject__9CullPlaneFR6StreamR5Plane
-writeObject__9CullPlaneFR6StreamR5Plane:
+.fn writeObject__9CullPlaneFR6StreamR5Plane, weak
 /* 80151844 0014E784  4E 80 00 20 */	blr 
+.endfn writeObject__9CullPlaneFR6StreamR5Plane
 
-.global __dt__9CullPlaneFv
-__dt__9CullPlaneFv:
+.fn __dt__9CullPlaneFv, weak
 /* 80151848 0014E788  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015184C 0014E78C  7C 08 02 A6 */	mflr r0
 /* 80151850 0014E790  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13545,123 +13561,123 @@ __dt__9CullPlaneFv:
 /* 801518CC 0014E80C  7C 08 03 A6 */	mtlr r0
 /* 801518D0 0014E810  38 21 00 10 */	addi r1, r1, 0x10
 /* 801518D4 0014E814  4E 80 00 20 */	blr 
+.endfn __dt__9CullPlaneFv
 
-.global forceFinish__Q24Game15BaseGameSectionFv
-forceFinish__Q24Game15BaseGameSectionFv:
+.fn forceFinish__Q24Game15BaseGameSectionFv, weak
 /* 801518D8 0014E818  38 00 00 01 */	li r0, 1
 /* 801518DC 0014E81C  98 03 00 37 */	stb r0, 0x37(r3)
 /* 801518E0 0014E820  88 63 00 37 */	lbz r3, 0x37(r3)
 /* 801518E4 0014E824  4E 80 00 20 */	blr 
+.endfn forceFinish__Q24Game15BaseGameSectionFv
 
-.global addChallengeScore__Q24Game15BaseGameSectionFi
-addChallengeScore__Q24Game15BaseGameSectionFi:
+.fn addChallengeScore__Q24Game15BaseGameSectionFi, weak
 /* 801518E8 0014E828  4E 80 00 20 */	blr 
+.endfn addChallengeScore__Q24Game15BaseGameSectionFi
 
-.global startMainBgm__Q24Game15BaseGameSectionFv
-startMainBgm__Q24Game15BaseGameSectionFv:
+.fn startMainBgm__Q24Game15BaseGameSectionFv, weak
 /* 801518EC 0014E82C  4E 80 00 20 */	blr 
+.endfn startMainBgm__Q24Game15BaseGameSectionFv
 
-.global goNextFloor__Q24Game15BaseGameSectionFPQ34Game8ItemHole4Item
-goNextFloor__Q24Game15BaseGameSectionFPQ34Game8ItemHole4Item:
+.fn goNextFloor__Q24Game15BaseGameSectionFPQ34Game8ItemHole4Item, weak
 /* 801518F0 0014E830  4E 80 00 20 */	blr 
+.endfn goNextFloor__Q24Game15BaseGameSectionFPQ34Game8ItemHole4Item
 
-.global goCave__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Item
-goCave__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Item:
+.fn goCave__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Item, weak
 /* 801518F4 0014E834  4E 80 00 20 */	blr 
+.endfn goCave__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Item
 
-.global goMainMap__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4Item
-goMainMap__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4Item:
+.fn goMainMap__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4Item, weak
 /* 801518F8 0014E838  4E 80 00 20 */	blr 
+.endfn goMainMap__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4Item
 
-.global getCaveID__Q24Game15BaseGameSectionFv
-getCaveID__Q24Game15BaseGameSectionFv:
+.fn getCaveID__Q24Game15BaseGameSectionFv, weak
 /* 801518FC 0014E83C  3C 60 6E 6F */	lis r3, 0x6E6F6E65@ha
 /* 80151900 0014E840  38 63 6E 65 */	addi r3, r3, 0x6E6F6E65@l
 /* 80151904 0014E844  4E 80 00 20 */	blr 
+.endfn getCaveID__Q24Game15BaseGameSectionFv
 
-.global getCurrentCourseInfo__Q24Game15BaseGameSectionFv
-getCurrentCourseInfo__Q24Game15BaseGameSectionFv:
+.fn getCurrentCourseInfo__Q24Game15BaseGameSectionFv, weak
 /* 80151908 0014E848  38 60 00 00 */	li r3, 0
 /* 8015190C 0014E84C  4E 80 00 20 */	blr 
+.endfn getCurrentCourseInfo__Q24Game15BaseGameSectionFv
 
-.global openContainerWindow__Q24Game15BaseGameSectionFv
-openContainerWindow__Q24Game15BaseGameSectionFv:
+.fn openContainerWindow__Q24Game15BaseGameSectionFv, weak
 /* 80151910 0014E850  38 60 00 00 */	li r3, 0
 /* 80151914 0014E854  4E 80 00 20 */	blr 
+.endfn openContainerWindow__Q24Game15BaseGameSectionFv
 
-.global closeContainerWindow__Q24Game15BaseGameSectionFv
-closeContainerWindow__Q24Game15BaseGameSectionFv:
+.fn closeContainerWindow__Q24Game15BaseGameSectionFv, weak
 /* 80151918 0014E858  4E 80 00 20 */	blr 
+.endfn closeContainerWindow__Q24Game15BaseGameSectionFv
 
-.global playMovie_firstexperience__Q24Game15BaseGameSectionFiPQ24Game8Creature
-playMovie_firstexperience__Q24Game15BaseGameSectionFiPQ24Game8Creature:
+.fn playMovie_firstexperience__Q24Game15BaseGameSectionFiPQ24Game8Creature, weak
 /* 8015191C 0014E85C  4E 80 00 20 */	blr 
+.endfn playMovie_firstexperience__Q24Game15BaseGameSectionFiPQ24Game8Creature
 
-.global playMovie_bootup__Q24Game15BaseGameSectionFPQ24Game5Onyon
-playMovie_bootup__Q24Game15BaseGameSectionFPQ24Game5Onyon:
+.fn playMovie_bootup__Q24Game15BaseGameSectionFPQ24Game5Onyon, weak
 /* 80151920 0014E860  4E 80 00 20 */	blr 
+.endfn playMovie_bootup__Q24Game15BaseGameSectionFPQ24Game5Onyon
 
-.global playMovie_helloPikmin__Q24Game15BaseGameSectionFPQ24Game4Piki
-playMovie_helloPikmin__Q24Game15BaseGameSectionFPQ24Game4Piki:
+.fn playMovie_helloPikmin__Q24Game15BaseGameSectionFPQ24Game4Piki, weak
 /* 80151924 0014E864  4E 80 00 20 */	blr 
+.endfn playMovie_helloPikmin__Q24Game15BaseGameSectionFPQ24Game4Piki
 
-.global disableTimer__Q24Game15BaseGameSectionFUl
-disableTimer__Q24Game15BaseGameSectionFUl:
+.fn disableTimer__Q24Game15BaseGameSectionFUl, weak
 /* 80151928 0014E868  4E 80 00 20 */	blr 
+.endfn disableTimer__Q24Game15BaseGameSectionFUl
 
-.global onMovieStart__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
-onMovieStart__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl:
+.fn onMovieStart__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl, weak
 /* 8015192C 0014E86C  4E 80 00 20 */	blr 
+.endfn onMovieStart__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
 
-.global gmOrimaDown__Q24Game15BaseGameSectionFi
-gmOrimaDown__Q24Game15BaseGameSectionFi:
+.fn gmOrimaDown__Q24Game15BaseGameSectionFi, weak
 /* 80151930 0014E870  4E 80 00 20 */	blr 
+.endfn gmOrimaDown__Q24Game15BaseGameSectionFi
 
-.global gmPikminZero__Q24Game15BaseGameSectionFv
-gmPikminZero__Q24Game15BaseGameSectionFv:
+.fn gmPikminZero__Q24Game15BaseGameSectionFv, weak
 /* 80151934 0014E874  4E 80 00 20 */	blr 
+.endfn gmPikminZero__Q24Game15BaseGameSectionFv
 
-.global drawInit__7SectionFR8Graphics
-drawInit__7SectionFR8Graphics:
+.fn drawInit__7SectionFR8Graphics, weak
 /* 80151938 0014E878  4E 80 00 20 */	blr 
+.endfn drawInit__7SectionFR8Graphics
 
-.global doExit__7SectionFv
-doExit__7SectionFv:
+.fn doExit__7SectionFv, weak
 /* 8015193C 0014E87C  4E 80 00 20 */	blr 
+.endfn doExit__7SectionFv
 
-.global forceReset__7SectionFv
-forceReset__7SectionFv:
+.fn forceReset__7SectionFv, weak
 /* 80151940 0014E880  38 60 00 01 */	li r3, 1
 /* 80151944 0014E884  4E 80 00 20 */	blr 
+.endfn forceReset__7SectionFv
 
-.global getCurrentSection__7SectionFv
-getCurrentSection__7SectionFv:
+.fn getCurrentSection__7SectionFv, weak
 /* 80151948 0014E888  4E 80 00 20 */	blr 
+.endfn getCurrentSection__7SectionFv
 
-.global doLoadingStart__7SectionFv
-doLoadingStart__7SectionFv:
+.fn doLoadingStart__7SectionFv, weak
 /* 8015194C 0014E88C  4E 80 00 20 */	blr 
+.endfn doLoadingStart__7SectionFv
 
-.global doLoading__7SectionFv
-doLoading__7SectionFv:
+.fn doLoading__7SectionFv, weak
 /* 80151950 0014E890  38 60 00 00 */	li r3, 0
 /* 80151954 0014E894  4E 80 00 20 */	blr 
+.endfn doLoading__7SectionFv
 
-.global isFinishable__7SectionFv
-isFinishable__7SectionFv:
+.fn isFinishable__7SectionFv, weak
 /* 80151958 0014E898  38 60 00 01 */	li r3, 1
 /* 8015195C 0014E89C  4E 80 00 20 */	blr 
+.endfn isFinishable__7SectionFv
 
-.global "writeObject__22ArrayContainer<5Plane>FR6StreamR5Plane"
-"writeObject__22ArrayContainer<5Plane>FR6StreamR5Plane":
+.fn "writeObject__22ArrayContainer<5Plane>FR6StreamR5Plane", weak
 /* 80151960 0014E8A0  4E 80 00 20 */	blr 
+.endfn "writeObject__22ArrayContainer<5Plane>FR6StreamR5Plane"
 
-.global "readObject__22ArrayContainer<5Plane>FR6StreamR5Plane"
-"readObject__22ArrayContainer<5Plane>FR6StreamR5Plane":
+.fn "readObject__22ArrayContainer<5Plane>FR6StreamR5Plane", weak
 /* 80151964 0014E8A4  4E 80 00 20 */	blr 
+.endfn "readObject__22ArrayContainer<5Plane>FR6StreamR5Plane"
 
-.global "write__22ArrayContainer<5Plane>FR6Stream"
-"write__22ArrayContainer<5Plane>FR6Stream":
+.fn "write__22ArrayContainer<5Plane>FR6Stream", weak
 /* 80151968 0014E8A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015196C 0014E8AC  7C 08 02 A6 */	mflr r0
 /* 80151970 0014E8B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -13717,9 +13733,9 @@ isFinishable__7SectionFv:
 /* 80151A30 0014E970  7C 08 03 A6 */	mtlr r0
 /* 80151A34 0014E974  38 21 00 20 */	addi r1, r1, 0x20
 /* 80151A38 0014E978  4E 80 00 20 */	blr 
+.endfn "write__22ArrayContainer<5Plane>FR6Stream"
 
-.global "alloc__22ArrayContainer<5Plane>Fi"
-"alloc__22ArrayContainer<5Plane>Fi":
+.fn "alloc__22ArrayContainer<5Plane>Fi", weak
 /* 80151A3C 0014E97C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151A40 0014E980  7C 08 02 A6 */	mflr r0
 /* 80151A44 0014E984  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13746,50 +13762,50 @@ isFinishable__7SectionFv:
 /* 80151A98 0014E9D8  7C 08 03 A6 */	mtlr r0
 /* 80151A9C 0014E9DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151AA0 0014E9E0  4E 80 00 20 */	blr 
+.endfn "alloc__22ArrayContainer<5Plane>Fi"
 
-.global "setArray__22ArrayContainer<5Plane>FP5Planei"
-"setArray__22ArrayContainer<5Plane>FP5Planei":
+.fn "setArray__22ArrayContainer<5Plane>FP5Planei", weak
 /* 80151AA4 0014E9E4  90 83 00 24 */	stw r4, 0x24(r3)
 /* 80151AA8 0014E9E8  90 A3 00 20 */	stw r5, 0x20(r3)
 /* 80151AAC 0014E9EC  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 80151AB0 0014E9F0  4E 80 00 20 */	blr 
+.endfn "setArray__22ArrayContainer<5Plane>FP5Planei"
 
-.global "get__22ArrayContainer<5Plane>FPv"
-"get__22ArrayContainer<5Plane>FPv":
+.fn "get__22ArrayContainer<5Plane>FPv", weak
 /* 80151AB4 0014E9F4  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80151AB8 0014E9F8  54 80 20 36 */	slwi r0, r4, 4
 /* 80151ABC 0014E9FC  7C 63 02 14 */	add r3, r3, r0
 /* 80151AC0 0014EA00  4E 80 00 20 */	blr 
+.endfn "get__22ArrayContainer<5Plane>FPv"
 
-.global "getNext__22ArrayContainer<5Plane>FPv"
-"getNext__22ArrayContainer<5Plane>FPv":
+.fn "getNext__22ArrayContainer<5Plane>FPv", weak
 /* 80151AC4 0014EA04  38 64 00 01 */	addi r3, r4, 1
 /* 80151AC8 0014EA08  4E 80 00 20 */	blr 
+.endfn "getNext__22ArrayContainer<5Plane>FPv"
 
-.global "getStart__22ArrayContainer<5Plane>Fv"
-"getStart__22ArrayContainer<5Plane>Fv":
+.fn "getStart__22ArrayContainer<5Plane>Fv", weak
 /* 80151ACC 0014EA0C  38 60 00 00 */	li r3, 0
 /* 80151AD0 0014EA10  4E 80 00 20 */	blr 
+.endfn "getStart__22ArrayContainer<5Plane>Fv"
 
-.global "getEnd__22ArrayContainer<5Plane>Fv"
-"getEnd__22ArrayContainer<5Plane>Fv":
+.fn "getEnd__22ArrayContainer<5Plane>Fv", weak
 /* 80151AD4 0014EA14  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80151AD8 0014EA18  4E 80 00 20 */	blr 
+.endfn "getEnd__22ArrayContainer<5Plane>Fv"
 
-.global "getAt__22ArrayContainer<5Plane>Fi"
-"getAt__22ArrayContainer<5Plane>Fi":
+.fn "getAt__22ArrayContainer<5Plane>Fi", weak
 /* 80151ADC 0014EA1C  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 80151AE0 0014EA20  54 80 20 36 */	slwi r0, r4, 4
 /* 80151AE4 0014EA24  7C 63 02 14 */	add r3, r3, r0
 /* 80151AE8 0014EA28  4E 80 00 20 */	blr 
+.endfn "getAt__22ArrayContainer<5Plane>Fi"
 
-.global "getTo__22ArrayContainer<5Plane>Fv"
-"getTo__22ArrayContainer<5Plane>Fv":
+.fn "getTo__22ArrayContainer<5Plane>Fv", weak
 /* 80151AEC 0014EA2C  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 80151AF0 0014EA30  4E 80 00 20 */	blr 
+.endfn "getTo__22ArrayContainer<5Plane>Fv"
 
-.global "getObject__17Container<5Plane>FPv"
-"getObject__17Container<5Plane>FPv":
+.fn "getObject__17Container<5Plane>FPv", weak
 /* 80151AF4 0014EA34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151AF8 0014EA38  7C 08 02 A6 */	mflr r0
 /* 80151AFC 0014EA3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13801,19 +13817,19 @@ isFinishable__7SectionFv:
 /* 80151B14 0014EA54  7C 08 03 A6 */	mtlr r0
 /* 80151B18 0014EA58  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151B1C 0014EA5C  4E 80 00 20 */	blr 
+.endfn "getObject__17Container<5Plane>FPv"
 
-.global "getAt__17Container<5Plane>Fi"
-"getAt__17Container<5Plane>Fi":
+.fn "getAt__17Container<5Plane>Fi", weak
 /* 80151B20 0014EA60  38 60 00 00 */	li r3, 0
 /* 80151B24 0014EA64  4E 80 00 20 */	blr 
+.endfn "getAt__17Container<5Plane>Fi"
 
-.global "getTo__17Container<5Plane>Fv"
-"getTo__17Container<5Plane>Fv":
+.fn "getTo__17Container<5Plane>Fv", weak
 /* 80151B28 0014EA68  38 60 00 00 */	li r3, 0
 /* 80151B2C 0014EA6C  4E 80 00 20 */	blr 
+.endfn "getTo__17Container<5Plane>Fv"
 
-.global "invoke__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>FPQ24Game11MovieConfigUlUl"
-"invoke__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>FPQ24Game11MovieConfigUlUl":
+.fn "invoke__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>FPQ24Game11MovieConfigUlUl", weak
 /* 80151B30 0014EA70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151B34 0014EA74  7C 08 02 A6 */	mflr r0
 /* 80151B38 0014EA78  7C 67 1B 78 */	mr r7, r3
@@ -13826,9 +13842,9 @@ isFinishable__7SectionFv:
 /* 80151B54 0014EA94  7C 08 03 A6 */	mtlr r0
 /* 80151B58 0014EA98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151B5C 0014EA9C  4E 80 00 20 */	blr 
+.endfn "invoke__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>FPQ24Game11MovieConfigUlUl"
 
-.global "invoke__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>FR10Vector3<f>"
-"invoke__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>FR10Vector3<f>":
+.fn "invoke__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>FR10Vector3<f>", weak
 /* 80151B60 0014EAA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151B64 0014EAA4  7C 08 02 A6 */	mflr r0
 /* 80151B68 0014EAA8  7C 65 1B 78 */	mr r5, r3
@@ -13841,9 +13857,9 @@ isFinishable__7SectionFv:
 /* 80151B84 0014EAC4  7C 08 03 A6 */	mtlr r0
 /* 80151B88 0014EAC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151B8C 0014EACC  4E 80 00 20 */	blr 
+.endfn "invoke__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>FR10Vector3<f>"
 
-.global "invoke__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>FPQ24Game9CameraArg"
-"invoke__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>FPQ24Game9CameraArg":
+.fn "invoke__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>FPQ24Game9CameraArg", weak
 /* 80151B90 0014EAD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151B94 0014EAD4  7C 08 02 A6 */	mflr r0
 /* 80151B98 0014EAD8  7C 65 1B 78 */	mr r5, r3
@@ -13856,9 +13872,9 @@ isFinishable__7SectionFv:
 /* 80151BB4 0014EAF4  7C 08 03 A6 */	mtlr r0
 /* 80151BB8 0014EAF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151BBC 0014EAFC  4E 80 00 20 */	blr 
+.endfn "invoke__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>FPQ24Game9CameraArg"
 
-.global "invoke__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>FR7Rect<f>"
-"invoke__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>FR7Rect<f>":
+.fn "invoke__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>FR7Rect<f>", weak
 /* 80151BC0 0014EB00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151BC4 0014EB04  7C 08 02 A6 */	mflr r0
 /* 80151BC8 0014EB08  7C 65 1B 78 */	mr r5, r3
@@ -13871,9 +13887,9 @@ isFinishable__7SectionFv:
 /* 80151BE4 0014EB24  7C 08 03 A6 */	mtlr r0
 /* 80151BE8 0014EB28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151BEC 0014EB2C  4E 80 00 20 */	blr 
+.endfn "invoke__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>FR7Rect<f>"
 
-.global "invoke__34Delegate<Q24Game15BaseGameSection>Fv"
-"invoke__34Delegate<Q24Game15BaseGameSection>Fv":
+.fn "invoke__34Delegate<Q24Game15BaseGameSection>Fv", weak
 /* 80151BF0 0014EB30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80151BF4 0014EB34  7C 08 02 A6 */	mflr r0
 /* 80151BF8 0014EB38  7C 64 1B 78 */	mr r4, r3
@@ -13886,9 +13902,9 @@ isFinishable__7SectionFv:
 /* 80151C14 0014EB54  7C 08 03 A6 */	mtlr r0
 /* 80151C18 0014EB58  38 21 00 10 */	addi r1, r1, 0x10
 /* 80151C1C 0014EB5C  4E 80 00 20 */	blr 
+.endfn "invoke__34Delegate<Q24Game15BaseGameSection>Fv"
 
-.global "addOne__22ArrayContainer<5Plane>FR5Plane"
-"addOne__22ArrayContainer<5Plane>FR5Plane":
+.fn "addOne__22ArrayContainer<5Plane>FR5Plane", weak
 /* 80151C20 0014EB60  80 E3 00 1C */	lwz r7, 0x1c(r3)
 /* 80151C24 0014EB64  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 80151C28 0014EB68  7C 07 00 00 */	cmpw r7, r0
@@ -13907,9 +13923,9 @@ isFinishable__7SectionFv:
 /* 80151C5C 0014EB9C  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 80151C60 0014EBA0  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80151C64 0014EBA4  4E 80 00 20 */	blr 
+.endfn "addOne__22ArrayContainer<5Plane>FR5Plane"
 
-.global __ct__5PlaneFv
-__ct__5PlaneFv:
+.fn __ct__5PlaneFv, weak
 /* 80151C68 0014EBA8  C0 22 A1 38 */	lfs f1, lbl_80518498@sda21(r2)
 /* 80151C6C 0014EBAC  C0 02 A1 44 */	lfs f0, lbl_805184A4@sda21(r2)
 /* 80151C70 0014EBB0  D0 23 00 00 */	stfs f1, 0(r3)
@@ -13917,9 +13933,9 @@ __ct__5PlaneFv:
 /* 80151C78 0014EBB8  D0 23 00 08 */	stfs f1, 8(r3)
 /* 80151C7C 0014EBBC  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 80151C80 0014EBC0  4E 80 00 20 */	blr 
+.endfn __ct__5PlaneFv
 
-.global "read__22ArrayContainer<5Plane>FR6Stream"
-"read__22ArrayContainer<5Plane>FR6Stream":
+.fn "read__22ArrayContainer<5Plane>FR6Stream", weak
 /* 80151C84 0014EBC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80151C88 0014EBC8  7C 08 02 A6 */	mflr r0
 /* 80151C8C 0014EBCC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -13966,9 +13982,9 @@ __ct__5PlaneFv:
 /* 80151D28 0014EC68  7C 08 03 A6 */	mtlr r0
 /* 80151D2C 0014EC6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80151D30 0014EC70  4E 80 00 20 */	blr 
+.endfn "read__22ArrayContainer<5Plane>FR6Stream"
 
-.global "alloc__27MonoObjectMgr<Q24Game4Navi>Fi"
-"alloc__27MonoObjectMgr<Q24Game4Navi>Fi":
+.fn "alloc__27MonoObjectMgr<Q24Game4Navi>Fi", weak
 /* 80151D34 0014EC74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80151D38 0014EC78  7C 08 02 A6 */	mflr r0
 /* 80151D3C 0014EC7C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14073,13 +14089,13 @@ __ct__5PlaneFv:
 /* 80151EB0 0014EDF0  7C 08 03 A6 */	mtlr r0
 /* 80151EB4 0014EDF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80151EB8 0014EDF8  4E 80 00 20 */	blr 
+.endfn "alloc__27MonoObjectMgr<Q24Game4Navi>Fi"
 
-.global "onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv"
-"onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 80151EBC 0014EDFC  4E 80 00 20 */	blr 
+.endfn "onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "alloc__27MonoObjectMgr<Q24Game4Piki>Fi"
-"alloc__27MonoObjectMgr<Q24Game4Piki>Fi":
+.fn "alloc__27MonoObjectMgr<Q24Game4Piki>Fi", weak
 /* 80151EC0 0014EE00  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80151EC4 0014EE04  7C 08 02 A6 */	mflr r0
 /* 80151EC8 0014EE08  90 01 00 24 */	stw r0, 0x24(r1)
@@ -14184,13 +14200,13 @@ __ct__5PlaneFv:
 /* 8015203C 0014EF7C  7C 08 03 A6 */	mtlr r0
 /* 80152040 0014EF80  38 21 00 20 */	addi r1, r1, 0x20
 /* 80152044 0014EF84  4E 80 00 20 */	blr 
+.endfn "alloc__27MonoObjectMgr<Q24Game4Piki>Fi"
 
-.global "onAlloc__27MonoObjectMgr<Q24Game4Piki>Fv"
-"onAlloc__27MonoObjectMgr<Q24Game4Piki>Fv":
+.fn "onAlloc__27MonoObjectMgr<Q24Game4Piki>Fv", weak
 /* 80152048 0014EF88  4E 80 00 20 */	blr 
+.endfn "onAlloc__27MonoObjectMgr<Q24Game4Piki>Fv"
 
-.global __sinit_baseGameSection_cpp
-__sinit_baseGameSection_cpp:
+.fn __sinit_baseGameSection_cpp, local
 /* 8015204C 0014EF8C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80152050 0014EF90  38 00 FF FF */	li r0, -1
 /* 80152054 0014EF94  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -14201,3 +14217,4 @@ __sinit_baseGameSection_cpp:
 /* 80152068 0014EFA8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8015206C 0014EFAC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80152070 0014EFB0  4E 80 00 20 */	blr 
+.endfn __sinit_baseGameSection_cpp

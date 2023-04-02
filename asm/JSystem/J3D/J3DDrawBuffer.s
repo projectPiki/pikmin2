@@ -20,10 +20,11 @@ lbl_constructor:
 	.4byte 0xFFFFFFFF
 	.4byte entryZSort__13J3DDrawBufferFP12J3DMatPacket
 .endobj lbl_804A1948
-lbl_804A1954:
+.obj lbl_804A1954, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte entryModelSort__13J3DDrawBufferFP12J3DMatPacket
+.endobj lbl_804A1954
 .obj lbl_804A1960, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF

@@ -5,116 +5,147 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047E318:
+.obj lbl_8047E318, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.endobj lbl_8047E318
 .balign 4
-lbl_8047E324:
+.obj lbl_8047E324, local
 	.asciz "pelletMgr"
+.endobj lbl_8047E324
 .balign 4
-lbl_8047E330:
+.obj lbl_8047E330, local
 	.asciz "no config pellet"
+.endobj lbl_8047E330
 .balign 4
-lbl_8047E344:
+.obj lbl_8047E344, local
 	.asciz "pelletMgr.cpp"
+.endobj lbl_8047E344
 .balign 4
-lbl_8047E354:
+.obj lbl_8047E354, local
 	.asciz "P2Assert"
+.endobj lbl_8047E354
 .balign 4
-lbl_8047E360: # bury radius array of five words
+.obj lbl_8047E360, local # bury radius array of five words
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-lbl_8047E374:
+.endobj lbl_8047E360
+.balign 4
+.obj lbl_8047E374, local
 	.asciz "number10"
+.endobj lbl_8047E374
 .balign 4
-lbl_8047E380:
+.obj lbl_8047E380, local
 	.asciz "number20"
+.endobj lbl_8047E380
 .balign 4
-lbl_8047E38C: # Shift-JIS
+.obj lbl_8047E38C, local # Shift-JIS
 	.4byte 0x82AA82C1
 	.4byte 0x82A982E8
 	.2byte 0x0A00
+.endobj lbl_8047E38C
 .balign 4
-lbl_8047E398:
+.obj lbl_8047E398, local
 	.asciz "PSGame.h"
+.endobj lbl_8047E398
 .balign 4
-lbl_8047E3A4:
+.obj lbl_8047E3A4, local
 	.asciz "PSScene.h"
+.endobj lbl_8047E3A4
 .balign 4
-lbl_8047E3B0:
+.obj lbl_8047E3B0, local
 	.asciz "get sound scene at\ninvalid timming\n"
+.endobj lbl_8047E3B0
 .balign 4
-lbl_8047E3D4:
+.obj lbl_8047E3D4, local
 	.asciz "PSMainSide_Scene.h"
+.endobj lbl_8047E3D4
 .balign 4
-lbl_8047E3E8:
+.obj lbl_8047E3E8, local
 	.asciz "onSlotStickEnd\n"
+.endobj lbl_8047E3E8
 .balign 4
-lbl_8047E3F8:
+.obj lbl_8047E3F8, local
 	.asciz "/user/Abe/Pellet/%s/"
+.endobj lbl_8047E3F8
 .balign 4
-lbl_8047E410:
+.obj lbl_8047E410, local
 	.asciz "user/Kando/pellet/"
+.endobj lbl_8047E410
 .balign 4
-lbl_8047E424:
+.obj lbl_8047E424, local
 	.asciz "meck ** %s : is not foun !\n"
+.endobj lbl_8047E424
 .balign 4
-lbl_8047E440:
+.obj lbl_8047E440, local
 	.asciz "%s: not found !\n"
+.endobj lbl_8047E440
 .balign 4
-lbl_8047E454:
+.obj lbl_8047E454, local
 	.asciz "archive not found\n"
+.endobj lbl_8047E454
 .balign 4
-lbl_8047E468:
+.obj lbl_8047E468, local
 	.asciz "%s : is not foun !\n"
+.endobj lbl_8047E468
 .balign 4
-lbl_8047E47C:
+.obj lbl_8047E47C, local
 	.asciz "bpmgr:no modelData!%d\n"
+.endobj lbl_8047E47C
 .balign 4
-lbl_8047E494: # Shift-JIS
+.obj lbl_8047E494, local # Shift-JIS
 	.4byte 0x8379838C
 	.4byte 0x83628367
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
+.endobj lbl_8047E494
 .balign 4
-lbl_8047E4A8:
+.obj lbl_8047E4A8, local
 	.asciz "illegal code (%x)\n"
+.endobj lbl_8047E4A8
 .balign 4
-lbl_8047E4BC:
+.obj lbl_8047E4BC, local
 	.asciz "illegal code no config found (%x) index %d\n"
+.endobj lbl_8047E4BC
 .balign 4
-lbl_8047E4E8:
+.obj lbl_8047E4E8, local
 	.asciz "no config found(%s)\n"
+.endobj lbl_8047E4E8
 .balign 4
-lbl_8047E500: # Shift-JIS
+.obj lbl_8047E500, local # Shift-JIS
 	.4byte 0x232082A8
 	.4byte 0x95F38341
 	.4byte 0x83438365
 	.4byte 0x83808352
 	.4byte 0x815B8368
 	.4byte 0x0D0A0000
+.endobj lbl_8047E500
 .balign 4
-lbl_8047E518:
+.obj lbl_8047E518, local
 	.asciz "ArgScale"
+.endobj lbl_8047E518
 .balign 4
-lbl_8047E524:
+.obj lbl_8047E524, local
 	.asciz "PelletInitArg"
+.endobj lbl_8047E524
 .balign 4
-lbl_8047E534:
+.obj lbl_8047E534, local
 	.asciz "PelletGoalStateArg"
+.endobj lbl_8047E534
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804B1A6C:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804B1A6C, local
 	.4byte .L_80166C44
 	.4byte .L_80166BF4
 	.4byte .L_80166C44
@@ -136,12 +167,13 @@ lbl_804B1A6C:
 	.4byte .L_80166C44
 	.4byte .L_80166C44
 	.4byte .L_80166C2C
-lbl_804B1AC0:
+.endobj lbl_804B1A6C
+.obj lbl_804B1AC0, local
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte createModelCallback__Q24Game13BasePelletMgrFPQ28SysShape5Model
-.global __vt__Q24Game9PelletMgr
-__vt__Q24Game9PelletMgr:
+.endobj lbl_804B1AC0
+.obj __vt__Q24Game9PelletMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game9PelletMgrFv
@@ -178,38 +210,38 @@ __vt__Q24Game9PelletMgr:
 	.4byte getCaveName__Q24Game9PelletMgrFi
 	.4byte getCaveID__Q24Game9PelletMgrFPc
 	.4byte doSimpleDraw__Q24Game9PelletMgrFP8Viewport
-.global "__vt__28Iterator<16GenericObjectMgr>"
-"__vt__28Iterator<16GenericObjectMgr>":
+.endobj __vt__Q24Game9PelletMgr
+.obj "__vt__28Iterator<16GenericObjectMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__28Iterator<16GenericObjectMgr>Fv"
 	.4byte "next__28Iterator<16GenericObjectMgr>Fv"
 	.4byte "isDone__28Iterator<16GenericObjectMgr>Fv"
 	.4byte "__ml__28Iterator<16GenericObjectMgr>Fv"
-.global "__vt__36Iterator<Q34Game10PelletItem6Object>"
-"__vt__36Iterator<Q34Game10PelletItem6Object>":
+.endobj "__vt__28Iterator<16GenericObjectMgr>"
+.obj "__vt__36Iterator<Q34Game10PelletItem6Object>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__36Iterator<Q34Game10PelletItem6Object>Fv"
 	.4byte "next__36Iterator<Q34Game10PelletItem6Object>Fv"
 	.4byte "isDone__36Iterator<Q34Game10PelletItem6Object>Fv"
 	.4byte "__ml__36Iterator<Q34Game10PelletItem6Object>Fv"
-.global "__vt__39Iterator<Q34Game13PelletOtakara6Object>"
-"__vt__39Iterator<Q34Game13PelletOtakara6Object>":
+.endobj "__vt__36Iterator<Q34Game10PelletItem6Object>"
+.obj "__vt__39Iterator<Q34Game13PelletOtakara6Object>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__39Iterator<Q34Game13PelletOtakara6Object>Fv"
 	.4byte "next__39Iterator<Q34Game13PelletOtakara6Object>Fv"
 	.4byte "isDone__39Iterator<Q34Game13PelletOtakara6Object>Fv"
 	.4byte "__ml__39Iterator<Q34Game13PelletOtakara6Object>Fv"
-.global "__vt__31TObjectNode<16GenericObjectMgr>"
-"__vt__31TObjectNode<16GenericObjectMgr>":
+.endobj "__vt__39Iterator<Q34Game13PelletOtakara6Object>"
+.obj "__vt__31TObjectNode<16GenericObjectMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__31TObjectNode<16GenericObjectMgr>Fv"
 	.4byte getChildCount__5CNodeFv
-.global "__vt__33NodeObjectMgr<16GenericObjectMgr>"
-"__vt__33NodeObjectMgr<16GenericObjectMgr>":
+.endobj "__vt__31TObjectNode<16GenericObjectMgr>"
+.obj "__vt__33NodeObjectMgr<16GenericObjectMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__33NodeObjectMgr<16GenericObjectMgr>Fv"
@@ -242,8 +274,8 @@ __vt__Q24Game9PelletMgr:
 	.4byte "doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
 	.4byte "doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
 	.4byte "resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv"
-.global "__vt__29ObjectMgr<16GenericObjectMgr>"
-"__vt__29ObjectMgr<16GenericObjectMgr>":
+.endobj "__vt__33NodeObjectMgr<16GenericObjectMgr>"
+.obj "__vt__29ObjectMgr<16GenericObjectMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__29ObjectMgr<16GenericObjectMgr>Fv"
@@ -275,8 +307,8 @@ __vt__Q24Game9PelletMgr:
 	.4byte "doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv"
 	.4byte "doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
 	.4byte "doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
-.global "__vt__29Container<16GenericObjectMgr>"
-"__vt__29Container<16GenericObjectMgr>":
+.endobj "__vt__29ObjectMgr<16GenericObjectMgr>"
+.obj "__vt__29Container<16GenericObjectMgr>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__29Container<16GenericObjectMgr>Fv"
@@ -288,8 +320,8 @@ __vt__Q24Game9PelletMgr:
 	.4byte 0
 	.4byte "getAt__29Container<16GenericObjectMgr>Fi"
 	.4byte "getTo__29Container<16GenericObjectMgr>Fv"
-.global __vt__Q24Game13BasePelletMgr
-__vt__Q24Game13BasePelletMgr:
+.endobj "__vt__29Container<16GenericObjectMgr>"
+.obj __vt__Q24Game13BasePelletMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q24Game13BasePelletMgrFv
@@ -328,13 +360,13 @@ __vt__Q24Game13BasePelletMgr:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global "__vt__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>"
-"__vt__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>":
+.endobj __vt__Q24Game13BasePelletMgr
+.obj "__vt__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>FPQ28SysShape5Model"
-.global "__vt__20Container<8CollPart>"
-"__vt__20Container<8CollPart>":
+.endobj "__vt__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>"
+.obj "__vt__20Container<8CollPart>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__20Container<8CollPart>Fv"
@@ -346,8 +378,8 @@ __vt__Q24Game13BasePelletMgr:
 	.4byte 0
 	.4byte "getAt__20Container<8CollPart>Fi"
 	.4byte "getTo__20Container<8CollPart>Fv"
-.global "__vt__20ObjectMgr<8CollPart>"
-"__vt__20ObjectMgr<8CollPart>":
+.endobj "__vt__20Container<8CollPart>"
+.obj "__vt__20ObjectMgr<8CollPart>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__20ObjectMgr<8CollPart>Fv"
@@ -379,8 +411,8 @@ __vt__Q24Game13BasePelletMgr:
 	.4byte "doViewCalc__20ObjectMgr<8CollPart>Fv"
 	.4byte "doSimulation__20ObjectMgr<8CollPart>Ff"
 	.4byte "doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics"
-.global "__vt__24MonoObjectMgr<8CollPart>"
-"__vt__24MonoObjectMgr<8CollPart>":
+.endobj "__vt__20ObjectMgr<8CollPart>"
+.obj "__vt__24MonoObjectMgr<8CollPart>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__24MonoObjectMgr<8CollPart>Fv"
@@ -416,8 +448,8 @@ __vt__Q24Game13BasePelletMgr:
 	.4byte "resetMgr__24MonoObjectMgr<8CollPart>Fv"
 	.4byte "clearMgr__24MonoObjectMgr<8CollPart>Fv"
 	.4byte "onAlloc__24MonoObjectMgr<8CollPart>Fv"
-.global __vt__11CollPartMgr
-__vt__11CollPartMgr:
+.endobj "__vt__24MonoObjectMgr<8CollPart>"
+.obj __vt__11CollPartMgr, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11CollPartMgrFv
@@ -453,28 +485,28 @@ __vt__11CollPartMgr:
 	.4byte "resetMgr__24MonoObjectMgr<8CollPart>Fv"
 	.4byte "clearMgr__24MonoObjectMgr<8CollPart>Fv"
 	.4byte "onAlloc__24MonoObjectMgr<8CollPart>Fv"
-.global __vt__13WPExcludeSpot
-__vt__13WPExcludeSpot:
+.endobj __vt__11CollPartMgr
+.obj __vt__13WPExcludeSpot, weak
 	.4byte 0
 	.4byte 0
 	.4byte satisfy__13WPExcludeSpotFPQ24Game8WayPoint
-.global "__vt__Q223@unnamed@pelletMgr_cpp@6NotOff"
-"__vt__Q223@unnamed@pelletMgr_cpp@6NotOff": # weak object
+.endobj __vt__13WPExcludeSpot
+.obj "__vt__Q223@unnamed@pelletMgr_cpp@6NotOff", weak
 	.4byte 0
 	.4byte 0
 	.4byte "satisfy__Q223@unnamed@pelletMgr_cpp@6NotOffFPQ24Game8WayPoint"
-.global __vt__Q24Game11WPCondition
-__vt__Q24Game11WPCondition:
+.endobj "__vt__Q223@unnamed@pelletMgr_cpp@6NotOff"
+.obj __vt__Q24Game11WPCondition, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global "__vt__27Condition<Q24Game8WayPoint>"
-"__vt__27Condition<Q24Game8WayPoint>":
+.endobj __vt__Q24Game11WPCondition
+.obj "__vt__27Condition<Q24Game8WayPoint>", weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q24Game6Pellet
-__vt__Q24Game6Pellet:
+.endobj "__vt__27Condition<Q24Game8WayPoint>"
+.obj __vt__Q24Game6Pellet, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game6PelletFv
@@ -610,18 +642,18 @@ __vt__Q24Game6Pellet:
 	.4byte sound_otakaraEventRestart__Q24Game6PelletFv
 	.4byte sound_otakaraEventStop__Q24Game6PelletFv
 	.4byte sound_otakaraEventFinish__Q24Game6PelletFv
-.global __vt__Q24Game19PelletNumberInitArg
-__vt__Q24Game19PelletNumberInitArg:
+.endobj __vt__Q24Game6Pellet
+.obj __vt__Q24Game19PelletNumberInitArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q24Game13PelletInitArgFv
-.global __vt__Q24Game18PelletIndexInitArg
-__vt__Q24Game18PelletIndexInitArg:
+.endobj __vt__Q24Game19PelletNumberInitArg
+.obj __vt__Q24Game18PelletIndexInitArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q24Game13PelletInitArgFv
-.global __vt__Q23PSM9EventBase
-__vt__Q23PSM9EventBase:
+.endobj __vt__Q24Game18PelletIndexInitArg
+.obj __vt__Q23PSM9EventBase, weak
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -656,21 +688,21 @@ __vt__Q23PSM9EventBase:
 	.4byte startSound__Q23PSM11CreatureObjFUlUl
 	.4byte startSound__Q23PSM11CreatureObjFUcUlUl
 	.4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
-.global "__vt__Q24Game28StateMachine<Q24Game6Pellet>"
-"__vt__Q24Game28StateMachine<Q24Game6Pellet>":
+.endobj __vt__Q23PSM9EventBase
+.obj "__vt__Q24Game28StateMachine<Q24Game6Pellet>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 	.4byte "start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
 	.4byte "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 	.4byte "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
-.global __vt__Q24Game18PelletGoalStateArg
-__vt__Q24Game18PelletGoalStateArg:
+.endobj "__vt__Q24Game28StateMachine<Q24Game6Pellet>"
+.obj __vt__Q24Game18PelletGoalStateArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q24Game18PelletGoalStateArgFv
-.global __vt__Q24Game12InteractSuck
-__vt__Q24Game12InteractSuck:
+.endobj __vt__Q24Game18PelletGoalStateArg
+.obj __vt__Q24Game12InteractSuck, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -680,22 +712,22 @@ __vt__Q24Game12InteractSuck:
 	.4byte actPellet__Q24Game12InteractSuckFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q23efx12TFruitsDownP
-__vt__Q23efx12TFruitsDownP:
+.endobj __vt__Q24Game12InteractSuck
+.obj __vt__Q23efx12TFruitsDownP, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx12TFruitsDownR
-__vt__Q23efx12TFruitsDownR:
+.endobj __vt__Q23efx12TFruitsDownP
+.obj __vt__Q23efx12TFruitsDownR, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q24Game11InteractEat
-__vt__Q24Game11InteractEat:
+.endobj __vt__Q23efx12TFruitsDownR
+.obj __vt__Q24Game11InteractEat, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -705,8 +737,8 @@ __vt__Q24Game11InteractEat:
 	.4byte actPellet__Q24Game11InteractEatFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractEatFPQ24Game8BaseItem
-.global __vt__Q24Game15InteractMattuan
-__vt__Q24Game15InteractMattuan:
+.endobj __vt__Q24Game11InteractEat
+.obj __vt__Q24Game15InteractMattuan, global
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -716,161 +748,209 @@ __vt__Q24Game15InteractMattuan:
 	.4byte actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global "__vt__19Iterator<8CollPart>"
-"__vt__19Iterator<8CollPart>":
+.endobj __vt__Q24Game15InteractMattuan
+.obj "__vt__19Iterator<8CollPart>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__19Iterator<8CollPart>Fv"
 	.4byte "next__19Iterator<8CollPart>Fv"
 	.4byte "isDone__19Iterator<8CollPart>Fv"
 	.4byte "__ml__19Iterator<8CollPart>Fv"
+.endobj "__vt__19Iterator<8CollPart>"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global sFromTekiEnable__Q24Game6Pellet
-sFromTekiEnable__Q24Game6Pellet:
+.obj sFromTekiEnable__Q24Game6Pellet, global
 	.byte 0x01
+.endobj sFromTekiEnable__Q24Game6Pellet
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global pelletMgr__4Game
-pelletMgr__4Game:
+.endobj gfNAN___Q24Game5P2JST
+.obj pelletMgr__4Game, global
 	.skip 0x4
-.global mDebug__Q24Game9PelletMgr
-mDebug__Q24Game9PelletMgr:
+.endobj pelletMgr__4Game
+.obj mDebug__Q24Game9PelletMgr, global
 	.skip 0x1
-.global disableDynamics__Q24Game9PelletMgr
-disableDynamics__Q24Game9PelletMgr:
+.endobj mDebug__Q24Game9PelletMgr
+.obj disableDynamics__Q24Game9PelletMgr, global
 	.skip 0x1
+.endobj disableDynamics__Q24Game9PelletMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518910:
+.obj lbl_80518910, local
 	.float 1.0
-lbl_80518914:
+.endobj lbl_80518910
+.obj lbl_80518914, local
 	.float 0.0
-lbl_80518918:
+.endobj lbl_80518914
+.obj lbl_80518918, local
 	.float 0.5
-lbl_8051891C:
+.endobj lbl_80518918
+.obj lbl_8051891C, local
 	.float 0.2
-lbl_80518920:
+.endobj lbl_8051891C
+.obj lbl_80518920, local
 	.float 90.0
-lbl_80518924:
+.endobj lbl_80518920
+.obj lbl_80518924, local
 	.float -0.5
-lbl_80518928:
+.endobj lbl_80518924
+.obj lbl_80518928, local
 	.float 30.0
+.endobj lbl_80518928
 .balign 8
-lbl_80518930:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80518938:
+.obj lbl_80518930, local
+	.8byte 0x4330000080000000
+.endobj lbl_80518930
+.obj lbl_80518938, local
 	.float 4.0
-lbl_8051893C:
+.endobj lbl_80518938
+.obj lbl_8051893C, local
 	.float 0.25
-lbl_80518940:
+.endobj lbl_8051893C
+.obj lbl_80518940, local
 	.float 32768.0
-lbl_80518944:
+.endobj lbl_80518940
+.obj lbl_80518944, local
 	.float 3.0
+.endobj lbl_80518944
 .balign 4
-lbl_80518948:
+.obj lbl_80518948, local
 	.asciz "number1"
+.endobj lbl_80518948
 .balign 4
-lbl_80518950:
+.obj lbl_80518950, local
 	.asciz "number5"
+.endobj lbl_80518950
 .balign 4
-lbl_80518958:
+.obj lbl_80518958, local
 	.float 128000.0
-lbl_8051895C:
+.endobj lbl_80518958
+.obj lbl_8051895C, local
 	.float 0.01
+.endobj lbl_8051895C
 .balign 4
-lbl_80518960:
+.obj lbl_80518960, local
 	.asciz "loozy"
+.endobj lbl_80518960
 .balign 4
-lbl_80518968:
+.obj lbl_80518968, local
 	.asciz "orima"
+.endobj lbl_80518968
 .balign 4
-lbl_80518970:
+.obj lbl_80518970, local
 	.float 2.0
+.endobj lbl_80518970
 .balign 4
-lbl_80518974:
+.obj lbl_80518974, local
 	.asciz "never"
+.endobj lbl_80518974
 .balign 4
-lbl_8051897C:
+.obj lbl_8051897C, local
 	.asciz "lod"
+.endobj lbl_8051897C
 .balign 4
-lbl_80518980:
+.obj lbl_80518980, local
 	.asciz "simple"
+.endobj lbl_80518980
 .balign 4
-lbl_80518988: # tau
+.obj lbl_80518988, local # tau
 	.float 6.2831855
-lbl_8051898C:
+.endobj lbl_80518988
+.obj lbl_8051898C, local
 	.float 325.9493
-lbl_80518990:
+.endobj lbl_8051898C
+.obj lbl_80518990, local
 	.float -325.9493
-lbl_80518994:
+.endobj lbl_80518990
+.obj lbl_80518994, local
 	.float 10.0
-lbl_80518998:
+.endobj lbl_80518994
+.obj lbl_80518998, local
 	.float 0.1
-lbl_8051899C:
+.endobj lbl_80518998
+.obj lbl_8051899C, local
 	.float 12.0
-lbl_805189A0:
+.endobj lbl_8051899C
+.obj lbl_805189A0, local
 	.float -1.0
-lbl_805189A4: # pi
+.endobj lbl_805189A0
+.obj lbl_805189A4, local # pi
 	.float 3.1415927
-lbl_805189A8:
+.endobj lbl_805189A4
+.obj lbl_805189A8, local
 	.float 1023.5
-lbl_805189AC: # pi/2
+.endobj lbl_805189A8
+.obj lbl_805189AC, local # pi/2
 	.float 1.5707964
-lbl_805189B0:
+.endobj lbl_805189AC
+.obj lbl_805189B0, local
 	.float 0.6
-lbl_805189B4:
+.endobj lbl_805189B0
+.obj lbl_805189B4, local
 	.float 100.0
+.endobj lbl_805189B4
 .balign 4
-lbl_805189B8:
+.obj lbl_805189B8, local
 	.asciz "pmotion"
+.endobj lbl_805189B8
 .balign 4
-lbl_805189C0:
+.obj lbl_805189C0, local
 	.float 12800.0
-lbl_805189C4:
+.endobj lbl_805189C0
+.obj lbl_805189C4, local
 	.float -0.0
+.endobj lbl_805189C4
 .balign 4
-lbl_805189C8:
+.obj lbl_805189C8, local
 	.asciz "jpn"
+.endobj lbl_805189C8
 .balign 4
-lbl_805189CC:
+.obj lbl_805189CC, local
 	.asciz "us"
+.endobj lbl_805189CC
 .balign 4
-lbl_805189D0:
+.obj lbl_805189D0, local
 	.asciz "pal"
+.endobj lbl_805189D0
 .balign 4
-lbl_805189D4:
+.obj lbl_805189D4, local
 	.asciz "null"
+.endobj lbl_805189D4
 .balign 4
-lbl_805189DC:
+.obj lbl_805189DC, local
 	.asciz "%s%s"
+.endobj lbl_805189DC
 .balign 4
-lbl_805189E4:
+.obj lbl_805189E4, local
 	.asciz "%s"
+.endobj lbl_805189E4
 .balign 4
-lbl_805189E8:
+.obj lbl_805189E8, local
 	.asciz "%s/%s"
+.endobj lbl_805189E8
 .balign 4
-lbl_805189F0:
+.obj lbl_805189F0, local
 	.asciz "manda!\n"
+.endobj lbl_805189F0
 .balign 4
-lbl_805189F8:
+.obj lbl_805189F8, local
 	.asciz "yes"
+.endobj lbl_805189F8
 .balign 4
-lbl_805189FC:
+.obj lbl_805189FC, local
 	.float 70.0
+.endobj lbl_805189FC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getCreatureName__Q24Game6PelletFv
-getCreatureName__Q24Game6PelletFv:
+.fn getCreatureName__Q24Game6PelletFv, global
 /* 801658EC 0016282C  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 801658F0 00162830  28 03 00 00 */	cmplwi r3, 0
 /* 801658F4 00162834  41 82 00 0C */	beq .L_80165900
@@ -880,9 +960,9 @@ getCreatureName__Q24Game6PelletFv:
 /* 80165900 00162840  3C 60 80 48 */	lis r3, lbl_8047E330@ha
 /* 80165904 00162844  38 63 E3 30 */	addi r3, r3, lbl_8047E330@l
 /* 80165908 00162848  4E 80 00 20 */	blr 
+.endfn getCreatureName__Q24Game6PelletFv
 
-.global getCreatureID__Q24Game6PelletFv
-getCreatureID__Q24Game6PelletFv:
+.fn getCreatureID__Q24Game6PelletFv, global
 /* 8016590C 0016284C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80165910 00162850  7C 08 02 A6 */	mflr r0
 /* 80165914 00162854  90 01 00 14 */	stw r0, 0x14(r1)
@@ -898,9 +978,9 @@ getCreatureID__Q24Game6PelletFv:
 /* 80165934 00162874  7C 08 03 A6 */	mtlr r0
 /* 80165938 00162878  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016593C 0016287C  4E 80 00 20 */	blr 
+.endfn getCreatureID__Q24Game6PelletFv
 
-.global getShadowParam__Q24Game6PelletFRQ24Game11ShadowParam
-getShadowParam__Q24Game6PelletFRQ24Game11ShadowParam:
+.fn getShadowParam__Q24Game6PelletFRQ24Game11ShadowParam, global
 /* 80165940 00162880  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80165944 00162884  7C 08 02 A6 */	mflr r0
 /* 80165948 00162888  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1003,9 +1083,9 @@ getShadowParam__Q24Game6PelletFRQ24Game11ShadowParam:
 /* 80165AC4 00162A04  7C 08 03 A6 */	mtlr r0
 /* 80165AC8 00162A08  38 21 00 90 */	addi r1, r1, 0x90
 /* 80165ACC 00162A0C  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q24Game6PelletFRQ24Game11ShadowParam
 
-.global needShadow__Q24Game6PelletFv
-needShadow__Q24Game6PelletFv:
+.fn needShadow__Q24Game6PelletFv, global
 /* 80165AD0 00162A10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80165AD4 00162A14  7C 08 02 A6 */	mflr r0
 /* 80165AD8 00162A18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1037,14 +1117,14 @@ needShadow__Q24Game6PelletFv:
 /* 80165B38 00162A78  7C 08 03 A6 */	mtlr r0
 /* 80165B3C 00162A7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80165B40 00162A80  4E 80 00 20 */	blr 
+.endfn needShadow__Q24Game6PelletFv
 
-.global getWallTimer__Q24Game6PelletFv
-getWallTimer__Q24Game6PelletFv:
+.fn getWallTimer__Q24Game6PelletFv, global
 /* 80165B44 00162A84  88 63 03 BC */	lbz r3, 0x3bc(r3)
 /* 80165B48 00162A88  4E 80 00 20 */	blr 
+.endfn getWallTimer__Q24Game6PelletFv
 
-.global __ct__Q24Game13PelletViewArgFv
-__ct__Q24Game13PelletViewArgFv:
+.fn __ct__Q24Game13PelletViewArgFv, global
 /* 80165B4C 00162A8C  C0 22 A5 B0 */	lfs f1, lbl_80518910@sda21(r2)
 /* 80165B50 00162A90  38 00 00 00 */	li r0, 0
 /* 80165B54 00162A94  C0 02 A5 B4 */	lfs f0, lbl_80518914@sda21(r2)
@@ -1058,9 +1138,9 @@ __ct__Q24Game13PelletViewArgFv:
 /* 80165B74 00162AB4  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80165B78 00162AB8  90 03 00 00 */	stw r0, 0(r3)
 /* 80165B7C 00162ABC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game13PelletViewArgFv
 
-.global becomePellet__Q24Game10PelletViewFPQ24Game13PelletViewArg
-becomePellet__Q24Game10PelletViewFPQ24Game13PelletViewArg:
+.fn becomePellet__Q24Game10PelletViewFPQ24Game13PelletViewArg, global
 /* 80165B80 00162AC0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80165B84 00162AC4  7C 08 02 A6 */	mflr r0
 /* 80165B88 00162AC8  3C C0 80 4B */	lis r6, __vt__Q24Game13PelletInitArg@ha
@@ -1199,9 +1279,9 @@ becomePellet__Q24Game10PelletViewFPQ24Game13PelletViewArg:
 /* 80165D94 00162CD4  7C 08 03 A6 */	mtlr r0
 /* 80165D98 00162CD8  38 21 00 60 */	addi r1, r1, 0x60
 /* 80165D9C 00162CDC  4E 80 00 20 */	blr 
+.endfn becomePellet__Q24Game10PelletViewFPQ24Game13PelletViewArg
 
-.global viewMakeMatrix__Q24Game10PelletViewFR7Matrixf
-viewMakeMatrix__Q24Game10PelletViewFR7Matrixf:
+.fn viewMakeMatrix__Q24Game10PelletViewFR7Matrixf, global
 /* 80165DA0 00162CE0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80165DA4 00162CE4  7C 08 02 A6 */	mflr r0
 /* 80165DA8 00162CE8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1235,24 +1315,24 @@ viewMakeMatrix__Q24Game10PelletViewFR7Matrixf:
 /* 80165E18 00162D58  7C 08 03 A6 */	mtlr r0
 /* 80165E1C 00162D5C  38 21 00 50 */	addi r1, r1, 0x50
 /* 80165E20 00162D60  4E 80 00 20 */	blr 
+.endfn viewMakeMatrix__Q24Game10PelletViewFR7Matrixf
 
-.global clearClaim__Q24Game6PelletFv
-clearClaim__Q24Game6PelletFv:
+.fn clearClaim__Q24Game6PelletFv, global
 /* 80165E24 00162D64  38 00 00 00 */	li r0, 0
 /* 80165E28 00162D68  90 03 03 C0 */	stw r0, 0x3c0(r3)
 /* 80165E2C 00162D6C  4E 80 00 20 */	blr 
+.endfn clearClaim__Q24Game6PelletFv
 
-.global sendClaim__Q24Game6PelletFv
-sendClaim__Q24Game6PelletFv:
+.fn sendClaim__Q24Game6PelletFv, global
 /* 80165E30 00162D70  80 83 03 C0 */	lwz r4, 0x3c0(r3)
 /* 80165E34 00162D74  2C 04 00 0A */	cmpwi r4, 0xa
 /* 80165E38 00162D78  4C 80 00 20 */	bgelr 
 /* 80165E3C 00162D7C  38 04 00 01 */	addi r0, r4, 1
 /* 80165E40 00162D80  90 03 03 C0 */	stw r0, 0x3c0(r3)
 /* 80165E44 00162D84  4E 80 00 20 */	blr 
+.endfn sendClaim__Q24Game6PelletFv
 
-.global updateClaim__Q24Game6PelletFv
-updateClaim__Q24Game6PelletFv:
+.fn updateClaim__Q24Game6PelletFv, global
 /* 80165E48 00162D88  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80165E4C 00162D8C  7C 08 02 A6 */	mflr r0
 /* 80165E50 00162D90  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -1519,21 +1599,21 @@ updateClaim__Q24Game6PelletFv:
 /* 80166230 00163170  7C 08 03 A6 */	mtlr r0
 /* 80166234 00163174  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80166238 00163178  4E 80 00 20 */	blr 
+.endfn updateClaim__Q24Game6PelletFv
 
-.global getBuryDepthMax__Q24Game6PelletFv
-getBuryDepthMax__Q24Game6PelletFv:
+.fn getBuryDepthMax__Q24Game6PelletFv, global
 /* 8016623C 0016317C  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 80166240 00163180  C0 23 01 C0 */	lfs f1, 0x1c0(r3)
 /* 80166244 00163184  4E 80 00 20 */	blr 
+.endfn getBuryDepthMax__Q24Game6PelletFv
 
-.global getBuryDepth__Q24Game6PelletFv
-getBuryDepth__Q24Game6PelletFv:
+.fn getBuryDepth__Q24Game6PelletFv, global
 /* 80166248 00163188  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 8016624C 0016318C  C0 23 01 B0 */	lfs f1, 0x1b0(r3)
 /* 80166250 00163190  4E 80 00 20 */	blr 
+.endfn getBuryDepth__Q24Game6PelletFv
 
-.global getBuryRadius__Q24Game6PelletFf
-getBuryRadius__Q24Game6PelletFf:
+.fn getBuryRadius__Q24Game6PelletFf, global
 /* 80166254 00163194  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80166258 00163198  7C 08 02 A6 */	mflr r0
 /* 8016625C 0016319C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1609,9 +1689,9 @@ getBuryRadius__Q24Game6PelletFf:
 /* 8016636C 001632AC  7C 08 03 A6 */	mtlr r0
 /* 80166370 001632B0  38 21 00 50 */	addi r1, r1, 0x50
 /* 80166374 001632B4  4E 80 00 20 */	blr 
+.endfn getBuryRadius__Q24Game6PelletFf
 
-.global stimulate__Q24Game6PelletFRQ24Game11Interaction
-stimulate__Q24Game6PelletFRQ24Game11Interaction:
+.fn stimulate__Q24Game6PelletFRQ24Game11Interaction, global
 /* 80166378 001632B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016637C 001632BC  7C 08 02 A6 */	mflr r0
 /* 80166380 001632C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1643,9 +1723,9 @@ stimulate__Q24Game6PelletFRQ24Game11Interaction:
 /* 801663E0 00163320  7C 08 03 A6 */	mtlr r0
 /* 801663E4 00163324  38 21 00 10 */	addi r1, r1, 0x10
 /* 801663E8 00163328  4E 80 00 20 */	blr 
+.endfn stimulate__Q24Game6PelletFRQ24Game11Interaction
 
-.global actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet
-actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet:
+.fn actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet, global
 /* 801663EC 0016332C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801663F0 00163330  7C 08 02 A6 */	mflr r0
 /* 801663F4 00163334  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1682,9 +1762,9 @@ actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet:
 /* 80166468 001633A8  7C 08 03 A6 */	mtlr r0
 /* 8016646C 001633AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80166470 001633B0  4E 80 00 20 */	blr 
+.endfn actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet
 
-.global actPellet__Q24Game11InteractEatFPQ24Game6Pellet
-actPellet__Q24Game11InteractEatFPQ24Game6Pellet:
+.fn actPellet__Q24Game11InteractEatFPQ24Game6Pellet, global
 /* 80166474 001633B4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80166478 001633B8  7C 08 02 A6 */	mflr r0
 /* 8016647C 001633BC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1787,9 +1867,9 @@ actPellet__Q24Game11InteractEatFPQ24Game6Pellet:
 /* 801665F0 00163530  7C 08 03 A6 */	mtlr r0
 /* 801665F4 00163534  38 21 00 60 */	addi r1, r1, 0x60
 /* 801665F8 00163538  4E 80 00 20 */	blr 
+.endfn actPellet__Q24Game11InteractEatFPQ24Game6Pellet
 
-.global actPellet__Q24Game12InteractSuckFPQ24Game6Pellet
-actPellet__Q24Game12InteractSuckFPQ24Game6Pellet:
+.fn actPellet__Q24Game12InteractSuckFPQ24Game6Pellet, global
 /* 801665FC 0016353C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80166600 00163540  7C 08 02 A6 */	mflr r0
 /* 80166604 00163544  3C A0 80 4B */	lis r5, __vt__Q24Game18PelletGoalStateArg@ha
@@ -1823,13 +1903,13 @@ actPellet__Q24Game12InteractSuckFPQ24Game6Pellet:
 /* 80166670 001635B0  7C 08 03 A6 */	mtlr r0
 /* 80166674 001635B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80166678 001635B8  4E 80 00 20 */	blr 
+.endfn actPellet__Q24Game12InteractSuckFPQ24Game6Pellet
 
-.global doDirectDraw__Q24Game6PelletFR8Graphics
-doDirectDraw__Q24Game6PelletFR8Graphics:
+.fn doDirectDraw__Q24Game6PelletFR8Graphics, global
 /* 8016667C 001635BC  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game6PelletFR8Graphics
 
-.global __ct__Q24Game6PelletFv
-__ct__Q24Game6PelletFv:
+.fn __ct__Q24Game6PelletFv, global
 /* 80166680 001635C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80166684 001635C4  7C 08 02 A6 */	mflr r0
 /* 80166688 001635C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1941,9 +2021,9 @@ __ct__Q24Game6PelletFv:
 /* 80166824 00163764  7C 08 03 A6 */	mtlr r0
 /* 80166828 00163768  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016682C 0016376C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game6PelletFv
 
-.global constructor__Q24Game6PelletFv
-constructor__Q24Game6PelletFv:
+.fn constructor__Q24Game6PelletFv, global
 /* 80166830 00163770  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80166834 00163774  7C 08 02 A6 */	mflr r0
 /* 80166838 00163778  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1972,9 +2052,9 @@ constructor__Q24Game6PelletFv:
 /* 80166890 001637D0  7C 08 03 A6 */	mtlr r0
 /* 80166894 001637D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80166898 001637D8  4E 80 00 20 */	blr 
+.endfn constructor__Q24Game6PelletFv
 
-.global __dt__Q23PSM11CreatureObjFv
-__dt__Q23PSM11CreatureObjFv:
+.fn __dt__Q23PSM11CreatureObjFv, weak
 /* 8016689C 001637DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801668A0 001637E0  7C 08 02 A6 */	mflr r0
 /* 801668A4 001637E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2016,9 +2096,9 @@ __dt__Q23PSM11CreatureObjFv:
 /* 8016692C 0016386C  7C 08 03 A6 */	mtlr r0
 /* 80166930 00163870  38 21 00 10 */	addi r1, r1, 0x10
 /* 80166934 00163874  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM11CreatureObjFv
 
-.global shadowOn__Q24Game6PelletFv
-shadowOn__Q24Game6PelletFv:
+.fn shadowOn__Q24Game6PelletFv, global
 /* 80166938 00163878  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016693C 0016387C  7C 08 02 A6 */	mflr r0
 /* 80166940 00163880  7C 64 1B 78 */	mr r4, r3
@@ -2033,9 +2113,9 @@ shadowOn__Q24Game6PelletFv:
 /* 80166960 001638A0  7C 08 03 A6 */	mtlr r0
 /* 80166964 001638A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80166968 001638A8  4E 80 00 20 */	blr 
+.endfn shadowOn__Q24Game6PelletFv
 
-.global shadowOff__Q24Game6PelletFv
-shadowOff__Q24Game6PelletFv:
+.fn shadowOff__Q24Game6PelletFv, global
 /* 8016696C 001638AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80166970 001638B0  7C 08 02 A6 */	mflr r0
 /* 80166974 001638B4  7C 64 1B 78 */	mr r4, r3
@@ -2050,40 +2130,40 @@ shadowOff__Q24Game6PelletFv:
 /* 80166994 001638D4  7C 08 03 A6 */	mtlr r0
 /* 80166998 001638D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016699C 001638DC  4E 80 00 20 */	blr 
+.endfn shadowOff__Q24Game6PelletFv
 
-.global getJAIObject__Q24Game6PelletFv
-getJAIObject__Q24Game6PelletFv:
+.fn getJAIObject__Q24Game6PelletFv, global
 /* 801669A0 001638E0  80 63 03 30 */	lwz r3, 0x330(r3)
 /* 801669A4 001638E4  28 03 00 00 */	cmplwi r3, 0
 /* 801669A8 001638E8  4D 82 00 20 */	beqlr 
 /* 801669AC 001638EC  38 63 00 30 */	addi r3, r3, 0x30
 /* 801669B0 001638F0  4E 80 00 20 */	blr 
+.endfn getJAIObject__Q24Game6PelletFv
 
-.global getPSCreature__Q24Game6PelletFv
-getPSCreature__Q24Game6PelletFv:
+.fn getPSCreature__Q24Game6PelletFv, global
 /* 801669B4 001638F4  80 63 03 30 */	lwz r3, 0x330(r3)
 /* 801669B8 001638F8  4E 80 00 20 */	blr 
+.endfn getPSCreature__Q24Game6PelletFv
 
-.global getBottomRadius__Q24Game6PelletFv
-getBottomRadius__Q24Game6PelletFv:
+.fn getBottomRadius__Q24Game6PelletFv, global
 /* 801669BC 001638FC  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 801669C0 00163900  C0 23 00 A0 */	lfs f1, 0xa0(r3)
 /* 801669C4 00163904  4E 80 00 20 */	blr 
+.endfn getBottomRadius__Q24Game6PelletFv
 
-.global getPickRadius__Q24Game6PelletFv
-getPickRadius__Q24Game6PelletFv:
+.fn getPickRadius__Q24Game6PelletFv, global
 /* 801669C8 00163908  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 801669CC 0016390C  C0 23 00 B0 */	lfs f1, 0xb0(r3)
 /* 801669D0 00163910  4E 80 00 20 */	blr 
+.endfn getPickRadius__Q24Game6PelletFv
 
-.global getCylinderHeight__Q24Game6PelletFv
-getCylinderHeight__Q24Game6PelletFv:
+.fn getCylinderHeight__Q24Game6PelletFv, global
 /* 801669D4 00163914  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 801669D8 00163918  C0 23 00 C0 */	lfs f1, 0xc0(r3)
 /* 801669DC 0016391C  4E 80 00 20 */	blr 
+.endfn getCylinderHeight__Q24Game6PelletFv
 
-.global getConfigIndex__Q24Game6PelletFv
-getConfigIndex__Q24Game6PelletFv:
+.fn getConfigIndex__Q24Game6PelletFv, global
 /* 801669E0 00163920  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801669E4 00163924  7C 08 02 A6 */	mflr r0
 /* 801669E8 00163928  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2107,15 +2187,15 @@ getConfigIndex__Q24Game6PelletFv:
 /* 80166A2C 0016396C  7C 08 03 A6 */	mtlr r0
 /* 80166A30 00163970  38 21 00 10 */	addi r1, r1, 0x10
 /* 80166A34 00163974  4E 80 00 20 */	blr 
+.endfn getConfigIndex__Q24Game6PelletFv
 
-.global getConfigName__Q24Game6PelletFv
-getConfigName__Q24Game6PelletFv:
+.fn getConfigName__Q24Game6PelletFv, global
 /* 80166A38 00163978  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 80166A3C 0016397C  80 63 00 40 */	lwz r3, 0x40(r3)
 /* 80166A40 00163980  4E 80 00 20 */	blr 
+.endfn getConfigName__Q24Game6PelletFv
 
-.global __ct__Q24Game18PelletIndexInitArgFi
-__ct__Q24Game18PelletIndexInitArgFi:
+.fn __ct__Q24Game18PelletIndexInitArgFi, global
 /* 80166A44 00163984  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80166A48 00163988  7C 08 02 A6 */	mflr r0
 /* 80166A4C 0016398C  3C A0 80 4B */	lis r5, __vt__Q24Game15CreatureInitArg@ha
@@ -2193,9 +2273,9 @@ __ct__Q24Game18PelletIndexInitArgFi:
 /* 80166B68 00163AA8  7C 08 03 A6 */	mtlr r0
 /* 80166B6C 00163AAC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80166B70 00163AB0  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game18PelletIndexInitArgFi
 
-.global __ct__Q24Game19PelletNumberInitArgFii
-__ct__Q24Game19PelletNumberInitArgFii:
+.fn __ct__Q24Game19PelletNumberInitArgFii, global
 /* 80166B74 00163AB4  3D 00 80 4B */	lis r8, __vt__Q24Game15CreatureInitArg@ha
 /* 80166B78 00163AB8  3C E0 80 4B */	lis r7, __vt__Q24Game13PelletInitArg@ha
 /* 80166B7C 00163ABC  39 08 A2 F4 */	addi r8, r8, __vt__Q24Game15CreatureInitArg@l
@@ -2262,9 +2342,9 @@ __ct__Q24Game19PelletNumberInitArgFii:
 /* 80166C58 00163B98  38 00 00 00 */	li r0, 0
 /* 80166C5C 00163B9C  98 03 00 16 */	stb r0, 0x16(r3)
 /* 80166C60 00163BA0  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game19PelletNumberInitArgFii
 
-.global isPickable__Q24Game6PelletFv
-isPickable__Q24Game6PelletFv:
+.fn isPickable__Q24Game6PelletFv, global
 /* 80166C64 00163BA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80166C68 00163BA8  7C 08 02 A6 */	mflr r0
 /* 80166C6C 00163BAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2283,14 +2363,14 @@ isPickable__Q24Game6PelletFv:
 /* 80166C98 00163BD8  7C 08 03 A6 */	mtlr r0
 /* 80166C9C 00163BDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80166CA0 00163BE0  4E 80 00 20 */	blr 
+.endfn isPickable__Q24Game6PelletFv
 
-.global isPickable__Q24Game11PelletStateFv
-isPickable__Q24Game11PelletStateFv:
+.fn isPickable__Q24Game11PelletStateFv, weak
 /* 80166CA4 00163BE4  38 60 00 00 */	li r3, 0
 /* 80166CA8 00163BE8  4E 80 00 20 */	blr 
+.endfn isPickable__Q24Game11PelletStateFv
 
-.global onKill__Q24Game6PelletFPQ24Game15CreatureKillArg
-onKill__Q24Game6PelletFPQ24Game15CreatureKillArg:
+.fn onKill__Q24Game6PelletFPQ24Game15CreatureKillArg, global
 /* 80166CAC 00163BEC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80166CB0 00163BF0  7C 08 02 A6 */	mflr r0
 /* 80166CB4 00163BF4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2463,9 +2543,9 @@ onKill__Q24Game6PelletFPQ24Game15CreatureKillArg:
 /* 80166F28 00163E68  7C 08 03 A6 */	mtlr r0
 /* 80166F2C 00163E6C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80166F30 00163E70  4E 80 00 20 */	blr 
+.endfn onKill__Q24Game6PelletFPQ24Game15CreatureKillArg
 
-.global "start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
-"start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg":
+.fn "start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg", weak
 /* 80166F34 00163E74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80166F38 00163E78  7C 08 02 A6 */	mflr r0
 /* 80166F3C 00163E7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2479,9 +2559,9 @@ onKill__Q24Game6PelletFPQ24Game15CreatureKillArg:
 /* 80166F5C 00163E9C  7C 08 03 A6 */	mtlr r0
 /* 80166F60 00163EA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80166F64 00163EA4  4E 80 00 20 */	blr 
+.endfn "start__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
 
-.global onInit__Q24Game6PelletFPQ24Game15CreatureInitArg
-onInit__Q24Game6PelletFPQ24Game15CreatureInitArg:
+.fn onInit__Q24Game6PelletFPQ24Game15CreatureInitArg, global
 /* 80166F68 00163EA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80166F6C 00163EAC  7C 08 02 A6 */	mflr r0
 /* 80166F70 00163EB0  38 A0 FF FF */	li r5, -1
@@ -2903,17 +2983,17 @@ onInit__Q24Game6PelletFPQ24Game15CreatureInitArg:
 /* 8016757C 001644BC  7C 08 03 A6 */	mtlr r0
 /* 80167580 001644C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80167584 001644C4  4E 80 00 20 */	blr 
+.endfn onInit__Q24Game6PelletFPQ24Game15CreatureInitArg
 
-.global do_onInit__Q24Game6PelletFPQ24Game15CreatureInitArg
-do_onInit__Q24Game6PelletFPQ24Game15CreatureInitArg:
+.fn do_onInit__Q24Game6PelletFPQ24Game15CreatureInitArg, weak
 /* 80167588 001644C8  4E 80 00 20 */	blr 
+.endfn do_onInit__Q24Game6PelletFPQ24Game15CreatureInitArg
 
-.global onCreateShape__Q24Game6PelletFv
-onCreateShape__Q24Game6PelletFv:
+.fn onCreateShape__Q24Game6PelletFv, weak
 /* 8016758C 001644CC  4E 80 00 20 */	blr 
+.endfn onCreateShape__Q24Game6PelletFv
 
-.global getPelletConfigMin__Q24Game6PelletFv
-getPelletConfigMin__Q24Game6PelletFv:
+.fn getPelletConfigMin__Q24Game6PelletFv, global
 /* 80167590 001644D0  80 03 03 D8 */	lwz r0, 0x3d8(r3)
 /* 80167594 001644D4  2C 00 00 00 */	cmpwi r0, 0
 /* 80167598 001644D8  40 81 00 0C */	ble .L_801675A4
@@ -2923,9 +3003,9 @@ getPelletConfigMin__Q24Game6PelletFv:
 /* 801675A4 001644E4  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 801675A8 001644E8  80 63 01 20 */	lwz r3, 0x120(r3)
 /* 801675AC 001644EC  4E 80 00 20 */	blr 
+.endfn getPelletConfigMin__Q24Game6PelletFv
 
-.global getPelletConfigMax__Q24Game6PelletFv
-getPelletConfigMax__Q24Game6PelletFv:
+.fn getPelletConfigMax__Q24Game6PelletFv, global
 /* 801675B0 001644F0  80 03 03 DC */	lwz r0, 0x3dc(r3)
 /* 801675B4 001644F4  2C 00 00 00 */	cmpwi r0, 0
 /* 801675B8 001644F8  40 81 00 0C */	ble .L_801675C4
@@ -2935,9 +3015,9 @@ getPelletConfigMax__Q24Game6PelletFv:
 /* 801675C4 00164504  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 801675C8 00164508  80 63 01 30 */	lwz r3, 0x130(r3)
 /* 801675CC 0016450C  4E 80 00 20 */	blr 
+.endfn getPelletConfigMax__Q24Game6PelletFv
 
-.global setupParticles__Q24Game6PelletFv
-setupParticles__Q24Game6PelletFv:
+.fn setupParticles__Q24Game6PelletFv, global
 /* 801675D0 00164510  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 801675D4 00164514  7C 08 02 A6 */	mflr r0
 /* 801675D8 00164518  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -3160,9 +3240,9 @@ setupParticles__Q24Game6PelletFv:
 /* 80167918 00164858  7C 08 03 A6 */	mtlr r0
 /* 8016791C 0016485C  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80167920 00164860  4E 80 00 20 */	blr 
+.endfn setupParticles__Q24Game6PelletFv
 
-.global setupParticles_simple__Q24Game6PelletFv
-setupParticles_simple__Q24Game6PelletFv:
+.fn setupParticles_simple__Q24Game6PelletFv, global
 /* 80167924 00164864  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80167928 00164868  7C 08 02 A6 */	mflr r0
 /* 8016792C 0016486C  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -3304,9 +3384,9 @@ setupParticles_simple__Q24Game6PelletFv:
 /* 80167B38 00164A78  7C 08 03 A6 */	mtlr r0
 /* 80167B3C 00164A7C  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80167B40 00164A80  4E 80 00 20 */	blr 
+.endfn setupParticles_simple__Q24Game6PelletFv
 
-.global setupParticles_tall__Q24Game6PelletFv
-setupParticles_tall__Q24Game6PelletFv:
+.fn setupParticles_tall__Q24Game6PelletFv, global
 /* 80167B44 00164A84  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80167B48 00164A88  7C 08 02 A6 */	mflr r0
 /* 80167B4C 00164A8C  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -3453,18 +3533,18 @@ setupParticles_tall__Q24Game6PelletFv:
 /* 80167D68 00164CA8  7C 08 03 A6 */	mtlr r0
 /* 80167D6C 00164CAC  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 80167D70 00164CB0  4E 80 00 20 */	blr 
+.endfn setupParticles_tall__Q24Game6PelletFv
 
-.global panmodokiCarryable__Q24Game6PelletFv
-panmodokiCarryable__Q24Game6PelletFv:
+.fn panmodokiCarryable__Q24Game6PelletFv, global
 /* 80167D74 00164CB4  80 63 03 5C */	lwz r3, 0x35c(r3)
 /* 80167D78 00164CB8  A0 03 02 44 */	lhz r0, 0x244(r3)
 /* 80167D7C 00164CBC  54 00 07 FE */	clrlwi r0, r0, 0x1f
 /* 80167D80 00164CC0  7C 00 00 34 */	cntlzw r0, r0
 /* 80167D84 00164CC4  54 03 D9 7E */	srwi r3, r0, 5
 /* 80167D88 00164CC8  4E 80 00 20 */	blr 
+.endfn panmodokiCarryable__Q24Game6PelletFv
 
-.global isCarried__Q24Game6PelletFv
-isCarried__Q24Game6PelletFv:
+.fn isCarried__Q24Game6PelletFv, global
 /* 80167D8C 00164CCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80167D90 00164CD0  7C 08 02 A6 */	mflr r0
 /* 80167D94 00164CD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3487,15 +3567,15 @@ isCarried__Q24Game6PelletFv:
 /* 80167DCC 00164D0C  7C 08 03 A6 */	mtlr r0
 /* 80167DD0 00164D10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80167DD4 00164D14  4E 80 00 20 */	blr 
+.endfn isCarried__Q24Game6PelletFv
 
-.global isPicked__Q24Game6PelletFv
-isPicked__Q24Game6PelletFv:
+.fn isPicked__Q24Game6PelletFv, weak
 /* 80167DD8 00164D18  88 03 03 D0 */	lbz r0, 0x3d0(r3)
 /* 80167DDC 00164D1C  54 03 07 FE */	clrlwi r3, r0, 0x1f
 /* 80167DE0 00164D20  4E 80 00 20 */	blr 
+.endfn isPicked__Q24Game6PelletFv
 
-.global finishDisplayCarryInfo__Q24Game6PelletFv
-finishDisplayCarryInfo__Q24Game6PelletFv:
+.fn finishDisplayCarryInfo__Q24Game6PelletFv, global
 /* 80167DE4 00164D24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80167DE8 00164D28  7C 08 02 A6 */	mflr r0
 /* 80167DEC 00164D2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3514,9 +3594,9 @@ finishDisplayCarryInfo__Q24Game6PelletFv:
 /* 80167E1C 00164D5C  7C 08 03 A6 */	mtlr r0
 /* 80167E20 00164D60  38 21 00 10 */	addi r1, r1, 0x10
 /* 80167E24 00164D64  4E 80 00 20 */	blr 
+.endfn finishDisplayCarryInfo__Q24Game6PelletFv
 
-.global getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam
-getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam:
+.fn getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam, global
 /* 80167E28 00164D68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80167E2C 00164D6C  7C 08 02 A6 */	mflr r0
 /* 80167E30 00164D70  C0 22 A5 C8 */	lfs f1, lbl_80518928@sda21(r2)
@@ -3559,9 +3639,9 @@ getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam:
 /* 80167EBC 00164DFC  7C 08 03 A6 */	mtlr r0
 /* 80167EC0 00164E00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80167EC4 00164E04  4E 80 00 20 */	blr 
+.endfn getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam
 
-.global setCarryColor__Q24Game6PelletFi
-setCarryColor__Q24Game6PelletFi:
+.fn setCarryColor__Q24Game6PelletFi, global
 /* 80167EC8 00164E08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80167ECC 00164E0C  7C 08 02 A6 */	mflr r0
 /* 80167ED0 00164E10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3589,19 +3669,19 @@ setCarryColor__Q24Game6PelletFi:
 /* 80167F24 00164E64  7C 08 03 A6 */	mtlr r0
 /* 80167F28 00164E68  38 21 00 10 */	addi r1, r1, 0x10
 /* 80167F2C 00164E6C  4E 80 00 20 */	blr 
+.endfn setCarryColor__Q24Game6PelletFi
 
-.global sound_otakaraEventStart__Q24Game6PelletFv
-sound_otakaraEventStart__Q24Game6PelletFv:
+.fn sound_otakaraEventStart__Q24Game6PelletFv, weak
 /* 80167F30 00164E70  4E 80 00 20 */	blr 
+.endfn sound_otakaraEventStart__Q24Game6PelletFv
 
-.global clearCarryColor__Q24Game6PelletFv
-clearCarryColor__Q24Game6PelletFv:
+.fn clearCarryColor__Q24Game6PelletFv, global
 /* 80167F34 00164E74  38 00 00 05 */	li r0, 5
 /* 80167F38 00164E78  90 03 03 D4 */	stw r0, 0x3d4(r3)
 /* 80167F3C 00164E7C  4E 80 00 20 */	blr 
+.endfn clearCarryColor__Q24Game6PelletFv
 
-.global getVelocity__Q24Game6PelletFv
-getVelocity__Q24Game6PelletFv:
+.fn getVelocity__Q24Game6PelletFv, global
 /* 80167F40 00164E80  C0 04 01 BC */	lfs f0, 0x1bc(r4)
 /* 80167F44 00164E84  D0 03 00 00 */	stfs f0, 0(r3)
 /* 80167F48 00164E88  C0 04 01 C0 */	lfs f0, 0x1c0(r4)
@@ -3609,9 +3689,9 @@ getVelocity__Q24Game6PelletFv:
 /* 80167F50 00164E90  C0 04 01 C4 */	lfs f0, 0x1c4(r4)
 /* 80167F54 00164E94  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80167F58 00164E98  4E 80 00 20 */	blr 
+.endfn getVelocity__Q24Game6PelletFv
 
-.global "setVelocity__Q24Game6PelletFR10Vector3<f>"
-"setVelocity__Q24Game6PelletFR10Vector3<f>":
+.fn "setVelocity__Q24Game6PelletFR10Vector3<f>", global
 /* 80167F5C 00164E9C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80167F60 00164EA0  D0 03 01 BC */	stfs f0, 0x1bc(r3)
 /* 80167F64 00164EA4  C0 04 00 04 */	lfs f0, 4(r4)
@@ -3619,9 +3699,9 @@ getVelocity__Q24Game6PelletFv:
 /* 80167F6C 00164EAC  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80167F70 00164EB0  D0 03 01 C4 */	stfs f0, 0x1c4(r3)
 /* 80167F74 00164EB4  4E 80 00 20 */	blr 
+.endfn "setVelocity__Q24Game6PelletFR10Vector3<f>"
 
-.global allocateTexCaster__Q24Game6PelletFv
-allocateTexCaster__Q24Game6PelletFv:
+.fn allocateTexCaster__Q24Game6PelletFv, global
 /* 80167F78 00164EB8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80167F7C 00164EBC  7C 08 02 A6 */	mflr r0
 /* 80167F80 00164EC0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3690,9 +3770,9 @@ allocateTexCaster__Q24Game6PelletFv:
 /* 80168070 00164FB0  7C 08 03 A6 */	mtlr r0
 /* 80168074 00164FB4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80168078 00164FB8  4E 80 00 20 */	blr 
+.endfn allocateTexCaster__Q24Game6PelletFv
 
-.global onSetPosition__Q24Game6PelletFv
-onSetPosition__Q24Game6PelletFv:
+.fn onSetPosition__Q24Game6PelletFv, global
 /* 8016807C 00164FBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80168080 00164FC0  7C 08 02 A6 */	mflr r0
 /* 80168084 00164FC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3888,9 +3968,9 @@ onSetPosition__Q24Game6PelletFv:
 /* 80168360 001652A0  7C 08 03 A6 */	mtlr r0
 /* 80168364 001652A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80168368 001652A8  4E 80 00 20 */	blr 
+.endfn onSetPosition__Q24Game6PelletFv
 
-.global setPanModokiRotation__Q24Game6PelletFf
-setPanModokiRotation__Q24Game6PelletFf:
+.fn setPanModokiRotation__Q24Game6PelletFf, global
 /* 8016836C 001652AC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80168370 001652B0  7C 08 02 A6 */	mflr r0
 /* 80168374 001652B4  C0 42 A5 B4 */	lfs f2, lbl_80518914@sda21(r2)
@@ -3982,9 +4062,9 @@ setPanModokiRotation__Q24Game6PelletFf:
 /* 801684C0 00165400  7C 08 03 A6 */	mtlr r0
 /* 801684C4 00165404  38 21 00 50 */	addi r1, r1, 0x50
 /* 801684C8 00165408  4E 80 00 20 */	blr 
+.endfn setPanModokiRotation__Q24Game6PelletFf
 
-.global setOrientation__Q24Game6PelletFR7Matrixf
-setOrientation__Q24Game6PelletFR7Matrixf:
+.fn setOrientation__Q24Game6PelletFR7Matrixf, global
 /* 801684CC 0016540C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801684D0 00165410  7C 08 02 A6 */	mflr r0
 /* 801684D4 00165414  90 01 00 34 */	stw r0, 0x34(r1)
@@ -4183,9 +4263,9 @@ setOrientation__Q24Game6PelletFR7Matrixf:
 /* 80168790 001656D0  7C 08 03 A6 */	mtlr r0
 /* 80168794 001656D4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80168798 001656D8  4E 80 00 20 */	blr 
+.endfn setOrientation__Q24Game6PelletFR7Matrixf
 
-.global getStateID__Q24Game6PelletFv
-getStateID__Q24Game6PelletFv:
+.fn getStateID__Q24Game6PelletFv, global
 /* 8016879C 001656DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801687A0 001656E0  7C 08 02 A6 */	mflr r0
 /* 801687A4 001656E4  7C 64 1B 78 */	mr r4, r3
@@ -4196,9 +4276,9 @@ getStateID__Q24Game6PelletFv:
 /* 801687B8 001656F8  7C 08 03 A6 */	mtlr r0
 /* 801687BC 001656FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801687C0 00165700  4E 80 00 20 */	blr 
+.endfn getStateID__Q24Game6PelletFv
 
-.global bounceCallback__Q24Game6PelletFPQ23Sys8Triangle
-bounceCallback__Q24Game6PelletFPQ23Sys8Triangle:
+.fn bounceCallback__Q24Game6PelletFPQ23Sys8Triangle, global
 /* 801687C4 00165704  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 801687C8 00165708  7C 08 02 A6 */	mflr r0
 /* 801687CC 0016570C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -4356,13 +4436,13 @@ bounceCallback__Q24Game6PelletFPQ23Sys8Triangle:
 /* 80168A18 00165958  7C 08 03 A6 */	mtlr r0
 /* 80168A1C 0016595C  38 21 00 80 */	addi r1, r1, 0x80
 /* 80168A20 00165960  4E 80 00 20 */	blr 
+.endfn bounceCallback__Q24Game6PelletFPQ23Sys8Triangle
 
-.global onBounce__Q24Game6PelletFv
-onBounce__Q24Game6PelletFv:
+.fn onBounce__Q24Game6PelletFv, weak
 /* 80168A24 00165964  4E 80 00 20 */	blr 
+.endfn onBounce__Q24Game6PelletFv
 
-.global update__Q24Game6PelletFv
-update__Q24Game6PelletFv:
+.fn update__Q24Game6PelletFv, global
 /* 80168A28 00165968  94 21 FD 10 */	stwu r1, -0x2f0(r1)
 /* 80168A2C 0016596C  7C 08 02 A6 */	mflr r0
 /* 80168A30 00165970  90 01 02 F4 */	stw r0, 0x2f4(r1)
@@ -5423,18 +5503,18 @@ update__Q24Game6PelletFv:
 /* 801699A0 001668E0  7C 08 03 A6 */	mtlr r0
 /* 801699A4 001668E4  38 21 02 F0 */	addi r1, r1, 0x2f0
 /* 801699A8 001668E8  4E 80 00 20 */	blr 
+.endfn update__Q24Game6PelletFv
 
-.global do_update__Q24Game6PelletFv
-do_update__Q24Game6PelletFv:
+.fn do_update__Q24Game6PelletFv, weak
 /* 801699AC 001668EC  4E 80 00 20 */	blr 
+.endfn do_update__Q24Game6PelletFv
 
-.global isCave__Q23PSM10Scene_GameFv
-isCave__Q23PSM10Scene_GameFv:
+.fn isCave__Q23PSM10Scene_GameFv, weak
 /* 801699B0 001668F0  38 60 00 00 */	li r3, 0
 /* 801699B4 001668F4  4E 80 00 20 */	blr 
+.endfn isCave__Q23PSM10Scene_GameFv
 
-.global getPikiBirthCount__Q24Game6PelletFRiRi
-getPikiBirthCount__Q24Game6PelletFRiRi:
+.fn getPikiBirthCount__Q24Game6PelletFRiRi, global
 /* 801699B8 001668F8  80 C3 03 5C */	lwz r6, 0x35c(r3)
 /* 801699BC 001668FC  80 06 01 50 */	lwz r0, 0x150(r6)
 /* 801699C0 00166900  90 04 00 00 */	stw r0, 0(r4)
@@ -5442,17 +5522,17 @@ getPikiBirthCount__Q24Game6PelletFRiRi:
 /* 801699C8 00166908  80 03 01 40 */	lwz r0, 0x140(r3)
 /* 801699CC 0016690C  90 05 00 00 */	stw r0, 0(r5)
 /* 801699D0 00166910  4E 80 00 20 */	blr 
+.endfn getPikiBirthCount__Q24Game6PelletFRiRi
 
-.global setMovieDraw__Q24Game9PelletMgrFb
-setMovieDraw__Q24Game9PelletMgrFb:
+.fn setMovieDraw__Q24Game9PelletMgrFb, global
 /* 801699D4 00166914  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 801699D8 00166918  7C 00 00 34 */	cntlzw r0, r0
 /* 801699DC 0016691C  54 00 D9 7E */	srwi r0, r0, 5
 /* 801699E0 00166920  98 03 00 3C */	stb r0, 0x3c(r3)
 /* 801699E4 00166924  4E 80 00 20 */	blr 
+.endfn setMovieDraw__Q24Game9PelletMgrFb
 
-.global doSimulation__Q24Game6PelletFf
-doSimulation__Q24Game6PelletFf:
+.fn doSimulation__Q24Game6PelletFf, global
 /* 801699E8 00166928  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801699EC 0016692C  7C 08 02 A6 */	mflr r0
 /* 801699F0 00166930  38 80 00 01 */	li r4, 1
@@ -5529,9 +5609,9 @@ doSimulation__Q24Game6PelletFf:
 /* 80169B08 00166A48  7C 08 03 A6 */	mtlr r0
 /* 80169B0C 00166A4C  38 21 00 50 */	addi r1, r1, 0x50
 /* 80169B10 00166A50  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game6PelletFf
 
-.global updateTrMatrix__Q24Game6PelletFv
-updateTrMatrix__Q24Game6PelletFv:
+.fn updateTrMatrix__Q24Game6PelletFv, global
 /* 80169B14 00166A54  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80169B18 00166A58  7C 08 02 A6 */	mflr r0
 /* 80169B1C 00166A5C  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -5602,9 +5682,9 @@ updateTrMatrix__Q24Game6PelletFv:
 /* 80169C1C 00166B5C  7C 08 03 A6 */	mtlr r0
 /* 80169C20 00166B60  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80169C24 00166B64  4E 80 00 20 */	blr 
+.endfn updateTrMatrix__Q24Game6PelletFv
 
-.global doAnimation__Q24Game6PelletFv
-doAnimation__Q24Game6PelletFv:
+.fn doAnimation__Q24Game6PelletFv, global
 /* 80169C28 00166B68  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80169C2C 00166B6C  7C 08 02 A6 */	mflr r0
 /* 80169C30 00166B70  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -5772,9 +5852,9 @@ doAnimation__Q24Game6PelletFv:
 /* 80169E98 00166DD8  7C 08 03 A6 */	mtlr r0
 /* 80169E9C 00166DDC  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 80169EA0 00166DE0  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game6PelletFv
 
-.global doEntry__Q24Game6PelletFv
-doEntry__Q24Game6PelletFv:
+.fn doEntry__Q24Game6PelletFv, global
 /* 80169EA4 00166DE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80169EA8 00166DE8  7C 08 02 A6 */	mflr r0
 /* 80169EAC 00166DEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5842,13 +5922,13 @@ doEntry__Q24Game6PelletFv:
 /* 80169F88 00166EC8  7C 08 03 A6 */	mtlr r0
 /* 80169F8C 00166ECC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80169F90 00166ED0  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game6PelletFv
 
-.global changeMaterial__Q24Game6PelletFv
-changeMaterial__Q24Game6PelletFv:
+.fn changeMaterial__Q24Game6PelletFv, weak
 /* 80169F94 00166ED4  4E 80 00 20 */	blr 
+.endfn changeMaterial__Q24Game6PelletFv
 
-.global doSetView__Q24Game6PelletFi
-doSetView__Q24Game6PelletFi:
+.fn doSetView__Q24Game6PelletFi, global
 /* 80169F98 00166ED8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80169F9C 00166EDC  7C 08 02 A6 */	mflr r0
 /* 80169FA0 00166EE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5857,9 +5937,9 @@ doSetView__Q24Game6PelletFi:
 /* 80169FAC 00166EEC  7C 08 03 A6 */	mtlr r0
 /* 80169FB0 00166EF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80169FB4 00166EF4  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game6PelletFi
 
-.global doViewCalc__Q24Game6PelletFv
-doViewCalc__Q24Game6PelletFv:
+.fn doViewCalc__Q24Game6PelletFv, global
 /* 80169FB8 00166EF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80169FBC 00166EFC  7C 08 02 A6 */	mflr r0
 /* 80169FC0 00166F00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5868,9 +5948,9 @@ doViewCalc__Q24Game6PelletFv:
 /* 80169FCC 00166F0C  7C 08 03 A6 */	mtlr r0
 /* 80169FD0 00166F10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80169FD4 00166F14  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game6PelletFv
 
-.global theEntry__Q24Game6PelletFv
-theEntry__Q24Game6PelletFv:
+.fn theEntry__Q24Game6PelletFv, global
 /* 80169FD8 00166F18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80169FDC 00166F1C  7C 08 02 A6 */	mflr r0
 /* 80169FE0 00166F20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5932,9 +6012,9 @@ theEntry__Q24Game6PelletFv:
 /* 8016A0A8 00166FE8  7C 08 03 A6 */	mtlr r0
 /* 8016A0AC 00166FEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016A0B0 00166FF0  4E 80 00 20 */	blr 
+.endfn theEntry__Q24Game6PelletFv
 
-.global entryShape__Q24Game6PelletFv
-entryShape__Q24Game6PelletFv:
+.fn entryShape__Q24Game6PelletFv, global
 /* 8016A0B4 00166FF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016A0B8 00166FF8  7C 08 02 A6 */	mflr r0
 /* 8016A0BC 00166FFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5976,9 +6056,9 @@ entryShape__Q24Game6PelletFv:
 /* 8016A144 00167084  7C 08 03 A6 */	mtlr r0
 /* 8016A148 00167088  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016A14C 0016708C  4E 80 00 20 */	blr 
+.endfn entryShape__Q24Game6PelletFv
 
-.global getBoundingSphere__Q24Game6PelletFRQ23Sys6Sphere
-getBoundingSphere__Q24Game6PelletFRQ23Sys6Sphere:
+.fn getBoundingSphere__Q24Game6PelletFRQ23Sys6Sphere, global
 /* 8016A150 00167090  C0 03 04 44 */	lfs f0, 0x444(r3)
 /* 8016A154 00167094  D0 04 00 00 */	stfs f0, 0(r4)
 /* 8016A158 00167098  C0 03 04 48 */	lfs f0, 0x448(r3)
@@ -5988,9 +6068,9 @@ getBoundingSphere__Q24Game6PelletFRQ23Sys6Sphere:
 /* 8016A168 001670A8  C0 03 04 50 */	lfs f0, 0x450(r3)
 /* 8016A16C 001670AC  D0 04 00 0C */	stfs f0, 0xc(r4)
 /* 8016A170 001670B0  4E 80 00 20 */	blr 
+.endfn getBoundingSphere__Q24Game6PelletFRQ23Sys6Sphere
 
-.global getLODSphere__Q24Game6PelletFRQ23Sys6Sphere
-getLODSphere__Q24Game6PelletFRQ23Sys6Sphere:
+.fn getLODSphere__Q24Game6PelletFRQ23Sys6Sphere, global
 /* 8016A174 001670B4  C0 03 04 44 */	lfs f0, 0x444(r3)
 /* 8016A178 001670B8  D0 04 00 00 */	stfs f0, 0(r4)
 /* 8016A17C 001670BC  C0 03 04 48 */	lfs f0, 0x448(r3)
@@ -6007,9 +6087,9 @@ getLODSphere__Q24Game6PelletFRQ23Sys6Sphere:
 /* 8016A1A4 001670E4  C0 03 04 50 */	lfs f0, 0x450(r3)
 /* 8016A1A8 001670E8  D0 04 00 0C */	stfs f0, 0xc(r4)
 /* 8016A1AC 001670EC  4E 80 00 20 */	blr 
+.endfn getLODSphere__Q24Game6PelletFRQ23Sys6Sphere
 
-.global init_pmotions__Q24Game6PelletFv
-init_pmotions__Q24Game6PelletFv:
+.fn init_pmotions__Q24Game6PelletFv, global
 /* 8016A1B0 001670F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016A1B4 001670F4  7C 08 02 A6 */	mflr r0
 /* 8016A1B8 001670F8  7C 66 1B 78 */	mr r6, r3
@@ -6034,9 +6114,9 @@ init_pmotions__Q24Game6PelletFv:
 /* 8016A1FC 0016713C  7C 08 03 A6 */	mtlr r0
 /* 8016A200 00167140  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016A204 00167144  4E 80 00 20 */	blr 
+.endfn init_pmotions__Q24Game6PelletFv
 
-.global update_pmotions__Q24Game6PelletFv
-update_pmotions__Q24Game6PelletFv:
+.fn update_pmotions__Q24Game6PelletFv, global
 /* 8016A208 00167148  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8016A20C 0016714C  7C 08 02 A6 */	mflr r0
 /* 8016A210 00167150  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -6085,9 +6165,9 @@ update_pmotions__Q24Game6PelletFv:
 /* 8016A2B0 001671F0  7C 08 03 A6 */	mtlr r0
 /* 8016A2B4 001671F4  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8016A2B8 001671F8  4E 80 00 20 */	blr 
+.endfn update_pmotions__Q24Game6PelletFv
 
-.global start_pmotions__Q24Game6PelletFv
-start_pmotions__Q24Game6PelletFv:
+.fn start_pmotions__Q24Game6PelletFv, global
 /* 8016A2BC 001671FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016A2C0 00167200  7C 08 02 A6 */	mflr r0
 /* 8016A2C4 00167204  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6107,15 +6187,15 @@ start_pmotions__Q24Game6PelletFv:
 /* 8016A2F4 00167234  7C 08 03 A6 */	mtlr r0
 /* 8016A2F8 00167238  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016A2FC 0016723C  4E 80 00 20 */	blr 
+.endfn start_pmotions__Q24Game6PelletFv
 
-.global stop_carrymotion__Q24Game6PelletFv
-stop_carrymotion__Q24Game6PelletFv:
+.fn stop_carrymotion__Q24Game6PelletFv, global
 /* 8016A300 00167240  C0 02 A5 B4 */	lfs f0, lbl_80518914@sda21(r2)
 /* 8016A304 00167244  D0 03 04 38 */	stfs f0, 0x438(r3)
 /* 8016A308 00167248  4E 80 00 20 */	blr 
+.endfn stop_carrymotion__Q24Game6PelletFv
 
-.global finish_carrymotion__Q24Game6PelletFv
-finish_carrymotion__Q24Game6PelletFv:
+.fn finish_carrymotion__Q24Game6PelletFv, global
 /* 8016A30C 0016724C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016A310 00167250  7C 08 02 A6 */	mflr r0
 /* 8016A314 00167254  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6139,9 +6219,9 @@ finish_carrymotion__Q24Game6PelletFv:
 /* 8016A354 00167294  7C 08 03 A6 */	mtlr r0
 /* 8016A358 00167298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016A35C 0016729C  4E 80 00 20 */	blr 
+.endfn finish_carrymotion__Q24Game6PelletFv
 
-.global onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent
-onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent, global
 /* 8016A360 001672A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016A364 001672A4  7C 08 02 A6 */	mflr r0
 /* 8016A368 001672A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6179,9 +6259,9 @@ onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent:
 /* 8016A3DC 0016731C  7C 08 03 A6 */	mtlr r0
 /* 8016A3E0 00167320  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016A3E4 00167324  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent
 
-.global isSlotFree__Q24Game6PelletFs
-isSlotFree__Q24Game6PelletFs:
+.fn isSlotFree__Q24Game6PelletFs, global
 /* 8016A3E8 00167328  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016A3EC 0016732C  7C 08 02 A6 */	mflr r0
 /* 8016A3F0 00167330  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6234,9 +6314,9 @@ isSlotFree__Q24Game6PelletFs:
 /* 8016A49C 001673DC  7C 08 03 A6 */	mtlr r0
 /* 8016A4A0 001673E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016A4A4 001673E4  4E 80 00 20 */	blr 
+.endfn isSlotFree__Q24Game6PelletFs
 
-.global getSpeicalSlot__Q24Game6PelletFv
-getSpeicalSlot__Q24Game6PelletFv:
+.fn getSpeicalSlot__Q24Game6PelletFv, global
 /* 8016A4A8 001673E8  88 03 03 F6 */	lbz r0, 0x3f6(r3)
 /* 8016A4AC 001673EC  38 60 27 0F */	li r3, 0x270f
 /* 8016A4B0 001673F0  28 00 00 00 */	cmplwi r0, 0
@@ -6245,9 +6325,9 @@ getSpeicalSlot__Q24Game6PelletFv:
 .L_8016A4BC:
 /* 8016A4BC 001673FC  7C 63 07 34 */	extsh r3, r3
 /* 8016A4C0 00167400  4E 80 00 20 */	blr 
+.endfn getSpeicalSlot__Q24Game6PelletFv
 
-.global getFreeStickSlot__Q24Game6PelletFv
-getFreeStickSlot__Q24Game6PelletFv:
+.fn getFreeStickSlot__Q24Game6PelletFv, global
 /* 8016A4C4 00167404  A8 03 03 F4 */	lha r0, 0x3f4(r3)
 /* 8016A4C8 00167408  38 E0 00 00 */	li r7, 0
 /* 8016A4CC 0016740C  38 C0 00 01 */	li r6, 1
@@ -6272,9 +6352,9 @@ getFreeStickSlot__Q24Game6PelletFv:
 .L_8016A510:
 /* 8016A510 00167450  38 60 FF FF */	li r3, -1
 /* 8016A514 00167454  4E 80 00 20 */	blr 
+.endfn getFreeStickSlot__Q24Game6PelletFv
 
-.global "getNearFreeStickSlot__Q24Game6PelletFR10Vector3<f>"
-"getNearFreeStickSlot__Q24Game6PelletFR10Vector3<f>":
+.fn "getNearFreeStickSlot__Q24Game6PelletFR10Vector3<f>", global
 /* 8016A518 00167458  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8016A51C 0016745C  7C 08 02 A6 */	mflr r0
 /* 8016A520 00167460  90 01 00 44 */	stw r0, 0x44(r1)
@@ -6354,9 +6434,9 @@ getFreeStickSlot__Q24Game6PelletFv:
 /* 8016A634 00167574  7C 08 03 A6 */	mtlr r0
 /* 8016A638 00167578  38 21 00 40 */	addi r1, r1, 0x40
 /* 8016A63C 0016757C  4E 80 00 20 */	blr 
+.endfn "getNearFreeStickSlot__Q24Game6PelletFR10Vector3<f>"
 
-.global getRandomFreeStickSlot__Q24Game6PelletFv
-getRandomFreeStickSlot__Q24Game6PelletFv:
+.fn getRandomFreeStickSlot__Q24Game6PelletFv, global
 /* 8016A640 00167580  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8016A644 00167584  7C 08 02 A6 */	mflr r0
 /* 8016A648 00167588  90 01 00 34 */	stw r0, 0x34(r1)
@@ -6418,9 +6498,9 @@ getRandomFreeStickSlot__Q24Game6PelletFv:
 /* 8016A71C 0016765C  7C 08 03 A6 */	mtlr r0
 /* 8016A720 00167660  38 21 00 30 */	addi r1, r1, 0x30
 /* 8016A724 00167664  4E 80 00 20 */	blr 
+.endfn getRandomFreeStickSlot__Q24Game6PelletFv
 
-.global getPelletGoal__Q24Game6PelletFv
-getPelletGoal__Q24Game6PelletFv:
+.fn getPelletGoal__Q24Game6PelletFv, global
 /* 8016A728 00167668  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8016A72C 0016766C  7C 08 02 A6 */	mflr r0
 /* 8016A730 00167670  90 01 00 44 */	stw r0, 0x44(r1)
@@ -6563,9 +6643,9 @@ getPelletGoal__Q24Game6PelletFv:
 /* 8016A928 00167868  7C 08 03 A6 */	mtlr r0
 /* 8016A92C 0016786C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8016A930 00167870  4E 80 00 20 */	blr 
+.endfn getPelletGoal__Q24Game6PelletFv
 
-.global getTotalPikmins__Q24Game6PelletFv
-getTotalPikmins__Q24Game6PelletFv:
+.fn getTotalPikmins__Q24Game6PelletFv, global
 /* 8016A934 00167874  80 A3 03 F8 */	lwz r5, 0x3f8(r3)
 /* 8016A938 00167878  80 83 03 FC */	lwz r4, 0x3fc(r3)
 /* 8016A93C 0016787C  80 03 04 00 */	lwz r0, 0x400(r3)
@@ -6581,9 +6661,9 @@ getTotalPikmins__Q24Game6PelletFv:
 /* 8016A964 001678A4  7C A5 02 14 */	add r5, r5, r0
 /* 8016A968 001678A8  7C A3 2B 78 */	mr r3, r5
 /* 8016A96C 001678AC  4E 80 00 20 */	blr 
+.endfn getTotalPikmins__Q24Game6PelletFv
 
-.global getTotalCarryPikmins__Q24Game6PelletFv
-getTotalCarryPikmins__Q24Game6PelletFv:
+.fn getTotalCarryPikmins__Q24Game6PelletFv, global
 /* 8016A970 001678B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016A974 001678B4  7C 08 02 A6 */	mflr r0
 /* 8016A978 001678B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6612,9 +6692,9 @@ getTotalCarryPikmins__Q24Game6PelletFv:
 /* 8016A9D0 00167910  7C 08 03 A6 */	mtlr r0
 /* 8016A9D4 00167914  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016A9D8 00167918  4E 80 00 20 */	blr 
+.endfn getTotalCarryPikmins__Q24Game6PelletFv
 
-.global getPikmins__Q24Game6PelletFi
-getPikmins__Q24Game6PelletFi:
+.fn getPikmins__Q24Game6PelletFi, global
 /* 8016A9DC 0016791C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016A9E0 00167920  7C 08 02 A6 */	mflr r0
 /* 8016A9E4 00167924  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6647,9 +6727,9 @@ getPikmins__Q24Game6PelletFi:
 /* 8016AA48 00167988  7C 08 03 A6 */	mtlr r0
 /* 8016AA4C 0016798C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016AA50 00167990  4E 80 00 20 */	blr 
+.endfn getPikmins__Q24Game6PelletFi
 
-.global onSlotStickStart__Q24Game6PelletFPQ24Game8Creatures
-onSlotStickStart__Q24Game6PelletFPQ24Game8Creatures:
+.fn onSlotStickStart__Q24Game6PelletFPQ24Game8Creatures, global
 /* 8016AA54 00167994  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016AA58 00167998  7C 08 02 A6 */	mflr r0
 /* 8016AA5C 0016799C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6779,9 +6859,9 @@ onSlotStickStart__Q24Game6PelletFPQ24Game8Creatures:
 /* 8016AC1C 00167B5C  7C 08 03 A6 */	mtlr r0
 /* 8016AC20 00167B60  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016AC24 00167B64  4E 80 00 20 */	blr 
+.endfn onSlotStickStart__Q24Game6PelletFPQ24Game8Creatures
 
-.global onSlotStickEnd__Q24Game6PelletFPQ24Game8Creatures
-onSlotStickEnd__Q24Game6PelletFPQ24Game8Creatures:
+.fn onSlotStickEnd__Q24Game6PelletFPQ24Game8Creatures, global
 /* 8016AC28 00167B68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016AC2C 00167B6C  7C 08 02 A6 */	mflr r0
 /* 8016AC30 00167B70  3C C0 80 48 */	lis r6, lbl_8047E318@ha
@@ -6914,9 +6994,9 @@ onSlotStickEnd__Q24Game6PelletFPQ24Game8Creatures:
 /* 8016AE04 00167D44  7C 08 03 A6 */	mtlr r0
 /* 8016AE08 00167D48  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016AE0C 00167D4C  4E 80 00 20 */	blr 
+.endfn onSlotStickEnd__Q24Game6PelletFPQ24Game8Creatures
 
-.global "calcStickSlotGlobal__Q24Game6PelletFsR10Vector3<f>"
-"calcStickSlotGlobal__Q24Game6PelletFsR10Vector3<f>":
+.fn "calcStickSlotGlobal__Q24Game6PelletFsR10Vector3<f>", global
 /* 8016AE10 00167D50  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8016AE14 00167D54  7C 08 02 A6 */	mflr r0
 /* 8016AE18 00167D58  90 01 00 64 */	stw r0, 0x64(r1)
@@ -7060,9 +7140,9 @@ onSlotStickEnd__Q24Game6PelletFPQ24Game8Creatures:
 /* 8016B020 00167F60  7C 08 03 A6 */	mtlr r0
 /* 8016B024 00167F64  38 21 00 60 */	addi r1, r1, 0x60
 /* 8016B028 00167F68  4E 80 00 20 */	blr 
+.endfn "calcStickSlotGlobal__Q24Game6PelletFsR10Vector3<f>"
 
-.global getFace__Q24Game6PelletFv
-getFace__Q24Game6PelletFv:
+.fn getFace__Q24Game6PelletFv, global
 /* 8016B02C 00167F6C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016B030 00167F70  7C 08 02 A6 */	mflr r0
 /* 8016B034 00167F74  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7093,9 +7173,9 @@ getFace__Q24Game6PelletFv:
 /* 8016B088 00167FC8  7C 08 03 A6 */	mtlr r0
 /* 8016B08C 00167FCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016B090 00167FD0  4E 80 00 20 */	blr 
+.endfn getFace__Q24Game6PelletFv
 
-.global startPick__Q24Game6PelletFv
-startPick__Q24Game6PelletFv:
+.fn startPick__Q24Game6PelletFv, global
 /* 8016B094 00167FD4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8016B098 00167FD8  7C 08 02 A6 */	mflr r0
 /* 8016B09C 00167FDC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -7289,13 +7369,13 @@ startPick__Q24Game6PelletFv:
 /* 8016B334 00168274  7C 08 03 A6 */	mtlr r0
 /* 8016B338 00168278  38 21 00 40 */	addi r1, r1, 0x40
 /* 8016B33C 0016827C  4E 80 00 20 */	blr 
+.endfn startPick__Q24Game6PelletFv
 
-.global sound_otakaraEventRestart__Q24Game6PelletFv
-sound_otakaraEventRestart__Q24Game6PelletFv:
+.fn sound_otakaraEventRestart__Q24Game6PelletFv, weak
 /* 8016B340 00168280  4E 80 00 20 */	blr 
+.endfn sound_otakaraEventRestart__Q24Game6PelletFv
 
-.global endPick__Q24Game6PelletFb
-endPick__Q24Game6PelletFb:
+.fn endPick__Q24Game6PelletFb, global
 /* 8016B344 00168284  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8016B348 00168288  7C 08 02 A6 */	mflr r0
 /* 8016B34C 0016828C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -7404,33 +7484,33 @@ endPick__Q24Game6PelletFb:
 /* 8016B4B4 001683F4  7C 08 03 A6 */	mtlr r0
 /* 8016B4B8 001683F8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8016B4BC 001683FC  4E 80 00 20 */	blr 
+.endfn endPick__Q24Game6PelletFb
 
-.global sound_otakaraEventStop__Q24Game6PelletFv
-sound_otakaraEventStop__Q24Game6PelletFv:
+.fn sound_otakaraEventStop__Q24Game6PelletFv, weak
 /* 8016B4C0 00168400  4E 80 00 20 */	blr 
+.endfn sound_otakaraEventStop__Q24Game6PelletFv
 
-.global clearDiscoverDisable__Q24Game6PelletFv
-clearDiscoverDisable__Q24Game6PelletFv:
+.fn clearDiscoverDisable__Q24Game6PelletFv, global
 /* 8016B4C4 00168404  38 00 00 00 */	li r0, 0
 /* 8016B4C8 00168408  98 03 03 2D */	stb r0, 0x32d(r3)
 /* 8016B4CC 0016840C  4E 80 00 20 */	blr 
+.endfn clearDiscoverDisable__Q24Game6PelletFv
 
-.global startDiscoverDisable__Q24Game6PelletFUc
-startDiscoverDisable__Q24Game6PelletFUc:
+.fn startDiscoverDisable__Q24Game6PelletFUc, global
 /* 8016B4D0 00168410  98 83 03 2D */	stb r4, 0x32d(r3)
 /* 8016B4D4 00168414  4E 80 00 20 */	blr 
+.endfn startDiscoverDisable__Q24Game6PelletFUc
 
-.global updateDiscoverDisable__Q24Game6PelletFv
-updateDiscoverDisable__Q24Game6PelletFv:
+.fn updateDiscoverDisable__Q24Game6PelletFv, global
 /* 8016B4D8 00168418  88 83 03 2D */	lbz r4, 0x32d(r3)
 /* 8016B4DC 0016841C  28 04 00 00 */	cmplwi r4, 0
 /* 8016B4E0 00168420  4D 82 00 20 */	beqlr 
 /* 8016B4E4 00168424  38 04 FF FF */	addi r0, r4, -1
 /* 8016B4E8 00168428  98 03 03 2D */	stb r0, 0x32d(r3)
 /* 8016B4EC 0016842C  4E 80 00 20 */	blr 
+.endfn updateDiscoverDisable__Q24Game6PelletFv
 
-.global discoverDisabled__Q24Game6PelletFv
-discoverDisabled__Q24Game6PelletFv:
+.fn discoverDisabled__Q24Game6PelletFv, global
 /* 8016B4F0 00168430  80 8D 93 E8 */	lwz r4, gameSystem__4Game@sda21(r13)
 /* 8016B4F4 00168434  80 04 00 44 */	lwz r0, 0x44(r4)
 /* 8016B4F8 00168438  2C 00 00 00 */	cmpwi r0, 0
@@ -7443,9 +7523,9 @@ discoverDisabled__Q24Game6PelletFv:
 .L_8016B514:
 /* 8016B514 00168454  38 60 00 00 */	li r3, 0
 /* 8016B518 00168458  4E 80 00 20 */	blr 
+.endfn discoverDisabled__Q24Game6PelletFv
 
-.global doSave__Q24Game6PelletFR6Stream
-doSave__Q24Game6PelletFR6Stream:
+.fn doSave__Q24Game6PelletFR6Stream, global
 /* 8016B51C 0016845C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016B520 00168460  7C 08 02 A6 */	mflr r0
 /* 8016B524 00168464  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7457,9 +7537,9 @@ doSave__Q24Game6PelletFR6Stream:
 /* 8016B53C 0016847C  7C 08 03 A6 */	mtlr r0
 /* 8016B540 00168480  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016B544 00168484  4E 80 00 20 */	blr 
+.endfn doSave__Q24Game6PelletFR6Stream
 
-.global doLoad__Q24Game6PelletFR6Stream
-doLoad__Q24Game6PelletFR6Stream:
+.fn doLoad__Q24Game6PelletFR6Stream, global
 /* 8016B548 00168488  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8016B54C 0016848C  7C 08 02 A6 */	mflr r0
 /* 8016B550 00168490  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -7583,9 +7663,9 @@ doLoad__Q24Game6PelletFR6Stream:
 /* 8016B718 00168658  7C 08 03 A6 */	mtlr r0
 /* 8016B71C 0016865C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8016B720 00168660  4E 80 00 20 */	blr 
+.endfn doLoad__Q24Game6PelletFR6Stream
 
-.global onStartCapture__Q24Game6PelletFv
-onStartCapture__Q24Game6PelletFv:
+.fn onStartCapture__Q24Game6PelletFv, global
 /* 8016B724 00168664  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016B728 00168668  7C 08 02 A6 */	mflr r0
 /* 8016B72C 0016866C  C0 02 A5 B4 */	lfs f0, lbl_80518914@sda21(r2)
@@ -7648,9 +7728,9 @@ onStartCapture__Q24Game6PelletFv:
 /* 8016B80C 0016874C  7C 08 03 A6 */	mtlr r0
 /* 8016B810 00168750  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016B814 00168754  4E 80 00 20 */	blr 
+.endfn onStartCapture__Q24Game6PelletFv
 
-.global onUpdateCapture__Q24Game6PelletFR7Matrixf
-onUpdateCapture__Q24Game6PelletFR7Matrixf:
+.fn onUpdateCapture__Q24Game6PelletFR7Matrixf, global
 /* 8016B818 00168758  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016B81C 0016875C  7C 08 02 A6 */	mflr r0
 /* 8016B820 00168760  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7724,9 +7804,9 @@ onUpdateCapture__Q24Game6PelletFR7Matrixf:
 /* 8016B91C 0016885C  7C 08 03 A6 */	mtlr r0
 /* 8016B920 00168860  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016B924 00168864  4E 80 00 20 */	blr 
+.endfn onUpdateCapture__Q24Game6PelletFR7Matrixf
 
-.global onEndCapture__Q24Game6PelletFv
-onEndCapture__Q24Game6PelletFv:
+.fn onEndCapture__Q24Game6PelletFv, global
 /* 8016B928 00168868  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8016B92C 0016886C  7C 08 02 A6 */	mflr r0
 /* 8016B930 00168870  90 01 00 44 */	stw r0, 0x44(r1)
@@ -7766,9 +7846,9 @@ onEndCapture__Q24Game6PelletFv:
 /* 8016B9B4 001688F4  7C 08 03 A6 */	mtlr r0
 /* 8016B9B8 001688F8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8016B9BC 001688FC  4E 80 00 20 */	blr 
+.endfn onEndCapture__Q24Game6PelletFv
 
-.global __ct__Q24Game13BasePelletMgrFQ34Game10PelletList5cKind
-__ct__Q24Game13BasePelletMgrFQ34Game10PelletList5cKind:
+.fn __ct__Q24Game13BasePelletMgrFQ34Game10PelletList5cKind, global
 /* 8016B9C0 00168900  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016B9C4 00168904  7C 08 02 A6 */	mflr r0
 /* 8016B9C8 00168908  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7934,9 +8014,9 @@ __ct__Q24Game13BasePelletMgrFQ34Game10PelletList5cKind:
 /* 8016BC24 00168B64  7C 08 03 A6 */	mtlr r0
 /* 8016BC28 00168B68  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016BC2C 00168B6C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game13BasePelletMgrFQ34Game10PelletList5cKind
 
-.global __dt__11CollPartMgrFv
-__dt__11CollPartMgrFv:
+.fn __dt__11CollPartMgrFv, weak
 /* 8016BC30 00168B70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016BC34 00168B74  7C 08 02 A6 */	mflr r0
 /* 8016BC38 00168B78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7985,9 +8065,9 @@ __dt__11CollPartMgrFv:
 /* 8016BCDC 00168C1C  7C 08 03 A6 */	mtlr r0
 /* 8016BCE0 00168C20  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016BCE4 00168C24  4E 80 00 20 */	blr 
+.endfn __dt__11CollPartMgrFv
 
-.global "__dt__24MonoObjectMgr<8CollPart>Fv"
-"__dt__24MonoObjectMgr<8CollPart>Fv":
+.fn "__dt__24MonoObjectMgr<8CollPart>Fv", weak
 /* 8016BCE8 00168C28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016BCEC 00168C2C  7C 08 02 A6 */	mflr r0
 /* 8016BCF0 00168C30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8030,9 +8110,9 @@ __dt__11CollPartMgrFv:
 /* 8016BD7C 00168CBC  7C 08 03 A6 */	mtlr r0
 /* 8016BD80 00168CC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016BD84 00168CC4  4E 80 00 20 */	blr 
+.endfn "__dt__24MonoObjectMgr<8CollPart>Fv"
 
-.global getPelletConfig__Q24Game13BasePelletMgrFi
-getPelletConfig__Q24Game13BasePelletMgrFi:
+.fn getPelletConfig__Q24Game13BasePelletMgrFi, global
 /* 8016BD88 00168CC8  2C 04 00 00 */	cmpwi r4, 0
 /* 8016BD8C 00168CCC  41 80 00 14 */	blt .L_8016BDA0
 /* 8016BD90 00168CD0  80 63 00 08 */	lwz r3, 8(r3)
@@ -8047,9 +8127,9 @@ getPelletConfig__Q24Game13BasePelletMgrFi:
 /* 8016BDAC 00168CEC  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8016BDB0 00168CF0  7C 63 02 14 */	add r3, r3, r0
 /* 8016BDB4 00168CF4  4E 80 00 20 */	blr 
+.endfn getPelletConfig__Q24Game13BasePelletMgrFi
 
-.global setUse__Q24Game13BasePelletMgrFi
-setUse__Q24Game13BasePelletMgrFi:
+.fn setUse__Q24Game13BasePelletMgrFi, global
 /* 8016BDB8 00168CF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016BDBC 00168CFC  7C 08 02 A6 */	mflr r0
 /* 8016BDC0 00168D00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8083,9 +8163,9 @@ setUse__Q24Game13BasePelletMgrFi:
 /* 8016BE28 00168D68  7C 08 03 A6 */	mtlr r0
 /* 8016BE2C 00168D6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016BE30 00168D70  4E 80 00 20 */	blr 
+.endfn setUse__Q24Game13BasePelletMgrFi
 
-.global load__Q24Game13BasePelletMgrFv
-load__Q24Game13BasePelletMgrFv:
+.fn load__Q24Game13BasePelletMgrFv, global
 /* 8016BE34 00168D74  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 8016BE38 00168D78  7C 08 02 A6 */	mflr r0
 /* 8016BE3C 00168D7C  3C 80 80 51 */	lis r4, gGameConfig__4Game@ha
@@ -8269,9 +8349,9 @@ load__Q24Game13BasePelletMgrFv:
 /* 8016C0C0 00169000  7C 08 03 A6 */	mtlr r0
 /* 8016C0C4 00169004  38 21 04 30 */	addi r1, r1, 0x430
 /* 8016C0C8 00169008  4E 80 00 20 */	blr 
+.endfn load__Q24Game13BasePelletMgrFv
 
-.global load_texArc__Q24Game13BasePelletMgrFPc
-load_texArc__Q24Game13BasePelletMgrFPc:
+.fn load_texArc__Q24Game13BasePelletMgrFPc, global
 /* 8016C0CC 0016900C  94 21 FB D0 */	stwu r1, -0x430(r1)
 /* 8016C0D0 00169010  7C 08 02 A6 */	mflr r0
 /* 8016C0D4 00169014  3C A0 80 51 */	lis r5, gGameConfig__4Game@ha
@@ -8544,9 +8624,9 @@ load_texArc__Q24Game13BasePelletMgrFPc:
 /* 8016C4A4 001693E4  7C 08 03 A6 */	mtlr r0
 /* 8016C4A8 001693E8  38 21 04 30 */	addi r1, r1, 0x430
 /* 8016C4AC 001693EC  4E 80 00 20 */	blr 
+.endfn load_texArc__Q24Game13BasePelletMgrFPc
 
-.global openTextArc__Q24Game13BasePelletMgrFPc
-openTextArc__Q24Game13BasePelletMgrFPc:
+.fn openTextArc__Q24Game13BasePelletMgrFPc, global
 /* 8016C4B0 001693F0  94 21 FB F0 */	stwu r1, -0x410(r1)
 /* 8016C4B4 001693F4  7C 08 02 A6 */	mflr r0
 /* 8016C4B8 001693F8  3C 60 80 51 */	lis r3, gGameConfig__4Game@ha
@@ -8619,9 +8699,9 @@ openTextArc__Q24Game13BasePelletMgrFPc:
 /* 8016C5B0 001694F0  7C 08 03 A6 */	mtlr r0
 /* 8016C5B4 001694F4  38 21 04 10 */	addi r1, r1, 0x410
 /* 8016C5B8 001694F8  4E 80 00 20 */	blr 
+.endfn openTextArc__Q24Game13BasePelletMgrFPc
 
-.global closeTextArc__Q24Game13BasePelletMgrFP10JKRArchive
-closeTextArc__Q24Game13BasePelletMgrFP10JKRArchive:
+.fn closeTextArc__Q24Game13BasePelletMgrFP10JKRArchive, global
 /* 8016C5BC 001694FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016C5C0 00169500  7C 08 02 A6 */	mflr r0
 /* 8016C5C4 00169504  7C 83 23 78 */	mr r3, r4
@@ -8634,10 +8714,10 @@ closeTextArc__Q24Game13BasePelletMgrFP10JKRArchive:
 /* 8016C5E0 00169520  7C 08 03 A6 */	mtlr r0
 /* 8016C5E4 00169524  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016C5E8 00169528  4E 80 00 20 */	blr 
+.endfn closeTextArc__Q24Game13BasePelletMgrFP10JKRArchive
 
 .if version == 1
-.global useModelMgr__Q24Game13BasePelletMgrFiUl
-useModelMgr__Q24Game13BasePelletMgrFiUl:
+.fn useModelMgr__Q24Game13BasePelletMgrFiUl, global
 /* 8016C5EC 0016952C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8016C5F0 00169530  7C 08 02 A6 */	mflr r0
 /* 8016C5F4 00169534  90 01 00 34 */	stw r0, 0x34(r1)
@@ -8698,9 +8778,9 @@ useModelMgr__Q24Game13BasePelletMgrFiUl:
 /* 8016C6C4 00169604  7C 08 03 A6 */	mtlr r0
 /* 8016C6C8 00169608  38 21 00 30 */	addi r1, r1, 0x30
 /* 8016C6CC 0016960C  4E 80 00 20 */	blr 
+.endfn useModelMgr__Q24Game13BasePelletMgrFiUl
 .else
-.global useModelMgr__Q24Game13BasePelletMgrFiUl
-useModelMgr__Q24Game13BasePelletMgrFiUl:
+.fn useModelMgr__Q24Game13BasePelletMgrFiUl, global
 /* 8016C5EC 0016952C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8016C5F0 00169530  7C 08 02 A6 */	mflr r0
 /* 8016C5F4 00169534  90 01 00 34 */	stw r0, 0x34(r1)
@@ -8761,10 +8841,10 @@ useModelMgr__Q24Game13BasePelletMgrFiUl:
 /* 8016C6C4 00169604  7C 08 03 A6 */	mtlr r0
 /* 8016C6C8 00169608  38 21 00 30 */	addi r1, r1, 0x30
 /* 8016C6CC 0016960C  4E 80 00 20 */	blr 
+.endfn useModelMgr__Q24Game13BasePelletMgrFiUl
 .endif
 
-.global createModelCallback__Q24Game13BasePelletMgrFPQ28SysShape5Model
-createModelCallback__Q24Game13BasePelletMgrFPQ28SysShape5Model:
+.fn createModelCallback__Q24Game13BasePelletMgrFPQ28SysShape5Model, weak
 /* 8016C6D0 00169610  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016C6D4 00169614  7C 08 02 A6 */	mflr r0
 /* 8016C6D8 00169618  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8776,14 +8856,14 @@ createModelCallback__Q24Game13BasePelletMgrFPQ28SysShape5Model:
 /* 8016C6F0 00169630  7C 08 03 A6 */	mtlr r0
 /* 8016C6F4 00169634  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016C6F8 00169638  4E 80 00 20 */	blr 
+.endfn createModelCallback__Q24Game13BasePelletMgrFPQ28SysShape5Model
 
-.global onCreateModel__Q24Game13BasePelletMgrFPQ28SysShape5Model
-onCreateModel__Q24Game13BasePelletMgrFPQ28SysShape5Model:
+.fn onCreateModel__Q24Game13BasePelletMgrFPQ28SysShape5Model, weak
 /* 8016C6FC 0016963C  4E 80 00 20 */	blr 
+.endfn onCreateModel__Q24Game13BasePelletMgrFPQ28SysShape5Model
 
 .if version == 1
-.global createShape__Q24Game13BasePelletMgrFii
-createShape__Q24Game13BasePelletMgrFii:
+.fn createShape__Q24Game13BasePelletMgrFii, global
 /* 8016C700 00169640  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016C704 00169644  7C 08 02 A6 */	mflr r0
 /* 8016C708 00169648  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8846,9 +8926,9 @@ createShape__Q24Game13BasePelletMgrFii:
 /* 8016C7D8 00169718  7C 08 03 A6 */	mtlr r0
 /* 8016C7DC 0016971C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016C7E0 00169720  4E 80 00 20 */	blr 
+.endfn createShape__Q24Game13BasePelletMgrFii
 .else
-.global createShape__Q24Game13BasePelletMgrFii
-createShape__Q24Game13BasePelletMgrFii:
+.fn createShape__Q24Game13BasePelletMgrFii, global
 /* 8016C700 00169640  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016C704 00169644  7C 08 02 A6 */	mflr r0
 /* 8016C708 00169648  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8911,10 +8991,10 @@ createShape__Q24Game13BasePelletMgrFii:
 /* 8016C7D8 00169718  7C 08 03 A6 */	mtlr r0
 /* 8016C7DC 0016971C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016C7E0 00169720  4E 80 00 20 */	blr 
+.endfn createShape__Q24Game13BasePelletMgrFii
 .endif
 
-.global setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti
-setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti:
+.fn setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti, global
 /* 8016C7E4 00169724  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8016C7E8 00169728  7C 08 02 A6 */	mflr r0
 /* 8016C7EC 0016972C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -9004,9 +9084,9 @@ setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti:
 /* 8016C930 00169870  7C 08 03 A6 */	mtlr r0
 /* 8016C934 00169874  38 21 00 50 */	addi r1, r1, 0x50
 /* 8016C938 00169878  4E 80 00 20 */	blr 
+.endfn setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti
 
-.global generatorNewPelletParm__Q24Game13BasePelletMgrFv
-generatorNewPelletParm__Q24Game13BasePelletMgrFv:
+.fn generatorNewPelletParm__Q24Game13BasePelletMgrFv, global
 /* 8016C93C 0016987C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016C940 00169880  7C 08 02 A6 */	mflr r0
 /* 8016C944 00169884  38 60 00 04 */	li r3, 4
@@ -9016,23 +9096,23 @@ generatorNewPelletParm__Q24Game13BasePelletMgrFv:
 /* 8016C954 00169894  7C 08 03 A6 */	mtlr r0
 /* 8016C958 00169898  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016C95C 0016989C  4E 80 00 20 */	blr 
+.endfn generatorNewPelletParm__Q24Game13BasePelletMgrFv
 
-.global generatorGetShape__Q24Game13BasePelletMgrFPQ24Game13GenPelletParm
-generatorGetShape__Q24Game13BasePelletMgrFPQ24Game13GenPelletParm:
+.fn generatorGetShape__Q24Game13BasePelletMgrFPQ24Game13GenPelletParm, global
 /* 8016C960 001698A0  38 60 00 00 */	li r3, 0
 /* 8016C964 001698A4  4E 80 00 20 */	blr 
+.endfn generatorGetShape__Q24Game13BasePelletMgrFPQ24Game13GenPelletParm
 
-.global __ct__Q24Game14PelletIteratorFv
-__ct__Q24Game14PelletIteratorFv:
+.fn __ct__Q24Game14PelletIteratorFv, global
 /* 8016C968 001698A8  38 00 00 00 */	li r0, 0
 /* 8016C96C 001698AC  90 03 00 00 */	stw r0, 0(r3)
 /* 8016C970 001698B0  90 03 00 08 */	stw r0, 8(r3)
 /* 8016C974 001698B4  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8016C978 001698B8  90 03 00 04 */	stw r0, 4(r3)
 /* 8016C97C 001698BC  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game14PelletIteratorFv
 
-.global first__Q24Game14PelletIteratorFv
-first__Q24Game14PelletIteratorFv:
+.fn first__Q24Game14PelletIteratorFv, global
 /* 8016C980 001698C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016C984 001698C4  7C 08 02 A6 */	mflr r0
 /* 8016C988 001698C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9054,9 +9134,9 @@ first__Q24Game14PelletIteratorFv:
 /* 8016C9C0 00169900  7C 08 03 A6 */	mtlr r0
 /* 8016C9C4 00169904  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016C9C8 00169908  4E 80 00 20 */	blr 
+.endfn first__Q24Game14PelletIteratorFv
 
-.global __ml__Q24Game14PelletIteratorFv
-__ml__Q24Game14PelletIteratorFv:
+.fn __ml__Q24Game14PelletIteratorFv, global
 /* 8016C9CC 0016990C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016C9D0 00169910  7C 08 02 A6 */	mflr r0
 /* 8016C9D4 00169914  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9084,9 +9164,9 @@ __ml__Q24Game14PelletIteratorFv:
 /* 8016CA28 00169968  7C 08 03 A6 */	mtlr r0
 /* 8016CA2C 0016996C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016CA30 00169970  4E 80 00 20 */	blr 
+.endfn __ml__Q24Game14PelletIteratorFv
 
-.global next__Q24Game14PelletIteratorFv
-next__Q24Game14PelletIteratorFv:
+.fn next__Q24Game14PelletIteratorFv, global
 /* 8016CA34 00169974  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016CA38 00169978  7C 08 02 A6 */	mflr r0
 /* 8016CA3C 0016997C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9139,16 +9219,16 @@ next__Q24Game14PelletIteratorFv:
 /* 8016CAE8 00169A28  7C 08 03 A6 */	mtlr r0
 /* 8016CAEC 00169A2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016CAF0 00169A30  4E 80 00 20 */	blr 
+.endfn next__Q24Game14PelletIteratorFv
 
-.global isDone__Q24Game14PelletIteratorFv
-isDone__Q24Game14PelletIteratorFv:
+.fn isDone__Q24Game14PelletIteratorFv, global
 /* 8016CAF4 00169A34  80 03 00 04 */	lwz r0, 4(r3)
 /* 8016CAF8 00169A38  7C 00 00 34 */	cntlzw r0, r0
 /* 8016CAFC 00169A3C  54 03 D9 7E */	srwi r3, r0, 5
 /* 8016CB00 00169A40  4E 80 00 20 */	blr 
+.endfn isDone__Q24Game14PelletIteratorFv
 
-.global setFirst__Q24Game14PelletIteratorFv
-setFirst__Q24Game14PelletIteratorFv:
+.fn setFirst__Q24Game14PelletIteratorFv, global
 /* 8016CB04 00169A44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016CB08 00169A48  7C 08 02 A6 */	mflr r0
 /* 8016CB0C 00169A4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9382,14 +9462,14 @@ setFirst__Q24Game14PelletIteratorFv:
 /* 8016CE48 00169D88  7C 08 03 A6 */	mtlr r0
 /* 8016CE4C 00169D8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016CE50 00169D90  4E 80 00 20 */	blr 
+.endfn setFirst__Q24Game14PelletIteratorFv
 
-.global "getNext__31TObjectNode<16GenericObjectMgr>Fv"
-"getNext__31TObjectNode<16GenericObjectMgr>Fv":
+.fn "getNext__31TObjectNode<16GenericObjectMgr>Fv", weak
 /* 8016CE54 00169D94  80 63 00 04 */	lwz r3, 4(r3)
 /* 8016CE58 00169D98  4E 80 00 20 */	blr 
+.endfn "getNext__31TObjectNode<16GenericObjectMgr>Fv"
 
-.global __ct__Q24Game9PelletMgrFv
-__ct__Q24Game9PelletMgrFv:
+.fn __ct__Q24Game9PelletMgrFv, global
 /* 8016CE5C 00169D9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016CE60 00169DA0  7C 08 02 A6 */	mflr r0
 /* 8016CE64 00169DA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9441,9 +9521,9 @@ __ct__Q24Game9PelletMgrFv:
 /* 8016CF1C 00169E5C  7C 08 03 A6 */	mtlr r0
 /* 8016CF20 00169E60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016CF24 00169E64  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game9PelletMgrFv
 
-.global "__dt__33NodeObjectMgr<16GenericObjectMgr>Fv"
-"__dt__33NodeObjectMgr<16GenericObjectMgr>Fv":
+.fn "__dt__33NodeObjectMgr<16GenericObjectMgr>Fv", weak
 /* 8016CF28 00169E68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016CF2C 00169E6C  7C 08 02 A6 */	mflr r0
 /* 8016CF30 00169E70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9497,9 +9577,9 @@ __ct__Q24Game9PelletMgrFv:
 /* 8016CFE4 00169F24  7C 08 03 A6 */	mtlr r0
 /* 8016CFE8 00169F28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016CFEC 00169F2C  4E 80 00 20 */	blr 
+.endfn "__dt__33NodeObjectMgr<16GenericObjectMgr>Fv"
 
-.global "__dt__31TObjectNode<16GenericObjectMgr>Fv"
-"__dt__31TObjectNode<16GenericObjectMgr>Fv":
+.fn "__dt__31TObjectNode<16GenericObjectMgr>Fv", weak
 /* 8016CFF0 00169F30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016CFF4 00169F34  7C 08 02 A6 */	mflr r0
 /* 8016CFF8 00169F38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9525,9 +9605,9 @@ __ct__Q24Game9PelletMgrFv:
 /* 8016D044 00169F84  7C 08 03 A6 */	mtlr r0
 /* 8016D048 00169F88  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D04C 00169F8C  4E 80 00 20 */	blr 
+.endfn "__dt__31TObjectNode<16GenericObjectMgr>Fv"
 
-.global "__dt__29ObjectMgr<16GenericObjectMgr>Fv"
-"__dt__29ObjectMgr<16GenericObjectMgr>Fv":
+.fn "__dt__29ObjectMgr<16GenericObjectMgr>Fv", weak
 /* 8016D050 00169F90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D054 00169F94  7C 08 02 A6 */	mflr r0
 /* 8016D058 00169F98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9564,9 +9644,9 @@ __ct__Q24Game9PelletMgrFv:
 /* 8016D0CC 0016A00C  7C 08 03 A6 */	mtlr r0
 /* 8016D0D0 0016A010  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D0D4 0016A014  4E 80 00 20 */	blr 
+.endfn "__dt__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global "__dt__29Container<16GenericObjectMgr>Fv"
-"__dt__29Container<16GenericObjectMgr>Fv":
+.fn "__dt__29Container<16GenericObjectMgr>Fv", weak
 /* 8016D0D8 0016A018  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D0DC 0016A01C  7C 08 02 A6 */	mflr r0
 /* 8016D0E0 0016A020  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9597,9 +9677,9 @@ __ct__Q24Game9PelletMgrFv:
 /* 8016D13C 0016A07C  7C 08 03 A6 */	mtlr r0
 /* 8016D140 0016A080  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D144 0016A084  4E 80 00 20 */	blr 
+.endfn "__dt__29Container<16GenericObjectMgr>Fv"
 
-.global createManagers__Q24Game9PelletMgrFUl
-createManagers__Q24Game9PelletMgrFUl:
+.fn createManagers__Q24Game9PelletMgrFUl, global
 /* 8016D148 0016A088  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D14C 0016A08C  7C 08 02 A6 */	mflr r0
 /* 8016D150 0016A090  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9665,9 +9745,9 @@ createManagers__Q24Game9PelletMgrFUl:
 /* 8016D22C 0016A16C  7C 08 03 A6 */	mtlr r0
 /* 8016D230 0016A170  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D234 0016A174  4E 80 00 20 */	blr 
+.endfn createManagers__Q24Game9PelletMgrFUl
 
-.global resetMgrs__Q24Game9PelletMgrFv
-resetMgrs__Q24Game9PelletMgrFv:
+.fn resetMgrs__Q24Game9PelletMgrFv, global
 /* 8016D238 0016A178  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D23C 0016A17C  7C 08 02 A6 */	mflr r0
 /* 8016D240 0016A180  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9700,9 +9780,9 @@ resetMgrs__Q24Game9PelletMgrFv:
 /* 8016D2AC 0016A1EC  7C 08 03 A6 */	mtlr r0
 /* 8016D2B0 0016A1F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D2B4 0016A1F4  4E 80 00 20 */	blr 
+.endfn resetMgrs__Q24Game9PelletMgrFv
 
-.global "resetMgr__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
-"resetMgr__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":
+.fn "resetMgr__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv", weak
 /* 8016D2B8 0016A1F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D2BC 0016A1FC  7C 08 02 A6 */	mflr r0
 /* 8016D2C0 0016A200  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9723,9 +9803,9 @@ resetMgrs__Q24Game9PelletMgrFv:
 /* 8016D2FC 0016A23C  7C 08 03 A6 */	mtlr r0
 /* 8016D300 0016A240  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D304 0016A244  4E 80 00 20 */	blr 
+.endfn "resetMgr__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
 
-.global "resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-"resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 8016D308 0016A248  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D30C 0016A24C  7C 08 02 A6 */	mflr r0
 /* 8016D310 0016A250  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9746,9 +9826,9 @@ resetMgrs__Q24Game9PelletMgrFv:
 /* 8016D34C 0016A28C  7C 08 03 A6 */	mtlr r0
 /* 8016D350 0016A290  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D354 0016A294  4E 80 00 20 */	blr 
+.endfn "resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "resetMgr__Q24Game48FixedSizePelletMgr<Q34Game12PelletNumber6Object>Fv"
-"resetMgr__Q24Game48FixedSizePelletMgr<Q34Game12PelletNumber6Object>Fv":
+.fn "resetMgr__Q24Game48FixedSizePelletMgr<Q34Game12PelletNumber6Object>Fv", weak
 /* 8016D358 0016A298  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D35C 0016A29C  7C 08 02 A6 */	mflr r0
 /* 8016D360 0016A2A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9769,9 +9849,9 @@ resetMgrs__Q24Game9PelletMgrFv:
 /* 8016D39C 0016A2DC  7C 08 03 A6 */	mtlr r0
 /* 8016D3A0 0016A2E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D3A4 0016A2E4  4E 80 00 20 */	blr 
+.endfn "resetMgr__Q24Game48FixedSizePelletMgr<Q34Game12PelletNumber6Object>Fv"
 
-.global setupResources__Q24Game9PelletMgrFv
-setupResources__Q24Game9PelletMgrFv:
+.fn setupResources__Q24Game9PelletMgrFv, global
 /* 8016D3A8 0016A2E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D3AC 0016A2EC  7C 08 02 A6 */	mflr r0
 /* 8016D3B0 0016A2F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9804,9 +9884,9 @@ setupResources__Q24Game9PelletMgrFv:
 /* 8016D41C 0016A35C  7C 08 03 A6 */	mtlr r0
 /* 8016D420 0016A360  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D424 0016A364  4E 80 00 20 */	blr 
+.endfn setupResources__Q24Game9PelletMgrFv
 
-.global "isDone__36Iterator<Q34Game10PelletItem6Object>Fv"
-"isDone__36Iterator<Q34Game10PelletItem6Object>Fv":
+.fn "isDone__36Iterator<Q34Game10PelletItem6Object>Fv", weak
 /* 8016D428 0016A368  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D42C 0016A36C  7C 08 02 A6 */	mflr r0
 /* 8016D430 0016A370  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9826,9 +9906,9 @@ setupResources__Q24Game9PelletMgrFv:
 /* 8016D468 0016A3A8  7C 08 03 A6 */	mtlr r0
 /* 8016D46C 0016A3AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D470 0016A3B0  4E 80 00 20 */	blr 
+.endfn "isDone__36Iterator<Q34Game10PelletItem6Object>Fv"
 
-.global "isDone__39Iterator<Q34Game13PelletOtakara6Object>Fv"
-"isDone__39Iterator<Q34Game13PelletOtakara6Object>Fv":
+.fn "isDone__39Iterator<Q34Game13PelletOtakara6Object>Fv", weak
 /* 8016D474 0016A3B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D478 0016A3B8  7C 08 02 A6 */	mflr r0
 /* 8016D47C 0016A3BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9848,9 +9928,9 @@ setupResources__Q24Game9PelletMgrFv:
 /* 8016D4B4 0016A3F4  7C 08 03 A6 */	mtlr r0
 /* 8016D4B8 0016A3F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D4BC 0016A3FC  4E 80 00 20 */	blr 
+.endfn "isDone__39Iterator<Q34Game13PelletOtakara6Object>Fv"
 
-.global birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg
-birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg:
+.fn birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg, global
 /* 8016D4C0 0016A400  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016D4C4 0016A404  7C 08 02 A6 */	mflr r0
 /* 8016D4C8 0016A408  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9995,9 +10075,9 @@ birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg:
 /* 8016D6D0 0016A610  7C 08 03 A6 */	mtlr r0
 /* 8016D6D4 0016A614  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016D6D8 0016A618  4E 80 00 20 */	blr 
+.endfn birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg
 
-.global setUse__Q24Game9PelletMgrFPQ24Game13PelletInitArg
-setUse__Q24Game9PelletMgrFPQ24Game13PelletInitArg:
+.fn setUse__Q24Game9PelletMgrFPQ24Game13PelletInitArg, global
 /* 8016D6DC 0016A61C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016D6E0 0016A620  7C 08 02 A6 */	mflr r0
 /* 8016D6E4 0016A624  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10113,9 +10193,9 @@ setUse__Q24Game9PelletMgrFPQ24Game13PelletInitArg:
 /* 8016D87C 0016A7BC  7C 08 03 A6 */	mtlr r0
 /* 8016D880 0016A7C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016D884 0016A7C4  4E 80 00 20 */	blr 
+.endfn setUse__Q24Game9PelletMgrFPQ24Game13PelletInitArg
 
-.global isNull__Q34Game9PelletMgr15OtakaraItemCodeFv
-isNull__Q34Game9PelletMgr15OtakaraItemCodeFv:
+.fn isNull__Q34Game9PelletMgr15OtakaraItemCodeFv, global
 /* 8016D888 0016A7C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016D88C 0016A7CC  7C 08 02 A6 */	mflr r0
 /* 8016D890 0016A7D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10214,9 +10294,9 @@ isNull__Q34Game9PelletMgr15OtakaraItemCodeFv:
 /* 8016D9D8 0016A918  7C 08 03 A6 */	mtlr r0
 /* 8016D9DC 0016A91C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016D9E0 0016A920  4E 80 00 20 */	blr 
+.endfn isNull__Q34Game9PelletMgr15OtakaraItemCodeFv
 
-.global makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc
-makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc:
+.fn makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc, global
 /* 8016D9E4 0016A924  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016D9E8 0016A928  7C 08 02 A6 */	mflr r0
 /* 8016D9EC 0016A92C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10269,9 +10349,9 @@ makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc:
 /* 8016DAA0 0016A9E0  7C 08 03 A6 */	mtlr r0
 /* 8016DAA4 0016A9E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016DAA8 0016A9E8  4E 80 00 20 */	blr 
+.endfn makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc
 
-.global makeVsCarryMinMax__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc
-makeVsCarryMinMax__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc:
+.fn makeVsCarryMinMax__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc, global
 /* 8016DAAC 0016A9EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016DAB0 0016A9F0  7C 08 02 A6 */	mflr r0
 /* 8016DAB4 0016A9F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10333,9 +10413,9 @@ makeVsCarryMinMax__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc:
 /* 8016DB84 0016AAC4  7C 08 03 A6 */	mtlr r0
 /* 8016DB88 0016AAC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016DB8C 0016AACC  4E 80 00 20 */	blr 
+.endfn makeVsCarryMinMax__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc
 
-.global makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgRQ34Game9PelletMgr15OtakaraItemCode
-makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgRQ34Game9PelletMgr15OtakaraItemCode:
+.fn makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgRQ34Game9PelletMgr15OtakaraItemCode, global
 /* 8016DB90 0016AAD0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016DB94 0016AAD4  7C 08 02 A6 */	mflr r0
 /* 8016DB98 0016AAD8  3C 60 80 48 */	lis r3, lbl_8047E318@ha
@@ -10547,9 +10627,9 @@ makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgRQ34Game9PelletMgr15
 /* 8016DE70 0016ADB0  7C 08 03 A6 */	mtlr r0
 /* 8016DE74 0016ADB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016DE78 0016ADB8  4E 80 00 20 */	blr 
+.endfn makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgRQ34Game9PelletMgr15OtakaraItemCode
 
-.global makeOtakaraItemCode__Q24Game9PelletMgrFPcRQ34Game9PelletMgr15OtakaraItemCode
-makeOtakaraItemCode__Q24Game9PelletMgrFPcRQ34Game9PelletMgr15OtakaraItemCode:
+.fn makeOtakaraItemCode__Q24Game9PelletMgrFPcRQ34Game9PelletMgr15OtakaraItemCode, global
 /* 8016DE7C 0016ADBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016DE80 0016ADC0  7C 08 02 A6 */	mflr r0
 /* 8016DE84 0016ADC4  7C 83 23 78 */	mr r3, r4
@@ -10576,9 +10656,9 @@ makeOtakaraItemCode__Q24Game9PelletMgrFPcRQ34Game9PelletMgr15OtakaraItemCode:
 /* 8016DED0 0016AE10  7C 08 03 A6 */	mtlr r0
 /* 8016DED4 0016AE14  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016DED8 0016AE18  4E 80 00 20 */	blr 
+.endfn makeOtakaraItemCode__Q24Game9PelletMgrFPcRQ34Game9PelletMgr15OtakaraItemCode
 
-.global read__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream
-read__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream:
+.fn read__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream, global
 /* 8016DEDC 0016AE1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016DEE0 0016AE20  7C 08 02 A6 */	mflr r0
 /* 8016DEE4 0016AE24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10592,9 +10672,9 @@ read__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream:
 /* 8016DF04 0016AE44  7C 08 03 A6 */	mtlr r0
 /* 8016DF08 0016AE48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016DF0C 0016AE4C  4E 80 00 20 */	blr 
+.endfn read__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream
 
-.global write__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream
-write__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream:
+.fn write__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream, global
 /* 8016DF10 0016AE50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016DF14 0016AE54  7C 08 02 A6 */	mflr r0
 /* 8016DF18 0016AE58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10619,9 +10699,9 @@ write__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream:
 /* 8016DF64 0016AEA4  7C 08 03 A6 */	mtlr r0
 /* 8016DF68 0016AEA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016DF6C 0016AEAC  4E 80 00 20 */	blr 
+.endfn write__Q34Game9PelletMgr15OtakaraItemCodeFR6Stream
 
-.global addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr
-addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr:
+.fn addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr, global
 /* 8016DF70 0016AEB0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016DF74 0016AEB4  7C 08 02 A6 */	mflr r0
 /* 8016DF78 0016AEB8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10650,9 +10730,9 @@ addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr:
 /* 8016DFD0 0016AF10  7C 08 03 A6 */	mtlr r0
 /* 8016DFD4 0016AF14  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016DFD8 0016AF18  4E 80 00 20 */	blr 
+.endfn addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr
 
-.global doAnimation__Q24Game9PelletMgrFv
-doAnimation__Q24Game9PelletMgrFv:
+.fn doAnimation__Q24Game9PelletMgrFv, global
 /* 8016DFDC 0016AF1C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016DFE0 0016AF20  7C 08 02 A6 */	mflr r0
 /* 8016DFE4 0016AF24  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -10782,9 +10862,9 @@ doAnimation__Q24Game9PelletMgrFv:
 /* 8016E1B4 0016B0F4  7C 08 03 A6 */	mtlr r0
 /* 8016E1B8 0016B0F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016E1BC 0016B0FC  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game9PelletMgrFv
 
-.global "isDone__28Iterator<16GenericObjectMgr>Fv"
-"isDone__28Iterator<16GenericObjectMgr>Fv":
+.fn "isDone__28Iterator<16GenericObjectMgr>Fv", weak
 /* 8016E1C0 0016B100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016E1C4 0016B104  7C 08 02 A6 */	mflr r0
 /* 8016E1C8 0016B108  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10804,9 +10884,9 @@ doAnimation__Q24Game9PelletMgrFv:
 /* 8016E200 0016B140  7C 08 03 A6 */	mtlr r0
 /* 8016E204 0016B144  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016E208 0016B148  4E 80 00 20 */	blr 
+.endfn "isDone__28Iterator<16GenericObjectMgr>Fv"
 
-.global doEntry__Q24Game9PelletMgrFv
-doEntry__Q24Game9PelletMgrFv:
+.fn doEntry__Q24Game9PelletMgrFv, global
 /* 8016E20C 0016B14C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E210 0016B150  7C 08 02 A6 */	mflr r0
 /* 8016E214 0016B154  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -10936,9 +11016,9 @@ doEntry__Q24Game9PelletMgrFv:
 /* 8016E3E4 0016B324  7C 08 03 A6 */	mtlr r0
 /* 8016E3E8 0016B328  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016E3EC 0016B32C  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game9PelletMgrFv
 
-.global doSetView__Q24Game9PelletMgrFi
-doSetView__Q24Game9PelletMgrFi:
+.fn doSetView__Q24Game9PelletMgrFi, global
 /* 8016E3F0 0016B330  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E3F4 0016B334  7C 08 02 A6 */	mflr r0
 /* 8016E3F8 0016B338  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -11072,9 +11152,9 @@ doSetView__Q24Game9PelletMgrFi:
 /* 8016E5D8 0016B518  7C 08 03 A6 */	mtlr r0
 /* 8016E5DC 0016B51C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016E5E0 0016B520  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game9PelletMgrFi
 
-.global doViewCalc__Q24Game9PelletMgrFv
-doViewCalc__Q24Game9PelletMgrFv:
+.fn doViewCalc__Q24Game9PelletMgrFv, global
 /* 8016E5E4 0016B524  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E5E8 0016B528  7C 08 02 A6 */	mflr r0
 /* 8016E5EC 0016B52C  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -11204,9 +11284,9 @@ doViewCalc__Q24Game9PelletMgrFv:
 /* 8016E7BC 0016B6FC  7C 08 03 A6 */	mtlr r0
 /* 8016E7C0 0016B700  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016E7C4 0016B704  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game9PelletMgrFv
 
-.global doSimulation__Q24Game9PelletMgrFf
-doSimulation__Q24Game9PelletMgrFf:
+.fn doSimulation__Q24Game9PelletMgrFf, global
 /* 8016E7C8 0016B708  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E7CC 0016B70C  7C 08 02 A6 */	mflr r0
 /* 8016E7D0 0016B710  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -11340,13 +11420,13 @@ doSimulation__Q24Game9PelletMgrFf:
 /* 8016E9B0 0016B8F0  7C 08 03 A6 */	mtlr r0
 /* 8016E9B4 0016B8F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016E9B8 0016B8F8  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game9PelletMgrFf
 
-.global doDirectDraw__Q24Game9PelletMgrFR8Graphics
-doDirectDraw__Q24Game9PelletMgrFR8Graphics:
+.fn doDirectDraw__Q24Game9PelletMgrFR8Graphics, global
 /* 8016E9BC 0016B8FC  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game9PelletMgrFR8Graphics
 
-.global doSimpleDraw__Q24Game9PelletMgrFP8Viewport
-doSimpleDraw__Q24Game9PelletMgrFP8Viewport:
+.fn doSimpleDraw__Q24Game9PelletMgrFP8Viewport, global
 /* 8016E9C0 0016B900  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016E9C4 0016B904  7C 08 02 A6 */	mflr r0
 /* 8016E9C8 0016B908  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -11480,9 +11560,9 @@ doSimpleDraw__Q24Game9PelletMgrFP8Viewport:
 /* 8016EBA8 0016BAE8  7C 08 03 A6 */	mtlr r0
 /* 8016EBAC 0016BAEC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016EBB0 0016BAF0  4E 80 00 20 */	blr 
+.endfn doSimpleDraw__Q24Game9PelletMgrFP8Viewport
 
-.global setupSoundViewerAndBas__Q24Game9PelletMgrFv
-setupSoundViewerAndBas__Q24Game9PelletMgrFv:
+.fn setupSoundViewerAndBas__Q24Game9PelletMgrFv, global
 /* 8016EBB4 0016BAF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016EBB8 0016BAF8  7C 08 02 A6 */	mflr r0
 /* 8016EBBC 0016BAFC  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -11608,23 +11688,23 @@ setupSoundViewerAndBas__Q24Game9PelletMgrFv:
 /* 8016ED7C 0016BCBC  7C 08 03 A6 */	mtlr r0
 /* 8016ED80 0016BCC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016ED84 0016BCC4  4E 80 00 20 */	blr 
+.endfn setupSoundViewerAndBas__Q24Game9PelletMgrFv
 
-.global decode__Q24Game9PelletMgrFlRUcRi
-decode__Q24Game9PelletMgrFlRUcRi:
+.fn decode__Q24Game9PelletMgrFlRUcRi, global
 /* 8016ED88 0016BCC8  54 83 46 3E */	srwi r3, r4, 0x18
 /* 8016ED8C 0016BCCC  54 80 02 3E */	clrlwi r0, r4, 8
 /* 8016ED90 0016BCD0  98 65 00 00 */	stb r3, 0(r5)
 /* 8016ED94 0016BCD4  90 06 00 00 */	stw r0, 0(r6)
 /* 8016ED98 0016BCD8  4E 80 00 20 */	blr 
+.endfn decode__Q24Game9PelletMgrFlRUcRi
 
-.global encode__Q24Game9PelletMgrFUci
-encode__Q24Game9PelletMgrFUci:
+.fn encode__Q24Game9PelletMgrFUci, global
 /* 8016ED9C 0016BCDC  54 80 C0 0E */	slwi r0, r4, 0x18
 /* 8016EDA0 0016BCE0  7C 03 2B 78 */	or r3, r0, r5
 /* 8016EDA4 0016BCE4  4E 80 00 20 */	blr 
+.endfn encode__Q24Game9PelletMgrFUci
 
-.global getCaveName__Q24Game9PelletMgrFi
-getCaveName__Q24Game9PelletMgrFi:
+.fn getCaveName__Q24Game9PelletMgrFi, global
 /* 8016EDA8 0016BCE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016EDAC 0016BCEC  7C 08 02 A6 */	mflr r0
 /* 8016EDB0 0016BCF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11675,9 +11755,9 @@ getCaveName__Q24Game9PelletMgrFi:
 /* 8016EE50 0016BD90  7C 08 03 A6 */	mtlr r0
 /* 8016EE54 0016BD94  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016EE58 0016BD98  4E 80 00 20 */	blr 
+.endfn getCaveName__Q24Game9PelletMgrFi
 
-.global getCaveID__Q24Game9PelletMgrFPc
-getCaveID__Q24Game9PelletMgrFPc:
+.fn getCaveID__Q24Game9PelletMgrFPc, global
 /* 8016EE5C 0016BD9C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8016EE60 0016BDA0  7C 08 02 A6 */	mflr r0
 /* 8016EE64 0016BDA4  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -11849,9 +11929,9 @@ getCaveID__Q24Game9PelletMgrFPc:
 /* 8016F0C0 0016C000  7C 08 03 A6 */	mtlr r0
 /* 8016F0C4 0016C004  38 21 00 30 */	addi r1, r1, 0x30
 /* 8016F0C8 0016C008  4E 80 00 20 */	blr 
+.endfn getCaveID__Q24Game9PelletMgrFPc
 
-.global getMgrByID__Q24Game9PelletMgrFUc
-getMgrByID__Q24Game9PelletMgrFUc:
+.fn getMgrByID__Q24Game9PelletMgrFUc, global
 /* 8016F0CC 0016C00C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8016F0D0 0016C010  7C 08 02 A6 */	mflr r0
 /* 8016F0D4 0016C014  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -11998,9 +12078,9 @@ getMgrByID__Q24Game9PelletMgrFUc:
 /* 8016F2DC 0016C21C  7C 08 03 A6 */	mtlr r0
 /* 8016F2E0 0016C220  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016F2E4 0016C224  4E 80 00 20 */	blr 
+.endfn getMgrByID__Q24Game9PelletMgrFUc
 
-.global __dt__Q24Game9PelletMgrFv
-__dt__Q24Game9PelletMgrFv:
+.fn __dt__Q24Game9PelletMgrFv, weak
 /* 8016F2E8 0016C228  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F2EC 0016C22C  7C 08 02 A6 */	mflr r0
 /* 8016F2F0 0016C230  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12060,15 +12140,15 @@ __dt__Q24Game9PelletMgrFv:
 /* 8016F3BC 0016C2FC  7C 08 03 A6 */	mtlr r0
 /* 8016F3C0 0016C300  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F3C4 0016C304  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game9PelletMgrFv
 
-.global getMgrName__Q24Game9PelletMgrFv
-getMgrName__Q24Game9PelletMgrFv:
+.fn getMgrName__Q24Game9PelletMgrFv, weak
 /* 8016F3C8 0016C308  3C 60 80 48 */	lis r3, lbl_8047E494@ha
 /* 8016F3CC 0016C30C  38 63 E4 94 */	addi r3, r3, lbl_8047E494@l
 /* 8016F3D0 0016C310  4E 80 00 20 */	blr 
+.endfn getMgrName__Q24Game9PelletMgrFv
 
-.global "__ml__28Iterator<16GenericObjectMgr>Fv"
-"__ml__28Iterator<16GenericObjectMgr>Fv":
+.fn "__ml__28Iterator<16GenericObjectMgr>Fv", weak
 /* 8016F3D4 0016C314  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F3D8 0016C318  7C 08 02 A6 */	mflr r0
 /* 8016F3DC 0016C31C  7C 64 1B 78 */	mr r4, r3
@@ -12083,9 +12163,9 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F400 0016C340  7C 08 03 A6 */	mtlr r0
 /* 8016F404 0016C344  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F408 0016C348  4E 80 00 20 */	blr 
+.endfn "__ml__28Iterator<16GenericObjectMgr>Fv"
 
-.global "next__28Iterator<16GenericObjectMgr>Fv"
-"next__28Iterator<16GenericObjectMgr>Fv":
+.fn "next__28Iterator<16GenericObjectMgr>Fv", weak
 /* 8016F40C 0016C34C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F410 0016C350  7C 08 02 A6 */	mflr r0
 /* 8016F414 0016C354  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12147,9 +12227,9 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F4E4 0016C424  7C 08 03 A6 */	mtlr r0
 /* 8016F4E8 0016C428  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F4EC 0016C42C  4E 80 00 20 */	blr 
+.endfn "next__28Iterator<16GenericObjectMgr>Fv"
 
-.global "first__28Iterator<16GenericObjectMgr>Fv"
-"first__28Iterator<16GenericObjectMgr>Fv":
+.fn "first__28Iterator<16GenericObjectMgr>Fv", weak
 /* 8016F4F0 0016C430  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F4F4 0016C434  7C 08 02 A6 */	mflr r0
 /* 8016F4F8 0016C438  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12209,9 +12289,9 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F5C0 0016C500  7C 08 03 A6 */	mtlr r0
 /* 8016F5C4 0016C504  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F5C8 0016C508  4E 80 00 20 */	blr 
+.endfn "first__28Iterator<16GenericObjectMgr>Fv"
 
-.global "__ml__36Iterator<Q34Game10PelletItem6Object>Fv"
-"__ml__36Iterator<Q34Game10PelletItem6Object>Fv":
+.fn "__ml__36Iterator<Q34Game10PelletItem6Object>Fv", weak
 /* 8016F5CC 0016C50C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F5D0 0016C510  7C 08 02 A6 */	mflr r0
 /* 8016F5D4 0016C514  7C 64 1B 78 */	mr r4, r3
@@ -12226,9 +12306,9 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F5F8 0016C538  7C 08 03 A6 */	mtlr r0
 /* 8016F5FC 0016C53C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F600 0016C540  4E 80 00 20 */	blr 
+.endfn "__ml__36Iterator<Q34Game10PelletItem6Object>Fv"
 
-.global "next__36Iterator<Q34Game10PelletItem6Object>Fv"
-"next__36Iterator<Q34Game10PelletItem6Object>Fv":
+.fn "next__36Iterator<Q34Game10PelletItem6Object>Fv", weak
 /* 8016F604 0016C544  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F608 0016C548  7C 08 02 A6 */	mflr r0
 /* 8016F60C 0016C54C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12290,9 +12370,9 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F6DC 0016C61C  7C 08 03 A6 */	mtlr r0
 /* 8016F6E0 0016C620  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F6E4 0016C624  4E 80 00 20 */	blr 
+.endfn "next__36Iterator<Q34Game10PelletItem6Object>Fv"
 
-.global "first__36Iterator<Q34Game10PelletItem6Object>Fv"
-"first__36Iterator<Q34Game10PelletItem6Object>Fv":
+.fn "first__36Iterator<Q34Game10PelletItem6Object>Fv", weak
 /* 8016F6E8 0016C628  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F6EC 0016C62C  7C 08 02 A6 */	mflr r0
 /* 8016F6F0 0016C630  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12352,9 +12432,9 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F7B8 0016C6F8  7C 08 03 A6 */	mtlr r0
 /* 8016F7BC 0016C6FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F7C0 0016C700  4E 80 00 20 */	blr 
+.endfn "first__36Iterator<Q34Game10PelletItem6Object>Fv"
 
-.global "__ml__39Iterator<Q34Game13PelletOtakara6Object>Fv"
-"__ml__39Iterator<Q34Game13PelletOtakara6Object>Fv":
+.fn "__ml__39Iterator<Q34Game13PelletOtakara6Object>Fv", weak
 /* 8016F7C4 0016C704  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F7C8 0016C708  7C 08 02 A6 */	mflr r0
 /* 8016F7CC 0016C70C  7C 64 1B 78 */	mr r4, r3
@@ -12369,9 +12449,9 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F7F0 0016C730  7C 08 03 A6 */	mtlr r0
 /* 8016F7F4 0016C734  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F7F8 0016C738  4E 80 00 20 */	blr 
+.endfn "__ml__39Iterator<Q34Game13PelletOtakara6Object>Fv"
 
-.global "next__39Iterator<Q34Game13PelletOtakara6Object>Fv"
-"next__39Iterator<Q34Game13PelletOtakara6Object>Fv":
+.fn "next__39Iterator<Q34Game13PelletOtakara6Object>Fv", weak
 /* 8016F7FC 0016C73C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F800 0016C740  7C 08 02 A6 */	mflr r0
 /* 8016F804 0016C744  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12433,9 +12513,9 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F8D4 0016C814  7C 08 03 A6 */	mtlr r0
 /* 8016F8D8 0016C818  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F8DC 0016C81C  4E 80 00 20 */	blr 
+.endfn "next__39Iterator<Q34Game13PelletOtakara6Object>Fv"
 
-.global "first__39Iterator<Q34Game13PelletOtakara6Object>Fv"
-"first__39Iterator<Q34Game13PelletOtakara6Object>Fv":
+.fn "first__39Iterator<Q34Game13PelletOtakara6Object>Fv", weak
 /* 8016F8E0 0016C820  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F8E4 0016C824  7C 08 02 A6 */	mflr r0
 /* 8016F8E8 0016C828  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12495,52 +12575,52 @@ getMgrName__Q24Game9PelletMgrFv:
 /* 8016F9B0 0016C8F0  7C 08 03 A6 */	mtlr r0
 /* 8016F9B4 0016C8F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016F9B8 0016C8F8  4E 80 00 20 */	blr 
+.endfn "first__39Iterator<Q34Game13PelletOtakara6Object>Fv"
 
-.global "generatorBirth__Q24Game13BasePelletMgrFR10Vector3<f>R10Vector3<f>PQ24Game13GenPelletParm"
-"generatorBirth__Q24Game13BasePelletMgrFR10Vector3<f>R10Vector3<f>PQ24Game13GenPelletParm":
+.fn "generatorBirth__Q24Game13BasePelletMgrFR10Vector3<f>R10Vector3<f>PQ24Game13GenPelletParm", weak
 /* 8016F9BC 0016C8FC  38 60 00 00 */	li r3, 0
 /* 8016F9C0 0016C900  4E 80 00 20 */	blr 
+.endfn "generatorBirth__Q24Game13BasePelletMgrFR10Vector3<f>R10Vector3<f>PQ24Game13GenPelletParm"
 
-.global generatorWrite__Q24Game13BasePelletMgrFR6StreamPQ24Game13GenPelletParm
-generatorWrite__Q24Game13BasePelletMgrFR6StreamPQ24Game13GenPelletParm:
+.fn generatorWrite__Q24Game13BasePelletMgrFR6StreamPQ24Game13GenPelletParm, weak
 /* 8016F9C4 0016C904  4E 80 00 20 */	blr 
+.endfn generatorWrite__Q24Game13BasePelletMgrFR6StreamPQ24Game13GenPelletParm
 
-.global generatorRead__Q24Game13BasePelletMgrFR6StreamPQ24Game13GenPelletParmUl
-generatorRead__Q24Game13BasePelletMgrFR6StreamPQ24Game13GenPelletParmUl:
+.fn generatorRead__Q24Game13BasePelletMgrFR6StreamPQ24Game13GenPelletParmUl, weak
 /* 8016F9C8 0016C908  4E 80 00 20 */	blr 
+.endfn generatorRead__Q24Game13BasePelletMgrFR6StreamPQ24Game13GenPelletParmUl
 
-.global generatorLocalVersion__Q24Game13BasePelletMgrFv
-generatorLocalVersion__Q24Game13BasePelletMgrFv:
+.fn generatorLocalVersion__Q24Game13BasePelletMgrFv, weak
 /* 8016F9CC 0016C90C  3C 60 30 30 */	lis r3, 0x30303030@ha
 /* 8016F9D0 0016C910  38 63 30 30 */	addi r3, r3, 0x30303030@l
 /* 8016F9D4 0016C914  4E 80 00 20 */	blr 
+.endfn generatorLocalVersion__Q24Game13BasePelletMgrFv
 
-.global doAnimation__Q24Game13BasePelletMgrFv
-doAnimation__Q24Game13BasePelletMgrFv:
+.fn doAnimation__Q24Game13BasePelletMgrFv, weak
 /* 8016F9D8 0016C918  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game13BasePelletMgrFv
 
-.global doEntry__Q24Game13BasePelletMgrFv
-doEntry__Q24Game13BasePelletMgrFv:
+.fn doEntry__Q24Game13BasePelletMgrFv, weak
 /* 8016F9DC 0016C91C  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game13BasePelletMgrFv
 
-.global doSetView__Q24Game13BasePelletMgrFi
-doSetView__Q24Game13BasePelletMgrFi:
+.fn doSetView__Q24Game13BasePelletMgrFi, weak
 /* 8016F9E0 0016C920  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game13BasePelletMgrFi
 
-.global doViewCalc__Q24Game13BasePelletMgrFv
-doViewCalc__Q24Game13BasePelletMgrFv:
+.fn doViewCalc__Q24Game13BasePelletMgrFv, weak
 /* 8016F9E4 0016C924  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game13BasePelletMgrFv
 
-.global doSimulation__Q24Game13BasePelletMgrFf
-doSimulation__Q24Game13BasePelletMgrFf:
+.fn doSimulation__Q24Game13BasePelletMgrFf, weak
 /* 8016F9E8 0016C928  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game13BasePelletMgrFf
 
-.global doDirectDraw__Q24Game13BasePelletMgrFR8Graphics
-doDirectDraw__Q24Game13BasePelletMgrFR8Graphics:
+.fn doDirectDraw__Q24Game13BasePelletMgrFR8Graphics, weak
 /* 8016F9EC 0016C92C  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game13BasePelletMgrFR8Graphics
 
-.global "__dt__20Container<8CollPart>Fv"
-"__dt__20Container<8CollPart>Fv":
+.fn "__dt__20Container<8CollPart>Fv", weak
 /* 8016F9F0 0016C930  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016F9F4 0016C934  7C 08 02 A6 */	mflr r0
 /* 8016F9F8 0016C938  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12571,9 +12651,9 @@ doDirectDraw__Q24Game13BasePelletMgrFR8Graphics:
 /* 8016FA54 0016C994  7C 08 03 A6 */	mtlr r0
 /* 8016FA58 0016C998  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016FA5C 0016C99C  4E 80 00 20 */	blr 
+.endfn "__dt__20Container<8CollPart>Fv"
 
-.global "__dt__20ObjectMgr<8CollPart>Fv"
-"__dt__20ObjectMgr<8CollPart>Fv":
+.fn "__dt__20ObjectMgr<8CollPart>Fv", weak
 /* 8016FA60 0016C9A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016FA64 0016C9A4  7C 08 02 A6 */	mflr r0
 /* 8016FA68 0016C9A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12610,9 +12690,9 @@ doDirectDraw__Q24Game13BasePelletMgrFR8Graphics:
 /* 8016FADC 0016CA1C  7C 08 03 A6 */	mtlr r0
 /* 8016FAE0 0016CA20  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016FAE4 0016CA24  4E 80 00 20 */	blr 
+.endfn "__dt__20ObjectMgr<8CollPart>Fv"
 
-.global satisfy__13WPExcludeSpotFPQ24Game8WayPoint
-satisfy__13WPExcludeSpotFPQ24Game8WayPoint:
+.fn satisfy__13WPExcludeSpotFPQ24Game8WayPoint, weak
 /* 8016FAE8 0016CA28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8016FAEC 0016CA2C  7C 08 02 A6 */	mflr r0
 /* 8016FAF0 0016CA30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12649,9 +12729,9 @@ satisfy__13WPExcludeSpotFPQ24Game8WayPoint:
 /* 8016FB60 0016CAA0  7C 08 03 A6 */	mtlr r0
 /* 8016FB64 0016CAA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016FB68 0016CAA8  4E 80 00 20 */	blr 
+.endfn satisfy__13WPExcludeSpotFPQ24Game8WayPoint
 
-.global "satisfy__Q223@unnamed@pelletMgr_cpp@6NotOffFPQ24Game8WayPoint"
-"satisfy__Q223@unnamed@pelletMgr_cpp@6NotOffFPQ24Game8WayPoint":
+.fn "satisfy__Q223@unnamed@pelletMgr_cpp@6NotOffFPQ24Game8WayPoint", local
 /* 8016FB6C 0016CAAC  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8016FB70 0016CAB0  7C 08 02 A6 */	mflr r0
 /* 8016FB74 0016CAB4  90 01 00 84 */	stw r0, 0x84(r1)
@@ -12993,9 +13073,9 @@ satisfy__13WPExcludeSpotFPQ24Game8WayPoint:
 /* 8017003C 0016CF7C  7C 08 03 A6 */	mtlr r0
 /* 80170040 0016CF80  38 21 00 80 */	addi r1, r1, 0x80
 /* 80170044 0016CF84  4E 80 00 20 */	blr 
+.endfn "satisfy__Q223@unnamed@pelletMgr_cpp@6NotOffFPQ24Game8WayPoint"
 
-.global "onSetPosition__Q24Game6PelletFR10Vector3<f>"
-"onSetPosition__Q24Game6PelletFR10Vector3<f>":
+.fn "onSetPosition__Q24Game6PelletFR10Vector3<f>", weak
 /* 80170048 0016CF88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017004C 0016CF8C  7C 08 02 A6 */	mflr r0
 /* 80170050 0016CF90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13013,38 +13093,38 @@ satisfy__13WPExcludeSpotFPQ24Game8WayPoint:
 /* 80170080 0016CFC0  7C 08 03 A6 */	mtlr r0
 /* 80170084 0016CFC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80170088 0016CFC8  4E 80 00 20 */	blr 
+.endfn "onSetPosition__Q24Game6PelletFR10Vector3<f>"
 
-.global inWater__Q24Game6PelletFv
-inWater__Q24Game6PelletFv:
+.fn inWater__Q24Game6PelletFv, weak
 /* 8017008C 0016CFCC  88 63 03 25 */	lbz r3, 0x325(r3)
 /* 80170090 0016CFD0  4E 80 00 20 */	blr 
+.endfn inWater__Q24Game6PelletFv
 
-.global getBedamaColor__Q24Game6PelletFv
-getBedamaColor__Q24Game6PelletFv:
+.fn getBedamaColor__Q24Game6PelletFv, weak
 /* 80170094 0016CFD4  38 60 FF FF */	li r3, -1
 /* 80170098 0016CFD8  4E 80 00 20 */	blr 
+.endfn getBedamaColor__Q24Game6PelletFv
 
-.global getSound_PosPtr__Q24Game6PelletFv
-getSound_PosPtr__Q24Game6PelletFv:
+.fn getSound_PosPtr__Q24Game6PelletFv, weak
 /* 8017009C 0016CFDC  38 63 03 AC */	addi r3, r3, 0x3ac
 /* 801700A0 0016CFE0  4E 80 00 20 */	blr 
+.endfn getSound_PosPtr__Q24Game6PelletFv
 
-.global getFaceDir__Q24Game6PelletFv
-getFaceDir__Q24Game6PelletFv:
+.fn getFaceDir__Q24Game6PelletFv, weak
 /* 801700A4 0016CFE4  C0 23 03 B8 */	lfs f1, 0x3b8(r3)
 /* 801700A8 0016CFE8  4E 80 00 20 */	blr 
+.endfn getFaceDir__Q24Game6PelletFv
 
-.global deferPikiCollision__Q24Game6PelletFv
-deferPikiCollision__Q24Game6PelletFv:
+.fn deferPikiCollision__Q24Game6PelletFv, weak
 /* 801700AC 0016CFEC  38 60 00 01 */	li r3, 1
 /* 801700B0 0016CFF0  4E 80 00 20 */	blr 
+.endfn deferPikiCollision__Q24Game6PelletFv
 
-.global sound_otakaraEventFinish__Q24Game6PelletFv
-sound_otakaraEventFinish__Q24Game6PelletFv:
+.fn sound_otakaraEventFinish__Q24Game6PelletFv, weak
 /* 801700B4 0016CFF4  4E 80 00 20 */	blr 
+.endfn sound_otakaraEventFinish__Q24Game6PelletFv
 
-.global __dt__Q23PSM9EventBaseFv
-__dt__Q23PSM9EventBaseFv:
+.fn __dt__Q23PSM9EventBaseFv, weak
 /* 801700B8 0016CFF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801700BC 0016CFFC  7C 08 02 A6 */	mflr r0
 /* 801700C0 0016D000  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13094,98 +13174,98 @@ __dt__Q23PSM9EventBaseFv:
 /* 80170168 0016D0A8  7C 08 03 A6 */	mtlr r0
 /* 8017016C 0016D0AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80170170 0016D0B0  4E 80 00 20 */	blr 
+.endfn __dt__Q23PSM9EventBaseFv
 
-.global getCastType__Q23PSM11CreatureObjFv
-getCastType__Q23PSM11CreatureObjFv:
+.fn getCastType__Q23PSM11CreatureObjFv, weak
 /* 80170174 0016D0B4  38 60 00 00 */	li r3, 0
 /* 80170178 0016D0B8  4E 80 00 20 */	blr 
+.endfn getCastType__Q23PSM11CreatureObjFv
 
-.global getJAIObject__Q23PSM11CreatureObjFv
-getJAIObject__Q23PSM11CreatureObjFv:
+.fn getJAIObject__Q23PSM11CreatureObjFv, weak
 /* 8017017C 0016D0BC  28 03 00 00 */	cmplwi r3, 0
 /* 80170180 0016D0C0  4D 82 00 20 */	beqlr 
 /* 80170184 0016D0C4  38 63 00 30 */	addi r3, r3, 0x30
 /* 80170188 0016D0C8  4E 80 00 20 */	blr 
+.endfn getJAIObject__Q23PSM11CreatureObjFv
 
-.global getHandleArea__Q23PSM11CreatureObjFUc
-getHandleArea__Q23PSM11CreatureObjFUc:
+.fn getHandleArea__Q23PSM11CreatureObjFUc, weak
 /* 8017018C 0016D0CC  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 80170190 0016D0D0  54 80 15 BA */	rlwinm r0, r4, 2, 0x16, 0x1d
 /* 80170194 0016D0D4  7C 63 02 14 */	add r3, r3, r0
 /* 80170198 0016D0D8  4E 80 00 20 */	blr 
+.endfn getHandleArea__Q23PSM11CreatureObjFUc
 
-.global onCalcOn__Q23PSM11CreatureObjFv
-onCalcOn__Q23PSM11CreatureObjFv:
+.fn onCalcOn__Q23PSM11CreatureObjFv, weak
 /* 8017019C 0016D0DC  4E 80 00 20 */	blr 
+.endfn onCalcOn__Q23PSM11CreatureObjFv
 
-.global getName__Q24Game18PelletGoalStateArgFv
-getName__Q24Game18PelletGoalStateArgFv:
+.fn getName__Q24Game18PelletGoalStateArgFv, weak
 /* 801701A0 0016D0E0  3C 60 80 48 */	lis r3, lbl_8047E534@ha
 /* 801701A4 0016D0E4  38 63 E5 34 */	addi r3, r3, lbl_8047E534@l
 /* 801701A8 0016D0E8  4E 80 00 20 */	blr 
+.endfn getName__Q24Game18PelletGoalStateArgFv
 
-.global "init__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
-"init__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet":
+.fn "init__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet", weak
 /* 801701AC 0016D0EC  4E 80 00 20 */	blr 
+.endfn "init__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 
-.global "get__33NodeObjectMgr<16GenericObjectMgr>FPv"
-"get__33NodeObjectMgr<16GenericObjectMgr>FPv":
+.fn "get__33NodeObjectMgr<16GenericObjectMgr>FPv", weak
 /* 801701B0 0016D0F0  80 64 00 18 */	lwz r3, 0x18(r4)
 /* 801701B4 0016D0F4  4E 80 00 20 */	blr 
+.endfn "get__33NodeObjectMgr<16GenericObjectMgr>FPv"
 
-.global "getNext__33NodeObjectMgr<16GenericObjectMgr>FPv"
-"getNext__33NodeObjectMgr<16GenericObjectMgr>FPv":
+.fn "getNext__33NodeObjectMgr<16GenericObjectMgr>FPv", weak
 /* 801701B8 0016D0F8  80 64 00 04 */	lwz r3, 4(r4)
 /* 801701BC 0016D0FC  4E 80 00 20 */	blr 
+.endfn "getNext__33NodeObjectMgr<16GenericObjectMgr>FPv"
 
-.global "getStart__33NodeObjectMgr<16GenericObjectMgr>Fv"
-"getStart__33NodeObjectMgr<16GenericObjectMgr>Fv":
+.fn "getStart__33NodeObjectMgr<16GenericObjectMgr>Fv", weak
 /* 801701C0 0016D100  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 801701C4 0016D104  4E 80 00 20 */	blr 
+.endfn "getStart__33NodeObjectMgr<16GenericObjectMgr>Fv"
 
-.global "getEnd__33NodeObjectMgr<16GenericObjectMgr>Fv"
-"getEnd__33NodeObjectMgr<16GenericObjectMgr>Fv":
+.fn "getEnd__33NodeObjectMgr<16GenericObjectMgr>Fv", weak
 /* 801701C8 0016D108  38 60 00 00 */	li r3, 0
 /* 801701CC 0016D10C  4E 80 00 20 */	blr 
+.endfn "getEnd__33NodeObjectMgr<16GenericObjectMgr>Fv"
 
-.global "resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv"
-"resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv":
+.fn "resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv", weak
 /* 801701D0 0016D110  38 00 00 00 */	li r0, 0
 /* 801701D4 0016D114  90 03 00 30 */	stw r0, 0x30(r3)
 /* 801701D8 0016D118  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801701DC 0016D11C  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801701E0 0016D120  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801701E4 0016D124  4E 80 00 20 */	blr 
+.endfn "resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv"
 
-.global "resetMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
-"resetMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv":
+.fn "resetMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv", weak
 /* 801701E8 0016D128  38 00 00 00 */	li r0, 0
 /* 801701EC 0016D12C  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801701F0 0016D130  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801701F4 0016D134  90 03 00 20 */	stw r0, 0x20(r3)
 /* 801701F8 0016D138  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801701FC 0016D13C  4E 80 00 20 */	blr 
+.endfn "resetMgr__42MonoObjectMgr<Q34Game11PelletFruit6Object>Fv"
 
-.global "resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-"resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv":
+.fn "resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv", weak
 /* 80170200 0016D140  38 00 00 00 */	li r0, 0
 /* 80170204 0016D144  90 03 00 28 */	stw r0, 0x28(r3)
 /* 80170208 0016D148  90 03 00 24 */	stw r0, 0x24(r3)
 /* 8017020C 0016D14C  90 03 00 20 */	stw r0, 0x20(r3)
 /* 80170210 0016D150  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 80170214 0016D154  4E 80 00 20 */	blr 
+.endfn "resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
 
-.global "resetMgr__43MonoObjectMgr<Q34Game12PelletNumber6Object>Fv"
-"resetMgr__43MonoObjectMgr<Q34Game12PelletNumber6Object>Fv":
+.fn "resetMgr__43MonoObjectMgr<Q34Game12PelletNumber6Object>Fv", weak
 /* 80170218 0016D158  38 00 00 00 */	li r0, 0
 /* 8017021C 0016D15C  90 03 00 28 */	stw r0, 0x28(r3)
 /* 80170220 0016D160  90 03 00 24 */	stw r0, 0x24(r3)
 /* 80170224 0016D164  90 03 00 20 */	stw r0, 0x20(r3)
 /* 80170228 0016D168  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8017022C 0016D16C  4E 80 00 20 */	blr 
+.endfn "resetMgr__43MonoObjectMgr<Q34Game12PelletNumber6Object>Fv"
 
-.global "getNext__24MonoObjectMgr<8CollPart>FPv"
-"getNext__24MonoObjectMgr<8CollPart>FPv":
+.fn "getNext__24MonoObjectMgr<8CollPart>FPv", weak
 /* 80170230 0016D170  80 A3 00 24 */	lwz r5, 0x24(r3)
 /* 80170234 0016D174  38 C4 00 01 */	addi r6, r4, 1
 /* 80170238 0016D178  7C 06 28 50 */	subf r0, r6, r5
@@ -13205,9 +13285,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 .L_80170268:
 /* 80170268 0016D1A8  7C A3 2B 78 */	mr r3, r5
 /* 8017026C 0016D1AC  4E 80 00 20 */	blr 
+.endfn "getNext__24MonoObjectMgr<8CollPart>FPv"
 
-.global "getStart__24MonoObjectMgr<8CollPart>Fv"
-"getStart__24MonoObjectMgr<8CollPart>Fv":
+.fn "getStart__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80170270 0016D1B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80170274 0016D1B4  7C 08 02 A6 */	mflr r0
 /* 80170278 0016D1B8  38 80 FF FF */	li r4, -1
@@ -13220,26 +13300,26 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80170294 0016D1D4  7C 08 03 A6 */	mtlr r0
 /* 80170298 0016D1D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017029C 0016D1DC  4E 80 00 20 */	blr 
+.endfn "getStart__24MonoObjectMgr<8CollPart>Fv"
 
-.global "getEnd__24MonoObjectMgr<8CollPart>Fv"
-"getEnd__24MonoObjectMgr<8CollPart>Fv":
+.fn "getEnd__24MonoObjectMgr<8CollPart>Fv", weak
 /* 801702A0 0016D1E0  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801702A4 0016D1E4  4E 80 00 20 */	blr 
+.endfn "getEnd__24MonoObjectMgr<8CollPart>Fv"
 
-.global "getAt__24MonoObjectMgr<8CollPart>Fi"
-"getAt__24MonoObjectMgr<8CollPart>Fi":
+.fn "getAt__24MonoObjectMgr<8CollPart>Fi", weak
 /* 801702A8 0016D1E8  1C 04 00 64 */	mulli r0, r4, 0x64
 /* 801702AC 0016D1EC  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801702B0 0016D1F0  7C 63 02 14 */	add r3, r3, r0
 /* 801702B4 0016D1F4  4E 80 00 20 */	blr 
+.endfn "getAt__24MonoObjectMgr<8CollPart>Fi"
 
-.global "getTo__24MonoObjectMgr<8CollPart>Fv"
-"getTo__24MonoObjectMgr<8CollPart>Fv":
+.fn "getTo__24MonoObjectMgr<8CollPart>Fv", weak
 /* 801702B8 0016D1F8  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801702BC 0016D1FC  4E 80 00 20 */	blr 
+.endfn "getTo__24MonoObjectMgr<8CollPart>Fv"
 
-.global "doAnimation__24MonoObjectMgr<8CollPart>Fv"
-"doAnimation__24MonoObjectMgr<8CollPart>Fv":
+.fn "doAnimation__24MonoObjectMgr<8CollPart>Fv", weak
 /* 801702C0 0016D200  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801702C4 0016D204  7C 08 02 A6 */	mflr r0
 /* 801702C8 0016D208  90 01 00 24 */	stw r0, 0x24(r1)
@@ -13275,9 +13355,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80170334 0016D274  7C 08 03 A6 */	mtlr r0
 /* 80170338 0016D278  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017033C 0016D27C  4E 80 00 20 */	blr 
+.endfn "doAnimation__24MonoObjectMgr<8CollPart>Fv"
 
-.global "doEntry__24MonoObjectMgr<8CollPart>Fv"
-"doEntry__24MonoObjectMgr<8CollPart>Fv":
+.fn "doEntry__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80170340 0016D280  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170344 0016D284  7C 08 02 A6 */	mflr r0
 /* 80170348 0016D288  90 01 00 24 */	stw r0, 0x24(r1)
@@ -13313,9 +13393,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801703B4 0016D2F4  7C 08 03 A6 */	mtlr r0
 /* 801703B8 0016D2F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801703BC 0016D2FC  4E 80 00 20 */	blr 
+.endfn "doEntry__24MonoObjectMgr<8CollPart>Fv"
 
-.global "doSetView__24MonoObjectMgr<8CollPart>Fi"
-"doSetView__24MonoObjectMgr<8CollPart>Fi":
+.fn "doSetView__24MonoObjectMgr<8CollPart>Fi", weak
 /* 801703C0 0016D300  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801703C4 0016D304  7C 08 02 A6 */	mflr r0
 /* 801703C8 0016D308  90 01 00 24 */	stw r0, 0x24(r1)
@@ -13355,9 +13435,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80170444 0016D384  7C 08 03 A6 */	mtlr r0
 /* 80170448 0016D388  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017044C 0016D38C  4E 80 00 20 */	blr 
+.endfn "doSetView__24MonoObjectMgr<8CollPart>Fi"
 
-.global "doViewCalc__24MonoObjectMgr<8CollPart>Fv"
-"doViewCalc__24MonoObjectMgr<8CollPart>Fv":
+.fn "doViewCalc__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80170450 0016D390  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170454 0016D394  7C 08 02 A6 */	mflr r0
 /* 80170458 0016D398  90 01 00 24 */	stw r0, 0x24(r1)
@@ -13393,9 +13473,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801704C4 0016D404  7C 08 03 A6 */	mtlr r0
 /* 801704C8 0016D408  38 21 00 20 */	addi r1, r1, 0x20
 /* 801704CC 0016D40C  4E 80 00 20 */	blr 
+.endfn "doViewCalc__24MonoObjectMgr<8CollPart>Fv"
 
-.global "doSimulation__24MonoObjectMgr<8CollPart>Ff"
-"doSimulation__24MonoObjectMgr<8CollPart>Ff":
+.fn "doSimulation__24MonoObjectMgr<8CollPart>Ff", weak
 /* 801704D0 0016D410  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801704D4 0016D414  7C 08 02 A6 */	mflr r0
 /* 801704D8 0016D418  90 01 00 24 */	stw r0, 0x24(r1)
@@ -13435,9 +13515,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80170554 0016D494  7C 08 03 A6 */	mtlr r0
 /* 80170558 0016D498  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017055C 0016D49C  4E 80 00 20 */	blr 
+.endfn "doSimulation__24MonoObjectMgr<8CollPart>Ff"
 
-.global "doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
-"doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics":
+.fn "doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics", weak
 /* 80170560 0016D4A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170564 0016D4A4  7C 08 02 A6 */	mflr r0
 /* 80170568 0016D4A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -13477,18 +13557,18 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801705E4 0016D524  7C 08 03 A6 */	mtlr r0
 /* 801705E8 0016D528  38 21 00 20 */	addi r1, r1, 0x20
 /* 801705EC 0016D52C  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
 
-.global "resetMgr__24MonoObjectMgr<8CollPart>Fv"
-"resetMgr__24MonoObjectMgr<8CollPart>Fv":
+.fn "resetMgr__24MonoObjectMgr<8CollPart>Fv", weak
 /* 801705F0 0016D530  38 00 00 00 */	li r0, 0
 /* 801705F4 0016D534  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801705F8 0016D538  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801705FC 0016D53C  90 03 00 20 */	stw r0, 0x20(r3)
 /* 80170600 0016D540  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 80170604 0016D544  4E 80 00 20 */	blr 
+.endfn "resetMgr__24MonoObjectMgr<8CollPart>Fv"
 
-.global "clearMgr__24MonoObjectMgr<8CollPart>Fv"
-"clearMgr__24MonoObjectMgr<8CollPart>Fv":
+.fn "clearMgr__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80170608 0016D548  38 00 00 00 */	li r0, 0
 /* 8017060C 0016D54C  38 C0 00 00 */	li r6, 0
 /* 80170610 0016D550  90 03 00 20 */	stw r0, 0x20(r3)
@@ -13503,20 +13583,20 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 8017062C 0016D56C  7C 06 00 00 */	cmpw r6, r0
 /* 80170630 0016D570  41 80 FF EC */	blt .L_8017061C
 /* 80170634 0016D574  4E 80 00 20 */	blr 
+.endfn "clearMgr__24MonoObjectMgr<8CollPart>Fv"
 
-.global "onAlloc__24MonoObjectMgr<8CollPart>Fv"
-"onAlloc__24MonoObjectMgr<8CollPart>Fv":
+.fn "onAlloc__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80170638 0016D578  4E 80 00 20 */	blr 
+.endfn "onAlloc__24MonoObjectMgr<8CollPart>Fv"
 
-.global "get__24MonoObjectMgr<8CollPart>FPv"
-"get__24MonoObjectMgr<8CollPart>FPv":
+.fn "get__24MonoObjectMgr<8CollPart>FPv", weak
 /* 8017063C 0016D57C  1C 04 00 64 */	mulli r0, r4, 0x64
 /* 80170640 0016D580  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 80170644 0016D584  7C 63 02 14 */	add r3, r3, r0
 /* 80170648 0016D588  4E 80 00 20 */	blr 
+.endfn "get__24MonoObjectMgr<8CollPart>FPv"
 
-.global "doAnimation__29ObjectMgr<16GenericObjectMgr>Fv"
-"doAnimation__29ObjectMgr<16GenericObjectMgr>Fv":
+.fn "doAnimation__29ObjectMgr<16GenericObjectMgr>Fv", weak
 /* 8017064C 0016D58C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170650 0016D590  7C 08 02 A6 */	mflr r0
 /* 80170654 0016D594  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -13646,9 +13726,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80170824 0016D764  7C 08 03 A6 */	mtlr r0
 /* 80170828 0016D768  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017082C 0016D76C  4E 80 00 20 */	blr 
+.endfn "doAnimation__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global "doEntry__29ObjectMgr<16GenericObjectMgr>Fv"
-"doEntry__29ObjectMgr<16GenericObjectMgr>Fv":
+.fn "doEntry__29ObjectMgr<16GenericObjectMgr>Fv", weak
 /* 80170830 0016D770  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170834 0016D774  7C 08 02 A6 */	mflr r0
 /* 80170838 0016D778  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -13778,9 +13858,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80170A08 0016D948  7C 08 03 A6 */	mtlr r0
 /* 80170A0C 0016D94C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80170A10 0016D950  4E 80 00 20 */	blr 
+.endfn "doEntry__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global "doSetView__29ObjectMgr<16GenericObjectMgr>Fi"
-"doSetView__29ObjectMgr<16GenericObjectMgr>Fi":
+.fn "doSetView__29ObjectMgr<16GenericObjectMgr>Fi", weak
 /* 80170A14 0016D954  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170A18 0016D958  7C 08 02 A6 */	mflr r0
 /* 80170A1C 0016D95C  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -13914,9 +13994,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80170BFC 0016DB3C  7C 08 03 A6 */	mtlr r0
 /* 80170C00 0016DB40  38 21 00 20 */	addi r1, r1, 0x20
 /* 80170C04 0016DB44  4E 80 00 20 */	blr 
+.endfn "doSetView__29ObjectMgr<16GenericObjectMgr>Fi"
 
-.global "doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv"
-"doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv":
+.fn "doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv", weak
 /* 80170C08 0016DB48  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170C0C 0016DB4C  7C 08 02 A6 */	mflr r0
 /* 80170C10 0016DB50  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -14046,9 +14126,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80170DE0 0016DD20  7C 08 03 A6 */	mtlr r0
 /* 80170DE4 0016DD24  38 21 00 20 */	addi r1, r1, 0x20
 /* 80170DE8 0016DD28  4E 80 00 20 */	blr 
+.endfn "doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global "doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
-"doSimulation__29ObjectMgr<16GenericObjectMgr>Ff":
+.fn "doSimulation__29ObjectMgr<16GenericObjectMgr>Ff", weak
 /* 80170DEC 0016DD2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170DF0 0016DD30  7C 08 02 A6 */	mflr r0
 /* 80170DF4 0016DD34  3C 80 80 4B */	lis r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -14182,9 +14262,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80170FD4 0016DF14  7C 08 03 A6 */	mtlr r0
 /* 80170FD8 0016DF18  38 21 00 20 */	addi r1, r1, 0x20
 /* 80170FDC 0016DF1C  4E 80 00 20 */	blr 
+.endfn "doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
 
-.global "doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
-"doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics":
+.fn "doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics", weak
 /* 80170FE0 0016DF20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80170FE4 0016DF24  7C 08 02 A6 */	mflr r0
 /* 80170FE8 0016DF28  3C A0 80 4B */	lis r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
@@ -14318,9 +14398,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801711C8 0016E108  7C 08 03 A6 */	mtlr r0
 /* 801711CC 0016E10C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801711D0 0016E110  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
 
-.global "getObject__29Container<16GenericObjectMgr>FPv"
-"getObject__29Container<16GenericObjectMgr>FPv":
+.fn "getObject__29Container<16GenericObjectMgr>FPv", weak
 /* 801711D4 0016E114  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801711D8 0016E118  7C 08 02 A6 */	mflr r0
 /* 801711DC 0016E11C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14332,19 +14412,19 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801711F4 0016E134  7C 08 03 A6 */	mtlr r0
 /* 801711F8 0016E138  38 21 00 10 */	addi r1, r1, 0x10
 /* 801711FC 0016E13C  4E 80 00 20 */	blr 
+.endfn "getObject__29Container<16GenericObjectMgr>FPv"
 
-.global "getAt__29Container<16GenericObjectMgr>Fi"
-"getAt__29Container<16GenericObjectMgr>Fi":
+.fn "getAt__29Container<16GenericObjectMgr>Fi", weak
 /* 80171200 0016E140  38 60 00 00 */	li r3, 0
 /* 80171204 0016E144  4E 80 00 20 */	blr 
+.endfn "getAt__29Container<16GenericObjectMgr>Fi"
 
-.global "getTo__29Container<16GenericObjectMgr>Fv"
-"getTo__29Container<16GenericObjectMgr>Fv":
+.fn "getTo__29Container<16GenericObjectMgr>Fv", weak
 /* 80171208 0016E148  38 60 00 00 */	li r3, 0
 /* 8017120C 0016E14C  4E 80 00 20 */	blr 
+.endfn "getTo__29Container<16GenericObjectMgr>Fv"
 
-.global "getObject__20Container<8CollPart>FPv"
-"getObject__20Container<8CollPart>FPv":
+.fn "getObject__20Container<8CollPart>FPv", weak
 /* 80171210 0016E150  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171214 0016E154  7C 08 02 A6 */	mflr r0
 /* 80171218 0016E158  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14356,19 +14436,19 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171230 0016E170  7C 08 03 A6 */	mtlr r0
 /* 80171234 0016E174  38 21 00 10 */	addi r1, r1, 0x10
 /* 80171238 0016E178  4E 80 00 20 */	blr 
+.endfn "getObject__20Container<8CollPart>FPv"
 
-.global "getAt__20Container<8CollPart>Fi"
-"getAt__20Container<8CollPart>Fi":
+.fn "getAt__20Container<8CollPart>Fi", weak
 /* 8017123C 0016E17C  38 60 00 00 */	li r3, 0
 /* 80171240 0016E180  4E 80 00 20 */	blr 
+.endfn "getAt__20Container<8CollPart>Fi"
 
-.global "getTo__20Container<8CollPart>Fv"
-"getTo__20Container<8CollPart>Fv":
+.fn "getTo__20Container<8CollPart>Fv", weak
 /* 80171244 0016E184  38 60 00 00 */	li r3, 0
 /* 80171248 0016E188  4E 80 00 20 */	blr 
+.endfn "getTo__20Container<8CollPart>Fv"
 
-.global "invoke__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>FPQ28SysShape5Model"
-"invoke__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>FPQ28SysShape5Model":
+.fn "invoke__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>FPQ28SysShape5Model", weak
 /* 8017124C 0016E18C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171250 0016E190  7C 08 02 A6 */	mflr r0
 /* 80171254 0016E194  7C 65 1B 78 */	mr r5, r3
@@ -14381,9 +14461,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171270 0016E1B0  7C 08 03 A6 */	mtlr r0
 /* 80171274 0016E1B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80171278 0016E1B8  4E 80 00 20 */	blr 
+.endfn "invoke__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>FPQ28SysShape5Model"
 
-.global "doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics"
-"doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics":
+.fn "doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics", weak
 /* 8017127C 0016E1BC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171280 0016E1C0  7C 08 02 A6 */	mflr r0
 /* 80171284 0016E1C4  3C A0 80 4B */	lis r5, "__vt__19Iterator<8CollPart>"@ha
@@ -14517,9 +14597,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171464 0016E3A4  7C 08 03 A6 */	mtlr r0
 /* 80171468 0016E3A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8017146C 0016E3AC  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics"
 
-.global "isDone__19Iterator<8CollPart>Fv"
-"isDone__19Iterator<8CollPart>Fv":
+.fn "isDone__19Iterator<8CollPart>Fv", weak
 /* 80171470 0016E3B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171474 0016E3B4  7C 08 02 A6 */	mflr r0
 /* 80171478 0016E3B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14539,9 +14619,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801714B0 0016E3F0  7C 08 03 A6 */	mtlr r0
 /* 801714B4 0016E3F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801714B8 0016E3F8  4E 80 00 20 */	blr 
+.endfn "isDone__19Iterator<8CollPart>Fv"
 
-.global "doSimulation__20ObjectMgr<8CollPart>Ff"
-"doSimulation__20ObjectMgr<8CollPart>Ff":
+.fn "doSimulation__20ObjectMgr<8CollPart>Ff", weak
 /* 801714BC 0016E3FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801714C0 0016E400  7C 08 02 A6 */	mflr r0
 /* 801714C4 0016E404  3C 80 80 4B */	lis r4, "__vt__19Iterator<8CollPart>"@ha
@@ -14675,9 +14755,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801716A4 0016E5E4  7C 08 03 A6 */	mtlr r0
 /* 801716A8 0016E5E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801716AC 0016E5EC  4E 80 00 20 */	blr 
+.endfn "doSimulation__20ObjectMgr<8CollPart>Ff"
 
-.global "doViewCalc__20ObjectMgr<8CollPart>Fv"
-"doViewCalc__20ObjectMgr<8CollPart>Fv":
+.fn "doViewCalc__20ObjectMgr<8CollPart>Fv", weak
 /* 801716B0 0016E5F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801716B4 0016E5F4  7C 08 02 A6 */	mflr r0
 /* 801716B8 0016E5F8  3C 80 80 4B */	lis r4, "__vt__19Iterator<8CollPart>"@ha
@@ -14807,9 +14887,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171888 0016E7C8  7C 08 03 A6 */	mtlr r0
 /* 8017188C 0016E7CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171890 0016E7D0  4E 80 00 20 */	blr 
+.endfn "doViewCalc__20ObjectMgr<8CollPart>Fv"
 
-.global "doSetView__20ObjectMgr<8CollPart>Fi"
-"doSetView__20ObjectMgr<8CollPart>Fi":
+.fn "doSetView__20ObjectMgr<8CollPart>Fi", weak
 /* 80171894 0016E7D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171898 0016E7D8  7C 08 02 A6 */	mflr r0
 /* 8017189C 0016E7DC  3C A0 80 4B */	lis r5, "__vt__19Iterator<8CollPart>"@ha
@@ -14943,9 +15023,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171A7C 0016E9BC  7C 08 03 A6 */	mtlr r0
 /* 80171A80 0016E9C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171A84 0016E9C4  4E 80 00 20 */	blr 
+.endfn "doSetView__20ObjectMgr<8CollPart>Fi"
 
-.global "doEntry__20ObjectMgr<8CollPart>Fv"
-"doEntry__20ObjectMgr<8CollPart>Fv":
+.fn "doEntry__20ObjectMgr<8CollPart>Fv", weak
 /* 80171A88 0016E9C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171A8C 0016E9CC  7C 08 02 A6 */	mflr r0
 /* 80171A90 0016E9D0  3C 80 80 4B */	lis r4, "__vt__19Iterator<8CollPart>"@ha
@@ -15075,9 +15155,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171C60 0016EBA0  7C 08 03 A6 */	mtlr r0
 /* 80171C64 0016EBA4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171C68 0016EBA8  4E 80 00 20 */	blr 
+.endfn "doEntry__20ObjectMgr<8CollPart>Fv"
 
-.global "doAnimation__20ObjectMgr<8CollPart>Fv"
-"doAnimation__20ObjectMgr<8CollPart>Fv":
+.fn "doAnimation__20ObjectMgr<8CollPart>Fv", weak
 /* 80171C6C 0016EBAC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171C70 0016EBB0  7C 08 02 A6 */	mflr r0
 /* 80171C74 0016EBB4  3C 80 80 4B */	lis r4, "__vt__19Iterator<8CollPart>"@ha
@@ -15207,9 +15287,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171E44 0016ED84  7C 08 03 A6 */	mtlr r0
 /* 80171E48 0016ED88  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171E4C 0016ED8C  4E 80 00 20 */	blr 
+.endfn "doAnimation__20ObjectMgr<8CollPart>Fv"
 
-.global "__ct__24MonoObjectMgr<8CollPart>Fv"
-"__ct__24MonoObjectMgr<8CollPart>Fv":
+.fn "__ct__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80171E50 0016ED90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171E54 0016ED94  7C 08 02 A6 */	mflr r0
 /* 80171E58 0016ED98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15249,9 +15329,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171EE0 0016EE20  7C 08 03 A6 */	mtlr r0
 /* 80171EE4 0016EE24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80171EE8 0016EE28  4E 80 00 20 */	blr 
+.endfn "__ct__24MonoObjectMgr<8CollPart>Fv"
 
-.global "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
-"transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg":
+.fn "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg", weak
 /* 80171EEC 0016EE2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80171EF0 0016EE30  7C 08 02 A6 */	mflr r0
 /* 80171EF4 0016EE34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -15294,17 +15374,17 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171F7C 0016EEBC  7C 08 03 A6 */	mtlr r0
 /* 80171F80 0016EEC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80171F84 0016EEC4  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
 
-.global "init__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletPQ24Game8StateArg"
-"init__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletPQ24Game8StateArg":
+.fn "init__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletPQ24Game8StateArg", weak
 /* 80171F88 0016EEC8  4E 80 00 20 */	blr 
+.endfn "init__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6PelletPQ24Game8StateArg"
 
-.global "cleanup__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-"cleanup__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet":
+.fn "cleanup__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet", weak
 /* 80171F8C 0016EECC  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
 
-.global "getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
-"getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet":
+.fn "getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet", weak
 /* 80171F90 0016EED0  80 64 03 CC */	lwz r3, 0x3cc(r4)
 /* 80171F94 0016EED4  28 03 00 00 */	cmplwi r3, 0
 /* 80171F98 0016EED8  41 82 00 0C */	beq .L_80171FA4
@@ -15313,9 +15393,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 .L_80171FA4:
 /* 80171FA4 0016EEE4  38 60 FF FF */	li r3, -1
 /* 80171FA8 0016EEE8  4E 80 00 20 */	blr 
+.endfn "getCurrID__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 
-.global "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
-"exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet":
+.fn "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet", weak
 /* 80171FAC 0016EEEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171FB0 0016EEF0  7C 08 02 A6 */	mflr r0
 /* 80171FB4 0016EEF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15331,13 +15411,13 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80171FD8 0016EF18  7C 08 03 A6 */	mtlr r0
 /* 80171FDC 0016EF1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80171FE0 0016EF20  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6Pellet"
 
-.global "exec__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
-"exec__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet":
+.fn "exec__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet", weak
 /* 80171FE4 0016EF24  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game24FSMState<Q24Game6Pellet>FPQ24Game6Pellet"
 
-.global "resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv"
-"resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv":
+.fn "resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv", weak
 /* 80171FE8 0016EF28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80171FEC 0016EF2C  7C 08 02 A6 */	mflr r0
 /* 80171FF0 0016EF30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15380,9 +15460,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80172078 0016EFB8  7C 08 03 A6 */	mtlr r0
 /* 8017207C 0016EFBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80172080 0016EFC0  4E 80 00 20 */	blr 
+.endfn "resetMgrAndResources__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv"
 
-.global "resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv"
-"resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv":
+.fn "resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv", weak
 /* 80172084 0016EFC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172088 0016EFC8  7C 08 02 A6 */	mflr r0
 /* 8017208C 0016EFCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15403,9 +15483,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801720C8 0016F008  7C 08 03 A6 */	mtlr r0
 /* 801720CC 0016F00C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801720D0 0016F010  4E 80 00 20 */	blr 
+.endfn "resetMgr__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv"
 
-.global "resetMgrAndResources__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
-"resetMgrAndResources__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv":
+.fn "resetMgrAndResources__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv", weak
 /* 801720D4 0016F014  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801720D8 0016F018  7C 08 02 A6 */	mflr r0
 /* 801720DC 0016F01C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15448,9 +15528,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 80172164 0016F0A4  7C 08 03 A6 */	mtlr r0
 /* 80172168 0016F0A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017216C 0016F0AC  4E 80 00 20 */	blr 
+.endfn "resetMgrAndResources__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
 
-.global "resetMgr__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
-"resetMgr__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv":
+.fn "resetMgr__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv", weak
 /* 80172170 0016F0B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172174 0016F0B4  7C 08 02 A6 */	mflr r0
 /* 80172178 0016F0B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15471,9 +15551,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801721B4 0016F0F4  7C 08 03 A6 */	mtlr r0
 /* 801721B8 0016F0F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801721BC 0016F0FC  4E 80 00 20 */	blr 
+.endfn "resetMgr__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
 
-.global "__ml__19Iterator<8CollPart>Fv"
-"__ml__19Iterator<8CollPart>Fv":
+.fn "__ml__19Iterator<8CollPart>Fv", weak
 /* 801721C0 0016F100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801721C4 0016F104  7C 08 02 A6 */	mflr r0
 /* 801721C8 0016F108  7C 64 1B 78 */	mr r4, r3
@@ -15488,9 +15568,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801721EC 0016F12C  7C 08 03 A6 */	mtlr r0
 /* 801721F0 0016F130  38 21 00 10 */	addi r1, r1, 0x10
 /* 801721F4 0016F134  4E 80 00 20 */	blr 
+.endfn "__ml__19Iterator<8CollPart>Fv"
 
-.global "next__19Iterator<8CollPart>Fv"
-"next__19Iterator<8CollPart>Fv":
+.fn "next__19Iterator<8CollPart>Fv", weak
 /* 801721F8 0016F138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801721FC 0016F13C  7C 08 02 A6 */	mflr r0
 /* 80172200 0016F140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15552,9 +15632,9 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801722D0 0016F210  7C 08 03 A6 */	mtlr r0
 /* 801722D4 0016F214  38 21 00 10 */	addi r1, r1, 0x10
 /* 801722D8 0016F218  4E 80 00 20 */	blr 
+.endfn "next__19Iterator<8CollPart>Fv"
 
-.global "first__19Iterator<8CollPart>Fv"
-"first__19Iterator<8CollPart>Fv":
+.fn "first__19Iterator<8CollPart>Fv", weak
 /* 801722DC 0016F21C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801722E0 0016F220  7C 08 02 A6 */	mflr r0
 /* 801722E4 0016F224  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15614,24 +15694,25 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801723AC 0016F2EC  7C 08 03 A6 */	mtlr r0
 /* 801723B0 0016F2F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801723B4 0016F2F4  4E 80 00 20 */	blr 
+.endfn "first__19Iterator<8CollPart>Fv"
 
-.global "resetMgr__41MonoObjectMgr<Q34Game10PelletItem6Object>Fv"
-"resetMgr__41MonoObjectMgr<Q34Game10PelletItem6Object>Fv":
+.fn "resetMgr__41MonoObjectMgr<Q34Game10PelletItem6Object>Fv", weak
 /* 801723B8 0016F2F8  38 00 00 00 */	li r0, 0
 /* 801723BC 0016F2FC  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801723C0 0016F300  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801723C4 0016F304  90 03 00 20 */	stw r0, 0x20(r3)
 /* 801723C8 0016F308  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801723CC 0016F30C  4E 80 00 20 */	blr 
+.endfn "resetMgr__41MonoObjectMgr<Q34Game10PelletItem6Object>Fv"
 
-.global "resetMgr__44MonoObjectMgr<Q34Game13PelletOtakara6Object>Fv"
-"resetMgr__44MonoObjectMgr<Q34Game13PelletOtakara6Object>Fv":
+.fn "resetMgr__44MonoObjectMgr<Q34Game13PelletOtakara6Object>Fv", weak
 /* 801723D0 0016F310  38 00 00 00 */	li r0, 0
 /* 801723D4 0016F314  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801723D8 0016F318  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801723DC 0016F31C  90 03 00 20 */	stw r0, 0x20(r3)
 /* 801723E0 0016F320  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801723E4 0016F324  4E 80 00 20 */	blr 
+.endfn "resetMgr__44MonoObjectMgr<Q34Game13PelletOtakara6Object>Fv"
 
 .fn __sinit_pelletMgr_cpp, local
 /* 801723E8 0016F328  3C 80 80 51 */	lis r4, __float_nan@ha
@@ -15646,172 +15727,172 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 8017240C 0016F34C  4E 80 00 20 */	blr 
 .endfn __sinit_pelletMgr_cpp
 
-.global "@16@__dt__Q23PSM9EventBaseFv"
-"@16@__dt__Q23PSM9EventBaseFv":
+.fn "@16@__dt__Q23PSM9EventBaseFv", weak
 /* 80172410 0016F350  38 63 FF F0 */	addi r3, r3, -16
 /* 80172414 0016F354  4B FF DC A4 */	b __dt__Q23PSM9EventBaseFv
+.endfn "@16@__dt__Q23PSM9EventBaseFv"
 
-.global "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
-"@48@startSound__Q23PSM11CreatureObjFUcUlUl":
+.fn "@48@startSound__Q23PSM11CreatureObjFUcUlUl", weak
 /* 80172418 0016F358  38 63 FF D0 */	addi r3, r3, -48
 /* 8017241C 0016F35C  48 2E B5 68 */	b startSound__Q23PSM11CreatureObjFUcUlUl
+.endfn "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
 
-.global "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
-"@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl":
+.fn "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl", weak
 /* 80172420 0016F360  38 63 FF D0 */	addi r3, r3, -48
 /* 80172424 0016F364  48 2E B5 EC */	b startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+.endfn "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
 
-.global "@48@startSound__Q23PSM11CreatureObjFUlUl"
-"@48@startSound__Q23PSM11CreatureObjFUlUl":
+.fn "@48@startSound__Q23PSM11CreatureObjFUlUl", weak
 /* 80172428 0016F368  38 63 FF D0 */	addi r3, r3, -48
 /* 8017242C 0016F36C  48 2E B5 1C */	b startSound__Q23PSM11CreatureObjFUlUl
+.endfn "@48@startSound__Q23PSM11CreatureObjFUlUl"
 
-.global "@48@__dt__Q23PSM9EventBaseFv"
-"@48@__dt__Q23PSM9EventBaseFv":
+.fn "@48@__dt__Q23PSM9EventBaseFv", weak
 /* 80172430 0016F370  38 63 FF D0 */	addi r3, r3, -48
 /* 80172434 0016F374  4B FF DC 84 */	b __dt__Q23PSM9EventBaseFv
+.endfn "@48@__dt__Q23PSM9EventBaseFv"
 
-.global "@788@onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent"
-"@788@onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent":
+.fn "@788@onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent", weak
 /* 80172438 0016F378  38 63 FC EC */	addi r3, r3, -788
 /* 8017243C 0016F37C  4B FF 7F 24 */	b onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent
+.endfn "@788@onKeyEvent__Q24Game6PelletFRCQ28SysShape8KeyEvent"
 
-.global "@792@getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam"
-"@792@getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam":
+.fn "@792@getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam", weak
 /* 80172440 0016F380  38 63 FC E8 */	addi r3, r3, -792
 /* 80172444 0016F384  4B FF 59 E4 */	b getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam
+.endfn "@792@getCarryInfoParam__Q24Game6PelletFR14CarryInfoParam"
 
-.global "@28@resetMgr__24MonoObjectMgr<8CollPart>Fv"
-"@28@resetMgr__24MonoObjectMgr<8CollPart>Fv":
+.fn "@28@resetMgr__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80172448 0016F388  38 63 FF E4 */	addi r3, r3, -28
 /* 8017244C 0016F38C  4B FF E1 A4 */	b "resetMgr__24MonoObjectMgr<8CollPart>Fv"
+.endfn "@28@resetMgr__24MonoObjectMgr<8CollPart>Fv"
 
-.global "@28@doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
-"@28@doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics":
+.fn "@28@doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics", weak
 /* 80172450 0016F390  38 63 FF E4 */	addi r3, r3, -28
 /* 80172454 0016F394  4B FF E1 0C */	b "doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
+.endfn "@28@doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
 
-.global "@28@doSimulation__24MonoObjectMgr<8CollPart>Ff"
-"@28@doSimulation__24MonoObjectMgr<8CollPart>Ff":
+.fn "@28@doSimulation__24MonoObjectMgr<8CollPart>Ff", weak
 /* 80172458 0016F398  38 63 FF E4 */	addi r3, r3, -28
 /* 8017245C 0016F39C  4B FF E0 74 */	b "doSimulation__24MonoObjectMgr<8CollPart>Ff"
+.endfn "@28@doSimulation__24MonoObjectMgr<8CollPart>Ff"
 
-.global "@28@doViewCalc__24MonoObjectMgr<8CollPart>Fv"
-"@28@doViewCalc__24MonoObjectMgr<8CollPart>Fv":
+.fn "@28@doViewCalc__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80172460 0016F3A0  38 63 FF E4 */	addi r3, r3, -28
 /* 80172464 0016F3A4  4B FF DF EC */	b "doViewCalc__24MonoObjectMgr<8CollPart>Fv"
+.endfn "@28@doViewCalc__24MonoObjectMgr<8CollPart>Fv"
 
-.global "@28@doSetView__24MonoObjectMgr<8CollPart>Fi"
-"@28@doSetView__24MonoObjectMgr<8CollPart>Fi":
+.fn "@28@doSetView__24MonoObjectMgr<8CollPart>Fi", weak
 /* 80172468 0016F3A8  38 63 FF E4 */	addi r3, r3, -28
 /* 8017246C 0016F3AC  4B FF DF 54 */	b "doSetView__24MonoObjectMgr<8CollPart>Fi"
+.endfn "@28@doSetView__24MonoObjectMgr<8CollPart>Fi"
 
-.global "@28@doEntry__24MonoObjectMgr<8CollPart>Fv"
-"@28@doEntry__24MonoObjectMgr<8CollPart>Fv":
+.fn "@28@doEntry__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80172470 0016F3B0  38 63 FF E4 */	addi r3, r3, -28
 /* 80172474 0016F3B4  4B FF DE CC */	b "doEntry__24MonoObjectMgr<8CollPart>Fv"
+.endfn "@28@doEntry__24MonoObjectMgr<8CollPart>Fv"
 
-.global "@28@doAnimation__24MonoObjectMgr<8CollPart>Fv"
-"@28@doAnimation__24MonoObjectMgr<8CollPart>Fv":
+.fn "@28@doAnimation__24MonoObjectMgr<8CollPart>Fv", weak
 /* 80172478 0016F3B8  38 63 FF E4 */	addi r3, r3, -28
 /* 8017247C 0016F3BC  4B FF DE 44 */	b "doAnimation__24MonoObjectMgr<8CollPart>Fv"
+.endfn "@28@doAnimation__24MonoObjectMgr<8CollPart>Fv"
 
-.global "@28@doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics"
-"@28@doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics":
+.fn "@28@doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics", weak
 /* 80172480 0016F3C0  38 63 FF E4 */	addi r3, r3, -28
 /* 80172484 0016F3C4  4B FF ED F8 */	b "doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics"
+.endfn "@28@doDirectDraw__20ObjectMgr<8CollPart>FR8Graphics"
 
-.global "@28@doSimulation__20ObjectMgr<8CollPart>Ff"
-"@28@doSimulation__20ObjectMgr<8CollPart>Ff":
+.fn "@28@doSimulation__20ObjectMgr<8CollPart>Ff", weak
 /* 80172488 0016F3C8  38 63 FF E4 */	addi r3, r3, -28
 /* 8017248C 0016F3CC  4B FF F0 30 */	b "doSimulation__20ObjectMgr<8CollPart>Ff"
+.endfn "@28@doSimulation__20ObjectMgr<8CollPart>Ff"
 
-.global "@28@doViewCalc__20ObjectMgr<8CollPart>Fv"
-"@28@doViewCalc__20ObjectMgr<8CollPart>Fv":
+.fn "@28@doViewCalc__20ObjectMgr<8CollPart>Fv", weak
 /* 80172490 0016F3D0  38 63 FF E4 */	addi r3, r3, -28
 /* 80172494 0016F3D4  4B FF F2 1C */	b "doViewCalc__20ObjectMgr<8CollPart>Fv"
+.endfn "@28@doViewCalc__20ObjectMgr<8CollPart>Fv"
 
-.global "@28@doSetView__20ObjectMgr<8CollPart>Fi"
-"@28@doSetView__20ObjectMgr<8CollPart>Fi":
+.fn "@28@doSetView__20ObjectMgr<8CollPart>Fi", weak
 /* 80172498 0016F3D8  38 63 FF E4 */	addi r3, r3, -28
 /* 8017249C 0016F3DC  4B FF F3 F8 */	b "doSetView__20ObjectMgr<8CollPart>Fi"
+.endfn "@28@doSetView__20ObjectMgr<8CollPart>Fi"
 
-.global "@28@doEntry__20ObjectMgr<8CollPart>Fv"
-"@28@doEntry__20ObjectMgr<8CollPart>Fv":
+.fn "@28@doEntry__20ObjectMgr<8CollPart>Fv", weak
 /* 801724A0 0016F3E0  38 63 FF E4 */	addi r3, r3, -28
 /* 801724A4 0016F3E4  4B FF F5 E4 */	b "doEntry__20ObjectMgr<8CollPart>Fv"
+.endfn "@28@doEntry__20ObjectMgr<8CollPart>Fv"
 
-.global "@28@doAnimation__20ObjectMgr<8CollPart>Fv"
-"@28@doAnimation__20ObjectMgr<8CollPart>Fv":
+.fn "@28@doAnimation__20ObjectMgr<8CollPart>Fv", weak
 /* 801724A8 0016F3E8  38 63 FF E4 */	addi r3, r3, -28
 /* 801724AC 0016F3EC  4B FF F7 C0 */	b "doAnimation__20ObjectMgr<8CollPart>Fv"
+.endfn "@28@doAnimation__20ObjectMgr<8CollPart>Fv"
 
-.global "@28@doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
-"@28@doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics":
+.fn "@28@doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics", weak
 /* 801724B0 0016F3F0  38 63 FF E4 */	addi r3, r3, -28
 /* 801724B4 0016F3F4  4B FF EB 2C */	b "doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
+.endfn "@28@doDirectDraw__29ObjectMgr<16GenericObjectMgr>FR8Graphics"
 
-.global "@28@doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
-"@28@doSimulation__29ObjectMgr<16GenericObjectMgr>Ff":
+.fn "@28@doSimulation__29ObjectMgr<16GenericObjectMgr>Ff", weak
 /* 801724B8 0016F3F8  38 63 FF E4 */	addi r3, r3, -28
 /* 801724BC 0016F3FC  4B FF E9 30 */	b "doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
+.endfn "@28@doSimulation__29ObjectMgr<16GenericObjectMgr>Ff"
 
-.global "@28@doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv"
-"@28@doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv":
+.fn "@28@doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv", weak
 /* 801724C0 0016F400  38 63 FF E4 */	addi r3, r3, -28
 /* 801724C4 0016F404  4B FF E7 44 */	b "doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv"
+.endfn "@28@doViewCalc__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global "@28@doSetView__29ObjectMgr<16GenericObjectMgr>Fi"
-"@28@doSetView__29ObjectMgr<16GenericObjectMgr>Fi":
+.fn "@28@doSetView__29ObjectMgr<16GenericObjectMgr>Fi", weak
 /* 801724C8 0016F408  38 63 FF E4 */	addi r3, r3, -28
 /* 801724CC 0016F40C  4B FF E5 48 */	b "doSetView__29ObjectMgr<16GenericObjectMgr>Fi"
+.endfn "@28@doSetView__29ObjectMgr<16GenericObjectMgr>Fi"
 
-.global "@28@doEntry__29ObjectMgr<16GenericObjectMgr>Fv"
-"@28@doEntry__29ObjectMgr<16GenericObjectMgr>Fv":
+.fn "@28@doEntry__29ObjectMgr<16GenericObjectMgr>Fv", weak
 /* 801724D0 0016F410  38 63 FF E4 */	addi r3, r3, -28
 /* 801724D4 0016F414  4B FF E3 5C */	b "doEntry__29ObjectMgr<16GenericObjectMgr>Fv"
+.endfn "@28@doEntry__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global "@28@doAnimation__29ObjectMgr<16GenericObjectMgr>Fv"
-"@28@doAnimation__29ObjectMgr<16GenericObjectMgr>Fv":
+.fn "@28@doAnimation__29ObjectMgr<16GenericObjectMgr>Fv", weak
 /* 801724D8 0016F418  38 63 FF E4 */	addi r3, r3, -28
 /* 801724DC 0016F41C  4B FF E1 70 */	b "doAnimation__29ObjectMgr<16GenericObjectMgr>Fv"
+.endfn "@28@doAnimation__29ObjectMgr<16GenericObjectMgr>Fv"
 
-.global "@28@resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv"
-"@28@resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv":
+.fn "@28@resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv", weak
 /* 801724E0 0016F420  38 63 FF E4 */	addi r3, r3, -28
 /* 801724E4 0016F424  4B FF DC EC */	b "resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv"
+.endfn "@28@resetMgr__33NodeObjectMgr<16GenericObjectMgr>Fv"
 
-.global "@28@doSimpleDraw__Q24Game9PelletMgrFP8Viewport"
-"@28@doSimpleDraw__Q24Game9PelletMgrFP8Viewport":
+.fn "@28@doSimpleDraw__Q24Game9PelletMgrFP8Viewport", weak
 /* 801724E8 0016F428  38 63 FF E4 */	addi r3, r3, -28
 /* 801724EC 0016F42C  4B FF C4 D4 */	b doSimpleDraw__Q24Game9PelletMgrFP8Viewport
+.endfn "@28@doSimpleDraw__Q24Game9PelletMgrFP8Viewport"
 
-.global "@28@doDirectDraw__Q24Game9PelletMgrFR8Graphics"
-"@28@doDirectDraw__Q24Game9PelletMgrFR8Graphics":
+.fn "@28@doDirectDraw__Q24Game9PelletMgrFR8Graphics", weak
 /* 801724F0 0016F430  38 63 FF E4 */	addi r3, r3, -28
 /* 801724F4 0016F434  4B FF C4 C8 */	b doDirectDraw__Q24Game9PelletMgrFR8Graphics
+.endfn "@28@doDirectDraw__Q24Game9PelletMgrFR8Graphics"
 
-.global "@28@doSimulation__Q24Game9PelletMgrFf"
-"@28@doSimulation__Q24Game9PelletMgrFf":
+.fn "@28@doSimulation__Q24Game9PelletMgrFf", weak
 /* 801724F8 0016F438  38 63 FF E4 */	addi r3, r3, -28
 /* 801724FC 0016F43C  4B FF C2 CC */	b doSimulation__Q24Game9PelletMgrFf
+.endfn "@28@doSimulation__Q24Game9PelletMgrFf"
 
-.global "@28@doViewCalc__Q24Game9PelletMgrFv"
-"@28@doViewCalc__Q24Game9PelletMgrFv":
+.fn "@28@doViewCalc__Q24Game9PelletMgrFv", weak
 /* 80172500 0016F440  38 63 FF E4 */	addi r3, r3, -28
 /* 80172504 0016F444  4B FF C0 E0 */	b doViewCalc__Q24Game9PelletMgrFv
+.endfn "@28@doViewCalc__Q24Game9PelletMgrFv"
 
-.global "@28@doSetView__Q24Game9PelletMgrFi"
-"@28@doSetView__Q24Game9PelletMgrFi":
+.fn "@28@doSetView__Q24Game9PelletMgrFi", weak
 /* 80172508 0016F448  38 63 FF E4 */	addi r3, r3, -28
 /* 8017250C 0016F44C  4B FF BE E4 */	b doSetView__Q24Game9PelletMgrFi
+.endfn "@28@doSetView__Q24Game9PelletMgrFi"
 
-.global "@28@doEntry__Q24Game9PelletMgrFv"
-"@28@doEntry__Q24Game9PelletMgrFv":
+.fn "@28@doEntry__Q24Game9PelletMgrFv", weak
 /* 80172510 0016F450  38 63 FF E4 */	addi r3, r3, -28
 /* 80172514 0016F454  4B FF BC F8 */	b doEntry__Q24Game9PelletMgrFv
+.endfn "@28@doEntry__Q24Game9PelletMgrFv"
 
-.global "@28@doAnimation__Q24Game9PelletMgrFv"
-"@28@doAnimation__Q24Game9PelletMgrFv":
+.fn "@28@doAnimation__Q24Game9PelletMgrFv", weak
 /* 80172518 0016F458  38 63 FF E4 */	addi r3, r3, -28
 /* 8017251C 0016F45C  4B FF BA C0 */	b doAnimation__Q24Game9PelletMgrFv
+.endfn "@28@doAnimation__Q24Game9PelletMgrFv"

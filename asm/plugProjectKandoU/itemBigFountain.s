@@ -5,119 +5,102 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804810A0:
+.obj lbl_804810A0, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6974656D
-	.4byte 0x42696746
-	.4byte 0x6F756E74
-	.4byte 0x61696E00
-lbl_804810BC:
-	.4byte 0x6974656D
-	.4byte 0x42696746
-	.4byte 0x6F756E74
-	.4byte 0x61696E2E
-	.4byte 0x63707000
-lbl_804810D0:
-	.asciz "P2Assert"
+.endobj lbl_804810A0
 .balign 4
-lbl_804810DC:
-	.4byte 0x6733305F
-	.4byte 0x61707065
-	.4byte 0x61725F66
-	.4byte 0x6F756E74
-	.4byte 0x61696E00
-lbl_804810F0:
-	.4byte 0x616E696D
-	.4byte 0x4D677220
-	.4byte 0x6E756C6C
-	.4byte 0x20402062
-	.4byte 0x69672066
-	.4byte 0x6F756E74
-	.4byte 0x61696E0A
-	.4byte 0x00000000
-lbl_80481110:
-	.4byte 0x63656C6C
-	.4byte 0x4C617965
-	.4byte 0x72696E64
-	.4byte 0x6578206F
-	.4byte 0x76657266
-	.4byte 0x6C6F770A
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F6B
-	.4byte 0x616E6B65
-	.4byte 0x74757365
-	.4byte 0x6E000000
+.obj lbl_804810AC, local
+	.asciz "itemBigFountain"
+.endobj lbl_804810AC
+.balign 4
+.obj lbl_804810BC, local
+	.asciz "itemBigFountain.cpp"
+.endobj lbl_804810BC
+.balign 4
+.obj lbl_804810D0, local
+	.asciz "P2Assert"
+.endobj lbl_804810D0
+.balign 4
+.obj lbl_804810DC, local
+	.asciz "g30_appear_fountain"
+.endobj lbl_804810DC
+.balign 4
+.obj lbl_804810F0, local
+	.asciz "animMgr null @ big fountain\n"
+.endobj lbl_804810F0
+.balign 4
+.obj lbl_80481110, local
+	.asciz "cellLayerindex overflow\n"
+.endobj lbl_80481110
+.balign 4
+.obj lbl_8048112C, local
+	.asciz "user/Kando/objects/kanketusen"
+.endobj lbl_8048112C
+.balign 4
+.obj lbl_8048114C, local # Shift-JIS
 	.4byte 0x8B418AD2
 	.4byte 0x8AD48C87
 	.4byte 0x90F20000
-	.4byte 0x75736572
-	.4byte 0x2F416265
-	.4byte 0x2F697465
-	.4byte 0x6D2F666F
-	.4byte 0x756E7461
-	.4byte 0x696E5061
-	.4byte 0x726D732E
-	.4byte 0x74787400
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x3A3A5072
-	.4byte 0x6F706572
-	.4byte 0x74790000
-	.4byte 0x66726963
-	.4byte 0x74696F6E
-	.4byte 0x286E6F74
-	.4byte 0x20757365
-	.4byte 0x64290000
-	.4byte 0x77616C6C
-	.4byte 0x5265666C
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x66616365
-	.4byte 0x44697241
-	.4byte 0x646A7573
-	.4byte 0x74000000
-	.4byte 0x626F756E
-	.4byte 0x63654661
-	.4byte 0x63746F72
-	.4byte 0x00000000
-	.4byte 0x466F756E
-	.4byte 0x7461696E
-	.4byte 0x3A3A5061
-	.4byte 0x726D7300
-	.4byte 0x6B616E6B
-	.4byte 0x65747573
-	.4byte 0x656E2E62
-	.4byte 0x6D640000
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x616E696D
-	.4byte 0x6D67722E
-	.4byte 0x74787400
-	.4byte 0x706C6174
-	.4byte 0x666F726D
-	.4byte 0x2E62696E
-	.4byte 0x00000000
-lbl_80481218:
-	.4byte 0x42696746
-	.4byte 0x6F756E74
-	.4byte 0x61696E00
-	.4byte 0x00000000
+.endobj lbl_8048114C
+.balign 4
+.obj lbl_80481158, local
+	.asciz "user/Abe/item/fountainParms.txt"
+.endobj lbl_80481158
+.balign 4
+.obj lbl_80481178, local
+	.asciz "Creature::Property"
+.endobj lbl_80481178
+.balign 4
+.obj lbl_8048118C, local
+	.asciz "friction(not used)"
+.endobj lbl_8048118C
+.balign 4
+.obj lbl_804811A0, local
+	.asciz "wallReflection"
+.endobj lbl_804811A0
+.balign 4
+.obj lbl_804811B0, local
+	.asciz "faceDirAdjust"
+.endobj lbl_804811B0
+.balign 4
+.obj lbl_804811C0, local
+	.asciz "bounceFactor"
+.endobj lbl_804811C0
+.balign 4
+.obj lbl_804811D0, local
+	.asciz "Fountain::Parms"
+.endobj lbl_804811D0
+.balign 4
+.obj lbl_804811E0, local
+	.asciz "kanketusen.bmd"
+.endobj lbl_804811E0
+.balign 4
+.obj lbl_804811F0, local
+	.asciz "texts.szs"
+.endobj lbl_804811F0
+.balign 4
+.obj lbl_804811FC, local
+	.asciz "animmgr.txt"
+.endobj lbl_804811FC
+.balign 4
+.obj lbl_80481208, local
+	.asciz "platform.bin"
+.endobj lbl_80481208
+.balign 4
+.obj lbl_80481218, local
+	.asciz "BigFountain"
+.endobj lbl_80481218
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804BAA08:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q34Game15ItemBigFountain3Mgr
-__vt__Q34Game15ItemBigFountain3Mgr:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q34Game15ItemBigFountain3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q24Game12TNodeItemMgrFv
@@ -165,13 +148,13 @@ __vt__Q34Game15ItemBigFountain3Mgr:
 	.4byte getStart__Q24Game12TNodeItemMgrFv
 	.4byte getEnd__Q24Game12TNodeItemMgrFv
 	.4byte __dt__Q34Game15ItemBigFountain3MgrFv
-.global __vt__Q34Game15ItemBigFountain13FountainParms
-__vt__Q34Game15ItemBigFountain13FountainParms:
+.endobj __vt__Q34Game15ItemBigFountain3Mgr
+.obj __vt__Q34Game15ItemBigFountain13FountainParms, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q34Game15ItemBigFountain13FountainParmsFR6Stream
-.global "__vt__Q23efx28TSyncGroup3<Q23efx8TForever>"
-"__vt__Q23efx28TSyncGroup3<Q23efx8TForever>":
+.endobj __vt__Q34Game15ItemBigFountain13FountainParms
+.obj "__vt__Q23efx28TSyncGroup3<Q23efx8TForever>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx28TSyncGroup3<Q23efx8TForever>FPQ23efx3Arg"
@@ -179,8 +162,8 @@ __vt__Q34Game15ItemBigFountain13FountainParms:
 	.4byte "fade__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-.global __vt__Q23efx9TForever3
-__vt__Q23efx9TForever3:
+.endobj "__vt__Q23efx28TSyncGroup3<Q23efx8TForever>"
+.obj __vt__Q23efx9TForever3, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx28TSyncGroup3<Q23efx8TForever>FPQ23efx3Arg"
@@ -188,8 +171,8 @@ __vt__Q23efx9TForever3:
 	.4byte "fade__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-.global __vt__Q23efx10TGeyserSet
-__vt__Q23efx10TGeyserSet:
+.endobj __vt__Q23efx9TForever3
+.obj __vt__Q23efx10TGeyserSet, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
@@ -197,8 +180,8 @@ __vt__Q23efx10TGeyserSet:
 	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-.global __vt__Q23efx10TGeyserAct
-__vt__Q23efx10TGeyserAct:
+.endobj __vt__Q23efx10TGeyserSet
+.obj __vt__Q23efx10TGeyserAct, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx28TSyncGroup3<Q23efx8TForever>FPQ23efx3Arg"
@@ -206,8 +189,8 @@ __vt__Q23efx10TGeyserAct:
 	.4byte "fade__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup3<Q23efx8TForever>Fv"
-.global __vt__Q34Game15ItemBigFountain4Item
-__vt__Q34Game15ItemBigFountain4Item:
+.endobj __vt__Q23efx10TGeyserAct
+.obj __vt__Q34Game15ItemBigFountain4Item, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -345,8 +328,8 @@ __vt__Q34Game15ItemBigFountain4Item:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q34Game15ItemBigFountain4ItemFv
 	.4byte onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent
-.global "__vt__Q24Game99WorkItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>"
-"__vt__Q24Game99WorkItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>":
+.endobj __vt__Q34Game15ItemBigFountain4Item
+.obj "__vt__Q24Game99WorkItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>", weak
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -484,24 +467,24 @@ __vt__Q34Game15ItemBigFountain4Item:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q24Game8BaseItemFv
 	.4byte "onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent"
-.global "__vt__Q24Game38ItemFSM<Q34Game15ItemBigFountain4Item>"
-"__vt__Q24Game38ItemFSM<Q34Game15ItemBigFountain4Item>":
+.endobj "__vt__Q24Game99WorkItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>"
+.obj "__vt__Q24Game38ItemFSM<Q34Game15ItemBigFountain4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 	.4byte "start__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 	.4byte "transit__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
-.global "__vt__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>"
-"__vt__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>":
+.endobj "__vt__Q24Game38ItemFSM<Q34Game15ItemBigFountain4Item>"
+.obj "__vt__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 	.4byte "start__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 	.4byte "transit__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
-.global "__vt__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>"
-"__vt__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>":
+.endobj "__vt__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>"
+.obj "__vt__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>", weak
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -639,8 +622,8 @@ __vt__Q34Game15ItemBigFountain4Item:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q24Game8BaseItemFv
 	.4byte "onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent"
-.global __vt__Q34Game15ItemBigFountain8OutState
-__vt__Q34Game15ItemBigFountain8OutState:
+.endobj "__vt__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>"
+.obj __vt__Q34Game15ItemBigFountain8OutState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
@@ -655,8 +638,8 @@ __vt__Q34Game15ItemBigFountain8OutState:
 	.4byte "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent"
 	.4byte canRide__Q34Game15ItemBigFountain8OutStateFv
-.global __vt__Q34Game15ItemBigFountain9WaitState
-__vt__Q34Game15ItemBigFountain9WaitState:
+.endobj __vt__Q34Game15ItemBigFountain8OutState
+.obj __vt__Q34Game15ItemBigFountain9WaitState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
@@ -671,8 +654,8 @@ __vt__Q34Game15ItemBigFountain9WaitState:
 	.4byte "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent"
 	.4byte canRide__Q34Game15ItemBigFountain5StateFv
-.global __vt__Q34Game15ItemBigFountain10CloseState
-__vt__Q34Game15ItemBigFountain10CloseState:
+.endobj __vt__Q34Game15ItemBigFountain9WaitState
+.obj __vt__Q34Game15ItemBigFountain10CloseState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
@@ -687,8 +670,8 @@ __vt__Q34Game15ItemBigFountain10CloseState:
 	.4byte "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent"
 	.4byte canRide__Q34Game15ItemBigFountain5StateFv
-.global __vt__Q34Game15ItemBigFountain11AppearState
-__vt__Q34Game15ItemBigFountain11AppearState:
+.endobj __vt__Q34Game15ItemBigFountain10CloseState
+.obj __vt__Q34Game15ItemBigFountain11AppearState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
@@ -703,8 +686,8 @@ __vt__Q34Game15ItemBigFountain11AppearState:
 	.4byte "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent"
 	.4byte canRide__Q34Game15ItemBigFountain5StateFv
-.global __vt__Q34Game15ItemBigFountain5State
-__vt__Q34Game15ItemBigFountain5State:
+.endobj __vt__Q34Game15ItemBigFountain11AppearState
+.obj __vt__Q34Game15ItemBigFountain5State, weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg"
@@ -719,8 +702,8 @@ __vt__Q34Game15ItemBigFountain5State:
 	.4byte "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent"
 	.4byte canRide__Q34Game15ItemBigFountain5StateFv
-.global "__vt__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>"
-"__vt__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>":
+.endobj __vt__Q34Game15ItemBigFountain5State
+.obj "__vt__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg"
@@ -734,8 +717,8 @@ __vt__Q34Game15ItemBigFountain5State:
 	.4byte "onBounce__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent"
-.global "__vt__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>"
-"__vt__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>":
+.endobj "__vt__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>"
+.obj "__vt__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg"
@@ -744,88 +727,123 @@ __vt__Q34Game15ItemBigFountain5State:
 	.4byte "resume__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 	.4byte "restart__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 	.4byte "transit__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
-.global __vt__Q34Game15ItemBigFountain3FSM
-__vt__Q34Game15ItemBigFountain3FSM:
+.endobj "__vt__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>"
+.obj __vt__Q34Game15ItemBigFountain3FSM, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item
 	.4byte "start__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 	.4byte "transit__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
-	.4byte 0
+.endobj __vt__Q34Game15ItemBigFountain3FSM
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515B28:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-lbl_80515B2C:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global mgr__Q24Game15ItemBigFountain
-mgr__Q24Game15ItemBigFountain:
-	.skip 0x8
+.endobj gfNAN___Q24Game5P2JST
+.obj mgr__Q24Game15ItemBigFountain, global
+	.skip 0x4
+.endobj mgr__Q24Game15ItemBigFountain
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519A98:
-	.4byte 0x42340000
-lbl_80519A9C:
-	.4byte 0x00000000
-lbl_80519AA0:
+.obj lbl_80519A98, local
+	.float 45.0
+.endobj lbl_80519A98
+.obj lbl_80519A9C, local
+	.float 0.0
+.endobj lbl_80519A9C
+.obj lbl_80519AA0, local
 	.float 1.0
-lbl_80519AA4:
-	.4byte 0x3F555555
-lbl_80519AA8:
-	.4byte 0x41F00000
-lbl_80519AAC:
-	.4byte 0x42700000
-lbl_80519AB0:
-	.4byte 0x42F00000
-lbl_80519AB4:
-	.4byte 0x42820000
-lbl_80519AB8:
-	.4byte 0x3F99999A
-lbl_80519ABC:
-	.4byte 0x616C7600
-lbl_80519AC0:
-	.4byte 0x64656400
-lbl_80519AC4:
-	.4byte 0x25732025
-	.4byte 0x73000000
-lbl_80519ACC:
-	.4byte 0x76697300
-lbl_80519AD0:
-	.4byte 0x78000000
-lbl_80519AD4:
-	.4byte 0x42480000
-lbl_80519AD8:
+.endobj lbl_80519AA0
+.obj lbl_80519AA4, local
+	.float 0.8333333
+.endobj lbl_80519AA4
+.obj lbl_80519AA8, local
+	.float 30.0
+.endobj lbl_80519AA8
+.obj lbl_80519AAC, local
+	.float 60.0
+.endobj lbl_80519AAC
+.obj lbl_80519AB0, local
+	.float 120.0
+.endobj lbl_80519AB0
+.obj lbl_80519AB4, local
+	.float 65.0
+.endobj lbl_80519AB4
+.obj lbl_80519AB8, local
+	.float 1.2
+.endobj lbl_80519AB8
+.balign 4
+.obj lbl_80519ABC, local
+	.asciz "alv"
+.endobj lbl_80519ABC
+.balign 4
+.obj lbl_80519AC0, local
+	.asciz "ded"
+.endobj lbl_80519AC0
+.balign 4
+.obj lbl_80519AC4, local
+	.asciz "%s %s"
+.endobj lbl_80519AC4
+.balign 4
+.obj lbl_80519ACC, local
+	.asciz "vis"
+.endobj lbl_80519ACC
+.balign 4
+.obj lbl_80519AD0, local
+	.asciz "x"
+.endobj lbl_80519AD0
+.balign 4
+.obj lbl_80519AD4, local
+	.float 50.0
+.endobj lbl_80519AD4
+.obj lbl_80519AD8, local
 	.float 0.5
-lbl_80519ADC:
+.endobj lbl_80519AD8
+.obj lbl_80519ADC, local
 	.float 0.25
-lbl_80519AE0:
-	.4byte 0x61636365
-	.4byte 0x6C000000
-lbl_80519AE8:
+.endobj lbl_80519ADC
+.balign 4
+.obj lbl_80519AE0, local
+	.asciz "accel"
+.endobj lbl_80519AE0
+.balign 4
+.obj lbl_80519AE8, local
 	.float 0.1
-lbl_80519AEC:
-	.4byte 0x3C23D70A
-lbl_80519AF0:
-	.4byte 0x40000000
-lbl_80519AF4:
+.endobj lbl_80519AE8
+.obj lbl_80519AEC, local
+	.float 0.01
+.endobj lbl_80519AEC
+.obj lbl_80519AF0, local
+	.float 2.0
+.endobj lbl_80519AF0
+.obj lbl_80519AF4, local
 	.float 0.3
-lbl_80519AF8:
+.endobj lbl_80519AF4
+.balign 4
+.obj lbl_80519AF8, local # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83740000
-lbl_80519B00:
-	.4byte 0x447A0000
-lbl_80519B04:
-	.4byte 0x476A6000
-lbl_80519B08:
-	.4byte 0x6172632E
-	.4byte 0x737A7300
+.endobj lbl_80519AF8
+.balign 4
+.obj lbl_80519B00, local
+	.float 1000.0
+.endobj lbl_80519B00
+.obj lbl_80519B04, local
+	.float 60000.0
+.endobj lbl_80519B04
+.balign 4
+.obj lbl_80519B08, local
+	.asciz "arc.szs"
+.endobj lbl_80519B08
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item
-init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item:
+.fn init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item, global
 /* 801EC188 001E90C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC18C 001E90CC  7C 08 02 A6 */	mflr r0
 /* 801EC190 001E90D0  38 80 00 04 */	li r4, 4
@@ -929,9 +947,9 @@ init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item:
 /* 801EC308 001E9248  7C 08 03 A6 */	mtlr r0
 /* 801EC30C 001E924C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC310 001E9250  4E 80 00 20 */	blr 
+.endfn init__Q34Game15ItemBigFountain3FSMFPQ34Game15ItemBigFountain4Item
 
-.global init__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
-init__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg:
+.fn init__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg, global
 /* 801EC314 001E9254  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC318 001E9258  7C 08 02 A6 */	mflr r0
 /* 801EC31C 001E925C  7C 85 23 78 */	mr r5, r4
@@ -950,9 +968,9 @@ init__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4ItemPQ24Ga
 /* 801EC350 001E9290  7C 08 03 A6 */	mtlr r0
 /* 801EC354 001E9294  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC358 001E9298  4E 80 00 20 */	blr 
+.endfn init__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
 
-.global exec__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item
-exec__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item:
+.fn exec__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item, global
 /* 801EC35C 001E929C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801EC360 001E92A0  7C 08 02 A6 */	mflr r0
 /* 801EC364 001E92A4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1005,9 +1023,9 @@ exec__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item:
 /* 801EC41C 001E935C  7C 08 03 A6 */	mtlr r0
 /* 801EC420 001E9360  38 21 00 30 */	addi r1, r1, 0x30
 /* 801EC424 001E9364  4E 80 00 20 */	blr 
+.endfn exec__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item
 
-.global "transit__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
-"transit__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg":
+.fn "transit__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg", weak
 /* 801EC428 001E9368  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC42C 001E936C  7C 08 02 A6 */	mflr r0
 /* 801EC430 001E9370  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1020,13 +1038,13 @@ exec__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item:
 /* 801EC44C 001E938C  7C 08 03 A6 */	mtlr r0
 /* 801EC450 001E9390  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC454 001E9394  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
 
-.global cleanup__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item
-cleanup__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item:
+.fn cleanup__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item, global
 /* 801EC458 001E9398  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game15ItemBigFountain11AppearStateFPQ34Game15ItemBigFountain4Item
 
-.global init__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
-init__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg:
+.fn init__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg, global
 /* 801EC45C 001E939C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC460 001E93A0  7C 08 02 A6 */	mflr r0
 /* 801EC464 001E93A4  7C 83 23 78 */	mr r3, r4
@@ -1042,21 +1060,21 @@ init__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4ItemPQ24Gam
 /* 801EC48C 001E93CC  7C 08 03 A6 */	mtlr r0
 /* 801EC490 001E93D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC494 001E93D4  4E 80 00 20 */	blr 
+.endfn init__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
 
-.global exec__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item
-exec__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item:
+.fn exec__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item, global
 /* 801EC498 001E93D8  88 64 00 D8 */	lbz r3, 0xd8(r4)
 /* 801EC49C 001E93DC  38 00 FF CB */	li r0, -53
 /* 801EC4A0 001E93E0  7C 60 00 38 */	and r0, r3, r0
 /* 801EC4A4 001E93E4  98 04 00 D8 */	stb r0, 0xd8(r4)
 /* 801EC4A8 001E93E8  4E 80 00 20 */	blr 
+.endfn exec__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item
 
-.global cleanup__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item
-cleanup__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item:
+.fn cleanup__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item, global
 /* 801EC4AC 001E93EC  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game15ItemBigFountain10CloseStateFPQ34Game15ItemBigFountain4Item
 
-.global init__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
-init__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg:
+.fn init__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg, global
 /* 801EC4B0 001E93F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC4B4 001E93F4  7C 08 02 A6 */	mflr r0
 /* 801EC4B8 001E93F8  38 A0 00 00 */	li r5, 0
@@ -1074,9 +1092,9 @@ init__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemPQ24Game8
 /* 801EC4E8 001E9428  7C 08 03 A6 */	mtlr r0
 /* 801EC4EC 001E942C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC4F0 001E9430  4E 80 00 20 */	blr 
+.endfn init__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
 
-.global exec__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item
-exec__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item:
+.fn exec__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item, global
 /* 801EC4F4 001E9434  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC4F8 001E9438  7C 08 02 A6 */	mflr r0
 /* 801EC4FC 001E943C  7C 83 23 78 */	mr r3, r4
@@ -1090,13 +1108,13 @@ exec__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item:
 /* 801EC51C 001E945C  7C 08 03 A6 */	mtlr r0
 /* 801EC520 001E9460  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC524 001E9464  4E 80 00 20 */	blr 
+.endfn exec__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item
 
-.global cleanup__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item
-cleanup__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item:
+.fn cleanup__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item, global
 /* 801EC528 001E9468  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Item
 
-.global onDamage__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Itemf
-onDamage__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Itemf:
+.fn onDamage__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Itemf, global
 /* 801EC52C 001E946C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC530 001E9470  7C 08 02 A6 */	mflr r0
 /* 801EC534 001E9474  C0 02 B7 3C */	lfs f0, lbl_80519A9C@sda21(r2)
@@ -1137,15 +1155,15 @@ onDamage__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Itemf:
 /* 801EC5B4 001E94F4  7C 08 03 A6 */	mtlr r0
 /* 801EC5B8 001E94F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC5BC 001E94FC  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4Itemf
 
-.global onKeyEvent__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent
-onKeyEvent__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent, global
 /* 801EC5C0 001E9500  C0 02 B7 3C */	lfs f0, lbl_80519A9C@sda21(r2)
 /* 801EC5C4 001E9504  D0 04 01 D4 */	stfs f0, 0x1d4(r4)
 /* 801EC5C8 001E9508  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q34Game15ItemBigFountain9WaitStateFPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent
 
-.global init__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
-init__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg:
+.fn init__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg, global
 /* 801EC5CC 001E950C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EC5D0 001E9510  7C 08 02 A6 */	mflr r0
 /* 801EC5D4 001E9514  38 A0 00 00 */	li r5, 0
@@ -1219,9 +1237,9 @@ init__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4ItemPQ24Game8S
 /* 801EC6DC 001E961C  7C 08 03 A6 */	mtlr r0
 /* 801EC6E0 001E9620  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EC6E4 001E9624  4E 80 00 20 */	blr 
+.endfn init__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
 
-.global exec__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item
-exec__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item:
+.fn exec__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item, global
 /* 801EC6E8 001E9628  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC6EC 001E962C  7C 08 02 A6 */	mflr r0
 /* 801EC6F0 001E9630  7C 83 23 78 */	mr r3, r4
@@ -1235,13 +1253,13 @@ exec__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item:
 /* 801EC710 001E9650  7C 08 03 A6 */	mtlr r0
 /* 801EC714 001E9654  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC718 001E9658  4E 80 00 20 */	blr 
+.endfn exec__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item
 
-.global cleanup__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item
-cleanup__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item:
+.fn cleanup__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item, global
 /* 801EC71C 001E965C  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item
 
-.global movieUserCommand__Q34Game15ItemBigFountain4ItemFUlPQ24Game11MoviePlayer
-movieUserCommand__Q34Game15ItemBigFountain4ItemFUlPQ24Game11MoviePlayer:
+.fn movieUserCommand__Q34Game15ItemBigFountain4ItemFUlPQ24Game11MoviePlayer, global
 /* 801EC720 001E9660  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801EC724 001E9664  7C 08 02 A6 */	mflr r0
 /* 801EC728 001E9668  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1380,10 +1398,10 @@ movieUserCommand__Q34Game15ItemBigFountain4ItemFUlPQ24Game11MoviePlayer:
 /* 801EC918 001E9858  7C 08 03 A6 */	mtlr r0
 /* 801EC91C 001E985C  38 21 00 70 */	addi r1, r1, 0x70
 /* 801EC920 001E9860  4E 80 00 20 */	blr 
+.endfn movieUserCommand__Q34Game15ItemBigFountain4ItemFUlPQ24Game11MoviePlayer
 
 .if version == 1
-.global interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey
-interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey:
+.fn interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey, global
 /* 801EC924 001E9864  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801EC928 001E9868  7C 08 02 A6 */	mflr r0
 /* 801EC92C 001E986C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1452,9 +1470,9 @@ interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey:
 /* 801ECA20 001E9960  7C 08 03 A6 */	mtlr r0
 /* 801ECA24 001E9964  38 21 00 50 */	addi r1, r1, 0x50
 /* 801ECA28 001E9968  4E 80 00 20 */	blr 
+.endfn interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey
 .else
-.global interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey
-interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey:
+.fn interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey, global
 /* 801EC924 001E9864  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801EC928 001E9868  7C 08 02 A6 */	mflr r0
 /* 801EC92C 001E986C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1523,10 +1541,10 @@ interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey:
 /* 801ECA20 001E9960  7C 08 03 A6 */	mtlr r0
 /* 801ECA24 001E9964  38 21 00 50 */	addi r1, r1, 0x50
 /* 801ECA28 001E9968  4E 80 00 20 */	blr 
+.endfn interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey
 .endif
 
-.global constructor__Q34Game15ItemBigFountain4ItemFv
-constructor__Q34Game15ItemBigFountain4ItemFv:
+.fn constructor__Q34Game15ItemBigFountain4ItemFv, global
 /* 801ECA2C 001E996C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ECA30 001E9970  7C 08 02 A6 */	mflr r0
 /* 801ECA34 001E9974  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1546,9 +1564,9 @@ constructor__Q34Game15ItemBigFountain4ItemFv:
 /* 801ECA68 001E99A8  7C 08 03 A6 */	mtlr r0
 /* 801ECA6C 001E99AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ECA70 001E99B0  4E 80 00 20 */	blr 
+.endfn constructor__Q34Game15ItemBigFountain4ItemFv
 
-.global onInit__Q34Game15ItemBigFountain4ItemFPQ24Game15CreatureInitArg
-onInit__Q34Game15ItemBigFountain4ItemFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game15ItemBigFountain4ItemFPQ24Game15CreatureInitArg, global
 /* 801ECA74 001E99B4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801ECA78 001E99B8  7C 08 02 A6 */	mflr r0
 /* 801ECA7C 001E99BC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1718,9 +1736,9 @@ onInit__Q34Game15ItemBigFountain4ItemFPQ24Game15CreatureInitArg:
 /* 801ECCEC 001E9C2C  7C 08 03 A6 */	mtlr r0
 /* 801ECCF0 001E9C30  38 21 00 30 */	addi r1, r1, 0x30
 /* 801ECCF4 001E9C34  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game15ItemBigFountain4ItemFPQ24Game15CreatureInitArg
 
-.global "start__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
-"start__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg":
+.fn "start__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg", weak
 /* 801ECCF8 001E9C38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ECCFC 001E9C3C  7C 08 02 A6 */	mflr r0
 /* 801ECD00 001E9C40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1734,9 +1752,9 @@ onInit__Q34Game15ItemBigFountain4ItemFPQ24Game15CreatureInitArg:
 /* 801ECD20 001E9C60  7C 08 03 A6 */	mtlr r0
 /* 801ECD24 001E9C64  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ECD28 001E9C68  4E 80 00 20 */	blr 
+.endfn "start__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
 
-.global initDependency__Q34Game15ItemBigFountain4ItemFv
-initDependency__Q34Game15ItemBigFountain4ItemFv:
+.fn initDependency__Q34Game15ItemBigFountain4ItemFv, global
 /* 801ECD2C 001E9C6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ECD30 001E9C70  7C 08 02 A6 */	mflr r0
 /* 801ECD34 001E9C74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1759,9 +1777,9 @@ initDependency__Q34Game15ItemBigFountain4ItemFv:
 /* 801ECD74 001E9CB4  7C 08 03 A6 */	mtlr r0
 /* 801ECD78 001E9CB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ECD7C 001E9CBC  4E 80 00 20 */	blr 
+.endfn initDependency__Q34Game15ItemBigFountain4ItemFv
 
-.global update__Q34Game15ItemBigFountain4ItemFv
-update__Q34Game15ItemBigFountain4ItemFv:
+.fn update__Q34Game15ItemBigFountain4ItemFv, global
 /* 801ECD80 001E9CC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ECD84 001E9CC4  7C 08 02 A6 */	mflr r0
 /* 801ECD88 001E9CC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1812,9 +1830,9 @@ update__Q34Game15ItemBigFountain4ItemFv:
 /* 801ECE34 001E9D74  7C 08 03 A6 */	mtlr r0
 /* 801ECE38 001E9D78  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ECE3C 001E9D7C  4E 80 00 20 */	blr 
+.endfn update__Q34Game15ItemBigFountain4ItemFv
 
-.global killAllEffect__Q34Game15ItemBigFountain4ItemFv
-killAllEffect__Q34Game15ItemBigFountain4ItemFv:
+.fn killAllEffect__Q34Game15ItemBigFountain4ItemFv, global
 /* 801ECE40 001E9D80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ECE44 001E9D84  7C 08 02 A6 */	mflr r0
 /* 801ECE48 001E9D88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1841,9 +1859,9 @@ killAllEffect__Q34Game15ItemBigFountain4ItemFv:
 /* 801ECE94 001E9DD4  7C 08 03 A6 */	mtlr r0
 /* 801ECE98 001E9DD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ECE9C 001E9DDC  4E 80 00 20 */	blr 
+.endfn killAllEffect__Q34Game15ItemBigFountain4ItemFv
 
-.global makeTrMatrix__Q34Game15ItemBigFountain4ItemFv
-makeTrMatrix__Q34Game15ItemBigFountain4ItemFv:
+.fn makeTrMatrix__Q34Game15ItemBigFountain4ItemFv, global
 /* 801ECEA0 001E9DE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801ECEA4 001E9DE4  7C 08 02 A6 */	mflr r0
 /* 801ECEA8 001E9DE8  C0 02 B7 3C */	lfs f0, lbl_80519A9C@sda21(r2)
@@ -1870,9 +1888,9 @@ makeTrMatrix__Q34Game15ItemBigFountain4ItemFv:
 /* 801ECEFC 001E9E3C  7C 08 03 A6 */	mtlr r0
 /* 801ECF00 001E9E40  38 21 00 20 */	addi r1, r1, 0x20
 /* 801ECF04 001E9E44  4E 80 00 20 */	blr 
+.endfn makeTrMatrix__Q34Game15ItemBigFountain4ItemFv
 
-.global onSetPosition__Q34Game15ItemBigFountain4ItemFv
-onSetPosition__Q34Game15ItemBigFountain4ItemFv:
+.fn onSetPosition__Q34Game15ItemBigFountain4ItemFv, global
 /* 801ECF08 001E9E48  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801ECF0C 001E9E4C  7C 08 02 A6 */	mflr r0
 /* 801ECF10 001E9E50  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1944,9 +1962,9 @@ onSetPosition__Q34Game15ItemBigFountain4ItemFv:
 /* 801ED014 001E9F54  7C 08 03 A6 */	mtlr r0
 /* 801ED018 001E9F58  38 21 00 40 */	addi r1, r1, 0x40
 /* 801ED01C 001E9F5C  4E 80 00 20 */	blr 
+.endfn onSetPosition__Q34Game15ItemBigFountain4ItemFv
 
-.global doAI__Q34Game15ItemBigFountain4ItemFv
-doAI__Q34Game15ItemBigFountain4ItemFv:
+.fn doAI__Q34Game15ItemBigFountain4ItemFv, global
 /* 801ED020 001E9F60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED024 001E9F64  7C 08 02 A6 */	mflr r0
 /* 801ED028 001E9F68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1990,9 +2008,9 @@ doAI__Q34Game15ItemBigFountain4ItemFv:
 /* 801ED0B4 001E9FF4  7C 08 03 A6 */	mtlr r0
 /* 801ED0B8 001E9FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ED0BC 001E9FFC  4E 80 00 20 */	blr 
+.endfn doAI__Q34Game15ItemBigFountain4ItemFv
 
-.global doDirectDraw__Q34Game15ItemBigFountain4ItemFR8Graphics
-doDirectDraw__Q34Game15ItemBigFountain4ItemFR8Graphics:
+.fn doDirectDraw__Q34Game15ItemBigFountain4ItemFR8Graphics, global
 /* 801ED0C0 001EA000  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801ED0C4 001EA004  7C 08 02 A6 */	mflr r0
 /* 801ED0C8 001EA008  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2086,9 +2104,9 @@ doDirectDraw__Q34Game15ItemBigFountain4ItemFR8Graphics:
 /* 801ED220 001EA160  7C 08 03 A6 */	mtlr r0
 /* 801ED224 001EA164  38 21 00 40 */	addi r1, r1, 0x40
 /* 801ED228 001EA168  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game15ItemBigFountain4ItemFR8Graphics
 
-.global updateBoundSphere__Q34Game15ItemBigFountain4ItemFv
-updateBoundSphere__Q34Game15ItemBigFountain4ItemFv:
+.fn updateBoundSphere__Q34Game15ItemBigFountain4ItemFv, global
 /* 801ED22C 001EA16C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED230 001EA170  7C 08 02 A6 */	mflr r0
 /* 801ED234 001EA174  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2103,13 +2121,13 @@ updateBoundSphere__Q34Game15ItemBigFountain4ItemFv:
 /* 801ED258 001EA198  7C 08 03 A6 */	mtlr r0
 /* 801ED25C 001EA19C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ED260 001EA1A0  4E 80 00 20 */	blr 
+.endfn updateBoundSphere__Q34Game15ItemBigFountain4ItemFv
 
-.global doSimulation__Q34Game15ItemBigFountain4ItemFf
-doSimulation__Q34Game15ItemBigFountain4ItemFf:
+.fn doSimulation__Q34Game15ItemBigFountain4ItemFf, global
 /* 801ED264 001EA1A4  4E 80 00 20 */	blr 
+.endfn doSimulation__Q34Game15ItemBigFountain4ItemFf
 
-.global canRide__Q34Game15ItemBigFountain4ItemFv
-canRide__Q34Game15ItemBigFountain4ItemFv:
+.fn canRide__Q34Game15ItemBigFountain4ItemFv, global
 /* 801ED268 001EA1A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED26C 001EA1AC  7C 08 02 A6 */	mflr r0
 /* 801ED270 001EA1B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2122,14 +2140,14 @@ canRide__Q34Game15ItemBigFountain4ItemFv:
 /* 801ED28C 001EA1CC  7C 08 03 A6 */	mtlr r0
 /* 801ED290 001EA1D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ED294 001EA1D4  4E 80 00 20 */	blr 
+.endfn canRide__Q34Game15ItemBigFountain4ItemFv
 
-.global canRide__Q34Game15ItemBigFountain5StateFv
-canRide__Q34Game15ItemBigFountain5StateFv:
+.fn canRide__Q34Game15ItemBigFountain5StateFv, weak
 /* 801ED298 001EA1D8  38 60 00 00 */	li r3, 0
 /* 801ED29C 001EA1DC  4E 80 00 20 */	blr 
+.endfn canRide__Q34Game15ItemBigFountain5StateFv
 
-.global interactAttack__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractAttack
-interactAttack__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractAttack:
+.fn interactAttack__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractAttack, global
 /* 801ED2A0 001EA1E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED2A4 001EA1E4  7C 08 02 A6 */	mflr r0
 /* 801ED2A8 001EA1E8  7C 85 23 78 */	mr r5, r4
@@ -2207,13 +2225,13 @@ interactAttack__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractAttack:
 /* 801ED3B0 001EA2F0  7C 08 03 A6 */	mtlr r0
 /* 801ED3B4 001EA2F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ED3B8 001EA2F8  4E 80 00 20 */	blr 
+.endfn interactAttack__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractAttack
 
-.global onDamage__Q34Game15ItemBigFountain5StateFPQ34Game15ItemBigFountain4Itemf
-onDamage__Q34Game15ItemBigFountain5StateFPQ34Game15ItemBigFountain4Itemf:
+.fn onDamage__Q34Game15ItemBigFountain5StateFPQ34Game15ItemBigFountain4Itemf, weak
 /* 801ED3BC 001EA2FC  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game15ItemBigFountain5StateFPQ34Game15ItemBigFountain4Itemf
 
-.global "getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<f>"
-"getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<f>":
+.fn "getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<f>", global
 /* 801ED3C0 001EA300  C0 23 01 A0 */	lfs f1, 0x1a0(r3)
 /* 801ED3C4 001EA304  C0 04 00 04 */	lfs f0, 4(r4)
 /* 801ED3C8 001EA308  C0 43 01 A4 */	lfs f2, 0x1a4(r3)
@@ -2271,9 +2289,9 @@ onDamage__Q34Game15ItemBigFountain5StateFPQ34Game15ItemBigFountain4Itemf:
 .L_801ED480:
 /* 801ED480 001EA3C0  38 60 00 01 */	li r3, 1
 /* 801ED484 001EA3C4  4E 80 00 20 */	blr 
+.endfn "getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<f>"
 
-.global getWorkDistance__Q34Game15ItemBigFountain4ItemFRQ23Sys6Sphere
-getWorkDistance__Q34Game15ItemBigFountain4ItemFRQ23Sys6Sphere:
+.fn getWorkDistance__Q34Game15ItemBigFountain4ItemFRQ23Sys6Sphere, global
 /* 801ED488 001EA3C8  C0 23 01 A0 */	lfs f1, 0x1a0(r3)
 /* 801ED48C 001EA3CC  C0 04 00 04 */	lfs f0, 4(r4)
 /* 801ED490 001EA3D0  C0 63 01 A4 */	lfs f3, 0x1a4(r3)
@@ -2300,9 +2318,9 @@ getWorkDistance__Q34Game15ItemBigFountain4ItemFRQ23Sys6Sphere:
 /* 801ED4DC 001EA41C  C0 02 B7 74 */	lfs f0, lbl_80519AD4@sda21(r2)
 /* 801ED4E0 001EA420  EC 21 00 28 */	fsubs f1, f1, f0
 /* 801ED4E4 001EA424  4E 80 00 20 */	blr 
+.endfn getWorkDistance__Q34Game15ItemBigFountain4ItemFRQ23Sys6Sphere
 
-.global onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent
-onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent, global
 /* 801ED4E8 001EA428  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED4EC 001EA42C  7C 08 02 A6 */	mflr r0
 /* 801ED4F0 001EA430  7C 66 1B 78 */	mr r6, r3
@@ -2318,13 +2336,13 @@ onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent:
 /* 801ED518 001EA458  7C 08 03 A6 */	mtlr r0
 /* 801ED51C 001EA45C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ED520 001EA460  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent
 
-.global "onKeyEvent__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent", weak
 /* 801ED524 001EA464  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent"
 
-.global __ct__Q34Game15ItemBigFountain3MgrFv
-__ct__Q34Game15ItemBigFountain3MgrFv:
+.fn __ct__Q34Game15ItemBigFountain3MgrFv, global
 /* 801ED528 001EA468  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 801ED52C 001EA46C  7C 08 02 A6 */	mflr r0
 /* 801ED530 001EA470  90 01 04 44 */	stw r0, 0x444(r1)
@@ -2401,9 +2419,9 @@ __ct__Q34Game15ItemBigFountain3MgrFv:
 /* 801ED63C 001EA57C  7C 08 03 A6 */	mtlr r0
 /* 801ED640 001EA580  38 21 04 40 */	addi r1, r1, 0x440
 /* 801ED644 001EA584  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game15ItemBigFountain3MgrFv
 
-.global read__Q34Game15ItemBigFountain13FountainParmsFR6Stream
-read__Q34Game15ItemBigFountain13FountainParmsFR6Stream:
+.fn read__Q34Game15ItemBigFountain13FountainParmsFR6Stream, weak
 /* 801ED648 001EA588  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED64C 001EA58C  7C 08 02 A6 */	mflr r0
 /* 801ED650 001EA590  38 63 00 DC */	addi r3, r3, 0xdc
@@ -2413,9 +2431,9 @@ read__Q34Game15ItemBigFountain13FountainParmsFR6Stream:
 /* 801ED660 001EA5A0  7C 08 03 A6 */	mtlr r0
 /* 801ED664 001EA5A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ED668 001EA5A8  4E 80 00 20 */	blr 
+.endfn read__Q34Game15ItemBigFountain13FountainParmsFR6Stream
 
-.global __ct__Q34Game15ItemBigFountain13FountainParmsFv
-__ct__Q34Game15ItemBigFountain13FountainParmsFv:
+.fn __ct__Q34Game15ItemBigFountain13FountainParmsFv, weak
 /* 801ED66C 001EA5AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED670 001EA5B0  7C 08 02 A6 */	mflr r0
 /* 801ED674 001EA5B4  3C A0 73 30 */	lis r5, 0x73303030@ha
@@ -2539,9 +2557,9 @@ __ct__Q34Game15ItemBigFountain13FountainParmsFv:
 /* 801ED84C 001EA78C  7C 08 03 A6 */	mtlr r0
 /* 801ED850 001EA790  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ED854 001EA794  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game15ItemBigFountain13FountainParmsFv
 
-.global onLoadResources__Q34Game15ItemBigFountain3MgrFv
-onLoadResources__Q34Game15ItemBigFountain3MgrFv:
+.fn onLoadResources__Q34Game15ItemBigFountain3MgrFv, global
 /* 801ED858 001EA798  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801ED85C 001EA79C  7C 08 02 A6 */	mflr r0
 /* 801ED860 001EA7A0  3C 80 80 48 */	lis r4, lbl_804810A0@ha
@@ -2597,9 +2615,9 @@ onLoadResources__Q34Game15ItemBigFountain3MgrFv:
 /* 801ED928 001EA868  7C 08 03 A6 */	mtlr r0
 /* 801ED92C 001EA86C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801ED930 001EA870  4E 80 00 20 */	blr 
+.endfn onLoadResources__Q34Game15ItemBigFountain3MgrFv
 
-.global birth__Q34Game15ItemBigFountain3MgrFv
-birth__Q34Game15ItemBigFountain3MgrFv:
+.fn birth__Q34Game15ItemBigFountain3MgrFv, global
 /* 801ED934 001EA874  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED938 001EA878  7C 08 02 A6 */	mflr r0
 /* 801ED93C 001EA87C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2608,9 +2626,9 @@ birth__Q34Game15ItemBigFountain3MgrFv:
 /* 801ED948 001EA888  7C 08 03 A6 */	mtlr r0
 /* 801ED94C 001EA88C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ED950 001EA890  4E 80 00 20 */	blr 
+.endfn birth__Q34Game15ItemBigFountain3MgrFv
 
-.global "generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-"generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
+.fn "generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm", global
 /* 801ED954 001EA894  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED958 001EA898  7C 08 02 A6 */	mflr r0
 /* 801ED95C 001EA89C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2633,9 +2651,9 @@ birth__Q34Game15ItemBigFountain3MgrFv:
 /* 801ED9A0 001EA8E0  7C 08 03 A6 */	mtlr r0
 /* 801ED9A4 001EA8E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ED9A8 001EA8E8  4E 80 00 20 */	blr 
+.endfn "generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
 
-.global __dt__Q34Game15ItemBigFountain3MgrFv
-__dt__Q34Game15ItemBigFountain3MgrFv:
+.fn __dt__Q34Game15ItemBigFountain3MgrFv, weak
 /* 801ED9AC 001EA8EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ED9B0 001EA8F0  7C 08 02 A6 */	mflr r0
 /* 801ED9B4 001EA8F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2717,9 +2735,9 @@ __dt__Q34Game15ItemBigFountain3MgrFv:
 /* 801EDAD4 001EAA14  7C 08 03 A6 */	mtlr r0
 /* 801EDAD8 001EAA18  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EDADC 001EAA1C  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game15ItemBigFountain3MgrFv
 
-.global doNew__Q34Game15ItemBigFountain3MgrFv
-doNew__Q34Game15ItemBigFountain3MgrFv:
+.fn doNew__Q34Game15ItemBigFountain3MgrFv, weak
 /* 801EDAE0 001EAA20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EDAE4 001EAA24  7C 08 02 A6 */	mflr r0
 /* 801EDAE8 001EAA28  38 60 02 04 */	li r3, 0x204
@@ -2780,26 +2798,26 @@ doNew__Q34Game15ItemBigFountain3MgrFv:
 /* 801EDBBC 001EAAFC  7C 08 03 A6 */	mtlr r0
 /* 801EDBC0 001EAB00  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EDBC4 001EAB04  4E 80 00 20 */	blr 
+.endfn doNew__Q34Game15ItemBigFountain3MgrFv
 
-.global generatorGetID__Q34Game15ItemBigFountain3MgrFv
-generatorGetID__Q34Game15ItemBigFountain3MgrFv:
+.fn generatorGetID__Q34Game15ItemBigFountain3MgrFv, weak
 /* 801EDBC8 001EAB08  3C 60 77 61 */	lis r3, 0x77617270@ha
 /* 801EDBCC 001EAB0C  38 63 72 70 */	addi r3, r3, 0x77617270@l
 /* 801EDBD0 001EAB10  4E 80 00 20 */	blr 
+.endfn generatorGetID__Q34Game15ItemBigFountain3MgrFv
 
-.global sound_culling__Q34Game15ItemBigFountain4ItemFv
-sound_culling__Q34Game15ItemBigFountain4ItemFv:
+.fn sound_culling__Q34Game15ItemBigFountain4ItemFv, weak
 /* 801EDBD4 001EAB14  38 60 00 00 */	li r3, 0
 /* 801EDBD8 001EAB18  4E 80 00 20 */	blr 
+.endfn sound_culling__Q34Game15ItemBigFountain4ItemFv
 
-.global getCreatureName__Q34Game15ItemBigFountain4ItemFv
-getCreatureName__Q34Game15ItemBigFountain4ItemFv:
+.fn getCreatureName__Q34Game15ItemBigFountain4ItemFv, weak
 /* 801EDBDC 001EAB1C  3C 60 80 48 */	lis r3, lbl_80481218@ha
 /* 801EDBE0 001EAB20  38 63 12 18 */	addi r3, r3, lbl_80481218@l
 /* 801EDBE4 001EAB24  4E 80 00 20 */	blr 
+.endfn getCreatureName__Q34Game15ItemBigFountain4ItemFv
 
-.global "doAI__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>Fv"
-"doAI__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>Fv":
+.fn "doAI__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>Fv", weak
 /* 801EDBE8 001EAB28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EDBEC 001EAB2C  7C 08 02 A6 */	mflr r0
 /* 801EDBF0 001EAB30  7C 64 1B 78 */	mr r4, r3
@@ -2813,14 +2831,14 @@ getCreatureName__Q34Game15ItemBigFountain4ItemFv:
 /* 801EDC10 001EAB50  7C 08 03 A6 */	mtlr r0
 /* 801EDC14 001EAB54  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EDC18 001EAB58  4E 80 00 20 */	blr 
+.endfn "doAI__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>Fv"
 
-.global canRide__Q34Game15ItemBigFountain8OutStateFv
-canRide__Q34Game15ItemBigFountain8OutStateFv:
+.fn canRide__Q34Game15ItemBigFountain8OutStateFv, weak
 /* 801EDC1C 001EAB5C  38 60 00 01 */	li r3, 1
 /* 801EDC20 001EAB60  4E 80 00 20 */	blr 
+.endfn canRide__Q34Game15ItemBigFountain8OutStateFv
 
-.global "onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent", weak
 /* 801EDC24 001EAB64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EDC28 001EAB68  7C 08 02 A6 */	mflr r0
 /* 801EDC2C 001EAB6C  7C 66 1B 78 */	mr r6, r3
@@ -2839,49 +2857,49 @@ canRide__Q34Game15ItemBigFountain8OutStateFv:
 /* 801EDC5C 001EAB9C  7C 08 03 A6 */	mtlr r0
 /* 801EDC60 001EABA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EDC64 001EABA4  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent"
 
-.global "onDamage__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Itemf"
-"onDamage__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Itemf":
+.fn "onDamage__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Itemf", weak
 /* 801EDC68 001EABA8  4E 80 00 20 */	blr 
+.endfn "onDamage__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Itemf"
 
-.global "onBounce__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle"
-"onBounce__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle":
+.fn "onBounce__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle", weak
 /* 801EDC6C 001EABAC  4E 80 00 20 */	blr 
+.endfn "onBounce__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle"
 
-.global "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent"
-"onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent":
+.fn "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent", weak
 /* 801EDC70 001EABB0  4E 80 00 20 */	blr 
+.endfn "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent"
 
-.global "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent"
-"onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent":
+.fn "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent", weak
 /* 801EDC74 001EABB4  4E 80 00 20 */	blr 
+.endfn "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent"
 
-.global "init__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg"
-"init__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg":
+.fn "init__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg", weak
 /* 801EDC78 001EABB8  4E 80 00 20 */	blr 
+.endfn "init__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg"
 
-.global "exec__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
-"exec__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item":
+.fn "exec__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item", weak
 /* 801EDC7C 001EABBC  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 
-.global "cleanup__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
-"cleanup__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item":
+.fn "cleanup__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item", weak
 /* 801EDC80 001EABC0  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 
-.global "resume__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
-"resume__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item":
+.fn "resume__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item", weak
 /* 801EDC84 001EABC4  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 
-.global "restart__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
-"restart__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item":
+.fn "restart__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item", weak
 /* 801EDC88 001EABC8  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 
-.global "init__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
-"init__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item":
+.fn "init__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item", weak
 /* 801EDC8C 001EABCC  4E 80 00 20 */	blr 
+.endfn "init__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 
-.global "exec__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
-"exec__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item":
+.fn "exec__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item", weak
 /* 801EDC90 001EABD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EDC94 001EABD4  7C 08 02 A6 */	mflr r0
 /* 801EDC98 001EABD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2897,9 +2915,9 @@ canRide__Q34Game15ItemBigFountain8OutStateFv:
 /* 801EDCBC 001EABFC  7C 08 03 A6 */	mtlr r0
 /* 801EDCC0 001EAC00  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EDCC4 001EAC04  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
 
-.global "create__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>Fi"
-"create__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>Fi":
+.fn "create__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>Fi", weak
 /* 801EDCC8 001EAC08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EDCCC 001EAC0C  7C 08 02 A6 */	mflr r0
 /* 801EDCD0 001EAC10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2925,9 +2943,9 @@ canRide__Q34Game15ItemBigFountain8OutStateFv:
 /* 801EDD20 001EAC60  7C 08 03 A6 */	mtlr r0
 /* 801EDD24 001EAC64  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EDD28 001EAC68  4E 80 00 20 */	blr 
+.endfn "create__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>Fi"
 
-.global "transit__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
-"transit__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg":
+.fn "transit__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg", weak
 /* 801EDD2C 001EAC6C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EDD30 001EAC70  7C 08 02 A6 */	mflr r0
 /* 801EDD34 001EAC74  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2970,9 +2988,9 @@ canRide__Q34Game15ItemBigFountain8OutStateFv:
 /* 801EDDBC 001EACFC  7C 08 03 A6 */	mtlr r0
 /* 801EDDC0 001EAD00  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EDDC4 001EAD04  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
 
-.global "registerState__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ24Game39FSMState<Q34Game15ItemBigFountain4Item>"
-"registerState__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ24Game39FSMState<Q34Game15ItemBigFountain4Item>":
+.fn "registerState__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ24Game39FSMState<Q34Game15ItemBigFountain4Item>", weak
 /* 801EDDC8 001EAD08  80 C3 00 08 */	lwz r6, 8(r3)
 /* 801EDDCC 001EAD0C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 801EDDD0 001EAD10  7C 06 00 00 */	cmpw r6, r0
@@ -3009,9 +3027,9 @@ canRide__Q34Game15ItemBigFountain8OutStateFv:
 /* 801EDE40 001EAD80  38 04 00 01 */	addi r0, r4, 1
 /* 801EDE44 001EAD84  90 03 00 08 */	stw r0, 8(r3)
 /* 801EDE48 001EAD88  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game43StateMachine<Q34Game15ItemBigFountain4Item>FPQ24Game39FSMState<Q34Game15ItemBigFountain4Item>"
 
-.global "getStateID__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>Fv"
-"getStateID__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>Fv":
+.fn "getStateID__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>Fv", weak
 /* 801EDE4C 001EAD8C  80 63 01 DC */	lwz r3, 0x1dc(r3)
 /* 801EDE50 001EAD90  28 03 00 00 */	cmplwi r3, 0
 /* 801EDE54 001EAD94  41 82 00 0C */	beq .L_801EDE60
@@ -3020,9 +3038,9 @@ canRide__Q34Game15ItemBigFountain8OutStateFv:
 .L_801EDE60:
 /* 801EDE60 001EADA0  38 60 FF FF */	li r3, -1
 /* 801EDE64 001EADA4  4E 80 00 20 */	blr 
+.endfn "getStateID__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>Fv"
 
-.global "platCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRQ24Game9PlatEvent"
-"platCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRQ24Game9PlatEvent":
+.fn "platCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRQ24Game9PlatEvent", weak
 /* 801EDE68 001EADA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EDE6C 001EADAC  7C 08 02 A6 */	mflr r0
 /* 801EDE70 001EADB0  7C 66 1B 78 */	mr r6, r3
@@ -3041,9 +3059,9 @@ canRide__Q34Game15ItemBigFountain8OutStateFv:
 /* 801EDEA0 001EADE0  7C 08 03 A6 */	mtlr r0
 /* 801EDEA4 001EADE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EDEA8 001EADE8  4E 80 00 20 */	blr 
+.endfn "platCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRQ24Game9PlatEvent"
 
-.global "collisionCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRQ24Game9CollEvent"
-"collisionCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRQ24Game9CollEvent":
+.fn "collisionCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRQ24Game9CollEvent", weak
 /* 801EDEAC 001EADEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EDEB0 001EADF0  7C 08 02 A6 */	mflr r0
 /* 801EDEB4 001EADF4  7C 66 1B 78 */	mr r6, r3
@@ -3062,9 +3080,9 @@ canRide__Q34Game15ItemBigFountain8OutStateFv:
 /* 801EDEE4 001EAE24  7C 08 03 A6 */	mtlr r0
 /* 801EDEE8 001EAE28  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EDEEC 001EAE2C  4E 80 00 20 */	blr 
+.endfn "collisionCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRQ24Game9CollEvent"
 
-.global "bounceCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FPQ23Sys8Triangle"
-"bounceCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FPQ23Sys8Triangle":
+.fn "bounceCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FPQ23Sys8Triangle", weak
 /* 801EDEF0 001EAE30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EDEF4 001EAE34  7C 08 02 A6 */	mflr r0
 /* 801EDEF8 001EAE38  7C 66 1B 78 */	mr r6, r3
@@ -3083,31 +3101,32 @@ canRide__Q34Game15ItemBigFountain8OutStateFv:
 /* 801EDF28 001EAE68  7C 08 03 A6 */	mtlr r0
 /* 801EDF2C 001EAE6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EDF30 001EAE70  4E 80 00 20 */	blr 
+.endfn "bounceCallback__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FPQ23Sys8Triangle"
 
-.global __sinit_itemBigFountain_cpp
-__sinit_itemBigFountain_cpp:
+.fn __sinit_itemBigFountain_cpp, local
 /* 801EDF34 001EAE74  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801EDF38 001EAE78  38 00 FF FF */	li r0, -1
 /* 801EDF3C 001EAE7C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801EDF40 001EAE80  3C 60 80 4C */	lis r3, lbl_804BAA08@ha
-/* 801EDF44 001EAE84  90 0D 94 A8 */	stw r0, lbl_80515B28@sda21(r13)
-/* 801EDF48 001EAE88  D4 03 AA 08 */	stfsu f0, lbl_804BAA08@l(r3)
-/* 801EDF4C 001EAE8C  D0 0D 94 AC */	stfs f0, lbl_80515B2C@sda21(r13)
+/* 801EDF40 001EAE80  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801EDF44 001EAE84  90 0D 94 A8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801EDF48 001EAE88  D4 03 AA 08 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801EDF4C 001EAE8C  D0 0D 94 AC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801EDF50 001EAE90  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801EDF54 001EAE94  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801EDF58 001EAE98  4E 80 00 20 */	blr 
+.endfn __sinit_itemBigFountain_cpp
 
-.global "@376@onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent", weak
 /* 801EDF5C 001EAE9C  38 63 FE 88 */	addi r3, r3, -376
 /* 801EDF60 001EAEA0  4B FF FC C4 */	b "onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent"
+.endfn "@376@onKeyEvent__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>FRCQ28SysShape8KeyEvent"
 
-.global "@376@onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent", weak
 /* 801EDF64 001EAEA4  38 63 FE 88 */	addi r3, r3, -376
 /* 801EDF68 001EAEA8  4B FF F5 80 */	b onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent
+.endfn "@376@onKeyEvent__Q34Game15ItemBigFountain4ItemFRCQ28SysShape8KeyEvent"
 
-.global "@48@__dt__Q34Game15ItemBigFountain3MgrFv"
-"@48@__dt__Q34Game15ItemBigFountain3MgrFv":
+.fn "@48@__dt__Q34Game15ItemBigFountain3MgrFv", weak
 /* 801EDF6C 001EAEAC  38 63 FF D0 */	addi r3, r3, -48
 /* 801EDF70 001EAEB0  4B FF FA 3C */	b __dt__Q34Game15ItemBigFountain3MgrFv
+.endfn "@48@__dt__Q34Game15ItemBigFountain3MgrFv"

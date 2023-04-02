@@ -1,111 +1,182 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047D088:
-	.4byte 0x4E617669
-	.4byte 0x3A3A5061
-	.4byte 0x726D7300
+.obj lbl_8047D088, local
+	.asciz "Navi::Parms"
+.endobj lbl_8047D088
+.balign 4
+.obj lbl_8047D094, local # Shift-JIS
 	.4byte 0x8341834E
 	.4byte 0x83568387
 	.4byte 0x839394BC
 	.4byte 0x8C610000
+.endobj lbl_8047D094
+.balign 4
+.obj lbl_8047D0A4, local # Shift-JIS
 	.4byte 0x984191B1
 	.4byte 0x94B282AB
 	.4byte 0x8B9797A3
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D0A4
+.balign 4
+.obj lbl_8047D0B4, local # Shift-JIS
 	.4byte 0x94B282AB
 	.4byte 0x8B9797A3
 	.4byte 0x286F6E79
 	.4byte 0x6F6E8A4F
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_8047D0B4
+.balign 4
+.obj lbl_8047D0C8, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x8CC482D1
 	.4byte 0x8DC591E5
 	.4byte 0x94BC8C61
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D0C8
+.balign 4
+.obj lbl_8047D0DC, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x8CC482D1
 	.4byte 0x8DC58FAC
 	.4byte 0x94BC8C61
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D0DC
+.balign 4
+.obj lbl_8047D0F0, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x8CC482D1
 	.4byte 0x8DC591E5
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D0F0
+.balign 4
+.obj lbl_8047D104, local # Shift-JIS
 	.4byte 0x8354815B
 	.4byte 0x834E838B
 	.4byte 0x8FC182A6
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D104
+.balign 4
+.obj lbl_8047D118, local # Shift-JIS
 	.4byte 0x88DA93AE
 	.4byte 0x91AC9378
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D118
+.balign 4
+.obj lbl_8047D124, local # Shift-JIS
 	.4byte 0x919682E9
 	.4byte 0x91AC82B3
 	.4byte 0x81698D44
 	.4byte 0x92B28E9E
 	.4byte 0x816A0000
+.endobj lbl_8047D124
+.balign 4
+.obj lbl_8047D138, local # Shift-JIS
 	.4byte 0x955C8EA6
 	.4byte 0x83588350
 	.4byte 0x815B838B
-	.4byte 0x00000000
-	.4byte 0x53746963
-	.4byte 0x6B203031
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D138
+.balign 4
+.obj lbl_8047D148, local
+	.asciz "Stick 01"
+.endobj lbl_8047D148
+.balign 4
+.obj lbl_8047D154, local # Shift-JIS
 	.4byte 0x82B782D7
 	.4byte 0x82E88A70
 	.4byte 0x93780000
+.endobj lbl_8047D154
+.balign 4
+.obj lbl_8047D160, local # Shift-JIS
 	.4byte 0x938A82B0
 	.4byte 0x82BD82DF
 	.4byte 0x8CC08A45
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D160
+.balign 4
+.obj lbl_8047D174, local # Shift-JIS
 	.4byte 0x938A82B0
 	.4byte 0x8B9797A3
 	.4byte 0x284D6178
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_8047D174
+.balign 4
+.obj lbl_8047D184, local # Shift-JIS
 	.4byte 0x938A82B0
 	.4byte 0x8B9797A3
 	.4byte 0x284D696E
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_8047D184
+.balign 4
+.obj lbl_8047D194, local # Shift-JIS
 	.4byte 0x938A82B0
 	.4byte 0x8D8282B3
 	.4byte 0x284D6178
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_8047D194
+.balign 4
+.obj lbl_8047D1A4, local # Shift-JIS
 	.4byte 0x938A82B0
 	.4byte 0x8D8282B3
 	.4byte 0x286D696E
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_8047D1A4
+.balign 4
+.obj lbl_8047D1B4, local # Shift-JIS
 	.4byte 0x938A82B0
 	.4byte 0x8D8282B3
 	.4byte 0x2889A990
 	.4byte 0x46290000
+.endobj lbl_8047D1B4
+.balign 4
+.obj lbl_8047D1C4, local # Shift-JIS
 	.4byte 0x8D958140
 	.4byte 0x938A82B0
 	.4byte 0x8D8282B3
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D1C4
+.balign 4
+.obj lbl_8047D1D4, local # Shift-JIS
 	.4byte 0x94928140
 	.4byte 0x938A82B0
 	.4byte 0x8D8282B3
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D1D4
+.balign 4
+.obj lbl_8047D1E4, local # Shift-JIS
 	.4byte 0x9285926E
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D1E4
+.balign 4
+.obj lbl_8047D1F0, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x82F082C2
 	.4byte 0x82A982DE
 	.4byte 0x974C8CF8
 	.4byte 0x94CD88CD
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D1F0
+.balign 4
+.obj lbl_8047D208, local # Shift-JIS
 	.4byte 0x94B282AD
 	.4byte 0x838B815B
 	.4byte 0x837689F1
 	.4byte 0x90940000
+.endobj lbl_8047D208
+.balign 4
+.obj lbl_8047D218, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x82AA91D2
 	.4byte 0x82C294CD
 	.4byte 0x88CD0000
+.endobj lbl_8047D218
+.balign 4
+.obj lbl_8047D228, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x82AA8374
 	.4byte 0x8348815B
@@ -115,119 +186,181 @@ lbl_8047D088:
 	.4byte 0x95CF82A6
 	.4byte 0x82E994CD
 	.4byte 0x88CD0000
+.endobj lbl_8047D228
+.balign 4
+.obj lbl_8047D24C, local # Shift-JIS
 	.4byte 0x939682BD
 	.4byte 0x82E88354
 	.4byte 0x83438359
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D24C
+.balign 4
+.obj lbl_8047D25C, local # Shift-JIS
 	.4byte 0x926E96CA
 	.4byte 0x939682BD
 	.4byte 0x82E88354
 	.4byte 0x83438359
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D25C
+.balign 4
+.obj lbl_8047D270, local # Shift-JIS
 	.4byte 0x8F6482B3
 	.4byte 0x82CC8B74
 	.4byte 0x90940000
+.endobj lbl_8047D270
+.balign 4
+.obj lbl_8047D27C, local # Shift-JIS
 	.4byte 0x83478343
 	.4byte 0x837E8393
 	.4byte 0x834F89F1
 	.4byte 0x935D8358
 	.4byte 0x8373815B
 	.4byte 0x83680000
+.endobj lbl_8047D27C
+.balign 4
+.obj lbl_8047D294, local # Shift-JIS
 	.4byte 0x82C282D4
 	.4byte 0x82EA918D
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D294
+.balign 4
+.obj lbl_8047D2A4, local # Shift-JIS
 	.4byte 0x82D882C1
 	.4byte 0x82BD82F1
 	.4byte 0x82B18E9E
 	.4byte 0x8AD40000
+.endobj lbl_8047D2A4
+.balign 4
+.obj lbl_8047D2B4, local # Shift-JIS
 	.4byte 0x899F82B5
 	.4byte 0x8A4A8E6E
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D2B4
+.balign 4
+.obj lbl_8047D2C4, local # Shift-JIS
 	.4byte 0x899F82B5
 	.4byte 0x8A4A8E6E
 	.4byte 0x83588365
 	.4byte 0x83428362
 	.4byte 0x834E97CA
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D2C4
+.balign 4
+.obj lbl_8047D2DC, local # Shift-JIS
 	.4byte 0x8EE882D4
 	.4byte 0x82EA9668
 	.4byte 0x8E7E8A70
 	.4byte 0x93780000
+.endobj lbl_8047D2DC
+.balign 4
+.obj lbl_8047D2EC, local # Shift-JIS
 	.4byte 0x8EE882D4
 	.4byte 0x82EA9668
 	.4byte 0x8E7E91E5
 	.4byte 0x82AB82B3
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D2EC
+.balign 4
+.obj lbl_8047D300, local # Shift-JIS
 	.4byte 0x834A815B
 	.4byte 0x835C838B
 	.4byte 0x82DD82E9
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D300
+.balign 4
+.obj lbl_8047D314, local # Shift-JIS
 	.4byte 0x8373834C
 	.4byte 0x82AA82B5
 	.4byte 0x82D182EA
 	.4byte 0x82F090D8
 	.4byte 0x82E782B7
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D314
+.balign 4
+.obj lbl_8047D330, local # Shift-JIS
 	.4byte 0x836A8385
 	.4byte 0x815B8367
 	.4byte 0x8389838B
 	.4byte 0x83588365
 	.4byte 0x83428362
 	.4byte 0x834E0000
+.endobj lbl_8047D330
+.balign 4
+.obj lbl_8047D348, local # Shift-JIS
 	.4byte 0x834A815B
 	.4byte 0x835C838B
 	.4byte 0x88DA93AE
 	.4byte 0x83588365
 	.4byte 0x83428362
 	.4byte 0x834E0000
+.endobj lbl_8047D348
+.balign 4
+.obj lbl_8047D360, local # Shift-JIS
 	.4byte 0x834E8389
 	.4byte 0x83938376
 	.4byte 0x83588365
 	.4byte 0x83428362
 	.4byte 0x834E0000
+.endobj lbl_8047D360
+.balign 4
+.obj lbl_8047D374, local # Shift-JIS
 	.4byte 0x834A815B
 	.4byte 0x835C838B
 	.4byte 0x88DA93AE
 	.4byte 0x8DC58FAC
 	.4byte 0x94BC8C61
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D374
+.balign 4
+.obj lbl_8047D38C, local # Shift-JIS
 	.4byte 0x834A815B
 	.4byte 0x835C838B
 	.4byte 0x88DA93AE
 	.4byte 0x8DC591E5
 	.4byte 0x94BC8C61
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D38C
+.balign 4
+.obj lbl_8047D3A4, local # Shift-JIS
 	.4byte 0x834A815B
 	.4byte 0x835C838B
 	.4byte 0x88DA93AE
 	.4byte 0x83588373
 	.4byte 0x815B8368
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D3A4
+.balign 4
+.obj lbl_8047D3BC, local # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x94CD88CD
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D3BC
+.balign 4
+.obj lbl_8047D3C8, local # Shift-JIS
 	.4byte 0x834A815B
 	.4byte 0x835C838B
 	.4byte 0x834A8345
 	.4byte 0x83938367
-	.4byte 0x00000000
-	.4byte 0x6B696E6F
-	.4byte 0x6B6F2046
-	.4byte 0x6C69636B
-	.4byte 0x20436F75
-	.4byte 0x6E740000
-	.4byte 0x62757279
-	.4byte 0x204B6579
-	.4byte 0x20436F75
-	.4byte 0x6E740000
-	.4byte 0x62757279
-	.4byte 0x20457869
-	.4byte 0x7420436F
-	.4byte 0x756E7400
+	.byte 0
+.endobj lbl_8047D3C8
+.balign 4
+.obj lbl_8047D3DC, local
+	.asciz "kinoko Flick Count"
+.endobj lbl_8047D3DC
+.balign 4
+.obj lbl_8047D3F0, local
+	.asciz "bury Key Count"
+.endobj lbl_8047D3F0
+.balign 4
+.obj lbl_8047D400, local
+	.asciz "bury Exit Count"
+.endobj lbl_8047D400
+.balign 4
+.obj lbl_8047D410, local # Shift-JIS
 	.4byte 0x8AF182E8
 	.4byte 0x834A8381
 	.4byte 0x83898359
@@ -235,121 +368,173 @@ lbl_8047D088:
 	.4byte 0x83418345
 	.4byte 0x83672866
 	.4byte 0x72616D65
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_8047D410
+.balign 4
+.obj lbl_8047D430, local # Shift-JIS
 	.4byte 0x91E097F1
 	.4byte 0x204D4158
 	.4byte 0x204C7630
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D430
+.balign 4
+.obj lbl_8047D440, local # Shift-JIS
 	.4byte 0x91E097F1
 	.4byte 0x204D4158
 	.4byte 0x204C7631
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D440
+.balign 4
+.obj lbl_8047D450, local # Shift-JIS
 	.4byte 0x91E097F1
 	.4byte 0x204D4158
 	.4byte 0x204C7632
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D450
+.balign 4
+.obj lbl_8047D460, local # Shift-JIS
 	.4byte 0x91E097F1
 	.4byte 0x204D4158
 	.4byte 0x204C7633
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D460
+.balign 4
+.obj lbl_8047D470, local # Shift-JIS
 	.4byte 0x835F8362
 	.4byte 0x83568385
 	.4byte 0x8375815B
 	.4byte 0x836391AC
 	.4byte 0x93780000
+.endobj lbl_8047D470
+.balign 4
+.obj lbl_8047D484, local # Shift-JIS
 	.4byte 0x8D4C94CD
 	.4byte 0x88CD82CC
 	.4byte 0x934A94BC
 	.4byte 0x8C610000
+.endobj lbl_8047D484
+.balign 4
+.obj lbl_8047D494, local # Shift-JIS
 	.4byte 0x8356815B
 	.4byte 0x838B8368
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x8C798CB8
 	.4byte 0x97A60000
+.endobj lbl_8047D494
+.balign 4
+.obj lbl_8047D4AC, local # Shift-JIS
 	.4byte 0x8356815B
 	.4byte 0x835C815B
 	.4byte 0x82C58E67
 	.4byte 0x82A48F64
 	.4byte 0x82B30000
+.endobj lbl_8047D4AC
+.balign 4
+.obj lbl_8047D4C0, local # Shift-JIS
 	.4byte 0x93648B43
 	.4byte 0x8351815B
 	.4byte 0x8367835F
 	.4byte 0x8381815B
 	.4byte 0x83570000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x3A3A5072
-	.4byte 0x6F706572
-	.4byte 0x74790000
-	.4byte 0x66726963
-	.4byte 0x74696F6E
-	.4byte 0x286E6F74
-	.4byte 0x20757365
-	.4byte 0x64290000
-	.4byte 0x77616C6C
-	.4byte 0x5265666C
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x66616365
-	.4byte 0x44697241
-	.4byte 0x646A7573
-	.4byte 0x74000000
-	.4byte 0x626F756E
-	.4byte 0x63654661
-	.4byte 0x63746F72
-	.4byte 0x00000000
-	.4byte 0x46616B65
-	.4byte 0x50696B69
-	.4byte 0x3A3A5061
-	.4byte 0x726D7300
+.endobj lbl_8047D4C0
+.balign 4
+.obj lbl_8047D4D4, local
+	.asciz "Creature::Property"
+.endobj lbl_8047D4D4
+.balign 4
+.obj lbl_8047D4E8, local
+	.asciz "friction(not used)"
+.endobj lbl_8047D4E8
+.balign 4
+.obj lbl_8047D4FC, local
+	.asciz "wallReflection"
+.endobj lbl_8047D4FC
+.balign 4
+.obj lbl_8047D50C, local
+	.asciz "faceDirAdjust"
+.endobj lbl_8047D50C
+.balign 4
+.obj lbl_8047D51C, local
+	.asciz "bounceFactor"
+.endobj lbl_8047D51C
+.balign 4
+.obj lbl_8047D52C, local
+	.asciz "FakePiki::Parms"
+.endobj lbl_8047D52C
+.balign 4
+.obj lbl_8047D53C, local # Shift-JIS
 	.4byte 0x41534942
 	.4byte 0x554D4920
 	.4byte 0x8A4A8E6E
 	.4byte 0x83588373
 	.4byte 0x815B8368
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D53C
+.balign 4
+.obj lbl_8047D554, local # Shift-JIS
 	.4byte 0x57414C4B
 	.4byte 0x208A4A8E
 	.4byte 0x6E835883
 	.4byte 0x73815B83
-	.4byte 0x68000000
+	.2byte 0x6800
+.endobj lbl_8047D554
+.balign 4
+.obj lbl_8047D568, local # Shift-JIS
 	.4byte 0x52554E20
 	.4byte 0x8A4A8E6E
 	.4byte 0x83588373
 	.4byte 0x815B8368
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D568
+.balign 4
+.obj lbl_8047D57C, local # Shift-JIS
 	.4byte 0x45534341
 	.4byte 0x5045208A
 	.4byte 0x4A8E6E83
 	.4byte 0x58837381
 	.4byte 0x5B836800
+.endobj lbl_8047D57C
+.balign 4
+.obj lbl_8047D590, local # Shift-JIS
 	.4byte 0x57414C4B
 	.4byte 0x208DC490
 	.4byte 0xB6837483
 	.4byte 0x8C815B83
 	.4byte 0x80909428
 	.4byte 0x6D696E29
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D590
+.balign 4
+.obj lbl_8047D5AC, local # Shift-JIS
 	.4byte 0x57414C4B
 	.4byte 0x208DC490
 	.4byte 0xB6837483
 	.4byte 0x8C815B83
 	.4byte 0x80909428
 	.4byte 0x6D617829
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_8047D5AC
+.balign 4
+.obj lbl_8047D5C8, local # Shift-JIS
 	.4byte 0x52554E20
 	.4byte 0x8DC490B6
 	.4byte 0x8374838C
 	.4byte 0x815B8380
 	.4byte 0x9094286D
 	.4byte 0x696E2900
+.endobj lbl_8047D5C8
+.balign 4
+.obj lbl_8047D5E0, local # Shift-JIS
 	.4byte 0x52554E20
 	.4byte 0x8DC490B6
 	.4byte 0x8374838C
 	.4byte 0x815B8380
 	.4byte 0x9094286D
 	.4byte 0x61782900
+.endobj lbl_8047D5E0
+.balign 4
+.obj lbl_8047D5F8, local # Shift-JIS
 	.4byte 0x45534341
 	.4byte 0x5045208D
 	.4byte 0xC490B683
@@ -357,6 +542,9 @@ lbl_8047D088:
 	.4byte 0x5B838090
 	.4byte 0x94286D69
 	.4byte 0x6E290000
+.endobj lbl_8047D5F8
+.balign 4
+.obj lbl_8047D614, local # Shift-JIS
 	.4byte 0x45534341
 	.4byte 0x5045208D
 	.4byte 0xC490B683
@@ -364,105 +552,79 @@ lbl_8047D088:
 	.4byte 0x5B838090
 	.4byte 0x94286D61
 	.4byte 0x78290000
-lbl_8047D630:
-	.4byte 0x6E617669
-	.4byte 0x4D67722E
-	.4byte 0x63707000
-lbl_8047D63C:
-	.asciz "P2Assert"
+.endobj lbl_8047D614
 .balign 4
-lbl_8047D648:
-	.4byte 0x75736572
-	.4byte 0x2F416265
-	.4byte 0x2F70696B
-	.4byte 0x692F6E61
-	.4byte 0x76695061
-	.4byte 0x726D732E
-	.4byte 0x74787400
-	.4byte 0x2F757365
-	.4byte 0x722F4B61
-	.4byte 0x6E646F2F
-	.4byte 0x70696B69
-	.4byte 0x2F746578
-	.4byte 0x74732E73
-	.4byte 0x7A730000
-	.4byte 0x4E617669
-	.4byte 0x4D67723A
-	.4byte 0x3A417263
-	.4byte 0x68697665
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4B61
-	.4byte 0x6E646F2F
-	.4byte 0x70696B69
-	.4byte 0x2F70696B
-	.4byte 0x69732E73
-	.4byte 0x7A730000
-	.4byte 0x6F72696D
-	.4byte 0x615F6D6F
-	.4byte 0x64656C2F
-	.4byte 0x6F72696D
-	.4byte 0x61312E62
-	.4byte 0x6D640000
-	.4byte 0x616E696D
-	.4byte 0x4D67722E
-	.4byte 0x74787400
-	.4byte 0x6E617669
-	.4byte 0x436F6C6C
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x63757273
-	.4byte 0x6F722F63
-	.4byte 0x7572736F
-	.4byte 0x722E626D
-	.4byte 0x64000000
-	.4byte 0x63757273
-	.4byte 0x6F722F6D
-	.4byte 0x61726B65
-	.4byte 0x722E626D
-	.4byte 0x64000000
-	.4byte 0x63757273
-	.4byte 0x6F722F77
-	.4byte 0x616B6B61
-	.4byte 0x5F6F7269
-	.4byte 0x6D612E62
-	.4byte 0x726B0000
-	.4byte 0x63757273
-	.4byte 0x6F722F77
-	.4byte 0x616B6B61
-	.4byte 0x5F6C756A
-	.4byte 0x692E6272
-	.4byte 0x6B000000
-	.4byte 0x63757273
-	.4byte 0x6F722F61
-	.4byte 0x72726F77
-	.4byte 0x5F6F7269
-	.4byte 0x6D612E62
-	.4byte 0x726B0000
-	.4byte 0x63757273
-	.4byte 0x6F722F61
-	.4byte 0x72726F77
-	.4byte 0x5F6C756A
-	.4byte 0x692E6272
-	.4byte 0x6B000000
-	.4byte 0x6F72696D
-	.4byte 0x615F6D6F
-	.4byte 0x64656C2F
-	.4byte 0x73796174
-	.4byte 0x796F752E
-	.4byte 0x626D6400
-	.4byte 0x6F72696D
-	.4byte 0x615F6D6F
-	.4byte 0x64656C2F
-	.4byte 0x6F72696D
-	.4byte 0x61332E62
-	.4byte 0x6D640000
-	.4byte 0x00000000
+.obj lbl_8047D630, local
+	.asciz "naviMgr.cpp"
+.endobj lbl_8047D630
+.balign 4
+.obj lbl_8047D63C, local
+	.asciz "P2Assert"
+.endobj lbl_8047D63C
+.balign 4
+.obj lbl_8047D648, local
+	.asciz "user/Abe/piki/naviParms.txt"
+.endobj lbl_8047D648
+.balign 4
+.obj lbl_8047D664, local
+	.asciz "/user/Kando/piki/texts.szs"
+.endobj lbl_8047D664
+.balign 4
+.obj lbl_8047D680, local
+	.asciz "NaviMgr::Archive"
+.endobj lbl_8047D680
+.balign 4
+.obj lbl_8047D694, local
+	.asciz "/user/Kando/piki/pikis.szs"
+.endobj lbl_8047D694
+.balign 4
+.obj lbl_8047D6B0, local
+	.asciz "orima_model/orima1.bmd"
+.endobj lbl_8047D6B0
+.balign 4
+.obj lbl_8047D6C8, local
+	.asciz "animMgr.txt"
+.endobj lbl_8047D6C8
+.balign 4
+.obj lbl_8047D6D4, local
+	.asciz "naviColl.txt"
+.endobj lbl_8047D6D4
+.balign 4
+.obj lbl_8047D6E4, local
+	.asciz "cursor/cursor.bmd"
+.endobj lbl_8047D6E4
+.balign 4
+.obj lbl_8047D6F8, local
+	.asciz "cursor/marker.bmd"
+.endobj lbl_8047D6F8
+.balign 4
+.obj lbl_8047D70C, local
+	.asciz "cursor/wakka_orima.brk"
+.endobj lbl_8047D70C
+.balign 4
+.obj lbl_8047D724, local
+	.asciz "cursor/wakka_luji.brk"
+.endobj lbl_8047D724
+.balign 4
+.obj lbl_8047D73C, local
+	.asciz "cursor/arrow_orima.brk"
+.endobj lbl_8047D73C
+.balign 4
+.obj lbl_8047D754, local
+	.asciz "cursor/arrow_luji.brk"
+.endobj lbl_8047D754
+.balign 4
+.obj lbl_8047D76C, local
+	.asciz "orima_model/syatyou.bmd"
+.endobj lbl_8047D76C
+.balign 4
+.obj lbl_8047D784, local
+	.asciz "orima_model/orima3.bmd"
+.endobj lbl_8047D784
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q24Game7NaviMgr
-__vt__Q24Game7NaviMgr:
+.obj __vt__Q24Game7NaviMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game7NaviMgrFv
@@ -505,8 +667,8 @@ __vt__Q24Game7NaviMgr:
 	.4byte getMgrName__Q24Game7NaviMgrFv
 	.4byte frozenable__Q24Game7NaviMgrFv
 	.4byte loadResources__Q24Game7NaviMgrFv
-.global "__vt__23Container<Q24Game4Navi>"
-"__vt__23Container<Q24Game4Navi>":
+.endobj __vt__Q24Game7NaviMgr
+.obj "__vt__23Container<Q24Game4Navi>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__23Container<Q24Game4Navi>Fv"
@@ -518,8 +680,8 @@ __vt__Q24Game7NaviMgr:
 	.4byte 0
 	.4byte "getAt__23Container<Q24Game4Navi>Fi"
 	.4byte "getTo__23Container<Q24Game4Navi>Fv"
-.global "__vt__23ObjectMgr<Q24Game4Navi>"
-"__vt__23ObjectMgr<Q24Game4Navi>":
+.endobj "__vt__23Container<Q24Game4Navi>"
+.obj "__vt__23ObjectMgr<Q24Game4Navi>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__23ObjectMgr<Q24Game4Navi>Fv"
@@ -551,8 +713,8 @@ __vt__Q24Game7NaviMgr:
 	.4byte "doViewCalc__23ObjectMgr<Q24Game4Navi>Fv"
 	.4byte "doSimulation__23ObjectMgr<Q24Game4Navi>Ff"
 	.4byte "doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics"
-.global "__vt__27MonoObjectMgr<Q24Game4Navi>"
-"__vt__27MonoObjectMgr<Q24Game4Navi>":
+.endobj "__vt__23ObjectMgr<Q24Game4Navi>"
+.obj "__vt__27MonoObjectMgr<Q24Game4Navi>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__27MonoObjectMgr<Q24Game4Navi>Fv"
@@ -588,144 +750,201 @@ __vt__Q24Game7NaviMgr:
 	.4byte "resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
 	.4byte "clearMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
 	.4byte "onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv"
-.global __vt__Q24Game13FakePikiParms
-__vt__Q24Game13FakePikiParms:
+.endobj "__vt__27MonoObjectMgr<Q24Game4Navi>"
+.obj __vt__Q24Game13FakePikiParms, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game13FakePikiParmsFR6Stream
-.global __vt__Q24Game9NaviParms
-__vt__Q24Game9NaviParms:
+.endobj __vt__Q24Game13FakePikiParms
+.obj __vt__Q24Game9NaviParms, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q24Game9NaviParmsFR6Stream
-	.4byte 0
+.endobj __vt__Q24Game9NaviParms
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global naviMgr__4Game
-naviMgr__4Game:
+.obj naviMgr__4Game, global
 	.skip 0x4
-.global animMgr__Q24Game7NaviMgr
-animMgr__Q24Game7NaviMgr:
+.endobj naviMgr__4Game
+.obj animMgr__Q24Game7NaviMgr, global
 	.skip 0x4
+.endobj animMgr__Q24Game7NaviMgr
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518668:
-	.4byte 0x6E617669
-	.4byte 0x4D677200
-lbl_80518670:
+.obj lbl_80518668, local
+	.asciz "naviMgr"
+.endobj lbl_80518668
+.balign 4
+.obj lbl_80518670, local
 	.float 1.0
-lbl_80518674:
+.endobj lbl_80518670
+.obj lbl_80518674, local
 	.float 0.5
-lbl_80518678:
+.endobj lbl_80518674
+.obj lbl_80518678, local
 	.float 0.1
-lbl_8051867C:
-	.4byte 0x41C80000
-lbl_80518680:
-	.4byte 0x00000000
-lbl_80518684:
-	.4byte 0x43FA0000
-lbl_80518688:
-	.4byte 0x43480000
-lbl_8051868C:
-	.4byte 0x447A0000
-lbl_80518690:
-	.4byte 0x41700000
-lbl_80518694:
-	.4byte 0x42B40000
-lbl_80518698:
-	.4byte 0x40A00000
-lbl_8051869C:
-	.4byte 0x3EE66666
-lbl_805186A0:
-	.4byte 0x43200000
-lbl_805186A4:
-	.4byte 0x3F99999A
-lbl_805186A8:
-	.4byte 0x41200000
-lbl_805186AC:
-	.4byte 0x53746963
-	.4byte 0x6B203000
-lbl_805186B4:
-	.4byte 0x3A83126F
-lbl_805186B8:
-	.4byte 0x53746963
-	.4byte 0x6B203100
-lbl_805186C0:
-	.4byte 0x3F4CCCCD
-lbl_805186C4:
-	.4byte 0x53746963
-	.4byte 0x6B203200
-lbl_805186CC:
-	.4byte 0x42F00000
-lbl_805186D0:
-	.4byte 0x43340000
-lbl_805186D4:
-	.4byte 0x40200000
-lbl_805186D8:
-	.4byte 0x430C0000
-lbl_805186DC:
-	.4byte 0x42960000
-lbl_805186E0:
-	.4byte 0x42E60000
-lbl_805186E4:
-	.4byte 0x41F00000
-lbl_805186E8:
-	.4byte 0x43160000
-lbl_805186EC:
-	.4byte 0x42C80000
-lbl_805186F0:
-	.4byte 0x42200000
-lbl_805186F4:
-	.4byte 0x41000000
-lbl_805186F8:
-	.4byte 0x41080000
-lbl_805186FC:
-	.4byte 0x44FA0000
-lbl_80518700:
-	.4byte 0x3CF5C28F
-lbl_80518704:
-	.4byte 0x40000000
-lbl_80518708:
+.endobj lbl_80518678
+.obj lbl_8051867C, local
+	.float 25.0
+.endobj lbl_8051867C
+.obj lbl_80518680, local
+	.float 0.0
+.endobj lbl_80518680
+.obj lbl_80518684, local
+	.float 500.0
+.endobj lbl_80518684
+.obj lbl_80518688, local
+	.float 200.0
+.endobj lbl_80518688
+.obj lbl_8051868C, local
+	.float 1000.0
+.endobj lbl_8051868C
+.obj lbl_80518690, local
+	.float 15.0
+.endobj lbl_80518690
+.obj lbl_80518694, local
+	.float 90.0
+.endobj lbl_80518694
+.obj lbl_80518698, local
+	.float 5.0
+.endobj lbl_80518698
+.obj lbl_8051869C, local
+	.float 0.45
+.endobj lbl_8051869C
+.obj lbl_805186A0, local
+	.float 160.0
+.endobj lbl_805186A0
+.obj lbl_805186A4, local
+	.float 1.2
+.endobj lbl_805186A4
+.obj lbl_805186A8, local
+	.float 10.0
+.endobj lbl_805186A8
+.balign 4
+.obj lbl_805186AC, local
+	.asciz "Stick 0"
+.endobj lbl_805186AC
+.balign 4
+.obj lbl_805186B4, local
+	.float 0.001
+.endobj lbl_805186B4
+.balign 4
+.obj lbl_805186B8, local
+	.asciz "Stick 1"
+.endobj lbl_805186B8
+.balign 4
+.obj lbl_805186C0, local
+	.float 0.8
+.endobj lbl_805186C0
+.balign 4
+.obj lbl_805186C4, local
+	.asciz "Stick 2"
+.endobj lbl_805186C4
+.balign 4
+.obj lbl_805186CC, local
+	.float 120.0
+.endobj lbl_805186CC
+.obj lbl_805186D0, local
+	.float 180.0
+.endobj lbl_805186D0
+.obj lbl_805186D4, local
+	.float 2.5
+.endobj lbl_805186D4
+.obj lbl_805186D8, local
+	.float 140.0
+.endobj lbl_805186D8
+.obj lbl_805186DC, local
+	.float 75.0
+.endobj lbl_805186DC
+.obj lbl_805186E0, local
+	.float 115.0
+.endobj lbl_805186E0
+.obj lbl_805186E4, local
+	.float 30.0
+.endobj lbl_805186E4
+.obj lbl_805186E8, local
+	.float 150.0
+.endobj lbl_805186E8
+.obj lbl_805186EC, local
+	.float 100.0
+.endobj lbl_805186EC
+.obj lbl_805186F0, local
+	.float 40.0
+.endobj lbl_805186F0
+.obj lbl_805186F4, local
+	.float 8.0
+.endobj lbl_805186F4
+.obj lbl_805186F8, local
+	.float 8.5
+.endobj lbl_805186F8
+.obj lbl_805186FC, local
+	.float 2000.0
+.endobj lbl_805186FC
+.obj lbl_80518700, local
+	.float 0.03
+.endobj lbl_80518700
+.obj lbl_80518704, local
+	.float 2.0
+.endobj lbl_80518704
+.obj lbl_80518708, local
 	.float 0.3
-lbl_8051870C:
-	.4byte 0x3F59999A
-lbl_80518710:
-	.4byte 0x42700000
-lbl_80518714:
-	.4byte 0x3F266666
-lbl_80518718:
-	.4byte 0x43960000
-lbl_8051871C:
+.endobj lbl_80518708
+.obj lbl_8051870C, local
+	.float 0.85
+.endobj lbl_8051870C
+.obj lbl_80518710, local
+	.float 60.0
+.endobj lbl_80518710
+.obj lbl_80518714, local
+	.float 0.65
+.endobj lbl_80518714
+.obj lbl_80518718, local
+	.float 300.0
+.endobj lbl_80518718
+.balign 4
+.obj lbl_8051871C, local # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83740000
-lbl_80518724:
+.endobj lbl_8051871C
+.balign 4
+.obj lbl_80518724, local # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x97CD0000
-lbl_8051872C:
-	.4byte 0x43700000
-lbl_80518730:
+.endobj lbl_80518724
+.balign 4
+.obj lbl_8051872C, local
+	.float 240.0
+.endobj lbl_8051872C
+.obj lbl_80518730, local
 	.float 0.25
-lbl_80518734:
-	.4byte 0x61636365
-	.4byte 0x6C000000
-lbl_8051873C:
-	.4byte 0x3C23D70A
-lbl_80518740:
-	.4byte 0x41A00000
-lbl_80518744:
-	.4byte 0x42BE0000
-lbl_80518748:
-	.4byte 0x6D6F7469
-	.4byte 0x6F6E0000
-lbl_80518750:
-	.4byte 0x4E617669
-	.4byte 0x4D677200
+.endobj lbl_80518730
+.balign 4
+.obj lbl_80518734, local
+	.asciz "accel"
+.endobj lbl_80518734
+.balign 4
+.obj lbl_8051873C, local
+	.float 0.01
+.endobj lbl_8051873C
+.obj lbl_80518740, local
+	.float 20.0
+.endobj lbl_80518740
+.obj lbl_80518744, local
+	.float 95.0
+.endobj lbl_80518744
+.balign 4
+.obj lbl_80518748, local
+	.asciz "motion"
+.endobj lbl_80518748
+.balign 4
+.obj lbl_80518750, local
+	.asciz "NaviMgr"
+.endobj lbl_80518750
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game7NaviMgrFv
-__ct__Q24Game7NaviMgrFv:
+.fn __ct__Q24Game7NaviMgrFv, global
 /* 8015928C 001561CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80159290 001561D0  7C 08 02 A6 */	mflr r0
 /* 80159294 001561D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -778,9 +997,9 @@ __ct__Q24Game7NaviMgrFv:
 /* 8015934C 0015628C  7C 08 03 A6 */	mtlr r0
 /* 80159350 00156290  38 21 00 10 */	addi r1, r1, 0x10
 /* 80159354 00156294  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game7NaviMgrFv
 
-.global __ct__Q24Game9NaviParmsFv
-__ct__Q24Game9NaviParmsFv:
+.fn __ct__Q24Game9NaviParmsFv, weak
 /* 80159358 00156298  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015935C 0015629C  7C 08 02 A6 */	mflr r0
 /* 80159360 001562A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -805,9 +1024,9 @@ __ct__Q24Game9NaviParmsFv:
 /* 801593AC 001562EC  7C 08 03 A6 */	mtlr r0
 /* 801593B0 001562F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801593B4 001562F4  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game9NaviParmsFv
 
-.global __ct__Q34Game9NaviParms5ParmsFv
-__ct__Q34Game9NaviParms5ParmsFv:
+.fn __ct__Q34Game9NaviParms5ParmsFv, weak
 /* 801593B8 001562F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801593BC 001562FC  7C 08 02 A6 */	mflr r0
 /* 801593C0 00156300  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1773,9 +1992,9 @@ __ct__Q34Game9NaviParms5ParmsFv:
 /* 8015A2BC 001571FC  7C 08 03 A6 */	mtlr r0
 /* 8015A2C0 00157200  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015A2C4 00157204  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game9NaviParms5ParmsFv
 
-.global __ct__Q24Game13FakePikiParmsFv
-__ct__Q24Game13FakePikiParmsFv:
+.fn __ct__Q24Game13FakePikiParmsFv, weak
 /* 8015A2C8 00157208  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015A2CC 0015720C  7C 08 02 A6 */	mflr r0
 /* 8015A2D0 00157210  3C A0 73 30 */	lis r5, 0x73303030@ha
@@ -1881,9 +2100,9 @@ __ct__Q24Game13FakePikiParmsFv:
 /* 8015A460 001573A0  7C 08 03 A6 */	mtlr r0
 /* 8015A464 001573A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015A468 001573A8  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game13FakePikiParmsFv
 
-.global __ct__Q34Game13FakePikiParms5ParmsFv
-__ct__Q34Game13FakePikiParms5ParmsFv:
+.fn __ct__Q34Game13FakePikiParms5ParmsFv, weak
 /* 8015A46C 001573AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015A470 001573B0  7C 08 02 A6 */	mflr r0
 /* 8015A474 001573B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2058,9 +2277,9 @@ __ct__Q34Game13FakePikiParms5ParmsFv:
 /* 8015A714 00157654  7C 08 03 A6 */	mtlr r0
 /* 8015A718 00157658  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015A71C 0015765C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game13FakePikiParms5ParmsFv
 
-.global "__dt__27MonoObjectMgr<Q24Game4Navi>Fv"
-"__dt__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "__dt__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015A720 00157660  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015A724 00157664  7C 08 02 A6 */	mflr r0
 /* 8015A728 00157668  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2103,9 +2322,9 @@ __ct__Q34Game13FakePikiParms5ParmsFv:
 /* 8015A7B4 001576F4  7C 08 03 A6 */	mtlr r0
 /* 8015A7B8 001576F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015A7BC 001576FC  4E 80 00 20 */	blr 
+.endfn "__dt__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global __dt__Q24Game7NaviMgrFv
-__dt__Q24Game7NaviMgrFv:
+.fn __dt__Q24Game7NaviMgrFv, global
 /* 8015A7C0 00157700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015A7C4 00157704  7C 08 02 A6 */	mflr r0
 /* 8015A7C8 00157708  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2178,9 +2397,9 @@ __dt__Q24Game7NaviMgrFv:
 /* 8015A8C4 00157804  7C 08 03 A6 */	mtlr r0
 /* 8015A8C8 00157808  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015A8CC 0015780C  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game7NaviMgrFv
 
-.global createPSMDirectorUpdator__Q24Game7NaviMgrFv
-createPSMDirectorUpdator__Q24Game7NaviMgrFv:
+.fn createPSMDirectorUpdator__Q24Game7NaviMgrFv, global
 /* 8015A8D0 00157810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015A8D4 00157814  7C 08 02 A6 */	mflr r0
 /* 8015A8D8 00157818  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2212,9 +2431,9 @@ createPSMDirectorUpdator__Q24Game7NaviMgrFv:
 /* 8015A93C 0015787C  7C 08 03 A6 */	mtlr r0
 /* 8015A940 00157880  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015A944 00157884  4E 80 00 20 */	blr 
+.endfn createPSMDirectorUpdator__Q24Game7NaviMgrFv
 
-.global resetMgr__Q24Game7NaviMgrFv
-resetMgr__Q24Game7NaviMgrFv:
+.fn resetMgr__Q24Game7NaviMgrFv, global
 /* 8015A948 00157888  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015A94C 0015788C  7C 08 02 A6 */	mflr r0
 /* 8015A950 00157890  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2240,9 +2459,9 @@ resetMgr__Q24Game7NaviMgrFv:
 /* 8015A998 001578D8  7C 08 03 A6 */	mtlr r0
 /* 8015A99C 001578DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015A9A0 001578E0  4E 80 00 20 */	blr 
+.endfn resetMgr__Q24Game7NaviMgrFv
 
-.global killAll__Q24Game7NaviMgrFv
-killAll__Q24Game7NaviMgrFv:
+.fn killAll__Q24Game7NaviMgrFv, global
 /* 8015A9A4 001578E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015A9A8 001578E8  7C 08 02 A6 */	mflr r0
 /* 8015A9AC 001578EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2282,9 +2501,9 @@ killAll__Q24Game7NaviMgrFv:
 /* 8015AA28 00157968  7C 08 03 A6 */	mtlr r0
 /* 8015AA2C 0015796C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015AA30 00157970  4E 80 00 20 */	blr 
+.endfn killAll__Q24Game7NaviMgrFv
 
-.global setupNavi__Q24Game7NaviMgrFPQ24Game4Navi
-setupNavi__Q24Game7NaviMgrFPQ24Game4Navi:
+.fn setupNavi__Q24Game7NaviMgrFPQ24Game4Navi, global
 /* 8015AA34 00157974  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015AA38 00157978  7C 08 02 A6 */	mflr r0
 /* 8015AA3C 0015797C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2347,9 +2566,9 @@ setupNavi__Q24Game7NaviMgrFPQ24Game4Navi:
 /* 8015AB18 00157A58  7C 08 03 A6 */	mtlr r0
 /* 8015AB1C 00157A5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015AB20 00157A60  4E 80 00 20 */	blr 
+.endfn setupNavi__Q24Game7NaviMgrFPQ24Game4Navi
 
-.global birth__Q24Game7NaviMgrFv
-birth__Q24Game7NaviMgrFv:
+.fn birth__Q24Game7NaviMgrFv, global
 /* 8015AB24 00157A64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015AB28 00157A68  7C 08 02 A6 */	mflr r0
 /* 8015AB2C 00157A6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2418,9 +2637,9 @@ birth__Q24Game7NaviMgrFv:
 /* 8015AC14 00157B54  7C 08 03 A6 */	mtlr r0
 /* 8015AC18 00157B58  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015AC1C 00157B5C  4E 80 00 20 */	blr 
+.endfn birth__Q24Game7NaviMgrFv
 
-.global getActiveNavi__Q24Game7NaviMgrFv
-getActiveNavi__Q24Game7NaviMgrFv:
+.fn getActiveNavi__Q24Game7NaviMgrFv, global
 /* 8015AC20 00157B60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015AC24 00157B64  7C 08 02 A6 */	mflr r0
 /* 8015AC28 00157B68  38 80 00 00 */	li r4, 0
@@ -2464,9 +2683,9 @@ getActiveNavi__Q24Game7NaviMgrFv:
 /* 8015ACB0 00157BF0  7C 08 03 A6 */	mtlr r0
 /* 8015ACB4 00157BF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015ACB8 00157BF8  4E 80 00 20 */	blr 
+.endfn getActiveNavi__Q24Game7NaviMgrFv
 
-.global loadResources__Q24Game7NaviMgrFv
-loadResources__Q24Game7NaviMgrFv:
+.fn loadResources__Q24Game7NaviMgrFv, global
 /* 8015ACBC 00157BFC  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 8015ACC0 00157C00  7C 08 02 A6 */	mflr r0
 /* 8015ACC4 00157C04  3C 80 80 48 */	lis r4, lbl_8047D648@ha
@@ -2516,9 +2735,9 @@ loadResources__Q24Game7NaviMgrFv:
 /* 8015AD6C 00157CAC  7C 08 03 A6 */	mtlr r0
 /* 8015AD70 00157CB0  38 21 04 40 */	addi r1, r1, 0x440
 /* 8015AD74 00157CB4  4E 80 00 20 */	blr 
+.endfn loadResources__Q24Game7NaviMgrFv
 
-.global read__Q24Game9NaviParmsFR6Stream
-read__Q24Game9NaviParmsFR6Stream:
+.fn read__Q24Game9NaviParmsFR6Stream, weak
 /* 8015AD78 00157CB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015AD7C 00157CBC  7C 08 02 A6 */	mflr r0
 /* 8015AD80 00157CC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2539,9 +2758,9 @@ read__Q24Game9NaviParmsFR6Stream:
 /* 8015ADBC 00157CFC  7C 08 03 A6 */	mtlr r0
 /* 8015ADC0 00157D00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015ADC4 00157D04  4E 80 00 20 */	blr 
+.endfn read__Q24Game9NaviParmsFR6Stream
 
-.global load__Q24Game7NaviMgrFv
-load__Q24Game7NaviMgrFv:
+.fn load__Q24Game7NaviMgrFv, global
 /* 8015ADC8 00157D08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015ADCC 00157D0C  7C 08 02 A6 */	mflr r0
 /* 8015ADD0 00157D10  3C 80 80 48 */	lis r4, lbl_8047D088@ha
@@ -2698,9 +2917,9 @@ load__Q24Game7NaviMgrFv:
 /* 8015B020 00157F60  7C 08 03 A6 */	mtlr r0
 /* 8015B024 00157F64  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015B028 00157F68  4E 80 00 20 */	blr 
+.endfn load__Q24Game7NaviMgrFv
 
-.global createModel__Q24Game7NaviMgrFi
-createModel__Q24Game7NaviMgrFi:
+.fn createModel__Q24Game7NaviMgrFi, global
 /* 8015B02C 00157F6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015B030 00157F70  7C 08 02 A6 */	mflr r0
 /* 8015B034 00157F74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2727,9 +2946,9 @@ createModel__Q24Game7NaviMgrFi:
 /* 8015B084 00157FC4  7C 08 03 A6 */	mtlr r0
 /* 8015B088 00157FC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015B08C 00157FCC  4E 80 00 20 */	blr 
+.endfn createModel__Q24Game7NaviMgrFi
 
-.global loadResources_float__Q24Game7NaviMgrFv
-loadResources_float__Q24Game7NaviMgrFv:
+.fn loadResources_float__Q24Game7NaviMgrFv, global
 /* 8015B090 00157FD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015B094 00157FD4  7C 08 02 A6 */	mflr r0
 /* 8015B098 00157FD8  3C A0 80 48 */	lis r5, lbl_8047D088@ha
@@ -2787,9 +3006,9 @@ loadResources_float__Q24Game7NaviMgrFv:
 /* 8015B158 00158098  7C 08 03 A6 */	mtlr r0
 /* 8015B15C 0015809C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015B160 001580A0  4E 80 00 20 */	blr 
+.endfn loadResources_float__Q24Game7NaviMgrFv
 
-.global getAliveCount__Q24Game7NaviMgrFv
-getAliveCount__Q24Game7NaviMgrFv:
+.fn getAliveCount__Q24Game7NaviMgrFv, global
 /* 8015B164 001580A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015B168 001580A8  7C 08 02 A6 */	mflr r0
 /* 8015B16C 001580AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2828,18 +3047,18 @@ getAliveCount__Q24Game7NaviMgrFv:
 /* 8015B1E4 00158124  7C 08 03 A6 */	mtlr r0
 /* 8015B1E8 00158128  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015B1EC 0015812C  4E 80 00 20 */	blr 
+.endfn getAliveCount__Q24Game7NaviMgrFv
 
-.global clearDeadCount__Q24Game7NaviMgrFv
-clearDeadCount__Q24Game7NaviMgrFv:
+.fn clearDeadCount__Q24Game7NaviMgrFv, global
 /* 8015B1F0 00158130  38 80 00 00 */	li r4, 0
 /* 8015B1F4 00158134  38 00 FF FF */	li r0, -1
 /* 8015B1F8 00158138  90 83 00 50 */	stw r4, 0x50(r3)
 /* 8015B1FC 0015813C  90 03 00 54 */	stw r0, 0x54(r3)
 /* 8015B200 00158140  90 03 00 58 */	stw r0, 0x58(r3)
 /* 8015B204 00158144  4E 80 00 20 */	blr 
+.endfn clearDeadCount__Q24Game7NaviMgrFv
 
-.global informOrimaDead__Q24Game7NaviMgrFi
-informOrimaDead__Q24Game7NaviMgrFi:
+.fn informOrimaDead__Q24Game7NaviMgrFi, global
 /* 8015B208 00158148  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015B20C 0015814C  7C 08 02 A6 */	mflr r0
 /* 8015B210 00158150  7C 65 1B 78 */	mr r5, r3
@@ -2873,9 +3092,9 @@ informOrimaDead__Q24Game7NaviMgrFi:
 /* 8015B274 001581B4  7C 08 03 A6 */	mtlr r0
 /* 8015B278 001581B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015B27C 001581BC  4E 80 00 20 */	blr 
+.endfn informOrimaDead__Q24Game7NaviMgrFi
 
-.global getDeadOrima__Q24Game7NaviMgrFi
-getDeadOrima__Q24Game7NaviMgrFi:
+.fn getDeadOrima__Q24Game7NaviMgrFi, global
 /* 8015B280 001581C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015B284 001581C4  7C 08 02 A6 */	mflr r0
 /* 8015B288 001581C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2897,9 +3116,9 @@ getDeadOrima__Q24Game7NaviMgrFi:
 /* 8015B2C0 00158200  7C 08 03 A6 */	mtlr r0
 /* 8015B2C4 00158204  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015B2C8 00158208  4E 80 00 20 */	blr 
+.endfn getDeadOrima__Q24Game7NaviMgrFi
 
-.global getAliveOrima__Q24Game7NaviMgrFi
-getAliveOrima__Q24Game7NaviMgrFi:
+.fn getAliveOrima__Q24Game7NaviMgrFi, global
 /* 8015B2CC 0015820C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015B2D0 00158210  7C 08 02 A6 */	mflr r0
 /* 8015B2D4 00158214  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2966,9 +3185,9 @@ getAliveOrima__Q24Game7NaviMgrFi:
 /* 8015B3AC 001582EC  7C 08 03 A6 */	mtlr r0
 /* 8015B3B0 001582F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015B3B4 001582F4  4E 80 00 20 */	blr 
+.endfn getAliveOrima__Q24Game7NaviMgrFi
 
-.global setMovieDraw__Q24Game7NaviMgrFb
-setMovieDraw__Q24Game7NaviMgrFb:
+.fn setMovieDraw__Q24Game7NaviMgrFb, global
 /* 8015B3B8 001582F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015B3BC 001582FC  7C 08 02 A6 */	mflr r0
 /* 8015B3C0 00158300  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3016,9 +3235,9 @@ setMovieDraw__Q24Game7NaviMgrFb:
 /* 8015B454 00158394  7C 08 03 A6 */	mtlr r0
 /* 8015B458 00158398  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015B45C 0015839C  4E 80 00 20 */	blr 
+.endfn setMovieDraw__Q24Game7NaviMgrFb
 
-.global doAnimation__Q24Game7NaviMgrFv
-doAnimation__Q24Game7NaviMgrFv:
+.fn doAnimation__Q24Game7NaviMgrFv, global
 /* 8015B460 001583A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015B464 001583A4  7C 08 02 A6 */	mflr r0
 /* 8015B468 001583A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3079,9 +3298,9 @@ doAnimation__Q24Game7NaviMgrFv:
 /* 8015B534 00158474  7C 08 03 A6 */	mtlr r0
 /* 8015B538 00158478  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015B53C 0015847C  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game7NaviMgrFv
 
-.global doEntry__Q24Game7NaviMgrFv
-doEntry__Q24Game7NaviMgrFv:
+.fn doEntry__Q24Game7NaviMgrFv, global
 /* 8015B540 00158480  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015B544 00158484  7C 08 02 A6 */	mflr r0
 /* 8015B548 00158488  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3180,9 +3399,9 @@ doEntry__Q24Game7NaviMgrFv:
 /* 8015B69C 001585DC  7C 08 03 A6 */	mtlr r0
 /* 8015B6A0 001585E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015B6A4 001585E4  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game7NaviMgrFv
 
-.global doSimulation__Q24Game7NaviMgrFf
-doSimulation__Q24Game7NaviMgrFf:
+.fn doSimulation__Q24Game7NaviMgrFf, global
 /* 8015B6A8 001585E8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8015B6AC 001585EC  7C 08 02 A6 */	mflr r0
 /* 8015B6B0 001585F0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3426,23 +3645,23 @@ doSimulation__Q24Game7NaviMgrFf:
 /* 8015BA14 00158954  7C 08 03 A6 */	mtlr r0
 /* 8015BA18 00158958  38 21 00 30 */	addi r1, r1, 0x30
 /* 8015BA1C 0015895C  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game7NaviMgrFf
 
-.global setupSoundViewerAndBas__Q24Game7NaviMgrFv
-setupSoundViewerAndBas__Q24Game7NaviMgrFv:
+.fn setupSoundViewerAndBas__Q24Game7NaviMgrFv, global
 /* 8015BA20 00158960  4E 80 00 20 */	blr 
+.endfn setupSoundViewerAndBas__Q24Game7NaviMgrFv
 
-.global getMgrName__Q24Game7NaviMgrFv
-getMgrName__Q24Game7NaviMgrFv:
+.fn getMgrName__Q24Game7NaviMgrFv, weak
 /* 8015BA24 00158964  38 62 A3 F0 */	addi r3, r2, lbl_80518750@sda21
 /* 8015BA28 00158968  4E 80 00 20 */	blr 
+.endfn getMgrName__Q24Game7NaviMgrFv
 
-.global frozenable__Q24Game7NaviMgrFv
-frozenable__Q24Game7NaviMgrFv:
+.fn frozenable__Q24Game7NaviMgrFv, weak
 /* 8015BA2C 0015896C  38 60 00 00 */	li r3, 0
 /* 8015BA30 00158970  4E 80 00 20 */	blr 
+.endfn frozenable__Q24Game7NaviMgrFv
 
-.global "__dt__23Container<Q24Game4Navi>Fv"
-"__dt__23Container<Q24Game4Navi>Fv":
+.fn "__dt__23Container<Q24Game4Navi>Fv", weak
 /* 8015BA34 00158974  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015BA38 00158978  7C 08 02 A6 */	mflr r0
 /* 8015BA3C 0015897C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3473,9 +3692,9 @@ frozenable__Q24Game7NaviMgrFv:
 /* 8015BA98 001589D8  7C 08 03 A6 */	mtlr r0
 /* 8015BA9C 001589DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015BAA0 001589E0  4E 80 00 20 */	blr 
+.endfn "__dt__23Container<Q24Game4Navi>Fv"
 
-.global "__dt__23ObjectMgr<Q24Game4Navi>Fv"
-"__dt__23ObjectMgr<Q24Game4Navi>Fv":
+.fn "__dt__23ObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BAA4 001589E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015BAA8 001589E8  7C 08 02 A6 */	mflr r0
 /* 8015BAAC 001589EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3512,9 +3731,9 @@ frozenable__Q24Game7NaviMgrFv:
 /* 8015BB20 00158A60  7C 08 03 A6 */	mtlr r0
 /* 8015BB24 00158A64  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015BB28 00158A68  4E 80 00 20 */	blr 
+.endfn "__dt__23ObjectMgr<Q24Game4Navi>Fv"
 
-.global read__Q24Game13FakePikiParmsFR6Stream
-read__Q24Game13FakePikiParmsFR6Stream:
+.fn read__Q24Game13FakePikiParmsFR6Stream, weak
 /* 8015BB2C 00158A6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015BB30 00158A70  7C 08 02 A6 */	mflr r0
 /* 8015BB34 00158A74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3532,9 +3751,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BB64 00158AA4  7C 08 03 A6 */	mtlr r0
 /* 8015BB68 00158AA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015BB6C 00158AAC  4E 80 00 20 */	blr 
+.endfn read__Q24Game13FakePikiParmsFR6Stream
 
-.global "birth__27MonoObjectMgr<Q24Game4Navi>Fv"
-"birth__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "birth__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BB70 00158AB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015BB74 00158AB4  7C 08 02 A6 */	mflr r0
 /* 8015BB78 00158AB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3561,9 +3780,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BBC4 00158B04  7C 08 03 A6 */	mtlr r0
 /* 8015BBC8 00158B08  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015BBCC 00158B0C  4E 80 00 20 */	blr 
+.endfn "birth__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "getNext__27MonoObjectMgr<Q24Game4Navi>FPv"
-"getNext__27MonoObjectMgr<Q24Game4Navi>FPv":
+.fn "getNext__27MonoObjectMgr<Q24Game4Navi>FPv", weak
 /* 8015BBD0 00158B10  80 A3 00 24 */	lwz r5, 0x24(r3)
 /* 8015BBD4 00158B14  38 C4 00 01 */	addi r6, r4, 1
 /* 8015BBD8 00158B18  7C 06 28 50 */	subf r0, r6, r5
@@ -3583,9 +3802,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 .L_8015BC08:
 /* 8015BC08 00158B48  7C A3 2B 78 */	mr r3, r5
 /* 8015BC0C 00158B4C  4E 80 00 20 */	blr 
+.endfn "getNext__27MonoObjectMgr<Q24Game4Navi>FPv"
 
-.global "getStart__27MonoObjectMgr<Q24Game4Navi>Fv"
-"getStart__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "getStart__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BC10 00158B50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015BC14 00158B54  7C 08 02 A6 */	mflr r0
 /* 8015BC18 00158B58  38 80 FF FF */	li r4, -1
@@ -3598,19 +3817,19 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BC34 00158B74  7C 08 03 A6 */	mtlr r0
 /* 8015BC38 00158B78  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015BC3C 00158B7C  4E 80 00 20 */	blr 
+.endfn "getStart__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "getEnd__27MonoObjectMgr<Q24Game4Navi>Fv"
-"getEnd__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "getEnd__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BC40 00158B80  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 8015BC44 00158B84  4E 80 00 20 */	blr 
+.endfn "getEnd__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "getTo__27MonoObjectMgr<Q24Game4Navi>Fv"
-"getTo__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "getTo__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BC48 00158B88  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 8015BC4C 00158B8C  4E 80 00 20 */	blr 
+.endfn "getTo__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv"
-"doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BC50 00158B90  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015BC54 00158B94  7C 08 02 A6 */	mflr r0
 /* 8015BC58 00158B98  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3646,9 +3865,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BCC4 00158C04  7C 08 03 A6 */	mtlr r0
 /* 8015BCC8 00158C08  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015BCCC 00158C0C  4E 80 00 20 */	blr 
+.endfn "doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "doEntry__27MonoObjectMgr<Q24Game4Navi>Fv"
-"doEntry__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "doEntry__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BCD0 00158C10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015BCD4 00158C14  7C 08 02 A6 */	mflr r0
 /* 8015BCD8 00158C18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3684,9 +3903,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BD44 00158C84  7C 08 03 A6 */	mtlr r0
 /* 8015BD48 00158C88  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015BD4C 00158C8C  4E 80 00 20 */	blr 
+.endfn "doEntry__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
-"doSetView__27MonoObjectMgr<Q24Game4Navi>Fi":
+.fn "doSetView__27MonoObjectMgr<Q24Game4Navi>Fi", weak
 /* 8015BD50 00158C90  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015BD54 00158C94  7C 08 02 A6 */	mflr r0
 /* 8015BD58 00158C98  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3726,9 +3945,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BDD4 00158D14  7C 08 03 A6 */	mtlr r0
 /* 8015BDD8 00158D18  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015BDDC 00158D1C  4E 80 00 20 */	blr 
+.endfn "doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
 
-.global "doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
-"doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BDE0 00158D20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015BDE4 00158D24  7C 08 02 A6 */	mflr r0
 /* 8015BDE8 00158D28  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3764,9 +3983,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BE54 00158D94  7C 08 03 A6 */	mtlr r0
 /* 8015BE58 00158D98  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015BE5C 00158D9C  4E 80 00 20 */	blr 
+.endfn "doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff"
-"doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff":
+.fn "doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff", weak
 /* 8015BE60 00158DA0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015BE64 00158DA4  7C 08 02 A6 */	mflr r0
 /* 8015BE68 00158DA8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3806,9 +4025,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BEE4 00158E24  7C 08 03 A6 */	mtlr r0
 /* 8015BEE8 00158E28  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015BEEC 00158E2C  4E 80 00 20 */	blr 
+.endfn "doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff"
 
-.global "doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
-"doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics":
+.fn "doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics", weak
 /* 8015BEF0 00158E30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015BEF4 00158E34  7C 08 02 A6 */	mflr r0
 /* 8015BEF8 00158E38  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3848,18 +4067,18 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BF74 00158EB4  7C 08 03 A6 */	mtlr r0
 /* 8015BF78 00158EB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015BF7C 00158EBC  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
 
-.global "resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
-"resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BF80 00158EC0  38 00 00 00 */	li r0, 0
 /* 8015BF84 00158EC4  90 03 00 28 */	stw r0, 0x28(r3)
 /* 8015BF88 00158EC8  90 03 00 24 */	stw r0, 0x24(r3)
 /* 8015BF8C 00158ECC  90 03 00 20 */	stw r0, 0x20(r3)
 /* 8015BF90 00158ED0  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8015BF94 00158ED4  4E 80 00 20 */	blr 
+.endfn "resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "clearMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
-"clearMgr__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "clearMgr__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BF98 00158ED8  38 00 00 00 */	li r0, 0
 /* 8015BF9C 00158EDC  38 C0 00 00 */	li r6, 0
 /* 8015BFA0 00158EE0  90 03 00 20 */	stw r0, 0x20(r3)
@@ -3874,9 +4093,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015BFBC 00158EFC  7C 06 00 00 */	cmpw r6, r0
 /* 8015BFC0 00158F00  41 80 FF EC */	blt .L_8015BFAC
 /* 8015BFC4 00158F04  4E 80 00 20 */	blr 
+.endfn "clearMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "getEmptyIndex__27MonoObjectMgr<Q24Game4Navi>Fv"
-"getEmptyIndex__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "getEmptyIndex__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015BFC8 00158F08  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 8015BFCC 00158F0C  38 A0 00 00 */	li r5, 0
 /* 8015BFD0 00158F10  7C 09 03 A6 */	mtctr r0
@@ -3895,16 +4114,16 @@ read__Q24Game13FakePikiParmsFR6Stream:
 .L_8015BFFC:
 /* 8015BFFC 00158F3C  38 60 FF FF */	li r3, -1
 /* 8015C000 00158F40  4E 80 00 20 */	blr 
+.endfn "getEmptyIndex__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "get__27MonoObjectMgr<Q24Game4Navi>FPv"
-"get__27MonoObjectMgr<Q24Game4Navi>FPv":
+.fn "get__27MonoObjectMgr<Q24Game4Navi>FPv", weak
 /* 8015C004 00158F44  1C 04 03 20 */	mulli r0, r4, 0x320
 /* 8015C008 00158F48  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 8015C00C 00158F4C  7C 63 02 14 */	add r3, r3, r0
 /* 8015C010 00158F50  4E 80 00 20 */	blr 
+.endfn "get__27MonoObjectMgr<Q24Game4Navi>FPv"
 
-.global "doAnimation__23ObjectMgr<Q24Game4Navi>Fv"
-"doAnimation__23ObjectMgr<Q24Game4Navi>Fv":
+.fn "doAnimation__23ObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015C014 00158F54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015C018 00158F58  7C 08 02 A6 */	mflr r0
 /* 8015C01C 00158F5C  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
@@ -4034,9 +4253,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015C1EC 0015912C  7C 08 03 A6 */	mtlr r0
 /* 8015C1F0 00159130  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015C1F4 00159134  4E 80 00 20 */	blr 
+.endfn "doAnimation__23ObjectMgr<Q24Game4Navi>Fv"
 
-.global "doEntry__23ObjectMgr<Q24Game4Navi>Fv"
-"doEntry__23ObjectMgr<Q24Game4Navi>Fv":
+.fn "doEntry__23ObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015C1F8 00159138  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015C1FC 0015913C  7C 08 02 A6 */	mflr r0
 /* 8015C200 00159140  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
@@ -4166,9 +4385,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015C3D0 00159310  7C 08 03 A6 */	mtlr r0
 /* 8015C3D4 00159314  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015C3D8 00159318  4E 80 00 20 */	blr 
+.endfn "doEntry__23ObjectMgr<Q24Game4Navi>Fv"
 
-.global "doSetView__23ObjectMgr<Q24Game4Navi>Fi"
-"doSetView__23ObjectMgr<Q24Game4Navi>Fi":
+.fn "doSetView__23ObjectMgr<Q24Game4Navi>Fi", weak
 /* 8015C3DC 0015931C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015C3E0 00159320  7C 08 02 A6 */	mflr r0
 /* 8015C3E4 00159324  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Navi>"@ha
@@ -4302,9 +4521,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015C5C4 00159504  7C 08 03 A6 */	mtlr r0
 /* 8015C5C8 00159508  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015C5CC 0015950C  4E 80 00 20 */	blr 
+.endfn "doSetView__23ObjectMgr<Q24Game4Navi>Fi"
 
-.global "doViewCalc__23ObjectMgr<Q24Game4Navi>Fv"
-"doViewCalc__23ObjectMgr<Q24Game4Navi>Fv":
+.fn "doViewCalc__23ObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015C5D0 00159510  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015C5D4 00159514  7C 08 02 A6 */	mflr r0
 /* 8015C5D8 00159518  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
@@ -4434,9 +4653,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015C7A8 001596E8  7C 08 03 A6 */	mtlr r0
 /* 8015C7AC 001596EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015C7B0 001596F0  4E 80 00 20 */	blr 
+.endfn "doViewCalc__23ObjectMgr<Q24Game4Navi>Fv"
 
-.global "doSimulation__23ObjectMgr<Q24Game4Navi>Ff"
-"doSimulation__23ObjectMgr<Q24Game4Navi>Ff":
+.fn "doSimulation__23ObjectMgr<Q24Game4Navi>Ff", weak
 /* 8015C7B4 001596F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015C7B8 001596F8  7C 08 02 A6 */	mflr r0
 /* 8015C7BC 001596FC  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
@@ -4570,9 +4789,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015C99C 001598DC  7C 08 03 A6 */	mtlr r0
 /* 8015C9A0 001598E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015C9A4 001598E4  4E 80 00 20 */	blr 
+.endfn "doSimulation__23ObjectMgr<Q24Game4Navi>Ff"
 
-.global "doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics"
-"doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics":
+.fn "doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics", weak
 /* 8015C9A8 001598E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015C9AC 001598EC  7C 08 02 A6 */	mflr r0
 /* 8015C9B0 001598F0  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Navi>"@ha
@@ -4706,9 +4925,9 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015CB90 00159AD0  7C 08 03 A6 */	mtlr r0
 /* 8015CB94 00159AD4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015CB98 00159AD8  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics"
 
-.global "getObject__23Container<Q24Game4Navi>FPv"
-"getObject__23Container<Q24Game4Navi>FPv":
+.fn "getObject__23Container<Q24Game4Navi>FPv", weak
 /* 8015CB9C 00159ADC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015CBA0 00159AE0  7C 08 02 A6 */	mflr r0
 /* 8015CBA4 00159AE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4720,19 +4939,19 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015CBBC 00159AFC  7C 08 03 A6 */	mtlr r0
 /* 8015CBC0 00159B00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015CBC4 00159B04  4E 80 00 20 */	blr 
+.endfn "getObject__23Container<Q24Game4Navi>FPv"
 
-.global "getAt__23Container<Q24Game4Navi>Fi"
-"getAt__23Container<Q24Game4Navi>Fi":
+.fn "getAt__23Container<Q24Game4Navi>Fi", weak
 /* 8015CBC8 00159B08  38 60 00 00 */	li r3, 0
 /* 8015CBCC 00159B0C  4E 80 00 20 */	blr 
+.endfn "getAt__23Container<Q24Game4Navi>Fi"
 
-.global "getTo__23Container<Q24Game4Navi>Fv"
-"getTo__23Container<Q24Game4Navi>Fv":
+.fn "getTo__23Container<Q24Game4Navi>Fv", weak
 /* 8015CBD0 00159B10  38 60 00 00 */	li r3, 0
 /* 8015CBD4 00159B14  4E 80 00 20 */	blr 
+.endfn "getTo__23Container<Q24Game4Navi>Fv"
 
-.global "__ct__27MonoObjectMgr<Q24Game4Navi>Fv"
-"__ct__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "__ct__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015CBD8 00159B18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015CBDC 00159B1C  7C 08 02 A6 */	mflr r0
 /* 8015CBE0 00159B20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4772,103 +4991,104 @@ read__Q24Game13FakePikiParmsFR6Stream:
 /* 8015CC68 00159BA8  7C 08 03 A6 */	mtlr r0
 /* 8015CC6C 00159BAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015CC70 00159BB0  4E 80 00 20 */	blr 
+.endfn "__ct__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "@28@resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
-"@28@resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "@28@resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015CC74 00159BB4  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CC78 00159BB8  4B FF F3 08 */	b "resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
+.endfn "@28@resetMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "@28@doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff"
-"@28@doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff":
+.fn "@28@doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff", weak
 /* 8015CC7C 00159BBC  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CC80 00159BC0  4B FF F1 E0 */	b "doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff"
+.endfn "@28@doSimulation__27MonoObjectMgr<Q24Game4Navi>Ff"
 
-.global "@28@doEntry__27MonoObjectMgr<Q24Game4Navi>Fv"
-"@28@doEntry__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "@28@doEntry__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015CC84 00159BC4  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CC88 00159BC8  4B FF F0 48 */	b "doEntry__27MonoObjectMgr<Q24Game4Navi>Fv"
+.endfn "@28@doEntry__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "@28@doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv"
-"@28@doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "@28@doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015CC8C 00159BCC  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CC90 00159BD0  4B FF EF C0 */	b "doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv"
+.endfn "@28@doAnimation__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "@28@doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics"
-"@28@doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics":
+.fn "@28@doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics", weak
 /* 8015CC94 00159BD4  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CC98 00159BD8  4B FF FD 10 */	b "doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics"
+.endfn "@28@doDirectDraw__23ObjectMgr<Q24Game4Navi>FR8Graphics"
 
-.global "@28@doSimulation__23ObjectMgr<Q24Game4Navi>Ff"
-"@28@doSimulation__23ObjectMgr<Q24Game4Navi>Ff":
+.fn "@28@doSimulation__23ObjectMgr<Q24Game4Navi>Ff", weak
 /* 8015CC9C 00159BDC  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCA0 00159BE0  4B FF FB 14 */	b "doSimulation__23ObjectMgr<Q24Game4Navi>Ff"
+.endfn "@28@doSimulation__23ObjectMgr<Q24Game4Navi>Ff"
 
-.global "@28@doViewCalc__23ObjectMgr<Q24Game4Navi>Fv"
-"@28@doViewCalc__23ObjectMgr<Q24Game4Navi>Fv":
+.fn "@28@doViewCalc__23ObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015CCA4 00159BE4  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCA8 00159BE8  4B FF F9 28 */	b "doViewCalc__23ObjectMgr<Q24Game4Navi>Fv"
+.endfn "@28@doViewCalc__23ObjectMgr<Q24Game4Navi>Fv"
 
-.global "@28@doSetView__23ObjectMgr<Q24Game4Navi>Fi"
-"@28@doSetView__23ObjectMgr<Q24Game4Navi>Fi":
+.fn "@28@doSetView__23ObjectMgr<Q24Game4Navi>Fi", weak
 /* 8015CCAC 00159BEC  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCB0 00159BF0  4B FF F7 2C */	b "doSetView__23ObjectMgr<Q24Game4Navi>Fi"
+.endfn "@28@doSetView__23ObjectMgr<Q24Game4Navi>Fi"
 
-.global "@28@doEntry__23ObjectMgr<Q24Game4Navi>Fv"
-"@28@doEntry__23ObjectMgr<Q24Game4Navi>Fv":
+.fn "@28@doEntry__23ObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015CCB4 00159BF4  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCB8 00159BF8  4B FF F5 40 */	b "doEntry__23ObjectMgr<Q24Game4Navi>Fv"
+.endfn "@28@doEntry__23ObjectMgr<Q24Game4Navi>Fv"
 
-.global "@28@doAnimation__23ObjectMgr<Q24Game4Navi>Fv"
-"@28@doAnimation__23ObjectMgr<Q24Game4Navi>Fv":
+.fn "@28@doAnimation__23ObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015CCBC 00159BFC  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCC0 00159C00  4B FF F3 54 */	b "doAnimation__23ObjectMgr<Q24Game4Navi>Fv"
+.endfn "@28@doAnimation__23ObjectMgr<Q24Game4Navi>Fv"
 
-.global "@28@frozenable__Q24Game7NaviMgrFv"
-"@28@frozenable__Q24Game7NaviMgrFv":
+.fn "@28@frozenable__Q24Game7NaviMgrFv", weak
 /* 8015CCC4 00159C04  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCC8 00159C08  4B FF ED 64 */	b frozenable__Q24Game7NaviMgrFv
+.endfn "@28@frozenable__Q24Game7NaviMgrFv"
 
-.global "@28@resetMgr__Q24Game7NaviMgrFv"
-"@28@resetMgr__Q24Game7NaviMgrFv":
+.fn "@28@resetMgr__Q24Game7NaviMgrFv", weak
 /* 8015CCCC 00159C0C  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCD0 00159C10  4B FF DC 78 */	b resetMgr__Q24Game7NaviMgrFv
+.endfn "@28@resetMgr__Q24Game7NaviMgrFv"
 
-.global "@28@loadResources__Q24Game7NaviMgrFv"
-"@28@loadResources__Q24Game7NaviMgrFv":
+.fn "@28@loadResources__Q24Game7NaviMgrFv", weak
 /* 8015CCD4 00159C14  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCD8 00159C18  4B FF DF E4 */	b loadResources__Q24Game7NaviMgrFv
+.endfn "@28@loadResources__Q24Game7NaviMgrFv"
 
-.global "@28@doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
-"@28@doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics":
+.fn "@28@doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics", weak
 /* 8015CCDC 00159C1C  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCE0 00159C20  4B FF F2 10 */	b "doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
+.endfn "@28@doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
 
-.global "@28@doSimulation__Q24Game7NaviMgrFf"
-"@28@doSimulation__Q24Game7NaviMgrFf":
+.fn "@28@doSimulation__Q24Game7NaviMgrFf", weak
 /* 8015CCE4 00159C24  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCE8 00159C28  4B FF E9 C0 */	b doSimulation__Q24Game7NaviMgrFf
+.endfn "@28@doSimulation__Q24Game7NaviMgrFf"
 
-.global "@28@doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
-"@28@doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv":
+.fn "@28@doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv", weak
 /* 8015CCEC 00159C2C  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCF0 00159C30  4B FF F0 F0 */	b "doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
+.endfn "@28@doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
 
-.global "@28@doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
-"@28@doSetView__27MonoObjectMgr<Q24Game4Navi>Fi":
+.fn "@28@doSetView__27MonoObjectMgr<Q24Game4Navi>Fi", weak
 /* 8015CCF4 00159C34  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CCF8 00159C38  4B FF F0 58 */	b "doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
+.endfn "@28@doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
 
-.global "@28@doEntry__Q24Game7NaviMgrFv"
-"@28@doEntry__Q24Game7NaviMgrFv":
+.fn "@28@doEntry__Q24Game7NaviMgrFv", weak
 /* 8015CCFC 00159C3C  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CD00 00159C40  4B FF E8 40 */	b doEntry__Q24Game7NaviMgrFv
+.endfn "@28@doEntry__Q24Game7NaviMgrFv"
 
-.global "@28@doAnimation__Q24Game7NaviMgrFv"
-"@28@doAnimation__Q24Game7NaviMgrFv":
+.fn "@28@doAnimation__Q24Game7NaviMgrFv", weak
 /* 8015CD04 00159C44  38 63 FF E4 */	addi r3, r3, -28
 /* 8015CD08 00159C48  4B FF E7 58 */	b doAnimation__Q24Game7NaviMgrFv
+.endfn "@28@doAnimation__Q24Game7NaviMgrFv"
 
-.global "@48@__dt__Q24Game7NaviMgrFv"
-"@48@__dt__Q24Game7NaviMgrFv":
+.fn "@48@__dt__Q24Game7NaviMgrFv", weak
 /* 8015CD0C 00159C4C  38 63 FF D0 */	addi r3, r3, -48
 /* 8015CD10 00159C50  4B FF DA B0 */	b __dt__Q24Game7NaviMgrFv
+.endfn "@48@__dt__Q24Game7NaviMgrFv"

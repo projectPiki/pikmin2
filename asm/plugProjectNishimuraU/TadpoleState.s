@@ -92,14 +92,17 @@
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_8051B390:
+.obj lbl_8051B390, local
 	.asciz "dead"
+.endobj lbl_8051B390
 .balign 4
-lbl_8051B398:
+.obj lbl_8051B398, local
 	.asciz "wait"
+.endobj lbl_8051B398
 .balign 4
-lbl_8051B3A0:
+.obj lbl_8051B3A0, local
 	.asciz "move"
+.endobj lbl_8051B3A0
 .balign 4
 .obj lbl_8051B3A8, local
 	.asciz "amaze"

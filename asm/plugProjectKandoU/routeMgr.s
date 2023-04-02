@@ -69,8 +69,7 @@
 	.4byte __dt__Q34Game14EditorRouteMgr6WPNodeFv
 	.4byte getChildCount__5CNodeFv
 .endobj __vt__Q34Game14EditorRouteMgr6WPNode
-.global __vt__Q24Game12GameRouteMgr
-__vt__Q24Game12GameRouteMgr:
+.obj __vt__Q24Game12GameRouteMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game12GameRouteMgrFv
@@ -85,16 +84,16 @@ __vt__Q24Game12GameRouteMgr:
 	.4byte getWayPoint__Q24Game12GameRouteMgrFs
 	.4byte read__Q24Game12GameRouteMgrFR6Stream
 	.4byte write__Q24Game8RouteMgrFR6Stream
-.global "__vt__26Iterator<Q24Game8WayPoint>"
-"__vt__26Iterator<Q24Game8WayPoint>":
+.endobj __vt__Q24Game12GameRouteMgr
+.obj "__vt__26Iterator<Q24Game8WayPoint>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__26Iterator<Q24Game8WayPoint>Fv"
 	.4byte "next__26Iterator<Q24Game8WayPoint>Fv"
 	.4byte "isDone__26Iterator<Q24Game8WayPoint>Fv"
 	.4byte "__ml__26Iterator<Q24Game8WayPoint>Fv"
-.global __vt__Q24Game8RouteMgr
-__vt__Q24Game8RouteMgr:
+.endobj "__vt__26Iterator<Q24Game8WayPoint>"
+.obj __vt__Q24Game8RouteMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game8RouteMgrFv
@@ -109,8 +108,8 @@ __vt__Q24Game8RouteMgr:
 	.4byte 0
 	.4byte 0
 	.4byte write__Q24Game8RouteMgrFR6Stream
-.global "__vt__27Container<Q24Game8WayPoint>"
-"__vt__27Container<Q24Game8WayPoint>":
+.endobj __vt__Q24Game8RouteMgr
+.obj "__vt__27Container<Q24Game8WayPoint>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__27Container<Q24Game8WayPoint>Fv"
@@ -122,56 +121,66 @@ __vt__Q24Game8RouteMgr:
 	.4byte 0
 	.4byte "getAt__27Container<Q24Game8WayPoint>Fi"
 	.4byte "getTo__27Container<Q24Game8WayPoint>Fv"
-.global __vt__Q24Game8WayPoint
-__vt__Q24Game8WayPoint:
+.endobj "__vt__27Container<Q24Game8WayPoint>"
+.obj __vt__Q24Game8WayPoint, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game8WayPointFv
 	.4byte directDraw__Q24Game8WayPointFR8Graphics
 	.4byte directDraw_Simple__Q24Game8WayPointFR8Graphics
-.global __vt__Q34Game8WayPoint8RoomList
-__vt__Q34Game8WayPoint8RoomList:
+.endobj __vt__Q24Game8WayPoint
+.obj __vt__Q34Game8WayPoint8RoomList, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game8WayPoint8RoomListFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q34Game8WayPoint8RoomList
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80518A00:
+.obj lbl_80518A00, local
 	.float 1.0
+.endobj lbl_80518A00
 .balign 4
-lbl_80518A04:
+.obj lbl_80518A04, local
 	.asciz "\r\n"
+.endobj lbl_80518A04
 .balign 4
-lbl_80518A08:
+.obj lbl_80518A08, local
 	.float 0.0
-lbl_80518A0C:
+.endobj lbl_80518A08
+.obj lbl_80518A0C, local
 	.float 128000.0
-lbl_80518A10:
+.endobj lbl_80518A0C
+.obj lbl_80518A10, local
 	.float -128000.0
-lbl_80518A14:
+.endobj lbl_80518A10
+.obj lbl_80518A14, local
 	.float 25.0
-lbl_80518A18:
+.endobj lbl_80518A14
+.obj lbl_80518A18, local
 	.float 0.1
-lbl_80518A1C:
+.endobj lbl_80518A18
+.obj lbl_80518A1C, local
 	.float 4.0
-lbl_80518A20:
+.endobj lbl_80518A1C
+.obj lbl_80518A20, local
 	.float 1280000.0
-lbl_80518A24:
+.endobj lbl_80518A20
+.obj lbl_80518A24, local
 	.float 300.0
+.endobj lbl_80518A24
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb
-__ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb:
+.fn __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb, global
 /* 80172520 0016F460  90 83 00 04 */	stw r4, 4(r3)
 /* 80172524 0016F464  38 00 00 00 */	li r0, 0
 /* 80172528 0016F468  98 A3 00 08 */	stb r5, 8(r3)
 /* 8017252C 0016F46C  90 03 00 00 */	stw r0, 0(r3)
 /* 80172530 0016F470  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game16WayPointIteratorFPQ24Game8WayPointb
 
-.global first__Q24Game16WayPointIteratorFv
-first__Q24Game16WayPointIteratorFv:
+.fn first__Q24Game16WayPointIteratorFv, global
 /* 80172534 0016F474  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172538 0016F478  7C 08 02 A6 */	mflr r0
 /* 8017253C 0016F47C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -182,9 +191,9 @@ first__Q24Game16WayPointIteratorFv:
 /* 80172550 0016F490  7C 08 03 A6 */	mtlr r0
 /* 80172554 0016F494  38 21 00 10 */	addi r1, r1, 0x10
 /* 80172558 0016F498  4E 80 00 20 */	blr 
+.endfn first__Q24Game16WayPointIteratorFv
 
-.global next__Q24Game16WayPointIteratorFv
-next__Q24Game16WayPointIteratorFv:
+.fn next__Q24Game16WayPointIteratorFv, global
 /* 8017255C 0016F49C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172560 0016F4A0  7C 08 02 A6 */	mflr r0
 /* 80172564 0016F4A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -196,46 +205,46 @@ next__Q24Game16WayPointIteratorFv:
 /* 8017257C 0016F4BC  7C 08 03 A6 */	mtlr r0
 /* 80172580 0016F4C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80172584 0016F4C4  4E 80 00 20 */	blr 
+.endfn next__Q24Game16WayPointIteratorFv
 
-.global isDone__Q24Game16WayPointIteratorFv
-isDone__Q24Game16WayPointIteratorFv:
+.fn isDone__Q24Game16WayPointIteratorFv, global
 /* 80172588 0016F4C8  88 03 00 08 */	lbz r0, 8(r3)
 /* 8017258C 0016F4CC  28 00 00 00 */	cmplwi r0, 0
-/* 80172590 0016F4D0  41 82 00 18 */	beq lbl_801725A8
+/* 80172590 0016F4D0  41 82 00 18 */	beq .L_801725A8
 /* 80172594 0016F4D4  80 03 00 00 */	lwz r0, 0(r3)
 /* 80172598 0016F4D8  2C 00 00 10 */	cmpwi r0, 0x10
-/* 8017259C 0016F4DC  41 80 00 20 */	blt lbl_801725BC
+/* 8017259C 0016F4DC  41 80 00 20 */	blt .L_801725BC
 /* 801725A0 0016F4E0  38 60 00 01 */	li r3, 1
 /* 801725A4 0016F4E4  4E 80 00 20 */	blr 
-lbl_801725A8:
+.L_801725A8:
 /* 801725A8 0016F4E8  80 03 00 00 */	lwz r0, 0(r3)
 /* 801725AC 0016F4EC  2C 00 00 08 */	cmpwi r0, 8
-/* 801725B0 0016F4F0  41 80 00 0C */	blt lbl_801725BC
+/* 801725B0 0016F4F0  41 80 00 0C */	blt .L_801725BC
 /* 801725B4 0016F4F4  38 60 00 01 */	li r3, 1
 /* 801725B8 0016F4F8  4E 80 00 20 */	blr 
-lbl_801725BC:
+.L_801725BC:
 /* 801725BC 0016F4FC  38 60 00 00 */	li r3, 0
 /* 801725C0 0016F500  4E 80 00 20 */	blr 
+.endfn isDone__Q24Game16WayPointIteratorFv
 
-.global __ml__Q24Game16WayPointIteratorFv
-__ml__Q24Game16WayPointIteratorFv:
+.fn __ml__Q24Game16WayPointIteratorFv, global
 /* 801725C4 0016F504  80 03 00 00 */	lwz r0, 0(r3)
 /* 801725C8 0016F508  2C 00 00 08 */	cmpwi r0, 8
-/* 801725CC 0016F50C  40 80 00 18 */	bge lbl_801725E4
+/* 801725CC 0016F50C  40 80 00 18 */	bge .L_801725E4
 /* 801725D0 0016F510  80 63 00 04 */	lwz r3, 4(r3)
 /* 801725D4 0016F514  54 00 08 3C */	slwi r0, r0, 1
 /* 801725D8 0016F518  7C 63 02 14 */	add r3, r3, r0
 /* 801725DC 0016F51C  A8 63 00 3A */	lha r3, 0x3a(r3)
 /* 801725E0 0016F520  4E 80 00 20 */	blr 
-lbl_801725E4:
+.L_801725E4:
 /* 801725E4 0016F524  80 63 00 04 */	lwz r3, 4(r3)
 /* 801725E8 0016F528  54 00 08 3C */	slwi r0, r0, 1
 /* 801725EC 0016F52C  7C 63 02 14 */	add r3, r3, r0
 /* 801725F0 0016F530  A8 63 00 4E */	lha r3, 0x4e(r3)
 /* 801725F4 0016F534  4E 80 00 20 */	blr 
+.endfn __ml__Q24Game16WayPointIteratorFv
 
-.global forward__Q24Game16WayPointIteratorFv
-forward__Q24Game16WayPointIteratorFv:
+.fn forward__Q24Game16WayPointIteratorFv, global
 /* 801725F8 0016F538  80 83 00 00 */	lwz r4, 0(r3)
 /* 801725FC 0016F53C  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80172600 0016F540  2C 04 00 08 */	cmpwi r4, 8
@@ -282,9 +291,9 @@ forward__Q24Game16WayPointIteratorFv:
 /* 80172694 0016F5D4  2C 00 FF FF */	cmpwi r0, -1
 /* 80172698 0016F5D8  41 82 FF 84 */	beq .L_8017261C
 /* 8017269C 0016F5DC  4E 80 00 20 */	blr 
+.endfn forward__Q24Game16WayPointIteratorFv
 
-.global __ct__Q24Game8WayPointFv
-__ct__Q24Game8WayPointFv:
+.fn __ct__Q24Game8WayPointFv, global
 /* 801726A0 0016F5E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801726A4 0016F5E4  7C 08 02 A6 */	mflr r0
 /* 801726A8 0016F5E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -312,9 +321,9 @@ __ct__Q24Game8WayPointFv:
 /* 80172700 0016F640  7C 08 03 A6 */	mtlr r0
 /* 80172704 0016F644  38 21 00 10 */	addi r1, r1, 0x10
 /* 80172708 0016F648  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game8WayPointFv
 
-.global __dt__Q34Game8WayPoint8RoomListFv
-__dt__Q34Game8WayPoint8RoomListFv:
+.fn __dt__Q34Game8WayPoint8RoomListFv, weak
 /* 8017270C 0016F64C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172710 0016F650  7C 08 02 A6 */	mflr r0
 /* 80172714 0016F654  90 01 00 14 */	stw r0, 0x14(r1)
@@ -340,9 +349,9 @@ __dt__Q34Game8WayPoint8RoomListFv:
 /* 80172760 0016F6A0  7C 08 03 A6 */	mtlr r0
 /* 80172764 0016F6A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80172768 0016F6A8  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game8WayPoint8RoomListFv
 
-.global __dt__Q24Game8WayPointFv
-__dt__Q24Game8WayPointFv:
+.fn __dt__Q24Game8WayPointFv, global
 /* 8017276C 0016F6AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172770 0016F6B0  7C 08 02 A6 */	mflr r0
 /* 80172774 0016F6B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -378,9 +387,9 @@ __dt__Q24Game8WayPointFv:
 /* 801727E4 0016F724  7C 08 03 A6 */	mtlr r0
 /* 801727E8 0016F728  38 21 00 10 */	addi r1, r1, 0x10
 /* 801727EC 0016F72C  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game8WayPointFv
 
-.global reset__Q24Game8WayPointFv
-reset__Q24Game8WayPointFv:
+.fn reset__Q24Game8WayPointFv, global
 /* 801727F0 0016F730  38 A0 FF FF */	li r5, -1
 /* 801727F4 0016F734  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 801727F8 0016F738  B0 A3 00 3A */	sth r5, 0x3a(r3)
@@ -414,9 +423,9 @@ reset__Q24Game8WayPointFv:
 /* 80172868 0016F7A8  98 03 00 6E */	stb r0, 0x6e(r3)
 /* 8017286C 0016F7AC  98 03 00 34 */	stb r0, 0x34(r3)
 /* 80172870 0016F7B0  4E 80 00 20 */	blr 
+.endfn reset__Q24Game8WayPointFv
 
-.global setOpen__Q24Game8WayPointFb
-setOpen__Q24Game8WayPointFb:
+.fn setOpen__Q24Game8WayPointFb, global
 /* 80172874 0016F7B4  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 80172878 0016F7B8  41 82 00 14 */	beq .L_8017288C
 /* 8017287C 0016F7BC  88 03 00 34 */	lbz r0, 0x34(r3)
@@ -428,9 +437,9 @@ setOpen__Q24Game8WayPointFb:
 /* 80172890 0016F7D0  60 00 00 01 */	ori r0, r0, 1
 /* 80172894 0016F7D4  98 03 00 34 */	stb r0, 0x34(r3)
 /* 80172898 0016F7D8  4E 80 00 20 */	blr 
+.endfn setOpen__Q24Game8WayPointFb
 
-.global setWater__Q24Game8WayPointFb
-setWater__Q24Game8WayPointFb:
+.fn setWater__Q24Game8WayPointFb, global
 /* 8017289C 0016F7DC  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 801728A0 0016F7E0  41 82 00 14 */	beq .L_801728B4
 /* 801728A4 0016F7E4  88 03 00 34 */	lbz r0, 0x34(r3)
@@ -442,9 +451,9 @@ setWater__Q24Game8WayPointFb:
 /* 801728B8 0016F7F8  54 00 07 FA */	rlwinm r0, r0, 0, 0x1f, 0x1d
 /* 801728BC 0016F7FC  98 03 00 34 */	stb r0, 0x34(r3)
 /* 801728C0 0016F800  4E 80 00 20 */	blr 
+.endfn setWater__Q24Game8WayPointFb
 
-.global setBridge__Q24Game8WayPointFb
-setBridge__Q24Game8WayPointFb:
+.fn setBridge__Q24Game8WayPointFb, global
 /* 801728C4 0016F804  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 801728C8 0016F808  41 82 00 14 */	beq .L_801728DC
 /* 801728CC 0016F80C  88 03 00 34 */	lbz r0, 0x34(r3)
@@ -456,17 +465,17 @@ setBridge__Q24Game8WayPointFb:
 /* 801728E0 0016F820  54 00 07 B8 */	rlwinm r0, r0, 0, 0x1e, 0x1c
 /* 801728E4 0016F824  98 03 00 34 */	stb r0, 0x34(r3)
 /* 801728E8 0016F828  4E 80 00 20 */	blr 
+.endfn setBridge__Q24Game8WayPointFb
 
-.global directDraw__Q24Game8WayPointFR8Graphics
-directDraw__Q24Game8WayPointFR8Graphics:
+.fn directDraw__Q24Game8WayPointFR8Graphics, global
 /* 801728EC 0016F82C  4E 80 00 20 */	blr 
+.endfn directDraw__Q24Game8WayPointFR8Graphics
 
-.global directDraw_Simple__Q24Game8WayPointFR8Graphics
-directDraw_Simple__Q24Game8WayPointFR8Graphics:
+.fn directDraw_Simple__Q24Game8WayPointFR8Graphics, global
 /* 801728F0 0016F830  4E 80 00 20 */	blr 
+.endfn directDraw_Simple__Q24Game8WayPointFR8Graphics
 
-.global "__dt__27Container<Q24Game8WayPoint>Fv"
-"__dt__27Container<Q24Game8WayPoint>Fv":
+.fn "__dt__27Container<Q24Game8WayPoint>Fv", weak
 /* 801728F4 0016F834  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801728F8 0016F838  7C 08 02 A6 */	mflr r0
 /* 801728FC 0016F83C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -497,9 +506,9 @@ directDraw_Simple__Q24Game8WayPointFR8Graphics:
 /* 80172958 0016F898  7C 08 03 A6 */	mtlr r0
 /* 8017295C 0016F89C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80172960 0016F8A0  4E 80 00 20 */	blr 
+.endfn "__dt__27Container<Q24Game8WayPoint>Fv"
 
-.global __dt__Q24Game8RouteMgrFv
-__dt__Q24Game8RouteMgrFv:
+.fn __dt__Q24Game8RouteMgrFv, global
 /* 80172964 0016F8A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172968 0016F8A8  7C 08 02 A6 */	mflr r0
 /* 8017296C 0016F8AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -534,9 +543,9 @@ __dt__Q24Game8RouteMgrFv:
 /* 801729D8 0016F918  7C 08 03 A6 */	mtlr r0
 /* 801729DC 0016F91C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801729E0 0016F920  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game8RouteMgrFv
 
-.global makeInvertLinks__Q24Game8RouteMgrFv
-makeInvertLinks__Q24Game8RouteMgrFv:
+.fn makeInvertLinks__Q24Game8RouteMgrFv, global
 /* 801729E4 0016F924  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801729E8 0016F928  7C 08 02 A6 */	mflr r0
 /* 801729EC 0016F92C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -628,9 +637,9 @@ makeInvertLinks__Q24Game8RouteMgrFv:
 /* 80172B20 0016FA60  7C 08 03 A6 */	mtlr r0
 /* 80172B24 0016FA64  38 21 00 20 */	addi r1, r1, 0x20
 /* 80172B28 0016FA68  4E 80 00 20 */	blr 
+.endfn makeInvertLinks__Q24Game8RouteMgrFv
 
-.global linkable__Q24Game8RouteMgrFPQ24Game8WayPointPQ24Game8WayPoint
-linkable__Q24Game8RouteMgrFPQ24Game8WayPointPQ24Game8WayPoint:
+.fn linkable__Q24Game8RouteMgrFPQ24Game8WayPointPQ24Game8WayPoint, global
 /* 80172B2C 0016FA6C  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 80172B30 0016FA70  7C 08 02 A6 */	mflr r0
 /* 80172B34 0016FA74  90 01 01 14 */	stw r0, 0x114(r1)
@@ -757,9 +766,9 @@ linkable__Q24Game8RouteMgrFPQ24Game8WayPointPQ24Game8WayPoint:
 /* 80172D04 0016FC44  7C 08 03 A6 */	mtlr r0
 /* 80172D08 0016FC48  38 21 01 10 */	addi r1, r1, 0x110
 /* 80172D0C 0016FC4C  4E 80 00 20 */	blr 
+.endfn linkable__Q24Game8RouteMgrFPQ24Game8WayPointPQ24Game8WayPoint
 
-.global refreshWater__Q24Game8RouteMgrFv
-refreshWater__Q24Game8RouteMgrFv:
+.fn refreshWater__Q24Game8RouteMgrFv, global
 /* 80172D10 0016FC50  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80172D14 0016FC54  7C 08 02 A6 */	mflr r0
 /* 80172D18 0016FC58  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8WayPoint>"@ha
@@ -924,9 +933,9 @@ refreshWater__Q24Game8RouteMgrFv:
 /* 80172F6C 0016FEAC  7C 08 03 A6 */	mtlr r0
 /* 80172F70 0016FEB0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80172F74 0016FEB4  4E 80 00 20 */	blr 
+.endfn refreshWater__Q24Game8RouteMgrFv
 
-.global "isDone__26Iterator<Q24Game8WayPoint>Fv"
-"isDone__26Iterator<Q24Game8WayPoint>Fv":
+.fn "isDone__26Iterator<Q24Game8WayPoint>Fv", weak
 /* 80172F78 0016FEB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80172F7C 0016FEBC  7C 08 02 A6 */	mflr r0
 /* 80172F80 0016FEC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -946,9 +955,9 @@ refreshWater__Q24Game8RouteMgrFv:
 /* 80172FB8 0016FEF8  7C 08 03 A6 */	mtlr r0
 /* 80172FBC 0016FEFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80172FC0 0016FF00  4E 80 00 20 */	blr 
+.endfn "isDone__26Iterator<Q24Game8WayPoint>Fv"
 
-.global getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
-getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg:
+.fn getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg, global
 /* 80172FC4 0016FF04  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 80172FC8 0016FF08  7C 08 02 A6 */	mflr r0
 /* 80172FCC 0016FF0C  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -1197,9 +1206,9 @@ getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg:
 /* 80173360 001702A0  7C 08 03 A6 */	mtlr r0
 /* 80173364 001702A4  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 80173368 001702A8  4E 80 00 20 */	blr 
+.endfn getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
 
-.global getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg
-getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg:
+.fn getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg, global
 /* 8017336C 001702AC  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80173370 001702B0  7C 08 02 A6 */	mflr r0
 /* 80173374 001702B4  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -1785,9 +1794,9 @@ getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg:
 /* 80173B7C 00170ABC  7C 08 03 A6 */	mtlr r0
 /* 80173B80 00170AC0  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80173B84 00170AC4  4E 80 00 20 */	blr 
+.endfn getNearestEdge__Q24Game8RouteMgrFRQ24Game15WPEdgeSearchArg
 
-.global setCloseAll__Q24Game8RouteMgrFv
-setCloseAll__Q24Game8RouteMgrFv:
+.fn setCloseAll__Q24Game8RouteMgrFv, global
 /* 80173B88 00170AC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80173B8C 00170ACC  7C 08 02 A6 */	mflr r0
 /* 80173B90 00170AD0  3C 80 80 4B */	lis r4, "__vt__26Iterator<Q24Game8WayPoint>"@ha
@@ -1916,9 +1925,9 @@ setCloseAll__Q24Game8RouteMgrFv:
 /* 80173D5C 00170C9C  7C 08 03 A6 */	mtlr r0
 /* 80173D60 00170CA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80173D64 00170CA4  4E 80 00 20 */	blr 
+.endfn setCloseAll__Q24Game8RouteMgrFv
 
-.global openRoom__Q24Game8RouteMgrFs
-openRoom__Q24Game8RouteMgrFs:
+.fn openRoom__Q24Game8RouteMgrFs, global
 /* 80173D68 00170CA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80173D6C 00170CAC  7C 08 02 A6 */	mflr r0
 /* 80173D70 00170CB0  3C A0 80 4B */	lis r5, "__vt__26Iterator<Q24Game8WayPoint>"@ha
@@ -2063,9 +2072,9 @@ openRoom__Q24Game8RouteMgrFs:
 /* 80173F6C 00170EAC  7C 08 03 A6 */	mtlr r0
 /* 80173F70 00170EB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80173F74 00170EB4  4E 80 00 20 */	blr 
+.endfn openRoom__Q24Game8RouteMgrFs
 
-.global write__Q24Game8RouteMgrFR6Stream
-write__Q24Game8RouteMgrFR6Stream:
+.fn write__Q24Game8RouteMgrFR6Stream, global
 /* 80173F78 00170EB8  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 80173F7C 00170EBC  7C 08 02 A6 */	mflr r0
 /* 80173F80 00170EC0  3C A0 80 48 */	lis r5, lbl_8047E548@ha
@@ -2275,9 +2284,9 @@ write__Q24Game8RouteMgrFR6Stream:
 /* 80174288 001711C8  7C 08 03 A6 */	mtlr r0
 /* 8017428C 001711CC  38 21 01 30 */	addi r1, r1, 0x130
 /* 80174290 001711D0  4E 80 00 20 */	blr 
+.endfn write__Q24Game8RouteMgrFR6Stream
 
-.global __ct__Q24Game12GameRouteMgrFv
-__ct__Q24Game12GameRouteMgrFv:
+.fn __ct__Q24Game12GameRouteMgrFv, global
 /* 80174294 001711D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174298 001711D8  7C 08 02 A6 */	mflr r0
 /* 8017429C 001711DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2309,9 +2318,9 @@ __ct__Q24Game12GameRouteMgrFv:
 /* 80174304 00171244  7C 08 03 A6 */	mtlr r0
 /* 80174308 00171248  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017430C 0017124C  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12GameRouteMgrFv
 
-.global __dt__Q24Game12GameRouteMgrFv
-__dt__Q24Game12GameRouteMgrFv:
+.fn __dt__Q24Game12GameRouteMgrFv, global
 /* 80174310 00171250  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174314 00171254  7C 08 02 A6 */	mflr r0
 /* 80174318 00171258  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2362,9 +2371,9 @@ __dt__Q24Game12GameRouteMgrFv:
 /* 801743C0 00171300  7C 08 03 A6 */	mtlr r0
 /* 801743C4 00171304  38 21 00 10 */	addi r1, r1, 0x10
 /* 801743C8 00171308  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game12GameRouteMgrFv
 
-.global read__Q24Game12GameRouteMgrFR6Stream
-read__Q24Game12GameRouteMgrFR6Stream:
+.fn read__Q24Game12GameRouteMgrFR6Stream, global
 /* 801743CC 0017130C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801743D0 00171310  7C 08 02 A6 */	mflr r0
 /* 801743D4 00171314  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2430,9 +2439,9 @@ read__Q24Game12GameRouteMgrFR6Stream:
 /* 801744B4 001713F4  7C 08 03 A6 */	mtlr r0
 /* 801744B8 001713F8  38 21 00 30 */	addi r1, r1, 0x30
 /* 801744BC 001713FC  4E 80 00 20 */	blr 
+.endfn read__Q24Game12GameRouteMgrFR6Stream
 
-.global getWayPoint__Q24Game12GameRouteMgrFs
-getWayPoint__Q24Game12GameRouteMgrFs:
+.fn getWayPoint__Q24Game12GameRouteMgrFs, global
 /* 801744C0 00171400  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801744C4 00171404  7C 08 02 A6 */	mflr r0
 /* 801744C8 00171408  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2469,9 +2478,9 @@ getWayPoint__Q24Game12GameRouteMgrFs:
 /* 8017453C 0017147C  7C 08 03 A6 */	mtlr r0
 /* 80174540 00171480  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174544 00171484  4E 80 00 20 */	blr 
+.endfn getWayPoint__Q24Game12GameRouteMgrFs
 
-.global get__Q24Game12GameRouteMgrFPv
-get__Q24Game12GameRouteMgrFPv:
+.fn get__Q24Game12GameRouteMgrFPv, global
 /* 80174548 00171488  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017454C 0017148C  7C 08 02 A6 */	mflr r0
 /* 80174550 00171490  7C 84 07 34 */	extsh r4, r4
@@ -2484,24 +2493,24 @@ get__Q24Game12GameRouteMgrFPv:
 /* 8017456C 001714AC  7C 08 03 A6 */	mtlr r0
 /* 80174570 001714B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174574 001714B4  4E 80 00 20 */	blr 
+.endfn get__Q24Game12GameRouteMgrFPv
 
-.global getNext__Q24Game12GameRouteMgrFPv
-getNext__Q24Game12GameRouteMgrFPv:
+.fn getNext__Q24Game12GameRouteMgrFPv, global
 /* 80174578 001714B8  38 64 00 01 */	addi r3, r4, 1
 /* 8017457C 001714BC  4E 80 00 20 */	blr 
+.endfn getNext__Q24Game12GameRouteMgrFPv
 
-.global getStart__Q24Game12GameRouteMgrFv
-getStart__Q24Game12GameRouteMgrFv:
+.fn getStart__Q24Game12GameRouteMgrFv, global
 /* 80174580 001714C0  38 60 00 00 */	li r3, 0
 /* 80174584 001714C4  4E 80 00 20 */	blr 
+.endfn getStart__Q24Game12GameRouteMgrFv
 
-.global getEnd__Q24Game12GameRouteMgrFv
-getEnd__Q24Game12GameRouteMgrFv:
+.fn getEnd__Q24Game12GameRouteMgrFv, global
 /* 80174588 001714C8  A0 63 00 1C */	lhz r3, 0x1c(r3)
 /* 8017458C 001714CC  4E 80 00 20 */	blr 
+.endfn getEnd__Q24Game12GameRouteMgrFv
 
-.global __ct__Q24Game14EditorRouteMgrFv
-__ct__Q24Game14EditorRouteMgrFv:
+.fn __ct__Q24Game14EditorRouteMgrFv, global
 /* 80174590 001714D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80174594 001714D4  7C 08 02 A6 */	mflr r0
 /* 80174598 001714D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2545,9 +2554,9 @@ __ct__Q24Game14EditorRouteMgrFv:
 /* 80174630 00171570  7C 08 03 A6 */	mtlr r0
 /* 80174634 00171574  38 21 00 20 */	addi r1, r1, 0x20
 /* 80174638 00171578  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game14EditorRouteMgrFv
 
-.global __dt__Q34Game14EditorRouteMgr6WPNodeFv
-__dt__Q34Game14EditorRouteMgr6WPNodeFv:
+.fn __dt__Q34Game14EditorRouteMgr6WPNodeFv, weak
 /* 8017463C 0017157C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174640 00171580  7C 08 02 A6 */	mflr r0
 /* 80174644 00171584  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2573,9 +2582,9 @@ __dt__Q34Game14EditorRouteMgr6WPNodeFv:
 /* 80174690 001715D0  7C 08 03 A6 */	mtlr r0
 /* 80174694 001715D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174698 001715D8  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game14EditorRouteMgr6WPNodeFv
 
-.global read__Q24Game14EditorRouteMgrFR6Stream
-read__Q24Game14EditorRouteMgrFR6Stream:
+.fn read__Q24Game14EditorRouteMgrFR6Stream, global
 /* 8017469C 001715DC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801746A0 001715E0  7C 08 02 A6 */	mflr r0
 /* 801746A4 001715E4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2690,9 +2699,9 @@ read__Q24Game14EditorRouteMgrFR6Stream:
 /* 8017483C 0017177C  7C 08 03 A6 */	mtlr r0
 /* 80174840 00171780  38 21 00 30 */	addi r1, r1, 0x30
 /* 80174844 00171784  4E 80 00 20 */	blr 
+.endfn read__Q24Game14EditorRouteMgrFR6Stream
 
-.global addWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint
-addWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint:
+.fn addWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint, global
 /* 80174848 00171788  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8017484C 0017178C  7C 08 02 A6 */	mflr r0
 /* 80174850 00171790  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2729,9 +2738,9 @@ addWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint:
 /* 801748C8 00171808  7C 08 03 A6 */	mtlr r0
 /* 801748CC 0017180C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801748D0 00171810  4E 80 00 20 */	blr 
+.endfn addWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint
 
-.global delWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint
-delWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint:
+.fn delWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint, global
 /* 801748D4 00171814  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801748D8 00171818  7C 08 02 A6 */	mflr r0
 /* 801748DC 0017181C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2771,9 +2780,9 @@ delWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint:
 /* 80174950 00171890  7C 08 03 A6 */	mtlr r0
 /* 80174954 00171894  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174958 00171898  4E 80 00 20 */	blr 
+.endfn delWayPoint__Q24Game14EditorRouteMgrFPQ24Game8WayPoint
 
-.global getWayPoint__Q24Game14EditorRouteMgrFs
-getWayPoint__Q24Game14EditorRouteMgrFs:
+.fn getWayPoint__Q24Game14EditorRouteMgrFs, global
 /* 8017495C 0017189C  80 A3 00 30 */	lwz r5, 0x30(r3)
 /* 80174960 001718A0  7C 80 07 34 */	extsh r0, r4
 /* 80174964 001718A4  48 00 00 20 */	b .L_80174984
@@ -2791,29 +2800,29 @@ getWayPoint__Q24Game14EditorRouteMgrFs:
 /* 80174988 001718C8  40 82 FF E0 */	bne .L_80174968
 /* 8017498C 001718CC  38 60 00 00 */	li r3, 0
 /* 80174990 001718D0  4E 80 00 20 */	blr 
+.endfn getWayPoint__Q24Game14EditorRouteMgrFs
 
-.global get__Q24Game14EditorRouteMgrFPv
-get__Q24Game14EditorRouteMgrFPv:
+.fn get__Q24Game14EditorRouteMgrFPv, global
 /* 80174994 001718D4  80 64 00 18 */	lwz r3, 0x18(r4)
 /* 80174998 001718D8  4E 80 00 20 */	blr 
+.endfn get__Q24Game14EditorRouteMgrFPv
 
-.global getNext__Q24Game14EditorRouteMgrFPv
-getNext__Q24Game14EditorRouteMgrFPv:
+.fn getNext__Q24Game14EditorRouteMgrFPv, global
 /* 8017499C 001718DC  80 64 00 04 */	lwz r3, 4(r4)
 /* 801749A0 001718E0  4E 80 00 20 */	blr 
+.endfn getNext__Q24Game14EditorRouteMgrFPv
 
-.global getStart__Q24Game14EditorRouteMgrFv
-getStart__Q24Game14EditorRouteMgrFv:
+.fn getStart__Q24Game14EditorRouteMgrFv, global
 /* 801749A4 001718E4  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 801749A8 001718E8  4E 80 00 20 */	blr 
+.endfn getStart__Q24Game14EditorRouteMgrFv
 
-.global getEnd__Q24Game14EditorRouteMgrFv
-getEnd__Q24Game14EditorRouteMgrFv:
+.fn getEnd__Q24Game14EditorRouteMgrFv, global
 /* 801749AC 001718EC  38 60 00 00 */	li r3, 0
 /* 801749B0 001718F0  4E 80 00 20 */	blr 
+.endfn getEnd__Q24Game14EditorRouteMgrFv
 
-.global __dt__Q24Game14EditorRouteMgrFv
-__dt__Q24Game14EditorRouteMgrFv:
+.fn __dt__Q24Game14EditorRouteMgrFv, weak
 /* 801749B4 001718F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801749B8 001718F8  7C 08 02 A6 */	mflr r0
 /* 801749BC 001718FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2863,9 +2872,9 @@ __dt__Q24Game14EditorRouteMgrFv:
 /* 80174A60 001719A0  7C 08 03 A6 */	mtlr r0
 /* 80174A64 001719A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174A68 001719A8  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game14EditorRouteMgrFv
 
-.global "__ml__26Iterator<Q24Game8WayPoint>Fv"
-"__ml__26Iterator<Q24Game8WayPoint>Fv":
+.fn "__ml__26Iterator<Q24Game8WayPoint>Fv", weak
 /* 80174A6C 001719AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174A70 001719B0  7C 08 02 A6 */	mflr r0
 /* 80174A74 001719B4  7C 64 1B 78 */	mr r4, r3
@@ -2880,9 +2889,9 @@ __dt__Q24Game14EditorRouteMgrFv:
 /* 80174A98 001719D8  7C 08 03 A6 */	mtlr r0
 /* 80174A9C 001719DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174AA0 001719E0  4E 80 00 20 */	blr 
+.endfn "__ml__26Iterator<Q24Game8WayPoint>Fv"
 
-.global "next__26Iterator<Q24Game8WayPoint>Fv"
-"next__26Iterator<Q24Game8WayPoint>Fv":
+.fn "next__26Iterator<Q24Game8WayPoint>Fv", weak
 /* 80174AA4 001719E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174AA8 001719E8  7C 08 02 A6 */	mflr r0
 /* 80174AAC 001719EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2944,9 +2953,9 @@ __dt__Q24Game14EditorRouteMgrFv:
 /* 80174B7C 00171ABC  7C 08 03 A6 */	mtlr r0
 /* 80174B80 00171AC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174B84 00171AC4  4E 80 00 20 */	blr 
+.endfn "next__26Iterator<Q24Game8WayPoint>Fv"
 
-.global "first__26Iterator<Q24Game8WayPoint>Fv"
-"first__26Iterator<Q24Game8WayPoint>Fv":
+.fn "first__26Iterator<Q24Game8WayPoint>Fv", weak
 /* 80174B88 00171AC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174B8C 00171ACC  7C 08 02 A6 */	mflr r0
 /* 80174B90 00171AD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3006,9 +3015,9 @@ __dt__Q24Game14EditorRouteMgrFv:
 /* 80174C58 00171B98  7C 08 03 A6 */	mtlr r0
 /* 80174C5C 00171B9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174C60 00171BA0  4E 80 00 20 */	blr 
+.endfn "first__26Iterator<Q24Game8WayPoint>Fv"
 
-.global "getObject__27Container<Q24Game8WayPoint>FPv"
-"getObject__27Container<Q24Game8WayPoint>FPv":
+.fn "getObject__27Container<Q24Game8WayPoint>FPv", weak
 /* 80174C64 00171BA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80174C68 00171BA8  7C 08 02 A6 */	mflr r0
 /* 80174C6C 00171BAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3020,13 +3029,14 @@ __dt__Q24Game14EditorRouteMgrFv:
 /* 80174C84 00171BC4  7C 08 03 A6 */	mtlr r0
 /* 80174C88 00171BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80174C8C 00171BCC  4E 80 00 20 */	blr 
+.endfn "getObject__27Container<Q24Game8WayPoint>FPv"
 
-.global "getAt__27Container<Q24Game8WayPoint>Fi"
-"getAt__27Container<Q24Game8WayPoint>Fi":
+.fn "getAt__27Container<Q24Game8WayPoint>Fi", weak
 /* 80174C90 00171BD0  38 60 00 00 */	li r3, 0
 /* 80174C94 00171BD4  4E 80 00 20 */	blr 
+.endfn "getAt__27Container<Q24Game8WayPoint>Fi"
 
-.global "getTo__27Container<Q24Game8WayPoint>Fv"
-"getTo__27Container<Q24Game8WayPoint>Fv":
+.fn "getTo__27Container<Q24Game8WayPoint>Fv", weak
 /* 80174C98 00171BD8  38 60 00 00 */	li r3, 0
 /* 80174C9C 00171BDC  4E 80 00 20 */	blr 
+.endfn "getTo__27Container<Q24Game8WayPoint>Fv"

@@ -432,11 +432,12 @@ lbl_constructor:
 	.4byte 0x6E827500
 .endobj lbl_80484750
 .balign 4
-lbl_8048475C: # Shift-JIS
+.obj lbl_8048475C, local # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839394BC
 	.4byte 0x8C610000
+.endobj lbl_8048475C
 .balign 4
 .obj lbl_8048476C, local # Shift-JIS
 	.4byte 0x8352838A
@@ -482,10 +483,11 @@ lbl_8048475C: # Shift-JIS
 	.byte 0
 .endobj lbl_804847C4
 .balign 4
-lbl_804847D4: # Shift-JIS
+.obj lbl_804847D4, local # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x89C191AC
 	.4byte 0x93780000
+.endobj lbl_804847D4
 .balign 4
 .obj lbl_804847E0, local # Shift-JIS
 	.4byte 0x89F1935D

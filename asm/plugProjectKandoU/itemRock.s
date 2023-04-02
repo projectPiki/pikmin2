@@ -1,114 +1,135 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80480B10:
-	.4byte 0x6974656D
-	.4byte 0x526F636B
-	.4byte 0x00000000
+.obj lbl_80480B10, local
+	.asciz "itemRock"
+.endobj lbl_80480B10
+.balign 4
+.obj lbl_80480B1C, local # Shift-JIS
 	.4byte 0x8D729470
 	.4byte 0x83498375
 	.4byte 0x83578346
 	.4byte 0x834E8367
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F6F
-	.4byte 0x6A616D61
-	.4byte 0x726F636B
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F416265
-	.4byte 0x2F697465
-	.4byte 0x6D2F726F
-	.4byte 0x636B5061
-	.4byte 0x726D732E
-	.4byte 0x74787400
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x3A3A5072
-	.4byte 0x6F706572
-	.4byte 0x74790000
-	.4byte 0x66726963
-	.4byte 0x74696F6E
-	.4byte 0x286E6F74
-	.4byte 0x20757365
-	.4byte 0x64290000
-	.4byte 0x77616C6C
-	.4byte 0x5265666C
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x66616365
-	.4byte 0x44697241
-	.4byte 0x646A7573
-	.4byte 0x74000000
-	.4byte 0x626F756E
-	.4byte 0x63654661
-	.4byte 0x63746F72
-	.4byte 0x00000000
-	.4byte 0x506C616E
-	.4byte 0x743A3A50
-	.4byte 0x61726D73
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480B1C
+.balign 4
+.obj lbl_80480B30, local
+	.asciz "user/Kando/objects/ojamarock"
+.endobj lbl_80480B30
+.balign 4
+.obj lbl_80480B50, local
+	.asciz "user/Abe/item/rockParms.txt"
+.endobj lbl_80480B50
+.balign 4
+.obj lbl_80480B6C, local
+	.asciz "Creature::Property"
+.endobj lbl_80480B6C
+.balign 4
+.obj lbl_80480B80, local
+	.asciz "friction(not used)"
+.endobj lbl_80480B80
+.balign 4
+.obj lbl_80480B94, local
+	.asciz "wallReflection"
+.endobj lbl_80480B94
+.balign 4
+.obj lbl_80480BA4, local
+	.asciz "faceDirAdjust"
+.endobj lbl_80480BA4
+.balign 4
+.obj lbl_80480BB4, local
+	.asciz "bounceFactor"
+.endobj lbl_80480BB4
+.balign 4
+.obj lbl_80480BC4, local
+	.asciz "Plant::Parms"
+.endobj lbl_80480BC4
+.balign 4
+.obj lbl_80480BD4, local # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83742830
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_80480BD4
+.balign 4
+.obj lbl_80480BE0, local # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83742831
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_80480BE0
+.balign 4
+.obj lbl_80480BEC, local # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83742832
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_80480BEC
+.balign 4
+.obj lbl_80480BF8, local # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83742833
-	.4byte 0x29000000
+	.2byte 0x2900
+.endobj lbl_80480BF8
+.balign 4
+.obj lbl_80480C04, local # Shift-JIS
 	.4byte 0x8DC490B6
 	.4byte 0x8E9E8AD4
 	.4byte 0x28302920
 	.4byte 0x5B95AA5D
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480C04
+.balign 4
+.obj lbl_80480C18, local # Shift-JIS
 	.4byte 0x8DC490B6
 	.4byte 0x8E9E8AD4
 	.4byte 0x28312920
 	.4byte 0x5B95AA5D
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480C18
+.balign 4
+.obj lbl_80480C2C, local # Shift-JIS
 	.4byte 0x8DC490B6
 	.4byte 0x8E9E8AD4
 	.4byte 0x28322920
 	.4byte 0x5B95AA5D
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480C2C
+.balign 4
+.obj lbl_80480C40, local # Shift-JIS
 	.4byte 0x8DC490B6
 	.4byte 0x8E9E8AD4
 	.4byte 0x28332920
 	.4byte 0x5B95AA5D
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480C40
+.balign 4
+.obj lbl_80480C54, local # Shift-JIS
 	.4byte 0x8E648E96
 	.4byte 0x94BC8C61
 	.4byte 0x28302900
-	.4byte 0x726F636B
-	.4byte 0x2E626D64
-	.4byte 0x00000000
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x616E696D
-	.4byte 0x6D67722E
-	.4byte 0x74787400
-lbl_80480C84:
-	.4byte 0x4172674B
-	.4byte 0x6F756861
-	.4byte 0x69000000
-lbl_80480C90:
-	.4byte 0x526F636B
-	.4byte 0x284D616E
-	.4byte 0x6A752900
-	.4byte 0x00000000
+.endobj lbl_80480C54
+.balign 4
+.obj lbl_80480C60, local
+	.asciz "rock.bmd"
+.endobj lbl_80480C60
+.balign 4
+.obj lbl_80480C6C, local
+	.asciz "texts.szs"
+.endobj lbl_80480C6C
+.balign 4
+.obj lbl_80480C78, local
+	.asciz "animmgr.txt"
+.endobj lbl_80480C78
+.balign 4
+.obj lbl_80480C84, local
+	.asciz "ArgKouhai"
+.endobj lbl_80480C84
+.balign 4
+.obj lbl_80480C90, local
+	.asciz "Rock(Manju)"
+.endobj lbl_80480C90
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q34Game8ItemRock3Mgr
-__vt__Q34Game8ItemRock3Mgr:
+.obj __vt__Q34Game8ItemRock3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q24Game12TNodeItemMgrFv
@@ -157,25 +178,25 @@ __vt__Q34Game8ItemRock3Mgr:
 	.4byte getEnd__Q24Game12TNodeItemMgrFv
 	.4byte __dt__Q34Game8ItemRock3MgrFv
 	.4byte birth__Q34Game8ItemRock3MgrFv
-.global __vt__Q34Game8ItemRock9RockParms
-__vt__Q34Game8ItemRock9RockParms:
+.endobj __vt__Q34Game8ItemRock3Mgr
+.obj __vt__Q34Game8ItemRock9RockParms, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q34Game8ItemRock9RockParmsFR6Stream
-.global __vt__Q23efx11TKouhaiFuku
-__vt__Q23efx11TKouhaiFuku:
+.endobj __vt__Q34Game8ItemRock9RockParms
+.obj __vt__Q23efx11TKouhaiFuku, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx9ArgKouhai
-__vt__Q23efx9ArgKouhai:
+.endobj __vt__Q23efx11TKouhaiFuku
+.obj __vt__Q23efx9ArgKouhai, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q23efx9ArgKouhaiFv
-.global __vt__Q23efx8TKouhai3
-__vt__Q23efx8TKouhai3:
+.endobj __vt__Q23efx9ArgKouhai
+.obj __vt__Q23efx8TKouhai3, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
@@ -183,8 +204,8 @@ __vt__Q23efx8TKouhai3:
 	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-.global __vt__Q23efx8TKouhai2
-__vt__Q23efx8TKouhai2:
+.endobj __vt__Q23efx8TKouhai3
+.obj __vt__Q23efx8TKouhai2, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
@@ -192,8 +213,8 @@ __vt__Q23efx8TKouhai2:
 	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-.global __vt__Q23efx8TKouhai1
-__vt__Q23efx8TKouhai1:
+.endobj __vt__Q23efx8TKouhai2
+.obj __vt__Q23efx8TKouhai1, weak
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
@@ -201,8 +222,8 @@ __vt__Q23efx8TKouhai1:
 	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-.global __vt__Q34Game8ItemRock4Item
-__vt__Q34Game8ItemRock4Item:
+.endobj __vt__Q23efx8TKouhai1
+.obj __vt__Q34Game8ItemRock4Item, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -340,8 +361,8 @@ __vt__Q34Game8ItemRock4Item:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q34Game8ItemRock4ItemFv
 	.4byte onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent
-.global "__vt__Q24Game75WorkItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>"
-"__vt__Q24Game75WorkItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>":
+.endobj __vt__Q34Game8ItemRock4Item
+.obj "__vt__Q24Game75WorkItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>", weak
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -479,24 +500,24 @@ __vt__Q34Game8ItemRock4Item:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q24Game8BaseItemFv
 	.4byte "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent"
-.global "__vt__Q24Game30ItemFSM<Q34Game8ItemRock4Item>"
-"__vt__Q24Game30ItemFSM<Q34Game8ItemRock4Item>":
+.endobj "__vt__Q24Game75WorkItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>"
+.obj "__vt__Q24Game30ItemFSM<Q34Game8ItemRock4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 	.4byte "start__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 	.4byte "transit__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
-.global "__vt__Q24Game35StateMachine<Q34Game8ItemRock4Item>"
-"__vt__Q24Game35StateMachine<Q34Game8ItemRock4Item>":
+.endobj "__vt__Q24Game30ItemFSM<Q34Game8ItemRock4Item>"
+.obj "__vt__Q24Game35StateMachine<Q34Game8ItemRock4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 	.4byte "start__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 	.4byte "transit__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
-.global "__vt__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>"
-"__vt__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>":
+.endobj "__vt__Q24Game35StateMachine<Q34Game8ItemRock4Item>"
+.obj "__vt__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>", weak
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -634,8 +655,8 @@ __vt__Q34Game8ItemRock4Item:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q24Game8BaseItemFv
 	.4byte "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent"
-.global __vt__Q34Game8ItemRock7UpState
-__vt__Q34Game8ItemRock7UpState:
+.endobj "__vt__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>"
+.obj __vt__Q34Game8ItemRock7UpState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
@@ -649,8 +670,8 @@ __vt__Q34Game8ItemRock7UpState:
 	.4byte "onBounce__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9CollEvent"
-.global __vt__Q34Game8ItemRock9DownState
-__vt__Q34Game8ItemRock9DownState:
+.endobj __vt__Q34Game8ItemRock7UpState
+.obj __vt__Q34Game8ItemRock9DownState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
@@ -664,8 +685,8 @@ __vt__Q34Game8ItemRock9DownState:
 	.4byte "onBounce__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9CollEvent"
-.global __vt__Q34Game8ItemRock11NormalState
-__vt__Q34Game8ItemRock11NormalState:
+.endobj __vt__Q34Game8ItemRock9DownState
+.obj __vt__Q34Game8ItemRock11NormalState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
@@ -679,8 +700,8 @@ __vt__Q34Game8ItemRock11NormalState:
 	.4byte "onBounce__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9CollEvent"
-.global __vt__Q34Game8ItemRock5State
-__vt__Q34Game8ItemRock5State:
+.endobj __vt__Q34Game8ItemRock11NormalState
+.obj __vt__Q34Game8ItemRock5State, weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ24Game8StateArg"
@@ -694,8 +715,8 @@ __vt__Q34Game8ItemRock5State:
 	.4byte "onBounce__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9CollEvent"
-.global "__vt__Q24Game32ItemState<Q34Game8ItemRock4Item>"
-"__vt__Q24Game32ItemState<Q34Game8ItemRock4Item>":
+.endobj __vt__Q34Game8ItemRock5State
+.obj "__vt__Q24Game32ItemState<Q34Game8ItemRock4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ24Game8StateArg"
@@ -709,8 +730,8 @@ __vt__Q34Game8ItemRock5State:
 	.4byte "onBounce__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9CollEvent"
-.global "__vt__Q24Game31FSMState<Q34Game8ItemRock4Item>"
-"__vt__Q24Game31FSMState<Q34Game8ItemRock4Item>":
+.endobj "__vt__Q24Game32ItemState<Q34Game8ItemRock4Item>"
+.obj "__vt__Q24Game31FSMState<Q34Game8ItemRock4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ24Game8StateArg"
@@ -719,84 +740,112 @@ __vt__Q34Game8ItemRock5State:
 	.4byte "resume__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 	.4byte "restart__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 	.4byte "transit__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
-.global __vt__Q34Game8ItemRock3FSM
-__vt__Q34Game8ItemRock3FSM:
+.endobj "__vt__Q24Game31FSMState<Q34Game8ItemRock4Item>"
+.obj __vt__Q34Game8ItemRock3FSM, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item
 	.4byte "start__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 	.4byte "transit__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
+.endobj __vt__Q34Game8ItemRock3FSM
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mgr__Q24Game8ItemRock
-mgr__Q24Game8ItemRock:
+.obj mgr__Q24Game8ItemRock, global
 	.skip 0x4
+.endobj mgr__Q24Game8ItemRock
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805198C8:
-	.4byte 0x00000000
-lbl_805198CC:
+.obj lbl_805198C8, local
+	.float 0.0
+.endobj lbl_805198C8
+.obj lbl_805198CC, local
 	.float 1.0
-lbl_805198D0:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_805198D8:
-	.4byte 0x41F00000
-lbl_805198DC:
-	.4byte 0x43340000
-lbl_805198E0:
-	.4byte 0x47000000
-lbl_805198E4:
-	.4byte 0x40A00000
-lbl_805198E8:
-	.4byte 0x3E4CCCCD
-lbl_805198EC:
-	.4byte 0x41200000
-lbl_805198F0:
-	.4byte 0x41C80000
-lbl_805198F4:
-	.4byte 0x42700000
-lbl_805198F8:
+.endobj lbl_805198CC
+.balign 8
+.obj lbl_805198D0, local
+	.8byte 0x4330000080000000
+.endobj lbl_805198D0
+.obj lbl_805198D8, local
+	.float 30.0
+.endobj lbl_805198D8
+.obj lbl_805198DC, local
+	.float 180.0
+.endobj lbl_805198DC
+.obj lbl_805198E0, local
+	.float 32768.0
+.endobj lbl_805198E0
+.obj lbl_805198E4, local
+	.float 5.0
+.endobj lbl_805198E4
+.obj lbl_805198E8, local
+	.float 0.2
+.endobj lbl_805198E8
+.obj lbl_805198EC, local
+	.float 10.0
+.endobj lbl_805198EC
+.obj lbl_805198F0, local
+	.float 25.0
+.endobj lbl_805198F0
+.obj lbl_805198F4, local
+	.float 60.0
+.endobj lbl_805198F4
+.obj lbl_805198F8, local
 	.float 0.5
-lbl_805198FC:
+.endobj lbl_805198F8
+.obj lbl_805198FC, local
 	.float 0.25
-lbl_80519900:
-	.4byte 0x61636365
-	.4byte 0x6C000000
-lbl_80519908:
+.endobj lbl_805198FC
+.balign 4
+.obj lbl_80519900, local
+	.asciz "accel"
+.endobj lbl_80519900
+.balign 4
+.obj lbl_80519908, local
 	.float 0.1
-lbl_8051990C:
-	.4byte 0x3C23D70A
-lbl_80519910:
-	.4byte 0x40000000
-lbl_80519914:
+.endobj lbl_80519908
+.obj lbl_8051990C, local
+	.float 0.01
+.endobj lbl_8051990C
+.obj lbl_80519910, local
+	.float 2.0
+.endobj lbl_80519910
+.obj lbl_80519914, local
 	.float 0.3
-lbl_80519918:
-	.4byte 0x44BB8000
-lbl_8051991C:
-	.4byte 0x476A6000
-lbl_80519920:
-	.4byte 0x44960000
-lbl_80519924:
-	.4byte 0x443B8000
-lbl_80519928:
-	.4byte 0x437A0000
-lbl_8051992C:
-	.4byte 0x43160000
-lbl_80519930:
-	.4byte 0x420C0000
-lbl_80519934:
-	.4byte 0x41A00000
-lbl_80519938:
-	.4byte 0x6172632E
-	.4byte 0x737A7300
+.endobj lbl_80519914
+.obj lbl_80519918, local
+	.float 1500.0
+.endobj lbl_80519918
+.obj lbl_8051991C, local
+	.float 60000.0
+.endobj lbl_8051991C
+.obj lbl_80519920, local
+	.float 1200.0
+.endobj lbl_80519920
+.obj lbl_80519924, local
+	.float 750.0
+.endobj lbl_80519924
+.obj lbl_80519928, local
+	.float 250.0
+.endobj lbl_80519928
+.obj lbl_8051992C, local
+	.float 150.0
+.endobj lbl_8051992C
+.obj lbl_80519930, local
+	.float 35.0
+.endobj lbl_80519930
+.obj lbl_80519934, local
+	.float 20.0
+.endobj lbl_80519934
+.balign 4
+.obj lbl_80519938, local
+	.asciz "arc.szs"
+.endobj lbl_80519938
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item
-init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item:
+.fn init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item, global
 /* 801E0E84 001DDDC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0E88 001DDDC8  7C 08 02 A6 */	mflr r0
 /* 801E0E8C 001DDDCC  38 80 00 03 */	li r4, 3
@@ -877,9 +926,9 @@ init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item:
 /* 801E0FAC 001DDEEC  7C 08 03 A6 */	mtlr r0
 /* 801E0FB0 001DDEF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0FB4 001DDEF4  4E 80 00 20 */	blr 
+.endfn init__Q34Game8ItemRock3FSMFPQ34Game8ItemRock4Item
 
-.global init__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
-init__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg:
+.fn init__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg, global
 /* 801E0FB8 001DDEF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0FBC 001DDEFC  7C 08 02 A6 */	mflr r0
 /* 801E0FC0 001DDF00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -895,9 +944,9 @@ init__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg:
 /* 801E0FE8 001DDF28  7C 08 03 A6 */	mtlr r0
 /* 801E0FEC 001DDF2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0FF0 001DDF30  4E 80 00 20 */	blr 
+.endfn init__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
 
-.global exec__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item
-exec__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item:
+.fn exec__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item, global
 /* 801E0FF4 001DDF34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0FF8 001DDF38  7C 08 02 A6 */	mflr r0
 /* 801E0FFC 001DDF3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -935,9 +984,9 @@ exec__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item:
 /* 801E1078 001DDFB8  7C 08 03 A6 */	mtlr r0
 /* 801E107C 001DDFBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E1080 001DDFC0  4E 80 00 20 */	blr 
+.endfn exec__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item
 
-.global "transit__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
-"transit__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg":
+.fn "transit__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg", weak
 /* 801E1084 001DDFC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1088 001DDFC8  7C 08 02 A6 */	mflr r0
 /* 801E108C 001DDFCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -950,13 +999,13 @@ exec__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item:
 /* 801E10A8 001DDFE8  7C 08 03 A6 */	mtlr r0
 /* 801E10AC 001DDFEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E10B0 001DDFF0  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
 
-.global cleanup__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item
-cleanup__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item:
+.fn cleanup__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item, global
 /* 801E10B4 001DDFF4  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Item
 
-.global onDamage__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Itemf
-onDamage__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Itemf:
+.fn onDamage__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Itemf, global
 /* 801E10B8 001DDFF8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E10BC 001DDFFC  7C 08 02 A6 */	mflr r0
 /* 801E10C0 001DE000  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1005,9 +1054,9 @@ onDamage__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Itemf:
 /* 801E1168 001DE0A8  7C 08 03 A6 */	mtlr r0
 /* 801E116C 001DE0AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E1170 001DE0B0  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4Itemf
 
-.global onKeyEvent__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent
-onKeyEvent__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent, global
 /* 801E1174 001DE0B4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E1178 001DE0B8  7C 08 02 A6 */	mflr r0
 /* 801E117C 001DE0BC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1074,9 +1123,9 @@ onKeyEvent__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemRCQ28SysShape8Ke
 /* 801E1260 001DE1A0  7C 08 03 A6 */	mtlr r0
 /* 801E1264 001DE1A4  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E1268 001DE1A8  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q34Game8ItemRock11NormalStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent
 
-.global init__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
-init__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg:
+.fn init__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg, global
 /* 801E126C 001DE1AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1270 001DE1B0  7C 08 02 A6 */	mflr r0
 /* 801E1274 001DE1B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1095,24 +1144,24 @@ init__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg:
 /* 801E12A8 001DE1E8  7C 08 03 A6 */	mtlr r0
 /* 801E12AC 001DE1EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E12B0 001DE1F0  4E 80 00 20 */	blr 
+.endfn init__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
 
-.global exec__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item
-exec__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item:
+.fn exec__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item, global
 /* 801E12B4 001DE1F4  4E 80 00 20 */	blr 
+.endfn exec__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item
 
-.global cleanup__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item
-cleanup__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item:
+.fn cleanup__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item, global
 /* 801E12B8 001DE1F8  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Item
 
-.global onDamage__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Itemf
-onDamage__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Itemf:
+.fn onDamage__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Itemf, global
 /* 801E12BC 001DE1FC  C0 04 02 18 */	lfs f0, 0x218(r4)
 /* 801E12C0 001DE200  EC 00 08 2A */	fadds f0, f0, f1
 /* 801E12C4 001DE204  D0 04 02 18 */	stfs f0, 0x218(r4)
 /* 801E12C8 001DE208  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4Itemf
 
-.global onKeyEvent__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent
-onKeyEvent__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent, global
 /* 801E12CC 001DE20C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E12D0 001DE210  7C 08 02 A6 */	mflr r0
 /* 801E12D4 001DE214  C0 02 B5 68 */	lfs f0, lbl_805198C8@sda21(r2)
@@ -1174,9 +1223,9 @@ onKeyEvent__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEv
 /* 801E13B0 001DE2F0  7C 08 03 A6 */	mtlr r0
 /* 801E13B4 001DE2F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E13B8 001DE2F8  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q34Game8ItemRock9DownStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent
 
-.global init__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
-init__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg:
+.fn init__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg, global
 /* 801E13BC 001DE2FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E13C0 001DE300  7C 08 02 A6 */	mflr r0
 /* 801E13C4 001DE304  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1199,24 +1248,24 @@ init__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg:
 /* 801E1408 001DE348  7C 08 03 A6 */	mtlr r0
 /* 801E140C 001DE34C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E1410 001DE350  4E 80 00 20 */	blr 
+.endfn init__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemPQ24Game8StateArg
 
-.global exec__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item
-exec__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item:
+.fn exec__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item, global
 /* 801E1414 001DE354  4E 80 00 20 */	blr 
+.endfn exec__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item
 
-.global cleanup__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item
-cleanup__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item:
+.fn cleanup__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item, global
 /* 801E1418 001DE358  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Item
 
-.global onDamage__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Itemf
-onDamage__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Itemf:
+.fn onDamage__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Itemf, global
 /* 801E141C 001DE35C  C0 04 02 18 */	lfs f0, 0x218(r4)
 /* 801E1420 001DE360  EC 00 08 2A */	fadds f0, f0, f1
 /* 801E1424 001DE364  D0 04 02 18 */	stfs f0, 0x218(r4)
 /* 801E1428 001DE368  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4Itemf
 
-.global onKeyEvent__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent
-onKeyEvent__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent, global
 /* 801E142C 001DE36C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E1430 001DE370  7C 08 02 A6 */	mflr r0
 /* 801E1434 001DE374  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1268,9 +1317,9 @@ onKeyEvent__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEven
 /* 801E14EC 001DE42C  7C 08 03 A6 */	mtlr r0
 /* 801E14F0 001DE430  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E14F4 001DE434  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q34Game8ItemRock7UpStateFPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent
 
-.global constructor__Q34Game8ItemRock4ItemFv
-constructor__Q34Game8ItemRock4ItemFv:
+.fn constructor__Q34Game8ItemRock4ItemFv, global
 /* 801E14F8 001DE438  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E14FC 001DE43C  7C 08 02 A6 */	mflr r0
 /* 801E1500 001DE440  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1290,9 +1339,9 @@ constructor__Q34Game8ItemRock4ItemFv:
 /* 801E1534 001DE474  7C 08 03 A6 */	mtlr r0
 /* 801E1538 001DE478  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E153C 001DE47C  4E 80 00 20 */	blr 
+.endfn constructor__Q34Game8ItemRock4ItemFv
 
-.global onInit__Q34Game8ItemRock4ItemFPQ24Game15CreatureInitArg
-onInit__Q34Game8ItemRock4ItemFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game8ItemRock4ItemFPQ24Game15CreatureInitArg, global
 /* 801E1540 001DE480  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1544 001DE484  7C 08 02 A6 */	mflr r0
 /* 801E1548 001DE488  C0 02 B5 68 */	lfs f0, lbl_805198C8@sda21(r2)
@@ -1429,9 +1478,9 @@ onInit__Q34Game8ItemRock4ItemFPQ24Game15CreatureInitArg:
 /* 801E1740 001DE680  7C 08 03 A6 */	mtlr r0
 /* 801E1744 001DE684  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E1748 001DE688  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game8ItemRock4ItemFPQ24Game15CreatureInitArg
 
-.global "start__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
-"start__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg":
+.fn "start__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg", weak
 /* 801E174C 001DE68C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1750 001DE690  7C 08 02 A6 */	mflr r0
 /* 801E1754 001DE694  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1445,9 +1494,9 @@ onInit__Q34Game8ItemRock4ItemFPQ24Game15CreatureInitArg:
 /* 801E1774 001DE6B4  7C 08 03 A6 */	mtlr r0
 /* 801E1778 001DE6B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E177C 001DE6BC  4E 80 00 20 */	blr 
+.endfn "start__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
 
-.global onKill__Q34Game8ItemRock4ItemFPQ24Game15CreatureKillArg
-onKill__Q34Game8ItemRock4ItemFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game8ItemRock4ItemFPQ24Game15CreatureKillArg, global
 /* 801E1780 001DE6C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1784 001DE6C4  7C 08 02 A6 */	mflr r0
 /* 801E1788 001DE6C8  7C 64 1B 78 */	mr r4, r3
@@ -1461,9 +1510,9 @@ onKill__Q34Game8ItemRock4ItemFPQ24Game15CreatureKillArg:
 /* 801E17A8 001DE6E8  7C 08 03 A6 */	mtlr r0
 /* 801E17AC 001DE6EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E17B0 001DE6F0  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game8ItemRock4ItemFPQ24Game15CreatureKillArg
 
-.global onSetPosition__Q34Game8ItemRock4ItemFv
-onSetPosition__Q34Game8ItemRock4ItemFv:
+.fn onSetPosition__Q34Game8ItemRock4ItemFv, global
 /* 801E17B4 001DE6F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E17B8 001DE6F8  7C 08 02 A6 */	mflr r0
 /* 801E17BC 001DE6FC  C0 22 B5 7C */	lfs f1, lbl_805198DC@sda21(r2)
@@ -1487,9 +1536,9 @@ onSetPosition__Q34Game8ItemRock4ItemFv:
 /* 801E1804 001DE744  7C 08 03 A6 */	mtlr r0
 /* 801E1808 001DE748  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E180C 001DE74C  4E 80 00 20 */	blr 
+.endfn onSetPosition__Q34Game8ItemRock4ItemFv
 
-.global onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent
-onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent, global
 /* 801E1810 001DE750  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1814 001DE754  7C 08 02 A6 */	mflr r0
 /* 801E1818 001DE758  7C 66 1B 78 */	mr r6, r3
@@ -1508,13 +1557,13 @@ onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent:
 /* 801E1848 001DE788  7C 08 03 A6 */	mtlr r0
 /* 801E184C 001DE78C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E1850 001DE790  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent
 
-.global "onKeyEvent__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent", weak
 /* 801E1854 001DE794  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRCQ28SysShape8KeyEvent"
 
-.global startLoopEffect__Q34Game8ItemRock4ItemFv
-startLoopEffect__Q34Game8ItemRock4ItemFv:
+.fn startLoopEffect__Q34Game8ItemRock4ItemFv, global
 /* 801E1858 001DE798  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E185C 001DE79C  7C 08 02 A6 */	mflr r0
 /* 801E1860 001DE7A0  3C 80 80 4B */	lis r4, __vt__Q23efx3Arg@ha
@@ -1588,9 +1637,9 @@ startLoopEffect__Q34Game8ItemRock4ItemFv:
 /* 801E1958 001DE898  7C 08 03 A6 */	mtlr r0
 /* 801E195C 001DE89C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E1960 001DE8A0  4E 80 00 20 */	blr 
+.endfn startLoopEffect__Q34Game8ItemRock4ItemFv
 
-.global finishLoopEffect__Q34Game8ItemRock4ItemFv
-finishLoopEffect__Q34Game8ItemRock4ItemFv:
+.fn finishLoopEffect__Q34Game8ItemRock4ItemFv, global
 /* 801E1964 001DE8A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1968 001DE8A8  7C 08 02 A6 */	mflr r0
 /* 801E196C 001DE8AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1616,9 +1665,9 @@ finishLoopEffect__Q34Game8ItemRock4ItemFv:
 /* 801E19BC 001DE8FC  7C 08 03 A6 */	mtlr r0
 /* 801E19C0 001DE900  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E19C4 001DE904  4E 80 00 20 */	blr 
+.endfn finishLoopEffect__Q34Game8ItemRock4ItemFv
 
-.global "startFukuEffect__Q34Game8ItemRock4ItemFR10Vector3<f>"
-"startFukuEffect__Q34Game8ItemRock4ItemFR10Vector3<f>":
+.fn "startFukuEffect__Q34Game8ItemRock4ItemFR10Vector3<f>", global
 /* 801E19C8 001DE908  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E19CC 001DE90C  7C 08 02 A6 */	mflr r0
 /* 801E19D0 001DE910  3C C0 80 4C */	lis r6, __vt__Q23efx11TKouhaiFuku@ha
@@ -1663,9 +1712,9 @@ finishLoopEffect__Q34Game8ItemRock4ItemFv:
 /* 801E1A6C 001DE9AC  7C 08 03 A6 */	mtlr r0
 /* 801E1A70 001DE9B0  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E1A74 001DE9B4  4E 80 00 20 */	blr 
+.endfn "startFukuEffect__Q34Game8ItemRock4ItemFR10Vector3<f>"
 
-.global doLoad__Q34Game8ItemRock4ItemFR6Stream
-doLoad__Q34Game8ItemRock4ItemFR6Stream:
+.fn doLoad__Q34Game8ItemRock4ItemFR6Stream, global
 /* 801E1A78 001DE9B8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801E1A7C 001DE9BC  7C 08 02 A6 */	mflr r0
 /* 801E1A80 001DE9C0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1802,9 +1851,9 @@ doLoad__Q34Game8ItemRock4ItemFR6Stream:
 /* 801E1C70 001DEBB0  7C 08 03 A6 */	mtlr r0
 /* 801E1C74 001DEBB4  38 21 00 30 */	addi r1, r1, 0x30
 /* 801E1C78 001DEBB8  4E 80 00 20 */	blr 
+.endfn doLoad__Q34Game8ItemRock4ItemFR6Stream
 
-.global doSave__Q34Game8ItemRock4ItemFR6Stream
-doSave__Q34Game8ItemRock4ItemFR6Stream:
+.fn doSave__Q34Game8ItemRock4ItemFR6Stream, global
 /* 801E1C7C 001DEBBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1C80 001DEBC0  7C 08 02 A6 */	mflr r0
 /* 801E1C84 001DEBC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1827,9 +1876,9 @@ doSave__Q34Game8ItemRock4ItemFR6Stream:
 /* 801E1CC8 001DEC08  7C 08 03 A6 */	mtlr r0
 /* 801E1CCC 001DEC0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E1CD0 001DEC10  4E 80 00 20 */	blr 
+.endfn doSave__Q34Game8ItemRock4ItemFR6Stream
 
-.global updateBoundSphere__Q34Game8ItemRock4ItemFv
-updateBoundSphere__Q34Game8ItemRock4ItemFv:
+.fn updateBoundSphere__Q34Game8ItemRock4ItemFv, global
 /* 801E1CD4 001DEC14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1CD8 001DEC18  7C 08 02 A6 */	mflr r0
 /* 801E1CDC 001DEC1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1848,9 +1897,9 @@ updateBoundSphere__Q34Game8ItemRock4ItemFv:
 /* 801E1D10 001DEC50  7C 08 03 A6 */	mtlr r0
 /* 801E1D14 001DEC54  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E1D18 001DEC58  4E 80 00 20 */	blr 
+.endfn updateBoundSphere__Q34Game8ItemRock4ItemFv
 
-.global doAI__Q34Game8ItemRock4ItemFv
-doAI__Q34Game8ItemRock4ItemFv:
+.fn doAI__Q34Game8ItemRock4ItemFv, global
 /* 801E1D1C 001DEC5C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E1D20 001DEC60  7C 08 02 A6 */	mflr r0
 /* 801E1D24 001DEC64  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1968,9 +2017,9 @@ doAI__Q34Game8ItemRock4ItemFv:
 /* 801E1EC4 001DEE04  7C 08 03 A6 */	mtlr r0
 /* 801E1EC8 001DEE08  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E1ECC 001DEE0C  4E 80 00 20 */	blr 
+.endfn doAI__Q34Game8ItemRock4ItemFv
 
-.global initMotion__Q34Game8ItemRock4ItemFv
-initMotion__Q34Game8ItemRock4ItemFv:
+.fn initMotion__Q34Game8ItemRock4ItemFv, global
 /* 801E1ED0 001DEE10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1ED4 001DEE14  7C 08 02 A6 */	mflr r0
 /* 801E1ED8 001DEE18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1979,9 +2028,9 @@ initMotion__Q34Game8ItemRock4ItemFv:
 /* 801E1EE4 001DEE24  7C 08 03 A6 */	mtlr r0
 /* 801E1EE8 001DEE28  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E1EEC 001DEE2C  4E 80 00 20 */	blr 
+.endfn initMotion__Q34Game8ItemRock4ItemFv
 
-.global on_movie_end__Q34Game8ItemRock4ItemFb
-on_movie_end__Q34Game8ItemRock4ItemFb:
+.fn on_movie_end__Q34Game8ItemRock4ItemFb, global
 /* 801E1EF0 001DEE30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E1EF4 001DEE34  7C 08 02 A6 */	mflr r0
 /* 801E1EF8 001DEE38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1990,9 +2039,9 @@ on_movie_end__Q34Game8ItemRock4ItemFb:
 /* 801E1F04 001DEE44  7C 08 03 A6 */	mtlr r0
 /* 801E1F08 001DEE48  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E1F0C 001DEE4C  4E 80 00 20 */	blr 
+.endfn on_movie_end__Q34Game8ItemRock4ItemFb
 
-.global startWaitMotion__Q34Game8ItemRock4ItemFv
-startWaitMotion__Q34Game8ItemRock4ItemFv:
+.fn startWaitMotion__Q34Game8ItemRock4ItemFv, global
 /* 801E1F10 001DEE50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E1F14 001DEE54  7C 08 02 A6 */	mflr r0
 /* 801E1F18 001DEE58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2079,9 +2128,9 @@ startWaitMotion__Q34Game8ItemRock4ItemFv:
 /* 801E2030 001DEF70  7C 08 03 A6 */	mtlr r0
 /* 801E2034 001DEF74  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E2038 001DEF78  4E 80 00 20 */	blr 
+.endfn startWaitMotion__Q34Game8ItemRock4ItemFv
 
-.global startDamageMotion__Q34Game8ItemRock4ItemFv
-startDamageMotion__Q34Game8ItemRock4ItemFv:
+.fn startDamageMotion__Q34Game8ItemRock4ItemFv, global
 /* 801E203C 001DEF7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E2040 001DEF80  7C 08 02 A6 */	mflr r0
 /* 801E2044 001DEF84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2128,9 +2177,9 @@ startDamageMotion__Q34Game8ItemRock4ItemFv:
 /* 801E20CC 001DF00C  7C 08 03 A6 */	mtlr r0
 /* 801E20D0 001DF010  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E20D4 001DF014  4E 80 00 20 */	blr 
+.endfn startDamageMotion__Q34Game8ItemRock4ItemFv
 
-.global startDownMotion__Q34Game8ItemRock4ItemFv
-startDownMotion__Q34Game8ItemRock4ItemFv:
+.fn startDownMotion__Q34Game8ItemRock4ItemFv, global
 /* 801E20D8 001DF018  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801E20DC 001DF01C  7C 08 02 A6 */	mflr r0
 /* 801E20E0 001DF020  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2301,9 +2350,9 @@ startDownMotion__Q34Game8ItemRock4ItemFv:
 /* 801E2358 001DF298  7C 08 03 A6 */	mtlr r0
 /* 801E235C 001DF29C  38 21 00 70 */	addi r1, r1, 0x70
 /* 801E2360 001DF2A0  4E 80 00 20 */	blr 
+.endfn startDownMotion__Q34Game8ItemRock4ItemFv
 
-.global startUpMotion__Q34Game8ItemRock4ItemFv
-startUpMotion__Q34Game8ItemRock4ItemFv:
+.fn startUpMotion__Q34Game8ItemRock4ItemFv, global
 /* 801E2364 001DF2A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E2368 001DF2A8  7C 08 02 A6 */	mflr r0
 /* 801E236C 001DF2AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2371,9 +2420,9 @@ startUpMotion__Q34Game8ItemRock4ItemFv:
 /* 801E2444 001DF384  7C 08 03 A6 */	mtlr r0
 /* 801E2448 001DF388  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E244C 001DF38C  4E 80 00 20 */	blr 
+.endfn startUpMotion__Q34Game8ItemRock4ItemFv
 
-.global "getVectorField__Q34Game8ItemRock4ItemFRQ23Sys6SphereR10Vector3<f>"
-"getVectorField__Q34Game8ItemRock4ItemFRQ23Sys6SphereR10Vector3<f>":
+.fn "getVectorField__Q34Game8ItemRock4ItemFRQ23Sys6SphereR10Vector3<f>", global
 /* 801E2450 001DF390  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801E2454 001DF394  7C 08 02 A6 */	mflr r0
 /* 801E2458 001DF398  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2449,9 +2498,9 @@ startUpMotion__Q34Game8ItemRock4ItemFv:
 /* 801E2558 001DF498  7C 08 03 A6 */	mtlr r0
 /* 801E255C 001DF49C  38 21 00 50 */	addi r1, r1, 0x50
 /* 801E2560 001DF4A0  4E 80 00 20 */	blr 
+.endfn "getVectorField__Q34Game8ItemRock4ItemFRQ23Sys6SphereR10Vector3<f>"
 
-.global getWorkDistance__Q34Game8ItemRock4ItemFRQ23Sys6Sphere
-getWorkDistance__Q34Game8ItemRock4ItemFRQ23Sys6Sphere:
+.fn getWorkDistance__Q34Game8ItemRock4ItemFRQ23Sys6Sphere, global
 /* 801E2564 001DF4A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E2568 001DF4A8  7C 08 02 A6 */	mflr r0
 /* 801E256C 001DF4AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2488,9 +2537,9 @@ getWorkDistance__Q34Game8ItemRock4ItemFRQ23Sys6Sphere:
 /* 801E25E0 001DF520  7C 08 03 A6 */	mtlr r0
 /* 801E25E4 001DF524  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E25E8 001DF528  4E 80 00 20 */	blr 
+.endfn getWorkDistance__Q34Game8ItemRock4ItemFRQ23Sys6Sphere
 
-.global createRock__Q34Game8ItemRock4ItemFi
-createRock__Q34Game8ItemRock4ItemFi:
+.fn createRock__Q34Game8ItemRock4ItemFi, global
 /* 801E25EC 001DF52C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E25F0 001DF530  7C 08 02 A6 */	mflr r0
 /* 801E25F4 001DF534  C0 02 B5 68 */	lfs f0, lbl_805198C8@sda21(r2)
@@ -2596,9 +2645,9 @@ createRock__Q34Game8ItemRock4ItemFi:
 /* 801E2774 001DF6B4  7C 08 03 A6 */	mtlr r0
 /* 801E2778 001DF6B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E277C 001DF6BC  4E 80 00 20 */	blr 
+.endfn createRock__Q34Game8ItemRock4ItemFi
 
-.global interactAttack__Q34Game8ItemRock4ItemFRQ24Game14InteractAttack
-interactAttack__Q34Game8ItemRock4ItemFRQ24Game14InteractAttack:
+.fn interactAttack__Q34Game8ItemRock4ItemFRQ24Game14InteractAttack, global
 /* 801E2780 001DF6C0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801E2784 001DF6C4  7C 08 02 A6 */	mflr r0
 /* 801E2788 001DF6C8  7C 85 23 78 */	mr r5, r4
@@ -2698,13 +2747,13 @@ interactAttack__Q34Game8ItemRock4ItemFRQ24Game14InteractAttack:
 /* 801E28E8 001DF828  7C 08 03 A6 */	mtlr r0
 /* 801E28EC 001DF82C  38 21 00 50 */	addi r1, r1, 0x50
 /* 801E28F0 001DF830  4E 80 00 20 */	blr 
+.endfn interactAttack__Q34Game8ItemRock4ItemFRQ24Game14InteractAttack
 
-.global onDamage__Q34Game8ItemRock5StateFPQ34Game8ItemRock4Itemf
-onDamage__Q34Game8ItemRock5StateFPQ34Game8ItemRock4Itemf:
+.fn onDamage__Q34Game8ItemRock5StateFPQ34Game8ItemRock4Itemf, weak
 /* 801E28F4 001DF834  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game8ItemRock5StateFPQ34Game8ItemRock4Itemf
 
-.global getWorkRadius__Q34Game8ItemRock4ItemFv
-getWorkRadius__Q34Game8ItemRock4ItemFv:
+.fn getWorkRadius__Q34Game8ItemRock4ItemFv, global
 /* 801E28F8 001DF838  80 83 02 1C */	lwz r4, 0x21c(r3)
 /* 801E28FC 001DF83C  80 03 02 20 */	lwz r0, 0x220(r3)
 /* 801E2900 001DF840  7C 04 00 00 */	cmpw r4, r0
@@ -2716,9 +2765,9 @@ getWorkRadius__Q34Game8ItemRock4ItemFv:
 /* 801E2914 001DF854  54 80 10 3A */	slwi r0, r4, 2
 /* 801E2918 001DF858  7C 23 04 2E */	lfsx f1, r3, r0
 /* 801E291C 001DF85C  4E 80 00 20 */	blr 
+.endfn getWorkRadius__Q34Game8ItemRock4ItemFv
 
-.global __ct__Q34Game8ItemRock3MgrFv
-__ct__Q34Game8ItemRock3MgrFv:
+.fn __ct__Q34Game8ItemRock3MgrFv, global
 /* 801E2920 001DF860  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 801E2924 001DF864  7C 08 02 A6 */	mflr r0
 /* 801E2928 001DF868  90 01 04 44 */	stw r0, 0x444(r1)
@@ -2795,9 +2844,9 @@ __ct__Q34Game8ItemRock3MgrFv:
 /* 801E2A34 001DF974  7C 08 03 A6 */	mtlr r0
 /* 801E2A38 001DF978  38 21 04 40 */	addi r1, r1, 0x440
 /* 801E2A3C 001DF97C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game8ItemRock3MgrFv
 
-.global read__Q34Game8ItemRock9RockParmsFR6Stream
-read__Q34Game8ItemRock9RockParmsFR6Stream:
+.fn read__Q34Game8ItemRock9RockParmsFR6Stream, weak
 /* 801E2A40 001DF980  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E2A44 001DF984  7C 08 02 A6 */	mflr r0
 /* 801E2A48 001DF988  38 63 00 DC */	addi r3, r3, 0xdc
@@ -2807,9 +2856,9 @@ read__Q34Game8ItemRock9RockParmsFR6Stream:
 /* 801E2A58 001DF998  7C 08 03 A6 */	mtlr r0
 /* 801E2A5C 001DF99C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E2A60 001DF9A0  4E 80 00 20 */	blr 
+.endfn read__Q34Game8ItemRock9RockParmsFR6Stream
 
-.global __ct__Q34Game8ItemRock9RockParmsFv
-__ct__Q34Game8ItemRock9RockParmsFv:
+.fn __ct__Q34Game8ItemRock9RockParmsFv, weak
 /* 801E2A64 001DF9A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E2A68 001DF9A8  7C 08 02 A6 */	mflr r0
 /* 801E2A6C 001DF9AC  3C A0 73 30 */	lis r5, 0x73303030@ha
@@ -2915,9 +2964,9 @@ __ct__Q34Game8ItemRock9RockParmsFv:
 /* 801E2BFC 001DFB3C  7C 08 03 A6 */	mtlr r0
 /* 801E2C00 001DFB40  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E2C04 001DFB44  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game8ItemRock9RockParmsFv
 
-.global __ct__Q44Game8ItemRock9RockParms5ParmsFv
-__ct__Q44Game8ItemRock9RockParms5ParmsFv:
+.fn __ct__Q44Game8ItemRock9RockParms5ParmsFv, weak
 /* 801E2C08 001DFB48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E2C0C 001DFB4C  7C 08 02 A6 */	mflr r0
 /* 801E2C10 001DFB50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3107,9 +3156,9 @@ __ct__Q44Game8ItemRock9RockParms5ParmsFv:
 /* 801E2EEC 001DFE2C  7C 08 03 A6 */	mtlr r0
 /* 801E2EF0 001DFE30  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E2EF4 001DFE34  4E 80 00 20 */	blr 
+.endfn __ct__Q44Game8ItemRock9RockParms5ParmsFv
 
-.global birth__Q34Game8ItemRock3MgrFv
-birth__Q34Game8ItemRock3MgrFv:
+.fn birth__Q34Game8ItemRock3MgrFv, global
 /* 801E2EF8 001DFE38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E2EFC 001DFE3C  7C 08 02 A6 */	mflr r0
 /* 801E2F00 001DFE40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3180,9 +3229,9 @@ birth__Q34Game8ItemRock3MgrFv:
 /* 801E2FFC 001DFF3C  7C 08 03 A6 */	mtlr r0
 /* 801E3000 001DFF40  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3004 001DFF44  4E 80 00 20 */	blr 
+.endfn birth__Q34Game8ItemRock3MgrFv
 
-.global "generatorBirth__Q34Game8ItemRock3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-"generatorBirth__Q34Game8ItemRock3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
+.fn "generatorBirth__Q34Game8ItemRock3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm", global
 /* 801E3008 001DFF48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E300C 001DFF4C  7C 08 02 A6 */	mflr r0
 /* 801E3010 001DFF50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3207,9 +3256,9 @@ birth__Q34Game8ItemRock3MgrFv:
 /* 801E305C 001DFF9C  7C 08 03 A6 */	mtlr r0
 /* 801E3060 001DFFA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3064 001DFFA4  4E 80 00 20 */	blr 
+.endfn "generatorBirth__Q34Game8ItemRock3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
 
-.global onLoadResources__Q34Game8ItemRock3MgrFv
-onLoadResources__Q34Game8ItemRock3MgrFv:
+.fn onLoadResources__Q34Game8ItemRock3MgrFv, global
 /* 801E3068 001DFFA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E306C 001DFFAC  7C 08 02 A6 */	mflr r0
 /* 801E3070 001DFFB0  3C 80 80 48 */	lis r4, lbl_80480B10@ha
@@ -3252,9 +3301,9 @@ onLoadResources__Q34Game8ItemRock3MgrFv:
 /* 801E3104 001E0044  7C 08 03 A6 */	mtlr r0
 /* 801E3108 001E0048  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E310C 001E004C  4E 80 00 20 */	blr 
+.endfn onLoadResources__Q34Game8ItemRock3MgrFv
 
-.global __dt__Q34Game8ItemRock3MgrFv
-__dt__Q34Game8ItemRock3MgrFv:
+.fn __dt__Q34Game8ItemRock3MgrFv, weak
 /* 801E3110 001E0050  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E3114 001E0054  7C 08 02 A6 */	mflr r0
 /* 801E3118 001E0058  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3336,9 +3385,9 @@ __dt__Q34Game8ItemRock3MgrFv:
 /* 801E3238 001E0178  7C 08 03 A6 */	mtlr r0
 /* 801E323C 001E017C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3240 001E0180  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game8ItemRock3MgrFv
 
-.global doNew__Q34Game8ItemRock3MgrFv
-doNew__Q34Game8ItemRock3MgrFv:
+.fn doNew__Q34Game8ItemRock3MgrFv, weak
 /* 801E3244 001E0184  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E3248 001E0188  7C 08 02 A6 */	mflr r0
 /* 801E324C 001E018C  38 60 02 28 */	li r3, 0x228
@@ -3403,27 +3452,27 @@ doNew__Q34Game8ItemRock3MgrFv:
 /* 801E3330 001E0270  7C 08 03 A6 */	mtlr r0
 /* 801E3334 001E0274  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3338 001E0278  4E 80 00 20 */	blr 
+.endfn doNew__Q34Game8ItemRock3MgrFv
 
-.global generatorGetID__Q34Game8ItemRock3MgrFv
-generatorGetID__Q34Game8ItemRock3MgrFv:
+.fn generatorGetID__Q34Game8ItemRock3MgrFv, weak
 /* 801E333C 001E027C  3C 60 72 6F */	lis r3, 0x726F636B@ha
 /* 801E3340 001E0280  38 63 63 6B */	addi r3, r3, 0x726F636B@l
 /* 801E3344 001E0284  4E 80 00 20 */	blr 
+.endfn generatorGetID__Q34Game8ItemRock3MgrFv
 
-.global getName__Q23efx9ArgKouhaiFv
-getName__Q23efx9ArgKouhaiFv:
+.fn getName__Q23efx9ArgKouhaiFv, weak
 /* 801E3348 001E0288  3C 60 80 48 */	lis r3, lbl_80480C84@ha
 /* 801E334C 001E028C  38 63 0C 84 */	addi r3, r3, lbl_80480C84@l
 /* 801E3350 001E0290  4E 80 00 20 */	blr 
+.endfn getName__Q23efx9ArgKouhaiFv
 
-.global getCreatureName__Q34Game8ItemRock4ItemFv
-getCreatureName__Q34Game8ItemRock4ItemFv:
+.fn getCreatureName__Q34Game8ItemRock4ItemFv, weak
 /* 801E3354 001E0294  3C 60 80 48 */	lis r3, lbl_80480C90@ha
 /* 801E3358 001E0298  38 63 0C 90 */	addi r3, r3, lbl_80480C90@l
 /* 801E335C 001E029C  4E 80 00 20 */	blr 
+.endfn getCreatureName__Q34Game8ItemRock4ItemFv
 
-.global "doAI__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>Fv"
-"doAI__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>Fv":
+.fn "doAI__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>Fv", weak
 /* 801E3360 001E02A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E3364 001E02A4  7C 08 02 A6 */	mflr r0
 /* 801E3368 001E02A8  7C 64 1B 78 */	mr r4, r3
@@ -3437,9 +3486,9 @@ getCreatureName__Q34Game8ItemRock4ItemFv:
 /* 801E3388 001E02C8  7C 08 03 A6 */	mtlr r0
 /* 801E338C 001E02CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3390 001E02D0  4E 80 00 20 */	blr 
+.endfn "doAI__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>Fv"
 
-.global "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent", weak
 /* 801E3394 001E02D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E3398 001E02D8  7C 08 02 A6 */	mflr r0
 /* 801E339C 001E02DC  7C 66 1B 78 */	mr r6, r3
@@ -3458,49 +3507,49 @@ getCreatureName__Q34Game8ItemRock4ItemFv:
 /* 801E33CC 001E030C  7C 08 03 A6 */	mtlr r0
 /* 801E33D0 001E0310  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E33D4 001E0314  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent"
 
-.global "onDamage__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Itemf"
-"onDamage__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Itemf":
+.fn "onDamage__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Itemf", weak
 /* 801E33D8 001E0318  4E 80 00 20 */	blr 
+.endfn "onDamage__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Itemf"
 
-.global "onBounce__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ23Sys8Triangle"
-"onBounce__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ23Sys8Triangle":
+.fn "onBounce__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ23Sys8Triangle", weak
 /* 801E33DC 001E031C  4E 80 00 20 */	blr 
+.endfn "onBounce__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ23Sys8Triangle"
 
-.global "onPlatCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9PlatEvent"
-"onPlatCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9PlatEvent":
+.fn "onPlatCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9PlatEvent", weak
 /* 801E33E0 001E0320  4E 80 00 20 */	blr 
+.endfn "onPlatCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9PlatEvent"
 
-.global "onCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9CollEvent"
-"onCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9CollEvent":
+.fn "onCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9CollEvent", weak
 /* 801E33E4 001E0324  4E 80 00 20 */	blr 
+.endfn "onCollision__Q24Game32ItemState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemRQ24Game9CollEvent"
 
-.global "init__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ24Game8StateArg"
-"init__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ24Game8StateArg":
+.fn "init__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ24Game8StateArg", weak
 /* 801E33E8 001E0328  4E 80 00 20 */	blr 
+.endfn "init__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemPQ24Game8StateArg"
 
-.global "exec__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
-"exec__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item":
+.fn "exec__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item", weak
 /* 801E33EC 001E032C  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 
-.global "cleanup__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
-"cleanup__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item":
+.fn "cleanup__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item", weak
 /* 801E33F0 001E0330  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 
-.global "resume__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
-"resume__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item":
+.fn "resume__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item", weak
 /* 801E33F4 001E0334  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 
-.global "restart__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
-"restart__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item":
+.fn "restart__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item", weak
 /* 801E33F8 001E0338  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game31FSMState<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 
-.global "init__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
-"init__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item":
+.fn "init__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item", weak
 /* 801E33FC 001E033C  4E 80 00 20 */	blr 
+.endfn "init__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 
-.global "exec__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
-"exec__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item":
+.fn "exec__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item", weak
 /* 801E3400 001E0340  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E3404 001E0344  7C 08 02 A6 */	mflr r0
 /* 801E3408 001E0348  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3516,9 +3565,9 @@ getCreatureName__Q34Game8ItemRock4ItemFv:
 /* 801E342C 001E036C  7C 08 03 A6 */	mtlr r0
 /* 801E3430 001E0370  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3434 001E0374  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4Item"
 
-.global "create__Q24Game35StateMachine<Q34Game8ItemRock4Item>Fi"
-"create__Q24Game35StateMachine<Q34Game8ItemRock4Item>Fi":
+.fn "create__Q24Game35StateMachine<Q34Game8ItemRock4Item>Fi", weak
 /* 801E3438 001E0378  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E343C 001E037C  7C 08 02 A6 */	mflr r0
 /* 801E3440 001E0380  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3544,9 +3593,9 @@ getCreatureName__Q34Game8ItemRock4ItemFv:
 /* 801E3490 001E03D0  7C 08 03 A6 */	mtlr r0
 /* 801E3494 001E03D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3498 001E03D8  4E 80 00 20 */	blr 
+.endfn "create__Q24Game35StateMachine<Q34Game8ItemRock4Item>Fi"
 
-.global "transit__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
-"transit__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg":
+.fn "transit__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg", weak
 /* 801E349C 001E03DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E34A0 001E03E0  7C 08 02 A6 */	mflr r0
 /* 801E34A4 001E03E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3589,9 +3638,9 @@ getCreatureName__Q34Game8ItemRock4ItemFv:
 /* 801E352C 001E046C  7C 08 03 A6 */	mtlr r0
 /* 801E3530 001E0470  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E3534 001E0474  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ34Game8ItemRock4ItemiPQ24Game8StateArg"
 
-.global "registerState__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ24Game31FSMState<Q34Game8ItemRock4Item>"
-"registerState__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ24Game31FSMState<Q34Game8ItemRock4Item>":
+.fn "registerState__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ24Game31FSMState<Q34Game8ItemRock4Item>", weak
 /* 801E3538 001E0478  80 C3 00 08 */	lwz r6, 8(r3)
 /* 801E353C 001E047C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 801E3540 001E0480  7C 06 00 00 */	cmpw r6, r0
@@ -3628,9 +3677,9 @@ getCreatureName__Q34Game8ItemRock4ItemFv:
 /* 801E35B0 001E04F0  38 04 00 01 */	addi r0, r4, 1
 /* 801E35B4 001E04F4  90 03 00 08 */	stw r0, 8(r3)
 /* 801E35B8 001E04F8  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game35StateMachine<Q34Game8ItemRock4Item>FPQ24Game31FSMState<Q34Game8ItemRock4Item>"
 
-.global "platCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRQ24Game9PlatEvent"
-"platCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRQ24Game9PlatEvent":
+.fn "platCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRQ24Game9PlatEvent", weak
 /* 801E35BC 001E04FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E35C0 001E0500  7C 08 02 A6 */	mflr r0
 /* 801E35C4 001E0504  7C 66 1B 78 */	mr r6, r3
@@ -3649,9 +3698,9 @@ getCreatureName__Q34Game8ItemRock4ItemFv:
 /* 801E35F4 001E0534  7C 08 03 A6 */	mtlr r0
 /* 801E35F8 001E0538  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E35FC 001E053C  4E 80 00 20 */	blr 
+.endfn "platCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRQ24Game9PlatEvent"
 
-.global "collisionCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRQ24Game9CollEvent"
-"collisionCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRQ24Game9CollEvent":
+.fn "collisionCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRQ24Game9CollEvent", weak
 /* 801E3600 001E0540  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E3604 001E0544  7C 08 02 A6 */	mflr r0
 /* 801E3608 001E0548  7C 66 1B 78 */	mr r6, r3
@@ -3670,9 +3719,9 @@ getCreatureName__Q34Game8ItemRock4ItemFv:
 /* 801E3638 001E0578  7C 08 03 A6 */	mtlr r0
 /* 801E363C 001E057C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3640 001E0580  4E 80 00 20 */	blr 
+.endfn "collisionCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRQ24Game9CollEvent"
 
-.global "bounceCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FPQ23Sys8Triangle"
-"bounceCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FPQ23Sys8Triangle":
+.fn "bounceCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FPQ23Sys8Triangle", weak
 /* 801E3644 001E0584  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E3648 001E0588  7C 08 02 A6 */	mflr r0
 /* 801E364C 001E058C  7C 66 1B 78 */	mr r6, r3
@@ -3691,18 +3740,19 @@ getCreatureName__Q34Game8ItemRock4ItemFv:
 /* 801E367C 001E05BC  7C 08 03 A6 */	mtlr r0
 /* 801E3680 001E05C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E3684 001E05C4  4E 80 00 20 */	blr 
+.endfn "bounceCallback__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FPQ23Sys8Triangle"
 
-.global "@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent", weak
 /* 801E3688 001E05C8  38 63 FE 88 */	addi r3, r3, -376
 /* 801E368C 001E05CC  4B FF FD 08 */	b "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent"
+.endfn "@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemRock4Item,Q34Game8ItemRock3FSM,Q34Game8ItemRock5State>FRCQ28SysShape8KeyEvent"
 
-.global "@376@onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent", weak
 /* 801E3690 001E05D0  38 63 FE 88 */	addi r3, r3, -376
 /* 801E3694 001E05D4  4B FF E1 7C */	b onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent
+.endfn "@376@onKeyEvent__Q34Game8ItemRock4ItemFRCQ28SysShape8KeyEvent"
 
-.global "@48@__dt__Q34Game8ItemRock3MgrFv"
-"@48@__dt__Q34Game8ItemRock3MgrFv":
+.fn "@48@__dt__Q34Game8ItemRock3MgrFv", weak
 /* 801E3698 001E05D8  38 63 FF D0 */	addi r3, r3, -48
 /* 801E369C 001E05DC  4B FF FA 74 */	b __dt__Q34Game8ItemRock3MgrFv
+.endfn "@48@__dt__Q34Game8ItemRock3MgrFv"

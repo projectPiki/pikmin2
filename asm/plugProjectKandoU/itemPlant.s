@@ -1,164 +1,188 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_804808F0:
-	.4byte 0x6974656D
-	.4byte 0x506C616E
-	.4byte 0x74000000
-lbl_804808FC:
-	.4byte 0x6974656D
-	.4byte 0x506C616E
-	.4byte 0x742E6370
-	.4byte 0x70000000
-lbl_8048090C:
-	.asciz "P2Assert"
+.obj lbl_804808F0, local
+	.asciz "itemPlant"
+.endobj lbl_804808F0
 .balign 4
-lbl_80480918:
-	.4byte 0x6D20252E
-	.4byte 0x31662028
-	.4byte 0x25642F25
-	.4byte 0x64290000
-lbl_80480928:
-	.4byte 0x252E3166
-	.4byte 0x20252E31
-	.4byte 0x66000000
-	.4byte 0x6B756B69
-	.4byte 0x5F6A6E74
-	.4byte 0x31000000
-	.4byte 0x6B756B69
-	.4byte 0x5F6A6E74
-	.4byte 0x32000000
-	.4byte 0x6B756B69
-	.4byte 0x5F6A6E74
-	.4byte 0x33000000
-	.4byte 0x6B756B69
-	.4byte 0x5F6A6E74
-	.4byte 0x34000000
-lbl_80480964:
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F70
-	.4byte 0x6C616E74
-	.4byte 0x73000000
-lbl_80480980:
-	.4byte 0x75736572
-	.4byte 0x2F416265
-	.4byte 0x2F697465
-	.4byte 0x6D2F706C
-	.4byte 0x616E7450
-	.4byte 0x61726D73
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x3A3A5072
-	.4byte 0x6F706572
-	.4byte 0x74790000
-	.4byte 0x66726963
-	.4byte 0x74696F6E
-	.4byte 0x286E6F74
-	.4byte 0x20757365
-	.4byte 0x64290000
-	.4byte 0x77616C6C
-	.4byte 0x5265666C
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x66616365
-	.4byte 0x44697241
-	.4byte 0x646A7573
-	.4byte 0x74000000
-	.4byte 0x626F756E
-	.4byte 0x63654661
-	.4byte 0x63746F72
-	.4byte 0x00000000
-	.4byte 0x506C616E
-	.4byte 0x743A3A50
-	.4byte 0x61726D73
-	.4byte 0x00000000
+.obj lbl_804808FC, local
+	.asciz "itemPlant.cpp"
+.endobj lbl_804808FC
+.balign 4
+.obj lbl_8048090C, local
+	.asciz "P2Assert"
+.endobj lbl_8048090C
+.balign 4
+.obj lbl_80480918, local
+	.asciz "m %.1f (%d/%d)"
+.endobj lbl_80480918
+.balign 4
+.obj lbl_80480928, local
+	.asciz "%.1f %.1f"
+.endobj lbl_80480928
+.balign 4
+.obj lbl_80480934, local
+	.asciz "kuki_jnt1"
+.endobj lbl_80480934
+.balign 4
+.obj lbl_80480940, local
+	.asciz "kuki_jnt2"
+.endobj lbl_80480940
+.balign 4
+.obj lbl_8048094C, local
+	.asciz "kuki_jnt3"
+.endobj lbl_8048094C
+.balign 4
+.obj lbl_80480958, local
+	.asciz "kuki_jnt4"
+.endobj lbl_80480958
+.balign 4
+.obj lbl_80480964, local
+	.asciz "user/Kando/objects/plants"
+.endobj lbl_80480964
+.balign 4
+.obj lbl_80480980, local
+	.asciz "user/Abe/item/plantParms.txt"
+.endobj lbl_80480980
+.balign 4
+.obj lbl_804809A0, local
+	.asciz "Creature::Property"
+.endobj lbl_804809A0
+.balign 4
+.obj lbl_804809B4, local
+	.asciz "friction(not used)"
+.endobj lbl_804809B4
+.balign 4
+.obj lbl_804809C8, local
+	.asciz "wallReflection"
+.endobj lbl_804809C8
+.balign 4
+.obj lbl_804809D8, local
+	.asciz "faceDirAdjust"
+.endobj lbl_804809D8
+.balign 4
+.obj lbl_804809E8, local
+	.asciz "bounceFactor"
+.endobj lbl_804809E8
+.balign 4
+.obj lbl_804809F8, local
+	.asciz "Plant::Parms"
+.endobj lbl_804809F8
+.balign 4
+.obj lbl_80480A08, local # Shift-JIS
 	.4byte 0x90AC92B7
 	.4byte 0x8E9E8AD4
 	.4byte 0x288FAC81
 	.4byte 0xA8928629
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480A08
+.balign 4
+.obj lbl_80480A1C, local # Shift-JIS
 	.4byte 0x90AC92B7
 	.4byte 0x8E9E8AD4
 	.4byte 0x28928681
 	.4byte 0xA891E529
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480A1C
+.balign 4
+.obj lbl_80480A30, local # Shift-JIS
 	.4byte 0x8368838D
 	.4byte 0x83628376
 	.4byte 0x82B782E9
 	.4byte 0x835F8381
 	.4byte 0x815B8357
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480A30
+.balign 4
+.obj lbl_80480A48, local # Shift-JIS
 	.4byte 0x8EC082F0
 	.4byte 0x82C282AF
 	.4byte 0x82E982DC
 	.4byte 0x82C582CC
 	.4byte 0x8E9E8AD4
-	.4byte 0x00000000
+	.byte 0
+.endobj lbl_80480A48
+.balign 4
+.obj lbl_80480A60, local # Shift-JIS
 	.4byte 0x8EC08DC4
 	.4byte 0x90B68E9E
 	.4byte 0x8AD40000
+.endobj lbl_80480A60
+.balign 4
+.obj lbl_80480A6C, local # Shift-JIS
 	.4byte 0x958582E9
 	.4byte 0x82DC82C5
 	.4byte 0x82CC8E9E
 	.4byte 0x8AD40000
-	.4byte 0x6D6F6465
-	.4byte 0x6C2E626D
-	.4byte 0x64000000
-	.4byte 0x6D6F6465
-	.4byte 0x6C2E6270
-	.4byte 0x6B000000
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x706C616E
-	.4byte 0x74416E69
-	.4byte 0x6D4D6772
-	.4byte 0x2E747874
-	.4byte 0x00000000
+.endobj lbl_80480A6C
+.balign 4
+.obj lbl_80480A7C, local
+	.asciz "model.bmd"
+.endobj lbl_80480A7C
+.balign 4
+.obj lbl_80480A88, local
+	.asciz "model.bpk"
+.endobj lbl_80480A88
+.balign 4
+.obj lbl_80480A94, local
+	.asciz "texts.szs"
+.endobj lbl_80480A94
+.balign 4
+.obj lbl_80480AA0, local
+	.asciz "plantAnimMgr.txt"
+.endobj lbl_80480AA0
+.balign 4
+.obj lbl_80480AB4, local # Shift-JIS
 	.4byte 0x09238EC0
 	.4byte 0x835E8343
 	.4byte 0x83760D0A
-	.4byte 0x00000000
-	.4byte 0x4207DC29
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x41CBB439
-	.4byte 0x41000000
-	.4byte 0xC1000000
-	.4byte 0x41CBB439
-	.4byte 0x41000000
-	.4byte 0x41000000
-	.4byte 0x41CBB439
-	.4byte 0xC1000000
-	.4byte 0xC1000000
-	.4byte 0x41CBB439
-	.4byte 0xC1000000
-	.4byte 0x41000000
-	.4byte 0x50656C6C
-	.4byte 0x6574496E
-	.4byte 0x69744172
-	.4byte 0x67000000
+	.byte 0
+.endobj lbl_80480AB4
+.balign 4
+.obj lbl_80480AC4, local # Vector3f
+	.float 33.965
+	.float 0.0
+	.float 0.0
+.endobj lbl_80480AC4
+.obj lbl_80480AD0, local # Vector3f
+	.float 25.463
+	.float 8.0
+	.float -8.0
+.endobj lbl_80480AD0
+.obj lbl_80480ADC, local # Vector3f
+	.float 25.463
+	.float 8.0
+	.float 8.0
+.endobj lbl_80480ADC
+.obj lbl_80480AE8, local # Vector3f
+	.float 25.463
+	.float -8.0
+	.float -8.0
+.endobj lbl_80480AE8
+.obj lbl_80480AF4, local # Vector3f
+	.float 25.463
+	.float -8.0
+	.float 8.0
+.endobj lbl_80480AF4
+.balign 4
+.obj lbl_80480B00, local
+	.asciz "PelletInitArg"
+.endobj lbl_80480B00
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global __vt__Q34Game9ItemPlant9FruitSlot
-__vt__Q34Game9ItemPlant9FruitSlot:
+.obj __vt__Q34Game9ItemPlant9FruitSlot, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game9ItemPlant9FruitSlotFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__12GenPlantParm
-__vt__12GenPlantParm:
+.endobj __vt__Q34Game9ItemPlant9FruitSlot
+.obj __vt__12GenPlantParm, weak
 	.4byte 0
 	.4byte 0
 	.4byte getShapeID__Q24Game11GenItemParmFv
-.global __vt__Q34Game9ItemPlant3Mgr
-__vt__Q34Game9ItemPlant3Mgr:
+.endobj __vt__12GenPlantParm
+.obj __vt__Q34Game9ItemPlant3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q24Game12TNodeItemMgrFv
@@ -207,27 +231,27 @@ __vt__Q34Game9ItemPlant3Mgr:
 	.4byte getEnd__Q24Game12TNodeItemMgrFv
 	.4byte __dt__Q34Game9ItemPlant3MgrFv
 	.4byte birth__Q34Game9ItemPlant3MgrFv
-.global __vt__Q34Game9ItemPlant10PlantParms
-__vt__Q34Game9ItemPlant10PlantParms:
+.endobj __vt__Q34Game9ItemPlant3Mgr
+.obj __vt__Q34Game9ItemPlant10PlantParms, weak
 	.4byte 0
 	.4byte 0
 	.4byte read__Q34Game9ItemPlant10PlantParmsFR6Stream
-.global __vt__Q23efx11TTsuyuGrow2
-__vt__Q23efx11TTsuyuGrow2:
+.endobj __vt__Q34Game9ItemPlant10PlantParms
+.obj __vt__Q23efx11TTsuyuGrow2, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx11TTsuyuGrow1
-__vt__Q23efx11TTsuyuGrow1:
+.endobj __vt__Q23efx11TTsuyuGrow2
+.obj __vt__Q23efx11TTsuyuGrow1, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q34Game9ItemPlant5Plant
-__vt__Q34Game9ItemPlant5Plant:
+.endobj __vt__Q23efx11TTsuyuGrow1
+.obj __vt__Q34Game9ItemPlant5Plant, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -375,8 +399,8 @@ __vt__Q34Game9ItemPlant5Plant:
 	.4byte startColorMotion__Q34Game9ItemPlant4ItemFi
 	.4byte updateColorMotion__Q34Game9ItemPlant4ItemFf
 	.4byte startMotion__Q34Game9ItemPlant5PlantFi
-.global __vt__Q34Game9ItemPlant4Item
-__vt__Q34Game9ItemPlant4Item:
+.endobj __vt__Q34Game9ItemPlant5Plant
+.obj __vt__Q34Game9ItemPlant4Item, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -524,24 +548,24 @@ __vt__Q34Game9ItemPlant4Item:
 	.4byte startColorMotion__Q34Game9ItemPlant4ItemFi
 	.4byte updateColorMotion__Q34Game9ItemPlant4ItemFf
 	.4byte startMotion__Q34Game9ItemPlant4ItemFi
-.global "__vt__Q24Game31ItemFSM<Q34Game9ItemPlant4Item>"
-"__vt__Q24Game31ItemFSM<Q34Game9ItemPlant4Item>":
+.endobj __vt__Q34Game9ItemPlant4Item
+.obj "__vt__Q24Game31ItemFSM<Q34Game9ItemPlant4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 	.4byte "start__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 	.4byte "transit__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
-.global "__vt__Q24Game36StateMachine<Q34Game9ItemPlant4Item>"
-"__vt__Q24Game36StateMachine<Q34Game9ItemPlant4Item>":
+.endobj "__vt__Q24Game31ItemFSM<Q34Game9ItemPlant4Item>"
+.obj "__vt__Q24Game36StateMachine<Q34Game9ItemPlant4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 	.4byte "start__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 	.4byte "transit__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
-.global "__vt__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>"
-"__vt__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>":
+.endobj "__vt__Q24Game36StateMachine<Q34Game9ItemPlant4Item>"
+.obj "__vt__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>", weak
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -679,8 +703,8 @@ __vt__Q34Game9ItemPlant4Item:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q24Game8BaseItemFv
 	.4byte "onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent"
-.global __vt__Q34Game9ItemPlant11KareruState
-__vt__Q34Game9ItemPlant11KareruState:
+.endobj "__vt__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>"
+.obj __vt__Q34Game9ItemPlant11KareruState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
@@ -696,8 +720,8 @@ __vt__Q34Game9ItemPlant11KareruState:
 	.4byte "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent"
 	.4byte eventKarero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
 	.4byte eventHaero__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item
-.global __vt__Q34Game9ItemPlant11GrowUpState
-__vt__Q34Game9ItemPlant11GrowUpState:
+.endobj __vt__Q34Game9ItemPlant11KareruState
+.obj __vt__Q34Game9ItemPlant11GrowUpState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
@@ -713,8 +737,8 @@ __vt__Q34Game9ItemPlant11GrowUpState:
 	.4byte "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent"
 	.4byte eventKarero__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item
 	.4byte eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
-.global __vt__Q34Game9ItemPlant12DamagedState
-__vt__Q34Game9ItemPlant12DamagedState:
+.endobj __vt__Q34Game9ItemPlant11GrowUpState
+.obj __vt__Q34Game9ItemPlant12DamagedState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
@@ -730,8 +754,8 @@ __vt__Q34Game9ItemPlant12DamagedState:
 	.4byte "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent"
 	.4byte eventKarero__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item
 	.4byte eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
-.global __vt__Q34Game9ItemPlant11NormalState
-__vt__Q34Game9ItemPlant11NormalState:
+.endobj __vt__Q34Game9ItemPlant12DamagedState
+.obj __vt__Q34Game9ItemPlant11NormalState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
@@ -747,8 +771,8 @@ __vt__Q34Game9ItemPlant11NormalState:
 	.4byte "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent"
 	.4byte eventKarero__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item
 	.4byte eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
-.global __vt__Q34Game9ItemPlant5State
-__vt__Q34Game9ItemPlant5State:
+.endobj __vt__Q34Game9ItemPlant11NormalState
+.obj __vt__Q34Game9ItemPlant5State, weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ24Game8StateArg"
@@ -764,8 +788,8 @@ __vt__Q34Game9ItemPlant5State:
 	.4byte "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent"
 	.4byte eventKarero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
 	.4byte eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
-.global "__vt__Q24Game33ItemState<Q34Game9ItemPlant4Item>"
-"__vt__Q24Game33ItemState<Q34Game9ItemPlant4Item>":
+.endobj __vt__Q34Game9ItemPlant5State
+.obj "__vt__Q24Game33ItemState<Q34Game9ItemPlant4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ24Game8StateArg"
@@ -779,8 +803,8 @@ __vt__Q34Game9ItemPlant5State:
 	.4byte "onBounce__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent"
-.global "__vt__Q24Game32FSMState<Q34Game9ItemPlant4Item>"
-"__vt__Q24Game32FSMState<Q34Game9ItemPlant4Item>":
+.endobj "__vt__Q24Game33ItemState<Q34Game9ItemPlant4Item>"
+.obj "__vt__Q24Game32FSMState<Q34Game9ItemPlant4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ24Game8StateArg"
@@ -789,122 +813,169 @@ __vt__Q34Game9ItemPlant5State:
 	.4byte "resume__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 	.4byte "restart__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 	.4byte "transit__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
-.global __vt__Q34Game9ItemPlant3FSM
-__vt__Q34Game9ItemPlant3FSM:
+.endobj "__vt__Q24Game32FSMState<Q34Game9ItemPlant4Item>"
+.obj __vt__Q34Game9ItemPlant3FSM, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item
 	.4byte "start__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 	.4byte "transit__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
-	.4byte 0
+.endobj __vt__Q34Game9ItemPlant3FSM
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mgr__Q24Game9ItemPlant
-mgr__Q24Game9ItemPlant:
-	.skip 0x8
+.obj mgr__Q24Game9ItemPlant, global
+	.skip 0x4
+.endobj mgr__Q24Game9ItemPlant
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519800:
-	.4byte 0x00000000
-lbl_80519804:
+.obj lbl_80519800, local
+	.float 0.0
+.endobj lbl_80519800
+.obj lbl_80519804, local
 	.float 1.0
-lbl_80519808:
-	.4byte 0x3FC00000
-lbl_8051980C:
-	.4byte 0x42DC0000
-lbl_80519810:
-	.4byte 0x25640000
-lbl_80519814:
-	.4byte 0xBF800000
-lbl_80519818: # pi
+.endobj lbl_80519804
+.obj lbl_80519808, local
+	.float 1.5
+.endobj lbl_80519808
+.obj lbl_8051980C, local
+	.float 110.0
+.endobj lbl_8051980C
+.balign 4
+.obj lbl_80519810, local
+	.asciz "%d"
+.endobj lbl_80519810
+.balign 4
+.obj lbl_80519814, local
+	.float -1.0
+.endobj lbl_80519814
+.obj lbl_80519818, local # pi
 	.float 3.1415927
-lbl_8051981C:
-	.4byte 0x447FE000
-lbl_80519820:
-	.4byte 0x3FC90FDB
-lbl_80519824:
-	.4byte 0x42A00000
-lbl_80519828:
-	.4byte 0x3FCCCCCD
-lbl_8051982C:
-	.4byte 0x3F32B8C3
-lbl_80519830:
-	.4byte 0xBF060A92
-lbl_80519834:
+.endobj lbl_80519818
+.obj lbl_8051981C, local
+	.float 1023.5
+.endobj lbl_8051981C
+.obj lbl_80519820, local # pi/2
+	.float 1.5707964
+.endobj lbl_80519820
+.obj lbl_80519824, local
+	.float 80.0
+.endobj lbl_80519824
+.obj lbl_80519828, local
+	.float 1.6
+.endobj lbl_80519828
+.obj lbl_8051982C, local
+	.float 0.69813174
+.endobj lbl_8051982C
+.obj lbl_80519830, local
+	.float -0.5235988
+.endobj lbl_80519830
+.obj lbl_80519834, local
 	.float 0.1
-lbl_80519838:
+.endobj lbl_80519834
+.obj lbl_80519838, local
 	.float 0.5
-lbl_8051983C:
-	.4byte 0xC3A2F983
-lbl_80519840:
-	.4byte 0x43A2F983
-lbl_80519844:
-	.4byte 0x41A00000
-lbl_80519848:
-	.4byte 0x43C80000
-lbl_8051984C:
-	.4byte 0x41200000
-lbl_80519850:
-	.4byte 0x41F00000
-	.4byte 0x00000000
-lbl_80519858:
-	.4byte 0x43300000
-	.4byte 0x80000000
-lbl_80519860:
-	.4byte 0x43160000
-lbl_80519864:
-	.4byte 0x41400000
-lbl_80519868:
-	.4byte 0x41C00000
-lbl_8051986C:
-	.4byte 0x41000000
-lbl_80519870:
-	.4byte 0x47000000
-lbl_80519874:
-	.4byte 0x40400000
-lbl_80519878:
-	.4byte 0x3F1C61AB
-lbl_8051987C:
-	.4byte 0x506C616E
-	.4byte 0x74000000
-lbl_80519884:
+.endobj lbl_80519838
+.obj lbl_8051983C, local
+	.float -325.9493
+.endobj lbl_8051983C
+.obj lbl_80519840, local
+	.float 325.9493
+.endobj lbl_80519840
+.obj lbl_80519844, local
+	.float 20.0
+.endobj lbl_80519844
+.obj lbl_80519848, local
+	.float 400.0
+.endobj lbl_80519848
+.obj lbl_8051984C, local
+	.float 10.0
+.endobj lbl_8051984C
+.obj lbl_80519850, local
+	.float 30.0
+.endobj lbl_80519850
+.balign 8
+.obj lbl_80519858, local
+	.8byte 0x4330000080000000
+.endobj lbl_80519858
+.obj lbl_80519860, local
+	.float 150.0
+.endobj lbl_80519860
+.obj lbl_80519864, local
+	.float 12.0
+.endobj lbl_80519864
+.obj lbl_80519868, local
+	.float 24.0
+.endobj lbl_80519868
+.obj lbl_8051986C, local
+	.float 8.0
+.endobj lbl_8051986C
+.obj lbl_80519870, local
+	.float 32768.0
+.endobj lbl_80519870
+.obj lbl_80519874, local
+	.float 3.0
+.endobj lbl_80519874
+.obj lbl_80519878, local
+	.float 0.6108653
+.endobj lbl_80519878
+.balign 4
+.obj lbl_8051987C, local
+	.asciz "Plant"
+.endobj lbl_8051987C
+.balign 4
+.obj lbl_80519884, local
 	.float 0.25
-lbl_80519888:
-	.4byte 0x61636365
-	.4byte 0x6C000000
-lbl_80519890:
-	.4byte 0x3C23D70A
-lbl_80519894:
-	.4byte 0x40000000
-lbl_80519898:
+.endobj lbl_80519884
+.balign 4
+.obj lbl_80519888, local
+	.asciz "accel"
+.endobj lbl_80519888
+.balign 4
+.obj lbl_80519890, local
+	.float 0.01
+.endobj lbl_80519890
+.obj lbl_80519894, local
+	.float 2.0
+.endobj lbl_80519894
+.obj lbl_80519898, local
 	.float 0.3
-lbl_8051989C:
-	.4byte 0x44FA0000
-lbl_805198A0:
-	.4byte 0x43960000
-lbl_805198A4:
-	.4byte 0x451C4000
-lbl_805198A8:
-	.4byte 0x42200000
-lbl_805198AC:
-	.4byte 0x461C4000
-lbl_805198B0:
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-lbl_805198B8:
-	.4byte 0x66727569
-	.4byte 0x74000000
-lbl_805198C0:
-	.4byte 0x3F666666
-lbl_805198C4:
-	.4byte 0x47FA0000
+.endobj lbl_80519898
+.obj lbl_8051989C, local
+	.float 2000.0
+.endobj lbl_8051989C
+.obj lbl_805198A0, local
+	.float 300.0
+.endobj lbl_805198A0
+.obj lbl_805198A4, local
+	.float 2500.0
+.endobj lbl_805198A4
+.obj lbl_805198A8, local
+	.float 40.0
+.endobj lbl_805198A8
+.obj lbl_805198AC, local
+	.float 10000.0
+.endobj lbl_805198AC
+.balign 4
+.obj lbl_805198B0, local
+	.asciz "arc.szs"
+.endobj lbl_805198B0
+.balign 4
+.obj lbl_805198B8, local
+	.asciz "fruit"
+.endobj lbl_805198B8
+.balign 4
+.obj lbl_805198C0, local
+	.float 0.9
+.endobj lbl_805198C0
+.obj lbl_805198C4, local
+	.float 128000.0
+.endobj lbl_805198C4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item
-init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item:
+.fn init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item, global
 /* 801DCE28 001D9D68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DCE2C 001D9D6C  7C 08 02 A6 */	mflr r0
 /* 801DCE30 001D9D70  38 80 00 04 */	li r4, 4
@@ -1008,9 +1079,9 @@ init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item:
 /* 801DCFA8 001D9EE8  7C 08 03 A6 */	mtlr r0
 /* 801DCFAC 001D9EEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DCFB0 001D9EF0  4E 80 00 20 */	blr 
+.endfn init__Q34Game9ItemPlant3FSMFPQ34Game9ItemPlant4Item
 
-.global init__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
-init__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg:
+.fn init__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg, global
 /* 801DCFB4 001D9EF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DCFB8 001D9EF8  7C 08 02 A6 */	mflr r0
 /* 801DCFBC 001D9EFC  7C 83 23 78 */	mr r3, r4
@@ -1024,13 +1095,13 @@ init__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg:
 /* 801DCFDC 001D9F1C  7C 08 03 A6 */	mtlr r0
 /* 801DCFE0 001D9F20  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DCFE4 001D9F24  4E 80 00 20 */	blr 
+.endfn init__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
 
-.global startMotion__Q34Game9ItemPlant4ItemFi
-startMotion__Q34Game9ItemPlant4ItemFi:
+.fn startMotion__Q34Game9ItemPlant4ItemFi, weak
 /* 801DCFE8 001D9F28  4E 80 00 20 */	blr 
+.endfn startMotion__Q34Game9ItemPlant4ItemFi
 
-.global exec__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item
-exec__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item:
+.fn exec__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item, global
 /* 801DCFEC 001D9F2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DCFF0 001D9F30  7C 08 02 A6 */	mflr r0
 /* 801DCFF4 001D9F34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1111,13 +1182,13 @@ exec__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item:
 /* 801DD108 001DA048  7C 08 03 A6 */	mtlr r0
 /* 801DD10C 001DA04C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD110 001DA050  4E 80 00 20 */	blr 
+.endfn exec__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item
 
-.global bearFruits__Q34Game9ItemPlant4ItemFv
-bearFruits__Q34Game9ItemPlant4ItemFv:
+.fn bearFruits__Q34Game9ItemPlant4ItemFv, weak
 /* 801DD114 001DA054  4E 80 00 20 */	blr 
+.endfn bearFruits__Q34Game9ItemPlant4ItemFv
 
-.global "transit__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
-"transit__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg":
+.fn "transit__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg", weak
 /* 801DD118 001DA058  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD11C 001DA05C  7C 08 02 A6 */	mflr r0
 /* 801DD120 001DA060  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1130,13 +1201,13 @@ bearFruits__Q34Game9ItemPlant4ItemFv:
 /* 801DD13C 001DA07C  7C 08 03 A6 */	mtlr r0
 /* 801DD140 001DA080  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD144 001DA084  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
 
-.global cleanup__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item
-cleanup__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item:
+.fn cleanup__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item, global
 /* 801DD148 001DA088  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item
 
-.global eventKarero__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item
-eventKarero__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item:
+.fn eventKarero__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item, global
 /* 801DD14C 001DA08C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD150 001DA090  7C 08 02 A6 */	mflr r0
 /* 801DD154 001DA094  38 A0 00 03 */	li r5, 3
@@ -1150,9 +1221,9 @@ eventKarero__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item:
 /* 801DD174 001DA0B4  7C 08 03 A6 */	mtlr r0
 /* 801DD178 001DA0B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD17C 001DA0BC  4E 80 00 20 */	blr 
+.endfn eventKarero__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Item
 
-.global onDamage__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Itemf
-onDamage__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Itemf:
+.fn onDamage__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Itemf, global
 /* 801DD180 001DA0C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD184 001DA0C4  7C 08 02 A6 */	mflr r0
 /* 801DD188 001DA0C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1176,9 +1247,9 @@ onDamage__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Itemf:
 /* 801DD1D0 001DA110  7C 08 03 A6 */	mtlr r0
 /* 801DD1D4 001DA114  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD1D8 001DA118  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game9ItemPlant11NormalStateFPQ34Game9ItemPlant4Itemf
 
-.global init__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
-init__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg:
+.fn init__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg, global
 /* 801DD1DC 001DA11C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD1E0 001DA120  7C 08 02 A6 */	mflr r0
 /* 801DD1E4 001DA124  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1197,23 +1268,23 @@ init__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg:
 /* 801DD218 001DA158  7C 08 03 A6 */	mtlr r0
 /* 801DD21C 001DA15C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD220 001DA160  4E 80 00 20 */	blr 
+.endfn init__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
 
-.global exec__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item
-exec__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item:
+.fn exec__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item, global
 /* 801DD224 001DA164  4E 80 00 20 */	blr 
+.endfn exec__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item
 
-.global cleanup__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item
-cleanup__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item:
+.fn cleanup__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item, global
 /* 801DD228 001DA168  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item
 
-.global eventKarero__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item
-eventKarero__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item:
+.fn eventKarero__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item, global
 /* 801DD22C 001DA16C  38 00 00 01 */	li r0, 1
 /* 801DD230 001DA170  98 03 00 10 */	stb r0, 0x10(r3)
 /* 801DD234 001DA174  4E 80 00 20 */	blr 
+.endfn eventKarero__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Item
 
-.global onKeyEvent__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent
-onKeyEvent__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent, global
 /* 801DD238 001DA178  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD23C 001DA17C  7C 08 02 A6 */	mflr r0
 /* 801DD240 001DA180  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1239,9 +1310,9 @@ onKeyEvent__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemRCQ28SysShape
 /* 801DD288 001DA1C8  7C 08 03 A6 */	mtlr r0
 /* 801DD28C 001DA1CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD290 001DA1D0  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent
 
-.global onDamage__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Itemf
-onDamage__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Itemf:
+.fn onDamage__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Itemf, global
 /* 801DD294 001DA1D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD298 001DA1D8  7C 08 02 A6 */	mflr r0
 /* 801DD29C 001DA1DC  7C 83 23 78 */	mr r3, r4
@@ -1251,9 +1322,9 @@ onDamage__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Itemf:
 /* 801DD2AC 001DA1EC  7C 08 03 A6 */	mtlr r0
 /* 801DD2B0 001DA1F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD2B4 001DA1F4  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game9ItemPlant12DamagedStateFPQ34Game9ItemPlant4Itemf
 
-.global init__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
-init__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg:
+.fn init__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg, global
 /* 801DD2B8 001DA1F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD2BC 001DA1FC  7C 08 02 A6 */	mflr r0
 /* 801DD2C0 001DA200  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1283,23 +1354,23 @@ init__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg:
 /* 801DD320 001DA260  7C 08 03 A6 */	mtlr r0
 /* 801DD324 001DA264  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD328 001DA268  4E 80 00 20 */	blr 
+.endfn init__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
 
-.global exec__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item
-exec__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item:
+.fn exec__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item, global
 /* 801DD32C 001DA26C  4E 80 00 20 */	blr 
+.endfn exec__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item
 
-.global cleanup__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item
-cleanup__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item:
+.fn cleanup__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item, global
 /* 801DD330 001DA270  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item
 
-.global eventKarero__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item
-eventKarero__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item:
+.fn eventKarero__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item, global
 /* 801DD334 001DA274  38 00 00 01 */	li r0, 1
 /* 801DD338 001DA278  98 03 00 10 */	stb r0, 0x10(r3)
 /* 801DD33C 001DA27C  4E 80 00 20 */	blr 
+.endfn eventKarero__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Item
 
-.global onKeyEvent__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent
-onKeyEvent__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent, global
 /* 801DD340 001DA280  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD344 001DA284  7C 08 02 A6 */	mflr r0
 /* 801DD348 001DA288  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1377,9 +1448,9 @@ onKeyEvent__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8
 /* 801DD454 001DA394  7C 08 03 A6 */	mtlr r0
 /* 801DD458 001DA398  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD45C 001DA39C  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent
 
-.global onDamage__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Itemf
-onDamage__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Itemf:
+.fn onDamage__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Itemf, global
 /* 801DD460 001DA3A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD464 001DA3A4  7C 08 02 A6 */	mflr r0
 /* 801DD468 001DA3A8  7C 83 23 78 */	mr r3, r4
@@ -1389,9 +1460,9 @@ onDamage__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Itemf:
 /* 801DD478 001DA3B8  7C 08 03 A6 */	mtlr r0
 /* 801DD47C 001DA3BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD480 001DA3C0  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game9ItemPlant11GrowUpStateFPQ34Game9ItemPlant4Itemf
 
-.global init__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
-init__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg:
+.fn init__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg, global
 /* 801DD484 001DA3C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD488 001DA3C8  7C 08 02 A6 */	mflr r0
 /* 801DD48C 001DA3CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1423,13 +1494,13 @@ init__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg:
 /* 801DD4F4 001DA434  7C 08 03 A6 */	mtlr r0
 /* 801DD4F8 001DA438  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD4FC 001DA43C  4E 80 00 20 */	blr 
+.endfn init__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemPQ24Game8StateArg
 
-.global killFruits__Q34Game9ItemPlant4ItemFv
-killFruits__Q34Game9ItemPlant4ItemFv:
+.fn killFruits__Q34Game9ItemPlant4ItemFv, weak
 /* 801DD500 001DA440  4E 80 00 20 */	blr 
+.endfn killFruits__Q34Game9ItemPlant4ItemFv
 
-.global exec__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item
-exec__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item:
+.fn exec__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item, global
 /* 801DD504 001DA444  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD508 001DA448  7C 08 02 A6 */	mflr r0
 /* 801DD50C 001DA44C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1466,22 +1537,22 @@ exec__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item:
 /* 801DD584 001DA4C4  7C 08 03 A6 */	mtlr r0
 /* 801DD588 001DA4C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD58C 001DA4CC  4E 80 00 20 */	blr 
+.endfn exec__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item
 
-.global cleanup__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item
-cleanup__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item:
+.fn cleanup__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item, global
 /* 801DD590 001DA4D0  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item
 
-.global eventHaero__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item
-eventHaero__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item:
+.fn eventHaero__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item, global
 /* 801DD594 001DA4D4  A0 03 00 10 */	lhz r0, 0x10(r3)
 /* 801DD598 001DA4D8  28 00 00 02 */	cmplwi r0, 2
 /* 801DD59C 001DA4DC  4D 82 00 20 */	beqlr 
 /* 801DD5A0 001DA4E0  38 00 00 01 */	li r0, 1
 /* 801DD5A4 001DA4E4  98 03 00 12 */	stb r0, 0x12(r3)
 /* 801DD5A8 001DA4E8  4E 80 00 20 */	blr 
+.endfn eventHaero__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Item
 
-.global onKeyEvent__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent
-onKeyEvent__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent:
+.fn onKeyEvent__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent, global
 /* 801DD5AC 001DA4EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD5B0 001DA4F0  7C 08 02 A6 */	mflr r0
 /* 801DD5B4 001DA4F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1528,13 +1599,13 @@ onKeyEvent__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8
 /* 801DD644 001DA584  7C 08 03 A6 */	mtlr r0
 /* 801DD648 001DA588  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD64C 001DA58C  4E 80 00 20 */	blr 
+.endfn onKeyEvent__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent
 
-.global onDamage__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Itemf
-onDamage__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Itemf:
+.fn onDamage__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Itemf, global
 /* 801DD650 001DA590  4E 80 00 20 */	blr 
+.endfn onDamage__Q34Game9ItemPlant11KareruStateFPQ34Game9ItemPlant4Itemf
 
-.global constructor__Q34Game9ItemPlant4ItemFv
-constructor__Q34Game9ItemPlant4ItemFv:
+.fn constructor__Q34Game9ItemPlant4ItemFv, global
 /* 801DD654 001DA594  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD658 001DA598  7C 08 02 A6 */	mflr r0
 /* 801DD65C 001DA59C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1554,9 +1625,9 @@ constructor__Q34Game9ItemPlant4ItemFv:
 /* 801DD690 001DA5D0  7C 08 03 A6 */	mtlr r0
 /* 801DD694 001DA5D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD698 001DA5D8  4E 80 00 20 */	blr 
+.endfn constructor__Q34Game9ItemPlant4ItemFv
 
-.global onInit__Q34Game9ItemPlant4ItemFPQ24Game15CreatureInitArg
-onInit__Q34Game9ItemPlant4ItemFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game9ItemPlant4ItemFPQ24Game15CreatureInitArg, global
 /* 801DD69C 001DA5DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD6A0 001DA5E0  7C 08 02 A6 */	mflr r0
 /* 801DD6A4 001DA5E4  38 80 00 01 */	li r4, 1
@@ -1579,9 +1650,9 @@ onInit__Q34Game9ItemPlant4ItemFPQ24Game15CreatureInitArg:
 /* 801DD6E8 001DA628  7C 08 03 A6 */	mtlr r0
 /* 801DD6EC 001DA62C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD6F0 001DA630  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game9ItemPlant4ItemFPQ24Game15CreatureInitArg
 
-.global onStickStart__Q34Game9ItemPlant4ItemFPQ24Game8Creature
-onStickStart__Q34Game9ItemPlant4ItemFPQ24Game8Creature:
+.fn onStickStart__Q34Game9ItemPlant4ItemFPQ24Game8Creature, global
 /* 801DD6F4 001DA634  28 04 00 00 */	cmplwi r4, 0
 /* 801DD6F8 001DA638  4D 82 00 20 */	beqlr 
 /* 801DD6FC 001DA63C  80 84 00 F8 */	lwz r4, 0xf8(r4)
@@ -1592,9 +1663,9 @@ onStickStart__Q34Game9ItemPlant4ItemFPQ24Game8Creature:
 /* 801DD710 001DA650  38 04 00 01 */	addi r0, r4, 1
 /* 801DD714 001DA654  90 03 01 EC */	stw r0, 0x1ec(r3)
 /* 801DD718 001DA658  4E 80 00 20 */	blr 
+.endfn onStickStart__Q34Game9ItemPlant4ItemFPQ24Game8Creature
 
-.global onStickEnd__Q34Game9ItemPlant4ItemFPQ24Game8Creature
-onStickEnd__Q34Game9ItemPlant4ItemFPQ24Game8Creature:
+.fn onStickEnd__Q34Game9ItemPlant4ItemFPQ24Game8Creature, global
 /* 801DD71C 001DA65C  28 04 00 00 */	cmplwi r4, 0
 /* 801DD720 001DA660  4D 82 00 20 */	beqlr 
 /* 801DD724 001DA664  80 84 00 F8 */	lwz r4, 0xf8(r4)
@@ -1610,9 +1681,9 @@ onStickEnd__Q34Game9ItemPlant4ItemFPQ24Game8Creature:
 /* 801DD74C 001DA68C  38 00 00 00 */	li r0, 0
 /* 801DD750 001DA690  90 03 01 EC */	stw r0, 0x1ec(r3)
 /* 801DD754 001DA694  4E 80 00 20 */	blr 
+.endfn onStickEnd__Q34Game9ItemPlant4ItemFPQ24Game8Creature
 
-.global onSetPosition__Q34Game9ItemPlant4ItemFv
-onSetPosition__Q34Game9ItemPlant4ItemFv:
+.fn onSetPosition__Q34Game9ItemPlant4ItemFv, global
 /* 801DD758 001DA698  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD75C 001DA69C  7C 08 02 A6 */	mflr r0
 /* 801DD760 001DA6A0  7C 64 1B 78 */	mr r4, r3
@@ -1623,9 +1694,9 @@ onSetPosition__Q34Game9ItemPlant4ItemFv:
 /* 801DD774 001DA6B4  7C 08 03 A6 */	mtlr r0
 /* 801DD778 001DA6B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD77C 001DA6BC  4E 80 00 20 */	blr 
+.endfn onSetPosition__Q34Game9ItemPlant4ItemFv
 
-.global updateTrMatrix__Q34Game9ItemPlant4ItemFv
-updateTrMatrix__Q34Game9ItemPlant4ItemFv:
+.fn updateTrMatrix__Q34Game9ItemPlant4ItemFv, global
 /* 801DD780 001DA6C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801DD784 001DA6C4  7C 08 02 A6 */	mflr r0
 /* 801DD788 001DA6C8  C0 02 B4 A0 */	lfs f0, lbl_80519800@sda21(r2)
@@ -1643,9 +1714,9 @@ updateTrMatrix__Q34Game9ItemPlant4ItemFv:
 /* 801DD7B8 001DA6F8  7C 08 03 A6 */	mtlr r0
 /* 801DD7BC 001DA6FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801DD7C0 001DA700  4E 80 00 20 */	blr 
+.endfn updateTrMatrix__Q34Game9ItemPlant4ItemFv
 
-.global startColorMotion__Q34Game9ItemPlant4ItemFi
-startColorMotion__Q34Game9ItemPlant4ItemFi:
+.fn startColorMotion__Q34Game9ItemPlant4ItemFi, global
 /* 801DD7C4 001DA704  B0 83 01 E8 */	sth r4, 0x1e8(r3)
 /* 801DD7C8 001DA708  A0 03 01 E8 */	lhz r0, 0x1e8(r3)
 /* 801DD7CC 001DA70C  28 00 00 00 */	cmplwi r0, 0
@@ -1657,9 +1728,9 @@ startColorMotion__Q34Game9ItemPlant4ItemFi:
 /* 801DD7E0 001DA720  C0 02 B4 A0 */	lfs f0, lbl_80519800@sda21(r2)
 /* 801DD7E4 001DA724  D0 03 01 E4 */	stfs f0, 0x1e4(r3)
 /* 801DD7E8 001DA728  4E 80 00 20 */	blr 
+.endfn startColorMotion__Q34Game9ItemPlant4ItemFi
 
-.global updateColorMotion__Q34Game9ItemPlant4ItemFf
-updateColorMotion__Q34Game9ItemPlant4ItemFf:
+.fn updateColorMotion__Q34Game9ItemPlant4ItemFf, global
 /* 801DD7EC 001DA72C  A0 03 01 E8 */	lhz r0, 0x1e8(r3)
 /* 801DD7F0 001DA730  2C 00 00 01 */	cmpwi r0, 1
 /* 801DD7F4 001DA734  41 82 00 4C */	beq .L_801DD840
@@ -1697,9 +1768,9 @@ updateColorMotion__Q34Game9ItemPlant4ItemFf:
 /* 801DD870 001DA7B0  38 00 00 02 */	li r0, 2
 /* 801DD874 001DA7B4  B0 03 01 E8 */	sth r0, 0x1e8(r3)
 /* 801DD878 001DA7B8  4E 80 00 20 */	blr 
+.endfn updateColorMotion__Q34Game9ItemPlant4ItemFf
 
-.global doAI__Q34Game9ItemPlant4ItemFv
-doAI__Q34Game9ItemPlant4ItemFv:
+.fn doAI__Q34Game9ItemPlant4ItemFv, global
 /* 801DD87C 001DA7BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD880 001DA7C0  7C 08 02 A6 */	mflr r0
 /* 801DD884 001DA7C4  7C 64 1B 78 */	mr r4, r3
@@ -1713,9 +1784,9 @@ doAI__Q34Game9ItemPlant4ItemFv:
 /* 801DD8A4 001DA7E4  7C 08 03 A6 */	mtlr r0
 /* 801DD8A8 001DA7E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD8AC 001DA7EC  4E 80 00 20 */	blr 
+.endfn doAI__Q34Game9ItemPlant4ItemFv
 
-.global interactAttack__Q34Game9ItemPlant4ItemFRQ24Game14InteractAttack
-interactAttack__Q34Game9ItemPlant4ItemFRQ24Game14InteractAttack:
+.fn interactAttack__Q34Game9ItemPlant4ItemFRQ24Game14InteractAttack, global
 /* 801DD8B0 001DA7F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD8B4 001DA7F4  7C 08 02 A6 */	mflr r0
 /* 801DD8B8 001DA7F8  7C 66 1B 78 */	mr r6, r3
@@ -1733,13 +1804,13 @@ interactAttack__Q34Game9ItemPlant4ItemFRQ24Game14InteractAttack:
 /* 801DD8E8 001DA828  7C 08 03 A6 */	mtlr r0
 /* 801DD8EC 001DA82C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD8F0 001DA830  4E 80 00 20 */	blr 
+.endfn interactAttack__Q34Game9ItemPlant4ItemFRQ24Game14InteractAttack
 
-.global "onDamage__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Itemf"
-"onDamage__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Itemf":
+.fn "onDamage__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Itemf", weak
 /* 801DD8F4 001DA834  4E 80 00 20 */	blr 
+.endfn "onDamage__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Itemf"
 
-.global interactFarmKarero__Q34Game9ItemPlant4ItemFRQ24Game18InteractFarmKarero
-interactFarmKarero__Q34Game9ItemPlant4ItemFRQ24Game18InteractFarmKarero:
+.fn interactFarmKarero__Q34Game9ItemPlant4ItemFRQ24Game18InteractFarmKarero, global
 /* 801DD8F8 001DA838  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD8FC 001DA83C  7C 08 02 A6 */	mflr r0
 /* 801DD900 001DA840  7C 64 1B 78 */	mr r4, r3
@@ -1754,13 +1825,13 @@ interactFarmKarero__Q34Game9ItemPlant4ItemFRQ24Game18InteractFarmKarero:
 /* 801DD924 001DA864  7C 08 03 A6 */	mtlr r0
 /* 801DD928 001DA868  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD92C 001DA86C  4E 80 00 20 */	blr 
+.endfn interactFarmKarero__Q34Game9ItemPlant4ItemFRQ24Game18InteractFarmKarero
 
-.global eventKarero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
-eventKarero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item:
+.fn eventKarero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item, weak
 /* 801DD930 001DA870  4E 80 00 20 */	blr 
+.endfn eventKarero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
 
-.global interactFarmHaero__Q34Game9ItemPlant4ItemFRQ24Game17InteractFarmHaero
-interactFarmHaero__Q34Game9ItemPlant4ItemFRQ24Game17InteractFarmHaero:
+.fn interactFarmHaero__Q34Game9ItemPlant4ItemFRQ24Game17InteractFarmHaero, global
 /* 801DD934 001DA874  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DD938 001DA878  7C 08 02 A6 */	mflr r0
 /* 801DD93C 001DA87C  7C 64 1B 78 */	mr r4, r3
@@ -1775,13 +1846,13 @@ interactFarmHaero__Q34Game9ItemPlant4ItemFRQ24Game17InteractFarmHaero:
 /* 801DD960 001DA8A0  7C 08 03 A6 */	mtlr r0
 /* 801DD964 001DA8A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DD968 001DA8A8  4E 80 00 20 */	blr 
+.endfn interactFarmHaero__Q34Game9ItemPlant4ItemFRQ24Game17InteractFarmHaero
 
-.global eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
-eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item:
+.fn eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item, weak
 /* 801DD96C 001DA8AC  4E 80 00 20 */	blr 
+.endfn eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
 
-.global doDirectDraw__Q34Game9ItemPlant4ItemFR8Graphics
-doDirectDraw__Q34Game9ItemPlant4ItemFR8Graphics:
+.fn doDirectDraw__Q34Game9ItemPlant4ItemFR8Graphics, global
 /* 801DD970 001DA8B0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801DD974 001DA8B4  7C 08 02 A6 */	mflr r0
 /* 801DD978 001DA8B8  C0 02 B4 A4 */	lfs f0, lbl_80519804@sda21(r2)
@@ -1854,9 +1925,9 @@ doDirectDraw__Q34Game9ItemPlant4ItemFR8Graphics:
 /* 801DDA84 001DA9C4  7C 08 03 A6 */	mtlr r0
 /* 801DDA88 001DA9C8  38 21 00 50 */	addi r1, r1, 0x50
 /* 801DDA8C 001DA9CC  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game9ItemPlant4ItemFR8Graphics
 
-.global addDamage__Q34Game9ItemPlant4ItemFf
-addDamage__Q34Game9ItemPlant4ItemFf:
+.fn addDamage__Q34Game9ItemPlant4ItemFf, global
 /* 801DDA90 001DA9D0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801DDA94 001DA9D4  7C 08 02 A6 */	mflr r0
 /* 801DDA98 001DA9D8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -2032,13 +2103,13 @@ addDamage__Q34Game9ItemPlant4ItemFf:
 /* 801DDD18 001DAC58  7C 08 03 A6 */	mtlr r0
 /* 801DDD1C 001DAC5C  38 21 00 50 */	addi r1, r1, 0x50
 /* 801DDD20 001DAC60  4E 80 00 20 */	blr 
+.endfn addDamage__Q34Game9ItemPlant4ItemFf
 
-.global dropFruit__Q34Game9ItemPlant4ItemFi
-dropFruit__Q34Game9ItemPlant4ItemFi:
+.fn dropFruit__Q34Game9ItemPlant4ItemFi, weak
 /* 801DDD24 001DAC64  4E 80 00 20 */	blr 
+.endfn dropFruit__Q34Game9ItemPlant4ItemFi
 
-.global calcAngles__Q34Game9ItemPlant12ProcAnimatorFv
-calcAngles__Q34Game9ItemPlant12ProcAnimatorFv:
+.fn calcAngles__Q34Game9ItemPlant12ProcAnimatorFv, global
 /* 801DDD28 001DAC68  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 801DDD2C 001DAC6C  7C 08 02 A6 */	mflr r0
 /* 801DDD30 001DAC70  90 01 00 84 */	stw r0, 0x84(r1)
@@ -2257,9 +2328,9 @@ calcAngles__Q34Game9ItemPlant12ProcAnimatorFv:
 /* 801DE034 001DAF74  7C 08 03 A6 */	mtlr r0
 /* 801DE038 001DAF78  38 21 00 80 */	addi r1, r1, 0x80
 /* 801DE03C 001DAF7C  4E 80 00 20 */	blr 
+.endfn calcAngles__Q34Game9ItemPlant12ProcAnimatorFv
 
-.global update__Q34Game9ItemPlant12ProcAnimatorFff
-update__Q34Game9ItemPlant12ProcAnimatorFff:
+.fn update__Q34Game9ItemPlant12ProcAnimatorFff, global
 /* 801DE040 001DAF80  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 801DE044 001DAF84  7C 08 02 A6 */	mflr r0
 /* 801DE048 001DAF88  90 01 01 84 */	stw r0, 0x184(r1)
@@ -2592,9 +2663,9 @@ update__Q34Game9ItemPlant12ProcAnimatorFff:
 /* 801DE518 001DB458  7C 08 03 A6 */	mtlr r0
 /* 801DE51C 001DB45C  38 21 01 80 */	addi r1, r1, 0x180
 /* 801DE520 001DB460  4E 80 00 20 */	blr 
+.endfn update__Q34Game9ItemPlant12ProcAnimatorFff
 
-.global onKill__Q34Game9ItemPlant5PlantFPQ24Game15CreatureKillArg
-onKill__Q34Game9ItemPlant5PlantFPQ24Game15CreatureKillArg:
+.fn onKill__Q34Game9ItemPlant5PlantFPQ24Game15CreatureKillArg, global
 /* 801DE524 001DB464  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DE528 001DB468  7C 08 02 A6 */	mflr r0
 /* 801DE52C 001DB46C  7C 64 1B 78 */	mr r4, r3
@@ -2608,9 +2679,9 @@ onKill__Q34Game9ItemPlant5PlantFPQ24Game15CreatureKillArg:
 /* 801DE54C 001DB48C  7C 08 03 A6 */	mtlr r0
 /* 801DE550 001DB490  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DE554 001DB494  4E 80 00 20 */	blr 
+.endfn onKill__Q34Game9ItemPlant5PlantFPQ24Game15CreatureKillArg
 
-.global "getNearestFruit__Q34Game9ItemPlant5PlantFR10Vector3<f>"
-"getNearestFruit__Q34Game9ItemPlant5PlantFR10Vector3<f>":
+.fn "getNearestFruit__Q34Game9ItemPlant5PlantFR10Vector3<f>", global
 /* 801DE558 001DB498  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DE55C 001DB49C  7C 08 02 A6 */	mflr r0
 /* 801DE560 001DB4A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2627,9 +2698,9 @@ onKill__Q34Game9ItemPlant5PlantFPQ24Game15CreatureKillArg:
 /* 801DE584 001DB4C4  7C 08 03 A6 */	mtlr r0
 /* 801DE588 001DB4C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DE58C 001DB4CC  4E 80 00 20 */	blr 
+.endfn "getNearestFruit__Q34Game9ItemPlant5PlantFR10Vector3<f>"
 
-.global updateBoundSphere__Q34Game9ItemPlant5PlantFv
-updateBoundSphere__Q34Game9ItemPlant5PlantFv:
+.fn updateBoundSphere__Q34Game9ItemPlant5PlantFv, global
 /* 801DE590 001DB4D0  C0 23 01 9C */	lfs f1, 0x19c(r3)
 /* 801DE594 001DB4D4  C0 02 B4 E8 */	lfs f0, lbl_80519848@sda21(r2)
 /* 801DE598 001DB4D8  D0 23 01 C4 */	stfs f1, 0x1c4(r3)
@@ -2639,9 +2710,9 @@ updateBoundSphere__Q34Game9ItemPlant5PlantFv:
 /* 801DE5A8 001DB4E8  D0 23 01 CC */	stfs f1, 0x1cc(r3)
 /* 801DE5AC 001DB4EC  D0 03 01 D0 */	stfs f0, 0x1d0(r3)
 /* 801DE5B0 001DB4F0  4E 80 00 20 */	blr 
+.endfn updateBoundSphere__Q34Game9ItemPlant5PlantFv
 
-.global doDirectDraw__Q34Game9ItemPlant5PlantFR8Graphics
-doDirectDraw__Q34Game9ItemPlant5PlantFR8Graphics:
+.fn doDirectDraw__Q34Game9ItemPlant5PlantFR8Graphics, global
 /* 801DE5B4 001DB4F4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801DE5B8 001DB4F8  7C 08 02 A6 */	mflr r0
 /* 801DE5BC 001DB4FC  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2762,9 +2833,9 @@ doDirectDraw__Q34Game9ItemPlant5PlantFR8Graphics:
 /* 801DE788 001DB6C8  7C 08 03 A6 */	mtlr r0
 /* 801DE78C 001DB6CC  38 21 00 70 */	addi r1, r1, 0x70
 /* 801DE790 001DB6D0  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game9ItemPlant5PlantFR8Graphics
 
-.global onInit__Q34Game9ItemPlant5PlantFPQ24Game15CreatureInitArg
-onInit__Q34Game9ItemPlant5PlantFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game9ItemPlant5PlantFPQ24Game15CreatureInitArg, global
 /* 801DE794 001DB6D4  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 801DE798 001DB6D8  7C 08 02 A6 */	mflr r0
 /* 801DE79C 001DB6DC  90 01 00 84 */	stw r0, 0x84(r1)
@@ -3266,9 +3337,9 @@ onInit__Q34Game9ItemPlant5PlantFPQ24Game15CreatureInitArg:
 /* 801DEF00 001DBE40  7C 08 03 A6 */	mtlr r0
 /* 801DEF04 001DBE44  38 21 00 80 */	addi r1, r1, 0x80
 /* 801DEF08 001DBE48  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game9ItemPlant5PlantFPQ24Game15CreatureInitArg
 
-.global "start__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
-"start__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg":
+.fn "start__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg", weak
 /* 801DEF0C 001DBE4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DEF10 001DBE50  7C 08 02 A6 */	mflr r0
 /* 801DEF14 001DBE54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3282,9 +3353,9 @@ onInit__Q34Game9ItemPlant5PlantFPQ24Game15CreatureInitArg:
 /* 801DEF34 001DBE74  7C 08 03 A6 */	mtlr r0
 /* 801DEF38 001DBE78  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DEF3C 001DBE7C  4E 80 00 20 */	blr 
+.endfn "start__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
 
-.global doAI__Q34Game9ItemPlant5PlantFv
-doAI__Q34Game9ItemPlant5PlantFv:
+.fn doAI__Q34Game9ItemPlant5PlantFv, global
 /* 801DEF40 001DBE80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DEF44 001DBE84  7C 08 02 A6 */	mflr r0
 /* 801DEF48 001DBE88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3319,9 +3390,9 @@ doAI__Q34Game9ItemPlant5PlantFv:
 /* 801DEFB4 001DBEF4  7C 08 03 A6 */	mtlr r0
 /* 801DEFB8 001DBEF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DEFBC 001DBEFC  4E 80 00 20 */	blr 
+.endfn doAI__Q34Game9ItemPlant5PlantFv
 
-.global startMotion__Q34Game9ItemPlant5PlantFi
-startMotion__Q34Game9ItemPlant5PlantFi:
+.fn startMotion__Q34Game9ItemPlant5PlantFi, global
 /* 801DEFC0 001DBF00  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801DEFC4 001DBF04  7C 08 02 A6 */	mflr r0
 /* 801DEFC8 001DBF08  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3556,18 +3627,18 @@ startMotion__Q34Game9ItemPlant5PlantFi:
 /* 801DF324 001DC264  7C 08 03 A6 */	mtlr r0
 /* 801DF328 001DC268  38 21 00 70 */	addi r1, r1, 0x70
 /* 801DF32C 001DC26C  4E 80 00 20 */	blr 
+.endfn startMotion__Q34Game9ItemPlant5PlantFi
 
-.global setColor__Q34Game9ItemPlant5PlantFf
-setColor__Q34Game9ItemPlant5PlantFf:
+.fn setColor__Q34Game9ItemPlant5PlantFf, global
 /* 801DF330 001DC270  80 6D 94 78 */	lwz r3, mgr__Q24Game9ItemPlant@sda21(r13)
 /* 801DF334 001DC274  28 03 00 00 */	cmplwi r3, 0
 /* 801DF338 001DC278  4D 82 00 20 */	beqlr 
 /* 801DF33C 001DC27C  80 63 00 88 */	lwz r3, 0x88(r3)
 /* 801DF340 001DC280  D0 23 00 08 */	stfs f1, 8(r3)
 /* 801DF344 001DC284  4E 80 00 20 */	blr 
+.endfn setColor__Q34Game9ItemPlant5PlantFf
 
-.global do_updateLOD__Q34Game9ItemPlant5PlantFv
-do_updateLOD__Q34Game9ItemPlant5PlantFv:
+.fn do_updateLOD__Q34Game9ItemPlant5PlantFv, global
 /* 801DF348 001DC288  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DF34C 001DC28C  7C 08 02 A6 */	mflr r0
 /* 801DF350 001DC290  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3576,9 +3647,9 @@ do_updateLOD__Q34Game9ItemPlant5PlantFv:
 /* 801DF35C 001DC29C  7C 08 03 A6 */	mtlr r0
 /* 801DF360 001DC2A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DF364 001DC2A4  4E 80 00 20 */	blr 
+.endfn do_updateLOD__Q34Game9ItemPlant5PlantFv
 
-.global doAnimation__Q34Game9ItemPlant5PlantFv
-doAnimation__Q34Game9ItemPlant5PlantFv:
+.fn doAnimation__Q34Game9ItemPlant5PlantFv, global
 /* 801DF368 001DC2A8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801DF36C 001DC2AC  7C 08 02 A6 */	mflr r0
 /* 801DF370 001DC2B0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3758,9 +3829,9 @@ doAnimation__Q34Game9ItemPlant5PlantFv:
 /* 801DF60C 001DC54C  7C 08 03 A6 */	mtlr r0
 /* 801DF610 001DC550  38 21 00 40 */	addi r1, r1, 0x40
 /* 801DF614 001DC554  4E 80 00 20 */	blr 
+.endfn doAnimation__Q34Game9ItemPlant5PlantFv
 
-.global bearFruits__Q34Game9ItemPlant5PlantFv
-bearFruits__Q34Game9ItemPlant5PlantFv:
+.fn bearFruits__Q34Game9ItemPlant5PlantFv, global
 /* 801DF618 001DC558  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DF61C 001DC55C  7C 08 02 A6 */	mflr r0
 /* 801DF620 001DC560  7C 64 1B 78 */	mr r4, r3
@@ -3772,9 +3843,9 @@ bearFruits__Q34Game9ItemPlant5PlantFv:
 /* 801DF638 001DC578  7C 08 03 A6 */	mtlr r0
 /* 801DF63C 001DC57C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DF640 001DC580  4E 80 00 20 */	blr 
+.endfn bearFruits__Q34Game9ItemPlant5PlantFv
 
-.global killFruits__Q34Game9ItemPlant5PlantFv
-killFruits__Q34Game9ItemPlant5PlantFv:
+.fn killFruits__Q34Game9ItemPlant5PlantFv, global
 /* 801DF644 001DC584  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DF648 001DC588  7C 08 02 A6 */	mflr r0
 /* 801DF64C 001DC58C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3784,9 +3855,9 @@ killFruits__Q34Game9ItemPlant5PlantFv:
 /* 801DF65C 001DC59C  7C 08 03 A6 */	mtlr r0
 /* 801DF660 001DC5A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DF664 001DC5A4  4E 80 00 20 */	blr 
+.endfn killFruits__Q34Game9ItemPlant5PlantFv
 
-.global dropFruit__Q34Game9ItemPlant5PlantFi
-dropFruit__Q34Game9ItemPlant5PlantFi:
+.fn dropFruit__Q34Game9ItemPlant5PlantFi, global
 /* 801DF668 001DC5A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801DF66C 001DC5AC  7C 08 02 A6 */	mflr r0
 /* 801DF670 001DC5B0  3C A0 80 51 */	lis r5, "zero__10Vector3<f>"@ha
@@ -3823,9 +3894,9 @@ dropFruit__Q34Game9ItemPlant5PlantFi:
 /* 801DF6DC 001DC61C  7C 08 03 A6 */	mtlr r0
 /* 801DF6E0 001DC620  38 21 00 20 */	addi r1, r1, 0x20
 /* 801DF6E4 001DC624  4E 80 00 20 */	blr 
+.endfn dropFruit__Q34Game9ItemPlant5PlantFi
 
-.global hasFruits__Q34Game9ItemPlant5PlantFv
-hasFruits__Q34Game9ItemPlant5PlantFv:
+.fn hasFruits__Q34Game9ItemPlant5PlantFv, global
 /* 801DF6E8 001DC628  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DF6EC 001DC62C  7C 08 02 A6 */	mflr r0
 /* 801DF6F0 001DC630  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3835,9 +3906,9 @@ hasFruits__Q34Game9ItemPlant5PlantFv:
 /* 801DF700 001DC640  7C 08 03 A6 */	mtlr r0
 /* 801DF704 001DC644  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DF708 001DC648  4E 80 00 20 */	blr 
+.endfn hasFruits__Q34Game9ItemPlant5PlantFv
 
-.global getFruitsNum__Q34Game9ItemPlant5PlantFv
-getFruitsNum__Q34Game9ItemPlant5PlantFv:
+.fn getFruitsNum__Q34Game9ItemPlant5PlantFv, global
 /* 801DF70C 001DC64C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DF710 001DC650  7C 08 02 A6 */	mflr r0
 /* 801DF714 001DC654  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3847,9 +3918,9 @@ getFruitsNum__Q34Game9ItemPlant5PlantFv:
 /* 801DF724 001DC664  7C 08 03 A6 */	mtlr r0
 /* 801DF728 001DC668  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DF72C 001DC66C  4E 80 00 20 */	blr 
+.endfn getFruitsNum__Q34Game9ItemPlant5PlantFv
 
-.global interactEat__Q34Game9ItemPlant5PlantFRQ24Game11InteractEat
-interactEat__Q34Game9ItemPlant5PlantFRQ24Game11InteractEat:
+.fn interactEat__Q34Game9ItemPlant5PlantFRQ24Game11InteractEat, global
 /* 801DF730 001DC670  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801DF734 001DC674  7C 08 02 A6 */	mflr r0
 /* 801DF738 001DC678  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3972,9 +4043,9 @@ interactEat__Q34Game9ItemPlant5PlantFRQ24Game11InteractEat:
 /* 801DF8F4 001DC834  7C 08 03 A6 */	mtlr r0
 /* 801DF8F8 001DC838  38 21 00 70 */	addi r1, r1, 0x70
 /* 801DF8FC 001DC83C  4E 80 00 20 */	blr 
+.endfn interactEat__Q34Game9ItemPlant5PlantFRQ24Game11InteractEat
 
-.global __ct__Q34Game9ItemPlant3MgrFv
-__ct__Q34Game9ItemPlant3MgrFv:
+.fn __ct__Q34Game9ItemPlant3MgrFv, global
 /* 801DF900 001DC840  94 21 FB C0 */	stwu r1, -0x440(r1)
 /* 801DF904 001DC844  7C 08 02 A6 */	mflr r0
 /* 801DF908 001DC848  90 01 04 44 */	stw r0, 0x444(r1)
@@ -4051,9 +4122,9 @@ __ct__Q34Game9ItemPlant3MgrFv:
 /* 801DFA14 001DC954  7C 08 03 A6 */	mtlr r0
 /* 801DFA18 001DC958  38 21 04 40 */	addi r1, r1, 0x440
 /* 801DFA1C 001DC95C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game9ItemPlant3MgrFv
 
-.global read__Q34Game9ItemPlant10PlantParmsFR6Stream
-read__Q34Game9ItemPlant10PlantParmsFR6Stream:
+.fn read__Q34Game9ItemPlant10PlantParmsFR6Stream, weak
 /* 801DFA20 001DC960  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DFA24 001DC964  7C 08 02 A6 */	mflr r0
 /* 801DFA28 001DC968  38 63 00 DC */	addi r3, r3, 0xdc
@@ -4063,9 +4134,9 @@ read__Q34Game9ItemPlant10PlantParmsFR6Stream:
 /* 801DFA38 001DC978  7C 08 03 A6 */	mtlr r0
 /* 801DFA3C 001DC97C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DFA40 001DC980  4E 80 00 20 */	blr 
+.endfn read__Q34Game9ItemPlant10PlantParmsFR6Stream
 
-.global __ct__Q34Game9ItemPlant10PlantParmsFv
-__ct__Q34Game9ItemPlant10PlantParmsFv:
+.fn __ct__Q34Game9ItemPlant10PlantParmsFv, weak
 /* 801DFA44 001DC984  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DFA48 001DC988  7C 08 02 A6 */	mflr r0
 /* 801DFA4C 001DC98C  3C A0 73 30 */	lis r5, 0x73303030@ha
@@ -4264,9 +4335,9 @@ __ct__Q34Game9ItemPlant10PlantParmsFv:
 /* 801DFD50 001DCC90  7C 08 03 A6 */	mtlr r0
 /* 801DFD54 001DCC94  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DFD58 001DCC98  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game9ItemPlant10PlantParmsFv
 
-.global birth__Q34Game9ItemPlant3MgrFv
-birth__Q34Game9ItemPlant3MgrFv:
+.fn birth__Q34Game9ItemPlant3MgrFv, global
 /* 801DFD5C 001DCC9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DFD60 001DCCA0  7C 08 02 A6 */	mflr r0
 /* 801DFD64 001DCCA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4345,9 +4416,9 @@ birth__Q34Game9ItemPlant3MgrFv:
 /* 801DFE80 001DCDC0  7C 08 03 A6 */	mtlr r0
 /* 801DFE84 001DCDC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DFE88 001DCDC8  4E 80 00 20 */	blr 
+.endfn birth__Q34Game9ItemPlant3MgrFv
 
-.global onLoadResources__Q34Game9ItemPlant3MgrFv
-onLoadResources__Q34Game9ItemPlant3MgrFv:
+.fn onLoadResources__Q34Game9ItemPlant3MgrFv, global
 /* 801DFE8C 001DCDCC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801DFE90 001DCDD0  7C 08 02 A6 */	mflr r0
 /* 801DFE94 001DCDD4  3C 80 80 48 */	lis r4, lbl_804808F0@ha
@@ -4394,9 +4465,9 @@ onLoadResources__Q34Game9ItemPlant3MgrFv:
 /* 801DFF34 001DCE74  7C 08 03 A6 */	mtlr r0
 /* 801DFF38 001DCE78  38 21 00 20 */	addi r1, r1, 0x20
 /* 801DFF3C 001DCE7C  4E 80 00 20 */	blr 
+.endfn onLoadResources__Q34Game9ItemPlant3MgrFv
 
-.global generatorNewItemParm__Q34Game9ItemPlant3MgrFv
-generatorNewItemParm__Q34Game9ItemPlant3MgrFv:
+.fn generatorNewItemParm__Q34Game9ItemPlant3MgrFv, global
 /* 801DFF40 001DCE80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801DFF44 001DCE84  7C 08 02 A6 */	mflr r0
 /* 801DFF48 001DCE88  38 60 00 08 */	li r3, 8
@@ -4417,9 +4488,9 @@ generatorNewItemParm__Q34Game9ItemPlant3MgrFv:
 /* 801DFF80 001DCEC0  7C 08 03 A6 */	mtlr r0
 /* 801DFF84 001DCEC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DFF88 001DCEC8  4E 80 00 20 */	blr 
+.endfn generatorNewItemParm__Q34Game9ItemPlant3MgrFv
 
-.global generatorWrite__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParm
-generatorWrite__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParm:
+.fn generatorWrite__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParm, global
 /* 801DFF8C 001DCECC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801DFF90 001DCED0  7C 08 02 A6 */	mflr r0
 /* 801DFF94 001DCED4  3C 60 80 48 */	lis r3, lbl_804808F0@ha
@@ -4455,9 +4526,9 @@ generatorWrite__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParm:
 /* 801E0008 001DCF48  7C 08 03 A6 */	mtlr r0
 /* 801E000C 001DCF4C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E0010 001DCF50  4E 80 00 20 */	blr 
+.endfn generatorWrite__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParm
 
-.global generatorRead__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParmUl
-generatorRead__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParmUl:
+.fn generatorRead__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParmUl, global
 /* 801E0014 001DCF54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E0018 001DCF58  7C 08 02 A6 */	mflr r0
 /* 801E001C 001DCF5C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4495,9 +4566,9 @@ generatorRead__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParmUl:
 /* 801E0090 001DCFD0  7C 08 03 A6 */	mtlr r0
 /* 801E0094 001DCFD4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E0098 001DCFD8  4E 80 00 20 */	blr 
+.endfn generatorRead__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParmUl
 
-.global "generatorBirth__Q34Game9ItemPlant3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-"generatorBirth__Q34Game9ItemPlant3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
+.fn "generatorBirth__Q34Game9ItemPlant3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm", global
 /* 801E009C 001DCFDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E00A0 001DCFE0  7C 08 02 A6 */	mflr r0
 /* 801E00A4 001DCFE4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4544,9 +4615,9 @@ generatorRead__Q34Game9ItemPlant3MgrFR6StreamPQ24Game11GenItemParmUl:
 /* 801E0144 001DD084  7C 08 03 A6 */	mtlr r0
 /* 801E0148 001DD088  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E014C 001DD08C  4E 80 00 20 */	blr 
+.endfn "generatorBirth__Q34Game9ItemPlant3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
 
-.global init__Q34Game9ItemPlant6FruitsFiP7Matrixf
-init__Q34Game9ItemPlant6FruitsFiP7Matrixf:
+.fn init__Q34Game9ItemPlant6FruitsFiP7Matrixf, global
 /* 801E0150 001DD090  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E0154 001DD094  7C 08 02 A6 */	mflr r0
 /* 801E0158 001DD098  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4576,9 +4647,9 @@ init__Q34Game9ItemPlant6FruitsFiP7Matrixf:
 /* 801E01B8 001DD0F8  7C 08 03 A6 */	mtlr r0
 /* 801E01BC 001DD0FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E01C0 001DD100  4E 80 00 20 */	blr 
+.endfn init__Q34Game9ItemPlant6FruitsFiP7Matrixf
 
-.global __dt__Q34Game9ItemPlant9FruitSlotFv
-__dt__Q34Game9ItemPlant9FruitSlotFv:
+.fn __dt__Q34Game9ItemPlant9FruitSlotFv, weak
 /* 801E01C4 001DD104  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E01C8 001DD108  7C 08 02 A6 */	mflr r0
 /* 801E01CC 001DD10C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4604,9 +4675,9 @@ __dt__Q34Game9ItemPlant9FruitSlotFv:
 /* 801E0218 001DD158  7C 08 03 A6 */	mtlr r0
 /* 801E021C 001DD15C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0220 001DD160  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game9ItemPlant9FruitSlotFv
 
-.global update__Q34Game9ItemPlant6FruitsFv
-update__Q34Game9ItemPlant6FruitsFv:
+.fn update__Q34Game9ItemPlant6FruitsFv, global
 /* 801E0224 001DD164  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E0228 001DD168  7C 08 02 A6 */	mflr r0
 /* 801E022C 001DD16C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4634,9 +4705,9 @@ update__Q34Game9ItemPlant6FruitsFv:
 /* 801E027C 001DD1BC  7C 08 03 A6 */	mtlr r0
 /* 801E0280 001DD1C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E0284 001DD1C4  4E 80 00 20 */	blr 
+.endfn update__Q34Game9ItemPlant6FruitsFv
 
-.global bearAll__Q34Game9ItemPlant6FruitsFUs
-bearAll__Q34Game9ItemPlant6FruitsFUs:
+.fn bearAll__Q34Game9ItemPlant6FruitsFUs, global
 /* 801E0288 001DD1C8  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 801E028C 001DD1CC  7C 08 02 A6 */	mflr r0
 /* 801E0290 001DD1D0  90 01 01 44 */	stw r0, 0x144(r1)
@@ -4820,9 +4891,9 @@ bearAll__Q34Game9ItemPlant6FruitsFUs:
 /* 801E0530 001DD470  7C 08 03 A6 */	mtlr r0
 /* 801E0534 001DD474  38 21 01 40 */	addi r1, r1, 0x140
 /* 801E0538 001DD478  4E 80 00 20 */	blr 
+.endfn bearAll__Q34Game9ItemPlant6FruitsFUs
 
-.global hasFruits__Q34Game9ItemPlant6FruitsFv
-hasFruits__Q34Game9ItemPlant6FruitsFv:
+.fn hasFruits__Q34Game9ItemPlant6FruitsFv, global
 /* 801E053C 001DD47C  80 03 00 04 */	lwz r0, 4(r3)
 /* 801E0540 001DD480  38 A0 00 00 */	li r5, 0
 /* 801E0544 001DD484  7C 09 03 A6 */	mtctr r0
@@ -4842,9 +4913,9 @@ hasFruits__Q34Game9ItemPlant6FruitsFv:
 .L_801E0574:
 /* 801E0574 001DD4B4  38 60 00 00 */	li r3, 0
 /* 801E0578 001DD4B8  4E 80 00 20 */	blr 
+.endfn hasFruits__Q34Game9ItemPlant6FruitsFv
 
-.global countFruits__Q34Game9ItemPlant6FruitsFv
-countFruits__Q34Game9ItemPlant6FruitsFv:
+.fn countFruits__Q34Game9ItemPlant6FruitsFv, global
 /* 801E057C 001DD4BC  80 03 00 04 */	lwz r0, 4(r3)
 /* 801E0580 001DD4C0  38 C0 00 00 */	li r6, 0
 /* 801E0584 001DD4C4  38 A0 00 00 */	li r5, 0
@@ -4864,9 +4935,9 @@ countFruits__Q34Game9ItemPlant6FruitsFv:
 .L_801E05B4:
 /* 801E05B4 001DD4F4  7C C3 33 78 */	mr r3, r6
 /* 801E05B8 001DD4F8  4E 80 00 20 */	blr 
+.endfn countFruits__Q34Game9ItemPlant6FruitsFv
 
-.global killAll__Q34Game9ItemPlant6FruitsFv
-killAll__Q34Game9ItemPlant6FruitsFv:
+.fn killAll__Q34Game9ItemPlant6FruitsFv, global
 /* 801E05BC 001DD4FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E05C0 001DD500  7C 08 02 A6 */	mflr r0
 /* 801E05C4 001DD504  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4894,9 +4965,9 @@ killAll__Q34Game9ItemPlant6FruitsFv:
 /* 801E0614 001DD554  7C 08 03 A6 */	mtlr r0
 /* 801E0618 001DD558  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E061C 001DD55C  4E 80 00 20 */	blr 
+.endfn killAll__Q34Game9ItemPlant6FruitsFv
 
-.global "getFruit__Q34Game9ItemPlant6FruitsFR10Vector3<f>"
-"getFruit__Q34Game9ItemPlant6FruitsFR10Vector3<f>":
+.fn "getFruit__Q34Game9ItemPlant6FruitsFR10Vector3<f>", global
 /* 801E0620 001DD560  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801E0624 001DD564  7C 08 02 A6 */	mflr r0
 /* 801E0628 001DD568  90 01 00 44 */	stw r0, 0x44(r1)
@@ -4971,9 +5042,9 @@ killAll__Q34Game9ItemPlant6FruitsFv:
 /* 801E0720 001DD660  7C 08 03 A6 */	mtlr r0
 /* 801E0724 001DD664  38 21 00 40 */	addi r1, r1, 0x40
 /* 801E0728 001DD668  4E 80 00 20 */	blr 
+.endfn "getFruit__Q34Game9ItemPlant6FruitsFR10Vector3<f>"
 
-.global __ct__Q34Game9ItemPlant9FruitSlotFv
-__ct__Q34Game9ItemPlant9FruitSlotFv:
+.fn __ct__Q34Game9ItemPlant9FruitSlotFv, global
 /* 801E072C 001DD66C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0730 001DD670  7C 08 02 A6 */	mflr r0
 /* 801E0734 001DD674  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4993,9 +5064,9 @@ __ct__Q34Game9ItemPlant9FruitSlotFv:
 /* 801E076C 001DD6AC  7C 08 03 A6 */	mtlr r0
 /* 801E0770 001DD6B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0774 001DD6B4  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game9ItemPlant9FruitSlotFv
 
-.global setFruit__Q34Game9ItemPlant9FruitSlotFPQ24Game6PelletP7MatrixfR7Matrixf
-setFruit__Q34Game9ItemPlant9FruitSlotFPQ24Game6PelletP7MatrixfR7Matrixf:
+.fn setFruit__Q34Game9ItemPlant9FruitSlotFPQ24Game6PelletP7MatrixfR7Matrixf, global
 /* 801E0778 001DD6B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E077C 001DD6BC  7C 08 02 A6 */	mflr r0
 /* 801E0780 001DD6C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5016,9 +5087,9 @@ setFruit__Q34Game9ItemPlant9FruitSlotFPQ24Game6PelletP7MatrixfR7Matrixf:
 /* 801E07BC 001DD6FC  7C 08 03 A6 */	mtlr r0
 /* 801E07C0 001DD700  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E07C4 001DD704  4E 80 00 20 */	blr 
+.endfn setFruit__Q34Game9ItemPlant9FruitSlotFPQ24Game6PelletP7MatrixfR7Matrixf
 
-.global dropFruit__Q34Game9ItemPlant9FruitSlotFv
-dropFruit__Q34Game9ItemPlant9FruitSlotFv:
+.fn dropFruit__Q34Game9ItemPlant9FruitSlotFv, global
 /* 801E07C8 001DD708  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E07CC 001DD70C  7C 08 02 A6 */	mflr r0
 /* 801E07D0 001DD710  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5036,9 +5107,9 @@ dropFruit__Q34Game9ItemPlant9FruitSlotFv:
 /* 801E07FC 001DD73C  7C 08 03 A6 */	mtlr r0
 /* 801E0800 001DD740  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0804 001DD744  4E 80 00 20 */	blr 
+.endfn dropFruit__Q34Game9ItemPlant9FruitSlotFv
 
-.global killFruit__Q34Game9ItemPlant9FruitSlotFv
-killFruit__Q34Game9ItemPlant9FruitSlotFv:
+.fn killFruit__Q34Game9ItemPlant9FruitSlotFv, global
 /* 801E0808 001DD748  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E080C 001DD74C  7C 08 02 A6 */	mflr r0
 /* 801E0810 001DD750  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5057,9 +5128,9 @@ killFruit__Q34Game9ItemPlant9FruitSlotFv:
 /* 801E0840 001DD780  7C 08 03 A6 */	mtlr r0
 /* 801E0844 001DD784  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0848 001DD788  4E 80 00 20 */	blr 
+.endfn killFruit__Q34Game9ItemPlant9FruitSlotFv
 
-.global update__Q34Game9ItemPlant9FruitSlotFv
-update__Q34Game9ItemPlant9FruitSlotFv:
+.fn update__Q34Game9ItemPlant9FruitSlotFv, global
 /* 801E084C 001DD78C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0850 001DD790  7C 08 02 A6 */	mflr r0
 /* 801E0854 001DD794  7C 64 1B 78 */	mr r4, r3
@@ -5074,9 +5145,9 @@ update__Q34Game9ItemPlant9FruitSlotFv:
 /* 801E0874 001DD7B4  7C 08 03 A6 */	mtlr r0
 /* 801E0878 001DD7B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E087C 001DD7BC  4E 80 00 20 */	blr 
+.endfn update__Q34Game9ItemPlant9FruitSlotFv
 
-.global __dt__Q34Game9ItemPlant3MgrFv
-__dt__Q34Game9ItemPlant3MgrFv:
+.fn __dt__Q34Game9ItemPlant3MgrFv, weak
 /* 801E0880 001DD7C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0884 001DD7C4  7C 08 02 A6 */	mflr r0
 /* 801E0888 001DD7C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5158,9 +5229,9 @@ __dt__Q34Game9ItemPlant3MgrFv:
 /* 801E09A8 001DD8E8  7C 08 03 A6 */	mtlr r0
 /* 801E09AC 001DD8EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E09B0 001DD8F0  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game9ItemPlant3MgrFv
 
-.global doNew__Q34Game9ItemPlant3MgrFv
-doNew__Q34Game9ItemPlant3MgrFv:
+.fn doNew__Q34Game9ItemPlant3MgrFv, weak
 /* 801E09B4 001DD8F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E09B8 001DD8F8  7C 08 02 A6 */	mflr r0
 /* 801E09BC 001DD8FC  38 60 02 8C */	li r3, 0x28c
@@ -5233,21 +5304,21 @@ doNew__Q34Game9ItemPlant3MgrFv:
 /* 801E0AC0 001DDA00  7C 08 03 A6 */	mtlr r0
 /* 801E0AC4 001DDA04  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0AC8 001DDA08  4E 80 00 20 */	blr 
+.endfn doNew__Q34Game9ItemPlant3MgrFv
 
-.global generatorGetID__Q34Game9ItemPlant3MgrFv
-generatorGetID__Q34Game9ItemPlant3MgrFv:
+.fn generatorGetID__Q34Game9ItemPlant3MgrFv, weak
 /* 801E0ACC 001DDA0C  3C 60 70 6C */	lis r3, 0x706C6E74@ha
 /* 801E0AD0 001DDA10  38 63 6E 74 */	addi r3, r3, 0x706C6E74@l
 /* 801E0AD4 001DDA14  4E 80 00 20 */	blr 
+.endfn generatorGetID__Q34Game9ItemPlant3MgrFv
 
-.global generatorLocalVersion__Q34Game9ItemPlant3MgrFv
-generatorLocalVersion__Q34Game9ItemPlant3MgrFv:
+.fn generatorLocalVersion__Q34Game9ItemPlant3MgrFv, weak
 /* 801E0AD8 001DDA18  3C 60 30 30 */	lis r3, 0x30303031@ha
 /* 801E0ADC 001DDA1C  38 63 30 31 */	addi r3, r3, 0x30303031@l
 /* 801E0AE0 001DDA20  4E 80 00 20 */	blr 
+.endfn generatorLocalVersion__Q34Game9ItemPlant3MgrFv
 
-.global changeMaterial__Q34Game9ItemPlant4ItemFv
-changeMaterial__Q34Game9ItemPlant4ItemFv:
+.fn changeMaterial__Q34Game9ItemPlant4ItemFv, weak
 /* 801E0AE4 001DDA24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0AE8 001DDA28  7C 08 02 A6 */	mflr r0
 /* 801E0AEC 001DDA2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5260,28 +5331,28 @@ changeMaterial__Q34Game9ItemPlant4ItemFv:
 /* 801E0B08 001DDA48  7C 08 03 A6 */	mtlr r0
 /* 801E0B0C 001DDA4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0B10 001DDA50  4E 80 00 20 */	blr 
+.endfn changeMaterial__Q34Game9ItemPlant4ItemFv
 
-.global setColor__Q34Game9ItemPlant4ItemFf
-setColor__Q34Game9ItemPlant4ItemFf:
+.fn setColor__Q34Game9ItemPlant4ItemFf, weak
 /* 801E0B14 001DDA54  4E 80 00 20 */	blr 
+.endfn setColor__Q34Game9ItemPlant4ItemFf
 
-.global hasFruits__Q34Game9ItemPlant4ItemFv
-hasFruits__Q34Game9ItemPlant4ItemFv:
+.fn hasFruits__Q34Game9ItemPlant4ItemFv, weak
 /* 801E0B18 001DDA58  38 60 00 00 */	li r3, 0
 /* 801E0B1C 001DDA5C  4E 80 00 20 */	blr 
+.endfn hasFruits__Q34Game9ItemPlant4ItemFv
 
-.global getFruitsNum__Q34Game9ItemPlant4ItemFv
-getFruitsNum__Q34Game9ItemPlant4ItemFv:
+.fn getFruitsNum__Q34Game9ItemPlant4ItemFv, weak
 /* 801E0B20 001DDA60  38 60 00 00 */	li r3, 0
 /* 801E0B24 001DDA64  4E 80 00 20 */	blr 
+.endfn getFruitsNum__Q34Game9ItemPlant4ItemFv
 
-.global "getNearestFruit__Q34Game9ItemPlant4ItemFR10Vector3<f>"
-"getNearestFruit__Q34Game9ItemPlant4ItemFR10Vector3<f>":
+.fn "getNearestFruit__Q34Game9ItemPlant4ItemFR10Vector3<f>", weak
 /* 801E0B28 001DDA68  38 60 00 00 */	li r3, 0
 /* 801E0B2C 001DDA6C  4E 80 00 20 */	blr 
+.endfn "getNearestFruit__Q34Game9ItemPlant4ItemFR10Vector3<f>"
 
-.global "doAI__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>Fv"
-"doAI__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>Fv":
+.fn "doAI__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>Fv", weak
 /* 801E0B30 001DDA70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0B34 001DDA74  7C 08 02 A6 */	mflr r0
 /* 801E0B38 001DDA78  7C 64 1B 78 */	mr r4, r3
@@ -5295,49 +5366,49 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 /* 801E0B58 001DDA98  7C 08 03 A6 */	mtlr r0
 /* 801E0B5C 001DDA9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0B60 001DDAA0  4E 80 00 20 */	blr 
+.endfn "doAI__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>Fv"
 
-.global "onKeyEvent__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent", weak
 /* 801E0B64 001DDAA4  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent"
 
-.global "onBounce__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ23Sys8Triangle"
-"onBounce__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ23Sys8Triangle":
+.fn "onBounce__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ23Sys8Triangle", weak
 /* 801E0B68 001DDAA8  4E 80 00 20 */	blr 
+.endfn "onBounce__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ23Sys8Triangle"
 
-.global "onPlatCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9PlatEvent"
-"onPlatCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9PlatEvent":
+.fn "onPlatCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9PlatEvent", weak
 /* 801E0B6C 001DDAAC  4E 80 00 20 */	blr 
+.endfn "onPlatCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9PlatEvent"
 
-.global "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent"
-"onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent":
+.fn "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent", weak
 /* 801E0B70 001DDAB0  4E 80 00 20 */	blr 
+.endfn "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent"
 
-.global "init__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ24Game8StateArg"
-"init__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ24Game8StateArg":
+.fn "init__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ24Game8StateArg", weak
 /* 801E0B74 001DDAB4  4E 80 00 20 */	blr 
+.endfn "init__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ24Game8StateArg"
 
-.global "exec__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
-"exec__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item":
+.fn "exec__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item", weak
 /* 801E0B78 001DDAB8  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 
-.global "cleanup__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
-"cleanup__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item":
+.fn "cleanup__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item", weak
 /* 801E0B7C 001DDABC  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 
-.global "resume__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
-"resume__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item":
+.fn "resume__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item", weak
 /* 801E0B80 001DDAC0  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 
-.global "restart__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
-"restart__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item":
+.fn "restart__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item", weak
 /* 801E0B84 001DDAC4  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 
-.global "init__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
-"init__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item":
+.fn "init__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item", weak
 /* 801E0B88 001DDAC8  4E 80 00 20 */	blr 
+.endfn "init__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 
-.global "exec__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
-"exec__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item":
+.fn "exec__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item", weak
 /* 801E0B8C 001DDACC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0B90 001DDAD0  7C 08 02 A6 */	mflr r0
 /* 801E0B94 001DDAD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5353,9 +5424,9 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 /* 801E0BB8 001DDAF8  7C 08 03 A6 */	mtlr r0
 /* 801E0BBC 001DDAFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0BC0 001DDB00  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
 
-.global "create__Q24Game36StateMachine<Q34Game9ItemPlant4Item>Fi"
-"create__Q24Game36StateMachine<Q34Game9ItemPlant4Item>Fi":
+.fn "create__Q24Game36StateMachine<Q34Game9ItemPlant4Item>Fi", weak
 /* 801E0BC4 001DDB04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0BC8 001DDB08  7C 08 02 A6 */	mflr r0
 /* 801E0BCC 001DDB0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5381,9 +5452,9 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 /* 801E0C1C 001DDB5C  7C 08 03 A6 */	mtlr r0
 /* 801E0C20 001DDB60  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0C24 001DDB64  4E 80 00 20 */	blr 
+.endfn "create__Q24Game36StateMachine<Q34Game9ItemPlant4Item>Fi"
 
-.global "transit__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
-"transit__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg":
+.fn "transit__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg", weak
 /* 801E0C28 001DDB68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801E0C2C 001DDB6C  7C 08 02 A6 */	mflr r0
 /* 801E0C30 001DDB70  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5426,9 +5497,9 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 /* 801E0CB8 001DDBF8  7C 08 03 A6 */	mtlr r0
 /* 801E0CBC 001DDBFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801E0CC0 001DDC00  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
 
-.global "registerState__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ24Game32FSMState<Q34Game9ItemPlant4Item>"
-"registerState__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ24Game32FSMState<Q34Game9ItemPlant4Item>":
+.fn "registerState__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ24Game32FSMState<Q34Game9ItemPlant4Item>", weak
 /* 801E0CC4 001DDC04  80 C3 00 08 */	lwz r6, 8(r3)
 /* 801E0CC8 001DDC08  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 801E0CCC 001DDC0C  7C 06 00 00 */	cmpw r6, r0
@@ -5465,9 +5536,9 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 /* 801E0D3C 001DDC7C  38 04 00 01 */	addi r0, r4, 1
 /* 801E0D40 001DDC80  90 03 00 08 */	stw r0, 8(r3)
 /* 801E0D44 001DDC84  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game36StateMachine<Q34Game9ItemPlant4Item>FPQ24Game32FSMState<Q34Game9ItemPlant4Item>"
 
-.global "onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent", weak
 /* 801E0D48 001DDC88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0D4C 001DDC8C  7C 08 02 A6 */	mflr r0
 /* 801E0D50 001DDC90  7C 66 1B 78 */	mr r6, r3
@@ -5486,9 +5557,9 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 /* 801E0D80 001DDCC0  7C 08 03 A6 */	mtlr r0
 /* 801E0D84 001DDCC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0D88 001DDCC8  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent"
 
-.global "getStateID__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>Fv"
-"getStateID__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>Fv":
+.fn "getStateID__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>Fv", weak
 /* 801E0D8C 001DDCCC  80 63 01 DC */	lwz r3, 0x1dc(r3)
 /* 801E0D90 001DDCD0  28 03 00 00 */	cmplwi r3, 0
 /* 801E0D94 001DDCD4  41 82 00 0C */	beq .L_801E0DA0
@@ -5497,9 +5568,9 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 .L_801E0DA0:
 /* 801E0DA0 001DDCE0  38 60 FF FF */	li r3, -1
 /* 801E0DA4 001DDCE4  4E 80 00 20 */	blr 
+.endfn "getStateID__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>Fv"
 
-.global "platCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRQ24Game9PlatEvent"
-"platCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRQ24Game9PlatEvent":
+.fn "platCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRQ24Game9PlatEvent", weak
 /* 801E0DA8 001DDCE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0DAC 001DDCEC  7C 08 02 A6 */	mflr r0
 /* 801E0DB0 001DDCF0  7C 66 1B 78 */	mr r6, r3
@@ -5518,9 +5589,9 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 /* 801E0DE0 001DDD20  7C 08 03 A6 */	mtlr r0
 /* 801E0DE4 001DDD24  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0DE8 001DDD28  4E 80 00 20 */	blr 
+.endfn "platCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRQ24Game9PlatEvent"
 
-.global "collisionCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRQ24Game9CollEvent"
-"collisionCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRQ24Game9CollEvent":
+.fn "collisionCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRQ24Game9CollEvent", weak
 /* 801E0DEC 001DDD2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0DF0 001DDD30  7C 08 02 A6 */	mflr r0
 /* 801E0DF4 001DDD34  7C 66 1B 78 */	mr r6, r3
@@ -5539,9 +5610,9 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 /* 801E0E24 001DDD64  7C 08 03 A6 */	mtlr r0
 /* 801E0E28 001DDD68  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0E2C 001DDD6C  4E 80 00 20 */	blr 
+.endfn "collisionCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRQ24Game9CollEvent"
 
-.global "bounceCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FPQ23Sys8Triangle"
-"bounceCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FPQ23Sys8Triangle":
+.fn "bounceCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FPQ23Sys8Triangle", weak
 /* 801E0E30 001DDD70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E0E34 001DDD74  7C 08 02 A6 */	mflr r0
 /* 801E0E38 001DDD78  7C 66 1B 78 */	mr r6, r3
@@ -5560,13 +5631,14 @@ getFruitsNum__Q34Game9ItemPlant4ItemFv:
 /* 801E0E68 001DDDA8  7C 08 03 A6 */	mtlr r0
 /* 801E0E6C 001DDDAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E0E70 001DDDB0  4E 80 00 20 */	blr 
+.endfn "bounceCallback__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FPQ23Sys8Triangle"
 
-.global "@376@onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent", weak
 /* 801E0E74 001DDDB4  38 63 FE 88 */	addi r3, r3, -376
 /* 801E0E78 001DDDB8  4B FF FE D0 */	b "onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent"
+.endfn "@376@onKeyEvent__Q24Game77FSMItem<Q34Game9ItemPlant4Item,Q34Game9ItemPlant3FSM,Q34Game9ItemPlant5State>FRCQ28SysShape8KeyEvent"
 
-.global "@48@__dt__Q34Game9ItemPlant3MgrFv"
-"@48@__dt__Q34Game9ItemPlant3MgrFv":
+.fn "@48@__dt__Q34Game9ItemPlant3MgrFv", weak
 /* 801E0E7C 001DDDBC  38 63 FF D0 */	addi r3, r3, -48
 /* 801E0E80 001DDDC0  4B FF FA 00 */	b __dt__Q34Game9ItemPlant3MgrFv
+.endfn "@48@__dt__Q34Game9ItemPlant3MgrFv"

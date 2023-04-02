@@ -5,222 +5,208 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_8047FC70:
+.obj lbl_8047FC70, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x67616D65
-	.4byte 0x4D617050
-	.4byte 0x61727473
-	.4byte 0x00000000
-	.4byte 0x09232064
-	.4byte 0x6973742F
-	.4byte 0x646F6F72
-	.4byte 0x2D69642F
-	.4byte 0x74656B69
-	.4byte 0x666C6167
-	.4byte 0x0D0A0000
-	.4byte 0x09232069
-	.4byte 0x6E646578
-	.4byte 0x0D0A0000
-	.4byte 0x09232064
-	.4byte 0x69722F6F
-	.4byte 0x6666732F
-	.4byte 0x7770696E
-	.4byte 0x6465780D
-	.4byte 0x0A000000
-	.4byte 0x09232064
-	.4byte 0x6F6F7220
-	.4byte 0x6C696E6B
-	.4byte 0x730D0A00
-	.4byte 0x09232064
-	.4byte 0x582F645A
-	.4byte 0x203B2063
-	.4byte 0x656C6C20
-	.4byte 0x73697A65
-	.4byte 0x0D0A0000
-lbl_8047FCF4:
-	.4byte 0x67616D65
-	.4byte 0x4D617050
-	.4byte 0x61727473
-	.4byte 0x2E637070
-	.4byte 0x00000000
+.endobj lbl_8047FC70
+.balign 4
+.obj lbl_8047FC7C, local
+	.asciz "gameMapParts"
+.endobj lbl_8047FC7C
+.balign 4
+.obj lbl_8047FC8C, local
+	.asciz "\t# dist/door-id/tekiflag\r\n"
+.endobj lbl_8047FC8C
+.balign 4
+.obj lbl_8047FCA8, local
+	.asciz "\t# index\r\n"
+.endobj lbl_8047FCA8
+.balign 4
+.obj lbl_8047FCB4, local
+	.asciz "\t# dir/offs/wpindex\r\n"
+.endobj lbl_8047FCB4
+.balign 4
+.obj lbl_8047FCCC, local
+	.asciz "\t# door links\r\n"
+.endobj lbl_8047FCCC
+.balign 4
+.obj lbl_8047FCDC, local
+	.asciz "\t# dX/dZ ; cell size\r\n"
+.endobj lbl_8047FCDC
+.balign 4
+.obj lbl_8047FCF4, local
+	.asciz "gameMapParts.cpp"
+.endobj lbl_8047FCF4
+.balign 4
+.obj lbl_8047FD08, local # Shift-JIS
 	.4byte 0x82E082A4
 	.4byte 0x8E6782ED
 	.4byte 0x82C882A2
-	.4byte 0x0A000000
-	.4byte 0x2573203A
-	.4byte 0x206E6F74
-	.4byte 0x20666F75
-	.4byte 0x6E642021
-	.4byte 0x0A000000
-	.4byte 0x25732F61
-	.4byte 0x72632E73
-	.4byte 0x7A730000
-	.asciz "P2Assert"
+	.2byte 0x0A00
+.endobj lbl_8047FD08
 .balign 4
-	.4byte 0x76696577
-	.4byte 0x2E626D64
-	.4byte 0x00000000
-	.4byte 0x74657874
-	.4byte 0x7572652E
-	.4byte 0x62746900
-	.4byte 0x25735F25
-	.4byte 0x642E6274
-	.4byte 0x6B000000
-	.4byte 0x25732F74
-	.4byte 0x65787473
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x67726964
-	.4byte 0x2E62696E
-	.4byte 0x00000000
-	.4byte 0x6D617063
-	.4byte 0x6F64652E
-	.4byte 0x62696E00
-	.4byte 0x77617465
-	.4byte 0x72626F78
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x726F7574
-	.4byte 0x652E7478
-	.4byte 0x74000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6D
-	.4byte 0x61702F76
-	.4byte 0x72626F78
-	.4byte 0x2F25732E
-	.4byte 0x737A7300
-	.4byte 0x6D6F6465
-	.4byte 0x6C2E626D
-	.4byte 0x64000000
-	.4byte 0x6E6F206D
-	.4byte 0x6F64656C
-	.4byte 0x2E626D64
-	.4byte 0x20696E20
-	.4byte 0x25730A00
-	.4byte 0x75736572
-	.4byte 0x2F4D756B
-	.4byte 0x6B692F6D
-	.4byte 0x6170756E
-	.4byte 0x6974732F
-	.4byte 0x756E6974
-	.4byte 0x732F2573
-	.4byte 0x00000000
-	.4byte 0x2573206E
-	.4byte 0x6F742066
-	.4byte 0x6F756E64
-	.4byte 0x20210A00
-	.4byte 0x75736572
-	.4byte 0x2F416265
-	.4byte 0x2F636176
-	.4byte 0x652F2573
-	.4byte 0x00000000
-	.4byte 0x6E6F206C
-	.4byte 0x69676874
-	.4byte 0x2066696C
-	.4byte 0x65202825
-	.4byte 0x73290A00
-	.4byte 0x75736572
-	.4byte 0x2F4D756B
-	.4byte 0x6B692F6D
-	.4byte 0x6170756E
-	.4byte 0x6974732F
-	.4byte 0x6172632F
-	.4byte 0x25732F74
-	.4byte 0x65787473
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x6E6F2074
-	.4byte 0x65787441
-	.4byte 0x52632021
-	.4byte 0x0A000000
-	.4byte 0x6C61796F
-	.4byte 0x75742E74
-	.4byte 0x78740000
-	.4byte 0x3234362D
-	.4byte 0x43726561
-	.4byte 0x74655261
-	.4byte 0x6E646F6D
-	.4byte 0x4D617000
-	.4byte 0x4D6F6465
-	.4byte 0x6C20616E
-	.4byte 0x6420436F
-	.4byte 0x6C6C6973
-	.4byte 0x696F6E00
-	.4byte 0x3234362D
-	.4byte 0x506C6163
-	.4byte 0x65526F6F
-	.4byte 0x6D730000
-lbl_8047FEBC:
-	.4byte 0x75736572
-	.4byte 0x2F4D756B
-	.4byte 0x6B692F6D
-	.4byte 0x6170756E
-	.4byte 0x6974732F
-	.4byte 0x6172632F
-	.4byte 0x25730000
-lbl_8047FED8:
-	.4byte 0x6E6F2073
-	.4byte 0x75636820
-	.4byte 0x756E6974
-	.4byte 0x2025730A
-	.4byte 0x00000000
-lbl_8047FEEC:
-	.4byte 0x7369626F
-	.4byte 0x75646573
-	.4byte 0x7520210A
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.obj lbl_8047FD18, local
+	.asciz "%s : not found !\n"
+.endobj lbl_8047FD18
+.balign 4
+.obj lbl_8047FD2C, local
+	.asciz "%s/arc.szs"
+.endobj lbl_8047FD2C
+.balign 4
+.obj lbl_8047FD38, local
+	.asciz "P2Assert"
+.endobj lbl_8047FD38
+.balign 4
+.obj lbl_8047FD44, local
+	.asciz "view.bmd"
+.endobj lbl_8047FD44
+.balign 4
+.obj lbl_8047FD50, local
+	.asciz "texture.bti"
+.endobj lbl_8047FD50
+.balign 4
+.obj lbl_8047FD5C, local
+	.asciz "%s_%d.btk"
+.endobj lbl_8047FD5C
+.balign 4
+.obj lbl_8047FD68, local
+	.asciz "%s/texts.szs"
+.endobj lbl_8047FD68
+.balign 4
+.obj lbl_8047FD78, local
+	.asciz "grid.bin"
+.endobj lbl_8047FD78
+.balign 4
+.obj lbl_8047FD84, local
+	.asciz "mapcode.bin"
+.endobj lbl_8047FD84
+.balign 4
+.obj lbl_8047FD90, local
+	.asciz "waterbox.txt"
+.endobj lbl_8047FD90
+.balign 4
+.obj lbl_8047FDA0, local
+	.asciz "route.txt"
+.endobj lbl_8047FDA0
+.balign 4
+.obj lbl_8047FDAC, local
+	.asciz "user/Kando/map/vrbox/%s.szs"
+.endobj lbl_8047FDAC
+.balign 4
+.obj lbl_8047FDC8, local
+	.asciz "model.bmd"
+.endobj lbl_8047FDC8
+.balign 4
+.obj lbl_8047FDD4, local
+	.asciz "no model.bmd in %s\n"
+.endobj lbl_8047FDD4
+.balign 4
+.obj lbl_8047FDE8, local
+	.asciz "user/Mukki/mapunits/units/%s"
+.endobj lbl_8047FDE8
+.balign 4
+.obj lbl_8047FE08, local
+	.asciz "%s not found !\n"
+.endobj lbl_8047FE08
+.balign 4
+.obj lbl_8047FE18, local
+	.asciz "user/Abe/cave/%s"
+.endobj lbl_8047FE18
+.balign 4
+.obj lbl_8047FE2C, local
+	.asciz "no light file (%s)\n"
+.endobj lbl_8047FE2C
+.balign 4
+.obj lbl_8047FE40, local
+	.asciz "user/Mukki/mapunits/arc/%s/texts.szs"
+.endobj lbl_8047FE40
+.balign 4
+.obj lbl_8047FE68, local
+	.asciz "no textARc !\n"
+.endobj lbl_8047FE68
+.balign 4
+.obj lbl_8047FE78, local
+	.asciz "layout.txt"
+.endobj lbl_8047FE78
+.balign 4
+.obj lbl_8047FE84, local
+	.asciz "246-CreateRandomMap"
+.endobj lbl_8047FE84
+.balign 4
+.obj lbl_8047FE98, local
+	.asciz "Model and Collision"
+.endobj lbl_8047FE98
+.balign 4
+.obj lbl_8047FEAC, local
+	.asciz "246-PlaceRooms"
+.endobj lbl_8047FEAC
+.balign 4
+.obj lbl_8047FEBC, local
+	.asciz "user/Mukki/mapunits/arc/%s"
+.endobj lbl_8047FEBC
+.balign 4
+.obj lbl_8047FED8, local
+	.asciz "no such unit %s\n"
+.endobj lbl_8047FED8
+.balign 4
+.obj lbl_8047FEEC, local
+	.asciz "siboudesu !\n"
+.endobj lbl_8047FEEC
+.balign 4
+.obj lbl_8047FEFC, local
+	.float 0.0
+	.float 0.0
 	.float 1.0
+.endobj lbl_8047FEFC
+.obj lbl_8047FF08, local
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0xBF800000
-	.4byte 0xBF800000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x6361705F
-	.4byte 0x636F6E63
-	.4byte 0x00000000
-lbl_8047FF38:
-	.4byte 0x4974656D
-	.4byte 0x47617465
-	.4byte 0x496E6974
-	.4byte 0x41726700
-lbl_8047FF48:
-	.4byte 0x4974656D
-	.4byte 0x42696746
-	.4byte 0x6F756E74
-	.4byte 0x61696E3A
-	.4byte 0x3A496E69
-	.4byte 0x74417267
-	.4byte 0x00000000
-lbl_8047FF64:
-	.4byte 0x4974656D
-	.4byte 0x486F6C65
-	.4byte 0x3A3A496E
-	.4byte 0x69744172
-	.4byte 0x67000000
-	.4byte 0x50656C6C
-	.4byte 0x6574496E
-	.4byte 0x69744172
-	.4byte 0x67000000
-	.4byte 0x23202564
-	.4byte 0x2F25640D
-	.4byte 0x0A000000
+	.float 0.0
+	.float 0.0
+.endobj lbl_8047FF08
+.obj lbl_8047FF14, local
+	.float 0.0
+	.float 0.0
+	.float -1.0
+.endobj lbl_8047FF14
+.obj lbl_8047FF20, local
+	.float -1.0
+	.float 0.0
+	.float 0.0
+.endobj lbl_8047FF20
+.balign 4
+.obj lbl_8047FF2C, local
+	.asciz "cap_conc"
+.endobj lbl_8047FF2C
+.balign 4
+.obj lbl_8047FF38, local
+	.asciz "ItemGateInitArg"
+.endobj lbl_8047FF38
+.balign 4
+.obj lbl_8047FF48, local
+	.asciz "ItemBigFountain::InitArg"
+.endobj lbl_8047FF48
+.balign 4
+.obj lbl_8047FF64, local
+	.asciz "ItemHole::InitArg"
+.endobj lbl_8047FF64
+.balign 4
+.obj lbl_8047FF78, local
+	.asciz "PelletInitArg"
+.endobj lbl_8047FF78
+.balign 4
+.obj lbl_8047FF88, local
+	.asciz "# %d/%d\r\n"
+.endobj lbl_8047FF88
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-lbl_804B5C2C:
+.endobj govNAN___Q24Game5P2JST
+.obj lbl_804B5C2C, local
 	.4byte .L_801B7350
 	.4byte .L_801B74A8
 	.4byte .L_801B75B4
@@ -229,8 +215,8 @@ lbl_804B5C2C:
 	.4byte .L_801B728C
 	.4byte .L_801B71A4
 	.4byte .L_801B7218
-.global __vt__Q24Game10RoomMapMgr
-__vt__Q24Game10RoomMapMgr:
+.endobj lbl_804B5C2C
+.obj __vt__Q24Game10RoomMapMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte hasHiddenCollision__Q24Game10RoomMapMgrFv
@@ -271,14 +257,14 @@ __vt__Q24Game10RoomMapMgr:
 	.4byte pausable__16GenericObjectMgrFv
 	.4byte "@280@4@frozenable__Q24Game6MapMgrFv"
 	.4byte getMatrixLoadType__16GenericObjectMgrFv
-.global __vt__Q24Game4Door
-__vt__Q24Game4Door:
+.endobj __vt__Q24Game10RoomMapMgr
+.obj __vt__Q24Game4Door, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game4DoorFv
 	.4byte getChildCount__5CNodeFv
-.global __vt__Q24Game16MapUnitInterface
-__vt__Q24Game16MapUnitInterface:
+.endobj __vt__Q24Game4Door
+.obj __vt__Q24Game16MapUnitInterface, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game16MapUnitInterfaceFv
@@ -290,16 +276,16 @@ __vt__Q24Game16MapUnitInterface:
 	.4byte doViewCalc__Q24Game9PartsViewFv
 	.4byte doSimulation__Q24Game9PartsViewFf
 	.4byte doDirectDraw__Q24Game9PartsViewFR8Graphics
-.global "__vt__25Iterator<Q24Game7MapRoom>"
-"__vt__25Iterator<Q24Game7MapRoom>":
+.endobj __vt__Q24Game16MapUnitInterface
+.obj "__vt__25Iterator<Q24Game7MapRoom>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__25Iterator<Q24Game7MapRoom>Fv"
 	.4byte "next__25Iterator<Q24Game7MapRoom>Fv"
 	.4byte "isDone__25Iterator<Q24Game7MapRoom>Fv"
 	.4byte "__ml__25Iterator<Q24Game7MapRoom>Fv"
-.global "__vt__26Container<Q24Game7MapRoom>"
-"__vt__26Container<Q24Game7MapRoom>":
+.endobj "__vt__25Iterator<Q24Game7MapRoom>"
+.obj "__vt__26Container<Q24Game7MapRoom>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__26Container<Q24Game7MapRoom>Fv"
@@ -311,8 +297,8 @@ __vt__Q24Game16MapUnitInterface:
 	.4byte 0
 	.4byte "getAt__26Container<Q24Game7MapRoom>Fi"
 	.4byte "getTo__26Container<Q24Game7MapRoom>Fv"
-.global "__vt__26ObjectMgr<Q24Game7MapRoom>"
-"__vt__26ObjectMgr<Q24Game7MapRoom>":
+.endobj "__vt__26Container<Q24Game7MapRoom>"
+.obj "__vt__26ObjectMgr<Q24Game7MapRoom>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__26ObjectMgr<Q24Game7MapRoom>Fv"
@@ -344,8 +330,8 @@ __vt__Q24Game16MapUnitInterface:
 	.4byte "doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv"
 	.4byte "doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff"
 	.4byte "doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics"
-.global "__vt__30MonoObjectMgr<Q24Game7MapRoom>"
-"__vt__30MonoObjectMgr<Q24Game7MapRoom>":
+.endobj "__vt__26ObjectMgr<Q24Game7MapRoom>"
+.obj "__vt__30MonoObjectMgr<Q24Game7MapRoom>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__30MonoObjectMgr<Q24Game7MapRoom>Fv"
@@ -381,8 +367,8 @@ __vt__Q24Game16MapUnitInterface:
 	.4byte "resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 	.4byte "clearMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 	.4byte "onAlloc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-.global __vt__Q24Game7MapRoom
-__vt__Q24Game7MapRoom:
+.endobj "__vt__30MonoObjectMgr<Q24Game7MapRoom>"
+.obj __vt__Q24Game7MapRoom, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game7MapRoomFv
@@ -401,31 +387,31 @@ __vt__Q24Game7MapRoom:
 	.4byte doViewCalc__Q24Game7MapRoomFv
 	.4byte doSimulation__Q24Game7MapRoomFf
 	.4byte doDirectDraw__Q24Game7MapRoomFR8Graphics
-.global __vt__Q24Game15ItemGateInitArg
-__vt__Q24Game15ItemGateInitArg:
+.endobj __vt__Q24Game7MapRoom
+.obj __vt__Q24Game15ItemGateInitArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q24Game15ItemGateInitArgFv
-.global __vt__Q34Game15ItemBigFountain7InitArg
-__vt__Q34Game15ItemBigFountain7InitArg:
+.endobj __vt__Q24Game15ItemGateInitArg
+.obj __vt__Q34Game15ItemBigFountain7InitArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q34Game15ItemBigFountain7InitArgFv
-.global __vt__Q34Game8ItemHole7InitArg
-__vt__Q34Game8ItemHole7InitArg:
+.endobj __vt__Q34Game15ItemBigFountain7InitArg
+.obj __vt__Q34Game8ItemHole7InitArg, weak
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q34Game8ItemHole7InitArgFv
-.global "__vt__25Iterator<Q24Game7MapUnit>"
-"__vt__25Iterator<Q24Game7MapUnit>":
+.endobj __vt__Q34Game8ItemHole7InitArg
+.obj "__vt__25Iterator<Q24Game7MapUnit>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "first__25Iterator<Q24Game7MapUnit>Fv"
 	.4byte "next__25Iterator<Q24Game7MapUnit>Fv"
 	.4byte "isDone__25Iterator<Q24Game7MapUnit>Fv"
 	.4byte "__ml__25Iterator<Q24Game7MapUnit>Fv"
-.global __vt__Q24Game10MapUnitMgr
-__vt__Q24Game10MapUnitMgr:
+.endobj "__vt__25Iterator<Q24Game7MapUnit>"
+.obj __vt__Q24Game10MapUnitMgr, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game10MapUnitMgrFv
@@ -458,14 +444,14 @@ __vt__Q24Game10MapUnitMgr:
 	.4byte "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
 	.4byte "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
 	.4byte "resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
-.global "__vt__28TObjectNode<Q24Game7MapUnit>"
-"__vt__28TObjectNode<Q24Game7MapUnit>":
+.endobj __vt__Q24Game10MapUnitMgr
+.obj "__vt__28TObjectNode<Q24Game7MapUnit>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__28TObjectNode<Q24Game7MapUnit>Fv"
 	.4byte getChildCount__5CNodeFv
-.global "__vt__30NodeObjectMgr<Q24Game7MapUnit>"
-"__vt__30NodeObjectMgr<Q24Game7MapUnit>":
+.endobj "__vt__28TObjectNode<Q24Game7MapUnit>"
+.obj "__vt__30NodeObjectMgr<Q24Game7MapUnit>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__30NodeObjectMgr<Q24Game7MapUnit>Fv"
@@ -498,8 +484,8 @@ __vt__Q24Game10MapUnitMgr:
 	.4byte "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
 	.4byte "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
 	.4byte "resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
-.global "__vt__26ObjectMgr<Q24Game7MapUnit>"
-"__vt__26ObjectMgr<Q24Game7MapUnit>":
+.endobj "__vt__30NodeObjectMgr<Q24Game7MapUnit>"
+.obj "__vt__26ObjectMgr<Q24Game7MapUnit>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__26ObjectMgr<Q24Game7MapUnit>Fv"
@@ -531,8 +517,8 @@ __vt__Q24Game10MapUnitMgr:
 	.4byte "doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
 	.4byte "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
 	.4byte "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
-.global "__vt__26Container<Q24Game7MapUnit>"
-"__vt__26Container<Q24Game7MapUnit>":
+.endobj "__vt__26ObjectMgr<Q24Game7MapUnit>"
+.obj "__vt__26Container<Q24Game7MapUnit>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__26Container<Q24Game7MapUnit>Fv"
@@ -544,8 +530,8 @@ __vt__Q24Game10MapUnitMgr:
 	.4byte 0
 	.4byte "getAt__26Container<Q24Game7MapUnit>Fi"
 	.4byte "getTo__26Container<Q24Game7MapUnit>Fv"
-.global __vt__Q24Game7MapUnit
-__vt__Q24Game7MapUnit:
+.endobj "__vt__26Container<Q24Game7MapUnit>"
+.obj __vt__Q24Game7MapUnit, weak
 	.4byte 0
 	.4byte 0
 	.4byte constructor__Q24Game7MapUnitFv
@@ -555,12 +541,13 @@ __vt__Q24Game7MapUnit:
 	.4byte doViewCalc__Q24Game7MapUnitFv
 	.4byte doSimulation__Q24Game7MapUnitFf
 	.4byte doDirectDraw__Q24Game7MapUnitFR8Graphics
-.global __vt__Q24Game8DoorLink
-__vt__Q24Game8DoorLink:
+.endobj __vt__Q24Game7MapUnit
+.obj __vt__Q24Game8DoorLink, weak
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q24Game8DoorLinkFv
 	.4byte getChildCount__5CNodeFv
+.endobj __vt__Q24Game8DoorLink
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -579,57 +566,78 @@ __vt__Q24Game8DoorLink:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80519440:
-	.4byte 0x00000000
-lbl_80519444:
-	.4byte 0x47000000
-lbl_80519448:
-	.4byte 0xC7000000
-lbl_8051944C:
-	.4byte 0x432A0000
-lbl_80519450:
-	.4byte 0x47FA0000
-lbl_80519454:
-	.4byte 0xC7FA0000
-lbl_80519458:
+.obj lbl_80519440, local
+	.float 0.0
+.endobj lbl_80519440
+.obj lbl_80519444, local
+	.float 32768.0
+.endobj lbl_80519444
+.obj lbl_80519448, local
+	.float -32768.0
+.endobj lbl_80519448
+.obj lbl_8051944C, local
+	.float 170.0
+.endobj lbl_8051944C
+.obj lbl_80519450, local
+	.float 128000.0
+.endobj lbl_80519450
+.obj lbl_80519454, local
+	.float -128000.0
+.endobj lbl_80519454
+.obj lbl_80519458, local
 	.float 1.0
-lbl_8051945C:
+.endobj lbl_80519458
+.obj lbl_8051945C, local
 	.float 0.5
-lbl_80519460:
-	.4byte 0x41F00000
-lbl_80519464:
-	.4byte 0x43A00000
-lbl_80519468:
-	.4byte 0xC2B40000
+.endobj lbl_8051945C
+.obj lbl_80519460, local
+	.float 30.0
+.endobj lbl_80519460
+.obj lbl_80519464, local
+	.float 320.0
+.endobj lbl_80519464
+.obj lbl_80519468, local
+	.float -90.0
+.endobj lbl_80519468
 .balign 8
-lbl_80519470:
+.obj lbl_80519470, local
 	.8byte 0x4330000080000000
-lbl_80519478:
-	.4byte 0x41200000
-lbl_8051947C:
-	.4byte 0x3C800000
-lbl_80519480:
-	.4byte 0x3F19999A
-lbl_80519484:
-	.4byte 0x4B435000
-lbl_80519488:
-	.4byte 0x48A02800
-lbl_8051948C: # pi
+.endobj lbl_80519470
+.obj lbl_80519478, local
+	.float 10.0
+.endobj lbl_80519478
+.obj lbl_8051947C, local
+	.float 0.015625
+.endobj lbl_8051947C
+.obj lbl_80519480, local
+	.float 0.6
+.endobj lbl_80519480
+.obj lbl_80519484, local
+	.float 1.28E7
+.endobj lbl_80519484
+.obj lbl_80519488, local
+	.float 328000.0
+.endobj lbl_80519488
+.obj lbl_8051948C, local # pi
 	.float 3.1415927
-lbl_80519490:
-	.4byte 0x3BB60B61
-lbl_80519494:
-	.4byte 0x42C80000
-lbl_80519498:
-	.4byte 0x454E542D
-	.4byte 0x4D415000
-lbl_805194A0:
-	.4byte 0x726F6F6D
-	.4byte 0x00000000
+.endobj lbl_8051948C
+.obj lbl_80519490, local
+	.float 0.0055555557
+.endobj lbl_80519490
+.obj lbl_80519494, local
+	.float 100.0
+.endobj lbl_80519494
+.balign 4
+.obj lbl_80519498, local
+	.asciz "ENT-MAP"
+.endobj lbl_80519498
+.balign 4
+.obj lbl_805194A0, local
+	.asciz "room"
+.endobj lbl_805194A0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global getDoor__Q24Game16MapUnitInterfaceFi
-getDoor__Q24Game16MapUnitInterfaceFi:
+.fn getDoor__Q24Game16MapUnitInterfaceFi, global
 /* 801B6468 001B33A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B646C 001B33AC  7C 08 02 A6 */	mflr r0
 /* 801B6470 001B33B0  38 63 01 18 */	addi r3, r3, 0x118
@@ -639,9 +647,9 @@ getDoor__Q24Game16MapUnitInterfaceFi:
 /* 801B6480 001B33C0  7C 08 03 A6 */	mtlr r0
 /* 801B6484 001B33C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B6488 001B33C8  4E 80 00 20 */	blr 
+.endfn getDoor__Q24Game16MapUnitInterfaceFi
 
-.global getCellSize__Q24Game16MapUnitInterfaceFRiRi
-getCellSize__Q24Game16MapUnitInterfaceFRiRi:
+.fn getCellSize__Q24Game16MapUnitInterfaceFRiRi, global
 /* 801B648C 001B33CC  80 C3 00 18 */	lwz r6, 0x18(r3)
 /* 801B6490 001B33D0  A0 06 00 94 */	lhz r0, 0x94(r6)
 /* 801B6494 001B33D4  90 04 00 00 */	stw r0, 0(r4)
@@ -649,9 +657,9 @@ getCellSize__Q24Game16MapUnitInterfaceFRiRi:
 /* 801B649C 001B33DC  A0 03 00 96 */	lhz r0, 0x96(r3)
 /* 801B64A0 001B33E0  90 05 00 00 */	stw r0, 0(r5)
 /* 801B64A4 001B33E4  4E 80 00 20 */	blr 
+.endfn getCellSize__Q24Game16MapUnitInterfaceFRiRi
 
-.global getLink__Q24Game4DoorFi
-getLink__Q24Game4DoorFi:
+.fn getLink__Q24Game4DoorFi, global
 /* 801B64A8 001B33E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B64AC 001B33EC  7C 08 02 A6 */	mflr r0
 /* 801B64B0 001B33F0  38 63 00 20 */	addi r3, r3, 0x20
@@ -661,9 +669,9 @@ getLink__Q24Game4DoorFi:
 /* 801B64C0 001B3400  7C 08 03 A6 */	mtlr r0
 /* 801B64C4 001B3404  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B64C8 001B3408  4E 80 00 20 */	blr 
+.endfn getLink__Q24Game4DoorFi
 
-.global read__Q24Game4DoorFR6Stream
-read__Q24Game4DoorFR6Stream:
+.fn read__Q24Game4DoorFR6Stream, global
 /* 801B64CC 001B340C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B64D0 001B3410  7C 08 02 A6 */	mflr r0
 /* 801B64D4 001B3414  90 01 00 24 */	stw r0, 0x24(r1)
@@ -732,9 +740,9 @@ read__Q24Game4DoorFR6Stream:
 /* 801B65C4 001B3504  7C 08 03 A6 */	mtlr r0
 /* 801B65C8 001B3508  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B65CC 001B350C  4E 80 00 20 */	blr 
+.endfn read__Q24Game4DoorFR6Stream
 
-.global __ct__Q24Game7MapUnitFv
-__ct__Q24Game7MapUnitFv:
+.fn __ct__Q24Game7MapUnitFv, global
 /* 801B65D0 001B3510  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B65D4 001B3514  7C 08 02 A6 */	mflr r0
 /* 801B65D8 001B3518  3C 80 80 4B */	lis r4, __vt__Q24Game7MapUnit@ha
@@ -778,9 +786,9 @@ __ct__Q24Game7MapUnitFv:
 /* 801B6670 001B35B0  7C 08 03 A6 */	mtlr r0
 /* 801B6674 001B35B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B6678 001B35B8  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game7MapUnitFv
 
-.global getBoundBox__12MapCollisionFR8BoundBox
-getBoundBox__12MapCollisionFR8BoundBox:
+.fn getBoundBox__12MapCollisionFR8BoundBox, weak
 /* 801B667C 001B35BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B6680 001B35C0  7C 08 02 A6 */	mflr r0
 /* 801B6684 001B35C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -793,9 +801,9 @@ getBoundBox__12MapCollisionFR8BoundBox:
 /* 801B66A0 001B35E0  7C 08 03 A6 */	mtlr r0
 /* 801B66A4 001B35E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B66A8 001B35E8  4E 80 00 20 */	blr 
+.endfn getBoundBox__12MapCollisionFR8BoundBox
 
-.global load__Q24Game7MapUnitFR6Stream
-load__Q24Game7MapUnitFR6Stream:
+.fn load__Q24Game7MapUnitFR6Stream, global
 /* 801B66AC 001B35EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B66B0 001B35F0  7C 08 02 A6 */	mflr r0
 /* 801B66B4 001B35F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -815,9 +823,9 @@ load__Q24Game7MapUnitFR6Stream:
 /* 801B66EC 001B362C  7C 08 03 A6 */	mtlr r0
 /* 801B66F0 001B3630  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B66F4 001B3634  4E 80 00 20 */	blr 
+.endfn load__Q24Game7MapUnitFR6Stream
 
-.global "__dt__30NodeObjectMgr<Q24Game7MapUnit>Fv"
-"__dt__30NodeObjectMgr<Q24Game7MapUnit>Fv":
+.fn "__dt__30NodeObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801B66F8 001B3638  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B66FC 001B363C  7C 08 02 A6 */	mflr r0
 /* 801B6700 001B3640  90 01 00 14 */	stw r0, 0x14(r1)
@@ -871,9 +879,9 @@ load__Q24Game7MapUnitFR6Stream:
 /* 801B67B4 001B36F4  7C 08 03 A6 */	mtlr r0
 /* 801B67B8 001B36F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B67BC 001B36FC  4E 80 00 20 */	blr 
+.endfn "__dt__30NodeObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "__dt__28TObjectNode<Q24Game7MapUnit>Fv"
-"__dt__28TObjectNode<Q24Game7MapUnit>Fv":
+.fn "__dt__28TObjectNode<Q24Game7MapUnit>Fv", weak
 /* 801B67C0 001B3700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B67C4 001B3704  7C 08 02 A6 */	mflr r0
 /* 801B67C8 001B3708  90 01 00 14 */	stw r0, 0x14(r1)
@@ -899,9 +907,9 @@ load__Q24Game7MapUnitFR6Stream:
 /* 801B6814 001B3754  7C 08 03 A6 */	mtlr r0
 /* 801B6818 001B3758  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B681C 001B375C  4E 80 00 20 */	blr 
+.endfn "__dt__28TObjectNode<Q24Game7MapUnit>Fv"
 
-.global "__dt__26ObjectMgr<Q24Game7MapUnit>Fv"
-"__dt__26ObjectMgr<Q24Game7MapUnit>Fv":
+.fn "__dt__26ObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801B6820 001B3760  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B6824 001B3764  7C 08 02 A6 */	mflr r0
 /* 801B6828 001B3768  90 01 00 14 */	stw r0, 0x14(r1)
@@ -938,9 +946,9 @@ load__Q24Game7MapUnitFR6Stream:
 /* 801B689C 001B37DC  7C 08 03 A6 */	mtlr r0
 /* 801B68A0 001B37E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B68A4 001B37E4  4E 80 00 20 */	blr 
+.endfn "__dt__26ObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "__dt__26Container<Q24Game7MapUnit>Fv"
-"__dt__26Container<Q24Game7MapUnit>Fv":
+.fn "__dt__26Container<Q24Game7MapUnit>Fv", weak
 /* 801B68A8 001B37E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B68AC 001B37EC  7C 08 02 A6 */	mflr r0
 /* 801B68B0 001B37F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -971,9 +979,9 @@ load__Q24Game7MapUnitFR6Stream:
 /* 801B690C 001B384C  7C 08 03 A6 */	mtlr r0
 /* 801B6910 001B3850  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B6914 001B3854  4E 80 00 20 */	blr 
+.endfn "__dt__26Container<Q24Game7MapUnit>Fv"
 
-.global getAt__Q24Game10MapUnitMgrFi
-getAt__Q24Game10MapUnitMgrFi:
+.fn getAt__Q24Game10MapUnitMgrFi, global
 /* 801B6918 001B3858  2C 04 00 00 */	cmpwi r4, 0
 /* 801B691C 001B385C  80 A3 00 30 */	lwz r5, 0x30(r3)
 /* 801B6920 001B3860  38 C0 00 00 */	li r6, 0
@@ -1013,9 +1021,9 @@ getAt__Q24Game10MapUnitMgrFi:
 .L_801B6998:
 /* 801B6998 001B38D8  38 60 00 00 */	li r3, 0
 /* 801B699C 001B38DC  4E 80 00 20 */	blr 
+.endfn getAt__Q24Game10MapUnitMgrFi
 
-.global "isDone__25Iterator<Q24Game7MapUnit>Fv"
-"isDone__25Iterator<Q24Game7MapUnit>Fv":
+.fn "isDone__25Iterator<Q24Game7MapUnit>Fv", weak
 /* 801B69A0 001B38E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B69A4 001B38E4  7C 08 02 A6 */	mflr r0
 /* 801B69A8 001B38E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1035,9 +1043,9 @@ getAt__Q24Game10MapUnitMgrFi:
 /* 801B69E0 001B3920  7C 08 03 A6 */	mtlr r0
 /* 801B69E4 001B3924  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B69E8 001B3928  4E 80 00 20 */	blr 
+.endfn "isDone__25Iterator<Q24Game7MapUnit>Fv"
 
-.global makeUnit__Q24Game10MapUnitMgrFPQ24Game7MapUnitPc
-makeUnit__Q24Game10MapUnitMgrFPQ24Game7MapUnitPc:
+.fn makeUnit__Q24Game10MapUnitMgrFPQ24Game7MapUnitPc, global
 /* 801B69EC 001B392C  94 21 ED 50 */	stwu r1, -0x12b0(r1)
 /* 801B69F0 001B3930  7C 08 02 A6 */	mflr r0
 /* 801B69F4 001B3934  3C 60 80 48 */	lis r3, lbl_8047FC70@ha
@@ -1333,9 +1341,9 @@ makeUnit__Q24Game10MapUnitMgrFPQ24Game7MapUnitPc:
 /* 801B6E20 001B3D60  7C 08 03 A6 */	mtlr r0
 /* 801B6E24 001B3D64  38 21 12 B0 */	addi r1, r1, 0x12b0
 /* 801B6E28 001B3D68  4E 80 00 20 */	blr 
+.endfn makeUnit__Q24Game10MapUnitMgrFPQ24Game7MapUnitPc
 
-.global __ct__Q24Game7MapRoomFv
-__ct__Q24Game7MapRoomFv:
+.fn __ct__Q24Game7MapRoomFv, global
 /* 801B6E2C 001B3D6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B6E30 001B3D70  7C 08 02 A6 */	mflr r0
 /* 801B6E34 001B3D74  3C 80 80 4B */	lis r4, __vt__Q24Game15TPositionObject@ha
@@ -1391,14 +1399,14 @@ __ct__Q24Game7MapRoomFv:
 /* 801B6EFC 001B3E3C  7C 08 03 A6 */	mtlr r0
 /* 801B6F00 001B3E40  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B6F04 001B3E44  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game7MapRoomFv
 
-.global getExtraCode__Q24Game16ObjectLayoutNodeFv
-getExtraCode__Q24Game16ObjectLayoutNodeFv:
+.fn getExtraCode__Q24Game16ObjectLayoutNodeFv, weak
 /* 801B6F08 001B3E48  38 60 00 00 */	li r3, 0
 /* 801B6F0C 001B3E4C  4E 80 00 20 */	blr 
+.endfn getExtraCode__Q24Game16ObjectLayoutNodeFv
 
-.global placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob
-placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
+.fn placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob, global
 /* 801B6F10 001B3E50  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 801B6F14 001B3E54  7C 08 02 A6 */	mflr r0
 /* 801B6F18 001B3E58  90 01 01 94 */	stw r0, 0x194(r1)
@@ -1922,32 +1930,32 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B76BC 001B45FC  7C 08 03 A6 */	mtlr r0
 /* 801B76C0 001B4600  38 21 01 90 */	addi r1, r1, 0x190
 /* 801B76C4 001B4604  4E 80 00 20 */	blr 
+.endfn placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob
 
-.global getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv
-getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv:
+.fn getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv, weak
 /* 801B76C8 001B4608  38 60 FF FF */	li r3, -1
 /* 801B76CC 001B460C  4E 80 00 20 */	blr 
+.endfn getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv
 
-.global isFixedBattery__Q24Game16ObjectLayoutNodeFv
-isFixedBattery__Q24Game16ObjectLayoutNodeFv:
+.fn isFixedBattery__Q24Game16ObjectLayoutNodeFv, weak
 /* 801B76D0 001B4610  38 60 00 00 */	li r3, 0
 /* 801B76D4 001B4614  4E 80 00 20 */	blr 
+.endfn isFixedBattery__Q24Game16ObjectLayoutNodeFv
 
-.global getDirection__Q24Game16ObjectLayoutNodeFv
-getDirection__Q24Game16ObjectLayoutNodeFv:
+.fn getDirection__Q24Game16ObjectLayoutNodeFv, weak
 /* 801B76D8 001B4618  C0 22 B0 E0 */	lfs f1, lbl_80519440@sda21(r2)
 /* 801B76DC 001B461C  4E 80 00 20 */	blr 
+.endfn getDirection__Q24Game16ObjectLayoutNodeFv
 
-.global getBirthPosition__Q24Game16ObjectLayoutNodeFRfRf
-getBirthPosition__Q24Game16ObjectLayoutNodeFRfRf:
+.fn getBirthPosition__Q24Game16ObjectLayoutNodeFRfRf, weak
 /* 801B76E0 001B4620  4E 80 00 20 */	blr 
+.endfn getBirthPosition__Q24Game16ObjectLayoutNodeFRfRf
 
-.global __ct__Q24Game12RoomDoorInfoFv
-__ct__Q24Game12RoomDoorInfoFv:
+.fn __ct__Q24Game12RoomDoorInfoFv, weak
 /* 801B76E4 001B4624  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game12RoomDoorInfoFv
 
-.global doAnimation__Q24Game7MapRoomFv
-doAnimation__Q24Game7MapRoomFv:
+.fn doAnimation__Q24Game7MapRoomFv, global
 /* 801B76E8 001B4628  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B76EC 001B462C  7C 08 02 A6 */	mflr r0
 /* 801B76F0 001B4630  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2007,9 +2015,9 @@ doAnimation__Q24Game7MapRoomFv:
 /* 801B77B0 001B46F0  7C 08 03 A6 */	mtlr r0
 /* 801B77B4 001B46F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B77B8 001B46F8  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game7MapRoomFv
 
-.global doEntry__Q24Game7MapRoomFv
-doEntry__Q24Game7MapRoomFv:
+.fn doEntry__Q24Game7MapRoomFv, global
 /* 801B77BC 001B46FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B77C0 001B4700  7C 08 02 A6 */	mflr r0
 /* 801B77C4 001B4704  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2154,9 +2162,9 @@ doEntry__Q24Game7MapRoomFv:
 /* 801B79A4 001B48E4  7C 08 03 A6 */	mtlr r0
 /* 801B79A8 001B48E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B79AC 001B48EC  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game7MapRoomFv
 
-.global doSetView__Q24Game7MapRoomFi
-doSetView__Q24Game7MapRoomFi:
+.fn doSetView__Q24Game7MapRoomFi, global
 /* 801B79B0 001B48F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B79B4 001B48F4  7C 08 02 A6 */	mflr r0
 /* 801B79B8 001B48F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2237,9 +2245,9 @@ doSetView__Q24Game7MapRoomFi:
 /* 801B7AC8 001B4A08  7C 08 03 A6 */	mtlr r0
 /* 801B7ACC 001B4A0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B7AD0 001B4A10  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game7MapRoomFi
 
-.global doViewCalc__Q24Game7MapRoomFv
-doViewCalc__Q24Game7MapRoomFv:
+.fn doViewCalc__Q24Game7MapRoomFv, global
 /* 801B7AD4 001B4A14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B7AD8 001B4A18  7C 08 02 A6 */	mflr r0
 /* 801B7ADC 001B4A1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2249,17 +2257,17 @@ doViewCalc__Q24Game7MapRoomFv:
 /* 801B7AEC 001B4A2C  7C 08 03 A6 */	mtlr r0
 /* 801B7AF0 001B4A30  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B7AF4 001B4A34  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game7MapRoomFv
 
-.global doSimulation__Q24Game7MapRoomFf
-doSimulation__Q24Game7MapRoomFf:
+.fn doSimulation__Q24Game7MapRoomFf, global
 /* 801B7AF8 001B4A38  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game7MapRoomFf
 
-.global doDirectDraw__Q24Game7MapRoomFR8Graphics
-doDirectDraw__Q24Game7MapRoomFR8Graphics:
+.fn doDirectDraw__Q24Game7MapRoomFR8Graphics, global
 /* 801B7AFC 001B4A3C  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game7MapRoomFR8Graphics
 
-.global __ct__Q24Game10RoomMapMgrFPQ34Game4Cave8CaveInfo
-__ct__Q24Game10RoomMapMgrFPQ34Game4Cave8CaveInfo:
+.fn __ct__Q24Game10RoomMapMgrFPQ34Game4Cave8CaveInfo, global
 /* 801B7B00 001B4A40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B7B04 001B4A44  7C 08 02 A6 */	mflr r0
 /* 801B7B08 001B4A48  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2384,9 +2392,9 @@ __ct__Q24Game10RoomMapMgrFPQ34Game4Cave8CaveInfo:
 /* 801B7CDC 001B4C1C  7C 08 03 A6 */	mtlr r0
 /* 801B7CE0 001B4C20  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B7CE4 001B4C24  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game10RoomMapMgrFPQ34Game4Cave8CaveInfo
 
-.global "__dt__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"__dt__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "__dt__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801B7CE8 001B4C28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B7CEC 001B4C2C  7C 08 02 A6 */	mflr r0
 /* 801B7CF0 001B4C30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2429,9 +2437,9 @@ __ct__Q24Game10RoomMapMgrFPQ34Game4Cave8CaveInfo:
 /* 801B7D7C 001B4CBC  7C 08 03 A6 */	mtlr r0
 /* 801B7D80 001B4CC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B7D84 001B4CC4  4E 80 00 20 */	blr 
+.endfn "__dt__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global getMapRoom__Q24Game10RoomMapMgrFs
-getMapRoom__Q24Game10RoomMapMgrFs:
+.fn getMapRoom__Q24Game10RoomMapMgrFs, global
 /* 801B7D88 001B4CC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B7D8C 001B4CCC  7C 08 02 A6 */	mflr r0
 /* 801B7D90 001B4CD0  3C A0 80 4B */	lis r5, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -2570,9 +2578,9 @@ getMapRoom__Q24Game10RoomMapMgrFs:
 /* 801B7F78 001B4EB8  7C 08 03 A6 */	mtlr r0
 /* 801B7F7C 001B4EBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B7F80 001B4EC0  4E 80 00 20 */	blr 
+.endfn getMapRoom__Q24Game10RoomMapMgrFs
 
-.global "isDone__25Iterator<Q24Game7MapRoom>Fv"
-"isDone__25Iterator<Q24Game7MapRoom>Fv":
+.fn "isDone__25Iterator<Q24Game7MapRoom>Fv", weak
 /* 801B7F84 001B4EC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B7F88 001B4EC8  7C 08 02 A6 */	mflr r0
 /* 801B7F8C 001B4ECC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2592,15 +2600,15 @@ getMapRoom__Q24Game10RoomMapMgrFs:
 /* 801B7FC4 001B4F04  7C 08 03 A6 */	mtlr r0
 /* 801B7FC8 001B4F08  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B7FCC 001B4F0C  4E 80 00 20 */	blr 
+.endfn "isDone__25Iterator<Q24Game7MapRoom>Fv"
 
-.global __ct__Q24Game9CaveVRBoxFv
-__ct__Q24Game9CaveVRBoxFv:
+.fn __ct__Q24Game9CaveVRBoxFv, global
 /* 801B7FD0 001B4F10  38 00 00 00 */	li r0, 0
 /* 801B7FD4 001B4F14  90 03 00 00 */	stw r0, 0(r3)
 /* 801B7FD8 001B4F18  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game9CaveVRBoxFv
 
-.global createRandomMap__Q24Game10RoomMapMgrFiPQ34Game4Cave11EditMapUnit
-createRandomMap__Q24Game10RoomMapMgrFiPQ34Game4Cave11EditMapUnit:
+.fn createRandomMap__Q24Game10RoomMapMgrFiPQ34Game4Cave11EditMapUnit, global
 /* 801B7FDC 001B4F1C  94 21 EA D0 */	stwu r1, -0x1530(r1)
 /* 801B7FE0 001B4F20  7C 08 02 A6 */	mflr r0
 /* 801B7FE4 001B4F24  3C C0 80 48 */	lis r6, lbl_8047FC70@ha
@@ -3306,9 +3314,9 @@ createRandomMap__Q24Game10RoomMapMgrFiPQ34Game4Cave11EditMapUnit:
 /* 801B8A18 001B5958  7C 08 03 A6 */	mtlr r0
 /* 801B8A1C 001B595C  38 21 15 30 */	addi r1, r1, 0x1530
 /* 801B8A20 001B5960  4E 80 00 20 */	blr 
+.endfn createRandomMap__Q24Game10RoomMapMgrFiPQ34Game4Cave11EditMapUnit
 
-.global __dt__Q24Game16MapUnitInterfaceFv
-__dt__Q24Game16MapUnitInterfaceFv:
+.fn __dt__Q24Game16MapUnitInterfaceFv, weak
 /* 801B8A24 001B5964  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B8A28 001B5968  7C 08 02 A6 */	mflr r0
 /* 801B8A2C 001B596C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3374,9 +3382,9 @@ __dt__Q24Game16MapUnitInterfaceFv:
 /* 801B8B04 001B5A44  7C 08 03 A6 */	mtlr r0
 /* 801B8B08 001B5A48  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B8B0C 001B5A4C  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game16MapUnitInterfaceFv
 
-.global __ct__Q24Game16MapUnitInterfaceFv
-__ct__Q24Game16MapUnitInterfaceFv:
+.fn __ct__Q24Game16MapUnitInterfaceFv, weak
 /* 801B8B10 001B5A50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B8B14 001B5A54  7C 08 02 A6 */	mflr r0
 /* 801B8B18 001B5A58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3392,9 +3400,9 @@ __ct__Q24Game16MapUnitInterfaceFv:
 /* 801B8B40 001B5A80  7C 08 03 A6 */	mtlr r0
 /* 801B8B44 001B5A84  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B8B48 001B5A88  4E 80 00 20 */	blr 
+.endfn __ct__Q24Game16MapUnitInterfaceFv
 
-.global __dt__Q24Game9PartsViewFv
-__dt__Q24Game9PartsViewFv:
+.fn __dt__Q24Game9PartsViewFv, weak
 /* 801B8B4C 001B5A8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B8B50 001B5A90  7C 08 02 A6 */	mflr r0
 /* 801B8B54 001B5A94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3455,9 +3463,9 @@ __dt__Q24Game9PartsViewFv:
 /* 801B8C1C 001B5B5C  7C 08 03 A6 */	mtlr r0
 /* 801B8C20 001B5B60  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B8C24 001B5B64  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game9PartsViewFv
 
-.global completeUnitData__Q24Game10RoomMapMgrFv
-completeUnitData__Q24Game10RoomMapMgrFv:
+.fn completeUnitData__Q24Game10RoomMapMgrFv, global
 /* 801B8C28 001B5B68  94 21 FD D0 */	stwu r1, -0x230(r1)
 /* 801B8C2C 001B5B6C  7C 08 02 A6 */	mflr r0
 /* 801B8C30 001B5B70  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -3604,9 +3612,9 @@ completeUnitData__Q24Game10RoomMapMgrFv:
 /* 801B8E40 001B5D80  7C 08 03 A6 */	mtlr r0
 /* 801B8E44 001B5D84  38 21 02 30 */	addi r1, r1, 0x230
 /* 801B8E48 001B5D88  4E 80 00 20 */	blr 
+.endfn completeUnitData__Q24Game10RoomMapMgrFv
 
-.global setupJUTTextures__Q24Game10RoomMapMgrFv
-setupJUTTextures__Q24Game10RoomMapMgrFv:
+.fn setupJUTTextures__Q24Game10RoomMapMgrFv, global
 /* 801B8E4C 001B5D8C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801B8E50 001B5D90  7C 08 02 A6 */	mflr r0
 /* 801B8E54 001B5D94  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -3757,9 +3765,9 @@ setupJUTTextures__Q24Game10RoomMapMgrFv:
 /* 801B9074 001B5FB4  7C 08 03 A6 */	mtlr r0
 /* 801B9078 001B5FB8  38 21 00 30 */	addi r1, r1, 0x30
 /* 801B907C 001B5FBC  4E 80 00 20 */	blr 
+.endfn setupJUTTextures__Q24Game10RoomMapMgrFv
 
-.global useUnit__Q24Game10RoomMapMgrFPc
-useUnit__Q24Game10RoomMapMgrFPc:
+.fn useUnit__Q24Game10RoomMapMgrFPc, global
 /* 801B9080 001B5FC0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801B9084 001B5FC4  7C 08 02 A6 */	mflr r0
 /* 801B9088 001B5FC8  3C A0 80 4B */	lis r5, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -3951,9 +3959,9 @@ useUnit__Q24Game10RoomMapMgrFPc:
 /* 801B9330 001B6270  7C 08 03 A6 */	mtlr r0
 /* 801B9334 001B6274  38 21 00 30 */	addi r1, r1, 0x30
 /* 801B9338 001B6278  4E 80 00 20 */	blr 
+.endfn useUnit__Q24Game10RoomMapMgrFPc
 
-.global getTexture__Q24Game10RoomMapMgrFPc
-getTexture__Q24Game10RoomMapMgrFPc:
+.fn getTexture__Q24Game10RoomMapMgrFPc, global
 /* 801B933C 001B627C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B9340 001B6280  7C 08 02 A6 */	mflr r0
 /* 801B9344 001B6284  3C A0 80 4B */	lis r5, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -4096,9 +4104,9 @@ getTexture__Q24Game10RoomMapMgrFPc:
 /* 801B9540 001B6480  7C 08 03 A6 */	mtlr r0
 /* 801B9544 001B6484  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B9548 001B6488  4E 80 00 20 */	blr 
+.endfn getTexture__Q24Game10RoomMapMgrFPc
 
-.global allocRooms__Q24Game10RoomMapMgrFi
-allocRooms__Q24Game10RoomMapMgrFi:
+.fn allocRooms__Q24Game10RoomMapMgrFi, global
 /* 801B954C 001B648C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B9550 001B6490  7C 08 02 A6 */	mflr r0
 /* 801B9554 001B6494  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4232,9 +4240,9 @@ allocRooms__Q24Game10RoomMapMgrFi:
 /* 801B9734 001B6674  7C 08 03 A6 */	mtlr r0
 /* 801B9738 001B6678  38 21 00 20 */	addi r1, r1, 0x20
 /* 801B973C 001B667C  4E 80 00 20 */	blr 
+.endfn allocRooms__Q24Game10RoomMapMgrFi
 
-.global makeRoom__Q24Game10RoomMapMgrFPcffiiPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo
-makeRoom__Q24Game10RoomMapMgrFPcffiiPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo:
+.fn makeRoom__Q24Game10RoomMapMgrFPcffiiPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo, global
 /* 801B9740 001B6680  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B9744 001B6684  7C 08 02 A6 */	mflr r0
 /* 801B9748 001B6688  6C A5 80 00 */	xoris r5, r5, 0x8000
@@ -4255,9 +4263,9 @@ makeRoom__Q24Game10RoomMapMgrFPcffiiPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo:
 /* 801B9784 001B66C4  7C 08 03 A6 */	mtlr r0
 /* 801B9788 001B66C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B978C 001B66CC  4E 80 00 20 */	blr 
+.endfn makeRoom__Q24Game10RoomMapMgrFPcffiiPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo
 
-.global placeObjects__Q24Game10RoomMapMgrFv
-placeObjects__Q24Game10RoomMapMgrFv:
+.fn placeObjects__Q24Game10RoomMapMgrFv, global
 /* 801B9790 001B66D0  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 801B9794 001B66D4  7C 08 02 A6 */	mflr r0
 /* 801B9798 001B66D8  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -4508,9 +4516,9 @@ placeObjects__Q24Game10RoomMapMgrFv:
 /* 801B9B38 001B6A78  7C 08 03 A6 */	mtlr r0
 /* 801B9B3C 001B6A7C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 801B9B40 001B6A80  4E 80 00 20 */	blr 
+.endfn placeObjects__Q24Game10RoomMapMgrFv
 
-.global getBoundBox2d__Q24Game10RoomMapMgrFR10BoundBox2d
-getBoundBox2d__Q24Game10RoomMapMgrFR10BoundBox2d:
+.fn getBoundBox2d__Q24Game10RoomMapMgrFR10BoundBox2d, global
 /* 801B9B44 001B6A84  C0 23 00 E4 */	lfs f1, 0xe4(r3)
 /* 801B9B48 001B6A88  C0 03 00 DC */	lfs f0, 0xdc(r3)
 /* 801B9B4C 001B6A8C  D0 04 00 00 */	stfs f0, 0(r4)
@@ -4520,9 +4528,9 @@ getBoundBox2d__Q24Game10RoomMapMgrFR10BoundBox2d:
 /* 801B9B5C 001B6A9C  D0 04 00 08 */	stfs f0, 8(r4)
 /* 801B9B60 001B6AA0  D0 24 00 0C */	stfs f1, 0xc(r4)
 /* 801B9B64 001B6AA4  4E 80 00 20 */	blr 
+.endfn getBoundBox2d__Q24Game10RoomMapMgrFR10BoundBox2d
 
-.global getBoundBox__Q24Game10RoomMapMgrFR8BoundBox
-getBoundBox__Q24Game10RoomMapMgrFR8BoundBox:
+.fn getBoundBox__Q24Game10RoomMapMgrFR8BoundBox, global
 /* 801B9B68 001B6AA8  C0 03 00 DC */	lfs f0, 0xdc(r3)
 /* 801B9B6C 001B6AAC  D0 04 00 00 */	stfs f0, 0(r4)
 /* 801B9B70 001B6AB0  C0 03 00 E0 */	lfs f0, 0xe0(r3)
@@ -4536,13 +4544,13 @@ getBoundBox__Q24Game10RoomMapMgrFR8BoundBox:
 /* 801B9B90 001B6AD0  C0 03 00 F0 */	lfs f0, 0xf0(r3)
 /* 801B9B94 001B6AD4  D0 04 00 14 */	stfs f0, 0x14(r4)
 /* 801B9B98 001B6AD8  4E 80 00 20 */	blr 
+.endfn getBoundBox__Q24Game10RoomMapMgrFR8BoundBox
 
-.global drawCollision__Q24Game10RoomMapMgrFR8GraphicsRQ23Sys6Sphere
-drawCollision__Q24Game10RoomMapMgrFR8GraphicsRQ23Sys6Sphere:
+.fn drawCollision__Q24Game10RoomMapMgrFR8GraphicsRQ23Sys6Sphere, global
 /* 801B9B9C 001B6ADC  4E 80 00 20 */	blr 
+.endfn drawCollision__Q24Game10RoomMapMgrFR8GraphicsRQ23Sys6Sphere
 
-.global traceMove__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
-traceMove__Q24Game10RoomMapMgrFRQ24Game8MoveInfof:
+.fn traceMove__Q24Game10RoomMapMgrFRQ24Game8MoveInfof, global
 /* 801B9BA0 001B6AE0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801B9BA4 001B6AE4  7C 08 02 A6 */	mflr r0
 /* 801B9BA8 001B6AE8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -4675,9 +4683,9 @@ traceMove__Q24Game10RoomMapMgrFRQ24Game8MoveInfof:
 /* 801B9D84 001B6CC4  7C 08 03 A6 */	mtlr r0
 /* 801B9D88 001B6CC8  38 21 00 50 */	addi r1, r1, 0x50
 /* 801B9D8C 001B6CCC  4E 80 00 20 */	blr 
+.endfn traceMove__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
 
-.global hasHiddenCollision__Q24Game10RoomMapMgrFv
-hasHiddenCollision__Q24Game10RoomMapMgrFv:
+.fn hasHiddenCollision__Q24Game10RoomMapMgrFv, global
 /* 801B9D90 001B6CD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801B9D94 001B6CD4  7C 08 02 A6 */	mflr r0
 /* 801B9D98 001B6CD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4687,9 +4695,9 @@ hasHiddenCollision__Q24Game10RoomMapMgrFv:
 /* 801B9DA8 001B6CE8  7C 08 03 A6 */	mtlr r0
 /* 801B9DAC 001B6CEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B9DB0 001B6CF0  4E 80 00 20 */	blr 
+.endfn hasHiddenCollision__Q24Game10RoomMapMgrFv
 
-.global constraintBoundBox__Q24Game10RoomMapMgrFRQ23Sys6Sphere
-constraintBoundBox__Q24Game10RoomMapMgrFRQ23Sys6Sphere:
+.fn constraintBoundBox__Q24Game10RoomMapMgrFRQ23Sys6Sphere, global
 /* 801B9DB4 001B6CF4  C0 64 00 00 */	lfs f3, 0(r4)
 /* 801B9DB8 001B6CF8  C0 24 00 0C */	lfs f1, 0xc(r4)
 /* 801B9DBC 001B6CFC  C0 43 00 DC */	lfs f2, 0xdc(r3)
@@ -4728,9 +4736,9 @@ constraintBoundBox__Q24Game10RoomMapMgrFRQ23Sys6Sphere:
 /* 801B9E34 001B6D74  EC 02 08 28 */	fsubs f0, f2, f1
 /* 801B9E38 001B6D78  D0 04 00 08 */	stfs f0, 8(r4)
 /* 801B9E3C 001B6D7C  4E 80 00 20 */	blr 
+.endfn constraintBoundBox__Q24Game10RoomMapMgrFRQ23Sys6Sphere
 
-.global entryToMapRoomCellMgr__Q24Game10RoomMapMgrFv
-entryToMapRoomCellMgr__Q24Game10RoomMapMgrFv:
+.fn entryToMapRoomCellMgr__Q24Game10RoomMapMgrFv, global
 /* 801B9E40 001B6D80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801B9E44 001B6D84  7C 08 02 A6 */	mflr r0
 /* 801B9E48 001B6D88  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -4865,9 +4873,9 @@ entryToMapRoomCellMgr__Q24Game10RoomMapMgrFv:
 /* 801BA028 001B6F68  7C 08 03 A6 */	mtlr r0
 /* 801BA02C 001B6F6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BA030 001B6F70  4E 80 00 20 */	blr 
+.endfn entryToMapRoomCellMgr__Q24Game10RoomMapMgrFv
 
-.global findRoomIndex__Q24Game10RoomMapMgrFRQ23Sys6Sphere
-findRoomIndex__Q24Game10RoomMapMgrFRQ23Sys6Sphere:
+.fn findRoomIndex__Q24Game10RoomMapMgrFRQ23Sys6Sphere, global
 /* 801BA034 001B6F74  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 801BA038 001B6F78  7C 08 02 A6 */	mflr r0
 /* 801BA03C 001B6F7C  90 01 00 94 */	stw r0, 0x94(r1)
@@ -4946,9 +4954,9 @@ findRoomIndex__Q24Game10RoomMapMgrFRQ23Sys6Sphere:
 /* 801BA150 001B7090  7C 08 03 A6 */	mtlr r0
 /* 801BA154 001B7094  38 21 00 90 */	addi r1, r1, 0x90
 /* 801BA158 001B7098  4E 80 00 20 */	blr 
+.endfn findRoomIndex__Q24Game10RoomMapMgrFRQ23Sys6Sphere
 
-.global createGlobalCollision__Q24Game10RoomMapMgrFv
-createGlobalCollision__Q24Game10RoomMapMgrFv:
+.fn createGlobalCollision__Q24Game10RoomMapMgrFv, global
 /* 801BA15C 001B709C  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 801BA160 001B70A0  7C 08 02 A6 */	mflr r0
 /* 801BA164 001B70A4  90 01 01 44 */	stw r0, 0x144(r1)
@@ -5627,9 +5635,9 @@ createGlobalCollision__Q24Game10RoomMapMgrFv:
 /* 801BAB4C 001B7A8C  7C 08 03 A6 */	mtlr r0
 /* 801BAB50 001B7A90  38 21 01 40 */	addi r1, r1, 0x140
 /* 801BAB54 001B7A94  4E 80 00 20 */	blr 
+.endfn createGlobalCollision__Q24Game10RoomMapMgrFv
 
-.global "addOne__Q23Sys11VertexTableFR10Vector3<f>"
-"addOne__Q23Sys11VertexTableFR10Vector3<f>":
+.fn "addOne__Q23Sys11VertexTableFR10Vector3<f>", weak
 /* 801BAB58 001B7A98  80 E3 00 1C */	lwz r7, 0x1c(r3)
 /* 801BAB5C 001B7A9C  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 801BAB60 001B7AA0  7C 07 00 00 */	cmpw r7, r0
@@ -5682,9 +5690,9 @@ createGlobalCollision__Q24Game10RoomMapMgrFv:
 /* 801BAC04 001B7B44  4C 81 00 20 */	blelr 
 /* 801BAC08 001B7B48  D0 23 00 3C */	stfs f1, 0x3c(r3)
 /* 801BAC0C 001B7B4C  4E 80 00 20 */	blr 
+.endfn "addOne__Q23Sys11VertexTableFR10Vector3<f>"
 
-.global "addOne__31ArrayContainer<Q23Sys8Triangle>FRQ23Sys8Triangle"
-"addOne__31ArrayContainer<Q23Sys8Triangle>FRQ23Sys8Triangle":
+.fn "addOne__31ArrayContainer<Q23Sys8Triangle>FRQ23Sys8Triangle", weak
 /* 801BAC10 001B7B50  80 E3 00 1C */	lwz r7, 0x1c(r3)
 /* 801BAC14 001B7B54  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 801BAC18 001B7B58  7C 07 00 00 */	cmpw r7, r0
@@ -5743,9 +5751,9 @@ createGlobalCollision__Q24Game10RoomMapMgrFv:
 /* 801BACEC 001B7C2C  88 04 00 5C */	lbz r0, 0x5c(r4)
 /* 801BACF0 001B7C30  98 05 00 5C */	stb r0, 0x5c(r5)
 /* 801BACF4 001B7C34  4E 80 00 20 */	blr 
+.endfn "addOne__31ArrayContainer<Q23Sys8Triangle>FRQ23Sys8Triangle"
 
-.global "alloc__31ArrayContainer<Q23Sys8Triangle>Fi"
-"alloc__31ArrayContainer<Q23Sys8Triangle>Fi":
+.fn "alloc__31ArrayContainer<Q23Sys8Triangle>Fi", weak
 /* 801BACF8 001B7C38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BACFC 001B7C3C  7C 08 02 A6 */	mflr r0
 /* 801BAD00 001B7C40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5772,9 +5780,9 @@ createGlobalCollision__Q24Game10RoomMapMgrFv:
 /* 801BAD54 001B7C94  7C 08 03 A6 */	mtlr r0
 /* 801BAD58 001B7C98  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BAD5C 001B7C9C  4E 80 00 20 */	blr 
+.endfn "alloc__31ArrayContainer<Q23Sys8Triangle>Fi"
 
-.global traceMove_new__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
-traceMove_new__Q24Game10RoomMapMgrFRQ24Game8MoveInfof:
+.fn traceMove_new__Q24Game10RoomMapMgrFRQ24Game8MoveInfof, global
 /* 801BAD60 001B7CA0  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 801BAD64 001B7CA4  7C 08 02 A6 */	mflr r0
 /* 801BAD68 001B7CA8  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -5986,9 +5994,9 @@ traceMove_new__Q24Game10RoomMapMgrFRQ24Game8MoveInfof:
 /* 801BB07C 001B7FBC  7C 08 03 A6 */	mtlr r0
 /* 801BB080 001B7FC0  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 801BB084 001B7FC4  4E 80 00 20 */	blr 
+.endfn traceMove_new__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
 
-.global traceMove_original__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
-traceMove_original__Q24Game10RoomMapMgrFRQ24Game8MoveInfof:
+.fn traceMove_original__Q24Game10RoomMapMgrFRQ24Game8MoveInfof, global
 /* 801BB088 001B7FC8  94 21 FE B0 */	stwu r1, -0x150(r1)
 /* 801BB08C 001B7FCC  7C 08 02 A6 */	mflr r0
 /* 801BB090 001B7FD0  3C C0 80 4B */	lis r6, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -6482,9 +6490,9 @@ traceMove_original__Q24Game10RoomMapMgrFRQ24Game8MoveInfof:
 /* 801BB7BC 001B86FC  7C 08 03 A6 */	mtlr r0
 /* 801BB7C0 001B8700  38 21 01 50 */	addi r1, r1, 0x150
 /* 801BB7C4 001B8704  4E 80 00 20 */	blr 
+.endfn traceMove_original__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
 
-.global findRayIntersection__Q24Game10RoomMapMgrFRQ23Sys16RayIntersectInfo
-findRayIntersection__Q24Game10RoomMapMgrFRQ23Sys16RayIntersectInfo:
+.fn findRayIntersection__Q24Game10RoomMapMgrFRQ23Sys16RayIntersectInfo, global
 /* 801BB7C8 001B8708  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 801BB7CC 001B870C  7C 08 02 A6 */	mflr r0
 /* 801BB7D0 001B8710  90 01 01 64 */	stw r0, 0x164(r1)
@@ -6817,9 +6825,9 @@ findRayIntersection__Q24Game10RoomMapMgrFRQ23Sys16RayIntersectInfo:
 /* 801BBCAC 001B8BEC  7C 08 03 A6 */	mtlr r0
 /* 801BBCB0 001B8BF0  38 21 01 60 */	addi r1, r1, 0x160
 /* 801BBCB4 001B8BF4  4E 80 00 20 */	blr 
+.endfn findRayIntersection__Q24Game10RoomMapMgrFRQ23Sys16RayIntersectInfo
 
-.global "getMinY__Q24Game10RoomMapMgrFR10Vector3<f>"
-"getMinY__Q24Game10RoomMapMgrFR10Vector3<f>":
+.fn "getMinY__Q24Game10RoomMapMgrFR10Vector3<f>", global
 /* 801BBCB8 001B8BF8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801BBCBC 001B8BFC  7C 08 02 A6 */	mflr r0
 /* 801BBCC0 001B8C00  C0 22 B0 E0 */	lfs f1, lbl_80519440@sda21(r2)
@@ -6855,9 +6863,9 @@ findRayIntersection__Q24Game10RoomMapMgrFRQ23Sys16RayIntersectInfo:
 /* 801BBD38 001B8C78  7C 08 03 A6 */	mtlr r0
 /* 801BBD3C 001B8C7C  38 21 00 40 */	addi r1, r1, 0x40
 /* 801BBD40 001B8C80  4E 80 00 20 */	blr 
+.endfn "getMinY__Q24Game10RoomMapMgrFR10Vector3<f>"
 
-.global createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg
-createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg:
+.fn createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg, global
 /* 801BBD44 001B8C84  94 21 D3 30 */	stwu r1, -0x2cd0(r1)
 /* 801BBD48 001B8C88  7C 08 02 A6 */	mflr r0
 /* 801BBD4C 001B8C8C  90 01 2C D4 */	stw r0, 0x2cd4(r1)
@@ -7358,9 +7366,9 @@ createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg:
 /* 801BC4A8 001B93E8  7C 08 03 A6 */	mtlr r0
 /* 801BC4AC 001B93EC  38 21 2C D0 */	addi r1, r1, 0x2cd0
 /* 801BC4B0 001B93F0  4E 80 00 20 */	blr 
+.endfn createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg
 
-.global getCurrTri__Q24Game10RoomMapMgrFRQ24Game11CurrTriInfo
-getCurrTri__Q24Game10RoomMapMgrFRQ24Game11CurrTriInfo:
+.fn getCurrTri__Q24Game10RoomMapMgrFRQ24Game11CurrTriInfo, global
 /* 801BC4B4 001B93F4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 801BC4B8 001B93F8  7C 08 02 A6 */	mflr r0
 /* 801BC4BC 001B93FC  C0 02 B1 28 */	lfs f0, lbl_80519488@sda21(r2)
@@ -7658,9 +7666,9 @@ getCurrTri__Q24Game10RoomMapMgrFRQ24Game11CurrTriInfo:
 /* 801BC908 001B9848  7C 08 03 A6 */	mtlr r0
 /* 801BC90C 001B984C  38 21 00 60 */	addi r1, r1, 0x60
 /* 801BC910 001B9850  4E 80 00 20 */	blr 
+.endfn getCurrTri__Q24Game10RoomMapMgrFRQ24Game11CurrTriInfo
 
-.global makeOneRoom__Q24Game10RoomMapMgrFfffPcsPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo
-makeOneRoom__Q24Game10RoomMapMgrFfffPcsPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo:
+.fn makeOneRoom__Q24Game10RoomMapMgrFfffPcsPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo, global
 /* 801BC914 001B9854  94 21 FD 30 */	stwu r1, -0x2d0(r1)
 /* 801BC918 001B9858  7C 08 02 A6 */	mflr r0
 /* 801BC91C 001B985C  90 01 02 D4 */	stw r0, 0x2d4(r1)
@@ -9229,9 +9237,9 @@ makeOneRoom__Q24Game10RoomMapMgrFfffPcsPQ24Game8RoomLinkPQ24Game16ObjectLayoutIn
 /* 801BDFC0 001BAF00  7C 08 03 A6 */	mtlr r0
 /* 801BDFC4 001BAF04  38 21 02 D0 */	addi r1, r1, 0x2d0
 /* 801BDFC8 001BAF08  4E 80 00 20 */	blr 
+.endfn makeOneRoom__Q24Game10RoomMapMgrFfffPcsPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo
 
-.global deleteTemp__Q24Game10RoomMapMgrFv
-deleteTemp__Q24Game10RoomMapMgrFv:
+.fn deleteTemp__Q24Game10RoomMapMgrFv, global
 /* 801BDFCC 001BAF0C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BDFD0 001BAF10  7C 08 02 A6 */	mflr r0
 /* 801BDFD4 001BAF14  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -9365,9 +9373,9 @@ deleteTemp__Q24Game10RoomMapMgrFv:
 /* 801BE1B4 001BB0F4  7C 08 03 A6 */	mtlr r0
 /* 801BE1B8 001BB0F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BE1BC 001BB0FC  4E 80 00 20 */	blr 
+.endfn deleteTemp__Q24Game10RoomMapMgrFv
 
-.global getMUI__Q24Game10RoomMapMgrFPQ24Game7MapUnit
-getMUI__Q24Game10RoomMapMgrFPQ24Game7MapUnit:
+.fn getMUI__Q24Game10RoomMapMgrFPQ24Game7MapUnit, global
 /* 801BE1C0 001BB100  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BE1C4 001BB104  7C 08 02 A6 */	mflr r0
 /* 801BE1C8 001BB108  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9409,9 +9417,9 @@ getMUI__Q24Game10RoomMapMgrFPQ24Game7MapUnit:
 /* 801BE248 001BB188  7C 08 03 A6 */	mtlr r0
 /* 801BE24C 001BB18C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BE250 001BB190  4E 80 00 20 */	blr 
+.endfn getMUI__Q24Game10RoomMapMgrFPQ24Game7MapUnit
 
-.global doAnimation__Q24Game10RoomMapMgrFv
-doAnimation__Q24Game10RoomMapMgrFv:
+.fn doAnimation__Q24Game10RoomMapMgrFv, global
 /* 801BE254 001BB194  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE258 001BB198  7C 08 02 A6 */	mflr r0
 /* 801BE25C 001BB19C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9437,9 +9445,9 @@ doAnimation__Q24Game10RoomMapMgrFv:
 /* 801BE2A8 001BB1E8  7C 08 03 A6 */	mtlr r0
 /* 801BE2AC 001BB1EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BE2B0 001BB1F0  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game10RoomMapMgrFv
 
-.global doEntry__Q24Game10RoomMapMgrFv
-doEntry__Q24Game10RoomMapMgrFv:
+.fn doEntry__Q24Game10RoomMapMgrFv, global
 /* 801BE2B4 001BB1F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE2B8 001BB1F8  7C 08 02 A6 */	mflr r0
 /* 801BE2BC 001BB1FC  38 82 B1 38 */	addi r4, r2, lbl_80519498@sda21
@@ -9498,9 +9506,9 @@ doEntry__Q24Game10RoomMapMgrFv:
 /* 801BE384 001BB2C4  7C 08 03 A6 */	mtlr r0
 /* 801BE388 001BB2C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BE38C 001BB2CC  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game10RoomMapMgrFv
 
-.global doSetView__Q24Game10RoomMapMgrFi
-doSetView__Q24Game10RoomMapMgrFi:
+.fn doSetView__Q24Game10RoomMapMgrFi, global
 /* 801BE390 001BB2D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE394 001BB2D4  7C 08 02 A6 */	mflr r0
 /* 801BE398 001BB2D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9534,9 +9542,9 @@ doSetView__Q24Game10RoomMapMgrFi:
 /* 801BE400 001BB340  7C 08 03 A6 */	mtlr r0
 /* 801BE404 001BB344  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BE408 001BB348  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game10RoomMapMgrFi
 
-.global doViewCalc__Q24Game10RoomMapMgrFv
-doViewCalc__Q24Game10RoomMapMgrFv:
+.fn doViewCalc__Q24Game10RoomMapMgrFv, global
 /* 801BE40C 001BB34C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE410 001BB350  7C 08 02 A6 */	mflr r0
 /* 801BE414 001BB354  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9565,13 +9573,13 @@ doViewCalc__Q24Game10RoomMapMgrFv:
 /* 801BE468 001BB3A8  7C 08 03 A6 */	mtlr r0
 /* 801BE46C 001BB3AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BE470 001BB3B0  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game10RoomMapMgrFv
 
-.global doSimulation__Q24Game10RoomMapMgrFf
-doSimulation__Q24Game10RoomMapMgrFf:
+.fn doSimulation__Q24Game10RoomMapMgrFf, global
 /* 801BE474 001BB3B4  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game10RoomMapMgrFf
 
-.global doDirectDraw__Q24Game10RoomMapMgrFR8Graphics
-doDirectDraw__Q24Game10RoomMapMgrFR8Graphics:
+.fn doDirectDraw__Q24Game10RoomMapMgrFR8Graphics, global
 /* 801BE478 001BB3B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BE47C 001BB3BC  7C 08 02 A6 */	mflr r0
 /* 801BE480 001BB3C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9712,9 +9720,9 @@ doDirectDraw__Q24Game10RoomMapMgrFR8Graphics:
 /* 801BE67C 001BB5BC  7C 08 03 A6 */	mtlr r0
 /* 801BE680 001BB5C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BE684 001BB5C4  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game10RoomMapMgrFR8Graphics
 
-.global "getStartPosition__Q24Game10RoomMapMgrFR10Vector3<f>i"
-"getStartPosition__Q24Game10RoomMapMgrFR10Vector3<f>i":
+.fn "getStartPosition__Q24Game10RoomMapMgrFR10Vector3<f>i", weak
 /* 801BE688 001BB5C8  1C 05 00 0C */	mulli r0, r5, 0xc
 /* 801BE68C 001BB5CC  7C 63 02 14 */	add r3, r3, r0
 /* 801BE690 001BB5D0  C0 03 00 FC */	lfs f0, 0xfc(r3)
@@ -9724,14 +9732,14 @@ doDirectDraw__Q24Game10RoomMapMgrFR8Graphics:
 /* 801BE6A0 001BB5E0  C0 03 01 04 */	lfs f0, 0x104(r3)
 /* 801BE6A4 001BB5E4  D0 04 00 08 */	stfs f0, 8(r4)
 /* 801BE6A8 001BB5E8  4E 80 00 20 */	blr 
+.endfn "getStartPosition__Q24Game10RoomMapMgrFR10Vector3<f>i"
 
-.global getDemoMatrix__Q24Game10RoomMapMgrFv
-getDemoMatrix__Q24Game10RoomMapMgrFv:
+.fn getDemoMatrix__Q24Game10RoomMapMgrFv, weak
 /* 801BE6AC 001BB5EC  38 60 00 00 */	li r3, 0
 /* 801BE6B0 001BB5F0  4E 80 00 20 */	blr 
+.endfn getDemoMatrix__Q24Game10RoomMapMgrFv
 
-.global __dt__Q24Game4DoorFv
-__dt__Q24Game4DoorFv:
+.fn __dt__Q24Game4DoorFv, weak
 /* 801BE6B4 001BB5F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE6B8 001BB5F8  7C 08 02 A6 */	mflr r0
 /* 801BE6BC 001BB5FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9767,17 +9775,17 @@ __dt__Q24Game4DoorFv:
 /* 801BE72C 001BB66C  7C 08 03 A6 */	mtlr r0
 /* 801BE730 001BB670  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BE734 001BB674  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game4DoorFv
 
-.global constructor__Q24Game9PartsViewFv
-constructor__Q24Game9PartsViewFv:
+.fn constructor__Q24Game9PartsViewFv, weak
 /* 801BE738 001BB678  4E 80 00 20 */	blr 
+.endfn constructor__Q24Game9PartsViewFv
 
-.global doSimulation__Q24Game9PartsViewFf
-doSimulation__Q24Game9PartsViewFf:
+.fn doSimulation__Q24Game9PartsViewFf, weak
 /* 801BE73C 001BB67C  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game9PartsViewFf
 
-.global "__ml__25Iterator<Q24Game7MapRoom>Fv"
-"__ml__25Iterator<Q24Game7MapRoom>Fv":
+.fn "__ml__25Iterator<Q24Game7MapRoom>Fv", weak
 /* 801BE740 001BB680  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE744 001BB684  7C 08 02 A6 */	mflr r0
 /* 801BE748 001BB688  7C 64 1B 78 */	mr r4, r3
@@ -9792,9 +9800,9 @@ doSimulation__Q24Game9PartsViewFf:
 /* 801BE76C 001BB6AC  7C 08 03 A6 */	mtlr r0
 /* 801BE770 001BB6B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BE774 001BB6B4  4E 80 00 20 */	blr 
+.endfn "__ml__25Iterator<Q24Game7MapRoom>Fv"
 
-.global "next__25Iterator<Q24Game7MapRoom>Fv"
-"next__25Iterator<Q24Game7MapRoom>Fv":
+.fn "next__25Iterator<Q24Game7MapRoom>Fv", weak
 /* 801BE778 001BB6B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE77C 001BB6BC  7C 08 02 A6 */	mflr r0
 /* 801BE780 001BB6C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9856,9 +9864,9 @@ doSimulation__Q24Game9PartsViewFf:
 /* 801BE850 001BB790  7C 08 03 A6 */	mtlr r0
 /* 801BE854 001BB794  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BE858 001BB798  4E 80 00 20 */	blr 
+.endfn "next__25Iterator<Q24Game7MapRoom>Fv"
 
-.global "first__25Iterator<Q24Game7MapRoom>Fv"
-"first__25Iterator<Q24Game7MapRoom>Fv":
+.fn "first__25Iterator<Q24Game7MapRoom>Fv", weak
 /* 801BE85C 001BB79C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE860 001BB7A0  7C 08 02 A6 */	mflr r0
 /* 801BE864 001BB7A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9918,9 +9926,9 @@ doSimulation__Q24Game9PartsViewFf:
 /* 801BE92C 001BB86C  7C 08 03 A6 */	mtlr r0
 /* 801BE930 001BB870  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BE934 001BB874  4E 80 00 20 */	blr 
+.endfn "first__25Iterator<Q24Game7MapRoom>Fv"
 
-.global "__dt__26Container<Q24Game7MapRoom>Fv"
-"__dt__26Container<Q24Game7MapRoom>Fv":
+.fn "__dt__26Container<Q24Game7MapRoom>Fv", weak
 /* 801BE938 001BB878  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE93C 001BB87C  7C 08 02 A6 */	mflr r0
 /* 801BE940 001BB880  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9951,9 +9959,9 @@ doSimulation__Q24Game9PartsViewFf:
 /* 801BE99C 001BB8DC  7C 08 03 A6 */	mtlr r0
 /* 801BE9A0 001BB8E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BE9A4 001BB8E4  4E 80 00 20 */	blr 
+.endfn "__dt__26Container<Q24Game7MapRoom>Fv"
 
-.global "__dt__26ObjectMgr<Q24Game7MapRoom>Fv"
-"__dt__26ObjectMgr<Q24Game7MapRoom>Fv":
+.fn "__dt__26ObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BE9A8 001BB8E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BE9AC 001BB8EC  7C 08 02 A6 */	mflr r0
 /* 801BE9B0 001BB8F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9990,9 +9998,9 @@ doSimulation__Q24Game9PartsViewFf:
 /* 801BEA24 001BB964  7C 08 03 A6 */	mtlr r0
 /* 801BEA28 001BB968  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BEA2C 001BB96C  4E 80 00 20 */	blr 
+.endfn "__dt__26ObjectMgr<Q24Game7MapRoom>Fv"
 
-.global getBoundingSphere__Q24Game7MapRoomFRQ23Sys6Sphere
-getBoundingSphere__Q24Game7MapRoomFRQ23Sys6Sphere:
+.fn getBoundingSphere__Q24Game7MapRoomFRQ23Sys6Sphere, weak
 /* 801BEA30 001BB970  C0 03 01 40 */	lfs f0, 0x140(r3)
 /* 801BEA34 001BB974  D0 04 00 00 */	stfs f0, 0(r4)
 /* 801BEA38 001BB978  C0 03 01 44 */	lfs f0, 0x144(r3)
@@ -10002,25 +10010,25 @@ getBoundingSphere__Q24Game7MapRoomFRQ23Sys6Sphere:
 /* 801BEA48 001BB988  C0 03 01 4C */	lfs f0, 0x14c(r3)
 /* 801BEA4C 001BB98C  D0 04 00 0C */	stfs f0, 0xc(r4)
 /* 801BEA50 001BB990  4E 80 00 20 */	blr 
+.endfn getBoundingSphere__Q24Game7MapRoomFRQ23Sys6Sphere
 
-.global getTypeName__Q24Game7MapRoomFv
-getTypeName__Q24Game7MapRoomFv:
+.fn getTypeName__Q24Game7MapRoomFv, weak
 /* 801BEA54 001BB994  38 62 B1 40 */	addi r3, r2, lbl_805194A0@sda21
 /* 801BEA58 001BB998  4E 80 00 20 */	blr 
+.endfn getTypeName__Q24Game7MapRoomFv
 
-.global getObjType__Q24Game7MapRoomFv
-getObjType__Q24Game7MapRoomFv:
+.fn getObjType__Q24Game7MapRoomFv, weak
 /* 801BEA5C 001BB99C  3C 60 00 01 */	lis r3, 0x0000AAAA@ha
 /* 801BEA60 001BB9A0  38 63 AA AA */	addi r3, r3, 0x0000AAAA@l
 /* 801BEA64 001BB9A4  4E 80 00 20 */	blr 
+.endfn getObjType__Q24Game7MapRoomFv
 
-.global collisionUpdatable__Q24Game7MapRoomFv
-collisionUpdatable__Q24Game7MapRoomFv:
+.fn collisionUpdatable__Q24Game7MapRoomFv, weak
 /* 801BEA68 001BB9A8  38 60 00 00 */	li r3, 0
 /* 801BEA6C 001BB9AC  4E 80 00 20 */	blr 
+.endfn collisionUpdatable__Q24Game7MapRoomFv
 
-.global getPosition__Q24Game7MapRoomFv
-getPosition__Q24Game7MapRoomFv:
+.fn getPosition__Q24Game7MapRoomFv, weak
 /* 801BEA70 001BB9B0  C0 04 01 40 */	lfs f0, 0x140(r4)
 /* 801BEA74 001BB9B4  D0 03 00 00 */	stfs f0, 0(r3)
 /* 801BEA78 001BB9B8  C0 04 01 44 */	lfs f0, 0x144(r4)
@@ -10028,31 +10036,31 @@ getPosition__Q24Game7MapRoomFv:
 /* 801BEA80 001BB9C0  C0 04 01 48 */	lfs f0, 0x148(r4)
 /* 801BEA84 001BB9C4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801BEA88 001BB9C8  4E 80 00 20 */	blr 
+.endfn getPosition__Q24Game7MapRoomFv
 
-.global constructor__Q24Game7MapRoomFv
-constructor__Q24Game7MapRoomFv:
+.fn constructor__Q24Game7MapRoomFv, weak
 /* 801BEA8C 001BB9CC  4E 80 00 20 */	blr 
+.endfn constructor__Q24Game7MapRoomFv
 
-.global getName__Q24Game15ItemGateInitArgFv
-getName__Q24Game15ItemGateInitArgFv:
+.fn getName__Q24Game15ItemGateInitArgFv, weak
 /* 801BEA90 001BB9D0  3C 60 80 48 */	lis r3, lbl_8047FF38@ha
 /* 801BEA94 001BB9D4  38 63 FF 38 */	addi r3, r3, lbl_8047FF38@l
 /* 801BEA98 001BB9D8  4E 80 00 20 */	blr 
+.endfn getName__Q24Game15ItemGateInitArgFv
 
-.global getName__Q34Game15ItemBigFountain7InitArgFv
-getName__Q34Game15ItemBigFountain7InitArgFv:
+.fn getName__Q34Game15ItemBigFountain7InitArgFv, weak
 /* 801BEA9C 001BB9DC  3C 60 80 48 */	lis r3, lbl_8047FF48@ha
 /* 801BEAA0 001BB9E0  38 63 FF 48 */	addi r3, r3, lbl_8047FF48@l
 /* 801BEAA4 001BB9E4  4E 80 00 20 */	blr 
+.endfn getName__Q34Game15ItemBigFountain7InitArgFv
 
-.global getName__Q34Game8ItemHole7InitArgFv
-getName__Q34Game8ItemHole7InitArgFv:
+.fn getName__Q34Game8ItemHole7InitArgFv, weak
 /* 801BEAA8 001BB9E8  3C 60 80 48 */	lis r3, lbl_8047FF64@ha
 /* 801BEAAC 001BB9EC  38 63 FF 64 */	addi r3, r3, lbl_8047FF64@l
 /* 801BEAB0 001BB9F0  4E 80 00 20 */	blr 
+.endfn getName__Q34Game8ItemHole7InitArgFv
 
-.global "__ml__25Iterator<Q24Game7MapUnit>Fv"
-"__ml__25Iterator<Q24Game7MapUnit>Fv":
+.fn "__ml__25Iterator<Q24Game7MapUnit>Fv", weak
 /* 801BEAB4 001BB9F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BEAB8 001BB9F8  7C 08 02 A6 */	mflr r0
 /* 801BEABC 001BB9FC  7C 64 1B 78 */	mr r4, r3
@@ -10067,9 +10075,9 @@ getName__Q34Game8ItemHole7InitArgFv:
 /* 801BEAE0 001BBA20  7C 08 03 A6 */	mtlr r0
 /* 801BEAE4 001BBA24  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BEAE8 001BBA28  4E 80 00 20 */	blr 
+.endfn "__ml__25Iterator<Q24Game7MapUnit>Fv"
 
-.global "next__25Iterator<Q24Game7MapUnit>Fv"
-"next__25Iterator<Q24Game7MapUnit>Fv":
+.fn "next__25Iterator<Q24Game7MapUnit>Fv", weak
 /* 801BEAEC 001BBA2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BEAF0 001BBA30  7C 08 02 A6 */	mflr r0
 /* 801BEAF4 001BBA34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10131,9 +10139,9 @@ getName__Q34Game8ItemHole7InitArgFv:
 /* 801BEBC4 001BBB04  7C 08 03 A6 */	mtlr r0
 /* 801BEBC8 001BBB08  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BEBCC 001BBB0C  4E 80 00 20 */	blr 
+.endfn "next__25Iterator<Q24Game7MapUnit>Fv"
 
-.global "first__25Iterator<Q24Game7MapUnit>Fv"
-"first__25Iterator<Q24Game7MapUnit>Fv":
+.fn "first__25Iterator<Q24Game7MapUnit>Fv", weak
 /* 801BEBD0 001BBB10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BEBD4 001BBB14  7C 08 02 A6 */	mflr r0
 /* 801BEBD8 001BBB18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10193,9 +10201,9 @@ getName__Q34Game8ItemHole7InitArgFv:
 /* 801BECA0 001BBBE0  7C 08 03 A6 */	mtlr r0
 /* 801BECA4 001BBBE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BECA8 001BBBE8  4E 80 00 20 */	blr 
+.endfn "first__25Iterator<Q24Game7MapUnit>Fv"
 
-.global __dt__Q24Game10MapUnitMgrFv
-__dt__Q24Game10MapUnitMgrFv:
+.fn __dt__Q24Game10MapUnitMgrFv, weak
 /* 801BECAC 001BBBEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BECB0 001BBBF0  7C 08 02 A6 */	mflr r0
 /* 801BECB4 001BBBF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10255,37 +10263,37 @@ __dt__Q24Game10MapUnitMgrFv:
 /* 801BED80 001BBCC0  7C 08 03 A6 */	mtlr r0
 /* 801BED84 001BBCC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BED88 001BBCC8  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game10MapUnitMgrFv
 
-.global constructor__Q24Game7MapUnitFv
-constructor__Q24Game7MapUnitFv:
+.fn constructor__Q24Game7MapUnitFv, weak
 /* 801BED8C 001BBCCC  4E 80 00 20 */	blr 
+.endfn constructor__Q24Game7MapUnitFv
 
-.global doAnimation__Q24Game7MapUnitFv
-doAnimation__Q24Game7MapUnitFv:
+.fn doAnimation__Q24Game7MapUnitFv, weak
 /* 801BED90 001BBCD0  4E 80 00 20 */	blr 
+.endfn doAnimation__Q24Game7MapUnitFv
 
-.global doEntry__Q24Game7MapUnitFv
-doEntry__Q24Game7MapUnitFv:
+.fn doEntry__Q24Game7MapUnitFv, weak
 /* 801BED94 001BBCD4  4E 80 00 20 */	blr 
+.endfn doEntry__Q24Game7MapUnitFv
 
-.global doSetView__Q24Game7MapUnitFi
-doSetView__Q24Game7MapUnitFi:
+.fn doSetView__Q24Game7MapUnitFi, weak
 /* 801BED98 001BBCD8  4E 80 00 20 */	blr 
+.endfn doSetView__Q24Game7MapUnitFi
 
-.global doViewCalc__Q24Game7MapUnitFv
-doViewCalc__Q24Game7MapUnitFv:
+.fn doViewCalc__Q24Game7MapUnitFv, weak
 /* 801BED9C 001BBCDC  4E 80 00 20 */	blr 
+.endfn doViewCalc__Q24Game7MapUnitFv
 
-.global doSimulation__Q24Game7MapUnitFf
-doSimulation__Q24Game7MapUnitFf:
+.fn doSimulation__Q24Game7MapUnitFf, weak
 /* 801BEDA0 001BBCE0  4E 80 00 20 */	blr 
+.endfn doSimulation__Q24Game7MapUnitFf
 
-.global doDirectDraw__Q24Game7MapUnitFR8Graphics
-doDirectDraw__Q24Game7MapUnitFR8Graphics:
+.fn doDirectDraw__Q24Game7MapUnitFR8Graphics, weak
 /* 801BEDA4 001BBCE4  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q24Game7MapUnitFR8Graphics
 
-.global __dt__Q24Game8DoorLinkFv
-__dt__Q24Game8DoorLinkFv:
+.fn __dt__Q24Game8DoorLinkFv, weak
 /* 801BEDA8 001BBCE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BEDAC 001BBCEC  7C 08 02 A6 */	mflr r0
 /* 801BEDB0 001BBCF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10311,38 +10319,38 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BEDFC 001BBD3C  7C 08 03 A6 */	mtlr r0
 /* 801BEE00 001BBD40  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BEE04 001BBD44  4E 80 00 20 */	blr 
+.endfn __dt__Q24Game8DoorLinkFv
 
-.global "get__30NodeObjectMgr<Q24Game7MapUnit>FPv"
-"get__30NodeObjectMgr<Q24Game7MapUnit>FPv":
+.fn "get__30NodeObjectMgr<Q24Game7MapUnit>FPv", weak
 /* 801BEE08 001BBD48  80 64 00 18 */	lwz r3, 0x18(r4)
 /* 801BEE0C 001BBD4C  4E 80 00 20 */	blr 
+.endfn "get__30NodeObjectMgr<Q24Game7MapUnit>FPv"
 
-.global "getNext__30NodeObjectMgr<Q24Game7MapUnit>FPv"
-"getNext__30NodeObjectMgr<Q24Game7MapUnit>FPv":
+.fn "getNext__30NodeObjectMgr<Q24Game7MapUnit>FPv", weak
 /* 801BEE10 001BBD50  80 64 00 04 */	lwz r3, 4(r4)
 /* 801BEE14 001BBD54  4E 80 00 20 */	blr 
+.endfn "getNext__30NodeObjectMgr<Q24Game7MapUnit>FPv"
 
-.global "getStart__30NodeObjectMgr<Q24Game7MapUnit>Fv"
-"getStart__30NodeObjectMgr<Q24Game7MapUnit>Fv":
+.fn "getStart__30NodeObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801BEE18 001BBD58  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 801BEE1C 001BBD5C  4E 80 00 20 */	blr 
+.endfn "getStart__30NodeObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "getEnd__30NodeObjectMgr<Q24Game7MapUnit>Fv"
-"getEnd__30NodeObjectMgr<Q24Game7MapUnit>Fv":
+.fn "getEnd__30NodeObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801BEE20 001BBD60  38 60 00 00 */	li r3, 0
 /* 801BEE24 001BBD64  4E 80 00 20 */	blr 
+.endfn "getEnd__30NodeObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
-"resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv":
+.fn "resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801BEE28 001BBD68  38 00 00 00 */	li r0, 0
 /* 801BEE2C 001BBD6C  90 03 00 30 */	stw r0, 0x30(r3)
 /* 801BEE30 001BBD70  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801BEE34 001BBD74  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801BEE38 001BBD78  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801BEE3C 001BBD7C  4E 80 00 20 */	blr 
+.endfn "resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "birth__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"birth__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "birth__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BEE40 001BBD80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BEE44 001BBD84  7C 08 02 A6 */	mflr r0
 /* 801BEE48 001BBD88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10369,9 +10377,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BEE94 001BBDD4  7C 08 03 A6 */	mtlr r0
 /* 801BEE98 001BBDD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BEE9C 001BBDDC  4E 80 00 20 */	blr 
+.endfn "birth__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "getNext__30MonoObjectMgr<Q24Game7MapRoom>FPv"
-"getNext__30MonoObjectMgr<Q24Game7MapRoom>FPv":
+.fn "getNext__30MonoObjectMgr<Q24Game7MapRoom>FPv", weak
 /* 801BEEA0 001BBDE0  80 A3 00 24 */	lwz r5, 0x24(r3)
 /* 801BEEA4 001BBDE4  38 C4 00 01 */	addi r6, r4, 1
 /* 801BEEA8 001BBDE8  7C 06 28 50 */	subf r0, r6, r5
@@ -10391,9 +10399,9 @@ __dt__Q24Game8DoorLinkFv:
 .L_801BEED8:
 /* 801BEED8 001BBE18  7C A3 2B 78 */	mr r3, r5
 /* 801BEEDC 001BBE1C  4E 80 00 20 */	blr 
+.endfn "getNext__30MonoObjectMgr<Q24Game7MapRoom>FPv"
 
-.global "getStart__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"getStart__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "getStart__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BEEE0 001BBE20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801BEEE4 001BBE24  7C 08 02 A6 */	mflr r0
 /* 801BEEE8 001BBE28  38 80 FF FF */	li r4, -1
@@ -10406,26 +10414,26 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BEF04 001BBE44  7C 08 03 A6 */	mtlr r0
 /* 801BEF08 001BBE48  38 21 00 10 */	addi r1, r1, 0x10
 /* 801BEF0C 001BBE4C  4E 80 00 20 */	blr 
+.endfn "getStart__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "getEnd__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"getEnd__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "getEnd__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BEF10 001BBE50  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801BEF14 001BBE54  4E 80 00 20 */	blr 
+.endfn "getEnd__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "getAt__30MonoObjectMgr<Q24Game7MapRoom>Fi"
-"getAt__30MonoObjectMgr<Q24Game7MapRoom>Fi":
+.fn "getAt__30MonoObjectMgr<Q24Game7MapRoom>Fi", weak
 /* 801BEF18 001BBE58  1C 04 01 A0 */	mulli r0, r4, 0x1a0
 /* 801BEF1C 001BBE5C  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801BEF20 001BBE60  7C 63 02 14 */	add r3, r3, r0
 /* 801BEF24 001BBE64  4E 80 00 20 */	blr 
+.endfn "getAt__30MonoObjectMgr<Q24Game7MapRoom>Fi"
 
-.global "getTo__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"getTo__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "getTo__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BEF28 001BBE68  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 801BEF2C 001BBE6C  4E 80 00 20 */	blr 
+.endfn "getTo__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BEF30 001BBE70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BEF34 001BBE74  7C 08 02 A6 */	mflr r0
 /* 801BEF38 001BBE78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10461,9 +10469,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BEFA4 001BBEE4  7C 08 03 A6 */	mtlr r0
 /* 801BEFA8 001BBEE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BEFAC 001BBEEC  4E 80 00 20 */	blr 
+.endfn "doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BEFB0 001BBEF0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BEFB4 001BBEF4  7C 08 02 A6 */	mflr r0
 /* 801BEFB8 001BBEF8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10499,9 +10507,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BF024 001BBF64  7C 08 03 A6 */	mtlr r0
 /* 801BF028 001BBF68  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BF02C 001BBF6C  4E 80 00 20 */	blr 
+.endfn "doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi"
-"doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi":
+.fn "doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi", weak
 /* 801BF030 001BBF70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BF034 001BBF74  7C 08 02 A6 */	mflr r0
 /* 801BF038 001BBF78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10541,9 +10549,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BF0B4 001BBFF4  7C 08 03 A6 */	mtlr r0
 /* 801BF0B8 001BBFF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BF0BC 001BBFFC  4E 80 00 20 */	blr 
+.endfn "doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi"
 
-.global "doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BF0C0 001BC000  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BF0C4 001BC004  7C 08 02 A6 */	mflr r0
 /* 801BF0C8 001BC008  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10579,9 +10587,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BF134 001BC074  7C 08 03 A6 */	mtlr r0
 /* 801BF138 001BC078  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BF13C 001BC07C  4E 80 00 20 */	blr 
+.endfn "doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff"
-"doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff":
+.fn "doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff", weak
 /* 801BF140 001BC080  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BF144 001BC084  7C 08 02 A6 */	mflr r0
 /* 801BF148 001BC088  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10621,9 +10629,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BF1C4 001BC104  7C 08 03 A6 */	mtlr r0
 /* 801BF1C8 001BC108  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BF1CC 001BC10C  4E 80 00 20 */	blr 
+.endfn "doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff"
 
-.global "doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics"
-"doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics":
+.fn "doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics", weak
 /* 801BF1D0 001BC110  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BF1D4 001BC114  7C 08 02 A6 */	mflr r0
 /* 801BF1D8 001BC118  90 01 00 24 */	stw r0, 0x24(r1)
@@ -10663,18 +10671,18 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BF254 001BC194  7C 08 03 A6 */	mtlr r0
 /* 801BF258 001BC198  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BF25C 001BC19C  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics"
 
-.global "resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BF260 001BC1A0  38 00 00 00 */	li r0, 0
 /* 801BF264 001BC1A4  90 03 00 28 */	stw r0, 0x28(r3)
 /* 801BF268 001BC1A8  90 03 00 24 */	stw r0, 0x24(r3)
 /* 801BF26C 001BC1AC  90 03 00 20 */	stw r0, 0x20(r3)
 /* 801BF270 001BC1B0  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801BF274 001BC1B4  4E 80 00 20 */	blr 
+.endfn "resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "clearMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"clearMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "clearMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BF278 001BC1B8  38 00 00 00 */	li r0, 0
 /* 801BF27C 001BC1BC  38 C0 00 00 */	li r6, 0
 /* 801BF280 001BC1C0  90 03 00 20 */	stw r0, 0x20(r3)
@@ -10689,13 +10697,13 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BF29C 001BC1DC  7C 06 00 00 */	cmpw r6, r0
 /* 801BF2A0 001BC1E0  41 80 FF EC */	blt .L_801BF28C
 /* 801BF2A4 001BC1E4  4E 80 00 20 */	blr 
+.endfn "clearMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "onAlloc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"onAlloc__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "onAlloc__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BF2A8 001BC1E8  4E 80 00 20 */	blr 
+.endfn "onAlloc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "getEmptyIndex__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"getEmptyIndex__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "getEmptyIndex__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BF2AC 001BC1EC  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 801BF2B0 001BC1F0  38 A0 00 00 */	li r5, 0
 /* 801BF2B4 001BC1F4  7C 09 03 A6 */	mtctr r0
@@ -10714,16 +10722,16 @@ __dt__Q24Game8DoorLinkFv:
 .L_801BF2E0:
 /* 801BF2E0 001BC220  38 60 FF FF */	li r3, -1
 /* 801BF2E4 001BC224  4E 80 00 20 */	blr 
+.endfn "getEmptyIndex__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "get__30MonoObjectMgr<Q24Game7MapRoom>FPv"
-"get__30MonoObjectMgr<Q24Game7MapRoom>FPv":
+.fn "get__30MonoObjectMgr<Q24Game7MapRoom>FPv", weak
 /* 801BF2E8 001BC228  1C 04 01 A0 */	mulli r0, r4, 0x1a0
 /* 801BF2EC 001BC22C  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 801BF2F0 001BC230  7C 63 02 14 */	add r3, r3, r0
 /* 801BF2F4 001BC234  4E 80 00 20 */	blr 
+.endfn "get__30MonoObjectMgr<Q24Game7MapRoom>FPv"
 
-.global "doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv"
-"doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv":
+.fn "doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BF2F8 001BC238  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BF2FC 001BC23C  7C 08 02 A6 */	mflr r0
 /* 801BF300 001BC240  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -10853,9 +10861,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BF4D0 001BC410  7C 08 03 A6 */	mtlr r0
 /* 801BF4D4 001BC414  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BF4D8 001BC418  4E 80 00 20 */	blr 
+.endfn "doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "doEntry__26ObjectMgr<Q24Game7MapRoom>Fv"
-"doEntry__26ObjectMgr<Q24Game7MapRoom>Fv":
+.fn "doEntry__26ObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BF4DC 001BC41C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BF4E0 001BC420  7C 08 02 A6 */	mflr r0
 /* 801BF4E4 001BC424  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -10985,9 +10993,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BF6B4 001BC5F4  7C 08 03 A6 */	mtlr r0
 /* 801BF6B8 001BC5F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BF6BC 001BC5FC  4E 80 00 20 */	blr 
+.endfn "doEntry__26ObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "doSetView__26ObjectMgr<Q24Game7MapRoom>Fi"
-"doSetView__26ObjectMgr<Q24Game7MapRoom>Fi":
+.fn "doSetView__26ObjectMgr<Q24Game7MapRoom>Fi", weak
 /* 801BF6C0 001BC600  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BF6C4 001BC604  7C 08 02 A6 */	mflr r0
 /* 801BF6C8 001BC608  3C A0 80 4B */	lis r5, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -11121,9 +11129,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BF8A8 001BC7E8  7C 08 03 A6 */	mtlr r0
 /* 801BF8AC 001BC7EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BF8B0 001BC7F0  4E 80 00 20 */	blr 
+.endfn "doSetView__26ObjectMgr<Q24Game7MapRoom>Fi"
 
-.global "doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv"
-"doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv":
+.fn "doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801BF8B4 001BC7F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BF8B8 001BC7F8  7C 08 02 A6 */	mflr r0
 /* 801BF8BC 001BC7FC  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -11253,9 +11261,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BFA8C 001BC9CC  7C 08 03 A6 */	mtlr r0
 /* 801BFA90 001BC9D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BFA94 001BC9D4  4E 80 00 20 */	blr 
+.endfn "doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff"
-"doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff":
+.fn "doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff", weak
 /* 801BFA98 001BC9D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BFA9C 001BC9DC  7C 08 02 A6 */	mflr r0
 /* 801BFAA0 001BC9E0  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -11389,9 +11397,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BFC80 001BCBC0  7C 08 03 A6 */	mtlr r0
 /* 801BFC84 001BCBC4  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BFC88 001BCBC8  4E 80 00 20 */	blr 
+.endfn "doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff"
 
-.global "doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics"
-"doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics":
+.fn "doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics", weak
 /* 801BFC8C 001BCBCC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BFC90 001BCBD0  7C 08 02 A6 */	mflr r0
 /* 801BFC94 001BCBD4  3C A0 80 4B */	lis r5, "__vt__25Iterator<Q24Game7MapRoom>"@ha
@@ -11525,9 +11533,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801BFE74 001BCDB4  7C 08 03 A6 */	mtlr r0
 /* 801BFE78 001BCDB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801BFE7C 001BCDBC  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics"
 
-.global "doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
-"doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv":
+.fn "doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801BFE80 001BCDC0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801BFE84 001BCDC4  7C 08 02 A6 */	mflr r0
 /* 801BFE88 001BCDC8  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -11657,9 +11665,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C0058 001BCF98  7C 08 03 A6 */	mtlr r0
 /* 801C005C 001BCF9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C0060 001BCFA0  4E 80 00 20 */	blr 
+.endfn "doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
-"doEntry__26ObjectMgr<Q24Game7MapUnit>Fv":
+.fn "doEntry__26ObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801C0064 001BCFA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C0068 001BCFA8  7C 08 02 A6 */	mflr r0
 /* 801C006C 001BCFAC  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -11789,9 +11797,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C023C 001BD17C  7C 08 03 A6 */	mtlr r0
 /* 801C0240 001BD180  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C0244 001BD184  4E 80 00 20 */	blr 
+.endfn "doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
-"doSetView__26ObjectMgr<Q24Game7MapUnit>Fi":
+.fn "doSetView__26ObjectMgr<Q24Game7MapUnit>Fi", weak
 /* 801C0248 001BD188  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C024C 001BD18C  7C 08 02 A6 */	mflr r0
 /* 801C0250 001BD190  3C A0 80 4B */	lis r5, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -11925,9 +11933,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C0430 001BD370  7C 08 03 A6 */	mtlr r0
 /* 801C0434 001BD374  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C0438 001BD378  4E 80 00 20 */	blr 
+.endfn "doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
 
-.global "doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
-"doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv":
+.fn "doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801C043C 001BD37C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C0440 001BD380  7C 08 02 A6 */	mflr r0
 /* 801C0444 001BD384  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -12057,9 +12065,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C0614 001BD554  7C 08 03 A6 */	mtlr r0
 /* 801C0618 001BD558  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C061C 001BD55C  4E 80 00 20 */	blr 
+.endfn "doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
-"doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff":
+.fn "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff", weak
 /* 801C0620 001BD560  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C0624 001BD564  7C 08 02 A6 */	mflr r0
 /* 801C0628 001BD568  3C 80 80 4B */	lis r4, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -12193,9 +12201,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C0808 001BD748  7C 08 03 A6 */	mtlr r0
 /* 801C080C 001BD74C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C0810 001BD750  4E 80 00 20 */	blr 
+.endfn "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
 
-.global "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
-"doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics":
+.fn "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics", weak
 /* 801C0814 001BD754  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C0818 001BD758  7C 08 02 A6 */	mflr r0
 /* 801C081C 001BD75C  3C A0 80 4B */	lis r5, "__vt__25Iterator<Q24Game7MapUnit>"@ha
@@ -12329,9 +12337,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C09FC 001BD93C  7C 08 03 A6 */	mtlr r0
 /* 801C0A00 001BD940  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C0A04 001BD944  4E 80 00 20 */	blr 
+.endfn "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
 
-.global "getObject__26Container<Q24Game7MapRoom>FPv"
-"getObject__26Container<Q24Game7MapRoom>FPv":
+.fn "getObject__26Container<Q24Game7MapRoom>FPv", weak
 /* 801C0A08 001BD948  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0A0C 001BD94C  7C 08 02 A6 */	mflr r0
 /* 801C0A10 001BD950  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12343,19 +12351,19 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C0A28 001BD968  7C 08 03 A6 */	mtlr r0
 /* 801C0A2C 001BD96C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C0A30 001BD970  4E 80 00 20 */	blr 
+.endfn "getObject__26Container<Q24Game7MapRoom>FPv"
 
-.global "getAt__26Container<Q24Game7MapRoom>Fi"
-"getAt__26Container<Q24Game7MapRoom>Fi":
+.fn "getAt__26Container<Q24Game7MapRoom>Fi", weak
 /* 801C0A34 001BD974  38 60 00 00 */	li r3, 0
 /* 801C0A38 001BD978  4E 80 00 20 */	blr 
+.endfn "getAt__26Container<Q24Game7MapRoom>Fi"
 
-.global "getTo__26Container<Q24Game7MapRoom>Fv"
-"getTo__26Container<Q24Game7MapRoom>Fv":
+.fn "getTo__26Container<Q24Game7MapRoom>Fv", weak
 /* 801C0A3C 001BD97C  38 60 00 00 */	li r3, 0
 /* 801C0A40 001BD980  4E 80 00 20 */	blr 
+.endfn "getTo__26Container<Q24Game7MapRoom>Fv"
 
-.global "getObject__26Container<Q24Game7MapUnit>FPv"
-"getObject__26Container<Q24Game7MapUnit>FPv":
+.fn "getObject__26Container<Q24Game7MapUnit>FPv", weak
 /* 801C0A44 001BD984  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0A48 001BD988  7C 08 02 A6 */	mflr r0
 /* 801C0A4C 001BD98C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12367,19 +12375,19 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C0A64 001BD9A4  7C 08 03 A6 */	mtlr r0
 /* 801C0A68 001BD9A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C0A6C 001BD9AC  4E 80 00 20 */	blr 
+.endfn "getObject__26Container<Q24Game7MapUnit>FPv"
 
-.global "getAt__26Container<Q24Game7MapUnit>Fi"
-"getAt__26Container<Q24Game7MapUnit>Fi":
+.fn "getAt__26Container<Q24Game7MapUnit>Fi", weak
 /* 801C0A70 001BD9B0  38 60 00 00 */	li r3, 0
 /* 801C0A74 001BD9B4  4E 80 00 20 */	blr 
+.endfn "getAt__26Container<Q24Game7MapUnit>Fi"
 
-.global "getTo__26Container<Q24Game7MapUnit>Fv"
-"getTo__26Container<Q24Game7MapUnit>Fv":
+.fn "getTo__26Container<Q24Game7MapUnit>Fv", weak
 /* 801C0A78 001BD9B8  38 60 00 00 */	li r3, 0
 /* 801C0A7C 001BD9BC  4E 80 00 20 */	blr 
+.endfn "getTo__26Container<Q24Game7MapUnit>Fv"
 
-.global "alloc__30MonoObjectMgr<Q24Game7MapRoom>Fi"
-"alloc__30MonoObjectMgr<Q24Game7MapRoom>Fi":
+.fn "alloc__30MonoObjectMgr<Q24Game7MapRoom>Fi", weak
 /* 801C0A80 001BD9C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C0A84 001BD9C4  7C 08 02 A6 */	mflr r0
 /* 801C0A88 001BD9C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12484,9 +12492,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C0BFC 001BDB3C  7C 08 03 A6 */	mtlr r0
 /* 801C0C00 001BDB40  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C0C04 001BDB44  4E 80 00 20 */	blr 
+.endfn "alloc__30MonoObjectMgr<Q24Game7MapRoom>Fi"
 
-.global "__ct__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"__ct__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "__ct__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801C0C08 001BDB48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0C0C 001BDB4C  7C 08 02 A6 */	mflr r0
 /* 801C0C10 001BDB50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12526,8 +12534,9 @@ __dt__Q24Game8DoorLinkFv:
 /* 801C0C98 001BDBD8  7C 08 03 A6 */	mtlr r0
 /* 801C0C9C 001BDBDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C0CA0 001BDBE0  4E 80 00 20 */	blr 
+.endfn "__ct__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-__sinit_gameMapParts_cpp: # static initializer
+.fn __sinit_gameMapParts_cpp, local
 /* 801C0CA4 001BDBE4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801C0CA8 001BDBE8  38 00 FF FF */	li r0, -1
 /* 801C0CAC 001BDBEC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -12538,159 +12547,160 @@ __sinit_gameMapParts_cpp: # static initializer
 /* 801C0CC0 001BDC00  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801C0CC4 001BDC04  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801C0CC8 001BDC08  4E 80 00 20 */	blr 
+.endfn __sinit_gameMapParts_cpp
 
-.global "@28@resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
-"@28@resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv":
+.fn "@28@resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801C0CCC 001BDC0C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0CD0 001BDC10  4B FF E1 58 */	b "resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
+.endfn "@28@resetMgr__30NodeObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "@28@doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
-"@28@doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics":
+.fn "@28@doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics", weak
 /* 801C0CD4 001BDC14  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0CD8 001BDC18  4B FF FB 3C */	b "doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
+.endfn "@28@doDirectDraw__26ObjectMgr<Q24Game7MapUnit>FR8Graphics"
 
-.global "@28@doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
-"@28@doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff":
+.fn "@28@doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff", weak
 /* 801C0CDC 001BDC1C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0CE0 001BDC20  4B FF F9 40 */	b "doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
+.endfn "@28@doSimulation__26ObjectMgr<Q24Game7MapUnit>Ff"
 
-.global "@28@doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
-"@28@doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv":
+.fn "@28@doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801C0CE4 001BDC24  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0CE8 001BDC28  4B FF F7 54 */	b "doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
+.endfn "@28@doViewCalc__26ObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "@28@doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
-"@28@doSetView__26ObjectMgr<Q24Game7MapUnit>Fi":
+.fn "@28@doSetView__26ObjectMgr<Q24Game7MapUnit>Fi", weak
 /* 801C0CEC 001BDC2C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0CF0 001BDC30  4B FF F5 58 */	b "doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
+.endfn "@28@doSetView__26ObjectMgr<Q24Game7MapUnit>Fi"
 
-.global "@28@doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
-"@28@doEntry__26ObjectMgr<Q24Game7MapUnit>Fv":
+.fn "@28@doEntry__26ObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801C0CF4 001BDC34  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0CF8 001BDC38  4B FF F3 6C */	b "doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
+.endfn "@28@doEntry__26ObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "@28@doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
-"@28@doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv":
+.fn "@28@doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv", weak
 /* 801C0CFC 001BDC3C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D00 001BDC40  4B FF F1 80 */	b "doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
+.endfn "@28@doAnimation__26ObjectMgr<Q24Game7MapUnit>Fv"
 
-.global "@28@resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"@28@resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "@28@resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801C0D04 001BDC44  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D08 001BDC48  4B FF E5 58 */	b "resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+.endfn "@28@resetMgr__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "@28@doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics"
-"@28@doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics":
+.fn "@28@doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics", weak
 /* 801C0D0C 001BDC4C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D10 001BDC50  4B FF E4 C0 */	b "doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics"
+.endfn "@28@doDirectDraw__30MonoObjectMgr<Q24Game7MapRoom>FR8Graphics"
 
-.global "@28@doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff"
-"@28@doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff":
+.fn "@28@doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff", weak
 /* 801C0D14 001BDC54  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D18 001BDC58  4B FF E4 28 */	b "doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff"
+.endfn "@28@doSimulation__30MonoObjectMgr<Q24Game7MapRoom>Ff"
 
-.global "@28@doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"@28@doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "@28@doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801C0D1C 001BDC5C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D20 001BDC60  4B FF E3 A0 */	b "doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+.endfn "@28@doViewCalc__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "@28@doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi"
-"@28@doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi":
+.fn "@28@doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi", weak
 /* 801C0D24 001BDC64  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D28 001BDC68  4B FF E3 08 */	b "doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi"
+.endfn "@28@doSetView__30MonoObjectMgr<Q24Game7MapRoom>Fi"
 
-.global "@28@doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"@28@doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "@28@doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801C0D2C 001BDC6C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D30 001BDC70  4B FF E2 80 */	b "doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+.endfn "@28@doEntry__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "@28@doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv"
-"@28@doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv":
+.fn "@28@doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801C0D34 001BDC74  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D38 001BDC78  4B FF E1 F8 */	b "doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv"
+.endfn "@28@doAnimation__30MonoObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "@28@doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics"
-"@28@doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics":
+.fn "@28@doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics", weak
 /* 801C0D3C 001BDC7C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D40 001BDC80  4B FF EF 4C */	b "doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics"
+.endfn "@28@doDirectDraw__26ObjectMgr<Q24Game7MapRoom>FR8Graphics"
 
-.global "@28@doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff"
-"@28@doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff":
+.fn "@28@doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff", weak
 /* 801C0D44 001BDC84  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D48 001BDC88  4B FF ED 50 */	b "doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff"
+.endfn "@28@doSimulation__26ObjectMgr<Q24Game7MapRoom>Ff"
 
-.global "@28@doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv"
-"@28@doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv":
+.fn "@28@doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801C0D4C 001BDC8C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D50 001BDC90  4B FF EB 64 */	b "doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv"
+.endfn "@28@doViewCalc__26ObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "@28@doSetView__26ObjectMgr<Q24Game7MapRoom>Fi"
-"@28@doSetView__26ObjectMgr<Q24Game7MapRoom>Fi":
+.fn "@28@doSetView__26ObjectMgr<Q24Game7MapRoom>Fi", weak
 /* 801C0D54 001BDC94  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D58 001BDC98  4B FF E9 68 */	b "doSetView__26ObjectMgr<Q24Game7MapRoom>Fi"
+.endfn "@28@doSetView__26ObjectMgr<Q24Game7MapRoom>Fi"
 
-.global "@28@doEntry__26ObjectMgr<Q24Game7MapRoom>Fv"
-"@28@doEntry__26ObjectMgr<Q24Game7MapRoom>Fv":
+.fn "@28@doEntry__26ObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801C0D5C 001BDC9C  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D60 001BDCA0  4B FF E7 7C */	b "doEntry__26ObjectMgr<Q24Game7MapRoom>Fv"
+.endfn "@28@doEntry__26ObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "@28@doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv"
-"@28@doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv":
+.fn "@28@doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv", weak
 /* 801C0D64 001BDCA4  38 63 FF E4 */	addi r3, r3, -28
 /* 801C0D68 001BDCA8  4B FF E5 90 */	b "doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv"
+.endfn "@28@doAnimation__26ObjectMgr<Q24Game7MapRoom>Fv"
 
-.global "@280@4@frozenable__Q24Game6MapMgrFv"
-"@280@4@frozenable__Q24Game6MapMgrFv":
+.fn "@280@4@frozenable__Q24Game6MapMgrFv", weak
 /* 801C0D6C 001BDCAC  39 60 00 04 */	li r11, 4
 /* 801C0D70 001BDCB0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801C0D74 001BDCB4  7C 63 5A 14 */	add r3, r3, r11
 /* 801C0D78 001BDCB8  38 63 FE E8 */	addi r3, r3, -280
 /* 801C0D7C 001BDCBC  4B FA 33 74 */	b frozenable__Q24Game6MapMgrFv
+.endfn "@280@4@frozenable__Q24Game6MapMgrFv"
 
-.global "@280@4@doDirectDraw__Q24Game10RoomMapMgrFR8Graphics"
-"@280@4@doDirectDraw__Q24Game10RoomMapMgrFR8Graphics":
+.fn "@280@4@doDirectDraw__Q24Game10RoomMapMgrFR8Graphics", weak
 /* 801C0D80 001BDCC0  39 60 00 04 */	li r11, 4
 /* 801C0D84 001BDCC4  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801C0D88 001BDCC8  7C 63 5A 14 */	add r3, r3, r11
 /* 801C0D8C 001BDCCC  38 63 FE E8 */	addi r3, r3, -280
 /* 801C0D90 001BDCD0  4B FF D6 E8 */	b doDirectDraw__Q24Game10RoomMapMgrFR8Graphics
+.endfn "@280@4@doDirectDraw__Q24Game10RoomMapMgrFR8Graphics"
 
-.global "@280@4@doSimulation__Q24Game10RoomMapMgrFf"
-"@280@4@doSimulation__Q24Game10RoomMapMgrFf":
+.fn "@280@4@doSimulation__Q24Game10RoomMapMgrFf", weak
 /* 801C0D94 001BDCD4  39 60 00 04 */	li r11, 4
 /* 801C0D98 001BDCD8  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801C0D9C 001BDCDC  7C 63 5A 14 */	add r3, r3, r11
 /* 801C0DA0 001BDCE0  38 63 FE E8 */	addi r3, r3, -280
 /* 801C0DA4 001BDCE4  4B FF D6 D0 */	b doSimulation__Q24Game10RoomMapMgrFf
+.endfn "@280@4@doSimulation__Q24Game10RoomMapMgrFf"
 
-.global "@280@4@doViewCalc__Q24Game10RoomMapMgrFv"
-"@280@4@doViewCalc__Q24Game10RoomMapMgrFv":
+.fn "@280@4@doViewCalc__Q24Game10RoomMapMgrFv", weak
 /* 801C0DA8 001BDCE8  39 60 00 04 */	li r11, 4
 /* 801C0DAC 001BDCEC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801C0DB0 001BDCF0  7C 63 5A 14 */	add r3, r3, r11
 /* 801C0DB4 001BDCF4  38 63 FE E8 */	addi r3, r3, -280
 /* 801C0DB8 001BDCF8  4B FF D6 54 */	b doViewCalc__Q24Game10RoomMapMgrFv
+.endfn "@280@4@doViewCalc__Q24Game10RoomMapMgrFv"
 
-.global "@280@4@doSetView__Q24Game10RoomMapMgrFi"
-"@280@4@doSetView__Q24Game10RoomMapMgrFi":
+.fn "@280@4@doSetView__Q24Game10RoomMapMgrFi", weak
 /* 801C0DBC 001BDCFC  39 60 00 04 */	li r11, 4
 /* 801C0DC0 001BDD00  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801C0DC4 001BDD04  7C 63 5A 14 */	add r3, r3, r11
 /* 801C0DC8 001BDD08  38 63 FE E8 */	addi r3, r3, -280
 /* 801C0DCC 001BDD0C  4B FF D5 C4 */	b doSetView__Q24Game10RoomMapMgrFi
+.endfn "@280@4@doSetView__Q24Game10RoomMapMgrFi"
 
-.global "@280@4@doEntry__Q24Game10RoomMapMgrFv"
-"@280@4@doEntry__Q24Game10RoomMapMgrFv":
+.fn "@280@4@doEntry__Q24Game10RoomMapMgrFv", weak
 /* 801C0DD0 001BDD10  39 60 00 04 */	li r11, 4
 /* 801C0DD4 001BDD14  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801C0DD8 001BDD18  7C 63 5A 14 */	add r3, r3, r11
 /* 801C0DDC 001BDD1C  38 63 FE E8 */	addi r3, r3, -280
 /* 801C0DE0 001BDD20  4B FF D4 D4 */	b doEntry__Q24Game10RoomMapMgrFv
+.endfn "@280@4@doEntry__Q24Game10RoomMapMgrFv"
 
-.global "@280@4@doAnimation__Q24Game10RoomMapMgrFv"
-"@280@4@doAnimation__Q24Game10RoomMapMgrFv":
+.fn "@280@4@doAnimation__Q24Game10RoomMapMgrFv", weak
 /* 801C0DE4 001BDD24  39 60 00 04 */	li r11, 4
 /* 801C0DE8 001BDD28  7D 63 58 2E */	lwzx r11, r3, r11
 /* 801C0DEC 001BDD2C  7C 63 5A 14 */	add r3, r3, r11
 /* 801C0DF0 001BDD30  38 63 FE E8 */	addi r3, r3, -280
 /* 801C0DF4 001BDD34  4B FF D4 60 */	b doAnimation__Q24Game10RoomMapMgrFv
+.endfn "@280@4@doAnimation__Q24Game10RoomMapMgrFv"

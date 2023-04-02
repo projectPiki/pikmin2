@@ -5,91 +5,85 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-lbl_80480F98:
+.obj lbl_80480F98, local
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6974656D
-	.4byte 0x43617665
-	.4byte 0x00000000
-	.4byte 0x73746172
-	.4byte 0x7454696D
-	.4byte 0x65000000
-	.4byte 0x44697374
-	.4byte 0x616E6365
-	.4byte 0x00000000
-	.4byte 0x456E7465
-	.4byte 0x72204469
-	.4byte 0x73740000
-	.4byte 0x45786974
-	.4byte 0x20204469
-	.4byte 0x73740000
-lbl_80480FE0:
-	.4byte 0x2A2A2A20
-	.4byte 0x4954454D
-	.4byte 0x43415645
-	.4byte 0x204D4154
-	.4byte 0x0A000000
-lbl_80480FF4:
-	.4byte 0x25732025
-	.4byte 0x642F2564
-	.4byte 0x00000000
-lbl_80481000:
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F64
-	.4byte 0x756E6765
-	.4byte 0x6F6E5F68
-	.4byte 0x6F6C6500
-	.4byte 0x64756E67
-	.4byte 0x656F6E5F
-	.4byte 0x686F6C65
-	.4byte 0x2E626D64
-	.4byte 0x00000000
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x6361705F
-	.4byte 0x706C6174
-	.4byte 0x666F726D
-	.4byte 0x2E62696E
-	.4byte 0x00000000
-	.4byte 0x73696465
-	.4byte 0x5F706C61
-	.4byte 0x74666F72
-	.4byte 0x6D2E6269
-	.4byte 0x6E000000
-lbl_80481068:
-	.4byte 0x6974656D
-	.4byte 0x43617665
-	.4byte 0x2E637070
-	.4byte 0x00000000
-lbl_80481078:
-	.asciz "P2Assert"
+.endobj lbl_80480F98
 .balign 4
-	.4byte 0x09232069
-	.4byte 0x64202866
-	.4byte 0x6F722073
-	.4byte 0x74616765
-	.4byte 0x732E7478
-	.4byte 0x74290D0A
-	.4byte 0x00000000
+.obj lbl_80480FA4, local
+	.asciz "itemCave"
+.endobj lbl_80480FA4
+.balign 4
+.obj lbl_80480FB0, local
+	.asciz "startTime"
+.endobj lbl_80480FB0
+.balign 4
+.obj lbl_80480FBC, local
+	.asciz "Distance"
+.endobj lbl_80480FBC
+.balign 4
+.obj lbl_80480FC8, local
+	.asciz "Enter Dist"
+.endobj lbl_80480FC8
+.balign 4
+.obj lbl_80480FD4, local
+	.asciz "Exit  Dist"
+.endobj lbl_80480FD4
+.balign 4
+.obj lbl_80480FE0, local
+	.asciz "*** ITEMCAVE MAT\n"
+.endobj lbl_80480FE0
+.balign 4
+.obj lbl_80480FF4, local
+	.asciz "%s %d/%d"
+.endobj lbl_80480FF4
+.balign 4
+.obj lbl_80481000, local
+	.asciz "user/Kando/objects/dungeon_hole"
+.endobj lbl_80481000
+.balign 4
+.obj lbl_80481020, local
+	.asciz "dungeon_hole.bmd"
+.endobj lbl_80481020
+.balign 4
+.obj lbl_80481034, local
+	.asciz "texts.szs"
+.endobj lbl_80481034
+.balign 4
+.obj lbl_80481040, local
+	.asciz "cap_platform.bin"
+.endobj lbl_80481040
+.balign 4
+.obj lbl_80481054, local
+	.asciz "side_platform.bin"
+.endobj lbl_80481054
+.balign 4
+.obj lbl_80481068, local
+	.asciz "itemCave.cpp"
+.endobj lbl_80481068
+.balign 4
+.obj lbl_80481078, local
+	.asciz "P2Assert"
+.endobj lbl_80481078
+.balign 4
+.obj lbl_80481084, local
+	.asciz "\t# id (for stages.txt)\r\n"
+.endobj lbl_80481084
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-govNAN___Q24Game5P2JST:
+.obj govNAN___Q24Game5P2JST, local
 	.float 0.0
 	.float 0.0
 	.float 0.0
-.global __vt__11GenCaveParm
-__vt__11GenCaveParm:
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__11GenCaveParm, weak
 	.4byte 0
 	.4byte 0
 	.4byte getShapeID__Q24Game11GenItemParmFv
-.global __vt__Q34Game8ItemCave3Mgr
-__vt__Q34Game8ItemCave3Mgr:
+.endobj __vt__11GenCaveParm
+.obj __vt__Q34Game8ItemCave3Mgr, global
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q24Game12TNodeItemMgrFv
@@ -137,8 +131,8 @@ __vt__Q34Game8ItemCave3Mgr:
 	.4byte getStart__Q24Game12TNodeItemMgrFv
 	.4byte getEnd__Q24Game12TNodeItemMgrFv
 	.4byte __dt__Q34Game8ItemCave3MgrFv
-.global __vt__Q34Game8ItemCave4Item
-__vt__Q34Game8ItemCave4Item:
+.endobj __vt__Q34Game8ItemCave3Mgr
+.obj __vt__Q34Game8ItemCave4Item, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -276,31 +270,31 @@ __vt__Q34Game8ItemCave4Item:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q34Game8ItemCave4ItemFv
 	.4byte "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent"
-.global "__vt__8Parm<Uc>"
-"__vt__8Parm<Uc>":
+.endobj __vt__Q34Game8ItemCave4Item
+.obj "__vt__8Parm<Uc>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "size__8Parm<Uc>Fv"
 	.4byte "write__8Parm<Uc>FR6Stream"
 	.4byte "read__8Parm<Uc>FR6Stream"
-.global "__vt__Q24Game30ItemFSM<Q34Game8ItemCave4Item>"
-"__vt__Q24Game30ItemFSM<Q34Game8ItemCave4Item>":
+.endobj "__vt__8Parm<Uc>"
+.obj "__vt__Q24Game30ItemFSM<Q34Game8ItemCave4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 	.4byte "start__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 	.4byte "transit__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
-.global "__vt__Q24Game35StateMachine<Q34Game8ItemCave4Item>"
-"__vt__Q24Game35StateMachine<Q34Game8ItemCave4Item>":
+.endobj "__vt__Q24Game30ItemFSM<Q34Game8ItemCave4Item>"
+.obj "__vt__Q24Game35StateMachine<Q34Game8ItemCave4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 	.4byte "start__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 	.4byte "transit__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
-.global "__vt__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>"
-"__vt__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>":
+.endobj "__vt__Q24Game35StateMachine<Q34Game8ItemCave4Item>"
+.obj "__vt__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>", weak
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -438,8 +432,8 @@ __vt__Q34Game8ItemCave4Item:
 	.4byte entryShape__Q24Game8BaseItemFv
 	.4byte onSetPosition__Q24Game8BaseItemFv
 	.4byte "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent"
-.global __vt__Q34Game8ItemCave9OpenState
-__vt__Q34Game8ItemCave9OpenState:
+.endobj "__vt__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>"
+.obj __vt__Q34Game8ItemCave9OpenState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg
@@ -453,8 +447,8 @@ __vt__Q34Game8ItemCave9OpenState:
 	.4byte "onBounce__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9CollEvent"
-.global __vt__Q34Game8ItemCave11NormalState
-__vt__Q34Game8ItemCave11NormalState:
+.endobj __vt__Q34Game8ItemCave9OpenState
+.obj __vt__Q34Game8ItemCave11NormalState, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg
@@ -468,8 +462,8 @@ __vt__Q34Game8ItemCave11NormalState:
 	.4byte "onBounce__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9CollEvent"
-.global __vt__Q34Game8ItemCave5State
-__vt__Q34Game8ItemCave5State:
+.endobj __vt__Q34Game8ItemCave11NormalState
+.obj __vt__Q34Game8ItemCave5State, weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ24Game8StateArg"
@@ -483,8 +477,8 @@ __vt__Q34Game8ItemCave5State:
 	.4byte "onBounce__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9CollEvent"
-.global "__vt__Q24Game32ItemState<Q34Game8ItemCave4Item>"
-"__vt__Q24Game32ItemState<Q34Game8ItemCave4Item>":
+.endobj __vt__Q34Game8ItemCave5State
+.obj "__vt__Q24Game32ItemState<Q34Game8ItemCave4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ24Game8StateArg"
@@ -498,8 +492,8 @@ __vt__Q34Game8ItemCave5State:
 	.4byte "onBounce__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9CollEvent"
-.global "__vt__Q24Game31FSMState<Q34Game8ItemCave4Item>"
-"__vt__Q24Game31FSMState<Q34Game8ItemCave4Item>":
+.endobj "__vt__Q24Game32ItemState<Q34Game8ItemCave4Item>"
+.obj "__vt__Q24Game31FSMState<Q34Game8ItemCave4Item>", weak
 	.4byte 0
 	.4byte 0
 	.4byte "init__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ24Game8StateArg"
@@ -508,112 +502,153 @@ __vt__Q34Game8ItemCave5State:
 	.4byte "resume__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 	.4byte "restart__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 	.4byte "transit__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
-.global __vt__Q34Game8ItemCave3FSM
-__vt__Q34Game8ItemCave3FSM:
+.endobj "__vt__Q24Game31FSMState<Q34Game8ItemCave4Item>"
+.obj __vt__Q34Game8ItemCave3FSM, global
 	.4byte 0
 	.4byte 0
 	.4byte init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item
 	.4byte "start__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 	.4byte "transit__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
+.endobj __vt__Q34Game8ItemCave3FSM
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-gu32NAN___Q24Game5P2JST:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-gfNAN___Q24Game5P2JST:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
-.global mgr__Q24Game8ItemCave
-mgr__Q24Game8ItemCave:
+.endobj gfNAN___Q24Game5P2JST
+.obj mgr__Q24Game8ItemCave, global
 	.skip 0x4
+.endobj mgr__Q24Game8ItemCave
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_805199E0:
-	.4byte 0x466F6750
-	.4byte 0x61726D00
-lbl_805199E8:
-	.4byte 0x73746172
-	.4byte 0x745A0000
-lbl_805199F0:
-	.4byte 0x42000000
-lbl_805199F4:
+.obj lbl_805199E0, local
+	.asciz "FogParm"
+.endobj lbl_805199E0
+.balign 4
+.obj lbl_805199E8, local
+	.asciz "startZ"
+.endobj lbl_805199E8
+.balign 4
+.obj lbl_805199F0, local
+	.float 32.0
+.endobj lbl_805199F0
+.obj lbl_805199F4, local
 	.float 1.0
-lbl_805199F8:
-	.4byte 0x46480000
-lbl_805199FC:
-	.4byte 0x656E645A
-	.4byte 0x00000000
-lbl_80519A04:
-	.4byte 0x44960000
-lbl_80519A08:
-	.4byte 0x40000000
-lbl_80519A0C:
-	.4byte 0x00000000
-lbl_80519A10:
-	.4byte 0x41F00000
-lbl_80519A14:
-	.4byte 0x656E6454
-	.4byte 0x696D6500
-lbl_80519A1C:
-	.4byte 0x52656400
-lbl_80519A20:
-	.4byte 0x47726565
-	.4byte 0x6E000000
-lbl_80519A28:
-	.4byte 0x426C7565
-	.4byte 0x00000000
-lbl_80519A30:
-	.4byte 0x44FA0000
-lbl_80519A34:
-	.4byte 0x433E0000
-lbl_80519A38:
-	.4byte 0x43700000
-lbl_80519A3C:
-	.4byte 0x42480000
-lbl_80519A40:
-	.4byte 0x42820000
-lbl_80519A44:
-	.4byte 0x42960000
-lbl_80519A48:
-	.4byte 0x42200000
-lbl_80519A4C:
-	.4byte 0x48EF4200
-lbl_80519A50:
-	.4byte 0x666C6167
-	.4byte 0x00000000
-lbl_80519A58:
-	.4byte 0x3FC00000
-lbl_80519A5C:
+.endobj lbl_805199F4
+.obj lbl_805199F8, local
+	.float 12800.0
+.endobj lbl_805199F8
+.balign 4
+.obj lbl_805199FC, local
+	.asciz "endZ"
+.endobj lbl_805199FC
+.balign 4
+.obj lbl_80519A04, local
+	.float 1200.0
+.endobj lbl_80519A04
+.obj lbl_80519A08, local
+	.float 2.0
+.endobj lbl_80519A08
+.obj lbl_80519A0C, local
+	.float 0.0
+.endobj lbl_80519A0C
+.obj lbl_80519A10, local
+	.float 30.0
+.endobj lbl_80519A10
+.balign 4
+.obj lbl_80519A14, local
+	.asciz "endTime"
+.endobj lbl_80519A14
+.balign 4
+.obj lbl_80519A1C, local
+	.asciz "Red"
+.endobj lbl_80519A1C
+.balign 4
+.obj lbl_80519A20, local
+	.asciz "Green"
+.endobj lbl_80519A20
+.balign 4
+.obj lbl_80519A28, local
+	.asciz "Blue"
+.endobj lbl_80519A28
+.balign 4
+.obj lbl_80519A30, local
+	.float 2000.0
+.endobj lbl_80519A30
+.obj lbl_80519A34, local
+	.float 190.0
+.endobj lbl_80519A34
+.obj lbl_80519A38, local
+	.float 240.0
+.endobj lbl_80519A38
+.obj lbl_80519A3C, local
+	.float 50.0
+.endobj lbl_80519A3C
+.obj lbl_80519A40, local
+	.float 65.0
+.endobj lbl_80519A40
+.obj lbl_80519A44, local
+	.float 75.0
+.endobj lbl_80519A44
+.obj lbl_80519A48, local
+	.float 40.0
+.endobj lbl_80519A48
+.obj lbl_80519A4C, local
+	.float 490000.0
+.endobj lbl_80519A4C
+.balign 4
+.obj lbl_80519A50, local
+	.asciz "flag"
+.endobj lbl_80519A50
+.balign 4
+.obj lbl_80519A58, local
+	.float 1.5
+.endobj lbl_80519A58
+.obj lbl_80519A5C, local
 	.float 0.5
-lbl_80519A60:
-	.4byte 0x44800000
-lbl_80519A64:
-	.4byte 0x43FA0000
-lbl_80519A68:
-	.4byte 0x43300000
-	.4byte 0x00000000
-lbl_80519A70:
+.endobj lbl_80519A5C
+.obj lbl_80519A60, local
+	.float 1024.0
+.endobj lbl_80519A60
+.obj lbl_80519A64, local
+	.float 500.0
+.endobj lbl_80519A64
+.balign 8
+.obj lbl_80519A68, local
+	.8byte 0x4330000000000000
+.endobj lbl_80519A68
+.obj lbl_80519A70, local
 	.float 0.15
-lbl_80519A74:
-	.4byte 0x3DAE147B
-lbl_80519A78:
-	.4byte 0x41200000
-lbl_80519A7C:
-	.4byte 0x42700000
-lbl_80519A80:
-	.4byte 0x43617665
-	.4byte 0x00000000
-lbl_80519A88:
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-lbl_80519A90:
-	.4byte 0x0D0A0000
-	.4byte 0x00000000
+.endobj lbl_80519A70
+.obj lbl_80519A74, local
+	.float 0.085
+.endobj lbl_80519A74
+.obj lbl_80519A78, local
+	.float 10.0
+.endobj lbl_80519A78
+.obj lbl_80519A7C, local
+	.float 60.0
+.endobj lbl_80519A7C
+.balign 4
+.obj lbl_80519A80, local
+	.asciz "Cave"
+.endobj lbl_80519A80
+.balign 4
+.obj lbl_80519A88, local
+	.asciz "arc.szs"
+.endobj lbl_80519A88
+.balign 4
+.obj lbl_80519A90, local
+	.asciz "\r\n"
+.endobj lbl_80519A90
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item
-init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item:
+.fn init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item, global
 /* 801E9FB8 001E6EF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801E9FBC 001E6EFC  7C 08 02 A6 */	mflr r0
 /* 801E9FC0 001E6F00  38 80 00 02 */	li r4, 2
@@ -670,33 +705,33 @@ init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item:
 /* 801EA084 001E6FC4  7C 08 03 A6 */	mtlr r0
 /* 801EA088 001E6FC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EA08C 001E6FCC  4E 80 00 20 */	blr 
+.endfn init__Q34Game8ItemCave3FSMFPQ34Game8ItemCave4Item
 
-.global init__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg
-init__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg:
+.fn init__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg, global
 /* 801EA090 001E6FD0  4E 80 00 20 */	blr 
+.endfn init__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg
 
-.global exec__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4Item
-exec__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4Item:
+.fn exec__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4Item, global
 /* 801EA094 001E6FD4  4E 80 00 20 */	blr 
+.endfn exec__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4Item
 
-.global cleanup__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4Item
-cleanup__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4Item:
+.fn cleanup__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4Item, global
 /* 801EA098 001E6FD8  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game8ItemCave11NormalStateFPQ34Game8ItemCave4Item
 
-.global init__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg
-init__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg:
+.fn init__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg, global
 /* 801EA09C 001E6FDC  4E 80 00 20 */	blr 
+.endfn init__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4ItemPQ24Game8StateArg
 
-.global exec__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4Item
-exec__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4Item:
+.fn exec__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4Item, global
 /* 801EA0A0 001E6FE0  4E 80 00 20 */	blr 
+.endfn exec__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4Item
 
-.global cleanup__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4Item
-cleanup__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4Item:
+.fn cleanup__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4Item, global
 /* 801EA0A4 001E6FE4  4E 80 00 20 */	blr 
+.endfn cleanup__Q34Game8ItemCave9OpenStateFPQ34Game8ItemCave4Item
 
-.global __ct__Q34Game8ItemCave4ItemFv
-__ct__Q34Game8ItemCave4ItemFv:
+.fn __ct__Q34Game8ItemCave4ItemFv, global
 /* 801EA0A8 001E6FE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EA0AC 001E6FEC  7C 08 02 A6 */	mflr r0
 /* 801EA0B0 001E6FF0  38 80 04 0A */	li r4, 0x40a
@@ -755,9 +790,9 @@ __ct__Q34Game8ItemCave4ItemFv:
 /* 801EA180 001E70C0  7C 08 03 A6 */	mtlr r0
 /* 801EA184 001E70C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EA188 001E70C8  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game8ItemCave4ItemFv
 
-.global __ct__Q34Game8ItemCave7FogParmFv
-__ct__Q34Game8ItemCave7FogParmFv:
+.fn __ct__Q34Game8ItemCave7FogParmFv, weak
 /* 801EA18C 001E70CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EA190 001E70D0  7C 08 02 A6 */	mflr r0
 /* 801EA194 001E70D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -932,9 +967,9 @@ __ct__Q34Game8ItemCave7FogParmFv:
 /* 801EA434 001E7374  7C 08 03 A6 */	mtlr r0
 /* 801EA438 001E7378  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EA43C 001E737C  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game8ItemCave7FogParmFv
 
-.global onInit__Q34Game8ItemCave4ItemFPQ24Game15CreatureInitArg
-onInit__Q34Game8ItemCave4ItemFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game8ItemCave4ItemFPQ24Game15CreatureInitArg, global
 /* 801EA440 001E7380  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EA444 001E7384  7C 08 02 A6 */	mflr r0
 /* 801EA448 001E7388  90 01 00 14 */	stw r0, 0x14(r1)
@@ -965,9 +1000,9 @@ onInit__Q34Game8ItemCave4ItemFPQ24Game15CreatureInitArg:
 /* 801EA4AC 001E73EC  7C 08 03 A6 */	mtlr r0
 /* 801EA4B0 001E73F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EA4B4 001E73F4  4E 80 00 20 */	blr 
+.endfn onInit__Q34Game8ItemCave4ItemFPQ24Game15CreatureInitArg
 
-.global "start__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
-"start__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg":
+.fn "start__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg", weak
 /* 801EA4B8 001E73F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EA4BC 001E73FC  7C 08 02 A6 */	mflr r0
 /* 801EA4C0 001E7400  90 01 00 14 */	stw r0, 0x14(r1)
@@ -981,9 +1016,9 @@ onInit__Q34Game8ItemCave4ItemFPQ24Game15CreatureInitArg:
 /* 801EA4E0 001E7420  7C 08 03 A6 */	mtlr r0
 /* 801EA4E4 001E7424  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EA4E8 001E7428  4E 80 00 20 */	blr 
+.endfn "start__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
 
-.global makeTrMatrix__Q34Game8ItemCave4ItemFv
-makeTrMatrix__Q34Game8ItemCave4ItemFv:
+.fn makeTrMatrix__Q34Game8ItemCave4ItemFv, global
 /* 801EA4EC 001E742C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EA4F0 001E7430  7C 08 02 A6 */	mflr r0
 /* 801EA4F4 001E7434  C0 02 B6 AC */	lfs f0, lbl_80519A0C@sda21(r2)
@@ -1001,9 +1036,9 @@ makeTrMatrix__Q34Game8ItemCave4ItemFv:
 /* 801EA524 001E7464  7C 08 03 A6 */	mtlr r0
 /* 801EA528 001E7468  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EA52C 001E746C  4E 80 00 20 */	blr 
+.endfn makeTrMatrix__Q34Game8ItemCave4ItemFv
 
-.global onSetPosition__Q34Game8ItemCave4ItemFv
-onSetPosition__Q34Game8ItemCave4ItemFv:
+.fn onSetPosition__Q34Game8ItemCave4ItemFv, global
 /* 801EA530 001E7470  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 801EA534 001E7474  7C 08 02 A6 */	mflr r0
 /* 801EA538 001E7478  C0 02 B6 DC */	lfs f0, lbl_80519A3C@sda21(r2)
@@ -1162,9 +1197,9 @@ onSetPosition__Q34Game8ItemCave4ItemFv:
 /* 801EA788 001E76C8  7C 08 03 A6 */	mtlr r0
 /* 801EA78C 001E76CC  38 21 00 70 */	addi r1, r1, 0x70
 /* 801EA790 001E76D0  4E 80 00 20 */	blr 
+.endfn onSetPosition__Q34Game8ItemCave4ItemFv
 
-.global initDependency__Q34Game8ItemCave4ItemFv
-initDependency__Q34Game8ItemCave4ItemFv:
+.fn initDependency__Q34Game8ItemCave4ItemFv, global
 /* 801EA794 001E76D4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801EA798 001E76D8  7C 08 02 A6 */	mflr r0
 /* 801EA79C 001E76DC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1376,9 +1411,9 @@ initDependency__Q34Game8ItemCave4ItemFv:
 /* 801EAA9C 001E79DC  7C 08 03 A6 */	mtlr r0
 /* 801EAAA0 001E79E0  38 21 00 50 */	addi r1, r1, 0x50
 /* 801EAAA4 001E79E4  4E 80 00 20 */	blr 
+.endfn initDependency__Q34Game8ItemCave4ItemFv
 
-.global sound_culling__Q34Game8ItemCave4ItemFv
-sound_culling__Q34Game8ItemCave4ItemFv:
+.fn sound_culling__Q34Game8ItemCave4ItemFv, global
 /* 801EAAA8 001E79E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EAAAC 001E79EC  7C 08 02 A6 */	mflr r0
 /* 801EAAB0 001E79F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1416,9 +1451,9 @@ sound_culling__Q34Game8ItemCave4ItemFv:
 /* 801EAB28 001E7A68  7C 08 03 A6 */	mtlr r0
 /* 801EAB2C 001E7A6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EAB30 001E7A70  4E 80 00 20 */	blr 
+.endfn sound_culling__Q34Game8ItemCave4ItemFv
 
-.global changeMaterial__Q34Game8ItemCave4ItemFv
-changeMaterial__Q34Game8ItemCave4ItemFv:
+.fn changeMaterial__Q34Game8ItemCave4ItemFv, global
 /* 801EAB34 001E7A74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EAB38 001E7A78  7C 08 02 A6 */	mflr r0
 /* 801EAB3C 001E7A7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1443,9 +1478,9 @@ changeMaterial__Q34Game8ItemCave4ItemFv:
 /* 801EAB84 001E7AC4  7C 08 03 A6 */	mtlr r0
 /* 801EAB88 001E7AC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EAB8C 001E7ACC  4E 80 00 20 */	blr 
+.endfn changeMaterial__Q34Game8ItemCave4ItemFv
 
-.global createLightEvent__Q34Game8ItemCave4ItemFv
-createLightEvent__Q34Game8ItemCave4ItemFv:
+.fn createLightEvent__Q34Game8ItemCave4ItemFv, global
 /* 801EAB90 001E7AD0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801EAB94 001E7AD4  7C 08 02 A6 */	mflr r0
 /* 801EAB98 001E7AD8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1530,17 +1565,17 @@ createLightEvent__Q34Game8ItemCave4ItemFv:
 /* 801EACD0 001E7C10  7C 08 03 A6 */	mtlr r0
 /* 801EACD4 001E7C14  38 21 00 50 */	addi r1, r1, 0x50
 /* 801EACD8 001E7C18  4E 80 00 20 */	blr 
+.endfn createLightEvent__Q34Game8ItemCave4ItemFv
 
-.global do_setLODParm__Q34Game8ItemCave4ItemFRQ24Game9AILODParm
-do_setLODParm__Q34Game8ItemCave4ItemFRQ24Game9AILODParm:
+.fn do_setLODParm__Q34Game8ItemCave4ItemFRQ24Game9AILODParm, global
 /* 801EACDC 001E7C1C  C0 22 B7 10 */	lfs f1, lbl_80519A70@sda21(r2)
 /* 801EACE0 001E7C20  C0 02 B7 14 */	lfs f0, lbl_80519A74@sda21(r2)
 /* 801EACE4 001E7C24  D0 24 00 00 */	stfs f1, 0(r4)
 /* 801EACE8 001E7C28  D0 04 00 04 */	stfs f0, 4(r4)
 /* 801EACEC 001E7C2C  4E 80 00 20 */	blr 
+.endfn do_setLODParm__Q34Game8ItemCave4ItemFRQ24Game9AILODParm
 
-.global doAI__Q34Game8ItemCave4ItemFv
-doAI__Q34Game8ItemCave4ItemFv:
+.fn doAI__Q34Game8ItemCave4ItemFv, global
 /* 801EACF0 001E7C30  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801EACF4 001E7C34  7C 08 02 A6 */	mflr r0
 /* 801EACF8 001E7C38  38 A0 00 00 */	li r5, 0
@@ -1680,9 +1715,9 @@ doAI__Q34Game8ItemCave4ItemFv:
 /* 801EAEF8 001E7E38  7C 08 03 A6 */	mtlr r0
 /* 801EAEFC 001E7E3C  38 21 00 30 */	addi r1, r1, 0x30
 /* 801EAF00 001E7E40  4E 80 00 20 */	blr 
+.endfn doAI__Q34Game8ItemCave4ItemFv
 
-.global getCaveOtakaraNum__Q34Game8ItemCave4ItemFv
-getCaveOtakaraNum__Q34Game8ItemCave4ItemFv:
+.fn getCaveOtakaraNum__Q34Game8ItemCave4ItemFv, global
 /* 801EAF04 001E7E44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EAF08 001E7E48  7C 08 02 A6 */	mflr r0
 /* 801EAF0C 001E7E4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1709,9 +1744,9 @@ getCaveOtakaraNum__Q34Game8ItemCave4ItemFv:
 /* 801EAF58 001E7E98  7C 08 03 A6 */	mtlr r0
 /* 801EAF5C 001E7E9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EAF60 001E7EA0  4E 80 00 20 */	blr 
+.endfn getCaveOtakaraNum__Q34Game8ItemCave4ItemFv
 
-.global getCaveOtakaraMax__Q34Game8ItemCave4ItemFv
-getCaveOtakaraMax__Q34Game8ItemCave4ItemFv:
+.fn getCaveOtakaraMax__Q34Game8ItemCave4ItemFv, global
 /* 801EAF64 001E7EA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EAF68 001E7EA8  7C 08 02 A6 */	mflr r0
 /* 801EAF6C 001E7EAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1738,9 +1773,9 @@ getCaveOtakaraMax__Q34Game8ItemCave4ItemFv:
 /* 801EAFB8 001E7EF8  7C 08 03 A6 */	mtlr r0
 /* 801EAFBC 001E7EFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EAFC0 001E7F00  4E 80 00 20 */	blr 
+.endfn getCaveOtakaraMax__Q34Game8ItemCave4ItemFv
 
-.global complete__Q34Game8ItemCave4ItemFv
-complete__Q34Game8ItemCave4ItemFv:
+.fn complete__Q34Game8ItemCave4ItemFv, global
 /* 801EAFC4 001E7F04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EAFC8 001E7F08  7C 08 02 A6 */	mflr r0
 /* 801EAFCC 001E7F0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1790,9 +1825,9 @@ complete__Q34Game8ItemCave4ItemFv:
 /* 801EB06C 001E7FAC  7C 08 03 A6 */	mtlr r0
 /* 801EB070 001E7FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EB074 001E7FB4  4E 80 00 20 */	blr 
+.endfn complete__Q34Game8ItemCave4ItemFv
 
-.global doDirectDraw__Q34Game8ItemCave4ItemFR8Graphics
-doDirectDraw__Q34Game8ItemCave4ItemFR8Graphics:
+.fn doDirectDraw__Q34Game8ItemCave4ItemFR8Graphics, global
 /* 801EB078 001E7FB8  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 801EB07C 001E7FBC  7C 08 02 A6 */	mflr r0
 /* 801EB080 001E7FC0  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1921,9 +1956,9 @@ doDirectDraw__Q34Game8ItemCave4ItemFR8Graphics:
 /* 801EB25C 001E819C  7C 08 03 A6 */	mtlr r0
 /* 801EB260 001E81A0  38 21 00 80 */	addi r1, r1, 0x80
 /* 801EB264 001E81A4  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game8ItemCave4ItemFR8Graphics
 
-.global __ct__Q34Game8ItemCave3MgrFv
-__ct__Q34Game8ItemCave3MgrFv:
+.fn __ct__Q34Game8ItemCave3MgrFv, global
 /* 801EB268 001E81A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EB26C 001E81AC  7C 08 02 A6 */	mflr r0
 /* 801EB270 001E81B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1956,9 +1991,9 @@ __ct__Q34Game8ItemCave3MgrFv:
 /* 801EB2D8 001E8218  7C 08 03 A6 */	mtlr r0
 /* 801EB2DC 001E821C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EB2E0 001E8220  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game8ItemCave3MgrFv
 
-.global onLoadResources__Q34Game8ItemCave3MgrFv
-onLoadResources__Q34Game8ItemCave3MgrFv:
+.fn onLoadResources__Q34Game8ItemCave3MgrFv, global
 /* 801EB2E4 001E8224  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EB2E8 001E8228  7C 08 02 A6 */	mflr r0
 /* 801EB2EC 001E822C  3C 80 80 48 */	lis r4, lbl_80480F98@ha
@@ -2016,9 +2051,9 @@ onLoadResources__Q34Game8ItemCave3MgrFv:
 /* 801EB3BC 001E82FC  7C 08 03 A6 */	mtlr r0
 /* 801EB3C0 001E8300  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EB3C4 001E8304  4E 80 00 20 */	blr 
+.endfn onLoadResources__Q34Game8ItemCave3MgrFv
 
-.global setup__Q34Game8ItemCave3MgrFPQ24Game8BaseItem
-setup__Q34Game8ItemCave3MgrFPQ24Game8BaseItem:
+.fn setup__Q34Game8ItemCave3MgrFPQ24Game8BaseItem, global
 /* 801EB3C8 001E8308  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EB3CC 001E830C  7C 08 02 A6 */	mflr r0
 /* 801EB3D0 001E8310  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2049,9 +2084,9 @@ setup__Q34Game8ItemCave3MgrFPQ24Game8BaseItem:
 /* 801EB430 001E8370  7C 08 03 A6 */	mtlr r0
 /* 801EB434 001E8374  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EB438 001E8378  4E 80 00 20 */	blr 
+.endfn setup__Q34Game8ItemCave3MgrFPQ24Game8BaseItem
 
-.global generatorNewItemParm__Q34Game8ItemCave3MgrFv
-generatorNewItemParm__Q34Game8ItemCave3MgrFv:
+.fn generatorNewItemParm__Q34Game8ItemCave3MgrFv, global
 /* 801EB43C 001E837C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EB440 001E8380  7C 08 02 A6 */	mflr r0
 /* 801EB444 001E8384  38 60 01 CC */	li r3, 0x1cc
@@ -2067,9 +2102,9 @@ generatorNewItemParm__Q34Game8ItemCave3MgrFv:
 /* 801EB468 001E83A8  7C 08 03 A6 */	mtlr r0
 /* 801EB46C 001E83AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EB470 001E83B0  4E 80 00 20 */	blr 
+.endfn generatorNewItemParm__Q34Game8ItemCave3MgrFv
 
-.global __ct__11GenCaveParmFv
-__ct__11GenCaveParmFv:
+.fn __ct__11GenCaveParmFv, weak
 /* 801EB474 001E83B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EB478 001E83B8  7C 08 02 A6 */	mflr r0
 /* 801EB47C 001E83BC  3C 80 80 4B */	lis r4, __vt__Q24Game11GenItemParm@ha
@@ -2138,9 +2173,9 @@ __ct__11GenCaveParmFv:
 /* 801EB574 001E84B4  7C 08 03 A6 */	mtlr r0
 /* 801EB578 001E84B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EB57C 001E84BC  4E 80 00 20 */	blr 
+.endfn __ct__11GenCaveParmFv
 
-.global generatorWrite__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParm
-generatorWrite__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParm:
+.fn generatorWrite__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParm, global
 /* 801EB580 001E84C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EB584 001E84C4  7C 08 02 A6 */	mflr r0
 /* 801EB588 001E84C8  3C 60 80 48 */	lis r3, lbl_80480F98@ha
@@ -2198,9 +2233,9 @@ generatorWrite__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParm:
 /* 801EB654 001E8594  7C 08 03 A6 */	mtlr r0
 /* 801EB658 001E8598  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EB65C 001E859C  4E 80 00 20 */	blr 
+.endfn generatorWrite__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParm
 
-.global generatorRead__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParmUl
-generatorRead__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParmUl:
+.fn generatorRead__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParmUl, global
 /* 801EB660 001E85A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EB664 001E85A4  7C 08 02 A6 */	mflr r0
 /* 801EB668 001E85A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2340,9 +2375,9 @@ generatorRead__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParmUl:
 /* 801EB86C 001E87AC  7C 08 03 A6 */	mtlr r0
 /* 801EB870 001E87B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EB874 001E87B4  4E 80 00 20 */	blr 
+.endfn generatorRead__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParmUl
 
-.global "generatorBirth__Q34Game8ItemCave3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-"generatorBirth__Q34Game8ItemCave3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm":
+.fn "generatorBirth__Q34Game8ItemCave3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm", global
 /* 801EB878 001E87B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EB87C 001E87BC  7C 08 02 A6 */	mflr r0
 /* 801EB880 001E87C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2407,9 +2442,9 @@ generatorRead__Q34Game8ItemCave3MgrFR6StreamPQ24Game11GenItemParmUl:
 /* 801EB968 001E88A8  7C 08 03 A6 */	mtlr r0
 /* 801EB96C 001E88AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EB970 001E88B0  4E 80 00 20 */	blr 
+.endfn "generatorBirth__Q34Game8ItemCave3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
 
-.global __as__Q34Game8ItemCave7FogParmFRCQ34Game8ItemCave7FogParm
-__as__Q34Game8ItemCave7FogParmFRCQ34Game8ItemCave7FogParm:
+.fn __as__Q34Game8ItemCave7FogParmFRCQ34Game8ItemCave7FogParm, weak
 /* 801EB974 001E88B4  80 04 00 04 */	lwz r0, 4(r4)
 /* 801EB978 001E88B8  80 A4 00 08 */	lwz r5, 8(r4)
 /* 801EB97C 001E88BC  90 03 00 04 */	stw r0, 4(r3)
@@ -2595,9 +2630,9 @@ __as__Q34Game8ItemCave7FogParmFRCQ34Game8ItemCave7FogParm:
 /* 801EBC4C 001E8B8C  D0 23 01 70 */	stfs f1, 0x170(r3)
 /* 801EBC50 001E8B90  D0 03 01 74 */	stfs f0, 0x174(r3)
 /* 801EBC54 001E8B94  4E 80 00 20 */	blr 
+.endfn __as__Q34Game8ItemCave7FogParmFRCQ34Game8ItemCave7FogParm
 
-.global __dt__Q34Game8ItemCave3MgrFv
-__dt__Q34Game8ItemCave3MgrFv:
+.fn __dt__Q34Game8ItemCave3MgrFv, weak
 /* 801EBC58 001E8B98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EBC5C 001E8B9C  7C 08 02 A6 */	mflr r0
 /* 801EBC60 001E8BA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2679,9 +2714,9 @@ __dt__Q34Game8ItemCave3MgrFv:
 /* 801EBD80 001E8CC0  7C 08 03 A6 */	mtlr r0
 /* 801EBD84 001E8CC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EBD88 001E8CC8  4E 80 00 20 */	blr 
+.endfn __dt__Q34Game8ItemCave3MgrFv
 
-.global doNew__Q34Game8ItemCave3MgrFv
-doNew__Q34Game8ItemCave3MgrFv:
+.fn doNew__Q34Game8ItemCave3MgrFv, weak
 /* 801EBD8C 001E8CCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EBD90 001E8CD0  7C 08 02 A6 */	mflr r0
 /* 801EBD94 001E8CD4  38 60 03 88 */	li r3, 0x388
@@ -2697,31 +2732,31 @@ doNew__Q34Game8ItemCave3MgrFv:
 /* 801EBDB8 001E8CF8  7C 08 03 A6 */	mtlr r0
 /* 801EBDBC 001E8CFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EBDC0 001E8D00  4E 80 00 20 */	blr 
+.endfn doNew__Q34Game8ItemCave3MgrFv
 
-.global generatorGetID__Q34Game8ItemCave3MgrFv
-generatorGetID__Q34Game8ItemCave3MgrFv:
+.fn generatorGetID__Q34Game8ItemCave3MgrFv, weak
 /* 801EBDC4 001E8D04  3C 60 63 61 */	lis r3, 0x63617665@ha
 /* 801EBDC8 001E8D08  38 63 76 65 */	addi r3, r3, 0x63617665@l
 /* 801EBDCC 001E8D0C  4E 80 00 20 */	blr 
+.endfn generatorGetID__Q34Game8ItemCave3MgrFv
 
-.global generatorLocalVersion__Q34Game8ItemCave3MgrFv
-generatorLocalVersion__Q34Game8ItemCave3MgrFv:
+.fn generatorLocalVersion__Q34Game8ItemCave3MgrFv, weak
 /* 801EBDD0 001E8D10  3C 60 30 30 */	lis r3, 0x30303032@ha
 /* 801EBDD4 001E8D14  38 63 30 32 */	addi r3, r3, 0x30303032@l
 /* 801EBDD8 001E8D18  4E 80 00 20 */	blr 
+.endfn generatorLocalVersion__Q34Game8ItemCave3MgrFv
 
-.global getCreatureName__Q34Game8ItemCave4ItemFv
-getCreatureName__Q34Game8ItemCave4ItemFv:
+.fn getCreatureName__Q34Game8ItemCave4ItemFv, weak
 /* 801EBDDC 001E8D1C  38 62 B7 20 */	addi r3, r2, lbl_80519A80@sda21
 /* 801EBDE0 001E8D20  4E 80 00 20 */	blr 
+.endfn getCreatureName__Q34Game8ItemCave4ItemFv
 
-.global getFaceDir__Q34Game8ItemCave4ItemFv
-getFaceDir__Q34Game8ItemCave4ItemFv:
+.fn getFaceDir__Q34Game8ItemCave4ItemFv, weak
 /* 801EBDE4 001E8D24  C0 23 01 FC */	lfs f1, 0x1fc(r3)
 /* 801EBDE8 001E8D28  4E 80 00 20 */	blr 
+.endfn getFaceDir__Q34Game8ItemCave4ItemFv
 
-.global "doAI__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>Fv"
-"doAI__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>Fv":
+.fn "doAI__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>Fv", weak
 /* 801EBDEC 001E8D2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EBDF0 001E8D30  7C 08 02 A6 */	mflr r0
 /* 801EBDF4 001E8D34  7C 64 1B 78 */	mr r4, r3
@@ -2735,49 +2770,49 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EBE14 001E8D54  7C 08 03 A6 */	mtlr r0
 /* 801EBE18 001E8D58  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EBE1C 001E8D5C  4E 80 00 20 */	blr 
+.endfn "doAI__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>Fv"
 
-.global "onDamage__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Itemf"
-"onDamage__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Itemf":
+.fn "onDamage__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Itemf", weak
 /* 801EBE20 001E8D60  4E 80 00 20 */	blr 
+.endfn "onDamage__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Itemf"
 
-.global "onKeyEvent__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRCQ28SysShape8KeyEvent", weak
 /* 801EBE24 001E8D64  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRCQ28SysShape8KeyEvent"
 
-.global "onBounce__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ23Sys8Triangle"
-"onBounce__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ23Sys8Triangle":
+.fn "onBounce__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ23Sys8Triangle", weak
 /* 801EBE28 001E8D68  4E 80 00 20 */	blr 
+.endfn "onBounce__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ23Sys8Triangle"
 
-.global "onPlatCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9PlatEvent"
-"onPlatCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9PlatEvent":
+.fn "onPlatCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9PlatEvent", weak
 /* 801EBE2C 001E8D6C  4E 80 00 20 */	blr 
+.endfn "onPlatCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9PlatEvent"
 
-.global "onCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9CollEvent"
-"onCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9CollEvent":
+.fn "onCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9CollEvent", weak
 /* 801EBE30 001E8D70  4E 80 00 20 */	blr 
+.endfn "onCollision__Q24Game32ItemState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemRQ24Game9CollEvent"
 
-.global "init__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ24Game8StateArg"
-"init__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ24Game8StateArg":
+.fn "init__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ24Game8StateArg", weak
 /* 801EBE34 001E8D74  4E 80 00 20 */	blr 
+.endfn "init__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemPQ24Game8StateArg"
 
-.global "exec__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
-"exec__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item":
+.fn "exec__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item", weak
 /* 801EBE38 001E8D78  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 
-.global "cleanup__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
-"cleanup__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item":
+.fn "cleanup__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item", weak
 /* 801EBE3C 001E8D7C  4E 80 00 20 */	blr 
+.endfn "cleanup__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 
-.global "resume__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
-"resume__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item":
+.fn "resume__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item", weak
 /* 801EBE40 001E8D80  4E 80 00 20 */	blr 
+.endfn "resume__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 
-.global "restart__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
-"restart__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item":
+.fn "restart__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item", weak
 /* 801EBE44 001E8D84  4E 80 00 20 */	blr 
+.endfn "restart__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 
-.global "transit__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
-"transit__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg":
+.fn "transit__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg", weak
 /* 801EBE48 001E8D88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EBE4C 001E8D8C  7C 08 02 A6 */	mflr r0
 /* 801EBE50 001E8D90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2790,13 +2825,13 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EBE6C 001E8DAC  7C 08 03 A6 */	mtlr r0
 /* 801EBE70 001E8DB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EBE74 001E8DB4  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game31FSMState<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
 
-.global "init__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
-"init__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item":
+.fn "init__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item", weak
 /* 801EBE78 001E8DB8  4E 80 00 20 */	blr 
+.endfn "init__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 
-.global "create__Q24Game35StateMachine<Q34Game8ItemCave4Item>Fi"
-"create__Q24Game35StateMachine<Q34Game8ItemCave4Item>Fi":
+.fn "create__Q24Game35StateMachine<Q34Game8ItemCave4Item>Fi", weak
 /* 801EBE7C 001E8DBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EBE80 001E8DC0  7C 08 02 A6 */	mflr r0
 /* 801EBE84 001E8DC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2822,14 +2857,14 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EBED4 001E8E14  7C 08 03 A6 */	mtlr r0
 /* 801EBED8 001E8E18  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EBEDC 001E8E1C  4E 80 00 20 */	blr 
+.endfn "create__Q24Game35StateMachine<Q34Game8ItemCave4Item>Fi"
 
-.global "size__8Parm<Uc>Fv"
-"size__8Parm<Uc>Fv":
+.fn "size__8Parm<Uc>Fv", weak
 /* 801EBEE0 001E8E20  38 60 00 01 */	li r3, 1
 /* 801EBEE4 001E8E24  4E 80 00 20 */	blr 
+.endfn "size__8Parm<Uc>Fv"
 
-.global "transit__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
-"transit__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg":
+.fn "transit__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg", weak
 /* 801EBEE8 001E8E28  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801EBEEC 001E8E2C  7C 08 02 A6 */	mflr r0
 /* 801EBEF0 001E8E30  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2872,9 +2907,9 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EBF78 001E8EB8  7C 08 03 A6 */	mtlr r0
 /* 801EBF7C 001E8EBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801EBF80 001E8EC0  4E 80 00 20 */	blr 
+.endfn "transit__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
 
-.global "registerState__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ24Game31FSMState<Q34Game8ItemCave4Item>"
-"registerState__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ24Game31FSMState<Q34Game8ItemCave4Item>":
+.fn "registerState__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ24Game31FSMState<Q34Game8ItemCave4Item>", weak
 /* 801EBF84 001E8EC4  80 C3 00 08 */	lwz r6, 8(r3)
 /* 801EBF88 001E8EC8  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 801EBF8C 001E8ECC  7C 06 00 00 */	cmpw r6, r0
@@ -2911,9 +2946,9 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EBFFC 001E8F3C  38 04 00 01 */	addi r0, r4, 1
 /* 801EC000 001E8F40  90 03 00 08 */	stw r0, 8(r3)
 /* 801EC004 001E8F44  4E 80 00 20 */	blr 
+.endfn "registerState__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ24Game31FSMState<Q34Game8ItemCave4Item>"
 
-.global "exec__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
-"exec__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item":
+.fn "exec__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item", weak
 /* 801EC008 001E8F48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC00C 001E8F4C  7C 08 02 A6 */	mflr r0
 /* 801EC010 001E8F50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2929,9 +2964,9 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EC034 001E8F74  7C 08 03 A6 */	mtlr r0
 /* 801EC038 001E8F78  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC03C 001E8F7C  4E 80 00 20 */	blr 
+.endfn "exec__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4Item"
 
-.global "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent"
-"onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent":
+.fn "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent", weak
 /* 801EC040 001E8F80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC044 001E8F84  7C 08 02 A6 */	mflr r0
 /* 801EC048 001E8F88  7C 66 1B 78 */	mr r6, r3
@@ -2950,9 +2985,9 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EC078 001E8FB8  7C 08 03 A6 */	mtlr r0
 /* 801EC07C 001E8FBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC080 001E8FC0  4E 80 00 20 */	blr 
+.endfn "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent"
 
-.global "platCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRQ24Game9PlatEvent"
-"platCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRQ24Game9PlatEvent":
+.fn "platCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRQ24Game9PlatEvent", weak
 /* 801EC084 001E8FC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC088 001E8FC8  7C 08 02 A6 */	mflr r0
 /* 801EC08C 001E8FCC  7C 66 1B 78 */	mr r6, r3
@@ -2971,9 +3006,9 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EC0BC 001E8FFC  7C 08 03 A6 */	mtlr r0
 /* 801EC0C0 001E9000  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC0C4 001E9004  4E 80 00 20 */	blr 
+.endfn "platCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRQ24Game9PlatEvent"
 
-.global "collisionCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRQ24Game9CollEvent"
-"collisionCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRQ24Game9CollEvent":
+.fn "collisionCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRQ24Game9CollEvent", weak
 /* 801EC0C8 001E9008  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC0CC 001E900C  7C 08 02 A6 */	mflr r0
 /* 801EC0D0 001E9010  7C 66 1B 78 */	mr r6, r3
@@ -2992,9 +3027,9 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EC100 001E9040  7C 08 03 A6 */	mtlr r0
 /* 801EC104 001E9044  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC108 001E9048  4E 80 00 20 */	blr 
+.endfn "collisionCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRQ24Game9CollEvent"
 
-.global "bounceCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FPQ23Sys8Triangle"
-"bounceCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FPQ23Sys8Triangle":
+.fn "bounceCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FPQ23Sys8Triangle", weak
 /* 801EC10C 001E904C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801EC110 001E9050  7C 08 02 A6 */	mflr r0
 /* 801EC114 001E9054  7C 66 1B 78 */	mr r6, r3
@@ -3013,9 +3048,9 @@ getFaceDir__Q34Game8ItemCave4ItemFv:
 /* 801EC144 001E9084  7C 08 03 A6 */	mtlr r0
 /* 801EC148 001E9088  38 21 00 10 */	addi r1, r1, 0x10
 /* 801EC14C 001E908C  4E 80 00 20 */	blr 
+.endfn "bounceCallback__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FPQ23Sys8Triangle"
 
-.global __sinit_itemCave_cpp
-__sinit_itemCave_cpp:
+.fn __sinit_itemCave_cpp, local
 /* 801EC150 001E9090  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801EC154 001E9094  38 00 FF FF */	li r0, -1
 /* 801EC158 001E9098  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3026,13 +3061,14 @@ __sinit_itemCave_cpp:
 /* 801EC16C 001E90AC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801EC170 001E90B0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801EC174 001E90B4  4E 80 00 20 */	blr 
+.endfn __sinit_itemCave_cpp
 
-.global "@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent"
-"@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent":
+.fn "@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent", weak
 /* 801EC178 001E90B8  38 63 FE 88 */	addi r3, r3, -376
 /* 801EC17C 001E90BC  4B FF FE C4 */	b "onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent"
+.endfn "@376@onKeyEvent__Q24Game74FSMItem<Q34Game8ItemCave4Item,Q34Game8ItemCave3FSM,Q34Game8ItemCave5State>FRCQ28SysShape8KeyEvent"
 
-.global "@48@__dt__Q34Game8ItemCave3MgrFv"
-"@48@__dt__Q34Game8ItemCave3MgrFv":
+.fn "@48@__dt__Q34Game8ItemCave3MgrFv", weak
 /* 801EC180 001E90C0  38 63 FF D0 */	addi r3, r3, -48
 /* 801EC184 001E90C4  4B FF FA D4 */	b __dt__Q34Game8ItemCave3MgrFv
+.endfn "@48@__dt__Q34Game8ItemCave3MgrFv"
