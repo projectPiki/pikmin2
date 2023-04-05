@@ -54,7 +54,7 @@ struct Obj : public EnemyBase {
 
 	void lifeIncrement();
 	void attackPikmin();
-	void getSlotPikiNum();
+	int getSlotPikiNum();
 	void killSlotPiki();
 	void resetBridgeSearch();
 	void setBridgeSearch();
