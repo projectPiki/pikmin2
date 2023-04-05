@@ -1,6 +1,7 @@
 #include "Game/Entities/Armor.h"
 #include "Game/Entities/ItemBridge.h"
 #include "Game/EnemyFunc.h"
+//#include "Game/ConditionNotStick.h"
 #include "efx/TYoroi.h"
 
 namespace Game {
@@ -675,51 +676,21 @@ lbl_8027E264:
  * Address:	8027E2BC
  * Size:	00008C
  */
-void Obj::getSlotPikiNum()
+int Obj::getSlotPikiNum()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x25c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 0(r3)
-	li       r28, 0
-	mr       r29, r3
-	b        lbl_8027E31C
+	int count = 0;
+	MouthSlots* mouthSlots = getMouthSlots();
+	int max = mouthSlots->getMax();
+	
+	for (int i = 0; i < max; i++){
+		MouthCollPart* part = mouthSlots->getSlot(i);
 
-lbl_8027E2FC:
-	mr       r3, r29
-	mr       r4, r28
-	bl       getSlot__10MouthSlotsFi
-	lwz      r0, 0x64(r3)
-	cmplwi   r0, 0
-	beq      lbl_8027E318
-	addi     r30, r30, 1
+		if (part->mStuckCreature != nullptr){
+			count++;
+		}
+	}
 
-lbl_8027E318:
-	addi     r28, r28, 1
-
-lbl_8027E31C:
-	cmpw     r28, r31
-	blt      lbl_8027E2FC
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return count;
 }
 
 /*
@@ -729,20 +700,7 @@ lbl_8027E31C:
  */
 void Obj::killSlotPiki()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0xc0(r3)
-	lfs      f1, 0x81c(r5)
-	bl
-	"swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Game::EnemyFunc::swallowPikmin(this, ((Parms*)mParms)->mProperParms.mPoisonDamage.mValue, nullptr);
 }
 
 /*
