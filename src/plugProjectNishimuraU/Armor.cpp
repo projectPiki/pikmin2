@@ -700,7 +700,7 @@ int Obj::getSlotPikiNum()
  */
 void Obj::killSlotPiki()
 {
-	Game::EnemyFunc::swallowPikmin(this, ((Parms*)mParms)->mProperParms.mPoisonDamage.mValue, nullptr);
+	Game::EnemyFunc::swallowPikmin(this, CG_PROPERPARMS(this).mPoisonDamage.mValue, nullptr);
 }
 
 /*
