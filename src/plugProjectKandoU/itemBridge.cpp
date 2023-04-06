@@ -1,5 +1,4 @@
 #include "types.h"
-#include "JSystem/JMath.h"
 #include "Game/Entities/ItemBridge.h"
 #include "Game/StateMachine.h"
 #include "trig.h"
