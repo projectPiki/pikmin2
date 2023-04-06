@@ -978,7 +978,7 @@ void Item::onInit(Game::CreatureInitArg* settings)
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->makeDL();
 	mModel->mJ3dModel->lock();
-	mStateMachine->start(this, ITEM_BRIDGE_STATE_NORMAL, nullptr);
+	mFsm->start(this, ITEM_BRIDGE_STATE_NORMAL, nullptr);
 	setAlive(true);
 
 	_1F4 = 0.0f;
