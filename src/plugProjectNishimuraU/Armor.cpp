@@ -1,7 +1,6 @@
 #include "Game/Entities/Armor.h"
 #include "Game/Entities/ItemBridge.h"
 #include "Game/EnemyFunc.h"
-//#include "Game/ConditionNotStick.h"
 #include "efx/TYoroi.h"
 
 namespace Game {
@@ -683,9 +682,7 @@ int Obj::getSlotPikiNum()
 	int max = mouthSlots->getMax();
 	
 	for (int i = 0; i < max; i++){
-		MouthCollPart* part = mouthSlots->getSlot(i);
-
-		if (part->mStuckCreature != nullptr){
+		if (mouthSlots->getSlot(i)->mStuckCreature){
 			count++;
 		}
 	}
