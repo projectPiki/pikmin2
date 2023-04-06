@@ -1,7 +1,8 @@
 #include "types.h"
-
+#include "JSystem/JMath.h"
 #include "Game/Entities/ItemBridge.h"
 #include "Game/StateMachine.h"
+#include "trig.h"
 
 /*
     Generated from dpostproc
@@ -978,7 +979,7 @@ void Item::onInit(Game::CreatureInitArg* settings)
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->makeDL();
 	mModel->mJ3dModel->lock();
-	mStateMachine->start(this, ITEM_BRIDGE_STATE_NORMAL, nullptr);
+	mFsm->start(this, ITEM_BRIDGE_STATE_NORMAL, nullptr);
 	setAlive(true);
 
 	_1F4 = 0.0f;
@@ -2182,128 +2183,24 @@ void Item::update()
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801EF038
-//  * Size:	0000A4
-//  */
-// void ItemBridge::Item::getBridgeZVec()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	lfs      f3, 0x433001F4@l(r4)
-// 	fmr      f1, f3
-// 	fcmpo    cr0, f3, f0
-// 	bge      lbl_801EF054
-// 	fneg     f1, f3
+/*
+ * --INFO--
+ * Address:	801EF038
+ * Size:	0000A4
+ */
+Vector3f Game::ItemBridge::Item::getBridgeZVec()
+{
+     return Vector3f(pikmin2_sinf(_1F4), 0.0f, pikmin2_cosf(_1F4));
+}
 
-// lbl_801EF054:
-// 	lfs      f2, lbl_80519B54@sda21(r2)
-// 	lis      r4, sincosTable___5JMath@ha
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	addi     r5, r4, sincosTable___5JMath@l
-// 	fmuls    f1, f1, f2
-// 	fcmpo    cr0, f3, f0
-// 	fctiwz   f0, f1
-// 	stfd     f0, 8(r1)
-// 	lwz      r0, 0xc(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	add      r4, r5, r0
-// 	lfs      f1, 4(r4)
-// 	bge      lbl_801EF0AC
-// 	lfs      f0, lbl_80519B58@sda21(r2)
-// 	fmuls    f0, f3, f0
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x10(r1)
-// 	lwz      r0, 0x14(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f0, r5, r0
-// 	fneg     f0, f0
-// 	b        lbl_801EF0C4
-
-// lbl_801EF0AC:
-// 	fmuls    f0, f3, f2
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x18(r1)
-// 	lwz      r0, 0x1c(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f0, r5, r0
-
-// lbl_801EF0C4:
-// 	stfs     f0, 0(r3)
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	stfs     f0, 4(r3)
-// 	stfs     f1, 8(r3)
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EF0DC
-//  * Size:	0000B8
-//  */
-// void ItemBridge::Item::getBridgeXVec()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	lfs      f3, 0x1f4(r4)
-// 	fcmpo    cr0, f3, f0
-// 	bge      lbl_801EF11C
-// 	lfs      f0, lbl_80519B58@sda21(r2)
-// 	lis      r4, sincosTable___5JMath@ha
-// 	addi     r4, r4, sincosTable___5JMath@l
-// 	fmuls    f0, f3, f0
-// 	fctiwz   f0, f0
-// 	stfd     f0, 8(r1)
-// 	lwz      r0, 0xc(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f0, r4, r0
-// 	fneg     f1, f0
-// 	b        lbl_801EF140
-
-// lbl_801EF11C:
-// 	lfs      f0, lbl_80519B54@sda21(r2)
-// 	lis      r4, sincosTable___5JMath@ha
-// 	addi     r4, r4, sincosTable___5JMath@l
-// 	fmuls    f0, f3, f0
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x10(r1)
-// 	lwz      r0, 0x14(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f1, r4, r0
-
-// lbl_801EF140:
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fneg     f2, f1
-// 	fcmpo    cr0, f3, f0
-// 	bge      lbl_801EF154
-// 	fneg     f3, f3
-
-// lbl_801EF154:
-// 	lfs      f1, lbl_80519B54@sda21(r2)
-// 	lis      r4, sincosTable___5JMath@ha
-// 	addi     r4, r4, sincosTable___5JMath@l
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fmuls    f1, f3, f1
-// 	fctiwz   f1, f1
-// 	stfd     f1, 0x18(r1)
-// 	lwz      r0, 0x1c(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	add      r4, r4, r0
-// 	lfs      f1, 4(r4)
-// 	stfs     f1, 0(r3)
-// 	stfs     f0, 4(r3)
-// 	stfs     f2, 8(r3)
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// } // namespace Game
+/*
+ * --INFO--
+ * Address:	801EF0DC
+ * Size:	0000B8
+ */
+Vector3f Game::ItemBridge::Item::getBridgeXVec(){
+     return Vector3f(pikmin2_cosf(_1F4), 0.0f, -pikmin2_sinf(_1F4));
+}
 
 // /*
 //  * --INFO--
