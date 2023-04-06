@@ -112,8 +112,8 @@ struct Item : public WorkItem<Item, FSM, State> {
 	void getStartPos();
 	void getStageZ(int);
 	void getStageWidth();
-	void getBridgeZVec();
-	void getBridgeXVec();
+	Vector3f getBridgeZVec();
+	Vector3f getBridgeXVec();
 	void getBridgePos(Vector3f&, f32&, f32&);
 	void workable(Vector3f&);
 
@@ -121,7 +121,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	// _00-_1EC = WorkItem
 	int _1EC;                                   // _1EC, mabiki? might be size 0x8?
 	int _1F0;                                   // _1F0, unknown
-	f32 _1F4;                                   // _1F4
+	f32 _1F4;                                   // _1F4, might be a vertical rotation angle, used in getBridgeZVec. Name proposition: mRotationY (if Y is the vertical axis in Pikmin 2)
 	u8 _1F8;                                    // _1F8
 	WayPoint* _1FC;                             // _1FC
 	WayPoint* _200;                             // _200
