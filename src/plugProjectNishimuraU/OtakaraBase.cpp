@@ -407,15 +407,12 @@ Pellet* OtakaraBase::Obj::getNearestTreasure()
 	f32 sightRadius  = C_PARMS->mGeneral.mSightRadius.mValue;
 	f32 minDist      = sightRadius * sightRadius;
 	PelletIterator iterator;
-	iterator.first();
-
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		Pellet* pellet = (Pellet*)(*iterator);
 		if (pellet->isAlive() && (pellet->mCaptureMatrix == nullptr && pellet->isPickable())) {
 			Vector3f position = pellet->getPosition();
-			Vector3f sep      = position - mHomePosition;
-			f32 territory     = C_PARMS->mGeneral.mTerritoryRadius.mValue;
-			if ((SQUARE(sep.x) + SQUARE(sep.z)) < SQUARE(territory)) {
+			if (sqrDistanceXZ(position, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
 				Vector3f sep2 = mPosition;
 				sep2 -= position;
 				f32 dist2D = SQUARE(sep2.x) + SQUARE(sep2.z);
@@ -425,99 +422,8 @@ Pellet* OtakaraBase::Obj::getNearestTreasure()
 				}
 			}
 		}
-		iterator.next();
 	}
 	return treasure;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r3
-	addi     r3, r1, 0x14
-	lwz      r4, 0xc0(r29)
-	li       r31, 0
-	lfs      f0, 0x3d4(r4)
-	fmuls    f31, f0, f0
-	bl       __ct__Q24Game14PelletIteratorFv
-	addi     r3, r1, 0x14
-	bl       first__Q24Game14PelletIteratorFv
-	b        lbl_802B6E70
-
-lbl_802B6DA8:
-	addi     r3, r1, 0x14
-	bl       __ml__Q24Game14PelletIteratorFv
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802B6E68
-	lwz      r0, 0xb8(r30)
-	cmplwi   r0, 0
-	bne      lbl_802B6E68
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1e4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802B6E68
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f4, 0x10(r1)
-	lfs      f0, 0x1a0(r29)
-	lwz      r3, 0xc0(r29)
-	fsubs    f2, f4, f0
-	lfs      f5, 8(r1)
-	lfs      f1, 0x198(r29)
-	lfs      f0, 0x35c(r3)
-	fsubs    f3, f5, f1
-	fmuls    f1, f2, f2
-	fmuls    f0, f0, f0
-	fmadds   f1, f3, f3, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_802B6E68
-	lfs      f0, 0x194(r29)
-	lfs      f1, 0x18c(r29)
-	fsubs    f0, f0, f4
-	fsubs    f1, f1, f5
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f31
-	bge      lbl_802B6E68
-	mr       r31, r30
-	fmr      f31, f0
-
-lbl_802B6E68:
-	addi     r3, r1, 0x14
-	bl       next__Q24Game14PelletIteratorFv
-
-lbl_802B6E70:
-	addi     r3, r1, 0x14
-	bl       isDone__Q24Game14PelletIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802B6DA8
-	mr       r3, r31
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -529,19 +435,22 @@ Vector3f Obj::getTargetPosition(Creature* target)
 {
 	Vector3f otakaraPosition = getPosition();
 	Vector3f targetPosition  = target->getPosition();
-	Vector3f sep             = otakaraPosition - targetPosition;
+	Vector3f homePos         = mHomePosition;
 
+	Vector3f sep = otakaraPosition - targetPosition;
+	sep.y        = 0.0f;
 	_normalise(sep);
-	Parms* parms = C_PARMS;
-	sep *= parms->mGeneral.mMoveSpeed.mValue;
 
+	sep *= C_PARMS->mGeneral.mMoveSpeed.mValue;
 	sep += otakaraPosition;
 
-	f32 territory = parms->mGeneral.mTerritoryRadius.mValue;
-	if ((sep.x * sep.x + sep.z * sep.z) < SQUARE(territory)) {
+	f32 territory = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+	if (sqrDistanceXZ(sep, homePos) > SQUARE(territory)) {
+		sep -= homePos;
+		sep.y = 0.0f;
 		_normalise(sep);
 		sep *= territory;
-		sep += mHomePosition;
+		sep += homePos;
 	}
 	return sep;
 	/*
@@ -688,7 +597,7 @@ void Obj::resetTreasure()
 	mBodyHeightOffset = 0.0f;
 	mCellRadius       = C_PARMS->mGeneral.mCellRadius.mValue;
 
-	CollPart* collpart  = mCollTree->getCollPart(0x626F6479);
+	CollPart* collpart  = mCollTree->getCollPart('body');
 	collpart->mRadius   = 10.0f;
 	collpart->mOffset.y = 0.0f;
 
@@ -706,89 +615,19 @@ void Obj::resetTreasure()
  */
 bool Obj::isTakeTreasure()
 {
-	if (mTargetCreature) {
-		Vector3f targetPos = mTargetCreature->getPosition();
+	Pellet* target = static_cast<Pellet*>(mTargetCreature);
+	if (target) {
+		Vector3f targetPos = target->getPosition();
+		f32 radius         = 20.0f + target->getPickRadius();
+		if (radius < 50.0f) {
+			radius = 50.0f;
+		}
+
+		if (_distanceBetween2(targetPos, mPosition) < radius) {
+			return true;
+		}
 	}
 	return false;
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stfd     f29, 0x20(r1)
-	psq_st   f29, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r31, 0x230(r3)
-	cmplwi   r31, 0
-	beq      lbl_802B71DC
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 8(r1)
-	mr       r3, r31
-	lfs      f30, 0xc(r1)
-	lfs      f29, 0x10(r1)
-	bl       getPickRadius__Q24Game6PelletFv
-	lfs      f2, lbl_8051C2BC@sda21(r2)
-	lfs      f0, lbl_8051C2AC@sda21(r2)
-	fadds    f5, f2, f1
-	fcmpo    cr0, f5, f0
-	bge      lbl_802B7184
-	fmr      f5, f0
-
-lbl_802B7184:
-	lfs      f0, 0x190(r30)
-	lfs      f2, 0x18c(r30)
-	fsubs    f3, f30, f0
-	lfs      f1, 0x194(r30)
-	fsubs    f2, f31, f2
-	lfs      f0, lbl_8051C290@sda21(r2)
-	fsubs    f1, f29, f1
-	fmuls    f3, f3, f3
-	fmuls    f4, f1, f1
-	fmadds   f1, f2, f2, f3
-	fadds    f1, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_802B71C8
-	ble      lbl_802B71CC
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_802B71CC
-
-lbl_802B71C8:
-	fmr      f1, f0
-
-lbl_802B71CC:
-	fcmpo    cr0, f1, f5
-	bge      lbl_802B71DC
-	li       r3, 1
-	b        lbl_802B71E0
-
-lbl_802B71DC:
-	li       r3, 0
-
-lbl_802B71E0:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	psq_l    f29, 40(r1), 0, qr0
-	lfd      f29, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -796,175 +635,37 @@ lbl_802B71E0:
  * Address:	802B7210
  * Size:	00024C
  */
-void Obj::takeTreasure()
+bool Obj::takeTreasure()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lwz      r30, 0x230(r3)
-	cmplwi   r30, 0
-	beq      lbl_802B7424
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802B73F4
-	lwz      r0, 0xb8(r30)
-	cmplwi   r0, 0
-	bne      lbl_802B73F4
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802B73F4
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1e4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802B73F4
-	lwz      r31, 0x230(r29)
-	cmplwi   r31, 0
-	beq      lbl_802B7358
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 8(r1)
-	mr       r3, r31
-	lfs      f30, 0xc(r1)
-	lfs      f29, 0x10(r1)
-	bl       getPickRadius__Q24Game6PelletFv
-	lfs      f2, lbl_8051C2BC@sda21(r2)
-	lfs      f0, lbl_8051C2AC@sda21(r2)
-	fadds    f3, f2, f1
-	fcmpo    cr0, f3, f0
-	bge      lbl_802B7300
-	fmr      f3, f0
+	Creature* target = mTargetCreature;
+	if (target) {
+		bool check;
+		if (target->isAlive() && !target->mCaptureMatrix && target->isPellet() && static_cast<Pellet*>(target)->isPickable()
+		    && isTakeTreasure()) {
+			mTreasure         = target;
+			mTreasureHealth   = C_PROPERPARMS.mFp01.mValue;
+			mBodyHeightOffset = 0.5f * static_cast<Pellet*>(target)->getCylinderHeight();
+			mCellRadius       = static_cast<Pellet*>(target)->getPickRadius();
 
-lbl_802B7300:
-	lfs      f0, 0x190(r29)
-	lfs      f2, 0x18c(r29)
-	fsubs    f4, f30, f0
-	lfs      f1, 0x194(r29)
-	fsubs    f2, f31, f2
-	lfs      f0, lbl_8051C290@sda21(r2)
-	fsubs    f1, f29, f1
-	fmuls    f4, f4, f4
-	fmuls    f5, f1, f1
-	fmadds   f1, f2, f2, f4
-	fadds    f1, f5, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_802B7344
-	ble      lbl_802B7348
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_802B7348
+			CollPart* bodyPart  = mCollTree->getCollPart('body');
+			bodyPart->mRadius   = static_cast<Pellet*>(target)->getPickRadius();
+			bodyPart->mOffset.y = mBodyHeightOffset;
 
-lbl_802B7344:
-	fmr      f1, f0
+			CollPart* basePart  = mCollTree->mPart;
+			basePart->mRadius   = 10.0f + static_cast<Pellet*>(target)->getPickRadius();
+			basePart->mOffset.y = mBodyHeightOffset;
+			mCellRadius += 10.0f;
+			check = true;
+		} else {
+			check = false;
+		}
 
-lbl_802B7348:
-	fcmpo    cr0, f1, f3
-	bge      lbl_802B7358
-	li       r0, 1
-	b        lbl_802B735C
-
-lbl_802B7358:
-	li       r0, 0
-
-lbl_802B735C:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_802B73F4
-	stw      r30, 0x2e0(r29)
-	mr       r3, r30
-	lwz      r4, 0xc0(r29)
-	lfs      f0, 0x81c(r4)
-	stfs     f0, 0x2e4(r29)
-	bl       getCylinderHeight__Q24Game6PelletFv
-	lfs      f0, lbl_8051C2C4@sda21(r2)
-	mr       r3, r30
-	fmuls    f0, f0, f1
-	stfs     f0, 0x2ec(r29)
-	bl       getPickRadius__Q24Game6PelletFv
-	stfs     f1, 0x2f0(r29)
-	lis      r3, 0x626F6479@ha
-	addi     r4, r3, 0x626F6479@l
-	lwz      r3, 0x114(r29)
-	bl       getCollPart__8CollTreeFUl
-	mr       r31, r3
-	mr       r3, r30
-	bl       getPickRadius__Q24Game6PelletFv
-	stfs     f1, 0x1c(r31)
-	mr       r3, r30
-	lfs      f0, 0x2ec(r29)
-	stfs     f0, 0x24(r31)
-	lwz      r4, 0x114(r29)
-	lwz      r30, 0(r4)
-	bl       getPickRadius__Q24Game6PelletFv
-	lfs      f2, lbl_8051C2B8@sda21(r2)
-	li       r0, 1
-	fadds    f0, f2, f1
-	stfs     f0, 0x1c(r30)
-	lfs      f0, 0x2ec(r29)
-	stfs     f0, 0x24(r30)
-	lfs      f0, 0x2f0(r29)
-	fadds    f0, f0, f2
-	stfs     f0, 0x2f0(r29)
-	b        lbl_802B73F8
-
-lbl_802B73F4:
-	li       r0, 0
-
-lbl_802B73F8:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_802B7424
-	lwz      r3, 0x174(r29)
-	addi     r4, r2, lbl_8051C29C@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r4, r3
-	lwz      r3, 0x2e0(r29)
-	bl       startCapture__Q24Game8CreatureFP7Matrixf
-	li       r3, 1
-	b        lbl_802B7428
-
-lbl_802B7424:
-	li       r3, 0
-
-lbl_802B7428:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+		if (check) {
+			mTreasure->startCapture(mModel->getJoint("otakara")->getWorldMatrix());
+			return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -974,82 +675,18 @@ lbl_802B7428:
  */
 bool Obj::fallTreasure(bool check)
 {
-	if (mTargetCreature) {
-		mTargetCreature->endCapture();
-		if (check) { }
+	if (mTreasure) {
+		mTreasure->endCapture();
+		if (check) {
+			Vector3f velocity(0.0f, 100.0f, 0.0f);
+			mTreasure->setVelocity(velocity);
+		}
+
+		createTreasureFallEffect();
+		resetTreasure();
+		return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r3, 0x2e0(r3)
-	cmplwi   r3, 0
-	beq      lbl_802B7538
-	bl       endCapture__Q24Game8CreatureFv
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_802B74BC
-	lfs      f1, lbl_8051C290@sda21(r2)
-	addi     r4, r1, 8
-	lfs      f0, lbl_8051C2C8@sda21(r2)
-	stfs     f1, 8(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	lwz      r3, 0x2e0(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802B74BC:
-	mr       r3, r30
-	bl       createTreasureFallEffect__Q34Game11OtakaraBase3ObjFv
-	li       r0, 0
-	lis      r3, 0x626F6479@ha
-	stw      r0, 0x2e0(r30)
-	addi     r4, r3, 0x626F6479@l
-	lfs      f0, lbl_8051C290@sda21(r2)
-	stfs     f0, 0x2e4(r30)
-	stfs     f0, 0x2ec(r30)
-	lwz      r3, 0xc0(r30)
-	lfs      f0, 0x1cc(r3)
-	stfs     f0, 0x2f0(r30)
-	lwz      r3, 0x114(r30)
-	bl       getCollPart__8CollTreeFUl
-	lfs      f0, lbl_8051C2B8@sda21(r2)
-	li       r4, 0
-	lfs      f2, lbl_8051C290@sda21(r2)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, lbl_8051C2BC@sda21(r2)
-	fmr      f3, f2
-	stfs     f2, 0x24(r3)
-	mr       r3, r30
-	lfs      f1, lbl_8051C298@sda21(r2)
-	lwz      r5, 0x114(r30)
-	lfs      f4, lbl_8051C2C0@sda21(r2)
-	lwz      r5, 0(r5)
-	stfs     f0, 0x1c(r5)
-	stfs     f2, 0x24(r5)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	li       r3, 1
-	b        lbl_802B753C
-
-lbl_802B7538:
-	li       r3, 0
-
-lbl_802B753C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1091,122 +728,30 @@ void Obj::damageTreasure(f32 damage)
  */
 void Obj::attackTarget()
 {
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stfd     f31, 0xc0(r1)
-	psq_st   f31, 200(r1), 0, qr0
-	stfd     f30, 0xb0(r1)
-	psq_st   f30, 184(r1), 0, qr0
-	stfd     f29, 0xa0(r1)
-	psq_st   f29, 168(r1), 0, qr0
-	stw      r31, 0x9c(r1)
-	stw      r30, 0x98(r1)
-	mr       r30, r3
-	addi     r3, r1, 0x24
-	lwz      r5, 0xc0(r30)
-	addi     r4, r1, 0x14
-	lfs      f2, 0x190(r30)
-	lfs      f0, 0x564(r5)
-	lfs      f1, 0x58c(r5)
-	lfs      f3, 0x5b4(r5)
-	fadds    f31, f2, f0
-	lfs      f0, 0x18c(r30)
-	fsubs    f30, f2, f1
-	fmuls    f29, f3, f3
-	stfs     f0, 0x14(r1)
-	lfs      f0, 0x190(r30)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0x194(r30)
-	stfs     f0, 0x1c(r1)
-	stfs     f3, 0x20(r1)
-	bl       __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere
-	li       r0, 1
-	addi     r3, r1, 0x44
-	stb      r0, 0x40(r1)
-	addi     r4, r1, 0x24
-	bl       __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
-	addi     r3, r1, 0x44
-	bl       first__Q24Game12CellIteratorFv
-	b        lbl_802B7738
+	f32 maxRange = getMaxAttackHeight();
+	f32 minRange = getMinAttackHeight();
+	f32 radius   = C_PARMS->mGeneral.mAttackRadius.mValue;
 
-lbl_802B7668:
-	addi     r3, r1, 0x44
-	bl       __ml__Q24Game12CellIteratorFv
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802B7730
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802B76C4
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802B7730
+	f32 dist = SQUARE(radius);
 
-lbl_802B76C4:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 8(r1)
-	fcmpo    cr0, f31, f0
-	lfs      f3, 0x10(r1)
-	ble      lbl_802B7730
-	fcmpo    cr0, f30, f0
-	bge      lbl_802B7730
-	lfs      f0, 0x194(r30)
-	lfs      f1, 0x18c(r30)
-	fsubs    f0, f0, f3
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f29
-	bge      lbl_802B7730
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2fc(r12)
-	mtctr    r12
-	bctrl
+	Sys::Sphere sphere;
+	sphere.mPosition = mPosition;
+	sphere.mRadius   = radius;
 
-lbl_802B7730:
-	addi     r3, r1, 0x44
-	bl       next__Q24Game12CellIteratorFv
+	CellIteratorArg iterArg(sphere);
+	iterArg._1C = 1;
+	CellIterator iter(iterArg);
 
-lbl_802B7738:
-	addi     r3, r1, 0x44
-	bl       isDone__Q24Game12CellIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802B7668
-	psq_l    f31, 200(r1), 0, qr0
-	lfd      f31, 0xc0(r1)
-	psq_l    f30, 184(r1), 0, qr0
-	lfd      f30, 0xb0(r1)
-	psq_l    f29, 168(r1), 0, qr0
-	lfd      f29, 0xa0(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r0, 0xd4(r1)
-	lwz      r30, 0x98(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
+	CI_LOOP(iter)
+	{
+		Creature* target = static_cast<Creature*>(*iter);
+		if (target->isAlive() && (target->isNavi() || target->isPiki())) {
+			Vector3f targetPos = target->getPosition();
+			if (maxRange > targetPos.y && minRange < targetPos.y && sqrDistanceXZ(mPosition, targetPos) < dist) {
+				interactCreature(target);
+			}
+		}
+	}
 }
 
 /*
@@ -1323,9 +868,8 @@ bool Obj::stimulateBomb()
  */
 Creature* Obj::getChaseTargetCreature()
 {
-	Parms* parms = C_PARMS;
-	return EnemyFunc::getNearestPikminOrNavi(this, parms->mGeneral.mViewAngle.mValue, parms->mGeneral.mSightRadius.mValue, nullptr, nullptr,
-	                                         nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, C_PARMS->mGeneral.mViewAngle.mValue, C_PARMS->mGeneral.mSightRadius.mValue, nullptr,
+	                                         nullptr, nullptr);
 }
 } // namespace OtakaraBase
 } // namespace Game

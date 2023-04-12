@@ -94,7 +94,7 @@ struct Obj : public EnemyBase {
 	Vector3f getTargetPosition(Creature*);
 	void resetTreasure();
 	bool isTakeTreasure();
-	void takeTreasure();
+	bool takeTreasure();
 	bool fallTreasure(bool);
 	bool isDropTreasure();
 	void damageTreasure(f32);
@@ -106,6 +106,9 @@ struct Obj : public EnemyBase {
 	Creature* getChaseTargetCreature();
 
 	inline void getScaledRadius(f32 scale, f32* radius) { *radius = scale * (mCellRadius - 10.0f); }
+
+	inline f32 getMaxAttackHeight() const { return mPosition.y + static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMaxAttackRange.mValue; }
+	inline f32 getMinAttackHeight() const { return mPosition.y - static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMinAttackRange.mValue; }
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
