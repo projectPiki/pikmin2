@@ -677,12 +677,12 @@ lbl_8027E264:
  */
 int Obj::getSlotPikiNum()
 {
-	int count = 0;
+	int count              = 0;
 	MouthSlots* mouthSlots = getMouthSlots();
-	int max = mouthSlots->getMax();
-	
-	for (int i = 0; i < max; i++){
-		if (mouthSlots->getSlot(i)->mStuckCreature){
+	int max                = mouthSlots->getMax();
+
+	for (int i = 0; i < max; i++) {
+		if (mouthSlots->getSlot(i)->mStuckCreature) {
 			count++;
 		}
 	}
@@ -695,10 +695,7 @@ int Obj::getSlotPikiNum()
  * Address:	8027E350
  * Size:	00002C
  */
-void Obj::killSlotPiki()
-{
-	Game::EnemyFunc::swallowPikmin(this, CG_PROPERPARMS(this).mPoisonDamage.mValue, nullptr);
-}
+void Obj::killSlotPiki() { Game::EnemyFunc::swallowPikmin(this, CG_PROPERPARMS(this).mPoisonDamage.mValue, nullptr); }
 
 /*
  * --INFO--

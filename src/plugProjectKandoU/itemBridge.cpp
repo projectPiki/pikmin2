@@ -2187,19 +2187,14 @@ void Item::update()
  * Address:	801EF038
  * Size:	0000A4
  */
-Vector3f Game::ItemBridge::Item::getBridgeZVec()
-{
-     return Vector3f(pikmin2_sinf(_1F4), 0.0f, pikmin2_cosf(_1F4));
-}
+Vector3f Game::ItemBridge::Item::getBridgeZVec() { return Vector3f(pikmin2_sinf(_1F4), 0.0f, pikmin2_cosf(_1F4)); }
 
 /*
  * --INFO--
  * Address:	801EF0DC
  * Size:	0000B8
  */
-Vector3f Game::ItemBridge::Item::getBridgeXVec(){
-     return Vector3f(pikmin2_cosf(_1F4), 0.0f, -pikmin2_sinf(_1F4));
-}
+Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(_1F4), 0.0f, -pikmin2_sinf(_1F4)); }
 
 // /*
 //  * --INFO--
