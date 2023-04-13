@@ -12,7 +12,8 @@ struct TDangoAttack2 : public TChaseMtx {
 	    : TChaseMtx(PID_DangoAttack2, nullptr)
 	{
 	}
-	virtual ~TDangoAttack2(); // _48 (weak)
+
+	virtual ~TDangoAttack2() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
@@ -81,6 +82,11 @@ struct TDangoRun : public TChasePos2 {
 };
 
 struct TDangoTurn : public TSimple2 {
+	TDangoTurn()
+	    : TSimple2(PID_DangoTurn_1, PID_DangoTurn_2)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
@@ -93,7 +99,7 @@ struct TDangoWallBreak : public TChaseMtx {
 	{
 	}
 
-	virtual ~TDangoWallBreak(); // _48 (weak)
+	virtual ~TDangoWallBreak() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx

@@ -20,6 +20,20 @@ namespace Game {
 namespace DangoMushi {
 struct FSM;
 
+enum StateID {
+	DANGOMUSHI_NULL    = -1,
+	DANGOMUSHI_Dead    = 0,
+	DANGOMUSHI_Stay    = 1,
+	DANGOMUSHI_Appear  = 2,
+	DANGOMUSHI_Wait    = 3,
+	DANGOMUSHI_Move    = 4,
+	DANGOMUSHI_Attack  = 5,
+	DANGOMUSHI_Turn    = 6,
+	DANGOMUSHI_Recover = 7,
+	DANGOMUSHI_Flick   = 8,
+	DANGOMUSHI_StateCount, // 9
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -40,21 +54,21 @@ struct Obj : public EnemyBase {
 	virtual void getCommonEffectPos(Vector3f&);                                                    // _204
 	virtual void initWalkSmokeEffect();                                                            // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                                         // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_DangoMushi; } // _258 (weak)
 	virtual bool damageCallBack(Creature*, f32, CollPart*);                                        // _278
 	virtual bool earthquakeCallBack(Creature*, f32);                                               // _28C
 	virtual void doStartStoneState();                                                              // _2A4
 	virtual void doFinishStoneState();                                                             // _2A8
-	virtual f32 getDamageCoeStoneState();                                                          // _2AC (weak)
 	virtual void startCarcassMotion();                                                             // _2C4
 	virtual void wallCallback(const MoveInfo&);                                                    // _2E8
 	virtual f32 getDownSmokeScale() { return 1.3f; }                                               // _2EC (weak)
 	virtual void doStartMovie();                                                                   // _2F0
 	virtual void doEndMovie();                                                                     // _2F4
 	virtual void setFSM(FSM*);                                                                     // _2F8
+	virtual f32 getDamageCoeStoneState() { return 0.2f; }                                          // _2AC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_DangoMushi; } // _258 (weak)
 	//////////////// VTABLE END
 
-	int addShadowScale();
+	bool addShadowScale();
 	void setRandTarget();
 	bool isReachedTarget();
 	Creature* getSearchedTarget();
@@ -97,14 +111,14 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                              // _2BC
-	u8 _2C0;                                // _2C0
+	bool mIsRolling;                        // _2C0
 	u8 _2C1;                                // _2C1
-	u8 _2C2;                                // _2C2
+	bool _2C2;                              // _2C2
 	u8 _2C3;                                // _2C3
 	f32 _2C4;                               // _2C4, timer?
 	f32 mShadowScale;                       // _2C8
-	int _2CC;                               // _2CC
-	Vector3f _2D0;                          // _2D0
+	StateID mNextState;                     // _2CC
+	Vector3f mTargetPosition;               // _2D0
 	Vector3f _2DC;                          // _2DC, unknown
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // _2E8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2F0
@@ -170,7 +184,7 @@ struct Parms : public EnemyParmsBase {
 };
 
 struct ProperAnimator : public EnemyBlendAnimatorBase {
-	virtual ~ProperAnimator(); // _08 (weak)
+	virtual ~ProperAnimator() { } // _08 (weak)
 
 	// _00 		= VTBL
 	// _00-_60	= EnemyBlendAnimatorBase

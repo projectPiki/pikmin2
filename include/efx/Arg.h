@@ -138,7 +138,7 @@ struct ArgDenkiHiba : public Arg {
 };
 
 struct ArgDir : public Arg {
-	ArgDir(Vector3f position)
+	ArgDir(Vector3f& position)
 	    : Arg(position)
 	{
 	}
