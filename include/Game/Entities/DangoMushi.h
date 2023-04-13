@@ -54,18 +54,18 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                                                                     // _2F8
 	//////////////// VTABLE END
 
-	void addShadowScale();
+	int addShadowScale();
 	void setRandTarget();
-	void isReachedTarget();
-	void getSearchedTarget();
+	bool isReachedTarget();
+	Creature* getSearchedTarget();
 	void rollingMove();
 	void createCrashEnemy();
-	void getFallEggNum();
+	int getFallEggNum();
 	void getFallPosition(int);
 	void setupCollision();
 	void setBodyCollision(bool);
 	void flickHandCollision(Creature*);
-	void isNoDamageCollision();
+	bool isNoDamageCollision();
 	void resetMapCollisionSize(bool);
 	void updateMapCollisionSize();
 	void flickHandCollision();
@@ -96,20 +96,21 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x4];                           // _2BC, unknown
+	FSM* mFsm;                              // _2BC
 	u8 _2C0;                                // _2C0
 	u8 _2C1;                                // _2C1
 	u8 _2C2;                                // _2C2
+	u8 _2C3;                                // _2C3
 	f32 _2C4;                               // _2C4, timer?
-	u8 _2C8[0x4];                           // _2C8, unknown
+	f32 mShadowScale;                       // _2C8
 	int _2CC;                               // _2CC
 	Vector3f _2D0;                          // _2D0
-	u8 _2DC[0xC];                           // _2DC, unknown
-	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // 2E8
+	Vector3f _2DC;                          // _2DC, unknown
+	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // _2E8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2F0
 	efx::TDangoWallBreak* mEfxWallBreak;    // _2F4
 	efx::TDangoAttack2* mEfxAttack2;        // _2F8
-	efx::TChasePos2* mEfxRun;               // _2FC, TDangoRun?
+	efx::TDangoRun* mEfxRun;                // _2FC
 	                                        // _308 = PelletView
 };
 
