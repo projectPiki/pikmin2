@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Dolphin/rand.h"
 #include "Game/Entities/ElecBug.h"
 
 namespace Game {
@@ -11,92 +12,9 @@ namespace ElecBug {
  */
 Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_8027ACC8
-	addi     r0, r31, 0x2e0
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2e0(r31)
-	stw      r0, 0x2e4(r31)
-	stw      r0, 0x2e8(r31)
-
-lbl_8027ACC8:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game7ElecBug3Obj@ha
-	addi     r0, r31, 0x2e0
-	addi     r5, r3, __vt__Q34Game7ElecBug3Obj@l
-	li       r3, 0x2c
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x2fc
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8027AD54
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game7ElecBug14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game7ElecBug14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_8027AD54:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8027AD88
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game7ElecBug3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game7ElecBug3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_8027AD88:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       createEffect__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mAnimator = new ProperAnimator;
+	setFSM(new FSM);
+	createEffect();
 }
 
 /*
@@ -111,51 +29,15 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
  * Address:	8027ADC4
  * Size:	0000A4
  */
-void Obj::onInit(CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* initArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r4, 0x4330
-	stw      r0, 0xc(r1)
-	li       r0, 0
-	lfd      f3, lbl_8051B4F0@sda21(r2)
-	mr       r3, r31
-	stw      r4, 8(r1)
-	lfs      f2, lbl_8051B4E0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051B4E4@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051B4E8@sda21(r2)
-	fmuls    f2, f2, f3
-	fdivs    f1, f2, f1
-	stfs     f1, 0x2c0(r31)
-	stfs     f0, 0x2c4(r31)
-	stw      r0, 0x2d8(r31)
-	bl       setupEffect__Q34Game7ElecBug3ObjFv
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	EnemyBase::onInit(initArg);
+	enableEvent(0, EB_IsVulnerable);
+	_2C0     = randWeightFloat(10.0f);
+	_2C4     = 0.0f;
+	mPartner = nullptr;
+	setupEffect();
+	mFsm->start(this, ELECBUG_Turn, nullptr);
 }
 
 /*
@@ -176,26 +58,8 @@ void Obj::onKill(CreatureKillArg* arg)
  */
 void Obj::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x2c0(r3)
-	lfs      f0, 0x54(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c0(r3)
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_2C0 += sys->mDeltaTime;
+	mFsm->exec(this);
 }
 
 /*
@@ -217,29 +81,11 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  * Address:	8027AF18
  * Size:	00004C
  */
-void Obj::setFSM(FSM*)
+void Obj::setFSM(FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2bc(r3)
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -247,8 +93,9 @@ void Obj::setFSM(FSM*)
  * Address:	8027AF64
  * Size:	000080
  */
-void Obj::getShadowParam(ShadowParam&)
+void Obj::getShadowParam(ShadowParam& param)
 {
+	Matrixf* bodyJointMtx = mModel->getJoint("body")->getWorldMatrix();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -290,7 +137,7 @@ void Obj::getShadowParam(ShadowParam&)
  * Address:	8027AFE4
  * Size:	0001E4
  */
-void Obj::collisionCallback(CollEvent&)
+void Obj::collisionCallback(CollEvent& event)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -644,24 +491,9 @@ lbl_8027B458:
  */
 void Obj::doStartStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r31)
-	bl       finishPartnerAndEffect__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartStoneState();
+	disableEvent(0, EB_IsVulnerable);
+	finishPartnerAndEffect();
 }
 
 /*
@@ -671,26 +503,9 @@ void Obj::doStartStoneState()
  */
 void Obj::doFinishStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 8
-	beq      lbl_8027B4DC
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-
-lbl_8027B4DC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getStateID() != ELECBUG_Reverse) {
+		enableEvent(0, EB_IsVulnerable);
+	}
 }
 
 /*
@@ -949,6 +764,7 @@ bool Obj::startChildChargeState(Obj* beetle)
  */
 void Obj::createEffect()
 {
+	// _2DC = new efx::TDnkmsEffect;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
