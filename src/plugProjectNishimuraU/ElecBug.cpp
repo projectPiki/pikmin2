@@ -1,310 +1,15 @@
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23efx13TDnkmsHoudenB
-    __vt__Q23efx13TDnkmsHoudenB:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx13TDnkmsHoudenBFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx13TDnkmsHoudenBFv
-    .global __vt__Q23efx13TDnkmsHoudenA
-    __vt__Q23efx13TDnkmsHoudenA:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx13TDnkmsHoudenAFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx13TDnkmsHoudenAFv
-    .global __vt__Q34Game7ElecBug3Obj
-    __vt__Q34Game7ElecBug3Obj:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game9EnemyBaseFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game9EnemyBaseFv
-        .4byte onInit__Q34Game7ElecBug3ObjFPQ24Game15CreatureInitArg
-        .4byte onKill__Q34Game7ElecBug3ObjFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game9EnemyBaseFv
-        .4byte doEntry__Q24Game9EnemyBaseFv
-        .4byte doSetView__Q24Game9EnemyBaseFi
-        .4byte doViewCalc__Q24Game9EnemyBaseFv
-        .4byte doSimulation__Q24Game9EnemyBaseFf
-        .4byte doDirectDraw__Q34Game7ElecBug3ObjFR8Graphics
-        .4byte getBodyRadius__Q24Game9EnemyBaseFv
-        .4byte getCellRadius__Q24Game9EnemyBaseFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game9EnemyBaseFv
-        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getVelocity__Q24Game9EnemyBaseFv
-        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
-        .4byte isTeki__Q24Game9EnemyBaseFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game9EnemyBaseFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game9EnemyBaseFv
-        .4byte inWater__Q24Game9EnemyBaseFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game9EnemyBaseFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
-        .4byte collisionCallback__Q34Game7ElecBug3ObjFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game9EnemyBaseFv
-        .4byte getPSCreature__Q24Game9EnemyBaseFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
-        .4byte sound_culling__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8CreatureFUl
-        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
-        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q34Game7ElecBug3ObjFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game9EnemyBaseFv
-        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game9EnemyBaseFv
-        .4byte getCreatureID__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
-        .4byte __dt__Q34Game7ElecBug3ObjFv
-        .4byte "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-        .4byte
-   setInitialSetting__Q34Game7ElecBug3ObjFPQ24Game21EnemyInitialParamBase .4byte
-   update__Q24Game9EnemyBaseFv .4byte doUpdate__Q34Game7ElecBug3ObjFv .4byte
-   doUpdateCommon__Q24Game9EnemyBaseFv .4byte
-   doUpdateCarcass__Q24Game9EnemyBaseFv .4byte
-   doAnimationUpdateAnimator__Q24Game9EnemyBaseFv .4byte
-   doAnimationCullingOff__Q24Game9EnemyBaseFv .4byte
-   doAnimationCullingOn__Q24Game9EnemyBaseFv .4byte
-   doAnimationStick__Q24Game9EnemyBaseFv .4byte
-   doSimulationCarcass__Q24Game9EnemyBaseFf .4byte
-   doDebugDraw__Q34Game7ElecBug3ObjFR8Graphics .4byte
-   doSimpleDraw__Q24Game9EnemyBaseFP8Viewport .4byte
-   doSimulationGround__Q24Game9EnemyBaseFf .4byte
-   doSimulationFlying__Q24Game9EnemyBaseFf .4byte
-   doSimulationStick__Q24Game9EnemyBaseFf .4byte
-   changeMaterial__Q24Game9EnemyBaseFv .4byte
-   "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>" .4byte
-   getFitEffectPos__Q24Game9EnemyBaseFv .4byte viewGetShape__Q24Game9EnemyBaseFv
-        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
-        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
-        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
-        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
-        .4byte setParameters__Q24Game9EnemyBaseFv
-        .4byte initMouthSlots__Q24Game9EnemyBaseFv
-        .4byte initWalkSmokeEffect__Q24Game9EnemyBaseFv
-        .4byte getWalkSmokeEffectMgr__Q24Game9EnemyBaseFv
-        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
-        .4byte injure__Q24Game9EnemyBaseFv
-        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
-        .4byte updateEfxHamon__Q24Game9EnemyBaseFv
-        .4byte createEfxHamon__Q24Game9EnemyBaseFv
-        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
-        .4byte getEnemyTypeID__Q34Game7ElecBug3ObjFv
-        .4byte getMouthSlots__Q24Game9EnemyBaseFv
-        .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte throwupItem__Q24Game9EnemyBaseFv
-        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
-        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-        .4byte pressCallBack__Q34Game7ElecBug3ObjFPQ24Game8CreaturefP8CollPart
-        .4byte
-   flyCollisionCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   hipdropCallBack__Q34Game7ElecBug3ObjFPQ24Game8CreaturefP8CollPart .4byte
-   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
-   earthquakeCallBack__Q34Game7ElecBug3ObjFPQ24Game8Creaturef .4byte
-   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f" .4byte
-   eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doStartStoneState__Q34Game7ElecBug3ObjFv .4byte
-   doFinishStoneState__Q34Game7ElecBug3ObjFv .4byte
-   getDamageCoeStoneState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeState__Q24Game9EnemyBaseFf .4byte
-   doFinishEarthquakeState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   doFinishEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   lifeRecover__Q24Game9EnemyBaseFv .4byte
-   startCarcassMotion__Q34Game7ElecBug3ObjFv .4byte
-   setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg .4byte
-   getCarcassArgHeight__Q24Game9EnemyBaseFv .4byte
-   doBecomeCarcass__Q24Game9EnemyBaseFv .4byte
-   startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doStartWaitingBirthTypeDrop__Q34Game7ElecBug3ObjFv .4byte
-   doFinishWaitingBirthTypeDrop__Q34Game7ElecBug3ObjFv .4byte
-   wallCallback__Q24Game9EnemyBaseFRCQ24Game8MoveInfo .4byte
-   getDownSmokeScale__Q34Game7ElecBug3ObjFv .4byte
-   doStartMovie__Q34Game7ElecBug3ObjFv .4byte doEndMovie__Q34Game7ElecBug3ObjFv
-        .4byte setFSM__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3FSM
-        .4byte 0
-        .4byte 0
-        .4byte viewGetBaseScale__Q24Game10PelletViewFv
-        .4byte "@736@12@viewGetShape__Q24Game9EnemyBaseFv"
-        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
-        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
-        .4byte "@736@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@736@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@736@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@736@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@736@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051B4E0
-    lbl_8051B4E0:
-        .4byte 0x41200000
-    .global lbl_8051B4E4
-    lbl_8051B4E4:
-        .4byte 0x47000000
-    .global lbl_8051B4E8
-    lbl_8051B4E8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_8051B4F0
-    lbl_8051B4F0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051B4F8
-    lbl_8051B4F8:
-        .4byte 0x626F6479
-        .4byte 0x00000000
-    .global lbl_8051B500
-    lbl_8051B500:
-        .4byte 0x40A00000
-    .global lbl_8051B504
-    lbl_8051B504:
-        .float 1.0
-    .global lbl_8051B508
-    lbl_8051B508:
-        .4byte 0x41700000
-    .global lbl_8051B50C
-    lbl_8051B50C:
-        .4byte 0x40C90FDB
-    .global lbl_8051B510
-    lbl_8051B510:
-        .4byte 0xC3A2F983
-    .global lbl_8051B514
-    lbl_8051B514:
-        .4byte 0x43A2F983
-    .global lbl_8051B518
-    lbl_8051B518:
-        .float 0.5
-    .global lbl_8051B51C
-    lbl_8051B51C:
-        .4byte 0x3F0CCCCD
-*/
+#include "Game/Entities/ElecBug.h"
 
 namespace Game {
+namespace ElecBug {
 
 /*
  * --INFO--
  * Address:	8027AC88
  * Size:	000138
  */
-ElecBug::Obj::Obj()
+Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -399,14 +104,14 @@ lbl_8027AD88:
  * Address:	8027ADC0
  * Size:	000004
  */
-void ElecBug::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8027ADC4
  * Size:	0000A4
  */
-void ElecBug::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -458,27 +163,10 @@ void ElecBug::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8027AE68
  * Size:	000044
  */
-void ElecBug::Obj::onKill(Game::CreatureKillArg*)
+void Obj::onKill(CreatureKillArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       finishPartnerAndEffect__Q34Game7ElecBug3ObjFv
-	mr       r3, r30
-	mr       r4, r31
-	bl       onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	finishPartnerAndEffect();
+	EnemyBase::onKill(arg);
 }
 
 /*
@@ -486,7 +174,7 @@ void ElecBug::Obj::onKill(Game::CreatureKillArg*)
  * Address:	8027AEAC
  * Size:	000048
  */
-void ElecBug::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -515,33 +203,21 @@ void ElecBug::Obj::doUpdate()
  * Address:	8027AEF4
  * Size:	000004
  */
-void ElecBug::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics& gfx) { }
 
 /*
  * --INFO--
  * Address:	8027AEF8
  * Size:	000020
  */
-void ElecBug::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	8027AF18
  * Size:	00004C
  */
-void ElecBug::Obj::setFSM(Game::ElecBug::FSM*)
+void Obj::setFSM(FSM*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -571,7 +247,7 @@ void ElecBug::Obj::setFSM(Game::ElecBug::FSM*)
  * Address:	8027AF64
  * Size:	000080
  */
-void ElecBug::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -614,7 +290,7 @@ void ElecBug::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8027AFE4
  * Size:	0001E4
  */
-void ElecBug::Obj::collisionCallback(Game::CollEvent&)
+void Obj::collisionCallback(CollEvent&)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -760,7 +436,7 @@ lbl_8027B180:
  * Address:	8027B1C8
  * Size:	0001BC
  */
-void ElecBug::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Obj::pressCallBack(Creature*, f32, CollPart*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -896,29 +572,14 @@ lbl_8027B368:
  * Address:	8027B384
  * Size:	00002C
  */
-void ElecBug::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x27c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { return pressCallBack(creature, damage, collpart); }
 
 /*
  * --INFO--
  * Address:	8027B3B0
  * Size:	0000C0
  */
-void ElecBug::Obj::earthquakeCallBack(Game::Creature*, float)
+bool Obj::earthquakeCallBack(Creature*, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -981,7 +642,7 @@ lbl_8027B458:
  * Address:	8027B470
  * Size:	000040
  */
-void ElecBug::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1008,7 +669,7 @@ void ElecBug::Obj::doStartStoneState()
  * Address:	8027B4B0
  * Size:	000040
  */
-void ElecBug::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1037,23 +698,10 @@ lbl_8027B4DC:
  * Address:	8027B4F0
  * Size:	000034
  */
-void ElecBug::Obj::doStartWaitingBirthTypeDrop()
+void Obj::doStartWaitingBirthTypeDrop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       effectDrawOff__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartWaitingBirthTypeDrop();
+	effectDrawOff();
 }
 
 /*
@@ -1061,23 +709,10 @@ void ElecBug::Obj::doStartWaitingBirthTypeDrop()
  * Address:	8027B524
  * Size:	000034
  */
-void ElecBug::Obj::doFinishWaitingBirthTypeDrop()
+void Obj::doFinishWaitingBirthTypeDrop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       effectDrawOn__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doFinishWaitingBirthTypeDrop();
+	effectDrawOn();
 }
 
 /*
@@ -1085,20 +720,11 @@ void ElecBug::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	8027B558
  * Size:	000028
  */
-void ElecBug::Obj::startCarcassMotion()
+void Obj::startCarcassMotion()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 7
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	{
+		startMotion(7, nullptr);
+	}
 }
 
 /*
@@ -1106,45 +732,21 @@ void ElecBug::Obj::startCarcassMotion()
  * Address:	8027B580
  * Size:	000020
  */
-void ElecBug::Obj::doStartMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOff__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doStartMovie() { effectDrawOff(); }
 
 /*
  * --INFO--
  * Address:	8027B5A0
  * Size:	000020
  */
-void ElecBug::Obj::doEndMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOn__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doEndMovie() { effectDrawOn(); }
 
 /*
  * --INFO--
  * Address:	8027B5C0
  * Size:	0001A4
  */
-void ElecBug::Obj::setTargetPosition()
+void Obj::setTargetPosition()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1266,17 +868,12 @@ lbl_8027B6F8:
  * Address:	8027B764
  * Size:	00001C
  */
-void ElecBug::Obj::resetPartnerPtr()
+void Obj::resetPartnerPtr()
 {
-	/*
-	lwz      r4, 0x2d8(r3)
-	cmplwi   r4, 0
-	beqlr
-	li       r0, 0
-	stw      r0, 0x2d8(r4)
-	stw      r0, 0x2d8(r3)
-	blr
-	*/
+	if (mPartner) {
+		mPartner->mPartner = nullptr;
+		mPartner           = nullptr;
+	}
 }
 
 /*
@@ -1284,7 +881,7 @@ void ElecBug::Obj::resetPartnerPtr()
  * Address:	8027B780
  * Size:	000070
  */
-void ElecBug::Obj::isBecomeChargeState()
+bool Obj::isBecomeChargeState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1327,22 +924,10 @@ lbl_8027B7DC:
  * Address:	8027B7F0
  * Size:	000030
  */
-void ElecBug::Obj::startChargeState(Game::ElecBug::Obj*)
+void Obj::startChargeState(Obj* beetle)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	stw      r4, 0x2d8(r3)
-	mr       r3, r4
-	mr       r4, r5
-	bl       startChildChargeState__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mPartner = beetle;
+	beetle->startChildChargeState(this);
 }
 
 /*
@@ -1350,27 +935,11 @@ void ElecBug::Obj::startChargeState(Game::ElecBug::Obj*)
  * Address:	8027B820
  * Size:	000044
  */
-void ElecBug::Obj::startChildChargeState(Game::ElecBug::Obj*)
+bool Obj::startChildChargeState(Obj* beetle)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 6
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 0x2d8(r3)
-	mr       r4, r3
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mPartner = beetle;
+	mFsm->transit(this, ELECBUG_ChildCharge, nullptr);
+	return true;
 }
 
 /*
@@ -1378,7 +947,7 @@ void ElecBug::Obj::startChildChargeState(Game::ElecBug::Obj*)
  * Address:	8027B864
  * Size:	000044
  */
-void ElecBug::Obj::createEffect()
+void Obj::createEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1402,326 +971,12 @@ lbl_8027B890:
 	blr
 	*/
 }
-
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	8027B8A8
- * Size:	000168
- */
-TDnkmsEffect::TDnkmsEffect()
-{
-	/*
-	stwu     r1, -0x30(r1)
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r6, __vt__18JPAEmitterCallBack@ha
-	lis      r5, __vt__Q23efx5TSync@ha
-	stmw     r22, 8(r1)
-	addi     r25, r4, __vt__Q23efx5TBase@l
-	addi     r27, r5, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChasePos@ha
-	addi     r30, r4, __vt__Q23efx9TChasePos@l
-	addi     r26, r6, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx13TDnkmsHoudenA@ha
-	addi     r24, r27, 0x14
-	addi     r12, r4, __vt__Q23efx13TDnkmsHoudenA@l
-	li       r28, 0
-	lis      r4, __vt__Q23efx13TDnkmsHoudenB@ha
-	li       r29, 0x2b2
-	addi     r10, r4, __vt__Q23efx13TDnkmsHoudenB@l
-	addi     r23, r30, 0x14
-	lis      r4, __vt__Q23efx14TDnkmsThunderA@ha
-	li       r31, 0x33
-	addi     r7, r4, __vt__Q23efx14TDnkmsThunderA@l
-	addi     r22, r12, 0x14
-	lis      r4, __vt__Q23efx14TDnkmsThunderB@ha
-	li       r11, 0x34
-	addi     r4, r4, __vt__Q23efx14TDnkmsThunderB@l
-	addi     r9, r10, 0x14
-	li       r8, 0x35
-	addi     r6, r7, 0x14
-	stw      r25, 8(r3)
-	li       r5, 0x36
-	addi     r0, r4, 0x14
-	stw      r26, 0xc(r3)
-	stw      r27, 8(r3)
-	stw      r24, 0xc(r3)
-	stw      r28, 0x10(r3)
-	sth      r29, 0x14(r3)
-	stb      r28, 0x16(r3)
-	stw      r30, 8(r3)
-	stw      r23, 0xc(r3)
-	stw      r28, 0x18(r3)
-	sth      r31, 0x14(r3)
-	stw      r12, 8(r3)
-	stw      r22, 0xc(r3)
-	stw      r25, 0x1c(r3)
-	stw      r26, 0x20(r3)
-	stw      r27, 0x1c(r3)
-	stw      r24, 0x20(r3)
-	stw      r28, 0x24(r3)
-	sth      r29, 0x28(r3)
-	stb      r28, 0x2a(r3)
-	stw      r30, 0x1c(r3)
-	stw      r23, 0x20(r3)
-	stw      r28, 0x2c(r3)
-	sth      r31, 0x28(r3)
-	stw      r12, 0x1c(r3)
-	stw      r22, 0x20(r3)
-	stw      r25, 0x30(r3)
-	stw      r26, 0x34(r3)
-	stw      r27, 0x30(r3)
-	stw      r24, 0x34(r3)
-	stw      r28, 0x38(r3)
-	sth      r29, 0x3c(r3)
-	stb      r28, 0x3e(r3)
-	stw      r30, 0x30(r3)
-	stw      r23, 0x34(r3)
-	stw      r28, 0x40(r3)
-	sth      r11, 0x3c(r3)
-	stw      r10, 0x30(r3)
-	stw      r9, 0x34(r3)
-	stw      r25, 0x44(r3)
-	stw      r26, 0x48(r3)
-	stw      r27, 0x44(r3)
-	stw      r24, 0x48(r3)
-	stw      r28, 0x4c(r3)
-	sth      r8, 0x50(r3)
-	stb      r28, 0x52(r3)
-	stw      r7, 0x44(r3)
-	stw      r6, 0x48(r3)
-	stw      r25, 0x5c(r3)
-	stw      r26, 0x60(r3)
-	stw      r27, 0x5c(r3)
-	stw      r24, 0x60(r3)
-	stw      r28, 0x64(r3)
-	sth      r5, 0x68(r3)
-	stb      r28, 0x6a(r3)
-	stw      r4, 0x5c(r3)
-	stw      r0, 0x60(r3)
-	lmw      r22, 8(r1)
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8027BA10
- * Size:	000084
- */
-TDnkmsThunderB::~TDnkmsThunderB()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8027BA78
-	lis      r3, __vt__Q23efx14TDnkmsThunderB@ha
-	addi     r3, r3, __vt__Q23efx14TDnkmsThunderB@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8027BA68
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8027BA68:
-	extsh.   r0, r31
-	ble      lbl_8027BA78
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8027BA78:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8027BA94
- * Size:	000084
- */
-TDnkmsThunderA::~TDnkmsThunderA()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8027BAFC
-	lis      r3, __vt__Q23efx14TDnkmsThunderA@ha
-	addi     r3, r3, __vt__Q23efx14TDnkmsThunderA@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8027BAEC
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8027BAEC:
-	extsh.   r0, r31
-	ble      lbl_8027BAFC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8027BAFC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8027BB18
- * Size:	00009C
- */
-TDnkmsHoudenB::~TDnkmsHoudenB()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8027BB98
-	lis      r3, __vt__Q23efx13TDnkmsHoudenB@ha
-	addi     r3, r3, __vt__Q23efx13TDnkmsHoudenB@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8027BB88
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8027BB88
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8027BB88:
-	extsh.   r0, r31
-	ble      lbl_8027BB98
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8027BB98:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8027BBB4
- * Size:	00009C
- */
-TDnkmsHoudenA::~TDnkmsHoudenA()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8027BC34
-	lis      r3, __vt__Q23efx13TDnkmsHoudenA@ha
-	addi     r3, r3, __vt__Q23efx13TDnkmsHoudenA@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8027BC24
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8027BC24
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8027BC24:
-	extsh.   r0, r31
-	ble      lbl_8027BC34
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8027BC34:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8027BC50
  * Size:	000010
  */
-void ElecBug::Obj::setupEffect()
+void Obj::setupEffect()
 {
 	/*
 	lwz      r4, 0x2dc(r3)
@@ -1736,7 +991,7 @@ void ElecBug::Obj::setupEffect()
  * Address:	8027BC60
  * Size:	000040
  */
-void ElecBug::Obj::startChargeEffect()
+void Obj::startChargeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1763,7 +1018,7 @@ void ElecBug::Obj::startChargeEffect()
  * Address:	8027BCA0
  * Size:	0000C0
  */
-void ElecBug::Obj::startDischargeEffect(Game::ElecBug::Obj*)
+void Obj::startDischargeEffect(Obj*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1822,7 +1077,7 @@ void ElecBug::Obj::startDischargeEffect(Game::ElecBug::Obj*)
  * Address:	8027BD60
  * Size:	0000A4
  */
-void ElecBug::Obj::finishPartnerAndEffect()
+void Obj::finishPartnerAndEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1876,7 +1131,7 @@ lbl_8027BD88:
  * Address:	8027BE04
  * Size:	00008C
  */
-void ElecBug::Obj::effectDrawOn()
+void Obj::effectDrawOn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1922,7 +1177,7 @@ void ElecBug::Obj::effectDrawOn()
  * Address:	8027BE90
  * Size:	00008C
  */
-void ElecBug::Obj::effectDrawOff()
+void Obj::effectDrawOff()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1968,7 +1223,7 @@ void ElecBug::Obj::effectDrawOff()
  * Address:	8027BF1C
  * Size:	0004D0
  */
-void ElecBug::Obj::checkInteract(Game::ElecBug::Obj*)
+void Obj::checkInteract(Obj*)
 {
 	/*
 	stwu     r1, -0x1d0(r1)
@@ -2319,54 +1574,5 @@ lbl_8027C344:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	8027C3EC
- * Size:	000008
- */
-void ElecBug::Obj::getDownSmokeScale()
-{
-	/*
-	lfs      f1, lbl_8051B51C@sda21(r2)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8027C3F4
- * Size:	000008
- */
-u32 ElecBug::Obj::getEnemyTypeID() { return 0x1C; }
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	8027C3FC
- * Size:	000008
- */
-TDnkmsHoudenA::@4 @~TDnkmsHoudenA()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx13TDnkmsHoudenAFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8027C404
- * Size:	000008
- */
-TDnkmsHoudenB::@4 @~TDnkmsHoudenB()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx13TDnkmsHoudenBFv
-	*/
-}
-} // namespace efx
-
-} // namespace efx
+} // namespace ElecBug
+} // namespace Game

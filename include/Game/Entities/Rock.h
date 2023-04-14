@@ -22,27 +22,27 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);          // _30
-	virtual void onKill(CreatureKillArg* settings);          // _34
-	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual void inWaterCallback(WaterBox* wb);              // _84
-	virtual void outWaterCallback();                         // _88
-	virtual bool isLivingThing();                            // _D4 (weak)
-	virtual void collisionCallback(CollEvent& event);        // _EC
-	virtual void getShadowParam(ShadowParam& settings);      // _134
-	virtual bool needShadow();                               // _138
-	virtual bool ignoreAtari(Creature* toIgnore);            // _190
-	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                      // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual void wallCallback(const MoveInfo&);              // _2E8
-	virtual void doStartMovie();                             // _2F0
-	virtual void doEndMovie();                               // _2F4
-	virtual void setFSM(FSM*);                               // _2F8
+	virtual void onInit(CreatureInitArg* settings);                          // _30
+	virtual void onKill(CreatureKillArg* settings);                          // _34
+	virtual void doDirectDraw(Graphics& gfx);                                // _50
+	virtual void inWaterCallback(WaterBox* wb);                              // _84
+	virtual void outWaterCallback();                                         // _88
+	virtual bool isLivingThing() { return false; }                           // _D4 (weak)
+	virtual void collisionCallback(CollEvent& event);                        // _EC
+	virtual void getShadowParam(ShadowParam& settings);                      // _134
+	virtual bool needShadow();                                               // _138
+	virtual bool ignoreAtari(Creature* toIgnore);                            // _190
+	virtual ~Obj() { }                                                       // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                      // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*);                  // _1C4
+	virtual void doUpdate();                                                 // _1CC
+	virtual void doDebugDraw(Graphics&);                                     // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return mRockType; } // _258 (weak)
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*);                 // _284
+	virtual void wallCallback(const MoveInfo&);                              // _2E8
+	virtual void doStartMovie();                                             // _2F0
+	virtual void doEndMovie();                                               // _2F4
+	virtual void setFSM(FSM*);                                               // _2F8
 	//////////////// VTABLE END
 
 	bool fallRockScaleUp();
@@ -64,18 +64,18 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                      // _2BC
-	EnemyBase* mSourceEnemy;        // _2C0
-	u8 _2C4;                        // _2C4, maybe isHoming?
-	f32 mTimer;                     // _2C8
-	f32 mFallSpeed;                 // _2CC
-	f32 _2D0;                       // _2D0
-	f32 _2D4;                       // _2D4
-	efx::TRockRun* mEfxRun;         // _2D8
-	efx::TRockGrRun* mEfxGroundRun; // _2DC
-	efx::TRockWRun* mEfxWaterRun;   // _2E0
-	int mRockType;                  // _2E4, 19/EnemyID_Rock or 74/EnemyID_Stone
-	                                // _2E8 = PelletView
+	FSM* mFsm;                           // _2BC
+	EnemyBase* mSourceEnemy;             // _2C0
+	u8 _2C4;                             // _2C4, maybe isHoming?
+	f32 mTimer;                          // _2C8
+	f32 mFallSpeed;                      // _2CC
+	f32 _2D0;                            // _2D0
+	f32 _2D4;                            // _2D4
+	efx::TRockRun* mEfxRun;              // _2D8
+	efx::TRockGrRun* mEfxGroundRun;      // _2DC
+	efx::TRockWRun* mEfxWaterRun;        // _2E0
+	EnemyTypeID::EEnemyTypeID mRockType; // _2E4, 19/EnemyID_Rock or 74/EnemyID_Stone
+	                                     // _2E8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {

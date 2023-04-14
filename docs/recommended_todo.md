@@ -151,10 +151,10 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiState.cpp">TobiState.cpp</a> | 24992 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TankState.cpp">TankState.cpp</a> | 29299 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandItemUnit.cpp">RandItemUnit.cpp</a> | 29622 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/IKSystemBase.cpp">IKSystemBase.cpp</a> | 30077 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugState.cpp">ElecBugState.cpp</a> | 31532 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureShadow.cpp">BigTreasureShadow.cpp</a> | 32354 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBug.cpp">ElecBug.cpp</a> | 32382 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Rock.cpp">Rock.cpp</a> | 34159 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaChappy.cpp">KumaChappy.cpp</a> | 35434 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeWholeState.cpp">SnakeWholeState.cpp</a> | 35487 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/IKSystemMgr.cpp">IKSystemMgr.cpp</a> | 35787 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kabuto.cpp">Kabuto.cpp</a> | 36767 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 37171 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 37222 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kogane.cpp">Kogane.cpp</a> | 37892 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapScore.cpp">RandMapScore.cpp</a> | 38258 |
 
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
