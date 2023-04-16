@@ -16,6 +16,25 @@
 
 namespace Game {
 namespace Mar {
+
+enum EMarState {
+	MAR_NULL        = -1,
+
+	MAR_DEAD        = 0,
+	MAR_WAIT        = 1,
+	MAR_MOVE        = 2,
+	MAR_CHASE       = 3,
+	MAR_CHASEINSIDE = 4,
+	MAR_ATTACK      = 5,
+	MAR_FALL        = 6,
+	MAR_LAND        = 7, 
+	MAR_GROUND      = 8,
+	MAR_TAKEOFF     = 9,
+	MAR_FLYFLICK    = 10,
+	MAR_GROUNDFLICK = 11,
+	MAR_COUNT
+};
+
 struct FSM;
 
 struct Obj : public EnemyBase {
@@ -25,8 +44,8 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
+	virtual void inWaterCallback(WaterBox* wb) { };         // _84 (weak)
+	virtual void outWaterCallback() { };                    // _88 (weak)
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
@@ -34,22 +53,23 @@ struct Obj : public EnemyBase {
 	virtual void doDebugDraw(Graphics&);                    // _1EC
 	virtual void changeMaterial();                          // _200
 	virtual Vector3f getOffsetForMapCollision();            // _224
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{ return EnemyTypeID::EnemyID_Mar; }
 	virtual void getThrowupItemPosition(Vector3f*);         // _268
 	virtual void getThrowupItemVelocity(Vector3f*);         // _26C
-	virtual void throwupItemInDeathProcedure();             // _270 (weak)
+	virtual void throwupItemInDeathProcedure() { };         // _270 (weak)
 	virtual void doStartStoneState();                       // _2A4
 	virtual void doFinishStoneState();                      // _2A8
 	virtual void doStartWaitingBirthTypeDrop();             // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();            // _2E4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
+	virtual f32 getDownSmokeScale() { return 1.15f; }       // _2EC (weak)
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
 	//////////////// VTABLE END
 
-	void getHeadJointPos();
-	void setHeightVelocity();
+	Vector3f getHeadJointPos();
+	f32 setHeightVelocity();
 	void setRandTarget();
 	void resetShadowOffset();
 	void setShadowOffsetMax();
@@ -58,19 +78,19 @@ struct Obj : public EnemyBase {
 	void resetShadowRadius();
 	void subShadowRadius();
 	void updateFallTimer();
-	void getFlyingNextState();
+	EMarState getFlyingNextState();
 	void addPitchRatio();
-	void getSearchedPikmin();
+	Piki* getSearchedPikmin();
 	void isTargetLost();
 	void isAttackable();
 	void updateEmit();
-	void getAttackPosition();
+	Vector3f getAttackPosition();
 	void windTarget();
 	void createEffect();
 	void setupEffect();
 	void startDeadEffect();
 	void createSuckEffect();
-	void startWindEffect();
+	bool startWindEffect();
 	void finishWindEffect();
 	void createDownEffect();
 	void effectDrawOn();
@@ -84,7 +104,7 @@ struct Obj : public EnemyBase {
 	f32 mShadowOffset;             // _2C8
 	f32 mShadowRadius;             // _2CC
 	Vector3f mTargetPosition;      // _2D0
-	Matrixf* _2DC;                 // _2DC
+	Matrixf* mEfxMatrix;           // _2DC
 	Vector3f _2E0;                 // _2E0
 	Vector3f _2EC;                 // _2EC
 	Vector3f mAttackPosition;      // _2F8
@@ -95,7 +115,7 @@ struct Obj : public EnemyBase {
 	efx::TFusenAirhit* mEfxAirhit; // _314
 	efx::TFusenAir* mEfxAir;       // _318
 	efx::TFusenSui* mEfxSui;       // _31C
-	Sys::MatLoopAnimator* _320;    // _320, array of two animators
+	Sys::MatLoopAnimator* mMatAnimators;    // _320, array of two animators
 	                               // _324 = PelletView
 };
 
@@ -177,6 +197,8 @@ struct FSM : public EnemyStateMachine {
 	// _00		= VTBL
 	// _00-_1C	= EnemyStateMachine
 };
+
+
 
 struct State : public EnemyFSMState {
 	// _00		= VTBL

@@ -158,7 +158,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void outWaterCallback();                    // _88
 	virtual bool isFlying()                             // _CC (weak)
 	{
-		return (mEvents.mFlags[0].typeView >> 2) & 1;
+		return (isEvent(0, EB_IsFlying));
 	}
 	virtual void collisionCallback(CollEvent& coll);          // _EC
 	virtual JAInter::Object* getJAIObject();                  // _F4

@@ -78,6 +78,8 @@ struct Matrixf {
 
 	inline Vector3f getBasis(int p1) { return Vector3f((*this)(0, p1), (*this)(1, p1), (*this)(2, p1)); }
 
+	inline Vector3f getPosition() { return getBasis(3); }
+
 	/**
 	 * @fabricated
 	 */
