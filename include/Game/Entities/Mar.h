@@ -83,7 +83,7 @@ struct Obj : public EnemyBase {
 	void addPitchRatio();
 	Piki* getSearchedPikmin();
 	bool isTargetLost();
-	bool isAttackable();
+	Creature* isAttackable();
 	void updateEmit();
 	Vector3f getAttackPosition();
 	void windTarget();
@@ -200,11 +200,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(MAR_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -214,6 +225,11 @@ struct StateAttack : public State {
 };
 
 struct StateChase : public State {
+	inline StateChase()
+	    : State(MAR_Chase, "chase")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -223,6 +239,11 @@ struct StateChase : public State {
 };
 
 struct StateChaseInside : public State {
+	inline StateChaseInside()
+	    : State(MAR_ChaseInside, "chaseinside")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -232,6 +253,11 @@ struct StateChaseInside : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(MAR_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -241,6 +267,11 @@ struct StateDead : public State {
 };
 
 struct StateFall : public State {
+	inline StateFall()
+	    : State(MAR_Fall, "fall")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -250,6 +281,11 @@ struct StateFall : public State {
 };
 
 struct StateFlyFlick : public State {
+	inline StateFlyFlick()
+	    : State(MAR_FlyFlick, "flyflick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -259,6 +295,11 @@ struct StateFlyFlick : public State {
 };
 
 struct StateGround : public State {
+	inline StateGround()
+	    : State(MAR_Ground, "ground")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -268,6 +309,11 @@ struct StateGround : public State {
 };
 
 struct StateGroundFlick : public State {
+	inline StateGroundFlick()
+	    : State(MAR_GroundFlick, "groundflick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -277,6 +323,11 @@ struct StateGroundFlick : public State {
 };
 
 struct StateLand : public State {
+	inline StateLand()
+	    : State(MAR_Land, "land")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -286,6 +337,11 @@ struct StateLand : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(MAR_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -295,6 +351,11 @@ struct StateMove : public State {
 };
 
 struct StateTakeOff : public State {
+	inline StateTakeOff()
+	    : State(MAR_TakeOff, "takeoff")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -304,6 +365,11 @@ struct StateTakeOff : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(MAR_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

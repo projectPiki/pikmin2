@@ -685,7 +685,7 @@ lbl_8028078C:
  * Address:	802807DC
  * Size:	00038C
  */
-bool Obj::isAttackable()
+Creature* Obj::isAttackable()
 {
 	/*
 	stwu     r1, -0x80(r1)

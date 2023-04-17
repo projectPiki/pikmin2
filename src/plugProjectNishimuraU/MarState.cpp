@@ -1,572 +1,33 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80487800
-    lbl_80487800:
-        .asciz "246-MarState"
-        .skip 3
-        .asciz "chaseinside"
-        .asciz "flyflick"
-        .skip 3
-        .asciz "groundflick"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game3Mar16StateGroundFlick
-    __vt__Q34Game3Mar16StateGroundFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game3Mar16StateGroundFlickFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game3Mar16StateGroundFlickFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game3Mar16StateGroundFlickFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar13StateFlyFlick
-    __vt__Q34Game3Mar13StateFlyFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game3Mar13StateFlyFlickFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game3Mar13StateFlyFlickFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game3Mar13StateFlyFlickFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar12StateTakeOff
-    __vt__Q34Game3Mar12StateTakeOff:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game3Mar12StateTakeOffFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game3Mar12StateTakeOffFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game3Mar12StateTakeOffFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar11StateGround
-    __vt__Q34Game3Mar11StateGround:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game3Mar11StateGroundFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game3Mar11StateGroundFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game3Mar11StateGroundFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar9StateLand
-    __vt__Q34Game3Mar9StateLand:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game3Mar9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game3Mar9StateLandFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game3Mar9StateLandFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar9StateFall
-    __vt__Q34Game3Mar9StateFall:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game3Mar9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game3Mar9StateFallFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game3Mar9StateFallFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar11StateAttack
-    __vt__Q34Game3Mar11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game3Mar11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game3Mar11StateAttackFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game3Mar11StateAttackFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar16StateChaseInside
-    __vt__Q34Game3Mar16StateChaseInside:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game3Mar16StateChaseInsideFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game3Mar16StateChaseInsideFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game3Mar16StateChaseInsideFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar10StateChase
-    __vt__Q34Game3Mar10StateChase:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game3Mar10StateChaseFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game3Mar10StateChaseFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game3Mar10StateChaseFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar9StateMove
-    __vt__Q34Game3Mar9StateMove:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game3Mar9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game3Mar9StateMoveFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game3Mar9StateMoveFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar9StateWait
-    __vt__Q34Game3Mar9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game3Mar9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game3Mar9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game3Mar9StateWaitFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar9StateDead
-    __vt__Q34Game3Mar9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game3Mar9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game3Mar9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game3Mar9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar5State
-    __vt__Q34Game3Mar5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game3Mar3FSM
-    __vt__Q34Game3Mar3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game3Mar3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051B640
-    lbl_8051B640:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051B648
-    lbl_8051B648:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051B650
-    lbl_8051B650:
-        .4byte 0x6D6F7665
-        .4byte 0x00000000
-    .global lbl_8051B658
-    lbl_8051B658:
-        .4byte 0x63686173
-        .4byte 0x65000000
-    .global lbl_8051B660
-    lbl_8051B660:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051B668
-    lbl_8051B668:
-        .4byte 0x66616C6C
-        .4byte 0x00000000
-    .global lbl_8051B670
-    lbl_8051B670:
-        .4byte 0x6C616E64
-        .4byte 0x00000000
-    .global lbl_8051B678
-    lbl_8051B678:
-        .4byte 0x67726F75
-        .4byte 0x6E640000
-    .global lbl_8051B680
-    lbl_8051B680:
-        .4byte 0x74616B65
-        .4byte 0x6F666600
-    .global lbl_8051B688
-    lbl_8051B688:
-        .4byte 0x00000000
-    .global lbl_8051B68C
-    lbl_8051B68C:
-        .4byte 0x42340000
-    .global lbl_8051B690
-    lbl_8051B690:
-        .4byte 0x461C4000
-    .global lbl_8051B694
-    lbl_8051B694:
-        .4byte 0x40F00000
-    .global lbl_8051B698
-    lbl_8051B698:
-        .float 1.0
-    .global lbl_8051B69C
-    lbl_8051B69C:
-        .4byte 0x40490FDB
-    .global lbl_8051B6A0
-    lbl_8051B6A0:
-        .4byte 0x3BB60B61
-    .global lbl_8051B6A4
-    lbl_8051B6A4:
-        .4byte 0x43610000
-    .global lbl_8051B6A8
-    lbl_8051B6A8:
-        .4byte 0xC3A2F983
-    .global lbl_8051B6AC
-    lbl_8051B6AC:
-        .4byte 0x43A2F983
-    .global lbl_8051B6B0
-    lbl_8051B6B0:
-        .4byte 0x42480000
-    .global lbl_8051B6B4
-    lbl_8051B6B4:
-        .4byte 0x3F400000
-    .global lbl_8051B6B8
-    lbl_8051B6B8:
-        .4byte 0xC47A0000
-        .4byte 0x00000000
-*/
+#include "Game/Entities/Mar.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Game/MapMgr.h"
 
 namespace Game {
+namespace Mar {
+
+static const char unusedMarStateName[] = "246-MarState";
 
 /*
  * --INFO--
  * Address:	80282614
  * Size:	00042C
  */
-void Mar::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_80487800@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	addi     r30, r4, lbl_80487800@l
-	li       r4, 0xc
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80282684
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	addi     r5, r2, lbl_8051B640@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game3Mar9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80282684:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802826D8
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B648@sda21
-	addi     r0, r3, __vt__Q34Game3Mar9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802826D8:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8028272C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar9StateMove@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B650@sda21
-	addi     r0, r3, __vt__Q34Game3Mar9StateMove@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8028272C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80282780
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar10StateChase@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B658@sda21
-	addi     r0, r3, __vt__Q34Game3Mar10StateChase@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80282780:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802827D4
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar16StateChaseInside@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x10
-	addi     r0, r3, __vt__Q34Game3Mar16StateChaseInside@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802827D4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80282828
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar11StateAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B660@sda21
-	addi     r0, r3, __vt__Q34Game3Mar11StateAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80282828:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8028287C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar9StateFall@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B668@sda21
-	addi     r0, r3, __vt__Q34Game3Mar9StateFall@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8028287C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802828D0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar9StateLand@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B670@sda21
-	addi     r0, r3, __vt__Q34Game3Mar9StateLand@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802828D0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80282924
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar11StateGround@ha
-	stw      r0, 0(r4)
-	li       r0, 8
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B678@sda21
-	addi     r0, r3, __vt__Q34Game3Mar11StateGround@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80282924:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80282978
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar12StateTakeOff@ha
-	stw      r0, 0(r4)
-	li       r0, 9
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B680@sda21
-	addi     r0, r3, __vt__Q34Game3Mar12StateTakeOff@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80282978:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802829CC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar13StateFlyFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 0xa
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x1c
-	addi     r0, r3, __vt__Q34Game3Mar13StateFlyFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802829CC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80282A20
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game3Mar5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game3Mar16StateGroundFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 0xb
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game3Mar5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x28
-	addi     r0, r3, __vt__Q34Game3Mar16StateGroundFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80282A20:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(MAR_StateCount);
+	registerState(new StateDead);
+	registerState(new StateWait);
+	registerState(new StateMove);
+	registerState(new StateChase);
+	registerState(new StateChaseInside);
+	registerState(new StateAttack);
+	registerState(new StateFall);
+	registerState(new StateLand);
+	registerState(new StateGround);
+	registerState(new StateTakeOff);
+	registerState(new StateFlyFlick);
+	registerState(new StateGroundFlick);
 }
 
 /*
@@ -574,57 +35,22 @@ lbl_80282A20:
  * Address:	80282A40
  * Size:	0000AC
  */
-void Mar::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1d, 0x1b
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80282AB4
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	b        lbl_80282AC4
+	Obj* mar = OBJ(enemy);
+	mar->disableEvent(0, EB_IsCullable);
+	mar->disableEvent(0, EB_IsDamageAnimAllowed);
+	mar->mTargetVelocity = Vector3f(0.0f);
+	mar->deathProcedure();
 
-lbl_80282AB4:
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	if (mar->isFlying()) {
+		mar->startMotion(0, nullptr);
+	} else {
+		mar->startMotion(1, nullptr);
+	}
 
-lbl_80282AC4:
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r31)
-	bl       startDeadEffect__Q34Game3Mar3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mar->enableEvent(0, EB_IsFlying);
+	mar->startDeadEffect();
 }
 
 /*
@@ -632,48 +58,18 @@ lbl_80282AC4:
  * Address:	80282AEC
  * Size:	000088
  */
-void Mar::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051B68C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80282B1C
-	mr       r3, r31
-	bl       subShadowRadius__Q34Game3Mar3ObjFv
+	Obj* mar = OBJ(enemy);
+	if (mar->getMotionFrame() > 45.0f) {
+		mar->subShadowRadius();
+	}
 
-lbl_80282B1C:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80282B60
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80282B60
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x264(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       finishWindEffect__Q34Game3Mar3ObjFv
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_80282B60:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mar->mCurAnim->mIsPlaying && mar->mCurAnim->mType == KEYEVENT_END) {
+		mar->throwupItem();
+		mar->finishWindEffect();
+		mar->kill(nullptr);
+	}
 }
 
 /*
@@ -681,38 +77,21 @@ lbl_80282B60:
  * Address:	80282B74
  * Size:	000004
  */
-void Mar::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80282B78
  * Size:	000054
  */
-void Mar::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	li       r5, 0
-	stfs     f0, 0x2c0(r4)
-	li       r4, 5
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	stw      r0, 0x230(r3)
-	lwz      r0, 0x1e0(r3)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mar             = OBJ(enemy);
+	mar->_2C0            = 0.0f;
+	mar->mTargetVelocity = Vector3f(0.0f);
+	mar->mTargetCreature = nullptr;
+	mar->enableEvent(0, EB_IsFlying);
+	mar->startMotion(5, nullptr);
 }
 
 /*
@@ -720,98 +99,36 @@ void Mar::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80282BCC
  * Size:	000138
  */
-void Mar::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       setHeightVelocity__Q34Game3Mar3ObjFv
-	mr       r3, r31
-	bl       getSearchedPikmin__Q34Game3Mar3ObjFv
-	cmplwi   r3, 0
-	bne      lbl_80282C08
-	mr       r3, r31
-	bl       isAttackable__Q34Game3Mar3ObjFv
+	Obj* mar = OBJ(enemy);
+	mar->setHeightVelocity();
 
-lbl_80282C08:
-	cmplwi   r3, 0
-	beq      lbl_80282C38
-	stw      r3, 0x230(r31)
-	mr       r3, r30
-	mr       r4, r31
-	li       r5, 3
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80282C6C
+	Creature* target = mar->getSearchedPikmin();
+	if (!target) {
+		target = mar->isAttackable();
+	}
 
-lbl_80282C38:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2c0(r31)
-	lfs      f0, 0x86c(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80282C6C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	if (target) {
+		mar->mTargetCreature = target;
+		transit(mar, MAR_Chase, nullptr);
 
-lbl_80282C6C:
-	mr       r3, r31
-	bl       getFlyingNextState__Q34Game3Mar3ObjFv
-	or.      r5, r3, r3
-	blt      lbl_80282C9C
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	mr       r4, r31
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80282CEC
+	} else if (mar->_2C0 > CG_PROPERPARMS(mar).mFp03.mValue) {
+		transit(mar, MAR_Move, nullptr);
+	}
 
-lbl_80282C9C:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c0(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c0(r31)
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80282CEC
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80282CEC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	StateID nextState = mar->getFlyingNextState();
 
-lbl_80282CEC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (nextState >= 0) {
+		transit(mar, nextState, nullptr);
+		return;
+	}
+
+	mar->_2C0 += sys->mDeltaTime;
+
+	if (mar->mCurAnim->mIsPlaying && mar->mCurAnim->mType == KEYEVENT_END) {
+		transit(mar, MAR_Wait, nullptr);
+	}
 }
 
 /*
@@ -819,36 +136,20 @@ lbl_80282CEC:
  * Address:	80282D04
  * Size:	000004
  */
-void Mar::StateWait::cleanup(Game::EnemyBase*) { }
+void StateWait::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80282D08
  * Size:	00004C
  */
-void Mar::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setRandTarget__Q34Game3Mar3ObjFv
-	lfs      f0, lbl_8051B688@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0x2c0(r31)
-	stw      r0, 0x230(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mar = OBJ(enemy);
+	mar->setRandTarget();
+	mar->_2C0            = 0.0f;
+	mar->mTargetCreature = nullptr;
+	mar->enableEvent(0, EB_IsFlying);
 }
 
 /*
@@ -856,8 +157,40 @@ void Mar::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80282D54
  * Size:	0001A0
  */
-void Mar::StateMove::exec(Game::EnemyBase*)
+void StateMove::exec(EnemyBase* enemy)
 {
+	Obj* mar = OBJ(enemy);
+	mar->setHeightVelocity();
+
+	// this bit is being weird
+	Vector3f pos       = mar->getPosition();
+	f32 sqrDist        = sqrDistanceXZ(pos, mar->mTargetPosition);
+	Vector3f targetPos = mar->mTargetPosition;
+
+	Creature* target = mar->getSearchedPikmin();
+	if (target) {
+		mar->mTargetCreature = target;
+		transit(mar, MAR_Chase, nullptr);
+	} else if (sqrDist < 10000.0f || mar->_2C0 > 7.5f) {
+		mar->mTargetVelocity = Vector3f(0.0f);
+		mar->finishMotion();
+	} else {
+		EnemyFunc::walkToTarget(mar, targetPos, CG_PARMS(mar)->mGeneral.mMoveSpeed.mValue, CG_PARMS(mar)->mGeneral.mRotationalAccel.mValue,
+		                        CG_PARMS(mar)->mGeneral.mRotationalSpeed.mValue);
+	}
+
+	mar->_2C0 += sys->mDeltaTime;
+
+	StateID nextState = mar->getFlyingNextState();
+
+	if (nextState >= 0) {
+		transit(mar, nextState, nullptr);
+		return;
+	}
+
+	if (mar->mCurAnim->mIsPlaying && mar->mCurAnim->mType == KEYEVENT_END) {
+		transit(mar, MAR_Wait, nullptr);
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -983,29 +316,17 @@ lbl_80282ED4:
  * Address:	80282EF4
  * Size:	000004
  */
-void Mar::StateMove::cleanup(Game::EnemyBase*) { }
+void StateMove::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80282EF8
  * Size:	000030
  */
-void Mar::StateChase::init(Game::EnemyBase*, Game::StateArg*)
+void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->enableEvent(0, EB_IsFlying);
+	enemy->setEmotionExcitement();
 }
 
 /*
@@ -1013,8 +334,39 @@ void Mar::StateChase::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80282F28
  * Size:	000530
  */
-void Mar::StateChase::exec(Game::EnemyBase*)
+void StateChase::exec(EnemyBase* enemy)
 {
+	Obj* mar = OBJ(enemy);
+	mar->setHeightVelocity();
+
+	if (!mar->isFinishMotion()) {
+		Creature* target = mar->mTargetCreature;
+		if (target) {
+			// need to decomp this bit
+		}
+
+		Creature* attackTarget = mar->isAttackable();
+		if (attackTarget) {
+			mar->mTargetCreature = attackTarget;
+			mar->mTargetVelocity = Vector3f(0.0f);
+			mar->finishMotion();
+		}
+	}
+
+	StateID nextState = mar->getFlyingNextState();
+
+	if (nextState >= 0) {
+		transit(mar, nextState, nullptr);
+		return;
+	}
+
+	if (mar->mCurAnim->mIsPlaying && mar->mCurAnim->mType == KEYEVENT_END) {
+		if (mar->mTargetCreature) {
+			transit(mar, MAR_Attack, nullptr);
+		} else {
+			transit(mar, MAR_Wait, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0
@@ -1390,28 +742,37 @@ lbl_802833EC:
  * Address:	80283458
  * Size:	000024
  */
-void Mar::StateChase::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateChase::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	8028347C
  * Size:	000124
  */
-void Mar::StateChaseInside::init(Game::EnemyBase*, Game::StateArg*)
+void StateChaseInside::init(EnemyBase* enemy, StateArg* stateArg)
 {
+	Obj* mar         = OBJ(enemy);
+	Vector3f homePos = mar->mHomePosition;
+	if (mar->mTargetCreature) {
+		Vector3f pos = mar->getPosition();
+		Vector3f sep = homePos - pos;
+		sep.y        = 0.0f;
+
+		f32 length = _lenVec(sep);
+		if (length > 0.0f) {
+			f32 norm = 1.0f / length;
+			sep *= norm;
+		}
+		// _normalise2(sep);
+
+		sep *= CG_PARMS(mar)->mGeneral.mSightRadius.mValue;
+		mar->mTargetPosition = pos + sep;
+	} else {
+		mar->mTargetPosition = homePos;
+	}
+
+	mar->enableEvent(0, EB_IsFlying);
+	mar->setEmotionExcitement();
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1504,7 +865,7 @@ lbl_80283568:
  * Address:	802835A0
  * Size:	00037C
  */
-void Mar::StateChaseInside::exec(Game::EnemyBase*)
+void StateChaseInside::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -1758,64 +1119,25 @@ lbl_802838CC:
  * Address:	8028391C
  * Size:	000024
  */
-void Mar::StateChaseInside::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateChaseInside::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	80283940
  * Size:	000088
  */
-void Mar::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r4, 0x1e0(r4)
-	rlwinm   r4, r4, 0, 0x1a, 0x18
-	stw      r4, 0x1e0(r31)
-	stw      r0, 0x230(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 9
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	li       r0, 0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stb      r0, 0x308(r31)
-	mr       r3, r31
-	stfs     f0, 0x304(r31)
-	bl       createSuckEffect__Q34Game3Mar3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mar = OBJ(enemy);
+	mar->disableEvent(0, EB_IsCullable);
+	mar->mTargetCreature = nullptr;
+	mar->enableEvent(0, EB_IsFlying);
+	mar->mTargetVelocity = Vector3f(0.0f);
+	mar->setEmotionExcitement();
+	mar->startMotion(9, nullptr);
+	mar->_308 = 0;
+	mar->_304 = 0.0f;
+	mar->createSuckEffect();
 }
 
 /*
@@ -1823,74 +1145,27 @@ void Mar::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802839C8
  * Size:	0000E0
  */
-void Mar::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       setHeightVelocity__Q34Game3Mar3ObjFv
-	lbz      r0, 0x308(r31)
-	cmplwi   r0, 0
-	beq      lbl_80283A00
-	mr       r3, r31
-	bl       windTarget__Q34Game3Mar3ObjFv
+	Obj* mar = OBJ(enemy);
+	mar->setHeightVelocity();
+	if (mar->_308) {
+		mar->windTarget();
+	}
 
-lbl_80283A00:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B688@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80283A38
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80283A90
+	if (mar->mHealth <= 0.0f) {
+		transit(mar, MAR_Dead, nullptr);
+		return;
+	}
 
-lbl_80283A38:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80283A90
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80283A68
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x308(r31)
-	bl       startWindEffect__Q34Game3Mar3ObjFv
-	b        lbl_80283A90
-
-lbl_80283A68:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80283A90
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80283A90:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mar->mCurAnim->mIsPlaying) {
+		if (mar->mCurAnim->mType == KEYEVENT_2) {
+			mar->_308 = 1;
+			mar->startWindEffect();
+		} else if (mar->mCurAnim->mType == KEYEVENT_END) {
+			transit(mar, MAR_Wait, nullptr);
+		}
+	}
 }
 
 /*
@@ -1898,31 +1173,14 @@ lbl_80283A90:
  * Address:	80283AA8
  * Size:	000054
  */
-void Mar::StateAttack::cleanup(Game::EnemyBase*)
+void StateAttack::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r4)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	li       r0, 0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stb      r0, 0x308(r31)
-	mr       r3, r31
-	stfs     f0, 0x304(r31)
-	bl       finishWindEffect__Q34Game3Mar3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mar = OBJ(enemy);
+	mar->enableEvent(0, EB_IsCullable);
+	mar->setEmotionCaution();
+	mar->_308 = 0;
+	mar->_304 = 0.0f;
+	mar->finishWindEffect();
 }
 
 /*
@@ -1930,36 +1188,15 @@ void Mar::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	80283AFC
  * Size:	000068
  */
-void Mar::StateFall::init(Game::EnemyBase*, Game::StateArg*)
+void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c0(r4)
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 8
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mar             = OBJ(enemy);
+	mar->_2C0            = 0.0f;
+	mar->mTargetCreature = nullptr;
+	mar->enableEvent(0, EB_IsFlying);
+	mar->mTargetVelocity = Vector3f(0.0f);
+	mar->setEmotionExcitement();
+	mar->startMotion(8, nullptr);
 }
 
 /*
@@ -1967,132 +1204,39 @@ void Mar::StateFall::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80283B64
  * Size:	0001A4
  */
-void Mar::StateFall::exec(Game::EnemyBase*)
+void StateFall::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r31, r4
-	mr       r30, r3
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80283BB0
-	mr       r3, r31
-	bl       setHeightVelocity__Q34Game3Mar3ObjFv
-	b        lbl_80283C44
+	Obj* mar = OBJ(enemy);
+	if (mar->isFlying()) {
+		mar->setHeightVelocity();
+	} else {
+		Vector3f pos = mar->getPosition();
+		Vector3f vel = mar->getVelocity();
 
-lbl_80283BB0:
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	mr       r4, r31
-	lfs      f1, 0x18(r1)
-	addi     r3, r1, 8
-	lfs      f0, 0x1c(r1)
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x20
-	lfs      f31, 0xc(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x24(r1)
-	lfs      f0, lbl_8051B6B0@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	blt      lbl_80283C34
-	lfs      f0, lbl_8051B688@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_80283C3C
+		f32 fallSpeed = vel.y;
 
-lbl_80283C34:
-	mr       r3, r31
-	.global  lbl_80283C38
+		f32 heightDiff = pos.y - mapMgr->getMinY(pos);
+		if (heightDiff < 50.0f || fallSpeed > 0.0f) {
+			mar->finishMotion();
+		}
 
-lbl_80283C38:
-	bl       finishMotion__Q24Game9EnemyBaseFv
+		mar->addShadowOffset();
+	}
 
-lbl_80283C3C:
-	mr       r3, r31
-	bl       addShadowOffset__Q34Game3Mar3ObjFv
+	if (mar->_2C0 > 0.75f) {
+		mar->disableEvent(0, EB_IsFlying);
+	}
 
-lbl_80283C44:
-	lfs      f1, 0x2c0(r31)
-	lfs      f0, lbl_8051B6B4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80283C60
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r31)
+	mar->_2C0 += sys->mDeltaTime;
 
-lbl_80283C60:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x2c0(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051B688@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x2c0(r31)
-	lfs      f1, 0x200(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80283CAC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80283CE8
+	if (mar->mHealth <= 0.0f) {
+		transit(mar, MAR_Dead, nullptr);
+		return;
+	}
 
-lbl_80283CAC:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80283CE8
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80283CE8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 7
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80283CE8:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (mar->mCurAnim->mIsPlaying && mar->mCurAnim->mType == KEYEVENT_END) {
+		transit(mar, MAR_Land, nullptr);
+	}
 }
 
 /*
@@ -2100,24 +1244,11 @@ lbl_80283CE8:
  * Address:	80283D08
  * Size:	000038
  */
-void Mar::StateFall::cleanup(Game::EnemyBase*)
+void StateFall::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setShadowOffsetMax__Q34Game3Mar3ObjFv
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mar = OBJ(enemy);
+	mar->setShadowOffsetMax();
+	mar->setEmotionCaution();
 }
 
 /*
@@ -2125,38 +1256,16 @@ void Mar::StateFall::cleanup(Game::EnemyBase*)
  * Address:	80283D40
  * Size:	000070
  */
-void Mar::StateLand::init(Game::EnemyBase*, Game::StateArg*)
+void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c0(r4)
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 6
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       createDownEffect__Q34Game3Mar3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mar             = OBJ(enemy);
+	mar->_2C0            = 0.0f;
+	mar->mTargetCreature = nullptr;
+	mar->disableEvent(0, EB_IsFlying);
+	mar->mTargetVelocity = Vector3f(0.0f);
+	mar->setEmotionExcitement();
+	mar->startMotion(6, nullptr);
+	mar->createDownEffect();
 }
 
 /*
@@ -2164,46 +1273,16 @@ void Mar::StateLand::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80283DB0
  * Size:	000080
  */
-void Mar::StateLand::exec(Game::EnemyBase*)
+void StateLand::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80283DEC
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80283E20
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, MAR_Dead, nullptr);
+		return;
+	}
 
-lbl_80283DEC:
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80283E20
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80283E20
-	lwz      r12, 0(r3)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80283E20:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, MAR_Ground, nullptr);
+	}
 }
 
 /*
@@ -2211,56 +1290,22 @@ lbl_80283E20:
  * Address:	80283E30
  * Size:	000024
  */
-void Mar::StateLand::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateLand::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	80283E54
  * Size:	000068
  */
-void Mar::StateGround::init(Game::EnemyBase*, Game::StateArg*)
+void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c0(r4)
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mar             = OBJ(enemy);
+	mar->_2C0            = 0.0f;
+	mar->mTargetCreature = nullptr;
+	mar->disableEvent(0, EB_IsFlying);
+	mar->mTargetVelocity = Vector3f(0.0f);
+	mar->setEmotionExcitement();
+	mar->startMotion(4, nullptr);
 }
 
 /*
@@ -2268,89 +1313,27 @@ void Mar::StateGround::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80283EBC
  * Size:	000114
  */
-void Mar::StateGround::exec(Game::EnemyBase*)
+void StateGround::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x1f4(r4)
-	cmpwi    r0, 0
-	beq      lbl_80283EF8
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2c0(r31)
-	lfs      f0, 0x894(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80283F00
+	Obj* mar = OBJ(enemy);
+	if (mar->mStuckPikminCount == 0 || mar->_2C0 > CG_PROPERPARMS(mar).mFp10.mValue) {
+		mar->finishMotion();
+	}
 
-lbl_80283EF8:
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	mar->_2C0 += sys->mDeltaTime;
 
-lbl_80283F00:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x2c0(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051B688@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x2c0(r31)
-	lfs      f1, 0x200(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80283F4C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80283FB8
+	if (mar->mHealth <= 0.0f) {
+		transit(mar, MAR_Dead, nullptr);
+		return;
+	}
 
-lbl_80283F4C:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80283FB8
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80283FB8
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 0
-	beq      lbl_80283F98
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xb
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80283FB8
-
-lbl_80283F98:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80283FB8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mar->mCurAnim->mIsPlaying && mar->mCurAnim->mType == KEYEVENT_END) {
+		if (mar->mStuckPikminCount) {
+			transit(mar, MAR_GroundFlick, nullptr);
+		} else {
+			transit(mar, MAR_TakeOff, nullptr);
+		}
+	}
 }
 
 /*
@@ -2358,55 +1341,20 @@ lbl_80283FB8:
  * Address:	80283FD0
  * Size:	000024
  */
-void Mar::StateGround::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateGround::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	80283FF4
  * Size:	000064
  */
-void Mar::StateTakeOff::init(Game::EnemyBase*, Game::StateArg*)
+void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 7
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->mTargetCreature = nullptr;
+	enemy->disableEvent(0, EB_IsFlying);
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	enemy->setEmotionExcitement();
+	enemy->startMotion(7, nullptr);
 }
 
 /*
@@ -2414,77 +1362,26 @@ void Mar::StateTakeOff::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80284058
  * Size:	0000EC
  */
-void Mar::StateTakeOff::exec(Game::EnemyBase*)
+void StateTakeOff::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802840A0
-	mr       r3, r31
-	bl       setHeightVelocity__Q34Game3Mar3ObjFv
-	mr       r3, r31
-	bl       subShadowOffset__Q34Game3Mar3ObjFv
+	Obj* mar = OBJ(enemy);
+	if (mar->isFlying()) {
+		mar->setHeightVelocity();
+		mar->subShadowOffset();
+	}
 
-lbl_802840A0:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B688@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802840D8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8028412C
+	if (mar->mHealth <= 0.0f) {
+		transit(mar, MAR_Dead, nullptr);
+		return;
+	}
 
-lbl_802840D8:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8028412C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80284104
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r31)
-	b        lbl_8028412C
-
-lbl_80284104:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8028412C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8028412C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mar->mCurAnim->mIsPlaying) {
+		if (mar->mCurAnim->mType == KEYEVENT_2) {
+			mar->enableEvent(0, EB_IsFlying);
+		} else if (mar->mCurAnim->mType == KEYEVENT_END) {
+			transit(mar, MAR_Wait, nullptr);
+		}
+	}
 }
 
 /*
@@ -2492,24 +1389,11 @@ lbl_8028412C:
  * Address:	80284144
  * Size:	000038
  */
-void Mar::StateTakeOff::cleanup(Game::EnemyBase*)
+void StateTakeOff::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       resetShadowOffset__Q34Game3Mar3ObjFv
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mar = OBJ(enemy);
+	mar->resetShadowOffset();
+	mar->setEmotionCaution();
 }
 
 /*
@@ -2517,35 +1401,13 @@ void Mar::StateTakeOff::cleanup(Game::EnemyBase*)
  * Address:	8028417C
  * Size:	000064
  */
-void Mar::StateFlyFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 2
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->mTargetCreature = nullptr;
+	enemy->enableEvent(0, EB_IsFlying);
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	enemy->setEmotionExcitement();
+	enemy->startMotion(2, nullptr);
 }
 
 /*
@@ -2553,74 +1415,26 @@ void Mar::StateFlyFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802841E0
  * Size:	0000E4
  */
-void Mar::StateFlyFlick::exec(Game::EnemyBase*)
+void StateFlyFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       setHeightVelocity__Q34Game3Mar3ObjFv
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B688@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8028423C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802842AC
+	Obj* mar = OBJ(enemy);
+	mar->setHeightVelocity();
 
-lbl_8028423C:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802842AC
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80284284
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051B6B8@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stfs     f0, 0x20c(r31)
-	b        lbl_802842AC
+	if (mar->mHealth <= 0.0f) {
+		transit(mar, MAR_Dead, nullptr);
+		return;
+	}
 
-lbl_80284284:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802842AC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	if (mar->mCurAnim->mIsPlaying) {
+		if (mar->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::flickStickPikmin(mar, CG_PARMS(mar)->mGeneral.mShakeRateMaybe.mValue, CG_PARMS(mar)->mGeneral.mShakeKnockback.mValue,
+			                            CG_PARMS(mar)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			mar->mToFlick = 0.0f;
 
-lbl_802842AC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		} else if (mar->mCurAnim->mType == KEYEVENT_END) {
+			transit(mar, MAR_Wait, nullptr);
+		}
+	}
 }
 
 /*
@@ -2628,55 +1442,20 @@ lbl_802842AC:
  * Address:	802842C4
  * Size:	000024
  */
-void Mar::StateFlyFlick::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateFlyFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	802842E8
  * Size:	000064
  */
-void Mar::StateGroundFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->mTargetCreature = nullptr;
+	enemy->disableEvent(0, EB_IsFlying);
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	enemy->setEmotionExcitement();
+	enemy->startMotion(3, nullptr);
 }
 
 /*
@@ -2684,83 +1463,30 @@ void Mar::StateGroundFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8028434C
  * Size:	000100
  */
-void Mar::StateGroundFlick::exec(Game::EnemyBase*)
+void StateGroundFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80284390
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80284438
+	if (enemy->mHealth <= 0.0f) {
+		transit(enemy, MAR_Dead, nullptr);
+		return;
+	}
 
-lbl_80284390:
-	lwz      r5, 0x188(r31)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80284438
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80284418
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051B6B8@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051B6B8@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051B6B8@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f0, lbl_8051B688@sda21(r2)
-	stfs     f0, 0x20c(r31)
-	b        lbl_80284438
+	if (enemy->mCurAnim->mIsPlaying) {
+		if (enemy->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::flickNearbyNavi(enemy, CG_PARMS(enemy)->mGeneral.mShakeRange.mValue,
+			                           CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
+			                           -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeRange.mValue,
+			                             CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
+			                             -1000.0f, nullptr);
+			EnemyFunc::flickStickPikmin(enemy, CG_PARMS(enemy)->mGeneral.mShakeRateMaybe.mValue,
+			                            CG_PARMS(enemy)->mGeneral.mShakeKnockback.mValue, CG_PARMS(enemy)->mGeneral.mShakeDamage.mValue,
+			                            -1000.0f, nullptr);
 
-lbl_80284418:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80284438
-	lwz      r12, 0(r3)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80284438:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			enemy->mToFlick = 0.0f;
+		} else if (enemy->mCurAnim->mType == KEYEVENT_END) {
+			transit(enemy, MAR_TakeOff, nullptr);
+		}
+	}
 }
 
 /*
@@ -2768,18 +1494,6 @@ lbl_80284438:
  * Address:	8028444C
  * Size:	000024
  */
-void Mar::StateGroundFlick::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateGroundFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
+} // namespace Mar
 } // namespace Game
