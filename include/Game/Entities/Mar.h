@@ -17,22 +17,21 @@
 namespace Game {
 namespace Mar {
 
-enum EMarState {
+enum StateID {
 	MAR_NULL        = -1,
-
-	MAR_DEAD        = 0,
-	MAR_WAIT        = 1,
-	MAR_MOVE        = 2,
-	MAR_CHASE       = 3,
-	MAR_CHASEINSIDE = 4,
-	MAR_ATTACK      = 5,
-	MAR_FALL        = 6,
-	MAR_LAND        = 7, 
-	MAR_GROUND      = 8,
-	MAR_TAKEOFF     = 9,
-	MAR_FLYFLICK    = 10,
-	MAR_GROUNDFLICK = 11,
-	MAR_COUNT
+	MAR_Dead        = 0,
+	MAR_Wait        = 1,
+	MAR_Move        = 2,
+	MAR_Chase       = 3,
+	MAR_ChaseInside = 4,
+	MAR_Attack      = 5,
+	MAR_Fall        = 6,
+	MAR_Land        = 7,
+	MAR_Ground      = 8,
+	MAR_TakeOff     = 9,
+	MAR_FlyFlick    = 10,
+	MAR_GroundFlick = 11,
+	MAR_StateCount, // 12
 };
 
 struct FSM;
@@ -44,8 +43,8 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb) { };         // _84 (weak)
-	virtual void outWaterCallback() { };                    // _88 (weak)
+	virtual void inWaterCallback(WaterBox* wb) {};          // _84 (weak)
+	virtual void outWaterCallback() {};                     // _88 (weak)
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
@@ -54,18 +53,20 @@ struct Obj : public EnemyBase {
 	virtual void changeMaterial();                          // _200
 	virtual Vector3f getOffsetForMapCollision();            // _224
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
-	{ return EnemyTypeID::EnemyID_Mar; }
-	virtual void getThrowupItemPosition(Vector3f*);         // _268
-	virtual void getThrowupItemVelocity(Vector3f*);         // _26C
-	virtual void throwupItemInDeathProcedure() { };         // _270 (weak)
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual void doStartWaitingBirthTypeDrop();             // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();            // _2E4
-	virtual f32 getDownSmokeScale() { return 1.15f; }       // _2EC (weak)
-	virtual void doStartMovie();                            // _2F0
-	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM*);                              // _2F8
+	{
+		return EnemyTypeID::EnemyID_Mar;
+	}
+	virtual void getThrowupItemPosition(Vector3f*);   // _268
+	virtual void getThrowupItemVelocity(Vector3f*);   // _26C
+	virtual void throwupItemInDeathProcedure() {};    // _270 (weak)
+	virtual void doStartStoneState();                 // _2A4
+	virtual void doFinishStoneState();                // _2A8
+	virtual void doStartWaitingBirthTypeDrop();       // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();      // _2E4
+	virtual f32 getDownSmokeScale() { return 1.15f; } // _2EC (weak)
+	virtual void doStartMovie();                      // _2F0
+	virtual void doEndMovie();                        // _2F4
+	virtual void setFSM(FSM*);                        // _2F8
 	//////////////// VTABLE END
 
 	Vector3f getHeadJointPos();
@@ -78,11 +79,11 @@ struct Obj : public EnemyBase {
 	void resetShadowRadius();
 	void subShadowRadius();
 	void updateFallTimer();
-	EMarState getFlyingNextState();
+	StateID getFlyingNextState();
 	void addPitchRatio();
 	Piki* getSearchedPikmin();
-	void isTargetLost();
-	void isAttackable();
+	bool isTargetLost();
+	bool isAttackable();
 	void updateEmit();
 	Vector3f getAttackPosition();
 	void windTarget();
@@ -98,25 +99,25 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                     // _2BC
-	f32 _2C0;                      // _2C0
-	f32 mFallTimer;                // _2C4
-	f32 mShadowOffset;             // _2C8
-	f32 mShadowRadius;             // _2CC
-	Vector3f mTargetPosition;      // _2D0
-	Matrixf* mEfxMatrix;           // _2DC
-	Vector3f _2E0;                 // _2E0
-	Vector3f _2EC;                 // _2EC
-	Vector3f mAttackPosition;      // _2F8
-	f32 _304;                      // _304
-	u8 _308;                       // _308, unknown
-	f32 _30C;                      // _30C, pitch ratio maybe?
-	efx::TFusenDead* mEfxDead;     // _310
-	efx::TFusenAirhit* mEfxAirhit; // _314
-	efx::TFusenAir* mEfxAir;       // _318
-	efx::TFusenSui* mEfxSui;       // _31C
-	Sys::MatLoopAnimator* mMatAnimators;    // _320, array of two animators
-	                               // _324 = PelletView
+	FSM* mFsm;                           // _2BC
+	f32 _2C0;                            // _2C0
+	f32 mFallTimer;                      // _2C4
+	f32 mShadowOffset;                   // _2C8
+	f32 mShadowRadius;                   // _2CC
+	Vector3f mTargetPosition;            // _2D0
+	Matrixf* mEfxMatrix;                 // _2DC
+	Vector3f _2E0;                       // _2E0
+	Vector3f _2EC;                       // _2EC
+	Vector3f mAttackPosition;            // _2F8
+	f32 _304;                            // _304
+	u8 _308;                             // _308, unknown
+	f32 _30C;                            // _30C, pitch ratio maybe?
+	efx::TFusenDead* mEfxDead;           // _310
+	efx::TFusenAirhit* mEfxAirhit;       // _314
+	efx::TFusenAir* mEfxAir;             // _318
+	efx::TFusenSui* mEfxSui;             // _31C
+	Sys::MatLoopAnimator* mMatAnimators; // _320, array of two animators
+	                                     // _324 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -197,8 +198,6 @@ struct FSM : public EnemyStateMachine {
 	// _00		= VTBL
 	// _00-_1C	= EnemyStateMachine
 };
-
-
 
 struct State : public EnemyFSMState {
 	// _00		= VTBL

@@ -158,7 +158,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void outWaterCallback();                    // _88
 	virtual bool isFlying()                             // _CC (weak)
 	{
-		return (mEvents.mFlags[0].typeView >> 2) & 1;
+		return isEvent(0, EB_IsFlying);
 	}
 	virtual void collisionCallback(CollEvent& coll);          // _EC
 	virtual JAInter::Object* getJAIObject();                  // _F4
@@ -668,6 +668,14 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 			result = true;
 		}
 		return result;
+	}
+
+	inline f32 getCreatureViewAngle(Creature* target)
+	{
+		Vector3f targetPos = target->getPosition();
+		Vector3f pos       = getPosition();
+		f32 ang            = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
+		return angDist(ang, getFaceDir());
 	}
 
 	inline f32 getDamageAnimFrac(f32 scale) { return (mDamageAnimTimer / scale); }

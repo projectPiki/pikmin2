@@ -6,7 +6,8 @@
 
 namespace efx {
 struct TFusenAir : public TChaseMtx3 {
-	TFusenAir() : TChaseMtx3(nullptr, PID_FusenAir_Mar_1, PID_FusenAir_Mar_2, PID_FusenAir_Mar_3) 
+	TFusenAir()
+	    : TChaseMtx3(nullptr, PID_FusenAir_Mar_1, PID_FusenAir_Mar_2, PID_FusenAir_Mar_3)
 	{
 	}
 	// _00      = VTBL
@@ -14,8 +15,8 @@ struct TFusenAir : public TChaseMtx3 {
 };
 
 struct TFusenAirhit : public TChasePosYRot2 {
-	inline TFusenAirhit(Vector3f* pos, f32* faceDir) 
-		: TChasePosYRot2(pos, faceDir, PID_FusenAirHit_Mar_1, PID_FusenAirHit_Mar_2) 
+	inline TFusenAirhit(Vector3f* pos, f32* faceDir)
+	    : TChasePosYRot2(pos, faceDir, PID_FusenAirHit_Mar_1, PID_FusenAirHit_Mar_2)
 	{
 	}
 	// _00      = VTBL
@@ -23,7 +24,8 @@ struct TFusenAirhit : public TChasePosYRot2 {
 };
 
 struct TFusenDead : public TChaseMtx2 {
-	inline TFusenDead() : TChaseMtx2(nullptr, PID_FusenDead_1, PID_FusenDead_2) 
+	inline TFusenDead()
+	    : TChaseMtx2(nullptr, PID_FusenDead_1, PID_FusenDead_2)
 	{
 	}
 	// _00      = VTBL
@@ -36,16 +38,17 @@ struct TFusenhAir : public TChaseMtx3 {
 };
 
 struct TFusenhAirhit : public TChasePosYRot2 {
-	
+
 	// _00      = VTBL
 	// _00-_34  = TChasePosYRot2
 };
 
 struct TFusenSui : public TChaseMtx {
-	inline TFusenSui() : TChaseMtx(PID_FusenSui, nullptr) {
-
+	inline TFusenSui()
+	    : TChaseMtx(PID_FusenSui, nullptr)
+	{
 	}
-	virtual ~TFusenSui() {} // _48 (weak)
+	virtual ~TFusenSui() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
