@@ -5,6 +5,7 @@
 #include "JSystem/JMath.h"
 #include "Game/EnemyFunc.h"
 #include "Game/PikiMgr.h"
+#include "Game/Navi.h"
 
 namespace Game {
 namespace Mar {
@@ -687,6 +688,26 @@ lbl_8028078C:
  */
 Creature* Obj::isAttackable()
 {
+	const f32 faceDir = getFaceDir();
+	Parms* parms      = C_PARMS;
+	Vector3f vec      = Vector3f(parms->mGeneral.mMaxAttackRange.mValue * pikmin2_sinf(faceDir), 0.0f,
+                            parms->mGeneral.mMaxAttackRange.mValue * pikmin2_cosf(faceDir));
+	vec += getPosition();
+	f32 radius = SQUARE(C_PARMS->mGeneral.mMinAttackRange.mValue);
+
+	Iterator<Piki> iter(pikiMgr);
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		if (piki->isAlive() && piki->isPikmin() && !piki->isStickToMouth() && piki->mSticker != this) {
+			Vector3f pikiPos = piki->getPosition();
+			if (sqrDistanceXZ(pikiPos, vec) < radius) {
+				return piki;
+			}
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -951,129 +972,12 @@ lbl_80280B38:
  */
 void Obj::updateEmit()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r3, 0x2dc(r3)
-	cmplwi   r3, 0
-	beq      lbl_80280BA8
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0x2e0(r31)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0x2e4(r31)
-	lfs      f0, 0x2c(r3)
-	stfs     f0, 0x2e8(r31)
+	if (mEfxMatrix) {
+		mEfxMatrix->getTranslation(_2E0);
+	}
 
-lbl_80280BA8:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051B598@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80280BCC
-	fneg     f1, f1
-
-lbl_80280BCC:
-	lfs      f0, lbl_8051B5D0@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	lwz      r12, 0(r31)
-	addi     r4, r4, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r4, r0
-	lfs      f31, 4(r4)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051B598@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80280C40
-	lfs      f0, lbl_8051B5CC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_80280C64
-
-lbl_80280C40:
-	lfs      f0, lbl_8051B5D0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_80280C64:
-	stfs     f0, 0x2ec(r31)
-	lfs      f0, lbl_8051B604@sda21(r2)
-	lfs      f1, lbl_8051B598@sda21(r2)
-	stfs     f0, 0x2f0(r31)
-	stfs     f31, 0x2f4(r31)
-	lfs      f3, 0x2ec(r31)
-	lfs      f2, 0x2f0(r31)
-	lfs      f4, 0x2f4(r31)
-	fmuls    f0, f3, f3
-	fmuls    f2, f2, f2
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f2
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80280CBC
-	fmadds   f0, f3, f3, f2
-	fadds    f2, f4, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_80280CC0
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_80280CC0
-
-lbl_80280CBC:
-	fmr      f2, f1
-
-lbl_80280CC0:
-	lfs      f0, lbl_8051B598@sda21(r2)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80280CF8
-	lfs      f1, lbl_8051B5B0@sda21(r2)
-	lfs      f0, 0x2ec(r31)
-	fdivs    f1, f1, f2
-	fmuls    f0, f0, f1
-	stfs     f0, 0x2ec(r31)
-	lfs      f0, 0x2f0(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x2f0(r31)
-	lfs      f0, 0x2f4(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x2f4(r31)
-
-lbl_80280CF8:
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	_2EC = Vector3f(pikmin2_sinf(getFaceDir()), -0.85f, pikmin2_cosf(getFaceDir()));
+	_2EC.normalise();
 }
 
 /*
@@ -1083,138 +987,37 @@ lbl_80280CF8:
  */
 Vector3f Obj::getAttackPosition()
 {
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stfd     f29, 0xb0(r1)
-	psq_st   f29, 184(r1), 0, qr0
-	stfd     f28, 0xa0(r1)
-	psq_st   f28, 168(r1), 0, qr0
-	stfd     f27, 0x90(r1)
-	psq_st   f27, 152(r1), 0, qr0
-	stfd     f26, 0x80(r1)
-	psq_st   f26, 136(r1), 0, qr0
-	stfd     f25, 0x70(r1)
-	psq_st   f25, 120(r1), 0, qr0
-	stfd     f24, 0x60(r1)
-	psq_st   f24, 104(r1), 0, qr0
-	stfd     f23, 0x50(r1)
-	psq_st   f23, 88(r1), 0, qr0
-	stfd     f22, 0x40(r1)
-	psq_st   f22, 72(r1), 0, qr0
-	stfd     f21, 0x30(r1)
-	psq_st   f21, 56(r1), 0, qr0
-	stfd     f20, 0x20(r1)
-	psq_st   f20, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	lwz      r5, 0xc0(r4)
-	mr       r31, r3
-	lfs      f0, lbl_8051B5B4@sda21(r2)
-	lfs      f2, 0x5b4(r5)
-	lfs      f1, lbl_8051B608@sda21(r2)
-	fdivs    f3, f0, f2
-	lfs      f27, 0x2ec(r4)
-	lfs      f26, 0x2f0(r4)
-	lfs      f25, 0x2f4(r4)
-	lfs      f31, lbl_8051B5B0@sda21(r2)
-	lfs      f30, 0x2e0(r4)
-	fmuls    f27, f27, f2
-	lfs      f29, 0x2e4(r4)
-	fmuls    f26, f26, f2
-	lfs      f28, 0x2e8(r4)
-	fmuls    f25, f25, f2
-	fadds    f27, f27, f30
-	fadds    f26, f26, f29
-	fadds    f25, f25, f28
-	fdivs    f21, f1, f2
-	fsubs    f4, f31, f3
-	fmuls    f2, f27, f3
-	fmuls    f1, f26, f3
-	fmuls    f0, f25, f3
-	fmr      f20, f3
-	fmadds   f24, f30, f4, f2
-	fmadds   f23, f29, f4, f1
-	fmadds   f22, f28, f4, f0
-	b        lbl_80280E68
+	Vector3f vec2 = _2E0;
+	Vector3f vec1 = _2EC;
 
-lbl_80280DF8:
-	fsubs    f3, f31, f20
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	fmuls    f2, f27, f20
-	addi     r4, r1, 8
-	fmuls    f1, f26, f20
-	fmuls    f0, f25, f20
-	fmadds   f2, f30, f3, f2
-	fmadds   f1, f29, f3, f1
-	fmadds   f0, f28, f3, f0
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80280E54
-	stfs     f24, 0(r31)
-	stfs     f23, 4(r31)
-	stfs     f22, 8(r31)
-	b        lbl_80280E88
+	vec1.x *= C_PARMS->mGeneral.mAttackRadius.mValue;
+	vec1.y *= C_PARMS->mGeneral.mAttackRadius.mValue;
+	vec1.z *= C_PARMS->mGeneral.mAttackRadius.mValue;
 
-lbl_80280E54:
-	frsp     f23, f1
-	stfs     f1, 0xc(r1)
-	fadds    f20, f20, f21
-	lfs      f24, 8(r1)
-	lfs      f22, 0x10(r1)
+	vec1 += vec2;
 
-lbl_80280E68:
-	fcmpo    cr0, f20, f31
-	blt      lbl_80280DF8
-	lfs      f0, 8(r1)
-	stfs     f0, 0(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 8(r31)
+	f32 inc    = 25.0f / C_PARMS->mGeneral.mAttackRadius.mValue;
+	f32 t      = 100.0f / C_PARMS->mGeneral.mAttackRadius.mValue;
+	f32 tCompl = 1.0f - t;
 
-lbl_80280E88:
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	psq_l    f29, 184(r1), 0, qr0
-	lfd      f29, 0xb0(r1)
-	psq_l    f28, 168(r1), 0, qr0
-	lfd      f28, 0xa0(r1)
-	psq_l    f27, 152(r1), 0, qr0
-	lfd      f27, 0x90(r1)
-	psq_l    f26, 136(r1), 0, qr0
-	lfd      f26, 0x80(r1)
-	psq_l    f25, 120(r1), 0, qr0
-	lfd      f25, 0x70(r1)
-	psq_l    f24, 104(r1), 0, qr0
-	lfd      f24, 0x60(r1)
-	psq_l    f23, 88(r1), 0, qr0
-	lfd      f23, 0x50(r1)
-	psq_l    f22, 72(r1), 0, qr0
-	lfd      f22, 0x40(r1)
-	psq_l    f21, 56(r1), 0, qr0
-	lfd      f21, 0x30(r1)
-	psq_l    f20, 40(r1), 0, qr0
-	lfd      f20, 0x20(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
+	Vector3f prevPos = Vector3f(vec2.x * tCompl + vec1.x * t, vec2.y * tCompl + vec1.y * t, vec2.z * tCompl + vec1.z * t);
+	Vector3f nextPos;
+
+	for (f32 ratio = t; ratio < 1.0f; ratio += inc) {
+		f32 ratioCompl = 1.0f - ratio;
+		nextPos
+		    = Vector3f(vec2.x * ratioCompl + vec1.x * ratio, vec2.y * ratioCompl + vec1.y * ratio, vec2.z * ratioCompl + vec1.z * ratio);
+
+		f32 minY = mapMgr->getMinY(nextPos);
+		if (minY > nextPos.y) {
+			return prevPos;
+		}
+
+		nextPos.y = minY;
+		prevPos   = nextPos;
+	}
+
+	return nextPos;
 }
 
 /*
@@ -1224,6 +1027,58 @@ lbl_80280E88:
  */
 void Obj::windTarget()
 {
+	if (_304 < 1.0f) {
+		_304 += 3.0f * sys->mDeltaTime;
+		if (_304 > 1.0f) {
+			_304 = 1.0f;
+		}
+	}
+
+	f32 radius    = _304 * C_PARMS->mGeneral.mAttackRadius.mValue;
+	Vector3f vec1 = _2E0;                                                                // f16
+	Vector3f vec2 = _2EC;                                                                // f29
+	f32 slope     = (f32)tan(PI * (DEG2RAD * C_PARMS->mGeneral.mAttackHitAngle.mValue)); // f20
+
+	// this is probably a new vector
+	vec2.z = -vec2.z;
+
+	f32 len2 = _normalise2(vec2);
+
+	// more vector manip.
+
+	Iterator<Navi> iterNavi(naviMgr);
+	CI_LOOP(iterNavi)
+	{
+		Navi* navi = *iterNavi;
+		if (navi->isAlive()) {
+			Vector3f naviPos = navi->getPosition();
+			Vector3f sep     = naviPos - vec1;
+			f32 dotProd      = dot(sep, vec2);
+			if (dotProd < radius && dotProd > 0.0f) {
+				// more vector math here.
+				InteractWind wind(this, 0.0f, &vec2); // not vec2
+				navi->stimulate(wind);
+			}
+		}
+	}
+
+	Iterator<Piki> iterPiki(pikiMgr);
+	CI_LOOP(iterPiki)
+	{
+		Piki* piki = *iterPiki;
+		if (piki->isAlive()) {
+			Vector3f pikiPos = piki->getPosition();
+			Vector3f sep     = pikiPos - vec1;
+			f32 dotProd      = dot(sep, vec2);
+			if (dotProd < radius && dotProd > 0.0f) {
+				// more vector math here.
+				InteractWind wind(this, 0.0f, &vec2); // not vec2
+				piki->stimulate(wind);
+			}
+		}
+	}
+
+	mAttackPosition = getAttackPosition();
 	/*
 	stwu     r1, -0x190(r1)
 	mflr     r0
