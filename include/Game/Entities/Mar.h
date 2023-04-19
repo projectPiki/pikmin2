@@ -91,7 +91,7 @@ struct Obj : public EnemyBase {
 	void setupEffect();
 	void startDeadEffect();
 	void createSuckEffect();
-	bool startWindEffect();
+	void startWindEffect();
 	void finishWindEffect();
 	void createDownEffect();
 	void effectDrawOn();
@@ -111,7 +111,7 @@ struct Obj : public EnemyBase {
 	Vector3f mAttackPosition;            // _2F8
 	f32 _304;                            // _304
 	u8 _308;                             // _308, unknown
-	f32 _30C;                            // _30C, pitch ratio maybe?
+	f32 mPitchRatio;                     // _30C
 	efx::TFusenDead* mEfxDead;           // _310
 	efx::TFusenAirhit* mEfxAirhit;       // _314
 	efx::TFusenAir* mEfxAir;             // _318

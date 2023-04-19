@@ -24,6 +24,23 @@ namespace Game {
 namespace Hanachirashi {
 struct FSM;
 
+enum StateID {
+	HANACHIRASHI_NULL        = -1,
+	HANACHIRASHI_Dead        = 0,
+	HANACHIRASHI_Wait        = 1,
+	HANACHIRASHI_Move        = 2,
+	HANACHIRASHI_Chase       = 3,
+	HANACHIRASHI_ChaseInside = 4,
+	HANACHIRASHI_Attack      = 5,
+	HANACHIRASHI_Fall        = 6,
+	HANACHIRASHI_Land        = 7,
+	HANACHIRASHI_Ground      = 8,
+	HANACHIRASHI_TakeOff     = 9,
+	HANACHIRASHI_FlyFlick    = 10,
+	HANACHIRASHI_GroundFlick = 11,
+	HANACHIRASHI_Laugh       = 12,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -31,8 +48,8 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
+	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
@@ -40,22 +57,25 @@ struct Obj : public EnemyBase {
 	virtual void doDebugDraw(Graphics&);                    // _1EC
 	virtual void changeMaterial();                          // _200
 	virtual Vector3f getOffsetForMapCollision();            // _224
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual void getThrowupItemPosition(Vector3f*);         // _268
-	virtual void getThrowupItemVelocity(Vector3f*);         // _26C
-	virtual void throwupItemInDeathProcedure();             // _270 (weak)
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual void doStartWaitingBirthTypeDrop();             // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();            // _2E4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void doStartMovie();                            // _2F0
-	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM*);                              // _2F8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Hanachirashi;
+	}
+	virtual void getThrowupItemPosition(Vector3f*);  // _268
+	virtual void getThrowupItemVelocity(Vector3f*);  // _26C
+	virtual void throwupItemInDeathProcedure() { }   // _270 (weak)
+	virtual void doStartStoneState();                // _2A4
+	virtual void doFinishStoneState();               // _2A8
+	virtual void doStartWaitingBirthTypeDrop();      // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();     // _2E4
+	virtual f32 getDownSmokeScale() { return 0.7f; } // _2EC (weak)
+	virtual void doStartMovie();                     // _2F0
+	virtual void doEndMovie();                       // _2F4
+	virtual void setFSM(FSM*);                       // _2F8
 	//////////////// VTABLE END
 
-	void getHeadJointPos();
-	void setHeightVelocity();
+	Vector3f getHeadJointPos();
+	f32 setHeightVelocity();
 	void setRandTarget();
 	void resetShadowOffset();
 	void setShadowOffsetMax();
@@ -64,14 +84,14 @@ struct Obj : public EnemyBase {
 	void resetShadowRadius();
 	void subShadowRadius();
 	void updateFallTimer();
-	void getFlyingNextState();
+	StateID getFlyingNextState();
 	void addPitchRatio();
-	void getSearchedPikmin();
-	void isTargetLost();
-	void isAttackable();
+	Piki* getSearchedPikmin();
+	bool isTargetLost();
+	Creature* isAttackable();
 	void updateEmit();
-	void getAttackPosition();
-	void windTarget();
+	Vector3f getAttackPosition();
+	bool windTarget();
 	void createEffect();
 	void setupEffect();
 	void startDeadEffect();
@@ -84,18 +104,27 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u32 _2BC;                   // _2BC, unknown
-	int _2C0;                   // _2C0
-	u8 _2C4[0x24];              // _2C4, unknown
-	Vector3f _2E8;              // _2E8
-	Vector3f _2F4;              // _2F4
-	Vector3f _300;              // _300, attack position?
-	f32 _30C;                   // _30C
-	u8 _310;                    // _310, unknown
-	u8 _311[0x3];               // _311, likely just padding
-	u8 _314[0x14];              // _314, unknown
-	Sys::MatLoopAnimator* _328; // _328, array of two animators?
-	                            // _330 = PelletView
+	FSM* mFsm;                           // _2BC
+	int _2C0;                            // _2C0
+	f32 _2C4;                            // _2C4
+	u32 _2C8;                            // _2C8, unknown
+	f32 mFallTimer;                      // _2CC
+	f32 mShadowOffset;                   // _2D0
+	f32 mShadowRadius;                   // _2D4
+	Vector3f mTargetPosition;            // _2D8
+	Matrixf* mEfxMatrix;                 // _2E4
+	Vector3f _2E8;                       // _2E8
+	Vector3f _2F4;                       // _2F4
+	Vector3f mAttackPosition;            // _300
+	f32 _30C;                            // _30C
+	u8 _310;                             // _310, unknown
+	f32 mPitchRatio;                     // _314
+	efx::TFusenDead* mEfxDead;           // _318
+	efx::TFusenhAirhit* mEfxAirhit;      // _31C
+	efx::TFusenhAir* mEfxAir;            // _320
+	efx::TFusenSui* mEfxSui;             // _324
+	Sys::MatLoopAnimator* mMatAnimators; // _328, array of two animators
+	                                     // _330 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -178,11 +207,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(HANACHIRASHI_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -192,6 +232,11 @@ struct StateAttack : public State {
 };
 
 struct StateChase : public State {
+	inline StateChase()
+	    : State(HANACHIRASHI_Chase, "chase")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -201,6 +246,11 @@ struct StateChase : public State {
 };
 
 struct StateChaseInside : public State {
+	inline StateChaseInside()
+	    : State(HANACHIRASHI_ChaseInside, "chaseinside")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -210,6 +260,11 @@ struct StateChaseInside : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(HANACHIRASHI_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -219,6 +274,11 @@ struct StateDead : public State {
 };
 
 struct StateFall : public State {
+	inline StateFall()
+	    : State(HANACHIRASHI_Fall, "fall")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -228,6 +288,11 @@ struct StateFall : public State {
 };
 
 struct StateFlyFlick : public State {
+	inline StateFlyFlick()
+	    : State(HANACHIRASHI_FlyFlick, "flyflick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -237,6 +302,11 @@ struct StateFlyFlick : public State {
 };
 
 struct StateGround : public State {
+	inline StateGround()
+	    : State(HANACHIRASHI_Ground, "ground")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -246,6 +316,11 @@ struct StateGround : public State {
 };
 
 struct StateGroundFlick : public State {
+	inline StateGroundFlick()
+	    : State(HANACHIRASHI_GroundFlick, "groundflick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -255,6 +330,11 @@ struct StateGroundFlick : public State {
 };
 
 struct StateLand : public State {
+	inline StateLand()
+	    : State(HANACHIRASHI_Land, "land")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -264,6 +344,11 @@ struct StateLand : public State {
 };
 
 struct StateLaugh : public State {
+	inline StateLaugh()
+	    : State(HANACHIRASHI_Laugh, "laugh")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -273,6 +358,11 @@ struct StateLaugh : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(HANACHIRASHI_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -282,6 +372,11 @@ struct StateMove : public State {
 };
 
 struct StateTakeOff : public State {
+	inline StateTakeOff()
+	    : State(HANACHIRASHI_TakeOff, "takeoff")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -291,6 +386,11 @@ struct StateTakeOff : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(HANACHIRASHI_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

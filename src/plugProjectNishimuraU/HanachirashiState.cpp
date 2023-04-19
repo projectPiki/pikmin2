@@ -1,308 +1,13 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80489078
-    lbl_80489078:
-        .asciz "246-HanachirashiState"
-        .skip 2
-        .asciz "chaseinside"
-        .asciz "flyflick"
-        .skip 3
-        .asciz "groundflick"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game12Hanachirashi10StateLaugh
-    __vt__Q34Game12Hanachirashi10StateLaugh:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi10StateLaughFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi10StateLaughFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi10StateLaughFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi16StateGroundFlick
-    __vt__Q34Game12Hanachirashi16StateGroundFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi16StateGroundFlickFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi16StateGroundFlickFPQ24Game9EnemyBase
-        .4byte
-   cleanup__Q34Game12Hanachirashi16StateGroundFlickFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi13StateFlyFlick
-    __vt__Q34Game12Hanachirashi13StateFlyFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi13StateFlyFlickFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi13StateFlyFlickFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi13StateFlyFlickFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi12StateTakeOff
-    __vt__Q34Game12Hanachirashi12StateTakeOff:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi12StateTakeOffFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi12StateTakeOffFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi12StateTakeOffFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi11StateGround
-    __vt__Q34Game12Hanachirashi11StateGround:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi11StateGroundFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi11StateGroundFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi11StateGroundFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi9StateLand
-    __vt__Q34Game12Hanachirashi9StateLand:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi9StateLandFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi9StateLandFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi9StateFall
-    __vt__Q34Game12Hanachirashi9StateFall:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi9StateFallFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi9StateFallFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi11StateAttack
-    __vt__Q34Game12Hanachirashi11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi11StateAttackFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi11StateAttackFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi16StateChaseInside
-    __vt__Q34Game12Hanachirashi16StateChaseInside:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi16StateChaseInsideFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi16StateChaseInsideFPQ24Game9EnemyBase
-        .4byte
-   cleanup__Q34Game12Hanachirashi16StateChaseInsideFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi10StateChase
-    __vt__Q34Game12Hanachirashi10StateChase:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi10StateChaseFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi10StateChaseFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi10StateChaseFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi9StateMove
-    __vt__Q34Game12Hanachirashi9StateMove:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi9StateMoveFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi9StateMoveFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi9StateWait
-    __vt__Q34Game12Hanachirashi9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi9StateWaitFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi9StateDead
-    __vt__Q34Game12Hanachirashi9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12Hanachirashi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12Hanachirashi9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12Hanachirashi9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi5State
-    __vt__Q34Game12Hanachirashi5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12Hanachirashi3FSM
-    __vt__Q34Game12Hanachirashi3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game12Hanachirashi3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051BD08
-    lbl_8051BD08:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051BD10
-    lbl_8051BD10:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051BD18
-    lbl_8051BD18:
-        .4byte 0x6D6F7665
-        .4byte 0x00000000
-    .global lbl_8051BD20
-    lbl_8051BD20:
-        .4byte 0x63686173
-        .4byte 0x65000000
-    .global lbl_8051BD28
-    lbl_8051BD28:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051BD30
-    lbl_8051BD30:
-        .4byte 0x66616C6C
-        .4byte 0x00000000
-    .global lbl_8051BD38
-    lbl_8051BD38:
-        .4byte 0x6C616E64
-        .4byte 0x00000000
-    .global lbl_8051BD40
-    lbl_8051BD40:
-        .4byte 0x67726F75
-        .4byte 0x6E640000
-    .global lbl_8051BD48
-    lbl_8051BD48:
-        .4byte 0x74616B65
-        .4byte 0x6F666600
-    .global lbl_8051BD50
-    lbl_8051BD50:
-        .4byte 0x6C617567
-        .4byte 0x68000000
-    .global lbl_8051BD58
-    lbl_8051BD58:
-        .4byte 0x00000000
-    .global lbl_8051BD5C
-    lbl_8051BD5C:
-        .4byte 0x42340000
-    .global lbl_8051BD60
-    lbl_8051BD60:
-        .4byte 0x42700000
-    .global lbl_8051BD64
-    lbl_8051BD64:
-        .4byte 0x461C4000
-    .global lbl_8051BD68
-    lbl_8051BD68:
-        .4byte 0x40F00000
-    .global lbl_8051BD6C
-    lbl_8051BD6C:
-        .float 1.0
-    .global lbl_8051BD70
-    lbl_8051BD70:
-        .4byte 0x40490FDB
-    .global lbl_8051BD74
-    lbl_8051BD74:
-        .4byte 0x3BB60B61
-    .global lbl_8051BD78
-    lbl_8051BD78:
-        .4byte 0x43610000
-    .global lbl_8051BD7C
-    lbl_8051BD7C:
-        .4byte 0xC3A2F983
-    .global lbl_8051BD80
-    lbl_8051BD80:
-        .4byte 0x43A2F983
-    .global lbl_8051BD84
-    lbl_8051BD84:
-        .4byte 0x42480000
-    .global lbl_8051BD88
-    lbl_8051BD88:
-        .4byte 0x3F400000
-    .global lbl_8051BD8C
-    lbl_8051BD8C:
-        .4byte 0xC47A0000
-*/
+#include "Game/Entities/Hanachirashi.h"
 
 namespace Game {
-
+namespace Hanachirashi {
 /*
  * --INFO--
  * Address:	8029F228
  * Size:	000480
  */
-void Hanachirashi::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -627,7 +332,7 @@ lbl_8029F688:
  * Address:	8029F6A8
  * Size:	0000AC
  */
-void Hanachirashi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -685,7 +390,7 @@ lbl_8029F72C:
  * Address:	8029F754
  * Size:	0000B8
  */
-void Hanachirashi::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -748,14 +453,14 @@ lbl_8029F7F8:
  * Address:	8029F80C
  * Size:	000004
  */
-void Hanachirashi::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	8029F810
  * Size:	000054
  */
-void Hanachirashi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -787,7 +492,7 @@ void Hanachirashi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029F864
  * Size:	000138
  */
-void Hanachirashi::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -886,14 +591,14 @@ lbl_8029F984:
  * Address:	8029F99C
  * Size:	000004
  */
-void Hanachirashi::StateWait::cleanup(Game::EnemyBase*) { }
+void StateWait::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	8029F9A0
  * Size:	00004C
  */
-void Hanachirashi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -923,7 +628,7 @@ void Hanachirashi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029F9EC
  * Size:	0001A0
  */
-void Hanachirashi::StateMove::exec(Game::EnemyBase*)
+void StateMove::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1050,14 +755,14 @@ lbl_8029FB6C:
  * Address:	8029FB8C
  * Size:	000004
  */
-void Hanachirashi::StateMove::cleanup(Game::EnemyBase*) { }
+void StateMove::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	8029FB90
  * Size:	000030
  */
-void Hanachirashi::StateChase::init(Game::EnemyBase*, Game::StateArg*)
+void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1080,7 +785,7 @@ void Hanachirashi::StateChase::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029FBC0
  * Size:	000530
  */
-void Hanachirashi::StateChase::exec(Game::EnemyBase*)
+void StateChase::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -1457,7 +1162,7 @@ lbl_802A0084:
  * Address:	802A00F0
  * Size:	000024
  */
-void Hanachirashi::StateChase::cleanup(Game::EnemyBase*)
+void StateChase::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1477,7 +1182,7 @@ void Hanachirashi::StateChase::cleanup(Game::EnemyBase*)
  * Address:	802A0114
  * Size:	000124
  */
-void Hanachirashi::StateChaseInside::init(Game::EnemyBase*, Game::StateArg*)
+void StateChaseInside::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1571,7 +1276,7 @@ lbl_802A0200:
  * Address:	802A0238
  * Size:	00037C
  */
-void Hanachirashi::StateChaseInside::exec(Game::EnemyBase*)
+void StateChaseInside::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -1825,7 +1530,7 @@ lbl_802A0564:
  * Address:	802A05B4
  * Size:	000024
  */
-void Hanachirashi::StateChaseInside::cleanup(Game::EnemyBase*)
+void StateChaseInside::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1845,7 +1550,7 @@ void Hanachirashi::StateChaseInside::cleanup(Game::EnemyBase*)
  * Address:	802A05D8
  * Size:	000090
  */
-void Hanachirashi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1892,7 +1597,7 @@ void Hanachirashi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A0668
  * Size:	00011C
  */
-void Hanachirashi::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1984,7 +1689,7 @@ lbl_802A076C:
  * Address:	802A0784
  * Size:	000054
  */
-void Hanachirashi::StateAttack::cleanup(Game::EnemyBase*)
+void StateAttack::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2016,7 +1721,7 @@ void Hanachirashi::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	802A07D8
  * Size:	000068
  */
-void Hanachirashi::StateFall::init(Game::EnemyBase*, Game::StateArg*)
+void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2053,7 +1758,7 @@ void Hanachirashi::StateFall::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A0840
  * Size:	0001A4
  */
-void Hanachirashi::StateFall::exec(Game::EnemyBase*)
+void StateFall::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2183,7 +1888,7 @@ lbl_802A09C4:
  * Address:	802A09E4
  * Size:	000038
  */
-void Hanachirashi::StateFall::cleanup(Game::EnemyBase*)
+void StateFall::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2208,7 +1913,7 @@ void Hanachirashi::StateFall::cleanup(Game::EnemyBase*)
  * Address:	802A0A1C
  * Size:	000070
  */
-void Hanachirashi::StateLand::init(Game::EnemyBase*, Game::StateArg*)
+void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2247,7 +1952,7 @@ void Hanachirashi::StateLand::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A0A8C
  * Size:	000080
  */
-void Hanachirashi::StateLand::exec(Game::EnemyBase*)
+void StateLand::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2294,7 +1999,7 @@ lbl_802A0AFC:
  * Address:	802A0B0C
  * Size:	000024
  */
-void Hanachirashi::StateLand::cleanup(Game::EnemyBase*)
+void StateLand::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2314,7 +2019,7 @@ void Hanachirashi::StateLand::cleanup(Game::EnemyBase*)
  * Address:	802A0B30
  * Size:	000068
  */
-void Hanachirashi::StateGround::init(Game::EnemyBase*, Game::StateArg*)
+void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2351,7 +2056,7 @@ void Hanachirashi::StateGround::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A0B98
  * Size:	000114
  */
-void Hanachirashi::StateGround::exec(Game::EnemyBase*)
+void StateGround::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2441,7 +2146,7 @@ lbl_802A0C94:
  * Address:	802A0CAC
  * Size:	000024
  */
-void Hanachirashi::StateGround::cleanup(Game::EnemyBase*)
+void StateGround::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2461,7 +2166,7 @@ void Hanachirashi::StateGround::cleanup(Game::EnemyBase*)
  * Address:	802A0CD0
  * Size:	000064
  */
-void Hanachirashi::StateTakeOff::init(Game::EnemyBase*, Game::StateArg*)
+void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2497,7 +2202,7 @@ void Hanachirashi::StateTakeOff::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A0D34
  * Size:	0000EC
  */
-void Hanachirashi::StateTakeOff::exec(Game::EnemyBase*)
+void StateTakeOff::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2575,7 +2280,7 @@ lbl_802A0E08:
  * Address:	802A0E20
  * Size:	000038
  */
-void Hanachirashi::StateTakeOff::cleanup(Game::EnemyBase*)
+void StateTakeOff::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2600,7 +2305,7 @@ void Hanachirashi::StateTakeOff::cleanup(Game::EnemyBase*)
  * Address:	802A0E58
  * Size:	000064
  */
-void Hanachirashi::StateFlyFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2636,7 +2341,7 @@ void Hanachirashi::StateFlyFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A0EBC
  * Size:	0000E4
  */
-void Hanachirashi::StateFlyFlick::exec(Game::EnemyBase*)
+void StateFlyFlick::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2711,7 +2416,7 @@ lbl_802A0F88:
  * Address:	802A0FA0
  * Size:	000024
  */
-void Hanachirashi::StateFlyFlick::cleanup(Game::EnemyBase*)
+void StateFlyFlick::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2731,7 +2436,7 @@ void Hanachirashi::StateFlyFlick::cleanup(Game::EnemyBase*)
  * Address:	802A0FC4
  * Size:	000064
  */
-void Hanachirashi::StateGroundFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2767,7 +2472,7 @@ void Hanachirashi::StateGroundFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A1028
  * Size:	000100
  */
-void Hanachirashi::StateGroundFlick::exec(Game::EnemyBase*)
+void StateGroundFlick::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2851,7 +2556,7 @@ lbl_802A1114:
  * Address:	802A1128
  * Size:	000024
  */
-void Hanachirashi::StateGroundFlick::cleanup(Game::EnemyBase*)
+void StateGroundFlick::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2871,7 +2576,7 @@ void Hanachirashi::StateGroundFlick::cleanup(Game::EnemyBase*)
  * Address:	802A114C
  * Size:	000068
  */
-void Hanachirashi::StateLaugh::init(Game::EnemyBase*, Game::StateArg*)
+void StateLaugh::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2908,7 +2613,7 @@ void Hanachirashi::StateLaugh::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802A11B4
  * Size:	0000DC
  */
-void Hanachirashi::StateLaugh::exec(Game::EnemyBase*)
+void StateLaugh::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2980,7 +2685,7 @@ lbl_802A1278:
  * Address:	802A1290
  * Size:	000024
  */
-void Hanachirashi::StateLaugh::cleanup(Game::EnemyBase*)
+void StateLaugh::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2994,4 +2699,5 @@ void Hanachirashi::StateLaugh::cleanup(Game::EnemyBase*)
 	blr
 	*/
 }
+} // namespace Hanachirashi
 } // namespace Game

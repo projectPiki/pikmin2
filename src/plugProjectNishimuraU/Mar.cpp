@@ -48,8 +48,8 @@ void Obj::onInit(CreatureInitArg* settings)
 	resetShadowOffset();
 	resetShadowRadius();
 
-	_30C = 0.0f;
-	_308 = 0;
+	mPitchRatio = 0.0f;
+	_308        = 0;
 
 	mEfxMatrix = mModel->getJoint("hana3")->getWorldMatrix();
 	setupEffect();
@@ -279,7 +279,7 @@ f32 Obj::setHeightVelocity()
 
 	if (mPosition.y - groundY > idealHeight - C_PROPERPARMS.mFp06.mValue) {
 		addPitchRatio();
-		idealHeight += C_PROPERPARMS.mFp06.mValue * pikmin2_sinf(_30C);
+		idealHeight += C_PROPERPARMS.mFp06.mValue * pikmin2_sinf(mPitchRatio);
 	}
 
 	f32 totalHeight = groundY + idealHeight;
@@ -416,9 +416,9 @@ StateID Obj::getFlyingNextState()
  */
 void Obj::addPitchRatio()
 {
-	_30C += C_PROPERPARMS.mFp05.mValue * sys->mDeltaTime;
-	if (_30C > TAU) {
-		_30C -= TAU;
+	mPitchRatio += C_PROPERPARMS.mFp05.mValue * sys->mDeltaTime;
+	if (mPitchRatio > TAU) {
+		mPitchRatio -= TAU;
 	}
 }
 
@@ -427,7 +427,6 @@ void Obj::addPitchRatio()
  * Address:	80280140
  * Size:	0003AC
  */
-// unsure if return type is correct
 Piki* Obj::getSearchedPikmin()
 {
 	f32 FOV      = PI;
@@ -1770,12 +1769,12 @@ void Obj::createSuckEffect() { mEfxSui->create(nullptr); }
  * Address:	80281A3C
  * Size:	000090
  */
-bool Obj::startWindEffect()
+void Obj::startWindEffect()
 {
-	mAttackPosition = getAttackPosition(); // inlines rn, will match when it doesn't
+	mAttackPosition = getAttackPosition();
 	mEfxSui->fade();
 	mEfxAir->create(nullptr);
-	return mEfxAirhit->create(nullptr);
+	mEfxAirhit->create(nullptr);
 }
 
 /*
