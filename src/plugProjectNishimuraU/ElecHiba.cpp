@@ -22,7 +22,7 @@ Obj::Obj()
  * Address:	8026F3A8
  * Size:	000038
  */
-void Obj::birth(Vector3f& position, float faceDirection)
+void Obj::birth(Vector3f& position, f32 faceDirection)
 {
 	EnemyBase::birth(position, faceDirection);
 	mWaitTimer             = 0.0f;
@@ -762,7 +762,7 @@ lbl_8026FFD4:
  * Address:	8027008C
  * Size:	00004C
  */
-void Obj::addDamageMyself(float damage)
+void Obj::addDamageMyself(f32 damage)
 {
 	if (!(isEvent(0, EB_IsVulnerable))) {
 		enableEvent(0, EB_IsTakingDamage);
@@ -780,7 +780,7 @@ void Obj::addDamageMyself(float damage)
  * Address:	802700D8
  * Size:	00002C
  */
-void Obj::damageIncrement(float damage)
+void Obj::damageIncrement(f32 damage)
 {
 	mInstantDamage += damage;
 	if (!isEvent(0, EB_IsFlickEnabled)) {

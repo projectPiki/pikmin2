@@ -1,5 +1,6 @@
 #include "types.h"
 #include "Game/Entities/Rock.h"
+#include "PS.h"
 
 namespace Game {
 namespace Rock {
@@ -55,20 +56,11 @@ void Obj::birth(Vector3f&, f32)
  * Address:	80263184
  * Size:	000028
  */
-void Obj::setInitialSetting(EnemyInitialParamBase*)
+void Obj::setInitialSetting(EnemyInitialParamBase* param)
 {
-	/*
-	lwz      r4, 0xc0(r3)
-	lfs      f0, 0x44c(r4)
-	stfs     f0, 0x2cc(r3)
-	lwz      r4, 0xc0(r3)
-	lfs      f0, 0x474(r4)
-	stfs     f0, 0x2d0(r3)
-	lwz      r4, 0xc0(r3)
-	lfs      f0, 0x49c(r4)
-	stfs     f0, 0x2d4(r3)
-	blr
-	*/
+	mFallSpeed = C_PARMS->mGeneral.mSearchDistance;
+	_2D0       = C_PARMS->mGeneral.mSearchHeight;
+	_2D4       = C_PARMS->mGeneral.mSearchAngle;
 }
 
 /*
@@ -76,7 +68,7 @@ void Obj::setInitialSetting(EnemyInitialParamBase*)
  * Address:	802631AC
  * Size:	0001E0
  */
-void Obj::onInit(CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* initArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -232,53 +224,18 @@ void Obj::onKill(CreatureKillArg* arg)
  * Address:	802633E8
  * Size:	000034
  */
-void Obj::doUpdate()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doUpdate() { mFsm->exec(this); }
 
 /*
  * --INFO--
  * Address:	8026341C
  * Size:	00004C
  */
-void Obj::setFSM(FSM*)
+void Obj::setFSM(FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2bc(r3)
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -594,33 +551,11 @@ lbl_802637E8:
  * Address:	802637FC
  * Size:	000054
  */
-void Obj::wallCallback(const MoveInfo&)
+void Obj::wallCallback(const MoveInfo& info)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	bne      lbl_8026383C
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8026383C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (EnemyBase::getStateID() == ROCK_Move) {
+		mFsm->transit(this, ROCK_Dead, nullptr);
+	}
 }
 
 /*
@@ -628,39 +563,13 @@ lbl_8026383C:
  * Address:	80263850
  * Size:	00006C
  */
-void Obj::inWaterCallback(WaterBox*)
+void Obj::inWaterCallback(WaterBox* wbox)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x4a
-	bne      lbl_802638A8
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	bne      lbl_802638A8
-	mr       r3, r31
-	bl       finishRollingGroundEffect__Q34Game4Rock3ObjFv
-	mr       r3, r31
-	bl       startRollingWaterEffect__Q34Game4Rock3ObjFv
-	lfs      f1, 0x1f8(r31)
-	mr       r3, r31
-	bl       PSStartEnemyDownWatSE__FPQ24Game9EnemyBasef
-
-lbl_802638A8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getEnemyTypeID() == EnemyTypeID::EnemyID_Stone && EnemyBase::getStateID() == ROCK_Move) {
+		finishRollingGroundEffect();
+		startRollingWaterEffect();
+		PSStartEnemyDownWatSE(this, mScaleModifier);
+	}
 }
 
 /*
@@ -670,34 +579,10 @@ lbl_802638A8:
  */
 void Obj::outWaterCallback()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x4a
-	bne      lbl_80263908
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	bne      lbl_80263908
-	mr       r3, r31
-	bl       finishRollingWaterEffect__Q34Game4Rock3ObjFv
-	mr       r3, r31
-	bl       startRollingGroundEffect__Q34Game4Rock3ObjFv
-
-lbl_80263908:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getEnemyTypeID() == EnemyTypeID::EnemyID_Stone && EnemyBase::getStateID() == ROCK_Move) {
+		finishRollingWaterEffect();
+		startRollingGroundEffect();
+	}
 }
 
 /*
@@ -719,23 +604,12 @@ void Obj::doEndMovie() { effectDrawOn(); }
  * Address:	8026395C
  * Size:	00002C
  */
-bool Obj::ignoreAtari(Creature*)
+bool Obj::ignoreAtari(Creature* creature)
 {
-	/*
-	lwz      r0, 0x2c0(r3)
-	cmplw    r4, r0
-	bne      lbl_80263980
-	lfs      f1, 0x2c8(r3)
-	lfs      f0, lbl_8051ADD4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80263980
-	li       r3, 1
-	blr
-
-lbl_80263980:
-	li       r3, 0
-	blr
-	*/
+	if (static_cast<EnemyBase*>(creature) == mSourceEnemy && mTimer < 1.0f) {
+		return true;
+	}
+	return false;
 }
 
 /*
