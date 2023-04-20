@@ -96,40 +96,11 @@ void Obj::setFSM(FSM* fsm)
 void Obj::getShadowParam(ShadowParam& param)
 {
 	Matrixf* bodyJointMtx = mModel->getJoint("body")->getWorldMatrix();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r4, r2, lbl_8051B4F8@sda21
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f4, 0x2c(r3)
-	lfs      f1, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	lfs      f3, lbl_8051B500@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f2, lbl_8051B4E8@sda21(r2)
-	stfs     f1, 4(r31)
-	lfs      f1, lbl_8051B504@sda21(r2)
-	stfs     f4, 8(r31)
-	lfs      f0, lbl_8051B508@sda21(r2)
-	lfs      f4, 4(r31)
-	fsubs    f3, f4, f3
-	stfs     f3, 4(r31)
-	stfs     f2, 0xc(r31)
-	stfs     f1, 0x10(r31)
-	stfs     f2, 0x14(r31)
-	stfs     f0, 0x18(r31)
-	stfs     f0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	param.mPosition       = bodyJointMtx->getBasis(3);
+	param.mPosition.y -= 5.0f;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mRadius   = 15.0f;
+	param.mSize                     = 15.0f;
 }
 
 /*
