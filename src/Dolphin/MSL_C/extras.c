@@ -70,7 +70,6 @@ void _ultoa(void)
 	// UNUSED FUNCTION
 }
 
-
 /*
  * --INFO--
  * Address:	........

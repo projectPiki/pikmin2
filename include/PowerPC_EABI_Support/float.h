@@ -11,7 +11,7 @@ extern int __extended_max[];
 extern int __float_max[];
 extern int __float_epsilon[];
 
-#define FLT_MAX (*(float*)__float_max)
+#define FLT_MAX     (*(float*)__float_max)
 #define FLT_EPSILON (*(float*)__float_epsilon)
 
 #define DBL_MAX (*(double*)__double_max)

@@ -113,8 +113,6 @@ FILE __files[4] =
 };
 // clang-format on
 
-
-
 /*
  * --INFO--
  * Address:	800C2A74

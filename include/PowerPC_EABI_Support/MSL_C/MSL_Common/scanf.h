@@ -3,16 +3,16 @@
 
 #include "stdarg.h"
 
-//fscanf
-//fscanf_s
-//vscanf
-//scanf
-//scanf_s
-//vfscanf
-//vfscanf_s
+// fscanf
+// fscanf_s
+// vscanf
+// scanf
+// scanf_s
+// vfscanf
+// vfscanf_s
 int vsscanf(const char*, const char*, va_list);
-//vsscanf_s
+// vsscanf_s
 int sscanf(const char*, const char*, ...);
-//sscanf_s
+// sscanf_s
 
 #endif

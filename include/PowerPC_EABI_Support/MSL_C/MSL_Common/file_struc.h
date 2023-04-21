@@ -3,8 +3,7 @@
 #include "types.h"
 #include "MSL_C/MSL_Common/ansi_files.h"
 
-
-#define stdin &(__files[0])
+#define stdin  &(__files[0])
 #define stdout &(__files[1])
 #define stderr &(__files[2])
 

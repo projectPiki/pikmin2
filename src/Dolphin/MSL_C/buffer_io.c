@@ -45,4 +45,3 @@ int __flush_buffer(FILE* file, size_t* length)
 	file->mBufferPosition = file->mPosition;
 	return 0;
 }
-

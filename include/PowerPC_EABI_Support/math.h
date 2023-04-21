@@ -8,7 +8,6 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-
 #ifndef __MWERKS__
 // Get clangd to shut up about __fabs being undefined.
 #define __fabs(x)    (x)
@@ -27,19 +26,15 @@ extern "C" {
 
 #define LONG_TAU 6.2831854820251465
 
-
 extern int __float_nan[];
 extern int __float_huge[];
 extern int __double_huge[];
 
-#define INFINITY (*(float*) __float_huge)	
-#define NAN (*(float*) __float_nan)
-#define HUGE_VAL (*(double*) __double_huge)
+#define INFINITY (*(float*)__float_huge)
+#define NAN      (*(float*)__float_nan)
+#define HUGE_VAL (*(double*)__double_huge)
 
-
-inline long double fabsl(long double x) {
-    return  __fabs((double)x);
-}
+inline long double fabsl(long double x) { return __fabs((double)x); }
 
 double acos(double);
 double asin(double);
@@ -47,7 +42,7 @@ double atan(double);
 double atan2(double, double);
 double ceil(double);
 double floor(double);
-double frexp(double, int *);
+double frexp(double, int*);
 double ldexp(double, int);
 double sqrt(double);
 
@@ -76,9 +71,9 @@ double __kernel_sin(double, double, int);
 double __kernel_cos(double, double);
 double __kernel_tan(double, double, int);
 
-int __ieee754_rem_pio2(double, double *);
+int __ieee754_rem_pio2(double, double*);
 
-//float sqrtf(float);
+// float sqrtf(float);
 
 #ifdef __cplusplus
 };

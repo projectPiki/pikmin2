@@ -8,7 +8,6 @@
  */
 void __init_critical_regions(void) { return; }
 
-
 /*
  * --INFO--
  * Address:	800C6260

@@ -5,22 +5,21 @@
 #include "MSL_C/MSL_Common/file_struc.h"
 #include "MSL_C/MSL_Common/ansi_files.h"
 
-
 void printf(const char*, ...);
-//printf_s
+// printf_s
 int fprintf(FILE*, const char* format, ...);
-//fprintf_s
+// fprintf_s
 int vprintf(const char*, va_list);
-//vprintf_s
-//vfprintf
-//vfprintf_s
+// vprintf_s
+// vfprintf
+// vfprintf_s
 int vsnprintf(char*, size_t, const char*, va_list);
-//vsnprintf_s
+// vsnprintf_s
 int vsprintf(char*, const char*, va_list);
-//vsprintf_s
+// vsprintf_s
 int snprintf(char*, size_t, const char*, ...);
-//snprintf_s
+// snprintf_s
 int sprintf(char*, const char*, ...);
-//sprintf_s
+// sprintf_s
 
 #endif

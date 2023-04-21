@@ -8,7 +8,6 @@ typedef struct MessageBuffer {
 	u8 commandId;
 } MessageBuffer;
 
-
 extern u32 TRKDoConnect(MessageBuffer*);
 extern u32 TRKDoDisconnect(MessageBuffer*);
 extern u32 TRKDoReset(MessageBuffer*);

@@ -4,12 +4,8 @@
 #include "types.h"
 #include "NdevExi2A/DebuggerDriver.h"
 
-//TODO: figure out what these values represent
-typedef enum{
-    GDEV_RESULT_10009 = -10009,
-    GDEV_RESULT_10005 = -10005,
-    GDEV_RESULT_10001 = -10001
-}UnkGdevEnum;
+// TODO: figure out what these values represent
+typedef enum { GDEV_RESULT_10009 = -10009, GDEV_RESULT_10005 = -10005, GDEV_RESULT_10001 = -10001 } UnkGdevEnum;
 
 void OutputData();
 BOOL IsInitialized();

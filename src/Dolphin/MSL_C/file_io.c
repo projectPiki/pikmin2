@@ -1,7 +1,6 @@
 #include "types.h"
 #include "MSL_C/MSL_Common/ansi_files.h"
 
-
 /*
  * --INFO--
  * Address:	800C6748
@@ -79,4 +78,3 @@ int fflush(FILE* file)
 	file->mBufferLength   = 0;
 	return 0;
 }
-

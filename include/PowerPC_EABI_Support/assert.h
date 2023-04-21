@@ -6,7 +6,6 @@
 extern "C" {
 #endif
 
-
 void __msl_assertion_failed(const char*, const char*, const char*, int);
 
 #ifdef __cplusplus

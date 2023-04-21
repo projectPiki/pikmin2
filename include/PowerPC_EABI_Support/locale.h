@@ -30,11 +30,11 @@ struct lconv {
 	char n_sign_posn;
 	char* int_curr_symbol;
 	char int_frac_digits;
-	char int_p_cs_precedes; 
-	char int_n_cs_precedes; 
-	char int_p_sep_by_space; 
-	char int_n_sep_by_space; 
-	char int_p_sign_posn; 
+	char int_p_cs_precedes;
+	char int_n_cs_precedes;
+	char int_p_sep_by_space;
+	char int_n_sep_by_space;
+	char int_p_sign_posn;
 	char int_n_sign_posn;
 };
 
@@ -55,16 +55,15 @@ struct _loc_mon_cmpt {
 	char n_sign_posn;
 	char* int_curr_symbol;
 	char int_frac_digits;
-	char int_p_cs_precedes; 
-	char int_n_cs_precedes; 
-	char int_p_sep_by_space; 
-	char int_n_sep_by_space; 
-	char int_p_sign_posn; 
-	char int_n_sign_posn; 
+	char int_p_cs_precedes;
+	char int_n_cs_precedes;
+	char int_p_sep_by_space;
+	char int_n_sep_by_space;
+	char int_p_sign_posn;
+	char int_n_sign_posn;
 };
 
-
-struct _loc_num_cmpt{
+struct _loc_num_cmpt {
 	char CmptName[8];
 	char* decimal_point;
 	char* thousands_sep;
@@ -92,7 +91,7 @@ struct _loc_coll_cmpt {
 	unsigned short* wchar_coll_seq_ptr;
 };
 
-struct _loc_ctype_cmpt{
+struct _loc_ctype_cmpt {
 	char CmptName[8];
 	const unsigned short* ctype_map_ptr;
 	const unsigned char* upper_map_ptr;
@@ -101,7 +100,7 @@ struct _loc_ctype_cmpt{
 	const wchar_t* wupper_map_ptr;
 	const wchar_t* wlower_map_ptr;
 	__decode_mbyte decode_mb;
-	__encode_mbyte encode_wc;		
+	__encode_mbyte encode_wc;
 };
 
 struct __locale {

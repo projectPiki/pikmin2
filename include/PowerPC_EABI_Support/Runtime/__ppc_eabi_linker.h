@@ -14,25 +14,25 @@ __declspec(section ".init") extern char _SDA_BASE_[];
 __declspec(section ".init") extern char _SDA2_BASE_[];
 
 typedef struct __rom_copy_info {
-  char* rom;
-  char* addr;
-  unsigned int size;
+	char* rom;
+	char* addr;
+	unsigned int size;
 } __rom_copy_info;
 
 __declspec(section ".init") extern __rom_copy_info _rom_copy_info[];
 
 typedef struct __bss_init_info {
-  char* addr;
-  unsigned int size;
+	char* addr;
+	unsigned int size;
 } __bss_init_info;
 
 __declspec(section ".init") extern __bss_init_info _bss_init_info[];
 
 typedef struct __eti_init_info {
-  void* eti_start;
-  void* eti_end;
-  void* code_start;
-  unsigned long code_size;
+	void* eti_start;
+	void* eti_end;
+	void* code_start;
+	unsigned long code_size;
 } __eti_init_info;
 
 __declspec(section ".init") extern __eti_init_info _eti_init_info[];
@@ -68,6 +68,5 @@ __declspec(section ".init") extern char _f_PPC_EMB_sdata0[];
 __declspec(section ".init") extern char _e_PPC_EMB_sdata0[];
 __declspec(section ".init") extern char _f_PPC_EMB_sbss0[];
 __declspec(section ".init") extern char _e_PPC_EMB_sbss0[];
-
 
 #endif // __PPC_EABI_LINKER
