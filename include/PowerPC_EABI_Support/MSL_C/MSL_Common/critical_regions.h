@@ -1,5 +1,5 @@
-#ifndef _DOLPHIN_CRITICAL_REGIONS_H
-#define _DOLPHIN_CRITICAL_REGIONS_H
+#ifndef _MSL_CRITICAL_REGIONS_H
+#define _MSL_CRITICAL_REGIONS_H
 
 #include "types.h"
 

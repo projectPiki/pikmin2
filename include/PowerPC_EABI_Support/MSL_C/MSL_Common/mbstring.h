@@ -1,5 +1,5 @@
-#ifndef MSL_MBSTRING_H
-#define MSL_MBSTRING_H
+#ifndef _MSL_MBSTRING_H
+#define _MSL_MBSTRING_H
 
 #include "types.h"
 #ifdef __cplusplus

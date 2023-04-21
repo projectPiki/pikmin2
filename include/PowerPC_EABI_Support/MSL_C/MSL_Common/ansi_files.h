@@ -1,6 +1,6 @@
-
 #ifndef _MSL_COMMON_ANSI_FILES_H
 #define _MSL_COMMON_ANSI_FILES_H
+
 #include "types.h"
 
 typedef unsigned long __file_handle;

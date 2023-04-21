@@ -1,5 +1,5 @@
-#ifndef MSL_FILE_IO_H
-#define MSL_FILE_IO_H
+#ifndef _MSL_FILE_IO_H
+#define _MSL_FILE_IO_H
 
 #include "types.h"
 #include "MSL_C/MSL_Common/ansi_files.h"

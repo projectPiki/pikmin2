@@ -1,5 +1,5 @@
-#ifndef MSLC_SECURE_ERROR_H
-#define MSLC_SECURE_ERROR_H
+#ifndef _MSL_SECURE_ERROR_H
+#define _MSL_SECURE_ERROR_H
 
 #include "types.h"
 

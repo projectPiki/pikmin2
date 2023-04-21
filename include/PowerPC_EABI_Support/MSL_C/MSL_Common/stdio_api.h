@@ -1,5 +1,5 @@
-#ifndef STDIO_API_H
-#define STDIO_API_H
+#ifndef _STDIO_API_H
+#define _STDIO_API_H
 
 #include "types.h"
 

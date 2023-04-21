@@ -1,5 +1,5 @@
-#ifndef MSL_FILE_POS_H
-#define MSL_FILE_POS_H
+#ifndef _MSL_FILE_POS_H
+#define _MSL_FILE_POS_H
 
 #include "types.h"
 #include "MSL_C/MSL_Common/ansi_files.h"

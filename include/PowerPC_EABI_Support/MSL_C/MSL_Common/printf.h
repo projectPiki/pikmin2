@@ -1,5 +1,5 @@
-#ifndef MSL_PRINTF_H
-#define MSL_PRINTF_H
+#ifndef _MSL_PRINTF_H
+#define _MSL_PRINTF_H
 
 #include "stdarg.h"
 #include "MSL_C/MSL_Common/file_struc.h"
