@@ -1,6 +1,6 @@
 MSL_C_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/abort_exit.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/alloc.o\
+	$(BUILD_DIR)/src/Dolphin/MSL_C/alloc.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/ansi_files.o\
 	$(BUILD_DIR)/asm/Dolphin/MSL_C/ansi_fp.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/arith.o\

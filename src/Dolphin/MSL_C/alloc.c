@@ -1,700 +1,132 @@
+#include "MSL_C/MSL_Common/alloc.h"
+#include "MSL_C/MSL_Common/critical_regions.h"
+
+typedef struct Block {
+    struct Block* prev;
+    struct Block* next;
+    unsigned long max_size;
+    unsigned long size;
+} Block;
+
+typedef struct SubBlock {
+    unsigned long size;
+    Block* block;
+    struct SubBlock* prev;
+    struct SubBlock* next;
+} SubBlock;
+
+struct FixSubBlock;
+
+typedef struct FixBlock {
+    struct FixBlock* prev_;
+    struct FixBlock* next_;
+    unsigned long client_size_;
+    struct FixSubBlock* start_;
+    unsigned long n_allocated_;
+} FixBlock;
+
+typedef struct FixSubBlock {
+    FixBlock* block_;
+    struct FixSubBlock* next_;
+} FixSubBlock;
+
+typedef struct FixStart {
+    FixBlock* tail_;
+    FixBlock* head_;
+} FixStart;
+
+typedef struct __mem_pool_obj {
+    Block* start_;
+    FixStart fix_start[6];
+} __mem_pool_obj;
+
+typedef struct __mem_pool {
+	void* reserved[14];
+} __mem_pool;
+
+typedef signed long tag_word;
+
+typedef struct block_header {
+    tag_word				tag;
+    struct block_header *	prev;
+    struct block_header *	next;
+} block_header;
+
+typedef struct list_header {
+    block_header *		rover;
+    block_header		header;
+} list_header;
+
+typedef struct heap_header {
+    struct heap_header* 	prev;
+    struct heap_header*		next;
+} heap_header;
+
+struct mem_pool_obj;
+typedef void *	(*sys_alloc_ptr)(unsigned long, struct mem_pool_obj*);
+typedef void	(*sys_free_ptr)(void *, struct mem_pool_obj*);
+
+typedef struct pool_options{
+    sys_alloc_ptr	sys_alloc_func;
+    sys_free_ptr	sys_free_func;
+    unsigned long		min_heap_size;
+    int				always_search_first;
+} pool_options;
+
+typedef struct mem_pool_obj {
+    list_header		free_list;
+    pool_options	options;
+    heap_header*	heap_list;
+    void*			userData;
+
+} mem_pool_obj;
+
+mem_pool_obj __malloc_pool;
+static int initialized = 0;
+
+static SubBlock* SubBlock_merge_prev(SubBlock*, SubBlock**);
+static void SubBlock_merge_next(SubBlock* , SubBlock** );
+
+static const unsigned long fix_pool_sizes[] = {4, 12, 20, 36, 52, 68};
+
+#define SubBlock_size(ths) ((ths)->size & 0xFFFFFFF8)
+#define SubBlock_block(ths) ((Block*)((unsigned long)((ths)->block) & ~0x1))
+#define Block_size(ths) ((ths)->size & 0xFFFFFFF8)
+#define Block_start(ths) (*(SubBlock**)((char*)(ths) + Block_size((ths)) - sizeof(unsigned long)))
+
+#define SubBlock_set_free(ths)                                               \
+	unsigned long this_size = SubBlock_size((ths));                               \
+	(ths)->size &= ~0x2;                                        \
+	*(unsigned long*)((char*)(ths) + this_size) &= ~0x4;              \
+	*(unsigned long*)((char*)(ths) + this_size - sizeof(unsigned long)) = this_size
 
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
- */
-void __malloc_free_all(void)
-{
-	// UNUSED FUNCTION
-}
+#define SubBlock_is_free(ths) !((ths)->size & 2)
+#define SubBlock_set_size(ths, sz)                                 \
+	(ths)->size &= ~0xFFFFFFF8;                                    \
+	(ths)->size |= (sz) & 0xFFFFFFF8;                              \
+	if (SubBlock_is_free((ths)))                                   \
+		*(unsigned long*)((char*)(ths) + (sz) - sizeof(unsigned long)) = (sz)
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void __pool_free_all(void)
-{
-	// UNUSED FUNCTION
-}
+#define SubBlock_from_pointer(ptr) ((SubBlock*)((char*)(ptr) - 8))
+#define FixSubBlock_from_pointer(ptr) ((FixSubBlock*)((char*)(ptr) - 4))
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
- */
-void calloc(void)
-{
-	// UNUSED FUNCTION
-}
+#define FixBlock_client_size(ths) ((ths)->client_size_)
+#define FixSubBlock_size(ths) (FixBlock_client_size((ths)->block_))
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
- */
-void realloc(void)
-{
-	// UNUSED FUNCTION
-}
+#define classify(ptr) (*(unsigned long*)((char*)(ptr) - sizeof(unsigned long)) & 1)
+#define __msize_inline(ptr) (!classify(ptr) ? FixSubBlock_size(FixSubBlock_from_pointer(ptr)) : SubBlock_size(SubBlock_from_pointer(ptr)) - 8)
 
-/*
- * --INFO--
- * Address:	800C2550
- * Size:	000070
- */
-void free(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x1
-	  bl        0x3CF4
-	  lbz       r0, -0x7348(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lis       r3, 0x804F
-	  li        r4, 0
-	  addi      r3, r3, 0x5670
-	  li        r5, 0x34
-	  bl        -0xBD4D4
-	  li        r0, 0x1
-	  stb       r0, -0x7348(r13)
-
-	.loc_0x44:
-	  lis       r3, 0x804F
-	  mr        r4, r31
-	  addi      r3, r3, 0x5670
-	  bl        .loc_0x70
-	  li        r3, 0x1
-	  bl        0x3CB0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x70:
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-void malloc(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void __pool_alloc_clear(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0007B4
- */
-void __pool_realloc(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800C25C0
- * Size:	000058
- */
-void __pool_free(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0x48
-	  lwz       r5, -0x4(r4)
-	  rlwinm.   r0,r5,0,31,31
-	  bne-      .loc_0x28
-	  lwz       r5, 0x8(r5)
-	  b         .loc_0x34
-
-	.loc_0x28:
-	  lwz       r0, -0x8(r4)
-	  rlwinm    r5,r0,0,0,28
-	  subi      r5, r5, 0x8
-
-	.loc_0x34:
-	  cmplwi    r5, 0x44
-	  bgt-      .loc_0x44
-	  bl        .loc_0x58
-	  b         .loc_0x48
-
-	.loc_0x44:
-	  bl        0x16C
-
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x58:
-	*/
-}
+#define Block_empty(ths)                                                      \
+	(_sb = (SubBlock*)((char*)(ths) + 16)),                    \
+	SubBlock_is_free(_sb) && SubBlock_size(_sb) == Block_size((ths)) - 24
 
 /*
  * --INFO--
  * Address:	........
- * Size:	000054
+ * Size:	000238
  */
-void __pool_alloc(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void __msize(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void __report_on_heap(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void __report_on_pool_heap(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800C2618
- * Size:	000158
- */
-void deallocate_from_fixed_pools(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r6, 0x8048
-	  li        r7, 0
-	  stw       r0, 0x14(r1)
-	  subi      r6, r6, 0x6050
-	  b         .loc_0x24
-
-	.loc_0x1C:
-	  addi      r6, r6, 0x4
-	  addi      r7, r7, 0x1
-
-	.loc_0x24:
-	  lwz       r0, 0x0(r6)
-	  cmplw     r5, r0
-	  bgt+      .loc_0x1C
-	  subi      r8, r4, 0x4
-	  rlwinm    r5,r7,3,0,28
-	  lwz       r4, -0x4(r4)
-	  addi      r5, r5, 0x4
-	  add       r5, r3, r5
-	  lwz       r0, 0xC(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xC0
-	  lwz       r6, 0x4(r5)
-	  cmplw     r6, r4
-	  beq-      .loc_0xC0
-	  lwz       r0, 0x0(r5)
-	  cmplw     r0, r4
-	  bne-      .loc_0x80
-	  lwz       r0, 0x0(r6)
-	  stw       r0, 0x4(r5)
-	  lwz       r6, 0x0(r5)
-	  lwz       r0, 0x0(r6)
-	  stw       r0, 0x0(r5)
-	  b         .loc_0xC0
-
-	.loc_0x80:
-	  lwz       r0, 0x4(r4)
-	  lwz       r6, 0x0(r4)
-	  stw       r0, 0x4(r6)
-	  lwz       r0, 0x0(r4)
-	  lwz       r6, 0x4(r4)
-	  stw       r0, 0x0(r6)
-	  lwz       r0, 0x4(r5)
-	  stw       r0, 0x4(r4)
-	  lwz       r6, 0x4(r4)
-	  lwz       r0, 0x0(r6)
-	  stw       r0, 0x0(r4)
-	  lwz       r6, 0x0(r4)
-	  stw       r4, 0x4(r6)
-	  lwz       r6, 0x4(r4)
-	  stw       r4, 0x0(r6)
-	  stw       r4, 0x4(r5)
-
-	.loc_0xC0:
-	  lwz       r0, 0xC(r4)
-	  stw       r0, 0x4(r8)
-	  stw       r8, 0xC(r4)
-	  lwz       r6, 0x10(r4)
-	  subic.    r0, r6, 0x1
-	  stw       r0, 0x10(r4)
-	  bne-      .loc_0x148
-	  lwz       r0, 0x4(r5)
-	  cmplw     r0, r4
-	  bne-      .loc_0xF0
-	  lwz       r0, 0x4(r4)
-	  stw       r0, 0x4(r5)
-
-	.loc_0xF0:
-	  lwz       r0, 0x0(r5)
-	  cmplw     r0, r4
-	  bne-      .loc_0x104
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0x0(r5)
-
-	.loc_0x104:
-	  lwz       r0, 0x4(r4)
-	  lwz       r6, 0x0(r4)
-	  stw       r0, 0x4(r6)
-	  lwz       r0, 0x0(r4)
-	  lwz       r6, 0x4(r4)
-	  stw       r0, 0x0(r6)
-	  lwz       r0, 0x4(r5)
-	  cmplw     r0, r4
-	  bne-      .loc_0x130
-	  li        r0, 0
-	  stw       r0, 0x4(r5)
-
-	.loc_0x130:
-	  lwz       r0, 0x0(r5)
-	  cmplw     r0, r4
-	  bne-      .loc_0x144
-	  li        r0, 0
-	  stw       r0, 0x0(r5)
-
-	.loc_0x144:
-	  bl        .loc_0x158
-
-	.loc_0x148:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x158:
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0002D0
- */
-void allocate_from_fixed_pools(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void get_malloc_pool(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
- */
-void __init_pool_obj(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000128
- */
-void FixBlock_construct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800C2770
- * Size:	000294
- */
-void deallocate_from_var_pools(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  subi      r8, r4, 0x8
-	  stw       r0, 0x14(r1)
-	  lwz       r4, -0x8(r4)
-	  lwz       r5, 0x4(r8)
-	  rlwinm    r0,r4,0,31,29
-	  rlwinm    r6,r4,0,0,28
-	  stw       r0, 0x0(r8)
-	  add       r7, r8, r6
-	  rlwinm    r4,r5,0,0,30
-	  lwz       r0, 0x0(r7)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x0(r7)
-	  stw       r6, -0x4(r7)
-	  lwz       r0, 0xC(r4)
-	  rlwinm    r5,r0,0,0,28
-	  subi      r0, r5, 0x4
-	  lwzx      r5, r4, r0
-	  cmplwi    r5, 0
-	  beq-      .loc_0x1DC
-	  lwz       r5, 0x8(r5)
-	  stw       r5, 0x8(r8)
-	  lwz       r5, 0x8(r8)
-	  stw       r8, 0xC(r5)
-	  lwzx      r5, r4, r0
-	  stw       r5, 0xC(r8)
-	  lwzx      r5, r4, r0
-	  stw       r8, 0x8(r5)
-	  stwx      r8, r4, r0
-	  lwzx      r9, r4, r0
-	  lwz       r5, 0x0(r9)
-	  rlwinm.   r5,r5,0,29,29
-	  bne-      .loc_0x118
-	  lwz       r8, -0x4(r9)
-	  rlwinm.   r5,r8,0,30,30
-	  beq-      .loc_0x9C
-	  mr        r7, r9
-	  b         .loc_0x11C
-
-	.loc_0x9C:
-	  sub       r7, r9, r8
-	  lwz       r5, 0x0(r7)
-	  rlwinm    r5,r5,0,29,31
-	  stw       r5, 0x0(r7)
-	  lwz       r5, 0x0(r9)
-	  lwz       r6, 0x0(r7)
-	  rlwinm    r5,r5,0,0,28
-	  add       r5, r8, r5
-	  rlwinm    r5,r5,0,0,28
-	  or        r5, r6, r5
-	  stw       r5, 0x0(r7)
-	  lwz       r5, 0x0(r7)
-	  rlwinm.   r5,r5,0,30,30
-	  bne-      .loc_0xE8
-	  lwz       r5, 0x0(r9)
-	  rlwinm    r5,r5,0,0,28
-	  add       r6, r8, r5
-	  subi      r5, r6, 0x4
-	  stwx      r6, r7, r5
-
-	.loc_0xE8:
-	  lwzx      r5, r4, r0
-	  cmplw     r5, r9
-	  bne-      .loc_0xFC
-	  lwz       r5, 0xC(r5)
-	  stwx      r5, r4, r0
-
-	.loc_0xFC:
-	  lwz       r6, 0x8(r9)
-	  lwz       r5, 0xC(r9)
-	  stw       r6, 0x8(r5)
-	  lwz       r6, 0xC(r9)
-	  lwz       r5, 0x8(r6)
-	  stw       r6, 0xC(r5)
-	  b         .loc_0x11C
-
-	.loc_0x118:
-	  mr        r7, r9
-
-	.loc_0x11C:
-	  stwx      r7, r4, r0
-	  lwzx      r9, r4, r0
-	  lwz       r6, 0x0(r9)
-	  rlwinm    r10,r6,0,0,28
-	  add       r8, r9, r10
-	  lwz       r7, 0x0(r8)
-	  rlwinm.   r5,r7,0,30,30
-	  bne-      .loc_0x1E8
-	  rlwinm    r5,r6,0,29,31
-	  rlwinm    r6,r7,0,0,28
-	  stw       r5, 0x0(r9)
-	  add       r7, r10, r6
-	  rlwinm    r5,r7,0,0,28
-	  lwz       r6, 0x0(r9)
-	  or        r5, r6, r5
-	  stw       r5, 0x0(r9)
-	  lwz       r5, 0x0(r9)
-	  rlwinm.   r5,r5,0,30,30
-	  bne-      .loc_0x170
-	  subi      r5, r7, 0x4
-	  stwx      r7, r9, r5
-
-	.loc_0x170:
-	  lwz       r5, 0x0(r9)
-	  rlwinm.   r5,r5,0,30,30
-	  bne-      .loc_0x18C
-	  lwzx      r5, r9, r7
-	  rlwinm    r5,r5,0,30,28
-	  stwx      r5, r9, r7
-	  b         .loc_0x198
-
-	.loc_0x18C:
-	  lwzx      r5, r9, r7
-	  ori       r5, r5, 0x4
-	  stwx      r5, r9, r7
-
-	.loc_0x198:
-	  lwzx      r5, r4, r0
-	  cmplw     r5, r8
-	  bne-      .loc_0x1AC
-	  lwz       r5, 0xC(r5)
-	  stwx      r5, r4, r0
-
-	.loc_0x1AC:
-	  lwzx      r5, r4, r0
-	  cmplw     r5, r8
-	  bne-      .loc_0x1C0
-	  li        r5, 0
-	  stwx      r5, r4, r0
-
-	.loc_0x1C0:
-	  lwz       r6, 0x8(r8)
-	  lwz       r5, 0xC(r8)
-	  stw       r6, 0x8(r5)
-	  lwz       r6, 0xC(r8)
-	  lwz       r5, 0x8(r8)
-	  stw       r6, 0xC(r5)
-	  b         .loc_0x1E8
-
-	.loc_0x1DC:
-	  stwx      r8, r4, r0
-	  stw       r8, 0x8(r8)
-	  stw       r8, 0xC(r8)
-
-	.loc_0x1E8:
-	  lwzx      r5, r4, r0
-	  lwz       r6, 0x8(r4)
-	  lwz       r0, 0x0(r5)
-	  rlwinm    r0,r0,0,0,28
-	  cmplw     r6, r0
-	  bge-      .loc_0x204
-	  stw       r0, 0x8(r4)
-
-	.loc_0x204:
-	  lwz       r5, 0x10(r4)
-	  li        r7, 0
-	  rlwinm.   r0,r5,0,30,30
-	  bne-      .loc_0x230
-	  lwz       r0, 0xC(r4)
-	  rlwinm    r6,r5,0,0,28
-	  rlwinm    r5,r0,0,0,28
-	  subi      r0, r5, 0x18
-	  cmplw     r6, r0
-	  bne-      .loc_0x230
-	  li        r7, 0x1
-
-	.loc_0x230:
-	  cmpwi     r7, 0
-	  beq-      .loc_0x284
-	  lwz       r5, 0x4(r4)
-	  cmplw     r5, r4
-	  bne-      .loc_0x248
-	  li        r5, 0
-
-	.loc_0x248:
-	  lwz       r0, 0x0(r3)
-	  cmplw     r0, r4
-	  bne-      .loc_0x258
-	  stw       r5, 0x0(r3)
-
-	.loc_0x258:
-	  cmplwi    r5, 0
-	  beq-      .loc_0x270
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0x0(r5)
-	  lwz       r3, 0x0(r5)
-	  stw       r5, 0x4(r3)
-
-	.loc_0x270:
-	  li        r0, 0
-	  mr        r3, r4
-	  stw       r0, 0x4(r4)
-	  stw       r0, 0x0(r4)
-	  bl        -0x648
-
-	.loc_0x284:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
- */
-void soft_allocate_from_var_pools(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
- */
-void allocate_from_var_pools(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B4
- */
-void link_new_block(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void __unlink(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void link(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
- */
-void SubBlock_report(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void SubBlock_merge_next(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000098
- */
-void SubBlock_merge_prev(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void SubBlock_split(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void SubBlock_construct(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000284
- */
-void Block_report(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void Block_unlink(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001F0
- */
-void Block_link(void)
+void Block_construct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -712,9 +144,481 @@ void Block_subBlock(void)
 /*
  * --INFO--
  * Address:	........
- * Size:	000238
+ * Size:	0001F0
  */
-void Block_construct(void)
+void Block_link(Block* ths, SubBlock* sb) {
+    SubBlock** st;
+    SubBlock_set_free(sb);
+    st = &Block_start(ths);
+
+    if (*st != 0)
+	{
+		sb->prev = (*st)->prev;
+		sb->prev->next = sb;
+		sb->next = *st;
+		(*st)->prev = sb;
+		*st = sb;
+		*st = SubBlock_merge_prev(*st, st);
+		SubBlock_merge_next(*st, st);
+	}
+	else
+	{
+		*st = sb;
+		sb->prev = sb;
+		sb->next = sb;
+	}
+	if (ths->max_size < SubBlock_size(*st))
+		ths->max_size = SubBlock_size(*st);
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000074
+ */
+void Block_unlink(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000284
+ */
+void Block_report(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000050
+ */
+void SubBlock_construct(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E0
+ */
+void SubBlock_split(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000098
+ */
+static SubBlock* SubBlock_merge_prev(SubBlock *ths, SubBlock **start) {
+    unsigned long prevsz;
+    SubBlock* p;
+
+    if (!(ths->size & 0x04))
+	{
+		prevsz = *(unsigned long*)((char*)ths - sizeof(unsigned long));
+		if (prevsz & 0x2)
+			return ths;
+		p = (SubBlock*)((char*)ths - prevsz);
+		SubBlock_set_size(p, prevsz + SubBlock_size(ths));
+
+		if (*start == ths)
+			*start = (*start)->next;
+		ths->next->prev = ths->prev;
+		ths->next->prev->next = ths->next;
+		return p;
+	}
+	return ths;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000B8
+ */
+static void SubBlock_merge_next(SubBlock *pBlock, SubBlock **pStart) {
+    SubBlock* next_sub_block;
+    unsigned long this_cur_size;
+
+    next_sub_block = (SubBlock*)((char*)pBlock + (pBlock->size & 0xFFFFFFF8));
+
+    if (!(next_sub_block->size & 2)) {
+        this_cur_size = (pBlock->size & 0xFFFFFFF8) + (next_sub_block->size & 0xFFFFFFF8);
+
+        pBlock->size &= ~0xFFFFFFF8;
+        pBlock->size |= this_cur_size & 0xFFFFFFF8;
+
+        if (!(pBlock->size & 2)) {
+            *(unsigned long*)((char*)(pBlock) + (this_cur_size) - 4) = (this_cur_size);
+        }
+
+        if (!(pBlock->size & 2)) {
+            *(unsigned long *)((char*)pBlock + this_cur_size) &= ~4;
+        }
+        else {
+            *(unsigned long *)((char*)pBlock + this_cur_size) |= 4;
+        }
+
+        if (*pStart == next_sub_block) {
+            *pStart = (*pStart)->next;
+        }
+
+        if (*pStart == next_sub_block) {
+            *pStart = 0;
+        }
+
+        next_sub_block->next->prev = next_sub_block->prev;
+        next_sub_block->prev->next = next_sub_block->next;
+    }
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000088
+ */
+void SubBlock_report(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000044
+ */
+void link(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00004C
+ */
+static Block* __unlink(__mem_pool_obj* pool_obj, Block* bp) {
+	Block* result = bp->next;
+	if (result == bp) {
+		result = 0;
+    }
+
+	if (pool_obj->start_ == bp) {
+		pool_obj->start_ = result;
+    }
+
+	if (result != 0) {
+		result->prev = bp->prev;
+		result->prev->next = result;
+	}
+
+	bp->next = 0;
+	bp->prev = 0;
+	return result;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000B4
+ */
+void link_new_block(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000DC
+ */
+void allocate_from_var_pools(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000D8
+ */
+void soft_allocate_from_var_pools(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	800C2770
+ * Size:	000294
+ */
+static void deallocate_from_var_pools(__mem_pool_obj* pool_obj, void *ptr) {
+    SubBlock* sb = SubBlock_from_pointer(ptr);
+    SubBlock* _sb;
+
+    Block* bp = SubBlock_block(sb);
+	Block_link(bp, sb);
+
+    if (Block_empty(bp)) {
+		__unlink(pool_obj, bp);
+		__sys_free(bp);
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000128
+ */
+void FixBlock_construct(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000028
+ */
+void __init_pool_obj(__mem_pool* pool_obj) {
+	memset(pool_obj, 0, sizeof(__mem_pool_obj));
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00004C
+ */
+static __mem_pool* get_malloc_pool(void) {
+	static __mem_pool protopool;
+	static unsigned char init = 0;
+	if (!init) {
+		__init_pool_obj(&protopool);
+		init = 1;
+	}
+
+	return &protopool;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0002D0
+ */
+void allocate_from_fixed_pools(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	800C2618
+ * Size:	000158
+ */
+void deallocate_from_fixed_pools(__mem_pool_obj* pool_obj, void* ptr, unsigned long size) {
+    unsigned long i = 0;
+    FixSubBlock* p;
+    FixBlock* b;
+    FixStart* fs;
+
+    while (size > fix_pool_sizes[i]) {
+		++i;
+    }
+
+    fs = &pool_obj->fix_start[i];
+    p = FixSubBlock_from_pointer(ptr);
+    b = p->block_;
+
+    if (b->start_ == 0 && fs->head_ != b) {
+        if (fs->tail_ == b) {
+            fs->head_ = fs->head_->prev_;
+            fs->tail_ = fs->tail_->prev_;
+        }
+        else {
+            b->prev_->next_ = b->next_;
+            b->next_->prev_ = b->prev_;
+            b->next_ = fs->head_;
+            b->prev_ = b->next_->prev_;
+            b->prev_->next_ = b;
+            b->next_->prev_ = b;
+            fs->head_ = b;
+        }
+    }
+
+    p->next_ = b->start_;
+    b->start_ = p;
+
+    if (--b->n_allocated_ == 0) {
+        if (fs->head_ == b) {
+            fs->head_ = b->next_;
+        }
+
+        if (fs->tail_ == b) {
+            fs->tail_ = b->prev_;
+        }
+
+        b->prev_->next_ = b->next_;
+        b->next_->prev_ = b->prev_;
+
+        if (fs->head_ == b) {
+            fs->head_ = 0;
+        }
+
+        if (fs->tail_ == b) {
+            fs->tail_ = 0;
+        }
+
+        deallocate_from_var_pools(pool_obj, b);
+    }
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000B4
+ */
+void __report_on_pool_heap(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E4
+ */
+void __report_on_heap(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000024
+ */
+void __msize(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000054
+ */
+void __pool_alloc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	800C25C0
+ * Size:	000058
+ */
+void __pool_free(__mem_pool *pool, void *ptr) {
+    __mem_pool_obj* pool_obj;
+    unsigned long size;
+
+    if (ptr == 0) {
+        return;
+    }
+
+    pool_obj = (__mem_pool_obj*)pool;
+    size = __msize_inline(ptr);
+
+    if (size <= 68) {
+		deallocate_from_fixed_pools(pool_obj, ptr, size);
+    }
+    else {
+        deallocate_from_var_pools(pool_obj, ptr);
+    }
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0007B4
+ */
+void __pool_realloc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00004C
+ */
+void __pool_alloc_clear(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00007C
+ */
+void malloc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	800C2550
+ * Size:	000070
+ */
+void free(void *ptr) {
+	__begin_critical_region(1);
+    __pool_free(get_malloc_pool(), ptr);
+	__end_critical_region(1);
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00008C
+ */
+void realloc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000088
+ */
+void calloc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000064
+ */
+void __pool_free_all(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000090
+ */
+void __malloc_free_all(void)
 {
 	// UNUSED FUNCTION
 }
