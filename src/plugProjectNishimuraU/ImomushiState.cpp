@@ -191,8 +191,7 @@ void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->_2C8 += sys->mDeltaTime;
-	if ((imomushi->_2C8 > 6.0f)
-	    && !(EnemyFunc::isTherePikmin(imomushi, static_cast<Parms*>(imomushi->mParms)->mGeneral.mPrivateRadius.mValue, nullptr))) {
+	if ((imomushi->_2C8 > 6.0f) && !(EnemyFunc::isTherePikmin(imomushi, CG_PARMS(imomushi)->mGeneral.mPrivateRadius.mValue, nullptr))) {
 		if (imomushi->mTargetCreature = imomushi->getRandFruitsPlant()) {
 			transit(imomushi, IMOMUSHI_Appear, nullptr);
 		}
@@ -354,9 +353,9 @@ void StateMove::exec(EnemyBase* enemy)
 				}
 			}
 
-			Parms* parms = static_cast<Parms*>(imomushi->mParms);
-			EnemyFunc::walkToTarget(imomushi, creaturePos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-			                        parms->mGeneral.mRotationalSpeed.mValue);
+			EnemyFunc::walkToTarget(imomushi, creaturePos, CG_PARMS(imomushi)->mGeneral.mMoveSpeed.mValue,
+			                        CG_PARMS(imomushi)->mGeneral.mRotationalAccel.mValue,
+			                        CG_PARMS(imomushi)->mGeneral.mRotationalSpeed.mValue);
 		}
 
 	} else {
@@ -426,14 +425,13 @@ void StateGoHome::exec(EnemyBase* enemy)
 
 		Vector3f pos     = imomushi->getPosition();
 		Vector3f homePos = imomushi->mHomePosition;
-		f32 dist         = sqrDistanceXZ(pos, homePos);
-		if (dist < imomushi->getSqrHomeRadius()) {
+		// the mismatch is from sqrDistanceXZ
+		if (sqrDistanceXZ(pos, homePos) < imomushi->getSqrHomeRadius()) {
 			imomushi->mNextState = IMOMUSHI_Dive;
 			imomushi->finishMotion();
 		}
-		Parms* parms2 = static_cast<Parms*>(imomushi->mParms);
-		EnemyFunc::walkToTarget(imomushi, homePos, parms2->mGeneral.mMoveSpeed.mValue, parms2->mGeneral.mRotationalAccel.mValue,
-		                        parms2->mGeneral.mRotationalSpeed.mValue);
+		EnemyFunc::walkToTarget(imomushi, homePos, CG_PARMS(imomushi)->mGeneral.mMoveSpeed.mValue,
+		                        CG_PARMS(imomushi)->mGeneral.mRotationalAccel.mValue, CG_PARMS(imomushi)->mGeneral.mRotationalSpeed.mValue);
 	}
 
 	if ((imomushi->mCurAnim->mIsPlaying) && ((u32)imomushi->mCurAnim->mType == KEYEVENT_END)) {
@@ -771,9 +769,8 @@ void StateZukanMove::exec(EnemyBase* enemy)
 {
 	Obj* imomushi   = static_cast<Obj*>(enemy);
 	Vector3f target = Vector3f(imomushi->mZukanTargetPosition);
-	Parms* parms    = static_cast<Parms*>(imomushi->mParms);
-	EnemyFunc::walkToTarget(imomushi, target, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
-	                        parms->mGeneral.mRotationalSpeed.mValue);
+	EnemyFunc::walkToTarget(imomushi, target, CG_PARMS(imomushi)->mGeneral.mMoveSpeed.mValue,
+	                        CG_PARMS(imomushi)->mGeneral.mRotationalAccel.mValue, CG_PARMS(imomushi)->mGeneral.mRotationalSpeed.mValue);
 	if (imomushi->isInZukanTargetArea()) {
 		imomushi->setZukanTargetPosition();
 	}
