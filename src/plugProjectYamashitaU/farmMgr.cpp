@@ -1,4 +1,4 @@
-#include "Dolphin/float.h"
+#include "float.h"
 #include "Game/GameSystem.h"
 #include "Game/Navi.h"
 #include "System.h"
@@ -174,7 +174,7 @@ Farm* FarmMgr::createNewFarm(void* bmd)
 Farm* FarmMgr::getNearestFarm(Vector3f& position)
 {
 	Farm* nearestFarm   = nullptr;
-	f32 nearestDistance = *__float_max;
+	f32 nearestDistance = FLT_MAX;
 	if (mFarmsRootNode.mChild) {
 		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
 		{

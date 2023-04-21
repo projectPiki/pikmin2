@@ -1,4 +1,4 @@
-#include "Dolphin/runtime.h"
+#include "Runtime/runtime.h"
 #include "JSystem/JGeometry.h"
 #include "ebi/E2DGraph.h"
 #include "ebi/Screen/TOption.h"

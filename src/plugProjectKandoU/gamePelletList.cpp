@@ -1,4 +1,3 @@
-#include "Dolphin/stl.h"
 #include "Game/pelletConfig.h"
 #include "Game/GameConfig.h"
 #include "Game/PelletList.h"

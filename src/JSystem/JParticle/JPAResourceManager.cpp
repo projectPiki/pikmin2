@@ -1,4 +1,4 @@
-#include "Dolphin/string.h"
+#include "string.h"
 #include "JSystem/JParticle/JPABlock.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JUtility/JUTTexture.h"

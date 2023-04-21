@@ -112,7 +112,7 @@
 
 #include "types.h"
 #include "errno.h"
-#include "Dolphin/float.h"
+#include "math.h"
 #include "fdlibm.h"
 
 #ifndef _DOUBLE_IS_32BITS
@@ -257,7 +257,7 @@ double __ieee754_pow(x, y) double x, y;
 
 	if (((((int)hx >> 31) + 1) | yisint) == 0) {
 		errno = 33;
-		return (double)__float_nan;
+		return (double)NAN;
 	};
 
 	/* |y| is huge */

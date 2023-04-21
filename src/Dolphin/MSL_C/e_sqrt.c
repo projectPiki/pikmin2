@@ -88,7 +88,7 @@
 
 #include "fdlibm.h"
 #include "errno.h"
-#include "Dolphin/float.h"
+#include "math.h"
 
 #ifdef __STDC__
 static const double one = 1.0, tiny = 1.0e-300;
@@ -122,7 +122,7 @@ double __ieee754_sqrt(x) double x;
 			return x; /* sqrt(+-0) = +-0 */
 		else if (ix0 < 0) {
 			errno = 33;
-			return __float_nan;
+			return NAN;
 		} /* sqrt(-ve) = sNaN */
 	}
 	/* normalize x */

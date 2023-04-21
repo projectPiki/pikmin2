@@ -4,7 +4,7 @@
 #include "types.h"
 #include "Vector3.h"
 
-#include "Dolphin/string.h"
+#include "string.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "Screen/screenObj.h"
 #include "og/Screen/anime.h"

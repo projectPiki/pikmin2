@@ -1,4 +1,4 @@
-#include "Dolphin/string.h"
+#include "string.h"
 #include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "JSystem/JAudio/JAI/JAIGlobalParameter.h"
 #include "JSystem/JAudio/JAI/JAISequence.h"

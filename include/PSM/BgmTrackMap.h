@@ -2,7 +2,7 @@
 #define _PSM_BGMTRACKMAP_H
 
 #include "PSSystem/SeqData.h"
-#include "Dolphin/string.h"
+#include "string.h"
 
 namespace PSM {
 struct BgmTrackMap {

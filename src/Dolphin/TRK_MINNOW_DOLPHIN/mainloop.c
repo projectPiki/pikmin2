@@ -1,5 +1,5 @@
 #include "types.h"
-#include "Dolphin/trk.h"
+#include "MetroTRK/trk.h"
 
 extern TRKEventQueue gTRKEventQueue;
 extern TRKState gTRKState;

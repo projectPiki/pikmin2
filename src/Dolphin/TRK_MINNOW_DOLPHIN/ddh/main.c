@@ -1,5 +1,5 @@
 #include "types.h"
-#include "Dolphin/trk.h"
+#include "MetroTRK/trk.h"
 #include "Dolphin/AmcExi2Stubs.h"
 
 static char gRecvBuf[0x800];

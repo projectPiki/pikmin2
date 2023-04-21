@@ -1,0 +1,14 @@
+#ifndef _EXCEPTION
+#define _EXCEPTION
+
+
+namespace std{
+    extern void dthandler();
+    typedef void (*terminate_handler)();
+    extern terminate_handler thandler;
+
+    class exception{
+    };
+}
+
+#endif

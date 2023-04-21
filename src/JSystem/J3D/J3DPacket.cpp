@@ -1,7 +1,6 @@
 #include "Dolphin/gd.h"
 #include "Dolphin/gx.h"
 #include "Dolphin/os.h"
-#include "Dolphin/stl.h"
 #include "JSystem/J3D/J3DDisplayListObj.h"
 #include "JSystem/J3D/J3DMaterial.h"
 #include "JSystem/J3D/J3DPacket.h"

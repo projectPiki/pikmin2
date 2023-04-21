@@ -4,7 +4,97 @@
 #define _MSL_WIDE_CHAR
 #endif
 
-#include "Dolphin/ansi_files.h"
+#include "MSL_C/MSL_Common/ansi_files.h"
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000C8
+ */
+void putwc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000CC
+ */
+void putwchar(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000C8
+ */
+void fputwc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000C4
+ */
+void getwc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000CC
+ */
+void getwchar(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000C4
+ */
+void fgetwc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000154
+ */
+void ungetwc(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000110
+ */
+void fputws(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000150
+ */
+void fgetws(void)
+{
+	// UNUSED FUNCTION
+}
 
 /*
  * --INFO--
@@ -34,94 +124,4 @@ int fwide(FILE* stream, int mode)
 	case __char_oriented:
 		return -1;
 	}
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000150
- */
-void fgetws(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000110
- */
-void fputws(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000154
- */
-void ungetwc(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
- */
-void fgetwc(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
- */
-void getwchar(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C4
- */
-void getwc(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void fputwc(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000CC
- */
-void putwchar(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-void putwc(void)
-{
-	// UNUSED FUNCTION
 }

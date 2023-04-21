@@ -1,5 +1,4 @@
 #include "JSystem/JStudio/stb.h"
-#include "Dolphin/stl.h"
 #include "JSystem/JStudio/object.h"
 #include "JSystem/JStudio/stb-data.h"
 #include "JSystem/JGadget/binary.h"

@@ -1,5 +1,4 @@
 #include "Dolphin/os.h"
-#include "Dolphin/stl.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRFileCache.h"
 #include "JSystem/JFramework/JFWSystem.h"

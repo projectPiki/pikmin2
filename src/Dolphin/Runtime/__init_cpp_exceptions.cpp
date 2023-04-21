@@ -1,5 +1,5 @@
 #include "types.h"
-#include "Dolphin/NMWException.h"
+#include "Runtime/NMWException.h"
 
 static int fragmentID = -2;
 

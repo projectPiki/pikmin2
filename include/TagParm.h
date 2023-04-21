@@ -2,7 +2,7 @@
 #define _TAGPARM_H
 
 #include "CNode.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "stream.h"
 #include "types.h"
 

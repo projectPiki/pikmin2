@@ -1,5 +1,4 @@
 #include "Dolphin/os.h"
-#include "Dolphin/stl.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"

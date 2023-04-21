@@ -1,11 +1,11 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "Dolphin/dvd.h"
 #include "Dolphin/os.h"
-#include "Dolphin/stl.h"
 #include "Dolphin/vi.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRFile.h"
+#include "mem.h"
 #include "types.h"
 
 static u8* firstSrcData();

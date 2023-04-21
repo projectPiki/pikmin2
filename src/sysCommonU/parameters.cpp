@@ -3,7 +3,7 @@
 #include "Parameters.h"
 #include "stream.h"
 #include "BaseParm.h"
-#include "Dolphin/string.h"
+#include "string.h"
 
 /*
  * --INFO--

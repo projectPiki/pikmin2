@@ -1,5 +1,4 @@
-#include "Dolphin/stl.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JAudio/JAI/JAInter/BankWave.h"
 #include "JSystem/JAudio/JAI/JAInter/InitData.h"

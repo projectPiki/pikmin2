@@ -1,5 +1,5 @@
 #include "types.h"
-#include "Dolphin/va_arg.h"
+#include "Runtime/__va_arg.h"
 
 /*
  * --INFO--

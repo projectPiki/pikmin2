@@ -1,5 +1,5 @@
 #include "CNode.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "Game/Creature.h"
 #include "Game/gameGenerator.h"
 #include "Game/gameGeneratorCache.h"

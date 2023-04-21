@@ -1,4 +1,4 @@
-#include "Dolphin/trk.h"
+#include "MetroTRK/trk.h"
 
 static s32 TRK_mainError;
 

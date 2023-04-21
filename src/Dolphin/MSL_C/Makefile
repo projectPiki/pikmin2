@@ -58,7 +58,7 @@ MSL_C_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/w_sqrt.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/extras.o\
 
-$(MSL_C_FILES): CFLAGS += -common off
+$(MSL_C_FILES): CFLAGS += -common off -inline deferred
 
 # This is inline-deferred for some reason
 $(BUILD_DIR)/src/Dolphin/MSL_C/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common off -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)

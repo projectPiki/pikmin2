@@ -1,4 +1,4 @@
-#include "Dolphin/float.h"
+#include "float.h"
 #include "JSystem/JAudio/JALCalc.h"
 #include "JSystem/JAudio/JAS/JASInst.h"
 #include "JSystem/JMath.h"

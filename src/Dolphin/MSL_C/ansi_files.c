@@ -1,6 +1,6 @@
 #include "types.h"
-#include "Dolphin/ansi_files.h"
-#include "Dolphin/critical_regions.h"
+#include "MSL_C/MSL_Common/ansi_files.h"
+#include "MSL_C/MSL_Common/critical_regions.h"
 
 static char stdin_buff[0x100];
 static char stdout_buff[0x100];
@@ -113,25 +113,7 @@ FILE __files[4] =
 };
 // clang-format on
 
-/*
- * --INFO--
- * Address:	800C2A04
- * Size:	000070
- */
 
-u32 __flush_all()
-{
-	u32 retval = 0;
-	FILE* __stream;
-	__stream = &__files[0];
-	while (__stream) {
-		if ((__stream->mMode.file_kind) && (fflush(__stream))) {
-			retval = -1;
-		}
-		__stream = __stream->mNextFile;
-	};
-	return retval;
-}
 
 /*
  * --INFO--
@@ -162,4 +144,24 @@ void __close_all()
 	}
 
 	__end_critical_region(2);
+}
+
+/*
+ * --INFO--
+ * Address:	800C2A04
+ * Size:	000070
+ */
+
+u32 __flush_all()
+{
+	u32 retval = 0;
+	FILE* __stream;
+	__stream = &__files[0];
+	while (__stream) {
+		if ((__stream->mMode.file_kind) && (fflush(__stream))) {
+			retval = -1;
+		}
+		__stream = __stream->mNextFile;
+	};
+	return retval;
 }

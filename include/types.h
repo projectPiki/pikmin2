@@ -35,6 +35,10 @@ typedef volatile f64 vf64;
 
 typedef u32 unknown;
 
+#ifndef __cplusplus
+typedef unsigned short wchar_t;
+#endif
+
 // Basic defines to allow newer-like C++ code to be written
 #define TRUE  1
 #define FALSE 0

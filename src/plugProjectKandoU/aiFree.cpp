@@ -1,5 +1,5 @@
 #include "Dolphin/rand.h"
-#include "Dolphin/string.h"
+#include "string.h"
 
 #include "JSystem/JUtility/JUTException.h"
 

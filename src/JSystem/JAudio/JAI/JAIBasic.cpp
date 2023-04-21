@@ -1,7 +1,6 @@
 #include "Dolphin/ar.h"
 #include "Dolphin/mtx.h"
-#include "Dolphin/stl.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "Dolphin/vec.h"
 #include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "JSystem/JAudio/JAI/JAIConst.h"

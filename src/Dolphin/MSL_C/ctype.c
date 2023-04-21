@@ -1,4 +1,4 @@
-#include "Dolphin/ctype.h"
+#include "ctype.h"
 #include "types.h"
 
 unsigned char __ctype_map[256] = { CTYPE_CNTRL,
@@ -290,61 +290,9 @@ unsigned char __upper_map[256] = {
 /*
  * --INFO--
  * Address:	........
- * Size:	000020
- */
-void iswblank(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-int toupper(int __c)
-{
-	// UNUSED FUNCTION
-	{
-		if (__c == -1) {
-			return 0xffffffff;
-		}
-		return (unsigned int)__upper_map[__c & 0xff];
-	}
-}
-
-/*
- * --INFO--
- * Address:	800C6264
- * Size:	000024
- */
-int tolower(int __c)
-{
-	{
-		if (__c == -1) {
-			return 0xffffffff;
-		}
-		return (unsigned int)__lower_map[__c & 0xff];
-	}
-}
-
-/*
- * --INFO--
- * Address:	........
  * Size:	000018
  */
-BOOL isxdigit(unsigned char c)
-{
-	// UNUSED FUNCTION
-	return (__ctype_map[c] & CTYPE_XDIGIT) != 0;
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
- */
-void isupper(void)
+void isalnum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -354,7 +302,7 @@ void isupper(void)
  * Address:	........
  * Size:	000018
  */
-void isspace(void)
+void isalpha(void)
 {
 	// UNUSED FUNCTION
 }
@@ -364,7 +312,7 @@ void isspace(void)
  * Address:	........
  * Size:	000018
  */
-void ispunct(void)
+void iscntrl(void)
 {
 	// UNUSED FUNCTION
 }
@@ -374,7 +322,17 @@ void ispunct(void)
  * Address:	........
  * Size:	000018
  */
-void isprint(void)
+// BOOL isdigit(int c)
+// {
+// 	// UNUSED FUNCTION
+// }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000018
+ */
+void isgraph(void)
 {
 	// UNUSED FUNCTION
 }
@@ -395,7 +353,7 @@ void isprint(void)
  * Address:	........
  * Size:	000018
  */
-void isgraph(void)
+void isprint(void)
 {
 	// UNUSED FUNCTION
 }
@@ -405,17 +363,7 @@ void isgraph(void)
  * Address:	........
  * Size:	000018
  */
-// BOOL isdigit(int c)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
- */
-void iscntrl(void)
+void ispunct(void)
 {
 	// UNUSED FUNCTION
 }
@@ -425,7 +373,7 @@ void iscntrl(void)
  * Address:	........
  * Size:	000018
  */
-void isalpha(void)
+void isspace(void)
 {
 	// UNUSED FUNCTION
 }
@@ -435,7 +383,59 @@ void isalpha(void)
  * Address:	........
  * Size:	000018
  */
-void isalnum(void)
+void isupper(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000018
+ */
+BOOL isxdigit(unsigned char c)
+{
+	// UNUSED FUNCTION
+	return (__ctype_map[c] & CTYPE_XDIGIT) != 0;
+}
+
+/*
+ * --INFO--
+ * Address:	800C6264
+ * Size:	000024
+ */
+int tolower(int __c)
+{
+	{
+		if (__c == -1) {
+			return 0xffffffff;
+		}
+		return (unsigned int)__lower_map[__c & 0xff];
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000024
+ */
+int toupper(int __c)
+{
+	// UNUSED FUNCTION
+	{
+		if (__c == -1) {
+			return 0xffffffff;
+		}
+		return (unsigned int)__upper_map[__c & 0xff];
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000020
+ */
+void iswblank(void)
 {
 	// UNUSED FUNCTION
 }

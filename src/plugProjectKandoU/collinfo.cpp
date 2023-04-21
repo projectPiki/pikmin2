@@ -1,7 +1,6 @@
 #include "CNode.h"
 #include "CollInfo.h"
 #include "Dolphin/mtx.h"
-#include "Dolphin/stl.h"
 #include "Dolphin/rand.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"

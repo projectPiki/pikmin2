@@ -1,5 +1,20 @@
-#include "Dolphin/ansi_files.h"
+#include "MSL_C/MSL_Common/ansi_files.h"
 #include "types.h"
+
+/*
+ * --INFO--
+ * Address:	800C6224
+ * Size:	000034
+ */
+void __prep_buffer(FILE* file)
+
+{
+	file->mBufferPtr      = file->mBuffer;
+	file->mBufferLength   = file->mBufferSize;
+	file->mBufferLength   = file->mBufferLength - (file->mPosition & file->mBufferAlignment);
+	file->mBufferPosition = file->mPosition;
+	return;
+}
 
 /*
  * --INFO--
@@ -31,17 +46,3 @@ int __flush_buffer(FILE* file, size_t* length)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800C6224
- * Size:	000034
- */
-void __prep_buffer(FILE* file)
-
-{
-	file->mBufferPtr      = file->mBuffer;
-	file->mBufferLength   = file->mBufferSize;
-	file->mBufferLength   = file->mBufferLength - (file->mPosition & file->mBufferAlignment);
-	file->mBufferPosition = file->mPosition;
-	return;
-}

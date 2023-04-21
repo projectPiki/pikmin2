@@ -4,22 +4,67 @@
 #define _MSL_WIDE_CHAR
 #endif
 
-#include "Dolphin/critical_regions.h"
-#include "Dolphin/FILE_POS.h"
+#include "MSL_C/MSL_Common/critical_regions.h"
+#include "MSL_C/MSL_Common/FILE_POS.h"
 #include "errno.h"
+
+// define standard C file pointer location names
+#define SEEK_SET (0)
+#define SEEK_CUR (1)
+#define SEEK_END (2)
 
 /*
  * --INFO--
- * Address:	800C6904
- * Size:	00006C
+ * Address:	800C6BE0
+ * Size:	0000E4
  */
-int fseek(FILE* stream, u32 offset, int whence)
+int ftell(FILE* stream)
 {
-	int code;
+	int retval;
+
 	__begin_critical_region(2);
-	code = _fseek(stream, offset, whence); // 0 if successful, -1 if error
+	retval = (long)_ftell(stream);
 	__end_critical_region(2);
-	return code;
+	return retval;
+}
+
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000AC
+ */
+int _ftell(FILE* file)
+{
+	int charsInUndoBuffer = 0;
+	int position;
+
+	u8 tmp_kind = file->mMode.file_kind;
+	if (!(tmp_kind == __disk_file || tmp_kind == __console_file) || file->mState.error) {
+		errno = 0x28;
+		return -1;
+	}
+
+	if (file->mState.io_state == __neutral)
+		return (file->mPosition);
+
+	position = file->mBufferPosition + (file->mBufferPtr - file->mBuffer);
+
+	if (file->mState.io_state >= __rereading) {
+		charsInUndoBuffer = file->mState.io_state - __rereading + 1;
+		position -= charsInUndoBuffer;
+	}
+
+	if (!file->mMode.binary_io) {
+		int n = file->mBufferPtr - file->mBuffer - charsInUndoBuffer;
+		u8* p = (u8*)file->mBuffer;
+
+		while (n--)
+			if (*p++ == '\n')
+				position++;
+	}
+
+	return (position);
 }
 
 /*
@@ -116,53 +161,14 @@ int _fseek(FILE* file, u32 offset, int whence)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000AC
+ * Address:	800C6904
+ * Size:	00006C
  */
-int _ftell(FILE* file)
+int fseek(FILE* stream, u32 offset, int whence)
 {
-	int charsInUndoBuffer = 0;
-	int position;
-
-	u8 tmp_kind = file->mMode.file_kind;
-	if (!(tmp_kind == __disk_file || tmp_kind == __console_file) || file->mState.error) {
-		errno = 0x28;
-		return -1;
-	}
-
-	if (file->mState.io_state == __neutral)
-		return (file->mPosition);
-
-	position = file->mBufferPosition + (file->mBufferPtr - file->mBuffer);
-
-	if (file->mState.io_state >= __rereading) {
-		charsInUndoBuffer = file->mState.io_state - __rereading + 1;
-		position -= charsInUndoBuffer;
-	}
-
-	if (!file->mMode.binary_io) {
-		int n = file->mBufferPtr - file->mBuffer - charsInUndoBuffer;
-		u8* p = (u8*)file->mBuffer;
-
-		while (n--)
-			if (*p++ == '\n')
-				position++;
-	}
-
-	return (position);
-}
-
-/*
- * --INFO--
- * Address:	800C6BE0
- * Size:	0000E4
- */
-int ftell(FILE* stream)
-{
-	int retval;
-
+	int code;
 	__begin_critical_region(2);
-	retval = (long)_ftell(stream);
+	code = _fseek(stream, offset, whence); // 0 if successful, -1 if error
 	__end_critical_region(2);
-	return retval;
+	return code;
 }

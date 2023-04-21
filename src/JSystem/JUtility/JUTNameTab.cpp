@@ -1,4 +1,4 @@
-#include "Dolphin/string.h"
+#include "string.h"
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "types.h"
 

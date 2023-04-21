@@ -11,7 +11,7 @@
 #include "utilityU.h"
 #include "Screen/Game2DMgr.h"
 #include "PSSystem/PSSystemIF.h"
-#include "Dolphin/float.h"
+#include "float.h"
 #include "efx2d/T2DChangesmoke.h"
 #include "JSystem/JMath.h"
 

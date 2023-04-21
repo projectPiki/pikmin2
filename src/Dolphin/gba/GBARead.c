@@ -1,5 +1,4 @@
 #include "Dolphin/gba.h"
-#include "Dolphin/stl.h"
 
 /*
  * --INFO--

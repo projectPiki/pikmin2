@@ -1,5 +1,5 @@
-#include "Dolphin/stl.h"
 #include "JSystem/JSupport/JSUStream.h"
+#include "mem.h"
 #include "types.h"
 
 /*

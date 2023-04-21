@@ -486,7 +486,7 @@ LIBS = [
     {
         "lib": "MSL_C",
         "mw_version": "2.6",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_base -inline deferred",
         "host": False,
         "objects": [
             ["Dolphin/MSL_C/abort_exit", True],
@@ -1765,7 +1765,7 @@ if __name__ == "__main__":
     else:
         dkp_path = Path("/opt/devkitpro/devkitPPC")
 
-    cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse,readonly -nosyspath -use_lmw_stmw on -sdata 8 -sdata2 8 -DVERNUM={version_num} -i include"
+    cflags_base = f"-proc gekko -nodefaults -Cpp_exceptions off -RTTI off -fp hard -fp_contract on -O4,p -maxerrors 1 -enum int -inline auto -str reuse,readonly -nosyspath -use_lmw_stmw on -sdata 8 -sdata2 8 -DVERNUM={version_num} -i include -i include/PowerPC_EABI_Support"
     if args.debug:
         cflags_base += " -sym on -D_DEBUG"
     else:

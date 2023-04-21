@@ -3,7 +3,6 @@
 #include "types.h"
 #include "Dolphin/dvd.h"
 #include "mem.h"
-#include "Dolphin/stl.h"
 
 const char* __DVDVersion = "<< Dolphin SDK - DVD\trelease build: Sep 16 2003 09:50:54 (0x2301) >>";
 

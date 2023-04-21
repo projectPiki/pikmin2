@@ -1,5 +1,5 @@
 #include "Dolphin/dvd.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "JSystem/JAudio/JAS/JASDisposer.h"
 #include "JSystem/JAudio/JAS/JASDvd.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"

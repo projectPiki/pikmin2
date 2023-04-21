@@ -1,6 +1,5 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
-#include "Dolphin/stl.h"
 #include "JSystem/J2D/J2DMaterial.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/J2D/J2DPrint.h"
@@ -9,6 +8,7 @@
 #include "JSystem/JSupport/JSUStream.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include "JSystem/JUtility/TColor.h"
+#include "stdarg.h"
 #include "types.h"
 
 /*

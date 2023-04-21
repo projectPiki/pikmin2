@@ -1,5 +1,5 @@
 #include "types.h"
-#include "Dolphin/string.h"
+#include "string.h"
 
 /*
  * --INFO--

@@ -1,4 +1,4 @@
-#include "Dolphin/float.h"
+#include "float.h"
 #include "Dolphin/math.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/JGeometry.h"

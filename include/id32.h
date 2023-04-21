@@ -1,7 +1,7 @@
 #ifndef _ID32_H
 #define _ID32_H
 
-#include "Dolphin/runtime.h"
+#include "Runtime/runtime.h"
 #include "types.h"
 #include "stream.h"
 

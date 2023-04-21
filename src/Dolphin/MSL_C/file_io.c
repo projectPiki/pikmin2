@@ -1,5 +1,32 @@
 #include "types.h"
-#include "Dolphin/ansi_files.h"
+#include "MSL_C/MSL_Common/ansi_files.h"
+
+
+/*
+ * --INFO--
+ * Address:	800C6748
+ * Size:	0001BC
+ */
+int fclose(FILE* file)
+{
+	int flush_result, close_result;
+
+	if (file == nullptr)
+		return (-1);
+	if (file->mMode.file_kind == __closed_file)
+		return (0);
+
+	flush_result = fflush(file);
+
+	close_result = (*file->closeFunc)(file->mHandle);
+
+	file->mMode.file_kind = __closed_file;
+	file->mHandle         = 0;
+
+	if (file->mState.free_buffer)
+		free(file->mBuffer);
+	return ((flush_result || close_result) ? -1 : 0);
+}
 
 /*
  * --INFO--
@@ -53,28 +80,3 @@ int fflush(FILE* file)
 	return 0;
 }
 
-/*
- * --INFO--
- * Address:	800C6748
- * Size:	0001BC
- */
-int fclose(FILE* file)
-{
-	int flush_result, close_result;
-
-	if (file == nullptr)
-		return (-1);
-	if (file->mMode.file_kind == __closed_file)
-		return (0);
-
-	flush_result = fflush(file);
-
-	close_result = (*file->closeFunc)(file->mHandle);
-
-	file->mMode.file_kind = __closed_file;
-	file->mHandle         = 0;
-
-	if (file->mState.free_buffer)
-		free(file->mBuffer);
-	return ((flush_result || close_result) ? -1 : 0);
-}

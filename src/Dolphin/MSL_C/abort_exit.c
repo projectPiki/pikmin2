@@ -1,4 +1,4 @@
-#include "Dolphin/critical_regions.h"
+#include "MSL_C/MSL_Common/critical_regions.h"
 
 void __destroy_global_chain(void);
 void _ExitProcess(void);
@@ -15,9 +15,29 @@ static void (*__atexit_funcs[64])(void);
 /*
  * --INFO--
  * Address:	........
- * Size:	00008C
+ * Size:	00009C
  */
-void __exit(void)
+void abort(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00004C
+ */
+void atexit(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00006C
+ */
+void __atexit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -62,29 +82,9 @@ void exit(int status)
 /*
  * --INFO--
  * Address:	........
- * Size:	00006C
+ * Size:	00008C
  */
-void __atexit(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void atexit(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00009C
- */
-void abort(void)
+void __exit(void)
 {
 	// UNUSED FUNCTION
 }

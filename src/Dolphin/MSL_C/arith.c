@@ -1,141 +1,46 @@
-#include "Dolphin/arith.h"
+#include "MSL_C/MSL_Common/arith.h"
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000198
+ * Address:	800C6150
+ * Size:	000010
  */
-void __llmod(void)
+int abs(int __x)
 {
-	// UNUSED FUNCTION
+	return (__x >> 0x1f ^ __x) - (__x >> 0x1f);
+	/*
+	.loc_0x0:
+	  srawi     r4, r3, 0x1F
+	  xor       r0, r4, r3
+	  sub       r3, r0, r4
+	  blr
+	*/
 }
 
 /*
  * --INFO--
  * Address:	........
- * Size:	00005C
+ * Size:	000010
  */
-void __msl_lmod(void)
+long labs(long __x)
 {
 	// UNUSED FUNCTION
+	return (__x >> 0x1f ^ __x) - (__x >> 0x1f);
+	/*
+	.loc_0x0:
+	  srawi     r4, r3, 0x1F
+	  xor       r0, r4, r3
+	  sub       r3, r0, r4
+	  blr
+	*/
 }
 
 /*
  * --INFO--
  * Address:	........
- * Size:	00005C
+ * Size:	00002C
  */
-void __msl_mod(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C4
- */
-void __lldiv(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void __msl_ldiv(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void __msl_div(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000148
- */
-void __llmul(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void __msl_lmul(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void __msl_mul(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
- */
-void __lladd(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void __msl_ladd(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void __msl_add(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00015C
- */
-void lldiv(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000058
- */
-void ldiv(void)
+void llabs(void)
 {
 	// UNUSED FUNCTION
 }
@@ -202,9 +107,9 @@ div_t div(s32 __numer, s32 __denom)
 /*
  * --INFO--
  * Address:	........
- * Size:	00002C
+ * Size:	000058
  */
-void llabs(void)
+void ldiv(void)
 {
 	// UNUSED FUNCTION
 }
@@ -212,34 +117,129 @@ void llabs(void)
 /*
  * --INFO--
  * Address:	........
- * Size:	000010
+ * Size:	00015C
  */
-long labs(long __x)
+void lldiv(void)
 {
 	// UNUSED FUNCTION
-	return (__x >> 0x1f ^ __x) - (__x >> 0x1f);
-	/*
-	.loc_0x0:
-	  srawi     r4, r3, 0x1F
-	  xor       r0, r4, r3
-	  sub       r3, r0, r4
-	  blr
-	*/
 }
 
 /*
  * --INFO--
- * Address:	800C6150
- * Size:	000010
+ * Address:	........
+ * Size:	000060
  */
-int abs(int __x)
+void __msl_add(void)
 {
-	return (__x >> 0x1f ^ __x) - (__x >> 0x1f);
-	/*
-	.loc_0x0:
-	  srawi     r4, r3, 0x1F
-	  xor       r0, r4, r3
-	  sub       r3, r0, r4
-	  blr
-	*/
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+void __msl_ladd(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000D8
+ */
+void __lladd(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000064
+ */
+void __msl_mul(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000064
+ */
+void __msl_lmul(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000148
+ */
+void __llmul(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000078
+ */
+void __msl_div(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000078
+ */
+void __msl_ldiv(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0001C4
+ */
+void __lldiv(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00005C
+ */
+void __msl_mod(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00005C
+ */
+void __msl_lmod(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000198
+ */
+void __llmod(void)
+{
+	// UNUSED FUNCTION
 }

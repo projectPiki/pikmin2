@@ -14,7 +14,7 @@
 #include "PSM/Scene.h"
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSMainSide_Scene.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "Iterator.h"
 #include "Radar.h"
 #include "nans.h"

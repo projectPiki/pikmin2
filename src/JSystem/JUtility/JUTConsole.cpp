@@ -7,8 +7,7 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include "Dolphin/string.h"
-#include "Dolphin/stl.h"
+#include "string.h"
 
 /*
     Generated from dpostproc

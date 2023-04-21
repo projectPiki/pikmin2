@@ -3,7 +3,7 @@
 #include "JSystem/JStudio/data.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JStudio_JParticle.h"
-#include "Dolphin/float.h"
+#include "float.h"
 #include "types.h"
 
 /*

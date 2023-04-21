@@ -1,7 +1,6 @@
 #include "types.h"
 #include "stream.h"
-#include "Dolphin/string.h"
-#include "Dolphin/stl.h"
+#include "string.h"
 
 /*
  * --INFO--

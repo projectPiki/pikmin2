@@ -3,9 +3,8 @@
 
 #include "types.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "Dolphin/string.h"
-#include "Dolphin/stl.h"
-#include "Dolphin/scanf.h"
+#include "string.h"
+#include "stdio.h"
 
 #define STREAM_MODE_BINARY 0
 #define STREAM_MODE_TEXT   1
