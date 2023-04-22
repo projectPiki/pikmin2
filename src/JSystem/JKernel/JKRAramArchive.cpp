@@ -2,7 +2,7 @@
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "types.h"
-#include "std/limits.h"
+#include "limits"
 
 /*
     Generated from dpostproc

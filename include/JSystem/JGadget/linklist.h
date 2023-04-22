@@ -2,8 +2,8 @@
 #define LINKLIST_H
 
 #include "types.h"
-#include "std/algorithm.h"
-#include "std/iterator.h"
+#include "algorithm"
+#include "iterator"
 
 namespace JGadget {
 struct TLinkListNode {

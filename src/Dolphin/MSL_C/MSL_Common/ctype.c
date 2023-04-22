@@ -1,261 +1,29 @@
 #include "ctype.h"
 #include "types.h"
 
-unsigned char __ctype_map[256] = { CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_SPACE,
-	                               CTYPE_SPACE,
-	                               CTYPE_SPACE,
-	                               CTYPE_SPACE,
-	                               CTYPE_SPACE,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_CNTRL,
-	                               CTYPE_BLANK,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_DIGIT | CTYPE_XDIGIT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_XDIGIT | CTYPE_UPPER,
-	                               CTYPE_XDIGIT | CTYPE_UPPER,
-	                               CTYPE_XDIGIT | CTYPE_UPPER,
-	                               CTYPE_XDIGIT | CTYPE_UPPER,
-	                               CTYPE_XDIGIT | CTYPE_UPPER,
-	                               CTYPE_XDIGIT | CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_UPPER,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_XDIGIT | CTYPE_LOWER,
-	                               CTYPE_XDIGIT | CTYPE_LOWER,
-	                               CTYPE_XDIGIT | CTYPE_LOWER,
-	                               CTYPE_XDIGIT | CTYPE_LOWER,
-	                               CTYPE_XDIGIT | CTYPE_LOWER,
-	                               CTYPE_XDIGIT | CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_LOWER,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_PUNCT,
-	                               CTYPE_CNTRL,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0,
-	                               0 };
+
+#define octrl	0x01
+#define omotn	0x02
+#define ospac	0x04
+#define opunc	0x08
+#define odigi	0x10
+#define ohexd	0x20
+#define olowc	0x40
+#define ouppc	0x80
+#define odhex	ohexd | odigi
+#define ouhex	ohexd | ouppc
+#define olhex	ohexd | olowc
+
+unsigned char __ctype_map[256] = {
+	octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, omotn, omotn, omotn, omotn, omotn, octrl, octrl,
+	octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl,
+	ospac, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc,
+	odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex, opunc, opunc, opunc, opunc, opunc, opunc,
+	opunc, ouhex, ouhex, ouhex, ouhex, ouhex, ouhex, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc,
+	ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, opunc, opunc, opunc, opunc, opunc,
+	opunc, olhex, olhex, olhex, olhex, olhex, olhex, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc,
+	olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, opunc, opunc, opunc, opunc, octrl
+};
 
 unsigned char __lower_map[256] = {
 	0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15,
@@ -292,30 +60,30 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-void isalnum(void)
-{
-	// UNUSED FUNCTION
-}
+//void isalnum(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void isalpha(void)
-{
-	// UNUSED FUNCTION
-}
+//void isalpha(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void iscntrl(void)
-{
-	// UNUSED FUNCTION
-}
+//void iscntrl(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
@@ -332,10 +100,10 @@ void iscntrl(void)
  * Address:	........
  * Size:	000018
  */
-void isgraph(void)
-{
-	// UNUSED FUNCTION
-}
+//void isgraph(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
@@ -345,7 +113,7 @@ void isgraph(void)
 // BOOL islower(unsigned char c)
 //{
 //	// UNUSED FUNCTION
-//	return __ctype_map[c] & CTYPE_LOWER;
+//	return __ctype_map[c] & olowc;
 //}
 
 /*
@@ -353,51 +121,51 @@ void isgraph(void)
  * Address:	........
  * Size:	000018
  */
-void isprint(void)
-{
-	// UNUSED FUNCTION
-}
+//void isprint(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void ispunct(void)
-{
-	// UNUSED FUNCTION
-}
+//void ispunct(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void isspace(void)
-{
-	// UNUSED FUNCTION
-}
+//void isspace(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void isupper(void)
-{
-	// UNUSED FUNCTION
-}
+//void isupper(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-BOOL isxdigit(unsigned char c)
-{
-	// UNUSED FUNCTION
-	return (__ctype_map[c] & CTYPE_XDIGIT) != 0;
-}
+//BOOL isxdigit(unsigned char c)
+//{
+//	// UNUSED FUNCTION
+//	return (__ctype_map[c] & ohexd) != 0;
+//}
 
 /*
  * --INFO--
@@ -406,12 +174,7 @@ BOOL isxdigit(unsigned char c)
  */
 int tolower(int __c)
 {
-	{
-		if (__c == -1) {
-			return 0xffffffff;
-		}
-		return (unsigned int)__lower_map[__c & 0xff];
-	}
+	return _tolower(__c);
 }
 
 /*
@@ -419,23 +182,23 @@ int tolower(int __c)
  * Address:	........
  * Size:	000024
  */
-int toupper(int __c)
-{
-	// UNUSED FUNCTION
-	{
-		if (__c == -1) {
-			return 0xffffffff;
-		}
-		return (unsigned int)__upper_map[__c & 0xff];
-	}
-}
+//int toupper(int __c)
+//{
+//	// UNUSED FUNCTION
+//	{
+//		if (__c == -1) {
+//			return 0xffffffff;
+//		}
+//		return (unsigned int)__upper_map[__c & 0xff];
+//	}
+//
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000020
  */
-void iswblank(void)
-{
-	// UNUSED FUNCTION
-}
+//void iswblank(void)
+//{
+//	// UNUSED FUNCTION
+//}
