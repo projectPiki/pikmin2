@@ -421,13 +421,13 @@ LIBS = [
             [
                 "Dolphin/TRK_MINNOW_DOLPHIN/mainloop",
                 True,
-                {"cflags": "$cflags_base -sdata 0"},
+                {"cflags": "$cflags_base -inline deferred -sdata 0"},
             ],
             ["Dolphin/TRK_MINNOW_DOLPHIN/nubevent", True],
             [
                 "Dolphin/TRK_MINNOW_DOLPHIN/nubinit",
                 True,
-                {"cflags": "$cflags_base -sdata 0"},
+                {"cflags": "$cflags_base -inline deferred -sdata 0"},
             ],
             ["Dolphin/TRK_MINNOW_DOLPHIN/msg", True],
             "Dolphin/TRK_MINNOW_DOLPHIN/msgbuf",
@@ -448,14 +448,14 @@ LIBS = [
             [
                 "Dolphin/TRK_MINNOW_DOLPHIN/main_TRK",
                 True,
-                {"cflags": "$cflags_base -sdata 0"},
+                {"cflags": "$cflags_base -inline deferred -sdata 0"},
             ],
             "Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue",
             ["Dolphin/TRK_MINNOW_DOLPHIN/targcont", True],
             [
                 "Dolphin/TRK_MINNOW_DOLPHIN/target_options",
                 True,
-                {"cflags": "$cflags_base -sdata 0"},
+                {"cflags": "$cflags_base -inline deferred -sdata 0"},
             ],
             "Dolphin/TRK_MINNOW_DOLPHIN/mslsupp",
             ["Dolphin/TRK_MINNOW_DOLPHIN/UDP_Stubs", True],
