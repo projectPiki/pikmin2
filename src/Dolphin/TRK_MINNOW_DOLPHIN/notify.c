@@ -1,5 +1,5 @@
 #include "types.h"
-#include "MetroTRK/trk.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
 /*
  * --INFO--

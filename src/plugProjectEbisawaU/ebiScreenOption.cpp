@@ -1,4 +1,4 @@
-#include "Runtime/runtime.h"
+#include "PowerPC_EABI_Support/Runtime/runtime.h"
 #include "JSystem/JGeometry.h"
 #include "ebi/E2DGraph.h"
 #include "ebi/Screen/TOption.h"

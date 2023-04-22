@@ -2,7 +2,7 @@
 #define _MSL_FILE_POS_H
 
 #include "types.h"
-#include "MSL_C/MSL_Common/ansi_files.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/ansi_files.h"
 
 #ifdef __cplusplus
 extern "C" {

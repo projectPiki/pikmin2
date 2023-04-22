@@ -2,7 +2,7 @@
 #define _MEM_H
 
 #include "types.h"
-#include "Runtime/__mem.h"
+#include "PowerPC_EABI_Support/Runtime/__mem.h"
 
 #ifdef __cplusplus
 extern "C" {

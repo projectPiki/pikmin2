@@ -2,7 +2,7 @@
 #define _MATH_H
 
 #include "types.h"
-#include "MSL_C/MSL_Common/math_api.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/math_api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -19,6 +19,8 @@ extern "C" {
 // #define __frsqrtes opword
 
 #define SQUARE(v) ((v) * (v))
+
+#define signbit(x)((int)(__HI(x)&0x80000000))
 
 #define TAU     6.2831855f
 #define PI      3.1415927f

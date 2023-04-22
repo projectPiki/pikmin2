@@ -1,13 +1,13 @@
-#include "MSL_C/MSL_Common/arith.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/arith.h"
 
 /*
  * --INFO--
  * Address:	800C6150
  * Size:	000010
  */
-int abs(int __x)
+int abs(int x)
 {
-	return (__x >> 0x1f ^ __x) - (__x >> 0x1f);
+	return x > 0 ? x : -x;
 	/*
 	.loc_0x0:
 	  srawi     r4, r3, 0x1F
@@ -22,10 +22,10 @@ int abs(int __x)
  * Address:	........
  * Size:	000010
  */
-long labs(long __x)
+long labs(long x)
 {
 	// UNUSED FUNCTION
-	return (__x >> 0x1f ^ __x) - (__x >> 0x1f);
+	return x > 0 ? x : -x;
 	/*
 	.loc_0x0:
 	  srawi     r4, r3, 0x1F

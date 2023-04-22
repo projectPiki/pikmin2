@@ -1,6 +1,6 @@
 #include "types.h"
-#include "MSL_C/MSL_Common/ansi_files.h"
-#include "MSL_C/MSL_Common/critical_regions.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/ansi_files.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
 
 static char stdin_buff[0x100];
 static char stdout_buff[0x100];

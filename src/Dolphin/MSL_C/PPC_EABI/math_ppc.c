@@ -1,4 +1,4 @@
-#include "MSL_C/PPC_EABI/math_ppc.h"
+#include "PowerPC_EABI_Support/MSL_C/PPC_EABI/math_ppc.h"
 #include "fdlibm.h"
 
 /*

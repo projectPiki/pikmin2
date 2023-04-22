@@ -1,4 +1,4 @@
-#include "MSL_C/MSL_Common/critical_regions.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
 
 void __destroy_global_chain(void);
 void _ExitProcess(void);

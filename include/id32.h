@@ -1,7 +1,7 @@
 #ifndef _ID32_H
 #define _ID32_H
 
-#include "Runtime/runtime.h"
+#include "PowerPC_EABI_Support/Runtime/runtime.h"
 #include "types.h"
 #include "stream.h"
 

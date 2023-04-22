@@ -4,7 +4,7 @@
 #include "types.h"
 #include "math.h"
 #include "float.h"
-#include "MSL_C/MSL_Common/math_api.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/math_api.h"
 #include "fdlibm.h"
 
 #define SIGDIGLEN 36

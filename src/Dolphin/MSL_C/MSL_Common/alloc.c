@@ -1,5 +1,5 @@
-#include "MSL_C/MSL_Common/alloc.h"
-#include "MSL_C/MSL_Common/critical_regions.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/alloc.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
 
 typedef struct Block {
     struct Block* prev;

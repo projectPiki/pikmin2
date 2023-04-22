@@ -1,4 +1,4 @@
-#include "MetroTRK/trk.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
 static s32 TRK_mainError;
 

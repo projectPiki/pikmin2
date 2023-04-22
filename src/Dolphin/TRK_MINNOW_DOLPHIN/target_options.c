@@ -1,4 +1,4 @@
-#include "MetroTRK/target_options.h"
+#include "PowerPC_EABI_Support/MetroTRK/target_options.h"
 
 static u8 bUseSerialIO;
 

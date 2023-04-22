@@ -4,8 +4,8 @@
 #define _MSL_WIDE_CHAR
 #endif
 
-#include "MSL_C/MSL_Common/critical_regions.h"
-#include "MSL_C/MSL_Common/FILE_POS.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/FILE_POS.h"
 #include "errno.h"
 
 // define standard C file pointer location names

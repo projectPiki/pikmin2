@@ -1,5 +1,5 @@
 #include "types.h"
-#include "MSL_C/MSL_Common/critical_regions.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
 
 /*
  * --INFO--
