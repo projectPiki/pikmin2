@@ -1,6 +1,7 @@
 #include "ctype.h"
 #include "types.h"
 
+
 #define octrl	0x01
 #define omotn	0x02
 #define ospac	0x04

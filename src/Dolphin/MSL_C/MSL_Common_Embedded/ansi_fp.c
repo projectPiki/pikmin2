@@ -644,15 +644,16 @@ double __dec2num(const decimal *d)
 		return copysign((double)INFINITY, d->sign == 0 ? 1.0 : -1.0);
 	case 'N':
         {
-		    double result;
-		    u64* ll = (u64*)&result;
+		      double result;
+		      u64* ll = (u64*)&result;
 
-		    *ll = 0x7FF0000000000000;
-		    if (d->sign)
-		    	*ll |= 0x8000000000000000;
-            if (d->sig.length == 1)
+		      *ll = 0x7FF0000000000000;
+		      if (d->sign)
+		    	  *ll |= 0x8000000000000000;
+          
+          if (d->sig.length == 1)
 		        *ll |= 0x8000000000000;
-            else{
+          else{
                 unsigned char* p = (unsigned char*)&result + 1;
                 int placed_non_zero = 0;
 			    int low = 1;
