@@ -1,5 +1,5 @@
 #include "JSystem/JStudio/functionvalue.h"
-#include "Dolphin/float.h"
+#include "float.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JGadget/list.h"
 #include "fdlibm.h"

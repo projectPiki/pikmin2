@@ -1,58 +1,6 @@
-#include "Dolphin/trk.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
 BOOL gTRKBigEndian;
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-BOOL TRKInitializeEndian(void)
-{
-	u8 bendian[4];
-	BOOL result   = FALSE;
-	gTRKBigEndian = TRUE;
-
-	bendian[0] = 0x12;
-	bendian[1] = 0x34;
-	bendian[2] = 0x56;
-	bendian[3] = 0x78;
-
-	if (*(u32*)bendian == 0x12345678) {
-		gTRKBigEndian = TRUE;
-	} else if (*(u32*)bendian == 0x78563412) {
-		gTRKBigEndian = FALSE;
-	} else {
-		result = TRUE;
-	}
-	return result;
-}
-
-/*
- * --INFO--
- * Address:	800BB6B0
- * Size:	000028
- */
-extern void TRK_board_display(char*);
-void TRKNubWelcome(void)
-{
-
-	TRK_board_display("MetroTRK for GAMECUBE v2.6"); //"MetroTRK for GAMECUBE v2.6"
-	return;
-}
-
-/*
- * --INFO--
- * Address:	800BB6D8
- * Size:	000024
- */
-extern TRKResult TRKTerminateSerialHandler(void);
-TRKResult TRKTerminateNub(void)
-{
-
-	TRKTerminateSerialHandler();
-	return TRKSuccess;
-}
 
 /*
  * --INFO--
@@ -95,4 +43,56 @@ TRKResult TRKInitializeNub(void)
 		}
 	}
 	return TVar1;
+}
+
+/*
+ * --INFO--
+ * Address:	800BB6D8
+ * Size:	000024
+ */
+extern TRKResult TRKTerminateSerialHandler(void);
+TRKResult TRKTerminateNub(void)
+{
+
+	TRKTerminateSerialHandler();
+	return TRKSuccess;
+}
+
+/*
+ * --INFO--
+ * Address:	800BB6B0
+ * Size:	000028
+ */
+extern void TRK_board_display(char*);
+void TRKNubWelcome(void)
+{
+
+	TRK_board_display("MetroTRK for GAMECUBE v2.6"); //"MetroTRK for GAMECUBE v2.6"
+	return;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000070
+ */
+BOOL TRKInitializeEndian(void)
+{
+	u8 bendian[4];
+	BOOL result   = FALSE;
+	gTRKBigEndian = TRUE;
+
+	bendian[0] = 0x12;
+	bendian[1] = 0x34;
+	bendian[2] = 0x56;
+	bendian[3] = 0x78;
+
+	if (*(u32*)bendian == 0x12345678) {
+		gTRKBigEndian = TRUE;
+	} else if (*(u32*)bendian == 0x78563412) {
+		gTRKBigEndian = FALSE;
+	} else {
+		result = TRUE;
+	}
+	return result;
 }

@@ -1,4 +1,3 @@
-#include "Dolphin/stl.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "LoadResource.h"
 #include "og/newScreen/Floor.h"

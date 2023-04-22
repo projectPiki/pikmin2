@@ -7,116 +7,9 @@ extern u32 GetTRKConnected(void);
 /*
  * --INFO--
  * Address:	........
- * Size:	000008
+ * Size:	000058
  */
-void __do_puthex2(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void __do_puthex4(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void __do_puthex8(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000130
- */
-void __do_puthex32(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void __do_puts(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void __do_putchar(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void usr_puts(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void usr_putchar(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800BC380
- * Size:	000004
- */
-void usr_put_initialize(void) { }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000018
- */
-void usr_puts_ram(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void usr_putchar_ram(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void usr_put_initialize_ram(void)
+void usr_putchar_serial(void)
 {
 	// UNUSED FUNCTION
 }
@@ -150,9 +43,116 @@ BOOL usr_puts_serial(const char* msg)
 /*
  * --INFO--
  * Address:	........
- * Size:	000058
+ * Size:	000004
  */
-void usr_putchar_serial(void)
+void usr_put_initialize_ram(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void usr_putchar_ram(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000018
+ */
+void usr_puts_ram(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	800BC380
+ * Size:	000004
+ */
+void usr_put_initialize(void) { }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void usr_putchar(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void usr_puts(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void __do_putchar(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void __do_puts(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000130
+ */
+void __do_puthex32(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void __do_puthex8(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void __do_puthex4(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void __do_puthex2(void)
 {
 	// UNUSED FUNCTION
 }

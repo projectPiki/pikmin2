@@ -1,4 +1,11 @@
-#include "Dolphin/trk.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
+
+/*
+ * --INFO--
+ * Address:	800BC57C
+ * Size:	000008
+ */
+TRKResult TRKInitializeDispatcher(void) { return TRKSuccess; }
 
 /*
  * --INFO--
@@ -59,10 +66,3 @@ TRKResult TRKDispatchMessage(TRKBuffer* param_1)
 	MWTRACE(1, "Dispatch complete err = %ld\n", uVar1);
 	return uVar1;
 }
-
-/*
- * --INFO--
- * Address:	800BC57C
- * Size:	000008
- */
-TRKResult TRKInitializeDispatcher(void) { return TRKSuccess; }

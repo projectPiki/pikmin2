@@ -132,7 +132,7 @@ endif
 FRANK := tools/frank.py
 
 # Options
-INCLUDES := -i include/
+INCLUDES := -i include/ -i include/stl/
 ASM_INCLUDES := -I include/
 
 ASFLAGS := -mgekko $(ASM_INCLUDES) --defsym version=$(VERNUM)

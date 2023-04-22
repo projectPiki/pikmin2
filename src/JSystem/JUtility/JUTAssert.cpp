@@ -1,4 +1,4 @@
-#include "Dolphin/string.h"
+#include "string.h"
 #include "Dolphin/vi.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"

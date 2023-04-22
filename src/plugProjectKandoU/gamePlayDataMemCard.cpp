@@ -1,4 +1,3 @@
-#include "Dolphin/stl.h"
 #include "Game/BirthMgr.h"
 #include "Game/Data.h"
 #include "Game/DeathMgr.h"

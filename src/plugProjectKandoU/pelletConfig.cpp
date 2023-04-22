@@ -1,6 +1,6 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "Game/pelletConfig.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "TagParm.h"
 
 namespace Game {

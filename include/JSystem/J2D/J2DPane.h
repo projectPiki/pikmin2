@@ -3,7 +3,7 @@
 
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "JSystem/J2D/J2DAnm.h"
 #include "JSystem/J2D/J2DManage.h"
 #include "JSystem/J2D/J2DTypes.h"

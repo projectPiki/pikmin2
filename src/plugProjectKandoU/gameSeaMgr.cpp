@@ -1,7 +1,7 @@
 #include "BoundBox.h"
 #include "Dolphin/math.h"
 #include "Dolphin/mtx.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "Dolphin/vec.h"
 #include "Game/GameSystem.h"
 #include "Game/MapMgr.h"

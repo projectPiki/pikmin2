@@ -1,4 +1,3 @@
-#include "Dolphin/stl.h"
 #include "IDelegate.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JUtility/JUTException.h"

@@ -4,6 +4,7 @@
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRThread.h"
+#include "mem.h"
 #include "types.h"
 
 JSUList<JKRAMCommand> JKRAram::sAramCommandList;

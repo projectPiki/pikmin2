@@ -30,7 +30,7 @@ TRK_MINNOW_DOLPHIN_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/MWTrace.o\
 	$(BUILD_DIR)/src/Dolphin/TRK_MINNOW_DOLPHIN/MWCriticalSection_gc.o\
 
-$(TRK_MINNOW_DOLPHIN_FILES): CFLAGS += -common off
+$(TRK_MINNOW_DOLPHIN_FILES): CFLAGS += -common off -inline deferred
 
 # Dirty hack to override sdata
 # It seems some TRK-related files need -sdata 0

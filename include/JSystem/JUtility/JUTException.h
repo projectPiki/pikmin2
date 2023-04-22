@@ -2,11 +2,11 @@
 #define _JSYSTEM_JUT_JUTEXCEPTION_H
 
 #include "Dolphin/os.h"
-#include "Dolphin/stl.h"
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "JSystem/JUtility/JUTExternalFB.h"
+#include "stdarg.h"
 #include "types.h"
 
 typedef void (*JUTExceptionHandler)(OSError error, OSContext* context, u32 p3, u32 p4);

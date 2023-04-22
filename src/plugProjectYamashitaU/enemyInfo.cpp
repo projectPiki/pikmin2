@@ -1,5 +1,6 @@
 #include "Game/enemyInfo.h"
-#include "Dolphin/string.h"
+#include "string.h"
+#include "extras.h"
 #include "types.h"
 
 namespace Game {

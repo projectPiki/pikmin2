@@ -1,7 +1,6 @@
 #include "CarryInfo.h"
 #include "Controller.h"
 #include "Dolphin/dvd.h"
-#include "Dolphin/stl.h"
 #include "DvdThreadCommand.h"
 #include "Game/BaseGameSection.h"
 #include "Game/BaseHIO.h"

@@ -2,7 +2,6 @@
 #define _SCREEN_BASES_H
 
 #include "Dolphin/gx.h"
-#include "Dolphin/stl.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JUtility/TColor.h"
 #include "Resource.h"

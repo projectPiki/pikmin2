@@ -1,7 +1,8 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JAudio/JAS/JASMutexLock.h"
 #include "Dolphin/os.h"
-#include "Dolphin/stl.h"
+#include "stdarg.h"
+#include "stdio.h"
 #include "types.h"
 
 static OSMutex sMutex;

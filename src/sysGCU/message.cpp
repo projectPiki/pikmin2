@@ -1,4 +1,4 @@
-#include "Dolphin/ctype.h"
+#include "ctype.h"
 #include "P2JME/P2JME.h"
 #include "types.h"
 

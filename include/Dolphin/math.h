@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "fdlibm.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/math_api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -57,51 +58,6 @@ f64 ceil(f64);
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus
-
-inline int __fpclassifyf(f32 x)
-{
-	switch ((*(s32*)&x) & 0x7f800000) {
-	case 0x7f800000: {
-		if ((*(s32*)&x) & 0x007fffff)
-			return 1;
-		else
-			return 2;
-		break;
-	}
-	case 0: {
-		if ((*(s32*)&x) & 0x007fffff)
-			return 5;
-		else
-			return 3;
-		break;
-	}
-	}
-	return 4;
-}
-inline int __fpclassifyd(f64 x)
-{
-	switch (__HI(x) & 0x7ff00000) {
-	case 0x7ff00000: {
-		if ((__HI(x) & 0x000fffff) || (__LO(x) & 0xffffffff))
-			return 1;
-		else
-			return 2;
-		break;
-	}
-	case 0: {
-		if ((__HI(x) & 0x000fffff) || (__LO(x) & 0xffffffff))
-			return 5;
-		else
-			return 3;
-		break;
-	}
-	}
-	return 4;
-}
-
-#define fpclassify(x) ((sizeof(x) == sizeof(f32)) ? __fpclassifyf((f32)(x)) : __fpclassifyd((f64)(x)))
-
-#define isfinite(x) ((fpclassify(x) > 2))
 
 static inline f32 dolsqrtf(f32 x)
 {

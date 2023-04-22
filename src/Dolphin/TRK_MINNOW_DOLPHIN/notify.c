@@ -1,5 +1,15 @@
 #include "types.h"
-#include "Dolphin/trk.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+void TRKWaitForACK(void)
+{
+	// UNUSED FUNCTION
+}
 
 /*
  * --INFO--
@@ -31,14 +41,4 @@ s32 TRKDoNotifyStopped(s32 arg0)
 		TRKReleaseBuffer(spC);
 	}
 	return retval;
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void TRKWaitForACK(void)
-{
-	// UNUSED FUNCTION
 }

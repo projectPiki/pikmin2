@@ -1,4 +1,4 @@
-#include "Dolphin/arith.h"
+#include "stdlib.h"
 #include "Dolphin/rand.h"
 #include "Game/GameConfig.h"
 #include "Game/gamePlayData.h"

@@ -1,4 +1,4 @@
-#include "Dolphin/runtime.h"
+#include "PowerPC_EABI_Support/Runtime/runtime.h"
 #include "ebi/Option.h"
 #include "ebi/E2DCallBack.h"
 #include "Graphics.h"

@@ -1,107 +1,53 @@
 #include "types.h"
-#include "Dolphin/trk.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
 #include "Dolphin/AmcExi2Stubs.h"
 
-static char gRecvBuf[0x800];
 static char gRecvCB[0x20];
+static char gRecvBuf[0x800];
 static BOOL gIsInitialized;
 
-static makeDDHBSSOrderingWork()
-{
-	u8 buff[0x800];
-	memcpy(buff, gRecvBuf, 0x800);
-}
-
 /*
  * --INFO--
- * Address:	800C0C50
- * Size:	000024
+ * Address:	800C0F0C
+ * Size:	000088
  */
-BOOL ddh_cc_initinterrupts()
+BOOL ddh_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
 {
-	EXI2_EnableInterrupts();
+	MWTRACE(1, "CALLING EXI2_Init\n");
+	EXI2_Init(inputPendingPtrRef, monitorCallback);
+	MWTRACE(1, "DONE CALLING EXI2_Init\n");
+	CircleBufferInitialize(&gRecvCB, &gRecvBuf, 0x800);
 	return FALSE;
 }
 
 /*
  * --INFO--
- * Address:	800C0C74
- * Size:	000070
+ * Address:	800C0F04
+ * Size:	000008
  */
-int ddh_cc_peek()
-{
-	int poll;
-	u8 buff[0x800];
-
-	poll = EXI2_Poll();
-	if (poll <= 0) {
-		return 0;
-	}
-
-	if (EXI2_ReadN(buff, poll) == 0) {
-		CircleBufferWriteBytes(gRecvCB, buff, poll);
-	} else {
-		return -0x2719;
-	}
-
-	return poll;
-}
+BOOL ddh_cc_shutdown() { return FALSE; }
 
 /*
  * --INFO--
- * Address:	800C0CE4
+ * Address:	800C0EE0
  * Size:	000024
  */
-BOOL ddh_cc_post_stop()
+int ddh_cc_open()
 {
-	EXI2_Reserve();
+	if (gIsInitialized) {
+		return -0x2715;
+	}
+
+	gIsInitialized = TRUE;
 	return FALSE;
 }
 
 /*
  * --INFO--
- * Address:	800C0D08
- * Size:	000024
+ * Address:	800C0ED8
+ * Size:	000008
  */
-BOOL ddh_cc_pre_continue()
-{
-	EXI2_Unreserve();
-	return FALSE;
-}
-
-/*
- * --INFO--
- * Address:	800C0D2C
- * Size:	0000C0
- */
-int ddh_cc_write(u32 bytes, u32 length)
-{
-	int exi2Len;
-	int n_copy;
-	u32 hexCopy;
-
-	hexCopy = bytes;
-	n_copy  = length;
-
-	if (gIsInitialized == FALSE) {
-		MWTRACE(8, "cc not initialized\n");
-		return -0x2711;
-	}
-
-	MWTRACE(8, "cc_write : Output data 0x%08x %ld bytes\n", bytes, length);
-
-	while (n_copy > 0) {
-		MWTRACE(1, "cc_write sending %ld bytes\n", n_copy);
-		exi2Len = EXI2_WriteN((const void*)hexCopy, n_copy);
-		if (exi2Len == AMC_EXI_NO_ERROR) {
-			break;
-		}
-		hexCopy += exi2Len;
-		n_copy -= exi2Len;
-	}
-
-	return 0;
-}
+BOOL ddh_cc_close() { return FALSE; }
 
 /*
  * --INFO--
@@ -147,43 +93,91 @@ u32 ddh_cc_read(int arg0, u32 arg1)
 
 /*
  * --INFO--
- * Address:	800C0ED8
- * Size:	000008
+ * Address:	800C0D2C
+ * Size:	0000C0
  */
-BOOL ddh_cc_close() { return FALSE; }
+int ddh_cc_write(u32 bytes, u32 length)
+{
+	int exi2Len;
+	int n_copy;
+	u32 hexCopy;
+
+	hexCopy = bytes;
+	n_copy  = length;
+
+	if (gIsInitialized == FALSE) {
+		MWTRACE(8, "cc not initialized\n");
+		return -0x2711;
+	}
+
+	MWTRACE(8, "cc_write : Output data 0x%08x %ld bytes\n", bytes, length);
+
+	while (n_copy > 0) {
+		MWTRACE(1, "cc_write sending %ld bytes\n", n_copy);
+		exi2Len = EXI2_WriteN((const void*)hexCopy, n_copy);
+		if (exi2Len == AMC_EXI_NO_ERROR) {
+			break;
+		}
+		hexCopy += exi2Len;
+		n_copy -= exi2Len;
+	}
+
+	return 0;
+}
 
 /*
  * --INFO--
- * Address:	800C0EE0
+ * Address:	800C0D08
  * Size:	000024
  */
-int ddh_cc_open()
+BOOL ddh_cc_pre_continue()
 {
-	if (gIsInitialized) {
-		return -0x2715;
-	}
-
-	gIsInitialized = TRUE;
+	EXI2_Unreserve();
 	return FALSE;
 }
 
 /*
  * --INFO--
- * Address:	800C0F04
- * Size:	000008
+ * Address:	800C0CE4
+ * Size:	000024
  */
-BOOL ddh_cc_shutdown() { return FALSE; }
+BOOL ddh_cc_post_stop()
+{
+	EXI2_Reserve();
+	return FALSE;
+}
 
 /*
  * --INFO--
- * Address:	800C0F0C
- * Size:	000088
+ * Address:	800C0C74
+ * Size:	000070
  */
-BOOL ddh_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
+int ddh_cc_peek()
 {
-	MWTRACE(1, "CALLING EXI2_Init\n");
-	EXI2_Init(inputPendingPtrRef, monitorCallback);
-	MWTRACE(1, "DONE CALLING EXI2_Init\n");
-	CircleBufferInitialize(&gRecvCB, &gRecvBuf, 0x800);
+	int poll;
+	u8 buff[0x800];
+
+	poll = EXI2_Poll();
+	if (poll <= 0) {
+		return 0;
+	}
+
+	if (EXI2_ReadN(buff, poll) == 0) {
+		CircleBufferWriteBytes(gRecvCB, buff, poll);
+	} else {
+		return -0x2719;
+	}
+
+	return poll;
+}
+
+/*
+ * --INFO--
+ * Address:	800C0C50
+ * Size:	000024
+ */
+BOOL ddh_cc_initinterrupts()
+{
+	EXI2_EnableInterrupts();
 	return FALSE;
 }

@@ -2,13 +2,22 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00004C
+ * Address:	800C1700
+ * Size:	000018
  */
-void __register_atexit(void)
+void __register_global_object(void)
 {
-	// UNUSED FUNCTION
+	/*
+	.loc_0x0:
+	  lwz       r0, -0x7360(r13)
+	  stw       r0, 0x0(r5)
+	  stw       r4, 0x4(r5)
+	  stw       r3, 0x8(r5)
+	  stw       r5, -0x7360(r13)
+	  blr
+	*/
 }
+
 
 /*
  * --INFO--
@@ -46,18 +55,10 @@ void __destroy_global_chain(void)
 
 /*
  * --INFO--
- * Address:	800C1700
- * Size:	000018
+ * Address:	........
+ * Size:	00004C
  */
-void __register_global_object(void)
+void __register_atexit(void)
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, -0x7360(r13)
-	  stw       r0, 0x0(r5)
-	  stw       r4, 0x4(r5)
-	  stw       r3, 0x8(r5)
-	  stw       r5, -0x7360(r13)
-	  blr
-	*/
+	// UNUSED FUNCTION
 }

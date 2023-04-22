@@ -1,8 +1,38 @@
 #include "types.h"
-#include "Dolphin/trk.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
 extern TRKEventQueue gTRKEventQueue;
 extern TRKState gTRKState;
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000028
+ */
+void TRKHandleRequestEvent(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000020
+ */
+void TRKHandleSupportEvent(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00002C
+ */
+void TRKIdle(void)
+{
+	// UNUSED FUNCTION
+}
 
 /*
  * --INFO--
@@ -52,34 +82,4 @@ void TRKNubMainLoop(void)
 			var_r30 = FALSE;
 		}
 	}
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void TRKIdle(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void TRKHandleSupportEvent(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
- */
-void TRKHandleRequestEvent(void)
-{
-	// UNUSED FUNCTION
 }

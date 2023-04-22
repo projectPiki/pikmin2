@@ -3,7 +3,7 @@
 
 #include "Dolphin/gx.h"
 #include "JSystem/JUtility/TColor.h"
-#include "Dolphin/string.h"
+#include "string.h"
 
 struct JKRAramBlock;
 struct JKRHeap;

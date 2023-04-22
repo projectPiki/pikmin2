@@ -1,7 +1,7 @@
 #include "types.h"
+#include "stdio.h"
 
 #include "P2JME/TReference.h"
-#include "Dolphin/stl.h"
 
 namespace P2JME {
 

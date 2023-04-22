@@ -1,6 +1,5 @@
 #include "types.h"
 #include "Dolphin/db.h"
-#include "Dolphin/stl.h"
 
 #ifdef __cplusplus
 extern "C" {

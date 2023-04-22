@@ -1,24 +1,57 @@
-#include "Dolphin/trk.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
 TRKEventQueue gTRKEventQueue;
 
 /*
  * --INFO--
- * Address:	800BB488
- * Size:	000024
+ * Address:	800BB658
+ * Size:	000058
  */
-void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->mBufferIndex); }
+TRKResult TRKInitializeEventQueue()
+{
+	TRKInitializeMutex(&gTRKEventQueue);
+	TRKAcquireMutex(&gTRKEventQueue);
+	gTRKEventQueue.mCurrEvtID           = 0;
+	gTRKEventQueue.mNextSlotToOverwrite = 0;
+	gTRKEventQueue._24                  = 0x100;
+	TRKReleaseMutex(&gTRKEventQueue);
+	return TRKSuccess;
+}
 
 /*
  * --INFO--
- * Address:	800BB4AC
- * Size:	000018
+ * Address:	........
+ * Size:	000024
  */
-void TRKConstructEvent(TRKEvent* event, int eventType)
+void TRKCopyEvent(void)
 {
-	event->mEventType   = eventType;
-	event->_04          = 0;
-	event->mBufferIndex = -1;
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	800BB5A4
+ * Size:	0000B4
+ */
+BOOL TRKGetNextEvent(TRKEvent* ev)
+{
+	BOOL ret = FALSE;
+
+	TRKAcquireMutex(&gTRKEventQueue);
+
+	if (gTRKEventQueue.mCurrEvtID > 0) {
+		TRK_memcpy(ev, &gTRKEventQueue.mEvents[gTRKEventQueue.mNextSlotToOverwrite], sizeof(TRKEvent));
+		gTRKEventQueue.mCurrEvtID--;
+
+		if (++gTRKEventQueue.mNextSlotToOverwrite == 2) {
+			gTRKEventQueue.mNextSlotToOverwrite = 0;
+		}
+
+		ret = TRUE;
+	}
+
+	TRKReleaseMutex(&gTRKEventQueue);
+	return ret;
 }
 
 /*
@@ -53,52 +86,19 @@ TRKResult TRKPostEvent(TRKEvent* ev)
 
 /*
  * --INFO--
- * Address:	800BB5A4
- * Size:	0000B4
+ * Address:	800BB4AC
+ * Size:	000018
  */
-BOOL TRKGetNextEvent(TRKEvent* ev)
+void TRKConstructEvent(TRKEvent* event, int eventType)
 {
-	BOOL ret = FALSE;
-
-	TRKAcquireMutex(&gTRKEventQueue);
-
-	if (gTRKEventQueue.mCurrEvtID > 0) {
-		TRK_memcpy(ev, &gTRKEventQueue.mEvents[gTRKEventQueue.mNextSlotToOverwrite], sizeof(TRKEvent));
-		gTRKEventQueue.mCurrEvtID--;
-
-		if (++gTRKEventQueue.mNextSlotToOverwrite == 2) {
-			gTRKEventQueue.mNextSlotToOverwrite = 0;
-		}
-
-		ret = TRUE;
-	}
-
-	TRKReleaseMutex(&gTRKEventQueue);
-	return ret;
+	event->mEventType   = eventType;
+	event->_04          = 0;
+	event->mBufferIndex = -1;
 }
 
 /*
  * --INFO--
- * Address:	........
+ * Address:	800BB488
  * Size:	000024
  */
-void TRKCopyEvent(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800BB658
- * Size:	000058
- */
-TRKResult TRKInitializeEventQueue()
-{
-	TRKInitializeMutex(&gTRKEventQueue);
-	TRKAcquireMutex(&gTRKEventQueue);
-	gTRKEventQueue.mCurrEvtID           = 0;
-	gTRKEventQueue.mNextSlotToOverwrite = 0;
-	gTRKEventQueue._24                  = 0x100;
-	TRKReleaseMutex(&gTRKEventQueue);
-	return TRKSuccess;
-}
+void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->mBufferIndex); }

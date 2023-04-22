@@ -2,7 +2,7 @@
 #include "types.h"
 
 #include "TagParm.h"
-#include "Dolphin/string.h"
+#include "string.h"
 
 /*
  * --INFO--

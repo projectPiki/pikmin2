@@ -1,6 +1,6 @@
 #include "types.h"
 #include "Dolphin/os.h"
-#include "printf.h"
+#include "stdio.h"
 #include "Dolphin/PPCArch.h"
 #include "Dolphin/hw_regs.h"
 

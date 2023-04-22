@@ -1,7 +1,7 @@
-#include "Dolphin/stl.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "System.h"
 #include "types.h"
+#include "Dolphin/print.h"
 #include "Game/GameConfig.h"
 
 // TODO: How is this string actually (not) used?

@@ -44,8 +44,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "CNode.h"
-#include "Dolphin/string.h"
-#include "Dolphin/stl.h"
+#include "string.h"
 #include "ARAM.h"
 
 ARAM::Mgr* gAramMgr;

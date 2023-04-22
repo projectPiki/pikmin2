@@ -1,6 +1,6 @@
 #include "JSystem/JStage/TSystem.h"
 #include "types.h"
-#include "Dolphin/float.h"
+#include "float.h"
 #include "Dolphin/vec.h"
 #include "JSystem/JStage/TCamera.h"
 #include "JSystem/JStage/TObject.h"
@@ -54,7 +54,7 @@ void TCamera::JSGSetProjectionNear(float) { return; }
  * Address:	80098874
  * Size:	00000C
  */
-f32 TCamera::JSGGetProjectionFar() const { return *__float_max; }
+f32 TCamera::JSGGetProjectionFar() const { return FLT_MAX; }
 
 /*
  * --INFO--

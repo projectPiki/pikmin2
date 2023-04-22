@@ -3,7 +3,7 @@
 #include "Game/Cave/RandMapUnit.h"
 #include "Game/Cave/Node.h"
 #include "Game/Cave/Info.h"
-#include "Dolphin/string.h"
+#include "string.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

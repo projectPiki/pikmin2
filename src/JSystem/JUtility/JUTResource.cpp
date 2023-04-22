@@ -1,7 +1,7 @@
 #include "JSystem/JUtility/JUTResource.h"
 #include "JSystem/JSupport/JSUStream.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "Dolphin/stl.h"
+#include "mem.h"
 
 /*
  * --INFO--

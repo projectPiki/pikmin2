@@ -1,5 +1,4 @@
 #include "Dolphin/os.h"
-#include "Dolphin/stl.h"
 
 /*
  * --INFO--

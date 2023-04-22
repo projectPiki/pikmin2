@@ -1,6 +1,5 @@
 #include "Game/PikiContainer.h"
 #include "Dolphin/os.h"
-#include "Dolphin/stl.h"
 #include "Game/Piki.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "types.h"

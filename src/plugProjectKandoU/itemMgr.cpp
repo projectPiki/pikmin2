@@ -1,6 +1,5 @@
 #include "CollInfo.h"
 #include "Dolphin/mtx.h"
-#include "Dolphin/stl.h"
 #include "Game/BaseItem.h"
 #include "Game/Creature.h"
 #include "Game/Interaction.h"

@@ -1,11 +1,11 @@
 #include "Dolphin/os.h"
-#include "Dolphin/stl.h"
 #include "JSystem/J3D/J3DDrawMtxData.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/J3D/J3DVertexBuffer.h"
 #include "JSystem/J3D/J3DVertexData.h"
 #include "JSystem/J3D/J3DSys.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "mem.h"
 #include "types.h"
 
 /*

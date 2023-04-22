@@ -1,11 +1,11 @@
-#include "Dolphin/trk.h"
+#include "PowerPC_EABI_Support/MetroTRK/trk.h"
 
 /*
  * --INFO--
- * Address:	800BDD08
+ * Address:	800BDD18
  * Size:	000008
  */
-TRKResult TRKReleaseMutex(void* p1) { return TRKSuccess; }
+TRKResult TRKInitializeMutex(void* p1) { return TRKSuccess; }
 
 /*
  * --INFO--
@@ -16,7 +16,7 @@ TRKResult TRKAcquireMutex(void* p1) { return TRKSuccess; }
 
 /*
  * --INFO--
- * Address:	800BDD18
+ * Address:	800BDD08
  * Size:	000008
  */
-TRKResult TRKInitializeMutex(void* p1) { return TRKSuccess; }
+TRKResult TRKReleaseMutex(void* p1) { return TRKSuccess; }

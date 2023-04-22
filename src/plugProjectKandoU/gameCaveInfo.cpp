@@ -1,4 +1,4 @@
-#include "Dolphin/string.h"
+#include "string.h"
 #include "Game/Cave/Info.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/pelletMgr.h"

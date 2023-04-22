@@ -4,7 +4,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include "JSystem/JGadget/linklist.h"
-#include "Dolphin/stl.h"
+#include "stdarg.h"
 #include "types.h"
 
 inline s32 colorCheck(s32 diff, s32 t)
