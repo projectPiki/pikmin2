@@ -429,7 +429,7 @@ void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, long p3, long
 	mFrameCtrl._06 = p3;
 	mFrameCtrl._10 = p3;
 	mFrameCtrl._0A = p3;
-	mFrameCtrl._08 = ((mAnim->mMaxFrame < p4) ? mAnim->mMaxFrame : p4);
+	mFrameCtrl._08 = ((mAnim->mFrameLength < p4) ? mAnim->mFrameLength : p4);
 
 	/*
 	stwu     r1, -0x20(r1)

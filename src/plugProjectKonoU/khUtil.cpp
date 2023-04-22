@@ -204,16 +204,16 @@ void khUtilFadePane::set_init_alpha(u8 a)
  */
 khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int panes, int frames)
 {
-	mPaneNum  = panes;
-	mMaxFrame = frames;
-	mCounter  = 0;
-	mColor1.set(0, 0, 0, 0);
+	mPaneNum = panes;
+	mLength  = frames;
+	mFrame   = 0;
+	mColor.set(0, 0, 0, 0);
 	mColorList = new JUtility::TColor[mPaneNum];
 	for (int i = 0; i < mPaneNum; i++) {
 		mColorList[i].set(0, 0, 0, 0);
 	}
-	mColor2.setRGBA(mColor1);
-	mUpdateMode = 0;
+	mDisabledColor.setRGBA(mColor);
+	mUpdateMode = false;
 	if (screen) {
 		screen->addCallBack(tag, this);
 	}
@@ -223,29 +223,45 @@ khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int panes, int f
  * --INFO--
  * Address:	8040BFC8
  * Size:	00021C
+ *
+ * This function updates the color animation based on the current frame and update mode.
+ * If update mode is true, calculate new color by interpolating between two colors
+ * based on the current frame. If the update mode is false, it sets the color to mColor2 and
+ * resets the frame counter.
  */
 void khUtilColorAnm::update()
 {
 	if (mUpdateMode) {
-		f32 calc2, calc;
-		calc                  = (mCounter * (mPaneNum - 1)) / (f32)mMaxFrame;
-		JUtility::TColor col1 = getColor((int)calc);
-		JUtility::TColor col2 = getColor(((int)calc) + 1);
-		calc -= (int)calc;
-		calc2 = 1.0f - calc;
+		f32 inverseT;
 
-		mColor1.r = (f32)col1.r * calc2 + (f32)col2.r * calc;
-		mColor1.g = (f32)col1.g * calc2 + (f32)col2.g * calc;
-		mColor1.b = (f32)col1.b * calc2 + (f32)col2.b * calc;
-		mColor1.a = (f32)col1.a * calc2 + (f32)col2.a * calc;
+		// Calculate the animation position between start and end
+		f32 t = (mFrame * (mPaneNum - 1)) / (f32)mLength;
 
-		if (++mCounter >= mMaxFrame) {
-			mCounter = 0;
+		// Get the two colors to interpolate between
+		JUtility::TColor src  = getColor((int)t);
+		JUtility::TColor dest = getColor(((int)t) + 1);
+
+		// t is the current position between the two colors based on the frame
+		// inverseT is used to determine how much each color should be weighted in the animation
+		t -= (int)t;
+		inverseT = 1.0f - t;
+
+		mColor.r = (f32)src.r * inverseT + (f32)dest.r * t;
+		mColor.g = (f32)src.g * inverseT + (f32)dest.g * t;
+		mColor.b = (f32)src.b * inverseT + (f32)dest.b * t;
+		mColor.a = (f32)src.a * inverseT + (f32)dest.a * t;
+
+		// Increment current frame, reset if exceeding the animation length
+		if (++mFrame >= mLength) {
+			mFrame = 0;
 		}
 	} else {
-		mColor1.setRGBA(mColor2);
-		mCounter = 0;
+		// Not updating, so reset color and reset the frame counter
+		mColor.setRGBA(mDisabledColor);
+		mFrame = 0;
 	}
+
+	// Call the do_update() function to finalize the animation update
 	do_update();
 }
 

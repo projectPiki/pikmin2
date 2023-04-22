@@ -20,28 +20,36 @@ namespace Screen {
  */
 void ObjFinalFloor::doCreate(JKRArchive* arc)
 {
+	// Check if the display member is valid.
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_FINAL_FLOOR)) {
 		JUT_PANICLINE(57, "disp member err");
 	}
 
+	// Set up the viewport count and vertical offset for each player's viewport.
 	if (static_cast<DispFinalFloor*>(getDispMember())->mIs2Player) {
-		mScreenNum  = 2;
-		mYOffset[0] = msVal.mYOffsetP1;
-		mYOffset[1] = msVal.mYOffsetP2;
+		mViewportCount = 2;
+		mYOffset[0]    = msVal.mYOffsetP1;
+		mYOffset[1]    = msVal.mYOffsetP2;
 	}
 
-	for (int i = 0; i < mScreenNum; i++) {
+	// Load resources for each viewport.
+	for (int i = 0; i < mViewportCount; i++) {
+		// Load the screen manager and set the tuning file.
 		mScreen[i] = new P2DScreen::Mgr_tuning;
 		mScreen[i]->set("final_floor.blo", 0x40000, arc);
+
+		// Load the animation files.
 		void* file = JKRFileLoader::getGlbResource("final_floor.bck", arc);
 		mAnim1[i]  = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+		file       = JKRFileLoader::getGlbResource("final_floor.bpk", arc);
+		mAnim2[i]  = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
 
-		file      = JKRFileLoader::getGlbResource("final_floor.bpk", arc);
-		mAnim2[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
-
+		// Set the animations for the screen manager.
 		mScreen[i]->setAnimation(mAnim1[i]);
 		mScreen[i]->setAnimation(mAnim2[i]);
 	}
+
+	// Start playing the background music.
 	startBGM();
 }
 
@@ -61,7 +69,7 @@ void ObjFinalFloor::doDraw(Graphics& gfx)
 {
 	gfx.mOrthoGraph.setPort();
 
-	for (int i = 0; i < mScreenNum; i++) {
+	for (int i = 0; i < mViewportCount; i++) {
 		mScreen[i]->search('ROOT')->setOffset(0.0f, mYOffset[i]);
 		mScreen[i]->draw(gfx, gfx.mOrthoGraph);
 	}
@@ -86,7 +94,6 @@ bool ObjFinalFloor::doUpdateFadein()
 bool ObjFinalFloor::doUpdateFadeout()
 {
 	bool isCh = Game::gameSystem && Game::gameSystem->isChallengeMode();
-
 	if (!getDispMember()->isID(OWNER_KH, MEMBER_FINAL_FLOOR)) {
 		JUT_PANICLINE(151, "disp member err");
 	}
@@ -134,30 +141,39 @@ void ObjFinalFloor::doUpdateFadeoutFinish() { Game::gameSystem->mSection->startM
 bool ObjFinalFloor::updateAnimation()
 {
 	bool ret = false;
-	for (int i = 0; i < mScreenNum; i++) {
+
+	// Update the animation for each viewport
+	for (int i = 0; i < mViewportCount; i++) {
+		// Set the current frame for each animation and update the screen manager
 		mAnim1[i]->mCurrentFrame = mAnimTime1[i];
 		mAnim2[i]->mCurrentFrame = mAnimTime2[i];
 		mScreen[i]->animation();
 
+		// Check if the game is in demo mode
 		if (::Screen::gGame2DMgr && ::Screen::gGame2DMgr->mScreenMgr->mInDemo) {
 			mScreen[i]->hide();
-			if (mAnimTime1[i] > (mAnim1[i]->mMaxFrame * 3) >> 2) {
-				mAnimTime1[i] = mAnim1[i]->mMaxFrame;
-				mAnimTime2[i] = mAnim2[i]->mMaxFrame;
+
+			// Reset animation if current frame is >75% of the length.
+			if (mAnimTime1[i] > (mAnim1[i]->mFrameLength * 3) >> 2) {
+				mAnimTime1[i] = mAnim1[i]->mFrameLength;
+				mAnimTime2[i] = mAnim2[i]->mFrameLength;
 			} else {
 				mAnimTime2[i] = 0.0f;
 				mAnimTime1[i] = 0.0f;
 			}
 		} else {
+			// Show the screen manager
 			mScreen[i]->show();
 		}
+
+		// Update the animation times and check if the animation has finished
 		mAnimTime1[i] += msVal.mAnimSpeed;
 		mAnimTime2[i] += msVal.mAnimSpeed;
-
-		if (mAnimTime1[i] >= mAnim1[i]->mMaxFrame || mAnimTime2[i] >= mAnim2[i]->mMaxFrame) {
+		if (mAnimTime1[i] >= mAnim1[i]->mFrameLength || mAnimTime2[i] >= mAnim2[i]->mFrameLength) {
 			ret = true;
 		}
 	}
+
 	return ret;
 }
 
@@ -181,7 +197,7 @@ void ObjFinalFloor::stopSound()
  */
 void ObjFinalFloor::restartSound()
 {
-	if (mAnimTime1[0] <= (mAnim1[0]->mMaxFrame * 3) >> 2) {
+	if (mAnimTime1[0] <= (mAnim1[0]->mFrameLength * 3) >> 2) {
 		PSSystem::spSysIF->playSystemSe(PSSE_FINALLEVEL_COME, &mSound, 0);
 		startBGM();
 	}

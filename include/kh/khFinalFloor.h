@@ -43,8 +43,8 @@ struct ObjFinalFloor : public ::Screen::ObjBase {
 		mAnimTime1[1] = 0.0f;
 		mYOffset[1]   = 0.0f;
 
-		mScreenNum = 1;
-		mSound     = nullptr;
+		mViewportCount = 1;
+		mSound         = nullptr;
 	}
 
 	virtual ~ObjFinalFloor() { }          // _08 (weak)
@@ -78,7 +78,7 @@ struct ObjFinalFloor : public ::Screen::ObjBase {
 	f32 mAnimTime1[2];                 // _50
 	f32 mAnimTime2[2];                 // _58
 	f32 mYOffset[2];                   // _60
-	int mScreenNum;                    // _68
+	int mViewportCount;                // _68
 	JAISound* mSound;                  // _6C
 
 	static struct StaticValues {

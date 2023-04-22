@@ -772,9 +772,9 @@ void khUtilFadePaneWM::fadeout_finish()
  */
 void khUtilColorAnmWM::do_update()
 {
-	JUtility::TColor col = mColor1;
+	JUtility::TColor col = mColor;
 	static_cast<J2DPictureEx*>(mPane)->setWhite(col);
-	if (mUpdateMode && !mCounter) {
+	if (mUpdateMode && !mFrame) {
 		mCounter1->startPuyoUp(1.0f);
 		mCounter2->startPuyoUp(2.0f);
 	}
@@ -1199,7 +1199,7 @@ void WorldMap::loadResource()
 	mColorAnim2->mColorList[0].set(255, 96, 80, 0);
 	mColorAnim2->mColorList[1].set(255, 160, 32, 255);
 	mColorAnim2->mColorList[2].set(255, 96, 80, 0);
-	mColorAnim2->mUpdateMode = 1;
+	mColorAnim2->mUpdateMode = true;
 	mScaleMgr                = new og::Screen::ScaleMgr;
 	mArrowBlink              = new og::Screen::ArrowAlphaBlink;
 	setInfAlpha(mScreenInfo->search('Nlbtn'));
@@ -1259,7 +1259,7 @@ void WorldMap::loadResource()
 		mColorAnims[i]->mColorList[0].set(255, 96, 80, 0);
 		mColorAnims[i]->mColorList[1].set(255, 160, 32, 255);
 		mColorAnims[i]->mColorList[2].set(255, 96, 80, 0);
-		mColorAnims[i]->mColor2.set(0, 173, 182, 255);
+		mColorAnims[i]->mDisabledColor.set(0, 173, 182, 255);
 
 		J2DPane* paneList[4] = { mScreenInfo->search(paneTags[i]), mScreenInfo->search(paneTags[i + 1]),
 			                     mScreenInfo->search(paneTags[i + 2]), mScreenInfo->search(paneTags[i + 3]) };
@@ -2909,47 +2909,47 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 	}
 
 	mAnimTimers[2] += 1.0f;
-	if (mAnimTimers[2] >= mKitaAnim3->mMaxFrame) {
+	if (mAnimTimers[2] >= mKitaAnim3->mFrameLength) {
 		mAnimTimers[2] = 0.0f;
 	}
 
 	mAnimTimers[3] += 1.0f;
-	if (mAnimTimers[3] >= mKitaAnim4->mMaxFrame) {
+	if (mAnimTimers[3] >= mKitaAnim4->mFrameLength) {
 		mAnimTimers[3] = 0.0f;
 	}
 
 	mAnimTimers[4] += 1.0f;
-	if (mAnimTimers[4] >= mKitaAnim5->mMaxFrame) {
+	if (mAnimTimers[4] >= mKitaAnim5->mFrameLength) {
 		mAnimTimers[4] = 0.0f;
 	}
 
 	mAnimTimers[5] += 1.0f;
-	if (mAnimTimers[5] >= mRocketAnim1->mMaxFrame) {
+	if (mAnimTimers[5] >= mRocketAnim1->mFrameLength) {
 		mAnimTimers[5] = 0.0f;
 	}
 
 	mAnimTimers[6] += 1.0f;
-	if (mAnimTimers[6] >= mRocketAnim2->mMaxFrame) {
+	if (mAnimTimers[6] >= mRocketAnim2->mFrameLength) {
 		mAnimTimers[6] = 0.0f;
 	}
 
 	mAnimTimers[7] += 0.5f;
-	if (mAnimTimers[7] >= mInfoAnim1->mMaxFrame) {
+	if (mAnimTimers[7] >= mInfoAnim1->mFrameLength) {
 		mAnimTimers[7] = 0.0f;
 	}
 
 	mAnimTimers[8] += 0.5f;
-	if (mAnimTimers[8] >= mInfoAnim2->mMaxFrame) {
+	if (mAnimTimers[8] >= mInfoAnim2->mFrameLength) {
 		mAnimTimers[8] = 0.0f;
 	}
 
 	mAnimTimers[9] += 0.5f;
-	if (mAnimTimers[9] >= mInfoAnim3->mMaxFrame) {
+	if (mAnimTimers[9] >= mInfoAnim3->mFrameLength) {
 		mAnimTimers[9] = 0.0f;
 	}
 
 	mAnimTimers[1] += 1.0f;
-	if (mAnimTimers[1] >= mKitaAnim2->mMaxFrame) {
+	if (mAnimTimers[1] >= mKitaAnim2->mFrameLength) {
 		mAnimTimers[1] = 0.0f;
 	}
 
@@ -3280,8 +3280,8 @@ void WorldMap::update(::Game::WorldMap::UpdateArg& arg)
 			}
 			if (mInitArg.mHasNewPiklopediaEntries || mInitArg.mHasNewTreasureHoardEntries) {
 				khUtilColorAnm* anm = mColorAnim2;
-				anm->mColor1        = anm->mColorList[0];
-				anm->mCounter       = 0;
+				anm->mColor         = anm->mColorList[0];
+				anm->mFrame         = 0;
 				if (!mInitArg.mDoNewEntriesEfx) {
 					mScaleMgr->up();
 					PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_ZUKAN_NEW, 0);
@@ -6705,7 +6705,7 @@ void WorldMap::changeInfo()
 	mGroundTreasureMax   = Game::playData->getGroundOtakaraMax(mCurrentCourseIndex);
 
 	khUtilColorAnmWM* anm = mColorAnims[0];
-	anm->mUpdateMode      = 0;
+	anm->mUpdateMode      = false;
 	for (int i = 0; i < 4; i++) {
 		anm->mEfx[i]->fade();
 	}
@@ -6714,9 +6714,9 @@ void WorldMap::changeInfo()
 	int max = mGroundTreasureMax;
 	if (mGroundTreasureCount == max) {
 		anm              = mColorAnims[0];
-		anm->mColor1     = anm->mColorList[0];
-		anm->mCounter    = 0;
-		anm->mUpdateMode = 1;
+		anm->mColor      = anm->mColorList[0];
+		anm->mFrame      = 0;
+		anm->mUpdateMode = true;
 		for (int i = 0; i < 4; i++) {
 			if (i & 1 == i || max > 9) {
 				efx2d::Arg arg(getPaneCenterX(&anm->mPane[i]), getPaneCenterY(&anm->mPane[i]));
@@ -6726,7 +6726,7 @@ void WorldMap::changeInfo()
 		mScreenInfo->search('Ngr_fl0')->show();
 	} else {
 		anm              = mColorAnims[0];
-		anm->mUpdateMode = 0;
+		anm->mUpdateMode = false;
 		for (int i = 0; i < 4; i++) {
 			anm->mEfx[i]->fade();
 		}
@@ -6752,7 +6752,7 @@ void WorldMap::changeInfo()
 
 	for (int i = 0; i < 4; i++) {
 		khUtilColorAnmWM* anm = mColorAnims[i];
-		anm->mUpdateMode      = 0;
+		anm->mUpdateMode      = false;
 		for (int j = 0; j < 4; j++) {
 			anm->mEfx[j]->fade();
 		}
@@ -6802,9 +6802,9 @@ void WorldMap::changeInfo()
 				if (mCaveOtaNum[i] == mCaveOtaMax[i]) {
 					mCaveTreasureCounters2[i]->setBlind(false);
 					khUtilColorAnmWM* anm = mColorAnims[0];
-					anm->mColor1          = anm->mColorList[0];
-					anm->mCounter         = 0;
-					anm->mUpdateMode      = 1;
+					anm->mColor           = anm->mColorList[0];
+					anm->mFrame           = 0;
+					anm->mUpdateMode      = true;
 					for (int i = 0; i < 4; i++) {
 						efx2d::Arg arg(getPaneCenterX(anm->mPane), getPaneCenterY(anm->mPane));
 						anm->mEfx[i]->create(&arg);

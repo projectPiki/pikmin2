@@ -38,20 +38,20 @@ struct J2DAnmBase {
 	J2DAnmBase()
 	{
 		mCurrentFrame = 0.0f;
-		mMaxFrame     = 0;
+		mFrameLength  = 0;
 	}
 
 	virtual ~J2DAnmBase() { }                        // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (weak)
 
-	inline s16 getFrameMax() const { return mMaxFrame; }
+	inline s16 getFrameMax() const { return mFrameLength; }
 	inline void setFrame(f32 frame) { mCurrentFrame = frame; }
 	inline f32 getFrame() const { return mCurrentFrame; }
 	inline J2DAnmKind getKind() const { return mKind; }
 
 	// VTBL _00
 	u8 _04[2];         // _04, unknown
-	s16 mMaxFrame;     // _06
+	s16 mFrameLength;  // _06
 	f32 mCurrentFrame; // _08
 	J2DAnmKind mKind;  // _0C
 };

@@ -98,13 +98,13 @@ struct khUtilColorAnm : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::Node
-	JUtility::TColor* mColorList; // _1C
-	JUtility::TColor mColor1;     // _20
-	JUtility::TColor mColor2;     // _24
-	int mPaneNum;                 // _28
-	int mMaxFrame;                // _2C
-	int mCounter;                 // _30
-	u8 mUpdateMode;               // _34
+	JUtility::TColor* mColorList;    // _1C
+	JUtility::TColor mColor;         // _20
+	JUtility::TColor mDisabledColor; // _24
+	int mPaneNum;                    // _28
+	int mLength;                     // _2C
+	int mFrame;                      // _30
+	bool mUpdateMode;                // _34
 };
 
 struct khUtilColorAnmWM : public khUtilColorAnm {

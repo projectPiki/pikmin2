@@ -302,11 +302,11 @@ void ObjDayEndResultBase::updateCommon()
 	mTitleAnimTimer1 += 1.0f;
 	mTitleAnimTimer2 += 1.0f;
 
-	if (mTitleAnimTimer1 >= mTitleAnmTransform->mMaxFrame) {
+	if (mTitleAnimTimer1 >= mTitleAnmTransform->mFrameLength) {
 		mTitleAnimTimer1 = 0.0f;
 	}
 
-	if (mTitleAnimTimer2 >= mTitleAnmColor->mMaxFrame) {
+	if (mTitleAnimTimer2 >= mTitleAnmColor->mFrameLength) {
 		mTitleAnimTimer2 = 0.0f;
 	}
 
@@ -317,11 +317,11 @@ void ObjDayEndResultBase::updateCommon()
 	mMainAnimTimer3 += 1.0f;
 	mMainAnimTimer4 += 1.0f;
 
-	if (mMainAnimTimer3 >= mMainAnimSRT->mMaxFrame) {
+	if (mMainAnimTimer3 >= mMainAnimSRT->mFrameLength) {
 		mMainAnimTimer3 = 0.0f;
 	}
 
-	if (mMainAnimTimer4 >= mMainAnimTev->mMaxFrame) {
+	if (mMainAnimTimer4 >= mMainAnimTev->mFrameLength) {
 		mMainAnimTimer4 = 0.0f;
 	}
 
@@ -330,7 +330,7 @@ void ObjDayEndResultBase::updateCommon()
 
 	mMainAnimTimer2 += 1.0f;
 
-	if (mMainAnimTimer2 >= mMainAnimTrans2->mMaxFrame) {
+	if (mMainAnimTimer2 >= mMainAnimTrans2->mFrameLength) {
 		mMainAnimTimer2 = 0.0f;
 	}
 
@@ -339,7 +339,7 @@ void ObjDayEndResultBase::updateCommon()
 
 	mStarsAnimTimer1 += 1.0f;
 
-	if (mStarsAnimTimer1 >= mStarsAnimColor->mMaxFrame) {
+	if (mStarsAnimTimer1 >= mStarsAnimColor->mFrameLength) {
 		mStarsAnimTimer1 = 0.0f;
 	}
 
@@ -1431,7 +1431,7 @@ void ObjDayEndResultItem::updateCommon()
 	mScreenMain->search('N_3d')->animationTransform();
 
 	mMainAnimTimer5++;
-	if (mMainAnimTimer5 >= mMainAnimTrans3->mMaxFrame) {
+	if (mMainAnimTimer5 >= mMainAnimTrans3->mFrameLength) {
 		mMainAnimTimer5 = 0.0f;
 	}
 }
@@ -4177,12 +4177,12 @@ void ObjDayEndResultTitl::updateCommon()
 	mScreenMain->animation();
 
 	mAnimTimer1 += 1.0f;
-	if (mAnimTimer1 >= mMainAnimTrans->mMaxFrame) {
+	if (mAnimTimer1 >= mMainAnimTrans->mFrameLength) {
 		mAnimTimer1 = 0.0f;
 	}
 
 	mAnimTimer2 += 1.0f;
-	if (mAnimTimer2 >= mMainAnimSRT->mMaxFrame) {
+	if (mAnimTimer2 >= mMainAnimSRT->mFrameLength) {
 		mAnimTimer2 = 0.0f;
 	}
 }

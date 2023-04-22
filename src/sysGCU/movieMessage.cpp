@@ -449,20 +449,20 @@ void PodIconScreen::update()
 {
 	if (mState != -1) {
 		mAnmTexPatternTimer += 1.0f;
-		if (mAnmTexPatternTimer >= mAnmTexPattern->mMaxFrame) {
-			mAnmTexPatternTimer -= mAnmTexPattern->mMaxFrame;
+		if (mAnmTexPatternTimer >= mAnmTexPattern->mFrameLength) {
+			mAnmTexPatternTimer -= mAnmTexPattern->mFrameLength;
 		}
 		mAnmTexPattern->mCurrentFrame = mAnmTexPatternTimer;
 
 		mAnmTransTimer += 1.0f;
-		if (mAnmTransTimer >= mAnmTrans->mMaxFrame) {
-			mAnmTransTimer -= mAnmTrans->mMaxFrame;
+		if (mAnmTransTimer >= mAnmTrans->mFrameLength) {
+			mAnmTransTimer -= mAnmTrans->mFrameLength;
 		}
 		mAnmTrans->mCurrentFrame = mAnmTransTimer;
 
 		mAnmColorTimer += 1.0f;
-		if (mAnmColorTimer >= mAnmColor->mMaxFrame) {
-			mAnmColorTimer -= mAnmColor->mMaxFrame;
+		if (mAnmColorTimer >= mAnmColor->mFrameLength) {
+			mAnmColorTimer -= mAnmColor->mFrameLength;
 		}
 		mAnmColor->mCurrentFrame = mAnmColorTimer;
 

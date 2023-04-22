@@ -1534,7 +1534,7 @@ void ObjFinalResult::updateCommon()
 
 	mAnmTrans5->mCurrentFrame = mAnimTimers[2];
 	mAnimTimers[2] += 1.0f;
-	if (mAnimTimers[2] >= mAnmTrans5->mMaxFrame) {
+	if (mAnimTimers[2] >= mAnmTrans5->mFrameLength) {
 		mAnimTimers[2] = 0.0f;
 	}
 
@@ -1557,17 +1557,17 @@ void ObjFinalResult::updateCommon()
 	mAnmSRT->mCurrentFrame    = mAnimTimers[6];
 	mAnmTev->mCurrentFrame    = mAnimTimers[7];
 	mAnimTimers[5] += 1.0f;
-	if (mAnimTimers[5] >= mAnmCol3->mMaxFrame) {
+	if (mAnimTimers[5] >= mAnmCol3->mFrameLength) {
 		mAnimTimers[5] = 0.0f;
 	}
 
 	mAnimTimers[6] += 1.0f;
-	if (mAnimTimers[6] >= mAnmSRT->mMaxFrame) {
+	if (mAnimTimers[6] >= mAnmSRT->mFrameLength) {
 		mAnimTimers[6] = 0.0f;
 	}
 
 	mAnimTimers[7] += 1.0f;
-	if (mAnimTimers[7] >= mAnmTev->mMaxFrame) {
+	if (mAnimTimers[7] >= mAnmTev->mFrameLength) {
 		mAnimTimers[7] = 0.0f;
 	}
 

@@ -159,41 +159,57 @@ void ObjWinLose::doDraw(Graphics& gfx)
  */
 bool ObjWinLose::updateAnimation()
 {
+	// Loop through each screen
 	for (int i = 0; i < mScreenNum; i++) {
 		if (mScreenA[i]) {
 			mAnim1[i]->mCurrentFrame = mAnimTime1[i];
 			mAnim3[i]->mCurrentFrame = mAnimTime3[i];
+
 			mScreenA[i]->animation();
+
 			mAnimTime1[i] += msVal.mAnimSpeed;
 			mAnimTime3[i] += msVal.mAnimSpeed;
 
+			// Check if the animation has finished
 			if (mAnimTime1[i] >= msVal.mDuration) {
 				mDoUpdateAnim = true;
 			}
 
-			if (mAnimTime1[i] >= mAnim1[i]->mMaxFrame || mAnimTime3[i] >= mAnim3[i]->mMaxFrame) {
+			// Check if the animation has finished for both the first and third animations
+			if (mAnimTime1[i] >= mAnim1[i]->mFrameLength || mAnimTime3[i] >= mAnim3[i]->mFrameLength) {
 				mAnimTime3[i] = 0.0f;
 				mAnimTime1[i] = 0.0f;
+
 				mScreenA[i]->hide();
 			}
+
+			// Set the offset of the screen
 			mScreenA[i]->search('ROOT')->add(0.0f, mYOffset[i]);
 		}
 
+		// Check if it's time to update the second and fourth animations
 		if (mDoUpdateAnim) {
 			mAnim2[i]->mCurrentFrame = mAnimTime2[i];
 			mAnim4[i]->mCurrentFrame = mAnimTime4[i];
+
 			mScreenB[i]->animation();
+
 			mAnimTime2[i] += 1.0f;
 			mAnimTime4[i] += 1.0f;
 
-			if (mAnimTime2[i] >= mAnim2[i]->mMaxFrame) {
+			// Check if the animation has finished for both the second and fourth animations
+			if (mAnimTime2[i] >= mAnim2[i]->mFrameLength) {
 				mAnimTime2[i] = 0.0f;
 			}
-			if (mAnimTime4[i] >= mAnim4[i]->mMaxFrame) {
+			if (mAnimTime4[i] >= mAnim4[i]->mFrameLength) {
 				mAnimTime4[i] = 0.0f;
 			}
+
+			// Set the offset and alpha of the screen
 			mScreenB[i]->search('ROOT')->setOffset(0.0f, mYOffset[i]);
 			mScreenB[i]->search('ROOT')->setAlpha(mAlpha);
+
+			// Increment alpha until it reaches 255 or more
 			if (mAlpha < 255 - msVal.mAlphaInc) {
 				mAlpha += msVal.mAlphaInc;
 			} else {
@@ -207,8 +223,11 @@ bool ObjWinLose::updateAnimation()
 	}
 
 	DispWinLose* disp = static_cast<DispWinLose*>(getDispMember());
-	int old           = mFrameTimer + 1;
-	mFrameTimer       = old;
+
+	int old     = mFrameTimer + 1;
+	mFrameTimer = old;
+
+	// Check if it's time to stop playing BGM and SEs
 	if (old > msVal.mEndBGMFrame) {
 		disp->_0C = 3;
 		PSStop2DStream();
@@ -216,6 +235,7 @@ bool ObjWinLose::updateAnimation()
 	} else if (mFrameTimer > msVal.mFinishFrame) {
 		disp->_0C = 2;
 	}
+
 	return false;
 }
 

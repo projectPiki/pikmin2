@@ -1696,22 +1696,22 @@ void ObjCaveResult::updateAnimation()
 
 	if (!isFlag(CAVERESFLAG_SaveOpen)) {
 		mAnimTimers[0] += 1.0f;
-		if (mAnimTimers[0] >= mMainAnim->mMaxFrame) {
+		if (mAnimTimers[0] >= mMainAnim->mFrameLength) {
 			mAnimTimers[0] = 0.0f;
 		}
 
 		mAnimTimers[2] += 1.0f;
-		if (mAnimTimers[2] >= mMainAnimColor->mMaxFrame) {
+		if (mAnimTimers[2] >= mMainAnimColor->mFrameLength) {
 			mAnimTimers[2] = 0.0f;
 		}
 
 		mAnimTimers[4] += 1.0f;
-		if (mAnimTimers[4] >= mAnimTexSRT->mMaxFrame) {
+		if (mAnimTimers[4] >= mAnimTexSRT->mFrameLength) {
 			mAnimTimers[4] = 0.0f;
 		}
 
 		mAnimTimers[5] += 1.0f;
-		if (mAnimTimers[5] >= mAnimTevReg->mMaxFrame) {
+		if (mAnimTimers[5] >= mAnimTevReg->mFrameLength) {
 			mAnimTimers[5] = 0.0f;
 		}
 	}
@@ -1736,7 +1736,7 @@ void ObjCaveResult::updateAnimation()
 		}
 		mAnimTimers[1] += msVal._00;
 		mAnimTimers[3] += msVal._00;
-		if (mCompleteAnim->mMaxFrame - 1.0f >= mAnimTimers[1] || mCompleteAnimColor->mMaxFrame - 1.0f >= mAnimTimers[3]) {
+		if (mCompleteAnim->mFrameLength - 1.0f >= mAnimTimers[1] || mCompleteAnimColor->mFrameLength - 1.0f >= mAnimTimers[3]) {
 			resetFlag(CAVERESFLAG_DrawComp);
 		}
 	}

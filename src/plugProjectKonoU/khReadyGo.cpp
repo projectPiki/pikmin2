@@ -136,6 +136,9 @@ bool ObjReadyGo::doUpdateFadeout()
  * --INFO--
  * Address:	80401768
  * Size:	000384
+ *
+ * Updates the ready-go screen animation by changing its frame, advancing its time by msVal.mAnimSpeed, and creating an effect if necessary.
+ * Once the animation is complete, the display status is set to 1 and the main background music is started.
  */
 bool ObjReadyGo::updateAnimation()
 {
@@ -148,6 +151,7 @@ bool ObjReadyGo::updateAnimation()
 	f32 goalTime1     = 60.0f;
 	f32 goalTime2     = 78.0f;
 
+	// Update animations for each screen
 	for (int i = 0; i < mScreenNum; i++) {
 		mAnim1[i]->mCurrentFrame = mAnimTime1[i];
 		mAnim2[i]->mCurrentFrame = mAnimTime2[i];
@@ -155,10 +159,12 @@ bool ObjReadyGo::updateAnimation()
 		mAnimTime1[i] += msVal.mAnimSpeed;
 		mAnimTime2[i] += msVal.mAnimSpeed;
 
-		if (mAnimTime1[i] >= mAnim1[i]->mMaxFrame - 2 || mAnimTime2[i] >= mAnim2[i]->mMaxFrame - 2) {
+		// Check if the animation is complete
+		if (mAnimTime1[i] >= mAnim1[i]->mFrameLength - 2 || mAnimTime2[i] >= mAnim2[i]->mFrameLength - 2) {
 			done = true;
 		}
 
+		// Create an effect if necessary
 		if (mAnimTime1[i] > goalTime1 && !mMakeEfx[i]) {
 			mMakeEfx[i] = true;
 
@@ -175,12 +181,14 @@ bool ObjReadyGo::updateAnimation()
 			}
 		}
 
+		// Set the status of the display member to 1 and start the main BGM if necessary
 		if (mAnimTime1[i] >= goalTime2) {
 			mIsAnimComplete = true;
 			disp->mStatus   = 1;
 		}
 	}
 
+	// Start the main BGM if necessary
 	if (mIsAnimComplete && !mIsOver && !disp->mIsFinalFloor) {
 		Game::gameSystem->mSection->startMainBgm();
 		mIsOver = true;

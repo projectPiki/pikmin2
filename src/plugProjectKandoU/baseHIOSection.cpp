@@ -58,20 +58,29 @@ BaseHIOSection::~BaseHIOSection()
  */
 void BaseHIOSection::setDisplay(JFWDisplay* display, int secondsPer60Frames)
 {
-	bool check = false;
-	if (!mDisplay && display) {
-		check = true;
-	}
-	P2ASSERTLINE(333, check);
-	mDisplay         = display;
-	mFader           = new JUTFader(0, 0, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight,
+	// Check if display is being set for the first time
+	P2ASSERTBOOLLINE(333, !mDisplay && display);
+
+	// Assign the new display and create a new JUTFader object for it
+	mDisplay = display;
+	mFader   = new JUTFader(0, 0, JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight,
                           JUtility::TColor(0, 0, 0, 0));
+
+	// Assign the new fader to the display's mFader member
 	mDisplay->mFader = mFader;
-	mIsDisplayNew    = true;
+
+	// Indicate that a new display has been set
+	mIsDisplayNew = true;
+
+	// Set the current display and frame rate
 	sys->setCurrentDisplay(mDisplay);
 	sys->setFrameRate(secondsPer60Frames);
+
+	// Invalidate the display buffer ranges
 	DCInvalidateRange(JFWDisplay::getManager()->mXfb->getBufferPtr(0), JUTXfb::accumeXfbSize());
 	DCInvalidateRange(JFWDisplay::getManager()->mXfb->getBufferPtr(1), JUTXfb::accumeXfbSize());
+
+	// Hide the progress bar and heap bar
 	JUTProcBar::getManager()->setVisible(false);
 	JUTProcBar::getManager()->setVisibleHeapBar(false);
 }
@@ -88,7 +97,10 @@ void BaseHIOSection::initHIO(Game::HIORootNode* node)
 	} else {
 		mRootNode = node;
 	}
+
 	sys->addGenNode(mRootNode);
+
+	// Hide the process bar if it exists.
 	if (JUTProcBar::getManager()) {
 		JUTProcBar::getManager()->setVisible(false);
 		JUTProcBar::getManager()->setVisibleHeapBar(false);

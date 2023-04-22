@@ -7,7 +7,7 @@
     "files.encoding": "shiftjis",
     "editor.defaultFormatter": "xaver.clang-format"
   },
-
+  "clang-format.executable": "C:\\Users\\dsp\\OneDrive\\Desktop\\pikmin2\\clang-format.exe",
   "editor.tabSize": 4,
   "files.associations": {
     "source_location": "cpp",
