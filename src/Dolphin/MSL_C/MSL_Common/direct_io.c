@@ -6,6 +6,7 @@
 
 #include "wchar.h"
 #include "stdio.h"
+#include "PowerPC_EABI_Support/MSL_C/MSL_Common/stdio_api.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/misc_io.h"
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
 
@@ -34,17 +35,12 @@ void __fread(void)
  * Address:	800C6594
  * Size:	00007C
  */
-size_t fwrite(const void *pPtr, size_t memb_size, size_t num_memb, FILE *pFile) {
+size_t fwrite(const void* pPtr, size_t memb_size, size_t num_memb, FILE* pFile) {
 	size_t retval;
-	int crtrgn;
-
-	if (pFile == stdout) crtrgn = stdout_access;
-	else if (pFile == stderr) crtrgn = stderr_access;
-	else crtrgn = files_access;
 	
-  	__begin_critical_region(crtrgn);
+  	__begin_critical_region(stdin_access);
   	retval = __fwrite(pPtr, memb_size, num_memb, pFile);
-  	__end_critical_region(crtrgn);
+  	__end_critical_region(stdin_access);
 
   	return retval;
 }
@@ -77,7 +73,7 @@ size_t __fwrite(const void *pPtr, size_t memb_size, size_t num_memb, FILE *pFile
 
     if (pFile->mState.io_state == 0 && pFile->mMode.io_mode & 2) {
         if (pFile->mMode.io_mode & 4) {
-            if (_fseek(pFile, 0, 2)) {
+            if (fseek(pFile, 0, 2)) {
                 return 0;
             }
         }
@@ -115,6 +111,7 @@ size_t __fwrite(const void *pPtr, size_t memb_size, size_t num_memb, FILE *pFile
             if (num_bytes != 0) {
                 memcpy(pFile->mBufferPtr, cur_ptr, num_bytes);
                 cur_ptr += num_bytes;
+                bytes_written += num_bytes;
                 rem_bytes -= num_bytes;
                 pFile->mBufferPtr += num_bytes;
                 pFile->mBufferLength -= num_bytes;
@@ -131,8 +128,6 @@ size_t __fwrite(const void *pPtr, size_t memb_size, size_t num_memb, FILE *pFile
                 }
             }
 
-            bytes_written += num_bytes;
-
         } while(rem_bytes && buff);
     }
 
@@ -148,9 +143,8 @@ size_t __fwrite(const void *pPtr, size_t memb_size, size_t num_memb, FILE *pFile
             pFile->mState.error = 1;
             pFile->mBufferLength = 0;
         }
-        else {
-            bytes_written += num_bytes;
-        }
+        
+        bytes_written += num_bytes;
         
         pFile->mBuffer = (char*)save_buf;
         pFile->mBufferSize = save_size;
@@ -162,5 +156,5 @@ size_t __fwrite(const void *pPtr, size_t memb_size, size_t num_memb, FILE *pFile
         pFile->mBufferLength = 0;
     }
 
-    return bytes_written / memb_size;
+    return (bytes_written + memb_size - 1) / memb_size;
 }

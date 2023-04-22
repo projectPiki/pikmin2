@@ -7,30 +7,12 @@
 __declspec(section ".init") void* TRK_memcpy(void* dst, const void* src, size_t n);
 __declspec(section ".init") void* TRK_memset(void* dst, int val, size_t n);
 
-void TRK_fill_mem(void* dst, int val, size_t n);
-
-void* TRK_memset(void* dst, int val, size_t n)
-{
-	TRK_fill_mem(dst, val, n);
-	return dst;
-}
-
-void* TRK_memcpy(void* dst, const void* src, size_t n)
-{
-	const u8* s = (const u8*)src - 1;
-	u8* d       = (u8*)dst - 1;
-
-	n++;
-	while (--n != 0)
-		*++d = *++s;
-	return dst;
-}
-
 /*
  * --INFO--
  * Address:	800BDDF0
  * Size:	0000B8
  */
+#pragma dont_inline on
 void TRK_fill_mem(void* dst, int val, size_t n)
 {
 	u32 v = (u8)val;
@@ -83,4 +65,22 @@ void TRK_fill_mem(void* dst, int val, size_t n)
 		} while (--n);
 
 	return;
+}
+#pragma dont_inline off
+
+void* TRK_memcpy(void* dst, const void* src, size_t n)
+{
+	const u8* s = (const u8*)src - 1;
+	u8* d       = (u8*)dst - 1;
+
+	n++;
+	while (--n != 0)
+		*++d = *++s;
+	return dst;
+}
+
+void* TRK_memset(void* dst, int val, size_t n)
+{
+	TRK_fill_mem(dst, val, n);
+	return dst;
 }

@@ -123,7 +123,7 @@ void __close_all()
 	FILE* p = &__files[0];
 	FILE* plast;
 
-	__begin_critical_region(2);
+	__begin_critical_region(stdin_access);
 
 	while (p) {
 		if (p->mMode.file_kind != __closed_file) {
@@ -141,7 +141,7 @@ void __close_all()
 		}
 	}
 
-	__end_critical_region(2);
+	__end_critical_region(stdin_access);
 }
 
 /*

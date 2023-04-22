@@ -6,20 +6,10 @@ uint OSDisableInterrupts();
 
 /*
  * --INFO--
- * Address:	........
+ * Address:	800C15EC
  * Size:	000004
  */
-void MWTerminateCriticalSection()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800C1598
- * Size:	000024
- */
-void MWExitCriticalSection(uint* section) { OSRestoreInterrupts(*section); }
+void MWInitializeCriticalSection(uint* section) { }
 
 /*
  * --INFO--
@@ -30,8 +20,19 @@ void MWEnterCriticalSection(uint* section) { *section = OSDisableInterrupts(); }
 
 /*
  * --INFO--
- * Address:	800C15EC
+ * Address:	800C1598
+ * Size:	000024
+ */
+void MWExitCriticalSection(uint* section) { OSRestoreInterrupts(*section); }
+
+/*
+ * --INFO--
+ * Address:	........
  * Size:	000004
  */
-void MWInitializeCriticalSection() { }
+void MWTerminateCriticalSection()
+{
+	// UNUSED FUNCTION
+}
+
 };

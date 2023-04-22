@@ -415,7 +415,7 @@ LIBS = [
     {
         "lib": "TRK_MINNOW_DOLPHIN",
         "mw_version": "2.6",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_base -inline deferred",
         "host": False,
         "objects": [
             [
@@ -474,7 +474,11 @@ LIBS = [
         "objects": [
             ["Dolphin/Runtime/__va_arg", True],
             "Dolphin/Runtime/global_destructor_chain",
-            ["Dolphin/Runtime/CPlusLibPPC", True],
+            [
+                "Dolphin/Runtime/CPlusLibPPC",
+                True,
+                {"cflags": "$cflags_base -inline deferred"},
+            ],
             "Dolphin/Runtime/NMWException",
             ["Dolphin/Runtime/ptmf", True],
             "Dolphin/Runtime/runtime",
@@ -497,7 +501,7 @@ LIBS = [
             ["Dolphin/MSL_C/MSL_Common/buffer_io", True],
             ["Dolphin/MSL_C/PPC_EABI/critical_regions.gamecube", True],
             ["Dolphin/MSL_C/MSL_Common/ctype", True],
-            "Dolphin/MSL_C/MSL_Common/direct_io",
+            ["Dolphin/MSL_C/MSL_Common/direct_io", True],
             ["Dolphin/MSL_C/MSL_Common/errno", True],
             ["Dolphin/MSL_C/MSL_Common/file_io", True],
             ["Dolphin/MSL_C/MSL_Common/FILE_POS", True],

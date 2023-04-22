@@ -53,8 +53,8 @@ void exit(int status)
 	void (**dtor)(void);
 
 	if (!__aborting) {
-		__begin_critical_region(0);
-		__end_critical_region(0);
+		__begin_critical_region(atexit_funcs_access);
+		__end_critical_region(atexit_funcs_access);
 		__destroy_global_chain();
 		dtor = _dtors;
 		while (*dtor != NULL) {
@@ -66,10 +66,10 @@ void exit(int status)
 			__stdio_exit = NULL;
 		}
 	}
-	__begin_critical_region(0);
+	__begin_critical_region(atexit_funcs_access);
 	while (__atexit_curr_func > 0)
 		__atexit_funcs[--__atexit_curr_func]();
-	__end_critical_region(0);
+	__end_critical_region(atexit_funcs_access);
 	__kill_critical_regions();
 	if (__console_exit != NULL) {
 

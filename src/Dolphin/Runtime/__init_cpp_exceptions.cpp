@@ -3,18 +3,20 @@
 
 static int fragmentID = -2;
 
+
 /*
  * --INFO--
- * Address:	800C22C4
- * Size:	000008
+ * Address:	800C2300
+ * Size:	000040
  */
-// clang-format off
-asm char* GetR2() 
-{ 
-	nofralloc 
-	mr r3, r2 
-	blr 
+void __init_cpp_exceptions()
+{
+	if ((s32)fragmentID == -2) {
+		char* R2   = GetR2();
+		fragmentID = __register_fragment(&_eti_init_info, R2);
+	}
 }
+
 // clang-format on
 
 /*
@@ -30,15 +32,16 @@ void __fini_cpp_exceptions()
 	}
 }
 
+// clang-format off
+
 /*
  * --INFO--
- * Address:	800C2300
- * Size:	000040
+ * Address:	800C22C4
+ * Size:	000008
  */
-void __init_cpp_exceptions()
-{
-	if ((s32)fragmentID == -2) {
-		char* R2   = GetR2();
-		fragmentID = __register_fragment(&_eti_init_info, R2);
-	}
+asm char* GetR2() 
+{ 
+	nofralloc 
+	mr r3, r2 
+	blr 
 }

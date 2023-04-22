@@ -7,7 +7,7 @@ MSL_C_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/buffer_io.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/PPC_EABI/critical_regions.gamecube.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/ctype.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/MSL_Common/direct_io.o\
+	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/direct_io.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/errno.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/file_io.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/FILE_POS.o\
@@ -62,6 +62,7 @@ $(MSL_C_FILES): CFLAGS += -common off -inline deferred
 
 # Also needs noauto
 $(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/mbstring.o: CFLAGS += -inline noauto,deferred
+$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/direct_io.o: CFLAGS += -inline noauto,deferred
 
 # Enable string pooling
 $(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/locale.o: CFLAGS += -str pool

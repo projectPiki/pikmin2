@@ -3,6 +3,16 @@
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+void TRKWaitForACK(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	800BDD20
  * Size:	000098
  */
@@ -31,14 +41,4 @@ s32 TRKDoNotifyStopped(s32 arg0)
 		TRKReleaseBuffer(spC);
 	}
 	return retval;
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-void TRKWaitForACK(void)
-{
-	// UNUSED FUNCTION
 }

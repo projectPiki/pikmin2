@@ -11,6 +11,13 @@ RUNTIME_FILES:=\
 
 $(RUNTIME_FILES): CFLAGS += -common off
 
+# Some files need inline deferred
+$(BUILD_DIR)/src/Dolphin/Runtime/global_destructor_chain.o: CFLAGS += -inline deferred
+$(BUILD_DIR)/src/Dolphin/Runtime/CPlusLibPPC.o: CFLAGS += -inline deferred
+$(BUILD_DIR)/src/Dolphin/Runtime/NMWException.o: CFLAGS += -inline deferred
+$(BUILD_DIR)/src/Dolphin/Runtime/__init_cpp_exceptions.o: CFLAGS += -inline deferred
+$(BUILD_DIR)/src/Dolphin/Runtime/Gecko_ExceptionPPC.o: CFLAGS += -inline deferred
+
 DEPENDS += $(RUNTIME_FILES:.o=.d)
 
 $(BUILD_DIR)/src/Dolphin/Runtime/Runtime.a: $(RUNTIME_FILES)

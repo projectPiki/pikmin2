@@ -6,6 +6,36 @@ extern TRKState gTRKState;
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000028
+ */
+void TRKHandleRequestEvent(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000020
+ */
+void TRKHandleSupportEvent(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00002C
+ */
+void TRKIdle(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	800BB390
  * Size:	0000F8
  * Perhaps the switch case takes TRK CMD defines as inputs?
@@ -52,34 +82,4 @@ void TRKNubMainLoop(void)
 			var_r30 = FALSE;
 		}
 	}
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void TRKIdle(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000020
- */
-void TRKHandleSupportEvent(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000028
- */
-void TRKHandleRequestEvent(void)
-{
-	// UNUSED FUNCTION
 }

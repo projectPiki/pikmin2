@@ -22,9 +22,9 @@ int ftell(FILE* stream)
 {
 	int retval;
 
-	__begin_critical_region(2);
+	__begin_critical_region(stdin_access);
 	retval = (long)_ftell(stream);
-	__end_critical_region(2);
+	__end_critical_region(stdin_access);
 	return retval;
 }
 
@@ -167,8 +167,8 @@ int _fseek(FILE* file, u32 offset, int whence)
 int fseek(FILE* stream, u32 offset, int whence)
 {
 	int code;
-	__begin_critical_region(2);
+	__begin_critical_region(stdin_access);
 	code = _fseek(stream, offset, whence); // 0 if successful, -1 if error
-	__end_critical_region(2);
+	__end_critical_region(stdin_access);
 	return code;
 }

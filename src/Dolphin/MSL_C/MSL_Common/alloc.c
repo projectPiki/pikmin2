@@ -578,9 +578,9 @@ void malloc(void)
  * Size:	000070
  */
 void free(void *ptr) {
-	__begin_critical_region(1);
+	__begin_critical_region(malloc_pool_access);
     __pool_free(get_malloc_pool(), ptr);
-	__end_critical_region(1);
+	__end_critical_region(malloc_pool_access);
 }
 
 /*

@@ -2,106 +2,52 @@
 #include "PowerPC_EABI_Support/MetroTRK/trk.h"
 #include "Dolphin/AmcExi2Stubs.h"
 
-static char gRecvBuf[0x500];
 static char gRecvCB[0x20];
+static char gRecvBuf[0x500];
 static BOOL gIsInitialized;
 
-static makeMainBSSOrderingWork()
-{
-	u8 buff[0x500];
-	memcpy(buff, gRecvBuf, 0x500);
-}
-
 /*
  * --INFO--
- * Address:	800C11FC
- * Size:	000024
+ * Address:	800C14C0
+ * Size:	000088
  */
-BOOL gdev_cc_initinterrupts()
+BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
 {
-	DBInitInterrupts();
+	MWTRACE(1, "CALLING EXI2_Init\n");
+	DBInitComm(inputPendingPtrRef, monitorCallback);
+	MWTRACE(1, "DONE CALLING EXI2_Init\n");
+	CircleBufferInitialize(&gRecvCB, &gRecvBuf, 0x500);
 	return FALSE;
 }
 
 /*
  * --INFO--
- * Address:	800C1220
- * Size:	000070
+ * Address:	800C14B8
+ * Size:	000008
  */
-int gdev_cc_peek()
-{
-	int poll;
-	u8 buff[0x500];
-
-	poll = DBQueryData();
-	if (poll <= 0) {
-		return 0;
-	}
-
-	if (DBRead(buff, poll) == 0) {
-		CircleBufferWriteBytes(gRecvCB, buff, poll);
-	} else {
-		return -0x2719;
-	}
-
-	return poll;
-}
+BOOL gdev_cc_shutdown() { return FALSE; }
 
 /*
  * --INFO--
- * Address:	800C1290
+ * Address:	800C1494
  * Size:	000024
  */
-BOOL gdev_cc_post_stop()
+int gdev_cc_open()
 {
-	DBOpen();
+	if (gIsInitialized) {
+		return -0x2715;
+	}
+
+	gIsInitialized = TRUE;
 	return FALSE;
 }
 
 /*
  * --INFO--
- * Address:	800C12B4
- * Size:	000024
+ * Address:	800C148C
+ * Size:	000008
  */
-BOOL gdev_cc_pre_continue()
-{
-	DBClose();
-	return FALSE;
-}
-
-/*
- * --INFO--
- * Address:	800C12D8
- * Size:	0000C0
- */
-int gdev_cc_write(int bytes, int length)
-{
-	int exi2Len;
-	int n_copy;
-	u32 hexCopy;
-
-	hexCopy = bytes;
-	n_copy  = length;
-
-	if (gIsInitialized == FALSE) {
-		MWTRACE(8, "cc not initialized\n");
-		return -0x2711;
-	}
-
-	MWTRACE(8, "cc_write : Output data 0x%08x %ld bytes\n", bytes, length);
-
-	while (n_copy > 0) {
-		MWTRACE(1, "cc_write sending %ld bytes\n", n_copy);
-		exi2Len = DBWrite((const void*)hexCopy, n_copy);
-		if (exi2Len == AMC_EXI_NO_ERROR) {
-			break;
-		}
-		hexCopy += exi2Len;
-		n_copy -= exi2Len;
-	}
-
-	return 0;
-}
+BOOL gdev_cc_close() { return FALSE; }
 
 /*
  * --INFO--
@@ -146,43 +92,91 @@ u32 gdev_cc_read(int arg0, u32 arg1)
 
 /*
  * --INFO--
- * Address:	800C148C
- * Size:	000008
+ * Address:	800C12D8
+ * Size:	0000C0
  */
-BOOL gdev_cc_close() { return FALSE; }
+int gdev_cc_write(int bytes, int length)
+{
+	int exi2Len;
+	int n_copy;
+	u32 hexCopy;
+
+	hexCopy = bytes;
+	n_copy  = length;
+
+	if (gIsInitialized == FALSE) {
+		MWTRACE(8, "cc not initialized\n");
+		return -0x2711;
+	}
+
+	MWTRACE(8, "cc_write : Output data 0x%08x %ld bytes\n", bytes, length);
+
+	while (n_copy > 0) {
+		MWTRACE(1, "cc_write sending %ld bytes\n", n_copy);
+		exi2Len = DBWrite((const void*)hexCopy, n_copy);
+		if (exi2Len == AMC_EXI_NO_ERROR) {
+			break;
+		}
+		hexCopy += exi2Len;
+		n_copy -= exi2Len;
+	}
+
+	return 0;
+}
 
 /*
  * --INFO--
- * Address:	800C1494
+ * Address:	800C12B4
  * Size:	000024
  */
-int gdev_cc_open()
+BOOL gdev_cc_pre_continue()
 {
-	if (gIsInitialized) {
-		return -0x2715;
-	}
-
-	gIsInitialized = TRUE;
+	DBClose();
 	return FALSE;
 }
 
 /*
  * --INFO--
- * Address:	800C14B8
- * Size:	000008
+ * Address:	800C1290
+ * Size:	000024
  */
-BOOL gdev_cc_shutdown() { return FALSE; }
+BOOL gdev_cc_post_stop()
+{
+	DBOpen();
+	return FALSE;
+}
 
 /*
  * --INFO--
- * Address:	800C14C0
- * Size:	000088
+ * Address:	800C1220
+ * Size:	000070
  */
-BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
+int gdev_cc_peek()
 {
-	MWTRACE(1, "CALLING EXI2_Init\n");
-	DBInitComm(inputPendingPtrRef, monitorCallback);
-	MWTRACE(1, "DONE CALLING EXI2_Init\n");
-	CircleBufferInitialize(&gRecvCB, &gRecvBuf, 0x500);
+	int poll;
+	u8 buff[0x500];
+
+	poll = DBQueryData();
+	if (poll <= 0) {
+		return 0;
+	}
+
+	if (DBRead(buff, poll) == 0) {
+		CircleBufferWriteBytes(gRecvCB, buff, poll);
+	} else {
+		return -0x2719;
+	}
+
+	return poll;
+}
+
+/*
+ * --INFO--
+ * Address:	800C11FC
+ * Size:	000024
+ */
+BOOL gdev_cc_initinterrupts()
+{
+	DBInitInterrupts();
 	return FALSE;
 }

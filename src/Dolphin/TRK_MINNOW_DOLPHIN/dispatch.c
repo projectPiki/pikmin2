@@ -2,6 +2,13 @@
 
 /*
  * --INFO--
+ * Address:	800BC57C
+ * Size:	000008
+ */
+TRKResult TRKInitializeDispatcher(void) { return TRKSuccess; }
+
+/*
+ * --INFO--
  * Address:	800BC40C
  * Size:	000170
  */
@@ -59,10 +66,3 @@ TRKResult TRKDispatchMessage(TRKBuffer* param_1)
 	MWTRACE(1, "Dispatch complete err = %ld\n", uVar1);
 	return uVar1;
 }
-
-/*
- * --INFO--
- * Address:	800BC57C
- * Size:	000008
- */
-TRKResult TRKInitializeDispatcher(void) { return TRKSuccess; }

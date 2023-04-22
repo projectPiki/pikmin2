@@ -2,126 +2,12 @@
 
 /*
  * --INFO--
- * Address:	800BFA60
- * Size:	0001B8
+ * Address:	........
+ * Size:	000008
  */
-void TRKSaveExtended1Block(void)
+void TRKTargetCPUMinorType(void)
 {
-	/*
-	.loc_0x0:
-	  lis       r2, 0x804F
-	  ori       r2, r2, 0x4328
-	  mfsr      r16, 0
-	  mfsr      r17, 0x1
-	  mfsr      r18, 0x2
-	  mfsr      r19, 0x3
-	  mfsr      r20, 0x4
-	  mfsr      r21, 0x5
-	  mfsr      r22, 0x6
-	  mfsr      r23, 0x7
-	  mfsr      r24, 0x8
-	  mfsr      r25, 0x9
-	  mfsr      r26, 0xA
-	  mfsr      r27, 0xB
-	  mfsr      r28, 0xC
-	  mfsr      r29, 0xD
-	  mfsr      r30, 0xE
-	  mfsr      r31, 0xF
-	  stmw      r16, 0x1A8(r2)
-	  mftbl     r10
-	  mftbu     r11
-	  mfspr     r12, 0x3F0
-	  mfspr     r13, 0x3F1
-	  mfsrr1    r14
-	  mfspr     r15, 0x11F
-	  mfibatu   r16, 0
-	  mfibatl   r17, 0
-	  mfibatu   r18, 0x1
-	  mfibatl   r19, 0x1
-	  mfibatu   r20, 0x2
-	  mfibatl   r21, 0x2
-	  mfibatu   r22, 0x3
-	  mfibatl   r23, 0x3
-	  mfdbatu   r24, 0
-	  mfdbatl   r25, 0
-	  mfdbatu   r26, 0x1
-	  mfdbatl   r27, 0x1
-	  mfdbatu   r28, 0x2
-	  mfdbatl   r29, 0x2
-	  mfdbatu   r30, 0x3
-	  mfdbatl   r31, 0x3
-	  stmw      r10, 0x1E8(r2)
-	  mfsdr1    r22
-	  mfdar     r23
-	  mfdsisr   r24
-	  mfsprg    r25, 0
-	  mfsprg    r26, 0x1
-	  mfsprg    r27, 0x2
-	  mfsprg    r28, 0x3
-	  li        r29, 0
-	  mfspr     r30, 0x3F2
-	  mfear     r31
-	  stmw      r22, 0x25C(r2)
-	  mfspr     r20, 0x390
-	  mfspr     r21, 0x391
-	  mfspr     r22, 0x392
-	  mfspr     r23, 0x393
-	  mfspr     r24, 0x394
-	  mfspr     r25, 0x395
-	  mfspr     r26, 0x396
-	  mfspr     r27, 0x397
-	  mfspr     r28, 0x398
-	  mfspr     r29, 0x399
-	  mfspr     r30, 0x39A
-	  mfspr     r31, 0x39B
-	  stmw      r20, 0x2FC(r2)
-	  b         .loc_0x150
-	  mfspr     r16, 0x3A0
-	  mfspr     r17, 0x3A7
-	  mfspr     r18, 0x3A8
-	  mfspr     r19, 0x3A9
-	  mfspr     r20, 0x3AA
-	  mfspr     r21, 0x3AB
-	  mfspr     r22, 0x3AC
-	  mfspr     r23, 0x3AD
-	  mfspr     r24, 0x3AE
-	  mfspr     r25, 0x3AF
-	  mfspr     r26, 0x3B0
-	  mfspr     r27, 0x3B7
-	  mfspr     r28, 0x3BF
-	  mfspr     r29, 0x3F6
-	  mfspr     r30, 0x3F7
-	  mfspr     r31, 0x3FF
-	  stmw      r16, 0x2B8(r2)
-
-	.loc_0x150:
-	  mfdabr    r19
-	  mfspr     r20, 0x3B9
-	  mfspr     r21, 0x3BA
-	  mfspr     r22, 0x3BD
-	  mfspr     r23, 0x3BE
-	  mfspr     r24, 0x3BB
-	  mfspr     r25, 0x3B8
-	  mfspr     r26, 0x3BC
-	  mfspr     r27, 0x3FC
-	  mfspr     r28, 0x3FD
-	  mfspr     r29, 0x3FE
-	  mfspr     r30, 0x3FB
-	  mfspr     r31, 0x3F9
-	  stmw      r19, 0x284(r2)
-	  blr
-	  mfspr     r25, 0x3D0
-	  mfspr     r26, 0x3D1
-	  mfspr     r27, 0x3D2
-	  mfspr     r28, 0x3D3
-	  mfspr     r29, 0x3D4
-	  mfspr     r30, 0x3D5
-	  mfspr     r31, 0x3D6
-	  stmw      r25, 0x240(r2)
-	  mfdec     r31
-	  stw       r31, 0x278(r2)
-	  blr
-	*/
+	// UNUSED FUNCTION
 }
 
 /*
@@ -256,10 +142,124 @@ void TRKRestoreExtended1Block(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000008
+ * Address:	800BFA60
+ * Size:	0001B8
  */
-void TRKTargetCPUMinorType(void)
+void TRKSaveExtended1Block(void)
 {
-	// UNUSED FUNCTION
+	/*
+	.loc_0x0:
+	  lis       r2, 0x804F
+	  ori       r2, r2, 0x4328
+	  mfsr      r16, 0
+	  mfsr      r17, 0x1
+	  mfsr      r18, 0x2
+	  mfsr      r19, 0x3
+	  mfsr      r20, 0x4
+	  mfsr      r21, 0x5
+	  mfsr      r22, 0x6
+	  mfsr      r23, 0x7
+	  mfsr      r24, 0x8
+	  mfsr      r25, 0x9
+	  mfsr      r26, 0xA
+	  mfsr      r27, 0xB
+	  mfsr      r28, 0xC
+	  mfsr      r29, 0xD
+	  mfsr      r30, 0xE
+	  mfsr      r31, 0xF
+	  stmw      r16, 0x1A8(r2)
+	  mftbl     r10
+	  mftbu     r11
+	  mfspr     r12, 0x3F0
+	  mfspr     r13, 0x3F1
+	  mfsrr1    r14
+	  mfspr     r15, 0x11F
+	  mfibatu   r16, 0
+	  mfibatl   r17, 0
+	  mfibatu   r18, 0x1
+	  mfibatl   r19, 0x1
+	  mfibatu   r20, 0x2
+	  mfibatl   r21, 0x2
+	  mfibatu   r22, 0x3
+	  mfibatl   r23, 0x3
+	  mfdbatu   r24, 0
+	  mfdbatl   r25, 0
+	  mfdbatu   r26, 0x1
+	  mfdbatl   r27, 0x1
+	  mfdbatu   r28, 0x2
+	  mfdbatl   r29, 0x2
+	  mfdbatu   r30, 0x3
+	  mfdbatl   r31, 0x3
+	  stmw      r10, 0x1E8(r2)
+	  mfsdr1    r22
+	  mfdar     r23
+	  mfdsisr   r24
+	  mfsprg    r25, 0
+	  mfsprg    r26, 0x1
+	  mfsprg    r27, 0x2
+	  mfsprg    r28, 0x3
+	  li        r29, 0
+	  mfspr     r30, 0x3F2
+	  mfear     r31
+	  stmw      r22, 0x25C(r2)
+	  mfspr     r20, 0x390
+	  mfspr     r21, 0x391
+	  mfspr     r22, 0x392
+	  mfspr     r23, 0x393
+	  mfspr     r24, 0x394
+	  mfspr     r25, 0x395
+	  mfspr     r26, 0x396
+	  mfspr     r27, 0x397
+	  mfspr     r28, 0x398
+	  mfspr     r29, 0x399
+	  mfspr     r30, 0x39A
+	  mfspr     r31, 0x39B
+	  stmw      r20, 0x2FC(r2)
+	  b         .loc_0x150
+	  mfspr     r16, 0x3A0
+	  mfspr     r17, 0x3A7
+	  mfspr     r18, 0x3A8
+	  mfspr     r19, 0x3A9
+	  mfspr     r20, 0x3AA
+	  mfspr     r21, 0x3AB
+	  mfspr     r22, 0x3AC
+	  mfspr     r23, 0x3AD
+	  mfspr     r24, 0x3AE
+	  mfspr     r25, 0x3AF
+	  mfspr     r26, 0x3B0
+	  mfspr     r27, 0x3B7
+	  mfspr     r28, 0x3BF
+	  mfspr     r29, 0x3F6
+	  mfspr     r30, 0x3F7
+	  mfspr     r31, 0x3FF
+	  stmw      r16, 0x2B8(r2)
+
+	.loc_0x150:
+	  mfdabr    r19
+	  mfspr     r20, 0x3B9
+	  mfspr     r21, 0x3BA
+	  mfspr     r22, 0x3BD
+	  mfspr     r23, 0x3BE
+	  mfspr     r24, 0x3BB
+	  mfspr     r25, 0x3B8
+	  mfspr     r26, 0x3BC
+	  mfspr     r27, 0x3FC
+	  mfspr     r28, 0x3FD
+	  mfspr     r29, 0x3FE
+	  mfspr     r30, 0x3FB
+	  mfspr     r31, 0x3F9
+	  stmw      r19, 0x284(r2)
+	  blr
+	  mfspr     r25, 0x3D0
+	  mfspr     r26, 0x3D1
+	  mfspr     r27, 0x3D2
+	  mfspr     r28, 0x3D3
+	  mfspr     r29, 0x3D4
+	  mfspr     r30, 0x3D5
+	  mfspr     r31, 0x3D6
+	  stmw      r25, 0x240(r2)
+	  mfdec     r31
+	  stw       r31, 0x278(r2)
+	  blr
+	*/
 }

@@ -2,36 +2,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00008C
- */
-void atof(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void strtod(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000BC
- */
-void strtold(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800CA92C
  * Size:	00100C
  */
@@ -1349,4 +1319,34 @@ void __strtold(void)
 	  addi      r1, r1, 0xB0
 	  blr
 	*/
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000BC
+ */
+void strtold(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000BC
+ */
+void strtod(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00008C
+ */
+void atof(void)
+{
+	// UNUSED FUNCTION
 }
