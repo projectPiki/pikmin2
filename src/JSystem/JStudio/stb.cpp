@@ -3,7 +3,7 @@
 #include "JSystem/JStudio/stb-data.h"
 #include "JSystem/JGadget/binary.h"
 #include "JSystem/JGadget/linklist.h"
-#include "std/algorithm.h"
+#include "algorithm"
 
 /*
     Generated from dpostproc

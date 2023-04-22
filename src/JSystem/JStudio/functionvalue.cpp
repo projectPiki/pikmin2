@@ -3,8 +3,8 @@
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JGadget/list.h"
 #include "fdlibm.h"
-#include "std/functional.h"
-#include "std/algorithm.h"
+#include "functional"
+#include "algorithm"
 #include "types.h"
 
 /*
