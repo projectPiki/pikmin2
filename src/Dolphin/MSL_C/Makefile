@@ -60,11 +60,11 @@ MSL_C_FILES:=\
 
 $(MSL_C_FILES): CFLAGS += -common off -inline deferred
 
-# This is inline-deferred for some reason
-$(BUILD_DIR)/src/Dolphin/MSL_C/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common off -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
+# Also needs noauto
+$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/mbstring.o: CFLAGS += -inline noauto,deferred
 
 # Enable string pooling
-$(BUILD_DIR)/src/Dolphin/MSL_C/locale.o: CFLAGS += -str pool
+$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/locale.o: CFLAGS += -str pool
 
 DEPENDS += $(MSL_C_FILES:.o=.d)
 
