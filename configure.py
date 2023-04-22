@@ -524,7 +524,7 @@ LIBS = [
             "Dolphin/MSL_C/MSL_Common/scanf",
             ["Dolphin/MSL_C/MSL_Common/string", True],
             "Dolphin/MSL_C/MSL_Common/strtold",
-            "Dolphin/MSL_C/MSL_Common/strtoul",
+            ["Dolphin/MSL_C/MSL_Common/strtoul", True],
             ["Dolphin/MSL_C/MSL_Common/wchar_io", True],
             ["Dolphin/MSL_C/PPC_EABI/uart_console_io_gcn", True],
             ["Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin", True],

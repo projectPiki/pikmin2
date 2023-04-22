@@ -296,26 +296,29 @@ void isalnum(void)
 {
 	// UNUSED FUNCTION
 }
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void isalpha(void)
-{
-	// UNUSED FUNCTION
-}
+//void isalpha(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void iscntrl(void)
-{
-	// UNUSED FUNCTION
-}
+//void iscntrl(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
@@ -332,10 +335,10 @@ void iscntrl(void)
  * Address:	........
  * Size:	000018
  */
-void isgraph(void)
-{
-	// UNUSED FUNCTION
-}
+//void isgraph(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
@@ -345,7 +348,7 @@ void isgraph(void)
 // BOOL islower(unsigned char c)
 //{
 //	// UNUSED FUNCTION
-//	return __ctype_map[c] & CTYPE_LOWER;
+//	return __ctype_map[c] & olowc;
 //}
 
 /*
@@ -353,51 +356,51 @@ void isgraph(void)
  * Address:	........
  * Size:	000018
  */
-void isprint(void)
-{
-	// UNUSED FUNCTION
-}
+//void isprint(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void ispunct(void)
-{
-	// UNUSED FUNCTION
-}
+//void ispunct(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void isspace(void)
-{
-	// UNUSED FUNCTION
-}
+//void isspace(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void isupper(void)
-{
-	// UNUSED FUNCTION
-}
+//void isupper(void)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-BOOL isxdigit(unsigned char c)
-{
-	// UNUSED FUNCTION
-	return (__ctype_map[c] & CTYPE_XDIGIT) != 0;
-}
+//BOOL isxdigit(unsigned char c)
+//{
+//	// UNUSED FUNCTION
+//	return (__ctype_map[c] & ohexd) != 0;
+//}
 
 /*
  * --INFO--
@@ -406,12 +409,7 @@ BOOL isxdigit(unsigned char c)
  */
 int tolower(int __c)
 {
-	{
-		if (__c == -1) {
-			return 0xffffffff;
-		}
-		return (unsigned int)__lower_map[__c & 0xff];
-	}
+	return _tolower(__c);
 }
 
 /*
@@ -419,23 +417,23 @@ int tolower(int __c)
  * Address:	........
  * Size:	000024
  */
-int toupper(int __c)
-{
-	// UNUSED FUNCTION
-	{
-		if (__c == -1) {
-			return 0xffffffff;
-		}
-		return (unsigned int)__upper_map[__c & 0xff];
-	}
-}
+//int toupper(int __c)
+//{
+//	// UNUSED FUNCTION
+//	{
+//		if (__c == -1) {
+//			return 0xffffffff;
+//		}
+//		return (unsigned int)__upper_map[__c & 0xff];
+//	}
+//
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000020
  */
-void iswblank(void)
-{
-	// UNUSED FUNCTION
-}
+//void iswblank(void)
+//{
+//	// UNUSED FUNCTION
+//}

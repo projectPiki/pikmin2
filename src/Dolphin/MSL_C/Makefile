@@ -22,7 +22,7 @@ MSL_C_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/MSL_C/MSL_Common/scanf.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/string.o\
 	$(BUILD_DIR)/asm/Dolphin/MSL_C/MSL_Common/strtold.o\
-	$(BUILD_DIR)/asm/Dolphin/MSL_C/MSL_Common/strtoul.o\
+	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/strtoul.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/wchar_io.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/PPC_EABI/uart_console_io_gcn.o\
 	$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.o\
@@ -66,6 +66,7 @@ $(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/direct_io.o: CFLAGS += -inline noauto,
 
 # Enable string pooling
 $(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/locale.o: CFLAGS += -str pool
+$(BUILD_DIR)/src/Dolphin/MSL_C/MSL_Common/printf.o: CFLAGS += -str pool
 
 DEPENDS += $(MSL_C_FILES:.o=.d)
 

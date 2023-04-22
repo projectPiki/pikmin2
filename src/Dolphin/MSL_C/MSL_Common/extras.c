@@ -1,15 +1,6 @@
 #include "types.h"
 #include "ctype.h"
 
-inline int tolower_inlined(char a)
-{
-	if (a == -1) {
-		return -1;
-	} else {
-		return islower(a);
-	}
-}
-
 /*
  * --INFO--
  * Address:	........
@@ -123,11 +114,11 @@ int stricmp(char* param_1, char* param_2)
 	do {
 		a_var = *param_1;
 		param_1++;
-		b_var = tolower_inlined(a_var);
+		b_var = _tolower(a_var);
 
 		a_var = *param_2;
 		param_2++;
-		a_var = tolower_inlined(a_var);
+		a_var = _tolower(a_var);
 
 		if (b_var < a_var) {
 			return -1;
