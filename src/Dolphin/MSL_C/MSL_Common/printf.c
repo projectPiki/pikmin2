@@ -531,23 +531,22 @@ static char* longlong2str(long long num, char *pBuf, print_format fmt) {
  * Size:	000338
  */
 static char * double2hex(long double num, char * buff, print_format format)  {
-	char *p;	
-	unsigned char *q;
-	unsigned char working_byte;
+	int offset, what_nibble = 0;
+	char* wrk_byte_ptr;
+    char *p, *q;
+    char working_byte;
 	long double ld;
-	int expbits, expmask;
-	unsigned snum;
+    short* sptr;
+	short snum;
 	long exp;
 	print_format exp_format;
-	int hex_precision; 
-	int mantissa_bit;
+	int hex_precision;
 	decform form;		
-	decimal dec;	
-	int radix_marker;
-	
-    radix_marker = '.';
+	decimal dec;
+    
 	p = buff;
 	ld = num;
+    sptr = (short *)&ld;
 	
 	if (format.precision > 509) {
 		return 0;
@@ -558,7 +557,7 @@ static char * double2hex(long double num, char * buff, print_format format)  {
 	__num2dec(&form, num, &dec);
 
     if(*dec.sig.text == 'I'){
-    	if (dec.sign) {
+    	if (*sptr & 0x8000) {
 		    p = buff - 5;
 		    if (format.conversion_char == 'A')	
 			    strcpy(p, "-INF");
@@ -575,7 +574,7 @@ static char * double2hex(long double num, char * buff, print_format format)  {
 		
 		return p;
 	}else if(*dec.sig.text == 'N'){
-        if (dec.sign) {
+        if (*(char*)&num & 0x80) {
         	p = buff - 5;              
         	if (format.conversion_char == 'A')	
         		strcpy(p, "-NAN");
@@ -602,18 +601,7 @@ static char * double2hex(long double num, char * buff, print_format format)  {
 	exp_format.precision = 1;
 	exp_format.conversion_char = 'd';
 
-	expbits = 11;
-	expmask = 0x7FF;
-
-	snum = ((unsigned char *)&num)[0] << 25;
-	if (TARGET_FLOAT_EXP_BITS > 7)
-		snum |= ((unsigned char *)&num)[1] << 17;
-	if (TARGET_FLOAT_EXP_BITS > 15)
-		snum |= ((unsigned char *)&num)[2] << 9;
-	if (TARGET_FLOAT_EXP_BITS > 23)
-		snum |= ((unsigned char *)&num)[3] << 1;
-
-	snum = (snum >> (32 - expbits)) & expmask;
+	snum = (*sptr & 0x7ff0) >> 4;
 
     exp = snum - 0x3FF;
 
@@ -622,45 +610,40 @@ static char * double2hex(long double num, char * buff, print_format format)  {
 		*--p = 'p';
 	else
 		*--p = 'P';
-	q = (unsigned char *)&num;
+    
+	q = (char *)&num;
 	
 	for (hex_precision = format.precision; hex_precision >= 1; hex_precision--) {
-			int mantissa_byte;
-			int r7;
-
-			mantissa_byte = (((hex_precision >> 31) + hex_precision) >> 1) + 1;
-			r7 = *(q + mantissa_byte);
-
-			working_byte = (r7 >> 4) & 0xF;
-
-			if(!(((hex_precision & 1) ^ (hex_precision >> 31)) - (hex_precision >> 31))){
-				working_byte = r7 & 0xF;
-			}
+			working_byte = *(q + (hex_precision / 2) + 1);
+		if (hex_precision % 2)
+			working_byte = working_byte & 0x0f;
+		else
+			working_byte = (working_byte >> 4) & 0x0f;
 			
 			if (working_byte < 10) {
 				working_byte += '0';
 			}
 			else{
+                working_byte -= 10;
+                
 				if (format.conversion_char == 'a') {
-					working_byte += 'a' - 10;
+					working_byte += 'a';
 				}
 				else {
-					working_byte += 'A' - 10;
+					working_byte += 'A';
 				}
 			}
-		
 
 		*--p = working_byte;
-		mantissa_bit -= 4;
 	}
 	
-	if (TARGET_FLOAT_IMPLICIT_J_BIT){
-		if (format.precision || format.alternate_form) {
-			*--p = radix_marker;
-		}
 
-        *--p = '1';
+	if (format.precision || format.alternate_form) {
+		*--p = '.';
 	}
+
+    *--p = '1';
+
 
 	if (format.conversion_char == 'a') {
 		*--p = 'x';
@@ -671,7 +654,7 @@ static char * double2hex(long double num, char * buff, print_format format)  {
 
 	*--p = '0';
 
-	if (dec.sign) {
+	if (*sptr & 0x8000) {
 		*--p = '-';
 	}
 	else if (format.sign_options == sign_always) {

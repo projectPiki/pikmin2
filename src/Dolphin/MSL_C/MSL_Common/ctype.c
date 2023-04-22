@@ -1,6 +1,17 @@
 #include "ctype.h"
 #include "types.h"
 
+#define octrl	0x01
+#define omotn	0x02
+#define ospac	0x04
+#define opunc	0x08
+#define odigi	0x10
+#define ohexd	0x20
+#define olowc	0x40
+#define ouppc	0x80
+#define odhex	ohexd | odigi
+#define ouhex	ohexd | ouppc
+#define olhex	ohexd | olowc
 
 unsigned char __ctype_map[256] = {
 	octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, omotn, omotn, omotn, omotn, omotn, octrl, octrl,

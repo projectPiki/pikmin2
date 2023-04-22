@@ -55,6 +55,7 @@ inline int __fpclassifyd(f64 x)
 
 #define fpclassify(x) ((sizeof(x) == sizeof(float)) ? __fpclassifyf((float)(x)) : __fpclassifyd((double)(x)))
 
+#define isinf(x)    ((fpclassify(x) == 2))
 #define isfinite(x) ((fpclassify(x) > 2))
 
 #ifdef __cplusplus

@@ -1,14 +1,39 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/ansi_fp.h"
-
-typedef unsigned long long d_int;
+#include "ctype.h"
+#include "limits.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000070
  */
-static inline int __count_trailing_zerol(u32 x){
-    return 32 - __cntlzw(~x & (x - 1));
+static int __count_trailing_zerol(unsigned long x)
+{
+	int result = 0;
+	int bits_not_checked = sizeof(unsigned long) * CHAR_BIT;
+	int n = bits_not_checked / 2;
+	int mask_size = n;
+	unsigned long mask = (~0UL) >> (bits_not_checked - n);
+
+	while (bits_not_checked){
+		if (!(x & mask)){
+			result += mask_size;
+			x >>= mask_size;
+			bits_not_checked -= mask_size;
+		}else if (mask == 1){
+			break;
+        }
+
+		if (n > 1){
+			n /= 2;
+        }
+
+		if (mask > 1){
+			mask >>= n;
+			mask_size -= n;
+		}
+	}
+	return result;
 }
 
 /*
@@ -16,17 +41,15 @@ static inline int __count_trailing_zerol(u32 x){
  * Address:	........
  * Size:	0000FC
  */
-static int __count_trailing_zero(double n){
-    u32* array = (u32*)&n;
+static int __count_trailing_zero(double x)
+{
+	unsigned long* l = (unsigned long*)&x;
 
-    u32 hi = array[0] | 0x100000;
-    u32 lo = array[1];
-    int zeros = __count_trailing_zerol(lo);
-    
-    if (lo == 0) {
-        return 32 + __count_trailing_zerol(hi);
+	if (l[1] != 0){
+		return __count_trailing_zerol(l[1]);
     }
-    return zeros;
+
+	return (int)(sizeof(unsigned long) * CHAR_BIT + __count_trailing_zerol(l[0] | 0x00100000));
 }
 
 /*
@@ -108,6 +131,21 @@ static void __rounddec(decimal* d, int digits){
  */
 void __ull2dec(decimal* result, u64 val) {
     result->sign = 0;
+
+    if (val == 0)
+	{
+		result->exp = 0;
+		result->sig.length = 1;
+		result->sig.text[0] = 0;
+		return;
+	}
+
+	if (val < 0)
+	{
+		val = -val;
+		result->sign = 1;
+	}
+
     result->sig.length = 0;
 
 	for(; val != 0; val /= 10) {
@@ -326,13 +364,14 @@ void __two_exp(decimal* result, long exp) {
  * Size:	00010C
  */
 BOOL __equals_dec(const decimal* x, const decimal* y) {
-    if (x->sig.text[0] == 0) {
-        return y->sig.text[0] == 0;
-    }
-    
-    if (y->sig.text[0] == 0) {
-        return x->sig.text[0] == 0;
-    }
+    if (x->sig.text[0] == 0){
+		if (y->sig.text[0] == 0) return TRUE;
+		return FALSE;
+	}
+	if (y->sig.text[0] == 0){
+		if (x->sig.text[0] == 0) return TRUE;
+		return FALSE;
+	}
     
     if (x->exp == y->exp) {
         int i;
@@ -348,15 +387,22 @@ BOOL __equals_dec(const decimal* x, const decimal* y) {
             }
         }
 
-        if (l == x->sig.length) {
-            x = y;
-        }
-        
-        for(; i < x->sig.length; i++){
-            if (x->sig.text[i] != 0) {
-                return FALSE;
+        if (l == x->sig.length)
+		{
+			for (; i < y->sig.length; ++i){
+				if (y->sig.text[i] != 0){
+					return FALSE;
+                }
             }
-        }
+		}
+		else
+		{
+			for (; i < x->sig.length; ++i){
+				if (x->sig.text[i] != 0){
+					return FALSE;
+                }
+            }
+		}
 
         return TRUE;
     }
@@ -369,10 +415,11 @@ BOOL __equals_dec(const decimal* x, const decimal* y) {
  * Size:	0000F8
  */
 BOOL __less_dec(const decimal* x, const decimal* y) {
-    if (x->sig.text[0] == 0) {
-        u8 temp_r3 = y->sig.text[0];
-        return ((u32) (-temp_r3 | temp_r3) >> 31);
-    }
+    if (x->sig.text[0] == 0)
+	{
+		if (y->sig.text[0] != 0) return TRUE;
+		return FALSE;
+	}
     
     if (y->sig.text[0] == 0) {
         return FALSE;
@@ -536,11 +583,13 @@ void __num2dec_internal(decimal* d, double x) {
     {
         int exp;
         double frac = frexp(x, &exp);
-        int num_bits_extract = DBL_MANT_DIG - __count_trailing_zero(frac);
+        long num_bits_extract = DBL_MANT_DIG - __count_trailing_zero(frac);
+        double integer;
         decimal int_d, pow2_d;
 
         __two_exp(&pow2_d, exp - num_bits_extract);
-        __ull2dec(&int_d, ldexp(frac, num_bits_extract));
+        frac = modf(ldexp(frac, num_bits_extract), &integer);
+        __ull2dec(&int_d, (u64)integer);
         __timesdec(d, &int_d, &pow2_d);
         d->sign = sign;
     }
@@ -596,12 +645,48 @@ double __dec2num(const decimal *d)
 	case 'N':
         {
 		    double result;
-		    d_int* ll = (d_int*)&result;
+		    u64* ll = (u64*)&result;
 
 		    *ll = 0x7FF0000000000000;
 		    if (d->sign)
 		    	*ll |= 0x8000000000000000;
-		    *ll |= 0x8000000000000;
+            if (d->sig.length == 1)
+		        *ll |= 0x8000000000000;
+            else{
+                unsigned char* p = (unsigned char*)&result + 1;
+                int placed_non_zero = 0;
+			    int low = 1;
+			    int i;
+			    int e = d->sig.length;
+			    if (e > 14) e = 14;
+
+			    for (i = 1; i < e; ++i)
+			    {
+			    	unsigned char c = d->sig.text[i];
+
+			    	if (isdigit(c)){
+			    		c -= '0';
+                    }else{
+			    		c = (unsigned char)(_tolower(c) - 'a' + 10);
+                    }
+
+			    	if (c != 0){
+			    		placed_non_zero = 1;
+                    }
+
+			    	if (low){
+			    		*p++ |= c;
+                    }else{
+			    		*p = (unsigned char)(c << 4);
+                    }
+
+			    	low = !low;
+			    }
+
+			    if (!placed_non_zero){
+			    	*ll |= 0x0008000000000000;
+                }
+            }
 
 		    return result;
         }
@@ -620,15 +705,6 @@ double __dec2num(const decimal *d)
     		*i -= '0';
     	dec.exp += dec.sig.length - 1;
     	exponent = dec.exp;
-
-        {
-    	    decimal max;
-
-    	    __str2dec(&max, "179769313486231580793728714053034151", 308); 
-    	    if (__less_dec(&max, &dec)){
-                return copysign((double)INFINITY, d->sign == 0 ? 1.0 : -1.0);
-            }
-        }
 
     	i = dec.sig.text;
     	first_guess = *i++;
@@ -662,65 +738,83 @@ double __dec2num(const decimal *d)
 
     	first_guess = ldexp(first_guess, exponent);
 
-    	if (fpclassify(first_guess) == 2){
-            first_guess = DBL_MAX;
-        }
+    	if (isinf(first_guess)){
+		    decimal max;
+		    __str2dec(&max, "179769313486231580793729011405303420", 308);
+		    if (__less_dec(&max, &dec))
+		    	goto done;
+		    first_guess = DBL_MAX;
+	    }
     
         {
-    	    decimal feedback1, feedback2, difflow, diffhigh;
-    	    double next_guess;
-    	    d_int* ull = (d_int*)&next_guess;
-    	    int guessed_low = 0;
-
-    	    __num2dec_internal(&feedback1, first_guess);
-
-    	    if (__equals_dec(&feedback1, &dec)){
-                goto done;
+            decimal feedback1;
+            
+            __num2dec_internal(&feedback1, first_guess);
+	       
+            if (__equals_dec(&feedback1, &dec)){
+	        	goto done;
             }
-    	    if (__less_dec(&feedback1, &dec)){
-                guessed_low = 1;
-            }
+	        
+            if (__less_dec(&feedback1, &dec)){   
 
-    	    next_guess = first_guess; 
+    	        decimal feedback2, difflow, diffhigh;
+    	        double next_guess = first_guess;
+    	        u64* ull = (u64*)&next_guess;
+    	        ++*ull;
 
-    	    while (1){
-    	    	if (guessed_low){
-    	    		++*ull;
-    	    		if (fpclassify(next_guess) == 2){
-                        goto done;
+                if (isinf(next_guess)){
+			       first_guess = next_guess;
+			       goto done;
+		        }
+
+    	        __num2dec_internal(&feedback2, next_guess);
+
+    	        while (__less_dec(&feedback2, &dec)){
+		        	feedback1 = feedback2;
+		        	first_guess = next_guess;
+		        	++*ull;
+		        	if (isinf(next_guess)){
+		        		first_guess = next_guess;
+		        		goto done;
+		        	}
+		        	__num2dec_internal(&feedback2, next_guess);
+		        }
+
+		        __minus_dec(&difflow, &dec, &feedback1);
+		        __minus_dec(&diffhigh, &feedback2, &dec);
+
+    	        if (__equals_dec(&difflow, &diffhigh)){
+    	        	if (*(u64*)&first_guess & 1){
+                        first_guess = next_guess;
                     }
-    	    	} else {
-                    --*ull;
-                }
-
-    	    	__num2dec_internal(&feedback2, next_guess);
-    	    	if (guessed_low && !__less_dec(&feedback2, &dec)){
-                    break;
-                }
-    	    	else if (!guessed_low && !__less_dec(&dec, &feedback2)){
-    	    		difflow = feedback1;
-    	    		feedback1 = feedback2;
-    	    		feedback2 =  difflow;
-                    {
-    	    		    double temp = first_guess;
-    	    		    first_guess = next_guess;
-    	    		    next_guess = temp;
-                    }
-    	    		break;
-    	    	}
-    	    	feedback1 = feedback2;
-    	    	first_guess = next_guess;
-    	    }
-
-    	    __minus_dec(&difflow, &dec, &feedback1);
-    	    __minus_dec(&diffhigh, &feedback2, &dec);
-
-    	    if (__equals_dec(&difflow, &diffhigh)){
-    	    	if (*(u64*)&first_guess & 1){
+    	        } else if (!__less_dec(&difflow, &diffhigh)){
                     first_guess = next_guess;
                 }
-    	    } else if (!__less_dec(&difflow, &diffhigh)){
-                first_guess = next_guess;
+            }else{
+                decimal feedback2, difflow, diffhigh;
+		        double next_guess = first_guess;
+		        unsigned long long *ull = (unsigned long long*)&next_guess;
+		        --*ull;
+
+		        __num2dec_internal(&feedback2, next_guess);
+
+		        while (__less_dec(&dec, &feedback2)){
+		        	feedback1 = feedback2;
+		        	first_guess = next_guess;
+		        	--*ull;
+		        	__num2dec_internal(&feedback2, next_guess);
+		        }
+
+		        __minus_dec(&difflow, &dec, &feedback2);
+		        __minus_dec(&diffhigh, &feedback1, &dec);
+		       
+                if (__equals_dec(&difflow, &diffhigh)){
+		        	if (*(unsigned long long*)&first_guess & 1){
+		        		first_guess = next_guess;
+                    }
+		        }else if (__less_dec(&difflow, &diffhigh)){
+		        	first_guess = next_guess;
+                }
             }
         }
     done:
