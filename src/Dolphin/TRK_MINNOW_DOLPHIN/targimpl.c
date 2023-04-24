@@ -2481,7 +2481,6 @@ void __TRK_get_DBAT3L(void)
 	// UNUSED FUNCTION
 }
 
-
 /*
  * --INFO--
  * Address:	........

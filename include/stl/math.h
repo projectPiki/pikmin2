@@ -20,7 +20,7 @@ extern "C" {
 
 #define SQUARE(v) ((v) * (v))
 
-#define signbit(x)((int)(__HI(x)&0x80000000))
+#define signbit(x) ((int)(__HI(x) & 0x80000000))
 
 #define TAU     6.2831855f
 #define PI      3.1415927f

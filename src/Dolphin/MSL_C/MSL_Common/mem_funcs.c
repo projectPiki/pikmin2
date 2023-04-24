@@ -1,9 +1,9 @@
 #include "PowerPC_EABI_Support/MSL_C/MSL_Common/mem_funcs.h"
 
-#define srcCharPtr	((unsigned char*)pSrc)
-#define destCharPtr	((unsigned char*)pDest)
-#define srcLongPtr	((unsigned long*)pSrc)
-#define destLongPtr	((unsigned long*)pDest)
+#define srcCharPtr  ((unsigned char*)pSrc)
+#define destCharPtr ((unsigned char*)pDest)
+#define srcLongPtr  ((unsigned long*)pSrc)
+#define destLongPtr ((unsigned long*)pDest)
 
 /*
  * --INFO--
@@ -30,55 +30,56 @@ void __move_mem(void)
  * Address:	800C736C
  * Size:	0000BC
  */
-void __copy_longs_aligned(void *pDest, const void *pSrc, unsigned long len) {
-    unsigned long i = (-(unsigned long)pDest) & 3;
-    srcCharPtr = ((unsigned char *)pSrc) - 1;
-    destCharPtr = ((unsigned char *)pDest) - 1;
-    
-    if (i != 0) {
-        len -= i;
+void __copy_longs_aligned(void* pDest, const void* pSrc, unsigned long len)
+{
+	unsigned long i = (-(unsigned long)pDest) & 3;
+	srcCharPtr      = ((unsigned char*)pSrc) - 1;
+	destCharPtr     = ((unsigned char*)pDest) - 1;
 
-        do {
-            *++(destCharPtr) = *++(srcCharPtr);
-        } while (--i);
-    }
+	if (i != 0) {
+		len -= i;
 
-    srcLongPtr = ((unsigned long *)(srcCharPtr + 1)) - 1;
-    destLongPtr = ((unsigned long *)(destCharPtr + 1)) - 1;
+		do {
+			*++(destCharPtr) = *++(srcCharPtr);
+		} while (--i);
+	}
 
-    i = len >> 5;
+	srcLongPtr  = ((unsigned long*)(srcCharPtr + 1)) - 1;
+	destLongPtr = ((unsigned long*)(destCharPtr + 1)) - 1;
 
-    if (i != 0) {
-        do {
-            *++(destLongPtr) = *++(srcLongPtr);
-            *++(destLongPtr) = *++(srcLongPtr);
-            *++(destLongPtr) = *++(srcLongPtr);
-            *++(destLongPtr) = *++(srcLongPtr);
-            *++(destLongPtr) = *++(srcLongPtr);
-            *++(destLongPtr) = *++(srcLongPtr);
-            *++(destLongPtr) = *++(srcLongPtr);
-            *++(destLongPtr) = *++(srcLongPtr);
-        } while (--i);
-    }
+	i = len >> 5;
 
-    i = (len & 31) >> 2;
+	if (i != 0) {
+		do {
+			*++(destLongPtr) = *++(srcLongPtr);
+			*++(destLongPtr) = *++(srcLongPtr);
+			*++(destLongPtr) = *++(srcLongPtr);
+			*++(destLongPtr) = *++(srcLongPtr);
+			*++(destLongPtr) = *++(srcLongPtr);
+			*++(destLongPtr) = *++(srcLongPtr);
+			*++(destLongPtr) = *++(srcLongPtr);
+			*++(destLongPtr) = *++(srcLongPtr);
+		} while (--i);
+	}
 
-    if (i != 0) {
-        do {
-            *++(destLongPtr) = *++(srcLongPtr);
-        } while (--i);
-    }
+	i = (len & 31) >> 2;
 
-    srcCharPtr = ((unsigned char *) (srcLongPtr + 1)) - 1;
-	destCharPtr = ((unsigned char *) (destLongPtr + 1)) - 1;
+	if (i != 0) {
+		do {
+			*++(destLongPtr) = *++(srcLongPtr);
+		} while (--i);
+	}
 
-    len &= 3;
-	
+	srcCharPtr  = ((unsigned char*)(srcLongPtr + 1)) - 1;
+	destCharPtr = ((unsigned char*)(destLongPtr + 1)) - 1;
+
+	len &= 3;
+
 	if (len != 0) {
 		do
 			*++(destCharPtr) = *++(srcCharPtr);
 		while (--len);
-    }
+	}
 }
 
 /*
@@ -86,50 +87,51 @@ void __copy_longs_aligned(void *pDest, const void *pSrc, unsigned long len) {
  * Address:	800C72C4
  * Size:	0000A8
  */
-void __copy_longs_rev_aligned(void *pDest, const void *pSrc, unsigned long len) {
-    unsigned long i;
-    srcCharPtr = ((unsigned char *)pSrc) + len;
-    destCharPtr = ((unsigned char *)pDest) + len;
-    i = ((unsigned long) destCharPtr) & 3;
+void __copy_longs_rev_aligned(void* pDest, const void* pSrc, unsigned long len)
+{
+	unsigned long i;
+	srcCharPtr  = ((unsigned char*)pSrc) + len;
+	destCharPtr = ((unsigned char*)pDest) + len;
+	i           = ((unsigned long)destCharPtr) & 3;
 
-    if (i != 0) {
-        len -= i;
+	if (i != 0) {
+		len -= i;
 
-        do {
-            *--destCharPtr = *--srcCharPtr;
-        } while(--i);
-    }
+		do {
+			*--destCharPtr = *--srcCharPtr;
+		} while (--i);
+	}
 
-    i = len >> 5;
+	i = len >> 5;
 
-    if (i != 0) {
-        do {
-            *--destLongPtr = *--srcLongPtr;
-            *--destLongPtr = *--srcLongPtr;
-            *--destLongPtr = *--srcLongPtr;
-            *--destLongPtr = *--srcLongPtr;
-            *--destLongPtr = *--srcLongPtr;
-            *--destLongPtr = *--srcLongPtr;
-            *--destLongPtr = *--srcLongPtr;
-            *--destLongPtr = *--srcLongPtr;
-        } while(--i);
-    }
+	if (i != 0) {
+		do {
+			*--destLongPtr = *--srcLongPtr;
+			*--destLongPtr = *--srcLongPtr;
+			*--destLongPtr = *--srcLongPtr;
+			*--destLongPtr = *--srcLongPtr;
+			*--destLongPtr = *--srcLongPtr;
+			*--destLongPtr = *--srcLongPtr;
+			*--destLongPtr = *--srcLongPtr;
+			*--destLongPtr = *--srcLongPtr;
+		} while (--i);
+	}
 
-    i = (len & 31) >> 2;
+	i = (len & 31) >> 2;
 
-    if (i != 0) {
-        do {
-            *--destLongPtr = *--srcLongPtr;
-        } while(--i);
-    }
+	if (i != 0) {
+		do {
+			*--destLongPtr = *--srcLongPtr;
+		} while (--i);
+	}
 
-    len &= 3;
+	len &= 3;
 
-    if (len != 0) {
-        do {
-            *--destCharPtr = *--srcCharPtr;
-        } while(--len);
-    }
+	if (len != 0) {
+		do {
+			*--destCharPtr = *--srcCharPtr;
+		} while (--len);
+	}
 }
 
 /*
@@ -137,57 +139,58 @@ void __copy_longs_rev_aligned(void *pDest, const void *pSrc, unsigned long len) 
  * Address:	800C7204
  * Size:	0000C0
  */
-void __copy_longs_unaligned(void *pDest, const void *pSrc, unsigned long len) {
-    unsigned long i, v1, v2;
-    unsigned int src, ls, rs;
+void __copy_longs_unaligned(void* pDest, const void* pSrc, unsigned long len)
+{
+	unsigned long i, v1, v2;
+	unsigned int src, ls, rs;
 
-    i = (-(unsigned long)pDest) & 3;
-    srcCharPtr = ((unsigned char*)pSrc) - 1;
-    destCharPtr = ((unsigned char*)pDest) - 1;
+	i           = (-(unsigned long)pDest) & 3;
+	srcCharPtr  = ((unsigned char*)pSrc) - 1;
+	destCharPtr = ((unsigned char*)pDest) - 1;
 
-    if (i != 0) {
-        len -= i;
+	if (i != 0) {
+		len -= i;
 
-        do {
-            *++destCharPtr = *++srcCharPtr;
-        } while(--i);
-    }
+		do {
+			*++destCharPtr = *++srcCharPtr;
+		} while (--i);
+	}
 
-    src = ((unsigned int)(srcCharPtr + 1)) & 3;
-    ls = src << 3;
-    rs = 32 - ls;
+	src = ((unsigned int)(srcCharPtr + 1)) & 3;
+	ls  = src << 3;
+	rs  = 32 - ls;
 
-    srcCharPtr -= src;
+	srcCharPtr -= src;
 
-    srcLongPtr = ((unsigned long*)(srcCharPtr + 1)) - 1;
-    destLongPtr = ((unsigned long*)(destCharPtr + 1)) - 1;
+	srcLongPtr  = ((unsigned long*)(srcCharPtr + 1)) - 1;
+	destLongPtr = ((unsigned long*)(destCharPtr + 1)) - 1;
 
-    i = len >> 3;
-    v1 = *++srcLongPtr;
+	i  = len >> 3;
+	v1 = *++srcLongPtr;
 
-    do {
-        v2 = *++srcLongPtr;
-        *++destLongPtr = (v1 << ls) | (v2 >> rs);
-        v1 = *++srcLongPtr;
-        *++destLongPtr = (v2 << ls) | (v1 >> rs);
-    } while(--i);
+	do {
+		v2             = *++srcLongPtr;
+		*++destLongPtr = (v1 << ls) | (v2 >> rs);
+		v1             = *++srcLongPtr;
+		*++destLongPtr = (v2 << ls) | (v1 >> rs);
+	} while (--i);
 
-    if (len & 4) {
-        v2 = *++srcLongPtr;
-        *++destLongPtr = (v1 << ls) | (v2 >> rs);
-    }
+	if (len & 4) {
+		v2             = *++srcLongPtr;
+		*++destLongPtr = (v1 << ls) | (v2 >> rs);
+	}
 
-    srcCharPtr = ((unsigned char *)(srcLongPtr + 1)) - 1;
-    destCharPtr = ((unsigned char *)(destLongPtr + 1)) - 1;
+	srcCharPtr  = ((unsigned char*)(srcLongPtr + 1)) - 1;
+	destCharPtr = ((unsigned char*)(destLongPtr + 1)) - 1;
 
-    len &= 3;
+	len &= 3;
 
-    if (len != 0) {
-        srcCharPtr -= 4 - src;
-        do {
-            *++destCharPtr = *++srcCharPtr;
-        } while(--len);
-    }
+	if (len != 0) {
+		srcCharPtr -= 4 - src;
+		do {
+			*++destCharPtr = *++srcCharPtr;
+		} while (--len);
+	}
 }
 
 /*
@@ -195,49 +198,50 @@ void __copy_longs_unaligned(void *pDest, const void *pSrc, unsigned long len) {
  * Address:	800C7158
  * Size:	0000AC
  */
-void __copy_longs_rev_unaligned(void *pDest, const void *pSrc, unsigned long len) {
-    unsigned long i, v1, v2;
-    unsigned int src, ls, rs;
+void __copy_longs_rev_unaligned(void* pDest, const void* pSrc, unsigned long len)
+{
+	unsigned long i, v1, v2;
+	unsigned int src, ls, rs;
 
-    srcCharPtr = ((unsigned char*)pSrc) + len;
-    destCharPtr = ((unsigned char*)pDest) + len;
-    i = ((unsigned long)pDest) & 3;
+	srcCharPtr  = ((unsigned char*)pSrc) + len;
+	destCharPtr = ((unsigned char*)pDest) + len;
+	i           = ((unsigned long)pDest) & 3;
 
-    if (i != 0) {
-        len -= i;
+	if (i != 0) {
+		len -= i;
 
-        do {
-            *--destCharPtr = *--srcCharPtr;
-        } while(--i);
-    }
+		do {
+			*--destCharPtr = *--srcCharPtr;
+		} while (--i);
+	}
 
-    src = ((unsigned int)(srcCharPtr)) & 3;
-    ls = src << 3;
-    rs = 32 - ls;
+	src = ((unsigned int)(srcCharPtr)) & 3;
+	ls  = src << 3;
+	rs  = 32 - ls;
 
-    srcCharPtr += 4 - src;
+	srcCharPtr += 4 - src;
 
-    i = len >> 3;
-    v1 = *--srcLongPtr;
+	i  = len >> 3;
+	v1 = *--srcLongPtr;
 
-    do {
-        v2 = *--srcLongPtr;
-        *--destLongPtr = (v2 << ls) | (v1 >> rs);
-        v1 = *--srcLongPtr;
-        *--destLongPtr = (v1 << ls) | (v2 >> rs);
-    } while(--i);
+	do {
+		v2             = *--srcLongPtr;
+		*--destLongPtr = (v2 << ls) | (v1 >> rs);
+		v1             = *--srcLongPtr;
+		*--destLongPtr = (v1 << ls) | (v2 >> rs);
+	} while (--i);
 
-    if (len & 4) {
-        v2 = *--srcLongPtr;
-        *--destLongPtr = (v2 << ls) | (v1 >> rs);
-    }
+	if (len & 4) {
+		v2             = *--srcLongPtr;
+		*--destLongPtr = (v2 << ls) | (v1 >> rs);
+	}
 
-    len &= 3;
+	len &= 3;
 
-    if (len != 0) {
-        srcCharPtr += src;
-        do {
-            *--destCharPtr = *--srcCharPtr;
-        } while(--len);
-    }
+	if (len != 0) {
+		srcCharPtr += src;
+		do {
+			*--destCharPtr = *--srcCharPtr;
+		} while (--len);
+	}
 }

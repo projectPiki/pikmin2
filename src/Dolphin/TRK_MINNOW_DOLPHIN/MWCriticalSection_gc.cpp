@@ -34,5 +34,4 @@ void MWTerminateCriticalSection()
 {
 	// UNUSED FUNCTION
 }
-
 };

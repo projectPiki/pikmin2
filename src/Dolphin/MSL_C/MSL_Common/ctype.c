@@ -1,29 +1,26 @@
 #include "ctype.h"
 #include "types.h"
 
+#define octrl 0x01
+#define omotn 0x02
+#define ospac 0x04
+#define opunc 0x08
+#define odigi 0x10
+#define ohexd 0x20
+#define olowc 0x40
+#define ouppc 0x80
+#define odhex ohexd | odigi
+#define ouhex ohexd | ouppc
+#define olhex ohexd | olowc
 
-#define octrl	0x01
-#define omotn	0x02
-#define ospac	0x04
-#define opunc	0x08
-#define odigi	0x10
-#define ohexd	0x20
-#define olowc	0x40
-#define ouppc	0x80
-#define odhex	ohexd | odigi
-#define ouhex	ohexd | ouppc
-#define olhex	ohexd | olowc
-
-unsigned char __ctype_map[256] = {
-	octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, omotn, omotn, omotn, omotn, omotn, octrl, octrl,
-	octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl,
-	ospac, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc,
-	odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex, opunc, opunc, opunc, opunc, opunc, opunc,
-	opunc, ouhex, ouhex, ouhex, ouhex, ouhex, ouhex, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc,
-	ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, opunc, opunc, opunc, opunc, opunc,
-	opunc, olhex, olhex, olhex, olhex, olhex, olhex, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc,
-	olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, opunc, opunc, opunc, opunc, octrl
-};
+unsigned char __ctype_map[256]
+    = { octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, omotn, omotn, omotn, omotn, omotn, octrl, octrl, octrl, octrl, octrl,
+	    octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, octrl, ospac, opunc, opunc, opunc, opunc, opunc,
+	    opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, opunc, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex, odhex,
+	    odhex, opunc, opunc, opunc, opunc, opunc, opunc, opunc, ouhex, ouhex, ouhex, ouhex, ouhex, ouhex, ouppc, ouppc, ouppc, ouppc, ouppc,
+	    ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, ouppc, opunc, opunc, opunc, opunc,
+	    opunc, opunc, olhex, olhex, olhex, olhex, olhex, olhex, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc,
+	    olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, olowc, opunc, opunc, opunc, opunc, octrl };
 
 unsigned char __lower_map[256] = {
 	0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15,
@@ -60,7 +57,7 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-//void isalnum(void)
+// void isalnum(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -70,7 +67,7 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-//void isalpha(void)
+// void isalpha(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -80,7 +77,7 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-//void iscntrl(void)
+// void iscntrl(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -100,7 +97,7 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-//void isgraph(void)
+// void isgraph(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -121,7 +118,7 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-//void isprint(void)
+// void isprint(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -131,7 +128,7 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-//void ispunct(void)
+// void ispunct(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -141,7 +138,7 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-//void isspace(void)
+// void isspace(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -151,7 +148,7 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-//void isupper(void)
+// void isupper(void)
 //{
 //	// UNUSED FUNCTION
 //}
@@ -161,7 +158,7 @@ unsigned char __upper_map[256] = {
  * Address:	........
  * Size:	000018
  */
-//BOOL isxdigit(unsigned char c)
+// BOOL isxdigit(unsigned char c)
 //{
 //	// UNUSED FUNCTION
 //	return (__ctype_map[c] & ohexd) != 0;
@@ -172,17 +169,14 @@ unsigned char __upper_map[256] = {
  * Address:	800C6264
  * Size:	000024
  */
-int tolower(int __c)
-{
-	return _tolower(__c);
-}
+int tolower(int __c) { return _tolower(__c); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000024
  */
-//int toupper(int __c)
+// int toupper(int __c)
 //{
 //	// UNUSED FUNCTION
 //	{
@@ -198,7 +192,7 @@ int tolower(int __c)
  * Address:	........
  * Size:	000020
  */
-//void iswblank(void)
+// void iswblank(void)
 //{
 //	// UNUSED FUNCTION
 //}

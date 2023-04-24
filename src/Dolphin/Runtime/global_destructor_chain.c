@@ -18,7 +18,6 @@ void __register_global_object(void)
 	*/
 }
 
-
 /*
  * --INFO--
  * Address:	800C16B8
