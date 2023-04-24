@@ -39,6 +39,7 @@ enum StateID {
 	HANACHIRASHI_FlyFlick    = 10,
 	HANACHIRASHI_GroundFlick = 11,
 	HANACHIRASHI_Laugh       = 12,
+	HANACHIRASHI_StateCount, // 13
 };
 
 struct Obj : public EnemyBase {

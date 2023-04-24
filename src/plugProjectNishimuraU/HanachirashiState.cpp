@@ -1,4 +1,7 @@
 #include "Game/Entities/Hanachirashi.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Game/MapMgr.h"
 
 namespace Game {
 namespace Hanachirashi {
@@ -9,322 +12,19 @@ namespace Hanachirashi {
  */
 void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_80489078@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	addi     r30, r4, lbl_80489078@l
-	li       r4, 0xd
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F298
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	addi     r5, r2, lbl_8051BD08@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game12Hanachirashi9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F298:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F2EC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BD10@sda21
-	addi     r0, r3, __vt__Q34Game12Hanachirashi9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F2EC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F340
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi9StateMove@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BD18@sda21
-	addi     r0, r3, __vt__Q34Game12Hanachirashi9StateMove@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F340:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F394
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi10StateChase@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BD20@sda21
-	addi     r0, r3, __vt__Q34Game12Hanachirashi10StateChase@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F394:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F3E8
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi16StateChaseInside@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x18
-	addi     r0, r3, __vt__Q34Game12Hanachirashi16StateChaseInside@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F3E8:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F43C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi11StateAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BD28@sda21
-	addi     r0, r3, __vt__Q34Game12Hanachirashi11StateAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F43C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F490
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi9StateFall@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BD30@sda21
-	addi     r0, r3, __vt__Q34Game12Hanachirashi9StateFall@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F490:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F4E4
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi9StateLand@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BD38@sda21
-	addi     r0, r3, __vt__Q34Game12Hanachirashi9StateLand@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F4E4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F538
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi11StateGround@ha
-	stw      r0, 0(r4)
-	li       r0, 8
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BD40@sda21
-	addi     r0, r3, __vt__Q34Game12Hanachirashi11StateGround@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F538:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F58C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi12StateTakeOff@ha
-	stw      r0, 0(r4)
-	li       r0, 9
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BD48@sda21
-	addi     r0, r3, __vt__Q34Game12Hanachirashi12StateTakeOff@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F58C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F5E0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi13StateFlyFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 0xa
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x24
-	addi     r0, r3, __vt__Q34Game12Hanachirashi13StateFlyFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F5E0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F634
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi16StateGroundFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 0xb
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x30
-	addi     r0, r3, __vt__Q34Game12Hanachirashi16StateGroundFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F634:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8029F688
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12Hanachirashi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12Hanachirashi10StateLaugh@ha
-	stw      r0, 0(r4)
-	li       r0, 0xc
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12Hanachirashi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BD50@sda21
-	addi     r0, r3, __vt__Q34Game12Hanachirashi10StateLaugh@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8029F688:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(HANACHIRASHI_StateCount);
+	registerState(new StateDead);
+	registerState(new StateWait);
+	registerState(new StateMove);
+	registerState(new StateChase);
+	registerState(new StateChaseInside);
+	registerState(new StateAttack);
+	registerState(new StateFall);
+	registerState(new StateLand);
+	registerState(new StateGround);
+	registerState(new StateTakeOff);
+	registerState(new StateFlyFlick);
+	registerState(new StateGroundFlick);
 }
 
 /*
@@ -334,55 +34,20 @@ lbl_8029F688:
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1d, 0x1b
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8029F71C
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	b        lbl_8029F72C
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->disableEvent(0, EB_IsCullable);
+	hanachirashi->disableEvent(0, EB_IsDamageAnimAllowed);
+	hanachirashi->mTargetVelocity = Vector3f(0.0f);
+	hanachirashi->deathProcedure();
 
-lbl_8029F71C:
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	if (hanachirashi->isFlying()) {
+		hanachirashi->startMotion(0, nullptr);
+	} else {
+		hanachirashi->startMotion(1, nullptr);
+	}
 
-lbl_8029F72C:
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r31)
-	bl       startDeadEffect__Q34Game12Hanachirashi3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->startDeadEffect();
 }
 
 /*
@@ -392,60 +57,22 @@ lbl_8029F72C:
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	bne      lbl_8029F798
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051BD5C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8029F7B4
-	mr       r3, r31
-	bl       subShadowRadius__Q34Game12Hanachirashi3ObjFv
-	b        lbl_8029F7B4
+	Obj* hanachirashi = OBJ(enemy);
+	if (!hanachirashi->getCurrAnimIndex()) {
+		if (hanachirashi->getMotionFrame() > 45.0f) {
+			hanachirashi->subShadowRadius();
+		}
+	}
 
-lbl_8029F798:
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051BD60@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8029F7B4
-	mr       r3, r31
-	bl       subShadowRadius__Q34Game12Hanachirashi3ObjFv
+	else if (hanachirashi->getMotionFrame() > 45.0f) {
+		hanachirashi->subShadowRadius();
+	}
 
-lbl_8029F7B4:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8029F7F8
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8029F7F8
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x264(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       finishWindEffect__Q34Game12Hanachirashi3ObjFv
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_8029F7F8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (hanachirashi->mCurAnim->mIsPlaying && hanachirashi->mCurAnim->mType == KEYEVENT_END) {
+		hanachirashi->throwupItem();
+		hanachirashi->finishWindEffect();
+		hanachirashi->kill(nullptr);
+	}
 }
 
 /*
@@ -462,29 +89,12 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	li       r5, 0
-	stfs     f0, 0x2c4(r4)
-	li       r4, 5
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	stw      r0, 0x230(r3)
-	lwz      r0, 0x1e0(r3)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi             = OBJ(enemy);
+	hanachirashi->_2C4            = 0.0f;
+	hanachirashi->mTargetVelocity = Vector3f(0.0f);
+	hanachirashi->mTargetCreature = nullptr;
+	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->startMotion(5, nullptr);
 }
 
 /*
@@ -494,96 +104,34 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       setHeightVelocity__Q34Game12Hanachirashi3ObjFv
-	mr       r3, r31
-	bl       getSearchedPikmin__Q34Game12Hanachirashi3ObjFv
-	cmplwi   r3, 0
-	bne      lbl_8029F8A0
-	mr       r3, r31
-	bl       isAttackable__Q34Game12Hanachirashi3ObjFv
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->setHeightVelocity();
 
-lbl_8029F8A0:
-	cmplwi   r3, 0
-	beq      lbl_8029F8D0
-	stw      r3, 0x230(r31)
-	mr       r3, r30
-	mr       r4, r31
-	li       r5, 3
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8029F904
+	Creature* target = hanachirashi->getSearchedPikmin();
+	if (!target) {
+		target = hanachirashi->isAttackable();
+	}
 
-lbl_8029F8D0:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x86c(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8029F904
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	if (target) {
+		hanachirashi->mTargetCreature = target;
+		transit(hanachirashi, HANACHIRASHI_Chase, nullptr);
 
-lbl_8029F904:
-	lwz      r4, sys@sda21(r13)
-	mr       r3, r31
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x54(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	bl       getFlyingNextState__Q34Game12Hanachirashi3ObjFv
-	or.      r5, r3, r3
-	blt      lbl_8029F948
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	mr       r4, r31
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8029F984
+	} else if (hanachirashi->_2C4 > CG_PROPERPARMS(hanachirashi).mFp03.mValue) {
+		transit(hanachirashi, HANACHIRASHI_Move, nullptr);
+	}
 
-lbl_8029F948:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8029F984
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8029F984
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	hanachirashi->_2C4 += sys->mDeltaTime;
 
-lbl_8029F984:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	StateID nextState = hanachirashi->getFlyingNextState();
+
+	if (nextState >= 0) {
+		transit(hanachirashi, nextState, nullptr);
+		return;
+	}
+
+	if (hanachirashi->mCurAnim->mIsPlaying && hanachirashi->mCurAnim->mType == KEYEVENT_END) {
+		transit(hanachirashi, HANACHIRASHI_Wait, nullptr);
+	}
 }
 
 /*
@@ -600,27 +148,11 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setRandTarget__Q34Game12Hanachirashi3ObjFv
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0x2c4(r31)
-	stw      r0, 0x230(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->setRandTarget();
+	hanachirashi->_2C4            = 0.0f;
+	hanachirashi->mTargetCreature = nullptr;
+	hanachirashi->enableEvent(0, EB_IsFlying);
 }
 
 /*
@@ -630,6 +162,39 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->setHeightVelocity();
+
+	// this bit is being weird
+	Vector3f pos       = hanachirashi->getPosition();
+	f32 sqrDist        = sqrDistanceXZ(pos, hanachirashi->mTargetPosition);
+	Vector3f targetPos = hanachirashi->mTargetPosition;
+
+	Creature* target = hanachirashi->getSearchedPikmin();
+	if (target) {
+		hanachirashi->mTargetCreature = target;
+		transit(hanachirashi, HANACHIRASHI_Chase, nullptr);
+	} else if (sqrDist < 10000.0f || hanachirashi->_2C4 > 7.5f) {
+		hanachirashi->mTargetVelocity = Vector3f(0.0f);
+		hanachirashi->finishMotion();
+	} else {
+		EnemyFunc::walkToTarget(hanachirashi, targetPos, CG_PARMS(hanachirashi)->mGeneral.mMoveSpeed.mValue,
+		                        CG_PARMS(hanachirashi)->mGeneral.mRotationalAccel.mValue,
+		                        CG_PARMS(hanachirashi)->mGeneral.mRotationalSpeed.mValue);
+	}
+
+	hanachirashi->_2C4 += sys->mDeltaTime;
+
+	StateID nextState = hanachirashi->getFlyingNextState();
+
+	if (nextState >= 0) {
+		transit(hanachirashi, nextState, nullptr);
+		return;
+	}
+
+	if (hanachirashi->mCurAnim->mIsPlaying && hanachirashi->mCurAnim->mType == KEYEVENT_END) {
+		transit(hanachirashi, HANACHIRASHI_Wait, nullptr);
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -764,20 +329,8 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->enableEvent(0, EB_IsFlying);
+	enemy->setEmotionExcitement();
 }
 
 /*
@@ -787,6 +340,37 @@ void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateChase::exec(EnemyBase* enemy)
 {
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->setHeightVelocity();
+
+	if (!hanachirashi->isFinishMotion()) {
+		Creature* target = hanachirashi->mTargetCreature;
+		if (target) {
+			// need to decomp this bit
+		}
+
+		Creature* attackTarget = hanachirashi->isAttackable();
+		if (attackTarget) {
+			hanachirashi->mTargetCreature = attackTarget;
+			hanachirashi->mTargetVelocity = Vector3f(0.0f);
+			hanachirashi->finishMotion();
+		}
+	}
+
+	StateID nextState = hanachirashi->getFlyingNextState();
+
+	if (nextState >= 0) {
+		transit(hanachirashi, nextState, nullptr);
+		return;
+	}
+
+	if (hanachirashi->mCurAnim->mIsPlaying && hanachirashi->mCurAnim->mType == KEYEVENT_END) {
+		if (hanachirashi->mTargetCreature) {
+			transit(hanachirashi, HANACHIRASHI_Attack, nullptr);
+		} else {
+			transit(hanachirashi, HANACHIRASHI_Wait, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0
@@ -1162,20 +746,7 @@ lbl_802A0084:
  * Address:	802A00F0
  * Size:	000024
  */
-void StateChase::cleanup(EnemyBase* enemy)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateChase::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
@@ -1530,20 +1101,7 @@ lbl_802A0564:
  * Address:	802A05B4
  * Size:	000024
  */
-void StateChaseInside::cleanup(EnemyBase* enemy)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateChaseInside::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
@@ -1552,44 +1110,17 @@ void StateChaseInside::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r4, 0x1e0(r4)
-	rlwinm   r4, r4, 0, 0x1a, 0x18
-	stw      r4, 0x1e0(r31)
-	stw      r0, 0x230(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 9
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	li       r3, -1
-	li       r0, 0
-	stw      r3, 0x2c0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stb      r0, 0x310(r31)
-	stfs     f0, 0x30c(r31)
-	bl       createSuckEffect__Q34Game12Hanachirashi3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->disableEvent(0, EB_IsCullable);
+	hanachirashi->mTargetCreature = nullptr;
+	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->mTargetVelocity = Vector3f(0.0f);
+	hanachirashi->setEmotionExcitement();
+	hanachirashi->startMotion(9, nullptr);
+	hanachirashi->_2C0 = -1;
+	hanachirashi->_310 = 0;
+	hanachirashi->_30C = 0.0f;
+	hanachirashi->createSuckEffect();
 }
 
 /*
@@ -1691,29 +1222,12 @@ lbl_802A076C:
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r4)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	li       r0, 0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stb      r0, 0x310(r31)
-	mr       r3, r31
-	stfs     f0, 0x30c(r31)
-	bl       finishWindEffect__Q34Game12Hanachirashi3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->enableEvent(0, EB_IsCullable);
+	hanachirashi->setEmotionCaution();
+	hanachirashi->_310 = 0;
+	hanachirashi->_30C = 0.0f;
+	hanachirashi->finishWindEffect();
 }
 
 /*
@@ -1723,34 +1237,13 @@ void StateAttack::cleanup(EnemyBase* enemy)
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c4(r4)
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 8
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi             = OBJ(enemy);
+	hanachirashi->_2C4            = 0.0f;
+	hanachirashi->mTargetCreature = nullptr;
+	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->mTargetVelocity = Vector3f(0.0f);
+	hanachirashi->setEmotionExcitement();
+	hanachirashi->startMotion(8, nullptr);
 }
 
 /*
@@ -1760,127 +1253,37 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r31, r4
-	mr       r30, r3
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A088C
-	mr       r3, r31
-	bl       setHeightVelocity__Q34Game12Hanachirashi3ObjFv
-	b        lbl_802A0920
+	Obj* hanachirashi = OBJ(enemy);
+	if (hanachirashi->isFlying()) {
+		hanachirashi->setHeightVelocity();
+	} else {
+		Vector3f pos = hanachirashi->getPosition();
+		Vector3f vel = hanachirashi->getVelocity();
 
-lbl_802A088C:
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	mr       r4, r31
-	lfs      f1, 0x18(r1)
-	addi     r3, r1, 8
-	lfs      f0, 0x1c(r1)
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x20
-	lfs      f31, 0xc(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x24(r1)
-	lfs      f0, lbl_8051BD84@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	blt      lbl_802A0910
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_802A0918
+		f32 fallSpeed = vel.y;
 
-lbl_802A0910:
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+		f32 heightDiff = pos.y - mapMgr->getMinY(pos);
+		if (heightDiff < 50.0f || fallSpeed > 0.0f) {
+			hanachirashi->finishMotion();
+		}
 
-lbl_802A0918:
-	mr       r3, r31
-	bl       addShadowOffset__Q34Game12Hanachirashi3ObjFv
+		hanachirashi->addShadowOffset();
+	}
 
-lbl_802A0920:
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, lbl_8051BD88@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802A093C
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r31)
+	if (hanachirashi->_2C4 > 0.75f) {
+		hanachirashi->disableEvent(0, EB_IsFlying);
+	}
 
-lbl_802A093C:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x2c4(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x2c4(r31)
-	lfs      f1, 0x200(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802A0988
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802A09C4
+	hanachirashi->_2C4 += sys->mDeltaTime;
 
-lbl_802A0988:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802A09C4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802A09C4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 7
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	if (hanachirashi->mHealth <= 0.0f) {
+		transit(hanachirashi, HANACHIRASHI_Dead, nullptr);
+		return;
+	}
 
-lbl_802A09C4:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (hanachirashi->mCurAnim->mIsPlaying && hanachirashi->mCurAnim->mType == KEYEVENT_END) {
+		transit(hanachirashi, HANACHIRASHI_Land, nullptr);
+	}
 }
 
 /*
@@ -1890,22 +1293,9 @@ lbl_802A09C4:
  */
 void StateFall::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setShadowOffsetMax__Q34Game12Hanachirashi3ObjFv
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->setShadowOffsetMax();
+	hanachirashi->setEmotionCaution();
 }
 
 /*
@@ -1999,20 +1389,7 @@ lbl_802A0AFC:
  * Address:	802A0B0C
  * Size:	000024
  */
-void StateLand::cleanup(EnemyBase* enemy)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateLand::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
@@ -2021,34 +1398,13 @@ void StateLand::cleanup(EnemyBase* enemy)
  */
 void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c4(r4)
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi             = OBJ(enemy);
+	hanachirashi->_2C4            = 0.0f;
+	hanachirashi->mTargetCreature = nullptr;
+	hanachirashi->disableEvent(0, EB_IsFlying);
+	hanachirashi->mTargetVelocity = Vector3f(0.0f);
+	hanachirashi->setEmotionExcitement();
+	hanachirashi->startMotion(4, nullptr);
 }
 
 /*
@@ -2058,87 +1414,25 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateGround::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x1f4(r4)
-	cmpwi    r0, 0
-	beq      lbl_802A0BD4
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x894(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802A0BDC
+	Obj* hanachirashi = OBJ(enemy);
+	if (hanachirashi->mStuckPikminCount == 0 || hanachirashi->_2C4 > CG_PROPERPARMS(hanachirashi).mFp10.mValue) {
+		hanachirashi->finishMotion();
+	}
 
-lbl_802A0BD4:
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	hanachirashi->_2C4 += sys->mDeltaTime;
 
-lbl_802A0BDC:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x2c4(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x2c4(r31)
-	lfs      f1, 0x200(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802A0C28
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802A0C94
+	if (hanachirashi->mHealth <= 0.0f) {
+		transit(hanachirashi, HANACHIRASHI_Dead, nullptr);
+		return;
+	}
 
-lbl_802A0C28:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802A0C94
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802A0C94
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 0
-	beq      lbl_802A0C74
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xb
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802A0C94
-
-lbl_802A0C74:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802A0C94:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (hanachirashi->mCurAnim->mIsPlaying && hanachirashi->mCurAnim->mType == KEYEVENT_END) {
+		if (hanachirashi->mStuckPikminCount) {
+			transit(hanachirashi, HANACHIRASHI_GroundFlick, nullptr);
+		} else {
+			transit(hanachirashi, HANACHIRASHI_TakeOff, nullptr);
+		}
+	}
 }
 
 /*
@@ -2146,20 +1440,7 @@ lbl_802A0C94:
  * Address:	802A0CAC
  * Size:	000024
  */
-void StateGround::cleanup(EnemyBase* enemy)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateGround::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
@@ -2168,33 +1449,12 @@ void StateGround::cleanup(EnemyBase* enemy)
  */
 void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 7
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi             = OBJ(enemy);
+	hanachirashi->mTargetCreature = nullptr;
+	hanachirashi->disableEvent(0, EB_IsFlying);
+	hanachirashi->mTargetVelocity = Vector3f(0.0f);
+	hanachirashi->setEmotionExcitement();
+	hanachirashi->startMotion(7, nullptr);
 }
 
 /*
@@ -2204,75 +1464,24 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTakeOff::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802A0D7C
-	mr       r3, r31
-	bl       setHeightVelocity__Q34Game12Hanachirashi3ObjFv
-	mr       r3, r31
-	bl       subShadowOffset__Q34Game12Hanachirashi3ObjFv
+	Obj* hanachirashi = OBJ(enemy);
+	if (hanachirashi->isFlying()) {
+		hanachirashi->setHeightVelocity();
+		hanachirashi->subShadowOffset();
+	}
 
-lbl_802A0D7C:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802A0DB4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802A0E08
+	if (hanachirashi->mHealth <= 0.0f) {
+		transit(hanachirashi, HANACHIRASHI_Dead, nullptr);
+		return;
+	}
 
-lbl_802A0DB4:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802A0E08
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802A0DE0
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r31)
-	b        lbl_802A0E08
-
-lbl_802A0DE0:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802A0E08
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802A0E08:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (hanachirashi->mCurAnim->mIsPlaying) {
+		if (hanachirashi->mCurAnim->mType == KEYEVENT_2) {
+			hanachirashi->enableEvent(0, EB_IsFlying);
+		} else if (hanachirashi->mCurAnim->mType == KEYEVENT_END) {
+			transit(hanachirashi, HANACHIRASHI_Wait, nullptr);
+		}
+	}
 }
 
 /*
@@ -2282,22 +1491,9 @@ lbl_802A0E08:
  */
 void StateTakeOff::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       resetShadowOffset__Q34Game12Hanachirashi3ObjFv
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->resetShadowOffset();
+	hanachirashi->setEmotionCaution();
 }
 
 /*
@@ -2307,33 +1503,12 @@ void StateTakeOff::cleanup(EnemyBase* enemy)
  */
 void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 2
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi             = OBJ(enemy);
+	hanachirashi->mTargetCreature = nullptr;
+	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->mTargetVelocity = Vector3f(0.0f);
+	hanachirashi->setEmotionExcitement();
+	hanachirashi->startMotion(2, nullptr);
 }
 
 /*
@@ -2343,72 +1518,25 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlyFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       setHeightVelocity__Q34Game12Hanachirashi3ObjFv
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802A0F18
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802A0F88
+	Obj* hanachirashi = OBJ(enemy);
+	hanachirashi->setHeightVelocity();
 
-lbl_802A0F18:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802A0F88
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802A0F60
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051BD8C@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stfs     f0, 0x20c(r31)
-	b        lbl_802A0F88
+	if (hanachirashi->mHealth <= 0.0f) {
+		transit(hanachirashi, HANACHIRASHI_Dead, nullptr);
+		return;
+	}
 
-lbl_802A0F60:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802A0F88
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	if (hanachirashi->mCurAnim->mIsPlaying) {
+		if (hanachirashi->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::flickStickPikmin(hanachirashi, CG_PARMS(hanachirashi)->mGeneral.mShakeRateMaybe.mValue,
+			                            CG_PARMS(hanachirashi)->mGeneral.mShakeKnockback.mValue,
+			                            CG_PARMS(hanachirashi)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			hanachirashi->mToFlick = 0.0f;
 
-lbl_802A0F88:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		} else if (hanachirashi->mCurAnim->mType == KEYEVENT_END) {
+			transit(hanachirashi, HANACHIRASHI_Wait, nullptr);
+		}
+	}
 }
 
 /*
@@ -2416,20 +1544,7 @@ lbl_802A0F88:
  * Address:	802A0FA0
  * Size:	000024
  */
-void StateFlyFlick::cleanup(EnemyBase* enemy)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateFlyFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
@@ -2438,33 +1553,12 @@ void StateFlyFlick::cleanup(EnemyBase* enemy)
  */
 void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi             = OBJ(enemy);
+	hanachirashi->mTargetCreature = nullptr;
+	hanachirashi->disableEvent(0, EB_IsFlying);
+	hanachirashi->mTargetVelocity = Vector3f(0.0f);
+	hanachirashi->setEmotionExcitement();
+	hanachirashi->startMotion(3, nullptr);
 }
 
 /*
@@ -2556,20 +1650,7 @@ lbl_802A1114:
  * Address:	802A1128
  * Size:	000024
  */
-void StateGroundFlick::cleanup(EnemyBase* enemy)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateGroundFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
@@ -2578,34 +1659,13 @@ void StateGroundFlick::cleanup(EnemyBase* enemy)
  */
 void StateLaugh::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BD58@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c4(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	stw      r0, 0x230(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 4
-	stw      r0, 0x1e0(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0xa
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* hanachirashi             = OBJ(enemy);
+	hanachirashi->_2C4            = 0.0f;
+	hanachirashi->mTargetVelocity = Vector3f(0.0f);
+	hanachirashi->mTargetCreature = nullptr;
+	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->setEmotionExcitement();
+	hanachirashi->startMotion(10, nullptr);
 }
 
 /*
@@ -2685,19 +1745,6 @@ lbl_802A1278:
  * Address:	802A1290
  * Size:	000024
  */
-void StateLaugh::cleanup(EnemyBase* enemy)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateLaugh::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 } // namespace Hanachirashi
 } // namespace Game
