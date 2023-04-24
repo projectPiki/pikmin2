@@ -5,6 +5,7 @@
 #include "Condition.h"
 
 // TODO: Verify virtual functions
+namespace Game {
 template <typename T>
 struct EnemyIterator {
 	inline EnemyIterator<T>(Container<T>* container, void* startIndex = 0, Condition<T>* condition = nullptr)
@@ -66,5 +67,5 @@ struct EnemyIterator {
 	Container<T>* mContainer; // _08
 	Condition<T>* mCondition; // _0C
 };
-
+} // namespace Game
 #endif
