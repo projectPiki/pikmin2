@@ -23,7 +23,7 @@ struct EnemyIterator {
 		} else {
 			mIndex = mContainer->getStart();
 			while (!isDone()) {
-				if (mCondition->satisfy(mContainer->get(mIndex))) {
+				if (mCondition->satisfy((T*)mContainer->getObject(mIndex))) {
 					return;
 				}
 				mIndex = mContainer->getNext(mIndex);
@@ -37,7 +37,7 @@ struct EnemyIterator {
 		} else {
 			mIndex = mContainer->getNext(mIndex);
 			while (!isDone()) {
-				if (mCondition->satisfy(mContainer->get(mIndex))) {
+				if (mCondition->satisfy((T*)mContainer->getObject(mIndex))) {
 					return;
 				}
 				mIndex = mContainer->getNext(mIndex);
@@ -50,7 +50,7 @@ struct EnemyIterator {
 	}
 	virtual T* operator*() // _14
 	{
-		return mContainer->get(mIndex);
+		return (T*)mContainer->getObject(mIndex);
 	}
 	///////////////// VTABLE END
 

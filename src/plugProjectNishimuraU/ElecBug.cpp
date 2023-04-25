@@ -735,7 +735,7 @@ bool Obj::startChildChargeState(Obj* beetle)
  */
 void Obj::createEffect()
 {
-	// _2DC = new efx::TDnkmsEffect;
+	mEffectObj = new efx::TDnkmsEffect;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -758,106 +758,27 @@ lbl_8027B890:
 	blr
 	*/
 }
+
 /*
  * --INFO--
  * Address:	8027BC50
  * Size:	000010
  */
-void Obj::setupEffect()
-{
-	/*
-	lwz      r4, 0x2dc(r3)
-	addi     r0, r3, 0x18c
-	stw      r0, 0(r4)
-	blr
-	*/
-}
+void Obj::setupEffect() { mEffectObj->mPosition = &mPosition; }
 
 /*
  * --INFO--
  * Address:	8027BC60
  * Size:	000040
  */
-void Obj::startChargeEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x2dc(r3)
-	lwz      r0, 0(r5)
-	addi     r3, r5, 0x30
-	stw      r0, 0x40(r5)
-	lwz      r12, 0x30(r5)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startChargeEffect() { mEffectObj->startCharge(); }
 
 /*
  * --INFO--
  * Address:	8027BCA0
  * Size:	0000C0
  */
-void Obj::startDischargeEffect(Obj*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, 0x18c
-	li       r4, 0
-	stw      r31, 0xc(r1)
-	lwz      r31, 0x2dc(r3)
-	stw      r0, 4(r31)
-	addi     r3, r31, 8
-	lwz      r0, 0(r31)
-	stw      r0, 0x18(r31)
-	lwz      r12, 8(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	addi     r3, r31, 0x1c
-	li       r4, 0
-	stw      r0, 0x2c(r31)
-	lwz      r12, 0x1c(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 4(r31)
-	addi     r3, r31, 0x44
-	lwz      r0, 0(r31)
-	li       r4, 0
-	stw      r0, 0x54(r31)
-	stw      r5, 0x58(r31)
-	lwz      r5, 4(r31)
-	lwz      r0, 0(r31)
-	stw      r0, 0x6c(r31)
-	stw      r5, 0x70(r31)
-	lwz      r12, 0x44(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x5c
-	li       r4, 0
-	lwz      r12, 0x5c(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startDischargeEffect(Obj* partner) { mEffectObj->startDischarge(&partner->mPosition); }
 
 /*
  * --INFO--
@@ -866,51 +787,12 @@ void Obj::startDischargeEffect(Obj*)
  */
 void Obj::finishPartnerAndEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r4, 0x2d8(r3)
-	cmplwi   r4, 0
-	beq      lbl_8027BD88
-	li       r0, 0
-	stw      r0, 0x2d8(r4)
-	stw      r0, 0x2d8(r3)
+	if (mPartner) {
+		mPartner->mPartner = nullptr;
+		mPartner           = nullptr;
+	}
 
-lbl_8027BD88:
-	lwz      r31, 0x2dc(r3)
-	addi     r3, r31, 8
-	lwz      r12, 8(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x1c
-	lwz      r12, 0x1c(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x30
-	lwz      r12, 0x30(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x44
-	lwz      r12, 0x44(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x5c
-	lwz      r12, 0x5c(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEffectObj->fade();
 }
 
 /*
@@ -918,92 +800,14 @@ lbl_8027BD88:
  * Address:	8027BE04
  * Size:	00008C
  */
-void Obj::effectDrawOn()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, 0x2dc(r3)
-	lwz      r12, 8(r31)
-	addi     r3, r31, 8
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x1c
-	lwz      r12, 0x1c(r31)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x30
-	lwz      r12, 0x30(r31)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x44
-	lwz      r12, 0x44(r31)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x5c
-	lwz      r12, 0x5c(r31)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::effectDrawOn() { mEffectObj->effectDrawOn(); }
 
 /*
  * --INFO--
  * Address:	8027BE90
  * Size:	00008C
  */
-void Obj::effectDrawOff()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, 0x2dc(r3)
-	lwz      r12, 8(r31)
-	addi     r3, r31, 8
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x1c
-	lwz      r12, 0x1c(r31)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x30
-	lwz      r12, 0x30(r31)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x44
-	lwz      r12, 0x44(r31)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x5c
-	lwz      r12, 0x5c(r31)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::effectDrawOff() { mEffectObj->effectDrawOff(); }
 
 /*
  * --INFO--

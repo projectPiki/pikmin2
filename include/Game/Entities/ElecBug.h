@@ -6,14 +6,11 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "efx/TDnkms.h"
 
 /**
  * --Header for Anode Beetle (ElecBug)--
  */
-
-namespace efx {
-struct TDnkmsEffect;
-} // namespace efx
 
 namespace Game {
 namespace ElecBug {
@@ -63,14 +60,14 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                 // _2BC
-	f32 _2C0;                  // _2C0, unknown
-	f32 _2C4;                  // _2C4, timer?
-	Vector3f mTargetPosition;  // _2C8
-	bool mHadLookedForPartner; // _2D4, unknown
-	Obj* mPartner;             // _2D8
-	efx::TDnkmsEffect* _2DC;   // _2DC
-	                           // _2E0 = PelletView
+	FSM* mFsm;                     // _2BC
+	f32 _2C0;                      // _2C0, unknown
+	f32 _2C4;                      // _2C4, timer?
+	Vector3f mTargetPosition;      // _2C8
+	bool mHadLookedForPartner;     // _2D4, unknown
+	Obj* mPartner;                 // _2D8
+	efx::TDnkmsEffect* mEffectObj; // _2DC
+	                               // _2E0 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
