@@ -45,7 +45,7 @@ struct Obj : public EnemyBase {
 	virtual int getStickPikminNum();                             // _2FC
 	virtual FakePiki* getAttackableTarget();                     // _300
 	virtual int catchTarget();                                   // _304
-	virtual void resetAttackableTimer(f32);                      // _308 (weak)
+	virtual void resetAttackableTimer(f32) { }                   // _308 (weak)
 	//////////////// VTABLE END
 
 	f32 setHeightVelocity();
@@ -169,11 +169,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(SARAI_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -183,6 +194,11 @@ struct StateAttack : public State {
 };
 
 struct StateCatchFly : public State {
+	inline StateCatchFly()
+	    : State(SARAI_CatchFly, "catchfly")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -192,6 +208,11 @@ struct StateCatchFly : public State {
 };
 
 struct StateDamage : public State {
+	inline StateDamage()
+	    : State(SARAI_Damage, "damage")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -201,6 +222,11 @@ struct StateDamage : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(SARAI_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -210,6 +236,11 @@ struct StateDead : public State {
 };
 
 struct StateFail : public State {
+	inline StateFail()
+	    : State(SARAI_Fail, "fail")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -219,6 +250,11 @@ struct StateFail : public State {
 };
 
 struct StateFall : public State {
+	inline StateFall()
+	    : State(SARAI_Fall, "fall")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -228,6 +264,11 @@ struct StateFall : public State {
 };
 
 struct StateFallMeck : public State {
+	inline StateFallMeck()
+	    : State(SARAI_FallMeck, "fallmeck")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -237,6 +278,11 @@ struct StateFallMeck : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(SARAI_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -246,6 +292,11 @@ struct StateFlick : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(SARAI_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -255,6 +306,11 @@ struct StateMove : public State {
 };
 
 struct StateTakeOff : public State {
+	inline StateTakeOff()
+	    : State(SARAI_TakeOff, "takeoff")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -264,6 +320,11 @@ struct StateTakeOff : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(SARAI_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
