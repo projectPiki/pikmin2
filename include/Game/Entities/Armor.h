@@ -62,9 +62,9 @@ struct Obj : public EnemyBase {
 	void setCullingCheck();
 	void checkBreakOrMove();
 	bool isBreakBridge();
-	void moveBridgeSide();
-	void moveBridgeCentre();
-	void moveBridgeTop();
+	bool moveBridgeSide();
+	bool moveBridgeCentre();
+	bool moveBridgeTop();
 	void breakTargetBridge();
 	void createEffect();
 	void setupEffect();
@@ -79,8 +79,8 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                          // _2BC
 	u8 _2C0;                            // _2C0, might be bool?
-	int _2C4;                           // _2C4
-	f32 _2C8;                           // _2C8
+	int mNextState;                     // _2C4
+	f32 mAttackLoopTime;                // _2C8
 	MouthSlots mMouthSlots;             // _2CC
 	efx::TYoroiAttack* mEfxYoroiAttack; // _2D4
 	ItemBridge::Item* mBridge;          // _2D8
@@ -148,6 +148,7 @@ struct ProperAnimator : public EnemyAnimatorBase {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum StateID {
+	ARMOR_NULL       = -1,
 	ARMOR_Dead       = 0,
 	ARMOR_Stay       = 1,
 	ARMOR_Appear     = 2,

@@ -1,562 +1,34 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_MiniHoudaiState_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048CD70
-    lbl_8048CD70:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x3234362D
-        .4byte 0x4D696E69
-        .4byte 0x486F7564
-        .4byte 0x61695374
-        .4byte 0x61746500
-        .4byte 0x7475726E
-        .4byte 0x686F6D65
-        .4byte 0x00000000
-        .4byte 0x7475726E
-        .4byte 0x70617468
-        .4byte 0x00000000
-        .4byte 0x77616C6B
-        .4byte 0x686F6D65
-        .4byte 0x00000000
-        .4byte 0x77616C6B
-        .4byte 0x70617468
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804D4548
-    lbl_804D4548:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game10MiniHoudai13StateWalkPath
-    __vt__Q34Game10MiniHoudai13StateWalkPath:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai13StateWalkPathFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai13StateWalkPathFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai13StateWalkPathFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai13StateWalkHome
-    __vt__Q34Game10MiniHoudai13StateWalkHome:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai13StateWalkHomeFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai13StateWalkHomeFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai13StateWalkHomeFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai9StateWalk
-    __vt__Q34Game10MiniHoudai9StateWalk:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai9StateWalkFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai9StateWalkFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai13StateTurnPath
-    __vt__Q34Game10MiniHoudai13StateTurnPath:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai13StateTurnPathFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai13StateTurnPathFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai13StateTurnPathFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai13StateTurnHome
-    __vt__Q34Game10MiniHoudai13StateTurnHome:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai13StateTurnHomeFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai13StateTurnHomeFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai13StateTurnHomeFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai9StateTurn
-    __vt__Q34Game10MiniHoudai9StateTurn:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai9StateTurnFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai9StateTurnFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai10StateFlick
-    __vt__Q34Game10MiniHoudai10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai10StateFlickFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai10StateFlickFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai11StateAttack
-    __vt__Q34Game10MiniHoudai11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai11StateAttackFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai11StateAttackFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai9StateLost
-    __vt__Q34Game10MiniHoudai9StateLost:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai9StateLostFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai9StateLostFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai9StateLostFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai12StateRebirth
-    __vt__Q34Game10MiniHoudai12StateRebirth:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai12StateRebirthFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai12StateRebirthFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai12StateRebirthFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai9StateDead
-    __vt__Q34Game10MiniHoudai9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10MiniHoudai9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10MiniHoudai9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10MiniHoudai9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai5State
-    __vt__Q34Game10MiniHoudai5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10MiniHoudai3FSM
-    __vt__Q34Game10MiniHoudai3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game10MiniHoudai3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515DE8
-    lbl_80515DE8:
-        .skip 0x4
-    .global lbl_80515DEC
-    lbl_80515DEC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051CF10
-    lbl_8051CF10:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051CF18
-    lbl_8051CF18:
-        .4byte 0x72656269
-        .4byte 0x72746800
-    .global lbl_8051CF20
-    lbl_8051CF20:
-        .4byte 0x6C6F7374
-        .4byte 0x00000000
-    .global lbl_8051CF28
-    lbl_8051CF28:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051CF30
-    lbl_8051CF30:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051CF38
-    lbl_8051CF38:
-        .4byte 0x7475726E
-        .4byte 0x00000000
-    .global lbl_8051CF40
-    lbl_8051CF40:
-        .4byte 0x77616C6B
-        .4byte 0x00000000
-    .global lbl_8051CF48
-    lbl_8051CF48:
-        .4byte 0x00000000
-    .global lbl_8051CF4C
-    lbl_8051CF4C:
-        .float 1.0
-    .global lbl_8051CF50
-    lbl_8051CF50:
-        .4byte 0x3F400000
-    .global lbl_8051CF54
-    lbl_8051CF54:
-        .4byte 0xC47A0000
-    .global lbl_8051CF58
-    lbl_8051CF58:
-        .4byte 0x40490FDB
-    .global lbl_8051CF5C
-    lbl_8051CF5C:
-        .4byte 0x3BB60B61
-    .global lbl_8051CF60
-    lbl_8051CF60:
-        .4byte 0x3F490FDB
-    .global lbl_8051CF64
-    lbl_8051CF64:
-        .4byte 0x42340000
-    .global lbl_8051CF68
-    lbl_8051CF68:
-        .4byte 0x41F00000
-    .global lbl_8051CF6C
-    lbl_8051CF6C:
-        .4byte 0x3C23D70A
-    .global lbl_8051CF70
-    lbl_8051CF70:
-        .float 0.5
-        .4byte 0x00000000
-*/
+#include "Game/Entities/MiniHoudai.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/CameraMgr.h"
+#include "Game/rumble.h"
+#include "Game/EnemyFunc.h"
 
 namespace Game {
+namespace MiniHoudai {
+
+static const int unusedArray[] = { 0, 0, 0 };
+static const char unusedName[] = "246-MiniHoudaiState";
 
 /*
  * --INFO--
  * Address:	802E7F4C
  * Size:	0003D8
  */
-void MiniHoudai::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8048CD70@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	addi     r30, r4, lbl_8048CD70@l
-	li       r4, 0xb
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E7FBC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	addi     r5, r2, lbl_8051CF10@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game10MiniHoudai9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E7FBC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E8010
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai12StateRebirth@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CF18@sda21
-	addi     r0, r3, __vt__Q34Game10MiniHoudai12StateRebirth@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E8010:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E8064
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai9StateLost@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CF20@sda21
-	addi     r0, r3, __vt__Q34Game10MiniHoudai9StateLost@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E8064:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E80B8
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai11StateAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CF28@sda21
-	addi     r0, r3, __vt__Q34Game10MiniHoudai11StateAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E80B8:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E810C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai10StateFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CF30@sda21
-	addi     r0, r3, __vt__Q34Game10MiniHoudai10StateFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E810C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E8160
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai9StateTurn@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CF38@sda21
-	addi     r0, r3, __vt__Q34Game10MiniHoudai9StateTurn@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E8160:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E81B4
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai13StateTurnHome@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x20
-	addi     r0, r3, __vt__Q34Game10MiniHoudai13StateTurnHome@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E81B4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E8208
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai13StateTurnPath@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x2c
-	addi     r0, r3, __vt__Q34Game10MiniHoudai13StateTurnPath@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E8208:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E825C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai9StateWalk@ha
-	stw      r0, 0(r4)
-	li       r0, 8
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CF40@sda21
-	addi     r0, r3, __vt__Q34Game10MiniHoudai9StateWalk@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E825C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E82B0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai13StateWalkHome@ha
-	stw      r0, 0(r4)
-	li       r0, 9
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x38
-	addi     r0, r3, __vt__Q34Game10MiniHoudai13StateWalkHome@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E82B0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E8304
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10MiniHoudai5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10MiniHoudai13StateWalkPath@ha
-	stw      r0, 0(r4)
-	li       r0, 0xa
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10MiniHoudai5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x44
-	addi     r0, r3, __vt__Q34Game10MiniHoudai13StateWalkPath@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E8304:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(MINIHOUDAI_StateCount);
+	registerState(new StateDead);
+	registerState(new StateRebirth);
+	registerState(new StateLost);
+	registerState(new StateAttack);
+	registerState(new StateFlick);
+	registerState(new StateTurn);
+	registerState(new StateTurnHome);
+	registerState(new StateTurnPath);
+	registerState(new StateWalk);
+	registerState(new StateWalkHome);
+	registerState(new StateWalkPath);
 }
 
 /*
@@ -564,32 +36,13 @@ lbl_802E8304:
  * Address:	802E8324
  * Size:	000058
  */
-void MiniHoudai::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051CF48@sda21(r2)
-	mr       r3, r31
-	li       r4, 5
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       createDeadLightEffect__Q34Game10MiniHoudai3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini = OBJ(enemy);
+	mini->deathProcedure();
+	mini->mTargetVelocity = Vector3f(0.0f);
+	mini->startMotion(5, nullptr);
+	mini->createDeadLightEffect();
 }
 
 /*
@@ -597,83 +50,26 @@ void MiniHoudai::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E837C
  * Size:	00010C
  */
-void MiniHoudai::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E8474
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802E8448
-	mr       r3, r31
-	bl       createDeadBombEmitEffect__Q34Game10MiniHoudai3ObjFv
-	lfs      f1, lbl_8051CF4C@sda21(r2)
-	mr       r3, r31
-	bl       createDownEffect__Q34Game10MiniHoudai3ObjFf
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x596b
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0x1c
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802E8474
+	Obj* mini = OBJ(enemy);
+	if (mini->mCurAnim->mIsPlaying) {
+		if (mini->mCurAnim->mType == KEYEVENT_2) {
+			mini->createDeadBombEmitEffect();
+			mini->createDownEffect(1.0f);
+			mini->getJAIObject()->startSound(PSSE_EN_MINIHOU_BOMB, 0);
 
-lbl_802E8448:
-	cmplwi   r0, 3
-	bne      lbl_802E8460
-	lfs      f1, lbl_8051CF50@sda21(r2)
-	mr       r3, r31
-	bl       createDownEffect__Q34Game10MiniHoudai3ObjFf
-	b        lbl_802E8474
+			Vector3f pos = mini->getPosition();
+			cameraMgr->startVibration(28, pos, 2);
+			rumbleMgr->startRumble(11, pos, 2);
 
-lbl_802E8460:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E8474
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+		} else if (mini->mCurAnim->mType == KEYEVENT_3) {
+			mini->createDownEffect(0.75f);
 
-lbl_802E8474:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		} else if (mini->mCurAnim->mType == KEYEVENT_END) {
+			mini->kill(nullptr);
+		}
+	}
 }
 
 /*
@@ -681,39 +77,21 @@ lbl_802E8474:
  * Address:	802E8488
  * Size:	000004
  */
-void MiniHoudai::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802E848C
  * Size:	000058
  */
-void MiniHoudai::StateRebirth::init(Game::EnemyBase*, Game::StateArg*)
+void StateRebirth::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, -1
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	lfs      f0, lbl_8051CF48@sda21(r2)
-	stw      r5, 0x2d4(r4)
-	li       r4, 7
-	li       r5, 0
-	lwz      r6, 0x1e0(r3)
-	rlwinm   r6, r6, 0, 0xb, 9
-	stw      r6, 0x1e0(r3)
-	stw      r0, 0x230(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini        = OBJ(enemy);
+	mini->mNextState = MINIHOUDAI_NULL;
+	mini->disableEvent(0, EB_IsEnemyNotBitter);
+	mini->mTargetCreature = nullptr;
+	mini->mTargetVelocity = Vector3f(0.0f);
+	mini->startMotion(7, nullptr);
 }
 
 /*
@@ -721,7 +99,7 @@ void MiniHoudai::StateRebirth::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E84E4
  * Size:	0003A8
  */
-void MiniHoudai::StateRebirth::exec(Game::EnemyBase*)
+void StateRebirth::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -987,22 +365,14 @@ lbl_802E8864:
  * Address:	802E888C
  * Size:	000010
  */
-void MiniHoudai::StateRebirth::cleanup(Game::EnemyBase*)
-{
-	/*
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r4)
-	blr
-	*/
-}
+void StateRebirth::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemyNotBitter); }
 
 /*
  * --INFO--
  * Address:	802E889C
  * Size:	00004C
  */
-void MiniHoudai::StateLost::init(Game::EnemyBase*, Game::StateArg*)
+void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1032,7 +402,7 @@ void MiniHoudai::StateLost::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E88E8
  * Size:	00050C
  */
-void MiniHoudai::StateLost::exec(Game::EnemyBase*)
+void StateLost::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -1388,14 +758,14 @@ lbl_802E8DC4:
  * Address:	802E8DF4
  * Size:	000004
  */
-void MiniHoudai::StateLost::cleanup(Game::EnemyBase*) { }
+void StateLost::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802E8DF8
  * Size:	000060
  */
-void MiniHoudai::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1430,7 +800,7 @@ void MiniHoudai::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E8E58
  * Size:	0006CC
  */
-void MiniHoudai::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -1922,27 +1292,14 @@ lbl_802E94F4:
  * Address:	802E9524
  * Size:	000024
  */
-void MiniHoudai::StateAttack::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	802E9548
  * Size:	000068
  */
-void MiniHoudai::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1979,7 +1336,7 @@ void MiniHoudai::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E95B0
  * Size:	000544
  */
-void MiniHoudai::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -2352,25 +1709,10 @@ lbl_802E9AC4:
  * Address:	802E9AF4
  * Size:	00003C
  */
-void MiniHoudai::StateFlick::cleanup(Game::EnemyBase*)
+void StateFlick::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lfs      f1, lbl_8051CF68@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->setEmotionCaution();
+	enemy->setAnimSpeed(30.0f);
 }
 
 /*
@@ -2378,7 +1720,7 @@ void MiniHoudai::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	802E9B30
  * Size:	00005C
  */
-void MiniHoudai::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2412,7 +1754,7 @@ void MiniHoudai::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E9B8C
  * Size:	0006AC
  */
-void MiniHoudai::StateTurn::exec(Game::EnemyBase*)
+void StateTurn::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x140(r1)
@@ -2888,27 +2230,14 @@ lbl_802EA1DC:
  * Address:	802EA238
  * Size:	000024
  */
-void MiniHoudai::StateTurn::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	802EA25C
  * Size:	000044
  */
-void MiniHoudai::StateTurnHome::init(Game::EnemyBase*, Game::StateArg*)
+void StateTurnHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2936,7 +2265,7 @@ void MiniHoudai::StateTurnHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802EA2A0
  * Size:	000368
  */
-void MiniHoudai::StateTurnHome::exec(Game::EnemyBase*)
+void StateTurnHome::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -3185,14 +2514,14 @@ lbl_802EA5D0:
  * Address:	802EA608
  * Size:	000004
  */
-void MiniHoudai::StateTurnHome::cleanup(Game::EnemyBase*) { }
+void StateTurnHome::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802EA60C
  * Size:	000044
  */
-void MiniHoudai::StateTurnPath::init(Game::EnemyBase*, Game::StateArg*)
+void StateTurnPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3220,7 +2549,7 @@ void MiniHoudai::StateTurnPath::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802EA650
  * Size:	000390
  */
-void MiniHoudai::StateTurnPath::exec(Game::EnemyBase*)
+void StateTurnPath::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -3481,14 +2810,14 @@ lbl_802EA9A8:
  * Address:	802EA9E0
  * Size:	000004
  */
-void MiniHoudai::StateTurnPath::cleanup(Game::EnemyBase*) { }
+void StateTurnPath::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802EA9E4
  * Size:	000050
  */
-void MiniHoudai::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3519,7 +2848,7 @@ void MiniHoudai::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802EAA34
  * Size:	0007CC
  */
-void MiniHoudai::StateWalk::exec(Game::EnemyBase*)
+void StateWalk::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x140(r1)
@@ -4078,37 +3407,17 @@ lbl_802EB1A4:
 
 /*
  * --INFO--
- * Address:	802EB200
- * Size:	000008
- */
-u32 MiniHoudai::Obj::getEnemyTypeID() { return 0x4E; }
-
-/*
- * --INFO--
  * Address:	802EB208
  * Size:	000024
  */
-void MiniHoudai::StateWalk::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateWalk::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	802EB22C
  * Size:	000034
  */
-void MiniHoudai::StateWalkHome::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalkHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4132,7 +3441,7 @@ void MiniHoudai::StateWalkHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802EB260
  * Size:	000578
  */
-void MiniHoudai::StateWalkHome::exec(Game::EnemyBase*)
+void StateWalkHome::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -4529,14 +3838,14 @@ lbl_802EB798:
  * Address:	802EB7D8
  * Size:	000004
  */
-void MiniHoudai::StateWalkHome::cleanup(Game::EnemyBase*) { }
+void StateWalkHome::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802EB7DC
  * Size:	000034
  */
-void MiniHoudai::StateWalkPath::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4560,7 +3869,7 @@ void MiniHoudai::StateWalkPath::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802EB810
  * Size:	0004A4
  */
-void MiniHoudai::StateWalkPath::exec(Game::EnemyBase*)
+void StateWalkPath::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -4902,27 +4211,7 @@ lbl_802EBC7C:
  * Address:	802EBCB4
  * Size:	000004
  */
-void MiniHoudai::StateWalkPath::cleanup(Game::EnemyBase*) { }
+void StateWalkPath::cleanup(EnemyBase* enemy) { }
 
+} // namespace MiniHoudai
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	802EBCB8
- * Size:	000028
- */
-void __sinit_MiniHoudaiState_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804D4548@ha
-	stw      r0, lbl_80515DE8@sda21(r13)
-	stfsu    f0, lbl_804D4548@l(r3)
-	stfs     f0, lbl_80515DEC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

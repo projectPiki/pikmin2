@@ -47,7 +47,7 @@ struct Obj : public EnemyBase {
 	virtual void startCarcassMotion();                                                       // _2C4
 	virtual void doStartWaitingBirthTypeDrop();                                              // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();                                             // _2E4
-	virtual f32 getDownSmokeScale() { return 1.0f; }                                         // _2EC (weak)
+	virtual f32 getDownSmokeScale() { return 0.62f; }                                        // _2EC (weak)
 	virtual void doStartMovie();                                                             // _2F0
 	virtual void doEndMovie();                                                               // _2F4
 	virtual void setFSM(FSM*);                                                               // _2F8
@@ -56,7 +56,7 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE END
 
 	void updateCaution();
-	void getViewAngle();
+	f32 getViewAngle();
 	void startJumpAttack();
 	void resetHomePosition();
 	void pressOnGround();
@@ -74,7 +74,7 @@ struct Obj : public EnemyBase {
 	f32 _2C0;                 // _2C0
 	f32 _2C4;                 // _2C4
 	Vector3f mTargetPosition; // _2C8
-	int _2D4;                 // _2D4
+	int mNextState;           // _2D4
 	bool _2D8;                // _2D8, unknown
 	bool _2D9;                // _2D9, unknown
 	efx::TFrogPota* mEfxPota; // _2DC
@@ -102,17 +102,17 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "FrogParms")
-		    , mFp01(this, 'fp01', "空中時間", 1.5f, 0.0f, 5.0f)          // 'air time'
-		    , mFp02(this, 'fp02', "ジャンプ速度", 400.0f, 0.0f, 1000.0f) // 'jump speed'
-		    , mFp03(this, 'fp03', "失敗確率", 0.2f, 0.0f, 1.0f)          // 'probability of failure'
-		    , mFp04(this, 'fp04', "落下初速度", 300.0f, 0.0f, 500.0f)    // 'initial fall velocity'
+		    , mAirTime(this, 'fp01', "空中時間", 1.5f, 0.0f, 5.0f)            // 'air time'
+		    , mJumpSpeed(this, 'fp02', "ジャンプ速度", 400.0f, 0.0f, 1000.0f) // 'jump speed'
+		    , mJumpFailChance(this, 'fp03', "失敗確率", 0.2f, 0.0f, 1.0f)     // 'probability of failure'
+		    , mFallSpeed(this, 'fp04', "落下初速度", 300.0f, 0.0f, 500.0f)    // 'initial fall velocity'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp03; // _854
-		Parm<f32> mFp04; // _87C
+		Parm<f32> mAirTime;        // _804, fp01
+		Parm<f32> mJumpSpeed;      // _82C, fp02
+		Parm<f32> mJumpFailChance; // _854, fp03
+		Parm<f32> mFallSpeed;      // _87C, fp04
 	};
 
 	Parms() { }
@@ -141,6 +141,21 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	FROG_NULL       = -1,
+	FROG_Dead       = 0,
+	FROG_Wait       = 1,
+	FROG_Turn       = 2,
+	FROG_Jump       = 3,
+	FROG_JumpWait   = 4,
+	FROG_Fall       = 5,
+	FROG_Attack     = 6,
+	FROG_Fail       = 7,
+	FROG_TurnToHome = 8,
+	FROG_GoHome     = 9,
+	FROG_StateCount, // 10
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -149,11 +164,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(FROG_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -163,6 +189,11 @@ struct StateAttack : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(FROG_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -172,6 +203,11 @@ struct StateDead : public State {
 };
 
 struct StateFail : public State {
+	inline StateFail()
+	    : State(FROG_Fail, "fail")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -181,6 +217,11 @@ struct StateFail : public State {
 };
 
 struct StateFall : public State {
+	inline StateFall()
+	    : State(FROG_Fall, "fall")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -190,6 +231,11 @@ struct StateFall : public State {
 };
 
 struct StateGoHome : public State {
+	inline StateGoHome()
+	    : State(FROG_GoHome, "gohome")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -199,6 +245,11 @@ struct StateGoHome : public State {
 };
 
 struct StateJump : public State {
+	inline StateJump()
+	    : State(FROG_Jump, "jump")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -208,6 +259,11 @@ struct StateJump : public State {
 };
 
 struct StateJumpWait : public State {
+	inline StateJumpWait()
+	    : State(FROG_JumpWait, "jumpwait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -217,6 +273,11 @@ struct StateJumpWait : public State {
 };
 
 struct StateTurn : public State {
+	inline StateTurn()
+	    : State(FROG_Turn, "turn")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -226,6 +287,11 @@ struct StateTurn : public State {
 };
 
 struct StateTurnToHome : public State {
+	inline StateTurnToHome()
+	    : State(FROG_TurnToHome, "turntohome")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -235,6 +301,11 @@ struct StateTurnToHome : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(FROG_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

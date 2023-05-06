@@ -1,6 +1,8 @@
 #include "Game/Entities/Armor.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/rumble.h"
+#include "Game/Entities/ItemBridge.h"
+#include "Game/EnemyFunc.h"
 
 namespace Game {
 namespace Armor {
@@ -49,48 +51,16 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x24(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80286480
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80286470
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 9
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_80286480
-
-lbl_80286470:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80286480
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_80286480:
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Obj* armor = OBJ(enemy);
+	if (armor->mCurAnim->mIsPlaying) {
+		u32 animType = armor->mCurAnim->mType;
+		if (animType == KEYEVENT_2) {
+			Vector3f armorPos = armor->getPosition();
+			rumbleMgr->startRumble(9, armorPos, 2);
+		} else if (animType == KEYEVENT_END) {
+			armor->kill(nullptr);
+		}
+	}
 }
 
 /*
@@ -122,53 +92,17 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateStay::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	bl       setBridgeSearch__Q34Game5Armor3ObjFv
-	lwz      r7, 0xc0(r30)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	lfs      f1, 0x424(r7)
-	li       r6, 0
-	lfs      f2, 0x3d4(r7)
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	or.      r31, r3, r3
-	bne      lbl_80286564
-	mr       r3, r30
-	bl       isBreakBridge__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80286588
+	Obj* armor = OBJ(enemy);
+	armor->setBridgeSearch();
+	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
+	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
 
-lbl_80286564:
-	stw      r31, 0x230(r30)
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 2
-	lwz      r12, 0(r29)
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
 
-lbl_80286588:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (targetCreature || armor->isBreakBridge()) {
+		armor->mTargetCreature = targetCreature;
+		transit(armor, ARMOR_Appear, nullptr);
+	}
 }
 
 /*
@@ -189,7 +123,7 @@ void StateStay::cleanup(EnemyBase* enemy)
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* armor = static_cast<Obj*>(enemy);
+	Obj* armor = OBJ(enemy);
 	armor->lifeIncrement();
 	armor->hardConstraintOn();
 	armor->enableEvent(0, EB_LifegaugeVisible);
@@ -209,65 +143,20 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80286754
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80286704
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 9
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_80286754
-
-lbl_80286704:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80286754
-	lfs      f1, 0x200(r4)
-	lfs      f0, lbl_8051B784@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8028673C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80286754
-
-lbl_8028673C:
-	lwz      r12, 0(r3)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80286754:
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Obj* armor = OBJ(enemy);
+	if (armor->mCurAnim->mIsPlaying) {
+		u32 animType = armor->mCurAnim->mType;
+		if (animType == KEYEVENT_2) {
+			Vector3f armorPos = armor->getPosition();
+			rumbleMgr->startRumble(9, armorPos, 2);
+		} else if (animType == KEYEVENT_END) {
+			if (armor->mHealth <= 0.0f) {
+				transit(armor, ARMOR_Dead, nullptr);
+			} else {
+				transit(armor, ARMOR_Move, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -284,7 +173,7 @@ void StateAppear::cleanup(EnemyBase* enemy) { enemy->hardConstraintOff(); }
  */
 void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* armor = static_cast<Obj*>(enemy);
+	Obj* armor = OBJ(enemy);
 	armor->hardConstraintOn();
 	armor->mTargetVelocity = Vector3f(0.0f);
 	armor->setEmotionCaution();
@@ -299,51 +188,16 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDive::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80286874
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80286854
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0xa
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_80286874
-
-lbl_80286854:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80286874
-	lwz      r12, 0(r3)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80286874:
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Obj* armor = OBJ(enemy);
+	if (armor->mCurAnim->mIsPlaying) {
+		u32 animType = armor->mCurAnim->mType;
+		if (animType == KEYEVENT_2) {
+			Vector3f armorPos = armor->getPosition();
+			rumbleMgr->startRumble(10, armorPos, 2);
+		} else if (animType == KEYEVENT_END) {
+			transit(armor, ARMOR_Stay, nullptr);
+		}
+	}
 }
 
 /*
@@ -360,8 +214,8 @@ void StateDive::cleanup(EnemyBase* enemy) { enemy->hardConstraintOff(); }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* armor  = static_cast<Obj*>(enemy);
-	armor->_2C4 = -1;
+	Obj* armor        = OBJ(enemy);
+	armor->mNextState = ARMOR_NULL;
 	armor->startMotion(3, nullptr);
 }
 
@@ -372,6 +226,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
+	// drought just skip this one lol
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -736,8 +591,8 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* armor  = static_cast<Obj*>(enemy);
-	armor->_2C4 = -1;
+	Obj* armor        = OBJ(enemy);
+	armor->mNextState = ARMOR_NULL;
 	armor->startMotion(3, nullptr);
 }
 
@@ -748,93 +603,35 @@ void StateMoveSide::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMoveSide::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r7, 0xc0(r31)
-	lfs      f1, 0x424(r7)
-	lfs      f2, 0x3d4(r7)
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_80286E64
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80286EA8
+	Obj* armor     = OBJ(enemy);
+	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
+	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
 
-lbl_80286E64:
-	mr       r3, r31
-	bl       isBreakBridge__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80286E98
-	mr       r3, r31
-	bl       moveBridgeSide__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80286EA8
-	li       r0, 6
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80286EA8
+	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
 
-lbl_80286E98:
-	li       r0, 8
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (targetCreature) {
+		armor->mNextState = ARMOR_Move;
+		armor->finishMotion();
+	} else if (armor->isBreakBridge()) {
+		if (armor->moveBridgeSide()) {
+			armor->mNextState = ARMOR_MoveCentre;
+			armor->finishMotion();
+		}
+	} else {
+		armor->mNextState = ARMOR_GoHome;
+		armor->finishMotion();
+	}
 
-lbl_80286EA8:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B784@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80286EE0
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80286F1C
-
-lbl_80286EE0:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80286F1C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80286F1C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80286F1C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (armor->mHealth <= 0.0f) {
+		transit(armor, ARMOR_Dead, nullptr);
+		return;
+	}
+	if (armor->mCurAnim->mIsPlaying) {
+		u32 animType = armor->mCurAnim->mType;
+		if (animType == KEYEVENT_END) {
+			transit(armor, armor->mNextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -851,8 +648,8 @@ void StateMoveSide::cleanup(EnemyBase* enemy) { }
  */
 void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* armor  = static_cast<Obj*>(enemy);
-	armor->_2C4 = -1;
+	Obj* armor        = OBJ(enemy);
+	armor->mNextState = ARMOR_NULL;
 	armor->startMotion(3, nullptr);
 }
 
@@ -863,93 +660,34 @@ void StateMoveCentre::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMoveCentre::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r7, 0xc0(r31)
-	lfs      f1, 0x424(r7)
-	lfs      f2, 0x3d4(r7)
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_80286FC4
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80287008
+	Obj* armor     = OBJ(enemy);
+	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
+	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
 
-lbl_80286FC4:
-	mr       r3, r31
-	bl       isBreakBridge__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80286FF8
-	mr       r3, r31
-	bl       moveBridgeCentre__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80287008
-	li       r0, 7
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80287008
+	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
+	if (targetCreature) {
+		armor->mNextState = ARMOR_Move;
+		armor->finishMotion();
+	} else if (armor->isBreakBridge()) {
+		if (armor->moveBridgeCentre()) {
+			armor->mNextState = ARMOR_MoveTop;
+			armor->finishMotion();
+		}
+	} else {
+		armor->mNextState = ARMOR_GoHome;
+		armor->finishMotion();
+	}
 
-lbl_80286FF8:
-	li       r0, 8
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_80287008:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B784@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80287040
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8028707C
-
-lbl_80287040:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8028707C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8028707C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8028707C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (armor->mHealth <= 0.0f) {
+		transit(armor, ARMOR_Dead, nullptr);
+		return;
+	}
+	if (armor->mCurAnim->mIsPlaying) {
+		u32 animType = armor->mCurAnim->mType;
+		if (animType == KEYEVENT_END) {
+			transit(armor, armor->mNextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -966,8 +704,8 @@ void StateMoveCentre::cleanup(EnemyBase* enemy) { }
  */
 void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* armor  = static_cast<Obj*>(enemy);
-	armor->_2C4 = -1;
+	Obj* armor        = OBJ(enemy);
+	armor->mNextState = ARMOR_NULL;
 	armor->startMotion(3, nullptr);
 }
 
@@ -978,93 +716,34 @@ void StateMoveTop::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMoveTop::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r7, 0xc0(r31)
-	lfs      f1, 0x424(r7)
-	lfs      f2, 0x3d4(r7)
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_80287124
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80287168
+	Obj* armor     = OBJ(enemy);
+	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
+	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
 
-lbl_80287124:
-	mr       r3, r31
-	bl       isBreakBridge__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80287158
-	mr       r3, r31
-	bl       moveBridgeTop__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80287168
-	li       r0, 9
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80287168
+	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
+	if (targetCreature) {
+		armor->mNextState = ARMOR_Move;
+		armor->finishMotion();
+	} else if (armor->isBreakBridge()) {
+		if (armor->moveBridgeTop()) {
+			armor->mNextState = ARMOR_Attack1;
+			armor->finishMotion();
+		}
+	} else {
+		armor->mNextState = ARMOR_GoHome;
+		armor->finishMotion();
+	}
 
-lbl_80287158:
-	li       r0, 8
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_80287168:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B784@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802871A0
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802871DC
-
-lbl_802871A0:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802871DC
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802871DC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802871DC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (armor->mHealth <= 0.0f) {
+		transit(armor, ARMOR_Dead, nullptr);
+		return;
+	}
+	if (armor->mCurAnim->mIsPlaying) {
+		u32 animType = armor->mCurAnim->mType;
+		if (animType == KEYEVENT_END) {
+			transit(armor, armor->mNextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -1081,8 +760,8 @@ void StateMoveTop::cleanup(EnemyBase* enemy) { }
  */
 void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* armor  = static_cast<Obj*>(enemy);
-	armor->_2C4 = -1;
+	Obj* armor        = OBJ(enemy);
+	armor->mNextState = ARMOR_NULL;
 	armor->startMotion(3, nullptr);
 }
 
@@ -1093,152 +772,40 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateGoHome::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	lwz      r12, 0(r4)
-	mr       r30, r3
-	addi     r3, r1, 0x14
-	mr       r31, r4
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x19c(r31)
-	mr       r3, r31
-	lfs      f2, 0x1a0(r31)
-	addi     r4, r1, 0x20
-	lfs      f0, 0x198(r31)
-	stfs     f0, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	lwz      r5, 0xc0(r31)
-	lfs      f1, 0x2e4(r5)
-	lfs      f2, 0x30c(r5)
-	lfs      f3, 0x334(r5)
-	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff" lwz
-r7, 0xc0(r31) mr       r3, r31 li       r4, 0 li       r5, 0 lfs      f1,
-0x564(r7) li       r6, 0 lfs      f2, 0x58c(r7) bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_802872E4
-	li       r0, 0xa
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_80287370
+	Obj* armor       = OBJ(enemy);
+	Vector3f pos     = armor->getPosition();
+	Vector3f homePos = Vector3f(armor->mHomePosition);
 
-lbl_802872E4:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lfs      f31, 0x198(r31)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x19c(r31)
-	lfs      f29, 0x1a0(r31)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 8(r1)
-	fsubs    f3, f0, f30
-	lfs      f1, 0x10(r1)
-	fsubs    f2, f2, f31
-	lfs      f0, lbl_8051B784@sda21(r2)
-	fsubs    f1, f1, f29
-	fmuls    f3, f3, f3
-	fmuls    f4, f1, f1
-	fmadds   f1, f2, f2, f3
-	fadds    f1, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8028734C
-	ble      lbl_80287350
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_80287350
+	EnemyFunc::walkToTarget(armor, homePos, CG_PARMS(armor)->mGeneral.mMoveSpeed.mValue, CG_PARMS(armor)->mGeneral.mRotationalAccel.mValue,
+	                        CG_PARMS(armor)->mGeneral.mRotationalSpeed.mValue);
 
-lbl_8028734C:
-	fmr      f1, f0
+	if (EnemyFunc::getNearestPikminOrNavi(armor, CG_PARMS(armor)->mGeneral.mMaxAttackRange.mValue,
+	                                      CG_PARMS(armor)->mGeneral.mMinAttackRange.mValue, nullptr, nullptr, nullptr)) {
+		armor->mNextState = ARMOR_Attack2;
+		armor->finishMotion();
+	} else {
+		Vector3f armorHomePos = armor->mHomePosition;
+		Vector3f armorPos     = armor->getPosition();
 
-lbl_80287350:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x384(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80287370
-	li       r0, 3
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+		f32 dist = _distanceBetween2(armorPos, armorHomePos);
+		if (dist < CG_PARMS(armor)->mGeneral.mHomeRadius.mValue) {
+			armor->mNextState = ARMOR_Dive;
+			armor->finishMotion();
+		}
+	}
 
-lbl_80287370:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802873AC
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802873AC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	if (armor->mCurAnim->mIsPlaying && armor->mCurAnim->mType == KEYEVENT_END) {
+		transit(armor, armor->mNextState, nullptr);
+	}
 
-lbl_802873AC:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B784@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802873E4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80287418
+	if (armor->mHealth <= 0.0f) {
+		transit(armor, ARMOR_Dead, nullptr);
+		return;
+	}
 
-lbl_802873E4:
-	mr       r3, r31
-	li       r4, 1
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80287418
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xc
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80287418:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	if (EnemyFunc::isStartFlick(armor, true)) {
+		transit(armor, ARMOR_Flick, nullptr);
+	}
 }
 
 /*
@@ -1255,10 +822,10 @@ void StateGoHome::cleanup(EnemyBase* enemy) { }
  */
 void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* armor             = static_cast<Obj*>(enemy);
+	Obj* armor             = OBJ(enemy);
 	armor->mTargetVelocity = Vector3f(0.0f);
 	armor->startMotion(4, nullptr);
-	armor->_2C4 = -1;
+	armor->mNextState = ARMOR_NULL;
 	armor->createBridgeEffect();
 }
 
@@ -1269,102 +836,37 @@ void StateAttack1::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack1::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r7, 0xc0(r31)
-	lfs      f1, 0x424(r7)
-	lfs      f2, 0x3d4(r7)
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_802874F4
-	li       r0, 4
-	stw      r0, 0x2c4(r31)
-	b        lbl_80287534
+	Obj* armor     = OBJ(enemy);
+	f32 viewAngle  = CG_PARMS(armor)->mGeneral.mViewAngle;
+	f32 viewRadius = CG_PARMS(armor)->mGeneral.mSightRadius;
 
-lbl_802874F4:
-	mr       r3, r31
-	bl       isBreakBridge__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8028752C
-	mr       r3, r31
-	bl       moveBridgeTop__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80287520
-	li       r0, 9
-	stw      r0, 0x2c4(r31)
-	b        lbl_80287534
+	Creature* targetCreature = EnemyFunc::getNearestPikminOrNavi(armor, viewAngle, viewRadius, nullptr, nullptr, nullptr);
+	if (targetCreature) {
+		armor->mNextState = ARMOR_Move;
+	} else if (armor->isBreakBridge()) {
+		if (armor->moveBridgeTop()) {
+			armor->mNextState = ARMOR_Attack1;
+		} else {
+			armor->mNextState = ARMOR_MoveTop;
+		}
+	} else {
+		armor->mNextState = ARMOR_GoHome;
+	}
 
-lbl_80287520:
-	li       r0, 7
-	stw      r0, 0x2c4(r31)
-	b        lbl_80287534
-
-lbl_8028752C:
-	li       r0, 8
-	stw      r0, 0x2c4(r31)
-
-lbl_80287534:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80287594
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_8028756C
-	mr       r3, r31
-	bl       isBreakBridge__Q34Game5Armor3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80287594
-	mr       r3, r31
-	bl       breakTargetBridge__Q34Game5Armor3ObjFv
-	b        lbl_80287594
-
-lbl_8028756C:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80287594
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80287594:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B784@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802875C8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802875C8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (armor->mCurAnim->mIsPlaying) {
+		u32 animType = armor->mCurAnim->mType;
+		if (animType == KEYEVENT_2) {
+			if (armor->isBreakBridge()) {
+				armor->breakTargetBridge();
+			}
+		} else if (animType == KEYEVENT_END) {
+			transit(armor, armor->mNextState, nullptr);
+		}
+	}
+	if (armor->mHealth <= 0.0f) {
+		transit(armor, ARMOR_Dead, nullptr);
+		return;
+	}
 }
 
 /*
@@ -1381,27 +883,9 @@ void StateAttack1::cleanup(EnemyBase* enemy) { }
  */
 void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	static_cast<Obj*>(enemy)->_2C8 = 0.0f;
-	enemy->mTargetVelocity         = Vector3f(0.0f);
+	static_cast<Obj*>(enemy)->mAttackLoopTime = 0.0f;
+	enemy->mTargetVelocity                    = Vector3f(0.0f);
 	enemy->startMotion(5, nullptr);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	lfs      f0, lbl_8051B784@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r4, 5
-	li       r5, 0
-	stfs     f0, 0x2c8(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1411,133 +895,42 @@ void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack2::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051B790@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80287668
-	lfs      f0, lbl_8051B794@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80287668
-	mr       r3, r31
-	bl       attackPikmin__Q34Game5Armor3ObjFv
+	Obj* armor = OBJ(enemy);
+	f32 frame  = armor->getMotionFrame();
 
-lbl_80287668:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2c8(r31)
-	lfs      f0, 0x844(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80287684
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (frame > 17.0f && frame < 27.0f) {
+		armor->attackPikmin();
+	}
+	if (armor->mAttackLoopTime > CG_PROPERPARMS(armor).mAttackLoopTimer) {
+		armor->finishMotion();
+	}
 
-lbl_80287684:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c8(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c8(r31)
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802877C4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802876C0
-	mr       r3, r31
-	bl       createAttackEffect__Q34Game5Armor3ObjFv
-	b        lbl_802877C4
+	armor->mAttackLoopTime += sys->mDeltaTime;
 
-lbl_802876C0:
-	cmplwi   r0, 3
-	bne      lbl_80287730
-	lwz      r6, 0xc0(r31)
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	lfs      f1, 0x5b4(r6)
-	lfs      f2, 0x5dc(r6)
-	lfs      f3, 0x604(r6)
-	bl
-"attackNavi__Q24Game9EnemyFuncFPQ24Game8CreaturefffP8CollPartP23Condition<Q24Game4Navi>"
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 9
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802877C4
+	if (armor->mCurAnim->mIsPlaying) {
+		if (armor->mCurAnim->mType == KEYEVENT_2) {
+			armor->createAttackEffect();
+		} else if (armor->mCurAnim->mType == KEYEVENT_3) {
+			f32 attackRadius = CG_PARMS(armor)->mGeneral.mAttackRadius;
+			f32 attackAngle  = CG_PARMS(armor)->mGeneral.mAttackHitAngle;
+			f32 attackDamage = CG_PARMS(armor)->mGeneral.mAttackDamage;
+			EnemyFunc::attackNavi(armor, attackRadius, attackAngle, attackDamage, nullptr, nullptr);
 
-lbl_80287730:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802877C4
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B784@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80287770
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802877C4
+			Vector3f armorPos = armor->getPosition();
+			rumbleMgr->startRumble(9, armorPos, 2);
 
-lbl_80287770:
-	mr       r3, r31
-	bl       getSlotPikiNum__Q34Game5Armor3ObjFv
-	cmpwi    r3, 0
-	beq      lbl_802877A4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xb
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802877C4
-
-lbl_802877A4:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xd
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802877C4:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		} else if (armor->mCurAnim->mType == KEYEVENT_END) {
+			if (armor->mHealth <= 0.0f) {
+				transit(armor, ARMOR_Dead, nullptr);
+				return;
+			}
+			if (armor->getSlotPikiNum()) {
+				transit(armor, ARMOR_Eat, nullptr);
+			} else {
+				transit(armor, ARMOR_Fail, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -1565,52 +958,18 @@ void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateEat::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B784@sda21(r2)
-	mr       r6, r4
-	stw      r0, 0x14(r1)
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8028785C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802878A4
-
-lbl_8028785C:
-	lwz      r5, 0x188(r6)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_802878A4
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80287884
-	mr       r3, r6
-	bl       killSlotPiki__Q34Game5Armor3ObjFv
-	b        lbl_802878A4
-
-lbl_80287884:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802878A4
-	lwz      r12, 0(r3)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802878A4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* armor = OBJ(enemy);
+	if (armor->mHealth <= 0.0f) {
+		transit(armor, ARMOR_Dead, nullptr);
+		return;
+	}
+	if (armor->mCurAnim->mIsPlaying) {
+		if (armor->mCurAnim->mType == KEYEVENT_2) {
+			armor->killSlotPiki();
+		} else if (armor->mCurAnim->mType == KEYEVENT_END) {
+			transit(armor, ARMOR_Move, nullptr);
+		}
+	}
 }
 
 /*
@@ -1638,98 +997,30 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B784@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8028793C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80287A20
+	Obj* armor = OBJ(enemy);
 
-lbl_8028793C:
-	lwz      r5, 0x188(r30)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80287A20
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80287A00
-	mr       r3, r30
-	lwz      r31, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f4, f1
-	lfs      f1, 0x514(r31)
-	lfs      f2, 0x4c4(r31)
-	mr       r3, r30
-	lfs      f3, 0x4ec(r31)
-	li       r4, 0
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	mr       r3, r30
-	lwz      r31, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f4, f1
-	lfs      f1, 0x514(r31)
-	lfs      f2, 0x4c4(r31)
-	mr       r3, r30
-	lfs      f3, 0x4ec(r31)
-	li       r4, 0
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	mr       r3, r30
-	lwz      r31, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f4, f1
-	lfs      f1, 0x53c(r31)
-	lfs      f2, 0x4c4(r31)
-	mr       r3, r30
-	lfs      f3, 0x4ec(r31)
-	li       r4, 0
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f0, lbl_8051B784@sda21(r2)
-	stfs     f0, 0x20c(r30)
-	b        lbl_80287A20
+	if (armor->mHealth <= 0.0f) {
+		transit(armor, ARMOR_Dead, nullptr);
+		return;
+	}
 
-lbl_80287A00:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80287A20
-	lwz      r12, 0(r3)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	if (armor->mCurAnim->mIsPlaying) {
+		if (armor->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::flickNearbyNavi(armor, CG_PARMS(armor)->mGeneral.mShakeRange.mValue,
+			                           CG_PARMS(armor)->mGeneral.mShakeKnockback.mValue, CG_PARMS(armor)->mGeneral.mShakeDamage.mValue,
+			                           armor->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyPikmin(armor, CG_PARMS(armor)->mGeneral.mShakeRange.mValue,
+			                             CG_PARMS(armor)->mGeneral.mShakeKnockback.mValue, CG_PARMS(armor)->mGeneral.mShakeDamage.mValue,
+			                             armor->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(armor, CG_PARMS(armor)->mGeneral.mShakeRateMaybe.mValue,
+			                            CG_PARMS(armor)->mGeneral.mShakeKnockback.mValue, CG_PARMS(armor)->mGeneral.mShakeDamage.mValue,
+			                            armor->getFaceDir(), nullptr);
+			armor->mToFlick = 0.0f;
 
-lbl_80287A20:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		} else if (armor->mCurAnim->mType == KEYEVENT_END) {
+			transit(armor, ARMOR_Move, nullptr);
+		}
+	}
 }
 
 /*
@@ -1757,44 +1048,17 @@ void StateFail::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFail::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B784@sda21(r2)
-	stw      r0, 0x14(r1)
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80287AB4
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80287AE8
+	Obj* armor = OBJ(armor);
+	if (armor->mHealth <= 0.0f) {
+		transit(armor, ARMOR_Dead, nullptr);
+		return;
+	}
 
-lbl_80287AB4:
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80287AE8
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80287AE8
-	lwz      r12, 0(r3)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80287AE8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (armor->mCurAnim->mIsPlaying) {
+		if (armor->mCurAnim->mType == KEYEVENT_END) {
+			transit(armor, ARMOR_Move, nullptr);
+		}
+	}
 }
 
 /*

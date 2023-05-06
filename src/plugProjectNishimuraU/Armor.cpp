@@ -35,8 +35,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	EnemyBase::onInit(initArg);
 	disableEvent(0, EB_LifegaugeVisible);
 	disableEvent(0, EB_IsCullable);
-	_2C4 = -1;
-	_2C8 = 0.0f;
+	mNextState      = -1;
+	mAttackLoopTime = 0.0f;
 	resetBridgeSearch();
 	setupEffect();
 	mFsm->start(this, ARMOR_Stay, nullptr);

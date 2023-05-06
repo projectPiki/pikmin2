@@ -22,18 +22,20 @@ namespace Game {
 struct WayPoint;
 
 namespace MiniHoudai {
-enum MiniHoudaiStateID {
-	DEAD      = 0,
-	REBIRTH   = 1,
-	LOST      = 2,
-	ATTACK    = 3,
-	FLICK     = 4,
-	TURN      = 5,
-	TURN_HOME = 6,
-	TURN_PATH = 7,
-	WALK      = 8,
-	WALK_HOME = 9,
-	WALK_PATH = 10,
+enum StateID {
+	MINIHOUDAI_NULL     = -1,
+	MINIHOUDAI_Dead     = 0,
+	MINIHOUDAI_Rebirth  = 1,
+	MINIHOUDAI_Lost     = 2,
+	MINIHOUDAI_Attack   = 3,
+	MINIHOUDAI_Flick    = 4,
+	MINIHOUDAI_Turn     = 5,
+	MINIHOUDAI_TurnHome = 6,
+	MINIHOUDAI_TurnPath = 7,
+	MINIHOUDAI_Walk     = 8,
+	MINIHOUDAI_WalkHome = 9,
+	MINIHOUDAI_WalkPath = 10,
+	MINIHOUDAI_StateCount, // 11
 };
 
 struct FSM;
@@ -115,7 +117,7 @@ struct Obj : public EnemyBase {
 	f32 _2C8;                            // _2C8, caution?
 	f32 _2CC;                            // _2CC
 	f32 _2D0;                            // _2D0
-	MiniHoudaiStateID mHoudaiStateID;    // _2D4
+	StateID mNextState;                  // _2D4
 	Vector3f mTargetPosition;            // _2D8
 	Vector3f _2E4;                       // _2E4, shotgun target distance maybe?
 	WayPoint* _2F0;                      // _2F0
@@ -238,11 +240,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(MINIHOUDAI_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -252,6 +265,11 @@ struct StateAttack : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(MINIHOUDAI_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -261,6 +279,11 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(MINIHOUDAI_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -270,6 +293,11 @@ struct StateFlick : public State {
 };
 
 struct StateLost : public State {
+	inline StateLost()
+	    : State(MINIHOUDAI_Lost, "lost")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -279,6 +307,11 @@ struct StateLost : public State {
 };
 
 struct StateRebirth : public State {
+	inline StateRebirth()
+	    : State(MINIHOUDAI_Rebirth, "rebirth")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -288,6 +321,11 @@ struct StateRebirth : public State {
 };
 
 struct StateTurn : public State {
+	inline StateTurn()
+	    : State(MINIHOUDAI_Turn, "turn")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -297,6 +335,11 @@ struct StateTurn : public State {
 };
 
 struct StateTurnHome : public State {
+	inline StateTurnHome()
+	    : State(MINIHOUDAI_TurnHome, "turnhome")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -306,6 +349,11 @@ struct StateTurnHome : public State {
 };
 
 struct StateTurnPath : public State {
+	inline StateTurnPath()
+	    : State(MINIHOUDAI_TurnPath, "turnpath")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -315,6 +363,11 @@ struct StateTurnPath : public State {
 };
 
 struct StateWalk : public State {
+	inline StateWalk()
+	    : State(MINIHOUDAI_Walk, "walk")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -324,6 +377,11 @@ struct StateWalk : public State {
 };
 
 struct StateWalkHome : public State {
+	inline StateWalkHome()
+	    : State(MINIHOUDAI_WalkHome, "walkhome")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -333,6 +391,11 @@ struct StateWalkHome : public State {
 };
 
 struct StateWalkPath : public State {
+	inline StateWalkPath()
+	    : State(MINIHOUDAI_WalkPath, "walkpath")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

@@ -439,11 +439,11 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	_2C4 = 128.0f;
-	_2C0 = 0.0f;
-	_2D4 = -1;
-	_2D8 = false;
-	_2D9 = false;
+	_2C4       = 128.0f;
+	_2C0       = 0.0f;
+	mNextState = FROG_NULL;
+	_2D8       = false;
+	_2D9       = false;
 	setupEffect();
 	mFsm->start(this, 1, nullptr);
 }
@@ -1135,7 +1135,7 @@ lbl_80258FA0:
  * Address:	80258FC8
  * Size:	000024
  */
-void Obj::getViewAngle()
+f32 Obj::getViewAngle()
 {
 	// C_PARMS->
 	/*
