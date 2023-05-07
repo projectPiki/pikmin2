@@ -3,6 +3,7 @@
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
 #include "Game/EnemyFunc.h"
+#include "nans.h"
 
 namespace Game {
 namespace MiniHoudai {
@@ -101,6 +102,70 @@ void StateRebirth::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateRebirth::exec(EnemyBase* enemy)
 {
+	Obj* mini = OBJ(enemy);
+
+	if (mini->mCurAnim->mIsPlaying) {
+		if (mini->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::flickStickPikmin(mini, CG_PARMS(mini)->mGeneral.mShakeRateMaybe.mValue,
+			                            CG_PARMS(mini)->mGeneral.mShakeKnockback.mValue, CG_PARMS(mini)->mGeneral.mShakeDamage.mValue,
+			                            -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(mini, CG_PARMS(mini)->mGeneral.mShakeRange.mValue, CG_PARMS(mini)->mGeneral.mShakeKnockback.mValue,
+			                             CG_PARMS(mini)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			EnemyFunc::flickNearbyNavi(mini, CG_PARMS(mini)->mGeneral.mShakeRange.mValue, CG_PARMS(mini)->mGeneral.mShakeKnockback.mValue,
+			                           CG_PARMS(mini)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+			mini->mToFlick = 0.0f;
+			mini->enableEvent(0, EB_IsEnemyNotBitter);
+
+		} else if (mini->mCurAnim->mType == KEYEVENT_3) {
+			mini->disableEvent(0, EB_IsEnemyNotBitter);
+			mini->createDownEffect(0.75f);
+
+		} else if (mini->mCurAnim->mType == KEYEVENT_END) {
+			if (mini->mHealth <= 0.0f) {
+				transit(mini, MINIHOUDAI_Dead, nullptr);
+				return;
+			}
+
+			if (EnemyFunc::isStartFlick(mini, false)) {
+				transit(mini, MINIHOUDAI_Flick, nullptr);
+				return;
+			}
+
+			if (mini->isAttackableTarget()) {
+				transit(mini, MINIHOUDAI_Attack, nullptr);
+				return;
+			}
+
+			Creature* target = mini->getSearchedTarget();
+			if (target) {
+				Vector3f targetPos = target->getPosition();
+				Vector3f pos       = mini->getPosition();
+				f32 angle          = angXZ(targetPos, pos);
+
+				f32 dist = angDist(angle, mini->getFaceDir());
+
+				if (FABS(dist) <= PI * (DEG2RAD * CG_PARMS(mini)->mGeneral.mMinAttackRange.mValue)) {
+					transit(mini, MINIHOUDAI_Walk, nullptr);
+					return;
+				}
+
+				transit(mini, MINIHOUDAI_Turn, nullptr);
+				return;
+			}
+
+			Vector3f pathPos = mini->_2E4;
+			Vector3f pos     = mini->getPosition();
+
+			f32 angle = angXZ(pathPos.x, pathPos.z, pos);
+
+			f32 dist = angDist(angle, mini->getFaceDir());
+			if (FABS(dist) <= QUARTER_PI) {
+				transit(mini, MINIHOUDAI_WalkPath, nullptr);
+			} else {
+				transit(mini, MINIHOUDAI_TurnPath, nullptr);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -374,27 +439,11 @@ void StateRebirth::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemy
  */
 void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, -1
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	lfs      f0, lbl_8051CF48@sda21(r2)
-	stw      r5, 0x2d4(r4)
-	li       r4, 1
-	li       r5, 0
-	stw      r0, 0x230(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini             = OBJ(enemy);
+	mini->mNextState      = MINIHOUDAI_NULL;
+	mini->mTargetCreature = nullptr;
+	mini->mTargetVelocity = Vector3f(0.0f);
+	mini->startMotion(1, nullptr);
 }
 
 /*
@@ -404,6 +453,87 @@ void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateLost::exec(EnemyBase* enemy)
 {
+	Obj* mini = OBJ(enemy);
+	if (mini->mCurAnim->mIsPlaying && mini->mCurAnim->mType == KEYEVENT_END) {
+		if (mini->mHealth <= 0.0f) {
+			transit(mini, MINIHOUDAI_Dead, nullptr);
+			return;
+		}
+
+		if (EnemyFunc::isStartFlick(mini, false)) {
+			transit(mini, MINIHOUDAI_Flick, nullptr);
+			return;
+		}
+
+		Vector3f miniPos = mini->getPosition();
+		Vector3f homePos = mini->mHomePosition;
+
+		f32 homeDist = sqrDistanceXZ(miniPos, homePos);
+		if (homeDist > SQUARE(CG_PARMS(mini)->mGeneral.mTerritoryRadius.mValue)) {
+			Vector3f pos = mini->getPosition();
+			f32 angle    = angXZ(homePos.x, homePos.z, pos);
+			f32 dist     = angDist(angle, mini->getFaceDir());
+
+			if (FABS(dist) <= QUARTER_PI) {
+				transit(mini, MINIHOUDAI_WalkHome, nullptr);
+				return;
+			} else {
+				transit(mini, MINIHOUDAI_TurnHome, nullptr);
+				return;
+			}
+		}
+
+		if (mini->isAttackableTarget()) {
+			transit(mini, MINIHOUDAI_Attack, nullptr);
+			return;
+		}
+
+		Creature* target = mini->getSearchedTarget();
+		if (target) {
+			Vector3f targetPos = target->getPosition();
+			Vector3f pos       = mini->getPosition();
+			f32 angle          = angXZ(targetPos, pos);
+
+			f32 dist = angDist(angle, mini->getFaceDir());
+
+			if (FABS(dist) <= PI * (DEG2RAD * CG_PARMS(mini)->mGeneral.mMinAttackRange.mValue)) {
+				transit(mini, MINIHOUDAI_Walk, nullptr);
+				return;
+			}
+
+			transit(mini, MINIHOUDAI_Turn, nullptr);
+			return;
+		}
+
+		if (homeDist < SQUARE(CG_PARMS(mini)->mGeneral.mHomeRadius.mValue)) {
+			Vector3f pathPos = mini->_2E4;
+			Vector3f pos     = mini->getPosition();
+
+			f32 angle = angXZ(pathPos.x, pathPos.z, pos);
+
+			f32 dist = angDist(angle, mini->getFaceDir());
+			if (FABS(dist) <= QUARTER_PI) {
+				transit(mini, MINIHOUDAI_WalkPath, nullptr);
+				return;
+			} else {
+				transit(mini, MINIHOUDAI_TurnPath, nullptr);
+				return;
+			}
+		}
+
+		Vector3f pos = mini->getPosition();
+
+		f32 angle = angXZ(homePos.x, homePos.z, pos);
+
+		f32 dist = angDist(angle, mini->getFaceDir());
+		if (FABS(dist) <= QUARTER_PI) {
+			transit(mini, MINIHOUDAI_WalkHome, nullptr);
+			return;
+		} else {
+			transit(mini, MINIHOUDAI_TurnHome, nullptr);
+			return;
+		}
+	}
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -767,32 +897,13 @@ void StateLost::cleanup(EnemyBase* enemy) { }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CF48@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2d4(r4)
-	stfs     f0, 0x2cc(r4)
-	stfs     f0, 0x2c8(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini             = OBJ(enemy);
+	mini->mNextState      = MINIHOUDAI_NULL;
+	mini->_2CC            = 0.0f;
+	mini->_2C8            = 0.0f;
+	mini->mTargetVelocity = Vector3f(0.0f);
+	mini->setEmotionExcitement();
+	mini->startMotion(3, nullptr);
 }
 
 /*
@@ -802,6 +913,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
+	Obj* mini = OBJ(enemy);
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -1301,34 +1413,13 @@ void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CF48@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2d4(r4)
-	stfs     f0, 0x2c8(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, lbl_8051CF64@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini             = OBJ(enemy);
+	mini->mNextState      = MINIHOUDAI_NULL;
+	mini->_2C8            = 0.0f;
+	mini->mTargetVelocity = Vector3f(0.0f);
+	mini->setEmotionExcitement();
+	mini->startMotion(4, nullptr);
+	mini->setAnimSpeed(45.0f);
 }
 
 /*
@@ -1722,31 +1813,12 @@ void StateFlick::cleanup(EnemyBase* enemy)
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CF48@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2d0(r4)
-	stw      r0, 0x2d4(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 2
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini             = OBJ(enemy);
+	mini->_2D0            = 0.0f;
+	mini->mNextState      = MINIHOUDAI_NULL;
+	mini->mTargetVelocity = Vector3f(0.0f);
+	mini->setEmotionExcitement();
+	mini->startMotion(2, nullptr);
 }
 
 /*
@@ -2239,25 +2311,10 @@ void StateTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateTurnHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CF48@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stw      r0, 0x2d4(r4)
-	li       r4, 2
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini             = OBJ(enemy);
+	mini->mNextState      = MINIHOUDAI_NULL;
+	mini->mTargetVelocity = Vector3f(0.0f);
+	mini->startMotion(2, nullptr);
 }
 
 /*
@@ -2523,25 +2580,10 @@ void StateTurnHome::cleanup(EnemyBase* enemy) { }
  */
 void StateTurnPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CF48@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stw      r0, 0x2d4(r4)
-	li       r4, 2
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini             = OBJ(enemy);
+	mini->mNextState      = MINIHOUDAI_NULL;
+	mini->mTargetVelocity = Vector3f(0.0f);
+	mini->startMotion(2, nullptr);
 }
 
 /*
@@ -2819,28 +2861,11 @@ void StateTurnPath::cleanup(EnemyBase* enemy) { }
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CF48@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2d0(r4)
-	stw      r0, 0x2d4(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini        = OBJ(enemy);
+	mini->_2D0       = 0.0f;
+	mini->mNextState = MINIHOUDAI_NULL;
+	mini->setEmotionExcitement();
+	mini->startMotion(0, nullptr);
 }
 
 /*
@@ -3419,21 +3444,9 @@ void StateWalk::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateWalkHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stw      r0, 0x2d4(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini        = OBJ(enemy);
+	mini->mNextState = MINIHOUDAI_NULL;
+	mini->startMotion(0, nullptr);
 }
 
 /*
@@ -3847,21 +3860,9 @@ void StateWalkHome::cleanup(EnemyBase* enemy) { }
  */
 void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stw      r0, 0x2d4(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* mini        = OBJ(enemy);
+	mini->mNextState = MINIHOUDAI_NULL;
+	mini->startMotion(0, nullptr);
 }
 
 /*

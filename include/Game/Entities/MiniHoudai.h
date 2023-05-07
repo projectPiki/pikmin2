@@ -80,10 +80,10 @@ struct Obj : public EnemyBase {
 	void resetWayPoint();
 	void setNearestWayPoint();
 	void setLinkWayPoint();
-	void getSearchedTarget();
+	Creature* getSearchedTarget();
 	void updateTargetDistance();
 	void updateHomePosition();
-	void isAttackableTarget();
+	bool isAttackableTarget();
 	void createShotGun();
 	void setupShotGun();
 	void resetShotGunCallBack();
@@ -92,9 +92,9 @@ struct Obj : public EnemyBase {
 	void doUpdateCommonShotGun();
 	void startShotGunRotation();
 	void finishShotGunRotation();
-	void isShotGunRotation();
-	void isShotGunLockOn();
-	void isFinishShotGun();
+	bool isShotGunRotation();
+	bool isShotGunLockOn();
+	bool isFinishShotGun();
 	void emitShotGun();
 	void setShotGunTargetPosition();
 	void forceFinishShotGun();
