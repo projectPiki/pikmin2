@@ -1,367 +1,25 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048CD30
-    lbl_8048CD30:
-        .4byte 0x77616C6B
-        .4byte 0x70617468
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game12KumaKochappy13StateWalkPath
-    __vt__Q34Game12KumaKochappy13StateWalkPath:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KumaKochappy13StateWalkPathFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KumaKochappy13StateWalkPathFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KumaKochappy13StateWalkPathFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KumaKochappy9StateWalk
-    __vt__Q34Game12KumaKochappy9StateWalk:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KumaKochappy9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KumaKochappy9StateWalkFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KumaKochappy9StateWalkFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KumaKochappy10StateFlick
-    __vt__Q34Game12KumaKochappy10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KumaKochappy10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KumaKochappy10StateFlickFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KumaKochappy10StateFlickFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KumaKochappy11StateAttack
-    __vt__Q34Game12KumaKochappy11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KumaKochappy11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KumaKochappy11StateAttackFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KumaKochappy11StateAttackFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KumaKochappy9StateWait
-    __vt__Q34Game12KumaKochappy9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KumaKochappy9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KumaKochappy9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KumaKochappy9StateWaitFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KumaKochappy10StatePress
-    __vt__Q34Game12KumaKochappy10StatePress:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KumaKochappy10StatePressFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KumaKochappy10StatePressFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KumaKochappy10StatePressFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KumaKochappy9StateDead
-    __vt__Q34Game12KumaKochappy9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KumaKochappy9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KumaKochappy9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KumaKochappy9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KumaKochappy5State
-    __vt__Q34Game12KumaKochappy5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KumaKochappy3FSM
-    __vt__Q34Game12KumaKochappy3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game12KumaKochappy3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051CE60
-    lbl_8051CE60:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051CE68
-    lbl_8051CE68:
-        .4byte 0x70726573
-        .4byte 0x73000000
-    .global lbl_8051CE70
-    lbl_8051CE70:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051CE78
-    lbl_8051CE78:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051CE80
-    lbl_8051CE80:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051CE88
-    lbl_8051CE88:
-        .4byte 0x77616C6B
-        .4byte 0x00000000
-    .global lbl_8051CE90
-    lbl_8051CE90:
-        .4byte 0x00000000
-    .global lbl_8051CE94
-    lbl_8051CE94:
-        .4byte 0x40490FDB
-    .global lbl_8051CE98
-    lbl_8051CE98:
-        .4byte 0x3BB60B61
-    .global lbl_8051CE9C
-    lbl_8051CE9C:
-        .4byte 0x42700000
-    .global lbl_8051CEA0
-    lbl_8051CEA0:
-        .4byte 0x41F00000
-    .global lbl_8051CEA4
-    lbl_8051CEA4:
-        .float 0.5
-    .global lbl_8051CEA8
-    lbl_8051CEA8:
-        .4byte 0x42340000
-        .4byte 0x00000000
-*/
+#include "Game/Entities/KumaKochappy.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
 
 namespace Game {
+namespace KumaKochappy {
 
 /*
  * --INFO--
  * Address:	802E4EE8
  * Size:	00027C
  */
-void KumaKochappy::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 7
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E4F4C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12KumaKochappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12KumaKochappy9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12KumaKochappy5State@l
-	addi     r5, r2, lbl_8051CE60@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game12KumaKochappy9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E4F4C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E4FA0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12KumaKochappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12KumaKochappy10StatePress@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12KumaKochappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CE68@sda21
-	addi     r0, r3, __vt__Q34Game12KumaKochappy10StatePress@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E4FA0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E4FF4
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12KumaKochappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12KumaKochappy9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12KumaKochappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CE70@sda21
-	addi     r0, r3, __vt__Q34Game12KumaKochappy9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E4FF4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E5048
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12KumaKochappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12KumaKochappy11StateAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12KumaKochappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CE78@sda21
-	addi     r0, r3, __vt__Q34Game12KumaKochappy11StateAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E5048:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E509C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12KumaKochappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12KumaKochappy10StateFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12KumaKochappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CE80@sda21
-	addi     r0, r3, __vt__Q34Game12KumaKochappy10StateFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E509C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E50F0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game12KumaKochappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game12KumaKochappy9StateWalk@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game12KumaKochappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CE88@sda21
-	addi     r0, r3, __vt__Q34Game12KumaKochappy9StateWalk@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E50F0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E5148
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KumaKochappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, lbl_8048CD30@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	lis      r3, __vt__Q34Game12KumaKochappy13StateWalkPath@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q34Game12KumaKochappy5State@l
-	addi     r5, r5, lbl_8048CD30@l
-	addi     r0, r3, __vt__Q34Game12KumaKochappy13StateWalkPath@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E5148:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(KUMAKOCHAPPY_StateCount);
+	registerState(new StateDead);
+	registerState(new StatePress);
+	registerState(new StateWait);
+	registerState(new StateAttack);
+	registerState(new StateFlick);
+	registerState(new StateWalk);
+	registerState(new StateWalkPath);
 }
 
 /*
@@ -369,30 +27,11 @@ lbl_802E5148:
  * Address:	802E5164
  * Size:	000050
  */
-void KumaKochappy::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051CE90@sda21(r2)
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->deathProcedure();
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	enemy->startMotion(1, nullptr);
 }
 
 /*
@@ -400,29 +39,11 @@ void KumaKochappy::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E51B4
  * Size:	000044
  */
-void KumaKochappy::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E51E8
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E51E8
-	mr       r3, r4
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_802E51E8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		enemy->kill(nullptr);
+	}
 }
 
 /*
@@ -430,39 +51,19 @@ lbl_802E51E8:
  * Address:	802E51F8
  * Size:	000004
  */
-void KumaKochappy::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802E51FC
  * Size:	000058
  */
-void KumaKochappy::StatePress::init(Game::EnemyBase*, Game::StateArg*)
+void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CE90@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x200(r4)
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051CE90@sda21(r2)
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->mHealth = 0.0f;
+	enemy->deathProcedure();
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	enemy->startMotion(4, nullptr);
 }
 
 /*
@@ -470,29 +71,11 @@ void KumaKochappy::StatePress::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E5254
  * Size:	000044
  */
-void KumaKochappy::StatePress::exec(Game::EnemyBase*)
+void StatePress::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E5288
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E5288
-	mr       r3, r4
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_802E5288:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		enemy->kill(nullptr);
+	}
 }
 
 /*
@@ -500,38 +83,21 @@ lbl_802E5288:
  * Address:	802E5298
  * Size:	000004
  */
-void KumaKochappy::StatePress::cleanup(Game::EnemyBase*) { }
+void StatePress::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802E529C
  * Size:	000054
  */
-void KumaKochappy::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CE90@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stfs     f0, 0x2c8(r4)
-	li       r4, 6
-	stw      r0, 0x2cc(r3)
-	lwz      r0, 0x1e0(r3)
-	ori      r0, r0, 0x400
-	stw      r0, 0x1e0(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kuma        = OBJ(enemy);
+	kuma->_2C8       = 0.0f;
+	kuma->mNextState = KUMAKOCHAPPY_NULL;
+	kuma->enableEvent(0, EB_Constraint);
+	kuma->mTargetVelocity = Vector3f(0.0f);
+	kuma->startMotion(6, nullptr);
 }
 
 /*
@@ -539,8 +105,50 @@ void KumaKochappy::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E52F0
  * Size:	0003A8
  */
-void KumaKochappy::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
+	Obj* kuma = OBJ(enemy);
+	if (kuma->mHealth <= 0.0f) {
+		transit(kuma, KUMAKOCHAPPY_Dead, nullptr);
+		return;
+	}
+
+	if (EnemyFunc::isStartFlick(kuma, false)) {
+		transit(kuma, KUMAKOCHAPPY_Flick, nullptr);
+		return;
+	}
+
+	Creature* target = kuma->getSearchedTarget();
+	if (target) {
+		// more nonsense going on in here than this
+		f32 dist = kuma->turnToTargetNishi(target, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
+		                                   CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+
+		// this isn't the comparison, probably a bool spat out from an inline
+		if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue) {
+			kuma->mNextState = KUMAKOCHAPPY_Attack;
+			kuma->finishMotion();
+		} else {
+			kuma->mNextState = KUMAKOCHAPPY_Walk;
+			kuma->finishMotion();
+		}
+	} else if (kuma->setTargetParentPosition()) {
+		kuma->mNextState = KUMAKOCHAPPY_WalkPath;
+		kuma->finishMotion();
+	}
+
+	if (kuma->isFinishMotion()) {
+		kuma->setAnimSpeed(60.0f);
+	}
+
+	if (kuma->mCurAnim->mIsPlaying) {
+		if (kuma->mCurAnim->mType == KEYEVENT_2) {
+			kuma->getJAIObject()->startSound(PSSE_EN_KOCHAPPY_NOTICE, 0);
+
+		} else if (kuma->mCurAnim->mType == KEYEVENT_END) {
+			transit(kuma, kuma->mNextState, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -802,25 +410,10 @@ lbl_802E5648:
  * Address:	802E5698
  * Size:	00003C
  */
-void KumaKochappy::StateWait::cleanup(Game::EnemyBase*)
+void StateWait::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       constraintOff__Q24Game9EnemyBaseFv
-	lfs      f1, lbl_8051CEA0@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->constraintOff();
+	enemy->setAnimSpeed(30.0f);
 }
 
 /*
@@ -828,32 +421,13 @@ void KumaKochappy::StateWait::cleanup(Game::EnemyBase*)
  * Address:	802E56D4
  * Size:	000058
  */
-void KumaKochappy::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CE90@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2cc(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kuma             = OBJ(enemy);
+	kuma->mNextState      = KUMAKOCHAPPY_NULL;
+	kuma->mTargetVelocity = Vector3f(0.0f);
+	kuma->setEmotionExcitement();
+	kuma->startMotion(0, nullptr);
 }
 
 /*
@@ -861,8 +435,75 @@ void KumaKochappy::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E572C
  * Size:	0004CC
  */
-void KumaKochappy::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
+	Obj* kuma = OBJ(enemy);
+	if (kuma->mHealth <= 0.0f) {
+		transit(kuma, KUMAKOCHAPPY_Dead, nullptr);
+		return;
+	}
+
+	if (kuma->mCurAnim->mIsPlaying) {
+		if (kuma->mCurAnim->mType == KEYEVENT_2) {
+			int naviEat  = EnemyFunc::attackNavi(kuma, CG_PARMS(kuma)->mGeneral.mAttackRadius.mValue,
+                                                CG_PARMS(kuma)->mGeneral.mAttackHitAngle.mValue,
+                                                CG_PARMS(kuma)->mGeneral.mAttackDamage.mValue, nullptr, nullptr);
+			int totalEat = naviEat + EnemyFunc::eatPikmin(kuma, nullptr);
+
+			EnemyFunc::flickStickPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeRateMaybe.mValue,
+			                            CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue,
+			                            kuma->getFaceDir(), nullptr);
+
+			if (!totalEat) {
+				kuma->startMotion(8, nullptr);
+			}
+
+		} else if (kuma->mCurAnim->mType == KEYEVENT_3) {
+			EnemyFunc::swallowPikmin(kuma, CG_PROPERPARMS(kuma).mPoisonDamage.mValue, nullptr);
+
+		} else if (kuma->mCurAnim->mType == KEYEVENT_END) {
+			if (kuma->mHealth <= 0.0f) {
+				transit(kuma, KUMAKOCHAPPY_Dead, nullptr);
+				return;
+			}
+
+			if (EnemyFunc::isStartFlick(kuma, false)) {
+				transit(kuma, KUMAKOCHAPPY_Flick, nullptr);
+				return;
+			}
+
+			Creature* target = kuma->getSearchedTarget();
+			if (target) {
+				// more nonsense going on in here than this
+				f32 dist = kuma->turnToTargetNishi(target, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
+				                                   CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+
+				// this isn't the comparison, probably a bool spat out from an inline
+				if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue) {
+					transit(kuma, KUMAKOCHAPPY_Attack, nullptr);
+					return;
+				} else {
+					transit(kuma, KUMAKOCHAPPY_Walk, nullptr);
+					return;
+				}
+
+			} else {
+				Vector3f* parentPos = kuma->setTargetParentPosition();
+				if (parentPos) {
+					Vector3f pos = kuma->getPosition();
+					if (inRadius(CG_PARMS(kuma)->mGeneral.mHomeRadius.mValue, pos, *parentPos)) {
+						transit(kuma, KUMAKOCHAPPY_Wait, nullptr);
+						return;
+					} else {
+						transit(kuma, KUMAKOCHAPPY_WalkPath, nullptr);
+						return;
+					}
+				}
+			}
+
+			transit(kuma, KUMAKOCHAPPY_Wait, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -1194,47 +835,19 @@ lbl_802E5BA8:
  * Address:	802E5BF8
  * Size:	000024
  */
-void KumaKochappy::StateAttack::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	802E5C1C
  * Size:	000044
  */
-void KumaKochappy::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CE90@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stw      r0, 0x2cc(r4)
-	li       r4, 2
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kuma             = OBJ(enemy);
+	kuma->mNextState      = KUMAKOCHAPPY_NULL;
+	kuma->mTargetVelocity = Vector3f(0.0f);
+	kuma->startMotion(2, nullptr);
 }
 
 /*
@@ -1242,8 +855,68 @@ void KumaKochappy::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E5C60
  * Size:	0004D0
  */
-void KumaKochappy::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
+	Obj* kuma = OBJ(enemy);
+	if (kuma->mHealth <= 0.0f) {
+		transit(kuma, KUMAKOCHAPPY_Dead, nullptr);
+		return;
+	}
+
+	if (kuma->mCurAnim->mIsPlaying) {
+		if (kuma->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::flickStickPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeRateMaybe.mValue,
+			                            CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue,
+			                            kuma->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyPikmin(kuma, CG_PARMS(kuma)->mGeneral.mShakeRange.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
+			                             CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
+			EnemyFunc::flickNearbyNavi(kuma, CG_PARMS(kuma)->mGeneral.mShakeRange.mValue, CG_PARMS(kuma)->mGeneral.mShakeKnockback.mValue,
+			                           CG_PARMS(kuma)->mGeneral.mShakeDamage.mValue, kuma->getFaceDir(), nullptr);
+			kuma->mToFlick = 0.0f;
+
+		} else if (kuma->mCurAnim->mType == KEYEVENT_END) {
+			if (kuma->mHealth <= 0.0f) {
+				transit(kuma, KUMAKOCHAPPY_Dead, nullptr);
+				return;
+			}
+
+			if (EnemyFunc::isStartFlick(kuma, false)) {
+				transit(kuma, KUMAKOCHAPPY_Flick, nullptr);
+				return;
+			}
+
+			Creature* target = kuma->getSearchedTarget();
+			if (target) {
+				// more nonsense going on in here than this
+				f32 dist = kuma->turnToTargetNishi(target, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
+				                                   CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+
+				// this isn't the comparison, probably a bool spat out from an inline
+				if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue) {
+					transit(kuma, KUMAKOCHAPPY_Attack, nullptr);
+					return;
+				} else {
+					transit(kuma, KUMAKOCHAPPY_Walk, nullptr);
+					return;
+				}
+
+			} else {
+				Vector3f* parentPos = kuma->setTargetParentPosition();
+				if (parentPos) {
+					Vector3f pos = kuma->getPosition();
+					if (inRadius(CG_PARMS(kuma)->mGeneral.mHomeRadius.mValue, pos, *parentPos)) {
+						transit(kuma, KUMAKOCHAPPY_Wait, nullptr);
+						return;
+					} else {
+						transit(kuma, KUMAKOCHAPPY_WalkPath, nullptr);
+						return;
+					}
+				}
+			}
+
+			transit(kuma, KUMAKOCHAPPY_Wait, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -1584,30 +1257,18 @@ lbl_802E60E0:
  * Address:	802E6130
  * Size:	000004
  */
-void KumaKochappy::StateFlick::cleanup(Game::EnemyBase*) { }
+void StateFlick::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802E6134
  * Size:	000034
  */
-void KumaKochappy::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 3
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stw      r0, 0x2cc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kuma        = OBJ(enemy);
+	kuma->mNextState = KUMAKOCHAPPY_NULL;
+	kuma->startMotion(3, nullptr);
 }
 
 /*
@@ -1615,8 +1276,73 @@ void KumaKochappy::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E6168
  * Size:	000538
  */
-void KumaKochappy::StateWalk::exec(Game::EnemyBase*)
+void StateWalk::exec(EnemyBase* enemy)
 {
+	bool check = true;
+	Obj* kuma  = OBJ(enemy);
+	if (kuma->mHealth <= 0.0f) {
+		transit(kuma, KUMAKOCHAPPY_Dead, nullptr);
+		return;
+	}
+
+	if (EnemyFunc::isStartFlick(kuma, false)) {
+		transit(kuma, KUMAKOCHAPPY_Flick, nullptr);
+		return;
+	}
+
+	Creature* target = kuma->getSearchedTarget();
+	if (target) {
+		// more nonsense going on in here than this
+		f32 dist = kuma->turnToTargetNishi(target, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
+		                                   CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+
+		// this isn't the comparison, probably a bool spat out from an inline
+		if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue) {
+			kuma->mNextState = KUMAKOCHAPPY_Attack;
+			kuma->finishMotion();
+			kuma->setAnimSpeed(60.0f);
+		} else if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mMinAttackRange.mValue) {
+			check = false;
+			// transit(kuma, KUMAKOCHAPPY_Walk, nullptr);
+			// return;
+		}
+
+	} else {
+		Vector3f* parentPos = kuma->setTargetParentPosition();
+		if (parentPos) {
+			Vector3f pos = kuma->getPosition();
+			if (inRadius(CG_PARMS(kuma)->mGeneral.mHomeRadius.mValue, pos, *parentPos)) {
+				kuma->mNextState = KUMAKOCHAPPY_Wait;
+				kuma->finishMotion();
+			} else {
+				kuma->mNextState = KUMAKOCHAPPY_WalkPath;
+				kuma->finishMotion();
+			}
+		} else {
+			kuma->mNextState = KUMAKOCHAPPY_Wait;
+			kuma->finishMotion();
+		}
+	}
+
+	if (kuma->isFinishMotion()) {
+		kuma->mTargetVelocity = Vector3f(0.0f);
+	} else if (check) {
+		f32 moveSpeed         = CG_PARMS(kuma)->mGeneral.mMoveSpeed.mValue;
+		f32 sinTheta          = (f32)sin(kuma->getFaceDir());
+		f32 y                 = kuma->getTargetVelocity().y;
+		f32 cosTheta          = (f32)cos(kuma->getFaceDir());
+		kuma->mTargetVelocity = Vector3f(moveSpeed * sinTheta, y, moveSpeed * cosTheta);
+	} else {
+		f32 moveSpeed         = CG_PARMS(kuma)->mGeneral.mMoveSpeed.mValue * 0.5f;
+		f32 sinTheta          = (f32)sin(kuma->getFaceDir());
+		f32 y                 = kuma->getTargetVelocity().y;
+		f32 cosTheta          = (f32)cos(kuma->getFaceDir());
+		kuma->mTargetVelocity = Vector3f(moveSpeed * sinTheta, y, moveSpeed * cosTheta);
+	}
+
+	if (kuma->mCurAnim->mIsPlaying && kuma->mCurAnim->mType == KEYEVENT_END) {
+		transit(kuma, kuma->mNextState, nullptr);
+	}
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -1988,50 +1714,19 @@ lbl_802E665C:
  * Address:	802E66A0
  * Size:	000028
  */
-void KumaKochappy::StateWalk::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051CEA0@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateWalk::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
 
 /*
  * --INFO--
  * Address:	802E66C8
  * Size:	00004C
  */
-void KumaKochappy::StateWalkPath::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 3
-	stw      r0, 0x2cc(r31)
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, lbl_8051CEA8@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kuma        = OBJ(enemy);
+	kuma->mNextState = KUMAKOCHAPPY_NULL;
+	kuma->startMotion(3, nullptr);
+	kuma->setAnimSpeed(45.0f);
 }
 
 /*
@@ -2039,8 +1734,66 @@ void KumaKochappy::StateWalkPath::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E6714
  * Size:	000534
  */
-void KumaKochappy::StateWalkPath::exec(Game::EnemyBase*)
+void StateWalkPath::exec(EnemyBase* enemy)
 {
+	Obj* kuma = OBJ(enemy);
+	if (kuma->mHealth <= 0.0f) {
+		transit(kuma, KUMAKOCHAPPY_Dead, nullptr);
+		return;
+	}
+
+	if (EnemyFunc::isStartFlick(kuma, true)) {
+		transit(kuma, KUMAKOCHAPPY_Flick, nullptr);
+		return;
+	}
+
+	Creature* target = kuma->getSearchedTarget();
+	if (target) {
+		// more nonsense going on in here than this
+		f32 dist = kuma->turnToTargetNishi(target, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
+		                                   CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+
+		// this isn't the comparison, probably a bool spat out from an inline
+		if (FABS(dist) <= CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue) {
+			kuma->mNextState = KUMAKOCHAPPY_Attack;
+			kuma->finishMotion();
+			kuma->setAnimSpeed(60.0f);
+		} else {
+			kuma->mNextState = KUMAKOCHAPPY_Walk;
+			kuma->finishMotion();
+		}
+
+	} else {
+		Vector3f* parentPos = kuma->setTargetParentPosition();
+		if (parentPos) {
+			Vector3f pos = kuma->getPosition();
+			if (inRadius(CG_PARMS(kuma)->mGeneral.mHomeRadius.mValue, pos, *parentPos)) {
+				kuma->mNextState = KUMAKOCHAPPY_Wait;
+				kuma->finishMotion();
+			} else {
+				f32 dist = kuma->turnToTarget2(*parentPos, CG_PARMS(kuma)->mGeneral.mRotationalSpeed.mValue,
+				                               CG_PARMS(kuma)->mGeneral.mRotationalAccel.mValue);
+			}
+		} else {
+			kuma->mNextState = KUMAKOCHAPPY_Wait;
+			kuma->finishMotion();
+		}
+	}
+
+	if (kuma->isFinishMotion()) {
+		kuma->mTargetVelocity = Vector3f(0.0f);
+	} else {
+		f32 moveSpeed = CG_PARMS(kuma)->mGeneral.mSearchHeight.mValue; // ??????????????????????????????????
+		f32 sinTheta  = (f32)sin(kuma->getFaceDir());
+		f32 y         = kuma->getTargetVelocity().y;
+		f32 cosTheta  = (f32)cos(kuma->getFaceDir());
+
+		kuma->mTargetVelocity = Vector3f(moveSpeed * sinTheta, y, moveSpeed * cosTheta);
+	}
+
+	if (kuma->mCurAnim->mIsPlaying && kuma->mCurAnim->mType == KEYEVENT_END) {
+		transit(kuma, kuma->mNextState, nullptr);
+	}
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -2409,19 +2162,6 @@ lbl_802E6BF8:
  * Address:	802E6C48
  * Size:	000028
  */
-void KumaKochappy::StateWalkPath::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051CEA0@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateWalkPath::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
+} // namespace KumaKochappy
 } // namespace Game

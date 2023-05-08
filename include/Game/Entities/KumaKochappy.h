@@ -24,6 +24,18 @@ struct WayPoint;
 namespace KumaKochappy {
 struct FSM;
 
+enum StateID {
+	KUMAKOCHAPPY_NULL     = -1,
+	KUMAKOCHAPPY_Dead     = 0,
+	KUMAKOCHAPPY_Press    = 1,
+	KUMAKOCHAPPY_Wait     = 2,
+	KUMAKOCHAPPY_Attack   = 3,
+	KUMAKOCHAPPY_Flick    = 4,
+	KUMAKOCHAPPY_Walk     = 5,
+	KUMAKOCHAPPY_WalkPath = 6,
+	KUMAKOCHAPPY_StateCount, // 7
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -50,9 +62,9 @@ struct Obj : public EnemyBase {
 
 	void resetZukanAnimationFrame();
 	void setNearestParent();
-	void setTargetParentPosition();
+	Vector3f* setTargetParentPosition();
 	void updateHomePosition();
-	void getSearchedTarget();
+	Creature* getSearchedTarget();
 	void createChappyRelation();
 	void releaseParent();
 	void getParentRelation();
@@ -64,7 +76,7 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                          // _2BC
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2C0
 	f32 _2C8;                           // _2C8
-	int _2CC;                           // _2CC
+	StateID mNextState;                 // _2CC
 	MouthSlots mMouthSlots;             // _2D0
 	Vector3f mTargetParentPosition;     // _2D8
 	ChappyRelation* mParentRelation;    // _2E4
@@ -92,11 +104,11 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , mPoisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
+		Parm<f32> mPoisonDamage; // _804, fp01
 	};
 
 	Parms() { }
@@ -133,11 +145,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(KUMAKOCHAPPY_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -147,6 +170,11 @@ struct StateAttack : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(KUMAKOCHAPPY_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -156,6 +184,11 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(KUMAKOCHAPPY_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -165,6 +198,11 @@ struct StateFlick : public State {
 };
 
 struct StatePress : public State {
+	inline StatePress()
+	    : State(KUMAKOCHAPPY_Press, "press")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -174,6 +212,11 @@ struct StatePress : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(KUMAKOCHAPPY_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -183,6 +226,11 @@ struct StateWait : public State {
 };
 
 struct StateWalk : public State {
+	inline StateWalk()
+	    : State(KUMAKOCHAPPY_Walk, "walk")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -192,6 +240,11 @@ struct StateWalk : public State {
 };
 
 struct StateWalkPath : public State {
+	inline StateWalkPath()
+	    : State(KUMAKOCHAPPY_WalkPath, "walkpath")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
