@@ -61,10 +61,10 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                     // _2BC
-	f32 _2C0;                      // _2C0, unknown
-	f32 _2C4;                      // _2C4, timer?
+	f32 mInactiveTimer;            // _2C0, set randomly between 0-10s, at 15s starts sparking
+	f32 mStateTimer;               // _2C4
 	Vector3f mTargetPosition;      // _2C8
-	bool mHadLookedForPartner;     // _2D4, unknown
+	bool mHasStartedSearch;        // _2D4, toggle to make sure search for partner only happens once per charge state
 	Obj* mPartner;                 // _2D8
 	efx::TDnkmsEffect* mEffectObj; // _2DC
 	                               // _2E0 = PelletView

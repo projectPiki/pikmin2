@@ -9,12 +9,14 @@
 namespace Game {
 namespace ElecBug {
 
+static const char unusedElecBugName[] = "246-ElecBugState";
+
 /*
  * --INFO--
  * Address:	80278E90
  * Size:	000384
  */
-void FSM::init(EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
 	create(ELECBUG_Count);
 	registerState(new StateDead);
@@ -34,7 +36,7 @@ void FSM::init(EnemyBase*)
  * Address:	80279214
  * Size:	00005C
  */
-void StateDead::init(EnemyBase* enemy, StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_IsCullable);
@@ -59,17 +61,17 @@ void StateDead::exec(EnemyBase* enemy)
  * Address:	802792B4
  * Size:	000004
  */
-void StateDead::cleanup(EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802792B8
  * Size:	00004C
  */
-void StateWait::init(EnemyBase* enemy, StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bug  = static_cast<Obj*>(enemy);
-	bug->_2C4 = 0.0f;
+	Obj* bug         = static_cast<Obj*>(enemy);
+	bug->mStateTimer = 0.0f;
 	bug->enableEvent(0, EB_IsCullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->startMotion(2, nullptr);
@@ -83,13 +85,13 @@ void StateWait::init(EnemyBase* enemy, StateArg*)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
-	if (bug->_2C4 > CG_PROPERPARMS(bug).mWaitTime) {
+	if (bug->mStateTimer > CG_PROPERPARMS(bug).mWaitTime) {
 		bug->finishMotion();
 	}
 	if (bug->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
 		transit(bug, ELECBUG_Turn, nullptr);
 	}
-	bug->_2C4 += sys->mDeltaTime;
+	bug->mStateTimer += sys->mDeltaTime;
 }
 
 /*
@@ -97,14 +99,14 @@ void StateWait::exec(EnemyBase* enemy)
  * Address:	802793A4
  * Size:	000004
  */
-void StateWait::cleanup(Game::EnemyBase*) { }
+void StateWait::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802793A8
  * Size:	00005C
  */
-void StateTurn::init(EnemyBase* enemy, StateArg*)
+void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	bug->setTargetPosition();
@@ -122,12 +124,18 @@ void StateTurn::exec(EnemyBase* enemy)
 {
 	Obj* bug           = static_cast<Obj*>(enemy);
 	Vector3f targetPos = bug->mTargetPosition;
-	bug->turnToTarget2(targetPos, CG_PARMS(bug)->mGeneral.mRotationalSpeed, 30.0f);
-	if (bug->_2C0 > 15.0f) {
+	f32 dist
+	    = bug->turnToTarget2(targetPos, CG_PARMS(bug)->mGeneral.mRotationalAccel.mValue, CG_PARMS(bug)->mGeneral.mRotationalSpeed.mValue);
+
+	if (FABS(dist) <= PI / 6.0f) {
+		bug->finishMotion();
+	}
+
+	if (bug->mInactiveTimer > 15.0f) {
 		bug->finishMotion();
 	}
 	if (bug->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
-		if (bug->_2C0 > 15.0f) {
+		if (bug->mInactiveTimer > 15.0f) {
 			transit(bug, ELECBUG_Charge, nullptr);
 			return;
 		}
@@ -140,14 +148,14 @@ void StateTurn::exec(EnemyBase* enemy)
  * Address:	80279604
  * Size:	000004
  */
-void StateTurn::cleanup(EnemyBase*) { }
+void StateTurn::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80279608
  * Size:	00003C
  */
-void StateMove::init(EnemyBase* enemy, StateArg*)
+void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	bug->enableEvent(0, EB_IsCullable);
@@ -161,23 +169,22 @@ void StateMove::init(EnemyBase* enemy, StateArg*)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
-	Obj* bug = static_cast<Obj*>(enemy);
-	// how tf u setting it then?????
-	Vector3f targetPos = bug->mTargetPosition;
+	Obj* bug           = static_cast<Obj*>(enemy);
+	Vector3f targetPos = Vector3f(bug->mTargetPosition);
 
 	Vector3f currentPos = bug->getPosition();
-	if (outsideRadius(25.0f, targetPos, currentPos)) {
+	if (outsideRadius(25.0f, currentPos, targetPos)) {
 		EnemyParmsBase::Parms& general = CG_PARMS(bug)->mGeneral;
 		EnemyFunc::walkToTarget(bug, targetPos, general.mMoveSpeed, general.mRotationalAccel, general.mRotationalSpeed);
 
 	} else {
 		bug->finishMotion();
 	}
-	if (bug->_2C0 > 15.0f) {
+	if (bug->mInactiveTimer > 15.0f) {
 		bug->finishMotion();
 	}
 	if (bug->mCurAnim->mIsPlaying && bug->mCurAnim->mType == KEYEVENT_END) {
-		if (bug->_2C0 > 15.0f) {
+		if (bug->mInactiveTimer > 15.0f) {
 			transit(bug, ELECBUG_Charge, nullptr);
 		} else {
 			transit(bug, ELECBUG_Wait, nullptr);
@@ -190,18 +197,18 @@ void StateMove::exec(EnemyBase* enemy)
  * Address:	80279780
  * Size:	000004
  */
-void StateMove::cleanup(EnemyBase*) { }
+void StateMove::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80279784
  * Size:	00007C
  */
-void StateCharge::init(EnemyBase* enemy, StateArg*)
+void StateCharge::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bug                  = static_cast<Obj*>(enemy);
-	bug->mHadLookedForPartner = false;
-	bug->_2C4                 = 0.0f;
+	Obj* bug               = static_cast<Obj*>(enemy);
+	bug->mHasStartedSearch = false;
+	bug->mStateTimer       = 0.0f;
 	bug->resetPartnerPtr();
 	bug->startChargeEffect();
 	bug->enableEvent(0, EB_IsCullable);
@@ -220,11 +227,11 @@ void StateCharge::exec(EnemyBase* enemy)
 	Obj* bug = static_cast<Obj*>(enemy);
 	Obj* seachingBugs[32];
 
-	if (!bug->mHadLookedForPartner && bug->_2C4 > 2.0f) {
-		int bugCount              = 0;
-		bug->mHadLookedForPartner = true;
-		Vector3f bugPos           = bug->getPosition();
-		Mgr* mgr                  = static_cast<Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ElecBug));
+	if (!bug->mHasStartedSearch && bug->mStateTimer > 2.0f) {
+		int bugCount           = 0;
+		bug->mHasStartedSearch = true;
+		Vector3f bugPos        = bug->getPosition();
+		Mgr* mgr               = static_cast<Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ElecBug));
 		if (mgr) {                                                                     // sanity check moment
 			EnemyIterator<Obj> iElecBug = ((Container<Obj>*)(GenericContainer*)(mgr)); // this is correct... /shrug
 			CI_LOOP(iElecBug)
@@ -239,7 +246,7 @@ void StateCharge::exec(EnemyBase* enemy)
 				}
 			}
 		}
-		if (bugCount > 0) {
+		if (bugCount != 0) {
 			Obj* randBug = seachingBugs[(int)(randFloat() * bugCount)];
 			bug->startChargeState(randBug);
 			bug->disableEvent(0, EB_IsCullable);
@@ -247,18 +254,18 @@ void StateCharge::exec(EnemyBase* enemy)
 	}
 	Obj* partner = bug->mPartner;
 	if (partner) {
-		Vector3f partnerPos = partner->getPosition();
-		partner->turnToTarget2(partnerPos, 0.15f, CG_PARMS(bug)->mGeneral.mRotationalSpeed.mValue);
+		// Vector3f partnerPos = partner->getPosition();
+		partner->turnToTargetNishi(partner, 0.15f, CG_PARMS(bug)->mGeneral.mRotationalSpeed.mValue);
 	}
-	if (bug->_2C4 >= 3.0f) {
-		if (!bug->mPartner) {
+	if (bug->mStateTimer > 3.0f) {
+		if (bug->mPartner) {
+			transit(bug, ELECBUG_Discharge, nullptr);
+		} else {
 			bug->finishPartnerAndEffect();
 			transit(bug, ELECBUG_Turn, nullptr);
-		} else {
-			transit(bug, ELECBUG_Discharge, nullptr);
 		}
 	}
-	bug->_2C4 += sys->mDeltaTime;
+	bug->mStateTimer += sys->mDeltaTime;
 }
 
 /*
@@ -276,7 +283,7 @@ void StateCharge::cleanup(EnemyBase* enemy)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	bug->setEmotionCaution();
-	bug->_2C0 = randWeightFloat(10.0f);
+	bug->mInactiveTimer = randWeightFloat(10.0f);
 }
 
 /*
@@ -284,85 +291,46 @@ void StateCharge::cleanup(EnemyBase* enemy)
  * Address:	80279E04
  * Size:	000060
  */
-void StateDischarge::init(EnemyBase* enemy, StateArg*) { }
+void StateDischarge::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	Obj* bug         = OBJ(enemy);
+	bug->mStateTimer = 0.0f;
+	bug->disableEvent(0, EB_IsCullable);
+	bug->mTargetVelocity = Vector3f(0.0f);
+	bug->setEmotionExcitement();
+	bug->startMotion(4, nullptr);
+}
 
 /*
  * --INFO--
  * Address:	80279E64
  * Size:	0000E8
  */
-void ElecBug::StateDischarge::exec(Game::EnemyBase*)
+void StateDischarge::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r4, 0x2d8(r4)
-	cmplwi   r4, 0
-	beq      lbl_80279E98
-	mr       r3, r31
-	bl       checkInteract__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj
-	b        lbl_80279EA8
+	Obj* bug = OBJ(enemy);
+	if (bug->mPartner) {
+		bug->checkInteract(bug->mPartner);
+	} else {
+		bug->finishPartnerAndEffect();
+		bug->finishMotion();
+	}
 
-lbl_80279E98:
-	mr       r3, r31
-	bl       finishPartnerAndEffect__Q34Game7ElecBug3ObjFv
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (bug->mStateTimer > CG_PROPERPARMS(bug).mDischargeTime.mValue) {
+		bug->finishMotion();
+	}
 
-lbl_80279EA8:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x86c(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80279EC4
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (bug->mCurAnim->mIsPlaying) {
+		if (bug->mCurAnim->mType == KEYEVENT_2) {
+			if (bug->mPartner) {
+				bug->startDischargeEffect(bug->mPartner);
+			}
+		} else if (bug->mCurAnim->mType == KEYEVENT_END) {
+			transit(bug, ELECBUG_Turn, nullptr);
+		}
+	}
 
-lbl_80279EC4:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80279F20
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80279EF8
-	lwz      r4, 0x2d8(r31)
-	cmplwi   r4, 0
-	beq      lbl_80279F20
-	mr       r3, r31
-	bl       startDischargeEffect__Q34Game7ElecBug3ObjFPQ34Game7ElecBug3Obj
-	b        lbl_80279F20
-
-lbl_80279EF8:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80279F20
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80279F20:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bug->mStateTimer += sys->mDeltaTime;
 }
 
 /*
@@ -370,37 +338,12 @@ lbl_80279F20:
  * Address:	80279F4C
  * Size:	00006C
  */
-void ElecBug::StateDischarge::cleanup(Game::EnemyBase*)
+void StateDischarge::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	mr       r3, r31
-	lfd      f3, lbl_8051B4B8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_8051B4C0@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_8051B4A8@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f0, f1, f0
-	stfs     f0, 0x2c0(r31)
-	bl       finishPartnerAndEffect__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Obj* bug = OBJ(enemy);
+	bug->setEmotionCaution();
+	bug->mInactiveTimer = randWeightFloat(10.0f);
+	bug->finishPartnerAndEffect();
 }
 
 /*
@@ -408,37 +351,15 @@ void ElecBug::StateDischarge::cleanup(Game::EnemyBase*)
  * Address:	80279FB8
  * Size:	00006C
  */
-void ElecBug::StateChildCharge::init(Game::EnemyBase*, Game::StateArg*)
+void StateChildCharge::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B488@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c4(r4)
-	bl       startChargeEffect__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051B488@sda21(r2)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bug         = OBJ(enemy);
+	bug->mStateTimer = 0.0f;
+	bug->startChargeEffect();
+	bug->disableEvent(0, EB_IsCullable);
+	bug->mTargetVelocity = Vector3f(0.0f);
+	bug->setEmotionExcitement();
+	bug->startMotion(3, nullptr);
 }
 
 /*
@@ -446,8 +367,22 @@ void ElecBug::StateChildCharge::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8027A024
  * Size:	000228
  */
-void ElecBug::StateChildCharge::exec(Game::EnemyBase*)
+void StateChildCharge::exec(EnemyBase* enemy)
 {
+	Obj* bug     = static_cast<Obj*>(enemy);
+	Obj* partner = bug->mPartner;
+	if (partner) {
+		partner->turnToTargetNishi(partner, 0.15f, CG_PARMS(bug)->mGeneral.mRotationalSpeed.mValue);
+	}
+	if (bug->mStateTimer > 3.0f) {
+		if (partner) {
+			transit(bug, ELECBUG_Discharge, nullptr);
+		} else {
+			bug->finishPartnerAndEffect();
+			transit(bug, ELECBUG_Turn, nullptr);
+		}
+	}
+	bug->mStateTimer += sys->mDeltaTime;
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -605,35 +540,11 @@ lbl_8027A1FC:
  * Address:	8027A24C
  * Size:	000064
  */
-void ElecBug::StateChildCharge::cleanup(Game::EnemyBase*)
+void StateChildCharge::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051B4B8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_8051B4C0@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_8051B4A8@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f0, f1, f0
-	stfs     f0, 0x2c0(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Obj* bug = OBJ(enemy);
+	bug->setEmotionCaution();
+	bug->mInactiveTimer = randWeightFloat(10.0f);
 }
 
 /*
@@ -641,34 +552,14 @@ void ElecBug::StateChildCharge::cleanup(Game::EnemyBase*)
  * Address:	8027A2B0
  * Size:	000060
  */
-void ElecBug::StateChildDischarge::init(Game::EnemyBase*, Game::StateArg*)
+void StateChildDischarge::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B488@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c4(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bug         = OBJ(enemy);
+	bug->mStateTimer = 0.0f;
+	bug->disableEvent(0, EB_IsCullable);
+	bug->mTargetVelocity = Vector3f(0.0f);
+	bug->setEmotionExcitement();
+	bug->startMotion(4, nullptr);
 }
 
 /*
@@ -676,64 +567,23 @@ void ElecBug::StateChildDischarge::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8027A310
  * Size:	0000C0
  */
-void ElecBug::StateChildDischarge::exec(Game::EnemyBase*)
+void StateChildDischarge::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x2d8(r4)
-	cmplwi   r0, 0
-	beq      lbl_8027A358
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x86c(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8027A368
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_8027A368
+	Obj* bug = OBJ(enemy);
+	if (bug->mPartner) {
+		if (bug->mStateTimer > CG_PROPERPARMS(bug).mDischargeTime.mValue) {
+			bug->finishMotion();
+		}
+	} else {
+		bug->finishPartnerAndEffect();
+		bug->finishMotion();
+	}
 
-lbl_8027A358:
-	mr       r3, r31
-	bl       finishPartnerAndEffect__Q34Game7ElecBug3ObjFv
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (bug->mCurAnim->mIsPlaying && bug->mCurAnim->mType == KEYEVENT_END) {
+		transit(bug, ELECBUG_Wait, nullptr);
+	}
 
-lbl_8027A368:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8027A3A4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8027A3A4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8027A3A4:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bug->mStateTimer += sys->mDeltaTime;
 }
 
 /*
@@ -741,37 +591,12 @@ lbl_8027A3A4:
  * Address:	8027A3D0
  * Size:	00006C
  */
-void ElecBug::StateChildDischarge::cleanup(Game::EnemyBase*)
+void StateChildDischarge::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	mr       r3, r31
-	lfd      f3, lbl_8051B4B8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_8051B4C0@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_8051B4A8@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f0, f1, f0
-	stfs     f0, 0x2c0(r31)
-	bl       finishPartnerAndEffect__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Obj* bug = OBJ(enemy);
+	bug->setEmotionCaution();
+	bug->mInactiveTimer = randWeightFloat(10.0f);
+	bug->finishPartnerAndEffect();
 }
 
 /*
@@ -779,38 +604,15 @@ void ElecBug::StateChildDischarge::cleanup(Game::EnemyBase*)
  * Address:	8027A43C
  * Size:	000070
  */
-void ElecBug::StateReverse::init(Game::EnemyBase*, Game::StateArg*)
+void StateReverse::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B488@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c4(r4)
-	bl       finishPartnerAndEffect__Q34Game7ElecBug3ObjFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051B488@sda21(r2)
-	li       r4, 5
-	ori      r0, r0, 0x40
-	li       r5, 0
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bug         = OBJ(enemy);
+	bug->mStateTimer = 0.0f;
+	bug->finishPartnerAndEffect();
+	bug->enableEvent(0, EB_IsCullable);
+	bug->disableEvent(0, EB_IsVulnerable);
+	bug->mTargetVelocity = Vector3f(0.0f);
+	bug->startMotion(5, nullptr);
 }
 
 /*
@@ -818,70 +620,23 @@ void ElecBug::StateReverse::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8027A4AC
  * Size:	0000D8
  */
-void ElecBug::StateReverse::exec(Game::EnemyBase*)
+void StateReverse::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0xc0(r4)
-	lfs      f1, 0x2c4(r4)
-	lfs      f0, 0x81c(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8027A4E4
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	Obj* bug = OBJ(enemy);
+	if (bug->mStateTimer > CG_PROPERPARMS(bug).mFlipTime.mValue) {
+		bug->finishMotion();
+	}
 
-lbl_8027A4E4:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B488@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8027A51C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8027A56C
+	if (bug->mHealth <= 0.0f) {
+		transit(bug, ELECBUG_Dead, nullptr);
+		return;
+	}
 
-lbl_8027A51C:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8027A56C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8027A56C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	bug->mStateTimer += sys->mDeltaTime;
 
-lbl_8027A56C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (bug->mCurAnim->mIsPlaying && bug->mCurAnim->mType == KEYEVENT_END) {
+		transit(bug, ELECBUG_Return, nullptr);
+	}
 }
 
 /*
@@ -889,43 +644,19 @@ lbl_8027A56C:
  * Address:	8027A584
  * Size:	000010
  */
-void ElecBug::StateReverse::cleanup(Game::EnemyBase*)
-{
-	/*
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r4)
-	blr
-	*/
-}
+void StateReverse::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_IsVulnerable); }
 
 /*
  * --INFO--
  * Address:	8027A594
  * Size:	000048
  */
-void ElecBug::StateReturn::init(Game::EnemyBase*, Game::StateArg*)
+void StateReturn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	lfs      f0, lbl_8051B488@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r4, 6
-	li       r5, 0
-	lwz      r0, 0x1e0(r3)
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bug = OBJ(enemy); // nothing even uses the obj cast here but it's necessary for codegen, smh.
+	bug->enableEvent(0, EB_IsCullable);
+	bug->mTargetVelocity = Vector3f(0.0f);
+	bug->startMotion(6, nullptr);
 }
 
 /*
@@ -933,32 +664,11 @@ void ElecBug::StateReturn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8027A5DC
  * Size:	000050
  */
-void ElecBug::StateReturn::exec(Game::EnemyBase*)
+void StateReturn::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_8027A61C
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8027A61C
-	lwz      r12, 0(r3)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8027A61C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		transit(enemy, ELECBUG_Turn, nullptr);
+	}
 }
 
 /*
@@ -966,24 +676,7 @@ lbl_8027A61C:
  * Address:	8027A62C
  * Size:	000004
  */
-void ElecBug::StateReturn::cleanup(Game::EnemyBase*) { }
+void StateReturn::cleanup(EnemyBase* enemy) { }
 
-/*
- * --INFO--
- * Address:	8027A630
- * Size:	000038
- */
-
-/*
- * --INFO--
- * Address:	8027A668
- * Size:	0000E4
- */
-
-/*
- * --INFO--
- * Address:	8027A74C
- * Size:	0000DC
- */
 } // namespace ElecBug
 } // namespace Game

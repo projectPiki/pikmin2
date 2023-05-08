@@ -33,9 +33,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	enableEvent(0, EB_IsVulnerable);
-	_2C0     = randWeightFloat(10.0f);
-	_2C4     = 0.0f;
-	mPartner = nullptr;
+	mInactiveTimer = randWeightFloat(10.0f);
+	mStateTimer    = 0.0f;
+	mPartner       = nullptr;
 	setupEffect();
 	mFsm->start(this, ELECBUG_Turn, nullptr);
 }
@@ -58,7 +58,7 @@ void Obj::onKill(CreatureKillArg* arg)
  */
 void Obj::doUpdate()
 {
-	_2C0 += sys->mDeltaTime;
+	mInactiveTimer += sys->mDeltaTime;
 	mFsm->exec(this);
 }
 
