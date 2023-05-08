@@ -2,6 +2,7 @@
 #include "Game/BaseItem.h"
 #include "Game/gameStat.h"
 #include "Game/Navi.h"
+#include "Game/AIConstants.h"
 #include "CollInfo.h"
 #include "trig.h"
 #include "nans.h"
@@ -504,7 +505,7 @@ lbl_8013D47C:
  * Address:	8013D4B4
  * Size:	00023C
  */
-void FakePiki::sNeckCallback(J3DJoint*, int)
+bool FakePiki::sNeckCallback(J3DJoint*, int)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1041,6 +1042,59 @@ void FakePiki::turnTo(Vector3f& targetPos)
  */
 void FakePiki::moveVelocity()
 {
+	Sys::Triangle* tri   = mBounceTriangle;
+	Vector3f newVelocity = Vector3f(0.0f);
+	Vector3f oldVelocity = Vector3f(mVelocity);
+
+	if (tri) {
+		f32 oldSpeed     = _length(oldVelocity);
+		f32 collSpeedDot = dot(oldVelocity, mCollisionPosition);
+		Vector3f vec1    = oldVelocity - (mCollisionPosition * collSpeedDot);
+
+		_normalise2(vec1);
+
+		oldVelocity = vec1 * oldSpeed;
+
+		int code = tri->mCode.getSlipCode();
+		if (code == 0) {
+			if (oldSpeed < 0.1f) {
+				Vector3f scaleVec = Vector3f(0.0f, -_aiConstants->mGravity.mData * sys->mDeltaTime, 0.0f);
+				f32 collScaleDot  = dot(scaleVec, mCollisionPosition);
+				Vector3f vec2     = scaleVec - mCollisionPosition * collScaleDot;
+				vec2              = Vector3f(-vec2.x, -vec2.y, -vec2.z);
+				newVelocity       = vec2 * 1.0f;
+			}
+		} else {
+			Vector3f scaleVec = Vector3f(0.0f, -_aiConstants->mGravity.mData * sys->mDeltaTime, 0.0f);
+			f32 collScaleDot  = dot(scaleVec, mCollisionPosition);
+			Vector3f vec2     = scaleVec - mCollisionPosition * collScaleDot;
+			_normalise2(vec2);
+
+			f32 scale;
+			if (code == MapCode::Code::SlipCode2) {
+				scale = 2.5f;
+				if (isNavi() && ((Navi*)this)->getOlimarData()->hasItem(OlimarData::ODII_RepugnantAppendage)) {
+					scale = 4.0f;
+				}
+			} else {
+				scale = 1.0f;
+			}
+
+			newVelocity = (((vec2 * _aiConstants->mGravity.mData) * sys->mDeltaTime) * scale);
+		}
+	}
+
+	Vector3f vec3 = (oldVelocity + _1F0) - mSimVelocity;
+
+	_length2(vec3); // something's gotten commented out involving this
+
+	vec3 *= sys->mDeltaTime / 0.1f;
+	vec3         = vec3 + mSimVelocity;
+	mSimVelocity = vec3;
+
+	vec3         = mSimVelocity + newVelocity;
+	mSimVelocity = vec3;
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0

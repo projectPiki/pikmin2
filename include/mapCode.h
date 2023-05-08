@@ -29,7 +29,7 @@ struct Code {
 
 	int getAttribute();
 	char* getAttributeName();
-	u8 getSlipCode();
+	int getSlipCode();
 	char* getSlipCodeName();
 	bool isBald();
 	void read(Stream&);

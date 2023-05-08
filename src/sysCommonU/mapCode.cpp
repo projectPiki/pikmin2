@@ -18,7 +18,7 @@ int MapCode::Code::getAttribute() { return mContents & ATTR_MASK; }
  * Address:	8041C440
  * Size:	00000C
  */
-u8 MapCode::Code::getSlipCode() { return mContents >> 4 & SLIPCODE_MASK; }
+int MapCode::Code::getSlipCode() { return mContents >> 4 & SLIPCODE_MASK; }
 
 /*
  * Returns 'is bald' component of code.
