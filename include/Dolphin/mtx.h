@@ -17,6 +17,10 @@ typedef f32 Mtx44[4][4];
 typedef f32 PSQuaternion[4];
 #define MTXDegToRad(a) ((a)*0.01745329252f)
 
+typedef struct Quaternion {
+	f32 x, y, z, w;
+} Quaternion;
+
 void PSMTXConcat(const Mtx, const Mtx, Mtx);
 void PSMTXCopy(const Mtx, Mtx);
 void PSMTXIdentity(Mtx);

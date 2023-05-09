@@ -6,12 +6,6 @@
 #include "types.h"
 #include "Dolphin/math.h"
 #include "utility"
-struct Quaternion {
-	f32 _00;
-	f32 _04;
-	f32 _08;
-	f32 _0C;
-};
 
 namespace JMath {
 template <int length, typename T>
@@ -25,15 +19,57 @@ template <>
 struct TAtanTable<1024, f32> {
 	TAtanTable()
 	{
-		u32 i = 0;
+		int i        = 0;
+		f64 constval = 9.765625E-4;
 		do {
-			mTable[i] = atan((f64)i * 9.765625E-4);
-		} while (i < 1024);
+			mTable[i] = (f32)atan(i * constval);
+		} while (++i < (u32)1024);
+		mTable[0]  = 0.0f;
+		mTable2[0] = 0.25f * PI;
 	}
 	f32 atan2_(f32, f32) const;
 	f32 atan_(f32) const;
 	f32 atan2Radian(f32 y, f32 x) const { return atan2_(y, x); }
+
+	f32 calc(f32 y, f32 x) const
+	{
+		if (x >= 0.0f) {
+			if (x >= y) {
+				return (0.0f == x ? 0.0f : mTable[(int)((y * 1024.0f) / x + 0.5f)]);
+			} else {
+				return HALF_PI - (y == 0.0f ? 0.0f : mTable[(int)((x * 1024.0f) / y + 0.5f)]);
+			}
+		} else {
+			x = -x;
+			if (x < y) {
+				return (y == 0.0f ? 0.0f : mTable[(int)((x * 1024.0f) / y + 0.5f)]) + HALF_PI;
+			} else {
+				return PI - (x == 0.0f ? 0.0f : mTable[(int)((y * 1024.0f) / x + 0.5f)]);
+			}
+		}
+	}
+
+	f32 calcInverse(f32 y, f32 x) const
+	{
+		y = -y;
+		if (x < 0.0f) {
+			x = -x;
+			if (x >= y) {
+				return (x == 0.0f ? 0.0f : mTable[(int)((y * 1024.0f) / x + 0.5f)]) + -PI;
+			} else {
+				return -HALF_PI - (y == 0.0f ? 0.0f : mTable[(int)((x * 1024.0f) / y + 0.5f)]);
+			}
+		} else {
+			if (x < y) {
+				return (y == 0.0f ? 0.0f : mTable[(int)((x * 1024.0f) / y + 0.5f)]) + -HALF_PI;
+			} else {
+				return -(x == 0.0f ? 0.0f : mTable[(int)((y * 1024.0f) / x + 0.5f)]);
+			}
+		}
+	}
+
 	f32 mTable[1024];
+	f32 mTable2[8];
 };
 
 template <int length, typename T>
@@ -47,14 +83,18 @@ template <>
 struct TAsinAcosTable<1024, f32> {
 	TAsinAcosTable()
 	{
-		u32 i = 0;
+		int i        = 0;
+		f64 constval = 9.765625E-4;
 		do {
-			mTable[i] = acos((f64)i * 9.765625E-4);
-		} while (i < 1024);
+			mTable[i] = (f32)asin(i * constval);
+		} while (++i < 1024);
+		mTable[0]  = 0.0f;
+		mTable2[0] = 0.25f * PI;
 	}
 	f32 acos2_(f32, f32) const;
 	f32 acos_(f32) const;
 	f32 mTable[1024];
+	f32 mTable2[8];
 };
 
 /**
@@ -62,13 +102,14 @@ struct TAsinAcosTable<1024, f32> {
  */
 template <int length, typename T>
 struct TSinCosTable {
-	inline TSinCosTable()
+	TSinCosTable()
 	{
-		u32 i = 0;
+		int i   = 0;
+		f64 tau = LONG_TAU;
 		do {
-			mTable[i].first = sin((f64)i * LONG_TAU / length);
-			mTable[i].first = cos((f64)i * LONG_TAU / length);
-		} while (i < 2048);
+			mTable[i].first  = ::sin((i * tau) / 2048.0); // there must be some sort of inline/macro for this
+			mTable[i].second = ::cos((i * tau) / 2048.0);
+		} while (++i < 2048);
 	}
 
 	inline f32 radsToLUT() const
@@ -111,9 +152,9 @@ struct TSinCosTable {
 
 // extern const f32 sincosTable_[1024];
 // extern const std::pair<f32, f32> sincosTable_[2048];
-extern const TSinCosTable<2048, f32> sincosTable_;
-extern const TAtanTable<1024, f32> atanTable_;
-extern const TAsinAcosTable<1024, f32> asinAcosTable_;
+extern const TSinCosTable<2048, f32> sincosTable_ ATTRIBUTE_ALIGN(32);
+extern const TAtanTable<1024, f32> atanTable_ ATTRIBUTE_ALIGN(32);
+extern const TAsinAcosTable<1024, f32> asinAcosTable_ ATTRIBUTE_ALIGN(32);
 
 /**
  * @fabricated
@@ -199,6 +240,17 @@ inline f32 JMASinShort(s16 v) { return JMath::sincosTable_.sinShort(v); }
 
 inline f32 JMASCos(s16 v) { return JMASCosShort(v); }
 inline f32 JMASSin(s16 v) { return JMASinShort(v); }
+
+inline f32 JMAFastSqrt(register f32 x)
+{
+	register f32 recip;
+
+	if (x > 0.0f) {
+		__asm { frsqrte recip, x }
+		return recip * x;
+	}
+	return x;
+}
 
 inline f32 JMAHermiteInterpolation(register f32 p1, register f32 p2, register f32 p3, register f32 p4, register f32 p5, register f32 p6,
                                    register f32 p7)

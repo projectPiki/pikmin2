@@ -181,9 +181,9 @@ LIBS = [
         "mw_version": "2.6",
         "host": True,
         "objects": [
-            "JSystem/JMath/JMath",
+            ["JSystem/JMath/JMath", True],
             ["JSystem/JMath/random", True],
-            "JSystem/JMath/JMATrigonometric",
+            ["JSystem/JMath/JMATrigonometric", True],
         ],
     },
     {

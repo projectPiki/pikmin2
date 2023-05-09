@@ -3,99 +3,27 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516728
-    lbl_80516728:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_80516730
-    lbl_80516730:
-        .float 1.0
-        .4byte 0x00000000
-*/
-
-/*
  * --INFO--
  * Address:	80034F08
  * Size:	0000BC
  */
-void JMAEulerToQuat(short x, short y, short z, Quaternion* quat)
+void JMAEulerToQuat(s16 x, s16 y, s16 z, Quaternion* q)
 {
-	// int iX = (u16)(x/2) % 2048;
-	// int iY = (u16)(y/2) % 2048;
-	// int iX = (u16)(x/2) >> 5;
-	// int iY = (u16)(y/2) >> 5;
-	// int iZ = ((z/2) >> 2) & 0x3FF8;
-	float sinX = JMath::sincosTable_.mTable[(u16)(x / 2) / 32].first;
-	// int iZ = ((z/2) >> 2) % 2048;
-	float sinY = JMath::sincosTable_.mTable[(u16)(y / 2) / 32].first;
-	float sinZ = JMath::sincosTable_.mTable[((u16)(z / 2) >> 2) & 0x3FF8].first;
-	float cosX = JMath::sincosTable_.mTable[(u16)(x / 2) / 32].second;
-	float cosY = JMath::sincosTable_.mTable[(u16)(y / 2) / 32].second;
-	float cosZ = JMath::sincosTable_.mTable[((u16)(z / 2) >> 2) & 0x3FF8].second;
-	// int iX = ((u16)(x/2)) >> 5;
-	// float sinX = JMath::sincosTable_[iX].first;
-	// float sinY = JMath::sincosTable_[((u16)(y/2)) >> 5].first;
-	// int iZ = ((z/2) >> 2) & 0x3FF8;
-	// float sinZ = JMath::sincosTable_[iZ].first;
-	// float cosX = JMath::sincosTable_[iX].second;
-	// float cosY = JMath::sincosTable_[((u16)(y/2)) >> 5].second;
-	// float cosZ = JMath::sincosTable_[iZ].second;
-	quat->_0C = cosX * cosY * cosZ + sinX * sinY * sinZ;
-	quat->_00 = sinX * cosY * cosZ - cosX * sinY * sinZ;
-	quat->_04 = cosZ * cosX * sinY + sinZ * sinX * cosY;
-	quat->_08 = sinZ * cosX * cosY - cosZ * sinX * sinY;
-	/*
-	extsh    r8, r3
-	extsh    r7, r4
-	srwi     r0, r8, 0x1f
-	extsh    r3, r5
-	add      r0, r0, r8
-	srwi     r4, r7, 0x1f
-	srawi    r5, r0, 1
-	lis      r8, sincosTable___5JMath@ha
-	clrlwi   r5, r5, 0x10
-	add      r4, r4, r7
-	srawi    r5, r5, 5
-	srwi     r0, r3, 0x1f
-	srawi    r4, r4, 1
-	addi     r7, r8, sincosTable___5JMath@l
-	add      r0, r0, r3
-	slwi     r5, r5, 3
-	clrlwi   r3, r4, 0x10
-	addi     r4, r7, 4
-	srawi    r3, r3, 5
-	lfsx     f9, r7, r5
-	slwi     r3, r3, 3
-	srawi    r0, r0, 1
-	rlwinm   r0, r0, 0x1e, 0x12, 0x1c
-	lfsx     f3, r7, r3
-	lfsx     f10, r7, r0
-	lfsx     f7, r4, r3
-	fmuls    f0, f9, f3
-	lfsx     f8, r4, r0
-	fmuls    f4, f3, f10
-	lfsx     f6, r4, r5
-	fmuls    f1, f9, f7
-	fmuls    f11, f7, f8
-	fmuls    f2, f9, f4
-	fmuls    f4, f6, f4
-	fmuls    f3, f6, f3
-	fmadds   f5, f6, f11, f2
-	fmuls    f2, f10, f1
-	fmsubs   f4, f9, f11, f4
-	stfs     f5, 0xc(r6)
-	fmuls    f1, f6, f7
-	fmuls    f0, f8, f0
-	fmadds   f2, f8, f3, f2
-	stfs     f4, 0(r6)
-	fmsubs   f0, f10, f1, f0
-	stfs     f2, 4(r6)
-	stfs     f0, 8(r6)
-	blr
-	*/
+	f32 cosX = JMASCos(x / 2);
+	f32 cosY = JMASCos(y / 2);
+	f32 cosZ = JMASCos(z / 2);
+
+	f32 sinX = JMASSin(x / 2);
+	f32 sinY = JMASSin(y / 2);
+	f32 sinZ = JMASSin(z / 2);
+
+	f32 cosYZ = (cosY * cosZ);
+	f32 sinYZ = (sinY * sinZ);
+
+	q->w = cosX * cosYZ + sinX * sinYZ;
+	q->x = sinX * cosYZ - cosX * sinYZ;
+	q->y = cosZ * (cosX * sinY) + sinZ * (sinX * cosY);
+	q->z = sinZ * (cosX * cosY) - cosZ * (sinX * sinY);
 }
 
 /*
@@ -103,66 +31,37 @@ void JMAEulerToQuat(short x, short y, short z, Quaternion* quat)
  * Address:	80034FC4
  * Size:	0000D8
  */
-void JMAQuatLerp(const Quaternion*, const Quaternion*, float, Quaternion*)
+void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32 t, Quaternion* dst)
 {
-	/*
-	psq_l    f0, 0(r3), 0, qr0
-	psq_l    f3, 0(r4), 0, qr0
-	psq_l    f2, 8(r3), 0, qr0
-	ps_mul   f4, f0, f3
-	psq_l    f3, 8(r4), 0, qr0
-	lfd      f0, lbl_80516728@sda21(r2)
-	ps_madd  f4, f2, f3, f4
-	ps_sum0  f4, f4, f4, f4
-	fcmpo    cr0, f4, f0
-	bge      lbl_80035044
-	lfs      f3, 0(r3)
-	fneg     f4, f1
-	lfs      f0, 0(r4)
-	lfs      f5, 4(r3)
-	fadds    f1, f3, f0
-	lfs      f0, 4(r4)
-	lfs      f6, 8(r3)
-	fadds    f2, f5, f0
-	lfs      f0, 8(r4)
-	fmadds   f3, f4, f1, f3
-	fadds    f1, f6, f0
-	lfs      f7, 0xc(r3)
-	lfs      f0, 0xc(r4)
-	fmadds   f2, f4, f2, f5
-	stfs     f3, 0(r5)
-	fadds    f0, f7, f0
-	fmadds   f1, f4, f1, f6
-	stfs     f2, 4(r5)
-	fmadds   f0, f4, f0, f7
-	stfs     f1, 8(r5)
-	stfs     f0, 0xc(r5)
-	blr
+	register f32 pxy, pzw, qxy, qzw;
+	register f32 dp;
+	__asm // compute dot product
+	{
+        psq_l       pxy, 0(p), 0, 0
+        psq_l       qxy, 0(q), 0, 0
+        ps_mul      dp, pxy, qxy
+        
+        psq_l       pzw, 8(p), 0, 0
+        psq_l       qzw, 8(q), 0, 0
+        ps_madd     dp, pzw, qzw, dp
+        
+        ps_sum0     dp, dp, dp, dp
+	}
 
-lbl_80035044:
-	lfs      f3, 0(r3)
-	fneg     f4, f1
-	lfs      f0, 0(r4)
-	lfs      f5, 4(r3)
-	fsubs    f1, f3, f0
-	lfs      f0, 4(r4)
-	lfs      f6, 8(r3)
-	fsubs    f2, f5, f0
-	lfs      f0, 8(r4)
-	fmadds   f3, f4, f1, f3
-	fsubs    f1, f6, f0
-	lfs      f7, 0xc(r3)
-	lfs      f0, 0xc(r4)
-	fmadds   f2, f4, f2, f5
-	stfs     f3, 0(r5)
-	fsubs    f0, f7, f0
-	fmadds   f1, f4, f1, f6
-	stfs     f2, 4(r5)
-	fmadds   f0, f4, f0, f7
-	stfs     f1, 8(r5)
-	stfs     f0, 0xc(r5)
-	blr
-	*/
+	if (dp < 0.0)
+	{
+		dst->x = -t * (p->x + q->x) + p->x;
+		dst->y = -t * (p->y + q->y) + p->y;
+		dst->z = -t * (p->z + q->z) + p->z;
+		dst->w = -t * (p->w + q->w) + p->w;
+	}
+	else
+	{
+		dst->x = -t * (p->x - q->x) + p->x;
+		dst->y = -t * (p->y - q->y) + p->y;
+		dst->z = -t * (p->z - q->z) + p->z;
+		dst->w = -t * (p->w - q->w) + p->w;
+	}
 }
 
 /*
@@ -190,9 +89,22 @@ void JMAFastVECMag(const Vec*)
  * Address:	........
  * Size:	00002C
  */
-void JMAFastVECNormalize(const Vec*, Vec*)
+void JMAFastVECNormalize(register const Vec* src, register Vec* dst)
 {
 	// UNUSED FUNCTION
+	register f32 vxy, rxy, vz, length;
+	__asm {
+        psq_l vxy, 0(src), 0, 0
+        ps_mul rxy, vxy, vxy
+        lfs vz, src->z
+        ps_madd length, vz, vz, rxy
+        ps_sum0 length, length, rxy, rxy
+        frsqrte length, length
+        ps_muls0 vxy, vxy, length;
+        psq_st vxy, 0(dst), 0, 0
+        fmuls vz, vz, length
+        stfs vz, dst->z
+	}
 }
 
 /*
@@ -200,9 +112,28 @@ void JMAFastVECNormalize(const Vec*, Vec*)
  * Address:	........
  * Size:	000028
  */
-void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, float)
+void JMAVECScaleAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst, register f32 scale)
 {
 	// UNUSED FUNCTION
+	register f32 v1xy, v2xy, rxy, v1z, v2z, rz;
+	__asm {
+		// load vector XY of vector 1
+        psq_l v1xy, 0(vec1), 0, 0
+		// load vector Z of vector 2
+        psq_l v2xy,  0(vec2), 0, 0
+		// load vector Z of vector 1
+        psq_l v1z,   8(vec1), 1, 0
+		// load vector Z of vector 2
+        psq_l v2z,   8(vec2), 1, 0
+		// multiply vector 1 XY and add vector 2 XY
+        ps_madds0    rxy, v1xy, scale, v2xy
+		    // multiply vector 1 Z and add  Vector 2 Z
+        ps_madds0 rz, v1z,  scale, v2z
+		    // store result XY in dst
+        psq_st rxy, 0(dst), 0, 0
+		// store result Z in dst
+        psq_st rz,  8(dst), 1, 0
+	}
 }
 
 /*
@@ -210,9 +141,34 @@ void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, float)
  * Address:	........
  * Size:	000030
  */
-void JMAVECLerp(const Vec*, const Vec*, Vec*, float)
+void JMAVECLerp(register const Vec* vec1, register const Vec* vec2, register Vec* dst, register f32 t)
 {
 	// UNUSED FUNCTION
+	register f32 v1xy, v2xy, v1z, v2z;
+	__asm {
+		// load XY components of both vectors
+        psq_l v1xy, 0(vec1), 0, 0
+        psq_l v2xy, 0(vec2), 0, 0
+		// subtract xy components of vec2 with vec1
+        ps_sub v2xy, v2xy, v1xy
+		    // multiply result with t and subtract z of vec1
+        ps_madds0 v2xy, v2xy, t, v1xy
+		    // store result xy in dst
+        psq_st v2xy, 0(dst), 0, 0
+
+		// load Z components of both vectors
+        lfs v1z, 8(vec1)
+        lfs v2z, 8(vec2)
+		// subtract z component of vec2 with vec1
+        fsubs v2z, v2z, v1z
+		    // multiply result with t and subtract z of vec1
+        fmadds v2z, v2z, t, v1z
+		    // store result z in dst
+        stfs v2z, 8(dst)
+	}
+	/*dst->x = (vec2->x - vec1->x) * t + vec1->x;
+	dst->y = (vec2->y - vec1->y) * t + vec1->y;
+	dst->z = (vec2->z - vec1->z) * t + vec1->z;*/
 }
 
 /*
@@ -220,35 +176,51 @@ void JMAVECLerp(const Vec*, const Vec*, Vec*, float)
  * Address:	8003509C
  * Size:	000064
  */
-void JMAMTXApplyScale(const float (*)[4], float (*)[4], float, float, float)
+void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xScale, register f32 yScale, register f32 zScale)
 {
-	/*
-	fmr      f6, f1
-	psq_l    f1, 0(r3), 0, qr0
-	fmr      f0, f2
-	psq_l    f2, 16(r3), 0, qr0
-	fmr      f5, f3
-	lfs      f4, lbl_80516730@sda21(r2)
-	ps_merge00 f0, f6, f0
-	psq_l    f3, 32(r3), 0, qr0
-	ps_mul   f1, f1, f0
-	ps_mul   f2, f2, f0
-	ps_mul   f3, f3, f0
-	psq_st   f1, 0(r4), 0, qr0
-	ps_merge00 f0, f5, f4
-	psq_l    f1, 8(r3), 0, qr0
-	psq_st   f2, 16(r4), 0, qr0
-	psq_l    f2, 24(r3), 0, qr0
-	ps_mul   f1, f1, f0
-	psq_st   f3, 32(r4), 0, qr0
-	psq_l    f3, 40(r3), 0, qr0
-	ps_mul   f2, f2, f0
-	psq_st   f1, 8(r4), 0, qr0
-	ps_mul   f3, f3, f0
-	psq_st   f2, 24(r4), 0, qr0
-	psq_st   f3, 40(r4), 0, qr0
-	blr
-	*/
+	register f32 scale, x, y, z;
+	register f32 normal = 1.0f;
+	__asm {
+		// scale first 2 components
+        psq_l x, 0(src), 0, 0
+        psq_l y, 0x10(src), 0, 0
+        psq_l z, 0x20(src), 0, 0
+        ps_merge00 scale, xScale, yScale        
+        ps_mul x, x, scale
+        ps_mul y, y, scale
+        ps_mul z, z, scale        
+        psq_st x, 0(dst), 0, 0        
+        psq_st y, 0x10(dst), 0, 0
+        psq_st z, 0x20(dst), 0, 0
+
+		// scale last 2 components
+        psq_l x, 0x8(src), 0, 0
+        psq_l y, 0x18(src), 0, 0       
+        psq_l z, 0x28(src), 0, 0
+        ps_merge00 scale, zScale, normal
+        ps_mul x, x, scale
+        ps_mul y, y, scale        
+        ps_mul z, z, scale
+        psq_st x, 0x8(dst), 0, 0
+        psq_st y, 0x18(dst), 0, 0
+        psq_st z, 0x28(dst), 0, 0
+	}
+
+	/*dst[0][0] = src[0][0] * xScale;
+	dst[0][1] = src[0][1] * yScale;
+	dst[0][2] = src[0][2] * zScale;
+
+	dst[1][0] = src[1][0] * xScale;
+	dst[1][1] = src[1][1] * yScale;
+	dst[1][2] = src[1][2] * zScale;
+
+	dst[2][0] = src[2][0] * zScale;
+	dst[2][1] = src[2][1] * zScale;
+	dst[2][2] = src[2][2] * zScale;
+
+	dst[3][0] = src[3][0] * normal;
+	dst[3][1] = src[3][1] * normal;
+	dst[3][2] = src[3][2] * normal;*/
 }
 
 /*
