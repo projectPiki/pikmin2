@@ -203,8 +203,9 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	Vector3f mSimVelocity;                  // _200
 	Vector3f mPosition3;                    // _20C, was mShadowParam.mPosition
 	Sys::Sphere mBoundingSphere;            // _218, was mShadowParam.mBoundingSphere
-	u32 mBoundAnimIdx;                      // _228, current animIdx for held/bound object
-	u8 _22C[8];                             // _22C
+	int mBoundAnimIdx;                      // _228, current animIdx for held/bound object
+	int _22C;                               // _22C, anim id of some description?
+	int _230;                               // _230, anim id of some description?
 	f32 mAnimSpeed;                         // _234
 	Vector3f _238;                          // _238
 	f32 mFaceDirOffset;                     // _244

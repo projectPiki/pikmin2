@@ -3,6 +3,7 @@
 #include "Game/gameStat.h"
 #include "Game/Navi.h"
 #include "Game/AIConstants.h"
+#include "Game/MapMgr.h"
 #include "CollInfo.h"
 #include "trig.h"
 #include "nans.h"
@@ -199,6 +200,123 @@ void FakePiki::clearDoAnimCallback() { mDoAnimCallback = nullptr; }
  */
 void FakePiki::updateWalkAnimation()
 {
+	Vector3f sep   = Vector3f(mPosition3.x - _238.x, 0.0f, mPosition3.z - _238.z);
+	f32 updateTime = sys->mDeltaTime;
+	f32 animSpeed  = _lenVec(sep) / updateTime;
+
+	int boundIdx;
+	if (mAnimator.mBoundAnimator.mAnimInfo) {
+		boundIdx = mAnimator.mBoundAnimator.mAnimInfo->mId;
+	} else {
+		boundIdx = IPikiAnims::NULLANIM;
+	}
+
+	int selfIdx;
+	bool check = false;
+	if (mAnimator.mSelfAnimator.mAnimInfo) {
+		selfIdx = mAnimator.mSelfAnimator.mAnimInfo->mId;
+	} else {
+		selfIdx = IPikiAnims::NULLANIM;
+	}
+
+	if (selfIdx == IPikiAnims::JKOKE) {
+		check = true;
+	}
+
+	if (boundIdx != IPikiAnims::WAIT && boundIdx != IPikiAnims::WALK && boundIdx != IPikiAnims::ASIBUMI && boundIdx != IPikiAnims::RUN2
+	    && boundIdx != IPikiAnims::NIGERU) {
+		mAnimSpeed = 30.0f;
+		return;
+	}
+
+	int otherIdx;
+	JUT_ASSERTLINE(594, !check, "damedayo!\n"); // 'no good!'
+	FakePiki* otherListener = nullptr;
+	f32 faceDir             = FABS(mFaceDir - mFaceDirOffset);
+	FakePikiParms* parms    = static_cast<FakePikiParms*>(mParms);
+	if (animSpeed < parms->mFakePikiParms._0E8.mValue) {
+		otherIdx  = IPikiAnims::WAIT;
+		animSpeed = 30.0f;
+		if (faceDir > 0.01f) {
+			animSpeed = 60.0f;
+			otherIdx  = IPikiAnims::ASIBUMI;
+		}
+
+	} else if (animSpeed < parms->mFakePikiParms._110.mValue) {
+		animSpeed = 30.0f;
+		otherIdx  = IPikiAnims::ASIBUMI;
+
+	} else if (animSpeed < parms->mFakePikiParms._138.mValue) {
+		f32 val       = animSpeed - parms->mFakePikiParms._110.mValue;
+		f32 diff      = parms->mFakePikiParms._138.mValue - parms->mFakePikiParms._110.mValue;
+		otherListener = this;
+		otherIdx      = IPikiAnims::WALK;
+
+		animSpeed
+		    = (val / diff) * (parms->mFakePikiParms._188.mValue - parms->mFakePikiParms._1B0.mValue) + parms->mFakePikiParms._1B0.mValue;
+
+	} else if (animSpeed < parms->mFakePikiParms._160.mValue) {
+		f32 val       = animSpeed - parms->mFakePikiParms._138.mValue;
+		f32 diff      = parms->mFakePikiParms._160.mValue - parms->mFakePikiParms._138.mValue;
+		otherListener = this;
+		otherIdx      = IPikiAnims::RUN2;
+
+		animSpeed
+		    = (val / diff) * (parms->mFakePikiParms._200.mValue - parms->mFakePikiParms._1D8.mValue) + parms->mFakePikiParms._200.mValue;
+
+	} else {
+		animSpeed     = parms->mFakePikiParms._228.mValue;
+		otherListener = this;
+		otherIdx      = IPikiAnims::NIGERU;
+	}
+
+	isNavi();
+
+	if (otherIdx != boundIdx) {
+		if (boundIdx == IPikiAnims::WAIT && otherIdx != IPikiAnims::ASIBUMI) {
+			_230 = 4;
+		}
+
+		if (boundIdx != IPikiAnims::ASIBUMI && otherIdx == IPikiAnims::WAIT) {
+			_230 = 4;
+		}
+
+		if (otherIdx != _22C) {
+			_230 = 0;
+			_22C = otherIdx;
+		} else {
+			_230++;
+		}
+
+		if (_230 < 4) {
+			return;
+		}
+	}
+
+	if (boundIdx != otherIdx) {
+		if (boundIdx == IPikiAnims::WAIT || boundIdx == IPikiAnims::ASIBUMI || otherIdx == IPikiAnims::WAIT
+		    || otherIdx == IPikiAnims::ASIBUMI) {
+			if (mBoundAnimIdx == IPikiAnims::NULLANIM) {
+				mAnimator.mSelfAnimator.startAnim(otherIdx, nullptr);
+				mAnimator.mBoundAnimator.startAnim(otherIdx, otherListener);
+			} else {
+				mAnimator.mBoundAnimator.startAnim(otherIdx, otherListener);
+			}
+		} else if (mBoundAnimIdx == IPikiAnims::NULLANIM) {
+			f32 boundRate = mAnimator.mBoundAnimator.mTimer;
+			f32 selfRate  = mAnimator.mSelfAnimator.mTimer;
+			mAnimator.mBoundAnimator.startAnim(otherIdx, otherListener);
+			mAnimator.mBoundAnimator.setCurrFrame(boundRate);
+			mAnimator.mSelfAnimator.startAnim(otherIdx, nullptr);
+			mAnimator.mSelfAnimator.setCurrFrame(selfRate);
+		} else {
+			f32 boundRate = mAnimator.mBoundAnimator.mTimer;
+			mAnimator.mBoundAnimator.startAnim(otherIdx, otherListener);
+			mAnimator.mBoundAnimator.setCurrFrame(boundRate);
+		}
+	}
+
+	mAnimSpeed = animSpeed;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -750,6 +868,97 @@ void FakePiki::finishLook()
  */
 void FakePiki::updateLook()
 {
+	f32 angle1;
+	f32 angle2;
+	f32 angle3;
+	if (mLookAtPosition) {
+		Vector3f pos = getPosition();
+		Vector3f sep = *mLookAtPosition - pos;
+		angle1       = JMath::atanTable_.atan2_(sep.x, sep.z);
+		angle2       = JMath::atanTable_.atan2_(sep.y, _lengthXZ(sep));
+
+	} else {
+		mNeckTheta = roundAng(0.2f * angDist(0.0f, mNeckTheta) + mNeckTheta);
+		mNeckPhi   = roundAng(0.2f * angDist(0.0f, mNeckPhi) + mNeckPhi);
+
+		if (FABS(mNeckTheta) < 0.1f && FABS(mNeckPhi) < 0.1f) {
+			mLookAtPosition = nullptr;
+			mNeckPhi        = 0.0f;
+			mNeckTheta      = 0.0f;
+			_1A4            = 0;
+		}
+		return;
+	}
+
+	f32 angX = roundAng(mNeckTheta + mFaceDir);
+	angle3   = angX;
+	f32 angY = roundAng(angle1 - mFaceDir);
+	f32 val;
+
+	if (angY < PI) {
+		if (mNeckTheta > PI) {
+			val = TAU - (mNeckTheta - angX);
+		} else {
+			val = angDist(angle1, angle3);
+		}
+	} else if (mNeckTheta <= PI) {
+		val = (TAU - (mNeckTheta - angY)) * -1.0f;
+	} else {
+		val = angDist(angle1, angle3);
+	}
+
+	if (FABS(val) < PI / 20.0f) {
+		val = 0.0f;
+	}
+
+	val *= 0.05f;
+
+	if (FABS(val) > PI / 10.0f) {
+		if (val > 0.0f) {
+			val = PI / 10.0f;
+		} else {
+			val = -PI / 10.0f;
+		}
+	}
+
+	mNeckTheta = roundAng(mNeckTheta + val);
+	if (mNeckTheta > 2.0f * PI / 3.0f && mNeckTheta < PI) {
+		mNeckTheta = 2.0f * PI / 3.0f;
+	} else if (mNeckTheta < 4.0f * PI / 3.0f && mNeckTheta >= PI) {
+		mNeckTheta = 4.0f * PI / 3.0f;
+	}
+
+	f32 val2 = angDist(angle2, mNeckPhi);
+	if (FABS(val2) < PI / 20.0f) {
+		val2 = 0.0f;
+	}
+
+	val2 *= 0.05f;
+
+	if (FABS(val2) > PI / 10.0f) {
+		if (val2 > 0.0f) {
+			val2 = PI / 10.0f;
+		} else {
+			val2 = -PI / 10.0f;
+		}
+	}
+
+	mNeckPhi = roundAng(mNeckPhi + val2);
+	if (mNeckPhi > PI / 3.0f && mNeckPhi < PI) {
+		mNeckPhi = PI / 3.0f;
+	} else if (mNeckPhi < 5.0f * PI / 3.0f && mNeckPhi >= PI) {
+		mNeckPhi = 5.0f * PI / 3.0f;
+	}
+
+	if (_1A4) {
+		_1A4--;
+		if (!_1A4) {
+			mLookAtPosition = nullptr;
+			mNeckPhi        = 0.0f;
+			mNeckTheta      = 0.0f;
+			_1A4            = 0;
+		}
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1367,55 +1576,16 @@ lbl_8013DEFC:
  */
 void FakePiki::moveRotation()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r12, 0x1d4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013E080
-	lfs      f1, 0x1e4(r31)
-	lfs      f2, 0x1ec(r31)
-	fmuls    f4, f1, f1
-	lwz      r3, sys@sda21(r13)
-	fmuls    f3, f2, f2
-	lfs      f0, lbl_80518304@sda21(r2)
-	lfs      f31, 0x54(r3)
-	fadds    f3, f4, f3
-	fcmpo    cr0, f3, f0
-	ble      lbl_8013E080
-	lis      r3, atanTable___5JMath@ha
-	addi     r3, r3, atanTable___5JMath@l
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	lfs      f2, 0x1fc(r31)
-	bl       angDist__Fff
-	lfs      f0, lbl_80518310@sda21(r2)
-	lfs      f2, lbl_805182BC@sda21(r2)
-	fmuls    f1, f0, f1
-	lfs      f0, 0x1fc(r31)
-	fmuls    f1, f31, f1
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x1fc(r31)
-	lfs      f1, 0x1fc(r31)
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-
-lbl_8013E080:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (useMoveRotation()) {
+		f32 delta = sys->mDeltaTime;
+		f32 X     = mVelocity.x * mVelocity.x;
+		f32 Z     = mVelocity.z * mVelocity.z;
+		if (X + Z > 1.0f) {
+			f32 dist = angDist(JMath::atanTable_.atan2_(mVelocity.x, mVelocity.z), mFaceDir);
+			mFaceDir += 10.0f * (delta * (0.8f * dist));
+			mFaceDir = roundAng(mFaceDir);
+		}
+	}
 }
 
 /*
@@ -1430,8 +1600,23 @@ bool FakePiki::useMoveRotation() { return !isFPFlag(FPFLAGS_MoveRotationDisabled
  * Address:	8013E0B0
  * Size:	0006A4
  */
-void FakePiki::move(f32)
+void FakePiki::move(f32 p1)
 {
+	f32 collRad  = getMapCollisionRadius();
+	Vector3f pos = mPosition3;
+	pos.y += collRad;
+
+	if (isFPFlag(FPFLAGS_Unk5) && mModel) {
+		pos = mModel->mJoints[1].getWorldMatrix()->getBasis(3);
+	}
+
+	Sys::Sphere sphere(pos, collRad);
+
+	MoveInfo info(&sphere, nullptr, 0.0f);
+
+	if (useMapCollision()) {
+		mapMgr->traceMove(info, p1); // this returns *something* that gets stored in 0x24C
+	}
 	/*
 	stwu     r1, -0x130(r1)
 	mflr     r0

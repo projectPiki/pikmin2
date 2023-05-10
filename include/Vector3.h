@@ -240,6 +240,12 @@ inline f32 _length2(Vector3f& vec)
 	return _sqrtf(a.x + a.z * a.z + a.y);
 }
 
+inline f32 _lengthXZ(Vector3f& vec)
+{
+	Vector3f a = vec;
+	return _sqrtf(a.x * a.x + a.z * a.z);
+}
+
 inline f32 _distanceBetween(Vector3f& me, Vector3f& them)
 {
 	Vector3f sep = me - them;
