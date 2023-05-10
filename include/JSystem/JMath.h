@@ -8,6 +8,15 @@
 #include "utility"
 
 namespace JMath {
+
+template <typename T>
+struct TAngleConstant_ {
+	static const f32 RADIAN_DEG090() { return HALF_PI; }
+	static const f32 RADIAN_DEG180() { return PI; }
+	static const f32 RADIAN_DEG360() { return TAU; }
+	static const f32 RADIAN_TO_DEGREE_FACTOR() { return 180.0f / RADIAN_DEG180(); }
+};
+
 template <int length, typename T>
 struct TAtanTable {
 	T atan2_(T, T) const;
@@ -17,15 +26,15 @@ struct TAtanTable {
 
 template <>
 struct TAtanTable<1024, f32> {
-	TAtanTable()
+	TAtanTable() { init(); }
+
+	void init()
 	{
-		int i        = 0;
-		f64 constval = 9.765625E-4;
-		do {
-			mTable[i] = (f32)atan(i * constval);
-		} while (++i < (u32)1024);
+		for (int i = 0; i < (u32)1024; i++) {
+			mTable[i] = atan(i / 1024.0);
+		}
 		mTable[0]  = 0.0f;
-		mTable2[0] = 0.25f * PI;
+		mTable2[0] = TAngleConstant_<f32>::RADIAN_DEG180() / 4;
 	}
 	f32 atan2_(f32, f32) const;
 	f32 atan_(f32) const;
@@ -83,13 +92,11 @@ template <>
 struct TAsinAcosTable<1024, f32> {
 	TAsinAcosTable()
 	{
-		int i        = 0;
-		f64 constval = 9.765625E-4;
-		do {
-			mTable[i] = (f32)asin(i * constval);
-		} while (++i < 1024);
+		for (int i = 0; i < 1024; i++) {
+			mTable[i] = asin(i / 1024.0);
+		}
 		mTable[0]  = 0.0f;
-		mTable2[0] = 0.25f * PI;
+		mTable2[0] = TAngleConstant_<float>::RADIAN_DEG180() / 4;
 	}
 	f32 acos2_(f32, f32) const;
 	f32 acos_(f32) const;
@@ -102,14 +109,15 @@ struct TAsinAcosTable<1024, f32> {
  */
 template <int length, typename T>
 struct TSinCosTable {
-	TSinCosTable()
+
+	TSinCosTable() { init(); }
+
+	void init()
 	{
-		int i   = 0;
-		f64 tau = LONG_TAU;
-		do {
-			mTable[i].first  = ::sin((i * tau) / 2048.0); // there must be some sort of inline/macro for this
-			mTable[i].second = ::cos((i * tau) / 2048.0);
-		} while (++i < 2048);
+		for (int i = 0; i < 2048; i++) {
+			mTable[i].first  = ::sin(((f64)i * TAngleConstant_<float>::RADIAN_DEG360()) / 2048.0);
+			mTable[i].second = ::cos(((f64)i * TAngleConstant_<float>::RADIAN_DEG360()) / 2048.0);
+		}
 	}
 
 	inline f32 radsToLUT() const
@@ -246,7 +254,9 @@ inline f32 JMAFastSqrt(register f32 x)
 	register f32 recip;
 
 	if (x > 0.0f) {
-		__asm { frsqrte recip, x }
+		// clang-format off
+		asm { frsqrte recip, x }
+		// clang-format on
 		return recip * x;
 	}
 	return x;
@@ -282,5 +292,87 @@ inline f32 JMAHermiteInterpolation(register f32 p1, register f32 p2, register f3
 	// clang-format on
 	return ff25;
 }
+
+namespace JMathInlineVEC {
+inline void PSVECAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst)
+{
+	register f32 v1xy, v2xy, d1xy, v1z, v2z, d1z;
+	// clang-format off
+	asm {            
+		psq_l     v1xy, 0(vec1), 0, 0
+		psq_l     v2xy, 0(vec2), 0, 0
+		ps_add    d1xy, v1xy, v2xy
+		psq_st    d1xy, 0(dst), 0, 0
+		
+		psq_l     v1z,   8(vec1), 1, 0
+		psq_l     v2z,   8(vec2), 1, 0
+		ps_add    d1z, v1z, v2z
+		psq_st    d1z,  8(dst), 1, 0
+	}
+	// clang-format on
+}
+inline void PSVECSubtract(register const Vec* vec1, register const Vec* vec2, register Vec* dst)
+{
+	// clang-format off
+	register f32 v1xy, v2xy, dxy, v1z, v2z, dz;
+	asm {
+		psq_l     v1xy, 0(vec1), 0, 0
+		psq_l     v2xy, 0(vec2), 0, 0
+		ps_sub    dxy, v1xy, v2xy
+		psq_st    dxy, 0(dst), 0, 0
+		
+		psq_l     v1z,   8(vec1), 1, 0
+		psq_l     v2z,   8(vec2), 1, 0
+		ps_sub    dz, v1z, v2z
+		psq_st    dz,  8(dst), 1, 0            
+	}
+	// clang-format on
+}
+inline void PSVECScale(register const Vec* src, register Vec* dst, register f32 scalar)
+{
+	// clang-format off
+	register f32 vxy, vz, rxy, rz;
+	asm {
+		
+		psq_l       vxy, 0(src), 0, 0
+		psq_l       vz,  8(src), 1, 0
+		ps_muls0    rxy, vxy, scalar
+		psq_st      rxy, 0(dst), 0, 0
+		ps_muls0    rz,  vz,  scalar                        
+		psq_st      rz,  8(dst), 1, 0
+	}
+	// clang-format on
+}
+inline f32 PSVECDotProduct(register const Vec* vec1, register const Vec* vec2)
+{
+	register f32 dp, v1yz, v2yz, v2xy, v1xy;
+	// clang-format off
+	asm {            
+		psq_l    v1yz, 4(vec1), 0, 0
+		psq_l    v2yz, 4(vec2), 0, 0
+		ps_mul   v1yz, v1yz, v2yz
+		psq_l    v1xy, 0(vec1), 0, 0
+		psq_l    v2xy, 0(vec2), 0, 0
+		ps_madd  v2yz, v1xy, v2xy, v1yz
+		ps_sum0  dp, v2yz, v1yz, v1yz
+	}
+	// clang-format on
+	return dp;
+}
+inline f32 PSVECSquareMag(register const Vec* src)
+{
+	register f32 xy, z, ret;
+	// clang-format off
+	asm {
+		psq_l xy, 0(src), 0, 0
+		ps_mul xy, xy, xy
+		lfs z, 8(src)            
+		ps_madd ret, z, z, xy
+		ps_sum0 ret, ret, xy, xy            
+	}
+	// clang-format on
+	return ret;
+}
+} // namespace JMathInlineVEC
 
 #endif
