@@ -96,7 +96,7 @@ struct TAsinAcosTable<1024, f32> {
 			mTable[i] = asin(i / 1024.0);
 		}
 		mTable[0]  = 0.0f;
-		mTable2[0] = TAngleConstant_<float>::RADIAN_DEG180() / 4;
+		mTable2[0] = TAngleConstant_<f32>::RADIAN_DEG180() / 4;
 	}
 	f32 acos2_(f32, f32) const;
 	f32 acos_(f32) const;
@@ -115,8 +115,8 @@ struct TSinCosTable {
 	void init()
 	{
 		for (int i = 0; i < 2048; i++) {
-			mTable[i].first  = ::sin(((f64)i * TAngleConstant_<float>::RADIAN_DEG360()) / 2048.0);
-			mTable[i].second = ::cos(((f64)i * TAngleConstant_<float>::RADIAN_DEG360()) / 2048.0);
+			mTable[i].first  = ::sin(((f64)i * TAngleConstant_<f32>::RADIAN_DEG360()) / 2048.0);
+			mTable[i].second = ::cos(((f64)i * TAngleConstant_<f32>::RADIAN_DEG360()) / 2048.0);
 		}
 	}
 
