@@ -91,7 +91,8 @@ struct TAsinAcosTable {
 
 template <>
 struct TAsinAcosTable<1024, f32> {
-	TAsinAcosTable()
+	TAsinAcosTable() { init(); }
+	void init()
 	{
 		for (int i = 0; i < 1024; i++) {
 			mTable[i] = asin(i / 1024.0);
