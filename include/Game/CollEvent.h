@@ -14,10 +14,10 @@ struct CollEvent {
 	{
 	}
 
-	inline CollEvent(Creature* creature, CollPart* cp1, CollPart* cp2)
+	inline CollEvent(Creature* creature, CollPart* src, CollPart* dest)
 	    : mCollidingCreature(creature)
-	    , mCollisionObj(cp1)
-	    , mHitPart(cp2)
+	    , mCollisionObj(src)
+	    , mHitPart(dest)
 	{
 	}
 

@@ -633,45 +633,45 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 		flickCheck = true;
 	}
 
-	Vector3f vec(-direction.x, -direction.y, -direction.z);
-	if (vec.normalise() == 0.0f) {
-		vec = Vector3f(0.0f, 0.0f, 1.0f);
+	Vector3f collisionNormal(-direction.x, -direction.y, -direction.z);
+	if (collisionNormal.normalise() == 0.0f) {
+		collisionNormal = Vector3f(0.0f, 0.0f, 1.0f);
 	}
 
-	Vector3f vel1;
-	Vector3f vel2;
-	Vector3f disp1 = source->mPosition + (vec * source->mRadius);
-	Vector3f disp2 = dest->mPosition - (vec * dest->mRadius);
+	Vector3f velAtSource;
+	Vector3f velAtDest;
+	Vector3f pointSource = source->mPosition + (collisionNormal * source->mRadius);
+	Vector3f pointDest   = dest->mPosition - (collisionNormal * dest->mRadius);
 
-	getVelocityAt(disp1, vel1);
-	op->getVelocityAt(disp2, vel2);
+	getVelocityAt(pointSource, velAtSource);
+	op->getVelocityAt(pointDest, velAtDest);
 
-	f32 massRatio;
-	f32 massRatioOp;
+	f32 massRatioThisCreature;
+	f32 massRatioOtherCreature;
 
-	f32 sum = mMass + op->mMass;
-	if (sum > 0.0f) {
-		massRatio   = mMass / sum;
-		massRatioOp = 1.0f - massRatio;
+	f32 totalMass = mMass + op->mMass;
+	if (totalMass > 0.0f) {
+		massRatioThisCreature  = mMass / totalMass;
+		massRatioOtherCreature = 1.0f - massRatioThisCreature;
 	} else {
-		massRatio = massRatioOp = 0.5f;
+		massRatioThisCreature = massRatioOtherCreature = 0.5f;
 	}
 
 	f32 fps = 1.0f / sys->mDeltaTime;
 	if (isNavi() && !op->isNavi()) {
 		if (!op->isPiki()) {
-			addAccel(mAcceleration, direction, massRatio, fps, 0.5f, 0.0f);
+			addAccel(mAcceleration, direction, massRatioThisCreature, fps, 0.5f, 0.0f);
 		}
 	} else {
-		setAccel(mAcceleration, direction, massRatio, fps, 0.5f, 0.0f);
+		setAccel(mAcceleration, direction, massRatioThisCreature, fps, 0.5f, 0.0f);
 	}
 
 	if (op->isNavi() && !isNavi()) {
 		if (!isPiki()) {
-			setOpAccel(op->mAcceleration, direction, massRatioOp, fps, 0.5f, 0.0f);
+			setOpAccel(op->mAcceleration, direction, massRatioOtherCreature, fps, 0.5f, 0.0f);
 		}
 	} else {
-		setOpAccel(op->mAcceleration, direction, massRatioOp, fps, 0.5f, 0.0f);
+		setOpAccel(op->mAcceleration, direction, massRatioOtherCreature, fps, 0.5f, 0.0f);
 	}
 
 	f32 accelMag = mAcceleration.length();
@@ -695,14 +695,14 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 		op->mAcceleration = Vector3f(0.0f);
 	}
 
-	CollEvent collEvent1(op, dest, source);
+	CollEvent destToSrcEvent(op, dest, source);
 
-	Vector3f sep = vel1 - vel2;
-	f32 sepDot   = dot(sep, vec);
-	collisionCallback(collEvent1);
+	Vector3f velocityDifference = velAtSource - velAtDest;
+	f32 sepDot                  = dot(velocityDifference, collisionNormal);
+	collisionCallback(destToSrcEvent);
 
-	CollEvent collEvent2(this, source, dest);
-	op->collisionCallback(collEvent2);
+	CollEvent srcToDestEvent(this, source, dest);
+	op->collisionCallback(srcToDestEvent);
 
 	if (sepDot <= 0.0f) {
 		if (isDebugCollision()) {
@@ -724,23 +724,23 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 		naviFactor = 0.0f;
 	}
 
-	bool checkSum2 = false;
-	f32 factor5    = -(1.0f + naviFactor) * sepDot;
-	f32 sum2       = mMass + op->mMass;
-	if (sum2 == 0.0f) {
-		sum2      = 2.0f;
-		checkSum2 = true;
+	bool checkSum2             = false;
+	f32 collisionImpulseFactor = -(1.0f + naviFactor) * sepDot;
+	f32 totalMass2             = mMass + op->mMass;
+	if (totalMass2 == 0.0f) {
+		totalMass2 = 2.0f;
+		checkSum2  = true;
 	}
 
-	sum2 += getAngularEffect(disp1, vec);
-	sum2 += op->getAngularEffect(disp2, vec);
-	f32 posFac           = factor5 / (sum2);
-	Vector3f updatedVec1 = vec * posFac;
-	Vector3f updatedVec2 = vec * -posFac;
+	totalMass2 += getAngularEffect(pointSource, collisionNormal);
+	totalMass2 += op->getAngularEffect(pointDest, collisionNormal);
+	f32 posFac           = collisionImpulseFactor / (totalMass2);
+	Vector3f updatedVec1 = collisionNormal * posFac;
+	Vector3f updatedVec2 = collisionNormal * -posFac;
 
 	if (!checkSum2) {
-		applyImpulse(disp1, updatedVec1);
-		op->applyImpulse(disp2, updatedVec2);
+		applyImpulse(pointSource, updatedVec1);
+		op->applyImpulse(pointDest, updatedVec2);
 		return;
 	}
 
