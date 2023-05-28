@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JAS_JASCALC_H
 #define _JSYSTEM_JAS_JASCALC_H
 
+#include "stl/limits"
 #include "types.h"
 
 namespace JASCalc {
@@ -8,15 +9,24 @@ void imixcopy(const short*, const short*, short*, unsigned long);
 void bcopy(const void*, void*, unsigned long);
 void bzero(void*, unsigned long);
 
-// TODO: The existence of this function likely implies the usage of standard C++ type limits API. We should adopt the same throughout.
-template <typename A, typename B>
-A clamp(B p1);
-
-/**
- * @fabricated
- * See JASChannel::updateAutoMixer
+/*
+ * --INFO--
+ * Address:	800A64D8
+ * Size:	000028
  */
-inline f32 clamp_0_1(f32 value)
+template <typename A, typename B>
+A clamp(B x)
+{
+	if (std::numeric_limits<A>::min() >= x) {
+		return std::numeric_limits<A>::min();
+	}
+	if (x >= std::numeric_limits<A>::max()) {
+		return std::numeric_limits<A>::max();
+	}
+	return x;
+}
+
+inline f32 clamp01(f32 value)
 {
 	if (value <= 0.0f) {
 		return 0.0f;
