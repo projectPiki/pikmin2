@@ -8,13 +8,23 @@
 // yes, most of these have size 1 arrays. take it up with the devs.
 
 namespace efx {
-struct TOEContextS : public JSUPtrLink {
-	TOEContextS();
 
-	~TOEContextS();
+// this struct needs to exist for the dtor to generate properly
+struct TOEContextBase : public JSUPtrLink
+{
+	TOEContextBase(void* data) : JSUPtrLink(data) {}
+};
+
+
+struct TOEContextS : public TOEContextBase {
+	TOEContextS() : TOEContextBase(this) { }
+
+	~TOEContextS() { };
+	
+	Vector3f mPosition; // _10
 
 	// _00-_10 = JSUPtrLink
-	Vector3f _10; // _10
+	
 };
 
 struct ToeChudoku {
@@ -22,7 +32,7 @@ struct ToeChudoku {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[1];
+	ContextChasePos mContext;
 };
 
 struct ToeDoping {
@@ -30,7 +40,7 @@ struct ToeDoping {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[1];
+	ContextChasePos mContext;
 };
 
 struct ToeHamonA {
@@ -38,7 +48,7 @@ struct ToeHamonA {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[1];
+	ContextChasePos mContext;
 };
 
 struct ToeHamonB {
@@ -46,7 +56,7 @@ struct ToeHamonB {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[1];
+	ContextChasePos mContext;
 };
 
 struct ToeKourin {
@@ -54,7 +64,8 @@ struct ToeKourin {
 	void create(Vector3f*, long);
 	void kill();
 
-	ContextChasePos _00[1];
+	ContextChasePos mContext;
+	long mPikiKind;
 };
 
 struct ToeMoeBC {
@@ -62,7 +73,7 @@ struct ToeMoeBC {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[2];
+	ContextChasePos mContexts[2];
 };
 
 struct ToeMoeSmoke {
@@ -70,7 +81,7 @@ struct ToeMoeSmoke {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[1];
+	ContextChasePos mContext;
 };
 
 struct ToeNagekira {
@@ -78,7 +89,7 @@ struct ToeNagekira {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[1];
+	ContextChasePos mContext;
 };
 
 struct ToeTanekira {
@@ -86,7 +97,7 @@ struct ToeTanekira {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[1];
+	ContextChasePos mContext;
 };
 
 struct ToeWater {
@@ -94,7 +105,7 @@ struct ToeWater {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00[2];
+	ContextChasePos mContexts[2];
 };
 } // namespace efx
 

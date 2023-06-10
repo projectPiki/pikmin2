@@ -2,6 +2,7 @@
 #define _EFX_TPK_H
 
 #include "efx/TSimple.h"
+#include "efx/TOneEmitter.h"
 #include "efx/TChasePos.h"
 #include "efx/TChaseMtx.h"
 #include "efx/Toe.h"
@@ -145,17 +146,43 @@ struct TPkNageBlur : public TChaseMtx {
 	// _00-_14 = TChaseMtx
 };
 
-struct TPkOneEmitterSimple : public JPAEmitterCallBack {
+
+// Needed for dtor
+struct PtrlistContext : public JSUPtrList {};
+
+
+struct TPkOneEmitterSimple : public TBase,  public JPAEmitterCallBack {
 	// vtable 1 (TBase)
+
+	inline TPkOneEmitterSimple(u16 effectID) {
+		mEmitter = nullptr;
+		mEffectID = effectID;
+	}
+
+	void add(Vector3f&);
+
 	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual void forceKill() {
+		if (mEmitter) {
+			particleMgr->forceKill(mEmitter);
+			mEmitter = nullptr;
+		}
+	};  // _0C (weak)
+	virtual void fade() {
+		if (mEmitter) { 
+			particleMgr->fade(mEmitter);
+			mEmitter = nullptr;
+		}
+	};       // _10 (weak)
 	// vtable 2 (JPAEmitterCallBack + self)
 	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
-	virtual ~TPkOneEmitterSimple() { }          // _34 (weak)
+	virtual ~TPkOneEmitterSimple() {   }          // _34 (weak)
 
 	// _00		= VTBL
 	// _04-_08	= JPAEmitterCallBack
+	JPABaseEmitter* mEmitter; // _08
+	u16 mEffectID;            // _0C
+	PtrlistContext mPtrList;  // _10
 };
 
 struct TPkEffectTane {
@@ -319,14 +346,14 @@ struct TPkEffect {
 	ToeMoeSmoke mOeMoeSmoke;   // _18C
 };
 
-struct TPkEffectMgr {
+struct TPkEffectMgr : public JKRDisposer {
 	TPkEffectMgr();
 
 	virtual ~TPkEffectMgr(); // _08
 
 	static void globalInstance();
 	static void deleteInstance();
-	void Instance();
+	static 	TPkEffectMgr* Instance();
 	void startMgr();
 	void exitMgr();
 
@@ -343,6 +370,76 @@ struct TPkEffectMgr {
 	void createS_ChiruRed(Vector3f&);
 	void createS_Gate3Attack(Vector3f&);
 	void createS_Walkwater(Vector3f&);
+
+	// Unused / Inlined
+	void createS_Attack(Vector3f&);
+	void createS_AttackDp(Vector3f&);
+	void createS_Kanden(Vector3f&);
+
+	static TPkEffectMgr* _instance;
+
+	// _00		= VTBL
+	// _04-_18	= JKRDisposer
+	union
+	{
+		struct {
+			TOneEmitterChasePos* mToeKourinBlue;   // _18
+			TOneEmitterChasePos* mToeKourinRed;    // _1C
+			TOneEmitterChasePos* mToeKourinYellow; // _20
+			TOneEmitterChasePos* mToeKourinPurple; // _24
+			TOneEmitterChasePos* mToeKourinWhite;  // _28
+			TOneEmitterChasePos* mToeKourinGreen;  // _2C
+			TOneEmitterChasePos* mToeDoping;       // _30 
+			TOneEmitterChasePos* mToeNageKira;	   // _34
+			TOneEmitterChasePos* mToeMoeBC1;     // _38
+			TOneEmitterChasePos* mToeMoeBC2;        // _3C
+			TOneEmitterChasePos* mToeChudoku;      // _40
+			TOneEmitterChasePos* mToeWater1;       // _44
+			TOneEmitterChasePos* mToeWater2;       // _48
+			TOneEmitterChasePos* mToeHamonA;       // _4C
+			TOneEmitterChasePos* mToeHamonB;       // _50
+			TOneEmitterChasePos* mToeMoeSmoke;     // _54
+			TOneEmitterChasePos* mToeTaneKira;    // _58
+		} mTOneEmitters;
+		TOneEmitterChasePos* mTOneEmitterArray[17];
+	};
+	
+	union
+	{
+		struct {
+			TPkOneEmitterSimple* mPikiDeadBlue;    // _5C
+			TPkOneEmitterSimple* mPikiDeadRed;     // _60
+			TPkOneEmitterSimple* mPikiDeadYellow;  // _64
+			TPkOneEmitterSimple* mPikiDeadPurple;  // _68
+			TPkOneEmitterSimple* mPikiDeadWhite;   // _6C
+			TPkOneEmitterSimple* mPikiDamage;      // _70
+			TPkOneEmitterSimple* mAttackDP;        // _74
+			TPkOneEmitterSimple* mKanden1;         // _78
+			TPkOneEmitterSimple* mKanden2;         // _7C
+			TPkOneEmitterSimple* mKanden3;         // _80
+			TPkOneEmitterSimple* mKanden4;         // _84
+			TPkOneEmitterSimple* mChinka1;         // _88
+			TPkOneEmitterSimple* mChinka2;         // _8C
+			TPkOneEmitterSimple* mGedoku1;         // _90
+			TPkOneEmitterSimple* mGedoku2;         // _94
+			TPkOneEmitterSimple* mWaterOff1;       // _98
+			TPkOneEmitterSimple* mWaterOff2;       // _9C
+			TPkOneEmitterSimple* mEnemyDive1;      // _A0
+			TPkOneEmitterSimple* mEnemyDive2;      // _A4
+			TPkOneEmitterSimple* mChiru;           // _A8
+			TPkOneEmitterSimple* mInAttack;        // _AC
+			TPkOneEmitterSimple* mWalkSmoke;       // _B0
+			TPkOneEmitterSimple* mDig;             // _B4
+			TPkOneEmitterSimple* mChiruRed;        // _B8
+			TPkOneEmitterSimple* mGate3Attack;     // _BC
+			TPkOneEmitterSimple* mWalkWater1;      // _C0
+			TPkOneEmitterSimple* mWalkWater2;      // _C4
+		} mTPkOneEmitters;
+		TPkOneEmitterSimple* mTPkOneEmitterArray[27];
+	};
+	/* end of TPkOneEmitterSimple  */
+	TOEContextS mTOEContextArray[50];      // _C8
+	int mNextOpenContext;                  // _640
 };
 
 struct TParticleCallBack_Yodare {

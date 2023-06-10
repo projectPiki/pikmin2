@@ -1,86 +1,8 @@
+#include "efx/TPk.h"
+#include "Game/Piki.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80496378
-    lbl_80496378:
-        .4byte 0x65667854
-        .4byte 0x506B4566
-        .4byte 0x66656374
-        .4byte 0x4D67722E
-        .4byte 0x63707000
-    .global lbl_8049638C
-    lbl_8049638C:
-        .4byte 0x756E6B6E
-        .4byte 0x6F776E20
-        .4byte 0x636F6C6F
-        .4byte 0x72000000
-    .global lbl_8049639C
-    lbl_8049639C:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x696C6C65
-        .4byte 0x67616C20
-        .4byte 0x6B6F7572
-        .4byte 0x696E2063
-        .4byte 0x6F6C6F72
-        .4byte 0x2025640A
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E7AC8
-    lbl_804E7AC8:
-        .4byte lbl_803C715C
-        .4byte lbl_803C70CC
-        .4byte lbl_803C70E0
-        .4byte lbl_803C70F4
-        .4byte lbl_803C7108
-        .4byte lbl_803C711C
-        .4byte lbl_803C7130
-        .4byte lbl_803C7130
-    .global lbl_804E7AE8
-    lbl_804E7AE8:
-        .4byte lbl_803C7224
-        .4byte lbl_803C71B0
-        .4byte lbl_803C71C4
-        .4byte lbl_803C71D8
-        .4byte lbl_803C71EC
-        .4byte lbl_803C7200
-        .4byte lbl_803C7214
-        .4byte lbl_803C7214
-    .global __vt__Q23efx12TPkEffectMgr
-    __vt__Q23efx12TPkEffectMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23efx12TPkEffectMgrFv
-    .global __vt__Q23efx19TPkOneEmitterSimple
-    __vt__Q23efx19TPkOneEmitterSimple:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx19TPkOneEmitterSimpleFPQ23efx3Arg
-        .4byte forceKill__Q23efx19TPkOneEmitterSimpleFv
-        .4byte fade__Q23efx19TPkOneEmitterSimpleFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx19TPkOneEmitterSimpleFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte "@4@executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter
-        .4byte __dt__Q23efx19TPkOneEmitterSimpleFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global pkEffectMgr
-    pkEffectMgr:
-        .skip 0x4
-    .global _instance__Q23efx12TPkEffectMgr
-    _instance__Q23efx12TPkEffectMgr:
-        .skip 0x4
-*/
+efx::TPkEffectMgr* pkEffectMgr;
 
 namespace efx {
 
@@ -89,63 +11,20 @@ namespace efx {
  * Address:	803C4E0C
  * Size:	0000B4
  */
-void TPkOneEmitterSimple::create(efx::Arg*)
+bool TPkOneEmitterSimple::create(Arg*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_803C4E34
-	li       r3, 0
-	b        lbl_803C4EAC
+	if (mEmitter) return false;
 
-lbl_803C4E34:
-	lis      r4, "zero__10Vector3<f>"@ha
-	lwz      r3, particleMgr@sda21(r13)
-	addi     r5, r4, "zero__10Vector3<f>"@l
-	lhz      r4, 0xc(r31)
-	li       r6, 0
-	bl       "create__11ParticleMgrFUsR10Vector3<f>Uc"
-	stw      r3, 8(r31)
-	lwz      r4, 8(r31)
-	cmplwi   r4, 0
-	beq      lbl_803C4E9C
-	lwz      r3, 0xf4(r4)
-	cmplwi   r31, 0
-	li       r0, 0
-	mr       r5, r31
-	ori      r3, r3, 0x40
-	stw      r3, 0xf4(r4)
-	lwz      r4, 8(r31)
-	lwz      r3, 0xf4(r4)
-	ori      r3, r3, 1
-	stw      r3, 0xf4(r4)
-	lwz      r3, 8(r31)
-	stw      r0, 0x24(r3)
-	beq      lbl_803C4E94
-	addi     r5, r31, 4
+	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
 
-lbl_803C4E94:
-	lwz      r3, 8(r31)
-	stw      r5, 0xec(r3)
+	if (mEmitter) {
+		mEmitter->mFlags |= 0x40;
+		mEmitter->mFlags |= 0x1;
+		mEmitter->_24 = 0;
+		mEmitter->mEmitterCallback = this;
+	}
 
-lbl_803C4E9C:
-	lwz      r3, 8(r31)
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-
-lbl_803C4EAC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return mEmitter;
 }
 
 /*
@@ -153,90 +32,45 @@ lbl_803C4EAC:
  * Address:	803C4EC0
  * Size:	0000D4
  */
-void TPkOneEmitterSimple::executeAfter(JPABaseEmitter*)
+void TPkOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r27, 0x2c(r1)
-	mr       r27, r3
-	mr       r28, r4
-	lwz      r3, particleMgr@sda21(r13)
-	bl       setGlobalColor__11ParticleMgrFP14JPABaseEmitter
-	lwz      r31, 0x10(r27)
-	b        lbl_803C4F78
-
-lbl_803C4EE8:
-	lwz      r5, 0(r31)
-	mr       r4, r31
-	addi     r3, r27, 0x10
-	lfs      f0, 0x10(r5)
-	stfs     f0, 8(r1)
-	lfs      f0, 0x14(r5)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x18(r5)
-	stfs     f0, 0x10(r1)
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, particleMgr@sda21(r13)
-	addi     r4, r1, 8
-	lhz      r5, 0xc(r27)
-	bl       "cullByResFlg__11ParticleMgrFR10Vector3<f>Us"
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803C4F74
-	lfs      f0, 0x28(r28)
-	li       r29, 0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r30, 0x1c(r1)
-	b        lbl_803C4F6C
-
-lbl_803C4F40:
-	mr       r3, r28
-	bl       createParticle__14JPABaseEmitterFv
-	cmplwi   r3, 0
-	beq      lbl_803C4F68
-	lfs      f2, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 8(r1)
-	stfs     f0, 0x18(r3)
-	stfs     f1, 0x1c(r3)
-	stfs     f2, 0x20(r3)
-
-lbl_803C4F68:
-	addi     r29, r29, 1
-
-lbl_803C4F6C:
-	cmpw     r29, r30
-	blt      lbl_803C4F40
-
-lbl_803C4F74:
-	lwz      r31, 0xc(r31)
-
-lbl_803C4F78:
-	cmplwi   r31, 0
-	bne      lbl_803C4EE8
-	lmw      r27, 0x2c(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	particleMgr->setGlobalColor(emitter);
+	FOREACH_NODE(JSUPtrLink, mPtrList.mHead, ptrLink) {
+		TOEContextS* context = static_cast<TOEContextS*>(ptrLink->mValue);
+		Vector3f pos = context->mPosition;
+		mPtrList.remove(ptrLink);
+		bool cullSuccess = particleMgr->cullByResFlg(pos, mEffectID);
+		if (!cullSuccess) {
+			int count = emitter->_28;
+			for (int i = 0; i < count; i++)
+			{
+				JPABaseParticle* particle = emitter->createParticle();
+				if (particle) {
+					particle->_18 = JGeometry::TVec3f(pos.x, pos.y, pos.z);
+				}
+			}
+			
+		}
+	}
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000070
  */
-void add__Q23efx19TPkOneEmitterSimpleFR10Vector3f()
+void TPkOneEmitterSimple::add(Vector3f& position)
 {
-	// UNUSED FUNCTION
-}
+	int& nextContext = pkEffectMgr->mNextOpenContext;
 
-namespace efx {
+	if (nextContext >= 49) {
+		return;
+	}
+	TOEContextS* context = &pkEffectMgr->mTOEContextArray[nextContext];
+	context->mPosition = position;
+	mPtrList.append(context);
+	nextContext++;
+}
 
 /*
  * --INFO--
@@ -245,17 +79,7 @@ namespace efx {
  */
 void TPkEffectMgr::globalInstance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       Instance__Q23efx12TPkEffectMgrFv
-	stw      r3, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr = Instance();
 }
 
 /*
@@ -263,34 +87,15 @@ void TPkEffectMgr::globalInstance()
  * Address:	803C4FB8
  * Size:	000050
  */
+TPkEffectMgr* TPkEffectMgr::_instance;
+
 void TPkEffectMgr::deleteInstance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, _instance__Q23efx12TPkEffectMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803C4FF0
-	beq      lbl_803C4FE8
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803C4FE8:
-	li       r0, 0
-	stw      r0, _instance__Q23efx12TPkEffectMgr@sda21(r13)
-
-lbl_803C4FF0:
-	li       r0, 0
-	stw      r0, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_instance) {
+		delete _instance;
+		_instance = nullptr;
+	}
+	pkEffectMgr = nullptr;
 }
 
 /*
@@ -298,32 +103,12 @@ lbl_803C4FF0:
  * Address:	803C5008
  * Size:	000048
  */
-void TPkEffectMgr::Instance()
+TPkEffectMgr* TPkEffectMgr::Instance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, _instance__Q23efx12TPkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803C503C
-	li       r3, 0x644
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803C5038
-	bl       __ct__Q23efx12TPkEffectMgrFv
-	mr       r0, r3
-
-lbl_803C5038:
-	stw      r0, _instance__Q23efx12TPkEffectMgr@sda21(r13)
-
-lbl_803C503C:
-	lwz      r0, 0x14(r1)
-	lwz      r3, _instance__Q23efx12TPkEffectMgr@sda21(r13)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!_instance) {
+		_instance = new TPkEffectMgr;
+	}
+	return _instance;
 }
 
 /*
@@ -333,1449 +118,74 @@ lbl_803C503C:
  */
 TPkEffectMgr::TPkEffectMgr()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q23efx12TPkEffectMgr@ha
-	lis      r4, __ct__Q23efx11TOEContextSFv@ha
-	addi     r0, r3, __vt__Q23efx12TPkEffectMgr@l
-	li       r6, 0x1c
-	lis      r3, __dt__Q23efx11TOEContextSFv@ha
-	stw      r0, 0(r31)
-	addi     r5, r3, __dt__Q23efx11TOEContextSFv@l
-	addi     r4, r4, __ct__Q23efx11TOEContextSFv@l
-	addi     r3, r31, 0xc8
-	li       r7, 0x32
-	bl       __construct_array
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5128
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	addi     r29, r30, 8
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x16a
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r30)
-	sth      r0, 0x28(r30)
-	stw      r3, 0x18(r30)
-	stw      r3, 0x14(r30)
-	stw      r3, 0x10(r30)
-	stw      r3, 0xc(r30)
+	mTOneEmitters.mToeKourinBlue = new TOneEmitterChasePos(PID_PkToeKourin_Blue);
+	mTOneEmitters.mToeKourinRed = new TOneEmitterChasePos(PID_PkToeKourin_Red);
+	mTOneEmitters.mToeKourinYellow = new TOneEmitterChasePos(PID_PkToeKourin_Yellow);
+	mTOneEmitters.mToeKourinPurple = new TOneEmitterChasePos(PID_PkToeKourin_Purple);
+	mTOneEmitters.mToeKourinWhite = new TOneEmitterChasePos(PID_PkToeKourin_White);
+	mTOneEmitters.mToeKourinGreen = new TOneEmitterChasePos(PID_PkToeKourin_Green);
 
-lbl_803C5128:
-	stw      r30, 0x18(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C51B8
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r29, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r28, r29, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r28
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x16b
-	stw      r4, 0(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
-	stw      r3, 8(r28)
-	stw      r3, 4(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x24(r29)
-	sth      r0, 0x28(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x14(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
+	mTOneEmitters.mToeDoping = new TOneEmitterChasePos(PID_PkToeDoping);
 
-lbl_803C51B8:
-	stw      r30, 0x1c(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5248
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x16d
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTOneEmitters.mToeNageKira = new TOneEmitterChasePos(PID_PkToeNageKira);
 
-lbl_803C5248:
-	stw      r30, 0x20(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C52D8
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x169
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	
+	mTOneEmitters.mToeTaneKira = new TOneEmitterChasePos(PID_PkToeTaneKira_2);
+	mTOneEmitters.mToeMoeBC1 = new TOneEmitterChasePos(PID_PkToeTanekira);
+	mTOneEmitters.mToeMoeBC2 = new TOneEmitterChasePos(PID_PkToeMoeBC);
+	
+	mTOneEmitters.mToeChudoku = new TOneEmitterChasePos(PID_PkToeChudoku);
 
-lbl_803C52D8:
-	stw      r30, 0x24(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5368
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x16c
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTOneEmitters.mToeWater1 = new TOneEmitterChasePos(PID_PkToeWater_1);
+	mTOneEmitters.mToeWater2 = new TOneEmitterChasePos(PID_PkToeWater_2);
 
-lbl_803C5368:
-	stw      r30, 0x28(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C53F8
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x281
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTOneEmitters.mToeHamonA = new TOneEmitterChasePos(PID_PkToeHamonA);
+	mTOneEmitters.mToeHamonB = new TOneEmitterChasePos(PID_PkToeHamonB);
 
-lbl_803C53F8:
-	stw      r30, 0x2c(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5488
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x15b
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTOneEmitters.mToeMoeSmoke = new TOneEmitterChasePos(PID_PkToeMoeSmoke);
 
-lbl_803C5488:
-	stw      r30, 0x30(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5518
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x177
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mPikiDeadBlue = new TPkOneEmitterSimple(PID_PkS_Dead_Blue);
+	mTPkOneEmitters.mPikiDeadRed = new TPkOneEmitterSimple(PID_PkS_Dead_Red);
+	mTPkOneEmitters.mPikiDeadYellow = new TPkOneEmitterSimple(PID_PkS_Dead_Yellow);
+	mTPkOneEmitters.mPikiDeadPurple = new TPkOneEmitterSimple(PID_PkS_Dead_Purple);
+	mTPkOneEmitters.mPikiDeadWhite = new TPkOneEmitterSimple(PID_PkS_Dead_White);
+	
+	mTPkOneEmitters.mPikiDamage = new TPkOneEmitterSimple(PID_PikiDamage);
+	mTPkOneEmitters.mAttackDP = new TPkOneEmitterSimple(PID_PkAttackDP);
 
-lbl_803C5518:
-	stw      r30, 0x34(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C55A8
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x178
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mKanden1 = new TPkOneEmitterSimple(PID_PkKanden_1);
+	mTPkOneEmitters.mKanden2 = new TPkOneEmitterSimple(PID_PkKanden_2);
+	mTPkOneEmitters.mKanden4 = new TPkOneEmitterSimple(PID_PkKanden_4);
+	mTPkOneEmitters.mKanden3 = new TPkOneEmitterSimple(PID_PkKanden_3);
 
-lbl_803C55A8:
-	stw      r30, 0x58(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5638
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x170
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mChinka1 = new TPkOneEmitterSimple(PID_PkS_Chinka_1);
+	mTPkOneEmitters.mChinka2 = new TPkOneEmitterSimple(PID_PkS_Chinka_2);
 
-lbl_803C5638:
-	stw      r30, 0x38(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C56C8
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x171
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mGedoku1 = new TPkOneEmitterSimple(PID_PkS_Gedoku_1);
+	mTPkOneEmitters.mGedoku2 = new TPkOneEmitterSimple(PID_PkS_Gedoku_2);
 
-lbl_803C56C8:
-	stw      r30, 0x3c(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5758
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x152
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mWaterOff1 = new TPkOneEmitterSimple(PID_PkS_WaterOff_1);
+	mTPkOneEmitters.mWaterOff2 = new TPkOneEmitterSimple(PID_PkS_WaterOff_2);
 
-lbl_803C5758:
-	stw      r30, 0x40(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C57E8
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x17c
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mEnemyDive1 = new TPkOneEmitterSimple(PID_EnemyDive_1);
+	mTPkOneEmitters.mEnemyDive2 = new TPkOneEmitterSimple(PID_EnemyDive_2);
 
-lbl_803C57E8:
-	stw      r30, 0x44(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5878
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x17d
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mChiru = new TPkOneEmitterSimple(PID_PkS_Chiru);
 
-lbl_803C5878:
-	stw      r30, 0x48(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5908
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x161
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mInAttack = new TPkOneEmitterSimple(PID_PkS_InAttack);
+	mTPkOneEmitters.mWalkSmoke = new TPkOneEmitterSimple(PID_PkS_WalkSmoke);
 
-lbl_803C5908:
-	stw      r30, 0x4c(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5998
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x162
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mDig = new TPkOneEmitterSimple(PID_PkS_Dig);
 
-lbl_803C5998:
-	stw      r30, 0x50(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5A28
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx19TOneEmitterChasePos@ha
-	addi     r29, r28, 8
-	stw      r0, 4(r30)
-	addi     r4, r3, __vt__Q23efx19TOneEmitterChasePos@l
-	addi     r0, r4, 0x14
-	mr       r3, r29
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23efx15ContextChasePos@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q23efx15ContextChasePos@l
-	li       r0, 0x16e
-	stw      r4, 0(r29)
-	stw      r3, 0x10(r29)
-	stw      r3, 0xc(r29)
-	stw      r3, 8(r29)
-	stw      r3, 4(r29)
-	stw      r3, 0x18(r29)
-	stw      r3, 0x24(r28)
-	sth      r0, 0x28(r28)
-	stw      r3, 0x18(r28)
-	stw      r3, 0x14(r28)
-	stw      r3, 0x10(r28)
-	stw      r3, 0xc(r28)
+	mTPkOneEmitters.mChiruRed = new TPkOneEmitterSimple(PID_PkS_ChiruRed);
 
-lbl_803C5A28:
-	stw      r30, 0x54(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5A84
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x154
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
+	mTPkOneEmitters.mGate3Attack = new TPkOneEmitterSimple(PID_PKS_Gate3Attack);
 
-lbl_803C5A84:
-	stw      r30, 0x5c(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5AE0
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x155
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
+	mTPkOneEmitters.mWalkWater1 = new TPkOneEmitterSimple(PID_PkS_Walkwater_1);
+	mTPkOneEmitters.mWalkWater2 = new TPkOneEmitterSimple(PID_PkS_Walkwater_2);
 
-lbl_803C5AE0:
-	stw      r30, 0x60(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5B3C
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x157
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5B3C:
-	stw      r30, 0x64(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5B98
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x153
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5B98:
-	stw      r30, 0x68(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5BF4
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x156
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5BF4:
-	stw      r30, 0x6c(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5C50
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x148
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5C50:
-	stw      r30, 0x70(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5CAC
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x149
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5CAC:
-	stw      r30, 0x74(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5D08
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x165
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5D08:
-	stw      r30, 0x78(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5D64
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x166
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5D64:
-	stw      r30, 0x7c(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5DC0
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x168
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5DC0:
-	stw      r30, 0x84(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5E1C
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x167
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5E1C:
-	stw      r30, 0x80(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5E78
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x14e
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5E78:
-	stw      r30, 0x88(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5ED4
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x14f
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5ED4:
-	stw      r30, 0x8c(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5F30
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x15c
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5F30:
-	stw      r30, 0x90(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5F8C
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x15d
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5F8C:
-	stw      r30, 0x94(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C5FE8
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x17a
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C5FE8:
-	stw      r30, 0x98(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C6044
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x17b
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C6044:
-	stw      r30, 0x9c(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C60A0
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x159
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C60A0:
-	stw      r30, 0xa0(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C60FC
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x15a
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C60FC:
-	stw      r30, 0xa4(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C6158
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x150
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C6158:
-	stw      r30, 0xa8(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C61B4
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x163
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C61B4:
-	stw      r30, 0xac(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C6210
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x179
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C6210:
-	stw      r30, 0xb0(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C626C
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x158
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C626C:
-	stw      r30, 0xb4(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C62C8
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x151
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C62C8:
-	stw      r30, 0xb8(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C6324
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x7e
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C6324:
-	stw      r30, 0xbc(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C6380
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x292
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C6380:
-	stw      r30, 0xc0(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803C63DC
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	mr       r28, r30
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addi     r3, r28, 0x10
-	stw      r0, 4(r30)
-	addi     r4, r4, __vt__Q23efx19TPkOneEmitterSimple@l
-	addi     r0, r4, 0x14
-	stw      r4, 0(r30)
-	stw      r0, 4(r30)
-	bl       initiate__10JSUPtrListFv
-	li       r3, 0
-	li       r0, 0x293
-	stw      r3, 8(r28)
-	sth      r0, 0xc(r28)
-
-lbl_803C63DC:
-	stw      r30, 0xc4(r31)
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x640(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mNextOpenContext = 0;
 }
-
-} // namespace efx
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSUList<efx::TOEContextS>::~JSUList()
-{
-	// UNUSED FUNCTION
-}
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	803C640C
- * Size:	000058
- */
-TOEContextS::~TOEContextS()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803C6448
-	beq      lbl_803C6438
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_803C6438:
-	extsh.   r0, r31
-	ble      lbl_803C6448
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803C6448:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803C6464
- * Size:	000034
- */
-TOEContextS::TOEContextS()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	bl       __ct__10JSUPtrLinkFPv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void JSULink<efx::TOEContextS>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
-
-namespace efx {
 
 /*
  * --INFO--
@@ -1784,131 +194,16 @@ namespace efx {
  */
 TPkEffectMgr::~TPkEffectMgr()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	or.      r28, r3, r3
-	beq      lbl_803C657C
-	lis      r3, __vt__Q23efx12TPkEffectMgr@ha
-	mr       r31, r28
-	addi     r0, r3, __vt__Q23efx12TPkEffectMgr@l
-	li       r30, 0
-	stw      r0, 0(r28)
+	for (int i = 0; i < 17; i++) {
+ 		delete mTOneEmitterArray[i];
+	}
 
-lbl_803C64D4:
-	lwz      r3, 0x18(r31)
-	cmplwi   r3, 0
-	beq      lbl_803C64F4
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
+	for (int i = 0; i < 27; i++) {
+		delete mTPkOneEmitterArray[i];
+	}
 
-lbl_803C64F4:
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0x11
-	blt      lbl_803C64D4
-	li       r30, 0
-	mr       r31, r28
-
-lbl_803C650C:
-	lwz      r3, 0x5c(r31)
-	cmplwi   r3, 0
-	beq      lbl_803C652C
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803C652C:
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0x1b
-	blt      lbl_803C650C
-	li       r0, 0
-	lis      r3, __dt__Q23efx11TOEContextSFv@ha
-	stw      r0, _instance__Q23efx12TPkEffectMgr@sda21(r13)
-	addi     r4, r3, __dt__Q23efx11TOEContextSFv@l
-	addi     r3, r28, 0xc8
-	li       r5, 0x1c
-	stw      r0, pkEffectMgr@sda21(r13)
-	li       r6, 0x32
-	bl       __destroy_arr
-	mr       r3, r28
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r29
-	ble      lbl_803C657C
-	mr       r3, r28
-	bl       __dl__FPv
-
-lbl_803C657C:
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803C65A0
- * Size:	000080
- */
-TPkOneEmitterSimple::~TPkOneEmitterSimple()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803C6604
-	lis      r3, __vt__Q23efx19TPkOneEmitterSimple@ha
-	addic.   r0, r30, 0x10
-	addi     r3, r3, __vt__Q23efx19TPkOneEmitterSimple@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803C65E8
-	addi     r3, r30, 0x10
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_803C65E8:
-	addi     r3, r30, 4
-	li       r4, 0
-	bl       __dt__18JPAEmitterCallBackFv
-	extsh.   r0, r31
-	ble      lbl_803C6604
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803C6604:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_instance   = nullptr;
+	pkEffectMgr = nullptr;
 }
 
 /*
@@ -1918,50 +213,12 @@ lbl_803C6604:
  */
 void TPkEffectMgr::startMgr()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r31, r29
-
-lbl_803C6644:
-	lwz      r3, 0x18(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0x11
-	blt      lbl_803C6644
-	li       r30, 0
-	mr       r31, r29
-
-lbl_803C6674:
-	lwz      r3, 0x5c(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0x1b
-	blt      lbl_803C6674
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < 17; i++) {
+		mTOneEmitterArray[i]->create(nullptr);
+	}
+	for (int i = 0; i < 27; i++) {
+		mTPkOneEmitterArray[i]->create(nullptr);
+	}
 }
 
 /*
@@ -1971,78 +228,12 @@ lbl_803C6674:
  */
 void TPkEffectMgr::exitMgr()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r31, r29
-
-lbl_803C66DC:
-	lwz      r3, 0x18(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0x11
-	blt      lbl_803C66DC
-	li       r30, 0
-	mr       r31, r29
-
-lbl_803C6708:
-	lwz      r3, 0x5c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0x1b
-	blt      lbl_803C6708
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803C6748
- * Size:	000044
- */
-void TPkOneEmitterSimple::forceKill()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 8(r3)
-	cmplwi   r4, 0
-	beq      lbl_803C6778
-	lwz      r3, particleMgr@sda21(r13)
-	bl       forceKill__11ParticleMgrFP14JPABaseEmitter
-	li       r0, 0
-	stw      r0, 8(r31)
-
-lbl_803C6778:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (int i = 0; i < 17; i++) {
+		mTOneEmitterArray[i]->forceKill();
+	}
+	for (int i = 0; i < 27; i++) {
+		mTPkOneEmitterArray[i]->forceKill();
+	}
 }
 
 /*
@@ -2052,172 +243,34 @@ lbl_803C6778:
  */
 void TPkEffectMgr::resetContextS()
 {
-	// Generated from stw r0, 0x640(r3)
-	_640 = 0;
+	mNextOpenContext = 0;
 }
 
-} // namespace efx
-
-/*
- * --INFO--
- * Address:	803C6798
- * Size:	00021C
- */
-void createS_Dead__Q23efx12TPkEffectMgrFR10Vector3f l()
+void TPkEffectMgr::createS_Dead(Vector3f& position, long pikiKind)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r5, 3
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	beq      lbl_803C68DC
-	bge      lbl_803C67CC
-	cmpwi    r5, 1
-	beq      lbl_803C6834
-	bge      lbl_803C6888
-	cmpwi    r5, 0
-	bge      lbl_803C67E0
-	b        lbl_803C6984
-
-lbl_803C67CC:
-	cmpwi    r5, 7
-	bge      lbl_803C6984
-	cmpwi    r5, 5
-	bge      lbl_803C69A0
-	b        lbl_803C6930
-
-lbl_803C67E0:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x5c(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C69A0
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-	b        lbl_803C69A0
-
-lbl_803C6834:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x60(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C69A0
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-	b        lbl_803C69A0
-
-lbl_803C6888:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x64(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C69A0
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-	b        lbl_803C69A0
-
-lbl_803C68DC:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x68(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C69A0
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-	b        lbl_803C69A0
-
-lbl_803C6930:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x6c(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C69A0
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-	b        lbl_803C69A0
-
-lbl_803C6984:
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049638C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0xe8
-	addi     r5, r5, lbl_8049638C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C69A0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (pikiKind)
+	{
+	case Game::Blue:
+		pkEffectMgr->mTPkOneEmitters.mPikiDeadBlue->add(position);
+		break;
+	case Game::Red:
+		pkEffectMgr->mTPkOneEmitters.mPikiDeadRed->add(position);
+		break;
+	case Game::Yellow:
+		pkEffectMgr->mTPkOneEmitters.mPikiDeadYellow->add(position);
+		break;
+	case Game::Purple:
+		pkEffectMgr->mTPkOneEmitters.mPikiDeadPurple->add(position);
+		break;
+	case Game::White:
+		pkEffectMgr->mTPkOneEmitters.mPikiDeadWhite->add(position);
+		break;
+	case Game::Bulbmin:
+	case Game::Carrot:
+		break;
+	default:
+		JUT_PANICLINE(232, "unknown color");
+	}
 }
 
 /*
@@ -2225,9 +278,9 @@ lbl_803C69A0:
  * Address:	........
  * Size:	000074
  */
-void createS_Attack__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Attack(Vector3f& position)
 {
-	// UNUSED FUNCTION
+	pkEffectMgr->mTPkOneEmitters.mPikiDamage->add(position);
 }
 
 /*
@@ -2235,9 +288,9 @@ void createS_Attack__Q23efx12TPkEffectMgrFR10Vector3f()
  * Address:	........
  * Size:	000074
  */
-void createS_AttackDp__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_AttackDp(Vector3f& position)
 {
-	// UNUSED FUNCTION
+	pkEffectMgr->mTPkOneEmitters.mAttackDP->add(position);
 }
 
 /*
@@ -2245,74 +298,24 @@ void createS_AttackDp__Q23efx12TPkEffectMgrFR10Vector3f()
  * Address:	........
  * Size:	000160
  */
-void createS_Kanden__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Kanden(Vector3f& position)
 {
-	// UNUSED FUNCTION
+	pkEffectMgr->mTPkOneEmitters.mKanden1->add(position);
+	pkEffectMgr->mTPkOneEmitters.mKanden2->add(position);
+	pkEffectMgr->mTPkOneEmitters.mKanden3->add(position);
+	pkEffectMgr->mTPkOneEmitters.mKanden4->add(position);
 }
+
 
 /*
  * --INFO--
  * Address:	803C69B4
  * Size:	0000C8
  */
-void createS_Chinka__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Chinka(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x88(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6A18
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6A18:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x8c(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6A64
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6A64:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTPkOneEmitters.mChinka1->add(position);
+	pkEffectMgr->mTPkOneEmitters.mChinka2->add(position);
 }
 
 /*
@@ -2320,64 +323,10 @@ lbl_803C6A64:
  * Address:	803C6A7C
  * Size:	0000C8
  */
-void createS_Gedoku__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Gedoku(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x90(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6AE0
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6AE0:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x94(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6B2C
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6B2C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTPkOneEmitters.mGedoku1->add(position);
+	pkEffectMgr->mTPkOneEmitters.mGedoku2->add(position);
 }
 
 /*
@@ -2385,64 +334,10 @@ lbl_803C6B2C:
  * Address:	803C6B44
  * Size:	0000C8
  */
-void createS_WaterOff__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_WaterOff(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x98(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6BA8
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6BA8:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0x9c(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6BF4
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6BF4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTPkOneEmitters.mWaterOff1->add(position);
+	pkEffectMgr->mTPkOneEmitters.mWaterOff2->add(position);
 }
 
 /*
@@ -2450,64 +345,11 @@ lbl_803C6BF4:
  * Address:	803C6C0C
  * Size:	0000C8
  */
-void createS_Dive__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Dive(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xa0(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6C70
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6C70:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xa4(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6CBC
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6CBC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// These are probably not "Enemy" dives...
+	pkEffectMgr->mTPkOneEmitters.mEnemyDive1->add(position);
+	pkEffectMgr->mTPkOneEmitters.mEnemyDive2->add(position);
 }
 
 /*
@@ -2515,41 +357,9 @@ lbl_803C6CBC:
  * Address:	803C6CD4
  * Size:	000074
  */
-void createS_Chiru__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Chiru(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xa8(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6D34
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6D34:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTPkOneEmitters.mChiru->add(position);
 }
 
 /*
@@ -2557,41 +367,9 @@ lbl_803C6D34:
  * Address:	803C6D48
  * Size:	000074
  */
-void createS_Inattack__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Inattack(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xac(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6DA8
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6DA8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTPkOneEmitters.mInAttack->add(position);
 }
 
 /*
@@ -2599,41 +377,9 @@ lbl_803C6DA8:
  * Address:	803C6DBC
  * Size:	000074
  */
-void createS_Walksmoke__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Walksmoke(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xb0(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6E1C
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6E1C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTPkOneEmitters.mWalkSmoke->add(position);
 }
 
 /*
@@ -2641,41 +387,9 @@ lbl_803C6E1C:
  * Address:	803C6E30
  * Size:	000074
  */
-void createS_Dig__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Dig(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xb4(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6E90
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6E90:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTPkOneEmitters.mDig->add(position);
 }
 
 /*
@@ -2683,41 +397,9 @@ lbl_803C6E90:
  * Address:	803C6EA4
  * Size:	000074
  */
-void createS_ChiruRed__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_ChiruRed(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xb8(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6F04
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6F04:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTPkOneEmitters.mChiruRed->add(position);
 }
 
 /*
@@ -2725,41 +407,10 @@ lbl_803C6F04:
  * Address:	803C6F18
  * Size:	000074
  */
-void createS_Gate3Attack__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Gate3Attack(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xbc(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6F78
-	mulli    r5, r0, 0x1c
-	lfs      f0, 0(r4)
-	addi     r3, r3, 0x10
-	addi     r5, r5, 0xc8
-	add      r5, r31, r5
-	stfs     f0, 0x10(r5)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x14(r5)
-	lfs      f0, 8(r4)
-	mr       r4, r5
-	stfs     f0, 0x18(r5)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6F78:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// "Gate3" is probably referring to an electric gate
+	pkEffectMgr->mTPkOneEmitters.mGate3Attack->add(position);
 }
 
 /*
@@ -2767,177 +418,52 @@ lbl_803C6F78:
  * Address:	803C6F8C
  * Size:	0000C8
  */
-void createS_Walkwater__Q23efx12TPkEffectMgrFR10Vector3f()
+void TPkEffectMgr::createS_Walkwater(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xc0(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C6FF0
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C6FF0:
-	lwz      r31, pkEffectMgr@sda21(r13)
-	lwz      r0, 0x640(r31)
-	lwz      r3, 0xc4(r31)
-	cmpwi    r0, 0x31
-	bge      lbl_803C703C
-	mulli    r4, r0, 0x1c
-	lfs      f0, 0(r30)
-	addi     r3, r3, 0x10
-	addi     r4, r4, 0xc8
-	add      r4, r31, r4
-	stfs     f0, 0x10(r4)
-	lfs      f0, 4(r30)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 8(r30)
-	stfs     f0, 0x18(r4)
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0x640(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x640(r31)
-
-lbl_803C703C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTPkOneEmitters.mWalkWater1->add(position);
+	pkEffectMgr->mTPkOneEmitters.mWalkWater2->add(position);
 }
+
 
 /*
  * --INFO--
  * Address:	803C7054
  * Size:	000128
  */
-void create__Q23efx9ToeKourinFP10Vector3f l()
+void ToeKourin::create(Vector3f* chasePos, long pikiKind)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	or.      r29, r4, r4
-	lis      r4, lbl_80496378@ha
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	addi     r31, r4, lbl_80496378@l
-	bne      lbl_803C709C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x24
-	li       r4, 0x140
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(320, chasePos);
+	mPikiKind = pikiKind;
+	mContext.mPosition = chasePos;
 
-lbl_803C709C:
-	stw      r30, 0x1c(r28)
-	stw      r29, 0x18(r28)
-	lwz      r3, 0x1c(r28)
-	addi     r0, r3, 1
-	cmplwi   r0, 7
-	bgt      lbl_803C7144
-	lis      r3, lbl_804E7AC8@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804E7AC8@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_803C70CC
-
-lbl_803C70CC:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r28
-	lwz      r3, 0x18(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C715C
-	.global  lbl_803C70E0
-
-lbl_803C70E0:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r28
-	lwz      r3, 0x1c(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C715C
-	.global  lbl_803C70F4
-
-lbl_803C70F4:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r28
-	lwz      r3, 0x20(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C715C
-	.global  lbl_803C7108
-
-lbl_803C7108:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r28
-	lwz      r3, 0x24(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C715C
-	.global  lbl_803C711C
-
-lbl_803C711C:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r28
-	lwz      r3, 0x28(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C715C
-	.global  lbl_803C7130
-
-lbl_803C7130:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r28
-	lwz      r3, 0x2c(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C715C
-
-lbl_803C7144:
-	mr       r6, r30
-	addi     r3, r31, 0
-	addi     r5, r31, 0x30
-	li       r4, 0x15c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	.global  lbl_803C715C
-
-lbl_803C715C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	switch (mPikiKind)
+	{
+	case Game::Blue:
+		pkEffectMgr->mTOneEmitters.mToeKourinBlue->add(&mContext);
+		break;
+	case Game::Red:
+		pkEffectMgr->mTOneEmitters.mToeKourinRed->add(&mContext);
+		break;
+	case Game::Yellow:
+		pkEffectMgr->mTOneEmitters.mToeKourinYellow->add(&mContext);
+		break;
+	case Game::Purple:
+		pkEffectMgr->mTOneEmitters.mToeKourinPurple->add(&mContext);
+		break;
+	case Game::White:
+		pkEffectMgr->mTOneEmitters.mToeKourinWhite->add(&mContext);
+		break;
+	case Game::Bulbmin:
+	case Game::Carrot:
+		pkEffectMgr->mTOneEmitters.mToeKourinGreen->add(&mContext);
+		break;
+	default:
+		JUT_PANICLINE(348, "illegal kourin color %d\n", pikiKind);
+		break;
+	case -1:
+		break;
+	}
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -2946,119 +472,45 @@ namespace efx {
  */
 void ToeKourin::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x1c(r3)
-	addi     r0, r4, 1
-	cmplwi   r0, 7
-	bgt      lbl_803C7224
-	lis      r4, lbl_804E7AE8@ha
-	slwi     r0, r0, 2
-	addi     r4, r4, lbl_804E7AE8@l
-	lwzx     r0, r4, r0
-	mtctr    r0
-	bctr
-	.global  lbl_803C71B0
-
-lbl_803C71B0:
-	lwz      r5, pkEffectMgr@sda21(r13)
-	mr       r4, r3
-	lwz      r3, 0x18(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C7224
-	.global  lbl_803C71C4
-
-lbl_803C71C4:
-	lwz      r5, pkEffectMgr@sda21(r13)
-	mr       r4, r3
-	lwz      r3, 0x1c(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C7224
-	.global  lbl_803C71D8
-
-lbl_803C71D8:
-	lwz      r5, pkEffectMgr@sda21(r13)
-	mr       r4, r3
-	lwz      r3, 0x20(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C7224
-	.global  lbl_803C71EC
-
-lbl_803C71EC:
-	lwz      r5, pkEffectMgr@sda21(r13)
-	mr       r4, r3
-	lwz      r3, 0x24(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C7224
-	.global  lbl_803C7200
-
-lbl_803C7200:
-	lwz      r5, pkEffectMgr@sda21(r13)
-	mr       r4, r3
-	lwz      r3, 0x28(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	b        lbl_803C7224
-	.global  lbl_803C7214
-
-lbl_803C7214:
-	lwz      r5, pkEffectMgr@sda21(r13)
-	mr       r4, r3
-	lwz      r3, 0x2c(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	.global  lbl_803C7224
-
-lbl_803C7224:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (mPikiKind)
+	{
+	case Game::Blue:
+		pkEffectMgr->mTOneEmitters.mToeKourinBlue->del(&mContext);
+		break;
+	case Game::Red:
+		pkEffectMgr->mTOneEmitters.mToeKourinRed->del(&mContext);
+		break;
+	case Game::Yellow:
+		pkEffectMgr->mTOneEmitters.mToeKourinYellow->del(&mContext);
+		break;
+	case Game::Purple:
+		pkEffectMgr->mTOneEmitters.mToeKourinPurple->del(&mContext);
+		break;
+	case Game::White:
+		pkEffectMgr->mTOneEmitters.mToeKourinWhite->del(&mContext);
+		break;
+	case Game::Bulbmin:
+	case Game::Carrot:
+		pkEffectMgr->mTOneEmitters.mToeKourinGreen->del(&mContext);
+		break;
+	default:
+		break;
+	case -1:
+		break;
+	}
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803C7234
  * Size:	000068
  */
-void create__Q23efx9ToeDopingFP10Vector3f()
+void ToeDoping::create(Vector3f* chasePos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803C7270
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049639C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0x181
-	addi     r5, r5, lbl_8049639C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C7270:
-	stw      r31, 0x18(r30)
-	mr       r4, r30
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x30(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(385, chasePos);
+	mContext.mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeDoping->add(&mContext);
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -3067,63 +519,20 @@ namespace efx {
  */
 void ToeDoping::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x30(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTOneEmitters.mToeDoping->del(&mContext);
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803C72C8
  * Size:	000068
  */
-void create__Q23efx11ToeNagekiraFP10Vector3f()
+void ToeNagekira::create(Vector3f* chasePos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803C7304
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049639C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0x18f
-	addi     r5, r5, lbl_8049639C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C7304:
-	stw      r31, 0x18(r30)
-	mr       r4, r30
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x34(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(399, chasePos);
+	mContext.mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeNageKira->add(&mContext);
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -3132,68 +541,24 @@ namespace efx {
  */
 void ToeNagekira::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x34(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	pkEffectMgr->mTOneEmitters.mToeNageKira->del(&mContext);
 
-} // namespace efx
+}
 
 /*
  * --INFO--
  * Address:	803C735C
  * Size:	00007C
  */
-void create__Q23efx8ToeMoeBCFP10Vector3f()
+void ToeMoeBC::create(Vector3f* chasePos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803C7398
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049639C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0x19c
-	addi     r5, r5, lbl_8049639C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(412, chasePos);
+	mContexts[0].mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeMoeBC1->add(&mContexts[0]);
 
-lbl_803C7398:
-	stw      r31, 0x18(r30)
-	mr       r4, r30
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x38(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	stw      r31, 0x34(r30)
-	addi     r4, r30, 0x1c
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x3c(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mContexts[1].mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeMoeBC2->add(&mContexts[1]);
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -3202,70 +567,21 @@ namespace efx {
  */
 void ToeMoeBC::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	lwz      r5, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x38(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r3, pkEffectMgr@sda21(r13)
-	addi     r4, r31, 0x1c
-	lwz      r3, 0x3c(r3)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTOneEmitters.mToeMoeBC1->del(&mContexts[0]);
+	pkEffectMgr->mTOneEmitters.mToeMoeBC2->del(&mContexts[1]);
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803C7420
  * Size:	000068
  */
-void create__Q23efx10ToeChudokuFP10Vector3f()
+void ToeChudoku::create(Vector3f* chasePos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803C745C
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049639C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0x1ad
-	addi     r5, r5, lbl_8049639C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C745C:
-	stw      r31, 0x18(r30)
-	mr       r4, r30
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x40(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(429, chasePos);
+	mContext.mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeChudoku->add(&mContext);
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -3274,68 +590,23 @@ namespace efx {
  */
 void ToeChudoku::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x40(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTOneEmitters.mToeChudoku->del(&mContext);
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803C74B4
  * Size:	00007C
  */
-void create__Q23efx8ToeWaterFP10Vector3f()
+void ToeWater::create(Vector3f* chasePos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803C74F0
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049639C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0x1bc
-	addi     r5, r5, lbl_8049639C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(444, chasePos);
+	mContexts[0].mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeWater1->add(&mContexts[0]);
 
-lbl_803C74F0:
-	stw      r31, 0x18(r30)
-	mr       r4, r30
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x44(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	stw      r31, 0x34(r30)
-	addi     r4, r30, 0x1c
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x48(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mContexts[1].mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeWater2->add(&mContexts[1]);
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -3344,75 +615,22 @@ namespace efx {
  */
 void ToeWater::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	lwz      r5, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x44(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r3, pkEffectMgr@sda21(r13)
-	addi     r4, r31, 0x1c
-	lwz      r3, 0x48(r3)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+	pkEffectMgr->mTOneEmitters.mToeWater1->del(&mContexts[0]);
+	pkEffectMgr->mTOneEmitters.mToeWater2->del(&mContexts[1]);}
 
 /*
  * --INFO--
  * Address:	803C7578
  * Size:	000074
  */
-void create__Q23efx9ToeHamonAFP10Vector3f()
+void ToeHamonA::create(Vector3f* chasePos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803C75B4
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049639C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0x1cd
-	addi     r5, r5, lbl_8049639C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C75B4:
-	lwz      r0, 0xc(r30)
-	cmplwi   r0, 0
-	bne      lbl_803C75D4
-	stw      r31, 0x18(r30)
-	mr       r4, r30
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x4c(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-
-lbl_803C75D4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(461, chasePos);
+	if (!mContext.mParent) {
+		mContext.mPosition = chasePos;
+		pkEffectMgr->mTOneEmitters.mToeHamonA->add(&mContext);
+	}
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -3421,68 +639,22 @@ namespace efx {
  */
 void ToeHamonA::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x4c(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTOneEmitters.mToeHamonA->del(&mContext);
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803C7618
  * Size:	000074
  */
-void create__Q23efx9ToeHamonBFP10Vector3f()
+void ToeHamonB::create(Vector3f* chasePos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803C7654
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049639C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0x1de
-	addi     r5, r5, lbl_8049639C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C7654:
-	lwz      r0, 0xc(r30)
-	cmplwi   r0, 0
-	bne      lbl_803C7674
-	stw      r31, 0x18(r30)
-	mr       r4, r30
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x50(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-
-lbl_803C7674:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(478, chasePos);
+	if (!mContext.mParent) {
+		mContext.mPosition = chasePos;
+		pkEffectMgr->mTOneEmitters.mToeHamonB->add(&mContext);
+	}
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -3491,63 +663,20 @@ namespace efx {
  */
 void ToeHamonB::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x50(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTOneEmitters.mToeHamonB->del(&mContext);
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803C76B8
  * Size:	000068
  */
-void create__Q23efx11ToeMoeSmokeFP10Vector3f()
+void ToeMoeSmoke::create(Vector3f* chasePos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803C76F4
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049639C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0x1ef
-	addi     r5, r5, lbl_8049639C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C76F4:
-	stw      r31, 0x18(r30)
-	mr       r4, r30
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x54(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(495, chasePos);
+	mContext.mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeMoeSmoke->add(&mContext);
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -3556,63 +685,20 @@ namespace efx {
  */
 void ToeMoeSmoke::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x54(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTOneEmitters.mToeMoeSmoke->del(&mContext);
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803C774C
  * Size:	000068
  */
-void create__Q23efx11ToeTanekiraFP10Vector3f()
+void ToeTanekira::create(Vector3f* chasePos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803C7788
-	lis      r3, lbl_80496378@ha
-	lis      r5, lbl_8049639C@ha
-	addi     r3, r3, lbl_80496378@l
-	li       r4, 0x1fc
-	addi     r5, r5, lbl_8049639C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C7788:
-	stw      r31, 0x18(r30)
-	mr       r4, r30
-	lwz      r3, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x58(r3)
-	bl       add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(508, chasePos);
+	mContext.mPosition = chasePos;
+	pkEffectMgr->mTOneEmitters.mToeTaneKira->add(&mContext);
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -3621,75 +707,7 @@ namespace efx {
  */
 void ToeTanekira::kill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, pkEffectMgr@sda21(r13)
-	lwz      r3, 0x58(r5)
-	bl       del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803C77E0
- * Size:	000044
- */
-void TPkOneEmitterSimple::fade()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 8(r3)
-	cmplwi   r4, 0
-	beq      lbl_803C7810
-	lwz      r3, particleMgr@sda21(r13)
-	bl       fade__11ParticleMgrFP14JPABaseEmitter
-	li       r0, 0
-	stw      r0, 8(r31)
-
-lbl_803C7810:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pkEffectMgr->mTOneEmitters.mToeTaneKira->del(&mContext);
 }
 
 } // namespace efx
-
-/*
- * --INFO--
- * Address:	803C7824
- * Size:	000008
- */
-void @4 @efx::TPkOneEmitterSimple::executeAfter(JPABaseEmitter*)
-{
-	/*
-	addi     r3, r3, -4
-	b        executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803C782C
- * Size:	000008
- */
-@4 @efx::TPkOneEmitterSimple::~TPkOneEmitterSimple()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx19TPkOneEmitterSimpleFv
-	*/
-}

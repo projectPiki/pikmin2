@@ -7,6 +7,7 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 
 namespace efx {
+	
 struct TOneEmitter : public TBase, public JPAEmitterCallBack {
 	inline TOneEmitter() { }
 
@@ -53,6 +54,11 @@ struct TOneEmitter : public TBase, public JPAEmitterCallBack {
  * @size{0x2C}
  */
 struct TOneEmitterChasePos : public TBase, public JPAEmitterCallBack {
+	inline TOneEmitterChasePos(u16 effectID) {
+		mEmitter = nullptr;
+		mEffectID = effectID;
+		mContext.clearRelations();
+	}
 	// vtable 1 (TBase)
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C
