@@ -3,6 +3,7 @@
 
 #include "JSystem/JUtility/JUTException.h"
 #include "PSM/EnemyBase.h"
+#include "PSM/EnemyBoss.h"
 
 // idk what else goes in this file (if anything? maybe this is in the PSGame folder??)
 // but these use the file name in the exception check so :shrug:
@@ -19,6 +20,15 @@ inline void checkBoss(PSM::EnemyBase* soundObj)
 }
 
 inline void checkMidBoss(PSM::EnemyBase* soundObj) { P2ASSERTLINE(1114, soundObj->getCastType() == CCT_EnemyMidBoss); }
+
+inline void disableAppearFlag(PSM::EnemyBase* soundObj) {
+	checkMidBoss(soundObj);
+	PSM::EnemyBoss* bossObj = static_cast<PSM::EnemyBoss*>(soundObj);
+	if (bossObj) {
+		bossObj->setAppearFlag(false);
+		bossObj->_FF = true;
+	}
+}
 
 }; // namespace PSM
 

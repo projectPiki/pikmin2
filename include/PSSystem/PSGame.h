@@ -4,6 +4,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "PSSystem/PSCommon.h"
 #include "PSSystem/PSScene.h"
+#include "PSSystem/Seq.h"
 #include "PSGame/SeMgr.h"
 
 // idk what else goes in this file (if anything? maybe this is in the PSGame folder??)
@@ -33,6 +34,14 @@ inline PSGame::SeMgr* getSeMgrInstance()
 	P2ASSERTLINE(567, SingletonBase<PSGame::SeMgr>::sInstance);
 	return static_cast<PSGame::SeMgr*>(SingletonBase<PSGame::SeMgr>::sInstance);
 }
+
+inline SeqBase* getSeqFromScene(Scene* scene, u32 id) {
+	SeqBase* seq = scene->mSeqMgr.getSeq(id);
+	P2ASSERTLINE(487, seq);
+	return seq;
+}
 }; // namespace PSSystem
+
+
 
 #endif

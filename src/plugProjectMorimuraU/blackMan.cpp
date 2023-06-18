@@ -1,5 +1,22 @@
 #include "types.h"
 #include "Game/Entities/BlackMan.h"
+#include "Game/generalEnemyMgr.h"
+#include "efx/TKage.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
+#include "PSM/EnemyBoss.h"
+#include "Game/MapMgr.h"
+#include "Game/pathfinder.h"
+#include "Game/routeMgr.h"
+#include "Radar.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
+#include "Game/Navi.h"
+#include "PSSystem/PSGame.h"
+#include "PSSystem/PSScene.h"
+#include "PSM/Scene.h"
+#include "PSSystem/Seq.h"
+#include "Game/MoviePlayer.h"
+
 #include "nans.h"
 
 /*
@@ -607,32 +624,28 @@
 
 namespace Game {
 
+namespace BlackMan {
+
+static Obj* curB;
+
+enum JointID {
+	lHand = 0,
+	rHand = 1,
+	lFoot = 2,
+	rFoot = 3,
+};
+
 /*
  * --INFO--
  * Address:	803A5DB0
  * Size:	00003C
  */
-void BlackMan::lHandCallBack(J3DJoint*, int)
+bool lHandCallBack(J3DJoint*, int p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_803A5DD8
-	lwz      r3, curB__Q24Game8BlackMan@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803A5DD8
-	li       r4, 0
-	bl       jointMtxCalc__Q34Game8BlackMan3ObjFi
-
-lbl_803A5DD8:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (p2 == 0 && curB) {
+		curB->jointMtxCalc(lHand);
+	}
+	return true;
 }
 
 /*
@@ -640,27 +653,12 @@ lbl_803A5DD8:
  * Address:	803A5DEC
  * Size:	00003C
  */
-void BlackMan::rHandCallBack(J3DJoint*, int)
+bool rHandCallBack(J3DJoint*, int p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_803A5E14
-	lwz      r3, curB__Q24Game8BlackMan@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803A5E14
-	li       r4, 1
-	bl       jointMtxCalc__Q34Game8BlackMan3ObjFi
-
-lbl_803A5E14:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (p2 == 0 && curB) {
+		curB->jointMtxCalc(rHand);
+	}
+	return true;
 }
 
 /*
@@ -668,27 +666,12 @@ lbl_803A5E14:
  * Address:	803A5E28
  * Size:	00003C
  */
-void BlackMan::lFootCallBack(J3DJoint*, int)
+bool lFootCallBack(J3DJoint*, int p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_803A5E50
-	lwz      r3, curB__Q24Game8BlackMan@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803A5E50
-	li       r4, 2
-	bl       jointMtxCalc__Q34Game8BlackMan3ObjFi
-
-lbl_803A5E50:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (p2 == 0 && curB) {
+		curB->jointMtxCalc(lFoot);
+	}
+	return true;
 }
 
 /*
@@ -696,27 +679,12 @@ lbl_803A5E50:
  * Address:	803A5E64
  * Size:	00003C
  */
-void BlackMan::rFootCallBack(J3DJoint*, int)
+bool rFootCallBack(J3DJoint*, int p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_803A5E8C
-	lwz      r3, curB__Q24Game8BlackMan@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803A5E8C
-	li       r4, 3
-	bl       jointMtxCalc__Q34Game8BlackMan3ObjFi
-
-lbl_803A5E8C:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (p2 == 0 && curB) {
+		curB->jointMtxCalc(rFoot);
+	}
+	return true;
 }
 
 /*
@@ -724,26 +692,12 @@ lbl_803A5E8C:
  * Address:	803A5EA0
  * Size:	000038
  */
-void BlackMan::bodyCallBack(J3DJoint*, int)
+bool bodyCallBack(J3DJoint*, int p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_803A5EC4
-	lwz      r3, curB__Q24Game8BlackMan@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803A5EC4
-	bl       bodyMtxCalc__Q34Game8BlackMan3ObjFv
-
-lbl_803A5EC4:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (p2 == 0 && curB) {
+		curB->bodyMtxCalc();
+	}
+	return true;
 }
 
 /*
@@ -751,74 +705,29 @@ lbl_803A5EC4:
  * Address:	803A5ED8
  * Size:	0000F0
  */
-void BlackMan::Obj::setParameters()
+void Obj::setParameters()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setParameters__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0xd, 0xd
-	beq      lbl_803A5F54
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r31, 0x18c
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x190(r31)
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x190(r31)
-	lfs      f0, 0xa50(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x190(r31)
-	lwz      r3, 0x364(r31)
-	cmplwi   r3, 0
-	beq      lbl_803A5F54
-	lwz      r12, 0(r3)
-	addi     r4, r31, 0x18c
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
+	EnemyBase::setParameters();
+	if (isEvent(0, EB_IsHardConstraint)) {
+		mPosition.y = mapMgr->getMinY(mPosition);
+		mPosition.y += C_PARMS->_A50;
+		if (mTyre) {
+			mTyre->onSetPosition(mPosition);
+		}
+	}
 
-lbl_803A5F54:
-	lwz      r3, 0xc0(r31)
-	lfs      f31, 0xa24(r3)
-	stfs     f31, 0x1f8(r31)
-	fmr      f1, f31
-	stfs     f31, 0x168(r31)
-	stfs     f31, 0x16c(r31)
-	stfs     f31, 0x170(r31)
-	lwz      r3, 0x114(r31)
-	lwz      r3, 0(r3)
-	bl       setScale__8CollPartFf
-	lwz      r3, 0x364(r31)
-	cmplwi   r3, 0
-	beq      lbl_803A5FAC
-	stfs     f31, 0x1f8(r3)
-	fmr      f1, f31
-	stfs     f31, 0x168(r3)
-	stfs     f31, 0x16c(r3)
-	stfs     f31, 0x170(r3)
-	lwz      r3, 0x364(r31)
-	lwz      r3, 0x114(r3)
-	lwz      r3, 0(r3)
-	bl       setScale__8CollPartFf
+	f32 scale = C_PARMS->_A24;
+	mScaleModifier = scale;
+	mScale = Vector3f(scale);
+	mCollTree->mPart->setScale(scale);
+	
+	EnemyBase* tyre = mTyre;
 
-lbl_803A5FAC:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (tyre) {
+		tyre->mScaleModifier = scale;
+		tyre->mScale = Vector3f(scale);
+		mTyre->mCollTree->mPart->setScale(scale);
+	}
 }
 
 /*
@@ -826,472 +735,145 @@ lbl_803A5FAC:
  * Address:	803A5FC8
  * Size:	000020
  */
-void BlackMan::Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(position, faceDirection); }
+void Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(position, faceDirection); }
+
+const int unusedArray[] = {0, 0, 0};
+
+const char* unusedBlackMan = "blackMan";
 
 /*
  * --INFO--
  * Address:	803A5FE8
  * Size:	0006B4
  */
-void BlackMan::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	lis      r5, lbl_80495670@ha
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	addi     r31, r5, lbl_80495670@l
-	stw      r30, 0x68(r1)
-	stw      r29, 0x64(r1)
-	mr       r29, r3
-	stw      r28, 0x60(r1)
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r0, 0x1e0(r29)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r29)
-	lwz      r0, 0x1e0(r29)
-	rlwinm   r0, r0, 0, 0x19, 0x17
-	stw      r0, 0x1e0(r29)
-	lwz      r0, 0x1e0(r29)
-	rlwinm   r0, r0, 0, 0x18, 0x16
-	stw      r0, 0x1e0(r29)
-	lwz      r3, 0xc0(r29)
-	lbz      r0, 0xa10(r3)
-	stw      r0, 0x2e0(r29)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x58(r3)
-	cmplwi   r3, 0
-	beq      lbl_803A60B4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	addis    r0, r3, 0x86a1
-	cmplwi   r0, 0x3031
-	bne      lbl_803A60B4
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803A60B4
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	beq      lbl_803A60B4
-	lwz      r3, 0x360(r29)
-	mr       r4, r29
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 2
-	stw      r0, 0x2e0(r29)
-	b        lbl_803A6140
+	EnemyBase::onInit(arg);
+	disableEvent(0, EB_IsCullable);
+	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_IsDeathEffectEnabled);
+	_2E0 = C_PARMS->_A10;
 
-lbl_803A60B4:
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	li       r4, 0x62
-	bl       getEnemyMgr__Q24Game15GeneralEnemyMgrFi
-	or.      r28, r3, r3
-	beq      lbl_803A6120
-	addi     r3, r1, 0x20
-	bl       __ct__Q24Game13EnemyBirthArgFv
-	lfs      f0, 0x18c(r29)
-	mr       r3, r28
-	addi     r4, r1, 0x20
-	stfs     f0, 0x20(r1)
-	lfs      f0, 0x190(r29)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0x194(r29)
-	stfs     f0, 0x28(r1)
-	lfs      f0, 0x1fc(r29)
-	stfs     f0, 0x2c(r1)
-	lwz      r12, 0(r28)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x364(r29)
-	li       r4, 0
-	lwz      r3, 0x364(r29)
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	lwz      r3, 0x364(r29)
-	stw      r29, 0x2bc(r3)
+	if (gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_01' && gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+		mFSM->start(this, WRAITH_Walk, nullptr);
+		_2E0 = 2;
+	}
+	else {
+		EnemyMgrBase* tyreMgr = generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Tyre);
+		if (tyreMgr) {
+			EnemyBirthArg birthArg;
+			birthArg.mPosition = mPosition;
+			birthArg.mFaceDir  = mFaceDir;
+			mTyre = static_cast<Tyre::Obj*>(tyreMgr->birth(birthArg));
+			mTyre->init(nullptr);
+			mTyre->_2BC = this;
+		}
+		mFSM->start(this, WRAITH_Fall, nullptr);
+	}
 
-lbl_803A6120:
-	lwz      r3, 0x360(r29)
-	mr       r4, r29
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+	P2ASSERTLINE(178, mMatLoopAnimator);
 
-lbl_803A6140:
-	lwz      r0, 0x358(r29)
-	cmplwi   r0, 0
-	bne      lbl_803A6160
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xb2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	mMatLoopAnimator->start(C_MGR->mTexAnimation);
+	
+	mPostFlickState = -1;
 
-lbl_803A6160:
-	lwz      r3, 0x358(r29)
-	lwz      r4, 0x180(r29)
-	lwz      r12, 0(r3)
-	lwz      r4, 0x44(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r3, -1
-	li       r0, 0
-	stw      r3, 0x2dc(r29)
-	lfs      f0, lbl_8051F438@sda21(r2)
-	lfs      f1, 0x18c(r29)
-	stfs     f1, 0x2f8(r29)
-	lfs      f1, 0x190(r29)
-	stfs     f1, 0x2fc(r29)
-	lfs      f1, 0x194(r29)
-	stfs     f1, 0x300(r29)
-	lfs      f1, 0x2f8(r29)
-	stfs     f1, 0x198(r29)
-	lfs      f1, 0x2fc(r29)
-	stfs     f1, 0x19c(r29)
-	lfs      f1, 0x300(r29)
-	stfs     f1, 0x1a0(r29)
-	lfs      f1, 0x198(r29)
-	stfs     f1, 0x2d0(r29)
-	lfs      f1, 0x19c(r29)
-	stfs     f1, 0x2d4(r29)
-	lfs      f1, 0x1a0(r29)
-	stfs     f1, 0x2d8(r29)
-	stw      r0, 0x348(r29)
-	stb      r0, 0x34c(r29)
-	stw      r0, 0x35c(r29)
-	stw      r0, 0x2e4(r29)
-	stw      r0, 0x2e8(r29)
-	stw      r0, 0x334(r29)
-	stw      r0, 0x2cc(r29)
-	stfs     f0, 0x374(r29)
-	stw      r0, curB__Q24Game8BlackMan@sda21(r13)
-	lwz      r0, 0x174(r29)
-	cmplwi   r0, 0
-	bne      lbl_803A6218
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xd1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	_2F8 = mPosition;
+	mHomePosition = _2F8;
+	_2D0 = mHomePosition;
+	_348 = 0;
+	_34C = 0;
+	_35C = nullptr;
+	_2E4 = 0;
+	_2E8 = 0;
+	_334 = 0;
+	mFreezeTimer = 0;
+	_374 = 0.0f;
+	curB = nullptr;
 
-lbl_803A6218:
-	lwz      r3, 0x174(r29)
-	lwz      r3, 8(r3)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_803A6240
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xd4
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(209, mModel);
 
-lbl_803A6240:
-	lwz      r3, 0x174(r29)
-	addi     r4, r2, lbl_8051F43C@sda21
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x36a(r29)
-	addi     r4, r31, 0x34
-	lwz      r3, 0x174(r29)
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x36c(r29)
-	addi     r4, r31, 0x40
-	lwz      r3, 0x174(r29)
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x36e(r29)
-	addi     r4, r2, lbl_8051F444@sda21
-	lwz      r3, 0x174(r29)
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x370(r29)
-	addi     r4, r2, lbl_8051F44C@sda21
-	lwz      r3, 0x174(r29)
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x372(r29)
-	lwz      r3, 0x364(r29)
-	cmplwi   r3, 0
-	beq      lbl_803A6410
-	lwz      r28, 0x174(r3)
-	addi     r4, r2, lbl_8051F454@sda21
-	mr       r3, r28
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	lwz      r12, 0(r28)
-	clrlwi   r4, r3, 0x10
-	mr       r3, r28
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2bc(r29)
-	lis      r3, lHandCallBack__Q24Game8BlackManFP8J3DJointi@ha
-	addi     r5, r3, lHandCallBack__Q24Game8BlackManFP8J3DJointi@l
-	addi     r4, r2, lbl_8051F45C@sda21
-	lhz      r0, 0x36c(r29)
-	lwz      r3, 0x28(r30)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	stw      r5, 4(r3)
-	lwz      r3, 0x364(r29)
-	lwz      r28, 0x174(r3)
-	mr       r3, r28
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	lwz      r12, 0(r28)
-	clrlwi   r4, r3, 0x10
-	mr       r3, r28
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2c0(r29)
-	lis      r3, rHandCallBack__Q24Game8BlackManFP8J3DJointi@ha
-	addi     r5, r3, rHandCallBack__Q24Game8BlackManFP8J3DJointi@l
-	addi     r4, r2, lbl_8051F464@sda21
-	lhz      r0, 0x36e(r29)
-	lwz      r3, 0x28(r30)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	stw      r5, 4(r3)
-	lwz      r3, 0x364(r29)
-	lwz      r28, 0x174(r3)
-	mr       r3, r28
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	lwz      r12, 0(r28)
-	clrlwi   r4, r3, 0x10
-	mr       r3, r28
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2c4(r29)
-	lis      r3, lFootCallBack__Q24Game8BlackManFP8J3DJointi@ha
-	addi     r5, r3, lFootCallBack__Q24Game8BlackManFP8J3DJointi@l
-	addi     r4, r2, lbl_8051F46C@sda21
-	lhz      r0, 0x370(r29)
-	lwz      r3, 0x28(r30)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	stw      r5, 4(r3)
-	lwz      r3, 0x364(r29)
-	lwz      r28, 0x174(r3)
-	mr       r3, r28
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	lwz      r12, 0(r28)
-	clrlwi   r4, r3, 0x10
-	mr       r3, r28
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2c8(r29)
-	lis      r3, rFootCallBack__Q24Game8BlackManFP8J3DJointi@ha
-	addi     r4, r3, rFootCallBack__Q24Game8BlackManFP8J3DJointi@l
-	lhz      r0, 0x372(r29)
-	lwz      r3, 0x28(r30)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	stw      r4, 4(r3)
-	lwz      r3, 0x174(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x364(r29)
-	lwz      r3, 0x174(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lhz      r0, 0x36a(r29)
-	lis      r4, bodyCallBack__Q24Game8BlackManFP8J3DJointi@ha
-	lwz      r3, 0x28(r30)
-	addi     r4, r4, bodyCallBack__Q24Game8BlackManFP8J3DJointi@l
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	stw      r4, 4(r3)
+	J3DModelData* modelData = mModel->mJ3dModel->mModelData;
 
-lbl_803A6410:
-	lwz      r3, 0x174(r29)
-	addi     r4, r2, lbl_8051F474@sda21
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x368(r29)
-	lwz      r0, 0x364(r29)
-	cmplwi   r0, 0
-	beq      lbl_803A6458
-	lwz      r3, 0xc0(r29)
-	addi     r4, r29, 0x18c
-	lfs      f1, 0x190(r29)
-	lfs      f0, 0xa50(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x190(r29)
-	lwz      r3, 0x364(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
+	P2ASSERTLINE(212, modelData);
 
-lbl_803A6458:
-	lfs      f1, 0x18c(r29)
-	li       r0, 0
-	lfs      f0, lbl_8051F47C@sda21(r2)
-	addi     r4, r1, 8
-	stfs     f1, 8(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lfs      f1, 0x190(r29)
-	stfs     f1, 0xc(r1)
-	lfs      f1, 0x194(r29)
-	stfs     f1, 0x10(r1)
-	stw      r0, 0x14(r1)
-	stb      r0, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 8(r3)
-	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
-	lha      r0, 0x36(r3)
-	mr       r3, r29
-	sth      r0, 0x344(r29)
-	sth      r0, 0x342(r29)
-	sth      r0, 0x340(r29)
-	lfs      f0, 0x18c(r29)
-	stfs     f0, 0x2f8(r29)
-	lfs      f0, 0x190(r29)
-	stfs     f0, 0x2fc(r29)
-	lfs      f0, 0x194(r29)
-	stfs     f0, 0x300(r29)
-	lfs      f0, 0x2f8(r29)
-	stfs     f0, 0x198(r29)
-	lfs      f0, 0x2fc(r29)
-	stfs     f0, 0x19c(r29)
-	lfs      f0, 0x300(r29)
-	stfs     f0, 0x1a0(r29)
-	lfs      f0, 0x198(r29)
-	stfs     f0, 0x2d0(r29)
-	lfs      f0, 0x19c(r29)
-	stfs     f0, 0x2d4(r29)
-	lfs      f0, 0x1a0(r29)
-	stfs     f0, 0x2d8(r29)
-	bl       isFinalFloor__Q34Game8BlackMan3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803A6550
-	lwz      r30, 0x28c(r29)
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_803A6530
-	addi     r3, r31, 0x4c
-	addi     r5, r31, 0x28
-	li       r4, 0x45a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	mChestJointIndex = mModel->getJointIndex("chest");
+	mLeftHandJointIndex = mModel->getJointIndex("handLend");
+	mRightHandJointIndex = mModel->getJointIndex("handRend");
+	mLeftFootJointIndex = mModel->getJointIndex("footL");
+	mRightFootJointIndex = mModel->getJointIndex("footR");
 
-lbl_803A6530:
-	cmplwi   r30, 0
-	beq      lbl_803A6580
-	mr       r3, r30
-	li       r4, 0
-	bl       setAppearFlag__Q23PSM9EnemyBossFb
-	li       r0, 1
-	stb      r0, 0xff(r30)
-	b        lbl_803A6580
+	if (mTyre) {
 
-lbl_803A6550:
-	lwz      r0, 0x364(r29)
-	cmplwi   r0, 0
-	beq      lbl_803A6580
-	addi     r3, r29, 0x250
-	bl       isNull__Q34Game9PelletMgr15OtakaraItemCodeFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803A6580
-	lwz      r0, mgr__5Radar@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_803A6580
-	mr       r3, r29
-	bl       exit__Q25Radar3MgrFPQ24Game15TPositionObject
+		SysShape::Model* tyreModel = mTyre->mModel;
+		u16 jointIdx = tyreModel->getJointIndex("tyreFL");
+		mLeftHandMtx = tyreModel->getMatrix(jointIdx);
 
-lbl_803A6580:
-	li       r0, 0xb5
-	li       r3, 0xc0
-	stb      r0, 0x384(r29)
-	li       r0, 0xae
-	li       r8, 0xff
-	li       r7, 0x20
-	stb      r3, 0x385(r29)
-	li       r6, 0x16
-	li       r5, 0x30
-	li       r4, 0x3f
-	stb      r0, 0x386(r29)
-	li       r3, 0x57
-	li       r0, 0
-	stb      r8, 0x387(r29)
-	stb      r8, 0x388(r29)
-	stb      r7, 0x389(r29)
-	stb      r6, 0x38a(r29)
-	stb      r8, 0x38b(r29)
-	stb      r5, 0x38c(r29)
-	stb      r4, 0x38d(r29)
-	stb      r3, 0x38e(r29)
-	stb      r0, 0x38f(r29)
-	lbz      r0, 0x384(r29)
-	stb      r0, 0x380(r29)
-	lbz      r0, 0x385(r29)
-	stb      r0, 0x381(r29)
-	lbz      r0, 0x386(r29)
-	stb      r0, 0x382(r29)
-	lbz      r0, 0x387(r29)
-	stb      r0, 0x383(r29)
-	lwz      r3, 0x174(r29)
-	lwz      r3, 8(r3)
-	lwz      r30, 4(r3)
-	cmplwi   r30, 0
-	bne      lbl_803A6620
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0x126
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+		modelData->mJointTree.mJoints[mLeftHandJointIndex]->mFunction = lHandCallBack;
 
-lbl_803A6620:
-	lwz      r3, 0x64(r30)
-	addi     r4, r31, 0x64
-	bl       getIndex__10JUTNameTabCFPCc
-	lwz      r4, 0x60(r30)
-	rlwinm   r0, r3, 2, 0xe, 0x1d
-	lwzx     r0, r4, r0
-	stw      r0, 0x37c(r29)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803A665C
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_803A665C
-	lfs      f0, lbl_8051F438@sda21(r2)
-	stfs     f0, 0x33c(r29)
+		tyreModel = mTyre->mModel;
+		jointIdx = tyreModel->getJointIndex("TyreFR");
+		mRightHandMtx = tyreModel->getMatrix(jointIdx);
+		modelData->mJointTree.mJoints[mRightHandJointIndex]->mFunction = rHandCallBack;
 
-lbl_803A665C:
-	lhz      r0, 0x36a(r29)
-	lwz      r3, 0x174(r29)
-	mulli    r0, r0, 0x3c
-	lwz      r3, 0x10(r3)
-	add      r3, r3, r0
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r4, 0x39c(r29)
-	stw      r3, 0x10(r4)
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	lwz      r28, 0x60(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+		tyreModel = mTyre->mModel;
+		jointIdx = tyreModel->getJointIndex("TyreBL");
+		mLeftFootMtx = tyreModel->getMatrix(jointIdx);
+		modelData->mJointTree.mJoints[mLeftFootJointIndex]->mFunction = lFootCallBack;
+
+		tyreModel = mTyre->mModel;
+		jointIdx = tyreModel->getJointIndex("tyreBR");
+		mRightFootMtx = tyreModel->getMatrix(jointIdx);
+		modelData->mJointTree.mJoints[mRightFootJointIndex]->mFunction = rFootCallBack;
+
+		mModel->hidePackets();
+		mTyre->mModel->hidePackets();
+		modelData->mJointTree.mJoints[mChestJointIndex]->mFunction = bodyCallBack;
+
+	}
+
+	mWaistJointIndex = mModel->getJointIndex("waist");
+
+	if (mTyre) {
+		mPosition.y += C_PARMS->_A50;
+		mTyre->onSetPosition(mPosition);
+	}
+
+	WPSearchArg wpSearch (mPosition, nullptr, 0, 10.0f);
+	s16 wpIndex = mapMgr->mRouteMgr->getNearestWayPoint(wpSearch)->mIndex;
+	_344 = wpIndex;
+	_342 = wpIndex;
+	_340 = wpIndex;
+
+	_2F8 = mPosition;
+	mHomePosition = _2F8;
+	_2D0 = mHomePosition;
+
+	if (isFinalFloor()) {
+		PSM::disableAppearFlag(mSoundObj);
+	}
+	else if (mTyre && !mPelletDropCode.isNull() && Radar::mgr) {
+		Radar::Mgr::exit(this);
+	}
+
+	mTargetColor = Color4(0xb5, 0xc0, 0xae, 0xff); // Transparent Color
+	_388 = Color4(0xff, 0x20, 0x16, 0xff); 
+	_38C = Color4(0x30, 0x3f, 0x57, 0x00);
+	mUsingColor = mTargetColor;
+
+	modelData = mModel->mJ3dModel->mModelData;
+
+	// if you need this many P2ASSERTs then maybe you're the one who needs sanity checked
+	P2ASSERTLINE(294, modelData);
+
+	u16 kageMatIdx = modelData->mMaterialTable.mMaterialNames->getIndex("kage_mat");
+
+	_37C = modelData->mMaterialTable.mMaterials[kageMatIdx];
+
+	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+		_33C = 0.0f;
+	}
+
+	mEfxDead->mMtx = mModel->mJoints[mChestJointIndex].getWorldMatrix();
 }
 
 /*
@@ -1299,8 +881,50 @@ lbl_803A665C:
  * Address:	803A669C
  * Size:	000560
  */
-BlackMan::Obj::Obj()
+Obj::Obj()
+: mPostFlickState(-1)
+, _2E4(0)
+, _2E8(0)
+, _2EC(0)
+, _2F0(0)
+, _2F4(0)
+, _334(0)
+, _338(false)
+, _33C(10.0f)
+, _340(-1)
+, _342(-1)
+, _344(-1)
+, _348(0)
+, _34C(0)
 {
+	mMatLoopAnimator = nullptr;
+	_35C = nullptr;
+	mFSM = nullptr;
+	mTyre = nullptr;
+	_378 = 1.0f;
+	_37C = nullptr;
+	mEfxMove = nullptr;
+	mEfxRun = nullptr;
+	mEfxTyreup = nullptr;
+	mEfxDead = nullptr;
+	_3A8 = 0;
+	_3A9 = 0;
+	_3AA = 0;
+	_3AB = 0;
+
+	mAnimator = new ProperAnimator;
+	mMatLoopAnimator = new Sys::MatLoopAnimator;
+
+	setFSM(new FSM);
+
+	mEfxMove = new efx::TKageMove(&mPosition, &mFaceDir);
+	mEfxRun = new efx::TKageRun(&mPosition, &mFaceDir);
+	mEfxDead = new efx::TKageDead1;
+	mEfxTyreup = new efx::TKageTyreup(&_328, &mFaceDir);
+	mEfxFrontFlick = new efx::TKageFlick(&_310[0]);
+	mEfxBackFlick = new efx::TKageFlick(&_310[1]);
+
+	
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1671,41 +1295,109 @@ lbl_803A6BDC:
 
 /*
  * --INFO--
- * Address:	803A6BFC
- * Size:	00004C
- */
-void BlackMan::Obj::setFSM(Game::BlackMan::FSM*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x360(r3)
-	mr       r4, r31
-	lwz      r3, 0x360(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	803A6C48
  * Size:	0006C4
  */
 void BlackMan::Obj::doUpdate()
 {
+	getStateID();
+	isStopMotion();
+	isFinishMotion();
+	mFSM->exec(this);
+	if (_378 < 1.0f) {
+		_378 += C_PARMS->_A3C;
+		if (_378 > 1.0f) {
+			_378 = 1.0f;
+		}
+	}
+
+	f32 someVal = 1.0f - _378;
+
+	CollPart* kosi = mCollTree->getCollPart('kosi');
+	if (kosi->mSpecialID == 'st__' || getStateID() == WRAITH_Dead) {
+		_38C.a = _378 * 0xff;
+	}
+	else {
+		_38C.a = someVal * _38C.a;
+		mUsingColor.r = mUsingColor.r * someVal + mTargetColor.r * _378;
+		mUsingColor.g = mUsingColor.g * someVal + mTargetColor.g * _378;
+		mUsingColor.b = mUsingColor.b * someVal + mTargetColor.b * _378;
+	}
+
+	_33C -= sys->mDeltaTime;
+	if (isEvent(0, EB_IsHardConstraint) && getStateID() == WRAITH_Fall) {
+		if (!mTyre || _33C < -C_PARMS->_A4C) {
+			hardConstraintOff();
+			mModel->showPackets();
+			mSoundObj->startSound(PSSE_EN_TIRE_FALL, 0);
+		}
+	}
+	else {
+		f32 someTimer = C_PARMS->_A58;
+		if (!_3A9 && _33C < someTimer) {
+			if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+				_3A9 = true;
+				mTyre->_2D2 = true;
+			}
+			Navi* activeNavi = naviMgr->getActiveNavi();
+			if (!_3A9 && activeNavi && activeNavi->isAlive()) {
+				Vector2f delta;
+				getDistanceTo(activeNavi, delta);
+				f32 sqrDist = SQUARE(delta.x) * SQUARE(delta.y);
+				if (isFinalFloor()) {
+					f32 fallRadius = C_PARMS->_A54;
+					if (sqrDist < SQUARE(fallRadius)) {
+						_3A9 = true;
+					}
+				}
+				else if (sqrDist < SQUARE(1000.0f))
+				{
+					_3A9 = true;
+				}
+				if (_3A9) {
+					mTyre->_2D2 = true;
+				}
+			}
+			if (!_3A9) {
+				_33C = someTimer;
+			}
+		}
+	}
+
+	if (mTyre && mTyre->isEvent(0, EB_IsHardConstraint) && _33C < 0.0f) {
+		if (gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA && 
+		gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
+			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+			PSSystem::checkSceneMgr(mgr);
+			PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+			PSSystem::SeqBase* seqBase = PSSystem::getSeqFromScene(scene, 0);
+			P2ASSERTLINE(489, seqBase);
+			seqBase->stopSeq(5);
+			if (!isFinalFloor() && !playData->isDemoFlag(DEMO_Waterwraith_Appears) && moviePlayer) {
+				MoviePlayArg wraithMovieArg ("x20_blackman", nullptr, nullptr, 0);
+				Vector3f origin = mPosition;
+				origin.y = mapMgr->getMinY(origin);
+				wraithMovieArg.mOrigin = origin;
+				wraithMovieArg.mAngle = getFaceDir();
+				moviePlayer->mTargetObject = this;
+				moviePlayer->play(wraithMovieArg);
+				mTyre->movie_begin(false);
+				playData->setDemoFlag(DEMO_Waterwraith_Appears);
+				_3AB = true;
+				_3AA = true;
+			}
+		}
+		if (!_3AB) {
+			mTyre->mSoundObj->startSound(PSSE_EN_TIRE_FALL, 0);
+		}
+		mTyre->hardConstraintOff();
+		mTyre->mModel->showPackets();
+
+		if (_3A9 && _33C < -1.0f && mTyre) {
+			mTyre->scaleUpShadow();
+		}
+	}
+
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -7110,8 +6802,8 @@ void BlackMan::Obj::createFlickEffect()
  */
 void BlackMan::Obj::fadeFlickEffect()
 {
-	_3A0->fade();
-	_3A4->fade();
+	mEfxFrontFlick->fade();
+	mEfxBackFlick->fade();
 }
 
 /*
@@ -7371,4 +7063,6 @@ void BlackMan::Obj::updateEfxHamon()
  * Size:	000008
  */
 bool BlackMan::Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 f) { return false; }
+
+} // namespace BlackMan
 } // namespace Game

@@ -25,13 +25,19 @@ struct PathNode;
 
 namespace BlackMan {
 struct Parms;
-struct FSM;
 
-void lHandCallBack(J3DJoint*, int);
-void rHandCallBack(J3DJoint*, int);
-void lFootCallBack(J3DJoint*, int);
-void rFootCallBack(J3DJoint*, int);
-void bodyCallBack(J3DJoint*, int);
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
+
+bool lHandCallBack(J3DJoint*, int);
+bool rHandCallBack(J3DJoint*, int);
+bool lFootCallBack(J3DJoint*, int);
+bool rFootCallBack(J3DJoint*, int);
+bool bodyCallBack(J3DJoint*, int);
 
 struct Obj : public EnemyBase {
 	Obj();
@@ -66,7 +72,11 @@ struct Obj : public EnemyBase {
 	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294 (weak)
 	virtual void doStartStoneState();                                           // _2A4
 	virtual void doFinishStoneState();                                          // _2A8
-	virtual void setFSM(FSM* fsm);                                              // _2F8 (weak)
+	virtual void setFSM(FSM* fsm) {
+		mFSM = fsm;
+		mFSM->init(this);
+		mCurrentLifecycleState = nullptr;
+	};                               // _2F8 (weak)
 	//////////////// VTABLE END
 
 	void walkFunc();
@@ -105,9 +115,13 @@ struct Obj : public EnemyBase {
 
 	inline Parms* getParms() { return C_PARMS; }
 
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x10];                          // _2BC, unknown
+	Matrixf* mLeftHandMtx;                  // _2BC
+	Matrixf* mRightHandMtx;                 // _2C0
+	Matrixf* mLeftFootMtx;                  // _2C4
+	Matrixf* mRightFootMtx;                 // _2C8
 	int mFreezeTimer;                       // _2CC
 	Vector3f _2D0;                          // _2D0
 	int mPostFlickState;                    // _2DC
@@ -126,29 +140,33 @@ struct Obj : public EnemyBase {
 	f32 _33C;                               // _33C, timer?
 	s16 _340;                               // _340, next or current waypoint idx?
 	s16 _342;                               // _342, next or current waypoint idx?
-	u8 _344[0x4];                           // _344, unknown
+	s16 _344;                               // _344, unknown
 	u32 _348;                               // _348
 	u8 _34C;                                // _34C, unknown
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // _350
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _358
 	PathNode* _35C;                         // _35C
-	FSM* _360;                              // _360
+	FSM* mFSM;                              // _360
 	Tyre::Obj* mTyre;                       // _364
-	u16 _368;                               // _368, unknown
+	u16 mWaistJointIndex;                   // _368, unknown
 	u16 mChestJointIndex;                   // _36A
 	u16 mLeftHandJointIndex;                // _36C
 	u16 mRightHandJointIndex;               // _36E
 	u16 mLeftFootJointIndex;                // _370
 	u16 mRightFootJointIndex;               // _372
 	f32 _374;                               // _374
-	f32 _378;                               // _378
-	u8 _37C[0x14];                          // _37C
+	f32 _378;                               // _374
+	J3DMaterial* _37C;                      // _37C
+	Color4 mUsingColor;                            // _380
+	Color4 mTargetColor;                            // _384
+	Color4 _388;                            // _388
+	Color4 _38C;                            // _38C
 	efx::TKageMove* mEfxMove;               // _390
 	efx::TKageRun* mEfxRun;                 // _394
 	efx::TKageTyreup* mEfxTyreup;           // _398
 	efx::TKageDead1* mEfxDead;              // _39C
-	efx::TKageFlick* _3A0;                  // _3A0
-	efx::TKageFlick* _3A4;                  // _3A4
+	efx::TKageFlick* mEfxFrontFlick;        // _3A0
+	efx::TKageFlick* mEfxBackFlick;         // _3A4
 	u8 _3A8;                                // _3A8, unknown
 	u8 _3A9;                                // _3A9
 	u8 _3AA;                                // _3AA
@@ -316,12 +334,7 @@ enum StateID {
 	WRAITH_Count   = 9,
 };
 
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
 
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
-};
 
 struct State : public EnemyFSMState {
 	inline State(int stateID)
