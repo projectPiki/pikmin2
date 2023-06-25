@@ -21,6 +21,8 @@ struct Item;
 struct InitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
 
+	int mInitState;
+
 	// _00     = VTBL
 };
 

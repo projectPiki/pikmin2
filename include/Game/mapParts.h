@@ -85,6 +85,8 @@ struct Door : public CNode {
 // Size: 0x10
 struct RoomDoorInfo {
 	RoomDoorInfo();
+	WayPoint* mWaypoint; // _00
+	Vector3f mLookAtPos; // _04
 };
 
 struct RoomLink : public CNode {
@@ -208,6 +210,12 @@ struct MapRoom : public CellObject {
 	virtual void doDirectDraw(Graphics&);         // _44
 
 	void placeObjects(Cave::FloorInfo*, bool);
+	void countItems();
+	void countEnemys();
+
+	void create(MapUnit*, Matrixf&);
+	RoomDoorInfo* createDoorInfo(MapUnitInterface*);
+	void createGlobalCollision();
 
 	// _00     = VTBL
 	// _00-_B8 = CellObject
@@ -302,6 +310,8 @@ struct RoomMapMgr : public MapMgr {
 };
 
 struct CaveVRBox {
+	CaveVRBox();
+	void create(char*);
 };
 } // namespace Game
 

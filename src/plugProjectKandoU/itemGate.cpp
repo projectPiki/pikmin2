@@ -43,7 +43,7 @@ ItemGate::ItemGate()
 {
 	mCollTree               = new CollTree;
 	mBoundingSphere.mRadius = 170.0f;
-	mHealth                 = 100.0f;
+	mCurrentSegmentHealth                 = 100.0f;
 	mDamage                 = 0.0f;
 	mSegmentsDown           = 0;
 	mMaxSegments            = 3;
@@ -79,7 +79,7 @@ void ItemGate::onInit(CreatureInitArg* arg)
 	setAlive(true);
 	if (arg) {
 		ItemGateInitArg* gateArg = static_cast<ItemGateInitArg*>(arg);
-		mFaceDir                 = gateArg->_04;
+		mFaceDir                 = gateArg->mFaceDir;
 	} else {
 		mFaceDir = TAU * randFloat();
 	}
@@ -152,7 +152,7 @@ void ItemGate::onSetPosition()
  */
 void ItemGate::doLoad(Stream& stream)
 {
-	mHealth       = stream.readFloat();
+	mCurrentSegmentHealth       = stream.readFloat();
 	mSegmentsDown = stream.readInt();
 	initMotion();
 	if (mSegmentsDown >= mMaxSegments) {
@@ -177,7 +177,7 @@ void ItemGate::doLoad(Stream& stream)
  */
 void ItemGate::doSave(Stream& stream)
 {
-	stream.writeFloat(mHealth);
+	stream.writeFloat(mCurrentSegmentHealth);
 	stream.writeInt(mSegmentsDown);
 }
 
@@ -733,7 +733,7 @@ void ItemGate::changeMaterial()
 	}
 }
 
-inline f32 ItemGate::getGateHealth() { return (mMaxSegments - mSegmentsDown - 1) * mMaxSegmentHealth + mHealth; }
+inline f32 ItemGate::getGateHealth() { return (mMaxSegments - mSegmentsDown - 1) * mMaxSegmentHealth + mCurrentSegmentHealth; }
 
 /*
  * --INFO--
@@ -1301,7 +1301,7 @@ BaseItem* ItemGateMgr::generatorBirth(Vector3f& pos, Vector3f& rot, Game::GenIte
 	GenGateParm* gateParam  = static_cast<GenGateParm*>(param);
 	ItemGate* gate          = static_cast<ItemGate*>(birth());
 	gate->mMaxSegmentHealth = gateParam->mLife;
-	gate->mHealth           = gate->mMaxSegmentHealth;
+	gate->mCurrentSegmentHealth           = gate->mMaxSegmentHealth;
 	gate->mColor            = gateParam->mColor;
 	gate->init(nullptr);
 	gate->mFaceDir = roundAng(rot.y);
@@ -1387,9 +1387,9 @@ void GateDamagedState::init(Game::ItemGate* item, Game::StateArg* arg)
  */
 void GateDamagedState::exec(Game::ItemGate* gate)
 {
-	gate->mHealth -= gate->mDamage;
+	gate->mCurrentSegmentHealth -= gate->mDamage;
 	gate->mDamage = 0.0f;
-	if (gate->mHealth < 0.0f) {
+	if (gate->mCurrentSegmentHealth < 0.0f) {
 		transit(gate, GATESTATE_Down, nullptr);
 	} else {
 		if (mNotInAnim) {
@@ -1489,7 +1489,7 @@ void GateDownState::onDamage(Game::ItemGate* gate, float damage) { gate->mDamage
 void GateDownState::onKeyEvent(Game::ItemGate* gate, const SysShape::KeyEvent& keyEvent)
 {
 	gate->mSegmentsDown++;
-	gate->mHealth = gate->mMaxSegmentHealth;
+	gate->mCurrentSegmentHealth = gate->mMaxSegmentHealth;
 	if (gate->mSegmentsDown == gate->mMaxSegments) {
 		gate->mCentrePlatInstance->setCollision(false);
 		platMgr->delInstance(gate->mCentrePlatInstance);
@@ -1852,7 +1852,7 @@ BaseItem* ItemDengekiGate::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, Gam
 	GenGateParm* gateParam  = static_cast<GenGateParm*>(param);
 	ItemGate* gate          = static_cast<ItemGate*>(birth());
 	gate->mMaxSegmentHealth = gateParam->mLife;
-	gate->mHealth           = gate->mMaxSegmentHealth;
+	gate->mCurrentSegmentHealth           = gate->mMaxSegmentHealth;
 	gate->mIsElectric       = true;
 	gate->init(nullptr);
 	gate->mFaceDir = roundAng(rot.y);
