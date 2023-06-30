@@ -47,7 +47,7 @@ struct RandEnemyUnit {
 	void setUnitRandEnemyTypeB();
 	void makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*);
 	void setVersusEasyEnemy();
-	void getVersusEasyEnemyBaseGen(MapNode*, BaseGen*);
+	BaseGen* getVersusEasyEnemyBaseGen(MapNode*, BaseGen*);
 	void setVersusEnemyTypeA();
 	void setSlotEnemyTypeA(int&, int&, int);
 	void setUnitRandEnemyTypeA(int&, int, int);

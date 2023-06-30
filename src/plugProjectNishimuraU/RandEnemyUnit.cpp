@@ -2091,6 +2091,8 @@ void RandEnemyUnit::makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*)
 	*/
 }
 
+
+
 /*
  * --INFO--
  * Address:	8024A7C8
@@ -2098,6 +2100,68 @@ void RandEnemyUnit::makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*)
  */
 void RandEnemyUnit::setVersusEasyEnemy()
 {
+	MapNode* onyonNodes[] = { nullptr, nullptr };
+	BaseGen* onyonGens[] = { nullptr, nullptr };
+	
+	onyonNodes[0] = mMapScore->getFixObjNode(FIXNODE_VsRedOnyon);
+	onyonGens[0] = mMapScore->getFixObjGen(FIXNODE_VsRedOnyon);
+	onyonNodes[1] = mMapScore->getFixObjNode(FIXNODE_VsBlueOnyon);
+	onyonGens[1] = mMapScore->getFixObjGen(FIXNODE_VsBlueOnyon);
+	
+	EnemyTypeID::EEnemyTypeID vsEasyIDs[] = { EnemyTypeID::EnemyID_Pelplant, EnemyTypeID::EnemyID_UjiA };
+
+	int enemyCounts[ARRAY_SIZE(vsEasyIDs)][2] = { {0, 0}, {0, 0} };
+
+	EnemyNode* mainNode = mGenerator->mMainEnemies;
+
+	EnemyUnit* enemyUnits[] = { nullptr, nullptr };
+	
+	for (EnemyNode* currNode = (EnemyNode*)(mainNode->mChild); currNode;) {
+		EnemyUnit* unit = currNode->mEnemyUnit;
+		TekiInfo* currInfo = currNode->getTekiInfo();
+		EnemyNode* nextNode = (EnemyNode*)currNode->mNext;
+
+		if (currInfo) {
+			if (currInfo->mEnemyID == vsEasyIDs[0]) {
+				enemyCounts[0][0] += currInfo->mWeight / 10;
+				enemyUnits[0] = unit;
+				currNode->del();
+				mainNode->addHead(currNode);
+			}
+			else if (currInfo->mEnemyID == vsEasyIDs[1]) {
+				enemyCounts[1][0] += currInfo->mWeight / 10;
+				enemyUnits[1] = unit;
+				currNode->del();
+				mainNode->addHead(currNode);
+			}
+		}
+		currNode = nextNode;
+	}
+
+	
+	for (int i = 0; i < 2; i++) {
+		if (enemyCounts[i][0] == 0) continue;
+
+		f32 tieBreaker = 0.0f;
+		if (enemyCounts[i][0] % 2 != 0) { // dumbasses don't realize that it's always an even number in-game
+			tieBreaker = randWeightFloat(2.0f);
+		}
+
+		enemyCounts[i][1] = enemyCounts[i][0] / 2 + tieBreaker;
+		enemyCounts[i][0]    -= enemyCounts[i][1];
+		if (enemyUnits[i]) {
+			for (int j = 0; j < 2; j++) {
+				if (enemyCounts[i][j]) {
+					BaseGen* spawnBaseGen = getVersusEasyEnemyBaseGen(onyonNodes[j], onyonGens[j]);
+					if (spawnBaseGen) {
+						makeSetEnemyTypeA(onyonNodes[j], spawnBaseGen, enemyUnits[i], enemyCounts[i][j]);
+					}
+				}
+			}
+			
+		}
+	}
+
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -2306,7 +2370,7 @@ lbl_8024AA6C:
  * Address:	8024AA94
  * Size:	000144
  */
-void RandEnemyUnit::getVersusEasyEnemyBaseGen(MapNode*, BaseGen*)
+BaseGen* RandEnemyUnit::getVersusEasyEnemyBaseGen(MapNode*, BaseGen*)
 {
 	/*
 	.loc_0x0:
