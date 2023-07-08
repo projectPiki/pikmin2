@@ -3,11 +3,14 @@
 
 #include "Screen/Enums.h"
 #include "og/Screen/ogScreen.h"
+#include "og/Screen/StickAnimMgr.h"
+#include "og/Screen/ArrowAlphaBlink.h"
 #include "P2JME/IllustratedBook.h"
 #include "Morimura/mrUtil.h"
 #include "Morimura/Bases.h"
 #include "Morimura/Window.h"
 #include "Morimura/ScrollList.h"
+#include "kh/khUtil.h"
 
 struct JKRExpHeap;
 
@@ -21,36 +24,37 @@ struct EnemyTexMgr;
 } // namespace Game
 
 namespace Morimura {
+
 struct TCallbackScrollMsg : public og::Screen::CallBack_Message {
 	TCallbackScrollMsg();
 
-	virtual ~TCallbackScrollMsg();                 // _08 (weak)
+	virtual ~TCallbackScrollMsg() { }              // _08 (weak)
 	virtual void update();                         // _10
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 	virtual void doInit();                         // _18
 
 	void reset();
 	void scroll(f32);
-	void getPosRate();
+	f32 getPosRate();
 
 	// _00     = VTBL
 	// _00-_48 = og::Screen::CallBack_Message
-	f32 _48;                                    // _48
+	f32 mScrollTimer;                           // _48
 	u8 _4C[0x4];                                // _4C, unknown
 	P2JME::IllustratedBook::TControl* mControl; // _50
 	u8 _54[0x4];                                // _54, unknown
 };
 
 struct DispMemberZukanBase : public og::Screen::DispMemberBase {
-	// _00     = VTBL
-	// _00-_08 = og::Screen::DispMemberBase
-	// TODO: work out what members of DispMemberZukanEnemy/Item are here
-};
-
-struct DispMemberZukanEnemy : public DispMemberZukanBase {
-	virtual u32 getSize() { return sizeof(DispMemberZukanEnemy); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }                // _0C (weak)
-	virtual u64 getMemberID() { return MEMBER_ZUKAN_ENEMY; }       // _10 (weak)
+	DispMemberZukanBase()
+	{
+		mDebugExpHeap         = nullptr;
+		mTexture              = nullptr;
+		mResultTexMgr         = nullptr;
+		mEnemyTexMgr          = nullptr;
+		mDispWorldMapInfoWin0 = nullptr;
+		mPrevSelection        = nullptr;
+	}
 
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
@@ -59,7 +63,18 @@ struct DispMemberZukanEnemy : public DispMemberZukanBase {
 	Game::ResultTexMgr::Mgr* mResultTexMgr;                        // _10
 	Game::IllustratedBook::EnemyTexMgr* mEnemyTexMgr;              // _14
 	og::Screen::DispMemberWorldMapInfoWin0* mDispWorldMapInfoWin0; // _18
-	int _1C;                                                       // _1C
+	u32* mPrevSelection; // _1C (used to remember your last selection when swapping between the zukan pages)
+};
+
+struct DispMemberZukanEnemy : public DispMemberZukanBase {
+	DispMemberZukanEnemy() { }
+
+	virtual u32 getSize() { return sizeof(DispMemberZukanEnemy); } // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_MRMR; }                // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_ZUKAN_ENEMY; }       // _10 (weak)
+
+	// _00     = VTBL
+	// _00-_1C = og::Screen::DispMemberBase
 };
 
 struct DispMemberZukanItem : public DispMemberZukanBase {
@@ -68,13 +83,7 @@ struct DispMemberZukanItem : public DispMemberZukanBase {
 	virtual u64 getMemberID() { return MEMBER_ZUKAN_ENEMY; }      // _10 (weak)
 
 	// _00     = VTBL
-	// _00-_08 = og::Screen::DispMemberBase
-	JKRExpHeap* mDebugExpHeap;                                     // _08
-	JUTTexture* mTexture;                                          // _0C
-	Game::ResultTexMgr::Mgr* mResultTexMgr;                        // _10
-	Game::IllustratedBook::EnemyTexMgr* mEnemyTexMgr;              // _14, ??
-	og::Screen::DispMemberWorldMapInfoWin0* mDispWorldMapInfoWin0; // _18
-	int _1C;                                                       // _1C
+	// _00-_1C = og::Screen::DispMemberBase
 };
 
 struct TDEnemyScene : public THIOScene {
@@ -116,34 +125,48 @@ struct TDItemScene : public THIOScene {
 struct TZukanBase : public TScrollList {
 	TZukanBase(char*);
 
-	virtual ~TZukanBase();                        // _08 (weak)
-	virtual void doCreate(JKRArchive*);           // _4C
-	virtual void doUpdateFadeinFinish();          // _54 (weak)
-	virtual bool doUpdate();                      // _58
-	virtual bool doUpdateFadeout();               // _60 (weak)
-	virtual void doUpdateFadeoutFinish();         // _64
-	virtual void doDraw(Graphics& gfx);           // _68
-	virtual void paneInit();                      // _80
-	virtual void changePaneInfo();                // _84
-	virtual void setShortenIndex(int, int, bool); // _94
-	virtual void doUpdateIn();                    // _98
-	virtual void doUpdateOut();                   // _9C
-	virtual void doDemoDraw(Graphics&);           // _AC (weak)
-	virtual void getCategoryColorId(int);         // _B0 (weak)
-	virtual void getDispDataZukan() = 0;          // _B4
-	virtual void indexPaneInit(J2DScreen*);       // _B8
-	virtual bool isComplete();                    // _BC (weak)
-	virtual void setXWindow()       = 0;          // _C0
-	virtual void setYWindow()       = 0;          // _C4
-	virtual void getXMsgID(int)     = 0;          // _C8
-	virtual void getYMsgID(int)     = 0;          // _CC
-	virtual void setDetail()        = 0;          // _D0
-	virtual void getModelIndex(int) = 0;          // _D4
-	virtual void updateButtonAlpha(u8);           // _D8
-	virtual bool isOpenConfirmWindow()  = 0;      // _DC
-	virtual void openConfirmWindow()    = 0;      // _E0
-	virtual bool isNewSupply(int, bool) = 0;      // _E4
-	virtual bool isPanelExist();                  // _E8
+	virtual ~TZukanBase()
+	{
+		if (mDebugHeap) {
+			mDebugHeap->destroy();
+		}
+		mDebugHeap = nullptr;
+	}                                   // _08 (weak)
+	virtual void doCreate(JKRArchive*); // _4C
+	virtual void doUpdateFadeinFinish()
+	{
+		mCanInput = true;
+		mPaneSelectIcon->show();
+	}                        // _54 (weak)
+	virtual bool doUpdate(); // _58
+	virtual bool doUpdateFadeout()
+	{
+		mCanInput = false;
+		return TTestBase::doUpdateFadeout();
+	}                                                     // _60 (weak)
+	virtual void doUpdateFadeoutFinish();                 // _64
+	virtual void doDraw(Graphics& gfx);                   // _68
+	virtual void paneInit();                              // _80
+	virtual void changePaneInfo();                        // _84
+	virtual void setShortenIndex(int, int, bool);         // _94
+	virtual void doUpdateIn();                            // _98
+	virtual void doUpdateOut();                           // _9C
+	virtual void doDemoDraw(Graphics&) { }                // _AC (weak)
+	virtual int getCategoryColorId(int) { return 0; }     // _B0 (weak)
+	virtual DispMemberZukanBase* getDispDataZukan() = 0;  // _B4
+	virtual void indexPaneInit(J2DScreen*);               // _B8
+	virtual bool isComplete() { return mIsLouieRescued; } // _BC (weak)
+	virtual void setXWindow()      = 0;                   // _C0
+	virtual void setYWindow()      = 0;                   // _C4
+	virtual u64 getXMsgID(int)     = 0;                   // _C8
+	virtual u64 getYMsgID(int)     = 0;                   // _CC
+	virtual void setDetail()       = 0;                   // _D0
+	virtual int getModelIndex(int) = 0;                   // _D4
+	virtual void updateButtonAlpha(u8);                   // _D8
+	virtual bool isOpenConfirmWindow()  = 0;              // _DC
+	virtual void openConfirmWindow()    = 0;              // _E0
+	virtual bool isNewSupply(int, bool) = 0;              // _E4
+	virtual bool isPanelExist();                          // _E8
 
 	void changeName();
 	void doPushXButton();
@@ -156,119 +179,384 @@ struct TZukanBase : public TScrollList {
 	bool isMemoWindow();
 	int checkRequest(int&);
 	int getCurrSelectId();
-	void getTexInfo(int);
+	const ResTIMG* getTexInfo(int);
+	void setDebugHeapParent(JKRHeap*);
+	void requireSceneEnd();
+	void resetDebugShow();
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_B4 = TScrollList
-	u8 _B4[0x194]; // _B4, TODO: fill this in from ghidra
+	TListScreen* mListScreen;                        // _B4
+	TScreenBase* mBGScreen;                          // _B8
+	TScreenBase* mEffectScreen;                      // _BC (used for static effect when camera isnt showing an object)
+	TScreenBase* mSujiScreen;                        // _C0 (used for enemy info numbers)
+	TScreenBase* mYajiScreen;                        // _C4
+	P2DScreen::Mgr_tuning* mIconScreen;              // _C8
+	og::Screen::CallBack_Message* mMessageNew;       // _CC
+	og::Screen::CallBack_Message* mMessageItemName;  // _D0
+	og::Screen::CallBack_Message* mMessageCallback3; // _D4
+	kh::Screen::khUtilColorAnm* mColorAnm;           // _D8
+	TZukanWindow* mWindow;                           // _DC (the main screen for handling the text box descriptions)
+	TScaleUpCounter* mSelIndexCounter;               // _E0 (for the selected index shown at the top right)
+	og::Screen::CallBack_Picture* mControlStickPic;  // _E4 (the mini control stick in the main menu)
+	og::Screen::CallBack_Picture* mStickPicMesg;     // _E8 (the mini control stick in the message box)
+	og::Screen::StickAnimMgr* mStickAnim;            // _EC
+	J2DTextBoxEx* mPaneNew1;                         // _F0
+	J2DPane* mPaneMenu;                              // _F4
+	J2DPane* mPane3DStick;                           // _F8
+	og::Screen::ArrowAlphaBlink* mArrowAlpha;        // _FC (used for managing the alpha of the L and R button icons)
+	J2DPane* mPaneMesgWindowStick;                   // _100
+	J2DPane* mPaneMesgWindowStickCap;                // _104
+	J2DTextBoxEx* mPaneEnemyName;                    // _108
+	J2DTextBoxEx* mPaneEnemyNameShadow;              // _10C
+	J2DPane* mPaneMessageDemo;                       // _110
+	J2DPane* mAButtonPane;                           // _114
+	J2DPane* mXButtonPane;                           // _118
+	J2DPane* mYButtonPane;                           // _11C
+	J2DPane* mPaneModel;                             // _120 (main pane representing the object camera view)
+	J2DPane* mPaneWindowBack;                        // _124
+	J2DPane* mPaneWindowBack_Child;                  // _128
+	J2DPane* mPaneBigWindow;                         // _12C
+	J2DPane* mPaneSelectIcon;                        // _130
+	J2DPane* mPaneCursorCorners[4];                  // _134
+	JGeometry::TBox2f mPaneModelPos;                 // _144
+	JGeometry::TBox2f mPaneModelLPos;                // _154
+	JGeometry::TVec2f mPaneModelOffs;                // _164
+	JGeometry::TVec2f mPaneModelLOffs;               // _16C
+	JGeometry::TVec2f mSelectIconPos;                // _174
+	bool mIsCurrentSelUnlocked;                      // _17C (true if the current entry is unlocked and visible)
+	bool* mDebugUnlockedList;                        // _180 (used for mIsSection mode, used for randomly setting what to unlock)
+	u8* mIsBigIconList;                              // _184
+	u32 mInfoVal1;                                   // _188 (corpse value for enemy, treasure value in hoard)
+	u32 mInfoVal2;                                   // _18C (pikis lost for enemy, weight for hoard )
+	u32 mInfoVal3;                                   // _190 (defeated for enemy, not used for hoard?)
+	u32 mDisplayIndex;                               // _194 (the selection index as shown on screen)
+	int mState;                                      // _198 (becomes 1 while changing between tiles, 2 and 3 while fading out)
+	int mCurrObjectID;                               // _19C (regular game enemy ID or treasure ID)
+	JGeometry::TBox2f mPanelListBounds;              // _1A0
+	J2DGXColorS10 mMessageWindowColor[2];            // _1B0 (0 = X window, 1 = Y window)
+	J2DGXColorS10 mIconColor1[2];                    // _1C0
+	J2DGXColorS10 mIconColor2[2];                    // _1D0
+	og::Screen::ScaleMgr* mScaleMgr;                 // _1E0
+	TOffsetMsgSet* mOffsetMsgNames;                  // _1E4
+	TOffsetMsgSet* mOffsetMsg_XDesc;                 // _1E8
+	TOffsetMsgSet* mOffsetMsg_YDesc;                 // _1EC
+	f32 mNameAlpha;                                  // _1F0
+	f32 mXButtonAlpha;                               // _1F4
+	f32 mYButtonAlpha;                               // _1F8
+	f32 mCameraFadeInLevel;                          // _1FC (controls fade transition on main camera between selections)
+	f32 mBigWindowScale;                             // _200
+	f32 mCursorAnimTimer;                            // _204 (sine wave system for managing cursor scale)
+	f32 mCursorAnimMagnitude;                        // _208 (controls how much the cursor moves in and out)
+	f32 mCursorAnimSpeed;                            // _20C
+	f32 mCursorScale;                                // _210
+	u8 mMessageBoxBGAlpha;                           // _214 (used to fade background while text box is up)
+	u8 mIsErrorSoundState;                           // _215
+	bool mIsBigWindowOpened;                         // _216
+	bool mIsEffectRequired;                          // _217
+	bool mIsDrawScene;                               // _218
+	bool mDoFadeNameAlpha;                           // _219
+	bool mIsInFadeInOut;                             // _21A (true during the fadein/out state)
+	bool mCurrCharacterOpened;                       // _21B (true = X, false = Y?)
+	bool mDoUpdateLRButtonAlpha;                     // _21C
+	int mRequestTimer;                               // _220
+	int mCurrIndex;                                  // _224
+	bool mIsLouieRescued;                            // _228
+	int* mViewablePanelIDList;                       // _22C (used for converting true piklopedia index to index without hidden enemies)
+	int mMaxPane;                                    // _230
+	int _234;                                        // _234
+	int mMaxSelectZukan;                             // _238
+	int mSelection;                                  // _23C
+	bool mIsPreDebt;                                 // _240 (false if debt is repayed, aka different list system)
+	bool mCanComplete;                               // _241
+	bool mCanScroll;                                 // _242 (false in the event you have 3 or less entries)
+	bool _243;                                       // _243
+	bool mIsInDemo;                                  // _244 (used when in sales pitch complete state )
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 8.0f;
+			_04 = 0.9f;
+			_08 = 1.1f;
+			_0C = 1.5f;
+			_10 = 2.0f;
+
+			mNewOffset.set(0.0f, -12.5f);
+			mLargeNewOffset.set(0.0f, -30.0f);
+
+			mNewColor0.set(255, 96, 80, 0);
+			mNewColor1.set(225, 0, 0, 255);
+
+			mCategoryScale.x = 1.3f;
+			mCategoryScale.y = 1.15f;
+
+			mCategoryColor0w.set(0, 0, 255, 255);
+			mCategoryColor0b.set(255, 255, 255, 0);
+			mCategoryColor1w.set(255, 255, 255, 255);
+			mCategoryColor1b.set(255, 255, 255, 0);
+		}
+
+		f32 _00; // _00
+		f32 _04; // _04
+		f32 _08; // _08
+		f32 _0C; // _0C
+		f32 _10; // _10
+	} mScrollParm;
+
+	static s16 mRequestTimerMax;
+	static bool mIconMove;
+	static f32 mLineSpace; // [vertical spacing between lines of text in message box]
+	static f32 mWarpRadius;
+	static f32 mScrollValueCoe; // 3.5f  [max scroll speed]
+	static f32 mScrollSpeedCoe; // 0.08f [acceleration]
+	static f32 mNewScale;
+	static f32 mPodIconOffsetX; // 480.0f
+	static f32 mLargeCategoryScale;
+	static f32 mCategoryAlphaRate;
+	static u8 mDrawLineType;
+	static bool mShowAllObjects;
+	static bool mAllNewSupply;
+	static bool mZukanShortenTest;
+	static bool mZukanCategoryTest;
+	static f32 mRandShowRate;
+	static JGeometry::TVec2f mNewOffset;
+	static JGeometry::TVec2f mLargeNewOffset;
+	static JUtility::TColor mNewColor0;
+	static JUtility::TColor mNewColor1;
+	static JGeometry::TVec2f mCategoryScale;
+	static JUtility::TColor mCategoryColor0w;
+	static JUtility::TColor mCategoryColor0b;
+	static JUtility::TColor mCategoryColor1w;
+	static JUtility::TColor mCategoryColor1b;
+	static JKRHeap* mDebugHeapParent;
+	static JKRExpHeap* mDebugHeap;
+};
+
+struct TEnemyZukanIndex {
+	void getIndexInfo(int);
 };
 
 struct TEnemyZukan : public TZukanBase {
-	virtual ~TEnemyZukan();                                  // _08 (weak)
-	virtual void doCreate(JKRArchive*);                      // _4C
-	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)
-	virtual bool isListShow(int);                            // _7C
-	virtual void getIdMax();                                 // _88 (weak)
-	virtual void getNameID(int);                             // _8C
-	virtual void getUpdateIndex(int&, bool);                 // _90
-	virtual void setShortenIndex(int, int, bool);            // _94
-	virtual void getDispDataZukan();                         // _B4 (weak)
-	virtual void indexPaneInit(J2DScreen*);                  // _B8
-	virtual void setXWindow();                               // _C0
-	virtual void setYWindow();                               // _C4
-	virtual void getXMsgID(int);                             // _C8
-	virtual void getYMsgID(int);                             // _CC
-	virtual void setDetail();                                // _D0
-	virtual void getModelIndex(int);                         // _D4
-	virtual bool isOpenConfirmWindow();                      // _DC
-	virtual void openConfirmWindow();                        // _E0
-	virtual bool isNewSupply(int, bool);                     // _E4
-	virtual bool isPanelExist();                             // _E8
 
-	void getPrice(int);
-	void getDefeatNum(int);
-	void getKilledNum(int);
+#define ENEMY_ZUKAN_COUNT 81
+
+	// Represents the order of enemies in the piklopedia
+	enum EnemyZukanEnemyList {
+		Zukan_Chappy,
+		Zukan_YellowChappy,
+		Zukan_BlueChappy,
+		Zukan_Kochappy,
+		Zukan_YellowKochappy,
+		Zukan_BlueKochappy,
+		Zukan_KumaChappy,
+		Zukan_KumaKochappy,
+		Zukan_Baby,
+		Zukan_FireChappy,
+		Zukan_Catfish,
+		Zukan_LeafChappy,
+		Zukan_Tank,
+		Zukan_Wtank,
+		Zukan_Kabuto,
+		Zukan_Rkabuto,
+		Zukan_Mar,
+		Zukan_Hanachirashi,
+		Zukan_MiniHoudai,
+		Zukan_Kogane,
+		Zukan_Wealthy,
+		Zukan_Fart,
+		Zukan_UjiA,
+		Zukan_UjiB,
+		Zukan_Tobi,
+		Zukan_Armor,
+		Zukan_Imomushi,
+		Zukan_ElecBug,
+		Zukan_TamagoMushi,
+		Zukan_Jigumo,
+		Zukan_Sarai,
+		Zukan_Demon,
+		Zukan_BombSarai,
+		Zukan_Fuefuki,
+		Zukan_Kurage,
+		Zukan_OniKurage,
+		Zukan_FireOtakara,
+		Zukan_ElecOtakara,
+		Zukan_WaterOtakara,
+		Zukan_GasOtakara,
+		Zukan_BombOtakara,
+		Zukan_UmiMushiBlind,
+		Zukan_Frog,
+		Zukan_MaroFrog,
+		Zukan_Tadpole,
+		Zukan_BluePom,
+		Zukan_RedPom,
+		Zukan_YellowPom,
+		Zukan_BlackPom,
+		Zukan_WhitePom,
+		Zukan_RandPom,
+		Zukan_Hana,
+		Zukan_Sokkuri,
+		Zukan_ShijimiChou,
+		Zukan_Qurione,
+		Zukan_Miulin,
+		Zukan_PanModoki,
+		Zukan_PelPlant,
+		Zukan_HikariKinoko,
+		Zukan_Clover,
+		Zukan_Ooinu_l,
+		Zukan_Tanpopo,
+		Zukan_Watage,
+		Zukan_Tukushi,
+		Zukan_Nekojarashi,
+		Zukan_DaiodoRed,
+		Zukan_Magaret,
+		Zukan_Zenmai,
+		Zukan_Wakame_l,
+		Zukan_Queen,
+		Zukan_SnakeCrow,
+		Zukan_Damagumo,
+		Zukan_KingChappy,
+		Zukan_OoPanModoki,
+		Zukan_SnakeWhole,
+		Zukan_Houdai,
+		Zukan_UmiMushi,
+		Zukan_BlackMan,
+		Zukan_DangoMushi,
+		Zukan_BigFoot,
+		Zukan_BigTreasure
+	};
+
+	TEnemyZukan()
+	    : TZukanBase("enemyZukan")
+	{
+	}
+
+	virtual ~TEnemyZukan() { mDispEnemy->mDebugExpHeap->freeAll(); } // _08 (weak)
+	virtual void doCreate(JKRArchive*);                              // _4C
+	virtual og::Screen::DispMemberBase* getDispMemberBase()
+	{
+		if (mIsSection) {
+			return mDispEnemy;
+		} else {
+			return getDispMember();
+		}
+	}                                                                      // _78 (weak)
+	virtual bool isListShow(int);                                          // _7C
+	virtual int getIdMax() { return ENEMY_ZUKAN_COUNT; }                   // _88 (weak)
+	virtual u64 getNameID(int);                                            // _8C
+	virtual void getUpdateIndex(int&, bool);                               // _90
+	virtual void setShortenIndex(int, int, bool);                          // _94
+	virtual DispMemberZukanBase* getDispDataZukan() { return mDispEnemy; } // _B4 (weak)
+	virtual void indexPaneInit(J2DScreen*);                                // _B8
+	virtual void setXWindow();                                             // _C0
+	virtual void setYWindow();                                             // _C4
+	virtual u64 getXMsgID(int);                                            // _C8
+	virtual u64 getYMsgID(int);                                            // _CC
+	virtual void setDetail();                                              // _D0
+	virtual int getModelIndex(int);                                        // _D4
+	virtual bool isOpenConfirmWindow();                                    // _DC
+	virtual void openConfirmWindow();                                      // _E0
+	virtual bool isNewSupply(int, bool);                                   // _E4
+	virtual bool isPanelExist();                                           // _E8
+
+	u32 getPrice(int);
+	u32 getDefeatNum(int);
+	u32 getKilledNum(int);
 
 	// _00      = VTBL1
 	// _18      = VTBL2
 	// _00-_248 = TZukanBase
-	DispMemberZukanEnemy* mDispEnemy; // _248
-	TScaleUpCounter* _24C;            // _24C
-	TScaleUpCounter* _250;            // _250
-	TScaleUpCounter* _254;            // _254
+	DispMemberZukanEnemy* mDispEnemy;  // _248
+	TScaleUpCounter* mValueCounter;    // _24C
+	TScaleUpCounter* mDefeatedCounter; // _250
+	TScaleUpCounter* mPikiLostCounter; // _254
 };
 
 struct TItemZukan : public TZukanBase {
-	virtual ~TItemZukan();                                   // _08 (weak)
-	virtual void doCreate(JKRArchive*);                      // _4C
-	virtual bool doUpdate();                                 // _58
-	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)
-	virtual bool isListShow(int);                            // _7C
-	virtual void getIdMax();                                 // _88
-	virtual void getNameID(int);                             // _8C
-	virtual void getUpdateIndex(int&, bool);                 // _90
-	virtual void setShortenIndex(int, int, bool);            // _94
-	virtual void doUpdateOut();                              // _9C
-	virtual void doDemoDraw(Graphics&);                      // _AC
-	virtual void getCategoryColorId(int);                    // _B0 (weak)
-	virtual void getDispDataZukan();                         // _B4 (weak)
-	virtual bool isComplete();                               // _BC
-	virtual void setXWindow();                               // _C0
-	virtual void setYWindow();                               // _C4
-	virtual void getXMsgID(int);                             // _C8
-	virtual void getYMsgID(int);                             // _CC
-	virtual void setDetail();                                // _D0
-	virtual void getModelIndex(int);                         // _D4
-	virtual bool isOpenConfirmWindow();                      // _DC
-	virtual void openConfirmWindow();                        // _E0
-	virtual bool isNewSupply(int, bool);                     // _E4
-	virtual bool isPanelExist();                             // _E8
+
+#define TREASUREHOARD_CATEGORY_NUM 25
+
+	// 2 appears to not exist
+	enum StateID { ZUKANDEMO_Init = 0, ZUKANDEMO_Scrolling = 1, ZUKANDEMO_Reading = 3, ZUKANDEMO_AppearEffect = 4 };
+
+	TItemZukan()
+	    : TZukanBase("itemZukan")
+	{
+		mColorAnmItem           = nullptr;
+		mValueCounter           = nullptr;
+		mWeightCounter          = nullptr;
+		mOrimaIconTexture       = nullptr;
+		mCurrCharacterIconID    = 1;
+		mOffsetMsgCategoryNames = nullptr;
+		mEfxTimer               = 0;
+		mDemoState              = ZUKANDEMO_Init;
+		mDemoScrollTargetRow    = 0;
+		mDemoStateButtonAlpha   = 0.0f;
+		for (int i = 0; i < TREASUREHOARD_CATEGORY_NUM; i++) {
+			mCategoryShowUnlock[i] = false;
+			mCategoryIsComplete[i] = false;
+		}
+	}
+
+	virtual ~TItemZukan() { mDispItem->mDebugExpHeap->freeAll(); } // _08 (weak)
+	virtual void doCreate(JKRArchive*);                            // _4C
+	virtual bool doUpdate();                                       // _58
+	virtual og::Screen::DispMemberBase* getDispMemberBase()
+	{
+		if (mIsSection) {
+			return mDispItem;
+		} else {
+			return getDispMember();
+		}
+	}                                                                     // _78 (weak)
+	virtual bool isListShow(int);                                         // _7C
+	virtual int getIdMax();                                               // _88
+	virtual u64 getNameID(int);                                           // _8C
+	virtual void getUpdateIndex(int&, bool);                              // _90
+	virtual void setShortenIndex(int, int, bool);                         // _94
+	virtual void doUpdateOut();                                           // _9C
+	virtual void doDemoDraw(Graphics&);                                   // _AC
+	virtual int getCategoryColorId(int i) { return mCategoryColorID[i]; } // _B0 (weak)
+	virtual DispMemberZukanBase* getDispDataZukan() { return mDispItem; } // _B4 (weak)
+	virtual bool isComplete();                                            // _BC
+	virtual void setXWindow();                                            // _C0
+	virtual void setYWindow();                                            // _C4
+	virtual u64 getXMsgID(int);                                           // _C8
+	virtual u64 getYMsgID(int);                                           // _CC
+	virtual void setDetail();                                             // _D0
+	virtual int getModelIndex(int);                                       // _D4
+	virtual bool isOpenConfirmWindow();                                   // _DC
+	virtual void openConfirmWindow();                                     // _E0
+	virtual bool isNewSupply(int, bool);                                  // _E4
+	virtual bool isPanelExist();                                          // _E8
 
 	void demoSet();
-	void getPrice(int);
-	void getWeight(int);
+	u32 getPrice(int);
+	u32 getWeight(int);
+	bool isCategoryComplete();
 
 	// _00      = VTBL1
 	// _18      = VTBL2
 	// _00-_248 = TZukanBase
-	u8 _248[0x174]; // _248, TODO: fill in from ghidra
-};
-
-struct TZukanWindow : public TScreenBase {
-	TZukanWindow(JKRArchive*, int);
-
-	virtual void create(const char*, u32);        // _08
-	virtual void update();                        // _0C
-	virtual void draw(Graphics&, J2DPerspGraph*); // _10
-
-	void windowOpen();
-	void windowClose();
-	void msgScroll(f32);
-	void getPosRate();
-	void setWindowColor(J2DGXColorS10&);
-	void setIconColor(J2DGXColorS10&, J2DGXColorS10&);
-	void onIcon(int);
-	void moveIcon(f32);
-	void changeIconTexture(int, ResTIMG*);
-
-	// _00     = VTBL
-	// _00-_18 = TScreenBase
-	u8 _18;                          // _18
-	f32 _1C;                         // _1C
-	int _20;                         // _20
-	og::Screen::AnimPane* _24;       // _24
-	og::Screen::AnimPane* _28;       // _28
-	TCallbackScrollMsg* _2C;         // _2C
-	og::Screen::ScaleMgr* mScaleMgr; // _30
-	TCallbackScissor* _34;           // _34
-	u32 _38;                         // _38
-	J2DPane* _3C;                    // _3C
-	J2DPane* _40;                    // _40
-	J2DPicture* _44;                 // _44
-	J2DPicture* _48[2];              // _48
-	f32 _50;                         // _50
-	f32 _54;                         // _54
+	DispMemberZukanItem* mDispItem;                      // _248
+	kh::Screen::khUtilColorAnm* mColorAnmItem;           // _24C
+	TScaleUpCounter* mValueCounter;                      // _250
+	TScaleUpCounter* mWeightCounter;                     // _254
+	J2DGXColorS10 mOrimaMesgWindowColor;                 // _258
+	J2DGXColorS10 mOrimaMesgIconColor1;                  // _260
+	J2DGXColorS10 mOrimaMesgIconColor2;                  // _268
+	ResTIMG* mOrimaIconTexture;                          // _270
+	int mCurrCharacterIconID;                            // _274
+	int mCategoryIsComplete[TREASUREHOARD_CATEGORY_NUM]; // _278 (for categories with 1, the sales pitch is unlocked)
+	int mCategoryShowUnlock[TREASUREHOARD_CATEGORY_NUM]; // _2DC (for categories with 1, show the unlock text/animation)
+	int mCategoryColorID[TREASUREHOARD_CATEGORY_NUM];    // _340 (1 or 0 for category color, yes all 3 of these could have been bools)
+	TOffsetMsgSet* mOffsetMsgCategoryNames;              // _3A4 (You've completed the biggest file in the game series!)
+	int mEfxTimer;                                       // _3A8
+	int mDemoState;                                      // _3AC
+	int mDemoScrollTargetRow;                            // _3B0
+	int _3B4;                                            // _3B4
+	f32 mDemoStateButtonAlpha;                           // _3B8
 };
 
 } // namespace Morimura

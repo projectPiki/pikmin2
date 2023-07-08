@@ -672,7 +672,7 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndexPaneList = new TIndexPane*[mMaxSelect];
 
 	for (int i = 0; i < mMaxSelect; i++) {
-		mIndexPaneList[i]         = new TIndexPane(screen, tags1[i]);
+		mIndexPaneList[i]         = new TIndexPane(this, screen, tags1[i]);
 		mIndexPaneList[i]->mPane2 = screen->search(tags2[i]);
 
 		JUT_ASSERTLINE(415, screen->search(tags1[i]), "assertindex = %d \n", i);
@@ -745,20 +745,20 @@ void THiScore::doCreate(JKRArchive* arc)
 	mIndPane->mTexture1->storeTIMG(mPicTexture[0], (u8)0);
 	mIndPane->mTexture2->storeTIMG(mPicTexture[0], (u8)0);
 
-	ResTIMG* img = mIndPane->mTexture3->_20;
+	ResTIMG* img = mIndPane->mTexture3->mTexInfo;
 	P2ASSERTLINE(507, img);
 	img->mTransparency = 2;
 
-	img = mIndPane->mTexture1->_20;
+	img = mIndPane->mTexture1->mTexInfo;
 	P2ASSERTLINE(512, img);
 	img->mTransparency = 2;
 
-	img = mIndPane->mTexture2->_20;
+	img = mIndPane->mTexture2->mTexInfo;
 	P2ASSERTLINE(516, img);
 	img->mTransparency = 2;
 	changePaneInfo();
 
-	f32 yoffs = mIndexGroup->_18;
+	f32 yoffs = mIndexGroup->mHeight;
 	for (int i = 0; i < 2; i++) {
 
 		for (int j = 0; j < mMaxSelect; j++) {
@@ -3054,8 +3054,8 @@ void THiScore::paneInit()
 	mColorBlock[1] = new J2DColorBlock;
 	copyColorBlock(mColorBlock[1], &pane->getMaterial()->mColorBlock);
 
-	_A8 = mIndexPaneList[mCurrentSelect]->_1C - 10.0f;
-	_AC = _A8 + 20.0f;
+	mYOffset = mIndexPaneList[mCurrentSelect]->_1C - 10.0f;
+	_AC      = mYOffset + 20.0f;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3279,7 +3279,7 @@ void THiScore::doUpdateFadeinFinish()
 	mCanInput = true;
 	if (!mChangeAlpha) {
 		mDoEnd = 1;
-		mHighScorePic->changeTexture(mIndPane->mTexture3->_20, 0);
+		mHighScorePic->changeTexture(mIndPane->mTexture3->mTexInfo, 0);
 	}
 }
 

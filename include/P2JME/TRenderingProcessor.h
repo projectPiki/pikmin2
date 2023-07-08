@@ -94,7 +94,7 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	u8 mColorData[0x14];           // _64
 	f32 _78;                       // _78
 	JGeometry::TBox2f mMesgBounds; // _7C
-	u8 _8C[0x84];                  // _8C - padding/unknown/in ghidra
+	f32 _8C[0x21];                 // _8C - padding/unknown/in ghidra
 };
 } // namespace P2JME
 

@@ -12,14 +12,14 @@ struct TControl : public P2JME::Window::TControl {
 
 	virtual ~TControl();                           // _08 (weak)
 	virtual void reset();                          // _0C
-	virtual void update(Controller*, Controller*); // _14
+	virtual bool update(Controller*, Controller*); // _14
 	virtual void draw(Graphics&);                  // _18 (weak)
 	virtual void draw(Mtx, Mtx);                   // _1C
 	virtual void onInit();                         // _34
 	virtual void createSequenceProcessor();        // _40 (weak)
 	virtual void createRenderingProcessor();       // _44 (weak)
 
-	void getScrollPosition();
+	f32 getScrollPosition();
 	void scroll(f32);
 	void setTextBoxInfo(J2DTextBox*);
 

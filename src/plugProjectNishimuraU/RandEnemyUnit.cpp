@@ -2091,8 +2091,6 @@ void RandEnemyUnit::makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*)
 	*/
 }
 
-
-
 /*
  * --INFO--
  * Address:	8024A7C8
@@ -2101,24 +2099,24 @@ void RandEnemyUnit::makeSetEnemyTypeB(MapNode*, BaseGen*, EnemyUnit*)
 void RandEnemyUnit::setVersusEasyEnemy()
 {
 	MapNode* onyonNodes[] = { nullptr, nullptr };
-	BaseGen* onyonGens[] = { nullptr, nullptr };
-	
+	BaseGen* onyonGens[]  = { nullptr, nullptr };
+
 	onyonNodes[0] = mMapScore->getFixObjNode(FIXNODE_VsRedOnyon);
-	onyonGens[0] = mMapScore->getFixObjGen(FIXNODE_VsRedOnyon);
+	onyonGens[0]  = mMapScore->getFixObjGen(FIXNODE_VsRedOnyon);
 	onyonNodes[1] = mMapScore->getFixObjNode(FIXNODE_VsBlueOnyon);
-	onyonGens[1] = mMapScore->getFixObjGen(FIXNODE_VsBlueOnyon);
-	
+	onyonGens[1]  = mMapScore->getFixObjGen(FIXNODE_VsBlueOnyon);
+
 	EnemyTypeID::EEnemyTypeID vsEasyIDs[] = { EnemyTypeID::EnemyID_Pelplant, EnemyTypeID::EnemyID_UjiA };
 
-	int enemyCounts[ARRAY_SIZE(vsEasyIDs)][2] = { {0, 0}, {0, 0} };
+	int enemyCounts[ARRAY_SIZE(vsEasyIDs)][2] = { { 0, 0 }, { 0, 0 } };
 
 	EnemyNode* mainNode = mGenerator->mMainEnemies;
 
 	EnemyUnit* enemyUnits[] = { nullptr, nullptr };
-	
+
 	for (EnemyNode* currNode = (EnemyNode*)(mainNode->mChild); currNode;) {
-		EnemyUnit* unit = currNode->mEnemyUnit;
-		TekiInfo* currInfo = currNode->getTekiInfo();
+		EnemyUnit* unit     = currNode->mEnemyUnit;
+		TekiInfo* currInfo  = currNode->getTekiInfo();
 		EnemyNode* nextNode = (EnemyNode*)currNode->mNext;
 
 		if (currInfo) {
@@ -2127,8 +2125,7 @@ void RandEnemyUnit::setVersusEasyEnemy()
 				enemyUnits[0] = unit;
 				currNode->del();
 				mainNode->addHead(currNode);
-			}
-			else if (currInfo->mEnemyID == vsEasyIDs[1]) {
+			} else if (currInfo->mEnemyID == vsEasyIDs[1]) {
 				enemyCounts[1][0] += currInfo->mWeight / 10;
 				enemyUnits[1] = unit;
 				currNode->del();
@@ -2138,9 +2135,9 @@ void RandEnemyUnit::setVersusEasyEnemy()
 		currNode = nextNode;
 	}
 
-	
 	for (int i = 0; i < 2; i++) {
-		if (enemyCounts[i][0] == 0) continue;
+		if (enemyCounts[i][0] == 0)
+			continue;
 
 		f32 tieBreaker = 0.0f;
 		if (enemyCounts[i][0] % 2 != 0) { // dumbasses don't realize that it's always an even number in-game
@@ -2148,7 +2145,7 @@ void RandEnemyUnit::setVersusEasyEnemy()
 		}
 
 		enemyCounts[i][1] = enemyCounts[i][0] / 2 + tieBreaker;
-		enemyCounts[i][0]    -= enemyCounts[i][1];
+		enemyCounts[i][0] -= enemyCounts[i][1];
 		if (enemyUnits[i]) {
 			for (int j = 0; j < 2; j++) {
 				if (enemyCounts[i][j]) {
@@ -2158,7 +2155,6 @@ void RandEnemyUnit::setVersusEasyEnemy()
 					}
 				}
 			}
-			
 		}
 	}
 

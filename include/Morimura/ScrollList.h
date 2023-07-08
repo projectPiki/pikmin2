@@ -18,7 +18,7 @@ struct TIndexGroup {
 	f32 _0C;     // _0C
 	f32 _10;     // _10
 	f32 _14;     // _14
-	f32 _18;     // _18
+	f32 mHeight; // _18
 	f32 _1C;     // _1C
 	int _20;     // _20, unknown
 	u8 _24;      // _24
@@ -27,42 +27,50 @@ struct TIndexGroup {
 };
 
 struct TIconInfo {
-	u8 _00[0x8];                      // _00, unknown
+	void startScaleUp(f32);
+	void setInfo(int, const ResTIMG*);
+	void init(TScaleUpCounter*, J2DPane*, J2DPane*);
+
+	int mCategoryID;                  // _00
+	J2DPictureEx* mPic;               // _04
 	TScaleUpCounter* mScaleUpCounter; // _08
-	J2DPane* _0C;                     // _0C
-	J2DPane* _10;                     // _10
+	J2DPane* mPane2;                  // _0C
+	J2DPane* mPane;                   // _10
 	og::Screen::ScaleMgr* mScaleMgr;  // _14
-	u8 _18[0x4];                      // _18, unknown
+	u32 _18;                          // _18
 };
 
 struct TIndexPane {
-	TIndexPane(P2DScreen::Mgr_tuning* scrn, u64 tag)
+	TIndexPane(TTestBase* owner, P2DScreen::Mgr_tuning* scrn, u64 tag)
 	{
 		J2DPane* pane = scrn->search(tag);
-		_00           = 0;
+		mIndex        = 0;
 		mPane         = pane;
 		mPane2        = nullptr;
-		_0C           = 0;
+		mSizeType     = 0;
 		_10           = 0;
 		_18           = 0.0f;
 		mIconInfos    = nullptr;
-		_24           = nullptr;
+		mOwner        = owner;
 		_1C           = mPane->mOffset.y;
 	}
 
 	void setIndex(int);
 	int getIndex();
+	int getListIndex();
+	void createIconInfo(int, int);
+	void update();
 
-	int _00;                // _00
+	int mIndex;             // _00
 	J2DPane* mPane;         // _04
 	J2DPane* mPane2;        // _08
-	int _0C;                // _0C
+	int mSizeType;          // _0C
 	int _10;                // _10
 	int _14;                // _14
 	f32 _18;                // _18
 	f32 _1C;                // _1C
-	TIconInfo** mIconInfos; // _20, array of ptrs?
-	u32 _24;                // _24, TZukanBase* according to ghidra, unsure on that?
+	TIconInfo** mIconInfos; // _20
+	TTestBase* mOwner;      // _24
 };
 
 struct TListScreen : public TScreenBase {
@@ -104,17 +112,20 @@ struct TScrollList : public TTestBase {
 	Controller* mController;     // _80
 	TIndexGroup* mIndexGroup;    // _84
 	TIndexPane** mIndexPaneList; // _88, array of ptrs?
-	u8 _8C;                      // _8C
+	bool mDoEnableBigIcon;       // _8C
 	s16 mMaxSelect;              // _8E
 	int _90;                     // _90
 	int mCurrentSelect;          // _94
 	int _98;                     // _98
-	int _9C;                     // _9C
+	int mRowSize;                // _9C
 	f32 _A0;                     // _A0
 	f32 _A4;                     // _A4
-	f32 _A8;                     // _A8
+	f32 mYOffset;                // _A8
 	f32 _AC;                     // _AC
 	u8 _B0;                      // _B0
+
+	static int mRightOffset;
+	static bool mForceResetParm;
 };
 } // namespace Morimura
 

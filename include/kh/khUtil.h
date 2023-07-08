@@ -88,7 +88,7 @@ struct khUtilFadePaneWM : public khUtilFadePane {
 };
 
 struct khUtilColorAnm : public P2DScreen::CallBackNode {
-	khUtilColorAnm(P2DScreen::Mgr*, u64, int, int);
+	khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int panes, int length);
 
 	virtual ~khUtilColorAnm() { } // _08 (weak)
 	virtual void update();        // _10 (weak)

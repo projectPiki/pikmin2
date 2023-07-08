@@ -10,6 +10,8 @@ struct J2DPane;
 
 namespace Morimura {
 
+struct TCallbackScrollMsg;
+
 void setScreenAlpha(J2DPane*, u8);
 
 struct TOffsetMsgSet {
@@ -35,8 +37,8 @@ struct TOffsetMsgSet {
 
 struct TScaleUpCounter : public og::Screen::CallBack_CounterRV {
 
-	inline TScaleUpCounter(char** name, u16 flag1, u16 flag2, JKRArchive* arc)
-	    : CallBack_CounterRV(name, flag1, flag2, arc)
+	inline TScaleUpCounter(char** texData, u16 digits, u16 flag2, JKRArchive* arc)
+	    : CallBack_CounterRV(texData, digits, flag2, arc)
 	{
 		_A8 = 0;
 		_A9 = 0;
@@ -107,6 +109,8 @@ TCounterRV* setTCounterRV(P2DScreen::Mgr*, u64, u64, u64, u32*, u16, u16, JKRArc
 
 struct TCallbackScissor : public P2DScreen::CallBackNode {
 	TCallbackScissor() { mBounds.set(0.0f); }
+
+	inline void setDefaultBounds() { mBounds.set(0.0f, 0.0f, 640.0f, 480.0f); }
 
 	virtual ~TCallbackScissor() { }                // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
@@ -337,6 +341,57 @@ struct TChallengePanel {
 	f32 _2C;                         // _2C
 	int mIndex;                      // _30
 	f32 _34;                         // _34
+};
+
+struct TZukanWindow : public TScreenBase {
+	enum StateID {
+		STATE_Inactive,
+		STATE_Appear,
+		STATE_Active,
+		STATE_Exit,
+	};
+
+	TZukanWindow(JKRArchive*, int);
+
+	virtual void create(const char*, u32);        // _08
+	virtual void update();                        // _0C
+	virtual void draw(Graphics&, J2DPerspGraph*); // _10
+
+	inline GXColor getAnimColor()
+	{
+		JUT_ASSERTLINE(88, mAnimScreenCountMax >= 1, nullptr);
+		GXColor color;
+		static_cast<J2DAnmColor*>(mAnimScreens[1]->mAnm)->getColor(0, &color);
+		return color;
+	}
+
+	void windowOpen();
+	void windowClose();
+	void msgScroll(f32);
+	f32 getPosRate();
+	void setWindowColor(J2DGXColorS10&);
+	void setIconColor(J2DGXColorS10&, J2DGXColorS10&);
+	void onIcon(int);
+	void moveIcon(f32);
+	void changeIconTexture(int, ResTIMG*);
+
+	// _00     = VTBL
+	// _00-_18 = TScreenBase
+	u8 _18;                               // _18
+	f32 mCharacterIconXOffset;            // _1C
+	int mStatus;                          // _20
+	og::Screen::AnimPane* mAnimPaneLR;    // _24
+	og::Screen::AnimPane* mAnimPaneLight; // _28
+	TCallbackScrollMsg* mMsgCallback;     // _2C
+	og::Screen::ScaleMgr* mScaleMgr;      // _30
+	TCallbackScissor* mScissor;           // _34
+	J2DPane* mPaneWinCap;                 // _38
+	J2DPane* mPaneIcon;                   // _3C
+	J2DPane* mPaneWinMap;                 // _40
+	J2DPane* mPaneIconLight;              // _44
+	J2DPicture* mCharacterIcon[2];        // _48
+	f32 mScrollPosition;                  // _50
+	f32 mIconYHeightSin;                  // _54
 };
 
 } // namespace Morimura

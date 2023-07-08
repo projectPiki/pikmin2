@@ -136,7 +136,7 @@ struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 	PlatInstance* mCentrePlatInstance;  // _1F4
 	PlatInstance* mSidePlatInstance;    // _1F8
 	WayPoint* mWayPoint;                // _1FC
-	f32 mCurrentSegmentHealth;                        // _200
+	f32 mCurrentSegmentHealth;          // _200
 	f32 mMaxSegmentHealth;              // _204
 	f32 mDamage;                        // _208
 	int mSegmentsDown;                  // _20C, enum?

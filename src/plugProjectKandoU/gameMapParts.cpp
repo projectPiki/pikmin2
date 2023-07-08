@@ -932,7 +932,6 @@ void MapUnit::setupSizeInfo()
 	// UNUSED FUNCTION
 }
 
-
 /*
  * --INFO--
  * Address:	........
@@ -985,7 +984,6 @@ MapUnitMgr::MapUnitMgr()
 {
 	// UNUSED FUNCTION
 }
-
 
 /*
  * --INFO--
@@ -1457,10 +1455,9 @@ void MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path) { char _path[512]; } 
   addi      r1, r1, 0x12B0
   blr
 */
-} // namespace SysShape
+} // namespace Game
 
 namespace Game {
-
 
 /*
  * --INFO--
@@ -1572,18 +1569,17 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool b) // basically matc
 		for (int nodeIdx = 0; nodeIdx < mObjectLayoutInfo->getCount(nodeType); nodeIdx++) {
 			ObjectLayoutNode* node = static_cast<ObjectLayoutNode*>(mObjectLayoutInfo->getNode(nodeType, nodeIdx));
 			for (int subIdx = 0; subIdx < node->getBirthCount(); subIdx++) {
-				switch (nodeType)
-				{
+				switch (nodeType) {
 				case OBJLAYOUT_Hole: {
 					ItemHole::Item* hole = static_cast<ItemHole::Item*>(ItemHole::mgr->birth());
 					Vector3f birthPos;
 					node->getBirthPosition(birthPos.x, birthPos.z);
 					CurrTriInfo triInfo;
 					triInfo.mPosition = birthPos;
-					f32 minY = 0.0f;
+					f32 minY          = 0.0f;
 					if (mapMgr) {
 						triInfo._0C = 0;
-						mapMgr->getCurrTri(triInfo); 
+						mapMgr->getCurrTri(triInfo);
 						minY = triInfo.mMinY;
 					}
 					birthPos.y = minY;
@@ -1591,8 +1587,7 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool b) // basically matc
 						ItemHole::InitArg holeArg;
 						holeArg.mInitialState = ItemHole::Hole_Close;
 						hole->init(&holeArg);
-					}
-					else {
+					} else {
 						hole->init(nullptr);
 					}
 					hole->mFaceDirection = node->getDirection();
@@ -1646,8 +1641,7 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool b) // basically matc
 						ItemBigFountain::InitArg fountainArg;
 						fountainArg.mInitState = 3; // Close state (lack of an enum)
 						fountain->init(&fountainArg);
-					}
-					else {
+					} else {
 						fountain->init(nullptr);
 					}
 					fountain->mFaceDir = node->getDirection();
@@ -1662,19 +1656,18 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool b) // basically matc
 					EnemyBirthArg birthArg;
 					birthArg.mFaceDir  = node->getDirection();
 					birthArg.mPosition = birthPos;
-					
+
 					birthArg.mOtakaraItemCode = node->getExtraCode();
-					birthArg.mTekiBirthType = (EnemyTypeID::EEnemyTypeID)node->getObjectType();
+					birthArg.mTekiBirthType   = (EnemyTypeID::EEnemyTypeID)node->getObjectType();
 					node->isFixedBattery();
 
-					bool canSpawnTeki  = true;
-					bool isWaterwraith = false;
+					bool canSpawnTeki                   = true;
+					bool isWaterwraith                  = false;
 					EnemyTypeID::EEnemyTypeID enemyType = (EnemyTypeID::EEnemyTypeID)node->getObjectId();
 					if (enemyType == EnemyTypeID::EnemyID_BlackMan) {
 						if (playData->mCaveSaveData.mIsWaterwraithAlive) {
 							isWaterwraith = true;
-						}
-						else {
+						} else {
 							canSpawnTeki = false;
 						}
 					}
@@ -1693,7 +1686,7 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool b) // basically matc
 					break;
 				}
 				case OBJLAYOUT_Item: {
-					PelletIndexInitArg pelletIndex (node->getObjectId());
+					PelletIndexInitArg pelletIndex(node->getObjectId());
 					Pellet* pellet = pelletMgr->birth(&pelletIndex);
 					if (!pellet) {
 						break;
@@ -1703,8 +1696,7 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool b) // basically matc
 					if (mapMgr) {
 						birthPos.y = mapMgr->getMinY(birthPos);
 						birthPos.y += pellet->getCylinderHeight() / 2;
-					}
-					else {
+					} else {
 						birthPos.y = 0.0f;
 					}
 					pellet->setPosition(birthPos, false);
@@ -1725,14 +1717,14 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool b) // basically matc
 						break;
 					}
 					RoomDoorInfo* doorinfo = &mDoorInfos[doorIdx];
-					Vector3f birthPos = doorinfo->mWaypoint->mPosition;
-					f32 dir = JMath::atanTable_.atan2_(doorinfo->mLookAtPos.x, doorinfo->mLookAtPos.z);
+					Vector3f birthPos      = doorinfo->mWaypoint->mPosition;
+					f32 dir                = JMath::atanTable_.atan2_(doorinfo->mLookAtPos.x, doorinfo->mLookAtPos.z);
 					ItemGateInitArg gateArg;
 					gateArg.mFaceDir = dir;
 
 					ItemGate* gate = static_cast<ItemGate*>(itemGateMgr->birth());
 					gate->init(&gateArg);
-					f32 health = static_cast<Cave::GateNode*>(node)->mUnit->mInfo->mLife;
+					f32 health                  = static_cast<Cave::GateNode*>(node)->mUnit->mInfo->mLife;
 					gate->mMaxSegmentHealth     = health;
 					gate->mCurrentSegmentHealth = health;
 					gate->setPosition(birthPos, false);
@@ -1740,7 +1732,6 @@ void MapRoom::placeObjects(Cave::FloorInfo* floorInfo, bool b) // basically matc
 				}
 				}
 			}
-
 		}
 	}
 	/*
@@ -3031,7 +3022,6 @@ lbl_801B7F70:
 }
 
 } // namespace Game
-
 
 namespace Game {
 
@@ -7683,11 +7673,10 @@ f32 RoomMapMgr::getMinY(Vector3f& pos)
 {
 	CurrTriInfo info;
 	info.mPosition = pos;
-	info._0C = 0;
+	info._0C       = 0;
 	getCurrTri(info);
 	return info.mMinY;
 }
-
 
 /*
  * --INFO--
@@ -10813,7 +10802,6 @@ lbl_801BE650:
 	*/
 }
 
-
 /*
  * --INFO--
  * Address:	801BE688
@@ -10833,7 +10821,6 @@ void RoomMapMgr::getStartPosition(Vector3f&, int)
 	blr
 	*/
 }
-
 
 /*
  * --INFO--
@@ -10884,4 +10871,3 @@ lbl_801BE71C:
 }
 
 } // namespace Game
-

@@ -10,21 +10,24 @@
 namespace efx {
 
 // this struct needs to exist for the dtor to generate properly
-struct TOEContextBase : public JSUPtrLink
-{
-	TOEContextBase(void* data) : JSUPtrLink(data) {}
+struct TOEContextBase : public JSUPtrLink {
+	TOEContextBase(void* data)
+	    : JSUPtrLink(data)
+	{
+	}
 };
 
-
 struct TOEContextS : public TOEContextBase {
-	TOEContextS() : TOEContextBase(this) { }
+	TOEContextS()
+	    : TOEContextBase(this)
+	{
+	}
 
-	~TOEContextS() { };
-	
+	~TOEContextS() {};
+
 	Vector3f mPosition; // _10
 
 	// _00-_10 = JSUPtrLink
-	
 };
 
 struct ToeChudoku {

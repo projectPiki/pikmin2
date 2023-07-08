@@ -43,7 +43,7 @@ ItemGate::ItemGate()
 {
 	mCollTree               = new CollTree;
 	mBoundingSphere.mRadius = 170.0f;
-	mCurrentSegmentHealth                 = 100.0f;
+	mCurrentSegmentHealth   = 100.0f;
 	mDamage                 = 0.0f;
 	mSegmentsDown           = 0;
 	mMaxSegments            = 3;
@@ -152,8 +152,8 @@ void ItemGate::onSetPosition()
  */
 void ItemGate::doLoad(Stream& stream)
 {
-	mCurrentSegmentHealth       = stream.readFloat();
-	mSegmentsDown = stream.readInt();
+	mCurrentSegmentHealth = stream.readFloat();
+	mSegmentsDown         = stream.readInt();
 	initMotion();
 	if (mSegmentsDown >= mMaxSegments) {
 		mCentrePlatInstance->setCollision(false); // Centre? ?\_(ƒc)_/? British
@@ -1298,11 +1298,11 @@ void ItemGateMgr::generatorRead(Stream& stream, Game::GenItemParm* param, u32 ve
 BaseItem* ItemGateMgr::generatorBirth(Vector3f& pos, Vector3f& rot, Game::GenItemParm* param)
 {
 	P2ASSERTLINE(823, param);
-	GenGateParm* gateParam  = static_cast<GenGateParm*>(param);
-	ItemGate* gate          = static_cast<ItemGate*>(birth());
-	gate->mMaxSegmentHealth = gateParam->mLife;
-	gate->mCurrentSegmentHealth           = gate->mMaxSegmentHealth;
-	gate->mColor            = gateParam->mColor;
+	GenGateParm* gateParam      = static_cast<GenGateParm*>(param);
+	ItemGate* gate              = static_cast<ItemGate*>(birth());
+	gate->mMaxSegmentHealth     = gateParam->mLife;
+	gate->mCurrentSegmentHealth = gate->mMaxSegmentHealth;
+	gate->mColor                = gateParam->mColor;
 	gate->init(nullptr);
 	gate->mFaceDir = roundAng(rot.y);
 	gate->setPosition(pos, false);
@@ -1849,11 +1849,11 @@ void ItemDengekiGate::Mgr::generatorRead(Stream& stream, Game::GenItemParm* para
 BaseItem* ItemDengekiGate::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, Game::GenItemParm* param)
 {
 	P2ASSERTLINE(1197, param);
-	GenGateParm* gateParam  = static_cast<GenGateParm*>(param);
-	ItemGate* gate          = static_cast<ItemGate*>(birth());
-	gate->mMaxSegmentHealth = gateParam->mLife;
-	gate->mCurrentSegmentHealth           = gate->mMaxSegmentHealth;
-	gate->mIsElectric       = true;
+	GenGateParm* gateParam      = static_cast<GenGateParm*>(param);
+	ItemGate* gate              = static_cast<ItemGate*>(birth());
+	gate->mMaxSegmentHealth     = gateParam->mLife;
+	gate->mCurrentSegmentHealth = gate->mMaxSegmentHealth;
+	gate->mIsElectric           = true;
 	gate->init(nullptr);
 	gate->mFaceDir = roundAng(rot.y);
 	gate->setPosition(pos, false);
