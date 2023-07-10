@@ -27,12 +27,27 @@ struct TChallengeEndCount2p;
 struct TDayEndCount : public TTestBase {
 	TDayEndCount();
 
-	virtual ~TDayEndCount() { }                              // _08 (weak)
-	virtual bool doStart(const ::Screen::StartSceneArg*);    // _44 (weak)
-	virtual void doCreate(JKRArchive*);                      // _4C
-	virtual bool doUpdate();                                 // _58
-	virtual void doDraw(Graphics& gfx);                      // _68
-	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)
+// 0 through 10
+#define COUNTDOWN_NUMBERS 11
+
+	virtual ~TDayEndCount() { } // _08 (weak)
+	virtual bool doStart(const ::Screen::StartSceneArg* arg)
+	{
+		TTestBase::doStart(arg);
+		reset();
+		return true;
+	}                                   // _44 (weak)
+	virtual void doCreate(JKRArchive*); // _4C
+	virtual bool doUpdate();            // _58
+	virtual void doDraw(Graphics& gfx); // _68
+	virtual og::Screen::DispMemberBase* getDispMemberBase()
+	{
+		if (mIsSection) {
+			return mDispMember;
+		} else {
+			return getDispMember();
+		}
+	} // _78 (weak)
 
 	void reset();
 
@@ -41,23 +56,64 @@ struct TDayEndCount : public TTestBase {
 	// _00-_78 = TTestBase
 	JKRArchive* mArchive;                           // _78
 	og::Screen::DispMemberDayEndCount* mDispMember; // _7C
-	P2DScreen::Mgr_tuning* _80;                     // _80
-	J2DPicture* _84;                                // _84
-	J2DPane** _88;                                  // _88
-	J2DPicture* _8C;                                // _8C
-	int _90;                                        // _90
-	u8 _94;                                         // _94
-	JGeometry::TVec2<s16> _96[4];                   // _96
-	JGeometry::TVec2<s16> _A6[4];                   // _A6
-	f32 _B8;                                        // _B8
-	f32 _BC;                                        // _BC
-	f32 _C0;                                        // _C0
-	f32 _C4;                                        // _C4
-	u8 _C8;                                         // _C8
-	u8 _C9;                                         // _C9
-	u8 _CA;                                         // _CA
+	P2DScreen::Mgr_tuning* mScreenObj;              // _80
+	J2DPicture* mCurrNumberPane;                    // _84
+	J2DPane** mNumberPaneList;                      // _88
+	J2DPicture* mTextPane;                          // _8C
+	int mCurrNumberValue;                           // _90
+	bool mMode;                                     // _94 (seems to only ever be false)
+	JGeometry::TVec2<s16> mTexCoords1[4];           // _96
+	JGeometry::TVec2<s16> mTexCoords2[4];           // _A6
+	JGeometry::TVec2f mNumberPanePos;               // _B8
+	JGeometry::TVec2f mTextPanePos;                 // _C0
+	bool mDoPlaySE;                                 // _C8
+	bool mSoundEnabled;                             // _C9
+	bool mIsChallenge;                              // _CA
 	f32 mScale;                                     // _CC
 	f32 mOffsetY;                                   // _D0
+
+	static u8 mCountDownType;
+	static JUtility::TColor mColor;
+	static JUtility::TColor mNumberColor;
+	static bool mTestChangeColor;
+	static f32 m2pScale;
+	static f32 m2pOffsetY;
+	static u8 mAlphaMax;
+	static f32 mWaitScale;
+	static u8 mWaitAlpha;
+};
+
+struct TChallengeEndCount : public TDayEndCount {
+	TChallengeEndCount();
+
+	virtual ~TChallengeEndCount() { }   // _08 (weak)
+	virtual void doCreate(JKRArchive*); // _4C
+
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_D4 = TDayEndCount
+};
+
+struct TChallengeEndCount1p : public TChallengeEndCount {
+	TChallengeEndCount1p();
+
+	virtual ~TChallengeEndCount1p() { } // _08 (weak)
+	virtual bool doUpdate();            // _58
+
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_D4 = TChallengeEndCount
+};
+
+struct TChallengeEndCount2p : public TChallengeEndCount {
+	TChallengeEndCount2p();
+
+	virtual ~TChallengeEndCount2p() { } // _08 (weak)
+	virtual bool doUpdate();            // _58
+
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_D4 = TChallengeEndCount
 };
 
 struct TCountDownScene : public THIOScene {

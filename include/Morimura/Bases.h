@@ -26,7 +26,7 @@ namespace Morimura {
 struct TTestBase : public Screen::ObjBase {
 	TTestBase(char*);
 
-	// virtual ~TTestBase();                                        // _08 (weak)
+	virtual ~TTestBase() { }                                     // _08 (weak)
 	virtual bool doStart(Screen::StartSceneArg const*);          // _44
 	virtual bool doEnd(Screen::EndSceneArg const*);              // _48
 	virtual bool doUpdateFadein();                               // _50
