@@ -1770,10 +1770,10 @@ if __name__ == "__main__":
     build_path = Path("$out")
     if args.devkitppc:
         dkp_path = args.devkitppc
-    elif os.name == "nt":
-        dkp_path = Path("C:\devkitPro\devkitPPC")
     elif "DEVKITPPC" in os.environ:
         dkp_path = Path(os.environ["DEVKITPPC"])
+    elif os.name == "nt":
+        dkp_path = Path("C:\devkitPro\devkitPPC")
     else:
         dkp_path = Path("/opt/devkitpro/devkitPPC")
 
