@@ -34,9 +34,20 @@ struct ArgOpen {
 };
 
 struct ArgOpenOmake : public ArgOpen {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ArgOpenOmake"; } // _08 (weak)
+
+	ArgOpenOmake(u8 a1, u8 a2, u8 a3)
+	{
+		mFlag1 = a1;
+		mFlag2 = a2;
+		mFlag3 = a3;
+	}
 
 	// _00 = VTBL
+	u8 mFlag1;
+	u8 mFlag2;
+	u8 mFlag3;
+	int _08;
 };
 
 struct ArgOpenTitleMenu : public ArgOpen {
@@ -92,7 +103,7 @@ struct TScreenBase : public TScreenBaseInterface {
 	virtual bool doUpdateStateWait();       // _3C
 	virtual bool doUpdateStateClose();      // _40
 	virtual void doDraw();                  // _44
-	virtual char* getName();                // _48 (weak)
+	virtual char* getName();                // _48 (weak) [not actually weak?]
 
 	u8 isOpenScreen();
 	u8 isWaitScreen();

@@ -32,7 +32,7 @@ struct TMgr : public JKRDisposer {
 
 	virtual ~TMgr(); // _08
 
-	void globalInstance();
+	static void globalInstance();
 	void loadResource();
 	void init();
 	void uploadToGBA(long);
@@ -47,14 +47,14 @@ struct TMgr : public JKRDisposer {
 	// _00 VTBL
 	void* mGameDatas[EREADER_GAMES]; // _18
 	u32 mSizes[EREADER_GAMES];
-	int mGameID;
-	int mState;
-	int _38;
-	int mEndStat;
-	int mGbaPort;
-	int mCounter;
-	OSMutex mMutex;
-	OSThreadQueue mCond;
+	int mGameID;    // _30
+	int mState;     // _34
+	int _38;        // _38
+	int mEndStat;   // _3C
+	int mGbaPort;   // _40
+	int mCounter;   // _44
+	OSMutex mMutex; // _48
+	OSCond mCond;
 };
 } // namespace CardEReader
 CardEReader::TMgr* gCardEMgr;

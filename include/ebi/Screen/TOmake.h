@@ -6,15 +6,15 @@
 #include "ebi/Utility.h"
 #include "P2DScreen.h"
 #include "types.h"
+#include "Morimura/mrUtil.h"
 
 namespace ebi {
 namespace Screen {
 
-// TODO: Data members.
 struct TOmake : public TScreenBase {
 	TOmake();
 
-	~TOmake();
+	~TOmake() { }
 
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
@@ -29,8 +29,8 @@ struct TOmake : public TScreenBase {
 	void setController(Controller*);
 	void showPanes_() const;
 	void hidePanes_() const;
-	void openFromMovie_() const;
-	void openFromCardE_() const;
+	void openFromMovie_();
+	void openFromCardE_();
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
@@ -66,40 +66,54 @@ struct TOmake : public TScreenBase {
 	u64 mMesgTags[7];                     // _3F8
 	JUtility::TColor mColors[12];         // _430
 };
-
-// TODO: Data members.
 struct TOmakeCardE : public TScreenBase {
 	TOmakeCardE();
-	~TOmakeCardE();
+	~TOmakeCardE() { }
 
-	virtual void doSetArchive(JKRArchive*); // _24
-	virtual void doOpenScreen(ArgOpen*);    // _28
-	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual void doInitWaitState();         // _34
-	virtual bool doUpdateStateOpen();       // _38
-	virtual bool doUpdateStateWait();       // _3C
-	virtual bool doUpdateStateClose();      // _40
-	virtual void doDraw();                  // _44
-	virtual char* getName();                // _48
+	enum CardEState { MainMenu, InZoomed, ExitingZoomed, EnteringZoomed };
+
+	virtual void doSetArchive(JKRArchive*);           // _24
+	virtual void doOpenScreen(ArgOpen*);              // _28
+	virtual void doCloseScreen(ArgClose*);            // _2C
+	virtual void doInitWaitState();                   // _34
+	virtual bool doUpdateStateOpen();                 // _38
+	virtual bool doUpdateStateWait();                 // _3C
+	virtual bool doUpdateStateClose();                // _40
+	virtual void doDraw();                            // _44
+	virtual char* getName() { return "TOmakeCardE"; } // _48
 
 	// _00     = VTBL
-	// _00-_08 = TScreenBase
-	u8 _0C[0x164];
+	// _00-_0C = TScreenBase
+	Controller* mInput;                        // _0C
+	bool mExitState;                           // _10 (false when press A to continue, true when press B to exit)
+	P2DScreen::Mgr_tuning* mScreenObj;         // _14
+	J2DPane* mPaneArrowUp;                     // _18
+	J2DPane* mPaneArrowDown;                   // _1C
+	E2DCallBack_AnmBase mAnimationEnter;       // _20
+	E2DCallBack_AnmBase mAnimationIdle;        // _5C
+	E2DCallBack_AnmBase mAnimationExit;        // _98
+	E2DCallBack_AnmBase mAnimationChange;      // _D4
+	E2DCallBack_AnmBase mAnimationColor;       // _110
+	E2DCallBack_CalcAnimation mAnimCalc;       // _14C
+	Morimura::TCallbackScrollMsg* mMesgScroll; // _16C
+	int mState;                                // _170
 };
 
-// TODO: Data members.
 struct TOmakeGame : public TScreenBase {
 	TOmakeGame();
-	~TOmakeGame();
+	~TOmakeGame() { }
 
-	virtual void doSetArchive(JKRArchive*); // _24
-	virtual void doOpenScreen(ArgOpen*);    // _28
-	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual bool doUpdateStateOpen();       // _38
-	virtual bool doUpdateStateWait();       // _3C
-	virtual bool doUpdateStateClose();      // _40
-	virtual void doDraw();                  // _44
-	virtual char* getName();                // _48
+	enum MsgDescType { GameDesc = 0, Transferring = 1, TransferFinished = 2, TransferFailed = 3, TransferUnable = 4 };
+	enum GameID { PikminPluck, PikminPart, PikminPath, GameCount };
+
+	virtual void doSetArchive(JKRArchive*);          // _24
+	virtual void doOpenScreen(ArgOpen*);             // _28
+	virtual void doCloseScreen(ArgClose*);           // _2C
+	virtual bool doUpdateStateOpen();                // _38
+	virtual bool doUpdateStateWait();                // _3C
+	virtual bool doUpdateStateClose();               // _40
+	virtual void doDraw();                           // _44
+	virtual char* getName() { return "TOmakeGame"; } // _48
 
 	bool isDelegateControl();
 	bool openMsg(long);
@@ -108,7 +122,25 @@ struct TOmakeGame : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
-	u8 _0C[0x2A8];
+	Controller* mInput;                               // _0C
+	bool mExitState;                                  // _10 (false when press A to continue, true when press B to exit)
+	EUTPadInterface_countNum mPad;                    // _14
+	long mSelection;                                  // _40
+	P2DScreen::Mgr_tuning* mScreenObj;                // _44
+	J2DPane* mPaneGameSel[GameCount];                 // _48
+	J2DPane* mPaneSelectBox[GameCount];               // _54
+	J2DPane* mPaneDescription;                        // _60
+	J2DPane* mPaneDescriptionS;                       // _64 (text shadow)
+	J2DPane* mPaneGameName[GameCount];                // _68
+	J2DPane* mPaneGameNameS[GameCount];               // _74 (text shadow)
+	J2DPane* mPaneThumbnails[GameCount];              // _80
+	E2DCallBack_AnmBase mAnimationEnter;              // _8C
+	E2DCallBack_AnmBase mAnimationExit;               // _C8
+	E2DCallBack_AnmBase mAnimationChangeGame;         // _104
+	E2DCallBack_CalcAnimation mAnimCalc;              // _140
+	E2DCallBack_BlinkFontColor mBlinkFont[GameCount]; // _160
+	E2DCallBack_WindowCursor mCursor;                 // _244
+	bool mIsChangedGameSel;                           // _2B0
 };
 } // namespace Screen
 } // namespace ebi

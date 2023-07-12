@@ -34,7 +34,7 @@ enum J3DAnmKind {
 
 #pragma enumalwaysint off
 // Intended size: byte
-enum J3DAnmAttr { J3DAA_UNKNOWN_0 = 0 };
+enum J3DAnmAttr { J3DAA_UNKNOWN_0 = 0, J3DAA_UNKNOWN_1 = 1, J3DAA_UNKNOWN_2 = 2 };
 #pragma enumalwaysint reset
 
 struct J3DAnmBase {

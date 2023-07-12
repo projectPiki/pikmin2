@@ -6,6 +6,12 @@
 
 namespace ebi {
 struct EUTPadInterface_countNum {
+	EUTPadInterface_countNum()
+	{
+		mCounter = 0;
+		_08      = 0;
+	}
+
 	enum enumMode {
 		MODE_LEFTRIGHT,
 		MODE_RIGHTLEFT,
@@ -21,10 +27,10 @@ struct EUTPadInterface_countNum {
 	u32 _08;                 // _08
 	bool mIsChanging;        // _0C
 	u8 _0D;                  // _0D
-	long _10;                // _10
-	long _14;                // _14
-	long* _18;               // _18
-	long _1C;                // _1C
+	long mMinSel;            // _10
+	long mMaxSel;            // _14
+	long* mSelIndex;         // _18 (pointer to selection value this manages)
+	long mLastIndex;         // _1C
 	f32 mTimeFactor1;        // _20
 	f32 mTimeFactor2;        // _24
 	enumMode mMode;          // _28

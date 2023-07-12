@@ -8,12 +8,12 @@
 #include "JSystem/JGeometry.h"
 #include "og/Screen/ScaleMgr.h"
 #include "P2DScreen.h"
-#include "types.h"
+#include "System.h"
 
 namespace ebi {
 struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 	inline E2DCallBack_Base()
-	    : mIsEnabled(1)
+	    : mIsEnabled(true)
 	{
 	}
 	virtual ~E2DCallBack_Base();                      // _08 (weak)
@@ -27,7 +27,7 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 
 // Size: 0x3C
 struct E2DCallBack_AnmBase : public E2DCallBack_Base {
-	E2DCallBack_AnmBase();
+	E2DCallBack_AnmBase() { mFrameCtrl.init(0); }
 
 	virtual ~E2DCallBack_AnmBase(); // _08 (weak)
 	virtual void do_update();       // _1C
@@ -80,6 +80,15 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 		mFonts[i].mBlack = pane->getBlack();
 	}
 
+	inline void enable()
+	{
+		mIsEnabled = true;
+		mSpeed     = sys->mDeltaTime * 3.333333f;
+		_40        = 0.0f;
+		_48        = 1;
+		_49        = 0;
+	}
+
 	// needs tweaking
 	inline void setPaneColors()
 	{
@@ -103,7 +112,7 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 };
 
 struct E2DCallBack_CalcAnimation : public E2DCallBack_Base {
-	E2DCallBack_CalcAnimation();
+	E2DCallBack_CalcAnimation() { }
 
 	virtual ~E2DCallBack_CalcAnimation(); // _08 (weak)
 	virtual void do_update();             // _1C (weak)
@@ -122,16 +131,25 @@ struct E2DCallBack_Purupuru : public E2DCallBack_Base {
 };
 
 struct E2DCallBack_WindowCursor : public E2DCallBack_Base {
+
+	E2DCallBack_WindowCursor()
+	    : _40(0)
+	    , _44(0)
+	{
+		_64   = 1.0f;
+		mPane = nullptr;
+	}
+
 	virtual ~E2DCallBack_WindowCursor(); // _08 (weak)
 	virtual void do_update();            // _1C
 
-	JGeometry::TBox2f _20;    // _20
-	JGeometry::TBox2f _30;    // _30
-	u32 _40;                  // _40
-	u32 _44;                  // _44
-	og::Screen::ScaleMgr _48; // _48
-	f32 _64;                  // _64
-	J2DPane* _68;             // _68
+	JGeometry::TBox2f mBounds1;     // _20
+	JGeometry::TBox2f mBounds2;     // _30
+	u32 _40;                        // _40
+	u32 _44;                        // _44
+	og::Screen::ScaleMgr mScaleMgr; // _48
+	f32 _64;                        // _64
+	J2DPane* mPane;                 // _68
 };
 } // namespace ebi
 

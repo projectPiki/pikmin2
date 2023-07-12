@@ -11,8 +11,11 @@ struct Controller;
 namespace ebi {
 namespace Omake {
 struct TMgr;
+enum StateID { Standby, OmakeScreen, CardEScreen, SelectGame, Movie, StateCount };
 
 struct FSMStateMachine : public Game::StateMachine<TMgr> {
+	FSMStateMachine() { }
+
 	virtual void init(TMgr*); // _08
 
 	// _00     = VTBL
@@ -20,45 +23,66 @@ struct FSMStateMachine : public Game::StateMachine<TMgr> {
 };
 
 struct FSMState : public Game::FSMState<TMgr> {
-	inline FSMState(int stateID); // likely
+	FSMState(int stateID, char* name)
+	    : Game::FSMState<TMgr>(stateID)
+	{
+		mName = name;
+	}
 
-	virtual void init(TMgr*, Game::StateArg*);    // _08 (weak)
-	virtual void exec(TMgr*);                     // _0C (weak)
-	virtual void do_init(TMgr*, Game::StateArg*); // _20 (weak)
-	virtual void do_exec(TMgr*);                  // _24 (weak)
+	virtual void init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); } // _08 (weak)
+	virtual void exec(TMgr* mgr) { do_exec(mgr); }                           // _0C (weak)
+	virtual void do_init(TMgr*, Game::StateArg*) { }                         // _20 (weak)
+	virtual void do_exec(TMgr*) { }                                          // _24 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = Game::FSMState
+	char* mName; // _0C
 };
 
 struct FSMState_CardEScreen : public FSMState {
-	inline FSMState_CardEScreen(); // likely
+	inline FSMState_CardEScreen()
+	    : FSMState(CardEScreen, "FSMState_CardEScreen")
+	{
+	}
 
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
 	virtual void do_exec(TMgr*);                  // _24
 
 	// _00     = VTBL
-	// _00-_0C = FSMState
+	// _00-_10 = FSMState
 };
 
 struct FSMState_OmakeScreen : public FSMState {
-	inline FSMState_OmakeScreen(); // likely
+	inline FSMState_OmakeScreen()
+	    : FSMState(OmakeScreen, "FSMState_OmakeScreen")
+	{
+	}
 
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
 	virtual void do_exec(TMgr*);                  // _24
 
 	// _00     = VTBL
-	// _00-_0C = FSMState
+	// _00-_10 = FSMState
 };
 
 struct FSMState_SelectGame : public FSMState {
-	inline FSMState_SelectGame(); // likely
+
+	enum StatusID { Idle, ProbeGBA, Transferring, Error, Finish };
+	inline FSMState_SelectGame()
+	    : FSMState(SelectGame, "FSMState_SelectGame")
+	{
+		mTimer = 0;
+		_18    = 0;
+	}
 
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
 	virtual void do_exec(TMgr*);                  // _24
 
 	// _00     = VTBL
-	// _00-_0C = FSMState
+	// _00-_10 = FSMState
+	int mStatus;
+	u32 mTimer;
+	u32 _18;
 };
 
 struct TMgr {
@@ -82,13 +106,12 @@ struct TMgr {
 	u8 _004[4];                           // _004
 	ebi::Screen::TOmake mOmake;           // _008
 	ebi::Screen::TOmakeCardE mOmakeCardE; // _468
-	u8 _5D8[4];                           // _5D8
 	ebi::Screen::TOmakeGame mOmakeGame;   // _5DC
 	u8 _890;                              // _890
 	u32 _894;                             // _894
 	u32 _898;                             // _898
 	FSMStateMachine mStateMachine;        // _89C
-	u32 _8B8;
+	FSMState* mCurrentState;              // _8B8
 };
 } // namespace Omake
 } // namespace ebi

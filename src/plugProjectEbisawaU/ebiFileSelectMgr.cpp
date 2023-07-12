@@ -96,14 +96,14 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 {
 	switch (mState) {
 	case 0:
-		bool check2 = (!sys->mCardMgr->_A8) && (sys->mCardMgr->checkStatus() != 11);
+		bool check2 = (!sys->mCardMgr->mIsCard) && (sys->mCardMgr->checkStatus() != 11);
 		if (check2) {
 			P2ASSERTLINE(90, do_cardRequest(mgr));
 			mState = 1;
 		}
 		break;
 	case 1:
-		bool check3 = (!sys->mCardMgr->_A8) && (sys->mCardMgr->checkStatus() != 11);
+		bool check3 = (!sys->mCardMgr->mIsCard) && (sys->mCardMgr->checkStatus() != 11);
 		if (check3) {
 			mCardStatus = (int)static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();
 			static_cast<Game::MemoryCard::Mgr*>(sys->mCardMgr)->getCardStatus();

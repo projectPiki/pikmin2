@@ -1922,7 +1922,7 @@ blr
  * Address:	803EEA20
  * Size:	000054
  */
-void TOmake::openFromMovie_() const
+void TOmake::openFromMovie_()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1954,7 +1954,7 @@ blr
  * Address:	803EEA74
  * Size:	0000B0
  */
-void TOmake::openFromCardE_() const
+void TOmake::openFromCardE_()
 {
 	/*
 stwu     r1, -0x10(r1)

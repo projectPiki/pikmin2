@@ -8,25 +8,25 @@ namespace ebi {
  * Address:	803C1A3C
  * Size:	000060
  */
-void EUTPadInterface_countNum::init(Controller* controller, long arg1, long arg2, long* arg3, enumMode mode, f32 arg5, f32 arg6)
+void EUTPadInterface_countNum::init(Controller* controller, long min, long max, long* valueptr, enumMode mode, f32 arg5, f32 arg6)
 {
 	mController  = controller;
-	_10          = arg1;
-	_14          = arg2;
-	_18          = arg3;
+	mMinSel      = min;
+	mMaxSel      = max;
+	mSelIndex    = valueptr;
 	mMode        = mode;
 	mTimeFactor1 = arg5;
 	mTimeFactor2 = arg6;
 	mCounter     = 0;
 	_08          = 0;
 
-	if (*_18 < arg1) {
-		*_18 = arg1;
+	if (*mSelIndex < min) {
+		*mSelIndex = min;
 	}
-	if (*_18 > arg2) {
-		*_18 = arg2;
+	if (*mSelIndex > max) {
+		*mSelIndex = max;
 	}
-	_1C = *_18;
+	mLastIndex = *mSelIndex;
 }
 
 /*
@@ -66,9 +66,9 @@ void EUTPadInterface_countNum::update()
 
 	if (isForwards) {
 		if (!mCounter) {
-			if (*_18 < _14) {
-				_1C = *_18;
-				*_18 += 1;
+			if (*mSelIndex < mMaxSel) {
+				mLastIndex = *mSelIndex;
+				*mSelIndex += 1;
 				_0D = 1;
 				if (!mIsChanging) {
 					mIsChanging = true;
@@ -84,9 +84,9 @@ void EUTPadInterface_countNum::update()
 		}
 	} else if (isBackwards) {
 		if (mCounter == 0) {
-			if (*_18 > _10) {
-				_1C = *_18;
-				*_18 -= 1;
+			if (*mSelIndex > mMinSel) {
+				mLastIndex = *mSelIndex;
+				*mSelIndex -= 1;
 				_0D = 1;
 				if (!mIsChanging) {
 					mIsChanging = true;
