@@ -62,8 +62,8 @@ bool ObjSave::doUpdate()
 		if (mTimer > 0.1f) {
 			mState = SAVESTATE_WaitForFinish;
 			mSaveMgr->setControllers(getGamePad());
-			mSaveMgr->_470      = 0;
-			mSaveMgr->mSaveType = 1;
+			mSaveMgr->mIsStoryGameSave = 0;
+			mSaveMgr->mSaveType        = 1;
 			if (!Game::gGameConfig.mParms.mAutosaveOff.mData) {
 				mSaveMgr->mIsAutosaveOn = true;
 			}

@@ -13,7 +13,7 @@ struct T2DCursor : public TChasePos {
 	}
 
 	virtual bool create(Arg*); // _08
-	virtual ~T2DCursor();      // _34 (weak)
+	virtual ~T2DCursor() { }   // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePos

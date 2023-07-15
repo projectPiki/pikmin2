@@ -16,6 +16,8 @@ namespace ebi {
 namespace Save {
 struct TMgr;
 
+enum StateID { Standby, DoYouSave, DoYouContinue, MountCheck, GetPlayerHeader, CheckBeforeSave, NowSave, AfterSave, CardError, StateCount };
+
 struct FSMStateMachine : public Game::StateMachine<TMgr> {
 	virtual void init(TMgr*); // _08
 
@@ -24,73 +26,31 @@ struct FSMStateMachine : public Game::StateMachine<TMgr> {
 };
 
 struct FSMState : public Game::FSMState<TMgr> {
-	inline FSMState(int stateID); // likely
+	inline FSMState(int stateID, char* name)
+	    : Game::FSMState<TMgr>(stateID)
+	{
+		mName = name;
+	}
 
-	virtual void init(TMgr*, Game::StateArg*);    // _08 (weak)
-	virtual void exec(TMgr*);                     // _0C (weak)
-	virtual void do_init(TMgr*, Game::StateArg*); // _20 (weak)
-	virtual void do_exec(TMgr*);                  // _24 (weak)
+	virtual void init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); } // _08 (weak)
+	virtual void exec(TMgr* mgr) { do_exec(mgr); }                           // _0C (weak)
+	virtual void do_init(TMgr*, Game::StateArg*) { }                         // _20 (weak)
+	virtual void do_exec(TMgr*) { }                                          // _24 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = Game::FSMState
-};
-
-struct FSMState_AfterSave : public FSMState {
-	inline FSMState_AfterSave(); // likely
-
-	virtual void do_init(TMgr*, Game::StateArg*); // _20
-	virtual void do_exec(TMgr*);                  // _24
-
-	// _00     = VTBL
-	// _00-_0C = FSMState
-};
-
-struct FSMState_CardError : public FSMState {
-	inline FSMState_CardError(); // likely
-
-	virtual void do_init(TMgr*, Game::StateArg*); // _20
-	virtual void do_exec(TMgr*);                  // _24
-
-	// _00     = VTBL
-	// _00-_0C = FSMState
-};
-
-struct FSMState_DoYouContinue : public FSMState {
-	inline FSMState_DoYouContinue(); // likely
-
-	virtual void do_init(TMgr*, Game::StateArg*); // _20
-	virtual void do_exec(TMgr*);                  // _24
-
-	// _00     = VTBL
-	// _00-_0C = FSMState
-};
-
-struct FSMState_DoYouSave : public FSMState {
-	inline FSMState_DoYouSave(); // likely
-
-	virtual void do_init(TMgr*, Game::StateArg*); // _20
-	virtual void do_exec(TMgr*);                  // _24
-
-	// _00     = VTBL
-	// _00-_0C = FSMState
-};
-
-struct FSMState_NowSave : public FSMState {
-	inline FSMState_NowSave(); // likely
-
-	virtual void do_init(TMgr*, Game::StateArg*); // _20
-	virtual void do_exec(TMgr*);                  // _24
-
-	// _00     = VTBL
-	// _00-_0C = FSMState
+	char* mName; // _0C
 };
 
 struct FSMState_CardRequest : public FSMState {
-	inline FSMState_CardRequest(); // likely
+	inline FSMState_CardRequest(int stateID, char* name)
+	    : FSMState(stateID, name)
+	{
+	}
 
 	virtual void do_init(TMgr*, Game::StateArg*);       // _20
 	virtual void do_exec(TMgr*);                        // _24
-	virtual void do_cardRequest(TMgr*)      = 0;        // _28
+	virtual bool do_cardRequest(TMgr*)      = 0;        // _28
 	virtual void do_transitCardReady(TMgr*) = 0;        // _2C
 	virtual void do_transitCardNoCard(TMgr*);           // _30
 	virtual void do_transitCardIOError(TMgr*);          // _34
@@ -105,57 +65,149 @@ struct FSMState_CardRequest : public FSMState {
 	virtual void do_transitCardPlayerDataBroken(TMgr*); // _58
 
 	// _00     = VTBL
-	// _00-_0C = FSMState
+	// _00-_10 = FSMState
+	int mCardStatus; // _10
+	int mState;      // _14
+};
+
+struct FSMState_AfterSave : public FSMState {
+	inline FSMState_AfterSave()
+	    : FSMState(AfterSave, "AfterSave")
+	{
+	}
+
+	virtual void do_init(TMgr*, Game::StateArg*); // _20
+	virtual void do_exec(TMgr*);                  // _24
+
+	// _00     = VTBL
+	// _00-_10 = FSMState
+};
+
+struct CardErrorArg : public Game::StateArg {
+	CardErrorArg(int id) { mStartType = CardError::TMgr::enumStart(id); }
+
+	CardError::TMgr::enumStart mStartType; // _00
+};
+
+struct FSMState_CardError : public FSMState {
+	inline FSMState_CardError()
+	    : FSMState(CardError, "CardError")
+	{
+	}
+
+	virtual void do_init(TMgr*, Game::StateArg*); // _20
+	virtual void do_exec(TMgr*);                  // _24
+
+	// _00     = VTBL
+	// _00-_10 = FSMState
+};
+
+struct FSMState_DoYouContinue : public FSMState {
+	inline FSMState_DoYouContinue()
+	    : FSMState(DoYouContinue, "DoYouContinue")
+	{
+	}
+
+	virtual void do_init(TMgr*, Game::StateArg*); // _20
+	virtual void do_exec(TMgr*);                  // _24
+
+	// _00     = VTBL
+	// _00-_10 = FSMState
+};
+
+struct FSMState_DoYouSave : public FSMState {
+	inline FSMState_DoYouSave()
+	    : FSMState(DoYouSave, "DoYouSave")
+	{
+	}
+
+	virtual void do_init(TMgr*, Game::StateArg*); // _20
+	virtual void do_exec(TMgr*);                  // _24
+
+	// _00     = VTBL
+	// _00-_10 = FSMState
+};
+
+struct NowSaveArg : public Game::StateArg {
+	NowSaveArg(int id) { mMesgType = id; }
+	bool mMesgType; // _00
+};
+
+struct FSMState_NowSave : public FSMState {
+	inline FSMState_NowSave()
+	    : FSMState(NowSave, "NowSave")
+	{
+		mState = 0;
+	}
+
+	virtual void do_init(TMgr*, Game::StateArg*); // _20
+	virtual void do_exec(TMgr*);                  // _24
+
+	// _00     = VTBL
+	// _00-_10 = FSMState
+	int mState;
+	int mCardStatus;    // _14
+	bool mIsErrorState; // _18
 };
 
 struct FSMState_CheckBeforeSave : public FSMState_CardRequest {
-	inline FSMState_CheckBeforeSave(); // likely
+	inline FSMState_CheckBeforeSave()
+	    : FSMState_CardRequest(CheckBeforeSave, "CheckBeforeSave")
+	{
+	}
 
-	virtual void do_cardRequest(TMgr*);      // _28
+	virtual bool do_cardRequest(TMgr*);      // _28
 	virtual void do_transitCardReady(TMgr*); // _2C
 
 	// _00     = VTBL
-	// _00-_0C = FSMState_CardRequest
+	// _00-_10 = FSMState_CardRequest
 };
 
 struct FSMState_GetPlayerHeader : public FSMState_CardRequest {
-	inline FSMState_GetPlayerHeader(); // likely
+	inline FSMState_GetPlayerHeader()
+	    : FSMState_CardRequest(GetPlayerHeader, "GetPlayerHeader")
+	{
+	}
 
-	virtual void do_cardRequest(TMgr*);              // _28
+	virtual bool do_cardRequest(TMgr*);              // _28
 	virtual void do_transitCardReady(TMgr*);         // _2C
 	virtual void do_transitCardSerialNoError(TMgr*); // _54
 
 	// _00     = VTBL
-	// _00-_0C = FSMState_CardRequest
+	// _00-_10 = FSMState_CardRequest
 };
 
 struct FSMState_MountCheck : public FSMState_CardRequest {
-	inline FSMState_MountCheck(); // likely
+	inline FSMState_MountCheck()
+	    : FSMState_CardRequest(MountCheck, "MountCheck")
+	{
+	}
 
-	virtual void do_cardRequest(TMgr*);      // _28
+	virtual bool do_cardRequest(TMgr*);      // _28
 	virtual void do_transitCardReady(TMgr*); // _2C
 
 	// _00     = VTBL
-	// _00-_0C = FSMState_CardRequest
+	// _00-_10 = FSMState_CardRequest
 };
 
 struct TMgr : public JKRDisposer {
-	enum enumEnd {
-
-	};
+	enum enumEnd { End_0 = 0, End_1 = 1, End_2 = 2, End_3 = 3, End_4 = 4 };
 
 	TMgr();
 
 	virtual ~TMgr(); // _08
 
 	static TMgr* createInstance();
+	static void deleteInstance();
+	static TMgr* getInstance();
+	void showInfo();
 	void start();
 	void forceQuit();
 	bool isFinish();
 	void goEnd_(enumEnd);
 	void update();
 	void draw();
-	void getStateID();
+	int getStateID();
 
 	static void onDvdErrorOccured();
 	static void onDvdErrorRecovered();
@@ -177,19 +229,21 @@ struct TMgr : public JKRDisposer {
 	// _00-_18 = JKRDisposer
 	Screen::TSaveMenu mSaveMenu;                      // _18
 	CardError::TMgr mMemCardErrorMgr;                 // _100
-	u32 _3C8;                                         // _3C8, unknown
+	u32 mCounter;                                     // _3C8
 	u32 _3CC;                                         // _3CC, unknown
 	Controller* mController;                          // _3D0
 	Game::MemoryCard::PlayerFileInfo mPlayerFileInfo; // _3D4
-	int _470;                                         // _470
+	int mIsStoryGameSave;                             // _470
 	int mCurrStateID;                                 // _474
 	u8 mSaveType;                                     // _478
 	bool mIsAutosaveOn;                               // _479
 	u8 _47A;                                          // _47A
-	u8 _47B;                                          // _47B
+	bool mDVDErrorSuspended;                          // _47B
 	FSMStateMachine mStateMachine;                    // _47C
-	u8 _498[0x4];                                     // _498, unknown
+	FSMState* mCurrState;                             // _498
 };
+
+static TMgr* msInstance;
 } // namespace Save
 } // namespace ebi
 

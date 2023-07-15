@@ -71,6 +71,8 @@ struct MemoryCardMgr {
 	virtual bool doCheckCardStat(CARDStat*);                               // _24
 	virtual bool isErrorOccured();                                         // _28
 
+	inline bool isSaveValid() { return mIsCard || checkStatus() != INSIDESTATUS_Unk11; }
+
 	void cardProc(void*);
 	bool cardFormat(ECardSlot);
 	bool cardMount();
@@ -100,7 +102,7 @@ struct MemoryCardMgr {
 
 	MemoryCardMgrCommand mCommands[5]; // _04
 	u32 _A4;                           // _A4
-	u32 mIsCard;                       // _A8
+	int mIsCard;                       // _A8
 	OSMutex mOsMutex;                  // _AC
 	OSCond mCond;                      // _C4
 	JKRHeap* mHeap;                    // _C8
