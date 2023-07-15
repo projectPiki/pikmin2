@@ -19,7 +19,6 @@ static struct tvformat XYPAL[12]  = { 0x0128, 0x02, 0x000F, 0x15, 0x001D, 0x0B, 
  * --INFO--
  * Address:	800F675C
  * Size:	0000E4
- * Requires frank.py
  */
 void SISetSamplingRate(u32 samplerate)
 {

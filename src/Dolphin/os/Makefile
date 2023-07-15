@@ -24,30 +24,12 @@ OS_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/os/__start.o\
 	$(BUILD_DIR)/src/Dolphin/os/__ppc_eabi_init.o\
 
-OS_UNSCHEDULED:=\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OS.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSAlarm.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSAudioSystem.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSCache.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSContext.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSError.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSInterrupt.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSMessage.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSMemory.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSMutex.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSReset.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSResetSW.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSRtc.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSThread.o\
-	$(EPILOGUE_DIR)/src/Dolphin/os/OSTime.o\
-
 $(OS_FILES): CFLAGS += -common off -str noreadonly
-$(OS_UNSCHEDULED): CFLAGS += -common off -str noreadonly
-$(OS_FILES): MWCC_VERSION := 1.2.5
+$(OS_FILES): MWCC_VERSION := 1.2.5n
 
 DEPENDS += $(OS_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/os/os.a: $(OS_FILES) $(OS_UNSCHEDULED)
+$(BUILD_DIR)/src/Dolphin/os/os.a: $(OS_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(OS_FILES) > build/OS_ofiles
