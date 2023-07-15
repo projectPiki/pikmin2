@@ -571,7 +571,7 @@ LIBS = [
     },
     {
         "lib": "OdemuExi2",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -580,7 +580,7 @@ LIBS = [
     },
     {
         "lib": "vi",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -589,7 +589,7 @@ LIBS = [
     },
     {
         "lib": "amcstubs",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -598,7 +598,7 @@ LIBS = [
     },
     {
         "lib": "ar",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
@@ -608,7 +608,7 @@ LIBS = [
     },
     {
         "lib": "base",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -617,7 +617,7 @@ LIBS = [
     },
     {
         "lib": "card",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
@@ -639,7 +639,7 @@ LIBS = [
     },
     {
         "lib": "db",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
@@ -648,7 +648,7 @@ LIBS = [
     },
     {
         "lib": "dsp",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
@@ -659,7 +659,7 @@ LIBS = [
     },
     {
         "lib": "dvd",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
@@ -675,7 +675,7 @@ LIBS = [
     },
     {
         "lib": "exi",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -685,7 +685,7 @@ LIBS = [
     },
     {
         "lib": "gd",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -695,7 +695,7 @@ LIBS = [
     },
     {
         "lib": "gx",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -717,7 +717,7 @@ LIBS = [
     },
     {
         "lib": "mtx",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -729,7 +729,7 @@ LIBS = [
     },
     {
         "lib": "odenotstub",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -738,7 +738,7 @@ LIBS = [
     },
     {
         "lib": "os",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
@@ -770,7 +770,7 @@ LIBS = [
     },
     {
         "lib": "pad",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base -fp_contract off ",
         "host": False,
         "objects": [
@@ -780,7 +780,7 @@ LIBS = [
     },
     {
         "lib": "si",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
@@ -790,7 +790,7 @@ LIBS = [
     },
     {
         "lib": "ai",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -799,7 +799,7 @@ LIBS = [
     },
     {
         "lib": "thp",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base",
         "host": False,
         "objects": [
@@ -809,7 +809,7 @@ LIBS = [
     },
     {
         "lib": "gba",
-        "mw_version": "1.2.5e",
+        "mw_version": "1.2.5n",
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
@@ -1729,12 +1729,6 @@ if __name__ == "__main__":
         default=Path("build"),
         help="base build directory",
     )
-    parser.add_argument(
-        "--franklite",
-        dest="franklite",
-        action="store_true",
-        help="use franklite.py instead of frank.py",
-    )
     args = parser.parse_args()
 
     # On Windows, we need this to use && in commands
@@ -1752,7 +1746,7 @@ if __name__ == "__main__":
     if os.name != "nt" and "DEVKITPPC" in os.environ and not args.devkitppc:
         configure_args.extend(["--devkitppc", os.environ["DEVKITPPC"]])
     n.variable("configure_args", configure_args)
-    n.variable("python", f"\"{sys.executable}\"")
+    n.variable("python", f'"{sys.executable}"')
     n.newline()
 
     ###
@@ -1798,7 +1792,8 @@ if __name__ == "__main__":
         ldflags += " -w off"
     n.variable("ldflags", ldflags)
 
-    n.variable("mw_version", "2.6")
+    mw_link_version = "2.6"
+    n.variable("mw_version", mw_link_version)
     if os.name == "nt":
         exe = ".exe"
         wine = ""
@@ -1870,20 +1865,9 @@ if __name__ == "__main__":
     compiler_path = args.compilers / "$mw_version"
     mwcc = compiler_path / "mwcceppc.exe"
     mwld = compiler_path / "mwldeppc.exe"
-    frank = tools_path / "frank.py"
-    franklite = tools_path / "franklite.py"
     gnu_as = dkp_path / "bin" / f"powerpc-eabi-as{exe}"
 
     mwcc_cmd = f"{chain}{wine}{mwcc} $cflags -MMD -c $in -o $basedir"
-    if args.franklite:
-        mwcc_frank_cmd = f"{mwcc_cmd} && $python {franklite} $out $out"
-    else:
-        profile_mwcc = args.compilers / "1.2.5e" / "mwcceppc.exe"
-        mwcc_frank_cmd = (
-            f"{chain}{wine}{mwcc} $cflags -MMD -c $in -o $basedir"
-            + f" && {wine}{profile_mwcc} $cflags -c $in -o $out.profile"
-            + f" && $python {frank} $out $out.profile $out"
-        )
     mwld_cmd = f"{wine}{mwld} $ldflags -o $out @$out.rsp"
     as_cmd = (
         f"{chain}{gnu_as} $asflags -o $out $in -MD $out.d"
@@ -1895,7 +1879,6 @@ if __name__ == "__main__":
         transform_dep = tools_path / "transform-dep.py"
         transform_dep_cmd = f" && $python {transform_dep} $basefile.d $basefile.d"
         mwcc_cmd += transform_dep_cmd
-        mwcc_frank_cmd += transform_dep_cmd
 
     n.comment("Link ELF file")
     n.rule(
@@ -1912,16 +1895,6 @@ if __name__ == "__main__":
         name="mwcc",
         command=mwcc_cmd,
         description="MWCC $out",
-        depfile="$basefile.d",
-        deps="gcc",
-    )
-    n.newline()
-
-    n.comment("MWCC build with franklite")
-    n.rule(
-        name="mwcc_frank",
-        command=mwcc_frank_cmd,
-        description="FRANK $out",
         depfile="$basefile.d",
         deps="gcc",
     )
@@ -1979,6 +1952,7 @@ if __name__ == "__main__":
     source_inputs = []
     host_source_inputs = []
     link_inputs = []
+    used_compiler_versions = set()
     for lib in LIBS:
         inputs = []
         if "lib" in lib:
@@ -2002,6 +1976,8 @@ if __name__ == "__main__":
                 object = object[0]
 
             mw_version = options["mw_version"] or lib["mw_version"]
+            used_compiler_versions.add(mw_version)
+
             c_file = None
             if os.path.exists(src_path / f"{object}.cpp"):
                 c_file = src_path / f"{object}.cpp"
@@ -2012,18 +1988,9 @@ if __name__ == "__main__":
             elif os.path.exists(src_path / f"{object}.C"):
                 c_file = src_path / f"{object}.C"
             if c_file is not None:
-                rule = "mwcc"
-                implicit = []
-                if mw_version == "1.2.5e":
-                    mw_version = "1.2.5"
-                    rule = "mwcc_frank"
-                    if args.franklite:
-                        implicit.append(franklite)
-                    else:
-                        implicit.append(frank)
                 n.build(
                     outputs=path(build_src_path / f"{object}.o"),
-                    rule=rule,
+                    rule="mwcc",
                     inputs=path(c_file),
                     variables={
                         "mw_version": mw_version,
@@ -2031,7 +1998,6 @@ if __name__ == "__main__":
                         "basedir": os.path.dirname(build_src_path / f"{object}"),
                         "basefile": path(build_src_path / f"{object}"),
                     },
-                    implicit=path(implicit),
                 )
                 if lib["host"]:
                     n.build(
@@ -2070,6 +2036,19 @@ if __name__ == "__main__":
         else:
             link_inputs.extend(inputs)
         n.newline()
+
+    # Check if all compiler versions exist
+    for mw_version in used_compiler_versions:
+        mw_path = args.compilers / mw_version / "mwcceppc.exe"
+        if not os.path.exists(mw_path):
+            print(f"Compiler {mw_path} does not exist")
+            exit(1)
+
+    # Check if linker exists
+    mw_path = args.compilers / mw_link_version / "mwldeppc.exe"
+    if not os.path.exists(mw_path):
+        print(f"Linker {mw_path} does not exist")
+        exit(1)
 
     ###
     # Link

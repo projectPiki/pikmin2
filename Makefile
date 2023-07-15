@@ -34,9 +34,6 @@ else
     VERNUM = 0
 endif
 
-# Overkill epilogue fixup strategy. Set to 1 if necessary.
-EPILOGUE_PROCESS := 1
-
 # Use the all-in-one updater after successful build? (Fails on non-windows platforms)
 ifeq ($(USE_AOI), 1)
   ifeq ($(WINDOWS), 1)
@@ -50,9 +47,6 @@ USE_AOI = 0
 endif
 
 BUILD_DIR := build/$(NAME).$(VERSION)
-ifeq ($(EPILOGUE_PROCESS),1)
-EPILOGUE_DIR := build/epilogue/$(NAME).$(VERSION)
-endif
 
 # Inputs
 S_FILES := $(wildcard asm/*.s)
@@ -74,9 +68,6 @@ endif
 include obj_files.mk
 
 O_FILES :=	$(JSYSTEM) $(DOLPHIN) $(PLUGPROJECT) $(SYS) $(UTILITY)
-ifeq ($(EPILOGUE_PROCESS),1)
-E_FILES :=	$(AR_UNSCHEDULED) $(CARD_UNSCHEDULED) $(DSP_UNSCHEDULED) $(DVD_UNSCHEDULED) $(OS_UNSCHEDULED) $(PAD_UNSCHEDULED) $(SI_UNSCHEDULED) $(GBA_UNSCHEDULED)
-endif
 DEPENDS := $($(filter *.o,O_FILES):.o=.d)
 DEPENDS += $($(filter *.o,E_FILES):.o=.d)
 # If a specific .o file is passed as a target, also process its deps
@@ -87,10 +78,6 @@ DEPENDS += $(MAKECMDGOALS:.o=.d)
 #-------------------------------------------------------------------------------
 
 MWCC_VERSION := 2.6
-ifeq ($(EPILOGUE_PROCESS),1)
-MWCC_EPI_VERSION := 1.2.5e
-MWCC_EPI_EXE := mwcceppc.exe
-endif
 MWLD_VERSION := 2.6
 
 # Programs
@@ -116,9 +103,6 @@ else
 endif
 COMPILERS ?= tools/mwcc_compiler
 CC      = $(WINE) $(COMPILERS)/$(MWCC_VERSION)/mwcceppc.exe
-ifeq ($(EPILOGUE_PROCESS),1)
-CC_EPI  = $(WINE) $(COMPILERS)/$(MWCC_EPI_VERSION)/$(MWCC_EPI_EXE)
-endif
 LD      := $(WINE) $(COMPILERS)/$(MWLD_VERSION)/mwldeppc.exe
 DTK     := tools/dtk
 ELF2DOL := $(DTK) elf2dol
@@ -129,7 +113,6 @@ TRANSFORM_DEP := tools/transform-dep.py
 else
 TRANSFORM_DEP := tools/transform-win.py
 endif
-FRANK := tools/frank.py
 
 # Options
 INCLUDES := -i include/ -i include/stl/
@@ -168,11 +151,6 @@ ALL_DIRS := $(sort $(dir $(O_FILES)))
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
-
-# ifeq ($(EPILOGUE_PROCESS),1)
-# Make sure profile directory exists before compiling anything
-# DUMMY != mkdir -p $(EPI_DIRS)
-# endif
 
 $(LDSCRIPT): ldscript.lcf
 	$(QUIET) $(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
@@ -236,31 +214,6 @@ $(BUILD_DIR)/%.o: %.cpp
 	@echo "Compiling " $<
 	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
-
-ifeq ($(EPILOGUE_PROCESS),1)
-$(EPILOGUE_DIR)/%.o: %.c $(BUILD_DIR)/%.o
-	@echo Frank is fixing $<
-	$(QUIET) mkdir -p $(dir $@)
-	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $(dir $@) $<
-	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
-	$(QUIET) touch $@
-
-$(EPILOGUE_DIR)/%.o: %.cp $(BUILD_DIR)/%.o
-	@echo Frank is fixing $<
-	$(QUIET) mkdir -p $(dir $@)
-	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $(dir $@) $<
-	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
-	$(QUIET) touch $@
-
-$(EPILOGUE_DIR)/%.o: %.cpp $(BUILD_DIR)/%.o
-	@echo Frank is fixing $<
-	$(QUIET) mkdir -p $(dir $@)
-	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $(dir $@) $<
-	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
-	$(QUIET) touch $@
-endif
-# If we need Frank, add the following after the @echo
-# $(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
 
 ### Extremely lazy recipes for generating context ###
 # Example usage: make build/pikmin2.usa/src/plugProjectYamashitaU/farmMgr.h

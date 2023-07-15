@@ -8,21 +8,12 @@ DVD_FILES:=\
 	$(BUILD_DIR)/src/Dolphin/dvd/dvdFatal.o\
 	$(BUILD_DIR)/src/Dolphin/dvd/fstload.o\
 
-DVD_UNSCHEDULED:=\
-	$(EPILOGUE_DIR)/src/Dolphin/dvd/dvdlow.o\
-	$(EPILOGUE_DIR)/src/Dolphin/dvd/dvdfs.o\
-	$(EPILOGUE_DIR)/src/Dolphin/dvd/dvd.o\
-	$(EPILOGUE_DIR)/src/Dolphin/dvd/dvdqueue.o\
-	$(EPILOGUE_DIR)/src/Dolphin/dvd/dvdidutils.o\
-	$(EPILOGUE_DIR)/src/Dolphin/dvd/fstload.o\
-
 $(DVD_FILES): CFLAGS += -common off -str noreadonly
-$(DVD_UNSCHEDULED): CFLAGS += -common off -str noreadonly
-$(DVD_FILES): MWCC_VERSION := 1.2.5
+$(DVD_FILES): MWCC_VERSION := 1.2.5n
 
 DEPENDS += $(DVD_FILES:.o=.d)
 
-$(BUILD_DIR)/src/Dolphin/dvd/dvd.a: $(DVD_FILES) $(DVD_UNSCHEDULED)
+$(BUILD_DIR)/src/Dolphin/dvd/dvd.a: $(DVD_FILES)
 	@echo Linking... $@
 	$(QUIET) mkdir -p $(dir $@)
 	@echo $(DVD_FILES) > build/DVD_ofiles

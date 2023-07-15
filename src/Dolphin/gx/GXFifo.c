@@ -243,7 +243,6 @@ void GXInitFifoBase(GXFifoObj* fifo, void* base, u32 size)
  * --INFO--
  * Address:	800E3BA0
  * Size:	000070
- * @NeedsFrankLite
  */
 void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr)
 {
@@ -364,7 +363,6 @@ void GXSetCPUFifo(GXFifoObj* fifo)
  * --INFO--
  * Address:	800E3D44
  * Size:	000178
- * @NeedsFrankLite
  */
 void GXSetGPFifo(GXFifoObj* fifo)
 {
