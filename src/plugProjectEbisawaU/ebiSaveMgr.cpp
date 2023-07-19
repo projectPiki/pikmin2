@@ -84,7 +84,7 @@ void FSMState_DoYouContinue::do_init(TMgr* mgr, Game::StateArg*) { mgr->mSaveMen
 void FSMState_DoYouContinue::do_exec(TMgr* mgr)
 {
 	if (mgr->mSaveMenu.isFinishMsg()) {
-		switch (mgr->mSaveMenu.mState) {
+		switch (mgr->mSaveMenu.mSelectState) {
 		case 0:
 			mgr->mSaveMenu.closeScreen(nullptr);
 			if (mgr->mSaveMenu.isFinishScreen()) {
@@ -410,7 +410,8 @@ void FSMState_NowSave::do_init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_NowSave::do_exec(TMgr* mgr)
 {
 	bool test = false;
-	if (sys->mCardMgr->mIsCard || sys->mCardMgr->checkStatus() != 11) {
+	// isn't this sys->mCardMgr->isSaveValid()?
+	if ((sys->mCardMgr->mIsCard || sys->mCardMgr->checkStatus() != MemoryCardMgr::INSIDESTATUS_Unk11)) {
 		test = true;
 	}
 	if (test) {
@@ -421,14 +422,14 @@ void FSMState_NowSave::do_exec(TMgr* mgr)
 		}
 	}
 
-	if (test) {
+	if (test) { // surely all of the above can be condensed into this line
 		CardErrorArg arg(CardError::TMgr::Start_FailToSave_NoCard);
 
 		transit(mgr, CardError, &arg);
 	} else {
 		switch (mState) {
 		case 0:
-			if (sys->mCardMgr->isSaveValid()) {
+			if (sys->mCardMgr->isSaveInvalid()) {
 				bool valid;
 				if (mIsErrorState) {
 					valid = sys->mCardMgr->savePlayerNoCheckSerialNumber(-1);
@@ -440,7 +441,7 @@ void FSMState_NowSave::do_exec(TMgr* mgr)
 			}
 			break;
 		case 1:
-			if (sys->mCardMgr->isSaveValid()) {
+			if (sys->mCardMgr->isSaveInvalid()) {
 				mCardStatus = sys->mCardMgr->getCardStatus();
 				sys->mCardMgr->getCardStatus();
 				switch (mCardStatus) {
@@ -461,13 +462,13 @@ void FSMState_NowSave::do_exec(TMgr* mgr)
 			}
 			break;
 		case 2:
-			if (sys->mCardMgr->isSaveValid()) {
+			if (sys->mCardMgr->isSaveInvalid()) {
 				P2ASSERTLINE(476, sys->mCardMgr->saveGameOption());
 				mState = 3;
 			}
 			break;
 		case 3:
-			if (sys->mCardMgr->isSaveValid()) {
+			if (sys->mCardMgr->isSaveInvalid()) {
 				mCardStatus = sys->mCardMgr->getCardStatus();
 				sys->mCardMgr->getCardStatus();
 				mState = 4;
