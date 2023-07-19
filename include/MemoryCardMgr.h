@@ -74,6 +74,8 @@ struct MemoryCardMgr {
 	inline bool isSaveValid() { return mIsCard || checkStatus() != INSIDESTATUS_Unk11; }
 	inline bool isSaveInvalid() { return !mIsCard && checkStatus() != INSIDESTATUS_Unk11; }
 
+
+
 	void cardProc(void*);
 	bool cardFormat(ECardSlot);
 	bool cardMount();

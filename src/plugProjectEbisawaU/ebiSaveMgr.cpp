@@ -409,20 +409,9 @@ void FSMState_NowSave::do_init(TMgr* mgr, Game::StateArg* arg)
  */
 void FSMState_NowSave::do_exec(TMgr* mgr)
 {
-	bool test = false;
-	// isn't this sys->mCardMgr->isSaveValid()?
-	if ((sys->mCardMgr->mIsCard || sys->mCardMgr->checkStatus() != MemoryCardMgr::INSIDESTATUS_Unk11)) {
-		test = true;
-	}
-	if (test) {
-		if ((int)sys->mCardMgr->getCardStatus() == 0) {
-			test = true;
-		} else {
-			test = false; //???
-		}
-	}
 
-	if (test) { // surely all of the above can be condensed into this line
+
+	if (isSaveError()) { // surely all of the above can be condensed into this line
 		CardErrorArg arg(CardError::TMgr::Start_FailToSave_NoCard);
 
 		transit(mgr, CardError, &arg);
@@ -586,7 +575,9 @@ void FSMState_CardError::do_exec(TMgr* mgr)
  * Address:	803DC6D0
  * Size:	00014C
  */
-TMgr::~TMgr() { msInstance = nullptr; }
+TMgr::~TMgr() { // fake inheritence happening perchance?
+	msInstance = nullptr;
+}
 
 /*
  * --INFO--
