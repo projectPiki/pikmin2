@@ -56,6 +56,7 @@ struct TSaveMenu : public TScreenBase {
 	J2DPane* mPaneNoText;                        // _58
 	J2DPane* mPaneQuestionText;                  // _5C
 	og::Screen::AnimText_Screen* mAnimScreen[3]; // _60
+	// These two TYesNowCursors are emiting vtables for some reason
 	TYesNoCursor mCursor1;                       // _6C
 	TYesNoCursor mCursor2;                       // _A4
 	og::Screen::CallBack_Furiko* mFuriko;        // _DC
