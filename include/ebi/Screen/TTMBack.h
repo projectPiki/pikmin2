@@ -7,6 +7,15 @@
 namespace ebi {
 namespace Screen {
 struct TTMBack : public TScreenBase {
+	TTMBack()
+	{
+		mScreenObj           = nullptr;
+		mOpenCloseCounter    = 0;
+		mOpenCloseCounterMax = 0;
+		mOpenCloseCounter    = 0; // Yes it sets them twice, just to be sure
+		mOpenCloseCounterMax = 0;
+	}
+
 	virtual void doSetArchive(JKRArchive*);             // _24
 	virtual void doOpenScreen(ArgOpen*);                // _28
 	virtual void doCloseScreen(ArgClose*);              // _2C
@@ -18,9 +27,9 @@ struct TTMBack : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
-	P2DScreen::Mgr_tuning* mMgrTuning; // _0C
-	u32 _10;                           // _10
-	u32 _14;                           // _14
+	P2DScreen::Mgr_tuning* mScreenObj; // _0C
+	u32 mOpenCloseCounter;             // _10
+	u32 mOpenCloseCounterMax;          // _14
 };
 } // namespace Screen
 } // namespace ebi

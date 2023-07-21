@@ -91,7 +91,7 @@ struct Camera : public CullFrustum {
 	}
 	virtual bool isSpecialCamera(); // _70 (weak)
 	virtual void updateMatrix() { } // _74 (weak)
-	virtual void doUpdate();        // _78 (weak)
+	virtual void doUpdate() { }     // _78 (weak)
 
 	f32 calcProperDistance(f32, f32);
 	f32 calcScreenSize(Sys::Sphere&);
@@ -134,9 +134,9 @@ struct LookAtCamera : public Camera {
 	virtual void startVibration(int);      // _7C (weak)
 
 	// Camera _00 - _144
-	Matrixf _144;             // _144
-	Vector3f _174;            // _174 /* Sodium called this `position`, PikDecomp called it `angle`. :shrug: */
-	Vector3f mLookAtPosition; // _180 /* PikDecomp called this `position`. */
+	Matrixf mLookMatrix;      // _144
+	Vector3f mPosition;       // _174
+	Vector3f mLookAtPosition; // _180
 	Vector3f _18C;            // _18C
 };
 

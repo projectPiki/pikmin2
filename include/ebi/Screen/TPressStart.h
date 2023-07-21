@@ -10,6 +10,14 @@ struct J2DScreen;
 namespace ebi {
 namespace Screen {
 struct TPressStart : public TScreenBase {
+	TPressStart()
+	    : mControl(nullptr)
+	    , mCurrentScreen(0)
+	    , mAlpha(0)
+	    , mAlphaMax(0)
+	{
+	}
+
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
 	virtual void doCloseScreen(ArgClose*);  // _2C

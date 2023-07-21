@@ -1,181 +1,61 @@
-#include "types.h"
+#include "ebi/title/TTitle.h"
+#include "JSystem/J3D/J3DModelLoader.h"
+#include "JSystem/J3D/J3DAnmLoader.h"
+#include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_ebiP2TitleUnit_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804961D8
-    lbl_804961D8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x65626950
-        .4byte 0x32546974
-        .4byte 0x6C65556E
-        .4byte 0x69740000
-        .4byte 0x6F70656E
-        .4byte 0x696E672E
-        .4byte 0x626D6400
-    .global lbl_80496200
-    lbl_80496200:
-        .4byte 0x65626950
-        .4byte 0x32546974
-        .4byte 0x6C65556E
-        .4byte 0x69742E63
-        .4byte 0x70700000
-    .global lbl_80496214
-    lbl_80496214:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x6F70656E
-        .4byte 0x696E675F
-        .4byte 0x77616974
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x6F70656E
-        .4byte 0x696E675F
-        .4byte 0x6B617A65
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x656E656D
-        .4byte 0x792E626D
-        .4byte 0x64000000
-        .4byte 0x656E656D
-        .4byte 0x792E6263
-        .4byte 0x6B000000
-    .global lbl_80496260
-    lbl_80496260:
-        .4byte 0x626C6163
-        .4byte 0x6B5F706C
-        .4byte 0x616E6500
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E79B8
-    lbl_804E79B8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805160B8
-    lbl_805160B8:
-        .skip 0x4
-    .global lbl_805160BC
-    lbl_805160BC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051F838
-    lbl_8051F838:
-        .float 1.0
-    .global lbl_8051F83C
-    lbl_8051F83C:
-        .4byte 0x00000000
-    .global lbl_8051F840
-    lbl_8051F840:
-        .float 0.5
-    .global lbl_8051F844
-    lbl_8051F844:
-        .4byte 0x42700000
-    .global lbl_8051F848
-    lbl_8051F848:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051F84C
-    lbl_8051F84C:
-        .4byte 0x3F4CCCCD
-    .global lbl_8051F850
-    lbl_8051F850:
-        .4byte 0xC0A00001
-        .4byte 0x00000000
-    .global lbl_8051F858
-    lbl_8051F858:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051F860
-    lbl_8051F860:
-        .4byte 0x63616D2E
-        .4byte 0x626D6400
-    .global lbl_8051F868
-    lbl_8051F868:
-        .4byte 0x63616D2E
-        .4byte 0x62636B00
-    .global lbl_8051F870
-    lbl_8051F870:
-        .4byte 0x63616D2E
-        .4byte 0x62726B00
-    .global lbl_8051F878
-    lbl_8051F878:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A8
- */
-void E3DModel_set2DCoordToBaseTRMatrix__Q23ebi5titleFP8J3DModelR10Vector2<float> R10Vector2<float> f()
-{
-	// UNUSED FUNCTION
-}
+static const char idk[]  = "\0\0\0\0\0\0\0\0\0";
+static const char name[] = "ebiP2TitleUnit";
 
 namespace ebi {
 namespace title {
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0000A8
+ */
+void E3DModel_set2DCoordToBaseTRMatrix_(J3DModel* model, Vector2f& pos, Vector2f& angle, f32 scale)
+{
+	f32 y    = -angle.y;
+	f32 x    = angle.x;
+	f32 zero = 0.0f;
+	f32 one  = 1.0f;
+
+	model->mPosMtx[0][0] = y * one - zero;
+	model->mPosMtx[0][1] = 0.0f;
+	model->mPosMtx[0][2] = x;
+	model->mPosMtx[0][3] = pos.x;
+
+	model->mPosMtx[1][0] = (zero * x) - (y * zero);
+	model->mPosMtx[1][1] = 1.0f;
+	model->mPosMtx[1][2] = 0.0f;
+	model->mPosMtx[1][3] = 0.0f;
+
+	model->mPosMtx[2][0] = -(one * x - zero);
+	model->mPosMtx[2][1] = 0.0f;
+	model->mPosMtx[2][2] = y;
+	model->mPosMtx[2][3] = -pos.y;
+
+	Mtx temp;
+	PSMTXScale(temp, scale, scale, scale);
+	PSMTXConcat(model->mPosMtx, temp, model->mPosMtx);
+}
+
+/*
+ * --INFO--
  * Address:	803C0AF8
  * Size:	000088
  */
-void TParamBase::loadSettingFile(JKRArchive*, char*)
+bool TParamBase::loadSettingFile(JKRArchive* arc, char* path)
 {
-	/*
-stwu     r1, -0x430(r1)
-mflr     r0
-stw      r0, 0x434(r1)
-stw      r31, 0x42c(r1)
-mr       r31, r3
-mr       r3, r4
-lwz      r12, 0(r4)
-mr       r4, r5
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-cmplwi   r3, 0
-beq      lbl_803C0B68
-mr       r4, r3
-addi     r3, r1, 8
-li       r5, -1
-bl       __ct__9RamStreamFPvi
-li       r0, 1
-cmpwi    r0, 1
-stw      r0, 0x14(r1)
-bne      lbl_803C0B54
-li       r0, 0
-stw      r0, 0x41c(r1)
-
-lbl_803C0B54:
-mr       r3, r31
-addi     r4, r1, 8
-bl       read__10ParametersFR6Stream
-li       r3, 1
-b        lbl_803C0B6C
-
-lbl_803C0B68:
-li       r3, 0
-
-lbl_803C0B6C:
-lwz      r0, 0x434(r1)
-lwz      r31, 0x42c(r1)
-mtlr     r0
-addi     r1, r1, 0x430
-blr
-	*/
+	void* file = arc->getResource(path);
+	if (file) {
+		RamStream stream(file, -1);
+		stream.resetPosition(true, 1);
+		read(stream);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -183,120 +63,31 @@ blr
  * Address:	803C0B80
  * Size:	0000B0
  */
-void TObjBase::calcModelBaseMtx_()
-{
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-lfs      f6, lbl_8051F83C@sda21(r2)
-stw      r0, 0x44(r1)
-lfs      f7, lbl_8051F838@sda21(r2)
-stw      r31, 0x3c(r1)
-lfs      f0, 0x10(r3)
-lfs      f1, 0x18(r3)
-fneg     f8, f0
-lwz      r4, 0x28(r3)
-lfs      f5, 0xc(r3)
-fmr      f2, f1
-addi     r31, r4, 0x24
-fmsubs   f3, f7, f8, f6
-fmuls    f4, f6, f8
-fnmsubs  f0, f7, f5, f6
-stfs     f3, 0x24(r4)
-fmr      f3, f1
-fmsubs   f4, f6, f5, f4
-stfs     f6, 0x28(r4)
-stfs     f5, 0x2c(r4)
-lfs      f5, 4(r3)
-stfs     f5, 0x30(r4)
-stfs     f4, 0x34(r4)
-stfs     f7, 0x38(r4)
-stfs     f6, 0x3c(r4)
-stfs     f6, 0x40(r4)
-stfs     f0, 0x44(r4)
-stfs     f6, 0x48(r4)
-stfs     f8, 0x4c(r4)
-lfs      f0, 8(r3)
-addi     r3, r1, 8
-fneg     f0, f0
-stfs     f0, 0x50(r4)
-bl       PSMTXScale
-mr       r3, r31
-mr       r5, r31
-addi     r4, r1, 8
-bl       PSMTXConcat
-lwz      r0, 0x44(r1)
-lwz      r31, 0x3c(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
-}
-
-} // namespace title
-} // namespace ebi
+void TObjBase::calcModelBaseMtx_() { E3DModel_set2DCoordToBaseTRMatrix_(mModel, mPos, mAngle, mParms[1]); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000040
  */
-void pushOut___Q33ebi5title8TObjBaseFP10Vector2<float> f()
+void TObjBase::pushOut_(Vector2f&)
 {
 	// UNUSED FUNCTION
 }
-
-namespace ebi {
-namespace title {
 
 /*
  * --INFO--
  * Address:	803C0C30
  * Size:	000094
  */
-void TObjBase::pushOut(ebi::title::TObjBase*)
+void TObjBase::pushOut(TObjBase* otherObj)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r4
-stw      r30, 0x18(r1)
-mr       r30, r3
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi.  r0, r3, 0x18
-beq      lbl_803C0CAC
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi.  r0, r3, 0x18
-beq      lbl_803C0CAC
-lfs      f1, 0x1c(r30)
-addi     r3, r1, 8
-lfs      f0, 0x1c(r31)
-addi     r4, r31, 4
-fadds    f0, f1, f0
-stfs     f0, 0x10(r1)
-lfs      f0, 4(r30)
-stfs     f0, 8(r1)
-lfs      f0, 8(r30)
-stfs     f0, 0xc(r1)
-bl       "out__Q23ebi11EGECircle2fFP10Vector2<f>"
-
-lbl_803C0CAC:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	if (isCalc() && otherObj->isCalc()) {
+		EGECircle2f bounds;
+		bounds.mRadius = mParms[2] + otherObj->mParms[2];
+		bounds.mCenter = mPos;
+		bounds.out(&otherObj->mPos);
+	}
 }
 
 /*
@@ -304,155 +95,38 @@ blr
  * Address:	803C0CC4
  * Size:	000220
  */
-void TMapBase::setArchive(JKRArchive*)
+void TMapBase::setArchive(JKRArchive* arc)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-stw      r28, 0x10(r1)
-mr       r28, r4
-lis      r4, lbl_804961D8@ha
-lwz      r12, 0(r28)
-addi     r30, r4, lbl_804961D8@l
-mr       r3, r28
-lwz      r12, 0x14(r12)
-addi     r4, r30, 0x1c
-mtctr    r12
-bctrl
-or.      r29, r3, r3
-bne      lbl_803C0D24
-addi     r3, r30, 0x28
-addi     r5, r30, 0x3c
-li       r4, 0x60
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	void* file = arc->getResource("opening.bmd");
+	P2ASSERTLINE(96, file);
+	mMainModelData = J3DModelLoaderDataBase::load(file, 0x20100000);
 
-lbl_803C0D24:
-mr       r3, r29
-lis      r4, 0x2010
-bl       load__22J3DModelLoaderDataBaseFPCvUl
-stw      r3, 0x30(r31)
-mr       r3, r28
-addi     r4, r30, 0x48
-lwz      r12, 0(r28)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-or.      r29, r3, r3
-bne      lbl_803C0D68
-addi     r3, r30, 0x28
-addi     r5, r30, 0x3c
-li       r4, 0x6a
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	file = arc->getResource("opening_wait.bck");
+	P2ASSERTLINE(106, file);
+	mAnimWait = static_cast<J3DAnmTransform*>(J3DAnmLoaderDataBase::load(file));
 
-lbl_803C0D68:
-mr       r3, r29
-bl       load__20J3DAnmLoaderDataBaseFPCv
-stw      r3, 0x48(r31)
-mr       r3, r28
-addi     r4, r30, 0x5c
-lwz      r12, 0(r28)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-or.      r29, r3, r3
-bne      lbl_803C0DA8
-addi     r3, r30, 0x28
-addi     r5, r30, 0x3c
-li       r4, 0x6f
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	file = arc->getResource("opening_kaze.bck");
+	P2ASSERTLINE(111, file);
+	mAnimWind = static_cast<J3DAnmTransform*>(J3DAnmLoaderDataBase::load(file));
 
-lbl_803C0DA8:
-mr       r3, r29
-bl       load__20J3DAnmLoaderDataBaseFPCv
-stw      r3, 0x64(r31)
-lis      r4, 4
-lwz      r3, 0x30(r31)
-bl       newSharedDisplayList__12J3DModelDataFUl
-lwz      r3, 0x30(r31)
-bl       makeSharedDL__12J3DModelDataFv
-lwz      r3, 0x30(r31)
-lwz      r4, 0x48(r31)
-lwz      r0, 0x18(r3)
-clrlwi   r3, r0, 0x1c
-bl       J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
-stw      r3, 0x4c(r31)
-li       r6, 0
-li       r7, 0
-li       r8, 0
-lwz      r3, 0x30(r31)
-lwz      r4, 0x48(r31)
-lwz      r0, 0x18(r3)
-lwz      r5, 0x64(r31)
-clrlwi   r3, r0, 0x1c
-bl
-J3DUNewMtxCalcAnm__FUlP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransform14J3DMtxCalcFlag
-stw      r3, 0x68(r31)
-li       r3, 0xdc
-lfs      f0, lbl_8051F83C@sda21(r2)
-stfs     f0, 0x14(r31)
-bl       __nw__FUl
-or.      r30, r3, r3
-beq      lbl_803C0E58
-lis      r3, __vt__8J3DModel@ha
-lwz      r29, 0x30(r31)
-addi     r0, r3, __vt__8J3DModel@l
-mr       r28, r30
-stw      r0, 0(r30)
-addi     r3, r28, 0x88
-bl       init__15J3DVertexBufferFv
-mr       r3, r28
-bl       initialize__8J3DModelFv
-mr       r3, r28
-mr       r4, r29
-lis      r5, 2
-li       r6, 1
-bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
+	mMainModelData->newSharedDisplayList(0x40000);
+	mMainModelData->makeSharedDL();
 
-lbl_803C0E58:
-stw      r30, 0x28(r31)
-addi     r3, r31, 0x34
-lwz      r4, 0x48(r31)
-lha      r4, 6(r4)
-bl       init__12J3DFrameCtrlFs
-li       r0, 2
-lfs      f1, lbl_8051F844@sda21(r2)
-stb      r0, 0x38(r31)
-addi     r3, r31, 0x50
-lfs      f2, lbl_8051F840@sda21(r2)
-lwz      r4, sys@sda21(r13)
-lfs      f0, 0x54(r4)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-stfs     f0, 0x40(r31)
-lwz      r4, 0x64(r31)
-lha      r4, 6(r4)
-bl       init__12J3DFrameCtrlFs
-li       r0, 2
-lfs      f1, lbl_8051F844@sda21(r2)
-stb      r0, 0x54(r31)
-lfs      f2, lbl_8051F840@sda21(r2)
-lwz      r3, sys@sda21(r13)
-lfs      f0, 0x54(r3)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-stfs     f0, 0x5c(r31)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	mAnimMtxCalcWait = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnimWait);
+	mAnimMtxCalcWind = static_cast<J3DMtxCalcAnmBase*>(
+	    J3DUNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnimWait, mAnimWind, nullptr, nullptr, 0));
+
+	mParms[0] = 0.0f;
+
+	mModel = new J3DModel(mMainModelData, 0x20000, 1);
+
+	mFrameCtrlWait.init(mAnimWait->mMaxFrame);
+	mFrameCtrlWait.mAttr      = 2;
+	mFrameCtrlWait.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
+
+	mFrameCtrlWind.init(mAnimWind->mMaxFrame);
+	mFrameCtrlWind.mAttr      = 2;
+	mFrameCtrlWind.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
 }
 
 /*
@@ -460,28 +134,12 @@ blr
  * Address:	803C0EE4
  * Size:	000048
  */
-void TMapBase::startWind(float)
+void TMapBase::startWind(f32 time)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-li       r0, 1
-stw      r31, 0xc(r1)
-mr       r31, r3
-stw      r0, 0x2c(r3)
-lwz      r3, sys@sda21(r13)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x6c(r31)
-stw      r3, 0x70(r31)
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mState        = 1;
+	u32 wind      = time / sys->mDeltaTime;
+	mWindTimer    = wind;
+	mWindTimerMax = wind;
 }
 
 /*
@@ -491,187 +149,49 @@ blr
  */
 void TMapBase::update()
 {
-	/*
-stwu     r1, -0x60(r1)
-mflr     r0
-stw      r0, 0x64(r1)
-stfd     f31, 0x50(r1)
-psq_st   f31, 88(r1), 0, qr0
-stw      r31, 0x4c(r1)
-stw      r30, 0x48(r1)
-lfs      f0, 0x10(r3)
-mr       r31, r3
-lfs      f1, 0x18(r31)
-addi     r3, r1, 8
-fneg     f8, f0
-lfs      f6, lbl_8051F83C@sda21(r2)
-lfs      f7, lbl_8051F838@sda21(r2)
-fmr      f2, f1
-lwz      r4, 0x28(r31)
-fmsubs   f3, f7, f8, f6
-lfs      f5, 0xc(r31)
-fmuls    f4, f6, f8
-addi     r30, r4, 0x24
-stfs     f3, 0x24(r4)
-fnmsubs  f0, f7, f5, f6
-fmsubs   f4, f6, f5, f4
-stfs     f6, 0x28(r4)
-fmr      f3, f1
-stfs     f5, 0x2c(r4)
-lfs      f5, 4(r31)
-stfs     f5, 0x30(r4)
-stfs     f4, 0x34(r4)
-stfs     f7, 0x38(r4)
-stfs     f6, 0x3c(r4)
-stfs     f6, 0x40(r4)
-stfs     f0, 0x44(r4)
-stfs     f6, 0x48(r4)
-stfs     f8, 0x4c(r4)
-lfs      f0, 8(r31)
-fneg     f0, f0
-stfs     f0, 0x50(r4)
-bl       PSMTXScale
-mr       r3, r30
-mr       r5, r30
-addi     r4, r1, 8
-bl       PSMTXConcat
-lwz      r0, 0x6c(r31)
-cmplwi   r0, 0
-bne      lbl_803C0FEC
-li       r0, 0
-stw      r0, 0x2c(r31)
+	calcModelBaseMtx_();
 
-lbl_803C0FEC:
-lwz      r0, 0x2c(r31)
-cmpwi    r0, 1
-beq      lbl_803C1038
-bge      lbl_803C114C
-cmpwi    r0, 0
-bge      lbl_803C1008
-b        lbl_803C114C
+	if (!mWindTimer) {
+		mState = 0;
+	}
 
-lbl_803C1008:
-addi     r3, r31, 0x34
-bl       update__12J3DFrameCtrlFv
-lfs      f0, 0x44(r31)
-lwz      r3, 0x48(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x28(r31)
-lwz      r0, 0x4c(r31)
-lwz      r3, 4(r3)
-lwz      r3, 0x28(r3)
-lwz      r3, 0(r3)
-stw      r0, 0x54(r3)
-b        lbl_803C114C
+	switch (mState) {
+	case 0:
+		mFrameCtrlWait.update();
+		mAnimWait->mCurrentFrame                            = mFrameCtrlWait.mCurrTime;
+		mModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimMtxCalcWait;
+		break;
+	case 1:
+		mFrameCtrlWait.update();
+		mFrameCtrlWind.update();
+		mAnimWait->mCurrentFrame = mFrameCtrlWait.mCurrTime;
+		mAnimWind->mCurrentFrame = mFrameCtrlWind.mCurrTime;
+		J3DMtxCalcAnmBase* anm   = mAnimMtxCalcWind;
+		if (mWindTimer) {
+			mWindTimer--;
+		}
+		f32 calc;
+		if (mWindTimerMax) {
+			calc = (f32)mWindTimer / (f32)mWindTimerMax;
+		} else {
+			calc = 0.0f;
+		}
+		f32 calc2 = 1.0f;
+		calc      = 1.0f - calc;
+		if (calc <= 0.2f) {
+			calc2 = calc / 0.2f;
+		} else if (calc <= 0.8f) {
+			calc2 = calc * -(5.0f) + 5.0f;
+		}
+		anm->setWeight(0, 1.0f - calc2);
+		anm->setWeight(1, calc2);
+		mModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = anm;
+		break;
+	}
 
-lbl_803C1038:
-addi     r3, r31, 0x34
-bl       update__12J3DFrameCtrlFv
-addi     r3, r31, 0x50
-bl       update__12J3DFrameCtrlFv
-lfs      f0, 0x44(r31)
-lwz      r3, 0x48(r31)
-stfs     f0, 8(r3)
-lfs      f0, 0x60(r31)
-lwz      r3, 0x64(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x6c(r31)
-lwz      r30, 0x68(r31)
-cmplwi   r3, 0
-beq      lbl_803C1078
-addi     r0, r3, -1
-stw      r0, 0x6c(r31)
-
-lbl_803C1078:
-lwz      r4, 0x70(r31)
-cmplwi   r4, 0
-beq      lbl_803C10B8
-lwz      r3, 0x6c(r31)
-lis      r0, 0x4330
-stw      r0, 0x38(r1)
-lfd      f2, lbl_8051F858@sda21(r2)
-stw      r3, 0x3c(r1)
-lfd      f0, 0x38(r1)
-stw      r4, 0x44(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x40(r1)
-lfd      f0, 0x40(r1)
-fsubs    f0, f0, f2
-fdivs    f1, f1, f0
-b        lbl_803C10BC
-
-lbl_803C10B8:
-lfs      f1, lbl_8051F83C@sda21(r2)
-
-lbl_803C10BC:
-lfs      f31, lbl_8051F838@sda21(r2)
-lfs      f0, lbl_8051F848@sda21(r2)
-fsubs    f2, f31, f1
-fcmpo    cr0, f2, f0
-cror     2, 0, 2
-bne      lbl_803C10DC
-fdivs    f31, f2, f0
-b        lbl_803C10FC
-
-lbl_803C10DC:
-lfs      f0, lbl_8051F84C@sda21(r2)
-fcmpo    cr0, f2, f0
-cror     2, 0, 2
-bne      lbl_803C10F0
-b        lbl_803C10FC
-
-lbl_803C10F0:
-lfs      f1, lbl_8051F850@sda21(r2)
-fneg     f0, f1
-fmadds   f31, f1, f2, f0
-
-lbl_803C10FC:
-mr       r3, r30
-lfs      f0, lbl_8051F838@sda21(r2)
-lwz      r12, 0(r30)
-li       r4, 0
-fsubs    f1, f0, f31
-lwz      r12, 0x1c(r12)
-mtctr    r12
-bctrl
-mr       r3, r30
-fmr      f1, f31
-lwz      r12, 0(r30)
-li       r4, 1
-lwz      r12, 0x1c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r31)
-lwz      r3, 4(r3)
-lwz      r3, 0x28(r3)
-lwz      r3, 0(r3)
-stw      r30, 0x54(r3)
-
-lbl_803C114C:
-lwz      r3, 0x28(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x1c(r12)
-mtctr    r12
-bctrl
-psq_l    f31, 88(r1), 0, qr0
-lwz      r0, 0x64(r1)
-lfd      f31, 0x50(r1)
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-mtlr     r0
-addi     r1, r1, 0x60
-blr
-	*/
+	mModel->calc();
+	mModel->entry();
+	mModel->viewCalc();
 }
 
 /*
@@ -679,100 +199,24 @@ blr
  * Address:	803C11A8
  * Size:	000150
  */
-void TBGEnemyBase::setArchive(JKRArchive*)
+void TBGEnemyBase::setArchive(JKRArchive* arc)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r4
-lis      r4, lbl_804961D8@ha
-stw      r28, 0x10(r1)
-addi     r31, r4, lbl_804961D8@l
-mr       r28, r3
-mr       r3, r29
-lwz      r12, 0(r29)
-addi     r4, r31, 0x70
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-or.      r30, r3, r3
-bne      lbl_803C1208
-addi     r3, r31, 0x28
-addi     r5, r31, 0x3c
-li       r4, 0xc7
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	void* file = arc->getResource("enemy.bmd");
+	P2ASSERTLINE(199, file);
+	mMainModelData = J3DModelLoaderDataBase::load(file, 0x20100000);
 
-lbl_803C1208:
-mr       r3, r30
-lis      r4, 0x2010
-bl       load__22J3DModelLoaderDataBaseFPCvUl
-stw      r3, 0x2c(r28)
-mr       r3, r29
-addi     r4, r31, 0x7c
-lwz      r12, 0(r29)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-or.      r30, r3, r3
-bne      lbl_803C124C
-addi     r3, r31, 0x28
-addi     r5, r31, 0x3c
-li       r4, 0xd1
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	file = arc->getResource("enemy.bck");
+	P2ASSERTLINE(209, file);
+	mAnim = static_cast<J3DAnmTransform*>(J3DAnmLoaderDataBase::load(file));
 
-lbl_803C124C:
-mr       r3, r30
-bl       load__20J3DAnmLoaderDataBaseFPCv
-stw      r3, 0x44(r28)
-lis      r4, 4
-lwz      r3, 0x2c(r28)
-bl       newSharedDisplayList__12J3DModelDataFUl
-lwz      r3, 0x2c(r28)
-bl       makeSharedDL__12J3DModelDataFv
-lwz      r3, 0x2c(r28)
-lwz      r4, 0x44(r28)
-lwz      r0, 0x18(r3)
-clrlwi   r3, r0, 0x1c
-bl       J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
-stw      r3, 0x48(r28)
-li       r3, 0xdc
-lfs      f0, lbl_8051F83C@sda21(r2)
-stfs     f0, 0x14(r28)
-bl       __nw__FUl
-or.      r31, r3, r3
-beq      lbl_803C12D4
-lis      r3, __vt__8J3DModel@ha
-lwz      r30, 0x2c(r28)
-addi     r0, r3, __vt__8J3DModel@l
-mr       r29, r31
-stw      r0, 0(r31)
-addi     r3, r29, 0x88
-bl       init__15J3DVertexBufferFv
-mr       r3, r29
-bl       initialize__8J3DModelFv
-mr       r3, r29
-mr       r4, r30
-lis      r5, 2
-li       r6, 1
-bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
+	mMainModelData->newSharedDisplayList(0x40000);
+	mMainModelData->makeSharedDL();
 
-lbl_803C12D4:
-stw      r31, 0x28(r28)
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	mAnimMtxCalc = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnim);
+
+	mParms[0] = 0.0f;
+
+	mModel = new J3DModel(mMainModelData, 0x20000, 1);
 }
 
 /*
@@ -782,31 +226,9 @@ blr
  */
 void TBGEnemyBase::start()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r4, 0x44(r3)
-addi     r3, r31, 0x30
-lha      r4, 6(r4)
-bl       init__12J3DFrameCtrlFs
-li       r0, 0
-lfs      f1, lbl_8051F844@sda21(r2)
-stb      r0, 0x34(r31)
-lfs      f2, lbl_8051F840@sda21(r2)
-lwz      r3, sys@sda21(r13)
-lfs      f0, 0x54(r3)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-stfs     f0, 0x3c(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mFrameCtrl.init(mAnim->mMaxFrame);
+	mFrameCtrl.mAttr      = 0;
+	mFrameCtrl.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
 }
 
 /*
@@ -816,81 +238,15 @@ blr
  */
 void TBGEnemyBase::update()
 {
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-lfs      f7, lbl_8051F838@sda21(r2)
-stw      r0, 0x44(r1)
-lfs      f6, lbl_8051F83C@sda21(r2)
-stw      r31, 0x3c(r1)
-stw      r30, 0x38(r1)
-mr       r30, r3
-lfs      f0, 0x10(r3)
-addi     r3, r1, 8
-lfs      f1, 0x18(r30)
-fneg     f8, f0
-lwz      r4, 0x28(r30)
-lfs      f5, 0xc(r30)
-fmr      f2, f1
-addi     r31, r4, 0x24
-fmsubs   f3, f7, f8, f6
-fmuls    f4, f6, f8
-fnmsubs  f0, f7, f5, f6
-stfs     f3, 0x24(r4)
-fmr      f3, f1
-fmsubs   f4, f6, f5, f4
-stfs     f6, 0x28(r4)
-stfs     f5, 0x2c(r4)
-lfs      f5, 4(r30)
-stfs     f5, 0x30(r4)
-stfs     f4, 0x34(r4)
-stfs     f7, 0x38(r4)
-stfs     f6, 0x3c(r4)
-stfs     f6, 0x40(r4)
-stfs     f0, 0x44(r4)
-stfs     f6, 0x48(r4)
-stfs     f8, 0x4c(r4)
-lfs      f0, 8(r30)
-fneg     f0, f0
-stfs     f0, 0x50(r4)
-bl       PSMTXScale
-mr       r3, r31
-mr       r5, r31
-addi     r4, r1, 8
-bl       PSMTXConcat
-addi     r3, r30, 0x30
-bl       update__12J3DFrameCtrlFv
-lfs      f0, 0x40(r30)
-lwz      r3, 0x44(r30)
-stfs     f0, 8(r3)
-lwz      r3, 0x28(r30)
-lwz      r0, 0x48(r30)
-lwz      r3, 4(r3)
-lwz      r3, 0x28(r3)
-lwz      r3, 0(r3)
-stw      r0, 0x54(r3)
-lwz      r3, 0x28(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x1c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x44(r1)
-lwz      r31, 0x3c(r1)
-lwz      r30, 0x38(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	calcModelBaseMtx_();
+
+	mFrameCtrl.update();
+	mAnim->mCurrentFrame                                = mFrameCtrl.mCurrTime;
+	mModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimMtxCalc;
+
+	mModel->calc();
+	mModel->entry();
+	mModel->viewCalc();
 }
 
 /*
@@ -898,8 +254,35 @@ blr
  * Address:	803C1478
  * Size:	0002D8
  */
-void TBlackPlane::setArchive(JKRArchive*)
+void TBlackPlane::setArchive(JKRArchive* arc)
 {
+	void* file = arc->getResource("cam.bmd");
+	P2ASSERTLINE(258, file);
+	mMainModelData = J3DModelLoaderDataBase::load(file, 0x10100000);
+
+	file = arc->getResource("cam.bck");
+	P2ASSERTLINE(268, file);
+	mAnim = static_cast<J3DAnmTransform*>(J3DAnmLoaderDataBase::load(file));
+
+	file = arc->getResource("cam.brk");
+	P2ASSERTLINE(273, file);
+	mAnimColor = static_cast<J3DAnmTevRegKey*>(J3DAnmLoaderDataBase::load(file));
+
+	mAnimMtxCalc = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnim);
+
+	mParms[0] = 0.0f;
+
+	mModel = new J3DModel(mMainModelData, 0x20000, 1);
+
+	mAnimColor->searchUpdateMaterialID(mModel->mModelData);
+
+	for (u16 i = 0; i < (u32)mModel->mModelData->mMaterialTable.mMaterialNum; i++) {
+		J3DMaterialAnm* anm = new J3DMaterialAnm;
+		mModel->mModelData->mMaterialTable.mMaterials[i]->change();
+		mModel->mModelData->mMaterialTable.mMaterials[i]->mAnm = anm;
+	}
+
+	j3dSys.ErrorReport(mModel->mModelData->mMaterialTable.entryTevRegAnimator(mAnimColor));
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -1107,48 +490,13 @@ blr
  */
 void TBlackPlane::start()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r4, 0x44(r3)
-addi     r3, r31, 0x30
-lha      r4, 6(r4)
-addi     r0, r4, -2
-extsh    r4, r0
-bl       init__12J3DFrameCtrlFs
-li       r0, 0
-lfs      f1, lbl_8051F844@sda21(r2)
-stb      r0, 0x34(r31)
-addi     r3, r31, 0x4c
-lfs      f2, lbl_8051F840@sda21(r2)
-lwz      r4, sys@sda21(r13)
-lfs      f0, 0x54(r4)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-stfs     f0, 0x3c(r31)
-lwz      r4, 0x60(r31)
-lha      r4, 6(r4)
-addi     r0, r4, -2
-extsh    r4, r0
-bl       init__12J3DFrameCtrlFs
-li       r0, 0
-lfs      f1, lbl_8051F844@sda21(r2)
-stb      r0, 0x50(r31)
-lfs      f2, lbl_8051F840@sda21(r2)
-lwz      r3, sys@sda21(r13)
-lfs      f0, 0x54(r3)
-fmuls    f0, f1, f0
-fmuls    f0, f2, f0
-stfs     f0, 0x58(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mFrameCtrl.init(mAnim->mMaxFrame - 2);
+	mFrameCtrl.mAttr      = 0;
+	mFrameCtrl.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
+
+	mFrameCtrlColor.init(mAnimColor->mMaxFrame - 2);
+	mFrameCtrlColor.mAttr      = 0;
+	mFrameCtrlColor.mAnimSpeed = sys->mDeltaTime * 60.0f * 0.5f;
 }
 
 /*
@@ -1158,76 +506,16 @@ blr
  */
 void TBlackPlane::updateBeforeCamera()
 {
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-lfs      f7, lbl_8051F838@sda21(r2)
-stw      r0, 0x44(r1)
-lfs      f6, lbl_8051F83C@sda21(r2)
-stw      r31, 0x3c(r1)
-stw      r30, 0x38(r1)
-mr       r30, r3
-lfs      f0, 0x10(r3)
-addi     r3, r1, 8
-lfs      f1, 0x18(r30)
-fneg     f8, f0
-lwz      r4, 0x28(r30)
-lfs      f5, 0xc(r30)
-fmr      f2, f1
-addi     r31, r4, 0x24
-fmsubs   f3, f7, f8, f6
-fmuls    f4, f6, f8
-fnmsubs  f0, f7, f5, f6
-stfs     f3, 0x24(r4)
-fmr      f3, f1
-fmsubs   f4, f6, f5, f4
-stfs     f6, 0x28(r4)
-stfs     f5, 0x2c(r4)
-lfs      f5, 4(r30)
-stfs     f5, 0x30(r4)
-stfs     f4, 0x34(r4)
-stfs     f7, 0x38(r4)
-stfs     f6, 0x3c(r4)
-stfs     f6, 0x40(r4)
-stfs     f0, 0x44(r4)
-stfs     f6, 0x48(r4)
-stfs     f8, 0x4c(r4)
-lfs      f0, 8(r30)
-fneg     f0, f0
-stfs     f0, 0x50(r4)
-bl       PSMTXScale
-mr       r3, r31
-mr       r5, r31
-addi     r4, r1, 8
-bl       PSMTXConcat
-addi     r3, r30, 0x30
-bl       update__12J3DFrameCtrlFv
-addi     r3, r30, 0x4c
-bl       update__12J3DFrameCtrlFv
-lfs      f0, 0x5c(r30)
-lwz      r3, 0x60(r30)
-stfs     f0, 8(r3)
-lfs      f0, 0x40(r30)
-lwz      r3, 0x44(r30)
-stfs     f0, 8(r3)
-lwz      r3, 0x28(r30)
-lwz      r0, 0x48(r30)
-lwz      r3, 4(r3)
-lwz      r3, 0x28(r3)
-lwz      r3, 0(r3)
-stw      r0, 0x54(r3)
-lwz      r3, 0x28(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x10(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x44(r1)
-lwz      r31, 0x3c(r1)
-lwz      r30, 0x38(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	calcModelBaseMtx_();
+
+	mFrameCtrl.update();
+	mFrameCtrlColor.update();
+
+	mAnimColor->mCurrentFrame                           = mFrameCtrlColor.mCurrTime;
+	mAnim->mCurrentFrame                                = mFrameCtrl.mCurrTime;
+	mModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = mAnimMtxCalc;
+
+	mModel->calc();
 }
 
 /*
@@ -1237,28 +525,8 @@ blr
  */
 void TBlackPlane::updateAfterCamera()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0x28(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x1c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	mModel->entry();
+	mModel->viewCalc();
 }
 
 /*
@@ -1268,27 +536,8 @@ blr
  */
 void TBlackPlane::setLogo()
 {
-	/*
-stwu     r1, -0x20(r1)
-lis      r0, 0x4330
-lfd      f1, lbl_8051F878@sda21(r2)
-lha      r4, 0x38(r3)
-stw      r0, 8(r1)
-xoris    r4, r4, 0x8000
-stw      r4, 0xc(r1)
-lfd      f0, 8(r1)
-stw      r0, 0x10(r1)
-fsubs    f0, f0, f1
-stfs     f0, 0x40(r3)
-lha      r0, 0x54(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x14(r1)
-lfd      f0, 0x10(r1)
-fsubs    f0, f0, f1
-stfs     f0, 0x5c(r3)
-addi     r1, r1, 0x20
-blr
-	*/
+	mFrameCtrl.mCurrTime      = mFrameCtrl._08;
+	mFrameCtrlColor.mCurrTime = mFrameCtrlColor._08;
 }
 
 /*
@@ -1296,62 +545,12 @@ blr
  * Address:	803C199C
  * Size:	000078
  */
-void TBlackPlane::getCameraPos()
+Vector3f TBlackPlane::getCameraPos()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-lis      r4, lbl_80496260@ha
-stw      r30, 8(r1)
-mr       r30, r3
-addi     r4, r4, lbl_80496260@l
-lwz      r5, 0x28(r31)
-lwz      r3, 4(r5)
-lwz      r3, 0x54(r3)
-bl       getIndex__10JUTNameTabCFPCc
-lwz      r4, 0x28(r31)
-mulli    r0, r3, 0x30
-lwz      r3, 0x84(r4)
-lwz      r3, 0xc(r3)
-add      r3, r3, r0
-lfs      f2, 0x2c(r3)
-lfs      f1, 0x1c(r3)
-lfs      f0, 0xc(r3)
-stfs     f0, 0(r30)
-stfs     f1, 4(r30)
-stfs     f2, 8(r30)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	int id   = mModel->mModelData->mJointTree.mNametab->getIndex("black_plane");
+	Mtx* mtx = &mModel->mMtxBuffer->mWorldMatrices[id];
+	return Vector3f((*mtx)[0][3], (*mtx)[1][3], (*mtx)[2][3]);
 }
 
 } // namespace title
 } // namespace ebi
-
-/*
- * --INFO--
- * Address:	803C1A14
- * Size:	000028
- */
-void __sinit_ebiP2TitleUnit_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804E79B8@ha
-	stw      r0, lbl_805160B8@sda21(r13)
-	stfsu    f0, lbl_804E79B8@l(r3)
-	stfs     f0, lbl_805160BC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

@@ -77,7 +77,7 @@ struct TAnimator {
 struct TMgr : public CNode {
 	TMgr();
 
-	virtual ~TMgr(); // _08 (weak)
+	virtual ~TMgr() { } // _08 (weak)
 
 	void setArchive(JKRArchive*);
 	void initUnit();

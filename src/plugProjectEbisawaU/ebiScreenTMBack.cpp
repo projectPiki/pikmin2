@@ -1,8 +1,6 @@
 #include "ebi/E2DGraph.h"
 #include "ebi/Screen/TTMBack.h"
 #include "ebi/Screen/TNintendoLogo.h"
-#include "JSystem/JUtility/JUTException.h"
-#include "JSystem/J2D/J2DGrafContext.h"
 #include "Graphics.h"
 #include "System.h"
 
@@ -18,11 +16,11 @@ void TTMBack::doSetArchive(JKRArchive* archive)
 {
 	sys->heapStatusStart("TScreenTMBack::setArchive", nullptr);
 
-	mMgrTuning = new P2DScreen::Mgr_tuning();
-	mMgrTuning->set("tm_back.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
+	mScreenObj = new P2DScreen::Mgr_tuning();
+	mScreenObj->set("tm_back.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
 
-	E2DPane_setTreeInfluencedAlpha(mMgrTuning, true);
-	mMgrTuning->setAlpha(0);
+	E2DPane_setTreeInfluencedAlpha(mScreenObj, true);
+	mScreenObj->setAlpha(0);
 
 	sys->heapStatusEnd("TScreenTMBack::setArchive");
 }
@@ -35,9 +33,9 @@ void TTMBack::doSetArchive(JKRArchive* archive)
 void TTMBack::doOpenScreen(ArgOpen* arg)
 {
 	P2ASSERTLINE(33, arg != nullptr);
-	u32 duration = (u32)(static_cast<ArgOpenTMBack*>(arg)->_04 / sys->mDeltaTime);
-	_10          = duration;
-	_14          = duration;
+	u32 duration         = (u32)(static_cast<ArgOpenTMBack*>(arg)->_04 / sys->mDeltaTime);
+	mOpenCloseCounter    = duration;
+	mOpenCloseCounterMax = duration;
 }
 
 /*
@@ -47,9 +45,9 @@ void TTMBack::doOpenScreen(ArgOpen* arg)
  */
 void TTMBack::doCloseScreen(ArgClose* arg)
 {
-	u32 duration = (u32)(0.5f / sys->mDeltaTime);
-	_10          = duration;
-	_14          = duration;
+	u32 duration         = (u32)(0.5f / sys->mDeltaTime);
+	mOpenCloseCounter    = duration;
+	mOpenCloseCounterMax = duration;
 }
 
 /*
@@ -59,21 +57,21 @@ void TTMBack::doCloseScreen(ArgClose* arg)
  */
 bool TTMBack::doUpdateStateOpen()
 {
-	if (_10 > 0) {
-		_10 -= 1;
+	if (mOpenCloseCounter > 0) {
+		mOpenCloseCounter -= 1;
 	}
 
 	f32 factor;
-	if (_14 != 0) {
-		factor = (f32)_10 / _14;
+	if (mOpenCloseCounterMax != 0) {
+		factor = (f32)mOpenCloseCounter / mOpenCloseCounterMax;
 	} else {
 		factor = 0.0f;
 	}
 
-	mMgrTuning->setAlpha(128.0f * (1.0f - factor));
-	mMgrTuning->update();
+	mScreenObj->setAlpha(128.0f * (1.0f - factor));
+	mScreenObj->update();
 
-	if (_10 == 0) {
+	if (mOpenCloseCounter == 0) {
 		return true;
 	}
 	return false;
@@ -86,7 +84,7 @@ bool TTMBack::doUpdateStateOpen()
  */
 bool TTMBack::doUpdateStateWait()
 {
-	mMgrTuning->update();
+	mScreenObj->update();
 	return false;
 }
 
@@ -97,21 +95,21 @@ bool TTMBack::doUpdateStateWait()
  */
 bool TTMBack::doUpdateStateClose()
 {
-	if (_10 > 0) {
-		_10 -= 1;
+	if (mOpenCloseCounter > 0) {
+		mOpenCloseCounter -= 1;
 	}
 
 	f32 factor;
-	if (_14 != 0) {
-		factor = (f32)_10 / _14;
+	if (mOpenCloseCounterMax != 0) {
+		factor = (f32)mOpenCloseCounter / mOpenCloseCounterMax;
 	} else {
 		factor = 0.0f;
 	}
 
-	mMgrTuning->setAlpha(128.0f * factor);
-	mMgrTuning->update();
+	mScreenObj->setAlpha(128.0f * factor);
+	mScreenObj->update();
 
-	if (_10 == 0) {
+	if (mOpenCloseCounter == 0) {
 		return true;
 	}
 	return false;
@@ -129,7 +127,7 @@ void TTMBack::doDraw()
 	J2DPerspGraph* context = &gfx->mPerspGraph;
 	context->setPort();
 
-	mMgrTuning->draw(*gfx, *context);
+	mScreenObj->draw(*gfx, *context);
 }
 
 /*
@@ -141,8 +139,8 @@ void TNintendoLogo::doSetArchive(JKRArchive* archive)
 {
 	sys->heapStatusStart("TScreenNintendoLogo::setArchive", nullptr);
 
-	mMgrTuning = new P2DScreen::Mgr_tuning();
-	mMgrTuning->set("tm_2003nintendo.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
+	mScreenObj = new P2DScreen::Mgr_tuning();
+	mScreenObj->set("tm_2003nintendo.blo", 0x01100000, archive); /* TODO: Obviously flags and not a hex literal. */
 
 	sys->heapStatusEnd("TScreenNintendoLogo::setArchive");
 }
@@ -154,7 +152,7 @@ void TNintendoLogo::doSetArchive(JKRArchive* archive)
  */
 bool TNintendoLogo::doUpdateStateWait()
 {
-	mMgrTuning->update();
+	mScreenObj->update();
 	return false;
 }
 
@@ -170,7 +168,7 @@ void TNintendoLogo::doDraw()
 	J2DPerspGraph* context = &gfx->mPerspGraph;
 	context->setPort();
 
-	mMgrTuning->draw(*gfx, *context);
+	mScreenObj->draw(*gfx, *context);
 }
 } // namespace Screen
 } // namespace ebi

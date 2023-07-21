@@ -156,7 +156,7 @@ struct TBoidParamMgr : public CNode {
 	// TBoidParamMgr();
 	inline TBoidParamMgr()
 	    : CNode("TBoidParamMgr") {};
-	virtual ~TBoidParamMgr(); // _08 (weak)
+	virtual ~TBoidParamMgr() { } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -170,8 +170,8 @@ struct TUnit : public TObjBase {
 
 	TUnit()
 	{
-		_38.init(0);
-		_4C.init(0);
+		// mFrameControlA.init(0);
+		// mFrameControlB.init(0);
 		mCounter  = 0;
 		mCounter2 = 0;
 		destPos   = Vector2f(0.0f, 0.0f);
@@ -207,24 +207,24 @@ struct TUnit : public TObjBase {
 
 	// _00     = VTBL
 	// _00-_2C = TObjBase
-	Vector2f destPos;    // _2C
-	TMgr* mManager;      // _34
-	J3DFrameCtrl _38;    // _38
-	J3DFrameCtrl _4C;    // _4C
-	Vector2f _60;        // _60
-	TObjBase* mEnemyObj; // _68
-	f32 _6C;             // _6C
-	f32 _70;             // _70
-	f32 _74;             // _74
-	f32 _78;             // _78
-	f32 _7C;             // _7C
-	f32 _80;             // _80
-	s32 _84;             // _84
-	s32 _88;             // _88
-	u32 mCounter;        // _8C
-	u32 mCounter2;       // _90
-	bool _94;            // _94
-	bool unk3[2];        // _96
+	Vector2f destPos;            // _2C
+	TMgr* mManager;              // _34
+	J3DFrameCtrl mFrameControlA; // _38
+	J3DFrameCtrl mFrameControlB; // _4C
+	Vector2f _60;                // _60
+	TObjBase* mEnemyObj;         // _68
+	f32 _6C;                     // _6C
+	f32 _70;                     // _70
+	f32 _74;                     // _74
+	f32 _78;                     // _78
+	f32 _7C;                     // _7C
+	f32 _80;                     // _80
+	s32 _84;                     // _84
+	s32 _88;                     // _88
+	u32 mCounter;                // _8C
+	u32 mCounter2;               // _90
+	bool _94;                    // _94
+	bool unk3[2];                // _96
 };
 
 struct TMgr : public CNode {

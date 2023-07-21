@@ -7,6 +7,11 @@
 namespace ebi {
 namespace Screen {
 struct TNintendoLogo : public TScreenBase {
+	TNintendoLogo()
+	    : mScreenObj(nullptr)
+	{
+	}
+
 	virtual void doSetArchive(JKRArchive*);             // _24
 	virtual bool doUpdateStateWait();                   // _3C
 	virtual void doDraw();                              // _44
@@ -14,7 +19,7 @@ struct TNintendoLogo : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
-	P2DScreen::Mgr_tuning* mMgrTuning; // _0C
+	P2DScreen::Mgr_tuning* mScreenObj; // _0C
 };
 } // namespace Screen
 } // namespace ebi

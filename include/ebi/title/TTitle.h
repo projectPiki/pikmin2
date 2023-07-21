@@ -19,36 +19,64 @@ struct Controller;
 namespace ebi {
 namespace title {
 struct TTitleParameters : public Parameters {
+	TTitleParameters()
+	    // shoutouts to Scruffys video: https://youtu.be/Z11RFTE_vow
+	    : Parameters(nullptr, "TTitleParameters")
+	    , mBoundsMinX(this, 'tp04', "可視範囲X最小", -400.0f, -2000.0f, 2000.0f)
+	    , mBoundsMaxX(this, 'tp05', "可視範囲X最大", 400.0f, -2000.0f, 2000.0f)
+	    , mBoundsMinY(this, 'tp06', "可視範囲Y最小", -250.0f, -2000.0f, 2000.0f)
+	    , mBoundsMaxY(this, 'tp07', "可視範囲Y最大", 340.0f, -2000.0f, 2000.0f)
+	    , mPikiScatterOriginX(this, 'tp08', "ピクミン解散中心座標X", 0.0f, -640.0f, 640.0f)
+	    , mPikiScatterOriginY(this, 'tp09', "ピクミン解散中心座標Y", 0.0f, -480.0f, 480.0f)
+	    , mMinPikminScatterRadius(this, 'tp10', "ピクミン解散半径最小", 500.0f, 0.0f, 1000.0f)
+	    , mMaxPikminScatterRadius(this, 'tp11', "ピクミン解散半径最大(オブジェクト配置限界半径)", 600.0f, 0.0f, 1000.0f)
+	    , mWindProbability(this, 'tp13', "風あたり範囲の乱数", 3.0f, 0.0f, 100.0f)
+	    , mPlantMoveDuration(this, 'tp50', "BG風状態時間(秒)", 8.0f, 0.0f, 100.0f)
+	    , mBoidDurationDisperse(this, 'tp15', "BOID1状態時間(秒)", 3.0f, 0.0f, 60.0f)
+	    , mBoidDurationRegroup(this, 'tp16', "BOID2状態時間(秒)", 3.0f, 0.0f, 60.0f)
+	    , mBoidDurationSwirl(this, 'tp17', "BOID3状態時間(秒)", 10.0f, 0.0f, 60.0f)
+	    , mWindMoveDuration(this, 'tp19', "風状態時間(秒)", 3.0f, 0.0f, 60.0f)
+	    , mEnemyStayDuration(this, 'tp20', "敵状態時間(秒)", 10.0f, 0.0f, 60.0f)
+	    , mPressStartDelay(this, 'tp21', "PressStart開始時間(秒)", 2.0f, 0.0f, 60.0f)
+	    , mCanOpenMenuDelay(this, 'tp22', "キー受けつけ開始時間(秒)", 3.5f, 0.0f, 60.0f)
+	{
+	}
+
 	// _00-_0C = Parameters
-	Parm<f32> mTp04; // _0C
-	Parm<f32> mTp05; // _34
-	Parm<f32> mTp06; // _5C
-	Parm<f32> mTp07; // _84
-	Parm<f32> mTp08; // _AC
-	Parm<f32> mTp09; // _D4
-	Parm<f32> mTp10; // _FC
-	Parm<f32> mTp11; // _124
-	Parm<f32> mTp13; // _14C
-	Parm<f32> mTp50; // _174
-	Parm<f32> mTp15; // _19C
-	Parm<f32> mTp16; // _1C4
-	Parm<f32> mTp17; // _1EC
-	Parm<f32> mTp19; // _214
-	Parm<f32> mTp20; // _23C
-	Parm<f32> mTp21; // _264
-	Parm<f32> mTp22; // _28C
+	Parm<f32> mBoundsMinX;             // _0C tp04
+	Parm<f32> mBoundsMaxX;             // _34 tp05
+	Parm<f32> mBoundsMinY;             // _5C tp06
+	Parm<f32> mBoundsMaxY;             // _84 tp07
+	Parm<f32> mPikiScatterOriginX;     // _AC tp08
+	Parm<f32> mPikiScatterOriginY;     // _D4 tp09
+	Parm<f32> mMinPikminScatterRadius; // _FC tp10
+	Parm<f32> mMaxPikminScatterRadius; // _124 tp11
+	Parm<f32> mWindProbability;        // _14C tp13
+	Parm<f32> mPlantMoveDuration;      // _174 tp50
+	Parm<f32> mBoidDurationDisperse;   // _19C tp15
+	Parm<f32> mBoidDurationRegroup;    // _1C4 tp16
+	Parm<f32> mBoidDurationSwirl;      // _1EC tp17
+	Parm<f32> mWindMoveDuration;       // _214
+	Parm<f32> mEnemyStayDuration;      // _23C
+	Parm<f32> mPressStartDelay;        // _264
+	Parm<f32> mCanOpenMenuDelay;       // _28C tp22
 };
 
 struct TTitleCameraMgr : public LookAtCamera {
 	struct Parms : public Parameters {
-		inline Parms();
+		Parms()
+		    : Parameters(nullptr, "TTitleCameraParameters")
+		    , mYOffset(this, 'cam1', "カメラ距離ロゴ", 15.0f, -1000.0f, 10000.0f) // "camera distance logo"
+		    , mFOVY(this, 'cam2', "Fovy", 35.0f, 1.0f, 180.0f)
+		{
+		}
 
-		Parm<f32> mCam1; // _1A4
-		Parm<f32> mCam2; // _1CC
+		Parm<f32> mYOffset; // _1A4
+		Parm<f32> mFOVY;    // _1CC
 	};
 
-	virtual ~TTitleCameraMgr(); // _08 (weak)
-	virtual void read(Stream&); // _38 (weak)
+	virtual ~TTitleCameraMgr() { } // _08 (weak)
+	virtual void read(Stream&);    // _38 (weak)
 
 	void update();
 
@@ -62,6 +90,18 @@ struct TTitleCameraMgr : public LookAtCamera {
  */
 struct TTitleFogMgr : public FogMgr {
 	struct Parms : public Parameters {
+		Parms()
+		    : Parameters(nullptr, "TTitleFogParameters")
+		    , mIsFogActive(this, 'fg10', "フォグ有効無効", true, false, true)
+		    , mStartDist(this, 'fg00', "start z", 100.0f, 0.0f, 1024.0f)
+		    , mEndDist(this, 'fg01', "end z", 2000.0f, 0.0f, 12800.0f)
+		    , mColR(this, 'fg02', "色　R", 255, 0, 255)
+		    , mColG(this, 'fg03', "色　G", 255, 0, 255)
+		    , mColB(this, 'fg04', "色　B", 255, 0, 255)
+		    , mColA(this, 'fg05', "色　A", 255, 0, 255)
+		{
+		}
+
 		// fabricated
 		// offsets relative to TTitleFogMgr
 		Parm<bool> mIsFogActive; // _34
@@ -84,8 +124,17 @@ struct TTitleFogMgr : public FogMgr {
 };
 
 struct TTitleLightSetting {
+	TTitleLightSetting();
+
 	struct TAmbParms : public Parameters {
-		inline TAmbParms();
+		inline TAmbParms()
+		    : Parameters(nullptr, "TAmbParms")
+		    , mRed(this, 'tl00', "アンビエント色R", 0, 0, 255)
+		    , mGreen(this, 'tl01', "アンビエント色G", 0, 0, 255)
+		    , mBlue(this, 'tl02', "アンビエント色B", 0, 0, 255)
+		    , mAlpha(this, 'tl03', "アンビエント色A", 0, 0, 255)
+		{
+		}
 
 		Parm<int> mRed;   // _0C
 		Parm<int> mGreen; // _34
@@ -94,7 +143,23 @@ struct TTitleLightSetting {
 	};
 
 	struct TMainParms : public Parameters {
-		TMainParms();
+		TMainParms()
+		    : Parameters(nullptr, "TMainParms")
+		    , mTl04(this, 'tl04', "ライト色R", 255, 0, 255)
+		    , mTl05(this, 'tl05', "ライト色G", 255, 0, 255)
+		    , mTl06(this, 'tl06', "ライト色B", 255, 0, 255)
+		    , mTl07(this, 'tl07', "ライト色A", 255, 0, 255)
+		    , mTl50(this, 'tl50', "位置X", 0.0f, -10000.0f, 10000.0f)
+		    , mTl51(this, 'tl51', "位置Y", 1000.0f, -10000.0f, 50000.0f)
+		    , mTl52(this, 'tl52', "位置Z", 0.0f, -10000.0f, 10000.0f)
+		    , mTl53(this, 'tl53', "向きX", 0.0f, -1.0f, 1.0f)
+		    , mTl54(this, 'tl54', "向きY", -1.0f, -1.0f, 1.0f)
+		    , mTl55(this, 'tl55', "向きZ", 0.0f, -1.0f, 1.0f)
+		    , mTl56(this, 'tl56', "距離減衰-距離", 10000.0f, 1.0f, 50000.0f)
+		    , mTl57(this, 'tl57', "距離減衰-明るさ", 1.0f, 0.0f, 1.0f)
+		    , mTl58(this, 'tl58', "カットオフ角度", 25.0f, 1.0f, 180.0f)
+		{
+		}
 
 		Parm<int> mTl04; // _0C, _BC
 		Parm<int> mTl05; // _34, _E4
@@ -112,7 +177,18 @@ struct TTitleLightSetting {
 	};
 
 	struct TSpecParms : public Parameters {
-		TSpecParms();
+		TSpecParms()
+		    : Parameters(nullptr, "TSpecParms")
+		    , mSp04(this, 'sp04', "ライト色R", 255, 0, 255)
+		    , mSp05(this, 'sp05', "ライト色G", 255, 0, 255)
+		    , mSp06(this, 'sp06', "ライト色B", 255, 0, 255)
+		    , mSp07(this, 'sp07', "ライト色A", 255, 0, 255)
+		    , mSp53(this, 'sp53', "向きX", 0.0f, -1.0f, 1.0f)
+		    , mSp54(this, 'sp54', "向きY", -1.0f, -1.0f, 1.0f)
+		    , mSp55(this, 'sp55', "向きZ", 0.0f, -1.0f, 1.0f)
+		    , mSp56(this, 'sp56', "光沢", 64.0f, 0.0f, 512.0f)
+		{
+		}
 
 		Parm<int> mSp04; // _0C, _2D4
 		Parm<int> mSp05; // _34, _2FC
@@ -130,7 +206,14 @@ struct TTitleLightSetting {
 };
 
 struct TTitleLightMgr : public LightMgr {
-	TTitleLightMgr();
+	TTitleLightMgr()
+	    : LightMgr("LightMgr")
+	    , mLightObjMain("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(255, 255, 255, 255))
+	    , mLightObjSpec("スペキュラライト", GX_LIGHT7, TYPE_4, JUtility::TColor(255, 255, 255, 255))
+	{
+		registLightObj(&mLightObjMain);
+		registLightObj(&mLightObjSpec);
+	}
 
 	virtual ~TTitleLightMgr() { } // _08 (weak)
 	virtual void update();        // _10
@@ -153,72 +236,106 @@ struct TTitleLightMgr : public LightMgr {
 	TTitleLightSetting mSetting; // _100
 };
 
-struct TTitleMgr : public CNode {
-	enum enumState { UNKNOWN };
+struct TTitleMgr : public CNode, JKRDisposer {
+	enum enumState { UNKNOWN, STATE1, StartWind, Enemy, BoidDisperse, BoidRegroup, BoidSwirl };
+
+	enum levelSetting { Spring, Summer, Autumn, Winter };
 
 	TTitleMgr();
 
+	inline bool isIdleState()
+	{
+		bool good;
+		if (!mPikminMgr.isAssemble()) {
+			good = false;
+		} else if (mKoganeMgr.mObject->isCalc()) {
+			good = false;
+		} else if (mChappyMgr.mObject->isCalc()) {
+			good = false;
+		} else {
+			good = true;
+		}
+		return good;
+	}
+
 	virtual ~TTitleMgr(); // _08 (weak)
 
-	void globalInstance();
-	void Instance();
+	static void globalInstance();
+	static TTitleMgr* Instance();
 	void deleteInstance();
 	void init();
 	void setLogo();
 	void loadResource();
 	void initAfterLoadRes();
 	void setController(Controller*);
-	void inField(TObjBase*);
-	void inViewField(TObjBase*);
+	bool inField(TObjBase*);
+	bool inViewField(TObjBase*);
 	bool isInViewField(TObjBase*);
-	void isOutViewField(Vector2f&, f32);
+	bool isOutViewField(Vector2f&, f32);
 	bool isOutViewField(TObjBase*);
 	Vector2f getPosOutOfViewField();
 	void start();
-	void breakup();
-	void startKogane();
-	void startChappy();
+	bool breakup();
+	bool startKogane();
+	bool startChappy();
 	void boidToAssemble(long);
-	void isControllerOK();
-	void isPressStart();
+	bool isControllerOK();
+	bool isPressStart();
 	void startState(enumState);
-	void update();
+	bool update();
 	void updateState();
 	void checkEncounter_();
 	void draw();
 	void readTitleParam(JKRArchive*, char*);
+	void setDestToPiki(long);
+	void setPosToPiki(long);
+	void setStartPosToPiki();
+	void calcBreakupDestination();
+	void calcDestination(long);
+	void isAssemble();
+	void setDrawBufferToJ3DSys();
+	void inField(Vector2f&);
+	void inViewField(Vector2f&, f32);
+	void isInViewField(Vector2f&, f32);
+	void windBlow();
+	void boid3ToAssemble();
+	void isAnyKey();
+	void showInfo(long, long, long, long);
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	u8 _18[0x18];                 // _18, unknown
+	// JKRDisposer mDisposer;        // _18
 	TMapBase mMapBase;            // _30
 	TBGEnemyBase mBgEnemyBase;    // _A4
 	TBlackPlane mBlackPlane;      // _F0
 	Pikmin::TMgr mPikminMgr;      // _154
 	Kogane::TMgr mKoganeMgr;      // _AE4
 	Chappy::TMgr mChappyMgr;      // _CF4
-	u8 _F54[0x4];                 // _F54, unknown
-	int _F58;                     // _F58
-	int mMode;                    // _F5C
-	u8 _F60[0x8];                 // _F60, unknown
-	u32 _F68;                     // _F68
-	u8 _F6C[0x4];                 // _F6C, unknown
+	u8 _F54;                      // _F54
+	int mState;                   // _F58
+	int mLevelSetting;            // _F5C
+	u32 mCounterCommon;           // _F60
+	u32 mCounterCommonMax;        // _F64
+	u32 mCounter2;                // _F68
+	u32 mCounter2Max;             // _F6C
 	u8 _F70;                      // _F70
 	u8 _F71;                      // _F71
-	int _F74;                     // _F74
-	u8 _F78[0x4];                 // _F78, unknown
-	int _F7C;                     // _F7C
-	u8 _F80[0x4];                 // _F80
-	Vector2f _F84[500];           // _F84
+	u32 mCounterControl;          // _F74
+	u32 mCounterControlMax;       // _F78
+	u32 mCounterPressStart;       // _F7C
+	u32 mCounterPressStartMax;    // _F80
+	Vector2f mPikiPosList[500];   // _F84
 	TCoordMgr mCoordMgr[2];       // _1F24, 0 = main, 1 = sub
 	Controller* mController;      // _401C
 	Viewport mViewport;           // _4020
 	TTitleCameraMgr mCameraMgr;   // _4078
 	TTitleLightMgr mLightMgr;     // _4270
 	TTitleFogMgr mFogMgr;         // _4788
-	J3DDrawBuffer* _48CC;         // _48CC
-	J3DDrawBuffer* _48D0;         // _48D0
+	J3DDrawBuffer* mDrawBufferA;  // _48CC
+	J3DDrawBuffer* mDrawBufferB;  // _48D0
 	TTitleParameters mTitleParms; // _48D4
+
+	static TTitleMgr* _instance;
 };
 
 extern TTitleMgr* titleMgr;

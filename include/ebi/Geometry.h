@@ -7,10 +7,14 @@
 
 namespace ebi {
 struct EGEBox2f : JGeometry::TBox2f {
+	EGEBox2f(f32 x1, f32 y1, f32 x2, f32 y2)
+	    : JGeometry::TBox2f(x1, y1, x2, y2)
+	{
+	}
 	bool isIn(Vector2f&, f32);
 	bool isOut(Vector2f&);
 	bool isOut(Vector2f&, f32);
-	void in(Vector2f*, f32);
+	bool in(Vector2f*, f32);
 
 	// Unused/inlined:
 	bool isIn(Vector2f&);

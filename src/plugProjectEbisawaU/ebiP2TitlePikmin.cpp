@@ -2392,15 +2392,15 @@ void Pikmin::TUnit::updateEnemyReaction_()
 				case 3:
 					mAngle = Vector2f(1.0f, 0.0f);
 
-					u32 time  = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
-					mCounter  = time;
-					mCounter2 = time;
-					_4C._10   = 5.0f * randEbisawaFloat();
-					_4C._0C   = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
+					u32 time                  = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
+					mCounter                  = time;
+					mCounter2                 = time;
+					mFrameControlB.mCurrTime  = 5.0f * randEbisawaFloat();
+					mFrameControlB.mAnimSpeed = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
 					break;
 				case 1:
-					mParms[0] = 0.0f;
-					_38._0C   = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
+					mParms[0]                 = 0.0f;
+					mFrameControlA.mAnimSpeed = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
 					break;
 				}
 			}
@@ -2420,15 +2420,15 @@ void Pikmin::TUnit::updateEnemyReaction_()
 				case 3:
 					mAngle = Vector2f(1.0f, 0.0f);
 
-					u32 time  = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
-					mCounter  = time;
-					mCounter2 = time;
-					_4C._10   = 5.0f * randEbisawaFloat();
-					_4C._0C   = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
+					u32 time                  = mManager->mParams.mWindTimer.mValue / sys->mDeltaTime;
+					mCounter                  = time;
+					mCounter2                 = time;
+					mFrameControlB.mCurrTime  = 5.0f * randEbisawaFloat();
+					mFrameControlB.mAnimSpeed = sys->mDeltaTime * mManager->mParams.mAnimSpeedStyle.mValue * 60.f * 0.5f;
 					break;
 				case 1:
-					mParms[0] = 0.0f;
-					_38._0C   = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
+					mParms[0]                 = 0.0f;
+					mFrameControlA.mAnimSpeed = _60.x * sys->mDeltaTime * 60.0f * 0.5f;
 					break;
 				}
 			}

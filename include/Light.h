@@ -29,7 +29,7 @@ struct AmbientLightObj : public CNode {
 struct LightObj : public CNode {
 	LightObj(char*, _GXLightID, ELightTypeFlag, JUtility::TColor);
 
-	virtual ~LightObj();                       // _08 (weak)
+	virtual ~LightObj() { }                    // _08 (weak)
 	virtual void update();                     // _10 (weak)
 	virtual void set(Matrixf&);                // _14
 	virtual void drawPos(Graphics&);           // _18

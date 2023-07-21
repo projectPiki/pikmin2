@@ -51,21 +51,33 @@ struct ArgOpenOmake : public ArgOpen {
 };
 
 struct ArgOpenTitleMenu : public ArgOpen {
+	ArgOpenTitleMenu(int a1, int a2)
+	{
+		_04       = a1;
+		mSelectID = a2;
+	}
 
 	// _00 = VTBL
+	int _04;
+	int mSelectID;
 };
 
 struct ArgOpenTMBack : public ArgOpen {
+
+	ArgOpenTMBack(f32 a) { _04 = a; }
 
 	// _00 = VTBL
 	f32 _04; // _04
 };
 
 struct ArgClose {
-	virtual char* getName() { return "ArgClose"; }
+	virtual char* getName() { return "ArgClose"; } // _08 (weak)
 };
 
 struct ArgCloseTMBack : public ArgClose {
+	ArgCloseTMBack(f32 a) { _04 = a; }
+
+	f32 _04;
 };
 
 struct TScreenBaseInterface {

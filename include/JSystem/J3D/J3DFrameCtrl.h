@@ -4,7 +4,9 @@
 #include "types.h"
 
 struct J3DFrameCtrl {
-	virtual ~J3DFrameCtrl(); // _08 (weak)
+	J3DFrameCtrl() { init(0); }
+
+	virtual ~J3DFrameCtrl() { } // _08 (weak)
 
 	void init(short);
 	void update();
@@ -15,10 +17,10 @@ struct J3DFrameCtrl {
 	// TODO: Rename to mStartFrame
 	short _06; // _06
 	// TODO: Rename to mEndFrame
-	short _08; // _08
-	short _0A; // _0A
-	f32 _0C;   // _0C
-	f32 _10;   // _10
+	short _08;      // _08
+	short _0A;      // _0A
+	f32 mAnimSpeed; // _0C
+	f32 mCurrTime;  // _10
 };
 
 #endif

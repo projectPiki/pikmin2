@@ -1,12 +1,18 @@
 #ifndef _EBI_TITLE_TOBJECTS_H
 #define _EBI_TITLE_TOBJECTS_H
 
-#include "types.h"
 #include "Vector2.h"
+#include "Vector3.h"
 #include "Parameters.h"
+#include "JSystem/J3D/J3DFrameCtrl.h"
+#include "System.h"
 
 struct J3DModel;
+struct J3DModelData;
 struct JKRArchive;
+struct J3DAnmTransform;
+struct J3DAnmTevRegKey;
+struct J3DMtxCalcAnmBase;
 
 namespace ebi {
 namespace title {
@@ -23,11 +29,13 @@ struct TObjBase {
 		mModel    = nullptr;
 	}
 
-	virtual u32 getCreatureType(); // _08 (weak)
-	virtual bool isCalc();         // _0C (weak)
+	virtual u32 getCreatureType() { return -1; } // _08 (weak)
+	virtual bool isCalc() { return true; }       // _0C (weak)
 
 	void calcModelBaseMtx_();
 	void pushOut(TObjBase*);
+
+	void pushOut_(Vector2f&);
 
 	// _00 = VTBL
 	Vector2f mPos;    // _04
@@ -37,31 +45,81 @@ struct TObjBase {
 };
 
 struct TBGEnemyBase : public TObjBase {
+	TBGEnemyBase()
+	{
+		mMainModelData = nullptr;
+		mAnim          = nullptr;
+		mAnimMtxCalc   = nullptr;
+	}
+
 	void setArchive(JKRArchive*);
 	void start();
 	void update();
 
 	// _00 = VTBL
+	J3DModelData* mMainModelData;
+	J3DFrameCtrl mFrameCtrl;
+	J3DAnmTransform* mAnim;
+	J3DMtxCalcAnmBase* mAnimMtxCalc;
 };
 
 struct TBlackPlane : public TObjBase {
+	TBlackPlane()
+	{
+		mMainModelData = nullptr;
+		mAnim          = nullptr;
+		mAnimMtxCalc   = nullptr;
+		mAnimColor     = nullptr;
+	}
+
 	void setArchive(JKRArchive*);
 	void start();
 	void updateBeforeCamera();
 	void updateAfterCamera();
 	void setLogo();
-	void getCameraPos();
+	Vector3f getCameraPos();
 
 	// _00 = VTBL
-	u8 placeholder[158]; // _04 // placeholder for size so titlechappy can match
+	J3DModelData* mMainModelData;    // _2C
+	J3DFrameCtrl mFrameCtrl;         // _30
+	J3DAnmTransform* mAnim;          // _44
+	J3DMtxCalcAnmBase* mAnimMtxCalc; // _48
+	J3DFrameCtrl mFrameCtrlColor;    // _4C
+	J3DAnmTevRegKey* mAnimColor;     // _60
 };
 
 struct TMapBase : public TObjBase {
+
+	TMapBase()
+	{
+		mWindTimer       = 0;
+		mWindTimerMax    = 0;
+		mState           = 0;
+		mMainModelData   = nullptr;
+		mAnimWait        = nullptr;
+		mAnimMtxCalcWait = nullptr;
+		mAnimWind        = nullptr;
+		mAnimMtxCalcWind = nullptr;
+		u32 count        = 0.0f / sys->mDeltaTime;
+		mWindTimer       = count;
+		mWindTimerMax    = count;
+	}
+
 	void setArchive(JKRArchive*);
 	void startWind(f32);
 	void update();
 
 	// _00 = VTBL
+	int mState;                          // _2C
+	J3DModelData* mMainModelData;        // _30
+	J3DFrameCtrl mFrameCtrlWait;         // _34
+	J3DAnmTransform* mAnimWait;          // _48
+	J3DMtxCalcAnmBase* mAnimMtxCalcWait; // _4C
+	J3DFrameCtrl mFrameCtrlWind;         // _50
+	J3DAnmTransform* mAnimWind;          // _64
+	J3DMtxCalcAnmBase* mAnimMtxCalcWind; // _68
+	u32 mWindTimer;                      // _6C
+	u32 mWindTimerMax;                   // _70
 };
 
 struct TParamBase : public Parameters {
@@ -70,7 +128,7 @@ struct TParamBase : public Parameters {
 	{
 	}
 
-	void loadSettingFile(JKRArchive*, char*);
+	bool loadSettingFile(JKRArchive*, char*);
 
 	// _00-_0C = Parameters
 };

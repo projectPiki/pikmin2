@@ -19,7 +19,7 @@ struct Model;
 struct Viewport : CNode {
 	Viewport();
 
-	virtual ~Viewport(); // _08 (weak)
+	virtual ~Viewport() { } // _08 (weak)
 
 	void draw2dframe(J2DGrafContext&);
 	void getAspect();

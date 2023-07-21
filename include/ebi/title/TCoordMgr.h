@@ -33,7 +33,7 @@ struct TCoordMgr : public CNode {
 
 	TCoordMgr();
 
-	virtual ~TCoordMgr(); // _08 (weak)
+	virtual ~TCoordMgr() { } // _08 (weak)
 
 	void copyCoordinate(Vector2f*);
 	void readCoordinate(JKRArchive*, char*);
