@@ -15,6 +15,9 @@ struct TMainTitleMgr {
 
 	enum StateID { Standby, Opening, PressStart, MainMenu, Exiting };
 
+	// Vs and Challenge are strangely swapped from the actual menu order
+	enum MenuSelects { Select_NULL = -1, Select_Story, Select_Challenge, Select_Vs, Select_Options, Select_HiScore, Select_Bonus };
+
 	TMainTitleMgr();
 
 	void setMode(long);
@@ -50,6 +53,9 @@ struct TMainTitleMgr {
 	int mSelectedMenuOption;         // _1658
 	u32 mExitMenuCounter;            // _165C
 	u32 mExitMenuCounterMax;         // _1660
+
+	static f32 kFadeoutTime; // 1.0f
+	static f32 kFadeTime;    // 0.5f
 };
 } // namespace ebi
 

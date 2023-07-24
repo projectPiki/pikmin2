@@ -34,7 +34,7 @@ struct Scene {
 	Scene* mChild;           // _04
 	WaveLoader* mWaveLoader; // _08
 	Scene** _0C;             // _0C
-	SeqMgr _10;              // _10
+	SeqMgr mSeqMgr;          // _10
 };
 
 /**

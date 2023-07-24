@@ -54,9 +54,7 @@ struct Mgr;
 } // namespace Game
 
 struct System : public OSMutex {
-	enum ERenderMode {
-		RENDERMODE_NULL = 0,
-	};
+	enum ERenderMode { RENDERMODE_NULL = 0, NTSC_Progressive };
 
 #define SINGLE_FRAME_LENGTH (1.0f / 60.0f)
 	enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
@@ -176,7 +174,7 @@ struct System : public OSMutex {
 	f32 mFpsFactor;                       // _64
 	DvdThreadCommand mThreadCommand;      // _68
 	LanguageID mRegion;                   // _D4
-	BitFlag<u32> mFlags;                  // _D8
+	BitFlag<u32> mFlags;                  // _D8 (1 = loadResident)
 	struct JUTRomFont* mRomFont;          // _DC
 };
 

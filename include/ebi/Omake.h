@@ -102,12 +102,20 @@ struct TMgr {
 	void start();
 	void update();
 
+	inline void setControllers(Controller* control)
+	{
+		mController = control;
+		mOmake.setController(control);
+		mOmakeCardE.mInput = control;
+		mOmakeGame.setController(control);
+	}
+
 	Controller* mController;              // _000
 	u8 _004[4];                           // _004
 	ebi::Screen::TOmake mOmake;           // _008
 	ebi::Screen::TOmakeCardE mOmakeCardE; // _468
 	ebi::Screen::TOmakeGame mOmakeGame;   // _5DC
-	u8 _890;                              // _890
+	bool mIsFinished;                     // _890
 	u32 _894;                             // _894
 	u32 _898;                             // _898
 	FSMStateMachine mStateMachine;        // _89C

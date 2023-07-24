@@ -7,6 +7,13 @@ namespace PSSystem {
 template <typename T>
 struct SingletonBase {
 
+	static void createInstance()
+	{
+		if (!sInstance) {
+			sInstance = new T;
+		}
+	}
+
 	SingletonBase(T* obj) { sInstance = obj; }
 
 	virtual ~SingletonBase() { sInstance = nullptr; }; // _00

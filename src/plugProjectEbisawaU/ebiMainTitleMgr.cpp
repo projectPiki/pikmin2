@@ -114,7 +114,7 @@ void TMainTitleMgr::start()
 
 	mState              = Opening;
 	mIsForceSelect      = false;
-	mSelectedMenuOption = -1;
+	mSelectedMenuOption = Select_NULL;
 	mDrawState          = 0;
 }
 
@@ -128,22 +128,22 @@ void TMainTitleMgr::startMenuSet(long, long select)
 	mSelectedMenuOption = select;
 	int id;
 	switch (mSelectedMenuOption) {
-	case 0:
+	case Select_Story:
 		id = 0;
 		break;
-	case 1:
+	case Select_Challenge:
 		id = 2;
 		break;
-	case 2:
+	case Select_Vs:
 		id = 1;
 		break;
-	case 3:
+	case Select_Options:
 		id = 3;
 		break;
-	case 4:
+	case Select_HiScore:
 		id = 4;
 		break;
-	case 5:
+	case Select_Bonus:
 		id = 5;
 		break;
 	default:
@@ -230,7 +230,7 @@ void TMainTitleMgr::update()
 		}
 		if (mPressStart.isFinishScreen()) {
 			if (Game::gGameConfig.mParms.mKFesVersion.mData) {
-				mSelectedMenuOption = 1;
+				mSelectedMenuOption = Select_Challenge;
 				mDoEndBGM           = true;
 				u32 count           = 1.0f / sys->mDeltaTime;
 				mExitMenuCounter    = count;
@@ -241,7 +241,7 @@ void TMainTitleMgr::update()
 				mDrawState          = 2;
 				mState              = Exiting;
 			} else if (Game::gGameConfig.mParms.mNintendoVersion.mData) {
-				mSelectedMenuOption = 1;
+				mSelectedMenuOption = Select_Challenge;
 				mDoEndBGM           = true;
 				u32 count           = 1.0f / sys->mDeltaTime;
 				mExitMenuCounter    = count;
@@ -267,22 +267,22 @@ void TMainTitleMgr::update()
 			mIsForceSelect = true;
 			switch (mTitleMenu.mSelectID) {
 			case 0:
-				mSelectedMenuOption = 0;
+				mSelectedMenuOption = Select_Story;
 				break;
 			case 1:
-				mSelectedMenuOption = 2;
+				mSelectedMenuOption = Select_Vs;
 				break;
 			case 2:
-				mSelectedMenuOption = 1;
+				mSelectedMenuOption = Select_Challenge;
 				break;
 			case 3:
-				mSelectedMenuOption = 3;
+				mSelectedMenuOption = Select_Options;
 				break;
 			case 4:
-				mSelectedMenuOption = 4;
+				mSelectedMenuOption = Select_HiScore;
 				break;
 			case 5:
-				mSelectedMenuOption = 5;
+				mSelectedMenuOption = Select_Bonus;
 				break;
 			}
 			title::titleMgr->breakup();

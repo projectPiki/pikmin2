@@ -155,11 +155,9 @@ struct TMgr {
 	Screen::TOption mOptionScreen; // _000
 	ebi::Save::TMgr* mSaveMgr;     // _F18
 	Controller* mController;       // _F1C
-	u8 _F20;                       // _F20
+	bool mIsFinished;              // _F20
 	FSMStateMachine mStateMachine; // _F24
-	u8 _F28;                       // _F28
-	u32 _F2C;                      // _F2C
-	u32 _F30;                      // _F30
+	u8 _F3C;                       // _F3C
 };
 } // namespace Option
 } // namespace ebi

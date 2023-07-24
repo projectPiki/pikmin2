@@ -24,4 +24,6 @@ struct Mgr {
 };
 } // namespace Pikmin2ARAM
 
+extern Pikmin2ARAM::Mgr* gPikmin2AramMgr;
+
 #endif

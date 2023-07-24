@@ -262,7 +262,7 @@ struct TTitleMgr : public CNode, JKRDisposer {
 
 	static void globalInstance();
 	static TTitleMgr* Instance();
-	void deleteInstance();
+	static void deleteInstance();
 	void init();
 	void setLogo();
 	void loadResource();

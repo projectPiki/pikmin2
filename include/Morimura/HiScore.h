@@ -23,7 +23,7 @@ struct DispMemberHighScore : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	JKRArchive* mImageArchive; // _08, unknown ptr
+	JKRArchive* mImageArchive; // _08
 	bool _0C;                  // _0C
 };
 

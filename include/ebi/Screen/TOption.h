@@ -101,17 +101,17 @@ struct TOption : public TScreenBase {
 	// JUtility::TColor _1D8;                       // _1D8
 	// JUtility::TColor mWhite2;                    // _1DC
 	// JUtility::TColor mBlack2;                    // _1E0
-	E2DCallBack_AnmBase _1E4;          // _1E4
-	E2DCallBack_CalcAnimation _220;    // _220
-	E2DCallBack_BlinkFontColor _240;   // _240
-	E2DCallBack_BlinkAlpha _28C;       // _28C
-	E2DCallBack_BlinkAlpha _2BC;       // _2BC
-	E2DCallBack_Purupuru _2EC[7];      // _2EC
-	E2DCallBack_Purupuru _4AC[10];     // _4AC
-	E2DCallBack_Purupuru _72C[10];     // _72C
-	E2DCallBack_Purupuru _9AC[10];     // _9AC
-	E2DCallBack_Purupuru _C2C[10];     // _C2C
-	E2DCallBack_WindowCursor _EAC[10]; // __EAC
+	E2DCallBack_AnmBase _1E4;        // _1E4
+	E2DCallBack_CalcAnimation _220;  // _220
+	E2DCallBack_BlinkFontColor _240; // _240
+	E2DCallBack_BlinkAlpha _28C;     // _28C
+	E2DCallBack_BlinkAlpha _2BC;     // _2BC
+	E2DCallBack_Purupuru _2EC[7];    // _2EC
+	E2DCallBack_Purupuru _4AC[10];   // _4AC
+	E2DCallBack_Purupuru _72C[10];   // _72C
+	E2DCallBack_Purupuru _9AC[10];   // _9AC
+	E2DCallBack_Purupuru _C2C[10];   // _C2C
+	E2DCallBack_WindowCursor _EAC;   // __EAC
 };
 } // namespace Screen
 } // namespace ebi

@@ -3,9 +3,29 @@
 
 #include "types.h"
 
+// The height of the top of the nintendo logo
+#define TINYPIKMIN_STAND_HEIGHT 70.0f
+
+// Constant rate Pikmin accelerate while falling
+#define TINYPIKMIN_FALL_ACCEL 0.55f
+
+// Y position that is considered below the screen, killing the Pikmin
+#define TINYPIKMIN_OFFSCREEN_Y 448.0f
+
 struct TinyPikmin {
+	// Note purple and white are swapped from the usual
+	enum ColorID { Blue, Red, Yellow, White, Purple };
+
+	enum StateID { INACTIVE, WAIT, FALLING, LANDED, SLAMMED };
 	TinyPikmin();
 	void update();
+
+	void init(int, f32, f32, f32);
+	void wind(f32);
+	void appear();
+	void disappear();
+	void draw();
+	void drawPikmin(f32, f32, f32, f32);
 
 	u32 mState;       // _00
 	s32 mColor;       // _04

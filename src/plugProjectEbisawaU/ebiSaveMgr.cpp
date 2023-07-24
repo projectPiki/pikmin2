@@ -410,7 +410,6 @@ void FSMState_NowSave::do_init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_NowSave::do_exec(TMgr* mgr)
 {
 
-
 	if (isSaveError()) { // surely all of the above can be condensed into this line
 		CardErrorArg arg(CardError::TMgr::Start_FailToSave_NoCard);
 
@@ -575,7 +574,8 @@ void FSMState_CardError::do_exec(TMgr* mgr)
  * Address:	803DC6D0
  * Size:	00014C
  */
-TMgr::~TMgr() { // fake inheritence happening perchance?
+TMgr::~TMgr()
+{ // fake inheritence happening perchance?
 	msInstance = nullptr;
 }
 

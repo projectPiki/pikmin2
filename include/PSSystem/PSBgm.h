@@ -20,10 +20,10 @@ struct SeqTrackChild;
 struct BgmSeq : public SeqBase {
 	BgmSeq(const char*, const JAInter::SoundInfo&);
 
-	virtual ~BgmSeq();          // _08
-	virtual void getCastType(); // _24 (weak)
-	virtual void getSeqType();  // _28 (weak)
-	virtual void getHandleP();  // _3C (weak)
+	virtual ~BgmSeq();              // _08
+	virtual void getCastType();     // _24 (weak)
+	virtual void getSeqType();      // _28 (weak)
+	virtual JAISound* getHandleP(); // _3C (weak)
 
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE

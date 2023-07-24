@@ -733,7 +733,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 
 		scene = (scene->isGameScene()) ? scene : nullptr;
 
-		scene->_10.stopAllSound(15);
+		scene->mSeqMgr.stopAllSound(15);
 	}
 
 	if (config->is("e00_E3_cavestart")) {

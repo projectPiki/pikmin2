@@ -38,7 +38,7 @@ struct SeqBase : JSULink<SeqBase> {
 	virtual void onPlayingFrame();       // _30
 	virtual void isPlaying();            // _34
 	virtual void seqLoadAfter();         // _38 (weak)
-	virtual void getHandleP() = 0;       // _3C
+	virtual JAISound* getHandleP() = 0;  // _3C
 	virtual void setConfigVolume();      // _40
 
 	void getFileEntry();
@@ -92,7 +92,7 @@ struct SeqMgr : JSULink<SeqBase> {
 	void getPlayingSeq(JASTrack*);
 	void getFirstSeq();
 	void getFirstSeqA();
-	void getSeq(u32);
+	SeqBase* getSeq(u32);
 
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
@@ -108,7 +108,7 @@ struct SeSeq : public SeqBase {
 	virtual void getCastType();     // _24 (weak)
 	virtual void getSeqType();      // _28 (weak)
 	virtual void seqLoadAfter();    // _38
-	virtual void getHandleP();      // _3C (weak)
+	virtual JAISound* getHandleP(); // _3C (weak)
 	virtual void setConfigVolume(); // _40
 
 	// _00-_10  = JSULink<SeqBase>

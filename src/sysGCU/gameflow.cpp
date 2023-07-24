@@ -50,7 +50,7 @@ static SectionInfo sSectionInfo[] = {
 	{ "EXP_S", 0x22000000 },
 };
 } // namespace
-u32 GameFlow::mActiveSectionFlag = 1;
+u32 GameFlow::mActiveSectionFlag = ObjectEditor;
 
 /*
  * --INFO--
@@ -59,7 +59,7 @@ u32 GameFlow::mActiveSectionFlag = 1;
  */
 GameFlow::GameFlow()
 {
-	mActiveSectionFlag = 21;
+	mActiveSectionFlag = Boot;
 	mSection           = nullptr;
 }
 
@@ -165,13 +165,13 @@ void GameFlow::setSection()
 	JKRHeap::sCurrentHeap->getFreeSize();
 
 	switch (mActiveSectionFlag) {
-	case 0x15:
+	case Boot:
 		mSection           = new BootSection(JKRHeap::sCurrentHeap);
-		mActiveSectionFlag = 0;
+		mActiveSectionFlag = RootMenu;
 		break;
-	case 0x00:
+	case RootMenu:
 		mSection           = new RootMenuSection(JKRHeap::sCurrentHeap);
-		mActiveSectionFlag = 0x16;
+		mActiveSectionFlag = MainTitle;
 		break;
 	default:
 		JUT_PANICLINE(188, "Unknown SectionFlag. %d \n", mActiveSectionFlag);
@@ -184,13 +184,13 @@ void GameFlow::setSection()
  * Address:	8042436C
  * Size:	0000B0
  */
-void* GameFlow::getSectionInfo(int id)
+SectionInfo* GameFlow::getSectionInfo(int id)
 {
-	void* sectionInfo = nullptr;
+	SectionInfo* sectionInfo = nullptr;
 
-	P2ASSERTBOUNDSLINE(201, 0, id, 0x23);
+	P2ASSERTBOUNDSLINE(201, 0, id, SECTION_COUNT);
 
-	for (u32 i = 0; i < 0x23; i++) {
+	for (u32 i = 0; i < SECTION_COUNT; i++) {
 		if (id == sSectionInfo[i].id.mSectionId) {
 			sectionInfo = &sSectionInfo[i];
 			break;
@@ -209,19 +209,19 @@ ISection* GameFlow::createSection(JKRHeap* heap)
 {
 	ISection* section;
 	switch (mActiveSectionFlag) {
-	case 0x17:
+	case Demo:
 		section = new Demo::Section(heap);
 		break;
-	case 0x16:
+	case MainTitle:
 		section = new Title::Section(heap);
 		break;
-	case 0x2:
+	case SingleGame:
 		section = new Game::SingleGameSection(heap);
 		break;
-	case 0x3:
+	case ChallengeGame:
 		section = new Game::VsGameSection(heap, false);
 		break;
-	case 0x1E:
+	case VSGame:
 		section = new Game::VsGameSection(heap, true);
 		break;
 	default:
@@ -229,7 +229,7 @@ ISection* GameFlow::createSection(JKRHeap* heap)
 		break;
 	}
 
-	mActiveSectionFlag = 22;
+	mActiveSectionFlag = MainTitle;
 	return section;
 }
 

@@ -72,7 +72,7 @@ struct Scene_Global : public SceneBase {
 	virtual void getCamDistVol(u8);             // _28
 	virtual void getSeSceneGate(ObjBase*, u32); // _38 (weak)
 
-	void getGlobalStream();
+	PSSystem::BgmSeq* getGlobalStream();
 	void startGlobalStream(u32);
 
 	// _00      = VTBL
