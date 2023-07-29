@@ -115,6 +115,13 @@ struct Obj : public EnemyBase {
 
 	inline Parms* getParms() { return C_PARMS; }
 
+	inline bool isOnTyres() { // unsure of name
+		if (!mTyre || _2E0 == 2) {
+			return false;
+		}
+		return true;
+	}
+
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -127,13 +134,13 @@ struct Obj : public EnemyBase {
 	int mPostFlickState;                    // _2DC
 	int _2E0;                               // _2E0
 	u32 _2E4;                               // _2E4, unknown
-	u32 _2E8;                               // _2E8, unknown
+	int _2E8;                               // _2E8, unknown
 	u32 _2EC;                               // _2EC, unknown
-	u32 _2F0;                               // _2F0, unknown
+	int _2F0;                               // _2F0, unknown
 	u32 _2F4;                               // _2F4, unknown
 	Vector3f _2F8;                          // _2F8
-	u8 _304[0xC];                           // _304, unknown
-	Vector3f _310[2];                       // _310
+	Vector3f mChestJointPosition;           // _304, unknown
+	Vector3f mHandPositions[2];             // _310
 	Vector3f _328;                          // _328
 	u32 _334;                               // _334
 	bool _338;                              // _338
@@ -155,7 +162,7 @@ struct Obj : public EnemyBase {
 	u16 mLeftFootJointIndex;                // _370
 	u16 mRightFootJointIndex;               // _372
 	f32 _374;                               // _374
-	f32 _378;                               // _374
+	f32 _378;                               // _378
 	J3DMaterial* _37C;                      // _37C
 	Color4 mUsingColor;                            // _380
 	Color4 mTargetColor;                            // _384
@@ -252,7 +259,7 @@ struct Parms : public EnemyParmsBase {
 		_A14 = 1;
 		_A15 = 0;
 		_A16 = 1;
-		_A17 = 1;
+		mUseDrawBuffer8 = 1;
 		_A18 = 1;
 		_A1A = -1;
 		_A1C = 50.0f;
@@ -289,7 +296,7 @@ struct Parms : public EnemyParmsBase {
 	u8 _A14;                  // _A14, unknown
 	u8 _A15;                  // _A15, unknown
 	u8 _A16;                  // _A16, unknown
-	u8 _A17;                  // _A17, unknown
+	bool mUseDrawBuffer8;     // _A17, unknown
 	u8 _A18;                  // _A18, unknown
 	s16 _A1A;                 // _A1A, unknown
 	f32 _A1C;                 // _A1C

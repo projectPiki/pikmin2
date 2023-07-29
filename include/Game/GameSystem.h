@@ -73,6 +73,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	inline bool isVersusMode() { return mMode == GSM_VERSUS_MODE; }
 	inline bool isMultiplayerMode() { return (mMode == GSM_VERSUS_MODE || mMode == GSM_TWO_PLAYER_CHALLENGE); }
 	inline bool isChallengeMode() { return (mMode == GSM_ONE_PLAYER_CHALLENGE || mMode == GSM_TWO_PLAYER_CHALLENGE); }
+	inline bool isPiklopedia() { return mMode == GSM_PIKLOPEDIA; }
 
 	inline void setFlag(u32 flag) { mFlags |= flag; }
 
