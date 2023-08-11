@@ -79,7 +79,6 @@ bool InteractFue::actPiki(Game::Piki* piki)
 		}
 	}
 
-	float z;
 	if (piki->isZikatu()) {
 		int pikiKind = piki->mPikiKind;
 		if (pikiKind == Purple) {
@@ -93,7 +92,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				{
 					BaseItem* cave   = *iCave;
 					Vector3f cavePos = cave->getPosition();
-					f32 distance     = _distanceBetween(cavePos, pikiPos);
+					f32 distance     = _distanceBetween(cavePos, pikiPos); // float register mismatch lives here
 					if (distance < closestHoleDist) {
 						closestHoleDist = distance;
 						closestCavePos  = cavePos;
