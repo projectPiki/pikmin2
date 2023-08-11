@@ -631,9 +631,9 @@ bool InteractFlick::actPiki(Game::Piki* piki)
 	float cosVal = -pikmin2_cosf(angle);
 	float sinVal = -pikmin2_sinf(angle);
 
-	float magnetude = mKnockback * 0.1f * randFloat() + mKnockback;
+	float magnitude = mKnockback * 0.1f * randFloat() + mKnockback;
 
-	Vector3f knockbackDir = Vector3f(sinVal * magnetude, 50.0f * randFloat() + 100.0f, cosVal * magnetude);
+	Vector3f knockbackDir = Vector3f(sinVal * magnitude, 50.0f * randFloat() + 100.0f, cosVal * magnitude);
 	BlowStateArg flickArg(knockbackDir, 0.1f, false, 1, mCreature);
 	piki->startSound(PSSE_PK_VC_SCATTERED, false);
 	piki->mFsm->transit(piki, PIKISTATE_Blow, &flickArg);
