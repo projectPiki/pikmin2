@@ -4634,7 +4634,7 @@ void PikiBlowState::onFlute(Piki* piki, Navi* navi)
  */
 void PikiBlowState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 {
-	u16 flag = mIsLethal | (0x8000 & (mIsWhistled != false));
+	u16 flag = (mIsWhistled ? 0x8000 : 0) | _2A;
 	KokeDamageStateArg kokeArg(flag, 1.0f);
 	if (randFloat() < _24) {
 		if ((int)piki->mHappaKind >= Bud) {
@@ -4659,108 +4659,6 @@ void PikiBlowState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 	} else {
 		transit(piki, PIKISTATE_KokeDamage, &kokeArg);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_80518DE4@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lis      r3, 0x00008000@ha
-	lbz      r5, 0x28(r30)
-	addi     r0, r3, 0x00008000@l
-	lhz      r6, 0x2a(r30)
-	neg      r3, r5
-	or       r3, r3, r5
-	stfs     f0, 0xc(r1)
-	srawi    r3, r3, 0x1f
-	and      r0, r0, r3
-	or       r0, r6, r0
-	sth      r0, 8(r1)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	lfd      f2, 0x10(r1)
-	lfs      f0, 0x24(r30)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80190498
-	lbz      r0, 0x2b9(r31)
-	cmpwi    r0, 1
-	blt      lbl_8019047C
-	lwz      r4, 0x258(r31)
-	lwz      r3, 0xc(r4)
-	lwz      r4, 8(r4)
-	bl       "createSimpleChiru__3efxFR10Vector3<f>l"
-	li       r0, 0
-	stb      r0, 0x2b9(r31)
-
-lbl_8019047C:
-	lwz      r4, 0x14(r30)
-	cmplwi   r4, 0
-	beq      lbl_80190498
-	mr       r3, r31
-	li       r5, 0x280a
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-
-lbl_80190498:
-	lbz      r0, 0x29(r30)
-	cmplwi   r0, 0
-	beq      lbl_80190508
-	mr       r3, r31
-	li       r4, 0x280b
-	li       r5, 1
-	bl       startSound__Q24Game4PikiFUlb
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801904D8
-	li       r3, 5
-	bl       inc__Q24Game8DeathMgrFi
-
-lbl_801904D8:
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0x19
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80190528
-
-lbl_80190508:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	addi     r6, r1, 8
-	li       r5, 7
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80190528:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
