@@ -8,25 +8,23 @@
 
 namespace PSM {
 struct DemoInitiator {
-	inline DemoInitiator(u8* byte, const char* name)
-	{
-		mName       = name;
-		mSongChosen = false;
-		mByte       = byte;
-	}
+	inline DemoInitiator(u8 *pByte, const char *pName, u32 &rAST_ID, char* pBuffer);
 
+	inline void setDefaultValues();
+	inline bool isInitialized();
 	void equalSet(const char*, const char*, u8);
 	void equalSetStream(const char*, u32, u8);
 	void equalSetEx(const char*);
 	void equalSetExStream(const char*, bool, u32, u8);
 	void is(const char*);
 	void numberSet(const char*, const char*, u8);
-	void setDefault(const char*, u8, u32);
+	void setDefault(const char *, u32, bool = true);
 
 	u8* mByte;         // _00
 	const char* mName; // _04
 	bool mSongChosen;  // _08
-	u32* mAST_ID;      // _0C
+	u32& mAST_ID;      // _0C
+	char* b2;
 };
 
 struct DemoArg {
