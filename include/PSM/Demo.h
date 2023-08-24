@@ -8,7 +8,7 @@
 
 namespace PSM {
 struct DemoInitiator {
-	inline DemoInitiator(u8 *pByte, const char *pName, u32 &rAST_ID, char* pBuffer);
+	inline DemoInitiator(u8* pByte, const char* pName, u32& rAST_ID, char* pBuffer);
 
 	inline void setDefaultValues();
 	inline bool isInitialized();
@@ -18,7 +18,7 @@ struct DemoInitiator {
 	void equalSetExStream(const char*, bool, u32, u8);
 	void is(const char*);
 	void numberSet(const char*, const char*, u8);
-	void setDefault(const char *, u32, bool = true);
+	void setDefault(const char*, u32, bool = true);
 
 	u8* mByte;         // _00
 	const char* mName; // _04

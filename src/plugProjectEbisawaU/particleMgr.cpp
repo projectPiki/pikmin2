@@ -979,7 +979,7 @@ bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 	} else {
 		bound.mRadius = mClipRadiusS;
 	}
-	bound.mPosition = emit->mPositon;
+	bound.mPosition = emit->mPosition;
 
 	bool ret = false;
 	for (int i = 0; i < mActiveViewportCount; i++) {

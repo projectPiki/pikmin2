@@ -412,7 +412,7 @@ bool TDangoTurn::create(efx::Arg* arg)
 
 	if (TSimple2::create(arg)) {
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->mPosition);
 		}
 		return true;
 	} else {
@@ -693,8 +693,8 @@ bool TOootaBombLeg::create(efx::Arg* arg)
 		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
 		f32 dist = _distanceBetween(pos1, pos2);
 		dist /= 100.0f;
-		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[0]->_68, &mEmitters[0]->_A4);
-		mEmitters[0]->_04 *= dist;
+		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[0]->_68, &mEmitters[0]->mPosition);
+		mEmitters[0]->mScale.y *= dist;
 		return true;
 	} else {
 		return false;
@@ -950,7 +950,7 @@ bool TKchFlickSand::create(efx::Arg* arg)
 
 	if (TSimple2::create(arg)) {
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->mPosition);
 			mEmitters[i]->setScale(scale);
 		}
 		return true;
@@ -1079,7 +1079,7 @@ bool TKchApSand::create(efx::Arg* arg)
 
 	if (TSimple3::create(arg)) {
 		for (int i = 0; i < 3; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->mPosition);
 			mEmitters[i]->setScale(scale);
 		}
 		return true;
@@ -1207,7 +1207,7 @@ bool TKchApWat::create(efx::Arg* arg)
 
 	if (TSimple5::create(arg)) {
 		for (int i = 0; i < 5; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->mPosition);
 			mEmitters[i]->setScale(scale);
 		}
 		return true;
@@ -1694,7 +1694,7 @@ void efx::THdamaSight::setPosNrm(Vector3f& pos, Vector3f& angle)
 		// f32 len = _sqrtf();
 
 		mtx.setTranslation(pos);
-		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitter->_68, &mEmitter->_A4);
+		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitter->_68, &mEmitter->mPosition);
 	}
 	/*
 	stwu     r1, -0x40(r1)
@@ -2052,8 +2052,8 @@ bool THdamaDeadHahen1::create(efx::Arg* arg)
 		makeMtxZAxisAlongPosPos(mtx.mMatrix.mtxView, pos1, pos2);
 		f32 dist = _distanceBetween(pos1, pos2);
 		dist /= 100.0f;
-		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[0]->_68, &mEmitters[0]->_A4);
-		mEmitters[0]->_04 *= dist;
+		JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[0]->_68, &mEmitters[0]->mPosition);
+		mEmitters[0]->mScale.y *= dist;
 		return true;
 	} else {
 		return false;
@@ -2186,8 +2186,8 @@ bool THdamaDeadHahen2::create(efx::Arg* arg)
 		f32 dist = _distanceBetween(pos1, pos2);
 		dist /= 100.0f;
 		for (int i = 0; i < 2; i++) {
-			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
-			mEmitters[i]->_04 *= dist;
+			JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->mPosition);
+			mEmitters[i]->mScale.y *= dist;
 		}
 		return true;
 	} else {

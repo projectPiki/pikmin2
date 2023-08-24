@@ -258,6 +258,16 @@ inline f32 _distanceBetween2(Vector3f& me, Vector3f& them)
 	return _length2(sep);
 }
 
+inline f32 _SQUARE(f32 a) { return a * a; }
+
+inline f32 _distanceBetween3(Vector3f& me, Vector3f& them)
+{
+	f32 diffinX = me.x - them.x;
+	f32 diffinY = me.y - them.y;
+	f32 diffinZ = me.z - them.z;
+	return _sqrtf((SQUARE(diffinX)) + (_SQUARE(diffinY)) + (_SQUARE(diffinZ)));
+}
+
 inline f32 _distanceBetweenCheck(Vector3f& me, Vector3f& them)
 {
 	Vector3f sep = me - them;

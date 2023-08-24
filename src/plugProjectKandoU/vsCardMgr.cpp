@@ -10,6 +10,7 @@
 #include "Game/Stickers.h"
 #include "Game/pelletMgr.h"
 #include "Game/GameConfig.h"
+#include "Game/AIConstants.h"
 #include "nans.h"
 
 namespace Game {

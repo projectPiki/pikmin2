@@ -3,6 +3,9 @@
 
 #include "TagParm.h"
 
+#define SPRAY_TYPE_SPICY  (0)
+#define SPRAY_TYPE_BITTER (1)
+
 namespace Game {
 struct AIConstants : public TagParameters {
 	AIConstants();

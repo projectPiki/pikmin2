@@ -2,6 +2,7 @@
 #include "Game/NaviParms.h"
 #include "Game/Stickers.h"
 #include "Game/MoviePlayer.h"
+#include "Game/AIConstants.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Dolphin/rand.h"
 #include "PSM/Navi.h"
