@@ -7,213 +7,6 @@
 #include "JSystem/JParticle/JPAMath.h"
 #include "Game/MapMgr.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80497910
-    lbl_80497910:
-        .4byte 0x65667845
-        .4byte 0x6E656D79
-        .4byte 0x426F7373
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_80497924
-    lbl_80497924:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x41726750
-        .4byte 0x726D436F
-        .4byte 0x6C6F7200
-        .4byte 0x41726750
-        .4byte 0x6F73506F
-        .4byte 0x73000000
-        .4byte 0x41726753
-        .4byte 0x63616C65
-        .4byte 0x00000000
-        .4byte 0x41726752
-        .4byte 0x6F745953
-        .4byte 0x63616C65
-        .4byte 0x00000000
-        .4byte 0x4172674B
-        .4byte 0x6368596F
-        .4byte 0x64617265
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23efx16THdamaDeadHahen2
-    __vt__Q23efx16THdamaDeadHahen2:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx16THdamaDeadHahen2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx16THdamaDeadHahen1
-    __vt__Q23efx16THdamaDeadHahen1:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx16THdamaDeadHahen1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx12THdamaShootA
-    __vt__Q23efx12THdamaShootA:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx11THdamaHit2W
-    __vt__Q23efx11THdamaHit2W:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11THdamaHit2WFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple3Fv
-        .4byte fade__Q23efx8TSimple3Fv
-    .global __vt__Q23efx11THdamaShell
-    __vt__Q23efx11THdamaShell:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11THdamaShellFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx11THdamaShellFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx11THdamaShellFv
-    .global __vt__Q23efx22TKchYodareBaseChaseMtx
-    __vt__Q23efx22TKchYodareBaseChaseMtx:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg
-        .4byte forceKill__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte fade__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx22TKchYodareBaseChaseMtxFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte endDemoDrawOn__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte __dt__Q23efx22TKchYodareBaseChaseMtxFv
-    .global __vt__Q23efx27TParticleCallBack_KchYodare
-    __vt__Q23efx27TParticleCallBack_KchYodare:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23efx27TParticleCallBack_KchYodareFv
-        .4byte
-   execute__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle
-        .4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
-        .4byte
-   init__Q23efx27TParticleCallBack_KchYodareFP14JPABaseEmitterP15JPABaseParticle
-    .global __vt__Q23efx13TKchDownsmoke
-    __vt__Q23efx13TKchDownsmoke:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx13TKchDownsmokeFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx10TKchDamage
-    __vt__Q23efx10TKchDamage:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx10TKchDamageFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple4Fv
-        .4byte fade__Q23efx8TSimple4Fv
-    .global __vt__Q23efx9TKchApWat
-    __vt__Q23efx9TKchApWat:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx9TKchApWatFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple5Fv
-        .4byte fade__Q23efx8TSimple5Fv
-    .global __vt__Q23efx10TKchApSand
-    __vt__Q23efx10TKchApSand:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx10TKchApSandFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple3Fv
-        .4byte fade__Q23efx8TSimple3Fv
-    .global __vt__Q23efx13TKchFlickSand
-    __vt__Q23efx13TKchFlickSand:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx13TKchFlickSandFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx10TOootaFire
-    __vt__Q23efx10TOootaFire:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx10TOootaFireFPQ23efx3Arg
-        .4byte "forceKill__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-        .4byte "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-        .4byte "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-        .4byte "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
-    .global __vt__Q23efx13TOootaBombLeg
-    __vt__Q23efx13TOootaBombLeg:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx13TOootaBombLegFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx10TKageDead2
-    __vt__Q23efx10TKageDead2:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx10TKageDead2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx10TDangoTurn
-    __vt__Q23efx10TDangoTurn:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx10TDangoTurnFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx11TDangoCrash
-    __vt__Q23efx11TDangoCrash:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TDangoCrashFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FE38
-    lbl_8051FE38:
-        .asciz "ArgDir"
-        .skip 1
-    .global lbl_8051FE40
-    lbl_8051FE40:
-        .float 0.0
-    .global lbl_8051FE44
-    lbl_8051FE44:
-        .float 1.0
-    .global lbl_8051FE48
-    lbl_8051FE48:
-        .asciz "ArgRotY"
-    .global lbl_8051FE50
-    lbl_8051FE50:
-        .float 100.0
-*/
-
 namespace efx {
 
 /*
@@ -227,37 +20,15 @@ bool TDangoCrash::create(efx::Arg* arg)
 	P2ASSERTLINE(16, nameCheck);
 
 	efx::ArgDir* argd = static_cast<efx::ArgDir*>(arg);
-
-	f32 x = argd->mAngle.x;
-	f32 y = argd->mAngle.y;
-	f32 z = argd->mAngle.z;
+	Vector3f ang = argd->mAngle;
 
 	if (TSimple2::create(arg)) {
-		f32 z2   = z * z;
-		f32 dist = _sqrtf(x * x + y * y + z2);
-		if (dist > 0.0f) {
-			dist = 1.0f / dist;
-			x *= dist;
-			y *= dist;
-			z *= dist;
-		}
+		_normalise2(ang);
 
 		Matrixf mtx;
-		f32 f                     = 0.0f;
-		mtx.mMatrix.structView.xx = z * 1.0f - (y * f);
-		mtx.mMatrix.structView.yx = 0.0f;
-		mtx.mMatrix.structView.zx = x;
-		mtx.mMatrix.structView.tx = Vector3f::zero.x;
-
-		mtx.mMatrix.structView.xy = (x * f) - (z * f);
-		mtx.mMatrix.structView.yy = 1.0f;
-		mtx.mMatrix.structView.zy = y;
-		mtx.mMatrix.structView.ty = Vector3f::zero.y;
-
-		mtx.mMatrix.structView.xz = x * 1.0f - y * f;
-		mtx.mMatrix.structView.yz = 0.0f;
-		mtx.mMatrix.structView.zz = z;
-		mtx.mMatrix.structView.tz = Vector3f::zero.z;
+		Vector3f vecDir (0.0f, 1.0f, 0.0f);
+		// Vector3f vecAng (x, y, z);
+		mtx.setAngleMtx(vecDir, ang, Vector3f::zero);
 		for (int i = 0; i < 2; i++) {
 			JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68);
 		}
@@ -265,128 +36,6 @@ bool TDangoCrash::create(efx::Arg* arg)
 	} else {
 		return false;
 	}
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r4
-	mr       r31, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r2, lbl_8051FE38@sda21
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803EB3DC
-	lis      r3, lbl_80497910@ha
-	lis      r5, lbl_80497924@ha
-	addi     r3, r3, lbl_80497910@l
-	li       r4, 0x10
-	addi     r5, r5, lbl_80497924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803EB3DC:
-	lfs      f31, 0x10(r30)
-	mr       r3, r31
-	lfs      f30, 0x14(r30)
-	mr       r4, r30
-	lfs      f29, 0x18(r30)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803EB4D4
-	fmuls    f1, f30, f30
-	lfs      f0, lbl_8051FE40@sda21(r2)
-	fmuls    f2, f29, f29
-	fmadds   f1, f31, f31, f1
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_803EB428
-	ble      lbl_803EB42C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_803EB42C
-
-lbl_803EB428:
-	fmr      f1, f0
-
-lbl_803EB42C:
-	lfs      f0, lbl_8051FE40@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_803EB44C
-	lfs      f0, lbl_8051FE44@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f31, f31, f0
-	fmuls    f30, f30, f0
-	fmuls    f29, f29, f0
-
-lbl_803EB44C:
-	lfs      f5, lbl_8051FE40@sda21(r2)
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfsu     f3, "zero__10Vector3<f>"@l(r3)
-	li       r30, 0
-	fmuls    f2, f5, f29
-	lfs      f6, lbl_8051FE44@sda21(r2)
-	fmuls    f4, f5, f30
-	lfs      f1, 4(r3)
-	lfs      f0, 8(r3)
-	fmsubs   f2, f5, f31, f2
-	fnmsubs  f7, f6, f31, f4
-	stfs     f5, 0xc(r1)
-	fmsubs   f4, f6, f29, f4
-	stfs     f31, 0x10(r1)
-	stfs     f4, 8(r1)
-	stfs     f3, 0x14(r1)
-	stfs     f2, 0x18(r1)
-	stfs     f6, 0x1c(r1)
-	stfs     f30, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f7, 0x28(r1)
-	stfs     f5, 0x2c(r1)
-	stfs     f29, 0x30(r1)
-	stfs     f0, 0x34(r1)
-
-lbl_803EB4AC:
-	lwz      r4, 8(r31)
-	addi     r3, r1, 8
-	addi     r4, r4, 0x68
-	bl       JPASetRMtxfromMtx__FPA4_CfPA4_f
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 2
-	blt      lbl_803EB4AC
-	li       r3, 1
-	b        lbl_803EB4D8
-
-lbl_803EB4D4:
-	li       r3, 0
-
-lbl_803EB4D8:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -418,88 +67,6 @@ bool TDangoTurn::create(efx::Arg* arg)
 	} else {
 		return false;
 	}
-
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r4
-	mr       r31, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r2, lbl_8051FE48@sda21
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803EB584
-	lis      r3, lbl_80497910@ha
-	lis      r5, lbl_80497924@ha
-	addi     r3, r3, lbl_80497910@l
-	li       r4, 0x2f
-	addi     r5, r5, lbl_80497924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803EB584:
-	lfs      f31, 4(r30)
-	addi     r3, r1, 8
-	lfs      f30, 8(r30)
-	li       r4, 0x79
-	lfs      f29, 0xc(r30)
-	lfs      f1, 0x10(r30)
-	bl       PSMTXRotRad
-	stfs     f31, 0x14(r1)
-	mr       r3, r31
-	mr       r4, r30
-	stfs     f30, 0x24(r1)
-	stfs     f29, 0x34(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803EB5F0
-	li       r30, 0
-
-lbl_803EB5C4:
-	lwz      r5, 8(r31)
-	addi     r3, r1, 8
-	addi     r4, r5, 0x68
-	addi     r5, r5, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 2
-	blt      lbl_803EB5C4
-	li       r3, 1
-	b        lbl_803EB5F4
-
-lbl_803EB5F0:
-	li       r3, 0
-
-lbl_803EB5F4:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -512,21 +79,7 @@ void TKageMove::setGlobalPrmColor(Color4& color)
 	if (mEmitter == nullptr)
 		return;
 
-	mEmitter->setColor(color);
-	/*
-	lwz      r6, 8(r3)
-	cmplwi   r6, 0
-	beqlr
-	lbz      r5, 2(r4)
-	lbz      r3, 1(r4)
-	lbz      r0, 0(r4)
-	stb      r0, 0xb8(r6)
-	stb      r3, 0xb9(r6)
-	stb      r5, 0xba(r6)
-	lbz      r0, 3(r4)
-	stb      r0, 0xbb(r6)
-	blr
-	*/
+	mEmitter->setPrmColor(*(JUtility::TColor*)(&color));
 }
 
 /*
@@ -539,21 +92,7 @@ void TKageRun::setGlobalPrmColor(Color4& color)
 	if (mEmitter == nullptr)
 		return;
 
-	mEmitter->setColor(color);
-	/*
-	lwz      r6, 8(r3)
-	cmplwi   r6, 0
-	beqlr
-	lbz      r5, 2(r4)
-	lbz      r3, 1(r4)
-	lbz      r0, 0(r4)
-	stb      r0, 0xb8(r6)
-	stb      r3, 0xb9(r6)
-	stb      r5, 0xba(r6)
-	lbz      r0, 3(r4)
-	stb      r0, 0xbb(r6)
-	blr
-	*/
+	mEmitter->setPrmColor(*(JUtility::TColor*)(&color));
 }
 
 /*
@@ -566,21 +105,7 @@ void TKageDead1::setGlobalPrmColor(Color4& color)
 	if (mEmitter == nullptr)
 		return;
 
-	mEmitter->setColor(color);
-	/*
-	lwz      r6, 8(r3)
-	cmplwi   r6, 0
-	beqlr
-	lbz      r5, 2(r4)
-	lbz      r3, 1(r4)
-	lbz      r0, 0(r4)
-	stb      r0, 0xb8(r6)
-	stb      r3, 0xb9(r6)
-	stb      r5, 0xba(r6)
-	lbz      r0, 3(r4)
-	stb      r0, 0xbb(r6)
-	blr
-	*/
+	mEmitter->setPrmColor(*(JUtility::TColor*)(&color));
 }
 
 /*
@@ -596,8 +121,9 @@ bool TKageDead2::create(efx::Arg* arg)
 	efx::ArgPrmColor* argp = static_cast<efx::ArgPrmColor*>(arg);
 
 	if (TSimple1::create(arg)) {
-		mEmitters[0]->setColorRGB(argp->mColor);
-		mEmitters[0]->mColor1.a = argp->mColor.a;
+		mEmitters[0]->setPrmColor(*(JUtility::TColor*)(&argp->mColor));
+		// mEmitters[0]->mColor1.setRGB(*(JUtility::TColor*)(&argp->mColor));
+		// mEmitters[0]->mColor1.a = argp->mColor.a;
 		return true;
 	} else {
 		return false;
@@ -1360,8 +886,8 @@ void TKchCryAB::setGlobalScale(f32 scale)
  */
 void TKchCryInd::setGlobalScale(f32 scale)
 {
-	if (mItems[0].mEmitter) {
-		mItems[0].mEmitter->setGlobalScale(scale);
+	if (mEmitter) {
+		mEmitter->setGlobalScale(scale);
 	}
 	/*
 	lwz      r3, 8(r3)
@@ -1387,7 +913,7 @@ bool TKchDamage::create(efx::Arg* arg)
 
 	f32 scale = argp->mScale;
 
-	if (TSimple4::create(arg)) {
+	if (TSimpleMtx4::create(arg)) {
 		mEmitters[0]->setScale(scale);
 		mEmitters[1]->setScale(scale);
 		mEmitters[2]->setScale(scale);
@@ -1552,21 +1078,21 @@ void TParticleCallBack_KchYodare::execute(JPABaseEmitter* emit, JPABaseParticle*
 	if (position.y < groundY) {
 		ptcl->_7C |= 2;
 		position.y = groundY;
-		if (mPosID1 < _1C) {
-			Vector3f* pos = &mPosList1[mPosID1];
-			*pos          = position;
-			mPosID1++;
-		}
+		// if (mPosID1 < _1C) {
+		// 	Vector3f* pos = &mPosList1[mPosID1];
+		// 	*pos          = position;
+		// 	mPosID1++;
+		// }
 	}
-	if (position.y < _3C) {
-		ptcl->_7C |= 2;
-		position.y = _3C;
-		if (mPosID2 < _38) {
-			Vector3f* pos = &mPosList2[mPosID2];
-			*pos          = position;
-			mPosID2++;
-		}
-	}
+	// if (position.y < _3C) {
+	// 	ptcl->_7C |= 2;
+	// 	position.y = _3C;
+		// if (mPosID2 < _38) {
+		// 	Vector3f* pos = &mPosList2[mPosID2];
+		// 	*pos          = position;
+		// 	mPosID2++;
+		// }
+	// }
 }
 
 /*
@@ -1582,12 +1108,12 @@ bool TKchYodareBaseChaseMtx::create(efx::Arg* arg)
 
 	efx::ArgKchYodare* argp = static_cast<efx::ArgKchYodare*>(arg);
 	f32 scale               = argp->mScale;
-	mEfxGr.create(nullptr);
-	mEfxWat.create(nullptr);
+	mParticleCallBack.mHitGround.create(nullptr);
+	mParticleCallBack.mHitWater.create(nullptr);
 	mScale = scale;
 
 	if (TSync::create(arg)) {
-		mEmitter->mEmitterCallback = &mEfxGr;
+		mEmitter->mEmitterCallback = &mParticleCallBack.mHitGround;
 	}
 
 	return true;
@@ -1786,76 +1312,18 @@ bool THdamaShell::create(efx::Arg* arg)
 
 	efx::ArgDir* argp = static_cast<efx::ArgDir*>(arg);
 
-	volatile f32 x = argp->mAngle.x;
-	volatile f32 y = argp->mAngle.y;
-	volatile f32 z = argp->mAngle.z;
+	JGeometry::TVec3f vec;
+	vec.x = argp->mAngle.x;
+	vec.y = argp->mAngle.y; 
+	vec.z = argp->mAngle.z;
+	JGeometry::TVec3f* vecPtr = &vec;
 
 	if (TSync::create(arg)) {
-		mEmitter->setAngle(x, y, z);
+		mEmitter->setAngle(vecPtr);
 		return true;
 	} else {
 		return false;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r2, lbl_8051FE38@sda21
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803EC53C
-	lis      r3, lbl_80497910@ha
-	lis      r5, lbl_80497924@ha
-	addi     r3, r3, lbl_80497910@l
-	li       r4, 0x1b8
-	addi     r5, r5, lbl_80497924@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803EC53C:
-	lfs      f2, 0x10(r31)
-	mr       r3, r30
-	lfs      f1, 0x14(r31)
-	mr       r4, r31
-	lfs      f0, 0x18(r31)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803EC58C
-	lwz      r4, 8(r30)
-	li       r3, 1
-	lfs      f0, 8(r1)
-	lfs      f1, 0xc(r1)
-	stfs     f0, 0x18(r4)
-	lfs      f0, 0x10(r1)
-	stfs     f1, 0x1c(r4)
-	stfs     f0, 0x20(r4)
-	b        lbl_803EC590
-
-lbl_803EC58C:
-	li       r3, 0
-
-lbl_803EC590:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1874,37 +1342,18 @@ bool THdamaHit2W::create(efx::Arg* arg)
 	f32 y = argd->mAngle.y;
 	f32 z = argd->mAngle.z;
 
-	if (TSimple3::create(arg)) {
-		f32 z2   = z * z;
-		f32 dist = _sqrtf(x * x + y * y + z2);
-		if (dist > 0.0f) {
-			dist = 1.0f / dist;
-			x *= dist;
-			y *= dist;
-			z *= dist;
-		}
+	if (TSimple3::create(argd)) {
 
 		Matrixf mtx;
-		f32 f                     = 0.0f;
-		mtx.mMatrix.structView.xx = z * 1.0f - (y * f);
-		mtx.mMatrix.structView.yx = 0.0f;
-		mtx.mMatrix.structView.zx = x;
-		mtx.mMatrix.structView.tx = Vector3f::zero.x;
+		Vector3f vecDir (0.0f, 1.0f, 0.0f);
+		Vector3f vecAng (x, y, z);
+		mtx.setAngleMtx(vecDir, vecAng, Vector3f::zero); // not quite right for this one, needs something else to happen to vecAng first I think?
 
-		mtx.mMatrix.structView.xy = (x * f) - (z * f);
-		mtx.mMatrix.structView.yy = 1.0f;
-		mtx.mMatrix.structView.zy = y;
-		mtx.mMatrix.structView.ty = Vector3f::zero.y;
-
-		mtx.mMatrix.structView.xz = x * 1.0f - y * f;
-		mtx.mMatrix.structView.yz = 0.0f;
-		mtx.mMatrix.structView.zz = z;
-		mtx.mMatrix.structView.tz = Vector3f::zero.z;
 		for (int i = 0; i < 3; i++) {
 			JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68);
 		}
 		THdamaShootA effect;
-		effect.create(arg);
+		effect.create(argd);
 		return true;
 	} else {
 		return false;
@@ -2332,83 +1781,4 @@ void TOdamaFur2::setGlobalScale(f32 scale)
 	}
 }
 
-/*
- * --INFO--
- * Address:	803ECA94
- * Size:	00009C
- */
-THdamaShell::~THdamaShell()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803ECB14
-	lis      r3, __vt__Q23efx11THdamaShell@ha
-	addi     r3, r3, __vt__Q23efx11THdamaShell@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803ECB04
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803ECB04
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803ECB04:
-	extsh.   r0, r31
-	ble      lbl_803ECB14
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803ECB14:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803ECB30
- * Size:	000008
- */
-//@4 @efx::TKchYodareBaseChaseMtx::~TKchYodareBaseChaseMtx()
-//{
-/*
-addi     r3, r3, -4
-b        __dt__Q23efx22TKchYodareBaseChaseMtxFv
-*/
-//}
-
-/*
- * --INFO--
- * Address:	803ECB38
- * Size:	000008
- */
-//@4 @efx::THdamaShell::~THdamaShell()
-//{
-/*
-addi     r3, r3, -4
-b        __dt__Q23efx11THdamaShellFv
-*/
-//}
 } // namespace efx

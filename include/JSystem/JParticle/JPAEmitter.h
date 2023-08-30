@@ -216,6 +216,12 @@ struct JPABaseEmitter {
 		mColor1.b = b;
 	}
 
+	inline void setPrmColor(JUtility::TColor& color)
+	{
+		mColor1.setRGB(color);
+		mColor1.a = color.a;
+	}
+
 	Vector3f mScale;             // _00
 	JGeometry::TVec3f _0C;       // _0C
 	JGeometry::TVec3f _18;       // _18

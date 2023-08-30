@@ -125,6 +125,27 @@ struct Matrixf {
 		return outVec;
 	}
 
+	// this needs a better name - used in TDangoCrash::create
+	inline void setAngleMtx(Vector3f& dir, Vector3f& ang, Vector3f& tr)
+	{
+		Vector3f cross (dir.y * ang.z - dir.z * ang.y, dir.z * ang.x - dir.x * ang.z, dir.x * ang.y - dir.y * ang.x);
+
+		(*this)(0, 0) = cross.x;
+		(*this)(0, 1) = dir.x;
+		(*this)(0, 2) = ang.x;
+		(*this)(0, 3) = tr.x;
+
+		(*this)(1, 0) = cross.y;
+		(*this)(1, 1) = dir.y;
+		(*this)(1, 2) = ang.y;
+		(*this)(1, 3) = tr.y;
+
+		(*this)(2, 0) = cross.z;		
+		(*this)(2, 1) = dir.z;
+		(*this)(2, 2) = ang.z;
+		(*this)(2, 3) = tr.z;
+	}
+
 	union {
 		Mtx mtxView;
 		struct {

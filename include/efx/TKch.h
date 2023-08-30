@@ -2,6 +2,7 @@
 #define _EFX_TKCH_H
 
 #include "efx/TSimple.h"
+#include "efx/TSimpleMtx.h"
 #include "efx/TChasePos.h"
 #include "efx/TChaseMtx.h"
 #include "efx/TOneEmitter.h"
@@ -57,9 +58,9 @@ struct TKchCryInd : public TChaseMtxT {
 	// _00-_14  = TChaseMtxT
 };
 
-struct TKchDamage : public TSimple4 {
+struct TKchDamage : public TSimpleMtx4 {
 	inline TKchDamage()
-	    : TSimple4(PID_KchDamage_1, PID_KchDamage_2, PID_KchDamage_3, PID_KchDamage_4)
+	    : TSimpleMtx4(nullptr, PID_KchDamage_1, PID_KchDamage_2, PID_KchDamage_3, PID_KchDamage_4)
 	{
 	}
 
