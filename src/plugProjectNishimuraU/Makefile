@@ -200,7 +200,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaKochappyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaKochappyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaKochappyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaKochappy.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaKochappy.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MiniHoudaiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/MiniHoudaiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/MiniHoudaiMgr.o\

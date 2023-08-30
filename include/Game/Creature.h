@@ -7,6 +7,7 @@
 #include "Game/updateMgr.h"
 #include "BitFlag.h"
 #include "ObjectTypes.h"
+#include "trig.h"
 
 // Shorthand cast to obj-specific 'parms'
 #define CG_PARMS(x) (static_cast<Parms*>(x->mParms))
@@ -309,6 +310,15 @@ struct Creature : public CellObject {
 	inline bool isCreatureFlag(u32 flag) const { return mFlags.typeView & flag; }
 
 	inline void killInline(CreatureKillArg* arg);
+
+	inline f32 getAngDist(Creature* other)
+	{
+		Vector3f otherPos = other->getPosition();
+		Vector3f pos      = getPosition();
+
+		f32 angBetween = _angXZ(otherPos.x, otherPos.z, pos.x, pos.z);
+		return angDist(angBetween, getFaceDir());
+	}
 
 	void applyAirDrag(f32, f32, f32);
 	f32 calcSphereDistance(Creature*);

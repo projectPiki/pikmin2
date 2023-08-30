@@ -40,35 +40,38 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);          // _30
-	virtual void onKill(CreatureKillArg* settings);          // _34
-	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual void getShadowParam(ShadowParam& settings);      // _134
-	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual void initMouthSlots();                           // _22C
-	virtual void initWalkSmokeEffect();                      // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();   // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                     // _25C (weak)
-	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual void startCarcassMotion();                       // _2C4
-	virtual f32 getDownSmokeScale();                         // _2EC (weak)
-	virtual void setFSM(FSM*);                               // _2F8
+	virtual void onInit(CreatureInitArg* settings);              // _30
+	virtual void onKill(CreatureKillArg* settings);              // _34
+	virtual void doDirectDraw(Graphics& gfx);                    // _50
+	virtual void getShadowParam(ShadowParam& settings);          // _134
+	virtual ~Obj() { }                                           // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*);      // _1C4
+	virtual void doUpdate();                                     // _1CC
+	virtual void doDebugDraw(Graphics&);                         // _1EC
+	virtual void initMouthSlots();                               // _22C
+	virtual void initWalkSmokeEffect();                          // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();       // _234
+	virtual bool pressCallBack(Creature*, f32, CollPart*);       // _27C
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*);     // _284
+	virtual void startCarcassMotion();                           // _2C4
+	virtual void setFSM(FSM*);                                   // _2F8
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; } // _25C (weak)
+	virtual f32 getDownSmokeScale() { return 0.4f; }             // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()           // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_KumaKochappy;
+	}
 	////////// VTABLE END
 
 	void resetZukanAnimationFrame();
-	void setNearestParent();
+	KumaChappy::Obj* setNearestParent();
 	Vector3f* setTargetParentPosition();
 	void updateHomePosition();
 	Creature* getSearchedTarget();
 	void createChappyRelation();
 	void releaseParent();
-	void getParentRelation();
-	void getEnemyIndex(int&);
+	ChappyRelation* getParentRelation();
+	int getEnemyIndex(int&);
 	void addParentEnemy(KumaChappy::Obj*);
 
 	// _00 		= VTBL

@@ -20,13 +20,13 @@ bool TDangoCrash::create(efx::Arg* arg)
 	P2ASSERTLINE(16, nameCheck);
 
 	efx::ArgDir* argd = static_cast<efx::ArgDir*>(arg);
-	Vector3f ang = argd->mAngle;
+	Vector3f ang      = argd->mAngle;
 
 	if (TSimple2::create(arg)) {
 		_normalise2(ang);
 
 		Matrixf mtx;
-		Vector3f vecDir (0.0f, 1.0f, 0.0f);
+		Vector3f vecDir(0.0f, 1.0f, 0.0f);
 		// Vector3f vecAng (x, y, z);
 		mtx.setAngleMtx(vecDir, ang, Vector3f::zero);
 		for (int i = 0; i < 2; i++) {
@@ -1087,11 +1087,11 @@ void TParticleCallBack_KchYodare::execute(JPABaseEmitter* emit, JPABaseParticle*
 	// if (position.y < _3C) {
 	// 	ptcl->_7C |= 2;
 	// 	position.y = _3C;
-		// if (mPosID2 < _38) {
-		// 	Vector3f* pos = &mPosList2[mPosID2];
-		// 	*pos          = position;
-		// 	mPosID2++;
-		// }
+	// if (mPosID2 < _38) {
+	// 	Vector3f* pos = &mPosList2[mPosID2];
+	// 	*pos          = position;
+	// 	mPosID2++;
+	// }
 	// }
 }
 
@@ -1313,9 +1313,9 @@ bool THdamaShell::create(efx::Arg* arg)
 	efx::ArgDir* argp = static_cast<efx::ArgDir*>(arg);
 
 	JGeometry::TVec3f vec;
-	vec.x = argp->mAngle.x;
-	vec.y = argp->mAngle.y; 
-	vec.z = argp->mAngle.z;
+	vec.x                     = argp->mAngle.x;
+	vec.y                     = argp->mAngle.y;
+	vec.z                     = argp->mAngle.z;
 	JGeometry::TVec3f* vecPtr = &vec;
 
 	if (TSync::create(arg)) {
@@ -1345,9 +1345,10 @@ bool THdamaHit2W::create(efx::Arg* arg)
 	if (TSimple3::create(argd)) {
 
 		Matrixf mtx;
-		Vector3f vecDir (0.0f, 1.0f, 0.0f);
-		Vector3f vecAng (x, y, z);
-		mtx.setAngleMtx(vecDir, vecAng, Vector3f::zero); // not quite right for this one, needs something else to happen to vecAng first I think?
+		Vector3f vecDir(0.0f, 1.0f, 0.0f);
+		Vector3f vecAng(x, y, z);
+		mtx.setAngleMtx(vecDir, vecAng,
+		                Vector3f::zero); // not quite right for this one, needs something else to happen to vecAng first I think?
 
 		for (int i = 0; i < 3; i++) {
 			JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitters[i]->_68);

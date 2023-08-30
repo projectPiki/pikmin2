@@ -125,6 +125,12 @@ struct Vector3 {
 		this->z -= other.z;
 	}
 
+	inline void addXZ(const Vector3& other)
+	{
+		this->x += other.x;
+		this->z += other.z;
+	}
+
 	// Squared magnitude
 	inline f32 sqrMagnitude() { return x * x + y * y + z * z; }
 	// Quick length

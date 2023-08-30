@@ -1229,7 +1229,7 @@ LIBS = [
             "plugProjectNishimuraU/KumaKochappyState",
             ["plugProjectNishimuraU/KumaKochappyAnimator", True],
             ["plugProjectNishimuraU/KumaKochappyMgr", True],
-            "plugProjectNishimuraU/KumaKochappy",
+            ["plugProjectNishimuraU/KumaKochappy", True],
             "plugProjectNishimuraU/MiniHoudaiState",
             ["plugProjectNishimuraU/MiniHoudaiAnimator", True],
             ["plugProjectNishimuraU/MiniHoudaiMgr", True],
