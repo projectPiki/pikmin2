@@ -175,7 +175,7 @@ P2JME::Caption::TControl* Caption::Mgr::getFreeMessage()
 {
 	P2JME::Caption::TControl* ret = nullptr;
 	for (u32 i = 0; i < 3; i++) {
-		if ((int)mControls[i]._5C == 0) {
+		if ((int)mControls[i].mState == 0) {
 			ret = &mControls[i];
 			break;
 		}

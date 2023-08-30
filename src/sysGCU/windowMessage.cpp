@@ -1,4 +1,12 @@
-#include "types.h"
+#include "P2JME/messageObj.h"
+#include "P2JME/P2JME.h"
+#include "System.h"
+#include "Game/MoviePlayer.h"
+#include "PSSystem/PSGame.h"
+#include "PSSystem/PSSystemIF.h"
+#include "nans.h"
+
+static const char idk[] = "\0\0\0\0\0\0\0\0\0";
 
 /*
     Generated from dpostproc
@@ -220,66 +228,18 @@
 */
 
 namespace P2JME {
-
+namespace Window {
 /*
  * --INFO--
  * Address:	8043F188
  * Size:	000050
  */
-Window::DrawInfo::DrawInfo()
+DrawInfo::DrawInfo()
+    : CNode("")
 {
-	/*
-	lis      r5, __vt__5CNode@ha
-	lis      r4, __vt__Q35P2JME6Window8DrawInfo@ha
-	addi     r0, r5, __vt__5CNode@l
-	li       r6, 0
-	stw      r0, 0(r3)
-	addi     r5, r2, lbl_80520920@sda21
-	addi     r4, r4, __vt__Q35P2JME6Window8DrawInfo@l
-	li       r0, -1
-	stw      r6, 0x10(r3)
-	lfs      f1, lbl_80520924@sda21(r2)
-	stw      r6, 0xc(r3)
-	lfs      f0, lbl_80520928@sda21(r2)
-	stw      r6, 8(r3)
-	stw      r6, 4(r3)
-	stw      r5, 0x14(r3)
-	stw      r4, 0(r3)
-	stw      r0, 0x18(r3)
-	stfs     f1, 0x1c(r3)
-	stfs     f0, 0x20(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void Window::DrawInfo::update()
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void Window::DrawInfo::init(int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-Window::DrawInfoMgr::DrawInfoMgr()
-{
-	// UNUSED FUNCTION
+	_18    = -1;
+	mTimer = 0.0f;
+	_20    = 0.5f;
 }
 
 /*
@@ -287,46 +247,9 @@ Window::DrawInfoMgr::DrawInfoMgr()
  * Address:	........
  * Size:	000100
  */
-void Window::DrawInfoMgr::init(unsigned long)
+void DrawInfoMgr::init(u32)
 {
 	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	8043F1D8
- * Size:	000060
- */
-Window::DrawInfo::~DrawInfo()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8043F21C
-	lis      r5, __vt__Q35P2JME6Window8DrawInfo@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q35P2JME6Window8DrawInfo@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8043F21C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8043F21C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -334,7 +257,7 @@ lbl_8043F21C:
  * Address:	........
  * Size:	000040
  */
-void Window::DrawInfoMgr::update()
+void DrawInfoMgr::update()
 {
 	// UNUSED FUNCTION
 }
@@ -344,7 +267,7 @@ void Window::DrawInfoMgr::update()
  * Address:	........
  * Size:	000050
  */
-void Window::DrawInfoMgr::reset()
+void DrawInfoMgr::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -354,28 +277,17 @@ void Window::DrawInfoMgr::reset()
  * Address:	8043F238
  * Size:	000030
  */
-void Window::DrawInfoMgr::searchDrawInfo(int)
+DrawInfo* DrawInfoMgr::searchDrawInfo(int id)
 {
-	/*
-	lwz      r5, 0x10(r3)
-	li       r3, 0
-	b        lbl_8043F25C
-
-lbl_8043F244:
-	lwz      r0, 0x18(r5)
-	cmpw     r4, r0
-	bne      lbl_8043F258
-	mr       r3, r5
-	blr
-
-lbl_8043F258:
-	lwz      r5, 4(r5)
-
-lbl_8043F25C:
-	cmplwi   r5, 0
-	bne      lbl_8043F244
-	blr
-	*/
+	DrawInfo* ret = nullptr;
+	FOREACH_NODE(DrawInfo, mInfoList1.mChild, node)
+	{
+		if (id == (int)node->_18) {
+			ret = node;
+			break;
+		}
+	}
+	return ret;
 }
 
 /*
@@ -383,36 +295,16 @@ lbl_8043F25C:
  * Address:	8043F268
  * Size:	000060
  */
-void Window::DrawInfoMgr::getDrawInfo(int)
+DrawInfo* DrawInfoMgr::getDrawInfo(int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r31, 0x28(r3)
-	cmplwi   r31, 0
-	beq      lbl_8043F2AC
-	stw      r4, 0x18(r31)
-	mr       r3, r31
-	lfs      f0, lbl_80520924@sda21(r2)
-	stfs     f0, 0x1c(r31)
-	bl       del__5CNodeFv
-	mr       r3, r30
-	mr       r4, r31
-	bl       add__5CNodeFP5CNode
-
-lbl_8043F2AC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	DrawInfo* node = static_cast<DrawInfo*>(mInfoList2.mChild);
+	if (node) {
+		node->_18    = id;
+		node->mTimer = 0.0f;
+		node->del();
+		mInfoList1.add(node);
+	}
+	return node;
 }
 
 /*
@@ -420,7 +312,7 @@ lbl_8043F2AC:
  * Address:	........
  * Size:	000078
  */
-void Window::DrawInfoMgr::releaseDrawInfo(P2JME::Window::DrawInfo*)
+void DrawInfoMgr::releaseDrawInfo(DrawInfo*)
 {
 	// UNUSED FUNCTION
 }
@@ -430,26 +322,9 @@ void Window::DrawInfoMgr::releaseDrawInfo(P2JME::Window::DrawInfo*)
  * Address:	8043F2C8
  * Size:	00003C
  */
-Window::TSequenceProcessor::TSequenceProcessor(JMessage::TReference*, JMessage::TControl*)
+TSequenceProcessor::TSequenceProcessor(JMessage::TReference* ref, JMessage::TControl* owner)
+    : P2JME::TSequenceProcessor(ref, owner)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x7A98
-	  lis       r4, 0x804F
-	  mr        r3, r31
-	  subi      r0, r4, 0x32CC
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -457,53 +332,14 @@ Window::TSequenceProcessor::TSequenceProcessor(JMessage::TReference*, JMessage::
  * Address:	8043F304
  * Size:	0000A4
  */
-void Window::TSequenceProcessor::doCharacterSE(int)
+void TSequenceProcessor::doCharacterSE(int)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_8043F330
-	beq      lbl_8043F394
-	lwz      r0, 0x1f0(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8043F394
-
-lbl_8043F330:
-	lwz      r0, 0x68(r3)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8043F394
-	lbz      r0, 0x6c(r3)
-	li       r31, 0
-	cmpwi    r0, 0
-	beq      lbl_8043F35C
-	blt      lbl_8043F35C
-	cmpwi    r0, 3
-	bge      lbl_8043F35C
-	li       r31, 1
-
-lbl_8043F35C:
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_8043F384 lis      r3, lbl_8049ACE8@ha lis      r5,
-lbl_8049ACC8@ha addi     r3, r3, lbl_8049ACE8@l li       r4, 0x237 addi     r5,
-r5, lbl_8049ACC8@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043F384:
-	lwz      r3,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) mr       r5,
-r31 li       r4, 0x1850 bl       playMessageVoice__Q26PSGame5SeMgrFUlb
-
-lbl_8043F394:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((!Game::moviePlayer)
+	    || (Game::moviePlayer && !(Game::moviePlayer->mFlags & Game::MoviePlayer::IS_FINISHED)) && !(mFlags.typeView & 8)) {
+		bool isfast        = isFastSE();
+		PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
+		mgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, isfast);
+	}
 }
 
 /*
@@ -511,41 +347,13 @@ lbl_8043F394:
  * Address:	8043F3A8
  * Size:	00007C
  */
-void Window::TSequenceProcessor::doCharacterSEStart()
+void TSequenceProcessor::doCharacterSEStart()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_8043F3D0
-	beq      lbl_8043F414
-	lwz      r0, 0x1f0(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8043F414
-
-lbl_8043F3D0:
-	lwz      r0, 0x68(r3)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8043F414
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_8043F404 lis      r3, lbl_8049ACE8@ha lis      r5,
-lbl_8049ACC8@ha addi     r3, r3, lbl_8049ACE8@l li       r4, 0x237 addi     r5,
-r5, lbl_8049ACC8@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043F404:
-	lwz      r3,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) li       r4,
-0x1846 li       r5, 0 bl       playMessageVoice__Q26PSGame5SeMgrFUlb
-
-lbl_8043F414:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((!Game::moviePlayer)
+	    || (Game::moviePlayer && !(Game::moviePlayer->mFlags & Game::MoviePlayer::IS_FINISHED)) && !(mFlags.typeView & 8)) {
+		PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
+		mgr->playMessageVoice(PSSE_MP_VOX_HEAD_A_FLAT, false);
+	}
 }
 
 /*
@@ -553,41 +361,13 @@ lbl_8043F414:
  * Address:	8043F424
  * Size:	00007C
  */
-void Window::TSequenceProcessor::doCharacterSEEnd()
+void TSequenceProcessor::doCharacterSEEnd()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_8043F44C
-	beq      lbl_8043F490
-	lwz      r0, 0x1f0(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8043F490
-
-lbl_8043F44C:
-	lwz      r0, 0x68(r3)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8043F490
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_8043F480 lis      r3, lbl_8049ACE8@ha lis      r5,
-lbl_8049ACC8@ha addi     r3, r3, lbl_8049ACE8@l li       r4, 0x237 addi     r5,
-r5, lbl_8049ACC8@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043F480:
-	lwz      r3,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) li       r4,
-0x185f li       r5, 0 bl       playMessageVoice__Q26PSGame5SeMgrFUlb
-
-lbl_8043F490:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((!Game::moviePlayer)
+	    || (Game::moviePlayer && !(Game::moviePlayer->mFlags & Game::MoviePlayer::IS_FINISHED)) && !(mFlags.typeView & 8)) {
+		PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
+		mgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
+	}
 }
 
 /*
@@ -595,30 +375,11 @@ lbl_8043F490:
  * Address:	8043F4A0
  * Size:	00005C
  */
-void Window::TSequenceProcessor::doFastForwardSE()
+void TSequenceProcessor::doFastForwardSE()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_8043F4D4 lis      r3, lbl_8049ACE8@ha lis      r5,
-lbl_8049ACC8@ha addi     r3, r3, lbl_8049ACE8@l li       r4, 0x237 addi     r5,
-r5, lbl_8049ACC8@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043F4D4:
-	lwz      r3,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) bl
-stopMessageVoice__Q26PSGame5SeMgrFv lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x186e
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSGame::SeMgr* mgr = PSSystem::getSeMgrInstance();
+	mgr->stopMessageVoice();
+	PSSystem::spSysIF->playSystemSe(PSSE_MP_VOX_CANCEL, 0);
 }
 
 /*
@@ -626,44 +387,10 @@ stopMessageVoice__Q26PSGame5SeMgrFv lwz      r3, spSysIF__8PSSystem@sda21(r13)
  * Address:	8043F4FC
  * Size:	000060
  */
-Window::TRenderingProcessor::TRenderingProcessor(JMessage::TReference*)
+TRenderingProcessor::TRenderingProcessor(JMessage::TReference* ref)
+    : P2JME::TRenderingProcessor(ref)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	bl       __ct__Q25P2JME19TRenderingProcessorFPCQ28JMessage10TReference
-	lis      r3, __vt__Q35P2JME6Window19TRenderingProcessor@ha
-	addi     r30, r31, 0x110
-	addi     r0, r3, __vt__Q35P2JME6Window19TRenderingProcessor@l
-	stw      r0, 0(r31)
-	mr       r3, r30
-	bl       __ct__5CNodeFv
-	addi     r3, r30, 0x18
-	bl       __ct__5CNodeFv
-	lfs      f0, lbl_8052092C@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x140(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-Window::DrawInfoMgr::~DrawInfoMgr()
-{
-	// UNUSED FUNCTION
+	mSpeed = 30.0f;
 }
 
 /*
@@ -671,7 +398,7 @@ Window::DrawInfoMgr::~DrawInfoMgr()
  * Address:	........
  * Size:	000100
  */
-void Window::TRenderingProcessor::initDrawInfoMgr(unsigned long)
+void TRenderingProcessor::initDrawInfoMgr(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -681,7 +408,7 @@ void Window::TRenderingProcessor::initDrawInfoMgr(unsigned long)
  * Address:	8043F55C
  * Size:	000344
  */
-void Window::TRenderingProcessor::doDrawCommon(float, float, Matrixf*, Matrixf*)
+BOOL TRenderingProcessor::doDrawCommon(f32, f32, Matrixf*, Matrixf*)
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -938,17 +665,10 @@ lbl_8043F834:
 
 /*
  * --INFO--
- * Address:	8043F8A0
- * Size:	000004
- */
-void Window::TRenderingProcessor::doGetDrawInfo(P2JME::Window::DrawInfo*) { }
-
-/*
- * --INFO--
  * Address:	8043F8A4
  * Size:	000284
  */
-void makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<float>()
+void TRenderingProcessor::makeMatrix(Matrixf*, DrawInfo*, f32, Vector3f)
 {
 	/*
 	.loc_0x0:
@@ -1139,7 +859,7 @@ void makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8
  * Address:	8043FB28
  * Size:	000188
  */
-void Window::TRenderingProcessor::doDrawLetter(float, float, float, float, int, bool)
+void TRenderingProcessor::doDrawLetter(f32, f32, f32, f32, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -1253,7 +973,7 @@ void Window::TRenderingProcessor::doDrawLetter(float, float, float, float, int, 
  * Address:	8043FCB0
  * Size:	00017C
  */
-void Window::TRenderingProcessor::doDrawRuby(float, float, float, float, int, bool)
+void TRenderingProcessor::doDrawRuby(f32, f32, f32, f32, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -1364,7 +1084,7 @@ void Window::TRenderingProcessor::doDrawRuby(float, float, float, float, int, bo
  * Address:	8043FE2C
  * Size:	0001DC
  */
-void Window::TRenderingProcessor::doDrawImage(JUTTexture*, float, float, float, float)
+void TRenderingProcessor::doDrawImage(JUTTexture*, f32, f32, f32, f32)
 {
 	/*
 	.loc_0x0:
@@ -1497,32 +1217,15 @@ void Window::TRenderingProcessor::doDrawImage(JUTTexture*, float, float, float, 
  * Address:	80440008
  * Size:	000040
  */
-void Window::TRenderingProcessor::update()
+void TRenderingProcessor::update()
 {
-	/*
-	lwz      r4, 0x120(r3)
-	b        lbl_8044003C
-
-lbl_80440010:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x1c(r4)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x1c(r4)
-	lfs      f0, 0x1c(r4)
-	lfs      f1, 0x20(r4)
-	fcmpo    cr0, f0, f1
-	ble      lbl_80440038
-	stfs     f1, 0x1c(r4)
-
-lbl_80440038:
-	lwz      r4, 4(r4)
-
-lbl_8044003C:
-	cmplwi   r4, 0
-	bne      lbl_80440010
-	blr
-	*/
+	FOREACH_NODE(DrawInfo, mDrawInfo.mInfoList1.mChild, node)
+	{
+		node->mTimer += sys->mDeltaTime;
+		if (node->mTimer > node->_20) {
+			node->mTimer = node->_20;
+		}
+	}
 }
 
 /*
@@ -1530,57 +1233,17 @@ lbl_8044003C:
  * Address:	80440048
  * Size:	0000A4
  */
-void Window::TRenderingProcessor::reset()
+void TRenderingProcessor::reset()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stmw     r26, 8(r1)
-	mr       r26, r3
-	bl       reset__Q25P2JME19TRenderingProcessorFv
-	lis      r4, lbl_8049ACB4@ha
-	lis      r3, lbl_8049ACC8@ha
-	lwz      r27, 0x120(r26)
-	addi     r29, r4, lbl_8049ACB4@l
-	lfs      f31, lbl_80520924@sda21(r2)
-	addi     r30, r3, lbl_8049ACC8@l
-	li       r31, -1
-	b        lbl_804400C8
-
-lbl_80440088:
-	cmplwi   r27, 0
-	lwz      r28, 4(r27)
-	bne      lbl_804400A8
-	mr       r3, r29
-	mr       r5, r30
-	li       r4, 0xfd
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804400A8:
-	stw      r31, 0x18(r27)
-	mr       r3, r27
-	stfs     f31, 0x1c(r27)
-	bl       del__5CNodeFv
-	mr       r4, r27
-	addi     r3, r26, 0x128
-	bl       add__5CNodeFP5CNode
-	mr       r27, r28
-
-lbl_804400C8:
-	cmplwi   r27, 0
-	bne      lbl_80440088
-	psq_l    f31, 40(r1), 0, qr0
-	lfd      f31, 0x20(r1)
-	lmw      r26, 8(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	P2JME::TRenderingProcessor::reset();
+	FOREACH_NODE(DrawInfo, mDrawInfo.mInfoList1.mChild, node)
+	{
+		P2ASSERTLINE(253, node);
+		node->_18    = -1;
+		node->mTimer = 0.0f;
+		node->del();
+		mDrawInfo.mInfoList2.add(node);
+	}
 }
 
 /*
@@ -1588,30 +1251,11 @@ lbl_804400C8:
  * Address:	804400EC
  * Size:	000050
  */
-Window::TControl::TControl()
+TControl::TControl()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q25P2JME8TControlFv
-	lis      r3, __vt__Q35P2JME6Window8TControl@ha
-	lfs      f1, lbl_80520960@sda21(r2)
-	addi     r0, r3, __vt__Q35P2JME6Window8TControl@l
-	lfs      f0, lbl_80520924@sda21(r2)
-	stw      r0, 0(r31)
-	mr       r3, r31
-	stfs     f1, 0x50(r31)
-	stfs     f0, 0x54(r31)
-	stfs     f0, 0x58(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_50 = 4.0f;
+	_54 = 0.0f;
+	_58 = 0.0f;
 }
 
 /*
@@ -1619,82 +1263,20 @@ Window::TControl::TControl()
  * Address:	8044013C
  * Size:	000100
  */
-void Window::TControl::initRenderingProcessor(unsigned long)
+void TControl::initRenderingProcessor(u32 count)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_8049ACA8@ha
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r4
-	addi     r31, r5, lbl_8049ACA8@l
-	lwz      r30, 0x40(r3)
-	lwz      r12, 0x128(r30)
-	addi     r3, r30, 0x128
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	beq      lbl_8044018C
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x20
-	li       r4, 0x9e
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	Window::TRenderingProcessor* proc = static_cast<Window::TRenderingProcessor*>(mTextRenderProc);
+	P2ASSERTLINE(158, !proc->mDrawInfo.mInfoList2.getChildCount());
+	P2ASSERTLINE(159, !proc->mDrawInfo.mInfoList1.getChildCount());
 
-lbl_8044018C:
-	addi     r3, r30, 0x110
-	lwz      r12, 0x110(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	beq      lbl_804401BC
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x20
-	li       r4, 0x9f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	sys->heapStatusStart("DrawInfoMgr::init", nullptr);
 
-lbl_804401BC:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x2c
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	mulli    r3, r27, 0x24
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q35P2JME6Window8DrawInfoFv@ha
-	lis      r5, __dt__Q35P2JME6Window8DrawInfoFv@ha
-	addi     r4, r4, __ct__Q35P2JME6Window8DrawInfoFv@l
-	mr       r7, r27
-	addi     r5, r5, __dt__Q35P2JME6Window8DrawInfoFv@l
-	li       r6, 0x24
-	bl       __construct_new_array
-	li       r29, 0
-	mr       r28, r3
-	b        lbl_80440214
+	DrawInfo* info = new DrawInfo[count];
+	for (int i = 0; i < count; i++) {
+		proc->mDrawInfo.mInfoList2.add(&info[i]);
+	}
 
-lbl_80440200:
-	mr       r4, r28
-	addi     r3, r30, 0x128
-	bl       add__5CNodeFP5CNode
-	addi     r28, r28, 0x24
-	addi     r29, r29, 1
-
-lbl_80440214:
-	cmplw    r29, r27
-	blt      lbl_80440200
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x2c
-	bl       heapStatusEnd__6SystemFPc
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	sys->heapStatusEnd("DrawInfoMgr::init");
 }
 
 /*
@@ -1702,8 +1284,9 @@ lbl_80440214:
  * Address:	8044023C
  * Size:	000188
  */
-void Window::TControl::update(Controller*, Controller*)
+bool TControl::update(Controller* control1, Controller* control2)
 {
+	setController(control1, control2);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1827,60 +1410,20 @@ lbl_804403AC:
  * Address:	804403C4
  * Size:	000020
  */
-void Window::TControl::reset()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       reset__Q25P2JME8TControlFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TControl::reset() { P2JME::TControl::reset(); }
 
 /*
  * --INFO--
  * Address:	804403E4
  * Size:	00007C
  */
-void Window::TControl::draw(Graphics&)
+void TControl::draw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	lfs      f2, lbl_8052096C@sda21(r2)
-	stw      r0, 0x54(r1)
-	lfs      f1, lbl_80520970@sda21(r2)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	lfs      f0, lbl_80520924@sda21(r2)
-	addi     r4, r1, 8
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	addi     r3, r1, 0x14
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-	addi     r3, r31, 0x190
-	lwz      r12, 0x190(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	addi     r4, r1, 0x14
-	addi     r5, r31, 0x210
-	bl       draw__Q25P2JME8TControlFPA4_fPA4_f
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	Matrixf mtx;
+	Vector3f t(50.0f, 232.0f, 0.0f);
+	mtx.makeT(t);
+	gfx.mPerspGraph.setPort();
+	P2JME::TControl::draw(mtx.mMatrix.mtxView, gfx.mPerspGraph.mPosMtx);
 }
 
 /*
@@ -1888,155 +1431,14 @@ void Window::TControl::draw(Graphics&)
  * Address:	80440460
  * Size:	000050
  */
-void Window::TControl::onInit()
+bool TControl::onInit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, gP2JMEMgr@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_80440498
-	lwz      r4, 0x18(r4)
-	bl       setFont__Q25P2JME8TControlFP7JUTFont
-	lwz      r4, gP2JMEMgr@sda21(r13)
-	mr       r3, r31
-	lwz      r4, 0x18(r4)
-	bl       setRubyFont__Q25P2JME8TControlFP7JUTFont
-
-lbl_80440498:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (gP2JMEMgr) {
+		setFont(gP2JMEMgr->mFont);
+		setRubyFont(gP2JMEMgr->mFont);
+	}
+	return true;
 }
 
-/*
- * --INFO--
- * Address:	804404B0
- * Size:	0000A8
- */
-Window::TRenderingProcessor::~TRenderingProcessor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8044053C
-	lis      r3, __vt__Q35P2JME6Window19TRenderingProcessor@ha
-	addic.   r0, r30, 0x110
-	addi     r0, r3, __vt__Q35P2JME6Window19TRenderingProcessor@l
-	stw      r0, 0(r30)
-	beq      lbl_804404FC
-	addi     r3, r30, 0x128
-	li       r4, -1
-	bl       __dt__5CNodeFv
-	addi     r3, r30, 0x110
-	li       r4, -1
-	bl       __dt__5CNodeFv
-
-lbl_804404FC:
-	cmplwi   r30, 0
-	beq      lbl_8044052C
-	lis      r3, __vt__Q25P2JME19TRenderingProcessor@ha
-	addi     r0, r3, __vt__Q25P2JME19TRenderingProcessor@l
-	stw      r0, 0(r30)
-	beq      lbl_8044052C
-	lis      r4, __vt__Q25P2JME23TRenderingProcessorBase@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__Q25P2JME23TRenderingProcessorBase@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__Q28JMessage19TRenderingProcessorFv
-
-lbl_8044052C:
-	extsh.   r0, r31
-	ble      lbl_8044053C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8044053C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80440558
- * Size:	000070
- */
-Window::TSequenceProcessor::~TSequenceProcessor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_804405AC
-	lis      r4, __vt__Q35P2JME6Window18TSequenceProcessor@ha
-	addi     r0, r4, __vt__Q35P2JME6Window18TSequenceProcessor@l
-	stw      r0, 0(r30)
-	beq      lbl_8044059C
-	lis      r5, __vt__Q25P2JME18TSequenceProcessor@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q25P2JME18TSequenceProcessor@l
-	stw      r0, 0(r30)
-	bl       __dt__Q28JMessage18TSequenceProcessorFv
-
-lbl_8044059C:
-	extsh.   r0, r31
-	ble      lbl_804405AC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_804405AC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
+} // namespace Window
 } // namespace P2JME
-
-/*
- * --INFO--
- * Address:	804405C8
- * Size:	000028
- */
-void __sinit_windowMessage_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804ECC50@ha
-	stw      r0, lbl_80516288@sda21(r13)
-	stfsu    f0, lbl_804ECC50@l(r3)
-	stfs     f0, lbl_8051628C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

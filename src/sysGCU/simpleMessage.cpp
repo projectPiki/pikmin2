@@ -20,7 +20,7 @@ void SimpleMessage::init()
 	mProcessor = new P2JME::TRenderingProcessor(gP2JMEMgr->mMsgRef);
 
 	mProcessor->setFont(gP2JMEMgr->mFont);
-	mProcessor->mJmeFont = gP2JMEMgr->mFont;
+	mProcessor->mRubyFont = gP2JMEMgr->mFont;
 }
 
 /*

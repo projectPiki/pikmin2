@@ -17,7 +17,7 @@ namespace P2JME {
 struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 	TRenderingProcessorBase(const JMessage::TReference*);
 
-	virtual ~TRenderingProcessorBase();              // _08 (weak)
+	virtual ~TRenderingProcessorBase() { }           // _08 (weak)
 	virtual void do_character(int);                  // _10 (weak)
 	virtual bool do_tag(u32, const void*, u32);      // _14
 	virtual bool tagColor(const void*, u32);         // _48 (weak)
@@ -36,7 +36,7 @@ struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 struct TRenderingProcessor : public TRenderingProcessorBase {
 	TRenderingProcessor(JMessage::TReference const*);
 
-	virtual ~TRenderingProcessor();                            // _08 (weak)
+	virtual ~TRenderingProcessor() { }                         // _08 (weak)
 	virtual void do_character(int);                            // _10
 	virtual bool do_tag(u32, const void*, u32);                // _14
 	virtual bool do_systemTagCode(u16, const void*, u32);      // _18
@@ -58,7 +58,7 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	virtual void doDrawImage(JUTTexture*, f32, f32, f32, f32); // _74
 	virtual void doDrawRuby(f32, f32, f32, f32, int, bool);    // _78
 	virtual void doDrawLetter(f32, f32, f32, f32, int, bool);  // _7C
-	virtual void doTagControlAbtnWait();                       // _80 (weak)
+	virtual bool doTagControlAbtnWait();                       // _80 (weak)
 
 	void setDrawLocate();
 	void initRuby();
@@ -78,15 +78,28 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	void setFont(JUTFont* font);
 	void setTextBoxInfo(J2DPane*);
 
+	// these are used for Caption::onInit
+	inline void initFlagsA()
+	{
+		mFlags &= 0xffffff8f;
+		mFlags |= 0x20;
+	}
+
+	inline void initFlagsB()
+	{
+		mFlags &= 0xfffff8ff;
+		mFlags |= 0x200;
+	}
+
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor
 	f32 _38;                       // _38
 	f32 _3C;                       // _3C
 	int _40;                       // _40
-	Matrixf* _44;                  // _44
-	Matrixf* _48;                  // _48
+	Matrixf* mMtx1;                // _44
+	Matrixf* mMtx2;                // _48
 	JUTFont* _4C;                  // _4C
-	JUTFont* mJmeFont;             // _50
+	JUTFont* mRubyFont;            // _50
 	f32 _54;                       // _54
 	f32 _58;                       // _58
 	int _5C;                       // _5C
@@ -94,7 +107,13 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	u8 mColorData[0x14];           // _64
 	f32 _78;                       // _78
 	JGeometry::TBox2f mMesgBounds; // _7C
-	f32 _8C[0x21];                 // _8C - padding/unknown/in ghidra
+	u32 mFlags;                    // _8C
+	JGeometry::TBox2f mLocate;     // _90
+	int _A0;                       // _A0
+	u8 _A4;                        // _A4
+	int _A8[6];                    // _A8
+	f32 _C0;                       // _C0
+	int _C4[19];
 };
 } // namespace P2JME
 

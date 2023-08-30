@@ -7,11 +7,12 @@ namespace JMessage {
 struct TResourceContainer;
 
 struct TReference {
+	TReference() { mResource = nullptr; }
 	virtual ~TReference();            // _08
 	virtual char* do_word(u32) const; // _0C
 
 	// _00 = VTBL
-	TResourceContainer* _04; // _04
+	TResourceContainer* mResource; // _04
 };
 } // namespace JMessage
 

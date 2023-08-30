@@ -11,8 +11,10 @@
 struct JUTTexture;
 
 namespace P2JME {
+struct TReference;
+
 namespace ImageGroup {
-enum EID {};
+enum EID { ID0 };
 } // namespace ImageGroup
 
 struct Mgr : public JKRDisposer {
@@ -20,21 +22,22 @@ struct Mgr : public JKRDisposer {
 
 	virtual ~Mgr(); // _08
 
-	static void create(JKRExpHeap*);
+	static Mgr* create(JKRExpHeap*);
 	void setupMessage();
 	void setupTex();
 	void setupFont(const char*, JKRExpHeap*);
 	void createImage(ImageGroup::EID, int);
 	void setImage(ImageGroup::EID, int, JUTTexture*);
-	void getImage(ImageGroup::EID, int);
+	JUTTexture* getImage(ImageGroup::EID, int);
 	void setupMessageResource(JKRArchive*, const char*);
 	void setupColor(JKRArchive*, const char*);
+	void reloadMessageResource();
 
 	// _00 VTBL
 	JUTFont* mFont;                              // _18
-	u32 _1C;                                     // _1C
-	u32** _20;                                   // _20
-	u32* _24;                                    // _24
+	JUTFont* mRubyFont;                          // _1C
+	JUTTexture*** mImageLists;                   // _20 (list of these arrays, but only index 0 matters)
+	int* mMaxTextures;                           // _24 (list of these values, but only index 0 matters)
 	u8 _28;                                      // _28
 	u32 _2C;                                     // _2C
 	JMessage::TResourceContainer* mResContainer; // _30
@@ -43,6 +46,8 @@ struct Mgr : public JKRDisposer {
 
 void convertU64ToMessageID(u64, u32*, u32*);
 void convertCharToMessageID(char*, u32*, u32*);
+void getCurrentFontResName();
+void getCurrentMesResName();
 } // namespace P2JME
 
 extern P2JME::Mgr* gP2JMEMgr;

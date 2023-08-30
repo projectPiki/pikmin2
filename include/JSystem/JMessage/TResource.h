@@ -48,7 +48,7 @@ struct TResourceContainer {
 	u32 _00;                 // _00 - encoding?
 	bool (*isLeadByte)(int); // _04 - function pointer for isLeadByte(int)
 	TCResource _08;          // _08
-	TCResource _14;          // _14
+	TCResource _18;          // _18
 };
 
 } // namespace JMessage

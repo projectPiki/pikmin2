@@ -94,8 +94,8 @@ namespace P2JME {
 TSequenceProcessor::TSequenceProcessor(const JMessage::TReference* ref, JMessage::TControl* control)
     : JMessage::TSequenceProcessor(ref, control)
     , _50(0.0f)
-    , _54(0)
-    , _58(0)
+    , mController1(0)
+    , mController2(0)
     , _5C(0)
     , _60(0)
     , _64(0)
@@ -233,10 +233,11 @@ bool TSequenceProcessor::do_isReady()
 	if (flags & 2) {
 		_50 -= sys->mDeltaTime;
 		if (_50 <= 0.0f) {
-			bool checkVars = (_54 || _58);
+			bool checkVars = (mController1 || mController2);
 			P2ASSERTLINE(381, checkVars);
 
-			if ((_54 && (_54->mButton.mButtonDown & PAD_BUTTON_A)) || (_58 && (_58->mButton.mButtonDown & PAD_BUTTON_A))) {
+			if ((mController1 && (mController1->mButton.mButtonDown & PAD_BUTTON_A))
+			    || (mController2 && (mController2->mButton.mButtonDown & PAD_BUTTON_A))) {
 				resetAbtnWait();
 				mFlags.typeView &= 0xFFFFFFF7;
 			}
@@ -246,10 +247,12 @@ bool TSequenceProcessor::do_isReady()
 		if (flags & 8) {
 			frameCount = 10.0f;
 		} else {
-			if ((_54 && (_54->mButton.mButtonDown & PAD_BUTTON_B)) || (_58 && (_58->mButton.mButtonDown & PAD_BUTTON_B))) {
+			if ((mController1 && (mController1->mButton.mButtonDown & PAD_BUTTON_B))
+			    || (mController2 && (mController2->mButton.mButtonDown & PAD_BUTTON_B))) {
 				doFastForwardSE();
 				mFlags.typeView |= 8;
-			} else if ((_54 && (_54->getButton() & PAD_BUTTON_A)) || (_58 && (_58->getButton() & PAD_BUTTON_A))) {
+			} else if ((mController1 && (mController1->getButton() & PAD_BUTTON_A))
+			           || (mController2 && (mController2->getButton() & PAD_BUTTON_A))) {
 				frameCount = 2.5f;
 			}
 		}
