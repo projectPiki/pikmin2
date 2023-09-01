@@ -284,133 +284,18 @@ f32 Obj::getAttackPitchOffset()
 	f32 attackOffset = 0.0f;
 
 	for (int i = 0; i < 6; i++) {
-		f32 lastKey = keyFrames[i];
-		if (currFrame >= lastKey) {
-			f32 nextKey = keyFrames[i + 1];
+		int j       = i + 1;
+		f32 prevKey = keyFrames[i];
+		if (currFrame >= prevKey) {
+			f32 nextKey = keyFrames[j];
 			if (currFrame < nextKey) {
-				f32 factor   = (currFrame - lastKey) / (nextKey - lastKey);
-				attackOffset = factor * offsets[i + 1] + (1.0f - factor) * offsets[i];
+				f32 factor   = (currFrame - prevKey) / (nextKey - prevKey);
+				attackOffset = factor * offsets[j] + (1.0f - factor) * offsets[i];
 			}
 		}
 	}
 
 	return attackOffset;
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r4, lbl_80489DC4@ha
-	lis      r5, lbl_80489DA8@ha
-	stw      r0, 0x64(r1)
-	addi     r10, r4, lbl_80489DC4@l
-	stmw     r27, 0x4c(r1)
-	lwzu     r27, lbl_80489DA8@l(r5)
-	lwz      r9, 0(r10)
-	lwz      r28, 4(r5)
-	lwz      r29, 8(r5)
-	lwz      r30, 0xc(r5)
-	lwz      r31, 0x10(r5)
-	lwz      r12, 0x14(r5)
-	lwz      r11, 0x18(r5)
-	lwz      r8, 4(r10)
-	lwz      r7, 8(r10)
-	lwz      r6, 0xc(r10)
-	lwz      r5, 0x10(r10)
-	lwz      r4, 0x14(r10)
-	lwz      r0, 0x18(r10)
-	stw      r27, 0x24(r1)
-	stw      r28, 0x28(r1)
-	stw      r29, 0x2c(r1)
-	stw      r30, 0x30(r1)
-	stw      r31, 0x34(r1)
-	stw      r12, 0x38(r1)
-	stw      r11, 0x3c(r1)
-	stw      r9, 8(r1)
-	stw      r8, 0xc(r1)
-	stw      r7, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r5, 0x18(r1)
-	stw      r4, 0x1c(r1)
-	stw      r0, 0x20(r1)
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	addi     r5, r1, 0x24
-	addi     r6, r1, 8
-	li       r0, 2
-	lfs      f0, lbl_8051C0C0@sda21(r2)
-	mr       r4, r5
-	mr       r3, r6
-	lfs      f3, lbl_8051C0D8@sda21(r2)
-	li       r7, 0
-	mtctr    r0
-
-lbl_802AE118:
-	lfs      f2, 0(r5)
-	addi     r0, r7, 1
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_802AE15C
-	slwi     r0, r0, 2
-	lfsx     f4, r4, r0
-	fcmpo    cr0, f1, f4
-	bge      lbl_802AE15C
-	fsubs    f5, f1, f2
-	lfs      f0, 0(r6)
-	fsubs    f2, f4, f2
-	lfsx     f4, r3, r0
-	fdivs    f5, f5, f2
-	fsubs    f2, f3, f5
-	fmuls    f0, f2, f0
-	fmadds   f0, f5, f4, f0
-
-lbl_802AE15C:
-	lfs      f2, 4(r5)
-	addi     r0, r7, 2
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_802AE1A0
-	slwi     r0, r0, 2
-	lfsx     f4, r4, r0
-	fcmpo    cr0, f1, f4
-	bge      lbl_802AE1A0
-	fsubs    f5, f1, f2
-	lfs      f0, 4(r6)
-	fsubs    f2, f4, f2
-	lfsx     f4, r3, r0
-	fdivs    f5, f5, f2
-	fsubs    f2, f3, f5
-	fmuls    f0, f2, f0
-	fmadds   f0, f5, f4, f0
-
-lbl_802AE1A0:
-	lfs      f2, 8(r5)
-	addi     r0, r7, 3
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_802AE1E4
-	slwi     r0, r0, 2
-	lfsx     f4, r4, r0
-	fcmpo    cr0, f1, f4
-	bge      lbl_802AE1E4
-	fsubs    f5, f1, f2
-	lfs      f0, 8(r6)
-	fsubs    f2, f4, f2
-	lfsx     f4, r3, r0
-	fdivs    f5, f5, f2
-	fsubs    f2, f3, f5
-	fmuls    f0, f2, f0
-	fmadds   f0, f5, f4, f0
-
-lbl_802AE1E4:
-	addi     r5, r5, 0xc
-	addi     r6, r6, 0xc
-	addi     r7, r7, 3
-	bdnz     lbl_802AE118
-	lmw      r27, 0x4c(r1)
-	fmr      f1, f0
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /*
@@ -428,133 +313,18 @@ f32 Obj::getFlickPitchOffset()
 	f32 flickOffset = 0.0f;
 
 	for (int i = 0; i < 6; i++) {
-		f32 lastKey = keyFrames[i];
-		if (currFrame >= lastKey) {
-			f32 nextKey = keyFrames[i + 1];
+		int j       = i + 1;
+		f32 prevKey = keyFrames[i];
+		if (currFrame >= prevKey) {
+			f32 nextKey = keyFrames[j];
 			if (currFrame < nextKey) {
-				f32 factor  = (currFrame - lastKey) / (nextKey - lastKey);
-				flickOffset = factor * offsets[i + 1] + (1.0f - factor) * offsets[i];
+				f32 factor  = (currFrame - prevKey) / (nextKey - prevKey);
+				flickOffset = factor * offsets[j] + (1.0f - factor) * offsets[i];
 			}
 		}
 	}
 
 	return flickOffset;
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r4, lbl_80489DFC@ha
-	lis      r5, lbl_80489DE0@ha
-	stw      r0, 0x64(r1)
-	addi     r10, r4, lbl_80489DFC@l
-	stmw     r27, 0x4c(r1)
-	lwzu     r27, lbl_80489DE0@l(r5)
-	lwz      r9, 0(r10)
-	lwz      r28, 4(r5)
-	lwz      r29, 8(r5)
-	lwz      r30, 0xc(r5)
-	lwz      r31, 0x10(r5)
-	lwz      r12, 0x14(r5)
-	lwz      r11, 0x18(r5)
-	lwz      r8, 4(r10)
-	lwz      r7, 8(r10)
-	lwz      r6, 0xc(r10)
-	lwz      r5, 0x10(r10)
-	lwz      r4, 0x14(r10)
-	lwz      r0, 0x18(r10)
-	stw      r27, 0x24(r1)
-	stw      r28, 0x28(r1)
-	stw      r29, 0x2c(r1)
-	stw      r30, 0x30(r1)
-	stw      r31, 0x34(r1)
-	stw      r12, 0x38(r1)
-	stw      r11, 0x3c(r1)
-	stw      r9, 8(r1)
-	stw      r8, 0xc(r1)
-	stw      r7, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r5, 0x18(r1)
-	stw      r4, 0x1c(r1)
-	stw      r0, 0x20(r1)
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	addi     r5, r1, 0x24
-	addi     r6, r1, 8
-	li       r0, 2
-	lfs      f0, lbl_8051C0C0@sda21(r2)
-	mr       r4, r5
-	mr       r3, r6
-	lfs      f3, lbl_8051C0D8@sda21(r2)
-	li       r7, 0
-	mtctr    r0
-
-lbl_802AE2C0:
-	lfs      f2, 0(r5)
-	addi     r0, r7, 1
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_802AE304
-	slwi     r0, r0, 2
-	lfsx     f4, r4, r0
-	fcmpo    cr0, f1, f4
-	bge      lbl_802AE304
-	fsubs    f5, f1, f2
-	lfs      f0, 0(r6)
-	fsubs    f2, f4, f2
-	lfsx     f4, r3, r0
-	fdivs    f5, f5, f2
-	fsubs    f2, f3, f5
-	fmuls    f0, f2, f0
-	fmadds   f0, f5, f4, f0
-
-lbl_802AE304:
-	lfs      f2, 4(r5)
-	addi     r0, r7, 2
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_802AE348
-	slwi     r0, r0, 2
-	lfsx     f4, r4, r0
-	fcmpo    cr0, f1, f4
-	bge      lbl_802AE348
-	fsubs    f5, f1, f2
-	lfs      f0, 4(r6)
-	fsubs    f2, f4, f2
-	lfsx     f4, r3, r0
-	fdivs    f5, f5, f2
-	fsubs    f2, f3, f5
-	fmuls    f0, f2, f0
-	fmadds   f0, f5, f4, f0
-
-lbl_802AE348:
-	lfs      f2, 8(r5)
-	addi     r0, r7, 3
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_802AE38C
-	slwi     r0, r0, 2
-	lfsx     f4, r4, r0
-	fcmpo    cr0, f1, f4
-	bge      lbl_802AE38C
-	fsubs    f5, f1, f2
-	lfs      f0, 8(r6)
-	fsubs    f2, f4, f2
-	lfsx     f4, r3, r0
-	fdivs    f5, f5, f2
-	fsubs    f2, f3, f5
-	fmuls    f0, f2, f0
-	fmadds   f0, f5, f4, f0
-
-lbl_802AE38C:
-	addi     r5, r5, 0xc
-	addi     r6, r6, 0xc
-	addi     r7, r7, 3
-	bdnz     lbl_802AE2C0
-	lmw      r27, 0x4c(r1)
-	fmr      f1, f0
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /*
@@ -572,106 +342,18 @@ f32 Obj::getTakeOffPitchOffset()
 	f32 takeOffOffset = 0.0f;
 
 	for (int i = 0; i < 4; i++) {
-		f32 lastKey = keyFrames[i];
-		if (currFrame >= lastKey) {
-			f32 nextKey = keyFrames[i + 1];
+		int j       = i + 1;
+		f32 prevKey = keyFrames[i];
+		if (currFrame >= prevKey) {
+			f32 nextKey = keyFrames[j];
 			if (currFrame < nextKey) {
-				f32 factor    = (currFrame - lastKey) / (nextKey - lastKey);
-				takeOffOffset = factor * offsets[i + 1] + (1.0f - factor) * offsets[i];
+				f32 factor    = (currFrame - prevKey) / (nextKey - prevKey);
+				takeOffOffset = factor * offsets[j] + (1.0f - factor) * offsets[i];
 			}
 		}
 	}
 
 	return takeOffOffset;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, lbl_80489E2C@ha
-	lis      r5, lbl_80489E18@ha
-	stw      r0, 0x44(r1)
-	addi     r8, r4, lbl_80489E2C@l
-	stw      r31, 0x3c(r1)
-	lwzu     r31, lbl_80489E18@l(r5)
-	lwz      r7, 0(r8)
-	lwz      r12, 4(r5)
-	lwz      r11, 8(r5)
-	lwz      r10, 0xc(r5)
-	lwz      r9, 0x10(r5)
-	lwz      r6, 4(r8)
-	lwz      r5, 8(r8)
-	lwz      r4, 0xc(r8)
-	lwz      r0, 0x10(r8)
-	stw      r31, 0x1c(r1)
-	stw      r12, 0x20(r1)
-	stw      r11, 0x24(r1)
-	stw      r10, 0x28(r1)
-	stw      r9, 0x2c(r1)
-	stw      r7, 8(r1)
-	stw      r6, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r4, 0x14(r1)
-	stw      r0, 0x18(r1)
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	addi     r5, r1, 0x1c
-	addi     r6, r1, 8
-	li       r0, 2
-	lfs      f0, lbl_8051C0C0@sda21(r2)
-	mr       r4, r5
-	mr       r3, r6
-	lfs      f3, lbl_8051C0D8@sda21(r2)
-	li       r7, 0
-	mtctr    r0
-
-lbl_802AE448:
-	lfs      f2, 0(r5)
-	addi     r0, r7, 1
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_802AE48C
-	slwi     r0, r0, 2
-	lfsx     f4, r4, r0
-	fcmpo    cr0, f1, f4
-	bge      lbl_802AE48C
-	fsubs    f5, f1, f2
-	lfs      f0, 0(r6)
-	fsubs    f2, f4, f2
-	lfsx     f4, r3, r0
-	fdivs    f5, f5, f2
-	fsubs    f2, f3, f5
-	fmuls    f0, f2, f0
-	fmadds   f0, f5, f4, f0
-
-lbl_802AE48C:
-	lfs      f2, 4(r5)
-	addi     r0, r7, 2
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_802AE4D0
-	slwi     r0, r0, 2
-	lfsx     f4, r4, r0
-	fcmpo    cr0, f1, f4
-	bge      lbl_802AE4D0
-	fsubs    f5, f1, f2
-	lfs      f0, 4(r6)
-	fsubs    f2, f4, f2
-	lfsx     f4, r3, r0
-	fdivs    f5, f5, f2
-	fsubs    f2, f3, f5
-	fmuls    f0, f2, f0
-	fmadds   f0, f5, f4, f0
-
-lbl_802AE4D0:
-	addi     r5, r5, 8
-	addi     r6, r6, 8
-	addi     r7, r7, 2
-	bdnz     lbl_802AE448
-	lwz      r0, 0x44(r1)
-	fmr      f1, f0
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -679,124 +361,27 @@ lbl_802AE4D0:
  * Address:	802AE4F8
  * Size:	000168
  */
-f32 Obj::getFallPitchOffset(f32 p1)
+f32 Obj::getFallPitchOffset(f32 currFrame)
 {
-	f32 currFrame    = 30.0f * p1;
+	currFrame        = 30.0f * currFrame;
 	f32 keyFrames[8] = { 7.0f, 17.0f, 27.0f, 37.0f, 47.0f, 57.0f, 67.0f, 77.0f };
 	f32 offsets[8]   = { -20.0f, -15.0f, -35.0f, -25.0f, -40.0f, -35.0f, -65.0f, 0.0f };
 
 	f32 fallOffset = 0.0f;
 
-	for (int i = 0; i < 7; i++) {
-		f32 lastKey = keyFrames[i];
-		if (currFrame >= lastKey) {
-			f32 nextKey = keyFrames[i + 1];
+	for (int i = 0; i < 4; i++) {
+		int j       = i + 1;
+		f32 prevKey = keyFrames[i];
+		if (currFrame >= prevKey) {
+			f32 nextKey = keyFrames[j];
 			if (currFrame < nextKey) {
-				f32 factor = (currFrame - lastKey) / (nextKey - lastKey);
-				fallOffset = factor * offsets[i + 1] + (1.0f - factor) * offsets[i];
+				f32 factor = (currFrame - prevKey) / (nextKey - prevKey);
+				fallOffset = factor * offsets[j] + (1.0f - factor) * offsets[i];
 			}
 		}
 	}
 
 	return fallOffset;
-	/*
-	stwu     r1, -0x80(r1)
-	lis      r4, lbl_80489E40@ha
-	lis      r3, lbl_80489E60@ha
-	lfs      f0, lbl_8051C104@sda21(r2)
-	stmw     r21, 0x54(r1)
-	addi     r6, r4, lbl_80489E40@l
-	addi     r5, r3, lbl_80489E60@l
-	addi     r23, r1, 0x28
-	addi     r22, r1, 8
-	fmuls    f6, f0, f1
-	li       r0, 2
-	mr       r4, r23
-	mr       r3, r22
-	li       r21, 0
-	lfs      f1, lbl_8051C0C0@sda21(r2)
-	lfs      f2, lbl_8051C0D8@sda21(r2)
-	lwz      r24, 0(r6)
-	lwz      r25, 4(r6)
-	lwz      r26, 8(r6)
-	lwz      r27, 0xc(r6)
-	lwz      r28, 0x10(r6)
-	lwz      r29, 0x14(r6)
-	lwz      r30, 0x18(r6)
-	lwz      r31, 0x1c(r6)
-	lwz      r12, 0(r5)
-	lwz      r11, 4(r5)
-	lwz      r10, 8(r5)
-	lwz      r9, 0xc(r5)
-	lwz      r8, 0x10(r5)
-	lwz      r7, 0x14(r5)
-	lwz      r6, 0x18(r5)
-	lwz      r5, 0x1c(r5)
-	stw      r24, 0x28(r1)
-	stw      r25, 0x2c(r1)
-	stw      r26, 0x30(r1)
-	stw      r27, 0x34(r1)
-	stw      r28, 0x38(r1)
-	stw      r29, 0x3c(r1)
-	stw      r30, 0x40(r1)
-	stw      r31, 0x44(r1)
-	stw      r12, 8(r1)
-	stw      r11, 0xc(r1)
-	stw      r10, 0x10(r1)
-	stw      r9, 0x14(r1)
-	stw      r8, 0x18(r1)
-	stw      r7, 0x1c(r1)
-	stw      r6, 0x20(r1)
-	stw      r5, 0x24(r1)
-	mtctr    r0
-
-lbl_802AE5BC:
-	lfs      f3, 0(r23)
-	addi     r0, r21, 1
-	fcmpo    cr0, f6, f3
-	cror     2, 1, 2
-	bne      lbl_802AE600
-	slwi     r0, r0, 2
-	lfsx     f5, r4, r0
-	fcmpo    cr0, f6, f5
-	bge      lbl_802AE600
-	fsubs    f4, f6, f3
-	lfs      f0, 0(r22)
-	fsubs    f1, f5, f3
-	lfsx     f3, r3, r0
-	fdivs    f4, f4, f1
-	fsubs    f1, f2, f4
-	fmuls    f0, f1, f0
-	fmadds   f1, f4, f3, f0
-
-lbl_802AE600:
-	lfs      f3, 4(r23)
-	addi     r0, r21, 2
-	fcmpo    cr0, f6, f3
-	cror     2, 1, 2
-	bne      lbl_802AE644
-	slwi     r0, r0, 2
-	lfsx     f5, r4, r0
-	fcmpo    cr0, f6, f5
-	bge      lbl_802AE644
-	fsubs    f4, f6, f3
-	lfs      f0, 4(r22)
-	fsubs    f1, f5, f3
-	lfsx     f3, r3, r0
-	fdivs    f4, f4, f1
-	fsubs    f1, f2, f4
-	fmuls    f0, f1, f0
-	fmadds   f1, f4, f3, f0
-
-lbl_802AE644:
-	addi     r23, r23, 8
-	addi     r22, r22, 8
-	addi     r21, r21, 2
-	bdnz     lbl_802AE5BC
-	lmw      r21, 0x54(r1)
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /*

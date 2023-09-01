@@ -146,7 +146,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KurageState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KurageAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KurageMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Kurage.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Kurage.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombSaraiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BombSaraiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BombSaraiMgr.o\

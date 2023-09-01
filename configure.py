@@ -1175,7 +1175,7 @@ LIBS = [
             ["plugProjectNishimuraU/KurageState", True],
             ["plugProjectNishimuraU/KurageAnimator", True],
             ["plugProjectNishimuraU/KurageMgr", True],
-            "plugProjectNishimuraU/Kurage",
+            ["plugProjectNishimuraU/Kurage", True],
             "plugProjectNishimuraU/BombSaraiState",
             ["plugProjectNishimuraU/BombSaraiAnimator", True],
             ["plugProjectNishimuraU/BombSaraiMgr", True],
