@@ -176,7 +176,7 @@ void ActTeki::test_0()
 		Vector3f sourcePos = mParent->getPosition();
 		Vector3f destPos   = mFollowingTeki->getPosition();
 
-		f32 distance = _distanceBetween2(destPos, sourcePos);
+		f32 distance = destPos.distance(sourcePos);
 
 		_20 -= sys->mDeltaTime;
 
@@ -253,7 +253,7 @@ void ActTeki::setTimer()
 	Vector3f thisPos = mParent->getPosition();
 	Vector3f themPos = mFollowingTeki->getPosition();
 
-	f32 dist = _distanceBetween2(themPos, thisPos);
+	f32 dist = themPos.distance(thisPos);
 
 	f32 weight;
 	if (dist < 100.0f) {

@@ -929,7 +929,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		Vector3f homePos = frog->mHomePosition;
 		Vector3f pos     = frog->getPosition();
 
-		f32 sep = _distanceBetween2(pos, homePos);
+		f32 sep = pos.distance(homePos);
 
 		if (sep > CG_PARMS(frog)->mGeneral.mTerritoryRadius.mValue) {
 			transit(frog, FROG_TurnToHome, nullptr);
@@ -987,7 +987,7 @@ void StateFail::exec(EnemyBase* enemy)
 		Vector3f homePos = frog->mHomePosition;
 		Vector3f pos     = frog->getPosition();
 
-		f32 sep = _distanceBetween2(pos, homePos);
+		f32 sep = pos.distance(homePos);
 
 		if (sep > CG_PARMS(frog)->mGeneral.mTerritoryRadius.mValue) {
 			transit(frog, FROG_TurnToHome, nullptr);

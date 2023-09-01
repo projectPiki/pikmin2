@@ -86,14 +86,14 @@ bool InteractFue::actPiki(Game::Piki* piki)
 			if (piki->getStateID() != PIKISTATE_Holein) {
 				Vector3f pikiPos = piki->getPosition();
 				Vector3f closestCavePos;
-				float closestHoleDist               = FLOAT_DIST_MAX;
+				f32 closestHoleDist                 = FLOAT_DIST_MAX;
 				Container<BaseItem>* iCaveContainer = ItemCave::mgr;
 				Iterator<BaseItem> iCave(iCaveContainer);
 				CI_LOOP(iCave)
 				{
 					BaseItem* cave   = *iCave;
 					Vector3f cavePos = cave->getPosition();
-					f32 distance     = cavePos.distance(pikiPos); // float register mismatch lives here
+					f32 distance     = cavePos.distance(pikiPos);
 					if (distance < closestHoleDist) {
 						closestHoleDist = distance;
 						closestCavePos  = cavePos;
@@ -404,7 +404,7 @@ bool InteractBury::actPiki(Game::Piki* piki)
 		ItemPikihead::Item* pikiHead = (ItemPikihead::Item*)ItemPikihead::mgr->birth();
 		PikiMgr::mBirthMode          = 0;
 		Vector3f pikiPos             = piki->getPosition();
-		float minY                   = mapMgr->getMinY(pikiPos);
+		f32 minY                     = mapMgr->getMinY(pikiPos);
 		pikiPos.y                    = minY;
 		if (pikiHead) {
 			efx::createSimplePkAp(pikiPos);
@@ -625,14 +625,14 @@ bool InteractFlick::actPiki(Game::Piki* piki)
 	if (currState->dead() || currState->mId == PIKISTATE_Panic) {
 		return false;
 	}
-	float angle = mAngle;
+	f32 angle = mAngle;
 	if (angle < -10.0f) {
 		angle = piki->getFaceDir();
 	}
-	float cosVal = -pikmin2_cosf(angle);
-	float sinVal = -pikmin2_sinf(angle);
+	f32 cosVal = -pikmin2_cosf(angle);
+	f32 sinVal = -pikmin2_sinf(angle);
 
-	float magnitude = mKnockback * 0.1f * randFloat() + mKnockback;
+	f32 magnitude = mKnockback * 0.1f * randFloat() + mKnockback;
 
 	Vector3f knockbackDir = Vector3f(sinVal * magnitude, 50.0f * randFloat() + 100.0f, cosVal * magnitude);
 	BlowStateArg flickArg(knockbackDir, 0.1f, false, 1, mCreature);
@@ -656,7 +656,7 @@ bool InteractSwallow::actPiki(Game::Piki* piki)
 		posDiff.z = pikiPos.z - enemyPos.z;
 		posDiff.y = pikiPos.y - enemyPos.y;
 		_normaliseXZ(posDiff); // nearly every normalize function works
-		float angle = JMath::atanTable_.atan2_(posDiff.x, posDiff.z);
+		f32 angle = JMath::atanTable_.atan2_(posDiff.x, posDiff.z);
 		InteractFlick swallowFlick(mCreature, 50.0f, 0.0f, -angle);
 		piki->stimulate(swallowFlick);
 		return;

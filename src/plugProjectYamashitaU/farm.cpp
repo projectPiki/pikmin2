@@ -254,7 +254,7 @@ void Farm::updateObjectRelation(bool doInteract)
 		FOREACH_NODE(Obstacle, mObstacleRootNode.mChild, obstacleNode)
 		{
 			Vector3f obstaclePos = obstacleNode->mCreature->getPosition();
-			f32 dist             = _distanceBetween2(obstaclePos, plantPos);
+			f32 dist             = obstaclePos.distance(plantPos);
 			f32 factor           = obstacleNode->mVtxColorControl->_10;
 			if (dist < factor) {
 				if (dist < factor * obstacleNode->mVtxColorControl->mPower) {
@@ -313,6 +313,8 @@ void Farm::initAllObjectNodes()
 	mObstacleRootNode.clearRelations();
 	mPlantRootNode.clearRelations();
 }
+
+// TODO: Make the below functions weak in headers
 
 /*
  * --INFO--

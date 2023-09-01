@@ -623,7 +623,7 @@ bool Obj::isTakeTreasure()
 			radius = 50.0f;
 		}
 
-		if (_distanceBetween2(targetPos, mPosition) < radius) {
+		if (targetPos.distance(mPosition) < radius) {
 			return true;
 		}
 	}

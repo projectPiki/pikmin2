@@ -17,6 +17,7 @@
 #include "Game/Entities/ItemRock.h"
 #include "Game/Entities/ItemHoney.h"
 #include "Radar.h"
+#include "nans.h"
 
 #define FindCandypopTriggerSize      350.0f
 #define FindRedOnionTriggerSize      125.0f
@@ -225,7 +226,7 @@ bool Navi::demoCheck()
 				Vector3f peltPos = pelt->getPosition();
 				Sys::Sphere bound(peltPos, pelt->getBottomRadius() + FindGlobeTreasureTriggerSize);
 				// only the two globe treasures should check if a captain/pikmin is near, others play instantly
-				if (id == 10 || id == 11) {
+				if (id == 10 || id == 11) { // TODO: use enum for explorer kit treasures
 					check = true;
 				}
 				bool check2 = false;
@@ -255,7 +256,7 @@ bool Navi::demoCheck()
 		CI_LOOP(otaIt)
 		{
 			Pellet* pelt = *otaIt;
-			// check pellet is louie and isnt still attached to TD
+			// check pellet is Louie and isn't still attached to Titan Dweevil
 			if (pelt->mPelletFlag == Pellet::FLAG_LOOZY && !pelt->mCaptureMatrix && !pelt->discoverDisabled()) {
 				Vector3f peltPos = pelt->getPosition();
 				Sys::Sphere bound(peltPos, pelt->getBottomRadius() + FindLouieTreasureTriggerSize);
@@ -2166,7 +2167,7 @@ FakePiki* Navi::checkDemoNaviAndPiki(Sys::Sphere& bounds)
 		FakePiki* obj = static_cast<FakePiki*>(*cell);
 		if ((obj->isNavi() || obj->isPiki()) && obj->isAlive() && (!obj->isPiki() || obj->isPikmin())) {
 			Vector3f pos = obj->getPosition();
-			f32 dist     = _distanceBetween2(pos, bounds.mPosition);
+			f32 dist     = pos.distance(bounds.mPosition);
 			if (dist <= bounds.mRadius) {
 				return obj;
 			}

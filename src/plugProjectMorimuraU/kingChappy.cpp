@@ -1069,7 +1069,7 @@ int Obj::eatBomb()
 						slot->getPosition(slotPos);
 						Vector3f bombPos = bomb->getPosition();
 
-						f32 dist = _distanceBetween2(slotPos, bombPos);
+						f32 dist = slotPos.distance(bombPos);
 						if (dist < slot->mRadius) {
 							bomb->startStickMouth(this, slot);
 							bomb->mEfxLight->fade();

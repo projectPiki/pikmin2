@@ -2606,7 +2606,7 @@ void PikiHipDropState::exec(Piki* piki)
 					Vector3f pikiPos     = piki->getPosition();
 					// Vector3f diff        = Vector3f(creaturePos.x - pikiPos.x, creaturePos.y - pikiPos.y, creaturePos.x - pikiPos.x);
 
-					f32 currDist = _distanceBetween2(creaturePos, pikiPos);
+					f32 currDist = creaturePos.distance(pikiPos);
 
 					if (currDist < minDist) {
 						minDist      = currDist;
@@ -5042,7 +5042,7 @@ void PikiDrownState::exec(Piki* piki)
 					Vector3f currNaviPos = currNavi->getPosition();
 					Vector3f currPikiPos = piki->getPosition();
 					// Vector3f sep = currNaviPos - currPikiPos;
-					if (_distanceBetween2(currNaviPos, currPikiPos) < 1000.0f) {
+					if (currNaviPos.distance(currPikiPos) < 1000.0f) {
 						navi = currNavi;
 					}
 				}

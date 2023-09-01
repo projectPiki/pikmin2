@@ -178,7 +178,7 @@ Farm* FarmMgr::getNearestFarm(Vector3f& position)
 	if (mFarmsRootNode.mChild) {
 		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm)
 		{
-			f32 distance = _distanceBetween2(farm->mPosition, position);
+			f32 distance = farm->mPosition.distance(position);
 			if (distance < nearestDistance) {
 				nearestFarm     = farm;
 				nearestDistance = distance;
@@ -235,6 +235,7 @@ void FarmMgr::initAllFarmObjectNodes()
  * --INFO--
  * Address:	801246D0
  * Size:	000078
+ * TODO: Make Weak
  */
 FarmMgr::~FarmMgr() { }
 } // namespace Farm

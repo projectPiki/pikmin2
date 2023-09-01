@@ -787,7 +787,7 @@ void StateGoHome::exec(EnemyBase* enemy)
 		Vector3f armorHomePos = armor->mHomePosition;
 		Vector3f armorPos     = armor->getPosition();
 
-		f32 dist = _distanceBetween2(armorPos, armorHomePos);
+		f32 dist = armorPos.distance(armorHomePos);
 		if (dist < CG_PARMS(armor)->mGeneral.mHomeRadius.mValue) {
 			armor->mNextState = ARMOR_Dive;
 			armor->finishMotion();
