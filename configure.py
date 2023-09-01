@@ -906,7 +906,7 @@ LIBS = [
             ["plugProjectKandoU/objectTypes", True],
             "plugProjectKandoU/naviState",
             "plugProjectKandoU/pikiState",
-            "plugProjectKandoU/interactPiki",
+            ["plugProjectKandoU/interactPiki", True],
             "plugProjectKandoU/gameCPlate",
             ["plugProjectKandoU/updateMgr", True],
             ["plugProjectKandoU/aiAction", True],

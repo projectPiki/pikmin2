@@ -20,7 +20,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/objectTypes.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/naviState.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiState.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/interactPiki.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/interactPiki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameCPlate.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/updateMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiAction.o\

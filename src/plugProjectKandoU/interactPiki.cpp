@@ -114,7 +114,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				}
 			}
 			if (!playData->hasBootContainer((u32)piki->mPikiKind)) { // might be u32 param then
-				char* cutscenes[3] = { "g21_meet_bluepikmin", "g03_meet_redpikmin", "g1F_meed_yellowpikmin" };
+				char* cutscenes[3] = { "g21_meet_bluepikmin", "g03_meet_redpikmin", "g1F_meet_yellowpikmin" };
 				MoviePlayArg movieArg(cutscenes[piki->mPikiKind], nullptr, nullptr, 0);
 				movieArg.setTarget(piki);
 				if ((int)piki->mPikiKind == Red) {

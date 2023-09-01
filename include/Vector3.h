@@ -191,7 +191,7 @@ inline f32 Vector3f::length() const
 {
 	if (sqrMagnitude() > 0.0f) {
 		Vector3f vec = Vector3f(x, y, z);
-		f32 sqrLen = SQUARE(vec.x) + SQUARE(y) + SQUARE(z);
+		f32 sqrLen   = SQUARE(vec.x) + SQUARE(y) + SQUARE(z);
 		return sqrtf(sqrLen);
 	} else {
 		return 0.0f;
