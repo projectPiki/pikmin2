@@ -346,12 +346,9 @@ bool TOootaFire::create(efx::Arg* arg)
 	efx::ArgScale* argp = static_cast<efx::ArgScale*>(arg);
 
 	if (TSyncGroup6::create(arg)) {
-		mItems[0].mEmitter->setScale(argp->mScale);
-		mItems[1].mEmitter->setScale(argp->mScale);
-		mItems[2].mEmitter->setScale(argp->mScale);
-		mItems[3].mEmitter->setScale(argp->mScale);
-		mItems[4].mEmitter->setScale(argp->mScale);
-		mItems[5].mEmitter->setScale(argp->mScale);
+		for (int i = 0; i < 6; i++) {
+			mItems[i].mEmitter->setScale(argp->mScale);
+		}
 		return true;
 	} else {
 		return false;

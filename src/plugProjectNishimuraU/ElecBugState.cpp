@@ -239,7 +239,7 @@ void StateCharge::exec(EnemyBase* enemy)
 				Obj* otherBug = *iElecBug;
 				if (bug != otherBug && otherBug->isBecomeChargeState()) {
 					Vector3f otherPos = otherBug->getPosition();
-					if (_distanceBetween(bugPos, otherPos) < 300.0f) {
+					if (bugPos.distance(otherPos) < 300.0f) {
 						seachingBugs[bugCount] = otherBug;
 						bugCount++;
 					}
