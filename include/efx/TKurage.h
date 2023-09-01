@@ -18,16 +18,22 @@ struct TKurageBomb : public TSimple2 {
 };
 
 struct TKurageDeadrun : public TChaseMtxT {
-	inline TKurageDeadrun() { }
+	inline TKurageDeadrun()
+	    : TChaseMtxT(PID_KurageDeadRun)
+	{
+	}
 
-	virtual ~TKurageDeadrun(); // _48 (weak)
+	virtual ~TKurageDeadrun() { } // _48 (weak)
 
 	// _00		 = VTBL
 	// _00-_14 = TChaseMtxT
 };
 
 struct TKurageEye : public TChaseMtx {
-	inline TKurageEye() { }
+	inline TKurageEye()
+	    : TChaseMtx(PID_KurageEye, nullptr)
+	{
+	}
 
 	virtual ~TKurageEye(); // _48 (weak)
 
@@ -51,7 +57,7 @@ struct TKurageGepu : public TChasePos {
 	{
 	}
 
-	virtual ~TKurageGepu(); // _48 (weak)
+	virtual ~TKurageGepu() { } // _48 (weak)
 
 	// _00		 = VTBL
 	// _00-_14 = TChasePos
@@ -70,12 +76,12 @@ struct TKurageHire : public TChaseMtx3 {
 };
 
 struct TKurageKira : public TChasePos {
-	inline TKurageKira()
-	    : TChasePos(PID_KurageKira, nullptr)
+	inline TKurageKira(Vector3f* pos)
+	    : TChasePos(PID_KurageKira, pos)
 	{
 	}
 
-	virtual ~TKurageKira(); // _48 (weak)
+	virtual ~TKurageKira() { } // _48 (weak)
 
 	// _00		 = VTBL
 	// _00-_14 = TChasePos
