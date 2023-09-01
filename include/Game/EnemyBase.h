@@ -627,7 +627,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		Vector3f targetPos = target->getPosition();
 		Vector3f pos       = getPosition();
 
-		f32 angleDist = angDist(_angXZ(targetPos.x, targetPos.z, pos.x, pos.z), getFaceDir());
+		f32 angleDist = getAngDist(target);
 		f32 turnSpeed = angleDist * turnFactor;
 		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
 		if (FABS(turnSpeed) > limit) {
