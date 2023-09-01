@@ -132,7 +132,7 @@ struct Vector3 {
 	}
 
 	// Squared magnitude
-	inline f32 sqrMagnitude() { return x * x + y * y + z * z; }
+	inline f32 sqrMagnitude() const { return x * x + y * y + z * z; }
 	// Quick length
 	inline f32 qLength() { return pikmin2_sqrtf(sqrMagnitude()); }
 
@@ -189,13 +189,9 @@ inline void getScaledXZVec(Vector3f& vec, f32 x, f32 z, f32 scale)
 template <>
 inline f32 Vector3f::length() const
 {
-	Vector3f vec(x, y, z);
-	f32 x2 = x * x;
-	f32 y2 = y * y;
-	f32 z2 = z * z;
-
-	if (x2 + y2 + z2 > 0.0f) {
-		f32 sqrLen = vec.x * vec.x + y * y + z * z;
+	if (sqrMagnitude() > 0.0f) {
+		Vector3f vec = Vector3f(x, y, z);
+		f32 sqrLen = SQUARE(vec.x) + SQUARE(y) + SQUARE(z);
 		return sqrtf(sqrLen);
 	} else {
 		return 0.0f;
@@ -407,13 +403,11 @@ inline void sumZ(Vector3f vec, f32* sum)
 template <>
 inline f32 Vector3f::distance(Vector3f& them)
 {
-	Vector3f diff = *this - them;
+	f32 diffX = this->x - them.x;
+	f32 diffY = this->y - them.y;
+	f32 diffZ = this->z - them.z;
 
-	f32 sum;
-	sumXY(diff, &sum);
-	sumZ(diff, &sum);
-
-	return _sqrtf(sum);
+	return Vector3f(diffX, diffY, diffZ).length();
 }
 
 inline f32 _normaliseDistance(Vector3f& vec1, Vector3f& vec2)
