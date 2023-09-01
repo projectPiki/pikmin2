@@ -93,7 +93,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				{
 					BaseItem* cave   = *iCave;
 					Vector3f cavePos = cave->getPosition();
-					f32 distance     = _distanceBetween3(cavePos, pikiPos); // float register mismatch lives here
+					f32 distance     = cavePos.distance(pikiPos); // float register mismatch lives here
 					if (distance < closestHoleDist) {
 						closestHoleDist = distance;
 						closestCavePos  = cavePos;
