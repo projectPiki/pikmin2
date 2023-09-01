@@ -39,20 +39,23 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
+	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Kurage;
+	}
 	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
 	virtual void doStartStoneState();                       // _2A4
 	virtual void doFinishStoneState();                      // _2A8
 	virtual void doStartWaitingBirthTypeDrop();             // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();            // _2E4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
+	virtual f32 getDownSmokeScale() { return 0.65f; }       // _2EC (weak)
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
@@ -93,7 +96,7 @@ struct Obj : public EnemyBase {
 	f32 mFallTimer;                      // _2CC
 	Vector3f mTargetPosition;            // _2D0
 	bool mIsSucking;                     // _2DC
-	int _2E0;                            // _2E0
+	int mSuckedPiki;                     // _2E0
 	efx::TNewkurageEye* _2E4;            // _2E4
 	efx::TNewkurageEye* _2E8;            // _2E8
 	efx::TNewkurageHire* mEfxHire;       // _2EC
@@ -129,25 +132,25 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "飛行高さ", 90.0f, 0.0f, 150.0f)       // 'flight height'
-		    , mFp02(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)         // 'rise factor'
-		    , mFp10(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f) // 'ground wait time'
-		    , mFp11(this, 'fp11', "吸い込み時間", 5.0f, 0.0f, 10.0f)     // 'suction time'
-		    , mFp12(this, 'fp12', "吸い込み確率", 0.025f, 0.0f, 1.0f)    // 'suction probability'
-		    , mFp04(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)     // 'shake off time'
-		    , mIp01(this, 'ip01', "落下最低ピキ数", 10, 1, 50)           // 'falling minimum piki number'
-		    , mIp11(this, 'ip11', "吸い込みピキ数", 10, 1, 100)          // 'sucking piki number'
+		    , mFlightHeight(this, 'fp01', "飛行高さ", 90.0f, 0.0f, 150.0f)     // 'flight height'
+		    , mRiseFactor(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)         // 'rise factor'
+		    , mGroundTime(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f) // 'ground wait time'
+		    , mSuckTime(this, 'fp11', "吸い込み時間", 5.0f, 0.0f, 10.0f)       // 'suction time'
+		    , mSuckChance(this, 'fp12', "吸い込み確率", 0.025f, 0.0f, 1.0f)    // 'suction probability'
+		    , mShakeTime(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)      // 'shake off time'
+		    , mMinFallPiki(this, 'ip01', "落下最低ピキ数", 10, 1, 50)          // 'falling minimum piki number'
+		    , mMaxSuckPiki(this, 'ip11', "吸い込みピキ数", 10, 1, 100)         // 'sucking piki number'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp10; // _854
-		Parm<f32> mFp11; // _87C
-		Parm<f32> mFp12; // _8A4
-		Parm<f32> mFp04; // _8CC
-		Parm<int> mIp01; // _8F4
-		Parm<int> mIp11; // _91C
+		Parm<f32> mFlightHeight; // _804, fp01
+		Parm<f32> mRiseFactor;   // _82C, fp02
+		Parm<f32> mGroundTime;   // _854, fp10
+		Parm<f32> mSuckTime;     // _87C, fp11
+		Parm<f32> mSuckChance;   // _8A4, fp12
+		Parm<f32> mShakeTime;    // _8CC, fp04
+		Parm<int> mMinFallPiki;  // _8F4, ip01
+		Parm<int> mMaxSuckPiki;  // _91C, ip11
 	};
 
 	Parms() { }

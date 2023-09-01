@@ -312,7 +312,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->enableEvent(0, EB_IsFlying);
 	kurage->mNextState  = KURAGE_NULL;
 	kurage->mStateTimer = 0.0f;
-	kurage->_2E0        = 0;
+	kurage->mSuckedPiki = 0;
 	kurage->mIsSucking  = false;
 	kurage->disableEvent(0, EB_IsCullable);
 	kurage->mTargetVelocity = Vector3f(0.0f);
@@ -328,8 +328,8 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* kurage = static_cast<Obj*>(enemy);
-	if (kurage->mHealth <= 0.0f || kurage->mStateTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mFp11.mValue
-	    || kurage->mFallTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mFp04.mValue) {
+	if (kurage->mHealth <= 0.0f || kurage->mStateTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mSuckTime.mValue
+	    || kurage->mFallTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mShakeTime.mValue) {
 		kurage->finishMotion();
 	}
 
@@ -562,7 +562,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 void StateGround::exec(EnemyBase* enemy)
 {
 	Obj* kurage = static_cast<Obj*>(enemy);
-	if (kurage->mStuckPikminCount == 0 || kurage->mStateTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mFp10.mValue) {
+	if (kurage->mStuckPikminCount == 0 || kurage->mStateTimer > static_cast<Parms*>(kurage->mParms)->mProperParms.mGroundTime.mValue) {
 		kurage->finishMotion();
 	}
 

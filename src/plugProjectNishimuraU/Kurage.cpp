@@ -1,14 +1,18 @@
 #include "Game/Entities/Kurage.h"
 #include "Game/MapMgr.h"
+#include "Game/EnemyFunc.h"
+#include "Game/PikiMgr.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
+namespace Kurage {
 
 /*
  * --INFO--
  * Address:	802AD6F0
  * Size:	000138
  */
-Kurage::Obj::Obj()
+Obj::Obj()
 {
 	mAnimator = new ProperAnimator();
 	setFSM(new FSM());
@@ -20,14 +24,14 @@ Kurage::Obj::Obj()
  * Address:	802AD828
  * Size:	000004
  */
-void Kurage::Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802AD82C
  * Size:	0000A8
  */
-void Kurage::Obj::onInit(CreatureInitArg* initArg)
+void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	disableEvent(0, EB_ToLeaveCarcass);
@@ -37,7 +41,7 @@ void Kurage::Obj::onInit(CreatureInitArg* initArg)
 	mStateTimer = 0.0f;
 	mFallTimer  = 0.0f;
 	_2C8        = 3.5f;
-	_2E0        = 0;
+	mSuckedPiki = 0;
 	mIsSucking  = false;
 
 	setupEffect();
@@ -51,7 +55,7 @@ void Kurage::Obj::onInit(CreatureInitArg* initArg)
  * Address:	802AD8D4
  * Size:	000054
  */
-void Kurage::Obj::onKill(CreatureKillArg* killArg)
+void Obj::onKill(CreatureKillArg* killArg)
 {
 	finishEyeBodyEffect();
 	finishHireEffect();
@@ -64,7 +68,7 @@ void Kurage::Obj::onKill(CreatureKillArg* killArg)
  * Address:	802AD928
  * Size:	000100
  */
-void Kurage::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	mFsm->exec(this);
 	updateFallTimer();
@@ -85,21 +89,21 @@ void Kurage::Obj::doUpdate()
  * Address:	802ADA28
  * Size:	000004
  */
-void Kurage::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802ADA2C
  * Size:	000020
  */
-void Kurage::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	802ADA4C
  * Size:	00004C
  */
-void Kurage::Obj::setFSM(Kurage::FSM* fsm)
+void Obj::setFSM(FSM* fsm)
 {
 	mFsm = fsm;
 	mFsm->init(this);
@@ -111,7 +115,7 @@ void Kurage::Obj::setFSM(Kurage::FSM* fsm)
  * Address:	802ADA98
  * Size:	000118
  */
-void Kurage::Obj::getShadowParam(ShadowParam& shadowParam)
+void Obj::getShadowParam(ShadowParam& shadowParam)
 {
 	Matrixf* worldMat     = mModel->getJoint("koshi1")->getWorldMatrix();
 	shadowParam.mPosition = Vector3f(worldMat->mMatrix.mtxView[0][3], worldMat->mMatrix.mtxView[1][3], worldMat->mMatrix.mtxView[2][3]);
@@ -127,7 +131,7 @@ void Kurage::Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 
 	if (isFlying()) {
-		shadowParam.mBoundingSphere.mRadius = 50.0f + C_PROPERPARMS.mFp01.mValue;
+		shadowParam.mBoundingSphere.mRadius = 50.0f + C_PROPERPARMS.mFlightHeight.mValue;
 	} else {
 		shadowParam.mBoundingSphere.mRadius = 50.0f;
 	}
@@ -140,7 +144,7 @@ void Kurage::Obj::getShadowParam(ShadowParam& shadowParam)
  * Address:	802ADBB0
  * Size:	000038
  */
-bool Kurage::Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
+bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
 	if (part) {
 		addDamage(damage, 1.0f);
@@ -155,7 +159,7 @@ bool Kurage::Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
  * Address:	802ADBE8
  * Size:	000044
  */
-void Kurage::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
 	finishEyeBodyEffect();
@@ -168,7 +172,7 @@ void Kurage::Obj::doStartStoneState()
  * Address:	802ADC2C
  * Size:	00007C
  */
-void Kurage::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
 	startEyeHireBodyEffect();
@@ -185,7 +189,7 @@ void Kurage::Obj::doFinishStoneState()
  * Address:	802ADCA8
  * Size:	000034
  */
-void Kurage::Obj::doStartWaitingBirthTypeDrop()
+void Obj::doStartWaitingBirthTypeDrop()
 {
 	EnemyBase::doStartWaitingBirthTypeDrop();
 	effectDrawOff();
@@ -196,7 +200,7 @@ void Kurage::Obj::doStartWaitingBirthTypeDrop()
  * Address:	802ADCDC
  * Size:	000034
  */
-void Kurage::Obj::doFinishWaitingBirthTypeDrop()
+void Obj::doFinishWaitingBirthTypeDrop()
 {
 	EnemyBase::doFinishWaitingBirthTypeDrop();
 	effectDrawOn();
@@ -207,25 +211,26 @@ void Kurage::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	802ADD10
  * Size:	000020
  */
-void Kurage::Obj::doStartMovie() { effectDrawOff(); }
+void Obj::doStartMovie() { effectDrawOff(); }
 
 /*
  * --INFO--
  * Address:	802ADD30
  * Size:	000020
  */
-void Kurage::Obj::doEndMovie() { effectDrawOn(); }
+void Obj::doEndMovie() { effectDrawOn(); }
 
 /*
  * --INFO--
  * Address:	802ADD50
  * Size:	000098
  */
-f32 Kurage::Obj::setHeightVelocity(f32 yOffset, f32 speedFactor)
+f32 Obj::setHeightVelocity(f32 yOffset, f32 speedFactor)
 {
 	f32 minY = mapMgr->getMinY(mPosition);
 
-	mCurrentVelocity.y = (speedFactor + C_PROPERPARMS.mFp02.mValue) * ((yOffset + C_PROPERPARMS.mFp01.mValue + minY) - mPosition.y);
+	mCurrentVelocity.y
+	    = (speedFactor + C_PROPERPARMS.mRiseFactor.mValue) * ((yOffset + C_PROPERPARMS.mFlightHeight.mValue + minY) - mPosition.y);
 
 	return mPosition.y - minY;
 }
@@ -235,134 +240,17 @@ f32 Kurage::Obj::setHeightVelocity(f32 yOffset, f32 speedFactor)
  * Address:	802ADDE8
  * Size:	0001D8
  */
-void Kurage::Obj::setRandTarget()
+void Obj::setRandTarget()
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stfd     f29, 0x70(r1)
-	psq_st   f29, 120(r1), 0, qr0
-	stfd     f28, 0x60(r1)
-	psq_st   f28, 104(r1), 0, qr0
-	stfd     f27, 0x50(r1)
-	psq_st   f27, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lwz      r3, 0xc0(r3)
-	lfs      f1, 0x35c(r3)
-	lfs      f0, 0x384(r3)
-	fsubs    f27, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	mr       r4, r31
-	lwz      r5, 0xc0(r31)
-	addi     r3, r1, 8
-	stw      r0, 0x18(r1)
-	lfd      f1, lbl_8051C0F8@sda21(r2)
-	lfd      f0, 0x18(r1)
-	lwz      r12, 0(r31)
-	fsubs    f2, f0, f1
-	lfs      f1, lbl_8051C0E4@sda21(r2)
-	lfs      f0, 0x384(r5)
-	lwz      r12, 8(r12)
-	fmuls    f2, f27, f2
-	fdivs    f1, f2, f1
-	fadds    f28, f0, f1
-	mtctr    r12
-	bctrl
-	lfs      f31, 0x198(r31)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f1, 8(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f29, 0x1a0(r31)
-	lfs      f0, 0x10(r1)
-	fsubs    f1, f1, f31
-	lfs      f30, 0x19c(r31)
-	fsubs    f2, f0, f29
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	fmr      f27, f1
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x24(r1)
-	lfd      f2, lbl_8051C0F8@sda21(r2)
-	stw      r0, 0x20(r1)
-	lfs      f3, lbl_8051C0E8@sda21(r2)
-	lfd      f0, 0x20(r1)
-	lfs      f1, lbl_8051C0E4@sda21(r2)
-	fsubs    f4, f0, f2
-	lfs      f2, lbl_8051C0EC@sda21(r2)
-	lfs      f0, lbl_8051C0C0@sda21(r2)
-	fmuls    f3, f3, f4
-	fdivs    f1, f3, f1
-	fadds    f1, f27, f1
-	fadds    f3, f2, f1
-	fmr      f1, f3
-	fcmpo    cr0, f3, f0
-	bge      lbl_802ADF00
-	fneg     f1, f3
+	f32 randRadius = randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue)
+	               + C_PARMS->mGeneral.mHomeRadius.mValue;
+	Vector3f pos     = getPosition();
+	Vector3f homePos = mHomePosition;
+	f32 ang          = JMAAtan2Radian(pos.x - homePos.x, pos.z - homePos.z);
 
-lbl_802ADF00:
-	lfs      f2, lbl_8051C0F0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051C0C0@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f3, f0
-	fctiwz   f0, f1
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmadds   f1, f28, f0, f29
-	bge      lbl_802ADF5C
-	lfs      f0, lbl_8051C0F4@sda21(r2)
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_802ADF74
+	f32 theta = HALF_PI + (randWeightFloat(PI) + ang);
 
-lbl_802ADF5C:
-	fmuls    f0, f3, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-
-lbl_802ADF74:
-	fmadds   f0, f28, f0, f31
-	stfs     f0, 0x2d0(r31)
-	stfs     f30, 0x2d4(r31)
-	stfs     f1, 0x2d8(r31)
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	psq_l    f29, 120(r1), 0, qr0
-	lfd      f29, 0x70(r1)
-	psq_l    f28, 104(r1), 0, qr0
-	lfd      f28, 0x60(r1)
-	psq_l    f27, 88(r1), 0, qr0
-	lfd      f27, 0x50(r1)
-	lwz      r0, 0xa4(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+	mTargetPosition = Vector3f(randRadius * pikmin2_sinf(theta) + homePos.x, homePos.y, randRadius * pikmin2_cosf(theta) + homePos.z);
 }
 
 /*
@@ -370,57 +258,15 @@ lbl_802ADF74:
  * Address:	802ADFC0
  * Size:	0000A4
  */
-f32 Kurage::Obj::getMovePitchOffset()
+f32 Obj::getMovePitchOffset()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	lfs      f3, lbl_8051C0E8@sda21(r2)
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0x2c8(r3)
-	lfs      f2, 0x54(r4)
-	lfs      f0, lbl_8051C100@sda21(r2)
-	fmadds   f1, f3, f2, f1
-	stfs     f1, 0x2c8(r3)
-	lfs      f1, 0x2c8(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802ADFF4
-	fsubs    f0, f1, f0
-	stfs     f0, 0x2c8(r3)
+	_2C8 += sys->mDeltaTime * PI;
 
-lbl_802ADFF4:
-	lfs      f2, 0x2c8(r3)
-	lfs      f0, lbl_8051C0C0@sda21(r2)
-	lfs      f1, lbl_8051C0DC@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_802AE034
-	lfs      f0, lbl_8051C0F4@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f0, f0
-	b        lbl_802AE058
+	if (_2C8 > TAU) {
+		_2C8 -= TAU;
+	}
 
-lbl_802AE034:
-	lfs      f0, lbl_8051C0F0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-
-lbl_802AE058:
-	fmuls    f1, f1, f0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return 50.0f * pikmin2_sinf(_2C8);
 }
 
 /*
@@ -428,8 +274,27 @@ lbl_802AE058:
  * Address:	802AE064
  * Size:	0001A8
  */
-f32 Kurage::Obj::getAttackPitchOffset()
+f32 Obj::getAttackPitchOffset()
 {
+	f32 keyFrames[7] = { 0.0f, 30.0f, 65.0f, 80.0f, 95.0f, 108.0f, 120.0f };
+	f32 offsets[7]   = { 0.0f, -20.0f, 15.0f, -30.0f, 0.0f, -25.0f, 0.0f };
+
+	f32 currFrame = getMotionFrame();
+
+	f32 attackOffset = 0.0f;
+
+	for (int i = 0; i < 6; i++) {
+		f32 lastKey = keyFrames[i];
+		if (currFrame >= lastKey) {
+			f32 nextKey = keyFrames[i + 1];
+			if (currFrame < nextKey) {
+				f32 factor   = (currFrame - lastKey) / (nextKey - lastKey);
+				attackOffset = factor * offsets[i + 1] + (1.0f - factor) * offsets[i];
+			}
+		}
+	}
+
+	return attackOffset;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -553,8 +418,27 @@ lbl_802AE1E4:
  * Address:	802AE20C
  * Size:	0001A8
  */
-f32 Kurage::Obj::getFlickPitchOffset()
+f32 Obj::getFlickPitchOffset()
 {
+	f32 keyFrames[7] = { 0.0f, 10.0f, 15.0f, 20.0f, 30.0f, 40.0f, 60.0f };   // ??
+	f32 offsets[7]   = { 0.0f, -50.0f, 50.0f, -50.0f, 20.0f, -20.0f, 0.0f }; // ??
+
+	f32 currFrame = getMotionFrame();
+
+	f32 flickOffset = 0.0f;
+
+	for (int i = 0; i < 6; i++) {
+		f32 lastKey = keyFrames[i];
+		if (currFrame >= lastKey) {
+			f32 nextKey = keyFrames[i + 1];
+			if (currFrame < nextKey) {
+				f32 factor  = (currFrame - lastKey) / (nextKey - lastKey);
+				flickOffset = factor * offsets[i + 1] + (1.0f - factor) * offsets[i];
+			}
+		}
+	}
+
+	return flickOffset;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -678,8 +562,27 @@ lbl_802AE38C:
  * Address:	802AE3B4
  * Size:	000144
  */
-f32 Kurage::Obj::getTakeOffPitchOffset()
+f32 Obj::getTakeOffPitchOffset()
 {
+	f32 keyFrames[5] = { 32.0f, 40.0f, 52.0f, 70.0f, 80.0f };
+	f32 offsets[5]   = { 0.0f, -45.0f, -60.0f, -10.0f, -10.0f };
+
+	f32 currFrame = getMotionFrame();
+
+	f32 takeOffOffset = 0.0f;
+
+	for (int i = 0; i < 4; i++) {
+		f32 lastKey = keyFrames[i];
+		if (currFrame >= lastKey) {
+			f32 nextKey = keyFrames[i + 1];
+			if (currFrame < nextKey) {
+				f32 factor    = (currFrame - lastKey) / (nextKey - lastKey);
+				takeOffOffset = factor * offsets[i + 1] + (1.0f - factor) * offsets[i];
+			}
+		}
+	}
+
+	return takeOffOffset;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -776,8 +679,26 @@ lbl_802AE4D0:
  * Address:	802AE4F8
  * Size:	000168
  */
-f32 Kurage::Obj::getFallPitchOffset(float)
+f32 Obj::getFallPitchOffset(f32 p1)
 {
+	f32 currFrame    = 30.0f * p1;
+	f32 keyFrames[8] = { 7.0f, 17.0f, 27.0f, 37.0f, 47.0f, 57.0f, 67.0f, 77.0f };
+	f32 offsets[8]   = { -20.0f, -15.0f, -35.0f, -25.0f, -40.0f, -35.0f, -65.0f, 0.0f };
+
+	f32 fallOffset = 0.0f;
+
+	for (int i = 0; i < 7; i++) {
+		f32 lastKey = keyFrames[i];
+		if (currFrame >= lastKey) {
+			f32 nextKey = keyFrames[i + 1];
+			if (currFrame < nextKey) {
+				f32 factor = (currFrame - lastKey) / (nextKey - lastKey);
+				fallOffset = factor * offsets[i + 1] + (1.0f - factor) * offsets[i];
+			}
+		}
+	}
+
+	return fallOffset;
 	/*
 	stwu     r1, -0x80(r1)
 	lis      r4, lbl_80489E40@ha
@@ -883,24 +804,14 @@ lbl_802AE644:
  * Address:	802AE660
  * Size:	000030
  */
-void Kurage::Obj::updateFallTimer()
+void Obj::updateFallTimer()
 {
-	/*
-	lwz      r0, 0x1f4(r3)
-	cmpwi    r0, 0
-	beq      lbl_802AE684
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0x2cc(r3)
-	lfs      f0, 0x54(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2cc(r3)
-	blr
+	if (mStuckPikminCount != 0) {
+		mFallTimer += sys->mDeltaTime;
+		return;
+	}
 
-lbl_802AE684:
-	lfs      f0, lbl_8051C0C0@sda21(r2)
-	stfs     f0, 0x2cc(r3)
-	blr
-	*/
+	mFallTimer = 0.0f;
 }
 
 /*
@@ -908,63 +819,25 @@ lbl_802AE684:
  * Address:	802AE690
  * Size:	0000A4
  */
-Kurage::StateID Kurage::Obj::getFlyingNextState()
+StateID Obj::getFlyingNextState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C0C0@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lfs      f1, 0x200(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802AE6C0
-	li       r3, 0
-	b        lbl_802AE720
+	if (mHealth <= 0.0f) {
+		return KURAGE_Dead;
+	}
 
-lbl_802AE6C0:
-	li       r4, 3
-	bl       getStickPikminColorNum__Q24Game9EnemyFuncFPQ24Game8Creaturei
-	cmpwi    r3, 0
-	ble      lbl_802AE6D8
-	li       r3, 5
-	b        lbl_802AE720
+	if (EnemyFunc::getStickPikminColorNum(this, Purple) > 0) {
+		return KURAGE_Fall;
+	}
 
-lbl_802AE6D8:
-	lwz      r4, 0xc0(r31)
-	lfs      f1, 0x2cc(r31)
-	lfs      f0, 0x8e4(r4)
-	fcmpo    cr0, f1, f0
-	bgt      lbl_802AE6FC
-	lwz      r3, 0x1f4(r31)
-	lwz      r0, 0x90c(r4)
-	cmpw     r3, r0
-	blt      lbl_802AE71C
+	if (mFallTimer > C_PROPERPARMS.mShakeTime.mValue || mStuckPikminCount >= C_PROPERPARMS.mMinFallPiki.mValue) {
+		if (mStuckPikminCount < C_PROPERPARMS.mMinFallPiki.mValue) {
+			return KURAGE_FlyFlick;
+		} else {
+			return KURAGE_Fall;
+		}
+	}
 
-lbl_802AE6FC:
-	lwz      r3, 0x1f4(r31)
-	lwz      r0, 0x90c(r4)
-	cmpw     r3, r0
-	bge      lbl_802AE714
-	li       r3, 9
-	b        lbl_802AE720
-
-lbl_802AE714:
-	li       r3, 5
-	b        lbl_802AE720
-
-lbl_802AE71C:
-	li       r3, -1
-
-lbl_802AE720:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return KURAGE_NULL;
 }
 
 /*
@@ -972,312 +845,43 @@ lbl_802AE720:
  * Address:	802AE734
  * Size:	000448
  */
-Creature* Kurage::Obj::getSearchedTarget(float)
+Creature* Obj::getSearchedTarget(f32 offset)
 {
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stfd     f29, 0xb0(r1)
-	psq_st   f29, 184(r1), 0, qr0
-	stfd     f28, 0xa0(r1)
-	psq_st   f28, 168(r1), 0, qr0
-	stfd     f27, 0x90(r1)
-	psq_st   f27, 152(r1), 0, qr0
-	stfd     f26, 0x80(r1)
-	psq_st   f26, 136(r1), 0, qr0
-	stfd     f25, 0x70(r1)
-	psq_st   f25, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	stw      r29, 0x64(r1)
-	mr       r30, r3
-	li       r31, 0
-	lfs      f2, 0x194(r3)
-	lfs      f0, 0x1a0(r3)
-	lwz      r4, 0xc0(r3)
-	fsubs    f4, f2, f0
-	lfs      f3, 0x18c(r3)
-	lfs      f2, 0x198(r3)
-	lfs      f0, 0x35c(r4)
-	fsubs    f3, f3, f2
-	fmuls    f2, f4, f4
-	fmuls    f0, f0, f0
-	fmadds   f2, f3, f3, f2
-	fcmpo    cr0, f2, f0
-	bge      lbl_802AEB24
-	lfs      f30, 0x190(r30)
-	lis      r3, "__vt__22Iterator<Q24Game4Piki>"@ha
-	lfs      f2, lbl_8051C108@sda21(r2)
-	li       r0, 0
-	lfs      f0, 0x424(r4)
-	fsubs    f5, f30, f1
-	lfs      f4, lbl_8051C0DC@sda21(r2)
-	cmplwi   r0, 0
-	lfs      f1, 0x3d4(r4)
-	fmuls    f2, f2, f0
-	lfs      f0, 0x564(r4)
-	lfs      f3, lbl_8051C0E8@sda21(r2)
-	addi     r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	fsubs    f29, f5, f4
-	fmuls    f28, f3, f2
-	stw      r4, 0x44(r1)
-	fmuls    f27, f1, f1
-	fmuls    f26, f0, f0
-	stw      r0, 0x50(r1)
-	stw      r0, 0x48(r1)
-	stw      r3, 0x4c(r1)
-	bne      lbl_802AE834
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x48(r1)
-	b        lbl_802AEB04
+	Creature* target = nullptr;
 
-lbl_802AE834:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x48(r1)
-	b        lbl_802AE8A0
+	if (sqrDistanceXZ(mPosition, mHomePosition) < SQUARE(*C_PARMS->mGeneral.mTerritoryRadius())) {
+		f32 currY       = mPosition.y;
+		f32 minY        = currY - offset - 50.0f;
+		f32 fovAng      = PI * (DEG2RAD * *C_PARMS->mGeneral.mViewAngle());
+		f32 maxDist     = SQUARE(*C_PARMS->mGeneral.mSightRadius());
+		f32 attackRange = SQUARE(*C_PARMS->mGeneral.mMaxAttackRange());
 
-lbl_802AE84C:
-	lwz      r3, 0x4c(r1)
-	lwz      r4, 0x48(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x50(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802AEB04
-	lwz      r3, 0x4c(r1)
-	lwz      r4, 0x48(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x48(r1)
+		Iterator<Piki> iter(pikiMgr, nullptr, nullptr);
 
-lbl_802AE8A0:
-	lwz      r12, 0x44(r1)
-	addi     r3, r1, 0x44
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AE84C
-	b        lbl_802AEB04
+		CI_LOOP(iter)
+		{
+			Piki* currPiki = *iter;
+			if (currPiki->isAlive() && currPiki->isPikmin() && currPiki->mSticker != this) {
+				Vector3f pikiPos = currPiki->getPosition();
+				if (pikiPos.y > minY && pikiPos.y < currY) {
+					f32 dist = sqrDistanceXZ(mPosition, pikiPos);
+					if (dist < attackRange) {
+						return currPiki;
+					}
 
-lbl_802AE8C0:
-	lwz      r3, 0x4c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r29, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AEA48
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AEA48
-	lwz      r0, 0xf4(r29)
-	cmplw    r0, r30
-	beq      lbl_802AEA48
-	mr       r4, r29
-	addi     r3, r1, 0x38
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x3c(r1)
-	lfs      f2, 0x38(r1)
-	fcmpo    cr0, f0, f29
-	lfs      f3, 0x40(r1)
-	ble      lbl_802AEA48
-	fcmpo    cr0, f0, f30
-	bge      lbl_802AEA48
-	lfs      f0, 0x194(r30)
-	lfs      f1, 0x18c(r30)
-	fsubs    f0, f0, f3
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f0
-	fmadds   f31, f1, f1, f0
-	fcmpo    cr0, f31, f26
-	bge      lbl_802AE974
-	mr       r3, r29
-	b        lbl_802AEB28
+					if (dist < maxDist) {
+						f32 angSep = getAngDist(currPiki);
+						if (absVal(angSep) <= fovAng) {
+							target  = currPiki;
+							maxDist = dist;
+						}
+					}
+				}
+			}
+		}
+	}
 
-lbl_802AE974:
-	fcmpo    cr0, f31, f27
-	bge      lbl_802AEA48
-	mr       r4, r29
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r30
-	lfs      f2, 0x20(r1)
-	lwz      r12, 0(r30)
-	addi     r3, r1, 0x2c
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x2c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x34(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 8(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f4, 0x30(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r30)
-	fmr      f25, f1
-	mr       r3, r30
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f25
-	bl       angDist__Fff
-	lfs      f0, lbl_8051C0C0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802AEA30
-	b        lbl_802AEA34
-
-lbl_802AEA30:
-	fneg     f1, f1
-
-lbl_802AEA34:
-	fcmpo    cr0, f1, f28
-	cror     2, 0, 2
-	bne      lbl_802AEA48
-	mr       r31, r29
-	fmr      f27, f31
-
-lbl_802AEA48:
-	lwz      r0, 0x50(r1)
-	cmplwi   r0, 0
-	bne      lbl_802AEA74
-	lwz      r3, 0x4c(r1)
-	lwz      r4, 0x48(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x48(r1)
-	b        lbl_802AEB04
-
-lbl_802AEA74:
-	lwz      r3, 0x4c(r1)
-	lwz      r4, 0x48(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x48(r1)
-	b        lbl_802AEAE8
-
-lbl_802AEA94:
-	lwz      r3, 0x4c(r1)
-	lwz      r4, 0x48(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x50(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802AEB04
-	lwz      r3, 0x4c(r1)
-	lwz      r4, 0x48(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x48(r1)
-
-lbl_802AEAE8:
-	lwz      r12, 0x44(r1)
-	addi     r3, r1, 0x44
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AEA94
-
-lbl_802AEB04:
-	lwz      r3, 0x4c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x48(r1)
-	cmplw    r4, r3
-	bne      lbl_802AE8C0
-
-lbl_802AEB24:
-	mr       r3, r31
-
-lbl_802AEB28:
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	psq_l    f29, 184(r1), 0, qr0
-	lfd      f29, 0xb0(r1)
-	psq_l    f28, 168(r1), 0, qr0
-	lfd      f28, 0xa0(r1)
-	psq_l    f27, 152(r1), 0, qr0
-	lfd      f27, 0x90(r1)
-	psq_l    f26, 136(r1), 0, qr0
-	lfd      f26, 0x80(r1)
-	psq_l    f25, 120(r1), 0, qr0
-	lfd      f25, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r29, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
+	return target;
 }
 
 /*
@@ -1285,241 +889,35 @@ lbl_802AEB28:
  * Address:	802AEB7C
  * Size:	00033C
  */
-bool Kurage::Obj::isSuck(float, Game::Creature*)
+bool Obj::isSuck(f32 offset, Creature* target)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r31, r3
-	lfs      f2, lbl_8051C0DC@sda21(r2)
-	lfs      f30, 0x190(r3)
-	cmplwi   r4, 0
-	lwz      r3, 0xc0(r3)
-	fsubs    f1, f30, f1
-	lfs      f0, 0x564(r3)
-	fsubs    f29, f1, f2
-	fmuls    f31, f0, f0
-	beq      lbl_802AEC28
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0x14
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x18(r1)
-	lfs      f2, 0x14(r1)
-	fcmpo    cr0, f0, f29
-	lfs      f3, 0x1c(r1)
-	ble      lbl_802AEE84
-	fcmpo    cr0, f0, f30
-	bge      lbl_802AEE84
-	lfs      f0, 0x194(r31)
-	lfs      f1, 0x18c(r31)
-	fsubs    f0, f0, f3
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f31
-	bge      lbl_802AEE84
-	li       r3, 1
-	b        lbl_802AEE88
 
-lbl_802AEC28:
-	li       r0, 0
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
-	stw      r0, 0x2c(r1)
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
-	cmplwi   r0, 0
-	stw      r4, 0x20(r1)
-	stw      r0, 0x24(r1)
-	stw      r3, 0x28(r1)
-	bne      lbl_802AEC68
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802AEE64
+	f32 currY    = mPosition.y;            // f30
+	f32 minY     = currY - offset - 50.0f; // f29
+	f32 maxRange = SQUARE(*C_PARMS->mGeneral.mMaxAttackRange());
 
-lbl_802AEC68:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802AECD4
+	if (target) {
+		Vector3f targetPos = target->getPosition();
+		if (targetPos.y > minY && targetPos.y < currY) {
+			if (sqrDistanceXZ(mPosition, targetPos) < maxRange) {
+				return true;
+			}
+		}
+	} else {
+		Iterator<Piki> iter(pikiMgr, nullptr, nullptr);
+		CI_LOOP(iter)
+		{
+			Piki* currPiki = *iter;
+			if (currPiki->isAlive() && currPiki->isPikmin() && currPiki->mSticker != this) {
+				Vector3f pikiPos = currPiki->getPosition();
+				if (pikiPos.y > minY && pikiPos.y < currY && sqrDistanceXZ(mPosition, pikiPos) < maxRange) {
+					return true;
+				}
+			}
+		}
+	}
 
-lbl_802AEC80:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802AEE64
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_802AECD4:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AEC80
-	b        lbl_802AEE64
-
-lbl_802AECF4:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AEDA8
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AEDA8
-	lwz      r0, 0xf4(r30)
-	cmplw    r0, r31
-	beq      lbl_802AEDA8
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 8(r1)
-	fcmpo    cr0, f0, f29
-	lfs      f3, 0x10(r1)
-	ble      lbl_802AEDA8
-	fcmpo    cr0, f0, f30
-	bge      lbl_802AEDA8
-	lfs      f0, 0x194(r31)
-	lfs      f1, 0x18c(r31)
-	fsubs    f0, f0, f3
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f31
-	bge      lbl_802AEDA8
-	li       r3, 1
-	b        lbl_802AEE88
-
-lbl_802AEDA8:
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_802AEDD4
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802AEE64
-
-lbl_802AEDD4:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_802AEE48
-
-lbl_802AEDF4:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802AEE64
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_802AEE48:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AEDF4
-
-lbl_802AEE64:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_802AECF4
-
-lbl_802AEE84:
-	li       r3, 0
-
-lbl_802AEE88:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1527,297 +925,35 @@ lbl_802AEE88:
  * Address:	802AEEB8
  * Size:	000434
  */
-bool Kurage::Obj::suckPikmin(float)
+bool Obj::suckPikmin(f32 offset)
 {
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	stw      r0, 0xc4(r1)
-	stfd     f31, 0xb0(r1)
-	psq_st   f31, 184(r1), 0, qr0
-	stfd     f30, 0xa0(r1)
-	psq_st   f30, 168(r1), 0, qr0
-	stfd     f29, 0x90(r1)
-	psq_st   f29, 152(r1), 0, qr0
-	stfd     f28, 0x80(r1)
-	psq_st   f28, 136(r1), 0, qr0
-	stfd     f27, 0x70(r1)
-	psq_st   f27, 120(r1), 0, qr0
-	stfd     f26, 0x60(r1)
-	psq_st   f26, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	stw      r28, 0x50(r1)
-	mr       r30, r3
-	lis      r3, 0x7375636B@ha
-	lfs      f28, 0x190(r30)
-	addi     r4, r3, 0x7375636B@l
-	lwz      r3, 0xc0(r30)
-	fsubs    f2, f28, f1
-	lfs      f1, lbl_8051C0DC@sda21(r2)
-	lfs      f0, 0x5b4(r3)
-	lwz      r3, 0x114(r30)
-	fsubs    f27, f2, f1
-	fmuls    f26, f0, f0
-	bl       getCollPart__8CollTreeFUl
-	mr       r31, r3
-	lis      r3, "__vt__22Iterator<Q24Game4Piki>"@ha
-	li       r0, 0
-	lfs      f31, 0x4c(r31)
-	lfs      f30, 0x50(r31)
-	cmplwi   r0, 0
-	lfs      f29, 0x54(r31)
-	addi     r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	stw      r4, 0x14(r1)
-	stw      r0, 0x20(r1)
-	stw      r0, 0x18(r1)
-	stw      r3, 0x1c(r1)
-	bne      lbl_802AEF84
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_802AF260
+	f32 currY    = mPosition.y;
+	f32 minY     = currY - offset - 50.0f;
+	f32 maxRange = SQUARE(*C_PARMS->mGeneral.mAttackRadius());
 
-lbl_802AEF84:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_802AEFF0
+	CollPart* part   = mCollTree->getCollPart('suck');
+	Vector3f partPos = part->mPosition;
 
-lbl_802AEF9C:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802AF260
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
+	Iterator<Piki> iter(pikiMgr);
+	CI_LOOP(iter)
+	{
+		Piki* currPiki = *iter;
+		if (currPiki->isAlive() && currPiki->isPikmin() && currPiki->mSticker != this) {
+			if (mSuckedPiki < *C_PROPERPARMS.mMaxSuckPiki() && randWeightFloat(1.0f) < *C_PROPERPARMS.mSuckChance()) {
+				Vector3f pikiPos = currPiki->getPosition();
+				if (pikiPos.y > minY && pikiPos.y < currY && sqrDistanceXZ(mPosition, pikiPos) < maxRange) {
+					Vector3f suckVec = partPos - pikiPos;
+					InteractSuikomi_Test suck(this, &suckVec, nullptr, part);
+					if (currPiki->stimulate(suck)) {
+						mSuckedPiki++;
+						getJAIObject()->startSound(PSSE_EN_KURAGE_GET_PIKI, 0);
+					}
+				}
+			}
+		}
+	}
 
-lbl_802AEFF0:
-	lwz      r12, 0x14(r1)
-	addi     r3, r1, 0x14
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AEF9C
-	b        lbl_802AF260
-
-lbl_802AF010:
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r29, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AF1A4
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AF1A4
-	lwz      r0, 0xf4(r29)
-	cmplw    r0, r30
-	beq      lbl_802AF1A4
-	lwz      r28, 0xc0(r30)
-	lwz      r3, 0x2e0(r30)
-	lwz      r0, 0x934(r28)
-	cmpw     r3, r0
-	bge      lbl_802AF1A4
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x44(r1)
-	lfd      f3, lbl_8051C0F8@sda21(r2)
-	stw      r0, 0x40(r1)
-	lfs      f2, lbl_8051C0D8@sda21(r2)
-	lfd      f0, 0x40(r1)
-	lfs      f1, lbl_8051C0E4@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, 0x8bc(r28)
-	fmuls    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_802AF1A4
-	mr       r4, r29
-	addi     r3, r1, 8
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 0xc(r1)
-	lfs      f2, 8(r1)
-	fcmpo    cr0, f3, f27
-	lfs      f4, 0x10(r1)
-	ble      lbl_802AF1A4
-	fcmpo    cr0, f3, f28
-	bge      lbl_802AF1A4
-	lfs      f0, 0x194(r30)
-	lfs      f1, 0x18c(r30)
-	fsubs    f0, f0, f4
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f26
-	bge      lbl_802AF1A4
-	lis      r3, __vt__Q24Game11Interaction@ha
-	fsubs    f2, f31, f2
-	addi     r4, r3, __vt__Q24Game11Interaction@l
-	fsubs    f1, f30, f3
-	fsubs    f0, f29, f4
-	lis      r3, __vt__Q24Game20InteractSuikomi_Test@ha
-	li       r0, 0
-	stw      r4, 0x24(r1)
-	addi     r5, r3, __vt__Q24Game20InteractSuikomi_Test@l
-	mr       r3, r29
-	stw      r30, 0x28(r1)
-	addi     r4, r1, 0x24
-	stw      r5, 0x24(r1)
-	stfs     f2, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	stw      r0, 0x38(r1)
-	stw      r31, 0x3c(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AF1A4
-	lwz      r4, 0x2e0(r30)
-	mr       r3, r30
-	addi     r0, r4, 1
-	stw      r0, 0x2e0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x282a
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802AF1A4:
-	lwz      r0, 0x20(r1)
-	cmplwi   r0, 0
-	bne      lbl_802AF1D0
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_802AF260
-
-lbl_802AF1D0:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_802AF244
-
-lbl_802AF1F0:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802AF260
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-
-lbl_802AF244:
-	lwz      r12, 0x14(r1)
-	addi     r3, r1, 0x14
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802AF1F0
-
-lbl_802AF260:
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x18(r1)
-	cmplw    r4, r3
-	bne      lbl_802AF010
-	lwz      r3, 0xc0(r30)
-	lwz      r5, 0x2e0(r30)
-	lwz      r0, 0x934(r3)
-	srawi    r4, r5, 0x1f
-	srwi     r3, r0, 0x1f
-	subfc    r0, r0, r5
-	adde     r3, r4, r3
-	psq_l    f31, 184(r1), 0, qr0
-	lfd      f31, 0xb0(r1)
-	psq_l    f30, 168(r1), 0, qr0
-	lfd      f30, 0xa0(r1)
-	psq_l    f29, 152(r1), 0, qr0
-	lfd      f29, 0x90(r1)
-	psq_l    f28, 136(r1), 0, qr0
-	lfd      f28, 0x80(r1)
-	psq_l    f27, 120(r1), 0, qr0
-	lfd      f27, 0x70(r1)
-	psq_l    f26, 104(r1), 0, qr0
-	lfd      f26, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	lwz      r0, 0xc4(r1)
-	lwz      r28, 0x50(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
+	return mSuckedPiki >= C_PROPERPARMS.mMaxSuckPiki.mValue;
 }
 
 /*
@@ -1825,195 +961,14 @@ lbl_802AF260:
  * Address:	802AF2EC
  * Size:	0002B4
  */
-void Kurage::Obj::createEffect()
+void Obj::createEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x14
-	stw      r30, 8(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802AF388
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChaseMtx@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
-	lis      r4, __vt__Q23efx13TNewkurageEye@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx13TNewkurageEye@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0xe5
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_802AF388:
-	stw      r3, 0x2e4(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802AF410
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChaseMtx@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
-	lis      r4, __vt__Q23efx13TNewkurageEye@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx13TNewkurageEye@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0xe5
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_802AF410:
-	stw      r3, 0x2e8(r31)
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_802AF444
-	li       r4, 0
-	li       r5, 0xe7
-	li       r6, 0xe8
-	li       r7, 0xe9
-	bl       __ct__Q23efx10TChaseMtx3FPA4_fUsUsUs
-	lis      r3, __vt__Q23efx14TNewkurageHire@ha
-	addi     r0, r3, __vt__Q23efx14TNewkurageHire@l
-	stw      r0, 0(r30)
-
-lbl_802AF444:
-	stw      r30, 0x2ec(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802AF4D0
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChasePos@ha
-	stw      r0, 4(r3)
-	addi     r8, r4, __vt__Q23efx9TChasePos@l
-	lis      r4, __vt__Q23efx14TNewkurageKira@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx14TNewkurageKira@l
-	li       r10, 0
-	li       r9, 0x2b2
-	stw      r0, 4(r3)
-	addi     r7, r8, 0x14
-	addi     r6, r31, 0x18c
-	li       r5, 0xea
-	stw      r10, 8(r3)
-	addi     r0, r4, 0x14
-	sth      r9, 0xc(r3)
-	stb      r10, 0xe(r3)
-	stw      r8, 0(r3)
-	stw      r7, 4(r3)
-	stw      r6, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_802AF4D0:
-	stw      r3, 0x2f0(r31)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_802AF4FC
-	li       r4, 0xeb
-	li       r5, 0xec
-	bl       __ct__Q23efx9TForever2FUsUs
-	lis      r3, __vt__Q23efx13TNewkurageSui@ha
-	addi     r0, r3, __vt__Q23efx13TNewkurageSui@l
-	stw      r0, 0(r30)
-
-lbl_802AF4FC:
-	stw      r30, 0x2f4(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802AF584
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx10TChaseMtxT@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx10TChaseMtxT@l
-	lis      r4, __vt__Q23efx17TNewkurageDeadrun@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx17TNewkurageDeadrun@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0xe4
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_802AF584:
-	stw      r3, 0x2f8(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_2E4        = new efx::TNewkurageEye();
+	_2E8        = new efx::TNewkurageEye();
+	mEfxHire    = new efx::TNewkurageHire();
+	mEfxKira    = new efx::TNewkurageKira(&mPosition);
+	mEfxSui     = new efx::TNewkurageSui();
+	mEfxDeadrun = new efx::TNewkurageDeadrun();
 }
 
 /*
@@ -2021,45 +976,12 @@ lbl_802AF584:
  * Address:	802AF5A0
  * Size:	00008C
  */
-void Kurage::Obj::setupEffect()
+void Obj::setupEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r4, r2, lbl_8051C10C@sda21
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r5, 0x2e4(r31)
-	addi     r4, r2, lbl_8051C114@sda21
-	stw      r3, 0x10(r5)
-	lwz      r3, 0x174(r31)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r5, 0x2e8(r31)
-	addi     r4, r2, lbl_8051C11C@sda21
-	stw      r3, 0x10(r5)
-	lwz      r3, 0x174(r31)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r4, r3
-	lwz      r3, 0x2ec(r31)
-	bl       setMtxptr__Q23efx10TChaseMtx3FPA4_f
-	lwz      r3, 0x174(r31)
-	addi     r4, r2, lbl_8051C124@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r4, 0x2f8(r31)
-	stw      r3, 0x10(r4)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_2E4->mMtx = mModel->getJoint("Ltuno2")->getWorldMatrix();
+	_2E8->mMtx = mModel->getJoint("Rtuno2")->getWorldMatrix();
+	mEfxHire->setMtxptr(mModel->getJoint("nyoro")->getWorldMatrix()->mMatrix.mtxView);
+	mEfxDeadrun->mMtx = mModel->getJoint("center")->getWorldMatrix();
 }
 
 /*
@@ -2067,44 +989,12 @@ void Kurage::Obj::setupEffect()
  * Address:	802AF62C
  * Size:	000088
  */
-void Kurage::Obj::startEyeHireBodyEffect()
+void Obj::startEyeHireBodyEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2e4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2e8(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2ec(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f0(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_2E4->create(nullptr);
+	_2E8->create(nullptr);
+	mEfxHire->create(nullptr);
+	mEfxKira->create(nullptr);
 }
 
 /*
@@ -2112,41 +1002,13 @@ void Kurage::Obj::startEyeHireBodyEffect()
  * Address:	802AF6B4
  * Size:	00007C
  */
-void Kurage::Obj::finishEyeBodyEffect()
+void Obj::finishEyeBodyEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2e4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2e8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f8(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_2E4->fade();
+	_2E8->fade();
+	mEfxKira->fade();
+
+	mEfxDeadrun->create(nullptr);
 }
 
 /*
@@ -2154,50 +1016,17 @@ void Kurage::Obj::finishEyeBodyEffect()
  * Address:	802AF730
  * Size:	000024
  */
-void Kurage::Obj::setHireEffectLife(short)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2ec(r3)
-	bl       setLifeTime__Q23efx14TNewkurageHireFs
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::setHireEffectLife(s16 lifeTime) { mEfxHire->setLifeTime(lifeTime); }
 
 /*
  * --INFO--
  * Address:	802AF754
  * Size:	000050
  */
-void Kurage::Obj::finishHireEffect()
+void Obj::finishHireEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2ec(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEfxHire->fade();
+	mEfxDeadrun->fade();
 }
 
 /*
@@ -2205,32 +1034,10 @@ void Kurage::Obj::finishHireEffect()
  * Address:	802AF7A4
  * Size:	000058
  */
-void Kurage::Obj::startSuckEffect(Vector3f&)
+void Obj::startSuckEffect(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, __vt__Q23efx3Arg@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r5, __vt__Q23efx3Arg@l
-	stw      r0, 8(r1)
-	lfs      f0, 0(r4)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 8(r4)
-	addi     r4, r1, 8
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x2f4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	efx::Arg fxArg(pos);
+	mEfxSui->create(&fxArg);
 }
 
 /*
@@ -2238,92 +1045,29 @@ void Kurage::Obj::startSuckEffect(Vector3f&)
  * Address:	802AF7FC
  * Size:	000024
  */
-void Kurage::Obj::updateSuckEffect(Vector3f&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f4(r3)
-	bl       "setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::updateSuckEffect(Vector3f& pos) { mEfxSui->setGlobalTranslation(pos); }
 
 /*
  * --INFO--
  * Address:	802AF820
  * Size:	000030
  */
-void Kurage::Obj::finishSuckEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishSuckEffect() { mEfxSui->fade(); }
 
 /*
  * --INFO--
  * Address:	802AF850
  * Size:	00009C
  */
-void Kurage::Obj::createBodyBombEffect()
+void Obj::createBodyBombEffect()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	addi     r4, r2, lbl_8051C124@sda21
-	stw      r0, 0x34(r1)
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, __vt__Q23efx5TBase@ha
-	lfs      f0, 0xc(r3)
-	lfs      f1, 0x1c(r3)
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lfs      f2, 0x2c(r3)
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	addi     r5, r3, __vt__Q23efx8TSimple2@l
-	li       r6, 0
-	stw      r0, 0x18(r1)
-	lis      r4, __vt__Q23efx14TNewkurageBomb@ha
-	lis      r3, __vt__Q23efx3Arg@ha
-	li       r8, 0xe2
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	li       r7, 0xe3
-	stw      r5, 0x18(r1)
-	addi     r5, r4, __vt__Q23efx14TNewkurageBomb@l
-	addi     r3, r1, 0x18
-	addi     r4, r1, 8
-	sth      r8, 0x1c(r1)
-	sth      r7, 0x1e(r1)
-	stw      r6, 0x20(r1)
-	stw      r6, 0x24(r1)
-	stw      r5, 0x18(r1)
-	stw      r0, 8(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Matrixf* worldMat = mModel->getJoint("center")->getWorldMatrix();
+	Vector3f pos;
+	worldMat->getTranslation(pos);
+
+	efx::TNewkurageBomb bombFX;
+	efx::Arg fxArg(pos);
+	bombFX.create(&fxArg);
 }
 
 /*
@@ -2331,91 +1075,21 @@ void Kurage::Obj::createBodyBombEffect()
  * Address:	802AF8EC
  * Size:	000044
  */
-void Kurage::Obj::createDownEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2ec(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	addi     r4, r31, 0x18c
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802AF930
- * Size:	000008
- */
-f32 Kurage::Obj::getDownSmokeScale()
-{
-	/*
-	lfs      f1, lbl_8051C12C@sda21(r2)
-	blr
-	*/
-}
+void Obj::createDownEffect() { createBounceEffect(mPosition, getDownSmokeScale()); }
 
 /*
  * --INFO--
  * Address:	802AF938
  * Size:	0000A0
  */
-void Kurage::Obj::effectDrawOn()
+void Obj::effectDrawOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2e4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2e8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2ec(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_2E4->endDemoDrawOn();
+	_2E8->endDemoDrawOn();
+	mEfxHire->endDemoDrawOn();
+	mEfxKira->endDemoDrawOn();
+	mEfxSui->endDemoDrawOn();
+	mEfxDeadrun->endDemoDrawOn();
 }
 
 /*
@@ -2423,240 +1097,15 @@ void Kurage::Obj::effectDrawOn()
  * Address:	802AF9D8
  * Size:	0000A0
  */
-void Kurage::Obj::effectDrawOff()
+void Obj::effectDrawOff()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2e4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2e8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2ec(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_2E4->startDemoDrawOff();
+	_2E8->startDemoDrawOff();
+	mEfxHire->startDemoDrawOff();
+	mEfxKira->startDemoDrawOff();
+	mEfxSui->startDemoDrawOff();
+	mEfxDeadrun->startDemoDrawOff();
 }
 
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802AFA78
- * Size:	00009C
- */
-TNewkurageDeadrun::~TNewkurageDeadrun()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802AFAF8
-	lis      r3, __vt__Q23efx17TNewkurageDeadrun@ha
-	addi     r3, r3, __vt__Q23efx17TNewkurageDeadrun@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802AFAE8
-	lis      r3, __vt__Q23efx10TChaseMtxT@ha
-	addi     r3, r3, __vt__Q23efx10TChaseMtxT@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802AFAE8
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802AFAE8:
-	extsh.   r0, r31
-	ble      lbl_802AFAF8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802AFAF8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802AFB14
- * Size:	00009C
- */
-TNewkurageKira::~TNewkurageKira()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802AFB94
-	lis      r3, __vt__Q23efx14TNewkurageKira@ha
-	addi     r3, r3, __vt__Q23efx14TNewkurageKira@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802AFB84
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802AFB84
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802AFB84:
-	extsh.   r0, r31
-	ble      lbl_802AFB94
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802AFB94:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802AFBB0
- * Size:	00009C
- */
-TNewkurageEye::~TNewkurageEye()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802AFC30
-	lis      r3, __vt__Q23efx13TNewkurageEye@ha
-	addi     r3, r3, __vt__Q23efx13TNewkurageEye@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802AFC20
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802AFC20
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802AFC20:
-	extsh.   r0, r31
-	ble      lbl_802AFC30
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802AFC30:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
-
-namespace Game {
-/*
- * --INFO--
- * Address:	802AFC4C
- * Size:	000004
- */
-void Kurage::Obj::inWaterCallback(Game::WaterBox*) { }
-
-/*
- * --INFO--
- * Address:	802AFC50
- * Size:	000004
- */
-void Kurage::Obj::outWaterCallback() { }
-
-/*
- * --INFO--
- * Address:	802AFC54
- * Size:	000008
- */
-EnemyTypeID::EEnemyTypeID Kurage::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Kurage; }
-
+} // namespace Kurage
 } // namespace Game
