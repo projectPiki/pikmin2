@@ -27,7 +27,7 @@ struct TObject {
 
 	virtual ~TObject()              = 0;                          // _08
 	virtual int JSGFGetType() const = 0;                          // _0C
-	virtual char* JSGGetName() const;                             // _10
+	virtual char const* JSGGetName() const;                       // _10
 	virtual void JSGUpdate();                                     // _14
 	virtual u32 JSGGetFlag() const;                               // _18
 	virtual void JSGSetFlag(u32);                                 // _1C

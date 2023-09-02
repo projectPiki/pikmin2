@@ -1,188 +1,33 @@
-#include "types.h"
+#include "Game/P2JST/ObjectActor.h"
+#include "Game/MoviePlayer.h"
+#include "JSystem/J3D/J3DAnmLoader.h"
+#include "JSystem/J3D/J3DModelLoader.h"
+#include "Game/GameSystem.h"
+#include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_JSTObjectActor_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049A158
-    lbl_8049A158:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x4A53544F
-        .4byte 0x626A6563
-        .4byte 0x74416374
-        .4byte 0x6F720000
-    .global lbl_8049A174
-    lbl_8049A174:
-        .4byte 0x4A53544F
-        .4byte 0x626A6563
-        .4byte 0x74416374
-        .4byte 0x6F722E63
-        .4byte 0x70700000
-        .4byte 0x4D6F6465
-        .4byte 0x6C446174
-        .4byte 0x61206E75
-        .4byte 0x6C6C0000
-        .4byte 0x704D6F64
-        .4byte 0x656C5F20
-        .4byte 0x6E756C6C
-        .4byte 0x00000000
-    .global lbl_8049A1A8
-    lbl_8049A1A8:
-        .4byte 0x444F4E27
-        .4byte 0x54204341
-        .4byte 0x4C4C2054
-        .4byte 0x48495320
-        .4byte 0x210A0000
-        .4byte 0x64617461
-        .4byte 0x2D494420
-        .4byte 0x3A202575
-        .4byte 0x20283078
-        .4byte 0x25303878
-        .4byte 0x290A0000
-        .4byte 0x696E7431
-        .4byte 0x363A2564
-        .4byte 0x2C25642C
-        .4byte 0x25640A00
-        .4byte 0x63686172
-        .4byte 0x3A25642C
-        .4byte 0x25632C25
-        .4byte 0x630A0000
-        .4byte 0x73747269
-        .4byte 0x6E673A25
-        .4byte 0x752C2573
-        .4byte 0x0A000000
-    .global lbl_8049A204
-    lbl_8049A204:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EC018
-    lbl_804EC018:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game5P2JST11ObjectActor
-    __vt__Q34Game5P2JST11ObjectActor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game5P2JST11ObjectActorFv
-        .4byte JSGFGetType__Q26JStage6TActorCFv
-        .4byte JSGGetName__Q34Game5P2JST11ObjectActorCFv
-        .4byte JSGUpdate__Q26JStage7TObjectFv
-        .4byte JSGGetFlag__Q34Game5P2JST11ObjectActorCFv
-        .4byte JSGSetFlag__Q34Game5P2JST11ObjectActorFUl
-        .4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
-        .4byte JSGSetData__Q34Game5P2JST11ObjectActorFUlPCvUl
-        .4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
-        .4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
-        .4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
-        .4byte JSGFindNodeID__Q34Game5P2JST11ObjectActorCFPCc
-        .4byte JSGGetNodeTransformation__Q34Game5P2JST11ObjectActorCFUlPA4_f
-        .4byte JSGGetTranslation__Q34Game5P2JST11ObjectActorCFP3Vec
-        .4byte JSGSetTranslation__Q34Game5P2JST11ObjectActorFRC3Vec
-        .4byte JSGGetScaling__Q34Game5P2JST11ObjectActorCFP3Vec
-        .4byte JSGSetScaling__Q34Game5P2JST11ObjectActorFRC3Vec
-        .4byte JSGGetRotation__Q34Game5P2JST11ObjectActorCFP3Vec
-        .4byte JSGSetRotation__Q34Game5P2JST11ObjectActorFRC3Vec
-        .4byte JSGGetShape__Q34Game5P2JST11ObjectActorCFv
-        .4byte JSGSetShape__Q34Game5P2JST11ObjectActorFUl
-        .4byte JSGGetAnimation__Q34Game5P2JST11ObjectActorCFv
-        .4byte JSGSetAnimation__Q34Game5P2JST11ObjectActorFUl
-        .4byte JSGGetAnimationFrame__Q34Game5P2JST11ObjectActorCFv
-        .4byte JSGSetAnimationFrame__Q34Game5P2JST11ObjectActorFf
-        .4byte JSGGetAnimationFrameMax__Q34Game5P2JST11ObjectActorCFv
-        .4byte JSGGetAnimationTransition__Q26JStage6TActorCFv
-        .4byte JSGSetAnimationTransition__Q26JStage6TActorFf
-        .4byte JSGGetTextureAnimation__Q26JStage6TActorCFv
-        .4byte JSGSetTextureAnimation__Q26JStage6TActorFUl
-        .4byte JSGGetTextureAnimationFrame__Q26JStage6TActorCFv
-        .4byte JSGSetTextureAnimationFrame__Q26JStage6TActorFf
-        .4byte JSGGetTextureAnimationFrameMax__Q26JStage6TActorCFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@reset__Q34Game5P2JST11ObjectActorFv"
-        .4byte "@4@update__Q34Game5P2JST11ObjectActorFv"
-        .4byte "@4@start__Q34Game5P2JST11ObjectActorFv"
-        .4byte "@4@stop__Q34Game5P2JST11ObjectActorFv"
-        .4byte "@4@parseUserData___Q34Game5P2JST11ObjectActorFUlPCv"
-        .4byte reset__Q34Game5P2JST11ObjectActorFv
-        .4byte update__Q34Game5P2JST11ObjectActorFv
-        .4byte entry__Q34Game5P2JST11ObjectActorFv
-        .4byte start__Q34Game5P2JST11ObjectActorFv
-        .4byte stop__Q34Game5P2JST11ObjectActorFv
-        .4byte setShape__Q34Game5P2JST11ObjectActorFv
-        .4byte setAnim__Q34Game5P2JST11ObjectActorFv
-        .4byte mountArchive__Q34Game5P2JST11ObjectActorFv
-        .4byte parseUserData___Q34Game5P2JST11ObjectActorFUlPCv
-    .global __vt__Q34Game5P2JST10ObjectBase
-    __vt__Q34Game5P2JST10ObjectBase:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte parseUserData___Q34Game5P2JST10ObjectBaseFUlPCv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805161D8
-    lbl_805161D8:
-        .skip 0x4
-    .global lbl_805161DC
-    lbl_805161DC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520678
-    lbl_80520678:
-        .float 1.0
-    .global lbl_8052067C
-    lbl_8052067C:
-        .4byte 0x00000000
-    .global lbl_80520680
-    lbl_80520680:
-        .4byte 0x3C8EFA35
-    .global lbl_80520684
-    lbl_80520684:
-        .4byte 0x40490FDB
-    .global lbl_80520688
-    lbl_80520688:
-        .4byte 0x3BB60B61
-    .global lbl_8052068C
-    lbl_8052068C:
-        .4byte 0x62670000
-    .global lbl_80520690
-    lbl_80520690:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
+static const u32 filler[]    = { 0, 0, 0 };
+static const char filename[] = "JSTObjectActor";
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-void P2JST::_Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+namespace P2JST {
 
 /*
  * --INFO--
  * Address:	8042E960
  * Size:	0000D0
  */
-P2JST::ObjectActor::ObjectActor(char const*, Game::MoviePlayer*)
+ObjectActor::ObjectActor(char const* name, MoviePlayer* movie)
+    : ObjectBase(name, movie)
 {
+	mModelData    = nullptr;
+	mModel        = nullptr;
+	mAnmTransform = nullptr;
+	mMtxCalcAnm   = nullptr;
+	mArchive      = nullptr;
+
+	reset();
+	mArchive = MoviePlayer::mArchive;
 	/*
 	lis      r6, __vt__Q26JStage7TObject@ha
 	lis      r8, __vt__Q26JStage6TActor@ha
@@ -244,47 +89,32 @@ P2JST::ObjectActor::ObjectActor(char const*, Game::MoviePlayer*)
  * Address:	8042EA30
  * Size:	000068
  */
-P2JST::ObjectActor::~ObjectActor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8042EA7C
-	lis      r5, __vt__Q34Game5P2JST11ObjectActor@ha
-	li       r4, 0
-	addi     r5, r5, __vt__Q34Game5P2JST11ObjectActor@l
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x8c
-	stw      r0, 4(r30)
-	bl       __dt__Q26JStage6TActorFv
-	extsh.   r0, r31
-	ble      lbl_8042EA7C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8042EA7C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ObjectActor::~ObjectActor() { }
 
 /*
  * --INFO--
  * Address:	8042EA98
  * Size:	000070
  */
-void P2JST::ObjectActor::reset()
+void ObjectActor::reset()
 {
+	Vector3f z;
+	z.x              = govNAN_[0];
+	z.y              = govNAN_[1];
+	z.z              = govNAN_[2];
+	u32 a            = gu32NAN_.a;
+	f32 f            = gfNAN_;
+	mTranslation     = z;
+	mRotation        = z;
+	mScaling         = z;
+	mShape           = a;
+	mAnimation       = a;
+	mAnimFrame       = f;
+	mAnimFrameMax    = f;
+	mModelFileId     = a;
+	mAnimationFileId = a;
+	mScaling         = 1.0f;
+	mAnimFrame       = 0.0f;
 	/*
 	lis      r4, lbl_804EC018@ha
 	lfsu     f5, lbl_804EC018@l(r4)
@@ -322,8 +152,14 @@ void P2JST::ObjectActor::reset()
  * Address:	8042EB08
  * Size:	000390
  */
-void P2JST::ObjectActor::update()
+void ObjectActor::update()
 {
+	if (mShape != mModelFileId) {
+		setShape();
+	}
+	if (mAnimation != mAnimationFileId) {
+		setAnim();
+	}
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -573,38 +409,13 @@ lbl_8042EE70:
  * Address:	8042EE98
  * Size:	000068
  */
-void P2JST::ObjectActor::entry()
+void ObjectActor::entry()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8042EEEC
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 2
-	lwz      r3, 0x58(r3)
-	bl       setDrawBuffer__Q24Game15BaseGameSectionFi
-	lwz      r3, 0x24(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	lwz      r3, 0x58(r3)
-	bl       setDrawBuffer__Q24Game15BaseGameSectionFi
-
-lbl_8042EEEC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mModel) {
+		gameSystem->mSection->setDrawBuffer(2);
+		mModel->entry();
+		gameSystem->mSection->setDrawBuffer(0);
+	}
 }
 
 /*
@@ -612,133 +423,45 @@ lbl_8042EEEC:
  * Address:	8042EF00
  * Size:	0001A4
  */
-void P2JST::ObjectActor::setShape()
+bool ObjectActor::setShape()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_8049A158@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	addi     r30, r4, lbl_8049A158@l
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x1f0(r5)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8042F084
-	lwz      r3, sys@sda21(r13)
-	lwz      r4, 0x1b0(r5)
-	bl       startChangeCurrentHeap__6SystemFP7JKRHeap
-	lwz      r4, 0x58(r31)
-	lwz      r0, lbl_805161D8@sda21(r13)
-	cmplw    r4, r0
-	bne      lbl_8042EF64
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 0
-	b        lbl_8042F084
-
-lbl_8042EF64:
-	lwz      r0, 0x68(r31)
-	cmplw    r4, r0
-	bne      lbl_8042EF80
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 1
-	b        lbl_8042F084
-
-lbl_8042EF80:
-	lwz      r3, 0x30(r31)
-	bl       getIdxResource__10JKRArchiveFUl
-	or.      r28, r3, r3
-	bne      lbl_8042EFA0
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 0
-	b        lbl_8042F084
-
-lbl_8042EFA0:
-	lwz      r3, 0xc(r31)
-	lis      r29, 0x24
-	addi     r4, r2, lbl_8052068C@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	oris     r4, r29, 0x1000
-	beq      lbl_8042EFC0
-	oris     r4, r29, 0x2000
-
-lbl_8042EFC0:
-	mr       r3, r28
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	stw      r3, 0x20(r31)
-	lwz      r0, 0x20(r31)
-	cmplwi   r0, 0
-	bne      lbl_8042EFEC
-	addi     r3, r30, 0x1c
-	addi     r5, r30, 0x30
-	li       r4, 0x119
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8042EFEC:
-	lwz      r0, 0x20(r31)
-	cmplwi   r0, 0
-	bne      lbl_8042F008
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 0
-	b        lbl_8042F084
-
-lbl_8042F008:
-	li       r3, 0xdc
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8042F04C
-	lis      r3, __vt__8J3DModel@ha
-	lwz      r28, 0x20(r31)
-	addi     r0, r3, __vt__8J3DModel@l
-	stw      r0, 0(r29)
-	addi     r3, r29, 0x88
-	bl       init__15J3DVertexBufferFv
-	mr       r3, r29
-	bl       initialize__8J3DModelFv
-	mr       r3, r29
-	mr       r4, r28
-	li       r5, 0
-	li       r6, 1
-	bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
-
-lbl_8042F04C:
-	stw      r29, 0x24(r31)
-	lwz      r0, 0x24(r31)
-	cmplwi   r0, 0
-	bne      lbl_8042F070
-	addi     r3, r30, 0x1c
-	addi     r5, r30, 0x40
-	li       r4, 0x122
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8042F070:
-	lwz      r0, 0x58(r31)
-	stw      r0, 0x68(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 1
-
-lbl_8042F084:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (!(moviePlayer->mFlags & MoviePlayer::IS_FINISHED)) {
+		sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
+		int id = mShape;
+		if (id == gu32NAN_.a) {
+			sys->endChangeCurrentHeap();
+			return false;
+		} else if (id == mModelFileId) {
+			sys->endChangeCurrentHeap();
+			return true;
+		} else {
+			void* file = mArchive->getIdxResource(id);
+			if (!file) {
+				sys->endChangeCurrentHeap();
+				return false;
+			} else {
+				u32 flag = 0x240000;
+				// use different flags for the day results background model (makes it ignore fog)
+				if (strcmp(mName, "bg")) {
+					flag |= 0x20000000;
+				} else {
+					flag |= 0x10000000;
+				}
+				mModelData = J3DModelLoaderDataBase::load(file, flag);
+				JUT_ASSERTLINE(281, mModelData, "ModelData null");
+				if (!mModelData) {
+					sys->endChangeCurrentHeap();
+					return false;
+				} else {
+					mModel = new J3DModel(mModelData, 0, 1);
+					JUT_ASSERTLINE(290, mModel, "pModel_ null");
+					mModelFileId = mShape;
+					sys->endChangeCurrentHeap();
+					return true;
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -746,94 +469,38 @@ lbl_8042F084:
  * Address:	8042F0A4
  * Size:	000128
  */
-void P2JST::ObjectActor::setAnim()
+bool ObjectActor::setAnim()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x1f0(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8042F1B8
-	lwz      r3, sys@sda21(r13)
-	lwz      r4, 0x1b0(r4)
-	bl       startChangeCurrentHeap__6SystemFP7JKRHeap
-	lwz      r4, 0x5c(r31)
-	lwz      r0, lbl_805161D8@sda21(r13)
-	cmplw    r4, r0
-	bne      lbl_8042F0F4
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 0
-	b        lbl_8042F1B8
-
-lbl_8042F0F4:
-	lwz      r0, 0x6c(r31)
-	cmplw    r4, r0
-	bne      lbl_8042F110
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 1
-	b        lbl_8042F1B8
-
-lbl_8042F110:
-	lwz      r3, 0x30(r31)
-	bl       getIdxResource__10JKRArchiveFUl
-	cmplwi   r3, 0
-	bne      lbl_8042F130
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 0
-	b        lbl_8042F1B8
-
-lbl_8042F130:
-	bl       load__20J3DAnmLoaderDataBaseFPCv
-	stw      r3, 0x28(r31)
-	lwz      r4, 0x28(r31)
-	cmplwi   r4, 0
-	bne      lbl_8042F154
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 0
-	b        lbl_8042F1B8
-
-lbl_8042F154:
-	lwz      r3, 0x20(r31)
-	lwz      r0, 0x18(r3)
-	clrlwi   r3, r0, 0x1c
-	bl       J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
-	stw      r3, 0x2c(r31)
-	lis      r0, 0x4330
-	lfd      f1, lbl_80520690@sda21(r2)
-	lwz      r3, 0x20(r31)
-	lwz      r4, 0x2c(r31)
-	lwz      r3, 0x28(r3)
-	stw      r0, 8(r1)
-	lwz      r3, 0(r3)
-	stw      r4, 0x54(r3)
-	lwz      r3, 0x28(r31)
-	lha      r0, 6(r3)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x64(r31)
-	lwz      r0, 0x5c(r31)
-	stw      r0, 0x6c(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       endChangeCurrentHeap__6SystemFv
-	li       r3, 1
-
-lbl_8042F1B8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (!(moviePlayer->mFlags & MoviePlayer::IS_FINISHED)) {
+		sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
+		int id = mAnimation;
+		if (id == gu32NAN_.a) {
+			sys->endChangeCurrentHeap();
+			return false;
+		} else if (id == mAnimationFileId) {
+			sys->endChangeCurrentHeap();
+			return true;
+		} else {
+			void* file = mArchive->getIdxResource(id);
+			if (!file) {
+				sys->endChangeCurrentHeap();
+				return false;
+			} else {
+				mAnmTransform = static_cast<J3DAnmTransform*>(J3DAnmLoaderDataBase::load(file));
+				if (!mAnmTransform) {
+					sys->endChangeCurrentHeap();
+					return false;
+				} else {
+					mMtxCalcAnm                                 = J3DNewMtxCalcAnm(mModelData->mJointTree.mFlags & 0xf, mAnmTransform);
+					mModelData->mJointTree.mJoints[0]->mMtxCalc = mMtxCalcAnm;
+					mAnimFrameMax                               = mAnmTransform->mMaxFrame;
+					mAnimationFileId                            = mAnimation;
+					sys->endChangeCurrentHeap();
+					return true;
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -841,33 +508,19 @@ lbl_8042F1B8:
  * Address:	8042F1CC
  * Size:	000038
  */
-void P2JST::ObjectActor::mountArchive()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8049A174@ha
-	lis      r5, lbl_8049A1A8@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, lbl_8049A174@l
-	li       r4, 0x167
-	addi     r5, r5, lbl_8049A1A8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ObjectActor::mountArchive() { JUT_PANICLINE(359, "DON\'T CALL THIS !\n"); }
 
 /*
  * --INFO--
  * Address:	8042F204
  * Size:	000260
  */
-void P2JST::ObjectActor::parseUserData_(unsigned long, void const*)
+void ObjectActor::parseUserData_(u32, void const*)
 {
+	OSReport("data-ID : %u (0x%08x)\n");
+	OSReport("int16:%d,%d,%d\n");
+	OSReport("char:%d,%c,%c\n");
+	OSReport("string:%u,%s\n");
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -1052,39 +705,10 @@ lbl_8042F448:
  * Address:	8042F464
  * Size:	00006C
  */
-void P2JST::ObjectActor::JSGFindNodeID(const(char const*))
+int ObjectActor::JSGFindNodeID(char const* name) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x20(r3)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	cmplwi   r0, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_8042F4A8
-	lis      r3, lbl_8049A174@ha
-	lis      r5, lbl_8049A204@ha
-	addi     r3, r3, lbl_8049A174@l
-	li       r4, 0x1ac
-	addi     r5, r5, lbl_8049A204@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8042F4A8:
-	lwz      r3, 0x20(r30)
-	mr       r4, r31
-	lwz      r3, 0x54(r3)
-	bl       getIndex__10JUTNameTabCFPCc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(428, mModelData);
+	return mModelData->mJointTree.mNametab->getIndex(name);
 }
 
 /*
@@ -1092,48 +716,11 @@ lbl_8042F4A8:
  * Address:	8042F4D0
  * Size:	00008C
  */
-void P2JST::ObjectActor::JSGGetNodeTransformation(const(unsigned long, float (*)[4]))
+bool ObjectActor::JSGGetNodeTransformation(u32 id, Mtx mtx) const
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  lwz       r0, 0x24(r3)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  cmplwi    r0, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bne-      .loc_0x4C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x5E8C
-	  li        r4, 0x1B2
-	  subi      r5, r5, 0x5DFC
-	  crclr     6, 0x6
-	  bl        -0x404ED8
-
-	.loc_0x4C:
-	  lwz       r3, 0x24(r29)
-	  rlwinm    r0,r30,0,16,31
-	  mulli     r0, r0, 0x30
-	  mr        r4, r31
-	  lwz       r3, 0x84(r3)
-	  lwz       r3, 0xC(r3)
-	  add       r3, r3, r0
-	  bl        -0x34526C
-	  lwz       r0, 0x24(r1)
-	  li        r3, 0x1
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	P2ASSERTLINE(434, mModel);
+	PSMTXCopy(mModel->mMtxBuffer->mWorldMatrices[(u16)id], mtx);
+	return true;
 }
 
 /*
@@ -1141,61 +728,33 @@ void P2JST::ObjectActor::JSGGetNodeTransformation(const(unsigned long, float (*)
  * Address:	8042F55C
  * Size:	000008
  */
-void P2JST::ObjectActor::JSGGetName() const
-{
-	/*
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+char const* ObjectActor::JSGGetName() const { return mName; }
 
 /*
  * --INFO--
  * Address:	8042F564
  * Size:	000008
  */
-void P2JST::ObjectActor::JSGSetFlag(unsigned long a1)
-{
-	// Generated from stw r4, 0x10(r3)
-	_10 = a1;
-}
+void ObjectActor::JSGSetFlag(u32 a1) { mFlags = a1; }
 
 /*
  * --INFO--
  * Address:	8042F56C
  * Size:	000008
  */
-u32 P2JST::ObjectActor::JSGGetFlag() const
-{
-	/*
-	lwz      r3, 0x10(r3)
-	blr
-	*/
-}
+u32 ObjectActor::JSGGetFlag() const { return mFlags; }
 
 /*
  * --INFO--
  * Address:	8042F574
  * Size:	000038
  */
-void P2JST::ObjectActor::JSGSetData(unsigned long, void const*, unsigned long)
+void ObjectActor::JSGSetData(u32 data1, void const* data2, u32 data3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r4, 0x14(r3)
-	stw      r5, 0x18(r3)
-	stw      r6, 0x1c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_14 = data1;
+	_18 = data2;
+	_1C = data3;
+	parseUserData_(data1, data2);
 }
 
 /*
@@ -1203,35 +762,18 @@ void P2JST::ObjectActor::JSGSetData(unsigned long, void const*, unsigned long)
  * Address:	8042F5AC
  * Size:	00001C
  */
-void P2JST::ObjectActor::JSGSetTranslation(Vec const&)
-{
-	/*
-	lfs      f0, 0(r4)
-	lfs      f1, 4(r4)
-	stfs     f0, 0x34(r3)
-	lfs      f0, 8(r4)
-	stfs     f1, 0x38(r3)
-	stfs     f0, 0x3c(r3)
-	blr
-	*/
-}
+void ObjectActor::JSGSetTranslation(Vec const& translate) { mTranslation = translate; }
 
 /*
  * --INFO--
  * Address:	8042F5C8
  * Size:	00001C
  */
-void P2JST::ObjectActor::JSGGetTranslation(const(Vec*))
+void ObjectActor::JSGGetTranslation(Vec* translate) const
 {
-	/*
-	lfs      f0, 0x34(r3)
-	lfs      f1, 0x38(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x3c(r3)
-	stfs     f1, 4(r4)
-	stfs     f0, 8(r4)
-	blr
-	*/
+	translate->x = mTranslation.x;
+	translate->y = mTranslation.y;
+	translate->z = mTranslation.z;
 }
 
 /*
@@ -1239,35 +781,18 @@ void P2JST::ObjectActor::JSGGetTranslation(const(Vec*))
  * Address:	8042F5E4
  * Size:	00001C
  */
-void P2JST::ObjectActor::JSGSetRotation(Vec const&)
-{
-	/*
-	lfs      f0, 0(r4)
-	lfs      f1, 4(r4)
-	stfs     f0, 0x40(r3)
-	lfs      f0, 8(r4)
-	stfs     f1, 0x44(r3)
-	stfs     f0, 0x48(r3)
-	blr
-	*/
-}
+void ObjectActor::JSGSetRotation(Vec const& rotate) { mRotation = rotate; }
 
 /*
  * --INFO--
  * Address:	8042F600
  * Size:	00001C
  */
-void P2JST::ObjectActor::JSGGetRotation(const(Vec*))
+void ObjectActor::JSGGetRotation(Vec* rotate) const
 {
-	/*
-	lfs      f0, 0x40(r3)
-	lfs      f1, 0x44(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x48(r3)
-	stfs     f1, 4(r4)
-	stfs     f0, 8(r4)
-	blr
-	*/
+	rotate->x = mRotation.x;
+	rotate->y = mRotation.y;
+	rotate->z = mRotation.z;
 }
 
 /*
@@ -1275,35 +800,18 @@ void P2JST::ObjectActor::JSGGetRotation(const(Vec*))
  * Address:	8042F61C
  * Size:	00001C
  */
-void P2JST::ObjectActor::JSGSetScaling(Vec const&)
-{
-	/*
-	lfs      f0, 0(r4)
-	lfs      f1, 4(r4)
-	stfs     f0, 0x4c(r3)
-	lfs      f0, 8(r4)
-	stfs     f1, 0x50(r3)
-	stfs     f0, 0x54(r3)
-	blr
-	*/
-}
+void ObjectActor::JSGSetScaling(Vec const& scale) { mScaling = scale; }
 
 /*
  * --INFO--
  * Address:	8042F638
  * Size:	00001C
  */
-void P2JST::ObjectActor::JSGGetScaling(const(Vec*))
+void ObjectActor::JSGGetScaling(Vec* scale) const
 {
-	/*
-	lfs      f0, 0x4c(r3)
-	lfs      f1, 0x50(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x54(r3)
-	stfs     f1, 4(r4)
-	stfs     f0, 8(r4)
-	blr
-	*/
+	scale->x = mScaling.x;
+	scale->y = mScaling.y;
+	scale->z = mScaling.z;
 }
 
 /*
@@ -1311,187 +819,49 @@ void P2JST::ObjectActor::JSGGetScaling(const(Vec*))
  * Address:	8042F654
  * Size:	000008
  */
-void P2JST::ObjectActor::JSGSetShape(unsigned long a1)
-{
-	// Generated from stw r4, 0x58(r3)
-	_58 = a1;
-}
+void ObjectActor::JSGSetShape(u32 a1) { mShape = a1; }
 
 /*
  * --INFO--
  * Address:	8042F65C
  * Size:	000008
  */
-void P2JST::ObjectActor::JSGGetShape() const
-{
-	/*
-	lwz      r3, 0x58(r3)
-	blr
-	*/
-}
+int ObjectActor::JSGGetShape() const { return mShape; }
 
 /*
  * --INFO--
  * Address:	8042F664
  * Size:	000008
  */
-void P2JST::ObjectActor::JSGSetAnimation(unsigned long a1)
-{
-	// Generated from stw r4, 0x5C(r3)
-	_5C = a1;
-}
+void ObjectActor::JSGSetAnimation(u32 a1) { mAnimation = a1; }
 
 /*
  * --INFO--
  * Address:	8042F66C
  * Size:	000008
  */
-void P2JST::ObjectActor::JSGGetAnimation() const
-{
-	/*
-	lwz      r3, 0x5c(r3)
-	blr
-	*/
-}
+int ObjectActor::JSGGetAnimation() const { return mAnimation; }
 
 /*
  * --INFO--
  * Address:	8042F674
  * Size:	000008
  */
-void P2JST::ObjectActor::JSGGetAnimationFrameMax() const
-{
-	/*
-	lfs      f1, 0x64(r3)
-	blr
-	*/
-}
+f32 ObjectActor::JSGGetAnimationFrameMax() const { return mAnimFrameMax; }
 
 /*
  * --INFO--
  * Address:	8042F67C
  * Size:	000004
  */
-void P2JST::ObjectActor::JSGSetAnimationFrame(float) { }
+void ObjectActor::JSGSetAnimationFrame(f32) { }
 
 /*
  * --INFO--
  * Address:	8042F680
  * Size:	000008
  */
-void P2JST::ObjectActor::JSGGetAnimationFrame() const
-{
-	/*
-	lfs      f1, 0x60(r3)
-	blr
-	*/
-}
+f32 ObjectActor::JSGGetAnimationFrame() const { return mAnimFrame; }
 
-/*
- * --INFO--
- * Address:	8042F688
- * Size:	000004
- */
-void P2JST::ObjectActor::stop() { }
-
-/*
- * --INFO--
- * Address:	8042F68C
- * Size:	000004
- */
-void P2JST::ObjectActor::start() { }
-
-/*
- * --INFO--
- * Address:	8042F690
- * Size:	000004
- */
-void P2JST::ObjectBase::parseUserData_(unsigned long, void const*) { }
-
+} // namespace P2JST
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8042F694
- * Size:	000028
- */
-void __sinit_JSTObjectActor_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EC018@ha
-	stw      r0, lbl_805161D8@sda21(r13)
-	stfsu    f0, lbl_804EC018@l(r3)
-	stfs     f0, lbl_805161DC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042F6BC
- * Size:	000008
- */
-void @4 @Game::P2JST::ObjectActor::parseUserData_(unsigned long, void const*)
-{
-	/*
-	addi     r3, r3, -4
-	b        parseUserData___Q34Game5P2JST11ObjectActorFUlPCv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042F6C4
- * Size:	000008
- */
-void @4 @Game::P2JST::ObjectActor::stop()
-{
-	/*
-	addi     r3, r3, -4
-	b        stop__Q34Game5P2JST11ObjectActorFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042F6CC
- * Size:	000008
- */
-void @4 @Game::P2JST::ObjectActor::start()
-{
-	/*
-	addi     r3, r3, -4
-	b        start__Q34Game5P2JST11ObjectActorFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042F6D4
- * Size:	000008
- */
-void @4 @Game::P2JST::ObjectActor::update()
-{
-	/*
-	addi     r3, r3, -4
-	b        update__Q34Game5P2JST11ObjectActorFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042F6DC
- * Size:	000008
- */
-void @4 @Game::P2JST::ObjectActor::reset()
-{
-	/*
-	addi     r3, r3, -4
-	b        reset__Q34Game5P2JST11ObjectActorFv
-	*/
-}

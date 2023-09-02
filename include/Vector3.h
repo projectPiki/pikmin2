@@ -51,6 +51,13 @@ struct Vector3 {
 		z = other.z;
 	}
 
+	inline void operator=(const Vec& other)
+	{
+		x = other.x;
+		y = other.y;
+		z = other.z;
+	}
+
 	// /**
 	//  * @fabricated
 	//  */

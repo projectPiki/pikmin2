@@ -107,6 +107,12 @@ struct Camera : public CullFrustum {
 
 	inline bool isRunning() { return (mJstObject && mJstObject->isRunning()); }
 
+	inline void setProjectionNearFar(f32 near, f32 far)
+	{
+		mProjectionNear = near;
+		mProjectionFar  = far;
+	}
+
 	// CullFrustum _00 - _34
 	Matrixf mCurViewMatrix;                // _034
 	f32 mNear;                             // _064 - distance to 'near' plane

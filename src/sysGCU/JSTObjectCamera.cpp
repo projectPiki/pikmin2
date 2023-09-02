@@ -1,4 +1,6 @@
-#include "types.h"
+#include "Game/P2JST/ObjectCamera.h"
+#include "Camera.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -101,14 +103,35 @@
 */
 
 namespace Game {
+namespace P2JST {
 
 /*
  * --INFO--
  * Address:	8042F6E4
  * Size:	0000F0
  */
-P2JST::ObjectCamera::ObjectCamera(char const*, Game::MoviePlayer*)
+ObjectCamera::ObjectCamera(char const* name, MoviePlayer* movie)
+    : ObjectBase(name, movie)
 {
+	Vec set;
+	set.x = govNAN_[0];
+	set.y = govNAN_[1];
+	set.z = govNAN_[2];
+
+	f32 n = gfNAN_;
+
+	mViewPos       = set;
+	mViewTargetPos = set;
+
+	mViewRoll         = n;
+	mProjectionNear   = n;
+	mProjectionFar    = n;
+	mProjectionFovy   = n;
+	mProjectionAspect = n;
+	mCameraObj        = nullptr;
+	mIsRunning        = false;
+
+	mCameraObj2 = new Camera;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -180,47 +203,30 @@ lbl_8042F7B8:
  * Address:	8042F7D4
  * Size:	000068
  */
-P2JST::ObjectCamera::~ObjectCamera()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8042F820
-	lis      r5, __vt__Q34Game5P2JST12ObjectCamera@ha
-	li       r4, 0
-	addi     r5, r5, __vt__Q34Game5P2JST12ObjectCamera@l
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x94
-	stw      r0, 4(r30)
-	bl       __dt__Q26JStage7TCameraFv
-	extsh.   r0, r31
-	ble      lbl_8042F820
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8042F820:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ObjectCamera::~ObjectCamera() { }
 
 /*
  * --INFO--
  * Address:	8042F83C
  * Size:	0000A8
  */
-void P2JST::ObjectCamera::reset()
+void ObjectCamera::reset()
 {
+	Vec set;
+	set.x = govNAN_[0];
+	set.y = govNAN_[1];
+	set.z = govNAN_[2];
+
+	f32 n = gfNAN_;
+
+	mViewPos       = set;
+	mViewTargetPos = set;
+
+	mViewRoll         = n;
+	mProjectionNear   = n;
+	mProjectionFar    = n;
+	mProjectionFovy   = 45.0f;
+	mProjectionAspect = sys->getRenderModeObj()->fbWidth / sys->getRenderModeObj()->efbHeight;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -272,68 +278,31 @@ void P2JST::ObjectCamera::reset()
  * Address:	8042F8E4
  * Size:	000004
  */
-void P2JST::ObjectCamera::update() { }
+void ObjectCamera::update() { }
 
 /*
  * --INFO--
  * Address:	8042F8E8
  * Size:	000024
  */
-void P2JST::ObjectCamera::setProjection()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xbc(r3)
-	bl       setProjection__6CameraFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ObjectCamera::setProjection() { mCameraObj->setProjection(); }
 
 /*
  * --INFO--
  * Address:	8042F90C
  * Size:	00007C
  */
-void P2JST::ObjectCamera::setView()
+void ObjectCamera::setView()
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	lfs      f1, lbl_805206A8@sda21(r2)
-	stw      r0, 0x84(r1)
-	addi     r5, r1, 8
-	lfs      f0, lbl_805206AC@sda21(r2)
-	stw      r31, 0x7c(r1)
-	mr       r31, r3
-	addi     r3, r1, 0x44
-	stfs     f1, 8(r1)
-	addi     r4, r31, 0x90
-	addi     r6, r31, 0x9c
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	bl       C_MTXLookAt
-	lfs      f0, 0xa8(r31)
-	addi     r3, r1, 0x14
-	lfs      f1, lbl_805206B0@sda21(r2)
-	li       r4, 0x7a
-	fneg     f0, f0
-	fmuls    f1, f1, f0
-	bl       PSMTXRotRad
-	addi     r3, r1, 0x14
-	addi     r4, r1, 0x44
-	addi     r5, r31, 0x60
-	bl       PSMTXConcat
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x7c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	Mtx mtx, mtx2;
+	Vec angle;
+	angle.x = 0.0f;
+	angle.y = 1.0f;
+	angle.z = 0.0f;
+
+	C_MTXLookAt(mtx, &mViewPos, &angle, &mViewTargetPos);
+	PSMTXRotRad(mtx2, 'z', -mViewRoll * (PI / 180.0f));
+	PSMTXConcat(mtx2, mtx, mViewMatrix.mMatrix.mtxView);
 }
 
 /*
@@ -341,37 +310,16 @@ void P2JST::ObjectCamera::setView()
  * Address:	8042F988
  * Size:	00006C
  */
-void P2JST::ObjectCamera::updateCamera()
+void ObjectCamera::updateCamera()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xbc(r31)
-	addi     r0, r31, 0x60
-	stw      r0, 0x30(r3)
-	lfs      f0, sFovBackup__Q24Game5P2JST@sda21(r13)
-	lwz      r3, 0xbc(r31)
-	stfs     f0, 0x28(r3)
-	lfs      f0, 0xb4(r31)
-	stfs     f0, sFovBackup__Q24Game5P2JST@sda21(r13)
-	lfs      f1, 0xb0(r31)
-	lwz      r3, 0xbc(r31)
-	lfs      f0, 0xac(r31)
-	stfs     f0, 0x70(r3)
-	stfs     f1, 0x74(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setView();
+	mCameraObj->mViewMatrix = &mViewMatrix;
+
+	mCameraObj->mViewAngle = sFovBackup;
+	sFovBackup             = mProjectionFovy;
+
+	f32 backup = mProjectionFovy;
+	mCameraObj->setProjectionNearFar(mProjectionNear, mProjectionFar);
 }
 
 /*
@@ -379,51 +327,32 @@ void P2JST::ObjectCamera::updateCamera()
  * Address:	8042F9F4
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGGetName() const
-{
-	/*
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+char const* ObjectCamera::JSGGetName() const { return mName; }
 
 /*
  * --INFO--
  * Address:	8042F9FC
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGSetFlag(unsigned long a1)
-{
-	// Generated from stw r4, 0x10(r3)
-	_10 = a1;
-}
+void ObjectCamera::JSGSetFlag(u32 a1) { mFlags = a1; }
 
 /*
  * --INFO--
  * Address:	8042FA04
  * Size:	000008
  */
-u32 P2JST::ObjectCamera::JSGGetFlag() const
-{
-	/*
-	lwz      r3, 0x10(r3)
-	blr
-	*/
-}
+u32 ObjectCamera::JSGGetFlag() const { return mFlags; }
 
 /*
  * --INFO--
  * Address:	8042FA0C
  * Size:	000010
  */
-void P2JST::ObjectCamera::JSGSetData(unsigned long, void const*, unsigned long)
+void ObjectCamera::JSGSetData(u32 a1, void const* a2, u32 a3)
 {
-	/*
-	stw      r4, 0x14(r3)
-	stw      r5, 0x18(r3)
-	stw      r6, 0x1c(r3)
-	blr
-	*/
+	_14 = a1;
+	_18 = a2;
+	_1C = a3;
 }
 
 /*
@@ -431,211 +360,93 @@ void P2JST::ObjectCamera::JSGSetData(unsigned long, void const*, unsigned long)
  * Address:	8042FA1C
  * Size:	00001C
  */
-void P2JST::ObjectCamera::JSGSetViewPosition(Vec const&)
-{
-	/*
-	lfs      f0, 0(r4)
-	lfs      f1, 4(r4)
-	stfs     f0, 0x90(r3)
-	lfs      f0, 8(r4)
-	stfs     f1, 0x94(r3)
-	stfs     f0, 0x98(r3)
-	blr
-	*/
-}
+void ObjectCamera::JSGSetViewPosition(Vec const& pos) { mViewPos = pos; }
 
 /*
  * --INFO--
  * Address:	8042FA38
  * Size:	00001C
  */
-void P2JST::ObjectCamera::JSGGetViewPosition(const(Vec*))
-{
-	/*
-	lfs      f0, 0x90(r3)
-	lfs      f1, 0x94(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x98(r3)
-	stfs     f1, 4(r4)
-	stfs     f0, 8(r4)
-	blr
-	*/
-}
+void ObjectCamera::JSGGetViewPosition(Vec* pos) const { *pos = mViewPos; }
 
 /*
  * --INFO--
  * Address:	8042FA54
  * Size:	00001C
  */
-void P2JST::ObjectCamera::JSGSetViewTargetPosition(Vec const&)
-{
-	/*
-	lfs      f0, 0(r4)
-	lfs      f1, 4(r4)
-	stfs     f0, 0x9c(r3)
-	lfs      f0, 8(r4)
-	stfs     f1, 0xa0(r3)
-	stfs     f0, 0xa4(r3)
-	blr
-	*/
-}
+void ObjectCamera::JSGSetViewTargetPosition(Vec const& pos) { mViewTargetPos = pos; }
 
 /*
  * --INFO--
  * Address:	8042FA70
  * Size:	00001C
  */
-void P2JST::ObjectCamera::JSGGetViewTargetPosition(const(Vec*))
-{
-	/*
-	lfs      f0, 0x9c(r3)
-	lfs      f1, 0xa0(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0xa4(r3)
-	stfs     f1, 4(r4)
-	stfs     f0, 8(r4)
-	blr
-	*/
-}
+void ObjectCamera::JSGGetViewTargetPosition(Vec* pos) const { *pos = mViewTargetPos; }
 
 /*
  * --INFO--
  * Address:	8042FA8C
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGSetViewRoll(float)
-{
-	/*
-	stfs     f1, 0xa8(r3)
-	blr
-	*/
-}
+void P2JST::ObjectCamera::JSGSetViewRoll(f32 roll) { mViewRoll = roll; }
 
 /*
  * --INFO--
  * Address:	8042FA94
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGGetViewRoll() const
-{
-	/*
-	lfs      f1, 0xa8(r3)
-	blr
-	*/
-}
+f32 ObjectCamera::JSGGetViewRoll() const { return mViewRoll; }
 
 /*
  * --INFO--
  * Address:	8042FA9C
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGSetProjectionNear(float)
-{
-	/*
-	stfs     f1, 0xac(r3)
-	blr
-	*/
-}
+void ObjectCamera::JSGSetProjectionNear(f32 near) { mProjectionNear = near; }
 
 /*
  * --INFO--
  * Address:	8042FAA4
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGGetProjectionNear() const
-{
-	/*
-	lfs      f1, 0xac(r3)
-	blr
-	*/
-}
+f32 ObjectCamera::JSGGetProjectionNear() const { return mProjectionNear; }
 
 /*
  * --INFO--
  * Address:	8042FAAC
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGSetProjectionFar(float)
-{
-	/*
-	stfs     f1, 0xb0(r3)
-	blr
-	*/
-}
+void ObjectCamera::JSGSetProjectionFar(f32 far) { mProjectionFar = far; }
 
 /*
  * --INFO--
  * Address:	8042FAB4
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGGetProjectionFar() const
-{
-	/*
-	lfs      f1, 0xb0(r3)
-	blr
-	*/
-}
+f32 ObjectCamera::JSGGetProjectionFar() const { return mProjectionFar; }
 
 /*
  * --INFO--
  * Address:	8042FABC
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGSetProjectionFovy(float)
-{
-	/*
-	stfs     f1, 0xb4(r3)
-	blr
-	*/
-}
+void ObjectCamera::JSGSetProjectionFovy(f32 fovy) { mProjectionFovy = fovy; }
 
 /*
  * --INFO--
  * Address:	8042FAC4
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGGetProjectionFovy() const
-{
-	/*
-	lfs      f1, 0xb4(r3)
-	blr
-	*/
-}
+f32 ObjectCamera::JSGGetProjectionFovy() const { return mProjectionFovy; }
 
 /*
  * --INFO--
  * Address:	8042FACC
  * Size:	000064
  */
-void P2JST::ObjectCamera::JSGSetProjectionAspect(float)
+void ObjectCamera::JSGSetProjectionAspect(f32 aspect)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	bl       getRenderModeObj__6SystemFv
-	lhz      r31, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r3, 4(r3)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	divw     r0, r3, r31
-	lfd      f1, lbl_805206A0@sda21(r2)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0xb8(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mProjectionAspect = sys->getRenderModeObj()->fbWidth / sys->getRenderModeObj()->efbHeight;
 }
 
 /*
@@ -643,20 +454,14 @@ void P2JST::ObjectCamera::JSGSetProjectionAspect(float)
  * Address:	8042FB30
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGGetProjectionAspect() const
-{
-	/*
-	lfs      f1, 0xb8(r3)
-	blr
-	*/
-}
+f32 ObjectCamera::JSGGetProjectionAspect() const { return mProjectionAspect; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000168
  */
-void P2JST::ObjectCamera::setParms(Camera*)
+void ObjectCamera::setParms(Camera*)
 {
 	// UNUSED FUNCTION
 }
@@ -666,114 +471,34 @@ void P2JST::ObjectCamera::setParms(Camera*)
  * Address:	8042FB38
  * Size:	0001A0
  */
-void P2JST::ObjectCamera::setCamera(Camera*)
+void ObjectCamera::setCamera(Camera* cam)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	addi     r3, r30, 0x60
-	bl       PSMTXIdentity
-	stw      r31, 0xbc(r30)
-	addi     r3, r1, 0x14
-	lwz      r4, 0xbc(r30)
-	stw      r30, 0x140(r4)
-	lwz      r4, 0xbc(r30)
-	lwz      r12, 0(r4)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x14(r1)
-	mr       r3, r30
-	lfs      f1, 0x18(r1)
-	addi     r4, r1, 8
-	lfs      f2, 0x1c(r1)
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xbc(r30)
-	addi     r3, r1, 0x20
-	bl       getViewVector__11CullFrustumFv
-	lfs      f3, 0x20(r1)
-	mr       r3, r30
-	lfs      f0, lbl_805206B4@sda21(r2)
-	addi     r4, r1, 8
-	lfs      f4, 0x24(r1)
-	lfs      f5, 0x28(r1)
-	fmuls    f3, f3, f0
-	lfs      f2, 8(r1)
-	fmuls    f4, f4, f0
-	lfs      f1, 0xc(r1)
-	fmuls    f5, f5, f0
-	lfs      f0, 0x10(r1)
-	fadds    f2, f2, f3
-	fadds    f1, f1, f4
-	fadds    f0, f0, f5
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lfs      f1, lbl_805206A8@sda21(r2)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x90(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xbc(r30)
-	bl       getNear__6CameraFv
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xbc(r30)
-	bl       getFar__6CameraFv
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r4, 0xbc(r30)
-	lwz      r12, 0(r30)
-	lfs      f1, 0x28(r4)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r4, 0xbc(r30)
-	lwz      r12, 0(r30)
-	lfs      f1, 0x2c(r4)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xbc(r30)
-	lfs      f0, 0x28(r3)
-	stfs     f0, sFovBackup__Q24Game5P2JST@sda21(r13)
-	lwz      r3, 0xc0(r30)
-	lwz      r4, 0xbc(r30)
-	bl       copyFrom__6CameraFP6Camera
-	lwz      r3, 0xbc(r30)
-	addi     r0, r30, 0x60
-	stw      r0, 0x30(r3)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	PSMTXIdentity(mViewMatrix.mMatrix.mtxView);
+	mCameraObj             = cam;
+	mCameraObj->mJstObject = this;
+
+	// can Vec die pls
+	Vector3f pos = mCameraObj->getPosition();
+	Vec pos2;
+	pos2.x = pos.x;
+	pos2.y = pos.y;
+	pos2.z = pos.z;
+	JSGSetViewPosition(pos2);
+
+	pos += mCameraObj->getViewVector() * 200.0f;
+	pos2.x = pos.x;
+	pos2.y = pos.y;
+	pos2.z = pos.z;
+
+	JSGSetViewTargetPosition(pos2);
+	JSGSetViewRoll(0.0f);
+	JSGSetProjectionNear(mCameraObj->getNear());
+	JSGSetProjectionFar(mCameraObj->getFar());
+	JSGSetProjectionFovy(mCameraObj->mViewAngle);
+	JSGSetProjectionAspect(mCameraObj->mAspectRatio);
+	sFovBackup = mCameraObj->mViewAngle;
+	mCameraObj2->copyFrom(mCameraObj);
+	mCameraObj->mViewMatrix = &mViewMatrix;
 }
 
 /*
@@ -781,24 +506,10 @@ void P2JST::ObjectCamera::setCamera(Camera*)
  * Address:	8042FCD8
  * Size:	000038
  */
-void P2JST::ObjectCamera::start()
+void ObjectCamera::start()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0xbc(r3)
-	bl       update__6CameraFv
-	li       r0, 1
-	stb      r0, 0xc4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCameraObj->update();
+	mIsRunning = true;
 }
 
 /*
@@ -806,105 +517,14 @@ void P2JST::ObjectCamera::start()
  * Address:	8042FD10
  * Size:	000050
  */
-void P2JST::ObjectCamera::stop()
+void ObjectCamera::stop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0xbc(r3)
-	cmplwi   r3, 0
-	beq      lbl_8042FD44
-	lwz      r4, 0xc0(r31)
-	bl       copyFrom__6CameraFP6Camera
-	lwz      r3, 0xbc(r31)
-	li       r0, 0
-	stw      r0, 0x140(r3)
-
-lbl_8042FD44:
-	li       r0, 0
-	stb      r0, 0xc4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mCameraObj) {
+		mCameraObj->copyFrom(mCameraObj2);
+		mCameraObj->mJstObject = nullptr;
+	}
+	mIsRunning = false;
 }
 
+} // namespace P2JST
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8042FD60
- * Size:	000028
- */
-void __sinit_JSTObjectCamera_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EC110@ha
-	stw      r0, lbl_805161E0@sda21(r13)
-	stfsu    f0, lbl_804EC110@l(r3)
-	stfs     f0, lbl_805161E4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042FD88
- * Size:	000008
- */
-void @4 @Game::P2JST::ObjectCamera::stop()
-{
-	/*
-	addi     r3, r3, -4
-	b        stop__Q34Game5P2JST12ObjectCameraFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042FD90
- * Size:	000008
- */
-void @4 @Game::P2JST::ObjectCamera::start()
-{
-	/*
-	addi     r3, r3, -4
-	b        start__Q34Game5P2JST12ObjectCameraFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042FD98
- * Size:	000008
- */
-void @4 @Game::P2JST::ObjectCamera::update()
-{
-	/*
-	addi     r3, r3, -4
-	b        update__Q34Game5P2JST12ObjectCameraFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042FDA0
- * Size:	000008
- */
-void @4 @Game::P2JST::ObjectCamera::reset()
-{
-	/*
-	addi     r3, r3, -4
-	b        reset__Q34Game5P2JST12ObjectCameraFv
-	*/
-}

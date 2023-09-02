@@ -8,6 +8,9 @@
 #include "JSystem/J3D/J3DAnmTransform.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JParticle/JPAEmitter.h"
+#include "SysShape/Model.h"
+#include "SysShape/Joint.h"
+#include "Game/Creature.h"
 #include "Vector3.h"
 #include "Matrixf.h"
 
@@ -21,7 +24,7 @@ struct ObjectActor : public JStage::TActor, public ObjectBase {
 	ObjectActor(const char*, MoviePlayer*);
 
 	virtual ~ObjectActor();                                // _08
-	virtual char* JSGGetName() const;                      // _10
+	virtual char const* JSGGetName() const;                // _10
 	virtual u32 JSGGetFlag() const;                        // _18
 	virtual void JSGSetFlag(u32);                          // _1C
 	virtual void JSGSetData(u32, const void*, u32);        // _24
@@ -43,21 +46,15 @@ struct ObjectActor : public JStage::TActor, public ObjectBase {
 	virtual void reset();                                  // _A8 (weak)
 	virtual void update();                                 // _AC (weak)
 	virtual void entry();                                  // _B0
-	virtual void start();                                  // _B4 (weak)
-	virtual void stop();                                   // _B8 (weak)
-	virtual void setShape();                               // _BC
-	virtual void setAnim();                                // _C0
+	virtual void start() { }                               // _B4 (weak)
+	virtual void stop() { }                                // _B8 (weak)
+	virtual bool setShape();                               // _BC
+	virtual bool setAnim();                                // _C0
 	virtual void mountArchive();                           // _C4
 	virtual void parseUserData_(u32, const void*);         // _C8 (weak)
 
 	// _00 = VTABLE (JStage::TActor)
 	// _04 = VTABLE2 (ObjectBase)
-	MoviePlayer* mMoviePlayer;      // _08
-	char* mName;                    // _0C
-	u32 mFlags;                     // _10
-	int _14;                        // _14
-	u32 _18;                        // _18
-	u32 _1C;                        // _1C
 	J3DModelData* mModelData;       // _20
 	J3DModel* mModel;               // _24
 	J3DAnmTransform* mAnmTransform; // _28
@@ -66,18 +63,18 @@ struct ObjectActor : public JStage::TActor, public ObjectBase {
 	Vector3f mTranslation;          // _34
 	Vector3f mRotation;             // _40
 	Vector3f mScaling;              // _4C
-	u32 mShape;                     // _58
-	u32 mAnimation;                 // _5C
+	u32 mShape;                     // _58 (index of the model file within the archive)
+	u32 mAnimation;                 // _5C (index of the animation file within the archive)
 	f32 mAnimFrame;                 // _60
 	f32 mAnimFrameMax;              // _64
-	f32 _68;                        // _68
-	f32 _6C;                        // _6C
+	u32 mModelFileId;               // _68 (set after loading model)
+	u32 mAnimationFileId;           // _6C (set after loading animation)
 };
 
 struct ObjectGameActor : public ObjectActor {
 	ObjectGameActor(const char*, MoviePlayer*, Creature*);
 
-	virtual ~ObjectGameActor();                            // _08 (weak)
+	virtual ~ObjectGameActor() { }                         // _08 (weak)
 	virtual int JSGFindNodeID(const char*) const;          // _34
 	virtual bool JSGGetNodeTransformation(u32, Mtx) const; // _38
 	virtual void JSGGetTranslation(Vec*) const;            // _3C
@@ -91,31 +88,35 @@ struct ObjectGameActor : public ObjectActor {
 	virtual void stop();                                   // _B8 (weak)
 	virtual void parseUserData_(u32, const void*);         // _C8 (weak)
 
+	// used in Game::P2JST::ObjectGameActor::stop
+	inline void killAllAnimCalc(Creature* obj)
+	{
+		for (int i = 0; i < obj->mModel->mJointCount; i++) {
+			obj->mModel->mJ3dModel->mModelData->mJointTree.mJoints[(u16)i]->mMtxCalc = nullptr;
+		}
+		obj->setMovieMotion(false);
+	}
+
 	// _00     = VTABLE (JStage::TActor)
 	// _04     = VTABLE2 (ObjectBase)
 	// _00-_70 = ObjectActor
-	Creature* mCreature;   // _70
-	int mCurrCommandCount; // _74
-	void* _78;             // _78, command ptr array maybe?
-	int _7C;               // _7C
-	int _80;               // _80
-	int _84;               // _84
-	u32 _88;               // _88
-	JKRArchive* _8C;       // _8C
-	Vector3f _90;          // _90, translation 2?
-	Vector3f _9C;          // _9C, rotation 2?
-	u8 _A8[0x8];           // _A8, unknown
-	int _B0;               // _B0
-	s16 _B4;               // _B4
-	s16 _B6;               // _B6
-	s16 _B8;               // _B8
-	s16 _BA;               // _BA
+	Creature* mGameObject;     // _70
+	int mCurrCommandCount;     // _74
+	int mCommandIDs[4];        // _78
+	int mSRTCommand;           // _88
+	JKRArchive* mActorArchive; // _8C
+	Vector3f mTranslation2;    // _90, translation 2?
+	Vector3f mRotation2;       // _9C, rotation 2?
+	u8 _A8;                    // _A8, unknown
+	f32 mObjectFaceDir;
+	int mUserDataNum;         // _B0
+	u16 mMovieCommandData[4]; // _B4 (actual value for command, anim id mainly)
 };
 
 struct ObjectParticleActor : public ObjectActor, public JPAEmitterCallBack {
 	ObjectParticleActor(const char*, MoviePlayer*, Creature*);
 
-	virtual ~ObjectParticleActor();                // _08 (weak)
+	virtual ~ObjectParticleActor() { }             // _08 (weak)
 	virtual void JSGGetTranslation(Vec*) const;    // _3C
 	virtual void JSGSetTranslation(const Vec&);    // _40
 	virtual void JSGSetShape(u32);                 // _58
@@ -132,21 +133,21 @@ struct ObjectParticleActor : public ObjectActor, public JPAEmitterCallBack {
 	// _04     = VTABLE2 (ObjectBase)
 	// _00-_70 = ObjectActor
 	// _70-_74 = JPAEmitterCallBack
-	u32 _74;                  // _74
-	u8 _78;                   // _78
+	u32 mEfxID;               // _74
+	u8 mEfxType;              // _78
 	JPABaseEmitter* mEmitter; // _7C
-	Creature* mCreature;      // _80
-	s16 _84;                  // _84
+	Creature* mGameObject;    // _80
+	s16 mModelJointIndex;     // _84
 	Matrixf mMatrix;          // _88
-	u8 _B8;                   // _B8
-	u8 _B9;                   // _B9
-	Vector3f _BC;             // _BC, translation 2?
+	u8 mEfxFlag;              // _B8
+	u8 mCourseIdFlag;         // _B9
+	Vector3f mTranslation2;   // _BC, translation 2?
 };
 
 struct ObjectSpecialActor : public ObjectActor {
 	ObjectSpecialActor(const char*, MoviePlayer*);
 
-	virtual ~ObjectSpecialActor();                 // _08 (weak)
+	virtual ~ObjectSpecialActor() { }              // _08 (weak)
 	virtual void JSGSetAnimation(u32);             // _60
 	virtual void reset();                          // _A8 (weak)
 	virtual void update();                         // _AC (weak)
@@ -157,9 +158,9 @@ struct ObjectSpecialActor : public ObjectActor {
 	// _04     = VTABLE2 (ObjectBase)
 	// _00-_70 = ObjectActor
 	int mCurrCommandCount; // _70
-	void* _74;             // _74, command ptr array maybe?
-	u8 _78[0x40];          // _78, unknown
-	f32 _B8;               // _B8
+	int mCommands[16];     // _74
+	bool _B4;              // _B4
+	f32 mTimer;            // _B8
 };
 } // namespace P2JST
 } // namespace Game

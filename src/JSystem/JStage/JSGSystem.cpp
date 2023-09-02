@@ -30,7 +30,7 @@ int TSystem::JSGFindObject(TObject**, char const*, TEObject) const { return 1; }
  * Address:	800987DC
  * Size:	000008
  */
-int TSystem::JSGCreateObject(char const*, TEObject, unsigned long) { return 0; }
+int TSystem::JSGCreateObject(char const*, TEObject, u32) { return 0; }
 
 /*
  * --INFO--
@@ -44,12 +44,12 @@ void TSystem::JSGDestroyObject(TObject*) { }
  * Address:	800987E8
  * Size:	000008
  */
-int TSystem::JSGGetSystemData(unsigned long) { return 0; }
+int TSystem::JSGGetSystemData(u32) { return 0; }
 
 /*
  * --INFO--
  * Address:	800987F0
  * Size:	000004
  */
-void TSystem::JSGSetSystemData(unsigned long, unsigned long) { }
+void TSystem::JSGSetSystemData(u32, u32) { }
 } // namespace JStage

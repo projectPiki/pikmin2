@@ -240,7 +240,7 @@ struct JPABaseEmitter {
 	u16 _52;                     // _52
 	u16 _54;                     // _54
 	JSUPtrLink _58;              // _58
-	Mtx _68;                     // _68
+	Mtx mMatrix;                 // _68
 	JGeometry::TVec3f _98;       // _98
 	JGeometry::TVec3f mPosition; // _A4
 	f32 _B0;                     // _B0

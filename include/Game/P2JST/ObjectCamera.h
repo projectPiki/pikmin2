@@ -14,13 +14,14 @@ namespace Game {
 struct MoviePlayer;
 
 namespace P2JST {
+static f32 sFovBackup;
 // Size: 0xC9
 struct ObjectCamera : public JStage::TCamera, public ObjectBase {
 	ObjectCamera(const char*, Game::MoviePlayer*);
 
 	////////////////// VTABLE
 	virtual ~ObjectCamera();                           // _08
-	virtual char* JSGGetName() const;                  // _10
+	virtual char const* JSGGetName() const;            // _10
 	virtual u32 JSGGetFlag() const;                    // _18
 	virtual void JSGSetFlag(u32);                      // _1C
 	virtual void JSGSetData(u32, const void*, u32);    // _24
@@ -49,29 +50,24 @@ struct ObjectCamera : public JStage::TCamera, public ObjectBase {
 	////////////////// END VTABLE
 
 	void setCamera(Camera*);
+	void setParms(Camera*);
 
 	// _00 - VTABLE (JStage::TCamera)
 	// _04 - VTABLE2 (ObjectBase)
-	Game::MoviePlayer* _08;  // _08
-	char* mName;             // _0C
-	u32 _10;                 // _10 - flags?
-	int _14;                 // _14
-	void* _18;               // _18 - pointer to something?
-	u32 _1C;                 // _1C
-	u8 _20[0x34];            // _20 - unknown
-	u32 _54;                 // _54 - unknown
-	u8 _58[0x8];             // _58 - unknown
-	Matrixf _60;             // _60
-	Vector3f mViewPos;       // _90 - view position?
-	Vector3f mViewTargetPos; // _9C - view target position?
-	f32 mViewRoll;           // _A8 - view roll?
-	f32 mProjectionNear;     // _AC - projectionNear?
-	f32 mProjectionFar;      // _B0 - projectionFar?
-	f32 mProjectionFovy;     // _B4 - projectionFovy?
-	f32 mProjectionAspect;   // _BC - projectionAspect?
-	Camera* _C0;             // _C0 - owner?
-	Camera* _C4;             // _C4 - camera obj?
-	bool mIsRunning;         // _C8
+	u8 _20[0x34];          // _20 - unknown
+	u32 _54;               // _54 - unknown
+	u8 _58[0x8];           // _58 - unknown
+	Matrixf mViewMatrix;   // _60
+	Vec mViewPos;          // _90 - view position?
+	Vec mViewTargetPos;    // _9C - view target position?
+	f32 mViewRoll;         // _A8 - view roll?
+	f32 mProjectionNear;   // _AC - projectionNear?
+	f32 mProjectionFar;    // _B0 - projectionFar?
+	f32 mProjectionFovy;   // _B4 - projectionFovy?
+	f32 mProjectionAspect; // _B8 - projectionAspect?
+	Camera* mCameraObj;    // _BC - owner?
+	Camera* mCameraObj2;   // _C0 - camera obj?
+	bool mIsRunning;       // _C4
 };
 
 } // namespace P2JST

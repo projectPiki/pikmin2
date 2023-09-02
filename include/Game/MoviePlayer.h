@@ -261,6 +261,8 @@ struct MoviePlayer : public JKRDisposer {
 	{
 		return mFlags & IS_ACTIVE; // got tired of typing it out tbh
 	}
+
+	static JKRArchive* mArchive;
 };
 
 extern MoviePlayer* moviePlayer;

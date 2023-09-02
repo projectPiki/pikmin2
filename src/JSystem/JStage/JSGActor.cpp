@@ -70,7 +70,7 @@ int TActor::JSGGetShape() const { return -1; }
  * Address:	80098A18
  * Size:	000004
  */
-void TActor::JSGSetShape(unsigned long) { }
+void TActor::JSGSetShape(u32) { }
 
 /*
  * --INFO--
@@ -84,7 +84,7 @@ int TActor::JSGGetAnimation() const { return -1; }
  * Address:	80098A24
  * Size:	000004
  */
-void TActor::JSGSetAnimation(unsigned long) { }
+void TActor::JSGSetAnimation(u32) { }
 
 /*
  * --INFO--
@@ -98,7 +98,7 @@ f32 TActor::JSGGetAnimationFrame() const { return 0.0f; }
  * Address:	80098A30
  * Size:	000004
  */
-void TActor::JSGSetAnimationFrame(float) { }
+void TActor::JSGSetAnimationFrame(f32) { }
 
 /*
  * --INFO--
@@ -119,7 +119,7 @@ f32 TActor::JSGGetAnimationTransition() const { return 0.0f; }
  * Address:	80098A44
  * Size:	000004
  */
-void TActor::JSGSetAnimationTransition(float) { }
+void TActor::JSGSetAnimationTransition(f32) { }
 
 /*
  * --INFO--
@@ -133,7 +133,7 @@ int TActor::JSGGetTextureAnimation() const { return -1; }
  * Address:	80098A50
  * Size:	000004
  */
-void TActor::JSGSetTextureAnimation(unsigned long) { }
+void TActor::JSGSetTextureAnimation(u32) { }
 
 /*
  * --INFO--
@@ -147,7 +147,7 @@ f32 TActor::JSGGetTextureAnimationFrame() const { return 0.0f; }
  * Address:	80098A5C
  * Size:	000004
  */
-void TActor::JSGSetTextureAnimationFrame(float) { }
+void TActor::JSGSetTextureAnimationFrame(f32) { }
 
 /*
  * --INFO--
