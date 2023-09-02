@@ -548,8 +548,8 @@ bool Obj::suckPikmin(f32 offset)
  */
 void Obj::createEffect()
 {
-	_2E4        = new efx::TNewkurageEye();
-	_2E8        = new efx::TNewkurageEye();
+	mEfxEyeL    = new efx::TNewkurageEye();
+	mEfxEyeR    = new efx::TNewkurageEye();
 	mEfxHire    = new efx::TNewkurageHire();
 	mEfxKira    = new efx::TNewkurageKira(&mPosition);
 	mEfxSui     = new efx::TNewkurageSui();
@@ -563,8 +563,8 @@ void Obj::createEffect()
  */
 void Obj::setupEffect()
 {
-	_2E4->mMtx = mModel->getJoint("Ltuno2")->getWorldMatrix();
-	_2E8->mMtx = mModel->getJoint("Rtuno2")->getWorldMatrix();
+	mEfxEyeL->mMtx = mModel->getJoint("Ltuno2")->getWorldMatrix();
+	mEfxEyeR->mMtx = mModel->getJoint("Rtuno2")->getWorldMatrix();
 	mEfxHire->setMtxptr(mModel->getJoint("nyoro")->getWorldMatrix()->mMatrix.mtxView);
 	mEfxDeadrun->mMtx = mModel->getJoint("center")->getWorldMatrix();
 }
@@ -576,8 +576,8 @@ void Obj::setupEffect()
  */
 void Obj::startEyeHireBodyEffect()
 {
-	_2E4->create(nullptr);
-	_2E8->create(nullptr);
+	mEfxEyeL->create(nullptr);
+	mEfxEyeR->create(nullptr);
 	mEfxHire->create(nullptr);
 	mEfxKira->create(nullptr);
 }
@@ -589,8 +589,8 @@ void Obj::startEyeHireBodyEffect()
  */
 void Obj::finishEyeBodyEffect()
 {
-	_2E4->fade();
-	_2E8->fade();
+	mEfxEyeL->fade();
+	mEfxEyeR->fade();
 	mEfxKira->fade();
 
 	mEfxDeadrun->create(nullptr);
@@ -669,8 +669,8 @@ void Obj::createDownEffect() { createBounceEffect(mPosition, getDownSmokeScale()
  */
 void Obj::effectDrawOn()
 {
-	_2E4->endDemoDrawOn();
-	_2E8->endDemoDrawOn();
+	mEfxEyeL->endDemoDrawOn();
+	mEfxEyeR->endDemoDrawOn();
 	mEfxHire->endDemoDrawOn();
 	mEfxKira->endDemoDrawOn();
 	mEfxSui->endDemoDrawOn();
@@ -684,8 +684,8 @@ void Obj::effectDrawOn()
  */
 void Obj::effectDrawOff()
 {
-	_2E4->startDemoDrawOff();
-	_2E8->startDemoDrawOff();
+	mEfxEyeL->startDemoDrawOff();
+	mEfxEyeR->startDemoDrawOff();
 	mEfxHire->startDemoDrawOff();
 	mEfxKira->startDemoDrawOff();
 	mEfxSui->startDemoDrawOff();

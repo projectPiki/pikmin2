@@ -35,7 +35,7 @@ struct TKurageEye : public TChaseMtx {
 	{
 	}
 
-	virtual ~TKurageEye(); // _48 (weak)
+	virtual ~TKurageEye() { } // _48 (weak)
 
 	// _00		 = VTBL
 	// _00-_14 = TChaseMtx
@@ -52,8 +52,8 @@ struct TKurageFlick : public TSimple1 {
 };
 
 struct TKurageGepu : public TChasePos {
-	inline TKurageGepu()
-	    : TChasePos(PID_KurageGepu, nullptr)
+	inline TKurageGepu(Vector3f* pos)
+	    : TChasePos(PID_KurageGepu, pos)
 	{
 	}
 

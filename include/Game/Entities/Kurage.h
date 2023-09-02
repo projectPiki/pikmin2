@@ -97,8 +97,8 @@ struct Obj : public EnemyBase {
 	Vector3f mTargetPosition;            // _2D0
 	bool mIsSucking;                     // _2DC
 	int mSuckedPiki;                     // _2E0
-	efx::TNewkurageEye* _2E4;            // _2E4
-	efx::TNewkurageEye* _2E8;            // _2E8
+	efx::TNewkurageEye* mEfxEyeL;        // _2E4
+	efx::TNewkurageEye* mEfxEyeR;        // _2E8
 	efx::TNewkurageHire* mEfxHire;       // _2EC
 	efx::TNewkurageKira* mEfxKira;       // _2F0
 	efx::TNewkurageSui* mEfxSui;         // _2F4

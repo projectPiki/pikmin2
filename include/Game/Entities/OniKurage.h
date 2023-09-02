@@ -6,6 +6,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "efx/TKurage.h"
 #include "Collinfo.h"
 
 /**
@@ -100,19 +101,24 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                // _2BC
-	StateID mNextState;       // _2C0
-	f32 mStateTimer;          // _2C4
-	f32 _2C8;                 // _2C8
-	f32 mFallTimer;           // _2CC
-	Vector3f mTargetPosition; // _2D0
-	bool mIsSucking;          // _2DC
-	int mSuckedPiki;          // _2E0
-	MouthSlots mMouthSlots;   // _2E4
-	u32 _2EC;                 // _2EC, unknown
-	u32 _2F0;                 // _2F0, unknown
-	u8 _2F4[0x1C];            // _2F4, unknown
-	                          // _310 = PelletView
+	FSM* mFsm;                        // _2BC
+	StateID mNextState;               // _2C0
+	f32 mStateTimer;                  // _2C4
+	f32 _2C8;                         // _2C8
+	f32 mFallTimer;                   // _2CC
+	Vector3f mTargetPosition;         // _2D0
+	bool mIsSucking;                  // _2DC
+	int mSuckedPiki;                  // _2E0
+	MouthSlots mMouthSlots;           // _2E4
+	Navi* mSuckedNavis[2];            // _2EC
+	efx::TKurageEye* mEfxEyeL;        // _2F4
+	efx::TKurageEye* mEfxEyeR;        // _2F8
+	efx::TKurageHire* mEfxHire;       // _2FC
+	efx::TKurageKira* mEfxKira;       // _300
+	efx::TKurageSui* mEfxSui;         // _304
+	efx::TKurageGepu* mEfxGepu;       // _308
+	efx::TKurageDeadrun* mEfxDeadrun; // _30C
+	                                  // _310 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
