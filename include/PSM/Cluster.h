@@ -19,12 +19,19 @@ struct Cluster : public CreatureObj {
 };
 
 struct ClusterFactory : public PSSystem::ClusterSe::Factory {
+	inline ClusterFactory()
+	    : PSSystem::ClusterSe::Factory(3)
+	    , _0C(0)
+	{
+	}
+
 	virtual void identifyPart(u8); // _0C (weak)
 
-	void partInit(u8);
+	PSSystem::ClusterSe::PartInitArg partInit(u8);
 
 	// _00     = VTBL
 	// _00-_08 = PSSystem::ClusterSe::Factory
+	u32 _0C;
 };
 } // namespace PSM
 

@@ -27,7 +27,7 @@ struct SceneBase : public PSGame::PikScene {
 	virtual PSSystem::EnvSeBase* getEnvSe();     // _2C (weak)
 	virtual void getSceneFx();                   // _30
 	virtual bool isDemoScene();                  // _34 (weak)
-	virtual void getSeSceneGate(ObjBase*, u32);  // _38 (weak)
+	virtual bool getSeSceneGate(ObjBase*, u32);  // _38 (weak)
 	virtual void becomeSceneCamera();            // _3C
 	virtual bool isGameScene() { return false; } // _40 (weak)
 	virtual void pauseOn_2D(u8, u8);             // _44
@@ -70,7 +70,7 @@ struct Scene_Global : public SceneBase {
 
 	virtual ~Scene_Global();                    // _0C
 	virtual void getCamDistVol(u8);             // _28
-	virtual void getSeSceneGate(ObjBase*, u32); // _38 (weak)
+	virtual bool getSeSceneGate(ObjBase*, u32); // _38 (weak)
 
 	PSSystem::BgmSeq* getGlobalStream();
 	void startGlobalStream(u32);
@@ -91,7 +91,7 @@ struct Scene_Objects : public SceneBase {
 	virtual void exec();                                  // _18
 	virtual void startMainSeq();                          // _1C
 	virtual void getCamDistVol(unsigned char);            // _28
-	virtual void getSeSceneGate(ObjBase*, unsigned long); // _38
+	virtual bool getSeSceneGate(ObjBase*, unsigned long); // _38
 	virtual void onStartMainSeq();                        // _54
 
 	void adaptObjMgr();
@@ -111,7 +111,7 @@ struct Scene_Objects : public SceneBase {
 struct Scene_Zukan : public Scene_Objects {
 	virtual ~Scene_Zukan();                     // _0C (weak)
 	virtual void getCamDistVol(u8);             // _28
-	virtual void getSeSceneGate(ObjBase*, u32); // _38
+	virtual bool getSeSceneGate(ObjBase*, u32); // _38
 
 	// _00      = VTBL
 	// _00-_38  = Scene_Objects
@@ -263,7 +263,7 @@ struct Scene_Demo : public SceneBase {
 	virtual ~Scene_Demo();                      // _0C (weak)
 	virtual void getCamDistVol(u8);             // _28
 	virtual bool isDemoScene();                 // _34 (weak)
-	virtual void getSeSceneGate(ObjBase*, u32); // _38
+	virtual bool getSeSceneGate(ObjBase*, u32); // _38
 
 	// _00      = VTBL
 	// _00-_28  = SceneBase

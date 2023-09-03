@@ -26,8 +26,8 @@ void PSStart2DStream(u32);
 void PSStop2DStream();
 
 void PSStartChallengeTimeUpStream();
-void PSStartEnemyDownSmokeSE(Game::EnemyBase*, f32);
-void PSStartEnemyDownWatSE(Game::EnemyBase*, f32);
+JAISound* PSStartEnemyDownSmokeSE(Game::EnemyBase*, f32);
+JAISound* PSStartEnemyDownWatSE(Game::EnemyBase*, f32);
 void PSStartEnemyFatalHitSE(Game::EnemyBase*, f32);
 JAISound* PSStartEnemyGhostSE(Game::EnemyBase*, f32);
 PSM::SeSound* PSStartSoundVec(u32, Vec*);

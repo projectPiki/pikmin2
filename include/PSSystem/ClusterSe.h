@@ -16,6 +16,14 @@ namespace ClusterSe {
  * @size = 0x8
  */
 struct PartInitArg {
+	PartInitArg()
+	{
+		_00[0]   = 0xff;
+		_00[1]   = 0xff;
+		_00[2]   = 0xff;
+		_00[3]   = 0xff;
+		mSoundID = (SoundID)0xFFFFFFFF;
+	}
 	u8 _00[0x4];      // _00 - unknown
 	SoundID mSoundID; // _04
 };

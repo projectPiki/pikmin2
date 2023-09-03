@@ -428,7 +428,7 @@ void SetSe::exec()
  * Address:	8033F8B8
  * Size:	0000B8
  */
-bool SetSe::startSound(JAInter::Object* obj, u32 id1, u32 flag)
+JAISound* SetSe::startSound(JAInter::Object* obj, u32 id1, u32 flag)
 {
 	P2ASSERTLINE(336, obj);
 	if (mStatus == -1) {
@@ -436,7 +436,7 @@ bool SetSe::startSound(JAInter::Object* obj, u32 id1, u32 flag)
 		startCounter(id1);
 		return ret;
 	} else {
-		return false;
+		return nullptr;
 	}
 	/*
 	stwu     r1, -0x20(r1)

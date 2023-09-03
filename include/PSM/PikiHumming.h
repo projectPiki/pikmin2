@@ -20,7 +20,7 @@ struct PikiHumming {
 	// inlined/unused:
 	void init(HumType, u32, int, int);
 	void exec(HumType, bool);
-	void play(Piki*);
+	void play(Piki* piki);
 
 	u32 _00;          // _00, unknown
 	SoundID mSoundID; // _04

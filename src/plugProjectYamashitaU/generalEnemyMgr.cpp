@@ -395,18 +395,13 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
  */
 GeneralEnemyMgr::GeneralEnemyMgr()
     : _1C(0)
-    , mEnemyNumList(nullptr)
+    , mEnemyNumInfo()
     , mHeap(nullptr)
 {
 	sys->heapStatusStart("GeneralEnemyMgr", nullptr);
-	mName         = "敵マネージャ"; // enemy manager
-	mEnemyNumList = new EnemyTypeID[gEnemyInfoNum];
+	mName = "敵マネージャ"; // enemy manager
 
-	setEnemyIDs();
-
-	if (mEnemyNumList) {
-		setEnemyNums(0);
-	}
+	mEnemyNumInfo.init();
 
 	sys->heapStatusEnd("GeneralEnemyMgr");
 	resetEnemyNum();
@@ -683,14 +678,7 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
  * Address:	8010D814
  * Size:	000040
  */
-void GeneralEnemyMgr::resetEnemyNum()
-{
-	if (mEnemyNumList == nullptr) {
-		return;
-	}
-
-	setEnemyNums(0);
-}
+void GeneralEnemyMgr::resetEnemyNum() { mEnemyNumInfo.resetEnemyNum(); }
 
 /*
  * --INFO--
@@ -700,17 +688,7 @@ void GeneralEnemyMgr::resetEnemyNum()
 void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 {
 	if (enemyID != -1) {
-		int i;
-		u8 mem                    = max * EnemyInfoFunc::getEnemyMember(enemyID, 0xFFFF);
-		EnemyTypeID* enemyNumList = mEnemyNumList;
-		if (enemyNumList) {
-			for (i = 0; i < gEnemyInfoNum; i++) {
-				if (enemyID == enemyNumList[i].mEnemyID) {
-					enemyNumList[i].mCount += mem;
-					break;
-				}
-			}
-		}
+		mEnemyNumInfo.addEnemyNum(enemyID, max * getEnemyMember(enemyID, 0xFFFF));
 
 		for (int i = 0; i < max; i++) {
 			switch (enemyID) {
@@ -758,13 +736,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
  */
 u8 GeneralEnemyMgr::getEnemyNum(int enemyID, bool check)
 {
-	u8 num = 0;
-	if (check) {
-		num = getTotalEnemyCount(num, enemyID);
-	} else {
-		num = getEnemyCount(num, enemyID);
-	}
-	return num;
+	return mEnemyNumInfo.getEnemyNum(enemyID, check);
 	/*
 	stwu     r1, -0x10(r1)
 	clrlwi.  r0, r5, 0x18

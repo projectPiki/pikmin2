@@ -23,7 +23,7 @@ struct RandId {
 struct SetSe {
 	SetSe(const char*, s16, s16);
 
-	bool startSound(JAInter::Object*, u32, u32);
+	JAISound* startSound(JAInter::Object*, u32, u32);
 	void exec();
 	JAISound* playSystemSe(u32, u32);
 	void startCounter(u32);

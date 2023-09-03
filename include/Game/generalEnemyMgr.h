@@ -12,6 +12,75 @@
 namespace Game {
 struct CreatureKillArg;
 
+struct EnemyNumInfo {
+	inline EnemyNumInfo()
+	    : mEnemyNumList(nullptr)
+	{
+	}
+
+	int getOriginalEnemyID();
+	inline void init()
+	{
+		mEnemyNumList = new EnemyTypeID[gEnemyInfoNum];
+
+		// setEnemyIDs();
+		for (int i = 0; i < gEnemyInfoNum; i++) {
+			mEnemyNumList[i].mEnemyID = (EnemyTypeID::EEnemyTypeID)gEnemyInfo[i].mId;
+		}
+
+		resetEnemyNum();
+	}
+	inline void resetEnemyNum()
+	{
+		if (mEnemyNumList == nullptr) {
+			return;
+		}
+
+		// setEnemyNums(0);
+		for (int i = 0; i < gEnemyInfoNum; i++) {
+			mEnemyNumList[i].mCount = 0;
+		}
+	}
+	inline void addEnemyNum(int enemyID, unsigned char num)
+	{
+		EnemyTypeID* enemyNumList = mEnemyNumList;
+		if (enemyNumList) {
+			getEnemyNumData(enemyID)->mCount += num;
+		}
+	}
+	inline u8 getEnemyNum(int enemyID, bool check)
+	{
+		if (check) {
+			u8 num = 0;
+			if (mEnemyNumList) {
+				int mgrID = getEnemyMgrID(enemyID);
+
+				for (int i = 0; i < gEnemyInfoNum; i++) {
+					EnemyTypeID* typeID = &mEnemyNumList[i];
+					int id              = ((u8)(enemyID == mgrID) != 0) ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
+					if (id == enemyID) {
+						num += typeID->mCount;
+					}
+				}
+			}
+			return num;
+		}
+		return getEnemyNumData(enemyID)->mCount;
+	}
+	EnemyTypeID* getEnemyNumData(int enemyID)
+	{
+		for (int i = 0; i < gEnemyInfoNum; i++) {
+			if (enemyID == mEnemyNumList[i].mEnemyID) {
+				return mEnemyNumList + i;
+			}
+		}
+		return nullptr;
+	}
+
+	u8 _44[4];                  // _00
+	EnemyTypeID* mEnemyNumList; // _04
+};
+
 struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	inline EnemyMgrNode()
 	    : CNode("マネージャノード")
@@ -130,53 +199,19 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	void prepareDayendEnemies();
 	void createDayendEnemies(Sys::Sphere&);
 
-	inline void setEnemyIDs()
-	{
-		for (int i = 0; i < gEnemyInfoNum; i++) {
-			mEnemyNumList[i].mEnemyID = (EnemyTypeID::EEnemyTypeID)gEnemyInfo[i].mId;
-		}
-	}
-
-	inline void setEnemyNums(int val)
-	{
-		for (int i = 0; i < gEnemyInfoNum; i++) {
-			mEnemyNumList[i].mCount = val;
-		}
-	}
-
-	inline u8 getEnemyCount(u8 num, int enemyID)
-	{
-		for (int i = num; i < gEnemyInfoNum; i++) {
-			if (enemyID == mEnemyNumList[i].mEnemyID) {
-				num = mEnemyNumList[i].mCount;
-				break;
-			}
-		}
-		return num;
-	}
-
-	inline u8 getTotalEnemyCount(u8 num, int enemyID)
-	{
-		if (mEnemyNumList) {
-			int mgrID = getEnemyMgrID(enemyID);
-
-			for (int i = 0; i < gEnemyInfoNum; i++) {
-				EnemyTypeID* typeID = &mEnemyNumList[i];
-				int id              = ((u8)(enemyID == mgrID) != 0) ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
-				if (id == enemyID) {
-					num += typeID->mCount;
-				}
-			}
-		}
-		return num;
-	}
+	// unused/inlined:
+	void birth(char*, EnemyBirthArg&);
+	inline char getEnemyMember(int id, int flags) { return EnemyInfoFunc::getEnemyMember(id, flags); }
+	void setParmsDebugNameAndID();
+	void resetParmsDebugNameAndID();
+	void setParmsDebugSoundInfo();
+	void resetParmsDebugSoundInfo();
 
 	// _00		= (GenericObjectMgr) VTABLE
 	// _04-_1C	= CNode
 	u8 _1C;                     // _1C
 	EnemyMgrNode mEnemyMgrNode; // _20
-	u8 _44[4];                  // _44
-	EnemyTypeID* mEnemyNumList; // _48
+	EnemyNumInfo mEnemyNumInfo; // _44
 	JKRHeap* mHeap;             // _4C
 	u32 mHeapSize;              // _50
 	BitFlag<u32> mFlags;        // _54

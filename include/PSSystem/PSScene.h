@@ -3,6 +3,7 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "SoundID.h"
 #include "PSSystem/Seq.h"
 #include "PSSystem/WaveScene.h"
@@ -51,6 +52,12 @@ struct SceneMgr {
 
 	// inline/unused
 	void deleteGlobalScene();
+
+	inline Scene* getEndScene()
+	{
+		P2ASSERTLINE(161, mEndScene != nullptr);
+		return mEndScene;
+	}
 
 	inline void checkScene() { P2ASSERTLINE(199, mScenes != nullptr); }
 
