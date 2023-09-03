@@ -1,5 +1,5 @@
-#include "types.h"
 #include "Game/Entities/Rock.h"
+#include "Dolphin/rand.h"
 #include "PS.h"
 
 namespace Game {
@@ -22,33 +22,11 @@ Obj::Obj()
  * Address:	80263128
  * Size:	00005C
  */
-void Obj::birth(Vector3f&, f32)
+void Obj::birth(Vector3f& pos, f32 angle)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-	lfs      f2, lbl_8051ADA0@sda21(r2)
-	mr       r3, r31
-	lfs      f1, lbl_8051ADA4@sda21(r2)
-	addi     r4, r1, 8
-	lfs      f0, lbl_8051ADA8@sda21(r2)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	EnemyBase::birth(pos, angle);
+	RockInitialParams params(100.0f, 500.0f, 0.4f); // these never get used lol
+	setInitialSetting(&params);
 }
 
 /*
@@ -70,140 +48,51 @@ void Obj::setInitialSetting(EnemyInitialParamBase* param)
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lbz      r0, 0x2b0(r31)
-	extsb.   r0, r0
-	bne      lbl_802631F0
-	lfs      f1, lbl_8051ADAC@sda21(r2)
-	stfs     f1, 0x1f8(r31)
-	stfs     f1, 0x168(r31)
-	stfs     f1, 0x16c(r31)
-	stfs     f1, 0x170(r31)
-	lwz      r3, 0x114(r31)
-	lwz      r3, 0(r3)
-	bl       setScale__8CollPartFf
+	EnemyBase::onInit(initArg);
 
-lbl_802631F0:
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1d, 0x1b
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x19, 0x17
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x18, 0x16
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x15, 0x13
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	bl       setEmotionNone__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       setupEffect__Q34Game4Rock3ObjFv
-	lfs      f0, lbl_8051ADB0@sda21(r2)
-	li       r0, 0
-	mr       r3, r31
-	stfs     f0, 0x2c8(r31)
-	stb      r0, 0x2c4(r31)
-	stw      r0, 0x2c0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x13
-	bne      lbl_8026333C
-	lfs      f1, lbl_8051ADB0@sda21(r2)
-	lfs      f0, 0x2ac(r31)
-	fcmpu    cr0, f1, f0
-	beq      lbl_802632C8
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051ADC0@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_8051ADB4@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_8051ADB8@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f0, f1, f0
-	stfs     f0, 0x2c8(r31)
+	if (mDropGroup == EDG_None) {
+		mScaleModifier = 0.0001f;
+		mScale         = Vector3f(0.0001f);
+		mCollTree->mPart->setScale(0.0001f);
+	}
 
-lbl_802632C8:
-	lbz      r0, 0x2b0(r31)
-	extsb.   r0, r0
-	bne      lbl_8026330C
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1dc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8026332C
+	enableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_IsDamageAnimAllowed);
+	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_LifegaugeVisible);
+	enableEvent(0, EB_IsImmuneBitter);
 
-lbl_8026330C:
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+	setEmotionNone();
+	setupEffect();
 
-lbl_8026332C:
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	mr       r4, r31
-	bl       delShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	b        lbl_80263378
+	mTimer       = 0.0f;
+	_2C4         = 0;
+	mSourceEnemy = nullptr;
 
-lbl_8026333C:
-	mr       r3, r31
-	bl       initMoveVelocity__Q34Game4Rock3ObjFv
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1dc(r12)
-	mtctr    r12
-	bctrl
+	if (getEnemyTypeID() == EnemyTypeID::EnemyID_Rock) {
+		// if falling rock
+		if (mExistDuration != 0.0f) {
+			disableEvent(0, EB_IsCullable);
+			mTimer = randWeightFloat(1.5f);
+		}
 
-lbl_80263378:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		if (mDropGroup == EDG_None) {
+			mFsm->start(this, ROCK_Wait, nullptr);
+			doAnimationCullingOff();
+
+		} else {
+			mFsm->start(this, ROCK_DropWait, nullptr);
+		}
+
+		shadowMgr->delShadow(this);
+
+	} else {
+		// if rolling rock
+		initMoveVelocity();
+		mFsm->start(this, ROCK_Move, nullptr);
+		doAnimationCullingOff();
+	}
 }
 
 /*
@@ -257,73 +146,23 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  * Address:	8026348C
  * Size:	0000E4
  */
-void Obj::getShadowParam(ShadowParam&)
+void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x13
-	bne      lbl_802634F4
-	lfs      f0, 0x18c(r30)
-	lfs      f2, lbl_8051ADC8@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f0, 0x190(r30)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x194(r30)
-	stfs     f0, 8(r31)
-	lfs      f1, 0x190(r30)
-	lfs      f0, 0x19c(r30)
-	fsubs    f0, f1, f0
-	fadds    f0, f2, f0
-	stfs     f0, 0x18(r31)
-	b        lbl_80263534
+	if (getEnemyTypeID() == EnemyTypeID::EnemyID_Rock) {
+		shadowParam.mPosition               = mPosition;
+		shadowParam.mBoundingSphere.mRadius = 50.0f + (mPosition.y - mHomePosition.y);
+	} else {
+		shadowParam.mPosition = Vector3f(mPosition.x, mPosition.y + 5.0f, mPosition.z);
 
-lbl_802634F4:
-	lfs      f2, lbl_8051ADCC@sda21(r2)
-	lfs      f1, 0x190(r30)
-	lfs      f3, 0x194(r30)
-	lfs      f0, 0x18c(r30)
-	fadds    f1, f2, f1
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f3, 8(r31)
-	lwz      r0, 0x1e4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8026352C
-	lfs      f0, lbl_8051ADC8@sda21(r2)
-	stfs     f0, 0x18(r31)
-	b        lbl_80263534
+		if (isEvent(1, EB2_IsEarthquake)) {
+			shadowParam.mBoundingSphere.mRadius = 50.0f;
+		} else {
+			shadowParam.mBoundingSphere.mRadius = 20.0f;
+		}
+	}
 
-lbl_8026352C:
-	lfs      f0, lbl_8051ADD0@sda21(r2)
-	stfs     f0, 0x18(r31)
-
-lbl_80263534:
-	lfs      f2, lbl_8051ADB0@sda21(r2)
-	lfs      f0, lbl_8051ADD4@sda21(r2)
-	stfs     f2, 0xc(r31)
-	lfs      f1, lbl_8051ADD8@sda21(r2)
-	stfs     f0, 0x10(r31)
-	stfs     f2, 0x14(r31)
-	lfs      f0, 0x1f8(r30)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.mSize                     = 25.0f * mScaleModifier;
 }
 
 /*
@@ -333,40 +172,16 @@ lbl_80263534:
  */
 bool Obj::needShadow()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       needShadow__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80263598
-	li       r3, 1
-	b        lbl_802635BC
+	if (EnemyBase::needShadow()) {
+		return true;
+	}
 
-lbl_80263598:
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 1
-	beq      lbl_802635B0
-	cmpwi    r3, 3
-	bne      lbl_802635B8
+	int stateID = getStateID();
+	if (stateID == ROCK_Appear || stateID == ROCK_Fall) {
+		return true;
+	}
 
-lbl_802635B0:
-	li       r3, 1
-	b        lbl_802635BC
-
-lbl_802635B8:
-	li       r3, 0
-
-lbl_802635BC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -374,48 +189,14 @@ lbl_802635BC:
  * Address:	802635D0
  * Size:	000088
  */
-bool Obj::hipdropCallBack(Creature*, f32, CollPart*)
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80263640
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_80263640
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	bne      lbl_80263640
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80263644
+	if (isAlive() && !isEvent(0, EB_IsBittered) && getStateID() == ROCK_Move) {
+		mFsm->transit(this, ROCK_Dead, nullptr);
+		return true;
+	}
 
-lbl_80263640:
-	li       r3, 0
-
-lbl_80263644:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1060,119 +841,9 @@ lbl_80263EEC:
  */
 void Obj::createEffect()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	li       r3, 0x14
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80263FC0
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChasePos@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChasePos@l
-	lis      r4, __vt__Q23efx8TRockRun@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx8TRockRun@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x1aa
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_80263FC0:
-	stw      r3, 0x2d8(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80264048
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChasePos@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChasePos@l
-	lis      r4, __vt__Q23efx10TRockGrRun@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx10TRockGrRun@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x1a9
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_80264048:
-	stw      r3, 0x2dc(r31)
-	li       r3, 0x58
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_802640A4
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__Q23efx9TRockWRun@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	addi     r29, r30, 4
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__Q23efx9TRockWRun@l
-	mr       r3, r29
-	addi     r4, r30, 0x48
-	stw      r0, 0(r30)
-	li       r5, 0x28e
-	li       r6, 0x28f
-	li       r7, 0x290
-	bl       "__ct__Q23efx10TChasePos3FP10Vector3<f>UsUsUs"
-	lis      r3, __vt__Q23efx17TRockWRunChasePos@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q23efx17TRockWRunChasePos@l
-	stw      r3, 0(r29)
-	stb      r0, 0x54(r30)
-
-lbl_802640A4:
-	stw      r30, 0x2e0(r31)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mEfxRun       = new efx::TRockRun();
+	mEfxGroundRun = new efx::TRockGrRun();
+	mEfxWaterRun  = new efx::TRockWRun();
 }
 
 /*
@@ -1221,6 +892,25 @@ void Obj::finishRollingGroundEffect() { mEfxGroundRun->fade(); }
  */
 void Obj::startRollingWaterEffect()
 {
+	f32 height = 0.0f;
+	if (mWaterBox) {
+		height = *mWaterBox->getSeaHeightPtr();
+	}
+
+	mEfxWaterRun->mSeaHeight = height;
+	mEfxWaterRun->create(nullptr);
+
+	efx::TRockWRun* waterFX = mEfxWaterRun;
+	if (mEfxWaterRun->_54) {
+		f32 heightDiff = waterFX->mSeaHeight - mPosition.y;
+		if (8.0f <= heightDiff && heightDiff < 45.0f) {
+			efx::TRockWRun* waterFX = mEfxWaterRun;
+			waterFX->mPosition      = Vector3f(mPosition.x, heightDiff, mPosition.z);
+			waterFX->mChasePos.create(nullptr);
+		} else {
+			waterFX->mChasePos.fade();
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1303,6 +993,16 @@ void Obj::finishRollingWaterEffect() { mEfxWaterRun->fade(); }
  */
 void Obj::updateWaterEffectPosition()
 {
+	if (mWaterBox && mEfxWaterRun->_54) {
+		f32 heightDiff = mEfxWaterRun->mSeaHeight - mPosition.y;
+		if (8.0f <= heightDiff && heightDiff < 45.0f) {
+			efx::TRockWRun* waterFX = mEfxWaterRun;
+			waterFX->mPosition      = Vector3f(mPosition.x, heightDiff, mPosition.z);
+			waterFX->mChasePos.create(nullptr);
+		} else {
+			mEfxWaterRun->mChasePos.fade();
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1359,46 +1059,10 @@ lbl_802643A4:
  */
 void Obj::createRockDeadEffect()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__Q23efx8TSimple3@ha
-	stw      r0, 0x34(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r10, r6, __vt__Q23efx5TBase@l
-	stw      r0, 8(r1)
-	addi     r9, r5, __vt__Q23efx8TSimple3@l
-	lis      r4, __vt__Q23efx9TRockDead@ha
-	li       r8, 0x1a6
-	lfs      f0, 0x18c(r3)
-	addi     r0, r4, __vt__Q23efx9TRockDead@l
-	li       r7, 0x1a7
-	li       r6, 0x1a8
-	stfs     f0, 0xc(r1)
-	li       r5, 0
-	addi     r4, r1, 8
-	lfs      f0, 0x190(r3)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x194(r3)
-	addi     r3, r1, 0x18
-	stw      r10, 0x18(r1)
-	stw      r9, 0x18(r1)
-	stfs     f0, 0x14(r1)
-	sth      r8, 0x1c(r1)
-	sth      r7, 0x1e(r1)
-	sth      r6, 0x20(r1)
-	stw      r5, 0x24(r1)
-	stw      r5, 0x28(r1)
-	stw      r5, 0x2c(r1)
-	stw      r0, 0x18(r1)
-	bl       create__Q23efx8TSimple3FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	efx::Arg fxArg(mPosition);
+	efx::TRockDead deadFX;
+
+	deadFX.create(&fxArg);
 }
 
 /*
@@ -1408,33 +1072,9 @@ void Obj::createRockDeadEffect()
  */
 void Obj::effectDrawOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2d8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2dc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2e0(r31)
-	lwzu     r12, 4(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEfxRun->endDemoDrawOn();
+	mEfxGroundRun->endDemoDrawOn();
+	mEfxWaterRun->mChasePos.endDemoDrawOn();
 }
 
 /*
@@ -1444,6 +1084,9 @@ void Obj::effectDrawOn()
  */
 void Obj::effectDrawOff()
 {
+	mEfxRun->startDemoDrawOff();
+	mEfxGroundRun->startDemoDrawOff();
+	mEfxWaterRun->mChasePos.startDemoDrawOff();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

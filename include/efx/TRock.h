@@ -21,7 +21,7 @@ struct TRockGrRun : public TChasePos {
 	{
 	}
 
-	virtual ~TRockGrRun(); // _48 (weak)
+	virtual ~TRockGrRun() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChasePos
@@ -33,29 +33,52 @@ struct TRockRun : public TChasePos {
 	{
 	}
 
-	virtual ~TRockRun(); // _48 (weak)
+	virtual ~TRockRun() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChasePos
 };
 
-struct TRockWRun : public TBase {
-	virtual bool create(Arg*); // _08 (weak)
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
-
-	// _00 VTBL
-};
-
 struct TRockWRunChasePos : public TChasePos3 {
-	inline TRockWRunChasePos()
-	    : TChasePos3(nullptr, PID_RockWRunChasePos_1, PID_RockWRunChasePos_2, PID_RockWRunChasePos_3)
+	inline TRockWRunChasePos(Vector3f* pos)
+	    : TChasePos3(pos, PID_RockWRunChasePos_1, PID_RockWRunChasePos_2, PID_RockWRunChasePos_3)
 	{
 	}
 
 	// _00     = VTBL
 	// _00-_40 = TChasePos3
 };
+
+struct TRockWRun : public TBase {
+	inline TRockWRun()
+	    : mChasePos(&mPosition)
+	    , _54(false)
+	{
+	}
+
+	virtual bool create(Arg*) // _08 (weak)
+	{
+		_54 = true;
+		return true;
+	}
+	virtual void forceKill() // _0C (weak)
+	{
+		mChasePos.forceKill();
+		_54 = false;
+	}
+	virtual void fade() // _10 (weak)
+	{
+		mChasePos.fade();
+		_54 = false;
+	}
+
+	// _00 VTBL
+	TRockWRunChasePos mChasePos; // _04
+	f32 mSeaHeight;              // _44, might be part of TRockWRunChasePos
+	Vector3f mPosition;          // _48
+	bool _54;                    // _54
+};
+
 } // namespace efx
 
 #endif

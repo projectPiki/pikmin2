@@ -18,6 +18,19 @@ namespace Game {
 namespace Rock {
 struct FSM;
 
+struct RockInitialParams : public EnemyInitialParamBase {
+	inline RockInitialParams(f32 a, f32 b, f32 c)
+	    : _00(a)
+	    , _04(b)
+	    , _08(c)
+	{
+	}
+
+	f32 _00; // _00
+	f32 _04; // _04
+	f32 _08; // _08
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
