@@ -203,7 +203,7 @@ void Obj::resetFartTimer()
  */
 void Obj::startBodyEffect()
 {
-	efx::ArgScale arg(mPosition, static_cast<Kogane::Parms*>(mParms)->mProperParms.mFp40.mValue);
+	efx::ArgScale arg(mPosition, static_cast<Kogane::Parms*>(mParms)->mProperParms.mScale.mValue);
 	mBodyEffect->create(&arg);
 	resetFartTimer();
 }
@@ -229,7 +229,7 @@ void Obj::createFartEffect()
 	mFartTimer = 0.0f;
 
 	Kogane::Parms* parms = static_cast<Kogane::Parms*>(mParms);
-	f32 scale            = (parms->mProperParms.mFp40.mValue * parms->mGeneral.mMaxAttackRange.mValue);
+	f32 scale            = (parms->mProperParms.mScale.mValue * parms->mGeneral.mMaxAttackRange.mValue);
 
 	Vector3f temp_vec(scale * pikmin2_sinf(mFaceDir), 0.0f, scale * pikmin2_cosf(mFaceDir));
 

@@ -23,19 +23,22 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);          // _30
-	virtual void onKill(CreatureKillArg* settings);          // _34
-	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual void inWaterCallback(WaterBox* wb);              // _84 (weak)
-	virtual void outWaterCallback();                         // _88 (weak)
-	virtual void getShadowParam(ShadowParam& settings);      // _134
-	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doUpdateCommon();                           // _1D0
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual void changeMaterial() = 0;                       // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);         // _30
+	virtual void onKill(CreatureKillArg* settings);         // _34
+	virtual void doDirectDraw(Graphics& gfx);               // _50
+	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
+	virtual void getShadowParam(ShadowParam& settings);     // _134
+	virtual ~Obj() { }                                      // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doUpdate();                                // _1CC
+	virtual void doUpdateCommon();                          // _1D0
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual void changeMaterial() = 0;                      // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Kogane;
+	}
 	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
 	virtual bool earthquakeCallBack(Creature*, f32);         // _28C
@@ -50,8 +53,8 @@ struct Obj : public EnemyBase {
 	virtual void startBodyEffect() { }                       // _304 (weak)
 	virtual void finishBodyEffect() { }                      // _308 (weak)
 	virtual void createFartEffect() { }                      // _30C (weak)
-	virtual void effectDrawOn();                             // _310 (weak)
-	virtual void effectDrawOff();                            // _314 (weak)
+	virtual void effectDrawOn() { }                          // _310 (weak)
+	virtual void effectDrawOff() { }                         // _314 (weak)
 	virtual void createPressSENormal() { }                   // _318 (weak)
 	virtual void createPressSESpecial() { }                  // _31C (weak)
 	//////////////// VTABLE END
@@ -106,25 +109,25 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "出現時間(Min)", 15.0f, 0.0f, 100.0f)
-		    , mFp02(this, 'fp02', "出現時間(Max)", 30.0f, 0.0f, 100.0f)
-		    , mFp10(this, 'fp10', "移動時間(Min)", 0.5f, 0.0f, 10.0f)
-		    , mFp11(this, 'fp11', "移動時間(Max)", 2.0f, 0.0f, 10.0f)
-		    , mFp20(this, 'fp20', "停止時間(Min)", 0.5f, 0.0f, 10.0f)
-		    , mFp21(this, 'fp21', "停止時間(Max)", 2.0f, 0.0f, 10.0f)
-		    , mFp30(this, 'fp30', "向き変え角度", 45.0f, 0.0f, 90.0f)
-		    , mFp40(this, 'fp40', "スケール", 0.8f, 0.0f, 5.0f)
+		    , mMinAppearTime(this, 'fp01', "出現時間(Min)", 15.0f, 0.0f, 100.0f) // 'appearance time (Min)'
+		    , mMaxAppearTime(this, 'fp02', "出現時間(Max)", 30.0f, 0.0f, 100.0f) // 'appearance time (Max)'
+		    , mMinTravelTime(this, 'fp10', "移動時間(Min)", 0.5f, 0.0f, 10.0f)   // 'travel time (Min)'
+		    , mMaxTravelTime(this, 'fp11', "移動時間(Max)", 2.0f, 0.0f, 10.0f)   // 'travel time (Max)'
+		    , mMinStopTime(this, 'fp20', "停止時間(Min)", 0.5f, 0.0f, 10.0f)     // 'stop time (Min)'
+		    , mMaxStopTime(this, 'fp21', "停止時間(Max)", 2.0f, 0.0f, 10.0f)     // 'stop time (Max)'
+		    , mTurnAngle(this, 'fp30', "向き変え角度", 45.0f, 0.0f, 90.0f)       // 'turning angle'
+		    , mScale(this, 'fp40', "スケール", 0.8f, 0.0f, 5.0f)                 // 'scale'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp10; // _854
-		Parm<f32> mFp11; // _87C
-		Parm<f32> mFp20; // _8A4
-		Parm<f32> mFp21; // _8CC
-		Parm<f32> mFp30; // _8F4
-		Parm<f32> mFp40; // _91C
+		Parm<f32> mMinAppearTime; // _804, fp01
+		Parm<f32> mMaxAppearTime; // _82C, fp02
+		Parm<f32> mMinTravelTime; // _854, fp10
+		Parm<f32> mMaxTravelTime; // _87C, fp11
+		Parm<f32> mMinStopTime;   // _8A4, fp20
+		Parm<f32> mMaxStopTime;   // _8CC, fp21
+		Parm<f32> mTurnAngle;     // _8F4, fp30
+		Parm<f32> mScale;         // _91C, fp40
 	};
 
 	Parms() { }

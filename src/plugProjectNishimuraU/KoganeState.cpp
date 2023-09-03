@@ -74,7 +74,7 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	kogane->startMotion();
 
 	efx::TKoganeDive diveEffect;
-	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mFp40.mValue);
+	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mScale.mValue);
 	diveEffect.create(&scaleArg);
 
 	kogane->startBodyEffect();
@@ -93,7 +93,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->enableEvent(0, EB_IsImmuneBitter);
 
 	efx::TKoganeDive diveEffect;
-	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mFp40.mValue);
+	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mScale.mValue);
 	diveEffect.create(&scaleArg);
 
 	kogane->finishBodyEffect();
@@ -136,7 +136,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kogane = static_cast<Obj*>(enemy);
 
 	Parms* parms = static_cast<Parms*>(kogane->mParms);
-	kogane->resetMoveTimer(parms->mProperParms.mFp10.mValue, parms->mProperParms.mFp11.mValue);
+	kogane->resetMoveTimer(parms->mProperParms.mMinTravelTime.mValue, parms->mProperParms.mMaxTravelTime.mValue);
 	kogane->setTargetPosition(nullptr);
 	kogane->startMotion(0, nullptr);
 	kogane->createFartEffect();
@@ -157,8 +157,8 @@ void StateMove::exec(EnemyBase* enemy)
 	EnemyFunc::walkToTarget(kogane, targetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,
 	                        parms->mGeneral.mRotationalSpeed.mValue);
 
-	if ((kogane->mAppearTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mFp02.mValue)
-	    || (kogane->mMoveTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mFp11.mValue)) {
+	if ((kogane->mAppearTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxAppearTime.mValue)
+	    || (kogane->mMoveTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxTravelTime.mValue)) {
 		kogane->finishMotion();
 	}
 
@@ -166,7 +166,7 @@ void StateMove::exec(EnemyBase* enemy)
 	kogane->mMoveTimer += sys->mDeltaTime;
 
 	if (kogane->mCurAnim->mIsPlaying && (u32)kogane->mCurAnim->mType == KEYEVENT_END) {
-		if (kogane->mAppearTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mFp02.mValue) {
+		if (kogane->mAppearTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxAppearTime.mValue) {
 			transit(kogane, KOGANE_Disappear, nullptr);
 		} else {
 			transit(kogane, KOGANE_Wait, nullptr);
@@ -191,7 +191,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kogane = static_cast<Obj*>(enemy);
 
 	Parms* parms = static_cast<Parms*>(kogane->mParms);
-	kogane->resetMoveTimer(parms->mProperParms.mFp20.mValue, parms->mProperParms.mFp21.mValue);
+	kogane->resetMoveTimer(parms->mProperParms.mMinStopTime.mValue, parms->mProperParms.mMaxStopTime.mValue);
 
 	kogane->mTargetVelocity = Vector3f(0.0f);
 	kogane->startMotion(1, nullptr);
@@ -207,7 +207,7 @@ void StateWait::exec(EnemyBase* enemy)
 	Obj* kogane = static_cast<Obj*>(enemy);
 
 	kogane->koganeScaleUp();
-	if (kogane->mMoveTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mFp21.mValue) {
+	if (kogane->mMoveTimer > static_cast<Parms*>(kogane->mParms)->mProperParms.mMaxStopTime.mValue) {
 		kogane->finishMotion();
 	}
 
@@ -238,7 +238,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->disableEvent(0, EB_IsEnemyNotBitter);
 
 	efx::TKoganeHit hitEffect;
-	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mFp40.mValue);
+	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mScale.mValue);
 	hitEffect.create(&scaleArg);
 
 	kogane->startMotion(2, nullptr);
