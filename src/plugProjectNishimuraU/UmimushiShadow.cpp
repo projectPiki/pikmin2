@@ -21,7 +21,7 @@ void UmimushiTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, 
 
 	Vector3f diff = vec2 - vec1;
 	// more stuff here
-	_normalise(diff);
+	diff.normalise();
 
 	// more stuff here
 	_1C->setBasis(2, diff);

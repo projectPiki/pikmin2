@@ -147,7 +147,7 @@ Vector3f Obj::getTargetPosition(Creature* creature)
 	Vector3f targetPos = tadpolePos - creaturePos;
 	targetPos.y        = 0.0f;
 
-	_normalise(targetPos);
+	targetPos.normalise();
 
 	targetPos   = targetPos * C_PARMS->mGeneral.mMoveSpeed.mValue + tadpolePos;
 	f32 terrRad = C_PARMS->mGeneral.mTerritoryRadius.mValue;
@@ -157,7 +157,7 @@ Vector3f Obj::getTargetPosition(Creature* creature)
 		targetPos.y = 0.0f;
 		targetPos.z -= homePos.z;
 
-		_normalise(targetPos);
+		targetPos.normalise();
 		targetPos *= terrRad;
 		targetPos += homePos;
 	}

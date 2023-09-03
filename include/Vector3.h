@@ -261,30 +261,6 @@ inline f32 _distanceBetween(Vector3f& me, Vector3f& them)
 	return _length(sep);
 }
 
-inline f32 _distanceBetweenCheck(Vector3f& me, Vector3f& them)
-{
-	Vector3f sep = me - them;
-	f32 length   = _length(sep);
-	if (length > 0.0f) {
-		return length;
-	} else {
-		return 0.0f;
-	}
-}
-
-inline f32 _distanceBetweenCheckDouble(Vector3f& me, Vector3f& them)
-{
-	Vector3f sep  = me - them;
-	Vector3f sep2 = them - me;
-	f32 length2   = _length(sep2);
-	f32 length    = _length(sep);
-	if (length > 0.0f) {
-		return length;
-	} else {
-		return 0.0f;
-	}
-}
-
 inline f32 _normalise2(Vector3f& diff)
 {
 	f32 dist = _length(diff);

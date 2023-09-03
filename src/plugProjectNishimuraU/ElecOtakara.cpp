@@ -51,7 +51,7 @@ void Obj::interactCreature(Creature* creature)
 	// Get direction from US -> Creature, then make it normalise it to a unit direction
 	Vector3f direction = creature->getPosition() - mPosition;
 	direction.y        = 0.0f;
-	_normalise(direction);
+	direction.normalise();
 
 	// Then scale the direction based on fp14's value
 	f32 scaling = static_cast<OtakaraBase::Parms*>(mParms)->mGeneral.mSearchDistance.mValue;

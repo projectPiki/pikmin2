@@ -703,7 +703,7 @@ void NaviWalkState::execAI_wait(Navi* navi)
 		}
 
 		Vector3f sep = Vector3f(targetPos.x - naviPos.x, 0.0f, targetPos.z - naviPos.z);
-		_normalise(sep);
+		sep.normalise();
 
 		navi->mFaceDir += 0.2f * angDist(roundAng(JMath::atanTable_.atan2_(sep.x, sep.z)), navi->mFaceDir);
 		navi->mFaceDir = roundAng(navi->mFaceDir);
@@ -2298,7 +2298,7 @@ void NaviPunchState::hitCallback(CollPart* collpart)
 			Vector3f targetColVec = collpart->mPosition;
 			Vector3f naviColVec   = mNavi->mCollTree->getCollPart('rhnd')->mPosition;
 			Vector3f sep          = targetColVec - naviColVec;
-			_normalise(sep);
+			sep.normalise();
 
 			sep.x *= 15.0f;
 			sep.y *= 15.0f;

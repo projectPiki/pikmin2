@@ -1840,7 +1840,7 @@ Vector3f Onyon::getInStart_UFO()
 	f32 jZ          = jntpos.z;
 	Vector3f pos    = getPosition();
 	Vector3f fixpos(jX - pos.x, 0.0f, jZ - pos.z);
-	_normalise(fixpos);
+	fixpos.normalise();
 	return (pos + (fixpos * 90.0f));
 }
 

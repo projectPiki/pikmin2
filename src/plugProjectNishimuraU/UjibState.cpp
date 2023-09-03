@@ -256,6 +256,98 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
+	Obj* uji         = OBJ(enemy);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(uji, CG_PARMS(uji)->mGeneral.mViewAngle.mValue,
+	                                                     CG_PARMS(uji)->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+
+	if (target) {
+		uji->mTargetCreature = target;
+		// Creature* target = uji->mTargetCreature;
+		// if (target && target->isAlive()) {
+		f32 rotSpeed = *CG_PARMS(uji)->mGeneral.mRotationalSpeed();
+		f32 rotAccel = *CG_PARMS(uji)->mGeneral.mRotationalAccel();
+
+		Vector3f ujiPos    = uji->getPosition();
+		Vector3f targetPos = target->getPosition();
+
+		f32 angBetween = roundAng(JMAAtan2Radian(ujiPos.x - targetPos.x, ujiPos.z - targetPos.z));
+		f32 angleDist  = angDist(angBetween, uji->getFaceDir());
+
+		f32 limit     = PI * (DEG2RAD * rotSpeed);
+		f32 turnSpeed = angleDist * rotAccel;
+		if (FABS(turnSpeed) > limit) {
+			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
+		}
+
+		uji->mFaceDir    = roundAng(turnSpeed + uji->getFaceDir());
+		uji->mRotation.y = uji->mFaceDir;
+		// uji->turnToTargetNishi(target, CG_PARMS(uji)->mGeneral.mRotationalAccel.mValue, CG_PARMS(uji)->mGeneral.mRotationalSpeed.mValue);
+		// uji->changeFaceDir(target);
+		f32 speed = CG_PARMS(uji)->mGeneral.mMoveSpeed.mValue;
+
+		f32 sinTheta = (f32)sin(uji->getFaceDir());
+		f32 y        = uji->getTargetVelocity().y;
+		f32 cosTheta = (f32)cos(uji->getFaceDir());
+
+		uji->mTargetVelocity = Vector3f(speed * sinTheta, y, speed * cosTheta);
+
+		f32 sightRad  = *CG_PARMS(uji)->mGeneral.mSightRadius(); // f30
+		f32 fov       = *CG_PARMS(uji)->mGeneral.mFov();         // f25
+		f32 viewAngle = *CG_PARMS(uji)->mGeneral.mViewAngle();   // f26
+
+		f32 xDiff = target->getPosition().x - uji->getPosition().x;
+		f32 yDiff = target->getPosition().y - uji->getPosition().y;
+		f32 zDiff = target->getPosition().z - uji->getPosition().z;
+
+		f32 rad1    = SQUARE(viewAngle);
+		f32 rad2    = SQUARE(sightRad);
+		f32 sqrDiff = SQUARE(xDiff) + SQUARE(yDiff) + SQUARE(zDiff);
+		bool check0 = true;
+		bool check1 = false;
+		bool check2;
+		if (sqrDiff > rad1) {
+			check2 = false;
+			if (sqrDiff > rad2) {
+				if (FABS(yDiff) < fov) {
+					check2 = true;
+				}
+			}
+			if (check2) {
+				check1 = true;
+			}
+		}
+
+		if (!check1) {
+			if (!(FABS(angleDist) <= PI * (DEG2RAD * sightRad))) {
+				check0 = false;
+			}
+		}
+		if (check0) {
+			uji->mTargetCreature = nullptr;
+		} else {
+			Vector3f diff = uji->getPosition() - uji->mHomePosition;
+			f32 len       = diff.length();
+			if (len > *CG_PARMS(uji)->mGeneral.mTerritoryRadius()) {
+				uji->mTargetCreature = nullptr;
+			}
+		}
+
+		// } else {
+		// 	uji->mNextState = UJIB_GoHome;
+		// 	uji->finishMotion();
+		// }
+	}
+
+	uji->setInWaterDamage();
+
+	if (uji->mHealth <= 0.0f) {
+		transit(uji, UJIB_Dead, nullptr);
+		return;
+	}
+
+	if (uji->mCurAnim->mIsPlaying && uji->mCurAnim->mType == KEYEVENT_END) {
+		transit(uji, uji->mNextState, nullptr);
+	}
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0

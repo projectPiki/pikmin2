@@ -351,7 +351,7 @@ void StateLeap::exec(EnemyBase* enemy)
 		Vector3f targetVel = tadpole->mTargetVelocity;
 		Vector3f diff(targetPos.x - tadpolePos.x, 0.0f, targetPos.z - tadpolePos.z);
 
-		_normalise(diff);
+		diff.normalise();
 
 		diff.x *= CG_PARMS(tadpole)->mProperParms.mPitterPatterMoveSpeed.mValue;
 		diff.y *= CG_PARMS(tadpole)->mProperParms.mPitterPatterMoveSpeed.mValue;

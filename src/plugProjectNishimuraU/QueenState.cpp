@@ -368,7 +368,7 @@ void StateRolling::exec(EnemyBase* enemy)
 		} else { // mismatch lives here
 			f32 increasedRad     = 10.0f + territory;
 			Vector3f weightedSep = otherVec * increasedRad + (queen->mHomePosition - position);
-			_normalise(weightedSep);
+			weightedSep.normalise();
 
 			f32 speed = parms->mGeneral.mMoveSpeed.mValue;
 			weightVecXZ(weightedSep, speed);

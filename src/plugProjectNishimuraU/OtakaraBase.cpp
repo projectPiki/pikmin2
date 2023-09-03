@@ -439,7 +439,7 @@ Vector3f Obj::getTargetPosition(Creature* target)
 
 	Vector3f sep = otakaraPosition - targetPosition;
 	sep.y        = 0.0f;
-	_normalise(sep);
+	sep.normalise();
 
 	sep *= C_PARMS->mGeneral.mMoveSpeed.mValue;
 	sep += otakaraPosition;
@@ -448,7 +448,7 @@ Vector3f Obj::getTargetPosition(Creature* target)
 	if (sqrDistanceXZ(sep, homePos) > SQUARE(territory)) {
 		sep -= homePos;
 		sep.y = 0.0f;
-		_normalise(sep);
+		sep.normalise();
 		sep *= territory;
 		sep += homePos;
 	}

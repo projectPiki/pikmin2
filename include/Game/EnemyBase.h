@@ -624,8 +624,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline f32 turnToTargetNishi(Creature* target, f32 turnFactor, f32 maxTurnSpeed)
 	{
-		Vector3f targetPos = target->getPosition();
-		Vector3f pos       = getPosition();
+		// Vector3f targetPos = target->getPosition();
+		// Vector3f pos       = getPosition();
 
 		f32 angleDist = getAngDist(target);
 		f32 turnSpeed = angleDist * turnFactor;

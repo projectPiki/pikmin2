@@ -125,7 +125,8 @@ void ActTeki::makeTarget()
 	Vector3f sourcePos = mParent->getPosition();
 	Vector3f destPos   = mFollowingTeki->getPosition();
 
-	f32 distance = _distanceBetweenCheck(destPos, sourcePos);
+	f32 distance = destPos.distance(sourcePos);
+	distance     = distance > 0.0f ? distance : 0.0f;
 
 	Game::Footmarks* fm = mFollowingTeki->getFootmarks();
 	if (fm == nullptr) {
@@ -135,14 +136,16 @@ void ActTeki::makeTarget()
 	Game::Footmark* currentFm = mFollowMark;
 	float dist                = 12800.0f;
 	if (currentFm) {
-		dist = _distanceBetween(destPos, currentFm->mPosition);
+		dist = destPos.distance(currentFm->mPosition);
 	}
 
 	mFollowMark = fm->get(0);
 	for (int i = fm->_08 - 1; i >= 0; i--) {
 		Game::Footmark* curMark = fm->get(i);
 
-		f32 curDist = _distanceBetweenCheckDouble(destPos, curMark->mPosition); // sure.
+		f32 curDist2 = curMark->mPosition.distance(destPos); // sure.
+		f32 curDist  = destPos.distance(curMark->mPosition);
+		curDist      = (curDist > 0.0f) ? curDist : 0.0f;
 
 		if (dist > curDist && curDist < 100.0f) {
 			mFollowMark = curMark;
@@ -210,7 +213,7 @@ void ActTeki::test_0()
 		if (dist < 50.0f) {
 			Vector3f velDir = mFollowingTeki->getVelocity();
 
-			_normalise(velDir);
+			velDir.normalise();
 
 			dir = dir * 0.5f + velDir * 0.5f;
 

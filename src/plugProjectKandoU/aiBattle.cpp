@@ -188,7 +188,7 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	{
 		Game::Creature* c = static_cast<Game::Creature*>(*cellIt);
 		Vector3f cPos     = itSphere.mPosition - c->getPosition();
-		_normalise(cPos);
+		cPos.normalise();
 
 		cPos.x *= 50.0f;
 		cPos.y = 100.0f;
