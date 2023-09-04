@@ -73,7 +73,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SaraiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SaraiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Sarai.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Sarai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TankAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TankMgr.o\

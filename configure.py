@@ -1102,7 +1102,7 @@ LIBS = [
             "plugProjectNishimuraU/SaraiState",
             ["plugProjectNishimuraU/SaraiAnimator", True],
             ["plugProjectNishimuraU/SaraiMgr", True],
-            "plugProjectNishimuraU/Sarai",
+            ["plugProjectNishimuraU/Sarai", True],
             "plugProjectNishimuraU/TankState",
             ["plugProjectNishimuraU/TankAnimator", True],
             ["plugProjectNishimuraU/TankMgr", True],
