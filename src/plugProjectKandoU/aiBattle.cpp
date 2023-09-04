@@ -176,20 +176,22 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	initApproach();
 	_1D = 0;
 
-	Vector3f otherPos = mOther->getPosition();
-	Vector3f thisPos  = mParent->getPosition();
-
-	Vector3f midPoint = (otherPos + thisPos) * 0.5f;
+	Vector3f midPoint = (mOther->getPosition() + mParent->getPosition()) * 0.5f;
 	Sys::Sphere itSphere(midPoint, 10.0f);
 	Game::CellIteratorArg citArg(itSphere);
+	citArg._1C = 0;
 
 	Game::CellIterator cellIt(citArg);
 	CI_LOOP(cellIt)
 	{
-		Game::Creature* c = static_cast<Game::Creature*>(*cellIt);
-		Vector3f cPos     = itSphere.mPosition - c->getPosition();
-		cPos.normalise();
+		Game::Piki* c = static_cast<Game::Piki*>(*cellIt);
+		if (!c->isPiki() || c->getVsBattlePiki()) {
+			continue;
+		}
 
+		// TODO: WTF?
+		Vector3f cPos = c->getPosition();
+		cPos.normalise();
 		cPos.x *= 50.0f;
 		cPos.y = 100.0f;
 		cPos.z *= 50.0f;
@@ -259,7 +261,7 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 
 			u8 old = ++_1D;
 			if (old >= (randFloat() * 2.2f)) {
-				// WTF?
+				return;
 			}
 			break;
 		}
