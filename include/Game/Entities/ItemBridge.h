@@ -108,10 +108,10 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	void setCurrStage(int);
 	void createWayPoints();
-	void getStagePos(int);
-	void getStartPos();
+	Vector3f getStagePos(int);
+	Vector3f getStartPos();
 	void getStageZ(int);
-	void getStageWidth();
+	f32 getStageWidth();
 	Vector3f getBridgeZVec();
 	Vector3f getBridgeXVec();
 	void getBridgePos(Vector3f&, f32&, f32&);

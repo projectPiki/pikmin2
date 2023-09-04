@@ -60,7 +60,7 @@ struct Obj : public EnemyBase {
 	void setBridgeSearch();
 	void setNearestBridge();
 	void setCullingCheck();
-	void checkBreakOrMove();
+	int checkBreakOrMove();
 	bool isBreakBridge();
 	bool moveBridgeSide();
 	bool moveBridgeCentre();

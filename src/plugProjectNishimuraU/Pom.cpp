@@ -159,7 +159,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	if (creature && creature->isPiki() && collpart) {
 		if (collpart->mCurrentID == 'slot' && mCanSwallowPiki && mUsedSlotCount < mTotalSlotCount) {
 			MouthCollPart* slot = mMouthSlots.getSlot(0);
-			InteractSwallow swallow(this, 1.0f, slot, 0);
+			InteractSwallow swallow(this, 1.0f, slot);
 			if (creature->stimulate(swallow)) {
 				mUsedSlotCount++;
 			}

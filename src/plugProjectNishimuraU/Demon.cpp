@@ -353,7 +353,7 @@ int Obj::catchTarget()
 
 					f32 dist = slotpos.distance(naviPos);
 					if (dist < slot->mRadius) {
-						InteractSarai act(this, 1.0f, slot, 0);
+						InteractSarai act(this, 1.0f, slot);
 						navi->stimulate(act);
 						id++;
 						break;

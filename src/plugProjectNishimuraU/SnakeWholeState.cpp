@@ -1203,7 +1203,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 			if (piki) {
 				CollPart* slot = snagret->getSwallowSlot();
-				InteractSwallow swallow(snagret, 1.0f, slot, 0);
+				InteractSwallow swallow(snagret, 1.0f, slot);
 				piki->stimulate(swallow);
 
 			} else {

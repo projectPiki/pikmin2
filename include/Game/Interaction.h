@@ -520,9 +520,9 @@ struct InteractHipdrop : public InteractAttack {
 };
 
 struct InteractSwallow : public InteractAttack {
-	inline InteractSwallow(Creature* parent, f32 damage, CollPart* collpart, int p1)
+	inline InteractSwallow(Creature* parent, f32 damage, CollPart* collpart)
 	    : InteractAttack(parent, damage, collpart)
-	    , _10(p1)
+	    , _10(0)
 	{
 	}
 
@@ -535,8 +535,8 @@ struct InteractSwallow : public InteractAttack {
 };
 
 struct InteractSarai : public InteractSwallow {
-	inline InteractSarai(Creature* parent, f32 damage, CollPart* collpart, int p1)
-	    : InteractSwallow(parent, damage, collpart, p1)
+	inline InteractSarai(Creature* parent, f32 damage, CollPart* collpart)
+	    : InteractSwallow(parent, damage, collpart)
 	{
 	}
 
