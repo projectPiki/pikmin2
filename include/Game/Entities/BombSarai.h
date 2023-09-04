@@ -87,11 +87,11 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                    // _2BC
 	f32 mPitchRatio;              // _2C0
-	f32 _2C4;                     // _2C4, timer?
-	f32 _2C8;                     // _2C8, timer?
+	f32 mStateTimer;              // _2C4, recycled for each state
+	f32 mBombCarryTimer;          // _2C8
 	Vector3f mTargetPosition;     // _2CC
 	Bomb::Obj* mHeldBomb;         // _2D8
-	int _2DC;                     // _2DC
+	StateID mNextState;           // _2DC
 	efx::TBsaraiSupli* mEfxSupli; // _2E0
 	                              // _2E4 = PelletView
 };
@@ -122,27 +122,27 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "îÚçsçÇÇ≥", 90.0f, 0.0f, 150.0f)     // 'flight height'
-		    , mFp03(this, 'fp03', "èÛë‘ëJà⁄çÇÇ≥", 50.0f, 0.0f, 300.0f) // 'state transition height'
-		    , mFp10(this, 'fp10', "è„â∫ÇÃóhÇÍë¨ìx", 2.5f, 0.0f, 10.0f) // 'vertical swing speed'
-		    , mFp11(this, 'fp11', "è„â∫ÇÃóhÇÍïù", 20.0f, 0.0f, 50.0f)  // 'width of vertical swing'
-		    , mFp21(this, 'fp21', "è„è∏åWêî(0)", 1.5f, 0.0f, 5.0f)     // 'climbing factor (0)'
-		    , mFp22(this, 'fp22', "è„è∏åWêî(5)", 1.0f, 0.0f, 5.0f)     // 'climbing factor (5)'
-		    , mFp31(this, 'fp31', "êUï•ämó¶(1)", 0.1f, 0.0f, 1.0f)     // 'payoff probability (1)'
-		    , mFp32(this, 'fp32', "êUï•ämó¶(5)", 0.7f, 0.0f, 1.0f)     // 'payoff probability (5)'
-		    , mFp40(this, 'fp40', "Ç‡Ç™Ç´éûä‘", 3.0f, 0.0f, 10.0f)     // 'struggling time'
+		    , mFlightHeight(this, 'fp01', "îÚçsçÇÇ≥", 90.0f, 0.0f, 150.0f)      // 'flight height'
+		    , mTransitHeight(this, 'fp03', "èÛë‘ëJà⁄çÇÇ≥", 50.0f, 0.0f, 300.0f) // 'state transition height'
+		    , mPitchRate(this, 'fp10', "è„â∫ÇÃóhÇÍë¨ìx", 2.5f, 0.0f, 10.0f)     // 'vertical swing speed'
+		    , mPitchAmp(this, 'fp11', "è„â∫ÇÃóhÇÍïù", 20.0f, 0.0f, 50.0f)       // 'width of vertical swing'
+		    , mFreeRiseFactor(this, 'fp21', "è„è∏åWêî(0)", 1.5f, 0.0f, 5.0f)    // 'climbing factor (0)'
+		    , mLadenRiseFactor(this, 'fp22', "è„è∏åWêî(5)", 1.0f, 0.0f, 5.0f)   // 'climbing factor (5)'
+		    , mFreeFlickChance(this, 'fp31', "êUï•ämó¶(1)", 0.1f, 0.0f, 1.0f)   // 'payoff probability (1)'
+		    , mLadenFlickChance(this, 'fp32', "êUï•ämó¶(5)", 0.7f, 0.0f, 1.0f)  // 'payoff probability (5)'
+		    , mStruggleTime(this, 'fp40', "Ç‡Ç™Ç´éûä‘", 3.0f, 0.0f, 10.0f)      // 'struggling time'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp03; // _82C
-		Parm<f32> mFp10; // _854
-		Parm<f32> mFp11; // _87C
-		Parm<f32> mFp21; // _8A4
-		Parm<f32> mFp22; // _8CC
-		Parm<f32> mFp31; // _8F4
-		Parm<f32> mFp32; // _91C
-		Parm<f32> mFp40; // _944
+		Parm<f32> mFlightHeight;     // _804, fp01
+		Parm<f32> mTransitHeight;    // _82C, fp03
+		Parm<f32> mPitchRate;        // _854, fp10
+		Parm<f32> mPitchAmp;         // _87C, fp11
+		Parm<f32> mFreeRiseFactor;   // _8A4, fp21
+		Parm<f32> mLadenRiseFactor;  // _8CC, fp22
+		Parm<f32> mFreeFlickChance;  // _8F4, fp31
+		Parm<f32> mLadenFlickChance; // _91C, fp32
+		Parm<f32> mStruggleTime;     // _944, fp40
 	};
 
 	Parms() { }
@@ -179,11 +179,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateBombFlick : public State {
+	inline StateBombFlick()
+	    : State(BOMBSARAI_BombFlick, "bombflick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -193,6 +204,11 @@ struct StateBombFlick : public State {
 };
 
 struct StateBombMove : public State {
+	inline StateBombMove()
+	    : State(BOMBSARAI_BombMove, "bombmove")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -202,6 +218,11 @@ struct StateBombMove : public State {
 };
 
 struct StateBombWait : public State {
+	inline StateBombWait()
+	    : State(BOMBSARAI_BombWait, "bombwait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -211,6 +232,11 @@ struct StateBombWait : public State {
 };
 
 struct StateDamage : public State {
+	inline StateDamage()
+	    : State(BOMBSARAI_Damage, "damage")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -220,6 +246,11 @@ struct StateDamage : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(BOMBSARAI_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -229,6 +260,11 @@ struct StateDead : public State {
 };
 
 struct StateFall : public State {
+	inline StateFall()
+	    : State(BOMBSARAI_Fall, "fall")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -238,6 +274,11 @@ struct StateFall : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(BOMBSARAI_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -247,6 +288,11 @@ struct StateFlick : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(BOMBSARAI_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -256,6 +302,11 @@ struct StateMove : public State {
 };
 
 struct StateRelease : public State {
+	inline StateRelease()
+	    : State(BOMBSARAI_Release, "release")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -265,6 +316,11 @@ struct StateRelease : public State {
 };
 
 struct StateSupply : public State {
+	inline StateSupply()
+	    : State(BOMBSARAI_Supply, "supply")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -274,6 +330,11 @@ struct StateSupply : public State {
 };
 
 struct StateTakeOff1 : public State {
+	inline StateTakeOff1()
+	    : State(BOMBSARAI_TakeOff1, "takeoff1")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -283,6 +344,11 @@ struct StateTakeOff1 : public State {
 };
 
 struct StateTakeOff2 : public State {
+	inline StateTakeOff2()
+	    : State(BOMBSARAI_TakeOff2, "takeoff2")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -292,6 +358,11 @@ struct StateTakeOff2 : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(BOMBSARAI_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

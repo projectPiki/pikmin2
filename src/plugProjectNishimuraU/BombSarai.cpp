@@ -40,11 +40,11 @@ void BombSarai::Obj::onInit(CreatureInitArg* initArg)
 		enableEvent(0, EB_IsVulnerable);
 	}
 
-	_2DC        = -1;
-	_2C4        = 0.0f;
-	_2C8        = 0.0f;
-	mPitchRatio = 0.0f;
-	mHeldBomb   = nullptr;
+	mNextState      = BOMBSARAI_NULL;
+	mStateTimer     = 0.0f;
+	mBombCarryTimer = 0.0f;
+	mPitchRatio     = 0.0f;
+	mHeldBomb       = nullptr;
 
 	setupEffect();
 
@@ -118,7 +118,7 @@ void BombSarai::Obj::getShadowParam(ShadowParam& shadowParam)
 	}
 
 	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
-	shadowParam.mBoundingSphere.mRadius   = 50.0f + C_PROPERPARMS.mFp01.mValue;
+	shadowParam.mBoundingSphere.mRadius   = 50.0f + C_PROPERPARMS.mFlightHeight.mValue;
 	shadowParam.mSize                     = 17.5f;
 }
 
@@ -200,25 +200,26 @@ void BombSarai::Obj::doEndMovie() { effectDrawOn(); }
  * Address:	802B2D70
  * Size:	0001A0
  */
-f32 BombSarai::Obj::setHeightVelocity(bool check)
+f32 BombSarai::Obj::setHeightVelocity(bool isFastTakeOff)
 {
-	f32 minY = mapMgr->getMinY(mPosition);
-	f32 val  = 6.0f;
-	if (!check) {
+	f32 minY       = mapMgr->getMinY(mPosition);
+	f32 riseFactor = 6.0f;
+	if (!isFastTakeOff) {
 		int pikiCount = (mStuckPikminCount < 0) ? 0 : (mStuckPikminCount <= 5) ? mStuckPikminCount : 5;
 
 		f32 pikiCountF = (f32)pikiCount;
-		val            = (5.0f - pikiCountF) / 5.0f * C_PROPERPARMS.mFp21.mValue + pikiCountF / 5.0f * C_PROPERPARMS.mFp22.mValue;
+		riseFactor
+		    = (5.0f - pikiCountF) / 5.0f * C_PROPERPARMS.mFreeRiseFactor.mValue + pikiCountF / 5.0f * C_PROPERPARMS.mLadenRiseFactor.mValue;
 	}
 
-	f32 newVel = C_PROPERPARMS.mFp01.mValue;
-	if (mPosition.y - minY > newVel - C_PROPERPARMS.mFp11.mValue) {
+	f32 newHeight = C_PROPERPARMS.mFlightHeight.mValue;
+	if (mPosition.y - minY > newHeight - C_PROPERPARMS.mPitchAmp.mValue) {
 		addPitchRatio();
 
-		newVel += C_PROPERPARMS.mFp11.mValue * pikmin2_sinf(mPitchRatio);
+		newHeight += C_PROPERPARMS.mPitchAmp.mValue * pikmin2_sinf(mPitchRatio);
 	}
 
-	mCurrentVelocity.y = val * ((minY + newVel) - mPosition.y);
+	mCurrentVelocity.y = riseFactor * ((minY + newHeight) - mPosition.y);
 
 	return mPosition.y - minY;
 }
@@ -253,7 +254,7 @@ void BombSarai::Obj::setRandTarget()
  */
 void BombSarai::Obj::addPitchRatio()
 {
-	mPitchRatio += C_PROPERPARMS.mFp10.mValue * sys->mDeltaTime;
+	mPitchRatio += C_PROPERPARMS.mPitchRate.mValue * sys->mDeltaTime;
 	if (mPitchRatio > TAU) {
 		mPitchRatio -= TAU;
 	}
@@ -330,18 +331,11 @@ BombSarai::StateID BombSarai::Obj::getNextStateOnHeight()
 			return BOMBSARAI_Fall;
 		}
 
-		int popCount;
-		if (pikiCount - 1 < 0) {
-			popCount = 0;
-		} else {
-			popCount = 4;
-			if (pikiCount - 1 <= 4) {
-				popCount = pikiCount - 1;
-			}
-		}
+		int popCount = (pikiCount - 1 < 0) ? 0 : (pikiCount - 1 <= 4) ? pikiCount - 1 : 4;
 
 		f32 popCountF = (f32)popCount;
-		f32 limit     = popCountF / 4.0f * *C_PROPERPARMS.mFp32() + (4.0f - popCountF) / 4.0f * C_PROPERPARMS.mFp31.mValue;
+		f32 limit
+		    = (4.0f - popCountF) / 4.0f * C_PROPERPARMS.mFreeFlickChance.mValue + popCountF / 4.0f * C_PROPERPARMS.mLadenFlickChance.mValue;
 
 		if (randWeightFloat(1.0f) < limit) {
 			return (StateID)((int)BOMBSARAI_Flick + (StateID)(mHeldBomb != nullptr));
