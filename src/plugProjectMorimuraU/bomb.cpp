@@ -75,7 +75,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2C8     = 0;
 	_2C0     = 0;
 	_2C4     = 0;
-	mOtakara = nullptr;
+	mCarrier = nullptr;
 
 	mFsm->start(this, BOMB_Wait, nullptr);
 
@@ -377,8 +377,8 @@ void Obj::doStartStoneState()
  */
 void Obj::onKill(CreatureKillArg* killArg)
 {
-	if (mOtakara && mOtakara->getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
-		mOtakara->mTargetCreature = nullptr;
+	if (mCarrier && mCarrier->getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
+		mCarrier->mTargetCreature = nullptr;
 	}
 
 	mEfxLight->fade();

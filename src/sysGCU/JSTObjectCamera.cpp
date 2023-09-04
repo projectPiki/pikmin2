@@ -104,7 +104,7 @@
 
 namespace Game {
 namespace P2JST {
-
+static f32 sFovBackup;
 /*
  * --INFO--
  * Address:	8042F6E4

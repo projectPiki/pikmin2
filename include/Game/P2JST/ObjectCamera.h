@@ -14,7 +14,7 @@ namespace Game {
 struct MoviePlayer;
 
 namespace P2JST {
-static f32 sFovBackup;
+extern f32 sFovBackup;
 // Size: 0xC9
 struct ObjectCamera : public JStage::TCamera, public ObjectBase {
 	ObjectCamera(const char*, Game::MoviePlayer*);

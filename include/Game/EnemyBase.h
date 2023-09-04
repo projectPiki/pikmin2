@@ -616,9 +616,10 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
+	// this seems necessary and correct based on BombSarai::Obj::throwBomb
 	inline void updateFaceDir(f32 angle)
 	{
-		mFaceDir    = roundAng(angle + getFaceDir());
+		mFaceDir    = angle;
 		mRotation.y = mFaceDir;
 	}
 
@@ -634,7 +635,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
 		}
 
-		updateFaceDir(turnSpeed);
+		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
 
 		return angleDist;
 	}
@@ -652,7 +653,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
 		}
 
-		updateFaceDir(turnSpeed);
+		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
 
 		return angleDist;
 	}

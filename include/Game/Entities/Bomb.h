@@ -91,7 +91,7 @@ struct Obj : public EnemyBase {
 	int _2C4;                       // _2C4
 	u8 _2C8;                        // _2C8
 	u8 _2C9;                        // _2C9
-	OtakaraBase::Obj* mOtakara;     // _2CC
+	EnemyBase* mCarrier;            // _2CC, enemy carrying the bomb (dweevil, dirigibug)
 	FSM* mFsm;                      // _2D0
 	efx::TBombrockLight* mEfxLight; // _2D4
 	                                // _2D8 = PelletView

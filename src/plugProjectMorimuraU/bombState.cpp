@@ -171,9 +171,9 @@ void StateBomb::exec(EnemyBase* enemy)
 							creature->stimulate(interBomb);
 
 						} else if (creature->isNavi() || creature->isPiki()) {
-							Creature* target = static_cast<Obj*>(enemy)->mOtakara;
+							Creature* target = static_cast<Obj*>(enemy)->mCarrier;
 
-							if (static_cast<Obj*>(enemy)->mOtakara == nullptr) {
+							if (static_cast<Obj*>(enemy)->mCarrier == nullptr) {
 								target = enemy;
 							}
 

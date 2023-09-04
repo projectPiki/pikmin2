@@ -21,6 +21,24 @@ struct Obj;
 namespace BombSarai {
 struct FSM;
 
+enum StateID {
+	BOMBSARAI_NULL      = -1,
+	BOMBSARAI_Dead      = 0,
+	BOMBSARAI_Damage    = 1,
+	BOMBSARAI_Wait      = 2,
+	BOMBSARAI_BombWait  = 3,
+	BOMBSARAI_Move      = 4,
+	BOMBSARAI_BombMove  = 5,
+	BOMBSARAI_Supply    = 6,
+	BOMBSARAI_Release   = 7,
+	BOMBSARAI_Fall      = 8,
+	BOMBSARAI_TakeOff1  = 9,
+	BOMBSARAI_TakeOff2  = 10,
+	BOMBSARAI_Flick     = 11,
+	BOMBSARAI_BombFlick = 12,
+	BOMBSARAI_StateCount, // 13
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -28,32 +46,35 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
+	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
 	virtual bool bombCallBack(Creature*, Vector3f&, f32);   // _294
 	virtual void doFinishStoneState();                      // _2A8
 	virtual void startCarcassMotion();                      // _2C4
 	virtual void doStartWaitingBirthTypeDrop();             // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();            // _2E4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
+	virtual f32 getDownSmokeScale() { return 0.9f; }        // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_BombSarai;
+	}
 	//////////////// VTABLE END
 
-	void setHeightVelocity(bool);
+	f32 setHeightVelocity(bool);
 	void setRandTarget();
 	void addPitchRatio();
 	void supplyBomb();
 	void throwBomb(Vector3f&);
-	void getAttackablePikmin();
-	void getNextStateOnHeight();
+	Creature* getAttackablePikmin();
+	StateID getNextStateOnHeight();
 	void createEffect();
 	void setupEffect();
 	void createSupliEffect();

@@ -150,7 +150,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombSaraiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BombSaraiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BombSaraiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombSarai.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BombSarai.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseMgr.o\
