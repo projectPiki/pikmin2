@@ -354,6 +354,68 @@ Vector3f CullFrustum::getPosition()
 // WIP: https://decomp.me/scratch/Dm64d
 void CullFrustum::updatePlanes()
 {
+	Vector3f row1 = getSideVector();
+	Vector3f row2 = getUpVector();
+
+	Vector3f posVec = getPosition(); // 38
+
+	float viewAngle = PI * (mViewAngle / 360.0f);                    // 27
+	float fovAngle  = (f32)atan(mAspectRatio * (f32)tan(viewAngle)); // 31
+
+	Matrixf outMat;
+	Vec outVec;
+	Vector3f planeVec;
+	float dist;
+
+	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, (PI - viewAngle));
+	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec);
+	planeVec.x     = outVec.x;
+	planeVec.y     = outVec.y;
+	planeVec.z     = outVec.z;
+	mObjects[0].a = planeVec.x;
+	mObjects[0].b  = planeVec.y;
+	mObjects[0].c  = planeVec.z;
+	dist           = dot(planeVec, posVec);
+	mObjects[0].d  = dist;
+
+	Vec outVec1;
+	Vector3f planeVec1;
+
+	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, viewAngle);
+	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec1);
+	planeVec1.x    = outVec1.x;
+	planeVec1.y    = outVec1.y;
+	planeVec1.z    = outVec1.z;
+	mObjects[1].a  = planeVec1.x;
+	mObjects[1].b  = planeVec1.y;
+	mObjects[1].c  = planeVec1.z;
+	mObjects[1].d  = dot(planeVec1, posVec);
+
+	Vec outVec2;
+	Vector3f planeVec2;
+
+	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, -fovAngle);
+	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec2);
+	planeVec2.x    = outVec2.x;
+	planeVec2.y    = outVec2.y;
+	planeVec2.z    = outVec2.z;
+	mObjects[2].a  = planeVec2.x;
+	mObjects[2].b  = planeVec2.y;
+	mObjects[2].c  = planeVec2.z;
+	mObjects[2].d  = dot(planeVec2, posVec);
+
+	Vec outVec3;
+	Vector3f planeVec3;
+
+	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, (PI + fovAngle));
+	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec3);
+	planeVec3.x    = outVec3.x;
+	planeVec3.y    = outVec3.y;
+	planeVec3.z    = outVec3.z;
+	mObjects[3].a  = planeVec3.x;
+	mObjects[3].b  = planeVec3.y;
+	mObjects[3].c  = planeVec3.z;
+	mObjects[3].d  = dot(planeVec3, posVec);
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -780,7 +842,7 @@ Vector3f Camera::getPosition()
 Vector3f* Camera::getPositionPtr()
 {
 	if (isRunning() && mJstObject) {
-		return &mJstObject->mViewPos;
+		return (Vector3f*) &mJstObject->mViewPos;
 	} else {
 		return on_getPositionPtr();
 	}
@@ -885,96 +947,33 @@ Matrixf* Camera::getViewMatrix(bool b)
  * Address:	8041AEF8
  * Size:	000120
  */
-// WIP: https://decomp.me/scratch/Lrkv8
-f32 Camera::calcProperDistance(f32, f32)
+f32 Camera::calcProperDistance(f32 f1, f32 f2)
 {
-	/*
-	lfs      f0, lbl_80520384@sda21(r2)
-	stwu     r1, -0x20(r1)
-	fcmpo    cr0, f2, f0
-	bge      lbl_8041AF0C
-	lfs      f2, lbl_80520380@sda21(r2)
+	float input2;
+	float angle;
+	float cos;
+	float sin;
+	float pct;
+	float ratio;
+	float returnValue;
+	float new_var2;
+	float returnMax;
 
-lbl_8041AF0C:
-	lfs      f4, lbl_80520388@sda21(r2)
-	lfs      f0, 0x28(r3)
-	lfs      f3, lbl_8052038C@sda21(r2)
-	fmuls    f4, f4, f0
-	lfs      f5, lbl_80520370@sda21(r2)
-	lfs      f0, lbl_80520358@sda21(r2)
-	fdivs    f3, f4, f3
-	fmuls    f5, f5, f3
-	fmr      f3, f5
-	fcmpo    cr0, f5, f0
-	bge      lbl_8041AF3C
-	fneg     f3, f5
+	input2 = f2;
+	if (input2 < 0.01f) {
+		input2 = 100.0f;
+	}
 
-lbl_8041AF3C:
-	lfs      f4, lbl_80520390@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	lfs      f0, lbl_80520358@sda21(r2)
-	addi     r5, r4, sincosTable___5JMath@l
-	fmuls    f3, f3, f4
-	fcmpo    cr0, f5, f0
-	fctiwz   f0, f3
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r5, r0
-	lfs      f3, 4(r4)
-	bge      lbl_8041AF94
-	lfs      f0, lbl_80520394@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f0, f0
-	b        lbl_8041AFAC
-
-lbl_8041AF94:
-	fmuls    f0, f5, f4
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-
-lbl_8041AFAC:
-	lfs      f7, 0x70(r3)
-	fdivs    f3, f3, f0
-	lfs      f8, 0x74(r3)
-	lfs      f5, lbl_80520398@sda21(r2)
-	lfs      f4, lbl_80520380@sda21(r2)
-	lfs      f0, 0x2c(r3)
-	fsubs    f6, f8, f7
-	fmuls    f5, f5, f8
-	fdivs    f8, f1, f4
-	fneg     f6, f6
-	fmuls    f4, f5, f7
-	fmuls    f1, f3, f2
-	fmuls    f0, f0, f8
-	fdivs    f2, f6, f4
-	fmuls    f2, f2, f1
-	fdivs    f1, f2, f0
-	fdivs    f0, f2, f8
-	fabs     f1, f1
-	fabs     f0, f0
-	frsp     f1, f1
-	frsp     f0, f0
-	fcmpo    cr0, f1, f0
-	ble      lbl_8041B00C
-	b        lbl_8041B010
-
-lbl_8041B00C:
-	fmr      f1, f0
-
-lbl_8041B010:
-	addi     r1, r1, 0x20
-	blr
-
-	*/
+	angle       = PI * (mViewAngle * 0.5f / 180.0f);
+	cos         = pikmin2_cosf(angle);
+	sin         = pikmin2_sinf(angle);
+	returnMax   = (-(mProjectionFar - mProjectionNear)) / ((mProjectionFar * 2.0f) * mProjectionNear);
+	pct         = f1 / 100.0f;
+	new_var2    = cos / sin;
+	ratio       = returnMax * (new_var2 * input2);
+	returnValue = fabs(ratio / (mAspectRatio * pct));
+	returnMax = fabs(ratio / pct);
+	return (returnValue > returnMax) ? returnValue : returnMax;
 }
 
 /*
@@ -999,57 +998,17 @@ void Camera::updateScreenConstants()
  * Size:	0000B8
  */
 // WIP: https://decomp.me/scratch/iovxv
-float Camera::calcScreenSize(Sys::Sphere&)
+float Camera::calcScreenSize(Sys::Sphere& ball)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x30(r30)
-	lfs      f2, 4(r31)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x24(r3)
-	fsubs    f1, f2, f1
-	lfs      f4, 0x20(r3)
-	fneg     f0, f0
-	lfs      f3, 0(r31)
-	lfs      f2, 8(r1)
-	fneg     f7, f4
-	lfs      f4, 0x28(r3)
-	fsubs    f2, f3, f2
-	fmuls    f0, f1, f0
-	lfs      f6, 0x138(r30)
-	lfs      f5, 0xc(r31)
-	fneg     f1, f4
-	lfs      f4, 8(r31)
-	lfs      f3, 0x10(r1)
-	fmuls    f5, f6, f5
-	lfs      f6, 0x13c(r30)
-	fsubs    f3, f4, f3
-	fmadds   f0, f2, f7, f0
-	fmuls    f2, f6, f5
-	fmadds   f0, f3, f1, f0
-	fdivs    f0, f2, f0
-	fabs     f0, f0
-	frsp     f1, f0
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
+	Vector3f camPos = getPosition();
+	Matrixf* matrix = mViewMatrix;
+	Vector3f netPos = ball.mPosition - camPos;
+	float dotprod   = netPos.x * -matrix->mMatrix.structView.xz + netPos.y * -matrix->mMatrix.structView.yz + netPos.z * -matrix->mMatrix.structView.zz;
+	float scaledRad = _138 * ball.mRadius;
+	
+	float product = _13C * scaledRad / dotprod;
 
-	*/
+	return fabs(product);
 }
 
 /*
@@ -1068,213 +1027,28 @@ float Camera::calcScreenSize(Sys::Sphere&)
  * Size:	0002E8
  */
 // WIP: https://decomp.me/scratch/4nLm6
-void Camera::updateSoundCamera(float)
+void Camera::updateSoundCamera(float angle)
 {
-	/*
-	stwu     r1, -0xb0(r1)
-	mflr     r0
-	stw      r0, 0xb4(r1)
-	stfd     f31, 0xa0(r1)
-	psq_st   f31, 168(r1), 0, qr0
-	stfd     f30, 0x90(r1)
-	psq_st   f30, 152(r1), 0, qr0
-	stfd     f29, 0x80(r1)
-	psq_st   f29, 136(r1), 0, qr0
-	stfd     f28, 0x70(r1)
-	psq_st   f28, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	fmr      f2, f1
-	lfs      f0, lbl_80520358@sda21(r2)
-	mr       r30, r3
-	fcmpo    cr0, f2, f0
-	bge      lbl_8041B1FC
-	fneg     f2, f2
+	float cotan = pikmin2_cosf(angle) / pikmin2_sinf(angle);
 
-lbl_8041B1FC:
-	lfs      f3, lbl_80520390@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_80520358@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f2, f3
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 0x50(r1)
-	lwz      r0, 0x54(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f2, 4(r3)
-	bge      lbl_8041B254
-	lfs      f0, lbl_80520394@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x58(r1)
-	lwz      r0, 0x5c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_8041B26C
+	Vector3f targetPos = getTargetDistance(); // wrong func call
+	Vector3f pos       = getPosition();
+	Vector3f viewVec1;
+	viewVec1.x = -(*mViewMatrix)(2, 0);
+	viewVec1.y = -(*mViewMatrix)(2, 1);
+	viewVec1.z = -(*mViewMatrix)(2, 2);
 
-lbl_8041B254:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x60(r1)
-	lwz      r0, 0x64(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
+	f32 distance = targetPos.distance(pos);
+	float ratio  = (cotan * distance) / _138;
 
-lbl_8041B26C:
-	fdivs    f28, f2, f0
-	lwz      r3, 0x140(r30)
-	li       r31, 0
-	cmplwi   r3, 0
-	beq      lbl_8041B29C
-	lwz      r12, 0(r3)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041B29C
-	li       r31, 1
+	mSoundPosition.x = -(viewVec1.x * ratio - targetPos.x);
+	mSoundPosition.y  = -(viewVec1.y * ratio - targetPos.y);
+	mSoundPosition.z = -(viewVec1.z * ratio - targetPos.z);
 
-lbl_8041B29C:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8041B2CC
-	lwz      r3, 0x140(r30)
-	cmplwi   r3, 0
-	beq      lbl_8041B2CC
-	lfs      f0, 0x9c(r3)
-	stfs     f0, 0x14(r1)
-	lfs      f0, 0xa0(r3)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0xa4(r3)
-	stfs     f0, 0x1c(r1)
-	b        lbl_8041B2E4
+	Matrixf mat = *mViewMatrix;
 
-lbl_8041B2CC:
-	mr       r4, r30
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r30)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8041B2E4:
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lfs      f31, 0x14(r1)
-	lwz      r12, 0x4c(r12)
-	lfs      f30, 0x18(r1)
-	lfs      f29, 0x1c(r1)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lwz      r3, 0x30(r30)
-	fsubs    f2, f30, f0
-	lfs      f1, 8(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f4, 0x20(r3)
-	fsubs    f1, f31, f1
-	fsubs    f0, f29, f0
-	fmuls    f5, f2, f2
-	lfs      f3, 0x24(r3)
-	lfs      f2, 0x28(r3)
-	fneg     f4, f4
-	fmuls    f6, f0, f0
-	fmadds   f1, f1, f1, f5
-	lfs      f0, lbl_80520358@sda21(r2)
-	fneg     f3, f3
-	fneg     f5, f2
-	fadds    f1, f6, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8041B368
-	ble      lbl_8041B36C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8041B36C
-
-lbl_8041B368:
-	fmr      f1, f0
-
-lbl_8041B36C:
-	fmuls    f1, f28, f1
-	lfs      f0, 0x138(r30)
-	addi     r3, r1, 0x20
-	addi     r4, r30, 0x84
-	fdivs    f0, f1, f0
-	fnmsubs  f2, f4, f0, f31
-	fnmsubs  f1, f3, f0, f30
-	fnmsubs  f0, f5, f0, f29
-	stfs     f2, 0x78(r30)
-	stfs     f1, 0x7c(r30)
-	stfs     f0, 0x80(r30)
-	lwz      r6, 0x30(r30)
-	lfs      f4, 0x78(r30)
-	lfs      f5, 0x7c(r30)
-	lfs      f6, 0x80(r30)
-	lwz      r5, 0(r6)
-	lwz      r0, 4(r6)
-	stw      r5, 0x20(r1)
-	stw      r0, 0x24(r1)
-	lfs      f1, 0x20(r1)
-	lwz      r5, 8(r6)
-	lwz      r0, 0xc(r6)
-	lfs      f0, 0x24(r1)
-	stw      r5, 0x28(r1)
-	fmuls    f0, f5, f0
-	stw      r0, 0x2c(r1)
-	lfs      f2, 0x28(r1)
-	lwz      r5, 0x10(r6)
-	fmadds   f0, f4, f1, f0
-	lwz      r0, 0x14(r6)
-	stw      r5, 0x30(r1)
-	fnmadds  f3, f6, f2, f0
-	stw      r0, 0x34(r1)
-	lfs      f1, 0x30(r1)
-	lfs      f0, 0x34(r1)
-	lwz      r5, 0x18(r6)
-	lwz      r0, 0x1c(r6)
-	fmuls    f0, f5, f0
-	stw      r5, 0x38(r1)
-	fmadds   f0, f4, f1, f0
-	stw      r0, 0x3c(r1)
-	lfs      f1, 0x38(r1)
-	lwz      r5, 0x20(r6)
-	lwz      r0, 0x24(r6)
-	fnmadds  f2, f6, f1, f0
-	stw      r0, 0x44(r1)
-	stw      r5, 0x40(r1)
-	lfs      f0, 0x44(r1)
-	lwz      r5, 0x28(r6)
-	lwz      r0, 0x2c(r6)
-	fmuls    f0, f5, f0
-	lfs      f1, 0x40(r1)
-	stw      r5, 0x48(r1)
-	fmadds   f0, f4, f1, f0
-	lfs      f1, 0x48(r1)
-	stw      r0, 0x4c(r1)
-	fnmadds  f0, f6, f1, f0
-	stfs     f3, 0x2c(r1)
-	stfs     f2, 0x3c(r1)
-	stfs     f0, 0x4c(r1)
-	bl       PSMTXCopy
-	psq_l    f31, 168(r1), 0, qr0
-	lfd      f31, 0xa0(r1)
-	psq_l    f30, 152(r1), 0, qr0
-	lfd      f30, 0x90(r1)
-	psq_l    f29, 136(r1), 0, qr0
-	lfd      f29, 0x80(r1)
-	psq_l    f28, 120(r1), 0, qr0
-	lfd      f28, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r0, 0xb4(r1)
-	lwz      r30, 0x68(r1)
-	mtlr     r0
-	addi     r1, r1, 0xb0
-	blr
-
-	*/
+	//mat.setMultNeg(mSoundPosition);
+	PSMTXCopy(mat.mMatrix.mtxView, mSoundMatrix.mMatrix.mtxView);
 }
 
 /*
@@ -1304,7 +1078,7 @@ LookAtCamera::LookAtCamera()
  * Address:	8041B6F4
  * Size:	000034
  */
-void LookAtCamera::updateMatrix() { C_MTXLookAt(_144.mMatrix.mtxView, (Vec*)&_174, (Vec*)&_18C, (Vec*)&mLookAtPosition); }
+void LookAtCamera::updateMatrix() { C_MTXLookAt(mLookMatrix.mMatrix.mtxView, (Vec*)&mPosition, (Vec*)&_18C, (Vec*)&mLookAtPosition); }
 
 /*
  * --INFO--

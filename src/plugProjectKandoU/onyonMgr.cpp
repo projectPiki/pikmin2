@@ -72,8 +72,8 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 				return;
 			}
 
-			gameSystem->mSection->_12C->frameInitAll();
-			gameSystem->mSection->_130->frameInitAll();
+			gameSystem->mSection->mDrawBuffer1->frameInitAll();
+			gameSystem->mSection->mDrawBuffer2->frameInitAll();
 
 			ItemPikihead::Item* furthestPiki = nullptr;
 			f32 maxDist                      = 0.0f;

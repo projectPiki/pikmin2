@@ -30,8 +30,8 @@ void BaseGameSection::newdraw_draw3D_all(Graphics& gfx)
 	gfx.mapViewport(&vpDelegate);
 
 	// Initialise both draw buffers for the frame
-	_12C->frameInitAll();
-	_130->frameInitAll();
+	mDrawBuffer1->frameInitAll();
+	mDrawBuffer2->frameInitAll();
 
 	if (!gameSystem->isMultiplayerMode()) {
 		particleMgr->setXfb(mXfbImage->mTexInfo);
@@ -83,18 +83,18 @@ void BaseGameSection::newdraw_drawAll(Viewport* vp)
 
 	sys->mTimers->_start("jdraw", true);
 	mLightMgr->set(gfx);
-	_12C->get(6)->draw();
-	_12C->get(2)->draw();
-	_12C->get(9)->draw();
-	_12C->get(3)->draw();
-	_12C->get(0)->draw();
+	mDrawBuffer1->get(6)->draw();
+	mDrawBuffer1->get(2)->draw();
+	mDrawBuffer1->get(9)->draw();
+	mDrawBuffer1->get(3)->draw();
+	mDrawBuffer1->get(0)->draw();
 	doSimpleDraw(vp);
 	mLightMgr->set(gfx);
-	_130->get(3)->draw();
-	_130->get(0)->draw();
+	mDrawBuffer2->get(3)->draw();
+	mDrawBuffer2->get(0)->draw();
 	mLightMgr->mFogMgr->off(gfx);
-	_12C->get(1)->draw();
-	_130->get(1)->draw();
+	mDrawBuffer1->get(1)->draw();
+	mDrawBuffer2->get(1)->draw();
 	mLightMgr->mFogMgr->set(gfx);
 	sys->mTimers->_stop("jdraw");
 
@@ -110,8 +110,8 @@ void BaseGameSection::newdraw_drawAll(Viewport* vp)
 	vp->setProjection();
 
 	sys->mTimers->_start("j3d-etc", true);
-	_12C->get(7)->draw();
-	_130->get(7)->draw();
+	mDrawBuffer1->get(7)->draw();
+	mDrawBuffer2->get(7)->draw();
 
 	if (!_168 && (mXfbFlags & 3) == 0) {
 		mXfbImage->capture(mXfbTexture1, mXfbTexture2, GX_TF_RGB565, true, 0);
@@ -119,18 +119,18 @@ void BaseGameSection::newdraw_drawAll(Viewport* vp)
 	mLightMgr->set(gfx);
 	mLightMgr->mFogMgr->off(gfx);
 
-	_12C->get(8)->draw();
-	_130->get(8)->draw();
+	mDrawBuffer1->get(8)->draw();
+	mDrawBuffer2->get(8)->draw();
 
 	vp->setJ3DViewMtx(true);
 
 	mLightMgr->mFogMgr->off(gfx);
-	_12C->get(4)->draw();
-	_130->get(4)->draw();
+	mDrawBuffer1->get(4)->draw();
+	mDrawBuffer2->get(4)->draw();
 	mLightMgr->mFogMgr->set(gfx);
 	vp->setJ3DViewMtx(true);
 
-	_130->get(2)->draw();
+	mDrawBuffer2->get(2)->draw();
 	vp->setJ3DViewMtx(false);
 	sys->mTimers->_stop("j3d-etc");
 }

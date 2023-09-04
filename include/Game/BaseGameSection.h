@@ -261,8 +261,8 @@ struct BaseGameSection : public BaseHIOSection {
 	int _120;                                                 // _120
 	u32 _124;                                                 // _124
 	GameLightMgr* mLightMgr;                                  // _128
-	Sys::DrawBuffers* _12C;                                   // _12C
-	Sys::DrawBuffers* _130;                                   // _130
+	Sys::DrawBuffers* mDrawBuffer1;                           // _12C
+	Sys::DrawBuffers* mDrawBuffer2;                           // _130
 	int mTreasureGetState;                                    // _134
 	Viewport* mTreasureGetViewport;                           // _138
 	Creature* mDraw2DCreature;                                // _13C

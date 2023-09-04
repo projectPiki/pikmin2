@@ -1579,20 +1579,20 @@ inline void j3dStuff(Sys::DrawBuffers*& buffer, Sys::DrawBuffer::CreateArg& draw
 
 void BaseGameSection::initJ3D()
 {
-	_12C = new Sys::DrawBuffers;
-	_130 = new Sys::DrawBuffers;
+	mDrawBuffer1 = new Sys::DrawBuffers;
+	mDrawBuffer2 = new Sys::DrawBuffers;
 
-	_12C->allocate(10);
-	_12C->mName = "OPA";
+	mDrawBuffer1->allocate(10);
+	mDrawBuffer1->mName = "OPA";
 	{
 		Sys::DrawBuffer::CreateArg drawArg;
 		drawArg.mSortType = J3DDrawBuffer::J3DSORT_Mat;
 		drawArg.mDrawType = J3DDrawBuffer::J3DDRAW_Head;
-		j3dStuff(_12C, drawArg, true);
+		j3dStuff(mDrawBuffer1, drawArg, true);
 	}
 
-	_130->allocate(10);
-	_130->mName = "XLU";
+	mDrawBuffer2->allocate(10);
+	mDrawBuffer2->mName = "XLU";
 
 	{
 		Sys::DrawBuffer::CreateArg drawArg;
@@ -1602,14 +1602,14 @@ void BaseGameSection::initJ3D()
 
 		drawArg.mFlags.typeView |= 1;
 
-		j3dStuff(_130, drawArg, false);
+		j3dStuff(mDrawBuffer2, drawArg, false);
 	}
 
-	addGenNode(_12C);
-	addGenNode(_130);
+	addGenNode(mDrawBuffer1);
+	addGenNode(mDrawBuffer2);
 
-	j3dSys.mDrawBuffer[0] = _12C->get(0)->mBuffer;
-	j3dSys.mDrawBuffer[1] = _130->get(0)->mBuffer;
+	j3dSys.mDrawBuffer[0] = mDrawBuffer1->get(0)->mBuffer;
+	j3dSys.mDrawBuffer[1] = mDrawBuffer2->get(0)->mBuffer;
 
 	System::FragmentationChecker frag("poyol", false);
 }
@@ -2125,7 +2125,7 @@ void BaseGameSection::setPlayerMode(int naviIdx)
 	fools[1]->disableController();
 
 	switch (naviIdx) {
-	case 0: {
+	case NAVIID_Olimar: {
 		mSecondViewportHeight = 1.0f;
 		mSplit                = 0.0f;
 		mSplitter->split2(1.0f);
@@ -2149,7 +2149,7 @@ void BaseGameSection::setPlayerMode(int naviIdx)
 		mLightMgr->updatePosition(sys->mGfx->mCurrentViewport);
 		break;
 	}
-	case 1: {
+	case NAVIID_Louie: {
 		if (mPlayerMode == 1) {
 			Graphics* gfx            = sys->mGfx;
 			PlayCamera* olimarCamera = mLouieCamera;
@@ -2169,17 +2169,21 @@ void BaseGameSection::setPlayerMode(int naviIdx)
 			mSecondViewportHeight = 0.0f;
 			mSplitter->split2(0.0f);
 		}
+
 		mSplit           = 0.0f;
+
 		Matrixf* viewMtx = mOlimarCamera->getViewMatrix(false);
 		PSMTXCopy((PSQuaternion*)viewMtx, (PSQuaternion*)&mLouieCamera->mCurViewMatrix);
+		
 		mLouieCamera->update();
 		cameraMgr->changePlayerMode(1, cameraMgrCallback);
+
 		Viewport* louieViewport     = sys->mGfx->getViewport(1);
 		sys->mGfx->mCurrentViewport = louieViewport;
 		mLightMgr->updatePosition(sys->mGfx->mCurrentViewport);
 		break;
 	}
-	case 2: {
+	case NAVIID_President: {
 		mSecondViewportHeight = 0.5f;
 		mSplit                = 0.0f;
 		mSplitter->split2(0.5f);
@@ -2187,6 +2191,7 @@ void BaseGameSection::setPlayerMode(int naviIdx)
 		break;
 	}
 	}
+
 	mPrevNaviIdx = naviIdx;
 }
 
@@ -2751,15 +2756,19 @@ void BaseGameSection::doAnimation()
 		plantsGeneratorMgr->updateCursorPos(olimarPos);
 		dayGeneratorMgr->updateCursorPos(olimarPos);
 	}
+
 	if (testPathfinder) {
 		testPathfinder->update();
 	}
+
 	sys->mTimers->_start("gameSys-da", true);
 	gameSystem->doAnimation();
 	sys->mTimers->_stop("gameSys-da");
+
 	if (particleMgr && !gameSystem->mIsFrozen) {
 		particleMgr->doAnimation();
 	}
+
 	if (gameSystem->mMode != GSM_PIKLOPEDIA && generatorMgr) {
 		generatorMgr->doAnimation();
 		onceGeneratorMgr->doAnimation();
@@ -2767,6 +2776,7 @@ void BaseGameSection::doAnimation()
 		plantsGeneratorMgr->doAnimation();
 		dayGeneratorMgr->doAnimation();
 	}
+
 	if (gameSystem->mMode != GSM_PIKLOPEDIA) {
 		updateSplitter();
 	}
@@ -4933,8 +4943,8 @@ namespace Game {
 void BaseGameSection::setDrawBuffer(int index)
 {
 	P2ASSERTBOUNDSLINE(5295, 1, index, 10);
-	j3dSys.mDrawBuffer[0] = _12C->get(index)->mBuffer;
-	j3dSys.mDrawBuffer[1] = _130->get(index)->mBuffer;
+	j3dSys.mDrawBuffer[0] = mDrawBuffer1->get(index)->mBuffer;
+	j3dSys.mDrawBuffer[1] = mDrawBuffer2->get(index)->mBuffer;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
