@@ -2,24 +2,36 @@
 #define _PSSYSTEM_PSCOMMON_H
 
 #include "JSystem/JUtility/JUTException.h"
-#include "PSSystem/SingletonBase.h"
-#include "PSM/ObjCalc.h"
-#include "PSM/ObjMgr.h"
 
 namespace PSSystem {
-static inline void createSEMgrInstance()
-{
-	P2ASSERTLINE(118, !SingletonBase<PSM::ObjMgr>::sInstance);
-	// SingletonBase<PSM::ObjMgr>::createInstance();
-	P2ASSERTLINE(121, SingletonBase<PSM::ObjMgr>::sInstance);
-}
 
 template <typename T>
-inline T* getInstance()
-{
-	P2ASSERTLINE(137, SingletonBase<T>::sInstance);
-	return SingletonBase<T>::sInstance;
-}
+struct SingletonBase {
+
+	// inline SingletonBase()
+	static inline void createInstance()
+	{
+		P2ASSERTLINE(118, !SingletonBase<T>::sInstance);
+		if (!SingletonBase<T>::sInstance) {
+			SingletonBase<T>::sInstance = new T;
+		}
+		P2ASSERTLINE(121, SingletonBase<T>::sInstance);
+	}
+
+	// SingletonBase(T* obj) { sInstance = obj; }
+
+	virtual ~SingletonBase() { sInstance = nullptr; }; // _00
+
+	static inline T* getInstance()
+	{
+		P2ASSERTLINE(137, SingletonBase<T>::sInstance);
+		return SingletonBase<T>::sInstance;
+	}
+
+	// VTBL _00
+
+	static T* sInstance;
+};
 
 // static inline PSM::ObjCalcBase* getObjCalcBaseInstance()
 // {

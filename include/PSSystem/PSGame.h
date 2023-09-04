@@ -2,8 +2,8 @@
 #define _PSSYSTEM_PSGAME_H
 
 #include "JSystem/JUtility/JUTException.h"
+#include "PSSystem/PSCommon.h"
 #include "PSSystem/PSScene.h"
-#include "PSSystem/SingletonBase.h"
 #include "PSGame/SeMgr.h"
 
 // idk what else goes in this file (if anything? maybe this is in the PSGame folder??)
@@ -31,7 +31,7 @@ inline SeqBase* getSeqData(SceneMgr* mgr, int id)
 inline PSGame::SeMgr* getSeMgrInstance()
 {
 	P2ASSERTLINE(567, SingletonBase<PSGame::SeMgr>::sInstance);
-	return SingletonBase<PSGame::SeMgr>::sInstance;
+	return static_cast<PSGame::SeMgr*>(SingletonBase<PSGame::SeMgr>::sInstance);
 }
 }; // namespace PSSystem
 

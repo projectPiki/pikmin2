@@ -4,7 +4,7 @@
 #include "types.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "PSSystem/SingletonBase.h"
+#include "PSSystem/PSCommon.h"
 
 struct Stream;
 

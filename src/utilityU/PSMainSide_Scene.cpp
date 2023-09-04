@@ -19,7 +19,7 @@
 #include "PSSystem/PSStream.h"
 #include "PSSystem/Reservator.h"
 #include "PSSystem/Seq.h"
-#include "PSSystem/SingletonBase.h"
+#include "PSSystem/PSCommon.h"
 #include "types.h"
 #include "nans.h"
 #include "utilityU.h"

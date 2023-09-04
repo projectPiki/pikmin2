@@ -34,7 +34,7 @@
 #include "PSM/EnemyBoss.h"
 #include "PSM/ObjCalc.h"
 #include "PSM/ObjMgr.h"
-#include "PSSystem/SingletonBase.h"
+#include "PSSystem/PSCommon.h"
 #include "PSSystem/PSSystemIF.h"
 #include "PSSystem/PSStream.h"
 #include "PSGame/Global.h"

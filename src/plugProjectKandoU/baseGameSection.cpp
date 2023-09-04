@@ -33,7 +33,7 @@
 #include "SysTimers.h"
 #include "Game/PelletBirthBuffer.h"
 #include "Splitter.h"
-#include "PSSystem/SingletonBase.h"
+#include "PSSystem/PSCommon.h"
 #include "Sys/DrawBuffers.h"
 #include "Game/Entities/ItemBigFountain.h"
 #include "PSSystem/PSGame.h"
@@ -1127,7 +1127,7 @@ namespace Game {
  */
 void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
-	JUT_ASSERTLINE(1523, mFbTexture == nullptr, "?¼’å›žã¯ç„¡ç??½—\n");
+	JUT_ASSERTLINE(1523, mFbTexture == nullptr, "ï¼’å›žã¯ç„¡ç†ï½—\n");
 	mFbTexture                    = mXfbImage;
 	mXfbImage                     = texture;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -1140,7 +1140,7 @@ void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
  */
 void BaseGameSection::restoreFBTexture()
 {
-	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture ã—ã¦ãªã??½—\n");
+	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture ã—ã¦ãªã„ï½—\n");
 	mXfbImage                     = mFbTexture;
 	mFbTexture                    = nullptr;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -1709,7 +1709,7 @@ void BaseGameSection::initGenerators()
 		addGenNode(limitGeneratorMgr);
 
 		plantsGeneratorMgr        = new GeneratorMgr;
-		plantsGeneratorMgr->mName = "Generator(A•¨)";
+		plantsGeneratorMgr->mName = "Generator(æ¤ç‰©)";
 		addGenNode(plantsGeneratorMgr);
 
 		dayGeneratorMgr        = new GeneratorMgr;
@@ -2170,11 +2170,11 @@ void BaseGameSection::setPlayerMode(int naviIdx)
 			mSplitter->split2(0.0f);
 		}
 
-		mSplit           = 0.0f;
+		mSplit = 0.0f;
 
 		Matrixf* viewMtx = mOlimarCamera->getViewMatrix(false);
 		PSMTXCopy((PSQuaternion*)viewMtx, (PSQuaternion*)&mLouieCamera->mCurViewMatrix);
-		
+
 		mLouieCamera->update();
 		cameraMgr->changePlayerMode(1, cameraMgrCallback);
 
@@ -2514,7 +2514,7 @@ void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
  */
 void BaseGameSection::initLights()
 {
-	mLightMgr           = new GameLightMgr("ƒQ[ƒ€ƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ"); // game light manager
+	mLightMgr           = new GameLightMgr("ã‚²ãƒ¼ãƒ ãƒ©ã‚¤ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£"); // game light manager
 	mLightMgr->mTimeMgr = gameSystem->mTimeMgr;
 	addGenNode(mLightMgr);
 	particleMgr->mLightMgr = mLightMgr;

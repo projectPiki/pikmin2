@@ -331,9 +331,18 @@ lbl_800A624C:
  * Address:	........
  * Size:	0000CC
  */
-void JASCalc::bzerofast(void*, unsigned long)
+void JASCalc::bzerofast(void* addr, unsigned long nBytes)
 {
 	// UNUSED FUNCTION
+	u32* dwords = (u32*)addr;
+	int steps   = nBytes / (4 * sizeof(u32));
+	for (; steps != 0; steps--) {
+		dwords[0] = 0;
+		dwords[1] = 0;
+		dwords[2] = 0;
+		dwords[3] = 0;
+		dwords += 4;
+	}
 }
 
 /*
@@ -351,38 +360,43 @@ void JASCalc::bzero(void* addr, unsigned long nBytes)
 	u8 addrAlignmentToDWBoundary = (u32)addr & 0x3;
 	if (IS_ALIGNED(nBytes, sizeof(u32) * 4) && addrAlignmentToDWBoundary == 0) {
 		u32* dwords = (u32*)addr;
-		for (int i = 0; i < nBytes / sizeof(u32) * 4; i += 4) {
-			dwords[i]     = 0;
-			dwords[i + 1] = 0;
-			dwords[i + 2] = 0;
-			dwords[i + 3] = 0;
+		int steps   = nBytes / (4 * sizeof(u32));
+		for (; steps != 0; steps--) {
+			dwords[0] = 0;
+			dwords[1] = 0;
+			dwords[2] = 0;
+			dwords[3] = 0;
+			dwords += 4;
 		}
 		return;
 	}
-	if (nBytes < 0x10) {
+	if (nBytes >= 0x10) {
 		u8* bytes = (u8*)addr;
-		for (int i = 0; i < nBytes; i++) {
-			bytes[i] = 0;
+		if (addrAlignmentToDWBoundary != 0) {
+			// u8* bytes = (u8*)addr;
+			for (; ((u32)bytes & 0x3) != 0; nBytes--) {
+				*bytes = 0;
+				bytes++;
+			}
+		}
+		u32* dwords = (u32*)bytes;
+		for (; nBytes >= 4; nBytes -= 4) {
+			*dwords = 0;
+			dwords++;
+		}
+		if (nBytes != 0) {
+			u8* bytes = (u8*)dwords;
+			for (; nBytes > 0; nBytes--) {
+				*bytes = 0;
+				bytes++;
+			}
 		}
 		return;
 	}
-	if (addrAlignmentToDWBoundary != 0) {
-		u8* bytes = (u8*)addr;
-		for (int i = 4 - addrAlignmentToDWBoundary; i != 0; i--) {
-			*bytes = 0;
-			bytes++;
-			nBytes--;
-		}
-	}
-	u32* dwords = (u32*)addr;
-	for (; nBytes > 3; nBytes -= 4, dwords++) {
-		*dwords = 0;
-	}
-	if (nBytes != 0) {
-		u8* bytes = (u8*)addr;
-		for (; nBytes > 0; nBytes--, bytes++) {
-			*bytes = 0;
-		}
+	u8* bytes = (u8*)addr;
+	for (; nBytes != 0; nBytes--) {
+		*bytes = 0;
+		bytes++;
 	}
 	/*
 	stwu     r1, -0x10(r1)

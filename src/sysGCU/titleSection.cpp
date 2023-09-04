@@ -1,3 +1,4 @@
+#include "PSSystem/PSCommon.h"
 #include "Title.h"
 #include "ebi/title/TTitle.h"
 #include "og/ogLib2D.h"
@@ -144,7 +145,7 @@ void Section::init()
 
 	sys->heapStatusEnd("TitleSection::init");
 
-	PSSystem::createSEMgrInstance(); // I got nothing
+	PSM::ObjMgr::createInstance();
 
 	mThpPlayer = new Game::THPPlayer;
 	mThpPlayer->init(mHeap);

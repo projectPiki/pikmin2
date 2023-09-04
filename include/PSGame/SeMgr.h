@@ -1,7 +1,7 @@
 #ifndef _PSGAME_SEMGR_H
 #define _PSGAME_SEMGR_H
 
-#include "PSSystem/SingletonBase.h"
+#include "PSSystem/PSCommon.h"
 
 struct JAISound;
 

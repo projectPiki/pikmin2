@@ -16,7 +16,7 @@
 #include "ObjectMgr.h"
 #include "PSM/CreatureObj.h"
 #include "PSM/ObjMgr.h"
-#include "PSSystem/SingletonBase.h"
+#include "PSSystem/PSCommon.h"
 #include "PlatAttacher.h"
 #include "Platform.h"
 #include "SysShape/AnimMgr.h"
@@ -2116,7 +2116,7 @@ void TNodeItemMgr::killAll()
  * Address:	801CDB3C
  * Size:	0000C4
  */
-ItemMgr::ItemMgr() { mName = "アイ�?�?マネージャ"; }
+ItemMgr::ItemMgr() { mName = "繧｢繧､繝?繝?繝槭ロ繝ｼ繧ｸ繝｣"; }
 
 /*
  * __dt__Q24Game7ItemMgrFv

@@ -1,17 +1,13 @@
 #ifndef _PSM_OBJCALC_H
 #define _PSM_OBJCALC_H
 
-#include "PSSystem/SingletonBase.h"
+#include "PSSystem/PSCommon.h"
 #include "PSM/Creature.h"
 
 namespace PSM {
 struct ObjCalcBase : public PSSystem::SingletonBase<ObjCalcBase> {
 
-	ObjCalcBase()
-	    : PSSystem::SingletonBase<ObjCalcBase>(this)
-	{
-		mMode = OBJCALC_1;
-	}
+	ObjCalcBase() { mMode = OBJCALC_1; }
 
 	enum Mode { OBJCALC_1, OBJCALC_2, OBJCALC_3 };
 

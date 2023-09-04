@@ -1,7 +1,7 @@
 #ifndef _PSM_CREATUREPRM_H
 #define _PSM_CREATUREPRM_H
 
-#include "PSSystem/SingletonBase.h"
+#include "PSSystem/PSCommon.h"
 
 namespace PSM {
 struct CreaturePrm : public PSSystem::SingletonBase<CreaturePrm> {
