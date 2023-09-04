@@ -19,16 +19,16 @@ namespace Rock {
 struct FSM;
 
 struct RockInitialParams : public EnemyInitialParamBase {
-	inline RockInitialParams(f32 a, f32 b, f32 c)
-	    : _00(a)
-	    , _04(b)
-	    , _08(c)
+	inline RockInitialParams(f32 speed, f32 offset, f32 rate)
+	    : mFallSpeed(speed)
+	    , mFallOffset(offset)
+	    , mScaleUpRate(rate)
 	{
 	}
 
-	f32 _00; // _00
-	f32 _04; // _04
-	f32 _08; // _08
+	f32 mFallSpeed;   // _00
+	f32 mFallOffset;  // _04
+	f32 mScaleUpRate; // _08
 };
 
 struct Obj : public EnemyBase {
@@ -59,7 +59,7 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE END
 
 	bool fallRockScaleUp();
-	void moveRockScaleUp();
+	bool moveRockScaleUp();
 	void initMoveVelocity();
 	void updateMoveVelocity();
 	void createEffect();
@@ -82,8 +82,8 @@ struct Obj : public EnemyBase {
 	u8 _2C4;                             // _2C4, maybe isHoming?
 	f32 mTimer;                          // _2C8
 	f32 mFallSpeed;                      // _2CC
-	f32 _2D0;                            // _2D0
-	f32 _2D4;                            // _2D4
+	f32 mFallOffset;                     // _2D0, amount to offset Y by when appearing
+	f32 mScaleUpRate;                    // _2D4, amount to scale up every frame for falling rocks
 	efx::TRockRun* mEfxRun;              // _2D8
 	efx::TRockGrRun* mEfxGroundRun;      // _2DC
 	efx::TRockWRun* mEfxWaterRun;        // _2E0

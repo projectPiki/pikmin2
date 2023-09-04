@@ -95,7 +95,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* rock         = static_cast<Obj*>(enemy);
 	Vector3f position = rock->getPosition();
-	position.y += rock->_2D0;
+	position.y += rock->mFallOffset;
 	rock->onSetPosition(position);
 
 	rock->enableEvent(0, EB_IsModelHidden);

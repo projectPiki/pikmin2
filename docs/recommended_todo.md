@@ -88,7 +88,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSTaskBase.cpp">PSTaskBase.cpp</a> | 10237 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSBnkMgr.cpp">PSBnkMgr.cpp</a> | 16595 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSystemIF.cpp">PSSystemIF.cpp</a> | 22197 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSeBase.cpp">PSSeBase.cpp</a> | 23043 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSScene.cpp">PSScene.cpp</a> | 27679 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSe.cpp">PSSe.cpp</a> | 32201 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSScene.cpp">PSScene.cpp</a> | 27679 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSSe.cpp">PSSe.cpp</a> | 32208 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSDirector.cpp">PSDirector.cpp</a> | 36247 |
 
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
@@ -145,8 +145,8 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/OtakaraBase.cpp">OtakaraBase.cpp</a> | 18394 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FuefukiState.cpp">FuefukiState.cpp</a> | 19005 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeWholeShadow.cpp">SnakeWholeShadow.cpp</a> | 19376 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeCrowShadow.cpp">SnakeCrowShadow.cpp</a> | 19385 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ImomushiState.cpp">ImomushiState.cpp</a> | 19837 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjiaState.cpp">UjiaState.cpp</a> | 20959 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RumbleMgr.cpp">RumbleMgr.cpp</a> | 21534 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecHiba.cpp">ElecHiba.cpp</a> | 21841 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QueenState.cpp">QueenState.cpp</a> | 22549 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Rock.cpp">Rock.cpp</a> | 22629 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RumbleMgr.cpp">RumbleMgr.cpp</a> | 21534 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Rock.cpp">Rock.cpp</a> | 21710 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecHiba.cpp">ElecHiba.cpp</a> | 21841 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QueenState.cpp">QueenState.cpp</a> | 22549 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBug.cpp">ElecBug.cpp</a> | 24345 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 24720 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SaraiState.cpp">SaraiState.cpp</a> | 24929 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiState.cpp">TobiState.cpp</a> | 24992 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibState.cpp">UjibState.cpp</a> | 25560 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TankState.cpp">TankState.cpp</a> | 29299 |
@@ -168,7 +168,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/singleGS_ZukanParms.cpp">singleGS_ZukanParms.cpp</a> | 21445 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneDrawInfo.cpp">enemyStoneDrawInfo.cpp</a> | 21939 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 25420 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 35497 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">carryInfoMgr.cpp</a> | 47646 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/generalEnemyMgr.cpp">generalEnemyMgr.cpp</a> | 56000 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">carryInfoMgr.cpp</a> | 47646 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/generalEnemyMgr.cpp">generalEnemyMgr.cpp</a> | 55521 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 58847 |
 
 ### <section id="sysBootupU">sysBootupU</section>

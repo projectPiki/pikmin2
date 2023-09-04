@@ -1,4 +1,6 @@
 #include "Game/Entities/Rock.h"
+#include "Game/Navi.h"
+#include "Game/EnemyFunc.h"
 #include "Dolphin/rand.h"
 #include "PS.h"
 
@@ -36,9 +38,9 @@ void Obj::birth(Vector3f& pos, f32 angle)
  */
 void Obj::setInitialSetting(EnemyInitialParamBase* param)
 {
-	mFallSpeed = C_PARMS->mGeneral.mSearchDistance;
-	_2D0       = C_PARMS->mGeneral.mSearchHeight;
-	_2D4       = C_PARMS->mGeneral.mSearchAngle;
+	mFallSpeed   = C_PARMS->mGeneral.mSearchDistance;
+	mFallOffset  = C_PARMS->mGeneral.mSearchHeight;
+	mScaleUpRate = C_PARMS->mGeneral.mSearchAngle;
 }
 
 /*
@@ -204,127 +206,40 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
  * Address:	80263658
  * Size:	0001A4
  */
-void Obj::collisionCallback(CollEvent&)
+void Obj::collisionCallback(CollEvent& event)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r27, 0x2c(r1)
-	mr       r29, r4
-	mr       r28, r3
-	lwz      r27, 0(r4)
-	cmplwi   r27, 0
-	beq      lbl_802637E8
-	mr       r3, r27
-	li       r31, 1
-	lwz      r12, 0(r27)
-	li       r30, 1
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802636BC
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8026372C
+	Creature* other = event.mCollidingCreature;
+	if (other) {
+		bool notFakePiki = true;
+		bool notRock     = true;
+		if (other->isNavi() || other->isPiki()) {
+			notFakePiki = false;
+			if (other->mBounceTriangle) {
+				EnemyBase* target = this;
+				if (mSourceEnemy) {
+					target = mSourceEnemy;
+				}
 
-lbl_802636BC:
-	lwz      r0, 0xc8(r27)
-	li       r31, 0
-	cmplwi   r0, 0
-	beq      lbl_802637B8
-	lwz      r0, 0x2c0(r28)
-	mr       r6, r28
-	cmplwi   r0, 0
-	beq      lbl_802636E0
-	mr       r6, r0
+				InteractPress press(target, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
+				event.mCollidingCreature->stimulate(press);
+			}
+		} else if (other->isTeki()) {
+			InteractAttack attack(this, 250.0f, event.mCollisionObj);
+			other->stimulate(attack);
 
-lbl_802636E0:
-	lwz      r5, 0xc0(r28)
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game13InteractPress@ha
-	li       r0, 0
-	lfs      f0, 0x604(r5)
-	addi     r5, r4, __vt__Q24Game11Interaction@l
-	addi     r3, r3, __vt__Q24Game13InteractPress@l
-	addi     r4, r1, 0x18
-	stw      r5, 0x18(r1)
-	stw      r6, 0x1c(r1)
-	stw      r3, 0x18(r1)
-	stfs     f0, 0x20(r1)
-	stw      r0, 0x24(r1)
-	lwz      r3, 0(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802637B8
+			if (mRockType == EnemyTypeID::EnemyID_Rock && static_cast<EnemyBase*>(other)->getEnemyTypeID() == EnemyTypeID::EnemyID_Rock) {
+				notRock = false;
+			}
+		}
 
-lbl_8026372C:
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802637B8
-	lwz      r5, 4(r29)
-	lis      r3, __vt__Q24Game11Interaction@ha
-	addi     r0, r3, __vt__Q24Game11Interaction@l
-	lfs      f0, lbl_8051ADDC@sda21(r2)
-	lis      r3, __vt__Q24Game14InteractAttack@ha
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q24Game14InteractAttack@l
-	mr       r3, r27
-	stw      r28, 0xc(r1)
-	addi     r4, r1, 8
-	stw      r0, 8(r1)
-	stfs     f0, 0x10(r1)
-	stw      r5, 0x14(r1)
-	lwz      r12, 0(r27)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x2e4(r28)
-	cmpwi    r0, 0x13
-	bne      lbl_802637B8
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x13
-	bne      lbl_802637B8
-	li       r30, 0
+		if (notFakePiki) {
+			mHealth = 0.0f;
+		}
 
-lbl_802637B8:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_802637C8
-	lfs      f0, lbl_8051ADB0@sda21(r2)
-	stfs     f0, 0x200(r28)
-
-lbl_802637C8:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_802637E8
-	mr       r3, r28
-	mr       r4, r29
-	lwz      r12, 0(r28)
-	lwz      r12, 0x240(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802637E8:
-	lmw      r27, 0x2c(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		if (notRock) {
+			setCollEvent(event);
+		}
+	}
 }
 
 /*
@@ -400,43 +315,21 @@ bool Obj::ignoreAtari(Creature* creature)
  */
 bool Obj::fallRockScaleUp()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f2, lbl_8051ADD4@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lfs      f3, 0x1f8(r3)
-	fcmpo    cr0, f3, f2
-	bge      lbl_802639EC
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0x2d4(r3)
-	lfs      f0, 0x54(r4)
-	fmadds   f1, f1, f0, f3
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_802639D0
-	li       r31, 1
-	fmr      f1, f2
+	bool isDone = false;
+	if (mScaleModifier < 1.0f) {
+		f32 scale = mScaleUpRate * sys->mDeltaTime + mScaleModifier;
+		if (scale >= 1.0f) {
+			isDone = true;
+			scale  = 1.0f;
+		}
 
-lbl_802639D0:
-	stfs     f1, 0x1f8(r3)
-	stfs     f1, 0x168(r3)
-	stfs     f1, 0x16c(r3)
-	stfs     f1, 0x170(r3)
-	lwz      r3, 0x114(r3)
-	lwz      r3, 0(r3)
-	bl       setScale__8CollPartFf
+		mScaleModifier = scale;
+		mScale         = Vector3f(scale);
 
-lbl_802639EC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		mCollTree->mPart->setScale(scale);
+	}
+
+	return isDone;
 }
 
 /*
@@ -444,45 +337,23 @@ lbl_802639EC:
  * Address:	80263A04
  * Size:	00007C
  */
-void Obj::moveRockScaleUp()
+bool Obj::moveRockScaleUp()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f2, lbl_8051ADD4@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lfs      f3, 0x1f8(r3)
-	fcmpo    cr0, f3, f2
-	bge      lbl_80263A68
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, lbl_8051ADCC@sda21(r2)
-	lfs      f0, 0x54(r4)
-	fmadds   f1, f1, f0, f3
-	fcmpo    cr0, f1, f2
-	cror     2, 1, 2
-	bne      lbl_80263A4C
-	li       r31, 1
-	fmr      f1, f2
+	bool isDone = false;
+	if (mScaleModifier < 1.0f) {
+		f32 scale = 5.0f * sys->mDeltaTime + mScaleModifier;
+		if (scale >= 1.0f) {
+			isDone = true;
+			scale  = 1.0f;
+		}
 
-lbl_80263A4C:
-	stfs     f1, 0x1f8(r3)
-	stfs     f1, 0x168(r3)
-	stfs     f1, 0x16c(r3)
-	stfs     f1, 0x170(r3)
-	lwz      r3, 0x114(r3)
-	lwz      r3, 0(r3)
-	bl       setScale__8CollPartFf
+		mScaleModifier = scale;
+		mScale         = Vector3f(scale);
 
-lbl_80263A68:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		mCollTree->mPart->setScale(scale);
+	}
+
+	return isDone;
 }
 
 /*
@@ -492,6 +363,16 @@ lbl_80263A68:
  */
 void Obj::initMoveVelocity()
 {
+	f32 theta    = mFaceDir;
+	f32 cosTheta = pikmin2_cosf(theta);
+	f32 sinTheta = pikmin2_sinf(theta);
+
+	Vector3f vel(sinTheta, 0.0f, cosTheta);
+	vel.x *= *C_PARMS->mGeneral.mMoveSpeed();
+	vel.y *= *C_PARMS->mGeneral.mMoveSpeed();
+	vel.z *= *C_PARMS->mGeneral.mMoveSpeed();
+	mTargetVelocity = vel;
+	setVelocity(vel);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -573,6 +454,47 @@ lbl_80263B14:
  */
 void Obj::updateMoveVelocity()
 {
+	if (_2C4) {
+		Creature* target = nullptr;
+		if (gameSystem && !gameSystem->isMultiplayerMode()) {
+			target = naviMgr->getActiveNavi();
+		}
+		if (!target) {
+			target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
+		}
+
+		Vector2f XZ;
+		if (target) {
+			Vector3f targetPos = target->getPosition();
+			XZ.x               = targetPos.x;
+			XZ.y               = targetPos.z;
+		} else {
+			XZ.x = mPosition.x + mTargetVelocity.x;
+			XZ.y = mPosition.z + mTargetVelocity.z;
+		}
+
+		changeFaceDir(XZ);
+
+		f32 homingSpeed = C_PROPERPARMS.mFp01.mValue;
+		f32 sinTheta    = sin(getFaceDir());
+		f32 oldY        = getTargetVelocity().y;
+		f32 cosTheta    = cos(getFaceDir());
+
+		mTargetVelocity.x = homingSpeed * sinTheta;
+		mTargetVelocity.y = oldY;
+		mTargetVelocity.z = homingSpeed * cosTheta;
+
+	} else {
+		mTargetVelocity.x = 0.01f * mCurrentVelocity.x + 0.99f * mTargetVelocity.x;
+		mTargetVelocity.y = 0.01f * mCurrentVelocity.y + 0.99f * mTargetVelocity.y;
+		mTargetVelocity.z = 0.01f * mCurrentVelocity.z + 0.99f * mTargetVelocity.z;
+
+		Vector2f XZ;
+		XZ.x = mPosition.x + mTargetVelocity.x;
+		XZ.y = mPosition.z + mTargetVelocity.z;
+
+		changeFaceDir(XZ);
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
