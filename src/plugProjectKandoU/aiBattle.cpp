@@ -118,6 +118,8 @@
 
 namespace PikiAI {
 
+static const char unusedAiBattleName[] = "aiBattle";
+
 /*
  * --INFO--
  * Address:	8022ECB4
@@ -152,12 +154,11 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 {
 	PikiAI::ActBattleArg* cArg = static_cast<PikiAI::ActBattleArg*>(arg);
 
-	u8 assert = 0;
+	bool assert = false;
 	if (cArg) {
-		char* name = cArg->getName();
-		bool st    = strcmp("ActBattleArg", name) == 0;
+		bool st = strcmp("ActBattleArg", cArg->getName()) == 0;
 		if (st) {
-			assert = 1;
+			assert = true;
 		}
 	}
 	P2ASSERTLINE(179, assert);
@@ -176,7 +177,7 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	initApproach();
 	_1D = 0;
 
-	Vector3f midPoint = (mOther->getPosition() + mParent->getPosition()) * 0.5f;
+	Vector3f midPoint = (mParent->getPosition() + mOther->getPosition()) * 0.5f;
 	Sys::Sphere itSphere(midPoint, 10.0f);
 	Game::CellIteratorArg citArg(itSphere);
 	citArg._1C = 0;
@@ -190,12 +191,13 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 		}
 
 		// TODO: WTF?
-		Vector3f cPos = c->getPosition();
-		cPos.normalise();
-		cPos.x *= 50.0f;
-		cPos.y = 100.0f;
-		cPos.z *= 50.0f;
-		Game::InteractWind wind(mParent, 0.0f, &cPos);
+		Vector3f diff = c->getPosition() - itSphere.mPosition;
+		diff.y        = 0.0f;
+		diff.normalise();
+		diff.x *= 50.0f;
+		diff.y = 100.0f;
+		diff.z *= 50.0f;
+		Game::InteractWind wind(mParent, 0.0f, &diff);
 		c->stimulate(wind);
 	}
 }
