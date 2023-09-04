@@ -2,7 +2,7 @@
 #define _MSL_MATH_API_H
 
 #include "types.h"
-#include "fdlibm.h"
+#include "stl/fdlibm.h"
 
 #ifdef __cplusplus
 extern "C" {

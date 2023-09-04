@@ -39,21 +39,23 @@ struct Part {
 	PartInitArg mInitArg;
 };
 
-/**
- * @size = 0x8
- */
-struct Mgr {
-	u8 _00[0x4]; // _00 - unknown
-	Part* mPart; // _04
-};
-
 struct Factory {
 	Factory(u8);
 
 	virtual void constructPart();      // _08
 	virtual void identifyPart(u8) = 0; // _0C
 
-	Mgr* _04; // _04 - unknown
+	struct Mgr* _04; // _04 - unknown
+};
+
+/**
+ * @size = 0x8
+ */
+struct Mgr {
+	void constructParts(PSSystem::ClusterSe::Factory& factory);
+
+	u8 _00[0x4]; // _00 - unknown
+	Part* mPart; // _04
 };
 
 } // namespace ClusterSe

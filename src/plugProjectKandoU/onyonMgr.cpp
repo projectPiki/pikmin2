@@ -840,13 +840,6 @@ void Onyon::doAI()
 		PSM::SeSound* sound = static_cast<PSM::SeSound*>(mSoundObj->startSound(PSSE_PK_SE_INSIDE_ONYON, 0));
 		if (sound) {
 			PSGame::SoundTable::SePerspInfo persp;
-			persp._04             = 0.0f;
-			persp._00             = 1.0f;
-			persp._08             = 0.0f;
-			persp._0C             = 0.0f;
-			persp._10             = 0.0f;
-			persp.mIsSpecialSound = 0;
-			persp.mNoGetDist      = 0;
 			persp.set(1.0, 200.0, 0.2, 400.0, 0.0);
 			sound->specializePerspCalc(persp);
 		}
@@ -949,13 +942,6 @@ void Onyon::do_doAnimation()
 			PSM::SeSound* sound = PSStartSoundVec(PSSE_PK_SE_INSIDE_VOLVE, (Vec*)getSound_PosPtr());
 			if (sound) {
 				PSGame::SoundTable::SePerspInfo persp;
-				persp._04             = 0.0f;
-				persp._00             = 1.0f;
-				persp._08             = 0.0f;
-				persp._0C             = 0.0f;
-				persp._10             = 0.0f;
-				persp.mIsSpecialSound = 0;
-				persp.mNoGetDist      = 0;
 				persp.set(1.0, 200.0, 0.4, 400.0, 0.0);
 				sound->specializePerspCalc(persp);
 			}
@@ -966,13 +952,6 @@ void Onyon::do_doAnimation()
 				PSM::SeSound* sound = static_cast<PSM::SeSound*>(mSoundObj->startSound(PSSE_EV_ROCKET_VOLVE, 0));
 				if (sound) {
 					PSGame::SoundTable::SePerspInfo persp;
-					persp._04             = 0.0f;
-					persp._00             = 1.0f;
-					persp._08             = 0.0f;
-					persp._0C             = 0.0f;
-					persp._10             = 0.0f;
-					persp.mIsSpecialSound = 0;
-					persp.mNoGetDist      = 0;
 					persp.set(1.0, 250.0, 0.5, 500.0, 0.0);
 					sound->specializePerspCalc(persp);
 				}
@@ -997,13 +976,6 @@ void Onyon::do_doAnimation()
 			PSM::SeSound* sound = static_cast<PSM::SeSound*>(mSoundObj->startSound(soundid, 0));
 			if (sound) {
 				PSGame::SoundTable::SePerspInfo persp;
-				persp._04             = 0.0f;
-				persp._00             = 1.0f;
-				persp._08             = 0.0f;
-				persp._0C             = 0.0f;
-				persp._10             = 0.0f;
-				persp.mIsSpecialSound = false;
-				persp.mNoGetDist      = false;
 				persp.set(1.0f, 300.0f, 0.5f, 1000.0f, 0.0f);
 				sound->specializePerspCalc(persp);
 
@@ -1030,13 +1002,6 @@ void Onyon::do_doAnimation()
 			PSM::SeSound* sound = static_cast<PSM::SeSound*>(mSoundObj->startSound(soundid, 0));
 			if (sound) {
 				PSGame::SoundTable::SePerspInfo persp;
-				persp._04             = 0.0f;
-				persp._00             = 1.0f;
-				persp._08             = 0.0f;
-				persp._0C             = 0.0f;
-				persp._10             = 0.0f;
-				persp.mIsSpecialSound = false;
-				persp.mNoGetDist      = false;
 				persp.set(1.0f, 400.0f, 0.3f, 1000.0f, 0.0f);
 				sound->specializePerspCalc(persp);
 			}
@@ -1552,13 +1517,6 @@ void Onyon::efxPafuPafu()
 			PSM::SeSound* sound = static_cast<PSM::SeSound*>(mSoundObj->startSound(PSSE_EV_ONYON_GAS, 0));
 			if (sound) {
 				PSGame::SoundTable::SePerspInfo persp;
-				persp._04             = 0.0f;
-				persp._00             = 1.0f;
-				persp._08             = 0.0f;
-				persp._0C             = 0.0f;
-				persp._10             = 0.0f;
-				persp.mIsSpecialSound = 0;
-				persp.mNoGetDist      = 0;
 				persp.set(1.0, 250.0, 0.8, 500.0, 0.0);
 				sound->specializePerspCalc(persp);
 			}

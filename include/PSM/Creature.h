@@ -16,9 +16,11 @@ struct FrameCalcArg;
 struct StartSoundArg;
 
 struct Creature : public ObjBase {
+	Creature(Game::Creature* gameObj);
+
 	// VTBL 1 (JKRDisposer, dtor-only)
 	// VTBL 2 (ObjBase + self)
-	// virtual ~Creature() { }                                             // _14 (weak)
+	virtual ~Creature() { }                                             // _14 (weak)
 	virtual void frameEnd_onPlaySe()       = 0;                         // _18
 	virtual CreatureCastType getCastType() = 0;                         // _1C
 	virtual void exec();                                                // _20
@@ -31,7 +33,10 @@ struct Creature : public ObjBase {
 	virtual JAISound** getHandleArea(u8) = 0;                           // _3C
 
 	bool isNear(Game::Creature*, f32);
-	void getPlayingHandleNum();
+	u8 getPlayingHandleNum();
+
+	// unused/inlined:
+	bool isVisible();
 
 	// _10     = VTBL 1
 	// _28     = VTBL 2

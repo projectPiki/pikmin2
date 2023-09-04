@@ -1138,7 +1138,7 @@ PSM::SeSound* PSStartSoundVec(unsigned long soundID, Vec* vec)
 	if (!static_cast<PSM::SceneBase*>(mgr->getEndScene())->getSeSceneGate(nullptr, soundID)) {
 		return nullptr;
 	}
-	u8 playerNo = PSSystem::getInstance<PSM::ObjCalcBase>()->getPlayerNo(*vec);
+	u8 playerNo = PSM::ObjCalcBase::getInstance()->getPlayerNo(*vec);
 	P2ASSERTLINE(522, vec != nullptr);
 
 	JAISound* soundHandle;

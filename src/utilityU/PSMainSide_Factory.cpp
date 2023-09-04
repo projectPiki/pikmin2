@@ -1,4 +1,11 @@
+#include "PSGame/EnvSe.h"
+#include "PSGame/PikScene.h"
+#include "PSM/BossSeq.h"
+#include "PSM/ObjBase.h"
+#include "PSM/Scene.h"
 #include "PSM/Se.h"
+#include "PSSystem/EnvSeBase.h"
+#include "PSSystem/PSBgm.h"
 #include "types.h"
 
 /*
@@ -305,7 +312,7 @@ namespace PSM {
  * Address:	80459BD4
  * Size:	000274
  */
-void Env_Pollutin::play()
+JAISound* Env_Pollutin::play()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -677,7 +684,7 @@ lbl_8045A0A8:
  * Address:	8045A0C8
  * Size:	0000A0
  */
-void EnvSeObjBuilder::newSeObj(unsigned long, float, Vec)
+PSGame::EnvSe_Perspective* EnvSeObjBuilder::newSeObj(unsigned long, float, Vec)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3272,7 +3279,8 @@ void EnvSeObjBuilder::setInfo(PSM::PersEnvInfo)
  * Address:	8045C088
  * Size:	000070
  */
-EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3<float>)
+EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3<float> p1)
+    : PSGame::Builder_EvnSe_Perspective(p1)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3313,7 +3321,7 @@ EnvSeObjBuilder::EnvSeObjBuilder(JGeometry::TBox3<float>)
  * Address:	8045C0F8
  * Size:	000034
  */
-void JGeometry::TBox3<float>::TBox3(const JGeometry::TBox3<float>&)
+JGeometry::TBox3<float>::TBox3(const JGeometry::TBox3<float>&)
 {
 	/*
 	lfs      f1, 0(r4)
@@ -3449,7 +3457,13 @@ void SceneMgr::newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtil
  * Address:	8045C290
  * Size:	000060
  */
-MiddleBossSeq::MiddleBossSeq(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*)
+MiddleBossSeq::MiddleBossSeq(const char* p1, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr)
+    : PSSystem::JumpBgmSeq(p1, info, directorMgr)
+    , _134(0)
+    , _138(0)
+    , _13C(3)
+    , _13E(-1)
+    , _140(0)
 {
 	/*
 	.loc_0x0:
@@ -3864,7 +3878,8 @@ lbl_8045C6D4:
  * Address:	8045C6EC
  * Size:	00006C
  */
-BigBossSeq::BigBossSeq(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*)
+BigBossSeq::BigBossSeq(const char* p1, const JAInter::SoundInfo& info, PSSystem::DirectorMgrBase* directorMgr)
+    : MiddleBossSeq(p1, info, directorMgr)
 {
 	/*
 	.loc_0x0:
@@ -4434,7 +4449,7 @@ lbl_8045CCF4:
  * Address:	8045CD10
  * Size:	00000C
  */
-void EnvSe_Perspective_AvoidY::getCastType()
+u32 EnvSe_Perspective_AvoidY::getCastType()
 {
 	/*
 	lis      r3, 0x70657273@ha
@@ -4448,7 +4463,7 @@ void EnvSe_Perspective_AvoidY::getCastType()
  * Address:	8045CD1C
  * Size:	00000C
  */
-void Env_Pollutin::getCastType()
+u32 Env_Pollutin::getCastType()
 {
 	/*
 	lis      r3, 0x706F6C6C@ha
@@ -4493,17 +4508,14 @@ lbl_8045CD6C:
 	blr
 	*/
 }
-
-namespace PSSystem {
-
-} // namespace PSSystem
+} // namespace PSM
 
 /*
  * --INFO--
  * Address:	8045CD88
  * Size:	000054
  */
-EnvSeMgr::EnvSeMgr()
+PSSystem::EnvSeMgr::EnvSeMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4529,8 +4541,6 @@ EnvSeMgr::EnvSeMgr()
 	blr
 	*/
 }
-
-} // namespace PSM
 
 namespace PSM {
 

@@ -59,6 +59,14 @@ struct PersEnvManager {
 };
 
 struct EnvSeObjBuilder : public PSGame::Builder_EvnSe_Perspective {
+	EnvSeObjBuilder(JGeometry::TBox3<float>);
+
+	virtual ~EnvSeObjBuilder();                                 // _08
+	virtual void onBuild(PSSystem::EnvSeBase*);                 // _0C
+	virtual PSGame::EnvSe_Perspective* newSeObj(u32, f32, Vec); // _10
+
+	void setInfo(PersEnvInfo);
+
 	// _00     = VTBL
 	// _00-_4C = PSGame::Builder_EvnSe_Perspective
 	void* _4C;                // _4C, unknown ptr
@@ -66,6 +74,13 @@ struct EnvSeObjBuilder : public PSGame::Builder_EvnSe_Perspective {
 };
 
 struct SeSound : public JAISe {
+	inline SeSound()
+	    : mPerspInfo()
+	    , _49C(0)
+	    , _4A0(1.0f)
+	{
+	}
+
 	virtual f32 setDistanceVolumeCommon(f32, u8);                                          // _BC
 	virtual void initParameter(void*, JAInter::Actor*, u32, u32, u8, JAInter::SoundInfo*); // _C8
 	virtual void onGet();                                                                  // _CC
@@ -73,7 +88,7 @@ struct SeSound : public JAISe {
 	virtual void setSeDistancePan(u8);                                                     // _DC
 	virtual void setSeDistanceDolby(u8);                                                   // _EC
 
-	static void makeSeSound();
+	static SeSound* makeSeSound();
 	void specializePerspCalc(const PSGame::SoundTable::SePerspInfo&);
 	void calcVolumeSpecialized(f32);
 	f32 calcVolume(f32, unsigned char, unsigned char);
@@ -85,6 +100,12 @@ struct SeSound : public JAISe {
 	PSGame::SoundTable::SePerspInfo mPerspInfo; // _484
 	u8 _49C;                                    // _49C
 	f32 _4A0;                                   // _4A0
+
+	static float cDol_0Rad;
+	static float cDol_HalfRad;
+	static float cDol_FullRad;
+	static float cPan_MaxAmp;
+	static float cCenterRad;
 };
 } // namespace PSM
 

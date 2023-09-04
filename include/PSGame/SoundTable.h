@@ -1,11 +1,23 @@
 #ifndef _PSGAME_SOUNDTABLE_H
 #define _PSGAME_SOUNDTABLE_H
 
+#include "PSSystem/PSCommon.h"
 #include "types.h"
 
 namespace PSGame {
 namespace SoundTable {
 struct SePerspInfo {
+	inline SePerspInfo()
+	    : _00(1.0f)
+	    , _04(0.0f)
+	    , _08(0.0f)
+	    , _0C(0.0f)
+	    , _10(0.0f)
+	    , mIsSpecialSound(false)
+	    , mNoGetDist(false)
+	{
+	}
+
 	void set(f32, f32, f32, f32, f32);
 	f32 getDistVol(f32, u8);
 
@@ -18,7 +30,7 @@ struct SePerspInfo {
 	bool mNoGetDist;      // _15
 };
 
-struct CategoryMgr {
+struct CategoryMgr : PSSystem::SingletonBase<CategoryMgr> {
 	CategoryMgr();
 
 	virtual ~CategoryMgr(); // _08 (weak)

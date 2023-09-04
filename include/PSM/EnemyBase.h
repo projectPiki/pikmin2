@@ -62,11 +62,12 @@ struct EnemyNotAggressive : public EnemyBase {
 	// vtable 3 (CreatureAnime)
 	// vtable 4 (BattleLink)
 	// vtable 5 (KehaiLink + self)
-	virtual void battleOff();   // _C4 (weak)
-	virtual void updateKehai(); // _CC (weak)
-	virtual void kehaiOn();     // _D0 (weak)
-	virtual void kehaiOff();    // _D8 (weak)
-	virtual void battleOn();    // _DC (weak)
+	virtual void battleOff();    // _C4 (weak)
+	virtual void updateKehai();  // _CC (weak)
+	virtual void updateBattle(); // _D0
+	virtual void kehaiOn();      // _D4 (weak)
+	virtual void kehaiOff();     // _D8 (weak)
+	virtual void battleOn();     // _DC (weak)
 };
 
 /**

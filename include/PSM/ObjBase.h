@@ -30,6 +30,8 @@ enum CreatureCastType {
 #pragma enumalwaysint reset
 
 struct ObjBase : public JSUPtrLink, public JKRDisposer {
+	ObjBase();
+
 	// VTBL 1 (JKRDisposer, dtor-only)
 	// VTBL 2 (self)
 	virtual ~ObjBase();                         // _14

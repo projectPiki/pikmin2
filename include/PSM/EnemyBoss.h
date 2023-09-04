@@ -9,6 +9,8 @@ namespace PSM {
  * @size = 0x100
  */
 struct EnemyBoss : public EnemyBase {
+	EnemyBoss(Game::EnemyBase* gameObj);
+
 	virtual ~EnemyBoss();                   // _14 (weak)
 	virtual CreatureCastType getCastType(); // _1C (weak)
 	virtual void exec();                    // _20
@@ -27,7 +29,7 @@ struct EnemyBoss : public EnemyBase {
 
 	void calcDistance();
 	void setAppearFlag(bool);
-	void dyingFramework();
+	void dyingFrameWork();
 	void isOnDisappearing();
 
 	f32 _E0;             // _E0
@@ -53,11 +55,10 @@ struct EnemyMidBoss : public EnemyBoss {
 	virtual void postPikiAttack(bool);      // _D8
 	virtual void onAppear1st();             // _E8
 
-	u8 _100[0x4];    // _100 - unknown
-	f32 _104;        // _104
-	JSUPtrLink _108; // _108 - could be JSULink<PSM::EnemyBoss>
-	u8 _118;         // _118
-	u8 _119[0x3];    // _119 - unknown
+	u32 _100;                     // _100
+	f32 _104;                     // _104
+	JSULink<PSM::EnemyBoss> _108; // _108
+	u8 _118;                      // _118
 };
 
 /**
@@ -73,6 +74,8 @@ struct EnemyBigBoss : public EnemyMidBoss {
 	virtual void onAppear1st();             // _E8
 
 	u16 _11C; // _11C
+
+	static EnemyBigBoss* sBigBoss;
 };
 
 } // namespace PSM

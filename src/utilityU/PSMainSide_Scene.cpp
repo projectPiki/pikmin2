@@ -1234,7 +1234,7 @@ lbl_80467D80:
  */
 void Scene_Objects::adaptObjMgr()
 {
-	mObjMgr          = PSSystem::getInstance<ObjMgr>();
+	mObjMgr          = PSM::ObjMgr::getInstance();
 	mObjMgr->mScenes = this;
 	/*
 	stwu     r1, -0x10(r1)
@@ -1836,7 +1836,7 @@ lbl_80468438:
  */
 void Scene_Game::attachBossFaderMgr()
 {
-	mBossFaderMgr = PSSystem::getInstance<BossBgmFader::Mgr>();
+	mBossFaderMgr = BossBgmFader::Mgr::getInstance();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

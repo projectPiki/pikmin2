@@ -6,6 +6,10 @@
 
 namespace PSM {
 struct DirectorLink : public JSUPtrLink {
+	inline DirectorLink(void* p1)
+	    : JSUPtrLink(p1)
+	{
+	}
 	virtual void getListDirectorActor() = 0; // _08
 	virtual void eventStart();               // _0C
 	virtual void eventRestart();             // _10

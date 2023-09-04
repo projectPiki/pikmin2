@@ -17,6 +17,15 @@ struct Object;
 
 namespace PSM {
 struct Otakara : public EventBase {
+	inline Otakara(Game::Creature* gameObj)
+	    : EventBase(gameObj, 2)
+	    , _70(0)
+	    , _74(0)
+	    , mEventLink(gameObj)
+	    , _8C(nullptr)
+	{
+	}
+
 	// vtable 1 (JSUPtrLink, _10)
 	// vtable 2 (JKRDisposer -> ObjBase -> Creature, _28)
 	virtual ~Otakara();                     // _14 (thunks at _10 and _48)
@@ -54,7 +63,7 @@ struct PelletOtakara : public Otakara {
 };
 
 struct PelletItem : public Otakara {
-	PelletItem(Game::PelletItem::Object*, bool);
+	PelletItem(Game::PelletItem::Object*);
 
 	// vtable 1 (JSUPtrLink, _10)
 	// vtable 2 (JKRDisposer -> ObjBase -> Creature, _28)

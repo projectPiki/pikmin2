@@ -1,6 +1,7 @@
 #ifndef _PSM_BOSSBGMFADER_H
 #define _PSM_BOSSBGMFADER_H
 
+#include "PSSystem/PSCommon.h"
 #include "types.h"
 #include "PSM/Director.h"
 #include "PSM/EnemyBoss.h"
@@ -56,7 +57,7 @@ struct TypedProc_MidBoss : public TypedProc {
 /**
  * @size{0x44}
  */
-struct Mgr {
+struct Mgr : PSSystem::SingletonBase<Mgr> {
 	Mgr();
 
 	virtual ~Mgr(); // _08 (weak)

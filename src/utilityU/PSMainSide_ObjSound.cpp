@@ -1,12 +1,31 @@
+#include "Game/BaseItem.h"
+#include "Game/Creature.h"
+#include "Game/EnemyBase.h"
+#include "Game/Entities/PelletItem.h"
+#include "Game/Entities/PelletOtakara.h"
+#include "Game/Navi.h"
+#include "JSystem/JAudio/JAI/JAInter/Object.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "PSM/BattleLink.h"
 #include "PSM/Cluster.h"
+#include "PSM/CreatureAnime.h"
 #include "PSM/CreatureObj.h"
 #include "PSM/DirectorLink.h"
+#include "PSM/EnemyBase.h"
+#include "PSM/EnemyBoss.h"
+#include "PSM/EventBase.h"
 #include "PSM/EventLink.h"
+#include "PSM/KehaiLink.h"
+#include "PSM/Navi.h"
 #include "PSM/ObjBase.h"
 #include "PSM/ObjMgr.h"
 #include "PSM/Otakara.h"
 #include "PSM/Piki.h"
 #include "PSM/Scene.h"
+#include "PSM/Tsuyukusa.h"
+#include "PSM/WorkItem.h"
+#include "PSSystem/ClusterSe.h"
 #include "types.h"
 
 /*
@@ -1162,6 +1181,18 @@ namespace PSM {
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000050
+ */
+inline ObjBase::ObjBase()
+    : JSUPtrLink(this)
+    , JKRDisposer()
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	8045CE64
  * Size:	000080
  */
@@ -1326,6 +1357,28 @@ lbl_8045D014:
 	addi     r1, r1, 0x20
 	blr
 	*/
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000CC
+ */
+inline Creature::Creature(Game::Creature* gameObj)
+    : ObjBase()
+    , mGameObj(gameObj)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00003C
+ */
+inline bool Creature::isVisible()
+{
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1524,7 +1577,7 @@ bool Creature::isNear(Game::Creature*, float)
  * Address:	8045D254
  * Size:	000070
  */
-void Creature::getPlayingHandleNum()
+u8 Creature::getPlayingHandleNum()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1889,7 +1942,9 @@ void Creature::onPlayingSe(unsigned long, JAISound*) { }
  * Address:	8045D7A4
  * Size:	00010C
  */
-CreatureObj::CreatureObj(Game::Creature*, unsigned char)
+CreatureObj::CreatureObj(Game::Creature* gameObj, unsigned char p2)
+    : Creature(gameObj)
+    , JAInter::Object(reinterpret_cast<Vec*>(gameObj->getSound_PosPtr()), JKRHeap::sCurrentHeap, p2)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1971,53 +2026,53 @@ lbl_8045D850:
  * Address:	8045D8B0
  * Size:	000098
  */
-Creature::~Creature()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8045D92C
-	lis      r3, __vt__Q23PSM8Creature@ha
-	addi     r3, r3, __vt__Q23PSM8Creature@l
-	stw      r3, 0x28(r30)
-	addi     r0, r3, 8
-	stw      r0, 0x10(r30)
-	beq      lbl_8045D91C
-	lis      r4, __vt__Q23PSM7ObjBase@ha
-	addi     r3, r30, 0x10
-	addi     r5, r4, __vt__Q23PSM7ObjBase@l
-	li       r4, 0
-	stw      r5, 0x28(r30)
-	addi     r0, r5, 8
-	stw      r0, 0x10(r30)
-	bl       __dt__11JKRDisposerFv
-	cmplwi   r30, 0
-	beq      lbl_8045D91C
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
+// Creature::~Creature()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8045D92C
+// 	lis      r3, __vt__Q23PSM8Creature@ha
+// 	addi     r3, r3, __vt__Q23PSM8Creature@l
+// 	stw      r3, 0x28(r30)
+// 	addi     r0, r3, 8
+// 	stw      r0, 0x10(r30)
+// 	beq      lbl_8045D91C
+// 	lis      r4, __vt__Q23PSM7ObjBase@ha
+// 	addi     r3, r30, 0x10
+// 	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+// 	li       r4, 0
+// 	stw      r5, 0x28(r30)
+// 	addi     r0, r5, 8
+// 	stw      r0, 0x10(r30)
+// 	bl       __dt__11JKRDisposerFv
+// 	cmplwi   r30, 0
+// 	beq      lbl_8045D91C
+// 	mr       r3, r30
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrLinkFv
 
-lbl_8045D91C:
-	extsh.   r0, r31
-	ble      lbl_8045D92C
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8045D91C:
+// 	extsh.   r0, r31
+// 	ble      lbl_8045D92C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8045D92C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8045D92C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -2159,6 +2214,20 @@ void CreatureObj::frameEnd_onPlaySe()
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000118
+ */
+inline CreatureAnime::CreatureAnime(Game::Creature* gameObj, u8 p2)
+    : Creature(gameObj)
+    , JAIAnimeSound(reinterpret_cast<Vec*>(gameObj->getSound_PosPtr()), JKRHeap::sCurrentHeap, p2)
+    , _AC(0.0f)
+    , _B0(0.0f)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	8045DB04
  * Size:	000148
  */
@@ -2266,7 +2335,7 @@ void CreatureAnime::startAnimSound(unsigned long, JAISound**, JAInter::Actor*, u
  * Address:	8045DC4C
  * Size:	00003C
  */
-void CreatureAnime::startSound(unsigned long, unsigned long)
+JAISound* CreatureAnime::startSound(unsigned long, unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2942,7 +3011,10 @@ lbl_8045E430:
  * Address:	8045E444
  * Size:	000180
  */
-EnemyBase::EnemyBase(Game::EnemyBase*, unsigned char)
+EnemyBase::EnemyBase(Game::EnemyBase* gameObj, unsigned char p2)
+    : CreatureAnime(gameObj, p2)
+    , BattleLink(gameObj)
+    , KehaiLink(gameObj)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3053,72 +3125,72 @@ lbl_8045E4F4:
  * Address:	8045E5C4
  * Size:	0000DC
  */
-CreatureAnime::~CreatureAnime()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8045E684
-	lis      r3, __vt__Q23PSM13CreatureAnime@ha
-	addic.   r0, r30, 0x30
-	addi     r4, r3, __vt__Q23PSM13CreatureAnime@l
-	stw      r4, 0x28(r30)
-	addi     r3, r4, 8
-	addi     r0, r4, 0x40
-	stw      r3, 0x10(r30)
-	stw      r0, 0x30(r30)
-	beq      lbl_8045E620
-	lis      r4, __vt__13JAIAnimeSound@ha
-	addi     r3, r30, 0x30
-	addi     r0, r4, __vt__13JAIAnimeSound@l
-	li       r4, 0
-	stw      r0, 0x30(r30)
-	bl       __dt__Q27JAInter6ObjectFv
+// CreatureAnime::~CreatureAnime()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8045E684
+// 	lis      r3, __vt__Q23PSM13CreatureAnime@ha
+// 	addic.   r0, r30, 0x30
+// 	addi     r4, r3, __vt__Q23PSM13CreatureAnime@l
+// 	stw      r4, 0x28(r30)
+// 	addi     r3, r4, 8
+// 	addi     r0, r4, 0x40
+// 	stw      r3, 0x10(r30)
+// 	stw      r0, 0x30(r30)
+// 	beq      lbl_8045E620
+// 	lis      r4, __vt__13JAIAnimeSound@ha
+// 	addi     r3, r30, 0x30
+// 	addi     r0, r4, __vt__13JAIAnimeSound@l
+// 	li       r4, 0
+// 	stw      r0, 0x30(r30)
+// 	bl       __dt__Q27JAInter6ObjectFv
 
-lbl_8045E620:
-	cmplwi   r30, 0
-	beq      lbl_8045E674
-	lis      r3, __vt__Q23PSM8Creature@ha
-	addi     r3, r3, __vt__Q23PSM8Creature@l
-	stw      r3, 0x28(r30)
-	addi     r0, r3, 8
-	stw      r0, 0x10(r30)
-	beq      lbl_8045E674
-	lis      r4, __vt__Q23PSM7ObjBase@ha
-	addi     r3, r30, 0x10
-	addi     r5, r4, __vt__Q23PSM7ObjBase@l
-	li       r4, 0
-	stw      r5, 0x28(r30)
-	addi     r0, r5, 8
-	stw      r0, 0x10(r30)
-	bl       __dt__11JKRDisposerFv
-	cmplwi   r30, 0
-	beq      lbl_8045E674
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
+// lbl_8045E620:
+// 	cmplwi   r30, 0
+// 	beq      lbl_8045E674
+// 	lis      r3, __vt__Q23PSM8Creature@ha
+// 	addi     r3, r3, __vt__Q23PSM8Creature@l
+// 	stw      r3, 0x28(r30)
+// 	addi     r0, r3, 8
+// 	stw      r0, 0x10(r30)
+// 	beq      lbl_8045E674
+// 	lis      r4, __vt__Q23PSM7ObjBase@ha
+// 	addi     r3, r30, 0x10
+// 	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+// 	li       r4, 0
+// 	stw      r5, 0x28(r30)
+// 	addi     r0, r5, 8
+// 	stw      r0, 0x10(r30)
+// 	bl       __dt__11JKRDisposerFv
+// 	cmplwi   r30, 0
+// 	beq      lbl_8045E674
+// 	mr       r3, r30
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrLinkFv
 
-lbl_8045E674:
-	extsh.   r0, r31
-	ble      lbl_8045E684
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8045E674:
+// 	extsh.   r0, r31
+// 	ble      lbl_8045E684
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8045E684:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8045E684:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -3859,7 +3931,8 @@ lbl_8045EF64:
  * Address:	8045EF6C
  * Size:	0001AC
  */
-EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase*, unsigned char)
+EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase* gameObj, unsigned char p2)
+    : EnemyBase(gameObj, p2)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3981,8 +4054,12 @@ lbl_8045F01C:
  * Address:	8045F118
  * Size:	000160
  */
-Tsuyukusa::Tsuyukusa(Game::Creature*)
+Tsuyukusa::Tsuyukusa(Game::Creature* gameObj)
+    : CreatureObj(gameObj, 2)
+    , _70(FALSE)
+    , _74(gameObj)
 {
+	P2ASSERTLINE(1078, gameObj != nullptr);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -4149,7 +4226,7 @@ lbl_8045F30C:
  * Address:	8045F330
  * Size:	000128
  */
-void EnemyBig::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
+bool EnemyBig::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4251,6 +4328,25 @@ lbl_8045F430:
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0001F0
+ */
+inline EnemyBoss::EnemyBoss(Game::EnemyBase* gameObj)
+    : EnemyBase(gameObj, 4)
+    , _E0(10000000.0f)
+    , mDisappearTimer(-1)
+    , _E8(-1)
+    , _EC(this)
+    , mAppearFlag(false)
+    , _FD(0)
+    , _FE(1)
+    , _FF(0)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	8045F458
  * Size:	000074
  */
@@ -4296,7 +4392,7 @@ lbl_8045F4B8:
  * Address:	8045F4CC
  * Size:	000014
  */
-void EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
+bool EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
 	lfs      f0, 0xe0(r3)
@@ -5174,8 +5270,18 @@ void EnemyBoss::updateDisappearing()
  * Address:	8045FF70
  * Size:	000260
  */
-EnemyMidBoss::EnemyMidBoss(Game::EnemyBase*)
+EnemyMidBoss::EnemyMidBoss(Game::EnemyBase* gameObj)
+    : EnemyBoss(gameObj)
+    , _100(0xFFFF)
+    , _104(500.0f)
+    , _108(this)
+    , _118(0)
 {
+	PSM::BossBgmFader::Mgr* mgr = PSM::BossBgmFader::Mgr::sInstance;
+	if (mgr != nullptr) {
+		_100 = mgr->mEnemyBossList.getNumLinks();
+		mgr->appendTarget(&_108);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -5857,8 +5963,11 @@ lbl_804607DC:
  * Address:	804607EC
  * Size:	000068
  */
-EnemyBigBoss::EnemyBigBoss(Game::EnemyBase*)
+EnemyBigBoss::EnemyBigBoss(Game::EnemyBase* gameObj)
+    : EnemyMidBoss(gameObj)
+    , _11C(1)
 {
+	sBigBoss = this;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -7137,7 +7246,8 @@ lbl_80461600:
  * Address:	80461620
  * Size:	000170
  */
-WorkItem::WorkItem(Game::BaseItem*)
+WorkItem::WorkItem(Game::BaseItem* gameObj)
+    : EventBase(gameObj, 2)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7771,8 +7881,14 @@ lbl_80461D38:
  * Address:	80461D60
  * Size:	000224
  */
-PelletOtakara::PelletOtakara(Game::PelletOtakara::Object*, bool)
+PelletOtakara::PelletOtakara(Game::PelletOtakara::Object* gameObj, bool is2PBattle)
+    : Otakara(gameObj)
 {
+	if (!is2PBattle) {
+		_8C = new OtakaraEventLink(gameObj);
+	} else {
+		_8C = new OtakaraEventLink_2PBattle(gameObj);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -8030,7 +8146,8 @@ lbl_804620B0:
  * Address:	804620CC
  * Size:	0001D4
  */
-PelletItem::PelletItem(Game::PelletItem::Object*)
+PelletItem::PelletItem(Game::PelletItem::Object* gameObj)
+    : Otakara(gameObj)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8165,6 +8282,9 @@ lbl_80462284:
  * Size:	000148
  */
 Piki::Piki(Game::Piki* p)
+    : CreatureObj(p, 2)
+    , _70(-1)
+    , _74(0xFFFFFFFF)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8945,7 +9065,10 @@ lbl_80462AB8:
  * Address:	80462AC0
  * Size:	000138
  */
-Navi::Navi(Game::Navi*)
+Navi::Navi(Game::Navi* gameObj)
+    : CreatureObj(gameObj, 2)
+    , mRappa()
+    , _90(0)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -9112,7 +9235,7 @@ lbl_80462C80:
  * Address:	80462C94
  * Size:	000108
  */
-void Navi::startSound(unsigned long, unsigned long)
+JAISound* Navi::startSound(unsigned long, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -9442,8 +9565,11 @@ lbl_80463018:
  * Address:	80463034
  * Size:	000158
  */
-Cluster::Cluster(Game::Creature*, PSSystem::ClusterSe::Factory&)
+Cluster::Cluster(Game::Creature* gameObj, PSSystem::ClusterSe::Factory& factory)
+    : CreatureObj(gameObj, 2)
 {
+	mClusterSeMgr = new PSSystem::ClusterSe::Mgr();
+	mClusterSeMgr->constructParts(factory);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -9781,7 +9907,7 @@ void EnemyBoss::onAppear1st() { }
  * Address:	804633C0
  * Size:	000008
  */
-u32 Navi::getCastType() { return 0xF; }
+CreatureCastType Navi::getCastType() { return CCT_Navi; }
 
 /*
  * --INFO--
@@ -10637,77 +10763,77 @@ void EnemyNotAggressive::kehaiOn() { }
  * Address:	80463D90
  * Size:	0000F8
  */
-Navi::~Navi()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80463E6C
-	lis      r4, __vt__Q23PSM4Navi@ha
-	addi     r3, r30, 0x70
-	addi     r6, r4, __vt__Q23PSM4Navi@l
-	li       r4, -1
-	stw      r6, 0x28(r30)
-	addi     r5, r6, 8
-	addi     r0, r6, 0x40
-	stw      r5, 0x10(r30)
-	stw      r0, 0x30(r30)
-	bl       __dt__Q26PSGame5RappaFv
-	cmplwi   r30, 0
-	beq      lbl_80463E5C
-	lis      r4, __vt__Q23PSM11CreatureObj@ha
-	addi     r3, r30, 0x30
-	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
-	li       r4, 0
-	stw      r6, 0x28(r30)
-	addi     r5, r6, 8
-	addi     r0, r6, 0x40
-	stw      r5, 0x10(r30)
-	stw      r0, 0x30(r30)
-	bl       __dt__Q27JAInter6ObjectFv
-	cmplwi   r30, 0
-	beq      lbl_80463E5C
-	lis      r3, __vt__Q23PSM8Creature@ha
-	addi     r3, r3, __vt__Q23PSM8Creature@l
-	stw      r3, 0x28(r30)
-	addi     r0, r3, 8
-	stw      r0, 0x10(r30)
-	beq      lbl_80463E5C
-	lis      r4, __vt__Q23PSM7ObjBase@ha
-	addi     r3, r30, 0x10
-	addi     r5, r4, __vt__Q23PSM7ObjBase@l
-	li       r4, 0
-	stw      r5, 0x28(r30)
-	addi     r0, r5, 8
-	stw      r0, 0x10(r30)
-	bl       __dt__11JKRDisposerFv
-	cmplwi   r30, 0
-	beq      lbl_80463E5C
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
+// Navi::~Navi()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80463E6C
+// 	lis      r4, __vt__Q23PSM4Navi@ha
+// 	addi     r3, r30, 0x70
+// 	addi     r6, r4, __vt__Q23PSM4Navi@l
+// 	li       r4, -1
+// 	stw      r6, 0x28(r30)
+// 	addi     r5, r6, 8
+// 	addi     r0, r6, 0x40
+// 	stw      r5, 0x10(r30)
+// 	stw      r0, 0x30(r30)
+// 	bl       __dt__Q26PSGame5RappaFv
+// 	cmplwi   r30, 0
+// 	beq      lbl_80463E5C
+// 	lis      r4, __vt__Q23PSM11CreatureObj@ha
+// 	addi     r3, r30, 0x30
+// 	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+// 	li       r4, 0
+// 	stw      r6, 0x28(r30)
+// 	addi     r5, r6, 8
+// 	addi     r0, r6, 0x40
+// 	stw      r5, 0x10(r30)
+// 	stw      r0, 0x30(r30)
+// 	bl       __dt__Q27JAInter6ObjectFv
+// 	cmplwi   r30, 0
+// 	beq      lbl_80463E5C
+// 	lis      r3, __vt__Q23PSM8Creature@ha
+// 	addi     r3, r3, __vt__Q23PSM8Creature@l
+// 	stw      r3, 0x28(r30)
+// 	addi     r0, r3, 8
+// 	stw      r0, 0x10(r30)
+// 	beq      lbl_80463E5C
+// 	lis      r4, __vt__Q23PSM7ObjBase@ha
+// 	addi     r3, r30, 0x10
+// 	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+// 	li       r4, 0
+// 	stw      r5, 0x28(r30)
+// 	addi     r0, r5, 8
+// 	stw      r0, 0x10(r30)
+// 	bl       __dt__11JKRDisposerFv
+// 	cmplwi   r30, 0
+// 	beq      lbl_80463E5C
+// 	mr       r3, r30
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrLinkFv
 
-lbl_80463E5C:
-	extsh.   r0, r31
-	ble      lbl_80463E6C
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_80463E5C:
+// 	extsh.   r0, r31
+// 	ble      lbl_80463E6C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80463E6C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80463E6C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 // /*
 //  * --INFO--

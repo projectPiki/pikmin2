@@ -1,3 +1,5 @@
+#include "PSM/Creature.h"
+#include "PSM/ObjMgr.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "PSGame/SoundTable.h"
 #include "PSM/Se.h"
@@ -294,6 +296,12 @@
         .4byte 0x40490E56
 */
 
+float PSM::SeSound::cDol_0Rad    = 1.0316;
+float PSM::SeSound::cDol_HalfRad = 1.5707999;
+float PSM::SeSound::cDol_FullRad = 2.1099999;
+float PSM::SeSound::cPan_MaxAmp  = 0.98;
+float PSM::SeSound::cCenterRad   = 1.57;
+
 namespace PSM {
 
 /*
@@ -301,8 +309,9 @@ namespace PSM {
  * Address:	80470F0C
  * Size:	000078
  */
-void SeSound::makeSeSound()
+SeSound* SeSound::makeSeSound()
 {
+	return new SeSound();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -353,6 +362,18 @@ void SeSound::onGet() { }
  */
 void SeSound::onRelease()
 {
+	if (_1A == 0) {
+		return;
+	}
+	if (_38 == nullptr) {
+		return;
+	}
+	PSM::Creature* creature = static_cast<PSM::Creature*>(_38);
+	P2ASSERTLINE(184, creature != nullptr);
+	if (creature->getPlayingHandleNum() != 0) {
+		return;
+	}
+	PSM::ObjMgr::getInstance()->remove(creature);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -831,7 +852,7 @@ lbl_804714E0:
  */
 f32 SeSound::calcVolume(float p1, unsigned char p2, unsigned char p3)
 {
-	return PSSystem::getInstance<PSGame::SoundTable::CategoryMgr>()->_04[p3]->getDistVol(p1, p2);
+	return PSGame::SoundTable::CategoryMgr::getInstance()->_04[p3]->getDistVol(p1, p2);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

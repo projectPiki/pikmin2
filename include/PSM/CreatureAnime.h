@@ -6,9 +6,11 @@
 
 namespace PSM {
 struct CreatureAnime : public Creature, public JAIAnimeSound {
+	CreatureAnime(Game::Creature*, u8);
+
 	// vtable 1 (JKRDisposer, _10)
 	// vtable 2 (Creature, _28)
-	// virtual ~CreatureAnime() { }            // _14 (weak)
+	virtual ~CreatureAnime() { }           // _14 (weak)
 	virtual void frameEnd_onPlaySe();      // _18
 	virtual CreatureCastType getCastType() // _1C (weak)
 	{
