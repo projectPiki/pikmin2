@@ -1,6 +1,7 @@
 #include "JSystem/JAudio/JAI/JAIAnimeSound.h"
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "PSM/ObjCalc.h"
 #include "PSM/Scene.h"
 #include "PSM/Se.h"
 #include "PSSystem/PSCommon.h"
@@ -1137,7 +1138,7 @@ PSM::SeSound* PSStartSoundVec(unsigned long soundID, Vec* vec)
 	if (!static_cast<PSM::SceneBase*>(mgr->getEndScene())->getSeSceneGate(nullptr, soundID)) {
 		return nullptr;
 	}
-	u8 playerNo = PSSystem::getObjCalcBaseInstance()->getPlayerNo(*vec);
+	u8 playerNo = PSSystem::getInstance<PSM::ObjCalcBase>()->getPlayerNo(*vec);
 	P2ASSERTLINE(522, vec != nullptr);
 
 	JAISound* soundHandle;

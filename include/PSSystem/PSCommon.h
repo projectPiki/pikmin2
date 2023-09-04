@@ -14,11 +14,18 @@ static inline void createSEMgrInstance()
 	P2ASSERTLINE(121, SingletonBase<PSM::ObjMgr>::sInstance);
 }
 
-static inline PSM::ObjCalcBase* getObjCalcBaseInstance()
+template <typename T>
+inline T* getInstance()
 {
-	P2ASSERTLINE(137, SingletonBase<PSM::ObjCalcBase>::sInstance);
-	return SingletonBase<PSM::ObjCalcBase>::sInstance;
+	P2ASSERTLINE(137, SingletonBase<T>::sInstance);
+	return SingletonBase<T>::sInstance;
 }
+
+// static inline PSM::ObjCalcBase* getObjCalcBaseInstance()
+// {
+// 	P2ASSERTLINE(137, SingletonBase<PSM::ObjCalcBase>::sInstance);
+// 	return SingletonBase<PSM::ObjCalcBase>::sInstance;
+// }
 } // namespace PSSystem
 
 #endif
