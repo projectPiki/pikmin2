@@ -1,4 +1,5 @@
 #include "Dolphin/pad.h"
+#include "System.h"
 #include "Game/rumble.h"
 #include "types.h"
 /*
@@ -47,14 +48,16 @@ namespace Game {
  * Size:	000158
  */
 ContRumble::ContRumble(int p1, int p2)
-    : _00(true)
-    , _04(p1)
-    , _08(0.0f, 0.0f, 0.0f)
-    , _14(new RumbleNode())
-    , _18(new RumbleNode())
+    : mIsActive(true)
+    , mPadChannel(p1)
+    , mTotalIntensity(0.0f)
+    , mRumbleTimer(0.0f)
+    , mRumbleTimeoutTimer(0.0f)
+    , mParentNode(new RumbleNode())
+    , mActiveNodes(new RumbleNode())
 {
 	for (int i = 0; i < p2; i++) {
-		_18->add(new RumbleNode());
+		mActiveNodes->add(new RumbleNode());
 	}
 	mDataMgr = nullptr;
 }
@@ -66,267 +69,116 @@ ContRumble::ContRumble(int p1, int p2)
  */
 void ContRumble::init()
 {
-	_00               = true;
-	_08.x             = 0.0f;
-	_08.y             = 0.0f;
-	_08.z             = 0.0f;
-	RumbleNode* node1 = (RumbleNode*)_14->mChild;
-	// This assumes that _14's head has at least child node
-	while (node1) {
-		RumbleNode* node2 = (RumbleNode*)node1->mNext;
-		node1->del();
-		_18->add(node1);
-		node1 = node2;
+	mIsActive           = true;
+	mTotalIntensity     = 0.0f;
+	mRumbleTimer        = 0.0f;
+	mRumbleTimeoutTimer = 0.0f;
+
+	RumbleNode* next;
+	for (RumbleNode* current = (RumbleNode*)mParentNode->mChild; current; current = next) {
+		next = (RumbleNode*)current->mNext;
+		current->del();
+		mActiveNodes->add(current);
 	}
-	PADControlMotor(_04, 2);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_8051A968@sda21(r2)
-	stw      r0, 0x24(r1)
-	li       r0, 1
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stb      r0, 0(r3)
-	stfs     f0, 8(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f0, 0x10(r3)
-	lwz      r3, 0x14(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_80252CD4
 
-lbl_80252CB8:
-	lwz      r31, 4(r30)
-	mr       r3, r30
-	bl       del__5CNodeFv
-	lwz      r3, 0x18(r29)
-	mr       r4, r30
-	bl       add__5CNodeFP5CNode
-	mr       r30, r31
-
-lbl_80252CD4:
-	cmplwi   r30, 0
-	bne      lbl_80252CB8
-	lwz      r3, 4(r29)
-	li       r4, 2
-	bl       PADControlMotor
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	PADControlMotor(mPadChannel, 2);
 }
 
 /*
  * --INFO--
  * Address:	80252D04
  * Size:	000290
+ * TODO
  */
 void ContRumble::update()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lfs      f30, lbl_8051A968@sda21(r2)
-	lwz      r3, 0x14(r3)
-	fmr      f31, f30
-	lwz      r3, 0x10(r3)
-	b        lbl_80252E9C
+	double maxRumbleIntensity = 0.0;
 
-lbl_80252D44:
-	lwz      r31, 4(r3)
-	mr       r30, r3
-	stfs     f31, 0x1c(r3)
-	lwz      r6, 0x2c(r3)
-	cmplwi   r6, 0
-	beq      lbl_80252DF8
-	lwz      r3, 0(r6)
-	li       r4, 0
-	mr       r5, r4
-	addic.   r0, r3, -1
-	mtctr    r0
-	ble      lbl_80252DE4
+	for (RumbleNode* currentNode = (RumbleNode*)mParentNode->mChild; currentNode; currentNode = (RumbleNode*)currentNode->mNext) {
+		currentNode->mCurrentIntensity = 0.0f;
 
-lbl_80252D74:
-	lwz      r3, 4(r6)
-	addi     r0, r4, 1
-	lfs      f1, 0x24(r30)
-	lfsx     f0, r3, r5
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80252DD8
-	slwi     r0, r0, 2
-	lfsx     f3, r3, r0
-	fcmpo    cr0, f1, f3
-	bge      lbl_80252DD8
-	slwi     r5, r4, 2
-	lwz      r4, 8(r6)
-	lfsx     f5, r3, r5
-	lfs      f2, lbl_8051A96C@sda21(r2)
-	fsubs    f4, f1, f5
-	lfsx     f0, r4, r0
-	fsubs    f3, f3, f5
-	lfsx     f1, r4, r5
-	fdivs    f3, f4, f3
-	fsubs    f2, f2, f3
-	fmuls    f0, f3, f0
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x1c(r30)
-	b        lbl_80252DE4
+		RumbleData* rumbleData = currentNode->mRumbleData;
+		if (rumbleData) {
+			int numRumbleSegments = rumbleData->mCount - 1;
 
-lbl_80252DD8:
-	addi     r5, r5, 4
-	addi     r4, r4, 1
-	bdnz     lbl_80252D74
+			int currentSegment;
+			for (currentSegment = 0; currentSegment < numRumbleSegments; currentSegment++) {
+				float* segmentThresholds = &rumbleData->mIntensityThresholds[currentSegment];
+				float currentTime        = currentNode->mRumbleTimer;
 
-lbl_80252DE4:
-	lfs      f1, 0x1c(r30)
-	lfs      f0, 0x20(r30)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1c(r30)
-	b        lbl_80252E00
+				if (currentTime < segmentThresholds[currentSegment]) {
+					continue;
+				}
+			}
 
-lbl_80252DF8:
-	lfs      f0, 0x20(r3)
-	stfs     f0, 0x1c(r3)
+			if (currentSegment < numRumbleSegments) {
+				double t
+				    = (currentNode->mRumbleTimer - rumbleData->mIntensityThresholds[4 * currentSegment])
+				    / (rumbleData->mIntensityThresholds[4 * (currentSegment + 1)] - rumbleData->mIntensityThresholds[4 * currentSegment]);
 
-lbl_80252E00:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x24(r30)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x24(r30)
-	lfs      f0, 0x1c(r30)
-	fcmpo    cr0, f30, f0
-	bge      lbl_80252E24
-	fmr      f30, f0
+				currentNode->mCurrentIntensity = ((1.0 - t) * rumbleData->mIntensityValues[4 * currentSegment])
+				                               + (t * rumbleData->mIntensityValues[4 * (currentSegment + 1)]);
+			} else {
+				currentNode->mCurrentIntensity = rumbleData->mIntensityValues[4 * numRumbleSegments];
+			}
+		} else {
+			currentNode->mCurrentIntensity = currentNode->mDefaultIntensity;
+		}
 
-lbl_80252E24:
-	lwz      r4, 0x2c(r30)
-	cmplwi   r4, 0
-	beq      lbl_80252E60
-	lwz      r0, 0(r4)
-	cmpwi    r0, 0
-	ble      lbl_80252E78
-	slwi     r3, r0, 2
-	lwz      r4, 4(r4)
-	addi     r0, r3, -4
-	lfs      f1, 0x24(r30)
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f1, f0
-	bge      lbl_80252E78
-	li       r0, 0
-	b        lbl_80252E7C
+		currentNode->mCurrentIntensity *= currentNode->mDefaultIntensity;
+		currentNode->mRumbleTimer += sys->mDeltaTime;
 
-lbl_80252E60:
-	lfs      f1, 0x24(r30)
-	lfs      f0, 0x28(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80252E78
-	li       r0, 0
-	b        lbl_80252E7C
+		if (maxRumbleIntensity < currentNode->mCurrentIntensity) {
+			maxRumbleIntensity = currentNode->mCurrentIntensity;
+		}
 
-lbl_80252E78:
-	li       r0, 1
+		RumbleData* limitData = currentNode->mRumbleData;
+		bool shouldAddToActiveNodes;
 
-lbl_80252E7C:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_80252E98
-	mr       r3, r30
-	bl       del__5CNodeFv
-	lwz      r3, 0x18(r29)
-	mr       r4, r30
-	bl       add__5CNodeFP5CNode
+		if (limitData) {
+			if (limitData->mCount > 0 && currentNode->mRumbleTimer < limitData->mIntensityThresholds[limitData->mCount - 1]) {
+				shouldAddToActiveNodes = false;
+			}
+		} else if (currentNode->mRumbleTimer < currentNode->_28) {
+			shouldAddToActiveNodes = false;
+		} else {
+			shouldAddToActiveNodes = true;
+		}
 
-lbl_80252E98:
-	mr       r3, r31
+		if (shouldAddToActiveNodes) {
+			currentNode->del();
+			mActiveNodes->add(currentNode);
+		}
+	}
 
-lbl_80252E9C:
-	cmplwi   r3, 0
-	bne      lbl_80252D44
-	lfs      f3, lbl_8051A968@sda21(r2)
-	fcmpo    cr0, f30, f3
-	ble      lbl_80252F24
-	lfs      f1, 8(r29)
-	lfs      f0, lbl_8051A96C@sda21(r2)
-	fadds    f1, f1, f30
-	stfs     f1, 8(r29)
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0xc(r29)
-	lfs      f1, 0x54(r3)
-	fadds    f1, f2, f1
-	stfs     f1, 0xc(r29)
-	stfs     f3, 0x10(r29)
-	lfs      f1, 8(r29)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80252F00
-	lbz      r0, 0(r29)
-	cmplwi   r0, 0
-	beq      lbl_80252F68
-	lwz      r3, 4(r29)
-	li       r4, 0
-	bl       PADControlMotor
-	b        lbl_80252F68
+	if (maxRumbleIntensity > 0.0f) {
+		mTotalIntensity += maxRumbleIntensity;
+		mRumbleTimer += sys->mDeltaTime;
+		mRumbleTimeoutTimer = 0.0f;
 
-lbl_80252F00:
-	fsubs    f0, f1, f0
-	stfs     f0, 8(r29)
-	lbz      r0, 0(r29)
-	cmplwi   r0, 0
-	beq      lbl_80252F68
-	lwz      r3, 4(r29)
-	li       r4, 1
-	bl       PADControlMotor
-	b        lbl_80252F68
+		if (mTotalIntensity < 0.0f) {
+			if (mIsActive) {
+				PADControlMotor(mPadChannel, PAD_MOTOR_STOP);
+			} else {
+				PADControlMotor(mPadChannel, PAD_MOTOR_RUMBLE);
+			}
+		}
+	} else {
+		mTotalIntensity = 0.0f;
+		mRumbleTimeoutTimer += sys->mDeltaTime;
 
-lbl_80252F24:
-	stfs     f3, 8(r29)
-	lfs      f0, lbl_8051A970@sda21(r2)
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x10(r29)
-	lfs      f1, 0x54(r3)
-	fadds    f1, f2, f1
-	stfs     f1, 0x10(r29)
-	lfs      f1, 0x10(r29)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80252F50
-	stfs     f3, 0xc(r29)
+		if (mRumbleTimeoutTimer > 3.0f) {
+			mRumbleTimer = 0.0f;
 
-lbl_80252F50:
-	lbz      r0, 0(r29)
-	cmplwi   r0, 0
-	beq      lbl_80252F68
-	lwz      r3, 4(r29)
-	li       r4, 2
-	bl       PADControlMotor
-
-lbl_80252F68:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+			if (mIsActive) {
+				PADControlMotor(mPadChannel, PAD_MOTOR_RUMBLE);
+			} else {
+				PADControlMotor(mPadChannel, PAD_MOTOR_STOP_HARD);
+			}
+		} else {
+			mRumbleTimer = 0.0f;
+		}
+	}
 }
 
 /*
@@ -334,145 +186,71 @@ lbl_80252F68:
  * Address:	80252F94
  * Size:	000058
  */
-void ContRumble::setController(bool p1)
+void ContRumble::setController(bool isActive)
 {
-	if ((!p1) && _00) {
-		PADControlMotor(_04, 2);
+	if (!isActive && mIsActive) {
+		PADControlMotor(mPadChannel, PAD_MOTOR_STOP_HARD);
 	}
-	_00 = p1;
+
+	mIsActive = isActive;
 }
 
 /*
  * --INFO--
  * Address:	80252FEC
  * Size:	000104
+ * TODO
  */
-void ContRumble::startRumble(int, float)
+void ContRumble::startRumble(int x, float y)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	stfs     f1, 8(r1)
-	lwz      r3, 0x18(r3)
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_802530D0
-	lwz      r3, 0x1c(r28)
-	cmplwi   r3, 0
-	beq      lbl_802530D0
-	lfs      f1, 0xc(r28)
-	lfs      f0, lbl_8051A974@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802530D0
-	bl       getRumbleData__Q24Game13RumbleDataMgrFi
-	lwz      r4, 0x18(r28)
-	mr       r31, r3
-	lwz      r30, 0x10(r4)
-	mr       r3, r30
-	bl       del__5CNodeFv
-	cmplwi   r31, 0
-	beq      lbl_80253084
-	lfs      f1, 8(r1)
-	lfs      f0, lbl_8051A968@sda21(r2)
-	stw      r29, 0x18(r30)
-	stfs     f0, 0x1c(r30)
-	stfs     f1, 0x20(r30)
-	stfs     f0, 0x24(r30)
-	stfs     f0, 0x28(r30)
-	stw      r31, 0x2c(r30)
-	b        lbl_802530C4
+	if (mActiveNodes->mChild && mDataMgr && mRumbleTimer < 30.0f) {
+		RumbleData* data = mDataMgr->getRumbleData(x);
 
-lbl_80253084:
-	lfs      f0, lbl_8051A968@sda21(r2)
-	mr       r3, r28
-	mr       r4, r29
-	addi     r5, r1, 8
-	stfs     f0, 0xc(r1)
-	addi     r6, r1, 0xc
-	bl       getRumbleParameter__Q24Game10ContRumbleFiRfRf
-	lfs      f2, 0xc(r1)
-	lfs      f1, 8(r1)
-	lfs      f0, lbl_8051A968@sda21(r2)
-	stw      r29, 0x18(r30)
-	stfs     f0, 0x1c(r30)
-	stfs     f1, 0x20(r30)
-	stfs     f0, 0x24(r30)
-	stfs     f2, 0x28(r30)
-	stw      r31, 0x2c(r30)
+		RumbleNode* node = (RumbleNode*)mActiveNodes->mChild;
 
-lbl_802530C4:
-	lwz      r3, 0x14(r28)
-	mr       r4, r30
-	bl       add__5CNodeFP5CNode
+		node->del();
 
-lbl_802530D0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		if (data) {
+			f32 v8                  = y;
+			node->_18               = x;
+			node->mCurrentIntensity = 0.0;
+			node->mDefaultIntensity = v8;
+			node->mRumbleTimer      = 0.0;
+			node->_28               = 0.0;
+			node->mRumbleData       = data;
+		} else {
+			float z = 0.0;
+			getRumbleParameter(x, y, z);
+			f32 v9                  = z;
+			node->_18               = x;
+			node->mCurrentIntensity = 0.0;
+			node->mDefaultIntensity = 0.0;
+			node->mRumbleTimer      = 0.0;
+			node->_28               = v9; // WTF?
+			node->mRumbleData       = 0;
+		}
+
+		mParentNode->add(node);
+	}
 }
 
 /*
  * --INFO--
  * Address:	802530F0
  * Size:	000088
+ * TODO
  */
 void ContRumble::rumbleStop()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 0x14(r3)
-	lwz      r31, 0x10(r3)
-	mr       r29, r31
-	b        lbl_8025313C
+	RumbleNode* child = (RumbleNode*)mParentNode->mChild;
+	for (RumbleNode* i = child; i; i = (RumbleNode*)i->mNext) {
+		i->del();
+		mActiveNodes->add(i);
+	}
 
-lbl_80253120:
-	lwz      r30, 4(r29)
-	mr       r3, r29
-	bl       del__5CNodeFv
-	lwz      r3, 0x18(r28)
-	mr       r4, r29
-	bl       add__5CNodeFP5CNode
-	mr       r29, r30
-
-lbl_8025313C:
-	cmplwi   r29, 0
-	bne      lbl_80253120
-	cmplwi   r31, 0
-	beq      lbl_80253158
-	lwz      r3, 4(r28)
-	li       r4, 2
-	bl       PADControlMotor
-
-lbl_80253158:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (child) {
+		PADControlMotor(mPadChannel, 2);
+	}
 }
 
 /*

@@ -48,7 +48,7 @@ struct Obj : public EnemyBase {
 	virtual void doDirectDraw(Graphics& gfx);               // _50
 	virtual void inWaterCallback(WaterBox*) { }             // _84 (weak)
 	virtual void outWaterCallback() { }                     // _88 (weak)
-	virtual bool isLivingThing() { return _2C0; }           // _D4 (weak)
+	virtual bool isLivingThing() { return mIsLivingThing; } // _D4 (weak)
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
@@ -92,12 +92,12 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                            // _2BC
-	bool _2C0;                            // _2C0
+	bool mIsLivingThing;                  // _2C0
 	f32 mWaitTimer;                       // _2C4
 	TeamList mTeamList;                   // _2C8
-	Vector3f _2E4;                        // _2E4
+	Vector3f mBirthPosition;              // _2E4
 	efx::TDenkiHibaMgr* mEfxDenkiHibaMgr; // _2F0
-	bool _2F4;                            // _2F4, might be a bool?
+	bool mIsVersusModeHiba;               // _2F4, might be a bool?
 	EVersusHibaType mVersusHibaType;      // _2F8
 	int mRedAttrAttackCount;              // _2FC
 	int mBlueAttrAttackCount;             // _300

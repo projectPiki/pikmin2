@@ -252,16 +252,16 @@ void TyreShadowMgr::init()
 void TyreShadowMgr::update()
 {
 	JointShadowParm parm;
-	parm._00 = mObj->getPosition();
-	parm._0C = Vector3f(0.0f, 1.0f, 0.0f);
+	parm.mPosition = mObj->getPosition();
+	parm._0C       = Vector3f(0.0f, 1.0f, 0.0f);
 
 	f32 scale1 = 31.5f * _00;
 	f32 scale2 = 17.5f * _00;
 
-	parm._20 = 0.0f;
-	parm._24 = -17.5f;
-	parm._18 = scale1;
-	parm._1C = scale2;
+	parm.mShadowScale = 0.0f;
+	parm._24          = -17.5f;
+	parm._18          = scale1;
+	parm._1C          = scale2;
 
 	mFrontShadow->makeShadowSRT(parm, mFrontMatrix);
 	mBackShadow->makeShadowSRT(parm, mBackMatrix);

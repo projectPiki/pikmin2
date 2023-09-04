@@ -65,8 +65,8 @@ void Obj::onInit(CreatureInitArg* args)
 
 	setEmotionNone();
 	shadowMgr->killShadow(this);
-	mWaitTimer = 0.0f;
-	_2C0       = true;
+	mWaitTimer     = 0.0f;
+	mIsLivingThing = true;
 	setupLodParms();
 	if (mTeamList.mChild) {
 		FOREACH_NODE(TeamList, mTeamList.mChild, node)
@@ -144,7 +144,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if ((creature) && !creature->isNavi()) {
-		if (_2F4) {
+		if (mIsVersusModeHiba) {
 			if (creature->isPiki()) {
 				Piki* piki         = static_cast<Piki*>(creature);
 				TeamList* listHead = static_cast<TeamList*>(mTeamList.mParent);
@@ -262,7 +262,7 @@ Obj* Obj::getChildObjPtr()
  */
 void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
 {
-	Vector3f initPos = _2E4;
+	Vector3f initPos = mBirthPosition;
 	f32 theta        = HALF_PI + getFaceDir();
 	f32 halfFactor   = param->_00 / 2;
 
@@ -913,10 +913,11 @@ void Obj::generatorKill()
 void Obj::setVersusHibaOnOff()
 {
 	if ((gameSystem && gameSystem->isVersusMode()) && (Cave::randMapMgr && Cave::randMapMgr->isVersusHiba())) {
-		_2F4 = true;
+		mIsVersusModeHiba = true;
 		return;
 	}
-	_2F4 = false;
+
+	mIsVersusModeHiba = false;
 }
 
 /*

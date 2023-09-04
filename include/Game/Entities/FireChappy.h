@@ -57,10 +57,10 @@ struct Obj : public ChappyBase::Obj {
 
 	inline f32 setLowBound(f32 bound, f32 result)
 	{
-		if (_2F8 <= bound) {
+		if (mAnimationFireTimer <= bound) {
 			return result;
 		} else {
-			return _2F8;
+			return mAnimationFireTimer;
 		}
 	}
 
@@ -71,7 +71,7 @@ struct Obj : public ChappyBase::Obj {
 	efx::TYakiFlick* mEfxFlick;           // _2EC
 	efx::TYakiDeadsmoke* mEfxDeadsmoke;   // _2F0
 	efx::TYakiSteam* mEfxSteam;           // _2F4
-	f32 _2F8;                             // _2F8
+	f32 mAnimationFireTimer;              // _2F8
 	Sys::MatLoopAnimator* mLoopAnimators; // _2FC, array of 2 animators
 	                                      // _300 = PelletView
 };

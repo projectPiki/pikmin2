@@ -42,13 +42,13 @@ void Obj::onInit(CreatureInitArg* arg)
 	EnemyBase::onInit(arg);
 	enableEvent(0, EB_IsVulnerable);
 	disableEvent(0, EB_IsCullable);
-	mIsRolling   = false;
-	_2DC.z       = 0.0f;
-	_2DC.y       = 0.0f;
-	_2DC.x       = 0.0f;
-	_2C4         = 0.0f;
-	mNextState   = DANGOMUSHI_NULL;
-	mShadowScale = 0.0f;
+	mIsRolling         = false;
+	mRollingVelocity.z = 0.0f;
+	mRollingVelocity.y = 0.0f;
+	mRollingVelocity.x = 0.0f;
+	_2C4               = 0.0f;
+	mNextState         = DANGOMUSHI_NULL;
+	mShadowScale       = 0.0f;
 	setupCollision();
 	setBodyCollision(false);
 	_2C1 = 0;
@@ -95,8 +95,8 @@ void Obj::doUpdate()
  */
 void Obj::doUpdateCommon()
 {
-	_2DC.x = mCurrentVelocity.x;
-	_2DC.z = mCurrentVelocity.z;
+	mRollingVelocity.x = mCurrentVelocity.x;
+	mRollingVelocity.z = mCurrentVelocity.z;
 	EnemyBase::doUpdateCommon();
 	updateBossBGM();
 }
@@ -258,7 +258,7 @@ void Obj::collisionCallback(CollEvent& evt)
 void Obj::wallCallback(const MoveInfo& mvInfo)
 {
 	if (mIsRolling) {
-		Vector3f velocity = _2DC;
+		Vector3f velocity = mRollingVelocity;
 		f32 speed         = _normalise2(velocity);
 		if (speed > 100.0f && dot(velocity, mvInfo.mReflectPosition) < -0.5f) {
 			createBodyWallCrashEffect(mvInfo.mReflectPosition);

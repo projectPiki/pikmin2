@@ -440,10 +440,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	_2C4       = 128.0f;
-	_2C0       = 0.0f;
+	mAirTimer  = 0.0f;
 	mNextState = FROG_NULL;
-	_2D8       = false;
-	_2D9       = false;
+	mIsInAir   = false;
+	mIsFalling = false;
 	setupEffect();
 	mFsm->start(this, 1, nullptr);
 }

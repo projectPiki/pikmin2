@@ -832,7 +832,7 @@ void StateJumpWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateJumpWait::exec(EnemyBase* enemy)
 {
 	Obj* frog = OBJ(enemy);
-	if (frog->_2C0 > CG_PROPERPARMS(frog).mAirTime.mValue) {
+	if (frog->mAirTimer > CG_PROPERPARMS(frog).mAirTime.mValue) {
 		frog->finishMotion();
 	}
 
@@ -860,8 +860,8 @@ void StateJumpWait::cleanup(EnemyBase* enemy)
  */
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* frog  = OBJ(enemy);
-	frog->_2D9 = true;
+	Obj* frog        = OBJ(enemy);
+	frog->mIsFalling = true;
 	frog->disableEvent(0, EB_IsCullable);
 	frog->mTargetVelocity = Vector3f(0.0f);
 	frog->disableEvent(0, EB_IsFlying);
@@ -889,8 +889,8 @@ void StateFall::exec(EnemyBase* enemy)
  */
 void StateFall::cleanup(EnemyBase* enemy)
 {
-	Obj* frog  = OBJ(enemy);
-	frog->_2D9 = false;
+	Obj* frog        = OBJ(enemy);
+	frog->mIsFalling = false;
 	frog->enableEvent(0, EB_IsCullable);
 	frog->setEmotionCaution();
 }
@@ -902,8 +902,8 @@ void StateFall::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* frog  = OBJ(enemy);
-	frog->_2D9 = false;
+	Obj* frog        = OBJ(enemy);
+	frog->mIsFalling = false;
 	frog->pressOnGround();
 	frog->_2C4 = 0.0f;
 	frog->disableEvent(0, EB_IsCullable);
@@ -1200,8 +1200,8 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* frog        = OBJ(enemy);
 	frog->mNextState = FROG_NULL;
-	frog->_2D8       = false;
-	frog->_2C0       = 0.0f;
+	frog->mIsInAir   = false;
+	frog->mAirTimer  = 0.0f;
 	frog->disableEvent(0, EB_IsEnemyNotBitter);
 	frog->mTargetVelocity = Vector3f(0.0f);
 	frog->startMotion(3, nullptr);
@@ -1215,7 +1215,7 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 void StateGoHome::exec(EnemyBase* enemy)
 {
 	Obj* frog = OBJ(enemy);
-	if (frog->_2D8) {
+	if (frog->mIsInAir) {
 		Vector3f pos     = frog->getPosition();
 		Vector3f homePos = Vector3f(frog->mHomePosition);
 		EnemyFunc::walkToTarget(frog, homePos, CG_PARMS(frog)->mGeneral.mMoveSpeed.mValue, CG_PARMS(frog)->mGeneral.mRotationalAccel.mValue,
@@ -1224,7 +1224,7 @@ void StateGoHome::exec(EnemyBase* enemy)
 		if (sqrDistanceXZ(pos, homePos) < SQUARE(*CG_PARMS(frog)->mGeneral.mHomeRadius())) {
 			frog->mNextState = FROG_Wait;
 			frog->finishMotion();
-		} else if (frog->_2C0 > 7.5f) {
+		} else if (frog->mAirTimer > 7.5f) {
 			frog->resetHomePosition();
 		}
 	} else {
@@ -1241,14 +1241,14 @@ void StateGoHome::exec(EnemyBase* enemy)
 		frog->finishMotion();
 	}
 
-	frog->_2C0 += sys->mDeltaTime;
+	frog->mAirTimer += sys->mDeltaTime;
 
 	if (frog->mCurAnim->mIsPlaying) {
 		if (frog->mCurAnim->mType == KEYEVENT_2) {
-			frog->_2D8 = true;
+			frog->mIsInAir = true;
 			frog->enableEvent(0, EB_IsEnemyNotBitter);
 		} else if (frog->mCurAnim->mType == KEYEVENT_3) {
-			frog->_2D8 = false;
+			frog->mIsInAir = false;
 			frog->disableEvent(0, EB_IsEnemyNotBitter);
 			frog->createDownEffect(0.5f);
 		} else if (frog->mCurAnim->mType == KEYEVENT_END) {

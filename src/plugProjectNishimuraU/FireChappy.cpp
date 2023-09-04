@@ -169,7 +169,7 @@ void Obj::startFireState()
 		mOnFire = true;
 		startBodyEffect();
 	}
-	_2F8 = 30.0f;
+	mAnimationFireTimer = 30.0f;
 }
 
 /*
@@ -217,7 +217,7 @@ void Obj::updateFireState()
 			startBodyEffect();
 		}
 
-		_2F8 = 30.0f;
+		mAnimationFireTimer = 30.0f;
 	}
 }
 
@@ -258,21 +258,21 @@ void Obj::updateMaterialAnimation()
 		f32 frameMax                     = (animation) ? animation->getFrameMax() : 0.0f;
 		frameMax -= 30.0f;
 
-		if (_2F8 == 30.0f) {
+		if (mAnimationFireTimer == 30.0f) {
 			if (p2 >= frameMax - 1.0f && p2 <= frameMax) {
-				_2F8 -= 0.5f;
+				mAnimationFireTimer -= 0.5f;
 			}
 		} else {
-			_2F8 -= 0.5f;
-			if (_2F8 < 0.0f) {
-				_2F8 = 0.0f;
+			mAnimationFireTimer -= 0.5f;
+			if (mAnimationFireTimer < 0.0f) {
+				mAnimationFireTimer = 0.0f;
 			}
 		}
 
-		if (_2F8 <= 0.0f) {
+		if (mAnimationFireTimer <= 0.0f) {
 			p1 = 0.0f;
 		} else {
-			p1 = _2F8;
+			p1 = mAnimationFireTimer;
 		}
 	}
 

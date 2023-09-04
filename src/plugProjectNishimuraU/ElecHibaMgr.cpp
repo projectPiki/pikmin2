@@ -108,15 +108,15 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 	param._00     = 100.0f;
 	Obj* elecHiba = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
 	if (elecHiba) {
-		elecHiba->_2E4 = birthArg.mPosition;
+		elecHiba->mBirthPosition = birthArg.mPosition;
 		elecHiba->setElecHibaPosition(&param, 1.0f);
 		teamList = &elecHiba->mTeamList;
 		elecHiba->createEffect(true);
 
 		EnemyBase* potentialPartner = EnemyMgrBase::birth(birthArg);
 		if (potentialPartner) {
-			Obj* elecHibaPartner  = static_cast<Obj*>(potentialPartner);
-			elecHibaPartner->_2E4 = birthArg.mPosition;
+			Obj* elecHibaPartner            = static_cast<Obj*>(potentialPartner);
+			elecHibaPartner->mBirthPosition = birthArg.mPosition;
 			elecHibaPartner->setElecHibaPosition(&param, -1.0f);
 			elecHibaPartner->createEffect(false);
 			teamList->add(&elecHibaPartner->mTeamList);

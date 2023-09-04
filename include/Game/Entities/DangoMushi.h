@@ -119,7 +119,7 @@ struct Obj : public EnemyBase {
 	f32 mShadowScale;                       // _2C8
 	StateID mNextState;                     // _2CC
 	Vector3f mTargetPosition;               // _2D0
-	Vector3f _2DC;                          // _2DC, unknown
+	Vector3f mRollingVelocity;              // _2DC, unknown
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // _2E8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2F0
 	efx::TDangoWallBreak* mEfxWallBreak;    // _2F4

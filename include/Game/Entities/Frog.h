@@ -71,12 +71,12 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                // _2BC
-	f32 _2C0;                 // _2C0
+	f32 mAirTimer;            // _2C0
 	f32 _2C4;                 // _2C4
 	Vector3f mTargetPosition; // _2C8
 	int mNextState;           // _2D4
-	bool _2D8;                // _2D8, unknown
-	bool _2D9;                // _2D9, unknown
+	bool mIsInAir;            // _2D8
+	bool mIsFalling;          // _2D9
 	efx::TFrogPota* mEfxPota; // _2DC
 	                          // _2E0 = PelletView
 };

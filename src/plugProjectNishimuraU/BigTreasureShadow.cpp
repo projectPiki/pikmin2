@@ -140,8 +140,8 @@ void BigTreasureShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { mJ
 void BigTreasureShadowMgr::update()
 {
 	JointShadowParm parm;
-	parm._00 = mObj->getTraceCentrePosition();
-	parm._0C = Vector3f(0.5f, 3.0f, 0.5f);
+	parm.mPosition = mObj->getTraceCentrePosition();
+	parm._0C       = Vector3f(0.5f, 3.0f, 0.5f);
 	parm._0C.normalise();
 	*mKosiPosition = mBodyMatrix->getBasis(3);
 	mKosiPosition->y += -20.0f;
@@ -156,51 +156,51 @@ void BigTreasureShadowMgr::update()
 	Vector3f vec1(20.0f * sinTheta, 0.0f, 20.0f * cosTheta);
 	Vector3f vec2(-10.0f * sinTheta, -0.0f, -10.0f * cosTheta);
 
-	parm._18 = 0.0f;
-	parm._1C = 0.0f;
-	parm._20 = 20.0f * mObj->mShadowScale;
-	parm._24 = -75.0f;
+	parm._18          = 0.0f;
+	parm._1C          = 0.0f;
+	parm.mShadowScale = 20.0f * mObj->mShadowScale;
+	parm._24          = -75.0f;
 
 	Vector3f pos1 = vec1 + *mKosiPosition;
 	Vector3f pos2 = vec2 + *mKosiPosition;
 
 	_88->makeShadowSRT(parm, pos1);
 
-	parm._20 = 27.0f * mObj->mShadowScale;
+	parm.mShadowScale = 27.0f * mObj->mShadowScale;
 
 	_8C->makeShadowSRT(parm, pos2);
 
 	Vector3f shadowVecs[4];
 
 	for (int i = 0; i < 4; i++) {
-		parm._18 = 92.5f;
-		parm._1C = -62.5f;
-		parm._20 = p1;
-		parm._24 = -10.0f;
+		parm._18          = 92.5f;
+		parm._1C          = -62.5f;
+		parm.mShadowScale = p1;
+		parm._24          = -10.0f;
 		_90[i]->makeShadowSRT(parm, *mKosiPosition, shadowVecs[0]);
 
-		parm._18 = 0.0f;
-		parm._1C = 0.0f;
-		parm._20 = p1;
-		parm._24 = -10.0f;
+		parm._18          = 0.0f;
+		parm._1C          = 0.0f;
+		parm.mShadowScale = p1;
+		parm._24          = -10.0f;
 		_A0[i]->makeShadowSRT(parm, shadowVecs[0], shadowVecs[1]);
 
-		parm._18 = 95.0f;
-		parm._1C = -20.0f;
-		parm._20 = p1;
-		parm._24 = -10.0f;
+		parm._18          = 95.0f;
+		parm._1C          = -20.0f;
+		parm.mShadowScale = p1;
+		parm._24          = -10.0f;
 		_B0[i]->makeShadowSRT(parm, shadowVecs[1], shadowVecs[2]);
 
-		parm._18 = 0.0f;
-		parm._1C = 0.0f;
-		parm._20 = p1;
-		parm._24 = -10.0f;
+		parm._18          = 0.0f;
+		parm._1C          = 0.0f;
+		parm.mShadowScale = p1;
+		parm._24          = -10.0f;
 		_C0[i]->makeShadowSRT(parm, shadowVecs[2], shadowVecs[3]);
 
-		parm._18 = 0.0f;
-		parm._1C = 0.0f;
-		parm._20 = p2;
-		parm._24 = -10.0f;
+		parm._18          = 0.0f;
+		parm._1C          = 0.0f;
+		parm.mShadowScale = p2;
+		parm._24          = -10.0f;
 		_D0[i]->makeShadowSRT(parm, shadowVecs[0]);
 		_E0[i]->makeShadowSRT(parm, shadowVecs[1]);
 		_F0[i]->makeShadowSRT(parm, shadowVecs[2]);

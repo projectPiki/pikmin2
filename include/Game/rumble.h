@@ -21,21 +21,21 @@ struct RumbleData {
 			return;
 		}
 
-		_04 = new f32[mCount];
-		_08 = new f32[mCount];
+		mIntensityThresholds = new f32[mCount];
+		mIntensityValues     = new f32[mCount];
 
 		for (int j = 0; j < mCount; j++) {
-			_04[j] = stream.readFloat();
+			mIntensityThresholds[j] = stream.readFloat();
 		}
 
 		for (int j = 0; j < mCount; j++) {
-			_08[j] = stream.readFloat();
+			mIntensityValues[j] = stream.readFloat();
 		}
 	}
 
-	s32 mCount; // _00
-	f32* _04;   // _04
-	f32* _08;   // _08
+	s32 mCount;                // _00
+	f32* mIntensityThresholds; // _04
+	f32* mIntensityValues;     // _08
 };
 
 struct RumbleDataMgr {
@@ -52,11 +52,11 @@ struct RumbleNode : public CNode {
 	inline RumbleNode()
 	    : CNode()
 	    , _18(-1)
-	    , _1C(0.0f)
-	    , _20(0.0f)
-	    , _24(0.0f)
+	    , mCurrentIntensity(0.0f)
+	    , mDefaultIntensity(0.0f)
+	    , mRumbleTimer(0.0f)
 	    , _28(0.0f)
-	    , _2C(0)
+	    , mRumbleData(0)
 	{
 	}
 
@@ -64,12 +64,12 @@ struct RumbleNode : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	int _18; // _18
-	f32 _1C; // _1C
-	f32 _20; // _20
-	f32 _24; // _24
-	f32 _28; // _28
-	u32 _2C; // _2C
+	int _18;                 // _18
+	f32 mCurrentIntensity;   // _1C
+	f32 mDefaultIntensity;   // _20
+	f32 mRumbleTimer;        // _24
+	f32 _28;                 // _28
+	RumbleData* mRumbleData; // _2C
 };
 
 struct ContRumble {
@@ -83,12 +83,14 @@ struct ContRumble {
 	void rumbleStop(int);
 	void getRumbleParameter(int, f32&, f32&);
 
-	bool _00;                // _00
-	int _04;                 // _04
-	Vector3f _08;            // _08
-	RumbleNode* _14;         // _14
-	RumbleNode* _18;         // _18
-	RumbleDataMgr* mDataMgr; // _1C
+	bool mIsActive;           // _00
+	int mPadChannel;          // _04
+	f32 mTotalIntensity;      // _08
+	f32 mRumbleTimer;         // _0C
+	f32 mRumbleTimeoutTimer;  // _10
+	RumbleNode* mParentNode;  // _14
+	RumbleNode* mActiveNodes; // _18
+	RumbleDataMgr* mDataMgr;  // _1C
 };
 
 struct RumbleMgr : public CNode {

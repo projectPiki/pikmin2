@@ -34,7 +34,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	elecHiba->enableEvent(0, EB_IsVulnerable);
 	elecHiba->disableEvent(0, EB_IsDamageAnimAllowed);
 
-	elecHiba->_2C0 = 0;
+	elecHiba->mIsLivingThing = 0;
 	elecHiba->generatorKill();
 	elecHiba->startMotion(0, nullptr);
 	elecHiba->getJAIObject()->startSound(PSSE_EN_HIBA_STOP, 0);
@@ -55,7 +55,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 		childHiba->enableEvent(0, EB_IsVulnerable);
 		childHiba->disableEvent(0, EB_IsDamageAnimAllowed);
 
-		childHiba->_2C0 = 0;
+		childHiba->mIsLivingThing = 0;
 		childHiba->generatorKill();
 		childHiba->startMotion(0, nullptr);
 		childHiba->getJAIObject()->startSound(PSSE_EN_HIBA_STOP, 0);
@@ -121,7 +121,7 @@ void StateWait::exec(EnemyBase* enemy)
 
 	elecHiba->mWaitTimer += sys->mDeltaTime;
 
-	if (elecHiba->_2F4 != 0) {
+	if (elecHiba->mIsVersusModeHiba != 0) {
 		if (elecHiba->isWaitFinish()) {
 			transit(elecHiba, ELECHIBA_Sign, nullptr);
 		}
@@ -234,7 +234,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	elecHiba->mWaitTimer += sys->mDeltaTime;
 
-	if (elecHiba->_2F4 != 0) {
+	if (elecHiba->mIsVersusModeHiba != 0) {
 		if (elecHiba->isAttackFinish()) {
 			transit(elecHiba, ELECHIBA_Wait, nullptr);
 		}

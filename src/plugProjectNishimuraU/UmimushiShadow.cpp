@@ -167,17 +167,17 @@ void UmimushiSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat
 	Vector3f zVec;
 
 	if (isAlive) { // regswaps
-		xVec = mat->getBasis(0) * (parm._20 + 2.5f);
-		zVec = mat->getBasis(2) * parm._20;
+		xVec = mat->getBasis(0) * (parm.mShadowScale + 2.5f);
+		zVec = mat->getBasis(2) * parm.mShadowScale;
 	} else {
-		xVec = Vector3f(parm._20, 0.0f, 0.0f);
-		zVec = Vector3f(0.0f, 0.0f, parm._20);
+		xVec = Vector3f(parm.mShadowScale, 0.0f, 0.0f);
+		zVec = Vector3f(0.0f, 0.0f, parm.mShadowScale);
 	}
 
 	Vector3f pos = vec;
 	pos.y += parm._24;
 
-	Vector3f yVec(0.0f, (vec.y - parm._00.y) + 25.0f, 0.0f);
+	Vector3f yVec(0.0f, (vec.y - parm.mPosition.y) + 25.0f, 0.0f);
 
 	_1C->setBasis(0, xVec);
 	_1C->setBasis(1, yVec);
@@ -284,22 +284,22 @@ void UmimushiShadowMgr::update()
 	Vector3f vec1;
 	Vector3f vec2;
 
-	parm._00 = position;
-	parm._0C = Vector3f(0.0f, 1.0f, 0.0f);
+	parm.mPosition = position;
+	parm._0C       = Vector3f(0.0f, 1.0f, 0.0f);
 
 	vec1 = mWeakMatrix1->getBasis(3);
 
-	parm._18 = -12.5f;
-	parm._1C = 0.0f;
-	parm._20 = 1.5f;
-	parm._24 = 0.0f;
+	parm._18          = -12.5f;
+	parm._1C          = 0.0f;
+	parm.mShadowScale = 1.5f;
+	parm._24          = 0.0f;
 
 	mTubeShadow->makeShadowSRT(parm, mWeakMatrix2, vec1, vec2);
 
-	parm._18 = 0.0f;
-	parm._1C = 0.0f;
-	parm._20 = 15.0f;
-	parm._24 = -12.5f;
+	parm._18          = 0.0f;
+	parm._1C          = 0.0f;
+	parm.mShadowScale = 15.0f;
+	parm._24          = -12.5f;
 
 	mSphereShadow->makeShadowSRT(parm, mWeakMatrix2, vec2, mObj->isAlive());
 
