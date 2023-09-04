@@ -586,7 +586,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		EnemyFunc::walkToTarget(fuefuki, targetPos, CG_PARMS(fuefuki)->mGeneral.mMoveSpeed.mValue,
 		                        CG_PARMS(fuefuki)->mGeneral.mRotationalAccel.mValue, CG_PARMS(fuefuki)->mGeneral.mRotationalSpeed.mValue);
 		if (fuefuki->isArriveTarget()) {
-			if (fuefuki->_2D4 > 0.0f) {
+			if (fuefuki->mTurnTimer > 0.0f) {
 				fuefuki->mNextState = FUEFUKI_Turn;
 			} else {
 				fuefuki->mNextState = FUEFUKI_Wait;
@@ -598,7 +598,7 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 
 	if (fuefuki->mStateTimer > 5.0f) {
-		if (fuefuki->_2D4 > 0.0f) {
+		if (fuefuki->mTurnTimer > 0.0f) {
 			fuefuki->mNextState = FUEFUKI_Turn;
 		} else {
 			fuefuki->mNextState = FUEFUKI_Wait;
@@ -668,7 +668,7 @@ void StateWhisle::exec(EnemyBase* enemy)
 	Obj* fuefuki = OBJ(enemy);
 	fuefuki->updateWhisle();
 	if (fuefuki->mStateTimer > 3.0f) {
-		if (fuefuki->_2D4 > 0.0f) {
+		if (fuefuki->mTurnTimer > 0.0f) {
 			fuefuki->mNextState = FUEFUKI_Turn;
 		} else {
 			fuefuki->mNextState = FUEFUKI_Wait;

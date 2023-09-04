@@ -107,17 +107,17 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                           // _2BC
 	int _2C0;                            // _2C0
-	f32 _2C4;                            // _2C4
+	f32 mAirWaitTime;                    // _2C4
 	u32 _2C8;                            // _2C8, unknown
 	f32 mFallTimer;                      // _2CC
 	f32 mShadowOffset;                   // _2D0
 	f32 mShadowRadius;                   // _2D4
 	Vector3f mTargetPosition;            // _2D8
 	Matrixf* mEfxMatrix;                 // _2E4
-	Vector3f _2E8;                       // _2E8
-	Vector3f _2F4;                       // _2F4
+	Vector3f mEfxPosition;               // _2E8
+	Vector3f mFaceDirection;             // _2F4
 	Vector3f mAttackPosition;            // _300
-	f32 _30C;                            // _30C
+	f32 mCurrentAttackRadius;            // _30C
 	u8 _310;                             // _310, unknown
 	f32 mPitchRatio;                     // _314
 	efx::TFusenDead* mEfxDead;           // _318
@@ -153,25 +153,25 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "基準飛行高さ", 90.0f, 0.0f, 150.0f)   // 'standard flight height'
-		    , mFp02(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)         // 'rise factor'
-		    , mFp03(this, 'fp03', "空中ウェイト時間", 3.0f, 0.0f, 10.0f) // 'air wait time'
-		    , mFp10(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f) // 'ground wait time'
-		    , mFp04(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)     // 'shake off time'
-		    , mIp01(this, 'ip01', "落下最低ピキ数", 10, 1, 50)           // 'falling minimum number piki'
-		    , mFp05(this, 'fp05', "上下の揺れ速度", 2.5f, 0.0f, 10.0f)   // 'vertical swing speed'
-		    , mFp06(this, 'fp06', "上下の揺れ幅", 5.0f, 0.0f, 10.0f)     // 'vertical swing width'
+		    , mStandardFlightHeight(this, 'fp01', "基準飛行高さ", 90.0f, 0.0f, 150.0f) // 'standard flight height'
+		    , mRiseFactor(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)                 // 'rise factor'
+		    , mAirWaitTime(this, 'fp03', "空中ウェイト時間", 3.0f, 0.0f, 10.0f)        // 'air wait time'
+		    , mGroundWaitTime(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f)     // 'ground wait time'
+		    , mShakeOffTime(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)           // 'shake off time'
+		    , mFallingMinimumPikiNum(this, 'ip01', "落下最低ピキ数", 10, 1, 50)        // 'falling minimum number piki'
+		    , mVerticalSwingSpeed(this, 'fp05', "上下の揺れ速度", 2.5f, 0.0f, 10.0f)   // 'vertical swing speed'
+		    , mVerticalSwingWidth(this, 'fp06', "上下の揺れ幅", 5.0f, 0.0f, 10.0f)     // 'vertical swing width'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp03; // _854
-		Parm<f32> mFp10; // _87C
-		Parm<f32> mFp04; // _8A4
-		Parm<int> mIp01; // _8CC
-		Parm<f32> mFp05; // _8F4
-		Parm<f32> mFp06; // _91C
+		Parm<f32> mStandardFlightHeight;  // _804
+		Parm<f32> mRiseFactor;            // _82C
+		Parm<f32> mAirWaitTime;           // _854
+		Parm<f32> mGroundWaitTime;        // _87C
+		Parm<f32> mShakeOffTime;          // _8A4
+		Parm<int> mFallingMinimumPikiNum; // _8CC
+		Parm<f32> mVerticalSwingSpeed;    // _8F4
+		Parm<f32> mVerticalSwingWidth;    // _91C
 	};
 
 	Parms() { }

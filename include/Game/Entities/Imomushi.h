@@ -90,12 +90,12 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                     // _2BC
-	bool _2C0;                     // _2C0, unknown
+	bool mIsStaying;               // _2C0, unknown
 	StateID mNextState;            // _2C4
-	f32 _2C8;                      // _2C8
+	f32 mStayTimer;                // _2C8
 	u8 _2CC[0xC];                  // _2CC, unknown
-	Vector3f _2D8;                 // _2D8
-	Vector3f _2E4;                 // _2E4
+	Vector3f mFaceDirection;       // _2D8
+	Vector3f mInvFaceDirection;    // _2E4
 	Vector3f mZukanTargetPosition; // _2F0
 	f32 _2FC;                      // _2FC
 	u8 _300[0x10];                 // _300, unknown

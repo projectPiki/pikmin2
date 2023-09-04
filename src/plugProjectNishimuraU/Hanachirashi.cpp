@@ -39,9 +39,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_ToLeaveCarcass);
 	enableEvent(0, EB_IsFlying);
 
-	_2C0       = -1;
-	_2C4       = 0.0f;
-	mFallTimer = 0.0f;
+	_2C0         = -1;
+	mAirWaitTime = 0.0f;
+	mFallTimer   = 0.0f;
 
 	resetShadowOffset();
 	resetShadowRadius();
@@ -51,7 +51,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mEfxMatrix  = mModel->getJoint("hana3")->getWorldMatrix();
 	setupEffect();
 
-	_30C = 0.0f;
+	mCurrentAttackRadius = 0.0f;
 
 	mFsm->start(this, HANACHIRASHI_Wait, nullptr);
 
@@ -149,7 +149,7 @@ void Obj::getShadowParam(ShadowParam& shadow)
 
 	shadow.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	if (isFlying() || !mBounceTriangle) {
-		shadow.mBoundingSphere.mRadius = C_PROPERPARMS.mFp01.mValue + 100.0f;
+		shadow.mBoundingSphere.mRadius = C_PROPERPARMS.mStandardFlightHeight.mValue + 100.0f;
 	} else {
 		shadow.mBoundingSphere.mRadius = 50.0f;
 	}
@@ -278,16 +278,16 @@ Vector3f Obj::getHeadJointPos() { return mModel->getJoint("head")->getWorldMatri
 f32 Obj::setHeightVelocity()
 {
 	f32 groundY     = mapMgr->getMinY(mPosition);
-	f32 idealHeight = C_PROPERPARMS.mFp01.mValue;
+	f32 idealHeight = C_PROPERPARMS.mStandardFlightHeight.mValue;
 
-	if (mPosition.y - groundY > idealHeight - C_PROPERPARMS.mFp06.mValue) {
+	if (mPosition.y - groundY > idealHeight - C_PROPERPARMS.mVerticalSwingWidth.mValue) {
 		addPitchRatio();
-		idealHeight += C_PROPERPARMS.mFp06.mValue * pikmin2_sinf(mPitchRatio);
+		idealHeight += C_PROPERPARMS.mVerticalSwingWidth.mValue * pikmin2_sinf(mPitchRatio);
 	}
 
 	f32 totalHeight = groundY + idealHeight;
 	totalHeight -= mPosition.y;
-	mCurrentVelocity.y = totalHeight * C_PROPERPARMS.mFp02.mValue;
+	mCurrentVelocity.y = totalHeight * C_PROPERPARMS.mRiseFactor.mValue;
 	return mPosition.y - groundY;
 }
 
@@ -402,8 +402,8 @@ StateID Obj::getFlyingNextState()
 		return HANACHIRASHI_Fall;
 	}
 
-	if (mFallTimer > C_PROPERPARMS.mFp04.mValue || mStuckPikminCount >= C_PROPERPARMS.mIp01.mValue) {
-		if (mStuckPikminCount < C_PROPERPARMS.mIp01.mValue) {
+	if (mFallTimer > C_PROPERPARMS.mShakeOffTime.mValue || mStuckPikminCount >= C_PROPERPARMS.mFallingMinimumPikiNum.mValue) {
+		if (mStuckPikminCount < C_PROPERPARMS.mFallingMinimumPikiNum.mValue) {
 			return HANACHIRASHI_FlyFlick;
 		} else {
 			return HANACHIRASHI_Fall;
@@ -419,7 +419,7 @@ StateID Obj::getFlyingNextState()
  */
 void Obj::addPitchRatio()
 {
-	mPitchRatio += C_PROPERPARMS.mFp05.mValue * sys->mDeltaTime;
+	mPitchRatio += C_PROPERPARMS.mVerticalSwingSpeed.mValue * sys->mDeltaTime;
 	if (mPitchRatio > TAU) {
 		mPitchRatio -= TAU;
 	}
@@ -976,11 +976,11 @@ lbl_802A31E0:
 void Obj::updateEmit()
 {
 	if (mEfxMatrix) {
-		mEfxMatrix->getTranslation(_2E8);
+		mEfxMatrix->getTranslation(mEfxPosition);
 	}
 
-	_2F4 = Vector3f(pikmin2_sinf(getFaceDir()), -0.85f, pikmin2_cosf(getFaceDir()));
-	_2F4.normalise();
+	mFaceDirection = Vector3f(pikmin2_sinf(getFaceDir()), -0.85f, pikmin2_cosf(getFaceDir()));
+	mFaceDirection.normalise();
 }
 
 /*
@@ -990,8 +990,8 @@ void Obj::updateEmit()
  */
 Vector3f Obj::getAttackPosition()
 {
-	Vector3f vec2 = _2E8;
-	Vector3f vec1 = _2F4;
+	Vector3f vec2 = mEfxPosition;
+	Vector3f vec1 = mFaceDirection;
 
 	vec1.x *= C_PARMS->mGeneral.mAttackRadius.mValue;
 	vec1.y *= C_PARMS->mGeneral.mAttackRadius.mValue;
@@ -1031,16 +1031,16 @@ Vector3f Obj::getAttackPosition()
 bool Obj::windTarget()
 {
 	bool isHitPiki = false;
-	if (_30C < 1.0f) {
-		_30C += 3.0f * sys->mDeltaTime;
-		if (_30C > 1.0f) {
-			_30C = 1.0f;
+	if (mCurrentAttackRadius < 1.0f) {
+		mCurrentAttackRadius += 3.0f * sys->mDeltaTime;
+		if (mCurrentAttackRadius > 1.0f) {
+			mCurrentAttackRadius = 1.0f;
 		}
 	}
 
-	f32 radius    = _30C * C_PARMS->mGeneral.mAttackRadius.mValue;
-	Vector3f vec1 = _2E8;                                                                // f16
-	Vector3f vec2 = _2F4;                                                                // f29
+	f32 radius    = mCurrentAttackRadius * C_PARMS->mGeneral.mAttackRadius.mValue;
+	Vector3f vec1 = mEfxPosition;                                                        // f16
+	Vector3f vec2 = mFaceDirection;                                                      // f29
 	f32 slope     = (f32)tan(PI * (DEG2RAD * C_PARMS->mGeneral.mAttackHitAngle.mValue)); // f20
 
 	// this is probably a new vector

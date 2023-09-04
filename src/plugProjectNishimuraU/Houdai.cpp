@@ -77,7 +77,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	setTargetPattern();
 
 	mShotGunSearchTimer    = 0.0f;
-	_2ED                   = 0;
+	mShotGunState          = 0;
 	mShotGunTargetPosition = mHomePosition;
 
 	setupShotGun();

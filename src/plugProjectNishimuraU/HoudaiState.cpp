@@ -404,7 +404,7 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->mNextState  = HOUDAI_NULL;
 	houdai->mStateTimer = 0.0f;
 	houdai->setTargetPattern();
-	houdai->_2ED                = 0;
+	houdai->mShotGunState       = 0;
 	houdai->mShotGunSearchTimer = 0.0f;
 	houdai->mTargetCreature     = nullptr;
 	houdai->mTargetVelocity     = Vector3f(0.0f);
@@ -425,7 +425,7 @@ void StateShot::exec(EnemyBase* enemy)
 	Obj* houdai = static_cast<Obj*>(enemy);
 
 	if (houdai->isStopMotion()) {
-		if (houdai->_2ED != 0) {
+		if (houdai->mShotGunState != 0) {
 			if (houdai->isFinishMotion() || houdai->mShotGunSearchTimer > static_cast<Parms*>(houdai->mParms)->mProperParms.mFp12.mValue) {
 				houdai->setShotGunEmitKeepTimerOn();
 				houdai->startMotion();
@@ -436,8 +436,8 @@ void StateShot::exec(EnemyBase* enemy)
 		} else if (houdai->isFinishShotGun()) {
 			if (houdai->isShotGunLockOn()) {
 				if (houdai->mStateTimer > 2.0f) {
-					houdai->_2ED        = 0;
-					houdai->mStateTimer = 0.0f;
+					houdai->mShotGunState = 0;
+					houdai->mStateTimer   = 0.0f;
 					houdai->startMotion();
 				}
 			} else {
@@ -445,7 +445,7 @@ void StateShot::exec(EnemyBase* enemy)
 			}
 		} else {
 			if (houdai->isShotGunLockOn() && (houdai->mStateTimer > 2.0f)) {
-				houdai->_2ED                = 1;
+				houdai->mShotGunState       = 1;
 				houdai->mShotGunSearchTimer = 0.0f;
 				houdai->mStateTimer         = 0.0f;
 				houdai->startMotion();
@@ -500,8 +500,8 @@ void StateShot::exec(EnemyBase* enemy)
 				}
 			}
 		} else if ((u32)houdai->mCurAnim->mType == KEYEVENT_5) {
-			houdai->_2ED        = 0;
-			houdai->mStateTimer = 0.0f;
+			houdai->mShotGunState = 0;
+			houdai->mStateTimer   = 0.0f;
 			houdai->stopMotion();
 			houdai->finishShotGunRotation();
 			houdai->finishBossAttackLoopBGM();

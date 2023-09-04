@@ -169,7 +169,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->setAtari(false);
 	imomushi->enableEvent(0, EB_IsVulnerable);
-	imomushi->_2C0 = true;
+	imomushi->mIsStaying = true;
 	imomushi->enableEvent(0, EB_IsImmuneBitter);
 	imomushi->enableEvent(0, EB_14);
 	imomushi->disableEvent(0, EB_LifegaugeVisible);
@@ -177,7 +177,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	imomushi->disableEvent(0, EB_IsAnimating);
 	imomushi->enableEvent(0, EB_IsModelHidden);
 	imomushi->mTargetVelocity = Vector3f(0.0f);
-	imomushi->_2C8            = 0.0f;
+	imomushi->mStayTimer      = 0.0f;
 	imomushi->startMotion(1, nullptr);
 	imomushi->stopMotion();
 }
@@ -190,8 +190,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	imomushi->_2C8 += sys->mDeltaTime;
-	if ((imomushi->_2C8 > 6.0f) && !(EnemyFunc::isTherePikmin(imomushi, CG_PARMS(imomushi)->mGeneral.mPrivateRadius.mValue, nullptr))) {
+	imomushi->mStayTimer += sys->mDeltaTime;
+	if ((imomushi->mStayTimer > 6.0f)
+	    && !(EnemyFunc::isTherePikmin(imomushi, CG_PARMS(imomushi)->mGeneral.mPrivateRadius.mValue, nullptr))) {
 		if (imomushi->mTargetCreature = imomushi->getRandFruitsPlant()) {
 			transit(imomushi, IMOMUSHI_Appear, nullptr);
 		}
@@ -208,7 +209,7 @@ void StateStay::cleanup(EnemyBase* enemy)
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->setAtari(true);
 	imomushi->disableEvent(0, EB_IsVulnerable);
-	imomushi->_2C0 = false;
+	imomushi->mIsStaying = false;
 	imomushi->disableEvent(0, EB_IsImmuneBitter);
 	imomushi->disableEvent(0, EB_14);
 	imomushi->hardConstraintOff();
@@ -469,8 +470,8 @@ void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 	f32 cos           = pikmin2_cosf(faceDir);
 	f32 sin           = pikmin2_sinf(faceDir);
 
-	imomushi->_2D8 = Vector3f(sin, 0.01f, cos);
-	imomushi->_2E4 = Vector3f(-sin, 0.0f, -cos);
+	imomushi->mFaceDirection    = Vector3f(sin, 0.01f, cos);
+	imomushi->mInvFaceDirection = Vector3f(-sin, 0.0f, -cos);
 }
 
 /*
@@ -538,7 +539,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	Creature* target;
 	Obj* imomushi        = static_cast<Obj*>(enemy);
 	imomushi->mNextState = IMOMUSHI_NULL;
-	imomushi->_2C8       = 0.0f;
+	imomushi->mStayTimer = 0.0f;
 	target               = imomushi->mTargetCreature;
 	CollPart* collpart   = target->mCollTree->getCollPart('tops');
 	imomushi->endStick();
@@ -577,7 +578,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			}
 		}
 	}
-	imomushi->_2C8 += sys->mDeltaTime;
+	imomushi->mStayTimer += sys->mDeltaTime;
 	if (imomushi->mCurAnim->mIsPlaying) {
 		if (((u32)imomushi->mCurAnim->mType == KEYEVENT_2)) {
 			imomushi->eatTsuyukusa();
@@ -690,8 +691,8 @@ void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateZukanStay::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	imomushi->_2C8 += sys->mDeltaTime;
-	if (imomushi->_2C8 > 5.0f) {
+	imomushi->mStayTimer += sys->mDeltaTime;
+	if (imomushi->mStayTimer > 5.0f) {
 		transit(imomushi, IMOMUSHI_ZukanAppear, nullptr);
 	}
 }

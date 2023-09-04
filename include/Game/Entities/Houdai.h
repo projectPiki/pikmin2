@@ -150,7 +150,7 @@ struct Obj : public EnemyBase {
 	Vector3f mTargetPosition;                   // _2D4
 	Vector3f mShotGunTargetPosition;            // _2E0
 	bool mIsSmoking;                            // _2EC, is below critical health
-	u8 _2ED;                                    // _2ED
+	u8 mShotGunState;                           // _2ED
 	bool mTargetNearest;                        // _2EE, if false, target nearest navi's nearest piki (i.e. party)
 	bool mIsAttackMusicLooping;                 // _2EF
 	IKSystemMgr* mIkSystemMgr;                  // _2F0

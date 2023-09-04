@@ -19,7 +19,7 @@ namespace Game {
 bool InteractFuefukiTimerReset::actEnemy(EnemyBase* enemy)
 {
 	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_Fuefuki) {
-		static_cast<Fuefuki::Obj*>(enemy)->_2D4 = 5.0f;
+		static_cast<Fuefuki::Obj*>(enemy)->mTurnTimer = 5.0f;
 		return true;
 	}
 
@@ -74,7 +74,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	resetAppearTimer();
 	mStateTimer = 0.0f;
 	resetWhisleTimer(true);
-	_2D4                   = 0.0f;
+	mTurnTimer             = 0.0f;
 	mWhistleRadiusModifier = 0.0f;
 
 	mNextState = FUEFUKI_NULL;
@@ -105,8 +105,8 @@ void Obj::doUpdate()
 {
 	mFsm->exec(this);
 	mAppearTimer += sys->mDeltaTime;
-	if (_2D4 > 0.0f) {
-		_2D4--;
+	if (mTurnTimer > 0.0f) {
+		mTurnTimer--;
 	}
 
 	updateFootmarks();
@@ -338,7 +338,7 @@ void Obj::resetWhisleTimer(bool check)
  */
 bool Obj::isWhisleTimeMax()
 {
-	if (_2D4 > 0.0f) {
+	if (mTurnTimer > 0.0f) {
 		if (mStuckPikminCount != 0) {
 			if (mWhistleTimer > C_PROPERPARMS.mFp12.mValue) {
 				return true;
@@ -459,7 +459,7 @@ bool Obj::isJumpAway()
 		return true;
 	}
 
-	if (!(_2D4 > 0.0f)) {
+	if (!(mTurnTimer > 0.0f)) {
 		f32 privRad = C_PARMS->mGeneral.mPrivateRadius.mValue;
 		Sys::Sphere sphere(mPosition, privRad);
 		f32 privateDiameter = privRad * privRad;
