@@ -1,3 +1,5 @@
+#include "PSM/DirectorMgr.h"
+#include "PSSystem/PSBgm.h"
 #include "types.h"
 
 /*
@@ -175,7 +177,8 @@ namespace PSM {
  * Address:	8046F2BC
  * Size:	0002D8
  */
-DirectorMgr_Scene::DirectorMgr_Scene(PSM::DirectorMgr_Scene*, unsigned char)
+DirectorMgr_Scene::DirectorMgr_Scene(PSM::DirectorMgr_Scene*, unsigned char p2)
+    : PSSystem::DirectorMgrBase(p2)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1430,6 +1433,7 @@ void DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(int, unsigned char, PSSy
  * Size:	000050
  */
 DirectorMgr_Battle::DirectorMgr_Battle()
+    : PSSystem::DirectorMgrBase(2)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1645,6 +1649,7 @@ lbl_80470460:
  * Size:	000050
  */
 DirectorMgr_2PBattle::DirectorMgr_2PBattle()
+    : PSSystem::DirectorMgrBase(8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2405,50 +2410,50 @@ void DirectorMgr_Scene::isSlave()
  * Address:	80470D5C
  * Size:	000088
  */
-BgmTrackMapFile::~BgmTrackMapFile()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80470DC8
-	lis      r3, __vt__Q23PSM15BgmTrackMapFile@ha
-	addic.   r0, r30, 0x1c
-	addi     r3, r3, __vt__Q23PSM15BgmTrackMapFile@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x10
-	stw      r0, 0x1c(r30)
-	beq      lbl_80470DAC
-	lis      r3, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@ha
-	li       r0, 0
-	addi     r3, r3,
-"__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@l stw      r3,
-0x1c(r30) stw      r0,
-"sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@sda21(r13)
+// BgmTrackMapFile::~BgmTrackMapFile()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80470DC8
+// 	lis      r3, __vt__Q23PSM15BgmTrackMapFile@ha
+// 	addic.   r0, r30, 0x1c
+// 	addi     r3, r3, __vt__Q23PSM15BgmTrackMapFile@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x10
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_80470DAC
+// 	lis      r3, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@ha
+// 	li       r0, 0
+// 	addi     r3, r3,
+// "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@l stw      r3,
+// 0x1c(r30) stw      r0,
+// "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@sda21(r13)
 
-lbl_80470DAC:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__Q28PSSystem12TextDataBaseFv
-	extsh.   r0, r31
-	ble      lbl_80470DC8
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_80470DAC:
+// 	mr       r3, r30
+// 	li       r4, 0
+// 	bl       __dt__Q28PSSystem12TextDataBaseFv
+// 	extsh.   r0, r31
+// 	ble      lbl_80470DC8
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80470DC8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80470DC8:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -2532,32 +2537,32 @@ namespace PSSystem {
  * Address:	80470E9C
  * Size:	000050
  */
-void SingletonBase<PSM::BgmTrackMapFile>::~SingletonBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80470ED4
-	lis      r5, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@ha
-	extsh.   r0, r4
-	addi     r4, r5,
-"__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@l li       r0, 0 stw
-r4, 0(r31) stw      r0,
-"sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@sda21(r13) ble
-lbl_80470ED4 bl       __dl__FPv
+// void SingletonBase<PSM::BgmTrackMapFile>::~SingletonBase()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	or.      r31, r3, r3
+// 	beq      lbl_80470ED4
+// 	lis      r5, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@ha
+// 	extsh.   r0, r4
+// 	addi     r4, r5,
+// "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@l li       r0, 0 stw
+// r4, 0(r31) stw      r0,
+// "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@sda21(r13) ble
+// lbl_80470ED4 bl       __dl__FPv
 
-lbl_80470ED4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80470ED4:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 namespace PSM {
 
@@ -2566,51 +2571,51 @@ namespace PSM {
  * Address:	80470EEC
  * Size:	000008
  */
-DirectorMgr_Scene::@12 @~DirectorMgr_Scene()
-{
-	/*
-addi     r3, r3, -12
-b        __dt__Q23PSM17DirectorMgr_SceneFv
-	*/
-}
+// DirectorMgr_Scene::@12 @~DirectorMgr_Scene()
+// {
+// 	/*
+// addi     r3, r3, -12
+// b        __dt__Q23PSM17DirectorMgr_SceneFv
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80470EF4
  * Size:	000008
  */
-DirectorMgr_Scene_AutoBgm::@12 @~DirectorMgr_Scene_AutoBgm()
-{
-	/*
-addi     r3, r3, -12
-b        __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
-	*/
-}
+// DirectorMgr_Scene_AutoBgm::@12 @~DirectorMgr_Scene_AutoBgm()
+// {
+// 	/*
+// addi     r3, r3, -12
+// b        __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80470EFC
  * Size:	000008
  */
-DirectorMgr_Battle::@12 @~DirectorMgr_Battle()
-{
-	/*
-addi     r3, r3, -12
-b        __dt__Q23PSM18DirectorMgr_BattleFv
-	*/
-}
+// DirectorMgr_Battle::@12 @~DirectorMgr_Battle()
+// {
+// 	/*
+// addi     r3, r3, -12
+// b        __dt__Q23PSM18DirectorMgr_BattleFv
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80470F04
  * Size:	000008
  */
-DirectorMgr_2PBattle::@12 @~DirectorMgr_2PBattle()
-{
-	/*
-addi     r3, r3, -12
-b        __dt__Q23PSM20DirectorMgr_2PBattleFv
-	*/
-}
+// DirectorMgr_2PBattle::@12 @~DirectorMgr_2PBattle()
+// {
+// 	/*
+// addi     r3, r3, -12
+// b        __dt__Q23PSM20DirectorMgr_2PBattleFv
+// 	*/
+// }
 } // namespace PSM
 } // namespace PSM

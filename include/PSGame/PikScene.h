@@ -9,6 +9,10 @@
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JAudio/JAD/JADUtility.h"
 
+namespace PSM {
+struct MiddleBossSeq;
+}
+
 namespace PSGame {
 
 /**
@@ -19,7 +23,7 @@ struct PikScene : public PSSystem::Scene {
 
 	virtual ~PikScene(); // _0C
 
-	void getMiddleBossBgm();
+	PSM::MiddleBossSeq* getMiddleBossBgm();
 
 	// _00      = VTBL
 	// _04-_24  = Scene

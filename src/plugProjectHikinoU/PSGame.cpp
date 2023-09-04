@@ -1,3 +1,4 @@
+#include "PSM/BossSeq.h"
 #include "types.h"
 #include "PSGame/EnvSe.h"
 #include "PSGame/PikScene.h"
@@ -1628,7 +1629,7 @@ void CameraMgr::update(unsigned char, float)
  * Address:	80334E40
  * Size:	000010
  */
-void CameraMgr::getCurrentCamDistVol(unsigned char)
+f32 CameraMgr::getCurrentCamDistVol(unsigned char)
 {
 	/*
 	rlwinm   r0, r4, 2, 0x16, 0x1d
@@ -2356,7 +2357,7 @@ lbl_80335664:
  * Address:	80335680
  * Size:	0000A8
  */
-void PikScene::getMiddleBossBgm()
+PSM::MiddleBossSeq* PikScene::getMiddleBossBgm()
 {
 	/*
 	stwu     r1, -0x10(r1)

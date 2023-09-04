@@ -13,7 +13,7 @@ struct CameraMgr : public JKRDisposer {
 
 	void getBgmCamVol(u8);
 	void update(u8, f32);
-	void getCurrentCamDistVol(u8);
+	f32 getCurrentCamDistVol(u8);
 	void getVol_DistBetweenCamAndLookat(f32);
 
 	// _00      = VTBL

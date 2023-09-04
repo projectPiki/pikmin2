@@ -1,3 +1,12 @@
+#include "PSM/Cluster.h"
+#include "PSM/CreatureObj.h"
+#include "PSM/DirectorLink.h"
+#include "PSM/EventLink.h"
+#include "PSM/ObjBase.h"
+#include "PSM/ObjMgr.h"
+#include "PSM/Otakara.h"
+#include "PSM/Piki.h"
+#include "PSM/Scene.h"
 #include "types.h"
 
 /*
@@ -1359,7 +1368,7 @@ lbl_8045D078:
  * Address:	8045D08C
  * Size:	000128
  */
-void Creature::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
+bool Creature::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1464,7 +1473,7 @@ lbl_8045D18C:
  * Address:	8045D1B4
  * Size:	0000A0
  */
-void Creature::isNear(Game::Creature*, float)
+bool Creature::isNear(Game::Creature*, float)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2015,7 +2024,7 @@ lbl_8045D92C:
  * Address:	8045D948
  * Size:	00003C
  */
-void CreatureObj::startSound(unsigned long, unsigned long)
+JAISound* CreatureObj::startSound(unsigned long, unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3788,7 +3797,7 @@ lbl_8045EEB8:
  * Address:	8045EED8
  * Size:	000094
  */
-void EnemyBase::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
+bool EnemyBase::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
 	lfs      f3, 0(r4)
@@ -9737,14 +9746,14 @@ lbl_80463388:
  * Address:	804633A4
  * Size:	000008
  */
-u32 SceneBase::getSeSceneGate(PSM::ObjBase*, unsigned long) { return 0x1; }
+bool SceneBase::getSeSceneGate(PSM::ObjBase*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	804633AC
  * Size:	000008
  */
-u32 SceneBase::isDemoScene() { return 0x0; }
+bool SceneBase::isDemoScene() { return false; }
 
 /*
  * --INFO--
@@ -9852,7 +9861,7 @@ lbl_80463494:
  * Address:	804634B0
  * Size:	000008
  */
-u32 Piki::getCastType() { return 0xE; }
+PSM::CreatureCastType Piki::getCastType() { return CCT_Piki; }
 
 /*
  * --INFO--
@@ -9966,7 +9975,7 @@ lbl_80463604:
  * Address:	80463620
  * Size:	000008
  */
-u32 PelletItem::getCastType() { return 0xD; }
+CreatureCastType PelletItem::getCastType() { return CCT_PelletItem; }
 
 /*
  * --INFO--
@@ -10080,14 +10089,14 @@ lbl_80463774:
  * Address:	80463790
  * Size:	000008
  */
-u32 PelletOtakara::getCastType() { return 0xC; }
+CreatureCastType PelletOtakara::getCastType() { return CCT_PelletOtakara; }
 
 /*
  * --INFO--
  * Address:	80463798
  * Size:	000008
  */
-u32 Otakara::getCastType() { return 0xB; }
+CreatureCastType Otakara::getCastType() { return CCT_Otakara; }
 
 /*
  * --INFO--
@@ -10202,7 +10211,7 @@ u32 Otakara::getCastType() { return 0xB; }
  * Address:	804638F0
  * Size:	000008
  */
-u32 OtakaraEventLink_2PBattle::is2PBattle() { return 0x1; }
+bool OtakaraEventLink_2PBattle::is2PBattle() { return true; }
 
 /*
  * --INFO--
@@ -10342,28 +10351,28 @@ lbl_80463A9C:
  * Address:	80463AB8
  * Size:	000008
  */
-u32 EnemyBig::getCastType() { return 0x8; }
+CreatureCastType EnemyBig::getCastType() { return CCT_EnemyBig; }
 
 /*
  * --INFO--
  * Address:	80463AC0
  * Size:	000008
  */
-u32 EnemyBigBoss::getCastType() { return 0x7; }
+CreatureCastType EnemyBigBoss::getCastType() { return CCT_EnemyBigBoss; }
 
 /*
  * --INFO--
  * Address:	80463AC8
  * Size:	000008
  */
-u32 EnemyMidBoss::getCastType() { return 0x6; }
+CreatureCastType EnemyMidBoss::getCastType() { return CCT_EnemyMidBoss; }
 
 /*
  * --INFO--
  * Address:	80463AD0
  * Size:	000008
  */
-u32 EnemyBoss::getCastType() { return 0x4; }
+CreatureCastType EnemyBoss::getCastType() { return CCT_EnemyBoss; }
 
 /*
  * --INFO--
@@ -10572,7 +10581,7 @@ lbl_80463D4C:
  * Address:	80463D68
  * Size:	000008
  */
-u32 EnemyNotAggressive::getCastType() { return 0x9; }
+CreatureCastType EnemyNotAggressive::getCastType() { return CCT_EnemyNotAggressive; }
 
 /*
  * --INFO--
@@ -10621,7 +10630,7 @@ void EnemyNotAggressive::kehaiOn() { }
  * Address:	80463D88
  * Size:	000008
  */
-u32 CreatureAnime::getCastType() { return 0x1; }
+// CreatureCastType CreatureAnime::getCastType() { return CCT_CreatureAnime; }
 
 /*
  * --INFO--
@@ -10700,576 +10709,576 @@ lbl_80463E6C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80463E88
- * Size:	000008
- */
-ObjBase::@16 @~ObjBase()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM7ObjBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463E88
+//  * Size:	000008
+//  */
+// ObjBase::@16 @~ObjBase()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM7ObjBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463E90
- * Size:	000008
- */
-ObjMgr::@12 @~ObjMgr()
-{
-	/*
-	addi     r3, r3, -12
-	b        __dt__Q23PSM6ObjMgrFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463E90
+//  * Size:	000008
+//  */
+// ObjMgr::@12 @~ObjMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -12
+// 	b        __dt__Q23PSM6ObjMgrFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463E98
- * Size:	000008
- */
-ObjMgr::@16 @~ObjMgr()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM6ObjMgrFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463E98
+//  * Size:	000008
+//  */
+// ObjMgr::@16 @~ObjMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM6ObjMgrFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EA0
- * Size:	000008
- */
-Creature::@16 @~Creature()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM8CreatureFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EA0
+//  * Size:	000008
+//  */
+// Creature::@16 @~Creature()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM8CreatureFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EA8
- * Size:	000008
- */
-CreatureObj::@16 @~CreatureObj()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM11CreatureObjFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EA8
+//  * Size:	000008
+//  */
+// CreatureObj::@16 @~CreatureObj()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM11CreatureObjFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EB0
- * Size:	000008
- */
-CreatureObj::@48 @~CreatureObj()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM11CreatureObjFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EB0
+//  * Size:	000008
+//  */
+// CreatureObj::@48 @~CreatureObj()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM11CreatureObjFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EB8
- * Size:	000008
- */
-CreatureAnime::@16 @~CreatureAnime()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM13CreatureAnimeFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EB8
+//  * Size:	000008
+//  */
+// CreatureAnime::@16 @~CreatureAnime()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM13CreatureAnimeFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EC0
- * Size:	000008
- */
-CreatureAnime::@48 @~CreatureAnime()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM13CreatureAnimeFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EC0
+//  * Size:	000008
+//  */
+// CreatureAnime::@48 @~CreatureAnime()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM13CreatureAnimeFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EC8
- * Size:	000008
- */
-void PSM::CreatureAnime::@48 @startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x63C8
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EC8
+//  * Size:	000008
+//  */
+// void PSM::CreatureAnime::@48 @startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x30
+// 	  b         -0x63C8
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463ED0
- * Size:	000008
- */
-EnemyBase::@16 @~EnemyBase()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM9EnemyBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463ED0
+//  * Size:	000008
+//  */
+// EnemyBase::@16 @~EnemyBase()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM9EnemyBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463ED8
- * Size:	000008
- */
-EnemyBase::@48 @~EnemyBase()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM9EnemyBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463ED8
+//  * Size:	000008
+//  */
+// EnemyBase::@48 @~EnemyBase()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM9EnemyBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EE0
- * Size:	000008
- */
-EnemyNotAggressive::@16 @~EnemyNotAggressive()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM18EnemyNotAggressiveFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EE0
+//  * Size:	000008
+//  */
+// EnemyNotAggressive::@16 @~EnemyNotAggressive()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM18EnemyNotAggressiveFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EE8
- * Size:	000008
- */
-EnemyNotAggressive::@48 @~EnemyNotAggressive()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM18EnemyNotAggressiveFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EE8
+//  * Size:	000008
+//  */
+// EnemyNotAggressive::@48 @~EnemyNotAggressive()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM18EnemyNotAggressiveFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EF0
- * Size:	000008
- */
-void EnemyNotAggressive::@184 @battleOff()
-{
-	/*
-	addi     r3, r3, -184
-	b        battleOff__Q23PSM18EnemyNotAggressiveFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EF0
+//  * Size:	000008
+//  */
+// void EnemyNotAggressive::@184 @battleOff()
+// {
+// 	/*
+// 	addi     r3, r3, -184
+// 	b        battleOff__Q23PSM18EnemyNotAggressiveFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463EF8
- * Size:	000008
- */
-void EnemyNotAggressive::@184 @battleOn()
-{
-	/*
-	addi     r3, r3, -184
-	b        battleOn__Q23PSM18EnemyNotAggressiveFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463EF8
+//  * Size:	000008
+//  */
+// void EnemyNotAggressive::@184 @battleOn()
+// {
+// 	/*
+// 	addi     r3, r3, -184
+// 	b        battleOn__Q23PSM18EnemyNotAggressiveFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F00
- * Size:	000008
- */
-void EnemyNotAggressive::@204 @kehaiOff()
-{
-	/*
-	addi     r3, r3, -204
-	b        kehaiOff__Q23PSM18EnemyNotAggressiveFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F00
+//  * Size:	000008
+//  */
+// void EnemyNotAggressive::@204 @kehaiOff()
+// {
+// 	/*
+// 	addi     r3, r3, -204
+// 	b        kehaiOff__Q23PSM18EnemyNotAggressiveFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F08
- * Size:	000008
- */
-void EnemyNotAggressive::@204 @kehaiOn()
-{
-	/*
-	addi     r3, r3, -204
-	b        kehaiOn__Q23PSM18EnemyNotAggressiveFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F08
+//  * Size:	000008
+//  */
+// void EnemyNotAggressive::@204 @kehaiOn()
+// {
+// 	/*
+// 	addi     r3, r3, -204
+// 	b        kehaiOn__Q23PSM18EnemyNotAggressiveFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F10
- * Size:	000008
- */
-Tsuyukusa::@16 @~Tsuyukusa()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM9TsuyukusaFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F10
+//  * Size:	000008
+//  */
+// Tsuyukusa::@16 @~Tsuyukusa()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM9TsuyukusaFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F18
- * Size:	000008
- */
-Tsuyukusa::@48 @~Tsuyukusa()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM9TsuyukusaFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F18
+//  * Size:	000008
+//  */
+// Tsuyukusa::@48 @~Tsuyukusa()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM9TsuyukusaFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F20
- * Size:	000008
- */
-EnemyBig::@16 @~EnemyBig()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM8EnemyBigFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F20
+//  * Size:	000008
+//  */
+// EnemyBig::@16 @~EnemyBig()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM8EnemyBigFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F28
- * Size:	000008
- */
-EnemyBig::@48 @~EnemyBig()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM8EnemyBigFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F28
+//  * Size:	000008
+//  */
+// EnemyBig::@48 @~EnemyBig()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM8EnemyBigFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F30
- * Size:	000008
- */
-EnemyBoss::@16 @~EnemyBoss()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM9EnemyBossFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F30
+//  * Size:	000008
+//  */
+// EnemyBoss::@16 @~EnemyBoss()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM9EnemyBossFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F38
- * Size:	000008
- */
-EnemyBoss::@48 @~EnemyBoss()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM9EnemyBossFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F38
+//  * Size:	000008
+//  */
+// EnemyBoss::@48 @~EnemyBoss()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM9EnemyBossFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F40
- * Size:	000008
- */
-EnemyMidBoss::@16 @~EnemyMidBoss()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM12EnemyMidBossFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F40
+//  * Size:	000008
+//  */
+// EnemyMidBoss::@16 @~EnemyMidBoss()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM12EnemyMidBossFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F48
- * Size:	000008
- */
-EnemyMidBoss::@48 @~EnemyMidBoss()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM12EnemyMidBossFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F48
+//  * Size:	000008
+//  */
+// EnemyMidBoss::@48 @~EnemyMidBoss()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM12EnemyMidBossFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F50
- * Size:	000008
- */
-EnemyBigBoss::@16 @~EnemyBigBoss()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM12EnemyBigBossFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F50
+//  * Size:	000008
+//  */
+// EnemyBigBoss::@16 @~EnemyBigBoss()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM12EnemyBigBossFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F58
- * Size:	000008
- */
-EnemyBigBoss::@48 @~EnemyBigBoss()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM12EnemyBigBossFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F58
+//  * Size:	000008
+//  */
+// EnemyBigBoss::@48 @~EnemyBigBoss()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM12EnemyBigBossFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F60
- * Size:	000008
- */
-Enemy_SpecialChappy::@16 @~Enemy_SpecialChappy()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM19Enemy_SpecialChappyFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F60
+//  * Size:	000008
+//  */
+// Enemy_SpecialChappy::@16 @~Enemy_SpecialChappy()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM19Enemy_SpecialChappyFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F68
- * Size:	000008
- */
-Enemy_SpecialChappy::@48 @~Enemy_SpecialChappy()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM19Enemy_SpecialChappyFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F68
+//  * Size:	000008
+//  */
+// Enemy_SpecialChappy::@48 @~Enemy_SpecialChappy()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM19Enemy_SpecialChappyFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F70
- * Size:	000008
- */
-WorkItem::@16 @~WorkItem()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM8WorkItemFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F70
+//  * Size:	000008
+//  */
+// WorkItem::@16 @~WorkItem()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM8WorkItemFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F78
- * Size:	000008
- */
-WorkItem::@48 @~WorkItem()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM8WorkItemFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F78
+//  * Size:	000008
+//  */
+// WorkItem::@48 @~WorkItem()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM8WorkItemFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F80
- * Size:	000008
- */
-Otakara::@16 @~Otakara()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM7OtakaraFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F80
+//  * Size:	000008
+//  */
+// Otakara::@16 @~Otakara()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM7OtakaraFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F88
- * Size:	000008
- */
-Otakara::@48 @~Otakara()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM7OtakaraFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F88
+//  * Size:	000008
+//  */
+// Otakara::@48 @~Otakara()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM7OtakaraFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F90
- * Size:	000008
- */
-PelletOtakara::@16 @~PelletOtakara()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM13PelletOtakaraFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F90
+//  * Size:	000008
+//  */
+// PelletOtakara::@16 @~PelletOtakara()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM13PelletOtakaraFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463F98
- * Size:	000008
- */
-PelletOtakara::@48 @~PelletOtakara()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM13PelletOtakaraFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463F98
+//  * Size:	000008
+//  */
+// PelletOtakara::@48 @~PelletOtakara()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM13PelletOtakaraFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463FA0
- * Size:	000008
- */
-PelletItem::@16 @~PelletItem()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM10PelletItemFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463FA0
+//  * Size:	000008
+//  */
+// PelletItem::@16 @~PelletItem()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM10PelletItemFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463FA8
- * Size:	000008
- */
-PelletItem::@48 @~PelletItem()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM10PelletItemFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463FA8
+//  * Size:	000008
+//  */
+// PelletItem::@48 @~PelletItem()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM10PelletItemFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463FB0
- * Size:	000008
- */
-Piki::@16 @~Piki()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM4PikiFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463FB0
+//  * Size:	000008
+//  */
+// Piki::@16 @~Piki()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM4PikiFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463FB8
- * Size:	000008
- */
-Piki::@48 @~Piki()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM4PikiFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463FB8
+//  * Size:	000008
+//  */
+// Piki::@48 @~Piki()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM4PikiFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463FC0
- * Size:	000008
- */
-Navi::@16 @~Navi()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM4NaviFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463FC0
+//  * Size:	000008
+//  */
+// Navi::@16 @~Navi()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM4NaviFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463FC8
- * Size:	000008
- */
-void Navi::@48 @startSound(unsigned long, unsigned long)
-{
-	/*
-	addi     r3, r3, -48
-	b        startSound__Q23PSM4NaviFUlUl
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463FC8
+//  * Size:	000008
+//  */
+// void Navi::@48 @startSound(unsigned long, unsigned long)
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        startSound__Q23PSM4NaviFUlUl
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463FD0
- * Size:	000008
- */
-Navi::@48 @~Navi()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM4NaviFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463FD0
+//  * Size:	000008
+//  */
+// Navi::@48 @~Navi()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM4NaviFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463FD8
- * Size:	000008
- */
-Cluster::@16 @~Cluster()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q23PSM7ClusterFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463FD8
+//  * Size:	000008
+//  */
+// Cluster::@16 @~Cluster()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q23PSM7ClusterFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80463FE0
- * Size:	000008
- */
-Cluster::@48 @~Cluster()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q23PSM7ClusterFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80463FE0
+//  * Size:	000008
+//  */
+// Cluster::@48 @~Cluster()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q23PSM7ClusterFv
+// 	*/
+// }
 } // namespace PSM

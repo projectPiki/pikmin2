@@ -32,8 +32,8 @@ struct SeqBase : JSULink<SeqBase> {
 	virtual void stopSeq(u32);           // _18
 	virtual void pauseOn(PauseMode);     // _1C
 	virtual void pauseOff();             // _20
-	virtual void getCastType() = 0;      // _24
-	virtual void getSeqType()  = 0;      // _28
+	virtual u8 getCastType()  = 0;       // _24
+	virtual void getSeqType() = 0;       // _28
 	virtual void exec();                 // _2C
 	virtual void onPlayingFrame();       // _30
 	virtual void isPlaying();            // _34
@@ -105,7 +105,7 @@ struct SeqMgr : JSULink<SeqBase> {
 struct SeSeq : public SeqBase {
 	virtual ~SeSeq();               // _08
 	virtual void stopSeq(u32);      // _18
-	virtual void getCastType();     // _24 (weak)
+	virtual u8 getCastType();       // _24 (weak)
 	virtual void getSeqType();      // _28 (weak)
 	virtual void seqLoadAfter();    // _38
 	virtual JAISound* getHandleP(); // _3C (weak)

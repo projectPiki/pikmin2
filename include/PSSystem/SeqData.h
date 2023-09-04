@@ -34,7 +34,7 @@ struct SeqDataList : public TextDataBase {
 	SeqDataList();
 
 	virtual ~SeqDataList();     // _08 (weak)
-	virtual void read(Stream&); // _0C
+	virtual bool read(Stream&); // _0C
 	// virtual void _10() = 0;      // _10 - possibly
 	// virtual void _14() = 0;      // _14 - possibly
 

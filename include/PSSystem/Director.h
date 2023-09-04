@@ -25,7 +25,7 @@ struct DirectorBase : public JADHioNode {
 	virtual void onDirectOn();                      // _30 (weak)
 	virtual void onDirectOff();                     // _34 (weak)
 
-	void isUnderDirection();
+	bool isUnderDirection();
 	void setTrack(u8, SeqTrackBase*);
 	void directOnInner();
 	void directOffInner();
@@ -47,6 +47,11 @@ struct DirectorBase : public JADHioNode {
 };
 
 struct OneShotDirector : public DirectorBase {
+	inline OneShotDirector()
+	    : DirectorBase(1, "damageD  ")
+	{
+	}
+
 	virtual ~OneShotDirector();                    // _08 (weak)
 	virtual void exec();                           // _0C
 	virtual void directOnTrack(SeqTrackBase&) = 0; // _20
@@ -57,6 +62,11 @@ struct OneShotDirector : public DirectorBase {
 };
 
 struct SwitcherDirector : public DirectorBase {
+	inline SwitcherDirector(int p1, const char* p2)
+	    : DirectorBase(p1, p2)
+	{
+	}
+
 	virtual ~SwitcherDirector();                    // _08 (weak)
 	virtual void directOnTrack(SeqTrackBase&)  = 0; // _20
 	virtual void directOffTrack(SeqTrackBase&) = 0; // _24

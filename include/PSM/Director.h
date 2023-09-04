@@ -19,10 +19,17 @@ struct SeqTrackBase;
 
 namespace PSM {
 struct OneShotDirector : public PSSystem::OneShotDirector {
+	inline OneShotDirector()
+	    : PSSystem::OneShotDirector()
+	    , mActor(nullptr)
+	{
+	}
+
 	virtual ~OneShotDirector(); // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_48 = PSSystem::OneShotDirector
+	PSSystem::DirectorCopyActor* mActor; // _48
 };
 
 /**
@@ -37,13 +44,17 @@ struct DamageDirector : public OneShotDirector {
 
 	// _00     = VTBL
 	// _00-_48 = OneShotDirector
-	PSSystem::DirectorCopyActor* mActor; // _48
-	f32 _4C;                             // _4C
-	f32 _50;                             // _50
-	u32 _54;                             // _54
+	f32 _4C; // _4C
+	f32 _50; // _50
+	u32 _54; // _54
 };
 
 struct SwitcherDirector : public PSSystem::SwitcherDirector {
+	inline SwitcherDirector(int p1, const char* p2)
+	    : PSSystem::SwitcherDirector(p1, p2)
+	{
+	}
+
 	virtual ~SwitcherDirector(); // _08 (weak)
 
 	// _00     = VTBL
@@ -61,6 +72,7 @@ struct PikminNumberDirector : public SwitcherDirector {
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
 	PSSystem::DirectorCopyActor* mActor; // _48
+	u8 _4C;                              // _4C
 };
 
 /**
@@ -82,12 +94,22 @@ struct PikminNumberDirector_AutoBgm : public PikminNumberDirector {
 };
 
 struct TempoChangeDirectorBase : public SwitcherDirector {
+	inline TempoChangeDirectorBase()
+	    : SwitcherDirector(1, "lifeD    ")
+	    , _48(0.7f)
+	    , _4C(100)
+	    , mActor(nullptr)
+	{
+	}
 	virtual ~TempoChangeDirectorBase();                   // _08 (weak)
 	virtual void directOnTrack(PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
+	f32 _48;
+	u32 _4C;
+	PSSystem::DirectorCopyActor* mActor;
 };
 
 /**
@@ -101,8 +123,7 @@ struct ActorDirector_TempoChange : public TempoChangeDirectorBase {
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
-	u8 _48[8];                           // _48, unknown
-	PSSystem::DirectorCopyActor* mActor; // _50
+	// PSSystem::DirectorCopyActor* mActor; // _50
 };
 
 struct TrackOnDirectorBase : public SwitcherDirector {
@@ -115,6 +136,9 @@ struct TrackOnDirectorBase : public SwitcherDirector {
 
 	// _00     = VTBL
 	// _00-_48 = SwitcherDirector
+	long _48; // _48
+	long _4C; // _4C
+	u8 _50;   // _50
 };
 
 /**
@@ -126,19 +150,31 @@ struct PikAttackDirector : public TrackOnDirectorBase {
 	virtual ~PikAttackDirector(); // _08 (weak)
 
 	// _00     = VTBL
-	// _00-_48 = TrackOnDirectorBase
-	int _48; // _48
-	int _4C; // _4C
-	u8 _50;  // _50
+	// _00-_54 = TrackOnDirectorBase
 };
 
 struct TrackOnDirector_Scaled : public TrackOnDirectorBase {
+	inline TrackOnDirector_Scaled(const char* name, int p2, float p3, float p4, long p5, long p6, unsigned long p7)
+	    : TrackOnDirectorBase(p2, name, p5, p6)
+	    , _54(p3)
+	    , _58(p4)
+	    , _5C(100000.0f)
+	    , _60(p7)
+	{
+		_50    = 1;
+		mActor = nullptr;
+	}
 	virtual ~TrackOnDirector_Scaled();    // _08 (weak)
 	virtual void underDirection();        // _18
 	virtual f64 getNearestDistance() = 0; // _38
 
 	// _00     = VTBL
-	// _00-_48 = TrackOnDirectorBase
+	// _00-_54 = TrackOnDirectorBase
+	f32 _54;                             // _54
+	f32 _58;                             // _58
+	f32 _5C;                             // _5C
+	u32 _60;                             // _60
+	PSSystem::DirectorCopyActor* mActor; // _64
 };
 
 /**
@@ -149,9 +185,8 @@ struct TrackOnDirector_Voting : public TrackOnDirectorBase {
 	virtual void execInner();          // _1C
 
 	// _00     = VTBL
-	// _00-_48 = TrackOnDirectorBase
-	u8 _48[0xC]; // _48
-	u8 _54;      // _54
+	// _00-_54 = TrackOnDirectorBase
+	u8 _54; // _54
 };
 
 /**
@@ -163,8 +198,7 @@ struct ExiteDirector : public TrackOnDirectorBase {
 	virtual ~ExiteDirector(); // _08 (weak)
 
 	// _00     = VTBL
-	// _00-_48 = TrackOnDirectorBase
-	u8 _48[0xC]; // _48
+	// _00-_54 = TrackOnDirectorBase
 };
 
 /**
@@ -177,8 +211,7 @@ struct ActorDirector_TrackOn : public TrackOnDirectorBase {
 	virtual void execInner();         // _1C
 
 	// _00     = VTBL
-	// _00-_48 = TrackOnDirectorBase
-	u8 _48[0xC];                         // _48
+	// _00-_54 = TrackOnDirectorBase
 	PSSystem::DirectorCopyActor* mActor; // _54
 };
 
@@ -206,15 +239,7 @@ struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
 	virtual void onSetMinDistObj(Game::Creature*); // _3C (weak)
 
 	// _00     = VTBL
-	// _00-_48 = TrackOnDirector_Scaled
-	long _48;                            // _48
-	long _4C;                            // _4C
-	u8 _50;                              // _50
-	f32 _54;                             // _54
-	f32 _58;                             // _58
-	f32 _5C;                             // _5C
-	u32 _60;                             // _60
-	PSSystem::DirectorCopyActor* mActor; // _64
+	// _00-_68 = TrackOnDirector_Scaled
 };
 
 /**
@@ -231,7 +256,7 @@ struct ActorDirector_Enemy : public ActorDirector_Scaled {
 
 	// _00     = VTBL
 	// _00-_68 = ActorDirector_Scaled
-	u8 _68[4];
+	Game::Creature* _68; // _68
 };
 
 /**

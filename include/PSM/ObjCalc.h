@@ -32,7 +32,7 @@ struct ObjCalc_SingleGame : public ObjCalcBase {
 	virtual u8 getPlayerNo(Creature*); // _0C
 	virtual u8 getPlayerNo(Vec&);      // _10
 
-	void newInstance_SingleGame();
+	static void newInstance_SingleGame();
 
 	// _00     = VTBL
 	// _00-_08 = ObjCalcBase
@@ -48,7 +48,7 @@ struct ObjCalc_2PGame : public ObjCalcBase {
 	virtual u8 getPlayerNo(Vec&);             // _10
 	virtual bool is1PGame() { return false; } // _18 (weak)
 
-	void newInstance_2PGame();
+	static void newInstance_2PGame();
 
 	// _00     = VTBL
 	// _00-_08 = ObjCalcBase

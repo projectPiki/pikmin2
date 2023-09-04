@@ -286,7 +286,7 @@ lbl_803430B0:
  * Address:	803430C8
  * Size:	000010
  */
-void DirectorBase::isUnderDirection()
+bool DirectorBase::isUnderDirection()
 {
 	/*
 	lwz      r0, 8(r3)

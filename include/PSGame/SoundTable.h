@@ -5,19 +5,9 @@
 
 namespace PSGame {
 namespace SoundTable {
-struct CategoryMgr {
-	CategoryMgr();
-
-	virtual ~CategoryMgr(); // _08 (weak)
-
-	void initiate(u8);
-
-	// _00 = VTBL
-	u32* _04[6]; // _04, array of pointers, type unknown
-};
-
 struct SePerspInfo {
 	void set(f32, f32, f32, f32, f32);
+	f32 getDistVol(f32, u8);
 
 	f32 _00;              // _00
 	f32 _04;              // _04
@@ -26,6 +16,17 @@ struct SePerspInfo {
 	f32 _10;              // _10
 	bool mIsSpecialSound; // _14
 	bool mNoGetDist;      // _15
+};
+
+struct CategoryMgr {
+	CategoryMgr();
+
+	virtual ~CategoryMgr(); // _08 (weak)
+
+	void initiate(u8);
+
+	// _00 = VTBL
+	SePerspInfo* _04[6]; // _04, array of pointers, type unknown
 };
 } // namespace SoundTable
 } // namespace PSGame

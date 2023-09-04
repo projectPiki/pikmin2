@@ -8,7 +8,7 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "PSGame/BASARC.H"
+#include "PSGame/BASARC.h"
 
 namespace PSSystem {
 struct SetupArg;

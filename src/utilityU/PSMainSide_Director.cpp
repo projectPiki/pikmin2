@@ -1,5 +1,17 @@
+#include "JSystem/JUtility/JUTException.h"
+#include "PSGame/Global.h"
+#include "PSM/CreaturePrm.h"
+#include "PSM/Director.h"
+#include "PSM/EventLink.h"
+#include "PSM/ObjCalc.h"
+#include "PSM/Scene.h"
+#include "PSSystem/PSBgm.h"
+#include "PSSystem/PSGame.h"
+#include "PSSystem/Seq.h"
 #include "types.h"
 #include "PSSystem/Director.h"
+#include "PSSystem/SeqTrack.h"
+#include "Game/EnemyBase.h"
 
 /*
     Generated from dpostproc
@@ -376,6 +388,10 @@ namespace PSM {
  * Size:	000080
  */
 DamageDirector::DamageDirector()
+    : PSM::OneShotDirector()
+    , _4C(0.1f)
+    , _50(5.0f)
+    , _54(225)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -465,8 +481,9 @@ lbl_80456BDC:
  * Address:	80456BF8
  * Size:	000034
  */
-void DamageDirector::directOnTrack(PSSystem::SeqTrackBase&)
+void DamageDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
+	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).pitchModulation(_4C, _50, _54, this);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -491,6 +508,9 @@ void DamageDirector::directOnTrack(PSSystem::SeqTrackBase&)
  */
 void DamageDirector::execInner()
 {
+	if (mActor != nullptr) {
+		mActor->exec(this);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -564,8 +584,9 @@ lbl_80456CCC:
  * Address:	80456CE8
  * Size:	000030
  */
-void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
+void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
+	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(_48, _4C, this);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -584,8 +605,9 @@ void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
  * Address:	80456D18
  * Size:	000030
  */
-void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
+void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
+	static_cast<PSSystem::SeqTrackRoot&>(seqTrack).tempoChange(1.0f, _4C, this);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -605,6 +627,7 @@ void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
  * Size:	000084
  */
 ActorDirector_TempoChange::ActorDirector_TempoChange()
+    : TempoChangeDirectorBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -701,6 +724,9 @@ lbl_80456E40:
  */
 void ActorDirector_TempoChange::execInner()
 {
+	if (mActor != nullptr) {
+		mActor->exec(this);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -727,7 +753,10 @@ lbl_80456E88:
  * Address:	80456E98
  * Size:	000078
  */
-PikminNumberDirector::PikminNumberDirector(int, unsigned char, PSSystem::DirectedBgm&)
+PikminNumberDirector::PikminNumberDirector(int p1, unsigned char p2, PSSystem::DirectedBgm& bgm)
+    : SwitcherDirector(p1, "pikminD  ")
+    , mActor(nullptr)
+    , _4C(p2)
 {
 	/*
 	.loc_0x0:
@@ -769,8 +798,10 @@ PikminNumberDirector::PikminNumberDirector(int, unsigned char, PSSystem::Directe
  * Address:	80456F10
  * Size:	00004C
  */
-void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase&)
+void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
+	seqTrack.getTaskEntryList();
+	static_cast<PSSystem::SeqTrackChild&>(seqTrack).setIdMask(_4C, this);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -799,8 +830,9 @@ void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase&)
  * Address:	80456F5C
  * Size:	00002C
  */
-void PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase&)
+void PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
+	static_cast<PSSystem::SeqTrackChild&>(seqTrack).setIdMask(0, this);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -823,6 +855,9 @@ void PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase&)
  */
 void PikminNumberDirector::execInner()
 {
+	if (mActor != nullptr) {
+		mActor->exec(this);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -849,7 +884,9 @@ lbl_80456FB4:
  * Address:	80456FC4
  * Size:	000094
  */
-PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(int, unsigned char, PSSystem::DirectedBgm&)
+PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(int p1, unsigned char p2, PSSystem::DirectedBgm& bgm)
+    : PikminNumberDirector(p1, p2, bgm)
+    , mDirectedBgm(&bgm)
 {
 	/*
 	.loc_0x0:
@@ -1112,7 +1149,11 @@ lbl_80457294:
  * Address:	804572B0
  * Size:	00007C
  */
-TrackOnDirectorBase::TrackOnDirectorBase(int, const char*, long, long)
+TrackOnDirectorBase::TrackOnDirectorBase(int p1, const char* p2, long p3, long p4)
+    : SwitcherDirector(p1, p2)
+    , _48(p3)
+    , _4C(p4)
+    , _50(0)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1154,8 +1195,10 @@ TrackOnDirectorBase::TrackOnDirectorBase(int, const char*, long, long)
  * Address:	8045732C
  * Size:	000034
  */
-void TrackOnDirectorBase::onPlayInit(JASTrack*)
+void TrackOnDirectorBase::onPlayInit(JASTrack* track)
 {
+	track->_358 |= 0x60;
+	track->muteTrack(true);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1178,8 +1221,13 @@ void TrackOnDirectorBase::onPlayInit(JASTrack*)
  * Address:	80457360
  * Size:	000050
  */
-void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
+void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase& seqTrack)
 {
+	if (_50 != 0) {
+		static_cast<PSSystem::SeqTrackChild&>(seqTrack).muteOffAndFadeIn(0.0f, 0, this);
+	} else {
+		static_cast<PSSystem::SeqTrackChild&>(seqTrack).muteOffAndFadeIn(1.0f, _48, this);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1215,8 +1263,9 @@ lbl_804573A0:
  * Address:	804573B0
  * Size:	00002C
  */
-void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
+void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase& seqTrack)
 {
+	static_cast<PSSystem::SeqTrackChild&>(seqTrack).fadeoutAndMute(_4C, this);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1239,6 +1288,12 @@ void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
  */
 void TrackOnDirector_Voting::execInner()
 {
+	if (_54 == 0 && isUnderDirection()) {
+		directOff();
+	} else if (_54 != 0 && !isUnderDirection()) {
+		directOn();
+	}
+	_54 = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1471,7 +1526,9 @@ lbl_80457670:
  * Address:	80457684
  * Size:	000098
  */
-ActorDirector_TrackOn::ActorDirector_TrackOn(const char*, int, long, long)
+ActorDirector_TrackOn::ActorDirector_TrackOn(const char* p1, int p2, long p3, long p4)
+    : TrackOnDirectorBase(p2, p1, p3, p4)
+    , mActor(nullptr)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1522,6 +1579,9 @@ ActorDirector_TrackOn::ActorDirector_TrackOn(const char*, int, long, long)
  */
 void ActorDirector_TrackOn::execInner()
 {
+	if (mActor != nullptr) {
+		mActor->exec(this);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1548,7 +1608,8 @@ lbl_80457748:
  * Address:	80457758
  * Size:	0000F4
  */
-ActorDirector_Scaled::ActorDirector_Scaled(const char*, int, float, float, long, long, unsigned long)
+ActorDirector_Scaled::ActorDirector_Scaled(const char* name, int p2, float p3, float p4, long p5, long p6, unsigned long p7)
+    : TrackOnDirector_Scaled(name, p2, p3, p4, p5, p6, p7)
 {
 	/*
 	.loc_0x0:
@@ -1678,6 +1739,9 @@ lbl_804578D0:
  */
 void ActorDirector_Scaled::execInner()
 {
+	if (mActor != nullptr) {
+		mActor->exec(this);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1704,7 +1768,7 @@ lbl_80457918:
  * Address:	80457928
  * Size:	000614
  */
-void ActorDirector_Scaled::getNearestDistance()
+f64 ActorDirector_Scaled::getNearestDistance()
 {
 	/*
 	stwu     r1, -0x1d0(r1)
@@ -2126,7 +2190,9 @@ lbl_80457ED8:
  * Address:	80457F3C
  * Size:	0000E4
  */
-ActorDirector_Enemy::ActorDirector_Enemy(const char*, int, long, long, unsigned long)
+ActorDirector_Enemy::ActorDirector_Enemy(const char* name, int p2, long p3, long p4, unsigned long p5)
+    : ActorDirector_Scaled(name, p2, 1.0f, 0.0f, p3, p4, p5)
+    , _68(nullptr)
 {
 	/*
 	.loc_0x0:
@@ -2410,8 +2476,9 @@ lbl_80458274:
  * Address:	804582A8
  * Size:	000044
  */
-void ActorDirector_Battle::getVolZeroDist(Game::EnemyBase*)
+f64 ActorDirector_Battle::getVolZeroDist(Game::EnemyBase* enemy)
 {
+	// return CreaturePrm::cVolZeroDist_Battle[enemy->mSoundObj->getCastType() - 2];
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2438,8 +2505,9 @@ void ActorDirector_Battle::getVolZeroDist(Game::EnemyBase*)
  * Address:	804582EC
  * Size:	000044
  */
-void ActorDirector_Battle::getVolMaxDist(Game::EnemyBase*)
+f64 ActorDirector_Battle::getVolMaxDist(Game::EnemyBase* enemy)
 {
+	// return CreaturePrm::cVolMaxDist_Battle[enemy->mSoundObj->getCastType() - 2];
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2466,8 +2534,9 @@ void ActorDirector_Battle::getVolMaxDist(Game::EnemyBase*)
  * Address:	80458330
  * Size:	000044
  */
-void ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase*)
+f64 ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase* enemy)
 {
+	// return CreaturePrm::cVolZeroDist_Kehai[enemy->mSoundObj->getCastType() - 2];
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2494,8 +2563,9 @@ void ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase*)
  * Address:	80458374
  * Size:	000044
  */
-void ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase*)
+f64 ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase* enemy)
 {
+	// return CreaturePrm::cVolMaxDist_Kehai[enemy->mSoundObj->getCastType() - 2];
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2522,7 +2592,8 @@ void ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase*)
  * Address:	804583B8
  * Size:	00007C
  */
-PikAttackDirector::PikAttackDirector(int)
+PikAttackDirector::PikAttackDirector(int p1)
+    : TrackOnDirectorBase(p1, "pikatkD  ", 100, 100)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2564,7 +2635,8 @@ PikAttackDirector::PikAttackDirector(int)
  * Address:	80458434
  * Size:	00007C
  */
-ExiteDirector::ExiteDirector(int)
+ExiteDirector::ExiteDirector(int p1)
+    : TrackOnDirectorBase(p1, "tentionD ", 100, 100)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2606,8 +2678,14 @@ ExiteDirector::ExiteDirector(int)
  * Address:	804584B0
  * Size:	000068
  */
-DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase*, unsigned char, PSM::DirectorUpdator::Type)
+DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase* director, unsigned char p2, PSM::DirectorUpdator::Type type)
+    : _00(p2)
+    , mType(type)
+    , _08(0)
+    , _09(0)
+    , mDirector(director)
 {
+	P2ASSERTLINE(698, p2 != 0);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -3198,8 +3276,19 @@ lbl_80458AF4:
  * Address:	80458B0C
  * Size:	0000F0
  */
-void PSMGetOtakaraEventD()
+PSSystem::DirectorBase* PSMGetOtakaraEventD()
 {
+	PSM::SceneMgr* mgr = static_cast<PSM::SceneMgr*>(PSSystem::getSceneMgr());
+	PSSystem::checkSceneMgr(mgr);
+	PSM::SceneBase* scene = static_cast<PSM::SceneBase*>(mgr->getChildScene()->mChild);
+	if (scene->getSceneInfoA()->mSceneType == 7) {
+		return nullptr;
+	}
+	PSSystem::DirectedBgm* bgm = static_cast<PSSystem::DirectedBgm*>(PSGetDirectedMainBgm());
+	if (bgm == nullptr) {
+		return nullptr;
+	}
+	return bgm->getDirectorP(1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4161,14 +4250,14 @@ void ActorDirector_Scaled::onSetMinDistObj(Game::Creature*) { }
  * Address:	804595B4
  * Size:	000008
  */
-u32 ObjCalcBase::is1PGame() { return 0x1; }
+bool ObjCalcBase::is1PGame() { return true; }
 
 /*
  * --INFO--
  * Address:	804595BC
  * Size:	000008
  */
-u32 OtakaraEventLink::is2PBattle() { return 0x0; }
+bool OtakaraEventLink::is2PBattle() { return false; }
 
 /*
  * --INFO--

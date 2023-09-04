@@ -20,10 +20,10 @@ struct StreamBgm : public BgmSeq {
 	virtual void init();                 // _0C
 	virtual void scene1st(TaskChecker*); // _10 (weak)
 	virtual void startSeq();             // _14
-	virtual void getCastType();          // _24 (weak)
+	virtual u8 getCastType();            // _24 (weak)
 	virtual void getSeqType();           // _28 (weak)
 	virtual void isPlaying();            // _34
-	virtual void getHandleP();           // _3C (weak)
+	virtual JAISound* getHandleP();      // _3C (weak)
 	virtual void setConfigVolume();      // _40
 
 	void setID(u32);
@@ -42,7 +42,7 @@ struct StreamDataList : public SeqDataList {
 	StreamDataList();
 
 	virtual ~StreamDataList();  // _08 (weak)
-	virtual void read(Stream&); // _0C (weak)
+	virtual bool read(Stream&); // _0C (weak)
 	// virtual void _10() = 0;      // _10 - possibly
 	// virtual void _14() = 0;      // _14 - possibly
 

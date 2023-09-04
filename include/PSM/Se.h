@@ -1,13 +1,14 @@
 #ifndef _PSM_ENVSE_PERSPECTIVE_AVOIDY_H
 #define _PSM_ENVSE_PERSPECTIVE_AVOIDY_H
 
+#include "JSystem/JAudio/JAI/JAISound.h"
 #include "PSGame/EnvSe.h"
 #include "JSystem/JAudio/JAI/JAISe.h"
 #include "PSGame/SoundTable.h"
 
 namespace PSM {
 struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
-	virtual void play();       // _0C
+	virtual JAISound* play();  // _0C
 	virtual u32 getCastType(); // _10 (weak)
 
 	// _10     = VTBL
@@ -21,7 +22,7 @@ struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
 };
 
 struct Env_Pollutin : public PSGame::EnvSe_AutoPan {
-	virtual void play();       // _0C
+	virtual JAISound* play();  // _0C
 	virtual u32 getCastType(); // _10 (weak)
 
 	// _10     = VTBL
@@ -75,7 +76,7 @@ struct SeSound : public JAISe {
 	static void makeSeSound();
 	void specializePerspCalc(const PSGame::SoundTable::SePerspInfo&);
 	void calcVolumeSpecialized(f32);
-	void calcVolume(f32, unsigned char, unsigned char);
+	f32 calcVolume(f32, unsigned char, unsigned char);
 	void calcPan(const Vec&, f32);
 	void calcDolby(const Vec&, f32);
 

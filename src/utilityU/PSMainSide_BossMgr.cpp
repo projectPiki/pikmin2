@@ -1,3 +1,4 @@
+#include "PSM/BossBgmFader.h"
 #include "types.h"
 
 /*

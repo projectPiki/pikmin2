@@ -3,7 +3,6 @@
 
 #include "types.h"
 #include "PSSystem/Seq.h"
-#include "PSSystem/SeqTrack.h"
 #include "JSystem/JAudio/JAI/JAInter.h"
 #include "JSystem/JAudio/JAI/JAISound.h"
 #include "Dolphin/os.h"
@@ -21,7 +20,7 @@ struct BgmSeq : public SeqBase {
 	BgmSeq(const char*, const JAInter::SoundInfo&);
 
 	virtual ~BgmSeq();              // _08
-	virtual void getCastType();     // _24 (weak)
+	virtual u8 getCastType();       // _24 (weak)
 	virtual void getSeqType();      // _28 (weak)
 	virtual JAISound* getHandleP(); // _3C (weak)
 
@@ -41,14 +40,14 @@ struct DirectedBgm : public BgmSeq {
 	virtual void init();                              // _0C
 	virtual void startSeq();                          // _14
 	virtual void stopSeq(u32);                        // _18
-	virtual void getCastType();                       // _24 (weak)
+	virtual u8 getCastType();                         // _24 (weak)
 	virtual void onPlayingFrame();                    // _30
 	virtual void newSeqTrackRoot();                   // _44
 	virtual void newSeqTrackChild(u8, SeqTrackRoot&); // _48
 
 	void initRootTrack_onPlaying(JASTrack*);
 	void initChildTrack_onPlaying(JASTrack*, u8);
-	void getDirectorP(u8);
+	DirectorBase* getDirectorP(u8);
 
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
@@ -67,7 +66,7 @@ struct JumpBgmSeq : public DirectedBgm {
 
 	virtual ~JumpBgmSeq();                     // _08 (weak)
 	virtual void startSeq();                   // _14
-	virtual void getCastType();                // _24 (weak)
+	virtual u8 getCastType();                  // _24 (weak)
 	virtual void onPlayingFrame();             // _30
 	virtual void newSeqTrackRoot();            // _44
 	virtual void getSeqStartPoint();           // _4C

@@ -1,3 +1,7 @@
+#include "JSystem/JUtility/JUTException.h"
+#include "PSGame/SoundTable.h"
+#include "PSM/Se.h"
+#include "PSSystem/PSCommon.h"
 #include "types.h"
 
 /*
@@ -520,7 +524,7 @@ void SeSound::initParameter(void*, JAInter::Actor*, unsigned long, unsigned long
  * Address:	80471180
  * Size:	0002D8
  */
-void SeSound::setDistanceVolumeCommon(float, unsigned char)
+f32 SeSound::setDistanceVolumeCommon(float, unsigned char)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -753,8 +757,10 @@ lbl_8047142C:
  * Address:	80471458
  * Size:	000044
  */
-void SeSound::specializePerspCalc(const PSGame::SoundTable::SePerspInfo&)
+void SeSound::specializePerspCalc(const PSGame::SoundTable::SePerspInfo& info)
 {
+	mPerspInfo                 = info;
+	mPerspInfo.mIsSpecialSound = true;
 	/*
 	lfs      f0, 0(r4)
 	li       r0, 1
@@ -781,8 +787,10 @@ void SeSound::specializePerspCalc(const PSGame::SoundTable::SePerspInfo&)
  * Address:	8047149C
  * Size:	00006C
  */
-void SeSound::calcVolumeSpecialized(float)
+void SeSound::calcVolumeSpecialized(float p1)
 {
+	P2ASSERTLINE(294, mPerspInfo.mIsSpecialSound == true);
+	mPerspInfo.getDistVol(p1, 0);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -821,8 +829,9 @@ lbl_804714E0:
  * Address:	80471508
  * Size:	00008C
  */
-void SeSound::calcVolume(float, unsigned char, unsigned char)
+f32 SeSound::calcVolume(float p1, unsigned char p2, unsigned char p3)
 {
+	return PSSystem::getInstance<PSGame::SoundTable::CategoryMgr>()->_04[p3]->getDistVol(p1, p2);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

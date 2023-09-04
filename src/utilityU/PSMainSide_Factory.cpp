@@ -1,3 +1,4 @@
+#include "PSM/Se.h"
 #include "types.h"
 
 /*
@@ -498,7 +499,7 @@ lbl_80459E28:
  * Address:	80459E48
  * Size:	000280
  */
-void EnvSe_Perspective_AvoidY::play()
+JAISound* EnvSe_Perspective_AvoidY::play()
 {
 	/*
 	stwu     r1, -0x60(r1)
