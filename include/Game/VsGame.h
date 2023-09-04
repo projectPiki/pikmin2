@@ -377,7 +377,7 @@ struct GameState : public State {
 
 	inline bool getMarbleLoss(bool& loseRed, bool& loseBlue)
 	{
-		bool moviePlayerActive = moviePlayer->mFlags & MoviePlayer::IS_ACTIVE;
+		bool moviePlayerActive = moviePlayer->mFlags.typeView & MoviePlayer::IS_ACTIVE;
 
 		loseRed  = false;
 		loseBlue = false;

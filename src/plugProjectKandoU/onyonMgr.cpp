@@ -142,7 +142,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 
 	case 101: // 0x65
 		if (mOnyonType <= ONYON_TYPE_YELLOW) {
-			if (moviePlayer->mFlags & MoviePlayer::IS_FINISHED) {
+			if (moviePlayer->mFlags.typeView & MoviePlayer::IS_FINISHED) {
 				setSpotState(SPOTSTATE_Opened);
 			} else {
 				setSpotState(SPOTSTATE_Closing);
@@ -154,7 +154,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 
 	case 102: // 0x66
 		if (mOnyonType <= ONYON_TYPE_YELLOW) {
-			if (moviePlayer->mFlags & MoviePlayer::IS_FINISHED) {
+			if (moviePlayer->mFlags.typeView & MoviePlayer::IS_FINISHED) {
 				setSpotState(SPOTSTATE_Closed);
 			} else {
 				setSpotState(SPOTSTATE_Opening);
@@ -1315,7 +1315,7 @@ void Onyon::doEmit(Creature* seed, bool isSetAngle)
 	layFX.create(&arg);
 	seed->setPosition(onyonpos, false);
 
-	if (gameSystem->mMode == GSM_STORY_MODE && moviePlayer->mFlags & 1 && moviePlayer->isPlaying("x18_exp_pellet")) {
+	if (gameSystem->mMode == GSM_STORY_MODE && moviePlayer->mFlags.typeView & 1 && moviePlayer->isPlaying("x18_exp_pellet")) {
 		seed->movie_begin(0);
 	}
 

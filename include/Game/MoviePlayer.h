@@ -96,13 +96,27 @@ struct MovieConfig : public CNode {
 		u8 bytesView[2];
 		u16 shortView;
 	} mDrawFlags;     // _BE
-	s16 mDrawType;    // _C0
+	u16 mDrawType;    // _C0
 	s16 mFadeType;    // _C2
 	int mMsgPauseNum; // _C4
 };
 
 struct MoviePlayArg {
-	inline MoviePlayArg(); // not in callmap
+	inline MoviePlayArg()
+	{
+		mCourseName    = nullptr;
+		mMovieName     = nullptr;
+		mDelegateEnd   = nullptr;
+		mDelegateStart = nullptr;
+		mOrigin        = 0.0f;
+		mAngle         = 0.0f;
+		mNaviID        = 0;
+		mPelletName    = nullptr;
+		mStreamID      = 0;
+		_14            = 0;
+		mSoundPosition = nullptr;
+	}
+
 	inline MoviePlayArg(char* movieName, char* courseName, IDelegate3<MovieConfig*, u32, u32>* p3, u32 naviID)
 	{
 		mMovieName     = movieName;
@@ -141,9 +155,9 @@ struct MoviePlayArg {
 struct MovieContext : public CNode {
 	MovieContext();
 
-	virtual ~MovieContext();          // _08 (weak)
-	virtual MovieContext* getChild(); // _10 (weak)
-	virtual MovieContext* getNext();  // _14 (weak)
+	virtual ~MovieContext() { }                                                     // _08 (weak)
+	virtual MovieContext* getChild() { return static_cast<MovieContext*>(mChild); } // _10 (weak)
+	virtual MovieContext* getNext() { return static_cast<MovieContext*>(mNext); }   // _14 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -173,9 +187,13 @@ struct MovieList : public CNode {
 
 // Size: 0x1F8
 struct MoviePlayer : public JKRDisposer {
+
+#define MOVIEPLAYER_HEAP_SIZE     0x60400
+#define MOVIEPLAYER_CONTEXT_COUNT 8 // (max number of cutscenes that can be queued at once)
+
 	MoviePlayer();
 
-	virtual ~MoviePlayer(); // _08
+	virtual ~MoviePlayer() { mArchive = nullptr; } // _08
 
 	void allocContexts();
 	void allocMovieHeap(u32);
@@ -191,8 +209,9 @@ struct MoviePlayer : public JKRDisposer {
 	bool isPlaying(char*);
 	void loadResource();
 	bool parse(bool);
-	unknown play(MoviePlayArg&);
-	unknown play(MovieConfig*, MoviePlayArg&, bool);
+	enum PlayStatus { MOVIEPLAY_SUCCESS, MOVIEPLAY_NOCONFIG, MOVIEPLAY_INQUEUE, MOVIEPLAY_QUEUEFAIL };
+	u8 play(MoviePlayArg&);
+	u8 play(MovieConfig*, MoviePlayArg&, bool);
 	void reset();
 	void resetFrame();
 	void setCamera(Camera*);
@@ -200,10 +219,23 @@ struct MoviePlayer : public JKRDisposer {
 	void setPauseAndDraw(MovieConfig*);
 	void setTransform(Vector3f&, f32);
 	void skip();
-	unknown start(Camera*);
+	bool start(Camera*);
 	bool stop();
 	void unsuspend(long, bool);
-	unknown update(Controller*, Controller*);
+	bool update(Controller*, Controller*);
+
+	// unused/inlined
+	void setMovieHeap(JKRHeap*);
+	void clearMovieHeap();
+	void doStartMovie();
+	void playSuspended();
+	void hasSuspendedDemo();
+	void hasSuspendedContext();
+	void getSuspendedContext();
+	void do_stop();
+	void suspend(long);
+	void isLoadingBlack();
+	void draw2d();
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
@@ -211,36 +243,35 @@ struct MoviePlayer : public JKRDisposer {
 	DvdThreadCommand mThreadCommand; // _1C
 	u8 mIsPaused;                    // _88
 	// TODO: Is this a quat?
-	Vector3f mCameraPosition;                   // _8C
-	f32 mCameraAngle;                           // _98
-	u8 _09C[4];                                 // _9C
-	f32 _0A0;                                   // _A0
-	bool mCanFinish;                            // _A4
-	Vector3f* mOffset;                          // _A8
-	PSM::Demo* mDemoPSM;                        // _AC
-	MovieConfig* mCurrentConfig;                // _B0
-	IDelegate3<MovieConfig*, u32, u32>* _0BC;   // _B4
-	u32 mNaviID;                                // _B8
-	IDelegate3<MovieConfig*, void*, u32>* _0C4; // _BC
-	char* _0C0;                                 // _C0
-	u32 mStreamID;                              // _C4
-	MovieContext* mContexts;                    // _C8
-	MovieContext _0CC;                          // _CC
-	MovieContext _128;                          // _128
-	int mSuspend;                               // _184
-	int mContextsCount;                         // _188
-	Navi* mTargetNavi;                          // _18C
-	PlayCamera* mActingCamera;                  // _190
-	Creature* mTargetObject;                    // _194
-	Viewport* mViewport;                        // _198
-	Navi* _19C;                                 // _19C
-	PlayCamera* _1A0;                           // _1A0
-	IDelegate1<MoviePlayer>* _1A4;              // _1A4
-	u8 _1A8[0x8];                               // _1A8, unknown
-	JKRHeap* mMovieHeap;                        // _1B0
-	u32 mMovieHeapFreeSize;                     // _1B4
-	int mMessageEndCount;                       // _1B8
-	// TODO: Is this a quat?
+	Vector3f mCameraPosition;                                      // _8C
+	f32 mCameraAngle;                                              // _98
+	u8 _09C[4];                                                    // _9C
+	f32 mFadeTimer;                                                // _A0
+	bool mCanFinish;                                               // _A4
+	Vector3f* mOffset;                                             // _A8
+	PSM::Demo* mDemoPSM;                                           // _AC
+	MovieConfig* mCurrentConfig;                                   // _B0
+	IDelegate3<MovieConfig*, u32, u32>* mDelegate1;                // _B4
+	u32 mNaviID;                                                   // _B8
+	IDelegate3<MovieConfig*, u32, u32>* mDelegate2;                // _BC
+	char* mCameraName;                                             // _C0
+	u32 mStreamID;                                                 // _C4
+	MovieContext* mContexts;                                       // _C8
+	MovieContext mStoreContextActive;                              // _CC
+	MovieContext mStoreContextInactive;                            // _128
+	int mActiveContextNum;                                         // _184
+	int mContextsCount;                                            // _188
+	Navi* mTargetNavi;                                             // _18C
+	PlayCamera* mActingCamera;                                     // _190
+	Creature* mTargetObject;                                       // _194
+	Viewport* mViewport;                                           // _198
+	Navi* mAltNavi;                                                // _19C
+	PlayCamera* mAltCamera;                                        // _1A0
+	Delegate<MoviePlayer>* mDelegate3;                             // _1A4
+	u8 _1A8[0x8];                                                  // _1A8, unknown
+	JKRHeap* mMovieHeap;                                           // _1B0
+	u32 mMovieHeapFreeSize;                                        // _1B4
+	int mMessageEndCount;                                          // _1B8
 	Vector3f mTransform;                                           // _1BC
 	f32 mTransformAngle;                                           // _1C8
 	P2JST::ObjectSystem* mObjectSystem;                            // _1CC
@@ -249,17 +280,16 @@ struct MoviePlayer : public JKRDisposer {
 	JStudio_JStage::TCreateObject* mStudioStageCreateObject;       // _1D8
 	JStudio_JParticle::TCreateObject* mStudioParticleCreateObject; // _1DC
 	Pikmin_TCreateObject_JAudio* mPikminCreateObjectAudio;         // _1E0
-	P2JME::Movie::TControl* mMovieControl;                         // _1E4
+	P2JME::Movie::TControl* mTextControl;                          // _1E4
 	u32 mCounter;                                                  // _1E8
-	void* mStbFile;                                                // _1EC
-	// TODO: This might be a BitFlag<u32> object
-	enum { IS_ACTIVE = 1, IS_FINISHED = 2, _FORCE_INT = 0xFFFFFFFF } mFlags; // _1F0
-	// u32 mIsActive : 1, mFlags : 1;
-	JPAResourceManager* mResourceManager; // _1F4
+	const void* mStbFile;                                          // _1EC
+	enum { IS_ACTIVE = 1, IS_FINISHED = 2, _FORCE_INT = 0xFFFFFFFF };
+	BitFlag<u32> mFlags;             // _1F0
+	JPAResourceManager* mEfxManager; // _1F4
 
 	inline bool isActive()
 	{
-		return mFlags & IS_ACTIVE; // got tired of typing it out tbh
+		return mFlags.typeView & IS_ACTIVE; // got tired of typing it out tbh
 	}
 
 	static JKRArchive* mArchive;

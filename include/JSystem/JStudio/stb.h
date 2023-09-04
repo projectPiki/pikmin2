@@ -93,7 +93,7 @@ struct TControl {
 	virtual ~TControl(); // _08
 
 	const TObject* getObject(const void*, u32);
-	void forward(u32);
+	bool forward(u32);
 
 	// unused/inlined:
 	void appendObject(TObject*);

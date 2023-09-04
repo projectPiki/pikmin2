@@ -118,7 +118,7 @@ struct TControl : public P2JME::Window::TControl {
 	virtual void reset();                          // _0C
 	virtual bool update(Controller*, Controller*); // _14
 	virtual void draw(Graphics&);                  // _18
-	virtual void onInit();                         // _34
+	virtual bool onInit();                         // _34
 
 	EModeFlag setMode(EModeFlag);
 

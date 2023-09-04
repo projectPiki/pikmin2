@@ -22,7 +22,7 @@
 // }
 
 void* PSChangeBgm_ChallengeGame();
-void PSCancelToPauseOffMainBgm();
+void PSMCancelToPauseOffMainBgm();
 PSM::ActorDirector_Battle* PSMGetBattleD();
 PSSystem::DirectorBase* PSMGetBattleDirector(u8);
 PSM::ActorDirector_TrackOn* PSMGetBeedamaForLugieD();

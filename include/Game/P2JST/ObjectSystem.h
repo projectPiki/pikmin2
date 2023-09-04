@@ -27,7 +27,7 @@ struct ObjectSystem : public JStage::TSystem, public ObjectBase {
 	virtual void stop();                                                               // _7C (weak)
 
 	void destroyObjectAll();
-	void findObject(const char*, JStage::TEObject) const;
+	ObjectBase* findObject(const char*, JStage::TEObject) const;
 	Creature* findCreature(const char*) const;
 
 	// _00 = VTABLE (JStage::TSystem)

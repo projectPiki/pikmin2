@@ -16,6 +16,8 @@ struct TCreateObject_base : JStudio::TCreateObject {
 
 namespace JStudio_JMessage {
 struct TCreateObject : public TCreateObject_base {
+	TCreateObject(JMessage::TControl* control) { mControl = control; }
+
 	virtual ~TCreateObject();                                                          // _08
 	virtual JMessage::TControl* find(const JStudio::stb::data::TParse_TBlock_object&); // _10
 

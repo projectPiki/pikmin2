@@ -28,7 +28,7 @@ struct DemoInitiator {
 };
 
 struct DemoArg {
-	char* mPelletName; // _00
+	char* mCameraName; // _00
 	char* mName;       // _04
 	u32 mBgmID;        // _08
 };

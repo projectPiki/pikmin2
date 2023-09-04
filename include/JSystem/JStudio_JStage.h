@@ -13,6 +13,8 @@
 
 namespace JStudio_JStage {
 struct TCreateObject : JStudio::TCreateObject {
+	TCreateObject(JStage::TSystem* sys) { mSystem = sys; }
+
 	virtual ~TCreateObject();                                                                                // _08
 	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
 

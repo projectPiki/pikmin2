@@ -1874,7 +1874,7 @@ void MessageWindowScreen::open(f32 duration) { mWindowPane->open(duration); }
 bool TControl::update(Controller* pad1, Controller* pad2)
 {
 	bool ret = Window::TControl::update(pad1, pad2); // matching bs when this is bool
-	if (mFlags.dwordView & 1 && Game::moviePlayer && (Game::moviePlayer->mFlags & 2)) {
+	if (mFlags.dwordView & 1 && Game::moviePlayer && (Game::moviePlayer->mFlags.typeView & 2)) {
 		if (mIsActive) {
 			reset();
 			Game::moviePlayer->unsuspend(1, false);
@@ -1906,7 +1906,7 @@ bool TControl::update(Controller* pad1, Controller* pad2)
 			}
 			break;
 		case MODEFLAG_Writing:
-			if (mStatus & 2) {
+			if (mStatus.typeView & 2) {
 				setMode(MODEFLAG_Finish);
 			}
 			break;

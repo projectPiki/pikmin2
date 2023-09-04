@@ -2559,7 +2559,7 @@ void EnemyBase::doDebugDraw(Graphics&) { }
  */
 void EnemyBase::getLifeGaugeParam(LifeGaugeParam& param)
 {
-	if (moviePlayer && moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+	if (moviePlayer && moviePlayer->mFlags.typeView & MoviePlayer::IS_ACTIVE) {
 		param.mIsGaugeShown = false;
 	} else {
 		param.mIsGaugeShown = isEvent(0, EB_LifegaugeVisible) && mLod.mFlags & AILOD_FLAG_NEED_SHADOW;
@@ -3160,7 +3160,7 @@ int EnemyBase::getStateID()
 bool EnemyBase::needShadow()
 {
 	// If cutscene is playing, and enemy is within it, we need a shadow
-	if (moviePlayer && moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+	if (moviePlayer && moviePlayer->mFlags.typeView & MoviePlayer::IS_ACTIVE) {
 		return isMovieActor() || mMgr->isAlwaysMovieActor();
 	}
 

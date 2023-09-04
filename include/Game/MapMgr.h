@@ -63,7 +63,7 @@ struct MapMgr : virtual public GenericObjectMgr {
 
 	WaterBox* findWater(Sys::Sphere&);
 	f32 getMapRotation();
-	void getBestAngle(Vector3f&, f32, f32);
+	f32 getBestAngle(Vector3f&, f32, f32);
 	void checkBeamCollision(BeamCollisionArg&);
 	void clearPerfMonitor();
 	void traceMove(MapCollision&, Game::MoveInfo&, f32);

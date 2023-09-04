@@ -14,15 +14,15 @@ namespace P2JME {
 struct TControl : public JMessage::TControl {
 	TControl();
 
-	virtual ~TControl() { }                        // _08 (weak)
-	virtual void reset();                          // _0C
-	virtual bool update();                         // _10
-	virtual bool update(Controller*, Controller*); // _14 (weak)
-	virtual void draw(Graphics&);                  // _18
-	virtual void draw(Mtx, Mtx);                   // _1C
-	virtual BOOL setMessageID(u32, u32);           // _20
-	virtual void setMessageID(char*);              // _24
-	virtual void setMessageID(u64 tag)             // _28 (weak)
+	virtual ~TControl() { }                                     // _08 (weak)
+	virtual void reset();                                       // _0C
+	virtual bool update();                                      // _10
+	virtual bool update(Controller*, Controller*) { update(); } // _14 (weak)
+	virtual void draw(Graphics&);                               // _18
+	virtual void draw(Mtx, Mtx);                                // _1C
+	virtual BOOL setMessageID(u32, u32);                        // _20
+	virtual void setMessageID(char*);                           // _24
+	virtual void setMessageID(u64 tag)                          // _28 (weak)
 	{
 		setMessageID((char*)&tag);
 	}
