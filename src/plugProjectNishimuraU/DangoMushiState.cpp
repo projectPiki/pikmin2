@@ -1,246 +1,8 @@
-#include "types.h"
 #include "Game/Entities/DangoMushi.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/CameraMgr.h"
+#include "Game/rumble.h"
 #include "nans.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_DangoMushiState_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804D5E60
-    lbl_804D5E60:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game10DangoMushi10StateFlick
-    __vt__Q34Game10DangoMushi10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi12StateRecover
-    __vt__Q34Game10DangoMushi12StateRecover:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi9StateTurn
-    __vt__Q34Game10DangoMushi9StateTurn:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi11StateAttack
-    __vt__Q34Game10DangoMushi11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi9StateMove
-    __vt__Q34Game10DangoMushi9StateMove:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi9StateWait
-    __vt__Q34Game10DangoMushi9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi11StateAppear
-    __vt__Q34Game10DangoMushi11StateAppear:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi9StateStay
-    __vt__Q34Game10DangoMushi9StateStay:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi9StateDead
-    __vt__Q34Game10DangoMushi9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi5State
-    __vt__Q34Game10DangoMushi5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10DangoMushi3FSM
-    __vt__Q34Game10DangoMushi3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game10DangoMushi3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515E08
-    lbl_80515E08:
-        .skip 0x4
-    .global lbl_80515E0C
-    lbl_80515E0C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D2F8
-    lbl_8051D2F8:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051D300
-    lbl_8051D300:
-        .4byte 0x73746179
-        .4byte 0x00000000
-    .global lbl_8051D308
-    lbl_8051D308:
-        .4byte 0x61707065
-        .4byte 0x61720000
-    .global lbl_8051D310
-    lbl_8051D310:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051D318
-    lbl_8051D318:
-        .4byte 0x6D6F7665
-        .4byte 0x00000000
-    .global lbl_8051D320
-    lbl_8051D320:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051D328
-    lbl_8051D328:
-        .4byte 0x7475726E
-        .4byte 0x00000000
-    .global lbl_8051D330
-    lbl_8051D330:
-        .4byte 0x7265636F
-        .4byte 0x76657200
-    .global lbl_8051D338
-    lbl_8051D338:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051D340
-    lbl_8051D340:
-        .4byte 0x00000000
-    .global lbl_8051D344
-    lbl_8051D344:
-        .4byte 0x42480000
-    .global lbl_8051D348
-    lbl_8051D348:
-        .4byte 0x40490FDB
-    .global lbl_8051D34C
-    lbl_8051D34C:
-        .4byte 0x3BB60B61
-    .global lbl_8051D350
-    lbl_8051D350:
-        .4byte 0x626C656E
-        .4byte 0x64000000
-    .global lbl_8051D358
-    lbl_8051D358:
-        .4byte 0x40400000
-    .global lbl_8051D35C
-    lbl_8051D35C:
-        .4byte 0x41200000
-    .global lbl_8051D360
-    lbl_8051D360:
-        .4byte 0x3F060A92
-    .global lbl_8051D364
-    lbl_8051D364:
-        .4byte 0x41700000
-    .global lbl_8051D368
-    lbl_8051D368:
-        .float 1.0
-    .global lbl_8051D36C
-    lbl_8051D36C:
-        .4byte 0xC47A0000
-    .global lbl_8051D370
-    lbl_8051D370:
-        .4byte 0x41F00000
-        .4byte 0x00000000
-*/
 
 namespace Game {
 namespace DangoMushi {
@@ -250,228 +12,19 @@ namespace DangoMushi {
  * Address:	802F9A8C
  * Size:	000320
  */
-void DangoMushi::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 9
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802F9AF0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10DangoMushi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10DangoMushi9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
-	addi     r5, r2, lbl_8051D2F8@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game10DangoMushi9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
+	create(DANGOMUSHI_StateCount);
 
-lbl_802F9AF0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802F9B44
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10DangoMushi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10DangoMushi9StateStay@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051D300@sda21
-	addi     r0, r3, __vt__Q34Game10DangoMushi9StateStay@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802F9B44:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802F9B98
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10DangoMushi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10DangoMushi11StateAppear@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051D308@sda21
-	addi     r0, r3, __vt__Q34Game10DangoMushi11StateAppear@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802F9B98:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802F9BEC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10DangoMushi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10DangoMushi9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051D310@sda21
-	addi     r0, r3, __vt__Q34Game10DangoMushi9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802F9BEC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802F9C40
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10DangoMushi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10DangoMushi9StateMove@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051D318@sda21
-	addi     r0, r3, __vt__Q34Game10DangoMushi9StateMove@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802F9C40:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802F9C94
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10DangoMushi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10DangoMushi11StateAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051D320@sda21
-	addi     r0, r3, __vt__Q34Game10DangoMushi11StateAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802F9C94:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802F9CE8
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10DangoMushi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10DangoMushi9StateTurn@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051D328@sda21
-	addi     r0, r3, __vt__Q34Game10DangoMushi9StateTurn@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802F9CE8:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802F9D3C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10DangoMushi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10DangoMushi12StateRecover@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051D330@sda21
-	addi     r0, r3, __vt__Q34Game10DangoMushi12StateRecover@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802F9D3C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802F9D90
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10DangoMushi5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10DangoMushi10StateFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 8
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051D338@sda21
-	addi     r0, r3, __vt__Q34Game10DangoMushi10StateFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802F9D90:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	registerState(new StateDead);
+	registerState(new StateStay);
+	registerState(new StateAppear);
+	registerState(new StateWait);
+	registerState(new StateMove);
+	registerState(new StateAttack);
+	registerState(new StateTurn);
+	registerState(new StateRecover);
+	registerState(new StateFlick);
 }
 
 /*
@@ -479,48 +32,19 @@ lbl_802F9D90:
  * Address:	802F9DAC
  * Size:	000088
  */
-void DangoMushi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r30, 8(r1)
-	mr       r30, r5
-	stb      r0, 0x2c2(r4)
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051D340@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	cmplwi   r30, 0
-	beq      lbl_802F9E0C
-	mr       r3, r31
-	li       r4, 7
-	li       r5, 1
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-	b        lbl_802F9E1C
+	Obj* crab  = OBJ(enemy);
+	crab->_2C2 = false;
+	crab->deathProcedure();
+	crab->mTargetVelocity = Vector3f(0.0f);
+	crab->setEmotionCaution();
 
-lbl_802F9E0C:
-	mr       r3, r31
-	li       r4, 7
-	li       r5, 0
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-
-lbl_802F9E1C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (stateArg) {
+		crab->startBlendAnimation(7, true);
+	} else {
+		crab->startBlendAnimation(7, false);
+	}
 }
 
 /*
@@ -528,99 +52,31 @@ lbl_802F9E1C:
  * Address:	802F9E34
  * Size:	00013C
  */
-void DangoMushi::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051D344@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802F9EA0
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r5, r1, 0x2c
-	lfs      f1, 0x18(r1)
-	li       r4, 6
-	lfs      f0, 0x1c(r1)
-	li       r6, 2
-	stfs     f2, 0x2c(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	Obj* crab = OBJ(enemy);
 
-lbl_802F9EA0:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802F9F5C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x7d0
-	bne      lbl_802F9EC8
-	mr       r3, r31
-	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
-	b        lbl_802F9F5C
+	if (crab->getMotionFrame() > 50.0f) {
+		Vector3f crabPos = crab->getPosition();
+		cameraMgr->startVibration(6, crabPos, 2);
+	}
 
-lbl_802F9EC8:
-	cmplwi   r0, 2
-	bne      lbl_802F9EDC
-	mr       r3, r31
-	bl       createDeadSmokeEffect__Q34Game10DangoMushi3ObjFv
-	b        lbl_802F9F5C
+	if (crab->mCurAnim->mIsPlaying) {
+		if (crab->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			crab->endBlendAnimation();
 
-lbl_802F9EDC:
-	cmplwi   r0, 3
-	bne      lbl_802F9F48
-	mr       r3, r31
-	bl       createDeadBombEffect__Q34Game10DangoMushi3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x20
-	lfs      f1, 0xc(r1)
-	li       r4, 0x1a
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x20(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x20
-	li       r4, 0xe
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802F9F5C
+		} else if (crab->mCurAnim->mType == KEYEVENT_2) {
+			crab->createDeadSmokeEffect();
 
-lbl_802F9F48:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802F9F5C
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_802F9F5C:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		} else if (crab->mCurAnim->mType == KEYEVENT_3) {
+			crab->createDeadBombEffect();
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(26, crabPos, 2);
+			rumbleMgr->startRumble(14, crabPos, 2);
+		} else if (crab->mCurAnim->mType == KEYEVENT_END) {
+			crab->kill(nullptr);
+		}
+	}
 }
 
 /*
@@ -628,54 +84,26 @@ lbl_802F9F5C:
  * Address:	802F9F70
  * Size:	000004
  */
-void DangoMushi::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802F9F74
  * Size:	000094
  */
-void DangoMushi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
+void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2cc(r4)
-	li       r0, 0
-	stfs     f0, 0x2c4(r4)
-	stb      r0, 0x2c2(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r4)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051D340@sda21(r2)
-	li       r4, 0
-	oris     r0, r0, 0x4000
-	li       r5, 0
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-	mr       r3, r31
-	bl       stopMotion__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* crab        = OBJ(enemy);
+	crab->mNextState = DANGOMUSHI_NULL;
+	crab->_2C4       = 0.0f;
+	crab->_2C2       = false;
+	crab->enableEvent(0, EB_IsVulnerable);
+	crab->enableEvent(0, EB_IsImmuneBitter);
+	crab->hardConstraintOn();
+	crab->enableEvent(0, EB_IsModelHidden);
+	crab->mTargetVelocity = Vector3f(0.0f);
+	crab->startBlendAnimation(0, false);
+	crab->stopMotion();
 }
 
 /*
@@ -683,7 +111,7 @@ void DangoMushi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802FA008
  * Size:	000144
  */
-void DangoMushi::StateStay::exec(Game::EnemyBase*)
+void StateStay::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -787,14 +215,14 @@ lbl_802FA12C:
  * Address:	802FA14C
  * Size:	000004
  */
-void DangoMushi::StateStay::cleanup(Game::EnemyBase*) { }
+void StateStay::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802FA150
  * Size:	00008C
  */
-void DangoMushi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
+void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -840,7 +268,7 @@ void DangoMushi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802FA1DC
  * Size:	000400
  */
-void DangoMushi::StateAppear::exec(Game::EnemyBase*)
+void StateAppear::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -1123,7 +551,7 @@ lbl_802FA58C:
  * Address:	802FA5DC
  * Size:	000030
  */
-void DangoMushi::StateAppear::cleanup(Game::EnemyBase*)
+void StateAppear::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1146,7 +574,7 @@ void DangoMushi::StateAppear::cleanup(Game::EnemyBase*)
  * Address:	802FA60C
  * Size:	00009C
  */
-void DangoMushi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1200,7 +628,7 @@ lbl_802FA690:
  * Address:	802FA6A8
  * Size:	000364
  */
-void DangoMushi::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xf0(r1)
@@ -1442,14 +870,14 @@ lbl_802FA9BC:
  * Address:	802FAA0C
  * Size:	000004
  */
-void DangoMushi::StateWait::cleanup(Game::EnemyBase*) { }
+void StateWait::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802FAA10
  * Size:	00005C
  */
-void DangoMushi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1483,7 +911,7 @@ void DangoMushi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802FAA6C
  * Size:	0007A8
  */
-void DangoMushi::StateMove::exec(Game::EnemyBase*)
+void StateMove::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x180(r1)
@@ -2018,14 +1446,14 @@ lbl_802FB1C4:
  * Address:	802FB214
  * Size:	000004
  */
-void DangoMushi::StateMove::cleanup(Game::EnemyBase*) { }
+void StateMove::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802FB218
  * Size:	000088
  */
-void DangoMushi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2070,7 +1498,7 @@ void DangoMushi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802FB2A0
  * Size:	000288
  */
-void DangoMushi::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2263,7 +1691,7 @@ lbl_802FB510:
  * Address:	802FB528
  * Size:	000058
  */
-void DangoMushi::StateAttack::cleanup(Game::EnemyBase*)
+void StateAttack::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2296,7 +1724,7 @@ void DangoMushi::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	802FB580
  * Size:	0000D4
  */
-void DangoMushi::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2360,7 +1788,7 @@ void DangoMushi::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802FB654
  * Size:	000270
  */
-void DangoMushi::StateTurn::exec(Game::EnemyBase*)
+void StateTurn::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2543,7 +1971,7 @@ lbl_802FB8AC:
  * Address:	802FB8C4
  * Size:	000068
  */
-void DangoMushi::StateTurn::cleanup(Game::EnemyBase*)
+void StateTurn::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2581,7 +2009,7 @@ void DangoMushi::StateTurn::cleanup(Game::EnemyBase*)
  * Address:	802FB92C
  * Size:	000050
  */
-void DangoMushi::StateRecover::init(Game::EnemyBase*, Game::StateArg*)
+void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2612,7 +2040,7 @@ void DangoMushi::StateRecover::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802FB97C
  * Size:	0000FC
  */
-void DangoMushi::StateRecover::exec(Game::EnemyBase*)
+void StateRecover::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2692,14 +2120,14 @@ lbl_802FBA64:
  * Address:	802FBA78
  * Size:	000004
  */
-void DangoMushi::StateRecover::cleanup(Game::EnemyBase*) { }
+void StateRecover::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802FBA7C
  * Size:	00006C
  */
-void DangoMushi::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2737,7 +2165,7 @@ void DangoMushi::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802FBAE8
  * Size:	0001E0
  */
-void DangoMushi::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2878,7 +2306,7 @@ lbl_802FBCB0:
  * Address:	802FBCC8
  * Size:	00002C
  */
-void DangoMushi::StateFlick::cleanup(Game::EnemyBase*)
+void StateFlick::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
