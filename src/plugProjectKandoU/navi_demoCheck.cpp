@@ -226,7 +226,7 @@ bool Navi::demoCheck()
 				Vector3f peltPos = pelt->getPosition();
 				Sys::Sphere bound(peltPos, pelt->getBottomRadius() + FindGlobeTreasureTriggerSize);
 				// only the two globe treasures should check if a captain/pikmin is near, others play instantly
-				if (id == 10 || id == 11) { // TODO: use enum for explorer kit treasures
+				if (id == OlimarData::ODII_SphericalAtlas || id == OlimarData::ODII_GeographicProjection) {
 					check = true;
 				}
 				bool check2 = false;

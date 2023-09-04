@@ -5,6 +5,7 @@
 #include "Game/PikiMgr.h"
 #include "Game/Navi.h"
 #include "Game/CPlate.h"
+#include "Game/Stickers.h"
 #include "Dolphin/rand.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 
@@ -259,7 +260,7 @@ void Obj::wallCallback(const MoveInfo& mvInfo)
 	if (mIsRolling) {
 		Vector3f velocity = _2DC;
 		f32 speed         = _normalise2(velocity);
-		if (speed > 100.0f && dot(velocity, mvInfo.mReflectPosition) < 0.5f) {
+		if (speed > 100.0f && dot(velocity, mvInfo.mReflectPosition) < -0.5f) {
 			createBodyWallCrashEffect(mvInfo.mReflectPosition);
 			mFsm->transit(this, DANGOMUSHI_Turn, nullptr);
 		}
@@ -433,7 +434,7 @@ void Obj::rollingMove()
 		Vector3f vel(mCurrentVelocity);
 		vel.y = 0.0f;
 
-		if (_lenVec(vel) < 100.0f) {
+		if (vel.length() < 100.0f) {
 			_2C4 += 5.0f * sys->mDeltaTime;
 		} else {
 			_2C4 += 3.0f * sys->mDeltaTime;
@@ -1023,80 +1024,23 @@ int Obj::getFallEggNum()
  * Address:	802FD960
  * Size:	000104
  */
-void Obj::getFallPosition(int)
+Vector3f Obj::getFallPosition(int p1)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r31, r4
-	cmpwi    r5, 0
-	lfs      f31, 0x198(r4)
-	mr       r30, r3
-	lfs      f30, 0x19c(r4)
-	lfs      f29, 0x1a0(r4)
-	bne      lbl_802FDA28
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	cmplwi   r3, 0
-	beq      lbl_802FD9E0
-	mr       r4, r3
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 0x14(r1)
-	lfs      f30, 0x18(r1)
-	lfs      f29, 0x1c(r1)
-	b        lbl_802FDA28
+	Vector3f fallPos = mHomePosition;
 
-lbl_802FD9E0:
-	lfs      f1, lbl_8051D404@sda21(r2)
-	mr       r3, r31
-	lfs      f2, lbl_8051D454@sda21(r2)
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_802FDA28
-	mr       r4, r3
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f31, 8(r1)
-	lfs      f30, 0xc(r1)
-	lfs      f29, 0x10(r1)
+	if (p1 == 0) {
+		Navi* navi = naviMgr->getActiveNavi();
+		if (navi) {
+			fallPos = navi->getPosition();
+		} else {
+			Creature* target = EnemyFunc::getNearestPikminOrNavi(this, 180.0f, 500.0f, nullptr, nullptr, nullptr);
+			if (target) {
+				fallPos = target->getPosition();
+			}
+		}
+	}
 
-lbl_802FDA28:
-	stfs     f31, 0(r30)
-	stfs     f30, 4(r30)
-	stfs     f29, 8(r30)
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	return fallPos;
 }
 
 /*
@@ -1117,317 +1061,43 @@ void Obj::setupCollision()
  * Address:	802FDA9C
  * Size:	000444
  */
-void Obj::setBodyCollision(bool)
+void Obj::setBodyCollision(bool check)
 {
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stfd     f31, 0xc0(r1)
-	psq_st   f31, 200(r1), 0, qr0
-	stfd     f30, 0xb0(r1)
-	psq_st   f30, 184(r1), 0, qr0
-	stfd     f29, 0xa0(r1)
-	psq_st   f29, 168(r1), 0, qr0
-	stmw     r25, 0x84(r1)
-	lwz      r5, lbl_8051D458@sda21(r2)
-	mr       r25, r4
-	lwz      r0, lbl_8051D45C@sda21(r2)
-	mr       r31, r3
-	stw      r5, 8(r1)
-	addi     r27, r1, 8
-	clrlwi   r28, r4, 0x18
-	li       r26, 0
-	stw      r0, 0xc(r1)
-	lis      r29, 0x5f74
-	lis      r30, 0x7374
+	u32 collTags[2] = { 'bod0', 'bod1' };
 
-lbl_802FDAF0:
-	lwz      r3, 0x114(r31)
-	lwz      r4, 0(r27)
-	bl       getCollPart__8CollTreeFUl
-	cmplwi   r3, 0
-	beq      lbl_802FDB1C
-	cmplwi   r28, 0
-	beq      lbl_802FDB1C
-	addi     r3, r3, 0x3c
-	addi     r4, r29, 0x5f5f
-	bl       __as__4ID32FUl
-	b        lbl_802FDB28
+	for (int i = 0; i < 2; i++) {
+		CollPart* part = mCollTree->getCollPart(collTags[i]);
+		if (part && check) {
+			part->mSpecialID = '_t__';
+		} else {
+			part->mSpecialID = 'st__';
+		}
+	}
 
-lbl_802FDB1C:
-	addi     r3, r3, 0x3c
-	addi     r4, r30, 0x5f5f
-	bl       __as__4ID32FUl
+	if (check && mStuckPikminCount != 0 && !(mHealth <= 0.0f)) {
+		f32 angle = PI + mFaceDir;
+		Vector3f vec;
+		vec.x = 150.0f * pikmin2_sinf(mFaceDir);
+		vec.y = 150.0f;
+		vec.z = 150.0f * pikmin2_cosf(mFaceDir);
 
-lbl_802FDB28:
-	addi     r26, r26, 1
-	addi     r27, r27, 4
-	cmpwi    r26, 2
-	blt      lbl_802FDAF0
-	clrlwi.  r0, r25, 0x18
-	beq      lbl_802FDEB4
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 0
-	beq      lbl_802FDEB4
-	lfs      f0, 0x200(r31)
-	lfs      f1, lbl_8051D3A8@sda21(r2)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	beq      lbl_802FDEB4
-	lfs      f3, 0x1fc(r31)
-	lfs      f0, lbl_8051D3E4@sda21(r2)
-	fcmpo    cr0, f3, f1
-	lfs      f2, lbl_8051D460@sda21(r2)
-	fadds    f31, f0, f3
-	bge      lbl_802FDBA4
-	lfs      f0, lbl_8051D3F0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x68(r1)
-	lwz      r0, 0x6c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f1, f0
-	b        lbl_802FDBC8
-
-lbl_802FDBA4:
-	lfs      f0, lbl_8051D3EC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x70(r1)
-	lwz      r0, 0x74(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r3, r0
-
-lbl_802FDBC8:
-	lfs      f0, lbl_8051D3A8@sda21(r2)
-	fmuls    f30, f2, f1
-	fcmpo    cr0, f3, f0
-	bge      lbl_802FDBDC
-	fneg     f3, f3
-
-lbl_802FDBDC:
-	lfs      f0, lbl_8051D3EC@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r5, r3, sincosTable___5JMath@l
-	lfs      f1, lbl_8051D460@sda21(r2)
-	fmuls    f0, f3, f0
-	mr       r4, r31
-	addi     r3, r1, 0x4c
-	fctiwz   f0, f0
-	stfd     f0, 0x78(r1)
-	lwz      r0, 0x7c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r5, r5, r0
-	lfs      f0, 4(r5)
-	fmuls    f29, f1, f0
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x4c
-	cmplwi   r0, 0
-	stw      r4, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x14(r1)
-	stw      r3, 0x18(r1)
-	bne      lbl_802FDC58
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_802FDE88
-
-lbl_802FDC58:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_802FDCC4
-
-lbl_802FDC70:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802FDE88
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_802FDCC4:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FDC70
-	b        lbl_802FDE88
-
-lbl_802FDCE4:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r28, r3
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FDDCC
-	lbz      r0, 0x2b8(r28)
-	cmpwi    r0, 3
-	bne      lbl_802FDD70
-	lwz      r6, 0xc0(r31)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game13InteractFlick@ha
-	mr       r3, r28
-	lfs      f1, 0x4ec(r6)
-	addi     r5, r5, __vt__Q24Game11Interaction@l
-	lfs      f0, 0x4c4(r6)
-	addi     r0, r4, __vt__Q24Game13InteractFlick@l
-	addi     r4, r1, 0x38
-	stw      r5, 0x38(r1)
-	stw      r31, 0x3c(r1)
-	stw      r0, 0x38(r1)
-	stfs     f0, 0x40(r1)
-	stfs     f1, 0x44(r1)
-	stfs     f31, 0x48(r1)
-	lwz      r12, 0(r28)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802FDDCC
-
-lbl_802FDD70:
-	lwz      r6, 0xc0(r31)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game12InteractWind@ha
-	lis      r3, __vt__Q24Game20InteractHanaChirashi@ha
-	lfs      f1, 0x604(r6)
-	addi     r0, r5, __vt__Q24Game11Interaction@l
-	lfs      f0, lbl_8051D460@sda21(r2)
-	addi     r5, r4, __vt__Q24Game12InteractWind@l
-	stw      r0, 0x20(r1)
-	addi     r0, r3, __vt__Q24Game20InteractHanaChirashi@l
-	mr       r3, r28
-	addi     r4, r1, 0x20
-	stw      r5, 0x20(r1)
-	stw      r31, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	stfs     f30, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	stfs     f29, 0x34(r1)
-	stw      r0, 0x20(r1)
-	lwz      r12, 0(r28)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802FDDCC:
-	lwz      r0, 0x1c(r1)
-	cmplwi   r0, 0
-	bne      lbl_802FDDF8
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_802FDE88
-
-lbl_802FDDF8:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_802FDE6C
-
-lbl_802FDE18:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802FDE88
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-
-lbl_802FDE6C:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FDE18
-
-lbl_802FDE88:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x14(r1)
-	cmplw    r4, r3
-	bne      lbl_802FDCE4
-	addi     r3, r1, 0x4c
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-
-lbl_802FDEB4:
-	psq_l    f31, 200(r1), 0, qr0
-	lfd      f31, 0xc0(r1)
-	psq_l    f30, 184(r1), 0, qr0
-	lfd      f30, 0xb0(r1)
-	psq_l    f29, 168(r1), 0, qr0
-	lfd      f29, 0xa0(r1)
-	lmw      r25, 0x84(r1)
-	lwz      r0, 0xd4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
+		Stickers stickers(this);
+		Iterator<Creature> iter(&stickers);
+		CI_LOOP(iter)
+		{
+			Creature* stuck = *iter;
+			if (stuck->isPiki()) {
+				int pikiColor = static_cast<Piki*>(stuck)->mPikiKind;
+				if (pikiColor == Purple) {
+					InteractFlick flick(this, C_PARMS->mGeneral.mShakeKnockback.mValue, C_PARMS->mGeneral.mShakeDamage.mValue, angle);
+					stuck->stimulate(flick);
+				} else {
+					InteractHanaChirashi wilt(this, C_PARMS->mGeneral.mAttackDamage.mValue, &vec);
+					stuck->stimulate(wilt);
+				}
+			}
+		}
+	}
 }
 
 /*

@@ -1140,7 +1140,7 @@ LIBS = [
             ["plugProjectNishimuraU/BabyMgr", True],
             ["plugProjectNishimuraU/Baby", True],
             ["plugProjectNishimuraU/DemonMgr", True],
-            "plugProjectNishimuraU/Demon",
+            ["plugProjectNishimuraU/Demon", True],
             ["plugProjectNishimuraU/QueenShadow", True],
             ["plugProjectNishimuraU/FireChappyMgr", True],
             ["plugProjectNishimuraU/FireChappy", True],

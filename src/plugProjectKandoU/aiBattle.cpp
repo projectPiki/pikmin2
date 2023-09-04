@@ -290,7 +290,7 @@ void ActBattle::onKeyEvent(SysShape::KeyEvent const& event)
 				}
 				return;
 			case KEYEVENT_2: {
-				PikiAI::ActBattle * battle;
+				PikiAI::ActBattle* battle;
 				if (mOther && mOther->getCurrActionID() == PikiAI::ACT_Battle) {
 					battle = static_cast<ActBattle*>(mOther->getCurrAction());
 				} else {
