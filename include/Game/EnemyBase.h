@@ -500,6 +500,69 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		sep.y = mPosition.z - point.z;
 	}
 
+	inline f32 getCreatureViewAngle(Creature* target)
+	{
+		Vector3f targetPos = target->getPosition();
+		Vector3f pos       = getPosition();
+		f32 ang            = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
+		return angDist(ang, getFaceDir());
+	}
+
+	inline f32 getCreatureViewAngle(Vector3f& targetPos)
+	{
+		Vector3f pos = getPosition();
+		f32 ang      = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
+		return angDist(ang, getFaceDir());
+	}
+
+	// this seems necessary and correct based on BombSarai::Obj::throwBomb
+	inline void updateFaceDir(f32 angle)
+	{
+		mFaceDir    = angle;
+		mRotation.y = mFaceDir;
+	}
+
+	inline f32 turnToTarget(Creature* target, f32 turnFactor, f32 maxTurnSpeed)
+	{
+		f32 angleDist = getAngDist(target);
+		f32 turnSpeed = angleDist * turnFactor;
+		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
+		if (FABS(turnSpeed) > limit) {
+			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
+		}
+
+		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+
+		return angleDist;
+	}
+
+	inline f32 turnToTarget(Vector3f& targetPos, f32 turnFactor, f32 maxTurnSpeed)
+	{
+		f32 angleDist = getAngDist(targetPos);
+		f32 turnSpeed = angleDist * turnFactor;
+		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
+		if (FABS(turnSpeed) > limit) {
+			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
+		}
+
+		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+
+		return angleDist;
+	}
+
+	inline bool checkDistAndAngle(Creature* target, f32 angle, f32 distRange, f32 angRange)
+	{
+		bool result = false;
+		Vector3f sep;
+		sep.x = target->getPosition().x - getPosition().x;
+		sep.y = target->getPosition().y - getPosition().y;
+		sep.z = target->getPosition().z - getPosition().z;
+		if ((sep.sqrMagnitude() < SQUARE(distRange)) && FABS(angle) <= PI * (DEG2RAD * angRange)) {
+			result = true;
+		}
+		return result;
+	}
+
 	inline f32 changeFaceDir(Vector3f& XYZ)
 	{
 		f32 approxSpeed;
@@ -584,117 +647,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
-	inline f32 turnToTarget(Vector3f& XZ, f32 angLimit, f32 scale)
-	{
-		Vector3f pos       = getPosition();
-		Vector3f targetPos = XZ;
-
-		f32 angleDist = angDist(_angXZ(targetPos.x, targetPos.z, pos.x, pos.z), getFaceDir());
-		angleDist *= scale;
-		f32 limit = angLimit;
-		if (FABS(angleDist) > limit) {
-			angleDist = (angleDist > 0.0f) ? limit : -limit;
-		}
-		return angleDist;
-	}
-
-	inline f32 turnToTarget2(Vector3f& XZ, f32 scale, f32 angLimit)
-	{
-		Vector3f pos       = getPosition();
-		Vector3f targetPos = XZ;
-
-		f32 angleDist   = angDist(angXZ(targetPos.x, targetPos.z, pos), getFaceDir());
-		f32 approxSpeed = angleDist * scale;
-		f32 limit       = (DEG2RAD * angLimit) * PI;
-		if (FABS(approxSpeed) > limit) {
-			approxSpeed = boundVal(approxSpeed, limit);
-		}
-
-		mFaceDir    = roundAng(approxSpeed + getFaceDir());
-		mRotation.y = mFaceDir;
-
-		return angleDist;
-	}
-
-	// this seems necessary and correct based on BombSarai::Obj::throwBomb
-	inline void updateFaceDir(f32 angle)
-	{
-		mFaceDir    = angle;
-		mRotation.y = mFaceDir;
-	}
-
-	inline f32 turnToTargetNishi(Creature* target, f32 turnFactor, f32 maxTurnSpeed)
-	{
-		f32 angleDist = getAngDist(target);
-		f32 turnSpeed = angleDist * turnFactor;
-		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
-		if (FABS(turnSpeed) > limit) {
-			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
-		}
-
-		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
-
-		return angleDist;
-	}
-	inline f32 turnToTargetNishi(Vector3f& targetPos, f32 turnFactor, f32 maxTurnSpeed)
-	{
-		f32 angleDist = getAngDist(targetPos);
-		f32 turnSpeed = angleDist * turnFactor;
-		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
-		if (FABS(turnSpeed) > limit) {
-			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
-		}
-
-		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
-
-		return angleDist;
-	}
-
 	inline void forceMovePosition(Vector3f offset) { mPosition += offset; }
-
-	inline f32 turnToTargetMori(Vector3f& targetPos, f32 turnFactor, f32 maxTurnSpeed)
-	{
-		Vector3f pos = getPosition();
-
-		f32 angleDist = angDist(angXZ(targetPos.x, targetPos.z, pos), getFaceDir());
-		f32 turnSpeed = angleDist * turnFactor;
-		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
-		if (FABS(turnSpeed) > limit) {
-			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
-		}
-
-		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
-
-		return angleDist;
-	}
-
-	inline bool checkDistAndAngle(Creature* target, f32 angle, f32 distRange, f32 angRange)
-	{
-		bool result = false;
-		Vector3f sep;
-		sep.x = target->getPosition().x - getPosition().x;
-		sep.y = target->getPosition().y - getPosition().y;
-		sep.z = target->getPosition().z - getPosition().z;
-		if ((sep.sqrMagnitude() < SQUARE(distRange)) && FABS(angle) <= PI * (DEG2RAD * angRange)) {
-			result = true;
-		}
-		return result;
-	}
-
-	inline f32 getCreatureViewAngle(Creature* target)
-	{
-		Vector3f targetPos = target->getPosition();
-		Vector3f pos       = getPosition();
-		f32 ang            = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
-		return angDist(ang, getFaceDir());
-	}
-
-	inline f32 getCreatureViewAngle(Vector3f& targetPos)
-	{
-		Vector3f pos = getPosition();
-		f32 ang      = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
-		return angDist(ang, getFaceDir());
-	}
 
 	inline f32 getDamageAnimFrac(f32 scale) { return (mDamageAnimTimer / scale); }
 

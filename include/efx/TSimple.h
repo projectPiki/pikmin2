@@ -80,9 +80,9 @@ struct TSimple4 : public TBase {
 		mEmitters[3]  = nullptr;
 	}
 
-	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual bool create(Arg*);   // _08
+	virtual void forceKill() { } // _0C (weak)
+	virtual void fade() { }      // _10 (weak)
 
 	/**
 	 * @fabricated

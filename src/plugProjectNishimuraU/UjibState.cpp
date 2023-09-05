@@ -281,7 +281,7 @@ void StateMove::exec(EnemyBase* enemy)
 
 		uji->mFaceDir    = roundAng(turnSpeed + uji->getFaceDir());
 		uji->mRotation.y = uji->mFaceDir;
-		// uji->turnToTargetNishi(target, CG_PARMS(uji)->mGeneral.mRotationalAccel.mValue, CG_PARMS(uji)->mGeneral.mRotationalSpeed.mValue);
+		// uji->turnToTarget(target, CG_PARMS(uji)->mGeneral.mRotationalAccel.mValue, CG_PARMS(uji)->mGeneral.mRotationalSpeed.mValue);
 		// uji->changeFaceDir(target);
 		f32 speed = CG_PARMS(uji)->mGeneral.mMoveSpeed.mValue;
 

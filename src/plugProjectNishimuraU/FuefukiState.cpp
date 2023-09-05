@@ -359,8 +359,8 @@ void StateTurn::exec(EnemyBase* enemy)
 	Vector3f targetPos = Vector3f(fuefuki->mTargetPosition);
 
 	// this is close.
-	f32 angleDist = fuefuki->turnToTarget2(targetPos, CG_PARMS(fuefuki)->mGeneral.mRotationalAccel.mValue,
-	                                       CG_PARMS(fuefuki)->mGeneral.mRotationalSpeed.mValue);
+	f32 angleDist = fuefuki->turnToTarget(targetPos, *CG_PARMS(fuefuki)->mGeneral.mRotationalAccel(),
+	                                      *CG_PARMS(fuefuki)->mGeneral.mRotationalSpeed());
 
 	if (FABS(angleDist) <= PI / 6) {
 		fuefuki->mNextState = FUEFUKI_Walk;

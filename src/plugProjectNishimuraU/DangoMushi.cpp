@@ -422,7 +422,7 @@ void Obj::rollingMove()
 	}
 	Parms* parms = static_cast<Parms*>(mParms);
 
-	turnToTargetMori(targetPos, C_PROPERPARMS.mRollingTurnAccel.mValue, C_PROPERPARMS.mRollingTurnSpeed.mValue);
+	turnToTarget(targetPos, C_PROPERPARMS.mRollingTurnAccel.mValue, C_PROPERPARMS.mRollingTurnSpeed.mValue);
 
 	f32 rollSpeed = C_PROPERPARMS.mRollingMoveSpeed.mValue;
 	f32 x         = (f32)sin(getFaceDir());

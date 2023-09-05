@@ -152,13 +152,8 @@ void StateAppear::exec(EnemyBase* enemy)
 				FakePiki* target       = OBJ(enemy)->getNearestPikiOrNavi(360.0f, terrRad);
 				enemy->mTargetCreature = target;
 				if (target) {
-					Vector3f targetPos = target->getPosition();
-					// this inline needs fixing but seems the most real
-					f32 angleDist = enemy->turnToTarget(targetPos, TAU, 1.0f);
-
-					enemy->mFaceDir    = roundAng(angleDist + enemy->getFaceDir());
-					enemy->mRotation.y = enemy->mFaceDir;
-					OBJ(enemy)->_2EC   = enemy->mFaceDir;
+					f32 angleDist    = enemy->turnToTarget(target, 1.0f, TAU);
+					OBJ(enemy)->_2EC = enemy->mFaceDir;
 				}
 			}
 
@@ -180,231 +175,6 @@ void StateAppear::exec(EnemyBase* enemy)
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	mr       r30, r3
-	mr       r31, r4
-	lwz      r3, 0x10(r3)
-	addi     r0, r3, 1
-	stw      r0, 0x10(r30)
-	lwz      r3, 0xc0(r4)
-	lwz      r4, 0x10(r30)
-	lwz      r0, 0x8e4(r3)
-	cmpw     r4, r0
-	ble      lbl_8036680C
-	mr       r3, r31
-	bl       isStopMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80366724
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	li       r4, 0
-	lfs      f31, 0x35c(r5)
-	fmr      f1, f31
-	bl
-"isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80366584
-	li       r0, 1
-	b        lbl_803665A8
-
-lbl_80366584:
-	fmr      f1, f31
-	mr       r3, r31
-	li       r4, 0
-	bl
-"isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803665A4
-	li       r0, 1
-	b        lbl_803665A8
-
-lbl_803665A4:
-	li       r0, 0
-
-lbl_803665A8:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8036680C
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFv
-	mr       r4, r31
-	addi     r3, r1, 0x44
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x44(r1)
-	addi     r5, r1, 0x5c
-	lfs      f1, 0x48(r1)
-	li       r4, 8
-	lfs      f0, 0x4c(r1)
-	li       r6, 2
-	stfs     f2, 0x5c(r1)
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	stfs     f1, 0x60(r1)
-	stfs     f0, 0x64(r1)
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	fmr      f2, f31
-	lfs      f1, lbl_8051E88C@sda21(r2)
-	mr       r3, r31
-	bl       getNearestPikiOrNavi__Q34Game6Jigumo3ObjFff
-	cmplwi   r3, 0
-	stw      r3, 0x230(r31)
-	beq      lbl_8036680C
-	mr       r4, r3
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x20(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x2c
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x2c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x34(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 8(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f4, 0x30(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	lfs      f0, lbl_8051E884@sda21(r2)
-	lfs      f2, lbl_8051E890@sda21(r2)
-	fmuls    f31, f1, f0
-	fabs     f0, f31
-	frsp     f0, f0
-	fcmpo    cr0, f0, f2
-	ble      lbl_803666F0
-	lfs      f0, lbl_8051E880@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_803666EC
-	fmr      f31, f2
-	b        lbl_803666F0
-
-lbl_803666EC:
-	fneg     f31, f2
-
-lbl_803666F0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f31, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x1a8(r31)
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x2ec(r31)
-	b        lbl_8036680C
-
-lbl_80366724:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036680C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_803667B8
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_80366764
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x250(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803667AC
-
-lbl_80366764:
-	mr       r4, r31
-	addi     r3, r1, 0x38
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x38(r1)
-	mr       r3, r31
-	lfs      f2, 0x3c(r1)
-	addi     r4, r1, 0x50
-	lfs      f0, 0x40(r1)
-	stfs     f1, 0x50(r1)
-	lfs      f1, lbl_8051E894@sda21(r2)
-	stfs     f2, 0x54(r1)
-	stfs     f0, 0x58(r1)
-	lfs      f0, 0x1f8(r31)
-	fmuls    f1, f1, f0
-	bl       "createDropEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-
-lbl_803667AC:
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r31)
-
-lbl_803667B8:
-	lwz      r3, 0x188(r31)
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8036680C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x800
-	stw      r0, 0x1e0(r31)
-
-lbl_8036680C:
-	psq_l    f31, 120(r1), 0, qr0
-	lwz      r0, 0x84(r1)
-	lfd      f31, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /*
@@ -561,8 +331,8 @@ void StateAttack::exec(EnemyBase* enemy)
 		FakePiki* target = OBJ(enemy)->getNearestPikiOrNavi(CG_PARMS(enemy)->mGeneral.mSearchAngle.mValue,
 		                                                    CG_PARMS(enemy)->mGeneral.mSearchDistance.mValue);
 		if (target) {
-			enemy->changeFaceDir(target);
-			OBJ(enemy)->mGoalPosition = Vector3f(enemy->getPosition());
+			enemy->turnToTarget(target, *CG_PARMS(enemy)->mGeneral.mRotationalAccel(), *CG_PARMS(enemy)->mGeneral.mRotationalSpeed());
+			OBJ(enemy)->mGoalPosition = Vector3f(target->getPosition());
 		}
 	}
 
@@ -608,7 +378,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		Vector3f pos     = OBJ(enemy)->getPosition();
 		Vector3f goalPos = OBJ(enemy)->getGoalPos();
 		Vector3f diff    = pos - goalPos;
-		if (diff.x * diff.x + diff.y * diff.y + diff.z * diff.z < 100.0f) {
+		if (diff.sqrMagnitude() < 100.0f) {
 			_10 = 0;
 			OBJ(enemy)->effectStop();
 			enemy->mTargetVelocity = Vector3f(0.0f);

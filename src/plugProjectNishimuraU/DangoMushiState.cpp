@@ -849,7 +849,7 @@ void StateMove::exec(EnemyBase* enemy)
 			crab->finishMotion();
 
 		} else {
-			crab->turnToTargetNishi(target, *CG_PARMS(crab)->mGeneral.mRotationalAccel(), *CG_PARMS(crab)->mGeneral.mRotationalSpeed());
+			crab->turnToTarget(target, *CG_PARMS(crab)->mGeneral.mRotationalAccel(), *CG_PARMS(crab)->mGeneral.mRotationalSpeed());
 			if (FABS(viewAngle) <= PI * (DEG2RAD * *CG_PARMS(crab)->mGeneral.mMinAttackRange())) {
 				f32 moveSpeed = *CG_PARMS(crab)->mGeneral.mMoveSpeed();
 				f32 x         = sin(crab->getFaceDir());
@@ -872,7 +872,7 @@ void StateMove::exec(EnemyBase* enemy)
 	} else {
 		Vector3f targetPos = crab->mTargetPosition;
 		f32 viewAngle      = crab->getCreatureViewAngle(targetPos);
-		crab->turnToTargetNishi(targetPos, *CG_PARMS(crab)->mGeneral.mRotationalAccel(), *CG_PARMS(crab)->mGeneral.mRotationalSpeed());
+		crab->turnToTarget(targetPos, *CG_PARMS(crab)->mGeneral.mRotationalAccel(), *CG_PARMS(crab)->mGeneral.mRotationalSpeed());
 
 		if (FABS(viewAngle) <= HALF_PI) {
 			f32 moveSpeed = *CG_PARMS(crab)->mGeneral.mMoveSpeed();

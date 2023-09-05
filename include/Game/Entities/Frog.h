@@ -21,6 +21,21 @@ namespace Game {
 namespace Frog {
 struct FSM;
 
+enum StateID {
+	FROG_NULL       = -1,
+	FROG_Dead       = 0,
+	FROG_Wait       = 1,
+	FROG_Turn       = 2,
+	FROG_Jump       = 3,
+	FROG_JumpWait   = 4,
+	FROG_Fall       = 5,
+	FROG_Attack     = 6,
+	FROG_Fail       = 7,
+	FROG_TurnToHome = 8,
+	FROG_GoHome     = 9,
+	FROG_StateCount, // 10
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -74,7 +89,7 @@ struct Obj : public EnemyBase {
 	f32 mAirTimer;            // _2C0
 	f32 _2C4;                 // _2C4
 	Vector3f mTargetPosition; // _2C8
-	int mNextState;           // _2D4
+	StateID mNextState;       // _2D4
 	bool mIsInAir;            // _2D8
 	bool mIsFalling;          // _2D9
 	efx::TFrogPota* mEfxPota; // _2DC
@@ -141,21 +156,6 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-enum StateID {
-	FROG_NULL       = -1,
-	FROG_Dead       = 0,
-	FROG_Wait       = 1,
-	FROG_Turn       = 2,
-	FROG_Jump       = 3,
-	FROG_JumpWait   = 4,
-	FROG_Fall       = 5,
-	FROG_Attack     = 6,
-	FROG_Fail       = 7,
-	FROG_TurnToHome = 8,
-	FROG_GoHome     = 9,
-	FROG_StateCount, // 10
-};
-
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 

@@ -168,8 +168,8 @@ void StateMove::exec(EnemyBase* enemy)
 
 	if (creature) {
 
-		f32 angleDist = baby->turnToTargetNishi(creature, CG_PARMS(baby)->mGeneral.mRotationalAccel.mValue,
-		                                        CG_PARMS(baby)->mGeneral.mRotationalSpeed.mValue);
+		f32 angleDist = baby->turnToTarget(creature, CG_PARMS(baby)->mGeneral.mRotationalAccel.mValue,
+		                                   CG_PARMS(baby)->mGeneral.mRotationalSpeed.mValue);
 
 		f32 limit   = PI * (DEG2RAD * *CG_PARMS(baby)->mGeneral.mMinAttackRange());
 		f32 absDist = FABS(angleDist);

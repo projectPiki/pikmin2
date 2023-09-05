@@ -307,7 +307,7 @@ inline void _normaliseScale(Vector3f& vec, f32 scale)
 	vec.z *= scale;
 }
 
-inline void _normaliseXZ(Vector3f& vec)
+inline f32 _normaliseXZ(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
 	f32 length = sqr.x + sqr.y;
@@ -318,6 +318,8 @@ inline void _normaliseXZ(Vector3f& vec)
 		vec.x *= norm;
 		vec.z *= norm;
 	}
+
+	return length;
 }
 
 inline f32 _normaliseVec(Vector3f& vec)
