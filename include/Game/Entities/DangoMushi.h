@@ -82,7 +82,7 @@ struct Obj : public EnemyBase {
 	bool isNoDamageCollision();
 	void resetMapCollisionSize(bool);
 	void updateMapCollisionSize();
-	void flickHandCollision();
+	bool flickHandCollision();
 	void startBlendAnimation(int, bool);
 	void endBlendAnimation();
 	void startBossFlickBGM();
@@ -112,18 +112,18 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                              // _2BC
 	bool mIsRolling;                        // _2C0
-	u8 _2C1;                                // _2C1
-	bool _2C2;                              // _2C2
-	u8 _2C3;                                // _2C3
-	f32 _2C4;                               // _2C4, timer?
+	bool mIsArmSwinging;                    // _2C1
+	bool mIsBall;                           // _2C2, set by StateAttack::init, used for map collision
+	bool _2C3;                              // _2C3, only used by createMoveHandEffect
+	f32 mStateTimer;                        // _2C4, timer recycled by each state
 	f32 mShadowScale;                       // _2C8
 	StateID mNextState;                     // _2CC
 	Vector3f mTargetPosition;               // _2D0
-	Vector3f mRollingVelocity;              // _2DC, unknown
+	Vector3f mRollingVelocity;              // _2DC
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // _2E8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2F0
 	efx::TDangoWallBreak* mEfxWallBreak;    // _2F4
-	efx::TDangoAttack2* mEfxAttack2;        // _2F8
+	efx::TDangoAttack2* mEfxAttack2;        // _2F8, arm flick effect
 	efx::TDangoRun* mEfxRun;                // _2FC
 	                                        // _308 = PelletView
 };
@@ -157,17 +157,17 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "ローリング移動速度", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
-		    , mFp02(this, 'fp02', "ローリング回転速度率", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
-		    , mFp03(this, 'fp03', "ローリング回転最大速度", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
-		    , mFp10(this, 'fp10', "ひっくり返り時間", 7.5f, 0.0f, 30.0f)         // 'flip time'
+		    , mRollingMoveSpeed(this, 'fp01', "ローリング移動速度", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
+		    , mRollingTurnAccel(this, 'fp02', "ローリング回転速度率", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
+		    , mRollingTurnSpeed(this, 'fp03', "ローリング回転最大速度", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
+		    , mFlipTime(this, 'fp10', "ひっくり返り時間", 7.5f, 0.0f, 30.0f)                 // 'flip time'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp03; // _854
-		Parm<f32> mFp10; // _87C
+		Parm<f32> mRollingMoveSpeed; // _804
+		Parm<f32> mRollingTurnAccel; // _82C
+		Parm<f32> mRollingTurnSpeed; // _854
+		Parm<f32> mFlipTime;         // _87C
 	};
 
 	Parms() { }
@@ -192,6 +192,15 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+struct DangoStateArg : public StateArg {
+	inline DangoStateArg()
+	    : mAnimType("blend")
+	{
+	}
+
+	char* mAnimType; // _00
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 

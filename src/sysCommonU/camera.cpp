@@ -369,53 +369,53 @@ void CullFrustum::updatePlanes()
 
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, (PI - viewAngle));
 	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec);
-	planeVec.x     = outVec.x;
-	planeVec.y     = outVec.y;
-	planeVec.z     = outVec.z;
+	planeVec.x    = outVec.x;
+	planeVec.y    = outVec.y;
+	planeVec.z    = outVec.z;
 	mObjects[0].a = planeVec.x;
-	mObjects[0].b  = planeVec.y;
-	mObjects[0].c  = planeVec.z;
-	dist           = dot(planeVec, posVec);
-	mObjects[0].d  = dist;
+	mObjects[0].b = planeVec.y;
+	mObjects[0].c = planeVec.z;
+	dist          = dot(planeVec, posVec);
+	mObjects[0].d = dist;
 
 	Vec outVec1;
 	Vector3f planeVec1;
 
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, viewAngle);
 	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec1);
-	planeVec1.x    = outVec1.x;
-	planeVec1.y    = outVec1.y;
-	planeVec1.z    = outVec1.z;
-	mObjects[1].a  = planeVec1.x;
-	mObjects[1].b  = planeVec1.y;
-	mObjects[1].c  = planeVec1.z;
-	mObjects[1].d  = dot(planeVec1, posVec);
+	planeVec1.x   = outVec1.x;
+	planeVec1.y   = outVec1.y;
+	planeVec1.z   = outVec1.z;
+	mObjects[1].a = planeVec1.x;
+	mObjects[1].b = planeVec1.y;
+	mObjects[1].c = planeVec1.z;
+	mObjects[1].d = dot(planeVec1, posVec);
 
 	Vec outVec2;
 	Vector3f planeVec2;
 
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, -fovAngle);
 	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec2);
-	planeVec2.x    = outVec2.x;
-	planeVec2.y    = outVec2.y;
-	planeVec2.z    = outVec2.z;
-	mObjects[2].a  = planeVec2.x;
-	mObjects[2].b  = planeVec2.y;
-	mObjects[2].c  = planeVec2.z;
-	mObjects[2].d  = dot(planeVec2, posVec);
+	planeVec2.x   = outVec2.x;
+	planeVec2.y   = outVec2.y;
+	planeVec2.z   = outVec2.z;
+	mObjects[2].a = planeVec2.x;
+	mObjects[2].b = planeVec2.y;
+	mObjects[2].c = planeVec2.z;
+	mObjects[2].d = dot(planeVec2, posVec);
 
 	Vec outVec3;
 	Vector3f planeVec3;
 
 	PSMTXRotAxisRad(outMat.mMatrix.mtxView, (Vec*)&row1, (PI + fovAngle));
 	PSMTXMultVec(outMat.mMatrix.mtxView, (Vec*)&row2, &outVec3);
-	planeVec3.x    = outVec3.x;
-	planeVec3.y    = outVec3.y;
-	planeVec3.z    = outVec3.z;
-	mObjects[3].a  = planeVec3.x;
-	mObjects[3].b  = planeVec3.y;
-	mObjects[3].c  = planeVec3.z;
-	mObjects[3].d  = dot(planeVec3, posVec);
+	planeVec3.x   = outVec3.x;
+	planeVec3.y   = outVec3.y;
+	planeVec3.z   = outVec3.z;
+	mObjects[3].a = planeVec3.x;
+	mObjects[3].b = planeVec3.y;
+	mObjects[3].c = planeVec3.z;
+	mObjects[3].d = dot(planeVec3, posVec);
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -842,7 +842,7 @@ Vector3f Camera::getPosition()
 Vector3f* Camera::getPositionPtr()
 {
 	if (isRunning() && mJstObject) {
-		return (Vector3f*) &mJstObject->mViewPos;
+		return (Vector3f*)&mJstObject->mViewPos;
 	} else {
 		return on_getPositionPtr();
 	}
@@ -972,7 +972,7 @@ f32 Camera::calcProperDistance(f32 f1, f32 f2)
 	new_var2    = cos / sin;
 	ratio       = returnMax * (new_var2 * input2);
 	returnValue = fabs(ratio / (mAspectRatio * pct));
-	returnMax = fabs(ratio / pct);
+	returnMax   = fabs(ratio / pct);
 	return (returnValue > returnMax) ? returnValue : returnMax;
 }
 
@@ -1003,9 +1003,10 @@ float Camera::calcScreenSize(Sys::Sphere& ball)
 	Vector3f camPos = getPosition();
 	Matrixf* matrix = mViewMatrix;
 	Vector3f netPos = ball.mPosition - camPos;
-	float dotprod   = netPos.x * -matrix->mMatrix.structView.xz + netPos.y * -matrix->mMatrix.structView.yz + netPos.z * -matrix->mMatrix.structView.zz;
+	float dotprod
+	    = netPos.x * -matrix->mMatrix.structView.xz + netPos.y * -matrix->mMatrix.structView.yz + netPos.z * -matrix->mMatrix.structView.zz;
 	float scaledRad = _138 * ball.mRadius;
-	
+
 	float product = _13C * scaledRad / dotprod;
 
 	return fabs(product);
@@ -1042,12 +1043,12 @@ void Camera::updateSoundCamera(float angle)
 	float ratio  = (cotan * distance) / _138;
 
 	mSoundPosition.x = -(viewVec1.x * ratio - targetPos.x);
-	mSoundPosition.y  = -(viewVec1.y * ratio - targetPos.y);
+	mSoundPosition.y = -(viewVec1.y * ratio - targetPos.y);
 	mSoundPosition.z = -(viewVec1.z * ratio - targetPos.z);
 
 	Matrixf mat = *mViewMatrix;
 
-	//mat.setMultNeg(mSoundPosition);
+	// mat.setMultNeg(mSoundPosition);
 	PSMTXCopy(mat.mMatrix.mtxView, mSoundMatrix.mMatrix.mtxView);
 }
 

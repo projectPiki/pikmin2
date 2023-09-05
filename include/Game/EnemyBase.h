@@ -625,10 +625,20 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline f32 turnToTargetNishi(Creature* target, f32 turnFactor, f32 maxTurnSpeed)
 	{
-		// Vector3f targetPos = target->getPosition();
-		// Vector3f pos       = getPosition();
-
 		f32 angleDist = getAngDist(target);
+		f32 turnSpeed = angleDist * turnFactor;
+		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
+		if (FABS(turnSpeed) > limit) {
+			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
+		}
+
+		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+
+		return angleDist;
+	}
+	inline f32 turnToTargetNishi(Vector3f& targetPos, f32 turnFactor, f32 maxTurnSpeed)
+	{
+		f32 angleDist = getAngDist(targetPos);
 		f32 turnSpeed = angleDist * turnFactor;
 		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
 		if (FABS(turnSpeed) > limit) {
@@ -665,7 +675,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		sep.x = target->getPosition().x - getPosition().x;
 		sep.y = target->getPosition().y - getPosition().y;
 		sep.z = target->getPosition().z - getPosition().z;
-		if ((sep.x * sep.x + sep.y * sep.y + sep.z * sep.z < distRange * distRange) && FABS(angle) <= PI * (DEG2RAD * angRange)) {
+		if ((sep.sqrMagnitude() < SQUARE(distRange)) && FABS(angle) <= PI * (DEG2RAD * angRange)) {
 			result = true;
 		}
 		return result;
@@ -676,6 +686,13 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		Vector3f targetPos = target->getPosition();
 		Vector3f pos       = getPosition();
 		f32 ang            = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
+		return angDist(ang, getFaceDir());
+	}
+
+	inline f32 getCreatureViewAngle(Vector3f& targetPos)
+	{
+		Vector3f pos = getPosition();
+		f32 ang      = _angXZ(targetPos.x, targetPos.z, pos.x, pos.z);
 		return angDist(ang, getFaceDir());
 	}
 

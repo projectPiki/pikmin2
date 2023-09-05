@@ -1,5 +1,6 @@
 #include "Game/Entities/DangoMushi.h"
 #include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
 #include "nans.h"
@@ -34,8 +35,8 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* crab  = OBJ(enemy);
-	crab->_2C2 = false;
+	Obj* crab     = OBJ(enemy);
+	crab->mIsBall = false;
 	crab->deathProcedure();
 	crab->mTargetVelocity = Vector3f(0.0f);
 	crab->setEmotionCaution();
@@ -93,10 +94,10 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* crab        = OBJ(enemy);
-	crab->mNextState = DANGOMUSHI_NULL;
-	crab->_2C4       = 0.0f;
-	crab->_2C2       = false;
+	Obj* crab         = OBJ(enemy);
+	crab->mNextState  = DANGOMUSHI_NULL;
+	crab->mStateTimer = 0.0f;
+	crab->mIsBall     = false;
 	crab->enableEvent(0, EB_IsVulnerable);
 	crab->enableEvent(0, EB_IsImmuneBitter);
 	crab->hardConstraintOn();
@@ -113,101 +114,32 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateStay::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lfs      f0, lbl_8051D340@sda21(r2)
-	mr       r31, r4
-	lfs      f1, 0x2c8(r4)
-	mr       r30, r3
-	fcmpo    cr0, f1, f0
-	ble      lbl_802FA070
-	mr       r3, r31
-	bl       addShadowScale__Q34Game10DangoMushi3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FA12C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802FA12C
+	Obj* crab = OBJ(enemy);
+	if (crab->mShadowScale > 0.0f) {
+		if (crab->addShadowScale()) {
+			transit(crab, DANGOMUSHI_Appear, nullptr);
+		}
+		return;
+	}
 
-lbl_802FA070:
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	li       r4, 0
-	lfs      f31, 0x3ac(r5)
-	fmr      f1, f31
-	bl
-"isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FA098
-	li       r0, 1
-	b        lbl_802FA0BC
+	f32 privateRad = CG_PARMS(crab)->mGeneral.mPrivateRadius.mValue;
 
-lbl_802FA098:
-	fmr      f1, f31
-	mr       r3, r31
-	li       r4, 0
-	bl
-"isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FA0B8
-	li       r0, 1
-	b        lbl_802FA0BC
+	bool isTarget;
+	if (EnemyFunc::isThereOlimar(crab, privateRad, nullptr)) {
+		isTarget = true;
+	} else if (EnemyFunc::isTherePikmin(crab, privateRad, nullptr)) {
+		isTarget = true;
+	} else {
+		isTarget = false;
+	}
 
-lbl_802FA0B8:
-	li       r0, 0
-
-lbl_802FA0BC:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_802FA12C
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	mr       r4, r31
-	bl       addShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x597d
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       addShadowScale__Q34Game10DangoMushi3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FA12C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802FA12C:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (isTarget) {
+		shadowMgr->addShadow(crab);
+		crab->getJAIObject()->startSound(PSSE_EN_DANGO_FALL, 0);
+		if (crab->addShadowScale()) {
+			transit(crab, DANGOMUSHI_Appear, nullptr);
+		}
+	}
 }
 
 /*
@@ -224,43 +156,16 @@ void StateStay::cleanup(EnemyBase* enemy) { }
  */
 void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2cc(r4)
-	li       r0, 0
-	stfs     f0, 0x2c4(r4)
-	stb      r0, 0x2c2(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r4)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051D340@sda21(r2)
-	li       r4, 0
-	rlwinm   r0, r0, 0, 2, 0
-	li       r5, 0
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* crab         = OBJ(enemy);
+	crab->mNextState  = DANGOMUSHI_NULL;
+	crab->mStateTimer = 0.0f;
+	crab->mIsBall     = false;
+	crab->enableEvent(0, EB_IsVulnerable);
+	crab->enableEvent(0, EB_IsImmuneBitter);
+	crab->hardConstraintOn();
+	crab->disableEvent(0, EB_IsModelHidden);
+	crab->mTargetVelocity = Vector3f(0.0f);
+	crab->startBlendAnimation(0, false);
 }
 
 /*
@@ -270,6 +175,45 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAppear::exec(EnemyBase* enemy)
 {
+	Obj* crab = OBJ(enemy);
+	if (crab->mCurAnim->mIsPlaying) {
+		if (crab->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			crab->endBlendAnimation();
+
+		} else if (crab->mCurAnim->mType == KEYEVENT_2) {
+			crab->createAppearSmokeEffect();
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(27, crabPos, 2);
+			rumbleMgr->startRumble(15, crabPos, 2);
+
+		} else if (crab->mCurAnim->mType == KEYEVENT_3) {
+			crab->setBossAppearBGM();
+
+		} else if (crab->mCurAnim->mType == KEYEVENT_4) {
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(15, crabPos, 2);
+			rumbleMgr->startRumble(11, crabPos, 2);
+
+		} else if (crab->mCurAnim->mType == KEYEVENT_END) {
+			Creature* target = crab->getSearchedTarget();
+			if (target && gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+				f32 maxAttackRange, minAttackRange;
+				minAttackRange = *CG_PARMS(crab)->mGeneral.mMinAttackRange();
+				maxAttackRange = *CG_PARMS(crab)->mGeneral.mMaxAttackRange();
+
+				f32 viewAngle = crab->getCreatureViewAngle(target);
+				if (crab->checkDistAndAngle(target, viewAngle, maxAttackRange, minAttackRange)) {
+					transit(crab, DANGOMUSHI_Attack, nullptr);
+				} else {
+					crab->setRandTarget();
+					transit(crab, DANGOMUSHI_Move, nullptr);
+				}
+
+			} else {
+				transit(crab, DANGOMUSHI_Wait, nullptr);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -553,20 +497,8 @@ lbl_802FA58C:
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r4)
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->disableEvent(0, EB_IsImmuneBitter);
+	enemy->hardConstraintOff();
 }
 
 /*
@@ -576,51 +508,19 @@ void StateAppear::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r30, 8(r1)
-	mr       r30, r5
-	stw      r0, 0x2cc(r4)
-	stfs     f0, 0x2c4(r4)
-	bl       setRandTarget__Q34Game10DangoMushi3ObjFv
-	li       r0, 0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	stb      r0, 0x2c2(r31)
-	cmplwi   r30, 0
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	beq      lbl_802FA680
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 1
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-	b        lbl_802FA690
+	Obj* crab         = OBJ(enemy);
+	crab->mNextState  = DANGOMUSHI_NULL;
+	crab->mStateTimer = 0.0f;
+	crab->setRandTarget();
+	crab->mIsBall = false;
+	crab->enableEvent(0, EB_IsVulnerable);
+	crab->mTargetVelocity = Vector3f(0.0f);
 
-lbl_802FA680:
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-
-lbl_802FA690:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (stateArg) {
+		crab->startBlendAnimation(1, true);
+	} else {
+		crab->startBlendAnimation(1, false);
+	}
 }
 
 /*
@@ -630,6 +530,43 @@ lbl_802FA690:
  */
 void StateWait::exec(EnemyBase* enemy)
 {
+	Obj* crab = OBJ(enemy);
+
+	if (crab->mHealth <= 0.0f) {
+		crab->mNextState = DANGOMUSHI_Dead;
+		transit(crab, DANGOMUSHI_Dead, (DangoStateArg*)("blend")); // sure Nishimura
+		return;
+	}
+
+	Creature* target = crab->getSearchedTarget();
+	if (target && gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+		f32 maxAttackRange, minAttackRange;
+		minAttackRange = *CG_PARMS(crab)->mGeneral.mMinAttackRange();
+		maxAttackRange = *CG_PARMS(crab)->mGeneral.mMaxAttackRange();
+
+		f32 viewAngle = crab->getCreatureViewAngle(target);
+		if (crab->checkDistAndAngle(target, viewAngle, maxAttackRange, minAttackRange)) {
+			crab->mNextState = DANGOMUSHI_Attack;
+			crab->finishMotion();
+		} else {
+			crab->mNextState = DANGOMUSHI_Move;
+			crab->finishMotion();
+		}
+	} else if (crab->mStateTimer > 3.0f) {
+		crab->mNextState = DANGOMUSHI_Move;
+		crab->finishMotion();
+	}
+
+	crab->mStateTimer += sys->mDeltaTime;
+
+	if (crab->mCurAnim->mIsPlaying) {
+		if (crab->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			crab->endBlendAnimation();
+		} else if (crab->mCurAnim->mType == KEYEVENT_END) {
+			transit(crab, crab->mNextState, nullptr);
+		}
+	}
+
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -879,31 +816,13 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r5, -1
-	li       r0, 0
-	stfs     f0, 0x2c4(r4)
-	li       r4, 2
-	stw      r5, 0x2cc(r3)
-	li       r5, 0
-	stb      r0, 0x2c2(r3)
-	lwz      r0, 0x1e0(r3)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* crab         = OBJ(enemy);
+	crab->mStateTimer = 0.0f;
+	crab->mNextState  = DANGOMUSHI_NULL;
+	crab->mIsBall     = false;
+	crab->enableEvent(0, EB_IsVulnerable);
+	crab->mTargetVelocity = Vector3f(0.0f);
+	crab->startBlendAnimation(2, false);
 }
 
 /*
@@ -913,6 +832,79 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
+	Obj* crab = OBJ(enemy);
+	if (crab->mHealth <= 0.0f) {
+		crab->mNextState = DANGOMUSHI_Dead;
+		transit(crab, DANGOMUSHI_Dead, (DangoStateArg*)("blend"));
+		return;
+	}
+
+	Creature* target = crab->getSearchedTarget();
+	if (target && gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
+		f32 viewAngle = crab->getCreatureViewAngle(target);
+
+		if (crab->checkDistAndAngle(target, viewAngle, *CG_PARMS(crab)->mGeneral.mMaxAttackRange(),
+		                            *CG_PARMS(crab)->mGeneral.mMinAttackRange())) {
+			crab->mNextState = DANGOMUSHI_Attack;
+			crab->finishMotion();
+
+		} else {
+			crab->turnToTargetNishi(target, *CG_PARMS(crab)->mGeneral.mRotationalAccel(), *CG_PARMS(crab)->mGeneral.mRotationalSpeed());
+			if (FABS(viewAngle) <= PI * (DEG2RAD * *CG_PARMS(crab)->mGeneral.mMinAttackRange())) {
+				f32 moveSpeed = *CG_PARMS(crab)->mGeneral.mMoveSpeed();
+				f32 x         = sin(crab->getFaceDir());
+				f32 y         = crab->getTargetVelocity().y;
+				f32 z         = cos(crab->getFaceDir());
+
+				crab->mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+
+			} else {
+				crab->mTargetVelocity = Vector3f(0.0f);
+			}
+		}
+
+	} else if (crab->isReachedTarget()) {
+		crab->mNextState = DANGOMUSHI_Wait;
+		crab->finishMotion();
+	} else if (crab->mStateTimer > 10.0f) {
+		crab->mNextState = DANGOMUSHI_Wait;
+		crab->finishMotion();
+	} else {
+		Vector3f targetPos = crab->mTargetPosition;
+		f32 viewAngle      = crab->getCreatureViewAngle(targetPos);
+		crab->turnToTargetNishi(targetPos, *CG_PARMS(crab)->mGeneral.mRotationalAccel(), *CG_PARMS(crab)->mGeneral.mRotationalSpeed());
+
+		if (FABS(viewAngle) <= HALF_PI) {
+			f32 moveSpeed = *CG_PARMS(crab)->mGeneral.mMoveSpeed();
+			f32 x         = sin(crab->getFaceDir());
+			f32 y         = crab->getTargetVelocity().y;
+			f32 z         = cos(crab->getFaceDir());
+
+			crab->mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
+		} else {
+			crab->mTargetVelocity = Vector3f(0.0f);
+		}
+	}
+
+	if (crab->isFinishMotion()) {
+		crab->mTargetVelocity = Vector3f(0.0f);
+	}
+
+	crab->mStateTimer += sys->mDeltaTime;
+
+	if (crab->mCurAnim->mIsPlaying) {
+		if (crab->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			crab->endBlendAnimation();
+
+		} else if (crab->mCurAnim->mType == KEYEVENT_2) {
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(3, crabPos, 2);
+			rumbleMgr->startRumble(11, crabPos, 2);
+
+		} else if (crab->mCurAnim->mType == KEYEVENT_END) {
+			transit(crab, crab->mNextState, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -1455,42 +1447,16 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2cc(r4)
-	li       r4, 0
-	li       r0, 1
-	stfs     f0, 0x2c4(r31)
-	stb      r4, 0x2c0(r31)
-	stb      r0, 0x2c2(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051D340@sda21(r2)
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* crab         = OBJ(enemy);
+	crab->mNextState  = DANGOMUSHI_NULL;
+	crab->mStateTimer = 0.0f;
+	crab->mIsRolling  = false;
+	crab->mIsBall     = true;
+	crab->enableEvent(0, EB_IsVulnerable);
+	crab->enableEvent(0, EB_IsImmuneBitter);
+	crab->setEmotionExcitement();
+	crab->mTargetVelocity = Vector3f(0.0f);
+	crab->startBlendAnimation(3, false);
 }
 
 /*
@@ -1500,190 +1466,58 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D364@sda21(r2)
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	mr       r31, r4
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	lfs      f1, 0x2c4(r4)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802FB2DC
-	li       r0, 3
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	Obj* crab = OBJ(enemy);
+	if (crab->mStateTimer > 15.0f) {
+		crab->mNextState = DANGOMUSHI_Wait;
+		crab->finishMotion();
+	}
 
-lbl_802FB2DC:
-	lbz      r0, 0x2c0(r31)
-	cmplwi   r0, 0
-	beq      lbl_802FB364
-	mr       r3, r31
-	bl       rollingMove__Q34Game10DangoMushi3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x20(r1)
-	addi     r5, r1, 0x44
-	lfs      f1, 0x24(r1)
-	li       r4, 0x19
-	lfs      f0, 0x28(r1)
-	li       r6, 2
-	stfs     f2, 0x44(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x5180
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802FB374
+	if (crab->mIsRolling) {
+		crab->rollingMove();
+		Vector3f crabPos = crab->getPosition();
+		cameraMgr->startVibration(25, crabPos, 2);
+		crab->getJAIObject()->startSound(PSSE_EN_DANGO_ROLL_GROUND, 0);
+	} else {
+		crab->mTargetVelocity = Vector3f(0.0f);
+	}
 
-lbl_802FB364:
-	lfs      f0, lbl_8051D340@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
+	if (crab->mCurAnim->mIsPlaying) {
+		if (crab->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			crab->endBlendAnimation();
 
-lbl_802FB374:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802FB510
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x7d0
-	bne      lbl_802FB39C
-	mr       r3, r31
-	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FB510
+		} else if (crab->mCurAnim->mType == KEYEVENT_2) {
+			crab->createEnemyBounceEffect();
 
-lbl_802FB39C:
-	cmplwi   r0, 2
-	bne      lbl_802FB3B0
-	mr       r3, r31
-	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FB510
+		} else if (crab->mCurAnim->mType == KEYEVENT_3) {
+			crab->startBossAttackLoopBGM();
+			crab->createEnemyBounceEffect();
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(15, crabPos, 2);
+			rumbleMgr->startRumble(14, crabPos, 2);
 
-lbl_802FB3B0:
-	cmplwi   r0, 3
-	bne      lbl_802FB424
-	mr       r3, r31
-	bl       startBossAttackLoopBGM__Q34Game10DangoMushi3ObjFv
-	mr       r3, r31
-	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r5, r1, 0x38
-	lfs      f1, 0x18(r1)
-	li       r4, 0xf
-	lfs      f0, 0x1c(r1)
-	li       r6, 2
-	stfs     f2, 0x38(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x3c(r1)
-	stfs     f0, 0x40(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x38
-	li       r4, 0xe
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802FB510
+		} else if (crab->mCurAnim->mType == KEYEVENT_4) {
+			if (!crab->mIsRolling) {
+				crab->mIsRolling = true;
+				crab->startRollingMoveEffect();
+			}
 
-lbl_802FB424:
-	cmplwi   r0, 4
-	bne      lbl_802FB44C
-	lbz      r0, 0x2c0(r31)
-	cmplwi   r0, 0
-	bne      lbl_802FB510
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x2c0(r31)
-	bl       startRollingMoveEffect__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FB510
+		} else if (crab->mCurAnim->mType == KEYEVENT_1) {
+			if (crab->isFinishMotion()) {
+				crab->mIsRolling = false;
+				crab->mIsBall    = false;
+				crab->finishRollingMoveEffect();
+			}
 
-lbl_802FB44C:
-	cmplwi   r0, 1
-	bne      lbl_802FB47C
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FB510
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x2c0(r31)
-	stb      r0, 0x2c2(r31)
-	bl       finishRollingMoveEffect__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FB510
+		} else if (crab->mCurAnim->mType == KEYEVENT_5) {
+			crab->createEnemyBounceEffect();
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(25, crabPos, 2);
+			rumbleMgr->startRumble(14, crabPos, 2);
 
-lbl_802FB47C:
-	cmplwi   r0, 5
-	bne      lbl_802FB4E8
-	mr       r3, r31
-	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x2c
-	lfs      f1, 0xc(r1)
-	li       r4, 0x19
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x2c(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x2c
-	li       r4, 0xe
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802FB510
-
-lbl_802FB4E8:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802FB510
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2cc(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802FB510:
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+		} else if (crab->mCurAnim->mType == KEYEVENT_END) {
+			transit(crab, crab->mNextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -1693,30 +1527,13 @@ lbl_802FB510:
  */
 void StateAttack::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r4)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x2c0(r31)
-	stb      r0, 0x2c2(r31)
-	bl       finishRollingMoveEffect__Q34Game10DangoMushi3ObjFv
-	mr       r3, r31
-	bl       finishBossAttackLoopBGM__Q34Game10DangoMushi3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* crab = OBJ(enemy);
+	crab->disableEvent(0, EB_IsImmuneBitter);
+	crab->setEmotionCaution();
+	crab->mIsRolling = false;
+	crab->mIsBall    = false;
+	crab->finishRollingMoveEffect();
+	crab->finishBossAttackLoopBGM();
 }
 
 /*
@@ -1726,61 +1543,19 @@ void StateAttack::cleanup(EnemyBase* enemy)
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	li       r5, 0
-	stw      r0, 0x34(r1)
-	li       r0, -1
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2cc(r4)
-	li       r0, 0
-	li       r4, 5
-	stfs     f0, 0x2c4(r31)
-	stb      r0, 0x2c2(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x20
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-	mr       r3, r31
-	bl       createCrashEnemy__Q34Game10DangoMushi3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0x1b
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xf
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Obj* crab         = OBJ(enemy);
+	crab->mNextState  = DANGOMUSHI_NULL;
+	crab->mStateTimer = 0.0f;
+	crab->mIsBall     = false;
+	crab->enableEvent(0, EB_IsEnemyNotBitter);
+	crab->enableEvent(0, EB_IsVulnerable);
+	crab->mTargetVelocity = Vector3f(0.0f);
+	crab->startBlendAnimation(5, false);
+	crab->createCrashEnemy();
+
+	Vector3f crabPos = crab->getPosition();
+	cameraMgr->startVibration(27, crabPos, 2);
+	rumbleMgr->startRumble(15, crabPos, 2);
 }
 
 /*
@@ -1790,180 +1565,51 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	mr       r31, r4
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802FB698
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802FB6BC
+	Obj* crab = OBJ(enemy);
+	if (crab->mHealth <= 0.0f) {
+		crab->mNextState = DANGOMUSHI_Dead;
+		crab->finishMotion();
+	} else if (crab->mStateTimer > CG_PROPERPARMS(crab).mFlipTime.mValue) {
+		crab->mNextState = DANGOMUSHI_Recover;
+		crab->finishMotion();
+	}
 
-lbl_802FB698:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x894(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802FB6BC
-	li       r0, 7
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	crab->mStateTimer += sys->mDeltaTime;
 
-lbl_802FB6BC:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802FB8AC
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x7d0
-	bne      lbl_802FB6F8
-	mr       r3, r31
-	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FB8AC
+	if (crab->mCurAnim->mIsPlaying) {
+		if (crab->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			crab->endBlendAnimation();
 
-lbl_802FB6F8:
-	cmplwi   r0, 2
-	bne      lbl_802FB764
-	mr       r3, r31
-	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x20(r1)
-	addi     r5, r1, 0x44
-	lfs      f1, 0x24(r1)
-	li       r4, 0x15
-	lfs      f0, 0x28(r1)
-	li       r6, 2
-	stfs     f2, 0x44(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x44
-	li       r4, 0xe
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802FB8AC
+		} else if (crab->mCurAnim->mType == KEYEVENT_2) {
+			crab->createEnemyBounceEffect();
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(21, crabPos, 2);
+			rumbleMgr->startRumble(14, crabPos, 2);
 
-lbl_802FB764:
-	cmplwi   r0, 0
-	bne      lbl_802FB79C
-	lwz      r3, 0x1e0(r31)
-	clrlwi.  r0, r3, 0x1f
-	beq      lbl_802FB8AC
-	rlwinm   r0, r3, 0, 0xb, 9
-	mr       r3, r31
-	stw      r0, 0x1e0(r31)
-	li       r4, 0
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r31)
-	bl       setBodyCollision__Q34Game10DangoMushi3ObjFb
-	b        lbl_802FB8AC
+		} else if (crab->mCurAnim->mType == KEYEVENT_NULL) {
+			if (crab->isEvent(0, EB_IsVulnerable)) {
+				crab->disableEvent(0, EB_IsEnemyNotBitter);
+				crab->disableEvent(0, EB_IsVulnerable);
+				crab->setBodyCollision(false);
+			}
 
-lbl_802FB79C:
-	cmplwi   r0, 3
-	bne      lbl_802FB818
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	li       r4, 1
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	bl       setBodyCollision__Q34Game10DangoMushi3ObjFb
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r5, r1, 0x38
-	lfs      f1, 0x18(r1)
-	li       r4, 0xf
-	lfs      f0, 0x1c(r1)
-	li       r6, 2
-	stfs     f2, 0x38(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x3c(r1)
-	stfs     f0, 0x40(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x38
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802FB8AC
+		} else if (crab->mCurAnim->mType == KEYEVENT_3) {
+			crab->enableEvent(0, EB_IsVulnerable);
+			crab->setBodyCollision(true);
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(15, crabPos, 2);
+			rumbleMgr->startRumble(11, crabPos, 2);
 
-lbl_802FB818:
-	cmplwi   r0, 4
-	bne      lbl_802FB884
-	mr       r3, r31
-	bl       createBodyTurnEffect__Q34Game10DangoMushi3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x2c
-	lfs      f1, 0xc(r1)
-	li       r4, 0x19
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x2c(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x2c
-	li       r4, 0xe
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802FB8AC
+		} else if (crab->mCurAnim->mType == KEYEVENT_4) {
+			crab->createBodyTurnEffect();
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(25, crabPos, 2);
+			rumbleMgr->startRumble(14, crabPos, 2);
 
-lbl_802FB884:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802FB8AC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2cc(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802FB8AC:
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+		} else if (crab->mCurAnim->mType == KEYEVENT_END) {
+			transit(crab, crab->mNextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -1973,35 +1619,11 @@ lbl_802FB8AC:
  */
 void StateTurn::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051D368@sda21(r2)
-	stw      r0, 0x14(r1)
-	lfs      f2, lbl_8051D35C@sda21(r2)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lfs      f3, lbl_8051D340@sda21(r2)
-	mr       r3, r31
-	lfs      f4, lbl_8051D36C@sda21(r2)
-	li       r4, 0
-	bl
-	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	li       r4, 1
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r31)
-	bl       setBodyCollision__Q34Game10DangoMushi3ObjFb
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* crab = OBJ(enemy);
+	EnemyFunc::flickStickPikmin(crab, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
+	crab->enableEvent(0, EB_IsVulnerable);
+	crab->disableEvent(0, EB_IsEnemyNotBitter);
+	crab->setBodyCollision(true);
 }
 
 /*
@@ -2011,28 +1633,12 @@ void StateTurn::cleanup(EnemyBase* enemy)
  */
 void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stw      r0, 0x2cc(r4)
-	li       r0, 0
-	li       r4, 6
-	stfs     f0, 0x2c4(r3)
-	stb      r0, 0x2c2(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* crab             = OBJ(enemy);
+	crab->mNextState      = DANGOMUSHI_NULL;
+	crab->mStateTimer     = 0.0f;
+	crab->mIsBall         = false;
+	crab->mTargetVelocity = Vector3f(0.0f);
+	crab->startBlendAnimation(6, false);
 }
 
 /*
@@ -2042,77 +1648,24 @@ void StateRecover::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateRecover::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_802FBA64
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x7d0
-	bne      lbl_802FB9B8
-	mr       r3, r31
-	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FBA64
+	Obj* crab = OBJ(enemy);
+	if (crab->mCurAnim->mIsPlaying) {
+		if (crab->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			crab->endBlendAnimation();
 
-lbl_802FB9B8:
-	cmplwi   r0, 2
-	bne      lbl_802FBA2C
-	mr       r3, r31
-	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0xf
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	mr       r3, r31
-	bl       startBossFlickBGM__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FBA64
+		} else if (crab->mCurAnim->mType == KEYEVENT_2) {
+			crab->createEnemyBounceEffect();
+			Vector3f crabPos = crab->getPosition();
+			cameraMgr->startVibration(15, crabPos, 2);
+			rumbleMgr->startRumble(11, crabPos, 2);
+			crab->startBossFlickBGM();
 
-lbl_802FBA2C:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802FBA64
-	lfs      f1, 0x1fc(r31)
-	li       r5, 8
-	lfs      f0, lbl_8051D348@sda21(r2)
-	li       r6, 0
-	fadds    f0, f1, f0
-	stfs     f0, 0x1fc(r31)
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x1a8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802FBA64:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		} else if (crab->mCurAnim->mType == KEYEVENT_END) {
+			crab->mFaceDir += PI;
+			crab->mRotation.y = crab->mFaceDir;
+			transit(crab, DANGOMUSHI_Flick, nullptr);
+		}
+	}
 }
 
 /*
@@ -2129,35 +1682,14 @@ void StateRecover::cleanup(EnemyBase* enemy) { }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D340@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2cc(r4)
-	li       r0, 0
-	stfs     f0, 0x2c4(r4)
-	stb      r0, 0x2c1(r4)
-	stb      r0, 0x2c2(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051D340@sda21(r2)
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* crab            = OBJ(enemy);
+	crab->mNextState     = DANGOMUSHI_NULL;
+	crab->mStateTimer    = 0.0f;
+	crab->mIsArmSwinging = false;
+	crab->mIsBall        = false;
+	crab->setEmotionExcitement();
+	crab->mTargetVelocity = Vector3f(0.0f);
+	crab->startBlendAnimation(4, false);
 }
 
 /*
@@ -2167,138 +1699,37 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       flickHandCollision__Q34Game10DangoMushi3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802FBBC4
-	mr       r3, r31
-	bl       createWallBreakEffect__Q34Game10DangoMushi3ObjFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x5982
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r5, r1, 0x2c
-	lfs      f1, 0x18(r1)
-	li       r4, 0x19
-	lfs      f0, 0x1c(r1)
-	li       r6, 2
-	stfs     f2, 0x2c(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x2c
-	li       r4, 0xe
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	addi     r6, r2, lbl_8051D350@sda21
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802FBCB0
+	Obj* crab = OBJ(enemy);
+	if (crab->flickHandCollision()) {
+		crab->createWallBreakEffect();
+		crab->getJAIObject()->startSound(PSSE_EN_DANGO_ARM_GROUND, 0);
+		Vector3f crabPos = crab->getPosition();
+		cameraMgr->startVibration(25, crabPos, 2);
+		rumbleMgr->startRumble(14, crabPos, 2);
+		transit(crab, DANGOMUSHI_Wait, (DangoStateArg*)("blend"));
+		return;
+	}
 
-lbl_802FBBC4:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802FBCB0
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x7d0
-	bne      lbl_802FBBEC
-	mr       r3, r31
-	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FBCB0
+	if (crab->mCurAnim->mIsPlaying) {
+		if (crab->mCurAnim->mType == KEYEVENT_END_BLEND) {
+			crab->endBlendAnimation();
 
-lbl_802FBBEC:
-	cmplwi   r0, 2
-	bne      lbl_802FBC1C
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x2c1(r31)
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051D370@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802FBCB0
-	mr       r3, r31
-	bl       createFlickAttackEffect__Q34Game10DangoMushi3ObjFv
-	b        lbl_802FBCB0
+		} else if (crab->mCurAnim->mType == KEYEVENT_2) {
+			crab->mIsArmSwinging = true;
+			if (crab->getMotionFrame() < 30.0f) {
+				crab->createFlickAttackEffect();
+			}
 
-lbl_802FBC1C:
-	cmplwi   r0, 3
-	bne      lbl_802FBC88
-	li       r0, 0
-	mr       r4, r31
-	stb      r0, 0x2c1(r31)
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x20
-	lfs      f1, 0xc(r1)
-	li       r4, 0xf
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x20(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x20
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802FBCB0
+		} else if (crab->mCurAnim->mType == KEYEVENT_3) {
+			crab->mIsArmSwinging = false;
+			Vector3f crabPos     = crab->getPosition();
+			cameraMgr->startVibration(15, crabPos, 2);
+			rumbleMgr->startRumble(11, crabPos, 2);
 
-lbl_802FBC88:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802FBCB0
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802FBCB0:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		} else if (crab->mCurAnim->mType == KEYEVENT_END) {
+			transit(crab, DANGOMUSHI_Wait, nullptr);
+		}
+	}
 }
 
 /*
@@ -2308,19 +1739,9 @@ lbl_802FBCB0:
  */
 void StateFlick::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stb      r0, 0x2c1(r4)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* crab            = OBJ(enemy);
+	crab->mIsArmSwinging = false;
+	crab->setEmotionCaution();
 }
 
 } // namespace DangoMushi

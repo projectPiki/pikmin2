@@ -46,14 +46,14 @@ void Obj::onInit(CreatureInitArg* arg)
 	mRollingVelocity.z = 0.0f;
 	mRollingVelocity.y = 0.0f;
 	mRollingVelocity.x = 0.0f;
-	_2C4               = 0.0f;
+	mStateTimer        = 0.0f;
 	mNextState         = DANGOMUSHI_NULL;
 	mShadowScale       = 0.0f;
 	setupCollision();
 	setBodyCollision(false);
-	_2C1 = 0;
+	mIsArmSwinging = false;
 	resetMapCollisionSize(false);
-	_2C3 = 0;
+	_2C3 = false;
 	resetBossAppearBGM();
 	setupEffect();
 	shadowMgr->delShadow(this);
@@ -240,7 +240,8 @@ void Obj::collisionCallback(CollEvent& evt)
 		if (mIsRolling && evt.mCollidingCreature->mBounceTriangle) {
 			InteractPress press(this, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
 			evt.mCollidingCreature->stimulate(press);
-		} else if (_2C1) {
+
+		} else if (mIsArmSwinging) {
 			CollPart* part = evt.mHitPart;
 			if (part && part->mCurrentID.match('haR*', '*')) {
 				flickHandCollision(evt.mCollidingCreature);
@@ -421,9 +422,9 @@ void Obj::rollingMove()
 	}
 	Parms* parms = static_cast<Parms*>(mParms);
 
-	turnToTargetMori(targetPos, C_PROPERPARMS.mFp02.mValue, C_PROPERPARMS.mFp03.mValue);
+	turnToTargetMori(targetPos, C_PROPERPARMS.mRollingTurnAccel.mValue, C_PROPERPARMS.mRollingTurnSpeed.mValue);
 
-	f32 rollSpeed = C_PROPERPARMS.mFp01.mValue;
+	f32 rollSpeed = C_PROPERPARMS.mRollingMoveSpeed.mValue;
 	f32 x         = (f32)sin(getFaceDir());
 	f32 y         = getTargetVelocity().y;
 	f32 z         = (f32)cos(getFaceDir());
@@ -435,12 +436,12 @@ void Obj::rollingMove()
 		vel.y = 0.0f;
 
 		if (vel.length() < 100.0f) {
-			_2C4 += 5.0f * sys->mDeltaTime;
+			mStateTimer += 5.0f * sys->mDeltaTime;
 		} else {
-			_2C4 += 3.0f * sys->mDeltaTime;
+			mStateTimer += 3.0f * sys->mDeltaTime;
 		}
 	} else {
-		_2C4 += sys->mDeltaTime;
+		mStateTimer += sys->mDeltaTime;
 	}
 	/*
 	stwu     r1, -0x80(r1)
@@ -1319,10 +1320,10 @@ bool Obj::isNoDamageCollision()
  * Address:	802FE1E4
  * Size:	00002C
  */
-void Obj::resetMapCollisionSize(bool arg0)
+void Obj::resetMapCollisionSize(bool isBall)
 {
-	_2C2 = arg0;
-	if (arg0) {
+	mIsBall = isBall;
+	if (isBall) {
 		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 60.0f;
 	} else {
 		C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = 120.0f;
@@ -1336,7 +1337,7 @@ void Obj::resetMapCollisionSize(bool arg0)
  */
 void Obj::updateMapCollisionSize()
 {
-	if (_2C2) {
+	if (mIsBall) {
 		f32 heightOff = C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue;
 		if (heightOff > 60.0f) {
 			C_PARMS->mGeneral.mHeightOffsetFromFloor.mValue = -((250.0f * sys->mDeltaTime) - heightOff);
@@ -1362,7 +1363,7 @@ void Obj::updateMapCollisionSize()
  * Address:	802FE29C
  * Size:	0003AC
  */
-void Obj::flickHandCollision()
+bool Obj::flickHandCollision()
 {
 	/*
 	stwu     r1, -0x160(r1)
