@@ -7,15 +7,18 @@
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/Entities/ItemCave.h"
 #include "Game/gameStat.h"
+#include "Game/Farm.h"
 #include "efx/TLastMomiji.h"
 #include "efx/TForestSakura.h"
 #include "efx/TTutorialSnow.h"
+#include "Game/MapMgr.h"
 #include "Screen/Enums.h"
 #include "PSM/Scene.h"
 #include "PSSystem/PSGame.h"
 #include "PSSystem/PSMainSide_Scene.h"
 #include "string.h"
 #include "Iterator.h"
+#include "Game/MoviePlayer.h"
 #include "Radar.h"
 #include "nans.h"
 
@@ -669,212 +672,19 @@ void SingleGameSection::startMainBgm()
  */
 void SingleGame::FSM::init(SingleGameSection* section)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0xc
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	bl       "create__Q24Game40StateMachine<Q24Game17SingleGameSection>Fi"
-	li       r3, 0x38
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801522BC
-	bl       __ct__Q34Game10SingleGame9FileStateFv
-	mr       r4, r3
-
-lbl_801522BC:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801522DC
-	bl       __ct__Q34Game10SingleGame11SelectStateFv
-	mr       r4, r3
-
-lbl_801522DC:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80152328
-	lis      r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
-	lis      r5, __vt__Q34Game10SingleGame5State@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
-	lis      r3, __vt__Q34Game10SingleGame9LoadState@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r6, 0
-	addi     r5, r5, __vt__Q34Game10SingleGame5State@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q34Game10SingleGame9LoadState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_80152328:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80152374
-	lis      r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
-	lis      r5, __vt__Q34Game10SingleGame5State@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
-	lis      r3, __vt__Q34Game10SingleGame9GameState@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r6, 0
-	addi     r5, r5, __vt__Q34Game10SingleGame5State@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q34Game10SingleGame9GameState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_80152374:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801523C0
-	lis      r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
-	lis      r5, __vt__Q34Game10SingleGame5State@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
-	lis      r3, __vt__Q34Game10SingleGame9CaveState@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r6, 0
-	addi     r5, r5, __vt__Q34Game10SingleGame5State@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q34Game10SingleGame9CaveState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801523C0:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80152414
-	lis      r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
-	lis      r4, __vt__Q34Game10SingleGame5State@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
-	lis      r3, __vt__Q34Game10SingleGame11DayEndState@ha
-	stw      r0, 0(r30)
-	li       r0, 5
-	li       r5, 0
-	addi     r4, r4, __vt__Q34Game10SingleGame5State@l
-	stw      r0, 4(r30)
-	addi     r0, r3, __vt__Q34Game10SingleGame11DayEndState@l
-	addi     r3, r30, 0x18
-	stw      r5, 8(r30)
-	stw      r4, 0(r30)
-	stw      r0, 0(r30)
-	bl       __ct__Q24Game13PikiContainerFv
-
-lbl_80152414:
-	mr       r3, r31
-	mr       r4, r30
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80152464
-	lis      r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
-	lis      r5, __vt__Q34Game10SingleGame5State@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
-	lis      r3, __vt__Q34Game10SingleGame15CaveDayEndState@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r6, 0
-	addi     r5, r5, __vt__Q34Game10SingleGame5State@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q34Game10SingleGame15CaveDayEndState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_80152464:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x140
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80152484
-	bl       __ct__Q34Game10SingleGame15MainResultStateFv
-	mr       r4, r3
-
-lbl_80152484:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x100
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801524A4
-	bl       __ct__Q34Game10SingleGame15CaveResultStateFv
-	mr       r4, r3
-
-lbl_801524A4:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801524C4
-	bl       __ct__Q34Game10SingleGame10MovieStateFv
-	mr       r4, r3
-
-lbl_801524C4:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x118
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801524E4
-	bl       __ct__Q34Game10SingleGame10ZukanStateFv
-	mr       r4, r3
-
-lbl_801524E4:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80152504
-	bl       __ct__Q34Game10SingleGame11EndingStateFv
-	mr       r4, r3
-
-lbl_80152504:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game36FSMState<Q24Game17SingleGameSection>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(SGS_StateCount);
+	registerState(new SingleGame::FileState());
+	registerState(new SingleGame::SelectState());
+	registerState(new SingleGame::LoadState());
+	registerState(new SingleGame::GameState());
+	registerState(new SingleGame::CaveState());
+	registerState(new SingleGame::DayEndState());
+	registerState(new SingleGame::CaveDayEndState());
+	registerState(new SingleGame::MainResultState());
+	registerState(new SingleGame::CaveResultState());
+	registerState(new SingleGame::MovieState());
+	registerState(new SingleGame::ZukanState());
+	registerState(new SingleGame::EndingState());
 }
 
 /*
@@ -892,54 +702,24 @@ void SingleGame::FSM::draw(SingleGameSection* section, Graphics&)
  * Address:	80152528
  * Size:	000020
  */
-void SingleGame::FSM::transit(SingleGameSection* section, int, Game::StateArg*)
+void SingleGame::FSM::transit(SingleGameSection* section, int sceneNum, Game::StateArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl
-	"transit__Q24Game40StateMachine<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	StateMachine<SingleGameSection>::transit(section, sceneNum, arg);
 }
 
 /*
  * --INFO--
  * Address:	80152548
  * Size:	000040
+ * TODO
  */
-SingleGame::State* SingleGame::FSM::getState(int)
+SingleGame::State* SingleGame::FSM::getState(int index)
 {
-	/*
-	cmpwi    r4, 0
-	blt      lbl_8015255C
-	lwz      r0, 0xc(r3)
-	cmpw     r4, r0
-	blt      lbl_80152564
+	if (index < 0 || index >= mCount) {
+		return nullptr;
+	}
 
-lbl_8015255C:
-	li       r0, 0
-	b        lbl_80152568
-
-lbl_80152564:
-	li       r0, 1
-
-lbl_80152568:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_80152580
-	lwz      r3, 4(r3)
-	slwi     r0, r4, 2
-	lwzx     r3, r3, r0
-	blr
-
-lbl_80152580:
-	li       r3, 0
-	blr
-	*/
+	return (SingleGame::State*)mStates[index];
 }
 
 /*
@@ -1106,170 +886,49 @@ SingleGame::State* SingleGame::State::accountEarnings(SingleGameSection* section
  * --INFO--
  * Address:	80152788
  * Size:	000160
+ * TODO
  */
-void SingleGame::CaveDayEndState::init(SingleGameSection* section, Game::StateArg*)
+void SingleGame::CaveDayEndState::init(SingleGameSection* section, Game::StateArg* arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r5, 0x3268
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, -0x64AC(r13)
-	  bl        0x2DA0FC
-	  lwz       r0, 0xD8(r30)
-	  lfs       f0, -0x5D9C(r2)
-	  stw       r0, 0x18(r30)
-	  stfs      f0, 0x10(r29)
-	  lwz       r3, 0xD8(r30)
-	  lfs       f1, 0x10(r29)
-	  bl        0x2D9598
-	  lwz       r3, -0x6C18(r13)
-	  addi      r5, r31, 0x7C
-	  li        r4, 0x1
-	  li        r6, 0x3
-	  bl        0x627B0
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x80
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x2C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x1281C4
+	Game::moviePlayer->reset();
 
-	.loc_0x80:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x2C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x1281E4
+	// arg->dword18 = section->mWipeOutFader;
+	_10 = 2.5f;
+	section->mWipeOutFader->start(_10);
 
-	.loc_0xA0:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x144
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xC8
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x2C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x12820C
+	Game::gameSystem->setPause(1, "cavedayend", 3);
 
-	.loc_0xC8:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xE8
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x2C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x12822C
-
-	.loc_0xE8:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x108
-	  addi      r3, r31, 0x38
-	  addi      r5, r31, 0x2C
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x12824C
-
-	.loc_0x108:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  beq-      .loc_0x144
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x10(r29)
-	  lfs       f0, 0x54(r3)
-	  fdivs     f1, f1, f0
-	  bl        -0x90D64
-	  lwz       r12, 0x0(r30)
-	  mr        r4, r3
-	  mr        r3, r30
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x144:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSSystem::checkSceneMgr(mgr);
+	PSSystem::checkSceneMgr(mgr);
+	mgr->checkScene();
+	PSSystem::Scene* scene = mgr->mScenes->mChild;
+	if (scene) {
+		scene->stopAllSound(_10 / sys->mDeltaTime);
+	}
 }
 
 /*
  * --INFO--
  * Address:	801528E8
  * Size:	0000B4
+ * TODO
  */
 void SingleGame::CaveDayEndState::exec(SingleGameSection* section)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       doUpdate__Q24Game15BaseGameSectionFv
-	mr       r3, r31
-	bl       updateCaveScreen__Q24Game17SingleGameSectionFv
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x10(r30)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_805185C8@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x10(r30)
-	lfs      f1, 0x10(r30)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80152984
-	mr       r3, r31
-	bl       advanceDayCount__Q24Game15BaseGameSectionFv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x40(r3)
-	bl       setStartTime__Q24Game7TimeMgrFv
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	li       r4, 0
-	bl       forceEnterPikmins__Q24Game7PikiMgrFUc
-	mr       r3, r31
-	bl       clearHeap__Q24Game15BaseGameSectionFv
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	section->doUpdate();
+	section->updateCaveScreen();
 
-lbl_80152984:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_10 -= sys->mDeltaTime;
+	if (_10 <= 0.0) {
+		section->advanceDayCount();
+		gameSystem->mTimeMgr->setStartTime();
+		pikiMgr->forceEnterPikmins(0);
+		section->clearHeap();
+
+		transit(section, SGS_Select, nullptr);
+	}
 }
 
 /*
@@ -1300,26 +959,12 @@ lbl_80152984:
  * --INFO--
  * Address:	801529CC
  * Size:	00003C
+ * TODO
  */
-void SingleGame::CaveDayEndState::draw(SingleGameSection* section, Graphics&)
+void SingleGame::CaveDayEndState::draw(SingleGameSection* section, Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	mr       r4, r5
-	bl       doDraw__Q24Game15BaseGameSectionFR8Graphics
-	mr       r3, r31
-	bl       drawCaveScreen__Q24Game17SingleGameSectionFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	section->doDraw(gfx);
+	section->drawCaveScreen();
 }
 
 /*
@@ -1327,24 +972,7 @@ void SingleGame::CaveDayEndState::draw(SingleGameSection* section, Graphics&)
  * Address:	80152A08
  * Size:	000034
  */
-void SingleGame::CaveDayEndState::cleanup(SingleGameSection* section)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8047CE14@ha
-	li       r6, 3
-	stw      r0, 0x14(r1)
-	addi     r5, r4, lbl_8047CE14@l
-	li       r4, 0
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SingleGame::CaveDayEndState::cleanup(SingleGameSection* section) { gameSystem->setPause(false, "cavedayend", 3); }
 
 /*
  * --INFO--
@@ -1354,6 +982,8 @@ void SingleGame::CaveDayEndState::cleanup(SingleGameSection* section)
 SingleGameSection::SingleGameSection(JKRHeap* heap)
     : BaseGameSection(heap)
 {
+	_240 = new Delegate<Game::SingleGameSection>(nullptr, nullptr);
+	newCaveOtakaraEarningsAndDrops();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1421,24 +1051,7 @@ lbl_80152AF8:
  * Address:	80152B1C
  * Size:	000034
  */
-void SingleGameSection::section_fadeout()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x250(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SingleGameSection::section_fadeout() { mCurrentState->on_section_fadeout(this); }
 
 /*
  * --INFO--
@@ -1458,112 +1071,30 @@ void SingleGameSection::flow_goto_title()
  */
 void SingleGameSection::onInit()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stb      r0, 0x228(r3)
-	lis      r3, lbl_8047CD98@ha
-	addi     r31, r3, lbl_8047CD98@l
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	addi     r3, r31, 0x88
-	stw      r0, 0x44(r4)
-	bl       assert_fragmentation__6SystemFPc
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x244(r30)
-	stb      r0, 0x194(r30)
-	bl       clearCaveMenus__Q24Game17SingleGameSectionFv
-	li       r0, 0
-	li       r3, 0x14
-	stb      r0, 0x11c(r30)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80152C0C
-	lis      r4, lbl_804B1088@ha
-	lis      r5, __vt__9IDelegate@ha
-	addi     r8, r4, lbl_804B1088@l
-	lis      r4, "__vt__36Delegate<Q24Game17SingleGameSection>"@ha
-	lwz      r7, 0(r8)
-	addi     r5, r5, __vt__9IDelegate@l
-	lwz      r6, 4(r8)
-	addi     r0, r4, "__vt__36Delegate<Q24Game17SingleGameSection>"@l
-	lwz      r4, 8(r8)
-	stw      r7, 8(r1)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stw      r30, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0xc(r1)
-	stw      r4, 0x10(r1)
-	stw      r4, 0x10(r3)
+	_228              = 0;
+	gameSystem->mMode = GSM_STORY_MODE;
 
-lbl_80152C0C:
-	stw      r3, 0x224(r30)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80152C40
-	lis      r5, "__vt__Q24Game40StateMachine<Q24Game17SingleGameSection>"@ha
-	lis      r4, __vt__Q34Game10SingleGame3FSM@ha
-	addi     r0, r5, "__vt__Q24Game40StateMachine<Q24Game17SingleGameSection>"@l
-	li       r5, -1
-	stw      r0, 0(r3)
-	addi     r0, r4, __vt__Q34Game10SingleGame3FSM@l
-	stw      r5, 0x18(r3)
-	stw      r0, 0(r3)
+	System::assert_fragmentation("SGS::onInit");
 
-lbl_80152C40:
-	stw      r3, 0x24c(r30)
-	mr       r4, r30
-	lwz      r3, 0x24c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x24c(r30)
-	mr       r4, r30
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x94
-	bl       assert_fragmentation__6SystemFPc
-	mr       r3, r30
-	bl       setupFixMemory__Q24Game15BaseGameSectionFv
-	addi     r3, r31, 0xa0
-	bl       assert_fragmentation__6SystemFPc
-	li       r0, 0
-	li       r3, 0x5c
-	stb      r0, 0x1b5(r30)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80152CB4
-	bl       __ct__Q25Radar3MgrFv
-	mr       r0, r3
+	_244 = nullptr;
+	_194 = false;
+	clearCaveMenus();
 
-lbl_80152CB4:
-	stw      r0, mgr__5Radar@sda21(r13)
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_11C = 0;
+	_224 = new Delegate<Game::SingleGameSection>(nullptr, nullptr);
+
+	mFsm = new SingleGame::FSM();
+	mFsm->init(this);
+	mFsm->transit(this, 0, nullptr);
+
+	System::assert_fragmentation("SGS::FSM");
+	setupFixMemory();
+	System::assert_fragmentation("SGS::setupFix");
+
+	_1B5 = 0;
+
+	Radar::mgr = new Radar::Mgr();
+	disableTimer(0);
 }
 
 /*
@@ -1598,71 +1129,25 @@ lbl_80152CB4:
  */
 bool SingleGameSection::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x1b5(r3)
-	cmplwi   r0, 0
-	bne      lbl_80152DDC
-	lwz      r3, 0x24c(r31)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x4a(r3)
-	cmplwi   r0, 0
-	bne      lbl_80152DDC
-	bl       paused__Q24Game10GameSystemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80152DDC
-	lbz      r0, 0x178(r31)
-	cmplwi   r0, 0
-	beq      lbl_80152DDC
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_80152DDC
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_80152DDC
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x174(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_805185C8@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x174(r31)
-	lfs      f1, 0x174(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80152DDC
-	lwz      r3, 0x250(r31)
-	mr       r4, r31
-	lwz      r5, 0x17c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
+	if (!_1B5) {
+		mFsm->exec(this);
 
-lbl_80152DDC:
-	lbz      r0, 0x1b5(r31)
-	cmplwi   r0, 0
-	beq      lbl_80152DF0
-	li       r0, 0
-	stb      r0, 0x34(r31)
+		if (!gameSystem->mIsFrozen && !gameSystem->paused()) {
+			if (mTimerEnabled && !moviePlayer->mDemoState && gameSystem->isFlag(GAMESYS_Unk6)) {
+				mTimer -= sys->mDeltaTime;
 
-lbl_80152DF0:
-	lwz      r0, 0x14(r1)
-	lbz      r3, 0x34(r31)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+				if (mTimer < 0.0f) {
+					mCurrentState->on_demo_timer(this, mTimerType);
+				}
+			}
+		}
+	}
+
+	if (_1B5) {
+		mIsMainActive = false;
+	}
+
+	return mIsMainActive;
 }
 
 /*
@@ -1935,6 +1420,32 @@ u32 SingleGameSection::getCaveID()
  */
 void SingleGameSection::onSetupFloatMemory()
 {
+	if (mInCave) {
+		P2ASSERTLINE(1260, mCurrentCourseInfo);
+
+		switch (mCurrentCourseInfo->mCourseIndex) {
+		case 2:
+			return;
+		case 1:
+			return;
+		case 0:
+			return;
+		case 4:
+			break;
+		}
+	}
+
+	Farm::farmMgr = nullptr;
+
+	if (!mInCave) {
+		Stages::createMapMgr(mCurrentCourseInfo, nullptr);
+		gameSystem->addObjectMgr(mapMgr);
+
+		if (Farm::farmMgr) {
+			gameSystem->addObjectMgr(Farm::farmMgr);
+			addGenNode(Farm::farmMgr->mNext);
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

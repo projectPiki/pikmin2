@@ -60,69 +60,81 @@ void BaseGen::draw(Graphics&, Matrixf*) { }
  */
 void TekiInfo::read(Stream& stream)
 {
-	char buffer1[128];
-	char buffer2[128];
+	char inputBuffer[128];
+	char parsedBuffer[128];
 	char* inputString = stream.readString(nullptr, 0);
+
 	if (*inputString == '$') {
-		char rawDropMode = inputString[1];
-		if ((rawDropMode < '1') || (rawDropMode > '9')) {
+		char dropModeChar = inputString[1];
+
+		if (dropModeChar < '1' || dropModeChar > '9') {
 			inputString++;
 			mDropMode = DROP_PikminOrLeader;
 		} else {
 			inputString += 2;
-			mDropMode = (rawDropMode - '0');
+			mDropMode = dropModeChar - '0';
 		}
 	} else {
 		mDropMode = DROP_NoDrop;
 	}
-	buffer1[0]   = '\0';
-	char* _s2    = buffer2;
-	int iVar10   = 0;
-	u32 uVar9    = 0;
-	char* pcVar7 = inputString;
+
+	parsedBuffer[0]    = '\0';
+	char* parsedString = parsedBuffer;
+	int parsedVarIndex = 0;
+	u32 parsedIntValue = 0;
+	char* inputPtr     = inputString;
+
 	do {
-		size_t sVar4 = strlen(inputString);
-		if (sVar4 <= uVar9) {
-			_s2[iVar10] = '\0';
-			mEnemyID    = (EnemyTypeID::EEnemyTypeID)generalEnemyMgr->getEnemyID(buffer2, 4);
-			if (buffer1[0] != '\0') {
-				pelletMgr->makeOtakaraItemCode(buffer1, mOtakaraItemCode);
+		size_t inputLength = strlen(inputString);
+
+		if (inputLength <= parsedIntValue) {
+			parsedString[parsedVarIndex] = '\0';
+			mEnemyID                     = (EnemyTypeID::EEnemyTypeID)generalEnemyMgr->getEnemyID(parsedBuffer, 4);
+
+			if (parsedBuffer[0] != '\0') {
+				pelletMgr->makeOtakaraItemCode(parsedBuffer, mOtakaraItemCode);
 			}
-			uVar9   = stream.readInt();
-			mWeight = uVar9;
-			mType   = (BaseGen::Type)stream.readInt();
-			pcVar7  = generalEnemyMgr->getEnemyName(mEnemyID, 4);
-			mName   = pcVar7;
+
+			parsedIntValue = stream.readInt();
+			mWeight        = parsedIntValue;
+			mType          = (BaseGen::Type)stream.readInt();
+			inputPtr       = generalEnemyMgr->getEnemyName(mEnemyID, 4);
+			mName          = inputPtr;
 			return;
 		}
-		bool bVar2 = false;
-		if (*pcVar7 == '_') {
-			if (_s2 == buffer2) {
-				_s2[iVar10]        = '\0';
-				EnemyInfo* pEVar11 = gEnemyInfo;
-				int iVar8          = 0;
-				while (true) {
-					if (gEnemyInfoNum <= iVar8)
-						break;
-					if (strcmp(pEVar11->mName, _s2) == 0) {
-						bVar2 = true;
+
+		bool isUnderscore = false;
+
+		if (*inputPtr == '_') {
+			if (parsedString == parsedBuffer) {
+				parsedString[parsedVarIndex] = '\0';
+				EnemyInfo* enemyInfoPtr      = gEnemyInfo;
+				int enemyIndex               = 0;
+
+				while (gEnemyInfoNum > enemyIndex) {
+					if (strcmp(enemyInfoPtr->mName, parsedString) == 0) {
+						isUnderscore = true;
 						break;
 					}
-					pEVar11 = pEVar11 + 1;
-					iVar8 += 1;
+
+					enemyInfoPtr++;
+					enemyIndex++;
 				}
 			}
 		}
-		if (bVar2) {
-			_s2    = buffer1;
-			iVar10 = 0;
+
+		if (isUnderscore) {
+			parsedString   = inputBuffer;
+			parsedVarIndex = 0;
 		} else {
-			_s2[iVar10] = *pcVar7;
-			iVar10 += 1;
+			parsedString[parsedVarIndex] = *inputPtr;
+			parsedVarIndex++;
 		}
-		uVar9 += 1;
-		pcVar7 = pcVar7 + 1;
+
+		parsedIntValue++;
+		inputPtr++;
 	} while (true);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x130(r1)
@@ -551,153 +563,153 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D6740
- * Size:	000060
- */
-CapInfo::~CapInfo()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_801D6784
-lis      r5, __vt__Q34Game4Cave7CapInfo@ha
-li       r4, 0
-addi     r0, r5, __vt__Q34Game4Cave7CapInfo@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-extsh.   r0, r31
-ble      lbl_801D6784
-mr       r3, r30
-bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	801D6740
+//  * Size:	000060
+//  */
+// CapInfo::~CapInfo()
+// {
+// 	/*
+// stwu     r1, -0x10(r1)
+// mflr     r0
+// stw      r0, 0x14(r1)
+// stw      r31, 0xc(r1)
+// mr       r31, r4
+// stw      r30, 8(r1)
+// or.      r30, r3, r3
+// beq      lbl_801D6784
+// lis      r5, __vt__Q34Game4Cave7CapInfo@ha
+// li       r4, 0
+// addi     r0, r5, __vt__Q34Game4Cave7CapInfo@l
+// stw      r0, 0(r30)
+// bl       __dt__5CNodeFv
+// extsh.   r0, r31
+// ble      lbl_801D6784
+// mr       r3, r30
+// bl       __dl__FPv
 
-lbl_801D6784:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// lbl_801D6784:
+// lwz      r0, 0x14(r1)
+// mr       r3, r30
+// lwz      r31, 0xc(r1)
+// lwz      r30, 8(r1)
+// mtlr     r0
+// addi     r1, r1, 0x10
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801D67A0
- * Size:	000060
- */
-GateInfo::~GateInfo()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_801D67E4
-lis      r5, __vt__Q34Game4Cave8GateInfo@ha
-li       r4, 0
-addi     r0, r5, __vt__Q34Game4Cave8GateInfo@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-extsh.   r0, r31
-ble      lbl_801D67E4
-mr       r3, r30
-bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	801D67A0
+//  * Size:	000060
+//  */
+// GateInfo::~GateInfo()
+// {
+// 	/*
+// stwu     r1, -0x10(r1)
+// mflr     r0
+// stw      r0, 0x14(r1)
+// stw      r31, 0xc(r1)
+// mr       r31, r4
+// stw      r30, 8(r1)
+// or.      r30, r3, r3
+// beq      lbl_801D67E4
+// lis      r5, __vt__Q34Game4Cave8GateInfo@ha
+// li       r4, 0
+// addi     r0, r5, __vt__Q34Game4Cave8GateInfo@l
+// stw      r0, 0(r30)
+// bl       __dt__5CNodeFv
+// extsh.   r0, r31
+// ble      lbl_801D67E4
+// mr       r3, r30
+// bl       __dl__FPv
 
-lbl_801D67E4:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// lbl_801D67E4:
+// lwz      r0, 0x14(r1)
+// mr       r3, r30
+// lwz      r31, 0xc(r1)
+// lwz      r30, 8(r1)
+// mtlr     r0
+// addi     r1, r1, 0x10
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801D6800
- * Size:	000060
- */
-ItemInfo::~ItemInfo()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_801D6844
-lis      r5, __vt__Q34Game4Cave8ItemInfo@ha
-li       r4, 0
-addi     r0, r5, __vt__Q34Game4Cave8ItemInfo@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-extsh.   r0, r31
-ble      lbl_801D6844
-mr       r3, r30
-bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	801D6800
+//  * Size:	000060
+//  */
+// ItemInfo::~ItemInfo()
+// {
+// 	/*
+// stwu     r1, -0x10(r1)
+// mflr     r0
+// stw      r0, 0x14(r1)
+// stw      r31, 0xc(r1)
+// mr       r31, r4
+// stw      r30, 8(r1)
+// or.      r30, r3, r3
+// beq      lbl_801D6844
+// lis      r5, __vt__Q34Game4Cave8ItemInfo@ha
+// li       r4, 0
+// addi     r0, r5, __vt__Q34Game4Cave8ItemInfo@l
+// stw      r0, 0(r30)
+// bl       __dt__5CNodeFv
+// extsh.   r0, r31
+// ble      lbl_801D6844
+// mr       r3, r30
+// bl       __dl__FPv
 
-lbl_801D6844:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// lbl_801D6844:
+// lwz      r0, 0x14(r1)
+// mr       r3, r30
+// lwz      r31, 0xc(r1)
+// lwz      r30, 8(r1)
+// mtlr     r0
+// addi     r1, r1, 0x10
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801D6860
- * Size:	000060
- */
-TekiInfo::~TekiInfo()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_801D68A4
-lis      r5, __vt__Q34Game4Cave8TekiInfo@ha
-li       r4, 0
-addi     r0, r5, __vt__Q34Game4Cave8TekiInfo@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-extsh.   r0, r31
-ble      lbl_801D68A4
-mr       r3, r30
-bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	801D6860
+//  * Size:	000060
+//  */
+// TekiInfo::~TekiInfo()
+// {
+// 	/*
+// stwu     r1, -0x10(r1)
+// mflr     r0
+// stw      r0, 0x14(r1)
+// stw      r31, 0xc(r1)
+// mr       r31, r4
+// stw      r30, 8(r1)
+// or.      r30, r3, r3
+// beq      lbl_801D68A4
+// lis      r5, __vt__Q34Game4Cave8TekiInfo@ha
+// li       r4, 0
+// addi     r0, r5, __vt__Q34Game4Cave8TekiInfo@l
+// stw      r0, 0(r30)
+// bl       __dt__5CNodeFv
+// extsh.   r0, r31
+// ble      lbl_801D68A4
+// mr       r3, r30
+// bl       __dl__FPv
 
-lbl_801D68A4:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// lbl_801D68A4:
+// lwz      r0, 0x14(r1)
+// mr       r3, r30
+// lwz      r31, 0xc(r1)
+// lwz      r30, 8(r1)
+// mtlr     r0
+// addi     r1, r1, 0x10
+// blr
+// 	*/
+// }
 
 // /*
 //  * --INFO--
@@ -2094,42 +2106,42 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D77A8
- * Size:	000060
- */
-BaseGen::~BaseGen()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_801D77EC
-lis      r5, __vt__Q34Game4Cave7BaseGen@ha
-li       r4, 0
-addi     r0, r5, __vt__Q34Game4Cave7BaseGen@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-extsh.   r0, r31
-ble      lbl_801D77EC
-mr       r3, r30
-bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	801D77A8
+//  * Size:	000060
+//  */
+// BaseGen::~BaseGen()
+// {
+// 	/*
+// stwu     r1, -0x10(r1)
+// mflr     r0
+// stw      r0, 0x14(r1)
+// stw      r31, 0xc(r1)
+// mr       r31, r4
+// stw      r30, 8(r1)
+// or.      r30, r3, r3
+// beq      lbl_801D77EC
+// lis      r5, __vt__Q34Game4Cave7BaseGen@ha
+// li       r4, 0
+// addi     r0, r5, __vt__Q34Game4Cave7BaseGen@l
+// stw      r0, 0(r30)
+// bl       __dt__5CNodeFv
+// extsh.   r0, r31
+// ble      lbl_801D77EC
+// mr       r3, r30
+// bl       __dl__FPv
 
-lbl_801D77EC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// lbl_801D77EC:
+// lwz      r0, 0x14(r1)
+// mr       r3, r30
+// lwz      r31, 0xc(r1)
+// lwz      r30, 8(r1)
+// mtlr     r0
+// addi     r1, r1, 0x10
+// blr
+// 	*/
+// }
 } // namespace Cave
 } // namespace Game
 

@@ -87,7 +87,7 @@ struct SingleGameSection : public BaseGameSection {
 	u32 _190;                                      // _190
 	bool _194;                                     // _194
 	char mCaveFilename[0x20];                      // _195
-	u8 _1B5;                                       // _1B5, unknown
+	bool _1B5;                                     // _1B5, unknown
 	DvdThreadCommand mDvdThread;                   // _1B8
 	Delegate<Game::SingleGameSection>* _224;       // _224
 	u8 _228;                                       // _228
