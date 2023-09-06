@@ -30,7 +30,7 @@ bool Navi::stimulate(Game::Interaction& interaction)
  */
 bool InteractSarai::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->mFlags & GAMESYS_Unk6) {
+	if (!gameSystem || gameSystem->mFlags & GAMESYS_IsGameWorldActive) {
 		if (!navi->isStickTo()) {
 			navi->startStick(mCreature, mCollPart);
 			navi->transit(NSID_Sarai, nullptr);
@@ -47,7 +47,7 @@ bool InteractSarai::actNavi(Game::Navi* navi)
  */
 bool InteractBomb::actNavi(Game::Navi* navi)
 {
-	if ((gameSystem->mFlags & GAMESYS_Unk6) == FALSE) {
+	if ((gameSystem->mFlags & GAMESYS_IsGameWorldActive) == FALSE) {
 		return false;
 	}
 
@@ -119,7 +119,7 @@ bool InteractFallMeck::actNavi(Game::Navi* navi)
  */
 bool InteractFlick::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->mFlags & GAMESYS_Unk6) {
+	if (!gameSystem || gameSystem->mFlags & GAMESYS_IsGameWorldActive) {
 		if (!playData->isDemoFlag(DEMO_Reunite_Captains)) {
 			return false;
 		}
@@ -148,7 +148,7 @@ bool InteractFlick::actNavi(Game::Navi* navi)
  */
 bool InteractPress::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->mFlags & GAMESYS_Unk6) {
+	if (!gameSystem || gameSystem->mFlags & GAMESYS_IsGameWorldActive) {
 		bool alive = navi->isAlive();
 		if (!alive) {
 			return false;
@@ -198,7 +198,7 @@ bool InteractFire::actNavi(Game::Navi* navi)
  */
 bool InteractBubble::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->mFlags & GAMESYS_Unk6) {
+	if (!gameSystem || gameSystem->mFlags & GAMESYS_IsGameWorldActive) {
 		if (gameSystem && gameSystem->isVersusMode()) {
 			return false;
 		}

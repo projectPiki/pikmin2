@@ -1133,7 +1133,7 @@ bool SingleGameSection::doUpdate()
 		mFsm->exec(this);
 
 		if (!gameSystem->mIsFrozen && !gameSystem->paused()) {
-			if (mTimerEnabled && !moviePlayer->mDemoState && gameSystem->isFlag(GAMESYS_Unk6)) {
+			if (mTimerEnabled && !moviePlayer->mDemoState && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 				mTimer -= sys->mDeltaTime;
 
 				if (mTimer < 0.0f) {

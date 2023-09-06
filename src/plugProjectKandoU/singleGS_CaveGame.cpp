@@ -48,7 +48,7 @@ void SingleGame::CaveState::init(SingleGameSection* game, StateArg* arg)
 	game->_194 = false;
 	sys->heapStatusDump(true);
 	gameSystem->mTimeMgr->mFlags |= TIMEMGR_FLAG_STOPPED;
-	gameSystem->mFlags |= GAMESYS_Unk6;
+	gameSystem->mFlags |= GAMESYS_IsGameWorldActive;
 	Screen::gGame2DMgr->mScreenMgr->mInCave = true;
 	gameSystem->mIsInCave                   = true;
 	game->setFixNearFar(true, 1.0f, 12800.0f);
@@ -383,7 +383,7 @@ void SingleGame::CaveState::exec(SingleGameSection* game)
 		// check pikmin extinction cutscene
 		if (!(moviePlayer->mFlags & MoviePlayer::IS_ACTIVE)) {
 			if (GameStat::getMapPikmins(-1) == 0) {
-				gameSystem->mFlags &= ~GAMESYS_Unk6;
+				gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 				MoviePlayArg moviearg("s05_pikminzero", nullptr, game->mMovieFinishCallback, 0);
 				Navi* navi = naviMgr->getActiveNavi();
 				if (!navi) {
@@ -962,7 +962,7 @@ lbl_80218380:
  */
 void SingleGame::CaveState::onFountainReturn(SingleGameSection* game, ItemBigFountain::Item* fountain)
 {
-	gameSystem->mFlags &= ~GAMESYS_Unk6;
+	gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 	game->loadMainMapSituation();
 
 	MoviePlayArg arg("s0C_cave_escape", nullptr, game->mMovieFinishCallback, 0);
@@ -1058,7 +1058,7 @@ void SingleGame::CaveState::onNextFloor(SingleGameSection* game, ItemHole::Item*
 			playData->mCaveSaveData.mIsWaterwraithAlive = false;
 		}
 	}
-	gameSystem->mFlags &= ~GAMESYS_Unk6;
+	gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 
 	MoviePlayArg arg("s0C_cave_escape", nullptr, game->mMovieFinishCallback, 0);
 
@@ -1741,7 +1741,7 @@ void SingleGame::CaveState::onMovieStart(SingleGameSection* game, MovieConfig* c
 	}
 
 	if (config->is("s09_holein")) {
-		gameSystem->mFlags &= ~GAMESYS_Unk6;
+		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 		playData->setCurrentCaveFloor(game->getCurrFloor() + 1);
 
 		int id;
@@ -1769,7 +1769,7 @@ void SingleGame::CaveState::onMovieStart(SingleGameSection* game, MovieConfig* c
 	}
 
 	if (config->is("s0C_cv_escape")) {
-		gameSystem->mFlags &= ~GAMESYS_Unk6;
+		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 		Vector3f geyserpos = game->mFountain->getPosition();
 		game->prepareFountainOn(geyserpos);
 	}
@@ -2204,21 +2204,21 @@ void SingleGame::CaveState::onMovieDone(Game::SingleGameSection* game, Game::Mov
 				PikiKillArg killarg(true);
 				pikilist[i]->kill(&killarg);
 			}
-			gameSystem->mFlags &= ~GAMESYS_Unk6;
+			gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 			CaveResultArg statearg;
 			statearg._00 = 2;
 			transit(game, SGS_CaveResult, &statearg);
 		}
 		return;
 	} else if (config->is("s05_pikminzero")) {
-		gameSystem->mFlags &= ~GAMESYS_Unk6;
+		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 		Screen::gGame2DMgr->close_GameOver();
 		CaveResultArg statearg;
 		statearg._00 = 3;
 		transit(game, SGS_CaveResult, &statearg);
 	} else if (config->is("s12_cv_giveup")) {
 		moviePlayer->clearSuspendedDemo();
-		gameSystem->mFlags &= ~GAMESYS_Unk6;
+		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 
 		Iterator<ItemPikihead::Item> it(ItemPikihead::mgr);
 		int pikis = 0;

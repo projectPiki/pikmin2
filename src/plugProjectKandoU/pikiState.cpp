@@ -5966,7 +5966,7 @@ void PikiGrowupState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 				piki->mNavi->mCPlateMgr->changeFlower(piki);
 			}
 
-			if (gameSystem->isFlag(GAMESYS_Unk6) && !playData->isDemoFlag(DEMO_First_Nectar_Use)) {
+			if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_First_Nectar_Use)) {
 				if (moviePlayer) {
 					MoviePlayArg movieArg("g34_yellow_extract", nullptr, nullptr, 0);
 					movieArg.setTarget(piki);

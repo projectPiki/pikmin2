@@ -139,7 +139,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 			}
 
 		} else if ((int)pikiKind == Bulbmin) {
-			if (gameSystem->isFlag(GAMESYS_Unk6) && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) { // broken demo likely
+			if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) { // broken demo likely
 				playData->setDemoFlag(DEMO_Discover_Bulbmin);
 				MoviePlayArg bulbminArg("X13_exp_leafchappy", nullptr, nullptr, 0);
 				bulbminArg.setTarget(piki);

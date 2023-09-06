@@ -1194,7 +1194,7 @@ bool Piki::startDope(int isDoped)
 		startSound(PSSE_PK_VC_DOPING, PSGame::SeMgr::SETSE_Unk0);
 		startSound(PSSE_PK_DOPING_IMI, PSGame::SeMgr::SETSE_Unk0);
 
-		if (gameSystem->isFlag(GAMESYS_Unk6) && !playData->isDemoFlag(DEMO_First_Spicy_Use)) {
+		if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_First_Spicy_Use)) {
 			if (moviePlayer) {
 				MoviePlayArg movieArg("g1A_red_doping", nullptr, nullptr, 0);
 				movieArg.setTarget(this);

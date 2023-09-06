@@ -22,14 +22,14 @@ enum GameSystemMode {
 };
 
 enum GameSystemFlags {
-	GAMESYS_Unk1      = 0x1,
-	GAMESYS_IsPlaying = 0x2,
-	GAMESYS_Unk3      = 0x4,
-	GAMESYS_Unk4      = 0x8,
-	GAMESYS_Unk5      = 0x10,
-	GAMESYS_Unk6      = 0x20,
-	GAMESYS_Unk7      = 0x40,
-	GAMESYS_Unk8      = 0x80,
+	GAMESYS_Unk1              = 0x1,
+	GAMESYS_IsPlaying         = 0x2,
+	GAMESYS_Unk3              = 0x4,
+	GAMESYS_Unk4              = 0x8,
+	GAMESYS_Unk5              = 0x10,
+	GAMESYS_IsGameWorldActive = 0x20,
+	GAMESYS_Unk7              = 0x40,
+	GAMESYS_Unk8              = 0x80,
 };
 
 struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
@@ -45,11 +45,11 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual void startFrame();                  // _80
 	virtual void endFrame();                    // _84
-	virtual void doSimpleDraw(Viewport*);       // _88 (weak)
-	virtual void directDraw(Graphics&);         // _8C
-	virtual void startFadeout(f32);             // _90
-	virtual void startFadein(f32);              // _94
-	virtual void startFadeoutin(f32);           // _98
+	virtual void doSimpleDraw(Viewport* vp);    // _88 (weak)
+	virtual void directDraw(Graphics& gfx);     // _8C
+	virtual void startFadeout(f32 speed);       // _90
+	virtual void startFadein(f32 speed);        // _94
+	virtual void startFadeoutin(f32 speed);     // _98
 	virtual void startFadeblack();              // _9C
 	virtual void startFadewhite();              // _A0
 

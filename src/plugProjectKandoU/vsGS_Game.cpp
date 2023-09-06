@@ -53,7 +53,7 @@ void GameState::init(VsGameSection* section, StateArg* stateArg)
 	section->setFixNearFar(true, 1.0f, 12800.0f);
 	DeathMgr::clear();
 	gameSystem->resetFlag(GAMESYS_IsPlaying);
-	gameSystem->setFlag(GAMESYS_Unk6);
+	gameSystem->setFlag(GAMESYS_IsGameWorldActive);
 	section->clearCaveMenus();
 
 	if (!gameSystem->isMultiplayerMode()) {
@@ -288,12 +288,12 @@ void GameState::exec(VsGameSection* section)
 		}
 
 		if (!gameSystem->paused() && section->mTimeLimit > 0.0f && isFlag(VSGS_Unk3) && !section->mMenuFlags
-		    && gameSystem->isFlag(GAMESYS_Unk6) && !gameSystem->paused_soft()
+		    && gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !gameSystem->paused_soft()
 		    && !moviePlayer->mDemoState) { // check game is in a state where timer should go down (not paused/menu/CS/etc)
 
 			section->mTimeLimit -= sys->mDeltaTime * 0.5f;
 			if (section->mTimeLimit <= 0.0f && !(isFlag(VSGS_Unk4))) {
-				gameSystem->resetFlag(GAMESYS_Unk6);
+				gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 				gameSystem->setPause(true, "timeup", 3);
 				gameSystem->setMoviePause(true, "timeup");
 				setFlag(VSGS_Unk4);
@@ -314,7 +314,7 @@ void GameState::exec(VsGameSection* section)
 			break;
 
 		case 1:
-			gameSystem->resetFlag(GAMESYS_Unk6);
+			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			gameSystem->setPause(false, "cmore-yes", 3);
 			gameSystem->setMoviePause(false, "cmore-yes");
 			section->goNextFloor(section->mHole);
@@ -327,7 +327,7 @@ void GameState::exec(VsGameSection* section)
 			break;
 
 		case 3:
-			gameSystem->resetFlag(GAMESYS_Unk6);
+			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			gameSystem->setMoviePause(false, "cmore-zenk");
 			break;
 		}
@@ -343,7 +343,7 @@ void GameState::exec(VsGameSection* section)
 		if (gameSystem->isVersusMode() && !isFlag(VSGS_Unk9) && !isFlag(VSGS_Unk10) && _16 != 1
 		    && (getLoseCauses(VSPLAYER_Red) || getLoseCauses(VSPLAYER_Blue))) {
 
-			gameSystem->resetFlag(GAMESYS_Unk6);
+			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			setFlag(VSGS_Unk9);
 			gameSystem->setPause(true, nullptr, 3);
 
@@ -443,14 +443,14 @@ void GameState::checkSMenu(VsGameSection* section)
 		gameSystem->setMoviePause(false, "sm-quit");
 		if (gameSystem->isVersusMode()) {
 			section->mVsWinner = -1;
-			gameSystem->resetFlag(GAMESYS_Unk6);
+			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			TitleArg titleArg;
 			titleArg._00 = 1;
 			transit(section, VGS_Title, &titleArg);
 			return;
 		}
 		if (moviePlayer->mDemoState == 0 && !isFlag(VSGS_Unk2)) {
-			gameSystem->resetFlag(GAMESYS_Unk6);
+			gameSystem->resetFlag(GAMESYS_IsGameWorldActive);
 			MoviePlayArg movieArgs("s12_cv_giveup", 0x0, section->mMovieFinishCallback, 0);
 			movieArgs.mDelegateStart = section->mMovieStartCallback;
 			Onyon* onyon             = ItemOnyon::mgr->mPod;
@@ -611,7 +611,7 @@ void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool is
 void GameState::checkPikminZero(VsGameSection* section)
 {
 	if (!gameSystem->isVersusMode() && !isFlag(VSGS_Unk2) && GameStat::getAllPikmins(-1) == 0 && !gameSystem->paused_soft()
-	    && gameSystem->isFlag(GAMESYS_Unk6)) {
+	    && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
 
 		Navi* activeNavi = naviMgr->getActiveNavi();
 		if (!activeNavi) {
