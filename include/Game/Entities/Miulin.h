@@ -145,13 +145,13 @@ struct Obj : public EnemyBase {
 	virtual void birth(Vector3f&, f32);                                                        // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*) { }                                 // _1C4 (weak)
 	virtual void doUpdate();                                                                   // _1CC
-	virtual void doDebugDraw(Graphics&);                                                       // _1EC
+	virtual void doDebugDraw(Graphics& gfx);                                                   // _1EC
 	virtual void setParameters();                                                              // _228
 	virtual void initWalkSmokeEffect();                                                        // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                                     // _234
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Miulin; } // _258 (weak)
 	virtual void startCarcassMotion();                                                         // _2C4
-	virtual void wallCallback(const MoveInfo&);                                                // _2E8
+	virtual void wallCallback(const MoveInfo& info);                                           // _2E8
 	virtual f32 getDownSmokeScale() { return 0.85f; }                                          // _2EC (weak)
 	virtual void setFSM(FSM* fsm)
 	{

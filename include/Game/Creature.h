@@ -151,7 +151,7 @@ struct Creature : public CellObject {
 	virtual bool inWater() { return false; }                         // _8C (weak)
 	virtual BaseFlockMgr* getFlockMgr() { return nullptr; }          // _90 (weak)
 	virtual void onStartCapture() { }                                // _94 (weak)
-	virtual void onUpdateCapture(Matrixf&) { }                       // _98 (weak)
+	virtual void onUpdateCapture(Matrixf& mtx) { }                   // _98 (weak)
 	virtual void onEndCapture() { }                                  // _9C (weak)
 	virtual bool isAtari() { return mFlags.typeView & CF_IS_ATARI; } // _A0 (weak)
 	virtual void setAtari(bool atari)                                // _A4 (weak)
@@ -219,8 +219,8 @@ struct Creature : public CellObject {
 			mFlags.typeView &= ~CF_IS_DEBUG_COLLISION;
 		}
 	}
-	virtual void doSave(Stream&) { }                              // _E0 (weak)
-	virtual void doLoad(Stream&) { }                              // _E4 (weak)
+	virtual void doSave(Stream& stream) { }                       // _E0 (weak)
+	virtual void doLoad(Stream& stream) { }                       // _E4 (weak)
 	virtual void bounceCallback(Sys::Triangle* tri) { }           // _E8 (weak)
 	virtual void collisionCallback(CollEvent& event) { }          // _EC (weak)
 	virtual void platCallback(PlatEvent& event) { }               // _F0 (weak)

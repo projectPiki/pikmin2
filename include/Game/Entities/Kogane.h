@@ -23,40 +23,40 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void onKill(CreatureKillArg* settings);         // _34
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
-	virtual void outWaterCallback() { }                     // _88 (weak)
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doUpdateCommon();                          // _1D0
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual void changeMaterial() = 0;                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                // _30
+	virtual void onKill(CreatureKillArg* settings);                // _34
+	virtual void doDirectDraw(Graphics& gfx);                      // _50
+	virtual void inWaterCallback(WaterBox* wb) { }                 // _84 (weak)
+	virtual void outWaterCallback() { }                            // _88 (weak)
+	virtual void getShadowParam(ShadowParam& settings);            // _134
+	virtual ~Obj() { }                                             // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
+	virtual void doUpdate();                                       // _1CC
+	virtual void doUpdateCommon();                                 // _1D0
+	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
+	virtual void changeMaterial() = 0;                             // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()             // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Kogane;
 	}
-	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual bool earthquakeCallBack(Creature*, f32);         // _28C
-	virtual void doStartStoneState();                        // _2A4
-	virtual void doFinishStoneState();                       // _2A8
-	virtual void wallCallback(const MoveInfo&);              // _2E8
-	virtual void doStartMovie();                             // _2F0
-	virtual void doEndMovie();                               // _2F4
-	virtual void setFSM(FSM*);                               // _2F8
-	virtual void createItem() { }                            // _2FC (weak)
-	virtual void resetFartTimer();                           // _300 (weak)
-	virtual void startBodyEffect() { }                       // _304 (weak)
-	virtual void finishBodyEffect() { }                      // _308 (weak)
-	virtual void createFartEffect() { }                      // _30C (weak)
-	virtual void effectDrawOn() { }                          // _310 (weak)
-	virtual void effectDrawOff() { }                         // _314 (weak)
-	virtual void createPressSENormal() { }                   // _318 (weak)
-	virtual void createPressSESpecial() { }                  // _31C (weak)
+	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
+	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);        // _28C
+	virtual void doStartStoneState();                                           // _2A4
+	virtual void doFinishStoneState();                                          // _2A8
+	virtual void wallCallback(const MoveInfo& info);                            // _2E8
+	virtual void doStartMovie();                                                // _2F0
+	virtual void doEndMovie();                                                  // _2F4
+	virtual void setFSM(FSM* fsm);                                              // _2F8
+	virtual void createItem() { }                                               // _2FC (weak)
+	virtual void resetFartTimer();                                              // _300 (weak)
+	virtual void startBodyEffect() { }                                          // _304 (weak)
+	virtual void finishBodyEffect() { }                                         // _308 (weak)
+	virtual void createFartEffect() { }                                         // _30C (weak)
+	virtual void effectDrawOn() { }                                             // _310 (weak)
+	virtual void effectDrawOff() { }                                            // _314 (weak)
+	virtual void createPressSENormal() { }                                      // _318 (weak)
+	virtual void createPressSESpecial() { }                                     // _31C (weak)
 	//////////////// VTABLE END
 
 	bool transitDamageState(f32);

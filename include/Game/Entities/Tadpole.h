@@ -31,22 +31,22 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
-	virtual void outWaterCallback() { }                     // _88 (weak)
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                // _30
+	virtual void doDirectDraw(Graphics& gfx);                      // _50
+	virtual void inWaterCallback(WaterBox* wb) { }                 // _84 (weak)
+	virtual void outWaterCallback() { }                            // _88 (weak)
+	virtual void getShadowParam(ShadowParam& settings);            // _134
+	virtual ~Obj() { }                                             // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
+	virtual void doUpdate();                                       // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()             // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Tadpole;
 	}
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual void startCarcassMotion();                       // _2C4
-	virtual void setFSM(FSM*);                               // _2F8
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
+	virtual void startCarcassMotion();                                          // _2C4
+	virtual void setFSM(FSM* fsm);                                              // _2F8
 	//////////////// VTABLE END
 
 	void setRandTarget(bool);

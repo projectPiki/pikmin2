@@ -1128,25 +1128,28 @@ void Obj::walkFunc()
 		_2FC -= 360.0f;
 	}
 
-	f32 somethingRotation = sin(_2FC);
-	f32 idk               = inA1C * somethingRotation;
+	f32 rotationAngle = sin(_2FC);
+	f32 rotationDelta = inA1C * rotationAngle;
 	if (!C_PARMS->_A10) {
-		idk = 0.0f;
+		rotationDelta = 0.0f;
 	}
-	mFaceDir            = _2F8;
-	f32 faceDirRads     = idk * PI * DEG2RAD;
-	Vector3f position   = getPosition();
-	Vector2f stupidVec2 = Vector2f(position.x - _2BC.x, position.z - _2BC.z);
-	f32 tailAngMaybe    = JMath::atanTable_.atan2_(stupidVec2.x, stupidVec2.y);
-	tailAngMaybe        = roundAng(tailAngMaybe);
-	f32 faceDir         = getFaceDir();
-	angDist(tailAngMaybe, faceDir);
 
-	f32 totalRotation        = tailAngMaybe * rotationAccel;
-	f32 rotationSpeedRadians = rotationSpeed * PI * DEG2RAD;
-	f32 rotationAmount       = totalRotation;
-	if (rotationSpeedRadians < FABS(totalRotation)) {
-		rotationAmount = rotationSpeedRadians;
+	mFaceDir              = _2F8;
+	f32 faceDirRads       = rotationDelta * PI * DEG2RAD;
+	Vector3f position     = getPosition();
+	Vector2f positionDiff = Vector2f(position.x - _2BC.x, position.z - _2BC.z);
+
+	f32 targetRotation = JMath::atanTable_.atan2_(positionDiff.x, positionDiff.y);
+	targetRotation     = roundAng(targetRotation);
+
+	f32 faceDir = getFaceDir();
+	angDist(targetRotation, faceDir);
+
+	f32 totalRotation           = targetRotation * rotationAccel;
+	f32 maxRotationSpeedRadians = rotationSpeed * PI * DEG2RAD;
+	f32 rotationAmount          = totalRotation;
+	if (maxRotationSpeedRadians < FABS(totalRotation)) {
+		rotationAmount = maxRotationSpeedRadians;
 		if (totalRotation <= 0.0f) {
 			totalRotation = -totalRotation;
 		}

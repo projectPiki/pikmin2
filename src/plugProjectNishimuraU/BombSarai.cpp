@@ -239,9 +239,9 @@ void BombSarai::Obj::setRandTarget()
 		        + randWeightFloat(C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
 	}
 
-	f32 angle = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
+	f32 angleToHome = JMAAtan2Radian(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 
-	f32 theta = HALF_PI + (angle + randWeightFloat(PI));
+	f32 theta = HALF_PI + (angleToHome + randWeightFloat(PI));
 
 	mTargetPosition
 	    = Vector3f(randAmp * pikmin2_sinf(theta) + mHomePosition.x, mHomePosition.y, randAmp * pikmin2_cosf(theta) + mHomePosition.z);

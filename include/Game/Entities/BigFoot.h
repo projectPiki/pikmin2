@@ -41,31 +41,31 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void onKill(CreatureKillArg* settings);         // _34
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void collisionCallback(CollEvent& event);       // _EC
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual bool needShadow();                              // _138
-	virtual ~Obj() {};                                      // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doUpdateCommon();                          // _1D0
-	virtual void doAnimationCullingOff();                   // _1DC
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual void getThrowupItemPosition(Vector3f*);         // _268
-	virtual void getThrowupItemVelocity(Vector3f*);         // _26C
-	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual void doStartMovie();                            // _2F0
-	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM*);                              // _2F8
-	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
-	virtual void outWaterCallback() { }                     // _88 (weak)
-	virtual f32 getDamageCoeStoneState() { return 0.25f; }  // _2AC (weak)
-	virtual void throwupItemInDeathProcedure() { }          // _270 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                            // _30
+	virtual void onKill(CreatureKillArg* settings);                            // _34
+	virtual void doDirectDraw(Graphics& gfx);                                  // _50
+	virtual void collisionCallback(CollEvent& event);                          // _EC
+	virtual void getShadowParam(ShadowParam& settings);                        // _134
+	virtual bool needShadow();                                                 // _138
+	virtual ~Obj() {};                                                         // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
+	virtual void doUpdate();                                                   // _1CC
+	virtual void doUpdateCommon();                                             // _1D0
+	virtual void doAnimationCullingOff();                                      // _1DC
+	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
+	virtual void getThrowupItemPosition(Vector3f*);                            // _268
+	virtual void getThrowupItemVelocity(Vector3f*);                            // _26C
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
+	virtual void doStartStoneState();                                          // _2A4
+	virtual void doFinishStoneState();                                         // _2A8
+	virtual void doStartMovie();                                               // _2F0
+	virtual void doEndMovie();                                                 // _2F4
+	virtual void setFSM(FSM* fsm);                                             // _2F8
+	virtual void inWaterCallback(WaterBox* wb) { }                             // _84 (weak)
+	virtual void outWaterCallback() { }                                        // _88 (weak)
+	virtual f32 getDamageCoeStoneState() { return 0.25f; }                     // _2AC (weak)
+	virtual void throwupItemInDeathProcedure() { }                             // _270 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                         // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_BigFoot;
 	}

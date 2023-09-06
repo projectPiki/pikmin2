@@ -76,25 +76,25 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);          // _30
-	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual bool isUnderground() { return mIsHiding; }       // _D0 (weak)
-	virtual void getShadowParam(ShadowParam& settings);      // _134
-	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual Vector3f getOffsetForMapCollision();             // _224
-	virtual void createEfxHamon();                           // _250
-	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual void doStartStoneState();                        // _2A4
-	virtual void doFinishStoneState();                       // _2A8
-	virtual void startCarcassMotion();                       // _2C4
-	virtual void wallCallback(const MoveInfo&);              // _2E8
-	virtual void setFSM(FSM*);                               // _2F8
-	virtual f32 getDownSmokeScale() { return 0.55f; }        // _2EC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()       // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                             // _30
+	virtual void doDirectDraw(Graphics& gfx);                                   // _50
+	virtual bool isUnderground() { return mIsHiding; }                          // _D0 (weak)
+	virtual void getShadowParam(ShadowParam& settings);                         // _134
+	virtual ~Obj() { }                                                          // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params);              // _1C4
+	virtual void doUpdate();                                                    // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
+	virtual Vector3f getOffsetForMapCollision();                                // _224
+	virtual void createEfxHamon();                                              // _250
+	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
+	virtual void doStartStoneState();                                           // _2A4
+	virtual void doFinishStoneState();                                          // _2A8
+	virtual void startCarcassMotion();                                          // _2C4
+	virtual void wallCallback(const MoveInfo& info);                            // _2E8
+	virtual void setFSM(FSM* fsm);                                              // _2F8
+	virtual f32 getDownSmokeScale() { return 0.55f; }                           // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                          // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Sokkuri;
 	}

@@ -262,13 +262,13 @@ void Obj::moveNoTarget()
 {
 	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
 		if (sqrDistanceXZ(mPosition, mTargetPos) < 500.0f) {
-			f32 f1  = randWeightFloat(100.0f) + 50.0f;
-			f32 ang = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
-			ang     = randWeightFloat(PI) + ang + HALF_PI;
+			f32 randomAngle = randWeightFloat(100.0f) + 50.0f;
+			f32 angleToHome = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
+			angleToHome     = randWeightFloat(PI) + angleToHome + HALF_PI;
 
-			mTargetPos.x = f1 * pikmin2_sinf(ang) + mHomePosition.x;
+			mTargetPos.x = randomAngle * pikmin2_sinf(angleToHome) + mHomePosition.x;
 			mTargetPos.y = mHomePosition.y;
-			mTargetPos.z = f1 * pikmin2_cosf(ang) + mHomePosition.z;
+			mTargetPos.z = randomAngle * pikmin2_cosf(angleToHome) + mHomePosition.z;
 		}
 		Parms* parms = static_cast<Parms*>(mParms);
 		EnemyFunc::walkToTarget(this, mTargetPos, parms->mGeneral.mMoveSpeed.mValue, parms->mGeneral.mRotationalAccel.mValue,

@@ -52,43 +52,43 @@ struct FSM : public EnemyStateMachine {
 struct Obj : public EnemyBase {
 	Obj();
 
-	virtual void onInit(CreatureInitArg* settings);            // _30
-	virtual void onKill(CreatureKillArg* settings);            // _34
-	virtual void doAnimation();                                // _3C
-	virtual void doSimulation(f32);                            // _4C
-	virtual void doDirectDraw(Graphics& gfx);                  // _50
-	virtual void inWaterCallback(WaterBox* wb);                // _84
-	virtual void outWaterCallback();                           // _88
-	virtual void bounceCallback(Sys::Triangle* tri);           // _E8
-	virtual void collisionCallback(CollEvent& event);          // _EC
-	virtual void getShadowParam(ShadowParam& settings);        // _134
-	virtual bool needShadow();                                 // _138
-	virtual ~Obj() { }                                         // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                        // _1C0
-	virtual void doUpdate();                                   // _1CC
-	virtual void doAnimationStick();                           // _1E4
-	virtual void doDebugDraw(Graphics&);                       // _1EC
-	virtual void setParameters();                              // _228
-	virtual void initMouthSlots();                             // _22C
-	virtual void initWalkSmokeEffect();                        // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();     // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;    // _258
-	virtual bool damageCallBack(Creature*, f32, CollPart*);    // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);     // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*);   // _284
-	virtual void doStartStoneState();                          // _2A4
-	virtual void doFinishStoneState();                         // _2A8
-	virtual void startCarcassMotion();                         // _2C4
-	virtual void doStartMovie();                               // _2F0
-	virtual void doEndMovie();                                 // _2F4
-	virtual void appearRumble() { }                            // _2F8 (weak)
-	virtual void hideRumble() { }                              // _2FC (weak)
-	virtual void damageRumble();                               // _300
-	virtual void walkFunc();                                   // _304
-	virtual bool canTarget(int, int) = 0;                      // _308
-	virtual void setInitialSetting(EnemyInitialParamBase*) { } // _1C4 (weak)
-	virtual void applyImpulse(Vector3f&, Vector3f&) { }        // _18C (weak)
-	virtual bool isLivingThing()                               // _D4 (weak)
+	virtual void onInit(CreatureInitArg* settings);                             // _30
+	virtual void onKill(CreatureKillArg* settings);                             // _34
+	virtual void doAnimation();                                                 // _3C
+	virtual void doSimulation(f32);                                             // _4C
+	virtual void doDirectDraw(Graphics& gfx);                                   // _50
+	virtual void inWaterCallback(WaterBox* wb);                                 // _84
+	virtual void outWaterCallback();                                            // _88
+	virtual void bounceCallback(Sys::Triangle* tri);                            // _E8
+	virtual void collisionCallback(CollEvent& event);                           // _EC
+	virtual void getShadowParam(ShadowParam& settings);                         // _134
+	virtual bool needShadow();                                                  // _138
+	virtual ~Obj() { }                                                          // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                         // _1C0
+	virtual void doUpdate();                                                    // _1CC
+	virtual void doAnimationStick();                                            // _1E4
+	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
+	virtual void setParameters();                                               // _228
+	virtual void initMouthSlots();                                              // _22C
+	virtual void initWalkSmokeEffect();                                         // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                      // _234
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;                     // _258
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
+	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
+	virtual void doStartStoneState();                                           // _2A4
+	virtual void doFinishStoneState();                                          // _2A8
+	virtual void startCarcassMotion();                                          // _2C4
+	virtual void doStartMovie();                                                // _2F0
+	virtual void doEndMovie();                                                  // _2F4
+	virtual void appearRumble() { }                                             // _2F8 (weak)
+	virtual void hideRumble() { }                                               // _2FC (weak)
+	virtual void damageRumble();                                                // _300
+	virtual void walkFunc();                                                    // _304
+	virtual bool canTarget(int, int) = 0;                                       // _308
+	virtual void setInitialSetting(EnemyInitialParamBase*) { }                  // _1C4 (weak)
+	virtual void applyImpulse(Vector3f&, Vector3f&) { }                         // _18C (weak)
+	virtual bool isLivingThing()                                                // _D4 (weak)
 	{
 		return isEvent(0, EB_IsBittered);
 	}

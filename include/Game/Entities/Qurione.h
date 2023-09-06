@@ -25,24 +25,24 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);               // _30
-	virtual void onKill(CreatureKillArg* settings);               // _34
-	virtual void doDirectDraw(Graphics& gfx);                     // _50
-	virtual void inWaterCallback(WaterBox* wb);                   // _84 (weak)
-	virtual void outWaterCallback();                              // _88 (weak)
-	virtual void getShadowParam(ShadowParam& settings);           // _134
-	virtual ~Obj() { }                                            // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                           // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*);       // _1C4
-	virtual void doUpdate();                                      // _1CC
-	virtual void doDebugDraw(Graphics&);                          // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();           // _258 (weak)
-	virtual bool flyCollisionCallBack(Creature*, f32, CollPart*); // _280
-	virtual void doStartWaitingBirthTypeDrop();                   // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();                  // _2E4
-	virtual void doStartMovie();                                  // _2F0
-	virtual void doEndMovie();                                    // _2F4
-	virtual void setFSM(FSM*);                                    // _2F8
+	virtual void onInit(CreatureInitArg* settings);                          // _30
+	virtual void onKill(CreatureKillArg* settings);                          // _34
+	virtual void doDirectDraw(Graphics& gfx);                                // _50
+	virtual void inWaterCallback(WaterBox* wb);                              // _84 (weak)
+	virtual void outWaterCallback();                                         // _88 (weak)
+	virtual void getShadowParam(ShadowParam& settings);                      // _134
+	virtual ~Obj() { }                                                       // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                      // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase* params);           // _1C4
+	virtual void doUpdate();                                                 // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                                 // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                      // _258 (weak)
+	bool flyCollisionCallBack(Creature* source, f32 damage, CollPart* part); // _280
+	virtual void doStartWaitingBirthTypeDrop();                              // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();                             // _2E4
+	virtual void doStartMovie();                                             // _2F0
+	virtual void doEndMovie();                                               // _2F4
+	virtual void setFSM(FSM* fsm);                                           // _2F8
 	//////////////// VTABLE END
 
 	void setQurioneStartPos(f32);

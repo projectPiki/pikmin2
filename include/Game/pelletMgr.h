@@ -226,10 +226,10 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void updateTrMatrix();                                   // _78
 	virtual bool inWater() { return mIsInWater; }                    // _8C (weak)
 	virtual void onStartCapture();                                   // _94
-	virtual void onUpdateCapture(Matrixf&);                          // _98
+	virtual void onUpdateCapture(Matrixf& mtx);                      // _98
 	virtual void onEndCapture();                                     // _9C
-	virtual void doSave(Stream&);                                    // _E0
-	virtual void doLoad(Stream&);                                    // _E4
+	virtual void doSave(Stream& stream);                             // _E0
+	virtual void doLoad(Stream& stream);                             // _E4
 	virtual void bounceCallback(Sys::Triangle* tri);                 // _E8
 	virtual JAInter::Object* getJAIObject();                         // _F4
 	virtual PSM::Creature* getPSCreature();                          // _F8

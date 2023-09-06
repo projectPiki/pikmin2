@@ -104,8 +104,8 @@ struct Item : public WorkItem<Item, FSM, State> {
 	virtual void constructor();                               // _2C
 	virtual void onInit(CreatureInitArg*);                    // _30
 	virtual void onKill(CreatureKillArg*);                    // _34
-	virtual void doSave(Stream&);                             // _E0
-	virtual void doLoad(Stream&);                             // _E4
+	virtual void doSave(Stream& stream);                      // _E0
+	virtual void doLoad(Stream& stream);                      // _E4
 	virtual void on_movie_end(bool shouldResetAnims);         // _114
 	virtual char* getCreatureName();                          // _1A8 (weak)
 	virtual void doAI();                                      // _1C8

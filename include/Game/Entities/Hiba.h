@@ -31,21 +31,21 @@ struct Obj : public EnemyBase {
 	{
 		return mIsAlive;
 	}
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	virtual void getShadowParam(ShadowParam& settings);            // _134
+	virtual ~Obj() { }                                             // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
+	virtual void doUpdate();                                       // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()             // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Hiba;
 	}
-	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);    // _294
-	virtual void lifeRecover() { }                           // _2C0 (weak)
-	virtual void setFSM(FSM*);                               // _2F8
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
+	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
+	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294
+	virtual void lifeRecover() { }                                              // _2C0 (weak)
+	virtual void setFSM(FSM* fsm);                                              // _2F8
 	//////////////// VTABLE END
 
 	void interactFireAttack();

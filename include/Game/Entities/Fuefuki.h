@@ -45,13 +45,13 @@ struct Obj : public EnemyBase {
 	virtual Footmarks* getFootmarks() { return mFootmarks; }                                    // _154 (weak)
 	virtual ~Obj() { }                                                                          // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                                                         // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*);                                     // _1C4
+	virtual void setInitialSetting(EnemyInitialParamBase* params);                              // _1C4
 	virtual void doUpdate();                                                                    // _1CC
-	virtual void doDebugDraw(Graphics&);                                                        // _1EC
+	virtual void doDebugDraw(Graphics& gfx);                                                    // _1EC
 	virtual Vector3f getOffsetForMapCollision();                                                // _224
 	virtual void createEfxHamon();                                                              // _250
 	virtual bool pressCallBack(Creature*, f32, CollPart*);                                      // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*);                                    // _284
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part);                 // _284
 	virtual void doStartStoneState();                                                           // _2A4
 	virtual void doFinishStoneState();                                                          // _2A8
 	virtual void doStartEarthquakeFitState();                                                   // _2B8
@@ -61,7 +61,7 @@ struct Obj : public EnemyBase {
 	virtual void doFinishWaitingBirthTypeDrop();                                                // _2E4
 	virtual void doStartMovie();                                                                // _2F0
 	virtual void doEndMovie();                                                                  // _2F4
-	virtual void setFSM(FSM*);                                                                  // _2F8
+	virtual void setFSM(FSM* fsm);                                                              // _2F8
 	//////////////// VTABLE END
 
 	void resetAppearTimer();

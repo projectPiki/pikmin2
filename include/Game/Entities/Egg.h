@@ -50,7 +50,7 @@ struct Obj : public EnemyBase {
 	virtual void setInitialSetting(EnemyInitialParamBase*) { }           // _1C4 (weak)
 	virtual void doUpdate();                                             // _1CC
 	virtual void doAnimationCullingOff();                                // _1DC
-	virtual void doDebugDraw(Graphics&);                                 // _1EC
+	virtual void doDebugDraw(Graphics& gfx);                             // _1EC
 	virtual void setParameters();                                        // _228
 	virtual bool isLivingThing() { return (mCaptureMatrix == nullptr); } // _D4 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                   // _258 (weak)

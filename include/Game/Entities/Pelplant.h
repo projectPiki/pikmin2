@@ -173,11 +173,11 @@ struct Obj : public EnemyBase {
 
 	/////////////// VTABLE
 	// vtable 1 (Creature, _00, _08-_1AC)
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doAnimation();                             // _03C
-	virtual void doSimulation(f32);                         // _04C
-	virtual void doDirectDraw(Graphics& gfx);               // _050
-	virtual bool isLivingThing()                            // _0D4 (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
+	virtual void doAnimation();                                    // _03C
+	virtual void doSimulation(f32);                                // _04C
+	virtual void doDirectDraw(Graphics& gfx);                      // _050
+	virtual bool isLivingThing()                                   // _0D4 (weak)
 	{
 		return (mFlags >> 1 & 1);
 	}
@@ -189,16 +189,16 @@ struct Obj : public EnemyBase {
 
 	virtual void doUpdate();                           // _1CC
 	virtual void doAnimationUpdateAnimator();          // _1D8
-	virtual void doDebugDraw(Graphics&);               // _1EC
+	virtual void doDebugDraw(Graphics& gfx);           // _1EC
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Pelplant;
 	}
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);      // _260
-	virtual void onInit(CreatureInitArg* settings);         // _030
-	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
-	virtual bool farmCallBack(Creature*, f32);              // _290
-	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                         // _260
+	virtual void onInit(CreatureInitArg* settings);                            // _030
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
+	virtual bool farmCallBack(Creature* source, f32 power);                    // _290
+	virtual void setFSM(FSM* fsm)                                              // _2F8 (weak)
 	{
 		mFsm = fsm;
 		mFsm->init(this);

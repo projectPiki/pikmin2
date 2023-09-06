@@ -16,7 +16,7 @@ struct Obj : public Kogane::Obj {
 	//////////////// VTABLE
 	virtual ~Obj() { }                                 // _1BC (weak)
 	virtual void doUpdateCommon();                     // _1D0
-	virtual void doDebugDraw(Graphics&);               // _1EC
+	virtual void doDebugDraw(Graphics& gfx);           // _1EC
 	virtual void changeMaterial();                     // _200
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{

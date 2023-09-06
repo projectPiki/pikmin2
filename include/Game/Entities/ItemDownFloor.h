@@ -102,8 +102,8 @@ struct Item : public FSMItem<Item, FSM, State> {
 	virtual void constructor();                               // _2C
 	virtual void onInit(CreatureInitArg*);                    // _30
 	virtual f32 getFaceDir();                                 // _64 (weak)
-	virtual void doSave(Stream&);                             // _E0
-	virtual void doLoad(Stream&);                             // _E4
+	virtual void doSave(Stream& stream);                      // _E0
+	virtual void doLoad(Stream& stream);                      // _E4
 	virtual void platCallback(PlatEvent& event);              // _F0
 	virtual char* getCreatureName();                          // _1A8 (weak)
 	virtual void initDependency();                            // _1BC

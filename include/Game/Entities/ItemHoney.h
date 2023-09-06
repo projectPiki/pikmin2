@@ -47,7 +47,7 @@ struct Item : public CFSMItem {
 	virtual void doSimulation(f32 rate);              // _4C
 	virtual void doDirectDraw(Graphics& gfx);         // _50
 	virtual void onStartCapture();                    // _94
-	virtual void onUpdateCapture(Matrixf&);           // _98
+	virtual void onUpdateCapture(Matrixf& mtx);       // _98
 	virtual void onEndCapture();                      // _9C
 	virtual void collisionCallback(CollEvent& event); // _EC
 	virtual void on_movie_end(bool shouldResetAnims); // _114

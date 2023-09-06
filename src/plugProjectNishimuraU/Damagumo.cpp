@@ -316,13 +316,13 @@ void Obj::getTargetPosition()
 		if (piki) {
 			mTargetPosition = piki->getPosition();
 		} else if (sqrDistanceXZ(mPosition, mTargetPosition) < 625.0f) {
-			f32 range    = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
-			f32 randDist = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
-			f32 ang2     = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
-			f32 ang1     = randWeightFloat(PI);
+			f32 range       = (C_PARMS->mGeneral.mTerritoryRadius.mValue - C_PARMS->mGeneral.mHomeRadius.mValue);
+			f32 randDist    = C_PARMS->mGeneral.mHomeRadius.mValue + randWeightFloat(range);
+			f32 angleToHome = JMath::atanTable_.atan2_(mPosition.x - mHomePosition.x, mPosition.z - mHomePosition.z);
 
-			f32 ang3      = HALF_PI;
-			f32 randAngle = ang2 + ang1 + ang3; // dumb fix for regswap
+			f32 randomAngle = randWeightFloat(PI);
+			f32 fixedAngle  = HALF_PI;
+			f32 randAngle   = angleToHome + randomAngle + fixedAngle; // dumb fix for regswap
 
 			f32 sinTheta      = pikmin2_sinf(randAngle);
 			mTargetPosition.x = randDist * pikmin2_sinf(randAngle) + mHomePosition.x;

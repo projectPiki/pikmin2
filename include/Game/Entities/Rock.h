@@ -35,27 +35,27 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                          // _30
-	virtual void onKill(CreatureKillArg* settings);                          // _34
-	virtual void doDirectDraw(Graphics& gfx);                                // _50
-	virtual void inWaterCallback(WaterBox* wb);                              // _84
-	virtual void outWaterCallback();                                         // _88
-	virtual bool isLivingThing() { return false; }                           // _D4 (weak)
-	virtual void collisionCallback(CollEvent& event);                        // _EC
-	virtual void getShadowParam(ShadowParam& settings);                      // _134
-	virtual bool needShadow();                                               // _138
-	virtual bool ignoreAtari(Creature* toIgnore);                            // _190
-	virtual ~Obj() { }                                                       // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                                      // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*);                  // _1C4
-	virtual void doUpdate();                                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                                     // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return mRockType; } // _258 (weak)
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*);                 // _284
-	virtual void wallCallback(const MoveInfo&);                              // _2E8
-	virtual void doStartMovie();                                             // _2F0
-	virtual void doEndMovie();                                               // _2F4
-	virtual void setFSM(FSM*);                                               // _2F8
+	virtual void onInit(CreatureInitArg* settings);                             // _30
+	virtual void onKill(CreatureKillArg* settings);                             // _34
+	virtual void doDirectDraw(Graphics& gfx);                                   // _50
+	virtual void inWaterCallback(WaterBox* wb);                                 // _84
+	virtual void outWaterCallback();                                            // _88
+	virtual bool isLivingThing() { return false; }                              // _D4 (weak)
+	virtual void collisionCallback(CollEvent& event);                           // _EC
+	virtual void getShadowParam(ShadowParam& settings);                         // _134
+	virtual bool needShadow();                                                  // _138
+	virtual bool ignoreAtari(Creature* toIgnore);                               // _190
+	virtual ~Obj() { }                                                          // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                         // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase* params);              // _1C4
+	virtual void doUpdate();                                                    // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return mRockType; }    // _258 (weak)
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
+	virtual void wallCallback(const MoveInfo& info);                            // _2E8
+	virtual void doStartMovie();                                                // _2F0
+	virtual void doEndMovie();                                                  // _2F4
+	virtual void setFSM(FSM* fsm);                                              // _2F8
 	//////////////// VTABLE END
 
 	bool fallRockScaleUp();

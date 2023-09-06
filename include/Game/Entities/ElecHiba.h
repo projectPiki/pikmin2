@@ -43,30 +43,30 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void doSimulation(f32) { }                      // _4C (weak)
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox*) { }             // _84 (weak)
-	virtual void outWaterCallback() { }                     // _88 (weak)
-	virtual bool isLivingThing() { return mIsLivingThing; } // _D4 (weak)
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                     // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual bool injure();                                  // _23C
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                // _30
+	virtual void doSimulation(f32) { }                             // _4C (weak)
+	virtual void doDirectDraw(Graphics& gfx);                      // _50
+	virtual void inWaterCallback(WaterBox*) { }                    // _84 (weak)
+	virtual void outWaterCallback() { }                            // _88 (weak)
+	virtual bool isLivingThing() { return mIsLivingThing; }        // _D4 (weak)
+	virtual void getShadowParam(ShadowParam& settings);            // _134
+	virtual ~Obj() { }                                             // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                            // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
+	virtual void doUpdate();                                       // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
+	virtual bool injure();                                         // _23C
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()             // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_ElecHiba;
 	}
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);       // _260
-	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);    // _294
-	virtual void lifeRecover() { }                           // _2C0 (weak)
-	virtual void setFSM(FSM*);                               // _2F8
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                          // _260
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
+	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
+	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294
+	virtual void lifeRecover() { }                                              // _2C0 (weak)
+	virtual void setFSM(FSM* fsm);                                              // _2F8
 	//////////////// VTABLE END
 
 	Obj* getChildObjPtr();

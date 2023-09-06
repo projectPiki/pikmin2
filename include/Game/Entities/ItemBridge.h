@@ -89,8 +89,8 @@ struct Item : public WorkItem<Item, FSM, State> {
 	virtual void constructor();                             // _2C
 	virtual void onInit(CreatureInitArg*);                  // _30
 	virtual void doDirectDraw(Graphics&);                   // _50
-	virtual void doSave(Stream&);                           // _E0
-	virtual void doLoad(Stream&);                           // _E4
+	virtual void doSave(Stream& stream);                    // _E0
+	virtual void doLoad(Stream& stream);                    // _E4
 	virtual void getLODCylinder(Sys::Cylinder&);            // _144
 	virtual int* getMabiki();                               // _150 (weak)
 	virtual char* getCreatureName();                        // _1A8 (weak)

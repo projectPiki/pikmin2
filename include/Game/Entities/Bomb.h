@@ -56,20 +56,20 @@ struct Obj : public EnemyBase {
 	virtual void doUpdate();                                   // _1CC
 	virtual void doAnimationCullingOff();                      // _1DC
 	virtual void doAnimationCullingOn();                       // _1E0
-	virtual void doDebugDraw(Graphics&);                       // _1EC
+	virtual void doDebugDraw(Graphics& gfx);                   // _1EC
 	virtual void setParameters();                              // _228
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()         // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Bomb;
 	}
-	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);  // _27C
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);   // _294
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual void doStartMovie();                            // _2F0
-	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
+	virtual bool pressCallBack(Creature*, f32, CollPart*);                     // _27C
+	virtual bool bombCallBack(Creature*, Vector3f&, f32);                      // _294
+	virtual void doStartStoneState();                                          // _2A4
+	virtual void doFinishStoneState();                                         // _2A8
+	virtual void doStartMovie();                                               // _2F0
+	virtual void doEndMovie();                                                 // _2F4
+	virtual void setFSM(FSM* fsm)                                              // _2F8 (weak)
 	{
 		mFsm = fsm;
 		mFsm->init(this);

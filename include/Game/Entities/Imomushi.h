@@ -39,30 +39,30 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void onKill(CreatureKillArg* settings);         // _34
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual bool isUnderground();                           // _D0 (weak)
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doAnimationStick();                        // _1E4
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual bool dropCallBack(Creature*);                   // _288
-	virtual bool earthquakeCallBack(Creature*, f32);        // _28C
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual void doStartEarthquakeState(f32);               // _2B0
-	virtual void doFinishEarthquakeState();                 // _2B4
-	virtual void doStartEarthquakeFitState();               // _2B8
-	virtual void doFinishEarthquakeFitState();              // _2BC
-	virtual void startCarcassMotion();                      // _2C4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void doStartMovie();                            // _2F0
-	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM*);                              // _2F8
+	virtual void onInit(CreatureInitArg* settings);                      // _30
+	virtual void onKill(CreatureKillArg* settings);                      // _34
+	virtual void doDirectDraw(Graphics& gfx);                            // _50
+	virtual bool isUnderground();                                        // _D0 (weak)
+	virtual void getShadowParam(ShadowParam& settings);                  // _134
+	virtual ~Obj() { }                                                   // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params);       // _1C4
+	virtual void doUpdate();                                             // _1CC
+	virtual void doAnimationStick();                                     // _1E4
+	virtual void doDebugDraw(Graphics& gfx);                             // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                  // _258 (weak)
+	virtual bool dropCallBack(Creature* source);                         // _288
+	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor); // _28C
+	virtual void doStartStoneState();                                    // _2A4
+	virtual void doFinishStoneState();                                   // _2A8
+	virtual void doStartEarthquakeState(f32 yVelocityScale);             // _2B0
+	virtual void doFinishEarthquakeState();                              // _2B4
+	virtual void doStartEarthquakeFitState();                            // _2B8
+	virtual void doFinishEarthquakeFitState();                           // _2BC
+	virtual void startCarcassMotion();                                   // _2C4
+	virtual f32 getDownSmokeScale();                                     // _2EC (weak)
+	virtual void doStartMovie();                                         // _2F0
+	virtual void doEndMovie();                                           // _2F4
+	virtual void setFSM(FSM* fsm);                                       // _2F8
 	//////////////// VTABLE END
 
 	void lifeIncrement();

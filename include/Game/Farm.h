@@ -94,8 +94,8 @@ struct FarmMgr : public GenericObjectMgr, public CNode {
 	virtual void doSimulation(f32);             // _18
 	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	// vtable 2 (CNode+self)
-	virtual void doDebugDraw(Graphics&); // _48
-	virtual ~FarmMgr();                  // _4C (thunked at _40)
+	virtual void doDebugDraw(Graphics& gfx); // _48
+	virtual ~FarmMgr();                      // _4C (thunked at _40)
 
 	void setupSound();
 	void addFarmBmd(void*);

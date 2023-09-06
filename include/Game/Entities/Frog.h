@@ -48,9 +48,9 @@ struct Obj : public EnemyBase {
 	virtual void collisionCallback(CollEvent& event);                                        // _EC
 	virtual void getShadowParam(ShadowParam& settings);                                      // _134
 	virtual ~Obj() { }                                                                       // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);                                  // _1C4
+	virtual void setInitialSetting(EnemyInitialParamBase* params);                           // _1C4
 	virtual void doUpdate();                                                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                                                     // _1EC
+	virtual void doDebugDraw(Graphics& gfx);                                                 // _1EC
 	virtual void doSimulationFlying(f32);                                                    // _1F8
 	virtual void getCommonEffectPos(Vector3f&);                                              // _204
 	virtual Vector3f getOffsetForMapCollision();                                             // _224
@@ -65,7 +65,7 @@ struct Obj : public EnemyBase {
 	virtual f32 getDownSmokeScale() { return 0.62f; }                                        // _2EC (weak)
 	virtual void doStartMovie();                                                             // _2F0
 	virtual void doEndMovie();                                                               // _2F4
-	virtual void setFSM(FSM*);                                                               // _2F8
+	virtual void setFSM(FSM* fsm);                                                           // _2F8
 	virtual Vector3f viewGetCollTreeOffset() { return Vector3f(20.0f, 15.0f, 0.0f); }        // _2FC (weak)
 	virtual void attackNaviPosition() { }                                                    // _300 (weak)
 	//////////////// VTABLE END

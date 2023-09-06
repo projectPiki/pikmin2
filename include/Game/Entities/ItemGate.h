@@ -108,8 +108,8 @@ struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 	virtual void constructor();                               // _2C
 	virtual void onInit(CreatureInitArg*);                    // _30
 	virtual f32 getFaceDir();                                 // _64 (weak)
-	virtual void doSave(Stream&);                             // _E0
-	virtual void doLoad(Stream&);                             // _E4
+	virtual void doSave(Stream& stream);                      // _E0
+	virtual void doLoad(Stream& stream);                      // _E4
 	virtual void getLifeGaugeParam(LifeGaugeParam&);          // _13C
 	virtual int* getMabiki();                                 // _150 (weak)
 	virtual char* getCreatureName();                          // _1A8 (weak)

@@ -167,7 +167,7 @@ struct Obj : public EnemyBase {
 	virtual void doUpdate();                                   // _1CC
 	virtual void doAnimationCullingOff();                      // _1DC
 	virtual void doAnimationCullingOn();                       // _1E0
-	virtual void doDebugDraw(Graphics&);                       // _1EC
+	virtual void doDebugDraw(Graphics& gfx);                   // _1EC
 	virtual void changeMaterial();                             // _200
 	virtual void setParameters();                              // _228
 	virtual void initMouthSlots();                             // _22C
@@ -178,17 +178,17 @@ struct Obj : public EnemyBase {
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return mBloysterType; } // _258 (weak)
 	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }                 // _25C (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                           // _260
-	virtual bool damageCallBack(Creature*, f32, CollPart*);                      // _278
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);   // _278
 	virtual bool pressCallBack(Creature*, f32, CollPart*);                       // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*);                     // _284
-	virtual bool earthquakeCallBack(Creature*, f32);                             // _28C
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part);  // _284
+	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);         // _28C
 	virtual void doStartStoneState();                                            // _2A4
 	virtual void doFinishStoneState();                                           // _2A8
 	virtual f32 getDamageCoeStoneState() { return C_PROPERPARMS.mDamageRate; }   // _2AC (weak)
 	virtual void startCarcassMotion();                                           // _2C4
 	virtual void doStartMovie();                                                 // _2F0
 	virtual void doEndMovie();                                                   // _2F4
-	virtual void setFSM(FSM*);                                                   // _2F8 (weak)
+	virtual void setFSM(FSM* fsm);                                               // _2F8 (weak)
 	//////////////// VTABLE END
 
 	bool isReachToGoal(f32);

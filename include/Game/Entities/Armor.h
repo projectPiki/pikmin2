@@ -28,25 +28,25 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);              // _30
-	virtual void doDirectDraw(Graphics& gfx);                    // _50
-	virtual void getShadowParam(ShadowParam& settings);          // _134
-	virtual ~Obj() { }                                           // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);      // _1C4
-	virtual void doUpdate();                                     // _1CC
-	virtual void doDebugDraw(Graphics&);                         // _1EC
-	virtual void initMouthSlots();                               // _22C
-	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; } // _25C (weak)
-	virtual bool damageCallBack(Creature*, f32, CollPart*);      // _278
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*);     // _284
-	virtual void doStartStoneState();                            // _2A4
-	virtual void doFinishStoneState();                           // _2A8
-	virtual void startCarcassMotion();                           // _2C4
-	virtual void doStartMovie();                                 // _2F0
-	virtual void doEndMovie();                                   // _2F4
-	virtual void setFSM(FSM*);                                   // _2F8
-	virtual f32 getDownSmokeScale() { return 0.9f; }             // _2EC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()           // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                             // _30
+	virtual void doDirectDraw(Graphics& gfx);                                   // _50
+	virtual void getShadowParam(ShadowParam& settings);                         // _134
+	virtual ~Obj() { }                                                          // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*);                     // _1C4
+	virtual void doUpdate();                                                    // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                                    // _1EC
+	virtual void initMouthSlots();                                              // _22C
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }                // _25C (weak)
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);  // _278
+	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
+	virtual void doStartStoneState();                                           // _2A4
+	virtual void doFinishStoneState();                                          // _2A8
+	virtual void startCarcassMotion();                                          // _2C4
+	virtual void doStartMovie();                                                // _2F0
+	virtual void doEndMovie();                                                  // _2F4
+	virtual void setFSM(FSM* fsm);                                              // _2F8
+	virtual f32 getDownSmokeScale() { return 0.9f; }                            // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                          // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Armor;
 	}

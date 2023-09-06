@@ -41,22 +41,22 @@ struct Obj : public EnemyBase {
 	virtual void doAnimation();                       // _3C
 	virtual void collisionCallback(CollEvent& event); // _EC
 
-	virtual void birth(Vector3f&, f32);                        // _1C0
-	virtual void update();                                     // _1C8
-	virtual void doAnimationCullingOff();                      // _1DC
-	virtual void doDebugDraw(Graphics&);                       // _1EC
-	virtual void setParameters();                              // _228
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;    // _258
-	virtual bool earthquakeCallBack(Creature*, f32);           // _28C
-	virtual void touched();                                    // _2F8
-	virtual void touchedSE(Navi*);                             // _2FC
-	virtual ~Obj() { }                                         // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*) { } // _1C4 (weak)
-	virtual void doUpdate() { }                                // _1CC (weak)
-	virtual void doSimulation(f32) { }                         // _4C (weak)
-	virtual void doUpdateCommon() { }                          // _1D0 (weak)
-	virtual bool isLivingThing() { return false; }             // _D4 (weak)
-	virtual bool ignoreAtari(Creature* creature)               // _190 (weak)
+	virtual void birth(Vector3f&, f32);                                  // _1C0
+	virtual void update();                                               // _1C8
+	virtual void doAnimationCullingOff();                                // _1DC
+	virtual void doDebugDraw(Graphics& gfx);                             // _1EC
+	virtual void setParameters();                                        // _228
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;              // _258
+	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor); // _28C
+	virtual void touched();                                              // _2F8
+	virtual void touchedSE(Navi*);                                       // _2FC
+	virtual ~Obj() { }                                                   // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*) { }           // _1C4 (weak)
+	virtual void doUpdate() { }                                          // _1CC (weak)
+	virtual void doSimulation(f32) { }                                   // _4C (weak)
+	virtual void doUpdateCommon() { }                                    // _1D0 (weak)
+	virtual bool isLivingThing() { return false; }                       // _D4 (weak)
+	virtual bool ignoreAtari(Creature* creature)                         // _190 (weak)
 	{
 		if ((creature != nullptr) && (creature->isTeki())) {
 			return true;

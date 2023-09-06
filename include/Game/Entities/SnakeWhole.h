@@ -63,36 +63,36 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
-	virtual bool isUnderground();                           // _D0 (weak)
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doUpdateCommon();                          // _1D0
-	virtual void doAnimationUpdateAnimator();               // _1D8
-	virtual void doAnimationCullingOff();                   // _1DC
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual Vector3f* getFitEffectPos();                    // _208
-	virtual void setParameters();                           // _228
-	virtual void initMouthSlots();                          // _22C
-	virtual void createEfxHamon();                          // _250
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                    // _25C (weak)
-	virtual void getThrowupItemPosition(Vector3f*);         // _268
-	virtual void throwupItemInDeathProcedure();             // _270 (weak)
-	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual f32 getDamageCoeStoneState();                   // _2AC (weak)
-	virtual void startCarcassMotion();                      // _2C4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void doStartMovie();                            // _2F0
-	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM*);                              // _2F8
+	virtual void onInit(CreatureInitArg* settings);                            // _30
+	virtual void doDirectDraw(Graphics& gfx);                                  // _50
+	virtual void inWaterCallback(WaterBox* wb);                                // _84 (weak)
+	virtual void outWaterCallback();                                           // _88 (weak)
+	virtual bool isUnderground();                                              // _D0 (weak)
+	virtual void getShadowParam(ShadowParam& settings);                        // _134
+	virtual ~Obj() { }                                                         // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
+	virtual void doUpdate();                                                   // _1CC
+	virtual void doUpdateCommon();                                             // _1D0
+	virtual void doAnimationUpdateAnimator();                                  // _1D8
+	virtual void doAnimationCullingOff();                                      // _1DC
+	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
+	virtual Vector3f* getFitEffectPos();                                       // _208
+	virtual void setParameters();                                              // _228
+	virtual void initMouthSlots();                                             // _22C
+	virtual void createEfxHamon();                                             // _250
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                        // _258 (weak)
+	virtual MouthSlots* getMouthSlots();                                       // _25C (weak)
+	virtual void getThrowupItemPosition(Vector3f*);                            // _268
+	virtual void throwupItemInDeathProcedure();                                // _270 (weak)
+	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
+	virtual void doStartStoneState();                                          // _2A4
+	virtual void doFinishStoneState();                                         // _2A8
+	virtual f32 getDamageCoeStoneState();                                      // _2AC (weak)
+	virtual void startCarcassMotion();                                         // _2C4
+	virtual f32 getDownSmokeScale();                                           // _2EC (weak)
+	virtual void doStartMovie();                                               // _2F0
+	virtual void doEndMovie();                                                 // _2F4
+	virtual void setFSM(FSM* fsm);                                             // _2F8
 	//////////////// VTABLE END
 
 	bool isOutTerritory();

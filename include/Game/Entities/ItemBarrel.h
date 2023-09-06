@@ -137,8 +137,8 @@ struct Item : public WorkItem<Item, FSM, State> {
 	// vtable 1
 	virtual void constructor();                          // _2C
 	virtual void onInit(CreatureInitArg* settings);      // _30
-	virtual void doSave(Stream&);                        // _E0
-	virtual void doLoad(Stream&);                        // _E4
+	virtual void doSave(Stream& stream);                 // _E0
+	virtual void doLoad(Stream& stream);                 // _E4
 	virtual char* getCreatureName() { return "Barrel"; } // _1A8 (weak)
 
 	// vtable 2
