@@ -196,9 +196,8 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 		Vector3f diff = c->getPosition() - itSphere.mPosition;
 		diff.y        = 0.0f;
 		diff.normalise();
-		diff.x *= 50.0f;
+		diff *= 50.0f;
 		diff.y = 100.0f;
-		diff.z *= 50.0f;
 		Game::InteractWind wind(mParent, 0.0f, &diff);
 		c->stimulate(wind);
 	}

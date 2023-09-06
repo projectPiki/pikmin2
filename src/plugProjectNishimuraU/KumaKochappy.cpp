@@ -246,9 +246,7 @@ Vector3f* KumaKochappy::Obj::setTargetParentPosition()
 
 			f32 factor = 10.0f * idx + 15.0f;
 
-			mTargetParentPosition.x *= factor;
-			mTargetParentPosition.y *= factor;
-			mTargetParentPosition.z *= factor;
+			mTargetParentPosition *= factor;
 
 			mTargetParentPosition.x += parentPos.x;
 			mTargetParentPosition.y = parentPos.y;

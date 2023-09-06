@@ -187,9 +187,8 @@ void StateBomb::exec(EnemyBase* enemy)
 							}
 
 							f32 force = static_cast<Parms*>(enemy->mParms)->mGeneral.mAttackDamage.mValue;
-							sep.x *= pikiWeight;
+							sep *= pikiWeight;
 							sep.y = pikiWeight;
-							sep.z *= pikiWeight;
 
 							InteractBomb interBomb(target, force, &sep);
 

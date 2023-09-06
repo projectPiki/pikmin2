@@ -3835,9 +3835,7 @@ void PikiSuikomiState::execString(Piki* piki)
 	mCollpart->getTube(tube);
 	Vector3f axisVec;
 	tube.getAxisVector(axisVec);
-	axisVec.x *= 350.0f;
-	axisVec.y *= 350.0f;
-	axisVec.z *= 350.0f;
+	axisVec *= 350.0f;
 
 	piki->mSimVelocity = axisVec;
 	piki->move(sys->mDeltaTime);

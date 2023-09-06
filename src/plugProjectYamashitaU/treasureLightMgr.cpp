@@ -97,6 +97,7 @@ void Mgr::setCommonProc()
 
 	Vector3f elevation(-rotation.x, -rotation.y, -rotation.z);
 
+	// elevation.normalise();
 	f32 dist = pikmin2_sqrtf(VECTOR_SQUARE_MAG(elevation));
 	if (dist > 0.0f) {
 		elevation.x *= 1 / dist;

@@ -361,8 +361,8 @@ void StateTurn::exec(EnemyBase* enemy)
 	// this is close.
 	f32 angleDist = fuefuki->turnToTarget(targetPos, *CG_PARMS(fuefuki)->mGeneral.mRotationalAccel(),
 	                                      *CG_PARMS(fuefuki)->mGeneral.mRotationalSpeed());
-
-	if (FABS(angleDist) <= PI / 6) {
+	f64 abs       = fabs(angleDist);
+	if ((f32)abs <= PI / 6) {
 		fuefuki->mNextState = FUEFUKI_Walk;
 		fuefuki->finishMotion();
 	}

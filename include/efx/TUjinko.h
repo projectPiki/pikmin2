@@ -5,9 +5,9 @@
 #include "efx/TSimpleMtx.h"
 
 namespace efx {
-struct TUjinkoAp_Imo : public TSimple2 {
-	inline TUjinkoAp_Imo()
-	    : TSimple2(PID_UjinkoAp_1, PID_UjinkoAp_2)
+struct TUjinkoAp_Imo : public TSimpleMtx2 {
+	inline TUjinkoAp_Imo(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_UjinkoAp_1, PID_UjinkoAp_2)
 	{
 	}
 
@@ -37,9 +37,9 @@ struct TUjinkoEat : public TSimple1 {
 	// _00-_0C = TSimple1
 };
 
-struct TUjinkoHd_Imo : public TSimple2 {
-	inline TUjinkoHd_Imo()
-	    : TSimple2(PID_UjinkoHd_1, PID_UjinkoHd_2)
+struct TUjinkoHd_Imo : public TSimpleMtx2 {
+	inline TUjinkoHd_Imo(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_UjinkoHd_1, PID_UjinkoHd_2)
 	{
 	}
 

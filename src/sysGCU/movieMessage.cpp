@@ -89,13 +89,9 @@ void WindowPane::moveWindow(bool flag)
 		mCurrPosition = Vector3f(0.0f);
 	} else {
 		Vector3f diff = offset - mNewPosition;
-		diff.x *= 0.2f;
-		diff.y *= 0.2f;
-		diff.z *= 0.2f;
+		diff *= 0.2f;
 		mCurrPosition += diff;
-		mCurrPosition.x *= 0.72f;
-		mCurrPosition.y *= 0.72f;
-		mCurrPosition.z *= 0.72f;
+		mCurrPosition *= 0.72f;
 		mNewPosition += mCurrPosition;
 	}
 	mPane->setOffset(mNewPosition.x, mNewPosition.y);
@@ -878,7 +874,7 @@ TControl::TControl()
  * Address:	80435A8C
  * Size:	0007B0
  */
-void TControl::onInit()
+bool TControl::onInit()
 {
 	sys->heapStatusStart("P2JME::Movie::TControl::onInit", nullptr);
 	if (gP2JMEMgr) {

@@ -109,25 +109,11 @@ void StateWait::exec(EnemyBase* enemy)
 		if (target) {
 			frog->mTargetCreature = target;
 			frog->_2C4            = 0.0f;
-			Vector3f targetPos    = target->getPosition();
-			Vector3f pos          = target->getPosition();
 
-			f32 angle = angXZ(targetPos, pos);
+			f32 angdist = frog->getCreatureViewAngle(target);
 
-			f32 angdist = angDist(angle, frog->getFaceDir());
-
-			// part of this bit is an inline based on register usage
-			bool check   = false;
-			f32 maxRange = CG_PARMS(frog)->mGeneral.mMaxAttackRange.mValue;
-			f32 minRange = CG_PARMS(frog)->mGeneral.mMinAttackRange.mValue;
-			Vector3f sep = Vector3f(target->getPosition().x - frog->getPosition().x, target->getPosition().y - frog->getPosition().y,
-			                        target->getPosition().z - frog->getPosition().z);
-
-			if (sep.x * sep.x + sep.y * sep.y + sep.z * sep.z < SQUARE(maxRange) && FABS(angdist) <= PI * (DEG2RAD * minRange)) {
-				check = true;
-			}
-
-			if (check) {
+			if (frog->checkDistAndAngle(target, angdist, *CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
+			                            *CG_PARMS(frog)->mGeneral.mMinAttackRange())) {
 				Vector3f targetPos2   = target->getPosition();
 				frog->mTargetPosition = targetPos2;
 				frog->attackNaviPosition();
@@ -466,7 +452,43 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTurn::exec(EnemyBase* enemy)
 {
+	Obj* frog        = OBJ(enemy);
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(frog, frog->getViewAngle(), CG_PARMS(frog)->mGeneral.mSightRadius.mValue, nullptr,
+	                                                     nullptr, nullptr);
 
+	if (target) {
+		frog->_2C4  = 0.0f;
+		f32 angdist = frog->turnToTarget(target, CG_PARMS(frog)->mGeneral.mRotationalAccel.mValue,
+		                                 CG_PARMS(frog)->mGeneral.mRotationalSpeed.mValue);
+
+		if (frog->checkDistAndAngle(target, angdist, *CG_PARMS(frog)->mGeneral.mMaxAttackRange(),
+		                            *CG_PARMS(frog)->mGeneral.mMinAttackRange())) {
+			frog->mTargetCreature = target;
+			frog->mNextState      = FROG_Jump;
+			frog->finishMotion();
+		} else if (FABS(angdist) <= PI / 18.0f) {
+			frog->mNextState = FROG_Wait;
+			frog->finishMotion();
+		}
+
+	} else {
+		frog->mNextState = FROG_Wait;
+		frog->finishMotion();
+	}
+
+	if (EnemyFunc::isStartFlick(frog, false)) {
+		frog->mNextState = FROG_Jump;
+		frog->finishMotion();
+	}
+
+	if (frog->mHealth <= 0.0f) {
+		frog->mNextState = FROG_Dead;
+		frog->finishMotion();
+	}
+
+	if (frog->mCurAnim->mIsPlaying && frog->mCurAnim->mType == KEYEVENT_END) {
+		transit(frog, frog->mNextState, nullptr);
+	}
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -1024,6 +1046,30 @@ void StateTurnToHome::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTurnToHome::exec(EnemyBase* enemy)
 {
+	Obj* frog        = OBJ(enemy);
+	Vector3f homePos = frog->mHomePosition;
+	f32 maxAngle     = *CG_PARMS(frog)->mGeneral.mMinAttackRange();
+	f32 angdist
+	    = frog->turnToTarget(homePos, CG_PARMS(frog)->mGeneral.mRotationalAccel.mValue, CG_PARMS(frog)->mGeneral.mRotationalSpeed.mValue);
+
+	if (FABS(angdist) <= PI * (DEG2RAD * maxAngle)) {
+		frog->mNextState = FROG_GoHome;
+		frog->finishMotion();
+	}
+
+	if (EnemyFunc::isStartFlick(frog, false)) {
+		frog->mNextState = FROG_Jump;
+		frog->finishMotion();
+	}
+
+	if (frog->mHealth <= 0.0f) {
+		frog->mNextState = FROG_Dead;
+		frog->finishMotion();
+	}
+
+	if (frog->mCurAnim->mIsPlaying && frog->mCurAnim->mType == KEYEVENT_END) {
+		transit(frog, frog->mNextState, nullptr);
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1270,100 +1316,18 @@ void StateGoHome::cleanup(EnemyBase* enemy)
 		Vector3f pos     = frog->getPosition();
 		Vector3f homePos = frog->mHomePosition;
 		Vector3f sep     = homePos - pos;
-		f32 dist         = _normalise2(sep);
+		sep.y            = 0.0f;
 
+		f32 dist = sep.normalise();
 		if (dist < CG_PARMS(frog)->mGeneral.mMaxAttackRange.mValue) {
 			frog->mTargetPosition = homePos;
 		} else {
-			sep.x *= CG_PARMS(frog)->mGeneral.mMaxAttackRange.mValue;
-			sep.y *= CG_PARMS(frog)->mGeneral.mMaxAttackRange.mValue;
-			sep.z *= CG_PARMS(frog)->mGeneral.mMaxAttackRange.mValue;
+			sep *= CG_PARMS(frog)->mGeneral.mMaxAttackRange.mValue;
 
 			sep += pos;
 			frog->mTargetPosition = sep;
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x2d4(r4)
-	cmpwi    r0, 3
-	bne      lbl_80258098
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f10, 8(r1)
-	lfs      f4, 0x198(r31)
-	lfs      f3, 0x10(r1)
-	lfs      f6, 0x1a0(r31)
-	fsubs    f7, f4, f10
-	lfs      f8, lbl_8051AA68@sda21(r2)
-	fsubs    f9, f6, f3
-	lfs      f2, 0xc(r1)
-	fmadds   f0, f7, f7, f8
-	lfs      f5, 0x19c(r31)
-	fmuls    f1, f9, f9
-	fadds    f1, f1, f0
-	fcmpo    cr0, f1, f8
-	ble      lbl_80258028
-	ble      lbl_8025802C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8025802C
-
-lbl_80258028:
-	fmr      f1, f8
-
-lbl_8025802C:
-	lfs      f0, lbl_8051AA68@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80258050
-	lfs      f0, lbl_8051AA70@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f7, f7, f0
-	fmuls    f8, f8, f0
-	fmuls    f9, f9, f0
-	b        lbl_80258054
-
-lbl_80258050:
-	fmr      f1, f0
-
-lbl_80258054:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x564(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80258074
-	stfs     f4, 0x2c8(r31)
-	stfs     f5, 0x2cc(r31)
-	stfs     f6, 0x2d0(r31)
-	b        lbl_80258098
-
-lbl_80258074:
-	fmuls    f7, f7, f0
-	fmuls    f8, f8, f0
-	fmuls    f9, f9, f0
-	fadds    f7, f7, f10
-	fadds    f8, f8, f2
-	fadds    f9, f9, f3
-	stfs     f7, 0x2c8(r31)
-	stfs     f8, 0x2cc(r31)
-	stfs     f9, 0x2d0(r31)
-
-lbl_80258098:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 } // namespace Frog
 } // namespace Game

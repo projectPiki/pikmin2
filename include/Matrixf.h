@@ -101,6 +101,7 @@ struct Matrixf {
 	 * @fabricated
 	 */
 	void setTranslation(Vector3f& translation) { setBasis(3, translation); }
+	void newTranslation(Vector3f translation) { setBasis(3, translation); }
 
 	void makeNaturalPosture(Vector3f&, f32);
 	void print(char*);

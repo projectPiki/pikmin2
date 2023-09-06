@@ -95,13 +95,9 @@ bool BigTreasureFireAttack::update()
 	f32 radius = SQUARE(25.0f * mAttackData->_28);
 
 	Vector3f pos = _24;
-	pos.x *= scale;
-	pos.y *= scale;
-	pos.z *= scale;
+	pos *= scale;
 
-	pos.x += _30.x;
-	pos.y += _30.y;
-	pos.z += _30.z;
+	pos += _30;
 
 	Sys::Sphere sphere(pos, 25.0f);
 
@@ -1864,13 +1860,9 @@ void BigTreasureAttackMgr::updateFireSePosition(BigTreasureFireAttack* attackNod
 	factor *= scale;
 	factor = nodeVal * factor;
 
-	_28[nodeType].x *= factor;
-	_28[nodeType].y *= factor;
-	_28[nodeType].z *= factor;
+	_28[nodeType] *= factor;
 
-	_28[nodeType].x += attackNode->_30.x;
-	_28[nodeType].y += attackNode->_30.y;
-	_28[nodeType].z += attackNode->_30.z;
+	_28[nodeType] += attackNode->_30;
 
 	_28[nodeType].y -= -25.0f;
 }

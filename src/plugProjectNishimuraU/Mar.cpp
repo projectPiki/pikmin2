@@ -989,9 +989,7 @@ Vector3f Obj::getAttackPosition()
 	Vector3f vec2 = _2E0;
 	Vector3f vec1 = _2EC;
 
-	vec1.x *= C_PARMS->mGeneral.mAttackRadius.mValue;
-	vec1.y *= C_PARMS->mGeneral.mAttackRadius.mValue;
-	vec1.z *= C_PARMS->mGeneral.mAttackRadius.mValue;
+	vec1 *= C_PARMS->mGeneral.mAttackRadius.mValue;
 
 	vec1 += vec2;
 

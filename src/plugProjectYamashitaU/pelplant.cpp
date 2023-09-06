@@ -139,9 +139,7 @@ void Obj::setInitialSetting(EnemyInitialParamBase* initParms)
 	CollPart* part = mCollTree->getCollPart('head');
 	f32 scale      = getHeadScale();
 	part->setScale(scale);
-	part->mOffset.x *= scale;
-	part->mOffset.y *= scale;
-	part->mOffset.z *= scale;
+	part->mOffset *= scale;
 }
 
 /**

@@ -409,20 +409,9 @@ void Pellet::updateClaim()
 			Vector3f diff;
 			Vector3f* diffPtr = &diff;
 			*diffPtr          = meanPosition - mPelletPosition;
-			float len         = diff.length(); // should match when this inline matches
+			diff.normalise();
 
-			if (len > 0.0f) {
-				float vecNorm = 1.0f / len;
-				diff.x *= vecNorm;
-				diff.y *= vecNorm;
-				diff.z *= vecNorm;
-			} else {
-				len = 0.0f;
-			}
-
-			diff.x *= 30.0f;
-			diff.y *= 30.0f;
-			diff.z *= 30.0f;
+			diff *= 30.0f;
 
 			Vector3f velocity    = getVelocity();
 			Vector3f newVelocity = velocity;
@@ -2665,13 +2654,9 @@ void Pellet::update()
 
 			if (anotherVelMag > reallyAnotherMag) {
 				float diff = anotherVelMag - reallyAnotherMag;
-				mRigid.mConfigs[0].mVelocity.x *= diff;
-				mRigid.mConfigs[0].mVelocity.y *= diff;
-				mRigid.mConfigs[0].mVelocity.z *= diff;
+				mRigid.mConfigs[0].mVelocity *= diff;
 			} else {
-				mRigid.mConfigs[0].mVelocity.x *= anotherVelMag;
-				mRigid.mConfigs[0].mVelocity.y *= anotherVelMag;
-				mRigid.mConfigs[0].mVelocity.z *= anotherVelMag;
+				mRigid.mConfigs[0].mVelocity *= anotherVelMag;
 			}
 
 			mAcceleration = Vector3f(0.0f);

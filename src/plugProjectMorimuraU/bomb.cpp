@@ -127,9 +127,7 @@ Obj::Obj()
 void Obj::doUpdate()
 {
 	if (_2C9) {
-		mAcceleration.x *= 0.9f;
-		mAcceleration.y *= 0.9f;
-		mAcceleration.z *= 0.9f;
+		mAcceleration *= 0.9f;
 		mCurrentVelocity.x *= 0.9f;
 		if (mCurrentVelocity.y > 0.0f) {
 			mCurrentVelocity.y *= 0.9f;

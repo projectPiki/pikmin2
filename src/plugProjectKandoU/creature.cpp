@@ -677,17 +677,13 @@ void Creature::resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direct
 	f32 accelMag = mAcceleration.length();
 	if (accelMag > 200.0f) {
 		f32 accelNorm = 200.0f * (1.0f / accelMag);
-		mAcceleration.x *= accelNorm;
-		mAcceleration.y *= accelNorm;
-		mAcceleration.z *= accelNorm;
+		mAcceleration *= accelNorm;
 	}
 
 	f32 opAccelMag = op->mAcceleration.length();
 	if (opAccelMag > 200.0f) {
 		f32 opAccelNorm = 200.0f * (1.0f / opAccelMag);
-		op->mAcceleration.x *= opAccelNorm;
-		op->mAcceleration.y *= opAccelNorm;
-		op->mAcceleration.z *= opAccelNorm;
+		op->mAcceleration *= opAccelNorm;
 	}
 
 	if (flickCheck) {

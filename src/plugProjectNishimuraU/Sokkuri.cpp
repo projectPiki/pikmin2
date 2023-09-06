@@ -149,13 +149,9 @@ void Obj::wallCallback(const MoveInfo& moveInfo)
 	mTargetPosition.y = 0.0f;
 	mTargetPosition.normalise();
 
-	mTargetPosition.x *= 1000.0f;
-	mTargetPosition.y *= 1000.0f;
-	mTargetPosition.z *= 1000.0f;
+	mTargetPosition *= 1000.0f;
 
-	mTargetPosition.x += mPosition.x;
-	mTargetPosition.y += mPosition.y;
-	mTargetPosition.z += mPosition.z;
+	mTargetPosition += mPosition;
 }
 
 /*

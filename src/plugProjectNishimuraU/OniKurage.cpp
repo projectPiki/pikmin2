@@ -1610,9 +1610,7 @@ void Obj::flickStickNavi(bool check)
 					sep.y            = 0.0f;
 
 					sep.normalise();
-					sep.x *= 50.0f;
-					sep.y *= 50.0f;
-					sep.z *= 50.0f;
+					sep *= 50.0f;
 					InteractBomb bomb(this, C_PARMS->mGeneral.mAttackDamage.mValue, &sep);
 					navi->stimulate(bomb);
 				}

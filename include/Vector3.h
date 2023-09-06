@@ -121,7 +121,13 @@ struct Vector3 {
 	//     newVector.z *= other;
 	//     return newVector;
 	// }
-	inline void operator*=(const f32 other) { *this = Vector3(x * other, y * other, z * other); }
+	// inline void operator*=(const f32 other) { *this = Vector3(x * other, y * other, z * other); }
+	inline void operator*=(const f32 other)
+	{
+		this->x *= other;
+		this->y *= other;
+		this->z *= other;
+	}
 	inline void operator+=(const Vector3& other)
 	{
 		this->x += other.x;
@@ -297,14 +303,10 @@ inline void _normaliseScale(Vector3f& vec, f32 scale)
 
 	if (length > 0.0f) {
 		f32 norm = 1.0f / length;
-		vec.x *= norm;
-		vec.y *= norm;
-		vec.z *= norm;
+		vec *= norm;
 	}
 
-	vec.x *= scale;
-	vec.y *= scale;
-	vec.z *= scale;
+	vec *= scale;
 }
 
 inline f32 _normaliseXZ(Vector3f& vec)

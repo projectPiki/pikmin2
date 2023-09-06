@@ -25,6 +25,24 @@ namespace Game {
 namespace Kabuto {
 struct FSM;
 
+enum StateID {
+	KABUTO_NULL      = -1,
+	KABUTO_Dead      = 0,
+	KABUTO_Wait      = 1,
+	KABUTO_Turn      = 2,
+	KABUTO_Move      = 3,
+	KABUTO_Flick     = 4,
+	KABUTO_Attack    = 5,
+	KABUTO_FixStay   = 6,
+	KABUTO_FixAppear = 7,
+	KABUTO_FixHide   = 8,
+	KABUTO_FixWait   = 9,
+	KABUTO_FixTurn   = 10,
+	KABUTO_FixAttack = 11,
+	KABUTO_FixFlick  = 12,
+	KABUTO_StateCount, // 13
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -40,41 +58,44 @@ struct Obj : public EnemyBase {
 	virtual void changeMaterial() = 0;                             // _200
 	virtual void initWalkSmokeEffect();                            // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();         // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();            // _258 (weak)
-	virtual void doStartStoneState();                              // _2A4
-	virtual void doFinishStoneState();                             // _2A8
-	virtual void startCarcassMotion();                             // _2C4
-	virtual f32 getDownSmokeScale();                               // _2EC (weak)
-	virtual void doStartMovie();                                   // _2F0
-	virtual void doEndMovie();                                     // _2F4
-	virtual void setFSM(FSM* fsm);                                 // _2F8
-	virtual void createEffect();                                   // _2FC (weak)
-	virtual void setupEffect();                                    // _300 (weak)
-	virtual void startRotateEffect();                              // _304 (weak)
-	virtual void finishRotateEffect();                             // _308 (weak)
-	virtual void startWaitEffect();                                // _30C (weak)
-	virtual void finishWaitEffect();                               // _310 (weak)
-	virtual void effectDrawOn();                                   // _314 (weak)
-	virtual void effectDrawOff();                                  // _318 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()             // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Kabuto;
+	}
+	virtual void doStartStoneState();   // _2A4
+	virtual void doFinishStoneState();  // _2A8
+	virtual void startCarcassMotion();  // _2C4
+	virtual f32 getDownSmokeScale();    // _2EC (weak)
+	virtual void doStartMovie();        // _2F0
+	virtual void doEndMovie();          // _2F4
+	virtual void setFSM(FSM* fsm);      // _2F8
+	virtual void createEffect() { }     // _2FC (weak)
+	virtual void setupEffect() { }      // _300 (weak)
+	virtual void startRotateEffect();   // _304 (weak)
+	virtual void finishRotateEffect();  // _308 (weak)
+	virtual void startWaitEffect();     // _30C (weak)
+	virtual void finishWaitEffect() { } // _310 (weak)
+	virtual void effectDrawOn() { }     // _314 (weak)
+	virtual void effectDrawOff() { }    // _318 (weak)
 	//////////////// VTABLE END
 
 	void setRandTarget();
 	void getSearchedTarget();
-	void isAttackableTarget();
+	bool isAttackableTarget();
 	void createStoneAttack();
 	void updateCaution();
-	void getViewAngle();
+	f32 getViewAngle();
 	void lifeIncrement();
 	void createRockEmitEffect();
 
 	// _00		= VTBL
 	// _00-_2BC = EnemyBase
-	FSM* mKabutoFSM;                    // _2BC
+	FSM* mFsm;                          // _2BC
 	WalkSmokeEffect::Mgr mWalkSmokeMgr; // _2C0
 	f32 _2C8;                           // _2C8
-	int _2CC;                           // _2CC
+	StateID mNextState;                 // _2CC
 	Vector3f mTargetPosition;           // _2D0
-	f32 _2DC;                           // _2DC
+	f32 mAlertTimer;                    // _2DC
 	u8 _2E0;                            // _2E0, unknown
 	bool mIsUnderground;                // _2E1
 	                                    // _2E4 = PelletView
@@ -191,6 +212,15 @@ struct StateTurn : public State {
 };
 
 struct StateWait : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateFixAppear : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

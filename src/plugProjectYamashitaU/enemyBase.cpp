@@ -1910,10 +1910,12 @@ void EnemyBase::collisionMapAndPlat(f32 frameRate)
 
 		if (curVelSpeed > accelSpeed) {
 			curVelSpeed -= accelSpeed;
-			mCurrentVelocity *= curVelSpeed;
+			mCurrentVelocity
+			    = Vector3f(mCurrentVelocity.x * curVelSpeed, mCurrentVelocity.y * curVelSpeed, mCurrentVelocity.z * curVelSpeed);
 			mAcceleration = 0.0f;
 		} else {
-			mCurrentVelocity *= curVelSpeed;
+			mCurrentVelocity
+			    = Vector3f(mCurrentVelocity.x * curVelSpeed, mCurrentVelocity.y * curVelSpeed, mCurrentVelocity.z * curVelSpeed);
 			mAcceleration = 0.0f;
 		}
 

@@ -204,9 +204,7 @@ void Tube::getAxisVector(Vector3f& axisVector)
 	// normalise output vector (so long as it's not just the zero vector)
 	if (mag > 0.0f) {
 		f32 norm = 1.0f / mag;
-		axisVector.x *= norm;
-		axisVector.y *= norm;
-		axisVector.z *= norm;
+		axisVector *= norm;
 	}
 }
 
@@ -242,9 +240,7 @@ bool Tube::collide(Sphere& ball, Vector3f& repulsionVec, f32& posRatio)
 	// if tube isn't 0-length, normalise axis to unit vector
 	if (lenTube > 0.0f) {
 		f32 norm = 1.0f / lenTube;
-		axis.x *= norm;
-		axis.y *= norm;
-		axis.z *= norm;
+		axis *= norm;
 	} else {
 		lenTube = 0.0f;
 	}

@@ -79,7 +79,7 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                           // _2BC
 	EnemyBase* mSourceEnemy;             // _2C0
-	u8 _2C4;                             // _2C4, maybe isHoming?
+	bool mIsHoming;                      // _2C4
 	f32 mTimer;                          // _2C8
 	f32 mFallSpeed;                      // _2CC
 	f32 mFallOffset;                     // _2D0, amount to offset Y by when appearing

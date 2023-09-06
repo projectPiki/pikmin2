@@ -5,6 +5,11 @@
 
 namespace efx {
 struct TKabutoAttack : public TSimpleMtx1 {
+	inline TKabutoAttack(Matrixf* mtx)
+	    : TSimpleMtx1(mtx, PID_KabutoAttack)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_10  = TSimpleMtx1
 };

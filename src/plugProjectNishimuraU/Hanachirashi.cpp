@@ -142,9 +142,7 @@ void Obj::getShadowParam(ShadowParam& shadow)
 	Vector3f headVec = mModel->getJoint("head")->getWorldMatrix()->getBasis(3);
 	shadow.mPosition = headVec;
 	shadow.mPosition += bodyVec;
-	shadow.mPosition.x *= 0.5f;
-	shadow.mPosition.y *= 0.5f;
-	shadow.mPosition.z *= 0.5f;
+	shadow.mPosition *= 0.5f;
 	shadow.mPosition.y = mPosition.y + mShadowOffset;
 
 	shadow.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
@@ -993,9 +991,7 @@ Vector3f Obj::getAttackPosition()
 	Vector3f vec2 = mEfxPosition;
 	Vector3f vec1 = mFaceDirection;
 
-	vec1.x *= C_PARMS->mGeneral.mAttackRadius.mValue;
-	vec1.y *= C_PARMS->mGeneral.mAttackRadius.mValue;
-	vec1.z *= C_PARMS->mGeneral.mAttackRadius.mValue;
+	vec1 *= C_PARMS->mGeneral.mAttackRadius.mValue;
 
 	vec1 += vec2;
 

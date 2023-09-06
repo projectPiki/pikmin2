@@ -2919,9 +2919,7 @@ void GameLightMgr::updatePosition(Viewport* viewport)
 
 		mMainLight->mPosition = lightPos;
 		mSpecLight->mPosition = lightPos;
-		lightPos.x *= -1.0f;
-		lightPos.y *= -1.0f;
-		lightPos.z *= -1.0f;
+		lightPos *= -1.0f;
 		mSubLight->mPosition = lightPos;
 
 	} else {

@@ -69,7 +69,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	setupEffect();
 
 	mTimer       = 0.0f;
-	_2C4         = 0;
+	mIsHoming    = false;
 	mSourceEnemy = nullptr;
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_Rock) {
@@ -368,9 +368,7 @@ void Obj::initMoveVelocity()
 	f32 sinTheta = pikmin2_sinf(theta);
 
 	Vector3f vel(sinTheta, 0.0f, cosTheta);
-	vel.x *= *C_PARMS->mGeneral.mMoveSpeed();
-	vel.y *= *C_PARMS->mGeneral.mMoveSpeed();
-	vel.z *= *C_PARMS->mGeneral.mMoveSpeed();
+	vel *= *C_PARMS->mGeneral.mMoveSpeed();
 	mTargetVelocity = vel;
 	setVelocity(vel);
 	/*
@@ -454,7 +452,7 @@ lbl_80263B14:
  */
 void Obj::updateMoveVelocity()
 {
-	if (_2C4) {
+	if (mIsHoming) {
 		Creature* target = nullptr;
 		if (gameSystem && !gameSystem->isMultiplayerMode()) {
 			target = naviMgr->getActiveNavi();

@@ -1007,9 +1007,7 @@ void Navi::applyDopeSmoke(CellObject* object)
 	f32 length         = pikmin2_sqrtf(direction.sqrMagnitude());
 	if (length > 0.0f) {
 		f32 norm = 1.0f / length;
-		direction.x *= norm;
-		direction.y *= norm;
-		direction.z *= norm;
+		direction *= norm;
 	}
 
 	Vector3f objPos = creature->getPosition();

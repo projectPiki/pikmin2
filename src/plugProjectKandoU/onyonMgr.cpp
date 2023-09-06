@@ -1660,7 +1660,8 @@ Creature* Onyon::exitPiki()
 				Vector3f onyonpos = getPosition();
 				Vector3f vel      = outpos - onyonpos;
 				vel.normalise();
-				vel *= randFloat() * 30.0f + 100.0f;
+				f32 factor = randFloat() * 30.0f + 100.0f;
+				vel        = Vector3f(vel.x * factor, vel.y * factor, vel.z * factor);
 
 				piki->setPosition(outpos, false);
 				piki->setVelocity(vel);

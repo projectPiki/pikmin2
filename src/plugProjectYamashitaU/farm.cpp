@@ -136,9 +136,7 @@ void Farm::loadResource(u32 p1, void* mdlData)
 	}
 
 	f32 norm = 1.0f / mModelData->getVertexData()->getVtxNum();
-	mPosition.x *= norm;
-	mPosition.y *= norm;
-	mPosition.z *= norm;
+	mPosition *= norm;
 
 	sys->heapStatusStart("createModel", nullptr);
 	mModel = new SysShape::Model(mModelData, 0, p1);

@@ -6,6 +6,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "efx/TImo.h"
 #include "Collinfo.h"
 
 /**
@@ -42,14 +43,13 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);                      // _30
 	virtual void onKill(CreatureKillArg* settings);                      // _34
 	virtual void doDirectDraw(Graphics& gfx);                            // _50
-	virtual bool isUnderground();                                        // _D0 (weak)
+	virtual bool isUnderground() { return mIsUnderground; }              // _D0 (weak)
 	virtual void getShadowParam(ShadowParam& settings);                  // _134
 	virtual ~Obj() { }                                                   // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);       // _1C4
 	virtual void doUpdate();                                             // _1CC
 	virtual void doAnimationStick();                                     // _1E4
 	virtual void doDebugDraw(Graphics& gfx);                             // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                  // _258 (weak)
 	virtual bool dropCallBack(Creature* source);                         // _288
 	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor); // _28C
 	virtual void doStartStoneState();                                    // _2A4
@@ -59,10 +59,14 @@ struct Obj : public EnemyBase {
 	virtual void doStartEarthquakeFitState();                            // _2B8
 	virtual void doFinishEarthquakeFitState();                           // _2BC
 	virtual void startCarcassMotion();                                   // _2C4
-	virtual f32 getDownSmokeScale();                                     // _2EC (weak)
 	virtual void doStartMovie();                                         // _2F0
 	virtual void doEndMovie();                                           // _2F4
 	virtual void setFSM(FSM* fsm);                                       // _2F8
+	virtual f32 getDownSmokeScale() { return 0.42f; }                    // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                   // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Imomushi;
+	}
 	//////////////// VTABLE END
 
 	void lifeIncrement();
@@ -90,15 +94,20 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                     // _2BC
-	bool mIsStaying;               // _2C0, unknown
+	bool mIsUnderground;           // _2C0
+	bool _2C1;                     // _2C1
+	bool _2C2;                     // _2C2
 	StateID mNextState;            // _2C4
-	f32 mStayTimer;                // _2C8
-	u8 _2CC[0xC];                  // _2CC, unknown
-	Vector3f mFaceDirection;       // _2D8
-	Vector3f mInvFaceDirection;    // _2E4
+	f32 mStateTimer;               // _2C8
+	Vector3f _2CC;                 // _2CC
+	Vector3f _2D8;                 // _2D8
+	Vector3f _2E4;                 // _2E4
 	Vector3f mZukanTargetPosition; // _2F0
 	f32 _2FC;                      // _2FC
-	u8 _300[0x10];                 // _300, unknown
+	f32 _300;                      // _300
+	f32 _304;                      // _304
+	efx::TImoEat* mEfxEat;         // _308
+	efx::TImoSmoke* mEfxSmoke;     // _30C
 	                               // _310 = PelletView
 };
 

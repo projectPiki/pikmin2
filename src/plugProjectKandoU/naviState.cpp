@@ -2300,9 +2300,7 @@ void NaviPunchState::hitCallback(CollPart* collpart)
 			Vector3f sep          = targetColVec - naviColVec;
 			sep.normalise();
 
-			sep.x *= 15.0f;
-			sep.y *= 15.0f;
-			sep.z *= 15.0f;
+			sep *= 15.0f;
 			sep += naviColVec;
 
 			efx::Arg fxArg(sep);

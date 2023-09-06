@@ -210,9 +210,7 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 		param.mPosition.y += mPosition.y;
 		param.mPosition.z += mPosition.z;
 
-		param.mPosition.x *= 0.5f;
-		param.mPosition.y *= 0.5f;
-		param.mPosition.z *= 0.5f;
+		param.mPosition *= 0.5f;
 
 		param.mPosition.y += C_PARMS->mGeneral.mLifeMeterHeight.mValue;
 

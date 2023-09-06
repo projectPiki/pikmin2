@@ -288,9 +288,14 @@ struct HoudaiGroundCallBack : public JointGroundCallBack {
 };
 
 struct HoudaiShotGunNode : public CNode {
-	virtual ~HoudaiShotGunNode(); // _08 (weak)
+	inline HoudaiShotGunNode(Obj* houdai)
+	    : mOwner(houdai)
+	{
+	}
 
-	void update();
+	virtual ~HoudaiShotGunNode() { } // _08 (weak)
+
+	bool update();
 
 	// _00		= VTBL
 	// _00-_18 	= CNode
@@ -316,8 +321,8 @@ struct HoudaiShotGunMgr {
 	void doUpdate();
 	void doUpdateCommon();
 	void forceFinishShotGun();
-	void searchShotGunRotation();
-	void returnShotGunRotation();
+	bool searchShotGunRotation();
+	bool returnShotGunRotation();
 	void rotateLevel(J3DJoint*);
 	void rotateVertical(J3DJoint*);
 	void finishLockOnEffect();
@@ -334,14 +339,17 @@ struct HoudaiShotGunMgr {
 	bool mIsShotGunFinished;     // _06
 	f32 _08;                     // _08
 	f32 _0C;                     // _0C
-	Matrixf* _10;                // _10
-	Matrixf* _14;                // _14
+	Matrixf* mHeadMtx;           // _10, world matrix for head joint
+	Matrixf* mGunMtx;            // _14, world matrix for gun joint
 	Vector3f mTargetPosition;    // _18
 	u8 _24[0xC];                 // _24, unknown
 	efx::THdamaSight* mEfxSight; // _30
 	HoudaiShotGunNode* _34;      // _34
 	HoudaiShotGunNode* _38;      // _38
 };
+
+// static bool levelRotationCallBack(J3DJoint*, int);
+// static bool verticalRotationCallBack(J3DJoint*, int);
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS

@@ -1,182 +1,22 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23efx11THdamaShoot
-    __vt__Q23efx11THdamaShoot:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx3FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple3Fv
-        .4byte fade__Q23efx8TSimple3Fv
-    .global __vt__Q23efx11THdamaSight
-    __vt__Q23efx11THdamaSight:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx11THdamaSightFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx11THdamaSightFv
-    .global __vt__Q23efx10THdamaHit1
-    __vt__Q23efx10THdamaHit1:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple5FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple5Fv
-        .4byte fade__Q23efx8TSimple5Fv
-    .global __vt__Q23efx10THdamaHit2
-    __vt__Q23efx10THdamaHit2:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple4FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple4Fv
-        .4byte fade__Q23efx8TSimple4Fv
-    .global __vt__Q23efx10THdamaHit3
-    __vt__Q23efx10THdamaHit3:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple4FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple4Fv
-        .4byte fade__Q23efx8TSimple4Fv
-    .global __vt__Q23efx6ArgDir
-    __vt__Q23efx6ArgDir:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q23efx6ArgDirFv
-    .global __vt__Q34Game6Houdai17HoudaiShotGunNode
-    __vt__Q34Game6Houdai17HoudaiShotGunNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game6Houdai17HoudaiShotGunNodeFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sHoudaiShotGunMgr__Q24Game6Houdai
-    sHoudaiShotGunMgr__Q24Game6Houdai:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051C588
-    lbl_8051C588:
-        .4byte 0x00000000
-    .global lbl_8051C58C
-    lbl_8051C58C:
-        .float 1.0
-    .global lbl_8051C590
-    lbl_8051C590:
-        .4byte 0x41200000
-    .global lbl_8051C594
-    lbl_8051C594:
-        .4byte 0x3F19999A
-    .global lbl_8051C598
-    lbl_8051C598:
-        .4byte 0x41A00000
-    .global lbl_8051C59C
-    lbl_8051C59C:
-        .4byte 0x44BB8000
-    .global lbl_8051C5A0
-    lbl_8051C5A0:
-        .4byte 0x447A0000
-    .global lbl_8051C5A4
-    lbl_8051C5A4:
-        .float 0.5
-    .global lbl_8051C5A8
-    lbl_8051C5A8:
-        .4byte 0x42C80000
-    .global lbl_8051C5AC
-    lbl_8051C5AC:
-        .4byte 0x43FA0000
-    .global lbl_8051C5B0
-    lbl_8051C5B0:
-        .4byte 0x74616D61
-        .4byte 0x6A6E7400
-    .global lbl_8051C5B8
-    lbl_8051C5B8:
-        .4byte 0x67756E00
-    .global lbl_8051C5BC
-    lbl_8051C5BC:
-        .4byte 0x40000000
-    .global lbl_8051C5C0
-    lbl_8051C5C0:
-        .4byte 0x47000000
-    .global lbl_8051C5C4
-    lbl_8051C5C4:
-        .4byte 0x42340000
-    .global lbl_8051C5C8
-    lbl_8051C5C8:
-        .4byte 0x44160000
-        .4byte 0x00000000
-    .global lbl_8051C5D0
-    lbl_8051C5D0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051C5D8
-    lbl_8051C5D8:
-        .float 0.05
-    .global lbl_8051C5DC
-    lbl_8051C5DC:
-        .4byte 0x40C90FDB
-    .global lbl_8051C5E0
-    lbl_8051C5E0:
-        .4byte 0x40490FDB
-    .global lbl_8051C5E4
-    lbl_8051C5E4:
-        .4byte 0x3CCCCCCD
-    .global lbl_8051C5E8
-    lbl_8051C5E8:
-        .4byte 0x3C23D70A
-    .global lbl_8051C5EC
-    lbl_8051C5EC:
-        .4byte 0x42480000
-    .global lbl_8051C5F0
-    lbl_8051C5F0:
-        .4byte 0x41726744
-        .4byte 0x69720000
-*/
+#include "Game/Entities/Houdai.h"
 
 namespace Game {
+namespace Houdai {
+
+static HoudaiShotGunMgr* sHoudaiShotGunMgr = nullptr;
 
 /*
  * --INFO--
  * Address:	802C394C
  * Size:	00003C
  */
-void Houdai::levelRotationCallBack(J3DJoint*, int)
+static bool levelRotationCallBack(J3DJoint* joint, int idx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	bne      lbl_802C3974
-	lwz      r3, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_802C3974
-	bl       rotateLevel__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint
+	if (idx == 0 && sHoudaiShotGunMgr) {
+		sHoudaiShotGunMgr->rotateLevel(joint);
+	}
 
-lbl_802C3974:
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -184,27 +24,13 @@ lbl_802C3974:
  * Address:	802C3988
  * Size:	00003C
  */
-void Houdai::verticalRotationCallBack(J3DJoint*, int)
+static bool verticalRotationCallBack(J3DJoint* joint, int idx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	bne      lbl_802C39B0
-	lwz      r3, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_802C39B0
-	bl       rotateVertical__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint
+	if (idx == 0 && sHoudaiShotGunMgr) {
+		sHoudaiShotGunMgr->rotateVertical(joint);
+	}
 
-lbl_802C39B0:
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -212,7 +38,7 @@ lbl_802C39B0:
  * Address:	802C39C4
  * Size:	000B10
  */
-void Houdai::HoudaiShotGunNode::update()
+bool HoudaiShotGunNode::update()
 {
 	/*
 	stwu     r1, -0x380(r1)
@@ -1015,166 +841,29 @@ lbl_802C4420:
  * Address:	802C44D4
  * Size:	000240
  */
-Houdai::HoudaiShotGunMgr::HoudaiShotGunMgr(Game::Houdai::Obj*)
+HoudaiShotGunMgr::HoudaiShotGunMgr(Obj* houdai)
+    : mOwner(houdai)
+    , mIsShotGunRotation(false)
+    , mIsShotGunLockedOn(false)
+    , mIsShotGunFinished(false)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C588@sda21(r2)
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	stmw     r24, 0x10(r1)
-	mr       r25, r3
-	stw      r4, 0(r3)
-	li       r3, 0x38
-	stb      r0, 4(r25)
-	stb      r0, 5(r25)
-	stb      r0, 6(r25)
-	stfs     f0, 0xc(r25)
-	stfs     f0, 8(r25)
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_802C4530
-	lwz      r27, 0(r25)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@ha
-	addi     r0, r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@l
-	stw      r0, 0(r26)
-	stw      r27, 0x18(r26)
+	_0C = 0.0f;
+	_08 = 0.0f;
+	_34 = new HoudaiShotGunNode(mOwner);
+	_38 = new HoudaiShotGunNode(mOwner);
 
-lbl_802C4530:
-	stw      r26, 0x34(r25)
-	li       r3, 0x38
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_802C455C
-	lwz      r27, 0(r25)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@ha
-	addi     r0, r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@l
-	stw      r0, 0(r26)
-	stw      r27, 0x18(r26)
+	for (int i = 0; i < 10; i++) {
+		HoudaiShotGunNode* node = new HoudaiShotGunNode(mOwner);
+		node->mEfxShell         = new efx::THdamaShell;
+		node->_20               = Vector3f::zero;
+		node->_2C               = Vector3f::zero;
 
-lbl_802C455C:
-	lis      r6, __vt__Q23efx5TSync@ha
-	lis      r5, __vt__Q23efx9TChasePos@ha
-	lis      r4, __vt__Q23efx11THdamaShell@ha
-	lis      r3, "zero__10Vector3<f>"@ha
-	addi     r6, r6, __vt__Q23efx5TSync@l
-	addi     r5, r5, __vt__Q23efx9TChasePos@l
-	addi     r4, r4, __vt__Q23efx11THdamaShell@l
-	stw      r26, 0x38(r25)
-	addi     r27, r6, 0x14
-	addi     r29, r5, 0x14
-	addi     r28, r4, 0x14
-	addi     r31, r3, "zero__10Vector3<f>"@l
-	li       r26, 0
+		_38->add(node);
+	}
 
-lbl_802C4590:
-	li       r3, 0x38
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_802C45B8
-	lwz      r24, 0(r25)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@ha
-	addi     r0, r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@l
-	stw      r0, 0(r30)
-	stw      r24, 0x18(r30)
+	mEfxSight = new efx::THdamaSight();
 
-lbl_802C45B8:
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802C4630
-	lis      r5, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r5, __vt__Q23efx5TBase@l
-	lis      r6, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r4, __vt__18JPAEmitterCallBack@l
-	lis      r5, __vt__Q23efx9TChasePos@ha
-	lis      r4, __vt__Q23efx11THdamaShell@ha
-	stw      r0, 4(r3)
-	addi     r0, r6, __vt__Q23efx5TSync@l
-	li       r8, 0
-	li       r7, 0x2b2
-	stw      r0, 0(r3)
-	addi     r6, r5, __vt__Q23efx9TChasePos@l
-	li       r5, 0x9b
-	addi     r0, r4, __vt__Q23efx11THdamaShell@l
-	stw      r27, 4(r3)
-	stw      r8, 8(r3)
-	sth      r7, 0xc(r3)
-	stb      r8, 0xe(r3)
-	stw      r6, 0(r3)
-	stw      r29, 4(r3)
-	stw      r8, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r0, 0(r3)
-	stw      r28, 4(r3)
-
-lbl_802C4630:
-	stw      r3, 0x1c(r30)
-	mr       r4, r30
-	lfs      f0, 0(r31)
-	stfs     f0, 0x20(r30)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x24(r30)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x28(r30)
-	lfs      f0, 0(r31)
-	stfs     f0, 0x2c(r30)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x30(r30)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x34(r30)
-	lwz      r3, 0x38(r25)
-	bl       add__5CNodeFP5CNode
-	addi     r26, r26, 1
-	cmpwi    r26, 0xa
-	blt      lbl_802C4590
-	li       r3, 0x10
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802C46F0
-	lis      r5, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r5, __vt__Q23efx5TBase@l
-	lis      r6, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r4, __vt__18JPAEmitterCallBack@l
-	lis      r5, __vt__Q23efx8TForever@ha
-	lis      r4, __vt__Q23efx11THdamaSight@ha
-	stw      r0, 4(r3)
-	addi     r0, r6, __vt__Q23efx5TSync@l
-	addi     r6, r5, __vt__Q23efx8TForever@l
-	addi     r4, r4, __vt__Q23efx11THdamaSight@l
-	stw      r0, 0(r3)
-	li       r8, 0
-	li       r7, 0x9f
-	addi     r5, r6, 0x14
-	stw      r27, 4(r3)
-	addi     r0, r4, 0x14
-	stw      r8, 8(r3)
-	sth      r7, 0xc(r3)
-	stb      r8, 0xe(r3)
-	stw      r6, 0(r3)
-	stw      r5, 4(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_802C46F0:
-	stw      r3, 0x30(r25)
-	li       r0, 0
-	mr       r3, r25
-	stw      r0, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
-	lmw      r24, 0x10(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	sHoudaiShotGunMgr = nullptr;
 }
 
 /*
@@ -1182,55 +871,22 @@ lbl_802C46F0:
  * Address:	802C4714
  * Size:	0000B4
  */
-void Houdai::HoudaiShotGunMgr::setupShotGun()
+void HoudaiShotGunMgr::setupShotGun()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C588@sda21(r2)
-	addi     r4, r2, lbl_8051C5B0@sda21
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stb      r0, 4(r3)
-	stb      r0, 5(r3)
-	stb      r0, 6(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f0, 8(r3)
-	lwz      r3, 0(r3)
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0(r29)
-	mr       r31, r3
-	addi     r4, r2, lbl_8051C5B8@sda21
-	lwz      r3, 0x174(r5)
-	bl       getJoint__Q28SysShape5ModelFPc
-	lis      r5, levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi@ha
-	lwz      r4, 0x18(r31)
-	addi     r0, r5, levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi@l
-	mr       r30, r3
-	stw      r0, 4(r4)
-	lis      r5, verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi@ha
-	addi     r0, r5, verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi@l
-	mr       r3, r31
-	lwz      r4, 0x18(r30)
-	stw      r0, 4(r4)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x10(r29)
-	mr       r3, r30
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x14(r29)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mIsShotGunRotation = false;
+	mIsShotGunLockedOn = false;
+	mIsShotGunFinished = false;
+	_0C                = 0.0f;
+	_08                = 0.0f;
+
+	SysShape::Joint* headJnt = mOwner->mModel->getJoint("tamajnt");
+	SysShape::Joint* gunJnt  = mOwner->mModel->getJoint("gun");
+
+	headJnt->mJ3d->mFunction = &levelRotationCallBack;
+	gunJnt->mJ3d->mFunction  = &verticalRotationCallBack;
+
+	mHeadMtx = headJnt->getWorldMatrix();
+	mGunMtx  = gunJnt->getWorldMatrix();
 }
 
 /*
@@ -1238,46 +894,27 @@ void Houdai::HoudaiShotGunMgr::setupShotGun()
  * Address:	802C47C8
  * Size:	00000C
  */
-void Houdai::HoudaiShotGunMgr::resetCallBack()
-{
-	/*
-	li       r0, 0
-	stw      r0, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
-	blr
-	*/
-}
+void HoudaiShotGunMgr::resetCallBack() { sHoudaiShotGunMgr = nullptr; }
 
 /*
  * --INFO--
  * Address:	802C47D4
  * Size:	000008
  */
-void Houdai::HoudaiShotGunMgr::setCallBack()
-{
-	/*
-	stw      r3, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
-	blr
-	*/
-}
+void HoudaiShotGunMgr::setCallBack() { sHoudaiShotGunMgr = this; }
 
 /*
  * --INFO--
  * Address:	802C47DC
  * Size:	000024
  */
-void Houdai::HoudaiShotGunMgr::startRotation()
+void HoudaiShotGunMgr::startRotation()
 {
-	/*
-	li       r4, 1
-	li       r0, 0
-	stb      r4, 4(r3)
-	lfs      f0, lbl_8051C588@sda21(r2)
-	stb      r0, 5(r3)
-	stb      r0, 6(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
+	mIsShotGunRotation = true;
+	mIsShotGunLockedOn = false;
+	mIsShotGunFinished = false;
+	_0C                = 0.0f;
+	_08                = 0.0f;
 }
 
 /*
@@ -1285,15 +922,10 @@ void Houdai::HoudaiShotGunMgr::startRotation()
  * Address:	802C4800
  * Size:	000014
  */
-void Houdai::HoudaiShotGunMgr::finishRotation()
+void HoudaiShotGunMgr::finishRotation()
 {
-	/*
-	li       r4, 0
-	li       r0, 1
-	stb      r4, 5(r3)
-	stb      r0, 6(r3)
-	blr
-	*/
+	mIsShotGunLockedOn = false;
+	mIsShotGunFinished = true;
 }
 
 /*
@@ -1301,64 +933,35 @@ void Houdai::HoudaiShotGunMgr::finishRotation()
  * Address:	802C4814
  * Size:	000008
  */
-void Houdai::HoudaiShotGunMgr::isShotGunRotation()
-{
-	/*
-	lbz      r3, 4(r3)
-	blr
-	*/
-}
+bool HoudaiShotGunMgr::isShotGunRotation() { return mIsShotGunRotation; }
 
 /*
  * --INFO--
  * Address:	802C481C
  * Size:	000008
  */
-void Houdai::HoudaiShotGunMgr::isShotGunLockOn()
-{
-	/*
-	lbz      r3, 5(r3)
-	blr
-	*/
-}
+bool HoudaiShotGunMgr::isShotGunLockOn() { return mIsShotGunLockedOn; }
 
 /*
  * --INFO--
  * Address:	802C4824
  * Size:	000008
  */
-void Houdai::HoudaiShotGunMgr::isFinishShotGun()
-{
-	/*
-	lbz      r3, 6(r3)
-	blr
-	*/
-}
+bool HoudaiShotGunMgr::isFinishShotGun() { return mIsShotGunFinished; }
 
 /*
  * --INFO--
  * Address:	802C482C
  * Size:	00001C
  */
-void Houdai::HoudaiShotGunMgr::setShotGunTarget(Vector3f&)
-{
-	/*
-	lfs      f0, 0(r4)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x20(r3)
-	blr
-	*/
-}
+void HoudaiShotGunMgr::setShotGunTarget(Vector3f& pos) { mTargetPosition = pos; }
 
 /*
  * --INFO--
  * Address:	802C4848
  * Size:	0003C0
  */
-void Houdai::HoudaiShotGunMgr::emitShotGun()
+void HoudaiShotGunMgr::emitShotGun()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -1629,51 +1232,26 @@ lbl_802C4BB4:
  * Address:	802C4C08
  * Size:	000084
  */
-void Houdai::HoudaiShotGunMgr::doUpdate()
+void HoudaiShotGunMgr::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_802C4C78
-	lbz      r0, 6(r31)
-	cmplwi   r0, 0
-	beq      lbl_802C4C5C
-	bl       returnShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C4C50
-	li       r3, 0
-	li       r0, 1
-	stb      r3, 4(r31)
-	stb      r0, 5(r31)
+	if (mIsShotGunRotation) {
+		if (mIsShotGunFinished) {
+			if (returnShotGunRotation()) {
+				mIsShotGunRotation = false;
+				mIsShotGunLockedOn = true;
+			}
 
-lbl_802C4C50:
-	mr       r3, r31
-	bl       finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv
-	b        lbl_802C4C78
+			finishLockOnEffect();
 
-lbl_802C4C5C:
-	bl       searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C4C70
-	li       r0, 1
-	stb      r0, 5(r31)
+		} else {
 
-lbl_802C4C70:
-	mr       r3, r31
-	bl       setShotGunLockOnPosition__Q34Game6Houdai16HoudaiShotGunMgrFv
+			if (searchShotGunRotation()) {
+				mIsShotGunLockedOn = true;
+			}
 
-lbl_802C4C78:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			setShotGunLockOnPosition();
+		}
+	}
 }
 
 /*
@@ -1681,46 +1259,18 @@ lbl_802C4C78:
  * Address:	802C4C8C
  * Size:	000078
  */
-void Houdai::HoudaiShotGunMgr::doUpdateCommon()
+void HoudaiShotGunMgr::doUpdateCommon()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x34(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_802C4CE0
-
-lbl_802C4CB4:
-	lwz      r31, 4(r30)
-	mr       r3, r30
-	bl       update__Q34Game6Houdai17HoudaiShotGunNodeFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C4CDC
-	mr       r3, r30
-	bl       del__5CNodeFv
-	lwz      r3, 0x38(r29)
-	mr       r4, r30
-	bl       add__5CNodeFP5CNode
-
-lbl_802C4CDC:
-	mr       r30, r31
-
-lbl_802C4CE0:
-	cmplwi   r30, 0
-	bne      lbl_802C4CB4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	HoudaiShotGunNode* next;
+	HoudaiShotGunNode* node = static_cast<HoudaiShotGunNode*>(_34->mChild);
+	while (node) {
+		next = static_cast<HoudaiShotGunNode*>(node->mNext);
+		if (node->update()) {
+			node->del();
+			_38->add(node);
+		}
+		node = next;
+	}
 }
 
 /*
@@ -1728,47 +1278,19 @@ lbl_802C4CE0:
  * Address:	802C4D04
  * Size:	000084
  */
-void Houdai::HoudaiShotGunMgr::forceFinishShotGun()
+void HoudaiShotGunMgr::forceFinishShotGun()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x34(r3)
-	lwz      r30, 0x10(r3)
-	b        lbl_802C4D5C
+	HoudaiShotGunNode* next;
+	HoudaiShotGunNode* node = static_cast<HoudaiShotGunNode*>(_34->mChild);
+	while (node) {
+		next = static_cast<HoudaiShotGunNode*>(node->mNext);
+		node->mEfxShell->fade();
+		node->del();
+		_38->add(node);
+		node = next;
+	}
 
-lbl_802C4D2C:
-	lwz      r3, 0x1c(r30)
-	lwz      r31, 4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	bl       del__5CNodeFv
-	lwz      r3, 0x38(r29)
-	mr       r4, r30
-	bl       add__5CNodeFP5CNode
-	mr       r30, r31
-
-lbl_802C4D5C:
-	cmplwi   r30, 0
-	bne      lbl_802C4D2C
-	mr       r3, r29
-	bl       finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	finishLockOnEffect();
 }
 
 /*
@@ -1776,7 +1298,7 @@ lbl_802C4D5C:
  * Address:	802C4D88
  * Size:	000234
  */
-void Houdai::HoudaiShotGunMgr::searchShotGunRotation()
+bool HoudaiShotGunMgr::searchShotGunRotation()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1960,7 +1482,7 @@ lbl_802C4F80:
  * Address:	802C4FBC
  * Size:	000178
  */
-void Houdai::HoudaiShotGunMgr::returnShotGunRotation()
+bool HoudaiShotGunMgr::returnShotGunRotation()
 {
 	/*
 	lfs      f3, lbl_8051C588@sda21(r2)
@@ -2103,38 +1625,14 @@ lbl_802C512C:
  * Address:	802C5134
  * Size:	000068
  */
-void Houdai::HoudaiShotGunMgr::rotateLevel(J3DJoint*)
+void HoudaiShotGunMgr::rotateLevel(J3DJoint* joint)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lbz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_802C5188
-	lfs      f0, 8(r31)
-	addi     r3, r1, 8
-	li       r4, 0x58
-	fneg     f1, f0
-	bl       PSMTXRotRad
-	lwz      r3, 0x10(r31)
-	addi     r4, r1, 8
-	mr       r5, r3
-	bl       PSMTXConcat
-	lis      r4, mCurrentMtx__6J3DSys@ha
-	lwz      r3, 0x10(r31)
-	addi     r4, r4, mCurrentMtx__6J3DSys@l
-	bl       PSMTXCopy
-
-lbl_802C5188:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	if (mIsShotGunRotation) {
+		Mtx mtx;
+		PSMTXRotRad(mtx, 'X', -_08);
+		PSMTXConcat(mHeadMtx->mMatrix.mtxView, mtx, mHeadMtx->mMatrix.mtxView);
+		PSMTXCopy(mHeadMtx->mMatrix.mtxView, J3DSys::mCurrentMtx);
+	}
 }
 
 /*
@@ -2142,7 +1640,7 @@ lbl_802C5188:
  * Address:	802C519C
  * Size:	000258
  */
-void Houdai::HoudaiShotGunMgr::rotateVertical(J3DJoint*)
+void HoudaiShotGunMgr::rotateVertical(J3DJoint* joint)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2329,30 +1827,14 @@ lbl_802C53C8:
  * Address:	802C53F4
  * Size:	000030
  */
-void Houdai::HoudaiShotGunMgr::finishLockOnEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x30(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void HoudaiShotGunMgr::finishLockOnEffect() { mEfxSight->fade(); }
 
 /*
  * --INFO--
  * Address:	802C5424
  * Size:	000250
  */
-void Houdai::HoudaiShotGunMgr::setShotGunLockOnPosition()
+void HoudaiShotGunMgr::setShotGunLockOnPosition()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2527,57 +2009,25 @@ lbl_802C5634:
  * Address:	802C5674
  * Size:	00009C
  */
-void Houdai::HoudaiShotGunMgr::effectDrawOn()
+void HoudaiShotGunMgr::effectDrawOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x34(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_802C56B0
+	HoudaiShotGunNode* next1;
+	HoudaiShotGunNode* node1 = static_cast<HoudaiShotGunNode*>(_34->mChild);
+	while (node1) {
+		node1->mEfxShell->endDemoDrawOn();
+		next1 = static_cast<HoudaiShotGunNode*>(node1->mNext);
+		node1 = next1;
+	}
 
-lbl_802C5698:
-	lwz      r3, 0x1c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
+	HoudaiShotGunNode* next2;
+	HoudaiShotGunNode* node2 = static_cast<HoudaiShotGunNode*>(_38->mChild);
+	while (node2) {
+		node2->mEfxShell->endDemoDrawOn();
+		next2 = static_cast<HoudaiShotGunNode*>(node2->mNext);
+		node2 = next2;
+	}
 
-lbl_802C56B0:
-	cmplwi   r31, 0
-	bne      lbl_802C5698
-	lwz      r3, 0x38(r30)
-	lwz      r31, 0x10(r3)
-	b        lbl_802C56DC
-
-lbl_802C56C4:
-	lwz      r3, 0x1c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_802C56DC:
-	cmplwi   r31, 0
-	bne      lbl_802C56C4
-	lwz      r3, 0x30(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEfxSight->endDemoDrawOn();
 }
 
 /*
@@ -2585,57 +2035,25 @@ lbl_802C56DC:
  * Address:	802C5710
  * Size:	00009C
  */
-void Houdai::HoudaiShotGunMgr::effectDrawOff()
+void HoudaiShotGunMgr::effectDrawOff()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x34(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_802C574C
+	HoudaiShotGunNode* next1;
+	HoudaiShotGunNode* node1 = static_cast<HoudaiShotGunNode*>(_34->mChild);
+	while (node1) {
+		node1->mEfxShell->startDemoDrawOff();
+		next1 = static_cast<HoudaiShotGunNode*>(node1->mNext);
+		node1 = next1;
+	}
 
-lbl_802C5734:
-	lwz      r3, 0x1c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
+	HoudaiShotGunNode* next2;
+	HoudaiShotGunNode* node2 = static_cast<HoudaiShotGunNode*>(_38->mChild);
+	while (node2) {
+		node2->mEfxShell->startDemoDrawOff();
+		next2 = static_cast<HoudaiShotGunNode*>(node2->mNext);
+		node2 = next2;
+	}
 
-lbl_802C574C:
-	cmplwi   r31, 0
-	bne      lbl_802C5734
-	lwz      r3, 0x38(r30)
-	lwz      r31, 0x10(r3)
-	b        lbl_802C5778
-
-lbl_802C5760:
-	lwz      r3, 0x1c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_802C5778:
-	cmplwi   r31, 0
-	bne      lbl_802C5760
-	lwz      r3, 0x30(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEfxSight->startDemoDrawOff();
 }
 
 /*
@@ -2643,173 +2061,14 @@ lbl_802C5778:
  * Address:	802C57AC
  * Size:	000030
  */
-void Houdai::HoudaiShotGunMgr::startStoneStateEffectOff()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x30(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void HoudaiShotGunMgr::startStoneStateEffectOff() { mEfxSight->startDemoDrawOff(); }
 
 /*
  * --INFO--
  * Address:	802C57DC
  * Size:	000030
  */
-void Houdai::HoudaiShotGunMgr::finishStoneStateEffectOn()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x30(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void HoudaiShotGunMgr::finishStoneStateEffectOn() { mEfxSight->endDemoDrawOn(); }
 
+} // namespace Houdai
 } // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802C580C
- * Size:	00009C
- */
-THdamaSight::~THdamaSight()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802C588C
-	lis      r3, __vt__Q23efx11THdamaSight@ha
-	addi     r3, r3, __vt__Q23efx11THdamaSight@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C587C
-	lis      r3, __vt__Q23efx8TForever@ha
-	addi     r3, r3, __vt__Q23efx8TForever@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C587C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802C587C:
-	extsh.   r0, r31
-	ble      lbl_802C588C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802C588C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C58A8
- * Size:	000008
- */
-void ArgDir::getName()
-{
-	/*
-	addi     r3, r2, lbl_8051C5F0@sda21
-	blr
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	802C58B0
- * Size:	000060
- */
-Houdai::HoudaiShotGunNode::~HoudaiShotGunNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802C58F4
-	lis      r5, __vt__Q34Game6Houdai17HoudaiShotGunNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game6Houdai17HoudaiShotGunNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_802C58F4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802C58F4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802C5910
- * Size:	000008
- */
-THdamaSight::@4 @~THdamaSight()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx11THdamaSightFv
-	*/
-}
-} // namespace efx
-
-} // namespace efx

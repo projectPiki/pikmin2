@@ -975,9 +975,7 @@ void StateCarryEnd::exec(EnemyBase* enemy)
 
 		} else {
 			enemy->turnToTarget(_10, *CG_PARMS(enemy)->mGeneral.mRotationalAccel(), *CG_PARMS(enemy)->mGeneral.mRotationalSpeed());
-			diff.x *= 0.05f;
-			diff.y *= 0.05f;
-			diff.z *= 0.05f;
+			diff *= 0.05f;
 			enemy->forceMovePosition(diff);
 		}
 		if ((enemy->mCurAnim->mIsPlaying != FALSE) && (enemy->mCurAnim->mType == KEYEVENT_END)) {

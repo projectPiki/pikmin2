@@ -91,4 +91,6 @@ inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle)
 	return Vector3f(scale * pikmin2_sinf(angle), y, scale * pikmin2_cosf(angle));
 }
 
+inline Vector3f getRotation(f32 angle) { return Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle)); }
+
 #endif
