@@ -107,7 +107,7 @@ StateWither::StateWither(int stateID, int p1, int p2, int p3)
 void StateWither::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startBlend(_14, _18, &EnemyBlendAnimatorBase::sBlendQuadraticFun, 30.0f, nullptr);
-	enemy->enableEvent(0, EB_IsVulnerable);
+	enemy->enableEvent(0, EB_Invulnerable);
 	EnemyFunc::flickStickPikmin(enemy, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
 }
 
@@ -165,9 +165,9 @@ void StateWait::init(EnemyBase* e, StateArg* stateArg)
 {
 	Obj* pellet = static_cast<Obj*>(e);
 
-	pellet->disableEvent(0, EB_IsCullable);
+	pellet->disableEvent(0, EB_Cullable);
 	RESET_FLAG(pellet->mFlags, PELPLANT_FLAGS_UNK2);
-	pellet->enableEvent(0, EB_IsVulnerable);
+	pellet->enableEvent(0, EB_Invulnerable);
 
 	switch (mPelSize) {
 	case PELPLANT_SIZE_SMALL:
@@ -178,10 +178,10 @@ void StateWait::init(EnemyBase* e, StateArg* stateArg)
 		break;
 	case PELPLANT_SIZE_BIG:
 		SET_FLAG(pellet->mFlags, PELPLANT_FLAGS_UNK2);
-		pellet->disableEvent(0, EB_IsVulnerable);
+		pellet->disableEvent(0, EB_Invulnerable);
 		pellet->startMotion(6, nullptr);
 		pellet->updateLODSphereRadius(2);
-		pellet->enableEvent(0, EB_IsCullable);
+		pellet->enableEvent(0, EB_Cullable);
 		break;
 	}
 
@@ -291,7 +291,7 @@ StateGrow::StateGrow(int stateID, int p1, int p2)
  */
 void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->enableEvent(0, EB_IsVulnerable);
+	enemy->enableEvent(0, EB_Invulnerable);
 
 	if (_10 == 3) {
 		static_cast<Obj*>(enemy)->attachPellet();
@@ -386,7 +386,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->startMotion(_10, nullptr);
 	}
 
-	enemy->disableEvent(0, EB_IsVulnerable);
+	enemy->disableEvent(0, EB_Invulnerable);
 }
 
 /*
@@ -407,7 +407,7 @@ void StateDamage::exec(Game::EnemyBase* enemy)
  * Address:	8010B880
  * Size:	000010
  */
-void StateDamage::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_IsVulnerable); }
+void StateDamage::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Invulnerable); }
 
 /*
  * --INFO--

@@ -774,7 +774,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	cameraMgr->startVibration(12, pos, 2);
 	rumbleMgr->startRumble(13, pos, 2);
 
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 }
 
 /*
@@ -832,7 +832,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->startMotionSelf(5, nullptr);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
-	enemy->enableEvent(0, EB_IsEnemyNotBitter);
+	enemy->enableEvent(0, EB_NoInterrupt);
 }
 
 /*
@@ -921,7 +921,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			}
 			enemy->mToFlick = 0.0f;
 			if (!enemy->isEvent(0, EB_PS3)) {
-				enemy->disableEvent(0, EB_IsEnemyNotBitter);
+				enemy->disableEvent(0, EB_NoInterrupt);
 			}
 			break;
 
@@ -1575,7 +1575,7 @@ lbl_8035A91C:
  * Address:	8035A96C
  * Size:	000010
  */
-void StateFlick::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemyNotBitter); }
+void StateFlick::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
 /*
  * --INFO--
@@ -2385,7 +2385,7 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->startMotionSelf(4, nullptr);
 	enemy->setEmotionCaution();
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->enableEvent(0, EB_IsImmuneBitter);
+	enemy->enableEvent(0, EB_BitterImmune);
 	enemy->hardConstraintOn();
 
 	Vector3f pos = enemy->getPosition();
@@ -2465,7 +2465,7 @@ void StateHideWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->hardConstraintOn();
 	OBJ(enemy)->fadeEffect(0);
 	_14 = 0;
-	enemy->enableEvent(0, EB_IsImmuneBitter);
+	enemy->enableEvent(0, EB_BitterImmune);
 }
 
 /*
@@ -2519,7 +2519,7 @@ void StateHideWait::exec(EnemyBase* enemy)
 void StateHideWait::cleanup(EnemyBase* enemy)
 {
 	OBJ(enemy)->fadeEffect(8);
-	enemy->disableEvent(0, EB_IsImmuneBitter);
+	enemy->disableEvent(0, EB_BitterImmune);
 }
 
 /*
@@ -2543,8 +2543,8 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	OBJ(enemy)->startMotionSelf(9, nullptr);
 	OBJ(enemy)->searchTarget();
 	enemy->setEmotionExcitement();
-	enemy->disableEvent(0, EB_IsImmuneBitter);
-	enemy->enableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_BitterImmune);
+	enemy->enableEvent(0, EB_NoInterrupt);
 	_10 = 1;
 
 	f32 faceDir  = enemy->getFaceDir();
@@ -2611,7 +2611,7 @@ void StateAppear::exec(EnemyBase* enemy)
 			transit(enemy, KINGCHAPPY_Caution, nullptr);
 			enemy->hardConstraintOff();
 			enemy->enableEvent(0, EB_LifegaugeVisible);
-			enemy->disableEvent(0, EB_IsEnemyNotBitter);
+			enemy->disableEvent(0, EB_NoInterrupt);
 			break;
 		}
 	}

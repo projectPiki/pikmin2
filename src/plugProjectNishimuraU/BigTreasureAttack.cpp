@@ -1523,7 +1523,7 @@ void BigTreasureAttackMgr::update()
 	for (int i = 0; i < 4; i++) {
 		if (_00[i]) {
 			check = true;
-			if (mObj->isEvent(0, EB_IsBittered) && !mObj->isCapturedTreasure(i)) {
+			if (mObj->isEvent(0, EB_Bittered) && !mObj->isCapturedTreasure(i)) {
 				finishAttack();
 			}
 		}

@@ -39,7 +39,7 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(0, nullptr);
 }
@@ -72,7 +72,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bug         = static_cast<Obj*>(enemy);
 	bug->mStateTimer = 0.0f;
-	bug->enableEvent(0, EB_IsCullable);
+	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->startMotion(2, nullptr);
 }
@@ -110,7 +110,7 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
 	bug->setTargetPosition();
-	bug->enableEvent(0, EB_IsCullable);
+	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->startMotion(1, nullptr);
 }
@@ -163,7 +163,7 @@ void StateTurn::cleanup(EnemyBase* enemy) { }
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bug = static_cast<Obj*>(enemy);
-	bug->enableEvent(0, EB_IsCullable);
+	bug->enableEvent(0, EB_Cullable);
 	bug->startMotion(1, nullptr);
 }
 
@@ -216,7 +216,7 @@ void StateCharge::init(EnemyBase* enemy, StateArg* stateArg)
 	bug->mStateTimer       = 0.0f;
 	bug->resetPartnerPtr();
 	bug->startChargeEffect();
-	bug->enableEvent(0, EB_IsCullable);
+	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->setEmotionExcitement();
 	bug->startMotion(3, nullptr);
@@ -254,7 +254,7 @@ void StateCharge::exec(EnemyBase* enemy)
 		if (bugCount != 0) {
 			Obj* randBug = seachingBugs[(int)(randFloat() * bugCount)];
 			bug->startChargeState(randBug);
-			bug->disableEvent(0, EB_IsCullable);
+			bug->disableEvent(0, EB_Cullable);
 		}
 	}
 	Obj* partner = bug->mPartner;
@@ -303,7 +303,7 @@ void StateDischarge::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bug         = OBJ(enemy);
 	bug->mStateTimer = 0.0f;
-	bug->disableEvent(0, EB_IsCullable);
+	bug->disableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->setEmotionExcitement();
 	bug->startMotion(4, nullptr);
@@ -364,7 +364,7 @@ void StateChildCharge::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* bug         = OBJ(enemy);
 	bug->mStateTimer = 0.0f;
 	bug->startChargeEffect();
-	bug->disableEvent(0, EB_IsCullable);
+	bug->disableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->setEmotionExcitement();
 	bug->startMotion(3, nullptr);
@@ -568,7 +568,7 @@ void StateChildDischarge::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bug         = OBJ(enemy);
 	bug->mStateTimer = 0.0f;
-	bug->disableEvent(0, EB_IsCullable);
+	bug->disableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->setEmotionExcitement();
 	bug->startMotion(4, nullptr);
@@ -621,8 +621,8 @@ void StateReverse::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* bug         = OBJ(enemy);
 	bug->mStateTimer = 0.0f;
 	bug->finishPartnerAndEffect();
-	bug->enableEvent(0, EB_IsCullable);
-	bug->disableEvent(0, EB_IsVulnerable);
+	bug->enableEvent(0, EB_Cullable);
+	bug->disableEvent(0, EB_Invulnerable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->startMotion(5, nullptr);
 }
@@ -656,7 +656,7 @@ void StateReverse::exec(EnemyBase* enemy)
  * Address:	8027A584
  * Size:	000010
  */
-void StateReverse::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_IsVulnerable); }
+void StateReverse::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_Invulnerable); }
 
 /*
  * --INFO--
@@ -666,7 +666,7 @@ void StateReverse::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_IsVulner
 void StateReturn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bug = OBJ(enemy); // nothing even uses the obj cast here but it's necessary for codegen, smh.
-	bug->enableEvent(0, EB_IsCullable);
+	bug->enableEvent(0, EB_Cullable);
 	bug->mTargetVelocity = Vector3f(0.0f);
 	bug->startMotion(6, nullptr);
 }

@@ -35,9 +35,9 @@ void Kogane::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 void Kogane::Obj::onInit(Game::CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
-	enableEvent(0, EB_IsVulnerable);
-	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	enableEvent(0, EB_Invulnerable);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DeathEffectEnabled);
 	setEmotionNone();
 	mScaleModifier = 0.0001f;
 	mScale         = 0.0001f;
@@ -189,8 +189,8 @@ bool Kogane::Obj::hipdropCallBack(Creature* obj, f32 dmg, CollPart*)
 void Kogane::Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
-	disableEvent(0, EB_IsVulnerable);
-	enableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_Invulnerable);
+	enableEvent(0, EB_DeathEffectEnabled);
 	enableEvent(0, EB_LifegaugeVisible);
 }
 
@@ -202,8 +202,8 @@ void Kogane::Obj::doStartStoneState()
 void Kogane::Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
-	enableEvent(0, EB_IsVulnerable);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	enableEvent(0, EB_Invulnerable);
+	disableEvent(0, EB_DeathEffectEnabled);
 	disableEvent(0, EB_LifegaugeVisible);
 }
 
@@ -228,7 +228,7 @@ void Kogane::Obj::doEndMovie() { effectDrawOn(); }
  */
 bool Kogane::Obj::transitDamageState(f32 dmg)
 {
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		addDamage(dmg, 1.0f);
 		return true;
 	} else {
@@ -286,7 +286,7 @@ bool Kogane::Obj::koganeScaleUp()
 		if (C_PARMS->mProperParms.mScale.mValue >= mScaleTimer) {
 			check       = true;
 			mScaleTimer = C_PARMS->mProperParms.mScale.mValue;
-			disableEvent(0, EB_IsEnemyNotBitter);
+			disableEvent(0, EB_NoInterrupt);
 		}
 		f32 scale      = mScaleTimer;
 		mScaleModifier = scale;

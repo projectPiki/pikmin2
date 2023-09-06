@@ -58,12 +58,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 		mCollTree->mPart->setScale(0.0001f);
 	}
 
-	enableEvent(0, EB_IsVulnerable);
-	disableEvent(0, EB_IsDamageAnimAllowed);
-	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	enableEvent(0, EB_Invulnerable);
+	disableEvent(0, EB_DamageAnimEnabled);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DeathEffectEnabled);
 	disableEvent(0, EB_LifegaugeVisible);
-	enableEvent(0, EB_IsImmuneBitter);
+	enableEvent(0, EB_BitterImmune);
 
 	setEmotionNone();
 	setupEffect();
@@ -75,7 +75,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_Rock) {
 		// if falling rock
 		if (mExistDuration != 0.0f) {
-			disableEvent(0, EB_IsCullable);
+			disableEvent(0, EB_Cullable);
 			mTimer = randWeightFloat(1.5f);
 		}
 
@@ -156,7 +156,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	} else {
 		shadowParam.mPosition = Vector3f(mPosition.x, mPosition.y + 5.0f, mPosition.z);
 
-		if (isEvent(1, EB2_IsEarthquake)) {
+		if (isEvent(1, EB2_Earthquake)) {
 			shadowParam.mBoundingSphere.mRadius = 50.0f;
 		} else {
 			shadowParam.mBoundingSphere.mRadius = 20.0f;
@@ -193,7 +193,7 @@ bool Obj::needShadow()
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part)
 {
-	if (isAlive() && !isEvent(0, EB_IsBittered) && getStateID() == ROCK_Move) {
+	if (isAlive() && !isEvent(0, EB_Bittered) && getStateID() == ROCK_Move) {
 		mFsm->transit(this, ROCK_Dead, nullptr);
 		return true;
 	}

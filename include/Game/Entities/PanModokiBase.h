@@ -90,11 +90,11 @@ struct Obj : public EnemyBase {
 	virtual void applyImpulse(Vector3f&, Vector3f&) { }                         // _18C (weak)
 	virtual bool isLivingThing()                                                // _D4 (weak)
 	{
-		return isEvent(0, EB_IsBittered);
+		return isEvent(0, EB_Bittered);
 	}
 	virtual bool isUnderground() // _D0 (weak)
 	{
-		return !isEvent(0, EB_IsBittered);
+		return !isEvent(0, EB_Bittered);
 	}
 	virtual bool ignoreAtari(Creature* toIgnore) // _190 (weak)
 	{

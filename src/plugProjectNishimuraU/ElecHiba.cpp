@@ -57,11 +57,11 @@ void Obj::setInitialSetting(EnemyInitialParamBase* param)
 void Obj::onInit(CreatureInitArg* args)
 {
 	EnemyBase::onInit(args);
-	disableEvent(0, EB_IsPlatformCollsAllowed);
-	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_PlatformCollEnabled);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DeathEffectEnabled);
 	hardConstraintOn();
-	enableEvent(0, EB_IsImmuneBitter);
+	enableEvent(0, EB_BitterImmune);
 
 	setEmotionNone();
 	shadowMgr->killShadow(this);
@@ -231,14 +231,14 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
  */
 bool Obj::injure()
 {
-	if (!(isEvent(0, EB_IsVulnerable))) {
+	if (!(isEvent(0, EB_Invulnerable))) {
 		mHealth -= mInstantDamage;
 		if (mHealth < 0.0f) {
 			mHealth = 0.0f;
 		}
 	}
 	mInstantDamage = 0.0f;
-	disableEvent(0, EB_IsTakingDamage);
+	disableEvent(0, EB_TakingDamage);
 	return true;
 }
 
@@ -764,8 +764,8 @@ lbl_8026FFD4:
  */
 void Obj::addDamageMyself(f32 damage)
 {
-	if (!(isEvent(0, EB_IsVulnerable))) {
-		enableEvent(0, EB_IsTakingDamage);
+	if (!(isEvent(0, EB_Invulnerable))) {
+		enableEvent(0, EB_TakingDamage);
 		TeamList* listHead = static_cast<TeamList*>(mTeamList.mParent);
 		if (listHead) {
 			listHead->mChildObjPtr->damageIncrement(damage);
@@ -783,7 +783,7 @@ void Obj::addDamageMyself(f32 damage)
 void Obj::damageIncrement(f32 damage)
 {
 	mInstantDamage += damage;
-	if (!isEvent(0, EB_IsFlickEnabled)) {
+	if (!isEvent(0, EB_FlickEnabled)) {
 		return;
 	}
 	mToFlick += 1.0f;

@@ -440,7 +440,7 @@ void StateHide::exec(EnemyBase* enemy)
 			OBJ(enemy)->fadeHideEffect();
 			enemy->mHealth = CG_PARMS(enemy)->mGeneral.mHealth.mValue;
 			OBJ(enemy)->endCarry();
-			enemy->enableEvent(0, EB_IsImmuneBitter);
+			enemy->enableEvent(0, EB_BitterImmune);
 		}
 	}
 
@@ -448,7 +448,7 @@ void StateHide::exec(EnemyBase* enemy)
 		mHideTimer++;
 		if (mHideTimer > CG_PROPERPARMS(enemy).mFp15.mValue) {
 			transit(enemy, PANMODOKI_Appear, nullptr);
-			enemy->disableEvent(0, EB_IsImmuneBitter);
+			enemy->disableEvent(0, EB_BitterImmune);
 		}
 	}
 }

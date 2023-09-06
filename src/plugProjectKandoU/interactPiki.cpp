@@ -411,7 +411,7 @@ bool InteractBury::actPiki(Game::Piki* piki)
 			ItemPikihead::InitArg pikiHeadInit((EPikiKind)piki->getKind(), Vector3f::zero, 1, 2, -1.0f);
 			pikiHead->init(&pikiHeadInit);
 			pikiHead->setPosition(pikiPos, false);
-			CreatureKillArg pikiCleanup(1);
+			CreatureKillArg pikiCleanup(CKILL_Unk1);
 			piki->kill(&pikiCleanup);
 			return true;
 		}
@@ -702,7 +702,7 @@ bool InteractSwallow::actPiki(Game::Piki* piki)
 bool InteractKill::actPiki(Game::Piki* piki)
 {
 	CreatureKillArg* killArg = mKillArg;
-	if (!killArg || (killArg && !(killArg->_04 & 1))) {
+	if (!killArg || (killArg && !(killArg->isFlag(CKILL_Unk1)))) {
 		if (mCreature->isTeki()) {
 			EnemyBase* teki = static_cast<EnemyBase*>(mCreature);
 			piki->setTekiKillID(teki->getEnemyTypeID());

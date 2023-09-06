@@ -88,7 +88,7 @@ int ActTeki::exec()
 		return 0;
 	}
 	// If the beetle is bittered, just wait until he comes back
-	else if (mFollowingTeki->isTeki() && mFollowingTeki->isEvent(0, Game::EB_IsBittered)
+	else if (mFollowingTeki->isTeki() && mFollowingTeki->isEvent(0, Game::EB_Bittered)
 	         && mFollowingTeki->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_Fuefuki) {
 		mToEmote = true;
 		return 0;

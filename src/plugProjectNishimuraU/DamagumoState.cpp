@@ -36,7 +36,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->forceFinishIKMotion();
 	damagumo->startDeadEffect();
 	damagumo->deathProcedure();
-	damagumo->disableEvent(0, EB_IsCullable);
+	damagumo->disableEvent(0, EB_Cullable);
 
 	damagumo->mTargetVelocity = 0.0f;
 	damagumo->setEmotionCaution();
@@ -83,9 +83,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* damagumo        = static_cast<Obj*>(enemy);
 	damagumo->mNextState = DAMAGUMO_NULL;
-	damagumo->enableEvent(0, EB_IsImmuneBitter);
-	damagumo->disableEvent(0, EB_IsAnimating);
-	damagumo->enableEvent(0, EB_IsModelHidden);
+	damagumo->enableEvent(0, EB_BitterImmune);
+	damagumo->disableEvent(0, EB_Animating);
+	damagumo->enableEvent(0, EB_ModelHidden);
 	damagumo->mTargetCreature = nullptr;
 
 	damagumo->mTargetVelocity = Vector3f(0.0f);
@@ -134,10 +134,10 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->mNextState   = DAMAGUMO_NULL;
 	damagumo->mShadowScale = 0.001f;
 
-	damagumo->enableEvent(0, EB_IsImmuneBitter);
-	damagumo->disableEvent(0, EB_IsCullable);
-	damagumo->enableEvent(0, EB_IsAnimating);
-	damagumo->disableEvent(0, EB_IsModelHidden);
+	damagumo->enableEvent(0, EB_BitterImmune);
+	damagumo->disableEvent(0, EB_Cullable);
+	damagumo->enableEvent(0, EB_Animating);
+	damagumo->disableEvent(0, EB_ModelHidden);
 
 	damagumo->setEmotionExcitement();
 	damagumo->mTargetCreature = nullptr;
@@ -161,7 +161,7 @@ void StateLand::exec(EnemyBase* enemy)
 
 	if (damagumo->mCurAnim->mIsPlaying) {
 		if ((u32)damagumo->mCurAnim->mType == KEYEVENT_2) {
-			damagumo->disableEvent(0, EB_IsImmuneBitter);
+			damagumo->disableEvent(0, EB_BitterImmune);
 
 			for (int i = 0; i < 4; i++) {
 				damagumo->createOnGroundEffect(i, damagumo->mWaterBox);
@@ -205,7 +205,7 @@ void StateLand::cleanup(EnemyBase* enemy)
 	Obj* damagumo = static_cast<Obj*>(enemy);
 	damagumo->startProgramedIK();
 	damagumo->setBossAppearBGM();
-	damagumo->enableEvent(0, EB_IsCullable);
+	damagumo->enableEvent(0, EB_Cullable);
 	damagumo->mShadowScale = 1.0f;
 	shadowMgr->setForceVisible(damagumo, false);
 }

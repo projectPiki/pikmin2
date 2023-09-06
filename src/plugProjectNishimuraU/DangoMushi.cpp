@@ -40,8 +40,8 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
-	enableEvent(0, EB_IsVulnerable);
-	disableEvent(0, EB_IsCullable);
+	enableEvent(0, EB_Invulnerable);
+	disableEvent(0, EB_Cullable);
 	mIsRolling         = false;
 	mRollingVelocity.z = 0.0f;
 	mRollingVelocity.y = 0.0f;
@@ -174,7 +174,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.mPosition                 = Vector3f(mat->mMatrix.mtxView[0][3], mat->mMatrix.mtxView[1][3], mat->mMatrix.mtxView[2][3]);
 	param.mPosition.y               = mPosition.y + 10.0f;
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
-	if (isEvent(1, EB2_IsEarthquake)) {
+	if (isEvent(1, EB2_Earthquake)) {
 		param.mBoundingSphere.mRadius = 100.0f;
 	} else {
 		param.mBoundingSphere.mRadius = 50.0f;
@@ -209,7 +209,7 @@ bool Obj::needShadow()
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* part)
 {
 	if (creature && creature->isPiki()) {
-		if (isEvent(0, EB_IsBittered)) {
+		if (isEvent(0, EB_Bittered)) {
 			addDamage(damage, 1.0f);
 			return true;
 		}
@@ -236,7 +236,7 @@ bool Obj::earthquakeCallBack(Creature*, f32) { return false; }
  */
 void Obj::collisionCallback(CollEvent& evt)
 {
-	if (!isEvent(0, EB_IsBittered) && evt.mCollidingCreature) {
+	if (!isEvent(0, EB_Bittered) && evt.mCollidingCreature) {
 		if (mIsRolling && evt.mCollidingCreature->mBounceTriangle) {
 			InteractPress press(this, C_PARMS->mGeneral.mAttackDamage.mValue, nullptr);
 			evt.mCollidingCreature->stimulate(press);
@@ -276,7 +276,7 @@ void Obj::wallCallback(const MoveInfo& mvInfo)
 void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
-	disableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_Invulnerable);
 }
 
 /*
@@ -289,7 +289,7 @@ void Obj::doFinishStoneState()
 	EnemyBase::doFinishStoneState();
 	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
 	if (getStateID() != DANGOMUSHI_Turn || isNoDamageCollision()) {
-		enableEvent(0, EB_IsVulnerable);
+		enableEvent(0, EB_Invulnerable);
 	}
 }
 

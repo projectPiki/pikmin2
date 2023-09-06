@@ -55,7 +55,7 @@ void Obj::getShadowParam(ShadowParam& param)
 
 		param.mPosition.y               = mPosition.y + 10.0f;
 		param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
-		if (isEvent(1, EB2_IsEarthquake)) {
+		if (isEvent(1, EB2_Earthquake)) {
 			param.mBoundingSphere.mRadius = 75.0f;
 		} else {
 			param.mBoundingSphere.mRadius = 50.0f;
@@ -160,10 +160,10 @@ void Obj::eatAttackPikmin()
 void Obj::resetUnderGround()
 {
 	mBuried = false;
-	disableEvent(0, EB_IsImmuneBitter);
-	disableEvent(0, EB_IsEnemyNotBitter);
+	disableEvent(0, EB_BitterImmune);
+	disableEvent(0, EB_NoInterrupt);
 	hardConstraintOff();
-	disableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_Invulnerable);
 	setAtari(true);
 }
 
@@ -179,9 +179,9 @@ void Obj::setUnderGround()
 	                            parms->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
 	mBuried = true;
-	enableEvent(0, EB_IsImmuneBitter);
+	enableEvent(0, EB_BitterImmune);
 	hardConstraintOn();
-	enableEvent(0, EB_IsVulnerable);
+	enableEvent(0, EB_Invulnerable);
 	setAtari(false);
 }
 

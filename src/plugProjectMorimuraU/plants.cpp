@@ -38,16 +38,16 @@ void Plants::Obj::birth(Vector3f& position, f32 faceDir) { EnemyBase::birth(posi
 void Plants::Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_IsDamageAnimAllowed);
-	disableEvent(0, EB_IsDeathEffectEnabled);
-	enableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DamageAnimEnabled);
+	disableEvent(0, EB_DeathEffectEnabled);
+	enableEvent(0, EB_Invulnerable);
 
 	show();
 	setEmotionNone();
-	disableEvent(0, EB_IsPlatformCollsAllowed);
+	disableEvent(0, EB_PlatformCollEnabled);
 
-	enableEvent(0, EB_IsImmuneBitter);
+	enableEvent(0, EB_BitterImmune);
 	hardConstraintOn();
 	_2BC = 0;
 	_2BD = 0;

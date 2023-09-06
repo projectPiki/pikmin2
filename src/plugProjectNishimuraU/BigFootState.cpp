@@ -35,7 +35,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->forceFinishIKMotion();
 	bigfoot->startDeadEffect();
 	bigfoot->deathProcedure();
-	bigfoot->disableEvent(0, EB_IsCullable);
+	bigfoot->disableEvent(0, EB_Cullable);
 
 	bigfoot->mTargetVelocity = 0.0f;
 	bigfoot->setEmotionCaution();
@@ -84,9 +84,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bigfoot        = static_cast<Obj*>(enemy);
 	bigfoot->mNextState = BIGFOOT_NULL;
-	bigfoot->enableEvent(0, EB_IsImmuneBitter);
-	bigfoot->disableEvent(0, EB_IsAnimating);
-	bigfoot->enableEvent(0, EB_IsModelHidden);
+	bigfoot->enableEvent(0, EB_BitterImmune);
+	bigfoot->disableEvent(0, EB_Animating);
+	bigfoot->enableEvent(0, EB_ModelHidden);
 	bigfoot->mTargetCreature = nullptr;
 
 	bigfoot->mTargetVelocity = Vector3f(0.0f);
@@ -135,10 +135,10 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->mNextState   = BIGFOOT_NULL;
 	bigfoot->mShadowScale = 0.001f;
 
-	bigfoot->enableEvent(0, EB_IsImmuneBitter);
-	bigfoot->disableEvent(0, EB_IsCullable);
-	bigfoot->enableEvent(0, EB_IsAnimating);
-	bigfoot->disableEvent(0, EB_IsModelHidden);
+	bigfoot->enableEvent(0, EB_BitterImmune);
+	bigfoot->disableEvent(0, EB_Cullable);
+	bigfoot->enableEvent(0, EB_Animating);
+	bigfoot->disableEvent(0, EB_ModelHidden);
 
 	bigfoot->setEmotionExcitement();
 	bigfoot->mTargetCreature = nullptr;
@@ -162,7 +162,7 @@ void StateLand::exec(EnemyBase* enemy)
 
 	if (bigfoot->mCurAnim->mIsPlaying) {
 		if ((u32)bigfoot->mCurAnim->mType == KEYEVENT_2) {
-			bigfoot->disableEvent(0, EB_IsImmuneBitter);
+			bigfoot->disableEvent(0, EB_BitterImmune);
 
 			for (int i = 0; i < 4; i++) {
 				bigfoot->createOnGroundEffect(i, bigfoot->mWaterBox);
@@ -194,7 +194,7 @@ void StateLand::cleanup(EnemyBase* enemy)
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->startProgramedIK();
 	bigfoot->setBossAppearBGM();
-	bigfoot->enableEvent(0, EB_IsCullable);
+	bigfoot->enableEvent(0, EB_Cullable);
 	bigfoot->mShadowScale = 1.0f;
 	shadowMgr->setForceVisible(bigfoot, false);
 }

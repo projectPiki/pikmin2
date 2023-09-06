@@ -868,7 +868,7 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		addDamage(damage * 0.1f, 1.0f);
 		return true;
 	}

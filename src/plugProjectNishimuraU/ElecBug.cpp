@@ -32,7 +32,7 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	enableEvent(0, EB_IsVulnerable);
+	enableEvent(0, EB_Invulnerable);
 	mInactiveTimer = randWeightFloat(10.0f);
 	mStateTimer    = 0.0f;
 	mPartner       = nullptr;
@@ -463,7 +463,7 @@ lbl_8027B458:
 void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
-	disableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_Invulnerable);
 	finishPartnerAndEffect();
 }
 
@@ -475,7 +475,7 @@ void Obj::doStartStoneState()
 void Obj::doFinishStoneState()
 {
 	if (getStateID() != ELECBUG_Reverse) {
-		enableEvent(0, EB_IsVulnerable);
+		enableEvent(0, EB_Invulnerable);
 	}
 }
 

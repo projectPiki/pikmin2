@@ -51,6 +51,15 @@ struct BitFlagArray {
 		}
 	}
 
+	inline void clear()
+	{
+		for (int i = 0; i < I; i++) {
+			for (int j = 0; j < sizeof(T); j++) {
+				mFlags[i].byteView[j] = 0;
+			}
+		}
+	}
+
 	BitFlag<T> mFlags[I]; // _00
 };
 

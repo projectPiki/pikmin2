@@ -37,7 +37,7 @@ void BombSarai::Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
-		enableEvent(0, EB_IsVulnerable);
+		enableEvent(0, EB_Invulnerable);
 	}
 
 	mNextState      = BOMBSARAI_NULL;

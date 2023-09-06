@@ -112,7 +112,7 @@ void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 	if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_Hana) {
 		enemy->hardConstraintOn();
 	} else {
-		enemy->enableEvent(0, EB_Constraint);
+		enemy->enableEvent(0, EB_Constrained);
 	}
 
 	OBJ(enemy)->setUnderGround();
@@ -128,7 +128,7 @@ void StateSleep::exec(EnemyBase* enemy)
 {
 	if (enemy->getCurrAnimIndex() == 6) {
 		if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
-			if (enemy->isEvent(0, EB_IsTakingDamage)) {
+			if (enemy->isEvent(0, EB_TakingDamage)) {
 				transit(enemy, CHAPPY_Turn, nullptr);
 			} else {
 				enemy->startMotion(4, nullptr);
@@ -2076,7 +2076,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setEmotionExcitement();
 	enemy->startMotion(2, nullptr);
 	OBJ(enemy)->setAnimationSpeed(40.0f);
-	enemy->disableEvent(0, EB_IsFlickEnabled);
+	enemy->disableEvent(0, EB_FlickEnabled);
 	OBJ(enemy)->createFlickEffect();
 }
 
@@ -2280,7 +2280,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
 {
 	enemy->setEmotionCaution();
 	OBJ(enemy)->setAnimationSpeed(30.0f);
-	enemy->enableEvent(0, EB_IsFlickEnabled);
+	enemy->enableEvent(0, EB_FlickEnabled);
 }
 
 /*

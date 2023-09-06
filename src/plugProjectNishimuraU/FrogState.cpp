@@ -33,8 +33,8 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->disableEvent(0, EB_IsCullable);
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Cullable);
+	enemy->disableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->deathProcedure();
 	enemy->startMotion(0, nullptr);
@@ -754,7 +754,7 @@ void StateTurn::cleanup(EnemyBase* enemy)
 void StateJump::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* frog = OBJ(enemy);
-	frog->disableEvent(0, EB_IsCullable);
+	frog->disableEvent(0, EB_Cullable);
 	frog->mTargetVelocity = Vector3f(0.0f);
 	frog->setEmotionExcitement();
 
@@ -806,9 +806,9 @@ void StateJump::exec(EnemyBase* enemy)
  */
 void StateJump::cleanup(EnemyBase* enemy)
 {
-	enemy->enableEvent(0, EB_IsCullable);
+	enemy->enableEvent(0, EB_Cullable);
 	enemy->setEmotionCaution();
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Untargetable);
 }
 
 /*
@@ -818,8 +818,8 @@ void StateJump::cleanup(EnemyBase* enemy)
  */
 void StateJumpWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->disableEvent(0, EB_IsCullable);
-	enemy->enableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Cullable);
+	enemy->enableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(6, nullptr);
 }
@@ -848,8 +848,8 @@ void StateJumpWait::exec(EnemyBase* enemy)
  */
 void StateJumpWait::cleanup(EnemyBase* enemy)
 {
-	enemy->enableEvent(0, EB_IsCullable);
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->enableEvent(0, EB_Cullable);
+	enemy->disableEvent(0, EB_Untargetable);
 	enemy->setEmotionCaution();
 }
 
@@ -862,9 +862,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* frog        = OBJ(enemy);
 	frog->mIsFalling = true;
-	frog->disableEvent(0, EB_IsCullable);
+	frog->disableEvent(0, EB_Cullable);
 	frog->mTargetVelocity = Vector3f(0.0f);
-	frog->disableEvent(0, EB_IsFlying);
+	frog->disableEvent(0, EB_Untargetable);
 	frog->setEmotionExcitement();
 	frog->startMotion(7, nullptr);
 	frog->mCurrentVelocity = Vector3f(0.0f, -CG_PROPERPARMS(frog).mFallSpeed.mValue, 0.0f);
@@ -891,7 +891,7 @@ void StateFall::cleanup(EnemyBase* enemy)
 {
 	Obj* frog        = OBJ(enemy);
 	frog->mIsFalling = false;
-	frog->enableEvent(0, EB_IsCullable);
+	frog->enableEvent(0, EB_Cullable);
 	frog->setEmotionCaution();
 }
 
@@ -906,7 +906,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->mIsFalling = false;
 	frog->pressOnGround();
 	frog->_2C4 = 0.0f;
-	frog->disableEvent(0, EB_IsCullable);
+	frog->disableEvent(0, EB_Cullable);
 	frog->setEmotionExcitement();
 	frog->mTargetVelocity = Vector3f(0.0f);
 	frog->startMotion(8, nullptr);
@@ -948,7 +948,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* frog = OBJ(enemy);
 	frog->finishJumpEffect();
-	frog->enableEvent(0, EB_IsCullable);
+	frog->enableEvent(0, EB_Cullable);
 	frog->setEmotionCaution();
 }
 
@@ -1202,7 +1202,7 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 	frog->mNextState = FROG_NULL;
 	frog->mIsInAir   = false;
 	frog->mAirTimer  = 0.0f;
-	frog->disableEvent(0, EB_IsEnemyNotBitter);
+	frog->disableEvent(0, EB_NoInterrupt);
 	frog->mTargetVelocity = Vector3f(0.0f);
 	frog->startMotion(3, nullptr);
 }
@@ -1246,10 +1246,10 @@ void StateGoHome::exec(EnemyBase* enemy)
 	if (frog->mCurAnim->mIsPlaying) {
 		if (frog->mCurAnim->mType == KEYEVENT_2) {
 			frog->mIsInAir = true;
-			frog->enableEvent(0, EB_IsEnemyNotBitter);
+			frog->enableEvent(0, EB_NoInterrupt);
 		} else if (frog->mCurAnim->mType == KEYEVENT_3) {
 			frog->mIsInAir = false;
-			frog->disableEvent(0, EB_IsEnemyNotBitter);
+			frog->disableEvent(0, EB_NoInterrupt);
 			frog->createDownEffect(0.5f);
 		} else if (frog->mCurAnim->mType == KEYEVENT_END) {
 			transit(frog, frog->mNextState, nullptr);
@@ -1265,7 +1265,7 @@ void StateGoHome::exec(EnemyBase* enemy)
 void StateGoHome::cleanup(EnemyBase* enemy)
 {
 	Obj* frog = OBJ(enemy);
-	frog->disableEvent(0, EB_IsEnemyNotBitter);
+	frog->disableEvent(0, EB_NoInterrupt);
 	if (frog->mNextState == FROG_Jump) {
 		Vector3f pos     = frog->getPosition();
 		Vector3f homePos = frog->mHomePosition;

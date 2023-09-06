@@ -27,14 +27,14 @@ void Obj::onStartCapture()
 		onSetPosition(position);
 		mCurrentVelocity = Vector3f(0.0f);
 		mTargetVelocity  = Vector3f(0.0f);
-		enableEvent(0, EB_Constraint);
+		enableEvent(0, EB_Constrained);
 		if (gameSystem && gameSystem->isVersusMode()) {
-			disableEvent(0, EB_IsVulnerable);
+			disableEvent(0, EB_Invulnerable);
 		} else {
-			enableEvent(0, EB_IsVulnerable);
+			enableEvent(0, EB_Invulnerable);
 		}
 
-		disableEvent(0, EB_IsCullable);
+		disableEvent(0, EB_Cullable);
 	}
 }
 
@@ -46,7 +46,7 @@ void Obj::onStartCapture()
 void Obj::onEndCapture()
 {
 	constraintOff();
-	disableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_Invulnerable);
 	_2BC           = 1;
 	mCaptureMatrix = nullptr;
 }
@@ -66,9 +66,9 @@ void Obj::birth(Vector3f& position, f32 p1) { EnemyBase::birth(position, p1); }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_IsDamageAnimAllowed);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DamageAnimEnabled);
+	disableEvent(0, EB_DeathEffectEnabled);
 
 	_2BC     = 0;
 	_2BD     = 0;
@@ -80,7 +80,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	mFsm->start(this, BOMB_Wait, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
-		enableEvent(0, EB_Constraint);
+		enableEvent(0, EB_Constrained);
 		if (mapMgr) {
 			Vector3f position = mPosition;
 			position.y += 20.0f;
@@ -213,7 +213,7 @@ void Obj::doAnimationCullingOff()
 void Obj::doAnimationCullingOn()
 {
 	if (isAnimStart()) {
-		disableEvent(0, EB_IsCullable);
+		disableEvent(0, EB_Cullable);
 	} else {
 		EnemyBase::doAnimationCullingOn();
 	}
@@ -354,7 +354,7 @@ void Obj::doFinishStoneState()
 		stopMotion();
 	}
 
-	disableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_Invulnerable);
 	mTargetVelocity = Vector3f(0.0f);
 }
 
@@ -407,7 +407,7 @@ void Obj::doEndMovie() { mEfxLight->endDemoDrawOn(); }
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (!_2BC || mBounceTriangle) {
-		if (isEvent(0, EB_IsBittered)) {
+		if (isEvent(0, EB_Bittered)) {
 			_2C4++;
 			if (_2C4 > 4) {
 				kill(nullptr);
@@ -576,7 +576,7 @@ void Obj::collisionCallback(CollEvent& collEvent)
 void Obj::forceBomb()
 {
 	if (getStateID() == BOMB_Wait) {
-		disableEvent(0, EB_IsVulnerable);
+		disableEvent(0, EB_Invulnerable);
 		mFsm->transit(this, BOMB_Bomb, nullptr);
 	}
 }
@@ -657,7 +657,7 @@ bool Obj::isAnimStart()
 bool Obj::isUnderground()
 {
 	bool result = false;
-	if (!isEvent(0, EB_IsBittered) && !isStopMotion()) {
+	if (!isEvent(0, EB_Bittered) && !isStopMotion()) {
 		result = true;
 	}
 

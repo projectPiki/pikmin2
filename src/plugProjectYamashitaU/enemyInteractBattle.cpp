@@ -55,24 +55,24 @@ bool InteractAttack::actEnemy(EnemyBase* enemy)
 {
 	bool isSuccess = false;
 
-	if (!enemy->isEvent(0, EB_IsVulnerable)) {
+	if (!enemy->isEvent(0, EB_Invulnerable)) {
 		bool flag = false;
 		if (mCreature->isNavi()) {
 			if (static_cast<Navi*>(mCreature)->mNaviIndex == 0) {
-				if (!enemy->isEvent(0, EB_IsNavi0Attacked)) {
+				if (!enemy->isEvent(0, EB_AttackingNavi0)) {
 					flag = true;
-					enemy->enableEvent(0, EB_IsNavi0Attacked);
+					enemy->enableEvent(0, EB_AttackingNavi0);
 				}
-			} else if (!enemy->isEvent(0, EB_IsNavi1Attacked)) {
+			} else if (!enemy->isEvent(0, EB_AttackingNavi1)) {
 				flag = true;
-				enemy->enableEvent(0, EB_IsNavi1Attacked);
+				enemy->enableEvent(0, EB_AttackingNavi1);
 			}
 		} else {
 			flag = true;
 		}
 
 		if (flag) {
-			if (enemy->isEvent(0, EB_IsBittered)) {
+			if (enemy->isEvent(0, EB_Bittered)) {
 				mDamage *= enemy->getDamageCoeStoneState();
 			}
 

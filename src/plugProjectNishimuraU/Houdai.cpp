@@ -63,9 +63,9 @@ void Obj::onInit(CreatureInitArg* initArg)
 	// TODO: Finish
 	EnemyBase::onInit(initArg);
 	EnemyBase::hardConstraintOn();
-	disableEvent(0, EB_IsCullable);
-	disableEvent(0, EB_IsPlatformCollsAllowed);
-	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_Cullable);
+	disableEvent(0, EB_PlatformCollEnabled);
+	disableEvent(0, EB_LeaveCarcass);
 	mStateTimer        = 0.0f;
 	mStateDuration     = 0.0f;
 	mShotGunBurstTimer = 0.0f;
@@ -595,7 +595,7 @@ void Obj::setShotGunEmitKeepTimerOff()
  */
 void Obj::updateShotGunTimer()
 {
-	if (isEvent(0, EB_IsTakingDamage)) {
+	if (isEvent(0, EB_TakingDamage)) {
 		mShotGunBurstTimer = 0.0f;
 	} else {
 		mShotGunBurstTimer += sys->mDeltaTime;

@@ -32,16 +32,16 @@ void Obj::birth(Vector3f& position, f32 p1) { EnemyBase::birth(position, p1); }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_IsDamageAnimAllowed);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DamageAnimEnabled);
+	disableEvent(0, EB_DeathEffectEnabled);
 	setEmotionNone();
-	enableEvent(0, EB_IsImmuneBitter);
+	enableEvent(0, EB_BitterImmune);
 	mIsFalling = false;
 	mFsm->start(this, 0, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
-		enableEvent(0, EB_Constraint);
+		enableEvent(0, EB_Constrained);
 		if (mapMgr) {
 			Vector3f position = mPosition;
 			position.y += 20.0f;
@@ -219,9 +219,9 @@ void Obj::onStartCapture()
 		onSetPosition(position);
 		mCurrentVelocity = Vector3f(0.0f);
 		mTargetVelocity  = Vector3f(0.0f);
-		enableEvent(0, EB_Constraint);
-		enableEvent(0, EB_IsVulnerable);
-		disableEvent(0, EB_IsCullable);
+		enableEvent(0, EB_Constrained);
+		enableEvent(0, EB_Invulnerable);
+		disableEvent(0, EB_Cullable);
 	}
 }
 
@@ -234,7 +234,7 @@ void Obj::onEndCapture()
 {
 	constraintOff();
 	mIsFalling = true;
-	enableEvent(0, EB_IsCullable);
+	enableEvent(0, EB_Cullable);
 }
 
 /*

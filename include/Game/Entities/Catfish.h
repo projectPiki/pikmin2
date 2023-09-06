@@ -30,7 +30,7 @@ struct Obj : public KochappyBase::Obj {
 	virtual bool pressCallBack(Creature*, f32, CollPart*);                      // _27C
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part); // _284
 	virtual void resetEnemyNonStone();                                          // _300
-	virtual void setEnemyNonStone() { enableEvent(0, EB_IsEnemyNotBitter); }    // _304 (weak)
+	virtual void setEnemyNonStone() { enableEvent(0, EB_NoInterrupt); }         // _304 (weak)
 	//////////////// VTABLE END
 
 	void createDownEffect();

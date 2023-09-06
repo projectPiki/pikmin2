@@ -29,10 +29,10 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hiba = static_cast<Obj*>(enemy);
 
-	hiba->enableEvent(0, EB_IsFlying);
+	hiba->enableEvent(0, EB_Untargetable);
 	hiba->disableEvent(0, EB_LifegaugeVisible);
-	hiba->enableEvent(0, EB_IsVulnerable);
-	hiba->disableEvent(0, EB_IsDamageAnimAllowed);
+	hiba->enableEvent(0, EB_Invulnerable);
+	hiba->disableEvent(0, EB_DamageAnimEnabled);
 
 	hiba->mIsAlive = false;
 	hiba->generatorKill();

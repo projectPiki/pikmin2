@@ -138,7 +138,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->mNextState  = BIGTREASURE_NULL;
 	titan->mStateTimer = 0.0f;
 	titan->setAttackMaterialColor(false);
-	titan->enableEvent(0, EB_IsImmuneBitter);
+	titan->enableEvent(0, EB_BitterImmune);
 	titan->mTargetVelocity = Vector3f(0.0f);
 	titan->mTargetCreature = nullptr;
 	titan->startBlendAnimation(0, false);
@@ -290,7 +290,7 @@ void StateLand::exec(EnemyBase* enemy)
 void StateLand::cleanup(EnemyBase* enemy)
 {
 	Obj* titan = static_cast<Obj*>(enemy);
-	titan->disableEvent(0, EB_IsImmuneBitter);
+	titan->disableEvent(0, EB_BitterImmune);
 	titan->startProgramedIK();
 }
 

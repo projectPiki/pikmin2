@@ -84,8 +84,8 @@ struct CreatureInitArg {
 };
 
 struct CreatureKillArg {
-	inline CreatureKillArg(int p1)
-	    : _04(p1)
+	inline CreatureKillArg(int flags)
+	    : mFlags(flags)
 	{
 	}
 
@@ -94,9 +94,20 @@ struct CreatureKillArg {
 		return "CreatureKillArg";
 	}
 
+	inline void setFlag(u32 flag) { mFlags |= flag; }
+	inline void resetFlag(u32 flag) { mFlags &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags & flag; }
+
 	// _00 VTBL
-	int _04; // _04
+	int mFlags; // _04
 };
+
+#define CKILL_NULL  (0)
+#define CKILL_Unk1  (0x1)
+#define CKILL_Unk29 (0x10000000)
+#define CKILL_Unk30 (0x20000000)
+#define CKILL_Unk31 (0x40000000)
+#define CKILL_Unk32 (0x80000000)
 
 #define CREATURE_HELL_ALIVE    (0)
 #define CREATURE_HELL_BELOWMAP (1)

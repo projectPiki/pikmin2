@@ -74,8 +74,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	EnemyBase::onInit(initArg);
 	hardConstraintOn();
 
-	disableEvent(0, EB_IsPlatformCollsAllowed);
-	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_PlatformCollEnabled);
+	disableEvent(0, EB_LeaveCarcass);
 
 	mStateTimer    = 0.0f;
 	mStateDuration = 0.0f;
@@ -222,7 +222,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 void Obj::collisionCallback(CollEvent& event)
 {
-	if (!isEvent(0, EB_IsBittered)) {
+	if (!isEvent(0, EB_Bittered)) {
 		Creature* creature = event.mCollidingCreature;
 		if (creature && event.mCollisionObj && creature->isAlive() && creature->mBounceTriangle) {
 			if (creature->isNavi() || creature->isPiki()) {

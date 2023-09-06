@@ -82,8 +82,8 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* houdai        = static_cast<Obj*>(enemy);
 	houdai->mNextState = HOUDAI_NULL;
-	houdai->enableEvent(0, EB_IsImmuneBitter);
-	houdai->disableEvent(0, EB_IsAnimating);
+	houdai->enableEvent(0, EB_BitterImmune);
+	houdai->disableEvent(0, EB_Animating);
 	houdai->mTargetCreature = nullptr;
 	houdai->mTargetVelocity = Vector3f(0.0f);
 	houdai->startMotion(1, nullptr);
@@ -98,7 +98,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
-	if (!houdai->isEvent(0, EB_IsTakingDamage)) {
+	if (!houdai->isEvent(0, EB_TakingDamage)) {
 		bool isTarget;
 		f32 detectRadius = static_cast<Parms*>(houdai->mParms)->mGeneral.mPrivateRadius.mValue;
 		if (EnemyFunc::isThereOlimar(houdai, detectRadius, nullptr)) {
@@ -133,8 +133,8 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* houdai        = static_cast<Obj*>(enemy);
 	houdai->mNextState = HOUDAI_NULL;
-	houdai->enableEvent(0, EB_IsImmuneBitter);
-	houdai->enableEvent(0, EB_IsAnimating);
+	houdai->enableEvent(0, EB_BitterImmune);
+	houdai->enableEvent(0, EB_Animating);
 	houdai->setEmotionExcitement();
 	houdai->mTargetCreature = nullptr;
 	houdai->mTargetVelocity = Vector3f(0.0f);
@@ -225,7 +225,7 @@ void StateLand::exec(EnemyBase* enemy)
 void StateLand::cleanup(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
-	houdai->disableEvent(0, EB_IsImmuneBitter);
+	houdai->disableEvent(0, EB_BitterImmune);
 	houdai->startProgramedIK();
 	houdai->startSteamEffect(true);
 	houdai->setBossAppearBGM();

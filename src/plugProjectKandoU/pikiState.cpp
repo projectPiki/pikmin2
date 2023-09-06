@@ -3329,7 +3329,7 @@ bool PikiFallMeckState::becomePikihead(Piki* piki)
 			sprout->init(&initArg);
 			sprout->setPosition(pikiPos, false);
 
-			CreatureKillArg killArg(1);
+			CreatureKillArg killArg(CKILL_Unk1);
 
 			piki->kill(&killArg);
 
@@ -3870,7 +3870,7 @@ void PikiSuikomiState::execStomach(Piki* piki)
 			JUT_PANICLINE(2680, "not teki (%s)!", mCreature->getCreatureName());
 		}
 		EnemyBase* enemy = static_cast<EnemyBase*>(mCreature);
-		if (!enemy->isEvent(0, EB_IsBittered) && !(enemy->mHealth <= 0.0f)) {
+		if (!enemy->isEvent(0, EB_Bittered) && !(enemy->mHealth <= 0.0f)) {
 			_20 -= sys->mDeltaTime;
 		}
 	}

@@ -37,7 +37,7 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(0, nullptr);
 }
@@ -70,7 +70,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mHealth = 0.0f;
 	enemy->deathProcedure();
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(1, nullptr);
 }
@@ -104,13 +104,13 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* uji = OBJ(enemy);
 	uji->resetAppearCheck();
 	uji->setAtari(false);
-	uji->enableEvent(0, EB_IsVulnerable);
+	uji->enableEvent(0, EB_Invulnerable);
 	uji->mIsUnderground = true;
-	uji->enableEvent(0, EB_IsImmuneBitter);
+	uji->enableEvent(0, EB_BitterImmune);
 	uji->hardConstraintOn();
 	uji->disableEvent(0, EB_LifegaugeVisible);
-	uji->disableEvent(0, EB_IsAnimating);
-	uji->enableEvent(0, EB_IsModelHidden);
+	uji->disableEvent(0, EB_Animating);
+	uji->enableEvent(0, EB_ModelHidden);
 	uji->mTargetVelocity = Vector3f(0.0f);
 	uji->startMotion(2, nullptr);
 	uji->stopMotion();
@@ -143,12 +143,12 @@ void StateStay::cleanup(EnemyBase* enemy)
 {
 	Obj* uji = OBJ(enemy);
 	uji->setAtari(true);
-	uji->disableEvent(0, EB_IsVulnerable);
+	uji->disableEvent(0, EB_Invulnerable);
 	uji->mIsUnderground = false;
-	uji->disableEvent(0, EB_IsImmuneBitter);
+	uji->disableEvent(0, EB_BitterImmune);
 	uji->hardConstraintOff();
-	uji->enableEvent(0, EB_IsAnimating);
-	uji->disableEvent(0, EB_IsModelHidden);
+	uji->enableEvent(0, EB_Animating);
+	uji->disableEvent(0, EB_ModelHidden);
 }
 
 /*
@@ -161,7 +161,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* uji = OBJ(enemy);
 	uji->lifeIncrement();
 	uji->hardConstraintOn();
-	uji->enableEvent(0, EB_IsEnemyNotBitter);
+	uji->enableEvent(0, EB_NoInterrupt);
 	uji->enableEvent(0, EB_LifegaugeVisible);
 	uji->mTargetVelocity = Vector3f(0.0f);
 	uji->setEmotionExcitement();
@@ -195,7 +195,7 @@ void StateAppear::exec(EnemyBase* enemy)
 void StateAppear::cleanup(EnemyBase* enemy)
 {
 	enemy->hardConstraintOff();
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 }
 
 /*
@@ -207,7 +207,7 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* uji = OBJ(enemy);
 	uji->hardConstraintOn();
-	uji->enableEvent(0, EB_IsImmuneBitter);
+	uji->enableEvent(0, EB_BitterImmune);
 	uji->mTargetVelocity = Vector3f(0.0f);
 	uji->setEmotionCaution();
 	uji->startMotion(3, nullptr);
@@ -234,7 +234,7 @@ void StateDive::exec(EnemyBase* enemy)
 void StateDive::cleanup(EnemyBase* enemy)
 {
 	enemy->hardConstraintOff();
-	enemy->disableEvent(0, EB_IsImmuneBitter);
+	enemy->disableEvent(0, EB_BitterImmune);
 }
 
 /*
@@ -978,7 +978,7 @@ void StateAttack1::cleanup(EnemyBase* enemy) { }
 void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* uji = OBJ(enemy);
-	uji->disableEvent(0, EB_IsEnemyNotBitter);
+	uji->disableEvent(0, EB_NoInterrupt);
 	uji->mTargetVelocity = Vector3f(0.0f);
 	uji->startMotion(6, nullptr);
 }
@@ -995,10 +995,10 @@ void StateAttack2::exec(EnemyBase* enemy)
 
 	if (uji->mCurAnim->mIsPlaying) {
 		if (uji->mCurAnim->mType == KEYEVENT_2) {
-			uji->enableEvent(0, EB_IsEnemyNotBitter);
+			uji->enableEvent(0, EB_NoInterrupt);
 
 		} else if (uji->mCurAnim->mType == KEYEVENT_3) {
-			uji->disableEvent(0, EB_IsEnemyNotBitter);
+			uji->disableEvent(0, EB_NoInterrupt);
 
 		} else if (uji->mCurAnim->mType == KEYEVENT_4) {
 			EnemyFunc::attackNavi(uji, CG_PARMS(uji)->mGeneral.mAttackRadius.mValue, CG_PARMS(uji)->mGeneral.mAttackHitAngle.mValue,
@@ -1035,7 +1035,7 @@ void StateAttack2::exec(EnemyBase* enemy)
  * Address:	8025CADC
  * Size:	000010
  */
-void StateAttack2::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemyNotBitter); }
+void StateAttack2::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
 /*
  * --INFO--

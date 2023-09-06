@@ -449,7 +449,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(13, nullptr);
 	enemy->hardConstraintOn();
-	enemy->enableEvent(0, EB_IsEnemyNotBitter);
+	enemy->enableEvent(0, EB_NoInterrupt);
 }
 
 /*
@@ -468,7 +468,7 @@ void StateFall::exec(EnemyBase* enemy)
 
 		} else if ((u32)enemy->mCurAnim->mType == KEYEVENT_END) {
 			if (static_cast<Obj*>(enemy)->isFallEnd()) {
-				enemy->disableEvent(0, EB_IsEnemyNotBitter);
+				enemy->disableEvent(0, EB_NoInterrupt);
 				transit(enemy, WRAITH_Recover, nullptr);
 			}
 		}

@@ -38,9 +38,9 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mHealth = 0.0f;
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Untargetable);
 	enemy->deathProcedure();
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(0, nullptr);
 }
@@ -72,9 +72,9 @@ void StateDead::cleanup(EnemyBase* enemy) { }
 void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mHealth = 0.0f;
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Untargetable);
 	enemy->deathProcedure();
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(1, nullptr);
 }
@@ -108,13 +108,13 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* tobi = OBJ(enemy);
 	tobi->resetAppearCheck();
 	tobi->setAtari(false);
-	tobi->enableEvent(0, EB_IsVulnerable);
+	tobi->enableEvent(0, EB_Invulnerable);
 	tobi->mIsUnderground = true;
-	tobi->enableEvent(0, EB_IsImmuneBitter);
+	tobi->enableEvent(0, EB_BitterImmune);
 	tobi->hardConstraintOn();
 	tobi->disableEvent(0, EB_LifegaugeVisible);
-	tobi->disableEvent(0, EB_IsAnimating);
-	tobi->enableEvent(0, EB_IsModelHidden);
+	tobi->disableEvent(0, EB_Animating);
+	tobi->enableEvent(0, EB_ModelHidden);
 	tobi->mTargetVelocity = Vector3f(0.0f);
 	tobi->startMotion(2, nullptr);
 	tobi->stopMotion();
@@ -147,12 +147,12 @@ void StateStay::cleanup(EnemyBase* enemy)
 {
 	Obj* tobi = OBJ(enemy);
 	tobi->setAtari(true);
-	tobi->disableEvent(0, EB_IsVulnerable);
+	tobi->disableEvent(0, EB_Invulnerable);
 	tobi->mIsUnderground = false;
-	tobi->disableEvent(0, EB_IsImmuneBitter);
+	tobi->disableEvent(0, EB_BitterImmune);
 	tobi->hardConstraintOff();
-	tobi->enableEvent(0, EB_IsAnimating);
-	tobi->disableEvent(0, EB_IsModelHidden);
+	tobi->enableEvent(0, EB_Animating);
+	tobi->disableEvent(0, EB_ModelHidden);
 }
 
 /*
@@ -165,7 +165,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* tobi = OBJ(enemy);
 	tobi->lifeIncrement();
 	tobi->hardConstraintOn();
-	tobi->enableEvent(0, EB_IsEnemyNotBitter);
+	tobi->enableEvent(0, EB_NoInterrupt);
 	tobi->enableEvent(0, EB_LifegaugeVisible);
 	tobi->mTargetVelocity = Vector3f(0.0f);
 	tobi->setEmotionExcitement();
@@ -199,7 +199,7 @@ void StateAppear::exec(EnemyBase* enemy)
 void StateAppear::cleanup(EnemyBase* enemy)
 {
 	enemy->hardConstraintOff();
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 }
 
 /*
@@ -211,7 +211,7 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tobi = OBJ(enemy);
 	tobi->hardConstraintOn();
-	tobi->enableEvent(0, EB_IsImmuneBitter);
+	tobi->enableEvent(0, EB_BitterImmune);
 	tobi->mTargetVelocity = Vector3f(0.0f);
 	tobi->setEmotionCaution();
 	tobi->startMotion(3, nullptr);
@@ -238,7 +238,7 @@ void StateDive::exec(EnemyBase* enemy)
 void StateDive::cleanup(EnemyBase* enemy)
 {
 	enemy->hardConstraintOff();
-	enemy->disableEvent(0, EB_IsImmuneBitter);
+	enemy->disableEvent(0, EB_BitterImmune);
 }
 
 /*
@@ -863,8 +863,8 @@ void StateFly::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* tobi             = OBJ(enemy);
 	tobi->mTargetPosition = Vector3f(tobi->getPosition());
 	tobi->randomFlyingTarget();
-	tobi->enableEvent(0, EB_IsVulnerable);
-	tobi->enableEvent(0, EB_IsFlying);
+	tobi->enableEvent(0, EB_Invulnerable);
+	tobi->enableEvent(0, EB_Untargetable);
 	tobi->mTargetVelocity = Vector3f(0.0f);
 	tobi->startMotion(5, nullptr);
 }
@@ -883,7 +883,7 @@ void StateFly::exec(EnemyBase* enemy)
 	                        CG_PARMS(tobi)->mGeneral.mRotationalSpeed.mValue);
 
 	if (tobi->mHealth / CG_PARMS(tobi)->mGeneral.mHealth.mValue > CG_PROPERPARMS(tobi).mFp02.mValue) {
-		tobi->disableEvent(0, EB_IsFlying);
+		tobi->disableEvent(0, EB_Untargetable);
 		tobi->finishMotion();
 
 		Vector3f vel = tobi->getVelocity();
@@ -903,8 +903,8 @@ void StateFly::exec(EnemyBase* enemy)
  */
 void StateFly::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(0, EB_IsFlying);
-	enemy->disableEvent(0, EB_IsVulnerable);
+	enemy->disableEvent(0, EB_Untargetable);
+	enemy->disableEvent(0, EB_Invulnerable);
 }
 
 /*
@@ -978,7 +978,7 @@ void StateAttack1::cleanup(EnemyBase* enemy) { }
 void StateAttack2::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tobi = OBJ(enemy);
-	tobi->disableEvent(0, EB_IsEnemyNotBitter);
+	tobi->disableEvent(0, EB_NoInterrupt);
 	tobi->mTargetVelocity = Vector3f(0.0f);
 	tobi->startMotion(7, nullptr);
 }
@@ -995,10 +995,10 @@ void StateAttack2::exec(EnemyBase* enemy)
 
 	if (tobi->mCurAnim->mIsPlaying) {
 		if (tobi->mCurAnim->mType == KEYEVENT_2) {
-			tobi->enableEvent(0, EB_IsEnemyNotBitter);
+			tobi->enableEvent(0, EB_NoInterrupt);
 
 		} else if (tobi->mCurAnim->mType == KEYEVENT_3) {
-			tobi->disableEvent(0, EB_IsEnemyNotBitter);
+			tobi->disableEvent(0, EB_NoInterrupt);
 
 		} else if (tobi->mCurAnim->mType == KEYEVENT_4) {
 			EnemyFunc::attackNavi(tobi, CG_PARMS(tobi)->mGeneral.mAttackRadius.mValue, CG_PARMS(tobi)->mGeneral.mAttackHitAngle.mValue,
@@ -1035,7 +1035,7 @@ void StateAttack2::exec(EnemyBase* enemy)
  * Address:	802691DC
  * Size:	000010
  */
-void StateAttack2::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemyNotBitter); }
+void StateAttack2::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
 /*
  * --INFO--

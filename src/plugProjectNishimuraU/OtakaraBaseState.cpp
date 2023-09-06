@@ -43,7 +43,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->deathProcedure();
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->startMotion(10, nullptr);
 }
 

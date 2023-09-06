@@ -37,7 +37,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 
-	enableEvent(0, EB_IsFlying);
+	enableEvent(0, EB_Untargetable);
 
 	_2C0 = 0.0f;
 	resetAttackableTimer(12800.0f);

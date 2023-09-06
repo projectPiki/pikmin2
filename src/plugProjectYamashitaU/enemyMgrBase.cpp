@@ -54,7 +54,7 @@ void EnemyMgrBase::startMovie()
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive)) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->startMovie();
 		}
 	}
@@ -69,7 +69,7 @@ void EnemyMgrBase::endMovie()
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive)) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->endMovie();
 		}
 	}
@@ -102,7 +102,7 @@ void EnemyMgrBase::doAnimation()
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 			sys->mTimers->_start("e-upd", true);
 			enemy->update();
 			sys->mTimers->_stop("e-upd");
@@ -123,7 +123,7 @@ void EnemyMgrBase::doEntry()
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 			enemy->doEntry();
 		}
 	}
@@ -138,7 +138,7 @@ void EnemyMgrBase::doSetView(int viewport)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive)) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->doSetView(viewport);
 		}
 	}
@@ -153,7 +153,7 @@ void EnemyMgrBase::doViewCalc()
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive)) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->doViewCalc();
 		}
 	}
@@ -171,7 +171,7 @@ void EnemyMgrBase::doSimulation(f32 arg)
 		if (enemy->mPellet) {
 			enemy->doSimulationCarcass(arg);
 		} else {
-			if (enemy->isEvent(0, EB_IsAlive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+			if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 				enemy->doSimulation(arg);
 			}
 		}
@@ -187,7 +187,7 @@ void EnemyMgrBase::doDirectDraw(Graphics& graphics)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 			enemy->doDirectDraw(graphics);
 		}
 	}
@@ -201,7 +201,7 @@ void EnemyMgrBase::doDirectDraw(Graphics& graphics)
 void* EnemyMgrBase::getNext(void* object)
 {
 	for (int i = (int)object + 1; i < mObjLimit; i++) {
-		if (getEnemy(i)->isEvent(0, EB_IsAlive)) {
+		if (getEnemy(i)->isEvent(0, EB_Alive)) {
 			return (void*)i;
 		}
 	}
@@ -260,12 +260,12 @@ EnemyBase* EnemyMgrBase::birth(EnemyBirthArg& arg)
  */
 void EnemyMgrBase::kill(EnemyBase* enemy)
 {
-	if (enemy->isEvent(0, EB_IsAlive)) {
+	if (enemy->isEvent(0, EB_Alive)) {
 		EnemyBase* currEnemy;
 		for (int i = 0; i < mObjLimit; i++) {
 			currEnemy = getEnemy(i);
 			if (currEnemy == enemy) {
-				currEnemy->disableEvent(0, EB_IsAlive);
+				currEnemy->disableEvent(0, EB_Alive);
 				mNumObjects--;
 				break;
 			}
@@ -290,7 +290,7 @@ void EnemyMgrBase::killAll(CreatureKillArg* arg)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive)) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->kill(arg);
 		}
 	}
@@ -636,7 +636,7 @@ void EnemyMgrBase::doAnimationAlwaysMovieActor()
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive)) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			sys->mTimers->_start("e-upd", true);
 			enemy->update();
 			sys->mTimers->_stop("e-upd");
@@ -657,7 +657,7 @@ void EnemyMgrBase::doEntryAlwaysMovieActor()
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive)) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->doEntry();
 		}
 	}
@@ -672,7 +672,7 @@ void EnemyMgrBase::doSimulationAlwaysMovieActor(f32 arg)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if ((enemy->isEvent(0, EB_IsAlive)) && (enemy->mPellet == nullptr)) {
+		if ((enemy->isEvent(0, EB_Alive)) && (enemy->mPellet == nullptr)) {
 			enemy->doSimulation(arg);
 		}
 	}
@@ -687,7 +687,7 @@ void EnemyMgrBase::doDirectDrawAlwaysMovieActor(Graphics& graphics)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->isEvent(0, EB_IsAlive)) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->doDirectDraw(graphics);
 		}
 	}

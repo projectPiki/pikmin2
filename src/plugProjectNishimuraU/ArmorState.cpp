@@ -39,7 +39,7 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(0, nullptr);
 }
@@ -79,7 +79,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->hardConstraintOn();
 	enemy->disableEvent(0, EB_LifegaugeVisible);
-	enemy->disableEvent(0, EB_IsAnimating);
+	enemy->disableEvent(0, EB_Animating);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(1, nullptr);
 	enemy->stopMotion();
@@ -113,7 +113,7 @@ void StateStay::exec(EnemyBase* enemy)
 void StateStay::cleanup(EnemyBase* enemy)
 {
 	enemy->hardConstraintOff();
-	enemy->enableEvent(0, EB_IsAnimating);
+	enemy->enableEvent(0, EB_Animating);
 }
 
 /*

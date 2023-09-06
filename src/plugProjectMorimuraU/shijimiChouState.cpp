@@ -43,7 +43,7 @@ StateWait::StateWait(int stateID)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->enableEvent(0, EB_IsFlying);
+	enemy->enableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
 	enemy->startMotion(2, nullptr);
@@ -105,7 +105,7 @@ void StateFly::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	static_cast<Obj*>(enemy)->setNextGoal();
 	static_cast<Obj*>(enemy)->mFlyTime = 0;
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	mFlyTimer = 0;
 }
 
@@ -160,7 +160,7 @@ StateFall::StateFall(int stateID)
 void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->hardConstraintOff();
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Untargetable);
 
 	if (CG_PARMS(OBJ(enemy))->_94C) {
 		f32 x = enemy->getTargetVelocity().x;
@@ -210,10 +210,10 @@ StateDead::StateDead(int stateID)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAlive(false);
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity  = Vector3f(0.0f);
 	enemy->mCurrentVelocity = Vector3f(0.0f);
-	enemy->enableEvent(0, EB_ToLeaveCarcass);
+	enemy->enableEvent(0, EB_LeaveCarcass);
 	enemy->deathProcedure();
 	enemy->startMotion(1, nullptr);
 	PSStartEnemyFatalHitSE(enemy, 0.0f);
@@ -258,7 +258,7 @@ StateLeave::StateLeave(int stateID)
 void StateLeave::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setEmotionCaution();
-	enemy->enableEvent(0, EB_IsCullable);
+	enemy->enableEvent(0, EB_Cullable);
 	OBJ(enemy)->leaveInit();
 }
 
@@ -295,7 +295,7 @@ void StateRest::init(EnemyBase* enemy, StateArg* stateArg)
 	_1E = false;
 
 	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
-		enemy->disableEvent(0, EB_IsCullable);
+		enemy->disableEvent(0, EB_Cullable);
 	}
 }
 

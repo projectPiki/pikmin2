@@ -108,7 +108,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setAtari(false);
 	enemy->setAlive(false);
 	enemy->mToFlick = 0.0f;
-	enemy->enableEvent(0, EB_IsImmuneBitter);
+	enemy->enableEvent(0, EB_BitterImmune);
 	enemy->mPosition                                  = enemy->mHomePosition;
 	OBJ(enemy)->_2E8                                  = 0;
 	enemy->mCollTree->getCollPart('body')->mSpecialID = '____';
@@ -117,7 +117,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	if (enemy->mHealth < 1.0f) {
 		enemy->mHealth += 5.0f;
 		enemy->mInstantDamage = 0.0f;
-		enemy->disableEvent(0, EB_IsTakingDamage);
+		enemy->disableEvent(0, EB_TakingDamage);
 	}
 
 	mAppearTimer = 0;
@@ -166,7 +166,7 @@ void StateAppear::exec(EnemyBase* enemy)
 					enemy->createDropEffect(dropPos, 0.53f * enemy->mScaleModifier);
 				}
 
-				enemy->disableEvent(0, EB_IsImmuneBitter);
+				enemy->disableEvent(0, EB_BitterImmune);
 			}
 			if (enemy->mCurAnim->mType == KEYEVENT_END) {
 				transit(enemy, JIGUMO_Wait, nullptr);
@@ -229,7 +229,7 @@ void StateHide::exec(EnemyBase* enemy)
 	}
 
 	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
-		enemy->enableEvent(0, EB_IsCullable);
+		enemy->enableEvent(0, EB_Cullable);
 		enemy->fadeEfxHamon();
 		if (enemy->mWaterBox) {
 			efx::TJgmBubble bubbleFX;
@@ -309,7 +309,7 @@ StateAttack::StateAttack(int stateID)
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(1, nullptr);
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	OBJ(enemy)->mNextState                            = JIGUMO_Miss;
 	OBJ(enemy)->_2E8                                  = 0;
 	_10                                               = 0;

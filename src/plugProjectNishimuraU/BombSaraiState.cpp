@@ -44,8 +44,8 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
 	enemy->mTargetVelocity = Vector3f(0.0f);
-	enemy->disableEvent(0, EB_IsFlying);
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Untargetable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->startMotion(0, nullptr);
 	enemy->getJAIObject()->startSound(PSSE_EN_BOMBSARAI_DEAD, 0);
 }
@@ -102,9 +102,9 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai         = OBJ(enemy);
 	sarai->mStateTimer = 0.0f;
-	sarai->disableEvent(0, EB_IsEnemyNotBitter);
+	sarai->disableEvent(0, EB_NoInterrupt);
 	sarai->mTargetVelocity = Vector3f(0.0f);
-	sarai->disableEvent(0, EB_IsFlying);
+	sarai->disableEvent(0, EB_Untargetable);
 	sarai->setEmotionExcitement();
 	sarai->startMotion(4, nullptr);
 
@@ -128,10 +128,10 @@ void StateDamage::exec(EnemyBase* enemy)
 
 	if (sarai->mCurAnim->mIsPlaying) {
 		if (sarai->mCurAnim->mType == KEYEVENT_2) {
-			sarai->enableEvent(0, EB_IsEnemyNotBitter);
+			sarai->enableEvent(0, EB_NoInterrupt);
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_3) {
-			sarai->disableEvent(0, EB_IsEnemyNotBitter);
+			sarai->disableEvent(0, EB_NoInterrupt);
 			sarai->createDownEffect(0.8f);
 
 			Vector3f pos = sarai->getPosition();
@@ -158,7 +158,7 @@ void StateDamage::exec(EnemyBase* enemy)
  */
 void StateDamage::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 	enemy->setEmotionCaution();
 }
 
@@ -170,7 +170,7 @@ void StateDamage::cleanup(EnemyBase* enemy)
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai = OBJ(enemy);
-	sarai->enableEvent(0, EB_IsFlying);
+	sarai->enableEvent(0, EB_Untargetable);
 	sarai->mNextState      = BOMBSARAI_NULL;
 	sarai->mStateTimer     = 0.0f;
 	sarai->mTargetVelocity = Vector3f(0.0f);
@@ -228,8 +228,8 @@ void StateWait::cleanup(EnemyBase* enemy) { }
 void StateBombWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai = OBJ(enemy);
-	sarai->enableEvent(0, EB_IsFlying);
-	sarai->enableEvent(0, EB_IsEnemyNotBitter);
+	sarai->enableEvent(0, EB_Untargetable);
+	sarai->enableEvent(0, EB_NoInterrupt);
 	sarai->mNextState      = BOMBSARAI_NULL;
 	sarai->mStateTimer     = 0.0f;
 	sarai->mTargetVelocity = Vector3f(0.0f);
@@ -275,7 +275,7 @@ void StateBombWait::exec(EnemyBase* enemy)
 		sarai->finishMotion();
 	}
 
-	if (sarai->isEvent(0, EB_ToEnableBitter)) {
+	if (sarai->isEvent(0, EB_BitterQueued)) {
 		transit(sarai, BOMBSARAI_Fall, nullptr);
 		return;
 	}
@@ -602,7 +602,7 @@ lbl_802B0B64:
  */
 void StateBombWait::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 	enemy->setEmotionCaution();
 }
 
@@ -614,7 +614,7 @@ void StateBombWait::cleanup(EnemyBase* enemy)
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai = OBJ(enemy);
-	sarai->enableEvent(0, EB_IsFlying);
+	sarai->enableEvent(0, EB_Untargetable);
 	sarai->mNextState  = BOMBSARAI_NULL;
 	sarai->mStateTimer = 0.0f;
 	sarai->setRandTarget();
@@ -681,8 +681,8 @@ void StateMove::cleanup(EnemyBase* enemy) { }
 void StateBombMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai = OBJ(enemy);
-	sarai->enableEvent(0, EB_IsFlying);
-	sarai->enableEvent(0, EB_IsEnemyNotBitter);
+	sarai->enableEvent(0, EB_Untargetable);
+	sarai->enableEvent(0, EB_NoInterrupt);
 	sarai->mNextState  = BOMBSARAI_NULL;
 	sarai->mStateTimer = 0.0f;
 	sarai->setRandTarget();
@@ -739,7 +739,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 		                        CG_PARMS(sarai)->mGeneral.mRotationalAccel.mValue, CG_PARMS(sarai)->mGeneral.mRotationalSpeed.mValue);
 	}
 
-	if (sarai->isEvent(0, EB_ToEnableBitter)) {
+	if (sarai->isEvent(0, EB_BitterQueued)) {
 		transit(sarai, BOMBSARAI_Fall, nullptr);
 		return;
 	}
@@ -1106,7 +1106,7 @@ lbl_802B1324:
  */
 void StateBombMove::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 	enemy->setEmotionCaution();
 }
 
@@ -1118,8 +1118,8 @@ void StateBombMove::cleanup(EnemyBase* enemy)
 void StateSupply::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai = OBJ(enemy);
-	sarai->enableEvent(0, EB_IsFlying);
-	sarai->enableEvent(0, EB_IsEnemyNotBitter);
+	sarai->enableEvent(0, EB_Untargetable);
+	sarai->enableEvent(0, EB_NoInterrupt);
 	sarai->mNextState = BOMBSARAI_NULL;
 	sarai->supplyBomb();
 	sarai->setEmotionExcitement();
@@ -1155,7 +1155,7 @@ void StateSupply::exec(EnemyBase* enemy)
 void StateSupply::cleanup(EnemyBase* enemy)
 {
 	Obj* sarai = OBJ(enemy);
-	sarai->disableEvent(0, EB_IsEnemyNotBitter);
+	sarai->disableEvent(0, EB_NoInterrupt);
 	sarai->mBombCarryTimer = 0.0f;
 	sarai->setEmotionCaution();
 }
@@ -1168,8 +1168,8 @@ void StateSupply::cleanup(EnemyBase* enemy)
 void StateRelease::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai = OBJ(enemy);
-	sarai->enableEvent(0, EB_IsFlying);
-	sarai->enableEvent(0, EB_IsEnemyNotBitter);
+	sarai->enableEvent(0, EB_Untargetable);
+	sarai->enableEvent(0, EB_NoInterrupt);
 	sarai->mNextState      = BOMBSARAI_NULL;
 	sarai->mTargetVelocity = Vector3f(0.0f);
 	sarai->setEmotionExcitement();
@@ -1192,7 +1192,7 @@ void StateRelease::exec(EnemyBase* enemy)
 			Vector3f vel(50.0f * pikmin2_sinf(angle), 100.0f, 50.0f * pikmin2_cosf(angle));
 			sarai->throwBomb(vel);
 
-			sarai->disableEvent(0, EB_IsEnemyNotBitter);
+			sarai->disableEvent(0, EB_NoInterrupt);
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_END) {
 			StateID stateID = sarai->getNextStateOnHeight();
@@ -1213,7 +1213,7 @@ void StateRelease::exec(EnemyBase* enemy)
  */
 void StateRelease::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 	enemy->setEmotionCaution();
 }
 
@@ -1226,9 +1226,9 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sarai         = OBJ(enemy);
 	sarai->mStateTimer = 0.0f;
-	sarai->enableEvent(0, EB_IsEnemyNotBitter);
+	sarai->enableEvent(0, EB_NoInterrupt);
 	sarai->mTargetVelocity = Vector3f(0.0f);
-	sarai->disableEvent(0, EB_IsFlying);
+	sarai->disableEvent(0, EB_Untargetable);
 	sarai->setEmotionExcitement();
 	sarai->startMotion(1, nullptr);
 
@@ -1258,7 +1258,7 @@ void StateFall::exec(EnemyBase* enemy)
 			const f32 angle = sarai->getFaceDir();
 			Vector3f vel(100.0f * pikmin2_sinf(angle), 300.0f, 100.0f * pikmin2_cosf(angle));
 			sarai->throwBomb(vel);
-			sarai->disableEvent(0, EB_IsEnemyNotBitter);
+			sarai->disableEvent(0, EB_NoInterrupt);
 
 		} else if (sarai->mCurAnim->mType == KEYEVENT_3) {
 			sarai->createBalloonEffect(0);
@@ -1297,7 +1297,7 @@ void StateFall::exec(EnemyBase* enemy)
  */
 void StateFall::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 	enemy->setEmotionCaution();
 }
 
@@ -1309,7 +1309,7 @@ void StateFall::cleanup(EnemyBase* enemy)
 void StateTakeOff1::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mToFlick = 0.0f;
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(9, nullptr);
 }
@@ -1324,7 +1324,7 @@ void StateTakeOff1::exec(EnemyBase* enemy)
 	Obj* sarai = OBJ(enemy);
 	f32 height = 0.0f;
 	if (sarai->getMotionFrame() > 45.0f) {
-		sarai->enableEvent(0, EB_IsFlying);
+		sarai->enableEvent(0, EB_Untargetable);
 		height = sarai->setHeightVelocity(false);
 	}
 
@@ -1358,7 +1358,7 @@ void StateTakeOff1::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 void StateTakeOff2::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mToFlick = 0.0f;
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(10, nullptr);
 }
@@ -1373,7 +1373,7 @@ void StateTakeOff2::exec(EnemyBase* enemy)
 	Obj* sarai = OBJ(enemy);
 	f32 height = 0.0f;
 	if (sarai->getMotionFrame() > 21.0f) {
-		sarai->enableEvent(0, EB_IsFlying);
+		sarai->enableEvent(0, EB_Untargetable);
 		height = sarai->setHeightVelocity(true);
 	}
 
@@ -1406,7 +1406,7 @@ void StateTakeOff2::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->enableEvent(0, EB_IsFlying);
+	enemy->enableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(2, nullptr);
 }
@@ -1454,8 +1454,8 @@ void StateFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateBombFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->enableEvent(0, EB_IsFlying);
-	enemy->enableEvent(0, EB_IsEnemyNotBitter);
+	enemy->enableEvent(0, EB_Untargetable);
+	enemy->enableEvent(0, EB_NoInterrupt);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(3, nullptr);
 }
@@ -1470,7 +1470,7 @@ void StateBombFlick::exec(EnemyBase* enemy)
 	Obj* sarai = OBJ(enemy);
 	sarai->setHeightVelocity(false);
 
-	if (sarai->isEvent(0, EB_ToEnableBitter)) {
+	if (sarai->isEvent(0, EB_BitterQueued)) {
 		transit(sarai, BOMBSARAI_Fall, nullptr);
 		return;
 	}
@@ -1501,7 +1501,7 @@ void StateBombFlick::exec(EnemyBase* enemy)
  */
 void StateBombFlick::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 	enemy->setEmotionCaution();
 }
 } // namespace BombSarai

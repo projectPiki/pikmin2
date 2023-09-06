@@ -537,7 +537,7 @@ void Obj::setParameters()
  */
 f32 Obj::getBodyRadius()
 {
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		if (mBloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
 			return 50.0f;
 		}
@@ -562,7 +562,7 @@ void Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(positi
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_DeathEffectEnabled);
 	mHeadJoint = mModel->getJoint("head_joint1");
 	P2ASSERTLINE(124, mHeadJoint);
 	mTargetNavi = nullptr;
@@ -942,7 +942,7 @@ void Obj::doSimulation(f32 speed)
  */
 bool Obj::damageCallBack(Creature* creature, f32 strength, CollPart* part)
 {
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		addDamage(strength, 1.0f);
 		return true;
 	}

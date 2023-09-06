@@ -98,10 +98,10 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mNextState  = DANGOMUSHI_NULL;
 	crab->mStateTimer = 0.0f;
 	crab->mIsBall     = false;
-	crab->enableEvent(0, EB_IsVulnerable);
-	crab->enableEvent(0, EB_IsImmuneBitter);
+	crab->enableEvent(0, EB_Invulnerable);
+	crab->enableEvent(0, EB_BitterImmune);
 	crab->hardConstraintOn();
-	crab->enableEvent(0, EB_IsModelHidden);
+	crab->enableEvent(0, EB_ModelHidden);
 	crab->mTargetVelocity = Vector3f(0.0f);
 	crab->startBlendAnimation(0, false);
 	crab->stopMotion();
@@ -160,10 +160,10 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mNextState  = DANGOMUSHI_NULL;
 	crab->mStateTimer = 0.0f;
 	crab->mIsBall     = false;
-	crab->enableEvent(0, EB_IsVulnerable);
-	crab->enableEvent(0, EB_IsImmuneBitter);
+	crab->enableEvent(0, EB_Invulnerable);
+	crab->enableEvent(0, EB_BitterImmune);
 	crab->hardConstraintOn();
-	crab->disableEvent(0, EB_IsModelHidden);
+	crab->disableEvent(0, EB_ModelHidden);
 	crab->mTargetVelocity = Vector3f(0.0f);
 	crab->startBlendAnimation(0, false);
 }
@@ -497,7 +497,7 @@ lbl_802FA58C:
  */
 void StateAppear::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(0, EB_IsImmuneBitter);
+	enemy->disableEvent(0, EB_BitterImmune);
 	enemy->hardConstraintOff();
 }
 
@@ -513,7 +513,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mStateTimer = 0.0f;
 	crab->setRandTarget();
 	crab->mIsBall = false;
-	crab->enableEvent(0, EB_IsVulnerable);
+	crab->enableEvent(0, EB_Invulnerable);
 	crab->mTargetVelocity = Vector3f(0.0f);
 
 	if (stateArg) {
@@ -820,7 +820,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mStateTimer = 0.0f;
 	crab->mNextState  = DANGOMUSHI_NULL;
 	crab->mIsBall     = false;
-	crab->enableEvent(0, EB_IsVulnerable);
+	crab->enableEvent(0, EB_Invulnerable);
 	crab->mTargetVelocity = Vector3f(0.0f);
 	crab->startBlendAnimation(2, false);
 }
@@ -1452,8 +1452,8 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mStateTimer = 0.0f;
 	crab->mIsRolling  = false;
 	crab->mIsBall     = true;
-	crab->enableEvent(0, EB_IsVulnerable);
-	crab->enableEvent(0, EB_IsImmuneBitter);
+	crab->enableEvent(0, EB_Invulnerable);
+	crab->enableEvent(0, EB_BitterImmune);
 	crab->setEmotionExcitement();
 	crab->mTargetVelocity = Vector3f(0.0f);
 	crab->startBlendAnimation(3, false);
@@ -1528,7 +1528,7 @@ void StateAttack::exec(EnemyBase* enemy)
 void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* crab = OBJ(enemy);
-	crab->disableEvent(0, EB_IsImmuneBitter);
+	crab->disableEvent(0, EB_BitterImmune);
 	crab->setEmotionCaution();
 	crab->mIsRolling = false;
 	crab->mIsBall    = false;
@@ -1547,8 +1547,8 @@ void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 	crab->mNextState  = DANGOMUSHI_NULL;
 	crab->mStateTimer = 0.0f;
 	crab->mIsBall     = false;
-	crab->enableEvent(0, EB_IsEnemyNotBitter);
-	crab->enableEvent(0, EB_IsVulnerable);
+	crab->enableEvent(0, EB_NoInterrupt);
+	crab->enableEvent(0, EB_Invulnerable);
 	crab->mTargetVelocity = Vector3f(0.0f);
 	crab->startBlendAnimation(5, false);
 	crab->createCrashEnemy();
@@ -1587,14 +1587,14 @@ void StateTurn::exec(EnemyBase* enemy)
 			rumbleMgr->startRumble(14, crabPos, 2);
 
 		} else if (crab->mCurAnim->mType == KEYEVENT_NULL) {
-			if (crab->isEvent(0, EB_IsVulnerable)) {
-				crab->disableEvent(0, EB_IsEnemyNotBitter);
-				crab->disableEvent(0, EB_IsVulnerable);
+			if (crab->isEvent(0, EB_Invulnerable)) {
+				crab->disableEvent(0, EB_NoInterrupt);
+				crab->disableEvent(0, EB_Invulnerable);
 				crab->setBodyCollision(false);
 			}
 
 		} else if (crab->mCurAnim->mType == KEYEVENT_3) {
-			crab->enableEvent(0, EB_IsVulnerable);
+			crab->enableEvent(0, EB_Invulnerable);
 			crab->setBodyCollision(true);
 			Vector3f crabPos = crab->getPosition();
 			cameraMgr->startVibration(15, crabPos, 2);
@@ -1621,8 +1621,8 @@ void StateTurn::cleanup(EnemyBase* enemy)
 {
 	Obj* crab = OBJ(enemy);
 	EnemyFunc::flickStickPikmin(crab, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
-	crab->enableEvent(0, EB_IsVulnerable);
-	crab->disableEvent(0, EB_IsEnemyNotBitter);
+	crab->enableEvent(0, EB_Invulnerable);
+	crab->disableEvent(0, EB_NoInterrupt);
 	crab->setBodyCollision(true);
 }
 

@@ -35,7 +35,7 @@ void KumaKochappy::Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void KumaKochappy::Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	disableEvent(0, EB_IsCullable);
+	disableEvent(0, EB_Cullable);
 	setNearestParent();
 	mFsm->start(this, KUMAKOCHAPPY_Wait, nullptr);
 	resetZukanAnimationFrame();
@@ -102,7 +102,7 @@ void KumaKochappy::Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.mPosition.y = mPosition.y + 5.0f;
 	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 
-	if (isEvent(1, EB2_IsEarthquake)) {
+	if (isEvent(1, EB2_Earthquake)) {
 		shadowParam.mBoundingSphere.mRadius = 50.0f;
 	} else {
 		shadowParam.mBoundingSphere.mRadius = 20.0f;
@@ -118,7 +118,7 @@ void KumaKochappy::Obj::getShadowParam(ShadowParam& shadowParam)
  */
 bool KumaKochappy::Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 {
-	if (isAlive() && !isEvent(0, EB_IsBittered) && getStateID() > KUMAKOCHAPPY_Press) {
+	if (isAlive() && !isEvent(0, EB_Bittered) && getStateID() > KUMAKOCHAPPY_Press) {
 		mFsm->transit(this, KUMAKOCHAPPY_Press, nullptr);
 		return true;
 	}

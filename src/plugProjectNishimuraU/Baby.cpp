@@ -37,8 +37,8 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
-	disableEvent(0, EB_IsCullable);
-	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_Cullable);
+	disableEvent(0, EB_LeaveCarcass);
 	setupEffect();
 	resetRandTargetPosition();
 
@@ -99,7 +99,7 @@ void Obj::getShadowParam(ShadowParam& param)
 
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 
-	if (isEvent(1, EB2_IsEarthquake)) {
+	if (isEvent(1, EB2_Earthquake)) {
 		param.mBoundingSphere.mRadius = 50.0f;
 	} else {
 		param.mBoundingSphere.mRadius = 10.0f;
@@ -114,7 +114,7 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::pressCallBack(Creature* obj, f32 damage, CollPart* part)
 {
-	if (obj && !isEvent(0, EB_IsBittered) && getStateID() > 2) {
+	if (obj && !isEvent(0, EB_Bittered) && getStateID() > 2) {
 		mFsm->transit(this, BABY_Press, nullptr);
 		return true;
 	} else {
@@ -130,7 +130,7 @@ bool Obj::pressCallBack(Creature* obj, f32 damage, CollPart* part)
 bool Obj::hipdropCallBack(Creature* obj, f32 damage, CollPart* part)
 {
 
-	if (obj && !isEvent(0, EB_IsBittered) && getStateID() > 2) {
+	if (obj && !isEvent(0, EB_Bittered) && getStateID() > 2) {
 		mFsm->transit(this, BABY_Press, nullptr);
 		return true;
 	} else {

@@ -45,7 +45,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
 		disableEvent(0, EB_LifegaugeVisible);
-		disableEvent(0, EB_ToLeaveCarcass);
+		disableEvent(0, EB_LeaveCarcass);
 
 		if (mDropGroup == EDG_None) {
 			initBombOtakara();
@@ -173,7 +173,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 		shadowParam.mBoundingSphere.mRadius = 50.0f;
 	}
 
-	if (isEvent(1, EB2_IsEarthquake)) {
+	if (isEvent(1, EB2_Earthquake)) {
 		shadowParam.mBoundingSphere.mRadius += 25.0f;
 	}
 
@@ -815,7 +815,7 @@ void Obj::initBombOtakara()
 	if (mTargetCreature) {
 		mTargetCreature->init(nullptr);
 		mTargetCreature->startCapture(mModel->getJoint("otakara")->getWorldMatrix());
-		static_cast<Bomb::Obj*>(mTargetCreature)->mOtakara = this;
+		static_cast<Bomb::Obj*>(mTargetCreature)->mCarrier = this;
 		mBodyHeightOffset                                  = 10.0f;
 		mCellRadius                                        = 25.0f;
 
@@ -836,7 +836,7 @@ void Obj::initBombOtakara()
  */
 bool Obj::isTransitChaseState()
 {
-	if (isEvent(0, EB_HasCollisionOccurred) || isEvent(0, EB_IsTakingDamage) || (mStuckPikminCount != 0)) {
+	if (isEvent(0, EB_Colliding) || isEvent(0, EB_TakingDamage) || (mStuckPikminCount != 0)) {
 		return true;
 	}
 
@@ -854,11 +854,11 @@ bool Obj::stimulateBomb()
 {
 	_2E8 += sys->mDeltaTime;
 	if ((_2E8 > 1.5f) && (mTargetCreature != nullptr) && (mTargetCreature->isAlive())) {
-		disableEvent(0, EB_IsCullable);
+		disableEvent(0, EB_Cullable);
 		static_cast<Bomb::Obj*>(mTargetCreature)->forceBomb();
 	}
 
-	return isEvent(0, EB_IsCullable);
+	return isEvent(0, EB_Cullable);
 }
 
 /*

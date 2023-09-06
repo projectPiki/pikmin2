@@ -34,7 +34,7 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(0, nullptr);
 }
@@ -69,11 +69,11 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->_2C0 = 0;
 	fuefuki->resetAppearTimer();
 	fuefuki->mStateTimer = 0.0f;
-	fuefuki->enableEvent(0, EB_IsImmuneBitter);
-	fuefuki->disableEvent(0, EB_IsEnemyNotBitter);
-	fuefuki->enableEvent(0, EB_IsFlying);
+	fuefuki->enableEvent(0, EB_BitterImmune);
+	fuefuki->disableEvent(0, EB_NoInterrupt);
+	fuefuki->enableEvent(0, EB_Untargetable);
 	fuefuki->disableEvent(0, EB_LifegaugeVisible);
-	fuefuki->disableEvent(0, EB_IsCullable);
+	fuefuki->disableEvent(0, EB_Cullable);
 	fuefuki->mTargetVelocity = Vector3f(0.0f);
 	fuefuki->startMotion(1, nullptr);
 	fuefuki->stopMotion();
@@ -119,10 +119,10 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->onSetPosition(pos);
 	fuefuki->mFaceDir    = randWeightFloat(TAU);
 	fuefuki->mRotation.y = fuefuki->mFaceDir;
-	fuefuki->disableEvent(0, EB_IsImmuneBitter);
-	fuefuki->enableEvent(0, EB_IsEnemyNotBitter);
-	fuefuki->disableEvent(0, EB_IsFlying);
-	fuefuki->disableEvent(0, EB_IsCullable);
+	fuefuki->disableEvent(0, EB_BitterImmune);
+	fuefuki->enableEvent(0, EB_NoInterrupt);
+	fuefuki->disableEvent(0, EB_Untargetable);
+	fuefuki->disableEvent(0, EB_Cullable);
 	fuefuki->mTargetVelocity = Vector3f(0.0f);
 
 	if (randWeightFloat(1.0f) < *CG_PROPERPARMS(fuefuki).mFp31()) {
@@ -150,7 +150,7 @@ void StateLand::exec(EnemyBase* enemy)
 
 	if (fuefuki->mCurAnim->mIsPlaying) {
 		if (fuefuki->mCurAnim->mType == KEYEVENT_2) {
-			fuefuki->disableEvent(0, EB_IsEnemyNotBitter);
+			fuefuki->disableEvent(0, EB_NoInterrupt);
 			fuefuki->enableEvent(0, EB_LifegaugeVisible);
 			fuefuki->createDownEffect(0.85f);
 			if (fuefuki->mWaterBox) {
@@ -158,7 +158,7 @@ void StateLand::exec(EnemyBase* enemy)
 			}
 		} else if (fuefuki->mCurAnim->mType == KEYEVENT_3) {
 			fuefuki->_2C0 = 1;
-			fuefuki->enableEvent(0, EB_IsCullable);
+			fuefuki->enableEvent(0, EB_Cullable);
 		} else if (fuefuki->mCurAnim->mType == KEYEVENT_END) {
 			transit(fuefuki, fuefuki->mNextState, nullptr);
 		}
@@ -173,8 +173,8 @@ void StateLand::exec(EnemyBase* enemy)
 void StateLand::cleanup(EnemyBase* enemy)
 {
 	Obj* fuefuki = OBJ(enemy);
-	fuefuki->disableEvent(0, EB_IsImmuneBitter);
-	fuefuki->disableEvent(0, EB_IsEnemyNotBitter);
+	fuefuki->disableEvent(0, EB_BitterImmune);
+	fuefuki->disableEvent(0, EB_NoInterrupt);
 	fuefuki->enableEvent(0, EB_LifegaugeVisible);
 	fuefuki->setTargetPosition(false);
 }
@@ -190,7 +190,7 @@ void StateJump::init(EnemyBase* enemy, StateArg* stateArg)
 	fuefuki->_2C0        = 1;
 	fuefuki->mNextState  = FUEFUKI_NULL;
 	fuefuki->mStateTimer = 0.0f;
-	fuefuki->disableEvent(0, EB_IsImmuneBitter);
+	fuefuki->disableEvent(0, EB_BitterImmune);
 	fuefuki->mTargetVelocity = Vector3f(0.0f);
 	fuefuki->startMotion(8, nullptr);
 }
@@ -230,12 +230,12 @@ void StateJump::exec(EnemyBase* enemy)
 
 	if (fuefuki->mCurAnim->mIsPlaying) {
 		if (fuefuki->mCurAnim->mType == KEYEVENT_2) {
-			fuefuki->enableEvent(0, EB_IsImmuneBitter);
+			fuefuki->enableEvent(0, EB_BitterImmune);
 		} else if (fuefuki->mCurAnim->mType == KEYEVENT_3) {
 			fuefuki->_2C0 = 0;
-			fuefuki->enableEvent(0, EB_IsFlying);
+			fuefuki->enableEvent(0, EB_Untargetable);
 			fuefuki->disableEvent(0, EB_LifegaugeVisible);
-			fuefuki->disableEvent(0, EB_IsCullable);
+			fuefuki->disableEvent(0, EB_Cullable);
 
 			f32 sinTheta = (f32)sin(fuefuki->getFaceDir());
 			f32 y        = fuefuki->getTargetVelocity().y;
@@ -273,7 +273,7 @@ void StateJump::exec(EnemyBase* enemy)
  * Address:	8029B16C
  * Size:	000010
  */
-void StateJump::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsImmuneBitter); }
+void StateJump::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_BitterImmune); }
 
 /*
  * --INFO--

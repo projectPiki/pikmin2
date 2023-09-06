@@ -2102,7 +2102,7 @@ void TNodeItemMgr::killAll()
 	     node                        = (TObjectNode<BaseItem>*)mNodeObjectMgr.mNode.mChild) {
 		node->mContents->getCreatureName();
 		BaseItem* creature = node->mContents;
-		CreatureKillArg arg(1);
+		CreatureKillArg arg(CKILL_Unk1);
 		creature->kill(&arg);
 		if (creature->mSoundObj != nullptr && PSSystem::SingletonBase<PSM::ObjMgr>::sInstance) {
 			PSSystem::SingletonBase<PSM::ObjMgr>::sInstance->remove(creature->mSoundObj);
@@ -2116,7 +2116,7 @@ void TNodeItemMgr::killAll()
  * Address:	801CDB3C
  * Size:	0000C4
  */
-ItemMgr::ItemMgr() { mName = "繧｢繧､繝?繝?繝槭ロ繝ｼ繧ｸ繝｣"; }
+ItemMgr::ItemMgr() { mName = "繧?��繧?���??�??繝槭ロ繝ｼ繧?��繝｣"; }
 
 /*
  * __dt__Q24Game7ItemMgrFv

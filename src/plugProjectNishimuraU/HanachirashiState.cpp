@@ -35,8 +35,8 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hanachirashi = OBJ(enemy);
-	hanachirashi->disableEvent(0, EB_IsCullable);
-	hanachirashi->disableEvent(0, EB_IsDamageAnimAllowed);
+	hanachirashi->disableEvent(0, EB_Cullable);
+	hanachirashi->disableEvent(0, EB_DamageAnimEnabled);
 	hanachirashi->mTargetVelocity = Vector3f(0.0f);
 	hanachirashi->deathProcedure();
 
@@ -46,7 +46,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 		hanachirashi->startMotion(1, nullptr);
 	}
 
-	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->enableEvent(0, EB_Untargetable);
 	hanachirashi->startDeadEffect();
 }
 
@@ -93,7 +93,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->mAirWaitTime    = 0.0f;
 	hanachirashi->mTargetVelocity = Vector3f(0.0f);
 	hanachirashi->mTargetCreature = nullptr;
-	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->enableEvent(0, EB_Untargetable);
 	hanachirashi->startMotion(5, nullptr);
 }
 
@@ -152,7 +152,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->setRandTarget();
 	hanachirashi->mAirWaitTime    = 0.0f;
 	hanachirashi->mTargetCreature = nullptr;
-	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->enableEvent(0, EB_Untargetable);
 }
 
 /*
@@ -329,7 +329,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->enableEvent(0, EB_IsFlying);
+	enemy->enableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
 }
 
@@ -1111,9 +1111,9 @@ void StateChaseInside::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hanachirashi = OBJ(enemy);
-	hanachirashi->disableEvent(0, EB_IsCullable);
+	hanachirashi->disableEvent(0, EB_Cullable);
 	hanachirashi->mTargetCreature = nullptr;
-	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->enableEvent(0, EB_Untargetable);
 	hanachirashi->mTargetVelocity = Vector3f(0.0f);
 	hanachirashi->setEmotionExcitement();
 	hanachirashi->startMotion(9, nullptr);
@@ -1223,7 +1223,7 @@ lbl_802A076C:
 void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* hanachirashi = OBJ(enemy);
-	hanachirashi->enableEvent(0, EB_IsCullable);
+	hanachirashi->enableEvent(0, EB_Cullable);
 	hanachirashi->setEmotionCaution();
 	hanachirashi->_310                 = 0;
 	hanachirashi->mCurrentAttackRadius = 0.0f;
@@ -1240,7 +1240,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* hanachirashi             = OBJ(enemy);
 	hanachirashi->mAirWaitTime    = 0.0f;
 	hanachirashi->mTargetCreature = nullptr;
-	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->enableEvent(0, EB_Untargetable);
 	hanachirashi->mTargetVelocity = Vector3f(0.0f);
 	hanachirashi->setEmotionExcitement();
 	hanachirashi->startMotion(8, nullptr);
@@ -1271,7 +1271,7 @@ void StateFall::exec(EnemyBase* enemy)
 	}
 
 	if (hanachirashi->mAirWaitTime > 0.75f) {
-		hanachirashi->disableEvent(0, EB_IsFlying);
+		hanachirashi->disableEvent(0, EB_Untargetable);
 	}
 
 	hanachirashi->mAirWaitTime += sys->mDeltaTime;
@@ -1401,7 +1401,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* hanachirashi             = OBJ(enemy);
 	hanachirashi->mAirWaitTime    = 0.0f;
 	hanachirashi->mTargetCreature = nullptr;
-	hanachirashi->disableEvent(0, EB_IsFlying);
+	hanachirashi->disableEvent(0, EB_Untargetable);
 	hanachirashi->mTargetVelocity = Vector3f(0.0f);
 	hanachirashi->setEmotionExcitement();
 	hanachirashi->startMotion(4, nullptr);
@@ -1451,7 +1451,7 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hanachirashi             = OBJ(enemy);
 	hanachirashi->mTargetCreature = nullptr;
-	hanachirashi->disableEvent(0, EB_IsFlying);
+	hanachirashi->disableEvent(0, EB_Untargetable);
 	hanachirashi->mTargetVelocity = Vector3f(0.0f);
 	hanachirashi->setEmotionExcitement();
 	hanachirashi->startMotion(7, nullptr);
@@ -1477,7 +1477,7 @@ void StateTakeOff::exec(EnemyBase* enemy)
 
 	if (hanachirashi->mCurAnim->mIsPlaying) {
 		if (hanachirashi->mCurAnim->mType == KEYEVENT_2) {
-			hanachirashi->enableEvent(0, EB_IsFlying);
+			hanachirashi->enableEvent(0, EB_Untargetable);
 		} else if (hanachirashi->mCurAnim->mType == KEYEVENT_END) {
 			transit(hanachirashi, HANACHIRASHI_Wait, nullptr);
 		}
@@ -1505,7 +1505,7 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hanachirashi             = OBJ(enemy);
 	hanachirashi->mTargetCreature = nullptr;
-	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->enableEvent(0, EB_Untargetable);
 	hanachirashi->mTargetVelocity = Vector3f(0.0f);
 	hanachirashi->setEmotionExcitement();
 	hanachirashi->startMotion(2, nullptr);
@@ -1555,7 +1555,7 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hanachirashi             = OBJ(enemy);
 	hanachirashi->mTargetCreature = nullptr;
-	hanachirashi->disableEvent(0, EB_IsFlying);
+	hanachirashi->disableEvent(0, EB_Untargetable);
 	hanachirashi->mTargetVelocity = Vector3f(0.0f);
 	hanachirashi->setEmotionExcitement();
 	hanachirashi->startMotion(3, nullptr);
@@ -1663,7 +1663,7 @@ void StateLaugh::init(EnemyBase* enemy, StateArg* stateArg)
 	hanachirashi->mAirWaitTime    = 0.0f;
 	hanachirashi->mTargetVelocity = Vector3f(0.0f);
 	hanachirashi->mTargetCreature = nullptr;
-	hanachirashi->enableEvent(0, EB_IsFlying);
+	hanachirashi->enableEvent(0, EB_Untargetable);
 	hanachirashi->setEmotionExcitement();
 	hanachirashi->startMotion(10, nullptr);
 }

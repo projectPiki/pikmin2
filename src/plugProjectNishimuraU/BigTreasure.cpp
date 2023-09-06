@@ -66,13 +66,13 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	enableEvent(0, EB_IsFlying);
+	enableEvent(0, EB_Untargetable);
 
 	hardConstraintOn();
 
-	disableEvent(0, EB_IsCullable);
-	disableEvent(0, EB_IsPlatformCollsAllowed);
-	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_Cullable);
+	disableEvent(0, EB_PlatformCollEnabled);
+	disableEvent(0, EB_LeaveCarcass);
 
 	mStateTimer = 0.0f;
 
@@ -850,7 +850,7 @@ bool Obj::addTreasureDamage(int idx, f32 damage)
 	if (mTreasures[idx]) {
 		f32 startingHealth = mTreasureHealth[idx];
 
-		if (isEvent(0, EB_IsBittered)) {
+		if (isEvent(0, EB_Bittered)) {
 			damage *= 0.1f;
 		}
 
@@ -1668,7 +1668,7 @@ void Obj::startBossItemDropBGM()
 	}
 
 	if (getStateID() == BIGTREASURE_Attack) {
-		if (isEvent(0, EB_IsBittered) && !mTreasures[mAttackIndex]) {
+		if (isEvent(0, EB_Bittered) && !mTreasures[mAttackIndex]) {
 			soundObj->jumpRequest(jumpReqIdx);
 		}
 	} else {

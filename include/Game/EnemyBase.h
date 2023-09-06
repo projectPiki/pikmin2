@@ -52,56 +52,56 @@ struct LifeGaugeParam;
 struct Interaction;
 
 enum EnemyEvent {
-	EB_IsVulnerable            = 0x1,        // can take damage or not
-	EB_IsTakingDamage          = 0x2,        // currently taking damage
-	EB_IsFlying                = 0x4,        // is enemy flying (guessed name)
-	EB_IsDamageAnimAllowed     = 0x8,        //
-	EB_HasCollisionOccurred    = 0x10,       //
-	EB_IsFlickEnabled          = 0x20,       //
-	EB_IsCullable              = 0x40,       // can be culled/deloaded
-	EB_ToLeaveCarcass          = 0x80,       // leave carcass upon death
-	EB_IsDeathEffectEnabled    = 0x100,      //
-	EB_IsBittered              = 0x200,      //
-	EB_Constraint              = 0x400,      //
-	EB_LifegaugeVisible        = 0x800,      //
-	EB_IsPlatformCollsAllowed  = 0x1000,     //
-	EB_14                      = 0x2000,     //
-	EB_HasEatenWhitePikmin     = 0x4000,     //
-	EB_IsAnimating             = 0x8000,     // should we animate?
-	EB_IsNavi0Attacked         = 0x10000,    // is attacking the player's main character?
-	EB_IsNavi1Attacked         = 0x20000,    // is attacking an ai player?
-	EB_IsHardConstraint        = 0x40000,    // AKA: is kinematic, disables physics completely (locks position)
-	EB_SquashOnDamageAnimation = 0x80000,    // set on at finishDropping, and HipDropCallback
-	EB_ToEnableBitter          = 0x100000,   //
-	EB_IsEnemyNotBitter        = 0x200000,   //
-	EB_IsImmuneBitter          = 0x400000,   //
-	EB_24                      = 0x800000,   //
-	EB_PS1                     = 0x1000000,  // sound-related
-	EB_PS2                     = 0x2000000,  // sound-related
-	EB_PS3                     = 0x4000000,  // sound-related
-	EB_PS4                     = 0x8000000,  // sound-related
-	EB_IsAlive                 = 0x10000000, //
-	EB_ShouldCheckCollision    = 0x20000000, //
-	EB_IsModelHidden           = 0x40000000, //
-	EB_32                      = 0x80000000  //
+	EB_Invulnerable        = 0x1,        // cannot be damaged
+	EB_TakingDamage        = 0x2,        // currently taking damage
+	EB_Untargetable        = 0x4,        // untargetable by pikmin (e.g. flying, dead)
+	EB_DamageAnimEnabled   = 0x8,        // can perform damage animation
+	EB_Colliding           = 0x10,       // currently doing a collision event
+	EB_FlickEnabled        = 0x20,       // can flick/throw off pikmin
+	EB_Cullable            = 0x40,       // can be culled/deloaded
+	EB_LeaveCarcass        = 0x80,       // leave carcass upon death
+	EB_DeathEffectEnabled  = 0x100,      // can perform death EFX on death
+	EB_Bittered            = 0x200,      // currently bittered
+	EB_Constrained         = 0x400,      // frozen, but can be moved by external forces
+	EB_LifegaugeVisible    = 0x800,      // has visible lifegauge
+	EB_PlatformCollEnabled = 0x1000,     // can interact with platform collision
+	EB_14                  = 0x2000,     // unknown (only set by an imomushi state, reset by imomushi and rock states?)
+	EB_EatingWhitePikmin   = 0x4000,     // has eaten white pikmin (trigger poison effect, damage)
+	EB_Animating           = 0x8000,     // currently animating
+	EB_AttackingNavi0      = 0x10000,    // is attacking the player's main character?
+	EB_AttackingNavi1      = 0x20000,    // is attacking an ai player?
+	EB_HardConstrained     = 0x40000,    // kinematic, i.e. disables physics completely/locks position
+	EB_SquashOnDamageAnim  = 0x80000,    // set on at finishDropping, and HipDropCallback
+	EB_BitterQueued        = 0x100000,   // has been hit by bitter spray, is not bittered yet
+	EB_NoInterrupt         = 0x200000,   // cannot currently interrupt anim/action - cannot be stunned, bitters will be queued
+	EB_BitterImmune        = 0x400000,   // cannot be bittered
+	EB_24                  = 0x800000,   // unknown
+	EB_PS1                 = 0x1000000,  // sound-related
+	EB_PS2                 = 0x2000000,  // sound-related
+	EB_PS3                 = 0x4000000,  // sound-related
+	EB_PS4                 = 0x8000000,  // sound-related
+	EB_Alive               = 0x10000000, //
+	EB_CollisionActive     = 0x20000000, //
+	EB_ModelHidden         = 0x40000000, //
+	EB_32                  = 0x80000000  // unknown
 };
 
 enum EnemyEvent2 {
-	EB2_IsEarthquake       = 0x1,  //
-	EB2_IsStunned          = 0x2,  //
-	EB2_3                  = 0x4,  //
-	EB2_4                  = 0x8,  //
-	EB2_IsDropping         = 0x10, //
-	EB2_IsDroppingMassZero = 0x20  //
+	EB2_Earthquake       = 0x1,  // currently hit by purple earthquake/ground pound
+	EB2_Stunned          = 0x2,  // currently stunned/'fit' by purple
+	EB2_3                = 0x4,  // unknown
+	EB2_4                = 0x8,  // unknown
+	EB2_Dropping         = 0x10, // currently falling/dropping
+	EB2_DroppingMassZero = 0x20  // currently falling/dropping with 0 mass
 };
 
 enum DropGroup {
-	EDG_None       = 0, //
-	EDG_Normal     = 1, //
-	EDG_Pikmin     = 2, // Is the dropping object a Pikmin?
-	EDG_Navi       = 3, // Is the dropping object a Player?
-	EDG_Treasure   = 4, // Is the dropping object a Treasure?
-	EDG_Earthquake = 5, // Is the dropping object an Earthquake?
+	EDG_None       = 0, // not dropping
+	EDG_Normal     = 1, // drop on pikmin or navi approach
+	EDG_Pikmin     = 2, // drop on pikmin approach only
+	EDG_Navi       = 3, // drop on navi approach only
+	EDG_Carry      = 4, // drop on pikmin carrying an object only
+	EDG_Earthquake = 5, // drop on purple earthquake/ground pound only
 };
 
 // Interface for specific overrides (e.g. PelplantInitialParams)
@@ -109,19 +109,18 @@ struct EnemyInitialParamBase {
 };
 
 struct EnemyKillArg : public CreatureKillArg {
-	inline EnemyKillArg(int p1)
-	    : CreatureKillArg(p1)
+	inline EnemyKillArg(int flag)
+	    : CreatureKillArg(flag)
 	{
 	}
 
-	/**
-	 * @reifiedAddress{80107C38}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
 	virtual const char* getName() // _08 (weak)
 	{
 		return "EnemyKillArg";
 	}
+
+	// _00 = VTBL
+	// _04 = CreatureKillArg
 };
 
 struct EnemyBase : public Creature, public SysShape::MotionListener, virtual public Game::PelletView {
@@ -158,7 +157,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void outWaterCallback();                    // _88
 	virtual bool isFlying()                             // _CC (weak)
 	{
-		return isEvent(0, EB_IsFlying);
+		return isEvent(0, EB_Untargetable);
 	}
 	virtual void collisionCallback(CollEvent& coll);          // _EC
 	virtual JAInter::Object* getJAIObject();                  // _F4
@@ -486,7 +485,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline bool isDropping()
 	{ // needs a better name eventually, used in doSimulationGround
-		return (isEvent(1, EB2_IsEarthquake) || isEvent(1, EB2_IsDropping));
+		return (isEvent(1, EB2_Earthquake) || isEvent(1, EB2_Dropping));
 	}
 
 	inline f32 getAccelerationScale(f32 constraint)
@@ -691,7 +690,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 #pragma endregion
 
-	inline bool isConstrained() { return (isEvent(0, EB_Constraint) || isEvent(0, EB_IsHardConstraint)); }
+	inline bool isConstrained() { return (isEvent(0, EB_Constrained) || isEvent(0, EB_HardConstrained)); }
 
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
@@ -710,7 +709,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	BitFlagArray<u32, 2> mEventBuffer;          // _1E8
 	u8 mSfxEmotion;                             // _1F0, the 'emotion' used for bg music
 	u8 mCreatureID;                             // _1F1
-	u8 _1F2;                                    // _1F2
+	u8 _1F2;                                    // _1F2, set to 0xFF by ctor/birth function, never used
 	bool mInPiklopedia;                         // _1F3
 	int mStuckPikminCount;                      // _1F4
 	f32 mScaleModifier;                         // _1F8
@@ -740,7 +739,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	CNode mHamonEffectRoot;                     // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
 	f32 mExistTimer;                            // _2A8, how long cherry-spawned enemy has existed in 2P battle
 	f32 mExistDuration;                         // _2AC, how long cherry-spawned enemy should exist in 2P battle
-	s8 mDropGroup;                              // _2B0
+	s8 mDropGroup;                              // _2B0, see DropGroup enum
 	EnemyFSMState* mCurrentLifecycleState;      // _2B4
 	EnemyBaseFSM::StateMachine* mLifecycleFSM;  // _2B8
 	                                            // PelletView: _2BC - _2C8
@@ -752,16 +751,16 @@ struct EarthquakeStateArg : public StateArg {
 
 namespace EnemyBaseFSM {
 enum StateID {
-	EBS_Drop = 0,
-	EBS_DropPikmin,
-	EBS_DropOlimar,
-	EBS_DropTreasure,
-	EBS_DropEarthquake,
-	EBS_Appear,
-	EBS_Living,
-	EBS_Stone,
-	EBS_Earthquake,
-	EBS_Fit,
+	EBS_Drop           = 0,
+	EBS_DropPikmin     = 1,
+	EBS_DropOlimar     = 2,
+	EBS_DropTreasure   = 3,
+	EBS_DropEarthquake = 4,
+	EBS_Appear         = 5,
+	EBS_Living         = 6,
+	EBS_Stone          = 7,
+	EBS_Earthquake     = 8,
+	EBS_Fit            = 9,
 	EBS_Count, // 10
 };
 
@@ -874,7 +873,7 @@ struct LivingState : public State {
 		mName = "Living";
 	}
 
-	inline bool isConstrained(EnemyBase* enemy) { return (enemy->isEvent(0, EB_Constraint) || enemy->isEvent(0, EB_IsHardConstraint)); }
+	inline bool isConstrained(EnemyBase* enemy) { return (enemy->isEvent(0, EB_Constrained) || enemy->isEvent(0, EB_HardConstrained)); }
 
 	virtual void update(EnemyBase*);           // _24
 	virtual void entry(EnemyBase*);            // _28

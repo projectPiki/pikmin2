@@ -40,20 +40,20 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	if (isBirthTypeDropGroup()) {
-		disableEvent(0, EB_IsVulnerable);
-		enableEvent(0, EB_IsDamageAnimAllowed);
+		disableEvent(0, EB_Invulnerable);
+		enableEvent(0, EB_DamageAnimEnabled);
 		hardConstraintOff();
 	} else {
-		enableEvent(0, EB_IsVulnerable);
-		disableEvent(0, EB_IsDamageAnimAllowed);
+		enableEvent(0, EB_Invulnerable);
+		disableEvent(0, EB_DamageAnimEnabled);
 		hardConstraintOn();
 	}
 
-	disableEvent(0, EB_IsPlatformCollsAllowed);
-	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_PlatformCollEnabled);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DeathEffectEnabled);
 	disableEvent(0, EB_LifegaugeVisible);
-	enableEvent(0, EB_IsImmuneBitter);
+	enableEvent(0, EB_BitterImmune);
 	setEmotionNone();
 
 	shadowMgr->killShadow(this);
@@ -76,10 +76,10 @@ void Obj::doUpdate()
 {
 	mFsm->exec(this);
 	mMouthSlots.update();
-	if (isEvent(0, EB_IsDamageAnimAllowed) && mBounceTriangle) {
-		if (isEvent(0, EB_IsHardConstraint)) {
-			enableEvent(0, EB_IsVulnerable);
-			disableEvent(0, EB_IsDamageAnimAllowed);
+	if (isEvent(0, EB_DamageAnimEnabled) && mBounceTriangle) {
+		if (isEvent(0, EB_HardConstrained)) {
+			enableEvent(0, EB_Invulnerable);
+			disableEvent(0, EB_DamageAnimEnabled);
 		} else {
 			hardConstraintOn();
 		}
@@ -303,7 +303,7 @@ void Obj::shotPikmin()
 					mUsedSlotCount--;
 				}
 			}
-			CreatureKillArg killArg(1);
+			CreatureKillArg killArg(CKILL_Unk1);
 			InteractKill kill(this, &killArg);
 			creature->stimulate(kill);
 		}

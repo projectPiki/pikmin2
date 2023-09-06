@@ -154,7 +154,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 		EnemyBase* enemy = nullptr;
 		for (int i = 0; i < mObjLimit; i++) {
 			EnemyBase* currEnemy = getEnemy(i);
-			if (id == currEnemy->getEnemyTypeID() && !(currEnemy->isEvent(0, EB_IsAlive))) {
+			if (id == currEnemy->getEnemyTypeID() && !(currEnemy->isEvent(0, EB_Alive))) {
 				enemy = currEnemy;
 				break;
 			}

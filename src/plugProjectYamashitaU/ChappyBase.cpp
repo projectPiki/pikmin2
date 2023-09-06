@@ -276,7 +276,7 @@ bool Obj::isWakeup()
 		}
 		break;
 	default:
-		if (isEvent(0, EB_IsTakingDamage) || isEvent(0, EB_HasCollisionOccurred)) {
+		if (isEvent(0, EB_TakingDamage) || isEvent(0, EB_Colliding)) {
 			shouldWakeup = true;
 		}
 		break;

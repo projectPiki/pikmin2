@@ -67,7 +67,7 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
 		tyre->mAnimator->mSpeed = p1;
 	}
 
-	if ((tyre->mHealth <= 0.0f) && tyre->isEvent(0, EB_IsVulnerable)) {
+	if ((tyre->mHealth <= 0.0f) && tyre->isEvent(0, EB_Invulnerable)) {
 		transit(tyre, TYRE_Dead, nullptr);
 	}
 }
@@ -141,7 +141,7 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 	_10                    = 0;
 	tyre->mCurrentVelocity = Vector3f(0.0f);
 	tyre->mTargetVelocity  = Vector3f(0.0f);
-	tyre->enableEvent(0, EB_Constraint);
+	tyre->enableEvent(0, EB_Constrained);
 	tyre->collisionStOn();
 }
 
@@ -156,16 +156,16 @@ void Tyre::StateFreeze::exec(EnemyBase* enemy)
 	tyre->mCurrentVelocity = Vector3f(0.0f);
 	tyre->mTargetVelocity  = Vector3f(0.0f);
 	_10++;
-	if ((tyre->mHealth <= 0.0f) && tyre->isEvent(0, EB_IsVulnerable)) {
+	if ((tyre->mHealth <= 0.0f) && tyre->isEvent(0, EB_Invulnerable)) {
 		transit(tyre, TYRE_Dead, nullptr);
 	}
 
 	EnemyBase* wraith = tyre->_2BC;
 	if (wraith) {
-		if (wraith->isEvent(1, EB2_IsEarthquake)) {
+		if (wraith->isEvent(1, EB2_Earthquake)) {
 			tyre->constraintOff();
 		} else {
-			tyre->enableEvent(0, EB_Constraint);
+			tyre->enableEvent(0, EB_Constrained);
 		}
 	}
 }

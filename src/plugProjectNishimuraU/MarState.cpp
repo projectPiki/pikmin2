@@ -38,8 +38,8 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mar = OBJ(enemy);
-	mar->disableEvent(0, EB_IsCullable);
-	mar->disableEvent(0, EB_IsDamageAnimAllowed);
+	mar->disableEvent(0, EB_Cullable);
+	mar->disableEvent(0, EB_DamageAnimEnabled);
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->deathProcedure();
 
@@ -49,7 +49,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 		mar->startMotion(1, nullptr);
 	}
 
-	mar->enableEvent(0, EB_IsFlying);
+	mar->enableEvent(0, EB_Untargetable);
 	mar->startDeadEffect();
 }
 
@@ -90,7 +90,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->_2C0            = 0.0f;
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->mTargetCreature = nullptr;
-	mar->enableEvent(0, EB_IsFlying);
+	mar->enableEvent(0, EB_Untargetable);
 	mar->startMotion(5, nullptr);
 }
 
@@ -149,7 +149,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	mar->setRandTarget();
 	mar->_2C0            = 0.0f;
 	mar->mTargetCreature = nullptr;
-	mar->enableEvent(0, EB_IsFlying);
+	mar->enableEvent(0, EB_Untargetable);
 }
 
 /*
@@ -325,7 +325,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->enableEvent(0, EB_IsFlying);
+	enemy->enableEvent(0, EB_Untargetable);
 	enemy->setEmotionExcitement();
 }
 
@@ -771,7 +771,7 @@ void StateChaseInside::init(EnemyBase* enemy, StateArg* stateArg)
 		mar->mTargetPosition = homePos;
 	}
 
-	mar->enableEvent(0, EB_IsFlying);
+	mar->enableEvent(0, EB_Untargetable);
 	mar->setEmotionExcitement();
 	/*
 	stwu     r1, -0x40(r1)
@@ -1129,9 +1129,9 @@ void StateChaseInside::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mar = OBJ(enemy);
-	mar->disableEvent(0, EB_IsCullable);
+	mar->disableEvent(0, EB_Cullable);
 	mar->mTargetCreature = nullptr;
-	mar->enableEvent(0, EB_IsFlying);
+	mar->enableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->setEmotionExcitement();
 	mar->startMotion(9, nullptr);
@@ -1176,7 +1176,7 @@ void StateAttack::exec(EnemyBase* enemy)
 void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* mar = OBJ(enemy);
-	mar->enableEvent(0, EB_IsCullable);
+	mar->enableEvent(0, EB_Cullable);
 	mar->setEmotionCaution();
 	mar->_308 = 0;
 	mar->_304 = 0.0f;
@@ -1193,7 +1193,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* mar             = OBJ(enemy);
 	mar->_2C0            = 0.0f;
 	mar->mTargetCreature = nullptr;
-	mar->enableEvent(0, EB_IsFlying);
+	mar->enableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->setEmotionExcitement();
 	mar->startMotion(8, nullptr);
@@ -1224,7 +1224,7 @@ void StateFall::exec(EnemyBase* enemy)
 	}
 
 	if (mar->_2C0 > 0.75f) {
-		mar->disableEvent(0, EB_IsFlying);
+		mar->disableEvent(0, EB_Untargetable);
 	}
 
 	mar->_2C0 += sys->mDeltaTime;
@@ -1261,7 +1261,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* mar             = OBJ(enemy);
 	mar->_2C0            = 0.0f;
 	mar->mTargetCreature = nullptr;
-	mar->disableEvent(0, EB_IsFlying);
+	mar->disableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->setEmotionExcitement();
 	mar->startMotion(6, nullptr);
@@ -1302,7 +1302,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* mar             = OBJ(enemy);
 	mar->_2C0            = 0.0f;
 	mar->mTargetCreature = nullptr;
-	mar->disableEvent(0, EB_IsFlying);
+	mar->disableEvent(0, EB_Untargetable);
 	mar->mTargetVelocity = Vector3f(0.0f);
 	mar->setEmotionExcitement();
 	mar->startMotion(4, nullptr);
@@ -1351,7 +1351,7 @@ void StateGround::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetCreature = nullptr;
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(7, nullptr);
@@ -1377,7 +1377,7 @@ void StateTakeOff::exec(EnemyBase* enemy)
 
 	if (mar->mCurAnim->mIsPlaying) {
 		if (mar->mCurAnim->mType == KEYEVENT_2) {
-			mar->enableEvent(0, EB_IsFlying);
+			mar->enableEvent(0, EB_Untargetable);
 		} else if (mar->mCurAnim->mType == KEYEVENT_END) {
 			transit(mar, MAR_Wait, nullptr);
 		}
@@ -1404,7 +1404,7 @@ void StateTakeOff::cleanup(EnemyBase* enemy)
 void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetCreature = nullptr;
-	enemy->enableEvent(0, EB_IsFlying);
+	enemy->enableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(2, nullptr);
@@ -1452,7 +1452,7 @@ void StateFlyFlick::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->mTargetCreature = nullptr;
-	enemy->disableEvent(0, EB_IsFlying);
+	enemy->disableEvent(0, EB_Untargetable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(3, nullptr);

@@ -345,7 +345,7 @@ void KumaChappy::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 void KumaChappy::Obj::onInit(Game::CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
-	disableEvent(0, EB_IsCullable);
+	disableEvent(0, EB_Cullable);
 	mReviveTimer = 0.0f;
 	mTimer       = 0.0f;
 	mNextState   = -1;
@@ -410,7 +410,7 @@ void KumaChappy::Obj::getShadowParam(Game::ShadowParam& param)
 	}
 
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
-	if (isEvent(1, EB2_IsEarthquake)) {
+	if (isEvent(1, EB2_Earthquake)) {
 		param.mBoundingSphere.mRadius = 100.0f;
 	} else {
 		param.mBoundingSphere.mRadius = 75.0f;

@@ -33,10 +33,10 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->setAtari(false);
-	rock->enableEvent(0, EB_IsFlying);
+	rock->enableEvent(0, EB_Untargetable);
 	rock->hardConstraintOn();
-	rock->disableEvent(0, EB_IsAnimating);
-	rock->enableEvent(0, EB_IsModelHidden);
+	rock->disableEvent(0, EB_Animating);
+	rock->enableEvent(0, EB_ModelHidden);
 
 	rock->mTargetVelocity = Vector3f(0.0f);
 	rock->startMotion(1, nullptr);
@@ -82,8 +82,8 @@ void StateWait::cleanup(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->hardConstraintOff();
-	rock->enableEvent(0, EB_IsAnimating);
-	rock->disableEvent(0, EB_IsModelHidden);
+	rock->enableEvent(0, EB_Animating);
+	rock->disableEvent(0, EB_ModelHidden);
 }
 
 /*
@@ -98,8 +98,8 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	position.y += rock->mFallOffset;
 	rock->onSetPosition(position);
 
-	rock->enableEvent(0, EB_IsModelHidden);
-	rock->disableEvent(0, EB_IsCullable);
+	rock->enableEvent(0, EB_ModelHidden);
+	rock->disableEvent(0, EB_Cullable);
 	rock->disableEvent(0, EB_14);
 
 	rock->mTargetVelocity = Vector3f(0.0f);
@@ -133,8 +133,8 @@ void StateAppear::cleanup(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->setAtari(true);
-	rock->disableEvent(0, EB_IsFlying);
-	rock->disableEvent(0, EB_IsModelHidden);
+	rock->disableEvent(0, EB_Untargetable);
+	rock->disableEvent(0, EB_ModelHidden);
 }
 
 /*
@@ -163,7 +163,7 @@ void StateDropWait::exec(EnemyBase* enemy) { transit(enemy, ROCK_Fall, nullptr);
 void StateDropWait::cleanup(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	rock->disableEvent(0, EB_IsCullable);
+	rock->disableEvent(0, EB_Cullable);
 	rock->disableEvent(0, EB_14);
 
 	shadowMgr->addShadow(rock);
@@ -192,7 +192,7 @@ void StateFall::exec(EnemyBase* enemy)
 {
 	if (enemy->mBounceTriangle) {
 		transit(enemy, ROCK_Dead, nullptr);
-	} else if (enemy->isEvent(0, EB_HasCollisionOccurred)) {
+	} else if (enemy->isEvent(0, EB_Colliding)) {
 		transit(enemy, ROCK_Dead, nullptr);
 	}
 }
@@ -221,7 +221,7 @@ void StateFall::cleanup(EnemyBase* enemy)
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	rock->disableEvent(0, EB_IsCullable);
+	rock->disableEvent(0, EB_Cullable);
 	rock->disableEvent(0, EB_14);
 	rock->startMotion(1, nullptr);
 	rock->mTimer = 0.0f;

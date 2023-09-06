@@ -34,9 +34,9 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	disableEvent(0, EB_ToLeaveCarcass);
-	enableEvent(0, EB_IsFlying);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_LeaveCarcass);
+	enableEvent(0, EB_Untargetable);
+	disableEvent(0, EB_DeathEffectEnabled);
 	mNextState  = KURAGE_NULL;
 	mStateTimer = 0.0f;
 	mFallTimer  = 0.0f;
@@ -73,12 +73,12 @@ void Obj::doUpdate()
 	mFsm->exec(this);
 	updateFallTimer();
 
-	if (isAlive() && isEvent(0, EB_IsCullable)) {
+	if (isAlive() && isEvent(0, EB_Cullable)) {
 		if (isFlying()) {
 			getJAIObject()->startSound(PSSE_EN_KURAGE_AIR, 0);
 		}
 
-		if (isEvent(0, EB_IsTakingDamage) && mDamageAnimTimer == 0.0f) {
+		if (isEvent(0, EB_TakingDamage) && mDamageAnimTimer == 0.0f) {
 			getJAIObject()->startSound(PSSE_EN_KURAGE_DAMAGE, 0);
 		}
 	}

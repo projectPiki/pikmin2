@@ -193,7 +193,7 @@ void StateMachine<Piki>::start(Piki* piki, int stateID, StateArg* stateArg)
  */
 void Piki::onKill(CreatureKillArg* killArg)
 {
-	if (gameSystem->mMode == GSM_VERSUS_MODE && killArg && killArg->_04 & 0x80000000) {
+	if (gameSystem->mMode == GSM_VERSUS_MODE && killArg && killArg->isFlag(CKILL_Unk32)) {
 		Onyon* onyon = ItemOnyon::mgr->getOnyon(mPikiKind);
 		if (onyon) {
 			onyon->vsChargePikmin();
@@ -203,7 +203,7 @@ void Piki::onKill(CreatureKillArg* killArg)
 	clearDope();
 	mEffectsObj->clear();
 
-	if (!killArg || !(killArg->_04 & 0x1)) {
+	if (!killArg || !(killArg->isFlag(CKILL_Unk1))) {
 		if (gameSystem && gameSystem->isChallengeMode() && isPikmin()) {
 			GameMessageVsPikminDead deadMsg;
 			gameSystem->mSection->sendMessage(deadMsg);

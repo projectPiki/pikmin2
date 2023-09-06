@@ -30,10 +30,10 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kogane = static_cast<Obj*>(enemy);
 	kogane->setAtari(false);
-	kogane->enableEvent(0, EB_IsImmuneBitter);
+	kogane->enableEvent(0, EB_BitterImmune);
 	kogane->hardConstraintOn();
-	kogane->disableEvent(0, EB_IsAnimating);
-	kogane->enableEvent(0, EB_IsModelHidden);
+	kogane->disableEvent(0, EB_Animating);
+	kogane->enableEvent(0, EB_ModelHidden);
 
 	kogane->mTargetVelocity = Vector3f(0.0f);
 	kogane->startMotion(0, nullptr);
@@ -63,12 +63,12 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	Obj* kogane = static_cast<Obj*>(enemy);
 	kogane->setAtari(true);
 
-	kogane->disableEvent(0, EB_IsImmuneBitter);
-	kogane->enableEvent(0, EB_IsEnemyNotBitter);
-	kogane->disableEvent(0, EB_IsCullable);
+	kogane->disableEvent(0, EB_BitterImmune);
+	kogane->enableEvent(0, EB_NoInterrupt);
+	kogane->disableEvent(0, EB_Cullable);
 	kogane->hardConstraintOff();
-	kogane->enableEvent(0, EB_IsAnimating);
-	kogane->disableEvent(0, EB_IsModelHidden);
+	kogane->enableEvent(0, EB_Animating);
+	kogane->disableEvent(0, EB_ModelHidden);
 
 	kogane->setEmotionExcitement();
 	kogane->startMotion();
@@ -90,7 +90,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kogane = static_cast<Obj*>(enemy);
 
-	kogane->enableEvent(0, EB_IsImmuneBitter);
+	kogane->enableEvent(0, EB_BitterImmune);
 
 	efx::TKoganeDive diveEffect;
 	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mScale.mValue);
@@ -235,7 +235,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kogane = static_cast<Obj*>(enemy);
 
-	kogane->disableEvent(0, EB_IsEnemyNotBitter);
+	kogane->disableEvent(0, EB_NoInterrupt);
 
 	efx::TKoganeHit hitEffect;
 	efx::ArgScale scaleArg(kogane->getPosition(), static_cast<Parms*>(kogane->mParms)->mProperParms.mScale.mValue);
@@ -259,13 +259,13 @@ void StatePress::exec(EnemyBase* enemy)
 
 	if (kogane->mCurAnim->mIsPlaying) {
 		if ((u32)kogane->mCurAnim->mType == KEYEVENT_2) {
-			kogane->enableEvent(0, EB_IsEnemyNotBitter);
+			kogane->enableEvent(0, EB_NoInterrupt);
 			kogane->createPressSESpecial();
 		} else if ((u32)kogane->mCurAnim->mType == KEYEVENT_3) {
 			kogane->createItem();
 			kogane->setZukanVisible(false);
 		} else if ((u32)kogane->mCurAnim->mType == KEYEVENT_4) {
-			kogane->disableEvent(0, EB_IsEnemyNotBitter);
+			kogane->disableEvent(0, EB_NoInterrupt);
 		} else if ((u32)kogane->mCurAnim->mType == KEYEVENT_END) {
 			if (kogane->mAppearTimer > 12800.0f) {
 				transit(kogane, KOGANE_Disappear, nullptr);
@@ -281,7 +281,7 @@ void StatePress::exec(EnemyBase* enemy)
  * Address:	8025D888
  * Size:	000010
  */
-void StatePress::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemyNotBitter); }
+void StatePress::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
 } // namespace Kogane
 } // namespace Game

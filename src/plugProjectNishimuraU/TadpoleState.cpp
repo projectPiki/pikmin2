@@ -32,7 +32,7 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->deathProcedure();
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->startMotion(0, nullptr);
 }
@@ -190,7 +190,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateAmaze::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 	enemy->mTargetVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(3, nullptr);
@@ -206,14 +206,14 @@ void StateAmaze::exec(EnemyBase* enemy)
 	Obj* tadpole = static_cast<Obj*>(enemy);
 	if (tadpole->mCurAnim->mIsPlaying) {
 		if (tadpole->mCurAnim->mType == KEYEVENT_2) {
-			tadpole->enableEvent(0, EB_IsEnemyNotBitter);
+			tadpole->enableEvent(0, EB_NoInterrupt);
 			tadpole->createLeapEffect();
 			EnemyFunc::flickNearbyPikmin(tadpole, CG_PARMS(tadpole)->mGeneral.mShakeRange.mValue,
 			                             CG_PARMS(tadpole)->mGeneral.mShakeKnockback.mValue,
 			                             CG_PARMS(tadpole)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_3) {
-			tadpole->disableEvent(0, EB_IsEnemyNotBitter);
+			tadpole->disableEvent(0, EB_NoInterrupt);
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_END) {
 			transit(tadpole, TADPOLE_Escape, nullptr);
@@ -228,7 +228,7 @@ void StateAmaze::exec(EnemyBase* enemy)
  */
 void StateAmaze::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(0, EB_IsEnemyNotBitter);
+	enemy->disableEvent(0, EB_NoInterrupt);
 	enemy->setEmotionCaution();
 }
 
@@ -303,7 +303,7 @@ void StateLeap::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	tadpole->mNextState = TADPOLE_NULL;
-	tadpole->enableEvent(0, EB_IsEnemyNotBitter);
+	tadpole->enableEvent(0, EB_NoInterrupt);
 	tadpole->startMotion(4, nullptr);
 	tadpole->mTargetVelocity = Vector3f(tadpole->getVelocity());
 }
@@ -374,17 +374,17 @@ void StateLeap::exec(EnemyBase* enemy)
 			tadpole->createLeapEffect();
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_3) {
-			tadpole->disableEvent(0, EB_IsEnemyNotBitter);
+			tadpole->disableEvent(0, EB_NoInterrupt);
 			tadpole->createLeapEffect();
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_4) {
-			tadpole->enableEvent(0, EB_IsEnemyNotBitter);
+			tadpole->enableEvent(0, EB_NoInterrupt);
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_NULL) {
-			tadpole->enableEvent(0, EB_IsEnemyNotBitter);
+			tadpole->enableEvent(0, EB_NoInterrupt);
 
 		} else if (tadpole->mCurAnim->mType == KEYEVENT_1) {
-			tadpole->disableEvent(0, EB_IsEnemyNotBitter);
+			tadpole->disableEvent(0, EB_NoInterrupt);
 			tadpole->createLeapEffect();
 			if (randWeightFloat(1.0f) < 0.5f) {
 				tadpole->_2C0 = true;
@@ -710,6 +710,6 @@ lbl_802781A0:
  * Address:	802781E0
  * Size:	000010
  */
-void StateLeap::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemyNotBitter); }
+void StateLeap::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 } // namespace Tadpole
 } // namespace Game

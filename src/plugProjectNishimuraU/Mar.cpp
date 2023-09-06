@@ -39,8 +39,8 @@ void Obj::onInit(CreatureInitArg* settings)
 {
 	EnemyBase::onInit(settings);
 
-	disableEvent(0, EB_ToLeaveCarcass);
-	enableEvent(0, EB_IsFlying);
+	disableEvent(0, EB_LeaveCarcass);
+	enableEvent(0, EB_Untargetable);
 
 	_2C0       = 0.0f;
 	mFallTimer = 0.0f;
@@ -237,7 +237,7 @@ Vector3f Obj::getOffsetForMapCollision()
  */
 void Obj::getThrowupItemPosition(Vector3f* position)
 {
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		EnemyBase::getThrowupItemPosition(position);
 	} else {
 		*position = Vector3f(mPosition.x, mPosition.y + 500.0f, mPosition.z);
@@ -251,7 +251,7 @@ void Obj::getThrowupItemPosition(Vector3f* position)
  */
 void Obj::getThrowupItemVelocity(Vector3f* velocity)
 {
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		EnemyBase::getThrowupItemVelocity(velocity);
 	} else {
 		velocity->z = 0.0f;

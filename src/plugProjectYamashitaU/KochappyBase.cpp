@@ -104,7 +104,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 void Obj::bounceCallback(Sys::Triangle* triangle)
 {
 	if (getStateID() == 0) {
-		enableEvent(0, EB_Constraint);
+		enableEvent(0, EB_Constrained);
 	}
 }
 
@@ -116,7 +116,7 @@ void Obj::bounceCallback(Sys::Triangle* triangle)
 bool Obj::pressCallBack(Game::Creature* creature, float p1, CollPart* collpart)
 {
 	if (creature->isPiki() && isAlive()) {
-		if (!isEvent(0, EB_IsBittered)) {
+		if (!isEvent(0, EB_Bittered)) {
 			mFsm->transit(this, KOCHAPPY_Press, nullptr);
 			return true;
 		}

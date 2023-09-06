@@ -89,7 +89,7 @@ void StateRebirth::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* mini        = OBJ(enemy);
 	mini->mNextState = MINIHOUDAI_NULL;
-	mini->disableEvent(0, EB_IsEnemyNotBitter);
+	mini->disableEvent(0, EB_NoInterrupt);
 	mini->mTargetCreature = nullptr;
 	mini->mTargetVelocity = Vector3f(0.0f);
 	mini->startMotion(7, nullptr);
@@ -114,10 +114,10 @@ void StateRebirth::exec(EnemyBase* enemy)
 			EnemyFunc::flickNearbyNavi(mini, CG_PARMS(mini)->mGeneral.mShakeRange.mValue, CG_PARMS(mini)->mGeneral.mShakeKnockback.mValue,
 			                           CG_PARMS(mini)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
 			mini->mToFlick = 0.0f;
-			mini->enableEvent(0, EB_IsEnemyNotBitter);
+			mini->enableEvent(0, EB_NoInterrupt);
 
 		} else if (mini->mCurAnim->mType == KEYEVENT_3) {
-			mini->disableEvent(0, EB_IsEnemyNotBitter);
+			mini->disableEvent(0, EB_NoInterrupt);
 			mini->createDownEffect(0.75f);
 
 		} else if (mini->mCurAnim->mType == KEYEVENT_END) {
@@ -430,7 +430,7 @@ lbl_802E8864:
  * Address:	802E888C
  * Size:	000010
  */
-void StateRebirth::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemyNotBitter); }
+void StateRebirth::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
 /*
  * --INFO--

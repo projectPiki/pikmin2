@@ -103,7 +103,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	getCommonEffectPos(param.mPosition);
 	param.mPosition.y               = 2.5f + mPosition.y;
 	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
-	if (isEvent(1, EB2_IsEarthquake)) {
+	if (isEvent(1, EB2_Earthquake)) {
 		param.mBoundingSphere.mRadius = 50.0f;
 	} else {
 		param.mBoundingSphere.mRadius = 20.0f;
@@ -639,7 +639,7 @@ lbl_80276B84:
  */
 void Obj::updateCaution()
 {
-	if (isEvent(0, EB_HasCollisionOccurred) || isEvent(0, EB_IsTakingDamage) || mStuckPikminCount) {
+	if (isEvent(0, EB_Colliding) || isEvent(0, EB_TakingDamage) || mStuckPikminCount) {
 		mCautionTimer = 0.0f;
 	}
 

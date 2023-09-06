@@ -65,16 +65,16 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 		bomb->addDamage(sys->mDeltaTime, 1.0f);
 		bomb->mSoundObj->startSound(PSSE_EN_BOMB_LOOP, 0);
 	} else if (bomb->isAnimStart()) {
-		bomb->enableEvent(0, EB_IsEnemyNotBitter);
+		bomb->enableEvent(0, EB_NoInterrupt);
 		bomb->startMotion();
-		bomb->disableEvent(0, EB_IsCullable);
+		bomb->disableEvent(0, EB_Cullable);
 		bomb->setEmotionExcitement();
 	}
 
 	if (bomb->mCurAnim->mIsPlaying != 0) {
 		switch (bomb->mCurAnim->mType) {
 		case 2:
-			bomb->disableEvent(0, EB_IsEnemyNotBitter);
+			bomb->disableEvent(0, EB_NoInterrupt);
 			break;
 		case 1000:
 			transit(bomb, BOMB_Bomb, nullptr);
@@ -101,7 +101,7 @@ StateBomb::StateBomb(int stateID)
  */
 void Bomb::StateBomb::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->disableEvent(0, EB_IsCullable);
+	enemy->disableEvent(0, EB_Cullable);
 	enemy->startMotion(1, nullptr);
 	enemy->setEmotionExcitement();
 	_10 = 0;

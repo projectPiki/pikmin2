@@ -87,7 +87,7 @@ void Obj::getShadowParam(ShadowParam& param)
 		param.mPosition.y += 2.5f;
 		param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
 
-		if (isEvent(1, EB2_IsEarthquake)) {
+		if (isEvent(1, EB2_Earthquake)) {
 			param.mBoundingSphere.mRadius = 50.0f;
 		} else {
 			param.mBoundingSphere.mRadius = 7.5f;
@@ -109,7 +109,7 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (creature && creature->isPiki() && !isEvent(0, EB_IsBittered)) {
+	if (creature && creature->isPiki() && !isEvent(0, EB_Bittered)) {
 		int stateID = getStateID();
 		if (stateID != SOKKURI_Dead && stateID != SOKKURI_Press) {
 			mFsm->transit(this, SOKKURI_Press, nullptr);
@@ -127,7 +127,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (creature && creature->isPiki() && !isEvent(0, EB_IsBittered)) {
+	if (creature && creature->isPiki() && !isEvent(0, EB_Bittered)) {
 		int stateID = getStateID();
 		if (stateID != SOKKURI_Dead && stateID != SOKKURI_Press) {
 			mFsm->transit(this, SOKKURI_Press, nullptr);

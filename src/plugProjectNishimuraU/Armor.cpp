@@ -38,7 +38,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	disableEvent(0, EB_LifegaugeVisible);
-	disableEvent(0, EB_IsCullable);
+	disableEvent(0, EB_Cullable);
 	mNextState      = -1;
 	mAttackLoopTime = 0.0f;
 	resetBridgeSearch();
@@ -101,7 +101,7 @@ void Obj::getShadowParam(ShadowParam& param)
 		param.mPosition.x = boundingSphere.mPosition.x;
 		param.mPosition.y = mPosition.y + 2.5f;
 		param.mPosition.z = boundingSphere.mPosition.z;
-		if (isEvent(1, EB2_IsEarthquake)) {
+		if (isEvent(1, EB2_Earthquake)) {
 			param.mBoundingSphere.mRadius = 50.0f;
 		} else {
 			param.mBoundingSphere.mRadius = 25.0f;
@@ -118,7 +118,7 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		addDamage(damage, 1.0f);
 		return true;
 	}
@@ -137,8 +137,8 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	bool isTakeDamage = damageCallBack(creature, static_cast<Parms*>(mParms)->mGeneral.mPurplePikiStunDamage, collpart);
-	if (!(isEvent(0, EB_IsBittered)) && isTakeDamage) {
-		enableEvent(0, EB_SquashOnDamageAnimation);
+	if (!(isEvent(0, EB_Bittered)) && isTakeDamage) {
+		enableEvent(0, EB_SquashOnDamageAnim);
 	}
 	return !isTakeDamage;
 }
@@ -220,7 +220,7 @@ void Obj::initMouthSlots()
 void Obj::lifeIncrement()
 {
 	mInstantDamage = 0.0f;
-	disableEvent(0, EB_IsTakingDamage);
+	disableEvent(0, EB_TakingDamage);
 	if (mHealth <= 0.0f) {
 		mHealth = 1.0f;
 	}

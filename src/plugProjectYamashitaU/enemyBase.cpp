@@ -41,11 +41,13 @@
 
 // Utility
 #include "Dolphin/rand.h"
-
 #include "nans.h"
 
+// Archives
 JKRArchive* Game::gParmArc;
 PSGame::BASARC* PSSystem::ArcMgr<PSGame::BASARC>::sInstance;
+
+// SingletonBase instances
 PSM::BossBgmFader::Mgr* PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::sInstance;
 PSM::ObjCalcBase* PSSystem::SingletonBase<PSM::ObjCalcBase>::sInstance;
 PSM::CreaturePrm* PSSystem::SingletonBase<PSM::CreaturePrm>::sInstance;
@@ -75,7 +77,7 @@ namespace EnemyBaseFSM {
  */
 void State::animation(EnemyBase* enemy)
 {
-	if (!enemy->isEvent(0, EB_IsAlive)) {
+	if (!enemy->isEvent(0, EB_Alive)) {
 		return;
 	}
 
@@ -86,7 +88,7 @@ void State::animation(EnemyBase* enemy)
 	enemy->updateLOD(enemy->mLodParm);
 
 	if (enemy->isCullingOff()) {
-		if (enemy->isEvent(0, EB_IsAnimating)) {
+		if (enemy->isEvent(0, EB_Animating)) {
 			enemy->doAnimationCullingOff();
 		} else {
 			enemy->doAnimationCullingOn();
@@ -101,7 +103,7 @@ void State::animation(EnemyBase* enemy)
 
 	GeneralEnemyMgr::mCullCount++;
 	enemy->doAnimationCullingOn();
-	if (fxExists == true) {
+	if (fxExists == true) { // required to match
 		enemy->fadeEffects();
 	}
 }
@@ -120,16 +122,16 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 	CellIterator it(ciArg);
 	CI_LOOP(it)
 	{
-		Creature* cell = static_cast<Creature*>(*it);
-		if (!cell->isAlive()) {
+		Creature* creature = static_cast<Creature*>(*it);
+		if (!creature->isAlive()) {
 			continue;
 		}
 
 		// Is creature Pikmin or Navi?
-		if (cell->isNavi() || (cell->isPiki() && static_cast<Piki*>(cell)->isPikmin())) {
+		if (creature->isNavi() || (creature->isPiki() && static_cast<Piki*>(creature)->isPikmin())) {
 			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->mParms)->mGeneral.mPrivateRadius.mValue;
 			Vector2f delta;
-			enemy->getDistanceTo(cell, delta);
+			enemy->getDistanceTo(creature, delta);
 
 			// Is creature within private radius?
 			if (IS_WITHIN_CIRCLE(delta.x, delta.y, privateRadius)) {
@@ -199,13 +201,13 @@ bool BirthTypeDropPikminState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
 	CellIterator it(ciArg);
 	CI_LOOP(it)
 	{
-		Creature* cell = static_cast<Creature*>(*it);
+		Creature* creature = static_cast<Creature*>(*it);
 
-		if (cell->isAlive() && cell->isPiki() && static_cast<Piki*>(cell)->isPikmin()) {
+		if (creature->isAlive() && creature->isPiki() && static_cast<Piki*>(creature)->isPikmin()) {
 			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->mParms)->mGeneral.mPrivateRadius.mValue;
 
 			Vector2f delta;
-			enemy->getDistanceTo(cell, delta);
+			enemy->getDistanceTo(creature, delta);
 
 			if (IS_WITHIN_CIRCLE(delta.x, delta.y, privateRadius)) {
 				result = true;
@@ -230,12 +232,12 @@ bool BirthTypeDropOlimarState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
 	CellIterator it(ciArg);
 	CI_LOOP(it)
 	{
-		Creature* cell = static_cast<Creature*>(*it);
+		Creature* creature = static_cast<Creature*>(*it);
 
-		if (cell->isAlive() && cell->isNavi()) {
+		if (creature->isAlive() && creature->isNavi()) {
 			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->mParms)->mGeneral.mPrivateRadius.mValue;
 			Vector2f delta;
-			enemy->getDistanceTo(cell, delta);
+			enemy->getDistanceTo(creature, delta);
 
 			if (IS_WITHIN_CIRCLE(delta.x, delta.y, privateRadius)) {
 				result = true;
@@ -258,14 +260,14 @@ bool BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(EnemyBase* ene
 	PelletIterator it;
 	CI_LOOP(it)
 	{
-		Pellet* cell = static_cast<Pellet*>(*it);
+		Pellet* pellet = static_cast<Pellet*>(*it);
 
-		if (cell->isAlive() && cell->isCarried()) {
-			Vector3f pos      = cell->getPosition();
+		if (pellet->isAlive() && pellet->isCarried()) {
+			Vector3f pos      = pellet->getPosition();
 			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->mParms)->mGeneral.mPrivateRadius.mValue;
 
 			Vector2f delta;
-			enemy->getDistanceTo(cell, delta);
+			enemy->getDistanceTo(pellet, delta);
 
 			if (IS_WITHIN_CIRCLE(delta.x, delta.y, privateRadius)) {
 				result = true;
@@ -302,8 +304,8 @@ void AppearState::init(EnemyBase* enemy, StateArg* arg)
 	f32 mod                      = enemy->mScaleModifier;
 	EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 
-	efx::ArgEnemyType effectArg(enemy->getPosition(), id, mod);
-	effect.create(&effectArg);
+	efx::ArgEnemyType fxArg(enemy->getPosition(), id, mod);
+	effect.create(&fxArg);
 
 	enemy->mScale         = 0.0f;
 	enemy->mStunAnimTimer = 0.0f;
@@ -318,7 +320,7 @@ void AppearState::update(EnemyBase* enemy)
 {
 	enemy->mStunAnimTimer += 2.0f * sys->mDeltaTime;
 	if (enemy->mStunAnimTimer > 1.0f) {
-		transit(enemy, EBS_Living, 0);
+		transit(enemy, EBS_Living, nullptr);
 		return;
 	}
 
@@ -352,16 +354,16 @@ void AppearState::cleanup(EnemyBase* enemy)
  * Address:	800FFF38
  * Size:	00010C
  */
-void EnemyBaseFSM::LivingState::simulation(EnemyBase* enemy, f32 constraint)
+void EnemyBaseFSM::LivingState::simulation(EnemyBase* enemy, f32 frameRate)
 {
-	// If enemy is constraint OR alive AND is not earthquake AND is not being dropped
-	if (enemy->isEvent(0, EB_IsHardConstraint)
-	    || isConstrained(enemy) && !enemy->isEvent(1, EB2_IsEarthquake) && !enemy->isEvent(1, EB2_IsDropping)) {
+	// If enemy is constrained OR alive AND is not earthquake AND is not being dropped
+	if (enemy->isEvent(0, EB_HardConstrained)
+	    || isConstrained(enemy) && !enemy->isEvent(1, EB2_Earthquake) && !enemy->isEvent(1, EB2_Dropping)) {
 		if (enemy->isCullingOff()) {
-			enemy->doSimulationConstraint(constraint);
+			enemy->doSimulationConstraint(frameRate);
 		}
 	} else if (enemy->isCullingOff()) {
-		enemy->collisionMapAndPlat(constraint);
+		enemy->collisionMapAndPlat(frameRate);
 		enemy->updateWaterBox();
 	}
 
@@ -403,7 +405,7 @@ void LivingState::updateCullingOff(EnemyBase* enemy) { enemy->doUpdate(); }
  */
 void LivingState::updateAlways(EnemyBase* enemy)
 {
-	if (enemy->isEvent(0, EB_ToEnableBitter)) {
+	if (enemy->isEvent(0, EB_BitterQueued)) {
 		enemy->startStoneState();
 	}
 }
@@ -415,10 +417,10 @@ void LivingState::updateAlways(EnemyBase* enemy)
  */
 void LivingState::update(EnemyBase* enemy)
 {
-	sys->mTimers->_start("e-upd-do", 1);
+	sys->mTimers->_start("e-upd-do", true);
 
-	enemy->disableEvent(0, EB_IsNavi0Attacked);
-	enemy->disableEvent(0, EB_IsNavi1Attacked);
+	enemy->disableEvent(0, EB_AttackingNavi0);
+	enemy->disableEvent(0, EB_AttackingNavi1);
 
 	enemy->mSoundObj->exec();
 
@@ -442,8 +444,8 @@ void LivingState::update(EnemyBase* enemy)
 
 			if (enemy->mExistTimer > enemy->mExistDuration) {
 				enemy->addDamage(enemy->mMaxHealth, 1.0f);
-				enemy->disableEvent(0, EB_IsCullable);
-				enemy->disableEvent(0, EB_IsDamageAnimAllowed);
+				enemy->disableEvent(0, EB_Cullable);
+				enemy->disableEvent(0, EB_DamageAnimEnabled);
 			}
 		}
 	}
@@ -459,7 +461,7 @@ void LivingState::update(EnemyBase* enemy)
 void EnemyBaseFSM::FitState::updateCullingOff(EnemyBase* enemy)
 {
 	if (enemy->isDead()) {
-		transit(enemy, EBS_Living, 0);
+		transit(enemy, EBS_Living, nullptr);
 	}
 }
 
@@ -473,9 +475,9 @@ void EnemyBaseFSM::FitState::init(EnemyBase* enemy, StateArg* arg)
 	enemy->doUpdate();
 	enemy->backupEvents();
 
-	enemy->enableEvent(1, EB2_IsStunned);
+	enemy->enableEvent(1, EB2_Stunned);
 	enemy->stopMotion();
-	enemy->enableEvent(0, EB_Constraint);
+	enemy->enableEvent(0, EB_Constrained);
 
 	enemy->mTargetVelocity  = 0.0f;
 	enemy->mCurrentVelocity = 0.0f;
@@ -485,8 +487,8 @@ void EnemyBaseFSM::FitState::init(EnemyBase* enemy, StateArg* arg)
 	f32 scale                    = enemy->mScaleModifier;
 	EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 
-	efx::ArgEnemyType effectArg(enemy->mPosition, id, scale);
-	mEnemyPiyo.create(&effectArg);
+	efx::ArgEnemyType fxArg(enemy->mPosition, id, scale);
+	mEnemyPiyo.create(&fxArg);
 }
 
 /*
@@ -498,7 +500,7 @@ void FitState::cleanup(EnemyBase* enemy)
 {
 	enemy->restoreEvents();
 
-	enemy->disableEvent(1, EB2_IsStunned);
+	enemy->disableEvent(1, EB2_Stunned);
 	enemy->startMotion();
 	enemy->doFinishEarthquakeFitState();
 	mEnemyPiyo.fade();
@@ -512,10 +514,9 @@ void FitState::cleanup(EnemyBase* enemy)
 void FitState::updateAlways(EnemyBase* enemy)
 {
 	enemy->mStunAnimTimer += sys->mDeltaTime;
-	if (enemy->mStunAnimTimer > enemy->getParms().mPurplePikiStunDuration.mValue || enemy->isEvent(0, EB_ToEnableBitter)
-	    || enemy->isDead()) {
+	if (enemy->mStunAnimTimer > enemy->getParms().mPurplePikiStunDuration.mValue || enemy->isEvent(0, EB_BitterQueued) || enemy->isDead()) {
 		enemy->mStunAnimTimer = 0.0f;
-		transit(enemy, EBS_Living, 0);
+		transit(enemy, EBS_Living, nullptr);
 	} else {
 		f32 sinStun = 4.0f * pikmin2_sinf((PI * enemy->mStunAnimTimer) / enemy->getParms().mPurplePikiStunDuration.mValue);
 		if (sinStun > 1.0f) {
@@ -540,7 +541,7 @@ void FitState::updateAlways(EnemyBase* enemy)
 void EarthquakeState::init(EnemyBase* enemy, StateArg* arg)
 {
 	enemy->doUpdate();
-	enemy->enableEvent(1, EB2_IsEarthquake);
+	enemy->enableEvent(1, EB2_Earthquake);
 	enemy->stopMotion();
 
 	EarthquakeStateArg* eqArg = static_cast<EarthquakeStateArg*>(arg);
@@ -555,7 +556,7 @@ void EarthquakeState::init(EnemyBase* enemy, StateArg* arg)
  */
 void EarthquakeState::cleanup(EnemyBase* enemy)
 {
-	enemy->disableEvent(1, EB2_IsEarthquake);
+	enemy->disableEvent(1, EB2_Earthquake);
 	enemy->startMotion();
 	enemy->doFinishEarthquakeState();
 }
@@ -568,23 +569,23 @@ void EarthquakeState::cleanup(EnemyBase* enemy)
 void EarthquakeState::updateCullingOff(EnemyBase* enemy)
 {
 	if (enemy->isDead() && enemy->mBounceTriangle) {
-		transit(enemy, EBS_Living, 0);
+		transit(enemy, EBS_Living, nullptr);
 		return;
 	}
 
 	if (++mEarthquakeStepTimer > 3 && enemy->mBounceTriangle) {
 		f32 randChance = randFloat();
 		if (enemy->mStunAnimTimer > 0.0f
-		    || (randChance < enemy->getParms().mPurplePikiStunChance.mValue && !enemy->isEvent(0, EB_ToEnableBitter)
-		        && !enemy->isEvent(0, EB_IsEnemyNotBitter))) {
-			transit(enemy, EBS_Fit, 0);
+		    || (randChance < enemy->getParms().mPurplePikiStunChance.mValue && !enemy->isEvent(0, EB_BitterQueued)
+		        && !enemy->isEvent(0, EB_NoInterrupt))) {
+			transit(enemy, EBS_Fit, nullptr);
 		} else {
-			transit(enemy, EBS_Living, 0);
+			transit(enemy, EBS_Living, nullptr);
 		}
 	}
 
 	if (enemy->isFlying()) {
-		enemy->disableEvent(0, EB_IsFlying);
+		enemy->disableEvent(0, EB_Untargetable);
 	}
 }
 
@@ -595,7 +596,7 @@ void EarthquakeState::updateCullingOff(EnemyBase* enemy)
  */
 void StoneState::bounceProcedure(EnemyBase* enemy, Sys::Triangle* triangle)
 {
-	enemy->enableEvent(0, EB_Constraint);
+	enemy->enableEvent(0, EB_Constrained);
 	enemy->createBounceEffect(enemy->mPosition, enemy->getDownSmokeScale());
 	enemy->addDamage(0.0f, 1.0f);
 }
@@ -607,24 +608,24 @@ void StoneState::bounceProcedure(EnemyBase* enemy, Sys::Triangle* triangle)
  */
 void StoneState::init(EnemyBase* enemy, StateArg* arg)
 {
-	if (enemy->isEvent(0, EB_ToEnableBitter)) {
-		enemy->disableEvent(0, EB_ToEnableBitter);
+	if (enemy->isEvent(0, EB_BitterQueued)) {
+		enemy->disableEvent(0, EB_BitterQueued);
 	} else {
 		enemy->doUpdate();
 	}
 
 	enemy->backupEvents();
 
-	enemy->enableEvent(0, EB_IsBittered);
+	enemy->enableEvent(0, EB_Bittered);
 	enemy->hide();
 	enemy->mBitterTimer = 0.0f;
 	enemy->stopMotion();
 	enemy->mCurrentVelocity = 0.0f;
 
 	if (enemy->mBounceTriangle) {
-		enemy->enableEvent(0, EB_Constraint);
+		enemy->enableEvent(0, EB_Constrained);
 	} else {
-		enemy->enableEvent(0, EB_Constraint);
+		enemy->enableEvent(0, EB_Constrained);
 	}
 
 	if (enemy->mSfxEmotion == EMOTE_Excitement && PSGetDirectedMainBgm()) {
@@ -641,12 +642,12 @@ void StoneState::init(EnemyBase* enemy, StateArg* arg)
  */
 void StoneState::cleanup(EnemyBase* enemy)
 {
-	P2ASSERTLINE(1024, enemy->isEvent(0, EB_IsBittered));
+	P2ASSERTLINE(1024, enemy->isEvent(0, EB_Bittered));
 
 	enemy->restoreEvents();
 
-	enemy->disableEvent(0, EB_ToEnableBitter);
-	enemy->disableEvent(0, EB_IsBittered);
+	enemy->disableEvent(0, EB_BitterQueued);
+	enemy->disableEvent(0, EB_Bittered);
 
 	enemy->show();
 	enemy->startMotion();
@@ -670,9 +671,10 @@ void StoneState::updateAlways(EnemyBase* enemy)
 	if (enemy->mEnemyStoneObj->isFlag(EnemyStone::STONE_HasViewedDemo)) {
 		if (!enemy->mBounceTriangle) {
 			enemy->constraintOff();
-			enemy->disableEvent(0, EB_IsFlying);
+			enemy->disableEvent(0, EB_Untargetable);
 		}
 
+		// dev typo
 		f32 isBitterFinish = (enemy->mBitterTimer > enemy->getParms().mBitterDuration.mValue);
 		if (isBitterFinish) {
 			if (enemy->mEnemyStoneObj->isFlag(EnemyStone::STONE_Shake)) {
@@ -694,7 +696,7 @@ void StoneState::updateAlways(EnemyBase* enemy)
 void StoneState::updateCullingOff(EnemyBase* enemy)
 {
 	if (enemy->isAlive() && enemy->isStopMotion() && enemy->isDead()) {
-		enemy->kill((CreatureKillArg*)nullptr);
+		enemy->kill(nullptr);
 	}
 }
 
@@ -739,7 +741,7 @@ void StateMachine::entry(EnemyBase* enemy) { mState->entry(enemy); }
  * Address:	8010136C
  * Size:	000030
  */
-void StateMachine::simulation(EnemyBase* enemy, f32 constraint) { mState->simulation(enemy, constraint); }
+void StateMachine::simulation(EnemyBase* enemy, f32 frameRate) { mState->simulation(enemy, frameRate); }
 } // namespace EnemyBaseFSM
 
 /*
@@ -781,9 +783,7 @@ EnemyBase::EnemyBase()
     , mCurrentLifecycleState(nullptr)
     , mLifecycleFSM(nullptr)
 {
-	for (int i = 0; i < 4; i++) {
-		mFlags.byteView[i] = 0;
-	}
+	mFlags.clear();
 
 	mObjectTypeID  = OBJTYPE_Teki;
 	mScaleModifier = 1.0f;
@@ -796,22 +796,14 @@ EnemyBase::EnemyBase()
 	mLifecycleFSM    = new EnemyBaseFSM::StateMachine();
 	mLifecycleFSM->init(this);
 	clearStick();
-	mCurAnim->mIsPlaying = 0;
+	mCurAnim->mIsPlaying = false;
 	mInstantDamage       = 0.0f;
-	disableEvent(0, EB_IsTakingDamage);
+	disableEvent(0, EB_TakingDamage);
 	mToFlick     = 0.0f;
 	mBitterTimer = 0.0f;
 
-	for (int i = 0; i < 2; i++) {
-		for (int j = 0; j < 4; j++) {
-			mEvents.mFlags[i].byteView[j] = 0;
-		}
-	}
-	for (int i = 0; i < 2; i++) {
-		for (int j = 0; j < 4; j++) {
-			mEventBuffer.mFlags[i].byteView[j] = 0;
-		}
-	}
+	mEvents.clear();
+	mEventBuffer.clear();
 
 	if (shadowMgr) {
 		shadowMgr->createShadow(this);
@@ -821,10 +813,7 @@ EnemyBase::EnemyBase()
 		lifeGaugeMgr->createLifeGauge(this);
 	}
 
-	mHamonEffectRoot.mChild  = nullptr;
-	mHamonEffectRoot.mParent = nullptr;
-	mHamonEffectRoot.mPrev   = nullptr;
-	mHamonEffectRoot.mNext   = nullptr;
+	mHamonEffectRoot.clearRelations();
 }
 
 /*
@@ -962,22 +951,22 @@ void EnemyBase::onInit(CreatureInitArg* arg)
 	clearStick();
 	mCurAnim->mIsPlaying = false;
 	mInstantDamage       = 0.0f;
-	disableEvent(0, EB_IsTakingDamage);
+	disableEvent(0, EB_TakingDamage);
 	mToFlick     = 0.0f;
 	mBitterTimer = 0.0f;
 
 	resetEvents();
 
-	enableEvent(0, EB_IsAlive);
-	enableEvent(0, EB_IsDamageAnimAllowed);
-	enableEvent(0, EB_IsFlickEnabled);
-	enableEvent(0, EB_IsCullable);
-	enableEvent(0, EB_ToLeaveCarcass);
-	enableEvent(0, EB_IsDeathEffectEnabled);
+	enableEvent(0, EB_Alive);
+	enableEvent(0, EB_DamageAnimEnabled);
+	enableEvent(0, EB_FlickEnabled);
+	enableEvent(0, EB_Cullable);
+	enableEvent(0, EB_LeaveCarcass);
+	enableEvent(0, EB_DeathEffectEnabled);
 	enableEvent(0, EB_LifegaugeVisible);
 	mWaterBox = nullptr;
-	enableEvent(0, EB_IsPlatformCollsAllowed);
-	enableEvent(0, EB_IsAnimating);
+	enableEvent(0, EB_PlatformCollEnabled);
+	enableEvent(0, EB_Animating);
 }
 
 /*
@@ -994,9 +983,9 @@ void EnemyBase::onInitPost(CreatureInitArg* arg)
 	case EDG_Normal:
 	case EDG_Pikmin:
 	case EDG_Navi:
-	case EDG_Treasure:
+	case EDG_Carry:
 	case EDG_Earthquake:
-		if (isEvent(0, EB_IsHardConstraint)) {
+		if (isEvent(0, EB_HardConstrained)) {
 			mLifecycleFSM->start(this, EnemyBaseFSM::EBS_Living, nullptr);
 		} else {
 			switch (mDropGroup) {
@@ -1009,7 +998,7 @@ void EnemyBase::onInitPost(CreatureInitArg* arg)
 			case EDG_Navi:
 				mLifecycleFSM->start(this, EnemyBaseFSM::EBS_DropOlimar, nullptr);
 				break;
-			case EDG_Treasure:
+			case EDG_Carry:
 				mLifecycleFSM->start(this, EnemyBaseFSM::EBS_DropTreasure, nullptr);
 				break;
 			case EDG_Earthquake:
@@ -1073,7 +1062,7 @@ void EnemyBase::setOtakaraCode(PelletMgr::OtakaraItemCode& itemCode)
 
 void EnemyBase::forceKillEffects()
 {
-	if (mHeldPellet != nullptr) {
+	if (mHeldPellet) {
 		InteractMattuan interactMatt(this, 2.5f);
 
 		mHeldPellet->stimulate(interactMatt);
@@ -1097,6 +1086,11 @@ void EnemyBase::setCarcassArg(PelletViewArg& carcassArg)
 	carcassArg.mEnemy     = this;
 }
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000234
+ */
 void EnemyBase::becomeCarcass()
 {
 	if (lifeGaugeMgr != nullptr) {
@@ -1156,24 +1150,24 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 
 	endStick();
 
-	if ((!killArg || (killArg->_04 & 0x10000000) == FALSE) && isEvent(0, EB_IsDeathEffectEnabled)) {
+	if ((!killArg || !(killArg->isFlag(CKILL_Unk29))) && isEvent(0, EB_DeathEffectEnabled)) {
 		Vector3f effectPos;
 		getCommonEffectPos(effectPos);
 		f32 scaleMod                      = mScaleModifier;
 		EnemyTypeID::EEnemyTypeID enemyID = getEnemyTypeID();
 
-		efx::ArgEnemyType efxArg(effectPos, enemyID, scaleMod);
+		efx::ArgEnemyType fxArg(effectPos, enemyID, scaleMod);
 		efx::TEnemyDead efxDead;
 
-		efxDead.create((efx::Arg*)&efxArg);
+		efxDead.create((efx::Arg*)&fxArg);
 		PSStartEnemyGhostSE(this, 0.0f);
 	}
 
-	if (!killArg || (killArg->_04 & 0x40000000) == FALSE) {
-		if (isEvent(0, EB_IsBittered)) {
+	if (!killArg || !(killArg->isFlag(CKILL_Unk31))) {
+		if (isEvent(0, EB_Bittered)) {
 			mEnemyStoneObj->dead();
 			deathProcedure();
-			disableEvent(0, EB_IsBittered);
+			disableEvent(0, EB_Bittered);
 			constraintOff();
 			if (ItemHoney::mgr) {
 				s8 bitterDrop = (s8)EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->mBitterDrops;
@@ -1249,7 +1243,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 			forceKillEffects();
 			becomeCarcass();
 
-		} else if (mExistDuration == 0.0f && isEvent(0, EB_ToLeaveCarcass) && (!killArg || !(killArg->_04 & 0x20000000))) {
+		} else if (mExistDuration == 0.0f && isEvent(0, EB_LeaveCarcass) && (!killArg || !(killArg->isFlag(CKILL_Unk30)))) {
 			if (!mPellet) {
 				PelletViewArg pvArg;
 				setCarcassArg(pvArg);
@@ -1274,7 +1268,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 		return;
 	}
 
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		mEnemyStoneObj->dead();
 	}
 
@@ -1315,7 +1309,7 @@ void EnemyBase::setZukanVisible(bool updateStats)
  */
 void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 {
-	enableEvent(0, EB_IsAlive);
+	enableEvent(0, EB_Alive);
 
 	mInPiklopedia = true;
 
@@ -1408,16 +1402,16 @@ bool EnemyBase::isFinishableWaitingBirthTypeDrop()
 	CellIterator it(ciArg);
 	CI_LOOP(it)
 	{
-		Creature* cell = static_cast<Creature*>(*it);
-		if (!cell->isAlive()) {
+		Creature* creature = static_cast<Creature*>(*it);
+		if (!creature->isAlive()) {
 			continue;
 		}
 
 		// Is creature Pikmin or Navi?
-		if (cell->isNavi() || (cell->isPiki() && static_cast<Piki*>(cell)->isPikmin())) {
+		if (creature->isNavi() || (creature->isPiki() && static_cast<Piki*>(creature)->isPikmin())) {
 			f32 privateRadius = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mPrivateRadius.mValue;
 			Vector2f delta;
-			getDistanceTo(cell, delta);
+			getDistanceTo(creature, delta);
 
 			// Is creature within private radius?
 			if (IS_WITHIN_CIRCLE(delta.x, delta.y, privateRadius)) {
@@ -1437,16 +1431,16 @@ bool EnemyBase::isFinishableWaitingBirthTypeDrop()
 void EnemyBase::startStoneState()
 {
 	// If not bittered and is vulnerable
-	if (isEvent(0, EB_IsImmuneBitter) == false && isEvent(0, EB_IsBittered) == false) {
-		if (isEvent(0, EB_IsEnemyNotBitter)) {
-			enableEvent(0, EB_ToEnableBitter);
+	if (isEvent(0, EB_BitterImmune) == false && isEvent(0, EB_Bittered) == false) {
+		if (isEvent(0, EB_NoInterrupt)) {
+			enableEvent(0, EB_BitterQueued);
 			return;
 		}
 
 		if (mEnemyStoneObj->start()) {
 			mLifecycleFSM->transit(this, EnemyBaseFSM::EBS_Stone, 0);
 		} else {
-			enableEvent(0, EB_ToEnableBitter);
+			enableEvent(0, EB_BitterQueued);
 		}
 	}
 }
@@ -1456,12 +1450,7 @@ void EnemyBase::startStoneState()
  * Address:	80102EF4
  * Size:	000014
  */
-void EnemyBase::doStartStoneState()
-{
-	mTargetVelocity.x = 0.0f;
-	mTargetVelocity.y = 0.0f;
-	mTargetVelocity.z = 0.0f;
-}
+void EnemyBase::doStartStoneState() { mTargetVelocity = Vector3f(0.0f); }
 
 /*
  * --INFO--
@@ -1533,13 +1522,13 @@ void EnemyBase::doAnimationCullingOff()
 		PSMTXConcat(mObjMatrix.mMatrix.mtxView, mtx.mMatrix.mtxView, mObjMatrix.mMatrix.mtxView);
 
 		Vector3f pos;
-		pos.x = mObjMatrix.mMatrix.structView.tx;
-		pos.y = mObjMatrix.mMatrix.structView.ty;
-		pos.z = mObjMatrix.mMatrix.structView.tz;
+		mObjMatrix.getTranslation(pos);
 		onSetPosition(pos);
 		onSetPositionPost(pos);
+
 	} else if (isStickTo()) {
 		doAnimationStick();
+
 	} else {
 		Vector3f rot = mRotation + mDamageAnimRotation + mStunAnimRotation;
 		mObjMatrix.makeSRT(mScale, rot, mPosition);
@@ -1581,7 +1570,7 @@ void EnemyBase::doAnimationCullingOn() { mModel->mJ3dModel->mModelData->mJointTr
  */
 void EnemyBase::show()
 {
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		if (mEnemyStoneObj->isFlag(EnemyStone::STONE_Fit)) {
 			mModel->hide();
 		} else {
@@ -1599,7 +1588,7 @@ void EnemyBase::show()
  */
 void EnemyBase::hide()
 {
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		mModel->hide();
 	} else {
 		mModel->hide();
@@ -1620,7 +1609,7 @@ void EnemyBase::doEntryCarcass()
 		hide();
 	}
 
-	if (!(isEvent(0, EB_IsModelHidden))) {
+	if (!(isEvent(0, EB_ModelHidden))) {
 		mModel->mJ3dModel->entry();
 	}
 }
@@ -1636,7 +1625,7 @@ void EnemyBase::doEntryLiving()
 		show();
 		changeMaterial();
 	} else {
-		if (BaseHIOParms::sEntryOpt != false) {
+		if (BaseHIOParms::sEntryOpt) {
 			if (!gameSystem->isMultiplayerMode())
 				return;
 		}
@@ -1644,7 +1633,7 @@ void EnemyBase::doEntryLiving()
 		hide();
 	}
 
-	if (!(isEvent(0, EB_IsModelHidden))) {
+	if (!(isEvent(0, EB_ModelHidden))) {
 		mModel->mJ3dModel->entry();
 	}
 }
@@ -1674,8 +1663,8 @@ bool EnemyBase::isCullingOff()
 		return true;
 	}
 
-	return !isEvent(0, EB_IsCullable) || mLod.mFlags & AILOD_FLAG_NEED_SHADOW || mLod.mFlags & AILOD_FLAG_UNKNOWN4
-	    || isEvent(1, EB2_IsDropping);
+	return !isEvent(0, EB_Cullable) || mLod.mFlags & AILOD_FLAG_NEED_SHADOW || mLod.mFlags & AILOD_FLAG_UNKNOWN4
+	    || isEvent(1, EB2_Dropping);
 }
 
 /*
@@ -1695,23 +1684,21 @@ void EnemyBase::doViewCalc()
  * Address:	80103774
  * Size:	0000AC
  */
-void EnemyBase::doSimulationGround(f32 accelRate)
+void EnemyBase::doSimulationGround(f32 frameRate)
 {
-	Vector3f velocity;
-	velocity.x = mTargetVelocity.x;
-	velocity.y = mCurrentVelocity.y;
-	velocity.z = mTargetVelocity.z;
+	Vector3f velocity = mTargetVelocity;
+	velocity.y        = mCurrentVelocity.y;
 
 	Vector3f accel   = velocity - mCurrentVelocity;
-	accel            = accel * getAccelerationScale(accelRate);
+	accel            = accel * getAccelerationScale(frameRate);
 	mCurrentVelocity = mCurrentVelocity + accel;
 
 	if (isDropping()) {
-		mCurrentVelocity.y = -((3.0f * (accelRate * _aiConstants->mGravity.mData)) - mCurrentVelocity.y);
+		mCurrentVelocity.y = -((3.0f * (frameRate * _aiConstants->mGravity.mData)) - mCurrentVelocity.y);
 		return;
 	}
 
-	mCurrentVelocity.y = -((accelRate * _aiConstants->mGravity.mData) - mCurrentVelocity.y);
+	mCurrentVelocity.y = -((frameRate * _aiConstants->mGravity.mData) - mCurrentVelocity.y);
 }
 
 /*
@@ -1719,10 +1706,10 @@ void EnemyBase::doSimulationGround(f32 accelRate)
  * Address:	80103820
  * Size:	000058
  */
-void EnemyBase::doSimulationFlying(f32 accelRate)
+void EnemyBase::doSimulationFlying(f32 frameRate)
 {
 	Vector3f accel   = mTargetVelocity - mCurrentVelocity;
-	accel            = accel * getAccelerationScale(accelRate);
+	accel            = accel * getAccelerationScale(frameRate);
 	mCurrentVelocity = mCurrentVelocity + accel;
 }
 
@@ -1731,10 +1718,10 @@ void EnemyBase::doSimulationFlying(f32 accelRate)
  * Address:	80103878
  * Size:	000058
  */
-void EnemyBase::doSimulationStick(f32 accelRate)
+void EnemyBase::doSimulationStick(f32 frameRate)
 {
 	Vector3f accel   = mTargetVelocity - mCurrentVelocity;
-	accel            = accel * getAccelerationScale(accelRate);
+	accel            = accel * getAccelerationScale(frameRate);
 	mCurrentVelocity = mCurrentVelocity + accel;
 }
 
@@ -1835,12 +1822,12 @@ void EnemyBase::inWaterCallback(WaterBox* water)
  */
 void EnemyBase::finishDropping(bool latchToMap)
 {
-	if (!isEvent(1, EB2_IsDropping)) {
+	if (!isEvent(1, EB2_Dropping)) {
 		return;
 	}
 
 	addDamage(0.0f, 1.0f);
-	enableEvent(0, EB_SquashOnDamageAnimation);
+	enableEvent(0, EB_SquashOnDamageAnim);
 
 	Sys::Sphere ball;
 	getBoundingSphere(ball);
@@ -1852,7 +1839,7 @@ void EnemyBase::finishDropping(bool latchToMap)
 
 	createBounceEffect(pos, getDownSmokeScale());
 
-	disableEvent(1, EB2_IsDropping);
+	disableEvent(1, EB2_Dropping);
 	mCurrentVelocity = 0.0f;
 }
 
@@ -1864,7 +1851,7 @@ void EnemyBase::finishDropping(bool latchToMap)
 void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
 {
 	bounceCallback(triangle);
-	disableEvent(0, EB_ShouldCheckCollision);
+	disableEvent(0, EB_CollisionActive);
 
 	finishDropping(true);
 	resetDroppingMassZero();
@@ -1877,18 +1864,18 @@ void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
  * Address:	80104340
  * Size:	0006D4
  */
-void EnemyBase::collisionMapAndPlat(f32 timeStep)
+void EnemyBase::collisionMapAndPlat(f32 frameRate)
 {
 	// If isn't stuck
 	if (!isStickTo()) {
 		// Apply simulation for ground or flying enemies
-		if (!(isEvent(0, EB_IsFlying))) {
-			doSimulationGround(timeStep);
+		if (!(isEvent(0, EB_Untargetable))) {
+			doSimulationGround(frameRate);
 		} else {
-			doSimulationFlying(timeStep);
+			doSimulationFlying(frameRate);
 
 			// If we're flying, we don't need to check collision for floor and other objects
-			disableEvent(0, EB_ShouldCheckCollision);
+			disableEvent(0, EB_CollisionActive);
 		}
 
 		f32 yOffsetFromMap = getParms().mHeightOffsetFromFloor.mValue;
@@ -1911,7 +1898,7 @@ void EnemyBase::collisionMapAndPlat(f32 timeStep)
 		// Check where our wanted movement will reach us
 		MoveInfo moveInfo(&collSphere, &totalVel, bounceAmount);
 		moveInfo.mInfoOrigin = (BaseItem*)this;
-		mapMgr->traceMove(moveInfo, timeStep);
+		mapMgr->traceMove(moveInfo, frameRate);
 
 		mCurrentVelocity = totalVel;
 
@@ -1946,9 +1933,9 @@ void EnemyBase::collisionMapAndPlat(f32 timeStep)
 		mWallTriangle = moveInfo.mWallTriangle;
 
 		// Handles platform collisions for bouncing and walls
-		if (platMgr && isEvent(0, EB_IsPlatformCollsAllowed)) {
+		if (platMgr && isEvent(0, EB_PlatformCollEnabled)) {
 			moveInfo.mVelocity = &mCurrentVelocity;
-			platMgr->traceMove(moveInfo, timeStep);
+			platMgr->traceMove(moveInfo, frameRate);
 
 			if (!mBounceTriangle) {
 				if (moveInfo.mBounceTriangle) {
@@ -1983,7 +1970,7 @@ void EnemyBase::collisionMapAndPlat(f32 timeStep)
 	// NOTE: what does isStuckTo mean?
 	mAcceleration = 0.0f;
 
-	doSimulationStick(timeStep);
+	doSimulationStick(frameRate);
 
 	mPosition += mCurrentVelocity;
 
@@ -1998,33 +1985,33 @@ void EnemyBase::collisionMapAndPlat(f32 timeStep)
  * Address:	80104A38
  * Size:	000020
  */
-void EnemyBase::doSimulationCarcass(f32 _) { updateWaterBox(); }
+void EnemyBase::doSimulationCarcass(f32 frameRate) { updateWaterBox(); }
 
 /*
  * --INFO--
  * Address:	80104A58
  * Size:	000034
  */
-void EnemyBase::doSimulation(f32 arg) { static_cast<EnemyBaseFSM::StateMachine*>(mLifecycleFSM)->simulation(this, arg); }
+void EnemyBase::doSimulation(f32 frameRate) { mLifecycleFSM->simulation(this, frameRate); }
 
 /*
  * --INFO--
  * Address:	80104A8C
  * Size:	0000D8
  */
-void EnemyBase::doSimulationConstraint(f32 timeStep)
+void EnemyBase::doSimulationConstraint(f32 frameRate)
 {
-	if (!(isEvent(0, EB_IsHardConstraint))) {
+	if (!(isEvent(0, EB_HardConstrained))) {
 		// If we're moving somewhere, enable checking collision
 		if (mAcceleration.x != 0.0f || mAcceleration.z != 0.0f) {
-			enableEvent(0, EB_ShouldCheckCollision);
+			enableEvent(0, EB_CollisionActive);
 		} else if (mBounceTriangle) {
 			// If we've just bounce off a triangle, disable collision
-			disableEvent(0, EB_ShouldCheckCollision);
+			disableEvent(0, EB_CollisionActive);
 		}
 
-		if (isEvent(0, EB_ShouldCheckCollision)) {
-			collisionMapAndPlat(timeStep);
+		if (isEvent(0, EB_CollisionActive)) {
+			collisionMapAndPlat(frameRate);
 		}
 	}
 
@@ -2040,12 +2027,12 @@ void EnemyBase::doSimulationConstraint(f32 timeStep)
 void EnemyBase::gotoHell()
 {
 	// Don't kill if dead
-	if (!isEvent(0, EB_IsAlive)) {
+	if (!isEvent(0, EB_Alive)) {
 		return;
 	}
 
 	throwupItem();
-	EnemyKillArg killArg(0x70000000);
+	EnemyKillArg killArg(CKILL_Unk29 | CKILL_Unk30 | CKILL_Unk31);
 	kill(&killArg);
 }
 
@@ -2295,12 +2282,12 @@ void EnemyBase::lifeRecover()
  */
 void EnemyBase::scaleDamageAnim()
 {
-	if (!isEvent(0, EB_IsDamageAnimAllowed) && mDamageAnimTimer == 0.0f) {
+	if (!isEvent(0, EB_DamageAnimEnabled) && mDamageAnimTimer == 0.0f) {
 		return;
 	}
 
 	if (mDamageAnimTimer == 0.0f) {
-		if (isEvent(0, EB_IsTakingDamage)) {
+		if (isEvent(0, EB_TakingDamage)) {
 			mDamageAnimTimer += sys->mDeltaTime;
 		}
 
@@ -2311,19 +2298,19 @@ void EnemyBase::scaleDamageAnim()
 	f32 scaleDuration      = getParms().mDamageScaleDuration.mValue;
 
 	f32 factor;
-	if (isEvent(0, EB_SquashOnDamageAnimation)) {
+	if (isEvent(0, EB_SquashOnDamageAnim)) {
 		factor = 2.5f;
 	} else {
 		factor = 1.0f;
 	}
 
-	if (isEvent(0, EB_HasEatenWhitePikmin)) {
+	if (isEvent(0, EB_EatingWhitePikmin)) {
 		mDamageAnimTimer += 0.5f * sys->mDeltaTime;
 	} else {
 		mDamageAnimTimer += sys->mDeltaTime;
 	}
 
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		if (mDamageAnimTimer > scaleDuration) {
 			finishScaleDamageAnim();
 		} else {
@@ -2353,12 +2340,12 @@ void EnemyBase::scaleDamageAnim()
 		horizontalModifier = t * s;
 	}
 
-	if (isEvent(0, EB_HasEatenWhitePikmin)) {
+	if (isEvent(0, EB_EatingWhitePikmin)) {
 		horizontalModifier *= 2.0f;
 	}
 
 	f32 xzScale = horizontalModifier * (factor * getParms().mHorizontalDamageScale.mValue);
-	if (isEvent(0, EB_SquashOnDamageAnimation)) {
+	if (isEvent(0, EB_SquashOnDamageAnim)) {
 		mScale.x = mScaleModifier + xzScale;
 		mScale.y = -((horizontalModifier * getParms().mVerticalDamageScale.mValue) - mScaleModifier);
 		mScale.z = mScaleModifier + xzScale;
@@ -2378,8 +2365,8 @@ void EnemyBase::scaleDamageAnim()
 void EnemyBase::finishScaleDamageAnim()
 {
 	mDamageAnimTimer = 0.0f;
-	disableEvent(0, EB_HasEatenWhitePikmin);
-	disableEvent(0, EB_SquashOnDamageAnimation);
+	disableEvent(0, EB_EatingWhitePikmin);
+	disableEvent(0, EB_SquashOnDamageAnim);
 }
 
 /*
@@ -2389,10 +2376,10 @@ void EnemyBase::finishScaleDamageAnim()
  */
 void EnemyBase::deathProcedure()
 {
-	disableEvent(0, EB_IsDamageAnimAllowed);
+	disableEvent(0, EB_DamageAnimEnabled);
 	setAlive(false);
 
-	if (isEvent(0, EB_IsBittered)) {
+	if (isEvent(0, EB_Bittered)) {
 		throwupItem();
 	} else {
 		throwupItemInDeathProcedure();
@@ -2400,7 +2387,7 @@ void EnemyBase::deathProcedure()
 
 	startMotion();
 
-	if (isEvent(0, EB_IsDeathEffectEnabled)) {
+	if (isEvent(0, EB_DeathEffectEnabled)) {
 		createDeadBombEffect();
 		PSStartEnemyFatalHitSE(this, 0.0f);
 	}
@@ -2424,9 +2411,9 @@ void EnemyBase::createDeadBombEffect()
 	f32 scale                    = mScaleModifier;
 	EnemyTypeID::EEnemyTypeID id = getEnemyTypeID();
 
-	efx::ArgEnemyType effectArg(effectPos, id, scale);
+	efx::ArgEnemyType fxArg(effectPos, id, scale);
 	efx::TEnemyBomb bombEffect;
-	bombEffect.create(&effectArg);
+	bombEffect.create(&fxArg);
 }
 
 /*
@@ -2617,8 +2604,8 @@ void EnemyBase::onStickEnd(Creature* other)
  */
 bool EnemyBase::injure()
 {
-	if (isEvent(0, EB_IsTakingDamage)) {
-		if (isEvent(0, EB_IsVulnerable) == false) {
+	if (isEvent(0, EB_TakingDamage)) {
+		if (isEvent(0, EB_Invulnerable) == false) {
 			mHealth -= mInstantDamage;
 
 			if (mHealth < 0.0f) {
@@ -2627,7 +2614,7 @@ bool EnemyBase::injure()
 		}
 
 		mInstantDamage = 0.0f;
-		disableEvent(0, EB_IsTakingDamage);
+		disableEvent(0, EB_TakingDamage);
 		return true;
 	}
 
@@ -2641,16 +2628,16 @@ bool EnemyBase::injure()
  */
 void EnemyBase::addDamage(f32 damageAmt, f32 flickSpeed)
 {
-	if (isEvent(0, EB_IsVulnerable)) {
+	if (isEvent(0, EB_Invulnerable)) {
 		return;
 	}
 
 	mInstantDamage += damageAmt;
-	if (isEvent(0, EB_IsFlickEnabled)) {
+	if (isEvent(0, EB_FlickEnabled)) {
 		mToFlick += flickSpeed;
 	}
 
-	enableEvent(0, EB_IsTakingDamage);
+	enableEvent(0, EB_TakingDamage);
 }
 
 /*
@@ -2660,14 +2647,14 @@ void EnemyBase::addDamage(f32 damageAmt, f32 flickSpeed)
  */
 bool EnemyBase::damageCallBack(Creature* sourceCreature, f32 damage, CollPart* p3)
 {
-	if (isEvent(0, EB_IsVulnerable) == false) {
+	if (isEvent(0, EB_Invulnerable) == false) {
 		mInstantDamage += damage;
 
-		if (isEvent(0, EB_IsFlickEnabled)) {
+		if (isEvent(0, EB_FlickEnabled)) {
 			mToFlick += 1.0f;
 		}
 
-		enableEvent(0, EB_IsTakingDamage);
+		enableEvent(0, EB_TakingDamage);
 	}
 
 	return true;
@@ -2696,17 +2683,17 @@ bool EnemyBase::hipdropCallBack(Creature* sourceCreature, f32 damage, CollPart* 
 {
 	f32 purpleDamage = getParms().mPurplePikiStunDamage;
 
-	if (isEvent(0, EB_IsVulnerable) == false) {
+	if (isEvent(0, EB_Invulnerable) == false) {
 		mInstantDamage += purpleDamage;
 
-		if (isEvent(0, EB_IsFlickEnabled)) {
+		if (isEvent(0, EB_FlickEnabled)) {
 			mToFlick += 1.0f;
 		}
 
-		enableEvent(0, EB_IsTakingDamage);
+		enableEvent(0, EB_TakingDamage);
 	}
 
-	enableEvent(0, EB_SquashOnDamageAnimation);
+	enableEvent(0, EB_SquashOnDamageAnim);
 
 	if (mBounceTriangle) {
 		createBounceEffect(mPosition, getDownSmokeScale());
@@ -2753,8 +2740,8 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
  */
 bool EnemyBase::earthquakeCallBack(Creature* creature, f32 bounceFactor)
 {
-	if (mBounceTriangle && !isDead() && !isFlying() && isAlive() && !isEvent(0, EB_IsHardConstraint) && !isEvent(0, EB_IsBittered)) {
-		if (((isEvent(0, EB_IsEnemyNotBitter)) || (isEvent(0, EB_IsImmuneBitter))) == false) {
+	if (mBounceTriangle && !isDead() && !isFlying() && isAlive() && !isEvent(0, EB_HardConstrained) && !isEvent(0, EB_Bittered)) {
+		if (((isEvent(0, EB_NoInterrupt)) || (isEvent(0, EB_BitterImmune))) == false) {
 			EarthquakeStateArg eqArg;
 			eqArg.mBounceFactor = bounceFactor;
 			mLifecycleFSM->transit(this, EnemyBaseFSM::EBS_Earthquake, &eqArg);
@@ -2774,13 +2761,13 @@ bool EnemyBase::dopeCallBack(Creature* creature, int sprayType)
 	if (isAlive() && !isDead() && doDopeCallBack(creature, sprayType)) {
 		switch (sprayType) {
 		case SPRAY_TYPE_BITTER:
-			if (!isEvent(0, EB_IsImmuneBitter) && !isEvent(0, EB_IsBittered)) {
-				if (isEvent(0, EB_IsEnemyNotBitter)) {
-					enableEvent(0, EB_ToEnableBitter);
+			if (!isEvent(0, EB_BitterImmune) && !isEvent(0, EB_Bittered)) {
+				if (isEvent(0, EB_NoInterrupt)) {
+					enableEvent(0, EB_BitterQueued);
 				} else if (mEnemyStoneObj->start()) {
 					mLifecycleFSM->transit(this, EnemyBaseFSM::EBS_Stone, 0);
 				} else {
-					enableEvent(0, EB_ToEnableBitter);
+					enableEvent(0, EB_BitterQueued);
 				}
 			}
 		}
@@ -2803,14 +2790,14 @@ bool EnemyBase::farmCallBack(Creature*, f32 power) { return false; }
  */
 bool EnemyBase::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 {
-	if (!(isEvent(0, EB_IsVulnerable))) {
+	if (!(isEvent(0, EB_Invulnerable))) {
 		mInstantDamage += damage;
 
-		if (isEvent(0, EB_IsFlickEnabled)) {
+		if (isEvent(0, EB_FlickEnabled)) {
 			mToFlick += 1.0f;
 		}
 
-		enableEvent(0, EB_IsTakingDamage);
+		enableEvent(0, EB_TakingDamage);
 	}
 
 	return true;
@@ -2835,7 +2822,7 @@ void EnemyBase::collisionCallback(CollEvent& coll)
 void EnemyBase::setCollEvent(CollEvent& event)
 {
 	mCollEvent = event;
-	enableEvent(0, EB_HasCollisionOccurred);
+	enableEvent(0, EB_Colliding);
 }
 
 /*
@@ -2843,7 +2830,7 @@ void EnemyBase::setCollEvent(CollEvent& event)
  * Address:	8010668C
  * Size:	000010
  */
-void EnemyBase::resetCollEvent() { disableEvent(0, EB_HasCollisionOccurred); }
+void EnemyBase::resetCollEvent() { disableEvent(0, EB_Colliding); }
 
 /*
  * --INFO--
@@ -3165,7 +3152,7 @@ bool EnemyBase::needShadow()
 	}
 
 	// If enemy needs shadow or the model isn't hidden, then we need a shadow
-	return mLod.mFlags & AILOD_FLAG_NEED_SHADOW && isEvent(0, EB_IsModelHidden) == false;
+	return mLod.mFlags & AILOD_FLAG_NEED_SHADOW && isEvent(0, EB_ModelHidden) == false;
 }
 
 /*
@@ -3177,8 +3164,8 @@ bool EnemyBase::eatWhitePikminCallBack(Creature* creature, f32 damage)
 {
 	addDamage(damage, 0.0f);
 
-	if (!(isEvent(0, EB_HasEatenWhitePikmin))) {
-		enableEvent(0, EB_HasEatenWhitePikmin);
+	if (!(isEvent(0, EB_EatingWhitePikmin))) {
+		enableEvent(0, EB_EatingWhitePikmin);
 
 		mDamageAnimTimer = sys->mDeltaTime;
 
@@ -3227,7 +3214,7 @@ f32 EnemyBase::getDownSmokeScale() { return 0.0f; }
  * Address:	8010776C
  * Size:	000010
  */
-void EnemyBase::constraintOff() { disableEvent(0, EB_Constraint); }
+void EnemyBase::constraintOff() { disableEvent(0, EB_Constrained); }
 
 /*
  * --INFO--
@@ -3236,7 +3223,7 @@ void EnemyBase::constraintOff() { disableEvent(0, EB_Constraint); }
  */
 void EnemyBase::hardConstraintOn()
 {
-	enableEvent(0, EB_IsHardConstraint);
+	enableEvent(0, EB_HardConstrained);
 	mMass = 0.0f;
 }
 
@@ -3247,7 +3234,7 @@ void EnemyBase::hardConstraintOn()
  */
 void EnemyBase::hardConstraintOff()
 {
-	disableEvent(0, EB_IsHardConstraint);
+	disableEvent(0, EB_HardConstrained);
 	mMass         = mFriction;
 	mAcceleration = Vector3f(0.0f);
 }
@@ -3349,7 +3336,7 @@ void EnemyBase::finishWaitingBirthTypeDrop() { doFinishWaitingBirthTypeDrop(); }
 void EnemyBase::doFinishWaitingBirthTypeDrop()
 {
 	if (!isFlying()) {
-		enableEvent(1, EB2_IsDropping);
+		enableEvent(1, EB2_Dropping);
 		setDroppingMassZero();
 		mScale = Vector3f(1.0f);
 	}
@@ -3362,7 +3349,7 @@ void EnemyBase::doFinishWaitingBirthTypeDrop()
  */
 bool EnemyBase::isBirthTypeDropGroup()
 {
-	return (mDropGroup == EDG_Normal || mDropGroup == EDG_Pikmin || mDropGroup == EDG_Navi || mDropGroup == EDG_Treasure
+	return (mDropGroup == EDG_Normal || mDropGroup == EDG_Pikmin || mDropGroup == EDG_Navi || mDropGroup == EDG_Carry
 	        || mDropGroup == EDG_Earthquake);
 }
 
@@ -3380,7 +3367,7 @@ Vector3f* EnemyBase::getFitEffectPos() { return &mBoundingSphere.mPosition; }
  */
 void EnemyBase::setDroppingMassZero()
 {
-	enableEvent(1, EB2_IsDroppingMassZero);
+	enableEvent(1, EB2_DroppingMassZero);
 	mMass = 0.0f;
 }
 
@@ -3391,7 +3378,7 @@ void EnemyBase::setDroppingMassZero()
  */
 void EnemyBase::resetDroppingMassZero()
 {
-	disableEvent(1, EB2_IsDroppingMassZero);
+	disableEvent(1, EB2_DroppingMassZero);
 	mMass = mFriction;
 }
 } // namespace Game

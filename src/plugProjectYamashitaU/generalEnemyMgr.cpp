@@ -417,8 +417,8 @@ GeneralEnemyMgr::GeneralEnemyMgr()
  */
 void GeneralEnemyMgr::killAll()
 {
-	EnemyKillArg killArg(0);
-	killArg._04 |= 0x70000000;
+	EnemyKillArg killArg(CKILL_NULL);
+	killArg.setFlag(CKILL_Unk29 | CKILL_Unk30 | CKILL_Unk31);
 
 	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
@@ -935,8 +935,8 @@ void GeneralEnemyMgr::prepareDayendEnemies()
 		}
 
 		if (info->mFlags & 0x10) {
-			EnemyKillArg killArg(0);
-			killArg._04 |= 0x70000000;
+			EnemyKillArg killArg(CKILL_NULL);
+			killArg.setFlag(CKILL_Unk29 | CKILL_Unk30 | CKILL_Unk31);
 			childNode->killAll(&killArg);
 		}
 	}
