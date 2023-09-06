@@ -87,7 +87,7 @@ struct NaviWhistle {
 	f32 mRadius;             // _24
 	u16 mState;              // _28
 	f32 mActiveTime;         // _2C
-	bool _30;                // _30
+	bool mIsWhistleActive;   // _30
 	Navi* mNavi;             // _34
 	Color4 mColor;           // _38
 };
@@ -219,7 +219,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	// u32 _250;                                // probably shouldn't be here?
 	CPlate* mCPlateMgr;                     // _254
 	u8 _258;                                // _258
-	u8 mStick;                              // _259
+	u8 mStickCount;                         // _259
 	s32 mSprayCounts[2];                    // _25C proven signed by Navi::hasDope
 	u8 _264[4];                             // _264
 	bool mIsAlive;                          // _268
@@ -260,7 +260,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	u8 _2FD;                                // _2FD
 	int mCStickState;                       // _300
 	int mCStickIncrement;                   // _304
-	f32 _308;                               // _308
+	f32 mSceneAnimationTimer;               // _308
 	bool mCommandOn1;                       // _30C
 	bool mCommandOn2;                       // _30D
 	                                        // PelletView: _310 - _320

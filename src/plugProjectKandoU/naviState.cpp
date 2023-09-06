@@ -272,7 +272,7 @@ void NaviStuckState::init(Navi* navi, StateArg* stateArg)
  */
 void NaviStuckState::exec(Navi* navi)
 {
-	if (!navi->mController1 || !navi->mStick) {
+	if (!navi->mController1 || !navi->mStickCount) {
 		transit(navi, NSID_Walk, nullptr);
 		return;
 	}
@@ -370,13 +370,13 @@ void NaviWalkState::exec(Navi* navi)
 			}
 			execAI(navi);
 
-		} else if (navi->mController1 && !navi->isMovieActor() && navi->_308 > 9.0f) {
+		} else if (navi->mController1 && !navi->isMovieActor() && navi->mSceneAnimationTimer > 9.0f) {
 			if (mAIState == WALKAI_Control) {
 				initAI_animation(navi);
 			}
 			execAI(navi);
 
-		} else if (navi->mController1 && mAIState && navi->_308 <= 9.0f) {
+		} else if (navi->mController1 && mAIState && navi->mSceneAnimationTimer <= 9.0f) {
 			mAIState = WALKAI_Control;
 			navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 		}
@@ -388,7 +388,7 @@ void NaviWalkState::exec(Navi* navi)
 		}
 
 		if (moviePlayer->mDemoState == 0) {
-			if (navi->mStick) {
+			if (navi->mStickCount) {
 				transit(navi, NSID_Stuck, nullptr);
 				return;
 			}

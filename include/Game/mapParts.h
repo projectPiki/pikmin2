@@ -123,7 +123,7 @@ struct MapUnit {
 	ResTIMG* mImgResource;             // _30
 	SeaMgr mSeaMgr;                    // _34
 	BoundBox mBoundingBox;             // _7C
-	Vector2<short> mCellSize;          // _94
+	Vector2<u16> mCellSize;            // _94
 	u8 _98[0x10];                      // _98
 	u8 _A8;                            // _A8
 	EditorRouteMgr mRouteMgr;          // _AC
@@ -188,7 +188,7 @@ struct MapUnitMgr : public NodeObjectMgr<MapUnit> {
 	void findMapUnit(char*);
 	void load(char*);
 	void loadShape(char*);
-	void makeUnit(MapUnit*, char*);
+	static void makeUnit(MapUnit*, char*);
 	void testConstruct();
 };
 

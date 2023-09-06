@@ -677,39 +677,17 @@ namespace Game {
  * Address:	801B6468
  * Size:	000024
  */
-Door* MapUnitInterface::getDoor(int idx)
-{
-	return (Door*)mDoor.getChildAt(idx);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x118
-	  stw       r0, 0x14(r1)
-	  bl        0x25B224
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+Door* MapUnitInterface::getDoor(int idx) { return (Door*)mDoor.getChildAt(idx); }
 
 /*
  * --INFO--
  * Address:	801B648C
  * Size:	00001C
  */
-void MapUnitInterface::getCellSize(int&, int&)
+void MapUnitInterface::getCellSize(int& x, int& y)
 {
-	/*
-	lwz      r6, 0x18(r3)
-	lhz      r0, 0x94(r6)
-	stw      r0, 0(r4)
-	lwz      r3, 0x18(r3)
-	lhz      r0, 0x96(r3)
-	stw      r0, 0(r5)
-	blr
-	*/
+	x = mMapUnit->mCellSize.x;
+	y = mMapUnit->mCellSize.y;
 }
 
 /*
@@ -717,20 +695,7 @@ void MapUnitInterface::getCellSize(int&, int&)
  * Address:	801B64A8
  * Size:	000024
  */
-DoorLink* Door::getLink(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x20
-	stw      r0, 0x14(r1)
-	bl       getChildAt__5CNodeFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+DoorLink* Door::getLink(int idx) { return static_cast<DoorLink*>(mRootLink.getChildAt(idx)); }
 
 /*
  * --INFO--
@@ -789,83 +754,9 @@ void Door::read(Stream& stream)
 		// srwi      r0, r0, 31 <-- conversion to byte
 		// stb       r0, 0x20(r31)
 		link->mTekiFlags = (-v0 | v0); // < 0?
-		// _20 = CNode
+
 		mRootLink.add(link);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r3, r29
-	  bl        0x25E59C
-	  stw       r3, 0x18(r28)
-	  mr        r3, r29
-	  bl        0x25E590
-	  stw       r3, 0x44(r28)
-	  mr        r3, r29
-	  bl        0x25E584
-	  stw       r3, 0x48(r28)
-	  mr        r3, r29
-	  bl        0x25E578
-	  stw       r3, 0x4C(r28)
-	  mr        r3, r29
-	  bl        0x25E56C
-	  stw       r3, 0x1C(r28)
-	  li        r30, 0
-	  b         .loc_0xD8
-
-	.loc_0x68:
-	  li        r3, 0x24
-	  bl        -0x192694
-	  mr.       r31, r3
-	  beq-      .loc_0x98
-	  bl        0x25AE4C
-	  lis       r3, 0x804B
-	  lfs       f0, -0x4F20(r2)
-	  addi      r3, r3, 0x60D4
-	  li        r0, 0x1
-	  stw       r3, 0x0(r31)
-	  stfs      f0, 0x18(r31)
-	  stb       r0, 0x20(r31)
-
-	.loc_0x98:
-	  mr        r3, r29
-	  bl        0x25E844
-	  stfs      f1, 0x18(r31)
-	  mr        r3, r29
-	  bl        0x25E51C
-	  stw       r3, 0x1C(r31)
-	  mr        r3, r29
-	  bl        0x25E510
-	  neg       r0, r3
-	  mr        r4, r31
-	  or        r0, r0, r3
-	  addi      r3, r28, 0x20
-	  rlwinm    r0,r0,1,31,31
-	  stb       r0, 0x20(r31)
-	  bl        0x25AE6C
-	  addi      r30, r30, 0x1
-
-	.loc_0xD8:
-	  lwz       r0, 0x1C(r28)
-	  cmpw      r30, r0
-	  blt+      .loc_0x68
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -875,51 +766,13 @@ void Door::read(Stream& stream)
  */
 MapUnit::MapUnit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__Q24Game7MapUnit@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q24Game7MapUnit@l
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r31, r30, 0x10
-	stw      r0, 0(r3)
-	mr       r3, r31
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__12MapCollision@ha
-	addi     r3, r30, 0x34
-	addi     r0, r4, __vt__12MapCollision@l
-	stw      r0, 0(r31)
-	bl       __ct__Q24Game6SeaMgrFv
-	lfs      f1, lbl_80519444@sda21(r2)
-	addi     r3, r30, 0xac
-	lfs      f0, lbl_80519448@sda21(r2)
-	stfs     f1, 0x7c(r30)
-	stfs     f1, 0x80(r30)
-	stfs     f1, 0x84(r30)
-	stfs     f0, 0x88(r30)
-	stfs     f0, 0x8c(r30)
-	stfs     f0, 0x90(r30)
-	bl       __ct__Q24Game14EditorRouteMgrFv
-	li       r4, 0
-	li       r0, -1
-	stw      r4, 0xc(r30)
-	mr       r3, r30
-	sth      r0, 4(r30)
-	stb      r4, 0xa8(r30)
-	sth      r4, 0x96(r30)
-	sth      r4, 0x94(r30)
-	stw      r4, 0x2c(r30)
-	stw      r4, 0x30(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mModelData   = nullptr;
+	_04          = -1;
+	_A8          = 0;
+	mCellSize.y  = 0;
+	mCellSize.x  = 0;
+	mTexture     = nullptr;
+	mImgResource = nullptr;
 }
 
 /*
@@ -951,28 +804,6 @@ void MapUnit::load(Stream& stream)
 {
 	mCellSize.x = stream.readShort();
 	mCellSize.y = stream.readShort();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x25E098
-	  sth       r3, 0x94(r30)
-	  mr        r3, r31
-	  bl        0x25E08C
-	  sth       r3, 0x96(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -990,7 +821,7 @@ MapUnitMgr::MapUnitMgr()
  * Address:	801B6918
  * Size:	000088
  */
-MapUnit* MapUnitMgr::getAt(int)
+MapUnit* MapUnitMgr::getAt(int i)
 {
 	/*
 	cmpwi    r4, 0
@@ -1073,391 +904,139 @@ void MapUnitMgr::loadShape(char*)
  * --INFO--
  * Address:	801B69EC
  * Size:	000440
+ * TODO
  */
-void MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path) { char _path[512]; } // Game
+void MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path)
+{
+	char _path[512];
 
-// sprintf(path, "%s/arc.szs", path);
-// JKRArchive* archive = JKRArchive::mount(path, 1, nullptr, 1);
-// P2ASSERTLINE(651, archive);
+	sprintf(_path, "%s/arc.szs", path);
+	JKRArchive* archive = JKRArchive::mount(_path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Head);
+	P2ASSERTLINE(651, archive);
 
-// void* viewModelData = archive.getResource("view.bmd");
-// P2ASSERT(657, viewModelData);
+	void* viewModelData = archive->getResource("view.bmd");
+	P2ASSERTLINE(657, viewModelData);
 
-// // unit->_0C = J3DModelData*
-// unit->_0C = J3DModelLoaderDataBase::load(viewModelData,
-//                                          0x20000000); // 0x20000000 is some flag
-// unit->_0C->newSharedDisplayList(0x40000);
-// unit->makeSharedDL();
+	// unit->_0C = J3DModelData*
+	unit->mModelData = J3DModelLoaderDataBase::load(viewModelData,
+	                                                0x20000000); // 0x20000000 is some flag
+	unit->mModelData->newSharedDisplayList(0x40000);
+	unit->mModelData->makeSharedDL();
 
-// namespace SysShape {
+	void* textureData = archive->getResource("texture.bti");
+	if (textureData) {
+		unit->mImgResource = static_cast<ResTIMG*>(textureData);
+		unit->mTexture     = nullptr;
+	}
 
-// void* textureData = archive.getResource("texture.bti");
-// if (textureData) {
-// 	unit->_30 = textureData;
-// 	unit->_2C = 0;
-// }
-// Model::enableMaterialAnim(unit->_0C, 0);
+	SysShape::Model::enableMaterialAnim(unit->mModelData, 0);
 
-// int foundFiles = 0;
-// unit->_E8      = 0;
-// for (int i = 0; 0 < 100; i++) {
-// 	sprintf(path, "%s_%d.btk", path, i + 1);
+	int foundFiles        = 0;
+	unit->mAnimationCount = 0;
+	for (int i = 0; i < 100; ++i) {
+		char path[256]; // Assuming a reasonable maximum path length
 
-// 	int pathLen   = strlen(path);
-// 	char* strIter = &path[pathLen];
-// 	if (pathLen) {
-// 		// Backtrack to the last instance of /
-// 		while (*strIter != '/') {
-// 			strIter--;
-// 			pathLen--;
-// 			if (!pathLen) {
-// 				// Once we've reached the start of the string, check if
-// 				// there was a file available
-// 				if (!archive.getResource(strIter)) {
-// 					break;
-// 				}
+		// Construct the filename
+		sprintf(path, "%s_%d.btk", path, i + 1);
 
-// 				foundFiles++;
-// 			}
-// 		}
-// 	}
+		int pathLen   = strlen(path);
+		char* strIter = &path[pathLen];
 
-// 	if (!archive.getResource(strIter)) {
-// 		break;
-// 	}
+		if (pathLen > 0) {
+			// Backtrack to the last instance of '/'
+			while (*strIter != '/') {
+				--strIter;
+				--pathLen;
+				if (pathLen == 0) {
+					// Once we've reached the start of the string, check if there was a file available
+					if (!archive->getResource(strIter)) {
+						break;
+					}
+					foundFiles++;
+				}
+			}
+		}
 
-// 	foundFiles++;
-// }
+		if (!archive->getResource(strIter)) {
+			break;
+		}
 
-// if (foundFiles) {
-// 	unit->_E8 = foundFiles;
-// 	unit->_EC = new Sys::MatTexAnimation[foundFiles];
-// 	// TODO: Finish first draft of function
-// }
-/*
-.loc_0x0:
-  stwu      r1, -0x12B0(r1)
-  mflr      r0
-  lis       r3, 0x8048
-  stw       r0, 0x12B4(r1)
-  stmw      r25, 0x1294(r1)
-  subi      r30, r3, 0x390
-  mr        r31, r4
-  mr        r27, r5
-  addi      r3, r1, 0x8
-  addi      r4, r30, 0xBC
-  crclr     6, 0x6
-  bl        -0xEF5E0
-  addi      r3, r1, 0x8
-  li        r4, 0x1
-  li        r5, 0
-  li        r6, 0x1
-  bl        -0x19B8FC
-  mr.       r29, r3
-  bne-      .loc_0x60
-  addi      r3, r30, 0x84
-  addi      r5, r30, 0xC8
-  li        r4, 0x28B
-  crclr     6, 0x6
-  bl        -0x18C408
+		foundFiles++;
+	}
 
-.loc_0x60:
-  mr        r3, r29
-  addi      r4, r30, 0xD4
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  mr.       r26, r3
-  bne-      .loc_0x94
-  addi      r3, r30, 0x84
-  addi      r5, r30, 0xC8
-  li        r4, 0x291
-  crclr     6, 0x6
-  bl        -0x18C43C
+	if (foundFiles) {
+		unit->mAnimationCount = foundFiles;
+		unit->mAnimations     = new Sys::MatTexAnimation[foundFiles];
 
-.loc_0x94:
-  mr        r3, r26
-  lis       r4, 0x2000
-  bl        -0x1471F4
-  stw       r3, 0xC(r31)
-  lis       r4, 0x4
-  lwz       r3, 0xC(r31)
-  bl        -0x1331C0
-  lwz       r3, 0xC(r31)
-  bl        -0x133070
-  mr        r3, r29
-  addi      r4, r30, 0xE0
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  cmplwi    r3, 0
-  beq-      .loc_0xE4
-  stw       r3, 0x30(r31)
-  li        r0, 0
-  stw       r0, 0x2C(r31)
+		int animationIndex  = 0;
+		int animationOffset = 0;
 
-.loc_0xE4:
-  lwz       r3, 0xC(r31)
-  li        r4, 0
-  bl        0x2877C4
-  li        r0, 0
-  li        r28, 0
-  stw       r0, 0xE8(r31)
-  li        r26, 0
+		while (animationIndex < foundFiles) {
+			char animationPath[512];
+			sprintf(animationPath, "%s_%d.btk", path, animationIndex + 1);
+			int pathLength      = strlen(animationPath);
+			char* animationName = &animationPath[pathLength];
+			int nameLength      = pathLength;
 
-.loc_0x100:
-  mr        r5, r27
-  addi      r3, r1, 0x8
-  addi      r4, r30, 0xEC
-  addi      r6, r26, 0x1
-  crclr     6, 0x6
-  bl        -0xEF6C8
-  addi      r3, r1, 0x8
-  bl        -0xEC1F8
-  addi      r4, r1, 0x8
-  add       r4, r4, r3
-  mtctr     r3
-  cmpwi     r3, 0
-  ble-      .loc_0x154
+			if (pathLength > 0) {
+				while (*animationName != '/') {
+					--animationName;
+					--pathLength;
+					if (!--nameLength)
+						break;
+				}
+				++animationName;
+			}
 
-.loc_0x134:
-  lbz       r0, 0x0(r4)
-  cmpwi     r0, 0x2F
-  bne-      .loc_0x148
-  addi      r4, r4, 0x1
-  b         .loc_0x154
+			++animationIndex;
+		}
+	}
 
-.loc_0x148:
-  subi      r4, r4, 0x1
-  subi      r3, r3, 0x1
-  bdnz+     .loc_0x134
+	// Load collision data
+	sprintf(_path, "%s/texts.szs", path);
+	JKRArchive* collisionArchive = JKRArchive::mount(_path, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Tail);
+	P2ASSERTLINE(777, collisionArchive);
 
-.loc_0x154:
-  lwz       r12, 0x0(r29)
-  mr        r3, r29
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  cmplwi    r3, 0
-  beq-      .loc_0x180
-  addi      r26, r26, 0x1
-  addi      r28, r28, 0x1
-  cmpwi     r26, 0x64
-  blt+      .loc_0x100
+	void* gridResource = collisionArchive->getResource("grid.bin");
+	if (gridResource) {
+		RamStream stream(gridResource, -1);
+		unit->mCollision.read(stream);
+		delete gridResource;
 
-.loc_0x180:
-  cmpwi     r28, 0
-  ble-      .loc_0x24C
-  rlwinm    r3,r28,4,0,27
-  stw       r28, 0xE8(r31)
-  addi      r3, r3, 0x10
-  bl        -0x192BD4
-  lis       r4, 0x8043
-  mr        r7, r28
-  addi      r4, r4, 0x4134
-  li        r5, 0
-  li        r6, 0x10
-  bl        -0xF51A8
-  stw       r3, 0xEC(r31)
-  li        r25, 0
-  li        r26, 0
-  b         .loc_0x244
+		unit->mCollision.getBoundBox(unit->mBoundingBox);
+		unit->_A8 = 1;
+	} else {
+		unit->_A8 = 0;
+	}
 
-.loc_0x1C0:
-  mr        r5, r27
-  addi      r3, r1, 0x8
-  addi      r4, r30, 0xEC
-  addi      r6, r25, 0x1
-  crclr     6, 0x6
-  bl        -0xEF788
-  addi      r3, r1, 0x8
-  bl        -0xEC2B8
-  addi      r4, r1, 0x8
-  add       r4, r4, r3
-  mtctr     r3
-  cmpwi     r3, 0
-  ble-      .loc_0x214
+	// Load map code data
+	void* mapCodeResource = collisionArchive->getResource("mapcode.bin");
+	if (mapCodeResource) {
+		MapCode::Mgr* mgr = new MapCode::Mgr();
 
-.loc_0x1F4:
-  lbz       r0, 0x0(r4)
-  cmpwi     r0, 0x2F
-  bne-      .loc_0x208
-  addi      r4, r4, 0x1
-  b         .loc_0x214
+		RamStream stream(mapCodeResource, -1);
+		mgr->read(stream);
+		mgr->attachCodes(unit->mCollision.mDivider->mTriangleTable);
+	}
 
-.loc_0x208:
-  subi      r4, r4, 0x1
-  subi      r3, r3, 0x1
-  bdnz+     .loc_0x1F4
+	// Load sea data
+	void* waterBoxResource = collisionArchive->getResource("waterbox.txt");
+	if (waterBoxResource) {
+		RamStream stream(waterBoxResource, -1);
+		stream.resetPosition(true, 1);
+		unit->mSeaMgr.read(stream);
+	}
 
-.loc_0x214:
-  lwz       r12, 0x0(r29)
-  mr        r3, r29
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  lwz       r0, 0xEC(r31)
-  mr        r4, r3
-  lwz       r5, 0xC(r31)
-  add       r3, r0, r26
-  bl        0x27D3FC
-  addi      r26, r26, 0x10
-  addi      r25, r25, 0x1
+	// Load route data
+	void* routeResource = collisionArchive->getResource("route.txt");
+	if (routeResource) {
+		RamStream stream(routeResource, -1);
+		stream.resetPosition(true, 1);
+		unit->mRouteMgr.read(stream);
+	}
 
-.loc_0x244:
-  cmpw      r25, r28
-  blt+      .loc_0x1C0
-
-.loc_0x24C:
-  mr        r5, r27
-  addi      r3, r1, 0x8
-  addi      r4, r30, 0xF8
-  crclr     6, 0x6
-  bl        -0xEF810
-  lwz       r5, -0x77D4(r13)
-  addi      r3, r1, 0x8
-  li        r4, 0x1
-  li        r6, 0x2
-  bl        -0x19BB2C
-  mr.       r29, r3
-  bne-      .loc_0x290
-  addi      r3, r30, 0x84
-  addi      r5, r30, 0xC8
-  li        r4, 0x309
-  crclr     6, 0x6
-  bl        -0x18C638
-
-.loc_0x290:
-  mr        r3, r29
-  addi      r4, r30, 0x108
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  mr.       r25, r3
-  beq-      .loc_0x2F8
-  mr        r4, r25
-  addi      r3, r1, 0xE68
-  li        r5, -0x1
-  bl        0x25EC50
-  addi      r3, r31, 0x10
-  addi      r4, r1, 0xE68
-  bl        0x2633AC
-  mr        r3, r25
-  bl        -0x192BE4
-  addi      r3, r31, 0x10
-  addi      r4, r31, 0x7C
-  lwz       r12, 0x10(r31)
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl
-  li        r0, 0x1
-  stb       r0, 0xA8(r31)
-  b         .loc_0x300
-
-.loc_0x2F8:
-  li        r0, 0
-  stb       r0, 0xA8(r31)
-
-.loc_0x300:
-  mr        r3, r29
-  addi      r4, r30, 0x114
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  mr.       r25, r3
-  beq-      .loc_0x364
-  li        r3, 0x28
-  bl        -0x192E6C
-  mr.       r27, r3
-  beq-      .loc_0x338
-  bl        0x265760
-  mr        r27, r3
-
-.loc_0x338:
-  mr        r4, r25
-  addi      r3, r1, 0xA48
-  li        r5, -0x1
-  bl        0x25EBC8
-  mr        r3, r27
-  addi      r4, r1, 0xA48
-  bl        0x265A24
-  lwz       r4, 0x28(r31)
-  mr        r3, r27
-  lwz       r4, 0x1C(r4)
-  bl        0x265B30
-
-.loc_0x364:
-  mr        r3, r29
-  addi      r4, r30, 0x120
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  cmplwi    r3, 0
-  beq-      .loc_0x3B8
-  mr        r4, r3
-  addi      r3, r1, 0x628
-  li        r5, -0x1
-  bl        0x25EB7C
-  li        r0, 0x1
-  cmpwi     r0, 0x1
-  stw       r0, 0x634(r1)
-  bne-      .loc_0x3AC
-  li        r0, 0
-  stw       r0, 0xA3C(r1)
-
-.loc_0x3AC:
-  addi      r3, r31, 0x34
-  addi      r4, r1, 0x628
-  bl        -0x7104
-
-.loc_0x3B8:
-  mr        r3, r29
-  addi      r4, r30, 0x130
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  cmplwi    r3, 0
-  beq-      .loc_0x418
-  mr        r4, r3
-  addi      r3, r1, 0x208
-  li        r5, -0x1
-  bl        0x25EB28
-  li        r0, 0x1
-  cmpwi     r0, 0x1
-  stw       r0, 0x214(r1)
-  bne-      .loc_0x400
-  li        r0, 0
-  stw       r0, 0x61C(r1)
-
-.loc_0x400:
-  addi      r3, r31, 0xAC
-  addi      r4, r1, 0x208
-  lwz       r12, 0xAC(r31)
-  lwz       r12, 0x30(r12)
-  mtctr     r12
-  bctrl
-
-.loc_0x418:
-  mr        r3, r29
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0xC(r12)
-  mtctr     r12
-  bctrl
-  lmw       r25, 0x1294(r1)
-  lwz       r0, 0x12B4(r1)
-  mtlr      r0
-  addi      r1, r1, 0x12B0
-  blr
-*/
-} // namespace Game
-
-namespace Game {
+	collisionArchive->unmount();
+}
 
 /*
  * --INFO--
@@ -10807,8 +10386,9 @@ lbl_801BE650:
  * Address:	801BE688
  * Size:	000024
  */
-void RoomMapMgr::getStartPosition(Vector3f&, int)
+void RoomMapMgr::getStartPosition(Vector3f& position, int index)
 {
+	position = mCourseInfo[index].mStartPosition;
 	/*
 	mulli    r0, r5, 0xc
 	add      r3, r3, r0

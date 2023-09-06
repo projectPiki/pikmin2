@@ -94,8 +94,8 @@ Navi::Navi()
  */
 void Navi::onInit(Game::CreatureInitArg* arg)
 {
-	mStick = 0;
-	_258   = 0;
+	mStickCount = 0;
+	_258        = 0;
 	u16 uVar2;
 
 	clearKaisanDisable();
@@ -118,8 +118,8 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	initAnimator();
 
-	mIsAlive = false;
-	_308     = 0.0f;
+	mIsAlive             = false;
+	mSceneAnimationTimer = 0.0f;
 
 	mWhistle = new NaviWhistle(this);
 
@@ -266,7 +266,7 @@ Vector3f Navi::getPosition()
 void Navi::onStickStart(Creature* creature)
 {
 	if (creature->isPiki()) {
-		mStick++;
+		mStickCount++;
 	}
 }
 
@@ -277,8 +277,8 @@ void Navi::onStickStart(Creature* creature)
  */
 void Navi::onStickEnd(Creature* creature)
 {
-	if (creature->isPiki() && mStick) {
-		mStick--;
+	if (creature->isPiki() && mStickCount) {
+		mStickCount--;
 	}
 }
 
@@ -7461,9 +7461,8 @@ void Navi::throwPiki(Piki* piki, Vector3f& cursorPos)
 	// Normalise vector into just a 'direction' and grab the 'length' - this is just navi ground speed.
 	f32 magnitude = pikmin2_normalise(momentum);
 
-	// If Navi member 0x308 is greater than 0.0f, don't add momentum.
-	// Not sure what this is at the moment honestly.
-	if (_308 > 0.0f) {
+	// If the player is in a cutscene, disregard movement
+	if (mSceneAnimationTimer > 0.0f) {
 		magnitude = 0.0f;
 	}
 

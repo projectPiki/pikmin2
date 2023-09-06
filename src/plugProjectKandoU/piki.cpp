@@ -137,8 +137,8 @@ void Piki::onInit(CreatureInitArg* initArg)
 	pikiMgr->setupPiki(this);
 	initAnimator();
 	mEffectsObj->init();
-	mEffectsObj->_0C        = &_25C;
-	mEffectsObj->_14        = &_26C;
+	mEffectsObj->_0C        = &mLeafStemOffset;
+	mEffectsObj->_14        = &mLeafStemPosition;
 	mEffectsObj->mPikiColor = -1;
 	mCollTree->attachModel(mModel);
 
@@ -161,10 +161,10 @@ void Piki::onInit(CreatureInitArg* initArg)
 
 	mPikiUpdateContext.init(pikiMgr->mUpdateMgr2);
 
-	mHappaJoint3 = mModel->getJoint("happajnt3");
-	mHappaJoint1 = mModel->getJoint("happajnt1");
+	mLeafStemJoint = mModel->getJoint("happajnt3");
+	mHappaJoint1   = mModel->getJoint("happajnt1");
 
-	JUT_ASSERTLINE(692, mHappaJoint3, "happajnt3 not found!\n");
+	JUT_ASSERTLINE(692, mLeafStemJoint, "happajnt3 not found!\n");
 	JUT_ASSERTLINE(695, mHappaJoint1, "happajnt1 not found!\n");
 
 	debugShapeDL("piki onInit");
@@ -288,7 +288,7 @@ void Piki::update()
 	if (isAlive()) {
 		sys->mTimers->_stop("pu-4");
 		mEffectsObj->update();
-		mEffectsContext->mPosition = _25C;
+		mEffectsContext->mPosition = mLeafStemOffset;
 		sys->mTimers->_stop("pu-1");
 
 		if (isAlive() && mWaterBox) {
@@ -1234,8 +1234,8 @@ void Piki::updateDope()
  */
 void Piki::initColor()
 {
-	mColorFloat = 1.0f;
-	_2A7        = pikiColors[mPikiKind];
+	mColorFloat   = 1.0f;
+	mDefaultColor = pikiColors[mPikiKind];
 }
 
 /*
@@ -1259,17 +1259,17 @@ void Piki::setPastel(bool isBright)
 	Color4* color = &pikiColors[mPikiKind];
 
 	if (!isBright) {
-		mPikiColor = *color;
-		_2AB       = _2A7;
+		mPikiColor       = *color;
+		mOldDefaultColor = mDefaultColor;
 		return;
 	}
 
 	mPikiColor = *color;
 
-	mPikiColor.r = (color->r + 160 < 255) ? color->r + 160 : 255;
-	mPikiColor.g = (color->g + 160 < 255) ? color->g + 160 : 255;
-	mPikiColor.b = (color->b + 160 < 255) ? color->b + 160 : 255;
-	_2AB         = _2A7;
+	mPikiColor.r     = (color->r + 160 < 255) ? color->r + 160 : 255;
+	mPikiColor.g     = (color->g + 160 < 255) ? color->g + 160 : 255;
+	mPikiColor.b     = (color->b + 160 < 255) ? color->b + 160 : 255;
+	mOldDefaultColor = mDefaultColor;
 }
 
 /*
@@ -1323,18 +1323,18 @@ bool Piki::isTekiFollowAI() { return (u8)(mBrain->mActionId == PikiAI::ACT_Teki)
 void Piki::doColorChange()
 {
 	SysShape::Joint* happa1 = mHappaJoint1;
-	Matrixf* worldMat       = mHappaJoint3->getWorldMatrix();
+	Matrixf* worldMat       = mLeafStemJoint->getWorldMatrix();
 
-	if (!(mLod.mFlags & AILOD_FLAG_NEED_SHADOW)) {
-		_25C = getPosition();
-		_26C = _25C;
+	if (IS_FLAG(mLod.mFlags, AILOD_FLAG_NEED_SHADOW) == false) {
+		mLeafStemOffset   = getPosition();
+		mLeafStemPosition = mLeafStemOffset;
 		return;
 	}
 
-	_25C = Vector3f(5.0f, 0.0f, 0.0f);
-	MatrixMultiplyVec(worldMat, _25C);
+	mLeafStemOffset = Vector3f(5.0f, 0.0f, 0.0f);
+	MatrixMultiplyVec(worldMat, mLeafStemOffset);
 
-	happa1->getWorldMatrix()->getTranslation(_26C);
+	happa1->getWorldMatrix()->getTranslation(mLeafStemPosition);
 }
 
 /*
@@ -1457,7 +1457,7 @@ void Piki::changeShape(int color)
 	mEffectsObj->mHamonPosPtr = &mPosition3;
 	mEffectsObj->_1C          = &mObjMatrix;
 
-	mHappaJoint3             = mModel->getJoint("happajnt3");
+	mLeafStemJoint           = mModel->getJoint("happajnt3");
 	mHappaJoint1             = mModel->getJoint("happajnt1");
 	mEffectsObj->_18         = mModel->getJoint("happajnt3")->getWorldMatrix();
 	SysShape::Joint* headJnt = mModel->getJoint("headjnt");

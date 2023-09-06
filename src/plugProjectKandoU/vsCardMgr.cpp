@@ -325,7 +325,7 @@ bool VsGame::CardMgr::usePlayerCard(int user, Game::VsGame::TekiMgr* tekiMgr)
 			Piki* piki = *IPiki;
 			if (piki->getKind() == 1 - user && piki->isAlive() && (int)piki->getHappa() != Flower) {
 				piki->changeHappa(Flower);
-				Vector3f vec = piki->_25C;
+				Vector3f vec = piki->mLeafStemOffset;
 				efx::TPkGlow2 particle;
 				efx::Arg arg = vec;
 				particle.create(&arg);

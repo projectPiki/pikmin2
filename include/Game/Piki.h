@@ -237,9 +237,9 @@ struct Piki : public FakePiki {
 	PSM::Piki* mSoundObj;             // _250
 	f32 mTargetLookTimer;             // _254
 	efx::TPkEffect* mEffectsObj;      // _258
-	Vector3f _25C;                    // _25C
-	SysShape::Joint* mHappaJoint3;    // _268
-	Vector3f _26C;                    // _26C
+	Vector3f mLeafStemOffset;         // _25C
+	SysShape::Joint* mLeafStemJoint;  // _268
+	Vector3f mLeafStemPosition;       // _26C
 	SysShape::Joint* mHappaJoint1;    // _278
 	efx::Context* mEffectsContext;    // _27C
 	u8 _280[4];                       // _280
@@ -251,8 +251,8 @@ struct Piki : public FakePiki {
 	UpdateContext mPikiUpdateContext; // _298
 	s16 mTekiKillID;                  // _2A4
 	u8 mGasInvincible;                // _2A6
-	Color4 _2A7;                      // _2A7
-	Color4 _2AB;                      // _2AB
+	Color4 mDefaultColor;             // _2A7
+	Color4 mOldDefaultColor;          // _2AB
 	Color4 mPikiColor;                // _2AF
 	f32 mColorFloat;                  // _2B4
 	u8 mPikiKind;                     // _2B8,  aka Piki kind (Blue, Yellow, Red, etc.)

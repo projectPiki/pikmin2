@@ -310,7 +310,7 @@ lbl_80165324:
  */
 void NaviWhistle::start()
 {
-	_30 = false;
+	mIsWhistleActive = false;
 
 	switch (mState) {
 	case Whistle_Inactive:
@@ -339,9 +339,9 @@ void NaviWhistle::stop()
 	switch (mState) {
 
 	case Whistle_Active:
-		mState      = 2;
-		mActiveTime = 0.0f;
-		_30         = true;
+		mState           = 2;
+		mActiveTime      = 0.0f;
+		mIsWhistleActive = true;
 		return;
 	case Whistle_Inactive:
 	case Whistle_Timeout:
