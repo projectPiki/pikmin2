@@ -21,22 +21,41 @@ struct Obj;
 namespace Qurione {
 struct FSM;
 
+enum SpawnIndex {
+	QSPAWN_Start = 0,
+	QSPAWN_End   = 1,
+};
+
+struct QurioneInitialParam : public EnemyInitialParamBase {
+	inline QurioneInitialParam(f32 flyDist, f32 slideDist)
+	    : mFlyDist(flyDist)
+	    , mSlideDist(slideDist)
+	{
+	}
+
+	f32 mFlyDist;   // _00
+	f32 mSlideDist; // _04
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                          // _30
-	virtual void onKill(CreatureKillArg* settings);                          // _34
-	virtual void doDirectDraw(Graphics& gfx);                                // _50
-	virtual void inWaterCallback(WaterBox* wb);                              // _84 (weak)
-	virtual void outWaterCallback();                                         // _88 (weak)
-	virtual void getShadowParam(ShadowParam& settings);                      // _134
-	virtual ~Obj() { }                                                       // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                                      // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase* params);           // _1C4
-	virtual void doUpdate();                                                 // _1CC
-	virtual void doDebugDraw(Graphics& gfx);                                 // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                      // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                // _30
+	virtual void onKill(CreatureKillArg* settings);                // _34
+	virtual void doDirectDraw(Graphics& gfx);                      // _50
+	virtual void inWaterCallback(WaterBox* wb) { }                 // _84 (weak)
+	virtual void outWaterCallback() { }                            // _88 (weak)
+	virtual void getShadowParam(ShadowParam& settings);            // _134
+	virtual ~Obj() { }                                             // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                            // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
+	virtual void doUpdate();                                       // _1CC
+	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()             // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Qurione;
+	}
 	bool flyCollisionCallBack(Creature* source, f32 damage, CollPart* part); // _280
 	virtual void doStartWaitingBirthTypeDrop();                              // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();                             // _2E4
@@ -66,17 +85,17 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 
-	inline f32 getMoveRadius() { return mMoveRadius; }
+	inline f32 getFlyDist() { return mFlyDist; }
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                      // _2BC
 	f32 mQurioneScale;              // _2C0
-	f32 mMoveRadius;                // _2C4
-	f32 _2C8;                       // _2C8
+	f32 mFlyDist;                   // _2C4
+	f32 mPitchRatio;                // _2C8
 	f32 mUtilityTimer;              // _2CC
-	int mSpawnIndex;                // _2D0, 0 = 'start', 1 = 'end'
-	Vector3f mSpawnPositions[2];    // _2D4, spawn positions, 0 = 'start', 1 = 'end'
+	int mSpawnIndex;                // _2D0, see SpawnIndex enum
+	Vector3f mSpawnPositions[2];    // _2D4, see SpawnIndex enum
 	Egg::Obj* mEgg;                 // _2EC
 	efx::TQuriGlow* mEfxGlow;       // _2F0
 	efx::TQuriApp* mEfxAppear;      // _2F4
@@ -109,19 +128,19 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "îÚçsçÇÇ≥", 60.0f, 0.0f, 150.0f)
-		    , mFp02(this, 'fp02', "è„â∫ÇÃóhÇÍë¨ìx", 2.5f, 0.0f, 10.0f)
-		    , mFp03(this, 'fp03', "è„â∫ÇÃóhÇÍïù", 20.0f, 0.0f, 50.0f)
-		    , mFp04(this, 'fp04', "éÄñSë¨ìx", 100.0f, 0.0f, 1000.0f)
-		    , mFp05(this, 'fp05', "éÄñSéûä‘", 1.0f, 0.0f, 10.0f)
+		    , mFlightHeight(this, 'fp01', "îÚçsçÇÇ≥", 60.0f, 0.0f, 150.0f)  // 'flight height'
+		    , mPitchRate(this, 'fp02', "è„â∫ÇÃóhÇÍë¨ìx", 2.5f, 0.0f, 10.0f) // 'vertical swing speed'
+		    , mPitchAmp(this, 'fp03', "è„â∫ÇÃóhÇÍïù", 20.0f, 0.0f, 50.0f)   // 'vertical swing width'
+		    , mFp04(this, 'fp04', "éÄñSë¨ìx", 100.0f, 0.0f, 1000.0f)        // 'death rate'
+		    , mFp05(this, 'fp05', "éÄñSéûä‘", 1.0f, 0.0f, 10.0f)            // 'death time'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp03; // _854
-		Parm<f32> mFp04; // _87C
-		Parm<f32> mFp05; // _8A4
+		Parm<f32> mFlightHeight; // _804, fp01
+		Parm<f32> mPitchRate;    // _82C, fp02
+		Parm<f32> mPitchAmp;     // _854, fp03
+		Parm<f32> mFp04;         // _87C, fp04
+		Parm<f32> mFp05;         // _8A4, fp05
 	};
 
 	Parms() { }
@@ -146,7 +165,7 @@ struct Generator : public EnemyGeneratorBase {
 	virtual u32 getLatestVersion(); // _18
 	virtual void* getInitialParam() // _20 (weak)
 	{
-		return &mFly;
+		return &mInitialParam;
 	}
 
 	void doReadLatestVersion(Stream&);
@@ -154,8 +173,7 @@ struct Generator : public EnemyGeneratorBase {
 
 	// _00 		= VTBL
 	// _00-_24  = EnemyGeneratorBase
-	f32 mFly;   // _24
-	f32 mSlide; // _28
+	QurioneInitialParam mInitialParam; // _24
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

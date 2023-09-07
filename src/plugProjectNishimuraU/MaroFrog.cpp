@@ -28,17 +28,9 @@ void Obj::attackNaviPosition()
 			f32 minAttackRange = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMinAttackRange.mValue;
 			f32 maxAttackRange = static_cast<EnemyParmsBase*>(mParms)->mGeneral.mMaxAttackRange.mValue;
 
-			Vector3f targetPos = navi->getPosition();
-			Vector3f pos       = getPosition();
+			f32 angledist = getCreatureViewAngle(navi);
 
-			f32 angleDist = angDist(angXZ(targetPos, pos), getFaceDir());
-
-			bool check = false;
-			if (isCreatureWithinRange(navi, maxAttackRange) && FABS(angleDist) <= minAttackRange * PI * DEG2RAD) {
-				check = true;
-			}
-
-			if (check) {
+			if (checkDistAndAngle(navi, angledist, maxAttackRange, minAttackRange)) {
 				mTargetPosition = Vector3f(navi->getPosition());
 			}
 		}

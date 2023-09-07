@@ -283,9 +283,9 @@ bool Kogane::Obj::koganeScaleUp()
 	if (mScaleTimer < C_PARMS->mProperParms.mScale.mValue) {
 		mScaleTimer += sys->mDeltaTime * 10.0f;
 
-		if (C_PARMS->mProperParms.mScale.mValue >= mScaleTimer) {
+		if (mScaleTimer >= *C_PARMS->mProperParms.mScale()) {
 			check       = true;
-			mScaleTimer = C_PARMS->mProperParms.mScale.mValue;
+			mScaleTimer = *C_PARMS->mProperParms.mScale();
 			disableEvent(0, EB_NoInterrupt);
 		}
 		f32 scale      = mScaleTimer;
@@ -294,53 +294,6 @@ bool Kogane::Obj::koganeScaleUp()
 		mCollTree->mPart->setScale(mScaleTimer);
 	}
 	return check;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r4, 0xc0(r3)
-	lfs      f2, 0x2cc(r3)
-	lfs      f0, 0x934(r4)
-	fcmpo    cr0, f2, f0
-	bge      lbl_8025E584
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, lbl_8051AC48@sda21(r2)
-	lfs      f0, 0x54(r4)
-	fmadds   f0, f1, f0, f2
-	stfs     f0, 0x2cc(r3)
-	lwz      r4, 0xc0(r3)
-	lfs      f1, 0x2cc(r3)
-	lfs      f0, 0x934(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8025E560
-	stfs     f0, 0x2cc(r3)
-	li       r31, 1
-	lwz      r0, 0x1e0(r3)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r3)
-
-lbl_8025E560:
-	lfs      f0, 0x2cc(r3)
-	stfs     f0, 0x1f8(r3)
-	stfs     f0, 0x168(r3)
-	stfs     f0, 0x16c(r3)
-	stfs     f0, 0x170(r3)
-	lwz      r4, 0x114(r3)
-	lfs      f1, 0x2cc(r3)
-	lwz      r3, 0(r4)
-	bl       setScale__8CollPartFf
-
-lbl_8025E584:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

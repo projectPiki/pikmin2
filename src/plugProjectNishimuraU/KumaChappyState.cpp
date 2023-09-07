@@ -1,461 +1,27 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804888C8
-    lbl_804888C8:
-        .4byte 0x7475726E
-        .4byte 0x70617468
-        .4byte 0x00000000
-    .global lbl_804888D4
-    lbl_804888D4:
-        .4byte 0x77616C6B
-        .4byte 0x70617468
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game10KumaChappy13StateWalkPath
-    __vt__Q34Game10KumaChappy13StateWalkPath:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10KumaChappy13StateWalkPathFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10KumaChappy13StateWalkPathFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10KumaChappy13StateWalkPathFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy9StateWalk
-    __vt__Q34Game10KumaChappy9StateWalk:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10KumaChappy9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10KumaChappy9StateWalkFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10KumaChappy9StateWalkFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy13StateTurnPath
-    __vt__Q34Game10KumaChappy13StateTurnPath:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10KumaChappy13StateTurnPathFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10KumaChappy13StateTurnPathFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10KumaChappy13StateTurnPathFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy9StateTurn
-    __vt__Q34Game10KumaChappy9StateTurn:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10KumaChappy9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10KumaChappy9StateTurnFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10KumaChappy9StateTurnFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy10StateFlick
-    __vt__Q34Game10KumaChappy10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10KumaChappy10StateFlickFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy11StateAttack
-    __vt__Q34Game10KumaChappy11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10KumaChappy11StateAttackFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy9StateLost
-    __vt__Q34Game10KumaChappy9StateLost:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10KumaChappy9StateLostFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10KumaChappy9StateLostFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10KumaChappy9StateLostFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy12StateRebirth
-    __vt__Q34Game10KumaChappy12StateRebirth:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10KumaChappy12StateRebirthFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy9StateDead
-    __vt__Q34Game10KumaChappy9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10KumaChappy9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game10KumaChappy9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game10KumaChappy9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy5State
-    __vt__Q34Game10KumaChappy5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game10KumaChappy3FSM
-    __vt__Q34Game10KumaChappy3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game10KumaChappy3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051BAE0
-    lbl_8051BAE0:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051BAE8
-    lbl_8051BAE8:
-        .4byte 0x72656269
-        .4byte 0x72746800
-    .global lbl_8051BAF0
-    lbl_8051BAF0:
-        .4byte 0x6C6F7374
-        .4byte 0x00000000
-    .global lbl_8051BAF8
-    lbl_8051BAF8:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051BB00
-    lbl_8051BB00:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051BB08
-    lbl_8051BB08:
-        .4byte 0x7475726E
-        .4byte 0x00000000
-    .global lbl_8051BB10
-    lbl_8051BB10:
-        .4byte 0x77616C6B
-        .4byte 0x00000000
-    .global lbl_8051BB18
-    lbl_8051BB18:
-        .4byte 0x00000000
-    .global lbl_8051BB1C
-    lbl_8051BB1C:
-        .4byte 0xC47A0000
-    .global lbl_8051BB20
-    lbl_8051BB20:
-        .4byte 0x40490FDB
-    .global lbl_8051BB24
-    lbl_8051BB24:
-        .4byte 0x3BB60B61
-    .global lbl_8051BB28
-    lbl_8051BB28:
-        .4byte 0x3F490FDB
-    .global lbl_8051BB2C
-    lbl_8051BB2C:
-        .4byte 0x42700000
-    .global lbl_8051BB30
-    lbl_8051BB30:
-        .4byte 0x41F00000
-    .global lbl_8051BB34
-    lbl_8051BB34:
-        .4byte 0x42340000
-    .global lbl_8051BB38
-    lbl_8051BB38:
-        .4byte 0x3C23D70A
-    .global lbl_8051BB3C
-    lbl_8051BB3C:
-        .float 1.0
-    .global lbl_8051BB40
-    lbl_8051BB40:
-        .float 0.5
-        .4byte 0x00000000
-*/
+#include "Game/Entities/KumaChappy.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
 
 namespace Game {
+namespace KumaChappy {
 
 /*
  * --INFO--
  * Address:	80295E28
  * Size:	000328
  */
-void KumaChappy::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 9
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80295E8C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10KumaChappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10KumaChappy9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10KumaChappy5State@l
-	addi     r5, r2, lbl_8051BAE0@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game10KumaChappy9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80295E8C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80295EE0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10KumaChappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10KumaChappy12StateRebirth@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10KumaChappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BAE8@sda21
-	addi     r0, r3, __vt__Q34Game10KumaChappy12StateRebirth@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80295EE0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80295F34
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10KumaChappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10KumaChappy9StateLost@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10KumaChappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BAF0@sda21
-	addi     r0, r3, __vt__Q34Game10KumaChappy9StateLost@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80295F34:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80295F88
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10KumaChappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10KumaChappy11StateAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10KumaChappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BAF8@sda21
-	addi     r0, r3, __vt__Q34Game10KumaChappy11StateAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80295F88:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80295FDC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10KumaChappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10KumaChappy10StateFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10KumaChappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BB00@sda21
-	addi     r0, r3, __vt__Q34Game10KumaChappy10StateFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80295FDC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80296030
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10KumaChappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10KumaChappy9StateTurn@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10KumaChappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BB08@sda21
-	addi     r0, r3, __vt__Q34Game10KumaChappy9StateTurn@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80296030:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80296088
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game10KumaChappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, lbl_804888C8@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	lis      r3, __vt__Q34Game10KumaChappy13StateTurnPath@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q34Game10KumaChappy5State@l
-	addi     r5, r5, lbl_804888C8@l
-	addi     r0, r3, __vt__Q34Game10KumaChappy13StateTurnPath@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80296088:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802960DC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game10KumaChappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game10KumaChappy9StateWalk@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game10KumaChappy5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BB10@sda21
-	addi     r0, r3, __vt__Q34Game10KumaChappy9StateWalk@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802960DC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80296134
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game10KumaChappy5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, lbl_804888D4@ha
-	stw      r0, 0(r4)
-	li       r0, 8
-	lis      r3, __vt__Q34Game10KumaChappy13StateWalkPath@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q34Game10KumaChappy5State@l
-	addi     r5, r5, lbl_804888D4@l
-	addi     r0, r3, __vt__Q34Game10KumaChappy13StateWalkPath@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80296134:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(KUMACHAPPY_StateCount);
+	registerState(new StateDead);
+	registerState(new StateRebirth);
+	registerState(new StateLost);
+	registerState(new StateAttack);
+	registerState(new StateFlick);
+	registerState(new StateTurn);
+	registerState(new StateTurnPath);
+	registerState(new StateWalk);
+	registerState(new StateWalkPath);
 }
 
 /*
@@ -463,30 +29,11 @@ lbl_80296134:
  * Address:	80296150
  * Size:	000050
  */
-void KumaChappy::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051BB18@sda21(r2)
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->deathProcedure();
+	enemy->mTargetVelocity = Vector3f(0.0f);
+	enemy->startMotion(1, nullptr);
 }
 
 /*
@@ -494,101 +41,42 @@ void KumaChappy::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802961A0
  * Size:	000098
  */
-void KumaChappy::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80296224
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802961E8
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x304(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80296224
+	Obj* chappy = OBJ(enemy);
+	if (chappy->mCurAnim->mIsPlaying) {
+		if (chappy->mCurAnim->mType == KEYEVENT_2) {
+			chappy->startEnemyRumble();
+		} else if (chappy->mCurAnim->mType == KEYEVENT_END) {
+			if (chappy->getEnemyTypeID() == EnemyTypeID::EnemyID_KumaChappy) {
+				chappy->disableEvent(0, EB_DeathEffectEnabled);
+			}
 
-lbl_802961E8:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80296224
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x23
-	bne      lbl_80296218
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x18, 0x16
-	stw      r0, 0x1e0(r31)
-
-lbl_80296218:
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_80296224:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			chappy->kill(nullptr);
+		}
+	}
 }
-
-/*
- * --INFO--
- * Address:	80296238
- * Size:	000008
- */
-u32 KumaChappy::Obj::getEnemyTypeID() { return 0x23; }
 
 /*
  * --INFO--
  * Address:	80296240
  * Size:	000004
  */
-void KumaChappy::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80296244
  * Size:	000058
  */
-void KumaChappy::StateRebirth::init(Game::EnemyBase*, Game::StateArg*)
+void StateRebirth::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, -1
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	lfs      f0, lbl_8051BB18@sda21(r2)
-	stw      r5, 0x2d4(r4)
-	li       r4, 8
-	li       r5, 0
-	lwz      r6, 0x1e0(r3)
-	rlwinm   r6, r6, 0, 0xb, 9
-	stw      r6, 0x1e0(r3)
-	stw      r0, 0x230(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* chappy        = OBJ(enemy);
+	chappy->mNextState = KUMACHAPPY_NULL;
+	chappy->disableEvent(0, EB_NoInterrupt);
+	chappy->mTargetCreature = nullptr;
+	chappy->mTargetVelocity = Vector3f(0.0f);
+	chappy->startMotion(8, nullptr);
 }
 
 /*
@@ -596,8 +84,12 @@ void KumaChappy::StateRebirth::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029629C
  * Size:	0005B0
  */
-void KumaChappy::StateRebirth::exec(Game::EnemyBase*)
+void StateRebirth::exec(EnemyBase* enemy)
 {
+	Obj* chappy = OBJ(enemy);
+	if (chappy->mCurAnim->mIsPlaying) {
+		if (chappy->mCurAnim->mType == KEYEVENT_2) { }
+	}
 	/*
 	stwu     r1, -0x150(r1)
 	mflr     r0
@@ -996,44 +488,20 @@ lbl_802967F4:
  * Address:	8029684C
  * Size:	000010
  */
-void KumaChappy::StateRebirth::cleanup(Game::EnemyBase*)
-{
-	/*
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r4)
-	blr
-	*/
-}
+void StateRebirth::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
 /*
  * --INFO--
  * Address:	8029685C
  * Size:	00004C
  */
-void KumaChappy::StateLost::init(Game::EnemyBase*, Game::StateArg*)
+void StateLost::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, -1
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	lfs      f0, lbl_8051BB18@sda21(r2)
-	stw      r5, 0x2d4(r4)
-	li       r4, 5
-	li       r5, 0
-	stw      r0, 0x230(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* chappy             = OBJ(enemy);
+	chappy->mNextState      = KUMACHAPPY_NULL;
+	chappy->mTargetCreature = nullptr;
+	chappy->mTargetVelocity = Vector3f(0.0f);
+	chappy->startMotion(5, nullptr);
 }
 
 /*
@@ -1041,8 +509,10 @@ void KumaChappy::StateLost::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802968A8
  * Size:	00045C
  */
-void KumaChappy::StateLost::exec(Game::EnemyBase*)
+void StateLost::exec(EnemyBase* enemy)
 {
+	Obj* chappy = OBJ(enemy);
+
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -1347,39 +817,20 @@ lbl_80296CB4:
  * Address:	80296D04
  * Size:	000004
  */
-void KumaChappy::StateLost::cleanup(Game::EnemyBase*) { }
+void StateLost::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80296D08
  * Size:	000058
  */
-void KumaChappy::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BB18@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2d4(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* chappy             = OBJ(enemy);
+	chappy->mNextState      = KUMACHAPPY_NULL;
+	chappy->mTargetVelocity = Vector3f(0.0f);
+	chappy->setEmotionExcitement();
+	chappy->startMotion(0, nullptr);
 }
 
 /*
@@ -1387,8 +838,10 @@ void KumaChappy::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80296D60
  * Size:	000550
  */
-void KumaChappy::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
+	Obj* chappy = OBJ(enemy);
+
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -1753,25 +1206,10 @@ lbl_80297260:
  * Address:	802972B0
  * Size:	00003C
  */
-void KumaChappy::StateAttack::cleanup(Game::EnemyBase*)
+void StateAttack::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lfs      f1, lbl_8051BB30@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->setEmotionCaution();
+	enemy->setAnimSpeed(30.0f);
 }
 
 /*
@@ -1779,35 +1217,14 @@ void KumaChappy::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	802972EC
  * Size:	000064
  */
-void KumaChappy::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2d4(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051BB18@sda21(r2)
-	mr       r3, r31
-	li       r4, 2
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, lbl_8051BB34@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* chappy        = OBJ(enemy);
+	chappy->mNextState = KUMACHAPPY_NULL;
+	chappy->setEmotionExcitement();
+	chappy->mTargetVelocity = Vector3f(0.0f);
+	chappy->startMotion(2, nullptr);
+	chappy->setAnimSpeed(45.0f);
 }
 
 /*
@@ -1815,8 +1232,10 @@ void KumaChappy::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80297350
  * Size:	0004D4
  */
-void KumaChappy::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
+	Obj* chappy = OBJ(enemy);
+
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -2154,25 +1573,10 @@ lbl_802977D4:
  * Address:	80297824
  * Size:	00003C
  */
-void KumaChappy::StateFlick::cleanup(Game::EnemyBase*)
+void StateFlick::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051BB30@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->setAnimSpeed(30.0f);
+	enemy->setEmotionCaution();
 }
 
 /*
@@ -2180,34 +1584,14 @@ void KumaChappy::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	80297860
  * Size:	000060
  */
-void KumaChappy::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BB18@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2d0(r4)
-	stw      r0, 0x2d4(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051BB18@sda21(r2)
-	mr       r3, r31
-	li       r4, 6
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* chappy        = OBJ(enemy);
+	chappy->mTimer     = 0.0f;
+	chappy->mNextState = KUMACHAPPY_NULL;
+	chappy->setEmotionExcitement();
+	chappy->mTargetVelocity = Vector3f(0.0f);
+	chappy->startMotion(6, nullptr);
 }
 
 /*
@@ -2215,8 +1599,10 @@ void KumaChappy::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802978C0
  * Size:	000670
  */
-void KumaChappy::StateTurn::exec(Game::EnemyBase*)
+void StateTurn::exec(EnemyBase* enemy)
 {
+	Obj* chappy = OBJ(enemy);
+
 	/*
 	stwu     r1, -0x160(r1)
 	mflr     r0
@@ -2670,25 +2056,10 @@ lbl_80297ED0:
  * Address:	80297F30
  * Size:	00003C
  */
-void KumaChappy::StateTurn::cleanup(Game::EnemyBase*)
+void StateTurn::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051BB30@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->setAnimSpeed(30.0f);
+	enemy->setEmotionCaution();
 }
 
 /*
@@ -2696,27 +2067,12 @@ void KumaChappy::StateTurn::cleanup(Game::EnemyBase*)
  * Address:	80297F6C
  * Size:	000044
  */
-void KumaChappy::StateTurnPath::init(Game::EnemyBase*, Game::StateArg*)
+void StateTurnPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BB18@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stw      r0, 0x2d4(r4)
-	li       r4, 6
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* chappy             = OBJ(enemy);
+	chappy->mNextState      = KUMACHAPPY_NULL;
+	chappy->mTargetVelocity = Vector3f(0.0f);
+	chappy->startMotion(6, nullptr);
 }
 
 /*
@@ -2724,8 +2080,10 @@ void KumaChappy::StateTurnPath::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80297FB0
  * Size:	0004E0
  */
-void KumaChappy::StateTurnPath::exec(Game::EnemyBase*)
+void StateTurnPath::exec(EnemyBase* enemy)
 {
+	Obj* chappy = OBJ(enemy);
+
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -3071,51 +2429,20 @@ lbl_80298440:
  * Address:	80298490
  * Size:	000028
  */
-void KumaChappy::StateTurnPath::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051BB30@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateTurnPath::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
 
 /*
  * --INFO--
  * Address:	802984B8
  * Size:	000050
  */
-void KumaChappy::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BB18@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2d0(r4)
-	stw      r0, 0x2d4(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* chappy        = OBJ(enemy);
+	chappy->mTimer     = 0.0f;
+	chappy->mNextState = KUMACHAPPY_NULL;
+	chappy->setEmotionExcitement();
+	chappy->startMotion(3, nullptr);
 }
 
 /*
@@ -3123,8 +2450,10 @@ void KumaChappy::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80298508
  * Size:	00070C
  */
-void KumaChappy::StateWalk::exec(Game::EnemyBase*)
+void StateWalk::exec(EnemyBase* enemy)
 {
+	Obj* chappy = OBJ(enemy);
+
 	/*
 	stwu     r1, -0x170(r1)
 	mflr     r0
@@ -3623,25 +2952,10 @@ lbl_80298BB4:
  * Address:	80298C14
  * Size:	00003C
  */
-void KumaChappy::StateWalk::cleanup(Game::EnemyBase*)
+void StateWalk::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051BB30@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->setAnimSpeed(30.0f);
+	enemy->setEmotionCaution();
 }
 
 /*
@@ -3649,23 +2963,11 @@ void KumaChappy::StateWalk::cleanup(Game::EnemyBase*)
  * Address:	80298C50
  * Size:	000034
  */
-void KumaChappy::StateWalkPath::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalkPath::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 3
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stw      r0, 0x2d4(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* chappy        = OBJ(enemy);
+	chappy->mNextState = KUMACHAPPY_NULL;
+	chappy->startMotion(3, nullptr);
 }
 
 /*
@@ -3673,8 +2975,10 @@ void KumaChappy::StateWalkPath::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80298C84
  * Size:	000594
  */
-void KumaChappy::StateWalkPath::exec(Game::EnemyBase*)
+void StateWalkPath::exec(EnemyBase* enemy)
 {
+	Obj* chappy = OBJ(enemy);
+
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -4071,19 +3375,6 @@ lbl_802991C8:
  * Address:	80299218
  * Size:	000028
  */
-void KumaChappy::StateWalkPath::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051BB30@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateWalkPath::cleanup(EnemyBase* enemy) { enemy->setAnimSpeed(30.0f); }
+} // namespace KumaChappy
 } // namespace Game

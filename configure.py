@@ -1070,7 +1070,7 @@ LIBS = [
             ["plugProjectNishimuraU/KoganeAnimator", True],
             ["plugProjectNishimuraU/QurioneState", True],
             ["plugProjectNishimuraU/QurioneMgr", True],
-            "plugProjectNishimuraU/Qurione",
+            ["plugProjectNishimuraU/Qurione", True],
             ["plugProjectNishimuraU/QurioneAnimator", True],
             ["plugProjectNishimuraU/RumbleData", True],
             ["plugProjectNishimuraU/MaroFrogMgr", True],

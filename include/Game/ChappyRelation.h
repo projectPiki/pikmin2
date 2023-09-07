@@ -8,7 +8,7 @@ struct EnemyBase;
 
 struct ChappyRelation : public CNode {
 	ChappyRelation(EnemyBase* obj) { mOwner = obj; }
-	virtual ~ChappyRelation(); // _08 (weak)
+	virtual ~ChappyRelation() { } // _08 (weak)
 
 	// _00      = VTBL
 	// _00-_18  = CNode

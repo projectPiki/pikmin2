@@ -11,7 +11,7 @@ struct TQuriApp : public TChaseMtxT {
 	{
 	}
 
-	virtual ~TQuriApp(); // _48 (weak)
+	virtual ~TQuriApp() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtxT
@@ -23,7 +23,7 @@ struct TQuriDisap : public TChaseMtxT {
 	{
 	}
 
-	virtual ~TQuriDisap(); // _48 (weak)
+	virtual ~TQuriDisap() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtxT
@@ -35,7 +35,7 @@ struct TQuriGlow : public TChaseMtxT {
 	{
 	}
 
-	virtual ~TQuriGlow(); // _48 (weak)
+	virtual ~TQuriGlow() { } // _48 (weak)
 
 	void setGlobalScale(f32);
 

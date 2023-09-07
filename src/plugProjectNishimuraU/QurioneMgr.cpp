@@ -12,8 +12,7 @@ static const char qurioneMgrName[] = "246-QurioneMgr";
  */
 Generator::Generator()
     : EnemyGeneratorBase("クリオネジェネレータ") // clione (sea angel) generator
-    , mFly(200.0f)
-    , mSlide(30.0f)
+    , mInitialParam(200.0f, 30.0f)
 {
 }
 
@@ -47,9 +46,9 @@ void Generator::doRead(Stream& stream)
 void Generator::doWrite(Stream& stream)
 {
 	stream.textWriteTab(stream.mTabCount);
-	stream.writeFloat(mFly);
+	stream.writeFloat(mInitialParam.mFlyDist);
 	stream.textWriteText("\t\t# fly \r\n");
-	stream.writeFloat(mSlide);
+	stream.writeFloat(mInitialParam.mSlideDist);
 	stream.textWriteText("\t\t# slide \r\n");
 }
 
@@ -60,8 +59,8 @@ void Generator::doWrite(Stream& stream)
  */
 void Generator::doReadLatestVersion(Stream& stream)
 {
-	mFly   = stream.readFloat();
-	mSlide = stream.readFloat();
+	mInitialParam.mFlyDist   = stream.readFloat();
+	mInitialParam.mSlideDist = stream.readFloat();
 }
 
 /*

@@ -22,32 +22,49 @@ struct ChappyRelation;
 namespace KumaChappy {
 struct FSM;
 
+enum StateID {
+	KUMACHAPPY_NULL     = -1,
+	KUMACHAPPY_Dead     = 0,
+	KUMACHAPPY_Rebirth  = 1,
+	KUMACHAPPY_Lost     = 2,
+	KUMACHAPPY_Attack   = 3,
+	KUMACHAPPY_Flick    = 4,
+	KUMACHAPPY_Turn     = 5,
+	KUMACHAPPY_TurnPath = 6,
+	KUMACHAPPY_Walk     = 7,
+	KUMACHAPPY_WalkPath = 8,
+	KUMACHAPPY_StateCount, // 9
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
 	////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                            // _30
-	virtual void doDirectDraw(Graphics& gfx);                                  // _50
-	virtual void getShadowParam(ShadowParam& settings);                        // _134
-	virtual ~Obj() { }                                                         // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
-	virtual void doUpdate();                                                   // _1CC
-	virtual void doUpdateCarcass();                                            // _1D4
-	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
-	virtual Vector3f getOffsetForMapCollision();                               // _224
-	virtual void initMouthSlots();                                             // _22C
-	virtual void initWalkSmokeEffect();                                        // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                     // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                        // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                                       // _25C (weak)
+	virtual void onInit(CreatureInitArg* settings);                // _30
+	virtual void doDirectDraw(Graphics& gfx);                      // _50
+	virtual void getShadowParam(ShadowParam& settings);            // _134
+	virtual ~Obj() { }                                             // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
+	virtual void doUpdate();                                       // _1CC
+	virtual void doUpdateCarcass();                                // _1D4
+	virtual void doDebugDraw(Graphics& gfx);                       // _1EC
+	virtual Vector3f getOffsetForMapCollision();                   // _224
+	virtual void initMouthSlots();                                 // _22C
+	virtual void initWalkSmokeEffect();                            // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();         // _234
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()             // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_KumaChappy;
+	}
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }               // _25C (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                         // _260
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
 	virtual void startCarcassMotion();                                         // _2C4
 	virtual bool doBecomeCarcass();                                            // _2D0
-	virtual f32 getDownSmokeScale();                                           // _2EC (weak)
+	virtual f32 getDownSmokeScale() { return 1.0f; }                           // _2EC (weak)
 	virtual void setFSM(FSM* fsm);                                             // _2F8
 	virtual void createChappyRelation();                                       // _2FC
-	virtual ChappyRelation* getChappyRelation();                               // _300 (weak)
+	virtual ChappyRelation* getChappyRelation() { return mChappyRelation; }    // _300 (weak)
 	virtual void startEnemyRumble();                                           // _304
 	////////// VTABLE END
 
@@ -55,7 +72,7 @@ struct Obj : public EnemyBase {
 	void resetWayPoint();
 	void setNearestWayPoint();
 	void setLinkWayPoint();
-	void getSearchedTarget();
+	Creature* getSearchedTarget();
 	void updateTargetDistance();
 	void updateHomePosition();
 
@@ -133,18 +150,6 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-enum StateID {
-	KUMACHAPPY_Attack,
-	KUMACHAPPY_Dead,
-	KUMACHAPPY_Flick,
-	KUMACHAPPY_Lost,
-	KUMACHAPPY_Rebirth,
-	KUMACHAPPY_Turn,
-	KUMACHAPPY_TurnPath,
-	KUMACHAPPY_Walk,
-	KUMACHAPPY_WalkPath
-};
-
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -153,11 +158,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		mName = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(KUMACHAPPY_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -167,6 +183,11 @@ struct StateAttack : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(KUMACHAPPY_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -176,6 +197,11 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(KUMACHAPPY_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -185,6 +211,11 @@ struct StateFlick : public State {
 };
 
 struct StateLost : public State {
+	inline StateLost()
+	    : State(KUMACHAPPY_Lost, "lost")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -194,6 +225,11 @@ struct StateLost : public State {
 };
 
 struct StateRebirth : public State {
+	inline StateRebirth()
+	    : State(KUMACHAPPY_Rebirth, "rebirth")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -203,6 +239,11 @@ struct StateRebirth : public State {
 };
 
 struct StateTurn : public State {
+	inline StateTurn()
+	    : State(KUMACHAPPY_Turn, "turn")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -212,6 +253,11 @@ struct StateTurn : public State {
 };
 
 struct StateTurnPath : public State {
+	inline StateTurnPath()
+	    : State(KUMACHAPPY_TurnPath, "turnpath")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -221,6 +267,11 @@ struct StateTurnPath : public State {
 };
 
 struct StateWalk : public State {
+	inline StateWalk()
+	    : State(KUMACHAPPY_Walk, "walk")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -230,6 +281,11 @@ struct StateWalk : public State {
 };
 
 struct StateWalkPath : public State {
+	inline StateWalkPath()
+	    : State(KUMACHAPPY_WalkPath, "walkpath")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

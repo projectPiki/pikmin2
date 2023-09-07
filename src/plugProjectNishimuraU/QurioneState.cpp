@@ -188,12 +188,12 @@ void StateMove::exec(EnemyBase* enemy)
 
 	Vector3f position      = wisp->getPosition();
 	Vector3f spawnPosition = wisp->mSpawnPositions[wisp->mSpawnIndex];
-	f32 moveRadius         = wisp->getMoveRadius();
+	f32 flyDist            = wisp->getFlyDist();
 
 	wisp->getJAIObject()->startSound(PSSE_EN_PIKIMAKI_FLY, 0);
 
 	Vector2f delta(spawnPosition.x - position.x, spawnPosition.z - position.z);
-	if (SQUARE(delta.x) + SQUARE(delta.y) > SQUARE(moveRadius)) {
+	if (SQUARE(delta.x) + SQUARE(delta.y) > SQUARE(flyDist)) {
 		transit(wisp, QURIONE_Disappear, nullptr);
 	}
 }
