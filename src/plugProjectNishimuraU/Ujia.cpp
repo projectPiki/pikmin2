@@ -271,6 +271,33 @@ void Obj::setBridgeSearch()
  */
 void Obj::setNearestBridge()
 {
+	this->mBridge = nullptr;
+	this->_2CC = 0.0f;
+	this->_2D0 = 0.0f;
+
+	if(ItemBridge::mgr)
+	{
+		f32 radius = C_PARMS->mGeneral.mTerritoryRadius.mValue;
+		radius = SQUARE(radius);
+		Iterator<BaseItem> i(ItemBridge::mgr);
+		CI_LOOP(i)
+		{
+			ItemBridge::Item* cBridge = static_cast<ItemBridge::Item*>(*i);
+			Vector3f v = (cBridge)->getStartPos();
+			float newRad = sqrDistanceXZ(mPosition, v);
+			if(newRad < radius)
+			{
+				mBridge = cBridge;
+				radius = newRad;
+			}
+		}
+	}
+
+	if (mBridge)
+	{
+		f32 width = mBridge->getStageWidth() - 20.0f;
+		_2CC = -(0.5f*width - (rand() * width / RAND_MAX));
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
