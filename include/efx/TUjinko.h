@@ -18,8 +18,8 @@ struct TUjinkoAp_Imo : public TSimpleMtx2 {
 };
 
 struct TUjinkoAp : public TSimpleMtx2 {
-	inline TUjinkoAp()
-	    : TSimpleMtx2(nullptr, PID_UjinkoAp_1, PID_UjinkoAp_2)
+	inline TUjinkoAp(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_UjinkoAp_1, PID_UjinkoAp_2)
 	{
 	}
 
@@ -49,9 +49,9 @@ struct TUjinkoHd_Imo : public TSimpleMtx2 {
 	// _00-_10 = TSimple2
 };
 
-struct TUjinkoHd : public TSimple2 {
-	inline TUjinkoHd()
-	    : TSimple2(PID_UjinkoHd_1, PID_UjinkoHd_2)
+struct TUjinkoHd : public TSimpleMtx2 {
+	inline TUjinkoHd(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_UjinkoHd_1, PID_UjinkoHd_2)
 	{
 	}
 

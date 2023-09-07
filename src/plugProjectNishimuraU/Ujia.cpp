@@ -1,388 +1,20 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80485B28
-    lbl_80485B28:
-        .4byte 0x756A696E
-        .4byte 0x6E6B6F5F
-        .4byte 0x6D000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game4Ujia3Obj
-    __vt__Q34Game4Ujia3Obj:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game9EnemyBaseFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game9EnemyBaseFv
-        .4byte onInit__Q34Game4Ujia3ObjFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game9EnemyBaseFv
-        .4byte doEntry__Q24Game9EnemyBaseFv
-        .4byte doSetView__Q24Game9EnemyBaseFi
-        .4byte doViewCalc__Q24Game9EnemyBaseFv
-        .4byte doSimulation__Q24Game9EnemyBaseFf
-        .4byte doDirectDraw__Q34Game4Ujia3ObjFR8Graphics
-        .4byte getBodyRadius__Q24Game9EnemyBaseFv
-        .4byte getCellRadius__Q24Game9EnemyBaseFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game9EnemyBaseFv
-        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getVelocity__Q24Game9EnemyBaseFv
-        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
-        .4byte isTeki__Q24Game9EnemyBaseFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game9EnemyBaseFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game9EnemyBaseFv
-        .4byte inWater__Q24Game9EnemyBaseFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game9EnemyBaseFv
-        .4byte isUnderground__Q34Game4Ujia3ObjFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
-        .4byte collisionCallback__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game9EnemyBaseFv
-        .4byte getPSCreature__Q24Game9EnemyBaseFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
-        .4byte sound_culling__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8CreatureFUl
-        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
-        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q34Game4Ujia3ObjFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game9EnemyBaseFv
-        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game9EnemyBaseFv
-        .4byte getCreatureID__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
-        .4byte __dt__Q34Game4Ujia3ObjFv
-        .4byte "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-        .4byte
-   setInitialSetting__Q34Game4Ujia3ObjFPQ24Game21EnemyInitialParamBase .4byte
-   update__Q24Game9EnemyBaseFv .4byte doUpdate__Q34Game4Ujia3ObjFv .4byte
-   doUpdateCommon__Q24Game9EnemyBaseFv .4byte
-   doUpdateCarcass__Q24Game9EnemyBaseFv .4byte
-   doAnimationUpdateAnimator__Q24Game9EnemyBaseFv .4byte
-   doAnimationCullingOff__Q24Game9EnemyBaseFv .4byte
-   doAnimationCullingOn__Q24Game9EnemyBaseFv .4byte
-   doAnimationStick__Q24Game9EnemyBaseFv .4byte
-   doSimulationCarcass__Q24Game9EnemyBaseFf .4byte
-   doDebugDraw__Q34Game4Ujia3ObjFR8Graphics .4byte
-   doSimpleDraw__Q24Game9EnemyBaseFP8Viewport .4byte
-   doSimulationGround__Q24Game9EnemyBaseFf .4byte
-   doSimulationFlying__Q24Game9EnemyBaseFf .4byte
-   doSimulationStick__Q24Game9EnemyBaseFf .4byte
-   changeMaterial__Q24Game9EnemyBaseFv .4byte
-   "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>" .4byte
-   getFitEffectPos__Q24Game9EnemyBaseFv .4byte viewGetShape__Q24Game9EnemyBaseFv
-        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
-        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
-        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
-        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
-        .4byte setParameters__Q24Game9EnemyBaseFv
-        .4byte initMouthSlots__Q24Game9EnemyBaseFv
-        .4byte initWalkSmokeEffect__Q24Game9EnemyBaseFv
-        .4byte getWalkSmokeEffectMgr__Q24Game9EnemyBaseFv
-        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
-        .4byte injure__Q24Game9EnemyBaseFv
-        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
-        .4byte updateEfxHamon__Q24Game9EnemyBaseFv
-        .4byte createEfxHamon__Q24Game9EnemyBaseFv
-        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
-        .4byte getEnemyTypeID__Q34Game4Ujia3ObjFv
-        .4byte getMouthSlots__Q24Game9EnemyBaseFv
-        .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte throwupItem__Q24Game9EnemyBaseFv
-        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
-        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-        .4byte pressCallBack__Q34Game4Ujia3ObjFPQ24Game8CreaturefP8CollPart
-        .4byte
-   flyCollisionCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   hipdropCallBack__Q34Game4Ujia3ObjFPQ24Game8CreaturefP8CollPart .4byte
-   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
-   earthquakeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f" .4byte
-   eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doStartStoneState__Q24Game9EnemyBaseFv .4byte
-   doFinishStoneState__Q24Game9EnemyBaseFv .4byte
-   getDamageCoeStoneState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeState__Q24Game9EnemyBaseFf .4byte
-   doFinishEarthquakeState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   doFinishEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   lifeRecover__Q24Game9EnemyBaseFv .4byte
-   startCarcassMotion__Q34Game4Ujia3ObjFv .4byte
-   setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg .4byte
-   getCarcassArgHeight__Q24Game9EnemyBaseFv .4byte
-   doBecomeCarcass__Q24Game9EnemyBaseFv .4byte
-   startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   wallCallback__Q24Game9EnemyBaseFRCQ24Game8MoveInfo .4byte
-   getDownSmokeScale__Q34Game4Ujia3ObjFv .4byte
-   doStartMovie__Q24Game9EnemyBaseFv .4byte doEndMovie__Q24Game9EnemyBaseFv
-        .4byte setFSM__Q34Game4Ujia3ObjFPQ34Game4Ujia3FSM
-        .4byte 0
-        .4byte 0
-        .4byte viewGetBaseScale__Q24Game10PelletViewFv
-        .4byte "@724@12@viewGetShape__Q24Game9EnemyBaseFv"
-        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
-        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
-        .4byte "@724@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@724@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@724@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@724@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@724@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051AE70
-    lbl_8051AE70:
-        .4byte 0x6B6F7369
-        .4byte 0x6A6E7400
-    .global lbl_8051AE78
-    lbl_8051AE78:
-        .4byte 0x40200000
-    .global lbl_8051AE7C
-    lbl_8051AE7C:
-        .4byte 0x00000000
-    .global lbl_8051AE80
-    lbl_8051AE80:
-        .float 1.0
-    .global lbl_8051AE84
-    lbl_8051AE84:
-        .4byte 0x42480000
-    .global lbl_8051AE88
-    lbl_8051AE88:
-        .4byte 0x41700000
-    .global lbl_8051AE8C
-    lbl_8051AE8C:
-        .4byte 0x41000000
-    .global lbl_8051AE90
-    lbl_8051AE90:
-        .4byte 0x40000000
-    .global lbl_8051AE94
-    lbl_8051AE94:
-        .4byte 0x41F00000
-    .global lbl_8051AE98
-    lbl_8051AE98:
-        .4byte 0x47000000
-        .4byte 0x00000000
-    .global lbl_8051AEA0
-    lbl_8051AEA0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051AEA8
-    lbl_8051AEA8:
-        .4byte 0x41A00000
-    .global lbl_8051AEAC
-    lbl_8051AEAC:
-        .float 0.5
-    .global lbl_8051AEB0
-    lbl_8051AEB0:
-        .4byte 0x40A00000
-    .global lbl_8051AEB4
-    lbl_8051AEB4:
-        .4byte 0xC1A00000
-    .global lbl_8051AEB8
-    lbl_8051AEB8:
-        .4byte 0x437A0000
-    .global lbl_8051AEBC
-    lbl_8051AEBC:
-        .4byte 0x3F400000
-    .global lbl_8051AEC0
-    lbl_8051AEC0:
-        .4byte 0x40490FDB
-    .global lbl_8051AEC4
-    lbl_8051AEC4:
-        .4byte 0x3BB60B61
-    .global lbl_8051AEC8
-    lbl_8051AEC8:
-        .float 0.7
-    .global lbl_8051AECC
-    lbl_8051AECC:
-        .4byte 0x6B616D75
-        .4byte 0x6A6E7400
-    .global lbl_8051AED4
-    lbl_8051AED4:
-        .4byte 0x3EB33333
-*/
+#include "Game/Entities/Ujia.h"
+#include "Game/Entities/ItemBridge.h"
+#include "efx/TUjinko.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
+namespace Ujia {
 
 /*
  * --INFO--
  * Address:	80266080
  * Size:	000130
  */
-Ujia::Obj::Obj()
+Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_802660C0
-	addi     r0, r31, 0x2d4
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2d4(r31)
-	stw      r0, 0x2d8(r31)
-	stw      r0, 0x2dc(r31)
-
-lbl_802660C0:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game4Ujia3Obj@ha
-	addi     r0, r31, 0x2d4
-	addi     r5, r3, __vt__Q34Game4Ujia3Obj@l
-	li       r3, 0x2c
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x2fc
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8026614C
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game4Ujia14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game4Ujia14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_8026614C:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80266180
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game4Ujia3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game4Ujia3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_80266180:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mAnimator = new ProperAnimator;
+	setFSM(new FSM);
 }
 
 /*
@@ -390,55 +22,24 @@ lbl_80266180:
  * Address:	802661B0
  * Size:	000004
  */
-void Ujia::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802661B4
  * Size:	000098
  */
-void Ujia::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* initArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0x15, 0x13
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	bl       resetAppearCheck__Q34Game4Ujia3ObjFv
-	li       r3, 0
-	li       r0, -1
-	stb      r3, 0x2c1(r31)
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       resetBridgeSearch__Q34Game4Ujia3ObjFv
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1dc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::onInit(initArg);
+	disableEvent(0, EB_LifegaugeVisible);
+	disableEvent(0, EB_Cullable);
+	resetAppearCheck();
+	mIsUnderground = false;
+	mNextState     = UJIA_NULL;
+	resetBridgeSearch();
+	mFsm->start(this, UJIA_Stay, nullptr);
+	doAnimationCullingOff();
 }
 
 /*
@@ -446,79 +47,32 @@ void Ujia::Obj::onInit(Game::CreatureInitArg*)
  * Address:	8026624C
  * Size:	000034
  */
-void Ujia::Obj::doUpdate()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doUpdate() { mFsm->exec(this); }
 
 /*
  * --INFO--
  * Address:	80266280
  * Size:	000004
  */
-void Ujia::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80266284
  * Size:	000020
  */
-void Ujia::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	802662A4
  * Size:	00004C
  */
-void Ujia::Obj::setFSM(Game::Ujia::FSM*)
+void Obj::setFSM(FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2bc(r3)
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -526,56 +80,18 @@ void Ujia::Obj::setFSM(Game::Ujia::FSM*)
  * Address:	802662F0
  * Size:	0000A8
  */
-void Ujia::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r4, r2, lbl_8051AE70@sda21
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f4, 0x2c(r3)
-	lfs      f3, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	lfs      f2, lbl_8051AE78@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f1, lbl_8051AE7C@sda21(r2)
-	stfs     f3, 4(r31)
-	lfs      f0, lbl_8051AE80@sda21(r2)
-	stfs     f4, 8(r31)
-	lfs      f3, 4(r31)
-	fsubs    f2, f3, f2
-	stfs     f2, 4(r31)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	lwz      r0, 0x1e4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80266370
-	lfs      f0, lbl_8051AE84@sda21(r2)
-	stfs     f0, 0x18(r31)
-	b        lbl_80266378
+	shadowParam.mPosition = mModel->getJoint("kosijnt")->getWorldMatrix()->getBasis(3);
+	shadowParam.mPosition.y -= 2.5f;
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	if (isEvent(1, EB2_Earthquake)) {
+		shadowParam.mBoundingSphere.mRadius = 50.0f;
+	} else {
+		shadowParam.mBoundingSphere.mRadius = 15.0f;
+	}
 
-lbl_80266370:
-	lfs      f0, lbl_8051AE88@sda21(r2)
-	stfs     f0, 0x18(r31)
-
-lbl_80266378:
-	lfs      f0, lbl_8051AE8C@sda21(r2)
-	stfs     f0, 0x1c(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	shadowParam.mSize = 8.0f;
 }
 
 /*
@@ -583,51 +99,15 @@ lbl_80266378:
  * Address:	80266398
  * Size:	000094
  */
-void Ujia::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* part)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_80266414
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80266414
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_80266414
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 4
-	ble      lbl_80266414
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80266418
+	if (creature && creature->isPiki() && !isEvent(0, EB_Bittered) && getStateID() > UJIA_Dive) {
+		// i.e. not in dead, press, stay, appear, or dive states
+		mFsm->transit(this, UJIA_Press, nullptr);
+		return true;
+	}
 
-lbl_80266414:
-	li       r3, 0
-
-lbl_80266418:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -635,65 +115,27 @@ lbl_80266418:
  * Address:	8026642C
  * Size:	00002C
  */
-void Ujia::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x27c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* part) { return pressCallBack(creature, damage, part); }
 
 /*
  * --INFO--
  * Address:	80266458
  * Size:	000028
  */
-void Ujia::Obj::startCarcassMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 6
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startCarcassMotion() { startMotion(6, nullptr); }
 
 /*
  * --INFO--
  * Address:	80266480
  * Size:	000030
  */
-void Ujia::Obj::lifeIncrement()
+void Obj::lifeIncrement()
 {
-	/*
-	lfs      f1, lbl_8051AE7C@sda21(r2)
-	stfs     f1, 0x208(r3)
-	lwz      r0, 0x1e0(r3)
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stw      r0, 0x1e0(r3)
-	lfs      f0, 0x200(r3)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bnelr
-	lfs      f0, lbl_8051AE80@sda21(r2)
-	stfs     f0, 0x200(r3)
-	blr
-	*/
+	mInstantDamage = 0.0f;
+	disableEvent(0, EB_TakingDamage);
+	if (mHealth <= 0.0f) {
+		mHealth = 1.0f;
+	}
 }
 
 /*
@@ -701,25 +143,11 @@ void Ujia::Obj::lifeIncrement()
  * Address:	802664B0
  * Size:	000034
  */
-void Ujia::Obj::setInWaterDamage()
+void Obj::setInWaterDamage()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x280(r3)
-	cmplwi   r0, 0
-	beq      lbl_802664D4
-	lfs      f1, lbl_8051AE90@sda21(r2)
-	lfs      f2, lbl_8051AE80@sda21(r2)
-	bl       addDamage__Q24Game9EnemyBaseFff
-
-lbl_802664D4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mWaterBox) {
+		addDamage(2.0f, 1.0f);
+	}
 }
 
 /*
@@ -727,8 +155,16 @@ lbl_802664D4:
  * Address:	802664E4
  * Size:	0000B4
  */
-void Ujia::Obj::resetAppearCheck()
+void Obj::resetAppearCheck()
 {
+	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
+
+		int randCheck = randFloat() * 30.0f;
+		int idCheck   = getCreatureID();
+		_2C2          = (u8)(randCheck + idCheck) << 8;
+	} else {
+		_2C2 = 0;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -787,32 +223,18 @@ lbl_80266580:
  * Address:	80266598
  * Size:	000048
  */
-void Ujia::Obj::isAppearCheck()
+bool Obj::isAppearCheck()
 {
-	/*
-	lhz      r4, 0x2c2(r3)
-	cmplwi   r4, 0
-	beq      lbl_802665D8
-	addi     r0, r4, 1
-	sth      r0, 0x2c2(r3)
-	lhz      r0, 0x2c2(r3)
-	clrlwi   r4, r0, 0x18
-	rlwinm   r0, r0, 0x18, 0x18, 0x1f
-	cmpw     r4, r0
-	ble      lbl_802665D0
-	li       r0, 0
-	sth      r0, 0x2c2(r3)
-	li       r3, 1
-	blr
+	if (_2C2) {
+		_2C2++;
+		if ((u8)_2C2 > _2C2 >> 8) {
+			_2C2 = 0;
+			return true;
+		}
+		return false;
+	}
 
-lbl_802665D0:
-	li       r3, 0
-	blr
-
-lbl_802665D8:
-	li       r3, 1
-	blr
-	*/
+	return true;
 }
 
 /*
@@ -820,18 +242,12 @@ lbl_802665D8:
  * Address:	802665E0
  * Size:	000020
  */
-void Ujia::Obj::resetBridgeSearch()
+void Obj::resetBridgeSearch()
 {
-	/*
-	li       r4, 1
-	li       r0, 0
-	stb      r4, 0x2c0(r3)
-	lfs      f0, lbl_8051AE7C@sda21(r2)
-	stw      r0, 0x2c8(r3)
-	stfs     f0, 0x2cc(r3)
-	stfs     f0, 0x2d0(r3)
-	blr
-	*/
+	_2C0    = 1;
+	mBridge = nullptr;
+	_2CC    = 0.0f;
+	_2D0    = 0.0f;
 }
 
 /*
@@ -839,30 +255,13 @@ void Ujia::Obj::resetBridgeSearch()
  * Address:	80266600
  * Size:	000048
  */
-void Ujia::Obj::setBridgeSearch()
+void Obj::setBridgeSearch()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x2c0(r3)
-	cmplwi   r0, 0
-	beq      lbl_80266634
-	li       r0, 0
-	stb      r0, 0x2c0(r31)
-	bl       setNearestBridge__Q34Game4Ujia3ObjFv
-	mr       r3, r31
-	bl       setCullingCheck__Q34Game4Ujia3ObjFv
-
-lbl_80266634:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_2C0) {
+		_2C0 = 0;
+		setNearestBridge();
+		setCullingCheck();
+	}
 }
 
 /*
@@ -870,7 +269,7 @@ lbl_80266634:
  * Address:	80266648
  * Size:	0002C0
  */
-void Ujia::Obj::setNearestBridge()
+void Obj::setNearestBridge()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1081,14 +480,14 @@ lbl_802668E8:
  * Address:	80266908
  * Size:	000004
  */
-void Ujia::Obj::setCullingCheck() { }
+void Obj::setCullingCheck() { }
 
 /*
  * --INFO--
  * Address:	8026690C
  * Size:	0001B4
  */
-void Ujia::Obj::checkBreakOrMove()
+int Obj::checkBreakOrMove()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1226,22 +625,13 @@ lbl_80266A7C:
  * Address:	80266AC0
  * Size:	000028
  */
-void Ujia::Obj::isBreakBridge()
+bool Obj::isBreakBridge()
 {
-	/*
-	lwz      r3, 0x2c8(r3)
-	cmplwi   r3, 0
-	beq      lbl_80266AE0
-	lwz      r0, 0x218(r3)
-	cmpwi    r0, 0
-	beq      lbl_80266AE0
-	li       r3, 1
-	blr
+	if (mBridge && mBridge->mStagesRemaining != 0) {
+		return true;
+	}
 
-lbl_80266AE0:
-	li       r3, 0
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1249,7 +639,7 @@ lbl_80266AE0:
  * Address:	80266AE8
  * Size:	0002A8
  */
-void Ujia::Obj::moveBridgeSide()
+bool Obj::moveBridgeSide()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1438,7 +828,7 @@ lbl_80266D5C:
  * Address:	80266D90
  * Size:	000288
  */
-void Ujia::Obj::moveBridgeCentre()
+bool Obj::moveBridgeCentre()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1619,7 +1009,7 @@ lbl_80266FE4:
  * Address:	80267018
  * Size:	0002F0
  */
-void Ujia::Obj::moveBridgeTop()
+bool Obj::moveBridgeTop()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -1830,33 +1220,10 @@ lbl_802672C8:
  * Address:	80267308
  * Size:	00005C
  */
-void Ujia::Obj::breakTargetBridge()
+void Obj::breakTargetBridge()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r5, __vt__Q24Game19InteractBreakBridge@ha
-	stw      r0, 0x24(r1)
-	addi     r6, r4, __vt__Q24Game11Interaction@l
-	addi     r0, r5, __vt__Q24Game19InteractBreakBridge@l
-	addi     r4, r1, 8
-	lwz      r7, 0xc0(r3)
-	lfs      f0, 0x81c(r7)
-	stw      r6, 8(r1)
-	stw      r3, 0xc(r1)
-	stw      r0, 8(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r3, 0x2c8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	InteractBreakBridge breakBridge(this, C_PROPERPARMS.mBridgeDamage.mValue);
+	mBridge->stimulate(breakBridge);
 }
 
 /*
@@ -1864,45 +1231,11 @@ void Ujia::Obj::breakTargetBridge()
  * Address:	80267364
  * Size:	00008C
  */
-void Ujia::Obj::createAppearEffect()
+void Obj::createAppearEffect()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_80485B28@ha
-	stw      r0, 0x24(r1)
-	addi     r4, r4, lbl_80485B28@l
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx8TSimple2@ha
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple2@l
-	lis      r5, __vt__Q23efx11TSimpleMtx2@ha
-	lis      r4, __vt__Q23efx9TUjinkoAp@ha
-	stw      r0, 8(r1)
-	addi     r0, r5, __vt__Q23efx11TSimpleMtx2@l
-	li       r7, 0x1ce
-	li       r5, 0x1cf
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q23efx9TUjinkoAp@l
-	li       r4, 0
-	stw      r3, 0x18(r1)
-	addi     r3, r1, 8
-	sth      r7, 0xc(r1)
-	sth      r5, 0xe(r1)
-	stw      r6, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Matrixf* worldMat = mModel->getJoint("ujinnko_m")->getWorldMatrix();
+	efx::TUjinkoAp appearFX(worldMat);
+	appearFX.create(nullptr);
 }
 
 /*
@@ -1910,45 +1243,11 @@ void Ujia::Obj::createAppearEffect()
  * Address:	802673F0
  * Size:	00008C
  */
-void Ujia::Obj::createDisAppearEffect()
+void Obj::createDisAppearEffect()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_80485B28@ha
-	stw      r0, 0x24(r1)
-	addi     r4, r4, lbl_80485B28@l
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx8TSimple2@ha
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple2@l
-	lis      r5, __vt__Q23efx11TSimpleMtx2@ha
-	lis      r4, __vt__Q23efx9TUjinkoHd@ha
-	stw      r0, 8(r1)
-	addi     r0, r5, __vt__Q23efx11TSimpleMtx2@l
-	li       r7, 0x1d1
-	li       r5, 0x1d2
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q23efx9TUjinkoHd@l
-	li       r4, 0
-	stw      r3, 0x18(r1)
-	addi     r3, r1, 8
-	sth      r7, 0xc(r1)
-	sth      r5, 0xe(r1)
-	stw      r6, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Matrixf* worldMat = mModel->getJoint("ujinnko_m")->getWorldMatrix();
+	efx::TUjinkoHd hideFX(worldMat);
+	hideFX.create(nullptr);
 }
 
 /*
@@ -1956,46 +1255,12 @@ void Ujia::Obj::createDisAppearEffect()
  * Address:	8026747C
  * Size:	000090
  */
-void Ujia::Obj::createBridgeEffect()
+void Obj::createBridgeEffect()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	addi     r4, r2, lbl_8051AECC@sda21
-	stw      r0, 0x34(r1)
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, __vt__Q23efx5TBase@ha
-	lfs      f2, 0x2c(r3)
-	lfs      f1, 0x1c(r3)
-	addi     r4, r4, __vt__Q23efx5TBase@l
-	lfs      f0, 0xc(r3)
-	lis      r3, __vt__Q23efx8TSimple1@ha
-	addi     r0, r3, __vt__Q23efx8TSimple1@l
-	lis      r5, __vt__Q23efx3Arg@ha
-	stw      r4, 8(r1)
-	lis      r3, __vt__Q23efx10TUjinkoEat@ha
-	addi     r4, r5, __vt__Q23efx3Arg@l
-	li       r6, 0x1d0
-	li       r5, 0
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q23efx10TUjinkoEat@l
-	addi     r3, r1, 8
-	stw      r4, 0x14(r1)
-	addi     r4, r1, 0x14
-	stfs     f0, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f2, 0x20(r1)
-	sth      r6, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Vector3f fxPos = mModel->getJoint("kamujnt")->getWorldMatrix()->getBasis(3);
+	efx::Arg fxArg(fxPos);
+	efx::TUjinkoEat eatFX;
+	eatFX.create(&fxArg);
 }
 
 /*
@@ -2003,127 +1268,21 @@ void Ujia::Obj::createBridgeEffect()
  * Address:	8026750C
  * Size:	000008
  */
-void Ujia::Obj::isUnderground()
-{
-	/*
-	lbz      r3, 0x2c1(r3)
-	blr
-	*/
-}
+bool Obj::isUnderground() { return mIsUnderground; }
 
 /*
  * --INFO--
  * Address:	80267514
  * Size:	000008
  */
-void Ujia::Obj::getDownSmokeScale()
-{
-	/*
-	lfs      f1, lbl_8051AED4@sda21(r2)
-	blr
-	*/
-}
+f32 Obj::getDownSmokeScale() { return 0.35f; }
 
 /*
  * --INFO--
  * Address:	8026751C
  * Size:	000008
  */
-u32 Ujia::Obj::getEnemyTypeID() { return 0xC; }
+EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_UjiA; }
 
-/*
- * --INFO--
- * Address:	80267524
- * Size:	000014
- */
-void EnemyBase::@724 @12 @viewOnPelletKilled()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -724
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80267538
- * Size:	000014
- */
-void EnemyBase::@724 @12 @viewStartCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -724
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8026754C
- * Size:	000014
- */
-void EnemyBase::@724 @12 @viewStartPreCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -724
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80267560
- * Size:	000014
- */
-void EnemyBase::@724 @12 @view_finish_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -724
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80267574
- * Size:	000014
- */
-void EnemyBase::@724 @12 @view_start_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -724
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80267588
- * Size:	000014
- */
-void EnemyBase::@724 @12 @viewGetShape()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -724
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}
+} // namespace Ujia
 } // namespace Game
