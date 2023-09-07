@@ -40,10 +40,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	mAlertTimer    = 128.0f;
 	mIsUnderground = false;
-	_2C8           = 0.0f;
+	mStateTimer    = 0.0f;
 	mAlertTimer    = 0.0f;
 	mNextState     = KABUTO_NULL;
-	_2E0           = 0;
+	mIsWalking     = false;
 	setupEffect();
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_Fkabuto) {
@@ -208,13 +208,14 @@ void Obj::setRandTarget()
  * Address:	802E48F4
  * Size:	000058
  */
-void Obj::getSearchedTarget()
+Creature* Obj::getSearchedTarget()
 {
 	Creature* target
 	    = EnemyFunc::getNearestPikminOrNavi(this, getViewAngle(), C_PARMS->mGeneral.mSightRadius.mValue, nullptr, nullptr, nullptr);
 	if (target) {
 		mAlertTimer = 0.0f;
 	}
+	return target;
 }
 
 /*

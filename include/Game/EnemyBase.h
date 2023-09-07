@@ -62,7 +62,7 @@ enum EnemyEvent {
 	EB_LeaveCarcass        = 0x80,       // leave carcass upon death
 	EB_DeathEffectEnabled  = 0x100,      // can perform death EFX on death
 	EB_Bittered            = 0x200,      // currently bittered
-	EB_Constrained         = 0x400,      // frozen, but can be moved by external forces
+	EB_Constrained         = 0x400,      // position is fixed, but can rotate or be moved externally
 	EB_LifegaugeVisible    = 0x800,      // has visible lifegauge
 	EB_PlatformCollEnabled = 0x1000,     // can interact with platform collision
 	EB_14                  = 0x2000,     // unknown (only set by an imomushi state, reset by imomushi and rock states?)

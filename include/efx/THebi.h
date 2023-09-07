@@ -46,11 +46,21 @@ struct THebiAphd_dive : public THebiAphd_base {
 };
 
 struct THebiAphd_kkabuto_appear : public THebiAphd_base {
+	inline THebiAphd_kkabuto_appear()
+	    : THebiAphd_base(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 30)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_1C  = THebiAphd_base
 };
 
 struct THebiAphd_kkabuto_dive : public THebiAphd_base {
+	inline THebiAphd_kkabuto_dive()
+	    : THebiAphd_base(PID_HebiAphd_Dive_1, PID_HebiAphd_Dive_2, PID_HebiAphd_Dive_3, PID_HebiAphd_Dive_4, 17)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_1C  = THebiAphd_base
 };

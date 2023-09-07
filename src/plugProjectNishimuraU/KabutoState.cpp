@@ -1,331 +1,34 @@
 #include "Game/Entities/Kabuto.h"
 #include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "efx/THebi.h"
 
 namespace Game {
+namespace Kabuto {
+
+static const char unusedKabutoName[] = "246-KabutoState";
 
 /*
  * --INFO--
  * Address:	802E1834
  * Size:	000480
  */
-void Kabuto::FSM::init(Game::EnemyBase*)
+void Kabuto::FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8048CC60@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	addi     r30, r4, lbl_8048CC60@l
-	li       r4, 0xd
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E18A4
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	addi     r5, r2, lbl_8051CD58@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game6Kabuto9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E18A4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E18F8
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CD60@sda21
-	addi     r0, r3, __vt__Q34Game6Kabuto9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E18F8:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E194C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto9StateTurn@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CD68@sda21
-	addi     r0, r3, __vt__Q34Game6Kabuto9StateTurn@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E194C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E19A0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto9StateMove@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CD70@sda21
-	addi     r0, r3, __vt__Q34Game6Kabuto9StateMove@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E19A0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E19F4
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto10StateFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CD78@sda21
-	addi     r0, r3, __vt__Q34Game6Kabuto10StateFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E19F4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E1A48
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto11StateAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CD80@sda21
-	addi     r0, r3, __vt__Q34Game6Kabuto11StateAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E1A48:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E1A9C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto12StateFixStay@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CD88@sda21
-	addi     r0, r3, __vt__Q34Game6Kabuto12StateFixStay@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E1A9C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E1AF0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto14StateFixAppear@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x10
-	addi     r0, r3, __vt__Q34Game6Kabuto14StateFixAppear@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E1AF0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E1B44
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto12StateFixHide@ha
-	stw      r0, 0(r4)
-	li       r0, 8
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CD90@sda21
-	addi     r0, r3, __vt__Q34Game6Kabuto12StateFixHide@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E1B44:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E1B98
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto12StateFixWait@ha
-	stw      r0, 0(r4)
-	li       r0, 9
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CD98@sda21
-	addi     r0, r3, __vt__Q34Game6Kabuto12StateFixWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E1B98:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E1BEC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto12StateFixTurn@ha
-	stw      r0, 0(r4)
-	li       r0, 0xa
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051CDA0@sda21
-	addi     r0, r3, __vt__Q34Game6Kabuto12StateFixTurn@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E1BEC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E1C40
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto14StateFixAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 0xb
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x1c
-	addi     r0, r3, __vt__Q34Game6Kabuto14StateFixAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E1C40:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802E1C94
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kabuto5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kabuto13StateFixFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 0xc
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kabuto5State@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x28
-	addi     r0, r3, __vt__Q34Game6Kabuto13StateFixFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802E1C94:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(KABUTO_StateCount);
+	registerState(new StateDead);
+	registerState(new StateWait);
+	registerState(new StateTurn);
+	registerState(new StateMove);
+	registerState(new StateFlick);
+	registerState(new StateAttack);
+	registerState(new StateFixStay);
+	registerState(new StateFixAppear);
+	registerState(new StateFixHide);
+	registerState(new StateFixWait);
+	registerState(new StateFixTurn);
+	registerState(new StateFixAttack);
+	registerState(new StateFixFlick);
 }
 
 /*
@@ -333,54 +36,18 @@ lbl_802E1C94:
  * Address:	802E1CB4
  * Size:	0000A0
  */
-void Kabuto::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x60
-	bne      lbl_802E1D30
-	mr       r3, r31
-	li       r4, 0xa
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x310(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E1D40
-
-lbl_802E1D30:
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-
-lbl_802E1D40:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto = OBJ(enemy);
+	kabuto->deathProcedure();
+	kabuto->disableEvent(0, EB_Cullable);
+	kabuto->mTargetVelocity = Vector3f(0.0f);
+	if (kabuto->getEnemyTypeID() == EnemyTypeID::EnemyID_Fkabuto) {
+		kabuto->startMotion(10, nullptr);
+		kabuto->finishWaitEffect();
+	} else {
+		kabuto->startMotion(0, nullptr);
+	}
 }
 
 /*
@@ -388,29 +55,11 @@ lbl_802E1D40:
  * Address:	802E1D60
  * Size:	000044
  */
-void Kabuto::StateDead::exec(Game::EnemyBase*)
+void Kabuto::StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E1D94
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E1D94
-	mr       r3, r4
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_802E1D94:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->mCurAnim->mIsPlaying && enemy->mCurAnim->mType == KEYEVENT_END) {
+		enemy->kill(nullptr);
+	}
 }
 
 /*
@@ -418,44 +67,22 @@ lbl_802E1D94:
  * Address:	802E1DA4
  * Size:	000004
  */
-void Kabuto::StateDead::cleanup(Game::EnemyBase*) { }
+void Kabuto::StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802E1DA8
  * Size:	00006C
  */
-void Kabuto::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c8(r4)
-	bl       setRandTarget__Q34Game6Kabuto3ObjFv
-	li       r0, -1
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	stw      r0, 0x2cc(r31)
-	mr       r3, r31
-	li       r4, 5
-	li       r5, 0
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x400
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto         = OBJ(enemy);
+	kabuto->mStateTimer = 0.0f;
+	kabuto->setRandTarget();
+	kabuto->mNextState = KABUTO_NULL;
+	kabuto->enableEvent(0, EB_Constrained);
+	kabuto->mTargetVelocity = Vector3f(0.0f);
+	kabuto->startMotion(5, nullptr);
 }
 
 /*
@@ -463,87 +90,27 @@ void Kabuto::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E1E14
  * Size:	00010C
  */
-void Kabuto::StateWait::exec(Game::EnemyBase*)
+void Kabuto::StateWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802E1E60
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E1F08
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mHealth <= 0.0f) {
+		transit(kabuto, KABUTO_Dead, nullptr);
+		return;
+	}
 
-lbl_802E1E60:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E1E88
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802E1EB8
+	if (EnemyFunc::isStartFlick(kabuto, false)) {
+		kabuto->mNextState = KABUTO_Flick;
+		kabuto->finishMotion();
+	} else if (kabuto->mStateTimer > 3.0f || kabuto->getSearchedTarget()) {
+		kabuto->mNextState = KABUTO_Turn;
+		kabuto->finishMotion();
+	}
 
-lbl_802E1E88:
-	lfs      f1, 0x2c8(r31)
-	lfs      f0, lbl_8051CDAC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bgt      lbl_802E1EA8
-	mr       r3, r31
-	bl       getSearchedTarget__Q34Game6Kabuto3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_802E1EB8
+	kabuto->mStateTimer += sys->mDeltaTime;
 
-lbl_802E1EA8:
-	li       r0, 2
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_802E1EB8:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c8(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c8(r31)
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E1F08
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E1F08
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2cc(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802E1F08:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (kabuto->mCurAnim->mIsPlaying && kabuto->mCurAnim->mType == KEYEVENT_END) {
+		transit(kabuto, kabuto->mNextState, nullptr);
+	}
 }
 
 /*
@@ -551,51 +118,21 @@ lbl_802E1F08:
  * Address:	802E1F20
  * Size:	000024
  */
-void Kabuto::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       constraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Kabuto::StateWait::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
 
 /*
  * --INFO--
  * Address:	802E1F44
  * Size:	000054
  */
-void Kabuto::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	li       r5, 0
-	stfs     f0, 0x2c8(r4)
-	li       r4, 4
-	stw      r0, 0x2cc(r3)
-	lwz      r0, 0x1e0(r3)
-	ori      r0, r0, 0x400
-	stw      r0, 0x1e0(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto         = OBJ(enemy);
+	kabuto->mStateTimer = 0.0f;
+	kabuto->mNextState  = KABUTO_NULL;
+	kabuto->enableEvent(0, EB_Constrained);
+	kabuto->mTargetVelocity = Vector3f(0.0f);
+	kabuto->startMotion(4, nullptr);
 }
 
 /*
@@ -603,8 +140,41 @@ void Kabuto::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E1F98
  * Size:	000340
  */
-void Kabuto::StateTurn::exec(Game::EnemyBase*)
+void Kabuto::StateTurn::exec(EnemyBase* enemy)
 {
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mHealth <= 0.0f) {
+		transit(kabuto, KABUTO_Dead, nullptr);
+		return;
+	}
+
+	if (EnemyFunc::isStartFlick(kabuto, false)) {
+		kabuto->mNextState = KABUTO_Flick;
+		kabuto->finishMotion();
+	} else {
+		Creature* target = kabuto->getSearchedTarget();
+		if (target) {
+			kabuto->mAlertTimer = 0.0f;
+			Vector3f targetPos  = target->getPosition();
+			kabuto->turnToTarget(targetPos, *CG_PARMS(kabuto)->mGeneral.mRotationalAccel(), *CG_PARMS(kabuto)->mGeneral.mRotationalSpeed());
+			if (kabuto->isAttackableTarget()) {
+				kabuto->mNextState = KABUTO_Attack;
+				kabuto->finishMotion();
+			}
+		} else {
+			Vector3f targetPos = kabuto->mTargetPosition;
+			f32 angle          = kabuto->changeFaceDir(targetPos);
+			f64 abs            = fabs(angle);
+			if ((f32)abs <= PI / 6.0f) {
+				kabuto->mNextState = KABUTO_Move;
+				kabuto->finishMotion();
+			}
+		}
+	}
+
+	if (kabuto->mCurAnim->mIsPlaying && kabuto->mCurAnim->mType == KEYEVENT_END) {
+		transit(kabuto, kabuto->mNextState, nullptr);
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -840,50 +410,21 @@ lbl_802E22A0:
  * Address:	802E22D8
  * Size:	000024
  */
-void Kabuto::StateTurn::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       constraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Kabuto::StateTurn::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
 
 /*
  * --INFO--
  * Address:	802E22FC
  * Size:	000050
  */
-void Kabuto::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r5, 0
-	li       r0, -1
-	stfs     f0, 0x2c8(r4)
-	li       r4, 1
-	stb      r5, 0x2e0(r3)
-	li       r5, 0
-	stw      r0, 0x2cc(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto             = OBJ(enemy);
+	kabuto->mStateTimer     = 0.0f;
+	kabuto->mIsWalking      = false;
+	kabuto->mNextState      = KABUTO_NULL;
+	kabuto->mTargetVelocity = Vector3f(0.0f);
+	kabuto->startMotion(1, nullptr);
 }
 
 /*
@@ -891,8 +432,70 @@ void Kabuto::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E234C
  * Size:	00038C
  */
-void Kabuto::StateMove::exec(Game::EnemyBase*)
+void Kabuto::StateMove::exec(EnemyBase* enemy)
 {
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mHealth <= 0.0f) {
+		transit(kabuto, KABUTO_Dead, nullptr);
+		return;
+	}
+
+	if (EnemyFunc::isStartFlick(kabuto, false)) {
+		kabuto->mNextState = KABUTO_Flick;
+		kabuto->finishMotion();
+	} else {
+		Creature* target = kabuto->getSearchedTarget();
+		if (target) {
+			kabuto->mAlertTimer = 0.0f;
+			kabuto->mNextState  = KABUTO_Turn;
+			kabuto->finishMotion();
+			if (kabuto->isAttackableTarget()) {
+				kabuto->mNextState = KABUTO_Attack;
+				kabuto->finishMotion();
+			}
+		} else {
+			Vector3f pos       = kabuto->getPosition();
+			Vector3f targetPos = kabuto->mTargetPosition;
+			if (kabuto->mStateTimer > 6.0f || sqrDistanceXZ(pos, targetPos) < 625.0f) {
+				kabuto->mNextState = KABUTO_Wait;
+				kabuto->finishMotion();
+			} else {
+				f32 angle = kabuto->changeFaceDir(targetPos);
+				f32 limit = PI * (DEG2RAD * 30.0f);
+				f64 abs   = fabs(angle);
+				if ((f32)abs <= limit) {
+					if (kabuto->mIsWalking) {
+						f32 speed = *CG_PARMS(kabuto)->mGeneral.mMoveSpeed();
+						f32 x     = sin(kabuto->getFaceDir());
+						f32 y     = kabuto->getTargetVelocity().y;
+						f32 z     = cos(kabuto->getFaceDir());
+
+						kabuto->mTargetVelocity = Vector3f(speed * x, y, speed * z);
+					}
+
+				} else {
+					kabuto->mNextState = KABUTO_Turn;
+					kabuto->finishMotion();
+				}
+			}
+		}
+	}
+
+	if (kabuto->isFinishMotion()) {
+		kabuto->mIsWalking = false;
+		kabuto->enableEvent(0, EB_Constrained);
+		kabuto->mTargetVelocity = Vector3f(0.0f);
+	}
+
+	kabuto->mStateTimer += sys->mDeltaTime;
+
+	if (kabuto->mCurAnim->mIsPlaying) {
+		if (kabuto->mCurAnim->mType == KEYEVENT_NULL) {
+			kabuto->mIsWalking = true;
+		} else if (kabuto->mCurAnim->mType == KEYEVENT_END) {
+			transit(kabuto, kabuto->mNextState, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1153,56 +756,22 @@ lbl_802E26A0:
  * Address:	802E26D8
  * Size:	000024
  */
-void Kabuto::StateMove::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       constraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Kabuto::StateMove::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
 
 /*
  * --INFO--
  * Address:	802E26FC
  * Size:	000068
  */
-void Kabuto::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c8(r4)
-	stw      r0, 0x2cc(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 0x400
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 2
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto         = OBJ(enemy);
+	kabuto->mStateTimer = 0.0f;
+	kabuto->mNextState  = KABUTO_NULL;
+	kabuto->enableEvent(0, EB_Constrained);
+	kabuto->mTargetVelocity = Vector3f(0.0f);
+	kabuto->setEmotionExcitement();
+	kabuto->startMotion(2, nullptr);
 }
 
 /*
@@ -1210,110 +779,33 @@ void Kabuto::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E2764
  * Size:	00016C
  */
-void Kabuto::StateFlick::exec(Game::EnemyBase*)
+void Kabuto::StateFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_802E28B4
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_802E2864
-	lwz      r5, 0xc0(r30)
-	mr       r3, r30
-	lfs      f4, lbl_8051CDC4@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	mr       r3, r30
-	lwz      r31, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f4, f1
-	lfs      f1, 0x514(r31)
-	lfs      f2, 0x4c4(r31)
-	mr       r3, r30
-	lfs      f3, 0x4ec(r31)
-	li       r4, 0
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	mr       r3, r30
-	lwz      r31, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f4, f1
-	lfs      f1, 0x53c(r31)
-	lfs      f2, 0x4c4(r31)
-	mr       r3, r30
-	lfs      f3, 0x4ec(r31)
-	li       r4, 0
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f1, lbl_8051CDA8@sda21(r2)
-	stfs     f1, 0x20c(r30)
-	lfs      f0, 0x200(r30)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_802E28B4
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E28B4
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mCurAnim->mIsPlaying) {
+		if (kabuto->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::flickNearbyNavi(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRange.mValue,
+			                           CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue,
+			                           -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRange.mValue,
+			                             CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue,
+			                             kabuto->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRateMaybe.mValue,
+			                            CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue,
+			                            kabuto->getFaceDir(), nullptr);
+			kabuto->mToFlick = 0.0f;
 
-lbl_802E2864:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E28B4
-	lfs      f1, 0x200(r30)
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802E289C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E28B4
-
-lbl_802E289C:
-	lwz      r12, 0(r3)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802E28B4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+			if (kabuto->mHealth <= 0.0f) {
+				transit(kabuto, KABUTO_Dead, nullptr);
+			}
+		} else if (kabuto->mCurAnim->mType == KEYEVENT_END) {
+			if (kabuto->mHealth <= 0.0f) {
+				transit(kabuto, KABUTO_Dead, nullptr);
+			} else {
+				transit(kabuto, KABUTO_Attack, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -1321,24 +813,10 @@ lbl_802E28B4:
  * Address:	802E28D0
  * Size:	000038
  */
-void Kabuto::StateFlick::cleanup(Game::EnemyBase*)
+void Kabuto::StateFlick::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       constraintOff__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->constraintOff();
+	enemy->setEmotionCaution();
 }
 
 /*
@@ -1346,41 +824,17 @@ void Kabuto::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	802E2908
  * Size:	00007C
  */
-void Kabuto::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c8(r4)
-	stfs     f0, 0x2dc(r4)
-	stw      r0, 0x2cc(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 0x400
-	stw      r0, 0x1e0(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	li       r4, 3
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	li       r5, 0
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto         = OBJ(enemy);
+	kabuto->mStateTimer = 0.0f;
+	kabuto->mAlertTimer = 0.0f;
+	kabuto->mNextState  = KABUTO_NULL;
+	kabuto->enableEvent(0, EB_Constrained);
+	kabuto->setEmotionExcitement();
+	kabuto->disableEvent(0, EB_Cullable);
+	kabuto->mTargetVelocity = Vector3f(0.0f);
+	kabuto->startMotion(3, nullptr);
 }
 
 /*
@@ -1388,94 +842,33 @@ void Kabuto::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E2984
  * Size:	000128
  */
-void Kabuto::StateAttack::exec(Game::EnemyBase*)
+void Kabuto::StateAttack::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802E29D0
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E2A94
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mHealth <= 0.0f) {
+		transit(kabuto, KABUTO_Dead, nullptr);
+		return;
+	}
 
-lbl_802E29D0:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E2A94
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802E2A00
-	mr       r3, r31
-	bl       createStoneAttack__Q34Game6Kabuto3ObjFv
-	mr       r3, r31
-	bl       createRockEmitEffect__Q34Game6Kabuto3ObjFv
-	b        lbl_802E2A94
+	if (kabuto->mCurAnim->mIsPlaying) {
+		if (kabuto->mCurAnim->mType == KEYEVENT_2) {
+			kabuto->createStoneAttack();
+			kabuto->createRockEmitEffect();
 
-lbl_802E2A00:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E2A94
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E2A40
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E2A94
+		} else if (kabuto->mCurAnim->mType == KEYEVENT_END) {
+			if (EnemyFunc::isStartFlick(kabuto, false)) {
+				transit(kabuto, KABUTO_Flick, nullptr);
+				return;
+			}
 
-lbl_802E2A40:
-	mr       r3, r31
-	bl       getSearchedTarget__Q34Game6Kabuto3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_802E2A74
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E2A94
+			if (kabuto->getSearchedTarget()) {
+				transit(kabuto, KABUTO_Turn, nullptr);
+				return;
+			}
 
-lbl_802E2A74:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802E2A94:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			transit(kabuto, KABUTO_Wait, nullptr);
+		}
+	}
 }
 
 /*
@@ -1483,27 +876,11 @@ lbl_802E2A94:
  * Address:	802E2AAC
  * Size:	000044
  */
-void Kabuto::StateAttack::cleanup(Game::EnemyBase*)
+void Kabuto::StateAttack::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       constraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->constraintOff();
+	enemy->enableEvent(0, EB_Cullable);
+	enemy->setEmotionCaution();
 }
 
 /*
@@ -1511,56 +888,20 @@ void Kabuto::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	802E2AF0
  * Size:	0000B8
  */
-void Kabuto::StateFixStay::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateFixStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, -1
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r3, 0x2cc(r4)
-	mr       r3, r31
-	li       r4, 0
-	stb      r0, 0x2e1(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	li       r4, 0xb
-	li       r5, 0
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x15, 0x13
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x11, 0xf
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x4000
-	stw      r0, 0x1e0(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       stopMotion__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x310(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto            = OBJ(enemy);
+	kabuto->mNextState     = KABUTO_NULL;
+	kabuto->mIsUnderground = true;
+	kabuto->setAtari(false);
+	kabuto->enableEvent(0, EB_BitterImmune);
+	kabuto->enableEvent(0, EB_Invulnerable);
+	kabuto->disableEvent(0, EB_LifegaugeVisible);
+	kabuto->disableEvent(0, EB_Animating);
+	kabuto->enableEvent(0, EB_ModelHidden);
+	kabuto->startMotion(11, nullptr);
+	kabuto->stopMotion();
+	kabuto->finishWaitEffect();
 }
 
 /*
@@ -1568,69 +909,17 @@ void Kabuto::StateFixStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E2BA8
  * Size:	0000E4
  */
-void Kabuto::StateFixStay::exec(Game::EnemyBase*)
+void Kabuto::StateFixStay::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	bl       getSearchedTarget__Q34Game6Kabuto3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_802E2C64
-	mr       r4, r3
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lfs      f31, 0x14(r1)
-	lwz      r12, 8(r12)
-	lfs      f30, 0x1c(r1)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x10(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	fsubs    f1, f31, f1
-	fsubs    f2, f30, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	stfs     f1, 0x1fc(r31)
-	mr       r3, r30
-	mr       r4, r31
-	li       r5, 7
-	lfs      f0, 0x1fc(r31)
-	li       r6, 0
-	stfs     f0, 0x1a8(r31)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802E2C64:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	Obj* kabuto      = OBJ(enemy);
+	Creature* target = kabuto->getSearchedTarget();
+	if (target) {
+		Vector3f targetPos  = target->getPosition();
+		Vector3f pos        = kabuto->getPosition();
+		kabuto->mFaceDir    = JMAAtan2Radian(targetPos.x - pos.x, targetPos.z - pos.z);
+		kabuto->mRotation.y = kabuto->mFaceDir;
+		transit(kabuto, KABUTO_FixAppear, nullptr);
+	}
 }
 
 /*
@@ -1638,43 +927,16 @@ lbl_802E2C64:
  * Address:	802E2C8C
  * Size:	000084
  */
-void Kabuto::StateFixStay::cleanup(Game::EnemyBase*)
+void Kabuto::StateFixStay::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	stb      r0, 0x2e1(r31)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x800
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x8000
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 2, 0
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto            = OBJ(enemy);
+	kabuto->mIsUnderground = false;
+	kabuto->setAtari(true);
+	kabuto->disableEvent(0, EB_BitterImmune);
+	kabuto->disableEvent(0, EB_Invulnerable);
+	kabuto->enableEvent(0, EB_LifegaugeVisible);
+	kabuto->enableEvent(0, EB_Animating);
+	kabuto->disableEvent(0, EB_ModelHidden);
 }
 
 /*
@@ -1682,112 +944,30 @@ void Kabuto::StateFixStay::cleanup(Game::EnemyBase*)
  * Address:	802E2D10
  * Size:	00018C
  */
-void Kabuto::StateFixAppear::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateFixAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       lifeIncrement__Q34Game6Kabuto3ObjFv
-	li       r0, -1
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	stw      r0, 0x2cc(r31)
-	mr       r3, r31
-	stfs     f0, 0x2dc(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x20
-	stw      r0, 0x1e0(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0xb
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple4@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple4@l
-	lis      r3, __vt__Q23efx14THebiAphd_base@ha
-	lfs      f2, 8(r1)
-	stw      r0, 0x24(r1)
-	addi     r0, r3, __vt__Q23efx14THebiAphd_base@l
-	lfs      f1, 0xc(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lfs      f0, 0x10(r1)
-	lis      r3, __vt__Q23efx24THebiAphd_kkabuto_appear@ha
-	addi     r11, r4, __vt__Q23efx3Arg@l
-	li       r10, 0xa0
-	li       r9, 0xa1
-	li       r8, 0xa2
-	li       r7, 0xa3
-	li       r5, 0x1e
-	stw      r0, 0x24(r1)
-	addi     r0, r3, __vt__Q23efx24THebiAphd_kkabuto_appear@l
-	addi     r3, r1, 0x24
-	addi     r4, r1, 0x14
-	stw      r11, 0x14(r1)
-	stfs     f2, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	sth      r10, 0x28(r1)
-	sth      r9, 0x2a(r1)
-	sth      r8, 0x2c(r1)
-	sth      r7, 0x2e(r1)
-	stw      r6, 0x30(r1)
-	stw      r6, 0x34(r1)
-	stw      r6, 0x38(r1)
-	stw      r6, 0x3c(r1)
-	stw      r5, 0x40(r1)
-	stw      r0, 0x24(r1)
-	bl       create__Q23efx14THebiAphd_baseFPQ23efx3Arg
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x310(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051CDC4@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-	"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051CDC4@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-	"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051CDC4@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	Obj* kabuto = OBJ(enemy);
+	kabuto->lifeIncrement();
+	kabuto->mNextState  = KABUTO_NULL;
+	kabuto->mAlertTimer = 0.0f;
+	kabuto->enableEvent(0, EB_NoInterrupt);
+	kabuto->setEmotionExcitement();
+	kabuto->startMotion(11, nullptr);
+
+	Vector3f pos = kabuto->getPosition();
+	efx::Arg fxArg(pos);
+	efx::THebiAphd_kkabuto_appear appearFX;
+
+	appearFX.create(&fxArg);
+
+	kabuto->finishWaitEffect();
+	EnemyFunc::flickNearbyNavi(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRange.mValue, CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue,
+	                           CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	EnemyFunc::flickNearbyPikmin(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRange.mValue, CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue,
+	                             CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRateMaybe.mValue,
+	                            CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue, -1000.0f,
+	                            nullptr);
 }
 
 /*
@@ -1795,167 +975,40 @@ void Kabuto::StateFixAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E2E9C
  * Size:	000244
  */
-void Kabuto::StateFixAppear::exec(Game::EnemyBase*)
+void Kabuto::StateFixAppear::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	lwz      r5, 0x188(r4)
-	mr       r30, r3
-	mr       r31, r4
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_802E30C0
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E30C0
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802E2F0C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E30C0
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mCurAnim->mIsPlaying && kabuto->mCurAnim->mType == KEYEVENT_END) {
+		if (kabuto->mHealth <= 0.0f) {
+			transit(kabuto, KABUTO_Dead, nullptr);
+			return;
+		}
 
-lbl_802E2F0C:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E2F44
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xc
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E30C0
+		if (EnemyFunc::isStartFlick(kabuto, false)) {
+			transit(kabuto, KABUTO_FixFlick, nullptr);
+			return;
+		}
 
-lbl_802E2F44:
-	mr       r3, r31
-	bl       isAttackableTarget__Q34Game6Kabuto3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E2F78
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xb
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E30C0
+		if (kabuto->isAttackableTarget()) {
+			transit(kabuto, KABUTO_FixAttack, nullptr);
+			return;
+		}
 
-lbl_802E2F78:
-	mr       r3, r31
-	bl       getSearchedTarget__Q34Game6Kabuto3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_802E30A0
-	mr       r4, r3
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x20(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x2c
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x2c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x34(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 8(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f4, 0x30(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	lwz      r3, 0xc0(r31)
-	fabs     f2, f1
-	lfs      f0, lbl_8051CDB4@sda21(r2)
-	lfs      f3, 0x58c(r3)
-	lfs      f1, lbl_8051CDB0@sda21(r2)
-	frsp     f2, f2
-	fmuls    f0, f0, f3
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_802E307C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E30C0
+		Creature* target = kabuto->getSearchedTarget();
+		if (target) {
+			f32 angle = kabuto->getCreatureViewAngle(target);
+			f32 limit = *CG_PARMS(kabuto)->mGeneral.mMinAttackRange();
+			if (FABS(angle) <= PI * (DEG2RAD * limit)) {
+				transit(kabuto, KABUTO_FixWait, nullptr);
+				return;
+			} else {
+				transit(kabuto, KABUTO_FixTurn, nullptr);
+				return;
+			}
+		}
 
-lbl_802E307C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xa
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E30C0
-
-lbl_802E30A0:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802E30C0:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+		transit(kabuto, KABUTO_FixHide, nullptr);
+	}
 }
 
 /*
@@ -1963,101 +1016,30 @@ lbl_802E30C0:
  * Address:	802E30E0
  * Size:	000010
  */
-void Kabuto::StateFixAppear::cleanup(Game::EnemyBase*)
-{
-	/*
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r4)
-	blr
-	*/
-}
+void Kabuto::StateFixAppear::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrupt); }
 
 /*
  * --INFO--
  * Address:	802E30F0
  * Size:	000130
  */
-void Kabuto::StateFixHide::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateFixHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	li       r3, -1
-	stw      r0, 0x54(r1)
-	li       r0, 1
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r3, 0x2cc(r4)
-	mr       r3, r31
-	stb      r0, 0x2e1(r4)
-	lwz      r0, 0x1e0(r4)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r4)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0xc
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple4@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple4@l
-	lis      r3, __vt__Q23efx14THebiAphd_base@ha
-	lfs      f2, 8(r1)
-	stw      r0, 0x24(r1)
-	addi     r0, r3, __vt__Q23efx14THebiAphd_base@l
-	lfs      f1, 0xc(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lfs      f0, 0x10(r1)
-	lis      r3, __vt__Q23efx22THebiAphd_kkabuto_dive@ha
-	addi     r11, r4, __vt__Q23efx3Arg@l
-	li       r10, 0xa0
-	li       r9, 0xa1
-	li       r8, 0xa2
-	li       r7, 0xa3
-	li       r5, 0x11
-	stw      r0, 0x24(r1)
-	addi     r0, r3, __vt__Q23efx22THebiAphd_kkabuto_dive@l
-	addi     r3, r1, 0x24
-	addi     r4, r1, 0x14
-	stw      r11, 0x14(r1)
-	stfs     f2, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	sth      r10, 0x28(r1)
-	sth      r9, 0x2a(r1)
-	sth      r8, 0x2c(r1)
-	sth      r7, 0x2e(r1)
-	stw      r6, 0x30(r1)
-	stw      r6, 0x34(r1)
-	stw      r6, 0x38(r1)
-	stw      r6, 0x3c(r1)
-	stw      r5, 0x40(r1)
-	stw      r0, 0x24(r1)
-	bl       create__Q23efx14THebiAphd_baseFPQ23efx3Arg
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x310(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	Obj* kabuto            = OBJ(enemy);
+	kabuto->mNextState     = KABUTO_NULL;
+	kabuto->mIsUnderground = true;
+	kabuto->enableEvent(0, EB_BitterImmune);
+	kabuto->enableEvent(0, EB_Invulnerable);
+	kabuto->setEmotionCaution();
+	kabuto->startMotion(12, nullptr);
+
+	Vector3f pos = kabuto->getPosition();
+	efx::Arg fxArg(pos);
+	efx::THebiAphd_kkabuto_dive diveFX;
+
+	diveFX.create(&fxArg);
+
+	kabuto->finishWaitEffect();
 }
 
 /*
@@ -2065,49 +1047,16 @@ void Kabuto::StateFixHide::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E3220
  * Size:	000090
  */
-void Kabuto::StateFixHide::exec(Game::EnemyBase*)
+void Kabuto::StateFixHide::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f4, lbl_8051CDC4@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r5, 0xc0(r4)
-	li       r4, 0
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E3298
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E3298
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	Obj* kabuto = OBJ(enemy);
+	EnemyFunc::flickStickPikmin(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRateMaybe.mValue,
+	                            CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue, -1000.0f,
+	                            nullptr);
 
-lbl_802E3298:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (kabuto->mCurAnim->mIsPlaying && kabuto->mCurAnim->mType == KEYEVENT_END) {
+		transit(kabuto, KABUTO_FixStay, nullptr);
+	}
 }
 
 /*
@@ -2115,19 +1064,12 @@ lbl_802E3298:
  * Address:	802E32B0
  * Size:	000024
  */
-void Kabuto::StateFixHide::cleanup(Game::EnemyBase*)
+void Kabuto::StateFixHide::cleanup(EnemyBase* enemy)
 {
-	/*
-	li       r0, 0
-	stb      r0, 0x2e1(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r4)
-	blr
-	*/
+	Obj* kabuto            = OBJ(enemy);
+	kabuto->mIsUnderground = false;
+	enemy->disableEvent(0, EB_Invulnerable);
+	enemy->disableEvent(0, EB_BitterImmune);
 }
 
 /*
@@ -2135,192 +1077,52 @@ void Kabuto::StateFixHide::cleanup(Game::EnemyBase*)
  * Address:	802E32D4
  * Size:	000054
  */
-void Kabuto::StateFixWait::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateFixWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 7
-	stw      r0, 0x2cc(r31)
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x30c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto        = OBJ(enemy);
+	kabuto->mNextState = KABUTO_NULL;
+	kabuto->startMotion(7, nullptr);
+	kabuto->startWaitEffect();
 }
-
-/*
- * --INFO--
- * Address:	802E3328
- * Size:	000004
- */
-void Kabuto::Obj::startWaitEffect() { }
 
 /*
  * --INFO--
  * Address:	802E332C
  * Size:	000204
  */
-void Kabuto::StateFixWait::exec(Game::EnemyBase*)
+void Kabuto::StateFixWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	mr       r31, r4
-	lfs      f1, 0x200(r4)
-	mr       r30, r3
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802E3380
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E3510
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mHealth <= 0.0f) {
+		transit(kabuto, KABUTO_Dead, nullptr);
+		return;
+	}
 
-lbl_802E3380:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E33A8
-	li       r0, 0xc
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802E34D4
+	if (EnemyFunc::isStartFlick(kabuto, false)) {
+		kabuto->mNextState = KABUTO_FixFlick;
+		kabuto->finishMotion();
+	} else if (kabuto->isAttackableTarget()) {
+		kabuto->mNextState = KABUTO_FixAttack;
+		kabuto->finishMotion();
+	} else {
+		Creature* target = kabuto->getSearchedTarget();
+		if (target) {
+			f32 angle = kabuto->getCreatureViewAngle(target);
+			f32 limit = *CG_PARMS(kabuto)->mGeneral.mMinAttackRange();
+			if (FABS(angle) <= PI * (DEG2RAD * limit)) {
+				kabuto->mNextState = KABUTO_FixWait;
+			} else {
+				kabuto->mNextState = KABUTO_FixTurn;
+				kabuto->finishMotion();
+			}
+		} else {
+			kabuto->mNextState = KABUTO_FixHide;
+		}
+	}
 
-lbl_802E33A8:
-	mr       r3, r31
-	bl       isAttackableTarget__Q34Game6Kabuto3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E33CC
-	li       r0, 0xb
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802E34D4
-
-lbl_802E33CC:
-	mr       r3, r31
-	bl       getSearchedTarget__Q34Game6Kabuto3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_802E34CC
-	mr       r4, r3
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x20(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x2c
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x2c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x34(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 8(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f4, 0x30(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	lwz      r3, 0xc0(r31)
-	fabs     f2, f1
-	lfs      f0, lbl_8051CDB4@sda21(r2)
-	lfs      f3, 0x58c(r3)
-	lfs      f1, lbl_8051CDB0@sda21(r2)
-	frsp     f2, f2
-	fmuls    f0, f0, f3
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_802E34B8
-	li       r0, 9
-	stw      r0, 0x2cc(r31)
-	b        lbl_802E34D4
-
-lbl_802E34B8:
-	li       r0, 0xa
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802E34D4
-
-lbl_802E34CC:
-	li       r0, 8
-	stw      r0, 0x2cc(r31)
-
-lbl_802E34D4:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E3510
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E3510
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2cc(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802E3510:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (kabuto->mCurAnim->mIsPlaying && kabuto->mCurAnim->mType == KEYEVENT_END) {
+		transit(kabuto, kabuto->mNextState, nullptr);
+	}
 }
 
 /*
@@ -2328,243 +1130,65 @@ lbl_802E3510:
  * Address:	802E3530
  * Size:	000004
  */
-void Kabuto::StateFixWait::cleanup(Game::EnemyBase*) { }
+void Kabuto::StateFixWait::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802E3534
  * Size:	000068
  */
-void Kabuto::StateFixTurn::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateFixTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 6
-	stw      r0, 0x2cc(r31)
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x30c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x304(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto        = OBJ(enemy);
+	kabuto->mNextState = KABUTO_NULL;
+	kabuto->startMotion(6, nullptr);
+	kabuto->startWaitEffect();
+	kabuto->startRotateEffect();
 }
-
-/*
- * --INFO--
- * Address:	802E359C
- * Size:	000004
- */
-void Kabuto::Obj::startRotateEffect() { }
 
 /*
  * --INFO--
  * Address:	802E35A0
  * Size:	000290
  */
-void Kabuto::StateFixTurn::exec(Game::EnemyBase*)
+void Kabuto::StateFixTurn::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stfd     f28, 0x30(r1)
-	psq_st   f28, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	mr       r31, r4
-	lfs      f1, 0x200(r4)
-	mr       r30, r3
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802E360C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E37F8
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mHealth <= 0.0f) {
+		transit(kabuto, KABUTO_Dead, nullptr);
+		return;
+	}
 
-lbl_802E360C:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E3634
-	li       r0, 0xc
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802E37BC
+	if (EnemyFunc::isStartFlick(kabuto, false)) {
+		kabuto->mNextState = KABUTO_FixFlick;
+		kabuto->finishMotion();
+	} else {
+		Creature* target = kabuto->getSearchedTarget();
+		if (target) {
+			kabuto->mAlertTimer = 0.0f;
+			Vector3f targetPos  = target->getPosition();
+			f32 angle           = kabuto->changeFaceDir(targetPos);
+			if (kabuto->isAttackableTarget()) {
+				kabuto->mNextState = KABUTO_FixAttack;
+				kabuto->finishMotion();
+			} else {
+				f32 limit = *CG_PARMS(kabuto)->mGeneral.mMinAttackRange();
+				if (FABS(angle) <= PI * (DEG2RAD * limit)) {
+					kabuto->mNextState = KABUTO_FixWait;
+					kabuto->finishMotion();
+				} else {
+					kabuto->mNextState = KABUTO_FixTurn;
+				}
+			}
+		} else {
+			kabuto->mNextState = KABUTO_FixHide;
+			kabuto->finishMotion();
+		}
+	}
 
-lbl_802E3634:
-	mr       r3, r31
-	bl       getSearchedTarget__Q34Game6Kabuto3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_802E37AC
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	mr       r4, r3
-	addi     r3, r1, 0x14
-	stfs     f0, 0x2dc(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lwz      r5, 0xc0(r31)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 8
-	lfs      f31, 0x14(r1)
-	lwz      r12, 8(r12)
-	lfs      f28, 0x1c(r1)
-	lfs      f29, 0x334(r5)
-	lfs      f30, 0x30c(r5)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x10(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	fsubs    f1, f31, f1
-	fsubs    f2, f28, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	fmr      f31, f1
-	lfs      f0, lbl_8051CDB4@sda21(r2)
-	lfs      f1, lbl_8051CDB0@sda21(r2)
-	fmuls    f0, f0, f29
-	fmuls    f29, f31, f30
-	fmuls    f1, f1, f0
-	fabs     f0, f29
-	frsp     f0, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_802E3714
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	fcmpo    cr0, f29, f0
-	ble      lbl_802E3710
-	fmr      f29, f1
-	b        lbl_802E3714
-
-lbl_802E3710:
-	fneg     f29, f1
-
-lbl_802E3714:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f29, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	mr       r3, r31
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x1a8(r31)
-	bl       isAttackableTarget__Q34Game6Kabuto3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E3760
-	li       r0, 0xb
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802E37BC
-
-lbl_802E3760:
-	lwz      r3, 0xc0(r31)
-	fabs     f2, f31
-	lfs      f0, lbl_8051CDB4@sda21(r2)
-	lfs      f3, 0x58c(r3)
-	lfs      f1, lbl_8051CDB0@sda21(r2)
-	frsp     f2, f2
-	fmuls    f0, f0, f3
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_802E37A0
-	li       r0, 9
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802E37BC
-
-lbl_802E37A0:
-	li       r0, 0xa
-	stw      r0, 0x2cc(r31)
-	b        lbl_802E37BC
-
-lbl_802E37AC:
-	li       r0, 8
-	mr       r3, r31
-	stw      r0, 0x2cc(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_802E37BC:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E37F8
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E37F8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2cc(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802E37F8:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	psq_l    f28, 56(r1), 0, qr0
-	lfd      f28, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	if (kabuto->mCurAnim->mIsPlaying && kabuto->mCurAnim->mType == KEYEVENT_END) {
+		transit(kabuto, kabuto->mNextState, nullptr);
+	}
 }
 
 /*
@@ -2572,66 +1196,25 @@ lbl_802E37F8:
  * Address:	802E3830
  * Size:	000030
  */
-void Kabuto::StateFixTurn::cleanup(Game::EnemyBase*)
+void Kabuto::StateFixTurn::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 0x308(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto = OBJ(enemy);
+	kabuto->finishRotateEffect();
 }
-
-/*
- * --INFO--
- * Address:	802E3860
- * Size:	000004
- */
-void Kabuto::Obj::finishRotateEffect() { }
 
 /*
  * --INFO--
  * Address:	802E3864
  * Size:	000068
  */
-void Kabuto::StateFixAttack::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateFixAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2cc(r4)
-	li       r4, 8
-	stfs     f0, 0x2dc(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x30c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto         = OBJ(enemy);
+	kabuto->mNextState  = KABUTO_NULL;
+	kabuto->mAlertTimer = 0.0f;
+	kabuto->disableEvent(0, EB_Cullable);
+	kabuto->startMotion(8, nullptr);
+	kabuto->startWaitEffect();
 }
 
 /*
@@ -2639,176 +1222,44 @@ void Kabuto::StateFixAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E38CC
  * Size:	000260
  */
-void Kabuto::StateFixAttack::exec(Game::EnemyBase*)
+void Kabuto::StateFixAttack::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	mr       r31, r4
-	lfs      f1, 0x200(r4)
-	mr       r30, r3
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802E3920
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E3B0C
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mHealth <= 0.0f) {
+		transit(kabuto, KABUTO_Dead, nullptr);
+		return;
+	}
 
-lbl_802E3920:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802E3B0C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802E3950
-	mr       r3, r31
-	bl       createStoneAttack__Q34Game6Kabuto3ObjFv
-	mr       r3, r31
-	bl       createRockEmitEffect__Q34Game6Kabuto3ObjFv
-	b        lbl_802E3B0C
+	if (kabuto->mCurAnim->mIsPlaying) {
+		if (kabuto->mCurAnim->mType == KEYEVENT_2) {
+			kabuto->createStoneAttack();
+			kabuto->createRockEmitEffect();
 
-lbl_802E3950:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E3B0C
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E3990
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xc
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E3B0C
+		} else if (kabuto->mCurAnim->mType == KEYEVENT_END) {
+			if (EnemyFunc::isStartFlick(kabuto, false)) {
+				transit(kabuto, KABUTO_FixFlick, nullptr);
+				return;
+			}
 
-lbl_802E3990:
-	mr       r3, r31
-	bl       isAttackableTarget__Q34Game6Kabuto3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802E39C4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xb
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E3B0C
+			if (kabuto->isAttackableTarget()) {
+				transit(kabuto, KABUTO_FixAttack, nullptr);
+				return;
+			}
 
-lbl_802E39C4:
-	mr       r3, r31
-	bl       getSearchedTarget__Q34Game6Kabuto3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_802E3AEC
-	mr       r4, r3
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	lfs      f2, 0x20(r1)
-	lwz      r12, 0(r31)
-	addi     r3, r1, 0x2c
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x28(r1)
-	lwz      r12, 8(r12)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x2c(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x34(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 8(r1)
-	lfs      f0, 0x10(r1)
-	lfs      f4, 0x30(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f31
-	bl       angDist__Fff
-	lwz      r3, 0xc0(r31)
-	fabs     f2, f1
-	lfs      f0, lbl_8051CDB4@sda21(r2)
-	lfs      f3, 0x58c(r3)
-	lfs      f1, lbl_8051CDB0@sda21(r2)
-	frsp     f2, f2
-	fmuls    f0, f0, f3
-	fmuls    f0, f1, f0
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_802E3AC8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E3B0C
-
-lbl_802E3AC8:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xa
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E3B0C
-
-lbl_802E3AEC:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802E3B0C:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+			Creature* target = kabuto->getSearchedTarget();
+			if (target) {
+				f32 angle = kabuto->getCreatureViewAngle(target);
+				f32 limit = *CG_PARMS(kabuto)->mGeneral.mMinAttackRange();
+				if (FABS(angle) <= PI * (DEG2RAD * limit)) {
+					transit(kabuto, KABUTO_FixWait, nullptr);
+				} else {
+					transit(kabuto, KABUTO_FixTurn, nullptr);
+				}
+			} else {
+				transit(kabuto, KABUTO_FixHide, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -2816,38 +1267,19 @@ lbl_802E3B0C:
  * Address:	802E3B2C
  * Size:	000004
  */
-void Kabuto::StateFixAttack::cleanup(Game::EnemyBase*) { }
+void Kabuto::StateFixAttack::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802E3B30
  * Size:	000054
  */
-void Kabuto::StateFixFlick::init(Game::EnemyBase*, Game::StateArg*)
+void Kabuto::StateFixFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 9
-	stw      r0, 0x2cc(r31)
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x30c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kabuto        = OBJ(enemy);
+	kabuto->mNextState = KABUTO_NULL;
+	kabuto->startMotion(9, nullptr);
+	kabuto->startWaitEffect();
 }
 
 /*
@@ -2855,110 +1287,33 @@ void Kabuto::StateFixFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802E3B84
  * Size:	00016C
  */
-void Kabuto::StateFixFlick::exec(Game::EnemyBase*)
+void Kabuto::StateFixFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_802E3CD4
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_802E3C84
-	lwz      r5, 0xc0(r30)
-	mr       r3, r30
-	lfs      f4, lbl_8051CDC4@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	mr       r3, r30
-	lwz      r31, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f4, f1
-	lfs      f1, 0x514(r31)
-	lfs      f2, 0x4c4(r31)
-	mr       r3, r30
-	lfs      f3, 0x4ec(r31)
-	li       r4, 0
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	mr       r3, r30
-	lwz      r31, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f4, f1
-	lfs      f1, 0x53c(r31)
-	lfs      f2, 0x4c4(r31)
-	mr       r3, r30
-	lfs      f3, 0x4ec(r31)
-	li       r4, 0
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f1, lbl_8051CDA8@sda21(r2)
-	stfs     f1, 0x20c(r30)
-	lfs      f0, 0x200(r30)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_802E3CD4
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E3CD4
+	Obj* kabuto = OBJ(enemy);
+	if (kabuto->mCurAnim->mIsPlaying) {
+		if (kabuto->mCurAnim->mType == KEYEVENT_2) {
+			EnemyFunc::flickNearbyNavi(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRange.mValue,
+			                           CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue,
+			                           -1000.0f, nullptr);
+			EnemyFunc::flickNearbyPikmin(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRange.mValue,
+			                             CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue,
+			                             kabuto->getFaceDir(), nullptr);
+			EnemyFunc::flickStickPikmin(kabuto, CG_PARMS(kabuto)->mGeneral.mShakeRateMaybe.mValue,
+			                            CG_PARMS(kabuto)->mGeneral.mShakeKnockback.mValue, CG_PARMS(kabuto)->mGeneral.mShakeDamage.mValue,
+			                            kabuto->getFaceDir(), nullptr);
+			kabuto->mToFlick = 0.0f;
 
-lbl_802E3C84:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802E3CD4
-	lfs      f1, 0x200(r30)
-	lfs      f0, lbl_8051CDA8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802E3CBC
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802E3CD4
-
-lbl_802E3CBC:
-	lwz      r12, 0(r3)
-	li       r5, 0xb
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802E3CD4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+			if (kabuto->mHealth <= 0.0f) {
+				transit(kabuto, KABUTO_Dead, nullptr);
+			}
+		} else if (kabuto->mCurAnim->mType == KEYEVENT_END) {
+			if (kabuto->mHealth <= 0.0f) {
+				transit(kabuto, KABUTO_Dead, nullptr);
+			} else {
+				transit(kabuto, KABUTO_FixAttack, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -2966,5 +1321,7 @@ lbl_802E3CD4:
  * Address:	802E3CF0
  * Size:	000004
  */
-void Kabuto::StateFixFlick::cleanup(Game::EnemyBase*) { }
+void Kabuto::StateFixFlick::cleanup(EnemyBase* enemy) { }
+
+} // namespace Kabuto
 } // namespace Game
