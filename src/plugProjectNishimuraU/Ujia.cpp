@@ -155,16 +155,16 @@ void Obj::setInWaterDamage()
  * Address:	802664E4
  * Size:	0000B4
  */
-void Obj::resetAppearCheck()
-{
-	if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
 
-		int randCheck = randFloat() * 30.0f;
-		int idCheck   = getCreatureID();
-		_2C2          = (u8)(randCheck + idCheck) << 8;
-	} else {
-		_2C2 = 0;
-	}
+void Obj::resetAppearCheck() {
+    if(Game::gameSystem && Game::gameSystem->mMode == GSM_PIKLOPEDIA) {
+        int v = (rand() / RAND_MAX) * 30.0f;
+        _2C2 = (v + 5 * getCreatureID()) << 8;
+    }
+    else {
+
+        _2C2 = 0;
+    }
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -225,7 +225,7 @@ lbl_80266580:
  */
 bool Obj::isAppearCheck()
 {
-	if (_2C2) {
+	if (_2C2 != 0) {
 		_2C2++;
 		if ((u8)_2C2 > _2C2 >> 8) {
 			_2C2 = 0;
