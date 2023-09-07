@@ -2,6 +2,7 @@
 #include "Game/Entities/ItemBridge.h"
 #include "efx/TUjinko.h"
 #include "Dolphin/rand.h"
+#include "Game/MapMgr.h"
 
 namespace Game {
 namespace Ujia {
@@ -516,6 +517,53 @@ void Obj::setCullingCheck() { }
  */
 int Obj::checkBreakOrMove()
 {
+	if (mBridge) 
+	{
+		Vector3f zVec = mBridge->getBridgeZVec();
+		Vector3f bridgeDir = mBridge->getStartPos() - mPosition;
+
+		if (dot(zVec, bridgeDir) > 0.0f)
+		{
+			return 7;
+		}
+	
+		Vector3f xVec = mBridge->getBridgeXVec();
+		f32 width = mBridge->getStageWidth();
+		
+		f32 xVecDotBridgeDir = dot(xVec, bridgeDir);
+
+		f32 adjustedWidth = 20.0f + (width * 0.5f);
+		if (xVecDotBridgeDir < 0.0f)
+		{
+			_2D0 = adjustedWidth; 
+		}
+		else
+		{
+			_2D0 = -adjustedWidth;
+		}
+		
+		xVecDotBridgeDir = (xVecDotBridgeDir > 0.0f) ? xVecDotBridgeDir : -xVecDotBridgeDir;
+
+		if(xVecDotBridgeDir > width * 0.5f)
+		{
+			return 6;
+		}
+
+		f32 pos = mapMgr->getMinY(mPosition);
+		if(mPosition.y > (pos + 5.0f))
+		{
+			return 8;
+		}
+		else
+		{
+			return 6;
+		}
+  	}
+	else
+	{
+		return 7;
+	}
+
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
