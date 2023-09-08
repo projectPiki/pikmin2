@@ -543,9 +543,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
         return val;
     }
 
-    inline f32 turnToTarget(Vector3f& targetPos, f32 turnFactor, f32 maxTurnSpeed)
+    inline f32 turnToTarget(Vector3f& targetPos)
     {
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		f32 maxTurnSpeed = parms->mGeneral.mRotationalSpeed.mValue;
+		f32 turnFactor = parms->mGeneral.mRotationalAccel.mValue;
 
         f32 angleDist 		  = getAngDist(targetPos);
         f32 turnSpeed 		  = limitting(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
