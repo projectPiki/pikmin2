@@ -100,7 +100,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x4];                           // _2BC, probably FSM*?
+	FSM* mFsm;                              // _2BC
 	bool mCanCreateLarva;                   // _2C0
 	u8 _2C1;                                // _2C1
 	u8 _2C2;                                // _2C2
@@ -113,18 +113,18 @@ struct Obj : public EnemyBase {
 	StateID mNextState;                     // _2D4
 	QueenShadowMgr* mShadowMgr;             // _2D8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2DC
-	efx::TQueenLay* _2E0;                   // _2E0
-	efx::TQueenRollCR* _2E4;                // _2E4
-	efx::TQueenRollCL* _2E8;                // _2E8
-	efx::TQueenRoll* _2EC;                  // _2EC
-	efx::TQueenCrashR* _2F0;                // _2F0
-	efx::TQueenCrashL* _2F4;                // _2F4
-	efx::TQueenCrashRock* _2F8;             // _2F8
-	efx::TQueenDamage* _2FC;                // _2FC
-	efx::TQueenFlick* _300;                 // _300
-	efx::TQueenDead* _304;                  // _304
-	efx::TQueenWakeup* _308;                // _308
-	efx::TQueenHanacho* _30C;               // _30C
+	efx::TQueenLay* mEfxLay;                // _2E0
+	efx::TQueenRollCR* mEfxRollCR;          // _2E4
+	efx::TQueenRollCL* mEfxRollCL;          // _2E8
+	efx::TQueenRoll* mEfxRoll;              // _2EC
+	efx::TQueenCrashR* mEfxCrashR;          // _2F0
+	efx::TQueenCrashL* mEfxCrashL;          // _2F4
+	efx::TQueenCrashRock* mEfxCrashRock;    // _2F8
+	efx::TQueenDamage* mEfxDamage;          // _2FC
+	efx::TQueenFlick* mEfxFlick;            // _300
+	efx::TQueenDead* mEfxDead;              // _304
+	efx::TQueenWakeup* mEfxWakeup;          // _308
+	efx::TQueenHanacho* mEfxHanacho;        // _30C
 	                                        // _310 = PelletView
 };
 
@@ -159,19 +159,19 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "QueenParms")
-		    , mFp01(this, 'fp01', "ÉçÅ[ÉäÉìÉOéûä‘", 10.0f, 0.0f, 100.0f)    // 'rolling time'
-		    , mFp02(this, 'fp02', "èoéYä‘äu ( sec )", 0.0f, 0.0f, 10.0f)    // 'birth interval ( sec )'
-		    , mFp11(this, 'fp11', "Forest 1 Life", 2500.0f, 0.0f, 10000.0f) // (Hole of Beasts Life)
-		    , mIp01(this, 'ip01', "èoéYêî ( Max )", 50, 0, 50)              // 'number of births ( Max )'
-		    , mIp02(this, 'ip02', "èoéYêî ( Min )", 25, 0, 50)              // 'number of births ( Min )'
+		    , mRollingTime(this, 'fp01', "ÉçÅ[ÉäÉìÉOéûä‘", 10.0f, 0.0f, 100.0f)   // 'rolling time'
+		    , mBirthInterval(this, 'fp02', "èoéYä‘äu ( sec )", 0.0f, 0.0f, 10.0f) // 'birth interval ( sec )'
+		    , mHoBHealth(this, 'fp11', "Forest 1 Life", 2500.0f, 0.0f, 10000.0f)  // (Hole of Beasts Life)
+		    , mMaxBirths(this, 'ip01', "èoéYêî ( Max )", 50, 0, 50)               // 'number of births ( Max )'
+		    , mMinBirths(this, 'ip02', "èoéYêî ( Min )", 25, 0, 50)               // 'number of births ( Min )'
 		{
 		}
 
-		Parm<f32> mFp01; // _804
-		Parm<f32> mFp02; // _82C
-		Parm<f32> mFp11; // _854
-		Parm<int> mIp01; // _87C
-		Parm<int> mIp02; // _8A4
+		Parm<f32> mRollingTime;   // _804, fp01
+		Parm<f32> mBirthInterval; // _82C, fp02
+		Parm<f32> mHoBHealth;     // _854, fp11
+		Parm<int> mMaxBirths;     // _87C, ip01
+		Parm<int> mMinBirths;     // _8A4, ip02
 	};
 
 	Parms() { }
