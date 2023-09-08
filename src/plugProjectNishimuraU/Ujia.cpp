@@ -1,5 +1,6 @@
 #include "Game/Entities/Ujia.h"
 #include "Game/Entities/ItemBridge.h"
+#include "Game/MapMgr.h"
 #include "efx/TUjinko.h"
 #include "Dolphin/rand.h"
 #include "Game/MapMgr.h"
@@ -157,66 +158,15 @@ void Obj::setInWaterDamage()
  * Size:	0000B4
  */
 
-void Obj::resetAppearCheck() {
-    if(Game::gameSystem && Game::gameSystem->mMode == GSM_PIKLOPEDIA) {
-        int v = (rand() / RAND_MAX) * 30.0f;
-        _2C2 = (v + 5 * getCreatureID()) << 8;
-    }
-    else {
+void Obj::resetAppearCheck()
+{
+	if (Game::gameSystem && Game::gameSystem->mMode == GSM_PIKLOPEDIA) {
+		int weight = (rand() / RAND_MAX) * 30.0f; // does not match with inline
+		SET_APPCHECK_MAX(mAppearCheck, weight + 5 * getCreatureID());
 
-        _2C2 = 0;
-    }
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_80266578
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 4
-	bne      lbl_80266578
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	stw      r0, 8(r1)
-	lfd      f2, lbl_8051AEA0@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051AE98@sda21(r2)
-	fsubs    f2, f0, f2
-	lfs      f0, lbl_8051AE94@sda21(r2)
-	lwz      r12, 0x1ac(r12)
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r31, 0x14(r1)
-	mtctr    r12
-	bctrl
-	mulli    r0, r3, 5
-	add      r0, r31, r0
-	rlwinm   r0, r0, 8, 0x10, 0x17
-	sth      r0, 0x2c2(r30)
-	b        lbl_80266580
-
-lbl_80266578:
-	li       r0, 0
-	sth      r0, 0x2c2(r30)
-
-lbl_80266580:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	} else {
+		mAppearCheck = 0;
+	}
 }
 
 /*
@@ -226,10 +176,10 @@ lbl_80266580:
  */
 bool Obj::isAppearCheck()
 {
-	if (_2C2 != 0) {
-		_2C2++;
-		if ((u8)_2C2 > _2C2 >> 8) {
-			_2C2 = 0;
+	if (mAppearCheck != 0) {
+		mAppearCheck++;
+		if (GET_APPCHECK_VAL(mAppearCheck) > GET_APPCHECK_MAX(mAppearCheck)) {
+			mAppearCheck = 0;
 			return true;
 		}
 		return false;
@@ -272,235 +222,30 @@ void Obj::setBridgeSearch()
  */
 void Obj::setNearestBridge()
 {
-	this->mBridge = nullptr;
-	this->_2CC = 0.0f;
-	this->_2D0 = 0.0f;
+	mBridge = nullptr;
+	_2CC    = 0.0f;
+	_2D0    = 0.0f;
 
-	if(ItemBridge::mgr)
-	{
+	if (ItemBridge::mgr) {
 		f32 radius = C_PARMS->mGeneral.mTerritoryRadius.mValue;
-		radius = SQUARE(radius);
-		Iterator<BaseItem> i(ItemBridge::mgr);
-		CI_LOOP(i)
+		radius     = SQUARE(radius);
+		Iterator<BaseItem> iter(ItemBridge::mgr);
+		CI_LOOP(iter)
 		{
-			ItemBridge::Item* cBridge = static_cast<ItemBridge::Item*>(*i);
-			Vector3f v = (cBridge)->getStartPos();
-			float newRad = sqrDistanceXZ(mPosition, v);
-			if(newRad < radius)
-			{
-				mBridge = cBridge;
-				radius = newRad;
+			ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(*iter);
+			Vector3f startPos        = bridge->getStartPos();
+			f32 newRad               = sqrDistanceXZ(mPosition, startPos);
+			if (newRad < radius) {
+				mBridge = bridge;
+				radius  = newRad;
 			}
 		}
 	}
 
-	if (mBridge)
-	{
+	if (mBridge) {
 		f32 width = mBridge->getStageWidth() - 20.0f;
-		_2CC = -(0.5f*width - (rand() * width / RAND_MAX));
+		_2CC      = -(0.5f * width - randWeightFloat(width));
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r31, r3
-	li       r0, 0
-	stw      r0, 0x2c8(r3)
-	lfs      f0, lbl_8051AE7C@sda21(r2)
-	stfs     f0, 0x2cc(r3)
-	stfs     f0, 0x2d0(r3)
-	lwz      r3, mgr__Q24Game10ItemBridge@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80266898
-	lwz      r4, 0xc0(r31)
-	lfs      f0, 0x35c(r4)
-	fmuls    f31, f0, f0
-	beq      lbl_8026669C
-	addi     r3, r3, 0x30
-
-lbl_8026669C:
-	li       r0, 0
-	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-	stw      r0, 0x20(r1)
-	cmplwi   r0, 0
-	stw      r4, 0x14(r1)
-	stw      r0, 0x18(r1)
-	stw      r3, 0x1c(r1)
-	bne      lbl_802666D8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_80266878
-
-lbl_802666D8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_80266744
-
-lbl_802666F0:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80266878
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-
-lbl_80266744:
-	lwz      r12, 0x14(r1)
-	addi     r3, r1, 0x14
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802666F0
-	b        lbl_80266878
-
-lbl_80266764:
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	addi     r3, r1, 8
-	mr       r30, r0
-	mr       r4, r30
-	bl       getStartPos__Q34Game10ItemBridge4ItemFv
-	lfs      f1, 0x194(r31)
-	lfs      f0, 0x10(r1)
-	lfs      f2, 0x18c(r31)
-	fsubs    f1, f1, f0
-	lfs      f0, 8(r1)
-	fsubs    f2, f2, f0
-	fmuls    f0, f1, f1
-	fmadds   f0, f2, f2, f0
-	fcmpo    cr0, f0, f31
-	bge      lbl_802667BC
-	stw      r30, 0x2c8(r31)
-	fmr      f31, f0
-
-lbl_802667BC:
-	lwz      r0, 0x20(r1)
-	cmplwi   r0, 0
-	bne      lbl_802667E8
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_80266878
-
-lbl_802667E8:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_8026685C
-
-lbl_80266808:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80266878
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-
-lbl_8026685C:
-	lwz      r12, 0x14(r1)
-	addi     r3, r1, 0x14
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80266808
-
-lbl_80266878:
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x18(r1)
-	cmplw    r4, r3
-	bne      lbl_80266764
-
-lbl_80266898:
-	lwz      r3, 0x2c8(r31)
-	cmplwi   r3, 0
-	beq      lbl_802668E8
-	bl       getStageWidth__Q34Game10ItemBridge4ItemFv
-	lfs      f0, lbl_8051AEA8@sda21(r2)
-	fsubs    f31, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x2c(r1)
-	lfd      f3, lbl_8051AEA0@sda21(r2)
-	stw      r0, 0x28(r1)
-	lfs      f1, lbl_8051AE98@sda21(r2)
-	lfd      f2, 0x28(r1)
-	lfs      f0, lbl_8051AEAC@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f2, f31, f2
-	fdivs    f1, f2, f1
-	fnmsubs  f0, f0, f31, f1
-	stfs     f0, 0x2cc(r31)
-
-lbl_802668E8:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -517,182 +262,40 @@ void Obj::setCullingCheck() { }
  */
 int Obj::checkBreakOrMove()
 {
-	if (mBridge) 
-	{
-		Vector3f zVec = mBridge->getBridgeZVec();
-		Vector3f bridgeDir = mBridge->getStartPos() - mPosition;
+	if (mBridge) {
+		Vector3f zVec     = mBridge->getBridgeZVec();
+		Vector3f startPos = mBridge->getStartPos();
 
-		if (dot(zVec, bridgeDir) > 0.0f)
-		{
-			return 7;
+		Vector3f bridgeDist = startPos - mPosition;
+		if (zVec.dot(bridgeDist) > 0.0f) {
+			return UJIA_MoveCentre;
 		}
-	
+
 		Vector3f xVec = mBridge->getBridgeXVec();
-		f32 width = mBridge->getStageWidth();
-		
-		f32 xVecDotBridgeDir = dot(xVec, bridgeDir);
+		f32 halfWidth = 0.5f * mBridge->getStageWidth();
+		f32 dotX      = xVec.dot(bridgeDist);
+		f32 width     = 20.0f + halfWidth;
 
-		f32 adjustedWidth = 20.0f + (width * 0.5f);
-		if (xVecDotBridgeDir < 0.0f)
-		{
-			_2D0 = adjustedWidth; 
-		}
-		else
-		{
-			_2D0 = -adjustedWidth;
-		}
-		
-		xVecDotBridgeDir = (xVecDotBridgeDir > 0.0f) ? xVecDotBridgeDir : -xVecDotBridgeDir;
-
-		if(xVecDotBridgeDir > width * 0.5f)
-		{
-			return 6;
+		if (dotX < 0.0f) {
+			_2D0 = width;
+		} else {
+			_2D0 = -width;
 		}
 
-		f32 pos = mapMgr->getMinY(mPosition);
-		if(mPosition.y > (pos + 5.0f))
-		{
-			return 8;
+		if (absVal(dotX) > halfWidth) {
+			return UJIA_MoveSide;
 		}
-		else
-		{
-			return 6;
+
+		f32 minY = mapMgr->getMinY(mPosition);
+
+		if (mPosition.y > 5.0f + minY) {
+			return UJIA_MoveTop;
 		}
-  	}
-	else
-	{
-		return 7;
+
+		return UJIA_MoveSide;
 	}
 
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stfd     f29, 0x70(r1)
-	psq_st   f29, 120(r1), 0, qr0
-	stfd     f28, 0x60(r1)
-	psq_st   f28, 104(r1), 0, qr0
-	stfd     f27, 0x50(r1)
-	psq_st   f27, 88(r1), 0, qr0
-	stfd     f26, 0x40(r1)
-	psq_st   f26, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lwz      r4, 0x2c8(r3)
-	cmplwi   r4, 0
-	beq      lbl_80266A78
-	addi     r3, r1, 0x20
-	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-	lfs      f28, 0x20(r1)
-	addi     r3, r1, 0x14
-	lfs      f29, 0x24(r1)
-	lfs      f27, 0x28(r1)
-	lwz      r4, 0x2c8(r31)
-	bl       getStartPos__Q34Game10ItemBridge4ItemFv
-	lfs      f2, 0x18(r1)
-	lfs      f0, 0x190(r31)
-	lfs      f1, 0x14(r1)
-	fsubs    f30, f2, f0
-	lfs      f0, 0x18c(r31)
-	lfs      f2, 0x1c(r1)
-	fsubs    f31, f1, f0
-	lfs      f0, 0x194(r31)
-	fmuls    f1, f29, f30
-	fsubs    f29, f2, f0
-	lfs      f0, lbl_8051AE7C@sda21(r2)
-	fmadds   f1, f28, f31, f1
-	fmadds   f1, f27, f29, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_802669C0
-	li       r3, 7
-	b        lbl_80266A7C
-
-lbl_802669C0:
-	lwz      r4, 0x2c8(r31)
-	addi     r3, r1, 8
-	bl       getBridgeXVec__Q34Game10ItemBridge4ItemFv
-	lfs      f27, 8(r1)
-	lfs      f28, 0xc(r1)
-	lfs      f26, 0x10(r1)
-	lwz      r3, 0x2c8(r31)
-	bl       getStageWidth__Q34Game10ItemBridge4ItemFv
-	fmuls    f3, f28, f30
-	lfs      f0, lbl_8051AEAC@sda21(r2)
-	lfs      f2, lbl_8051AEA8@sda21(r2)
-	fmuls    f4, f0, f1
-	lfs      f0, lbl_8051AE7C@sda21(r2)
-	fmadds   f1, f27, f31, f3
-	fadds    f2, f2, f4
-	fmadds   f1, f26, f29, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80266A10
-	stfs     f2, 0x2d0(r31)
-	b        lbl_80266A18
-
-lbl_80266A10:
-	fneg     f0, f2
-	stfs     f0, 0x2d0(r31)
-
-lbl_80266A18:
-	lfs      f0, lbl_8051AE7C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80266A28
-	b        lbl_80266A2C
-
-lbl_80266A28:
-	fneg     f1, f1
-
-lbl_80266A2C:
-	fcmpo    cr0, f1, f4
-	ble      lbl_80266A3C
-	li       r3, 6
-	b        lbl_80266A7C
-
-lbl_80266A3C:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r31, 0x18c
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051AEB0@sda21(r2)
-	lfs      f2, 0x190(r31)
-	fadds    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	ble      lbl_80266A70
-	li       r3, 8
-	b        lbl_80266A7C
-
-lbl_80266A70:
-	li       r3, 6
-	b        lbl_80266A7C
-
-lbl_80266A78:
-	li       r3, 7
-
-lbl_80266A7C:
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	psq_l    f29, 120(r1), 0, qr0
-	lfd      f29, 0x70(r1)
-	psq_l    f28, 104(r1), 0, qr0
-	lfd      f28, 0x60(r1)
-	psq_l    f27, 88(r1), 0, qr0
-	lfd      f27, 0x50(r1)
-	psq_l    f26, 72(r1), 0, qr0
-	lfd      f26, 0x40(r1)
-	lwz      r0, 0xa4(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+	return UJIA_MoveCentre;
 }
 
 /*
@@ -716,6 +319,42 @@ bool Obj::isBreakBridge()
  */
 bool Obj::moveBridgeSide()
 {
+	Vector3f startPos = mBridge->getStartPos();
+	Vector3f xVec     = mBridge->getBridgeXVec();
+	Vector3f zVec     = mBridge->getBridgeZVec();
+
+	xVec *= _2D0;
+	zVec *= -20.0f;
+
+	startPos += xVec;
+	startPos += zVec;
+
+	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
+		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 sinTheta = sin(getFaceDir());
+		f32 y        = getTargetVelocity().y;
+		f32 cosTheta = cos(getFaceDir());
+
+		mTargetVelocity.x = speed * sinTheta;
+		mTargetVelocity.y = y;
+		mTargetVelocity.z = speed * cosTheta;
+
+		return true;
+
+	} else {
+		changeFaceDir(startPos);
+
+		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 sinTheta = sin(getFaceDir());
+		f32 y        = getTargetVelocity().y;
+		f32 cosTheta = cos(getFaceDir());
+
+		mTargetVelocity.x = speed * sinTheta;
+		mTargetVelocity.y = y;
+		mTargetVelocity.z = speed * cosTheta;
+
+		return false;
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -905,6 +544,39 @@ lbl_80266D5C:
  */
 bool Obj::moveBridgeCentre()
 {
+	Vector3f startPos = mBridge->getStartPos();
+	Vector3f xVec     = mBridge->getBridgeXVec();
+
+	xVec *= 0.7f * _2CC;
+
+	startPos += xVec;
+
+	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
+		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 sinTheta = sin(getFaceDir());
+		f32 y        = getTargetVelocity().y;
+		f32 cosTheta = cos(getFaceDir());
+
+		mTargetVelocity.x = speed * sinTheta;
+		mTargetVelocity.y = y;
+		mTargetVelocity.z = speed * cosTheta;
+
+		return true;
+
+	} else {
+		changeFaceDir(startPos);
+
+		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 sinTheta = sin(getFaceDir());
+		f32 y        = getTargetVelocity().y;
+		f32 cosTheta = cos(getFaceDir());
+
+		mTargetVelocity.x = speed * sinTheta;
+		mTargetVelocity.y = y;
+		mTargetVelocity.z = speed * cosTheta;
+
+		return false;
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1086,6 +758,52 @@ lbl_80266FE4:
  */
 bool Obj::moveBridgeTop()
 {
+	int stageID       = mBridge->mStagesRemaining - 1;
+	Vector3f stagePos = mBridge->getStagePos(stageID);
+	Vector3f xVec     = mBridge->getBridgeXVec();
+
+	xVec *= _2CC;
+
+	stagePos += xVec;
+
+	if (stageID > 0) {
+		Vector3f zVec = mBridge->getBridgeZVec();
+		zVec *= -20.0f;
+		stagePos += zVec;
+	}
+
+	changeFaceDir(stagePos);
+
+	f32 dist = sqrDistanceXZ(mPosition, stagePos);
+
+	if (dist < 50.0f) {
+		mTargetVelocity = Vector3f(0.0f);
+		return true;
+
+	} else if (dist < 250.0f) {
+		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 sinTheta = sin(getFaceDir());
+		f32 y        = getTargetVelocity().y;
+		f32 cosTheta = cos(getFaceDir());
+
+		mTargetVelocity.x = speed * sinTheta;
+		mTargetVelocity.y = y;
+		mTargetVelocity.z = speed * cosTheta;
+
+		return true;
+
+	} else {
+		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
+		f32 sinTheta = sin(getFaceDir());
+		f32 y        = getTargetVelocity().y;
+		f32 cosTheta = cos(getFaceDir());
+
+		mTargetVelocity.x = speed * sinTheta;
+		mTargetVelocity.y = y;
+		mTargetVelocity.z = speed * cosTheta;
+	}
+
+	return false;
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0

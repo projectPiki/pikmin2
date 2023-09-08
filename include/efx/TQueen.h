@@ -6,8 +6,8 @@
 
 namespace efx {
 struct TQueenCrashL : public TChasePosYRot {
-	inline TQueenCrashL()
-	    : TChasePosYRot(nullptr, nullptr, PID_QueenCrashL)
+	inline TQueenCrashL(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_QueenCrashL)
 	{
 	}
 
@@ -18,8 +18,8 @@ struct TQueenCrashL : public TChasePosYRot {
 };
 
 struct TQueenCrashR : public TChasePosYRot {
-	inline TQueenCrashR()
-	    : TChasePosYRot(nullptr, nullptr, PID_QueenCrashR)
+	inline TQueenCrashR(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_QueenCrashR)
 	{
 	}
 
@@ -30,8 +30,8 @@ struct TQueenCrashR : public TChasePosYRot {
 };
 
 struct TQueenCrashRock : public TChasePosYRot {
-	inline TQueenCrashRock()
-	    : TChasePosYRot(nullptr, nullptr, PID_QueenCrashRock)
+	inline TQueenCrashRock(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_QueenCrashRock)
 	{
 	}
 
@@ -42,8 +42,8 @@ struct TQueenCrashRock : public TChasePosYRot {
 };
 
 struct TQueenDamage : public TChasePosYRot {
-	inline TQueenDamage()
-	    : TChasePosYRot(nullptr, nullptr, PID_QueenDamage)
+	inline TQueenDamage(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_QueenDamage)
 	{
 	}
 
@@ -64,8 +64,8 @@ struct TQueenDead : public TChaseMtx4 {
 };
 
 struct TQueenFlick : public TChasePosYRot2 {
-	inline TQueenFlick()
-	    : TChasePosYRot2(nullptr, nullptr, PID_QueenFlick_1, PID_QueenFlick_2)
+	inline TQueenFlick(Vector3f* pos, f32* rot)
+	    : TChasePosYRot2(pos, rot, PID_QueenFlick_1, PID_QueenFlick_2)
 	{
 	}
 
@@ -98,8 +98,8 @@ struct TQueenLay : public TChaseMtx {
 };
 
 struct TQueenRoll : public TChasePosYRot2 {
-	inline TQueenRoll()
-	    : TChasePosYRot2(nullptr, nullptr, PID_QueenRoll_1, PID_QueenRoll_2)
+	inline TQueenRoll(Vector3f* pos, f32* rot)
+	    : TChasePosYRot2(pos, rot, PID_QueenRoll_1, PID_QueenRoll_2)
 	{
 	}
 
@@ -108,8 +108,8 @@ struct TQueenRoll : public TChasePosYRot2 {
 };
 
 struct TQueenRollCL : public TChasePosYRot3 {
-	inline TQueenRollCL()
-	    : TChasePosYRot3(nullptr, nullptr, PID_QueenRollCL_1, PID_QueenRollCL_2, PID_QueenRollCL_3)
+	inline TQueenRollCL(Vector3f* pos, f32* rot)
+	    : TChasePosYRot3(pos, rot, PID_QueenRollCL_1, PID_QueenRollCL_2, PID_QueenRollCL_3)
 	{
 	}
 
@@ -118,8 +118,8 @@ struct TQueenRollCL : public TChasePosYRot3 {
 };
 
 struct TQueenRollCR : public TChasePosYRot3 {
-	inline TQueenRollCR()
-	    : TChasePosYRot3(nullptr, nullptr, PID_QueenRollCR_1, PID_QueenRollCR_2, PID_QueenRollCR_3)
+	inline TQueenRollCR(Vector3f* pos, f32* rot)
+	    : TChasePosYRot3(pos, rot, PID_QueenRollCR_1, PID_QueenRollCR_2, PID_QueenRollCR_3)
 	{
 	}
 
@@ -128,8 +128,8 @@ struct TQueenRollCR : public TChasePosYRot3 {
 };
 
 struct TQueenWakeup : public TChasePosYRot {
-	inline TQueenWakeup()
-	    : TChasePosYRot(nullptr, nullptr, PID_QueenWakeup)
+	inline TQueenWakeup(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_QueenWakeup)
 	{
 	}
 

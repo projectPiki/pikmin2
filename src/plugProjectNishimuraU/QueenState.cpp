@@ -434,8 +434,7 @@ void StateRolling::exec(EnemyBase* enemy)
 				queen->finishMotion();
 				queen->finishRollingEffect(true);
 				queen->getJAIObject()->startSound(PSSE_EN_QUEEN_CRUSH, 0);
-			} else if ((queen->mWaitTimer > static_cast<Parms*>(queen->mParms)->mProperParms.mFp01.mValue) && (dotProd > homeRad)
-			           && (dotProd < 50.0f)) {
+			} else if ((queen->mWaitTimer > CG_PROPERPARMS(queen).mRollingTime.mValue) && (dotProd > homeRad) && (dotProd < 50.0f)) {
 				if (queen->_2C2 != 0) {
 					queen->finishBossAttackLoopBGM();
 				}

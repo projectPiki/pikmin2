@@ -8,6 +8,10 @@
 #include "Game/EnemyBase.h"
 #include "Collinfo.h"
 
+#define GET_APPCHECK_VAL(check)      ((u8)check)
+#define GET_APPCHECK_MAX(check)      (check >> 8)
+#define SET_APPCHECK_MAX(check, val) (check = (val) << 8)
+
 /**
  * --Header for Shearwigs (Tobi)--
  */
@@ -91,15 +95,15 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                 // _2BC
-	u8 _2C0;                   // _2C0, guess based on Ujia/b
-	bool mIsUnderground;       // _2C1, guess based on Ujia/b
-	u16 _2C2;                  // _2C2, guess based on Ujia/b
+	u8 _2C0;                   // _2C0
+	bool mIsUnderground;       // _2C1
+	u16 mAppearCheck;          // _2C2
 	StateID mNextState;        // _2C4
 	MouthSlots mMouthSlots;    // _2C8
 	Vector3f mTargetPosition;  // _2D0
-	ItemBridge::Item* mBridge; // _2DC, guess based on Ujia/b
-	f32 _2E0;                  // _2E0, guess based on Ujia/b
-	f32 _2E4;                  // _2E4, guess based on Ujia/b
+	ItemBridge::Item* mBridge; // _2DC
+	f32 _2E0;                  // _2E0
+	f32 _2E4;                  // _2E4
 	                           // _2E8 = PelletView
 };
 
@@ -124,19 +128,19 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "離陸ライフ", 0.5f, 0.0f, 1.0f)               // 'takeoff life'
-		    , mFp02(this, 'fp02', "着陸ライフ", 0.7f, 0.0f, 1.0f)               // 'landing life'
-		    , mFp03(this, 'fp03', "飛行オフセット", 60.0f, 0.0f, 300.0f)        // 'flight offset'
-		    , mPoisonDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , mBridgeDamage(this, 'fp12', "橋食いパワー", 75.0f, 0.0f, 100.0f)  // 'bridge eating power'
+		    , mTakeOffHealthRatio(this, 'fp01', "離陸ライフ", 0.5f, 0.0f, 1.0f)  // 'takeoff life'
+		    , mLandHealthRatio(this, 'fp02', "着陸ライフ", 0.7f, 0.0f, 1.0f)     // 'landing life'
+		    , mFlightHeight(this, 'fp03', "飛行オフセット", 60.0f, 0.0f, 300.0f) // 'flight offset'
+		    , mPoisonDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 10000.0f)  // 'white pikmin'
+		    , mBridgeDamage(this, 'fp12', "橋食いパワー", 75.0f, 0.0f, 100.0f)   // 'bridge eating power'
 		{
 		}
 
-		Parm<f32> mFp01;         // _804
-		Parm<f32> mFp02;         // _82C
-		Parm<f32> mFp03;         // _854
-		Parm<f32> mPoisonDamage; // _87C, fp11
-		Parm<f32> mBridgeDamage; // _8A4, fp12
+		Parm<f32> mTakeOffHealthRatio; // _804
+		Parm<f32> mLandHealthRatio;    // _82C
+		Parm<f32> mFlightHeight;       // _854
+		Parm<f32> mPoisonDamage;       // _87C, fp11
+		Parm<f32> mBridgeDamage;       // _8A4, fp12
 	};
 
 	Parms() { }
