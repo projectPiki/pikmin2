@@ -221,9 +221,9 @@ void Obj::setBridgeSearch()
  */
 void Obj::setNearestBridge()
 {
-	this->mBridge = nullptr;
-	this->_2CC    = 0.0f;
-	this->_2D0    = 0.0f;
+	mBridge = nullptr;
+	_2CC    = 0.0f;
+	_2D0    = 0.0f;
 
 	if (ItemBridge::mgr) {
 		f32 radius = C_PARMS->mGeneral.mTerritoryRadius.mValue;
