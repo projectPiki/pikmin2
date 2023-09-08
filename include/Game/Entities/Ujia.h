@@ -8,6 +8,10 @@
 #include "Game/EnemyBase.h"
 #include "Collinfo.h"
 
+#define GET_APPCHECK_VAL(check)      ((u8)check)
+#define GET_APPCHECK_MAX(check)      (check >> 8)
+#define SET_APPCHECK_MAX(check, val) (check = (val) << 8)
+
 /**
  * --Header for Female Sheargrub (Ujia)--
  */
@@ -79,7 +83,7 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                 // _2BC
 	u8 _2C0;                   // _2C0
 	bool mIsUnderground;       // _2C1
-	u16 _2C2;                  // _2C2
+	u16 mAppearCheck;          // _2C2
 	StateID mNextState;        // _2C4
 	ItemBridge::Item* mBridge; // _2C8
 	f32 _2CC;                  // _2CC

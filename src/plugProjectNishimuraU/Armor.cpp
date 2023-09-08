@@ -370,14 +370,14 @@ int Obj::checkBreakOrMove()
 		Vector3f startPos = mBridge->getStartPos();
 
 		Vector3f bridgeDist = startPos - mPosition;
-		if (dot(zVec, bridgeDist) > 0.0f) {
-			return 6;
+		if (zVec.dot(bridgeDist) > 0.0f) {
+			return ARMOR_MoveCentre;
 		}
 
 		Vector3f xVec = mBridge->getBridgeXVec();
 		f32 halfWidth = 0.5f * mBridge->getStageWidth();
+		f32 dotX      = xVec.dot(bridgeDist);
 		f32 width     = 50.0f + halfWidth;
-		f32 dotX      = dot(xVec, bridgeDist);
 
 		if (dotX < 0.0f) {
 			_2E0 = width;
@@ -386,148 +386,19 @@ int Obj::checkBreakOrMove()
 		}
 
 		if (absVal(dotX) > halfWidth) {
-			return 5;
+			return ARMOR_MoveSide;
 		}
 
 		f32 minY = mapMgr->getMinY(mPosition);
 
 		if (mPosition.y > 5.0f + minY) {
-			return 7;
+			return ARMOR_MoveTop;
 		}
 
-		return 5;
+		return ARMOR_MoveSide;
 	}
 
-	return 6;
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stfd     f29, 0x70(r1)
-	psq_st   f29, 120(r1), 0, qr0
-	stfd     f28, 0x60(r1)
-	psq_st   f28, 104(r1), 0, qr0
-	stfd     f27, 0x50(r1)
-	psq_st   f27, 88(r1), 0, qr0
-	stfd     f26, 0x40(r1)
-	psq_st   f26, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lwz      r4, 0x2d8(r3)
-	cmplwi   r4, 0
-	beq      lbl_8027E814
-	addi     r3, r1, 0x20
-	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-	lfs      f28, 0x20(r1)
-	addi     r3, r1, 0x14
-	lfs      f29, 0x24(r1)
-	lfs      f27, 0x28(r1)
-	lwz      r4, 0x2d8(r31)
-	bl       getStartPos__Q34Game10ItemBridge4ItemFv
-	lfs      f2, 0x18(r1)
-	lfs      f0, 0x190(r31)
-	lfs      f1, 0x14(r1)
-	fsubs    f30, f2, f0
-	lfs      f0, 0x18c(r31)
-	lfs      f2, 0x1c(r1)
-	fsubs    f31, f1, f0
-	lfs      f0, 0x194(r31)
-	fmuls    f1, f29, f30
-	fsubs    f29, f2, f0
-	lfs      f0, lbl_8051B540@sda21(r2)
-	fmadds   f1, f28, f31, f1
-	fmadds   f1, f27, f29, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8027E75C
-	li       r3, 6
-	b        lbl_8027E818
-
-lbl_8027E75C:
-	lwz      r4, 0x2d8(r31)
-	addi     r3, r1, 8
-	bl       getBridgeXVec__Q34Game10ItemBridge4ItemFv
-	lfs      f27, 8(r1)
-	lfs      f28, 0xc(r1)
-	lfs      f26, 0x10(r1)
-	lwz      r3, 0x2d8(r31)
-	bl       getStageWidth__Q34Game10ItemBridge4ItemFv
-	fmuls    f3, f28, f30
-	lfs      f0, lbl_8051B564@sda21(r2)
-	lfs      f2, lbl_8051B544@sda21(r2)
-	fmuls    f4, f0, f1
-	lfs      f0, lbl_8051B540@sda21(r2)
-	fmadds   f1, f27, f31, f3
-	fadds    f2, f2, f4
-	fmadds   f1, f26, f29, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8027E7AC
-	stfs     f2, 0x2e0(r31)
-	b        lbl_8027E7B4
-
-lbl_8027E7AC:
-	fneg     f0, f2
-	stfs     f0, 0x2e0(r31)
-
-lbl_8027E7B4:
-	lfs      f0, lbl_8051B540@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8027E7C4
-	b        lbl_8027E7C8
-
-lbl_8027E7C4:
-	fneg     f1, f1
-
-lbl_8027E7C8:
-	fcmpo    cr0, f1, f4
-	ble      lbl_8027E7D8
-	li       r3, 5
-	b        lbl_8027E818
-
-lbl_8027E7D8:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r31, 0x18c
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051B570@sda21(r2)
-	lfs      f2, 0x190(r31)
-	fadds    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	ble      lbl_8027E80C
-	li       r3, 7
-	b        lbl_8027E818
-
-lbl_8027E80C:
-	li       r3, 5
-	b        lbl_8027E818
-
-lbl_8027E814:
-	li       r3, 6
-
-lbl_8027E818:
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	psq_l    f29, 120(r1), 0, qr0
-	lfd      f29, 0x70(r1)
-	psq_l    f28, 104(r1), 0, qr0
-	lfd      f28, 0x60(r1)
-	psq_l    f27, 88(r1), 0, qr0
-	lfd      f27, 0x50(r1)
-	psq_l    f26, 72(r1), 0, qr0
-	lfd      f26, 0x40(r1)
-	lwz      r0, 0xa4(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+	return ARMOR_MoveCentre;
 }
 
 /*
@@ -555,9 +426,13 @@ bool Obj::moveBridgeSide()
 	Vector3f xVec     = mBridge->getBridgeXVec();
 	Vector3f zVec     = mBridge->getBridgeZVec();
 
-	Vector3f weightVec = startPos + xVec * _2E0 + zVec * -50.0f;
+	xVec *= _2E0;
+	zVec *= -50.0f;
 
-	if (sqrDistanceXZ(mPosition, weightVec) < 250.0f) {
+	startPos += xVec;
+	startPos += zVec;
+
+	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
 		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
@@ -570,9 +445,7 @@ bool Obj::moveBridgeSide()
 		return true;
 
 	} else {
-		Vector2f XZ(weightVec.x, weightVec.z);
-
-		changeFaceDir(XZ);
+		changeFaceDir(startPos);
 
 		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
@@ -777,10 +650,10 @@ bool Obj::moveBridgeCentre()
 	Vector3f startPos = mBridge->getStartPos();
 	Vector3f xVec     = mBridge->getBridgeXVec();
 
-	f32 factor         = 0.7f * _2DC;
-	Vector3f weightVec = startPos + xVec * factor;
+	xVec *= 0.7f * _2DC;
+	startPos += xVec;
 
-	if (sqrDistanceXZ(mPosition, weightVec) < 250.0f) {
+	if (sqrDistanceXZ(mPosition, startPos) < 250.0f) {
 		f32 speed    = 0.75f * C_PARMS->mGeneral.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
 		f32 y        = getTargetVelocity().y;
@@ -793,9 +666,7 @@ bool Obj::moveBridgeCentre()
 		return true;
 
 	} else {
-		Vector2f XZ(weightVec.x, weightVec.z);
-
-		changeFaceDir(XZ);
+		changeFaceDir(startPos);
 
 		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
@@ -993,24 +864,26 @@ bool Obj::moveBridgeTop()
 	Vector3f stagePos = mBridge->getStagePos(stageID);
 	Vector3f xVec     = mBridge->getBridgeXVec();
 
-	Vector3f weightVec = stagePos + xVec * _2DC;
+	xVec *= _2DC;
+	stagePos += xVec;
 
 	if (stageID > 0) {
 		Vector3f zVec = mBridge->getBridgeZVec();
-		weightVec     = weightVec + zVec * -50.0f;
+		zVec *= -50.0f;
+		stagePos += zVec;
 	} else {
 		Vector3f zVec = mBridge->getBridgeZVec();
-		weightVec     = weightVec + zVec * -25.0f;
+		zVec *= -25.0f;
+		stagePos += zVec;
 	}
 
-	Vector2f XZ(weightVec.x, weightVec.z);
+	changeFaceDir(stagePos);
 
-	changeFaceDir(XZ);
-
-	f32 dist = sqrDistanceXZ(mPosition, weightVec);
+	f32 dist = sqrDistanceXZ(mPosition, stagePos);
 	if (dist < 50.0f) {
 		mTargetVelocity = Vector3f(0.0f);
 		return true;
+
 	} else if (dist < 750.0f) {
 		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
@@ -1022,6 +895,7 @@ bool Obj::moveBridgeTop()
 		mTargetVelocity.z = speed * cosTheta;
 
 		return true;
+
 	} else {
 		f32 speed    = C_PARMS->mGeneral.mMoveSpeed.mValue;
 		f32 sinTheta = sin(getFaceDir());
