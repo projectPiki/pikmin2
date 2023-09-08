@@ -123,7 +123,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaChappyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappy.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/FuefukiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FuefukiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FuefukiMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Fuefuki.o\

@@ -535,28 +535,27 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
-    inline f32 limitting(f32 val, f32 limit)
-    {
-        if (FABS(val) > limit) {
-            val = (val > 0.0f) ? limit : -limit;
-        }
-        return val;
-    }
+	inline f32 limitting(f32 val, f32 limit)
+	{
+		if (FABS(val) > limit) {
+			val = (val > 0.0f) ? limit : -limit;
+		}
+		return val;
+	}
 
-    inline f32 turnToTarget(Vector3f& targetPos)
-    {
+	inline f32 turnToTarget(Vector3f& targetPos)
+	{
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		f32 maxTurnSpeed = parms->mGeneral.mRotationalSpeed.mValue;
-		f32 turnFactor = parms->mGeneral.mRotationalAccel.mValue;
+		f32 maxTurnSpeed      = parms->mGeneral.mRotationalSpeed.mValue;
+		f32 turnFactor        = parms->mGeneral.mRotationalAccel.mValue;
 
-        f32 angleDist 		  = getAngDist(targetPos);
-        f32 turnSpeed 		  = limitting(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
+		f32 angleDist = getAngDist(targetPos);
+		f32 turnSpeed = limitting(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
 
+		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
 
-        updateFaceDir(roundAng(turnSpeed + getFaceDir()));
-
-        return angleDist;
-    }
+		return angleDist;
+	}
 
 	inline bool checkDistAndAngle(Creature* target, f32 angle, f32 distRange, f32 angRange)
 	{

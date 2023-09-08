@@ -453,136 +453,6 @@ Vector3f Obj::getTargetPosition(Creature* target)
 		sep += homePos;
 	}
 	return sep;
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	lwz      r12, 0(r4)
-	mr       r29, r3
-	mr       r30, r4
-	mr       r31, r5
-	lwz      r12, 8(r12)
-	addi     r3, r1, 0x14
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lfs      f30, 0x14(r1)
-	lwz      r12, 8(r12)
-	lfs      f31, 0x18(r1)
-	lfs      f29, 0x1c(r1)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x10(r1)
-	lfs      f2, 8(r1)
-	fsubs    f1, f29, f0
-	lfs      f0, lbl_8051C290@sda21(r2)
-	fsubs    f8, f30, f2
-	lfs      f5, 0x198(r30)
-	lfs      f6, 0x19c(r30)
-	fmuls    f3, f1, f1
-	fmadds   f2, f8, f8, f0
-	lfs      f7, 0x1a0(r30)
-	fadds    f3, f3, f2
-	fcmpo    cr0, f3, f0
-	ble      lbl_802B6F60
-	ble      lbl_802B6F64
-	frsqrte  f2, f3
-	fmuls    f3, f2, f3
-	b        lbl_802B6F64
-
-lbl_802B6F60:
-	fmr      f3, f0
-
-lbl_802B6F64:
-	lfs      f2, lbl_8051C290@sda21(r2)
-	fcmpo    cr0, f3, f2
-	ble      lbl_802B6F84
-	lfs      f2, lbl_8051C298@sda21(r2)
-	fdivs    f2, f2, f3
-	fmuls    f8, f8, f2
-	fmuls    f0, f0, f2
-	fmuls    f1, f1, f2
-
-lbl_802B6F84:
-	lwz      r3, 0xc0(r30)
-	lfs      f2, 0x2e4(r3)
-	lfs      f9, 0x35c(r3)
-	fmuls    f1, f1, f2
-	fmuls    f8, f8, f2
-	fmuls    f0, f0, f2
-	fadds    f1, f1, f29
-	fadds    f8, f8, f30
-	fmuls    f2, f9, f9
-	fsubs    f3, f1, f7
-	fsubs    f4, f8, f5
-	fadds    f0, f0, f31
-	fmuls    f3, f3, f3
-	fmadds   f3, f4, f4, f3
-	fcmpo    cr0, f3, f2
-	ble      lbl_802B7030
-	fsubs    f1, f1, f7
-	lfs      f0, lbl_8051C290@sda21(r2)
-	fsubs    f8, f8, f5
-	fmuls    f3, f1, f1
-	fmadds   f2, f8, f8, f0
-	fadds    f3, f3, f2
-	fcmpo    cr0, f3, f0
-	ble      lbl_802B6FF4
-	ble      lbl_802B6FF8
-	frsqrte  f2, f3
-	fmuls    f3, f2, f3
-	b        lbl_802B6FF8
-
-lbl_802B6FF4:
-	fmr      f3, f0
-
-lbl_802B6FF8:
-	lfs      f2, lbl_8051C290@sda21(r2)
-	fcmpo    cr0, f3, f2
-	ble      lbl_802B7018
-	lfs      f2, lbl_8051C298@sda21(r2)
-	fdivs    f2, f2, f3
-	fmuls    f8, f8, f2
-	fmuls    f0, f0, f2
-	fmuls    f1, f1, f2
-
-lbl_802B7018:
-	fmuls    f8, f8, f9
-	fmuls    f0, f0, f9
-	fmuls    f1, f1, f9
-	fadds    f8, f8, f5
-	fadds    f0, f0, f6
-	fadds    f1, f1, f7
-
-lbl_802B7030:
-	stfs     f8, 0(r29)
-	stfs     f0, 4(r29)
-	stfs     f1, 8(r29)
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /*
@@ -769,7 +639,7 @@ void Obj::createTreasureFallEffect()
 		scale = 0.5f * (1.0f + scale);
 	}
 
-	efx::ArgScale arg(translation, scale);
+	efx::ArgScale arg(translation, scale); // this is what causes the sdata2 mismatch- inherits Arg's getName
 	efx::TOtaPartsoff treasureFallFX;
 
 	treasureFallFX.create(&arg);
