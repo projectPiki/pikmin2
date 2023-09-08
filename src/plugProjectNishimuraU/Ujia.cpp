@@ -3,6 +3,7 @@
 #include "Game/MapMgr.h"
 #include "efx/TUjinko.h"
 #include "Dolphin/rand.h"
+#include "Game/MapMgr.h"
 
 namespace Game {
 namespace Ujia {
