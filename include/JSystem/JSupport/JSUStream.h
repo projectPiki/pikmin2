@@ -152,7 +152,15 @@ struct JSUOutputStream : public JSUIosBase {
 	// _00-_08	= JSUIosBase
 };
 
-// TODO: this.
-struct JSUMemoryOutputStream;
+struct JSUMemoryOutputStream : public JSUOutputStream {
+	// Unused/inlined:
+	virtual ~JSUMemoryOutputStream();             // _08
+	virtual long writeData(const void*, long);    // _10
+	virtual int getLength() const;                // _14?
+	virtual int getPosition() const;              // _18?
+	virtual int seekPos(long, JSUStreamSeekFrom); // _1C?
+
+	void setBuffer(void*, long);
+};
 
 #endif

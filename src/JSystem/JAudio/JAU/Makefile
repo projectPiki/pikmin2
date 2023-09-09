@@ -1,5 +1,5 @@
 JAUDIO_JAU_FILES:=\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAU/JAUData.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAU/JAUData.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAU/JAUDataMgr.o\
 
 DEPENDS += $(JAUDIO_JAU_FILES:.o=.d)
