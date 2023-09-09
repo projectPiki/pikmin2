@@ -83,7 +83,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TadpoleState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tadpole.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Tadpole.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBugState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugMgr.o\
@@ -154,7 +154,7 @@ NISHIMURA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/OtakaraBase.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBase.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FireOtakaraMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FireOtakara.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/WaterOtakaraMgr.o\

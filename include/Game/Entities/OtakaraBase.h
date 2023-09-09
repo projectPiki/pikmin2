@@ -47,7 +47,6 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);                // _30
 	virtual void onKill(CreatureKillArg* settings);                // _34
 	virtual void doDirectDraw(Graphics& gfx);                      // _50
-	virtual f32 getCellRadius() { return mCellRadius; }            // _58 (weak)
 	virtual void getShadowParam(ShadowParam& settings);            // _134
 	virtual ~Obj() { }                                             // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params); // _1C4
@@ -73,10 +72,11 @@ struct Obj : public EnemyBase {
 	virtual void startCarcassMotion();                                          // _2C4
 	virtual void doStartWaitingBirthTypeDrop();                                 // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();                                // _2E4
-	virtual f32 getDownSmokeScale() { return 0.7f; }                            // _2EC (weak)
 	virtual void doStartMovie();                                                // _2F0
 	virtual void doEndMovie();                                                  // _2F4
 	virtual void setFSM(FSM* fsm);                                              // _2F8
+	virtual f32 getDownSmokeScale() { return 0.7f; }                            // _2EC (weak)
+	virtual f32 getCellRadius() { return mCellRadius; }                         // _58 (weak)
 	virtual void interactCreature(Creature*) { }                                // _2FC (weak)
 	virtual void createEffect() { }                                             // _300 (weak)
 	virtual void setupEffect() { }                                              // _304 (weak)
