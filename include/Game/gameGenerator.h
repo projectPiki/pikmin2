@@ -179,14 +179,14 @@ struct GenObject : public GenBase {
 	{
 	}
 
-	virtual void update(Game::Generator*);                 // _1C (weak)
-	virtual void render(Graphics&, Generator*);            // _20 (weak)
-	virtual u32 getLatestVersion();                        // _24
-	virtual void updateUseList(Generator*, int);           // _2C
-	virtual Creature* generate(Generator*);                // _30 (weak)
-	virtual Creature* birth(GenArg*) = 0;                  // _34
-	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _38 (weak)
-	virtual void getDebugInfo(char*);                      // _3C (weak)
+	virtual void update(Game::Generator*);                                    // _1C (weak)
+	virtual void render(Graphics&, Generator*);                               // _20 (weak)
+	virtual u32 getLatestVersion();                                           // _24
+	virtual void updateUseList(Generator*, int);                              // _2C
+	virtual Creature* generate(Generator*);                                   // _30 (weak)
+	virtual Creature* birth(GenArg*) = 0;                                     // _34
+	virtual void generatorMakeMatrix(Matrixf& genMatrix, Vector3f& position); // _38 (weak)
+	virtual void getDebugInfo(char*);                                         // _3C (weak)
 
 	// _0C     = VTBL
 	// _00-_24 = GenBase
@@ -221,16 +221,16 @@ struct GenItem : public GenObject {
 		mParm       = nullptr;
 	}
 
-	virtual void doWrite(Stream&);                         // _08
-	virtual void ramSaveParameters(Stream&);               // _0C
-	virtual void ramLoadParameters(Stream&);               // _10
-	virtual void doEvent(u32);                             // _14
-	virtual void doRead(Stream&);                          // _18
-	virtual J3DModelData* getShape();                      // _28
-	virtual void updateUseList(Generator*, int);           // _2C
-	virtual Creature* generate(Generator*);                // _30
-	virtual Creature* birth(GenArg*);                      // _34
-	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _38
+	virtual void doWrite(Stream&);                                            // _08
+	virtual void ramSaveParameters(Stream&);                                  // _0C
+	virtual void ramLoadParameters(Stream&);                                  // _10
+	virtual void doEvent(u32);                                                // _14
+	virtual void doRead(Stream&);                                             // _18
+	virtual J3DModelData* getShape();                                         // _28
+	virtual void updateUseList(Generator*, int);                              // _2C
+	virtual Creature* generate(Generator*);                                   // _30
+	virtual Creature* birth(GenArg*);                                         // _34
+	virtual void generatorMakeMatrix(Matrixf& genMatrix, Vector3f& position); // _38
 
 	static void initialise();
 
@@ -254,17 +254,17 @@ struct GenPellet : public GenObject {
 		mGenParm    = nullptr;
 	}
 
-	virtual void doWrite(Stream&);                         // _08
-	virtual void ramSaveParameters(Stream&);               // _0C
-	virtual void ramLoadParameters(Stream&);               // _10
-	virtual void doEvent(unsigned long);                   // _14
-	virtual void doRead(Stream&);                          // _18
-	virtual J3DModelData* getShape();                      // _28
-	virtual void updateUseList(Generator*, int);           // _2C
-	virtual Creature* generate(Generator*);                // _30 (weak)
-	virtual Creature* birth(GenArg*);                      // _34
-	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _38
-	virtual void getDebugInfo(char*);                      // _3C
+	virtual void doWrite(Stream&);                                            // _08
+	virtual void ramSaveParameters(Stream&);                                  // _0C
+	virtual void ramLoadParameters(Stream&);                                  // _10
+	virtual void doEvent(unsigned long);                                      // _14
+	virtual void doRead(Stream&);                                             // _18
+	virtual J3DModelData* getShape();                                         // _28
+	virtual void updateUseList(Generator*, int);                              // _2C
+	virtual Creature* generate(Generator*);                                   // _30 (weak)
+	virtual Creature* birth(GenArg*);                                         // _34
+	virtual void generatorMakeMatrix(Matrixf& genMatrix, Vector3f& position); // _38
+	virtual void getDebugInfo(char*);                                         // _3C
 
 	static void initialise();
 

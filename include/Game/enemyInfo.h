@@ -78,7 +78,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_Bomb           = 36,  // Bomb-rock
     EnemyID_Egg            = 37,  // Egg
     EnemyID_PanModoki      = 38,  // Breadbug
-    EnemyID_INVALID        = 39,  // Unused ID
+    EnemyID_PanModokiNest  = 39,  // Unused ID, INVALID
     EnemyID_OoPanModoki    = 40,  // Giant Breadbug
     EnemyID_Fuefuki        = 41,  // Antenna Beetle
     EnemyID_BlueChappy     = 42,  // Orange Bulborb

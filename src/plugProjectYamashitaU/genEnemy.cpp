@@ -1,9 +1,9 @@
-#include "types.h"
-#include "Game/gameGenerator.h"
-#include "Game/MapMgr.h"
-#include "Dolphin/rand.h"
-#include "sysMath.h"
-#include "Game/Creature.h"
+#include "Game/generalEnemyMgr.h"
+
+#include "Game/Entities/Pelplant.h"
+#include "Game/Entities/Qurione.h"
+#include "Game/Entities/Rock.h"
+#include "Game/Entities/ElecHiba.h"
 
 namespace Game {
 
@@ -791,15 +791,7 @@ void EnemyGeneratorBase::doWrite(Stream&) { }
  * Address:	801252C8
  * Size:	00000C
  */
-u32 EnemyGeneratorBase::getLatestVersion()
-{
-	return '????';
-	/*
-	lis      r3, 0x3F3F3F3F@ha
-	addi     r3, r3, 0x3F3F3F3F@l
-	blr
-	*/
-}
+u32 EnemyGeneratorBase::getLatestVersion() { return '????'; }
 
 /*
  * --INFO--
@@ -1274,1422 +1266,138 @@ lbl_80125910:
 	*/
 }
 
+#define GENERATOR_CASE(id, name)                        \
+	case id: {                                          \
+		mEnemyGenerator = new EnemyGeneratorBase(name); \
+		break;                                          \
+	}
+
 /*
  * --INFO--
  * Address:	8012592C
  * Size:	000E38
+ * TODO: The EnemyGeneratorBase ctor shouldn't be inlined
  */
 void GenObjectEnemy::createEnemyGenerator()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, lbl_8047B750@ha
-	lwz      r0, 0x24(r30)
-	addi     r31, r3, lbl_8047B750@l
-	cmplwi   r0, 0x65
-	bgt      lbl_80126728
-	lis      r3, lbl_804ADA18@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804ADA18@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80125970
-
-lbl_80125970:
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125988
-	bl       __ct__Q34Game8Pelplant9GeneratorFv
-	mr       r0, r3
-
-lbl_80125988:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125990
-
-lbl_80125990:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801259AC
-	addi     r4, r31, 0xa8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801259AC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801259B4
-
-lbl_801259B4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801259D0
-	addi     r4, r31, 0xb8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801259D0:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801259D8
-
-lbl_801259D8:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801259F4
-	addi     r4, r31, 0xc8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801259F4:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801259FC
-
-lbl_801259FC:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125A18
-	addi     r4, r31, 0xd8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125A18:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125A20
-
-lbl_80125A20:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125A3C
-	addi     r4, r31, 0xe8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125A3C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125A44
-
-lbl_80125A44:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125A60
-	addi     r4, r31, 0xf8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125A60:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125A68
-
-lbl_80125A68:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125A84
-	addi     r4, r31, 0x108
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125A84:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125A8C
-
-lbl_80125A8C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125AA8
-	addi     r4, r31, 0x118
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125AA8:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125AB0
-
-lbl_80125AB0:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125ACC
-	addi     r4, r31, 0x128
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125ACC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125AD4
-
-lbl_80125AD4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125AF0
-	addi     r4, r31, 0x138
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125AF0:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125AF8
-
-lbl_80125AF8:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125B14
-	addi     r4, r31, 0x148
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125B14:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125B1C
-
-lbl_80125B1C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125B38
-	addi     r4, r31, 0x158
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125B38:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125B40
-
-lbl_80125B40:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125B5C
-	addi     r4, r2, lbl_80517EE0@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125B5C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125B64
-
-lbl_80125B64:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125B80
-	addi     r4, r31, 0x164
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125B80:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125B88
-
-lbl_80125B88:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125BA4
-	addi     r4, r31, 0x174
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125BA4:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125BAC
-
-lbl_80125BAC:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125BC8
-	addi     r4, r31, 0x180
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125BC8:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125BD0
-
-lbl_80125BD0:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125BEC
-	addi     r4, r31, 0x18c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125BEC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125BF4
-
-lbl_80125BF4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125C10
-	addi     r4, r31, 0x198
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125C10:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125C18
-
-lbl_80125C18:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125C34
-	addi     r4, r31, 0x1a4
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125C34:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125C3C
-
-lbl_80125C3C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125C58
-	addi     r4, r31, 0x1b0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125C58:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125C60
-
-lbl_80125C60:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125C7C
-	addi     r4, r31, 0x1bc
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125C7C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125C84
-
-lbl_80125C84:
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125C9C
-	bl       __ct__Q34Game7Qurione9GeneratorFv
-	mr       r0, r3
-
-lbl_80125C9C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125CA4
-
-lbl_80125CA4:
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125CBC
-	bl       __ct__Q34Game4Rock9GeneratorFv
-	mr       r0, r3
-
-lbl_80125CBC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125CC4
-
-lbl_80125CC4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125CE0
-	addi     r4, r2, lbl_80517EE8@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125CE0:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125CE8
-
-lbl_80125CE8:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125D04
-	addi     r4, r31, 0x1c8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125D04:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125D0C
-
-lbl_80125D0C:
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125D24
-	bl       __ct__Q34Game8ElecHiba9GeneratorFv
-	mr       r0, r3
-
-lbl_80125D24:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125D2C
-
-lbl_80125D2C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125D48
-	addi     r4, r31, 0x1d4
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125D48:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125D50
-
-lbl_80125D50:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125D6C
-	addi     r4, r31, 0x1e0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125D6C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125D74
-
-lbl_80125D74:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125D90
-	addi     r4, r31, 0x1f0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125D90:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125D98
-
-lbl_80125D98:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125DB4
-	addi     r4, r2, lbl_80517EF0@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125DB4:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125DBC
-
-lbl_80125DBC:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125DD8
-	addi     r4, r2, lbl_80517EF8@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125DD8:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125DE0
-
-lbl_80125DE0:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125DFC
-	addi     r4, r31, 0x204
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125DFC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125E04
-
-lbl_80125E04:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125E20
-	addi     r4, r31, 0x210
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125E20:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125E28
-
-lbl_80125E28:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125E44
-	addi     r4, r31, 0x224
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125E44:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125E4C
-
-lbl_80125E4C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125E68
-	addi     r4, r31, 0x238
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125E68:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125E70
-
-lbl_80125E70:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125E8C
-	addi     r4, r31, 0x24c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125E8C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125E94
-
-lbl_80125E94:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125EB0
-	addi     r4, r31, 0x258
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125EB0:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125EB8
-
-lbl_80125EB8:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125ED4
-	addi     r4, r31, 0x268
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125ED4:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125EDC
-
-lbl_80125EDC:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125EF8
-	addi     r4, r31, 0x274
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125EF8:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125F00
-
-lbl_80125F00:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125F1C
-	addi     r4, r31, 0x284
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125F1C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125F24
-
-lbl_80125F24:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125F40
-	addi     r4, r31, 0x290
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125F40:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125F48
-
-lbl_80125F48:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125F64
-	addi     r4, r31, 0x2a0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125F64:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125F6C
-
-lbl_80125F6C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125F88
-	addi     r4, r31, 0x2ac
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125F88:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125F90
-
-lbl_80125F90:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125FAC
-	addi     r4, r31, 0x2bc
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125FAC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125FB4
-
-lbl_80125FB4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125FD0
-	addi     r4, r31, 0x2cc
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125FD0:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125FD8
-
-lbl_80125FD8:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80125FF4
-	addi     r4, r31, 0x2d8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80125FF4:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80125FFC
-
-lbl_80125FFC:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126018
-	addi     r4, r2, lbl_80517F00@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126018:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126020
-
-lbl_80126020:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8012603C
-	addi     r4, r31, 0x2e4
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_8012603C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126044
-
-lbl_80126044:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126060
-	addi     r4, r31, 0x2f0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126060:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126068
-
-lbl_80126068:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126084
-	addi     r4, r31, 0x300
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126084:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_8012608C
-
-lbl_8012608C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801260A8
-	addi     r4, r31, 0x318
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801260A8:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801260B0
-
-lbl_801260B0:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801260CC
-	addi     r4, r31, 0x334
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801260CC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801260D4
-
-lbl_801260D4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801260F0
-	addi     r4, r31, 0x34c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801260F0:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801260F8
-
-lbl_801260F8:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126114
-	addi     r4, r31, 0x368
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126114:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_8012611C
-
-lbl_8012611C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126138
-	addi     r4, r31, 0x374
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126138:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126140
-
-lbl_80126140:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8012615C
-	addi     r4, r2, lbl_80517F08@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_8012615C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126164
-
-lbl_80126164:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126180
-	addi     r4, r31, 0x380
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126180:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126188
-
-lbl_80126188:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801261A4
-	addi     r4, r31, 0x390
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801261A4:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801261AC
-
-lbl_801261AC:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801261C8
-	addi     r4, r31, 0x3a0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801261C8:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801261D0
-
-lbl_801261D0:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801261EC
-	addi     r4, r31, 0x3b0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801261EC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801261F4
-
-lbl_801261F4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126210
-	addi     r4, r2, lbl_80517F10@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126210:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126218
-
-lbl_80126218:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126234
-	addi     r4, r31, 0x3c0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126234:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_8012623C
-
-lbl_8012623C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126258
-	addi     r4, r31, 0x3cc
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126258:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126260
-
-lbl_80126260:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8012627C
-	addi     r4, r31, 0x3e0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_8012627C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126284
-
-lbl_80126284:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801262A0
-	addi     r4, r31, 0x3ec
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801262A0:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801262A8
-
-lbl_801262A8:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801262C4
-	addi     r4, r31, 0x400
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801262C4:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801262CC
-
-lbl_801262CC:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801262E8
-	addi     r4, r31, 0x40c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801262E8:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801262F0
-
-lbl_801262F0:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8012630C
-	addi     r4, r31, 0x41c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_8012630C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126314
-
-lbl_80126314:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126330
-	addi     r4, r31, 0x42c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126330:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126338
-
-lbl_80126338:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126354
-	addi     r4, r31, 0x43c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126354:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_8012635C
-
-lbl_8012635C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126378
-	addi     r4, r31, 0x44c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126378:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126380
-
-lbl_80126380:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8012639C
-	addi     r4, r31, 0x460
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_8012639C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801263A4
-
-lbl_801263A4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801263C0
-	addi     r4, r31, 0x474
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801263C0:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801263C8
-
-lbl_801263C8:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801263E4
-	addi     r4, r2, lbl_80517F18@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801263E4:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801263EC
-
-lbl_801263EC:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126408
-	addi     r4, r31, 0x488
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126408:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126410
-
-lbl_80126410:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8012642C
-	addi     r4, r31, 0x494
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_8012642C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126434
-
-lbl_80126434:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126450
-	addi     r4, r31, 0x4a0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126450:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126458
-
-lbl_80126458:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126474
-	addi     r4, r31, 0x4b4
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126474:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_8012647C
-
-lbl_8012647C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126498
-	addi     r4, r31, 0x4c8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126498:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801264A0
-
-lbl_801264A0:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801264BC
-	addi     r4, r31, 0x4d4
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801264BC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801264C4
-
-lbl_801264C4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801264E0
-	addi     r4, r31, 0x4e8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801264E0:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801264E8
-
-lbl_801264E8:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126504
-	addi     r4, r31, 0x4f8
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126504:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_8012650C
-
-lbl_8012650C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126528
-	addi     r4, r31, 0x504
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126528:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126530
-
-lbl_80126530:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8012654C
-	addi     r4, r31, 0x514
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_8012654C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126554
-
-lbl_80126554:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126570
-	addi     r4, r31, 0x520
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126570:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126578
-
-lbl_80126578:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126594
-	addi     r4, r31, 0x534
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126594:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_8012659C
-
-lbl_8012659C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801265B8
-	addi     r4, r31, 0x548
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801265B8:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801265C0
-
-lbl_801265C0:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801265DC
-	addi     r4, r31, 0x55c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801265DC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801265E4
-
-lbl_801265E4:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126600
-	addi     r4, r31, 0x56c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126600:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126608
-
-lbl_80126608:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126624
-	addi     r4, r31, 0x580
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126624:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_8012662C
-
-lbl_8012662C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126648
-	addi     r4, r31, 0x58c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126648:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126650
-
-lbl_80126650:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8012666C
-	addi     r4, r31, 0x59c
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_8012666C:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126674
-
-lbl_80126674:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126690
-	addi     r4, r31, 0x5b0
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126690:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126698
-
-lbl_80126698:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801266B4
-	addi     r4, r31, 0x5bc
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801266B4:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801266BC
-
-lbl_801266BC:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801266D8
-	addi     r4, r2, lbl_80517F20@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801266D8:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_801266E0
-
-lbl_801266E0:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801266FC
-	addi     r4, r31, 0x5cc
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_801266FC:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126704
-
-lbl_80126704:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126720
-	addi     r4, r31, 0x5dc
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126720:
-	stw      r0, 0x48(r30)
-	b        lbl_80126748
-	.global  lbl_80126728
-
-lbl_80126728:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80126744
-	addi     r4, r2, lbl_80517F28@sda21
-	bl       __ct__Q24Game18EnemyGeneratorBaseFPc
-	mr       r0, r3
-
-lbl_80126744:
-	stw      r0, 0x48(r30)
-
-lbl_80126748:
-	lwz      r0, 0x14(r1)
-	lwz      r3, 0x48(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (mEnemyID) {
+	case EnemyTypeID::EnemyID_Pelplant:
+		mEnemyGenerator = new Pelplant::Generator();
+		break;
+
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Kochappy, "赤コチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Chappy, "赤チャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BluePom, "青ポンガシ草")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_RedPom, "赤ポンガシ草")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_YellowPom, "黄ポンガシ草")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BlackPom, "黒ポンガシ草")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_WhitePom, "白ポンガシ草")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_RandPom, "ポポガシ草")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Kogane, "コガネ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Wealthy, "オオガネモチ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Fart, "ババコガネ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_UjiA, "ウジンコ♀")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_UjiB, "ウジンコ♂")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Tobi, "トビンコ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Armor, "ヨロイムシ")
+
+	case EnemyTypeID::EnemyID_Qurione:
+		mEnemyGenerator = new Qurione::Generator();
+		break;
+
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Frog, "イモガエル")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_MaroFrog, "マロガエル")
+
+	case EnemyTypeID::EnemyID_Rock:
+		mEnemyGenerator = new Game::Rock::Generator();
+		break;
+
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Hiba, "ヒバ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_GasHiba, "ガスヒバ")
+
+	case EnemyTypeID::EnemyID_ElecHiba:
+		mEnemyGenerator = new Game::ElecHiba::Generator();
+		break;
+
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Sarai, "サライムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Tank, "ブタドックリ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Wtank, "ミズブタドックリ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Catfish, "ナマズ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Tadpole, "オタマ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_ElecBug, "デンキムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Mar, "フウセンドックリ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Queen, "クイーンチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Baby, "ベビーチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Demon, "オニサライ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_FireChappy, "ヤキチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_SnakeCrow, "ヘビガラス")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_KumaChappy, "クマチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Bomb, "バクダン")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Egg, "ハテナタマゴ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_PanModoki, "パンモドキ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_PanModokiNest, "パンモドキ巣")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_OoPanModoki, "大パンモドキ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Fuefuki, "フエフキ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BlueChappy, "青チャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_YellowChappy, "黄チャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BlueKochappy, "青コチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_YellowKochappy, "黄コチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Tanpopo, "タンポポ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Clover, "クローバー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_HikariKinoko, "ヒカリキノコ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Ooinu_s, "おおいぬふぐり（小）")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Ooinu_l, "おおいぬふぐり（大）")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Wakame_s, "若芽（小）")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Wakame_l, "若芽（大）")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_KingChappy, "キングチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Miulin, "ミウリン")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Hanachirashi, "フウセンハナチラシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Damagumo, "ダマグモ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Kurage, "クラゲドックリ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BombSarai, "バクダンサライ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_FireOtakara, "火オタカラムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_WaterOtakara, "水オタカラムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_GasOtakara, "ガスオタカラムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_ElecOtakara, "電気オタカラムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Jigumo, "ジグモ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Imomushi, "イモムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Houdai, "ホウダイダマグモ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_LeafChappy, "ハッパチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_TamagoMushi, "タマゴムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BigFoot, "オオアシダマグモ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_SnakeWhole, "ヘビガラス全身")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_UmiMushi, "ウミムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_OniKurage, "オニクラゲ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BigTreasure, "オオオタカラムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Stone, "グリーンカブト幼虫")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Kabuto, "グリーンカブト幼虫")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_KumaKochappy, "クマコチャッピー")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_ShijimiChou, "シジミ蝶")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_MiniHoudai, "チビホウダイ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Sokkuri, "ソックリ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Tukushi, "つくし")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Watage, "わたげ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Hana, "ハナドックリ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_DaiodoRed, "赤ダイオード")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_DaiodoGreen, "青ダイオード")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Magaret, "マーガレット")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Nekojarashi, "ねこじゃらし")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Chiyogami, "千代紙")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Zenmai, "ぜんまい")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_KareOoinu_s, "枯れおおいぬふぐり（小）")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_KareOoinu_l, "枯れおおいぬふぐり（大）")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BombOtakara, "爆弾オタカラムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_DangoMushi, "ダンゴムシ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Rkabuto, "レッドカブト幼虫")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Fkabuto, "固定カブト幼虫")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_FminiHoudai, "固定チビホウダイ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_Tyre, "黒い人タイヤ")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BlackMan, "黒い人")
+		GENERATOR_CASE(EnemyTypeID::EnemyID_UmiMushiBlind, "目なしウミムシ")
+	default:
+		mEnemyGenerator = new EnemyGeneratorBase("未登録");
+		break;
+	}
 }
 
 /*
@@ -2705,265 +1413,90 @@ lbl_80126748:
  * Address:	801267D0
  * Size:	00002C
  */
-J3DModelData* GenObjectEnemy::getShape()
-{
-	return nullptr; // placeholder
-	                /*
-	                stwu     r1, -0x10(r1)
-	                mflr     r0
-	                mr       r4, r3
-	                stw      r0, 0x14(r1)
-	                lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	                lwz      r4, 0x24(r4)
-	                bl       getJ3DModelData__Q24Game15GeneralEnemyMgrFi
-	                lwz      r0, 0x14(r1)
-	                mtlr     r0
-	                addi     r1, r1, 0x10
-	                blr
-	                */
-}
+J3DModelData* GenObjectEnemy::getShape() { return generalEnemyMgr->getJ3DModelData((int)mEnemyID); }
 
 /*
  * --INFO--
  * Address:	801267FC
  * Size:	000040
  */
-void GenObjectEnemy::updateUseList(Game::Generator*, int)
+void GenObjectEnemy::updateUseList(Game::Generator* gen, int listIdx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	stw      r0, 0x14(r1)
-	lwz      r4, generalEnemyMgr__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_8012682C
-	lha      r0, 0x2a(r6)
-	mr       r3, r4
-	lwz      r4, 0x24(r6)
-	clrlwi   r5, r0, 0x18
-	bl       addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy
-
-lbl_8012682C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (generalEnemyMgr) {
+		generalEnemyMgr->addEnemyNum((int)mEnemyID, (u8)mTekiNum, this);
+	}
 }
 
 /*
  * --INFO--
  * Address:	8012683C
  * Size:	00031C
+ * TODO
  */
-void GenObjectEnemy::render(Graphics&, Game::Generator*)
+void GenObjectEnemy::render(Graphics& gfx, Game::Generator* gen)
 {
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stw      r31, 0xcc(r1)
-	mr       r31, r5
-	stw      r30, 0xc8(r1)
-	mr       r30, r4
-	stw      r29, 0xc4(r1)
-	mr       r29, r3
-	lbz      r0, 0x4c(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80126B3C
-	lfs      f1, 0x9c(r31)
-	mr       r3, r30
-	lfs      f0, 0xa8(r31)
-	li       r4, 0
-	lfs      f3, 0x98(r31)
-	lfs      f2, 0xa4(r31)
-	fadds    f4, f1, f0
-	lfs      f1, 0x94(r31)
-	lfs      f0, 0xa0(r31)
-	fadds    f2, f3, f2
-	fadds    f0, f1, f0
-	stfs     f4, 0x40(r1)
-	stfs     f2, 0x3c(r1)
-	stfs     f0, 0x38(r1)
-	bl       initPrimDraw__8GraphicsFP7Matrixf
-	li       r3, 0x12
-	li       r4, 0
-	bl       GXSetLineWidth
-	li       r0, 0x73
-	li       r6, 0x10
-	stb      r0, 0x84(r30)
-	li       r0, 0xff
-	lfs      f2, lbl_80517ED4@sda21(r2)
-	addi     r3, r1, 0x90
-	stb      r6, 0x85(r30)
-	addi     r4, r1, 0x38
-	lfs      f3, lbl_80517ED0@sda21(r2)
-	addi     r5, r1, 0x2c
-	stb      r6, 0x86(r30)
-	lfs      f0, lbl_80517EAC@sda21(r2)
-	stb      r0, 0x87(r30)
-	lfs      f1, 0x30(r29)
-	fmuls    f1, f2, f1
-	stfs     f0, 0x2c(r1)
-	stfs     f0, 0x34(r1)
-	fmuls    f0, f3, f1
-	stfs     f0, 0x30(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-	lwz      r3, 0x25c(r30)
-	li       r4, 0
-	bl       getMatrix__8ViewportFb
-	lwz      r3, 0x25c(r30)
-	li       r4, 0
-	bl       getMatrix__8ViewportFb
-	addi     r4, r1, 0x90
-	addi     r5, r1, 0x60
-	bl       PSMTXConcat
-	addi     r3, r1, 0x60
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	lfs      f2, lbl_80517EAC@sda21(r2)
-	mr       r3, r30
-	lfs      f1, lbl_80517EA8@sda21(r2)
-	addi     r4, r1, 0x20
-	lfs      f0, lbl_80517F30@sda21(r2)
-	addi     r5, r1, 0x14
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
-	lfs      f2, lbl_80517F34@sda21(r2)
-	mr       r3, r30
-	lfs      f1, lbl_80517EA8@sda21(r2)
-	addi     r4, r1, 0x20
-	lfs      f0, lbl_80517F38@sda21(r2)
-	addi     r5, r1, 0x14
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	bl       "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
-	lfs      f2, lbl_80517F3C@sda21(r2)
-	mr       r3, r30
-	lfs      f1, lbl_80517EA8@sda21(r2)
-	addi     r4, r1, 0x20
-	lfs      f0, lbl_80517F38@sda21(r2)
-	addi     r5, r1, 0x14
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	bl       "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
-	li       r3, 6
-	li       r4, 0
-	bl       GXSetLineWidth
-	addi     r3, r1, 0x90
-	addi     r4, r1, 0x38
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-	lbz      r0, 0x28(r29)
-	cmplwi   r0, 2
-	bne      lbl_80126A04
-	li       r5, 0xff
-	li       r0, 0x9b
-	stb      r5, 0x84(r30)
-	mr       r3, r30
-	addi     r4, r1, 0x90
-	stb      r5, 0x85(r30)
-	stb      r5, 0x86(r30)
-	stb      r0, 0x87(r30)
-	lfs      f1, 0x2c(r29)
-	bl       drawSphere__8GraphicsFfP7Matrixf
+	if (IS_FLAG(_4C, 1)) {
+		Vector3f position = gen->mPosition + gen->mOffset;
 
-lbl_80126A04:
-	lfs      f0, lbl_80517EBC@sda21(r2)
-	li       r7, 0
-	li       r0, 0xff
-	li       r6, 0x66
-	lwz      r8, systemFont__9JFWSystem@sda21(r13)
-	li       r5, 0x99
-	stfs     f0, 0x54(r1)
-	mr       r3, r30
-	lfs      f0, lbl_80517EC0@sda21(r2)
-	li       r4, 0
-	stw      r8, 0x44(r1)
-	stw      r7, 0x48(r1)
-	stw      r7, 0x4c(r1)
-	stw      r7, 0x50(r1)
-	stb      r6, 0x58(r1)
-	stb      r5, 0x59(r1)
-	stb      r0, 0x5a(r1)
-	stb      r0, 0x5b(r1)
-	stb      r7, 0x5c(r1)
-	stb      r6, 0x5d(r1)
-	stb      r0, 0x5e(r1)
-	stb      r0, 0x5f(r1)
-	stfs     f0, 0x54(r1)
-	bl       initPrimDraw__8GraphicsFP7Matrixf
-	li       r7, 0x32
-	li       r5, 0xff
-	li       r6, 0x64
-	li       r0, 0x96
-	stb      r7, 0x58(r1)
-	mr       r3, r30
-	li       r4, 0
-	stb      r6, 0x59(r1)
-	stb      r5, 0x5a(r1)
-	stb      r5, 0x5b(r1)
-	stb      r7, 0x5c(r1)
-	stb      r7, 0x5d(r1)
-	stb      r0, 0x5e(r1)
-	stb      r5, 0x5f(r1)
-	bl       getViewport__8GraphicsFi
-	mr       r4, r3
-	mr       r3, r30
-	bl       initPerspPrintf__8GraphicsFP8Viewport
-	lfs      f1, 0x98(r31)
-	lis      r3, gEnemyInfo__4Game@ha
-	lfs      f0, 0xa4(r31)
-	addi     r7, r3, gEnemyInfo__4Game@l
-	lfs      f4, 0x9c(r31)
-	mr       r3, r30
-	lfs      f3, 0xa8(r31)
-	fadds    f5, f1, f0
-	lfs      f0, lbl_80517EA8@sda21(r2)
-	addi     r4, r1, 0x44
-	lfs      f2, 0x94(r31)
-	fadds    f3, f4, f3
-	lfs      f1, 0xa0(r31)
-	fadds    f0, f5, f0
-	addi     r5, r1, 8
-	fadds    f1, f2, f1
-	stfs     f5, 0xc(r1)
-	addi     r6, r2, lbl_80517F40@sda21
-	stfs     f3, 0x10(r1)
-	stfs     f1, 8(r1)
-	stfs     f0, 0xc(r1)
-	lwz      r0, 0x24(r29)
-	lha      r8, 0x2a(r29)
-	mulli    r0, r0, 0x34
-	lwzx     r7, r7, r0
-	crclr    6
-	bl       "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
-	lwz      r3, 0x48(r29)
-	cmplwi   r3, 0
-	beq      lbl_80126B3C
-	lwz      r12, 0(r3)
-	mr       r4, r30
-	mr       r5, r31
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+		gfx.initPrimDraw(nullptr);
+		GXSetLineWidth(18, GX_TO_ZERO);
 
-lbl_80126B3C:
-	lwz      r0, 0xd4(r1)
-	lwz      r31, 0xcc(r1)
-	lwz      r30, 0xc8(r1)
-	lwz      r29, 0xc4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
+		gfx._084 = 115;
+		gfx._085 = 16;
+		gfx._086 = 16;
+		gfx._087 = -1;
+
+		float dirRadians = mDirection * DEG2RAD * PI;
+		Vector3f rotation(0.0f, dirRadians, 0.0f);
+
+		Matrixf rotationMtx;
+		rotationMtx.makeTR(position, rotation);
+
+		gfx.mViewport->getMatrix(false);
+
+		Matrixf* gfxMatrix = gfx.mViewport->getMatrix(false);
+
+		Mtx finalMtx;
+		PSMTXConcat(gfxMatrix->mMatrix.mtxView, rotationMtx.mMatrix.mtxView, finalMtx);
+		GXLoadPosMtxImm(finalMtx, 0);
+
+		Vector3f pos1(0.0f, 100.0f, 0.0f);
+		Vector3f pos2(0.0f, 100.0f, 50.0f);
+		gfx.drawLine(pos1, pos2);
+
+		pos1 = Vector3f(10.0f, 100.0f, 40.0f);
+		gfx.drawLine(pos1, pos2);
+
+		pos1 = Vector3f(-10.0f, 100.0f, 40.0f);
+		gfx.drawLine(pos1, pos2);
+
+		GXSetLineWidth(6, GX_TO_ZERO);
+
+		rotationMtx.makeT(position);
+
+		if (mSpawnType == 2) { // Circle spawn type
+			gfx._084 = -1;
+			gfx._085 = -1;
+			gfx._086 = -1;
+			gfx._087 = -101;
+			gfx.drawSphere(mAppearRadius, &rotationMtx);
+		}
+
+		PerspPrintfInfo info(0.5f);
+
+		gfx.initPrimDraw(nullptr);
+		Viewport* vp = gfx.getViewport(0);
+		gfx.initPerspPrintf(vp);
+
+		Vector3f perspPos = gen->mPosition + gen->mOffset;
+		perspPos.y += 100.0f;
+
+		gfx.perspPrintf(info, perspPos, "%s x %d", gEnemyInfo[(u8)mEnemyID], mTekiNum);
+
+		if (mEnemyGenerator) {
+			update(gen);
+		}
+	}
 }
 
 /*
@@ -2980,26 +1513,19 @@ void EnemyGeneratorBase::draw(Graphics&, Game::Generator*) { }
  * EnemyGeneratorBase::~EnemyGeneratorBase()
  * Weak function.
  */
-/*
- * --INFO--
- * Address:	80126BBC
- * Size:	000008
- */
-u32 EnemyGeneratorBase::getInitialParam() { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	80126BBC
+//  * Size:	000008
+//  */
+// u32 EnemyGeneratorBase::getInitialParam() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80126BC4
  * Size:	000008
  */
-const char* GenArg::getName()
-{
-	return nullptr; // placeholder
-	                /*
-	                addi     r3, r2, lbl_80517F48@sda21
-	                blr
-	                */
-}
+const char* GenArg::getName() { return "GenArg"; }
 
 /*
  * --INFO--
@@ -3013,21 +1539,7 @@ void GenObject::update(Game::Generator*) { }
  * Address:	80126BD0
  * Size:	000028
  */
-void GenObject::generatorMakeMatrix(Matrixf&, Vector3f&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	mr       r4, r5
-	stw      r0, 0x14(r1)
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void GenObject::generatorMakeMatrix(Matrixf& genMtx, Vector3f& position) { genMtx.makeT(position); }
 
 /*
  * --INFO--
