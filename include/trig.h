@@ -108,4 +108,6 @@ inline f32 clamp(f32 val, f32 limit)
 	return val;
 }
 
+inline Vector3f getDirection(f32 angle) { return Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle)); }
+
 #endif

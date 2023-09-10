@@ -288,14 +288,13 @@ void Obj::doEndMovie() { effectDrawOn(); }
  */
 void Obj::rollingAttack()
 {
-	Vector3f pos     = getPosition(); // f26, f27, f28
-	f32 angle        = getFaceDir();
-	f32 attackRadius = C_PARMS->mGeneral.mAttackRadius.mValue;   // f25
-	f32 attackAngle  = C_PARMS->mGeneral.mAttackHitAngle.mValue; // f24
-	f32 cosTheta     = pikmin2_cosf(angle);                      // f30
-	f32 sinTheta     = pikmin2_sinf(angle);                      // f29
-	Vector3f forward(cosTheta, 0.0f, sinTheta);
-	Vector3f back(-cosTheta, 0.0f, sinTheta); // f31, , f29
+	Vector3f pos     = getPosition();
+	const f32 angle  = getFaceDir();
+	f32 attackRadius = *C_PARMS->mGeneral.mAttackRadius();
+	f32 attackAngle  = *C_PARMS->mGeneral.mAttackHitAngle();
+
+	Vector3f forward = getDirection(angle);
+	Vector3f back(-forward.z, 0.0f, forward.x);
 
 	Sys::Sphere sphere(mPosition, 250.0f);
 	CellIteratorArg iterArg(sphere);
@@ -318,219 +317,6 @@ void Obj::rollingAttack()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x150(r1)
-	mflr     r0
-	stw      r0, 0x154(r1)
-	stfd     f31, 0x140(r1)
-	psq_st   f31, 328(r1), 0, qr0
-	stfd     f30, 0x130(r1)
-	psq_st   f30, 312(r1), 0, qr0
-	stfd     f29, 0x120(r1)
-	psq_st   f29, 296(r1), 0, qr0
-	stfd     f28, 0x110(r1)
-	psq_st   f28, 280(r1), 0, qr0
-	stfd     f27, 0x100(r1)
-	psq_st   f27, 264(r1), 0, qr0
-	stfd     f26, 0xf0(r1)
-	psq_st   f26, 248(r1), 0, qr0
-	stfd     f25, 0xe0(r1)
-	psq_st   f25, 232(r1), 0, qr0
-	stfd     f24, 0xd0(r1)
-	psq_st   f24, 216(r1), 0, qr0
-	stw      r31, 0xcc(r1)
-	stw      r30, 0xc8(r1)
-	mr       r31, r3
-	addi     r3, r1, 0x14
-	mr       r4, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lfs      f28, 0x14(r1)
-	lwz      r12, 0(r31)
-	lfs      f27, 0x18(r1)
-	lwz      r12, 0x64(r12)
-	lfs      f26, 0x1c(r1)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	lwz      r3, 0xc0(r31)
-	lfs      f0, lbl_8051B818@sda21(r2)
-	lfs      f25, 0x5b4(r3)
-	fcmpo    cr0, f2, f0
-	lfs      f24, 0x5dc(r3)
-	bge      lbl_80289D60
-	fneg     f2, f2
-
-lbl_80289D60:
-	lfs      f3, lbl_8051B840@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051B818@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f2, f3
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 0xa8(r1)
-	lwz      r0, 0xac(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f30, 4(r3)
-	bge      lbl_80289DB8
-	lfs      f0, lbl_8051B844@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0xb0(r1)
-	lwz      r0, 0xb4(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f29, f0
-	b        lbl_80289DD0
-
-lbl_80289DB8:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0xb8(r1)
-	lwz      r0, 0xbc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f29, r4, r0
-
-lbl_80289DD0:
-	lfs      f1, 0x18c(r31)
-	fneg     f31, f30
-	lfs      f0, lbl_8051B848@sda21(r2)
-	addi     r3, r1, 0x40
-	stfs     f1, 0x30(r1)
-	addi     r4, r1, 0x30
-	lfs      f1, 0x190(r31)
-	stfs     f1, 0x34(r1)
-	lfs      f1, 0x194(r31)
-	stfs     f1, 0x38(r1)
-	stfs     f0, 0x3c(r1)
-	bl       __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere
-	li       r0, 1
-	addi     r3, r1, 0x60
-	stb      r0, 0x5c(r1)
-	addi     r4, r1, 0x40
-	bl       __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
-	addi     r3, r1, 0x60
-	bl       first__Q24Game12CellIteratorFv
-	b        lbl_80289F34
-
-lbl_80289E20:
-	addi     r3, r1, 0x60
-	bl       __ml__Q24Game12CellIteratorFv
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80289F2C
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0xc(r1)
-	lfs      f2, 0x10(r1)
-	fsubs    f3, f0, f27
-	lfs      f1, 8(r1)
-	lfs      f0, lbl_8051B818@sda21(r2)
-	fsubs    f4, f2, f26
-	fsubs    f2, f1, f28
-	fcmpo    cr0, f3, f0
-	ble      lbl_80289E88
-	fmr      f1, f3
-	b        lbl_80289E8C
-
-lbl_80289E88:
-	fneg     f1, f3
-
-lbl_80289E8C:
-	lfs      f0, lbl_8051B828@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80289F2C
-	lfs      f1, lbl_8051B818@sda21(r2)
-	fmuls    f3, f1, f3
-	fmadds   f0, f31, f2, f3
-	fmadds   f0, f29, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80289EB4
-	b        lbl_80289EB8
-
-lbl_80289EB4:
-	fneg     f0, f0
-
-lbl_80289EB8:
-	fcmpo    cr0, f0, f24
-	bge      lbl_80289F2C
-	fmadds   f1, f29, f2, f3
-	lfs      f0, lbl_8051B818@sda21(r2)
-	fmadds   f1, f30, f4, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_80289ED8
-	b        lbl_80289EDC
-
-lbl_80289ED8:
-	fneg     f1, f1
-
-lbl_80289EDC:
-	fcmpo    cr0, f1, f25
-	bge      lbl_80289F2C
-	lwz      r5, 0xc0(r31)
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game13InteractPress@ha
-	li       r0, 0
-	lfs      f0, 0x604(r5)
-	addi     r4, r4, __vt__Q24Game11Interaction@l
-	addi     r5, r3, __vt__Q24Game13InteractPress@l
-	mr       r3, r30
-	stw      r4, 0x20(r1)
-	addi     r4, r1, 0x20
-	stw      r31, 0x24(r1)
-	stw      r5, 0x20(r1)
-	stfs     f0, 0x28(r1)
-	stw      r0, 0x2c(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80289F2C:
-	addi     r3, r1, 0x60
-	bl       next__Q24Game12CellIteratorFv
-
-lbl_80289F34:
-	addi     r3, r1, 0x60
-	bl       isDone__Q24Game12CellIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80289E20
-	psq_l    f31, 328(r1), 0, qr0
-	lfd      f31, 0x140(r1)
-	psq_l    f30, 312(r1), 0, qr0
-	lfd      f30, 0x130(r1)
-	psq_l    f29, 296(r1), 0, qr0
-	lfd      f29, 0x120(r1)
-	psq_l    f28, 280(r1), 0, qr0
-	lfd      f28, 0x110(r1)
-	psq_l    f27, 264(r1), 0, qr0
-	lfd      f27, 0x100(r1)
-	psq_l    f26, 248(r1), 0, qr0
-	lfd      f26, 0xf0(r1)
-	psq_l    f25, 232(r1), 0, qr0
-	lfd      f25, 0xe0(r1)
-	psq_l    f24, 216(r1), 0, qr0
-	lfd      f24, 0xd0(r1)
-	lwz      r31, 0xcc(r1)
-	lwz      r0, 0x154(r1)
-	lwz      r30, 0xc8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x150
-	blr
-	*/
 }
 
 /*
@@ -606,11 +392,12 @@ void Obj::createCrashFallRock()
 		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 		if (section && section->getCaveID() == 'l_02') {
 			// only cause falling rocks in Hole of Heroes (not HoB or FC)
-			f32 angle            = mFaceDir;
-			Vector3f faceVec     = Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle)); // f23, f24
-			Vector3f flipFaceVec = Vector3f(-faceVec.x, 0.0f, faceVec.z);                    // f27
+			const f32 angle  = mFaceDir;
+			Vector3f faceVec = getDirection(angle);            // f23, f24
+			Vector3f flipFaceVec(-faceVec.x, 0.0f, faceVec.z); // f27
 
-			Vector3f homeSep = Vector3f(225.0f * faceVec.z + mHomePosition.z, 0.0f, 225.0f * faceVec.x + mHomePosition.x); // f25, f26
+			f32 z = 225.0f * faceVec.z + mHomePosition.z;
+			f32 x = 225.0f * faceVec.x + mHomePosition.x;
 
 			Rock::Mgr* rockMgr = static_cast<Rock::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Rock));
 			if (rockMgr) {
@@ -619,8 +406,8 @@ void Obj::createCrashFallRock()
 					f32 randIdx  = 50.0f * (f32)i - 150.0f;
 					EnemyBirthArg birthArg;
 					birthArg.mTypeID          = EnemyTypeID::EnemyID_Rock;
-					birthArg.mPosition        = Vector3f(flipFaceVec.z * randIdx + (faceVec.x * randDist + homeSep.z), 0.0f,
-                                                  flipFaceVec.x * randIdx + (faceVec.z * randDist + homeSep.x));
+					birthArg.mPosition        = Vector3f(flipFaceVec.z * randIdx + (faceVec.x * randDist + x), 0.0f,
+                                                  flipFaceVec.x * randIdx + (faceVec.z * randDist + z));
 					birthArg.mFaceDir         = mFaceDir;
 					birthArg.mExistenceLength = 30.0f;
 					Rock::Obj* rock           = static_cast<Rock::Obj*>(rockMgr->birth(birthArg));
