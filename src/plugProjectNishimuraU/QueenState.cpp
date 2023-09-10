@@ -947,7 +947,7 @@ void StateBorn::cleanup(EnemyBase* enemy)
 	Obj* queen = static_cast<Obj*>(enemy);
 	queen->hardConstraintOff();
 	queen->setEmotionCaution();
-	queen->_2CC = 0.0f;
+	queen->mBirthTimer = 0.0f;
 }
 
 } // namespace Queen

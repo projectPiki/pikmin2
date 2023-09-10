@@ -422,6 +422,7 @@ bool Obj::isBreakBridge()
  */
 bool Obj::moveBridgeSide()
 {
+	f32 speed;
 	Vector3f startPos = mBridge->getStartPos();
 	Vector3f xVec     = mBridge->getBridgeXVec();
 	Vector3f zVec     = mBridge->getBridgeZVec();

@@ -521,26 +521,23 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		mRotation.y = mFaceDir;
 	}
 
-	inline f32 turnToTarget(Creature* target, f32 turnFactor, f32 maxTurnSpeed)
+	inline f32 turnToTarget(Vector3f& targetPos, f32 turnFactor, f32 maxTurnSpeed)
 	{
-		f32 angleDist = getAngDist(target);
-		f32 turnSpeed = angleDist * turnFactor;
-		f32 limit     = PI * (DEG2RAD * maxTurnSpeed);
-		if (FABS(turnSpeed) > limit) {
-			turnSpeed = (turnSpeed > 0.0f) ? limit : -limit;
-		}
-
+		f32 angleDist = getAngDist(targetPos);
+		f32 turnSpeed = clamp(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
 		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
 
 		return angleDist;
 	}
 
-	inline f32 limitting(f32 val, f32 limit)
+	inline f32 turnToTarget(Creature* target, f32 turnFactor, f32 maxTurnSpeed)
 	{
-		if (FABS(val) > limit) {
-			val = (val > 0.0f) ? limit : -limit;
-		}
-		return val;
+		f32 angleDist = getAngDist(target);
+		f32 turnSpeed = clamp(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
+
+		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+
+		return angleDist;
 	}
 
 	inline f32 turnToTarget(Vector3f& targetPos)
@@ -550,7 +547,20 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		f32 turnFactor        = parms->mGeneral.mRotationalAccel.mValue;
 
 		f32 angleDist = getAngDist(targetPos);
-		f32 turnSpeed = limitting(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
+		f32 turnSpeed = clamp(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
+
+		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
+
+		return angleDist;
+	}
+
+	inline f32 turnToTarget(Creature* creature)
+	{
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
+		f32 maxTurnSpeed      = parms->mGeneral.mRotationalSpeed.mValue;
+		f32 turnFactor        = parms->mGeneral.mRotationalAccel.mValue;
+		f32 angleDist         = getAngDist(creature);
+		f32 turnSpeed         = clamp(angleDist * turnFactor, PI * (DEG2RAD * maxTurnSpeed));
 
 		updateFaceDir(roundAng(turnSpeed + getFaceDir()));
 
@@ -572,15 +582,16 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline f32 changeFaceDir(Vector3f& XYZ)
 	{
-		f32 approxSpeed;
-		f32 rotSpeed;
+		// f32 approxSpeed;
 		f32 rotAccel;
+		f32 rotSpeed;
+
 		f32 x;
 		f32 z;
 
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(mParms);
-		rotSpeed              = parms->mGeneral.mRotationalSpeed.mValue;
-		rotAccel              = parms->mGeneral.mRotationalAccel.mValue;
+		rotSpeed              = *parms->mGeneral.mRotationalSpeed();
+		rotAccel              = *parms->mGeneral.mRotationalAccel();
 
 		Vector3f pos = getPosition();
 		x            = XYZ.x;
@@ -588,14 +599,16 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 		f32 angleDist = angDist(_angXZ(x, z, pos.x, pos.z), getFaceDir());
 
-		f32 limit   = (DEG2RAD * rotSpeed) * PI;
-		approxSpeed = angleDist * rotAccel;
-		if (FABS(approxSpeed) > limit) {
-			approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
-		}
+		f32 approxSpeed = clamp(angleDist * rotAccel, PI * (DEG2RAD * rotSpeed));
+		// f32 limit   = (DEG2RAD * rotSpeed) * PI;
+		// approxSpeed = angleDist * rotAccel;
+		// if (FABS(approxSpeed) > limit) {
+		// 	approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
+		// }
 
-		mFaceDir    = roundAng(approxSpeed + getFaceDir());
-		mRotation.y = mFaceDir;
+		updateFaceDir(roundAng(approxSpeed + getFaceDir()));
+		// mFaceDir    = roundAng(approxSpeed + getFaceDir());
+		// mRotation.y = mFaceDir;
 		return angleDist;
 	}
 
@@ -617,11 +630,12 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 		f32 angleDist = angDist(_angXZ(x, z, pos.x, pos.z), getFaceDir());
 
-		f32 limit   = (DEG2RAD * rotSpeed) * PI;
-		approxSpeed = angleDist * rotAccel;
-		if (FABS(approxSpeed) > limit) {
-			approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
-		}
+		approxSpeed = clamp(angleDist * rotAccel, PI * (DEG2RAD * rotSpeed));
+		// f32 limit   = (DEG2RAD * rotSpeed) * PI;
+		// approxSpeed = angleDist * rotAccel;
+		// if (FABS(approxSpeed) > limit) {
+		// 	approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
+		// }
 
 		mFaceDir    = roundAng(approxSpeed + getFaceDir());
 		mRotation.y = mFaceDir;
@@ -643,11 +657,12 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 		f32 angleDist = angDist(angXZ(targetPos, pos), getFaceDir());
 
-		f32 limit   = (DEG2RAD * rotSpeed) * PI;
-		approxSpeed = angleDist * rotAccel;
-		if (FABS(approxSpeed) > limit) {
-			approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
-		}
+		approxSpeed = clamp(angleDist * rotAccel, PI * (DEG2RAD * rotSpeed));
+		// f32 limit   = (DEG2RAD * rotSpeed) * PI;
+		// approxSpeed = angleDist * rotAccel;
+		// if (FABS(approxSpeed) > limit) {
+		// 	approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
+		// }
 
 		mFaceDir    = roundAng(approxSpeed + getFaceDir());
 		mRotation.y = mFaceDir;

@@ -66,6 +66,12 @@ inline f32 altSin(f32 x)
 	return JMath::sincosTable_.mTable[GetTableIdxPos(x) & 0x7ffU].first;
 }
 
+inline f32 absF(f32 val)
+{
+	f64 newVal = fabs(val);
+	return (f32)newVal;
+}
+
 inline f32 scaledSin(f32 theta) { return altSin(theta * TAU); }
 
 inline f32 absVal(f32 val) { return (val > 0.0f) ? val : -val; }
@@ -92,5 +98,14 @@ inline Vector3f getRotationOffset(f32 scale, f32 y, f32 angle)
 }
 
 inline Vector3f getRotation(f32 angle) { return Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle)); }
+
+inline f32 clamp(f32 val, f32 limit)
+{
+	// f64 abs = fabs(val);
+	if (absF(val) > limit) {
+		val = (val > 0.0f) ? limit : -limit;
+	}
+	return val;
+}
 
 #endif

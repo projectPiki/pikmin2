@@ -138,19 +138,19 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MaroFrog.cpp">MaroFrog.cpp</a> | 7314 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UmimushiShadow.cpp">UmimushiShadow.cpp</a> | 7565 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ContRumble.cpp">ContRumble.cpp</a> | 9005 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeJointMgr.cpp">SnakeJointMgr.cpp</a> | 10097 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaChappy.cpp">KumaChappy.cpp</a> | 11401 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kabuto.cpp">Kabuto.cpp</a> | 12265 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BabyState.cpp">BabyState.cpp</a> | 12955 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tank.cpp">Tank.cpp</a> | 13313 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BabyState.cpp">BabyState.cpp</a> | 12869 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tank.cpp">Tank.cpp</a> | 13313 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kogane.cpp">Kogane.cpp</a> | 14614 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/JointShadowBase.cpp">JointShadowBase.cpp</a> | 14958 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugState.cpp">ElecBugState.cpp</a> | 15715 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapMgr.cpp">RandMapMgr.cpp</a> | 17083 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TadpoleState.cpp">TadpoleState.cpp</a> | 17593 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeWholeShadow.cpp">SnakeWholeShadow.cpp</a> | 19376 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeCrowShadow.cpp">SnakeCrowShadow.cpp</a> | 19385 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ImomushiState.cpp">ImomushiState.cpp</a> | 19863 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjiaState.cpp">UjiaState.cpp</a> | 20924 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RumbleMgr.cpp">RumbleMgr.cpp</a> | 21534 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Rock.cpp">Rock.cpp</a> | 21671 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecHiba.cpp">ElecHiba.cpp</a> | 21823 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Frog.cpp">Frog.cpp</a> | 22143 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QueenState.cpp">QueenState.cpp</a> | 22514 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Frog.cpp">Frog.cpp</a> | 22143 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QueenState.cpp">QueenState.cpp</a> | 22521 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujia.cpp">Ujia.cpp</a> | 22966 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujib.cpp">Ujib.cpp</a> | 23602 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBug.cpp">ElecBug.cpp</a> | 24345 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 24714 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SaraiState.cpp">SaraiState.cpp</a> | 24923 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiState.cpp">TobiState.cpp</a> | 24962 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibState.cpp">UjibState.cpp</a> | 25505 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 25767 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tobi.cpp">Tobi.cpp</a> | 25937 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TankState.cpp">TankState.cpp</a> | 29293 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibState.cpp">UjibState.cpp</a> | 25505 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 25780 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tobi.cpp">Tobi.cpp</a> | 25937 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Queen.cpp">Queen.cpp</a> | 28780 |
 
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -165,8 +165,8 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/singleGS_ZukanParms.cpp">singleGS_ZukanParms.cpp</a> | 21445 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneDrawInfo.cpp">enemyStoneDrawInfo.cpp</a> | 21939 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 25420 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 35497 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">carryInfoMgr.cpp</a> | 47646 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/generalEnemyMgr.cpp">generalEnemyMgr.cpp</a> | 55601 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 58844 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">carryInfoMgr.cpp</a> | 47646 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/genEnemy.cpp">genEnemy.cpp</a> | 47838 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/generalEnemyMgr.cpp">generalEnemyMgr.cpp</a> | 55601 |
 
 ### <section id="sysBootupU">sysBootupU</section>
 | File | Size (bytes) | File | Size (bytes) |

@@ -98,17 +98,19 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 
+	int getBabyChappyCount();
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                              // _2BC
 	bool mCanCreateLarva;                   // _2C0
-	u8 _2C1;                                // _2C1
+	bool mIsRoomForLarva;                   // _2C1, have not hit max capacity yet
 	u8 _2C2;                                // _2C2
 	u8 _2C3;                                // _2C3
 	u8 _2C4;                                // _2C4
 	u8 _2C5;                                // _2C5
 	f32 mWaitTimer;                         // _2C8
-	f32 _2CC;                               // _2CC, timer?
+	f32 mBirthTimer;                        // _2CC
 	f32 _2D0;                               // _2D0
 	StateID mNextState;                     // _2D4
 	QueenShadowMgr* mShadowMgr;             // _2D8
