@@ -360,7 +360,7 @@ bool Obj::isAttackLimitTime()
 
 	Sys::Sphere sphere(mPosition, 300.0f);
 	CellIteratorArg iterArg(sphere);
-	iterArg._1C = 1;
+	iterArg.mIgnoreOverlap = true;
 
 	CellIterator iter(iterArg);
 

@@ -79,7 +79,7 @@ Cell::Cell()
 	_00[2] = nullptr;
 	_00[1] = nullptr;
 	_00[0] = nullptr;
-	_1C    = nullptr;
+	mLeg   = nullptr;
 	_10    = nullptr;
 	_14    = 0;
 	_16    = 0;
@@ -96,8 +96,8 @@ Cell::Cell()
  */
 void Cell::clear()
 {
-	_1C = nullptr;
-	_18 = 0;
+	mLeg = nullptr;
+	_18  = 0;
 }
 
 /*
@@ -107,7 +107,7 @@ void Cell::clear()
  */
 void Cell::mapSearch(IDelegate1<CellObject*>* delegate, u32 passID)
 {
-	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->mNext) {
+	for (CellLeg* leg = mLeg; leg != nullptr; leg = leg->mNext) {
 		if (leg->mObject->mPassID != passID) {
 			leg->mObject->mPassID = passID;
 			delegate->invoke(leg->mObject);
@@ -133,7 +133,7 @@ void Cell::mapSearch(IDelegate1<CellObject*>* delegate, u32 passID)
  */
 void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, u32 passID)
 {
-	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->mNext) {
+	for (CellLeg* leg = mLeg; leg != nullptr; leg = leg->mNext) {
 		if (leg->mObject->mPassID != passID) {
 			leg->mObject->mPassID = passID;
 			delegate->invoke(leg->mObject);
@@ -151,7 +151,7 @@ void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, u32 passID)
  */
 void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, u32 passID)
 {
-	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->mNext) {
+	for (CellLeg* leg = mLeg; leg != nullptr; leg = leg->mNext) {
 		if (leg->mObject->mPassID != passID) {
 			leg->mObject->mPassID = passID;
 			delegate->invoke(leg->mObject);
@@ -503,7 +503,7 @@ int CollisionBuffer::findIndex(CellObject* object)
 inline void CellLayer::resolveCollision()
 {
 	for (int i = 0; i < mSizeX * mSizeY; ++i) {
-		if (mCells[i]._1C) {
+		if (mCells[i].mLeg) {
 			mCells[i].resolveCollision();
 		}
 	}
@@ -597,8 +597,8 @@ inline void Cell::rec_resolveColl()
 void Cell::clearAllCollBuffer()
 {
 	// UNUSED FUNCTION
-	// if (_1C ) {
-	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->mNext) {
+	// if (mLeg ) {
+	for (CellLeg* leg = mLeg; leg != nullptr; leg = leg->mNext) {
 		if (leg->mObject) {
 			leg->mObject->mCollisionBuffer.clear();
 		}
@@ -620,7 +620,7 @@ void CellLayer::clearAllCollBuffer()
 {
 	// UNUSED FUNCTION
 	for (int i = 0; i < mSizeX * mSizeY; i++) {
-		if (mCells[i]._1C) {
+		if (mCells[i].mLeg) {
 			mCells[i].clearAllCollBuffer();
 		}
 	}
@@ -669,10 +669,10 @@ inline void Cell::remove()
  */
 inline void Cell::exit(CellLeg* aLeg, bool p2)
 {
-	if (_1C == aLeg) {
-		_1C = aLeg->mNext;
-		if (_1C) {
-			_1C->mPrev = nullptr;
+	if (mLeg == aLeg) {
+		mLeg = aLeg->mNext;
+		if (mLeg) {
+			mLeg->mPrev = nullptr;
 		}
 	}
 	if ((p2) && (_14 != 0)) {
@@ -695,7 +695,7 @@ inline void Cell::exit(CellLeg* aLeg, bool p2)
 	}
 	aLeg->mPrev = nullptr;
 	aLeg->mNext = nullptr;
-	if ((_1C == nullptr) && (Cell::sCurrCellMgr != nullptr)) {
+	if ((mLeg == nullptr) && (Cell::sCurrCellMgr != nullptr)) {
 		P2ASSERTLINE(786, Cell::sCurrCellMgr != nullptr);
 		if (_24) {
 			_24->_20 = _20;
@@ -720,7 +720,7 @@ void Cell::entry(CellLeg* leg, bool p2)
 		leg->mCell->exit(leg, p2);
 	}
 	CellLeg* nextLeg;
-	CellLeg* currLeg = _1C;
+	CellLeg* currLeg = mLeg;
 	if (currLeg) {
 		if (currLeg != leg) {
 			nextLeg        = currLeg->mNext;
@@ -732,13 +732,13 @@ void Cell::entry(CellLeg* leg, bool p2)
 			}
 		}
 	} else {
-		_1C        = leg;
-		_1C->mNext = nullptr;
-		_1C->mPrev = nullptr;
+		mLeg        = leg;
+		mLeg->mNext = nullptr;
+		mLeg->mPrev = nullptr;
 	}
 
 	leg->mCell    = this;
-	bool legCheck = _1C->findLeg(leg);
+	bool legCheck = mLeg->findLeg(leg);
 	if (!legCheck) {
 		JUT_PANICLINE(855, "leg entry failed !\n");
 	}
@@ -1501,11 +1501,11 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 	// 	Cell* cell = param_1->mCellLegs.arrayView[iVar9].mCell;
 	// 	if (cell) {
 	// 		cell->exit(&param_1->mCellLegs.arrayView[iVar9], bVar5);
-	// 		// 			if (cell->_1C == &param_1.mCellLegs.arrayView[iVar9]) {
-	// 		// 				cell->_1C =
+	// 		// 			if (cell->mLeg == &param_1.mCellLegs.arrayView[iVar9]) {
+	// 		// 				cell->mLeg =
 	// 		// param_1.mCellLegs.arrayView[iVar9].mNext; 				if
-	// 		// (cell->_1C
-	// 		// ) { 					cell->_1C->mPrev = nullptr;
+	// 		// (cell->mLeg
+	// 		// ) { 					cell->mLeg->mPrev = nullptr;
 	// 		// 				}
 	// 		// 			}
 	// 		// 			if ((bVar5) && (cell->_14 != 0)) {
@@ -1530,7 +1530,7 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 	// 		// 			}
 	// 		// 			param_1.mCellLegs.arrayView[iVar9].mPrev = nullptr;
 	// 		// 			param_1.mCellLegs.arrayView[iVar9].mNext = nullptr;
-	// 		// 			if ((cell->_1C == nullptr) &&
+	// 		// 			if ((cell->mLeg == nullptr) &&
 	// 		// 				 (Cell::sCurrCellMgr != nullptr)) {
 	// 		// 				if (Cell::sCurrCellMgr == nullptr) {
 	// 		// // #ifdef MATCHING
@@ -1566,7 +1566,7 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 	// 			if (3 < iVar9)
 	// 				goto LAB_801589e8;
 	// 			cell->entry(param_1.mCellLegs.arrayView, SUB41((uint)-iVar12 >> 0x1f, 0));
-	// 			for (pCVar6 = cell->_1C; pCVar6 != (CellLeg*)0x0; pCVar6 = pCVar6->pNext) {
+	// 			for (pCVar6 = cell->mLeg; pCVar6 != (CellLeg*)0x0; pCVar6 = pCVar6->pNext) {
 	// 				if (pCVar6 == param_1->mCellLegs) {
 	// 					bVar5 = true;
 	// 					goto LAB_80158994;
@@ -2321,14 +2321,14 @@ inline void CellPyramid::dumpCount(int&, int&)
  */
 void Cell::resolveCollision_2()
 {
-	for (CellLeg* legA = _1C; legA != nullptr; legA = legA->mNext) {
+	for (CellLeg* legA = mLeg; legA != nullptr; legA = legA->mNext) {
 		for (CellLeg* legB = legA->mNext; legB != nullptr; legB = legB->mNext) {
 			if (legA->mObject->collisionUpdatable()) {
 				legA->mObject->checkCollision(legB->mObject);
 			}
 		}
 		for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
-			for (CellLeg* legB = cell->_1C; legB != nullptr; legB = legB->mNext) {
+			for (CellLeg* legB = cell->mLeg; legB != nullptr; legB = legB->mNext) {
 				if (legA->mObject->collisionUpdatable()) {
 					legA->mObject->checkCollision(legB->mObject);
 				}
@@ -2344,7 +2344,7 @@ void Cell::resolveCollision_2()
  */
 void Cell::resolveCollision_1()
 {
-	for (CellLeg* legA = _1C; legA != nullptr; legA = legA->mNext) {
+	for (CellLeg* legA = mLeg; legA != nullptr; legA = legA->mNext) {
 		for (CellLeg* legB = legA->mNext; legB != nullptr; legB = legB->mNext) {
 			// TODO: What is going on with mPassID?
 			if ((legA->mObject != legB->mObject) && (legB->mObject->mPassID != (u32)legA->mObject)) {
@@ -2353,7 +2353,7 @@ void Cell::resolveCollision_1()
 			}
 		}
 		for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
-			for (CellLeg* legB = cell->_1C; legB != nullptr; legB = legB->mNext) {
+			for (CellLeg* legB = cell->mLeg; legB != nullptr; legB = legB->mNext) {
 				// TODO: What is going on with mPassID?
 				if ((legA->mObject != legB->mObject) && (legB->mObject->mPassID != (u32)legA->mObject)) {
 					legB->mObject->mPassID = (u32)legA->mObject;
@@ -2371,7 +2371,7 @@ void Cell::resolveCollision_1()
  */
 void Cell::resolveCollision_3()
 {
-	for (CellLeg* legA = _1C; legA != nullptr; legA = legA->mNext) {
+	for (CellLeg* legA = mLeg; legA != nullptr; legA = legA->mNext) {
 		if (legA->mObject->collisionUpdatable() == false) {
 			CellObject* legAObject = legA->mObject;
 			if (legAObject->mPassID != Game::cellMgr->mPassID) {
@@ -2394,7 +2394,7 @@ void Cell::resolveCollision_3()
 				}
 			}
 			for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
-				for (CellLeg* legB = cell->_1C; legB != nullptr; legB = legB->mNext) {
+				for (CellLeg* legB = cell->mLeg; legB != nullptr; legB = legB->mNext) {
 					if (legA->mObject != legB->mObject) {
 						if (*CellMgrParms::getInstance()->mCellParms.mP001()) {
 							if ((CellObject*)legA->mObject->mPassID != legB->mObject) {

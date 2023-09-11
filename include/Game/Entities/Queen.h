@@ -105,13 +105,13 @@ struct Obj : public EnemyBase {
 	FSM* mFsm;                              // _2BC
 	bool mCanCreateLarva;                   // _2C0
 	bool mIsRoomForLarva;                   // _2C1, have not hit max capacity yet
-	u8 _2C2;                                // _2C2
-	u8 _2C3;                                // _2C3
-	u8 _2C4;                                // _2C4
-	u8 _2C5;                                // _2C5
+	bool mIsRolling;                        // _2C2
+	bool mDoEasyRoll;                       // _2C3, first roll will avoid active captain (only HoB)
+	bool mIsAppearBGM;                      // _2C4, has BGM started
+	bool mIsAttackLoopBGM;                  // _2C5, is the attack loop BGM playing
 	f32 mWaitTimer;                         // _2C8
 	f32 mBirthTimer;                        // _2CC
-	f32 _2D0;                               // _2D0
+	f32 _2D0;                               // _2D0, related to hit counter?
 	StateID mNextState;                     // _2D4
 	QueenShadowMgr* mShadowMgr;             // _2D8
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _2DC

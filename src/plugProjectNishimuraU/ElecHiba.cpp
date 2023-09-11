@@ -301,7 +301,7 @@ void Obj::interactDenkiAttack(Vector3f& position)
 	// also some other constants pulled from parms
 
 	CellIteratorArg iterArg(sphere);
-	iterArg._1C = 1;
+	iterArg.mIgnoreOverlap = true;
 
 	CellIterator iter(iterArg);
 

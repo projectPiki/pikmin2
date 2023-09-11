@@ -289,7 +289,7 @@ bool Obj::isAttackable(bool check)
 	sphere.mRadius   = halfRatio;
 
 	CellIteratorArg iterArg(sphere);
-	iterArg._1C = 1;
+	iterArg.mIgnoreOverlap = true;
 
 	CellIterator iter(iterArg);
 

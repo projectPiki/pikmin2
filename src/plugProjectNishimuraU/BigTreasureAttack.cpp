@@ -102,7 +102,7 @@ bool BigTreasureFireAttack::update()
 	Sys::Sphere sphere(pos, 25.0f);
 
 	CellIteratorArg iterArg(sphere);
-	iterArg._1C = 1;
+	iterArg.mIgnoreOverlap = true;
 
 	CellIterator iter(iterArg);
 

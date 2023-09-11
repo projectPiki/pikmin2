@@ -17,8 +17,8 @@ CellIteratorArg::CellIteratorArg()
 
 	mCellMgr = cellMgr;
 
-	_1D = 0;
-	_1C = 0;
+	_1D            = 0;
+	mIgnoreOverlap = false;
 }
 
 /*
@@ -29,12 +29,12 @@ CellIteratorArg::CellIteratorArg()
  */
 CellIteratorArg::CellIteratorArg(Sys::Sphere& sphere)
 {
-	mSphere    = sphere;
-	mCondition = nullptr;
-	_14        = 0;
-	mCellMgr   = Game::cellMgr;
-	_1D        = 0;
-	_1C        = 0;
+	mSphere        = sphere;
+	mCondition     = nullptr;
+	_14            = 0;
+	mCellMgr       = Game::cellMgr;
+	_1D            = 0;
+	mIgnoreOverlap = false;
 }
 
 /*
@@ -60,14 +60,14 @@ void CellIterator::first()
 
 	mPassID = cellMgr->mPassID;
 
-	_00 = 0;
-	_0C = 0;
+	mCurrLeg      = nullptr;
+	mCurrLayerIdx = 0;
 
 	calcExtent();
 
-	Cell* foundCell = mArg.mCellMgr->mLayers[_0C](_04, _08);
+	Cell* foundCell = mArg.mCellMgr->mLayers[mCurrLayerIdx](mCurrX, mCurrY);
 	if (foundCell) {
-		_00 = foundCell->_1C;
+		mCurrLeg = foundCell->mLeg;
 	}
 	find();
 }
@@ -90,7 +90,7 @@ bool CellIterator::next()
  * Size:	000010
  * Matches
  */
-bool CellIterator::isDone() { return _00 == nullptr; }
+bool CellIterator::isDone() { return mCurrLeg == nullptr; }
 
 /*
  * --INFO--
@@ -99,8 +99,8 @@ bool CellIterator::isDone() { return _00 == nullptr; }
  */
 CellObject* CellIterator::operator*()
 {
-	if (_00) {
-		return _00->mObject;
+	if (mCurrLeg) {
+		return mCurrLeg->mObject;
 	}
 	return nullptr;
 }
@@ -119,18 +119,18 @@ CellObject* CellIterator::getCellObject() { return *(*this); }
  */
 bool CellIterator::step()
 {
-	if (_00) {
-		_00 = _00->mNext;
+	if (mCurrLeg) {
+		mCurrLeg = mCurrLeg->mNext;
 	}
 
-	if (!_00) {
-		_08++;
-		if (_08 > _1C) {
-			_08 = _14;
-			_04++;
-			if (_04 > _18) {
-				_0C++;
-				if (_0C >= mArg.mCellMgr->mLayerCount) {
+	if (!mCurrLeg) {
+		mCurrY++;
+		if (mCurrY > mMaxY) {
+			mCurrY = mMinY;
+			mCurrX++;
+			if (mCurrX > mMaxX) {
+				mCurrLayerIdx++;
+				if (mCurrLayerIdx >= mArg.mCellMgr->mLayerCount) {
 					return false;
 				}
 
@@ -138,9 +138,9 @@ bool CellIterator::step()
 			}
 		}
 
-		Cell* foundCell = mArg.mCellMgr->mLayers[_0C](_04, _08);
+		Cell* foundCell = mArg.mCellMgr->mLayers[mCurrLayerIdx](mCurrX, mCurrY);
 		if (foundCell) {
-			_00 = foundCell->_1C;
+			mCurrLeg = foundCell->mLeg;
 		}
 	}
 
@@ -170,25 +170,25 @@ bool CellIterator::find()
  */
 bool CellIterator::satisfy()
 {
-	if (!_00) {
+	if (!mCurrLeg) {
 		return false;
 	}
 
-	if (!_00 || _00->mObject->mPassID == mPassID) {
+	if (!mCurrLeg || mCurrLeg->mObject->mPassID == mPassID) {
 		return false;
 	}
 
-	if (mArg.mCondition && !mArg.mCondition->satisfy(_00->mObject)) {
+	if (mArg.mCondition && !mArg.mCondition->satisfy(mCurrLeg->mObject)) {
 		return false;
 	}
 
-	CellObject* obj = _00->mObject;
+	CellObject* obj = mCurrLeg->mObject;
 	Vector3f objPos = obj->getPosition();
 
 	Sys::Sphere sphere;
 	obj->getBoundingSphere(sphere);
 
-	if (!mArg._1C) {
+	if (!mArg.mIgnoreOverlap) {
 		if (!mArg._14) {
 			f32 radius = mArg.mSphere.mRadius + sphere.mRadius;
 			radius *= radius;
@@ -204,7 +204,7 @@ bool CellIterator::satisfy()
 		}
 	}
 
-	_00->mObject->mPassID = mPassID;
+	mCurrLeg->mObject->mPassID = mPassID;
 	return true;
 	/*
 	stwu     r1, -0x50(r1)
@@ -338,27 +338,27 @@ void CellIterator::calcExtent()
 	f32 a = mArg.mCellMgr->_40;
 	f32 b = mArg.mCellMgr->_3C;
 
-	f32 norm = 1.0f / (mgr->_34 * mgr->mLayers[_0C]._04);
+	f32 norm = 1.0f / (mgr->_34 * mgr->mLayers[mCurrLayerIdx]._04);
 
-	_10 = (x - r - a) * norm;
-	_14 = (z - r - b) * norm;
-	_18 = (x + r - a) * norm;
-	_1C = (z + r - b) * norm;
+	mMinX = (x - r - a) * norm;
+	mMinY = (z - r - b) * norm;
+	mMaxX = (x + r - a) * norm;
+	mMaxY = (z + r - b) * norm;
 
-	if (_10 > _18) {
-		JUT_PANICLINE(249, "x %f>%f", _10, _18);
+	if (mMinX > mMaxX) {
+		JUT_PANICLINE(249, "x %f>%f", mMinX, mMaxX);
 	}
 
-	if (_14 > _1C) {
-		JUT_PANICLINE(252, "y %f>%f", _14, _1C);
+	if (mMinY > mMaxY) {
+		JUT_PANICLINE(252, "y %f>%f", mMinY, mMaxY);
 	}
 
-	if ((_18 - _10) * (_1C - _14) >= 10000) {
-		JUT_PANICLINE(259, "xy %f %f\n%f %f\n", _10, _14, _18, _1C);
+	if ((mMaxX - mMinX) * (mMaxY - mMinY) >= 10000) {
+		JUT_PANICLINE(259, "xy %f %f\n%f %f\n", mMinX, mMinY, mMaxX, mMaxY);
 	}
 
-	_04 = _10;
-	_08 = _14;
+	mCurrX = mMinX;
+	mCurrY = mMinY;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

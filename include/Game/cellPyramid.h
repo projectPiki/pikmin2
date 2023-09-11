@@ -95,17 +95,17 @@ struct Cell {
 	void exit(CellLeg*, bool);
 	void entry(CellLeg*, bool);
 
-	Cell* _00[4]; // _00
-	Cell* _10;    // _10
-	u16 _14;      // _14
-	u16 _16;      // _16
-	u16 _18;      // _18
-	u8 _1A[2];    // _1A
-	CellLeg* _1C; // _1C
-	Cell* _20;    // _20
-	Cell* _24;    // _24
-	short _28;    // _28
-	u8 _2A[2];    // _2A
+	Cell* _00[4];  // _00
+	Cell* _10;     // _10
+	u16 _14;       // _14
+	u16 _16;       // _16
+	u16 _18;       // _18
+	u8 _1A[2];     // _1A
+	CellLeg* mLeg; // _1C
+	Cell* _20;     // _20
+	Cell* _24;     // _24
+	short _28;     // _28
+	u8 _2A[2];     // _2A
 
 	static CellPyramid* sCurrCellMgr;
 };
@@ -223,10 +223,10 @@ struct CellIteratorArg {
 
 	Sys::Sphere mSphere;               // _00
 	CellIteratorCondition* mCondition; // _10, this is a ptr to something with a vtable, and 0x8 of vtable returns a bool ._.
-	int _14;                           // _14
+	int _14;                           // _14, set to 0 and unused
 	CellPyramid* mCellMgr;             // _18
-	u8 _1C;                            // _1C
-	u8 _1D;                            // _1D
+	bool mIgnoreOverlap;               // _1C, if false, will calc overlapping bounding spheres rather than just "in cell or no"
+	u8 _1D;                            // _1D, set to 0 and unused
 };
 
 #define CI_LOOP(it) for (it.first(); !it.isDone(); it.next())
@@ -245,17 +245,17 @@ struct CellIterator {
 	bool satisfy();
 	bool step();
 
-	CellLeg* _00;         // _00
-	int _04;              // _04
-	int _08;              // _08
-	int _0C;              // _0C
-	int _10;              // _10
-	int _14;              // _14
-	int _18;              // _18
-	int _1C;              // _1C
+	CellLeg* mCurrLeg;    // _00
+	int mCurrX;           // _04
+	int mCurrY;           // _08
+	int mCurrLayerIdx;    // _0C
+	int mMinX;            // _10
+	int mMinY;            // _14
+	int mMaxX;            // _18
+	int mMaxY;            // _1C
 	u32 mPassID;          // _20
 	CellIteratorArg mArg; // _24
-	u32 _44;              // _44
+	u32 _44;              // _44, unused
 };
 
 extern CellPyramid* cellMgr;

@@ -47,7 +47,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	disableEvent(0, EB_PlatformCollEnabled);
 	disableEvent(0, EB_Cullable);
 	mNextState      = QUEEN_NULL;
-	_2C2            = 0;
+	mIsRolling      = false;
 	mWaitTimer      = 0.0f;
 	mIsRoomForLarva = false;
 	mBirthTimer     = 0.0f;
@@ -55,8 +55,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	resetJointShadow();
 	mShadowMgr->init();
 	setupEffect();
-	_2C4 = 0;
-	_2C5 = 0;
+	mIsAppearBGM     = false;
+	mIsAttackLoopBGM = false;
 	resetMidBossAppearBGM();
 	mMatLoopAnimator->start(C_MGR->mTexAnimation);
 
@@ -88,7 +88,7 @@ void Obj::onKill(CreatureKillArg* killArg)
 void Obj::setParameters()
 {
 	mCanCreateLarva = true;
-	_2C3            = 0;
+	mDoEasyRoll     = false;
 
 	if (gameSystem) {
 		if (gameSystem->mMode == GSM_PIKLOPEDIA) {
@@ -98,7 +98,7 @@ void Obj::setParameters()
 			SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->mSection);
 			if (section && section->getCaveID() == 'f_01') { // if in Hole of Beasts
 				mCanCreateLarva                  = false;
-				_2C3                             = 1;
+				mDoEasyRoll                      = true;
 				C_PARMS->mGeneral.mHealth.mValue = C_PROPERPARMS.mHoBHealth.mValue;
 			}
 		}
@@ -239,7 +239,7 @@ void Obj::doFinishStoneState()
 	int stateID = getStateID();
 	if (stateID == QUEEN_Damage) {
 		startDamageEffect();
-	} else if (stateID == QUEEN_Rolling && _2C2) {
+	} else if (stateID == QUEEN_Rolling && mIsRolling) {
 		startRollingEffect();
 	}
 
@@ -253,7 +253,7 @@ void Obj::doFinishStoneState()
  */
 bool Obj::ignoreAtari(Creature* creature)
 {
-	if (_2C2 && !isEvent(0, EB_Bittered) && (creature->isNavi() || creature->isTeki())) {
+	if (mIsRolling && !isEvent(0, EB_Bittered) && (creature->isNavi() || creature->isTeki())) {
 		return true;
 	}
 
@@ -298,7 +298,7 @@ void Obj::rollingAttack()
 
 	Sys::Sphere sphere(mPosition, 250.0f);
 	CellIteratorArg iterArg(sphere);
-	iterArg._1C = 1;
+	iterArg.mIgnoreOverlap = true;
 	CellIterator iter(iterArg);
 
 	CI_LOOP(iter)
@@ -360,9 +360,9 @@ void Obj::flickPikmin(f32 angle)
  */
 bool Obj::isRollingAttackLeft()
 {
-	if (_2C3) {
-		_2C3       = 0;
-		Navi* navi = naviMgr->getActiveNavi();
+	if (mDoEasyRoll) {
+		mDoEasyRoll = false;
+		Navi* navi  = naviMgr->getActiveNavi();
 		if (navi) {
 			f32 angle       = HALF_PI + getFaceDir();
 			Vector3f angles = Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle));
@@ -742,8 +742,8 @@ void Obj::startBossChargeBGM()
  */
 void Obj::startBossAttackLoopBGM()
 {
-	if (!_2C5) {
-		_2C5                     = 1;
+	if (!mIsAttackLoopBGM) {
+		mIsAttackLoopBGM         = true;
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->jumpRequest(8);
@@ -757,8 +757,8 @@ void Obj::startBossAttackLoopBGM()
  */
 void Obj::finishBossAttackLoopBGM()
 {
-	if (_2C5) {
-		_2C5                     = 0;
+	if (mIsAttackLoopBGM) {
+		mIsAttackLoopBGM         = false;
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->jumpRequest(1);
@@ -772,7 +772,7 @@ void Obj::finishBossAttackLoopBGM()
  */
 void Obj::startStoneStateBossAttackLoopBGM()
 {
-	if (_2C5) {
+	if (mIsAttackLoopBGM) {
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->jumpRequest(1);
@@ -786,7 +786,7 @@ void Obj::startStoneStateBossAttackLoopBGM()
  */
 void Obj::finishStoneStateBossAttackLoopBGM()
 {
-	if (_2C5) {
+	if (mIsAttackLoopBGM) {
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->jumpRequest(8);
@@ -821,7 +821,7 @@ void Obj::resetMidBossAppearBGM()
 		PSM::checkMidBoss(soundObj);
 		soundObj->setAppearFlag(false);
 		if (mCanCreateLarva) {
-			_2C4           = 1;
+			mIsAppearBGM   = true;
 			soundObj->_118 = 1;
 		}
 	}
@@ -834,8 +834,8 @@ void Obj::resetMidBossAppearBGM()
  */
 void Obj::setMidBossAppearBGM()
 {
-	if (!_2C4) {
-		_2C4                        = 1;
+	if (!mIsAppearBGM) {
+		mIsAppearBGM                = true;
 		PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(mSoundObj);
 		PSM::checkMidBoss(soundObj);
 		soundObj->setAppearFlag(true);
