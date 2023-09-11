@@ -54,7 +54,7 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
 	Parms* parms = static_cast<Parms*>(tyre->mParms);
 	p1 *= parms->mProperParms.mTyreRotationSpeed.mValue;
 
-	if (parms->_832 != 0) {
+	if (parms->mDoUseGlobalJointMgr != 0) {
 		f32 p2     = 0.2f * FABS(p1 - tyre->_2C4);
 		tyre->_2C4 = p2;
 		p2 += tyre->_2C0;
@@ -160,7 +160,7 @@ void Tyre::StateFreeze::exec(EnemyBase* enemy)
 		transit(tyre, TYRE_Dead, nullptr);
 	}
 
-	EnemyBase* wraith = tyre->_2BC;
+	EnemyBase* wraith = tyre->mOwner;
 	if (wraith) {
 		if (wraith->isEvent(1, EB2_Earthquake)) {
 			tyre->constraintOff();

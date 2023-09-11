@@ -1,383 +1,30 @@
-#include "types.h"
 #include "Game/Entities/Tyre.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_tyre_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80495820
-    lbl_80495820:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x74797265
-        .4byte 0x2E637070
-        .4byte 0x00000000
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x74797265
-        .4byte 0x66726F6E
-        .4byte 0x74000000
-        .4byte 0x74797265
-        .4byte 0x6261636B
-        .4byte 0x00000000
-        .4byte 0x41726752
-        .4byte 0x6F745953
-        .4byte 0x63616C65
-        .4byte 0x00000000
-        .4byte 0x41726745
-        .4byte 0x6E656D79
-        .4byte 0x54797065
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E63C8
-    lbl_804E63C8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q23efx10TKageRecov
-    __vt__Q23efx10TKageRecov:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx13TKageTyredead
-    __vt__Q23efx13TKageTyredead:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple3FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple3Fv
-        .4byte fade__Q23efx8TSimple3Fv
-    .global __vt__Q23efx14TKageTyresmoke
-    __vt__Q23efx14TKageTyresmoke:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx14TKageTyresmokeFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte
-   doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter .4byte
-   doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter .4byte
-   startDemoDrawOff__Q23efx5TSyncFv .4byte endDemoDrawOn__Q23efx5TSyncFv .4byte
-   __dt__Q23efx14TKageTyresmokeFv .global __vt__Q34Game4Tyre3Obj
-    __vt__Q34Game4Tyre3Obj:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game9EnemyBaseFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game9EnemyBaseFv
-        .4byte onInit__Q34Game4Tyre3ObjFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game9EnemyBaseFv
-        .4byte doEntry__Q24Game9EnemyBaseFv
-        .4byte doSetView__Q24Game9EnemyBaseFi
-        .4byte doViewCalc__Q24Game9EnemyBaseFv
-        .4byte doSimulation__Q34Game4Tyre3ObjFf
-        .4byte doDirectDraw__Q34Game4Tyre3ObjFR8Graphics
-        .4byte getBodyRadius__Q24Game9EnemyBaseFv
-        .4byte getCellRadius__Q24Game9EnemyBaseFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game9EnemyBaseFv
-        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getVelocity__Q24Game9EnemyBaseFv
-        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
-        .4byte isTeki__Q24Game9EnemyBaseFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q34Game4Tyre3ObjFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q34Game4Tyre3ObjFv
-        .4byte inWater__Q24Game9EnemyBaseFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game9EnemyBaseFv
-        .4byte isUnderground__Q34Game4Tyre3ObjFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
-        .4byte collisionCallback__Q34Game4Tyre3ObjFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game9EnemyBaseFv
-        .4byte getPSCreature__Q24Game9EnemyBaseFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
-        .4byte sound_culling__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8CreatureFUl
-        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
-        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q34Game4Tyre3ObjFRQ24Game11ShadowParam
-        .4byte needShadow__Q34Game4Tyre3ObjFv
-        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game9EnemyBaseFv
-        .4byte getCreatureID__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
-        .4byte __dt__Q34Game4Tyre3ObjFv
-        .4byte "birth__Q34Game4Tyre3ObjFR10Vector3<f>f"
-        .4byte
-   setInitialSetting__Q34Game4Tyre3ObjFPQ24Game21EnemyInitialParamBase .4byte
-   update__Q24Game9EnemyBaseFv .4byte doUpdate__Q34Game4Tyre3ObjFv .4byte
-   doUpdateCommon__Q24Game9EnemyBaseFv .4byte
-   doUpdateCarcass__Q24Game9EnemyBaseFv .4byte
-   doAnimationUpdateAnimator__Q24Game9EnemyBaseFv .4byte
-   doAnimationCullingOff__Q34Game4Tyre3ObjFv .4byte
-   doAnimationCullingOn__Q24Game9EnemyBaseFv .4byte
-   doAnimationStick__Q24Game9EnemyBaseFv .4byte
-   doSimulationCarcass__Q24Game9EnemyBaseFf .4byte
-   doDebugDraw__Q34Game4Tyre3ObjFR8Graphics .4byte
-   doSimpleDraw__Q24Game9EnemyBaseFP8Viewport .4byte
-   doSimulationGround__Q24Game9EnemyBaseFf .4byte
-   doSimulationFlying__Q24Game9EnemyBaseFf .4byte
-   doSimulationStick__Q24Game9EnemyBaseFf .4byte
-   changeMaterial__Q24Game9EnemyBaseFv .4byte
-   "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>" .4byte
-   getFitEffectPos__Q24Game9EnemyBaseFv .4byte viewGetShape__Q24Game9EnemyBaseFv
-        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
-        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
-        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
-        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
-        .4byte setParameters__Q34Game4Tyre3ObjFv
-        .4byte initMouthSlots__Q24Game9EnemyBaseFv
-        .4byte initWalkSmokeEffect__Q24Game9EnemyBaseFv
-        .4byte getWalkSmokeEffectMgr__Q24Game9EnemyBaseFv
-        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
-        .4byte injure__Q24Game9EnemyBaseFv
-        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
-        .4byte updateEfxHamon__Q24Game9EnemyBaseFv
-        .4byte createEfxHamon__Q24Game9EnemyBaseFv
-        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
-        .4byte getEnemyTypeID__Q34Game4Tyre3ObjFv
-        .4byte getMouthSlots__Q24Game9EnemyBaseFv
-        .4byte doGetLifeGaugeParam__Q34Game4Tyre3ObjFRQ24Game14LifeGaugeParam
-        .4byte throwupItem__Q24Game9EnemyBaseFv
-        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
-        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte damageCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart
-        .4byte pressCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-        .4byte
-   flyCollisionCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   hipdropCallBack__Q34Game4Tyre3ObjFPQ24Game8CreaturefP8CollPart .4byte
-   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
-   earthquakeCallBack__Q34Game4Tyre3ObjFPQ24Game8Creaturef .4byte
-   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   "bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3<f>f" .4byte
-   eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doStartStoneState__Q34Game4Tyre3ObjFv .4byte
-   doFinishStoneState__Q34Game4Tyre3ObjFv .4byte
-   getDamageCoeStoneState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeState__Q24Game9EnemyBaseFf .4byte
-   doFinishEarthquakeState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   doFinishEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   lifeRecover__Q24Game9EnemyBaseFv .4byte
-   startCarcassMotion__Q24Game9EnemyBaseFv .4byte
-   setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg .4byte
-   getCarcassArgHeight__Q24Game9EnemyBaseFv .4byte
-   doBecomeCarcass__Q24Game9EnemyBaseFv .4byte
-   startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   wallCallback__Q24Game9EnemyBaseFRCQ24Game8MoveInfo .4byte
-   getDownSmokeScale__Q24Game9EnemyBaseFv .4byte
-   doStartMovie__Q24Game9EnemyBaseFv .4byte doEndMovie__Q24Game9EnemyBaseFv
-        .4byte setFSM__Q34Game4Tyre3ObjFPQ34Game4Tyre3FSM
-        .4byte 0
-        .4byte 0
-        .4byte viewGetBaseScale__Q24Game10PelletViewFv
-        .4byte "@836@12@viewGetShape__Q24Game9EnemyBaseFv"
-        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
-        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
-        .4byte "@836@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@836@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@836@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@836@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@836@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516068
-    lbl_80516068:
-        .skip 0x4
-    .global lbl_8051606C
-    lbl_8051606C:
-        .skip 0x4
-    .global curT__Q24Game4Tyre
-    curT__Q24Game4Tyre:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051F5B8
-    lbl_8051F5B8:
-        .4byte 0x00000000
-    .global lbl_8051F5BC
-    lbl_8051F5BC:
-        .4byte 0x3C23D70A
-    .global lbl_8051F5C0
-    lbl_8051F5C0:
-        .float 0.5
-    .global lbl_8051F5C4
-    lbl_8051F5C4:
-        .float 1.0
-    .global lbl_8051F5C8
-    lbl_8051F5C8:
-        .4byte 0xC47A0000
-    .global lbl_8051F5CC
-    lbl_8051F5CC:
-        .4byte 0x461C4000
-    .global lbl_8051F5D0
-    lbl_8051F5D0:
-        .4byte 0x44610000
-        .4byte 0x00000000
-    .global lbl_8051F5D8
-    lbl_8051F5D8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051F5E0
-    lbl_8051F5E0:
-        .4byte 0x40000000
-    .global lbl_8051F5E4
-    lbl_8051F5E4:
-        .4byte 0x41A00000
-    .global lbl_8051F5E8
-    lbl_8051F5E8:
-        .4byte 0x41200000
-    .global lbl_8051F5EC
-    lbl_8051F5EC:
-        .4byte 0x74797265
-        .4byte 0x464C0000
-    .global lbl_8051F5F4
-    lbl_8051F5F4:
-        .4byte 0x54797265
-        .4byte 0x46520000
-    .global lbl_8051F5FC
-    lbl_8051F5FC:
-        .4byte 0x42C80000
-    .global lbl_8051F600
-    lbl_8051F600:
-        .4byte 0x40A00000
-    .global lbl_8051F604
-    lbl_8051F604:
-        .4byte 0x42480000
-    .global lbl_8051F608
-    lbl_8051F608:
-        .4byte 0x42A00000
-    .global lbl_8051F60C
-    lbl_8051F60C:
-        .4byte 0x3F4CCCCD
-*/
+#include "Game/EnemyFunc.h"
+#include "Game/Stickers.h"
+#include "Game/CameraMgr.h"
+#include "Game/rumble.h"
+#include "Game/PikiMgr.h"
+#include "Game/MapMgr.h"
+#include "efx/TKage.h"
+#include "efx/TKch.h"
+#include "SoundID.h"
+#include "System.h"
+#include "nans.h"
 
 namespace Game {
+namespace Tyre {
 
 /*
  * --INFO--
  * Address:	803AC2F0
  * Size:	000038
  */
-void Tyre::frontTyreCallBack(J3DJoint*, int)
+bool frontTyreCallBack(J3DJoint* jnt, int a)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_803AC314
-	lwz      r3, curT__Q24Game4Tyre@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803AC314
-	bl       frontRollMtxCalc__Q34Game4Tyre3ObjFv
-
-lbl_803AC314:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (a == 0 && curT) {
+		curT->frontRollMtxCalc();
+	}
+	return true;
 }
 
 /*
@@ -385,26 +32,12 @@ lbl_803AC314:
  * Address:	803AC328
  * Size:	000038
  */
-void Tyre::rearTyreCallBack(J3DJoint*, int)
+bool rearTyreCallBack(J3DJoint* jnt, int a)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_803AC34C
-	lwz      r3, curT__Q24Game4Tyre@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803AC34C
-	bl       rearRollMtxCalc__Q34Game4Tyre3ObjFv
-
-lbl_803AC34C:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (a == 0 && curT) {
+		curT->rearRollMtxCalc();
+	}
+	return true;
 }
 
 /*
@@ -412,19 +45,7 @@ lbl_803AC34C:
  * Address:	803AC360
  * Size:	000020
  */
-void Tyre::Obj::setParameters()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       setParameters__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::setParameters() { EnemyBase::setParameters(); }
 
 /*
  * --INFO--
@@ -432,130 +53,44 @@ void Tyre::Obj::setParameters()
  * Size:	000020
  */
 // void birth__Q34Game4Tyre3ObjFR10Vector3f f()
-Creature* Tyre::Obj::birth(Vector3f&, float) const
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::birth(Vector3f& pos, f32 angle) { EnemyBase::birth(pos, angle); }
 
 /*
  * --INFO--
  * Address:	803AC3A0
  * Size:	00018C
  */
-void Tyre::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_80495820@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	addi     r30, r5, lbl_80495820@l
-	stw      r29, 0x14(r1)
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0x19, 0x17
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1d, 0x1b
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x18, 0x16
-	stw      r0, 0x1e0(r31)
-	bl       setEmotionNone__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r4, r31
-	li       r5, 1
-	li       r6, 0
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	lwz      r3, 0x304(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, curT__Q24Game4Tyre@sda21(r13)
-	lwz      r0, 0x174(r31)
-	cmplwi   r0, 0
-	bne      lbl_803AC450
-	addi     r3, r30, 0xc
-	addi     r5, r30, 0x18
-	li       r4, 0x60
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	EnemyBase::onInit(arg);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DamageAnimEnabled);
+	disableEvent(0, EB_DeathEffectEnabled);
+	setEmotionNone();
+	hardConstraintOn();
+	disableEvent(0, EB_Cullable);
 
-lbl_803AC450:
-	lwz      r3, 0x174(r31)
-	addi     r4, r30, 0x24
-	lwz      r5, 8(r3)
-	lwz      r29, 4(r5)
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x310(r31)
-	addi     r4, r30, 0x30
-	lwz      r3, 0x174(r31)
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x312(r31)
-	lis      r4, frontTyreCallBack__Q24Game4TyreFP8J3DJointi@ha
-	lis      r3, rearTyreCallBack__Q24Game4TyreFP8J3DJointi@ha
-	lfs      f1, lbl_8051F5B8@sda21(r2)
-	lhz      r0, 0x310(r31)
-	addi     r5, r4, frontTyreCallBack__Q24Game4TyreFP8J3DJointi@l
-	lwz      r4, 0x28(r29)
-	addi     r6, r3, rearTyreCallBack__Q24Game4TyreFP8J3DJointi@l
-	slwi     r3, r0, 2
-	li       r0, 0
-	lwzx     r3, r4, r3
-	mr       r4, r31
-	stw      r5, 4(r3)
-	lhz      r3, 0x312(r31)
-	lwz      r5, 0x28(r29)
-	slwi     r3, r3, 2
-	lwzx     r3, r5, r3
-	stw      r6, 4(r3)
-	lfs      f0, 0x1fc(r31)
-	stfs     f0, 0x314(r31)
-	stfs     f1, 0x2cc(r31)
-	stfs     f1, 0x2c0(r31)
-	stfs     f1, 0x2c4(r31)
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0x2c8(r31)
-	stw      r0, 0x318(r31)
-	stfs     f1, 0x31c(r31)
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	bl       delNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	lwz      r3, 0x338(r31)
-	bl       init__Q34Game4Tyre13TyreShadowMgrFv
-	li       r0, 0
-	stb      r0, 0x321(r31)
-	lfs      f0, 0x18c(r31)
-	stfs     f0, 0x324(r31)
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0x328(r31)
-	lfs      f0, 0x194(r31)
-	stfs     f0, 0x32c(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mFsm->start(this, TYRE_Land, nullptr);
+	curT = nullptr;
+
+	P2ASSERTLINE(96, mModel);
+	J3DModelData* model                                        = mModel->mJ3dModel->mModelData;
+	mTyreFrontJointIndex                                       = mModel->getJointIndex("tyrefront");
+	mTyreRearJointIndex                                        = mModel->getJointIndex("tyreback");
+	model->mJointTree.mJoints[mTyreFrontJointIndex]->mFunction = frontTyreCallBack;
+	model->mJointTree.mJoints[mTyreRearJointIndex]->mFunction  = rearTyreCallBack;
+
+	_314              = mFaceDir;
+	_2CC              = 0.0f;
+	_2C0              = 0.0f;
+	_2C4              = 0.0f;
+	_2C8              = mPosition.y;
+	mAnimCounter      = 0;
+	mFallingYPosition = 0.0f;
+	shadowMgr->delNormalShadow(this);
+	mShadowMgr->init();
+	_321         = 0;
+	mEfxPosition = mPosition;
 }
 
 /*
@@ -563,264 +98,29 @@ lbl_803AC450:
  * Address:	803AC52C
  * Size:	0003C0
  */
-Tyre::Obj::Obj()
+Obj::Obj()
+    : mOwner(nullptr)
+    , _2D0(0)
+    , mIsUnderground(true)
+    , mIsShadowActive(false)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	extsh.   r0, r4
-	stmw     r26, 8(r1)
-	mr       r31, r3
-	beq      lbl_803AC568
-	addi     r0, r31, 0x344
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x344(r31)
-	stw      r0, 0x348(r31)
-	stw      r0, 0x34c(r31)
-
-lbl_803AC568:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r4, __vt__Q34Game4Tyre3Obj@ha
-	addi     r9, r31, 0x344
-	addi     r5, r4, __vt__Q34Game4Tyre3Obj@l
-	lis      r3, "__ct__10Vector3<f>Fv"@ha
-	stw      r5, 0(r31)
-	addi     r0, r5, 0x1b0
-	addi     r10, r5, 0x2fc
-	addi     r4, r3, "__ct__10Vector3<f>Fv"@l
-	stw      r0, 0x178(r31)
-	li       r8, 0
-	li       r0, 1
-	addi     r3, r31, 0x2ec
-	lwz      r7, 0x17c(r31)
-	li       r5, 0
-	li       r6, 0xc
-	stw      r10, 0(r7)
-	li       r7, 2
-	lwz      r10, 0x17c(r31)
-	subf     r9, r10, r9
-	stw      r9, 0xc(r10)
-	stw      r8, 0x2bc(r31)
-	stb      r8, 0x2d0(r31)
-	stb      r0, 0x2d1(r31)
-	stb      r8, 0x2d2(r31)
-	bl       __construct_array
-	li       r4, 0
-	lfs      f1, lbl_8051F5BC@sda21(r2)
-	stw      r4, 0x304(r31)
-	li       r0, 1
-	lfs      f0, lbl_8051F5B8@sda21(r2)
-	li       r3, 0x2c
-	stfs     f1, 0x308(r31)
-	stfs     f0, 0x30c(r31)
-	stb      r0, 0x320(r31)
-	stb      r4, 0x321(r31)
-	stb      r4, 0x322(r31)
-	stw      r4, 0x330(r31)
-	stw      r4, 0x334(r31)
-	stw      r4, 0x338(r31)
-	stw      r4, 0x33c(r31)
-	stw      r4, 0x340(r31)
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_803AC664
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game4Tyre14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game4Tyre14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r28)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r28)
-	stw      r3, 0x10(r28)
-	stb      r0, 0x28(r28)
-	stw      r0, 0x1c(r28)
-	stw      r0, 0x14(r28)
-	stb      r0, 0x28(r28)
-	stw      r0, 0x20(r28)
-
-lbl_803AC664:
-	stw      r28, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803AC698
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game4Tyre3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game4Tyre3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_803AC698:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 0x18
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_803AC73C
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx13TChasePosYRot@ha
-	stw      r0, 4(r3)
-	addi     r9, r4, __vt__Q23efx13TChasePosYRot@l
-	lis      r4, __vt__Q23efx14TKageTyresmoke@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx14TKageTyresmoke@l
-	li       r11, 0
-	li       r10, 0x2b2
-	stw      r0, 4(r3)
-	addi     r8, r9, 0x14
-	addi     r7, r31, 0x18c
-	addi     r6, r31, 0x1fc
-	stw      r11, 8(r3)
-	li       r5, 0x2a0
-	addi     r0, r4, 0x14
-	sth      r10, 0xc(r3)
-	stb      r11, 0xe(r3)
-	stw      r9, 0(r3)
-	stw      r8, 4(r3)
-	stw      r7, 0x10(r3)
-	stw      r6, 0x14(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_803AC73C:
-	stw      r3, 0x330(r31)
-	li       r3, 0x18
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_803AC7D0
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx13TChasePosYRot@ha
-	stw      r0, 4(r3)
-	addi     r9, r4, __vt__Q23efx13TChasePosYRot@l
-	lis      r4, __vt__Q23efx14TKageTyresmoke@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx14TKageTyresmoke@l
-	li       r11, 0
-	li       r10, 0x2b2
-	stw      r0, 4(r3)
-	addi     r8, r9, 0x14
-	addi     r7, r31, 0x18c
-	addi     r6, r31, 0x1fc
-	stw      r11, 8(r3)
-	li       r5, 0x2a0
-	addi     r0, r4, 0x14
-	sth      r10, 0xc(r3)
-	stb      r11, 0xe(r3)
-	stw      r9, 0(r3)
-	stw      r8, 4(r3)
-	stw      r7, 0x10(r3)
-	stw      r6, 0x14(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_803AC7D0:
-	stw      r3, 0x334(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_803AC8B0
-	lis      r5, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__Q23efx19TEnemyHamonChasePos@ha
-	addi     r28, r5, __vt__Q23efx5TBase@l
-	lis      r6, __vt__18JPAEmitterCallBack@ha
-	stw      r28, 0(r3)
-	addi     r0, r4, __vt__Q23efx19TEnemyHamonChasePos@l
-	lis      r5, __vt__Q23efx5TSync@ha
-	lis      r4, __vt__Q23efx9TChasePos@ha
-	stw      r0, 0(r3)
-	addi     r30, r5, __vt__Q23efx5TSync@l
-	addi     r10, r4, __vt__Q23efx9TChasePos@l
-	lis      r4, __vt__Q23efx12TEnemyHamonM@ha
-	stw      r28, 4(r3)
-	addi     r29, r6, __vt__18JPAEmitterCallBack@l
-	addi     r7, r4, __vt__Q23efx12TEnemyHamonM@l
-	lis      r4, __vt__Q23efx15TEnemyHamonMInd@ha
-	stw      r29, 8(r3)
-	addi     r4, r4, __vt__Q23efx15TEnemyHamonMInd@l
-	addi     r27, r30, 0x14
-	li       r12, 0
-	stw      r30, 4(r3)
-	li       r11, 0x2b2
-	addi     r26, r10, 0x14
-	addi     r9, r31, 0x324
-	stw      r27, 8(r3)
-	li       r8, 0x57
-	addi     r6, r7, 0x14
-	li       r5, 0x58
-	stw      r12, 0xc(r3)
-	addi     r0, r4, 0x14
-	sth      r11, 0x10(r3)
-	stb      r12, 0x12(r3)
-	stw      r10, 4(r3)
-	stw      r26, 8(r3)
-	stw      r9, 0x14(r3)
-	sth      r8, 0x10(r3)
-	stw      r7, 4(r3)
-	stw      r6, 8(r3)
-	stw      r28, 0x18(r3)
-	stw      r29, 0x1c(r3)
-	stw      r30, 0x18(r3)
-	stw      r27, 0x1c(r3)
-	stw      r12, 0x20(r3)
-	sth      r11, 0x24(r3)
-	stb      r12, 0x26(r3)
-	stw      r10, 0x18(r3)
-	stw      r26, 0x1c(r3)
-	stw      r9, 0x28(r3)
-	sth      r5, 0x24(r3)
-	stw      r4, 0x18(r3)
-	stw      r0, 0x1c(r3)
-
-lbl_803AC8B0:
-	stw      r3, 0x33c(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803AC8D0
-	mr       r4, r31
-	bl       __ct__Q34Game4Tyre13TyreShadowMgrFPQ34Game4Tyre3Obj
-	mr       r0, r3
-
-lbl_803AC8D0:
-	stw      r0, 0x338(r31)
-	mr       r3, r31
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mFsm         = nullptr;
+	mShadowScale = 0.01f;
+	_30C         = 0.0f;
+	_320         = 1;
+	_321         = 0;
+	_322         = 0;
+	mEfxSmoke1   = nullptr;
+	mEfxSmoke2   = nullptr;
+	mShadowMgr   = nullptr;
+	mEfxHamon    = nullptr;
+	_340         = 0;
+	mAnimator    = new ProperAnimator;
+	setFSM(new FSM);
+	mEfxSmoke1 = new efx::TKageTyresmoke(&mPosition, &mFaceDir);
+	mEfxSmoke2 = new efx::TKageTyresmoke(&mPosition, &mFaceDir);
+	mEfxHamon  = new efx::TEnemyHamonChasePos(&mEfxPosition);
+	mShadowMgr = new TyreShadowMgr(this);
 }
 
 /*
@@ -828,29 +128,11 @@ lbl_803AC8D0:
  * Address:	803AC8EC
  * Size:	00004C
  */
-void Tyre::Obj::setFSM(Game::Tyre::FSM*)
+void Obj::setFSM(FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x304(r3)
-	mr       r4, r31
-	lwz      r3, 0x304(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFsm = fsm;
+	mFsm->init(this);
+	mCurrentLifecycleState = nullptr;
 }
 
 /*
@@ -858,29 +140,11 @@ void Tyre::Obj::setFSM(Game::Tyre::FSM*)
  * Address:	803AC938
  * Size:	00004C
  */
-void Tyre::Obj::doUpdate()
+void Obj::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       isStopMotion__Q24Game9EnemyBaseFv
-	lwz      r3, 0x304(r31)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	getStateID();
+	isStopMotion();
+	mFsm->exec(this);
 }
 
 /*
@@ -888,64 +152,26 @@ void Tyre::Obj::doUpdate()
  * Address:	803AC984
  * Size:	0000B8
  */
-void Tyre::Obj::doAnimationCullingOff()
+void Obj::doAnimationCullingOff()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0xc0(r3)
-	lbz      r0, 0x832(r3)
-	cmplwi   r0, 0
-	beq      lbl_803AC9AC
-	stw      r31, curT__Q24Game4Tyre@sda21(r13)
+	if (C_PARMS->mDoUseGlobalJointMgr) {
+		curT = this;
+	}
 
-lbl_803AC9AC:
-	lwz      r0, 0x318(r31)
-	cmpwi    r0, 0
-	ble      lbl_803AC9E4
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_803AC9E4
-	lfs      f1, 0x190(r31)
-	lfs      f0, 0x31c(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x190(r31)
-	lwz      r3, 0x318(r31)
-	addi     r0, r3, -1
-	stw      r0, 0x318(r31)
-	b        lbl_803AC9F8
+	if (mAnimCounter > 0 && !isEvent(0, EB_Bittered)) {
+		mPosition.y += mFallingYPosition;
+		mAnimCounter--;
+	} else {
+		disableEvent(0, EB_Untargetable);
+		mAnimCounter = 0;
+	}
 
-lbl_803AC9E4:
-	lwz      r3, 0x1e0(r31)
-	li       r0, 0
-	rlwinm   r3, r3, 0, 0x1e, 0x1c
-	stw      r3, 0x1e0(r31)
-	stw      r0, 0x318(r31)
-
-lbl_803AC9F8:
-	mr       r3, r31
-	bl       doAnimationCullingOff__Q24Game9EnemyBaseFv
-	li       r0, 0
-	stw      r0, curT__Q24Game4Tyre@sda21(r13)
-	lbz      r0, 0x2d2(r31)
-	cmplwi   r0, 0
-	beq      lbl_803ACA28
-	lfs      f0, 0x308(r31)
-	lwz      r3, 0x338(r31)
-	stfs     f0, 0(r3)
-	lwz      r3, 0x338(r31)
-	bl       update__Q34Game4Tyre13TyreShadowMgrFv
-
-lbl_803ACA28:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doAnimationCullingOff();
+	curT = nullptr;
+	if (mIsShadowActive) {
+		mShadowMgr->mGlobalScale = mShadowScale;
+		mShadowMgr->update();
+	}
 }
 
 /*
@@ -953,87 +179,35 @@ lbl_803ACA28:
  * Address:	803ACA3C
  * Size:	000004
  */
-void Tyre::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	803ACA40
  * Size:	000020
  */
-void Tyre::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	803ACA60
  * Size:	000020
  */
-void Tyre::Obj::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doSimulation__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doSimulation(f32 rate) { EnemyBase::doSimulation(rate); }
 
 /*
  * --INFO--
  * Address:	803ACA80
  * Size:	000080
  */
-void Tyre::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
+void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-	lwz      r3, 0x174(r30)
-	lhz      r0, 0x312(r30)
-	lwz      r3, 8(r3)
-	mulli    r0, r0, 0x30
-	lfs      f1, 0(r31)
-	lwz      r3, 0x84(r3)
-	lfs      f2, lbl_8051F5C0@sda21(r2)
-	lwz      r3, 0xc(r3)
-	add      r3, r3, r0
-	lfs      f0, 0xc(r3)
-	fadds    f0, f1, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 0(r31)
-	lfs      f1, 8(r31)
-	lfs      f0, 0x2c(r3)
-	fadds    f0, f1, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 8(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doGetLifeGaugeParam(param);
+	u32 id   = mTyreRearJointIndex;
+	Mtx* mtx = mModel->mJ3dModel->mMtxBuffer->mWorldMatrices;
+
+	param.mPosition.x = (param.mPosition.x + mtx[id][0][3]) * 0.5f;
+	param.mPosition.z = (param.mPosition.z + mtx[id][2][3]) * 0.5f;
 }
 
 /*
@@ -1041,85 +215,21 @@ void Tyre::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
  * Address:	803ACB00
  * Size:	00012C
  */
-void Tyre::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051F5B8@sda21(r2)
-	lis      r3, 0x74797231@ha
-	addi     r4, r3, 0x74797231@l
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	stfs     f0, 0x1c8(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-	stfs     f0, 0x30c(r31)
-	stfs     f0, 0x11c(r31)
-	stfs     f0, 0x120(r31)
-	stfs     f0, 0x124(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x1e0(r31)
-	lwz      r3, 0x114(r31)
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797232@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797232@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797233@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797233@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797234@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797234@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797235@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797235@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797236@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797236@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	mr       r3, r31
-	bl       fadeSmokeEffect__Q34Game4Tyre3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartStoneState();
+	mTargetVelocity  = 0.0f;
+	mCurrentVelocity = 0.0f;
+	_30C             = 0.0f;
+	mAcceleration    = 0.0f;
+	disableEvent(0, EB_Untargetable);
+	mCollTree->getCollPart('tyr1')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr2')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr3')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr4')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr5')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr6')->mSpecialID = 'st__';
+	fadeSmokeEffect();
 }
 
 /*
@@ -1127,86 +237,19 @@ void Tyre::Obj::doStartStoneState()
  * Address:	803ACC2C
  * Size:	000124
  */
-void Tyre::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishStoneState__Q24Game9EnemyBaseFv
-	lis      r4, 0x74797231@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797231@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797232@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797232@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797233@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797233@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797234@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797234@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797235@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797235@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797236@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797236@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f1, lbl_8051F5C4@sda21(r2)
-	li       r4, 0
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, lbl_8051F5B8@sda21(r2)
-	lfs      f4, lbl_8051F5C8@sda21(r2)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	bne      lbl_803ACD3C
-	mr       r3, r31
-	bl       createSmokeEffect__Q34Game4Tyre3ObjFv
-
-lbl_803ACD3C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doFinishStoneState();
+	mCollTree->getCollPart('tyr1')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr2')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr3')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr4')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr5')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr6')->mSpecialID = '____';
+	EnemyFunc::flickStickPikmin(this, 1.0f, C_PARMS->mGeneral.mShakeKnockback.mValue, 0.0f, -1000.0f, nullptr);
+	if (getStateID() == TYRE_Move) {
+		createSmokeEffect();
+	}
 }
 
 /*
@@ -1214,8 +257,53 @@ lbl_803ACD3C:
  * Address:	803ACD50
  * Size:	000538
  */
-void Tyre::Obj::collisionCallback(Game::CollEvent&)
+void Obj::collisionCallback(CollEvent& event)
 {
+	if (event.mCollidingCreature->isTeki()) {
+		mAcceleration = 0.0f;
+	}
+	EnemyBase::collisionCallback(event);
+
+	if (!isFreeze()) {
+		Creature* hitobj = event.mCollidingCreature;
+		if (!isEvent(0, EB_Bittered) && hitobj) {
+
+			// for pikmin and captains touching the tires, use InteractPress on them
+			if ((hitobj->isPiki() || hitobj->isNavi()) && !hitobj->mBounceTriangle && hitobj->isStickTo()) {
+				InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
+				hitobj->stimulate(act);
+			} else {
+				EnemyBase* hitenemy = static_cast<EnemyBase*>(hitobj);
+				// kill any enemy on contact, unless its waterwraith itself
+				if (hitenemy->isTeki() && hitenemy->getEnemyTypeID() != EnemyTypeID::EnemyID_BlackMan) {
+					InteractBomb act(this, 10000.0f, &Vector3f::zero);
+					hitenemy->stimulate(act);
+				}
+
+				// when wraith is touching a treasure, make it count as being airborne???
+				Pellet* pelt = static_cast<Pellet*>(hitobj);
+				if (pelt->isPellet()) {
+					enableEvent(0, EB_Untargetable);
+					mAnimCounter      = C_PARMS->_833;
+					mFallingYPosition = C_PARMS->_848 * pelt->mConfig->mParams.mHeight.mData / mAnimCounter;
+					_322              = true;
+				}
+
+				Stickers stick(hitobj);
+				Iterator<Creature> it(&stick);
+				CI_LOOP(it)
+				{
+					Creature* obj = *it;
+					if (obj->isPiki()) {
+						if ((getPosition().x - obj->getPosition().x) + (getPosition().z - obj->getPosition().z) < 900.0f) {
+							InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
+							hitobj->stimulate(act);
+						}
+					}
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -1591,60 +679,16 @@ lbl_803AD25C:
  * Address:	803AD288
  * Size:	0000A0
  */
-void Tyre::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool Obj::damageCallBack(Creature* obj, f32 damage, CollPart* coll)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	mr       r31, r5
-	stw      r30, 0x10(r1)
-	mr       r30, r4
-	stw      r29, 0xc(r1)
-	mr       r29, r3
-	lwz      r0, 0x1e0(r3)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_803AD2CC
-	bl       isFreeze__Q34Game4Tyre3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803AD304
-
-lbl_803AD2CC:
-	lwz      r0, 0x1e0(r29)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_803AD2E4
-	lbz      r0, 0x321(r29)
-	cmplwi   r0, 0
-	bne      lbl_803AD2EC
-
-lbl_803AD2E4:
-	li       r3, 0
-	b        lbl_803AD308
-
-lbl_803AD2EC:
-	fmr      f1, f31
-	mr       r3, r29
-	mr       r4, r30
-	mr       r5, r31
-	bl       damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-	b        lbl_803AD308
-
-lbl_803AD304:
-	li       r3, 0
-
-lbl_803AD308:
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	lwz      r30, 0x10(r1)
-	lwz      r29, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (isEvent(0, EB_Bittered) || isFreeze()) {
+		if (isEvent(0, EB_Bittered) || !_321) {
+			return false;
+		} else {
+			return EnemyBase::damageCallBack(obj, damage, coll);
+		}
+	}
+	return false;
 }
 
 /*
@@ -1652,27 +696,12 @@ lbl_803AD308:
  * Address:	803AD328
  * Size:	00003C
  */
-void Tyre::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool Obj::hipdropCallBack(Creature* obj, f32 damage, CollPart* coll)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	beq      lbl_803AD350
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803AD350:
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (obj) {
+		obj->isPiki();
+	}
+	return false;
 }
 
 /*
@@ -1680,34 +709,12 @@ lbl_803AD350:
  * Address:	803AD364
  * Size:	000058
  */
-void Tyre::Obj::earthquakeCallBack(Game::Creature*, float)
+bool Obj::earthquakeCallBack(Creature* obj, f32 damage)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	bne      lbl_803AD3A4
-	lwz      r3, 0x304(r31)
-	mr       r4, r31
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803AD3A4:
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getStateID() == TYRE_Move) {
+		mFsm->transit(this, TYRE_Freeze, nullptr);
+	}
+	return false;
 }
 
 /*
@@ -1715,23 +722,10 @@ lbl_803AD3A4:
  * Address:	803AD3BC
  * Size:	000034
  */
-void Tyre::Obj::inWaterCallback(Game::WaterBox*)
+void Obj::inWaterCallback(WaterBox* wbox)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       inWaterCallback__Q24Game9EnemyBaseFPQ24Game8WaterBox
-	mr       r3, r31
-	bl       fadeSmokeEffect__Q34Game4Tyre3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::inWaterCallback(wbox);
+	fadeSmokeEffect();
 }
 
 /*
@@ -1739,29 +733,12 @@ void Tyre::Obj::inWaterCallback(Game::WaterBox*)
  * Address:	803AD3F0
  * Size:	000044
  */
-void Tyre::Obj::outWaterCallback()
+void Obj::outWaterCallback()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       outWaterCallback__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	bne      lbl_803AD420
-	mr       r3, r31
-	bl       createSmokeEffect__Q34Game4Tyre3ObjFv
-
-lbl_803AD420:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::outWaterCallback();
+	if (getStateID() == TYRE_Move) {
+		createSmokeEffect();
+	}
 }
 
 /*
@@ -1769,30 +746,13 @@ lbl_803AD420:
  * Address:	803AD434
  * Size:	000050
  */
-void Tyre::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam& param)
 {
-	/*
-	lfs      f0, 0x18c(r3)
-	lfs      f5, lbl_8051F5E0@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f3, lbl_8051F5B8@sda21(r2)
-	lfs      f0, 0x190(r3)
-	lfs      f2, lbl_8051F5C4@sda21(r2)
-	stfs     f0, 4(r4)
-	lfs      f1, lbl_8051F5E4@sda21(r2)
-	lfs      f4, 0x194(r3)
-	lfs      f0, lbl_8051F5E8@sda21(r2)
-	stfs     f4, 8(r4)
-	lfs      f4, 0x190(r3)
-	fadds    f4, f5, f4
-	stfs     f4, 4(r4)
-	stfs     f3, 0xc(r4)
-	stfs     f2, 0x10(r4)
-	stfs     f3, 0x14(r4)
-	stfs     f1, 0x18(r4)
-	stfs     f0, 0x1c(r4)
-	blr
-	*/
+	param.mPosition                 = mPosition;
+	param.mPosition.y               = mPosition.y + 2.0f;
+	param.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	param.mBoundingSphere.mRadius   = 20.0f;
+	param.mSize                     = 10.0f;
 }
 
 /*
@@ -1800,33 +760,14 @@ void Tyre::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	803AD484
  * Size:	00004C
  */
-void Tyre::Obj::needShadow()
+bool Obj::needShadow()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       needShadow__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803AD4AC
-	li       r3, 1
-	b        lbl_803AD4BC
-
-lbl_803AD4AC:
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 1
-	li       r3, 1
-
-lbl_803AD4BC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (EnemyBase::needShadow()) {
+		return true;
+	}
+	if (getStateID() == TYRE_Land)
+		return true;
+	return true;
 }
 
 /*
@@ -1834,36 +775,13 @@ lbl_803AD4BC:
  * Address:	803AD4D0
  * Size:	000050
  */
-void Tyre::Obj::isFreeze()
+bool Obj::isFreeze()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 2
-	beq      lbl_803AD500
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 3
-	bne      lbl_803AD508
-
-lbl_803AD500:
-	li       r3, 1
-	b        lbl_803AD50C
-
-lbl_803AD508:
-	li       r3, 0
-
-lbl_803AD50C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getStateID() == TYRE_Freeze || getStateID() == TYRE_Dead) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -1871,7 +789,7 @@ lbl_803AD50C:
  * Address:	803AD520
  * Size:	000298
  */
-void Tyre::Obj::frontRollMtxCalc()
+void Obj::frontRollMtxCalc()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2062,7 +980,7 @@ lbl_803AD6D4:
  * Address:	803AD7B8
  * Size:	00038C
  */
-void Tyre::Obj::rearRollMtxCalc()
+void Obj::rearRollMtxCalc()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -2317,62 +1235,16 @@ lbl_803ADAAC:
 
 /*
  * --INFO--
- * Address:	803ADB44
- * Size:	000008
- */
-u32 Tyre::Obj::getEnemyTypeID() { return 0x62; }
-
-/*
- * --INFO--
  * Address:	803ADB4C
  * Size:	000088
  */
-void Tyre::Obj::moveStart()
+void Obj::moveStart()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stb      r0, 0x321(r3)
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 2
-	beq      lbl_803ADB84
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 3
-	bne      lbl_803ADB8C
-
-lbl_803ADB84:
-	li       r0, 1
-	b        lbl_803ADB90
-
-lbl_803ADB8C:
-	li       r0, 0
-
-lbl_803ADB90:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803ADBB8
-	lwz      r3, 0x304(r31)
-	mr       r4, r31
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803ADBB8:
-	mr       r3, r31
-	bl       constraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_321 = true;
+	if (isFreeze()) {
+		mFsm->transit(this, TYRE_Move, nullptr);
+	}
+	constraintOff();
 }
 
 /*
@@ -2380,68 +1252,14 @@ lbl_803ADBB8:
  * Address:	803ADBD4
  * Size:	0000E8
  */
-void Tyre::Obj::collisionStOn()
+void Obj::collisionStOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x74797231@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, 0x74797231@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x114(r3)
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797232@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797232@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797233@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797233@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797234@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797234@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797235@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797235@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797236@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797236@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCollTree->getCollPart('tyr1')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr2')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr3')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr4')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr5')->mSpecialID = 'st__';
+	mCollTree->getCollPart('tyr6')->mSpecialID = 'st__';
 }
 
 /*
@@ -2449,77 +1267,15 @@ void Tyre::Obj::collisionStOn()
  * Address:	803ADCBC
  * Size:	000108
  */
-void Tyre::Obj::collisionStOff()
+void Obj::collisionStOff()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x74797231@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, 0x74797231@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x114(r3)
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797232@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797232@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797233@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797233@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797234@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797234@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797235@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797235@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x74797236@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74797236@l
-	bl       getCollPart__8CollTreeFUl
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r3, r3, 0x3c
-	addi     r4, r4, 0x5F5F5F5F@l
-	bl       __as__4ID32FUl
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f1, lbl_8051F5C4@sda21(r2)
-	li       r4, 0
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, lbl_8051F5B8@sda21(r2)
-	lfs      f4, lbl_8051F5C8@sda21(r2)
-	bl
-	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCollTree->getCollPart('tyr1')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr2')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr3')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr4')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr5')->mSpecialID = '____';
+	mCollTree->getCollPart('tyr6')->mSpecialID = '____';
+	EnemyFunc::flickStickPikmin(this, 1.0f, C_PARMS->mGeneral.mShakeKnockback.mValue, 0.0f, -1000.0f, nullptr);
 }
 
 /*
@@ -2527,8 +1283,22 @@ void Tyre::Obj::collisionStOff()
  * Address:	803ADDC4
  * Size:	0005CC
  */
-void Tyre::Obj::flick()
+void Obj::flick()
 {
+	cameraMgr->startVibration(15, mPosition, 2);
+	rumbleMgr->startRumble(13, mPosition, 2);
+
+	Iterator<Piki> it(pikiMgr);
+	CI_LOOP(it)
+	{
+		Piki* obj = *it;
+		if (obj->isAlive() && obj->mBounceTriangle) {
+			if ((mPosition.x - obj->getPosition().x) + (mPosition.z - obj->getPosition().z) < 900.0f) {
+				InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
+				obj->stimulate(act);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -2949,74 +1719,16 @@ lbl_803AE2F0:
  * Address:	803AE390
  * Size:	000100
  */
-void Tyre::Obj::deadEffect()
+void Obj::deadEffect()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lhz      r0, 0x312(r3)
-	lwz      r3, 0x174(r3)
-	mulli    r0, r0, 0x3c
-	lwz      r3, 0x10(r3)
-	add      r3, r3, r0
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, __vt__Q23efx5TBase@ha
-	lfs      f2, 0x2c(r3)
-	lfs      f1, 0x1c(r3)
-	addi     r4, r4, __vt__Q23efx5TBase@l
-	lfs      f0, 0xc(r3)
-	lis      r3, __vt__Q23efx8TSimple3@ha
-	addi     r0, r3, __vt__Q23efx8TSimple3@l
-	li       r5, 0
-	stw      r4, 0x18(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lis      r3, __vt__Q23efx13TKageTyredead@ha
-	li       r8, 0x29d
-	addi     r4, r4, __vt__Q23efx3Arg@l
-	li       r7, 0x29e
-	li       r6, 0x29f
-	stw      r0, 0x18(r1)
-	addi     r0, r3, __vt__Q23efx13TKageTyredead@l
-	addi     r3, r1, 0x18
-	stw      r4, 8(r1)
-	addi     r4, r1, 8
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	sth      r8, 0x1c(r1)
-	sth      r7, 0x1e(r1)
-	sth      r6, 0x20(r1)
-	stw      r5, 0x24(r1)
-	stw      r5, 0x28(r1)
-	stw      r5, 0x2c(r1)
-	stw      r0, 0x18(r1)
-	bl       create__Q23efx8TSimple3FPQ23efx3Arg
-	lhz      r0, 0x310(r31)
-	lwz      r3, 0x174(r31)
-	mulli    r0, r0, 0x3c
-	lwz      r3, 0x10(r3)
-	add      r3, r3, r0
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f2, 0x2c(r3)
-	addi     r4, r1, 8
-	lfs      f1, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	addi     r3, r1, 0x18
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	bl       create__Q23efx8TSimple3FPQ23efx3Arg
-	li       r0, 0
-	stb      r0, 0x2d2(r31)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	efx::Arg arg(mModel->mJoints[mTyreRearJointIndex].getWorldMatrix()->getBasis(3));
+	efx::TKageTyredead efx;
+	efx.create(&arg);
+
+	arg.mPosition = (mModel->mJoints[mTyreFrontJointIndex].getWorldMatrix()->getBasis(3));
+	efx.create(&arg);
+
+	mIsShadowActive = false;
 }
 
 /*
@@ -3024,37 +1736,12 @@ void Tyre::Obj::deadEffect()
  * Address:	803AE490
  * Size:	000064
  */
-void Tyre::Obj::createSmokeEffect()
+void Obj::createSmokeEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x280(r3)
-	cmplwi   r0, 0
-	bne      lbl_803AE4E0
-	lwz      r3, 0x330(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x334(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803AE4E0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!mWaterBox) {
+		mEfxSmoke1->create(nullptr);
+		mEfxSmoke2->create(nullptr);
+	}
 }
 
 /*
@@ -3062,414 +1749,81 @@ lbl_803AE4E0:
  * Address:	803AE4F4
  * Size:	000050
  */
-void Tyre::Obj::fadeSmokeEffect()
+void Obj::fadeSmokeEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x330(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x334(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mEfxSmoke1->fade();
+	mEfxSmoke2->fade();
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	803AE544
  * Size:	0001E8
  */
-void landEffect__Q34Game4Tyre3ObjFR10Vector3f()
+void Obj::landEffect(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x94(r1)
-	stw      r31, 0x8c(r1)
-	mr       r31, r4
-	li       r4, 0x5976
-	stw      r30, 0x88(r1)
-	stw      r29, 0x84(r1)
-	mr       r29, r3
-	lwz      r3, 0x28c(r3)
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x280(r29)
-	li       r30, 0
-	cmplwi   r0, 0
-	beq      lbl_803AE594
-	li       r30, 1
+	mSoundObj->startSound(PSSE_EN_KAGE_ROLLER_LAND, 0);
 
-lbl_803AE594:
-	cmplwi   r0, 0
-	bne      lbl_803AE5E4
-	lfs      f0, 0(r31)
-	li       r0, 0
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f0, 0x28(r1)
-	lfs      f0, lbl_8051F608@sda21(r2)
-	cmplwi   r3, 0
-	lfs      f1, 4(r31)
-	stfs     f1, 0x2c(r1)
-	lfs      f1, 8(r31)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	beq      lbl_803AE5D8
-	addi     r4, r1, 0x28
-	bl       findWater__Q24Game6MapMgrFRQ23Sys6Sphere
-	mr       r0, r3
+	bool iswater = false;
+	if (mWaterBox) {
+		iswater = true;
+	}
 
-lbl_803AE5D8:
-	cmplwi   r0, 0
-	beq      lbl_803AE5E4
-	li       r30, 1
+	if (!mWaterBox) {
+		Sys::Sphere bound(pos, 80.0f);
+		WaterBox* water = nullptr;
+		if (mapMgr) {
+			water = mapMgr->findWater(bound);
+		}
+		if (water) {
+			iswater = true;
+		}
+	}
 
-lbl_803AE5E4:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_803AE6A0
-	lis      r3, __vt__Q23efx3Arg@ha
-	lfs      f2, 0x1fc(r29)
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	lis      r5, __vt__Q23efx5TBase@ha
-	stw      r0, 0x38(r1)
-	lis      r4, __vt__Q23efx8TSimple5@ha
-	lis      r6, __vt__Q23efx12ArgRotYScale@ha
-	lis      r3, __vt__Q23efx9TKchApWat@ha
-	lfs      f1, 0(r31)
-	addi     r12, r5, __vt__Q23efx5TBase@l
-	addi     r11, r4, __vt__Q23efx8TSimple5@l
-	lfs      f0, lbl_8051F60C@sda21(r2)
-	stfs     f1, 0x3c(r1)
-	addi     r30, r6, __vt__Q23efx12ArgRotYScale@l
-	addi     r0, r3, __vt__Q23efx9TKchApWat@l
-	li       r10, 0x211
-	lfs      f1, 4(r31)
-	li       r9, 0x212
-	li       r8, 0x213
-	li       r7, 0x214
-	stfs     f1, 0x40(r1)
-	li       r6, 0x215
-	li       r5, 0
-	addi     r3, r1, 0x50
-	lfs      f1, 8(r31)
-	addi     r4, r1, 0x38
-	stw      r12, 0x50(r1)
-	stw      r11, 0x50(r1)
-	stfs     f1, 0x44(r1)
-	stw      r30, 0x38(r1)
-	stfs     f2, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	sth      r10, 0x54(r1)
-	sth      r9, 0x56(r1)
-	sth      r8, 0x58(r1)
-	sth      r7, 0x5a(r1)
-	sth      r6, 0x5c(r1)
-	stw      r5, 0x60(r1)
-	stw      r5, 0x64(r1)
-	stw      r5, 0x68(r1)
-	stw      r5, 0x6c(r1)
-	stw      r5, 0x70(r1)
-	stw      r0, 0x50(r1)
-	bl       create__Q23efx9TKchApWatFPQ23efx3Arg
-	b        lbl_803AE710
-
-lbl_803AE6A0:
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x18(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple2@l
-	lis      r4, __vt__Q23efx10TKageRecov@ha
-	lis      r3, __vt__Q23efx3Arg@ha
-	stw      r0, 0x18(r1)
-	addi     r5, r4, __vt__Q23efx10TKageRecov@l
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	li       r3, 0x29a
-	li       r7, 0x29b
-	sth      r3, 0x1c(r1)
-	addi     r3, r1, 0x18
-	addi     r4, r1, 8
-	sth      r7, 0x1e(r1)
-	stw      r6, 0x20(r1)
-	stw      r6, 0x24(r1)
-	stw      r5, 0x18(r1)
-	stw      r0, 8(r1)
-	lfs      f0, 0(r31)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x14(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-
-lbl_803AE710:
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	lwz      r29, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	if (iswater) {
+		efx::ArgRotYScale arg(pos, mFaceDir, 0.8f);
+		efx::TKchApWat efx;
+		efx.create(&arg);
+	} else {
+		efx::TKageRecov effect;
+		efx::Arg arg(pos);
+		effect.create(&arg);
+	}
 }
-
-namespace Game {
 
 /*
  * --INFO--
  * Address:	803AE72C
  * Size:	00002C
  */
-void Tyre::Obj::scaleUpShadow()
+void Obj::scaleUpShadow()
 {
-	/*
-	lwz      r4, sys@sda21(r13)
-	lfs      f2, 0x308(r3)
-	lfs      f1, 0x54(r4)
-	lfs      f0, lbl_8051F5C4@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x308(r3)
-	lfs      f1, 0x308(r3)
-	fcmpo    cr0, f1, f0
-	blelr
-	stfs     f0, 0x308(r3)
-	blr
-	*/
+	mShadowScale += sys->mDeltaTime;
+	if (mShadowScale > 1.0f) {
+		mShadowScale = 1.0f;
+	}
 }
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	803AE758
- * Size:	00009C
- */
-TKageTyresmoke::~TKageTyresmoke()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803AE7D8
-lis      r3, __vt__Q23efx14TKageTyresmoke@ha
-addi     r3, r3, __vt__Q23efx14TKageTyresmoke@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_803AE7C8
-lis      r3, __vt__Q23efx13TChasePosYRot@ha
-addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_803AE7C8
-lis      r4, __vt__Q23efx5TSync@ha
-addi     r3, r30, 4
-addi     r5, r4, __vt__Q23efx5TSync@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x14
-stw      r0, 4(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803AE7C8:
-extsh.   r0, r31
-ble      lbl_803AE7D8
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803AE7D8:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803AE7F4
  * Size:	000004
  */
-void Tyre::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	803AE7F8
  * Size:	000008
  */
-void Tyre::Obj::isUnderground()
-{
-	/*
-	lbz      r3, 0x2d1(r3)
-	blr
-	*/
-}
-
-} // namespace Game
+bool Obj::isUnderground() { return mIsUnderground; }
 
 /*
  * --INFO--
  * Address:	803AE800
  * Size:	000008
  */
-u32 bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3f f() { return 0x0; }
+bool Obj::bombCallBack(Creature*, Vector3f&, f32) { return false; }
 
-/*
- * --INFO--
- * Address:	803AE808
- * Size:	000028
- */
-void __sinit_tyre_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804E63C8@ha
-	stw      r0, lbl_80516068@sda21(r13)
-	stfsu    f0, lbl_804E63C8@l(r3)
-	stfs     f0, lbl_8051606C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AE830
- * Size:	000014
- */
-void @836 @12 @Game::EnemyBase::viewOnPelletKilled()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -836
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AE844
- * Size:	000014
- */
-void @836 @12 @Game::EnemyBase::viewStartCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -836
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AE858
- * Size:	000014
- */
-void @836 @12 @Game::EnemyBase::viewStartPreCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -836
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AE86C
- * Size:	000014
- */
-void @836 @12 @Game::EnemyBase::view_finish_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -836
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AE880
- * Size:	000014
- */
-void @836 @12 @Game::EnemyBase::view_start_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -836
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AE894
- * Size:	000014
- */
-void @836 @12 @Game::EnemyBase::viewGetShape()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -836
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AE8A8
- * Size:	000008
- */
-@4 @efx::TKageTyresmoke::~TKageTyresmoke()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TKageTyresmokeFv
-	*/
-}
+} // namespace Tyre
+} // namespace Game

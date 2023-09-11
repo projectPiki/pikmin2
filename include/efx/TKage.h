@@ -46,6 +46,10 @@ struct TKageMove : public TChasePosYRot {
 };
 
 struct TKageRecov : public TSimple2 {
+	TKageRecov()
+	    : TSimple2(PID_KageRecov_1, PID_KageRecov_2)
+	{
+	}
 	// _00      = VTBL
 	// _00-_10  = TSimple2
 };
@@ -59,13 +63,21 @@ struct TKageRun : public TChasePosYRot {
 	// _00-_18  = TChasePosYRot
 };
 
-struct TKageTyreDead : public TSimple3 {
+struct TKageTyredead : public TSimple3 {
+	TKageTyredead()
+	    : TSimple3(PID_KageTyreDead_1, PID_KageTyreDead_2, PID_KageTyreDead_3)
+	{
+	}
 	// _00      = VTBL
 	// _00-_18  = TSimple3
 };
 
 struct TKageTyresmoke : public TChasePosYRot {
-	virtual ~TKageTyresmoke(); // _48 (weak)
+	TKageTyresmoke(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_KageTyreSmoke)
+	{
+	}
+	virtual ~TKageTyresmoke() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TChasePosYRot
