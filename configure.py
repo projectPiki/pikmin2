@@ -846,7 +846,7 @@ LIBS = [
             ["plugProjectYamashitaU/enemyInfo", True],
             ["plugProjectYamashitaU/farm", True],
             ["plugProjectYamashitaU/farmMgr", True],
-            "plugProjectYamashitaU/genEnemy",
+            ["plugProjectYamashitaU/genEnemy", True],
             ["plugProjectYamashitaU/timeMgr", True],
             ["plugProjectYamashitaU/pelplantGenerator", True],
             ["plugProjectYamashitaU/enemyInteractActions", True],

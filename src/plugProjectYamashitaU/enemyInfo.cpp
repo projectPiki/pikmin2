@@ -163,7 +163,7 @@ char* getEnemyResName(int enemyID, int enemyFlags)
 		break;
 	}
 
-	if (enemyID == EnemyTypeID::EnemyID_PanModokiNest || enemyID == EnemyTypeID::EnemyID_INVALID2) {
+	if (enemyID == EnemyTypeID::EnemyID_PanModokiNest || enemyID == EnemyTypeID::EnemyID_JigumoNest) {
 		enemyID = EnemyTypeID::EnemyID_PanHouse;
 	}
 

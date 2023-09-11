@@ -78,7 +78,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_Bomb           = 36,  // Bomb-rock
     EnemyID_Egg            = 37,  // Egg
     EnemyID_PanModoki      = 38,  // Breadbug
-    EnemyID_PanModokiNest  = 39,  // Unused ID, INVALID
+    EnemyID_PanModokiNest  = 39,  // Breadbug Nest
     EnemyID_OoPanModoki    = 40,  // Giant Breadbug
     EnemyID_Fuefuki        = 41,  // Antenna Beetle
     EnemyID_BlueChappy     = 42,  // Orange Bulborb
@@ -103,7 +103,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_GasOtakara     = 61,  // Munge Dweevil
     EnemyID_ElecOtakara    = 62,  // Anode Dweevil
     EnemyID_Jigumo         = 63,  // Hermit Crawmad
-    EnemyID_INVALID2       = 64,  // Unused ID
+    EnemyID_JigumoNest     = 64,  // Hermit Crawmad Nest
     EnemyID_Imomushi       = 65,  // Ravenous Whiskerpillar
     EnemyID_Houdai         = 66,  // Man-at-Legs
     EnemyID_LeafChappy     = 67,  // Bulbmin

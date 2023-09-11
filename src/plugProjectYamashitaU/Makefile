@@ -20,7 +20,7 @@ YAMASHITA_FILES:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInfo.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/farm.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/farmMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/genEnemy.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/genEnemy.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/timeMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplantGenerator.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractActions.o\
