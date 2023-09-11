@@ -153,7 +153,7 @@ void StateBomb::exec(EnemyBase* enemy)
 			sphere.mPosition = Vector3f(position);
 			sphere.mRadius   = parms->mGeneral.mAttackRadius.mValue;
 			CellIteratorArg iteratorArg(sphere);
-			iteratorArg._14 = 1;
+			iteratorArg.mUseCustomRadiusThreshold = 1;
 
 			CellIterator iterator(iteratorArg);
 			CI_LOOP(iterator)

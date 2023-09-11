@@ -192,13 +192,13 @@ struct CellPyramid : public SweepPrune::World {
 	void drawCell(Graphics&);
 	void dumpCount(int&, int&);
 
-	int mMemoryUsageMaybe; // _28
-	int mLayerCount;       // _2C
-	CellLayer* mLayers;    // _30
-	f32 _34;               // _34
-	f32 _38;               // _38
-	f32 _3C;               // _3C
-	f32 _40;               // _40
+	int mFreeMemory;    // _28
+	int mLayerCount;    // _2C
+	CellLayer* mLayers; // _30
+	f32 mScale;         // _34
+	f32 mInverseScale;  // _38
+	f32 mLeft;          // _3C
+	f32 mRight;         // _40
 	/*
 	 * Incremented at the start of every resolve/search pass.
 	 * Passed on to CellObjects to prevent evaluating multiple times per pass.
@@ -223,9 +223,9 @@ struct CellIteratorArg {
 
 	Sys::Sphere mSphere;               // _00
 	CellIteratorCondition* mCondition; // _10, this is a ptr to something with a vtable, and 0x8 of vtable returns a bool ._.
-	int _14;                           // _14, set to 0 and unused
+	int mUseCustomRadiusThreshold;     // _14, UNUSED but a name is better than nothing
 	CellPyramid* mCellMgr;             // _18
-	bool mIgnoreOverlap;               // _1C, if false, will calc overlapping bounding spheres rather than just "in cell or no"
+	bool mIsCollSphereDisabled;        // _1C, if false, will calc overlapping bounding spheres rather than just "in cell or no"
 	u8 _1D;                            // _1D, set to 0 and unused
 };
 

@@ -93,7 +93,7 @@ void Obj::interactFartGasAttack()
 		sphere.mRadius = parms->mGeneral.mAttackRadius.mValue;
 
 		CellIteratorArg arg(sphere);
-		arg.mIgnoreOverlap = true;
+		arg.mIsCollSphereDisabled = true;
 
 		CellIterator iterator(arg);
 		CI_LOOP(iterator)

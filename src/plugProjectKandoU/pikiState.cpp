@@ -2595,7 +2595,7 @@ void PikiHipDropState::exec(Piki* piki)
 			Vector3f position      = piki->getPosition();
 			Sys::Sphere sphere(position, 50.0f);
 			CellIteratorArg iterArg(sphere);
-			iterArg._14 = 1;
+			iterArg.mUseCustomRadiusThreshold = 1;
 			CellIterator iterator(iterArg);
 			iterator.first();
 
@@ -3230,7 +3230,7 @@ void PikiHipDropState::earthquake(Piki* piki)
 	f32 rad           = pikiMgr->mParms->mPikiParms.mPoundAOERange.mValue;
 	Sys::Sphere sphere(position, rad);
 	CellIteratorArg iterArg(sphere);
-	iterArg._14 = 1;
+	iterArg.mUseCustomRadiusThreshold = 1;
 
 	CellIterator iterator(iterArg);
 	iterator.first();

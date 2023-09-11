@@ -1292,8 +1292,8 @@ inline void CellLayer::drawCell(Graphics&, Vector3f&, int, int, float) const
  */
 CellPyramid::CellPyramid()
 {
-	mLayerCount       = 0;
-	mMemoryUsageMaybe = 0;
+	mLayerCount = 0;
+	mFreeMemory = 0;
 }
 
 /*
@@ -1463,7 +1463,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere)
 void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3, Recti& param_4)
 {
 	Cell::sCurrCellMgr = this;
-	float dVar19       = log10(param_2.mRadius * 2.0f * _38);
+	float dVar19       = log10(param_2.mRadius * 2.0f * mInverseScale);
 	float dVar18       = log10(2.0f);
 	float dVar17       = (dVar19 / dVar18);
 	// if (dVar17 < 0.0) {
@@ -1476,9 +1476,9 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 	float fVar10 = param_2.mRadius;
 	float fVar11 = (param_2.mPosition).x;
 	float fVar1  = (param_2.mPosition).z;
-	float fVar2  = _40;
-	float fVar3  = _3C;
-	float fVar4  = 1.0f / ((mLayers[iVar9]._04) * _34); // <--- SHORT_TO_FLOAT
+	float fVar2  = mRight;
+	float fVar3  = mLeft;
+	float fVar4  = 1.0f / ((mLayers[iVar9]._04) * mScale); // <--- SHORT_TO_FLOAT
 	param_4.p1.x = (int)(((fVar11 - fVar10) - fVar2) * fVar4);
 	param_4.p1.y = (int)(((fVar1 - fVar10) - fVar3) * fVar4);
 	param_4.p2.x = (int)(((fVar11 + fVar10) - fVar2) * fVar4);
@@ -1964,41 +1964,51 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
  * Address:	80158A0C
  * Size:	0002EC
  */
-void CellPyramid::create(BoundBox2d& box, float p2)
+void CellPyramid::create(BoundBox2d& box, float scale)
 {
-	mMemoryUsageMaybe = JKRHeap::sCurrentHeap->getFreeSize();
-	_3C               = box._04;
-	_40               = box._00;
-	_34               = p2;
-	_38               = 1.0f / p2;
-	int uVar13        = (f32)ceil((FABS(box._08 - box._00) * _38));
-	int uVar12        = (f32)ceil(FABS(box._0C - box._04) * _38);
-	if ((200 < uVar13) || (200 < uVar12)) {
-		_34    = p2 * 1.5f;
-		_38    = 1.0f / (p2 * 1.5f);
-		uVar13 = (f32)ceil((FABS(box._08 - box._00) * _38));
-		uVar12 = (f32)ceil((FABS(box._0C - box._04) * _38));
+	mFreeMemory = JKRHeap::sCurrentHeap->getFreeSize();
+
+	mLeft         = box.mBottom;
+	mRight        = box.mLeft;
+	mScale        = scale;
+	mInverseScale = 1.0f / scale;
+
+	// Calculate dimensions in pixels
+	int pixelWidth  = (f32)ceil((FABS(box.mRight - box.mLeft) * mInverseScale));
+	int pixelHeight = (f32)ceil(FABS(box.mTop - box.mBottom) * mInverseScale);
+
+	if (pixelWidth > 200 || pixelHeight > 200) {
+		mScale        = scale * 1.5f;
+		mInverseScale = 1.0f / (scale * 1.5f);
+		pixelWidth    = (f32)ceil((FABS(box.mRight - box.mLeft) * mInverseScale));
+		pixelHeight   = (f32)ceil((FABS(box.mTop - box.mBottom) * mInverseScale));
 	}
-	int uVar14 = MAX(uVar12, uVar13);
-	int dVar18 = (f32)ceil((f32)log10((f32)uVar14) / (f32)log10(2.0f));
-	pow(2.0, (double)dVar18);
-	mLayerCount          = dVar18 + 1;
+
+	int maxDimension = MAX(pixelHeight, pixelWidth);
+
+	int layerCount = (f32)ceil((f32)log10((f32)maxDimension) / (f32)log10(2.0f));
+	pow(2.0, (double)layerCount);
+
+	mLayerCount          = layerCount + 1;
 	mLayers              = new CellLayer[mLayerCount];
-	mLayers[0].mSizeX    = uVar13;
-	mLayers[0].mSizeY    = uVar12;
+	mLayers[0].mSizeX    = pixelWidth;
+	mLayers[0].mSizeY    = pixelHeight;
 	mLayers[0]._04       = 0;
 	mLayers[0]._06       = 1;
 	mLayers[0].mCells    = new Cell[mLayers[0].mSizeX * mLayers[0].mSizeY];
 	mLayers[0].mCell._20 = nullptr;
 	mLayers[0].mCell._24 = nullptr;
+
 	for (int i = 0; i < mLayers[0].mSizeX * mLayers[0].mSizeY; i++) {
 		mLayers[0].mCells[i].clear();
 		mLayers[0].mCells[i]._28 = mLayers[0]._06;
 	}
+
 	for (int i = 1; i < mLayerCount; i++) {
 		mLayers[i].pileup(mLayers[i - 1]);
 	}
-	mMemoryUsageMaybe = mMemoryUsageMaybe - JKRHeap::sCurrentHeap->getFreeSize();
+
+	mFreeMemory = mFreeMemory - JKRHeap::sCurrentHeap->getFreeSize();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)

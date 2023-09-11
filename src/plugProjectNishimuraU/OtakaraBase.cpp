@@ -609,7 +609,7 @@ void Obj::attackTarget()
 	sphere.mRadius   = radius;
 
 	CellIteratorArg iterArg(sphere);
-	iterArg.mIgnoreOverlap = true;
+	iterArg.mIsCollSphereDisabled = true;
 	CellIterator iter(iterArg);
 
 	CI_LOOP(iter)

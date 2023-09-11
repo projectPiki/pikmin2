@@ -182,7 +182,7 @@ void ActBattle::init(PikiAI::ActionArg* arg)
 	Vector3f midPoint = (mParent->getPosition() + mOther->getPosition()) * 0.5f;
 	Sys::Sphere itSphere(midPoint, 10.0f);
 	Game::CellIteratorArg citArg(itSphere);
-	citArg.mIgnoreOverlap = false;
+	citArg.mIsCollSphereDisabled = false;
 
 	Game::CellIterator cellIt(citArg);
 	CI_LOOP(cellIt)

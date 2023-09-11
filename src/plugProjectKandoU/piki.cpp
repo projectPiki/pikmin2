@@ -1522,7 +1522,7 @@ void Piki::do_updateLookCreature()
 
 			Sys::Sphere sphere(mPosition3, 200.0f);
 			CellIteratorArg iterArg(sphere);
-			iterArg._14 = 1;
+			iterArg.mUseCustomRadiusThreshold = 1;
 			CellIterator iter(iterArg);
 			int counter = 0;
 			CI_LOOP(iter)

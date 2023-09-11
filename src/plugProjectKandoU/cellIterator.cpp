@@ -9,16 +9,16 @@ namespace Game {
  */
 CellIteratorArg::CellIteratorArg()
 {
-	mCondition = nullptr;
-	_14        = 0;
+	mCondition                = nullptr;
+	mUseCustomRadiusThreshold = 0;
 
 	mSphere.mPosition = Vector3f(0.0f);
 	mSphere.mRadius   = 0.0f;
 
 	mCellMgr = cellMgr;
 
-	_1D            = 0;
-	mIgnoreOverlap = false;
+	_1D                   = 0;
+	mIsCollSphereDisabled = false;
 }
 
 /*
@@ -29,12 +29,12 @@ CellIteratorArg::CellIteratorArg()
  */
 CellIteratorArg::CellIteratorArg(Sys::Sphere& sphere)
 {
-	mSphere        = sphere;
-	mCondition     = nullptr;
-	_14            = 0;
-	mCellMgr       = Game::cellMgr;
-	_1D            = 0;
-	mIgnoreOverlap = false;
+	mSphere                   = sphere;
+	mCondition                = nullptr;
+	mUseCustomRadiusThreshold = 0;
+	mCellMgr                  = Game::cellMgr;
+	_1D                       = 0;
+	mIsCollSphereDisabled     = false;
 }
 
 /*
@@ -185,18 +185,18 @@ bool CellIterator::satisfy()
 	CellObject* obj = mCurrLeg->mObject;
 	Vector3f objPos = obj->getPosition();
 
-	Sys::Sphere sphere;
-	obj->getBoundingSphere(sphere);
+	Sys::Sphere boundingSphere;
+	obj->getBoundingSphere(boundingSphere);
 
-	if (!mArg.mIgnoreOverlap) {
-		if (!mArg._14) {
-			f32 radius = mArg.mSphere.mRadius + sphere.mRadius;
+	if (!mArg.mIsCollSphereDisabled) {
+		if (!mArg.mUseCustomRadiusThreshold) {
+			f32 radius = mArg.mSphere.mRadius + boundingSphere.mRadius;
 			radius *= radius;
 			if (sqrDistanceXZ(objPos, mArg.mSphere.mPosition) > radius) {
 				return false;
 			}
 		} else {
-			f32 radius = mArg.mSphere.mRadius + sphere.mRadius;
+			f32 radius = mArg.mSphere.mRadius + boundingSphere.mRadius;
 			radius *= radius;
 			if (sqrDistanceXZ(objPos, mArg.mSphere.mPosition) > radius) {
 				return false;
@@ -335,10 +335,10 @@ void CellIterator::calcExtent()
 	f32 z            = mArg.mSphere.mPosition.z;
 	f32 x            = mArg.mSphere.mPosition.x;
 
-	f32 a = mArg.mCellMgr->_40;
-	f32 b = mArg.mCellMgr->_3C;
+	f32 a = mArg.mCellMgr->mRight;
+	f32 b = mArg.mCellMgr->mLeft;
 
-	f32 norm = 1.0f / (mgr->_34 * mgr->mLayers[mCurrLayerIdx]._04);
+	f32 norm = 1.0f / (mgr->mScale * mgr->mLayers[mCurrLayerIdx]._04);
 
 	mMinX = (x - r - a) * norm;
 	mMinY = (z - r - b) * norm;

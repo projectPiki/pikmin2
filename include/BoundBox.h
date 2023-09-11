@@ -56,10 +56,10 @@ struct BoundBox {
 };
 
 struct BoundBox2d {
-	f32 _00;
-	f32 _04;
-	f32 _08;
-	f32 _0C;
+	f32 mLeft;   // _00
+	f32 mBottom; // _04
+	f32 mRight;  // _08
+	f32 mTop;    // _0C
 };
 
 #endif

@@ -234,7 +234,7 @@ bool Obj::isAttackableTarget()
 	sphere.mPosition = pos;
 
 	CellIteratorArg iterArg(sphere);
-	iterArg.mIgnoreOverlap = true;
+	iterArg.mIsCollSphereDisabled = true;
 	CellIterator iter(iterArg);
 	CI_LOOP(iter)
 	{
