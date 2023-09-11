@@ -2,6 +2,7 @@
 #include "Game/Navi.h"
 #include "Game/PikiMgr.h"
 #include "Game/Stickers.h"
+#include "Game/MoviePlayer.h"
 #include "stl/float.h"
 #include "Dolphin/rand.h"
 #include "nans.h"
@@ -1309,253 +1310,39 @@ void flickNearbyNavi(Creature* creature, f32 searchRadius, f32 knockback, f32 da
  */
 int eatPikmin(EnemyBase* enemy, Condition<Piki>* condition)
 {
+	int eatCount           = 0;
+	MouthSlots* mouthSlots = enemy->getMouthSlots();
+	EatPikminDefaultCondition eatCondition(enemy);
 
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stmw     r26, 0x58(r1)
-	mr       r29, r3
-	mr       r26, r4
-	li       r31, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x25c(r12)
-	mtctr    r12
-	bctrl
-	lis      r5, "__vt__23Condition<Q24Game4Piki>"@ha
-	lis      r4, __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition@ha
-	addi     r0, r5, "__vt__23Condition<Q24Game4Piki>"@l
-	cmplwi   r26, 0
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition@l
-	mr       r30, r3
-	stw      r0, 8(r1)
-	stw      r29, 0xc(r1)
-	bne      lbl_80113B8C
-	addi     r26, r1, 8
+	if (!condition) {
+		condition = &eatCondition;
+	}
+	if (mouthSlots) {
+		Iterator<Piki> iter(pikiMgr, nullptr, condition);
+		CI_LOOP(iter)
+		{
+			Piki* piki = *iter;
+			for (int i = 0; i < mouthSlots->getMax(); i++) {
+				MouthCollPart* slot = mouthSlots->getSlot(i);
+				if (!slot->mStuckCreature) {
+					Vector3f slotPos;
+					slot->getPosition(slotPos);
+					Vector3f pikiPos = piki->getPosition();
 
-lbl_80113B8C:
-	cmplwi   r30, 0
-	beq      lbl_80113E6C
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
-	li       r0, 0
-	cmplwi   r26, 0
-	stw      r4, 0x28(r1)
-	stw      r26, 0x34(r1)
-	stw      r0, 0x2c(r1)
-	stw      r3, 0x30(r1)
-	bne      lbl_80113BD4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2c(r1)
-	b        lbl_80113E4C
+					f32 dist = slotPos.distance(pikiPos);
+					if (dist < slot->mRadius) {
+						InteractSwallow eat(enemy, 1.0f, slot);
+						if (piki->stimulate(eat)) {
+							eatCount++;
+						}
+						break;
+					}
+				}
+			}
+		}
+	}
 
-lbl_80113BD4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2c(r1)
-	b        lbl_80113C40
-
-lbl_80113BEC:
-	lwz      r3, 0x30(r1)
-	lwz      r4, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80113E4C
-	lwz      r3, 0x30(r1)
-	lwz      r4, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2c(r1)
-
-lbl_80113C40:
-	lwz      r12, 0x28(r1)
-	addi     r3, r1, 0x28
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80113BEC
-	b        lbl_80113E4C
-
-lbl_80113C60:
-	lwz      r3, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	li       r26, 0
-	mr       r27, r3
-	b        lbl_80113D84
-
-lbl_80113C80:
-	mr       r3, r30
-	mr       r4, r26
-	bl       getSlot__10MouthSlotsFi
-	mr       r28, r3
-	lwz      r0, 0x64(r3)
-	cmplwi   r0, 0
-	bne      lbl_80113D80
-	addi     r4, r1, 0x1c
-	bl       "getPosition__13MouthCollPartFR10Vector3<f>"
-	mr       r4, r27
-	addi     r3, r1, 0x10
-	lwz      r12, 0(r27)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x20(r1)
-	lfs      f0, 0x14(r1)
-	lfs      f3, 0x1c(r1)
-	fsubs    f4, f1, f0
-	lfs      f2, 0x10(r1)
-	lfs      f1, 0x24(r1)
-	lfs      f0, 0x18(r1)
-	fsubs    f3, f3, f2
-	fmuls    f4, f4, f4
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_80517A80@sda21(r2)
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_80113D0C
-	ble      lbl_80113D10
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_80113D10
-
-lbl_80113D0C:
-	fmr      f1, f0
-
-lbl_80113D10:
-	lfs      f0, 0x1c(r28)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80113D80
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game14InteractAttack@ha
-	addi     r0, r4, __vt__Q24Game11Interaction@l
-	lfs      f0, lbl_80517A90@sda21(r2)
-	stw      r0, 0x38(r1)
-	addi     r4, r3, __vt__Q24Game14InteractAttack@l
-	lis      r3, __vt__Q24Game15InteractSwallow@ha
-	li       r0, 0
-	stw      r4, 0x38(r1)
-	addi     r5, r3, __vt__Q24Game15InteractSwallow@l
-	mr       r3, r27
-	addi     r4, r1, 0x38
-	stw      r29, 0x3c(r1)
-	stfs     f0, 0x40(r1)
-	stw      r28, 0x44(r1)
-	stw      r5, 0x38(r1)
-	stw      r0, 0x48(r1)
-	lwz      r12, 0(r27)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80113D90
-	addi     r31, r31, 1
-	b        lbl_80113D90
-
-lbl_80113D80:
-	addi     r26, r26, 1
-
-lbl_80113D84:
-	lwz      r0, 0(r30)
-	cmpw     r26, r0
-	blt      lbl_80113C80
-
-lbl_80113D90:
-	lwz      r0, 0x34(r1)
-	cmplwi   r0, 0
-	bne      lbl_80113DBC
-	lwz      r3, 0x30(r1)
-	lwz      r4, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2c(r1)
-	b        lbl_80113E4C
-
-lbl_80113DBC:
-	lwz      r3, 0x30(r1)
-	lwz      r4, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2c(r1)
-	b        lbl_80113E30
-
-lbl_80113DDC:
-	lwz      r3, 0x30(r1)
-	lwz      r4, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80113E4C
-	lwz      r3, 0x30(r1)
-	lwz      r4, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x2c(r1)
-
-lbl_80113E30:
-	lwz      r12, 0x28(r1)
-	addi     r3, r1, 0x28
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80113DDC
-
-lbl_80113E4C:
-	lwz      r3, 0x30(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x2c(r1)
-	cmplw    r4, r3
-	bne      lbl_80113C60
-
-lbl_80113E6C:
-	mr       r3, r31
-	lmw      r26, 0x58(r1)
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	return eatCount;
 }
 
 /*
@@ -1563,277 +1350,31 @@ lbl_80113E6C:
  * Address:	80113E84
  * Size:	0003DC
  */
-void swallowPikmin(Creature*, float, Condition<Piki>*)
+void swallowPikmin(Creature* creature, f32 damage, Condition<Piki>* condition)
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stw      r31, 0x8c(r1)
-	stw      r30, 0x88(r1)
-	stw      r29, 0x84(r1)
-	fmr      f31, f1
-	mr       r30, r3
-	mr       r31, r4
-	addi     r3, r1, 0x30
-	mr       r4, r30
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x30
-	cmplwi   r0, 0
-	stw      r4, 0x20(r1)
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x24(r1)
-	stw      r3, 0x28(r1)
-	bne      lbl_80113EFC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_80114210
+	Stickers stickers(creature);
+	Iterator<Creature> iter(&stickers);
 
-lbl_80113EFC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_80113F68
+	CI_LOOP(iter)
+	{
+		if ((*iter)->isPiki()) {
+			Piki* piki = static_cast<Piki*>(*iter);
+			if ((!condition || (condition && condition->satisfy(piki))) && piki->isStickToMouth()) {
+				InteractKill kill(creature, nullptr);
+				if (piki->stimulate(kill) && (int)piki->getKind() == White) {
+					static_cast<EnemyBase*>(creature)->eatWhitePikminCallBack(piki, damage);
 
-lbl_80113F14:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80114210
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_80113F68:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80113F14
-	b        lbl_80114210
-
-lbl_80113F88:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80114154
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r31, 0
-	mr       r29, r3
-	beq      lbl_80113FFC
-	beq      lbl_80114154
-	mr       r3, r31
-	mr       r4, r29
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80114154
-
-lbl_80113FFC:
-	mr       r3, r29
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80114154
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game12InteractKill@ha
-	addi     r4, r4, __vt__Q24Game11Interaction@l
-	li       r0, 0
-	stw      r4, 0x14(r1)
-	addi     r5, r3, __vt__Q24Game12InteractKill@l
-	mr       r3, r29
-	addi     r4, r1, 0x14
-	stw      r30, 0x18(r1)
-	stw      r5, 0x14(r1)
-	stw      r0, 0x1c(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80114154
-	lbz      r0, 0x2b8(r29)
-	cmpwi    r0, 4
-	bne      lbl_80114154
-	mr       r3, r30
-	fmr      f1, f31
-	lwz      r12, 0(r30)
-	mr       r4, r29
-	lwz      r12, 0x298(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_80114154
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0xc
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80114154
-	lwz      r0, moviePlayer__4Game@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80114154
-	lfs      f0, lbl_80517A80@sda21(r2)
-	lis      r3, lbl_8047AE94@ha
-	li       r0, 0
-	mr       r4, r30
-	addi     r5, r3, lbl_8047AE94@l
-	stw      r0, 0x50(r1)
-	addi     r3, r1, 8
-	stw      r5, 0x4c(r1)
-	stw      r0, 0x58(r1)
-	stfs     f0, 0x64(r1)
-	stfs     f0, 0x68(r1)
-	stfs     f0, 0x6c(r1)
-	stfs     f0, 0x70(r1)
-	stw      r0, 0x74(r1)
-	stw      r0, 0x5c(r1)
-	stw      r0, 0x54(r1)
-	stw      r0, 0x78(r1)
-	stw      r0, 0x60(r1)
-	stw      r0, 0x7c(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	mr       r3, r30
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x64(r1)
-	stfs     f1, 0x68(r1)
-	stfs     f0, 0x6c(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x70(r1)
-	addi     r4, r1, 0x4c
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	stw      r30, 0x194(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0xc
-	bl       setDemoFlag__Q24Game8PlayDataFi
-
-lbl_80114154:
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_80114180
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_80114210
-
-lbl_80114180:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_801141F4
-
-lbl_801141A0:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80114210
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_801141F4:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801141A0
-
-lbl_80114210:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_80113F88
-	addi     r3, r1, 0x30
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	psq_l    f31, 152(r1), 0, qr0
-	lwz      r0, 0xa4(r1)
-	lfd      f31, 0x90(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	lwz      r29, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+					if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_Eat_White_Pikmin) && moviePlayer) {
+						MoviePlayArg movie("g2B_white_poison", nullptr, nullptr, 0);
+						movie.setTarget(creature);
+						moviePlayer->mTargetObject = creature;
+						moviePlayer->play(movie);
+						playData->setDemoFlag(DEMO_Eat_White_Pikmin);
+					}
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -1841,289 +1382,30 @@ lbl_80114210:
  * Address:	80114260
  * Size:	0003F8
  */
-int attackNavi(Creature*, float, float, float, CollPart*, Condition<Navi>*)
+int attackNavi(Creature* creature, f32 searchRadius, f32 searchAngle, f32 damage, CollPart* part, Condition<Navi>* condition)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xF0(r1)
-	  mflr      r0
-	  stw       r0, 0xF4(r1)
-	  stfd      f31, 0xE0(r1)
-	  psq_st    f31,0xE8(r1),0,0
-	  stfd      f30, 0xD0(r1)
-	  psq_st    f30,0xD8(r1),0,0
-	  stfd      f29, 0xC0(r1)
-	  psq_st    f29,0xC8(r1),0,0
-	  stfd      f28, 0xB0(r1)
-	  psq_st    f28,0xB8(r1),0,0
-	  stfd      f27, 0xA0(r1)
-	  psq_st    f27,0xA8(r1),0,0
-	  stfd      f26, 0x90(r1)
-	  psq_st    f26,0x98(r1),0,0
-	  stmw      r27, 0x7C(r1)
-	  lfs       f0, -0x68E4(r2)
-	  lis       r6, 0x804B
-	  lwz       r0, -0x6D20(r13)
-	  subi      r7, r6, 0x434C
-	  fmuls     f0, f0, f2
-	  lfs       f2, -0x68E8(r2)
-	  li        r6, 0
-	  fmr       f29, f1
-	  fmr       f31, f3
-	  cmplwi    r5, 0
-	  fmuls     f30, f2, f0
-	  stw       r7, 0x60(r1)
-	  mr        r29, r3
-	  mr        r30, r4
-	  stw       r5, 0x6C(r1)
-	  li        r31, 0
-	  stw       r6, 0x64(r1)
-	  stw       r0, 0x68(r1)
-	  bne-      .loc_0xA8
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x64(r1)
-	  b         .loc_0x134
+	searchAngle     = TORADIANS(searchAngle);
+	int attackCount = 0;
 
-	.loc_0xA8:
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x64(r1)
-	  b         .loc_0x118
+	Iterator<Navi> iter(naviMgr, nullptr, condition);
+	CI_LOOP(iter)
+	{
+		Navi* navi    = *iter;
+		f32 angleDist = creature->getAngDist(navi);
 
-	.loc_0xC4:
-	  lwz       r3, 0x68(r1)
-	  lwz       r4, 0x64(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x6C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x134
-	  lwz       r3, 0x68(r1)
-	  lwz       r4, 0x64(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x64(r1)
+		if (FABS(angleDist) < searchAngle) {
+			Vector3f naviPos     = navi->getPosition();
+			Vector3f creaturePos = creature->getPosition();
+			f32 dist             = creaturePos.distance(naviPos);
+			if (dist < searchRadius) {
+				InteractAttack attack(creature, damage, part);
+				navi->stimulate(attack);
+				attackCount++;
+			}
+		}
+	}
 
-	.loc_0x118:
-	  lwz       r12, 0x60(r1)
-	  addi      r3, r1, 0x60
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xC4
-
-	.loc_0x134:
-	  lis       r3, 0x8051
-	  subi      r28, r3, 0x2E20
-	  b         .loc_0x390
-
-	.loc_0x140:
-	  lwz       r3, 0x68(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r27, r3
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r27)
-	  mr        r4, r27
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  lfs       f2, 0x20(r1)
-	  lwz       r12, 0x0(r29)
-	  addi      r3, r1, 0x2C
-	  lfs       f1, 0x24(r1)
-	  lfs       f0, 0x28(r1)
-	  lwz       r12, 0x8(r12)
-	  stfs      f2, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f5, 0x2C(r1)
-	  mr        r3, r28
-	  lfs       f3, 0x34(r1)
-	  lfs       f1, 0x8(r1)
-	  lfs       f0, 0x10(r1)
-	  lfs       f4, 0x30(r1)
-	  fsubs     f1, f1, f5
-	  fsubs     f2, f0, f3
-	  stfs      f5, 0x14(r1)
-	  stfs      f4, 0x18(r1)
-	  stfs      f3, 0x1C(r1)
-	  bl        -0xDF324
-	  bl        0x2FD7A0
-	  lwz       r12, 0x0(r29)
-	  fmr       f28, f1
-	  mr        r3, r29
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f28
-	  bl        0x2FD7A8
-	  fabs      f0, f1
-	  frsp      f0, f0
-	  fcmpo     cr0, f0, f30
-	  bge-      .loc_0x2D4
-	  mr        r4, r27
-	  addi      r3, r1, 0x44
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x0(r29)
-	  lfs       f28, 0x44(r1)
-	  lwz       r12, 0x8(r12)
-	  lfs       f27, 0x48(r1)
-	  lfs       f26, 0x4C(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x3C(r1)
-	  lfs       f2, 0x38(r1)
-	  fsubs     f3, f0, f27
-	  lfs       f1, 0x40(r1)
-	  fsubs     f2, f2, f28
-	  lfs       f0, -0x68E0(r2)
-	  fsubs     f1, f1, f26
-	  fmuls     f3, f3, f3
-	  fmuls     f4, f1, f1
-	  fmadds    f1, f2, f2, f3
-	  fadds     f1, f4, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x288
-	  ble-      .loc_0x28C
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x28C
-
-	.loc_0x288:
-	  fmr       f1, f0
-
-	.loc_0x28C:
-	  fcmpo     cr0, f1, f29
-	  bge-      .loc_0x2D4
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  subi      r4, r4, 0x5D00
-	  stw       r29, 0x54(r1)
-	  addi      r0, r3, 0x4DE0
-	  mr        r3, r27
-	  stw       r4, 0x50(r1)
-	  addi      r4, r1, 0x50
-	  stw       r0, 0x50(r1)
-	  stfs      f31, 0x58(r1)
-	  stw       r30, 0x5C(r1)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r31, r31, 0x1
-
-	.loc_0x2D4:
-	  lwz       r0, 0x6C(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x300
-	  lwz       r3, 0x68(r1)
-	  lwz       r4, 0x64(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x64(r1)
-	  b         .loc_0x390
-
-	.loc_0x300:
-	  lwz       r3, 0x68(r1)
-	  lwz       r4, 0x64(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x64(r1)
-	  b         .loc_0x374
-
-	.loc_0x320:
-	  lwz       r3, 0x68(r1)
-	  lwz       r4, 0x64(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x6C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x390
-	  lwz       r3, 0x68(r1)
-	  lwz       r4, 0x64(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x64(r1)
-
-	.loc_0x374:
-	  lwz       r12, 0x60(r1)
-	  addi      r3, r1, 0x60
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x320
-
-	.loc_0x390:
-	  lwz       r3, 0x68(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x64(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x140
-	  mr        r3, r31
-	  psq_l     f31,0xE8(r1),0,0
-	  lfd       f31, 0xE0(r1)
-	  psq_l     f30,0xD8(r1),0,0
-	  lfd       f30, 0xD0(r1)
-	  psq_l     f29,0xC8(r1),0,0
-	  lfd       f29, 0xC0(r1)
-	  psq_l     f28,0xB8(r1),0,0
-	  lfd       f28, 0xB0(r1)
-	  psq_l     f27,0xA8(r1),0,0
-	  lfd       f27, 0xA0(r1)
-	  psq_l     f26,0x98(r1),0,0
-	  lfd       f26, 0x90(r1)
-	  lmw       r27, 0x7C(r1)
-	  lwz       r0, 0xF4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xF0
-	  blr
-	*/
+	return attackCount;
 }
 
 /*
@@ -2142,7 +1424,6 @@ bool isStartFlick(EnemyBase* enemy, bool doResetFlickCounter)
 		flickVal = enemy->mToFlick - 0.5f;
 	}
 
-	// int stuckCount = enemy->mStuckPikminCount;
 	parms       = static_cast<EnemyParmsBase*>(enemy->mParms);
 	u8 flickInt = (int)flickVal;
 
@@ -2174,8 +1455,25 @@ bool isStartFlick(EnemyBase* enemy, bool doResetFlickCounter)
  * Address:	80114734
  * Size:	00038C
  */
-bool isTherePikmin(Creature*, float, Condition<Piki>*)
+bool isTherePikmin(Creature* creature, f32 searchRadius, Condition<Piki>* condition)
 {
+	searchRadius *= searchRadius;
+	Iterator<Piki> iter(pikiMgr, nullptr, condition);
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		if (piki->isSearchable()) {
+			Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
+			Vector3f pikiPos     = Vector3f(piki->getPosition().x, piki->getPosition().y, piki->getPosition().z);
+
+			Vector3f diff = creaturePos - pikiPos;
+			if (diff.sqrMagnitude() < searchRadius) {
+				return true;
+			}
+		}
+	}
+
+	return false;
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -2434,8 +1732,23 @@ lbl_80114A74:
  * Address:	80114AC0
  * Size:	000330
  */
-bool isThereOlimar(Creature*, float, Condition<Navi>*)
+bool isThereOlimar(Creature* creature, f32 searchRadius, Condition<Navi>* condition)
 {
+	searchRadius *= searchRadius;
+	Iterator<Navi> iter(naviMgr, nullptr, condition);
+	CI_LOOP(iter)
+	{
+		Navi* navi           = *iter;
+		Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
+		Vector3f naviPos     = Vector3f(navi->getPosition().x, navi->getPosition().y, navi->getPosition().z);
+
+		Vector3f diff = creaturePos - naviPos;
+		if (diff.sqrMagnitude() < searchRadius) {
+			return true;
+		}
+	}
+
+	return false;
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -2669,8 +1982,29 @@ lbl_80114DA8:
  * Address:	80114DF0
  * Size:	0003C4
  */
-int getSurroundPikminNum(Creature*, float, Condition<Piki>*)
+int getSurroundPikminNum(Creature* creature, f32 searchRadius, Condition<Piki>* condition)
 {
+	sys->mTimers->_start("teki-srch", true);
+	searchRadius *= searchRadius;
+	int pikiCount = 0;
+	Iterator<Piki> iter(pikiMgr, nullptr, condition);
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		if (piki->isSearchable()) {
+			Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
+			Vector3f pikiPos     = Vector3f(piki->getPosition().x, piki->getPosition().y, piki->getPosition().z);
+
+			Vector3f diff = creaturePos - pikiPos;
+			if (diff.sqrMagnitude() < searchRadius) {
+				pikiCount++;
+			}
+		}
+	}
+
+	sys->mTimers->_stop("teki-srch");
+	return pikiCount;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xD0(r1)
@@ -2942,175 +2276,22 @@ int getSurroundPikminNum(Creature*, float, Condition<Piki>*)
  * Address:	801151B4
  * Size:	00024C
  */
-int getStickPikminColorNum(Creature*, int)
+int getStickPikminColorNum(Creature* creature, int color)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	li       r31, 0
-	stw      r30, 0x38(r1)
-	mr       r30, r4
-	mr       r4, r3
-	addi     r3, r1, 0x18
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x18
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8011521C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801153B8
+	int num = 0;
+	Stickers stickers(creature);
+	Iterator<Creature> iter(&stickers);
+	CI_LOOP(iter)
+	{
+		if ((*iter)->isPiki()) {
+			Piki* piki = static_cast<Piki*>(*iter);
+			if (piki->getKind() == color) {
+				num++;
+			}
+		}
+	}
 
-lbl_8011521C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80115288
-
-lbl_80115234:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801153B8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_80115288:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80115234
-	b        lbl_801153B8
-
-lbl_801152A8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801152FC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x2b8(r3)
-	cmpw     r30, r0
-	bne      lbl_801152FC
-	addi     r31, r31, 1
-
-lbl_801152FC:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_80115328
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801153B8
-
-lbl_80115328:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8011539C
-
-lbl_80115348:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801153B8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8011539C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80115348
-
-lbl_801153B8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801152A8
-	addi     r3, r1, 0x18
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	lwz      r0, 0x44(r1)
-	mr       r3, r31
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	return num;
 }
 
 /*
@@ -3118,134 +2299,15 @@ lbl_801153B8:
  * Address:	80115400
  * Size:	0001DC
  */
-void walkToTarget(EnemyBase*, Creature*, float, float, float)
+void walkToTarget(EnemyBase* enemy, Creature* target, f32 p1, f32 p2, f32 p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stfd      f31, 0x80(r1)
-	  psq_st    f31,0x88(r1),0,0
-	  stfd      f30, 0x70(r1)
-	  psq_st    f30,0x78(r1),0,0
-	  stfd      f29, 0x60(r1)
-	  psq_st    f29,0x68(r1),0,0
-	  stfd      f28, 0x50(r1)
-	  psq_st    f28,0x58(r1),0,0
-	  stw       r31, 0x4C(r1)
-	  lwz       r12, 0x0(r4)
-	  mr        r31, r3
-	  fmr       f31, f1
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x8(r12)
-	  fmr       f28, f2
-	  fmr       f29, f3
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f2, 0x20(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x2C
-	  lfs       f1, 0x24(r1)
-	  lfs       f0, 0x28(r1)
-	  lwz       r12, 0x8(r12)
-	  stfs      f2, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f5, 0x2C(r1)
-	  lis       r3, 0x8051
-	  lfs       f3, 0x34(r1)
-	  subi      r3, r3, 0x2E20
-	  lfs       f1, 0x8(r1)
-	  lfs       f0, 0x10(r1)
-	  lfs       f4, 0x30(r1)
-	  fsubs     f1, f1, f5
-	  fsubs     f2, f0, f3
-	  stfs      f5, 0x14(r1)
-	  stfs      f4, 0x18(r1)
-	  stfs      f3, 0x1C(r1)
-	  bl        -0xE03AC
-	  bl        0x2FC718
-	  lwz       r12, 0x0(r31)
-	  fmr       f30, f1
-	  mr        r3, r31
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f30
-	  bl        0x2FC720
-	  fmuls     f30, f1, f28
-	  lfs       f0, -0x68E4(r2)
-	  lfs       f1, -0x68E8(r2)
-	  fmuls     f0, f0, f29
-	  fabs      f2, f30
-	  fmuls     f1, f1, f0
-	  frsp      f0, f2
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x11C
-	  lfs       f0, -0x68E0(r2)
-	  fcmpo     cr0, f30, f0
-	  ble-      .loc_0x118
-	  fmr       f30, f1
-	  b         .loc_0x11C
+	enemy->turnToTarget(target, p2, p3);
 
-	.loc_0x118:
-	  fneg      f30, f1
+	f32 x = sin(enemy->getFaceDir());
+	f32 y = enemy->getTargetVelocity().y;
+	f32 z = cos(enemy->getFaceDir());
 
-	.loc_0x11C:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fadds     f1, f30, f1
-	  bl        0x2FC69C
-	  stfs      f1, 0x1FC(r31)
-	  mr        r3, r31
-	  lfs       f0, 0x1FC(r31)
-	  stfs      f0, 0x1A8(r31)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x45D3C
-	  mr        r3, r31
-	  lfs       f2, 0x1D4(r31)
-	  lwz       r12, 0x0(r31)
-	  frsp      f29, f1
-	  lfs       f30, 0x1D8(r31)
-	  lfs       f0, 0x1DC(r31)
-	  lwz       r12, 0x64(r12)
-	  stfs      f2, 0x38(r1)
-	  stfs      f30, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x462D8
-	  fmuls     f0, f31, f29
-	  frsp      f1, f1
-	  stfs      f0, 0x1D4(r31)
-	  fmuls     f0, f31, f1
-	  stfs      f30, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  psq_l     f31,0x88(r1),0,0
-	  lfd       f31, 0x80(r1)
-	  psq_l     f30,0x78(r1),0,0
-	  lfd       f30, 0x70(r1)
-	  psq_l     f29,0x68(r1),0,0
-	  lfd       f29, 0x60(r1)
-	  psq_l     f28,0x58(r1),0,0
-	  lfd       f28, 0x50(r1)
-	  lwz       r0, 0x94(r1)
-	  lwz       r31, 0x4C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
-	*/
+	enemy->mTargetVelocity = Vector3f(p1 * x, y, p1 * z);
 }
 
 /*
@@ -3253,125 +2315,15 @@ void walkToTarget(EnemyBase*, Creature*, float, float, float)
  * Address:	801155DC
  * Size:	0001BC
  */
-void walkToTarget(EnemyBase*, Vector3f&, float, float, float)
+void walkToTarget(EnemyBase* enemy, Vector3f& targetPos, f32 p1, f32 p2, f32 p3)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	mr       r31, r4
-	mr       r4, r30
-	fmr      f31, f1
-	lwz      r12, 0(r30)
-	fmr      f28, f2
-	fmr      f29, f3
-	addi     r3, r1, 0x14
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f5, 0x14(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 0x1c(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f1, 0(r31)
-	lfs      f0, 8(r31)
-	lfs      f4, 0x18(r1)
-	fsubs    f1, f1, f5
-	fsubs    f2, f0, f3
-	stfs     f5, 8(r1)
-	stfs     f4, 0xc(r1)
-	stfs     f3, 0x10(r1)
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r30)
-	fmr      f30, f1
-	mr       r3, r30
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f30
-	bl       angDist__Fff
-	fmuls    f30, f1, f28
-	lfs      f0, lbl_80517A7C@sda21(r2)
-	lfs      f1, lbl_80517A78@sda21(r2)
-	fmuls    f0, f0, f29
-	fabs     f2, f30
-	fmuls    f1, f1, f0
-	frsp     f0, f2
-	fcmpo    cr0, f0, f1
-	ble      lbl_801156D4
-	lfs      f0, lbl_80517A80@sda21(r2)
-	fcmpo    cr0, f30, f0
-	ble      lbl_801156D0
-	fmr      f30, f1
-	b        lbl_801156D4
+	enemy->turnToTarget2(targetPos, p2, p3);
 
-lbl_801156D0:
-	fneg     f30, f1
+	f32 x = sin(enemy->getFaceDir());
+	f32 y = enemy->getTargetVelocity().y;
+	f32 z = cos(enemy->getFaceDir());
 
-lbl_801156D4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f30, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r30)
-	mr       r3, r30
-	lfs      f0, 0x1fc(r30)
-	stfs     f0, 0x1a8(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	bl       sin
-	mr       r3, r30
-	lfs      f2, 0x1d4(r30)
-	lwz      r12, 0(r30)
-	frsp     f29, f1
-	lfs      f30, 0x1d8(r30)
-	lfs      f0, 0x1dc(r30)
-	lwz      r12, 0x64(r12)
-	stfs     f2, 0x20(r1)
-	stfs     f30, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	mtctr    r12
-	bctrl
-	bl       cos
-	fmuls    f0, f31, f29
-	frsp     f1, f1
-	stfs     f0, 0x1d4(r30)
-	fmuls    f0, f31, f1
-	stfs     f30, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	enemy->mTargetVelocity = Vector3f(p1 * x, y, p1 * z);
 }
 
 /*
@@ -3379,44 +2331,15 @@ lbl_801156D4:
  * Address:	80115798
  * Size:	000080
  */
-bool EatPikminDefaultCondition::satisfy(Piki* p)
+bool EatPikminDefaultCondition::satisfy(Piki* piki)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r12, 0(r29)
-	lwz      r30, 4(r3)
-	mr       r3, r29
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801157F8
-	lwz      r0, 0xf4(r29)
-	cmplw    r0, r30
-	beq      lbl_801157F8
-	mr       r3, r29
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801157F8
-	li       r31, 1
+	bool result        = false;
+	Creature* creature = mEnemy;
+	if (piki->isPikmin() && piki->mSticker != creature && !piki->isStickToMouth()) {
+		result = true;
+	}
 
-lbl_801157F8:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return result;
 }
 
 /*
@@ -3424,8 +2347,18 @@ lbl_801157F8:
  * Address:	80115818
  * Size:	000168
  */
-bool ConditionPikminNearby::satisfy(Creature*)
+bool ConditionPikminNearby::satisfy(Creature* creature)
 {
+	if (creature->mSticker != mCreature) {
+		Vector3f creaturePos = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z);
+		Vector3f targetPos   = Vector3f(mCreature->getPosition().x, mCreature->getPosition().y, mCreature->getPosition().z);
+
+		Vector3f diff = creaturePos - targetPos;
+		if (diff.sqrMagnitude() < mSearchDist) {
+			return true;
+		}
+	}
+	return false;
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0

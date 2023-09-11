@@ -30,9 +30,15 @@ struct ConditionPikminNearby : public Condition<Creature> {
 };
 
 struct EatPikminDefaultCondition : public Condition<Piki> {
+	inline EatPikminDefaultCondition(EnemyBase* enemy)
+	    : mEnemy(enemy)
+	{
+	}
+
 	virtual bool satisfy(Piki*); // 08 (weak)
 
 	// _00 = VTBL
+	EnemyBase* mEnemy; // _00
 };
 
 Navi* getNearestNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32* naviDist, Condition<Navi>* condition);
