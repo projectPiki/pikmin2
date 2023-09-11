@@ -3,9 +3,12 @@
 #include "Game/MapMgr.h"
 #include "Game/PikiMgr.h"
 #include "Game/Navi.h"
+#include "Game/Stickers.h"
 #include "Game/SingleGameSection.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
+#include "PSM/EnemyBoss.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 #include "Dolphin/rand.h"
 #include "nans.h"
 
@@ -63,8 +66,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	shadowMgr->delNormalShadow(this);
 	mIsUnderground = true;
 	mStateTimer    = 0.0f;
-	_2C8           = -1;
-	_2D4           = -1;
+	mNextState     = SNAKECROW_NULL;
+	mAttackAnimIdx = -1;
 	setupJointCallBack();
 	setupCollision();
 	setupShadowSystem();
@@ -331,12 +334,12 @@ void Obj::setAttackPosition()
 	f32 array2[5] = { 0.0f, 0.0f, 0.0f, 80.0f, -80.0f };
 
 	for (int i = 0; i < 5; i++) {
-		f32 dirFactor      = array1[i];
-		f32 orthoDirFactor = array2[i];
-		_2D8[i]            = mPosition;
-		_2D8[i] += dir * dirFactor;
-		_2D8[i] += orthoDir * orthoDirFactor;
-		_2D8[i].y = mapMgr->getMinY(_2D8[i]);
+		f32 dirFactor       = array1[i];
+		f32 orthoDirFactor  = array2[i];
+		mAttackPositions[i] = mPosition;
+		mAttackPositions[i] += dir * dirFactor;
+		mAttackPositions[i] += orthoDir * orthoDirFactor;
+		mAttackPositions[i].y = mapMgr->getMinY(mAttackPositions[i]);
 	}
 	/*
 	stwu     r1, -0x90(r1)
@@ -1325,42 +1328,15 @@ lbl_802949B4:
  */
 CollPart* Obj::getSwallowSlot()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	b        lbl_80294A38
+	for (int i = 0; i < mMouthSlots.getMax(); i++) {
+		MouthCollPart* slot = mMouthSlots.getSlot(i);
+		if (slot->mStuckCreature) {
+			continue;
+		}
+		return slot;
+	}
 
-lbl_80294A18:
-	mr       r4, r31
-	addi     r3, r30, 0x2cc
-	bl       getSlot__10MouthSlotsFi
-	lwz      r0, 0x64(r3)
-	cmplwi   r0, 0
-	bne      lbl_80294A34
-	b        lbl_80294A48
-
-lbl_80294A34:
-	addi     r31, r31, 1
-
-lbl_80294A38:
-	lwz      r0, 0x2cc(r30)
-	cmpw     r31, r0
-	blt      lbl_80294A18
-	li       r3, 0
-
-lbl_80294A48:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -1370,43 +1346,15 @@ lbl_80294A48:
  */
 bool Obj::isSwallowPikmin()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	b        lbl_80294AA4
+	for (int i = 0; i < mMouthSlots.getMax(); i++) {
+		MouthCollPart* slot = mMouthSlots.getSlot(i);
+		if (!slot->mStuckCreature) {
+			continue;
+		}
+		return true;
+	}
 
-lbl_80294A80:
-	mr       r4, r31
-	addi     r3, r30, 0x2cc
-	bl       getSlot__10MouthSlotsFi
-	lwz      r0, 0x64(r3)
-	cmplwi   r0, 0
-	beq      lbl_80294AA0
-	li       r3, 1
-	b        lbl_80294AB4
-
-lbl_80294AA0:
-	addi     r31, r31, 1
-
-lbl_80294AA4:
-	lwz      r0, 0x2cc(r30)
-	cmpw     r31, r0
-	blt      lbl_80294A80
-	li       r3, 0
-
-lbl_80294AB4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1416,173 +1364,18 @@ lbl_80294AB4:
  */
 int Obj::getStickHeadPikmin()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x44(r1)
-	addi     r3, r1, 0x18
-	stw      r31, 0x3c(r1)
-	li       r31, 0
-	stw      r30, 0x38(r1)
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x18
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_80294B30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80294CD0
+	int stickCount = 0;
+	Stickers stickers(this);
+	Iterator<Creature> iter(&stickers);
+	CI_LOOP(iter)
+	{
+		Creature* piki = *iter;
+		if (piki->isAlive() && piki->mStuckCollPart && piki->mStuckCollPart->mCurrentID == 'head') {
+			stickCount++;
+		}
+	}
 
-lbl_80294B30:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80294B9C
-
-lbl_80294B48:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80294CD0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_80294B9C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80294B48
-	b        lbl_80294CD0
-
-lbl_80294BBC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80294C14
-	lwz      r3, 0xf8(r30)
-	cmplwi   r3, 0
-	beq      lbl_80294C14
-	lis      r4, 0x68656164@ha
-	addi     r3, r3, 0x30
-	addi     r4, r4, 0x68656164@l
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80294C14
-	addi     r31, r31, 1
-
-lbl_80294C14:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_80294C40
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80294CD0
-
-lbl_80294C40:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80294CB4
-
-lbl_80294C60:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80294CD0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_80294CB4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80294C60
-
-lbl_80294CD0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_80294BBC
-	addi     r3, r1, 0x18
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	lwz      r0, 0x44(r1)
-	mr       r3, r31
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	return stickCount;
 }
 
 /*
@@ -1590,91 +1383,28 @@ lbl_80294CD0:
  * Address:	80294D18
  * Size:	000048
  */
-void Obj::createJointCallBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80294D48
-	mr       r4, r31
-	bl       __ct__Q24Game13SnakeJointMgrFPQ24Game9EnemyBase
-	mr       r0, r3
-
-lbl_80294D48:
-	stw      r0, 0x314(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createJointCallBack() { mSnakeJointMgr = new SnakeJointMgr(this); }
 
 /*
  * --INFO--
  * Address:	80294D60
  * Size:	000024
  */
-void Obj::setupJointCallBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x314(r3)
-	bl       setupCallBackJoint__Q24Game13SnakeJointMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::setupJointCallBack() { mSnakeJointMgr->setupCallBackJoint(); }
 
 /*
  * --INFO--
  * Address:	80294D84
  * Size:	000024
  */
-void Obj::doAnimationJointCallBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x314(r3)
-	bl       doAnimation__Q24Game13SnakeJointMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doAnimationJointCallBack() { mSnakeJointMgr->doAnimation(); }
 
 /*
  * --INFO--
  * Address:	80294DA8
  * Size:	000024
  */
-void Obj::finishAnimationJointCallBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x314(r3)
-	bl       finishAnimation__Q24Game13SnakeJointMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishAnimationJointCallBack() { mSnakeJointMgr->finishAnimation(); }
 
 /*
  * --INFO--
@@ -1683,54 +1413,10 @@ void Obj::finishAnimationJointCallBack()
  */
 void Obj::startJointCallBack()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r0, 0x2d4(r3)
-	lwz      r3, 0x184(r3)
-	mulli    r0, r0, 0xc
-	lfs      f0, 0x190(r30)
-	lwz      r12, 0(r3)
-	add      r4, r30, r0
-	lwz      r12, 0x10(r12)
-	lfs      f1, 0x2dc(r4)
-	fsubs    f31, f1, f0
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc(r3)
-	li       r4, 3
-	bl       getAnimKeyByType__Q28SysShape8AnimInfoFUl
-	mr       r31, r3
-	mr       r3, r30
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lwz      r3, 0x18(r31)
-	lis      r0, 0x4330
-	fmr      f3, f1
-	stw      r0, 8(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, lbl_8051BAD0@sda21(r2)
-	stw      r0, 0xc(r1)
-	fmr      f1, f31
-	lfd      f0, 8(r1)
-	lwz      r3, 0x314(r30)
-	fsubs    f0, f0, f2
-	fsubs    f2, f0, f3
-	bl       startModify__Q24Game13SnakeJointMgrFff
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	f32 y                     = mAttackPositions[mAttackAnimIdx].y - mPosition.y;
+	SysShape::KeyEvent* event = mAnimator->getAnimator().mAnimInfo->getAnimKeyByType(3);
+	f32 frame                 = getMotionFrame();
+	mSnakeJointMgr->startModify(y, (f32)event->mFrame - frame);
 }
 
 /*
@@ -1740,42 +1426,9 @@ void Obj::startJointCallBack()
  */
 void Obj::returnJointCallBack()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r3, 0x184(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc(r3)
-	li       r4, 4
-	bl       getAnimKeyByType__Q28SysShape8AnimInfoFUl
-	mr       r31, r3
-	mr       r3, r30
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lwz      r3, 0x18(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, lbl_8051BAD0@sda21(r2)
-	stw      r0, 0xc(r1)
-	lwz      r3, 0x314(r30)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fsubs    f1, f0, f1
-	bl       returnModify__Q24Game13SnakeJointMgrFf
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	SysShape::KeyEvent* event = mAnimator->getAnimator().mAnimInfo->getAnimKeyByType(4);
+	f32 frame                 = getMotionFrame();
+	mSnakeJointMgr->returnModify((f32)event->mFrame - frame);
 }
 
 /*
@@ -1783,20 +1436,7 @@ void Obj::returnJointCallBack()
  * Address:	80294F0C
  * Size:	000024
  */
-void Obj::finishJointCallBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x314(r3)
-	bl       finishModify__Q24Game13SnakeJointMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishJointCallBack() { mSnakeJointMgr->finishModify(); }
 
 /*
  * --INFO--
@@ -1805,24 +1445,10 @@ void Obj::finishJointCallBack()
  */
 void Obj::setupCollision()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x626F6431@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, 0x626F6431@l
-	lwz      r3, 0x114(r3)
-	bl       getCollPart__8CollTreeFUl
-	cmplwi   r3, 0
-	beq      lbl_80294F58
-	bl       makeTubeTree__8CollPartFv
-
-lbl_80294F58:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	CollPart* part = mCollTree->getCollPart('bod1');
+	if (part) {
+		part->makeTubeTree();
+	}
 }
 
 /*
@@ -1832,24 +1458,13 @@ lbl_80294F58:
  */
 void Obj::lifeIncrement()
 {
-	/*
-	lfs      f1, lbl_8051BA90@sda21(r2)
-	lfs      f0, lbl_8051BAA8@sda21(r2)
-	stfs     f1, 0x208(r3)
-	lwz      r0, 0x1e0(r3)
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stw      r0, 0x1e0(r3)
-	lfs      f1, 0x200(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x200(r3)
-	lwz      r4, 0xc0(r3)
-	lfs      f1, 0x200(r3)
-	lfs      f0, 0x104(r4)
-	fcmpo    cr0, f1, f0
-	blelr
-	stfs     f0, 0x200(r3)
-	blr
-	*/
+	mInstantDamage = 0.0f;
+	disableEvent(0, EB_TakingDamage);
+	mHealth += 10.0f;
+
+	if (mHealth > *C_PARMS->mGeneral.mHealth()) {
+		mHealth = *C_PARMS->mGeneral.mHealth();
+	}
 }
 
 /*
@@ -1857,111 +1472,35 @@ void Obj::lifeIncrement()
  * Address:	80294FA8
  * Size:	000048
  */
-void Obj::createShadowSystem()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x68
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80294FD8
-	mr       r4, r31
-	bl       __ct__Q34Game9SnakeCrow18SnakeCrowShadowMgrFPQ34Game9SnakeCrow3Obj
-	mr       r0, r3
-
-lbl_80294FD8:
-	stw      r0, 0x318(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createShadowSystem() { mShadowMgr = new SnakeCrowShadowMgr(this); }
 
 /*
  * --INFO--
  * Address:	80294FF0
  * Size:	000024
  */
-void Obj::setupShadowSystem()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x318(r3)
-	bl       init__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::setupShadowSystem() { mShadowMgr->init(); }
 
 /*
  * --INFO--
  * Address:	80295014
  * Size:	000024
  */
-void Obj::doAnimationShadowSystem()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x318(r3)
-	bl       update__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doAnimationShadowSystem() { mShadowMgr->update(); }
 
 /*
  * --INFO--
  * Address:	80295038
  * Size:	000024
  */
-void Obj::startJointShadow()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x318(r3)
-	bl       startJointShadow__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startJointShadow() { mShadowMgr->startJointShadow(); }
 
 /*
  * --INFO--
  * Address:	8029505C
  * Size:	000024
  */
-void Obj::finishJointShadow()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x318(r3)
-	bl       finishJointShadow__Q34Game9SnakeCrow18SnakeCrowShadowMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishJointShadow() { mShadowMgr->finishJointShadow(); }
 
 /*
  * --INFO--
@@ -1970,24 +1509,8 @@ void Obj::finishJointShadow()
  */
 void Obj::deleteJointShadow()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	bl       addNormalShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	mr       r4, r31
-	bl       delJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	shadowMgr->addNormalShadow(this);
+	shadowMgr->delJointShadow(this);
 }
 
 /*
@@ -1997,74 +1520,13 @@ void Obj::deleteJointShadow()
  */
 void Obj::startBossAttackBGM()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lbz      r0, 0x2c1(r3)
-	cmplwi   r0, 0
-	beq      lbl_802950EC
-	li       r0, 0
-	stb      r0, 0x2c1(r3)
-	b        lbl_80295188
-
-lbl_802950EC:
-	lwz      r30, 0x28c(r3)
-	li       r31, 0
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 5
-	beq      lbl_80295148
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_80295148
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 7
-	bne      lbl_8029514C
-
-lbl_80295148:
-	li       r31, 1
-
-lbl_8029514C:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_80295170
-	lis      r3, lbl_80488894@ha
-	lis      r5, lbl_804888AC@ha
-	addi     r3, r3, lbl_80488894@l
-	li       r4, 0x454
-	addi     r5, r5, lbl_804888AC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80295170:
-	mr       r3, r30
-	li       r4, 3
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0xd4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80295188:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_2C1) {
+		_2C1 = 0;
+	} else {
+		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
+		PSM::checkBoss(soundObj);
+		soundObj->jumpRequest(3);
+	}
 }
 
 /*
@@ -2074,64 +1536,9 @@ lbl_80295188:
  */
 void Obj::startBossFlickBGM()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	lwz      r30, 0x28c(r3)
-	lwz      r12, 0x28(r30)
-	mr       r3, r30
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 5
-	beq      lbl_80295210
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_80295210
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 7
-	bne      lbl_80295214
-
-lbl_80295210:
-	li       r31, 1
-
-lbl_80295214:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_80295238
-	lis      r3, lbl_80488894@ha
-	lis      r5, lbl_804888AC@ha
-	addi     r3, r3, lbl_80488894@l
-	li       r4, 0x454
-	addi     r5, r5, lbl_804888AC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80295238:
-	mr       r3, r30
-	li       r4, 4
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0xd4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
+	PSM::checkBoss(soundObj);
+	soundObj->jumpRequest(4);
 }
 
 /*
@@ -2141,81 +1548,13 @@ lbl_80295238:
  */
 void Obj::updateBossBGM()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r30, 0x28c(r3)
-	lwz      r12, 0x28(r30)
-	mr       r3, r30
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 5
-	beq      lbl_802952E0
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_802952E0
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 7
-	bne      lbl_802952E4
-
-lbl_802952E0:
-	li       r31, 1
-
-lbl_802952E4:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_80295308
-	lis      r3, lbl_80488894@ha
-	lis      r5, lbl_804888AC@ha
-	addi     r3, r3, lbl_80488894@l
-	li       r4, 0x454
-	addi     r5, r5, lbl_804888AC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80295308:
-	lwz      r0, 0x1f4(r29)
-	cmpwi    r0, 0
-	beq      lbl_80295330
-	mr       r3, r30
-	li       r4, 1
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0xd8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80295348
-
-lbl_80295330:
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0xd8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80295348:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
+	PSM::checkBoss(soundObj);
+	if (mStuckPikminCount != 0) {
+		soundObj->postPikiAttack(true);
+	} else {
+		soundObj->postPikiAttack(false);
+	}
 }
 
 /*
@@ -2225,68 +1564,12 @@ lbl_80295348:
  */
 void Obj::resetBossAppearBGM()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lbz      r0, 0x2c2(r3)
-	cmplwi   r0, 0
-	bne      lbl_8029541C
-	li       r0, 1
-	li       r31, 0
-	stb      r0, 0x2c2(r3)
-	lwz      r30, 0x28c(r3)
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 5
-	beq      lbl_802953E8
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_802953E8
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 7
-	bne      lbl_802953EC
-
-lbl_802953E8:
-	li       r31, 1
-
-lbl_802953EC:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_80295410
-	lis      r3, lbl_80488894@ha
-	lis      r5, lbl_804888AC@ha
-	addi     r3, r3, lbl_80488894@l
-	li       r4, 0x454
-	addi     r5, r5, lbl_804888AC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80295410:
-	mr       r3, r30
-	li       r4, 0
-	bl       setAppearFlag__Q23PSM9EnemyBossFb
-
-lbl_8029541C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!_2C2) {
+		_2C2                     = 1;
+		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
+		PSM::checkBoss(soundObj);
+		soundObj->setAppearFlag(false);
+	}
 }
 
 /*
@@ -2296,67 +1579,12 @@ lbl_8029541C:
  */
 void Obj::setBossAppearBGM()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lbz      r0, 0x2c2(r3)
-	cmplwi   r0, 0
-	beq      lbl_802954E8
-	li       r31, 0
-	stb      r31, 0x2c2(r3)
-	lwz      r30, 0x28c(r3)
-	lwz      r12, 0x28(r30)
-	mr       r3, r30
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 5
-	beq      lbl_802954B4
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_802954B4
-	mr       r3, r30
-	lwz      r12, 0x28(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 7
-	bne      lbl_802954B8
-
-lbl_802954B4:
-	li       r31, 1
-
-lbl_802954B8:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_802954DC
-	lis      r3, lbl_80488894@ha
-	lis      r5, lbl_804888AC@ha
-	addi     r3, r3, lbl_80488894@l
-	li       r4, 0x454
-	addi     r5, r5, lbl_804888AC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_802954DC:
-	mr       r3, r30
-	li       r4, 1
-	bl       setAppearFlag__Q23PSM9EnemyBossFb
-
-lbl_802954E8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_2C2) {
+		_2C2                     = 0;
+		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
+		PSM::checkBoss(soundObj);
+		soundObj->setAppearFlag(true);
+	}
 }
 
 /*

@@ -6,6 +6,19 @@
 
 namespace Game {
 struct SnakeJointMgr {
+	SnakeJointMgr(EnemyBase* enemy);
+
+	void setupCallBackJoint();
+	void startModify(f32, f32);
+	void returnModify(f32);
+	void finishModify();
+	void doAnimation();
+	void finishAnimation();
+	void makeMatrix();
+
+	// unused/inlined
+	void init();
+
 	EnemyBase* mObj; // _00, SnakeCrow obj or SnakeWhole obj
 	u32 _04;         // _04, unknown
 	u32 _08;         // _08, unknown

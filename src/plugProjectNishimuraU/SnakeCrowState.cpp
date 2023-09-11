@@ -1522,7 +1522,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* snagret = static_cast<Obj*>(enemy);
 	snagret->disableEvent(0, EB_Cullable);
 	snagret->mTargetVelocity = Vector3f(0.0f);
-	snagret->startMotion(snagret->_2D4 + 4, nullptr);
+	snagret->startMotion(snagret->mAttackAnimIdx + 4, nullptr);
 }
 
 /*
@@ -1546,7 +1546,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			snagret->startJointCallBack();
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_3) {
-			int idx    = snagret->_2D4;
+			int idx    = snagret->mAttackAnimIdx;
 			Piki* piki = snagret->getAttackPiki(idx);
 
 			if (piki) {
@@ -1573,7 +1573,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			if (!snagret->isFinishMotion() && snagret->getSwallowSlot()) {
 
 				if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
-					snagret->startMotion(snagret->_2D4 + 4, nullptr);
+					snagret->startMotion(snagret->mAttackAnimIdx + 4, nullptr);
 					snagret->setMotionFrame(snagret->getFirstKeyFrame());
 					snagret->startJointCallBack();
 

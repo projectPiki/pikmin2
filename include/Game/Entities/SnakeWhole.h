@@ -9,16 +9,13 @@
 #include "Game/EnemyBase.h"
 #include "Game/SnakeJointMgr.h"
 #include "SysShape/Joint.h"
+#include "efx/TCphebi.h"
 #include "Collinfo.h"
 
 /**
  * --Header for Pileated Snagret (SnakeWhole)--
  * Note: Separate header for Burrowing Snagret (SnakeCrow)
  */
-
-namespace efx {
-struct TChaseMtx4;
-} // namespace efx
 
 namespace Game {
 struct SnakeWholeSphereShadowNode : public JointShadowNode {
@@ -82,7 +79,7 @@ struct Obj : public EnemyBase {
 	virtual void createEfxHamon();                                             // _250
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                        // _258 (weak)
 	virtual MouthSlots* getMouthSlots();                                       // _25C (weak)
-	virtual void getThrowupItemPosition(Vector3f*);                            // _268
+	virtual void getThrowupItemPosition(Vector3f* itemPos);                    // _268
 	virtual void throwupItemInDeathProcedure();                                // _270 (weak)
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
 	virtual void doStartStoneState();                                          // _2A4
@@ -100,10 +97,10 @@ struct Obj : public EnemyBase {
 	void setJumpMove(Vector3f&);
 	void updateFace();
 	void updateConstraint();
-	void appearNearByTarget(Creature*);
+	void appearNearByTarget(Creature* target);
 	void setAttackPosition();
-	Piki* getAttackPiki(int);
-	Navi* getAttackNavi(int);
+	Piki* getAttackPiki(int animIdx);
+	Navi* getAttackNavi(int animIdx);
 	Creature* getSearchedTarget();
 	CollPart* getSwallowSlot();
 	bool isSwallowPikmin();
@@ -130,7 +127,7 @@ struct Obj : public EnemyBase {
 	void setBossAppearBGM();
 	void createEffect();
 	void setupEffect();
-	void createAppearEffect(int);
+	void createAppearEffect(int appearIdx);
 	void createDeadStartEffect();
 	void createDeadFinishEffect();
 	void createWalkSmokeEffect(f32);
@@ -149,11 +146,11 @@ struct Obj : public EnemyBase {
 	StateID mNextState;              // _2CC
 	MouthSlots mMouthSlots;          // _2D0
 	Vector3f _2D8;                   // _2D8
-	int _2E4;                        // _2E4
-	Vector3f _2E8[5];                // _2E8
-	SnakeJointMgr* mJointMgr;        // _324
+	int mAttackAnimIdx;              // _2E4
+	Vector3f mAttackPositions[5];    // _2E8
+	SnakeJointMgr* mSnakeJointMgr;   // _324
 	SnakeWholeShadowMgr* mShadowMgr; // _328
-	efx::TChaseMtx4* _32C;           // _32C
+	efx::TCphebiDead* mEfxDead;      // _32C
 	                                 // _330 = PelletView
 };
 
@@ -185,17 +182,17 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "通常出現率", 0.8f, 0.0f, 1.0f)               // 'normal appearance rate'
-		    , mFp11(this, 'fp11', "潜る迄の時間", 2.0f, 0.0f, 10.0f)            // 'time to dive'
-		    , mFp12(this, 'fp12', "地中での時間", 1.0f, 0.0f, 10.0f)            // 'time in the ground'
+		    , mFastAppearChance(this, 'fp01', "通常出現率", 0.8f, 0.0f, 1.0f)   // 'normal appearance rate'
+		    , mWaitTime(this, 'fp11', "潜る迄の時間", 2.0f, 0.0f, 10.0f)        // 'time to dive'
+		    , mUndergroundTime(this, 'fp12', "地中での時間", 1.0f, 0.0f, 10.0f) // 'time in the ground'
 		    , mPoisonDamage(this, 'fp21', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
 		{
 		}
 
-		Parm<f32> mFp01;         // _804
-		Parm<f32> mFp11;         // _82C
-		Parm<f32> mFp12;         // _854
-		Parm<f32> mPoisonDamage; // _87C, fp21
+		Parm<f32> mFastAppearChance; // _804, fp01
+		Parm<f32> mWaitTime;         // _82C, fp11
+		Parm<f32> mUndergroundTime;  // _854, fp12
+		Parm<f32> mPoisonDamage;     // _87C, fp21
 	};
 
 	Parms() { }
@@ -223,6 +220,18 @@ struct ProperAnimator : public EnemyAnimatorBase {
 };
 
 struct SnakeWholeShadowMgr {
+	SnakeWholeShadowMgr(Obj* obj);
+
+	void init();
+	void startJointShadow();
+	void finishJointShadow();
+	void update();
+
+	Matrixf* mMatrices[9];                       // _00
+	Obj* mOwner;                                 // _24
+	JointShadowRootNode* mRootNode;              // _28
+	SnakeWholeTubeShadowNode* mTubeNodes[9];     // _2C
+	SnakeWholeSphereShadowNode* mSphereNodes[9]; // _50
 };
 
 /////////////////////////////////////////////////////////////////

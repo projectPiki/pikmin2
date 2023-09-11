@@ -41,6 +41,20 @@ struct SnakeCrowShadowMgr;
 struct FSM;
 struct Parms;
 
+enum StateID {
+	SNAKECROW_NULL      = -1,
+	SNAKECROW_Dead      = 0,
+	SNAKECROW_Stay      = 1,
+	SNAKECROW_Appear1   = 2,
+	SNAKECROW_Appear2   = 3,
+	SNAKECROW_Disappear = 4,
+	SNAKECROW_Wait      = 5,
+	SNAKECROW_Attack    = 6,
+	SNAKECROW_Eat       = 7,
+	SNAKECROW_Struggle  = 8,
+	SNAKECROW_Count, // 9
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -60,11 +74,11 @@ struct Obj : public EnemyBase {
 	virtual void doAnimationUpdateAnimator();                                  // _1D8
 	virtual void doAnimationCullingOff();                                      // _1DC
 	virtual void doDebugDraw(Graphics& gfx);                                   // _1EC
-	virtual void getCommonEffectPos(Vector3f&);                                // _204
+	virtual void getCommonEffectPos(Vector3f& fxPos);                          // _204
 	virtual void setParameters();                                              // _228
 	virtual void initMouthSlots();                                             // _22C
 	virtual void createEfxHamon();                                             // _250
-	virtual void getThrowupItemPosition(Vector3f*);                            // _268
+	virtual void getThrowupItemPosition(Vector3f* itemPos);                    // _268
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
 	virtual void doStartStoneState();                                          // _2A4
 	virtual void doFinishStoneState();                                         // _2A8
@@ -83,8 +97,8 @@ struct Obj : public EnemyBase {
 
 	void appearNearByTarget(Creature*);
 	void setAttackPosition();
-	Piki* getAttackPiki(int);
-	Navi* getAttackNavi(int);
+	Piki* getAttackPiki(int animIdx);
+	Navi* getAttackNavi(int animIdx);
 	CollPart* getSwallowSlot(); // might be MouthSlot* or something else
 	bool isSwallowPikmin();
 	int getStickHeadPikmin();
@@ -110,14 +124,14 @@ struct Obj : public EnemyBase {
 	void setBossAppearBGM();
 	void createEffect();
 	void setupEffect();
-	void createAppearEffect(int);
+	void createAppearEffect(int appearIdx);
 	void startRotateEffect();
 	void finishRotateEffect();
 	void startWaitEffect();
 	void finishWaitEffect();
 	void createDeadStartEffect();
 	void createDeadFinishEffect();
-	void createDownHeadEffect(f32);
+	void createDownHeadEffect(f32 scale);
 	void effectDrawOn();
 	void effectDrawOff();
 
@@ -125,20 +139,21 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* mFsm;                 // _2BC
-	bool mIsUnderground;       // _2C0
-	u8 _2C1;                   // _2C1
-	u8 _2C2;                   // _2C2
-	f32 mStateTimer;           // _2C4
-	int _2C8;                  // _2C8, unknown
-	MouthSlots mMouthSlots;    // _2CC
-	int _2D4;                  // _2D4, animation index maybe?
-	Vector3f _2D8[5];          // _2D8
-	u8 _314[0x8];              // _314, unknown
-	efx::THebiRot* mEfxRotate; // _31C
-	efx::THebiWait* mEfxWait;  // _320
-	efx::THebiDead* mEfxDead;  // _324
-	                           // _328 = PelletView
+	FSM* mFsm;                      // _2BC
+	bool mIsUnderground;            // _2C0
+	u8 _2C1;                        // _2C1, BGM related
+	u8 _2C2;                        // _2C2, BGM related
+	f32 mStateTimer;                // _2C4
+	StateID mNextState;             // _2C8, unused
+	MouthSlots mMouthSlots;         // _2CC
+	int mAttackAnimIdx;             // _2D4
+	Vector3f mAttackPositions[5];   // _2D8, indexed by mAttackAnimIdx
+	SnakeJointMgr* mSnakeJointMgr;  // _314
+	SnakeCrowShadowMgr* mShadowMgr; // _318
+	efx::THebiRot* mEfxRotate;      // _31C
+	efx::THebiWait* mEfxWait;       // _320
+	efx::THebiDead* mEfxDead;       // _324
+	                                // _328 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -209,23 +224,22 @@ struct ProperAnimator : public EnemyAnimatorBase {
 };
 
 struct SnakeCrowShadowMgr {
+	SnakeCrowShadowMgr(Obj* obj);
+
+	void init();
+	void startJointShadow();
+	void finishJointShadow();
+	void update();
+
+	Matrixf* mMatrices[8];                      // _00
+	Obj* mOwner;                                // _20
+	JointShadowRootNode* mRootNode;             // _24
+	SnakeCrowTubeShadowNode* mTubeNodes[8];     // _28
+	SnakeCrowSphereShadowNode* mSphereNodes[8]; // _48
 };
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-enum StateID {
-	SNAKECROW_Dead      = 0,
-	SNAKECROW_Stay      = 1,
-	SNAKECROW_Appear1   = 2,
-	SNAKECROW_Appear2   = 3,
-	SNAKECROW_Disappear = 4,
-	SNAKECROW_Wait      = 5,
-	SNAKECROW_Attack    = 6,
-	SNAKECROW_Eat       = 7,
-	SNAKECROW_Struggle  = 8,
-	SNAKECROW_Count,
-};
-
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 

@@ -140,7 +140,7 @@ void StateStay::exec(EnemyBase* enemy)
 	Obj* snagret     = static_cast<Obj*>(enemy);
 	Creature* target = nullptr;
 	Parms* parms     = static_cast<Parms*>(snagret->mParms);
-	if (snagret->mStateTimer > parms->mProperParms.mFp12.mValue) {
+	if (snagret->mStateTimer > parms->mProperParms.mUndergroundTime.mValue) {
 		f32 territory    = parms->mGeneral.mTerritoryRadius.mValue;
 		Vector3f homePos = Vector3f(snagret->mHomePosition);
 		f32 tSqr         = territory * territory;
@@ -205,7 +205,7 @@ void StateStay::exec(EnemyBase* enemy)
 		snagret->appearNearByTarget(target);
 		snagret->setBossAppearBGM();
 		Parms* parms = static_cast<Parms*>(snagret->mParms);
-		if (randWeightFloat(1.0f) < parms->mProperParms.mFp01.mValue) {
+		if (randWeightFloat(1.0f) < parms->mProperParms.mFastAppearChance.mValue) {
 			transit(snagret, SNAKEWHOLE_Appear1, nullptr);
 		} else {
 			transit(snagret, SNAKEWHOLE_Appear2, nullptr);
@@ -975,7 +975,7 @@ void StateWait::exec(EnemyBase* enemy)
 		snagret->mNextState = SNAKEWHOLE_Dead;
 		snagret->finishMotion();
 	} else if (EnemyFunc::isStartFlick(snagret, false)
-	           || snagret->mStateTimer > static_cast<Parms*>(snagret->mParms)->mProperParms.mFp11.mValue) {
+	           || snagret->mStateTimer > static_cast<Parms*>(snagret->mParms)->mProperParms.mWaitTime.mValue) {
 		snagret->mNextState = SNAKEWHOLE_Disappear;
 		snagret->finishMotion();
 	} else if (snagret->isOutTerritory()) {
@@ -1174,7 +1174,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* snagret = static_cast<Obj*>(enemy);
 	snagret->disableEvent(0, EB_Cullable);
 	snagret->mTargetVelocity = Vector3f(0.0f);
-	snagret->startMotion(snagret->_2E4 + 4, nullptr);
+	snagret->startMotion(snagret->mAttackAnimIdx + 4, nullptr);
 }
 
 /*
@@ -1198,7 +1198,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			snagret->startJointCallBack();
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_3) {
-			int idx    = snagret->_2E4;
+			int idx    = snagret->mAttackAnimIdx;
 			Piki* piki = snagret->getAttackPiki(idx);
 
 			if (piki) {
@@ -1225,7 +1225,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			if (!snagret->isFinishMotion() && snagret->getSwallowSlot()) {
 
 				if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
-					snagret->startMotion(snagret->_2E4 + 4, nullptr);
+					snagret->startMotion(snagret->mAttackAnimIdx + 4, nullptr);
 					snagret->setMotionFrame(snagret->getFirstKeyFrame());
 					snagret->startJointCallBack();
 
