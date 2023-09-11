@@ -23,17 +23,31 @@ struct LifeGauge {
 
 	static void initLifeGaugeDraw();
 
-	f32 _00;    // _00
-	Color4 _04; // _04 // might be TColor
-	u8 _08;     // _08
-	u8 _09;     // _09
+	f32 _00;                // _00
+	Color4 mLifeGaugeColor; // _04 // might be TColor
+	u8 _08;                 // _08
+	u8 _09;                 // _09
 };
 
 /**
  * @size{0x48}
  */
 struct LifeGaugeList : public JKRDisposer {
-	virtual ~LifeGaugeList(); // _08 (weak)
+	inline LifeGaugeList()
+	    : _38(0)
+	    , _3C(0.0f)
+	    , _45(32)
+	    , _44(32)
+	    , _20(nullptr)
+	    , _1C(nullptr)
+	    , _18(nullptr)
+	{
+		_38 = 0;
+		_3C = 0.0f;
+		_45 = 32;
+		_44 = 32;
+	}
+	virtual ~LifeGaugeList() { } // _08 (weak)
 
 	void draw(Graphics&);
 
@@ -62,8 +76,8 @@ struct LifeGaugeMgr {
 	void update();
 	void draw(Graphics&);
 
-	LifeGaugeList mLists[2];
-	JUTTexture* mTexture;
+	LifeGaugeList mLists[2]; // _00
+	JUTTexture* mTexture;    // _90
 };
 
 extern LifeGaugeMgr* lifeGaugeMgr;

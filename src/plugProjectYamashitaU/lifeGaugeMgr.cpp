@@ -1,6 +1,8 @@
 #include "Dolphin/math.h"
 #include "System.h"
 #include "types.h"
+#include "Graphics.h"
+#include "Viewport.h"
 #include "LifeGaugeMgr.h"
 
 /*
@@ -56,7 +58,7 @@
         .4byte 0x00000000
     .global lbl_80517B2C
     lbl_80517B2C:
-        .float 0.5
+        .f32 0.5
     .global lbl_80517B30
     lbl_80517B30:
         .4byte 0x43160000
@@ -65,7 +67,7 @@
         .4byte 0x3ECCCCCD
     .global lbl_80517B38
     lbl_80517B38:
-        .float 1.0
+        .f32 1.0
     .global lbl_80517B3C
     lbl_80517B3C:
         .4byte 0x3E4CCCCD
@@ -106,13 +108,6 @@ void LifeGauge::init(u8 c)
 	_00 = 0.0f;
 	_09 = c;
 	_08 = c;
-	/*
-	lfs      f0, lbl_80517B28@sda21(r2)
-	stfs     f0, 0(r3)
-	stb      r4, 9(r3)
-	stb      r4, 8(r3)
-	blr
-	*/
 }
 
 /*
@@ -120,312 +115,91 @@ void LifeGauge::init(u8 c)
  * Address:	80119C44
  * Size:	0001CC
  */
-void LifeGauge::update(float p1)
+void LifeGauge::update(f32 newFullness)
 {
-	float fullnessMaybe = _09 * p1;
-	if (fullnessMaybe < 0.0f) {
-		fullnessMaybe -= 0.5f;
+	f32 adjustedFullness = _09 * newFullness;
+
+	if (adjustedFullness >= 0.0f) {
+		adjustedFullness = adjustedFullness + 0.5f;
 	} else {
-		fullnessMaybe += 0.5f;
+		adjustedFullness = adjustedFullness - 0.5f;
 	}
-	u32 uVar3 = (int)fullnessMaybe % 256;
-	if (_08 != uVar3) {
-		fullnessMaybe = sys->mDeltaTime * 150.0f * FABS((float)(uVar3 - _08) / (float)_09);
-		if (fullnessMaybe < 0.4f) {
-			fullnessMaybe = 0.4f;
+
+	u8 newAdjustedValue = static_cast<u8>(adjustedFullness);
+
+	if (_08 != newAdjustedValue) {
+		f32 fb = fabs((newAdjustedValue - _08) / static_cast<f32>(_09));
+
+		f32 delta          = fb * (sys->mDeltaTime * 150.0f);
+		const f32 minDelta = 0.4f;
+
+		if (delta < minDelta) {
+			delta = minDelta;
 		}
-		_00 += fullnessMaybe;
-		if (1.0f < _00) {
-			char cVar5 = -(char)(uint)_00;
-			if (_08 < uVar3) {
-				cVar5 = (char)(uint)_00;
-			}
-			_08 += cVar5;
-			_00 -= ((uint)_00 % 256);
+
+		_00 += delta;
+
+		if (_00 > 1.0f) {
+			_08 += (_08 < newAdjustedValue) ? 1 : -1;
+			_00 -= static_cast<int>(_00);
 		}
-		if (_08 == '\0' && 0.0f < p1) {
-			_08 = '\x01';
+
+		if (_08 == 0 && newFullness > 0.0f) {
+			_08 = 1;
 		}
 	}
-	if (0.2 <= p1) {
-		if (0.5 <= p1) {
-			_04.r = 0;
-			_04.g = 0xFF;
-			_04.b = 0;
-			_04.a = 0xFF;
+
+	if (newFullness < 0.2f) {
+		if (newFullness < 0.5f) {
+			mLifeGaugeColor.r = 255;
+			mLifeGaugeColor.g = 0;
 		} else {
-			_04.r = 0xFF;
-			_04.g = 0xFF;
-			_04.b = 0;
-			_04.a = 0xFF;
+			mLifeGaugeColor.r = 255;
+			mLifeGaugeColor.g = 255;
 		}
+
+		mLifeGaugeColor.b = 0;
+		mLifeGaugeColor.a = 255;
+
 	} else {
-		_04.r = 0xFF;
-		_04.g = 0;
-		_04.b = 0;
-		_04.a = 0xFF;
+		mLifeGaugeColor.r = 0;
+		mLifeGaugeColor.g = 255;
+		mLifeGaugeColor.b = 0;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r0, 0x4330
-	lfd      f3, lbl_80517B40@sda21(r2)
-	lbz      r6, 9(r3)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_80517B28@sda21(r2)
-	stw      r6, 0xc(r1)
-	lfd      f2, 8(r1)
-	fsubs    f2, f2, f3
-	fmuls    f2, f2, f1
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	bne      lbl_80119C84
-	lfs      f0, lbl_80517B2C@sda21(r2)
-	fadds    f0, f0, f2
-	b        lbl_80119C8C
-
-lbl_80119C84:
-	lfs      f0, lbl_80517B2C@sda21(r2)
-	fsubs    f0, f2, f0
-
-lbl_80119C8C:
-	fctiwz   f0, f0
-	lbz      r4, 8(r3)
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	clrlwi   r7, r0, 0x18
-	cmplw    r4, r7
-	beq      lbl_80119DA0
-	subf     r4, r4, r7
-	lis      r0, 0x4330
-	xoris    r5, r4, 0x8000
-	lwz      r4, sys@sda21(r13)
-	stw      r5, 0x14(r1)
-	lfd      f2, lbl_80517B48@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfd      f5, lbl_80517B40@sda21(r2)
-	lfd      f0, 0x10(r1)
-	stw      r6, 0xc(r1)
-	fsubs    f6, f0, f2
-	lfs      f2, lbl_80517B30@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f0, 0x54(r4)
-	lfd      f4, 8(r1)
-	fmuls    f3, f2, f0
-	lfs      f0, lbl_80517B34@sda21(r2)
-	fsubs    f2, f4, f5
-	fdivs    f2, f6, f2
-	fabs     f2, f2
-	frsp     f2, f2
-	fmuls    f3, f3, f2
-	fcmpo    cr0, f3, f0
-	bge      lbl_80119D0C
-	fmr      f3, f0
-
-lbl_80119D0C:
-	lfs      f2, 0(r3)
-	lfs      f0, lbl_80517B38@sda21(r2)
-	fadds    f2, f2, f3
-	stfs     f2, 0(r3)
-	lfs      f2, 0(r3)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80119D80
-	fctiwz   f0, f2
-	lbz      r0, 8(r3)
-	cmplw    r7, r0
-	stfd     f0, 0x10(r1)
-	lwz      r4, 0x14(r1)
-	clrlwi   r0, r4, 0x18
-	neg      r6, r0
-	ble      lbl_80119D4C
-	mr       r6, r0
-
-lbl_80119D4C:
-	clrlwi   r4, r4, 0x18
-	lis      r0, 0x4330
-	lbz      r5, 8(r3)
-	stw      r4, 0xc(r1)
-	add      r4, r5, r6
-	lfd      f2, lbl_80517B40@sda21(r2)
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	stb      r4, 8(r3)
-	fsubs    f0, f0, f2
-	lfs      f2, 0(r3)
-	fsubs    f0, f2, f0
-	stfs     f0, 0(r3)
-
-lbl_80119D80:
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	bne      lbl_80119DA0
-	lfs      f0, lbl_80517B28@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80119DA0
-	li       r0, 1
-	stb      r0, 8(r3)
-
-lbl_80119DA0:
-	lfs      f0, lbl_80517B3C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80119DC8
-	li       r4, 0xff
-	li       r0, 0
-	stb      r4, 4(r3)
-	stb      r0, 5(r3)
-	stb      r0, 6(r3)
-	stb      r4, 7(r3)
-	b        lbl_80119E08
-
-lbl_80119DC8:
-	lfs      f0, lbl_80517B2C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80119DF0
-	li       r4, 0xff
-	li       r0, 0
-	stb      r4, 4(r3)
-	stb      r4, 5(r3)
-	stb      r0, 6(r3)
-	stb      r4, 7(r3)
-	b        lbl_80119E08
-
-lbl_80119DF0:
-	li       r4, 0
-	li       r0, 0xff
-	stb      r4, 4(r3)
-	stb      r0, 5(r3)
-	stb      r4, 6(r3)
-	stb      r0, 7(r3)
-
-lbl_80119E08:
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80119E10
  * Size:	0001BC
+ * TODO
  */
-void LifeGauge::draw(float, float x, float y)
+void LifeGauge::draw(f32 a2, f32 a3, f32 a4)
 {
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	stw      r0, 0xc4(r1)
-	stfd     f31, 0xb0(r1)
-	psq_st   f31, 184(r1), 0, qr0
-	stfd     f30, 0xa0(r1)
-	psq_st   f30, 168(r1), 0, qr0
-	stfd     f29, 0x90(r1)
-	psq_st   f29, 152(r1), 0, qr0
-	stfd     f28, 0x80(r1)
-	psq_st   f28, 136(r1), 0, qr0
-	stfd     f27, 0x70(r1)
-	psq_st   f27, 120(r1), 0, qr0
-	stfd     f26, 0x60(r1)
-	psq_st   f26, 104(r1), 0, qr0
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	lfs      f0, lbl_80517B28@sda21(r2)
-	fmr      f27, f1
-	stfs     f2, 8(r1)
-	mr       r29, r3
-	lfs      f28, lbl_80517B54@sda21(r2)
-	li       r30, 0
-	stfs     f3, 0xc(r1)
-	lfd      f29, lbl_80517B48@sda21(r2)
-	lis      r31, 0x4330
-	stfs     f0, 0x10(r1)
-	lfd      f30, lbl_80517B40@sda21(r2)
-	lfs      f31, lbl_80517B50@sda21(r2)
-	b        lbl_80119F74
+	Vector3f position;
+	Vector3f offsetPos;
 
-lbl_80119E8C:
-	lbz      r0, 9(r29)
-	xoris    r3, r30, 0x8000
-	stw      r3, 0x34(r1)
-	stw      r31, 0x30(r1)
-	lfd      f0, 0x30(r1)
-	stw      r0, 0x3c(r1)
-	fsubs    f1, f0, f29
-	stw      r31, 0x38(r1)
-	lfd      f0, 0x38(r1)
-	fsubs    f0, f0, f30
-	fdivs    f0, f1, f0
-	fnmsubs  f26, f28, f0, f31
-	fmr      f1, f26
-	bl       cos
-	frsp     f2, f1
-	lfs      f0, 8(r1)
-	fmr      f1, f26
-	fmadds   f0, f27, f2, f0
-	stfs     f0, 0x14(r1)
-	bl       sin
-	frsp     f2, f1
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	addi     r0, r30, 1
-	xoris    r0, r0, 0x8000
-	stw      r31, 0x40(r1)
-	fmadds   f1, f27, f2, f1
-	stw      r0, 0x44(r1)
-	stfs     f0, 0x1c(r1)
-	lfd      f0, 0x40(r1)
-	stfs     f1, 0x18(r1)
-	fsubs    f1, f0, f29
-	lbz      r0, 9(r29)
-	stw      r31, 0x48(r1)
-	stw      r0, 0x4c(r1)
-	lfd      f0, 0x48(r1)
-	fsubs    f0, f0, f30
-	fdivs    f0, f1, f0
-	fnmsubs  f26, f28, f0, f31
-	fmr      f1, f26
-	bl       cos
-	frsp     f2, f1
-	lfs      f0, 8(r1)
-	fmr      f1, f26
-	fmadds   f0, f27, f2, f0
-	stfs     f0, 0x20(r1)
-	bl       sin
-	frsp     f2, f1
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	mr       r3, r29
-	addi     r4, r1, 8
-	addi     r5, r29, 4
-	fmadds   f1, f27, f2, f1
-	stfs     f0, 0x28(r1)
-	stfs     f1, 0x24(r1)
-	bl       "drawOneTri__9LifeGaugeFP10Vector3<f>R6Color4"
-	addi     r30, r30, 1
+	position.x = a3;
+	position.y = a4;
+	position.z = 0.0f;
 
-lbl_80119F74:
-	lbz      r0, 8(r29)
-	cmpw     r30, r0
-	blt      lbl_80119E8C
-	psq_l    f31, 184(r1), 0, qr0
-	lfd      f31, 0xb0(r1)
-	psq_l    f30, 168(r1), 0, qr0
-	lfd      f30, 0xa0(r1)
-	psq_l    f29, 152(r1), 0, qr0
-	lfd      f29, 0x90(r1)
-	psq_l    f28, 136(r1), 0, qr0
-	lfd      f28, 0x80(r1)
-	psq_l    f27, 120(r1), 0, qr0
-	lfd      f27, 0x70(r1)
-	psq_l    f26, 104(r1), 0, qr0
-	lfd      f26, 0x60(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r0, 0xc4(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
+	for (int i = 0; i < this->_08; ++i) {
+		float angle = static_cast<float>(i) / static_cast<float>(this->_09);
+
+		offsetPos.x = (a2 * cos(angle * 6.2831855f - 1.5707964f)) + position.x;
+		offsetPos.y = (a2 * sin(angle * 6.2831855f - 1.5707964f)) + position.y;
+		offsetPos.z = position.z;
+
+		float x2 = (a2 * cos((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.x;
+		float y2 = (a2 * sin((angle + 1.0f) * 6.2831855f - 1.5707964f)) + position.y;
+		float z2 = position.z;
+
+		drawOneTri(&position, mLifeGaugeColor);
+
+		position.x = x2;
+		position.y = y2;
+		position.z = z2;
+	}
 }
 
 /*
@@ -435,671 +209,118 @@ lbl_80119F74:
  */
 void LifeGauge::initLifeGaugeDraw()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	li       r3, 0
-	stw      r0, 0x44(r1)
-	bl       GXSetTevDirect
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 0
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xb
-	li       r5, 1
-	li       r6, 5
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	bl       GXSetBlendMode
-	li       r3, 0
-	li       r4, 1
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	addi     r3, r1, 8
-	bl       PSMTXIdentity
-	addi     r3, r1, 8
-	li       r4, 0x1e
-	li       r5, 1
-	bl       GXLoadTexMtxImm
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	GXSetTevDirect(GX_TEVSTAGE0);
+	GXSetNumChans(1);
+	GXSetNumTevStages(1u);
+	GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+	GXSetChanCtrl(GX_COLOR0A0, FALSE, GX_SRC_REG, GX_SRC_VTX, 0, GX_DF_NONE, GX_AF_NONE);
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_RGBA6, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+	GXSetZMode(FALSE, GX_LESS, FALSE);
+	GXSetCurrentMtx(0);
+
+	Mtx mtx;
+	PSMTXIdentity(mtx);
+	GXLoadTexMtxImm(mtx, GX_TEXMTX0, GX_MTX2x4);
 }
 
 /*
  * --INFO--
  * Address:	8011A0DC
  * Size:	0000F0
+ * TODO
  */
-void LifeGauge::drawOneTri(Vector3f*, Color4&)
+void LifeGauge::drawOneTri(Vector3f* pos, Color4& clr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0xa0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	li       r5, 3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	li       r4, 0
-	bl       GXBegin
-	lfs      f2, 8(r30)
-	lis      r6, 0xCC008000@ha
-	lfs      f1, 4(r30)
-	lfs      f0, 0(r30)
-	stfs     f0, 0xCC008000@l(r6)
-	stfs     f1, -0x8000(r6)
-	stfs     f2, -0x8000(r6)
-	lbz      r5, 3(r31)
-	lbz      r4, 2(r31)
-	lbz      r3, 1(r31)
-	lbz      r0, 0(r31)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	lfs      f2, 0x14(r30)
-	lfs      f1, 0x10(r30)
-	lfs      f0, 0xc(r30)
-	stfs     f0, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	stfs     f2, -0x8000(r6)
-	lbz      r5, 3(r31)
-	lbz      r4, 2(r31)
-	lbz      r3, 1(r31)
-	lbz      r0, 0(r31)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	lfs      f2, 0x20(r30)
-	lfs      f1, 0x1c(r30)
-	lfs      f0, 0x18(r30)
-	stfs     f0, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	stfs     f2, -0x8000(r6)
-	lbz      r5, 3(r31)
-	lbz      r4, 2(r31)
-	lbz      r3, 1(r31)
-	lbz      r0, 0(r31)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// WTF?
+	GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 3);
+	GXWGFifo.f32 = pos->x;
+	GXWGFifo.f32 = pos->y;
+	GXWGFifo.f32 = pos->z;
+
+	GXWGFifo.u8 = clr.r;
+	GXWGFifo.u8 = clr.g;
+	GXWGFifo.u8 = clr.b;
+	GXWGFifo.u8 = clr.a;
 }
 
 /*
  * --INFO--
  * Address:	8011A1CC
  * Size:	000604
+ * TODO
  */
-void LifeGaugeList::draw(Graphics&)
+void LifeGaugeList::draw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x180(r1)
-	mflr     r0
-	stw      r0, 0x184(r1)
-	stfd     f31, 0x170(r1)
-	psq_st   f31, 376(r1), 0, qr0
-	stfd     f30, 0x160(r1)
-	psq_st   f30, 360(r1), 0, qr0
-	stfd     f29, 0x150(r1)
-	psq_st   f29, 344(r1), 0, qr0
-	stfd     f28, 0x140(r1)
-	psq_st   f28, 328(r1), 0, qr0
-	stfd     f27, 0x130(r1)
-	psq_st   f27, 312(r1), 0, qr0
-	stfd     f26, 0x120(r1)
-	psq_st   f26, 296(r1), 0, qr0
-	stw      r31, 0x11c(r1)
-	stw      r30, 0x118(r1)
-	stw      r29, 0x114(r1)
-	stw      r28, 0x110(r1)
-	mr       r31, r3
-	lbz      r0, 0x38(r3)
-	cmplwi   r0, 0
-	beq      lbl_8011A780
-	lfs      f1, lbl_80517B58@sda21(r2)
-	lfs      f0, 0x34(r31)
-	lwz      r28, 0x25c(r4)
-	li       r4, 1
-	fmuls    f26, f1, f0
-	mr       r3, r28
-	bl       getMatrix__8ViewportFb
-	lfs      f0, 0(r3)
-	li       r4, 1
-	stfs     f0, 0xbc(r1)
-	lfs      f0, 4(r3)
-	stfs     f0, 0xcc(r1)
-	lfs      f0, 8(r3)
-	stfs     f0, 0xdc(r1)
-	lfs      f0, 0x10(r3)
-	fneg     f0, f0
-	stfs     f0, 0xc0(r1)
-	lfs      f0, 0x14(r3)
-	fneg     f0, f0
-	stfs     f0, 0xd0(r1)
-	lfs      f0, 0x18(r3)
-	fneg     f0, f0
-	stfs     f0, 0xe0(r1)
-	lfs      f0, 0x20(r3)
-	stfs     f0, 0xc4(r1)
-	lfs      f0, 0x24(r3)
-	stfs     f0, 0xd4(r1)
-	lfs      f0, 0x28(r3)
-	mr       r3, r28
-	stfs     f0, 0xe4(r1)
-	lfs      f0, 0x24(r31)
-	stfs     f0, 0xc8(r1)
-	lfs      f0, 0x28(r31)
-	stfs     f0, 0xd8(r1)
-	lfs      f0, 0x2c(r31)
-	stfs     f0, 0xe8(r1)
-	bl       getMatrix__8ViewportFb
-	addi     r4, r1, 0xbc
-	addi     r5, r1, 0x8c
-	bl       PSMTXConcat
-	addi     r3, r1, 0x8c
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r3, 0
-	bl       GXSetTevDirect
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 0
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xb
-	li       r5, 1
-	li       r6, 5
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 0
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	bl       GXSetBlendMode
-	li       r3, 0
-	li       r4, 1
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 1
-	li       r5, 0xc
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	addi     r3, r1, 0x5c
-	bl       PSMTXIdentity
-	addi     r3, r1, 0x5c
-	li       r4, 0x1e
-	li       r5, 1
-	bl       GXLoadTexMtxImm
-	li       r3, 0x98
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	fneg     f1, f26
-	lis      r6, 0xCC008000@ha
-	lfs      f0, lbl_80517B28@sda21(r2)
-	li       r5, 0xff
-	li       r4, 0
-	li       r0, 1
-	stfs     f1, 0xCC008000@l(r6)
-	li       r3, 0
-	stfs     f26, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stfs     f26, -0x8000(r6)
-	stfs     f26, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r0, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r0, -0x8000(r6)
-	stfs     f26, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stb      r0, -0x8000(r6)
-	stb      r0, -0x8000(r6)
-	bl       GXSetTevDirect
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 0
-	li       r4, 4
-	bl       GXSetTevOp
-	li       r3, 0
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 0
-	bl       GXSetVtxDesc
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xb
-	li       r5, 1
-	li       r6, 5
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	bl       GXSetBlendMode
-	li       r3, 0
-	li       r4, 1
-	li       r5, 0
-	bl       GXSetZMode
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	addi     r3, r1, 0x2c
-	bl       PSMTXIdentity
-	addi     r3, r1, 0x2c
-	li       r4, 0x1e
-	li       r5, 1
-	bl       GXLoadTexMtxImm
-	lfs      f0, lbl_80517B28@sda21(r2)
-	li       r28, 0
-	lfs      f27, 0x34(r31)
-	lis      r30, 0xcc01
-	stfs     f0, 8(r1)
-	lis      r29, 0x4330
-	lfs      f28, lbl_80517B54@sda21(r2)
-	stfs     f0, 0xc(r1)
-	lfd      f29, lbl_80517B48@sda21(r2)
-	stfs     f0, 0x10(r1)
-	lfd      f30, lbl_80517B40@sda21(r2)
-	lfs      f31, lbl_80517B50@sda21(r2)
-	b        lbl_8011A774
+	if (!_38) {
+		return;
+	}
 
-lbl_8011A5E4:
-	lbz      r0, 0x45(r31)
-	xoris    r3, r28, 0x8000
-	stw      r3, 0xf4(r1)
-	stw      r29, 0xf0(r1)
-	lfd      f0, 0xf0(r1)
-	stw      r0, 0xfc(r1)
-	fsubs    f1, f0, f29
-	stw      r29, 0xf8(r1)
-	lfd      f0, 0xf8(r1)
-	fsubs    f0, f0, f30
-	fdivs    f0, f1, f0
-	fnmsubs  f26, f28, f0, f31
-	fmr      f1, f26
-	bl       cos
-	frsp     f2, f1
-	lfs      f0, 8(r1)
-	fmr      f1, f26
-	fmadds   f0, f27, f2, f0
-	stfs     f0, 0x14(r1)
-	bl       sin
-	addi     r3, r28, 1
-	lbz      r0, 0x45(r31)
-	xoris    r3, r3, 0x8000
-	lfs      f2, 0x10(r1)
-	stw      r3, 0x104(r1)
-	frsp     f1, f1
-	lfs      f0, 0xc(r1)
-	stw      r29, 0x100(r1)
-	fmadds   f3, f27, f1, f0
-	lfd      f0, 0x100(r1)
-	stw      r0, 0x10c(r1)
-	fsubs    f1, f0, f29
-	stw      r29, 0x108(r1)
-	lfd      f0, 0x108(r1)
-	stfs     f3, 0x18(r1)
-	fsubs    f0, f0, f30
-	stfs     f2, 0x1c(r1)
-	fdivs    f0, f1, f0
-	fnmsubs  f26, f28, f0, f31
-	fmr      f1, f26
-	bl       cos
-	frsp     f2, f1
-	lfs      f0, 8(r1)
-	fmr      f1, f26
-	fmadds   f0, f27, f2, f0
-	stfs     f0, 0x20(r1)
-	bl       sin
-	frsp     f2, f1
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	li       r3, 0xa0
-	li       r4, 0
-	li       r5, 3
-	fmadds   f1, f27, f2, f1
-	stfs     f0, 0x28(r1)
-	stfs     f1, 0x24(r1)
-	bl       GXBegin
-	lfs      f0, 8(r1)
-	addi     r28, r28, 1
-	lfs      f1, 0xc(r1)
-	stfs     f0, -0x8000(r30)
-	lfs      f2, 0x10(r1)
-	stfs     f1, -0x8000(r30)
-	lfs      f0, 0x14(r1)
-	stfs     f2, -0x8000(r30)
-	lfs      f1, 0x18(r1)
-	lbz      r5, 0x43(r31)
-	lbz      r4, 0x42(r31)
-	lbz      r3, 0x41(r31)
-	lbz      r0, 0x40(r31)
-	lfs      f2, 0x1c(r1)
-	stb      r0, -0x8000(r30)
-	stb      r3, -0x8000(r30)
-	stb      r4, -0x8000(r30)
-	stb      r5, -0x8000(r30)
-	stfs     f0, -0x8000(r30)
-	lfs      f0, 0x20(r1)
-	stfs     f1, -0x8000(r30)
-	lfs      f1, 0x24(r1)
-	stfs     f2, -0x8000(r30)
-	lfs      f2, 0x28(r1)
-	lbz      r5, 0x43(r31)
-	lbz      r4, 0x42(r31)
-	lbz      r3, 0x41(r31)
-	lbz      r0, 0x40(r31)
-	stb      r0, -0x8000(r30)
-	stb      r3, -0x8000(r30)
-	stb      r4, -0x8000(r30)
-	stb      r5, -0x8000(r30)
-	stfs     f0, -0x8000(r30)
-	stfs     f1, -0x8000(r30)
-	stfs     f2, -0x8000(r30)
-	lbz      r5, 0x43(r31)
-	lbz      r4, 0x42(r31)
-	lbz      r3, 0x41(r31)
-	lbz      r0, 0x40(r31)
-	stb      r0, -0x8000(r30)
-	stb      r3, -0x8000(r30)
-	stb      r4, -0x8000(r30)
-	stb      r5, -0x8000(r30)
+	Viewport* cVp = gfx.mCurrentViewport;
+	Matrixf* mtx  = cVp->getMatrix(true);
 
-lbl_8011A774:
-	lbz      r0, 0x44(r31)
-	cmpw     r28, r0
-	blt      lbl_8011A5E4
-
-lbl_8011A780:
-	psq_l    f31, 376(r1), 0, qr0
-	lfd      f31, 0x170(r1)
-	psq_l    f30, 360(r1), 0, qr0
-	lfd      f30, 0x160(r1)
-	psq_l    f29, 344(r1), 0, qr0
-	lfd      f29, 0x150(r1)
-	psq_l    f28, 328(r1), 0, qr0
-	lfd      f28, 0x140(r1)
-	psq_l    f27, 312(r1), 0, qr0
-	lfd      f27, 0x130(r1)
-	psq_l    f26, 296(r1), 0, qr0
-	lfd      f26, 0x120(r1)
-	lwz      r31, 0x11c(r1)
-	lwz      r30, 0x118(r1)
-	lwz      r29, 0x114(r1)
-	lwz      r0, 0x184(r1)
-	lwz      r28, 0x110(r1)
-	mtlr     r0
-	addi     r1, r1, 0x180
-	blr
-	*/
+	//  GXSetNumChans(1);
+	// GXSetTevDirect(0);
+	// GXSetNumTevStages(1u);
+	// GXSetTevOp(0, 0);
+	// GXSetTevOrder(0, 0, 0, 4);
+	// GXSetChanCtrl(4, 0, 0, 1, 0, 0, 2);
+	// GXClearVtxDesc();
+	// GXSetVtxDesc(9, 1);
+	// GXSetVtxDesc(11, 1);
+	// GXSetVtxDesc(13, 1);
+	// GXSetVtxAttrFmt(0, 9, 1, 4, 0);
+	// GXSetVtxAttrFmt(0, 11, 1, 5, 0);
+	// GXSetVtxAttrFmt(0, 13, 1, 0, 0);
+	// GXSetBlendMode(1, 4, 5, 15);
+	// GXSetZMode(0, 1, 0);
+	// GXSetCurrentMtx(0);
+	// GXSetNumTexGens(1u);
+	// GXSetTexCoordGen2(0, 1, 12, 60, 0, 125);
+	// PSMTXIdentity(v24);
+	// GXLoadTexMtxImm(v24, 0x1Eu, 1);
+	// GXBegin(152, 0, 4);
+	// GXEnd();
+	//     GXSetTevDirect(0);
+	// GXSetNumChans(1);
+	// GXSetNumTevStages(1u);
+	// GXSetTevOp(0, 4);
+	// GXSetTevOrder(0, 255, 255, 4);
+	// GXSetChanCtrl(4, 0, 0, 1, 0, 0, 2);
+	// GXClearVtxDesc();
+	// GXSetVtxDesc(9, 1);
+	// GXSetVtxDesc(11, 1);
+	// GXSetVtxDesc(13, 0);
+	// GXSetVtxAttrFmt(0, 9, 1, 4, 0);
+	// GXSetVtxAttrFmt(0, 11, 1, 5, 0);
+	// GXSetBlendMode(1, 4, 5, 15);
+	// GXSetZMode(0, 1, 0);
+	// GXSetCurrentMtx(0);
+	// PSMTXIdentity(v23);
 }
 
 /*
  * --INFO--
  * Address:	8011A7D0
  * Size:	0000DC
+ * TODO
  */
-LifeGaugeMgr::LifeGaugeMgr()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r0, r30
-	stw      r29, 0x14(r1)
-	mr       r31, r0
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__13LifeGaugeList@ha
-	addi     r29, r30, 0x48
-	addi     r0, r3, __vt__13LifeGaugeList@l
-	li       r4, 0
-	stw      r0, 0(r31)
-	li       r0, 0x20
-	lfs      f0, lbl_80517B28@sda21(r2)
-	mr       r3, r29
-	stb      r4, 0x38(r31)
-	stfs     f0, 0x3c(r31)
-	stb      r0, 0x45(r31)
-	stb      r0, 0x44(r31)
-	stw      r4, 0x20(r31)
-	stw      r4, 0x1c(r31)
-	stw      r4, 0x18(r31)
-	stb      r4, 0x38(r31)
-	stfs     f0, 0x3c(r31)
-	stb      r0, 0x45(r31)
-	stb      r0, 0x44(r31)
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__13LifeGaugeList@ha
-	li       r4, 0
-	addi     r0, r3, __vt__13LifeGaugeList@l
-	lfs      f0, lbl_80517B28@sda21(r2)
-	stw      r0, 0(r29)
-	li       r0, 0x20
-	mr       r3, r30
-	stb      r4, 0x38(r29)
-	stfs     f0, 0x3c(r29)
-	stb      r0, 0x45(r29)
-	stb      r0, 0x44(r29)
-	stw      r4, 0x20(r29)
-	stw      r4, 0x1c(r29)
-	stw      r4, 0x18(r29)
-	stb      r4, 0x38(r29)
-	stfs     f0, 0x3c(r29)
-	stb      r0, 0x45(r29)
-	stb      r0, 0x44(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+LifeGaugeMgr::LifeGaugeMgr() { }
 
 /*
  * --INFO--
  * Address:	8011A8AC
  * Size:	000098
  */
-LifeGaugeList::~LifeGaugeList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8011A928
-	lis      r3, __vt__13LifeGaugeList@ha
-	addi     r0, r3, __vt__13LifeGaugeList@l
-	stw      r0, 0(r30)
-	lwz      r3, 0x18(r30)
-	cmplwi   r3, 0
-	beq      lbl_8011A8EC
-	lwz      r0, 0x1c(r30)
-	stw      r0, 0x1c(r3)
-
-lbl_8011A8EC:
-	lwz      r3, 0x1c(r30)
-	cmplwi   r3, 0
-	beq      lbl_8011A900
-	lwz      r0, 0x18(r30)
-	stw      r0, 0x18(r3)
-
-lbl_8011A900:
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x1c(r30)
-	li       r4, 0
-	stw      r0, 0x18(r30)
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_8011A928
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8011A928:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// LifeGaugeList::~LifeGaugeList()
+// {
+// }
 
 /*
  * --INFO--
@@ -1227,7 +448,7 @@ lbl_8011AA78:
  * Address:	8011AA94
  * Size:	0000E4
  */
-void LifeGaugeMgr::activeLifeGauge(Game::Creature*, float)
+void LifeGaugeMgr::activeLifeGauge(Game::Creature*, f32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1683,9 +904,9 @@ lbl_8011AF88:
 void __sinit_lifeGaugeMgr_cpp()
 {
 	/*
-	lis      r4, __float_nan@ha
+	lis      r4, __f32_nan@ha
 	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
+	lfs      f0, __f32_nan@l(r4)
 	lis      r3, lbl_804AC308@ha
 	stw      r0, lbl_80515880@sda21(r13)
 	stfsu    f0, lbl_804AC308@l(r3)
