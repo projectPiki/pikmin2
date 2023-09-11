@@ -309,16 +309,16 @@ struct NaviFallMeckState : public NaviState {
 };
 
 struct NaviFlickArg : public StateArg {
-	NaviFlickArg(Creature* c, Vector3f& d, f32 i)
+	NaviFlickArg(Creature* flicker, Vector3f& direction, f32 damage)
 	{
-		mCreature  = c;
-		mDirection = d;
-		mIntensity = i;
+		mCreature  = flicker;
+		mDirection = direction;
+		mDamage    = damage;
 	}
 
-	Creature* mCreature; // _0C
-	Vector3f mDirection; // _10
-	f32 mIntensity;      // _1C
+	Creature* mCreature; // _00
+	Vector3f mDirection; // _04
+	f32 mDamage;         // _10
 };
 
 struct NaviFlickState : public NaviState {
@@ -337,10 +337,10 @@ struct NaviFlickState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	u32 _10;            // _10
-	Creature* mFlicker; // _14
-	Vector3f _18;       // _18
-	u8 _24[0x4];        // _24, unknown
+	u32 _10;             // _10
+	Creature* mFlicker;  // _14
+	Vector3f mDirection; // _18
+	f32 mDamage;         // _24
 };
 
 struct NaviFollowArg : public StateArg {

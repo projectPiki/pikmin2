@@ -16,9 +16,17 @@ struct Navi;
 namespace Game {
 namespace EnemyFunc {
 struct ConditionPikminNearby : public Condition<Creature> {
+	inline ConditionPikminNearby(Creature* creature, f32 dist)
+	    : mCreature(creature)
+	    , mSearchDist(dist)
+	{
+	}
+
 	virtual bool satisfy(Creature*); // 08 (weak)
 
 	// _00 = VTBL
+	Creature* mCreature; // _00
+	f32 mSearchDist;     // _04
 };
 
 struct EatPikminDefaultCondition : public Condition<Piki> {
@@ -27,11 +35,13 @@ struct EatPikminDefaultCondition : public Condition<Piki> {
 	// _00 = VTBL
 };
 
-Navi* getNearestNavi(Creature*, f32, f32, f32*, Condition<Navi>*);
-Piki* getNearestPikmin(Creature*, f32, f32, f32*, Condition<Piki>*);
-Creature* getNearestPikminOrNavi(Creature*, f32, f32, f32*, Condition<Navi>*, Condition<Piki>*);
+Navi* getNearestNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32* naviDist, Condition<Navi>* condition);
+Piki* getNearestPikmin(Creature* creature, f32 searchAngle, f32 searchRadius, f32* pikiDist, Condition<Piki>* condition);
+Creature* getNearestPikminOrNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32* targetDist, Condition<Navi>* naviCond,
+                                 Condition<Piki>* pikiCond);
 
-void flickStickPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
+void flickCreature(Creature* flicker, Creature* toFlick, f32 knockback, f32 damage, f32 angle);
+void flickStickPikmin(Creature* creature, f32 flickChance, f32 knockback, f32 damage, f32 angle, Condition<Piki>* condition);
 void flickNearbyPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
 void flickNearbyNavi(Creature*, f32, f32, f32, f32, Condition<Navi>*);
 

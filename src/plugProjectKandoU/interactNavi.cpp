@@ -135,7 +135,7 @@ bool InteractFlick::actNavi(Game::Navi* navi)
 		f32 knockBack = (mKnockback * 0.1f) * randFloat() + mKnockback;
 
 		Vector3f direction(xRot * knockBack, randFloat() * 50.0f + 100.0f, zRot * knockBack);
-		NaviFlickArg flickArg(mCreature, direction, mIntensity);
+		NaviFlickArg flickArg(mCreature, direction, mNaviDamage);
 		navi->transit(NSID_Flick, &flickArg);
 		return true;
 	}

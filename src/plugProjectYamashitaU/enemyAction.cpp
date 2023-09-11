@@ -1,119 +1,66 @@
-#include "types.h"
-#include "nans.h"
 #include "Game/EnemyFunc.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_enemyAction_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047AE88
-    lbl_8047AE88:
-        .asciz "teki-srch"
-        .skip 2
-    .global lbl_8047AE94
-    lbl_8047AE94:
-        .asciz "g2B_white_poison"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804ABC48
-    lbl_804ABC48:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition
-    __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition:
-        .4byte 0
-        .4byte 0
-        .4byte
-   satisfy__Q34Game9EnemyFunc25EatPikminDefaultConditionFPQ24Game4Piki .global
-   "__vt__23Condition<Q24Game4Piki>"
-    "__vt__23Condition<Q24Game4Piki>":
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q34Game9EnemyFunc21ConditionPikminNearby
-    __vt__Q34Game9EnemyFunc21ConditionPikminNearby:
-        .4byte 0
-        .4byte 0
-        .4byte
-   satisfy__Q34Game9EnemyFunc21ConditionPikminNearbyFPQ24Game8Creature .global
-   "__vt__27Condition<Q24Game8Creature>"
-    "__vt__27Condition<Q24Game8Creature>":
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global "__vt__26Iterator<Q24Game8Creature>"
-    "__vt__26Iterator<Q24Game8Creature>":
-        .4byte 0
-        .4byte 0
-        .4byte "first__26Iterator<Q24Game8Creature>Fv"
-        .4byte "next__26Iterator<Q24Game8Creature>Fv"
-        .4byte "isDone__26Iterator<Q24Game8Creature>Fv"
-        .4byte "__ml__26Iterator<Q24Game8Creature>Fv"
-    .global "__vt__22Iterator<Q24Game4Piki>"
-    "__vt__22Iterator<Q24Game4Piki>":
-        .4byte 0
-        .4byte 0
-        .4byte "first__22Iterator<Q24Game4Piki>Fv"
-        .4byte "next__22Iterator<Q24Game4Piki>Fv"
-        .4byte "isDone__22Iterator<Q24Game4Piki>Fv"
-        .4byte "__ml__22Iterator<Q24Game4Piki>Fv"
-    .global "__vt__22Iterator<Q24Game4Navi>"
-    "__vt__22Iterator<Q24Game4Navi>":
-        .4byte 0
-        .4byte 0
-        .4byte "first__22Iterator<Q24Game4Navi>Fv"
-        .4byte "next__22Iterator<Q24Game4Navi>Fv"
-        .4byte "isDone__22Iterator<Q24Game4Navi>Fv"
-        .4byte "__ml__22Iterator<Q24Game4Navi>Fv"
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515878
-    lbl_80515878:
-        .skip 0x4
-    .global lbl_8051587C
-    lbl_8051587C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80517A78
-    lbl_80517A78:
-        .4byte 0x40490FDB
-    .global lbl_80517A7C
-    lbl_80517A7C:
-        .4byte 0x3BB60B61
-    .global lbl_80517A80
-    lbl_80517A80:
-        .4byte 0x00000000
-    .global lbl_80517A84
-    lbl_80517A84:
-        .4byte 0x47000000
-    .global lbl_80517A88
-    lbl_80517A88:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80517A90
-    lbl_80517A90:
-        .float 1.0
-    .global lbl_80517A94
-    lbl_80517A94:
-        .float 0.5
-*/
+#include "Game/Navi.h"
+#include "Game/PikiMgr.h"
+#include "Game/Stickers.h"
+#include "stl/float.h"
+#include "Dolphin/rand.h"
+#include "nans.h"
 
 namespace Game {
+namespace EnemyFunc {
 
 /*
  * --INFO--
  * Address:	801126F4
  * Size:	000424
  */
-Navi* EnemyFunc::getNearestNavi(Game::Creature*, float, float, float*, Condition<Game::Navi>*)
+Navi* getNearestNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32* naviDist, Condition<Navi>* condition)
 {
+	Navi* navi = nullptr;
+	f32 minDist;
+	searchAngle = TORADIANS(searchAngle);
+
+	if (searchRadius < 0.0f) {
+		searchRadius = FLT_MAX;
+	} else {
+		searchRadius = SQUARE(searchRadius);
+	}
+
+	if (naviDist) {
+		if (*naviDist < searchRadius) {
+			minDist = *naviDist;
+		} else {
+			minDist = searchRadius;
+		}
+	} else {
+		minDist = searchRadius;
+	}
+
+	Iterator<Navi> iter(naviMgr, nullptr, condition);
+	CI_LOOP(iter)
+	{
+		Navi* currNavi = *iter;
+		if (currNavi->isAlive()) {
+			f32 angleDist = creature->getAngDist(currNavi);
+			if (FABS(angleDist) <= searchAngle) {
+				// something fucky here
+				Vector3f sep = Vector3f(currNavi->getPosition().x, 0.0f, currNavi->getPosition().z)
+				             - Vector3f(creature->getPosition().x, 0.0f, creature->getPosition().z);
+				f32 newDist = SQUARE(sep.x) + SQUARE(sep.z);
+				if (newDist < minDist) {
+					navi    = currNavi;
+					minDist = newDist;
+				}
+			}
+		}
+	}
+
+	if (navi && naviDist) {
+		*naviDist = minDist;
+	}
+
+	return navi;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xE0(r1)
@@ -419,8 +366,54 @@ Navi* EnemyFunc::getNearestNavi(Game::Creature*, float, float, float*, Condition
  * Address:	80112B64
  * Size:	000484
  */
-Piki* EnemyFunc::getNearestPikmin(Game::Creature*, float, float, float*, Condition<Game::Piki>*)
+Piki* getNearestPikmin(Creature* creature, f32 searchAngle, f32 searchRadius, f32* pikiDist, Condition<Piki>* condition)
 {
+	sys->mTimers->_start("teki-srch", true);
+	Piki* piki = nullptr;
+	f32 minDist;
+	searchAngle = TORADIANS(searchAngle);
+	if (searchRadius < 0.0f) {
+		searchRadius = FLT_MAX;
+	} else {
+		searchRadius = SQUARE(searchRadius);
+	}
+
+	if (pikiDist) {
+		if (*pikiDist < searchRadius) {
+			minDist = *pikiDist;
+		} else {
+			minDist = searchRadius;
+		}
+	} else {
+		minDist = searchRadius;
+	}
+
+	Iterator<Piki> iter(pikiMgr, nullptr, condition);
+	CI_LOOP(iter)
+	{
+		Piki* currPiki = *iter;
+		if (currPiki->isSearchable()) {
+			f32 angleDist = creature->getAngDist(currPiki);
+			if (FABS(angleDist) <= searchAngle) {
+				// something fucky here
+				Vector3f sep = Vector3f(currPiki->getPosition().x, 0.0f, currPiki->getPosition().z)
+				             - Vector3f(creature->getPosition().x, 0.0f, creature->getPosition().z);
+				f32 newDist = SQUARE(sep.x) + SQUARE(sep.z);
+				if (newDist < minDist) {
+					piki    = currPiki;
+					minDist = newDist;
+				}
+			}
+		}
+	}
+
+	if (piki && pikiDist) {
+		*pikiDist = minDist;
+	}
+
+	sys->mTimers->_stop("teki-srch");
+
+	return piki;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xE0(r1)
@@ -749,87 +742,38 @@ Piki* EnemyFunc::getNearestPikmin(Game::Creature*, float, float, float*, Conditi
 
 /*
  * --INFO--
- * Address:	80112FE8
- * Size:	00001C
+ * Address:	80113050
+ * Size:	0000C4
  */
-Vector3f FakePiki::getPosition()
+Creature* getNearestPikminOrNavi(Creature* creature, f32 searchAngle, f32 searchRadius, f32* targetDist, Condition<Navi>* naviCondition,
+                                 Condition<Piki>* pikiCondition)
 {
-	/*
-	lfs      f0, 0x20c(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 0x210(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0x214(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
+	f32 dist = FLT_MAX;
+	if (!targetDist) {
+		targetDist = &dist;
+	}
+
+	Creature* navi = getNearestNavi(creature, searchAngle, searchRadius, targetDist, naviCondition);
+	Creature* piki = getNearestPikmin(creature, searchAngle, searchRadius, targetDist, pikiCondition);
+
+	if (piki) {
+		return piki;
+	}
+
+	return navi;
 }
 
 /*
  * --INFO--
- * Address:	80113050
- * Size:	0000C4
+ * Address:	........
+ * Size:	000060
  */
-Creature* EnemyFunc::getNearestPikminOrNavi(Game::Creature*, float, float, float*, Condition<Game::Navi>*, Condition<Game::Piki>*)
+void flickCreature(Creature* flicker, Creature* toFlick, f32 knockback, f32 damage, f32 angle)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lis       r7, 0x8051
-	  mr.       r29, r4
-	  lfs       f0, 0x48D8(r7)
-	  fmr       f30, f1
-	  fmr       f31, f2
-	  mr        r28, r3
-	  stfs      f0, 0x8(r1)
-	  mr        r30, r6
-	  bne-      .loc_0x54
-	  addi      r29, r1, 0x8
-
-	.loc_0x54:
-	  fmr       f1, f30
-	  mr        r3, r28
-	  fmr       f2, f31
-	  mr        r4, r29
-	  bl        -0x9C0
-	  fmr       f1, f30
-	  mr        r31, r3
-	  fmr       f2, f31
-	  mr        r3, r28
-	  mr        r4, r29
-	  mr        r5, r30
-	  bl        -0x56C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x90
-	  b         .loc_0x94
-
-	.loc_0x90:
-	  mr        r3, r31
-
-	.loc_0x94:
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	if (toFlick->mSticker == flicker && !toFlick->isStickToMouth()) {
+		InteractFlick flick(flicker, knockback, damage, angle);
+		toFlick->stimulate(flick);
+	}
 }
 
 /*
@@ -837,250 +781,24 @@ Creature* EnemyFunc::getNearestPikminOrNavi(Game::Creature*, float, float, float
  * Address:	8011311C
  * Size:	00036C
  */
-void EnemyFunc::flickStickPikmin(Game::Creature*, float, float, float, float, Condition<Game::Piki>*)
+void flickStickPikmin(Creature* creature, f32 flickChance, f32 knockback, f32 damage, f32 angle, Condition<Piki>* condition)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stfd      f30, 0x80(r1)
-	  psq_st    f30,0x88(r1),0,0
-	  stfd      f29, 0x70(r1)
-	  psq_st    f29,0x78(r1),0,0
-	  stfd      f28, 0x60(r1)
-	  psq_st    f28,0x68(r1),0,0
-	  stw       r31, 0x5C(r1)
-	  stw       r30, 0x58(r1)
-	  stw       r29, 0x54(r1)
-	  fmr       f28, f1
-	  mr        r30, r3
-	  fmr       f29, f2
-	  mr        r31, r4
-	  fmr       f30, f3
-	  mr        r4, r30
-	  fmr       f31, f4
-	  addi      r3, r1, 0x2C
-	  bl        0x8CAE8
-	  lfs       f0, -0x68E8(r2)
-	  li        r3, 0
-	  lis       r4, 0x804B
-	  addi      r0, r1, 0x2C
-	  fadds     f31, f31, f0
-	  subi      r4, r4, 0x437C
-	  stw       r4, 0x8(r1)
-	  fmr       f1, f31
-	  stw       r3, 0x14(r1)
-	  stw       r3, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  bl        0x2FEA2C
-	  lwz       r0, 0x14(r1)
-	  fmr       f31, f1
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB8
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x304
+	Stickers stickers(creature);
 
-	.loc_0xB8:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x128
-
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x304
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-
-	.loc_0x128:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xD4
-	  b         .loc_0x304
-
-	.loc_0x148:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r29, r3
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x248
-	  cmplwi    r31, 0
-	  beq-      .loc_0x1A4
-	  beq-      .loc_0x248
-	  mr        r3, r31
-	  mr        r4, r29
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x248
-
-	.loc_0x1A4:
-	  bl        -0x49D20
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x4C(r1)
-	  lfd       f2, -0x68D8(r2)
-	  stw       r0, 0x48(r1)
-	  lfs       f0, -0x68DC(r2)
-	  lfd       f1, 0x48(r1)
-	  fsubs     f1, f1, f2
-	  fdivs     f0, f1, f0
-	  fcmpo     cr0, f28, f0
-	  ble-      .loc_0x248
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0xF4(r3)
-	  mr        r29, r3
-	  cmplw     r0, r30
-	  bne-      .loc_0x248
-	  bl        0x8C270
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x248
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  subi      r4, r4, 0x5D00
-	  stw       r30, 0x1C(r1)
-	  addi      r0, r3, 0x4E04
-	  mr        r3, r29
-	  stw       r4, 0x18(r1)
-	  addi      r4, r1, 0x18
-	  stw       r0, 0x18(r1)
-	  stfs      f29, 0x20(r1)
-	  stfs      f30, 0x24(r1)
-	  stfs      f31, 0x28(r1)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x248:
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x274
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x304
-
-	.loc_0x274:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x2E8
-
-	.loc_0x294:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x304
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-
-	.loc_0x2E8:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x294
-
-	.loc_0x304:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x148
-	  addi      r3, r1, 0x2C
-	  li        r4, -0x1
-	  bl        0x8C91C
-	  psq_l     f31,0x98(r1),0,0
-	  lfd       f31, 0x90(r1)
-	  psq_l     f30,0x88(r1),0,0
-	  lfd       f30, 0x80(r1)
-	  psq_l     f29,0x78(r1),0,0
-	  lfd       f29, 0x70(r1)
-	  psq_l     f28,0x68(r1),0,0
-	  lfd       f28, 0x60(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  lwz       r0, 0xA4(r1)
-	  lwz       r29, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
-	*/
+	Iterator<Creature> iter(&stickers);
+	angle += PI;
+	angle = roundAng(angle);
+	CI_LOOP(iter)
+	{
+		Creature* stuck = *iter;
+		if (stuck->isPiki()) {
+			if (!condition || (condition && condition->satisfy(static_cast<Piki*>(stuck)))) {
+				if (flickChance > randFloat()) {
+					flickCreature(creature, *iter, knockback, damage, angle);
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -1088,8 +806,23 @@ void EnemyFunc::flickStickPikmin(Game::Creature*, float, float, float, float, Co
  * Address:	801134D4
  * Size:	0002BC
  */
-void EnemyFunc::flickNearbyPikmin(Game::Creature*, float, float, float, float, Condition<Game::Piki>*)
+void flickNearbyPikmin(Creature* creature, f32 searchRadius, f32 knockback, f32 damage, f32 angle, Condition<Piki>* condition)
 {
+	searchRadius *= searchRadius;
+
+	ConditionPikminNearby nearbyCondition(creature, searchRadius);
+	Iterator<Piki> iter(pikiMgr, nullptr, condition);
+	angle += PI;
+
+	CI_LOOP(iter)
+	{
+		Piki* piki = *iter;
+		// need to get this to call a virtual rather than direct function
+		if (nearbyCondition.satisfy(piki)) {
+			InteractFlick flick(creature, knockback, damage, angle);
+			piki->stimulate(flick);
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -1293,8 +1026,26 @@ void EnemyFunc::flickNearbyPikmin(Game::Creature*, float, float, float, float, C
  * Address:	80113790
  * Size:	0003A4
  */
-void EnemyFunc::flickNearbyNavi(Game::Creature*, float, float, float, float, Condition<Game::Navi>*)
+void flickNearbyNavi(Creature* creature, f32 searchRadius, f32 knockback, f32 damage, f32 angle, Condition<Navi>* condition)
 {
+	searchRadius *= searchRadius;
+
+	// ConditionPikminNearby nearbyCondition (creature, searchRadius);
+	Iterator<Navi> iter(naviMgr, nullptr, condition);
+	angle += PI;
+
+	CI_LOOP(iter)
+	{
+		Navi* navi = *iter;
+		// this is fucky
+		Vector3f sep = Vector3f(creature->getPosition().x, creature->getPosition().y, creature->getPosition().z)
+		             - Vector3f(navi->getPosition().x, navi->getPosition().y, navi->getPosition().z);
+		f32 newDist = SQUARE(sep.x) + SQUARE(sep.y) + SQUARE(sep.z);
+		if (newDist < searchRadius) {
+			InteractFlick flick(creature, knockback, damage, angle);
+			navi->stimulate(flick);
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x110(r1)
@@ -1556,8 +1307,9 @@ void EnemyFunc::flickNearbyNavi(Game::Creature*, float, float, float, float, Con
  * Address:	80113B34
  * Size:	000350
  */
-int EnemyFunc::eatPikmin(Game::EnemyBase*, Condition<Game::Piki>*)
+int eatPikmin(EnemyBase* enemy, Condition<Piki>* condition)
 {
+
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1811,7 +1563,7 @@ lbl_80113E6C:
  * Address:	80113E84
  * Size:	0003DC
  */
-void EnemyFunc::swallowPikmin(Game::Creature*, float, Condition<Game::Piki>*)
+void swallowPikmin(Creature*, float, Condition<Piki>*)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2089,7 +1841,7 @@ lbl_80114210:
  * Address:	80114260
  * Size:	0003F8
  */
-void EnemyFunc::attackNavi(Game::Creature*, float, float, float, CollPart*, Condition<Game::Navi>*)
+int attackNavi(Creature*, float, float, float, CollPart*, Condition<Navi>*)
 {
 	/*
 	.loc_0x0:
@@ -2379,79 +2131,42 @@ void EnemyFunc::attackNavi(Game::Creature*, float, float, float, CollPart*, Cond
  * Address:	80114658
  * Size:	0000DC
  */
-bool EnemyFunc::isStartFlick(Game::EnemyBase*, bool)
+bool isStartFlick(EnemyBase* enemy, bool doResetFlickCounter)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	li       r7, 0
-	lfs      f0, lbl_80517A80@sda21(r2)
-	lfs      f1, 0x20c(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80114680
-	lfs      f0, lbl_80517A94@sda21(r2)
-	fadds    f0, f0, f1
-	b        lbl_80114688
+	EnemyParmsBase* parms;
+	bool result  = false;
+	f32 flickVal = 0.0f;
+	if (enemy->mToFlick >= 0.0f) {
+		flickVal = enemy->mToFlick + 0.5f;
+	} else {
+		flickVal = enemy->mToFlick - 0.5f;
+	}
 
-lbl_80114680:
-	lfs      f0, lbl_80517A94@sda21(r2)
-	fsubs    f0, f1, f0
+	// int stuckCount = enemy->mStuckPikminCount;
+	parms       = static_cast<EnemyParmsBase*>(enemy->mParms);
+	u8 flickInt = (int)flickVal;
 
-lbl_80114688:
-	fctiwz   f0, f0
-	lwz      r6, 0xc0(r3)
-	lwz      r5, 0x1f4(r3)
-	lwz      r0, 0x71c(r6)
-	stfd     f0, 8(r1)
-	cmpw     r5, r0
-	lwz      r0, 0xc(r1)
-	clrlwi   r8, r0, 0x18
-	bge      lbl_801146C0
-	lwz      r0, 0x6f4(r6)
-	cmpw     r8, r0
-	ble      lbl_80114710
-	li       r7, 1
-	b        lbl_80114710
+	if (enemy->mStuckPikminCount < parms->mGeneral.mIp02.mValue) {
+		if (flickInt > parms->mGeneral.mIp01.mValue) {
+			result = true;
+		}
+	} else if (enemy->mStuckPikminCount < parms->mGeneral.mIp04.mValue) {
+		if (flickInt > parms->mGeneral.mIp03.mValue) {
+			result = true;
+		}
+	} else if (enemy->mStuckPikminCount < parms->mGeneral.mIp06.mValue) {
+		if (flickInt > parms->mGeneral.mIp05.mValue) {
+			result = true;
+		}
+	} else if (flickInt > parms->mGeneral.mIp07.mValue) {
+		result = true;
+	}
 
-lbl_801146C0:
-	lwz      r0, 0x76c(r6)
-	cmpw     r5, r0
-	bge      lbl_801146E0
-	lwz      r0, 0x744(r6)
-	cmpw     r8, r0
-	ble      lbl_80114710
-	li       r7, 1
-	b        lbl_80114710
+	if (result && doResetFlickCounter) {
+		enemy->mToFlick = 0.0f;
+	}
 
-lbl_801146E0:
-	lwz      r0, 0x7bc(r6)
-	cmpw     r5, r0
-	bge      lbl_80114700
-	lwz      r0, 0x794(r6)
-	cmpw     r8, r0
-	ble      lbl_80114710
-	li       r7, 1
-	b        lbl_80114710
-
-lbl_80114700:
-	lwz      r0, 0x7e4(r6)
-	cmpw     r8, r0
-	ble      lbl_80114710
-	li       r7, 1
-
-lbl_80114710:
-	clrlwi.  r0, r7, 0x18
-	beq      lbl_80114728
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_80114728
-	lfs      f0, lbl_80517A80@sda21(r2)
-	stfs     f0, 0x20c(r3)
-
-lbl_80114728:
-	mr       r3, r7
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return result;
 }
 
 /*
@@ -2459,7 +2174,7 @@ lbl_80114728:
  * Address:	80114734
  * Size:	00038C
  */
-bool EnemyFunc::isTherePikmin(Game::Creature*, float, Condition<Game::Piki>*)
+bool isTherePikmin(Creature*, float, Condition<Piki>*)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -2719,7 +2434,7 @@ lbl_80114A74:
  * Address:	80114AC0
  * Size:	000330
  */
-bool EnemyFunc::isThereOlimar(Game::Creature*, float, Condition<Game::Navi>*)
+bool isThereOlimar(Creature*, float, Condition<Navi>*)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -2954,7 +2669,7 @@ lbl_80114DA8:
  * Address:	80114DF0
  * Size:	0003C4
  */
-int EnemyFunc::getSurroundPikminNum(Game::Creature*, float, Condition<Game::Piki>*)
+int getSurroundPikminNum(Creature*, float, Condition<Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -3227,7 +2942,7 @@ int EnemyFunc::getSurroundPikminNum(Game::Creature*, float, Condition<Game::Piki
  * Address:	801151B4
  * Size:	00024C
  */
-int EnemyFunc::getStickPikminColorNum(Game::Creature*, int)
+int getStickPikminColorNum(Creature*, int)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3403,7 +3118,7 @@ lbl_801153B8:
  * Address:	80115400
  * Size:	0001DC
  */
-void EnemyFunc::walkToTarget(Game::EnemyBase*, Game::Creature*, float, float, float)
+void walkToTarget(EnemyBase*, Creature*, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -3538,7 +3253,7 @@ void EnemyFunc::walkToTarget(Game::EnemyBase*, Game::Creature*, float, float, fl
  * Address:	801155DC
  * Size:	0001BC
  */
-void EnemyFunc::walkToTarget(Game::EnemyBase*, Vector3f&, float, float, float)
+void walkToTarget(EnemyBase*, Vector3f&, float, float, float)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -3664,7 +3379,7 @@ lbl_801156D4:
  * Address:	80115798
  * Size:	000080
  */
-bool EnemyFunc::EatPikminDefaultCondition::satisfy(Game::Piki* p)
+bool EatPikminDefaultCondition::satisfy(Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3709,7 +3424,7 @@ lbl_801157F8:
  * Address:	80115818
  * Size:	000168
  */
-bool EnemyFunc::ConditionPikminNearby::satisfy(Game::Creature*)
+bool ConditionPikminNearby::satisfy(Creature*)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -3808,5 +3523,5 @@ lbl_80115940:
 	blr
 	*/
 }
-
+} // namespace EnemyFunc
 } // namespace Game

@@ -105,7 +105,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	inline bool isFPFlag(u32 flag) { return mFakePikiFlags.typeView & flag; }
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition();                           // _08
+	virtual Vector3f getPosition() { return mPosition; }      // _08
 	virtual void getBoundingSphere(Sys::Sphere& boundSphere); // _10 (weak)
 	virtual void doAnimation();                               // _3C
 	virtual void doEntry();                                   // _40
@@ -201,7 +201,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	Vector3f _1F0;                          // _1F0
 	f32 mFaceDir;                           // _1FC
 	Vector3f mSimVelocity;                  // _200
-	Vector3f mPosition3;                    // _20C, was mShadowParam.mPosition
+	Vector3f mPosition;                     // _20C
 	Sys::Sphere mBoundingSphere;            // _218, was mShadowParam.mBoundingSphere
 	int mBoundAnimIdx;                      // _228, current animIdx for held/bound object
 	int _22C;                               // _22C, anim id of some description?

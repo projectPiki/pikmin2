@@ -227,6 +227,16 @@ struct Piki : public FakePiki {
 	inline u16 getKind() { return (u16)mPikiKind; }
 	inline u16 getHappa() { return (u16)mHappaKind; }
 
+	inline bool isSearchable()
+	{
+		bool result = false;
+		if (isPikmin() && isAlive() && !isStickToMouth()) {
+			result = true;
+		}
+
+		return result;
+	}
+
 	inline efx::TPkEffect* getEffectObj() { return mEffectsObj; }
 
 	static Color4 pikiColors[PikiColorCount + 1];

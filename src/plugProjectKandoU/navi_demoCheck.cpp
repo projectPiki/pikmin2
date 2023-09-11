@@ -323,7 +323,7 @@ bool Navi::demoCheck()
 			ItemHole::Item* temp = static_cast<ItemHole::Item*>(*holeIt);
 			Sys::Sphere bounds;
 			cHole->getBoundingSphere(bounds);
-			Vector3f naviPos = cHole->mPosition - mPosition3;
+			Vector3f naviPos = cHole->mPosition - mPosition;
 			f32 len          = naviPos.length();
 			if (len < checkrad) {
 				cHole = temp;
@@ -403,7 +403,7 @@ bool Navi::demoCheck()
 			if (temp->demoOK() && temp->mHoneyType == 1 && temp->isAlive()) {
 				Sys::Sphere bounds;
 				cHoney->getBoundingSphere(bounds);
-				Vector3f naviPos = cHoney->mPosition - mPosition3;
+				Vector3f naviPos = cHoney->mPosition - mPosition;
 				f32 len          = naviPos.length();
 				if (len < checkrad) {
 					cHoney = temp;
@@ -433,7 +433,7 @@ bool Navi::demoCheck()
 			if (temp->demoOK() && temp->mHoneyType == 2 && temp->isAlive()) {
 				Sys::Sphere bounds;
 				cHoney->getBoundingSphere(bounds);
-				Vector3f naviPos = cHoney->mPosition - mPosition3;
+				Vector3f naviPos = cHoney->mPosition - mPosition;
 				f32 len          = naviPos.length();
 				if (len < checkrad) {
 					cHoney = temp;

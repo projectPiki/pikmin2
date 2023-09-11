@@ -28,7 +28,7 @@ FakePiki::FakePiki()
 	mModel                  = nullptr;
 	mBoundingSphere.mRadius = 8.5f;
 	mFaceDir                = 0.0f;
-	mPosition3              = Vector3f(0.0f);
+	mPosition               = Vector3f(0.0f);
 	mSimVelocity            = Vector3f(0.0f);
 	mVelocity               = Vector3f(0.0f);
 	_1F0                    = Vector3f(0.0f);
@@ -53,7 +53,7 @@ void FakePiki::initFakePiki()
 	mDoAnimCallback         = nullptr;
 	mWaterBox               = nullptr;
 	mFaceDir                = 0.0f;
-	mPosition3              = Vector3f(0.0f);
+	mPosition               = Vector3f(0.0f);
 	mVelocity               = Vector3f(0.0f);
 	_1F0                    = Vector3f(0.0f);
 	mSimVelocity            = Vector3f(0.0f);
@@ -200,7 +200,7 @@ void FakePiki::clearDoAnimCallback() { mDoAnimCallback = nullptr; }
  */
 void FakePiki::updateWalkAnimation()
 {
-	Vector3f sep   = Vector3f(mPosition3.x - _238.x, 0.0f, mPosition3.z - _238.z);
+	Vector3f sep   = Vector3f(mPosition.x - _238.x, 0.0f, mPosition.z - _238.z);
 	f32 updateTime = sys->mDeltaTime;
 	f32 animSpeed  = _lenVec(sep) / updateTime;
 
@@ -1238,7 +1238,7 @@ lbl_8013DBA8:
  */
 void FakePiki::turnTo(Vector3f& targetPos)
 {
-	Vector3f diff = targetPos - mPosition3;
+	Vector3f diff = targetPos - mPosition;
 	if (diff.z != 0.0f) {
 		mFaceDir = roundAng(JMath::atanTable_.atan2_(diff.x, diff.z));
 	}
@@ -1603,7 +1603,7 @@ bool FakePiki::useMoveRotation() { return !isFPFlag(FPFLAGS_MoveRotationDisabled
 void FakePiki::move(f32 p1)
 {
 	f32 collRad  = getMapCollisionRadius();
-	Vector3f pos = mPosition3;
+	Vector3f pos = mPosition;
 	pos.y += collRad;
 
 	if (isFPFlag(FPFLAGS_Unk5) && mModel) {
@@ -2505,7 +2505,7 @@ void FakePiki::updateTrMatrix()
 {
 	if (useUpdateTrMatrix() && !isStickTo()) {
 		Vector3f rotation(0.0f, mFaceDir, 0.0f);
-		mObjMatrix.makeSRT(mScale, rotation, mPosition3);
+		mObjMatrix.makeSRT(mScale, rotation, mPosition);
 	}
 }
 
@@ -3187,7 +3187,7 @@ void FakePiki::outWaterCallback() { }
  */
 void FakePiki::onSetPosition(Vector3f& position)
 {
-	mPosition3 = position;
+	mPosition = position;
 	onSetPosition();
 }
 
@@ -3224,7 +3224,7 @@ void FakePiki::getVelocityAt(Vector3f& vec, Vector3f& velocity) { velocity = mSi
  * Address:	8013F690
  * Size:	000008
  */
-Vector3f* FakePiki::getSound_PosPtr() { return &mPosition3; }
+Vector3f* FakePiki::getSound_PosPtr() { return &mPosition; }
 
 /*
  * --INFO--

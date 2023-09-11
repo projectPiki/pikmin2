@@ -4988,10 +4988,10 @@ void PikiDrownState::exec(Piki* piki)
 
 				Vector3f newPikiPos = piki->getPosition();
 				if (newPikiPos.y >= level - 5.0f) {
-					piki->mPosition3.x = newPikiPos.x;
-					piki->mPosition3.y = level - 5.0f;
-					piki->mPosition3.z = newPikiPos.z;
-					_10                = 1;
+					piki->mPosition.x = newPikiPos.x;
+					piki->mPosition.y = level - 5.0f;
+					piki->mPosition.z = newPikiPos.z;
+					_10               = 1;
 					piki->startMotion(IPikiAnims::OBORERU, IPikiAnims::OBORERU, piki, nullptr);
 					piki->mSoundObj->startFreePikiSetSound(PSSE_PK_VC_WATER_DROWN, PSGame::SeMgr::SETSE_PikiWorking, 0, 0);
 				}
@@ -5007,9 +5007,9 @@ void PikiDrownState::exec(Piki* piki)
 		} else {
 			Vector3f newPikiPos = piki->getPosition();
 			if (newPikiPos.y < level - 5.0f) {
-				piki->mPosition3.x = newPikiPos.x;
-				piki->mPosition3.y = level - 5.0f;
-				piki->mPosition3.z = newPikiPos.z;
+				piki->mPosition.x = newPikiPos.x;
+				piki->mPosition.y = level - 5.0f;
+				piki->mPosition.z = newPikiPos.z;
 			}
 			piki->mSimVelocity.y = 0.0f;
 			piki->mVelocity.y    = 0.0f;

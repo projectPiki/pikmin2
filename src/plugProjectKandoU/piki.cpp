@@ -254,7 +254,7 @@ void Piki::onKill(CreatureKillArg* killArg)
  * Address:	80148498
  * Size:	00001C
  */
-void Piki::onSetPosition() { mBoundingSphere.mPosition = mPosition3; }
+void Piki::onSetPosition() { mBoundingSphere.mPosition = mPosition; }
 
 /*
  * --INFO--
@@ -263,7 +263,7 @@ void Piki::onSetPosition() { mBoundingSphere.mPosition = mPosition3; }
  */
 void Piki::getLODSphere(Sys::Sphere& sphere)
 {
-	sphere.mPosition = mPosition3;
+	sphere.mPosition = mPosition;
 	sphere.mRadius   = 15.0f;
 }
 
@@ -373,7 +373,7 @@ void Piki::movieSetTranslation(Vector3f& position, f32 faceDir)
 	mSimVelocity  = Vector3f(0.0f);
 	mVelocity     = Vector3f(0.0f);
 	mAcceleration = Vector3f(0.0f);
-	_238          = mPosition3;
+	_238          = mPosition;
 	setPosition(position, false);
 	mFaceDir = faceDir;
 }
@@ -648,7 +648,7 @@ bool Piki::might_bury()
 		return false;
 	}
 
-	Sys::Sphere sphere(mPosition3, 100.0f);
+	Sys::Sphere sphere(mPosition, 100.0f);
 	CellIteratorArg iterArg(sphere);
 	CellIterator iter(iterArg);
 
@@ -658,7 +658,7 @@ bool Piki::might_bury()
 		if (creature->mObjectTypeID == OBJTYPE_Cave || creature->mObjectTypeID == OBJTYPE_BigFountain
 		    || creature->mObjectTypeID == OBJTYPE_Hole) {
 			Vector3f creaturePos = creature->getPosition();
-			Vector3f sep         = Vector3f(creaturePos.y - mPosition3.y, creaturePos.z - mPosition3.z, creaturePos.x - mPosition3.x);
+			Vector3f sep         = Vector3f(creaturePos.y - mPosition.y, creaturePos.z - mPosition.z, creaturePos.x - mPosition.x);
 			if (_length2(sep) <= 100.0f) {
 				return false;
 			}
@@ -1454,7 +1454,7 @@ void Piki::changeShape(int color)
 	int count = GameStat::alivePikis;
 
 	mEffectsObj->mPikiColor   = color;
-	mEffectsObj->mHamonPosPtr = &mPosition3;
+	mEffectsObj->mHamonPosPtr = &mPosition;
 	mEffectsObj->_1C          = &mObjMatrix;
 
 	mLeafStemJoint           = mModel->getJoint("happajnt3");
@@ -1491,7 +1491,7 @@ void Piki::do_updateLookCreature()
 			mTargetLookTimer -= sys->mDeltaTime;
 			if (mTargetLookTimer > 0.0f) {
 				Vector3f targetPos = mLookAtTargetCreature->getPosition();
-				Vector3f sep       = Vector3f(targetPos.y - mPosition3.y, targetPos.z - mPosition3.z, targetPos.x - mPosition3.x);
+				Vector3f sep       = Vector3f(targetPos.y - mPosition.y, targetPos.z - mPosition.z, targetPos.x - mPosition.x);
 				if (_length2(sep) > 200.0f) {
 					finishLook();
 				}
@@ -1520,7 +1520,7 @@ void Piki::do_updateLookCreature()
 				break;
 			}
 
-			Sys::Sphere sphere(mPosition3, 200.0f);
+			Sys::Sphere sphere(mPosition, 200.0f);
 			CellIteratorArg iterArg(sphere);
 			iterArg.mUseCustomRadius = 1;
 			CellIterator iter(iterArg);
