@@ -51,13 +51,11 @@ struct Obj : public EnemyBase {
 	virtual void doDirectDraw(Graphics& gfx);                                                // _50
 	virtual void inWaterCallback(WaterBox* wb);                                              // _84
 	virtual void outWaterCallback();                                                         // _88
-	virtual bool isUnderground();                                                            // _D0 (weak)
 	virtual void collisionCallback(CollEvent& event);                                        // _EC
 	virtual void getShadowParam(ShadowParam& settings);                                      // _134
 	virtual bool needShadow();                                                               // _138
 	virtual ~Obj() { }                                                                       // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                                                      // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase* params);                           // _1C4 (weak)
 	virtual void doUpdate();                                                                 // _1CC
 	virtual void doAnimationCullingOff();                                                    // _1DC
 	virtual void doDebugDraw(Graphics& gfx);                                                 // _1EC
@@ -67,10 +65,12 @@ struct Obj : public EnemyBase {
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);               // _278
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part);              // _284
 	virtual bool earthquakeCallBack(Creature* source, f32 bounceFactor);                     // _28C
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);                                    // _294 (weak)
 	virtual void doStartStoneState();                                                        // _2A4
 	virtual void doFinishStoneState();                                                       // _2A8
 	virtual void setFSM(FSM* fsm);                                                           // _2F8 (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase* params) { }                        // _1C4 (weak)
+	virtual bool isUnderground() { return mIsUnderground; }                                  // _D0 (weak)
+	virtual bool bombCallBack(Creature*, Vector3f&, f32) { return false; }                   // _294 (weak)
 	//////////////// VTABLE END
 
 	bool isFreeze();
@@ -115,7 +115,7 @@ struct Obj : public EnemyBase {
 	efx::TKageTyresmoke* mEfxSmoke2;     // _334
 	TyreShadowMgr* mShadowMgr;           // _338
 	efx::TEnemyHamonChasePos* mEfxHamon; // _33C
-	u32 _340;                            // _340, unknown
+	WaterBox* _340;                      // _340
 	                                     // _344 = PelletView
 };
 
@@ -147,7 +147,7 @@ struct Mgr : public EnemyMgrBase {
 	Obj* mObj; // _44, array of Objs
 };
 
-static Obj* curT;
+extern Obj* curT;
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {

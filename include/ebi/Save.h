@@ -233,6 +233,8 @@ struct TMgr : public JKRDisposer {
 		mMemCardErrorMgr.mController = pad;
 	}
 
+	static TMgr* msInstance;
+
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
 	Screen::TSaveMenu mSaveMenu;                      // _18
@@ -250,8 +252,6 @@ struct TMgr : public JKRDisposer {
 	FSMStateMachine mStateMachine;                    // _47C
 	FSMState* mCurrState;                             // _498
 };
-
-static TMgr* msInstance;
 } // namespace Save
 } // namespace ebi
 

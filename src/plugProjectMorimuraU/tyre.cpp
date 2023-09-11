@@ -4,6 +4,7 @@
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
 #include "Game/PikiMgr.h"
+#include "Game/Navi.h"
 #include "Game/MapMgr.h"
 #include "efx/TKage.h"
 #include "efx/TKch.h"
@@ -13,6 +14,10 @@
 
 namespace Game {
 namespace Tyre {
+
+static const int unusedTyreArray[] = { 0, 0, 0 };
+
+Obj* curT;
 
 /*
  * --INFO--
@@ -269,15 +274,16 @@ void Obj::collisionCallback(CollEvent& event)
 		if (!isEvent(0, EB_Bittered) && hitobj) {
 
 			// for pikmin and captains touching the tires, use InteractPress on them
-			if ((hitobj->isPiki() || hitobj->isNavi()) && !hitobj->mBounceTriangle && hitobj->isStickTo()) {
+			if ((hitobj->isPiki() || hitobj->isNavi()) && (hitobj->mBounceTriangle || hitobj->isStickTo())) {
 				InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
 				hitobj->stimulate(act);
 			} else {
-				EnemyBase* hitenemy = static_cast<EnemyBase*>(hitobj);
+				// EnemyBase* hitenemy = static_cast<EnemyBase*>(hitobj);
 				// kill any enemy on contact, unless its waterwraith itself
-				if (hitenemy->isTeki() && hitenemy->getEnemyTypeID() != EnemyTypeID::EnemyID_BlackMan) {
+				if (hitobj->isTeki()
+				    && static_cast<EnemyBase*>(event.mCollidingCreature)->getEnemyTypeID() != EnemyTypeID::EnemyID_BlackMan) {
 					InteractBomb act(this, 10000.0f, &Vector3f::zero);
-					hitenemy->stimulate(act);
+					hitobj->stimulate(act);
 				}
 
 				// when wraith is touching a treasure, make it count as being airborne???
@@ -285,7 +291,7 @@ void Obj::collisionCallback(CollEvent& event)
 				if (pelt->isPellet()) {
 					enableEvent(0, EB_Untargetable);
 					mAnimCounter      = C_PARMS->_833;
-					mFallingYPosition = C_PARMS->_848 * pelt->mConfig->mParams.mHeight.mData / mAnimCounter;
+					mFallingYPosition = (pelt->mConfig->mParams.mHeight.mData / mAnimCounter) * C_PARMS->_848;
 					_322              = true;
 				}
 
@@ -295,7 +301,10 @@ void Obj::collisionCallback(CollEvent& event)
 				{
 					Creature* obj = *it;
 					if (obj->isPiki()) {
-						if ((getPosition().x - obj->getPosition().x) + (getPosition().z - obj->getPosition().z) < 900.0f) {
+						// fucky.
+						Vector3f sep = Vector3f(getPosition().x - obj->getPosition().x, 0.0f, getPosition().z - obj->getPosition().z);
+						sep.x *= sep.x;
+						if ((sep.x + sep.z * sep.z) < 900.0f) {
 							InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
 							hitobj->stimulate(act);
 						}
@@ -791,188 +800,57 @@ bool Obj::isFreeze()
  */
 void Obj::frontRollMtxCalc()
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	mr       r31, r3
-	lhz      r0, 0x310(r3)
-	lwz      r3, 0x174(r3)
-	mulli    r0, r0, 0x3c
-	lwz      r3, 0x10(r3)
-	add      r3, r3, r0
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f0, lbl_8051F5B8@sda21(r2)
-	mr       r30, r3
-	stfs     f0, 0x20(r1)
-	stfs     f0, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	lbz      r0, 0x2d0(r31)
-	cmplwi   r0, 0
-	beq      lbl_803AD5BC
-	lwz      r0, 0x2d4(r31)
-	lis      r4, mCurrentMtx__6J3DSys@ha
-	lwz      r5, 0x2d8(r31)
-	addi     r4, r4, mCurrentMtx__6J3DSys@l
-	stw      r0, 8(r1)
-	lwz      r0, 0x2dc(r31)
-	stw      r5, 0xc(r1)
-	lfs      f0, 8(r1)
-	stw      r0, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	stfs     f0, 0xc(r30)
-	lfs      f0, 0x10(r1)
-	stfs     f1, 0x1c(r30)
-	stfs     f0, 0x2c(r30)
-	bl       PSMTXCopy
+	Matrixf* worldMat    = mModel->mJoints[mTyreFrontJointIndex].getWorldMatrix();
+	Vector3f translation = Vector3f(0.0f);
+	if (_2D0) {
+		worldMat->newTranslation(_2D4);
+		PSMTXCopy(worldMat->mMatrix.mtxView, J3DSys::mCurrentMtx);
+	}
 
-lbl_803AD5BC:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, lbl_8051F5B8@sda21(r2)
-	lfs      f1, 0x834(r3)
-	fcmpu    cr0, f0, f1
-	beq      lbl_803AD5E0
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	b        lbl_803AD6D4
+	Matrixf mat;
+	Vector3f rotation;
+	if (C_PARMS->_834 != 0.0f) {
+		rotation = Vector3f(0.0f, C_PARMS->_834, 0.0f);
+	} else {
+		f32 p1        = C_PARMS->_844;
+		f32 p2        = C_PARMS->_840;
+		f32 angleDist = angDist(mFaceDir, _314);
+		if (angleDist > p2) {
+			_2CC += angleDist * C_PARMS->_838;
+			if (_2CC > p1) {
+				_2CC = p1;
+			}
+		} else if (angleDist < -p2) {
+			_2CC += angleDist * C_PARMS->_838;
+			if (_2CC < -p1) {
+				_2CC = -p1;
+			}
+		} else if (_2CC > 0.0f) {
+			_2CC -= C_PARMS->_83C;
+			if (_2CC < 0.0f) {
+				_2CC = 0.0f;
+			}
+		} else {
+			_2CC += C_PARMS->_83C;
+			if (_2CC > 0.0f) {
+				_2CC = 0.0f;
+			}
+		}
 
-lbl_803AD5E0:
-	lfs      f31, 0x844(r3)
-	lfs      f30, 0x840(r3)
-	lfs      f1, 0x1fc(r31)
-	lfs      f2, 0x314(r31)
-	bl       angDist__Fff
-	fcmpo    cr0, f1, f30
-	ble      lbl_803AD624
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x2cc(r31)
-	lfs      f2, 0x838(r3)
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x2cc(r31)
-	lfs      f0, 0x2cc(r31)
-	fcmpo    cr0, f0, f31
-	ble      lbl_803AD6B0
-	stfs     f31, 0x2cc(r31)
-	b        lbl_803AD6B0
+		rotation = Vector3f(0.0f, _2CC, 0.0f);
 
-lbl_803AD624:
-	fneg     f0, f30
-	fcmpo    cr0, f1, f0
-	bge      lbl_803AD65C
-	lwz      r3, 0xc0(r31)
-	fneg     f3, f31
-	lfs      f0, 0x2cc(r31)
-	lfs      f2, 0x838(r3)
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x2cc(r31)
-	lfs      f0, 0x2cc(r31)
-	fcmpo    cr0, f0, f3
-	bge      lbl_803AD6B0
-	stfs     f3, 0x2cc(r31)
-	b        lbl_803AD6B0
+		mat.makeTR(translation, rotation);
+	}
 
-lbl_803AD65C:
-	lfs      f2, 0x2cc(r31)
-	lfs      f1, lbl_8051F5B8@sda21(r2)
-	fcmpo    cr0, f2, f1
-	ble      lbl_803AD690
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x83c(r3)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x2cc(r31)
-	lfs      f0, 0x2cc(r31)
-	fcmpo    cr0, f0, f1
-	bge      lbl_803AD6B0
-	stfs     f1, 0x2cc(r31)
-	b        lbl_803AD6B0
+	mTyrePositions[0] = mModel->getJoint("tyreFL")->getWorldMatrix()->getBasis(3);
+	mTyrePositions[1] = mModel->getJoint("tyreFR")->getWorldMatrix()->getBasis(3);
+	PSMTXConcat(worldMat->mMatrix.mtxView, mat.mMatrix.mtxView, worldMat->mMatrix.mtxView);
+	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
 
-lbl_803AD690:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x83c(r3)
-	fadds    f0, f2, f0
-	stfs     f0, 0x2cc(r31)
-	lfs      f0, 0x2cc(r31)
-	fcmpo    cr0, f0, f1
-	ble      lbl_803AD6B0
-	stfs     f1, 0x2cc(r31)
-
-lbl_803AD6B0:
-	lfs      f1, 0x2cc(r31)
-	addi     r3, r1, 0x2c
-	lfs      f0, lbl_8051F5B8@sda21(r2)
-	addi     r4, r1, 0x20
-	stfs     f1, 0x18(r1)
-	addi     r5, r1, 0x14
-	stfs     f0, 0x14(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-
-lbl_803AD6D4:
-	lwz      r3, 0x174(r31)
-	addi     r4, r2, lbl_8051F5EC@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f2, 0x2c(r3)
-	addi     r4, r2, lbl_8051F5F4@sda21
-	lfs      f1, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0x2ec(r31)
-	stfs     f1, 0x2f0(r31)
-	stfs     f2, 0x2f4(r31)
-	lwz      r3, 0x174(r31)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f2, 0x2c(r3)
-	mr       r5, r30
-	lfs      f1, 0x1c(r3)
-	addi     r4, r1, 0x2c
-	lfs      f0, 0xc(r3)
-	mr       r3, r30
-	stfs     f0, 0x2f8(r31)
-	stfs     f1, 0x2fc(r31)
-	stfs     f2, 0x300(r31)
-	bl       PSMTXConcat
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	addi     r4, r1, 0x2c
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	lfs      f1, 0x2c0(r31)
-	addi     r3, r1, 0x2c
-	lfs      f0, lbl_8051F5B8@sda21(r2)
-	addi     r4, r1, 0x20
-	stfs     f1, 0x14(r1)
-	addi     r5, r1, 0x14
-	stfs     f0, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-	mr       r3, r30
-	mr       r5, r30
-	addi     r4, r1, 0x2c
-	bl       PSMTXConcat
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	addi     r4, r1, 0x2c
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r30, 0x68(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	rotation = Vector3f(_2C0, 0.0f, 0.0f);
+	mat.makeTR(translation, rotation);
+	PSMTXConcat(worldMat->mMatrix.mtxView, mat.mMatrix.mtxView, worldMat->mMatrix.mtxView);
+	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
 }
 
 /*
@@ -982,255 +860,80 @@ lbl_803AD6D4:
  */
 void Obj::rearRollMtxCalc()
 {
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stfd     f31, 0xd0(r1)
-	psq_st   f31, 216(r1), 0, qr0
-	stfd     f30, 0xc0(r1)
-	psq_st   f30, 200(r1), 0, qr0
-	stw      r31, 0xbc(r1)
-	stw      r30, 0xb8(r1)
-	mr       r30, r3
-	lhz      r0, 0x312(r3)
-	lwz      r3, 0x174(r3)
-	mulli    r0, r0, 0x3c
-	lwz      r3, 0x10(r3)
-	add      r3, r3, r0
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r31, r3
-	lfs      f0, lbl_8051F5FC@sda21(r2)
-	lfs      f2, 0x1c(r31)
-	addi     r4, r1, 0x58
-	lfs      f3, 0x2c(r31)
-	lfs      f1, 0xc(r31)
-	fadds    f0, f2, f0
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f2, 0x5c(r1)
-	stfs     f1, 0x58(r1)
-	stfs     f3, 0x60(r1)
-	stfs     f0, 0x5c(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	fmr      f31, f1
-	lwz      r12, 0(r30)
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803AD880
-	lfs      f1, lbl_8051F5E8@sda21(r2)
-	lfs      f2, 0x2c8(r30)
-	lfs      f0, 0x190(r30)
-	fadds    f1, f1, f2
-	fcmpo    cr0, f1, f0
-	bge      lbl_803AD890
-	lfs      f0, lbl_8051F5E0@sda21(r2)
-	fadds    f0, f2, f0
-	stfs     f0, 0x2c8(r30)
-	b        lbl_803AD890
+	Matrixf* worldMat = mModel->mJoints[mTyreRearJointIndex].getWorldMatrix();
+	Vector3f pos      = worldMat->getBasis(3);
+	pos.y += 100.0f;
+	f32 minY = mapMgr->getMinY(pos);
 
-lbl_803AD880:
-	lfs      f1, 0x2c8(r30)
-	lfs      f0, lbl_8051F600@sda21(r2)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x2c8(r30)
+	if (isFlying()) {
+		if (10.0f + _2C8 < mPosition.y) {
+			_2C8 += 2.0f;
+		}
+	} else {
+		_2C8 -= 5.0f;
+	}
 
-lbl_803AD890:
-	lfs      f30, lbl_8051F5E0@sda21(r2)
-	mr       r3, r30
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 1
-	beq      lbl_803AD8A8
-	lfs      f30, lbl_8051F5B8@sda21(r2)
+	f32 val = 2.0f;
+	if (getStateID() != TYRE_Land) {
+		val = 0.0f;
+	}
 
-lbl_803AD8A8:
-	fadds    f0, f31, f30
-	lfs      f1, 0x2c8(r30)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_803ADA7C
-	stfs     f31, 0x2c8(r30)
-	lfs      f0, lbl_8051F604@sda21(r2)
-	lfs      f3, 0x2c(r31)
-	lfs      f2, 0x1c(r31)
-	fadds    f0, f31, f0
-	lfs      f1, 0xc(r31)
-	stfs     f2, 0x50(r1)
-	stfs     f1, 0x4c(r1)
-	stfs     f3, 0x54(r1)
-	stfs     f31, 0x50(r1)
-	lfs      f1, 0x190(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803AD910
-	lbz      r0, 0x320(r30)
-	cmplwi   r0, 0
-	beq      lbl_803AD910
-	mr       r3, r30
-	addi     r4, r1, 0x4c
-	bl       "landEffect__Q34Game4Tyre3ObjFR10Vector3<f>"
-	li       r0, 0
-	stb      r0, 0x320(r30)
+	if (_2C8 <= minY + val) {
+		_2C8           = minY;
+		Vector3f fxPos = worldMat->getBasis(3);
+		fxPos.y        = minY;
+		f32 comp       = 50.0f;
+		if ((mPosition.y < minY + comp) && _320) {
+			landEffect(fxPos);
+			_320 = 0;
+		}
 
-lbl_803AD910:
-	lwz      r0, 0xc8(r30)
-	cmplwi   r0, 0
-	beq      lbl_803ADA7C
-	lfs      f0, 0x4c(r1)
-	stfs     f0, 0x324(r30)
-	lfs      f0, 0x50(r1)
-	stfs     f0, 0x328(r30)
-	lfs      f0, 0x54(r1)
-	stfs     f0, 0x32c(r30)
-	lwz      r0, 0x340(r30)
-	cmplwi   r0, 0
-	bne      lbl_803ADA24
-	lfs      f0, 0x324(r30)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f0, 0x3c(r1)
-	lfs      f0, lbl_8051F608@sda21(r2)
-	cmplwi   r3, 0
-	lfs      f1, 0x328(r30)
-	stfs     f1, 0x40(r1)
-	lfs      f1, 0x32c(r30)
-	stfs     f1, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	beq      lbl_803AD978
-	addi     r4, r1, 0x3c
-	bl       findWater__Q24Game6MapMgrFRQ23Sys6Sphere
-	stw      r3, 0x340(r30)
+		if (mBounceTriangle) {
+			mEfxPosition = fxPos;
+			if (!_340) {
+				Sys::Sphere sphere(mEfxPosition, 80.0f);
+				if (mapMgr) {
+					_340 = mapMgr->findWater(sphere);
+				}
 
-lbl_803AD978:
-	lwz      r0, 0x340(r30)
-	cmplwi   r0, 0
-	beq      lbl_803ADA7C
-	mr       r3, r30
-	lfs      f31, 0x1f8(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x324(r30)
-	lis      r5, __vt__Q23efx3Arg@ha
-	lwz      r7, 0x328(r30)
-	lis      r4, __vt__Q23efx12ArgEnemyType@ha
-	lwz      r6, 0x32c(r30)
-	addi     r5, r5, __vt__Q23efx3Arg@l
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q23efx12ArgEnemyType@l
-	addi     r4, r1, 0x64
-	stw      r7, 0xc(r1)
-	lfs      f2, 8(r1)
-	stw      r6, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	stw      r5, 0x64(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x68(r1)
-	stfs     f1, 0x6c(r1)
-	stfs     f0, 0x70(r1)
-	stw      r0, 0x64(r1)
-	stw      r3, 0x74(r1)
-	stfs     f31, 0x78(r1)
-	lwz      r3, 0x33c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x340(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0(r3)
-	stfs     f0, 0x328(r30)
-	b        lbl_803ADA7C
+				if (_340) {
+					efx::ArgEnemyType fxArg(mEfxPosition, getEnemyTypeID(), mScaleModifier);
+					mEfxHamon->create(&fxArg);
+					mEfxPosition.y = *_340->getSeaHeightPtr();
+				}
 
-lbl_803ADA24:
-	lfs      f0, 0x324(r30)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f0, 0x2c(r1)
-	lfs      f0, lbl_8051F608@sda21(r2)
-	cmplwi   r3, 0
-	lfs      f1, 0x328(r30)
-	stfs     f1, 0x30(r1)
-	lfs      f1, 0x32c(r30)
-	stfs     f1, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	beq      lbl_803ADA5C
-	addi     r4, r1, 0x2c
-	bl       findWater__Q24Game6MapMgrFRQ23Sys6Sphere
-	stw      r3, 0x340(r30)
+			} else {
+				Sys::Sphere sphere(mEfxPosition, 80.0f);
+				if (mapMgr) {
+					_340 = mapMgr->findWater(sphere);
+				}
 
-lbl_803ADA5C:
-	lwz      r0, 0x340(r30)
-	cmplwi   r0, 0
-	bne      lbl_803ADA7C
-	lwz      r3, 0x33c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
+				if (!_340) {
+					mEfxHamon->fade();
+				}
+			}
+		}
+	}
 
-lbl_803ADA7C:
-	lfs      f2, 0x2c8(r30)
-	lfs      f1, 0x190(r30)
-	lfs      f0, lbl_8051F604@sda21(r2)
-	fsubs    f2, f2, f1
-	fcmpo    cr0, f2, f0
-	ble      lbl_803ADA98
-	fmr      f2, f0
+	f32 diff = _2C8;
+	diff -= mPosition.y;
+	if (diff > 50.0f) {
+		diff = 50.0f;
+	}
+	f32 limit = 50.0f;
+	if (diff < -limit) {
+		diff = -limit;
+	}
 
-lbl_803ADA98:
-	lfs      f0, lbl_8051F604@sda21(r2)
-	fneg     f0, f0
-	fcmpo    cr0, f2, f0
-	bge      lbl_803ADAAC
-	fmr      f2, f0
+	worldMat->mMatrix.structView.ty += diff;
 
-lbl_803ADAAC:
-	lfs      f0, 0x1c(r31)
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	addi     r4, r3, mCurrentMtx__6J3DSys@l
-	fadds    f0, f0, f2
-	mr       r3, r31
-	stfs     f0, 0x1c(r31)
-	bl       PSMTXCopy
-	lfs      f1, lbl_8051F5B8@sda21(r2)
-	addi     r3, r1, 0x7c
-	addi     r4, r1, 0x20
-	addi     r5, r1, 0x14
-	stfs     f1, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	lfs      f0, 0x2c0(r30)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-	mr       r3, r31
-	mr       r5, r31
-	addi     r4, r1, 0x7c
-	bl       PSMTXConcat
-	lis      r3, mCurrentMtx__6J3DSys@ha
-	addi     r4, r1, 0x7c
-	addi     r3, r3, mCurrentMtx__6J3DSys@l
-	mr       r5, r3
-	bl       PSMTXConcat
-	psq_l    f31, 216(r1), 0, qr0
-	lfd      f31, 0xd0(r1)
-	psq_l    f30, 200(r1), 0, qr0
-	lfd      f30, 0xc0(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r0, 0xe4(r1)
-	lwz      r30, 0xb8(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
+	PSMTXCopy(worldMat->mMatrix.mtxView, J3DSys::mCurrentMtx);
+	Matrixf mat;
+	Vector3f translation = Vector3f(0.0f, 0.0f, 0.0f);
+	Vector3f rotation    = Vector3f(_2C0, 0.0f, 0.0f);
+	mat.makeTR(translation, rotation);
+	PSMTXConcat(worldMat->mMatrix.mtxView, mat.mMatrix.mtxView, worldMat->mMatrix.mtxView);
+	PSMTXConcat(J3DSys::mCurrentMtx, mat.mMatrix.mtxView, J3DSys::mCurrentMtx);
 }
 
 /*
@@ -1288,17 +991,38 @@ void Obj::flick()
 	cameraMgr->startVibration(15, mPosition, 2);
 	rumbleMgr->startRumble(13, mPosition, 2);
 
-	Iterator<Piki> it(pikiMgr);
-	CI_LOOP(it)
+	Iterator<Piki> iterPiki(pikiMgr);
+	CI_LOOP(iterPiki)
 	{
-		Piki* obj = *it;
+		Piki* obj = *iterPiki;
 		if (obj->isAlive() && obj->mBounceTriangle) {
-			if ((mPosition.x - obj->getPosition().x) + (mPosition.z - obj->getPosition().z) < 900.0f) {
+			Vector3f pos    = Vector3f(mPosition);
+			Vector3f objPos = Vector3f(obj->getPosition().x, 0.0f, obj->getPosition().z);
+			if (sqrDistanceXZ(objPos, pos) < 900.0f) {
 				InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
 				obj->stimulate(act);
 			}
 		}
 	}
+
+	Iterator<Navi> iterNavi(naviMgr);
+	CI_LOOP(iterNavi)
+	{
+		Navi* obj       = *iterNavi;
+		Vector3f pos    = Vector3f(mPosition.x, 0.0f, mPosition.z);
+		Vector3f objPos = Vector3f(obj->getPosition().x, 0.0f, obj->getPosition().z);
+		if (sqrDistanceXZ(objPos, pos) < 900.0f) {
+			InteractPress act(this, C_PARMS->mGeneral.mAttackDamage, nullptr);
+			obj->stimulate(act);
+		}
+	}
+
+	f32 range     = C_PARMS->mGeneral.mShakeRateMaybe.mValue;
+	f32 knockback = C_PARMS->mGeneral.mShakeKnockback.mValue;
+	f32 damage    = C_PARMS->mGeneral.mShakeDamage.mValue;
+
+	EnemyFunc::flickNearbyPikmin(this, C_PARMS->mGeneral.mShakeRange.mValue, knockback, damage, -1000.0f, nullptr);
+	EnemyFunc::flickStickPikmin(this, range, knockback, damage, -1000.0f, nullptr);
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -1803,27 +1527,6 @@ void Obj::scaleUpShadow()
 		mShadowScale = 1.0f;
 	}
 }
-
-/*
- * --INFO--
- * Address:	803AE7F4
- * Size:	000004
- */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
-
-/*
- * --INFO--
- * Address:	803AE7F8
- * Size:	000008
- */
-bool Obj::isUnderground() { return mIsUnderground; }
-
-/*
- * --INFO--
- * Address:	803AE800
- * Size:	000008
- */
-bool Obj::bombCallBack(Creature*, Vector3f&, f32) { return false; }
 
 } // namespace Tyre
 } // namespace Game
