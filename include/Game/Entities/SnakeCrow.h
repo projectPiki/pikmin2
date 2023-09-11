@@ -49,9 +49,9 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);                            // _30
 	virtual void onKill(CreatureKillArg* settings);                            // _34
 	virtual void doDirectDraw(Graphics& gfx);                                  // _50
-	virtual void inWaterCallback(WaterBox* wb);                                // _84 (weak)
-	virtual void outWaterCallback();                                           // _88 (weak)
-	virtual bool isUnderground();                                              // _D0 (weak)
+	virtual void inWaterCallback(WaterBox* wb) { }                             // _84 (weak)
+	virtual void outWaterCallback() { }                                        // _88 (weak)
+	virtual bool isUnderground() { return mIsUnderground; }                    // _D0 (weak)
 	virtual void getShadowParam(ShadowParam& settings);                        // _134
 	virtual ~Obj() { }                                                         // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
@@ -64,18 +64,21 @@ struct Obj : public EnemyBase {
 	virtual void setParameters();                                              // _228
 	virtual void initMouthSlots();                                             // _22C
 	virtual void createEfxHamon();                                             // _250
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                        // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                                       // _25C (weak)
 	virtual void getThrowupItemPosition(Vector3f*);                            // _268
-	virtual void throwupItemInDeathProcedure();                                // _270 (weak)
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
 	virtual void doStartStoneState();                                          // _2A4
 	virtual void doFinishStoneState();                                         // _2A8
-	virtual f32 getDamageCoeStoneState();                                      // _2AC (weak)
 	virtual void startCarcassMotion();                                         // _2C4
 	virtual void doStartMovie();                                               // _2F0
 	virtual void doEndMovie();                                                 // _2F4
 	virtual void setFSM(FSM* fsm);                                             // _2F8
+	virtual f32 getDamageCoeStoneState() { return 0.25f; }                     // _2AC (weak)
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }               // _25C (weak)
+	virtual void throwupItemInDeathProcedure() { }                             // _270 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                         // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_SnakeCrow;
+	}
 	//////////////// VTABLE END
 
 	void appearNearByTarget(Creature*);
@@ -127,7 +130,7 @@ struct Obj : public EnemyBase {
 	u8 _2C1;                   // _2C1
 	u8 _2C2;                   // _2C2
 	f32 mStateTimer;           // _2C4
-	u8 _2C8[0x4];              // _2C8, unknown
+	int _2C8;                  // _2C8, unknown
 	MouthSlots mMouthSlots;    // _2CC
 	int _2D4;                  // _2D4, animation index maybe?
 	Vector3f _2D8[5];          // _2D8
@@ -166,19 +169,19 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , mFp01(this, 'fp01', "通常出現率", 0.8f, 0.0f, 1.0f)               // 'normal appearance rate'
-		    , mFp11(this, 'fp11', "潜る迄の時間", 2.0f, 0.0f, 10.0f)            // 'time to dive'
-		    , mFp12(this, 'fp12', "地中での時間", 1.0f, 0.0f, 10.0f)            // 'time in the ground'
-		    , mPoisonDamage(this, 'fp21', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , mFp31(this, 'fp31', "Forest 2 Life", 7500.0f, 0.0f, 99999.0f)     // (White Flower Garden Life)
+		    , mFastAppearChance(this, 'fp01', "通常出現率", 0.8f, 0.0f, 1.0f)    // 'normal appearance rate'
+		    , mWaitTime(this, 'fp11', "潜る迄の時間", 2.0f, 0.0f, 10.0f)         // 'time to dive'
+		    , mUndergroundTime(this, 'fp12', "地中での時間", 1.0f, 0.0f, 10.0f)  // 'time in the ground'
+		    , mPoisonDamage(this, 'fp21', "白ピクミン", 300.0f, 0.0f, 10000.0f)  // 'white pikmin'
+		    , mWFGHealth(this, 'fp31', "Forest 2 Life", 7500.0f, 0.0f, 99999.0f) // (White Flower Garden Life)
 		{
 		}
 
-		Parm<f32> mFp01;         // _804
-		Parm<f32> mFp11;         // _82C
-		Parm<f32> mFp12;         // _854
-		Parm<f32> mPoisonDamage; // _87C, fp21
-		Parm<f32> mFp31;         // _8A4
+		Parm<f32> mFastAppearChance; // _804, fp01
+		Parm<f32> mWaitTime;         // _82C, fp11
+		Parm<f32> mUndergroundTime;  // _854, fp12
+		Parm<f32> mPoisonDamage;     // _87C, fp21
+		Parm<f32> mWFGHealth;        // _8A4, fp31
 	};
 
 	Parms() { }

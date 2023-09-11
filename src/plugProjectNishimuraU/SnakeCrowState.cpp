@@ -136,7 +136,7 @@ void StateStay::exec(EnemyBase* enemy)
 	Obj* snagret     = static_cast<Obj*>(enemy);
 	Creature* target = nullptr;
 	Parms* parms     = static_cast<Parms*>(snagret->mParms);
-	if (snagret->mStateTimer > parms->mProperParms.mFp12.mValue) {
+	if (snagret->mStateTimer > parms->mProperParms.mUndergroundTime.mValue) {
 		f32 territory    = parms->mGeneral.mTerritoryRadius.mValue;
 		Vector3f homePos = Vector3f(snagret->mHomePosition);
 		f32 tSqr         = territory * territory;
@@ -201,7 +201,7 @@ void StateStay::exec(EnemyBase* enemy)
 		snagret->appearNearByTarget(target);
 		snagret->setBossAppearBGM();
 		Parms* parms = static_cast<Parms*>(snagret->mParms);
-		if (randWeightFloat(1.0f) < parms->mProperParms.mFp01.mValue) {
+		if (randWeightFloat(1.0f) < parms->mProperParms.mFastAppearChance.mValue) {
 			transit(snagret, SNAKECROW_Appear1, nullptr);
 		} else {
 			transit(snagret, SNAKECROW_Appear2, nullptr);
@@ -990,7 +990,7 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 
 	if (!snagret->isFinishMotion()) {
-		if (snagret->mHealth <= 0.0f || snagret->mStateTimer > static_cast<Parms*>(snagret->mParms)->mProperParms.mFp11.mValue
+		if (snagret->mHealth <= 0.0f || snagret->mStateTimer > static_cast<Parms*>(snagret->mParms)->mProperParms.mWaitTime.mValue
 		    || EnemyFunc::isStartFlick(snagret, false) || snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 			snagret->finishMotion();
 		}
@@ -1004,7 +1004,7 @@ void StateWait::exec(EnemyBase* enemy)
 			}
 
 			Parms* parms = static_cast<Parms*>(snagret->mParms);
-			if (snagret->mStateTimer > parms->mProperParms.mFp11.mValue || EnemyFunc::isStartFlick(snagret, false)) {
+			if (snagret->mStateTimer > parms->mProperParms.mWaitTime.mValue || EnemyFunc::isStartFlick(snagret, false)) {
 				transit(snagret, SNAKECROW_Disappear, nullptr);
 				return;
 			}
