@@ -2299,15 +2299,15 @@ int getStickPikminColorNum(Creature* creature, int color)
  * Address:	80115400
  * Size:	0001DC
  */
-void walkToTarget(EnemyBase* enemy, Creature* target, f32 p1, f32 p2, f32 p3)
+void walkToTarget(EnemyBase* enemy, Creature* target, f32 speed, f32 turnFactor, f32 maxTurnSpeed)
 {
-	enemy->turnToTarget(target, p2, p3);
+	enemy->turnToTarget(target, turnFactor, maxTurnSpeed);
 
 	f32 x = sin(enemy->getFaceDir());
 	f32 y = enemy->getTargetVelocity().y;
 	f32 z = cos(enemy->getFaceDir());
 
-	enemy->mTargetVelocity = Vector3f(p1 * x, y, p1 * z);
+	enemy->mTargetVelocity = Vector3f(speed * x, y, speed * z);
 }
 
 /*
@@ -2315,15 +2315,15 @@ void walkToTarget(EnemyBase* enemy, Creature* target, f32 p1, f32 p2, f32 p3)
  * Address:	801155DC
  * Size:	0001BC
  */
-void walkToTarget(EnemyBase* enemy, Vector3f& targetPos, f32 p1, f32 p2, f32 p3)
+void walkToTarget(EnemyBase* enemy, Vector3f& targetPos, f32 moveSpeed, f32 turnFactor, f32 maxTurnSpeed)
 {
-	enemy->turnToTarget2(targetPos, p2, p3);
+	enemy->turnToTarget2(targetPos, turnFactor, maxTurnSpeed);
 
 	f32 x = sin(enemy->getFaceDir());
 	f32 y = enemy->getTargetVelocity().y;
 	f32 z = cos(enemy->getFaceDir());
 
-	enemy->mTargetVelocity = Vector3f(p1 * x, y, p1 * z);
+	enemy->mTargetVelocity = Vector3f(moveSpeed * x, y, moveSpeed * z);
 }
 
 /*
