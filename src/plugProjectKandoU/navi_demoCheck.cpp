@@ -2159,8 +2159,8 @@ FakePiki* Navi::checkDemoNaviAndPiki(Sys::Sphere& bounds)
 	}
 
 	CellIteratorArg arg;
-	arg.mSphere                   = bounds;
-	arg.mUseCustomRadiusThreshold = 1;
+	arg.mSphere          = bounds;
+	arg.mUseCustomRadius = 1;
 	CellIterator cell(arg);
 	CI_LOOP(cell)
 	{

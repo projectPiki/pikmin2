@@ -102,7 +102,7 @@ bool BigTreasureFireAttack::update()
 	Sys::Sphere sphere(pos, 25.0f);
 
 	CellIteratorArg iterArg(sphere);
-	iterArg.mIsCollSphereDisabled = true;
+	iterArg.mIsSphereCollisionDisabled = true;
 
 	CellIterator iter(iterArg);
 

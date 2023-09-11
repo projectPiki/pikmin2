@@ -111,10 +111,10 @@ struct PikiAbsorbState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10;        // _10
-	Creature* _14; // _14
-	u8 _18;        // _18
-	u8 _19;        // _19
+	u8 mState;                    // _10
+	Creature* mAbsorbingCreature; // _14
+	u8 mHasAbsorbed;              // _18
+	u8 mAbsorbTimer;              // _19
 };
 
 struct PikiAutoNukiState : public PikiState {
@@ -131,25 +131,25 @@ struct PikiAutoNukiState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 _10; // _10
-	u16 _14; // _14
+	f32 mTimer; // _10
+	u16 mState; // _14
 };
 
 struct BlowStateArg : public StateArg {
 	inline BlowStateArg(Vector3f& vec, f32 p1, u8 lethal, u16 p3, Creature* creature)
 	{
-		_00       = vec;
-		_0C       = p1;
-		mIsLethal = lethal;
-		_12       = p3;
-		_14       = creature;
+		mBlowDirection = vec;
+		mChanceToLeaf  = p1;
+		mIsLethal      = lethal;
+		_12            = p3;
+		mHeldNavi      = creature;
 	}
 
-	Vector3f _00;   // _00
-	f32 _0C;        // _0C
-	bool mIsLethal; // _10
-	u16 _12;        // _12
-	Creature* _14;  // _14
+	Vector3f mBlowDirection; // _00
+	f32 mChanceToLeaf;       // _0C
+	bool mIsLethal;          // _10
+	u16 _12;                 // _12
+	Creature* mHeldNavi;     // _14
 };
 
 struct PikiBlowState : public PikiState {
@@ -174,13 +174,13 @@ struct PikiBlowState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	int mState;       // _10
-	Creature* _14;    // _14
-	Vector3f _18;     // _18
-	f32 _24;          // _24
-	bool mIsWhistled; // _28
-	bool mIsLethal;   // _29
-	u16 _2A;          // _2A
+	int mState;              // _10
+	Creature* mHeldNavi;     // _14
+	Vector3f mBlowDirection; // _18
+	f32 mChanceToLeaf;       // _24
+	bool mIsWhistled;        // _28
+	bool mIsLethal;          // _29
+	u16 _2A;                 // _2A
 };
 
 struct PikiCarrotState : public PikiState {
@@ -770,14 +770,14 @@ struct SuikomiStateArg : public StateArg {
 
 	inline SuikomiStateArg(Creature* c, CollPart* p3, CollPart* p2)
 	{
-		mCreature = c;
-		_04       = p3;
-		_08       = p2;
+		mCreature        = c;
+		mCollpart        = p3;
+		mStomachCollpart = p2;
 	}
 
-	Creature* mCreature; // _00
-	CollPart* _04;       // _04
-	CollPart* _08;       // _08
+	Creature* mCreature;        // _00
+	CollPart* mCollpart;        // _04
+	CollPart* mStomachCollpart; // _08
 };
 
 struct PikiSuikomiState : public PikiState {
@@ -799,11 +799,11 @@ struct PikiSuikomiState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10;              // _10
-	Creature* mCreature; // _14
-	CollPart* mCollpart; // _18
-	CollPart* _1C;       // _1C
-	f32 _20;             // _20
+	u8 mState;                  // _10
+	Creature* mCreature;        // _14
+	CollPart* mCollpart;        // _18
+	CollPart* mStomachCollpart; // _1C
+	f32 mTimer;                 // _20
 };
 
 struct SwallowedStateArg : public StateArg {

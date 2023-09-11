@@ -93,19 +93,17 @@ struct Cell {
 	void appendList();
 	void remove();
 	void exit(CellLeg*, bool);
-	void entry(CellLeg*, bool);
+	void entry(CellLeg* leg, bool isPikiOrNavi);
 
-	Cell* _00[4];  // _00
-	Cell* _10;     // _10
-	u16 _14;       // _14
-	u16 _16;       // _16
-	u16 _18;       // _18
-	u8 _1A[2];     // _1A
-	CellLeg* mLeg; // _1C
-	Cell* _20;     // _20
-	Cell* _24;     // _24
-	short _28;     // _28
-	u8 _2A[2];     // _2A
+	Cell* mNeighboringCells[4]; // _00
+	Cell* mHeadCell;            // _10
+	u16 mLocalPikiNaviCount;    // _14
+	u16 mTotalPikiNaviCount;    // _16
+	u16 mTotalObjectCount;      // _18
+	CellLeg* mLeg;              // _1C
+	Cell* mNextCell;            // _20
+	Cell* mPrevCell;            // _24
+	short mLayerIdx;            // _28
 
 	static CellPyramid* sCurrCellMgr;
 };
@@ -165,12 +163,12 @@ struct CellLayer {
 	void assertExtent(Recti&) const;
 	void checkPoint(Vector2i&) const;
 
-	u16 mSizeX;   // _00
-	u16 mSizeY;   // _02
-	u16 _04;      // _04
-	u16 _06;      // _06
-	Cell* mCells; // _08
-	Cell mCell;   // _0C // maybe this is a Cell?
+	u16 mSizeX;     // _00
+	u16 mSizeY;     // _02
+	u16 mLayerSize; // _04
+	u16 mLayerIdx;  // _06
+	Cell* mCells;   // _08
+	Cell mCell;     // _0C
 };
 
 struct CellPyramid : public SweepPrune::World {
@@ -223,9 +221,9 @@ struct CellIteratorArg {
 
 	Sys::Sphere mSphere;               // _00
 	CellIteratorCondition* mCondition; // _10, this is a ptr to something with a vtable, and 0x8 of vtable returns a bool ._.
-	int mUseCustomRadiusThreshold;     // _14, UNUSED but a name is better than nothing
+	int mUseCustomRadius;              // _14, UNUSED but a name is better than nothing
 	CellPyramid* mCellMgr;             // _18
-	bool mIsCollSphereDisabled;        // _1C, if false, will calc overlapping bounding spheres rather than just "in cell or no"
+	bool mIsSphereCollisionDisabled;   // _1C, if false, will calc overlapping bounding spheres rather than just "in cell or no"
 	u8 _1D;                            // _1D, set to 0 and unused
 };
 

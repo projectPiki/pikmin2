@@ -360,7 +360,7 @@ bool Obj::isAttackLimitTime()
 
 	Sys::Sphere sphere(mPosition, 300.0f);
 	CellIteratorArg iterArg(sphere);
-	iterArg.mIsCollSphereDisabled = true;
+	iterArg.mIsSphereCollisionDisabled = true;
 
 	CellIterator iter(iterArg);
 

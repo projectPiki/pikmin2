@@ -2145,10 +2145,10 @@ void PikiLookAtState::cleanup(Piki* piki) { }
  */
 void PikiAutoNukiState::init(Piki* piki, StateArg* stateArg)
 {
-	_10 = 0.2f * randFloat();
-	_14 = 0;
+	mTimer = 0.2f * randFloat();
+	mState = 0;
 	piki->startMotion(IPikiAnims::KAIFUKU2, IPikiAnims::KAIFUKU2, piki, nullptr);
-	_14               = 1;
+	mState            = 1;
 	Vector3f position = piki->getPosition();
 	Sys::Sphere sphere(position, 10.0f);
 	WaterBox* wbox = piki->checkWater(nullptr, sphere);
@@ -2174,13 +2174,13 @@ void PikiAutoNukiState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiAutoNukiState::exec(Piki* piki)
 {
-	switch (_14) {
+	switch (mState) {
 	case 0:
-		_10 -= sys->mDeltaTime;
-		if (_10 < 0.0f) {
-			_10 = 0.0f;
+		mTimer -= sys->mDeltaTime;
+		if (mTimer < 0.0f) {
+			mTimer = 0.0f;
 			piki->startMotion(IPikiAnims::KAIFUKU2, IPikiAnims::KAIFUKU2, piki, nullptr);
-			_14 = 1;
+			mState = 1;
 
 			Vector3f position = piki->getPosition();
 			Sys::Sphere sphere(position, 10.0f);
@@ -2205,7 +2205,7 @@ void PikiAutoNukiState::exec(Piki* piki)
 
 	case 1:
 		if (!piki->assertMotion(IPikiAnims::KAIFUKU2)) {
-			_14 = 2;
+			mState = 2;
 		}
 		break;
 
@@ -2239,7 +2239,7 @@ void PikiAutoNukiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEven
 {
 	switch (keyEvent.mType) {
 	case 1000:
-		_14 = 2;
+		mState = 2;
 		break;
 	case 2:
 		break;
@@ -2595,7 +2595,7 @@ void PikiHipDropState::exec(Piki* piki)
 			Vector3f position      = piki->getPosition();
 			Sys::Sphere sphere(position, 50.0f);
 			CellIteratorArg iterArg(sphere);
-			iterArg.mUseCustomRadiusThreshold = 1;
+			iterArg.mUseCustomRadius = 1;
 			CellIterator iterator(iterArg);
 			iterator.first();
 
@@ -3230,7 +3230,7 @@ void PikiHipDropState::earthquake(Piki* piki)
 	f32 rad           = pikiMgr->mParms->mPikiParms.mPoundAOERange.mValue;
 	Sys::Sphere sphere(position, rad);
 	CellIteratorArg iterArg(sphere);
-	iterArg.mUseCustomRadiusThreshold = 1;
+	iterArg.mUseCustomRadius = 1;
 
 	CellIterator iterator(iterArg);
 	iterator.first();
@@ -3741,10 +3741,10 @@ void PikiSuikomiState::init(Piki* piki, StateArg* stateArg)
 {
 	SuikomiStateArg* suikomiArg = static_cast<SuikomiStateArg*>(stateArg);
 	P2ASSERTLINE(2572, suikomiArg != nullptr);
-	mCreature = suikomiArg->mCreature;
-	mCollpart = suikomiArg->_04;
-	_1C       = suikomiArg->_08;
-	_10       = 0;
+	mCreature        = suikomiArg->mCreature;
+	mCollpart        = suikomiArg->mCollpart;
+	mStomachCollpart = suikomiArg->mStomachCollpart;
+	mState           = 0;
 	piki->setMoveVelocity(false);
 	piki->endStick();
 }
@@ -3763,9 +3763,9 @@ void PikiSuikomiState::exec(Piki* piki)
 		return;
 	}
 
-	if (_10 == 0) {
+	if (mState == 0) {
 		execMouth(piki);
-	} else if (_10 == 1) {
+	} else if (mState == 1) {
 		execString(piki);
 	} else {
 		execStomach(piki);
@@ -3781,8 +3781,8 @@ void PikiSuikomiState::execMouth(Piki* piki)
 {
 	Vector3f position;
 	if (mCollpart == nullptr) {
-		position = _1C->mPosition;
-		position.y -= _1C->mRadius;
+		position = mStomachCollpart->mPosition;
+		position.y -= mStomachCollpart->mRadius;
 
 	} else {
 		Sys::Tube tube;
@@ -3797,14 +3797,14 @@ void PikiSuikomiState::execMouth(Piki* piki)
 	if (length < 10.0f) {
 		if (mCollpart == nullptr) {
 			piki->setMoveVelocity(true);
-			piki->startCaptureStomach(_1C);
-			_10 = 2;
+			piki->startCaptureStomach(mStomachCollpart);
+			mState = 2;
 			piki->startMotion(IPikiAnims::ESA, IPikiAnims::ESA, piki, nullptr);
-			_20 = pikiMgr->mParms->mPikiParms.mKurageKillTime.mValue;
+			mTimer = pikiMgr->mParms->mPikiParms.mKurageKillTime.mValue;
 		} else {
 			piki->startStick(mCreature, mCollpart);
 			piki->setMoveVelocity(true);
-			_10 = 1;
+			mState = 1;
 		}
 
 	} else {
@@ -3840,12 +3840,12 @@ void PikiSuikomiState::execString(Piki* piki)
 	piki->mSimVelocity = axisVec;
 	piki->move(sys->mDeltaTime);
 
-	if (piki->_104.y >= 1.0f) {
+	if (piki->mClimbingPosition.y >= 1.0f) {
 		piki->endStick();
-		piki->startCaptureStomach(_1C);
-		_10 = 2;
+		piki->startCaptureStomach(mStomachCollpart);
+		mState = 2;
 		piki->startMotion(IPikiAnims::ESA, IPikiAnims::ESA, nullptr, nullptr);
-		_20 = pikiMgr->mParms->mPikiParms.mKurageKillTime.mValue;
+		mTimer = pikiMgr->mParms->mPikiParms.mKurageKillTime.mValue;
 	}
 }
 
@@ -3864,20 +3864,21 @@ bool PikiSuikomiState::ignoreAtari(Piki* piki, Creature* creature) { return (u8)
 void PikiSuikomiState::execStomach(Piki* piki)
 {
 	if (mCreature) {
-		if (mCreature->mObjectTypeID != 2) {
+		if (mCreature->mObjectTypeID != OBJTYPE_Teki) {
 			JUT_PANICLINE(2680, "not teki (%s)!", mCreature->getCreatureName());
 		}
+
 		EnemyBase* enemy = static_cast<EnemyBase*>(mCreature);
 		if (!enemy->isEvent(0, EB_Bittered) && !(enemy->mHealth <= 0.0f)) {
-			_20 -= sys->mDeltaTime;
+			mTimer -= sys->mDeltaTime;
 		}
 	}
 
-	if (_10 == 3) {
-		f32 scale = _20 / 0.5f;
+	if (mState == 3) {
+		f32 scale = mTimer / 0.5f;
 		scale *= piki->getBaseScale();
 		piki->mScale = Vector3f(scale);
-		if (_20 <= 0.0f) {
+		if (mTimer <= 0.0f) {
 			if (piki->isPikmin()) {
 				deathMgr->inc(0);
 			}
@@ -3890,9 +3891,9 @@ void PikiSuikomiState::execStomach(Piki* piki)
 		BlowStateArg blowArg(vec, 0.0f, 0, 10, mCreature);
 		transit(piki, PIKISTATE_Blow, &blowArg);
 
-	} else if (_20 <= 0.0f) {
-		_10 = 3;
-		_20 = 0.5f;
+	} else if (mTimer <= 0.0f) {
+		mState = 3;
+		mTimer = 0.5f;
 	}
 }
 
@@ -4532,19 +4533,19 @@ void PikiBlowState::init(Piki* piki, StateArg* stateArg)
 	if (!blowArg) {
 		JUT_PANICLINE(3223, "flick needs PikiBlowInitArg !\n");
 	} else {
-		_18       = blowArg->_00;
-		_24       = blowArg->_0C;
-		mIsLethal = blowArg->mIsLethal;
-		_2A       = blowArg->_12;
-		_14       = blowArg->_14;
+		mBlowDirection = blowArg->mBlowDirection;
+		mChanceToLeaf  = blowArg->mChanceToLeaf;
+		mIsLethal      = blowArg->mIsLethal;
+		_2A            = blowArg->_12;
+		mHeldNavi      = blowArg->mHeldNavi;
 	}
 
 	mIsWhistled = false;
 	piki->startMotion(IPikiAnims::JHIT, IPikiAnims::JHIT, piki, nullptr);
 	mState = 0;
 
-	piki->mSimVelocity.y = _18.y * (0.1f * randFloat() + 1.0f);
-	piki->mFaceDir       = roundAng(JMath::atanTable_.atan2_(_18.x, _18.z) + PI);
+	piki->mSimVelocity.y = mBlowDirection.y * (0.1f * randFloat() + 1.0f);
+	piki->mFaceDir       = roundAng(JMath::atanTable_.atan2_(mBlowDirection.x, mBlowDirection.z) + PI);
 
 	if (_2A & 0x4) {
 		if ((int)piki->mHappaKind >= Bud) {
@@ -4575,8 +4576,8 @@ void PikiBlowState::exec(Piki* piki)
 
 	switch (mState) {
 	case BLOW_Start:
-		piki->mSimVelocity.x = _18.x;
-		piki->mSimVelocity.z = _18.z;
+		piki->mSimVelocity.x = mBlowDirection.x;
+		piki->mSimVelocity.z = mBlowDirection.z;
 		if (!piki->assertMotion(IPikiAnims::JHIT)) {
 			mState = BLOW_Knockback;
 			piki->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, piki, nullptr);
@@ -4634,15 +4635,15 @@ void PikiBlowState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 {
 	u16 flag = (mIsWhistled ? 0x8000 : 0) | _2A;
 	KokeDamageStateArg kokeArg(flag, 1.0f);
-	if (randFloat() < _24) {
+	if (randFloat() < mChanceToLeaf) {
 		if ((int)piki->mHappaKind >= Bud) {
 			efx::TPkEffect* effectsObj = piki->mEffectsObj;
 			efx::createSimpleChiru(*effectsObj->_0C, effectsObj->mPikiColor);
 			piki->mHappaKind = Leaf;
 		}
 
-		if (_14) {
-			piki->startSound(_14, PSSE_PK_VC_DAMAGED, true);
+		if (mHeldNavi) {
+			piki->startSound(mHeldNavi, PSSE_PK_VC_DAMAGED, true);
 		}
 	}
 
@@ -5824,17 +5825,17 @@ void PikiAbsorbState::init(Piki* piki, StateArg* stateArg)
 {
 	AbsorbStateArg* absorbArg = static_cast<AbsorbStateArg*>(stateArg);
 	P2ASSERTLINE(4210, absorbArg);
-	_14 = absorbArg->mCreature;
-	P2ASSERTLINE(4212, _14);
+	mAbsorbingCreature = absorbArg->mCreature;
+	P2ASSERTLINE(4212, mAbsorbingCreature);
 	piki->startMotion(IPikiAnims::MIZUNOMI, IPikiAnims::MIZUNOMI, piki, nullptr);
-	_10                = 0;
-	_18                = 0;
-	Vector3f targetPos = _14->getPosition();
+	mState             = 0;
+	mHasAbsorbed       = 0;
+	Vector3f targetPos = mAbsorbingCreature->getPosition();
 	piki->turnTo(targetPos);
 
-	P2ASSERTLINE(4219, _14->getJAIObject());
-	piki->mSoundObj->startPikiSound(_14->getJAIObject(), PSSE_PK_VC_DRINK, 0);
-	_19 = 0;
+	P2ASSERTLINE(4219, mAbsorbingCreature->getJAIObject());
+	piki->mSoundObj->startPikiSound(mAbsorbingCreature->getJAIObject(), PSSE_PK_VC_DRINK, 0);
+	mAbsorbTimer = 0;
 }
 
 /*
@@ -5848,22 +5849,22 @@ void PikiAbsorbState::exec(Piki* piki)
 	piki->mSimVelocity.x = 0.0f;
 	piki->mVelocity      = Vector3f(0.0f);
 
-	if (_10 == 1 && _14->isAlive() && !_18) {
+	if (mState == 1 && mAbsorbingCreature->isAlive() && !mHasAbsorbed) {
 		InteractAbsorb absorb(piki);
-		_14->stimulate(absorb);
-		_18 = 1;
+		mAbsorbingCreature->stimulate(absorb);
+		mHasAbsorbed = 1;
 	}
 
-	if (!_18) {
-		_19++;
-		if (_19 > 180) {
-			_18 = 1;
-			_19 = 180;
+	if (!mHasAbsorbed) {
+		mAbsorbTimer++;
+		if (mAbsorbTimer > 180) {
+			mHasAbsorbed = 1;
+			mAbsorbTimer = 180;
 		}
 	}
 
 	if (!piki->assertMotion(IPikiAnims::MIZUNOMI)) {
-		if (_18) {
+		if (mHasAbsorbed) {
 			transit(piki, PIKISTATE_Growup, nullptr);
 		} else {
 			transit(piki, PIKISTATE_Walk, nullptr);
@@ -5880,22 +5881,22 @@ void PikiAbsorbState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 {
 	switch (event.mType) {
 	case KEYEVENT_NULL:
-		_10 = 1;
+		mState = 1;
 		break;
 
 	case KEYEVENT_1:
-		Creature* creature = _14;
+		Creature* creature = mAbsorbingCreature;
 		P2ASSERTLINE(4261, creature->mObjectTypeID == OBJTYPE_Honey);
-		ItemHoney::Item* nectar = (ItemHoney::Item*)_14;
+		ItemHoney::Item* nectar = (ItemHoney::Item*)mAbsorbingCreature;
 
-		if (!_14->isAlive() || _18 || !nectar->isShrinking()) {
-			_10 = 2;
+		if (!mAbsorbingCreature->isAlive() || mHasAbsorbed || !nectar->isShrinking()) {
+			mState = 2;
 			piki->finishMotion();
 		}
 		break;
 
 	case KEYEVENT_END:
-		if (_18) {
+		if (mHasAbsorbed) {
 			transit(piki, PIKISTATE_Growup, nullptr);
 		} else {
 			transit(piki, PIKISTATE_Walk, nullptr);

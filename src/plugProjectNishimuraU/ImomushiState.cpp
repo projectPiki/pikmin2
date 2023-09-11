@@ -496,7 +496,7 @@ void StateClimb::exec(EnemyBase* enemy)
 		imomushi->moveStickTube();
 
 		f32 val  = imomushi->_2FC;
-		f32 yval = imomushi->_104.y;
+		f32 yval = imomushi->mClimbingPosition.y;
 		if (yval > 1.0f - val) {
 			CollPart* childPart = static_cast<CollPart*>(imomushi->mStuckCollPart->mChild);
 			if (childPart != nullptr && childPart->mPartType == COLLTYPE_TUBETREE) {

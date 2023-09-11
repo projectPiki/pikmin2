@@ -9,16 +9,16 @@ namespace Game {
  */
 CellIteratorArg::CellIteratorArg()
 {
-	mCondition                = nullptr;
-	mUseCustomRadiusThreshold = 0;
+	mCondition       = nullptr;
+	mUseCustomRadius = 0;
 
 	mSphere.mPosition = Vector3f(0.0f);
 	mSphere.mRadius   = 0.0f;
 
 	mCellMgr = cellMgr;
 
-	_1D                   = 0;
-	mIsCollSphereDisabled = false;
+	_1D                        = 0;
+	mIsSphereCollisionDisabled = false;
 }
 
 /*
@@ -29,12 +29,12 @@ CellIteratorArg::CellIteratorArg()
  */
 CellIteratorArg::CellIteratorArg(Sys::Sphere& sphere)
 {
-	mSphere                   = sphere;
-	mCondition                = nullptr;
-	mUseCustomRadiusThreshold = 0;
-	mCellMgr                  = Game::cellMgr;
-	_1D                       = 0;
-	mIsCollSphereDisabled     = false;
+	mSphere                    = sphere;
+	mCondition                 = nullptr;
+	mUseCustomRadius           = 0;
+	mCellMgr                   = Game::cellMgr;
+	_1D                        = 0;
+	mIsSphereCollisionDisabled = false;
 }
 
 /*
@@ -188,8 +188,8 @@ bool CellIterator::satisfy()
 	Sys::Sphere boundingSphere;
 	obj->getBoundingSphere(boundingSphere);
 
-	if (!mArg.mIsCollSphereDisabled) {
-		if (!mArg.mUseCustomRadiusThreshold) {
+	if (!mArg.mIsSphereCollisionDisabled) {
+		if (!mArg.mUseCustomRadius) {
 			f32 radius = mArg.mSphere.mRadius + boundingSphere.mRadius;
 			radius *= radius;
 			if (sqrDistanceXZ(objPos, mArg.mSphere.mPosition) > radius) {
@@ -338,7 +338,7 @@ void CellIterator::calcExtent()
 	f32 a = mArg.mCellMgr->mRight;
 	f32 b = mArg.mCellMgr->mLeft;
 
-	f32 norm = 1.0f / (mgr->mScale * mgr->mLayers[mCurrLayerIdx]._04);
+	f32 norm = 1.0f / (mgr->mScale * mgr->mLayers[mCurrLayerIdx].mLayerSize);
 
 	mMinX = (x - r - a) * norm;
 	mMinY = (z - r - b) * norm;

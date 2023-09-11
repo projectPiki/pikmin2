@@ -386,7 +386,7 @@ struct Creature : public CellObject {
 	CollPart* mStuckCollPart;       // _0F8
 	Creature* mCaptured;            // _0FC
 	Creature* mCapture;             // _100
-	Vector3f _104;                  // _104
+	Vector3f mClimbingPosition;     // _104
 	s16 mHasStick;                  // _110
 	CollTree* mCollTree;            // _114
 	f32 mMass;                      // _118

@@ -465,7 +465,7 @@ bool Obj::isJumpAway()
 		f32 privateDiameter = privRad * privRad;
 
 		CellIteratorArg iterArg(sphere);
-		iterArg.mIsCollSphereDisabled = true;
+		iterArg.mIsSphereCollisionDisabled = true;
 
 		CellIterator iter(iterArg);
 
