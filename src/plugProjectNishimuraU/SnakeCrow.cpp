@@ -40,8 +40,8 @@ Obj::Obj()
 void Obj::constructor()
 {
 	EnemyBase::constructor();
-	_2C1 = 1;
-	_2C2 = 0;
+	mIsFirstAttackBGM   = true;
+	mIsAppearBGMEnabled = false;
 	resetBossAppearBGM();
 }
 
@@ -72,8 +72,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	setupCollision();
 	setupShadowSystem();
 	setupEffect();
-	_2C1 = 1;
-	_2C2 = 0;
+	mIsFirstAttackBGM   = true;
+	mIsAppearBGMEnabled = false;
 	resetBossAppearBGM();
 	mFsm->start(this, SNAKECROW_Stay, nullptr);
 	doAnimationCullingOff();
@@ -1520,8 +1520,8 @@ void Obj::deleteJointShadow()
  */
 void Obj::startBossAttackBGM()
 {
-	if (_2C1) {
-		_2C1 = 0;
+	if (mIsFirstAttackBGM) {
+		mIsFirstAttackBGM = false; // don't play normal boss attack BGM on first getup
 	} else {
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
@@ -1564,8 +1564,8 @@ void Obj::updateBossBGM()
  */
 void Obj::resetBossAppearBGM()
 {
-	if (!_2C2) {
-		_2C2                     = 1;
+	if (!mIsAppearBGMEnabled) {
+		mIsAppearBGMEnabled      = true;
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->setAppearFlag(false);
@@ -1579,8 +1579,8 @@ void Obj::resetBossAppearBGM()
  */
 void Obj::setBossAppearBGM()
 {
-	if (_2C2) {
-		_2C2                     = 0;
+	if (mIsAppearBGMEnabled) {
+		mIsAppearBGMEnabled      = false;
 		PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(mSoundObj);
 		PSM::checkBoss(soundObj);
 		soundObj->setAppearFlag(true);

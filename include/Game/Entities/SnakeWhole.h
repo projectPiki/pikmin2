@@ -62,9 +62,9 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                            // _30
 	virtual void doDirectDraw(Graphics& gfx);                                  // _50
-	virtual void inWaterCallback(WaterBox* wb);                                // _84 (weak)
-	virtual void outWaterCallback();                                           // _88 (weak)
-	virtual bool isUnderground();                                              // _D0 (weak)
+	virtual void inWaterCallback(WaterBox* wb) { }                             // _84 (weak)
+	virtual void outWaterCallback() { }                                        // _88 (weak)
+	virtual bool isUnderground() { return mIsUnderground; }                    // _D0 (weak)
 	virtual void getShadowParam(ShadowParam& settings);                        // _134
 	virtual ~Obj() { }                                                         // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase* params);             // _1C4
@@ -77,19 +77,22 @@ struct Obj : public EnemyBase {
 	virtual void setParameters();                                              // _228
 	virtual void initMouthSlots();                                             // _22C
 	virtual void createEfxHamon();                                             // _250
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();                        // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                                       // _25C (weak)
 	virtual void getThrowupItemPosition(Vector3f* itemPos);                    // _268
-	virtual void throwupItemInDeathProcedure();                                // _270 (weak)
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part); // _278
 	virtual void doStartStoneState();                                          // _2A4
 	virtual void doFinishStoneState();                                         // _2A8
-	virtual f32 getDamageCoeStoneState();                                      // _2AC (weak)
 	virtual void startCarcassMotion();                                         // _2C4
-	virtual f32 getDownSmokeScale();                                           // _2EC (weak)
 	virtual void doStartMovie();                                               // _2F0
 	virtual void doEndMovie();                                                 // _2F4
 	virtual void setFSM(FSM* fsm);                                             // _2F8
+	virtual f32 getDamageCoeStoneState() { return 0.25f; }                     // _2AC (weak)
+	virtual MouthSlots* getMouthSlots() { return &mMouthSlots; }               // _25C (weak)
+	virtual void throwupItemInDeathProcedure() { }                             // _270 (weak)
+	virtual f32 getDownSmokeScale() { return 0.9f; }                           // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                         // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_SnakeWhole;
+	}
 	//////////////// VTABLE END
 
 	bool isOutTerritory();
@@ -138,16 +141,16 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                       // _2BC
 	bool mIsUnderground;             // _2C0
-	bool _2C1;                       // _2C1, isOnGround? hasLanded?
-	u8 _2C2;                         // _2C2
-	u8 _2C3;                         // _2C3
+	bool mIsJumping;                 // _2C1
+	bool mIsFirstAttackBGM;          // _2C2, controls whether first or repeated appearance fanfare plays
+	bool mIsAppearBGMEnabled;        // _2C3, play appear BGM on next getup
 	f32 mStateTimer;                 // _2C4
-	f32 _2C8;                        // _2C8
+	f32 mFaceDirOffset;              // _2C8, adjusts face dir while jumping
 	StateID mNextState;              // _2CC
 	MouthSlots mMouthSlots;          // _2D0
-	Vector3f _2D8;                   // _2D8
+	Vector3f mFitEffectPos;          // _2D8
 	int mAttackAnimIdx;              // _2E4
-	Vector3f mAttackPositions[5];    // _2E8
+	Vector3f mAttackPositions[5];    // _2E8, indexed by mAttackAnimIdx
 	SnakeJointMgr* mSnakeJointMgr;   // _324
 	SnakeWholeShadowMgr* mShadowMgr; // _328
 	efx::TCphebiDead* mEfxDead;      // _32C

@@ -141,8 +141,8 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                      // _2BC
 	bool mIsUnderground;            // _2C0
-	u8 _2C1;                        // _2C1, BGM related
-	u8 _2C2;                        // _2C2, BGM related
+	bool mIsFirstAttackBGM;         // _2C1, controls whether first or repeated appearance fanfare plays
+	bool mIsAppearBGMEnabled;       // _2C2, play appear BGM on next getup
 	f32 mStateTimer;                // _2C4
 	StateID mNextState;             // _2C8, unused
 	MouthSlots mMouthSlots;         // _2CC

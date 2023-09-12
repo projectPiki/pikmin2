@@ -1017,8 +1017,8 @@ void StateWait::cleanup(EnemyBase* enemy) { }
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* snagret             = static_cast<Obj*>(enemy);
-	snagret->_2C1            = false;
-	snagret->_2C8            = 0.0f;
+	snagret->mIsJumping      = false;
+	snagret->mFaceDirOffset  = 0.0f;
 	snagret->mTargetVelocity = Vector3f(0.0f);
 	snagret->startMotion(12, nullptr);
 }
@@ -1046,7 +1046,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		snagret->finishMotion();
 	}
 
-	if (snagret->_2C1) {
+	if (snagret->mIsJumping) {
 		snagret->updateFace();
 	} else {
 		snagret->mTargetVelocity = Vector3f(0.0f);
@@ -1055,8 +1055,8 @@ void StateWalk::exec(EnemyBase* enemy)
 	if (snagret->mCurAnim->mIsPlaying) {
 		if ((u32)snagret->mCurAnim->mType == KEYEVENT_2) {
 			snagret->enableEvent(0, EB_NoInterrupt);
-			snagret->_2C1 = true;
-			snagret->_2C8 = 0.0f;
+			snagret->mIsJumping     = true;
+			snagret->mFaceDirOffset = 0.0f;
 
 			Creature* target = snagret->getSearchedTarget();
 			if (target) {
@@ -1071,7 +1071,7 @@ void StateWalk::exec(EnemyBase* enemy)
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_3) {
 			snagret->disableEvent(0, EB_NoInterrupt);
-			snagret->_2C1 = false;
+			snagret->mIsJumping = false;
 			snagret->createWalkSmokeEffect(0.75f);
 
 			Vector3f position = snagret->getPosition();
@@ -1103,8 +1103,8 @@ void StateWalk::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_NoInterrup
 void StateHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* snagret             = static_cast<Obj*>(enemy);
-	snagret->_2C1            = false;
-	snagret->_2C8            = 0.0f;
+	snagret->mIsJumping      = false;
+	snagret->mFaceDirOffset  = 0.0f;
 	snagret->mTargetVelocity = Vector3f(0.0f);
 	snagret->startMotion(12, nullptr);
 }
@@ -1130,7 +1130,7 @@ void StateHome::exec(EnemyBase* enemy)
 		snagret->finishMotion();
 	}
 
-	if (snagret->_2C1) {
+	if (snagret->mIsJumping) {
 		snagret->updateFace();
 	} else {
 		snagret->mTargetVelocity = Vector3f(0.0f);
@@ -1139,8 +1139,8 @@ void StateHome::exec(EnemyBase* enemy)
 	if (snagret->mCurAnim->mIsPlaying) {
 		if ((u32)snagret->mCurAnim->mType == KEYEVENT_2) {
 			snagret->enableEvent(0, EB_NoInterrupt);
-			snagret->_2C1 = true;
-			snagret->_2C8 = 0.0f;
+			snagret->mIsJumping     = true;
+			snagret->mFaceDirOffset = 0.0f;
 
 			Vector3f targetPos = Vector3f(snagret->mHomePosition);
 			snagret->setJumpMove(targetPos);
@@ -1148,7 +1148,7 @@ void StateHome::exec(EnemyBase* enemy)
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_3) {
 			snagret->disableEvent(0, EB_NoInterrupt);
-			snagret->_2C1 = false;
+			snagret->mIsJumping = false;
 			snagret->createWalkSmokeEffect(0.75f);
 
 		} else if ((u32)snagret->mCurAnim->mType == KEYEVENT_END) {
