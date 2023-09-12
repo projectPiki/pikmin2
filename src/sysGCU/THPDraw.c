@@ -16,48 +16,47 @@ void THPGXRestore(void)
 	GXSetNumTevStages(1);
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
 	GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);
-	GXSetTevSwapMode(GX_TEVSTAGE0, 0, 0);
-	GXSetTevSwapMode(GX_TEVSTAGE1, 0, 0);
-	GXSetTevSwapMode(GX_TEVSTAGE2, 0, 0);
-	GXSetTevSwapMode(GX_TEVSTAGE3, 0, 0);
-	GXSetTevSwapModeTable(GX_TEV_SWAP0, 0, 1, 2, 3);
-	GXSetTevSwapModeTable(GX_TEV_SWAP1, 0, 0, 0, 3);
-	GXSetTevSwapModeTable(GX_TEV_SWAP2, 1, 1, 1, 3);
-	GXSetTevSwapModeTable(GX_TEV_SWAP3, 2, 2, 2, 3);
+	GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
+	GXSetTevSwapMode(GX_TEVSTAGE1, GX_TEV_SWAP0, GX_TEV_SWAP0);
+	GXSetTevSwapMode(GX_TEVSTAGE2, GX_TEV_SWAP0, GX_TEV_SWAP0);
+	GXSetTevSwapMode(GX_TEVSTAGE3, GX_TEV_SWAP0, GX_TEV_SWAP0);
+	GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+	GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
+	GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
+	GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
 }
 /*
  * --INFO--
  * Address:	8044D79C
  * Size:	0004C0
- * TODO: Implement and correct enums, especially GXCompCnt and GXCompType
  */
-void THPGXYuv2RgbSetup(u16* param_1)
+void THPGXYuv2RgbSetup(u16* params)
 {
-	int r31;
-	int r30;
-	Mtx44 MStack116;
-	Mtx MStack164;
+	int width;
+	int height;
+	Mtx44 projMtx;
+	Mtx posMtx;
 
-	r31 = param_1[2];
-	r30 = param_1[3];
+	width  = params[2];
+	height = params[3];
 
 	GXSetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
-	C_MTXOrtho(MStack116, 0, r30, 0, r31, 0, -1);
-	GXSetProjection(MStack116, GX_ORTHOGRAPHIC);
-	GXSetViewport(0, 0, r31, r30, 0.0, 1.0);
-	GXSetScissor(0, 0, r31, r30);
-	PSMTXIdentity(MStack164);
-	GXLoadPosMtxImm(MStack164, 0);
+	C_MTXOrtho(projMtx, 0, height, 0, width, 0, -1);
+	GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
+	GXSetViewport(0, 0, width, height, 0.0, 1.0);
+	GXSetScissor(0, 0, width, height);
+	PSMTXIdentity(posMtx);
+	GXLoadPosMtxImm(posMtx, 0);
 	GXSetCurrentMtx(0);
 	GXSetZMode(GX_TRUE, GX_ALWAYS, GX_FALSE);
 	GXSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ZERO, GX_LO_CLEAR);
 	GXSetColorUpdate(GX_TRUE);
 	GXSetAlphaUpdate(GX_FALSE);
-	GXSetDispCopyGamma(0);
+	GXSetDispCopyGamma(GX_GM_1_0);
 	GXSetNumChans(0);
 	GXSetNumTexGens(2);
-	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
-	GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
+	GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX3X4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
 	GXInvalidateTexAll();
 	GXClearVtxDesc();
 	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -71,16 +70,15 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	GXSetTevAlphaIn(GX_TEVSTAGE0, GX_ZERO, GX_CA_TEXA, GX_KONST, GX_CA_A0);
 	GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_SUB, GX_TB_ZERO, GX_CS_SCALE_1, GX_FALSE, GX_TEVPREV);
 	GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0);
-	GXSetTevKAlphaSel(GX_TEVSTAGE0, 0x1c);
+	GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K0_A);
 	GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
-	GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD1, GX_TEXMAP2,
-	              GX_COLOR_NULL); // Unsure as to what the proper form of the GXTexMapID should be
+	GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD1, GX_TEXMAP2, GX_COLOR_NULL);
 	GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_TEXC, GX_CC_KONST, GX_CC_CPREV);
 	GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_2, GX_FALSE, GX_TEVPREV);
 	GXSetTevAlphaIn(GX_TEVSTAGE1, GX_ZERO, GX_CA_TEXA, GX_KONST, GX_CA_APREV);
 	GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_SUB, GX_TB_ZERO, GX_CS_SCALE_1, GX_FALSE, GX_TEVPREV);
 	GXSetTevKColorSel(GX_TEVSTAGE1, GX_TEV_KCSEL_K1);
-	GXSetTevKAlphaSel(GX_TEVSTAGE1, 0x1d);
+	GXSetTevKAlphaSel(GX_TEVSTAGE1, GX_TEV_KASEL_K1_A);
 	GXSetTevSwapMode(GX_TEVSTAGE1, GX_TEV_SWAP0, GX_TEV_SWAP0);
 	GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
 	GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ZERO, GX_CC_TEXC, GX_CC_ONE, GX_CC_CPREV);
@@ -95,54 +93,47 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	GXSetTevAlphaOp(GX_TEVSTAGE3, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 	GXSetTevSwapMode(GX_TEVSTAGE3, GX_TEV_SWAP0, GX_TEV_SWAP0);
 	GXSetTevKColorSel(GX_TEVSTAGE3, GX_TEV_KCSEL_K2);
-	GXSetTevColorS10(1, (GXColorS10) { 0xFFA6, 0x0000, 0xFF8E, 0x0087 });
+	GXSetTevColorS10(GX_TEVREG0, (GXColorS10) { 0xFFA6, 0x0000, 0xFF8E, 0x0087 });
 	GXSetTevKColor(GX_KCOLOR0, (GXColor) { 0x00, 0x00, 0xE2, 0x58 });
 	GXSetTevKColor(GX_KCOLOR1, (GXColor) { 0xB3, 0x00, 0x00, 0xB6 });
 	GXSetTevKColor(GX_KCOLOR2, (GXColor) { 0xFF, 0x00, 0xFF, 0xFF });
-	GXSetTevSwapModeTable(GX_TEV_SWAP0, 0, 1, 2, 3);
+	GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
 }
 /*
  * --INFO--
  * Address:	8044DC5C
  * Size:	0001DC
  */
-void THPGXYuv2RgbDraw(u32* param_1, u32* param_2, u32* param_3, s16 param_4, s16 param_5, s16 param_6, s16 param_7, s16 param_8,
-                      s16 param_9)
+void THPGXYuv2RgbDraw(u32* yImage, u32* uImage, u32* vImage, s16 x, s16 y, s16 texWidth, s16 texHeight, s16 polyWidth, s16 polyHeight)
 {
-	GXTexObj gxtex1;
-	GXTexObj gxtex2;
-	GXTexObj gxtex3;
+	GXTexObj texY;
+	GXTexObj texU;
+	GXTexObj texV;
 
-	GXInitTexObj(&gxtex1, param_1, param_6, param_7, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
-	GXInitTexObjLOD(&gxtex1, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
-	GXLoadTexObj(&gxtex1, GX_TEXMAP0);
-	GXInitTexObj(&gxtex2, param_2, param_6 >> 1, param_7 >> 1, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
-	GXInitTexObjLOD(&gxtex2, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
-	GXLoadTexObj(&gxtex2, GX_TEXMAP1);
-	GXInitTexObj(&gxtex3, param_3, param_6 >> 1, param_7 >> 1, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
-	GXInitTexObjLOD(&gxtex3, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
-	GXLoadTexObj(&gxtex3, GX_TEXMAP2);
+	GXInitTexObj(&texY, yImage, texWidth, texHeight, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+	GXInitTexObjLOD(&texY, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
+	GXLoadTexObj(&texY, GX_TEXMAP0);
+
+	GXInitTexObj(&texU, uImage, texWidth >> 1, texHeight >> 1, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+	GXInitTexObjLOD(&texU, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
+	GXLoadTexObj(&texU, GX_TEXMAP1);
+
+	GXInitTexObj(&texV, vImage, texWidth >> 1, texHeight >> 1, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+	GXInitTexObjLOD(&texV, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
+	GXLoadTexObj(&texV, GX_TEXMAP2);
+
 	GXBegin(GX_QUADS, GX_VTXFMT7, 4);
 
 	// Fifo Writes
-	HW_REG(0xCC008000, s16) = param_4;
-	HW_REG(0xCC008000, u16) = param_5;
-	HW_REG(0xCC008000, u16) = 0;
-	HW_REG(0xCC008000, u16) = 0;
-	HW_REG(0xCC008000, u16) = 0;
-	HW_REG(0xCC008000, u16) = param_4 + param_8;
-	HW_REG(0xCC008000, u16) = param_5;
-	HW_REG(0xCC008000, u16) = 0;
-	HW_REG(0xCC008000, u16) = 1;
-	HW_REG(0xCC008000, u16) = 0;
-	HW_REG(0xCC008000, u16) = param_4 + param_8;
-	HW_REG(0xCC008000, u16) = param_5 + param_9;
-	HW_REG(0xCC008000, u16) = 0;
-	HW_REG(0xCC008000, u16) = 1;
-	HW_REG(0xCC008000, u16) = 1;
-	HW_REG(0xCC008000, s16) = param_4;
-	HW_REG(0xCC008000, u16) = param_5 + param_9;
-	HW_REG(0xCC008000, u16) = 0;
-	HW_REG(0xCC008000, u16) = 0;
-	HW_REG(0xCC008000, u16) = 1;
+	GXPosition3s16(x, y, 0);
+	GXTexCoord2u16(0, 0);
+
+	GXPosition3s16(x + polyWidth, y, 0);
+	GXTexCoord2u16(1, 0);
+
+	GXPosition3u16(x + polyWidth, y + polyHeight, 0); // this one has to be u16 to match, typo?
+	GXTexCoord2u16(1, 1);
+
+	GXPosition3s16(x, y + polyHeight, 0);
+	GXTexCoord2u16(0, 1);
 }

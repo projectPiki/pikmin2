@@ -22,6 +22,9 @@
     "thpread.h": "c",
     "thpbuffer.h": "c",
     "thpinfo.h": "c",
-    "thpfile.h": "c"
+    "thpfile.h": "c",
+    "thpaudiodecode.h": "c",
+    "thpdraw.h": "c",
+    "thpplayer.h": "c"
   }
 }

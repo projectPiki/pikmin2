@@ -222,7 +222,7 @@ void Reader(void*)
 OSMessage PopReadedBuffer()
 {
 	OSMessage msg;
-	OSReceiveMessage(&ReadedBufferQueue, msg, MSG_QUEUE_SHOULD_BLOCK);
+	OSReceiveMessage(&ReadedBufferQueue, msg, OS_MESSAGE_BLOCK);
 	return msg;
 	/*
 	.loc_0x0:
@@ -249,7 +249,7 @@ OSMessage PopReadedBuffer()
  */
 BOOL PushReadedBuffer(OSMessage* msg)
 {
-	return OSSendMessage(&ReadedBufferQueue, msg, MSG_QUEUE_SHOULD_BLOCK);
+	return OSSendMessage(&ReadedBufferQueue, msg, OS_MESSAGE_BLOCK);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -275,7 +275,7 @@ BOOL PushReadedBuffer(OSMessage* msg)
 OSMessage PopFreeReadBuffer()
 {
 	OSMessage msg;
-	OSReceiveMessage(&FreeReadBufferQueue, msg, MSG_QUEUE_SHOULD_BLOCK);
+	OSReceiveMessage(&FreeReadBufferQueue, msg, OS_MESSAGE_BLOCK);
 	return msg;
 	/*
 	.loc_0x0:

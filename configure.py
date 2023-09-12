@@ -1555,7 +1555,7 @@ LIBS = [
     },
     {
         "lib": "sysGCU",
-        "cflags": "$cflags_pikmin",
+        "cflags": "$cflags_pikmin -lang=c++",
         "mw_version": "2.6",
         "host": True,
         "objects": [
@@ -1612,7 +1612,7 @@ LIBS = [
             "sysGCU/loadResource",
             ["sysGCU/rootMenuSection", True],
             ["sysGCU/demoSection", True],
-            "sysGCU/THPAudioDecode",
+            ["sysGCU/THPAudioDecode", True],
             ["sysGCU/THPDraw", True],
             "sysGCU/THPPlayer",
             "sysGCU/THPRead",

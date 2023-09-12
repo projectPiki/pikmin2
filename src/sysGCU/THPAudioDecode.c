@@ -14,24 +14,22 @@ static OSMessage DecodedAudioBufferMessage[BUFFER_COUNT];
 
 static BOOL AudioDecodeThreadCreated;
 
-static void* AudioDecoderForOnMemory(void* arg);
-static void* AudioDecoder(void* arg);
-static void AudioDecode(THPReadBuffer* readBuffer);
-
 /*
  * --INFO--
  * Address:	8044D2C4
  * Size:	0000D4
  */
-BOOL CreateAudioDecodeThread(OSPriority prio, void* arg)
+BOOL CreateAudioDecodeThread(OSPriority prio, void* param)
 {
 	BOOL res;
-	if (arg) {
-		res = OSCreateThread(&AudioDecodeThread, AudioDecoderForOnMemory, arg, AudioDecodeThreadStack + STACK_SIZE, STACK_SIZE, prio, 1);
+	if (param) {
+		res = OSCreateThread(&AudioDecodeThread, AudioDecoderForOnMemory, param, AudioDecodeThreadStack + STACK_SIZE, STACK_SIZE, prio,
+		                     OS_THREAD_ATTR_DETACH);
 		if (res == FALSE)
 			return FALSE;
 	} else {
-		res = OSCreateThread(&AudioDecodeThread, AudioDecoder, NULL, AudioDecodeThreadStack + STACK_SIZE, STACK_SIZE, prio, 1);
+		res = OSCreateThread(&AudioDecodeThread, AudioDecoder, NULL, AudioDecodeThreadStack + STACK_SIZE, STACK_SIZE, prio,
+		                     OS_THREAD_ATTR_DETACH);
 		if (res == FALSE)
 			return FALSE;
 	}
@@ -49,8 +47,9 @@ BOOL CreateAudioDecodeThread(OSPriority prio, void* arg)
  */
 void AudioDecodeThreadStart()
 {
-	if (AudioDecodeThreadCreated)
+	if (AudioDecodeThreadCreated) {
 		OSResumeThread(&AudioDecodeThread);
+	}
 }
 
 /*
@@ -65,13 +64,13 @@ void AudioDecodeThreadCancel()
 		AudioDecodeThreadCreated = FALSE;
 	}
 }
-#pragma cplusplus on
+
 /*
  * --INFO--
  * Address:	8044D408
  * Size:	000028
  */
-static void* AudioDecoder(void* arg)
+static void* AudioDecoder(void* _)
 {
 	THPReadBuffer* buf;
 	while (TRUE) {
@@ -86,32 +85,33 @@ static void* AudioDecoder(void* arg)
  * Address:	8044D430
  * Size:	0000A8
  */
-static void* AudioDecoderForOnMemory(void* arg)
+static void* AudioDecoderForOnMemory(void* bufPtr)
 {
 	s32 readSize;
 	s32 frame;
 	THPReadBuffer readBuffer;
 
-	frame          = 0;
-	readSize       = ActivePlayer.initReadSize;
-	readBuffer.ptr = (u8*)arg;
+	frame           = 0;
+	readSize        = ActivePlayer.mInitReadSize;
+	readBuffer.mPtr = (u8*)bufPtr;
 
 	while (TRUE) {
-		readBuffer.frameNumber = frame;
+		s32 remaining;
+		readBuffer.mFrameNumber = frame;
 		AudioDecode(&readBuffer);
 
-		s32 remaining = (frame + ActivePlayer.initReadFrame) % ActivePlayer.header.numFrames;
+		remaining = (frame + ActivePlayer.mInitReadFrame) % ActivePlayer.mHeader.mNumFrames;
 
-		if (remaining == ActivePlayer.header.numFrames - 1) {
-			if ((ActivePlayer.playFlag & 1)) {
-				readSize       = *(s32*)readBuffer.ptr;
-				readBuffer.ptr = ActivePlayer.movieData;
+		if (remaining == ActivePlayer.mHeader.mNumFrames - 1) {
+			if ((ActivePlayer.mPlayFlag & 1)) {
+				readSize        = *(s32*)readBuffer.mPtr;
+				readBuffer.mPtr = ActivePlayer.mMovieData;
 			} else {
 				OSSuspendThread(&AudioDecodeThread);
 			}
 		} else {
-			s32 size = *(s32*)readBuffer.ptr;
-			readBuffer.ptr += readSize;
+			s32 size = *(s32*)readBuffer.mPtr;
+			readBuffer.mPtr += readSize;
 			readSize = size;
 		}
 		frame++;
@@ -130,15 +130,15 @@ static void AudioDecode(THPReadBuffer* readBuffer)
 	u32* offsets;
 	u8* audioData;
 
-	offsets   = (u32*)(readBuffer->ptr + 8);
-	audioData = &readBuffer->ptr[ActivePlayer.compInfo.numComponents * 4] + 8;
+	offsets   = (u32*)(readBuffer->mPtr + 8);
+	audioData = &readBuffer->mPtr[ActivePlayer.mCompInfo.mNumComponents * 4] + 8;
 	audioBuf  = (THPAudioBuffer*)PopFreeAudioBuffer();
 
-	for (i = 0; i < ActivePlayer.compInfo.numComponents; i++) {
-		switch (ActivePlayer.compInfo.frameComp[i]) {
+	for (i = 0; i < ActivePlayer.mCompInfo.mNumComponents; i++) {
+		switch (ActivePlayer.mCompInfo.mFrameComp[i]) {
 		case 1: {
-			audioBuf->validSample = THPAudioDecode(audioBuf->buffer, (audioData + *offsets * ActivePlayer.curAudioTrack), 0);
-			audioBuf->curPtr      = audioBuf->buffer;
+			audioBuf->mValidSample = THPAudioDecode(audioBuf->mBuffer, (audioData + *offsets * ActivePlayer.mCurAudioTrack), 0);
+			audioBuf->mCurPtr      = audioBuf->mBuffer;
 			PushDecodedAudioBuffer(audioBuf);
 			return;
 		}
@@ -148,7 +148,7 @@ static void AudioDecode(THPReadBuffer* readBuffer)
 		offsets++;
 	}
 }
-#pragma cplusplus off
+
 /*
  * --INFO--
  * Address:	8044D5AC

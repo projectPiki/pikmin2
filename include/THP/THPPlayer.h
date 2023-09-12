@@ -12,43 +12,44 @@
 extern "C" {
 #endif
 
+// Size: 0x1f0
 typedef struct THPPlayer {
-	DVDFileInfo fileInfo;
-	THPHeader header;
-	THPFrameCompInfo compInfo;
-	THPVideoInfo videoInfo;
-	THPAudioInfo audioInfo;
-	void* thpWork;
-	BOOL open;
-	u8 state;
-	u8 internalState;
-	u8 playFlag;
-	u8 audioExist;
-	s32 dvdError;
-	s32 videoError;
-	BOOL onMemory;
-	u8* movieData;
-	s32 initOffset;
-	s32 initReadSize;
-	s32 initReadFrame;
-	u32 curField;
-	s64 retaceCount;
-	s32 prevCount;
-	s32 curCount;
-	s32 videoDecodeCount;
-	f32 curVolume;
-	f32 targetVolume;
-	f32 deltaVolume;
-	s32 rampCount;
-	s32 curAudioTrack;
-	s32 curVideoNumber;
-	s32 curAudioNumber;
-	THPTextureSet* dispTextureSet;
-	THPAudioBuffer* playAudioBuffer;
-	THPReadBuffer readBuffer[10];
-	THPTextureSet textureSet[3];
-	THPAudioBuffer audioBuffer[6];
-} THPPlayer; // Size: 0x1f0
+	DVDFileInfo mFileInfo;            // _00
+	THPHeader mHeader;                // _3C
+	THPFrameCompInfo mCompInfo;       // _6C
+	THPVideoInfo mVideoInfo;          // _80
+	THPAudioInfo mAudioInfo;          // _8C
+	void* mThpWorkArea;               // _9C
+	BOOL mIsOpen;                     // _A0
+	u8 mState;                        // _A4
+	u8 mInternalState;                // _A5
+	u8 mPlayFlag;                     // _A6
+	u8 mAudioExist;                   // _A7
+	s32 mDvdError;                    // _A8
+	s32 mVideoError;                  // _AC
+	BOOL mIsOnMemory;                 // _B0
+	u8* mMovieData;                   // _B4
+	s32 mInitOffset;                  // _B8
+	s32 mInitReadSize;                // _BC
+	s32 mInitReadFrame;               // _C0
+	u32 mCurField;                    // _C4
+	s64 mRetraceCount;                // _C8
+	s32 mPrevCount;                   // _D0
+	s32 mCurCount;                    // _D4
+	s32 mVideoDecodeCount;            // _D8
+	f32 mCurVolume;                   // _DC
+	f32 mTargetVolume;                // _E0
+	f32 mDeltaVolume;                 // _E4
+	s32 mRampCount;                   // _E8
+	s32 mCurAudioTrack;               // _EC
+	s32 mCurVideoNumber;              // _F0
+	s32 mCurAudioNumber;              // _F4
+	THPTextureSet* mDispTextureSet;   // _F8
+	THPAudioBuffer* mPlayAudioBuffer; // _FC
+	THPReadBuffer mReadBuffer[10];    // _100
+	THPTextureSet mTextureSet[3];     // _178
+	THPAudioBuffer mAudioBuffer[6];   // _1A8
+} THPPlayer;
 
 extern THPPlayer ActivePlayer;
 
