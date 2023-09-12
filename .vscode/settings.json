@@ -18,6 +18,10 @@
     "osbootinfo.h": "c",
     "dvd.h": "c",
     "osutil.h": "c",
-    "hw_regs.h": "c"
+    "hw_regs.h": "c",
+    "thpread.h": "c",
+    "thpbuffer.h": "c",
+    "thpinfo.h": "c",
+    "thpfile.h": "c"
   }
 }

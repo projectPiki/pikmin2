@@ -3,14 +3,11 @@
 
 #include "Dolphin/os.h"
 #include "types.h"
+#include "THP/THPBuffer.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
-
-typedef struct THPReadBuffer {
-	u32 _00;
-} THPReadBuffer;
 
 BOOL CreateReadThread(int);
 void ReadThreadStart();
