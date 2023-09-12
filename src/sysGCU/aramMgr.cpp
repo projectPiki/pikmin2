@@ -90,11 +90,7 @@ inline u32 Node::dvdToAram(char const* name, bool useNull)
 void* Node::aramToMainRam(u8* a2, u32 a3, u32 a4, JKRExpandSwitch a5, u32 a6, JKRHeap* a7, JKRDvdRipper::EAllocDirection a8, int a9,
                           u32* byteCnt)
 {
-	void* addr = nullptr;
-	u32 zero   = 0;
-	if (!byteCnt) {
-		byteCnt = &zero;
-	}
+	void* addr;
 
 	if (!mStatus) {
 		dvdToAram(mName, false);
@@ -189,15 +185,16 @@ u32 Mgr::dvdToAram(char const* name, bool a2)
 void* Mgr::aramToMainRam(char const* name, u8* a2, u32 a3, u32 a4, JKRExpandSwitch a5, u32 a6, JKRHeap* a7,
                          JKRDvdRipper::EAllocDirection a8, int a9, u32* byteCnt)
 {
-	Node* found = search(name);
 	void* mem   = nullptr;
+	Node* found = search(name);
 
 	if (found) {
 		if (!a7) {
 			a7 = JKRHeap::sCurrentHeap;
 		}
 
-		mem = found->aramToMainRam(a2, a3, a4, a5, a6, a7, a8, a9, byteCnt);
+		u32 zero   = 0;
+		mem = found->aramToMainRam(a2, a3, a4, a5, a6, a7, a8, a9, byteCnt = !byteCnt ? &zero : byteCnt);
 	}
 
 	return mem;
