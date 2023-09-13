@@ -72,6 +72,7 @@ void VideoDecodeThreadCancel()
  */
 static void* VideoDecoder(void* arg)
 {
+	BOOL old;
 	THPReadBuffer* thpBuffer;
 	int decodedFrame = ActivePlayer.mVideoDecodeCount;
 
@@ -85,9 +86,9 @@ static void* VideoDecoder(void* arg)
 					VideoDecode(thpBuffer);
 
 				PushFreeReadBuffer((OSMessage*)thpBuffer);
-				BOOL interrupt = OSDisableInterrupts();
+				old = OSDisableInterrupts();
 				ActivePlayer.mVideoDecodeCount++;
-				OSRestoreInterrupts(interrupt);
+				OSRestoreInterrupts(old);
 			}
 		}
 
@@ -120,11 +121,10 @@ static void* VideoDecoderForOnMemory(void* arg)
 	readBuffer.mPtr = (u8*)arg;
 	while (TRUE) {
 		if (ActivePlayer.mAudioExist) {
-			BOOL interrupt = OSDisableInterrupts();
-			ActivePlayer.mVideoDecodeCount++;
-			OSRestoreInterrupts(interrupt);
-			while (i--) {
+			while (ActivePlayer.mVideoDecodeCount < 0) {
+				BOOL old = OSDisableInterrupts();
 				ActivePlayer.mVideoDecodeCount++;
+				OSRestoreInterrupts(old);
 				s32 remaining = (frame + ActivePlayer.mInitReadFrame) % ActivePlayer.mHeader.mNumFrames;
 				if (remaining == ActivePlayer.mHeader.mNumFrames - 1) {
 					if ((ActivePlayer.mPlayFlag & 1) == 0)
@@ -174,6 +174,7 @@ static void VideoDecode(THPReadBuffer* readBuffer)
 	s32 i;
 	u32* tileOffsets;
 	u8* tile;
+	BOOL old;
 
 	tileOffsets = (u32*)(readBuffer->mPtr + 8);
 	tile        = &readBuffer->mPtr[ActivePlayer.mCompInfo.mNumComponents * 4] + 8;
@@ -193,9 +194,9 @@ static void VideoDecode(THPReadBuffer* readBuffer)
 			}
 			textureSet->mFrameNumber = readBuffer->mFrameNumber;
 			PushDecodedTextureSet((OSMessage*)textureSet);
-			BOOL interrupt = OSDisableInterrupts();
+			old = OSDisableInterrupts();
 			ActivePlayer.mVideoDecodeCount++;
-			OSRestoreInterrupts(interrupt);
+			OSRestoreInterrupts(old);
 		}
 		}
 

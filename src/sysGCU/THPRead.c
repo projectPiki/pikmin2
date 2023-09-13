@@ -29,7 +29,7 @@ static u8 ReadThreadStack[STACK_SIZE];
 
 BOOL CreateReadThread(OSPriority priority)
 {
-	if (OSCreateThread(&ReadThread, nullptr, Reader, ReadThreadStack + STACK_SIZE, STACK_SIZE, priority, 1) == FALSE) {
+	if (OSCreateThread(&ReadThread, Reader, NULL, ReadThreadStack + STACK_SIZE, STACK_SIZE, priority, 1) == FALSE){
 		return FALSE;
 	}
 
@@ -71,7 +71,7 @@ void ReadThreadCancel()
  * Address:	8044F69C
  * Size:	0000EC
  */
-static void Reader(void* arg)
+static void* Reader(void* arg)
 {
 	THPReadBuffer* buf;
 	s32 curFrame;

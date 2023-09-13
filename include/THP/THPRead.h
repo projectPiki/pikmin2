@@ -5,7 +5,7 @@
 #include "types.h"
 #include "THP/THPBuffer.h"
 
-static void Reader(void*);
+static void* Reader(void* arg);
 
 #ifdef __cplusplus
 extern "C" {
