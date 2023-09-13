@@ -29,7 +29,7 @@ static u8 ReadThreadStack[STACK_SIZE];
 
 BOOL CreateReadThread(OSPriority priority)
 {
-	if (OSCreateThread(&ReadThread, Reader, NULL, ReadThreadStack + STACK_SIZE, STACK_SIZE, priority, 1) == FALSE){
+	if (OSCreateThread(&ReadThread, Reader, NULL, ReadThreadStack + STACK_SIZE, STACK_SIZE, priority, 1) == FALSE) {
 		return FALSE;
 	}
 
