@@ -7,12 +7,12 @@
  * Address:	800EF4BC
  * Size:	000060
  */
-void OSInitMessageQueue(OSMessageQueue* queue, void** buffer, int capacity)
+void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgArray, s32 msgCount)
 {
 	OSInitThreadQueue(&queue->queueSend);
 	OSInitThreadQueue(&queue->queueReceive);
-	queue->msgArray   = buffer;
-	queue->msgCount   = capacity;
+	queue->msgArray   = msgArray;
+	queue->msgCount   = msgCount;
 	queue->firstIndex = 0;
 	queue->usedCount  = 0;
 }
@@ -27,7 +27,7 @@ void OSInitMessageQueue(OSMessageQueue* queue, void** buffer, int capacity)
  * Address:	800EF51C
  * Size:	0000C8
  */
-BOOL OSSendMessage(OSMessageQueue* queue, void* msg, int flags)
+BOOL OSSendMessage(OSMessageQueue* queue, void* msg, s32 flags)
 {
 	int mesgId;
 	u32 interrupt;
@@ -57,7 +57,7 @@ BOOL OSSendMessage(OSMessageQueue* queue, void* msg, int flags)
  * Address:	800EF5E4
  * Size:	0000DC
  */
-BOOL OSReceiveMessage(OSMessageQueue* queue, void** buffer, int flags)
+BOOL OSReceiveMessage(OSMessageQueue* queue, void** buffer, s32 flags)
 {
 	u32 interrupt;
 
@@ -89,7 +89,7 @@ BOOL OSReceiveMessage(OSMessageQueue* queue, void** buffer, int flags)
  * Address:	800EF6C0
  * Size:	0000D4
  */
-BOOL OSJamMessage(OSMessageQueue* queue, void* msg, int flags)
+BOOL OSJamMessage(OSMessageQueue* queue, void* msg, s32 flags)
 {
 	s32 lastMesg;
 	u32 interrupt;

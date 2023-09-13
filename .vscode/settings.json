@@ -25,6 +25,7 @@
     "thpfile.h": "c",
     "thpaudiodecode.h": "c",
     "thpdraw.h": "c",
-    "thpplayer.h": "c"
+    "thpplayer.h": "c",
+    "thpvideodecode.h": "c"
   }
 }
