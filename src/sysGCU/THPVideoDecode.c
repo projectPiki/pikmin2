@@ -85,8 +85,9 @@ static void* VideoDecoder(void* arg)
 					VideoDecode(thpBuffer);
 
 				PushFreeReadBuffer((OSMessage*)thpBuffer);
-				OSDisableInterrupts();
-				OSRestoreInterrupts(ActivePlayer.mVideoDecodeCount++); // regswap r3/r4 here
+				BOOL interrupt = OSDisableInterrupts();
+				ActivePlayer.mVideoDecodeCount++;
+				OSRestoreInterrupts(interrupt);
 			}
 		}
 
@@ -119,8 +120,9 @@ static void* VideoDecoderForOnMemory(void* arg)
 	readBuffer.mPtr = (u8*)arg;
 	while (TRUE) {
 		if (ActivePlayer.mAudioExist) {
-			OSDisableInterrupts();
-			OSRestoreInterrupts(ActivePlayer.mVideoDecodeCount++); // regswap r3/r4 here
+			BOOL interrupt = OSDisableInterrupts();
+			ActivePlayer.mVideoDecodeCount++;
+			OSRestoreInterrupts(interrupt);
 			while (i--) {
 				ActivePlayer.mVideoDecodeCount++;
 				s32 remaining = (frame + ActivePlayer.mInitReadFrame) % ActivePlayer.mHeader.mNumFrames;
@@ -191,8 +193,9 @@ static void VideoDecode(THPReadBuffer* readBuffer)
 			}
 			textureSet->mFrameNumber = readBuffer->mFrameNumber;
 			PushDecodedTextureSet((OSMessage*)textureSet);
-			OSDisableInterrupts();
-			OSRestoreInterrupts(ActivePlayer.mVideoDecodeCount++); // regswap r3/r4 here
+			BOOL interrupt = OSDisableInterrupts();
+			ActivePlayer.mVideoDecodeCount++;
+			OSRestoreInterrupts(interrupt);
 		}
 		}
 
