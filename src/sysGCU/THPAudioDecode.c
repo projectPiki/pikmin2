@@ -2,7 +2,7 @@
 #include "THP/THPAudioDecode.h"
 #include "THP/THPPlayer.h"
 
-#define STACK_SIZE   4096
+#define STACK_SIZE   0x1000
 #define BUFFER_COUNT 3
 
 static OSThread AudioDecodeThread;

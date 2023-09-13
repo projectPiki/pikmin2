@@ -13,9 +13,6 @@
 
 static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
 
-// TODO: move to header file
-extern bool gTHPReaderDvdAccess;
-
 // Some bullshit
 static OSTime sPlayTime = OS_TIMER_CLOCK * 300;
 

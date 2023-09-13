@@ -93,7 +93,7 @@ s32 OSEnableScheduler();
 
 // Thread manip functions.
 void OSYieldThread();
-BOOL OSCreateThread(OSThread* thread, OSThreadStartFunction func, void* param, void* stack, u32 stackSize, OSPriority prio, u16 attr);
+BOOL OSCreateThread(OSThread* thread, OSThreadStartFunction func, void* param, void* stack, u32 stackSize, OSPriority priority, u16 attr);
 void OSExitThread(void* val);
 void OSCancelThread(OSThread* thread);
 void OSDetachThread(OSThread* thread);
