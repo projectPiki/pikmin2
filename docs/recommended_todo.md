@@ -40,7 +40,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/object-id.cpp">JStudio/object-id.cpp</a> | 2697 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAChildShape.cpp">JParticle/JPAChildShape.cpp</a> | 3414 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/binary.cpp">JGadget/binary.cpp</a> | 3595 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAS/JASInstSense.cpp">JAudio/JAS/JASInstSense.cpp</a> | 3632 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JAudio/control.cpp">JStudio_JAudio/control.cpp</a> | 3648 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAS/JASCmdStack.cpp">JAudio/JAS/JASCmdStack.cpp</a> | 3709 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/dsp/dspproc.c">JAudio/dsp/dspproc.c</a> | 3983 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JParticle/control.cpp">JStudio_JParticle/control.cpp</a> | 4098 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/dsp/dspproc.c">JAudio/dsp/dspproc.c</a> | 3981 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JParticle/control.cpp">JStudio_JParticle/control.cpp</a> | 4098 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3DU/J3DUMtxCache.cpp">J3DU/J3DUMtxCache.cpp</a> | 4160 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio_JStage/object.cpp">JStudio_JStage/object.cpp</a> | 4322 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAS/JASSeqCtrl.cpp">JAudio/JAS/JASSeqCtrl.cpp</a> | 4524 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JParticle/JPAResourceManager.cpp">JParticle/JPAResourceManager.cpp</a> | 4849 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JGadget/linklist.cpp">JGadget/linklist.cpp</a> | 5250 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAudio/JAU/JAUData.cpp">JAudio/JAU/JAUData.cpp</a> | 5463 |
@@ -183,9 +183,8 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectSpecialActor.cpp">JSTObjectSpecialActor.cpp</a> | 2289 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/illustratedBookMessage.cpp">illustratedBookMessage.cpp</a> | 2964 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/captionMessage.cpp">captionMessage.cpp</a> | 3528 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 3743 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageObj.cpp">messageObj.cpp</a> | 4504 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 4920 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 5333 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPVideoDecode.c">THPVideoDecode.c</a> | 6107 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/captionMessage.cpp">captionMessage.cpp</a> | 3528 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageObj.cpp">messageObj.cpp</a> | 4504 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 4920 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 5333 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageMgr.cpp">messageMgr.cpp</a> | 6825 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 7072 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerPauseAndDraw.cpp">moviePlayerPauseAndDraw.cpp</a> | 8587 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenScene.cpp">screenScene.cpp</a> | 9274 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectParticleActor.cpp">JSTObjectParticleActor.cpp</a> | 11032 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/loadResource.cpp">loadResource.cpp</a> | 11781 |
@@ -193,7 +192,6 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectCamera.cpp">JSTObjectCamera.cpp</a> | 12894 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/P2DScreen.cpp">P2DScreen.cpp</a> | 12998 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/modelEffect.cpp">modelEffect.cpp</a> | 13173 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectGameActor.cpp">JSTObjectGameActor.cpp</a> | 16832 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/light.cpp">light.cpp</a> | 17447 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/wipe.cpp">wipe.cpp</a> | 17624 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenObj.cpp">screenObj.cpp</a> | 17806 |
 
 ### <section id="utilityU">utilityU</section>
 | File | Size (bytes) | File | Size (bytes) |

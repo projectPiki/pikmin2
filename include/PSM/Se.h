@@ -59,7 +59,7 @@ struct PersEnvManager {
 };
 
 struct EnvSeObjBuilder : public PSGame::Builder_EvnSe_Perspective {
-	EnvSeObjBuilder(JGeometry::TBox3<float>);
+	EnvSeObjBuilder(JGeometry::TBox3<f32>);
 
 	virtual ~EnvSeObjBuilder();                                 // _08
 	virtual void onBuild(PSSystem::EnvSeBase*);                 // _0C
@@ -91,7 +91,7 @@ struct SeSound : public JAISe {
 	static SeSound* makeSeSound();
 	void specializePerspCalc(const PSGame::SoundTable::SePerspInfo&);
 	void calcVolumeSpecialized(f32);
-	f32 calcVolume(f32, unsigned char, unsigned char);
+	f32 calcVolume(f32, u8, u8);
 	void calcPan(const Vec&, f32);
 	void calcDolby(const Vec&, f32);
 
@@ -101,11 +101,11 @@ struct SeSound : public JAISe {
 	u8 _49C;                                    // _49C
 	f32 _4A0;                                   // _4A0
 
-	static float cDol_0Rad;
-	static float cDol_HalfRad;
-	static float cDol_FullRad;
-	static float cPan_MaxAmp;
-	static float cCenterRad;
+	static f32 cDol_0Rad;
+	static f32 cDol_HalfRad;
+	static f32 cDol_FullRad;
+	static f32 cPan_MaxAmp;
+	static f32 cCenterRad;
 };
 } // namespace PSM
 
