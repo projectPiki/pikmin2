@@ -86,10 +86,7 @@ struct Mgr : public MgrBase {
 	static Mgr* sScreenMgr;
 };
 
-inline void checkSceneList(SceneInfoList* list)
-{
-	P2ASSERTLINE(329, list);
-}
+inline void checkSceneList(SceneInfoList* list) { P2ASSERTLINE(329, list); }
 
 } // namespace Screen
 

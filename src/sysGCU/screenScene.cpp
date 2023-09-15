@@ -270,7 +270,7 @@ bool SceneBase::setScene(Screen::SetSceneArg& arg) { return mScreenMgr->setScene
  * Address:	80451F60
  * Size:	000030
  */
-bool  SceneBase::startScene(Screen::StartSceneArg* arg) { return mScreenMgr->startScene(arg); }
+bool SceneBase::startScene(Screen::StartSceneArg* arg) { return mScreenMgr->startScene(arg); }
 
 /*
  * endScene__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
@@ -363,9 +363,6 @@ void SceneBase::setColorBG(u8 r, u8 g, u8 b, u8 a)
  * Address:	........
  * Size:	000030
  */
-void SceneBase::setBGMode(int mode)
-{
-	mScreenMgr->setBGMode(mode);
-}
+void SceneBase::setBGMode(int mode) { mScreenMgr->setBGMode(mode); }
 
 } // namespace Screen
