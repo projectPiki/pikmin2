@@ -9,7 +9,7 @@ namespace JASCalc {
  * Address:	........
  * Size:	00007C
  */
-void mixcopy(const short*, const short*, short*, unsigned long)
+void mixcopy(const s16*, const s16*, s16*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -22,7 +22,7 @@ void mixcopy(const short*, const short*, short*, unsigned long)
 void imixcopy(const s16* s1, const s16* s2, s16* dst, u32 n)
 {
 	for (n; n != 0; n--) {
-		*dst++ = *((s16*)s1)++;
+		*dst++ = *((s16*)s1)++; // could this use const_cast?
 		*dst++ = *((s16*)s2)++;
 	}
 }
@@ -169,7 +169,7 @@ void bzero(void* dest, u32 size)
  * Address:	........
  * Size:	000104
  */
-void hannWindow(short*, unsigned long x)
+void hannWindow(s16*, u32 x)
 {
 	// UNUSED FUNCTION
 }
@@ -182,7 +182,7 @@ void fake(long x) { clamp<s16, long>(x); }
  * Address:	........
  * Size:	000118
  */
-void hammWindow(short*, unsigned long)
+void hammWindow(s16*, u32)
 {
 	// UNUSED FUNCTION
 }
@@ -192,7 +192,7 @@ void hammWindow(short*, unsigned long)
  * Address:	........
  * Size:	0004CC
  */
-void fft(float*, float*, unsigned long, long)
+void fft(float*, float*, u32, long)
 {
 	// UNUSED FUNCTION
 }
