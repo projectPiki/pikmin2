@@ -152,6 +152,8 @@ struct SceneBase {
 	u32 getBackupSceneType();
 	void setBGMode(int);
 
+	inline Mgr* getScreenMgr() { return mScreenMgr; }
+
 	// _00 = VTBL
 	char mName[256];                                  // _004
 	Controller* mController;                          // _104

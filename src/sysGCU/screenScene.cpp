@@ -10,6 +10,7 @@
 #include "Screen/screenObj.h"
 #include "Screen/screenMgr.h"
 #include "System.h"
+#include "stl/mem.h"
 #include "types.h"
 
 namespace Screen {
@@ -261,7 +262,7 @@ bool SceneBase::confirmEndScene(Screen::EndSceneArg* arg) { return (mObjMgr->con
  * Address:	80451F30
  * Size:	000030
  */
-void SceneBase::setScene(Screen::SetSceneArg& arg) { mScreenMgr->setScene(arg); }
+bool SceneBase::setScene(Screen::SetSceneArg& arg) { return mScreenMgr->setScene(arg); }
 
 /*
  * startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
@@ -269,7 +270,7 @@ void SceneBase::setScene(Screen::SetSceneArg& arg) { mScreenMgr->setScene(arg); 
  * Address:	80451F60
  * Size:	000030
  */
-void SceneBase::startScene(Screen::StartSceneArg* arg) { mScreenMgr->startScene(arg); }
+bool  SceneBase::startScene(Screen::StartSceneArg* arg) { return mScreenMgr->startScene(arg); }
 
 /*
  * endScene__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
@@ -298,84 +299,14 @@ bool SceneBase::setBackupScene()
 
 		result = mScreenMgr->setScene(arg);
 		if (result) {
-			mgr  = mScreenMgr;
+			mgr  = getScreenMgr();
 			list = (SceneInfoList*)mgr->_60.mChild;
-			P2ASSERTLINE(329, list);
+			checkSceneList(list);
 			list->del();
 			mgr->mSceneInfoList.add(list);
 		}
 	}
 	return result;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	stw      r29, 0x24(r1)
-	li       r29, 0
-	lwz      r4, 0x108(r3)
-	lwz      r5, 0x70(r4)
-	cmplwi   r5, 0
-	beq      lbl_804520A0
-	lwz      r7, 0x18(r5)
-	lis      r4, __vt__Q26Screen12SceneArgBase@ha
-	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
-	lis      r4, __vt__Q26Screen11SetSceneArg@ha
-	stw      r0, 8(r1)
-	addi     r4, r4, __vt__Q26Screen11SetSceneArg@l
-	addi     r0, r5, 0x1c
-	li       r6, 0
-	li       r5, 1
-	stw      r4, 8(r1)
-	addi     r4, r1, 8
-	stw      r7, 0xc(r1)
-	stb      r6, 0x10(r1)
-	stb      r5, 0x11(r1)
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x108(r30)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	mr       r29, r3
-	beq      lbl_804520A0
-	lwz      r31, 0x108(r30)
-	lwz      r30, 0x70(r31)
-	cmplwi   r30, 0
-	bne      lbl_8045208C
-	lis      r3, lbl_8049B8BC@ha
-	lis      r5, lbl_8049B8B0@ha
-	addi     r3, r3, lbl_8049B8BC@l
-	li       r4, 0x149
-	addi     r5, r5, lbl_8049B8B0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8045208C:
-	mr       r3, r30
-	bl       del__5CNodeFv
-	mr       r4, r30
-	addi     r3, r31, 0x78
-	bl       add__5CNodeFP5CNode
-
-lbl_804520A0:
-	lwz      r0, 0x34(r1)
-	mr       r3, r29
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -429,16 +360,12 @@ void SceneBase::setColorBG(u8 r, u8 g, u8 b, u8 a)
 
 /*
  * --INFO--
- * Address:	804522C8
- * Size:	000004
+ * Address:	........
+ * Size:	000030
  */
-void Mgr::setColorBG(JUtility::TColor&) { }
-
-/*
- * --INFO--
- * Address:	804522CC
- * Size:	000004
- */
-void Mgr::setBGMode(int) { }
+void SceneBase::setBGMode(int mode)
+{
+	mScreenMgr->setBGMode(mode);
+}
 
 } // namespace Screen

@@ -29,10 +29,10 @@ struct Mgr : public MgrBase {
 	virtual bool startScene(StartSceneArg*);           // _10
 	virtual void endScene(EndSceneArg*);               // _14
 	virtual bool reset();                              // _18
-	virtual void setColorBG(JUtility::TColor&);        // _1C (weak)
-	virtual void setBGMode(int);                       // _20 (weak)
+	virtual void setColorBG(JUtility::TColor&) { }     // _1C (weak)
+	virtual void setBGMode(int) { }                    // _20 (weak)
 	virtual ::Screen::SceneBase* doGetSceneBase(long); // _24
-	virtual void drawBG(Graphics&);                    // _28 (weak)
+	virtual void drawBG(Graphics&) { }                 // _28 (weak)
 	virtual void drawWipe(Graphics&) { }               // _2C (weak)
 
 	void init();
@@ -60,8 +60,6 @@ struct Mgr : public MgrBase {
 		P2ASSERTLINE(280, controller);
 	}
 
-	inline SceneInfoList* getInfoList() { return (SceneInfoList*)_60.mChild; }
-
 	// _00     = VTBL
 	// _00-_18 = MgrBase
 	u8 _18;                    // _18
@@ -87,6 +85,11 @@ struct Mgr : public MgrBase {
 
 	static Mgr* sScreenMgr;
 };
+
+inline void checkSceneList(SceneInfoList* list)
+{
+	P2ASSERTLINE(329, list);
+}
 
 } // namespace Screen
 

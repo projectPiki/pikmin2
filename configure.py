@@ -1620,7 +1620,7 @@ LIBS = [
             "sysGCU/pikmin2THPPlayer",
             ["sysGCU/captionMgr", True],
             "sysGCU/captionMessage",
-            "sysGCU/screenScene",
+            ["sysGCU/screenScene", True],
             "sysGCU/screenMgr",
             "sysGCU/screenObj",
             "sysGCU/JSTObjectParticleActor",
