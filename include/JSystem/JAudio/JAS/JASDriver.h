@@ -7,7 +7,13 @@
 struct JASTaskThread;
 
 typedef s32 JASOutputRate;
-typedef s32 JASMixMode;
+
+enum JASMixMode {
+	MixMode_Mono       = 0,
+	MixMode_Mono_Wide  = 1,
+	MixMode_Extra      = 2,
+	MixMode_InterLeave = 3,
+};
 
 namespace JASDriver {
 f32 key2pitch_c5(int);

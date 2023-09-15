@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-// Size: 0x1f0
+// Size: 0x1D0
 typedef struct THPPlayer {
 	DVDFileInfo mFileInfo;            // _00
 	THPHeader mHeader;                // _3C
@@ -48,7 +48,7 @@ typedef struct THPPlayer {
 	THPAudioBuffer* mPlayAudioBuffer; // _FC
 	THPReadBuffer mReadBuffer[10];    // _100
 	THPTextureSet mTextureSet[3];     // _178
-	THPAudioBuffer mAudioBuffer[6];   // _1A8
+	THPAudioBuffer mAudioBuffer[3];   // _1A8
 } THPPlayer;
 
 extern THPPlayer ActivePlayer;
@@ -60,22 +60,26 @@ BOOL THPPlayerClose();
 BOOL THPPlayerPlay();
 void THPPlayerStop();
 BOOL THPPlayerPause();
-BOOL THPPlayerPrepare(s32 offset, u8 flag, s32 audioTrack);
+BOOL THPPlayerPrepare(int offset, u8 flag, int audioTrack);
 
 BOOL THPPlayerSetBuffer(u8* data);
 
 u32 THPPlayerCalcNeedMemory();
 
 BOOL THPPlayerGetVideoInfo(void* dst);
-// BOOL THPPlayerGetAudioInfo(void *dst);
+BOOL THPPlayerGetAudioInfo(void* dst);
 // f32 THPPlayerGetFrameRate();
-BOOL THPPlayerSetVolume(s32 vol, s32 duration);
+BOOL THPPlayerSetVolume(int vol, int duration);
 
-s32 THPPlayerDrawCurrentFrame(GXRenderModeObj* rmode, s32, s32, s32, s32); // TODO, parameter names from dwarf info if it exists
+int THPPlayerDrawCurrentFrame(GXRenderModeObj* rmode, int, int, int, int); // TODO, parameter names from dwarf info if it exists
 u32 THPPlayerGetTotalFrame();
 u8 THPPlayerGetState();
 
+void THPPlayerDrawDone();
 void THPPlayerPostDrawDone();
+
+// this should go in a dolphin THP header eventually
+BOOL THPInit(void);
 
 #ifdef __cplusplus
 }

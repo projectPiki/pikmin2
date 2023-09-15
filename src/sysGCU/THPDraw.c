@@ -30,15 +30,15 @@ void THPGXRestore(void)
  * Address:	8044D79C
  * Size:	0004C0
  */
-void THPGXYuv2RgbSetup(u16* params)
+void THPGXYuv2RgbSetup(GXRenderModeObj* obj)
 {
 	int width;
 	int height;
 	Mtx44 projMtx;
 	Mtx posMtx;
 
-	width  = params[2];
-	height = params[3];
+	width  = obj->fbWidth;
+	height = obj->efbHeight;
 
 	GXSetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
 	C_MTXOrtho(projMtx, 0, height, 0, width, 0, -1);

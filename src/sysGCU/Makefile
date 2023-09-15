@@ -54,7 +54,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/demoSection.o\
 	$(BUILD_DIR)/src/sysGCU/THPAudioDecode.o\
 	$(BUILD_DIR)/src/sysGCU/THPDraw.o\
-	$(BUILD_DIR)/asm/sysGCU/THPPlayer.o\
+	$(BUILD_DIR)/src/sysGCU/THPPlayer.o\
 	$(BUILD_DIR)/src/sysGCU/THPRead.o\
 	$(BUILD_DIR)/src/sysGCU/THPVideoDecode.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2THPPlayer.o\

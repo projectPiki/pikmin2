@@ -1614,7 +1614,7 @@ LIBS = [
             ["sysGCU/demoSection", True],
             ["sysGCU/THPAudioDecode", True],
             ["sysGCU/THPDraw", True],
-            "sysGCU/THPPlayer",
+            ["sysGCU/THPPlayer", True],
             ["sysGCU/THPRead", True],
             ["sysGCU/THPVideoDecode", True],
             "sysGCU/pikmin2THPPlayer",
