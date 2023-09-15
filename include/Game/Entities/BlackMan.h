@@ -135,14 +135,14 @@ struct Obj : public EnemyBase {
 	int _2E0;                               // _2E0
 	u32 _2E4;                               // _2E4, unknown
 	int _2E8;                               // _2E8, unknown
-	u32 _2EC;                               // _2EC, unknown
+	int _2EC;                               // _2EC, unknown
 	int _2F0;                               // _2F0, unknown
-	u32 _2F4;                               // _2F4, unknown
+	int _2F4;                               // _2F4, unknown
 	Vector3f mNextRoutePos;                 // _2F8
 	Vector3f mChestJointPosition;           // _304, unknown
 	Vector3f mHandPositions[2];             // _310
 	Vector3f _328;                          // _328
-	u32 _334;                               // _334
+	int _334;                               // _334
 	bool _338;                              // _338
 	f32 _33C;                               // _33C, timer?
 	s16 _340;                               // _340, next or current waypoint idx?

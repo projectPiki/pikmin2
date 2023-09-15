@@ -2707,33 +2707,33 @@ void BlackMan::Obj::walkFunc()
                 mHealth = mMaxHealth;
             }
         }
-        Parms* parms = C_PARMS;
-        moveSpeed     = parms->mGeneral.mMoveSpeed;
-        rotationSpeed = parms->mGeneral.mRotationalSpeed;
-        rotationAccel = parms->mGeneral.mRotationalAccel;
-        if (parms->_A1A < 0) {
-            _2EC++;
+        moveSpeed     = C_PARMS->mGeneral.mMoveSpeed;
+        rotationSpeed = C_PARMS->mGeneral.mRotationalSpeed;
+        rotationAccel = C_PARMS->mGeneral.mRotationalAccel;
+        if (C_PARMS->_A1A >= 0) {
+            _2F0 = C_PARMS->_A1A;
         }
         else {
-            _2F0 = parms->_A1A;
+            _2EC++;
+            
         }
 
         if (_2F0 == 0) {
-            if (C_PARMS->mProperParms.mTimerToTwoStep < _2EC) {
+            if (_2EC > C_PARMS->mProperParms.mTimerToTwoStep) {
                 _2F0 = 1;
                 _2EC = 0;
                 _378 = 0.0f;
             }
         }
         else {
-            moveSpeed = C_PROPERPARMS.mEscapeSpeed;
-            rotationSpeed = C_PROPERPARMS.mEscapeRotationSpeed;
-            rotationAccel = C_PROPERPARMS.mPodMoveSpeed;
+            moveSpeed = C_PROPERPARMS.mTravelSpeed;
+            rotationSpeed = C_PROPERPARMS.mMaxRotationStep;
+            rotationAccel = C_PROPERPARMS.mRotationSpeed;
         }
 
         if (_2E0 == 2) {
             Navi* targetNavi = naviMgr->getActiveNavi();
-            rotationAccel = C_PROPERPARMS.mWalkingSpeed;
+            rotationAccel = C_PROPERPARMS.mEscapeSpeed;
             if (targetNavi) {
                 Vector3f naviPosition = targetNavi->getPosition();
 
@@ -2745,33 +2745,7 @@ void BlackMan::Obj::walkFunc()
                     isAnimEnd = true;
                 }
 
-                if (sqrDist <= SQUARE(800.0f)) {
-                    if (sqrDist <= SQUARE(400.0f)) {
-                        _2F4++;
-                        if (C_PROPERPARMS.mContinuousEscapeTimerLength < _2F4 || getCurrAnimIndex() != 8) {
-                            finishMotion();
-                        }
-                        if (isAnimEnd) {
-                            if (C_PROPERPARMS.mContinuousEscapeTimerLength < _2F4) {
-                                _2F4 = 0;
-                                mFSM->transit(this, WRAITH_Tired, nullptr);
-                            }
-                            else {
-                                startMotion(8, nullptr);
-                            }
-                        }
-                    }
-                    else {
-                        _2F4 = 0;
-                        if (getCurrAnimIndex() != 11) {
-                            finishMotion();
-                        }
-                        if (isAnimEnd) {
-                            startMotion(11, nullptr);
-                        }
-                    }
-                }
-                else {
+                if (sqrDist > SQUARE(800.0f)) {
                     _2F4 = 0;
                     if (getCurrAnimIndex() != 9) {
                         finishMotion();
@@ -2780,20 +2754,43 @@ void BlackMan::Obj::walkFunc()
                         startMotion(9, nullptr);
                     }
                 }
+                else if (sqrDist > SQUARE(400.0f)) {
+                    _2F4 = 0;
+                    if (getCurrAnimIndex() != 11) {
+                        finishMotion();
+                    }
+                    if (isAnimEnd) {
+                        startMotion(11, nullptr);
+                    }
+                }
+                else {
+                    _2F4++;
+                    if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength || getCurrAnimIndex() != 8) {
+                        finishMotion();
+                    }
+                    if (isAnimEnd) {
+                        if (_2F4 > C_PROPERPARMS.mContinuousEscapeTimerLength) {
+                            _2F4 = 0;
+                            mFSM->transit(this, WRAITH_Tired, nullptr);
+                        }
+                        else {
+                            startMotion(8, nullptr);
+                        }
+                    }
+                }
             }
-
             if (getCurrAnimIndex() == 9) {
                 rotationAccel = 0.0f;
             }
 
             if (getCurrAnimIndex() == 11) {
-                rotationAccel = C_PROPERPARMS.mPodMoveSpeed;
+                rotationAccel = C_PROPERPARMS.mWalkingSpeed;
             }
 
             _374 += (rotationAccel - _374) * 0.2f;
             moveSpeed = _374;
-            rotationSpeed = C_PROPERPARMS.mEscapeRotationSpeed;
-            rotationAccel = C_PROPERPARMS.mMaxEscapeRotationStep;
+            rotationSpeed = C_PROPERPARMS.mMaxEscapeRotationStep;
+            rotationAccel = C_PROPERPARMS.mEscapeRotationSpeed;
         }
         else if (ItemOnyon::mgr && ItemOnyon::mgr->mPod) {
             Vector3f podPos = ItemOnyon::mgr->mPod->getPosition();
@@ -2804,20 +2801,20 @@ void BlackMan::Obj::walkFunc()
                 isAnimEnd = true;
             }
 
-            if (sqrDist >= SQUARE(100.0f)) {
-                if (getCurrAnimIndex() == 12) {
-                    finishMotion();
-                }
-                if (isAnimEnd) {
-                    startMotion(6, nullptr);
-                }
-            }
-            else {
+            if (sqrDist < SQUARE(100.0f)) {
                 if (getCurrAnimIndex() == 6) {
                     finishMotion();
                 }
                 if (isAnimEnd) {
                     startMotion(12, nullptr);
+                }
+            }
+            else {
+                if (getCurrAnimIndex() == 12) {
+                    finishMotion();
+                }
+                if (isAnimEnd) {
+                    startMotion(6, nullptr);
                 }
             }
 
@@ -2826,8 +2823,8 @@ void BlackMan::Obj::walkFunc()
     if (mTyre && C_PARMS->_A10 != _2E0) {
         _2E0 = C_PARMS->_A10;
         if (_2E0 == 4) {
-            mTargetVelocity  = Vector3f(0.0f);
             mCurrentVelocity = Vector3f(0.0f);
+            mTargetVelocity  = Vector3f(0.0f);
             setPathFinder(false);
         }
         else {
@@ -2837,45 +2834,62 @@ void BlackMan::Obj::walkFunc()
     }
 
     if (_2E0 == 4) {
-        if (isEndPathFinder()) {
-            return;
+        if (!isEndPathFinder()) {
+            
         }
-
-        moveSpeed = C_PROPERPARMS.mPodMoveSpeed;
-
-        if (FABS(mTargetPosition.x - mPosition.x) >= 100.0f || FABS(mTargetPosition.z - mPosition.z) >= 100.0f) {
-            _2E4 = 0;
-        }
-        if (mTyre) {
-            mTyre->_314 = mFaceDir;
-        }
-        EnemyFunc::walkToTarget(this, mTargetPosition, moveSpeed, rotationAccel, rotationSpeed);
-        
-        if (mTyre) {
-            f32 distance = _normaliseDistance(mPosition, mTyre->mWraithPosition);
-            mTyre->_30C = distance / 138.2301f; // alright who's magic number is this!?
-            mTyre->mFaceDir = mFaceDir;
-            mTyre->mRotation.y = mTyre->mFaceDir; 
-        }
-
-        if (_2E8 == 0) {
-            _334++;
-            if (_334 > 60) {
-                if (sqrDistance(mPosition, mNextRoutePos) < SQUARE(10.0f)) {
-                    _2E8 = 120;
-                    findNextRoutePoint();
-                }
-                mNextRoutePos = mPosition;
-                _334 = 0;
-            }
+        else {
+            moveSpeed = C_PROPERPARMS.mPodMoveSpeed;
         }
     }
+    else {
+        return;
+    }
 
-    f32 angleDist = turnToTarget(mTargetPosition, rotationAccel, rotationSpeed);
+    
+    
+
+    Vector3f deltaPosition = mTargetPosition - mPosition;
+
+    if (FABS(mTargetPosition.x - mPosition.x) < 100.0f && FABS(mTargetPosition.z - mPosition.z) < 100.0f) {
+        
+    }
+    else {
+        _2E4 = 0;
+    }
+    if (mTyre) {
+        mTyre->_314 = mFaceDir;
+    }
+    f32 prevFaceDir = mFaceDir;
+    EnemyFunc::walkToTarget(this, mTargetPosition, moveSpeed, rotationAccel, rotationSpeed);
+    
+    if (mTyre) {
+        f32 distance = _distanceXZflag(mPosition, mTyre->mWraithPosition);
+        mTyre->_30C = distance / 138.2301f; // alright who's magic number is this!?
+        EnemyBase* tyre = mTyre;
+        tyre->mFaceDir = mFaceDir;
+        tyre->mRotation.y = tyre->mFaceDir; 
+    }
+
+    if (_2E8 == 0) {
+        _334++;
+        if (_334 > 60) {
+            if (sqrDistanceXZ(mPosition, mNextRoutePos) < SQUARE(10.0f)) {
+                _2E8 = 120;
+                findNextRoutePoint();
+            }
+            mNextRoutePos = mPosition;
+            _334 = 0;
+        }
+    }
+    
+
+    // turn inline hell is here
+    f32 angleDist = getAngDist2(mTargetPosition);
+    f32 turnSpeed = clamp(angleDist - prevFaceDir, 0.25f);
 
     bool isInTurn = false; // lets the wraith do SICK DRIFTS
 
-    if (angleDist > 0.05f) {
+    if (turnSpeed > 0.0f && angleDist > 0.05f) {
         isInTurn = true;
     }
 
