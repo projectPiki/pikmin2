@@ -16,7 +16,10 @@
 #include "PSM/Scene.h"
 #include "PSSystem/Seq.h"
 #include "Game/MoviePlayer.h"
-
+#include "JSystem/J3D/J3DTexMtx.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/Entities/ItemOnyon.h"
+#include "Game/EnemyFunc.h"
 #include "nans.h"
 
 /*
@@ -708,7 +711,7 @@ bool bodyCallBack(J3DJoint*, int p2)
 void Obj::setParameters()
 {
 	EnemyBase::setParameters();
-	if (isEvent(0, EB_IsHardConstraint)) {
+	if (isEvent(0, EB_HardConstrained)) {
 		mPosition.y = mapMgr->getMinY(mPosition);
 		mPosition.y += C_PARMS->_A50;
 		if (mTyre) {
@@ -749,9 +752,9 @@ const char* unusedBlackMan = "blackMan";
 void Obj::onInit(CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
-	disableEvent(0, EB_IsCullable);
-	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_Cullable);
+	disableEvent(0, EB_LeaveCarcass);
+	disableEvent(0, EB_DeathEffectEnabled);
 	_2E0 = C_PARMS->_A10;
 
 	if (gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_01' && gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA) {
@@ -766,7 +769,7 @@ void Obj::onInit(CreatureInitArg* arg)
 			birthArg.mFaceDir  = mFaceDir;
 			mTyre = static_cast<Tyre::Obj*>(tyreMgr->birth(birthArg));
 			mTyre->init(nullptr);
-			mTyre->_2BC = this;
+			mTyre->mOwner = this;
 		}
 		mFSM->start(this, WRAITH_Fall, nullptr);
 	}
@@ -777,9 +780,9 @@ void Obj::onInit(CreatureInitArg* arg)
 	
 	mPostFlickState = -1;
 
-	_2F8 = mPosition;
-	mHomePosition = _2F8;
-	_2D0 = mHomePosition;
+	mNextRoutePos = mPosition;
+	mHomePosition = mNextRoutePos;
+	mTargetPosition = mHomePosition;
 	_348 = 0;
 	_34C = 0;
 	_35C = nullptr;
@@ -844,9 +847,9 @@ void Obj::onInit(CreatureInitArg* arg)
 	_342 = wpIndex;
 	_340 = wpIndex;
 
-	_2F8 = mPosition;
-	mHomePosition = _2F8;
-	_2D0 = mHomePosition;
+	mNextRoutePos = mPosition;
+	mHomePosition = mNextRoutePos;
+	mTargetPosition = mHomePosition;
 
 	if (isFinalFloor()) {
 		PSM::disableAppearFlag(mSoundObj);
@@ -1325,7 +1328,7 @@ void BlackMan::Obj::doUpdate()
 	}
 
 	_33C -= sys->mDeltaTime;
-	if (isEvent(0, EB_IsHardConstraint) && getStateID() == WRAITH_Fall) {
+	if (isEvent(0, EB_HardConstrained) && getStateID() == WRAITH_Fall) {
 		f32 unkFallTimer = -C_PARMS->_A4C;
 		if (!mTyre || _33C < unkFallTimer) {
 			hardConstraintOff();
@@ -1337,7 +1340,7 @@ void BlackMan::Obj::doUpdate()
 			if (!_3A9 && _33C < someTimer) {
 				if (gameSystem && gameSystem->mMode == GSM_PIKLOPEDIA) {
 					_3A9 = true;
-					mTyre->_2D2 = true;
+					mTyre->mIsShadowActive = true;
 				}
 				Navi* activeNavi = naviMgr->getActiveNavi();
 				if (!_3A9 && activeNavi && activeNavi->isAlive()) {
@@ -1359,7 +1362,7 @@ void BlackMan::Obj::doUpdate()
 						_3A9 = true;
 					}
 					if (_3A9) {
-						mTyre->_2D2 = true;
+						mTyre->mIsShadowActive = true;
 					}
 				}
 				if (!_3A9) {
@@ -1370,7 +1373,7 @@ void BlackMan::Obj::doUpdate()
 	}
 	
 
-	if (mTyre && mTyre->isEvent(0, EB_IsHardConstraint) && _33C < 0.0f) {
+	if (mTyre && mTyre->isEvent(0, EB_HardConstrained) && _33C < 0.0f) {
 		if (gameSystem && gameSystem->mMode != GSM_PIKLOPEDIA && 
 		gameSystem->mSection && gameSystem->mSection->getCaveID() == 'y_04') {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
@@ -2065,7 +2068,7 @@ bool BlackMan::Obj::isUnderground()
 
 	/* Gets optimized into the code above */
 	int stateID = getStateID();
-	if (stateID == WRAITH_Freeze || stateID == WRAITH_Bend || stateID == WRAITH_Tired || isEvent(0, EB_IsBittered)) {
+	if (stateID == WRAITH_Freeze || stateID == WRAITH_Bend || stateID == WRAITH_Tired || isEvent(0, EB_Bittered)) {
 		return false;
 	}
 	return true;
@@ -2097,18 +2100,16 @@ void BlackMan::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
  */
 void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
 {
-	// this func isn't matching bc it's too stack efficent, wtf
-
 	Creature* collCreature = collEvent.mCollidingCreature;
 	int stateID = getStateID();
-	if (stateID != WRAITH_Bend && stateID != WRAITH_Freeze && !isEvent(0, EB_IsBittered) && collCreature && collCreature->isPiki()) {
-		getPosition();
+	if (stateID != WRAITH_Bend && stateID != WRAITH_Freeze && !isEvent(0, EB_Bittered) && collCreature && collCreature->isPiki()) {
+		collCreature->getPosition();
 
 		Piki* piki = static_cast<Piki*>(collCreature);
 		
 		if ((int)piki->mPikiKind != Purple) {
 			f32 knockback = C_PARMS->mGeneral.mShakeKnockback;
-			InteractFlick flick (this, knockback, -1000.0f, 0.0f);
+			InteractFlick flick (this, C_PARMS->mGeneral.mShakeKnockback, -1000.0f, 0.0f);
 			piki->stimulate(flick);
 			mSoundObj->startSound(PSSE_EN_KAGE_REJECT, 0);
 		}
@@ -2121,7 +2122,7 @@ void BlackMan::Obj::collisionCallback(Game::CollEvent& collEvent)
 	}
 
 	if (collCreature->isTeki()) {
-		EnemyBase* teki = static_cast<EnemyBase*>(teki);
+		EnemyBase* teki = static_cast<EnemyBase*>(collCreature);
 		if (teki->getEnemyTypeID() == EnemyTypeID::EnemyID_Tyre) {
 			mAcceleration = Vector3f(0.0f); // I wanna know the story behind this line of code
 		}
@@ -2272,8 +2273,8 @@ bool BlackMan::Obj::damageCallBack(Game::Creature* creature, f32 damage, CollPar
 			return EnemyBase::damageCallBack(creature, damage, part);
 		}
 	}
-	if (stateID == WRAITH_Freeze || stateID == WRAITH_Bend || isEvent(0, EB_IsBittered)) {
-		if (isEvent(0, EB_IsBittered)) { // ???????
+	if (stateID == WRAITH_Freeze || stateID == WRAITH_Bend || isEvent(0, EB_Bittered)) {
+		if (isEvent(0, EB_Bittered)) { // ???????
 			return false;
 		}
 		if (mTyre) {
@@ -2299,16 +2300,16 @@ bool BlackMan::Obj::hipdropCallBack(Game::Creature* creature, f32 damage, CollPa
 		mFSM->transit(this, 2, nullptr);
 		return EnemyBase::hipdropCallBack(creature, damage, part);
 	}
-	if (stateID == WRAITH_Freeze || stateID == WRAITH_Bend || isEvent(0, EB_IsBittered)) {
+	if (stateID == WRAITH_Freeze || stateID == WRAITH_Bend || isEvent(0, EB_Bittered)) {
 		if (mTyre) {
-			if (isEvent(0, EB_IsBittered)) {
+			if (isEvent(0, EB_Bittered)) {
 				damage = 0.1f;
 			}
 			if (mTyre->mHealth < 1.0f) {
 				damage = 0.0f;
 			}
 			mTyre->EnemyBase::addDamage(damage, 1.0f);
-			enableEvent(0, EB_SquashOnDamageAnimation);
+			enableEvent(0, EB_SquashOnDamageAnim);
 			EnemyBase::addDamage(0.0f, 1.0f);
 			return false;
 		}
@@ -2363,6 +2364,57 @@ void BlackMan::Obj::doEntry()
  */
 void BlackMan::Obj::changeMaterial()
 {
+	// not matching due to regswaps
+
+	Mtx44 copyMatrix;
+	PSMTX44Copy(sys->mGfx->mCurrentViewport->mCamera->mProjectionMtx, copyMatrix);
+
+	copyMatrix[2][0] = copyMatrix[3][0];
+	copyMatrix[2][1] = copyMatrix[3][1];
+	copyMatrix[2][2] = copyMatrix[3][2];
+	copyMatrix[2][3] = copyMatrix[3][3];
+
+	copyMatrix[3][0] = 0.0f;
+	copyMatrix[3][1] = 0.0f;
+	copyMatrix[3][2] = 0.0f;
+	copyMatrix[3][3] = 1.0f;
+	
+	J3DModel* j3dModel = mModel->getJ3DModel();
+	J3DModelData* modelData = j3dModel->mModelData;
+
+	_37C->mTevBlock->setTevKColor(0, mUsingColor);
+
+	_37C->mTevBlock->setTevKColor(3, _38C);
+
+	j3dModel->calcMaterial();
+
+	mMatLoopAnimator->animate(30.0f);
+
+	J3DTexMtx* texMtx = modelData->mMaterialTable.mMaterials[0]->mTexGenBlock->getTexMtx(0);
+
+	copyMtx44(texMtx->_24, copyMatrix);
+	texMtx->_24[3][0] = texMtx->_24[3][1] = texMtx->_24[3][2] = 0.0f;
+	texMtx->_24[3][3] = 1.0f;
+
+	J3DTexture* wraithMain = &modelData->mMaterialTable.mTextures[0];
+
+	ResTIMG* img = wraithMain->mRes;
+
+	
+
+	*img = *gameSystem->mXfbTexture->mImage;
+
+
+	wraithMain->setImageOffset((int)img);
+	wraithMain->setPaletteOffset((int)img);
+
+	for (u16 i = 0; i < modelData->mMaterialTable.mMaterialNum; i++) {
+		j3dSys.mMatPacket = &j3dModel->mMatPackets[i];
+		modelData->mMaterialTable.mMaterials[i]->diff(j3dSys.mMatPacket->mShapePacket->mDiffFlag);
+	}
+
+
+
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -2575,8 +2627,14 @@ lbl_803A8234:
  * Address:	803A8264
  * Size:	000050
  */
-void BlackMan::Obj::getShadowParam(Game::ShadowParam&)
+void BlackMan::Obj::getShadowParam(ShadowParam& shadowParam)
 {
+    // ????? why does this have a regswap too???
+	shadowParam.mPosition                 = mChestJointPosition;
+	shadowParam.mPosition.y              += 2.0f;
+	shadowParam.mBoundingSphere.mPosition = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.mBoundingSphere.mRadius   = 50.0f;
+	shadowParam.mSize                     = 30.0f;
 	/*
 	lfs      f0, 0x304(r3)
 	lfs      f5, lbl_8051F4A8@sda21(r2)
@@ -2608,33 +2666,9 @@ void BlackMan::Obj::getShadowParam(Game::ShadowParam&)
  */
 void BlackMan::Obj::initWalkSmokeEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 2
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x350
-	bl       alloc__Q34Game15WalkSmokeEffect3MgrFi
-	lwz      r5, 0x174(r31)
-	addi     r3, r31, 0x350
-	lfs      f1, lbl_8051F47C@sda21(r2)
-	li       r4, 0
-	addi     r6, r2, lbl_8051F44C@sda21
-	bl       setup__Q34Game15WalkSmokeEffect3MgrFiPQ28SysShape5ModelPcf
-	lwz      r5, 0x174(r31)
-	addi     r3, r31, 0x350
-	lfs      f1, lbl_8051F47C@sda21(r2)
-	li       r4, 1
-	addi     r6, r2, lbl_8051F444@sda21
-	bl       setup__Q34Game15WalkSmokeEffect3MgrFiPQ28SysShape5ModelPcf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+    mWalkSmokeMgr.alloc(2);
+    mWalkSmokeMgr.setup(0, mModel, "footR", 10.0f);
+    mWalkSmokeMgr.setup(1, mModel, "footL", 10.0f);
 }
 
 /*
@@ -2644,17 +2678,10 @@ void BlackMan::Obj::initWalkSmokeEffect()
  */
 WalkSmokeEffect::Mgr* BlackMan::Obj::getWalkSmokeEffectMgr()
 {
-	/*
-	lwz      r0, 0x364(r3)
-	cmplwi   r0, 0
-	beq      lbl_803A832C
-	li       r3, 0
-	blr
-
-lbl_803A832C:
-	addi     r3, r3, 0x350
-	blr
-	*/
+    if (mTyre) {
+        return nullptr;
+    }
+	return &mWalkSmokeMgr;
 }
 
 /*
@@ -2664,6 +2691,219 @@ lbl_803A832C:
  */
 void BlackMan::Obj::walkFunc()
 {
+    f32 moveSpeed;
+    f32 rotationSpeed;
+    f32 rotationAccel;
+    if (!mTyre || isEvent(0, EB_Bittered)) {
+        if (isTyreFreeze()) {
+            mFSM->transit(this, WRAITH_Bend, nullptr);
+            mFreezeTimer = 0;
+            return;
+        }
+
+        if (isOnTyres()) {
+            mHealth += 5.0f;
+            if (mHealth > mMaxHealth) {
+                mHealth = mMaxHealth;
+            }
+        }
+        Parms* parms = C_PARMS;
+        moveSpeed     = parms->mGeneral.mMoveSpeed;
+        rotationSpeed = parms->mGeneral.mRotationalSpeed;
+        rotationAccel = parms->mGeneral.mRotationalAccel;
+        if (parms->_A1A < 0) {
+            _2EC++;
+        }
+        else {
+            _2F0 = parms->_A1A;
+        }
+
+        if (_2F0 == 0) {
+            if (C_PARMS->mProperParms.mTimerToTwoStep < _2EC) {
+                _2F0 = 1;
+                _2EC = 0;
+                _378 = 0.0f;
+            }
+        }
+        else {
+            moveSpeed = C_PROPERPARMS.mEscapeSpeed;
+            rotationSpeed = C_PROPERPARMS.mEscapeRotationSpeed;
+            rotationAccel = C_PROPERPARMS.mPodMoveSpeed;
+        }
+
+        if (_2E0 == 2) {
+            Navi* targetNavi = naviMgr->getActiveNavi();
+            rotationAccel = C_PROPERPARMS.mWalkingSpeed;
+            if (targetNavi) {
+                Vector3f naviPosition = targetNavi->getPosition();
+
+                bool isAnimEnd = false;
+
+                f32 sqrDist = sqrDistanceXZ(mPosition, naviPosition);
+
+                if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_END) {
+                    isAnimEnd = true;
+                }
+
+                if (sqrDist <= SQUARE(800.0f)) {
+                    if (sqrDist <= SQUARE(400.0f)) {
+                        _2F4++;
+                        if (C_PROPERPARMS.mContinuousEscapeTimerLength < _2F4 || getCurrAnimIndex() != 8) {
+                            finishMotion();
+                        }
+                        if (isAnimEnd) {
+                            if (C_PROPERPARMS.mContinuousEscapeTimerLength < _2F4) {
+                                _2F4 = 0;
+                                mFSM->transit(this, WRAITH_Tired, nullptr);
+                            }
+                            else {
+                                startMotion(8, nullptr);
+                            }
+                        }
+                    }
+                    else {
+                        _2F4 = 0;
+                        if (getCurrAnimIndex() != 11) {
+                            finishMotion();
+                        }
+                        if (isAnimEnd) {
+                            startMotion(11, nullptr);
+                        }
+                    }
+                }
+                else {
+                    _2F4 = 0;
+                    if (getCurrAnimIndex() != 9) {
+                        finishMotion();
+                    }
+                    if (isAnimEnd) {
+                        startMotion(9, nullptr);
+                    }
+                }
+            }
+
+            if (getCurrAnimIndex() == 9) {
+                rotationAccel = 0.0f;
+            }
+
+            if (getCurrAnimIndex() == 11) {
+                rotationAccel = C_PROPERPARMS.mPodMoveSpeed;
+            }
+
+            _374 += (rotationAccel - _374) * 0.2f;
+            moveSpeed = _374;
+            rotationSpeed = C_PROPERPARMS.mEscapeRotationSpeed;
+            rotationAccel = C_PROPERPARMS.mMaxEscapeRotationStep;
+        }
+        else if (ItemOnyon::mgr && ItemOnyon::mgr->mPod) {
+            Vector3f podPos = ItemOnyon::mgr->mPod->getPosition();
+            bool isAnimEnd = false;
+            f32 sqrDist = sqrDistanceXZ(mPosition, podPos);
+
+            if (mCurAnim->mIsPlaying && mCurAnim->mType == KEYEVENT_END) {
+                isAnimEnd = true;
+            }
+
+            if (sqrDist >= SQUARE(100.0f)) {
+                if (getCurrAnimIndex() == 12) {
+                    finishMotion();
+                }
+                if (isAnimEnd) {
+                    startMotion(6, nullptr);
+                }
+            }
+            else {
+                if (getCurrAnimIndex() == 6) {
+                    finishMotion();
+                }
+                if (isAnimEnd) {
+                    startMotion(12, nullptr);
+                }
+            }
+
+        }
+    }
+    if (mTyre && C_PARMS->_A10 != _2E0) {
+        _2E0 = C_PARMS->_A10;
+        if (_2E0 == 4) {
+            mTargetVelocity  = Vector3f(0.0f);
+            mCurrentVelocity = Vector3f(0.0f);
+            setPathFinder(false);
+        }
+        else {
+            _34C = 0;
+            releasePathFinder();
+        }
+    }
+
+    if (_2E0 == 4) {
+        if (isEndPathFinder()) {
+            return;
+        }
+
+        moveSpeed = C_PROPERPARMS.mPodMoveSpeed;
+
+        if (FABS(mTargetPosition.x - mPosition.x) >= 100.0f || FABS(mTargetPosition.z - mPosition.z) >= 100.0f) {
+            _2E4 = 0;
+        }
+        if (mTyre) {
+            mTyre->_314 = mFaceDir;
+        }
+        EnemyFunc::walkToTarget(this, mTargetPosition, moveSpeed, rotationAccel, rotationSpeed);
+        
+        if (mTyre) {
+            f32 distance = _normaliseDistance(mPosition, mTyre->mWraithPosition);
+            mTyre->_30C = distance / 138.2301f; // alright who's magic number is this!?
+            mTyre->mFaceDir = mFaceDir;
+            mTyre->mRotation.y = mTyre->mFaceDir; 
+        }
+
+        if (_2E8 == 0) {
+            _334++;
+            if (_334 > 60) {
+                if (sqrDistance(mPosition, mNextRoutePos) < SQUARE(10.0f)) {
+                    _2E8 = 120;
+                    findNextRoutePoint();
+                }
+                mNextRoutePos = mPosition;
+                _334 = 0;
+            }
+        }
+    }
+
+    f32 angleDist = turnToTarget(mTargetPosition, rotationAccel, rotationSpeed);
+
+    bool isInTurn = false; // lets the wraith do SICK DRIFTS
+
+    if (angleDist > 0.05f) {
+        isInTurn = true;
+    }
+
+    if (isInTurn) {
+        mTargetVelocity.x *= 0.5f;
+        mTargetVelocity.z *= 0.5f;
+    }
+
+    if (mTyre) {
+        if (_2F0 == 0) {
+            mSoundObj->startSound(PSSE_EN_KAGE_ZURUZURU, 0);
+            mTyre->mSoundObj->startSound(PSSE_EN_KAGE_ROLLER, 0);
+            mTyre->mSoundObj->startSound(PSSE_EN_KAGE_MELODYLOOP, 0);
+        }
+        else {
+            JAISound* zuruzuru = mSoundObj->startSound(PSSE_EN_KAGE_ZURUZURU, 0);
+            if (zuruzuru) {
+                zuruzuru->setPitch(2.0f, 0, 0);
+            }
+            mTyre->mSoundObj->startSound(PSSE_EN_KAGE_ROLLER, 0);
+            mTyre->mSoundObj->startSound(PSSE_EN_KAGE_MELODYLOOP, 0);
+        }
+    }
+
+
+
+
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0

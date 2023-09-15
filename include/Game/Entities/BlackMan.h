@@ -130,7 +130,7 @@ struct Obj : public EnemyBase {
 	Matrixf* mLeftFootMtx;                  // _2C4
 	Matrixf* mRightFootMtx;                 // _2C8
 	int mFreezeTimer;                       // _2CC
-	Vector3f _2D0;                          // _2D0
+	Vector3f mTargetPosition;               // _2D0
 	int mPostFlickState;                    // _2DC
 	int _2E0;                               // _2E0
 	u32 _2E4;                               // _2E4, unknown
@@ -138,7 +138,7 @@ struct Obj : public EnemyBase {
 	u32 _2EC;                               // _2EC, unknown
 	int _2F0;                               // _2F0, unknown
 	u32 _2F4;                               // _2F4, unknown
-	Vector3f _2F8;                          // _2F8
+	Vector3f mNextRoutePos;                 // _2F8
 	Vector3f mChestJointPosition;           // _304, unknown
 	Vector3f mHandPositions[2];             // _310
 	Vector3f _328;                          // _328
@@ -164,8 +164,8 @@ struct Obj : public EnemyBase {
 	f32 _374;                               // _374
 	f32 _378;                               // _378
 	J3DMaterial* _37C;                      // _37C
-	Color4 mUsingColor;                            // _380
-	Color4 mTargetColor;                            // _384
+	Color4 mUsingColor;                     // _380
+	Color4 mTargetColor;                    // _384
 	Color4 _388;                            // _388
 	Color4 _38C;                            // _38C
 	efx::TKageMove* mEfxMove;               // _390
