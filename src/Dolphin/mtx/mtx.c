@@ -870,7 +870,7 @@ void C_MTXLightFrustum(void)
  * Address:	800EAA84
  * Size:	0000CC
  */
-void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, float scaleS, float scaleT, float transS, float transT)
+void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
 {
 	f32 angle;
 	f32 cot;
@@ -901,7 +901,7 @@ void C_MTXLightPerspective(Mtx m, f32 fovY, f32 aspect, float scaleS, float scal
  * Address:	800EAB50
  * Size:	000088
  */
-void C_MTXLightOrtho(Mtx m, f32 t, f32 b, f32 l, f32 r, float scaleS, float scaleT, float transS, float transT)
+void C_MTXLightOrtho(Mtx m, f32 t, f32 b, f32 l, f32 r, f32 scaleS, f32 scaleT, f32 transS, f32 transT)
 {
 	f32 tmp;
 

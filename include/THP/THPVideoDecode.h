@@ -5,19 +5,20 @@
 #include "THP/THPRead.h"
 #include "types.h"
 
+static void* VideoDecoder(void*);
+static void* VideoDecoderForOnMemory(void*);
+static void VideoDecode(THPReadBuffer*);
+
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
-
-BOOL CreateVideoDecodeThread(int, void*);
+s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, void* work);
+BOOL CreateVideoDecodeThread(OSPriority priority, void* task);
 void VideoDecodeThreadStart();
 void VideoDecodeThreadCancel();
-void VideoDecoder(void*);
-void VideoDecoderForOnMemory(void*);
-void VideoDecode(THPReadBuffer*);
 OSMessage PopFreeTextureSet();
 BOOL PushFreeTextureSet(OSMessage*);
-OSMessage PopDecodedTextureSet();
+OSMessage PopDecodedTextureSet(s32 flags);
 BOOL PushDecodedTextureSet(OSMessage*);
 
 extern BOOL VideoDecodeThreadCreated;

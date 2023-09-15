@@ -20,9 +20,9 @@ struct OSMessageQueue {
 	OSThreadQueue queueSend;    // _00
 	OSThreadQueue queueReceive; // _08
 	OSMessage* msgArray;        // _10, array of messages.
-	int msgCount;               // _14, array limit size.
-	int firstIndex;             // _18, first message index in array.
-	int usedCount;              // _1C, actual number of used messages.
+	s32 msgCount;               // _14, array limit size.
+	s32 firstIndex;             // _18, first message index in array.
+	s32 usedCount;              // _1C, actual number of used messages.
 };
 
 // Defines for message flags for sending/receiving.
@@ -37,10 +37,10 @@ typedef enum {
 
 /////// MESSAGE FUNCTIONS ////////
 // Functions for handling messages.
-void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgArray, int msgCount);
-BOOL OSSendMessage(OSMessageQueue* queue, OSMessage msg, int flags);
-BOOL OSJamMessage(OSMessageQueue* queue, OSMessage msg, int flags);
-BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* msgPtr, int flags);
+void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgArray, s32 msgCount);
+BOOL OSSendMessage(OSMessageQueue* queue, OSMessage msg, s32 flags);
+BOOL OSJamMessage(OSMessageQueue* queue, OSMessage msg, s32 flags);
+BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* msgPtr, s32 flags);
 
 //////////////////////////////////
 

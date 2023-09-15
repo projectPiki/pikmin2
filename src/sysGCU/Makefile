@@ -54,13 +54,13 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/demoSection.o\
 	$(BUILD_DIR)/src/sysGCU/THPAudioDecode.o\
 	$(BUILD_DIR)/src/sysGCU/THPDraw.o\
-	$(BUILD_DIR)/asm/sysGCU/THPPlayer.o\
-	$(BUILD_DIR)/asm/sysGCU/THPRead.o\
-	$(BUILD_DIR)/asm/sysGCU/THPVideoDecode.o\
+	$(BUILD_DIR)/src/sysGCU/THPPlayer.o\
+	$(BUILD_DIR)/src/sysGCU/THPRead.o\
+	$(BUILD_DIR)/src/sysGCU/THPVideoDecode.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2THPPlayer.o\
 	$(BUILD_DIR)/src/sysGCU/captionMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/captionMessage.o\
-	$(BUILD_DIR)/asm/sysGCU/screenScene.o\
+	$(BUILD_DIR)/src/sysGCU/screenScene.o\
 	$(BUILD_DIR)/asm/sysGCU/screenMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/screenObj.o\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectParticleActor.o\

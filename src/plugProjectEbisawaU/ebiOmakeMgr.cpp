@@ -200,7 +200,7 @@ void FSMState_SelectGame::do_exec(TMgr* mgr)
  */
 TMgr::TMgr()
     : mController(nullptr)
-    , _890(0)
+    , mIsFinished(0)
     , _894(0)
     , _898(0)
 {
@@ -280,8 +280,8 @@ bool TMgr::isFinish() { return u8(getStateID() == Standby); }
  */
 void TMgr::update()
 {
-	_890     = false;
-	u8 close = mOmake.isCloseScreen();
+	mIsFinished = false;
+	u8 close    = mOmake.isCloseScreen();
 	mStateMachine.exec(this);
 	if (getStateID() != Standby) {
 		if (getStateID() != Movie) {

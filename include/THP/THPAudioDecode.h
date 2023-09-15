@@ -10,7 +10,7 @@ static void AudioDecode(THPReadBuffer* readBuffer);
 #ifdef __cplusplus
 extern "C" {
 #endif
-int THPAudioDecode(s16* arg1, u8* arg2, int arg3); // TODO: determine args and name properly
+int THPAudioDecode(s16* buffer, u8* frame, s32 flags); // TODO: determine args and name properly
 
 BOOL CreateAudioDecodeThread(OSPriority prio, void* param);
 void AudioDecodeThreadStart();

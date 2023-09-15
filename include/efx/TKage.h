@@ -14,6 +14,11 @@ struct TKageBend1 : public TSimpleMtx2 {
 };
 
 struct TKageDead1 : public TChaseMtx {
+	inline TKageDead1()
+	    : TChaseMtx(PID_KageDead1, nullptr)
+	{
+	}
+
 	virtual ~TKageDead1(); // _48 (weak)
 
 	void setGlobalPrmColor(Color4&);
@@ -30,6 +35,11 @@ struct TKageDead2 : public TSimple1 {
 };
 
 struct TKageFlick : public TChasePos {
+	inline TKageFlick(Vector3f* chasePos)
+	    : TChasePos(chasePos, PID_KageFlick)
+	{
+	}
+
 	virtual ~TKageFlick(); // _48 (weak)
 
 	// _00      = VTBL
@@ -37,6 +47,11 @@ struct TKageFlick : public TChasePos {
 };
 
 struct TKageMove : public TChasePosYRot {
+
+	inline TKageMove(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_KageMove)
+	{
+	}
 	virtual ~TKageMove(); // _48 (weak)
 
 	void setGlobalPrmColor(Color4&);
@@ -55,6 +70,10 @@ struct TKageRecov : public TSimple2 {
 };
 
 struct TKageRun : public TChasePosYRot {
+	inline TKageRun(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_KageRun)
+	{
+	}
 	virtual ~TKageRun(); // _48 (weak)
 
 	void setGlobalPrmColor(Color4&);
@@ -84,6 +103,10 @@ struct TKageTyresmoke : public TChasePosYRot {
 };
 
 struct TKageTyreup : public TChasePosYRot {
+	inline TKageTyreup(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_KageTyreUp)
+	{
+	}
 	virtual ~TKageTyreup(); // _48 (weak)
 
 	// _00      = VTBL

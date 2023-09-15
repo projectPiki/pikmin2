@@ -1,4 +1,8 @@
-#include "types.h"
+#include "Game/CameraMgr.h"
+#include "Game/Navi.h"
+#include "Game/Stickers.h"
+#include "PSSystem/PSSystemIF.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -151,88 +155,50 @@ namespace Game {
  * Address:	8023F3F0
  * Size:	000138
  */
-PlayCamera::PlayCamera(Game::Navi*)
+PlayCamera::PlayCamera(Navi* target)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__12LookAtCameraFv
-	lis      r4, __vt__Q24Game10PlayCamera@ha
-	lis      r3, lbl_80483FD0@ha
-	addi     r0, r4, __vt__Q24Game10PlayCamera@l
-	li       r5, 0
-	stw      r0, 0(r30)
-	li       r4, 1
-	lfs      f4, lbl_8051A660@sda21(r2)
-	addi     r0, r3, lbl_80483FD0@l
-	stw      r31, 0x198(r30)
-	mr       r3, r30
-	lfs      f3, lbl_8051A664@sda21(r2)
-	stw      r5, 0x19c(r30)
-	lfs      f2, lbl_8051A668@sda21(r2)
-	stw      r4, 0x1a0(r30)
-	lfs      f1, lbl_8051A66C@sda21(r2)
-	stw      r5, 0x1a4(r30)
-	lfs      f0, lbl_8051A670@sda21(r2)
-	stb      r4, 0x248(r30)
-	stb      r5, 0x249(r30)
-	stfs     f4, 0x1ac(r30)
-	stfs     f4, 0x1a8(r30)
-	stfs     f3, 0x1b4(r30)
-	stfs     f3, 0x1b0(r30)
-	stfs     f3, 0x1bc(r30)
-	stfs     f3, 0x1b8(r30)
-	stfs     f2, 0x1c0(r30)
-	stfs     f2, 0x28(r30)
-	stfs     f1, 0x1c4(r30)
-	stfs     f1, 0x70(r30)
-	stfs     f0, 0x1c8(r30)
-	stfs     f0, 0x74(r30)
-	stfs     f3, 0x1cc(r30)
-	stfs     f3, 0x1d0(r30)
-	stfs     f3, 0x1d4(r30)
-	stfs     f3, 0x1d8(r30)
-	stfs     f3, 0x1dc(r30)
-	stfs     f3, 0x1e0(r30)
-	stb      r5, 0x1f0(r30)
-	stfs     f3, 0x23c(r30)
-	stfs     f3, 0x230(r30)
-	stfs     f3, 0x224(r30)
-	stfs     f3, 0x218(r30)
-	stfs     f3, 0x20c(r30)
-	stfs     f3, 0x200(r30)
-	stfs     f3, 0x1f4(r30)
-	stb      r5, 0x1f1(r30)
-	stfs     f3, 0x240(r30)
-	stfs     f3, 0x234(r30)
-	stfs     f3, 0x228(r30)
-	stfs     f3, 0x21c(r30)
-	stfs     f3, 0x210(r30)
-	stfs     f3, 0x204(r30)
-	stfs     f3, 0x1f8(r30)
-	stb      r5, 0x1f2(r30)
-	stfs     f3, 0x244(r30)
-	stfs     f3, 0x238(r30)
-	stfs     f3, 0x22c(r30)
-	stfs     f3, 0x220(r30)
-	stfs     f3, 0x214(r30)
-	stfs     f3, 0x208(r30)
-	stfs     f3, 0x1fc(r30)
-	stw      r5, 0x24c(r30)
-	stw      r5, 0x250(r30)
-	stw      r0, 0x14(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mTargetObj         = target;
+	mChangePlayerState = 0;
+	mCameraZoomLevel   = 1;
+	mCameraSelAngle    = 0;
+	mCanInput          = true;
+	_249               = false;
+
+	mGoalTargetDistance = 100.0f;
+	mCurrTargetDistance = 100.0f;
+	mCameraAngleGoal    = 0.0f;
+	mCameraAngleCurrent = 0.0f;
+	mGoalVerticalAngle  = 0.0f;
+	mCurrVerticalAngle  = 0.0f;
+
+	mGoalFOV        = 30.0f;
+	mViewAngle      = 30.0f;
+	mNearZPlane     = 1.0f;
+	mProjectionNear = 1.0f;
+	mFarZPlane      = 12800.0f;
+	mProjectionFar  = 12800.0f;
+	mYOffset        = 0.0f;
+
+	mDetachedWeight  = 0.0f;
+	mDetachedParm    = 0.0f;
+	mSmoothMoveSpeed = 0.0f;
+	mFollowTime      = 0.0f;
+	mHoldRTimer      = 0.0f;
+
+	for (int i = 0; i < 3; i++) {
+		mVibrateEnabled[i]     = false;
+		mVibrateAzimuthParm[i] = 0.0f;
+		mVibrateScaleParm[i]   = 0.0f;
+		mVibrateTimeParm[i]    = 0.0f;
+		mVibrateTimer[i]       = 0.0f;
+		mVibrateAngle[i]       = 0.0f;
+		mVibrateRollAngle[i]   = 0.0f;
+		mVibrateSpeedParm[i]   = 0.0f;
+	}
+
+	mCameraParms    = nullptr;
+	mVibrationParms = nullptr;
+	mName           = "PlayCamera";
 }
 
 /*
@@ -240,22 +206,14 @@ PlayCamera::PlayCamera(Game::Navi*)
  * Address:	8023F528
  * Size:	000008
  */
-void PlayCamera::setCameraParms(Game::CameraParms* a1)
-{
-	// Generated from stw r4, 0x24C(r3)
-	_24C = a1;
-}
+void PlayCamera::setCameraParms(CameraParms* a1) { mCameraParms = a1; }
 
 /*
  * --INFO--
  * Address:	8023F530
  * Size:	000008
  */
-void PlayCamera::setVibrationParms(Game::VibrationParms* a1)
-{
-	// Generated from stw r4, 0x250(r3)
-	_250 = a1;
-}
+void PlayCamera::setVibrationParms(VibrationParms* a1) { mVibrationParms = a1; }
 
 /*
  * --INFO--
@@ -264,109 +222,31 @@ void PlayCamera::setVibrationParms(Game::VibrationParms* a1)
  */
 void PlayCamera::init()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x198(r3)
-	cmplwi   r0, 0
-	bne      lbl_8023F574
-	lis      r3, lbl_80483FDC@ha
-	lis      r5, lbl_80483FEC@ha
-	addi     r3, r3, lbl_80483FDC@l
-	li       r4, 0x78
-	addi     r5, r5, lbl_80483FEC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(120, mTargetObj);
+	P2ASSERTLINE(121, mCameraParms);
+	P2ASSERTLINE(122, mVibrationParms);
+	mCanInput          = true;
+	mChangePlayerState = 0;
+	mCameraZoomLevel   = 1; // (default to medium zoom)
+	mCameraSelAngle    = 0;
+	setTargetParms();
+	changeTargetAtPosition();
+	mCurrTargetDistance = mGoalTargetDistance;
 
-lbl_8023F574:
-	lwz      r0, 0x24c(r31)
-	cmplwi   r0, 0
-	bne      lbl_8023F59C
-	lis      r3, lbl_80483FDC@ha
-	lis      r5, lbl_80483FEC@ha
-	addi     r3, r3, lbl_80483FDC@l
-	li       r4, 0x79
-	addi     r5, r5, lbl_80483FEC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8023F59C:
-	lwz      r0, 0x250(r31)
-	cmplwi   r0, 0
-	bne      lbl_8023F5C4
-	lis      r3, lbl_80483FDC@ha
-	lis      r5, lbl_80483FEC@ha
-	addi     r3, r3, lbl_80483FDC@l
-	li       r4, 0x7a
-	addi     r5, r5, lbl_80483FEC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8023F5C4:
-	li       r4, 1
-	li       r0, 0
-	stb      r4, 0x248(r31)
-	mr       r3, r31
-	stw      r0, 0x19c(r31)
-	stw      r4, 0x1a0(r31)
-	stw      r0, 0x1a4(r31)
-	bl       setTargetParms__Q24Game10PlayCameraFv
-	mr       r3, r31
-	bl       changeTargetAtPosition__Q24Game10PlayCameraFv
-	lfs      f0, 0x1ac(r31)
-	stfs     f0, 0x1a8(r31)
-	lwz      r3, 0x198(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, lbl_8051A674@sda21(r2)
-	lfs      f0, lbl_8051A664@sda21(r2)
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8023F628
-	lfs      f0, lbl_8051A678@sda21(r2)
-	fadds    f1, f0, f1
-	b        lbl_8023F63C
-
-lbl_8023F628:
-	lfs      f0, lbl_8051A678@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8023F63C
-	fsubs    f1, f1, f0
-
-lbl_8023F63C:
-	stfs     f1, 0x1b4(r31)
-	mr       r3, r31
-	stfs     f1, 0x1b0(r31)
-	lfs      f0, 0x1bc(r31)
-	stfs     f0, 0x1b8(r31)
-	lfs      f0, 0x1c0(r31)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x1c4(r31)
-	stfs     f0, 0x70(r31)
-	lfs      f0, 0x1c8(r31)
-	stfs     f0, 0x74(r31)
-	lfs      f0, 0x1e4(r31)
-	stfs     f0, 0x180(r31)
-	lfs      f0, 0x1e8(r31)
-	stfs     f0, 0x184(r31)
-	lfs      f0, 0x1ec(r31)
-	stfs     f0, 0x188(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	f32 angle = mTargetObj->getFaceDir() + PI;
+	if (angle < 0.0f) {
+		angle += TAU;
+	} else if (angle >= TAU) {
+		angle -= TAU;
+	}
+	mCameraAngleGoal    = angle;
+	mCameraAngleCurrent = angle;
+	mCurrVerticalAngle  = mGoalVerticalAngle;
+	mViewAngle          = mGoalFOV;
+	mProjectionNear     = mNearZPlane;
+	mProjectionFar      = mFarZPlane;
+	mLookAtPosition     = mGoalPosition;
+	updateMatrix();
 }
 
 /*
@@ -374,23 +254,11 @@ lbl_8023F63C:
  * Address:	8023F6A4
  * Size:	000034
  */
-void PlayCamera::setCameraAngle(float)
+void PlayCamera::setCameraAngle(f32 angle)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stfs     f1, 0x1b4(r3)
-	stfs     f1, 0x1b0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCameraAngleGoal    = angle;
+	mCameraAngleCurrent = angle;
+	updateMatrix();
 }
 
 /*
@@ -398,33 +266,17 @@ void PlayCamera::setCameraAngle(float)
  * Address:	8023F6D8
  * Size:	00005C
  */
-void PlayCamera::getCameraData(Game::CameraData&)
+void PlayCamera::getCameraData(CameraData& data)
 {
-	/*
-	lfs      f0, 0x1a8(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x1b0(r3)
-	stfs     f0, 4(r4)
-	lfs      f0, 0x1b8(r3)
-	stfs     f0, 8(r4)
-	lfs      f0, 0x28(r3)
-	stfs     f0, 0xc(r4)
-	lfs      f0, 0x70(r3)
-	stfs     f0, 0x10(r4)
-	lfs      f0, 0x74(r3)
-	stfs     f0, 0x14(r4)
-	lfs      f0, 0x180(r3)
-	stfs     f0, 0x18(r4)
-	lfs      f0, 0x184(r3)
-	stfs     f0, 0x1c(r4)
-	lfs      f0, 0x188(r3)
-	stfs     f0, 0x20(r4)
-	lwz      r0, 0x1a0(r3)
-	stw      r0, 0x24(r4)
-	lwz      r0, 0x1a4(r3)
-	stw      r0, 0x28(r4)
-	blr
-	*/
+	data.mTargetDistance = mCurrTargetDistance;
+	data.mCameraAngle    = mCameraAngleCurrent;
+	data.mVerticalAngle  = mCurrVerticalAngle;
+	data.mFieldofView    = mViewAngle;
+	data.mNearZ          = mProjectionNear;
+	data.mFarZ           = mProjectionFar;
+	data.mLookAtPosition = mLookAtPosition;
+	data.mZoomLevel      = mCameraZoomLevel;
+	data.mSelAngle       = mCameraSelAngle;
 }
 
 /*
@@ -432,33 +284,17 @@ void PlayCamera::getCameraData(Game::CameraData&)
  * Address:	8023F734
  * Size:	00005C
  */
-void PlayCamera::setCameraData(Game::CameraData&)
+void PlayCamera::setCameraData(CameraData& data)
 {
-	/*
-	lfs      f0, 0(r4)
-	stfs     f0, 0x1a8(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x1b0(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x1b8(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0x28(r3)
-	lfs      f0, 0x10(r4)
-	stfs     f0, 0x70(r3)
-	lfs      f0, 0x14(r4)
-	stfs     f0, 0x74(r3)
-	lfs      f0, 0x18(r4)
-	stfs     f0, 0x180(r3)
-	lfs      f0, 0x1c(r4)
-	stfs     f0, 0x184(r3)
-	lfs      f0, 0x20(r4)
-	stfs     f0, 0x188(r3)
-	lwz      r0, 0x24(r4)
-	stw      r0, 0x1a0(r3)
-	lwz      r0, 0x28(r4)
-	stw      r0, 0x1a4(r3)
-	blr
-	*/
+	mCurrTargetDistance = data.mTargetDistance;
+	mCameraAngleCurrent = data.mCameraAngle;
+	mCurrVerticalAngle  = data.mVerticalAngle;
+	mViewAngle          = data.mFieldofView;
+	mProjectionNear     = data.mNearZ;
+	mProjectionFar      = data.mFarZ;
+	mLookAtPosition     = data.mLookAtPosition;
+	mCameraZoomLevel    = data.mZoomLevel;
+	mCameraSelAngle     = data.mSelAngle;
 }
 
 /*
@@ -466,78 +302,32 @@ void PlayCamera::setCameraData(Game::CameraData&)
  * Address:	8023F790
  * Size:	000080
  */
-void PlayCamera::changePlayerMode(bool)
+void PlayCamera::changePlayerMode(bool updateDir)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r0, 0x19c(r3)
-	bl       setTargetParms__Q24Game10PlayCameraFv
-	mr       r3, r30
-	bl       changeTargetAtPosition__Q24Game10PlayCameraFv
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8023F7D4
-	mr       r3, r30
-	bl       setTargetThetaToWhistle__Q24Game10PlayCameraFv
-	b        lbl_8023F7DC
-
-lbl_8023F7D4:
-	lfs      f0, 0x1b0(r30)
-	stfs     f0, 0x1b4(r30)
-
-lbl_8023F7DC:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	bl       setProjection__6CameraFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mChangePlayerState = 1;
+	setTargetParms();
+	changeTargetAtPosition();
+	if (updateDir) {
+		setTargetThetaToWhistle();
+	} else {
+		mCameraAngleGoal = mCameraAngleCurrent;
+	}
+	updateMatrix();
+	setProjection();
 }
 
 /*
  * --INFO--
  * Address:	8023F810
  * Size:	00004C
+ * Returns true if the conditions to use the holding R camera are met
  */
-void PlayCamera::isSpecialCamera()
+bool PlayCamera::isSpecialCamera()
 {
-	/*
-	lwz      r4, 0x198(r3)
-	lwz      r0, 0x278(r4)
-	cmplwi   r0, 0
-	beq      lbl_8023F854
-	lbz      r0, 0x248(r3)
-	cmplwi   r0, 0
-	beq      lbl_8023F854
-	lwz      r0, 0x19c(r3)
-	cmpwi    r0, 0
-	bne      lbl_8023F854
-	lfs      f1, 0x1e0(r3)
-	lfs      f0, lbl_8051A66C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8023F854
-	li       r3, 1
-	blr
-
-lbl_8023F854:
-	li       r3, 0
-	blr
-	*/
+	if (mTargetObj->mController1 && mCanInput && !mChangePlayerState && mHoldRTimer >= 1.0f) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -545,82 +335,34 @@ lbl_8023F854:
  * Address:	8023F85C
  * Size:	0000E8
  */
-void PlayCamera::doUpdate()
+bool PlayCamera::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       updateCameraMode__Q24Game10PlayCameraFv
-	rlwinm.  r0, r3, 0, 0x1b, 0x1b
-	mr       r31, r3
-	beq      lbl_8023F88C
-	mr       r3, r30
-	bl       startZoomCamera__Q24Game10PlayCameraFv
-
-lbl_8023F88C:
-	rlwinm.  r0, r31, 0, 0x19, 0x19
-	beq      lbl_8023F89C
-	mr       r3, r30
-	bl       finishDemoCamera__Q24Game10PlayCameraFv
-
-lbl_8023F89C:
-	clrlwi.  r0, r31, 0x1e
-	beq      lbl_8023F8B0
-	mr       r3, r30
-	mr       r4, r31
-	bl       startGameCamera__Q24Game10PlayCameraFi
-
-lbl_8023F8B0:
-	rlwinm.  r0, r31, 0, 0x1d, 0x1d
-	beq      lbl_8023F8C0
-	mr       r3, r30
-	bl       setFollowTime__Q24Game10PlayCameraFv
-
-lbl_8023F8C0:
-	rlwinm.  r0, r31, 0, 0x1c, 0x1c
-	beq      lbl_8023F8D0
-	mr       r3, r30
-	bl       setSmoothThetaSpeed__Q24Game10PlayCameraFv
-
-lbl_8023F8D0:
-	mr       r3, r30
-	bl       changeTargetTheta__Q24Game10PlayCameraFv
-	mr       r3, r30
-	bl       changeTargetAtPosition__Q24Game10PlayCameraFv
-	mr       r3, r30
-	mr       r4, r31
-	bl       setCollisionCameraTargetPhi__Q24Game10PlayCameraFi
-	mr       r3, r30
-	mr       r4, r31
-	bl       updateParms__Q24Game10PlayCameraFi
-	li       r31, 0
-
-lbl_8023F8FC:
-	addi     r0, r31, 0x1f0
-	lbzx     r0, r30, r0
-	cmplwi   r0, 0
-	beq      lbl_8023F918
-	mr       r3, r30
-	mr       r4, r31
-	bl       updateVibration__Q24Game10PlayCameraFi
-
-lbl_8023F918:
-	addi     r31, r31, 1
-	cmpwi    r31, 3
-	blt      lbl_8023F8FC
-	mr       r3, r30
-	bl       isModCameraFinished__Q24Game10PlayCameraFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	u32 state = updateCameraMode();
+	if (state & 0x10) {
+		startZoomCamera();
+	}
+	if (state & 0x40) {
+		finishDemoCamera();
+	}
+	if (state & 3) {
+		startGameCamera(state);
+	}
+	if (state & 4) {
+		setFollowTime();
+	}
+	if (state & 8) {
+		setSmoothThetaSpeed();
+	}
+	changeTargetTheta();
+	changeTargetAtPosition();
+	setCollisionCameraTargetPhi(state);
+	updateParms(state);
+	for (int i = 0; i < 3; i++) {
+		if (mVibrateEnabled[i]) {
+			updateVibration(i);
+		}
+	}
+	return isModCameraFinished();
 }
 
 /*
@@ -630,64 +372,17 @@ lbl_8023F918:
  */
 void PlayCamera::updateMatrix()
 {
-	/*
-	stwu     r1, -0x100(r1)
-	mflr     r0
-	li       r4, 0x5a
-	stw      r0, 0x104(r1)
-	stw      r31, 0xfc(r1)
-	mr       r31, r3
-	addi     r3, r1, 0xc8
-	lfs      f1, 0x200(r31)
-	bl       PSMTXRotRad
-	lfs      f0, 0x1b0(r31)
-	addi     r3, r1, 0x98
-	li       r4, 0x59
-	fneg     f1, f0
-	bl       PSMTXRotRad
-	lfs      f1, 0x1b8(r31)
-	addi     r3, r1, 0x68
-	li       r4, 0x58
-	bl       PSMTXRotRad
-	lfs      f1, lbl_8051A664@sda21(r2)
-	addi     r3, r1, 0x38
-	lfs      f3, 0x208(r31)
-	lfs      f0, 0x1a8(r31)
-	fmr      f2, f1
-	fsubs    f3, f3, f0
-	bl       PSMTXTrans
-	lfs      f0, 0x204(r31)
-	addi     r3, r1, 8
-	lfs      f1, 0x180(r31)
-	fneg     f3, f0
-	lfs      f2, 0x184(r31)
-	lfs      f0, 0x188(r31)
-	fneg     f1, f1
-	fsubs    f2, f3, f2
-	fneg     f3, f0
-	bl       PSMTXTrans
-	addi     r3, r1, 0x68
-	addi     r4, r1, 0x98
-	addi     r5, r31, 0x144
-	bl       PSMTXConcat
-	addi     r4, r31, 0x144
-	addi     r3, r1, 0xc8
-	mr       r5, r4
-	bl       PSMTXConcat
-	addi     r4, r31, 0x144
-	addi     r3, r1, 0x38
-	mr       r5, r4
-	bl       PSMTXConcat
-	addi     r3, r31, 0x144
-	addi     r4, r1, 8
-	mr       r5, r3
-	bl       PSMTXConcat
-	lwz      r0, 0x104(r1)
-	lwz      r31, 0xfc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x100
-	blr
-	*/
+	Mtx mtx1, mtx2, mtx3, mtx4, mtx5;
+	PSMTXRotRad(mtx1, 'Z', mVibrateRollAngle[0]);
+	PSMTXRotRad(mtx2, 'Y', -mCameraAngleCurrent);
+	PSMTXRotRad(mtx3, 'X', mCurrVerticalAngle);
+	PSMTXTrans(mtx4, 0.0f, 0.0f, mVibrateRollAngle[2] - mCurrTargetDistance);
+	PSMTXTrans(mtx5, -mLookAtPosition.x, -mVibrateRollAngle[1] - mLookAtPosition.y, -mLookAtPosition.z);
+
+	PSMTXConcat(mtx3, mtx2, mLookMatrix.mMatrix.mtxView);
+	PSMTXConcat(mtx1, mLookMatrix.mMatrix.mtxView, mLookMatrix.mMatrix.mtxView);
+	PSMTXConcat(mtx4, mLookMatrix.mMatrix.mtxView, mLookMatrix.mMatrix.mtxView);
+	PSMTXConcat(mLookMatrix.mMatrix.mtxView, mtx5, mLookMatrix.mMatrix.mtxView);
 }
 
 /*
@@ -697,39 +392,10 @@ void PlayCamera::updateMatrix()
  */
 void PlayCamera::noUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0xb4
-	addi     r4, r31, 0xf4
-	bl       PSMTX44Copy
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r31, 0x34
-	bl       PSMTXCopy
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSMTX44Copy(mProjectionMtx, _F4);
+	PSMTXCopy(getViewMatrix(0)->mMatrix.mtxView, mCurViewMatrix.mMatrix.mtxView);
+	updateScreenConstants();
+	updatePlanes();
 }
 
 /*
@@ -737,33 +403,13 @@ void PlayCamera::noUpdate()
  * Address:	8023FAA0
  * Size:	000044
  */
-void PlayCamera::isVibration()
+bool PlayCamera::isVibration()
 {
-	/*
-	lbz      r0, 0x1f0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8023FAB4
-	li       r3, 1
-	blr
-
-lbl_8023FAB4:
-	lbz      r0, 0x1f1(r3)
-	cmplwi   r0, 0
-	beq      lbl_8023FAC8
-	li       r3, 1
-	blr
-
-lbl_8023FAC8:
-	lbz      r0, 0x1f2(r3)
-	cmplwi   r0, 0
-	beq      lbl_8023FADC
-	li       r3, 1
-	blr
-
-lbl_8023FADC:
-	li       r3, 0
-	blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		if (mVibrateEnabled[i])
+			return true;
+	}
+	return false;
 }
 
 /*
@@ -771,164 +417,58 @@ lbl_8023FADC:
  * Address:	8023FAE4
  * Size:	000208
  */
-void PlayCamera::startVibration(int, float)
+void PlayCamera::startVibration(int type, f32 strength)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	cmpwi    r31, 0x1d
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_8023FB4C
-	li       r0, 1
-	lfs      f0, lbl_8051A664@sda21(r2)
-	stb      r0, 0x1f0(r30)
-	li       r4, 0
-	stfs     f0, 0x218(r30)
-	stfs     f1, 0x230(r30)
-	lwz      r5, 0x250(r30)
-	lfs      f0, 0x27c(r5)
-	stfs     f0, 0x23c(r30)
-	lwz      r5, 0x250(r30)
-	lfs      f0, 0x2a4(r5)
-	stfs     f0, 0x1f4(r30)
-	lwz      r5, 0x250(r30)
-	lfs      f0, 0x2cc(r5)
-	stfs     f0, 0x224(r30)
-	bl       otherVibFinished__Q24Game10PlayCameraFi
-	b        lbl_8023FCD4
-
-lbl_8023FB4C:
-	cmpwi    r31, 0x1c
-	bne      lbl_8023FB98
-	li       r0, 1
-	lfs      f0, lbl_8051A664@sda21(r2)
-	stb      r0, 0x1f2(r30)
-	li       r4, 2
-	stfs     f0, 0x220(r30)
-	stfs     f1, 0x238(r30)
-	lwz      r5, 0x250(r30)
-	lfs      f0, 0x204(r5)
-	stfs     f0, 0x244(r30)
-	lwz      r5, 0x250(r30)
-	lfs      f0, 0x22c(r5)
-	stfs     f0, 0x1fc(r30)
-	lwz      r5, 0x250(r30)
-	lfs      f0, 0x254(r5)
-	stfs     f0, 0x22c(r30)
-	bl       otherVibFinished__Q24Game10PlayCameraFi
-	b        lbl_8023FCD4
-
-lbl_8023FB98:
-	li       r0, 1
-	lfs      f0, lbl_8051A664@sda21(r2)
-	stb      r0, 0x1f1(r30)
-	li       r4, 1
-	stfs     f0, 0x21c(r30)
-	stfs     f1, 0x234(r30)
-	bl       otherVibFinished__Q24Game10PlayCameraFi
-	cmpwi    r31, 0x1b
-	bne      lbl_8023FBE4
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x18c(r3)
-	stfs     f0, 0x240(r30)
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x1b4(r3)
-	stfs     f0, 0x1f8(r30)
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x1dc(r3)
-	stfs     f0, 0x228(r30)
-	b        lbl_8023FCD4
-
-lbl_8023FBE4:
-	cmpwi    r31, 8
-	bgt      lbl_8023FBFC
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x24(r3)
-	stfs     f0, 0x240(r30)
-	b        lbl_8023FC20
-
-lbl_8023FBFC:
-	cmpwi    r31, 0x11
-	bgt      lbl_8023FC14
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x240(r30)
-	b        lbl_8023FC20
-
-lbl_8023FC14:
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x74(r3)
-	stfs     f0, 0x240(r30)
-
-lbl_8023FC20:
-	lis      r3, 0x55555556@ha
-	addi     r3, r3, 0x55555556@l
-	mulhw    r4, r3, r31
-	srwi     r0, r4, 0x1f
-	add      r4, r4, r0
-	mulhw    r3, r3, r4
-	srwi     r0, r3, 0x1f
-	add      r0, r3, r0
-	mulli    r0, r0, 3
-	subf.    r0, r0, r4
-	bne      lbl_8023FC5C
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x9c(r3)
-	stfs     f0, 0x1f8(r30)
-	b        lbl_8023FC80
-
-lbl_8023FC5C:
-	cmpwi    r0, 1
-	bne      lbl_8023FC74
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0xc4(r3)
-	stfs     f0, 0x1f8(r30)
-	b        lbl_8023FC80
-
-lbl_8023FC74:
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0xec(r3)
-	stfs     f0, 0x1f8(r30)
-
-lbl_8023FC80:
-	lis      r3, 0x55555556@ha
-	addi     r0, r3, 0x55555556@l
-	mulhw    r3, r0, r31
-	srwi     r0, r3, 0x1f
-	add      r0, r3, r0
-	mulli    r0, r0, 3
-	subf.    r0, r0, r31
-	bne      lbl_8023FCB0
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x114(r3)
-	stfs     f0, 0x228(r30)
-	b        lbl_8023FCD4
-
-lbl_8023FCB0:
-	cmpwi    r0, 1
-	bne      lbl_8023FCC8
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x13c(r3)
-	stfs     f0, 0x228(r30)
-	b        lbl_8023FCD4
-
-lbl_8023FCC8:
-	lwz      r3, 0x250(r30)
-	lfs      f0, 0x164(r3)
-	stfs     f0, 0x228(r30)
-
-lbl_8023FCD4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (type == 0x1d) {
+		mVibrateEnabled[0]     = true;
+		mVibrateTimer[0]       = 0.0f;
+		mVibrateScaleParm[0]   = strength;
+		mVibrateAzimuthParm[0] = mVibrationParms->mAzimuthShortVib;
+		mVibrateSpeedParm[0]   = mVibrationParms->mAzimuthShortSpeed;
+		mVibrateTimeParm[0]    = mVibrationParms->mAzimuthShortTime;
+		otherVibFinished(0);
+	} else if (type == 0x1c) {
+		mVibrateEnabled[2]     = true;
+		mVibrateTimer[2]       = 0.0f;
+		mVibrateScaleParm[2]   = strength;
+		mVibrateAzimuthParm[2] = mVibrationParms->mZoomShortVib;
+		mVibrateSpeedParm[2]   = mVibrationParms->mZoomShortSpeed;
+		mVibrateTimeParm[2]    = mVibrationParms->mZoomShortTime;
+		otherVibFinished(2);
+	} else {
+		mVibrateEnabled[1]   = true;
+		mVibrateTimer[1]     = 0.0f;
+		mVibrateScaleParm[1] = strength;
+		otherVibFinished(1);
+		if (type == 0x1b) {
+			mVibrateAzimuthParm[1] = mVibrationParms->mElevationHardVib2;
+			mVibrateSpeedParm[1]   = mVibrationParms->mElevationHardSpeed;
+			mVibrateTimeParm[1]    = mVibrationParms->mElevationHardTime;
+		} else {
+			if (type <= 8) {
+				mVibrateAzimuthParm[1] = mVibrationParms->mElevationLightVib;
+			} else if (type <= 17) {
+				mVibrateAzimuthParm[1] = mVibrationParms->mElevationMiddleVib;
+			} else {
+				mVibrateAzimuthParm[1] = mVibrationParms->mElevationHardVib;
+			}
+			int flag = (type / 3) % 3;
+			if (flag == 0) {
+				mVibrateSpeedParm[1] = mVibrationParms->mElevationSlowSpeed;
+			} else if (flag == 1) {
+				mVibrateSpeedParm[1] = mVibrationParms->mElevationMiddleSpeed;
+			} else {
+				mVibrateSpeedParm[1] = mVibrationParms->mElevationFastSpeed;
+			}
+			if (type % 3 == 0) {
+				mVibrateTimeParm[1] = mVibrationParms->mElevationShortTime;
+			} else if (type % 3 == 1) {
+				mVibrateTimeParm[1] = mVibrationParms->mElevationMiddleTime;
+			} else {
+				mVibrateTimeParm[1] = mVibrationParms->mElevationLongTime;
+			}
+		}
+	}
 }
 
 /*
@@ -936,66 +476,30 @@ lbl_8023FCD4:
  * Address:	8023FCEC
  * Size:	0000D0
  */
-void PlayCamera::startDemoCamera(int)
+void PlayCamera::startDemoCamera(int type)
 {
-	/*
-	cmpwi    r4, 1
-	beq      lbl_8023FCF8
-	b        lbl_8023FD50
-
-lbl_8023FCF8:
-	lwz      r4, 0x24c(r3)
-	lfs      f5, lbl_8051A67C@sda21(r2)
-	lfs      f0, 0x7a4(r4)
-	lfs      f4, lbl_8051A66C@sda21(r2)
-	stfs     f0, 0x1ac(r3)
-	lfs      f3, lbl_8051A670@sda21(r2)
-	lwz      r4, 0x24c(r3)
-	lfs      f2, lbl_8051A680@sda21(r2)
-	lfs      f0, 0x7cc(r4)
-	lfs      f1, lbl_8051A684@sda21(r2)
-	fmuls    f5, f5, f0
-	lfs      f0, lbl_8051A688@sda21(r2)
-	stfs     f5, 0x1bc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f5, 0x7f4(r4)
-	stfs     f5, 0x1c0(r3)
-	stfs     f4, 0x1c4(r3)
-	stfs     f3, 0x1c8(r3)
-	stfs     f2, 0x1cc(r3)
-	stfs     f1, 0x1d0(r3)
-	stfs     f0, 0x1d4(r3)
-	blr
-
-lbl_8023FD50:
-	lwz      r4, 0x24c(r3)
-	lfs      f1, lbl_8051A67C@sda21(r2)
-	lfs      f0, 0x24(r4)
-	stfs     f0, 0x1ac(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x4c(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1bc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x74(r4)
-	stfs     f0, 0x1c0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x114(r4)
-	stfs     f0, 0x1c4(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x13c(r4)
-	stfs     f0, 0x1c8(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x9c(r4)
-	stfs     f0, 0x1cc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0xc4(r4)
-	stfs     f0, 0x1d0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0xec(r4)
-	stfs     f0, 0x1d4(r3)
-	blr
-	*/
+	switch (type) {
+	case 1:
+		mGoalTargetDistance = mCameraParms->mZmdt;
+		mGoalVerticalAngle  = mCameraParms->mZman.mValue * DEG2RAD;
+		mGoalFOV            = mCameraParms->mZmfv;
+		mNearZPlane         = 1.0f;
+		mFarZPlane          = 12800.0f;
+		mYOffset            = 10.0f;
+		mDetachedWeight     = 1000.0f;
+		mDetachedParm       = 27.5f;
+		break;
+	default:
+		mGoalTargetDistance = mCameraParms->mCnld;
+		mGoalVerticalAngle  = mCameraParms->mCnla.mValue * DEG2RAD;
+		mGoalFOV            = mCameraParms->mCnlf;
+		mNearZPlane         = mCameraParms->mNlnc;
+		mFarZPlane          = mCameraParms->mNlfc;
+		mYOffset            = mCameraParms->mCnlo;
+		mDetachedWeight     = mCameraParms->mCnlw;
+		mDetachedParm       = mCameraParms->mNldt;
+		break;
+	}
 }
 
 /*
@@ -1003,104 +507,54 @@ lbl_8023FD50:
  * Address:	8023FDBC
  * Size:	000020
  */
-void PlayCamera::finishDemoCamera()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       setTargetParms__Q24Game10PlayCameraFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PlayCamera::finishDemoCamera() { setTargetParms(); }
 
 /*
  * --INFO--
  * Address:	8023FDDC
  * Size:	0000EC
  */
-void PlayCamera::updateCameraMode()
+u32 PlayCamera::updateCameraMode()
 {
-	/*
-	lwz      r4, 0x198(r3)
-	li       r6, 0
-	lwz      r5, 0x278(r4)
-	cmplwi   r5, 0
-	beq      lbl_8023FEC0
-	lbz      r0, 0x248(r3)
-	cmplwi   r0, 0
-	beq      lbl_8023FEC0
-	lwz      r0, 0x19c(r3)
-	cmpwi    r0, 0
-	bne      lbl_8023FEC0
-	lwz      r0, 0x18(r5)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_8023FE54
-	lfs      f2, 0x1e0(r3)
-	lfs      f1, lbl_8051A66C@sda21(r2)
-	fcmpo    cr0, f2, f1
-	bge      lbl_8023FE4C
-	lwz      r4, sys@sda21(r13)
-	lfs      f0, 0x54(r4)
-	fadds    f0, f2, f0
-	stfs     f0, 0x1e0(r3)
-	lfs      f0, 0x1e0(r3)
-	fcmpo    cr0, f0, f1
-	cror     2, 1, 2
-	bne      lbl_8023FE74
-	ori      r6, r6, 0x30
-	b        lbl_8023FE74
+	Controller* pad = mTargetObj->mController1;
+	u32 ret         = 0;
+	if (pad && mCanInput) {
+		if (!mChangePlayerState) {
+			if (pad->getButton() & Controller::PRESS_R) {
+				if (mHoldRTimer < 1.0f) {
+					mHoldRTimer += sys->mDeltaTime;
+					if (mHoldRTimer >= 1.0f) {
+						ret |= 0x30;
+					}
+				} else {
+					ret |= 0x20;
+				}
+			} else {
+				if (mHoldRTimer >= 1.0f) {
+					ret |= 0x40;
+				}
+				mHoldRTimer = 0.0f;
+			}
 
-lbl_8023FE4C:
-	ori      r6, r6, 0x20
-	b        lbl_8023FE74
+			if (!(ret & 0x20)) {
+				if (pad->getButtonDown() & Controller::PRESS_R) {
+					ret |= 1;
+				}
+				if (pad->getButtonDown() & Controller::PRESS_Z) {
+					ret |= 2;
+				}
+			}
 
-lbl_8023FE54:
-	lfs      f1, 0x1e0(r3)
-	lfs      f0, lbl_8051A66C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8023FE6C
-	ori      r6, r6, 0x40
-
-lbl_8023FE6C:
-	lfs      f0, lbl_8051A664@sda21(r2)
-	stfs     f0, 0x1e0(r3)
-
-lbl_8023FE74:
-	rlwinm.  r0, r6, 0, 0x1a, 0x1a
-	bne      lbl_8023FE98
-	lwz      r3, 0x1c(r5)
-	rlwinm.  r0, r3, 0, 0x1a, 0x1a
-	beq      lbl_8023FE8C
-	ori      r6, r6, 1
-
-lbl_8023FE8C:
-	rlwinm.  r0, r3, 0, 0x1b, 0x1b
-	beq      lbl_8023FE98
-	ori      r6, r6, 2
-
-lbl_8023FE98:
-	lwz      r0, 0x1c(r5)
-	rlwinm.  r0, r0, 0, 0x19, 0x19
-	beq      lbl_8023FEAC
-	ori      r6, r6, 4
-	b        lbl_8023FEC0
-
-lbl_8023FEAC:
-	lfs      f1, 0x28(r5)
-	lfs      f0, lbl_8051A68C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8023FEC0
-	ori      r6, r6, 8
-
-lbl_8023FEC0:
-	mr       r3, r6
-	blr
-	*/
+			if (pad->getButtonDown() & Controller::PRESS_L) {
+				ret |= 4;
+			} else {
+				if (pad->mButton.mAnalogL > 0.1f) {
+					ret |= 8;
+				}
+			}
+		}
+	}
+	return ret;
 }
 
 /*
@@ -1110,40 +564,15 @@ lbl_8023FEC0:
  */
 void PlayCamera::startZoomCamera()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f5, lbl_8051A67C@sda21(r2)
-	li       r4, 0x1888
-	stw      r0, 0x14(r1)
-	li       r5, 0
-	lfs      f4, lbl_8051A66C@sda21(r2)
-	lwz      r6, 0x24c(r3)
-	lfs      f3, lbl_8051A670@sda21(r2)
-	lfs      f0, 0x7a4(r6)
-	lfs      f2, lbl_8051A680@sda21(r2)
-	stfs     f0, 0x1ac(r3)
-	lfs      f1, lbl_8051A684@sda21(r2)
-	lwz      r6, 0x24c(r3)
-	lfs      f0, 0x7cc(r6)
-	fmuls    f5, f5, f0
-	lfs      f0, lbl_8051A688@sda21(r2)
-	stfs     f5, 0x1bc(r3)
-	lwz      r6, 0x24c(r3)
-	lfs      f5, 0x7f4(r6)
-	stfs     f5, 0x1c0(r3)
-	stfs     f4, 0x1c4(r3)
-	stfs     f3, 0x1c8(r3)
-	stfs     f2, 0x1cc(r3)
-	stfs     f1, 0x1d0(r3)
-	stfs     f0, 0x1d4(r3)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mGoalTargetDistance = mCameraParms->mZmdt;
+	mGoalVerticalAngle  = mCameraParms->mZman.mValue * DEG2RAD;
+	mGoalFOV            = mCameraParms->mZmfv;
+	mNearZPlane         = 1.0f;
+	mFarZPlane          = 12800.0f;
+	mYOffset            = 10.0f;
+	mDetachedWeight     = 1000.0f;
+	mDetachedParm       = 27.5f;
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_ROTATE, 0);
 }
 
 /*
@@ -1151,47 +580,20 @@ void PlayCamera::startZoomCamera()
  * Address:	8023FF48
  * Size:	000084
  */
-void PlayCamera::startGameCamera(int)
+void PlayCamera::startGameCamera(int flag)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi.  r0, r4, 0x1f
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_8023FF84
-	lwz      r3, 0x1a0(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x1a0(r31)
-	lwz      r0, 0x1a0(r31)
-	cmpwi    r0, 2
-	ble      lbl_8023FF84
-	li       r0, 0
-	stw      r0, 0x1a0(r31)
-
-lbl_8023FF84:
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	beq      lbl_8023FFA0
-	lwz      r3, 0x1a4(r31)
-	li       r0, 0
-	xori     r3, r3, 1
-	stw      r3, 0x1a4(r31)
-	stb      r0, 0x249(r31)
-
-lbl_8023FFA0:
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x180f
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	mr       r3, r31
-	bl       setTargetParms__Q24Game10PlayCameraFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (flag & 1) {
+		mCameraZoomLevel++;
+		if (mCameraZoomLevel > 2) {
+			mCameraZoomLevel = 0;
+		}
+	}
+	if (flag & 2) {
+		mCameraSelAngle = mCameraSelAngle ^ 1;
+		_249            = 0;
+	}
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_CAMERAVIEW_CHANGE, 0);
+	setTargetParms();
 }
 
 /*
@@ -1201,216 +603,79 @@ lbl_8023FFA0:
  */
 void PlayCamera::setTargetParms()
 {
-	/*
-	lfs      f0, lbl_8051A664@sda21(r2)
-	stfs     f0, 0x1e0(r3)
-	lwz      r0, 0x1a4(r3)
-	cmpwi    r0, 1
-	beq      lbl_80240158
-	bgelr
-	cmpwi    r0, 0
-	bltlr
-	lwz      r0, 0x1a0(r3)
-	cmpwi    r0, 1
-	beq      lbl_80240080
-	bge      lbl_80240008
-	cmpwi    r0, 0
-	bge      lbl_80240014
-	blr
-
-lbl_80240008:
-	cmpwi    r0, 3
-	bgelr
-	b        lbl_802400EC
-
-lbl_80240014:
-	lwz      r4, 0x24c(r3)
-	lfs      f1, lbl_8051A67C@sda21(r2)
-	lfs      f0, 0x24(r4)
-	stfs     f0, 0x1ac(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x4c(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1bc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x74(r4)
-	stfs     f0, 0x1c0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x114(r4)
-	stfs     f0, 0x1c4(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x13c(r4)
-	stfs     f0, 0x1c8(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x9c(r4)
-	stfs     f0, 0x1cc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0xc4(r4)
-	stfs     f0, 0x1d0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0xec(r4)
-	stfs     f0, 0x1d4(r3)
-	blr
-
-lbl_80240080:
-	lwz      r4, 0x24c(r3)
-	lfs      f1, lbl_8051A67C@sda21(r2)
-	lfs      f0, 0x164(r4)
-	stfs     f0, 0x1ac(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x18c(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1bc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x1b4(r4)
-	stfs     f0, 0x1c0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x254(r4)
-	stfs     f0, 0x1c4(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x27c(r4)
-	stfs     f0, 0x1c8(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x1dc(r4)
-	stfs     f0, 0x1cc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x204(r4)
-	stfs     f0, 0x1d0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x22c(r4)
-	stfs     f0, 0x1d4(r3)
-	blr
-
-lbl_802400EC:
-	lwz      r4, 0x24c(r3)
-	lfs      f1, lbl_8051A67C@sda21(r2)
-	lfs      f0, 0x2a4(r4)
-	stfs     f0, 0x1ac(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x2cc(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1bc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x2f4(r4)
-	stfs     f0, 0x1c0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x394(r4)
-	stfs     f0, 0x1c4(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x3bc(r4)
-	stfs     f0, 0x1c8(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x31c(r4)
-	stfs     f0, 0x1cc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x344(r4)
-	stfs     f0, 0x1d0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x36c(r4)
-	stfs     f0, 0x1d4(r3)
-	blr
-
-lbl_80240158:
-	lwz      r0, 0x1a0(r3)
-	cmpwi    r0, 1
-	beq      lbl_802401EC
-	bge      lbl_80240174
-	cmpwi    r0, 0
-	bge      lbl_80240180
-	blr
-
-lbl_80240174:
-	cmpwi    r0, 3
-	bgelr
-	b        lbl_80240258
-
-lbl_80240180:
-	lwz      r4, 0x24c(r3)
-	lfs      f1, lbl_8051A67C@sda21(r2)
-	lfs      f0, 0x3e4(r4)
-	stfs     f0, 0x1ac(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x40c(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1bc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x434(r4)
-	stfs     f0, 0x1c0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x4d4(r4)
-	stfs     f0, 0x1c4(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x4fc(r4)
-	stfs     f0, 0x1c8(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x45c(r4)
-	stfs     f0, 0x1cc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x484(r4)
-	stfs     f0, 0x1d0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x4ac(r4)
-	stfs     f0, 0x1d4(r3)
-	blr
-
-lbl_802401EC:
-	lwz      r4, 0x24c(r3)
-	lfs      f1, lbl_8051A67C@sda21(r2)
-	lfs      f0, 0x524(r4)
-	stfs     f0, 0x1ac(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x54c(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1bc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x574(r4)
-	stfs     f0, 0x1c0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x614(r4)
-	stfs     f0, 0x1c4(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x63c(r4)
-	stfs     f0, 0x1c8(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x59c(r4)
-	stfs     f0, 0x1cc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x5c4(r4)
-	stfs     f0, 0x1d0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x5ec(r4)
-	stfs     f0, 0x1d4(r3)
-	blr
-
-lbl_80240258:
-	lwz      r4, 0x24c(r3)
-	lfs      f1, lbl_8051A67C@sda21(r2)
-	lfs      f0, 0x664(r4)
-	stfs     f0, 0x1ac(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x68c(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1bc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x6b4(r4)
-	stfs     f0, 0x1c0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x754(r4)
-	stfs     f0, 0x1c4(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x77c(r4)
-	stfs     f0, 0x1c8(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x6dc(r4)
-	stfs     f0, 0x1cc(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x704(r4)
-	stfs     f0, 0x1d0(r3)
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x72c(r4)
-	stfs     f0, 0x1d4(r3)
-	blr
-	*/
+	mHoldRTimer = 0.0f;
+	switch (mCameraSelAngle) {
+	case 0: {
+		switch (mCameraZoomLevel) {
+		case 0: // low zoom low angle
+			mGoalTargetDistance = mCameraParms->mCnld;
+			mGoalVerticalAngle  = mCameraParms->mCnla.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mCnlf;
+			mNearZPlane         = mCameraParms->mNlnc;
+			mFarZPlane          = mCameraParms->mNlfc;
+			mYOffset            = mCameraParms->mCnlo;
+			mDetachedWeight     = mCameraParms->mCnlw;
+			mDetachedParm       = mCameraParms->mNldt;
+			break;
+		case 1: // medium zoom low angle
+			mGoalTargetDistance = mCameraParms->mCmld;
+			mGoalVerticalAngle  = mCameraParms->mCmla.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mCmlf;
+			mNearZPlane         = mCameraParms->mMlnc;
+			mFarZPlane          = mCameraParms->mMlfc;
+			mYOffset            = mCameraParms->mCmlo;
+			mDetachedWeight     = mCameraParms->mCmlw;
+			mDetachedParm       = mCameraParms->mMldt;
+			break;
+		case 2: // far zoom low angle
+			mGoalTargetDistance = mCameraParms->mCfld;
+			mGoalVerticalAngle  = mCameraParms->mCfla.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mCflf;
+			mNearZPlane         = mCameraParms->mFlnc;
+			mFarZPlane          = mCameraParms->mFlfc;
+			mYOffset            = mCameraParms->mCflo;
+			mDetachedWeight     = mCameraParms->mCflw;
+			mDetachedParm       = mCameraParms->mFldt;
+			break;
+		}
+		break;
+	}
+	case 1: {
+		switch (mCameraZoomLevel) {
+		case 0: // low zoom high angle
+			mGoalTargetDistance = mCameraParms->mCnhd;
+			mGoalVerticalAngle  = mCameraParms->mCnha.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mCnhf;
+			mNearZPlane         = mCameraParms->mNhnc;
+			mFarZPlane          = mCameraParms->mNhfc;
+			mYOffset            = mCameraParms->mCnho;
+			mDetachedWeight     = mCameraParms->mCnhw;
+			mDetachedParm       = mCameraParms->mNhdt;
+			break;
+		case 1: // medium zoom high angle
+			mGoalTargetDistance = mCameraParms->mCmhd;
+			mGoalVerticalAngle  = mCameraParms->mCmha.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mCmhf;
+			mNearZPlane         = mCameraParms->mMhnc;
+			mFarZPlane          = mCameraParms->mMhfc;
+			mYOffset            = mCameraParms->mCmho;
+			mDetachedWeight     = mCameraParms->mCmhw;
+			mDetachedParm       = mCameraParms->mMhdt;
+			break;
+		case 2: // far zoom high angle
+			mGoalTargetDistance = mCameraParms->mCfhd;
+			mGoalVerticalAngle  = mCameraParms->mCfha.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mCfhf;
+			mNearZPlane         = mCameraParms->mFhnc;
+			mFarZPlane          = mCameraParms->mFhfc;
+			mYOffset            = mCameraParms->mCfho;
+			mDetachedWeight     = mCameraParms->mCfhw;
+			mDetachedParm       = mCameraParms->mFhdt;
+			break;
+		}
+		break;
+	}
+	}
 }
 
 /*
@@ -1420,36 +685,9 @@ lbl_80240258:
  */
 void PlayCamera::setTargetThetaToWhistle()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	lwz      r4, 0x198(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x198(r31)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 8(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lwz      r4, 0x28c(r4)
-	lfs      f2, 0x10(r1)
-	lfs      f1, 0xc(r4)
-	lfs      f0, 0x14(r4)
-	fsubs    f1, f3, f1
-	fsubs    f2, f2, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	stfs     f1, 0x1b4(r31)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Vector3f pos         = mTargetObj->getPosition();
+	NaviWhistle* whistle = mTargetObj->mWhistle;
+	mCameraAngleGoal     = JMath::atanTable_.atan2_(pos.x - whistle->mPosition.x, pos.z - whistle->mPosition.z);
 }
 
 /*
@@ -1457,15 +695,7 @@ void PlayCamera::setTargetThetaToWhistle()
  * Address:	80240334
  * Size:	000010
  */
-void PlayCamera::setFollowTime()
-{
-	/*
-	lwz      r4, 0x24c(r3)
-	lfs      f0, 0x90c(r4)
-	stfs     f0, 0x1dc(r3)
-	blr
-	*/
-}
+void PlayCamera::setFollowTime() { mFollowTime = mCameraParms->mCmft; }
 
 /*
  * --INFO--
@@ -1474,6 +704,20 @@ void PlayCamera::setFollowTime()
  */
 void PlayCamera::setSmoothThetaSpeed()
 {
+	Controller* pad = mTargetObj->mController1;
+	if (pad) {
+		f32 calc1 = mCameraParms->mCmtm.mValue * sys->mDeltaTime;
+		mSmoothMoveSpeed += pad->mMStick.mXPos * mCameraParms->mCmta.mValue;
+		f32 calc2 = -calc1;
+		f32 calc3 = mSmoothMoveSpeed;
+		if (calc2 < calc3) {
+			calc2 = calc3;
+			if (calc1 > calc3) {
+				calc2 = calc1;
+			}
+		}
+		mSmoothMoveSpeed = calc2;
+	}
 	/*
 	lwz      r4, 0x198(r3)
 	lwz      r6, 0x278(r4)
@@ -1517,72 +761,19 @@ lbl_802403A4:
  */
 void PlayCamera::changeTargetTheta()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f2, lbl_8051A664@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lfs      f1, 0x1dc(r3)
-	fcmpo    cr0, f1, f2
-	ble      lbl_8024042C
-	lwz      r4, sys@sda21(r13)
-	addi     r3, r1, 8
-	lfs      f0, 0x54(r4)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x1dc(r31)
-	lwz      r4, 0x198(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x198(r31)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f3, 8(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	lwz      r4, 0x28c(r4)
-	lfs      f2, 0x10(r1)
-	lfs      f1, 0xc(r4)
-	lfs      f0, 0x14(r4)
-	fsubs    f1, f3, f1
-	fsubs    f2, f2, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	stfs     f1, 0x1b4(r31)
-	b        lbl_80240464
-
-lbl_8024042C:
-	lfs      f1, 0x1b4(r31)
-	lfs      f0, 0x1d8(r31)
-	fsubs    f1, f1, f0
-	fcmpo    cr0, f1, f2
-	bge      lbl_8024044C
-	lfs      f0, lbl_8051A678@sda21(r2)
-	fadds    f1, f0, f1
-	b        lbl_80240460
-
-lbl_8024044C:
-	lfs      f0, lbl_8051A678@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80240460
-	fsubs    f1, f1, f0
-
-lbl_80240460:
-	stfs     f1, 0x1b4(r31)
-
-lbl_80240464:
-	lwz      r3, 0x24c(r31)
-	lfs      f1, 0x1d8(r31)
-	lfs      f0, 0x984(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x1d8(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mFollowTime > 0.0f) {
+		mFollowTime -= sys->mDeltaTime;
+		setTargetThetaToWhistle();
+	} else {
+		f32 angle = mCameraAngleGoal - mSmoothMoveSpeed;
+		if (angle < 0.0f) {
+			angle += TAU;
+		} else if (angle >= TAU) {
+			angle -= TAU;
+		}
+		mCameraAngleGoal = angle;
+	}
+	mSmoothMoveSpeed *= mCameraParms->mCmtb.mValue;
 }
 
 /*
@@ -1592,6 +783,38 @@ lbl_80240464:
  */
 void PlayCamera::changeTargetAtPosition()
 {
+	f32 M            = mDetachedWeight;
+	Vector3f naviPos = mTargetObj->getPosition();
+	Iterator<Creature> iterator((Stickers*)mTargetObj->mCPlateMgr);
+
+	f32 X = naviPos.x * M;
+	f32 Y = naviPos.y * M;
+	f32 Z = naviPos.z * M;
+
+	CI_LOOP(iterator)
+	{
+		Creature* obj = *iterator;
+		if (obj) {
+			Vector3f pos = obj->getPosition();
+			X += pos.x;
+			Y += pos.y;
+			Z += pos.z;
+			M += 1.0f;
+		}
+	}
+
+	mGoalPosition.x = X / M;
+	mGoalPosition.y = Y / M;
+	mGoalPosition.z = Z / M;
+
+	f32 calc = _distanceBetween(mGoalPosition, naviPos);
+	if (calc < mDetachedParm) {
+		f32 calc1     = mDetachedParm / calc;
+		f32 inv       = 1.0f - calc1;
+		mGoalPosition = (naviPos * inv) + (mGoalPosition * calc1);
+	}
+
+	mGoalPosition.y += mYOffset;
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -1850,8 +1073,40 @@ lbl_802407B4:
  * Address:	80240810
  * Size:	000164
  */
-void PlayCamera::updateParms(int)
+void PlayCamera::updateParms(int flag)
 {
+	f32 rate            = mCameraParms->mCpmd;
+	f32 invrate         = 1.0f - rate;
+	mCurrTargetDistance = mCurrTargetDistance * invrate + mGoalTargetDistance * rate;
+	mCurrVerticalAngle  = mCurrVerticalAngle * invrate + mGoalVerticalAngle * rate;
+	mViewAngle          = mViewAngle * invrate + mGoalFOV * rate;
+	mProjectionNear     = mProjectionNear * invrate + mNearZPlane * rate;
+	mProjectionFar      = mProjectionFar * invrate + mFarZPlane * rate;
+	if (flag & 0x20) {
+		rate    = 0.175f;
+		invrate = 0.825f;
+	}
+	mLookAtPosition = mLookAtPosition * rate + mGoalPosition * invrate;
+
+	f32 anglein  = mCameraAngleGoal;
+	f32 angleout = mCameraAngleCurrent;
+	if (anglein > angleout) {
+		if (TAU - (anglein - angleout) < anglein - angleout) {
+			anglein -= TAU;
+		}
+	} else {
+		if (TAU - (angleout - anglein) < angleout - anglein) {
+			anglein += TAU;
+		}
+	}
+	mCameraAngleCurrent += mCameraParms->mCmmt.mValue * (anglein - angleout);
+	f32 angle = mCameraAngleCurrent;
+	if (angle < 0.0f) {
+		angle += TAU;
+	} else if (angle >= TAU) {
+		angle -= TAU;
+	}
+	mCameraAngleCurrent = angle;
 	/*
 	lwz      r5, 0x24c(r3)
 	rlwinm.  r0, r4, 0, 0x1a, 0x1a
@@ -1960,8 +1215,29 @@ lbl_8024096C:
  * Address:	80240974
  * Size:	00012C
  */
-void PlayCamera::updateVibration(int)
+void PlayCamera::updateVibration(int id)
 {
+	mVibrateAngle[id] += mVibrateSpeedParm[id] * sys->mDeltaTime;
+	mVibrateTimer[id] += sys->mDeltaTime;
+	if (mVibrateAngle[id] > TAU) {
+		mVibrateAngle[id] -= TAU;
+	}
+
+	f32 test  = mVibrateTimer[id];
+	f32 test2 = 1.0f;
+	if (test > mVibrateTimeParm[id]) {
+		test2 = 1.0f - (test - mVibrateTimeParm[id]) / 0.5f;
+		if (test2 < 0.0f) {
+			mVibrateEnabled[id] = false;
+			mVibrateAngle[id]   = 0.0f;
+			mVibrateTimer[id]   = 0.0f;
+			test2               = 0.0f;
+		}
+	}
+
+	f32 angle             = mVibrateAngle[id];
+	mVibrateRollAngle[id] = mVibrateScaleParm[id] * test2 * mVibrateAzimuthParm[id] * pikmin2_sinf(angle);
+
 	/*
 	stwu     r1, -0x20(r1)
 	slwi     r6, r4, 2
@@ -2054,43 +1330,13 @@ lbl_80240A8C:
  * Address:	80240AA0
  * Size:	000074
  */
-void PlayCamera::otherVibFinished(int)
+void PlayCamera::otherVibFinished(int id)
 {
-	/*
-	lbz      r0, 0x1f0(r3)
-	li       r5, 0
-	lfs      f1, lbl_8051A670@sda21(r2)
-	cmplwi   r0, 0
-	beq      lbl_80240AC8
-	cmpw     r5, r4
-	beq      lbl_80240AC8
-	lfs      f0, 0x218(r3)
-	fadds    f0, f0, f1
-	stfs     f0, 0x218(r3)
-
-lbl_80240AC8:
-	lbz      r0, 0x1f1(r3)
-	li       r5, 1
-	cmplwi   r0, 0
-	beq      lbl_80240AEC
-	cmpw     r5, r4
-	beq      lbl_80240AEC
-	lfs      f0, 0x21c(r3)
-	fadds    f0, f0, f1
-	stfs     f0, 0x21c(r3)
-
-lbl_80240AEC:
-	lbz      r0, 0x1f2(r3)
-	li       r5, 2
-	cmplwi   r0, 0
-	beqlr
-	cmpw     r5, r4
-	beqlr
-	lfs      f0, 0x220(r3)
-	fadds    f0, f0, f1
-	stfs     f0, 0x220(r3)
-	blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		if (mVibrateEnabled[i] && i != id) {
+			mVibrateTimer[i] += 12800.0f;
+		}
+	}
 }
 
 /*
@@ -2098,8 +1344,12 @@ lbl_80240AEC:
  * Address:	80240B14
  * Size:	000174
  */
-void PlayCamera::isModCameraFinished()
+bool PlayCamera::isModCameraFinished()
 {
+	if (mChangePlayerState == 1) {
+		// no thanks
+	}
+	return false;
 	/*
 	lwz      r0, 0x19c(r3)
 	cmpwi    r0, 1
@@ -2357,7 +1607,7 @@ lbl_80240DCC:
  * Address:	80240DE0
  * Size:	000384
  */
-void PlayCamera::getCollisionCameraTargetPhi(float, float)
+void PlayCamera::getCollisionCameraTargetPhi(f32, f32)
 {
 	/*
 	stwu     r1, -0x160(r1)
@@ -2610,117 +1860,4 @@ lbl_802410C8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80241164
- * Size:	0000D0
- */
-PlayCamera::~PlayCamera()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	beq      lbl_80241218
-	lis      r4, __vt__Q24Game10PlayCamera@ha
-	addi     r0, r4, __vt__Q24Game10PlayCamera@l
-	stw      r0, 0(r31)
-	beq      lbl_80241208
-	lis      r4, __vt__12LookAtCamera@ha
-	addi     r0, r4, __vt__12LookAtCamera@l
-	stw      r0, 0(r31)
-	beq      lbl_80241208
-	lis      r4, __vt__6Camera@ha
-	addi     r0, r4, __vt__6Camera@l
-	stw      r0, 0(r31)
-	beq      lbl_80241208
-	lis      r4, __vt__11CullFrustum@ha
-	addi     r0, r4, __vt__11CullFrustum@l
-	stw      r0, 0(r31)
-	beq      lbl_80241208
-	lis      r4, __vt__9CullPlane@ha
-	addi     r0, r4, __vt__9CullPlane@l
-	stw      r0, 0(r31)
-	beq      lbl_80241208
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
-	stw      r0, 0(r31)
-	beq      lbl_80241208
-	lis      r4, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, "__vt__17Container<5Plane>"@l
-	stw      r0, 0(r31)
-	beq      lbl_80241208
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r31)
-	bl       __dt__5CNodeFv
-
-lbl_80241208:
-	extsh.   r0, r30
-	ble      lbl_80241218
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80241218:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80241234
- * Size:	000004
- */
-void PlayCamera::startVibration(int) { }
-
-/*
- * --INFO--
- * Address:	80241238
- * Size:	00001C
- */
-void PlayCamera::getLookAtPosition_()
-{
-	/*
-	lfs      f0, 0x180(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 0x184(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0x188(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80241254
- * Size:	000028
- */
-void __sinit_playCamera_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C1958@ha
-	stw      r0, lbl_80515CF0@sda21(r13)
-	stfsu    f0, lbl_804C1958@l(r3)
-	stfs     f0, lbl_80515CF4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

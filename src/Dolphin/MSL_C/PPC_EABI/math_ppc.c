@@ -26,7 +26,7 @@ void __fpclassifyd(void)
  * Address:	........
  * Size:	000020
  */
-double scalbn(double x, int y)
+f64 scalbn(f64 x, int y)
 {
 	// UNUSED FUNCTION
 }
@@ -576,21 +576,21 @@ void atan2f(void)
  * Address:	800CFC98
  * Size:	000024
  */
-__declspec(weak) float cosf(float __x) { return cos((double)__x); }
+__declspec(weak) f32 cosf(f32 __x) { return cos((f64)__x); }
 
 /*
  * --INFO--
  * Address:	800CFC74
  * Size:	000024
  */
-__declspec(weak) float sinf(float __x) { return sin((double)__x); }
+__declspec(weak) f32 sinf(f32 __x) { return sin((f64)__x); }
 
 /*
  * --INFO--
  * Address:	800CFC50
  * Size:	000024
  */
-__declspec(weak) float tanf(float __x) { return tan((double)__x); }
+__declspec(weak) f32 tanf(f32 __x) { return tan((f64)__x); }
 
 /*
  * --INFO--
@@ -757,7 +757,7 @@ void _inv_sqrtf(void)
  * Address:	........
  * Size:	000008
  */
-double fabs(double x)
+f64 fabs(f64 x)
 {
 	// UNUSED FUNCTION
 }
@@ -767,7 +767,7 @@ double fabs(double x)
  * Address:	........
  * Size:	000130
  */
-void modff(float f1, float* fp)
+void modff(f32 f1, f32* fp)
 {
 	// UNUSED FUNCTION
 }

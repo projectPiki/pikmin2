@@ -25,13 +25,19 @@ struct PathNode;
 
 namespace BlackMan {
 struct Parms;
-struct FSM;
 
-void lHandCallBack(J3DJoint*, int);
-void rHandCallBack(J3DJoint*, int);
-void lFootCallBack(J3DJoint*, int);
-void rFootCallBack(J3DJoint*, int);
-void bodyCallBack(J3DJoint*, int);
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
+
+bool lHandCallBack(J3DJoint*, int);
+bool rHandCallBack(J3DJoint*, int);
+bool lFootCallBack(J3DJoint*, int);
+bool rFootCallBack(J3DJoint*, int);
+bool bodyCallBack(J3DJoint*, int);
 
 struct Obj : public EnemyBase {
 	Obj();
@@ -66,7 +72,12 @@ struct Obj : public EnemyBase {
 	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294 (weak)
 	virtual void doStartStoneState();                                           // _2A4
 	virtual void doFinishStoneState();                                          // _2A8
-	virtual void setFSM(FSM* fsm);                                              // _2F8 (weak)
+	virtual void setFSM(FSM* fsm)
+	{
+		mFSM = fsm;
+		mFSM->init(this);
+		mCurrentLifecycleState = nullptr;
+	}; // _2F8 (weak)
 	//////////////// VTABLE END
 
 	void walkFunc();
@@ -105,36 +116,47 @@ struct Obj : public EnemyBase {
 
 	inline Parms* getParms() { return C_PARMS; }
 
+	inline bool isOnTyres()
+	{ // unsure of name
+		if (!mTyre || _2E0 == 2) {
+			return false;
+		}
+		return true;
+	}
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x10];                          // _2BC, unknown
+	Matrixf* mLeftHandMtx;                  // _2BC
+	Matrixf* mRightHandMtx;                 // _2C0
+	Matrixf* mLeftFootMtx;                  // _2C4
+	Matrixf* mRightFootMtx;                 // _2C8
 	int mFreezeTimer;                       // _2CC
-	Vector3f _2D0;                          // _2D0
+	Vector3f mTargetPosition;               // _2D0
 	int mPostFlickState;                    // _2DC
 	int _2E0;                               // _2E0
 	u32 _2E4;                               // _2E4, unknown
-	u32 _2E8;                               // _2E8, unknown
-	u32 _2EC;                               // _2EC, unknown
-	u32 _2F0;                               // _2F0, unknown
-	u32 _2F4;                               // _2F4, unknown
-	Vector3f _2F8;                          // _2F8
-	u8 _304[0xC];                           // _304, unknown
-	Vector3f _310[2];                       // _310
+	int _2E8;                               // _2E8, unknown
+	int _2EC;                               // _2EC, unknown
+	int _2F0;                               // _2F0, unknown
+	int _2F4;                               // _2F4, unknown
+	Vector3f mNextRoutePos;                 // _2F8
+	Vector3f mChestJointPosition;           // _304, unknown
+	Vector3f mHandPositions[2];             // _310
 	Vector3f _328;                          // _328
-	u32 _334;                               // _334
+	int _334;                               // _334
 	bool _338;                              // _338
 	f32 _33C;                               // _33C, timer?
 	s16 _340;                               // _340, next or current waypoint idx?
 	s16 _342;                               // _342, next or current waypoint idx?
-	u8 _344[0x4];                           // _344, unknown
+	s16 _344;                               // _344, unknown
 	u32 _348;                               // _348
 	u8 _34C;                                // _34C, unknown
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;     // _350
 	Sys::MatLoopAnimator* mMatLoopAnimator; // _358
 	PathNode* _35C;                         // _35C
-	FSM* _360;                              // _360
+	FSM* mFSM;                              // _360
 	Tyre::Obj* mTyre;                       // _364
-	u16 _368;                               // _368, unknown
+	u16 mWaistJointIndex;                   // _368, unknown
 	u16 mChestJointIndex;                   // _36A
 	u16 mLeftHandJointIndex;                // _36C
 	u16 mRightHandJointIndex;               // _36E
@@ -142,13 +164,17 @@ struct Obj : public EnemyBase {
 	u16 mRightFootJointIndex;               // _372
 	f32 _374;                               // _374
 	f32 _378;                               // _378
-	u8 _37C[0x14];                          // _37C
+	J3DMaterial* _37C;                      // _37C
+	Color4 mUsingColor;                     // _380
+	Color4 mTargetColor;                    // _384
+	Color4 _388;                            // _388
+	Color4 _38C;                            // _38C
 	efx::TKageMove* mEfxMove;               // _390
 	efx::TKageRun* mEfxRun;                 // _394
 	efx::TKageTyreup* mEfxTyreup;           // _398
 	efx::TKageDead1* mEfxDead;              // _39C
-	efx::TKageFlick* _3A0;                  // _3A0
-	efx::TKageFlick* _3A4;                  // _3A4
+	efx::TKageFlick* mEfxFrontFlick;        // _3A0
+	efx::TKageFlick* mEfxBackFlick;         // _3A4
 	u8 _3A8;                                // _3A8, unknown
 	u8 _3A9;                                // _3A9
 	u8 _3AA;                                // _3AA
@@ -228,31 +254,31 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_A10 = 1;
-		_A11 = 0;
-		_A12 = 1;
-		_A14 = 1;
-		_A15 = 0;
-		_A16 = 1;
-		_A17 = 1;
-		_A18 = 1;
-		_A1A = -1;
-		_A1C = 50.0f;
-		_A20 = 20.0f;
-		_A24 = 1.0f;
-		_A28 = 5.0f;
-		_A2C = 1.0f;
-		_A30 = 0.9f;
-		_A34 = 0.6f;
-		_A38 = 0.2f;
-		_A3C = 0.08f;
-		_A40 = 20.0f;
-		_A44 = -10.0f;
-		_A48 = 10.0f;
-		_A4C = 1.25f;
-		_A50 = 1100.0f;
-		_A54 = 300.0f;
-		_A58 = 1.0f;
+		_A10            = 1;
+		_A11            = 0;
+		_A12            = 1;
+		_A14            = 1;
+		_A15            = 0;
+		_A16            = 1;
+		mUseDrawBuffer8 = 1;
+		_A18            = 1;
+		_A1A            = -1;
+		_A1C            = 50.0f;
+		_A20            = 20.0f;
+		_A24            = 1.0f;
+		_A28            = 5.0f;
+		_A2C            = 1.0f;
+		_A30            = 0.9f;
+		_A34            = 0.6f;
+		_A38            = 0.2f;
+		_A3C            = 0.08f;
+		_A40            = 20.0f;
+		_A44            = -10.0f;
+		_A48            = 10.0f;
+		_A4C            = 1.25f;
+		_A50            = 1100.0f;
+		_A54            = 300.0f;
+		_A58            = 1.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -271,7 +297,7 @@ struct Parms : public EnemyParmsBase {
 	u8 _A14;                  // _A14, unknown
 	u8 _A15;                  // _A15, unknown
 	u8 _A16;                  // _A16, unknown
-	u8 _A17;                  // _A17, unknown
+	bool mUseDrawBuffer8;     // _A17, unknown
 	u8 _A18;                  // _A18, unknown
 	s16 _A1A;                 // _A1A, unknown
 	f32 _A1C;                 // _A1C
@@ -314,13 +340,6 @@ enum StateID {
 	WRAITH_Recover = 7,
 	WRAITH_Tired   = 8,
 	WRAITH_Count   = 9,
-};
-
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
-
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
 };
 
 struct State : public EnemyFSMState {

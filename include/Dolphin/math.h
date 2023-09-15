@@ -63,16 +63,16 @@ f64 ceil(f64);
 
 static inline f32 dolsqrtf(f32 x)
 {
-	static const double _half  = .5;
-	static const double _three = 3.0;
-	volatile float y;
+	static const f64 _half  = .5;
+	static const f64 _three = 3.0;
+	volatile f32 y;
 	if (x > 0.0f) {
 
-		double guess = __frsqrte((double)x);                         // returns an approximation to
-		guess        = _half * guess * (_three - guess * guess * x); // now have 12 sig bits
-		guess        = _half * guess * (_three - guess * guess * x); // now have 24 sig bits
-		guess        = _half * guess * (_three - guess * guess * x); // now have 32 sig bits
-		y            = (float)(x * guess);
+		f64 guess = __frsqrte((f64)x);                            // returns an approximation to
+		guess     = _half * guess * (_three - guess * guess * x); // now have 12 sig bits
+		guess     = _half * guess * (_three - guess * guess * x); // now have 24 sig bits
+		guess     = _half * guess * (_three - guess * guess * x); // now have 32 sig bits
+		y         = (f32)(x * guess);
 		return y;
 	}
 	return x;

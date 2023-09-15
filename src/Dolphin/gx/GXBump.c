@@ -39,7 +39,7 @@ void GXSetIndTexMtx(GXIndTexMtxID id, const Mtx23 mtx, s8 scale_exp)
 {
 	u32 val;
 	u32 field;
-	float mtx2[6];
+	f32 mtx2[6];
 
 	// scale_exp range is -17..46
 	// we need it in range 0..63

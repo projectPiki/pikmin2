@@ -4,6 +4,7 @@
 #include "types.h"
 #include "Dolphin/gx.h"
 #include "Dolphin/gx.h"
+#include "Color4.h"
 
 struct J3DGXColor : public GXColor {
 	J3DGXColor() { }
@@ -39,6 +40,14 @@ struct J3DGXColor : public GXColor {
 		g                   = otherBytes->g;
 		b                   = otherBytes->b;
 		a                   = otherBytes->a;
+	}
+
+	inline J3DGXColor(const Color4& other)
+	{ // may imply color4 inherits gxcolor
+		r = other.r;
+		g = other.g;
+		b = other.b;
+		a = other.a;
 	}
 
 	/** @fabricated */

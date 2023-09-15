@@ -154,7 +154,7 @@ struct PikAttackDirector : public TrackOnDirectorBase {
 };
 
 struct TrackOnDirector_Scaled : public TrackOnDirectorBase {
-	inline TrackOnDirector_Scaled(const char* name, int p2, float p3, float p4, long p5, long p6, unsigned long p7)
+	inline TrackOnDirector_Scaled(const char* name, int p2, f32 p3, f32 p4, s32 p5, s32 p6, u32 p7)
 	    : TrackOnDirectorBase(p2, name, p5, p6)
 	    , _54(p3)
 	    , _58(p4)

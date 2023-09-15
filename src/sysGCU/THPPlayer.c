@@ -1,63 +1,76 @@
+#include "THP/THPPlayer.h"
+#include "THP/THPRead.h"
+#include "THP/THPVideoDecode.h"
+#include "THP/THPAudioDecode.h"
+#include "THP/THPDraw.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JAudio/JAS/JASDriver.h"
+#include "PSM/THPDinamics.h"
+#include "Dolphin/ai.h"
+#include "string.h"
 
+static u32 WorkBuffer[16] ATTRIBUTE_ALIGN(32); // TODO, figure out if this is a struct
+static OSMessageQueue PrepareReadyQueue;
+static OSMessageQueue UsedTextureSetQueue;
+static OSMessage UsedTextureSetMessage[3];
+static s16 SoundBuffer[2][1120] ATTRIBUTE_ALIGN(32); // unsure if correct, could be a struct
+
+THPPlayer ActivePlayer;
+
+static BOOL Initialized;
+static void* PrepareReadyMessage;
+static VIRetraceCallback OldVIPostCallback;
+static int SoundBufferIndex;
+static s16* LastAudioBuffer;
+static s16* CurAudioBuffer;
+
+// clang-format off
+static u16 VolumeTable[128] = {
+    0, 2, 8, 18, 32, 50, 73, 99, 130,
+    164, 203, 245, 292, 343, 398, 457, 520,
+    587, 658, 733, 812, 895, 983, 1074, 1170,
+    1269, 1373, 1481, 1592, 1708, 1828, 1952, 2080,
+    2212, 2348, 2488, 2632, 2781, 2933, 3090, 3250,
+    3415, 3583, 3756, 3933, 4114, 4298, 4487, 4680,
+    4877, 5079, 5284, 5493, 5706, 5924, 6145, 6371,
+    6600, 6834, 7072, 7313, 7559, 7809, 8063, 8321,
+    8583, 8849, 9119, 9394, 9672, 9954, 10241, 10531,
+    10826, 11125, 11427, 11734, 12045, 12360, 12679, 13002,
+    13329, 13660, 13995, 14335, 14678, 15025, 15377, 15732,
+    16092, 16456, 16823, 17195, 17571, 17951, 18335, 18723,
+    19115, 19511, 19911, 20316, 20724, 21136, 21553, 21974,
+    22398, 22827, 23260, 23696, 24137, 24582, 25031, 25484,
+    25941, 26402, 26868, 27337, 27810, 28288, 28769, 29255,
+    29744, 30238, 30736, 31238, 31744, 32254, -32768
+};
+// clang-format on
+
+// forward declare statics
+static s16* audioCallbackWithMSound(s32 p1);
+static void PlayControl(u32);
+static BOOL ProperTimingForStart();
+static BOOL ProperTimingForGettingNextFrame();
+static void PushUsedTextureSet(OSMessage msg);
+static OSMessage PopUsedTextureSet();
+static void MixAudio(s16*, s16*, u32);
 
 /*
  * --INFO--
  * Address:	8044DE38
  * Size:	0000A8
  */
-void audioCallbackWithMSound(long)
+static s16* audioCallbackWithMSound(s32 p1)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r4, 0x4490
-	  lwz       r0, 0xA0(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x40
-	  lbz       r0, 0xA5(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x40
-	  lbz       r0, 0xA7(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x48
+	if (ActivePlayer.mIsOpen == FALSE || ActivePlayer.mInternalState != 2 || ActivePlayer.mAudioExist == 0) {
+		return nullptr;
+	}
 
-	.loc_0x40:
-	  li        r3, 0
-	  b         .loc_0x94
+	BOOL enable = OSEnableInterrupts();
+	SoundBufferIndex ^= 1;
+	MixAudio(SoundBuffer[SoundBufferIndex], nullptr, p1);
+	OSRestoreInterrupts(enable);
 
-	.loc_0x48:
-	  bl        -0x35F234
-	  lwz       r0, -0x63BC(r13)
-	  mr        r5, r31
-	  lis       r4, 0x8050
-	  mr        r31, r3
-	  xori      r7, r0, 0x1
-	  mulli     r6, r7, 0x8C0
-	  addi      r0, r4, 0x31A0
-	  stw       r7, -0x63BC(r13)
-	  li        r4, 0
-	  add       r3, r0, r6
-	  bl        0x1368
-	  mr        r3, r31
-	  bl        -0x35F254
-	  lwz       r4, -0x63BC(r13)
-	  lis       r3, 0x8050
-	  addi      r0, r3, 0x31A0
-	  mulli     r3, r4, 0x8C0
-	  add       r3, r0, r3
-
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	return SoundBuffer[SoundBufferIndex];
 }
 
 /*
@@ -65,91 +78,44 @@ void audioCallbackWithMSound(long)
  * Address:	........
  * Size:	00002C
  */
-void audioInitWithMSound()
-{
-	// UNUSED FUNCTION
-}
+static void audioInitWithMSound() { JASDriver::registerMixCallback(audioCallbackWithMSound, MixMode_InterLeave); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000028
  */
-void audioQuitWithMSound()
-{
-	// UNUSED FUNCTION
-}
+static void audioQuitWithMSound() { JASDriver::registerMixCallback(nullptr, MixMode_Mono); }
 
 /*
  * --INFO--
  * Address:	8044DEE0
  * Size:	0000D8
  */
-void THPPlayerInit(void)
+BOOL THPPlayerInit()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8050
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r3, 0x3100
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x63C8(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xBC
-	  lis       r3, 0x8051
-	  li        r4, 0
-	  addi      r3, r3, 0x4490
-	  li        r5, 0x1D0
-	  bl        -0x448E64
-	  bl        -0x3615FC
-	  addi      r3, r31, 0x60
-	  addi      r4, r31, 0x80
-	  li        r5, 0x3
-	  bl        -0x35EA70
-	  bl        -0x34F920
-	  cmpwi     r3, 0
-	  bne-      .loc_0x64
-	  li        r3, 0
-	  b         .loc_0xC0
+	if (Initialized == FALSE) {
+		memset(&ActivePlayer, 0, sizeof(THPPlayer));
+		LCEnable();
+		OSInitMessageQueue(&UsedTextureSetQueue, UsedTextureSetMessage, 3);
 
-	.loc_0x64:
-	  bl        -0x35F30C
-	  li        r5, 0
-	  lis       r4, 0x8045
-	  subi      r0, r4, 0x21C8
-	  stw       r5, -0x63BC(r13)
-	  mr        r30, r3
-	  li        r4, 0x3
-	  stw       r5, -0x63B8(r13)
-	  mr        r3, r0
-	  stw       r5, -0x63B4(r13)
-	  bl        -0x3A5D88
-	  mr        r3, r30
-	  bl        -0x35F314
-	  addi      r3, r31, 0xA0
-	  li        r4, 0
-	  li        r5, 0x1180
-	  bl        -0x448ED0
-	  addi      r3, r31, 0xA0
-	  li        r4, 0x1180
-	  bl        -0x361878
-	  li        r0, 0x1
-	  stw       r0, -0x63C8(r13)
+		if (THPInit() == FALSE) {
+			return FALSE;
+		}
 
-	.loc_0xBC:
-	  li        r3, 0x1
+		BOOL inter       = OSDisableInterrupts();
+		SoundBufferIndex = 0;
+		LastAudioBuffer  = nullptr;
+		CurAudioBuffer   = nullptr;
+		audioInitWithMSound();
+		OSRestoreInterrupts(inter);
 
-	.loc_0xC0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+		memset(&SoundBuffer, 0, sizeof(SoundBuffer));
+		DCFlushRange(&SoundBuffer, sizeof(SoundBuffer));
+		Initialized = TRUE;
+	}
+
+	return TRUE;
 }
 
 /*
@@ -157,24 +123,11 @@ void THPPlayerInit(void)
  * Address:	8044DFB8
  * Size:	000034
  */
-void THPPlayerQuit(void)
+void THPPlayerQuit()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x36166C
-	  li        r3, 0
-	  li        r4, 0
-	  bl        -0x3A5DEC
-	  li        r0, 0
-	  stw       r0, -0x63C8(r13)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	LCDisable();
+	audioQuitWithMSound();
+	Initialized = FALSE;
 }
 
 /*
@@ -182,248 +135,100 @@ void THPPlayerQuit(void)
  * Address:	8044DFEC
  * Size:	000334
  */
-void THPPlayerOpen(void)
+BOOL THPPlayerOpen(const char* fileName, BOOL onMemory)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r23, 0xC(r1)
-	  mr        r23, r3
-	  mr        r31, r4
-	  lwz       r0, -0x63C8(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x320
+	u32 readOffset;
+	int i;
 
-	.loc_0x2C:
-	  lis       r3, 0x8051
-	  addi      r30, r3, 0x4490
-	  lwz       r0, 0xA0(r30)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x48
-	  li        r3, 0
-	  b         .loc_0x320
+	if (Initialized == FALSE) {
+		return FALSE;
+	}
 
-	.loc_0x48:
-	  addi      r29, r30, 0x80
-	  li        r4, 0
-	  mr        r3, r29
-	  li        r5, 0xC
-	  bl        -0x448F90
-	  lis       r3, 0x8051
-	  li        r4, 0
-	  addi      r3, r3, 0x4490
-	  li        r5, 0x10
-	  addi      r28, r3, 0x8C
-	  mr        r3, r28
-	  bl        -0x448FAC
-	  lis       r4, 0x8051
-	  mr        r3, r23
-	  addi      r4, r4, 0x4490
-	  bl        -0x371BA4
-	  cmpwi     r3, 0
-	  bne-      .loc_0x98
-	  li        r3, 0
-	  b         .loc_0x320
+	if (ActivePlayer.mIsOpen) {
+		return FALSE;
+	}
 
-	.loc_0x98:
-	  li        r0, 0x1
-	  lis       r3, 0x8051
-	  lis       r4, 0x8050
-	  stb       r0, -0x63B0(r13)
-	  addi      r3, r3, 0x4490
-	  li        r5, 0x40
-	  addi      r4, r4, 0x3100
-	  li        r6, 0
-	  li        r7, 0x2
-	  bl        -0x371628
-	  cmpwi     r3, 0
-	  bge-      .loc_0xDC
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  bl        -0x371B28
-	  li        r3, 0
-	  b         .loc_0x320
+	memset(&ActivePlayer.mVideoInfo, 0, sizeof(THPVideoInfo));
+	memset(&ActivePlayer.mAudioInfo, 0, sizeof(THPAudioInfo));
 
-	.loc_0xDC:
-	  lis       r3, 0x8051
-	  li        r0, 0
-	  addi      r4, r3, 0x4490
-	  stb       r0, -0x63B0(r13)
-	  lis       r3, 0x8050
-	  li        r5, 0x30
-	  addi      r23, r4, 0x3C
-	  addi      r4, r3, 0x3100
-	  mr        r3, r23
-	  bl        -0x448F50
-	  mr        r3, r23
-	  addi      r4, r2, 0x2798
-	  bl        -0x383A38
-	  cmpwi     r3, 0
-	  beq-      .loc_0x12C
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  bl        -0x371B78
-	  li        r3, 0
-	  b         .loc_0x320
+	if (DVDOpen((char*)fileName, &ActivePlayer.mFileInfo) == FALSE) {
+		return FALSE;
+	}
 
-	.loc_0x12C:
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  lwz       r4, 0x40(r3)
-	  subis     r0, r4, 0x1
-	  cmplwi    r0, 0x1000
-	  beq-      .loc_0x150
-	  bl        -0x371B9C
-	  li        r3, 0
-	  b         .loc_0x320
+	gTHPReaderDvdAccess = 1;
+	if (DVDReadPrio(&ActivePlayer.mFileInfo, WorkBuffer, 64, 0, 2) < 0) {
+		DVDClose(&ActivePlayer.mFileInfo);
+		return FALSE;
+	}
+	gTHPReaderDvdAccess = 0;
 
-	.loc_0x150:
-	  lwz       r24, 0x5C(r3)
-	  li        r0, 0x1
-	  lis       r4, 0x8050
-	  stb       r0, -0x63B0(r13)
-	  addi      r4, r4, 0x3100
-	  mr        r6, r24
-	  li        r5, 0x20
-	  li        r7, 0x2
-	  bl        -0x3716DC
-	  cmpwi     r3, 0
-	  bge-      .loc_0x190
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  bl        -0x371BDC
-	  li        r3, 0
-	  b         .loc_0x320
+	memcpy(&ActivePlayer.mHeader.mMagic, WorkBuffer, sizeof(THPHeader));
 
-	.loc_0x190:
-	  lis       r3, 0x8051
-	  li        r0, 0
-	  addi      r4, r3, 0x4490
-	  stb       r0, -0x63B0(r13)
-	  lis       r3, 0x8050
-	  li        r5, 0x14
-	  addi      r25, r4, 0x6C
-	  addi      r4, r3, 0x3100
-	  mr        r3, r25
-	  bl        -0x449004
-	  lis       r3, 0x8051
-	  li        r0, 0
-	  addi      r27, r3, 0x4490
-	  addi      r24, r24, 0x14
-	  stb       r0, 0xA7(r27)
-	  mr        r26, r27
-	  li        r23, 0
-	  b         .loc_0x2DC
+	if (strcmp(ActivePlayer.mHeader.mMagic, "THP") != 0) {
+		DVDClose(&ActivePlayer.mFileInfo);
+		return FALSE;
+	}
 
-	.loc_0x1D8:
-	  lbz       r0, 0x70(r26)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x25C
-	  bge-      .loc_0x2CC
-	  cmpwi     r0, 0
-	  bge-      .loc_0x1F4
-	  b         .loc_0x2CC
+	if (ActivePlayer.mHeader.mVersion != 0x11000) {
+		DVDClose(&ActivePlayer.mFileInfo);
+		return FALSE;
+	}
 
-	.loc_0x1F4:
-	  li        r0, 0x1
-	  lis       r3, 0x8051
-	  lis       r4, 0x8050
-	  stb       r0, -0x63B0(r13)
-	  addi      r3, r3, 0x4490
-	  mr        r6, r24
-	  addi      r4, r4, 0x3100
-	  li        r5, 0x20
-	  li        r7, 0x2
-	  bl        -0x371784
-	  cmpwi     r3, 0
-	  bge-      .loc_0x238
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  bl        -0x371C84
-	  li        r3, 0
-	  b         .loc_0x320
+	gTHPReaderDvdAccess = 1;
+	readOffset          = ActivePlayer.mHeader.mCompInfoDataOffsets;
+	if (DVDReadPrio(&ActivePlayer.mFileInfo, WorkBuffer, 32, readOffset, 2) < 0) {
+		DVDClose(&ActivePlayer.mFileInfo);
+		return FALSE;
+	}
+	gTHPReaderDvdAccess = 0;
 
-	.loc_0x238:
-	  li        r0, 0
-	  lis       r3, 0x8050
-	  stb       r0, -0x63B0(r13)
-	  addi      r4, r3, 0x3100
-	  mr        r3, r29
-	  li        r5, 0xC
-	  bl        -0x4490A0
-	  addi      r24, r24, 0xC
-	  b         .loc_0x2D4
+	memcpy(&ActivePlayer.mCompInfo, WorkBuffer, sizeof(THPFrameCompInfo));
+	readOffset += sizeof(THPFrameCompInfo);
+	ActivePlayer.mAudioExist = 0;
 
-	.loc_0x25C:
-	  li        r0, 0x1
-	  lis       r3, 0x8051
-	  lis       r4, 0x8050
-	  stb       r0, -0x63B0(r13)
-	  addi      r3, r3, 0x4490
-	  mr        r6, r24
-	  addi      r4, r4, 0x3100
-	  li        r5, 0x20
-	  li        r7, 0x2
-	  bl        -0x3717EC
-	  cmpwi     r3, 0
-	  bge-      .loc_0x2A0
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  bl        -0x371CEC
-	  li        r3, 0
-	  b         .loc_0x320
+	for (i = 0; i < ActivePlayer.mCompInfo.mNumComponents; i++) {
+		switch (ActivePlayer.mCompInfo.mFrameComp[i]) {
+		case 0: {
+			gTHPReaderDvdAccess = 1;
+			if (DVDReadPrio(&ActivePlayer.mFileInfo, WorkBuffer, 32, readOffset, 2) < 0) {
+				DVDClose(&ActivePlayer.mFileInfo);
+				return FALSE;
+			}
+			gTHPReaderDvdAccess = 0;
 
-	.loc_0x2A0:
-	  li        r0, 0
-	  lis       r3, 0x8050
-	  stb       r0, -0x63B0(r13)
-	  addi      r4, r3, 0x3100
-	  mr        r3, r28
-	  li        r5, 0x10
-	  bl        -0x449108
-	  li        r0, 0x1
-	  addi      r24, r24, 0x10
-	  stb       r0, 0xA7(r27)
-	  b         .loc_0x2D4
+			memcpy(&ActivePlayer.mVideoInfo, WorkBuffer, sizeof(THPVideoInfo));
+			readOffset += sizeof(THPVideoInfo);
+			break;
+		}
+		case 1: {
+			gTHPReaderDvdAccess = 1;
+			if (DVDReadPrio(&ActivePlayer.mFileInfo, WorkBuffer, 32, readOffset, 2) < 0) {
+				DVDClose(&ActivePlayer.mFileInfo);
+				return FALSE;
+			}
+			gTHPReaderDvdAccess = 0;
 
-	.loc_0x2CC:
-	  li        r3, 0
-	  b         .loc_0x320
+			memcpy(&ActivePlayer.mAudioInfo, WorkBuffer, sizeof(THPAudioInfo));
+			readOffset += sizeof(THPAudioInfo);
+			ActivePlayer.mAudioExist = 1;
+			break;
+		}
 
-	.loc_0x2D4:
-	  addi      r26, r26, 0x1
-	  addi      r23, r23, 0x1
+		default:
+			return FALSE;
+		}
+	}
 
-	.loc_0x2DC:
-	  lwz       r0, 0x0(r25)
-	  cmplw     r23, r0
-	  blt+      .loc_0x1D8
-	  lis       r3, 0x8051
-	  lfs       f0, 0x279C(r2)
-	  addi      r4, r3, 0x4490
-	  li        r5, 0
-	  li        r0, 0x1
-	  stb       r5, 0xA5(r4)
-	  li        r3, 0x1
-	  stb       r5, 0xA4(r4)
-	  stb       r5, 0xA6(r4)
-	  stw       r31, 0xB0(r4)
-	  stw       r0, 0xA0(r30)
-	  stfs      f0, 0xDC(r4)
-	  stfs      f0, 0xE0(r4)
-	  stw       r5, 0xE8(r4)
+	ActivePlayer.mInternalState = 0;
+	ActivePlayer.mState         = 0;
+	ActivePlayer.mPlayFlag      = 0;
+	ActivePlayer.mIsOnMemory    = onMemory;
+	ActivePlayer.mIsOpen        = TRUE;
+	ActivePlayer.mCurVolume     = 127.0f;
+	ActivePlayer.mTargetVolume  = 127.0f;
+	ActivePlayer.mRampCount     = 0;
 
-	.loc_0x320:
-	  lmw       r23, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	return TRUE;
 }
 
 /*
@@ -431,36 +236,15 @@ void THPPlayerOpen(void)
  * Address:	8044E320
  * Size:	000054
  */
-void THPPlayerClose(void)
+BOOL THPPlayerClose()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x4490
-	  lwz       r0, 0xA0(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x40
-	  lbz       r0, 0xA4(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  li        r0, 0
-	  stw       r0, 0xA0(r3)
-	  bl        -0x371DC0
-	  li        r3, 0x1
-	  b         .loc_0x44
+	if (ActivePlayer.mIsOpen && ActivePlayer.mState == 0) {
+		ActivePlayer.mIsOpen = FALSE;
+		DVDClose(&ActivePlayer.mFileInfo);
+		return TRUE;
+	}
 
-	.loc_0x40:
-	  li        r3, 0
-
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	return FALSE;
 }
 
 /*
@@ -468,63 +252,24 @@ void THPPlayerClose(void)
  * Address:	8044E374
  * Size:	0000B0
  */
-void THPPlayerCalcNeedMemory(void)
+u32 THPPlayerCalcNeedMemory()
 {
-	/*
-	.loc_0x0:
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  lwz       r0, 0xA0(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0xA8
-	  lwz       r0, 0xB0(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x30
-	  lwz       r3, 0x58(r3)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r6,r0,0,0,26
-	  b         .loc_0x40
+	if (ActivePlayer.mIsOpen) {
+		u32 size = ActivePlayer.mIsOnMemory ? ALIGN_NEXT(ActivePlayer.mHeader.mMovieDataSize, 32)
+		                                    : ALIGN_NEXT(ActivePlayer.mHeader.mBufferSize, 32) * 10;
 
-	.loc_0x30:
-	  lwz       r3, 0x44(r3)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  mulli     r6, r0, 0xA
+		size += ALIGN_NEXT(ActivePlayer.mVideoInfo.mXSize * ActivePlayer.mVideoInfo.mYSize, 32) * 3;
+		size += ALIGN_NEXT(ActivePlayer.mVideoInfo.mXSize * ActivePlayer.mVideoInfo.mYSize / 4, 32) * 3;
+		size += ALIGN_NEXT(ActivePlayer.mVideoInfo.mXSize * ActivePlayer.mVideoInfo.mYSize / 4, 32) * 3;
 
-	.loc_0x40:
-	  lis       r3, 0x8051
-	  addi      r5, r3, 0x4490
-	  lwz       r4, 0x80(r5)
-	  lwz       r3, 0x84(r5)
-	  lbz       r0, 0xA7(r5)
-	  mullw     r3, r4, r3
-	  cmplwi    r0, 0
-	  addi      r0, r3, 0x1F
-	  rlwinm    r3,r3,30,2,31
-	  rlwinm    r4,r0,0,0,26
-	  addi      r0, r3, 0x1F
-	  mulli     r3, r4, 0x3
-	  rlwinm    r0,r0,0,0,26
-	  mulli     r0, r0, 0x3
-	  add       r6, r6, r3
-	  add       r6, r6, r0
-	  add       r6, r6, r0
-	  beq-      .loc_0xA0
-	  lwz       r0, 0x48(r5)
-	  rlwinm    r3,r0,2,0,29
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  mulli     r0, r0, 0x3
-	  add       r6, r6, r0
+		if (ActivePlayer.mAudioExist) {
+			size += ALIGN_NEXT(ActivePlayer.mHeader.mAudioMaxSamples * 4, 32) * 3;
+		}
 
-	.loc_0xA0:
-	  addi      r3, r6, 0x1000
-	  blr
+		return size + 0x1000;
+	}
 
-	.loc_0xA8:
-	  li        r3, 0
-	  blr
-	*/
+	return 0;
 }
 
 /*
@@ -532,155 +277,57 @@ void THPPlayerCalcNeedMemory(void)
  * Address:	8044E424
  * Size:	000210
  */
-void THPPlayerSetBuffer(void)
+BOOL THPPlayerSetBuffer(u8* data)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0x24(r1)
-	  addi      r5, r4, 0x4490
-	  stmw      r27, 0xC(r1)
-	  lwz       r0, 0xA0(r5)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x1F8
-	  lbz       r0, 0xA4(r5)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1F8
-	  lwz       r0, 0xB0(r5)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x4C
-	  lwz       r0, 0x58(r5)
-	  stw       r3, 0xB4(r5)
-	  add       r31, r3, r0
-	  b         .loc_0x114
+	u8* workPtr;
+	u32 ySampleSize;
+	u32 uvSampleSize;
+	int i;
+	if (ActivePlayer.mIsOpen && ActivePlayer.mState == 0) {
+		u8* workPtr = data;
+		if (ActivePlayer.mIsOnMemory) {
+			ActivePlayer.mMovieData = data;
+			workPtr += ActivePlayer.mHeader.mMovieDataSize;
+		} else {
 
-	.loc_0x4C:
-	  stw       r3, 0x100(r5)
-	  lwz       r4, 0x44(r5)
-	  addi      r0, r4, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r3, r0
-	  stw       r31, 0x10C(r5)
-	  lwz       r3, 0x44(r5)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
-	  stw       r31, 0x118(r5)
-	  lwz       r3, 0x44(r5)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
-	  stw       r31, 0x124(r5)
-	  lwz       r3, 0x44(r5)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
-	  stw       r31, 0x130(r5)
-	  lwz       r3, 0x44(r5)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
-	  stw       r31, 0x13C(r5)
-	  lwz       r4, 0x44(r5)
-	  addi      r0, r4, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
-	  stw       r31, 0x148(r5)
-	  lwz       r3, 0x44(r5)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
-	  stw       r31, 0x154(r5)
-	  lwz       r3, 0x44(r5)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
-	  stw       r31, 0x160(r5)
-	  lwz       r3, 0x44(r5)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
-	  stw       r31, 0x16C(r5)
-	  lwz       r3, 0x44(r5)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
+			for (i = 0; i < ARRAY_SIZE(ActivePlayer.mReadBuffer); i++) {
+				ActivePlayer.mReadBuffer[i].mPtr = workPtr;
+				workPtr += ALIGN_NEXT(ActivePlayer.mHeader.mBufferSize, 32);
+			}
+		}
 
-	.loc_0x114:
-	  lis       r3, 0x8051
-	  li        r29, 0
-	  addi      r30, r3, 0x4490
-	  lwz       r3, 0x80(r30)
-	  lwz       r0, 0x84(r30)
-	  mullw     r4, r3, r0
-	  rlwinm    r3,r4,30,2,31
-	  addi      r4, r4, 0x1F
-	  addi      r0, r3, 0x1F
-	  rlwinm    r28,r4,0,0,26
-	  rlwinm    r27,r0,0,0,26
+		ySampleSize  = ALIGN_NEXT(ActivePlayer.mVideoInfo.mXSize * ActivePlayer.mVideoInfo.mYSize, 32);
+		uvSampleSize = ALIGN_NEXT(ActivePlayer.mVideoInfo.mXSize * ActivePlayer.mVideoInfo.mYSize / 4, 32);
 
-	.loc_0x140:
-	  stw       r31, 0x178(r30)
-	  mr        r3, r31
-	  mr        r4, r28
-	  bl        -0x361E84
-	  add       r31, r31, r28
-	  mr        r4, r27
-	  stw       r31, 0x17C(r30)
-	  mr        r3, r31
-	  bl        -0x361E98
-	  add       r31, r31, r27
-	  mr        r4, r27
-	  stw       r31, 0x180(r30)
-	  mr        r3, r31
-	  bl        -0x361EAC
-	  addi      r29, r29, 0x1
-	  add       r31, r31, r27
-	  cmplwi    r29, 0x3
-	  addi      r30, r30, 0x10
-	  blt+      .loc_0x140
-	  lis       r3, 0x8051
-	  addi      r5, r3, 0x4490
-	  lbz       r0, 0xA7(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1E4
-	  lwz       r0, 0x48(r5)
-	  li        r4, 0
-	  stw       r31, 0x1A8(r5)
-	  rlwinm    r3,r0,2,0,29
-	  addi      r0, r3, 0x1F
-	  stw       r31, 0x1AC(r5)
-	  rlwinm    r0,r0,0,0,26
-	  add       r31, r31, r0
-	  stw       r4, 0x1B0(r5)
-	  stw       r31, 0x1B4(r5)
-	  stw       r31, 0x1B8(r5)
-	  add       r31, r31, r0
-	  stw       r4, 0x1BC(r5)
-	  stw       r31, 0x1C0(r5)
-	  stw       r31, 0x1C4(r5)
-	  add       r31, r31, r0
-	  stw       r4, 0x1C8(r5)
+		for (i = 0; i < ARRAY_SIZE(ActivePlayer.mTextureSet); i++) {
+			ActivePlayer.mTextureSet[i].mYTexture = workPtr;
 
-	.loc_0x1E4:
-	  lis       r4, 0x8051
-	  li        r3, 0x1
-	  addi      r4, r4, 0x4490
-	  stw       r31, 0x9C(r4)
-	  b         .loc_0x1FC
+			DCInvalidateRange(workPtr, ySampleSize);
+			workPtr += ySampleSize;
 
-	.loc_0x1F8:
-	  li        r3, 0
+			ActivePlayer.mTextureSet[i].mUTexture = workPtr;
+			DCInvalidateRange(workPtr, uvSampleSize);
+			workPtr += uvSampleSize;
 
-	.loc_0x1FC:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+			ActivePlayer.mTextureSet[i].mVTexture = workPtr;
+			DCInvalidateRange(workPtr, uvSampleSize);
+			workPtr += uvSampleSize;
+		}
+
+		if (ActivePlayer.mAudioExist) {
+			for (i = 0; i < ARRAY_SIZE(ActivePlayer.mAudioBuffer); i++) {
+				ActivePlayer.mAudioBuffer[i].mBuffer      = (s16*)workPtr;
+				ActivePlayer.mAudioBuffer[i].mCurPtr      = (s16*)workPtr;
+				ActivePlayer.mAudioBuffer[i].mValidSample = 0;
+				workPtr += ALIGN_NEXT(ActivePlayer.mHeader.mAudioMaxSamples * 4, 32);
+			}
+		}
+
+		ActivePlayer.mThpWorkArea = workPtr;
+		return TRUE;
+	}
+
+	return FALSE;
 }
 
 /*
@@ -690,7 +337,23 @@ void THPPlayerSetBuffer(void)
  */
 void InitAllMessageQueue()
 {
-	// UNUSED FUNCTION
+	int i;
+	if (ActivePlayer.mIsOnMemory == FALSE) {
+		for (i = 0; i < 10; i++) {
+			PushFreeReadBuffer((OSMessage*)&ActivePlayer.mReadBuffer[i]);
+		}
+	}
+
+	for (i = 0; i < 3; i++) {
+		PushFreeTextureSet((OSMessage*)&ActivePlayer.mTextureSet[i]);
+	}
+
+	if (ActivePlayer.mAudioExist) {
+		for (i = 0; i < 3; i++) {
+			PushFreeAudioBuffer((OSMessage*)&ActivePlayer.mAudioBuffer[i]);
+		}
+	}
+	OSInitMessageQueue(&PrepareReadyQueue, &PrepareReadyMessage, 1);
 }
 
 /*
@@ -698,9 +361,17 @@ void InitAllMessageQueue()
  * Address:	........
  * Size:	000040
  */
-void WaitUntilPrepare()
+BOOL WaitUntilPrepare()
 {
-	// UNUSED FUNCTION
+	OSMessage msg;
+
+	OSReceiveMessage(&PrepareReadyQueue, &msg, OS_MESSAGE_BLOCK);
+
+	if ((BOOL)msg) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
 }
 
 /*
@@ -708,310 +379,113 @@ void WaitUntilPrepare()
  * Address:	8044E634
  * Size:	000030
  */
-void PrepareReady(int)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x8050
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  addi      r3, r5, 0x3140
-	  li        r5, 0x1
-	  bl        -0x35F134
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void PrepareReady(int msg) { OSSendMessage(&PrepareReadyQueue, (OSMessage)msg, OS_MESSAGE_BLOCK); }
 
 /*
  * --INFO--
  * Address:	8044E664
  * Size:	000394
  */
-void THPPlayerPrepare(void)
+BOOL THPPlayerPrepare(int frame, u8 flag, int audioTrack)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x8051
-	  lis       r7, 0x804A
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  addi      r29, r6, 0x4490
-	  mr        r30, r3
-	  mr        r27, r4
-	  mr        r31, r5
-	  subi      r28, r7, 0x4B90
-	  lwz       r0, 0xA0(r29)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x37C
-	  lbz       r0, 0xA4(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x37C
-	  cmpwi     r30, 0
-	  ble-      .loc_0xE8
-	  lwz       r6, 0x60(r29)
-	  cmplwi    r6, 0
-	  bne-      .loc_0x60
-	  li        r3, 0
-	  b         .loc_0x380
+	u8* threadData;
+	if (ActivePlayer.mIsOpen && ActivePlayer.mState == 0) {
+		if (frame > 0) {
+			if (ActivePlayer.mHeader.mOffsetDataOffsets == 0) {
+				return FALSE;
+			}
 
-	.loc_0x60:
-	  lwz       r0, 0x50(r29)
-	  cmplw     r0, r30
-	  ble-      .loc_0xE0
-	  subi      r0, r30, 0x1
-	  li        r4, 0x1
-	  rlwinm    r0,r0,2,0,29
-	  lis       r3, 0x8050
-	  stb       r4, -0x63B0(r13)
-	  addi      r4, r3, 0x3100
-	  mr        r3, r29
-	  li        r5, 0x20
-	  add       r6, r6, r0
-	  li        r7, 0x2
-	  bl        -0x371C78
-	  cmpwi     r3, 0
-	  bge-      .loc_0xA8
-	  li        r3, 0
-	  b         .loc_0x380
+			if (ActivePlayer.mHeader.mNumFrames > frame) {
+				gTHPReaderDvdAccess = 1;
+				if (DVDReadPrio(&ActivePlayer.mFileInfo, WorkBuffer, 0x20, ActivePlayer.mHeader.mOffsetDataOffsets + (frame - 1) * 4, 2)
+				    < 0) {
+					return FALSE;
+				}
+				gTHPReaderDvdAccess = 0;
 
-	.loc_0xA8:
-	  lis       r4, 0x8051
-	  lis       r3, 0x8050
-	  addi      r5, r4, 0x4490
-	  lwzu      r7, 0x3100(r3)
-	  lwz       r4, 0x64(r5)
-	  li        r6, 0
-	  lwz       r0, 0x4(r3)
-	  add       r3, r4, r7
-	  stb       r6, -0x63B0(r13)
-	  sub       r0, r0, r7
-	  stw       r3, 0xB8(r5)
-	  stw       r30, 0xC0(r5)
-	  stw       r0, 0xBC(r5)
-	  b         .loc_0xFC
+				ActivePlayer.mInitOffset    = ActivePlayer.mHeader.mMovieDataOffsets + WorkBuffer[0];
+				ActivePlayer.mInitReadFrame = frame;
+				ActivePlayer.mInitReadSize  = WorkBuffer[1] - WorkBuffer[0];
 
-	.loc_0xE0:
-	  li        r3, 0
-	  b         .loc_0x380
+			} else {
+				return FALSE;
+			}
 
-	.loc_0xE8:
-	  lwz       r3, 0x64(r29)
-	  lwz       r0, 0x54(r29)
-	  stw       r3, 0xB8(r29)
-	  stw       r0, 0xBC(r29)
-	  stw       r30, 0xC0(r29)
+		} else {
+			ActivePlayer.mInitOffset    = ActivePlayer.mHeader.mMovieDataOffsets;
+			ActivePlayer.mInitReadSize  = ActivePlayer.mHeader.mFirstFrameSize;
+			ActivePlayer.mInitReadFrame = frame;
+		}
 
-	.loc_0xFC:
-	  lis       r3, 0x8051
-	  addi      r30, r3, 0x4490
-	  lbz       r0, 0xA7(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x130
-	  cmpwi     r31, 0
-	  blt-      .loc_0x124
-	  lwz       r0, 0x98(r30)
-	  cmplw     r31, r0
-	  blt-      .loc_0x12C
+		if (ActivePlayer.mAudioExist) {
+			if (audioTrack < 0 || audioTrack >= ActivePlayer.mAudioInfo.mSndNumTracks) {
+				return FALSE;
+			}
+			ActivePlayer.mCurAudioTrack = audioTrack;
+		}
 
-	.loc_0x124:
-	  li        r3, 0
-	  b         .loc_0x380
+		ActivePlayer.mPlayFlag         = flag & 1;
+		ActivePlayer.mVideoDecodeCount = 0;
 
-	.loc_0x12C:
-	  stw       r31, 0xEC(r30)
+		if (ActivePlayer.mIsOnMemory) {
+			gTHPReaderDvdAccess = 1;
+			if (DVDReadPrio(&ActivePlayer.mFileInfo, ActivePlayer.mMovieData, ActivePlayer.mHeader.mMovieDataSize,
+			                ActivePlayer.mHeader.mMovieDataOffsets, 2)
+			    < 0) {
+				return FALSE;
+			}
 
-	.loc_0x130:
-	  lis       r3, 0x8051
-	  rlwinm    r4,r27,0,31,31
-	  addi      r31, r3, 0x4490
-	  li        r3, 0
-	  lwz       r0, 0xB0(r31)
-	  stb       r4, 0xA6(r31)
-	  cmpwi     r0, 0
-	  stw       r3, 0xD8(r31)
-	  beq-      .loc_0x1D0
-	  li        r0, 0x1
-	  lwz       r4, 0xB4(r31)
-	  stb       r0, -0x63B0(r13)
-	  mr        r3, r31
-	  lwz       r5, 0x58(r31)
-	  li        r7, 0x2
-	  lwz       r6, 0x64(r31)
-	  bl        -0x371D54
-	  cmpwi     r3, 0
-	  bge-      .loc_0x184
-	  li        r3, 0
-	  b         .loc_0x380
+			gTHPReaderDvdAccess = 0;
 
-	.loc_0x184:
-	  lis       r3, 0x8051
-	  li        r6, 0
-	  addi      r3, r3, 0x4490
-	  lwz       r4, 0xB4(r31)
-	  lwz       r0, 0xB8(r3)
-	  li        r3, 0xE
-	  lwz       r5, 0x64(r31)
-	  add       r0, r4, r0
-	  stb       r6, -0x63B0(r13)
-	  sub       r25, r0, r5
-	  mr        r4, r25
-	  bl        0x10A0
-	  lbz       r0, 0xA7(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x250
-	  mr        r4, r25
-	  li        r3, 0xC
-	  bl        -0x1568
-	  b         .loc_0x250
+			threadData = ActivePlayer.mMovieData + ActivePlayer.mInitOffset - ActivePlayer.mHeader.mMovieDataOffsets;
+			CreateVideoDecodeThread(14, threadData);
 
-	.loc_0x1D0:
-	  li        r3, 0xE
-	  li        r4, 0
-	  bl        0x1078
-	  cmpwi     r3, 0
-	  bne-      .loc_0x1F8
-	  addi      r3, r28, 0
-	  addi      r5, r28, 0xC
-	  li        r4, 0x315
-	  crclr     6, 0x6
-	  bl        -0x424218
+			if (ActivePlayer.mAudioExist) {
+				CreateAudioDecodeThread(12, threadData);
+			}
 
-	.loc_0x1F8:
-	  lbz       r0, 0xA7(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x22C
-	  li        r3, 0xC
-	  li        r4, 0
-	  bl        -0x15AC
-	  cmpwi     r3, 0
-	  bne-      .loc_0x22C
-	  addi      r3, r28, 0
-	  addi      r5, r28, 0x30
-	  li        r4, 0x321
-	  crclr     6, 0x6
-	  bl        -0x42424C
+		} else {
+			JUT_ASSERTLINE(789, CreateVideoDecodeThread(14, 0), "CreateVideoDecodeThread failure.\n");
 
-	.loc_0x22C:
-	  li        r3, 0x8
-	  bl        0xCF8
-	  cmpwi     r3, 0
-	  bne-      .loc_0x250
-	  addi      r3, r28, 0
-	  addi      r5, r28, 0x54
-	  li        r4, 0x32C
-	  crclr     6, 0x6
-	  bl        -0x424270
+			if (ActivePlayer.mAudioExist) {
+				JUT_ASSERTLINE(801, CreateAudioDecodeThread(12, nullptr), "CreateAudioDecodeThread failure.\n");
+			}
+			JUT_ASSERTLINE(812, CreateReadThread(8), "CreateReadThread failure.\n");
+		}
 
-	.loc_0x250:
-	  lwz       r0, 0xB0(r31)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x280
-	  lis       r3, 0x8051
-	  li        r27, 0
-	  addi      r26, r3, 0x4490
+		// ActivePlayer.mCurVideoNumber = -1;
+		// ActivePlayer.mCurAudioNumber = 0;
 
-	.loc_0x268:
-	  addi      r3, r26, 0x100
-	  bl        0xF50
-	  addi      r27, r27, 0x1
-	  addi      r26, r26, 0xC
-	  cmpwi     r27, 0xA
-	  blt+      .loc_0x268
+		InitAllMessageQueue();
+		VideoDecodeThreadStart();
 
-	.loc_0x280:
-	  lis       r3, 0x8051
-	  li        r25, 0
-	  addi      r27, r3, 0x4490
-	  mr        r26, r27
+		if (ActivePlayer.mAudioExist) {
+			AudioDecodeThreadStart();
+		}
 
-	.loc_0x290:
-	  addi      r3, r26, 0x178
-	  bl        0x1454
-	  addi      r25, r25, 0x1
-	  addi      r26, r26, 0x10
-	  cmpwi     r25, 0x3
-	  blt+      .loc_0x290
-	  lbz       r0, 0xA7(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2D0
-	  li        r26, 0
+		if (ActivePlayer.mIsOnMemory == 0) {
+			ReadThreadStart();
+		}
 
-	.loc_0x2B8:
-	  addi      r3, r27, 0x1A8
-	  bl        -0x1340
-	  addi      r26, r26, 0x1
-	  addi      r27, r27, 0xC
-	  cmpwi     r26, 0x3
-	  blt+      .loc_0x2B8
+		if (!WaitUntilPrepare()) {
+			return FALSE;
+		}
 
-	.loc_0x2D0:
-	  lis       r3, 0x8050
-	  subi      r4, r13, 0x63C4
-	  addi      r3, r3, 0x3140
-	  li        r5, 0x1
-	  bl        -0x35F488
-	  bl        0x1044
-	  lbz       r0, 0xA7(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2F8
-	  bl        -0x15C0
+		ActivePlayer.mState           = 1;
+		ActivePlayer.mInternalState   = 0;
+		ActivePlayer.mDispTextureSet  = nullptr;
+		ActivePlayer.mPlayAudioBuffer = nullptr;
+		ActivePlayer.mCurVideoNumber  = 0;
+		ActivePlayer.mCurAudioNumber  = 0;
 
-	.loc_0x2F8:
-	  lwz       r0, 0xB0(r31)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x308
-	  bl        0xCC4
+		OldVIPostCallback = VISetPostRetraceCallback(PlayControl);
 
-	.loc_0x308:
-	  lis       r3, 0x8050
-	  addi      r4, r1, 0x8
-	  addi      r3, r3, 0x3140
-	  li        r5, 0x1
-	  bl        -0x35F398
-	  lwz       r0, 0x8(r1)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x330
-	  li        r3, 0
-	  b         .loc_0x380
+		OSReport("THPPlayerPrepare()終了\n"); // 'THPPlayerPrepare end'
 
-	.loc_0x330:
-	  lis       r4, 0x8051
-	  li        r5, 0x1
-	  li        r0, 0
-	  lis       r3, 0x8045
-	  addi      r4, r4, 0x4490
-	  stb       r5, 0xA4(r29)
-	  subi      r3, r3, 0x149C
-	  stb       r0, 0xA5(r4)
-	  stw       r0, 0xF8(r4)
-	  stw       r0, 0xFC(r4)
-	  stw       r0, 0xF0(r4)
-	  stw       r0, 0xF4(r4)
-	  bl        -0x37DF24
-	  stw       r3, -0x63C0(r13)
-	  addi      r3, r28, 0x70
-	  crclr     6, 0x6
-	  bl        -0x3612E8
-	  li        r3, 0x1
-	  b         .loc_0x380
+		return TRUE;
+	}
 
-	.loc_0x37C:
-	  li        r3, 0
-
-	.loc_0x380:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	return FALSE;
 }
 
 /*
@@ -1019,39 +493,17 @@ void THPPlayerPrepare(void)
  * Address:	8044E9F8
  * Size:	000060
  */
-void THPPlayerPlay(void)
+BOOL THPPlayerPlay()
 {
-	/*
-	.loc_0x0:
-	  lis       r3, 0x8051
-	  addi      r7, r3, 0x4490
-	  lwz       r0, 0xA0(r7)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x58
-	  lbz       r0, 0xA4(r7)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x28
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x58
+	if (ActivePlayer.mIsOpen && (ActivePlayer.mState == 1 || ActivePlayer.mState == 4)) {
+		ActivePlayer.mState        = 2;
+		ActivePlayer.mPrevCount    = 0;
+		ActivePlayer.mCurCount     = 0;
+		ActivePlayer.mRetraceCount = -1;
 
-	.loc_0x28:
-	  lis       r3, 0x8051
-	  li        r6, 0x2
-	  addi      r4, r3, 0x4490
-	  li        r5, 0
-	  li        r0, -0x1
-	  stb       r6, 0xA4(r7)
-	  li        r3, 0x1
-	  stw       r5, 0xD0(r4)
-	  stw       r5, 0xD4(r4)
-	  stw       r0, 0xCC(r4)
-	  stw       r0, 0xC8(r4)
-	  blr
-
-	.loc_0x58:
-	  li        r3, 0
-	  blr
-	*/
+		return TRUE;
+	}
+	return FALSE;
 }
 
 /*
@@ -1059,69 +511,37 @@ void THPPlayerPlay(void)
  * Address:	8044EA58
  * Size:	0000D0
  */
-void THPPlayerStop(void)
+void THPPlayerStop()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x14(r1)
-	  addi      r4, r3, 0x4490
-	  lwz       r0, 0xA0(r4)
-	  cmpwi     r0, 0
-	  beq-      .loc_0xC0
-	  lbz       r0, 0xA4(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC0
-	  li        r0, 0
-	  lwz       r3, -0x63C0(r13)
-	  stb       r0, 0xA5(r4)
-	  stb       r0, 0xA4(r4)
-	  bl        -0x37DFF4
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  lwz       r0, 0xB0(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x5C
-	  bl        -0x36F974
-	  bl        0xBB0
+	if (ActivePlayer.mIsOpen && ActivePlayer.mState != 0) {
+		ActivePlayer.mInternalState = 0;
+		ActivePlayer.mState         = 0;
 
-	.loc_0x5C:
-	  bl        0xF0C
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  lbz       r0, 0xA7(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x94
-	  bl        -0x1700
-	  li        r3, 0
-	  li        r4, 0
-	  bl        -0x3A68F4
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x4B08
-	  crclr     6, 0x6
-	  bl        -0x3613FC
+		VISetPostRetraceCallback(OldVIPostCallback);
 
-	.loc_0x94:
-	  bl        0x674
-	  cmplwi    r3, 0
-	  bne+      .loc_0x94
-	  lis       r3, 0x8051
-	  li        r0, 0
-	  addi      r3, r3, 0x4490
-	  lfs       f0, 0xE0(r3)
-	  stw       r0, 0xE8(r3)
-	  stfs      f0, 0xDC(r3)
-	  stw       r0, 0xA8(r3)
-	  stw       r0, 0xAC(r3)
+		if (ActivePlayer.mIsOnMemory == 0) {
+			DVDCancel(&ActivePlayer.mFileInfo.cBlock);
+			ReadThreadCancel();
+		}
 
-	.loc_0xC0:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+		VideoDecodeThreadCancel();
+
+		if (ActivePlayer.mAudioExist) {
+			AudioDecodeThreadCancel();
+			audioQuitWithMSound();
+
+			OSReport("オーディオ関係を初期化\n"); // 'initialize audio-related information'
+		}
+
+		while (PopUsedTextureSet() != 0) {
+			;
+		}
+
+		ActivePlayer.mRampCount  = 0;
+		ActivePlayer.mCurVolume  = ActivePlayer.mTargetVolume;
+		ActivePlayer.mDvdError   = 0;
+		ActivePlayer.mVideoError = 0;
+	}
 }
 
 /*
@@ -1129,38 +549,14 @@ void THPPlayerStop(void)
  * Address:	8044EB28
  * Size:	00003C
  */
-void THPPlayerPause(void)
+BOOL THPPlayerPause()
 {
-	/*
-	.loc_0x0:
-	  lis       r3, 0x8051
-	  addi      r4, r3, 0x4490
-	  lwz       r0, 0xA0(r4)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x34
-	  lbz       r0, 0xA4(r4)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x34
-	  li        r0, 0x4
-	  li        r3, 0x1
-	  stb       r0, 0xA5(r4)
-	  stb       r0, 0xA4(r4)
-	  blr
-
-	.loc_0x34:
-	  li        r3, 0
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001C4
- */
-void THPPlayerSkip(void)
-{
-	// UNUSED FUNCTION
+	if (ActivePlayer.mIsOpen && ActivePlayer.mState == 2) {
+		ActivePlayer.mInternalState = 4;
+		ActivePlayer.mState         = 4;
+		return TRUE;
+	}
+	return FALSE;
 }
 
 /*
@@ -1168,219 +564,86 @@ void THPPlayerSkip(void)
  * Address:	8044EB64
  * Size:	0002B8
  */
-void PlayControl(unsigned long)
+static void PlayControl(u32 retraceCnt)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  lwz       r12, -0x63C0(r13)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x2C
-	  mtctr     r12
-	  bctrl
+	THPTextureSet* decodedTexture;
 
-	.loc_0x2C:
-	  lis       r3, 0x8051
-	  li        r30, -0x1
-	  addi      r31, r3, 0x4490
-	  lwz       r0, 0xA0(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x29C
-	  lbz       r0, 0xA4(r31)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x29C
-	  lwz       r0, 0xA8(r31)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x68
-	  lwz       r0, 0xAC(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x80
+	if (OldVIPostCallback != nullptr) {
+		OldVIPostCallback(retraceCnt);
+	}
 
-	.loc_0x68:
-	  lis       r3, 0x8051
-	  li        r0, 0x5
-	  addi      r3, r3, 0x4490
-	  stb       r0, 0xA4(r31)
-	  stb       r0, 0xA5(r3)
-	  b         .loc_0x29C
+	decodedTexture = (THPTextureSet*)-1;
+	if (ActivePlayer.mIsOpen && ActivePlayer.mState == 2) {
+		if (ActivePlayer.mDvdError || ActivePlayer.mVideoError) {
+			ActivePlayer.mState         = 5;
+			ActivePlayer.mInternalState = 5;
+			return;
+		}
 
-	.loc_0x80:
-	  lwz       r3, 0xCC(r31)
-	  li        r7, 0x1
-	  lwz       r0, 0xC8(r31)
-	  li        r6, 0
-	  addc      r5, r3, r7
-	  adde      r4, r0, r6
-	  stw       r5, 0xCC(r31)
-	  xor       r3, r5, r6
-	  xor       r0, r4, r6
-	  stw       r4, 0xC8(r31)
-	  or.       r0, r3, r0
-	  bne-      .loc_0x140
-	  bl        .loc_0x2B8
-	  cmpwi     r3, 0
-	  beq-      .loc_0x130
-	  lis       r3, 0x8051
-	  addi      r29, r3, 0x4490
-	  lbz       r0, 0xA7(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x120
-	  lwz       r3, 0xF4(r29)
-	  lwz       r0, 0xF0(r29)
-	  sub       r0, r0, r3
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0x114
-	  li        r3, 0
-	  bl        0x1130
-	  lis       r5, 0x8051
-	  lwz       r4, 0xF0(r29)
-	  addi      r6, r5, 0x4490
-	  mr        r30, r3
-	  lwz       r5, 0xD8(r6)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0xF0(r29)
-	  subi      r0, r5, 0x1
-	  stw       r0, 0xD8(r6)
-	  b         .loc_0x1C8
+		if (++ActivePlayer.mRetraceCount == 0) {
+			if (ProperTimingForStart()) {
+				if (ActivePlayer.mAudioExist) {
+					if (ActivePlayer.mCurVideoNumber - ActivePlayer.mCurAudioNumber <= 1) {
+						decodedTexture = (THPTextureSet*)PopDecodedTextureSet(0);
 
-	.loc_0x114:
-	  li        r0, 0x2
-	  stb       r0, 0xA5(r29)
-	  b         .loc_0x1C8
+						ActivePlayer.mVideoDecodeCount--;
+						ActivePlayer.mCurVideoNumber++;
 
-	.loc_0x120:
-	  li        r3, 0
-	  bl        0x10F4
-	  mr        r30, r3
-	  b         .loc_0x1C8
+					} else {
+						ActivePlayer.mInternalState = 2;
+					}
+				} else {
+					decodedTexture = (THPTextureSet*)PopDecodedTextureSet(0);
+				}
 
-	.loc_0x130:
-	  li        r0, -0x1
-	  stw       r0, 0xCC(r31)
-	  stw       r0, 0xC8(r31)
-	  b         .loc_0x1C8
+			} else {
+				ActivePlayer.mRetraceCount = -1;
+			}
 
-	.loc_0x140:
-	  xor       r3, r5, r7
-	  xor       r0, r4, r6
-	  or.       r0, r3, r0
-	  bne-      .loc_0x158
-	  li        r0, 0x2
-	  stb       r0, 0xA5(r31)
+		} else {
+			if (ActivePlayer.mRetraceCount == 1) {
+				ActivePlayer.mInternalState = 2;
+			}
 
-	.loc_0x158:
-	  bl        0x1CC
-	  cmpwi     r3, 0
-	  beq-      .loc_0x1C8
-	  lis       r3, 0x8051
-	  addi      r29, r3, 0x4490
-	  lbz       r0, 0xA7(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1BC
-	  lwz       r3, 0xF4(r29)
-	  lwz       r0, 0xF0(r29)
-	  sub       r0, r0, r3
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0x1C8
-	  li        r3, 0
-	  bl        0x1088
-	  lis       r5, 0x8051
-	  lwz       r4, 0xF0(r29)
-	  addi      r6, r5, 0x4490
-	  mr        r30, r3
-	  lwz       r5, 0xD8(r6)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0xF0(r29)
-	  subi      r0, r5, 0x1
-	  stw       r0, 0xD8(r6)
-	  b         .loc_0x1C8
+			if (ProperTimingForGettingNextFrame()) {
+				if (ActivePlayer.mAudioExist) {
+					if (ActivePlayer.mCurVideoNumber - ActivePlayer.mCurAudioNumber <= 1) {
+						decodedTexture = (THPTextureSet*)PopDecodedTextureSet(0);
+						ActivePlayer.mVideoDecodeCount--;
+						ActivePlayer.mCurVideoNumber++;
+					}
 
-	.loc_0x1BC:
-	  li        r3, 0
-	  bl        0x1058
-	  mr        r30, r3
+				} else {
+					decodedTexture = (THPTextureSet*)PopDecodedTextureSet(0);
+				}
+			}
+		}
 
-	.loc_0x1C8:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1F8
-	  addis     r0, r30, 0x1
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x1F8
-	  lis       r3, 0x8051
-	  addi      r29, r3, 0x4490
-	  lwz       r3, 0xF8(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1F4
-	  bl        0x3DC
+		if (decodedTexture && decodedTexture != (THPTextureSet*)-1) {
+			if (ActivePlayer.mDispTextureSet) {
+				PushUsedTextureSet(ActivePlayer.mDispTextureSet);
+			}
+			ActivePlayer.mDispTextureSet = decodedTexture;
+		}
 
-	.loc_0x1F4:
-	  stw       r30, 0xF8(r29)
-
-	.loc_0x1F8:
-	  lis       r3, 0x8051
-	  addi      r5, r3, 0x4490
-	  lbz       r0, 0xA6(r5)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0x29C
-	  lbz       r0, 0xA7(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x24C
-	  lwz       r4, 0xF4(r5)
-	  lwz       r3, 0xC0(r5)
-	  lwz       r0, 0x50(r5)
-	  add       r3, r4, r3
-	  cmplw     r3, r0
-	  bne-      .loc_0x29C
-	  lwz       r0, 0xFC(r5)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x29C
-	  li        r0, 0x3
-	  stb       r0, 0xA5(r5)
-	  stb       r0, 0xA4(r31)
-	  b         .loc_0x29C
-
-	.loc_0x24C:
-	  lwz       r3, 0xF8(r5)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x268
-	  lwz       r3, 0xC(r3)
-	  lwz       r0, 0xC0(r5)
-	  add       r5, r3, r0
-	  b         .loc_0x270
-
-	.loc_0x268:
-	  lwz       r3, 0xC0(r5)
-	  subi      r5, r3, 0x1
-
-	.loc_0x270:
-	  lis       r3, 0x8051
-	  addi      r4, r3, 0x4490
-	  lwz       r3, 0x50(r4)
-	  subi      r0, r3, 0x1
-	  cmplw     r5, r0
-	  bne-      .loc_0x29C
-	  cmplwi    r30, 0
-	  bne-      .loc_0x29C
-	  li        r0, 0x3
-	  stb       r0, 0xA5(r4)
-	  stb       r0, 0xA4(r31)
-
-	.loc_0x29C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x2B8:
-	*/
+		if ((ActivePlayer.mPlayFlag & 1) == 0) {
+			if (ActivePlayer.mAudioExist) {
+				int audioFrame = ActivePlayer.mCurAudioNumber + ActivePlayer.mInitReadFrame;
+				if (audioFrame == ActivePlayer.mHeader.mNumFrames && ActivePlayer.mPlayAudioBuffer == NULL) {
+					ActivePlayer.mInternalState = 3;
+					ActivePlayer.mState         = 3;
+				}
+			} else {
+				int curFrame = ActivePlayer.mDispTextureSet != NULL
+				                 ? ActivePlayer.mDispTextureSet->mFrameNumber + ActivePlayer.mInitReadFrame
+				                 : ActivePlayer.mInitReadFrame - 1;
+				if (curFrame == ActivePlayer.mHeader.mNumFrames - 1 && decodedTexture == NULL) {
+					ActivePlayer.mInternalState = 3;
+					ActivePlayer.mState         = 3;
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -1388,46 +651,21 @@ void PlayControl(unsigned long)
  * Address:	8044EE1C
  * Size:	00006C
  */
-void ProperTimingForStart()
+static BOOL ProperTimingForStart()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x4490
-	  lwz       r3, 0x88(r3)
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x34
-	  bl        -0x37CC4C
-	  cmplwi    r3, 0
-	  bne-      .loc_0x58
-	  li        r3, 0x1
-	  b         .loc_0x5C
+	if (ActivePlayer.mVideoInfo.mVideoType & 1) {
+		if (VIGetNextField() == 0) {
+			return TRUE;
+		}
+	} else if (ActivePlayer.mVideoInfo.mVideoType & 2) {
+		if (VIGetNextField() == 1) {
+			return TRUE;
+		}
+	} else {
+		return TRUE;
+	}
 
-	.loc_0x34:
-	  rlwinm.   r0,r3,0,30,30
-	  beq-      .loc_0x50
-	  bl        -0x37CC68
-	  cmplwi    r3, 0x1
-	  bne-      .loc_0x58
-	  li        r3, 0x1
-	  b         .loc_0x5C
-
-	.loc_0x50:
-	  li        r3, 0x1
-	  b         .loc_0x5C
-
-	.loc_0x58:
-	  li        r3, 0
-
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	return FALSE;
 }
 
 /*
@@ -1435,103 +673,31 @@ void ProperTimingForStart()
  * Address:	8044EE88
  * Size:	000140
  */
-void ProperTimingForGettingNextFrame()
+static BOOL ProperTimingForGettingNextFrame()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x24(r1)
-	  addi      r3, r3, 0x4490
-	  stw       r31, 0x1C(r1)
-	  lwz       r4, 0x88(r3)
-	  rlwinm.   r0,r4,0,31,31
-	  beq-      .loc_0x38
-	  bl        -0x37CCBC
-	  cmplwi    r3, 0
-	  bne-      .loc_0x128
-	  li        r3, 0x1
-	  b         .loc_0x12C
+	if (ActivePlayer.mVideoInfo.mVideoType & 1) {
+		if (VIGetNextField() == 0) {
+			return TRUE;
+		}
+	} else if (ActivePlayer.mVideoInfo.mVideoType & 2) {
+		if (VIGetNextField() == 1) {
+			return TRUE;
+		}
+	} else {
+		int rate = ActivePlayer.mHeader.mFrameRate * 100.0f;
+		if (VIGetTvFormat() == VI_PAL) {
+			ActivePlayer.mCurCount = ActivePlayer.mRetraceCount * rate / 5000;
+		} else {
+			ActivePlayer.mCurCount = ActivePlayer.mRetraceCount * rate / 5994;
+		}
 
-	.loc_0x38:
-	  rlwinm.   r0,r4,0,30,30
-	  beq-      .loc_0x54
-	  bl        -0x37CCD8
-	  cmplwi    r3, 0x1
-	  bne-      .loc_0x128
-	  li        r3, 0x1
-	  b         .loc_0x12C
+		if (ActivePlayer.mPrevCount != ActivePlayer.mCurCount) {
+			ActivePlayer.mPrevCount = ActivePlayer.mCurCount;
+			return TRUE;
+		}
+	}
 
-	.loc_0x54:
-	  lfs       f1, 0x27A0(r2)
-	  lfs       f0, 0x4C(r3)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r31, 0xC(r1)
-	  bl        -0x37CBD0
-	  cmplwi    r3, 0x1
-	  bne-      .loc_0xC0
-	  lis       r3, 0x8051
-	  srawi     r0, r31, 0x1F
-	  addi      r3, r3, 0x4490
-	  li        r5, 0
-	  lwz       r8, 0xCC(r3)
-	  li        r6, 0x1388
-	  lwz       r4, 0xC8(r3)
-	  mulhwu    r3, r8, r31
-	  mullw     r7, r4, r31
-	  mullw     r0, r8, r0
-	  add       r3, r3, r7
-	  mullw     r4, r8, r31
-	  add       r3, r3, r0
-	  bl        -0x38D170
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  stw       r4, 0xD4(r3)
-	  b         .loc_0x104
-
-	.loc_0xC0:
-	  lis       r3, 0x8051
-	  srawi     r0, r31, 0x1F
-	  addi      r3, r3, 0x4490
-	  li        r5, 0
-	  lwz       r8, 0xCC(r3)
-	  li        r6, 0x176A
-	  lwz       r4, 0xC8(r3)
-	  mulhwu    r3, r8, r31
-	  mullw     r7, r4, r31
-	  mullw     r0, r8, r0
-	  add       r3, r3, r7
-	  mullw     r4, r8, r31
-	  add       r3, r3, r0
-	  bl        -0x38D1B8
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  stw       r4, 0xD4(r3)
-
-	.loc_0x104:
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  lwz       r0, 0xD0(r3)
-	  lwz       r4, 0xD4(r3)
-	  cmpw      r0, r4
-	  beq-      .loc_0x128
-	  stw       r4, 0xD0(r3)
-	  li        r3, 0x1
-	  b         .loc_0x12C
-
-	.loc_0x128:
-	  li        r3, 0
-
-	.loc_0x12C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	return FALSE;
 }
 
 /*
@@ -1539,69 +705,20 @@ void ProperTimingForGettingNextFrame()
  * Address:	8044EFC8
  * Size:	0000D8
  */
-void THPPlayerDrawCurrentFrame(void)
+int THPPlayerDrawCurrentFrame(GXRenderModeObj* rmode, int x, int y, int z, int w)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r8, 0x8051
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  addi      r31, r8, 0x4490
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  mr        r30, r7
-	  lwz       r0, 0xA0(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0xC0
-	  lbz       r0, 0xA4(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC0
-	  lwz       r0, 0xF8(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC0
-	  bl        -0x1878
-	  lwz       r5, 0xF8(r31)
-	  extsh     r0, r30
-	  lis       r3, 0x8051
-	  extsh     r6, r27
-	  stw       r0, 0x8(r1)
-	  addi      r3, r3, 0x4490
-	  extsh     r7, r28
-	  extsh     r10, r29
-	  lwz       r4, 0x80(r3)
-	  lwz       r0, 0x84(r3)
-	  lwz       r3, 0x0(r5)
-	  extsh     r8, r4
-	  lwz       r4, 0x4(r5)
-	  extsh     r9, r0
-	  lwz       r5, 0x8(r5)
-	  bl        -0x13F8
-	  bl        -0x19D4
-	  lwz       r4, 0xF8(r31)
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  lwz       r4, 0xC(r4)
-	  lwz       r0, 0xC0(r3)
-	  lwz       r3, 0x50(r3)
-	  add       r4, r4, r0
-	  divwu     r0, r4, r3
-	  mullw     r0, r0, r3
-	  sub       r3, r4, r0
-	  b         .loc_0xC4
-
-	.loc_0xC0:
-	  li        r3, -0x1
-
-	.loc_0xC4:
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	int frame;
+	if (ActivePlayer.mIsOpen && ActivePlayer.mState != 0 && ActivePlayer.mDispTextureSet) {
+		THPGXYuv2RgbSetup(rmode);
+		THPGXYuv2RgbDraw((u32*)ActivePlayer.mDispTextureSet->mYTexture, (u32*)ActivePlayer.mDispTextureSet->mUTexture,
+		                 (u32*)ActivePlayer.mDispTextureSet->mVTexture, x, y, ActivePlayer.mVideoInfo.mXSize,
+		                 ActivePlayer.mVideoInfo.mYSize, z, w);
+		THPGXRestore();
+		frame = (ActivePlayer.mDispTextureSet->mFrameNumber + ActivePlayer.mInitReadFrame) % ActivePlayer.mHeader.mNumFrames;
+	} else {
+		frame = -1;
+	}
+	return frame;
 }
 
 /*
@@ -1609,33 +726,14 @@ void THPPlayerDrawCurrentFrame(void)
  * Address:	8044F0A0
  * Size:	000048
  */
-void THPPlayerGetVideoInfo(void)
+BOOL THPPlayerGetVideoInfo(void* dst)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0x14(r1)
-	  addi      r4, r4, 0x4490
-	  lwz       r0, 0xA0(r4)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x34
-	  addi      r4, r4, 0x80
-	  li        r5, 0xC
-	  bl        -0x449F2C
-	  li        r3, 0x1
-	  b         .loc_0x38
+	if (ActivePlayer.mIsOpen) {
+		memcpy(dst, &ActivePlayer.mVideoInfo, sizeof(THPVideoInfo));
+		return TRUE;
+	}
 
-	.loc_0x34:
-	  li        r3, 0
-
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	return FALSE;
 }
 
 /*
@@ -1643,33 +741,14 @@ void THPPlayerGetVideoInfo(void)
  * Address:	8044F0E8
  * Size:	000048
  */
-void THPPlayerGetAudioInfo(void)
+BOOL THPPlayerGetAudioInfo(void* dst)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0x14(r1)
-	  addi      r4, r4, 0x4490
-	  lwz       r0, 0xA0(r4)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x34
-	  addi      r4, r4, 0x8C
-	  li        r5, 0x10
-	  bl        -0x449F74
-	  li        r3, 0x1
-	  b         .loc_0x38
+	if (ActivePlayer.mIsOpen) {
+		memcpy(dst, &ActivePlayer.mAudioInfo, sizeof(THPAudioInfo));
+		return TRUE;
+	}
 
-	.loc_0x34:
-	  li        r3, 0
-
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	return FALSE;
 }
 
 /*
@@ -1677,19 +756,13 @@ void THPPlayerGetAudioInfo(void)
  * Address:	........
  * Size:	000024
  */
-void THPPlayerGetFrameRate(void)
+u32 THPPlayerGetTotalFrame()
 {
-	// UNUSED FUNCTION
-}
+	if (ActivePlayer.mIsOpen) {
+		return ActivePlayer.mHeader.mNumFrames;
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000024
- */
-void THPPlayerGetTotalFrame(void)
-{
-	// UNUSED FUNCTION
+	return 0;
 }
 
 /*
@@ -1697,66 +770,27 @@ void THPPlayerGetTotalFrame(void)
  * Address:	........
  * Size:	000010
  */
-void THPPlayerGetState(void)
-{
-	// UNUSED FUNCTION
-}
+u8 THPPlayerGetState(void) { return ActivePlayer.mState; }
 
 /*
  * --INFO--
  * Address:	8044F130
  * Size:	000030
  */
-void PushUsedTextureSet(void*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x8050
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  addi      r3, r5, 0x3160
-	  li        r5, 0
-	  bl        -0x35FC30
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+static void PushUsedTextureSet(OSMessage msg) { OSSendMessage(&UsedTextureSetQueue, msg, OS_MESSAGE_NOBLOCK); }
 
 /*
  * --INFO--
  * Address:	8044F160
  * Size:	000044
  */
-void PopUsedTextureSet()
+static OSMessage PopUsedTextureSet()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8050
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  addi      r3, r3, 0x3160
-	  bl        -0x35FB98
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0x30
-	  lwz       r3, 0x8(r1)
-	  b         .loc_0x34
+	OSMessage msg;
+	if (OSReceiveMessage(&UsedTextureSetQueue, &msg, OS_MESSAGE_NOBLOCK) == 1)
+		return msg;
 
-	.loc_0x30:
-	  li        r3, 0
-
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -1764,47 +798,19 @@ void PopUsedTextureSet()
  * Address:	8044F1A4
  * Size:	000070
  */
-void THPPlayerDrawDone(void)
+void THPPlayerDrawDone()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  bl        -0x369C78
-	  lwz       r0, -0x63C8(r13)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x5C
-	  lis       r3, 0x8050
-	  addi      r31, r3, 0x3160
-
-	.loc_0x28:
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  li        r5, 0
-	  bl        -0x35FBF4
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0x48
-	  lwz       r3, 0x8(r1)
-	  b         .loc_0x4C
-
-	.loc_0x48:
-	  li        r3, 0
-
-	.loc_0x4C:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  bl        0xB54
-	  b         .loc_0x28
-
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	GXDrawDone();
+	if (Initialized) {
+		while (TRUE) {
+			OSMessage msg = PopUsedTextureSet();
+			if (msg) {
+				PushFreeTextureSet((OSMessage*)msg);
+			} else {
+				break;
+			}
+		}
+	}
 }
 
 /*
@@ -1812,189 +818,86 @@ void THPPlayerDrawDone(void)
  * Address:	8044F214
  * Size:	000250
  */
-void MixAudio(short*, short*, unsigned long)
+static void MixAudio(s16* buf, s16* buf2, u32 n)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stfd      f30, 0x60(r1)
-	  psq_st    f30,0x68(r1),0,0
-	  stmw      r23, 0x3C(r1)
-	  lis       r4, 0x8051
-	  addi      r31, r4, 0x4490
-	  lwz       r0, 0xA0(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x220
-	  lbz       r0, 0xA5(r31)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x220
-	  lbz       r0, 0xA7(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x220
-	  mr        r29, r5
-	  mr        r27, r3
+	if (ActivePlayer.mIsOpen && ActivePlayer.mInternalState == 2 && ActivePlayer.mAudioExist) {
+		u32 lastSample;
+		u32 n2;
+		int i;
+		s16* aBuf;
+		n2   = n;
+		aBuf = buf;
+		s16* curPtr;
+		int vol2, vol1;
+		u16 volFromTable;
 
-	.loc_0x54:
-	  lwz       r0, 0xFC(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x94
-	  li        r3, 0
-	  bl        -0x1C68
-	  cmplwi    r3, 0
-	  stw       r3, 0xFC(r31)
-	  bne-      .loc_0x88
-	  mr        r3, r27
-	  rlwinm    r5,r29,2,0,29
-	  li        r4, 0
-	  bl        -0x44A1E0
-	  b         .loc_0x22C
+		do {
+			do {
+				if (ActivePlayer.mPlayAudioBuffer == nullptr) {
+					ActivePlayer.mPlayAudioBuffer = (THPAudioBuffer*)PopDecodedAudioBuffer(0);
+					if (ActivePlayer.mPlayAudioBuffer == nullptr) {
+						memset(aBuf, 0, n2 * 4);
+						return;
+					}
+					ActivePlayer.mCurAudioNumber++;
+				}
+			} while ((lastSample = ActivePlayer.mPlayAudioBuffer->mValidSample) == 0);
 
-	.loc_0x88:
-	  lwz       r3, 0xF4(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0xF4(r31)
+			if (lastSample >= n2) {
+				lastSample = n2;
+			}
 
-	.loc_0x94:
-	  lwz       r4, 0xFC(r31)
-	  lwz       r30, 0x8(r4)
-	  cmplwi    r30, 0
-	  beq+      .loc_0x54
-	  cmplw     r30, r29
-	  blt-      .loc_0xB0
-	  mr        r30, r29
+			curPtr = ActivePlayer.mPlayAudioBuffer->mCurPtr;
 
-	.loc_0xB0:
-	  lis       r3, 0x804F
-	  lwz       r26, 0x4(r4)
-	  lfd       f30, 0x27A8(r2)
-	  subi      r24, r3, 0x2C40
-	  lfs       f31, 0x27A4(r2)
-	  li        r28, 0
-	  lis       r25, 0x4330
-	  b         .loc_0x1D4
+			for (i = 0; i < lastSample; i++) {
+				if (ActivePlayer.mRampCount != 0) {
+					ActivePlayer.mRampCount--;
+					ActivePlayer.mCurVolume += ActivePlayer.mDeltaVolume;
+				} else {
+					ActivePlayer.mCurVolume = ActivePlayer.mTargetVolume;
+				}
 
-	.loc_0xD0:
-	  lwz       r3, 0xE8(r31)
-	  cmpwi     r3, 0
-	  beq-      .loc_0xF8
-	  lfs       f1, 0xDC(r31)
-	  subi      r0, r3, 0x1
-	  lfs       f0, 0xE4(r31)
-	  stw       r0, 0xE8(r31)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0xDC(r31)
-	  b         .loc_0x100
+				volFromTable = VolumeTable[(int)ActivePlayer.mCurVolume];
+				vol1         = 32768.0f * PSM::sTHPDinamicsProc.dinamics((volFromTable * curPtr[0] >> 15) / 32768.0f);
+				// clamp volume
+				if (vol1 < -32768) {
+					vol1 = -32768;
+				}
+				if (vol1 > 32767) {
+					vol1 = 32767;
+				}
+				*aBuf++ = vol1;
 
-	.loc_0xF8:
-	  lfs       f0, 0xE0(r31)
-	  stfs      f0, 0xDC(r31)
+				vol2 = 32768.0f * PSM::sTHPDinamicsProc.dinamics((volFromTable * curPtr[1] >> 15) / 32768.0f);
+				if (vol2 < -32768) {
+					vol2 = -32768;
+				}
+				if (vol2 > 32767) {
+					vol2 = 32767;
+				}
+				*aBuf++ = vol2;
 
-	.loc_0x100:
-	  lfs       f0, 0xDC(r31)
-	  subi      r3, r13, 0x6340
-	  lha       r0, 0x0(r26)
-	  fctiwz    f0, f0
-	  stw       r25, 0x10(r1)
-	  stfd      f0, 0x8(r1)
-	  lwz       r4, 0xC(r1)
-	  rlwinm    r4,r4,1,0,30
-	  lhzx      r23, r24, r4
-	  mullw     r0, r23, r0
-	  srawi     r0, r0, 0xF
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f30
-	  fdivs     f1, f0, f31
-	  bl        0x232CC
-	  fmuls     f0, f31, f1
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  cmpwi     r0, -0x8000
-	  bge-      .loc_0x160
-	  li        r0, -0x8000
+				curPtr += 2;
+			}
 
-	.loc_0x160:
-	  cmpwi     r0, 0x7FFF
-	  ble-      .loc_0x16C
-	  li        r0, 0x7FFF
+			n2 -= lastSample;
+			ActivePlayer.mPlayAudioBuffer->mValidSample -= lastSample;
+			ActivePlayer.mPlayAudioBuffer->mCurPtr = curPtr;
 
-	.loc_0x16C:
-	  sth       r0, 0x0(r27)
-	  subi      r3, r13, 0x6340
-	  lha       r0, 0x2(r26)
-	  stw       r25, 0x20(r1)
-	  mullw     r0, r23, r0
-	  srawi     r0, r0, 0xF
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0x24(r1)
-	  lfd       f0, 0x20(r1)
-	  fsubs     f0, f0, f30
-	  fdivs     f1, f0, f31
-	  bl        0x23274
-	  fmuls     f0, f31, f1
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  cmpwi     r0, -0x8000
-	  bge-      .loc_0x1B8
-	  li        r0, -0x8000
+			if ((ActivePlayer.mPlayAudioBuffer)->mValidSample == 0) {
+				PushFreeAudioBuffer(ActivePlayer.mPlayAudioBuffer);
+				ActivePlayer.mPlayAudioBuffer = nullptr;
+			}
 
-	.loc_0x1B8:
-	  cmpwi     r0, 0x7FFF
-	  ble-      .loc_0x1C4
-	  li        r0, 0x7FFF
+			if (n2 == 0) {
+				break;
+			}
 
-	.loc_0x1C4:
-	  sth       r0, 0x2(r27)
-	  addi      r27, r27, 0x4
-	  addi      r26, r26, 0x4
-	  addi      r28, r28, 0x1
+		} while (true);
 
-	.loc_0x1D4:
-	  cmplw     r28, r30
-	  blt+      .loc_0xD0
-	  lwz       r3, 0xFC(r31)
-	  sub       r29, r29, r30
-	  lwz       r0, 0x8(r3)
-	  sub       r0, r0, r30
-	  stw       r0, 0x8(r3)
-	  lwz       r3, 0xFC(r31)
-	  stw       r26, 0x4(r3)
-	  lwz       r3, 0xFC(r31)
-	  lwz       r0, 0x8(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x214
-	  bl        -0x1E3C
-	  li        r0, 0
-	  stw       r0, 0xFC(r31)
-
-	.loc_0x214:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x22C
-	  b         .loc_0x54
-
-	.loc_0x220:
-	  rlwinm    r5,r5,2,0,29
-	  li        r4, 0
-	  bl        -0x44A388
-
-	.loc_0x22C:
-	  psq_l     f31,0x78(r1),0,0
-	  lfd       f31, 0x70(r1)
-	  psq_l     f30,0x68(r1),0,0
-	  lfd       f30, 0x60(r1)
-	  lmw       r23, 0x3C(r1)
-	  lwz       r0, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
-	*/
+	} else {
+		memset(buf, 0, n * 4);
+	}
 }
 
 /*
@@ -2002,111 +905,42 @@ void MixAudio(short*, short*, unsigned long)
  * Address:	8044F464
  * Size:	000128
  */
-void THPPlayerSetVolume(void)
+BOOL THPPlayerSetVolume(int vol, int duration)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x8051
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  addi      r3, r5, 0x4490
-	  lwz       r0, 0xA0(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x108
-	  lbz       r0, 0xA7(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x108
-	  bl        -0x35897C
-	  cmplwi    r3, 0
-	  li        r31, 0x30
-	  bne-      .loc_0x54
-	  li        r31, 0x20
+	u32 numSamples;
+	BOOL interrupt;
+	if (ActivePlayer.mIsOpen && ActivePlayer.mAudioExist) {
+		numSamples = AIGetDSPSampleRate() == 0 ? 32 : 48;
 
-	.loc_0x54:
-	  cmpwi     r29, 0x7F
-	  ble-      .loc_0x60
-	  li        r29, 0x7F
+		// clamp volume
+		if (vol > 127) {
+			vol = 127;
+		}
+		if (vol < 0) {
+			vol = 0;
+		}
 
-	.loc_0x60:
-	  cmpwi     r29, 0
-	  bge-      .loc_0x6C
-	  li        r29, 0
+		// clamp duration
+		if (duration > 60000) {
+			duration = 60000;
+		}
+		if (duration < 0) {
+			duration = 0;
+		}
 
-	.loc_0x6C:
-	  lis       r3, 0x1
-	  subi      r0, r3, 0x15A0
-	  cmpw      r30, r0
-	  ble-      .loc_0x80
-	  mr        r30, r0
+		interrupt = OSDisableInterrupts();
 
-	.loc_0x80:
-	  cmpwi     r30, 0
-	  bge-      .loc_0x8C
-	  li        r30, 0
+		ActivePlayer.mTargetVolume = vol;
+		if (duration != 0) {
+			ActivePlayer.mRampCount   = numSamples * duration;
+			ActivePlayer.mDeltaVolume = (ActivePlayer.mTargetVolume - ActivePlayer.mCurVolume) / ActivePlayer.mRampCount;
+		} else {
+			ActivePlayer.mRampCount = 0;
+			ActivePlayer.mCurVolume = ActivePlayer.mTargetVolume;
+		}
+		OSRestoreInterrupts(interrupt);
 
-	.loc_0x8C:
-	  bl        -0x3608B8
-	  xoris     r4, r29, 0x8000
-	  lis       r0, 0x4330
-	  stw       r4, 0xC(r1)
-	  lis       r4, 0x8051
-	  lfd       f2, 0x27A8(r2)
-	  cmpwi     r30, 0
-	  stw       r0, 0x8(r1)
-	  addi      r5, r4, 0x4490
-	  lfd       f0, 0x8(r1)
-	  fsubs     f1, f0, f2
-	  stfs      f1, 0xE0(r5)
-	  beq-      .loc_0xF0
-	  mullw     r4, r31, r30
-	  lfs       f0, 0xDC(r5)
-	  stw       r0, 0x8(r1)
-	  fsubs     f1, f1, f0
-	  xoris     r0, r4, 0x8000
-	  stw       r4, 0xE8(r5)
-	  stw       r0, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0xE4(r5)
-	  b         .loc_0xFC
-
-	.loc_0xF0:
-	  li        r0, 0
-	  stfs      f1, 0xDC(r5)
-	  stw       r0, 0xE8(r5)
-
-	.loc_0xFC:
-	  bl        -0x360900
-	  li        r3, 0x1
-	  b         .loc_0x10C
-
-	.loc_0x108:
-	  li        r3, 0
-
-	.loc_0x10C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void THPPlayerGetVolume(void)
-{
-	// UNUSED FUNCTION
+		return TRUE;
+	}
+	return FALSE;
 }

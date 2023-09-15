@@ -28,7 +28,7 @@ JAUDIO_JAS_FILES:=\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASDSPChannel.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASDSPInterface.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASAudioThread.o\
-	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASCalc.o\
+	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASCalc.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASCallback.o\
 	$(BUILD_DIR)/asm/JSystem/JAudio/JAS/JASCmdStack.o\
 	$(BUILD_DIR)/src/JSystem/JAudio/JAS/JASDvdThread.o\

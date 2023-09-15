@@ -171,7 +171,7 @@ void DsetupTable(u32 p1, u32 p2, u32 p3, u32 p4, u32 p5)
  * Address:	800AA860
  * Size:	000024
  */
-void DsetMixerLevel(float mixerLevel) { DSP_MIXERLEVEL = 4096.0f * mixerLevel; }
+void DsetMixerLevel(f32 mixerLevel) { DSP_MIXERLEVEL = 4096.0f * mixerLevel; }
 
 /*
  * --INFO--

@@ -5,14 +5,15 @@
 #include "types.h"
 #include "THP/THPBuffer.h"
 
+static void* Reader(void* arg);
+
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
 
-BOOL CreateReadThread(int);
+BOOL CreateReadThread(OSPriority priority);
 void ReadThreadStart();
 void ReadThreadCancel();
-void Reader(void*);
 OSMessage PopReadedBuffer();
 BOOL PushReadedBuffer(OSMessage*);
 OSMessage PopFreeReadBuffer();
@@ -20,15 +21,7 @@ BOOL PushFreeReadBuffer(OSMessage*);
 OSMessage PopReadedBuffer2();
 BOOL PushReadedBuffer2(OSMessage*);
 
-extern BOOL ReadThreadCreated;
-extern OSMessageQueue FreeReadBufferQueue;
-extern OSMessageQueue ReadedBufferQueue;
-extern OSMessageQueue ReadedBufferQueue2;
-extern THPReadBuffer* FreeReadBufferMessage[10];
-extern THPReadBuffer* ReadedBufferMessage[10];
-extern THPReadBuffer* ReadedBufferMessage2[10];
-extern OSThread ReadThread;
-
+extern u8 gTHPReaderDvdAccess;
 #ifdef __cplusplus
 };
 #endif

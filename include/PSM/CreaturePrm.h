@@ -5,6 +5,8 @@
 
 namespace PSM {
 struct CreaturePrm : public PSSystem::SingletonBase<CreaturePrm> {
+	CreaturePrm(); // inlined/unused
+
 	virtual ~CreaturePrm(); // _08 (weak)
 
 	// _00 = VTBL
