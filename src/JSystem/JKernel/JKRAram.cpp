@@ -333,8 +333,8 @@ u8* JKRAram::aramToMainRam(u32 address, u8* buf, u32 size, JKRExpandSwitch expan
  * Address:	80018228
  * Size:	00010C
  */
-u8* JKRAram::aramToMainRam(JKRAramBlock* block, u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 p5, JKRHeap* heap,
-                           int p7, u32* pSize)
+u8* JKRAram::aramToMainRam(JKRAramBlock* block, u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap,
+                           int id, u32* pSize)
 {
 	if (pSize) {
 		*pSize = 0;
@@ -356,7 +356,7 @@ u8* JKRAram::aramToMainRam(JKRAramBlock* block, u8* buf, u32 address, u32 offset
 		address = block->mSize - offset;
 	}
 
-	return aramToMainRam(offset + block->mAddress, buf, address, expandSwitch, p5, heap, p7, pSize);
+	return aramToMainRam(offset + block->mAddress, buf, address, expandSwitch, maxExpandSize, heap, id, pSize);
 }
 
 static const char unusedBADSYNCstr[] = "---------------- BAD SYNC. you'd set callback, but now call sync.\n";

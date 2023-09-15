@@ -87,21 +87,29 @@ inline u32 Node::dvdToAram(char const* name, bool useNull)
  * Address:	........
  * Size:	000140
  */
-void* Node::aramToMainRam(u8* a2, u32 a3, u32 a4, JKRExpandSwitch a5, u32 a6, JKRHeap* a7, JKRDvdRipper::EAllocDirection a8, int a9,
-                          u32* byteCnt)
+void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap, JKRDvdRipper::EAllocDirection allocDir, int id,
+                        u32* byteCnt)
 {
 	void* addr;
+	u32 tempByteVal;
+
+	tempByteVal = 0;
+	addr = 0;
+
+	if(byteCnt == nullptr)
+	{
+		byteCnt = &tempByteVal;
+	}
 
 	if (!mStatus) {
 		dvdToAram(mName, false);
 	}
 
-	JKRAramBlock* status = mStatus;
-	if (status) {
-		addr = JKRAram::aramToMainRam(status, a2, a3, a4, a5, a6, a7, a9, byteCnt);
+	if (mStatus) {
+		addr = JKRAram::aramToMainRam(mStatus, buf, address, offset, expandSwitch, maxExpandSize, heap, id, byteCnt);
 		DCFlushRange(addr, *byteCnt);
-		if ((s32)a8 == JKRDvdRipper::ALLOC_DIR_BOTTOM) {
-			char* newAddr = new (a7, -0x20) char[*byteCnt];
+		if ((s32)allocDir == JKRDvdRipper::ALLOC_DIR_BOTTOM) {
+			char* newAddr = new (heap, -0x20) char[*byteCnt];
 			memcpy(newAddr, addr, *byteCnt);
 			delete addr;
 			addr = newAddr;
@@ -182,19 +190,30 @@ u32 Mgr::dvdToAram(char const* name, bool a2)
  * Size:	000154
  * TODO: Match
  */
-void* Mgr::aramToMainRam(char const* name, u8* a2, u32 a3, u32 a4, JKRExpandSwitch a5, u32 a6, JKRHeap* a7,
-                         JKRDvdRipper::EAllocDirection a8, int a9, u32* byteCnt)
+inline u32* validPointer(u32* p) { u32 zero = 0; return !p ? &zero : p; }
+void* Mgr::aramToMainRam(
+	char const* name, 
+	u8* buf, 
+	u32 address, 
+	u32 offset, 
+	JKRExpandSwitch expandSwitch, 
+	u32 maxExpandSize, 
+	JKRHeap* heap, 
+	JKRDvdRipper::EAllocDirection allocDir, 
+	int id,
+	u32* byteCnt
+	)
 {
 	void* mem   = nullptr;
 	Node* found = search(name);
 
 	if (found) {
-		if (!a7) {
-			a7 = JKRHeap::sCurrentHeap;
-		}
 
-		u32 zero   = 0;
-		mem = found->aramToMainRam(a2, a3, a4, a5, a6, a7, a8, a9, byteCnt = !byteCnt ? &zero : byteCnt);
+		if (!heap) {
+			heap = JKRHeap::sCurrentHeap;
+		}
+		
+		mem = found->aramToMainRam(buf, address, offset, expandSwitch, maxExpandSize, heap, allocDir, id, byteCnt);
 	}
 
 	return mem;
