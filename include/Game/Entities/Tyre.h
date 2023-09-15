@@ -11,6 +11,9 @@
 #include "SysShape/Joint.h"
 #include "Collinfo.h"
 
+// this symbol needs some fact checking
+#define WRAITH_ROLLER_CIRCUMFERENCE (44 * PI)
+
 /**
  * --Header for Waterwraith Rollers (Tyre)--
  */

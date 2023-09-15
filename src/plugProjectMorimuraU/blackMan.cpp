@@ -2864,7 +2864,7 @@ void BlackMan::Obj::walkFunc()
     
     if (mTyre) {
         f32 distance = _distanceXZflag(mPosition, mTyre->mWraithPosition);
-        mTyre->_30C = distance / 138.2301f; // alright who's magic number is this!?
+        mTyre->_30C = distance / WRAITH_ROLLER_CIRCUMFRENCE;
         EnemyBase* tyre = mTyre;
         tyre->mFaceDir = mFaceDir;
         tyre->mRotation.y = tyre->mFaceDir; 
