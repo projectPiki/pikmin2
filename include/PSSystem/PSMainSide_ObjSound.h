@@ -21,7 +21,8 @@ inline void checkBoss(PSM::EnemyBase* soundObj)
 
 inline void checkMidBoss(PSM::EnemyBase* soundObj) { P2ASSERTLINE(1114, soundObj->getCastType() == CCT_EnemyMidBoss); }
 
-inline void disableAppearFlag(PSM::EnemyBase* soundObj) {
+inline void disableAppearFlag(PSM::EnemyBase* soundObj)
+{
 	checkMidBoss(soundObj);
 	PSM::EnemyBoss* bossObj = static_cast<PSM::EnemyBoss*>(soundObj);
 	if (bossObj) {

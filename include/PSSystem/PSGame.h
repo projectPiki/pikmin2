@@ -35,13 +35,12 @@ inline PSGame::SeMgr* getSeMgrInstance()
 	return static_cast<PSGame::SeMgr*>(SingletonBase<PSGame::SeMgr>::sInstance);
 }
 
-inline SeqBase* getSeqFromScene(Scene* scene, u32 id) {
+inline SeqBase* getSeqFromScene(Scene* scene, u32 id)
+{
 	SeqBase* seq = scene->mSeqMgr.getSeq(id);
 	P2ASSERTLINE(487, seq);
 	return seq;
 }
 }; // namespace PSSystem
-
-
 
 #endif

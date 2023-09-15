@@ -26,7 +26,7 @@ struct J3DGXColor : public GXColor {
 	}
 
 	J3DGXColor(const GXColor& other)
-{
+	{
 		r = other.r;
 		g = other.g;
 		b = other.b;
@@ -42,7 +42,8 @@ struct J3DGXColor : public GXColor {
 		a                   = otherBytes->a;
 	}
 
-	inline J3DGXColor(const Color4& other) { // may imply color4 inherits gxcolor
+	inline J3DGXColor(const Color4& other)
+	{ // may imply color4 inherits gxcolor
 		r = other.r;
 		g = other.g;
 		b = other.b;

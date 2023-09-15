@@ -72,11 +72,12 @@ struct Obj : public EnemyBase {
 	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294 (weak)
 	virtual void doStartStoneState();                                           // _2A4
 	virtual void doFinishStoneState();                                          // _2A8
-	virtual void setFSM(FSM* fsm) {
+	virtual void setFSM(FSM* fsm)
+	{
 		mFSM = fsm;
 		mFSM->init(this);
 		mCurrentLifecycleState = nullptr;
-	};                               // _2F8 (weak)
+	}; // _2F8 (weak)
 	//////////////// VTABLE END
 
 	void walkFunc();
@@ -115,13 +116,13 @@ struct Obj : public EnemyBase {
 
 	inline Parms* getParms() { return C_PARMS; }
 
-	inline bool isOnTyres() { // unsure of name
+	inline bool isOnTyres()
+	{ // unsure of name
 		if (!mTyre || _2E0 == 2) {
 			return false;
 		}
 		return true;
 	}
-
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -253,31 +254,31 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_A10 = 1;
-		_A11 = 0;
-		_A12 = 1;
-		_A14 = 1;
-		_A15 = 0;
-		_A16 = 1;
+		_A10            = 1;
+		_A11            = 0;
+		_A12            = 1;
+		_A14            = 1;
+		_A15            = 0;
+		_A16            = 1;
 		mUseDrawBuffer8 = 1;
-		_A18 = 1;
-		_A1A = -1;
-		_A1C = 50.0f;
-		_A20 = 20.0f;
-		_A24 = 1.0f;
-		_A28 = 5.0f;
-		_A2C = 1.0f;
-		_A30 = 0.9f;
-		_A34 = 0.6f;
-		_A38 = 0.2f;
-		_A3C = 0.08f;
-		_A40 = 20.0f;
-		_A44 = -10.0f;
-		_A48 = 10.0f;
-		_A4C = 1.25f;
-		_A50 = 1100.0f;
-		_A54 = 300.0f;
-		_A58 = 1.0f;
+		_A18            = 1;
+		_A1A            = -1;
+		_A1C            = 50.0f;
+		_A20            = 20.0f;
+		_A24            = 1.0f;
+		_A28            = 5.0f;
+		_A2C            = 1.0f;
+		_A30            = 0.9f;
+		_A34            = 0.6f;
+		_A38            = 0.2f;
+		_A3C            = 0.08f;
+		_A40            = 20.0f;
+		_A44            = -10.0f;
+		_A48            = 10.0f;
+		_A4C            = 1.25f;
+		_A50            = 1100.0f;
+		_A54            = 300.0f;
+		_A58            = 1.0f;
 	}
 
 	virtual void read(Stream& stream) // _08 (weak)
@@ -340,8 +341,6 @@ enum StateID {
 	WRAITH_Tired   = 8,
 	WRAITH_Count   = 9,
 };
-
-
 
 struct State : public EnemyFSMState {
 	inline State(int stateID)

@@ -15,7 +15,7 @@ struct TKageBend1 : public TSimpleMtx2 {
 
 struct TKageDead1 : public TChaseMtx {
 	inline TKageDead1()
-	: TChaseMtx(PID_KageDead1, nullptr)
+	    : TChaseMtx(PID_KageDead1, nullptr)
 	{
 	}
 
@@ -36,10 +36,10 @@ struct TKageDead2 : public TSimple1 {
 
 struct TKageFlick : public TChasePos {
 	inline TKageFlick(Vector3f* chasePos)
-	: TChasePos(chasePos, PID_KageFlick)
+	    : TChasePos(chasePos, PID_KageFlick)
 	{
 	}
-	
+
 	virtual ~TKageFlick(); // _48 (weak)
 
 	// _00      = VTBL
@@ -48,8 +48,8 @@ struct TKageFlick : public TChasePos {
 
 struct TKageMove : public TChasePosYRot {
 
-	inline TKageMove(Vector3f* pos, f32* rot) 
-	: TChasePosYRot(pos, rot, PID_KageMove)
+	inline TKageMove(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_KageMove)
 	{
 	}
 	virtual ~TKageMove(); // _48 (weak)
@@ -70,8 +70,8 @@ struct TKageRecov : public TSimple2 {
 };
 
 struct TKageRun : public TChasePosYRot {
-	inline TKageRun(Vector3f* pos, f32* rot) 
-	: TChasePosYRot(pos, rot, PID_KageRun)
+	inline TKageRun(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_KageRun)
 	{
 	}
 	virtual ~TKageRun(); // _48 (weak)
@@ -103,8 +103,8 @@ struct TKageTyresmoke : public TChasePosYRot {
 };
 
 struct TKageTyreup : public TChasePosYRot {
-	inline TKageTyreup(Vector3f* pos, f32* rot) 
-	: TChasePosYRot(pos, rot, PID_KageTyreUp)
+	inline TKageTyreup(Vector3f* pos, f32* rot)
+	    : TChasePosYRot(pos, rot, PID_KageTyreUp)
 	{
 	}
 	virtual ~TKageTyreup(); // _48 (weak)

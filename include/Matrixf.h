@@ -205,20 +205,23 @@ inline void MatrixMultiplyVec(Matrixf* mat, Vector3f& vec)
 	vec = Vector3f(resVec);
 }
 
-inline void setColumnMtx44(Mtx44& mtx, const PSQuaternion& values, int col) {
+inline void setColumnMtx44(Mtx44& mtx, const PSQuaternion& values, int col)
+{
 	for (int i = 0; i < 4; i++) {
 		mtx[i][col] = values[i];
 	}
 }
 
-inline void getColumnMtx44(Mtx44& mtx, PSQuaternion& returnValues, int col) {
+inline void getColumnMtx44(Mtx44& mtx, PSQuaternion& returnValues, int col)
+{
 	for (int i = 0; i < 4; i++) {
 		returnValues[i] = mtx[i][col];
 	}
 }
 
 // copies the 0, 1, and 2 vecs, does not copy vec 3; there's a PSMTX44 function for that
-inline void copyMtx44(Mtx44& output, Mtx44& input) {
+inline void copyMtx44(Mtx44& output, Mtx44& input)
+{
 	for (int x = 0; x < 3; x++) {
 		for (int y = 0; y < 4; y++) {
 			output[x][y] = input[x][y];
