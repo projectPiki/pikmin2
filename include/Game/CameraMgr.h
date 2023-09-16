@@ -14,6 +14,10 @@ namespace Game {
 struct CameraArg;
 struct Navi;
 
+struct CameraArg {
+	u32 state;
+};
+
 struct CameraData {
 	f32 mTargetDistance;      // _00
 	f32 mCameraAngle;         // _04
@@ -93,7 +97,6 @@ struct CameraParms : public Parameters {
 	Parm<f32> mCmta; // _91C
 	Parm<f32> mCmtm; // _944
 	Parm<f32> mCmtb; // _96C
-	u32 _994;
 };
 
 /**
@@ -121,7 +124,6 @@ struct VibrationParms : public Parameters {
 	Parm<f32> mAzimuthShortSpeed;    // _28C
 	Parm<f32> mAzimuthShortTime;     // _2B4
 	Parm<f32> mVibMaxDistance;       // _2DC
-	u32 _304;
 };
 
 struct PlayCamera : public LookAtCamera {
@@ -222,21 +224,21 @@ struct CameraMgr : public CNode {
 	bool isChangePlayer();
 	void setZukanCamera(LookAtCamera*);
 	bool isCameraUpdateOn();
-	void isStartAndEnd(int*, int);
+	bool isStartAndEnd(int*, int);
 	bool isVibrationStart(int, int);
 	void readCameraParms(char*);
 	void readParameter(Stream&);
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
-	int _18;                         // _18
-	void** _1C;                      // _1C
-	Viewport** _20;                  // _20
-	PlayCamera** _24;                // _24
-	CameraParms* mCameraParms[2];    // _28
-	VibrationParms* mVibrationParms; // _30
-	IDelegate1<CameraArg*>* _34;     // _34
-	LookAtCamera* mZukanCamera;      // _38
+	int mCurrPlayerMode;               // _18 (0 = olimar, 1 = louie, 2 = multiplayer)
+	int* mCameraVibrateState;          // _1C
+	Viewport** mViewportList;          // _20
+	PlayCamera** mCameraObjList;       // _24
+	CameraParms* mCameraParms[2];      // _28
+	VibrationParms* mVibrationParms;   // _30
+	IDelegate1<CameraArg*>* mDelegate; // _34
+	LookAtCamera* mZukanCamera;        // _38
 };
 
 extern CameraMgr* cameraMgr;
