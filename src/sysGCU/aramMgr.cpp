@@ -87,17 +87,16 @@ inline u32 Node::dvdToAram(char const* name, bool useNull)
  * Address:	........
  * Size:	000140
  */
-void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap, JKRDvdRipper::EAllocDirection allocDir, int id,
-                        u32* byteCnt)
+void* Node::aramToMainRam(u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap,
+                          JKRDvdRipper::EAllocDirection allocDir, int id, u32* byteCnt)
 {
 	void* addr;
 	u32 tempByteVal;
 
 	tempByteVal = 0;
-	addr = 0;
+	addr        = 0;
 
-	if(byteCnt == nullptr)
-	{
+	if (byteCnt == nullptr) {
 		byteCnt = &tempByteVal;
 	}
 
@@ -190,19 +189,13 @@ u32 Mgr::dvdToAram(char const* name, bool a2)
  * Size:	000154
  * TODO: Match
  */
-inline u32* validPointer(u32* p) { u32 zero = 0; return !p ? &zero : p; }
-void* Mgr::aramToMainRam(
-	char const* name, 
-	u8* buf, 
-	u32 address, 
-	u32 offset, 
-	JKRExpandSwitch expandSwitch, 
-	u32 maxExpandSize, 
-	JKRHeap* heap, 
-	JKRDvdRipper::EAllocDirection allocDir, 
-	int id,
-	u32* byteCnt
-	)
+inline u32* validPointer(u32* p)
+{
+	u32 zero = 0;
+	return !p ? &zero : p;
+}
+void* Mgr::aramToMainRam(char const* name, u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap,
+                         JKRDvdRipper::EAllocDirection allocDir, int id, u32* byteCnt)
 {
 	void* mem   = nullptr;
 	Node* found = search(name);
@@ -212,7 +205,7 @@ void* Mgr::aramToMainRam(
 		if (!heap) {
 			heap = JKRHeap::sCurrentHeap;
 		}
-		
+
 		mem = found->aramToMainRam(buf, address, offset, expandSwitch, maxExpandSize, heap, allocDir, id, byteCnt);
 	}
 

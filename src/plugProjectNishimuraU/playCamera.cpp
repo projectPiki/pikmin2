@@ -480,9 +480,9 @@ void PlayCamera::startDemoCamera(int type)
 {
 	switch (type) {
 	case 1:
-		mGoalTargetDistance = mCameraParms->mZmdt;
-		mGoalVerticalAngle  = mCameraParms->mZman.mValue * DEG2RAD;
-		mGoalFOV            = mCameraParms->mZmfv;
+		mGoalTargetDistance = mCameraParms->mZoomDist;
+		mGoalVerticalAngle  = mCameraParms->mZoomAngle.mValue * DEG2RAD;
+		mGoalFOV            = mCameraParms->mZoomFOV;
 		mNearZPlane         = 1.0f;
 		mFarZPlane          = 12800.0f;
 		mYOffset            = 10.0f;
@@ -490,14 +490,14 @@ void PlayCamera::startDemoCamera(int type)
 		mDetachedParm       = 27.5f;
 		break;
 	default:
-		mGoalTargetDistance = mCameraParms->mCnld;
-		mGoalVerticalAngle  = mCameraParms->mCnla.mValue * DEG2RAD;
-		mGoalFOV            = mCameraParms->mCnlf;
-		mNearZPlane         = mCameraParms->mNlnc;
-		mFarZPlane          = mCameraParms->mNlfc;
-		mYOffset            = mCameraParms->mCnlo;
-		mDetachedWeight     = mCameraParms->mCnlw;
-		mDetachedParm       = mCameraParms->mNldt;
+		mGoalTargetDistance = mCameraParms->mNearLowDist;
+		mGoalVerticalAngle  = mCameraParms->mNearLowAngle.mValue * DEG2RAD;
+		mGoalFOV            = mCameraParms->mNearLowFOV;
+		mNearZPlane         = mCameraParms->mNearLowNear;
+		mFarZPlane          = mCameraParms->mNearLowFar;
+		mYOffset            = mCameraParms->mNearLowOffset;
+		mDetachedWeight     = mCameraParms->mNearLowWeight;
+		mDetachedParm       = mCameraParms->mNearLowDetached;
 		break;
 	}
 }
@@ -564,9 +564,9 @@ u32 PlayCamera::updateCameraMode()
  */
 void PlayCamera::startZoomCamera()
 {
-	mGoalTargetDistance = mCameraParms->mZmdt;
-	mGoalVerticalAngle  = mCameraParms->mZman.mValue * DEG2RAD;
-	mGoalFOV            = mCameraParms->mZmfv;
+	mGoalTargetDistance = mCameraParms->mZoomDist;
+	mGoalVerticalAngle  = mCameraParms->mZoomAngle.mValue * DEG2RAD;
+	mGoalFOV            = mCameraParms->mZoomFOV;
 	mNearZPlane         = 1.0f;
 	mFarZPlane          = 12800.0f;
 	mYOffset            = 10.0f;
@@ -608,34 +608,34 @@ void PlayCamera::setTargetParms()
 	case 0: {
 		switch (mCameraZoomLevel) {
 		case 0: // low zoom low angle
-			mGoalTargetDistance = mCameraParms->mCnld;
-			mGoalVerticalAngle  = mCameraParms->mCnla.mValue * DEG2RAD;
-			mGoalFOV            = mCameraParms->mCnlf;
-			mNearZPlane         = mCameraParms->mNlnc;
-			mFarZPlane          = mCameraParms->mNlfc;
-			mYOffset            = mCameraParms->mCnlo;
-			mDetachedWeight     = mCameraParms->mCnlw;
-			mDetachedParm       = mCameraParms->mNldt;
+			mGoalTargetDistance = mCameraParms->mNearLowDist;
+			mGoalVerticalAngle  = mCameraParms->mNearLowAngle.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mNearLowFOV;
+			mNearZPlane         = mCameraParms->mNearLowNear;
+			mFarZPlane          = mCameraParms->mNearLowFar;
+			mYOffset            = mCameraParms->mNearLowOffset;
+			mDetachedWeight     = mCameraParms->mNearLowWeight;
+			mDetachedParm       = mCameraParms->mNearLowDetached;
 			break;
 		case 1: // medium zoom low angle
-			mGoalTargetDistance = mCameraParms->mCmld;
-			mGoalVerticalAngle  = mCameraParms->mCmla.mValue * DEG2RAD;
-			mGoalFOV            = mCameraParms->mCmlf;
-			mNearZPlane         = mCameraParms->mMlnc;
-			mFarZPlane          = mCameraParms->mMlfc;
-			mYOffset            = mCameraParms->mCmlo;
-			mDetachedWeight     = mCameraParms->mCmlw;
-			mDetachedParm       = mCameraParms->mMldt;
+			mGoalTargetDistance = mCameraParms->mMidLowDist;
+			mGoalVerticalAngle  = mCameraParms->mMidLowAngle.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mMidLowFOV;
+			mNearZPlane         = mCameraParms->mMidLowNear;
+			mFarZPlane          = mCameraParms->mMidLowFar;
+			mYOffset            = mCameraParms->mMidLowOffset;
+			mDetachedWeight     = mCameraParms->mMidLowWeight;
+			mDetachedParm       = mCameraParms->mMidLowDetached;
 			break;
 		case 2: // far zoom low angle
-			mGoalTargetDistance = mCameraParms->mCfld;
-			mGoalVerticalAngle  = mCameraParms->mCfla.mValue * DEG2RAD;
-			mGoalFOV            = mCameraParms->mCflf;
-			mNearZPlane         = mCameraParms->mFlnc;
-			mFarZPlane          = mCameraParms->mFlfc;
-			mYOffset            = mCameraParms->mCflo;
-			mDetachedWeight     = mCameraParms->mCflw;
-			mDetachedParm       = mCameraParms->mFldt;
+			mGoalTargetDistance = mCameraParms->mFarLowDist;
+			mGoalVerticalAngle  = mCameraParms->mFarLowAngle.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mFarLowFOV;
+			mNearZPlane         = mCameraParms->mFarLowNear;
+			mFarZPlane          = mCameraParms->mFarLowFar;
+			mYOffset            = mCameraParms->mFarLowOffset;
+			mDetachedWeight     = mCameraParms->mFarLowWeight;
+			mDetachedParm       = mCameraParms->mFarLowDetached;
 			break;
 		}
 		break;
@@ -643,34 +643,34 @@ void PlayCamera::setTargetParms()
 	case 1: {
 		switch (mCameraZoomLevel) {
 		case 0: // low zoom high angle
-			mGoalTargetDistance = mCameraParms->mCnhd;
-			mGoalVerticalAngle  = mCameraParms->mCnha.mValue * DEG2RAD;
-			mGoalFOV            = mCameraParms->mCnhf;
-			mNearZPlane         = mCameraParms->mNhnc;
-			mFarZPlane          = mCameraParms->mNhfc;
-			mYOffset            = mCameraParms->mCnho;
-			mDetachedWeight     = mCameraParms->mCnhw;
-			mDetachedParm       = mCameraParms->mNhdt;
+			mGoalTargetDistance = mCameraParms->mNearHighDist;
+			mGoalVerticalAngle  = mCameraParms->mNearHighAngle.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mNearHighFOV;
+			mNearZPlane         = mCameraParms->mNearHighNear;
+			mFarZPlane          = mCameraParms->mNearHighFar;
+			mYOffset            = mCameraParms->mNearHighOffset;
+			mDetachedWeight     = mCameraParms->mNearHighWeight;
+			mDetachedParm       = mCameraParms->mNearHighDetached;
 			break;
 		case 1: // medium zoom high angle
-			mGoalTargetDistance = mCameraParms->mCmhd;
-			mGoalVerticalAngle  = mCameraParms->mCmha.mValue * DEG2RAD;
-			mGoalFOV            = mCameraParms->mCmhf;
-			mNearZPlane         = mCameraParms->mMhnc;
-			mFarZPlane          = mCameraParms->mMhfc;
-			mYOffset            = mCameraParms->mCmho;
-			mDetachedWeight     = mCameraParms->mCmhw;
-			mDetachedParm       = mCameraParms->mMhdt;
+			mGoalTargetDistance = mCameraParms->mMidHighDist;
+			mGoalVerticalAngle  = mCameraParms->mMidHighAngle.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mMidHighFOV;
+			mNearZPlane         = mCameraParms->mMidHighNear;
+			mFarZPlane          = mCameraParms->mMidHighFar;
+			mYOffset            = mCameraParms->mMidHighOffset;
+			mDetachedWeight     = mCameraParms->mMidHighWeight;
+			mDetachedParm       = mCameraParms->mMidHighDetached;
 			break;
 		case 2: // far zoom high angle
-			mGoalTargetDistance = mCameraParms->mCfhd;
-			mGoalVerticalAngle  = mCameraParms->mCfha.mValue * DEG2RAD;
-			mGoalFOV            = mCameraParms->mCfhf;
-			mNearZPlane         = mCameraParms->mFhnc;
-			mFarZPlane          = mCameraParms->mFhfc;
-			mYOffset            = mCameraParms->mCfho;
-			mDetachedWeight     = mCameraParms->mCfhw;
-			mDetachedParm       = mCameraParms->mFhdt;
+			mGoalTargetDistance = mCameraParms->mFarHighDist;
+			mGoalVerticalAngle  = mCameraParms->mFarHighAngle.mValue * DEG2RAD;
+			mGoalFOV            = mCameraParms->mFarHighFOV;
+			mNearZPlane         = mCameraParms->mFarHighNear;
+			mFarZPlane          = mCameraParms->mFarHighFar;
+			mYOffset            = mCameraParms->mFarHighOffset;
+			mDetachedWeight     = mCameraParms->mFarHighWeight;
+			mDetachedParm       = mCameraParms->mFarHighDetached;
 			break;
 		}
 		break;
@@ -695,7 +695,7 @@ void PlayCamera::setTargetThetaToWhistle()
  * Address:	80240334
  * Size:	000010
  */
-void PlayCamera::setFollowTime() { mFollowTime = mCameraParms->mCmft; }
+void PlayCamera::setFollowTime() { mFollowTime = mCameraParms->mRotFollowTime; }
 
 /*
  * --INFO--
@@ -706,8 +706,8 @@ void PlayCamera::setSmoothThetaSpeed()
 {
 	Controller* pad = mTargetObj->mController1;
 	if (pad) {
-		f32 calc1 = mCameraParms->mCmtm.mValue * sys->mDeltaTime;
-		mSmoothMoveSpeed += pad->mMStick.mXPos * mCameraParms->mCmta.mValue;
+		f32 calc1 = mCameraParms->mMaxRotSpeed.mValue * sys->mDeltaTime;
+		mSmoothMoveSpeed += pad->mMStick.mXPos * mCameraParms->mRotAccel.mValue;
 		f32 calc2 = -calc1;
 		f32 calc3 = mSmoothMoveSpeed;
 		if (calc2 < calc3) {
@@ -773,7 +773,7 @@ void PlayCamera::changeTargetTheta()
 		}
 		mCameraAngleGoal = angle;
 	}
-	mSmoothMoveSpeed *= mCameraParms->mCmtb.mValue;
+	mSmoothMoveSpeed *= mCameraParms->mRotDampRate.mValue;
 }
 
 /*
@@ -1075,7 +1075,7 @@ lbl_802407B4:
  */
 void PlayCamera::updateParms(int flag)
 {
-	f32 rate            = mCameraParms->mCpmd;
+	f32 rate            = mCameraParms->mSettingChangeSpeed;
 	f32 invrate         = 1.0f - rate;
 	mCurrTargetDistance = mCurrTargetDistance * invrate + mGoalTargetDistance * rate;
 	mCurrVerticalAngle  = mCurrVerticalAngle * invrate + mGoalVerticalAngle * rate;
@@ -1099,7 +1099,7 @@ void PlayCamera::updateParms(int flag)
 			anglein += TAU;
 		}
 	}
-	mCameraAngleCurrent += mCameraParms->mCmmt.mValue * (anglein - angleout);
+	mCameraAngleCurrent += mCameraParms->mRotSpeed.mValue * (anglein - angleout);
 	f32 angle = mCameraAngleCurrent;
 	if (angle < 0.0f) {
 		angle += TAU;

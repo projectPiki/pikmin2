@@ -10,6 +10,8 @@ static const char className[] = "246-CameraMgr";
 
 namespace Game {
 
+CameraMgr* cameraMgr;
+
 /*
  * --INFO--
  * Address:	80250988
@@ -43,106 +45,6 @@ void CameraMgr::loadResource()
 	} else {
 		readCameraParms("/user/Nishimura/Camera/groundCameraParms.txt");
 	}
-}
-
-/*
- * --INFO--
- * Address:	80250AFC
- * Size:	0004D0
- */
-VibrationParms::VibrationParms()
-    : Parameters(nullptr, "VibrationParms")
-    , mElevationLightVib(this, 'celv', "ELEVATION_LIGHT(vib)", 1.0f, 0.0f, 10.0f)
-    , mElevationMiddleVib(this, 'cemv', "ELEVATION_MIDDLE(vib)", 3.0f, 0.0f, 10.0f)
-    , mElevationHardVib(this, 'cehv', "ELEVATION_HARD(vib)", 5.0f, 0.0f, 10.0f)
-    , mElevationSlowSpeed(this, 'cess', "ELEVATION_SLOW(speed)", 15.0f, 0.0f, 100.0f)
-    , mElevationMiddleSpeed(this, 'cems', "ELEVATION_MIDDLE(speed)", 25.0f, 0.0f, 100.0f)
-    , mElevationFastSpeed(this, 'cefs', "ELEVATION_FAST(speed)", 35.0f, 0.0f, 100.0f)
-    , mElevationShortTime(this, 'cest', "ELEVATION_SHORT(time)", 0.3f, 0.0f, 5.0f)
-    , mElevationMiddleTime(this, 'cemt', "ELEVATION_MIDDLE(time)", 0.75f, 0.0f, 5.0f)
-    , mElevationLongTime(this, 'celt', "ELEVATION_LONG(time)", 1.5f, 0.0f, 5.0f)
-    , mElevationHardVib2(this, 'ceqv', "ELEVATION_HARD(Vib)", 20.0f, 0.0f, 100.0f)
-    , mElevationHardSpeed(this, 'ceqs', "ELEVATION_HARD(Speed)", 35.0f, 0.0f, 100.0f)
-    , mElevationHardTime(this, 'ceqt', "ELEVATION_HARD(Time)", 0.25f, 0.0f, 5.0f)
-    , mZoomShortVib(this, 'czsv', "ZOOM_SHORT(Vib)", 25.0f, 0.0f, 100.0f)
-    , mZoomShortSpeed(this, 'czss', "ZOOM_SHORT(Speed)", 35.0f, 0.0f, 100.0f)
-    , mZoomShortTime(this, 'czst', "ZOOM_SHORT(Time)", 0.75f, 0.0f, 5.0f)
-    , mAzimuthShortVib(this, 'casv', "AZIMUTH_SHORT(Vib)", 0.06f, 0.0f, 1.0f)
-    , mAzimuthShortSpeed(this, 'cass', "AZIMUTH_SHORT(Speed)", 40.0f, 0.0f, 50.0f)
-    , mAzimuthShortTime(this, 'cast', "AZIMUTH_SHORT(Time)", 0.75f, 0.0f, 5.0f)
-    , mVibMaxDistance(this, 'cmdm', "Vib Max Distance", 750.0f, 0.0f, 1000.0f)
-{
-}
-
-/*
- * --INFO--
- * Address:	80250FCC
- * Size:	000E78
- */
-CameraParms::CameraParms()
-    : Parameters(nullptr, "CameraParms")
-    , mCnld(this, 'cnld', "Near(Low)距離", 600.0f, 10.0f, 5000.0f)
-    , mCnla(this, 'cnla', "Near(Low)アングル", 20.0f, 0.0f, 90.0f)
-    , mCnlf(this, 'cnlf', "Near(Low)ＦＯＶ", 10.0f, 1.0f, 60.0f)
-    , mCnlo(this, 'cnlo', "Near(Low)オフセット", 25.0f, 10.0f, 500.0f)
-    , mCnlw(this, 'cnlw', "Near(Low)ウェイト", 1000.0f, 10.0f, 5000.0f)
-    , mNldt(this, 'nldt', "Near(Low)Detached", 17.5f, 0.0f, 1000.0f)
-    , mNlnc(this, 'nlnc', "Near(Low)Near", 1.0f, 1.0f, 12800.0f)
-    , mNlfc(this, 'nlfc', "Near(Low)Far", 12800.0f, 1.0f, 12800.0f)
-    , mCmld(this, 'cmld', "Mid(Low)距離", 600.0f, 10.0f, 5000.0f)
-    , mCmla(this, 'cmla', "Mid(Low)アングル", 21.0f, 0.0f, 90.0f)
-    , mCmlf(this, 'cmlf', "Mid(Low)ＦＯＶ", 23.0f, 1.0f, 60.0f)
-    , mCmlo(this, 'cmlo', "Mid(Low)オフセット", 38.0f, 10.0f, 500.0f)
-    , mCmlw(this, 'cmlw', "Mid(Low)ウェイト", 500.0f, 10.0f, 5000.0f)
-    , mMldt(this, 'mldt', "Mid(Low)Detached", 55.0f, 0.0f, 1000.0f)
-    , mMlnc(this, 'mlnc', "Mid(Low)Near", 1.0f, 1.0f, 12800.0f)
-    , mMlfc(this, 'mlfc', "Mid(Low)Far", 12800.0f, 1.0f, 12800.0f)
-    , mCfld(this, 'cfld', "Far(Low)距離", 900.0f, 10.0f, 5000.0f)
-    , mCfla(this, 'cfla', "Far(Low)アングル", 25.0f, 0.0f, 90.0f)
-    , mCflf(this, 'cflf', "Far(Low)ＦＯＶ", 26.0f, 1.0f, 60.0f)
-    , mCflo(this, 'cflo', "Far(Low)オフセット", 33.0f, 10.0f, 500.0f)
-    , mCflw(this, 'cflw', "Far(Low)ウェイト", 400.0f, 10.0f, 5000.0f)
-    , mFldt(this, 'fldt', "Far(Low)Detached", 130.0f, 0.0f, 1000.0f)
-    , mFlnc(this, 'flnc', "Far(Low)Near", 1.0f, 1.0f, 12800.0f)
-    , mFlfc(this, 'flfc', "Far(Low)Far", 12800.0f, 1.0f, 12800.0f)
-    , mCnhd(this, 'cnhd', "Near(High)距離", 900.0f, 10.0f, 5000.0f)
-    , mCnha(this, 'cnha', "Near(High)アングル", 60.0f, 0.0f, 90.0f)
-    , mCnhf(this, 'cnhf', "Near(High)ＦＯＶ", 10.0f, 1.0f, 60.0f)
-    , mCnho(this, 'cnho', "Near(High)オフセット", 40.0f, 10.0f, 500.0f)
-    , mCnhw(this, 'cnhw', "Near(High)ウェイト", 1000.0f, 10.0f, 5000.0f)
-    , mNhdt(this, 'nhdt', "Near(High)Detached", 27.5f, 0.0f, 1000.0f)
-    , mNhnc(this, 'nhnc', "Near(High)Near", 1.0f, 1.0f, 12800.0f)
-    , mNhfc(this, 'nhfc', "Near(High)Far", 12800.0f, 1.0f, 12800.0f)
-    , mCmhd(this, 'cmhd', "Mid(High)距離", 900.0f, 10.0f, 5000.0f)
-    , mCmha(this, 'cmha', "Mid(High)アングル", 60.0f, 0.0f, 90.0f)
-    , mCmhf(this, 'cmhf', "Mid(High)ＦＯＶ", 20.0f, 1.0f, 60.0f)
-    , mCmho(this, 'cmho', "Mid(High)オフセット", 70.0f, 10.0f, 500.0f)
-    , mCmhw(this, 'cmhw', "Mid(High)ウェイト", 500.0f, 10.0f, 5000.0f)
-    , mMhdt(this, 'mhdt', "Mid(High)Detached", 75.0f, 0.0f, 1000.0f)
-    , mMhnc(this, 'mhnc', "Mid(High)Near", 1.0f, 1.0f, 12800.0f)
-    , mMhfc(this, 'mhfc', "Mid(High)Far", 12800.0f, 1.0f, 12800.0f)
-    , mCfhd(this, 'cfhd', "Far(High)距離", 1200.0f, 10.0f, 5000.0f)
-    , mCfha(this, 'cfha', "Far(High)アングル", 60.0f, 0.0f, 90.0f)
-    , mCfhf(this, 'cfhf', "Far(High)ＦＯＶ", 30.0f, 1.0f, 60.0f)
-    , mCfho(this, 'cfho', "Far(High)オフセット", 100.0f, 10.0f, 500.0f)
-    , mCfhw(this, 'cfhw', "Far(High)ウェイト", 200.0f, 10.0f, 5000.0f)
-    , mFhdt(this, 'fhdt', "Far(High)Detached", 165.0f, 0.0f, 1000.0f)
-    , mFhnc(this, 'fhnc', "Far(High)Near", 1.0f, 1.0f, 12800.0f)
-    , mFhfc(this, 'fhfc', "Far(High)Far", 12800.0f, 1.0f, 12800.0f)
-    , mZmdt(this, 'zmdt', "ZOOM 距離", 250.0f, 10.0f, 5000.0f)
-    , mZman(this, 'zman', "ZOOM アングル", 12.0f, 0.0f, 90.0f)
-    , mZmfv(this, 'zmfv', "ZOOM ＦＯＶ", 35.0f, 1.0f, 90.0f)
-    , mClcr(this, 'clcr', "コリジョン半径", 300.0f, 0.0f, 500.0f)
-    , mClms(this, 'clms', "コリジョン補間速度", 0.005f, 0.001f, 1.0f)
-    , mClmh(this, 'clmh', "コリジョン補正高", 5.0f, 0.0f, 100.0f)
-    , mClnh(this, 'clnh', "コリジョン無し高", 25.0f, 0.0f, 500.0f)
-    , mCpmd(this, 'cpmd', "設定変更速度", 0.1f, 0.0f, 1.0f)
-    , mCmmt(this, 'cmmt', "回転速度", 0.2f, 0.0f, 1.0f)
-    , mCmft(this, 'cmft', "回転追従時間", 0.6f, 0.0f, 3.0f)
-    , mCmta(this, 'cmta', "回転加速度", 0.005f, 0.0f, 1.0f)
-    , mCmtm(this, 'cmtm', "回転最高速度", 0.9f, 0.0f, 5.0f)
-    , mCmtb(this, 'cmtb', "回転減衰率", 0.85f, 0.0f, 1.0f)
-{
 }
 
 /*
@@ -406,43 +308,16 @@ bool CameraMgr::isChangePlayer()
 	if (mDelegate) {
 		return true;
 	}
-	u32 test = mCameraObjList[0]->mChangePlayerState & 1;
+
+	int test = 0;
 	for (int i = 0; i < 2; i++) {
-		test |= mCameraObjList[i]->mChangePlayerState & 1;
-		if (test)
+		test |= mCameraObjList[i]->mChangePlayerState;
+		if (test & 1) {
 			return true;
+		}
 	}
+
 	return false;
-	/*
-	lwz      r0, 0x34(r3)
-	cmplwi   r0, 0
-	beq      lbl_802527CC
-	li       r3, 1
-	blr
-
-lbl_802527CC:
-	lwz      r4, 0x24(r3)
-	lwz      r3, 0(r4)
-	lwz      r3, 0x19c(r3)
-	clrlwi.  r0, r3, 0x1f
-	mr       r5, r3
-	beq      lbl_802527EC
-	li       r3, 1
-	blr
-
-lbl_802527EC:
-	lwz      r3, 4(r4)
-	lwz      r3, 0x19c(r3)
-	or       r5, r5, r3
-	clrlwi.  r0, r5, 0x1f
-	beq      lbl_80252808
-	li       r3, 1
-	blr
-
-lbl_80252808:
-	li       r3, 0
-	blr
-	*/
 }
 
 /*

@@ -34,96 +34,182 @@ struct CameraData {
  * @size{0x998}
  */
 struct CameraParms : public Parameters {
-	CameraParms();
+	CameraParms()
+	    : Parameters(nullptr, "CameraParms")
+	    , mNearLowDist(this, 'cnld', "Near(Low)距離", 600.0f, 10.0f, 5000.0f)          // 'near(low) distance'
+	    , mNearLowAngle(this, 'cnla', "Near(Low)アングル", 20.0f, 0.0f, 90.0f)         // 'near(low) angle'
+	    , mNearLowFOV(this, 'cnlf', "Near(Low)ＦＯＶ", 10.0f, 1.0f, 60.0f)             // 'near(low) fov'
+	    , mNearLowOffset(this, 'cnlo', "Near(Low)オフセット", 25.0f, 10.0f, 500.0f)    // 'near(low) offset'
+	    , mNearLowWeight(this, 'cnlw', "Near(Low)ウェイト", 1000.0f, 10.0f, 5000.0f)   // 'near(low) weight'
+	    , mNearLowDetached(this, 'nldt', "Near(Low)Detached", 17.5f, 0.0f, 1000.0f)    // 'near(low) detached'
+	    , mNearLowNear(this, 'nlnc', "Near(Low)Near", 1.0f, 1.0f, 12800.0f)            // 'near(low) near'
+	    , mNearLowFar(this, 'nlfc', "Near(Low)Far", 12800.0f, 1.0f, 12800.0f)          // 'near(low) far'
+	    , mMidLowDist(this, 'cmld', "Mid(Low)距離", 600.0f, 10.0f, 5000.0f)            // 'mid(low) distance'
+	    , mMidLowAngle(this, 'cmla', "Mid(Low)アングル", 21.0f, 0.0f, 90.0f)           // 'mid(low) angle'
+	    , mMidLowFOV(this, 'cmlf', "Mid(Low)ＦＯＶ", 23.0f, 1.0f, 60.0f)               // 'mid(low) fov'
+	    , mMidLowOffset(this, 'cmlo', "Mid(Low)オフセット", 38.0f, 10.0f, 500.0f)      // 'mid(low) offset'
+	    , mMidLowWeight(this, 'cmlw', "Mid(Low)ウェイト", 500.0f, 10.0f, 5000.0f)      // 'mid(low) weight'
+	    , mMidLowDetached(this, 'mldt', "Mid(Low)Detached", 55.0f, 0.0f, 1000.0f)      // 'mid(low) detached'
+	    , mMidLowNear(this, 'mlnc', "Mid(Low)Near", 1.0f, 1.0f, 12800.0f)              // 'mid(low) near'
+	    , mMidLowFar(this, 'mlfc', "Mid(Low)Far", 12800.0f, 1.0f, 12800.0f)            // 'mid(low) far'
+	    , mFarLowDist(this, 'cfld', "Far(Low)距離", 900.0f, 10.0f, 5000.0f)            // 'far(low) distance'
+	    , mFarLowAngle(this, 'cfla', "Far(Low)アングル", 25.0f, 0.0f, 90.0f)           // 'far(low) angle'
+	    , mFarLowFOV(this, 'cflf', "Far(Low)ＦＯＶ", 26.0f, 1.0f, 60.0f)               // 'far(low) fov'
+	    , mFarLowOffset(this, 'cflo', "Far(Low)オフセット", 33.0f, 10.0f, 500.0f)      // 'far(low) offset'
+	    , mFarLowWeight(this, 'cflw', "Far(Low)ウェイト", 400.0f, 10.0f, 5000.0f)      // 'far(low) weight'
+	    , mFarLowDetached(this, 'fldt', "Far(Low)Detached", 130.0f, 0.0f, 1000.0f)     // 'far(low) detached'
+	    , mFarLowNear(this, 'flnc', "Far(Low)Near", 1.0f, 1.0f, 12800.0f)              // 'far(low) near'
+	    , mFarLowFar(this, 'flfc', "Far(Low)Far", 12800.0f, 1.0f, 12800.0f)            // 'far(low) far'
+	    , mNearHighDist(this, 'cnhd', "Near(High)距離", 900.0f, 10.0f, 5000.0f)        // 'near(high) distance'
+	    , mNearHighAngle(this, 'cnha', "Near(High)アングル", 60.0f, 0.0f, 90.0f)       // 'near(high) angle'
+	    , mNearHighFOV(this, 'cnhf', "Near(High)ＦＯＶ", 10.0f, 1.0f, 60.0f)           // 'near(high) fov'
+	    , mNearHighOffset(this, 'cnho', "Near(High)オフセット", 40.0f, 10.0f, 500.0f)  // 'near(high) offset'
+	    , mNearHighWeight(this, 'cnhw', "Near(High)ウェイト", 1000.0f, 10.0f, 5000.0f) // 'near(high) weight'
+	    , mNearHighDetached(this, 'nhdt', "Near(High)Detached", 27.5f, 0.0f, 1000.0f)  // 'near(high) detached'
+	    , mNearHighNear(this, 'nhnc', "Near(High)Near", 1.0f, 1.0f, 12800.0f)          // 'near(high) near'
+	    , mNearHighFar(this, 'nhfc', "Near(High)Far", 12800.0f, 1.0f, 12800.0f)        // 'near(high) far'
+	    , mMidHighDist(this, 'cmhd', "Mid(High)距離", 900.0f, 10.0f, 5000.0f)          // 'mid(high) distance'
+	    , mMidHighAngle(this, 'cmha', "Mid(High)アングル", 60.0f, 0.0f, 90.0f)         // 'mid(high) angle'
+	    , mMidHighFOV(this, 'cmhf', "Mid(High)ＦＯＶ", 20.0f, 1.0f, 60.0f)             // 'mid(high) fov'
+	    , mMidHighOffset(this, 'cmho', "Mid(High)オフセット", 70.0f, 10.0f, 500.0f)    // 'mid(high) offset'
+	    , mMidHighWeight(this, 'cmhw', "Mid(High)ウェイト", 500.0f, 10.0f, 5000.0f)    // 'mid(high) weight'
+	    , mMidHighDetached(this, 'mhdt', "Mid(High)Detached", 75.0f, 0.0f, 1000.0f)    // 'mid(high) detached'
+	    , mMidHighNear(this, 'mhnc', "Mid(High)Near", 1.0f, 1.0f, 12800.0f)            // 'mid(high) near'
+	    , mMidHighFar(this, 'mhfc', "Mid(High)Far", 12800.0f, 1.0f, 12800.0f)          // 'mid(high) far'
+	    , mFarHighDist(this, 'cfhd', "Far(High)距離", 1200.0f, 10.0f, 5000.0f)         // 'far(high) distance'
+	    , mFarHighAngle(this, 'cfha', "Far(High)アングル", 60.0f, 0.0f, 90.0f)         // 'far(high) angle'
+	    , mFarHighFOV(this, 'cfhf', "Far(High)ＦＯＶ", 30.0f, 1.0f, 60.0f)             // 'far(high) fov'
+	    , mFarHighOffset(this, 'cfho', "Far(High)オフセット", 100.0f, 10.0f, 500.0f)   // 'far(high) offset'
+	    , mFarHighWeight(this, 'cfhw', "Far(High)ウェイト", 200.0f, 10.0f, 5000.0f)    // 'far(high) weight'
+	    , mFarHighDetached(this, 'fhdt', "Far(High)Detached", 165.0f, 0.0f, 1000.0f)   // 'far(high) detached'
+	    , mFarHighNear(this, 'fhnc', "Far(High)Near", 1.0f, 1.0f, 12800.0f)            // 'far(high) near'
+	    , mFarHighFar(this, 'fhfc', "Far(High)Far", 12800.0f, 1.0f, 12800.0f)          // 'far(high) far'
+	    , mZoomDist(this, 'zmdt', "ZOOM 距離", 250.0f, 10.0f, 5000.0f)                 // 'ZOOM distance'
+	    , mZoomAngle(this, 'zman', "ZOOM アングル", 12.0f, 0.0f, 90.0f)                // 'ZOOM angle'
+	    , mZoomFOV(this, 'zmfv', "ZOOM ＦＯＶ", 35.0f, 1.0f, 60.0f)                    // 'ZOOM fov'
+	    , mCollRadius(this, 'clcr', "コリジョン半径", 300.0f, 0.0f, 500.0f)            // 'collision radius'
+	    , mCollInterpSpeed(this, 'clms', "コリジョン補間速度", 0.005f, 0.001f, 1.0f)   // 'collision interpolation speed'
+	    , mCollCorrHeight(this, 'clmh', "コリジョン補正高", 5.0f, 0.0f, 100.0f)        // 'collision correction height'
+	    , mNoCollHeight(this, 'clnh', "コリジョン無し高", 25.0f, 0.0f, 500.0f)         // 'no collision height'
+	    , mSettingChangeSpeed(this, 'cpmd', "設定変更速度", 0.1f, 0.0f, 1.0f)          // 'setting change speed'
+	    , mRotSpeed(this, 'cmmt', "回転速度", 0.2f, 0.0f, 1.0f)                        // 'rotation speed'
+	    , mRotFollowTime(this, 'cmft', "回転追従時間", 0.6f, 0.0f, 3.0f)               // 'rotation follow time'
+	    , mRotAccel(this, 'cmta', "回転加速度", 0.005f, 0.0f, 1.0f)                    // 'rotation acceleration'
+	    , mMaxRotSpeed(this, 'cmtm', "回転最高速度", 0.9f, 0.0f, 5.0f)                 // 'max rotation speed'
+	    , mRotDampRate(this, 'cmtb', "回転減衰率", 0.85f, 0.0f, 1.0f)                  // 'rotation damping rate'
+	{
+	}
 
-	Parm<f32> mCnld; // _00C
-	Parm<f32> mCnla; // _034
-	Parm<f32> mCnlf; // _05C
-	Parm<f32> mCnlo; // _084
-	Parm<f32> mCnlw; // _0AC
-	Parm<f32> mNldt; // _0D4
-	Parm<f32> mNlnc; // _0FC
-	Parm<f32> mNlfc; // _124
-	Parm<f32> mCmld; // _14C
-	Parm<f32> mCmla; // _174
-	Parm<f32> mCmlf; // _19C
-	Parm<f32> mCmlo; // _1C4
-	Parm<f32> mCmlw; // _1EC
-	Parm<f32> mMldt; // _214
-	Parm<f32> mMlnc; // _23C
-	Parm<f32> mMlfc; // _264
-	Parm<f32> mCfld; // _28C
-	Parm<f32> mCfla; // _2B4
-	Parm<f32> mCflf; // _2DC
-	Parm<f32> mCflo; // _304
-	Parm<f32> mCflw; // _32C
-	Parm<f32> mFldt; // _354
-	Parm<f32> mFlnc; // _37C
-	Parm<f32> mFlfc; // _3A4
-	Parm<f32> mCnhd; // _3CC
-	Parm<f32> mCnha; // _3F4
-	Parm<f32> mCnhf; // _41C
-	Parm<f32> mCnho; // _444
-	Parm<f32> mCnhw; // _46C
-	Parm<f32> mNhdt; // _494
-	Parm<f32> mNhnc; // _4BC
-	Parm<f32> mNhfc; // _4E4
-	Parm<f32> mCmhd; // _50C
-	Parm<f32> mCmha; // _534
-	Parm<f32> mCmhf; // _55C
-	Parm<f32> mCmho; // _584
-	Parm<f32> mCmhw; // _5AC
-	Parm<f32> mMhdt; // _5D4
-	Parm<f32> mMhnc; // _5FC
-	Parm<f32> mMhfc; // _624
-	Parm<f32> mCfhd; // _64C
-	Parm<f32> mCfha; // _674
-	Parm<f32> mCfhf; // _69C
-	Parm<f32> mCfho; // _6C4
-	Parm<f32> mCfhw; // _6EC
-	Parm<f32> mFhdt; // _714
-	Parm<f32> mFhnc; // _73C
-	Parm<f32> mFhfc; // _764
-	Parm<f32> mZmdt; // _78C
-	Parm<f32> mZman; // _7B4
-	Parm<f32> mZmfv; // _7DC
-	Parm<f32> mClcr; // _804
-	Parm<f32> mClms; // _82C
-	Parm<f32> mClmh; // _854
-	Parm<f32> mClnh; // _87C
-	Parm<f32> mCpmd; // _8A4
-	Parm<f32> mCmmt; // _8CC
-	Parm<f32> mCmft; // _8F4
-	Parm<f32> mCmta; // _91C
-	Parm<f32> mCmtm; // _944
-	Parm<f32> mCmtb; // _96C
+	Parm<f32> mNearLowDist;        // _00C, cnld
+	Parm<f32> mNearLowAngle;       // _034, cnla
+	Parm<f32> mNearLowFOV;         // _05C, cnlf
+	Parm<f32> mNearLowOffset;      // _084, cnlo
+	Parm<f32> mNearLowWeight;      // _0AC, cnlw
+	Parm<f32> mNearLowDetached;    // _0D4, nldt
+	Parm<f32> mNearLowNear;        // _0FC, nlnc
+	Parm<f32> mNearLowFar;         // _124, nlfc
+	Parm<f32> mMidLowDist;         // _14C, cmld
+	Parm<f32> mMidLowAngle;        // _174, cmla
+	Parm<f32> mMidLowFOV;          // _19C, cmlf
+	Parm<f32> mMidLowOffset;       // _1C4, cmlo
+	Parm<f32> mMidLowWeight;       // _1EC, cmlw
+	Parm<f32> mMidLowDetached;     // _214, mldt
+	Parm<f32> mMidLowNear;         // _23C, mlnc
+	Parm<f32> mMidLowFar;          // _264, mlfc
+	Parm<f32> mFarLowDist;         // _28C, cfld
+	Parm<f32> mFarLowAngle;        // _2B4, cfla
+	Parm<f32> mFarLowFOV;          // _2DC, cflf
+	Parm<f32> mFarLowOffset;       // _304, cflo
+	Parm<f32> mFarLowWeight;       // _32C, clfw
+	Parm<f32> mFarLowDetached;     // _354, fldt
+	Parm<f32> mFarLowNear;         // _37C, flnc
+	Parm<f32> mFarLowFar;          // _3A4, flfc
+	Parm<f32> mNearHighDist;       // _3CC, cnhd
+	Parm<f32> mNearHighAngle;      // _3F4, cnha
+	Parm<f32> mNearHighFOV;        // _41C, cnhf
+	Parm<f32> mNearHighOffset;     // _444, cnho
+	Parm<f32> mNearHighWeight;     // _46C, cnhw
+	Parm<f32> mNearHighDetached;   // _494, nhdt
+	Parm<f32> mNearHighNear;       // _4BC, nhnc
+	Parm<f32> mNearHighFar;        // _4E4, nhfc
+	Parm<f32> mMidHighDist;        // _50C, cmhd
+	Parm<f32> mMidHighAngle;       // _534, cmha
+	Parm<f32> mMidHighFOV;         // _55C, cmhf
+	Parm<f32> mMidHighOffset;      // _584, cmho
+	Parm<f32> mMidHighWeight;      // _5AC, cmhw
+	Parm<f32> mMidHighDetached;    // _5D4, mhdt
+	Parm<f32> mMidHighNear;        // _5FC, mhnc
+	Parm<f32> mMidHighFar;         // _624, mhfc
+	Parm<f32> mFarHighDist;        // _64C, cfhd
+	Parm<f32> mFarHighAngle;       // _674, cfha
+	Parm<f32> mFarHighFOV;         // _69C, cfhf
+	Parm<f32> mFarHighOffset;      // _6C4, cfho
+	Parm<f32> mFarHighWeight;      // _6EC, cfhw
+	Parm<f32> mFarHighDetached;    // _714, fhdt
+	Parm<f32> mFarHighNear;        // _73C, fhnc
+	Parm<f32> mFarHighFar;         // _764, fhfc
+	Parm<f32> mZoomDist;           // _78C, zmdt
+	Parm<f32> mZoomAngle;          // _7B4, zman
+	Parm<f32> mZoomFOV;            // _7DC, zmfv
+	Parm<f32> mCollRadius;         // _804, clcr
+	Parm<f32> mCollInterpSpeed;    // _82C, clms
+	Parm<f32> mCollCorrHeight;     // _854, clmh
+	Parm<f32> mNoCollHeight;       // _87C, clnh
+	Parm<f32> mSettingChangeSpeed; // _8A4, cpmd
+	Parm<f32> mRotSpeed;           // _8CC, cmmt
+	Parm<f32> mRotFollowTime;      // _8F4, cmft
+	Parm<f32> mRotAccel;           // _91C, cmta
+	Parm<f32> mMaxRotSpeed;        // _944, cmtm
+	Parm<f32> mRotDampRate;        // _96C, cmtb
 };
 
 /**
  * @size{0x308}
  */
 struct VibrationParms : public Parameters {
-	VibrationParms();
+	VibrationParms()
+	    : Parameters(nullptr, "VibrationParms")
+	    , mElevationLightVib(this, 'celv', "ELEVATION_LIGHT(vib)", 1.0f, 0.0f, 10.0f)
+	    , mElevationMiddleVib(this, 'cemv', "ELEVATION_MIDDLE(vib)", 3.0f, 0.0f, 10.0f)
+	    , mElevationHardVib(this, 'cehv', "ELEVATION_HARD(vib)", 5.0f, 0.0f, 10.0f)
+	    , mElevationSlowSpeed(this, 'cess', "ELEVATION_SLOW(speed)", 15.0f, 0.0f, 100.0f)
+	    , mElevationMiddleSpeed(this, 'cems', "ELEVATION_MIDDLE(speed)", 25.0f, 0.0f, 100.0f)
+	    , mElevationFastSpeed(this, 'cefs', "ELEVATION_FAST(speed)", 35.0f, 0.0f, 100.0f)
+	    , mElevationShortTime(this, 'cest', "ELEVATION_SHORT(time)", 0.3f, 0.0f, 5.0f)
+	    , mElevationMiddleTime(this, 'cemt', "ELEVATION_MIDDLE(time)", 0.75f, 0.0f, 5.0f)
+	    , mElevationLongTime(this, 'celt', "ELEVATION_LONG(time)", 1.5f, 0.0f, 5.0f)
+	    , mElevationHardVib2(this, 'ceqv', "ELEVATION_HARD(Vib)", 20.0f, 0.0f, 50.0f)
+	    , mElevationHardSpeed(this, 'ceqs', "ELEVATION_HARD(Speed)", 35.0f, 0.0f, 100.0f)
+	    , mElevationHardTime(this, 'ceqt', "ELEVATION_HARD(Time)", 0.25f, 0.0f, 5.0f)
+	    , mZoomShortVib(this, 'czsv', "ZOOM_SHORT(Vib)", 25.0f, 0.0f, 100.0f)
+	    , mZoomShortSpeed(this, 'czss', "ZOOM_SHORT(Speed)", 35.0f, 0.0f, 50.0f)
+	    , mZoomShortTime(this, 'czst', "ZOOM_SHORT(Time)", 0.75f, 0.0f, 5.0f)
+	    , mAzimuthShortVib(this, 'casv', "AZIMUTH_SHORT(Vib)", 0.06f, 0.0f, 1.0f)
+	    , mAzimuthShortSpeed(this, 'cass', "AZIMUTH_SHORT(Speed)", 40.0f, 0.0f, 50.0f)
+	    , mAzimuthShortTime(this, 'cast', "AZIMUTH_SHORT(Time)", 0.75f, 0.0f, 5.0f)
+	    , mVibMaxDistance(this, 'cmdm', "Vib Max Distance", 750.0f, 0.0f, 1000.0f)
+	{
+	}
 
-	Parm<f32> mElevationLightVib;    // _00C
-	Parm<f32> mElevationMiddleVib;   // _034
-	Parm<f32> mElevationHardVib;     // _05C
-	Parm<f32> mElevationSlowSpeed;   // _084
-	Parm<f32> mElevationMiddleSpeed; // _0AC
-	Parm<f32> mElevationFastSpeed;   // _0D4
-	Parm<f32> mElevationShortTime;   // _0FC
-	Parm<f32> mElevationMiddleTime;  // _124
-	Parm<f32> mElevationLongTime;    // _14C
-	Parm<f32> mElevationHardVib2;    // _174
-	Parm<f32> mElevationHardSpeed;   // _19C
-	Parm<f32> mElevationHardTime;    // _1C4
-	Parm<f32> mZoomShortVib;         // _1EC
-	Parm<f32> mZoomShortSpeed;       // _214
-	Parm<f32> mZoomShortTime;        // _23C
-	Parm<f32> mAzimuthShortVib;      // _264
-	Parm<f32> mAzimuthShortSpeed;    // _28C
-	Parm<f32> mAzimuthShortTime;     // _2B4
-	Parm<f32> mVibMaxDistance;       // _2DC
+	Parm<f32> mElevationLightVib;    // _00C, celv
+	Parm<f32> mElevationMiddleVib;   // _034, cemv
+	Parm<f32> mElevationHardVib;     // _05C, cehv
+	Parm<f32> mElevationSlowSpeed;   // _084, cess
+	Parm<f32> mElevationMiddleSpeed; // _0AC, cems
+	Parm<f32> mElevationFastSpeed;   // _0D4, cefs
+	Parm<f32> mElevationShortTime;   // _0FC, cest
+	Parm<f32> mElevationMiddleTime;  // _124, cemt
+	Parm<f32> mElevationLongTime;    // _14C, celt
+	Parm<f32> mElevationHardVib2;    // _174, ceqv
+	Parm<f32> mElevationHardSpeed;   // _19C, ceqs
+	Parm<f32> mElevationHardTime;    // _1C4, ceqt
+	Parm<f32> mZoomShortVib;         // _1EC, czsv
+	Parm<f32> mZoomShortSpeed;       // _214, czss
+	Parm<f32> mZoomShortTime;        // _23C, czst
+	Parm<f32> mAzimuthShortVib;      // _264, casv
+	Parm<f32> mAzimuthShortSpeed;    // _28C, cass
+	Parm<f32> mAzimuthShortTime;     // _2B4, cast
+	Parm<f32> mVibMaxDistance;       // _2DC, cmdm
 };
 
 struct PlayCamera : public LookAtCamera {

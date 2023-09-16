@@ -333,8 +333,8 @@ u8* JKRAram::aramToMainRam(u32 address, u8* buf, u32 size, JKRExpandSwitch expan
  * Address:	80018228
  * Size:	00010C
  */
-u8* JKRAram::aramToMainRam(JKRAramBlock* block, u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize, JKRHeap* heap,
-                           int id, u32* pSize)
+u8* JKRAram::aramToMainRam(JKRAramBlock* block, u8* buf, u32 address, u32 offset, JKRExpandSwitch expandSwitch, u32 maxExpandSize,
+                           JKRHeap* heap, int id, u32* pSize)
 {
 	if (pSize) {
 		*pSize = 0;
