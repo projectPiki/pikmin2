@@ -99,11 +99,7 @@ void StateFall::exec(EnemyBase* enemy)
 	if (!sarai->isFinishMotion()) {
 		f32 faceDir = sarai->getFaceDir() - 0.275f;
 
-		if (faceDir < 0.0f) {
-			faceDir = faceDir + TAU;
-		} else if (faceDir >= TAU) {
-			faceDir -= TAU;
-		}
+		clampAngle(faceDir);
 
 		sarai->mFaceDir    = faceDir;
 		sarai->mRotation.y = sarai->mFaceDir;

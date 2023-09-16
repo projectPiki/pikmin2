@@ -336,11 +336,7 @@ void Obj::updateFace()
 {
 	f32 faceAngle = getFaceDir();
 	faceAngle += mFaceDirOffset;
-	if (faceAngle < 0.0f) {
-		faceAngle = TAU + faceAngle;
-	} else if (faceAngle >= TAU) {
-		faceAngle -= TAU;
-	}
+	clampAngle(faceAngle);
 
 	updateFaceDir(faceAngle);
 }

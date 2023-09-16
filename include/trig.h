@@ -108,6 +108,17 @@ inline f32 clamp(f32 val, f32 limit)
 	return val;
 }
 
+inline void clampAngle(f32& angle)
+{
+	if (angle < 0.0f) {
+		angle = TAU + angle;
+	} else if (angle >= TAU) {
+		angle -= TAU;
+	}
+}
+
 inline Vector3f getDirection(f32 angle) { return Vector3f(pikmin2_sinf(angle), 0.0f, pikmin2_cosf(angle)); }
+
+inline f32 boundAboveBelow(f32 angle, f32 limit) { return (angle < -limit) ? -limit : (angle > limit) ? limit : angle; }
 
 #endif

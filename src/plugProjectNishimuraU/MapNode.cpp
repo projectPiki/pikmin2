@@ -555,11 +555,7 @@ Vector3f MapNode::getDoorGlobalPosition(int idx)
 f32 MapNode::getBaseGenGlobalDirection(BaseGen* testGen)
 {
 	f32 dir = -HALF_PI * mUnitInfo->getUnitRotation();
-	if (dir < 0.0f) {
-		dir = TAU + dir;
-	} else if (dir >= TAU) {
-		dir -= TAU;
-	}
+	clampAngle(dir);
 
 	f32 globalDir = dir;
 

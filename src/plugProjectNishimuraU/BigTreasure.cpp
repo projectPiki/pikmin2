@@ -1106,19 +1106,11 @@ int Obj::getFireAttackAnimIndex()
 	if (navi) {
 		Vector3f naviPos = navi->getPosition();
 		angle            = JMath::atanTable_.atan2_(naviPos.x - mPosition.x, naviPos.z - mPosition.z);
-		if (angle < 0.0f) {
-			angle = TAU + angle;
-		} else if (angle >= TAU) {
-			angle -= TAU;
-		}
+		clampAngle(angle);
 
 		angle -= mFaceDir;
 
-		if (angle < 0.0f) {
-			angle = TAU + angle;
-		} else if (angle >= TAU) {
-			angle -= TAU;
-		}
+		clampAngle(angle);
 
 	} else {
 		angle = randWeightFloat(TAU);
