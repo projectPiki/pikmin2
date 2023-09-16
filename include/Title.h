@@ -45,7 +45,7 @@ struct HIORootNode : public Game::HIORootNode {
 struct Section : public Game::BaseHIOSection {
 	enum BGMIndex { BGM_MainTheme = 0, BGM_Options, BGM_HiScore, BGM_Bonus };
 	enum State { State_Init, State_MainTitle, State_Options, State_Bonus, State_HiScore };
-	Section(JKRHeap*);
+	Section(JKRHeap* heap);
 
 	virtual ~Section();                         // _08
 	virtual void run();                         // _0C
@@ -65,10 +65,10 @@ struct Section : public Game::BaseHIOSection {
 	void doUpdateMainTitle();
 	void doUpdateOmake();
 	void menuCancel(Menu&);
-	void menuSelect(Menu&);
-	void drawShortCuts(Graphics&);
+	void menuSelect(Menu& menu);
+	void drawShortCuts(Graphics& gfx);
 	void drawShortCut(Graphics&, int, int, int, char*);
-	void drawDebugInfo(Graphics&);
+	void drawDebugInfo(Graphics& gfx);
 	void updateMenu();
 	void doUpdateHiScore();
 	void doUpdateOption();

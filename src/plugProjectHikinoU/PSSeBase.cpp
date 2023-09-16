@@ -1,4 +1,10 @@
+#include "JSystem/JAudio/JAI/JAInter/Object.h"
+#include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
+#include "PSSystem/ClusterSe.h"
+#include "PSSystem/EnvSeBase.h"
+#include "PSSystem/PSSystemIF.h"
 
 /*
     Generated from dpostproc
@@ -67,7 +73,20 @@ namespace PSSystem {
  * Address:	80340838
  * Size:	0000A4
  */
-EnvSeBase::EnvSeBase(unsigned long, float)
+EnvSeBase::EnvSeBase(unsigned long soundID, f32 p2)
+    : JSULink(this)
+    , _14(0.0f)
+    , _18(0)
+    , _1C(2)
+    , _20(0)
+    , mSoundID((SoundID)soundID)
+    , _28(p2)
+    , _2C(0.0f)
+    , _30(0.3f)
+    , mSound(nullptr)
+    , _38(1)
+    , _39(0)
+    , _3A(0)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -373,8 +392,10 @@ lbl_80340C20:
  * Address:	80340C38
  * Size:	000040
  */
-void EnvSeBase::play()
+JAISound* EnvSeBase::play()
 {
+	spSysIF->playSystemSe(mSoundID, &mSound, 60);
+	return mSound;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -400,8 +421,15 @@ void EnvSeBase::play()
  * Address:	80340C78
  * Size:	000034
  */
-void EnvSeMgr::setAllPauseFlag(unsigned char)
+void EnvSeMgr::setAllPauseFlag(unsigned char p1)
 {
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
+		EnvSeBase* obj = link->getObject();
+		obj->_38       = p1;
+		if (obj->_3A != 0) {
+			obj->_38 = 0;
+		}
+	}
 	/*
 	lwz      r6, 0(r3)
 	li       r0, 0
@@ -432,6 +460,9 @@ lbl_80340CA0:
  */
 void EnvSeMgr::on()
 {
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
+		link->getObject()->_39 = 1;
+	}
 	/*
 	lwz      r4, 0(r3)
 	li       r0, 1
@@ -454,8 +485,13 @@ lbl_80340CC4:
  * Address:	80340CD0
  * Size:	000050
  */
-void EnvSeMgr::on(unsigned long, bool)
+void EnvSeMgr::on(unsigned long soundID, bool p2)
 {
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
+		if ((soundID == link->getObject()->mSoundID && p2 == true) || (soundID != link->getObject()->mSoundID && p2 == false)) {
+			link->getObject()->_39 = 1;
+		}
+	}
 	/*
 	lwz      r7, 0(r3)
 	clrlwi   r5, r5, 0x18
@@ -497,6 +533,9 @@ lbl_80340D14:
  */
 void EnvSeMgr::off()
 {
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
+		link->getObject()->_39 = 0;
+	}
 	/*
 	lwz      r4, 0(r3)
 	li       r0, 0
@@ -563,7 +602,7 @@ lbl_80340D88:
 void EnvSeMgr::reservePauseOff()
 {
 	// Generated from sth r0, 0x10(r3)
-	_10 = 31;
+	mReservator._04 = 31;
 }
 
 /*
@@ -571,8 +610,18 @@ void EnvSeMgr::reservePauseOff()
  * Address:	80340DA0
  * Size:	000070
  */
-void EnvSeMgr::setVolumeRequest(float, unsigned long, unsigned char)
+void EnvSeMgr::setVolumeRequest(f32 p1, unsigned long p2, unsigned char p3)
 {
+	for (JSULink<EnvSeBase>* link = mEnvList.getFirst(); link != nullptr; link = link->getNext()) {
+		// EnvSeBase* obj = link->getObject();
+		if (link->getObject() != nullptr) {
+			// TODO: There's almost certainly an inline here. Maybe a struct?
+			link->getObject()->_14 = p1;
+			link->getObject()->_18 = p2;
+			link->getObject()->_1C = 0;
+			link->getObject()->_20 = p3;
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	lwz      r7, 0(r3)
@@ -667,6 +716,7 @@ lbl_80340E74:
  */
 void EnvSe_PauseOffReservator::reservatorTask()
 {
+	mMgr->setAllPauseFlag(0);
 	/*
 	lwz      r4, 8(r3)
 	li       r3, 0
@@ -698,6 +748,11 @@ lbl_80340EBC:
  */
 ClusterSe::PartInitArg::PartInitArg()
 {
+	_00[0]   = 0xff;
+	_00[1]   = 0xff;
+	_00[2]   = 0xff;
+	_00[3]   = 0xff;
+	mSoundID = (SoundID)0xFFFFFFFF;
 	/*
 	li       r4, 0xff
 	li       r0, -1
@@ -716,6 +771,7 @@ ClusterSe::PartInitArg::PartInitArg()
  * Size:	00002C
  */
 ClusterSe::Part::Part()
+    : mInitArg()
 {
 	/*
 	lis      r5, __vt__Q38PSSystem9ClusterSe4Part@ha
@@ -737,8 +793,9 @@ ClusterSe::Part::Part()
  * Address:	80340F14
  * Size:	00003C
  */
-void ClusterSe::Part::callSe(JAInter::Object*)
+void ClusterSe::Part::callSe(JAInter::Object* obj)
 {
+	obj->startSound(mInitArg.mSoundID, 0);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -800,8 +857,11 @@ lbl_80340F98:
  * Address:	80340FB0
  * Size:	000074
  */
-void ClusterSe::Factory::constructPart()
+ClusterSe::Part* ClusterSe::Factory::constructPart()
 {
+	Part* parts = new Part[_04->_00[0]];
+	P2ASSERTLINE(484, parts != nullptr);
+	return parts;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -842,8 +902,14 @@ lbl_8034100C:
  * Address:	80341024
  * Size:	0002B4
  */
-void ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory&)
+void ClusterSe::Mgr::constructParts(PSSystem::ClusterSe::Factory& factory)
 {
+	// mPart = factory.constructPart();
+	// P2ASSERTLINE(506, mPart != nullptr);
+	// for (int i = 0; i < _00[0]; i++) {
+	// 	factory.identifyPart(i);
+
+	// }
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

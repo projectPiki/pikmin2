@@ -15,10 +15,10 @@ struct Node : public CNode {
 	{
 	}
 
-	virtual ~Node() { }                               // _08 (weak)
-	virtual void update() { }                         // _10 (weak)
-	virtual void draw(Graphics&, J2DGrafContext&) { } // _14 (weak)
-	virtual void doInit() { }                         // _18 (weak)
+	virtual ~Node() { }                                           // _08 (weak)
+	virtual void update() { }                                     // _10 (weak)
+	virtual void draw(Graphics& gfx, J2DGrafContext& context) { } // _14 (weak)
+	virtual void doInit() { }                                     // _18 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -39,12 +39,12 @@ struct CallBackNode : public Node {
 struct Mgr : public J2DScreen {
 	Mgr();
 
-	virtual ~Mgr() { }                             // _08 (weak)
-	virtual void update();                         // _30
-	virtual void draw(Graphics&, J2DGrafContext&); // _9C
+	virtual ~Mgr() { }                                         // _08 (weak)
+	virtual void update();                                     // _30
+	virtual void draw(Graphics& gfx, J2DGrafContext& context); // _9C
 
-	J2DPane* addCallBack(u64, Node*);
-	void addCallBackPane(J2DPane*, Node*);
+	J2DPane* addCallBack(u64 tag, Node* node);
+	void addCallBackPane(J2DPane* pane, Node* node);
 
 	// _00      = VTBL
 	// _00-_118 = J2DScreen
@@ -56,8 +56,8 @@ struct Mgr : public J2DScreen {
 struct Mgr_tuning : public Mgr {
 	Mgr_tuning();
 
-	virtual ~Mgr_tuning() { }                      // _08 (weak)
-	virtual void draw(Graphics&, J2DGrafContext&); // _9C
+	virtual ~Mgr_tuning() { }                                  // _08 (weak)
+	virtual void draw(Graphics& gfx, J2DGrafContext& context); // _9C
 
 	static const f32 mstTuningScaleX;
 	static const f32 mstTuningScaleY;

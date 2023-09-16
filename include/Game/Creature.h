@@ -147,7 +147,7 @@ struct Creature : public CellObject {
 	virtual void doDirectDraw(Graphics& gfx) { }                     // _50 (weak)
 	virtual f32 getBodyRadius();                                     // _54
 	virtual f32 getCellRadius();                                     // _58
-	virtual void initPosition(Vector3f& dest);                       // _5C
+	virtual void initPosition(Vector3f& position);                   // _5C
 	virtual void onInitPosition(Vector3f& dest) { }                  // _60 (weak)
 	virtual f32 getFaceDir()                   = 0;                  // _64
 	virtual void setVelocity(Vector3f& vel)    = 0;                  // _68
@@ -251,9 +251,9 @@ struct Creature : public CellObject {
 	virtual void movieSetFaceDir(f32) { }                         // _128 (weak)
 	virtual bool movieGotoPosition(Vector3f&) { return true; }    // _12C (weak)
 	virtual void movieUserCommand(u32, MoviePlayer*) { }          // _130 (weak)
-	virtual void getShadowParam(ShadowParam& settings);           // _134
+	virtual void getShadowParam(ShadowParam& param);              // _134
 	virtual bool needShadow();                                    // _138
-	virtual void getLifeGaugeParam(LifeGaugeParam&);              // _13C
+	virtual void getLifeGaugeParam(LifeGaugeParam& param);        // _13C
 	virtual void getLODSphere(Sys::Sphere& sphere)                // _140 (weak)
 	{
 		return getBoundingSphere(sphere);
@@ -347,26 +347,26 @@ struct Creature : public CellObject {
 
 	void applyAirDrag(f32, f32, f32);
 	f32 calcSphereDistance(Creature*);
-	int checkHell(Creature::CheckHellArg&);
-	WaterBox* checkWater(WaterBox*, Sys::Sphere&);
+	int checkHell(Creature::CheckHellArg& hellArg);
+	WaterBox* checkWater(WaterBox* waterBox, Sys::Sphere& boundSphere);
 	void clearCapture();
 	void clearStick();
 	void drawLODInfo(Graphics&, Vector3f&);
 	void endCapture();
 	void endStick();
 	int getCellPikiCount();
-	void getYVector(Vector3f&);
-	void init(CreatureInitArg*);
+	void getYVector(Vector3f& outVector);
+	void init(CreatureInitArg* arg);
 	bool isStickTo();
 	bool isStickToMouth();
-	void kill(CreatureKillArg*);
-	void load(Stream&, u8);
-	void movie_begin(bool);
-	void movie_end(bool);
+	void kill(CreatureKillArg* arg);
+	void load(Stream& input, u8 flags);
+	void movie_begin(bool required);
+	void movie_end(bool required);
 	void releaseAllStickers();
-	void resolveOneColl(CollPart*, CollPart*, Vector3f&);
-	void save(Stream&, u8);
-	void setPosition(Vector3f&, bool);
+	void resolveOneColl(CollPart* source, CollPart* dest, Vector3f& direction);
+	void save(Stream& output, u8 flags);
+	void setPosition(Vector3f& position, bool skipPostProc);
 	void startCapture(Matrixf*);
 	void startStick(Creature*, CollPart*);
 	void startStick(Creature*, s16);
@@ -375,6 +375,9 @@ struct Creature : public CellObject {
 	void updateCell();
 	void updateLOD(AILODParm&);
 	void updateStick(Vector3f&);
+
+	// unused/inlined
+	bool isStickLeader();
 
 	static bool usePacketCulling;
 	static Creature* currOp;

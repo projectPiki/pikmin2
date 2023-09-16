@@ -25,7 +25,7 @@ struct Node : public CNode, JKRDisposer {
 	void drawDump(Graphics&, int&, int&);
 	void becomeCurrentHeap();
 
-	static void destroy(Node*);
+	static void destroy(Node* node);
 
 	// CNode _00 - _18
 	// JKRDisposer _18 - _30
@@ -36,7 +36,7 @@ struct Node : public CNode, JKRDisposer {
 };
 
 struct MgrCommand : public CNode, JKRDisposer {
-	MgrCommand(char*);
+	MgrCommand(char* name);
 
 	virtual ~MgrCommand();               // _08 (weak)
 	virtual void memoryCallBackFunc();   // _1C
@@ -71,13 +71,13 @@ struct MgrCommand : public CNode, JKRDisposer {
 };
 
 struct Mgr {
-	Mgr(JKRHeap*, u32);
+	Mgr(JKRHeap* parentHeap, u32 size);
 
 	virtual void drawDump(Graphics&, int, int); // _08
 
 	void createNewNode(const char*);
 	void delFinishCommand();
-	bool destroy(MgrCommand*);
+	bool destroy(MgrCommand* command);
 	void destroyAll();
 	void loadResource(MgrCommand*, const char*, bool);
 	void searchCommand(MgrCommand*);

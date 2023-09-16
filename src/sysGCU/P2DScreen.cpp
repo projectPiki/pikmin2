@@ -1,3 +1,4 @@
+#include "JSystem/J2D/J2DPane.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "P2DScreen.h"
 #include "System.h"
@@ -188,7 +189,7 @@ J2DPane* P2DScreen::Mgr::addCallBack(u64 tag, P2DScreen::Node* node)
 	P2ASSERTLINE(73, (node != nullptr));
 	J2DPane* pane = search(tag);
 	if (pane) {
-		node->_18 = pane;
+		node->mPane = pane;
 		node->doInit();
 		_118.add(node);
 	} else {
@@ -305,7 +306,7 @@ lbl_80434C3C:
 void P2DScreen::Mgr::addCallBackPane(J2DPane* pane, P2DScreen::Node* node)
 {
 	P2ASSERTLINE(97, (node != nullptr));
-	node->_18 = pane;
+	node->mPane = pane;
 	node->doInit();
 	_118.add(node);
 }
@@ -342,8 +343,8 @@ void P2DScreen::Mgr::draw(Graphics& gfx, J2DGrafContext& context)
  */
 P2DScreen::Mgr_tuning::Mgr_tuning()
     : Mgr()
-    , mWidthMaybe(0.95f)
-    , mHeightMaybe(0.95f)
+    , mScreenScaleX(0.95f)
+    , mScreenScaleY(0.95f)
     , mSomeX(-15.2f)
     , mSomeY(-15.2f)
 {
@@ -392,14 +393,14 @@ P2DScreen::Mgr_tuning::Mgr_tuning()
  */
 void P2DScreen::Mgr_tuning::draw(Graphics& gfx, J2DGrafContext& context)
 {
-	float xfb = (float)System::getRenderModeObj()->xfbHeight;
-	float efb = (float)System::getRenderModeObj()->efbHeight;
-	rotate(xfb * 0.5f, efb * 0.5f, 0x7A, 0.0f);
-	mScale.x = mWidthMaybe;
-	mScale.y = mHeightMaybe;
+	f32 xfb = (f32)System::getRenderModeObj()->xfbHeight;
+	f32 efb = (f32)System::getRenderModeObj()->efbHeight;
+	rotate(xfb * 0.5f, efb * 0.5f, J2DROTATE_Z, 0.0f);
+	mScale.x = mScreenScaleX;
+	mScale.y = mScreenScaleY;
 	calcMtx();
-	mOffset[0] = mSomeX;
-	mOffset[1] = mSomeY;
+	mOffset.x = mSomeX;
+	mOffset.y = mSomeY;
 	calcMtx();
 	Mgr::draw(gfx, context);
 

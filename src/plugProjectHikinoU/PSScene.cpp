@@ -1,3 +1,5 @@
+#include "PSSystem/PSScene.h"
+#include "PSSystem/WaveScene.h"
 #include "types.h"
 
 /*
@@ -105,7 +107,7 @@ lbl_803414DC:
  * Address:	803414F8
  * Size:	000040
  */
-void WaveLoader::loadWave(PSSystem::TaskChecker*, PSSystem::WaveScene::AreaArg)
+void WaveLoader::loadWave(PSSystem::TaskChecker* checker, PSSystem::WaveScene::AreaArg arg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -136,6 +138,10 @@ lbl_80341528:
  * Size:	000118
  */
 Scene::Scene(unsigned char)
+// : mChild(nullptr)
+// , mWaveLoader(nullptr)
+// , _0C(nullptr)
+// , mSeqMgr()
 {
 	/*
 	stwu     r1, -0x20(r1)

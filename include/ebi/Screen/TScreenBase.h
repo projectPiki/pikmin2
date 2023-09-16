@@ -25,6 +25,9 @@ struct TScreenProgre {
 	void draw();
 	void setDecide();
 
+	// unused/inlined:
+	void killScreen();
+
 	// _00 = VTBL
 	Controller* mController; // _04
 	u8 mSelect;

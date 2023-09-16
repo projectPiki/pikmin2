@@ -9,13 +9,14 @@ template <typename T>
 struct SingletonBase {
 
 	// inline SingletonBase()
-	static inline void createInstance()
+	static inline T* newInstance()
 	{
 		P2ASSERTLINE(118, !SingletonBase<T>::sInstance);
 		if (!SingletonBase<T>::sInstance) {
 			SingletonBase<T>::sInstance = new T;
 		}
 		P2ASSERTLINE(121, SingletonBase<T>::sInstance);
+		return SingletonBase<T>::sInstance;
 	}
 
 	// SingletonBase(T* obj) { sInstance = obj; }

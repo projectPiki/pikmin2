@@ -1,6 +1,7 @@
 #include "Dolphin/ar.h"
 #include "Dolphin/mtx.h"
 #include "string.h"
+#include "Dolphin/stl.h"
 #include "Dolphin/vec.h"
 #include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "JSystem/JAudio/JAI/JAIConst.h"
@@ -103,10 +104,10 @@ JAIBasic* JAIBasic::msBasic;
 JKRHeap* JAIBasic::msCurrentHeap;
 bool JAIBasic::msStopMode;
 u32 JAIBasic::msAudioStopTime;
-float JAIBasic::msDspLevel;
-float JAIBasic::msAutoLevel;
-float JAIBasic::msAutoDif;
-float JAIBasic::msDspDif;
+f32 JAIBasic::msDspLevel;
+f32 JAIBasic::msAutoLevel;
+f32 JAIBasic::msAutoDif;
+f32 JAIBasic::msDspDif;
 
 u8 JAIBasic::msStopStatus = 3;
 
@@ -296,7 +297,7 @@ lbl_800AC430:
  * Address:	800AC444
  * Size:	000034
  */
-void JAIBasic::setCameraInfo(Vec* p1, Vec* p2, float (*p3)[4], unsigned long index)
+void JAIBasic::setCameraInfo(Vec* p1, Vec* p2, f32 (*p3)[4], unsigned long index)
 {
 	if (JAIGlobalParameter::audioCameraMax <= index) {
 		return;
@@ -840,7 +841,7 @@ BOOL JAIBasic::getMapInfoGround(unsigned long p1) { return p1 != 0; }
  * Address:	800ACAB4
  * Size:	000018
  */
-float JAIBasic::getMapInfoFxParameter(unsigned long p1) { return (p1 == 0) ? 0.0f : 1.0f; }
+f32 JAIBasic::getMapInfoFxParameter(unsigned long p1) { return (p1 == 0) ? 0.0f : 1.0f; }
 
 /*
  * --INFO--
@@ -1273,7 +1274,7 @@ lbl_800AD014:
  * Address:	800AD028
  * Size:	000034
  */
-int JAIBasic::checkAudioStopStatus()
+u8 JAIBasic::checkAudioStopStatus()
 {
 	switch (msStopStatus) {
 	case 1:
@@ -1330,7 +1331,7 @@ long JAIBasic::stopCallBack(void*)
 			msStopStatus = 2;
 		}
 	} else if (msStopStatus == 1) {
-		float level = JASDriver::getDSPLevel_f32() - msDspDif;
+		f32 level = JASDriver::getDSPLevel_f32() - msDspDif;
 		JASDriver::setDSPLevel(level < 0.0f ? 0.0f : level);
 		level = JASDriver::getAutoLevel_f32() - msAutoDif;
 		JASDriver::setAutoLevel(level < 0.0f ? 0.0f : level);

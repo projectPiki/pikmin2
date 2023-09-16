@@ -6,7 +6,7 @@
 #include "Dolphin/mtx.h"
 #include "Dolphin/vec.h"
 #include "types.h"
-#include "utility"
+#include "stl/utility.h"
 
 namespace JMath {
 

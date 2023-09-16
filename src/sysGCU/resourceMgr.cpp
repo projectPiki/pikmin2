@@ -406,7 +406,7 @@ void Resource::MgrCommand::setModeInvalid()
 void Resource::MgrCommand::memoryCallBackFunc()
 {
 	_38->_30->changeGroupID(_38->mGroupIDMaybe);
-	JUT_PANICLINE(343, "有りえな�?状態でござ�?ま�? \n");
+	JUT_PANICLINE(343, "有りえな�?状態でござ�?ま�? \n");
 }
 
 /*
@@ -533,8 +533,8 @@ bool Resource::MgrCommand::destroy()
  * Address:	804336D0
  * Size:	00010C
  */
-Resource::Mgr::Mgr(JKRHeap* heap, u32 size)
-    : _04(nullptr)
+Resource::Mgr::Mgr(JKRHeap* parentHeap, u32 size)
+    : mHeap(nullptr)
     , _08(0)
     , _0C(0)
     , _10()
@@ -545,11 +545,11 @@ Resource::Mgr::Mgr(JKRHeap* heap, u32 size)
 	_40.bytesView[2]             = 0;
 	_40.bytesView[3]             = 0;
 	JKRHeap* existingCurrentHeap = JKRHeap::sCurrentHeap;
-	if (heap == nullptr) {
-		heap = JKRHeap::sCurrentHeap;
+	if (parentHeap == nullptr) {
+		parentHeap = JKRHeap::sCurrentHeap;
 	}
-	_04 = JKRExpHeap::create(size, heap, true);
-	P2ASSERTLINE(487, _04 != nullptr);
+	mHeap = JKRExpHeap::create(size, parentHeap, true);
+	P2ASSERTLINE(487, mHeap != nullptr);
 	_08              = size;
 	_0C              = _08;
 	_40.bytesView[0] = 0;
@@ -945,7 +945,7 @@ void Resource::Mgr::destroyAll()
 		child = (Node*)parent->mNext;
 		Node::destroy(parent);
 	}
-	_04->freeAll();
+	mHeap->freeAll();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

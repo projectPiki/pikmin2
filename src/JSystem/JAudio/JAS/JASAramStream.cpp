@@ -412,17 +412,14 @@ BOOL JASAramStream::prepare(long inode, int p2)
  * Address:	800A933C
  * Size:	000034
  */
-BOOL JASAramStream::start() { return OSSendMessage(&mMsgQueueA, nullptr, OS_MESSAGE_NON_BLOCKING) != FALSE; }
+BOOL JASAramStream::start() { return OSSendMessage(&mMsgQueueA, nullptr, OS_MESSAGE_NOBLOCK) != FALSE; }
 
 /*
  * --INFO--
  * Address:	800A9370
  * Size:	000038
  */
-int JASAramStream::stop(unsigned short p1)
-{
-	return OSSendMessage(&mMsgQueueA, (void*)((u32)p1 << 0x10 | 1), OS_MESSAGE_NON_BLOCKING) != FALSE;
-}
+int JASAramStream::stop(unsigned short p1) { return OSSendMessage(&mMsgQueueA, (void*)((u32)p1 << 0x10 | 1), OS_MESSAGE_NOBLOCK) != FALSE; }
 
 /*
  * --INFO--
@@ -435,7 +432,7 @@ bool JASAramStream::pause(bool p1)
 	if (p1) {
 		msg = 2;
 	}
-	if (OSSendMessage(&mMsgQueueA, (void*)msg, OS_MESSAGE_NON_BLOCKING) == FALSE) {
+	if (OSSendMessage(&mMsgQueueA, (void*)msg, OS_MESSAGE_NOBLOCK) == FALSE) {
 		return false;
 	}
 	return true;
@@ -534,7 +531,7 @@ void JASAramStream::finishTask(void* args)
 void JASAramStream::prepareFinishTask(void* args)
 {
 	JASAramStream* stream = static_cast<JASAramStream*>(args);
-	OSSendMessage(&stream->mMsgQueueB, (void*)4, OS_MESSAGE_BLOCKING);
+	OSSendMessage(&stream->mMsgQueueB, (void*)4, OS_MESSAGE_BLOCK);
 	if (stream->mCallback != nullptr) {
 		stream->mCallback(1, stream, stream->_244);
 	}

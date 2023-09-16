@@ -229,9 +229,9 @@ struct JPABaseEmitter {
 	f32 _28;                     // _28
 	f32 _2C;                     // _2C
 	f32 _30;                     // _30
-	f32 _34;                     // _34
+	f32 _34;                     // _34, away from center speed?
 	u8 _38[0x8];                 // _38
-	f32 _40;                     // _40
+	f32 _40;                     // _40, spread?
 	u8 _44[4];                   // _44
 	f32 _48;                     // _48
 	s16 _4C;                     // _4C
@@ -241,10 +241,10 @@ struct JPABaseEmitter {
 	u16 _54;                     // _54
 	JSUPtrLink _58;              // _58
 	Mtx mMatrix;                 // _68
-	JGeometry::TVec3f _98;       // _98
+	JGeometry::TVec3f _98;       // _98, global dynamics scale?
 	JGeometry::TVec3f mPosition; // _A4
 	f32 _B0;                     // _B0
-	f32 _B4;                     // _B4
+	f32 _B4;                     // _B4, global particle scale?
 	JUtility::TColor mColor1;    // _B8
 	JUtility::TColor mColor2;    // _BC
 	s32 : 0;                     // reset alignment to _C0

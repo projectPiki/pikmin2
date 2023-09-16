@@ -8,6 +8,11 @@ namespace PSSystem {
  * @size{0x8}
  */
 struct SeqSoundBase {
+	SeqSoundBase()
+	    : _04(nullptr)
+	{
+	}
+
 	virtual void stop(u32);          // _08
 	virtual void stopInner(u32) = 0; // _0C
 
@@ -19,6 +24,8 @@ struct SeqSoundBase {
  * @size{0x6A8}
  */
 struct SeqSound : public JAISequence, public SeqSoundBase {
+	SeqSound();
+
 	// vtable 1 (JAISequence) (no changes) 	- _08-_D0
 	// vtable 2 (SeqSoundBase + self)		- _DC-_E0 (thunk)
 	virtual void stopInner(unsigned long); // _E4 (weak)

@@ -46,7 +46,7 @@ struct DataLoadMgrNode : virtual public DataMgrBase {
 	} // _10 (weak)
 
 	virtual JKRHeap* getObjHeap()          = 0; // _14
-	virtual void getDataHeap()             = 0; // _18
+	virtual JKRHeap* getDataHeap()         = 0; // _18
 	virtual bool initInstance(void*, long) = 0; // _1C
 	virtual bool initInstance()            = 0; // _20
 
@@ -92,7 +92,7 @@ struct DataMgrNode : public DataLoadMgrNode {
 	virtual ~DataMgrNode() { }                                           // _08 (weak)
 	virtual void init() { DataLoadMgrNode::init(); }                     // _10 (weak)
 	virtual JKRHeap* getObjHeap()          = 0;                          // _14
-	virtual void getDataHeap()             = 0;                          // _18
+	virtual JKRHeap* getDataHeap()         = 0;                          // _18
 	virtual bool initInstance(void*, long) = 0;                          // _1C
 	virtual bool initInstance()            = 0;                          // _20
 	virtual char* getPath() { return mPath; }                            // _24 (weak)
@@ -108,11 +108,9 @@ struct DataMgrNode : public DataLoadMgrNode {
 
 template <typename A, typename B>
 struct PrmDataMgrNode : public DataMgrNode {
-	virtual ~PrmDataMgrNode<A, B>();    // _08 (weak)
-	virtual bool isTempBuffaMode() = 0; // _0C
-	virtual void init()            = 0; // _10
-	virtual JKRHeap* getObjHeap();      // _14 (weak)
-	virtual void getDataHeap();         // _18 (weak)
+	virtual ~PrmDataMgrNode<A, B>(); // _08 (weak)
+	virtual JKRHeap* getObjHeap();   // _14 (weak)
+	virtual JKRHeap* getDataHeap();  // _18 (weak)
 	virtual bool initInstance(void* buffer, long bufferLength)
 	{
 		bool success = initInstance();

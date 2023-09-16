@@ -17,14 +17,16 @@ struct DataMgrBase;
  */
 template <typename T>
 struct NodeTree : public JSUTree<T> {
+	typedef void (*RemoveCallback)(u8, void*);
+
 	inline NodeTree(T* owner)
 	    : JSUTree<T>(owner)
 	    , _20(0)
 	    , _24(0)
 	    , _28(0)
 	    , _2C(0)
-	    , _30(nullptr)
-	    , _34(0)
+	    , mRemoveCallback(nullptr)
+	    , _34(nullptr)
 	{
 	}
 
@@ -38,16 +40,16 @@ struct NodeTree : public JSUTree<T> {
 
 	// _00-_1C  = JSUTree
 	// _1C      = VTABLE
-	u32 _20;   // _20 - unknown
-	u32 _24;   // _24 - unknown
-	u32 _28;   // _28 - unknown
-	u32 _2C;   // _2C - unknown
-	void* _30; // _30 - function pointer for removeCallback()
-	u32 _34;   // _34 - unknown
+	u32 _20;                        // _20 - unknown
+	u32 _24;                        // _24 - unknown
+	u32 _28;                        // _28 - unknown
+	u32 _2C;                        // _2C - unknown
+	RemoveCallback mRemoveCallback; // _30 - function pointer for removeCallback()
+	void* _34;                      // _34 - unknown
 };
 
 // TODO: this
-struct AccessMode;
+enum AccessMode {};
 
 /**
  * @size = 0x3C
@@ -91,7 +93,7 @@ struct PrmSetBase : public JKRDisposer {
 	u8 _1B;               // _1B - possibly padding
 	JSUList<PrmBase> _1C; // _1C
 	u8 _28[0x4];          // _28 - unknown
-	PrmSetTree _2C;       // _48
+	PrmSetTree _2C;       // _2C
 };
 
 /**
@@ -176,11 +178,11 @@ struct PrmSetRc : public PrmSetBase {
 	PrmSetRc()
 	    : PrmSetBase(true)
 	    , _64(0)
-	    , _68(this)
+	    , _68()
 	{
 	}
 
-	T getChildNum() { return _68.mValue; }
+	u8 getChildNum() { return _68.mValue; }
 
 	virtual ~PrmSetRc(); // _08 (weak)
 	virtual void load(JSUMemoryInputStream& input)
@@ -193,8 +195,8 @@ struct PrmSetRc : public PrmSetBase {
 			}
 			T* childObjects = new T[getChildNum()];
 			for (int i = 0; i < getChildNum(); i++) {
-				PrmSetBase* object = static_cast<PrmSetBase*>(childObjects[i]);
-				_2C.append(object->_2C);
+				PrmSetBase* object = static_cast<PrmSetBase*>(childObjects + i);
+				_2C.append(&object->_2C);
 				object->appendAfter();
 				object->load(input);
 			}
@@ -211,7 +213,7 @@ struct PrmSetRc : public PrmSetBase {
 
 	// _00      = VTABLE
 	// _04-_64  = PrmBase
-	u32 _64;     // _64 - unknown
+	T* _64;      // _64 - unknown
 	Prm<u8> _68; // _68 - should this be T? it's u8 in ghidra
 };
 

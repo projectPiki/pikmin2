@@ -60,6 +60,8 @@ struct CNode {
 };
 
 #define FOREACH_NODE(type, first, varname) for (type* varname = (type*)(first); varname != nullptr; varname = (type*)(varname->mNext))
+#define FOREACH_NODE_REVERSE(type, first, varname) \
+	for (type* varname = (type*)(first); varname != nullptr; varname = (type*)(varname->mPrev))
 #define FOREACH_NODE_EX(type, first, varname, excond) \
 	for (type* varname = (type*)(first); varname != nullptr && (excond); varname = (type*)(varname->mNext))
 

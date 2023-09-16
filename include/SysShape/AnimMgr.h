@@ -35,8 +35,23 @@ struct AnimMgr : public CNode {
 	void connectBasArc(char*, char*, JKRFileLoader*);
 	void registerSoundViewer(PSGame::SoundCreatureMgr*);
 
-	static AnimMgr* load(char*, J3DModelData*, JKRFileLoader*);
+	static AnimMgr* load(char* path, J3DModelData* modelData, JKRFileLoader* fileLoader);
 	static AnimMgr* load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*);
+
+	// unused/inlined:
+	static AnimMgr* load(Stream&, SysShape::Model*, JKRFileLoader*, char*);
+
+	// fabricated:
+	AnimInfo* getAnimByID(int animID)
+	{
+		FOREACH_NODE(AnimInfo, mAnimInfo.mChild, info)
+		{
+			if (animID == info->mId) {
+				return info;
+			}
+		}
+		return nullptr;
+	}
 
 	Model* mModel;      // _18
 	AnimInfo mAnimInfo; // _1C

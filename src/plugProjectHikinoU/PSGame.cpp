@@ -1,9 +1,17 @@
-#include "PSM/BossSeq.h"
+#include "PSGame/BASARC.h"
+#include "PSSystem/PSCommon.h"
+#include "PSSystem/PSSystemIF.h"
 #include "types.h"
+#include "PSAutoBgm/AutoBgm.h"
+#include "PSGame/CameraMgr.h"
 #include "PSGame/EnvSe.h"
 #include "PSGame/PikScene.h"
-#include "PSGame/SceneInfo.h"
 #include "PSGame/SoundCreatureMgr.h"
+#include "PSGame/SceneInfo.h"
+#include "PSGame/SoundTable.h"
+#include "PSGame/SysFactory.h"
+#include "PSM/BossSeq.h"
+#include "PSSystem/ConductorList.h"
 
 /*
     Generated from dpostproc
@@ -673,7 +681,7 @@ lbl_80334344:
  * Address:	80334364
  * Size:	0001AC
  */
-void ConductorList::read(Stream&)
+void ConductorList::read(Stream& input)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1344,7 +1352,7 @@ lbl_80334B34:
  * Address:	80334B4C
  * Size:	000018
  */
-void SoundTable::SePerspInfo::set(float, float, float, float, float)
+void SoundTable::SePerspInfo::set(f32, f32, f32, f32, f32)
 {
 	/*
 	stfs     f1, 0(r3)
@@ -1361,7 +1369,7 @@ void SoundTable::SePerspInfo::set(float, float, float, float, float)
  * Address:	80334B64
  * Size:	000164
  */
-void SoundTable::SePerspInfo::getDistVol(float, unsigned char)
+f32 SoundTable::SePerspInfo::getDistVol(f32, unsigned char)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1599,7 +1607,7 @@ lbl_80334DEC:
  * Address:	80334DF4
  * Size:	00004C
  */
-void CameraMgr::update(unsigned char, float)
+void CameraMgr::update(unsigned char, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1644,7 +1652,7 @@ f32 CameraMgr::getCurrentCamDistVol(unsigned char)
  * Address:	80334E50
  * Size:	000088
  */
-void CameraMgr::getVol_DistBetweenCamAndLookat(float)
+void CameraMgr::getVol_DistBetweenCamAndLookat(f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2235,7 +2243,7 @@ void SceneInfo::setStageFlag(PSGame::SceneInfo::FlagDef, PSGame::SceneInfo::Flag
  * Address:	80335560
  * Size:	000010
  */
-void SceneInfo::getFlag(const(PSGame::SceneInfo::FlagBitShift))
+PSGame::SceneInfo::FlagDef SceneInfo::getFlag(PSGame::SceneInfo::FlagBitShift) const
 {
 	/*
 	lhz      r0, 4(r3)
@@ -2294,7 +2302,7 @@ lbl_803355BC:
  * Address:	803355E4
  * Size:	00003C
  */
-PikScene::PikScene((unsigned char))
+PikScene::PikScene(unsigned char)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3119,7 +3127,7 @@ lbl_80335FB0:
  * Address:	80335FE4
  * Size:	000088
  */
-void PikSceneMgr::newStreamBgm(unsigned long, JAInter::SoundInfo&)
+PSSystem::BgmSeq* PikSceneMgr::newStreamBgm(unsigned long, JAInter::SoundInfo&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5825,7 +5833,7 @@ void PSSetBgmSelectAsToolMode()
  * Address:	803380AC
  * Size:	000050
  */
-void __dt__Q28PSSystem39SingletonBase<PSGame::ConductorList> Fv()
+PSSystem::SingletonBase<PSGame::ConductorList>::~SingletonBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5858,7 +5866,7 @@ lbl_803380E4:
  * Address:	803380FC
  * Size:	000050
  */
-void __dt__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv()
+PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::~SingletonBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5891,7 +5899,7 @@ lbl_80338134:
  * Address:	8033814C
  * Size:	000098
  */
-void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv()
+PSGame::SoundTable::CategoryMgr* PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::newInstance()
 {
 	/*
 	.loc_0x0:
@@ -5949,13 +5957,13 @@ void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv
  * Address:	803381E4
  * Size:	000008
  */
-@28 @PSGame::ConductorList::~ConductorList()
-{
-	/*
-	addi     r3, r3, -28
-	b        __dt__Q26PSGame13ConductorListFv
-	*/
-}
+// @28 @PSGame::ConductorList::~ConductorList()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        __dt__Q26PSGame13ConductorListFv
+// 	*/
+// }
 
 namespace PSGame {
 
@@ -5964,14 +5972,14 @@ namespace PSGame {
  * Address:	803381EC
  * Size:	000008
  */
-bool SceneInfo::isCaveFloor() { return false; }
+// bool SceneInfo::isCaveFloor() { return false; }
 
 /*
  * --INFO--
  * Address:	803381F4
  * Size:	000008
  */
-u32 PikSceneMgr::curSceneIsBigBossFloor() { return 0x0; }
+// u32 PikSceneMgr::curSceneIsBigBossFloor() { return 0x0; }
 
 } // namespace PSGame
 
@@ -6096,7 +6104,7 @@ blr
  * Address:	803382EC
  * Size:	000080
  */
-void __dt__Q28PSSystem24ArcMgr<PSGame::BASARC> Fv()
+PSSystem::ArcMgr<PSGame::BASARC>::~ArcMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)

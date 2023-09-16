@@ -813,7 +813,7 @@ void E2DPane_getCalcGlbVisible(J2DPane*)
  * Address:	803CACF8
  * Size:	0000D0
  */
-void E2DPane_getGlbCenter(J2DPane*)
+Vector2f E2DPane_getGlbCenter(J2DPane*)
 {
 	/*
 	stwu     r1, -0x40(r1)

@@ -630,7 +630,7 @@ lbl_801626E4:
  * Address:	801626F8
  * Size:	00002C
  */
-void MapMgr::getMapRotation()
+f32 MapMgr::getMapRotation()
 {
 	/*
 	lwz      r3, 0xc(r3)
@@ -654,7 +654,7 @@ lbl_8016271C:
  * Address:	80162724
  * Size:	00001C
  */
-void MapMgr::getDemoMatrix()
+Matrixf* MapMgr::getDemoMatrix()
 {
 	/*
 	lwz      r3, 0xc(r3)
@@ -674,7 +674,7 @@ lbl_80162738:
  * Address:	80162740
  * Size:	000704
  */
-void MapMgr::getBestAngle(Vector3f&, float, float)
+f32 MapMgr::getBestAngle(Vector3f&, f32, f32)
 {
 	/*
 	stwu     r1, -0x180(r1)
@@ -2238,16 +2238,16 @@ void MapCollision::createTriangles(Sys::CreateTriangleArg&)
 	*/
 }
 
-namespace Sys {
+// namespace Sys {
 
 /*
  * --INFO--
  * Address:	80163B6C
  * Size:	000004
  */
-void TriDivider::createTriangles(Sys::CreateTriangleArg&) { }
+// void TriDivider::createTriangles(Sys::CreateTriangleArg&) { }
 
-} // namespace Sys
+// } // namespace Sys
 
 namespace Game {
 /*
@@ -2256,7 +2256,7 @@ namespace Game {
  * Size:	00008C
  */
 // void getMinY__Q24Game11ShapeMapMgrFR10Vector3f()
-float ShapeMapMgr::getMinY(Vector3f& origin)
+f32 ShapeMapMgr::getMinY(Vector3f& origin)
 {
 	CurrTriInfo info;
 	// FROM HERE
@@ -2729,7 +2729,7 @@ void MapMgr::doDirectDraw(Graphics&) { }
  * Address:	801640FC
  * Size:	000004
  */
-void MapMgr::doSimulation(float) { }
+void MapMgr::doSimulation(f32) { }
 
 /*
  * --INFO--
@@ -3095,7 +3095,7 @@ namespace Game {
  * Address:	80164534
  * Size:	000004
  */
-void WaterBox::doSetView(int) { }
+void WaterBox::doSetView(int viewportNumber) { }
 
 } // namespace Game
 

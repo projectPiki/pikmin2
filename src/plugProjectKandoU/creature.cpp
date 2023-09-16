@@ -549,9 +549,9 @@ void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
  * Address:	8013BFDC
  * Size:	0002E4
  */
-void Creature::checkCollision(CellObject* cellObj)
+void Creature::checkCollision(CellObject* other)
 {
-	Creature* cellCreature = static_cast<Creature*>(cellObj);
+	Creature* cellCreature = static_cast<Creature*>(other);
 
 	if (isDebugCollision()) {
 		getCreatureName();

@@ -21,11 +21,11 @@ struct TKechappyTest : public TChaseMtx3 {
 	{
 	}
 
-	void setGlobalAlpha(u8);
-	void setGlobalParticleScale(f32);
-	void setAwayFromCenterSpeed(f32);
-	void setSpread(f32);
-	void setGlobalDynamicsScale(Vector3f&);
+	void setGlobalAlpha(u8 alpha);
+	void setGlobalParticleScale(f32 scale);
+	void setAwayFromCenterSpeed(f32 speed);
+	void setSpread(f32 spread);
+	void setGlobalDynamicsScale(Vector3f& scale);
 
 	// _00      = VTBL
 	// _00-_40  = TChaseMtx3

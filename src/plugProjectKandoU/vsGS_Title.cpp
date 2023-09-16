@@ -98,7 +98,7 @@ void TitleState::dvdload()
 		scene.mSceneType = PSGame::SceneInfo::VERSUS_MENU;
 	}
 	scene.mCameras = 0;
-	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&scene);
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(scene);
 
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
 	sceneMgr->checkScene();

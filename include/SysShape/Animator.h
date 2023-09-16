@@ -32,10 +32,10 @@ struct Animator : public BaseAnimator {
 	}
 	virtual void animate(f32); // _0C
 
-	void startAnim(int, MotionListener*);
-	void startExAnim(AnimInfo*);
-	bool assertValid(Model*);
-	void setCurrFrame(f32);
+	void startAnim(int animID, MotionListener* listener);
+	void startExAnim(AnimInfo* info);
+	bool assertValid(Model* model);
+	void setCurrFrame(f32 timer);
 	void setFrameByKeyType(u32);
 	void setLastFrame();
 
@@ -45,6 +45,8 @@ struct Animator : public BaseAnimator {
 	AnimMgr* mAnimMgr;         // _10
 	KeyEvent* mCurAnimKey;     // _14
 	u8 mFlags;                 // _18
+
+	static u8 verbose;
 };
 
 struct BlendFunction {
@@ -77,6 +79,9 @@ struct BlendAnimator : public BaseAnimator {
 	void startBlend(BlendFunction*, f32, MotionListener*);
 	void endBlend();
 	void animate(BlendFunction*, f32, f32, f32);
+
+	// unused/inlined:
+	void setWeight(f32);
 
 	Animator mAnimators[2];          // _04
 	f32 _3C;                         // _3C

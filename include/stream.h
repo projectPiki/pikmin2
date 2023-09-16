@@ -3,8 +3,8 @@
 
 #include "types.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "string.h"
-#include "stdio.h"
+#include "stl/string.h"
+#include "stl/stdio.h"
 
 #define STREAM_MODE_BINARY 0
 #define STREAM_MODE_TEXT   1

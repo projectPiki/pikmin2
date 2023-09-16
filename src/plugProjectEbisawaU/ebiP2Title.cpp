@@ -650,10 +650,8 @@ void TTitleMgr::boid3ToAssemble()
  */
 bool TTitleMgr::isControllerOK()
 {
-	if (!mCounterControl) {
-		return true;
-	}
-	return false;
+	bool result = (!mCounterControl ? TRUE : FALSE);
+	return result;
 }
 
 /*

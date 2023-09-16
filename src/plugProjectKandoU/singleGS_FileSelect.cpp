@@ -58,7 +58,7 @@ void FileState::dvdload()
 	info.mSceneType = PSGame::SceneInfo::FILE_SELECT;
 	info.mCameras   = 0;
 
-	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&info);
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(info);
 
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
 	sceneMgr->checkScene();

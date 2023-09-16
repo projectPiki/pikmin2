@@ -10,20 +10,30 @@ struct JKRArchive;
 struct JKRHeap;
 
 struct DvdThreadCommand {
+	enum EHeapDirection { EHD_Unknown0 = 0, EHD_Unknown1 = 1 };
+
 	DvdThreadCommand();
-	// void loadUseCallBack(IDelegate*);
-
 	~DvdThreadCommand() {};
+	void loadUseCallBack(struct IDelegate*);
 
-	u32 _00;                         // _00
+	// unused/inlined:
+	static JKRArchive* loadArchive(char*, JKRHeap*, DvdThreadCommand::EHeapDirection);
+	void loadFile(char*, JKRHeap*, DvdThreadCommand::EHeapDirection);
+	void invokeCallBack();
+	void wait();
+	void loading();
+	void finish();
+	void getDataType();
+	void checkExp(const char*) const;
+
+	IDelegate* mCallBack;            // _00
 	u32 mLoadType;                   // _04
 	char* mArcPath;                  // _08
 	JKRArchive* mMountedArchive;     // _0C
 	s32 _10;                         // _10
-	u32 mModeFlags;                  // _14
+	EHeapDirection mHeapDirection;   // _14
 	s32 mMode;                       // _18
-	char mOs;                        // _1C
-	u8 _1D[0x16];                    // _1D
+	OSMutex mMutex;                  // _1C
 	JKRHeap* mHeap;                  // _34
 	OSMessageQueue mMsgQueue;        // _38
 	void* mMsgBuffer;                // _58

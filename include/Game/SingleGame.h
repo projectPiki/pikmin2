@@ -179,6 +179,15 @@ struct CaveState : public State {
 	bool mDrawSave;    // _18
 };
 
+struct DayEndArg : public StateArg {
+	DayEndArg(u16 p1)
+	    : _00(p1)
+	{
+	}
+
+	u16 _00;
+};
+
 /**
  * @size{0x20}
  */

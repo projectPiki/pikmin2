@@ -1559,7 +1559,7 @@ void TMemoryCard::update()
 			mInputDelay--;
 		}
 		if (!mInputDelay && mCanExit) {
-			if (mController->mButton->mButtonDown & Controller::PRESS_DPAD_RIGHT || mController->mButton.mAnalogL > 0.5f) {
+			if (mController->mButton.mButtonDown & Controller::PRESS_DPAD_RIGHT || mController->mButton.mAnalogL > 0.5f) {
 				if (mCurrSel == 1) {
 					mCurrSel                 = 0;
 					mBlinkFont[0]._48        = false;
@@ -1572,7 +1572,7 @@ void TMemoryCard::update()
 					mCursor1.mSelected       = false;
 					mCursor2.mSelected       = false;
 				}
-			} else if (mController->mButton->mButtonDown & Controller::PRESS_DPAD_RIGHT || mController->mButton.mAnalogL > 0.5f) {
+			} else if (mController->mButton.mButtonDown & Controller::PRESS_DPAD_RIGHT || mController->mButton.mAnalogL > 0.5f) {
 				if (mCurrSel == 0) {
 					mCurrSel                 = 1;
 					mBlinkFont[0].mIsEnabled = true;
@@ -1585,7 +1585,7 @@ void TMemoryCard::update()
 					mCursor1.mSelected       = true;
 					mCursor2.mSelected       = true;
 				}
-			} else if (mController->mButton->mButtonDown & Controller::PRESS_A) {
+			} else if (mController->mButton.mButtonDown & Controller::PRESS_A) {
 				if (mCurrSel) {
 					mBlinkFont[0].mIsEnabled = false;
 					J2DTextBox* pane         = static_cast<J2DTextBox*>(mBlinkFont[0].mPane);
@@ -1636,7 +1636,7 @@ void TMemoryCard::update()
 				startState(MEMCARD_Finish);
 				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 				return;
-			} else if (mController->mButton->mButtonDown & Controller::PRESS_B) {
+			} else if (mController->mButton.mButtonDown & Controller::PRESS_B) {
 				mBlinkFont[0].mIsEnabled = false;
 				J2DTextBox* pane         = static_cast<J2DTextBox*>(mBlinkFont[0].mPane);
 				if (pane) {

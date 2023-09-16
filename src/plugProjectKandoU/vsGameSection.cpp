@@ -339,7 +339,7 @@ void VsGameSection::onSetSoundScene()
 
 	setDefaultPSSceneInfo(floorInfo);
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
-	static_cast<PSGame::PikSceneMgr*>(sceneMgr)->newAndSetCurrentScene(&floorInfo);
+	static_cast<PSGame::PikSceneMgr*>(sceneMgr)->newAndSetCurrentScene(floorInfo);
 	sceneMgr = PSSystem::getSceneMgr();
 	sceneMgr->checkScene();
 	sceneMgr->mScenes->mChild->scene1stLoadSync();

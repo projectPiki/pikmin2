@@ -16,6 +16,9 @@ enum JASMixMode {
 };
 
 namespace JASDriver {
+typedef void (*DspDacCallback)(u32, s32);
+typedef short* (*MixCallback)(s32);
+
 f32 key2pitch_c5(int);
 void setLevel(f32, f32, f32);
 void setMixerLevel(f32, f32);
@@ -68,7 +71,6 @@ extern u32 JAS_SYSTEM_OUTPUT_MODE;
 
 extern const u8 sDspDacBufferCount;
 extern const int sSubFrames;
-extern const JASMixMode sMixMode;
 extern const f32 sDacRate;
 
 extern const f32 C5BASE_PITCHTABLE[0x80];
@@ -76,6 +78,15 @@ extern const f32 C5BASE_PITCHTABLE[0x80];
 extern JASCallbackMgr sDspSyncCallback;
 extern JASCallbackMgr sSubFrameCallback;
 extern JASCallbackMgr sUpdateDacCallback;
+
+extern u32* sDspDacBuffer;
+extern u32 sDspDacReadBuffer;
+extern u32 sDspDacWriteBuffer;
+extern u32 sDspStatus;
+extern DspDacCallback sDspDacCallback;
+
+extern MixCallback extMixCallback;
+extern JASMixMode sMixMode;
 } // namespace JASDriver
 
 #endif

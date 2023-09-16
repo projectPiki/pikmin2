@@ -5,8 +5,8 @@ struct Matrixf;
 namespace SysShape {
 
 struct MtxObject {
-	virtual Matrixf* getMatrix(int) = 0;     // _08
-	virtual bool isModel() { return false; } // _0C (weak)
+	virtual Matrixf* getMatrix(int jointIndex) = 0; // _08
+	virtual bool isModel() { return false; }        // _0C (weak)
 };
 
 } // namespace SysShape

@@ -1,6 +1,7 @@
 #ifndef _PSAUTOBGM_CYCLE_H
 #define _PSAUTOBGM_CYCLE_H
 
+#include "JSystem/JAudio/JAD/JADUtility.h"
 #include "types.h"
 #include "PSAutoBgm/Track.h"
 #include "JSystem/JKernel/JKRDisposer.h"
@@ -12,27 +13,21 @@ namespace PSAutoBgm {
 
 struct Module;
 /**
- * @size = 0x3D
+ * @size = 0x40
  */
 struct CycleBase {
 	virtual void play(JASTrack*); // _08
-	virtual void getCycleType();  // _0C (weak)
-	virtual void avoidCheck();    // _10 (weak)
+	virtual u32 getCycleType();   // _0C (weak)
+	virtual u32 avoidCheck();     // _10 (weak)
 
-	void cycleTop(JASTrack*);
-	void checkCloser(JASTrack*);
+	u32 cycleTop(JASTrack*);
+	u32 checkCloser(JASTrack*);
 
 	// _00  = VTABLE
-	Module* _04;     // _04
-	u8 _08;          // _08
-	u8 _09[0x3];     // _09 - possibly padding
-	JKRDisposer _0C; // _0C
-	u8 _24;          // _24
-	u8 _25[0x3];     // _25 - possibly padding
-	JSUPtrLink _28;  // _28
-	u8 _38;          // _38
-	u8 _39[0x3];     // _39 - possibly padding? unsure
-	u8 _3C;          // _3C
+	Module* _04;                       // _04
+	u8 _08;                            // _08
+	JADUtility::PrmSlider<u8> mSlider; // _0C
+	u8 _3C;                            // _3C
 };
 
 /**
@@ -42,8 +37,8 @@ struct OnCycle : public CycleBase {
 	OnCycle(Module*);
 
 	virtual void play(JASTrack*); // _08
-	virtual void getCycleType();  // _0C (weak)
-	virtual void avoidCheck();    // _10
+	virtual u32 getCycleType();   // _0C (weak)
+	virtual u32 avoidCheck();     // _10
 
 	void setTip(JASTrack*);
 	void historiesAreSameAll();

@@ -220,7 +220,7 @@ lbl_80424F58:
  * Address:	80424FE0
  * Size:	0000BC
  */
-void HorizonalSplitter::split2(float)
+void HorizonalSplitter::split2(f32)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -288,7 +288,7 @@ VerticalSplitter::VerticalSplitter(Graphics*)
  * Address:	........
  * Size:	0000BC
  */
-void VerticalSplitter::split2(float)
+void VerticalSplitter::split2(f32)
 {
 	// UNUSED FUNCTION
 }
@@ -308,7 +308,7 @@ FourSplitter::FourSplitter(Graphics*)
  * Address:	........
  * Size:	00016C
  */
-void FourSplitter::split4(float, float)
+void FourSplitter::split4(f32, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -377,7 +377,7 @@ Viewport::Viewport()
  * Address:	8042515C
  * Size:	000044
  */
-void Viewport::getMatrix(bool)
+Matrixf* Viewport::getMatrix(bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -620,7 +620,7 @@ lbl_80425378:
  * Address:	80425380
  * Size:	0000C4
  */
-void Viewport::setRect(Rect<float>&)
+void Viewport::setRect(Rectf&)
 {
 	/*
 	lfs      f0, 0(r4)
@@ -760,7 +760,7 @@ void Viewport::setOrthoGraph2d(J2DOrthoGraph&)
  * Address:	80425518
  * Size:	000050
  */
-void Viewport::setJ3DViewMtx(bool)
+SysShape::Model* Viewport::setJ3DViewMtx(bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1353,7 +1353,7 @@ void Graphics::drawLine(Vector3f&, Vector3f&)
  * Address:	........
  * Size:	0002FC
  */
-void Graphics::drawPlane(Plane&, float)
+void Graphics::drawPlane(Plane&, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -1363,7 +1363,7 @@ void Graphics::drawPlane(Plane&, float)
  * Address:	........
  * Size:	0007F0
  */
-void Graphics::drawBox(Vector3f&, Vector3f*, float*, float*)
+void Graphics::drawBox(Vector3f&, Vector3f*, f32*, f32*)
 {
 	// UNUSED FUNCTION
 }
@@ -1383,7 +1383,7 @@ void Graphics::drawBox(Vector3f&, Vector3f&, Vector3f&, Vector3f&)
  * Address:	80425AAC
  * Size:	000598
  */
-void Graphics::drawSphere(Vector3f&, float)
+void Graphics::drawSphere(Vector3f&, f32)
 {
 	/*
 	stwu     r1, -0x1d0(r1)
@@ -1784,7 +1784,7 @@ lbl_80425F5C:
  * Address:	80426044
  * Size:	0005C8
  */
-void Graphics::drawSphere(float, Matrixf*)
+void Graphics::drawSphere(f32, Matrixf*)
 {
 	/*
 	stwu     r1, -0x1d0(r1)
@@ -2197,7 +2197,7 @@ lbl_80426524:
  * Address:	........
  * Size:	0005B4
  */
-void Graphics::drawCylinder(Vector3f&, Vector3f&, float)
+void Graphics::drawCylinder(Vector3f&, Vector3f&, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -2217,7 +2217,7 @@ void Graphics::loadPrimViewMtx()
  * Address:	........
  * Size:	0005F8
  */
-void Graphics::drawTube(Vector3f&, Vector3f&, float, float)
+void Graphics::drawTube(Vector3f&, Vector3f&, f32, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -2237,7 +2237,7 @@ void Graphics::drawMesh(Matrixf*)
  * Address:	8042660C
  * Size:	0002B8
  */
-void Graphics::drawAxis(float, Matrixf*)
+void Graphics::drawAxis(f32, Matrixf*)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2438,7 +2438,7 @@ lbl_80426700:
  * Address:	........
  * Size:	000274
  */
-void Graphics::drawMarker(float, Matrixf*)
+void Graphics::drawMarker(f32, Matrixf*)
 {
 	// UNUSED FUNCTION
 }
@@ -2468,7 +2468,7 @@ void Graphics::drawRect(Rectf&, JUTTexture*)
  * Address:	804268C4
  * Size:	000024
  */
-void Graphics::clearZBuffer(Rect<float>&)
+void Graphics::clearZBuffer(Rectf&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2488,7 +2488,7 @@ void Graphics::clearZBuffer(Rect<float>&)
  * Address:	804268E8
  * Size:	0003D0
  */
-void Graphics::fillZBuffer(Rect<float>&, float)
+void Graphics::fillZBuffer(Rectf&, f32)
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -2748,7 +2748,7 @@ void Graphics::drawTile(Sys::Sphere&, Sys::Sphere&, JUTTexture*)
  * Address:	80426CB8
  * Size:	00070C
  */
-void Graphics::drawCone(Vector3f&, Vector3f&, float, int)
+void Graphics::drawCone(Vector3f&, Vector3f&, f32, int)
 {
 	/*
 	stwu     r1, -0x190(r1)
@@ -3581,7 +3581,7 @@ void Graphics::setVtxAttrFmt(_GXVtxFmt, _GXAttr, _GXCompCnt, _GXCompType, unsign
  * Address:	........
  * Size:	0001DC
  */
-void Graphics::drawRectangle(Rect<float>&, bool)
+void Graphics::drawRectangle(Rectf&, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -3702,7 +3702,7 @@ void Graphics::setTextureGX()
  * Address:	........
  * Size:	0000F0
  */
-void Graphics::drawTexture(JUTTexture*, float, float, float, float)
+void Graphics::drawTexture(JUTTexture*, f32, f32, f32, f32)
 {
 	// UNUSED FUNCTION
 }
@@ -4239,7 +4239,7 @@ void Graphics::clearInitGX()
  * Address:	80427F64
  * Size:	000004
  */
-void Splitter::split4(float, float) { }
+void Splitter::split4(f32, f32) { }
 
 /*
  * --INFO--

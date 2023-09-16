@@ -3,6 +3,7 @@
 #include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "Game/GameSystem.h"
+#include "JSystem/JStudio/stb-data.h"
 #include "nans.h"
 
 static const u32 filler[]    = { 0, 0, 0 };
@@ -425,7 +426,7 @@ void ObjectActor::entry()
  */
 bool ObjectActor::setShape()
 {
-	if (!(moviePlayer->mFlags & MoviePlayer::IS_FINISHED)) {
+	if (!(moviePlayer->mFlags.typeView & MoviePlayer::IS_FINISHED)) {
 		sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
 		int id = mShape;
 		if (id == gu32NAN_.a) {
@@ -471,7 +472,7 @@ bool ObjectActor::setShape()
  */
 bool ObjectActor::setAnim()
 {
-	if (!(moviePlayer->mFlags & MoviePlayer::IS_FINISHED)) {
+	if (!(moviePlayer->mFlags.typeView & MoviePlayer::IS_FINISHED)) {
 		sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
 		int id = mAnimation;
 		if (id == gu32NAN_.a) {
@@ -515,9 +516,20 @@ void ObjectActor::mountArchive() { JUT_PANICLINE(359, "DON\'T CALL THIS !\n"); }
  * Address:	8042F204
  * Size:	000260
  */
-void ObjectActor::parseUserData_(u32, void const*)
+void ObjectActor::parseUserData_(u32 p1, void const* p2)
 {
-	OSReport("data-ID : %u (0x%08x)\n");
+	OSReport("data-ID : %u (0x%08x)\n", p1, p2);
+	JStudio::stb::data::TParse_TParagraph_data v1;
+	v1.stbData = p2;
+	JStudio::stb::data::TParse_TParagraph_data::TData v2;
+	v1.getData(&v2);
+	if (v2.status == 0) {
+		return;
+	}
+	if (v2.fileCount == 0 || v2.status != 0x22 || v2._10 == nullptr) {
+		return;
+	}
+
 	OSReport("int16:%d,%d,%d\n");
 	OSReport("char:%d,%c,%c\n");
 	OSReport("string:%u,%s\n");

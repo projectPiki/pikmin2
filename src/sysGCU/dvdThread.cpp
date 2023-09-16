@@ -1,4 +1,11 @@
+#include "AppThread.h"
+#include "Dolphin/OS/OSMessage.h"
+#include "Dolphin/OS/OSMutex.h"
+#include "Dolphin/OS/OSThread.h"
 #include "DvdThreadCommand.h"
+#include "IDelegate.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
 /*
@@ -35,7 +42,19 @@
  * Size:	000080
  */
 DvdThreadCommand::DvdThreadCommand()
+    : mLink(this)
 {
+	mCallBack       = nullptr;
+	mLoadType       = 1;
+	mArcPath        = nullptr;
+	mMountedArchive = nullptr;
+	_10             = 32;
+	mHeapDirection  = EHD_Unknown1;
+	mMode           = 0;
+	OSInitMutex(&mMutex);
+	mHeap = nullptr;
+	OSInitMessageQueue(&mMsgQueue, &mMsgBuffer, 1);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -77,18 +96,23 @@ DvdThreadCommand::DvdThreadCommand()
  * Address:	........
  * Size:	000054
  */
-void JSULink<DvdThreadCommand>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
+// void JSULink<DvdThreadCommand>::~JSULink()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80424898
  * Size:	000020
  */
-void DvdThreadCommand::loadUseCallBack(IDelegate*)
+void DvdThreadCommand::loadUseCallBack(IDelegate* cb)
 {
+	mCallBack       = cb;
+	mLoadType       = 2;
+	mArcPath        = nullptr;
+	mMountedArchive = nullptr;
+	mMode           = 0;
 	/*
 	stw      r4, 0(r3)
 	li       r4, 2
@@ -106,9 +130,15 @@ void DvdThreadCommand::loadUseCallBack(IDelegate*)
  * Address:	........
  * Size:	000038
  */
-void DvdThreadCommand::loadArchive(char*, JKRHeap*, DvdThreadCommand::EHeapDirection)
+JKRArchive* DvdThreadCommand::loadArchive(char* path, JKRHeap* heap, DvdThreadCommand::EHeapDirection direction)
 {
 	// UNUSED FUNCTION
+	// JKRArchive::EMountDirection mountDir = JKRArchive::EMD_Tail;
+	// if (direction == EHD_Unknown1) {
+	// 	mountDir = JKRArchive::EMD_Head;
+	// }
+	// return JKRArchive::mount(path, heap, mountDir);
+	// return JKRArchive::mount(path, heap, (direction == EHD_Unknown1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
 }
 
 /*
@@ -186,8 +216,11 @@ void DvdThreadCommand::checkExp(const char*) const
  * Address:	804248B8
  * Size:	00004C
  */
-DvdThread::DvdThread(unsigned long, int, int)
+DvdThread::DvdThread(unsigned long p1, int p2, int p3)
+    : AppThread(p1, p2, p3)
+    , _7C()
 {
+	OSResumeThread(mThread);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -216,17 +249,17 @@ DvdThread::DvdThread(unsigned long, int, int)
  * Address:	........
  * Size:	000054
  */
-void JSUList<DvdThreadCommand>::~JSUList()
-{
-	// UNUSED FUNCTION
-}
+// void JSUList<DvdThreadCommand>::~JSUList()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80424904
  * Size:	000194
  */
-void DvdThread::run()
+void* DvdThread::run()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -364,8 +397,19 @@ lbl_80424A68:
  * Address:	80424A98
  * Size:	00009C
  */
-void DvdThread::loadArchive(DvdThreadCommand*)
+void DvdThread::loadArchive(DvdThreadCommand* cmd)
 {
+	JKRHeap* currentHeap = cmd->mHeap->becomeCurrentHeap();
+	// JKRArchive::EMountDirection mountDir = JKRArchive::EMD_Tail;
+	// if (cmd->mHeapDirection == 1) {
+	// 	mountDir = JKRArchive::EMD_Head;
+	// }
+	JKRArchive* arc
+	    = JKRArchive::mount(cmd->mArcPath, cmd->mHeap, (cmd->mHeapDirection == 1 ? JKRArchive::EMD_Head : JKRArchive::EMD_Tail));
+	// JKRArchive* arc = DvdThreadCommand::loadArchive(cmd->mArcPath, cmd->mHeap, cmd->mHeapDirection);
+	P2ASSERTLINE(275, arc != nullptr);
+	cmd->mMountedArchive = arc;
+	currentHeap->becomeCurrentHeap();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -504,8 +548,11 @@ lbl_80424C1C:
  * Address:	80424C3C
  * Size:	000060
  */
-void DvdThread::sendCommand(DvdThreadCommand*)
+void DvdThread::sendCommand(DvdThreadCommand* cmd)
 {
+	// cmd->mMode = 0;
+	// _7C.append(&cmd->mLink);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -541,7 +588,7 @@ lbl_80424C6C:
  * Address:	80424C9C
  * Size:	0000B0
  */
-void DvdThread::sync(DvdThreadCommand*, DvdThread::ESyncBlockFlag)
+bool DvdThread::sync(DvdThreadCommand*, DvdThread::ESyncBlockFlag)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -604,7 +651,7 @@ lbl_80424D30:
  * Address:	80424D4C
  * Size:	0000CC
  */
-void DvdThread::syncAll(DvdThread::ESyncBlockFlag)
+int DvdThread::syncAll(DvdThread::ESyncBlockFlag)
 {
 	/*
 	stwu     r1, -0x30(r1)

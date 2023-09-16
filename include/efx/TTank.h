@@ -43,9 +43,15 @@ struct TTankFireABC : public TChaseMtx3 {
 	{
 	}
 
-	virtual bool create(Arg*);   // _08
-	virtual void forceKill() { } // _0C (weak)
-	virtual void fade()          // _10 (weak)
+	virtual bool create(Arg*); // _08
+	virtual void forceKill()   // _0C (weak)
+	{
+		TChaseMtx3::forceKill();
+		if (mParticleCallBack.mEfxHit != nullptr) {
+			mParticleCallBack.mEfxHit->forceKill();
+		}
+	}
+	virtual void fade() // _10 (weak)
 	{
 		TChaseMtx3::fade();
 		if (mParticleCallBack.mEfxHit) {

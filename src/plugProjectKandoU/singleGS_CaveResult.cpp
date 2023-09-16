@@ -115,7 +115,7 @@ void CaveResultState::loadResource()
 	sceneInfo.mGameType = 9;
 	sceneInfo._07       = 0;
 
-	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&sceneInfo);
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(sceneInfo);
 
 	PSSystem::SceneMgr* mgr1 = PSSystem::getSceneMgr();
 	mgr1->checkScene();

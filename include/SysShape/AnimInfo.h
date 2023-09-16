@@ -12,6 +12,7 @@ struct Stream;
 
 namespace SysShape {
 struct AnimMgr;
+struct Model;
 
 /**
  * @size{0x54}
@@ -35,11 +36,11 @@ struct AnimInfo : public CNode {
 
 	virtual ~AnimInfo(); // _08 (weak)
 
-	void getLowestAnimKey(f32);
-	void getLastLoopStart(KeyEvent*);
-	KeyEvent* getAnimKeyByType(u32);
-	void read(Stream&);
-	void readEditor(Stream&);
+	KeyEvent* getLowestAnimKey(f32 minimumFrame);
+	KeyEvent* getLastLoopStart(KeyEvent* key);
+	KeyEvent* getAnimKeyByType(u32 type);
+	void read(Stream& input);
+	void readEditor(Stream& input);
 	void attach(J3DModelData*, void*);
 
 	inline AnimInfo* getInfoByID(int idx)
@@ -54,6 +55,11 @@ struct AnimInfo : public CNode {
 		}
 		return nullptr;
 	}
+
+	// unused/inlined:
+	void attach(Model*, void*);
+	void dump();
+	void getLastLoopStart(f32);
 
 	J3DAnmTransform* mAnm;            // _18
 	J3DMtxCalc* mCalc;                // _1C

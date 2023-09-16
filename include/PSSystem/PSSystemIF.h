@@ -26,7 +26,7 @@ struct SysIF : public JAIBasic {
 
 	void stopSoundSystem();
 	JAISe* playSystemSe(u32, u32);
-	void playSystemSe(u32, JAISound**, u32);
+	void playSystemSe(u32 soundID, JAISound** handles, u32 p3);
 	void mainLoop();
 	void setConfigVol_Se(f32);
 	void setConfigVol_Bgm(f32);

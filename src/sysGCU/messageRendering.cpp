@@ -1,3 +1,7 @@
+#include "JSystem/JMessage/TProcessor.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JUtility/JUTFont.h"
+#include "P2JME/TRenderingProcessor.h"
 #include "types.h"
 
 /*
@@ -152,12 +156,15 @@
 
 namespace P2JME {
 
+u32 TRenderingProcessor::cPageInfoBufferNum = 0xA;
+
 /*
  * --INFO--
  * Address:	804391F0
  * Size:	00003C
  */
-TRenderingProcessorBase::TRenderingProcessorBase(JMessage::TReference const*)
+TRenderingProcessorBase::TRenderingProcessorBase(JMessage::TReference const* ref)
+    : JMessage::TRenderingProcessor(ref)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -183,7 +190,7 @@ TRenderingProcessorBase::TRenderingProcessorBase(JMessage::TReference const*)
  * Address:	8043922C
  * Size:	000174
  */
-void TRenderingProcessorBase::do_tag(unsigned long, void const*, unsigned long)
+bool TRenderingProcessorBase::do_tag(unsigned long, void const*, unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -313,64 +320,87 @@ lbl_8043938C:
  * Address:	804393A0
  * Size:	000008
  */
-u32 TRenderingProcessorBase::tagFont(void const*, unsigned long) { return 0x1; }
+bool TRenderingProcessorBase::tagFont(void const*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	804393A8
  * Size:	000008
  */
-u32 TRenderingProcessorBase::tagRuby(void const*, unsigned long) { return 0x1; }
+bool TRenderingProcessorBase::tagRuby(void const*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	804393B0
  * Size:	000008
  */
-u32 TRenderingProcessorBase::tagSize(void const*, unsigned long) { return 0x1; }
+bool TRenderingProcessorBase::tagSize(void const*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	804393B8
  * Size:	000008
  */
-u32 TRenderingProcessorBase::tagColor(void const*, unsigned long) { return 0x1; }
+bool TRenderingProcessorBase::tagColor(void const*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	804393C0
  * Size:	000008
  */
-void TRenderingProcessorBase::tagPosition(unsigned short, void const*, unsigned long) { return 0x1; }
+bool TRenderingProcessorBase::tagPosition(unsigned short, void const*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	804393C8
  * Size:	000008
  */
-void TRenderingProcessorBase::tagControl(unsigned short, void const*, unsigned long) { return 0x1; }
+bool TRenderingProcessorBase::tagControl(unsigned short, void const*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	804393D0
  * Size:	000008
  */
-void TRenderingProcessorBase::tagColorEX(unsigned short, void const*, unsigned long) { return 0x1; }
+bool TRenderingProcessorBase::tagColorEX(unsigned short, void const*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	804393D8
  * Size:	000008
  */
-void TRenderingProcessorBase::tagImage(unsigned short, void const*, unsigned long) { return 0x1; }
+bool TRenderingProcessorBase::tagImage(unsigned short, void const*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	804393E0
  * Size:	000218
  */
-TRenderingProcessor::TRenderingProcessor(JMessage::TReference const*)
+TRenderingProcessor::TRenderingProcessor(JMessage::TReference const* ref)
+    : TRenderingProcessorBase(ref)
+    , _38(100.0f)
+    , _3C(100.0f)
+    , mMtx1(nullptr)
+    , mMtx2(nullptr)
+    , mRubyFont(nullptr)
+    , _54(0.0f)
+    , _58(0.0f)
+    , _5C(0)
+    , _60(0xFFFFFFFF)
+    , _78(1.0f)
+    , mMesgBounds(1.0f)
+    , mFlags(0)
+    , mLocate(0.0f)
+    , _A4(0)
+    , _A5(0)
+    , _A6(0)
+    , _A7(0)
+    , _A8()
+    , _C4()
 {
+	for (int i = 0; i < 20; i++) {
+		mColorData[i] = 0xFF;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -514,37 +544,37 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const*)
  * Address:	804395F8
  * Size:	000060
  */
-TRenderingProcessorBase::~TRenderingProcessorBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8043963C
-	lis      r5, __vt__Q25P2JME23TRenderingProcessorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q25P2JME23TRenderingProcessorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__Q28JMessage19TRenderingProcessorFv
-	extsh.   r0, r31
-	ble      lbl_8043963C
-	mr       r3, r30
-	bl       __dl__FPv
+// TRenderingProcessorBase::~TRenderingProcessorBase()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8043963C
+// 	lis      r5, __vt__Q25P2JME23TRenderingProcessorBase@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__Q25P2JME23TRenderingProcessorBase@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__Q28JMessage19TRenderingProcessorFv
+// 	extsh.   r0, r31
+// 	ble      lbl_8043963C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8043963C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8043963C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -571,8 +601,27 @@ void TRenderingProcessor::setDrawLocateY()
  * Address:	80439658
  * Size:	0000E8
  */
-void TRenderingProcessor::do_begin(void const*, char const*)
+void TRenderingProcessor::do_begin(void const* p1, char const* p2)
 {
+	_E0 = mFontWidth;
+	_E4 = mFontHeight;
+	_F0 = 0;
+	_F1 = 0;
+	_B8 = 0;
+	_40 = 0;
+	initRuby();
+	f32 v1 = static_cast<const char*>(p1)[4];
+	_BC    = v1;
+	_C4    = v1;
+	_C8    = _C0;
+	mFlags &= ~0x10000000;
+	_A6 = 0;
+	_A4 = 0;
+	_A5 = 0;
+	setDrawLocate();
+	_DC = 0;
+	_4C->setGX(_CC, _D0);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -912,6 +961,11 @@ lbl_80439AC4:
 void TRenderingProcessor::addDrawLines()
 {
 	// UNUSED FUNCTION
+	u32 pageInfoBufferNum = cPageInfoBufferNum;
+	_A5                   = 0;
+	_A6++;
+	P2ASSERTLINE(490, _A6 < pageInfoBufferNum);
+	mFlags &= 0x10000000;
 }
 
 /*
@@ -921,6 +975,16 @@ void TRenderingProcessor::addDrawLines()
  */
 void TRenderingProcessor::newParagraph()
 {
+	setLineWidth();
+	_A4++;
+	P2ASSERTLINE(509, _A4 < 64);
+	_A5++;
+	if ((mFlags & 0x10000000) != 0) {
+		setPageInfo();
+		setOnePageLine();
+		addDrawLines();
+	}
+	setDrawLocate();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1247,6 +1311,9 @@ void TRenderingProcessor::mf()
  */
 void TRenderingProcessor::do_select_begin(unsigned long)
 {
+	_A0         = 0;
+	mLocate.i.x = mLocate.f.x + _4C->getWidth() * 3;
+	mLocate.i.y = mLocate.f.y + (_4C->getHeight() * (_A0 + 3));
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1304,6 +1371,8 @@ void TRenderingProcessor::do_select_begin(unsigned long)
  */
 void TRenderingProcessor::do_select_end()
 {
+	mLocate.i.x = mLocate.f.x;
+	mLocate.i.y = mLocate.f.y + _4C->getHeight();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1342,6 +1411,9 @@ void TRenderingProcessor::do_select_end()
  */
 void TRenderingProcessor::do_select_separate()
 {
+	_A0++;
+	mLocate.i.x = mLocate.f.x + _4C->getWidth() * 3;
+	mLocate.i.y = mLocate.f.y + (_4C->getHeight() * (_A0 + 3));
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1398,7 +1470,7 @@ void TRenderingProcessor::do_select_separate()
  * Address:	8043A0C8
  * Size:	000174
  */
-void TRenderingProcessor::do_tag(unsigned long, void const*, unsigned long)
+bool TRenderingProcessor::do_tag(unsigned long, void const*, unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1528,15 +1600,24 @@ lbl_8043A228:
  * Address:	8043A23C
  * Size:	000008
  */
-void TRenderingProcessor::do_systemTagCode(unsigned short, void const*, unsigned long) { return 0x0; }
+bool TRenderingProcessor::do_systemTagCode(unsigned short, void const*, unsigned long) { return false; }
 
 /*
  * --INFO--
  * Address:	8043A244
  * Size:	00002C
  */
-void TRenderingProcessor::tagColor(void const*, unsigned long)
+bool TRenderingProcessor::tagColor(void const* p1, unsigned long p2)
 {
+	char v1 = *static_cast<const char*>(p1);
+	if (v1 == 0) {
+		_F0 = 0;
+		_F1 = 0;
+	} else {
+		_F0 = v1;
+		_F1 = v1 + 1;
+	}
+	return true;
 	/*
 	lbz      r4, 0(r4)
 	cmplwi   r4, 0
@@ -1561,8 +1642,12 @@ lbl_8043A268:
  * Address:	8043A270
  * Size:	00003C
  */
-void TRenderingProcessor::tagSize(void const*, unsigned long)
+bool TRenderingProcessor::tagSize(void const* p1, unsigned long p2)
 {
+	f32 v1 = *static_cast<const u16*>(p1) / 100.0f;
+	_E0    = v1;
+	_E4    = v1;
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	lis      r0, 0x4330
@@ -1587,7 +1672,7 @@ void TRenderingProcessor::tagSize(void const*, unsigned long)
  * Address:	8043A2AC
  * Size:	000164
  */
-void TRenderingProcessor::tagRuby(void const*, unsigned long)
+bool TRenderingProcessor::tagRuby(void const*, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1695,14 +1780,14 @@ lbl_8043A3F0:
  * Address:	8043A410
  * Size:	000008
  */
-u32 TRenderingProcessor::tagFont(void const*, unsigned long) { return 0x1; }
+bool TRenderingProcessor::tagFont(void const*, unsigned long) { return true; }
 
 /*
  * --INFO--
  * Address:	8043A418
  * Size:	000024
  */
-void TRenderingProcessor::tagColorEX(unsigned short, void const*, unsigned long)
+bool TRenderingProcessor::tagColorEX(unsigned short, void const*, unsigned long)
 {
 	/*
 	clrlwi.  r0, r4, 0x10
@@ -1726,8 +1811,20 @@ lbl_8043A434:
  * Address:	8043A43C
  * Size:	00006C
  */
-void TRenderingProcessor::tagControl(unsigned short, void const*, unsigned long)
+bool TRenderingProcessor::tagControl(unsigned short p1, void const* p2, unsigned long p3)
 {
+	bool result = true;
+	switch (p1) {
+	case 0:
+		result = doTagControlAbtnWait();
+		break;
+	case 1:
+		break;
+	case 2:
+		_DC = *static_cast<const u8*>(p2);
+		break;
+	}
+	return result;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1772,8 +1869,10 @@ lbl_8043A494:
  * Address:	8043A4A8
  * Size:	000014
  */
-void TRenderingProcessor::doTagControlAbtnWait()
+bool TRenderingProcessor::doTagControlAbtnWait()
 {
+	mFlags |= 0x10000000;
+	return true;
 	/*
 	lwz      r0, 0x8c(r3)
 	oris     r0, r0, 0x1000
@@ -1788,7 +1887,7 @@ void TRenderingProcessor::doTagControlAbtnWait()
  * Address:	8043A4BC
  * Size:	00071C
  */
-void TRenderingProcessor::tagPosition(unsigned short, void const*, unsigned long)
+bool TRenderingProcessor::tagPosition(unsigned short, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2283,6 +2382,10 @@ void TRenderingProcessor::tagPosition(unsigned short, void const*, unsigned long
  */
 void TRenderingProcessor::initRuby()
 {
+	_F2  = 0;
+	_F4  = 0;
+	_F8  = 0;
+	_100 = nullptr;
 	/*
 	li       r0, 0
 	stb      r0, 0xf2(r3)
@@ -2550,7 +2653,7 @@ lbl_8043AF18:
  * Address:	8043AF54
  * Size:	000438
  */
-void TRenderingProcessor::tagImage(unsigned short, void const*, unsigned long)
+bool TRenderingProcessor::tagImage(unsigned short, void const*, unsigned long)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2883,7 +2986,7 @@ void TRenderingProcessor::calcColorCoe(JUtility::TColor const&, JUtility::TColor
  * Address:	8043B38C
  * Size:	000440
  */
-void TRenderingProcessor::doDrawLetter(float, float, float, float, int, bool)
+void TRenderingProcessor::doDrawLetter(f32, f32, f32, f32, int, bool)
 {
 	/*
 	stwu     r1, -0xf0(r1)
@@ -3214,7 +3317,7 @@ lbl_8043B728:
  * Address:	8043B7CC
  * Size:	00029C
  */
-void TRenderingProcessor::doDrawRuby(float, float, float, float, int, bool)
+void TRenderingProcessor::doDrawRuby(f32, f32, f32, f32, int, bool)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -3416,8 +3519,10 @@ lbl_8043B9D0:
  * Address:	8043BA68
  * Size:	000074
  */
-void TRenderingProcessor::doDrawImage(JUTTexture*, float, float, float, float)
+void TRenderingProcessor::doDrawImage(JUTTexture* texture, f32 p2, f32 p3, f32 p4, f32 p5)
 {
+	setImageGX();
+	drawImage(texture, p2, p3, p4, p5);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3676,7 +3781,7 @@ lbl_8043BDFC:
  * Address:	8043BE10
  * Size:	0004F4
  */
-void TRenderingProcessor::drawImage(JUTTexture*, float, float, float, float)
+void TRenderingProcessor::drawImage(JUTTexture*, f32, f32, f32, f32)
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -4054,6 +4159,8 @@ lbl_8043C1E4:
  */
 void TRenderingProcessor::reset()
 {
+	_54 = 0.0f;
+	_58 = 0.0f;
 	/*
 	lfs      f0, lbl_805208C0@sda21(r2)
 	stfs     f0, 0x54(r3)
@@ -4067,8 +4174,18 @@ void TRenderingProcessor::reset()
  * Address:	8043C314
  * Size:	000128
  */
-void TRenderingProcessor::calcWidth(JUTFont*, int, float, bool)
+f32 TRenderingProcessor::calcWidth(JUTFont* font, int p2, f32 p3, bool p4)
 {
+	f32 v1 = p3 / font->getCellWidth();
+	if (font->mIsFixed) {
+		return v1 * font->mFixedWidth;
+	}
+	JUTFont::TWidth width;
+	font->getWidthEntry(p2, &width);
+	if (p4 == false) {
+		return v1 * (width.w1 + width.w0);
+	}
+	return v1 * width.w1;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -4160,6 +4277,10 @@ lbl_8043C418:
  */
 void TRenderingProcessor::setLineWidth()
 {
+	if ((mFlags & 1) == 0) {
+		return;
+	}
+	_A8[_A4] = mLocate.i.x;
 	/*
 	lwz      r0, 0x8c(r3)
 	clrlwi.  r0, r0, 0x1f
@@ -4180,6 +4301,9 @@ void TRenderingProcessor::setLineWidth()
  */
 void TRenderingProcessor::resetLineWidth()
 {
+	for (int i = 0; i < 64; i++) {
+		_A8[i] = 0.0f;
+	}
 	/*
 	li       r0, 4
 	lfs      f0, lbl_805208C0@sda21(r2)
@@ -4247,6 +4371,14 @@ lbl_8043C470:
  */
 void TRenderingProcessor::setOnePageLine()
 {
+	if ((mFlags & 1) == 0) {
+		return;
+	}
+	for (int i = 0; i < _A4; i++) {
+		if (_AC[i] == 0) {
+			_AC[i] = _A5;
+		}
+	}
 	/*
 	lwz      r0, 0x8c(r3)
 	clrlwi.  r0, r0, 0x1f
@@ -4280,6 +4412,9 @@ lbl_8043C568:
  */
 void TRenderingProcessor::resetOnePageLine()
 {
+	for (int i = 0; i < 64; i++) {
+		_AC[i] = 0;
+	}
 	/*
 	li       r0, 4
 	li       r12, 0
@@ -4405,8 +4540,9 @@ lbl_8043C6C8:
  * Address:	8043C6DC
  * Size:	000020
  */
-void TRenderingProcessor::preProcCode(uint)
+void TRenderingProcessor::preProcCode(uint p1)
 {
+	preProcCenteringCode(p1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4424,8 +4560,9 @@ void TRenderingProcessor::preProcCode(uint)
  * Address:	8043C6FC
  * Size:	000020
  */
-void TRenderingProcessor::preProcID(uint, uint)
+void TRenderingProcessor::preProcID(uint p1, uint p2)
 {
+	preProcCenteringID(p1, p2);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4446,6 +4583,13 @@ void TRenderingProcessor::preProcID(uint, uint)
 void TRenderingProcessor::preProcCenteringPre()
 {
 	// UNUSED FUNCTION
+	mFlags |= 1;
+	_A4 = 0;
+	resetLineWidth();
+	resetOnePageLine();
+	resetPageInfo();
+	_B4 = 0.0f;
+	reset_(nullptr);
 }
 
 /*
@@ -4456,6 +4600,15 @@ void TRenderingProcessor::preProcCenteringPre()
 void TRenderingProcessor::preProcCenteringPost()
 {
 	// UNUSED FUNCTION
+	process(nullptr);
+	setLineWidth();
+	newParagraph();
+	setOnePageLine();
+	if ((mFlags & 0x10000000) == 0) {
+		setPageInfo();
+	}
+	mFlags &= ~1;
+	_B4 = mLocate.i.y;
 }
 
 /*
@@ -4463,8 +4616,11 @@ void TRenderingProcessor::preProcCenteringPost()
  * Address:	8043C71C
  * Size:	00039C
  */
-void TRenderingProcessor::preProcCenteringCode(uint)
+void TRenderingProcessor::preProcCenteringCode(uint p1)
 {
+	preProcCenteringPre();
+	setBegin_messageCode(p1 >> 16, p1);
+	preProcCenteringPost();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4725,8 +4881,11 @@ lbl_8043CA8C:
  * Address:	8043CAB8
  * Size:	0003AC
  */
-void TRenderingProcessor::preProcCenteringID(uint, uint)
+void TRenderingProcessor::preProcCenteringID(uint p1, uint p2)
 {
+	preProcCenteringPre();
+	setBegin_messageID(p1, p2, nullptr);
+	preProcCenteringPost();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -5310,43 +5469,43 @@ lbl_8043D288:
  * Address:	8043D2B8
  * Size:	000070
  */
-TRenderingProcessor::~TRenderingProcessor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8043D30C
-	lis      r4, __vt__Q25P2JME19TRenderingProcessor@ha
-	addi     r0, r4, __vt__Q25P2JME19TRenderingProcessor@l
-	stw      r0, 0(r30)
-	beq      lbl_8043D2FC
-	lis      r5, __vt__Q25P2JME23TRenderingProcessorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q25P2JME23TRenderingProcessorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__Q28JMessage19TRenderingProcessorFv
+// TRenderingProcessor::~TRenderingProcessor()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8043D30C
+// 	lis      r4, __vt__Q25P2JME19TRenderingProcessor@ha
+// 	addi     r0, r4, __vt__Q25P2JME19TRenderingProcessor@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_8043D2FC
+// 	lis      r5, __vt__Q25P2JME23TRenderingProcessorBase@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__Q25P2JME23TRenderingProcessorBase@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__Q28JMessage19TRenderingProcessorFv
 
-lbl_8043D2FC:
-	extsh.   r0, r31
-	ble      lbl_8043D30C
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8043D2FC:
+// 	extsh.   r0, r31
+// 	ble      lbl_8043D30C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8043D30C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8043D30C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

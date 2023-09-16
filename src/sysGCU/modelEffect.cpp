@@ -1,5 +1,7 @@
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 #include "ParticleMgr.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -58,37 +60,9 @@
  */
 void ModelEffectData::entry()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, particleMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8043D4E8
-	lis      r3, lbl_8049AC20@ha
-	lis      r5, lbl_8049AC30@ha
-	addi     r3, r3, lbl_8049AC20@l
-	li       r4, 0x2c
-	addi     r5, r5, lbl_8049AC30@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8043D4E8:
-	lwz      r3, particleMgr@sda21(r13)
-	mr       r4, r31
-	bl       entryModelEffect__11ParticleMgrFP15ModelEffectData
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	loadResources();
+	P2ASSERTLINE(44, particleMgr != nullptr);
+	particleMgr->entryModelEffect(this);
 }
 
 /*
@@ -106,85 +80,13 @@ void ModelEffectData::create(ModelEffectCreateArg*)
  * Address:	8043D508
  * Size:	00010C
  */
-void ModelEffectData::allocModelData(int)
+void ModelEffectData::allocModelData(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r31, 0x18(r3)
-	lwz      r0, 0x18(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	cmpwi    r31, 0
-	stw      r3, 0x1c(r30)
-	li       r12, 0
-	ble      lbl_8043D5FC
-	cmpwi    r31, 8
-	addi     r3, r31, -8
-	ble      lbl_8043D5D4
-	addi     r0, r3, 7
-	li       r11, 0
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_8043D5D4
-
-lbl_8043D568:
-	lwz      r3, 0x1c(r30)
-	li       r10, 0
-	addi     r8, r11, 4
-	addi     r7, r11, 8
-	stwx     r10, r3, r11
-	addi     r6, r11, 0xc
-	addi     r5, r11, 0x10
-	addi     r4, r11, 0x14
-	lwz      r9, 0x1c(r30)
-	addi     r3, r11, 0x18
-	addi     r0, r11, 0x1c
-	addi     r11, r11, 0x20
-	stwx     r10, r9, r8
-	addi     r12, r12, 8
-	lwz      r8, 0x1c(r30)
-	stwx     r10, r8, r7
-	lwz      r7, 0x1c(r30)
-	stwx     r10, r7, r6
-	lwz      r6, 0x1c(r30)
-	stwx     r10, r6, r5
-	lwz      r5, 0x1c(r30)
-	stwx     r10, r5, r4
-	lwz      r4, 0x1c(r30)
-	stwx     r10, r4, r3
-	lwz      r3, 0x1c(r30)
-	stwx     r10, r3, r0
-	bdnz     lbl_8043D568
-
-lbl_8043D5D4:
-	subf     r0, r12, r31
-	slwi     r5, r12, 2
-	li       r4, 0
-	mtctr    r0
-	cmpw     r12, r31
-	bge      lbl_8043D5FC
-
-lbl_8043D5EC:
-	lwz      r3, 0x1c(r30)
-	stwx     r4, r3, r5
-	addi     r5, r5, 4
-	bdnz     lbl_8043D5EC
-
-lbl_8043D5FC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCount     = count;
+	mModelData = new J3DModelData*[mCount];
+	for (int i = 0; i < count; i++) {
+		mModelData[i] = nullptr;
+	}
 }
 
 /*
@@ -192,20 +94,7 @@ lbl_8043D5FC:
  * Address:	8043D614
  * Size:	000024
  */
-void ParticleMgr::entryModelEffect(ModelEffectData*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x60
-	stw      r0, 0x14(r1)
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::entryModelEffect(ModelEffectData* data) { mModelEffectDataRoot.add(data); }
 
 /*
  * --INFO--
@@ -485,52 +374,13 @@ bool ModelEffect::useCylinderLOD() { return false; }
  */
 void ModelEffect::doEntry()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x38(r3)
-	cmplwi   r0, 0
-	bne      lbl_8043D934
-	lbz      r0, 0x39(r31)
-	cmplwi   r0, 0
-	beq      lbl_8043D94C
-
-lbl_8043D934:
-	lwz      r3, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8043D960
-
-lbl_8043D94C:
-	lwz      r3, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8043D960:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 4(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_38[0] != 0 || _38[1] != 0) {
+		mModel->show();
+	} else {
+		mModel->hide();
+	}
+	changeMaterial();
+	mModel->getJ3DModel()->entry();
 }
 
 /*
@@ -560,64 +410,21 @@ void ModelEffect::doSetView(int viewportNumber)
  * Address:	8043DA1C
  * Size:	000024
  */
-void ModelEffect::doViewCalc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 4(r3)
-	bl       viewCalc__Q28SysShape5ModelFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ModelEffect::doViewCalc() { mModel->viewCalc(); }
 
 /*
  * --INFO--
  * Address:	8043DA40
  * Size:	00002C
  */
-void ParticleMgr::doAnimation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x1c(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::doAnimation() { mModelEffectMgr.doAnimation(); }
 
 /*
  * --INFO--
  * Address:	8043DA6C
  * Size:	00002C
  */
-void ParticleMgr::doEntry()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x1c(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::doEntry() { mModelEffectMgr.doEntry(); }
 
 /*
  * --INFO--
@@ -631,40 +438,25 @@ void ParticleMgr::doSetView(int viewportNumber) { mModelEffectMgr.doSetView(view
  * Address:	8043DAC4
  * Size:	00002C
  */
-void ParticleMgr::doViewCalc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x1c(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::doViewCalc() { mModelEffectMgr.doViewCalc(); }
 
 /*
  * --INFO--
  * Address:	8043DAF0
  * Size:	000028
  */
-void __sinit_modelEffect_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804ECBA0@ha
-	stw      r0, lbl_80516260@sda21(r13)
-	stfsu    f0, lbl_804ECBA0@l(r3)
-	stfs     f0, lbl_80516264@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_modelEffect_cpp()
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804ECBA0@ha
+// 	stw      r0, lbl_80516260@sda21(r13)
+// 	stfsu    f0, lbl_804ECBA0@l(r3)
+// 	stfs     f0, lbl_80516264@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }

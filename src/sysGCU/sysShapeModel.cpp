@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include "Graphics.h"
+#include "Vector3.h"
 #include "nans.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/J3D/J3DMaterial.h"
@@ -109,8 +110,8 @@ Model::Model(J3DModelData* data, unsigned long p2, unsigned long modelType)
 	mJ3dModel   = new J3DModel(data, p2, modelType);
 	mJointCount = mJ3dModel->mModelData->mJointTree.mJointCnt;
 	initJoints();
-	_05 = 1;
-	_04 = 0;
+	_05          = 1;
+	mIsAnimating = false;
 	clearAnimatorAll();
 	/*
 	stwu     r1, -0x20(r1)
@@ -315,7 +316,7 @@ void Model::enableMaterialAnim(int p1)
 	case 1:
 		JUT_PANICLINE(100, "manda\n");
 	}
-	_04 = 1;
+	mIsAnimating = true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -435,7 +436,7 @@ Matrixf* Model::getMatrix(int jointIndex)
 	if (jointIndex == -1) {
 		return nullptr;
 	}
-	return (mJoints[jointIndex] != nullptr) ? mJoints[jointIndex]->getWorldMatrix() : nullptr;
+	return (mJoints + jointIndex != nullptr) ? mJoints[jointIndex].getWorldMatrix() : nullptr;
 	// if (jointIndex == -1) {
 	// 	return nullptr;
 	// } else if (mJoints[jointIndex] ) {
@@ -476,7 +477,7 @@ lbl_8043E5C4:
  * Address:	8043E5D4
  * Size:	00015C
  */
-void Model::getRoughBoundingRadius()
+f32 Model::getRoughBoundingRadius()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -598,7 +599,7 @@ lbl_8043E71C:
  * Address:	8043E730
  * Size:	000174
  */
-void Model::getRoughCenter()
+Vector3f& Model::getRoughCenter()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1401,7 +1402,7 @@ namespace SysShape {
  * Address:	8043EFB4
  * Size:	000030
  */
-void Model::getJointIndex(char*)
+s16 Model::getJointIndex(char*)
 {
 	/*
 	stwu     r1, -0x10(r1)

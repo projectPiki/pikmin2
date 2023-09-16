@@ -65,7 +65,7 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	void drawRuby();
 	void setImageGX();
 	void drawImage(JUTTexture*, f32, f32, f32, f32);
-	void calcWidth(JUTFont*, int, f32, bool);
+	f32 calcWidth(JUTFont*, int, f32, bool);
 	void setLineWidth();
 	void resetLineWidth();
 	void setOnePageLine();
@@ -91,6 +91,16 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 		mFlags |= 0x200;
 	}
 
+	// unused/inlined:
+	void setDrawLocateX();
+	void setDrawLocateY();
+	void addDrawLines();
+	void mf();
+	void calcColorCoe(JUtility::TColor const&, JUtility::TColor*);
+	void resetPageInfo();
+	void preProcCenteringPre();
+	void preProcCenteringPost();
+
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor
 	f32 _38;                       // _38
@@ -109,11 +119,45 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	JGeometry::TBox2f mMesgBounds; // _7C
 	u32 mFlags;                    // _8C
 	JGeometry::TBox2f mLocate;     // _90
-	int _A0;                       // _A0
-	u8 _A4;                        // _A4
-	int _A8[6];                    // _A8
-	f32 _C0;                       // _C0
-	int _C4[19];
+	// union {
+	// 	u32 u32View;
+	// 	u8 u8View[4];
+	// } _A0;                // _A0
+	u32 _A0;              // _A0
+	u8 _A4;               // _A4
+	u8 _A5;               // _A5
+	u8 _A6;               // _A6
+	u8 _A7;               // _A7
+	f32* _A8;             // _A8
+	u8* _AC;              // _AC
+	u8* _B0;              // _B0
+	f32 _B4;              // _B4
+	s32 _B8;              // _B8
+	f32 _BC;              // _BC
+	f32 _C0;              // _C0
+	f32 _C4;              // _C4
+	f32 _C8;              // _C8
+	JUtility::TColor _CC; // _CC
+	JUtility::TColor _D0; // _D0
+	JUtility::TColor _D4; // _D4
+	JUtility::TColor _D8; // _D8
+	u8 _DC;               // _DC
+	f32 _E0;              // _E0
+	f32 _E4;              // _E4
+	f32 mFontWidth;       // _E8
+	f32 mFontHeight;      // _EC
+	u8 _F0;               // _F0
+	u8 _F1;               // _F1
+	u8 _F2;               // _F2
+	u32 _F4;              // _F4
+	u8 _F8;               // _F8
+	u32 _FC;              // _FC
+	u8* _100;             // _100
+	f32 _104;             // _104
+	f32 _108;             // _108
+	u32 _10C;             // _10C
+
+	static u32 cPageInfoBufferNum;
 };
 } // namespace P2JME
 

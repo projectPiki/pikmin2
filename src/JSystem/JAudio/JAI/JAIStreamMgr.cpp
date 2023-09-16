@@ -1,3 +1,4 @@
+#include "Dolphin/dvd.h"
 #include "string.h"
 #include "JSystem/JAudio/JAI/JAIBasic.h"
 #include "JSystem/JAudio/JAI/JAIGlobalParameter.h"
@@ -149,6 +150,8 @@ void JAInter::StreamMgr::init()
 {
 	if (flags._2 == 0) {
 		flags._0 = 0;
+		flags._1 = 0;
+		flags._2 = 0;
 	}
 	streamSystem   = new (JAIBasic::msCurrentHeap, 0x20) JASAramStream();
 	aramBufferHeap = new (JAIBasic::msCurrentHeap, 0x20) JASHeap(nullptr);
@@ -947,6 +950,32 @@ lbl_800B7EE4:
  */
 void JAInter::StreamMgr::PlayingStream()
 {
+	if (streamSound == nullptr) {
+		return;
+	}
+	if (3 < streamSound->_15) {
+		if (finishFlag == 2) {
+			if (streamSound->_1B4 != nullptr) {
+				streamSound->_1B4->_1C = nullptr;
+				streamSound->_1B4->_18 = 0;
+			}
+			streamSound->clearMainSoundPPointer();
+			streamSound->_15 = 0;
+			mgrCallback      = nullptr;
+			return;
+		}
+		if (streamSound->_16 != 0) {
+			streamSound->_16 -= 1;
+		}
+		if ((streamUpdate->_18 & 2) != 0) {
+			streamSound->setVolume(0.0f, streamSound->_28, 7);
+			streamSound->_15 = 5;
+			streamUpdate->_18 ^= 2;
+		}
+	}
+	if (2 < streamSound->_15) {
+		// TODO
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -2039,8 +2068,40 @@ lbl_800B8BAC:
  * Address:	800B8BEC
  * Size:	000198
  */
-void JAInter::StreamMgr::playDirect(char*)
+void JAInter::StreamMgr::playDirect(char* path)
 {
+	prepareSw   = 0;
+	mgrCallback = nullptr;
+	if (finishFlag == 0 && (controlStatus == 4 || controlStatus == 3)) {
+		finishFlag = 1;
+		streamSystem->cancel();
+		dataFileNumber = DVDConvertPathToEntrynum(path);
+		controlStatus  = 1;
+	} else if (finishFlag != 1 && controlStatus == 5) {
+		finishFlag = 1;
+		streamSystem->stop(0);
+		dataFileNumber = DVDConvertPathToEntrynum(path);
+		controlStatus  = 1;
+	} else {
+		if (controlStatus == 0) {
+			dataFileNumber = DVDConvertPathToEntrynum(path);
+			BufferInfo info;
+			if (allocCallback != nullptr) {
+				info = allocCallback(dataFileNumber);
+			} else {
+				if (aramParentHeap != nullptr) {
+					aramBufferHeap->alloc(aramParentHeap, sChannelMax * JAIGlobalParameter::getParamStreamDecodedBufferBlocks() * 10 >> 1);
+				}
+				info.mStart  = aramBufferHeap->_38;
+				info.mLength = sChannelMax * JAIGlobalParameter::getParamStreamDecodedBufferBlocks() * 10 >> 1;
+			}
+			streamSystem->init(reinterpret_cast<u32>(info.mStart), info.mLength, systemCallBack, nullptr);
+			streamSystem->prepare(dataFileNumber, -1);
+			controlStatus = 4;
+		} else {
+			dataFileNumber = DVDConvertPathToEntrynum(path);
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

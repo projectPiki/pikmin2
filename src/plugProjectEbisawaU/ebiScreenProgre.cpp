@@ -1,3 +1,4 @@
+#include "ebi/Screen/TScreenBase.h"
 #include "types.h"
 
 /*
@@ -629,7 +630,7 @@ lbl_803CDE58:
  * Address:	803CDE84
  * Size:	000054
  */
-void TScreenProgre::fadeout(unsigned long)
+bool TScreenProgre::fadeout(unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -667,7 +668,7 @@ lbl_803CDEC8:
  * Address:	803CDED8
  * Size:	000028
  */
-void TScreenProgre::isFinish()
+bool TScreenProgre::isFinish()
 {
 	/*
 	lwz      r0, 0x1c(r3)

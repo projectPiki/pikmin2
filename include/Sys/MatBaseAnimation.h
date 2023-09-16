@@ -13,12 +13,16 @@ namespace Sys {
  * @size{0x8}
  */
 struct MatBaseAnimation {
-	virtual void onAttachResource(void*) = 0; // _08
-	virtual J3DAnmBase* getAnmBase()     = 0; // _0C
-	virtual void set()                   = 0; // _10
-	virtual bool remove()                = 0; // _14
+	MatBaseAnimation()
+	    : mModelData(nullptr)
+	{
+	}
+	virtual void onAttachResource(void* resource) = 0; // _08
+	virtual J3DAnmBase* getAnmBase()              = 0; // _0C
+	virtual void set()                            = 0; // _10
+	virtual bool remove()                         = 0; // _14
 
-	void attachResource(void*, J3DModelData*);
+	void attachResource(void* resource, J3DModelData* modelData);
 	f32 getFrameMax();
 
 	// _00 = VTBL
@@ -31,10 +35,10 @@ struct MatBaseAnimation {
 struct MatTevRegAnimation : public MatBaseAnimation {
 	MatTevRegAnimation();
 
-	virtual void onAttachResource(void*); // _08
-	virtual J3DAnmBase* getAnmBase();     // _0C (weak)
-	virtual void set();                   // _10
-	virtual bool remove();                // _14
+	virtual void onAttachResource(void* resource); // _08
+	virtual J3DAnmBase* getAnmBase();              // _0C (weak)
+	virtual void set();                            // _10
+	virtual bool remove();                         // _14
 
 	J3DAnmTevRegKey* mAnmTevRegKey; // _08
 	J3DTevColorAnm* mTevColorAnm;   // _10
@@ -47,13 +51,13 @@ struct MatTevRegAnimation : public MatBaseAnimation {
 struct MatTexAnimation : public MatBaseAnimation {
 	MatTexAnimation();
 
-	virtual void onAttachResource(void*); // _08
-	virtual J3DAnmBase* getAnmBase();     // _0C (weak)
-	virtual void set();                   // _10
-	virtual bool remove();                // _14
+	virtual void onAttachResource(void* resource); // _08
+	virtual J3DAnmBase* getAnmBase();              // _0C (weak)
+	virtual void set();                            // _10
+	virtual bool remove();                         // _14
 
 	J3DAnmTextureSRTKey* _08; // _08
-	u32 _0C;                  // _0C
+	J3DTexMtxAnm** _0C;       // _0C
 };
 
 } // namespace Sys

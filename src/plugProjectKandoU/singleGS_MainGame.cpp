@@ -1,6 +1,26 @@
+#include "Game/DeathMgr.h"
+#include "Game/Entities/ItemOnyon.h"
+#include "Game/GameSystem.h"
+#include "Game/Piki.h"
+#include "Game/TimeMgr.h"
+#include "Game/gamePlayData.h"
+#include "Game/gameStat.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/MoviePlayer.h"
+#include "Game/Navi.h"
+#include "Game/NaviParms.h"
+#include "Game/PikiMgr.h"
+#include "Game/SingleGame.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "PSGame/PikScene.h"
+#include "PSM/Scene.h"
+#include "PSSystem/PSGame.h"
+#include "Radar.h"
+#include "Screen/Game2DMgr.h"
+#include "og/Screen/DispMember.h"
 #include "types.h"
 #include "nans.h"
-#include "Game/SingleGame.h"
+#include "utilityU.h"
 
 /*
     Generated from dpostproc
@@ -371,8 +391,137 @@ namespace Game {
  * Address:	802135AC
  * Size:	0008B0
  */
-void SingleGame::GameState::init(Game::SingleGameSection*, Game::StateArg*)
+void SingleGame::GameState::init(Game::SingleGameSection* section, Game::StateArg* arg)
 {
+	DeathMgr::mSoundDeathCount = 0;
+	moviePlayer->reset();
+	gameSystem->mFlags |= GAMESYS_Unk6;
+	_10 = 0;
+	_19 = 0;
+	_20 = 0;
+	playData->setCurrentCourse(section->mCurrentCourseInfo->mCourseIndex);
+	if ((playData->mDeadNaviID & 1) == 0) {
+		playData->mNaviLifeMax[0] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
+		naviMgr->getAt(0)->setLifeMax();
+	}
+	if ((playData->mDeadNaviID >> 1 & 1) == 0) {
+		playData->mNaviLifeMax[1] = naviMgr->mNaviParms->mNaviParms.mMaxHealth;
+		naviMgr->getAt(1)->setLifeMax();
+	}
+	GameArg* castedArg = static_cast<GameArg*>(arg);
+	P2ASSERTLINE(624, castedArg != nullptr);
+	u16 v1 = castedArg->_02;
+	section->setFixNearFar(false, 0.0f, 0.0f);
+	Screen::gGame2DMgr->mScreenMgr->mInCave = false;
+	Screen::gGame2DMgr->mScreenMgr->_94     = section->mCurrentCourseInfo->mCourseIndex;
+	gameSystem->mIsInCave                   = false;
+	section->mCurrentFloor                  = 0;
+	section->_194                           = false;
+	if ((playData->mDeadNaviID & 1) == 0) {
+		section->setPlayerMode(0);
+	} else {
+		section->setPlayerMode(1);
+	}
+	section->setCamController();
+	if (section->_244 != nullptr) {
+		section->_244->create(nullptr);
+	}
+	section->setupMainMapGames();
+	pikiMgr->debugShapeDL("BGS::GAME START");
+	moviePlayer->getActiveGameCamera();
+	switch (v1) {
+	case 2: {
+		DayEndArg dayEndArg(2);
+		transit(section, SGS_DayEnd, &dayEndArg);
+		return;
+	} break;
+	case 5: {
+		MoviePlayArg moviePlayArg("x01_gamestart", const_cast<char*>(section->mCurrentCourseInfo->mName), section->mMovieFinishCallback, 0);
+		playData->setDemoFlag(DEMO_Day_One_Start);
+		GeneralMgrIterator<EnemyBase> iEnemyMgr(generalEnemyMgr != nullptr ? generalEnemyMgr->mNext : nullptr);
+		for (iEnemyMgr.first(); iEnemyMgr.getObject() != nullptr; iEnemyMgr.next()) {
+			iEnemyMgr.getObject()->movie_begin(false);
+		}
+		Iterator<Piki> iPiki(pikiMgr);
+		CI_LOOP(iPiki) { (*iPiki)->movie_begin(false); }
+		moviePlayArg.mDelegateStart = section->mMovieStartCallback;
+		moviePlayer->play(moviePlayArg);
+		gameSystem->mTimeMgr->setStartTime();
+		section->_244->fade();
+	} break;
+	case 0: {
+		if (!playData->isDemoFlag(section->mCurrentCourseInfo->mCourseIndex + DEMO_Day_One_Start)) {
+			playData->setDemoFlag(section->mCurrentCourseInfo->mCourseIndex + DEMO_Day_One_Start);
+			char* courseInMovies[4] = { "x01_gamestart", "x01_coursein_forest", "x01_coursein_yakushima", "x01_coursein_last" };
+			MoviePlayArg moviePlayArg(courseInMovies[section->mCurrentCourseInfo->mCourseIndex],
+			                          const_cast<char*>(section->mCurrentCourseInfo->mName), section->mMovieFinishCallback, 0);
+			moviePlayer->play(moviePlayArg);
+		} else {
+			MoviePlayArg moviePlayArg("s00_coursein", const_cast<char*>(section->mCurrentCourseInfo->mName), section->mMovieFinishCallback,
+			                          0);
+			moviePlayer->play(moviePlayArg);
+		}
+		gameSystem->mTimeMgr->setStartTime();
+	} break;
+	case 1:
+	case 3: {
+		MoviePlayArg moviePlayArg("s0E_return_cave", const_cast<char*>(section->mCurrentCourseInfo->mName), section->mMovieFinishCallback,
+		                          0);
+		moviePlayArg.mDelegateStart = section->mMovieStartCallback;
+		moviePlayer->play(moviePlayArg);
+		for (int i = 0; i < 3; i++) {
+			if (playData->hasBootContainer(i)) {
+				Onyon* onyon = ItemOnyon::mgr->getOnyon(i);
+				if (onyon != nullptr) {
+					onyon->setSpotState(Onyon::SPOTSTATE_Opened);
+				}
+			}
+		}
+		if (v1 == 1) {
+			gameSystem->mTimeMgr->setTime(playData->mCaveSaveData.mTime);
+		}
+	} break;
+	default:
+		JUT_PANICLINE(832, "illegal state GameState::init\n");
+		return;
+	}
+	sys->heapStatusDump(true);
+	gameSystem->mTimeMgr->mFlags.typeView &= ~TIMEFLAG_Stopped;
+	if (v1 != 3) {
+		bool noPikisLeft = false;
+		for (int i = 0; i < 3; i++) {
+			if (playData->hasContainer(i) && GameStat::getAllPikmins(i) == 0) {
+				playData->mPikiContainer.getColorSum(i);
+				noPikisLeft = true;
+				break;
+			}
+		}
+		if (noPikisLeft) {
+			_10 = 1;
+		}
+	} else {
+		_10 = 0;
+	}
+	_11 = 0;
+	_14 = 6.0f;
+	section->clearCaveMenus();
+	_18 = 0;
+	gameSystem->mFlags &= ~GAMESYS_IsPlaying;
+	Screen::gGame2DMgr->initInCourse();
+	section->_23D = 0;
+	Vector3f v2;
+	f32 v3;
+	if (Radar::mgr->calcNearestTreasure(Vector3f::zero, 128000.0f, v2, v3) == 0) {
+		section->mNeedTreasureCalc = true;
+	} else {
+		section->mNeedTreasureCalc = false;
+	}
+	if (Radar::mgr != nullptr && Radar::Mgr::getNumOtakaraItems() == 0) {
+		PSGame::PikSceneMgr* sceneMgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+		PSSystem::checkSceneMgr(sceneMgr);
+		PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(PSMGetGameSceneA());
+		scene->setPollutUp();
+	}
 	/*
 	stwu     r1, -0x140(r1)
 	mflr     r0
@@ -1030,8 +1179,47 @@ unknown SingleGame::GameState::gameStart(Game::SingleGameSection*)
  * Address:	80213E5C
  * Size:	000288
  */
-bool SingleGame::GameState::check_DemoInout(Game::SingleGameSection*)
+bool SingleGame::GameState::check_DemoInout(Game::SingleGameSection* section)
 {
+	if ((!playData->isDemoFlag(DEMO_Purples_In_Ship)) && (0 < playData->mPikiContainer.getColorSum(Purple))) {
+		playData->setDemoFlag(DEMO_Purples_In_Ship);
+		MoviePlayArg moviePlayArg("g26_inout_black", const_cast<char*>(section->mCurrentCourseInfo->mName), section->mMovieFinishCallback,
+		                          0);
+		if (ItemOnyon::mgr->mUfo != nullptr) {
+			ItemOnyon::mgr->mUfo->movie_begin(false);
+		}
+		moviePlayer->play(moviePlayArg);
+		return true;
+	}
+
+	if (((gameSystem->mFlags & GAMESYS_Unk6) != 0)
+	    && (!playData->isDemoFlag(DEMO_Whites_In_Ship) && (0 < playData->mPikiContainer.getColorSum(White)))) {
+		playData->setDemoFlag(DEMO_Whites_In_Ship);
+		MoviePlayArg moviePlayArg("g29_inout_white", const_cast<char*>(section->mCurrentCourseInfo->mName), section->mMovieFinishCallback,
+		                          0);
+		if (ItemOnyon::mgr->mUfo != nullptr) {
+			ItemOnyon::mgr->mUfo->movie_begin(false);
+		}
+		moviePlayer->play(moviePlayArg);
+		return true;
+	}
+
+	if (((gameSystem->mFlags & GAMESYS_Unk6) != 0)
+	    && (!playData->isDemoFlag(DEMO_Reds_In_Onion) && (0 < playData->mPikiContainer.getColorSum(Red)))) {
+		playData->setDemoFlag(DEMO_Reds_In_Onion);
+		MoviePlayArg moviePlayArg("g2C_inout_red", const_cast<char*>(section->mCurrentCourseInfo->mName), section->mMovieFinishCallback, 0);
+		Onyon* redOnyon = ItemOnyon::mgr->getOnyon(Red);
+		if (redOnyon != nullptr) {
+			redOnyon->movie_begin(false);
+		}
+		if (ItemOnyon::mgr->mUfo != nullptr) {
+			ItemOnyon::mgr->mUfo->movie_begin(false);
+		}
+		moviePlayer->play(moviePlayArg);
+		return true;
+	}
+
+	return false;
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -2532,7 +2720,7 @@ lbl_802152DC:
 	blr
 	*/
 }
-
+} // namespace Game
 namespace og {
 namespace Screen {
 
@@ -2669,6 +2857,7 @@ blr
 } // namespace Screen
 } // namespace og
 
+namespace Game {
 /*
  * --INFO--
  * Address:	802154D4
@@ -4825,7 +5014,7 @@ void SingleGame::GameState::onMovieDone(Game::SingleGameSection*, Game::MovieCon
  * Address:	8021725C
  * Size:	000074
  */
-void SingleGame::GameState::needRepayDemo()
+bool SingleGame::GameState::needRepayDemo()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5043,8 +5232,18 @@ void SingleGame::GameState::drawRepayDemo(Graphics&)
  * Address:	802174B8
  * Size:	000078
  */
-void SingleGame::GameState::draw(Game::SingleGameSection*, Graphics&)
+void SingleGame::GameState::draw(Game::SingleGameSection* section, Graphics& gfx)
 {
+	if (_18 == 0) {
+		if (_20 != 0) {
+			section->draw_Ogawa2D(gfx);
+		} else {
+			// TODO: How to call this virtual function directly statically? Maybe BaseGameSection have a "draw" inline that just calls this.
+			section->doDraw(gfx);
+			section->drawMainMapScreen();
+			section->test_draw_treasure_detector();
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5088,8 +5287,14 @@ lbl_8021751C:
  * Address:	80217530
  * Size:	000068
  */
-void SingleGame::GameState::cleanup(Game::SingleGameSection*)
+void SingleGame::GameState::cleanup(Game::SingleGameSection* section)
 {
+	gameSystem->mFlags &= ~GAMESYS_IsPlaying;
+	gameSystem->setMoviePause(false, "gamestate::cleanup");
+	if (section->mTheExpHeap != nullptr) {
+		PSMCancelToPauseOffMainBgm();
+	}
+	section->setDraw2DCreature(nullptr);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5124,360 +5329,360 @@ lbl_80217578:
 
 } // namespace Game
 
-namespace og {
-namespace Screen {
+// namespace og {
+// namespace Screen {
 
-/*
- * --INFO--
- * Address:	80217598
- * Size:	000008
- */
-u32 DispMemberSave::getSize() { return 0xC; }
+// /*
+//  * --INFO--
+//  * Address:	80217598
+//  * Size:	000008
+//  */
+// u32 DispMemberSave::getSize() { return 0xC; }
 
-/*
- * --INFO--
- * Address:	802175A0
- * Size:	00000C
- */
-void DispMemberSave::getOwnerID()
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802175A0
+//  * Size:	00000C
+//  */
+// void DispMemberSave::getOwnerID()
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	802175AC
- * Size:	000010
- */
-void DispMemberSave::getMemberID()
-{
-	/*
-lis      r4, 0x53415645@ha
-li       r3, 0
-addi     r4, r4, 0x53415645@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802175AC
+//  * Size:	000010
+//  */
+// void DispMemberSave::getMemberID()
+// {
+// 	/*
+// lis      r4, 0x53415645@ha
+// li       r3, 0
+// addi     r4, r4, 0x53415645@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	802175BC
- * Size:	000008
- */
-u32 DispMemberSMenuCont::getSize() { return 0x8; }
+// /*
+//  * --INFO--
+//  * Address:	802175BC
+//  * Size:	000008
+//  */
+// u32 DispMemberSMenuCont::getSize() { return 0x8; }
 
-/*
- * --INFO--
- * Address:	802175C4
- * Size:	00000C
- */
-void DispMemberSMenuCont::getOwnerID()
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802175C4
+//  * Size:	00000C
+//  */
+// void DispMemberSMenuCont::getOwnerID()
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	802175D0
- * Size:	000014
- */
-void DispMemberSMenuCont::getMemberID()
-{
-	/*
-lis      r4, 0x434F4E54@ha
-lis      r3, 0x00534D5F@ha
-addi     r4, r4, 0x434F4E54@l
-addi     r3, r3, 0x00534D5F@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802175D0
+//  * Size:	000014
+//  */
+// void DispMemberSMenuCont::getMemberID()
+// {
+// 	/*
+// lis      r4, 0x434F4E54@ha
+// lis      r3, 0x00534D5F@ha
+// addi     r4, r4, 0x434F4E54@l
+// addi     r3, r3, 0x00534D5F@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	802175E4
- * Size:	000008
- */
-u32 DispMemberSMenuPauseVS::getSize() { return 0xC; }
+// /*
+//  * --INFO--
+//  * Address:	802175E4
+//  * Size:	000008
+//  */
+// u32 DispMemberSMenuPauseVS::getSize() { return 0xC; }
 
-/*
- * --INFO--
- * Address:	802175EC
- * Size:	00000C
- */
-void DispMemberSMenuPauseVS::getOwnerID()
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802175EC
+//  * Size:	00000C
+//  */
+// void DispMemberSMenuPauseVS::getOwnerID()
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	802175F8
- * Size:	000014
- */
-void DispMemberSMenuPauseVS::getMemberID()
-{
-	/*
-lis      r4, 0x535F5653@ha
-lis      r3, 0x534D5F50@ha
-addi     r4, r4, 0x535F5653@l
-addi     r3, r3, 0x534D5F50@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802175F8
+//  * Size:	000014
+//  */
+// void DispMemberSMenuPauseVS::getMemberID()
+// {
+// 	/*
+// lis      r4, 0x535F5653@ha
+// lis      r3, 0x534D5F50@ha
+// addi     r4, r4, 0x535F5653@l
+// addi     r3, r3, 0x534D5F50@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8021760C
- * Size:	000008
- */
-u32 DispMemberSMenuMap::getSize() { return 0x4C; }
+// /*
+//  * --INFO--
+//  * Address:	8021760C
+//  * Size:	000008
+//  */
+// u32 DispMemberSMenuMap::getSize() { return 0x4C; }
 
-/*
- * --INFO--
- * Address:	80217614
- * Size:	00000C
- */
-void DispMemberSMenuMap::getOwnerID()
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80217614
+//  * Size:	00000C
+//  */
+// void DispMemberSMenuMap::getOwnerID()
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80217620
- * Size:	000010
- */
-void DispMemberSMenuMap::getMemberID()
-{
-	/*
-lis      r4, 0x5F4D4150@ha
-li       r3, 0x534d
-addi     r4, r4, 0x5F4D4150@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80217620
+//  * Size:	000010
+//  */
+// void DispMemberSMenuMap::getMemberID()
+// {
+// 	/*
+// lis      r4, 0x5F4D4150@ha
+// li       r3, 0x534d
+// addi     r4, r4, 0x5F4D4150@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80217630
- * Size:	000008
- */
-u32 DispMemberSMenuItem::getSize() { return 0x28; }
+// /*
+//  * --INFO--
+//  * Address:	80217630
+//  * Size:	000008
+//  */
+// u32 DispMemberSMenuItem::getSize() { return 0x28; }
 
-/*
- * --INFO--
- * Address:	80217638
- * Size:	00000C
- */
-void DispMemberSMenuItem::getOwnerID()
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80217638
+//  * Size:	00000C
+//  */
+// void DispMemberSMenuItem::getOwnerID()
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80217644
- * Size:	000014
- */
-void DispMemberSMenuItem::getMemberID()
-{
-	/*
-lis      r4, 0x4954454D@ha
-lis      r3, 0x00534D5F@ha
-addi     r4, r4, 0x4954454D@l
-addi     r3, r3, 0x00534D5F@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80217644
+//  * Size:	000014
+//  */
+// void DispMemberSMenuItem::getMemberID()
+// {
+// 	/*
+// lis      r4, 0x4954454D@ha
+// lis      r3, 0x00534D5F@ha
+// addi     r4, r4, 0x4954454D@l
+// addi     r3, r3, 0x00534D5F@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80217658
- * Size:	000008
- */
-u32 DispMemberSMenuPauseDoukutu::getSize() { return 0x18; }
+// /*
+//  * --INFO--
+//  * Address:	80217658
+//  * Size:	000008
+//  */
+// u32 DispMemberSMenuPauseDoukutu::getSize() { return 0x18; }
 
-/*
- * --INFO--
- * Address:	80217660
- * Size:	00000C
- */
-void DispMemberSMenuPauseDoukutu::getOwnerID()
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80217660
+//  * Size:	00000C
+//  */
+// void DispMemberSMenuPauseDoukutu::getOwnerID()
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8021766C
- * Size:	000014
- */
-void DispMemberSMenuPauseDoukutu::getMemberID()
-{
-	/*
-lis      r4, 0x53455F44@ha
-lis      r3, 0x00504155@ha
-addi     r4, r4, 0x53455F44@l
-addi     r3, r3, 0x00504155@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8021766C
+//  * Size:	000014
+//  */
+// void DispMemberSMenuPauseDoukutu::getMemberID()
+// {
+// 	/*
+// lis      r4, 0x53455F44@ha
+// lis      r3, 0x00504155@ha
+// addi     r4, r4, 0x53455F44@l
+// addi     r3, r3, 0x00504155@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80217680
- * Size:	000008
- */
-u32 DispMemberSMenuPause::getSize() { return 0x14; }
+// /*
+//  * --INFO--
+//  * Address:	80217680
+//  * Size:	000008
+//  */
+// u32 DispMemberSMenuPause::getSize() { return 0x14; }
 
-/*
- * --INFO--
- * Address:	80217688
- * Size:	00000C
- */
-void DispMemberSMenuPause::getOwnerID()
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80217688
+//  * Size:	00000C
+//  */
+// void DispMemberSMenuPause::getOwnerID()
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80217694
- * Size:	000014
- */
-void DispMemberSMenuPause::getMemberID()
-{
-	/*
-lis      r4, 0x41555345@ha
-lis      r3, 0x534D5F50@ha
-addi     r4, r4, 0x41555345@l
-addi     r3, r3, 0x534D5F50@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80217694
+//  * Size:	000014
+//  */
+// void DispMemberSMenuPause::getMemberID()
+// {
+// 	/*
+// lis      r4, 0x41555345@ha
+// lis      r3, 0x534D5F50@ha
+// addi     r4, r4, 0x41555345@l
+// addi     r3, r3, 0x534D5F50@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	802176A8
- * Size:	000008
- */
-u32 DispMemberSMenuAll::getSize() { return 0xC4; }
+// /*
+//  * --INFO--
+//  * Address:	802176A8
+//  * Size:	000008
+//  */
+// u32 DispMemberSMenuAll::getSize() { return 0xC4; }
 
-/*
- * --INFO--
- * Address:	802176B0
- * Size:	00000C
- */
-void DispMemberSMenuAll::getOwnerID()
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802176B0
+//  * Size:	00000C
+//  */
+// void DispMemberSMenuAll::getOwnerID()
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	802176BC
- * Size:	000010
- */
-void DispMemberSMenuAll::getMemberID()
-{
-	/*
-lis      r4, 0x5F414C4C@ha
-li       r3, 0x534d
-addi     r4, r4, 0x5F414C4C@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802176BC
+//  * Size:	000010
+//  */
+// void DispMemberSMenuAll::getMemberID()
+// {
+// 	/*
+// lis      r4, 0x5F414C4C@ha
+// li       r3, 0x534d
+// addi     r4, r4, 0x5F414C4C@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	802176CC
- * Size:	00006C
- */
-void DispMemberSMenuAll::doSetSubMemberAll()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-addi     r4, r31, 8
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-mr       r3, r31
-addi     r4, r31, 0x1c
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-mr       r3, r31
-addi     r4, r31, 0x34
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-mr       r3, r31
-addi     r4, r31, 0x5c
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-mr       r3, r31
-addi     r4, r31, 0xa8
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-mr       r3, r31
-addi     r4, r31, 0xb4
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802176CC
+//  * Size:	00006C
+//  */
+// void DispMemberSMenuAll::doSetSubMemberAll()
+// {
+// 	/*
+// stwu     r1, -0x10(r1)
+// mflr     r0
+// stw      r0, 0x14(r1)
+// stw      r31, 0xc(r1)
+// mr       r31, r3
+// addi     r4, r31, 8
+// bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+// mr       r3, r31
+// addi     r4, r31, 0x1c
+// bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+// mr       r3, r31
+// addi     r4, r31, 0x34
+// bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+// mr       r3, r31
+// addi     r4, r31, 0x5c
+// bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+// mr       r3, r31
+// addi     r4, r31, 0xa8
+// bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+// mr       r3, r31
+// addi     r4, r31, 0xb4
+// bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+// lwz      r0, 0x14(r1)
+// lwz      r31, 0xc(r1)
+// mtlr     r0
+// addi     r1, r1, 0x10
+// blr
+// 	*/
+// }
 
-} // namespace Screen
-} // namespace og
+// } // namespace Screen
+// } // namespace og
 
-/*
- * --INFO--
- * Address:	80217738
- * Size:	000028
- */
-void __sinit_singleGS_MainGame_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C04D8@ha
-	stw      r0, lbl_80515BE8@sda21(r13)
-	stfsu    f0, lbl_804C04D8@l(r3)
-	stfs     f0, lbl_80515BEC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80217738
+//  * Size:	000028
+//  */
+// void __sinit_singleGS_MainGame_cpp()
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804C04D8@ha
+// 	stw      r0, lbl_80515BE8@sda21(r13)
+// 	stfsu    f0, lbl_804C04D8@l(r3)
+// 	stfs     f0, lbl_80515BEC@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }

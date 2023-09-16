@@ -76,6 +76,7 @@ struct SingleGameSection : public BaseGameSection {
 	void updateCaveScreen();
 	void updateMainMapScreen();
 	void drawCaveScreen();
+	void drawMainMapScreen();
 
 	f32 mTimer;                                    // _174
 	bool mTimerEnabled;                            // _178

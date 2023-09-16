@@ -63,7 +63,7 @@ void processGFrameStream();
 void checkEntriedStream();
 void systemCallBack(u32, JASAramStream*, void*);
 void prepareSystem(long);
-void playDirect(char*);
+void playDirect(char* path);
 void stopDirect();
 void initChannel();
 JASAramStream* getStreamObjectPointer();

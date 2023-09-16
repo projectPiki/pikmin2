@@ -208,7 +208,7 @@ void TControl::setMessageID(char* mesg)
 BOOL TControl::setMessageID(u32 part1, u32 part2)
 {
 	reset();
-	int ret = JMessage::TControl::setMessageID(part1, part2, nullptr);
+	bool ret = JMessage::TControl::setMessageID(part1, part2, nullptr);
 	mTextRenderProc->preProcID(part1, part2);
 	return ret;
 }
@@ -221,7 +221,7 @@ BOOL TControl::setMessageID(u32 part1, u32 part2)
 BOOL TControl::setMessageCode(u16 id1, u16 id2)
 {
 	reset();
-	int ret = JMessage::TControl::setMessageCode(id1, id2);
+	bool ret = JMessage::TControl::setMessageCode(id1, id2);
 	mTextRenderProc->preProcCode(_0C & _0E);
 	return ret;
 }
@@ -234,7 +234,7 @@ BOOL TControl::setMessageCode(u16 id1, u16 id2)
 BOOL TControl::setMessageCode(u32 id)
 {
 	reset();
-	int ret = JMessage::TControl::setMessageCode(id >> 16, id);
+	bool ret = JMessage::TControl::setMessageCode(id >> 16, id);
 	mTextRenderProc->preProcCode(id);
 	return ret;
 }

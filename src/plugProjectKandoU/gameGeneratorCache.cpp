@@ -1,4 +1,5 @@
 #include "Game/gameGeneratorCache.h"
+#include "CNode.h"
 #include "Game/gameStages.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "stream.h"
@@ -248,8 +249,33 @@ CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack, int courseIn
  * Address:	801F1D28
  * Size:	000128
  */
-void GeneratorCache::loadGenerators(int)
+void GeneratorCache::loadGenerators(int courseIndex)
 {
+	_78 = findCache(_00, courseIndex);
+	if (_78 != nullptr) {
+		RamStream input(mHeapBuffer + _78->mOffset, _78->mSize);
+		for (int i = 0; i < _78->mGeneratorCount; i++) {
+			Generator* generator = new Generator();
+
+			Generator::ramMode = 1;
+			generator->read(input);
+			Generator::ramMode = 0;
+
+			generator->mGeneratorIndexMaybe = i;
+			generator->_AC                  = 0;
+
+			int v1 = 0;
+			FOREACH_NODE(Generator, mGenerator.mChild, child)
+			{
+				if (child->_AC == 0) {
+					v1++;
+				}
+			}
+			if (v1 < 80) {
+				mGenerator.add(generator);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x440(r1)
 	mflr     r0

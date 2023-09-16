@@ -11,12 +11,16 @@ struct MatBaseAnimation;
 struct MatBaseAnimator {
 	MatBaseAnimator();
 
-	virtual void start(MatBaseAnimation*); // _08
-	virtual void onStart();                // _0C (weak)
-	virtual void do_animate(f32);          // _10 (weak)
+	virtual void start(MatBaseAnimation* animation); // _08
+	virtual void onStart();                          // _0C (weak)
+	virtual void do_animate(f32);                    // _10 (weak)
 
 	void setCurrentFrame(f32);
 	void animate(f32);
+
+	// unused/inlined:
+	void removeMotion();
+	void forward(f32);
 
 	// VTBL _00
 	MatBaseAnimation* mAnimation; // _04

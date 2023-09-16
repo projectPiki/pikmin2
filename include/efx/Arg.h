@@ -1,6 +1,7 @@
 #ifndef _EFX_ARG_H
 #define _EFX_ARG_H
 
+#include "Color4.h"
 #include "Game/enemyInfo.h"
 #include "types.h"
 #include "Vector3.h"

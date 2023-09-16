@@ -13,23 +13,24 @@ struct Sphere;
 
 namespace SysShape {
 struct Joint;
+struct BaseAnimator;
 
 /**
  * @size{0x14}
  */
 struct Model : public MtxObject {
-	Model(J3DModelData*, u32, u32);
+	Model(J3DModelData* data, u32 p2, u32 modelType);
 
-	virtual Matrixf* getMatrix(int);         // _08
-	virtual bool isModel();                  // _0C (weak)
-	virtual bool isVisible(Sys::Sphere&);    // _10
-	virtual bool isVisible();                // _14 (weak)
-	virtual void hide();                     // _18
-	virtual void show();                     // _1C
-	virtual void hidePackets();              // _20
-	virtual void showPackets();              // _24
-	virtual void jointVisible(bool, int);    // _28
-	virtual void jointVisible(bool, Joint*); // _2C (weak)
+	virtual Matrixf* getMatrix(int jointIndex);                    // _08
+	virtual bool isModel();                                        // _0C (weak)
+	virtual bool isVisible(Sys::Sphere& sphere);                   // _10
+	virtual bool isVisible();                                      // _14 (weak)
+	virtual void hide();                                           // _18
+	virtual void show();                                           // _1C
+	virtual void hidePackets();                                    // _20
+	virtual void showPackets();                                    // _24
+	virtual void jointVisible(bool newVisibility, int jointIndex); // _28
+	virtual void jointVisible(bool, Joint*);                       // _2C (weak)
 
 	void clearAnimatorAll();
 	void enableMaterialAnim(int);
@@ -45,12 +46,13 @@ struct Model : public MtxObject {
 	void setCurrentViewNo(u32 viewportNumber);
 	void isMtxImmediate();
 
-	static void enableMaterialAnim(J3DModelData*, int);
+	static void enableMaterialAnim(J3DModelData* data, int p2);
 
 	// Unused/inlined:
 	void entry(Sys::Sphere&);
 	void update();
 	bool needViewCalc();
+	void setAnimatorAll(BaseAnimator&);
 
 	inline void updateModel()
 	{

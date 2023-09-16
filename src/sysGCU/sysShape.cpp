@@ -1,6 +1,11 @@
+#include "CNode.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "SysShape/AnimMgr.h"
 #include "SysShape/Animator.h"
 #include "SysShape/AnimInfo.h"
 #include "SysShape/Joint.h"
+#include "SysShape/KeyEvent.h"
 #include "SysShape/Model.h"
 #include "SysShape/MtxObject.h"
 #include "types.h"
@@ -113,6 +118,9 @@ namespace SysShape {
  */
 void Model::clearAnimatorAll()
 {
+	for (int i = 0; i < mJointCount; i++) {
+		mJ3dModel->getModelData()->getJointTree().getJointNodePointer(i)->mMtxCalc = nullptr;
+	}
 	/*
 	li       r6, 0
 	li       r5, 0
@@ -150,8 +158,28 @@ void Model::setAnimatorAll(SysShape::BaseAnimator&)
  * Address:	80428C88
  * Size:	0000C8
  */
-void Animator::startAnim(int, SysShape::MotionListener*)
+void Animator::startAnim(int animID, SysShape::MotionListener* listener)
 {
+	// AnimInfo* info = static_cast<AnimInfo*>(mAnimMgr->mAnimInfo.mChild);
+	// while (info != nullptr) {
+	// 	if (animID == info->mId) {
+	// 		break;
+	// 	}
+	// 	info = static_cast<AnimInfo*>(info->mChild);
+	// }
+	mAnimInfo = mAnimMgr->getAnimByID(animID);
+	if (mAnimInfo == nullptr) {
+		mAnimMgr->dump();
+		JUT_PANICLINE(220, "go to hell !\n");
+	}
+	mTimer      = 0.0f;
+	mCurAnimKey = mAnimInfo->getLowestAnimKey(0.0f);
+	if (listener != nullptr) {
+		mListener = listener;
+	} else {
+		mListener = nullptr;
+	}
+	mFlags = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -225,8 +253,15 @@ lbl_80428D30:
  * Address:	80428D50
  * Size:	000068
  */
-void Animator::startExAnim(SysShape::AnimInfo*)
+void Animator::startExAnim(SysShape::AnimInfo* info)
 {
+	mAnimInfo   = info;
+	mTimer      = 0.0f;
+	mListener   = nullptr;
+	mFlags      = 0;
+	mCurAnimKey = nullptr;
+	mFlags |= 0x80;
+	JUT_ASSERTLINE(252, verbose == 0, "OKOK\n");
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -264,15 +299,18 @@ lbl_80428DA8:
  * Address:	80428DB8
  * Size:	000008
  */
-bool Animator::assertValid(SysShape::Model*) { return true; }
+bool Animator::assertValid(SysShape::Model* model) { return true; }
 
 /*
  * --INFO--
  * Address:	80428DC0
  * Size:	000040
  */
-void Animator::setCurrFrame(float)
+void Animator::setCurrFrame(f32 timer)
 {
+	mTimer      = timer;
+	mCurAnimKey = mAnimInfo->getLowestAnimKey(timer);
+	mFlags      = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -381,6 +419,12 @@ lbl_80428EE8:
  */
 void Animator::setLastFrame()
 {
+	if (mAnimInfo != nullptr) {
+		f32 lastFrame = mAnimInfo->mAnm->mMaxFrame - 1.0f;
+		mTimer        = lastFrame;
+		mCurAnimKey   = mAnimInfo->getLowestAnimKey(lastFrame);
+		mFlags        = 0;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -422,7 +466,7 @@ lbl_80428F64:
  * Address:	80428F78
  * Size:	0002AC
  */
-void Animator::animate(float)
+void Animator::animate(f32)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -796,7 +840,7 @@ J3DUNewMtxCalcAnm__FUlP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J
  * Address:	........
  * Size:	000124
  */
-void BlendAnimator::setWeight(float)
+void BlendAnimator::setWeight(f32)
 {
 	// UNUSED FUNCTION
 }
@@ -806,7 +850,7 @@ void BlendAnimator::setWeight(float)
  * Address:	804293F8
  * Size:	00015C
  */
-void BlendAnimator::startBlend(SysShape::BlendFunction*, float, SysShape::MotionListener*)
+void BlendAnimator::startBlend(SysShape::BlendFunction*, f32, SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -919,6 +963,9 @@ void BlendAnimator::startBlend(SysShape::BlendFunction*, float, SysShape::Motion
  */
 void BlendAnimator::endBlend()
 {
+	_48 = 0;
+	_49 = 0;
+	_3C = 0.0f;
 	/*
 	li       r0, 0
 	lfs      f0, lbl_80520528@sda21(r2)
@@ -934,7 +981,7 @@ void BlendAnimator::endBlend()
  * Address:	8042956C
  * Size:	000278
  */
-void BlendAnimator::animate(SysShape::BlendFunction*, float, float, float)
+void BlendAnimator::animate(SysShape::BlendFunction*, f32, f32, f32)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1123,6 +1170,10 @@ lbl_804297BC:
  */
 J3DMtxCalc* BlendAnimator::getCalc()
 {
+	if (_48 != 0) {
+		return mMtxCalc;
+	}
+	return mAnimators[0].getCalc();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1152,8 +1203,18 @@ lbl_80429814:
  * Address:	80429824
  * Size:	00007C
  */
-void Joint::init(unsigned short, SysShape::Model*, J3DJoint*)
+void Joint::init(unsigned short index, SysShape::Model* model, J3DJoint* j3dJoint)
 {
+	mJointIndex = index;
+	mModel      = model;
+	mJ3d        = j3dJoint;
+	_1C.x       = j3dJoint->mMin.x;
+	_1C.y       = j3dJoint->mMin.y;
+	_1C.z       = j3dJoint->mMin.z;
+	_28.x       = j3dJoint->mMax.x;
+	_28.y       = j3dJoint->mMax.y;
+	_28.z       = j3dJoint->mMax.z;
+	mName       = model->mJ3dModel->mModelData->mJointTree.mNametab->getName(mJointIndex);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1194,8 +1255,9 @@ void Joint::init(unsigned short, SysShape::Model*, J3DJoint*)
  * Address:	804298A0
  * Size:	000020
  */
-void Joint::getWorldMatrix()
+Matrixf* Joint::getWorldMatrix()
 {
+	return mModel->getJ3DModel()->mMtxBuffer->getWorldMatrix(mJointIndex);
 	/*
 	lwz      r4, 0x34(r3)
 	lhz      r0, 0x38(r3)
@@ -1213,7 +1275,7 @@ void Joint::getWorldMatrix()
  * Address:	........
  * Size:	00000C
  */
-void Joint::setCallback(SysShape::JointCallback*)
+void Joint::setCallback(SysShape::JointCallback* cb)
 {
 	// UNUSED FUNCTION
 }
@@ -1242,9 +1304,21 @@ void AnimInfo::attach(SysShape::Model*, void*)
  * --INFO--
  * Address:	804298C0
  * Size:	00006C
+ * Returns the lowest anim key after the given minimum frame.
  */
-void AnimInfo::getLowestAnimKey(float)
+KeyEvent* AnimInfo::getLowestAnimKey(f32 minimumFrame)
 {
+	f32 lowestFrame     = 128000.0f;
+	KeyEvent* lowestKey = nullptr;
+	FOREACH_NODE(KeyEvent, mKeyEvent.mChild, key)
+	{
+		f32 frame = key->mFrame;
+		if (frame > minimumFrame && frame < lowestFrame) {
+			lowestKey   = key;
+			lowestFrame = frame;
+		}
+	}
+	return lowestKey;
 	/*
 	fctiwz   f0, f1
 	stwu     r1, -0x10(r1)
@@ -1297,7 +1371,7 @@ void AnimInfo::dump()
  * Address:	........
  * Size:	000064
  */
-void AnimInfo::getLastLoopStart(float)
+void AnimInfo::getLastLoopStart(f32)
 {
 	// UNUSED FUNCTION
 }
@@ -1307,8 +1381,15 @@ void AnimInfo::getLastLoopStart(float)
  * Address:	8042992C
  * Size:	000028
  */
-void AnimInfo::getLastLoopStart(SysShape::KeyEvent*)
+KeyEvent* AnimInfo::getLastLoopStart(SysShape::KeyEvent* key)
 {
+	FOREACH_NODE_REVERSE(KeyEvent, key->mPrev, prev)
+	{
+		if (prev->mType == 0) {
+			return prev;
+		}
+	}
+	return nullptr;
 	/*
 	lwz      r3, 8(r4)
 	b        lbl_80429944
@@ -1332,8 +1413,15 @@ lbl_80429944:
  * Address:	80429954
  * Size:	000028
  */
-void AnimInfo::getAnimKeyByType(unsigned long)
+KeyEvent* AnimInfo::getAnimKeyByType(unsigned long type)
 {
+	FOREACH_NODE(KeyEvent, mKeyEvent.mChild, next)
+	{
+		if (next->mType == type) {
+			return next;
+		}
+	}
+	return nullptr;
 	/*
 	lwz      r3, 0x38(r3)
 	b        lbl_8042996C
@@ -1357,8 +1445,9 @@ lbl_8042996C:
  * Address:	8042997C
  * Size:	000020
  */
-void AnimInfo::read(Stream&)
+void AnimInfo::read(Stream& input)
 {
+	readEditor(input);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1376,8 +1465,21 @@ void AnimInfo::read(Stream&)
  * Address:	8042999C
  * Size:	00010C
  */
-void AnimInfo::readEditor(Stream&)
+void AnimInfo::readEditor(Stream& input)
 {
+	_4C   = input.readString(nullptr, 0);
+	mName = input.readString(nullptr, 0);
+	while (input.eof() == 0) {
+		int frame = input.readInt();
+		if (frame == -1) {
+			return;
+		}
+		KeyEvent* key = new KeyEvent();
+		key->mFrame   = frame;
+		key->mType    = input.readInt();
+		mKeyEvent.add(key);
+	}
+	JUT_PANICLINE(841, "reached eof\n");
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1462,8 +1564,19 @@ lbl_80429A88:
  * Address:	80429AA8
  * Size:	00013C
  */
-void AnimMgr::load(char*, J3DModelData*, JKRFileLoader*)
+AnimMgr* AnimMgr::load(char* path, J3DModelData* modelData, JKRFileLoader* fileLoader)
 {
+	void* data = JKRDvdRipper::loadToMainRAM(path, nullptr, Switch_0, 0, JKRHeap::sSystemHeap, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
+	                                         nullptr);
+	if (data == nullptr) {
+		return nullptr;
+	}
+	RamStream input(data, -1);
+	input.resetPosition(true, 1);
+	AnimMgr* mgr = new AnimMgr();
+	mgr->load(input, modelData, fileLoader, nullptr);
+	delete[] data;
+	return mgr;
 	/*
 	stwu     r1, -0x450(r1)
 	mflr     r0
@@ -1611,6 +1724,9 @@ lbl_80429C4C:
  */
 void AnimMgr::dump()
 {
+	for (int i = 0; i < mCount; i++) {
+		getAnimByID(i)->mKeyEvent.getChildCount();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1664,7 +1780,7 @@ lbl_80429CC4:
  * Address:	........
  * Size:	0000CC
  */
-void AnimMgr::load(Stream&, SysShape::Model*, JKRFileLoader*, char*)
+AnimMgr* AnimMgr::load(Stream&, SysShape::Model*, JKRFileLoader*, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -1741,7 +1857,7 @@ JointCallback::~JointCallback()
  * Address:	........
  * Size:	000004
  */
-void JointCallback::init(Vec const&, float const (&)[3][4])
+void JointCallback::init(Vec const&, f32 const (&)[3][4])
 {
 	// UNUSED FUNCTION
 }

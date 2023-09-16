@@ -1,3 +1,4 @@
+#include "Game/Piki.h"
 #include "efx/TPk.h"
 #include "efx/TDopingSmoke.h"
 #include "efx/TOrima.h"
@@ -1482,7 +1483,7 @@ void TPkEffect::killNage_()
 void TPkEffect::createMoe_(Vector3f* pos)
 {
 	P2ASSERTLINE(1066, pos);
-	mOeMoeBC->create(pos);
+	mOeMoeBC.create(pos);
 	mMoeA.mPosition = pos;
 	mMoeA.create(nullptr);
 }
@@ -1494,7 +1495,7 @@ void TPkEffect::createMoe_(Vector3f* pos)
  */
 void TPkEffect::killMoe_()
 {
-	mOeMoeBC->kill();
+	mOeMoeBC.kill();
 	mMoeA.fade();
 }
 
@@ -1561,7 +1562,7 @@ void TPkEffect::killBlackDown_() { mBlackDown.fade(); }
 void TPkEffect::createWater_(Vector3f* pos)
 {
 	P2ASSERTLINE(1125, pos);
-	mOeWater[0].create(pos);
+	mOeWater.create(pos);
 }
 
 /*
@@ -1569,7 +1570,7 @@ void TPkEffect::createWater_(Vector3f* pos)
  * Address:	803B8D34
  * Size:	000024
  */
-void TPkEffect::killWater_() { mOeWater[0].kill(); }
+void TPkEffect::killWater_() { mOeWater.kill(); }
 
 /*
  * --INFO--

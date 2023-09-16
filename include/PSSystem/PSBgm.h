@@ -17,11 +17,11 @@ struct SeqTrackChild;
  * @size = 0x6C
  */
 struct BgmSeq : public SeqBase {
-	BgmSeq(const char*, const JAInter::SoundInfo&);
+	BgmSeq(const char* bmsFileName, const JAInter::SoundInfo& info);
 
 	virtual ~BgmSeq();              // _08
 	virtual u8 getCastType();       // _24 (weak)
-	virtual void getSeqType();      // _28 (weak)
+	virtual u8 getSeqType();        // _28 (weak)
 	virtual JAISound* getHandleP(); // _3C (weak)
 
 	// _00-_10  = JSULink<SeqBase>
@@ -34,7 +34,7 @@ struct BgmSeq : public SeqBase {
  * @size = 0xB8
  */
 struct DirectedBgm : public BgmSeq {
-	DirectedBgm(const char*, const JAInter::SoundInfo&, DirectorMgrBase*);
+	DirectedBgm(const char* bmsFileName, const JAInter::SoundInfo& info, DirectorMgrBase* directorMgr);
 
 	virtual ~DirectedBgm();                           // _08 (weak)
 	virtual void init();                              // _0C
@@ -49,20 +49,23 @@ struct DirectedBgm : public BgmSeq {
 	void initChildTrack_onPlaying(JASTrack*, u8);
 	DirectorBase* getDirectorP(u8);
 
+	// unused/inlined:
+	void getDirector(u8);
+
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	// _14-_6C  = BgmSeq
-	DirectorMgrBase* _6C;   // _6C
-	SeqTrackRoot* _70;      // _70
-	SeqTrackChild* _74[16]; // _74
-	u8 _B4;                 // _B4 - unknown
+	DirectorMgrBase* mDirectorMgr; // _6C
+	SeqTrackRoot* _70;             // _70
+	SeqTrackChild* _74[16];        // _74
+	u8 _B4;                        // _B4 - unknown
 };
 
 /**
  * @size = 0x134
  */
 struct JumpBgmSeq : public DirectedBgm {
-	JumpBgmSeq(const char*, const JAInter::SoundInfo&, DirectorMgrBase*);
+	JumpBgmSeq(const char* bmsFileName, const JAInter::SoundInfo& info, DirectorMgrBase* directorMgr);
 
 	virtual ~JumpBgmSeq();                     // _08 (weak)
 	virtual void startSeq();                   // _14
@@ -95,6 +98,18 @@ struct JumpBgmSeq : public DirectedBgm {
 	JumpBgmSeq* _128; // _128
 	u32 _12C;         // _12C
 	short _130;       // _130
+};
+
+struct JumpBgmPort {
+	JumpBgmPort(JumpBgmSeq*);
+
+	void onBeatTop(struct BeatMgr&);
+
+	// unused/inlined:
+	void requestQuickly(u16);
+	void requestOnBeat(u16);
+	void requestEveryBeat(u16);
+	void output();
 };
 
 } // namespace PSSystem

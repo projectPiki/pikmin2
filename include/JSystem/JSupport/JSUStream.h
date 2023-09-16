@@ -83,6 +83,13 @@ struct JSUInputStream : public JSUIosBase {
 		return temp;
 	}
 
+	/** @fabricated */
+	// template <typename T>
+	// inline s32 readT(T& obj)
+	// {
+	// 	return read(obj, sizeof(T));
+	// }
+
 	// _00		= VTBL
 	// _00-_08	= JSUIosBase
 };
@@ -148,10 +155,18 @@ struct JSUOutputStream : public JSUIosBase {
 	int write(const void*, long);
 	void write(const char*);
 
+	/** @fabricated */
+	// template <typename T>
+	// inline int writeT(T obj)
+	// {
+	// 	return write(obj, sizeof(T));
+	// }
+
 	// _00		= VTBL
 	// _00-_08	= JSUIosBase
 };
 
+// TODO: this.
 struct JSUMemoryOutputStream : public JSUOutputStream {
 	// Unused/inlined:
 	virtual ~JSUMemoryOutputStream();             // _08

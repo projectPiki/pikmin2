@@ -42,6 +42,14 @@ struct MeloArrBase : public JSULink<MeloArrBase>, JADHioNode {
  * @size = 0x10
  */
 struct MeloArrMgr : public JADHioNode {
+	MeloArrMgr()
+	    : JADHioNode(nullptr)
+	    , mList()
+	    , _10(0)
+	    , _12(0)
+	{
+	}
+
 	virtual ~MeloArrMgr(); // _08 (weak)
 
 	bool isToAvoid(MeloArrArg&);

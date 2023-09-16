@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JAS_JASTRACK_H
 #define _JSYSTEM_JAS_JASTRACK_H
 
+#include "JSystem/JAudio/JAS/JASBank.h"
 #include "JSystem/JAudio/JAS/JASOscillator.h"
 #include "types.h"
 #include "JSystem/JSupport/JSUList.h"
@@ -9,8 +10,6 @@
 #include "JSystem/JAudio/JAS/JASRegisterParam.h"
 
 struct JASTrack;
-
-typedef u16 SeqCallback(JASTrack*, u16);
 
 /**
  * @size = 0xC
@@ -98,8 +97,17 @@ struct JASOuterParam {
  * @size = 0x358
  */
 struct JASTrack : JSUList<JASChannel> {
+	typedef JASChannel* (*NoteOnCallback)(JASTrack*, u8, u8, u8, u8, u16);
+	typedef u16 (*SeqCallback)(JASTrack*, u16);
+
 	struct MoveParam_ {
-		MoveParam_();
+		MoveParam_()
+		    : _00(0.0f)
+		    , _04(0.0f)
+		    , _08(0.0f)
+		    , _0C(0.0f)
+		{
+		}
 
 		f32 _00; // _00
 		f32 _04; // _04
@@ -108,27 +116,61 @@ struct JASTrack : JSUList<JASChannel> {
 	};
 
 	struct AInnerParam_ {
-		AInnerParam_();
+		AInnerParam_()
+		    : _00()
+		    , _10()
+		    , _20()
+		    , _30()
+		    , _40()
+		    , _50()
+		    , _60()
+		    , _70()
+		    , _80()
+		    , _90()
+		    , _A0()
+		    , _B0()
+		    , _C0()
+		    , _100()
+		    , _110()
+		{
+		}
 
-		MoveParam_ _00[0x12]; // _00 - think this is just all MoveParamS, but could be floats or a mix
+		MoveParam_ _00;
+		MoveParam_ _10;
+		MoveParam_ _20;
+		MoveParam_ _30;
+		MoveParam_ _40;
+		MoveParam_ _50;
+		MoveParam_ _60;
+		MoveParam_ _70;
+		MoveParam_ _80;
+		MoveParam_ _90;
+		MoveParam_ _A0;
+		MoveParam_ _B0;
+		MoveParam_ _C0[4];
+		MoveParam_ _100;
+		MoveParam_ _110;
 	};
 
-	struct TimedParam_ : public AInnerParam_ {
-		TimedParam_();
+	union TimedParam_ {
+		TimedParam_() { }
+
+		AInnerParam_ mInnerParam;
+		MoveParam_ mMoveParams[0x12];
 	};
 
 	JASTrack();
 
 	void init();
 	void initTimed();
-	void mainProc();
+	s8 mainProc();
 	void setInterrupt(u16);
 	bool tryInterrupt();
 	void assignExtBuffer(JASOuterParam*);
 	void connectBus(int, int);
-	void noteOn(u8, long, long, long, u32);
+	int noteOn(u8, long, long, long, u32);
 	void overwriteOsc(JASChannel*);
-	void noteOff(u8, u16);
+	bool noteOff(u8, u16);
 	int gateOn(u8, long, long, long);
 	bool checkNoteStop(long);
 	void oscSetupFull(u8, u32, u32);
@@ -142,15 +184,15 @@ struct JASTrack : JSUList<JASChannel> {
 	void seqTimeToDspTime(long, u8);
 	void setParam(int, f32, int);
 	bool setSeqData(u8*, long);
-	void startSeq();
-	void stopSeq();
+	bool startSeq();
+	bool stopSeq();
 	void stopSeqMain();
 	void close();
 	bool start(void*, u32);
 	void openChild(u8, u8);
 	void exchangeRegisterValue(u8);
 	void readReg32(u8);
-	void readReg16(u8);
+	u32 readReg16(u8);
 	void writeRegDirect(u8, u16);
 	void writeRegParam(u8);
 	u16 readSelfPort(int portNumber);
@@ -164,17 +206,17 @@ struct JASTrack : JSUList<JASChannel> {
 	void setTempo(u16);
 	void setTimebase(u16);
 	f32 panCalc(f32, f32, f32, u8);
-	void rootCallback(void*);
-	void channelUpdateCallback(unsigned long, JASChannel*, JASDsp::TChannel*, void*);
 	void setNoteMask(u8);
 	void muteTrack(bool);
 
+	static long rootCallback(void*);
+	static void channelUpdateCallback(unsigned long, JASChannel*, JASDsp::TChannel*, void*);
 	static void newMemPool(int);
-	static void registerSeqCallback(SeqCallback*);
+	static void registerSeqCallback(SeqCallback);
 
 	// unused/inlined:
 	~JASTrack();
-	void inherit();
+	int inherit();
 	void setBankNumber(u8);
 	void setPanSwitchExt(u8, int);
 	void setPanSwitchParent(u8, int);
@@ -209,19 +251,12 @@ struct JASTrack : JSUList<JASChannel> {
 	u8 _E7;                            // _E7 - might be padding
 	JASVibrate mVibrate;               // _E8
 	JASChannelUpdater mChannelUpdater; // _F4
-	void* _144;                        // _144 - unknown pointer/code?
+	NoteOnCallback _144;               // _144
 	TimedParam_ mTimedParam;           // _148
 	JASRegisterParam mRegisterParam;   // _268
 	u8 _298[0x10];                     // _298 - unknown
-	JASOscillator::Data _2A8;          // _2A8
-	u32 _2C0;                          // _2C0 - another oscillator data?
-	f32 _2C4;                          // _2C4
-	void* _2C8;                        // _2C8 - unknown pointer - table?
-	void* _2CC;                        // _2CC - unknown pointer - reltable?
-	f32 _2D0;                          // _2D0
-	f32 _2D4;                          // _2D4
-	u32 _2D8;                          // _2D8
-	u32 _2DC;                          // _2DC
+	JASOscillator::Data _2A8[2];       // _2A8
+	u32 _2D8[2];                       // _2D8
 	short _2E0[12];                    // _2E0
 	JASTrack* _2F8;                    // _2F8
 	JASTrack* _2FC[16];                // _2FC
@@ -250,6 +285,14 @@ struct JASTrack : JSUList<JASChannel> {
 	u8 _364;                           // _364
 	u8 _365;                           // _365
 	u8 _366;                           // _366
+
+	static struct JASSeqParser* sParser;
+
+	// these might be JSUList<JASChannel>, for whatever difference that may or may not make
+	static JASTrack* sFreeList;
+	static JASTrack* sFreeListEnd;
+
+	static SeqCallback sCallBackFunc;
 };
 
 #endif

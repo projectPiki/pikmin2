@@ -1,4 +1,5 @@
 #include "Game/Creature.h"
+#include "Game/Stickers.h"
 #include "types.h"
 
 /*
@@ -720,14 +721,12 @@ bool Creature::isStickLeader()
 	// UNUSED FUNCTION
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8019F5E8
  * Size:	0004B4
  */
-void updateStick__Q24Game8CreatureFR10Vector3f()
+void Creature::updateStick(Vector3f&)
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -1060,8 +1059,6 @@ lbl_8019FA80:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	8019FA9C
@@ -1070,7 +1067,7 @@ namespace Game {
 void Creature::clearCapture()
 {
 	// Generated from stw r0, 0xB8(r3)
-	_B8 = 0;
+	mCaptureMatrix = 0;
 }
 
 /*
@@ -1372,7 +1369,7 @@ lbl_8019FDD4:
  * Address:	8019FDF0
  * Size:	000070
  */
-void Stickers::get(void*)
+Creature* Stickers::get(void*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1415,7 +1412,7 @@ lbl_8019FE40:
  * Address:	8019FE60
  * Size:	000008
  */
-void Stickers::getNext(void*)
+void* Stickers::getNext(void*)
 {
 	/*
 	addi     r3, r4, 1
@@ -1428,14 +1425,14 @@ void Stickers::getNext(void*)
  * Address:	8019FE68
  * Size:	000008
  */
-u32 Stickers::getStart() { return 0x0; }
+void* Stickers::getStart() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	8019FE70
  * Size:	000008
  */
-void Stickers::getEnd()
+void* Stickers::getEnd()
 {
 	/*
 	lwz      r3, numBuffer__Q24Game8Stickers@sda21(r13)

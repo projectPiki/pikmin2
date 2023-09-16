@@ -1163,7 +1163,7 @@ u64 ModelEffectDataRoot::getID() { return 'ROOT'; }
  * Address:	803BBE70
  * Size:	000008
  */
-ModelEffect* ModelEffectDataRoot::onCreate(ModelEffectCreateArg*) { return nullptr; }
+ModelEffect* ModelEffectDataRoot::onCreate(ModelEffectCreateArg* arg) { return nullptr; }
 
 /*
  * --INFO--

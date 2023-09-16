@@ -63,6 +63,8 @@ struct SeMgr : public PSSystem::SingletonBase<SeMgr> {
 	RandId mRandid;       // _24
 	u8 _28[0x4];          // _28, unknown
 	JAISound* mSound;     // _2C
+
+	static void* seHandle; // TODO: need proper type
 };
 
 } // namespace PSGame

@@ -1,3 +1,4 @@
+#include "Dolphin/OS/OSMessage.h"
 #include "Dolphin/os.h"
 #include "JSystem/JAudio/JAS/JASCalc.h"
 #include "JSystem/JAudio/JAS/JASHeap.h"
@@ -174,7 +175,7 @@ int JASTaskThread::sendCmdMsg(void (*cmd)(void*), const void* msg, unsigned long
 	if (header == nullptr) {
 		return FALSE;
 	}
-	BOOL sendResult = OSSendMessage(&mMsgQueue, header, OS_MESSAGE_NON_BLOCKING);
+	BOOL sendResult = OSSendMessage(&mMsgQueue, header, OS_MESSAGE_NOBLOCK);
 	if (!sendResult) {
 		JASKernel::getCommandHeap()->free(header);
 	}

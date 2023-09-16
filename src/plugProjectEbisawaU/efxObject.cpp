@@ -49,7 +49,7 @@ bool TTsuyuGrow0::create(Arg* arg)
 	mtxRot.setBasis(3, pos);
 
 	if (TSimple1::create(arg)) {
-		JPASetRMtxTVecfromMtx(mtxRot.mMatrix.mtxView, mEmitters[0]->_68, &mEmitters[0]->_A4);
+		JPASetRMtxTVecfromMtx(mtxRot.mMatrix.mtxView, mEmitters[0]->mMatrix, &mEmitters[0]->mPosition);
 		return true;
 	} else {
 		return false;
@@ -141,7 +141,7 @@ bool TEgateBC::create(Arg* arg)
 	if (TForever2::create(arg)) {
 		for (int i = 0; i < (int)ARRAY_SIZE(mItems); i++) {
 			if (mItems[i].mEmitter) {
-				JPASetRMtxTVecfromMtx(mtxRot.mMatrix.mtxView, mItems[i].mEmitter->_68, &mItems[i].mEmitter->_A4);
+				JPASetRMtxTVecfromMtx(mtxRot.mMatrix.mtxView, mItems[i].mEmitter->mMatrix, &mItems[i].mEmitter->mPosition);
 			}
 		}
 		return true;

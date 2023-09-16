@@ -111,7 +111,7 @@ void TForever::fade()
  * Address:	803B9B44
  * Size:	000024
  */
-void TForever::setGlobalScale(float scale)
+void TForever::setGlobalScale(f32 scale)
 {
 	JPABaseEmitter* emitter = mEmitter;
 
@@ -270,8 +270,8 @@ void TChasePos::execute(JPABaseEmitter* emitter)
 {
 	P2ASSERTLINE(214, _14 != nullptr);
 
-	float x = _14->x;
-	float y = _14->y;
+	f32 x = _14->x;
+	f32 y = _14->y;
 
 	emitter->mPosition.x = x;
 	emitter->mPosition.y = y;
@@ -310,11 +310,11 @@ void TChasePosDir::execute(JPABaseEmitter* emitter)
 	P2ASSERTLINE(244, _14 != nullptr);
 	P2ASSERTLINE(245, _18 != nullptr);
 
-	float x1 = _14->x;
-	float y1 = _14->y;
+	f32 x1 = _14->x;
+	f32 y1 = _14->y;
 
-	float x2 = _18->x;
-	float y2 = _18->y;
+	f32 x2 = _18->x;
+	f32 y2 = _18->y;
 
 	emitter->mPosition.x = x1;
 	emitter->mPosition.y = y1;

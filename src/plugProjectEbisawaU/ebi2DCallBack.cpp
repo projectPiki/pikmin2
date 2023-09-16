@@ -1,4 +1,5 @@
 #include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
@@ -115,10 +116,10 @@ namespace ebi {
  */
 void E2DCallBack_Purupuru::do_update()
 {
-	if (_18) {
+	if (mPane) {
 		_3C            = mScaleMgr.calc();
-		J2DPane* pane  = _18;
-		float scale    = _3C;
+		J2DPane* pane  = mPane;
+		f32 scale      = _3C;
 		pane->mScale.x = scale;
 		pane->mScale.y = scale;
 		pane->calcMtx();
@@ -425,11 +426,11 @@ void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, long p3, long
 {
 	void* resource = JKRFileLoader::getGlbResource(path, archive);
 	P2ASSERTLINE(74, (resource != nullptr));
-	mAnim          = J2DAnmLoaderDataBase::load(resource);
-	mFrameCtrl._06 = p3;
-	mFrameCtrl._10 = p3;
-	mFrameCtrl._0A = p3;
-	mFrameCtrl._08 = ((mAnim->mFrameLength < p4) ? mAnim->mFrameLength : p4);
+	mAnim                = J2DAnmLoaderDataBase::load(resource);
+	mFrameCtrl._06       = p3;
+	mFrameCtrl.mCurrTime = p3;
+	mFrameCtrl._0A       = p3;
+	mFrameCtrl._08       = ((mAnim->mFrameLength < p4) ? mAnim->mFrameLength : p4);
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -494,7 +495,7 @@ lbl_803D0B74:
  * Address:	803D0B98
  * Size:	00010C
  */
-void E2DCallBack_AnmBase::play(float, J3DAnmAttr, bool)
+void E2DCallBack_AnmBase::play(f32, J3DAnmAttr, bool)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -578,7 +579,7 @@ lbl_803D0C6C:
  * Address:	803D0CA4
  * Size:	000110
  */
-void E2DCallBack_AnmBase::playBack(float, bool)
+void E2DCallBack_AnmBase::playBack(f32, bool)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -686,8 +687,8 @@ void E2DCallBack_AnmBase::disconnect()
  */
 void E2DCallBack_AnmBase::setStartFrame()
 {
-	mFrameCtrl._10       = mFrameCtrl._06;
-	mAnim->mCurrentFrame = mFrameCtrl._10;
+	mFrameCtrl.mCurrTime = mFrameCtrl._06;
+	mAnim->mCurrentFrame = mFrameCtrl.mCurrTime;
 }
 
 /*
@@ -697,8 +698,8 @@ void E2DCallBack_AnmBase::setStartFrame()
  */
 void E2DCallBack_AnmBase::setEndFrame()
 {
-	mFrameCtrl._10       = mFrameCtrl._08;
-	mAnim->mCurrentFrame = mFrameCtrl._10;
+	mFrameCtrl.mCurrTime = mFrameCtrl._08;
+	mAnim->mCurrentFrame = mFrameCtrl.mCurrTime;
 }
 
 /*
@@ -765,9 +766,9 @@ void E2DCallBack_AnmBase::setRandFrame()
  * Address:	803D0F00
  * Size:	000054
  */
-float E2DCallBack_AnmBase::getPlayFinRate()
+f32 E2DCallBack_AnmBase::getPlayFinRate()
 {
-	return (mFrameCtrl._10 - mFrameCtrl._06) / mFrameCtrl._08;
+	return (mFrameCtrl.mCurrTime - mFrameCtrl._06) / mFrameCtrl._08;
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r4, 0x4330
@@ -800,9 +801,9 @@ float E2DCallBack_AnmBase::getPlayFinRate()
  */
 void E2DCallBack_AnmBase::do_update()
 {
-	if (_18) {
+	if (mPane) {
 		mFrameCtrl.update();
-		mAnim->mCurrentFrame = mFrameCtrl._10;
+		mAnim->mCurrentFrame = mFrameCtrl.mCurrTime;
 	}
 	if (mFrameCtrl.mAttr & 1) {
 		mIsFinished = true;

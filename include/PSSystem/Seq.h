@@ -9,11 +9,13 @@
 #include "PSSystem/PSBgmTask.h"
 #include "JSystem/JAudio/JAS/JASTrack.h"
 #include "PSSystem/Reservator.h"
+#include "stl/string.h"
 
 namespace PSSystem {
 struct SeqPlayReservator;
 struct SeqPauseOffReservator;
 struct SeqHeap;
+struct SeqSound;
 struct Scene;
 
 /**
@@ -23,7 +25,7 @@ struct SeqBase : JSULink<SeqBase> {
 	// need to work out what these are
 	enum PauseMode { MODE0 = 0, MODE1 = 1, MODE2 = 2, MODE3 = 3, MODE4 = 4 };
 
-	SeqBase(const char*, const JAInter::SoundInfo&);
+	SeqBase(const char* bmsFileName, const JAInter::SoundInfo& info);
 
 	virtual ~SeqBase();                  // _08
 	virtual void init();                 // _0C
@@ -32,11 +34,11 @@ struct SeqBase : JSULink<SeqBase> {
 	virtual void stopSeq(u32);           // _18
 	virtual void pauseOn(PauseMode);     // _1C
 	virtual void pauseOff();             // _20
-	virtual u8 getCastType()  = 0;       // _24
-	virtual void getSeqType() = 0;       // _28
+	virtual u8 getCastType() = 0;        // _24
+	virtual u8 getSeqType()  = 0;        // _28
 	virtual void exec();                 // _2C
 	virtual void onPlayingFrame();       // _30
-	virtual void isPlaying();            // _34
+	virtual bool isPlaying();            // _34
 	virtual void seqLoadAfter();         // _38 (weak)
 	virtual JAISound* getHandleP() = 0;  // _3C
 	virtual void setConfigVolume();      // _40
@@ -46,14 +48,13 @@ struct SeqBase : JSULink<SeqBase> {
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	char* mBmsFileName;                 // _14
-	JAInter::SoundInfo* mSoundInfo;     // _18
+	JAInter::SoundInfo mSoundInfo;      // _18
 	SeqHeap* mSeqHeap;                  // _28
 	SeqPlayReservator mPlayRes;         // _2C
 	SeqPauseOffReservator mPauseOffRes; // _38
 	PauseMode mPauseMode;               // _44 - enum maybe? 0x4 size
 	u8 _48;                             // _48 - unknown
-	u8 _49[0x3];                        // _49 - possibly padding
-	u32 _4C;                            // _4C - unknown
+	SeqSound* _4C;                      // _4C - unknown
 	OSMutex mMutex;                     // _50
 };
 
@@ -61,6 +62,8 @@ struct SeqBase : JSULink<SeqBase> {
  * @size 0x18
  */
 struct SeqHeap {
+	SeqHeap(unsigned long, PSSystem::SeqBase*); // unused/inlined
+
 	virtual ~SeqHeap();                      // _08
 	virtual void loadSeqAsync(TaskChecker*); // _0C
 
@@ -106,7 +109,7 @@ struct SeSeq : public SeqBase {
 	virtual ~SeSeq();               // _08
 	virtual void stopSeq(u32);      // _18
 	virtual u8 getCastType();       // _24 (weak)
-	virtual void getSeqType();      // _28 (weak)
+	virtual u8 getSeqType();        // _28 (weak)
 	virtual void seqLoadAfter();    // _38
 	virtual JAISound* getHandleP(); // _3C (weak)
 	virtual void setConfigVolume(); // _40

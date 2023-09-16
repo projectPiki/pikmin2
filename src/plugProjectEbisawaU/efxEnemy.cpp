@@ -1,4 +1,27 @@
+#include "efx/Arg.h"
+#include "efx/TSyncGroup.h"
 #include "types.h"
+#include "efx/TBaba.h"
+#include "efx/TChibi.h"
+#include "efx/TChou.h"
+#include "efx/TDenki.h"
+#include "efx/TDnkms.h"
+#include "efx/TGasuHiba.h"
+#include "efx/THebi.h"
+#include "efx/THibaFire.h"
+#include "efx/TImo.h"
+#include "efx/TJgm.h"
+#include "efx/TKechappy.h"
+#include "efx/TKogane.h"
+#include "efx/TKurage.h"
+#include "efx/TNewkurage.h"
+#include "efx/TOta.h"
+#include "efx/TPan.h"
+#include "efx/TQuri.h"
+#include "efx/TTank.h"
+#include "efx/TUmi.h"
+#include "efx/TUjinko.h"
+#include "efx/TYaki.h"
 
 /*
     Generated from dpostproc
@@ -499,8 +522,22 @@ namespace efx {
  * Address:	803B2D84
  * Size:	000124
  */
-void TChibiHit::create(efx::Arg*)
+bool TChibiHit::create(efx::Arg* arg)
 {
+	P2ASSERTLINE(23, strcmp("ArgScale", arg->getName()) == 0);
+	f32 scale = static_cast<ArgScale*>(arg)->mScale;
+	if (TSimple4::create(arg)) {
+		for (int i = 0; i < 4; i++) {
+			JPABaseEmitter* emitter = mEmitters[i];
+			emitter->_98.x          = scale;
+			emitter->_98.y          = scale;
+			emitter->_98.z          = scale;
+			emitter->_B0            = scale;
+			emitter->_B4            = scale;
+		}
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -589,7 +626,7 @@ lbl_803B2E84:
  * Address:	803B2EA8
  * Size:	0000E0
  */
-void TChouDown::create(efx::Arg*)
+bool TChouDown::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -668,8 +705,18 @@ lbl_803B2F54:
  * Address:	803B2F88
  * Size:	000044
  */
-void TUmiHamon::setGlobalScale(float)
+void TUmiHamon::setGlobalScale(f32 scale)
 {
+	for (int i = 0; i < 2; i++) {
+		if (mItems[i].mEmitter != nullptr) {
+			JPABaseEmitter* emitter = mItems[i].mEmitter;
+			emitter->_98.x          = scale;
+			emitter->_98.y          = scale;
+			emitter->_98.z          = scale;
+			emitter->_B0            = scale;
+			emitter->_B4            = scale;
+		}
+	}
 	/*
 	lwz      r4, 0xc(r3)
 	cmplwi   r4, 0
@@ -698,7 +745,7 @@ lbl_803B2FA8:
  * Address:	803B2FCC
  * Size:	000100
  */
-void TUmiFlick::create(efx::Arg*)
+bool TUmiFlick::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -779,7 +826,7 @@ lbl_803B30A8:
  * Address:	803B30CC
  * Size:	0000D0
  */
-void TUmiAttack::create(efx::Arg*)
+bool TUmiAttack::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -848,8 +895,16 @@ lbl_803B3178:
  * Address:	803B319C
  * Size:	000024
  */
-void TUmiEat::setGlobalScale(float)
+void TUmiEat::setGlobalScale(f32 scale)
 {
+	if (mEmitter) {
+		JPABaseEmitter* emitter = mEmitter;
+		emitter->_98.x          = scale;
+		emitter->_98.y          = scale;
+		emitter->_98.z          = scale;
+		emitter->_B0            = scale;
+		emitter->_B4            = scale;
+	}
 	/*
 	lwz      r3, 8(r3)
 	cmplwi   r3, 0
@@ -868,8 +923,16 @@ void TUmiEat::setGlobalScale(float)
  * Address:	803B31C0
  * Size:	000024
  */
-void TUmiDeadawa::setGlobalScale(float)
+void TUmiDeadawa::setGlobalScale(f32 scale)
 {
+	if (mEmitter) {
+		JPABaseEmitter* emitter = mEmitter;
+		emitter->_98.x          = scale;
+		emitter->_98.y          = scale;
+		emitter->_98.z          = scale;
+		emitter->_B0            = scale;
+		emitter->_B4            = scale;
+	}
 	/*
 	lwz      r3, 8(r3)
 	cmplwi   r3, 0
@@ -888,7 +951,7 @@ void TUmiDeadawa::setGlobalScale(float)
  * Address:	803B31E4
  * Size:	0000D0
  */
-void TUmiDeadmelt::create(efx::Arg*)
+bool TUmiDeadmelt::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -957,7 +1020,7 @@ lbl_803B3290:
  * Address:	803B32B4
  * Size:	0000E8
  */
-void TJgmAttack::create(efx::Arg*)
+bool TJgmAttack::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1032,7 +1095,7 @@ lbl_803B3378:
  * Address:	803B339C
  * Size:	000100
  */
-void TJgmAttackW::create(efx::Arg*)
+bool TJgmAttackW::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1113,7 +1176,7 @@ lbl_803B3478:
  * Address:	803B349C
  * Size:	0000D0
  */
-void TJgmBack::create(efx::Arg*)
+bool TJgmBack::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1182,7 +1245,7 @@ lbl_803B3548:
  * Address:	803B356C
  * Size:	0000E8
  */
-void TJgmBackW::create(efx::Arg*)
+bool TJgmBackW::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1257,7 +1320,7 @@ lbl_803B3630:
  * Address:	803B3654
  * Size:	0000C0
  */
-void TImoEat::create(efx::Arg*)
+bool TImoEat::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1324,8 +1387,9 @@ lbl_803B36F0:
  * Address:	803B3714
  * Size:	000074
  */
-void TUjinkoHd_Imo::create(efx::Arg*)
+bool TUjinkoHd_Imo::create(efx::Arg* arg)
 {
+	// if (TSimpleMtx2::create(arg)) { }
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1368,7 +1432,7 @@ lbl_803B3774:
  * Address:	803B3788
  * Size:	000074
  */
-void TUjinkoAp_Imo::create(efx::Arg*)
+bool TUjinkoAp_Imo::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1412,7 +1476,7 @@ lbl_803B37E8:
  * Address:	803B37FC
  * Size:	0000D0
  */
-void TImoSmoke::create(efx::Arg*)
+bool TImoSmoke::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1481,7 +1545,7 @@ lbl_803B38A8:
  * Address:	803B38CC
  * Size:	0000D0
  */
-void TOtaPartsoff::create(efx::Arg*)
+bool TOtaPartsoff::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1545,14 +1609,12 @@ lbl_803B3978:
 	*/
 }
 
-} // namespace efx
-
 /*
  * --INFO--
  * Address:	803B399C
  * Size:	000040
  */
-void setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3f()
+void efx::TNewkurageSui::setGlobalTranslation(Vector3f& translation)
 {
 	/*
 	lwz      r5, 0xc(r3)
@@ -1575,8 +1637,6 @@ lbl_803B39C0:
 	blr
 	*/
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -1606,14 +1666,12 @@ lbl_803B39FC:
 	*/
 }
 
-} // namespace efx
-
 /*
  * --INFO--
  * Address:	803B3A10
  * Size:	000040
  */
-void setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3f()
+void TKurageSui::setGlobalTranslation(Vector3f& translation)
 {
 	/*
 	lwz      r5, 0xc(r3)
@@ -1636,8 +1694,6 @@ lbl_803B3A34:
 	blr
 	*/
 }
-
-namespace efx {
 
 /*
  * --INFO--
@@ -1672,7 +1728,7 @@ lbl_803B3A70:
  * Address:	803B3A84
  * Size:	000024
  */
-void TQuriGlow::setGlobalScale(float)
+void TQuriGlow::setGlobalScale(f32 scale)
 {
 	/*
 	lwz      r3, 8(r3)
@@ -1692,8 +1748,16 @@ void TQuriGlow::setGlobalScale(float)
  * Address:	803B3AA8
  * Size:	0000A4
  */
-void THebiAphd_base::create(efx::Arg*)
+bool THebiAphd_base::create(efx::Arg* arg)
 {
+	P2ASSERTLINE(358, arg != nullptr);
+	if (TSimple4::create(arg)) {
+		for (int i = 0; i < 4; i++) {
+			mEmitters[i]->_24 = _1C;
+		}
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1750,8 +1814,14 @@ lbl_803B3B34:
  * Address:	803B3B4C
  * Size:	000034
  */
-void TKechappyTest::setGlobalAlpha(unsigned char)
+void TKechappyTest::setGlobalAlpha(unsigned char alpha)
 {
+	for (int i = 0; i < 3; i++) {
+		JPABaseEmitter* emitter = mItems[i].mEmitter;
+		if (emitter != nullptr) {
+			emitter->mColor1.a = alpha;
+		}
+	}
 	/*
 	lwz      r5, 0xc(r3)
 	cmplwi   r5, 0
@@ -1778,8 +1848,14 @@ lbl_803B3B6C:
  * Address:	803B3B80
  * Size:	000024
  */
-void TKechappyTest::setGlobalParticleScale(float)
+void TKechappyTest::setGlobalParticleScale(f32 scale)
 {
+	for (int i = 1; i < 3; i++) {
+		JPABaseEmitter* emitter = mItems[i].mEmitter;
+		if (emitter != nullptr) {
+			emitter->_B4 = scale;
+		}
+	}
 	/*
 	lwz      r4, 0x20(r3)
 	cmplwi   r4, 0
@@ -1800,8 +1876,14 @@ lbl_803B3B90:
  * Address:	803B3BA4
  * Size:	000024
  */
-void TKechappyTest::setAwayFromCenterSpeed(float)
+void TKechappyTest::setAwayFromCenterSpeed(f32 speed)
 {
+	for (int i = 1; i < 3; i++) {
+		JPABaseEmitter* emitter = mItems[i].mEmitter;
+		if (emitter != nullptr) {
+			emitter->_34 = speed;
+		}
+	}
 	/*
 	lwz      r4, 0x20(r3)
 	cmplwi   r4, 0
@@ -1822,8 +1904,14 @@ lbl_803B3BB4:
  * Address:	803B3BC8
  * Size:	000024
  */
-void TKechappyTest::setSpread(float)
+void TKechappyTest::setSpread(f32 spread)
 {
+	for (int i = 1; i < 3; i++) {
+		JPABaseEmitter* emitter = mItems[i].mEmitter;
+		if (emitter != nullptr) {
+			emitter->_40 = spread;
+		}
+	}
 	/*
 	lwz      r4, 0x20(r3)
 	cmplwi   r4, 0
@@ -1846,8 +1934,17 @@ lbl_803B3BD8:
  * Address:	803B3BEC
  * Size:	00004C
  */
-void setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3f()
+void efx::TKechappyTest::setGlobalDynamicsScale(Vector3f& scale)
 {
+	for (int i = 1; i < 3; i++) {
+		JPABaseEmitter* emitter = mItems[i].mEmitter;
+		if (emitter != nullptr) {
+			emitter->_98.x = scale.x;
+			emitter->_98.y = scale.y;
+			emitter->_98.z = scale.z;
+		}
+	}
+
 	/*
 	lwz      r5, 0x20(r3)
 	cmplwi   r5, 0
@@ -1954,7 +2051,7 @@ lbl_803B3D08:
  * Address:	803B3D14
  * Size:	0000D0
  */
-void TPanApp::create(efx::Arg*)
+bool TPanApp::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2023,7 +2120,7 @@ lbl_803B3DC0:
  * Address:	803B3DE4
  * Size:	0000D0
  */
-void TPanHide::create(efx::Arg*)
+bool TPanHide::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2092,7 +2189,7 @@ lbl_803B3E90:
  * Address:	803B3EB4
  * Size:	0000D0
  */
-void TPanSmoke::create(efx::Arg*)
+bool TPanSmoke::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2161,7 +2258,7 @@ lbl_803B3F60:
  * Address:	803B3F84
  * Size:	0000D0
  */
-void TBabaFly_ver01::create(efx::Arg*)
+bool TBabaFly_ver01::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2230,7 +2327,7 @@ lbl_803B4030:
  * Address:	803B4054
  * Size:	000184
  */
-void TBabaHe::create(efx::Arg*)
+bool TBabaHe::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2346,7 +2443,7 @@ lbl_803B41A4:
  * Address:	803B41D8
  * Size:	0000E8
  */
-void TKoganeHit::create(efx::Arg*)
+bool TKoganeHit::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2421,7 +2518,7 @@ lbl_803B429C:
  * Address:	803B42C0
  * Size:	0000E8
  */
-void TKoganeDive::create(efx::Arg*)
+bool TKoganeDive::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2601,7 +2698,7 @@ lbl_803B44C4:
  * Address:	803B44F0
  * Size:	000090
  */
-void TTankFireABC::create(efx::Arg*)
+bool TTankFireABC::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2650,8 +2747,12 @@ lbl_803B4564:
  * Address:	803B4580
  * Size:	000044
  */
-void TTankFireIND::create(efx::Arg*)
+bool TTankFireIND::create(efx::Arg* arg)
 {
+	if (TSync::create(arg)) {
+		mEmitter->mParticleCallback = &mParticleCallBack;
+	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2680,7 +2781,7 @@ lbl_803B45AC:
  * Address:	803B45C4
  * Size:	000084
  */
-void TTankFire::create(efx::Arg*)
+bool TTankFire::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2726,7 +2827,7 @@ lbl_803B4628:
  * Address:	803B4648
  * Size:	000098
  */
-void TTankWat::create(efx::Arg*)
+bool TTankWat::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3069,7 +3170,7 @@ lbl_803B4A80:
  * Address:	803B4A8C
  * Size:	0000C0
  */
-void TGasuHiba::create(efx::Arg*)
+bool TGasuHiba::create(efx::Arg* arg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3179,7 +3280,7 @@ lbl_803B4BBC:
  * Address:	803B4BC4
  * Size:	000218
  */
-void TDenkiHiba::create(efx::Arg*)
+bool TDenkiHiba::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -3350,7 +3451,7 @@ void TDenkiHiba::setRateLOD(int)
  * Address:	803B4DDC
  * Size:	000128
  */
-void TDenkiHibaMgr::create(efx::Arg*)
+bool TDenkiHibaMgr::create(efx::Arg*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3554,6 +3655,11 @@ void TDenkiHibaMgr::createHiba()
  */
 void TDenkiHibaMgr::forceKill()
 {
+	mHiba.forceKill();
+	mPoles[0].forceKill();
+	mPoles[1].forceKill();
+	mPolesigns[0].forceKill();
+	mPolesigns[1].forceKill();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3600,6 +3706,11 @@ void TDenkiHibaMgr::forceKill()
  */
 void TDenkiHibaMgr::fade()
 {
+	mHiba.fade();
+	mPoles[0].fade();
+	mPoles[1].fade();
+	mPolesigns[0].fade();
+	mPolesigns[1].fade();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3708,6 +3819,10 @@ lbl_803B5238:
  */
 void TTankWat::forceKill()
 {
+	TSyncGroup4::forceKill();
+	if (mParticleCallBack.mEfxHit != nullptr) {
+		mParticleCallBack.mEfxHit->forceKill();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3739,6 +3854,8 @@ lbl_803B527C:
  */
 void TTankFire::forceKill()
 {
+	mEfxABC.forceKill();
+	mEfxIND.forceKill();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3768,31 +3885,31 @@ void TTankFire::forceKill()
  * Address:	803B52E0
  * Size:	000048
  */
-void TTankFireABC::forceKill()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "forceKill__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
-	lwz      r3, 0x48(r31)
-	cmplwi   r3, 0
-	beq      lbl_803B5314
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+// void TTankFireABC::forceKill()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       "forceKill__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>Fv"
+// 	lwz      r3, 0x48(r31)
+// 	cmplwi   r3, 0
+// 	beq      lbl_803B5314
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
 
-lbl_803B5314:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_803B5314:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -4172,133 +4289,133 @@ lbl_803B5750:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803B576C
- * Size:	000008
- */
-@4 @efx::TChouDown::~TChouDown()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TChouDownFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B576C
+//  * Size:	000008
+//  */
+// @4 @efx::TChouDown::~TChouDown()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx9TChouDownFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803B5774
- * Size:	000008
- */
-@4 @efx::TJgmBack::~TJgmBack()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx8TJgmBackFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B5774
+//  * Size:	000008
+//  */
+// @4 @efx::TJgmBack::~TJgmBack()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx8TJgmBackFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803B577C
- * Size:	000008
- */
-@4 @efx::TImoEat::~TImoEat()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx7TImoEatFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B577C
+//  * Size:	000008
+//  */
+// @4 @efx::TImoEat::~TImoEat()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx7TImoEatFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803B5784
- * Size:	000008
- */
-@4 @efx::TImoSmoke::~TImoSmoke()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TImoSmokeFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B5784
+//  * Size:	000008
+//  */
+// @4 @efx::TImoSmoke::~TImoSmoke()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx9TImoSmokeFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803B578C
- * Size:	000008
- */
-@4 @efx::TPanHide::~TPanHide()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx8TPanHideFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B578C
+//  * Size:	000008
+//  */
+// @4 @efx::TPanHide::~TPanHide()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx8TPanHideFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803B5794
- * Size:	000008
- */
-@4 @efx::TPanSmoke::~TPanSmoke()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TPanSmokeFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B5794
+//  * Size:	000008
+//  */
+// @4 @efx::TPanSmoke::~TPanSmoke()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx9TPanSmokeFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803B579C
- * Size:	000008
- */
-@4 @efx::TBabaFly_ver01::~TBabaFly_ver01()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TBabaFly_ver01Fv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B579C
+//  * Size:	000008
+//  */
+// @4 @efx::TBabaFly_ver01::~TBabaFly_ver01()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx14TBabaFly_ver01Fv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803B57A4
- * Size:	000008
- */
-@4 @efx::TTankFireIND::~TTankFireIND()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TTankFireINDFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B57A4
+//  * Size:	000008
+//  */
+// @4 @efx::TTankFireIND::~TTankFireIND()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx12TTankFireINDFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803B57AC
- * Size:	000008
- */
-@4 @efx::TDnkmsThunderA::~TDnkmsThunderA()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TDnkmsThunderAFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B57AC
+//  * Size:	000008
+//  */
+// @4 @efx::TDnkmsThunderA::~TDnkmsThunderA()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx14TDnkmsThunderAFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803B57B4
- * Size:	000008
- */
-@4 @efx::TDnkmsThunderB::~TDnkmsThunderB()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TDnkmsThunderBFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803B57B4
+//  * Size:	000008
+//  */
+// @4 @efx::TDnkmsThunderB::~TDnkmsThunderB()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q23efx14TDnkmsThunderBFv
+// 	*/
+// }
 } // namespace efx

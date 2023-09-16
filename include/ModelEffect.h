@@ -15,34 +15,34 @@ struct ModelEffectCreateArg {
 };
 
 struct ModelEffectData : public CNode {
-	virtual ~ModelEffectData() { }                            // _08 (weak)
-	virtual void loadResources()                         = 0; // _10
-	virtual u64 getID()                                  = 0; // _14
-	virtual ModelEffect* onCreate(ModelEffectCreateArg*) = 0; // _18
+	virtual ~ModelEffectData() { }                                // _08 (weak)
+	virtual void loadResources()                             = 0; // _10
+	virtual u64 getID()                                      = 0; // _14
+	virtual ModelEffect* onCreate(ModelEffectCreateArg* arg) = 0; // _18
 
 	void entry();
 	void create(ModelEffectCreateArg*);
-	void allocModelData(int);
+	void allocModelData(int count);
 
 	// _00		= VTBL
 	// _00-_18	= CNode
-	int mSizeInBytes;          // _18
+	int mCount;                // _18
 	J3DModelData** mModelData; // _1C
 };
 
 struct ModelEffectDataRoot : public ModelEffectData {
-	virtual ~ModelEffectDataRoot();                       // _08 (weak)
-	virtual void loadResources();                         // _10 (weak)
-	virtual u64 getID();                                  // _14 (weak)
-	virtual ModelEffect* onCreate(ModelEffectCreateArg*); // _18 (weak)
+	virtual ~ModelEffectDataRoot();                           // _08 (weak)
+	virtual void loadResources();                             // _10 (weak)
+	virtual u64 getID();                                      // _14 (weak)
+	virtual ModelEffect* onCreate(ModelEffectCreateArg* arg); // _18 (weak)
 };
 
 struct ModelEffect {
 
 	inline ModelEffect()
 	{
-		_39     = 1;
-		_38     = 1;
+		_38[1]  = 1;
+		_38[0]  = 1;
 		mCulled = 0;
 	}
 
@@ -61,8 +61,7 @@ struct ModelEffect {
 	// _00 VTBL
 	SysShape::Model* mModel; // _04
 	Matrixf mMtx;            // _08
-	u8 _38;                  // _38
-	u8 _39;                  // _39
+	u8 _38[2];               // _38
 	bool mCulled;            // _3A
 };
 

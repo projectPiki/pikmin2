@@ -38,14 +38,14 @@ struct BaseFlockMgr {
 
 	void update();
 	void getNearestFlock(Vector3f&);
-	void attackFlock(int, f32);
+	int attackFlock(int, f32);
 	void resolveCollision(f32);
 
 	// _00 VTBL
-	int _04;               // _04
-	u32 _08;               // _08
-	Sys::Sphere _0C;       // _0C
-	bool* mIsAgentVisible; // _1C
+	int _04;                 // _04
+	u32 _08;                 // _08
+	Sys::Sphere _0C;         // _0C
+	bool mIsAgentVisible[2]; // _1C, might be 4, IDK
 };
 
 template <typename T>

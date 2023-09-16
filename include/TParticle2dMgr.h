@@ -26,13 +26,19 @@ struct TParticle2dMgr : public CNode, JKRDisposer {
 	void createHeap(u32);
 	void createMgr(char*, u32, u32, u32);
 	void draw(u8, u16);
-	void fade(JPABaseEmitter*);
-	void kill(JPABaseEmitter*);
+	void fade(JPABaseEmitter* emitter);
+	void kill(JPABaseEmitter* emitter);
 	void killAll();
 	void killGroup(u8);
-	void setSceneEmitterAndResourceManager(JPAEmitterManager*, JPAResourceManager*);
-	void setSceneResourceManager(JPAResourceManager*);
+	void setSceneEmitterAndResourceManager(JPAEmitterManager* emitterManager, JPAResourceManager* resourceManager);
+	void setSceneResourceManager(JPAResourceManager* resourceManager);
 	void update();
+
+	// unused/inlined:
+	void exitMgr();
+	void destroyHeap();
+	void setXfb(const struct ResTIMG*);
+	void showInfo(long, long, long, long);
 
 	// _00		= VTBL
 	// _00-_18	= CNode

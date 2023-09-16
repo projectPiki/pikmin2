@@ -4,6 +4,7 @@
 #include "types.h"
 #include "JSystem/JAudio/JAD/JADUtility.h"
 #include "JSystem/JSupport/JSUStream.h"
+#include "stl/string.h"
 
 namespace JADUtility {
 struct DataMgrBase;
@@ -13,10 +14,10 @@ struct DataMgrBase;
  */
 struct StrPrm : public PrmHio<char*> {
 	typedef void (*Callback)(void*, u32);
-	StrPrm()
+	StrPrm(u32 p1)
 	    : PrmHio<char*>()
-	    , _30(0)
-	    , _34(0)
+	    , _30(p1)
+	    , _34(nullptr)
 	    , _38(0)
 	{
 	}
@@ -52,6 +53,13 @@ struct StrPrm : public PrmHio<char*> {
  * @size = 0x3C
  */
 struct StrEditBox : public StrPrm {
+	StrEditBox()
+	    : StrPrm(8)
+	{
+		mValue = new char[8];
+		strcpy(mValue, "\0");
+	}
+
 	virtual ~StrEditBox(); // _08 (weak)
 };
 

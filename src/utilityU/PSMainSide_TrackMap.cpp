@@ -78,7 +78,7 @@ namespace PSM {
  * Size:	0000A8
  */
 BgmTrackMapFile::BgmTrackMapFile(bool flag)
-    : SingletonBase(this)
+    : SingletonBase()
 {
 	mTrackMaps = nullptr;
 	mMapCount  = 0;
@@ -678,36 +678,36 @@ lbl_804720E0:
  * Address:	804720F4
  * Size:	000294
  */
-bool BgmTrackMapFile::read(Stream& stream)
+bool BgmTrackMapFile::read(Stream& input)
 {
 	P2ASSERTLINE(205, _28 == true);
 	for (mMapCount = 0; mMapCount < 32; mMapCount++) {
 		int currentMapNumber = mMapCount;
-		char* s1             = stream.readString(nullptr, 0);
+		char* s1             = input.readString(nullptr, 0);
 		if (strcmp(s1, "endoffile") == 0) {
 			return true;
 		}
 		BgmTrackMap& dest = mTrackMaps[currentMapNumber];
 		strcpy(dest.mFileName, s1);
-		dest.mBasicTrackCount = stream.readByte();
+		dest.mBasicTrackCount = input.readByte();
 		JUT_ASSERTLINE(223, dest.mBasicTrackCount < 16, "basic trk over\n(Cur=%d)\n", currentMapNumber);
-		dest.mEventTrackCount = stream.readByte();
+		dest.mEventTrackCount = input.readByte();
 		JUT_ASSERTLINE(226, dest.mEventTrackCount < 16, "event trk over\n(%s)\n(Cur=%d)", currentMapNumber);
-		dest.mOtakaraTrackCount = stream.readByte();
+		dest.mOtakaraTrackCount = input.readByte();
 		JUT_ASSERTLINE(229, dest.mOtakaraTrackCount < 16, "otakara trk over\n(%s)\n(Cur=%d)", currentMapNumber);
-		dest.mKehaiTrackCount = stream.readByte();
+		dest.mKehaiTrackCount = input.readByte();
 		JUT_ASSERTLINE(232, dest.mKehaiTrackCount < 16, "kehai trk over\n(%s)\n(Cur=%d)", currentMapNumber);
-		dest.mBattleTrackCount = stream.readByte();
+		dest.mBattleTrackCount = input.readByte();
 		JUT_ASSERTLINE(235, dest.mBattleTrackCount < 16, "battle trk over\n(%s)\n(Cur=%d)", currentMapNumber);
-		dest.mGroundTrackCount = stream.readByte();
+		dest.mGroundTrackCount = input.readByte();
 		JUT_ASSERTLINE(238, dest.mGroundTrackCount < 16, "ground trk over\n(%s)\n(Cur=%d)", currentMapNumber);
 		for (u8 i = 0; i < 16; i++) {
-			u8 byte         = stream.readByte();
+			u8 byte         = input.readByte();
 			dest.mPikNum[i] = byte;
 			JUT_ASSERTLINE(242, dest.mPikNum[i] <= 1, "abnormal pik num\n(Cur=%d)\n", currentMapNumber);
 		}
 		for (u8 i = 0; i < 8; i++) {
-			u8 byte          = stream.readByte();
+			u8 byte          = input.readByte();
 			dest.mPikMask[i] = byte;
 			JUT_ASSERTLINE(246, dest.mPikMask[i] <= 1, "abnormal pik mask\n(Cur=%d)\n", currentMapNumber);
 		}

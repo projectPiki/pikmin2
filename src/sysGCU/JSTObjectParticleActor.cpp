@@ -1,5 +1,10 @@
+#include "Dolphin/os.h"
 #include "Game/P2JST/ObjectActor.h"
+#include "Game/P2JST/ObjectSystem.h"
 #include "Game/MoviePlayer.h"
+#include "SysShape/Joint.h"
+#include "stl/string.h"
+#include "JSystem/JStudio/stb-data.h"
 #include "ParticleMgr.h"
 #include "Game/GameSystem.h"
 #include "Game/gameStages.h"
@@ -208,8 +213,41 @@ void ObjectParticleActor::JSGSetShape(u32 id)
  * Address:	80454780
  * Size:	000178
  */
-void ObjectParticleActor::parseUserData_(u32, void const*)
+void ObjectParticleActor::parseUserData_(u32 p1, void const* rawData)
 {
+	JStudio::stb::data::TParse_TParagraph_data paragraph;
+	paragraph.stbData = rawData;
+	JStudio::stb::data::TParse_TParagraph_data::TData data;
+	paragraph.getData(&data);
+	if (data.status == 0) {
+		return;
+	}
+	if (data.fileCount == 0 || data.status != 0x60) {
+		return;
+	}
+	mModelJointIndex = -1;
+	for (int i = 0; i < data._08; i++) {
+		OSReport("string:%u,%s\n", i, data.fileCount);
+		if (i == 0) {
+			if (strcmp(data.fileCount, "kill") == 0) {
+				mEfxFlag |= 2;
+			} else {
+				mGameObject = mMoviePlayer->mObjectSystem->findCreature(data.fileCount);
+			}
+		} else if (i == 1) {
+			if (strcmp(data.fileCount, "@ground") == 0) {
+				mModelJointIndex = -2;
+			} else if (mGameObject != nullptr && mGameObject->mModel != nullptr) {
+				SysShape::Joint* joint = mGameObject->mModel->getJoint(data.fileCount);
+				if (joint != nullptr) {
+					mModelJointIndex = joint->mJointIndex;
+				} else {
+					mModelJointIndex = -1;
+				}
+			}
+		}
+		data.fileCount = strchr(data.fileCount, 0) + 1;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

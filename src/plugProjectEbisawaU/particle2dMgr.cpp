@@ -1,4 +1,12 @@
+#include "JSystem/JGeometry.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/ResTIMG.h"
+#include "System.h"
 #include "types.h"
+#include "TParticle2dMgr.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -122,6 +130,8 @@
  */
 TParticle2dMgr::~TParticle2dMgr()
 {
+	_instance     = nullptr;
+	particle2dMgr = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -168,6 +178,7 @@ lbl_803B90CC:
  */
 void TParticle2dMgr::globalInstance()
 {
+	particle2dMgr = Instance();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -186,8 +197,12 @@ void TParticle2dMgr::globalInstance()
  * Address:	803B910C
  * Size:	000048
  */
-void TParticle2dMgr::Instance()
+TParticle2dMgr* TParticle2dMgr::Instance()
 {
+	if (_instance == nullptr) {
+		_instance = new TParticle2dMgr();
+	}
+	return _instance;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -221,6 +236,11 @@ lbl_803B9140:
  */
 void TParticle2dMgr::deleteInstance()
 {
+	if (_instance != nullptr) {
+		delete _instance;
+		_instance = nullptr;
+	}
+	particle2dMgr = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -255,7 +275,13 @@ lbl_803B918C:
  * Size:	000088
  */
 TParticle2dMgr::TParticle2dMgr()
+    : CNode("TParticle2dMgr")
+    , JKRDisposer()
+    , mSolidHeap(nullptr)
 {
+	_30              = nullptr;
+	mResourceManager = nullptr;
+	_3C              = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -299,8 +325,13 @@ TParticle2dMgr::TParticle2dMgr()
  * Address:	803B922C
  * Size:	000094
  */
-void TParticle2dMgr::createHeap(unsigned long)
+void TParticle2dMgr::createHeap(unsigned long p1)
 {
+	sys->heapStatusStart("TParticle2dMgr::createHeap", nullptr);
+	P2ASSERTLINE(73, mSolidHeap == nullptr);
+	mSolidHeap = JKRSolidHeap::create(p1, JKRHeap::sCurrentHeap, true);
+	sys->heapStatusEnd("TParticle2dMgr::createHeap");
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -474,8 +505,16 @@ void TParticle2dMgr::destroyHeap()
  * Address:	803B9414
  * Size:	0000AC
  */
-void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager*, JPAResourceManager*)
+void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager* emitterManager, JPAResourceManager* resourceManager)
 {
+	P2ASSERTLINE(132, _3C == nullptr);
+	_3C = _30;
+	_30 = emitterManager;
+	_30->clearResourceManager(0);
+	_30->entryResourceManager(mResourceManager, 0);
+	_30->clearResourceManager(1);
+	_30->entryResourceManager(resourceManager, 1);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -533,6 +572,11 @@ void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager*, JPARe
  */
 void TParticle2dMgr::clearSceneEmitterAndResourceManager()
 {
+	_30->clearResourceManager(1);
+	_30->clearResourceManager(0);
+	P2ASSERTLINE(149, _3C != nullptr);
+	_30 = _3C;
+	_3C = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -574,8 +618,10 @@ lbl_803B9514:
  * Address:	803B9538
  * Size:	000050
  */
-void TParticle2dMgr::setSceneResourceManager(JPAResourceManager*)
+void TParticle2dMgr::setSceneResourceManager(JPAResourceManager* resourceManager)
 {
+	_30->clearResourceManager(1);
+	_30->entryResourceManager(resourceManager, 1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -607,6 +653,7 @@ void TParticle2dMgr::setSceneResourceManager(JPAResourceManager*)
  */
 void TParticle2dMgr::clearSceneResourceManager()
 {
+	_30->clearResourceManager(1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -628,6 +675,7 @@ void TParticle2dMgr::clearSceneResourceManager()
  */
 void TParticle2dMgr::update()
 {
+	_30->calc();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -753,8 +801,10 @@ void TParticle2dMgr::setXfb(const ResTIMG*)
  * Address:	803B971C
  * Size:	00004C
  */
-void TParticle2dMgr::create(unsigned short, Vector2<float>&, unsigned char, unsigned char)
+JPABaseEmitter* TParticle2dMgr::create(unsigned short p1, Vector2<f32>& p2, unsigned char p3, unsigned char p4)
 {
+	JGeometry::TVec3f vec(p2.x, p2.y, 0.0f);
+	return _30->createSimpleEmitterID(vec, p1, p3, p4, nullptr, nullptr);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -784,8 +834,11 @@ void TParticle2dMgr::create(unsigned short, Vector2<float>&, unsigned char, unsi
  * Address:	803B9768
  * Size:	00002C
  */
-void TParticle2dMgr::kill(JPABaseEmitter*)
+void TParticle2dMgr::kill(JPABaseEmitter* emitter)
 {
+	if (emitter != nullptr) {
+		_30->forceDeleteEmitter(emitter);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -808,8 +861,12 @@ lbl_803B9784:
  * Address:	803B9794
  * Size:	000020
  */
-void TParticle2dMgr::fade(JPABaseEmitter*)
+void TParticle2dMgr::fade(JPABaseEmitter* emitter)
 {
+	if (emitter != nullptr) {
+		emitter->mFlags |= 1;
+		emitter->_24 = 1;
+	}
 	/*
 	cmplwi   r4, 0
 	beqlr
@@ -829,6 +886,7 @@ void TParticle2dMgr::fade(JPABaseEmitter*)
  */
 void TParticle2dMgr::killAll()
 {
+	_30->forceDeleteAllEmitter();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -847,8 +905,9 @@ void TParticle2dMgr::killAll()
  * Address:	803B97D8
  * Size:	000028
  */
-void TParticle2dMgr::killGroup(unsigned char)
+void TParticle2dMgr::killGroup(unsigned char p1)
 {
+	_30->forceDeleteGroupEmitter(p1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -878,31 +937,31 @@ void TParticle2dMgr::showInfo(long, long, long, long)
  * Address:	803B9800
  * Size:	000028
  */
-void __sinit_particle2dMgr_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804E7368@ha
-	stw      r0, lbl_80516080@sda21(r13)
-	stfsu    f0, lbl_804E7368@l(r3)
-	stfs     f0, lbl_80516084@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_particle2dMgr_cpp()
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804E7368@ha
+// 	stw      r0, lbl_80516080@sda21(r13)
+// 	stfsu    f0, lbl_804E7368@l(r3)
+// 	stfs     f0, lbl_80516084@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	803B9828
  * Size:	000008
  */
-void TParticle2dMgr::@24 @__dt()
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__14TParticle2dMgrFv
-	*/
-}
+// void TParticle2dMgr::@24 @__dt()
+// {
+// 	/*
+// 	addi     r3, r3, -24
+// 	b        __dt__14TParticle2dMgrFv
+// 	*/
+// }

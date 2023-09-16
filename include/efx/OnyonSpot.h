@@ -24,10 +24,10 @@ struct OnyonSpotArg : public ModelEffectCreateArg {
 };
 
 struct OnyonSpotData : public ModelEffectData {
-	virtual ~OnyonSpotData() { }                          // _08 (weak)
-	virtual void loadResources();                         // _10
-	virtual u64 getID() { return 'ONY_SPOT'; }            // _14 (weak)
-	virtual ModelEffect* onCreate(ModelEffectCreateArg*); // _18
+	virtual ~OnyonSpotData() { }                              // _08 (weak)
+	virtual void loadResources();                             // _10
+	virtual u64 getID() { return 'ONY_SPOT'; }                // _14 (weak)
+	virtual ModelEffect* onCreate(ModelEffectCreateArg* arg); // _18
 
 	int mTexAnimCount;                  // _20
 	Sys::MatTexAnimation* mTexanims;    // _24

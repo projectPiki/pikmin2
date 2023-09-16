@@ -48,7 +48,7 @@ struct BaseGen : public CNode {
 	BaseGen();
 
 	virtual ~BaseGen() { }                  // _08 (weak)
-	virtual void read(Stream&);             // _10
+	virtual void read(Stream& input);       // _10
 	virtual void draw(Graphics&, Matrixf*); // _14
 
 	// _00     = VTBL
@@ -73,8 +73,8 @@ struct TekiInfo : public CNode {
 		mDropMode = DROP_NoDrop;
 	}
 
-	virtual ~TekiInfo() { }     // _08 (weak)
-	virtual void read(Stream&); // _10
+	virtual ~TekiInfo() { }           // _08 (weak)
+	virtual void read(Stream& input); // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -90,8 +90,15 @@ struct TekiInfo : public CNode {
  * @size{0x20}
  */
 struct ItemInfo : public CNode {
-	virtual ~ItemInfo() { }     // _08 (weak)
-	virtual void read(Stream&); // _10
+	inline ItemInfo()
+	    : CNode()
+	    , mCaveID(0)
+	    , mWeight(1)
+	{
+	}
+
+	virtual ~ItemInfo() { }           // _08 (weak)
+	virtual void read(Stream& input); // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -103,8 +110,16 @@ struct ItemInfo : public CNode {
  * @size{0x24}
  */
 struct GateInfo : public CNode {
-	virtual ~GateInfo() { }     // _08 (weak)
-	virtual void read(Stream&); // _10
+	inline GateInfo()
+	    : CNode()
+	    , mCaveID(0)
+	{
+		mWeight = 1;
+		mLife   = 0.0f;
+	}
+
+	virtual ~GateInfo() { }           // _08 (weak)
+	virtual void read(Stream& input); // _10
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -117,14 +132,21 @@ struct GateInfo : public CNode {
  * @size{0x20}
  */
 struct CapInfo : public CNode {
-	virtual ~CapInfo() { }      // _08 (weak)
-	virtual void read(Stream&); // _10
+	inline CapInfo()
+	    : CNode()
+	    , mIsTekiEmpty(1)
+	    , mTekiInfo(nullptr)
+	{
+	}
+
+	virtual ~CapInfo() { }            // _08 (weak)
+	virtual void read(Stream& input); // _10
 
 	TekiInfo* getTekiInfo();
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	bool mIsTekiEmpty;   // _18, AKA does not have a teki
+	u8 mIsTekiEmpty;     // _18, AKA does not have a teki
 	TekiInfo* mTekiInfo; // _1C
 };
 
@@ -157,13 +179,14 @@ struct FloorInfo : public CNode {
 		Parm<int> mVersion;          // _268  /* f015 */
 		Parm<f32> mWaterwraithTimer; // _290  /* f016 */
 		Parm<int> mGlitchySeesaw;    // _2B8  /* f017 */
-		void* mEnd;                  // _2E0
+
+		// void* mEnd;                  // _2E0
 	};
 
 	FloorInfo();
 
-	virtual ~FloorInfo();       // _08 (weak)
-	virtual void read(Stream&); // _10
+	virtual ~FloorInfo();             // _08 (weak)
+	virtual void read(Stream& input); // _10
 
 	int getTekiMax();
 	int getTekiInfoNum();
@@ -205,21 +228,24 @@ struct FloorInfo : public CNode {
 struct CaveInfo : public CNode {
 	/* Erased? */
 	struct Parms : Parameters {
-		inline Parms();
+		inline Parms()
+		    : Parameters(nullptr, "CaveInfo")
+		    , mFloorMax(this, 'f000', "\x8A\x4B\x91\x77", 1, 1, 128)
+		{
+		}
 
 		Parm<int> mFloorMax; // _0C
-		void* mEnd;          // _34
 	};
 
 	CaveInfo();
 
-	virtual ~CaveInfo();        // _08 (weak)
-	virtual void read(Stream&); // _10
+	virtual ~CaveInfo();              // _08 (weak)
+	virtual void read(Stream& input); // _10
 
 	void disablePelplant();
 	int getFloorMax();
-	FloorInfo* getFloorInfo(int);
-	void load(char*);
+	FloorInfo* getFloorInfo(int floorIndex);
+	static CaveInfo* load(char* path);
 
 	// _00     = VTBL
 	// _00-_18 = CNode

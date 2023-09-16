@@ -894,7 +894,7 @@ lbl_801CC468:
  * Address:	801CC480
  * Size:	000004
  */
-void BaseItem::doSimulation(float) { }
+void BaseItem::doSimulation(f32) { }
 
 /*
  * --INFO--
@@ -998,7 +998,7 @@ void BaseItem::updateCollTree()
  * Address:	801CC648
  * Size:	0001C4
  */
-void BaseItem::move(float)
+void BaseItem::move(f32)
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -1166,7 +1166,7 @@ void BaseItem::movieSetAnimationLastFrame() { mAnimator.setLastFrame(); }
  * Address:	801CC934
  * Size:	00001C
  */
-void BaseItem::movieSetTranslation(Vector3f& position, float faceDir) { mPosition = position; }
+void BaseItem::movieSetTranslation(Vector3f& dest, f32 faceDir) { mPosition = dest; }
 
 /*
  * constructor__Q24Game8CFSMItemFv
@@ -2116,7 +2116,7 @@ void TNodeItemMgr::killAll()
  * Address:	801CDB3C
  * Size:	0000C4
  */
-ItemMgr::ItemMgr() { mName = "ÈÉ¢ÔΩß?ÔΩΩÔΩ¢ÈÉ¢ÔΩß?ÔΩΩÔΩ§ÈÉ¢??ÈÉ¢??ÈÉ¢ÊôÑÔΩßÔΩ≠ÁπùÔΩ≠ÈÉ¢Êô¢ÔΩΩÔΩºÈÉ¢ÔΩß?ÔΩΩÔΩ∏ÈÉ¢Êô¢ÔΩΩÔΩ£"; }
+ItemMgr::ItemMgr() { mName = "ÈÉ¢?Ωß??ΩΩ?Ω¢ÈÉ¢?Ωß??ΩΩ?Ω§ÈÉ¢??ÈÉ¢??ÈÉ¢Êô??Ωß?Ω≠ÁπùÔΩ≠ÈÉ¢Êô¢?ΩΩ?ΩºÈÉ¢?Ωß??ΩΩ?Ω∏ÈÉ¢Êô¢?ΩΩ?Ω£"; }
 
 /*
  * __dt__Q24Game7ItemMgrFv
@@ -2298,7 +2298,7 @@ void ItemMgr::doViewCalc()
  * Address:	801CE6D8
  * Size:	0001F4
  */
-void ItemMgr::doSimulation(float p1)
+void ItemMgr::doSimulation(f32 p1)
 {
 	Iterator<GenericObjectMgr> iterator(this);
 	iterator.first();
@@ -2740,9 +2740,9 @@ void TNodeItemMgr::doViewCalc()
  * Address:	801CF6A4
  * Size:	00002C
  */
-void TNodeItemMgr::doSimulation(float p1)
+void TNodeItemMgr::doSimulation(f32 rate)
 {
-	mNodeObjectMgr.doSimulation(p1);
+	mNodeObjectMgr.doSimulation(rate);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2880,42 +2880,42 @@ BaseItem* TNodeItemMgr::get(void* item)
  * Address:	801CF7CC
  * Size:	000004
  */
-void BaseItemMgr::doAnimation() { }
+// void BaseItemMgr::doAnimation() { }
 
 /*
  * --INFO--
  * Address:	801CF7D0
  * Size:	000004
  */
-void BaseItemMgr::doEntry() { }
+// void BaseItemMgr::doEntry() { }
 
 /*
  * --INFO--
  * Address:	801CF7D4
  * Size:	000004
  */
-void BaseItemMgr::doSetView(int) { }
+// void BaseItemMgr::doSetView(int) { }
 
 /*
  * --INFO--
  * Address:	801CF7D8
  * Size:	000004
  */
-void BaseItemMgr::doViewCalc() { }
+// void BaseItemMgr::doViewCalc() { }
 
 /*
  * --INFO--
  * Address:	801CF7DC
  * Size:	000004
  */
-void BaseItemMgr::doSimulation(float) { }
+// void BaseItemMgr::doSimulation(f32) { }
 
 /*
  * --INFO--
  * Address:	801CF7E0
  * Size:	000004
  */
-void BaseItemMgr::doDirectDraw(Graphics&) { }
+// void BaseItemMgr::doDirectDraw(Graphics&) { }
 
 } // namespace Game
 

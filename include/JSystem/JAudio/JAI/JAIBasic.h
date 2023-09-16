@@ -76,6 +76,9 @@ struct JAIBasic {
 		startSoundActorT(id, handlePtr, &actor, p4, p6);
 	}
 
+	template <typename T>
+	void startSoundActorReturnHandleT(T**, unsigned long, JAInter::Actor*, unsigned long, unsigned char);
+
 	// unused/inlined:
 	void bootDSP();
 	void getPlayingSoundHandle(JAISound**, unsigned long);

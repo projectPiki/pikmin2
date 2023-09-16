@@ -123,7 +123,7 @@
  * Size:	000160
  */
 JASChannel::JASChannel(Callback* callback, void* p2)
-    : JSUPtrLink(this)
+    : JSULink(this)
     , _18(0)
     , _20(nullptr)
     , _24(callback)
@@ -415,7 +415,7 @@ void JASChannel::setKeySweepTarget(unsigned char p1, unsigned long p2)
 	} else {
 		v1 = p1 + 60 - _E8->_01;
 	}
-	float pitch = JASDriver::key2pitch_c5(v1);
+	f32 pitch = JASDriver::key2pitch_c5(v1);
 	pitch *= _F0;
 	if (p2 == 0) {
 		_F8 = pitch;
@@ -441,12 +441,12 @@ void JASChannel::setPauseFlag(bool a1)
  * Address:	800A369C
  * Size:	000024
  */
-void JASChannel::setPanPower(float p1, float p2, float p3)
+void JASChannel::setPanPower(f32 p1, f32 p2, f32 p3)
 {
-	float divisor = p1 + p2 + p3;
-	_10C          = p1 / divisor;
-	_110          = p2 / divisor;
-	_114          = p3 / divisor;
+	f32 divisor = p1 + p2 + p3;
+	_10C        = p1 / divisor;
+	_110        = p2 / divisor;
+	_114        = p3 / divisor;
 }
 
 /*
@@ -1183,9 +1183,9 @@ lbl_800A409C:
  * Address:	800A40BC
  * Size:	0000C0
  */
-float JASChannel::calcEffect(const JASChannel::PanVector* vectorA, const JASChannel::PanVector* vectorB, unsigned char p3)
+f32 JASChannel::calcEffect(const JASChannel::PanVector* vectorA, const JASChannel::PanVector* vectorB, unsigned char p3)
 {
-	float value   = 0.0f;
+	f32 value     = 0.0f;
 	const u8* row = calc_sw_table[p3];
 	switch (row[0]) {
 	case 0:
@@ -1305,7 +1305,7 @@ float JASChannel::calcEffect(const JASChannel::PanVector* vectorA, const JASChan
  * Address:	800A417C
  * Size:	0000FC
  */
-float JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVector*, unsigned char)
+f32 JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVector*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1404,7 +1404,7 @@ float JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVec
  * Address:	800A4278
  * Size:	000120
  */
-void JASChannel::updateAutoMixer(JASDsp::TChannel* p1, float p2, float p3, float p4, float p5)
+void JASChannel::updateAutoMixer(JASDsp::TChannel* p1, f32 p2, f32 p3, f32 p4, f32 p5)
 {
 	// f32 v1;
 	// if (p2 <= 0.0f) {
@@ -1503,7 +1503,7 @@ lbl_800A42EC:
  * Address:	800A4398
  * Size:	0003D4
  */
-void JASChannel::updateMixer(float, float, float, float, unsigned short*)
+void JASChannel::updateMixer(f32, f32, f32, f32, unsigned short*)
 {
 	/*
 	stwu     r1, -0xc0(r1)

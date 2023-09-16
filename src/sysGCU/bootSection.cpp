@@ -425,7 +425,7 @@ BootSection::BootSection(JKRHeap* heap)
 
 	setDisplay(JFWDisplay::createManager(nullptr, mHeap, JUTXfb::DoubleBuffer, false), 1);
 	sys->setFrameRate(1);
-	mButtonCallback = new Delegate<BootSection>(this, loadResident);
+	mButtonCallback = new Delegate<BootSection>(this, &BootSection::loadResident);
 	JUTProcBar::sManager->setVisible(false);
 	JUTProcBar::sManager->setVisibleHeapBar(false);
 	mController = new Controller(JUTGamePad::PORT_0);
@@ -1532,7 +1532,7 @@ void BootSection::updateNintendoLogo()
 
 	if (mDoOpenProgressive && mChangeStateID != 5 && !mProgressiveActive) {
 		mChangeStateID = 5;
-		sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<BootSection>(this, load2DResource));
+		sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<BootSection>(this, &BootSection::load2DResource));
 	}
 	mFadeTimer += sys->mDeltaTime;
 	if (mFadeTimer > 1.5f && !waitLoadResource()) {
@@ -1644,7 +1644,7 @@ void BootSection::updateWaitProgressive()
 void BootSection::run()
 {
 	mDisplayHeap->becomeCurrentHeap();
-	sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<BootSection>(this, loadBootResource));
+	sys->dvdLoadUseCallBack(&mThreadCommand, new Delegate<BootSection>(this, &BootSection::loadBootResource));
 	// runWait(&waitLoadResource);
 	sys->loadResourceFirst();
 	setMode(0);

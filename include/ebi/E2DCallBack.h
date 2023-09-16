@@ -27,7 +27,7 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 
 // Size: 0x3C
 struct E2DCallBack_AnmBase : public E2DCallBack_Base {
-	E2DCallBack_AnmBase() { mFrameCtrl.init(0); }
+	E2DCallBack_AnmBase() { }
 
 	virtual ~E2DCallBack_AnmBase() { } // _08 (weak)
 	virtual void do_update();          // _1C
@@ -41,6 +41,9 @@ struct E2DCallBack_AnmBase : public E2DCallBack_Base {
 	void setRandFrame();
 	f32 getPlayFinRate();
 	bool isFinish();
+
+	// unused/inlined:
+	void disconnect();
 
 	J3DFrameCtrl mFrameCtrl; // _20
 	J2DAnmBase* mAnim;       // _34

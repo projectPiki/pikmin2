@@ -1,7 +1,22 @@
+#include "Game/Entities/ItemOnyon.h"
+#include "Game/GameSystem.h"
+#include "Game/MoviePlayer.h"
+#include "Game/NaviState.h"
+#include "Game/PikiMgr.h"
+#include "Game/cellPyramid.h"
+#include "Iterator.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "efx/TNaviEffect.h"
 #include "types.h"
 #include "nans.h"
 #include "Game/SingleGame.h"
 #include "Game/gameStat.h"
+#include "utilityU.h"
+#include "Game/Entities/PelletCarcass.h"
+#include "Game/Entities/PelletFruit.h"
+#include "Game/Entities/PelletItem.h"
+#include "Game/Entities/PelletOtakara.h"
+#include "Game/Navi.h"
 
 namespace Game {
 namespace SingleGame {
@@ -11,8 +26,58 @@ namespace SingleGame {
  * Address:	8023A250
  * Size:	0004A0
  */
-void DayEndState::init(SingleGameSection* gs, StateArg* arg)
+void DayEndState::init(SingleGameSection* section, StateArg* arg)
 {
+	gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+	gameSystem->mFlags |= GAMESYS_Unk5;
+	moviePlayer->reset();
+	moviePlayer->clearSuspendedDemo();
+	DayEndArg* castedArg = static_cast<DayEndArg*>(arg);
+	P2ASSERTLINE(67, castedArg != nullptr);
+	_10 = castedArg->_00;
+	_14 = 0.0f;
+	gameSystem->setPause(true, "dayend", 3);
+	_12 = 0;
+	_18.clear();
+	if (section->mTheExpHeap != nullptr) {
+		PSMCancelToPauseOffMainBgm();
+	}
+	Iterator<Onyon> iOnyon(ItemOnyon::mgr);
+	CI_LOOP(iOnyon)
+	{
+		(*iOnyon)->setSpotEffectActive(false);
+		(*iOnyon)->mSuckTimer = 4.0f;
+		(*iOnyon)->forceClose();
+	}
+	section->saveToGeneratorCache(section->mCurrentCourseInfo);
+	PelletIterator iPellet;
+	CI_LOOP(iPellet)
+	{
+		Pellet* pellet = *iPellet;
+		if (pellet->isAlive() && pellet->mCaptureMatrix == nullptr) {
+			pellet->kill(nullptr);
+		}
+	}
+	PelletCarcass::mgr->resetMgr();
+	PelletFruit::mgr->resetMgr();
+	PelletItem::mgr->resetMgrAndResources();
+	PelletOtakara::mgr->resetMgrAndResources();
+	Navi* navi = naviMgr->getAt(0);
+	if (navi->isAlive()) {
+		navi->mFsm->transit(navi, NSID_Walk, nullptr);
+		efx::TNaviEffect* effectsObj = navi->mEffectsObj;
+		effectsObj->mFlags.typeView &= ~efx::NAVIFX_InWater;
+		effectsObj->killHamonA_();
+		effectsObj->killHamonB_();
+	}
+	navi = naviMgr->getAt(1);
+	if (navi->isAlive()) {
+		navi->mFsm->transit(navi, NSID_Walk, nullptr);
+		efx::TNaviEffect* effectsObj = navi->mEffectsObj;
+		effectsObj->mFlags.typeView &= ~efx::NAVIFX_InWater;
+		effectsObj->killHamonA_();
+		effectsObj->killHamonB_();
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1086,8 +1151,20 @@ void DayEndState::onMovieStart(SingleGameSection* gs, MovieConfig* cfg, u32, u32
  * Address:	8023B0B4
  * Size:	0000F4
  */
-void DayEndState::onMovieDone(SingleGameSection* gs, MovieConfig* cfg, u32, u32)
+void DayEndState::onMovieDone(SingleGameSection* section, MovieConfig* cfg, u32 p3, u32 p4)
 {
+	if (cfg->is("s01_dayend")) {
+		pikiMgr->forceEnterPikmins(0);
+	}
+	if (cfg->is("s21_dayend_takeoff")) {
+		gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
+		pikiMgr->killAllPikmins();
+	} else {
+		MoviePlayArg moviePlayArg("s21_dayend_takeoff", const_cast<char*>(section->mCurrentCourseInfo->mName),
+		                          section->mMovieFinishCallback, 0);
+		moviePlayArg.mDelegateStart = section->mMovieStartCallback;
+		moviePlayer->play(moviePlayArg);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -1387,6 +1464,10 @@ void DayEndState::cleanup(SingleGameSection* gs)
 {
 	playData->setPikminCounts_Today();
 	GameStat::getMapPikmins(-1);
+	int alivePikis = GameStat::alivePikis;
+	int mePikis    = GameStat::mePikis;
+	gameSystem->setPause(false, "dayend;cln", 3);
+	gameSystem->mFlags &= ~GAMESYS_Unk5;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

@@ -35,10 +35,10 @@ struct BgmTrackMap {
 };
 
 struct BgmTrackMapFile : public PSSystem::TextDataBase, public PSSystem::SingletonBase<BgmTrackMapFile> {
-	BgmTrackMapFile(bool);
+	BgmTrackMapFile(bool flag);
 
-	virtual ~BgmTrackMapFile() { } // _08 (weak)
-	virtual bool read(Stream&);    // _0C
+	virtual ~BgmTrackMapFile() { }    // _08 (weak)
+	virtual bool read(Stream& input); // _0C
 
 	void readTrackMap(const char*);
 

@@ -16,14 +16,7 @@ namespace ClusterSe {
  * @size = 0x8
  */
 struct PartInitArg {
-	PartInitArg()
-	{
-		_00[0]   = 0xff;
-		_00[1]   = 0xff;
-		_00[2]   = 0xff;
-		_00[3]   = 0xff;
-		mSoundID = (SoundID)0xFFFFFFFF;
-	}
+	PartInitArg();
 	u8 _00[0x4];      // _00 - unknown
 	SoundID mSoundID; // _04
 };
@@ -34,7 +27,7 @@ struct PartInitArg {
 struct Part {
 	Part();
 
-	virtual void callSe(JAInter::Object*); // _08
+	virtual void callSe(JAInter::Object* obj); // _08
 
 	PartInitArg mInitArg;
 };
@@ -42,7 +35,7 @@ struct Part {
 struct Factory {
 	Factory(u8);
 
-	virtual void constructPart();      // _08
+	virtual Part* constructPart();     // _08
 	virtual void identifyPart(u8) = 0; // _0C
 
 	struct Mgr* _04; // _04 - unknown
@@ -53,6 +46,7 @@ struct Factory {
  */
 struct Mgr {
 	void constructParts(PSSystem::ClusterSe::Factory& factory);
+	void play(unsigned char, JAInter::Object*);
 
 	u8 _00[0x4]; // _00 - unknown
 	Part* mPart; // _04

@@ -12,6 +12,9 @@ struct TDenkiHiba : public TForever3 {
 
 	virtual bool create(Arg*); // _08
 
+	// unused/inlined:
+	void setRateLOD(int);
+
 	// _00      = VTBL
 	// _00-_34  = TForever3
 };
@@ -49,6 +52,9 @@ struct TDenkiHibaMgr : public TBase {
 
 	void createHiba(int);
 	void setRateLOD(int);
+
+	// unused/inlined:
+	void createHiba();
 
 	// _00  = VTBL
 	TDenkiHiba mHiba;                 // _04

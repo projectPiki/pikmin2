@@ -145,7 +145,7 @@ void Section::init()
 
 	sys->heapStatusEnd("TitleSection::init");
 
-	PSM::ObjMgr::createInstance();
+	PSM::ObjMgr::newInstance();
 
 	mThpPlayer = new Game::THPPlayer;
 	mThpPlayer->init(mHeap);
@@ -217,7 +217,7 @@ void Section::doDraw(Graphics& gfx)
  * Address:	........
  * Size:	000200
  */
-void Section::drawShortCuts(Graphics&)
+void Section::drawShortCuts(Graphics& gfx)
 {
 	// UNUSED FUNCTION
 }
@@ -237,7 +237,7 @@ void Section::drawShortCut(Graphics&, int, int, int, char*)
  * Address:	........
  * Size:	000004
  */
-void Section::drawDebugInfo(Graphics&)
+void Section::drawDebugInfo(Graphics& gfx)
 {
 	// UNUSED FUNCTION
 }
@@ -630,7 +630,7 @@ void Section::loadResource()
 	info.mSceneType          = PSGame::SceneInfo::TITLE_SCREEN;
 	info.mCameras            = 0;
 	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
-	mgr->newAndSetCurrentScene(&info);
+	mgr->newAndSetCurrentScene(info);
 
 	PSSystem::SceneMgr* mgr2 = PSSystem::getSceneMgr();
 	mgr2->checkScene();

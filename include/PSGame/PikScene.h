@@ -25,6 +25,9 @@ struct PikScene : public PSSystem::Scene {
 
 	PSM::MiddleBossSeq* getMiddleBossBgm();
 
+	// unused/inlined:
+	void getJumpMainBgm();
+
 	// _00      = VTBL
 	// _04-_24  = Scene
 };
@@ -33,7 +36,7 @@ struct PikScene : public PSSystem::Scene {
  * @size{0xD}
  */
 struct PikSceneMgr : public PSSystem::SceneMgr {
-	virtual void newAndSetCurrentScene(SceneInfo*);                    // _0C
+	virtual void newAndSetCurrentScene(SceneInfo&);                    // _0C
 	virtual void newAndSetGlobalScene();                               // _10
 	virtual void newMainBgm(const char*, JAInter::SoundInfo&)     = 0; // _14
 	virtual void newDirectedBgm(const char*, JAInter::SoundInfo&) = 0; // _18

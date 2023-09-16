@@ -136,7 +136,7 @@ void SingleGame::SelectState::dvdload()
 
 	JUT_ASSERTLINE(394, PSSystem::getSceneMgr(), "PSGetSceneMgr null\n");
 
-	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&info);
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(info);
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->doFirstLoad();
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->doStartMainSeq();
 

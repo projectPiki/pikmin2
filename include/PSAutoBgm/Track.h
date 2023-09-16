@@ -17,7 +17,7 @@ struct Module : public JADUtility::PrmSetBase {
 	virtual ~Module();               // _08
 	virtual void afterGetFromFree(); // _20
 
-	void removeCallback(u8, void*);
+	static void removeCallback(u8, void*);
 	void seqCpuSync_AutoBgm_Module(JASTrack*, u16, u32, JASTrack*);
 	void setTableAddress(JASTrack*);
 	void cycleLoop(JASTrack*);
@@ -37,12 +37,10 @@ struct Module : public JADUtility::PrmSetBase {
 	JADUtility::PrmSlider<u8> _244;      // _244
 	JADUtility::PrmRadioButton<u8> _274; // _274
 	short _2A4;                          // _2A4
-	u8 _2A6[0x2];                        // _2A6 - possibly just padding
 	uint _2A8;                           // _2A8
-	u8 _2AC[0x4];                        // _2AC - unknown
+	u8 _2AC;                             // _2AC - unknown
 	uint _2B0;                           // _2B0
 	u8 _2B4;                             // _2B4
-	u8 _2B5[0x3];                        // _2B5 - possibly just padding
 	CycleBase* _2B8[2];                  // _2B8 - 0 = OnCycle, 1 = OffCycle
 	u8 _2C0;                             // _2C0 - cycle index?
 	u8 _2C1;                             // _2C1 - unknown/just padding?
@@ -58,7 +56,7 @@ struct Track : public JADUtility::PrmSetRc<PSAutoBgm::Module> {
 	virtual ~Track();                // _08
 	virtual void afterGetFromFree(); // _20
 
-	void removeCallback(u8, void*);
+	static void removeCallback(u8, void*);
 	void seqCpuSync_AutoBgm_Track(JASTrack*, u16, u32, JASTrack*);
 	void incCurModule();
 
@@ -71,10 +69,9 @@ struct Track : public JADUtility::PrmSetRc<PSAutoBgm::Module> {
 	JADUtility::PrmSlider<short> _A0;   // _A0
 	JADUtility::PrmRadioButton<u8> _D0; // _D0
 	JADUtility::StrEditBox _100;        // _100
-	u8 _130[0xC];                       // _130 - unknown
 	JADUtility::PrmSlider<u8> _13C;     // _13C
 	JADUtility::PrmSlider<u8> _16C;     // _16C
-	u8 _19C[0x4];                       // _19C - unknown
+	u8 _19C;                            // _19C - unknown
 };
 
 } // namespace PSAutoBgm

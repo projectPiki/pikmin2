@@ -19,7 +19,7 @@ struct CourseCache : public CNode {
 	int mCourseIndex;    // _18
 	u32 mOffset;         // _1C
 	u32 mSize;           // _20
-	u32 mGeneratorCount; // _24
+	int mGeneratorCount; // _24
 	int mGeneratorSize;  // _28
 	u32 mCreatureCount;  // _2C
 	int mCreatureSize;   // _30

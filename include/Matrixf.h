@@ -149,6 +149,24 @@ struct Matrixf {
 		(*this)(2, 3) = tr.z;
 	}
 
+	inline void getTranslationXY(Vector2f& vec)
+	{
+		vec.x = (*this)(0, 3);
+		vec.y = (*this)(1, 3);
+	}
+
+	inline void setTranslationXY(Vector2f& vec)
+	{
+		(*this)(0, 3) = vec.x;
+		(*this)(1, 3) = vec.y;
+	}
+
+	inline void translateXY(const Vector2f& vec)
+	{
+		(*this)(0, 3) += vec.x;
+		(*this)(1, 3) += vec.y;
+	}
+
 	union {
 		Mtx mtxView;
 		struct {

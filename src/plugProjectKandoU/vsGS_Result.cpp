@@ -136,7 +136,7 @@ void ResultState::dvdload()
 	PSGame::SceneInfo scene;
 	scene.mSceneType = PSGame::SceneInfo::CHALLENGE_RESULTS;
 	scene.mCameras   = 0;
-	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&scene);
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(scene);
 
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
 	sceneMgr->checkScene();

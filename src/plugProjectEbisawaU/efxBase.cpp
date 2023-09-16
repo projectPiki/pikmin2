@@ -66,7 +66,7 @@ void TOneEmitter::executeAfter(JPABaseEmitter* emitter)
 {
 	particleMgr->setGlobalColor(emitter);
 	for (Context* context = (Context*)mContext.mChild; context != nullptr; context = (Context*)context->mNext) {
-		Vector3f v1 = context->_18;
+		Vector3f v1 = context->mPosition;
 		if (particleMgr->cullByResFlg(v1, mEffectID) == false) {
 			int createCount = emitter->getCurrentCreateNumber();
 			for (int i = 0; i < createCount; i++) {
@@ -92,8 +92,8 @@ bool TOneEmitter::create(efx::Arg*)
 	}
 	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
 	if (mEmitter) {
-		mEmitter->_F4 |= 0x40;
-		mEmitter->_F4 |= 0x01;
+		mEmitter->mFlags |= 0x40;
+		mEmitter->mFlags |= 0x01;
 		mEmitter->mEmitterCallback = this;
 	}
 	return (mEmitter != nullptr);
@@ -162,8 +162,8 @@ bool TOneEmitterChasePos::create(efx::Arg* arg)
 	}
 	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
 	if (mEmitter) {
-		mEmitter->_F4 |= 0x40;
-		mEmitter->_F4 |= 0x01;
+		mEmitter->mFlags |= 0x40;
+		mEmitter->mFlags |= 0x01;
 		mEmitter->mEmitterCallback = this;
 	}
 	return (mEmitter != nullptr);
@@ -236,8 +236,8 @@ bool TOneEmitterSimple::create(efx::Arg* arg)
 	}
 	mEmitter = particleMgr->create(mEffectID, Vector3f::zero, 0);
 	if (mEmitter) {
-		mEmitter->_F4 |= 0x40;
-		mEmitter->_F4 |= 0x01;
+		mEmitter->mFlags |= 0x40;
+		mEmitter->mFlags |= 0x01;
 		mEmitter->_24              = 0;
 		mEmitter->mEmitterCallback = this;
 	}
@@ -383,7 +383,7 @@ bool TSimpleMtx1::create(Arg* arg)
 	if (setEmitterCallbacks()) {
 		P2ASSERTLINE(646, mMtx);
 		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
-			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
 		}
 		return true;
 	} else {
@@ -402,7 +402,7 @@ bool TSimpleMtx2::create(efx::Arg*)
 	if (setEmitterCallbacks()) {
 		P2ASSERTLINE(660, mMtx);
 		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
-			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
 		}
 		return true;
 	} else {
@@ -421,7 +421,7 @@ bool TSimpleMtx3::create(efx::Arg*)
 	if (setEmitterCallbacks()) {
 		P2ASSERTLINE(674, mMtx);
 		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
-			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
 		}
 		return true;
 	} else {
@@ -440,7 +440,7 @@ bool TSimpleMtx4::create(efx::Arg* arg)
 	if (setEmitterCallbacks()) {
 		P2ASSERTLINE(688, mMtx != nullptr);
 		for (int i = 0; i < (int)ARRAY_SIZE(mEmitters); i++) {
-			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->_68, &mEmitters[i]->_A4);
+			JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, mEmitters[i]->mMatrix, &mEmitters[i]->mPosition);
 		}
 		return true;
 	} else {
@@ -468,7 +468,7 @@ bool TSync::create(efx::Arg* arg)
 	mEmitter = particleMgr->create(mEffectID, position, 0);
 	if (mEmitter) {
 		mEmitter->mEmitterCallback = this;
-		mEmitter->_F4 |= 0x40;
+		mEmitter->mFlags |= 0x40;
 	} else {
 		return false;
 	}
@@ -486,7 +486,7 @@ void TSync::execute(JPABaseEmitter* emitter)
 {
 	bool check = false;
 	// TODO: This "check" is probably an inlined function or macro...
-	if ((emitter->_F4 & 8) != 0 && (emitter->_D0 + emitter->_DC == 0)) {
+	if ((emitter->mFlags & 8) != 0 && (emitter->_D0 + emitter->_DC == 0)) {
 		check = true;
 	}
 	if (check) {
@@ -507,9 +507,9 @@ void TSync::executeAfter(JPABaseEmitter* emitter)
 	particleMgr->setGlobalColor(emitter);
 	if (particleMgr->cullByResFlg(emitter) == 0) {
 		if (mFlags & 1) {
-			emitter->_F4 |= 4;
+			emitter->mFlags |= 4;
 		} else {
-			emitter->_F4 &= ~4;
+			emitter->mFlags &= ~4;
 		}
 	}
 	doExecuteAfter(emitter);
@@ -555,10 +555,10 @@ void TSync::fade()
 void TChasePos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
 	P2ASSERTLINE(785, mPosition);
-	Vector3f* position = mPosition;
-	emitter->_A4.x     = position->x;
-	emitter->_A4.y     = position->y;
-	emitter->_A4.z     = position->z;
+	Vector3f* position   = mPosition;
+	emitter->mPosition.x = position->x;
+	emitter->mPosition.y = position->y;
+	emitter->mPosition.z = position->z;
 }
 
 /*
@@ -576,7 +576,7 @@ void TChasePosYRot::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	Vector3f* translation = mPosition;
 	PSMTXRotRad(mtx.mMatrix.mtxView, 0x79, *mRotation);
 	mtx.setTranslation(*translation);
-	JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, emitter->_68, &emitter->_A4);
+	JPASetRMtxTVecfromMtx(mtx.mMatrix.mtxView, emitter->mMatrix, &emitter->mPosition);
 }
 
 /*
@@ -588,7 +588,7 @@ void TChasePosYRot::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 void TChaseMtx::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
 	P2ASSERTLINE(809, mMtx != nullptr);
-	JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, emitter->_68, &emitter->_A4);
+	JPASetRMtxTVecfromMtx(mMtx->mMatrix.mtxView, emitter->mMatrix, &emitter->mPosition);
 }
 
 /*
@@ -602,9 +602,9 @@ void TChaseMtxT::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	P2ASSERTLINE(818, mMtx != nullptr);
 	Vector3f translation;
 	mMtx->getTranslation(translation);
-	emitter->_A4.x = translation.x;
-	emitter->_A4.y = translation.y;
-	emitter->_A4.z = translation.z;
+	emitter->mPosition.x = translation.x;
+	emitter->mPosition.y = translation.y;
+	emitter->mPosition.z = translation.z;
 }
 
 /*
@@ -621,7 +621,7 @@ void TChasePosPos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	Vector3f vec1 = *_10;
 	Vector3f vec2 = *_14;
 	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
-	JPASetRMtxTVecfromMtx(mtxZ, emitter->_68, &emitter->_A4);
+	JPASetRMtxTVecfromMtx(mtxZ, emitter->mMatrix, &emitter->mPosition);
 }
 
 /*
@@ -725,7 +725,7 @@ void TChasePosPosLocalZScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	Vector3f vec1 = *_10;
 	Vector3f vec2 = *_14;
 	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
-	JPASetRMtxTVecfromMtx(mtxZ, emitter->_68, &emitter->_A4);
+	JPASetRMtxTVecfromMtx(mtxZ, emitter->mMatrix, &emitter->mPosition);
 	// needs some extra math here
 	/*
 	stwu     r1, -0x70(r1)
@@ -836,7 +836,7 @@ void TChasePosPosLocalYScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 	Vector3f vec1 = *_10;
 	Vector3f vec2 = *_14;
 	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
-	JPASetRMtxTVecfromMtx(mtxZ, emitter->_68, &emitter->_A4);
+	JPASetRMtxTVecfromMtx(mtxZ, emitter->mMatrix, &emitter->mPosition);
 	// needs some extra math here
 	/*
 	stwu     r1, -0x70(r1)
@@ -1164,7 +1164,7 @@ void TChasePos4::setPosptr(Vector3f* position)
  * Address:	803B049C
  * Size:	0000AC
  */
-TChaseMtx2::TChaseMtx2(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2)
+TChaseMtx2::TChaseMtx2(f32 (*mtx)[4], unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TChaseMtx>()
 {
 	mItems[0].mMtx      = (Matrixf*)mtx;
@@ -1198,7 +1198,7 @@ TChaseMtx2::TChaseMtx2(float (*mtx)[4], unsigned short effectID1, unsigned short
  * Address:	803B05A0
  * Size:	00000C
  */
-void TChaseMtx2::setMtxptr(float (*mtx)[4])
+void TChaseMtx2::setMtxptr(f32 (*mtx)[4])
 {
 	mItems[0].mMtx = (Matrixf*)mtx;
 	mItems[1].mMtx = (Matrixf*)mtx;
@@ -1209,7 +1209,7 @@ void TChaseMtx2::setMtxptr(float (*mtx)[4])
  * Address:	803B05AC
  * Size:	0000A0
  */
-TChaseMtx3::TChaseMtx3(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
+TChaseMtx3::TChaseMtx3(f32 (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
     : TSyncGroup3<TChaseMtx>()
 {
 	mItems[0].mMtx      = (Matrixf*)mtx;
@@ -1237,7 +1237,7 @@ TChaseMtx3::TChaseMtx3(float (*mtx)[4], unsigned short effectID1, unsigned short
  * Address:	803B064C
  * Size:	000010
  */
-void TChaseMtx3::setMtxptr(float (*mtx)[4])
+void TChaseMtx3::setMtxptr(f32 (*mtx)[4])
 {
 	mItems[0].mMtx = (Matrixf*)mtx;
 	mItems[1].mMtx = (Matrixf*)mtx;
@@ -1249,7 +1249,7 @@ void TChaseMtx3::setMtxptr(float (*mtx)[4])
  * Address:	803B065C
  * Size:	0000AC
  */
-TChaseMtx4::TChaseMtx4(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3,
+TChaseMtx4::TChaseMtx4(f32 (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3,
                        unsigned short effectID4)
     : TSyncGroup4<TChaseMtx>()
 {
@@ -1280,7 +1280,7 @@ TChaseMtx4::TChaseMtx4(float (*mtx)[4], unsigned short effectID1, unsigned short
  * Address:	803B0708
  * Size:	000014
  */
-void TChaseMtx4::setMtxptr(float (*mtx)[4])
+void TChaseMtx4::setMtxptr(f32 (*mtx)[4])
 {
 	mItems[0].mMtx = (Matrixf*)mtx;
 	mItems[1].mMtx = (Matrixf*)mtx;
@@ -1295,7 +1295,7 @@ void TChaseMtx4::setMtxptr(float (*mtx)[4])
  * Address:	........
  * Size:	0000B8
  */
-TChaseMtx5::TChaseMtx5(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3,
+TChaseMtx5::TChaseMtx5(f32 (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3,
                        unsigned short effectID4, unsigned short effectID5)
     : TSyncGroup5<TChaseMtx>()
 {
@@ -1330,7 +1330,7 @@ TChaseMtx5::TChaseMtx5(float (*mtx)[4], unsigned short effectID1, unsigned short
  * Address:	........
  * Size:	000018
  */
-void TChaseMtx5::setMtxptr(float (*mtx)[4])
+void TChaseMtx5::setMtxptr(f32 (*mtx)[4])
 {
 	// UNUSED FUNCTION
 	mItems[0].mMtx = (Matrixf*)mtx;
@@ -1346,7 +1346,7 @@ void TChaseMtx5::setMtxptr(float (*mtx)[4])
  * Address:	803B071C
  * Size:	0000C4
  */
-TChaseMtx6::TChaseMtx6(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3,
+TChaseMtx6::TChaseMtx6(f32 (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3,
                        unsigned short effectID4, unsigned short effectID5, unsigned short effectID6)
     : TSyncGroup6<TChaseMtx>()
 {
@@ -1381,7 +1381,7 @@ TChaseMtx6::TChaseMtx6(float (*mtx)[4], unsigned short effectID1, unsigned short
  * Address:	803B07E0
  * Size:	00001C
  */
-void TChaseMtx6::setMtxptr(float (*mtx)[4])
+void TChaseMtx6::setMtxptr(f32 (*mtx)[4])
 {
 	mItems[0].mMtx = (Matrixf*)mtx;
 	mItems[1].mMtx = (Matrixf*)mtx;
@@ -1397,7 +1397,7 @@ void TChaseMtx6::setMtxptr(float (*mtx)[4])
  * Address:	803B07FC
  * Size:	0000AC
  */
-TChaseMtxT2::TChaseMtxT2(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2)
+TChaseMtxT2::TChaseMtxT2(f32 (*mtx)[4], unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TChaseMtxT>()
 {
 	mItems[0].mMtx      = (Matrixf*)mtx;
@@ -1431,7 +1431,7 @@ TChaseMtxT2::TChaseMtxT2(float (*mtx)[4], unsigned short effectID1, unsigned sho
  * Address:	803B0900
  * Size:	00000C
  */
-void TChaseMtxT2::setMtxptr(float (*mtx)[4])
+void TChaseMtxT2::setMtxptr(f32 (*mtx)[4])
 {
 	mItems[0].mMtx = (Matrixf*)mtx;
 	mItems[1].mMtx = (Matrixf*)mtx;
@@ -1444,7 +1444,7 @@ void TChaseMtxT2::setMtxptr(float (*mtx)[4])
  * Address:	........
  * Size:	0000A0
  */
-TChaseMtxT3::TChaseMtxT3(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
+TChaseMtxT3::TChaseMtxT3(f32 (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
     : TSyncGroup3<TChaseMtxT>()
 {
 	// UNUSED FUNCTION
@@ -1474,7 +1474,7 @@ TChaseMtxT3::TChaseMtxT3(float (*mtx)[4], unsigned short effectID1, unsigned sho
  * Address:	........
  * Size:	000010
  */
-void TChaseMtxT3::setMtxptr(float (*mtx)[4])
+void TChaseMtxT3::setMtxptr(f32 (*mtx)[4])
 {
 	// UNUSED FUNCTION
 	mItems[0].mMtx = (Matrixf*)mtx;
@@ -1488,7 +1488,7 @@ void TChaseMtxT3::setMtxptr(float (*mtx)[4])
  * Address:	803B090C
  * Size:	0000AC
  */
-TChaseMtxT4::TChaseMtxT4(float (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3,
+TChaseMtxT4::TChaseMtxT4(f32 (*mtx)[4], unsigned short effectID1, unsigned short effectID2, unsigned short effectID3,
                          unsigned short effectID4)
     : TSyncGroup4<TChaseMtxT>()
 {
@@ -1519,7 +1519,7 @@ TChaseMtxT4::TChaseMtxT4(float (*mtx)[4], unsigned short effectID1, unsigned sho
  * Address:	803B09B8
  * Size:	000014
  */
-void TChaseMtxT4::setMtxptr(float (*mtx)[4])
+void TChaseMtxT4::setMtxptr(f32 (*mtx)[4])
 {
 	mItems[0].mMtx = (Matrixf*)mtx;
 	mItems[1].mMtx = (Matrixf*)mtx;
@@ -1533,7 +1533,7 @@ void TChaseMtxT4::setMtxptr(float (*mtx)[4])
  * Address:	803B09CC
  * Size:	0000A0
  */
-TChasePosYRot2::TChasePosYRot2(Vector3f* p1, float* p2, unsigned short effectID1, unsigned short effectID2)
+TChasePosYRot2::TChasePosYRot2(Vector3f* p1, f32* p2, unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TChasePosYRot>()
 {
 	mItems[0].mPosition = p1;
@@ -1587,7 +1587,7 @@ void TChasePosYRot2::setPosptr(Vector3f* position)
  * Address:	........
  * Size:	00000C
  */
-void TChasePosYRot2::setYRot(float* rotation)
+void TChasePosYRot2::setYRot(f32* rotation)
 {
 	// UNUSED FUNCTION
 	mItems[0].mRotation = rotation;
@@ -1600,7 +1600,7 @@ void TChasePosYRot2::setYRot(float* rotation)
  * Address:	803B0AC4
  * Size:	0000B0
  */
-TChasePosYRot3::TChasePosYRot3(Vector3f* p1, float* p2, unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
+TChasePosYRot3::TChasePosYRot3(Vector3f* p1, f32* p2, unsigned short effectID1, unsigned short effectID2, unsigned short effectID3)
     : TSyncGroup3<TChasePosYRot>()
 {
 	mItems[0].mPosition = p1;
@@ -1647,7 +1647,7 @@ void TChasePosYRot3::setPosptr(Vector3f* position)
  * Address:	........
  * Size:	000010
  */
-void TChasePosYRot3::setYRot(float* rotation)
+void TChasePosYRot3::setYRot(f32* rotation)
 {
 	// UNUSED FUNCTION
 	mItems[0].mRotation = rotation;
@@ -1662,7 +1662,7 @@ void TChasePosYRot3::setYRot(float* rotation)
  * Address:	........
  * Size:	0000B4
  */
-TChasePosPosLocalYScale2::TChasePosPosLocalYScale2(Vector3f* p1, Vector3f* p2, float p3, unsigned short effectID1, unsigned short effectID2)
+TChasePosPosLocalYScale2::TChasePosPosLocalYScale2(Vector3f* p1, Vector3f* p2, f32 p3, unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TChasePosPosLocalYScale>()
 {
 	// UNUSED FUNCTION
@@ -1720,7 +1720,7 @@ void TChasePosPosLocalYScale2::setPosptr(Vector3f* p1, Vector3f* p2)
  * Address:	803B0BCC
  * Size:	0000C8
  */
-TChasePosPosLocalYScale3::TChasePosPosLocalYScale3(Vector3f* p1, Vector3f* p2, float p3, unsigned short effectID1, unsigned short effectID2,
+TChasePosPosLocalYScale3::TChasePosPosLocalYScale3(Vector3f* p1, Vector3f* p2, f32 p3, unsigned short effectID1, unsigned short effectID2,
                                                    unsigned short effectID3)
     : TSyncGroup3<TChasePosPosLocalYScale>()
 {
@@ -1772,7 +1772,7 @@ void TChasePosPosLocalYScale3::setPosptr(Vector3f* p1, Vector3f* p2)
  * Address:	........
  * Size:	0000B4
  */
-TChasePosPosLocalZScale2::TChasePosPosLocalZScale2(Vector3f* p1, Vector3f* p2, float p3, unsigned short effectID1, unsigned short effectID2)
+TChasePosPosLocalZScale2::TChasePosPosLocalZScale2(Vector3f* p1, Vector3f* p2, f32 p3, unsigned short effectID1, unsigned short effectID2)
     : TSyncGroup2<TChasePosPosLocalZScale>()
 {
 	// UNUSED FUNCTION
@@ -1830,7 +1830,7 @@ void TChasePosPosLocalZScale2::setPosptr(Vector3f* p1, Vector3f* p2)
  * Address:	803B0D08
  * Size:	0000C8
  */
-TChasePosPosLocalZScale3::TChasePosPosLocalZScale3(Vector3f* p1, Vector3f* p2, float p3, unsigned short effectID1, unsigned short effectID2,
+TChasePosPosLocalZScale3::TChasePosPosLocalZScale3(Vector3f* p1, Vector3f* p2, f32 p3, unsigned short effectID1, unsigned short effectID2,
                                                    unsigned short effectID3)
     : TSyncGroup3<TChasePosPosLocalZScale>()
 {
@@ -1937,7 +1937,7 @@ void TOneEmitterChasePos::startDemoDrawOff()
 	if (mEmitter == nullptr) {
 		return;
 	}
-	mEmitter->_F4 |= 4;
+	mEmitter->mFlags |= 4;
 }
 
 /*
@@ -1951,7 +1951,7 @@ void TOneEmitterChasePos::endDemoDrawOn()
 	if (mEmitter == nullptr) {
 		return;
 	}
-	mEmitter->_F4 &= ~4;
+	mEmitter->mFlags &= ~4;
 }
 
 /*

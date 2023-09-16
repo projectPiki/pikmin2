@@ -1,3 +1,4 @@
+#include "JSystem/JParticle/JPAMath.h"
 #include "efx2d/T2DCursor.h"
 #include "efx2d/T2DCountKira.h"
 #include "efx2d/T2DSensor.h"
@@ -5,7 +6,7 @@
 #include "efx2d/FileSelect.h"
 #include "efx2d/WorldMap.h"
 #include "System.h"
-#include "Jsystem/JPA/JPAMath.h"
+#include "JSystem/JParticle/JPAMath.h"
 #include "Matrixf.h"
 
 static const char name[] = "efx2dEffect";
@@ -367,7 +368,7 @@ bool FileSelect::T2DFilecopyBase::create(Arg* arg)
 	Matrixf mtx;
 	if (TForever::create(arg)) {
 		mEmitter->setColorRGB(col);
-		JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitter->_68);
+		JPASetRMtxfromMtx(mtx.mMatrix.mtxView, mEmitter->mMatrix);
 		mEmitter->setScaleOnly(scale);
 		return true;
 	}
@@ -584,9 +585,9 @@ bool WorldMap::T2DOnyonKira::create(Arg* arg)
 {
 	if (TChasePosDir::create(arg)) {
 		Vector3f* vec = &mEmitter->mScale;
-		_1C.x         = vec->x;
-		_1C.y         = vec->y;
-		_1C.z         = vec->z;
+		mPosition.x   = vec->x;
+		mPosition.y   = vec->y;
+		mPosition.z   = vec->z;
 		return true;
 	}
 	return false;
@@ -603,9 +604,9 @@ void WorldMap::T2DOnyonKira::setGlobalParticleScale(f32 scale)
 	if (!emit)
 		return;
 	Vector3f test;
-	test.x = _1C.x;
-	test.y = _1C.y;
-	test.z = _1C.z;
+	test.x = mPosition.x;
+	test.y = mPosition.y;
+	test.z = mPosition.z;
 
 	emit->setGlobalScale(scale);
 	test = test * scale;
@@ -668,14 +669,14 @@ void WorldMap::T2DRocketB::setGlobalParticleScale(f32 scale)
  * Address:	803BAC6C
  * Size:	00009C
  */
-WorldMap::T2DRocketB::~T2DRocketB() { }
+// WorldMap::T2DRocketB::~T2DRocketB() { }
 
 /*
  * --INFO--
  * Address:	803BAD08
  * Size:	00009C
  */
-WorldMap::T2DOnyonKira::~T2DOnyonKira() { }
+// WorldMap::T2DOnyonKira::~T2DOnyonKira() { }
 
 /*
  * --INFO--
@@ -689,13 +690,13 @@ FileSelect::T2DFilecopyBase::~T2DFilecopyBase() { }
  * Address:	803BAE28
  * Size:	000084
  */
-T2DCountKira::~T2DCountKira() { }
+// T2DCountKira::~T2DCountKira() { }
 
 /*
  * --INFO--
  * Address:	803BAEAC
  * Size:	00009C
  */
-T2DCursor::~T2DCursor() { }
+// T2DCursor::~T2DCursor() { }
 
 } // namespace efx2d
