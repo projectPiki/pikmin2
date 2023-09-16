@@ -602,13 +602,13 @@ void GameSystem::doEntry()
  * Address:	801B54D0
  * Size:	0001F4
  */
-void GameSystem::doSetView(int id)
+void GameSystem::doSetView(int viewportNumber)
 {
 	Iterator<GenericObjectMgr> it(this);
 	CI_LOOP(it)
 	{
 		GenericObjectMgr* obj = *it;
-		obj->doSetView(id);
+		obj->doSetView(viewportNumber);
 	}
 }
 

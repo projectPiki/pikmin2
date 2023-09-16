@@ -98,10 +98,10 @@ void FarmMgr::doEntry()
  * Address:	80124298
  * Size:	00005C
  */
-void FarmMgr::doSetView(int p1)
+void FarmMgr::doSetView(int viewportNumber)
 {
 	if (mFarmsRootNode.mChild) {
-		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doSetView(p1); }
+		FOREACH_NODE(Farm, mFarmsRootNode.mChild, farm) { farm->doSetView(viewportNumber); }
 	}
 }
 

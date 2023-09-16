@@ -1729,13 +1729,13 @@ lbl_803BC4D4:
  * Address:	803BC504
  * Size:	0001F4
  */
-void ObjectMgr<ModelEffect>::doSetView(int id)
+void ObjectMgr<ModelEffect>::doSetView(int viewportNumber)
 {
 	Iterator<ModelEffect> it(this);
 	CI_LOOP(it)
 	{
 		ModelEffect* efx = *it;
-		efx->doSetView(id);
+		efx->doSetView(viewportNumber);
 	}
 	/*
 	stwu     r1, -0x20(r1)

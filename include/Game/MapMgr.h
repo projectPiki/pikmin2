@@ -116,7 +116,7 @@ struct ShapeMapMgr : public MapMgr {
 	virtual void do_update();                                 // _40
 	virtual void drawCollision(Graphics&, Sys::Sphere&);      // _44
 	virtual void doAnimation();                               // _50 (weak)
-	virtual void doSetView(int);                              // _54 (weak)
+	virtual void doSetView(int viewportNumber);               // _54 (weak)
 	virtual void doViewCalc();                                // _58 (weak)
 	virtual void doEntry();                                   // _5C (weak)
 

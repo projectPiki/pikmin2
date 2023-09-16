@@ -2116,7 +2116,7 @@ void TNodeItemMgr::killAll()
  * Address:	801CDB3C
  * Size:	0000C4
  */
-ItemMgr::ItemMgr() { mName = "繧?��繧?���??�??繝槭ロ繝ｼ繧?��繝｣"; }
+ItemMgr::ItemMgr() { mName = "郢ｧ?ｽ｢郢ｧ?ｽ､郢??郢??郢晄ｧｭ繝ｭ郢晢ｽｼ郢ｧ?ｽｸ郢晢ｽ｣"; }
 
 /*
  * __dt__Q24Game7ItemMgrFv
@@ -2264,13 +2264,13 @@ void ItemMgr::doEntry()
  * Address:	801CE300
  * Size:	0001F4
  */
-void ItemMgr::doSetView(int viewNo)
+void ItemMgr::doSetView(int viewportNumber)
 {
 	Iterator<GenericObjectMgr> iterator(this);
 	iterator.first();
 	while (!iterator.isDone()) {
 		GenericObjectMgr* item = (*iterator);
-		item->doSetView(viewNo);
+		item->doSetView(viewportNumber);
 		iterator.next();
 	}
 }
@@ -2710,7 +2710,7 @@ void TNodeItemMgr::doEntry() { mNodeObjectMgr.doEntry(); }
  * Address:	801CF64C
  * Size:	00002C
  */
-void TNodeItemMgr::doSetView(int viewNo) { mNodeObjectMgr.doSetView(viewNo); }
+void TNodeItemMgr::doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); }
 
 /*
  * --INFO--

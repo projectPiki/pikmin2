@@ -32,12 +32,12 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 			iter.next();
 		}
 	}
-	virtual void doSetView(int p1) // _3C
+	virtual void doSetView(int viewportNumber) // _3C
 	{
 		Iterator<T> iter(this);
 		iter.first();
 		while (iter.mIndex != iter.mContainer->getEnd()) {
-			iter.mContainer->get(iter.mIndex)->doSetView(p1);
+			iter.mContainer->get(iter.mIndex)->doSetView(viewportNumber);
 			iter.next();
 		}
 	}

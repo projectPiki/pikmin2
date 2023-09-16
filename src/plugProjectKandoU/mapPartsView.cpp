@@ -63,10 +63,10 @@ void PartsView::doEntry() { }
  * Address:	802324F8
  * Size:	00002C
  */
-void PartsView::doSetView(int index)
+void PartsView::doSetView(int viewportNumber)
 {
 	if (mModel) {
-		mModel->setCurrentViewNo(index);
+		mModel->setCurrentViewNo(viewportNumber);
 	}
 }
 

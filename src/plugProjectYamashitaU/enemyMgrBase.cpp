@@ -134,12 +134,12 @@ void EnemyMgrBase::doEntry()
  * Address:	8012F09C
  * Size:	00008C
  */
-void EnemyMgrBase::doSetView(int viewport)
+void EnemyMgrBase::doSetView(int viewportNumber)
 {
 	for (int i = 0; i < mObjLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_Alive)) {
-			enemy->doSetView(viewport);
+			enemy->doSetView(viewportNumber);
 		}
 	}
 }

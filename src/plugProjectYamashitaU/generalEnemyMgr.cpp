@@ -478,12 +478,12 @@ void GeneralEnemyMgr::doEntry()
  * Address:	8010D174
  * Size:	000068
  */
-void GeneralEnemyMgr::doSetView(int p1)
+void GeneralEnemyMgr::doSetView(int viewportNumber)
 {
 	if (mFlags.typeView & 0x2) {
 		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(mEnemyMgrNode.mChild);
 		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->mNext)) {
-			childNode->doSetView(p1);
+			childNode->doSetView(viewportNumber);
 		}
 	}
 }

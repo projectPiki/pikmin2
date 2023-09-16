@@ -16,8 +16,7 @@ struct GenPelletParm;
 
 // BasePelletMgr inherits something virtual, but I cannot work out what
 // it seems like all these BaseXMgrs are inheriting something virtual....
-struct _BasePelletMgrParent2 {
-};
+struct _BasePelletMgrParent2 { };
 
 struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrParent2 {
 	BasePelletMgr(PelletList::cKind);
@@ -25,7 +24,7 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	////////// VTABLE
 	virtual void doAnimation() { }                                       // _08 (weak)
 	virtual void doEntry() { }                                           // _0C (weak)
-	virtual void doSetView(int) { }                                      // _10 (weak)
+	virtual void doSetView(int viewportNumber) { }                       // _10 (weak)
 	virtual void doViewCalc() { }                                        // _14 (weak)
 	virtual void doSimulation(f32 rate) { }                              // _18 (weak)
 	virtual void doDirectDraw(Graphics& gfx) { }                         // _1C (weak)

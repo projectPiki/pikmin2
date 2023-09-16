@@ -36,11 +36,11 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-	virtual void doSetView(int viewNo) // _6C (weak, thunk at _3C)
+	virtual void doSetView(int viewportNumber) // _6C (weak, thunk at _3C)
 	{
 		for (int i = 0; i < mMax; i++) {
 			if (mOpenIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&mArray[i])->doSetView(viewNo);
+				reinterpret_cast<GenericObject*>(&mArray[i])->doSetView(viewportNumber);
 			}
 		}
 	}

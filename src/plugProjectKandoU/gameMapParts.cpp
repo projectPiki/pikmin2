@@ -2172,7 +2172,7 @@ lbl_801B799C:
  * Address:	801B79B0
  * Size:	000124
  */
-void MapRoom::doSetView(int)
+void MapRoom::doSetView(int viewportNumber)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -10133,7 +10133,7 @@ lbl_801BE368:
  * Address:	801BE390
  * Size:	00007C
  */
-void RoomMapMgr::doSetView(int)
+void RoomMapMgr::doSetView(int viewportNumber)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -177,7 +177,7 @@ struct BaseGameSection : public BaseHIOSection {
 	void doAnimation();
 	void changeGeneratorCursor(Vector3f&);
 	void doEntry();
-	void doSetView(int viewportIndex);
+	void doSetView(int viewportNumber);
 	void doViewCalc();
 	void updateBlendCamera();
 	void setSplitter(bool);

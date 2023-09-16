@@ -1872,13 +1872,13 @@ void Navi::doSimulation(f32 timeStep)
  * Address:	80141EF4
  * Size:	0000B8
  */
-void Navi::doSetView(int vpNumber)
+void Navi::doSetView(int viewportNumber)
 {
-	Creature::doSetView(vpNumber);
-	mMarkerModel->setCurrentViewNo(vpNumber);
-	mCursorModel->setCurrentViewNo(vpNumber);
+	Creature::doSetView(viewportNumber);
+	mMarkerModel->setCurrentViewNo(viewportNumber);
+	mCursorModel->setCurrentViewNo(viewportNumber);
 
-	if (mLod.mFlags & (16 << vpNumber)) {
+	if (mLod.mFlags & (16 << viewportNumber)) {
 		mMarkerModel->showPackets();
 		mCursorModel->showPackets();
 	} else {

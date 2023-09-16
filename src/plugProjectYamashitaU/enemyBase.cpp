@@ -1650,7 +1650,7 @@ void EnemyBase::doEntry() { mLifecycleFSM->entry(this); }
  * Address:	80103680
  * Size:	000028
  */
-void EnemyBase::doSetView(int viewNo) { mModel->setCurrentViewNo((u16)viewNo); }
+void EnemyBase::doSetView(int viewportNumber) { mModel->setCurrentViewNo((u16)viewportNumber); }
 
 /*
  * --INFO--

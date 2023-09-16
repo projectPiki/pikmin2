@@ -3997,7 +3997,7 @@ void Pellet::doEntry()
  * Address:	80169F98
  * Size:	000020
  */
-void Pellet::doSetView(int view) { Creature::doSetView(view); }
+void Pellet::doSetView(int viewportNumber) { Creature::doSetView(viewportNumber); }
 
 /*
  * --INFO--
@@ -6468,7 +6468,10 @@ void PelletMgr::OtakaraItemCode::write(Stream& stream)
 {
 	stream.textWriteTab(stream.mTabCount);
 	stream.writeShort(mValue);
-	stream.textWriteText("# ?申?申?申?申A?申C?申e?申?申?申R?申[?申h\r\n");
+	stream.textWriteText(
+	    "# "
+	    "??申?十?戎?申?十?十??申?十?戎?申?十?十??申?十?戎?申?十?十??申?十?戎?申?十?十A??申?十?戎?申?十?十C??申?十?戎?申?十?十e?"
+	    "?申?十?戎?申?十?十??申?十?戎?申?十?十??申?十?戎?申?十?十R??申?十?戎?申?十?十[??申?十?戎?申?十?十h\r\n");
 }
 
 /*
@@ -6518,12 +6521,12 @@ void PelletMgr::doEntry()
  * Address:	8016E3F0
  * Size:	0001F4
  */
-void PelletMgr::doSetView(int p1)
+void PelletMgr::doSetView(int viewportNumber)
 {
 	Iterator<GenericObjectMgr> iter(this);
 	iter.first();
 	while (iter.mIndex != iter.mContainer->getEnd()) {
-		iter.mContainer->get(iter.mIndex)->doSetView(p1);
+		iter.mContainer->get(iter.mIndex)->doSetView(viewportNumber);
 		iter.next();
 	}
 }

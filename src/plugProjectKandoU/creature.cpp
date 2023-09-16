@@ -319,10 +319,10 @@ void Creature::doEntry() { }
  * Address:	8013B8B0
  * Size:	000108
  */
-void Creature::doSetView(int viewportNo)
+void Creature::doSetView(int viewportNumber)
 {
 	// 2 viewports maximum (2 player modes)
-	P2ASSERTBOUNDSLINE(558, 0, viewportNo, 2);
+	P2ASSERTBOUNDSLINE(558, 0, viewportNumber, 2);
 
 	if (!mModel) {
 		return;
@@ -330,9 +330,9 @@ void Creature::doSetView(int viewportNo)
 
 	P2ASSERTLINE(563, mModel);
 
-	mModel->setCurrentViewNo((u16)viewportNo);
+	mModel->setCurrentViewNo((u16)viewportNumber);
 	if (Creature::usePacketCulling) {
-		if (mLod.mFlags & (16 << viewportNo)) {
+		if (mLod.mFlags & (16 << viewportNumber)) {
 			mModel->showPackets();
 			return;
 		}

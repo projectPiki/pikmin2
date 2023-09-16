@@ -110,9 +110,9 @@ struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	{
 		mMgr->doEntry();
 	}
-	virtual void doSetView(int a) // _50 (weak)
+	virtual void doSetView(int viewportNumber) // _50 (weak)
 	{
-		mMgr->doSetView(a);
+		mMgr->doSetView(viewportNumber);
 	}
 	virtual void doViewCalc() // _54 (weak)
 	{

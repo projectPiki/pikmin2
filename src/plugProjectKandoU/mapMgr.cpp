@@ -2333,7 +2333,7 @@ lbl_80163C50:
  * Address:	80163C60
  * Size:	000060
  */
-void ShapeMapMgr::doSetView(int)
+void ShapeMapMgr::doSetView(int viewportNumber)
 {
 	/*
 	stwu     r1, -0x10(r1)

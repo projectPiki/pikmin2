@@ -442,10 +442,10 @@ void AABBWaterBox::doAnimation()
  * Address:	801AE7F8
  * Size:	000030
  */
-void AABBWaterBox::doSetView(int viewNo)
+void AABBWaterBox::doSetView(int viewportNumber)
 {
 	if (mModel) {
-		mModel->setCurrentViewNo((u16)viewNo);
+		mModel->setCurrentViewNo((u16)viewportNumber);
 	}
 }
 

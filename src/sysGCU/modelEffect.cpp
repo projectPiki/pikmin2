@@ -545,44 +545,14 @@ void ModelEffect::changeMaterial() { }
  * Address:	8043D9A4
  * Size:	000078
  */
-void ModelEffect::doSetView(int)
+void ModelEffect::doSetView(int viewportNumber)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 4(r3)
-	bl       setCurrentViewNo__Q28SysShape5ModelFUl
-	add      r3, r30, r31
-	lbz      r0, 0x38(r3)
-	cmplwi   r0, 0
-	beq      lbl_8043D9F0
-	lwz      r3, 4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8043DA04
-
-lbl_8043D9F0:
-	lwz      r3, 4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8043DA04:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mModel->setCurrentViewNo(viewportNumber);
+	if (_38[viewportNumber] != 0) {
+		mModel->showPackets();
+	} else {
+		mModel->hidePackets();
+	}
 }
 
 /*
@@ -654,22 +624,7 @@ void ParticleMgr::doEntry()
  * Address:	8043DA98
  * Size:	00002C
  */
-void ParticleMgr::doSetView(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x1c(r3)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::doSetView(int viewportNumber) { mModelEffectMgr.doSetView(viewportNumber); }
 
 /*
  * --INFO--

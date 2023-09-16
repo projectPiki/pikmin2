@@ -204,7 +204,7 @@ struct MapRoom : public CellObject {
 	virtual void constructor();                   // _2C (weak)
 	virtual void doAnimation();                   // _30
 	virtual void doEntry();                       // _34
-	virtual void doSetView(int);                  // _38
+	virtual void doSetView(int viewportNumber);   // _38
 	virtual void doViewCalc();                    // _3C
 	virtual void doSimulation(f32);               // _40
 	virtual void doDirectDraw(Graphics&);         // _44
@@ -262,7 +262,7 @@ struct RoomMapMgr : public MapMgr {
 	virtual void doDirectDraw(Graphics&);                     // _4C (weak)
 	virtual void doAnimation();                               // _50 (weak)
 	virtual void doEntry();                                   // _54 (weak)
-	virtual void doSetView(int);                              // _58 (weak)
+	virtual void doSetView(int viewportNumber);               // _58 (weak)
 	virtual void doViewCalc();                                // _5C (weak)
 	virtual void traceMove_new(MoveInfo&, f32);               // _60
 	virtual void traceMove_original(MoveInfo&, f32);          // _64

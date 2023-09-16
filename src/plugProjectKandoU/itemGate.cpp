@@ -156,7 +156,7 @@ void ItemGate::doLoad(Stream& stream)
 	mSegmentsDown         = stream.readInt();
 	initMotion();
 	if (mSegmentsDown >= mMaxSegments) {
-		mCentrePlatInstance->setCollision(false); // Centre? ?\_(ƒc)_/? British
+		mCentrePlatInstance->setCollision(false); // Centre? ?\_(ãƒ?)_/? British
 		setAlive(false);
 		if (mIsElectric) {
 			mEgateEfxA->forceKill();
@@ -1790,43 +1790,44 @@ void ItemDengekiGate::Mgr::generatorWrite(Stream& stream, Game::GenItemParm* par
 	stream.textWriteTab(stream.mTabCount);
 	stream.writeFloat(gateParam->mLife);
 	stream.textWriteText("\t#ƒ‰ƒCƒt\r\n"); // life
-	                                       /*
-	                                       stwu     r1, -0x20(r1)
-	                                       mflr     r0
-	                                       lis      r3, lbl_80480188@ha
-	                                       stw      r0, 0x24(r1)
-	                                       stw      r31, 0x1c(r1)
-	                                       addi     r31, r3, lbl_80480188@l
-	                                       stw      r30, 0x18(r1)
-	                                       or.      r30, r5, r5
-	                                       stw      r29, 0x14(r1)
-	                                       mr       r29, r4
-	                                       bne      lbl_801CA210
-	                                       addi     r3, r31, 0x18
-	                                       addi     r5, r31, 0x34
-	                                       li       r4, 0x499
-	                                       crclr    6
-	                                       bl       panic_f__12JUTExceptionFPCciPCce
-	                                   
-	                                   lbl_801CA210:
-	                                       lwz      r4, 0x414(r29)
-	                                       mr       r3, r29
-	                                       bl       textWriteTab__6StreamFi
-	                                       lfs      f1, 4(r30)
-	                                       mr       r3, r29
-	                                       bl       writeFloat__6StreamFf
-	                                       mr       r3, r29
-	                                       addi     r4, r31, 0x124
-	                                       crclr    6
-	                                       bl       textWriteText__6StreamFPce
-	                                       lwz      r0, 0x24(r1)
-	                                       lwz      r31, 0x1c(r1)
-	                                       lwz      r30, 0x18(r1)
-	                                       lwz      r29, 0x14(r1)
-	                                       mtlr     r0
-	                                       addi     r1, r1, 0x20
-	                                       blr
-	                                       */
+
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r3, lbl_80480188@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r3, lbl_80480188@l
+	stw      r30, 0x18(r1)
+	or.      r30, r5, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	bne      lbl_801CA210
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x34
+	li       r4, 0x499
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801CA210:
+	lwz      r4, 0x414(r29)
+	mr       r3, r29
+	bl       textWriteTab__6StreamFi
+	lfs      f1, 4(r30)
+	mr       r3, r29
+	bl       writeFloat__6StreamFf
+	mr       r3, r29
+	addi     r4, r31, 0x124
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
 }
 
 /*
@@ -1959,7 +1960,7 @@ void ItemGateMgr::doEntry() { mNodeObjectMgr.doEntry(); }
  * Address:	801CA588
  * Size:	00002C
  */
-void ItemGateMgr::doSetView(int val) { mNodeObjectMgr.doSetView(val); }
+void ItemGateMgr::doSetView(int viewportNumber) { mNodeObjectMgr.doSetView(viewportNumber); }
 
 /*
  * --INFO--

@@ -1553,7 +1553,7 @@ lbl_8043F0AC:
  * Address:	8043F0C0
  * Size:	00004C
  */
-void Model::setCurrentViewNo(unsigned long)
+void Model::setCurrentViewNo(unsigned long viewportNumber)
 {
 	/*
 	stwu     r1, -0x10(r1)

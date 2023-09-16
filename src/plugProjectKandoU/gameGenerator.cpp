@@ -2373,7 +2373,7 @@ lbl_801AC03C:
  * Address:	801AC050
  * Size:	000070
  */
-void Generator::doSetView(int)
+void Generator::doSetView(int viewportNumber)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2497,16 +2497,16 @@ void GeneratorMgr::doEntry()
  * Address:	801AC218
  * Size:	000090
  */
-void GeneratorMgr::doSetView(int index)
+void GeneratorMgr::doSetView(int viewportNumber)
 {
 	if (mGenerator) {
-		mGenerator->doSetView(index);
+		mGenerator->doSetView(viewportNumber);
 	}
 	if (mChildMgr) {
-		mChildMgr->doSetView(index);
+		mChildMgr->doSetView(viewportNumber);
 	}
 	if (getNext()) {
-		getNext()->doSetView(index);
+		getNext()->doSetView(viewportNumber);
 	}
 }
 

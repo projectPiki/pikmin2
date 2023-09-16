@@ -2611,7 +2611,7 @@ void PlatInstance::doEntry() { }
  * Address:	801C6954
  * Size:	000004
  */
-void PlatInstance::doSetView(int) { }
+void PlatInstance::doSetView(int viewportNumber) { }
 
 /*
  * --INFO--
