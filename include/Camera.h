@@ -24,11 +24,7 @@ struct Cylinder;
 struct CullPlane : public ArrayContainer<Plane> {
 
 	// needed for Camera ctor
-	inline CullPlane(int a)
-	{
-		alloc(6);
-		mCount = 6;
-	}
+	CullPlane(int a);
 
 	virtual ~CullPlane() { }                      // _08 (weak)
 	virtual void writeObject(Stream&, Plane&) {}; // _2C (weak)
@@ -43,15 +39,7 @@ struct CullPlane : public ArrayContainer<Plane> {
 struct CullFrustum : public CullPlane {
 
 	// needed for Camera ctor
-	inline CullFrustum(int a)
-	    : CullPlane(a)
-	{
-		mViewAngle = 60.0f;
-		u16 height = sys->getRenderModeObj()->efbHeight;
-		u16 width  = sys->getRenderModeObj()->fbWidth;
-
-		mAspectRatio = width / height;
-	}
+	CullFrustum(int a);
 
 	virtual ~CullFrustum() { }                                   // _08
 	virtual Matrixf* getViewMatrix(bool) { return mViewMatrix; } // _48 (weak)
