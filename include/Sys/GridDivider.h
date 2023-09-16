@@ -43,7 +43,7 @@ struct GridDivider : public TriDivider {
 	virtual TriIndexList* findTriLists(Sphere&);                          // _14
 	virtual void read(Stream&);                                           // _18
 	virtual void getCurrTri(Game::CurrTriInfo&);                          // _1C
-	virtual void createTriangles(CreateTriangleArg&);                     // _20
+	virtual void createTriangles(CreateTriangleArg& arg);                 // _20
 	virtual void getBoundBox(BoundBox&);                                  // _24 (weak)
 	virtual TriDivider* do_clone(Matrixf&, VertexTable*, TriangleTable*); // _2C
 

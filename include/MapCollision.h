@@ -14,7 +14,7 @@ struct MapCollision : public CNode {
 
 	virtual void getBoundBox(BoundBox& bb) { mDivider->getBoundBox(bb); }
 	virtual void getCurrTri(Game::CurrTriInfo&);
-	virtual void createTriangles(Sys::CreateTriangleArg&);
+	virtual void createTriangles(Sys::CreateTriangleArg& arg);
 
 	void read(Stream&);
 	MapCollision* clone(Matrixf&);

@@ -42,23 +42,23 @@ struct MapMgr : virtual public GenericObjectMgr {
 	{
 		return false;
 	}
-	virtual void constraintBoundBox(Sys::Sphere&) { }         // _0C (weak)
-	virtual void getStartPosition(Vector3f&, int);            // _10
-	virtual Matrixf* getDemoMatrix();                         // _14
-	virtual void getBoundBox2d(BoundBox2d&) = 0;              // _18
-	virtual void getBoundBox(BoundBox&)     = 0;              // _1C
-	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20 (weak)
-	virtual void traceMove(MoveInfo&, f32) = 0;               // _24
-	virtual f32 getMinY(Vector3f&)         = 0;               // _28
-	virtual void getCurrTri(CurrTriInfo&)  = 0;               // _2C
-	virtual void createTriangles(Sys::CreateTriangleArg&);    // _30 (weak)
-	virtual void setupJUTTextures() {};                       // _34 (weak)
-	virtual bool frozenable();                                // _38 (weak)
-	virtual void update();                                    // _3C (weak)
-	virtual void do_update();                                 // _40 (weak)
-	virtual void drawCollision(Graphics&, Sys::Sphere&) = 0;  // _44
-	virtual void doSimulation(f32 rate);                      // _48 (weak)
-	virtual void doDirectDraw(Graphics& gfx);                 // _4C (weak)
+	virtual void constraintBoundBox(Sys::Sphere&) { }                           // _0C (weak)
+	virtual void getStartPosition(Vector3f&, int);                              // _10
+	virtual Matrixf* getDemoMatrix();                                           // _14
+	virtual void getBoundBox2d(BoundBox2d&) = 0;                                // _18
+	virtual void getBoundBox(BoundBox&)     = 0;                                // _1C
+	virtual u32 findRayIntersection(Sys::RayIntersectInfo&);                    // _20 (weak)
+	virtual void traceMove(MoveInfo&, f32) = 0;                                 // _24
+	virtual f32 getMinY(Vector3f&)         = 0;                                 // _28
+	virtual void getCurrTri(CurrTriInfo&)  = 0;                                 // _2C
+	virtual void createTriangles(Sys::CreateTriangleArg& arg);                  // _30 (weak)
+	virtual void setupJUTTextures() {};                                         // _34 (weak)
+	virtual bool frozenable();                                                  // _38 (weak)
+	virtual void update();                                                      // _3C (weak)
+	virtual void do_update();                                                   // _40 (weak)
+	virtual void drawCollision(Graphics& gfx, Sys::Sphere& boundingSphere) = 0; // _44
+	virtual void doSimulation(f32 rate);                                        // _48 (weak)
+	virtual void doDirectDraw(Graphics& gfx);                                   // _4C (weak)
 
 	WaterBox* findWater(Sys::Sphere&);
 	f32 getMapRotation();
@@ -67,6 +67,9 @@ struct MapMgr : virtual public GenericObjectMgr {
 	void clearPerfMonitor();
 	void traceMove(MapCollision&, Game::MoveInfo&, f32);
 	void traceMove_test1203_cylinder(MapCollision&, Game::MoveInfo&, f32);
+
+	// unused/inlined:
+	void draw2d(Graphics&);
 
 	// _00: ptr to _0x24 (GenericObjectMgr)
 	// _04: vtable 1
@@ -105,23 +108,23 @@ struct ShapeMapMgr : public MapMgr {
 
 	ShapeMapMgr() { }
 
-	virtual void getBoundBox2d(BoundBox2d&);                  // _18 (weak)
-	virtual void getBoundBox(BoundBox&);                      // _1C (weak)
-	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20
-	virtual void traceMove(MoveInfo&, f32);                   // _24
-	virtual f32 getMinY(Vector3f&);                           // _28
-	virtual void getCurrTri(CurrTriInfo&);                    // _2C
-	virtual void createTriangles(Sys::CreateTriangleArg&);    // _30
-	virtual void do_update();                                 // _40
-	virtual void drawCollision(Graphics&, Sys::Sphere&);      // _44
-	virtual void doAnimation();                               // _50 (weak)
-	virtual void doSetView(int viewportNumber);               // _54 (weak)
-	virtual void doViewCalc();                                // _58 (weak)
-	virtual void doEntry();                                   // _5C (weak)
+	virtual void getBoundBox2d(BoundBox2d&);                                // _18 (weak)
+	virtual void getBoundBox(BoundBox&);                                    // _1C (weak)
+	virtual u32 findRayIntersection(Sys::RayIntersectInfo&);                // _20
+	virtual void traceMove(MoveInfo&, f32);                                 // _24
+	virtual f32 getMinY(Vector3f&);                                         // _28
+	virtual void getCurrTri(CurrTriInfo&);                                  // _2C
+	virtual void createTriangles(Sys::CreateTriangleArg& arg);              // _30
+	virtual void do_update();                                               // _40
+	virtual void drawCollision(Graphics& gfx, Sys::Sphere& boundingSphere); // _44
+	virtual void doAnimation();                                             // _50 (weak)
+	virtual void doSetView(int viewportNumber);                             // _54 (weak)
+	virtual void doViewCalc();                                              // _58 (weak)
+	virtual void doEntry();                                                 // _5C (weak)
 
 	void load(LoadArg&);
 
-	u32 mTexAnimCount;               // _24
+	int mTexAnimCount;               // _24
 	Sys::MatTexAnimation* mTexAnims; // _28
 	Sys::MatTexAnimation* _2C;       // _2C
 	Sys::MatLoopAnimator* _30;       // _30
