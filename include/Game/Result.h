@@ -18,8 +18,8 @@ struct TNode : public DNode {
 
 	virtual ~TNode(); // _08 (weak)
 
-	void setTNode(u64, JUTTexture*, int, int, int);
-	void setTNode(u64, JUTTexture*, int, int, int, int);
+	void setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int totalPokos, int pokoValue);
+	void setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int totalPokos, int pokoValue, int lostNum);
 
 	static u64 convertByMorimun(int);
 

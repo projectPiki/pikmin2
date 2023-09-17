@@ -1,5 +1,13 @@
+#include "Game/DNode.h"
 #include "Game/ResultTexMgr.h"
 #include "Game/Result.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/ResTIMG.h"
+#include "LoadResource.h"
+#include "Morimura/mrUtil.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -142,29 +150,12 @@ namespace Game {
  * Size:	000050
  */
 ResultTexMgr::Mgr::Mgr()
+    : JKRDisposer()
+    , _18(nullptr)
+    , mLoadResourceNode(nullptr)
+    , mOtakaraConfigList(nullptr)
+    , mItemConfigList(nullptr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q34Game12ResultTexMgr3Mgr@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q34Game12ResultTexMgr3Mgr@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stw      r0, 0x18(r31)
-	stw      r0, 0x1c(r31)
-	stw      r0, 0x38(r31)
-	stw      r0, 0x3c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -172,45 +163,83 @@ ResultTexMgr::Mgr::Mgr()
  * Address:	80227468
  * Size:	000060
  */
-ResultTexMgr::Mgr::~Mgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802274AC
-	lis      r5, __vt__Q34Game12ResultTexMgr3Mgr@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game12ResultTexMgr3Mgr@l
-	stw      r0, 0(r30)
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_802274AC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802274AC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ResultTexMgr::Mgr::~Mgr() { }
 
 /*
  * --INFO--
  * Address:	802274C8
  * Size:	000340
  */
-void ResultTexMgr::Mgr::create(ResultTexMgr::Arg&)
+void ResultTexMgr::Mgr::create(ResultTexMgr::Arg& arg)
 {
+	char pathBuffer[512];
+	mOtakaraConfigList  = arg.mOtakaraConfigList;
+	mItemConfigList     = arg.mItemConfigList;
+	_18                 = arg.mHeap;
+	JKRHeap* poppedHeap = JKRHeap::sCurrentHeap;
+	_18->becomeCurrentHeap();
+	if (arg._0C == -1) {
+		switch (sys->mRegion) {
+		case System::LANG_JAPANESE:
+			sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "jpn");
+			break;
+		default:
+			sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "us");
+			break;
+		}
+	} else {
+		switch (arg._0C) {
+		case 0:
+			sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "jpn");
+			break;
+		case 1:
+			sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "us");
+			break;
+		case 2:
+			sprintf(pathBuffer, "/user/Matoba/resulttex/%s/arc.szs", "pal");
+			break;
+		}
+	}
+	LoadResource::Arg loadResourceArg(pathBuffer);
+	loadResourceArg.mHeap = _18;
+	mLoadResourceNode     = gLoadResourceMgr->mountArchive(loadResourceArg);
+	JUT_ASSERTLINE(198, mLoadResourceNode != nullptr, "failed to open resulttex/arc.szs\n%s\n", pathBuffer);
+	JKRArchive* archive = mLoadResourceNode->getArchive();
+	int otakaraCount    = mOtakaraConfigList->getConfigCount();
+	int itemCount       = mItemConfigList->getConfigCount();
+	mCarcassTextures.alloc(1);
+	ResTIMG* timg = static_cast<ResTIMG*>(archive->getResource("teki_carcass/texture.bti"));
+	if (timg == nullptr) {
+		timg = static_cast<ResTIMG*>(archive->getResource("ahiru/texture.bti"));
+	}
+	mCarcassTextures.getTexture(0)->storeTIMG(timg, (u8)0);
+	mOtakaraTextures.alloc(otakaraCount);
+	for (int i = 0; i < otakaraCount; i++) {
+		char otakaraTexturePath[256];
+		sprintf(otakaraTexturePath, "%s/texture.bti", mOtakaraConfigList->getPelletConfig(i)->mParams.mName.mData);
+		timg = static_cast<ResTIMG*>(archive->getResource(otakaraTexturePath));
+		if (timg == nullptr) {
+			sprintf(otakaraTexturePath, "ahiru/texture.bti");
+			timg = static_cast<ResTIMG*>(archive->getResource(otakaraTexturePath));
+		}
+		if (timg != nullptr) {
+			mOtakaraTextures.getTexture(i)->storeTIMG(timg, (u8)0);
+		}
+	}
+	mItemTextures.alloc(itemCount);
+	for (int i = 0; i < itemCount; i++) {
+		char itemTexturePath[256];
+		sprintf(itemTexturePath, "%s/texture.bti", mItemConfigList->getPelletConfig(i)->mParams.mName.mData);
+		timg = static_cast<ResTIMG*>(archive->getResource(itemTexturePath));
+		if (timg == nullptr) {
+			sprintf(itemTexturePath, "ahiru/texture.bti");
+			timg = static_cast<ResTIMG*>(archive->getResource(itemTexturePath));
+		}
+		if (timg != nullptr) {
+			mItemTextures.getTexture(i)->storeTIMG(timg, (u8)0);
+		}
+	}
+	poppedHeap->becomeCurrentHeap();
 	/*
 	stwu     r1, -0x460(r1)
 	mflr     r0
@@ -461,33 +490,42 @@ lbl_802277E4:
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000058
-//  */
-// void ResultTexMgr::Mgr::getOtakaraNum()
-// {
-// 	// UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000058
+ */
+int ResultTexMgr::Mgr::getOtakaraNum()
+{
+	// UNUSED FUNCTION
+	P2ASSERTLINE(273, mOtakaraConfigList != nullptr);
+	return mOtakaraConfigList->mConfigCnt;
+}
 
 // /*
 //  * --INFO--
 //  * Address:	........
 //  * Size:	000058
 //  */
-// void ResultTexMgr::Mgr::getItemNum()
-// {
-// 	// UNUSED FUNCTION
-// }
+int ResultTexMgr::Mgr::getItemNum()
+{
+	// UNUSED FUNCTION
+}
 
 /*
  * --INFO--
  * Address:	80227808
  * Size:	0000B8
  */
-JUTTexture* ResultTexMgr::Mgr::getOtakaraItemTexture(int)
+JUTTexture* ResultTexMgr::Mgr::getOtakaraItemTexture(int index)
 {
+	JUTTexture* texture;
+	if (index >= getOtakaraNum()) {
+		texture = getItemTexture(index - getOtakaraNum());
+	} else {
+		texture = getOtakaraTexture(index);
+	}
+	return texture;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -551,96 +589,31 @@ lbl_802278A8:
  * Address:	802278C0
  * Size:	000024
  */
-JUTTexture* ResultTexMgr::Mgr::getOtakaraTexture(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x28
-	stw      r0, 0x14(r1)
-	bl       getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JUTTexture* ResultTexMgr::Mgr::getOtakaraTexture(int otakaraIndex) { return mOtakaraTextures.getTexture(otakaraIndex); }
 
 /*
  * --INFO--
  * Address:	802278E4
  * Size:	000024
  */
-JUTTexture* ResultTexMgr::Mgr::getItemTexture(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x30
-	stw      r0, 0x14(r1)
-	bl       getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JUTTexture* ResultTexMgr::Mgr::getItemTexture(int itemIndex) { return mItemTextures.getTexture(itemIndex); }
 
 /*
  * --INFO--
  * Address:	80227908
  * Size:	000028
  */
-JUTTexture* ResultTexMgr::Mgr::getCarcassTexture()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	addi     r3, r3, 0x20
-	stw      r0, 0x14(r1)
-	bl       getTexture__Q44Game12ResultTexMgr3Mgr8TexturesFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JUTTexture* ResultTexMgr::Mgr::getCarcassTexture() { return mCarcassTextures.getTexture(0); }
 
 /*
  * --INFO--
  * Address:	80227930
  * Size:	000064
  */
-void ResultTexMgr::Mgr::Textures::alloc(int)
+void ResultTexMgr::Mgr::Textures::alloc(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r4, 4(r3)
-	slwi     r3, r4, 6
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__10JUTTextureFv@ha
-	lis      r5, __dt__10JUTTextureFv@ha
-	addi     r4, r4, __ct__10JUTTextureFv@l
-	mr       r7, r31
-	addi     r5, r5, __dt__10JUTTextureFv@l
-	li       r6, 0x40
-	bl       __construct_new_array
-	stw      r3, 0(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCount    = count;
+	mTextures = new JUTTexture[count];
 }
 
 /*
@@ -648,8 +621,13 @@ void ResultTexMgr::Mgr::Textures::alloc(int)
  * Address:	80227994
  * Size:	000074
  */
-JUTTexture* ResultTexMgr::Mgr::Textures::getTexture(int)
+JUTTexture* ResultTexMgr::Mgr::Textures::getTexture(int index)
 {
+	JUT_ASSERTLINE(317, index >= 0, "illegal index %d", index);
+	if (index >= mCount) {
+		index = mCount - 1;
+	}
+	return mTextures + index;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -693,32 +671,14 @@ lbl_802279E4:
  * Size:	00005C
  */
 Result::TNode::TNode()
+    : DNode()
+    , mTexture(nullptr)
+    , mQuantity(0)
+    , mLostNum(0)
+    , mTotalPokos(0)
+    , mPokoValue(0)
+    , mMesgTag(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q24Game5DNodeFv
-	lis      r3, __vt__Q34Game6Result5TNode@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q34Game6Result5TNode@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stw      r0, 0x2c(r31)
-	stw      r0, 0x30(r31)
-	stw      r0, 0x34(r31)
-	stw      r0, 0x38(r31)
-	stw      r0, 0x3c(r31)
-	stw      r0, 0x44(r31)
-	stw      r0, 0x40(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -726,17 +686,13 @@ Result::TNode::TNode()
  * Address:	80227A64
  * Size:	00001C
  */
-void Result::TNode::setTNode(u64, JUTTexture*, int, int, int)
+void Result::TNode::setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int totalPokos, int pokoValue)
 {
-	/*
-	stw      r6, 0x44(r3)
-	stw      r5, 0x40(r3)
-	stw      r7, 0x2c(r3)
-	stw      r8, 0x30(r3)
-	stw      r9, 0x38(r3)
-	stw      r10, 0x3c(r3)
-	blr
-	*/
+	mMesgTag    = mesgTag;
+	mTexture    = texture;
+	mQuantity   = quantity;
+	mTotalPokos = totalPokos;
+	mPokoValue  = pokoValue;
 }
 
 /*
@@ -744,20 +700,10 @@ void Result::TNode::setTNode(u64, JUTTexture*, int, int, int)
  * Address:	80227A80
  * Size:	000024
  */
-void Result::TNode::setTNode(u64, JUTTexture*, int, int, int, int)
+void Result::TNode::setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int totalPokos, int pokoValue, int lostNum)
 {
-	/*
-	.loc_0x0:
-	  stw       r6, 0x44(r3)
-	  lwz       r0, 0x8(r1)
-	  stw       r5, 0x40(r3)
-	  stw       r7, 0x2C(r3)
-	  stw       r8, 0x30(r3)
-	  stw       r9, 0x38(r3)
-	  stw       r10, 0x3C(r3)
-	  stw       r0, 0x34(r3)
-	  blr
-	*/
+	setTNode(mesgTag, texture, quantity, totalPokos, pokoValue);
+	mLostNum = lostNum;
 }
 
 /*
@@ -765,8 +711,13 @@ void Result::TNode::setTNode(u64, JUTTexture*, int, int, int, int)
  * Address:	80227AA4
  * Size:	000078
  */
-u64 Result::TNode::convertByMorimun(int)
+u64 Result::TNode::convertByMorimun(int p1)
 {
+	u64 ids[] = { '0101_00', '0110_00', '0200_00' };
+	u64 v1[3];
+	int v2[3];
+	Morimura::TOffsetMsgSet msgSet(ids, '0100_00', 3, v1, v2);
+	return msgSet.getMsgID(p1);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -807,32 +758,10 @@ u64 Result::TNode::convertByMorimun(int)
  * Size:	00005C
  */
 DNode::DNode()
+    : JKRDisposer()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q24Game5DNode@ha
-	li       r4, 0
-	addi     r3, r3, __vt__Q24Game5DNode@l
-	addi     r0, r2, lbl_8051A23C@sda21
-	stw      r3, 0(r31)
-	mr       r3, r31
-	stw      r4, 0x24(r31)
-	stw      r4, 0x20(r31)
-	stw      r4, 0x1c(r31)
-	stw      r4, 0x18(r31)
-	stw      r0, 0x28(r31)
-	stw      r0, 0x28(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	reset("DNode");
+	setName("DNode");
 }
 
 // /*
@@ -941,39 +870,7 @@ lbl_80227C0C:
  * Address:	80227C28
  * Size:	000068
  */
-DNode::~DNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80227C74
-	lis      r4, __vt__Q24Game5DNode@ha
-	addi     r0, r4, __vt__Q24Game5DNode@l
-	stw      r0, 0(r30)
-	bl       del__Q24Game5DNodeFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_80227C74
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80227C74:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+DNode::~DNode() { del(); }
 
 /*
  * --INFO--

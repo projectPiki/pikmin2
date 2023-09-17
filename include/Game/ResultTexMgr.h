@@ -25,8 +25,8 @@ struct Arg {
 
 struct Mgr : public JKRDisposer {
 	struct Textures {
-		void alloc(int);
-		JUTTexture* getTexture(int);
+		void alloc(int count);
+		JUTTexture* getTexture(int index);
 
 		JUTTexture* mTextures; // _00
 		int mCount;            // _04
@@ -38,9 +38,9 @@ struct Mgr : public JKRDisposer {
 
 	void create(Arg&);
 	JUTTexture* getCarcassTexture();
-	JUTTexture* getItemTexture(int);
-	JUTTexture* getOtakaraItemTexture(int);
-	JUTTexture* getOtakaraTexture(int);
+	JUTTexture* getItemTexture(int itemIndex);
+	JUTTexture* getOtakaraItemTexture(int index);
+	JUTTexture* getOtakaraTexture(int otakaraIndex);
 
 	// Unused/inlined:
 	int getOtakaraNum();

@@ -1,6 +1,7 @@
 #ifndef _GAME_DNODE_H
 #define _GAME_DNODE_H
 
+#include "CNode.h"
 #include "types.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 
@@ -19,6 +20,31 @@ struct DNode : public JKRDisposer {
 	unknown calcNextCount();
 	unknown concat(DNode*);
 	DNode* getChildAt(int);
+
+	/**
+	 * @fabricated
+	 */
+	void setName(char* name) { mName = name; }
+
+	/**
+	 * @fabricated
+	 */
+	inline void clearRelations()
+	{
+		mChild  = nullptr;
+		mParent = nullptr;
+		mPrev   = nullptr;
+		mNext   = nullptr;
+	}
+
+	/**
+	 * @fabricated
+	 */
+	inline void reset(char* name)
+	{
+		clearRelations();
+		setName(name);
+	}
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
