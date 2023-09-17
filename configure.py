@@ -1051,7 +1051,7 @@ LIBS = [
             ["plugProjectNishimuraU/ObjectLayout", True],
             ["plugProjectNishimuraU/CameraMgr", True],
             "plugProjectNishimuraU/ContRumble",
-            "plugProjectNishimuraU/RumbleMgr",
+            ["plugProjectNishimuraU/RumbleMgr", True],
             ["plugProjectNishimuraU/PomAnimator", True],
             ["plugProjectNishimuraU/PomMgr", True],
             ["plugProjectNishimuraU/Pom", True],

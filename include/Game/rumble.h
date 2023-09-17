@@ -11,6 +11,14 @@
 struct Controller;
 
 namespace Game {
+struct Navi;
+
+enum RumbleID {
+	RUMBLEID_Navi0 = 0,
+	RUMBLEID_Navi1 = 1,
+	RUMBLEID_Both  = 2,
+};
+
 struct RumbleData {
 	RumbleData();
 
@@ -21,37 +29,37 @@ struct RumbleData {
 			return;
 		}
 
-		mIntensityThresholds = new f32[mCount];
-		mIntensityValues     = new f32[mCount];
+		mTimes       = new f32[mCount];
+		mIntensities = new f32[mCount];
 
 		for (int j = 0; j < mCount; j++) {
-			mIntensityThresholds[j] = stream.readFloat();
+			mTimes[j] = stream.readFloat();
 		}
 
 		for (int j = 0; j < mCount; j++) {
-			mIntensityValues[j] = stream.readFloat();
+			mIntensities[j] = stream.readFloat();
 		}
 	}
 
-	s32 mCount;                // _00
-	f32* mIntensityThresholds; // _04
-	f32* mIntensityValues;     // _08
+	int mCount;        // _00
+	f32* mTimes;       // _04, times at which to change intensity
+	f32* mIntensities; // _08, values to set intensity to
 };
 
 struct RumbleDataMgr {
 	RumbleDataMgr();
 
-	RumbleData* getRumbleData(int);
+	RumbleData* getRumbleData(int idx);
 	void read(Stream& stream);
 
-	s32 mDataCnt;         // _00
+	int mDataCnt;         // _00
 	RumbleData* mDataArr; // _04
 };
 
 struct RumbleNode : public CNode {
 	inline RumbleNode()
 	    : CNode()
-	    , _18(-1)
+	    , mNodeIdx(-1)
 	    , mCurrentIntensity(0.0f)
 	    , mDefaultIntensity(0.0f)
 	    , mRumbleTimer(0.0f)
@@ -60,11 +68,21 @@ struct RumbleNode : public CNode {
 	{
 	}
 
-	virtual ~RumbleNode(); // _08 (weak)
+	virtual ~RumbleNode() { } // _08 (weak)
+
+	inline void setParameters(int idx, f32 curIntensity, f32 defIntensity, f32 timer, f32 p1, RumbleData* data)
+	{
+		mNodeIdx          = idx;
+		mCurrentIntensity = curIntensity;
+		mDefaultIntensity = defIntensity;
+		mRumbleTimer      = timer;
+		_28               = p1;
+		mRumbleData       = data;
+	}
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	int _18;                 // _18
+	int mNodeIdx;            // _18
 	f32 mCurrentIntensity;   // _1C
 	f32 mDefaultIntensity;   // _20
 	f32 mRumbleTimer;        // _24
@@ -73,15 +91,15 @@ struct RumbleNode : public CNode {
 };
 
 struct ContRumble {
-	ContRumble(int, int);
+	ContRumble(int padChannel, int nodeCount);
 
 	void init();
 	void update();
 	void setController(bool);
-	void startRumble(int, f32);
+	void startRumble(int idx, f32 intensity);
 	void rumbleStop();
-	void rumbleStop(int);
-	void getRumbleParameter(int, f32&, f32&);
+	void rumbleStop(int idx);
+	void getRumbleParameter(int idx, f32& intensity, f32& p1);
 
 	bool mIsActive;           // _00
 	int mPadChannel;          // _04
@@ -95,38 +113,41 @@ struct ContRumble {
 
 struct RumbleMgr : public CNode {
 	struct Parms : public Parameters {
-		Parm<f32> mMaxDistance; // _0C
-		u32 mEnd;               // _34
+		inline Parms()
+		    : Parameters(nullptr, "RumbleParms")
+		    , mMaxDistance(this, 'rrdm', "Max Distance", 750.0f, 0.0f, 1000.0f)
+		{
+		}
+
+		Parm<f32> mMaxDistance; // _0C, rrdm
 	};
 
 	RumbleMgr();
 
-	virtual ~RumbleMgr(); // _08 (weak)
+	virtual ~RumbleMgr() { } // _08 (weak)
 
 	void loadResource();
 	void init();
 	void update();
-	void startRumble(int, Vector3f&, int);
-	void startRumble(int, int);
-	void stopRumble(int, int);
-	void stopRumble(int);
+	void startRumble(int type, Vector3f& pos, int rumbleID);
+	void startRumble(int type, int rumbleID);
+	void stopRumble(int type, int rumbleID);
+	void stopRumble(int rumbleID);
 	bool isRumbleUpdateOn();
-	void setZukanRumble(Controller*, Vector3f*);
-	bool isStartAndEnd(int*, int);
-	void readRumbleParms(char*);
-	void readRumbleData(char*);
+	void setZukanRumble(Controller* controller, Vector3f* zukanPos);
+	bool isStartAndEnd(int* startEndData, int rumbleID);
+	void readRumbleParms(char* fileName);
+	void readRumbleData(char* fileName);
 
-	u8 _18; // _18
-
-	// ptr to unknown array with 2 elements
-	void* _1C; // _1C
-
-	// ptr to array of two pointers to ContRumble
-	ContRumble** mContRumble; // _20
+	// _00     = VTBL
+	// _00-_18 = CNode
+	bool mIsRumbleActive;     // _18
+	Navi** mNavis;            // _1C, array of size 2, one for each captain
+	ContRumble** mContRumble; // _20, array of size 2, one for each captain
 	Parms* mParms;            // _24
 	RumbleDataMgr* mDataMgr;  // _28
 	Controller* mController;  // _2C
-	Vector3f* _30;            // _30
+	Vector3f* mZukanPosition; // _30, position to use in Piklopedia in place of captain position
 };
 
 extern RumbleMgr* rumbleMgr;

@@ -1,44 +1,6 @@
 #include "Dolphin/pad.h"
 #include "System.h"
 #include "Game/rumble.h"
-#include "types.h"
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80484850
-    lbl_80484850:
-        .4byte 0x3ECCCCCD
-        .4byte 0x3F0CCCCD
-        .float 1.0
-    .global lbl_8048485C
-    lbl_8048485C:
-        .4byte 0x3E4CCCCD
-        .4byte 0x3EB33333
-        .float 0.5
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game10RumbleNode
-    __vt__Q24Game10RumbleNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game10RumbleNodeFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A968
-    lbl_8051A968:
-        .4byte 0x00000000
-    .global lbl_8051A96C
-    lbl_8051A96C:
-        .float 1.0
-    .global lbl_8051A970
-    lbl_8051A970:
-        .4byte 0x40400000
-    .global lbl_8051A974
-    lbl_8051A974:
-        .4byte 0x41F00000
-*/
 
 namespace Game {
 
@@ -47,16 +9,16 @@ namespace Game {
  * Address:	80252B20
  * Size:	000158
  */
-ContRumble::ContRumble(int p1, int p2)
+ContRumble::ContRumble(int padChannel, int nodeCount)
     : mIsActive(true)
-    , mPadChannel(p1)
+    , mPadChannel(padChannel)
     , mTotalIntensity(0.0f)
     , mRumbleTimer(0.0f)
     , mRumbleTimeoutTimer(0.0f)
     , mParentNode(new RumbleNode())
     , mActiveNodes(new RumbleNode())
 {
-	for (int i = 0; i < p2; i++) {
+	for (int i = 0; i < nodeCount; i++) {
 		mActiveNodes->add(new RumbleNode());
 	}
 	mDataMgr = nullptr;
@@ -103,8 +65,8 @@ void ContRumble::update()
 
 			int currentSegment;
 			for (currentSegment = 0; currentSegment < numRumbleSegments; currentSegment++) {
-				float* segmentThresholds = &rumbleData->mIntensityThresholds[currentSegment];
-				float currentTime        = currentNode->mRumbleTimer;
+				f32* segmentThresholds = &rumbleData->mTimes[currentSegment];
+				f32 currentTime        = currentNode->mRumbleTimer;
 
 				if (currentTime < segmentThresholds[currentSegment]) {
 					continue;
@@ -112,14 +74,13 @@ void ContRumble::update()
 			}
 
 			if (currentSegment < numRumbleSegments) {
-				double t
-				    = (currentNode->mRumbleTimer - rumbleData->mIntensityThresholds[4 * currentSegment])
-				    / (rumbleData->mIntensityThresholds[4 * (currentSegment + 1)] - rumbleData->mIntensityThresholds[4 * currentSegment]);
+				double t = (currentNode->mRumbleTimer - rumbleData->mTimes[4 * currentSegment])
+				         / (rumbleData->mTimes[4 * (currentSegment + 1)] - rumbleData->mTimes[4 * currentSegment]);
 
-				currentNode->mCurrentIntensity = ((1.0 - t) * rumbleData->mIntensityValues[4 * currentSegment])
-				                               + (t * rumbleData->mIntensityValues[4 * (currentSegment + 1)]);
+				currentNode->mCurrentIntensity
+				    = ((1.0 - t) * rumbleData->mIntensities[4 * currentSegment]) + (t * rumbleData->mIntensities[4 * (currentSegment + 1)]);
 			} else {
-				currentNode->mCurrentIntensity = rumbleData->mIntensityValues[4 * numRumbleSegments];
+				currentNode->mCurrentIntensity = rumbleData->mIntensities[4 * numRumbleSegments];
 			}
 		} else {
 			currentNode->mCurrentIntensity = currentNode->mDefaultIntensity;
@@ -136,7 +97,7 @@ void ContRumble::update()
 		bool shouldAddToActiveNodes;
 
 		if (limitData) {
-			if (limitData->mCount > 0 && currentNode->mRumbleTimer < limitData->mIntensityThresholds[limitData->mCount - 1]) {
+			if (limitData->mCount > 0 && currentNode->mRumbleTimer < limitData->mTimes[limitData->mCount - 1]) {
 				shouldAddToActiveNodes = false;
 			}
 		} else if (currentNode->mRumbleTimer < currentNode->_28) {
@@ -201,33 +162,21 @@ void ContRumble::setController(bool isActive)
  * Size:	000104
  * TODO
  */
-void ContRumble::startRumble(int x, float y)
+void ContRumble::startRumble(int idx, f32 intensity)
 {
 	if (mActiveNodes->mChild && mDataMgr && mRumbleTimer < 30.0f) {
-		RumbleData* data = mDataMgr->getRumbleData(x);
+		RumbleData* data = mDataMgr->getRumbleData(idx);
 
 		RumbleNode* node = (RumbleNode*)mActiveNodes->mChild;
 
 		node->del();
 
 		if (data) {
-			f32 v8                  = y;
-			node->_18               = x;
-			node->mCurrentIntensity = 0.0;
-			node->mDefaultIntensity = v8;
-			node->mRumbleTimer      = 0.0;
-			node->_28               = 0.0;
-			node->mRumbleData       = data;
+			node->setParameters(idx, 0.0f, intensity, 0.0f, 0.0f, data);
 		} else {
-			float z = 0.0;
-			getRumbleParameter(x, y, z);
-			f32 v9                  = z;
-			node->_18               = x;
-			node->mCurrentIntensity = 0.0;
-			node->mDefaultIntensity = 0.0;
-			node->mRumbleTimer      = 0.0;
-			node->_28               = v9; // WTF?
-			node->mRumbleData       = 0;
+			f32 z = 0.0f;
+			getRumbleParameter(idx, intensity, z);
+			node->setParameters(idx, 0.0f, intensity, 0.0f, z, data);
 		}
 
 		mParentNode->add(node);
@@ -242,14 +191,19 @@ void ContRumble::startRumble(int x, float y)
  */
 void ContRumble::rumbleStop()
 {
-	RumbleNode* child = (RumbleNode*)mParentNode->mChild;
-	for (RumbleNode* i = child; i; i = (RumbleNode*)i->mNext) {
-		i->del();
-		mActiveNodes->add(i);
+	RumbleNode* child = static_cast<RumbleNode*>(mParentNode->mChild);
+	RumbleNode* next;
+	RumbleNode* node = child;
+
+	while (node) {
+		next = static_cast<RumbleNode*>(node->mNext);
+		node->del();
+		mActiveNodes->add(node);
+		node = next;
 	}
 
 	if (child) {
-		PADControlMotor(mPadChannel, 2);
+		PADControlMotor(mPadChannel, PAD_MOTOR_STOP_HARD);
 	}
 }
 
@@ -258,54 +212,26 @@ void ContRumble::rumbleStop()
  * Address:	80253178
  * Size:	000090
  */
-void ContRumble::rumbleStop(int)
+void ContRumble::rumbleStop(int idx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	lwz      r3, 0x14(r3)
-	lwz      r31, 0x10(r3)
-	mr       r29, r31
-	b        lbl_802531C8
+	RumbleNode* child = static_cast<RumbleNode*>(mParentNode->mChild);
+	RumbleNode* next;
+	RumbleNode* node = child;
 
-lbl_802531A0:
-	lwz      r0, 0x18(r29)
-	lwz      r30, 4(r29)
-	cmpw     r0, r28
-	bne      lbl_802531C4
-	mr       r3, r29
-	bl       del__5CNodeFv
-	lwz      r3, 0x18(r27)
-	mr       r4, r29
-	bl       add__5CNodeFP5CNode
+	while (node) {
+		next = static_cast<RumbleNode*>(node->mNext);
+		if (node->mNodeIdx == idx) {
+			node->del();
+			mActiveNodes->add(node);
+		}
+		node = next;
+	}
 
-lbl_802531C4:
-	mr       r29, r30
-
-lbl_802531C8:
-	cmplwi   r29, 0
-	bne      lbl_802531A0
-	cmplwi   r31, 0
-	beq      lbl_802531F4
-	lwz      r3, 0x14(r27)
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_802531F4
-	lwz      r3, 4(r27)
-	li       r4, 2
-	bl       PADControlMotor
-
-lbl_802531F4:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (child) {
+		if (mParentNode->mChild) { // why. WHY.
+			PADControlMotor(mPadChannel, PAD_MOTOR_STOP_HARD);
+		}
+	}
 }
 
 /*
@@ -313,8 +239,13 @@ lbl_802531F4:
  * Address:	80253208
  * Size:	00009C
  */
-void ContRumble::getRumbleParameter(int, float&, float&)
+void ContRumble::getRumbleParameter(int idx, f32& x, f32& y)
 {
+	f32 parm1[3] = { 0.4f, 0.55f, 1.0f };
+	f32 parm2[3] = { 0.2f, 0.35f, 0.5f };
+
+	x = parm1[idx % 3] * x;
+	y = parm2[idx % 3];
 	/*
 	stwu     r1, -0x30(r1)
 	lis      r3, 0x55555556@ha
@@ -354,43 +285,6 @@ void ContRumble::getRumbleParameter(int, float&, float&)
 	stfs     f0, 0(r6)
 	lwz      r31, 0x2c(r1)
 	addi     r1, r1, 0x30
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802532A4
- * Size:	000060
- */
-RumbleNode::~RumbleNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802532E8
-	lis      r5, __vt__Q24Game10RumbleNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game10RumbleNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_802532E8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802532E8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
 	blr
 	*/
 }
