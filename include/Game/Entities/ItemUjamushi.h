@@ -182,7 +182,7 @@ struct Mgr : public NodeItemMgr<Item> {
 	virtual GenItemParm* generatorNewItemParm();                          // _70
 	virtual ~Mgr();                                                       // _B4 (weak)
 	virtual char* getCaveName(int);                                       // _B8
-	virtual void getCaveID(char*);                                        // _BC
+	virtual int getCaveID(char*);                                         // _BC
 
 	// _00      = VTBL
 	// _00-_88  = NodeItemMgr

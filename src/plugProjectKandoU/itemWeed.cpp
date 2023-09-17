@@ -1,3 +1,10 @@
+#include "CollInfo.h"
+#include "Dolphin/math.h"
+#include "Dolphin/rand.h"
+#include "Game/Entities/ItemWeed.h"
+#include "JSystem/J3D/J3DTransform.h"
+#include "JSystem/JMath.h"
+#include "JSystem/JUtility/JUTException.h"
 #include "types.h"
 
 /*
@@ -811,59 +818,40 @@ namespace Game {
  * Size:	000038
  */
 ItemWeed::Weed::Weed()
+    : TFlock()
 {
-	/*
-	lis      r5, __vt__Q24Game6TFlock@ha
-	lis      r4, __vt__Q34Game8ItemWeed4Weed@ha
-	addi     r0, r5, __vt__Q24Game6TFlock@l
-	li       r5, 0
-	stw      r0, 0xc(r3)
-	addi     r0, r4, __vt__Q34Game8ItemWeed4Weed@l
-	lfs      f0, lbl_80519EF8@sda21(r2)
-	stb      r5, 0x40(r3)
-	stw      r0, 0xc(r3)
-	stfs     f0, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stw      r5, 0x50(r3)
-	blr
-	*/
+	x   = 0.0f;
+	y   = 0.0f;
+	z   = 0.0f;
+	_50 = 0;
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000038
  */
-void init__Q34Game8ItemWeed4WeedFPQ34Game8ItemWeed7WeedMgrR10Vector3f()
+void ItemWeed::Weed::init(ItemWeed::WeedMgr*, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
-
-namespace Game {
 
 /*
  * --INFO--
  * Address:	8020F2B8
  * Size:	000008
  */
-u32 ItemWeed::Weed::damaged(float) { return 0x1; }
-
-} // namespace Game
+bool ItemWeed::Weed::damaged(float) { return true; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000044
  */
-void setPosition__Q34Game8ItemWeed4WeedFR10Vector3f()
+void ItemWeed::Weed::setPosition(Vector3f&)
 {
 	// UNUSED FUNCTION
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -872,6 +860,10 @@ namespace Game {
  */
 void ItemWeed::Weed::makeMatrix()
 {
+	Vector3f v1(0.0f, randFloat() * TAU, 0.0f);
+	Vector3f v2(_44);
+	Vector3f v3(*this);
+	_10.makeSRT(v2, v1, v3);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -924,203 +916,122 @@ void ItemWeed::Weed::makeMatrix()
  * Address:	........
  * Size:	000004
  */
-void ItemWeed::Weed::update()
-{
-	// UNUSED FUNCTION
-}
+// void ItemWeed::Weed::update()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E8
  */
-ItemWeed::WeedMgr::WeedMgr(int)
+ItemWeed::WeedMgr::WeedMgr(int count)
+    : TFlockMgr()
 {
 	// UNUSED FUNCTION
+	mMonoObjectMgr.alloc(count);
+	_04 = 5;
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	8020F36C
  * Size:	000100
  */
-void __dt__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8020F450
-	lis      r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@ha
-	addic.   r0, r30, 0x3c
-	addi     r3, r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x30
-	stw      r0, 0x20(r30)
-	beq      lbl_8020F40C
-	lis      r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
-	addic.   r0, r30, 0x3c
-	addi     r3, r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
-	stw      r3, 0x3c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x58(r30)
-	beq      lbl_8020F40C
-	lis      r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
-	addic.   r0, r30, 0x3c
-	addi     r3, r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
-	stw      r3, 0x3c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x58(r30)
-	beq      lbl_8020F40C
-	lis      r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
-	addic.   r0, r30, 0x3c
-	addi     r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
-	stw      r0, 0x3c(r30)
-	beq      lbl_8020F40C
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x3c
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x3c(r30)
-	bl       __dt__5CNodeFv
+// void __dt__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8020F450
+// 	lis      r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@ha
+// 	addic.   r0, r30, 0x3c
+// 	addi     r3, r3, "__vt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>"@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x30
+// 	stw      r0, 0x20(r30)
+// 	beq      lbl_8020F40C
+// 	lis      r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
+// 	addic.   r0, r30, 0x3c
+// 	addi     r3, r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
+// 	stw      r3, 0x3c(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x58(r30)
+// 	beq      lbl_8020F40C
+// 	lis      r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
+// 	addic.   r0, r30, 0x3c
+// 	addi     r3, r3, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
+// 	stw      r3, 0x3c(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x58(r30)
+// 	beq      lbl_8020F40C
+// 	lis      r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
+// 	addic.   r0, r30, 0x3c
+// 	addi     r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
+// 	stw      r0, 0x3c(r30)
+// 	beq      lbl_8020F40C
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	addi     r3, r30, 0x3c
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0x3c(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_8020F40C:
-	addic.   r0, r30, 0x20
-	beq      lbl_8020F440
-	lis      r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
-	addic.   r0, r30, 0x20
-	addi     r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
-	stw      r0, 0x20(r30)
-	beq      lbl_8020F440
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x20
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x20(r30)
-	bl       __dt__5CNodeFv
+// lbl_8020F40C:
+// 	addic.   r0, r30, 0x20
+// 	beq      lbl_8020F440
+// 	lis      r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
+// 	addic.   r0, r30, 0x20
+// 	addi     r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
+// 	stw      r0, 0x20(r30)
+// 	beq      lbl_8020F440
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	addi     r3, r30, 0x20
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0x20(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_8020F440:
-	extsh.   r0, r31
-	ble      lbl_8020F450
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8020F440:
+// 	extsh.   r0, r31
+// 	ble      lbl_8020F450
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8020F450:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8020F450:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020F46C
  * Size:	0000A0
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::~MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8020F4F0
-	lis      r4, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
-	addi     r4, r4, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8020F4E0
-	lis      r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
-	addi     r4, r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8020F4E0
-	lis      r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
-	addi     r0, r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8020F4E0
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8020F4E0:
-	extsh.   r0, r31
-	ble      lbl_8020F4F0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8020F4F0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::~MonoObjectMgr()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	8020F50C
  * Size:	000070
  */
-void Container<Game::ItemWeed::Weed>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8020F560
-	lis      r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
-	addi     r0, r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8020F550
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8020F550:
-	extsh.   r0, r31
-	ble      lbl_8020F560
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8020F560:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// void Container<Game::ItemWeed::Weed>::~Container()
+// {
+// }
 
 /*
  * --INFO--
@@ -1142,22 +1053,18 @@ void ItemWeed::WeedMgr::createWeeds(Game::ItemWeed::cWeedType)
 	// UNUSED FUNCTION
 }
 
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8020F57C
- * Size:	000008
- */
-void getMaxObjects__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-{
-	/*
-	lwz      r3, 0x60(r3)
-	blr
-	*/
-}
-
-namespace Game {
+// /*
+//  * --INFO--
+//  * Address:	8020F57C
+//  * Size:	000008
+//  */
+// void getMaxObjects__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
+// {
+// 	/*
+// 	lwz      r3, 0x60(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1173,14 +1080,13 @@ void ItemWeed::WeedMgr::do_update_boundSphere() { }
  */
 void ItemWeed::WeedMgr::do_update()
 {
-	/*
-	lbz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	bnelr
-	lbz      r0, 0x1d(r3)
-	cmplwi   r0, 0
-	blr
-	*/
+	if (mIsAgentVisible[0] != false) {
+		return;
+	}
+	if (mIsAgentVisible[1] != false) {
+		return;
+	}
+	return;
 }
 
 /*
@@ -1188,8 +1094,10 @@ void ItemWeed::WeedMgr::do_update()
  * Address:	8020F5A0
  * Size:	000084
  */
-void ItemWeed::FSM::init(Game::ItemWeed::Item*)
+void ItemWeed::FSM::init(Game::ItemWeed::Item* item)
 {
+	create(1);
+	registerState(new WaitState());
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1236,8 +1144,16 @@ lbl_8020F608:
  * Size:	00013C
  */
 ItemWeed::Item::Item()
+    : FSMItem(OBJTYPE_Weed)
+    , mDummyShape()
 {
 	// UNUSED FUNCTION
+	mCollTree               = new CollTree();
+	mBoundingSphere.mRadius = 75.0f;
+	mDummyShape.mMatrix     = &mObjMatrix;
+	mCollTree->createSingleSphere(&mDummyShape, 0, mBoundingSphere, nullptr);
+	setCollisionFlick(false);
+	_1EC = 0;
 }
 
 /*
@@ -1245,8 +1161,16 @@ ItemWeed::Item::Item()
  * Address:	8020F624
  * Size:	00015C
  */
-void ItemWeed::Item::onInit(Game::CreatureInitArg*)
+void ItemWeed::Item::onInit(Game::CreatureInitArg* initArg)
 {
+	mFsm->start(this, WEEDSTATE_Wait, nullptr);
+	setAlive(true);
+	InitArg* itemInitArg = static_cast<InitArg*>(initArg);
+	P2ASSERTLINE(194, itemInitArg != nullptr);
+	int v1    = itemInitArg->_04;
+	_1EC      = itemInitArg->_08;
+	mFlockMgr = new WeedMgr(v1);
+	setCollisionFlick(false);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1347,25 +1271,25 @@ lbl_8020F750:
  * Address:	8020F780
  * Size:	000034
  */
-void start__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x1DC(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void start__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  li        r0, 0
+// 	  stw       r0, 0x1DC(r4)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1374,6 +1298,30 @@ void start__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Itemi
  */
 void ItemWeed::Item::onSetPosition()
 {
+	mObjMatrix.makeT(mPosition);
+	Sys::Sphere v1(mPosition, mBoundingSphere.mRadius);
+	int v2         = _1EC;
+	mFlockMgr->_0C = v1;
+	for (int i = 0; i < mFlockMgr->getMaxObjects(); i++) {
+		Weed* weed = mFlockMgr->mMonoObjectMgr.birth();
+		if (weed != nullptr) {
+			if (v2 == 1) {
+				weed->_40 = 0;
+			} else {
+				weed->_40 = (randFloat() * 3.0f) + 1;
+			}
+			float randRadius = mFlockMgr->_0C.mRadius * randFloat();
+			float randTheta  = randFloat() * TAU;
+			float randCos    = JMath::getSinCosTable()->cos(randTheta);
+			float randSin    = JMath::getSinCosTable()->sin(randTheta);
+			weed->_50        = mFlockMgr;
+			weed->_44        = Vector3f(1.0f);
+			weed->x          = (randRadius * randSin) + mFlockMgr->_0C.mPosition.x;
+			weed->y          = mFlockMgr->_0C.mPosition.y + 0.0f;
+			weed->z          = (randRadius * randCos) + mFlockMgr->_0C.mPosition.z;
+		}
+	}
+	mFlockMgr->resolveCollision(60.0f);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1553,26 +1501,7 @@ lbl_8020F9CC:
  * Address:	8020FA1C
  * Size:	00003C
  */
-void ItemWeed::Item::ignoreAtari(Game::Creature*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool ItemWeed::Item::ignoreAtari(Game::Creature* other) { return !other->isPiki(); }
 
 /*
  * --INFO--
@@ -1581,6 +1510,10 @@ void ItemWeed::Item::ignoreAtari(Game::Creature*)
  */
 void ItemWeed::Item::updateBoundSphere()
 {
+	mCollTree->mPart->mRadius = mBoundingSphere.mRadius;
+	mBoundingSphere.mPosition = mPosition;
+	JUT_ASSERTLINE(225, isCollisionFlick() == false, "É_ÉÅÉbÉN\n");
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1622,7 +1555,7 @@ lbl_8020FAC0:
  * Address:	8020FAD0
  * Size:	0002E0
  */
-void ItemWeed::Item::interactFlockAttack(Game::InteractFlockAttack&)
+bool ItemWeed::Item::interactFlockAttack(Game::InteractFlockAttack&)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -1826,46 +1759,42 @@ lbl_8020FD70:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8020FDB0
  * Size:	00002C
  */
-void getFlock__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fi()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getFlock__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fi()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x24(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020FDDC
  * Size:	000010
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::getAt(int)
-{
-	/*
-	mulli    r0, r4, 0x54
-	lwz      r3, 0x28(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
-
-namespace Game {
+// void MonoObjectMgr<Game::ItemWeed::Weed>::getAt(int)
+// {
+// 	/*
+// 	mulli    r0, r4, 0x54
+// 	lwz      r3, 0x28(r3)
+// 	add      r3, r3, r0
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1874,69 +1803,31 @@ namespace Game {
  */
 void ItemWeed::Item::doAI()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	lwz      r3, 0x1d8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       updateCollTree__Q24Game8BaseItemFv
-	lwz      r3, 0x1e8(r31)
-	bl       update__Q24Game12BaseFlockMgrFv
-	lwz      r3, 0x1e8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_8020FE5C
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8020FE5C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mFsm->exec(this);
+	updateCollTree();
+	mFlockMgr->update();
+	if (mFlockMgr->getNumObjects() == 0) {
+		setAlive(false);
+	}
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	8020FE70
  * Size:	000008
  */
-void getNumObjects__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-{
-	/*
-	lwz      r3, 0x5c(r3)
-	blr
-	*/
-}
-
-namespace Game {
+// void getNumObjects__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	8020FE78
  * Size:	00003C
  */
-void ItemWeed::Item::doSimpleDraw(Viewport*)
+void ItemWeed::Item::doSimpleDraw(Viewport* viewport)
 {
+	mFlockMgr->doSimpleDraw(viewport, mgr->mModelData, mgr->mModelDataMax);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1962,7 +1853,22 @@ void ItemWeed::Item::doSimpleDraw(Viewport*)
  * Size:	00013C
  */
 ItemWeed::Mgr::Mgr()
+    : TNodeItemMgr()
 {
+	setName("ëêÇ∆è¨êŒ");
+	mObjectPathComponent = "user/Kando/objects/weed";
+	setModelSize(4);
+	loadArchive("arc.szs");
+	loadBmd("weed1.bmd", 0, 0x20000);
+	loadBmd("stone1.bmd", 1, 0x20000);
+	loadBmd("stone2.bmd", 2, 0x20000);
+	loadBmd("stone3.bmd", 3, 0x20000);
+	for (int i = 0; i < 4; i++) {
+		J3DModelData* modelData = getModelData(i);
+		modelData->newSharedDisplayList(0x40000);
+		modelData->simpleCalcMaterial(0, j3dDefaultMtx);
+		modelData->makeSharedDL();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2055,8 +1961,13 @@ lbl_8020FF90:
  * Address:	8020FFF0
  * Size:	000200
  */
-void ItemWeed::Mgr::doSimpleDraw(Viewport*)
+void ItemWeed::Mgr::doSimpleDraw(Viewport* viewport)
 {
+	Iterator<BaseItem> iterator(this);
+	iterator.first();
+	while (!iterator.isDone()) {
+		static_cast<Item*>(*iterator)->doSimpleDraw(viewport);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2219,7 +2130,7 @@ void ItemWeed::Mgr::onLoadResources() { }
  * Address:	........
  * Size:	000160
  */
-void ItemWeed::Mgr::birth()
+ItemWeed::Item* ItemWeed::Mgr::birth()
 {
 	// UNUSED FUNCTION
 }
@@ -2229,8 +2140,9 @@ void ItemWeed::Mgr::birth()
  * Address:	802101F4
  * Size:	000008
  */
-void ItemWeed::Mgr::getCaveName(int)
+char* ItemWeed::Mgr::getCaveName(int)
 {
+	return "weed";
 	/*
 	addi     r3, r2, lbl_80519F44@sda21
 	blr
@@ -2242,8 +2154,9 @@ void ItemWeed::Mgr::getCaveName(int)
  * Address:	802101FC
  * Size:	00004C
  */
-void ItemWeed::Mgr::getCaveID(char*)
+int ItemWeed::Mgr::getCaveID(char* p1)
 {
+	return (strncmp("weed", p1, strlen("weed")) == 0);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2293,42 +2206,23 @@ void ItemWeed::WaitState::cleanup(Game::ItemWeed::Item*) { }
  * Address:	80210254
  * Size:	000054
  */
-void ItemWeed::Mgr::generatorNewItemParm()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80210298
-	lis      r4, __vt__Q24Game11GenItemParm@ha
-	lis      r5, __vt__11GenWeedParm@ha
-	addi     r0, r4, __vt__Q24Game11GenItemParm@l
-	li       r4, 0x32
-	stw      r0, 0(r3)
-	addi     r5, r5, __vt__11GenWeedParm@l
-	li       r0, 0
-	stw      r5, 0(r3)
-	stw      r4, 8(r3)
-	sth      r0, 4(r3)
-
-lbl_80210298:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+GenItemParm* ItemWeed::Mgr::generatorNewItemParm() { return new GenWeedParm(); }
 
 /*
  * --INFO--
  * Address:	802102A8
  * Size:	0000B0
  */
-void ItemWeed::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
+void ItemWeed::Mgr::generatorWrite(Stream& output, Game::GenItemParm* genItemParm)
 {
+	GenWeedParm* genWeedParm = static_cast<GenWeedParm*>(genItemParm);
+	P2ASSERTLINE(460, genWeedParm != nullptr);
+	output.textWriteTab(output.mTabCount);
+	output.writeShort(genWeedParm->_08);
+	output.textWriteText("\t#Ç§Ç∂Ç·â§êî\r\n");
+	output.textWriteTab(output.mTabCount);
+	output.writeShort(genWeedParm->_04);
+	output.textWriteText("\t#êŒÇ©ëêÇ©\r\n");
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2384,8 +2278,14 @@ lbl_802102E8:
  * Address:	80210358
  * Size:	00008C
  */
-void ItemWeed::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
+void ItemWeed::Mgr::generatorRead(Stream& input, Game::GenItemParm* genItemParm, unsigned long version)
 {
+	GenWeedParm* genWeedParm = static_cast<GenWeedParm*>(genItemParm);
+	P2ASSERTLINE(474, genWeedParm != nullptr);
+	genWeedParm->_08 = input.readShort();
+	if ('0001' <= version) {
+		genWeedParm->_04 = input.readShort();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2434,8 +2334,18 @@ lbl_802103C8:
  * Address:	802103E4
  * Size:	0001DC
  */
-void generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm()
+BaseItem* ItemWeed::Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenItemParm* genItemParm)
 {
+	GenWeedParm* genWeedParm = static_cast<GenWeedParm*>(genItemParm);
+	P2ASSERTLINE(484, genWeedParm != nullptr);
+	Item* item = new Item();
+	entry(item);
+	InitArg initArg;
+	initArg._08 = genWeedParm->_04;
+	initArg._04 = genWeedParm->_08;
+	item->init(&initArg);
+	item->setPosition(position, false);
+	return item;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -2573,8 +2483,9 @@ void generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3f R10Vector3f PQ24Game11GenI
  * Address:	802105C0
  * Size:	00000C
  */
-void ItemWeed::InitArg::getName()
+const char* ItemWeed::InitArg::getName()
 {
+	return "ItemWeed::InitArg";
 	/*
 	lis      r3, lbl_80482080@ha
 	addi     r3, r3, lbl_80482080@l
@@ -2587,104 +2498,16 @@ void ItemWeed::InitArg::getName()
  * Address:	802105CC
  * Size:	000134
  */
-ItemWeed::Mgr::~Mgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802106E4
-	lis      r3, __vt__Q34Game8ItemWeed3Mgr@ha
-	addi     r3, r3, __vt__Q34Game8ItemWeed3Mgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x74
-	stw      r0, 0x30(r30)
-	beq      lbl_802106D4
-	lis      r3, __vt__Q24Game12TNodeItemMgr@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, __vt__Q24Game12TNodeItemMgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x74
-	stw      r0, 0x30(r30)
-	beq      lbl_802106A0
-	lis      r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
-	addic.   r3, r30, 0x6c
-	addi     r4, r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
-	stw      r4, 0x4c(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_80210650
-	lis      r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
-	addi     r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
-	stw      r0, 0x6c(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_80210650:
-	addic.   r0, r30, 0x4c
-	beq      lbl_802106A0
-	lis      r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
-	stw      r3, 0x4c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_802106A0
-	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-	stw      r0, 0x4c(r30)
-	beq      lbl_802106A0
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x4c
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x4c(r30)
-	bl       __dt__5CNodeFv
-
-lbl_802106A0:
-	addic.   r0, r30, 0x30
-	beq      lbl_802106D4
-	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-	addic.   r0, r30, 0x30
-	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-	stw      r0, 0x30(r30)
-	beq      lbl_802106D4
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x30(r30)
-	bl       __dt__5CNodeFv
-
-lbl_802106D4:
-	extsh.   r0, r31
-	ble      lbl_802106E4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802106E4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ItemWeed::Mgr::~Mgr() { }
 
 /*
  * --INFO--
  * Address:	80210700
  * Size:	000148
  */
-void ItemWeed::Mgr::doNew()
+BaseItem* ItemWeed::Mgr::doNew()
 {
+	return new Item();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2785,36 +2608,23 @@ lbl_80210830:
  * Address:	80210848
  * Size:	00000C
  */
-void ItemWeed::Mgr::generatorGetID()
-{
-	/*
-	lis      r3, 0x77656564@ha
-	addi     r3, r3, 0x77656564@l
-	blr
-	*/
-}
+u32 ItemWeed::Mgr::generatorGetID() { return 'weed'; }
 
 /*
  * --INFO--
  * Address:	80210854
  * Size:	00000C
  */
-void ItemWeed::Mgr::generatorLocalVersion()
-{
-	/*
-	lis      r3, 0x30303031@ha
-	addi     r3, r3, 0x30303031@l
-	blr
-	*/
-}
+u32 ItemWeed::Mgr::generatorLocalVersion() { return '0001'; }
 
 /*
  * --INFO--
  * Address:	80210860
  * Size:	000008
  */
-void ItemWeed::Item::getCreatureName()
+char* ItemWeed::Item::getCreatureName()
 {
+	return "Weed";
 	/*
 	addi     r3, r2, lbl_80519F4C@sda21
 	blr
@@ -2826,13 +2636,7 @@ void ItemWeed::Item::getCreatureName()
  * Address:	80210868
  * Size:	000008
  */
-void ItemWeed::Item::getFlockMgr()
-{
-	/*
-	lwz      r3, 0x1e8(r3)
-	blr
-	*/
-}
+BaseFlockMgr* ItemWeed::Item::getFlockMgr() { return mFlockMgr; }
 
 /*
  * --INFO--
@@ -2846,38 +2650,32 @@ void ItemWeed::Item::makeTrMatrix() { }
  * Address:	80210874
  * Size:	000008
  */
-void ItemWeed::Item::DummyShape::getMatrix(int)
-{
-	/*
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
+Matrixf* ItemWeed::Item::DummyShape::getMatrix(int) { return mMatrix; }
 
 /*
  * --INFO--
  * Address:	8021087C
  * Size:	000034
  */
-void doAI__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> Fv()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1D8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void doAI__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> Fv()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r4, r3
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1D8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -2966,2638 +2764,2626 @@ lbl_802109AC:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	802109C8
  * Size:	000088
  */
-void ObjectMgr<Game::ItemWeed::Weed>::~ObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80210A34
-	lis      r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
-	addi     r4, r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_80210A24
-	lis      r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
-	addi     r0, r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80210A24
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// void ObjectMgr<Game::ItemWeed::Weed>::~ObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80210A34
+// 	lis      r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
+// 	addi     r4, r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
+// 	stw      r4, 0(r30)
+// 	addi     r0, r4, 0x2c
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_80210A24
+// 	lis      r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
+// 	addi     r0, r4, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_80210A24
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_80210A24:
-	extsh.   r0, r31
-	ble      lbl_80210A34
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_80210A24:
+// 	extsh.   r0, r31
+// 	ble      lbl_80210A34
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80210A34:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// lbl_80210A34:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210A50
  * Size:	000010
  */
-void ItemWeed::Weed::isWeed()
-{
-	/*
-	lbz      r0, 0x40(r3)
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
-
-} // namespace Game
+bool ItemWeed::Weed::isWeed() { return _40 == 0; }
 
 /*
  * --INFO--
  * Address:	80210A60
  * Size:	00002C
  */
-void getNext__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getNext__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210A8C
  * Size:	00002C
  */
-void getStart__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getStart__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210AB8
  * Size:	000024
  */
-void killFlock__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPQ24Game6TFlock()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x3c
-	stw      r0, 0x14(r1)
-	bl "kill__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPQ34Game8ItemWeed4Weed" lwz
-	r0, 0x14(r1) mtlr     r0 addi     r1, r1, 0x10 blr
-	*/
-}
+// void killFlock__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPQ24Game6TFlock()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	addi     r3, r3, 0x3c
+// 	stw      r0, 0x14(r1)
+// 	bl "kill__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FPQ34Game8ItemWeed4Weed" lwz
+// 	r0, 0x14(r1) mtlr     r0 addi     r1, r1, 0x10 blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210ADC
  * Size:	000004
  */
-void onDamage__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Itemf() { }
+// void onDamage__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Itemf() { }
 
 /*
  * --INFO--
  * Address:	80210AE0
  * Size:	000004
  */
-void onKeyEvent__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent() { }
+// void onKeyEvent__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent() { }
 
 /*
  * --INFO--
  * Address:	80210AE4
  * Size:	000004
  */
-void onBounce__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle() { }
+// void onBounce__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle() { }
 
 /*
  * --INFO--
  * Address:	80210AE8
  * Size:	000004
  */
-void onPlatCollision__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent() { }
+// void onPlatCollision__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent() { }
 
 /*
  * --INFO--
  * Address:	80210AEC
  * Size:	000004
  */
-void onCollision__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent() { }
+// void onCollision__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent() { }
 
 /*
  * --INFO--
  * Address:	80210AF0
  * Size:	000004
  */
-void init__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemPQ24Game8StateArg() { }
+// void init__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemPQ24Game8StateArg() { }
 
 /*
  * --INFO--
  * Address:	80210AF4
  * Size:	000004
  */
-void exec__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void exec__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210AF8
  * Size:	000004
  */
-void cleanup__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void cleanup__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210AFC
  * Size:	000004
  */
-void resume__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void resume__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210B00
  * Size:	000004
  */
-void restart__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void restart__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210B04
  * Size:	000030
  */
-void transit__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void transit__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210B34
  * Size:	000004
  */
-void init__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
+// void init__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item() { }
 
 /*
  * --INFO--
  * Address:	80210B38
  * Size:	000064
  */
-void create__Q24Game35StateMachine<Game::ItemWeed::Item> Fi()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void create__Q24Game35StateMachine<Game::ItemWeed::Item> Fi()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	li       r0, 0
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	stw      r4, 0xc(r3)
+// 	stw      r0, 8(r3)
+// 	lwz      r0, 0xc(r3)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 4(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x10(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x14(r31)
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210B9C
  * Size:	000060
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::birth()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "getEmptyIndex__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-	cmpwi    r3, -1
-	beq      lbl_80210BE4
-	lwz      r6, 0x28(r31)
-	li       r0, 0
-	lwz      r4, 0x2c(r31)
-	mulli    r5, r3, 0x54
-	stbx     r0, r4, r3
-	add      r3, r6, r5
-	lwz      r4, 0x20(r31)
-	addi     r0, r4, 1
-	stw      r0, 0x20(r31)
-	b        lbl_80210BE8
+// void MonoObjectMgr<Game::ItemWeed::Weed>::birth()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       "getEmptyIndex__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	cmpwi    r3, -1
+// 	beq      lbl_80210BE4
+// 	lwz      r6, 0x28(r31)
+// 	li       r0, 0
+// 	lwz      r4, 0x2c(r31)
+// 	mulli    r5, r3, 0x54
+// 	stbx     r0, r4, r3
+// 	add      r3, r6, r5
+// 	lwz      r4, 0x20(r31)
+// 	addi     r0, r4, 1
+// 	stw      r0, 0x20(r31)
+// 	b        lbl_80210BE8
 
-lbl_80210BE4:
-	li       r3, 0
+// lbl_80210BE4:
+// 	li       r3, 0
 
-lbl_80210BE8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80210BE8:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210BFC
  * Size:	000054
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::kill(Game::ItemWeed::Weed*)
-{
-	/*
-	lwz      r0, 0x24(r3)
-	li       r6, 0
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	blelr
+// void MonoObjectMgr<Game::ItemWeed::Weed>::kill(Game::ItemWeed::Weed*)
+// {
+// 	/*
+// 	lwz      r0, 0x24(r3)
+// 	li       r6, 0
+// 	li       r5, 0
+// 	mtctr    r0
+// 	cmpwi    r0, 0
+// 	blelr
 
-lbl_80210C14:
-	lwz      r0, 0x28(r3)
-	add      r0, r0, r5
-	cmplw    r0, r4
-	bne      lbl_80210C40
-	lwz      r4, 0x2c(r3)
-	li       r0, 1
-	stbx     r0, r4, r6
-	lwz      r4, 0x20(r3)
-	addi     r0, r4, -1
-	stw      r0, 0x20(r3)
-	blr
+// lbl_80210C14:
+// 	lwz      r0, 0x28(r3)
+// 	add      r0, r0, r5
+// 	cmplw    r0, r4
+// 	bne      lbl_80210C40
+// 	lwz      r4, 0x2c(r3)
+// 	li       r0, 1
+// 	stbx     r0, r4, r6
+// 	lwz      r4, 0x20(r3)
+// 	addi     r0, r4, -1
+// 	stw      r0, 0x20(r3)
+// 	blr
 
-lbl_80210C40:
-	addi     r5, r5, 0x54
-	addi     r6, r6, 1
-	bdnz     lbl_80210C14
-	blr
-	*/
-}
+// lbl_80210C40:
+// 	addi     r5, r5, 0x54
+// 	addi     r6, r6, 1
+// 	bdnz     lbl_80210C14
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210C50
  * Size:	000040
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::getNext(void*)
-{
-	/*
-	lwz      r5, 0x24(r3)
-	addi     r6, r4, 1
-	subf     r0, r6, r5
-	mtctr    r0
-	cmpw     r6, r5
-	bge      lbl_80210C88
+// void MonoObjectMgr<Game::ItemWeed::Weed>::getNext(void*)
+// {
+// 	/*
+// 	lwz      r5, 0x24(r3)
+// 	addi     r6, r4, 1
+// 	subf     r0, r6, r5
+// 	mtctr    r0
+// 	cmpw     r6, r5
+// 	bge      lbl_80210C88
 
-lbl_80210C68:
-	lwz      r4, 0x2c(r3)
-	lbzx     r0, r4, r6
-	cmplwi   r0, 0
-	bne      lbl_80210C80
-	mr       r3, r6
-	blr
+// lbl_80210C68:
+// 	lwz      r4, 0x2c(r3)
+// 	lbzx     r0, r4, r6
+// 	cmplwi   r0, 0
+// 	bne      lbl_80210C80
+// 	mr       r3, r6
+// 	blr
 
-lbl_80210C80:
-	addi     r6, r6, 1
-	bdnz     lbl_80210C68
+// lbl_80210C80:
+// 	addi     r6, r6, 1
+// 	bdnz     lbl_80210C68
 
-lbl_80210C88:
-	mr       r3, r5
-	blr
-	*/
-}
+// lbl_80210C88:
+// 	mr       r3, r5
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210C90
  * Size:	000030
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::getStart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, -1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::getStart()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	li       r4, -1
+// 	stw      r0, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210CC0
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::getEnd()
-{
-	/*
-	lwz      r3, 0x24(r3)
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::getEnd()
+// {
+// 	/*
+// 	lwz      r3, 0x24(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210CC8
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::getTo()
-{
-	/*
-	lwz      r3, 0x24(r3)
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::getTo()
+// {
+// 	/*
+// 	lwz      r3, 0x24(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210CD0
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::doAnimation()
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_80210D08
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80210D08
+// void MonoObjectMgr<Game::ItemWeed::Weed>::doAnimation()
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_80210D08
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_80210D08
 
-lbl_80210D00:
-	addi     r5, r5, 8
-	bdnz     lbl_80210D00
+// lbl_80210D00:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_80210D00
 
-lbl_80210D08:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_80210D08:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_80210D18:
-	bdnz     lbl_80210D18
-	blr
-	*/
-}
+// lbl_80210D18:
+// 	bdnz     lbl_80210D18
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210D20
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::doEntry()
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_80210D58
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80210D58
+// void MonoObjectMgr<Game::ItemWeed::Weed>::doEntry()
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_80210D58
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_80210D58
 
-lbl_80210D50:
-	addi     r5, r5, 8
-	bdnz     lbl_80210D50
+// lbl_80210D50:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_80210D50
 
-lbl_80210D58:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_80210D58:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_80210D68:
-	bdnz     lbl_80210D68
-	blr
-	*/
-}
+// lbl_80210D68:
+// 	bdnz     lbl_80210D68
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210D70
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::doSetView(int)
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_80210DA8
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80210DA8
+// void MonoObjectMgr<Game::ItemWeed::Weed>::doSetView(int)
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_80210DA8
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_80210DA8
 
-lbl_80210DA0:
-	addi     r5, r5, 8
-	bdnz     lbl_80210DA0
+// lbl_80210DA0:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_80210DA0
 
-lbl_80210DA8:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_80210DA8:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_80210DB8:
-	bdnz     lbl_80210DB8
-	blr
-	*/
-}
+// lbl_80210DB8:
+// 	bdnz     lbl_80210DB8
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210DC0
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::doViewCalc()
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_80210DF8
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80210DF8
+// void MonoObjectMgr<Game::ItemWeed::Weed>::doViewCalc()
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_80210DF8
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_80210DF8
 
-lbl_80210DF0:
-	addi     r5, r5, 8
-	bdnz     lbl_80210DF0
+// lbl_80210DF0:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_80210DF0
 
-lbl_80210DF8:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_80210DF8:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_80210E08:
-	bdnz     lbl_80210E08
-	blr
-	*/
-}
+// lbl_80210E08:
+// 	bdnz     lbl_80210E08
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210E10
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::doSimulation(float)
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_80210E48
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80210E48
+// void MonoObjectMgr<Game::ItemWeed::Weed>::doSimulation(float)
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_80210E48
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_80210E48
 
-lbl_80210E40:
-	addi     r5, r5, 8
-	bdnz     lbl_80210E40
+// lbl_80210E40:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_80210E40
 
-lbl_80210E48:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_80210E48:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_80210E58:
-	bdnz     lbl_80210E58
-	blr
-	*/
-}
+// lbl_80210E58:
+// 	bdnz     lbl_80210E58
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210E60
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::doDirectDraw(Graphics&)
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_80210E98
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80210E98
+// void MonoObjectMgr<Game::ItemWeed::Weed>::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_80210E98
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_80210E98
 
-lbl_80210E90:
-	addi     r5, r5, 8
-	bdnz     lbl_80210E90
+// lbl_80210E90:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_80210E90
 
-lbl_80210E98:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_80210E98:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_80210EA8:
-	bdnz     lbl_80210EA8
-	blr
-	*/
-}
+// lbl_80210EA8:
+// 	bdnz     lbl_80210EA8
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210EB0
  * Size:	000018
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x2c(r3)
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::resetMgr()
+// {
+// 	/*
+// 	li       r0, 0
+// 	stw      r0, 0x28(r3)
+// 	stw      r0, 0x24(r3)
+// 	stw      r0, 0x20(r3)
+// 	stw      r0, 0x2c(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210EC8
  * Size:	000030
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::clearMgr()
-{
-	/*
-	li       r0, 0
-	li       r6, 0
-	stw      r0, 0x20(r3)
-	li       r5, 1
-	b        lbl_80210EE8
+// void MonoObjectMgr<Game::ItemWeed::Weed>::clearMgr()
+// {
+// 	/*
+// 	li       r0, 0
+// 	li       r6, 0
+// 	stw      r0, 0x20(r3)
+// 	li       r5, 1
+// 	b        lbl_80210EE8
 
-lbl_80210EDC:
-	lwz      r4, 0x2c(r3)
-	stbx     r5, r4, r6
-	addi     r6, r6, 1
+// lbl_80210EDC:
+// 	lwz      r4, 0x2c(r3)
+// 	stbx     r5, r4, r6
+// 	addi     r6, r6, 1
 
-lbl_80210EE8:
-	lwz      r0, 0x24(r3)
-	cmpw     r6, r0
-	blt      lbl_80210EDC
-	blr
-	*/
-}
+// lbl_80210EE8:
+// 	lwz      r0, 0x24(r3)
+// 	cmpw     r6, r0
+// 	blt      lbl_80210EDC
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210EF8
  * Size:	000004
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::onAlloc() { }
+// void MonoObjectMgr<Game::ItemWeed::Weed>::onAlloc() { }
 
 /*
  * --INFO--
  * Address:	80210EFC
  * Size:	00003C
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::getEmptyIndex()
-{
-	/*
-	lwz      r0, 0x24(r3)
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_80210F30
+// void MonoObjectMgr<Game::ItemWeed::Weed>::getEmptyIndex()
+// {
+// 	/*
+// 	lwz      r0, 0x24(r3)
+// 	li       r5, 0
+// 	mtctr    r0
+// 	cmpwi    r0, 0
+// 	ble      lbl_80210F30
 
-lbl_80210F10:
-	lwz      r4, 0x2c(r3)
-	lbzx     r0, r4, r5
-	cmplwi   r0, 1
-	bne      lbl_80210F28
-	mr       r3, r5
-	blr
+// lbl_80210F10:
+// 	lwz      r4, 0x2c(r3)
+// 	lbzx     r0, r4, r5
+// 	cmplwi   r0, 1
+// 	bne      lbl_80210F28
+// 	mr       r3, r5
+// 	blr
 
-lbl_80210F28:
-	addi     r5, r5, 1
-	bdnz     lbl_80210F10
+// lbl_80210F28:
+// 	addi     r5, r5, 1
+// 	bdnz     lbl_80210F10
 
-lbl_80210F30:
-	li       r3, -1
-	blr
-	*/
-}
+// lbl_80210F30:
+// 	li       r3, -1
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210F38
  * Size:	000010
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::get(void*)
-{
-	/*
-	mulli    r0, r4, 0x54
-	lwz      r3, 0x28(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::get(void*)
+// {
+// 	/*
+// 	mulli    r0, r4, 0x54
+// 	lwz      r3, 0x28(r3)
+// 	add      r3, r3, r0
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210F48
  * Size:	00002C
  */
-void Container<Game::ItemWeed::Weed>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Container<Game::ItemWeed::Weed>::getObject(void*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80210F74
  * Size:	000008
  */
-u32 Container<Game::ItemWeed::Weed>::getAt(int) { return 0x0; }
+// u32 Container<Game::ItemWeed::Weed>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80210F7C
  * Size:	000008
  */
-u32 Container<Game::ItemWeed::Weed>::getTo() { return 0x0; }
+// u32 Container<Game::ItemWeed::Weed>::getTo() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80210F84
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemWeed::Weed>::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_80210FCC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211128
+// void ObjectMgr<Game::ItemWeed::Weed>::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_80210FCC
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211128
 
-lbl_80210FCC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211038
+// lbl_80210FCC:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211038
 
-lbl_80210FE4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80211128
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_80210FE4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80211128
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_80211038:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80210FE4
-	b        lbl_80211128
+// lbl_80211038:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80210FE4
+// 	b        lbl_80211128
 
-lbl_80211058:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_80211098
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211128
+// lbl_80211058:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80211098
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211128
 
-lbl_80211098:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8021110C
+// lbl_80211098:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8021110C
 
-lbl_802110B8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80211128
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_802110B8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80211128
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8021110C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802110B8
+// lbl_8021110C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_802110B8
 
-lbl_80211128:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_80211058
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_80211128:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_80211058
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211158
  * Size:	00004C
  */
-void Iterator<Game::ItemWeed::Weed>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Iterator<Game::ItemWeed::Weed>::isDone()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r3, 8(r3)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 4(r31)
+// 	subf     r0, r0, r3
+// 	cntlzw   r0, r0
+// 	srwi     r3, r0, 5
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	802111A4
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemWeed::Weed>::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_802111EC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211348
+// void ObjectMgr<Game::ItemWeed::Weed>::doSimulation(float)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_802111EC
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211348
 
-lbl_802111EC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211258
+// lbl_802111EC:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211258
 
-lbl_80211204:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80211348
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_80211204:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80211348
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_80211258:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80211204
-	b        lbl_80211348
+// lbl_80211258:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80211204
+// 	b        lbl_80211348
 
-lbl_80211278:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_802112B8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211348
+// lbl_80211278:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_802112B8
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211348
 
-lbl_802112B8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8021132C
+// lbl_802112B8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8021132C
 
-lbl_802112D8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80211348
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_802112D8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80211348
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8021132C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802112D8
+// lbl_8021132C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_802112D8
 
-lbl_80211348:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_80211278
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_80211348:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_80211278
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211378
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemWeed::Weed>::doViewCalc()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_802113C0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8021151C
+// void ObjectMgr<Game::ItemWeed::Weed>::doViewCalc()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_802113C0
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8021151C
 
-lbl_802113C0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8021142C
+// lbl_802113C0:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8021142C
 
-lbl_802113D8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8021151C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_802113D8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8021151C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8021142C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802113D8
-	b        lbl_8021151C
+// lbl_8021142C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_802113D8
+// 	b        lbl_8021151C
 
-lbl_8021144C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8021148C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8021151C
+// lbl_8021144C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8021148C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8021151C
 
-lbl_8021148C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211500
+// lbl_8021148C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211500
 
-lbl_802114AC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8021151C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_802114AC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8021151C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_80211500:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802114AC
+// lbl_80211500:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_802114AC
 
-lbl_8021151C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8021144C
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8021151C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8021144C
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8021154C
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemWeed::Weed>::doSetView(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_80211594
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802116F0
+// void ObjectMgr<Game::ItemWeed::Weed>::doSetView(int)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_80211594
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_802116F0
 
-lbl_80211594:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211600
+// lbl_80211594:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211600
 
-lbl_802115AC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802116F0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_802115AC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_802116F0
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_80211600:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802115AC
-	b        lbl_802116F0
+// lbl_80211600:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_802115AC
+// 	b        lbl_802116F0
 
-lbl_80211620:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_80211660
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802116F0
+// lbl_80211620:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80211660
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_802116F0
 
-lbl_80211660:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802116D4
+// lbl_80211660:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_802116D4
 
-lbl_80211680:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802116F0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_80211680:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_802116F0
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_802116D4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80211680
+// lbl_802116D4:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80211680
 
-lbl_802116F0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_80211620
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_802116F0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_80211620
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211720
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemWeed::Weed>::doEntry()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_80211768
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802118C4
+// void ObjectMgr<Game::ItemWeed::Weed>::doEntry()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_80211768
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_802118C4
 
-lbl_80211768:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802117D4
+// lbl_80211768:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_802117D4
 
-lbl_80211780:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802118C4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_80211780:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_802118C4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_802117D4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80211780
-	b        lbl_802118C4
+// lbl_802117D4:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80211780
+// 	b        lbl_802118C4
 
-lbl_802117F4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_80211834
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802118C4
+// lbl_802117F4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80211834
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_802118C4
 
-lbl_80211834:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802118A8
+// lbl_80211834:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_802118A8
 
-lbl_80211854:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802118C4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_80211854:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_802118C4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_802118A8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80211854
+// lbl_802118A8:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80211854
 
-lbl_802118C4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_802117F4
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_802118C4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_802117F4
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	802118F4
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemWeed::Weed>::doAnimation()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8021193C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211A98
+// void ObjectMgr<Game::ItemWeed::Weed>::doAnimation()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__31Iterator<Q34Game8ItemWeed4Weed>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8021193C
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211A98
 
-lbl_8021193C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802119A8
+// lbl_8021193C:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_802119A8
 
-lbl_80211954:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80211A98
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_80211954:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80211A98
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_802119A8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80211954
-	b        lbl_80211A98
+// lbl_802119A8:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80211954
+// 	b        lbl_80211A98
 
-lbl_802119C8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_80211A08
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211A98
+// lbl_802119C8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80211A08
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211A98
 
-lbl_80211A08:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_80211A7C
+// lbl_80211A08:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_80211A7C
 
-lbl_80211A28:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80211A98
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_80211A28:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80211A98
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_80211A7C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80211A28
+// lbl_80211A7C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80211A28
 
-lbl_80211A98:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_802119C8
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_80211A98:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_802119C8
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211AC8
  * Size:	000188
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::alloc(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r31
-	mulli    r3, r29, 0x54
-	stw      r28, 0x10(r1)
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q34Game8ItemWeed4WeedFv@ha
-	mr       r7, r29
-	addi     r4, r4, __ct__Q34Game8ItemWeed4WeedFv@l
-	li       r5, 0
-	li       r6, 0x54
-	bl       __construct_new_array
-	stw      r3, 0x28(r30)
-	li       r0, 0
-	mr       r3, r29
-	stw      r31, 0x24(r30)
-	stw      r0, 0x20(r30)
-	bl       __nwa__FUl
-	cmpwi    r31, 0
-	stw      r3, 0x2c(r30)
-	li       r11, 0
-	ble      lbl_80211BE8
-	cmpwi    r31, 8
-	addi     r3, r31, -8
-	ble      lbl_80211BC4
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80211BC4
+// void MonoObjectMgr<Game::ItemWeed::Weed>::alloc(int)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stw      r31, 0x1c(r1)
+// 	mr       r31, r4
+// 	stw      r30, 0x18(r1)
+// 	mr       r30, r3
+// 	stw      r29, 0x14(r1)
+// 	mr       r29, r31
+// 	mulli    r3, r29, 0x54
+// 	stw      r28, 0x10(r1)
+// 	addi     r3, r3, 0x10
+// 	bl       __nwa__FUl
+// 	lis      r4, __ct__Q34Game8ItemWeed4WeedFv@ha
+// 	mr       r7, r29
+// 	addi     r4, r4, __ct__Q34Game8ItemWeed4WeedFv@l
+// 	li       r5, 0
+// 	li       r6, 0x54
+// 	bl       __construct_new_array
+// 	stw      r3, 0x28(r30)
+// 	li       r0, 0
+// 	mr       r3, r29
+// 	stw      r31, 0x24(r30)
+// 	stw      r0, 0x20(r30)
+// 	bl       __nwa__FUl
+// 	cmpwi    r31, 0
+// 	stw      r3, 0x2c(r30)
+// 	li       r11, 0
+// 	ble      lbl_80211BE8
+// 	cmpwi    r31, 8
+// 	addi     r3, r31, -8
+// 	ble      lbl_80211BC4
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_80211BC4
 
-lbl_80211B5C:
-	lwz      r3, 0x2c(r30)
-	li       r10, 1
-	addi     r8, r11, 1
-	addi     r7, r11, 2
-	stbx     r10, r3, r11
-	addi     r6, r11, 3
-	addi     r5, r11, 4
-	addi     r4, r11, 5
-	lwz      r9, 0x2c(r30)
-	addi     r3, r11, 6
-	addi     r0, r11, 7
-	addi     r11, r11, 8
-	stbx     r10, r9, r8
-	lwz      r8, 0x2c(r30)
-	stbx     r10, r8, r7
-	lwz      r7, 0x2c(r30)
-	stbx     r10, r7, r6
-	lwz      r6, 0x2c(r30)
-	stbx     r10, r6, r5
-	lwz      r5, 0x2c(r30)
-	stbx     r10, r5, r4
-	lwz      r4, 0x2c(r30)
-	stbx     r10, r4, r3
-	lwz      r3, 0x2c(r30)
-	stbx     r10, r3, r0
-	bdnz     lbl_80211B5C
+// lbl_80211B5C:
+// 	lwz      r3, 0x2c(r30)
+// 	li       r10, 1
+// 	addi     r8, r11, 1
+// 	addi     r7, r11, 2
+// 	stbx     r10, r3, r11
+// 	addi     r6, r11, 3
+// 	addi     r5, r11, 4
+// 	addi     r4, r11, 5
+// 	lwz      r9, 0x2c(r30)
+// 	addi     r3, r11, 6
+// 	addi     r0, r11, 7
+// 	addi     r11, r11, 8
+// 	stbx     r10, r9, r8
+// 	lwz      r8, 0x2c(r30)
+// 	stbx     r10, r8, r7
+// 	lwz      r7, 0x2c(r30)
+// 	stbx     r10, r7, r6
+// 	lwz      r6, 0x2c(r30)
+// 	stbx     r10, r6, r5
+// 	lwz      r5, 0x2c(r30)
+// 	stbx     r10, r5, r4
+// 	lwz      r4, 0x2c(r30)
+// 	stbx     r10, r4, r3
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r10, r3, r0
+// 	bdnz     lbl_80211B5C
 
-lbl_80211BC4:
-	subf     r0, r11, r31
-	li       r4, 1
-	mtctr    r0
-	cmpw     r11, r31
-	bge      lbl_80211BE8
+// lbl_80211BC4:
+// 	subf     r0, r11, r31
+// 	li       r4, 1
+// 	mtctr    r0
+// 	cmpw     r11, r31
+// 	bge      lbl_80211BE8
 
-lbl_80211BD8:
-	lwz      r3, 0x2c(r30)
-	stbx     r4, r3, r11
-	addi     r11, r11, 1
-	bdnz     lbl_80211BD8
+// lbl_80211BD8:
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r4, r3, r11
+// 	addi     r11, r11, 1
+// 	bdnz     lbl_80211BD8
 
-lbl_80211BE8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	li       r28, 0
-	li       r29, 0
-	b        lbl_80211C28
+// lbl_80211BE8:
+// 	mr       r3, r30
+// 	lwz      r12, 0(r30)
+// 	lwz      r12, 0x88(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	li       r28, 0
+// 	li       r29, 0
+// 	b        lbl_80211C28
 
-lbl_80211C08:
-	lwz      r0, 0x28(r30)
-	add      r3, r0, r29
-	lwz      r12, 0xc(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 0x54
-	addi     r28, r28, 1
+// lbl_80211C08:
+// 	lwz      r0, 0x28(r30)
+// 	add      r3, r0, r29
+// 	lwz      r12, 0xc(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r29, r29, 0x54
+// 	addi     r28, r28, 1
 
-lbl_80211C28:
-	cmpw     r28, r31
-	blt      lbl_80211C08
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_80211C28:
+// 	cmpw     r28, r31
+// 	blt      lbl_80211C08
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	lwz      r30, 0x18(r1)
+// 	lwz      r29, 0x14(r1)
+// 	lwz      r28, 0x10(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211C50
  * Size:	00009C
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r6, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
-	lis      r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
-	lis      r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
-	stw      r0, 0(r31)
-	li       r8, 0
-	addi     r7, r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
-	addi     r5, r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
-	stb      r8, 0x18(r31)
-	addi     r0, r6, __vt__16GenericObjectMgr@l
-	addi     r6, r7, 0x2c
-	addi     r4, r5, 0x2c
-	stw      r0, 0x1c(r31)
-	li       r0, 1
-	mr       r3, r31
-	stw      r7, 0(r31)
-	stw      r6, 0x1c(r31)
-	stw      r5, 0(r31)
-	stw      r4, 0x1c(r31)
-	stb      r0, 0x18(r31)
-	stw      r8, 0x24(r31)
-	stw      r8, 0x20(r31)
-	stw      r8, 0x28(r31)
-	stw      r8, 0x2c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::MonoObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       __ct__5CNodeFv
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	lis      r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@ha
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	lis      r6, __vt__16GenericObjectMgr@ha
+// 	stw      r0, 0(r31)
+// 	addi     r0, r3, "__vt__32Container<Q34Game8ItemWeed4Weed>"@l
+// 	lis      r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@ha
+// 	lis      r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@ha
+// 	stw      r0, 0(r31)
+// 	li       r8, 0
+// 	addi     r7, r4, "__vt__32ObjectMgr<Q34Game8ItemWeed4Weed>"@l
+// 	addi     r5, r3, "__vt__36MonoObjectMgr<Q34Game8ItemWeed4Weed>"@l
+// 	stb      r8, 0x18(r31)
+// 	addi     r0, r6, __vt__16GenericObjectMgr@l
+// 	addi     r6, r7, 0x2c
+// 	addi     r4, r5, 0x2c
+// 	stw      r0, 0x1c(r31)
+// 	li       r0, 1
+// 	mr       r3, r31
+// 	stw      r7, 0(r31)
+// 	stw      r6, 0x1c(r31)
+// 	stw      r5, 0(r31)
+// 	stw      r4, 0x1c(r31)
+// 	stb      r0, 0x18(r31)
+// 	stw      r8, 0x24(r31)
+// 	stw      r8, 0x20(r31)
+// 	stw      r8, 0x28(r31)
+// 	stw      r8, 0x2c(r31)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211CEC
  * Size:	00009C
  */
-void transit__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x1DC(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
+// void transit__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  rlwinm    r0,r5,2,0,29
+// 	  stmw      r27, 0xC(r1)
+// 	  mr        r27, r3
+// 	  mr        r28, r4
+// 	  mr        r29, r6
+// 	  lwz       r30, 0x1DC(r4)
+// 	  lwz       r3, 0x14(r3)
+// 	  cmplwi    r30, 0
+// 	  lwzx      r31, r3, r0
+// 	  beq-      .loc_0x50
+// 	  mr        r3, r30
+// 	  lwz       r12, 0x0(r30)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x4(r30)
+// 	  stw       r0, 0x18(r27)
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
+// 	.loc_0x50:
+// 	  lwz       r0, 0xC(r27)
+// 	  cmpw      r31, r0
+// 	  blt-      .loc_0x60
 
-	.loc_0x5C:
-	  b         .loc_0x5C
+// 	.loc_0x5C:
+// 	  b         .loc_0x5C
 
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x1DC(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x60:
+// 	  lwz       r3, 0x4(r27)
+// 	  rlwinm    r0,r31,2,0,29
+// 	  mr        r4, r28
+// 	  mr        r5, r29
+// 	  lwzx      r3, r3, r0
+// 	  stw       r3, 0x1DC(r28)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lmw       r27, 0xC(r1)
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211D88
  * Size:	000084
  */
-void registerState__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ24Game31FSMState<Game::ItemWeed::Item>()
-{
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+// void registerState__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ24Game31FSMState<Game::ItemWeed::Item>()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r6, 0x8(r3)
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r6, r0
+// 	  bgelr-
+// 	  lwz       r5, 0x4(r3)
+// 	  rlwinm    r0,r6,2,0,29
+// 	  stwx      r4, r5, r0
+// 	  lwz       r5, 0x4(r4)
+// 	  cmpwi     r5, 0
+// 	  blt-      .loc_0x34
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r5, r0
+// 	  blt-      .loc_0x3C
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
+// 	.loc_0x34:
+// 	  li        r0, 0
+// 	  b         .loc_0x40
 
-	.loc_0x3C:
-	  li        r0, 0x1
+// 	.loc_0x3C:
+// 	  li        r0, 0x1
 
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
-}
+// 	.loc_0x40:
+// 	  rlwinm.   r0,r0,0,24,31
+// 	  beqlr-
+// 	  stw       r3, 0x8(r4)
+// 	  lwz       r0, 0x8(r3)
+// 	  lwz       r6, 0x4(r4)
+// 	  lwz       r5, 0x10(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r6, r5, r0
+// 	  lwz       r0, 0x4(r4)
+// 	  lwz       r5, 0x8(r3)
+// 	  lwz       r4, 0x14(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r5, r4, r0
+// 	  lwz       r4, 0x8(r3)
+// 	  addi      r0, r4, 0x1
+// 	  stw       r0, 0x8(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211E0C
  * Size:	000038
  */
-void exec__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+// void exec__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r4)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x28
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0xC(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x28:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211E44
  * Size:	000044
  */
-void onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRCQ28SysShape8KeyEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
+// void onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRCQ28SysShape8KeyEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x24(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211E88
  * Size:	000044
  */
-void platCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRQ24Game9PlatEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+// void platCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRQ24Game9PlatEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x2C(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211ECC
  * Size:	000044
  */
-void collisionCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRQ24Game9CollEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+// void collisionCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRQ24Game9CollEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x30(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211F10
  * Size:	000044
  */
-void bounceCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FPQ23Sys8Triangle()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
+// void bounceCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FPQ23Sys8Triangle()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x28(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211F54
  * Size:	000014
  */
-void isFlagAlive__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fi()
-{
-	/*
-	lwz      r3, 0x68(r3)
-	lbzx     r0, r3, r4
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+// void isFlagAlive__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fi()
+// {
+// 	/*
+// 	lwz      r3, 0x68(r3)
+// 	lbzx     r0, r3, r4
+// 	cntlzw   r0, r0
+// 	srwi     r3, r0, 5
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211F68
  * Size:	00002C
  */
-void getEnd__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getEnd__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211F94
  * Size:	00002C
  */
-void get__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void get__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211FC0
  * Size:	000038
  */
-void Iterator<Game::ItemWeed::Weed>::operator*()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Iterator<Game::ItemWeed::Weed>::operator*()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r4, r3
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 8(r3)
+// 	lwz      r4, 4(r4)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80211FF8
  * Size:	0000E4
  */
-void Iterator<Game::ItemWeed::Weed>::next()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80212038
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_802120C8
+// void Iterator<Game::ItemWeed::Weed>::next()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r0, 0xc(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80212038
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_802120C8
 
-lbl_80212038:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_802120AC
+// lbl_80212038:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_802120AC
 
-lbl_80212058:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802120C8
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+// lbl_80212058:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0xc(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_802120C8
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
 
-lbl_802120AC:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80212058
+// lbl_802120AC:
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80212058
 
-lbl_802120C8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_802120C8:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	802120DC
  * Size:	0000DC
  */
-void Iterator<Game::ItemWeed::Weed>::first()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80212118
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_802121A4
+// void Iterator<Game::ItemWeed::Weed>::first()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r0, 0xc(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80212118
+// 	lwz      r3, 8(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_802121A4
 
-lbl_80212118:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80212188
+// lbl_80212118:
+// 	lwz      r3, 8(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_80212188
 
-lbl_80212134:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802121A4
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+// lbl_80212134:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0xc(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_802121A4
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
 
-lbl_80212188:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80212134
+// lbl_80212188:
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80212134
 
-lbl_802121A4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_802121A4:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	802121B8
  * Size:	000028
  */
-void __sinit_itemWeed_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804BFBA0@ha
-	stw      r0, lbl_80515BD8@sda21(r13)
-	stfsu    f0, lbl_804BFBA0@l(r3)
-	stfs     f0, lbl_80515BDC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_itemWeed_cpp()
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804BFBA0@ha
+// 	stw      r0, lbl_80515BD8@sda21(r13)
+// 	stfsu    f0, lbl_804BFBA0@l(r3)
+// 	stfs     f0, lbl_80515BDC@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	802121E0
  * Size:	000008
  */
-void @32 @__dt__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void @32 @__dt__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "__dt__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	802121E8
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @resetMgr()
-{
-	/*
-	addi     r3, r3, -28
-	b        "resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @resetMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "resetMgr__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	802121F0
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doDirectDraw__36MonoObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	802121F8
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff"
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doSimulation(float)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSimulation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Ff"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212200
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doViewCalc()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doViewCalc__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212208
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doSetView(int)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSetView__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fi"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212210
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doEntry()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doEntry__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212218
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::ItemWeed::Weed>::@28 @doAnimation()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doAnimation__36MonoObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212220
  * Size:	000008
  */
-void ObjectMgr<Game::ItemWeed::Weed>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
-	*/
-}
+// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doDirectDraw__32ObjectMgr<Q34Game8ItemWeed4Weed>FR8Graphics"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212228
  * Size:	000008
  */
-void ObjectMgr<Game::ItemWeed::Weed>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff"
-	*/
-}
+// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doSimulation(float)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSimulation__32ObjectMgr<Q34Game8ItemWeed4Weed>Ff"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212230
  * Size:	000008
  */
-void ObjectMgr<Game::ItemWeed::Weed>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doViewCalc()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doViewCalc__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212238
  * Size:	000008
  */
-void ObjectMgr<Game::ItemWeed::Weed>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi"
-	*/
-}
+// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doSetView(int)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSetView__32ObjectMgr<Q34Game8ItemWeed4Weed>Fi"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212240
  * Size:	000008
  */
-void ObjectMgr<Game::ItemWeed::Weed>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doEntry()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doEntry__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212248
  * Size:	000008
  */
-void ObjectMgr<Game::ItemWeed::Weed>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void ObjectMgr<Game::ItemWeed::Weed>::@28 @doAnimation()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doAnimation__32ObjectMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212250
  * Size:	000008
  */
-void @32 @getEnd__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void @32 @getEnd__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212258
  * Size:	000008
  */
-void @32 @getStart__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
-	*/
-}
+// void @32 @getStart__Q24Game32TFlockMgr<Game::ItemWeed::Weed> Fv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212260
  * Size:	000008
  */
-void @32 @getNext__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-	*/
-}
+// void @32 @getNext__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212268
  * Size:	000008
  */
-void @32 @get__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
-	*/
-}
+// void @32 @get__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212270
  * Size:	000008
  */
-@32 @Game::ItemWeed::WeedMgr::~WeedMgr()
-{
-	/*
-	addi     r3, r3, -32
-	b        __dt__Q34Game8ItemWeed7WeedMgrFv
-	*/
-}
+// @32 @Game::ItemWeed::WeedMgr::~WeedMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        __dt__Q34Game8ItemWeed7WeedMgrFv
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212278
  * Size:	000008
  */
-void @376 @onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRCQ28SysShape8KeyEvent()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x178
-	  b         -0x438
-	*/
-}
+// void @376 @onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRCQ28SysShape8KeyEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x178
+// 	  b         -0x438
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80212280
  * Size:	000008
  */
-@48 @Game::ItemWeed::Mgr::~Mgr()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q34Game8ItemWeed3MgrFv
-	*/
-}
+// @48 @Game::ItemWeed::Mgr::~Mgr()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q34Game8ItemWeed3MgrFv
+// 	*/
+// }
+
+} // namespace Game

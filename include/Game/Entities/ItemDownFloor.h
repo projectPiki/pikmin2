@@ -152,7 +152,7 @@ struct Mgr : public TNodeItemMgr {
 	virtual BaseItem* doNew();                                            // _A0 (weak)
 	virtual ~Mgr();                                                       // _B8 (weak)
 	virtual char* getCaveName(int);                                       // _BC
-	virtual void getCaveID(char*);                                        // _C0
+	virtual int getCaveID(char*);                                         // _C0
 
 	void setupDownFloor(Item*);
 	void setupPlatform(Item*);

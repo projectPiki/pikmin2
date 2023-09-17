@@ -24,7 +24,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	{
 		for (int i = 0; i < mMax; i++) {
 			if (mOpenIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&mArray[i])->doAnimation();
+				mArray[i].doAnimation();
 			}
 		}
 	}
@@ -32,7 +32,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	{
 		for (int i = 0; i < mMax; i++) {
 			if (mOpenIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&mArray[i])->doEntry();
+				mArray[i].doEntry();
 			}
 		}
 	}
@@ -40,7 +40,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	{
 		for (int i = 0; i < mMax; i++) {
 			if (mOpenIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&mArray[i])->doSetView(viewportNumber);
+				mArray[i].doSetView(viewportNumber);
 			}
 		}
 	}
@@ -48,7 +48,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	{
 		for (int i = 0; i < mMax; i++) {
 			if (mOpenIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&mArray[i])->doViewCalc();
+				mArray[i].doViewCalc();
 			}
 		}
 	}
@@ -56,7 +56,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	{
 		for (int i = 0; i < mMax; i++) {
 			if (mOpenIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&mArray[i])->doSimulation(p1);
+				mArray[i].doSimulation(p1);
 			}
 		}
 	}
@@ -64,7 +64,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	{
 		for (int i = 0; i < mMax; i++) {
 			if (mOpenIds[i] == false) {
-				reinterpret_cast<GenericObject*>(&mArray[i])->doDirectDraw(gfx);
+				mArray[i].doDirectDraw(gfx);
 			}
 		}
 	}

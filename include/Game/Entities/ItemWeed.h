@@ -18,6 +18,10 @@ namespace ItemWeed {
 struct Item;
 struct WeedMgr;
 
+enum cWeedType {};
+
+enum cState { WEEDSTATE_Wait = 0 };
+
 struct InitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
 
@@ -44,7 +48,10 @@ struct State : public ItemState<Item> {
 };
 
 struct WaitState : public State {
-	// probably needs an inline ctor
+	inline WaitState()
+	    : State(WEEDSTATE_Wait)
+	{
+	}
 
 	virtual void init(Item*, StateArg*); // _08
 	virtual void exec(Item*);            // _0C
@@ -52,6 +59,7 @@ struct WaitState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C;
 };
 
 struct Item : public FSMItem<Item, FSM, State> {
@@ -62,21 +70,24 @@ struct Item : public FSMItem<Item, FSM, State> {
 		Matrixf* mMatrix; // _04
 	};
 
+	Item(); // unused/inlined
+
 	inline Item(int objTypeID) // probably
 	    : FSMItem(objTypeID)
 	{
 	}
 
-	virtual void onInit(CreatureInitArg*);                  // _30
+	virtual void onInit(CreatureInitArg* initArg);          // _30
 	virtual BaseFlockMgr* getFlockMgr();                    // _90 (weak)
 	virtual bool isCollisionFlick();                        // _B0 (weak)
 	virtual bool ignoreAtari(Creature* toIgnore);           // _190
+	virtual char* getCreatureName();                        // _1A8 (weak)
 	virtual void makeTrMatrix();                            // _1C4 (weak)
 	virtual void doAI();                                    // _1C8
 	virtual bool interactFlockAttack(InteractFlockAttack&); // _1EC
 	virtual void updateBoundSphere();                       // _210
 	virtual void onSetPosition();                           // _21C
-	virtual void doSimpleDraw(Viewport*);                   // _224
+	virtual void doSimpleDraw(Viewport* viewport);          // _224
 
 	void setBoidTimer();
 
@@ -84,23 +95,27 @@ struct Item : public FSMItem<Item, FSM, State> {
 	// _00-_1E0 = FSMItem
 	DummyShape mDummyShape; // _1E0
 	WeedMgr* mFlockMgr;     // _1E8
+	u32 _1EC;               // _1EC
 };
 
 struct Mgr : public TNodeItemMgr {
 	Mgr();
 
-	virtual void doSimpleDraw(Viewport*);                                 // _20
-	virtual void onLoadResources();                                       // _48
-	virtual u32 generatorGetID();                                         // _58 (weak)
-	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
-	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
-	virtual u32 generatorLocalVersion();                                  // _68 (weak)
-	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual BaseItem* doNew();                                            // _A0 (weak)
-	virtual ~Mgr();                                                       // _B8 (weak)
-	virtual char* getCaveName(int);                                       // _BC
-	virtual void getCaveID(char*);                                        // _C0
+	virtual void doSimpleDraw(Viewport* viewport);                                    // _20
+	virtual void onLoadResources();                                                   // _48
+	virtual u32 generatorGetID();                                                     // _58 (weak)
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*);             // _5C
+	virtual void generatorWrite(Stream& output, GenItemParm* genItemParm);            // _60
+	virtual void generatorRead(Stream& input, GenItemParm* genItemParm, u32 version); // _64
+	virtual u32 generatorLocalVersion();                                              // _68 (weak)
+	virtual GenItemParm* generatorNewItemParm();                                      // _70
+	virtual BaseItem* doNew();                                                        // _A0 (weak)
+	virtual ~Mgr();                                                                   // _B8 (weak)
+	virtual char* getCaveName(int);                                                   // _BC
+	virtual int getCaveID(char*);                                                     // _C0
+
+	// unused/inlined:
+	Item* birth();
 
 	// _00      = VTBL
 	// _00-_88  = TNodeItemMgr
@@ -113,18 +128,33 @@ struct Weed : public TFlock {
 	virtual bool isWeed();     // _10 (weak)
 	virtual bool damaged(f32); // _1C
 
-	// _00-_10 = TFlock
-	// _0C     = VTBL
-	Matrixf _10;  // _10
-	u8 _40;       // _40
+	// unused/inlined:
+	void init(ItemWeed::WeedMgr*, Vector3f&);
+	void setPosition(Vector3f&);
+	void update() {};
+
+	inline void doAnimation() { }
+	inline void doEntry() { }
+	inline void doSetView(int viewportNumber) { }
+	inline void doViewCalc() { }
+	inline void doSimulation(float constraint) { }
+	inline void doDirectDraw(Graphics& gfx) { }
+
+	// _00-_44 = TFlock
 	Vector3f _44; // _44
-	u32 _50;      // _50
+	WeedMgr* _50; // _50
 };
 
 struct WeedMgr : public TFlockMgr<Weed> {
+	WeedMgr(int count); // unused/inlined
+
 	virtual void do_update();             // _1C
 	virtual void do_update_boundSphere(); // _20
 	virtual ~WeedMgr();                   // _6C (weak)
+
+	// unused/inlined:
+	void init(Sys::Sphere&, cWeedType);
+	void createWeeds(cWeedType);
 
 	// _00     = VTBL
 	// _00-_6C = TFlockMgr
@@ -136,6 +166,11 @@ extern Mgr* mgr;
 } // namespace Game
 
 struct GenWeedParm : public Game::GenItemParm {
+	inline GenWeedParm()
+	{
+		_08 = 50;
+		_04 = 0;
+	}
 
 	// _00     = VTBL
 	s16 _04; // _04
