@@ -1459,7 +1459,7 @@ LIBS = [
             "plugProjectEbisawaU/particleMgr",
             "plugProjectEbisawaU/ebiP2Title",
             "plugProjectEbisawaU/ebiP2TitleUnit",
-            "plugProjectEbisawaU/ebiUtility",
+            ["plugProjectEbisawaU/ebiUtility", True],
             ["plugProjectEbisawaU/ebiP2TitleCamera", True],
             ["plugProjectEbisawaU/ebiP2TitleLight", True],
             "plugProjectEbisawaU/ebiScreenMemoryCard",

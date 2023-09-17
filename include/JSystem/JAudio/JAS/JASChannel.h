@@ -12,7 +12,8 @@ struct JASDSPChannel;
 struct JASChannel : JSULink<JASChannel>,
                     JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded> {
 	typedef void Callback(u32, JASChannel*, JASDsp::TChannel*, void*);
-	struct EffectOscParam { };
+	struct EffectOscParam {
+	};
 	struct PanVector {
 		f32 x;
 		f32 y;

@@ -8,15 +8,16 @@ namespace ebi {
  * Address:	803C1A3C
  * Size:	000060
  */
-void EUTPadInterface_countNum::init(Controller* controller, long min, long max, long* valueptr, enumMode mode, f32 arg5, f32 arg6)
+void EUTPadInterface_countNum::init(Controller* controller, s32 min, s32 max, s32* selValue, enumMode mode, f32 timeFactor1,
+                                    f32 timeFactor2)
 {
 	mController  = controller;
 	mMinSel      = min;
 	mMaxSel      = max;
-	mSelIndex    = valueptr;
+	mSelIndex    = selValue;
 	mMode        = mode;
-	mTimeFactor1 = arg5;
-	mTimeFactor2 = arg6;
+	mTimeFactor1 = timeFactor1;
+	mTimeFactor2 = timeFactor2;
 	mCounter     = 0;
 	_08          = 0;
 
@@ -34,7 +35,6 @@ void EUTPadInterface_countNum::init(Controller* controller, long min, long max, 
  * Address:	803C1A9C
  * Size:	000304
  */
-// TODO: https://decomp.me/scratch/zHh5R
 void EUTPadInterface_countNum::update()
 {
 	if (mCounter) {
@@ -47,20 +47,21 @@ void EUTPadInterface_countNum::update()
 
 	switch (mMode) {
 	case MODE_LEFTRIGHT:
-		isForwards  = (mController->getButton() & Controller::PRESS_DPAD_LEFT) || (mController->mMStick.mXPos < -0.5f);
-		isBackwards = (mController->getButton() & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos > 0.5f);
+		isForwards  = mController->isMoveLeft();
+		isBackwards = mController->isMoveRight();
 		break;
+
 	case MODE_RIGHTLEFT:
-		isForwards  = (mController->getButton() & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos > 0.5f);
-		isBackwards = (mController->getButton() & Controller::PRESS_DPAD_RIGHT) || (mController->mMStick.mXPos < -0.5f);
+		isForwards  = mController->isMoveRight();
+		isBackwards = mController->isMoveLeft();
 		break;
 	case MODE_UPDOWN:
-		isForwards  = (mController->getButton() & Controller::PRESS_DPAD_UP) || (mController->mMStick.mYPos > 0.5f);
-		isBackwards = (mController->getButton() & Controller::PRESS_DPAD_DOWN) || (mController->mMStick.mYPos < -0.5f);
+		isForwards  = mController->isMoveUp();
+		isBackwards = mController->isMoveDown();
 		break;
 	case MODE_DOWNUP:
-		isForwards  = (mController->getButton() & Controller::PRESS_DPAD_DOWN) || (mController->mMStick.mYPos < -0.5f);
-		isBackwards = (mController->getButton() & Controller::PRESS_DPAD_UP) || (mController->mMStick.mYPos > 0.5f);
+		isForwards  = mController->isMoveDown();
+		isBackwards = mController->isMoveUp();
 		break;
 	}
 
@@ -112,12 +113,12 @@ void EUTPadInterface_countNum::update()
  * Address:	803C1DA0
  * Size:	000114
  */
-void EUTColor_complement(JUtility::TColor& color1, JUtility::TColor& color2, f32 f1, f32 f2, JUtility::TColor* color3)
+void EUTColor_complement(JUtility::TColor& color1, JUtility::TColor& color2, f32 color1Weight, f32 color2Weight, JUtility::TColor* outColor)
 {
-	color3->r = f1 * color1.r + f2 * color2.r;
-	color3->g = f1 * color1.g + f2 * color2.g;
-	color3->b = f1 * color1.b + f2 * color2.b;
-	color3->a = f1 * color1.a + f2 * color2.a;
+	outColor->r = color1Weight * color1.r + color2Weight * color2.r;
+	outColor->g = color1Weight * color1.g + color2Weight * color2.g;
+	outColor->b = color1Weight * color1.b + color2Weight * color2.b;
+	outColor->a = color1Weight * color1.a + color2Weight * color2.a;
 }
 
 /*

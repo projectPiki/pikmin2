@@ -21,7 +21,8 @@ struct SeqUpdateData;
 struct SoundInfo;
 
 namespace SequenceMgr {
-struct CustomHeapInfo { };
+struct CustomHeapInfo {
+};
 
 typedef JAInter::SequenceMgr::CustomHeapInfo (*CustomHeapCallback)(unsigned long, unsigned short, JAISequence*);
 
@@ -128,7 +129,8 @@ struct DummyObjectMgr {
 	static DummyObject* deadObjectObject;
 };
 
-struct DummyVec { };
+struct DummyVec {
+};
 
 struct HeapBlock {
 	HeapBlock();

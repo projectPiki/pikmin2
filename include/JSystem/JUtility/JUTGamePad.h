@@ -200,6 +200,39 @@ struct JUTGamePad : public JKRDisposer {
 	inline bool isButtonDown(u32 buttons) { return mButton.mButtonDown & buttons; }
 	inline bool isButton(u32 buttons) { return mButton.mButton & buttons; }
 
+	inline bool isMoveLeft()
+	{
+		if (isButton(PRESS_DPAD_LEFT) || mMStick.mXPos < -0.5f) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	inline bool isMoveRight()
+	{
+		if (isButton(PRESS_DPAD_RIGHT) || mMStick.mXPos > 0.5f) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	inline bool isMoveUp()
+	{
+		if (isButton(PRESS_DPAD_UP) || mMStick.mYPos > 0.5f) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	inline bool isMoveDown()
+	{
+		if (isButton(PRESS_DPAD_DOWN) || mMStick.mYPos < -0.5f) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	inline u32 getButton() const { return mButton.mButton; }
 	inline u32 getButtonDown() const { return mButton.mButtonDown; }
 	inline f32 getMainStickX() const { return mMStick.mXPos; }

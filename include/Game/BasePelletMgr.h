@@ -16,7 +16,8 @@ struct GenPelletParm;
 
 // BasePelletMgr inherits something virtual, but I cannot work out what
 // it seems like all these BaseXMgrs are inheriting something virtual....
-struct _BasePelletMgrParent2 { };
+struct _BasePelletMgrParent2 {
+};
 
 struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrParent2 {
 	BasePelletMgr(PelletList::cKind);
