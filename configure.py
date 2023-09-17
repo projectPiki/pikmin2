@@ -804,7 +804,7 @@ LIBS = [
         "host": False,
         "objects": [
             "Dolphin/thp/THPDec",
-            "Dolphin/thp/THPAudio",
+            ["Dolphin/thp/THPAudio", True],
         ],
     },
     {

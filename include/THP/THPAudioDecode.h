@@ -2,6 +2,7 @@
 #define _THP_THPAUDIODECODE_H
 
 #include "Dolphin/os.h"
+#include "THP/THPAudio.h"
 
 static void* AudioDecoderForOnMemory(void* bufPtr);
 static void* AudioDecoder(void* _);
@@ -10,7 +11,6 @@ static void AudioDecode(THPReadBuffer* readBuffer);
 #ifdef __cplusplus
 extern "C" {
 #endif
-int THPAudioDecode(s16* buffer, u8* frame, s32 flags); // TODO: determine args and name properly
 
 BOOL CreateAudioDecodeThread(OSPriority prio, void* param);
 void AudioDecodeThreadStart();

@@ -126,7 +126,6 @@ void THPPlayer::load()
 #elif VERNUM == 2 // usa
 		JUT_PANICLINE(247, "THPPlayerInit failure.");
 #endif
-
 	}
 
 	sys->dvdLoadUseCallBack(&mThreadCommand, &_C8);
@@ -258,7 +257,7 @@ void THPPlayer::init(JKRHeap* heap)
 #elif VERNUM == 2 // usa
 	P2ASSERTLINE(407, !mHeap);
 #endif
-	
+
 	JKRHeap* currHeap = JKRGetCurrentHeap();
 	heap              = (!heap) ? currHeap : heap;
 	heap->becomeCurrentHeap();

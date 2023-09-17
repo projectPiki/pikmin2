@@ -1,8 +1,9 @@
 THP_FILES:=\
 	$(BUILD_DIR)/asm/Dolphin/thp/THPDec.o\
-	$(BUILD_DIR)/asm/Dolphin/thp/THPAudio.o\
+	$(BUILD_DIR)/src/Dolphin/thp/THPAudio.o\
 
 $(THP_FILES): CFLAGS += -common off
+$(THP_FILES): MWCC_VERSION := 1.2.5n
 
 DEPENDS += $(THP_FILES:.o=.d)
 
