@@ -22,7 +22,9 @@ static const int unusedArray[] = { 0, 0, 0 };
 static const char name[]       = "moviePlayer";
 
 namespace Game {
-MovieList* movieList;
+
+JKRArchive* MoviePlayer::mArchive;
+MoviePlayer* moviePlayer;
 
 /*
  * --INFO--
@@ -157,7 +159,7 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 		// if a movie is already playing, put the new cutscene in the queue instead
 		MovieContext* context = getNewContext();
 		if (!context) {
-			JUT_PANICLINE(560, "******* ★キューにはいりきらんよ?！！\n"); // "******* ★Don't miss the queue! !"
+			JUT_PANICLINE(560, "******* ★キューにはいりきらんよ～！！\n"); // "******* ★Don't miss the queue! !"
 			return MOVIEPLAY_QUEUEFAIL;
 		} else {
 			setContext(context, config, arg);
@@ -183,19 +185,19 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 		mOffset                = nullptr;
 		bool test              = false;
 		MovieConfig* posConfig = mCurrentConfig;
-		u8 flag                = posConfig->mPositionFlag;
-		if (!(flag & 1)) {
-			test = (flag & 4) || (flag & 8);
+		u8 posFlag             = mCurrentConfig->mPositionFlag;
+		if (!(posFlag & 1)) {
+			test = (posFlag & 4) || (posFlag & 8);
 			if (test) {
 				mCameraPosition = arg.mOrigin;
-				mCameraAngle    = arg.mAngle * 57.29578f;
+				mCameraAngle    = arg.mAngle * 57.295776f;
 				if (mCurrentConfig->mPositionFlag & 8) {
 					JUT_ASSERTLINE(609, mapMgr, "The Bikkuri\n");
-					mCameraAngle = mapMgr->getBestAngle(mCameraPosition, 250.0f, 0.436332f) * 57.295776f;
+					mCameraAngle = 57.295776f * mapMgr->getBestAngle(mCameraPosition, 250.0f, 0.43633235f);
 				}
-			} else if (flag & 16) {
+			} else if (posFlag & 16) {
 				mCameraPosition = arg.mOrigin;
-				mCameraAngle    = arg.mAngle * 57.29578f;
+				mCameraAngle    = arg.mAngle * 57.295776f;
 				mOffset         = arg.mSoundPosition;
 			} else {
 				mCameraPosition = posConfig->mOrigin;
@@ -212,7 +214,7 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 		mStreamID   = arg.mStreamID;
 
 		Screen::gGame2DMgr->mScreenMgr->mInDemo = true;
-		if (!(u8)flag && mCurrentConfig->mDrawType & 1) {
+		if (!flag && mCurrentConfig->mDrawType & 1) {
 			WipeBase* wipe = gameSystem->mSection->mDisplayWiper;
 			if (wipe && wipe->isBlack()) {
 				gameSystem->startFadeblack();
@@ -316,17 +318,7 @@ void MoviePlayer::playSuspended()
  * Address:	8042CF88
  * Size:	0000AC
  */
-void MoviePlayer::clearSuspendedDemo()
-{
-	mStoreContextActive.clearRelations();
-	mStoreContextInactive.clearRelations();
-	for (int i = 0; i < mContextsCount; i++) {
-		MovieContext* context = &mContexts[i];
-		context->clearRelations();
-		mStoreContextInactive.add(context);
-	}
-	mActiveContextNum = 0;
-}
+void MoviePlayer::clearSuspendedDemo() { clearContexts(); }
 
 /*
  * --INFO--
@@ -371,7 +363,29 @@ void MoviePlayer::hasSuspendedContext()
  */
 void MoviePlayer::getSuspendedContext()
 {
-	// UNUSED FUNCTION
+	// MovieContext* context = mStoreContextActive.getChild();
+	// if (context) {
+	// 	context->del();
+	// 	mStoreContextInactive.add(context);
+	// 	mActiveContextNum--;
+	// 	mTargetNavi   = context->mNavi;
+	// 	mActingCamera = context->mCamera;
+	// 	mTargetObject = context->mTargetObject;
+	// 	u8 flag       = play(context->mConfig, context->mArg, true);
+	// 	switch (flag) {
+	// 	case MOVIEPLAY_SUCCESS:
+	// 		return true;
+	// 	case MOVIEPLAY_NOCONFIG:
+	// 		return false;
+	// 	case MOVIEPLAY_INQUEUE:
+	// 		return true;
+	// 	case MOVIEPLAY_QUEUEFAIL:
+	// 		JUT_PANICLINE(767, "[QUE_FAILED] %s\n", context->mArg.mMovieName);
+	// 		return false;
+	// 	}
+	// } else {
+	// 	JUT_PANICLINE(772, " キューになにもないぞーー(T^T)\n"); // "there's nothing in the queue (T^T)"
+	// }
 }
 
 /*

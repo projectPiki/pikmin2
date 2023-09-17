@@ -30,15 +30,11 @@ struct ObjectSystem : public JStage::TSystem, public ObjectBase {
 	ObjectBase* findObject(const char*, JStage::TEObject) const;
 	Creature* findCreature(const char*) const;
 
-	// _00 = VTABLE (JStage::TSystem)
-	// _04 = VTABLE2 (ObjectBase)
-	MoviePlayer* mMoviePlayer;                    // _08
-	char* mName;                                  // _0C
-	u32 mFlags;                                   // _10
-	u32 _14;                                      // _14
-	void* _18;                                    // _18
-	u32 _1C;                                      // _1C
+	// _00     = VTABLE (JStage::TSystem)
+	// _04     = VTABLE2 (ObjectBase)
+	// _04-_20 = ObjectBase
 	JGadget::TList_pointer_void mListPointerVoid; // _20
+	u8 _24[0xC];                                  // _24, unknown
 };
 
 } // namespace P2JST

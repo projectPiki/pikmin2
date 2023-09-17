@@ -298,6 +298,7 @@ struct MoviePlayer : public JKRDisposer {
 	static JKRArchive* mArchive;
 };
 
+extern MovieList* movieList;
 extern MoviePlayer* moviePlayer;
 } // namespace Game
 
