@@ -18,13 +18,13 @@ PlayCommonData::PlayCommonData()
     : _00(0)
     , mChallengeData()
 {
-	_04 = new Highscore*[16];
-	_08 = new Highscore*[16];
+	mHiScoreClear    = new Highscore*[16];
+	mHiScoreComplete = new Highscore*[16];
 	for (int i = 0; i < 0x10; i++) {
-		_04[i] = new Lowscore();
-		_08[i] = new Lowscore();
-		_04[i]->allocate(3);
-		_08[i]->allocate(3);
+		mHiScoreClear[i]    = new Lowscore();
+		mHiScoreComplete[i] = new Lowscore();
+		mHiScoreClear[i]->allocate(3);
+		mHiScoreComplete[i]->allocate(3);
 	}
 	reset();
 }
@@ -39,8 +39,8 @@ void PlayCommonData::reset()
 	_00 = 0;
 	mChallengeData.reset();
 	for (int i = 0; i < 0x10; i++) {
-		_04[i]->clear();
-		_08[i]->clear();
+		mHiScoreClear[i]->clear();
+		mHiScoreComplete[i]->clear();
 	}
 }
 
@@ -72,8 +72,8 @@ void PlayCommonData::write(Stream& output)
 	output.writeInt(2);
 	output.writeBytes(&_00, 1);
 	for (int i = 0; i < 0x10; i++) {
-		_04[i]->write(output);
-		_08[i]->write(output);
+		mHiScoreClear[i]->write(output);
+		mHiScoreComplete[i]->write(output);
 	}
 	mChallengeData.write(output);
 }
@@ -91,14 +91,14 @@ void PlayCommonData::read(Stream& stream)
 	_00         = fileByte;
 	if (fileInt >= 2) {
 		for (int i = 0; i < 0x10; i++) {
-			_04[i]->read(stream);
-			_08[i]->read(stream);
+			mHiScoreClear[i]->read(stream);
+			mHiScoreComplete[i]->read(stream);
 		}
 	} else {
 		if (fileInt <= 1) {
 			for (int i = 0; i < 0xf; i++) {
-				_04[i]->read(stream);
-				_08[i]->read(stream);
+				mHiScoreClear[i]->read(stream);
+				mHiScoreComplete[i]->read(stream);
 			}
 		}
 	}
@@ -117,7 +117,7 @@ Highscore* PlayCommonData::getHighscore_clear(int index)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(155, isValidIndex);
-	return _04[index];
+	return mHiScoreClear[index];
 }
 
 /*
@@ -132,7 +132,7 @@ Highscore* PlayCommonData::getHighscore_complete(int index)
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(162, isValidIndex);
-	return _08[index];
+	return mHiScoreComplete[index];
 }
 
 /*
@@ -142,7 +142,7 @@ Highscore* PlayCommonData::getHighscore_complete(int index)
  */
 void PlayCommonData::entryHighscores_clear(int newTotal, int* totals, int* scores)
 {
-	entryHighscores_common(_04, newTotal, totals, scores);
+	entryHighscores_common(mHiScoreClear, newTotal, totals, scores);
 }
 
 /*
@@ -152,7 +152,7 @@ void PlayCommonData::entryHighscores_clear(int newTotal, int* totals, int* score
  */
 void PlayCommonData::entryHighscores_complete(int newTotal, int* totals, int* scores)
 {
-	entryHighscores_common(_08, newTotal, totals, scores);
+	entryHighscores_common(mHiScoreComplete, newTotal, totals, scores);
 }
 
 /*

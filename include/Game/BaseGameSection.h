@@ -68,7 +68,7 @@ struct BaseGameSection : public BaseHIOSection {
 	static u8 sOptDraw;
 	struct ZoomCamera : public LookAtCamera {
 		virtual ~ZoomCamera() { } // _08 (weak)
-		virtual void doUpdate();  // _78
+		virtual bool doUpdate();  // _78
 
 		void init(f32, f32, Vector3f&, Controller*);
 		void makeLookAt();

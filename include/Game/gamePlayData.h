@@ -410,6 +410,12 @@ struct PlayData : public CNode {
 		return stream.getStreamDistance(streamStartPos) + generatorCache->getHeapUsedSize();
 	}
 
+	inline void setSaveFlag(int a)
+	{
+		mLoadType = a;
+		_1C       = 0;
+	}
+
 	bool _18;                               // _18
 	u8 mLoadType;                           // _19, see SaveFlags enum
 	u32 _1C;                                // _1C

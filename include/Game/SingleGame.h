@@ -224,28 +224,47 @@ struct EndingArg : public StateArg {
 struct EndingState : public State {
 	EndingState();
 
-	virtual void init(SingleGameSection*, StateArg*); // _08
-	virtual void exec(SingleGameSection*);            // _0C
-	virtual void cleanup(SingleGameSection*);         // _10
-	virtual void draw(SingleGameSection*, Graphics&); // _20
-	virtual void do_dvdload();                        // _48 (weak)
+	enum EndingFlag {
+		Ending_SkipMovie  = 1, // unset = play thp file, set = skip thp file
+		Ending_IsComplete = 2  // unset = pay debt, set = all treasures
+	};
+
+	enum EndingStatus {
+		EndingStatus_InitLoad                 = 0,
+		EndingStatus_LoadStart                = 1,
+		EndingStatus_LoadFirstMovie           = 2,
+		EndingStatus_PlayMoviePayDebt         = 3,
+		EndingStatus_PlayMovieCredits         = 4,
+		EndingStatus_ShowFinalResultsDebt     = 5,
+		EndingStatus_ShowContinueMesg         = 6,
+		EndingStatus_PlayMoviePostDebtStart   = 7,
+		EndingStatus_PlayMovieAllTreasure     = 8,
+		EndingStatus_Unused9                  = 9, // seems to be a copy of state 8? never reached normally
+		EndingStatus_ShowFinalResultsComplete = 10
+	};
+
+	virtual void init(SingleGameSection* game, StateArg* arg); // _08
+	virtual void exec(SingleGameSection* game);                // _0C
+	virtual void cleanup(SingleGameSection* game);             // _10
+	virtual void draw(SingleGameSection* game, Graphics& gfx); // _20
+	virtual void do_dvdload();                                 // _48 (weak)
 
 	void dvdload();
 
 	// Unused/inlined:
-	void initNext(SingleGameSection*);
+	void initNext(SingleGameSection* game);
 
 	// _00     = VTBL
 	// _00-_10 = State
-	u8 _10;                            // _10
-	u8 _11;                            // _11
-	JKRHeap* _14;                      // _14
-	JKRHeap* _18;                      // _18
-	THPPlayer* _1C;                    // _1C
-	u8 _20;                            // _20
-	Delegate<EndingState>* _24;        // _24
-	Controller* _28;                   // _28
-	kh::Screen::TotalResultData** _2C; // _2C
+	u8 mFlag;                                 // _10
+	u8 mStatus;                               // _11
+	JKRHeap* mMainHeap;                       // _14
+	JKRHeap* mBackupHeap;                     // _18
+	THPPlayer* mTHPPlayer;                    // _1C
+	u8 mThpState;                             // _20
+	Delegate<EndingState>* mDelegate;         // _24
+	Controller* mController;                  // _28
+	kh::Screen::TotalResultData* mResultData; // _2C
 };
 
 /**

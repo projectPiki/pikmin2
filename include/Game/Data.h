@@ -117,8 +117,8 @@ struct PlayCommonData {
 	void challenge_setKunsho(int);
 
 	u8 _00;                               // _00
-	Highscore** _04;                      // _04
-	Highscore** _08;                      // _08
+	Highscore** mHiScoreClear;            // _04 (for repay debt)
+	Highscore** mHiScoreComplete;         // _08 (for all treasures)
 	PlayChallengeGameData mChallengeData; // _0C
 };
 

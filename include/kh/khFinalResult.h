@@ -149,7 +149,7 @@ struct SceneFinalResult : public ::Screen::SceneBase {
 	virtual void doCreateObj(JKRArchive*) { }                            // _20 (weak)
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);              // _24
 
-	TotalResultData** createDispMember(const int*, const int*, Game::Highscore**);
+	static TotalResultData* createDispMember(const int*, const int*, Game::Highscore**);
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase

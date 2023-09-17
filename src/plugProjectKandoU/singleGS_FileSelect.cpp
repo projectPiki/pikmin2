@@ -138,7 +138,7 @@ void FileState::startGame(SingleGameSection* game)
 
 	switch (saveFlag) {
 	case STORYSAVE_NewFile: {
-		MovieArg arg(THPPlayer::OPENING_1);
+		MovieArg arg(THPPlayer::OPENING_GAMESTART);
 		transit(game, SGS_Movie, &arg);
 		break;
 	}

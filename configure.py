@@ -1001,7 +1001,7 @@ LIBS = [
             ["plugProjectKandoU/gameDeathCount", True],
             "plugProjectKandoU/aiBore",
             ["plugProjectKandoU/mapPartsView", True],
-            "plugProjectKandoU/singleGS_Ending",
+            ["plugProjectKandoU/singleGS_Ending", True],
             ["plugProjectKandoU/gameIconTexture", True],
             ["plugProjectKandoU/gameTekiStat", True],
             ["plugProjectKandoU/gameHighscore", True],

@@ -213,7 +213,7 @@ struct VibrationParms : public Parameters {
 };
 
 struct PlayCamera : public LookAtCamera {
-	PlayCamera(Navi*);
+	PlayCamera(Navi* target);
 
 	virtual ~PlayCamera() { }                                         // _08 (weak)
 	virtual Vector3f getLookAtPosition_() { return mLookAtPosition; } // _58 (weak)
@@ -223,16 +223,16 @@ struct PlayCamera : public LookAtCamera {
 	virtual void startVibration(int) { }                              // _7C (weak)
 	virtual void init();                                              // _80
 
-	void setCameraParms(CameraParms*);
-	void setVibrationParms(VibrationParms*);
-	void setCameraAngle(f32);
-	void getCameraData(CameraData&);
-	void setCameraData(CameraData&);
-	void changePlayerMode(bool);
+	void setCameraParms(CameraParms* parms);
+	void setVibrationParms(VibrationParms* parms);
+	void setCameraAngle(f32 angle);
+	void getCameraData(CameraData& data);
+	void setCameraData(CameraData& data);
+	void changePlayerMode(bool updateDir);
 	void noUpdate();
 	bool isVibration();
-	void startVibration(int, f32);
-	void startDemoCamera(int);
+	void startVibration(int type, f32 strength);
+	void startDemoCamera(int type);
 	void finishDemoCamera();
 	u32 updateCameraMode();
 	void startZoomCamera();
@@ -243,9 +243,9 @@ struct PlayCamera : public LookAtCamera {
 	void setSmoothThetaSpeed();
 	void changeTargetTheta();
 	void changeTargetAtPosition();
-	void updateParms(int);
-	void updateVibration(int);
-	void otherVibFinished(int);
+	void updateParms(int flag);
+	void updateVibration(int id);
+	void otherVibFinished(int id);
 	bool isModCameraFinished();
 	void setCollisionCameraTargetPhi(int);
 	void getCollisionCameraTargetPhi(f32, f32);
@@ -296,24 +296,24 @@ struct CameraMgr : public CNode {
 	// virtual void _10() = 0;       // _10
 
 	void loadResource();
-	void setViewport(Viewport*, int);
-	void init(int);
-	void setCameraAngle(f32, int);
+	void setViewport(Viewport* vp, int id);
+	void init(int state);
+	void setCameraAngle(f32 angle, int id);
 	void update();
-	void startVibration(int, Vector3f&, int);
-	void startVibration(int, int);
-	void controllerLock(int);
-	void controllerUnLock(int);
-	void startDemoCamera(int, int);
-	void finishDemoCamera(int);
-	void changePlayerMode(int, IDelegate1<CameraArg*>*);
+	void startVibration(int type, Vector3f& pos, int camID);
+	void startVibration(int type, int camID);
+	void controllerLock(int camID);
+	void controllerUnLock(int camID);
+	void startDemoCamera(int camID, int type);
+	void finishDemoCamera(int camID);
+	void changePlayerMode(int state, IDelegate1<CameraArg*>* delegate);
 	bool isChangePlayer();
-	void setZukanCamera(LookAtCamera*);
+	void setZukanCamera(LookAtCamera* cam);
 	bool isCameraUpdateOn();
-	bool isStartAndEnd(int*, int);
-	bool isVibrationStart(int, int);
-	void readCameraParms(char*);
-	void readParameter(Stream&);
+	bool isStartAndEnd(int* data, int type);
+	bool isVibrationStart(int type, int camID);
+	void readCameraParms(char* path);
+	void readParameter(Stream& stream);
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
