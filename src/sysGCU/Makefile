@@ -57,7 +57,7 @@ GC_FILES:=\
 	$(BUILD_DIR)/src/sysGCU/THPPlayer.o\
 	$(BUILD_DIR)/src/sysGCU/THPRead.o\
 	$(BUILD_DIR)/src/sysGCU/THPVideoDecode.o\
-	$(BUILD_DIR)/asm/sysGCU/pikmin2THPPlayer.o\
+	$(BUILD_DIR)/src/sysGCU/pikmin2THPPlayer.o\
 	$(BUILD_DIR)/src/sysGCU/captionMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/captionMessage.o\
 	$(BUILD_DIR)/src/sysGCU/screenScene.o\

@@ -92,7 +92,7 @@ static void audioQuitWithMSound() { JASDriver::registerMixCallback(nullptr, MixM
  * Address:	8044DEE0
  * Size:	0000D8
  */
-BOOL THPPlayerInit()
+BOOL THPPlayerInit(int _)
 {
 	if (Initialized == FALSE) {
 		memset(&ActivePlayer, 0, sizeof(THPPlayer));
@@ -705,14 +705,14 @@ static BOOL ProperTimingForGettingNextFrame()
  * Address:	8044EFC8
  * Size:	0000D8
  */
-int THPPlayerDrawCurrentFrame(GXRenderModeObj* rmode, int x, int y, int z, int w)
+int THPPlayerDrawCurrentFrame(GXRenderModeObj* obj, int x, int y, int polyWidth, int polyHeight)
 {
 	int frame;
 	if (ActivePlayer.mIsOpen && ActivePlayer.mState != 0 && ActivePlayer.mDispTextureSet) {
-		THPGXYuv2RgbSetup(rmode);
+		THPGXYuv2RgbSetup(obj);
 		THPGXYuv2RgbDraw((u32*)ActivePlayer.mDispTextureSet->mYTexture, (u32*)ActivePlayer.mDispTextureSet->mUTexture,
 		                 (u32*)ActivePlayer.mDispTextureSet->mVTexture, x, y, ActivePlayer.mVideoInfo.mXSize,
-		                 ActivePlayer.mVideoInfo.mYSize, z, w);
+		                 ActivePlayer.mVideoInfo.mYSize, polyWidth, polyHeight);
 		THPGXRestore();
 		frame = (ActivePlayer.mDispTextureSet->mFrameNumber + ActivePlayer.mInitReadFrame) % ActivePlayer.mHeader.mNumFrames;
 	} else {

@@ -85,21 +85,21 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 	_20 = new THPPlayer;
 	_20->init(nullptr);
 	_24 = false;
-	_20->load(THPPlayer::OPENING_GAMESTART);
+	_20->load(THPPlayer::OPENING_GameStart);
 
 	P2ASSERTLINE(223, arg);
 	_10 = static_cast<MovieArg*>(arg)->mMovieIndex;
 	switch (_10) {
-	case THPPlayer::OPENING_GAMESTART:
+	case THPPlayer::OPENING_GameStart:
 		dummyPlayer.initMsgs(opening_strings);
 		break;
-	case THPPlayer::OPENING_POSTDEBTSTART:
+	case THPPlayer::OPENING_PostDebtStart:
 		dummyPlayer.initMsgs(ending_strings);
 		break;
-	case THPPlayer::ENDING_PAYDEBT:
+	case THPPlayer::ENDING_PayDebt:
 		dummyPlayer.initMsgs(endingcomplete_strings);
 		break;
-	case THPPlayer::ENDING_ALLTREASURE:
+	case THPPlayer::ENDING_AllTreasures:
 		dummyPlayer.initMsgs(staffroll_strings);
 		break;
 	case THPPlayer::STAFF_ROLL:

@@ -1617,7 +1617,7 @@ LIBS = [
             ["sysGCU/THPPlayer", True],
             ["sysGCU/THPRead", True],
             ["sysGCU/THPVideoDecode", True],
-            "sysGCU/pikmin2THPPlayer",
+            ["sysGCU/pikmin2THPPlayer", True],
             ["sysGCU/captionMgr", True],
             "sysGCU/captionMessage",
             ["sysGCU/screenScene", True],

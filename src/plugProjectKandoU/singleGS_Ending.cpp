@@ -159,11 +159,11 @@ void EndingState::exec(SingleGameSection* game)
 			if (mFlag & Ending_IsComplete) {
 				mStatus   = EndingStatus_PlayMovieAllTreasure;
 				mThpState = 1;
-				mTHPPlayer->load(THPPlayer::ENDING_ALLTREASURE);
+				mTHPPlayer->load(THPPlayer::ENDING_AllTreasures);
 			} else {
 				mStatus   = EndingStatus_PlayMoviePayDebt;
 				mThpState = 1;
-				mTHPPlayer->load(THPPlayer::ENDING_PAYDEBT);
+				mTHPPlayer->load(THPPlayer::ENDING_PayDebt);
 			}
 			break;
 		case EndingStatus_PlayMoviePayDebt:
@@ -230,7 +230,7 @@ void EndingState::exec(SingleGameSection* game)
 				Screen::gGame2DMgr->mScreenMgr->reset();
 				mStatus   = 7;
 				mThpState = 1;
-				mTHPPlayer->load(THPPlayer::OPENING_POSTDEBTSTART);
+				mTHPPlayer->load(THPPlayer::OPENING_PostDebtStart);
 				break;
 			case 2:
 				game->flow_goto_title();

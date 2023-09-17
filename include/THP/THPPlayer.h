@@ -53,7 +53,7 @@ typedef struct THPPlayer {
 
 extern THPPlayer ActivePlayer;
 
-BOOL THPPlayerInit();
+BOOL THPPlayerInit(int _);
 void THPPlayerQuit();
 BOOL THPPlayerOpen(const char* fileName, BOOL onMemory);
 BOOL THPPlayerClose();
@@ -71,7 +71,8 @@ BOOL THPPlayerGetAudioInfo(void* dst);
 // f32 THPPlayerGetFrameRate();
 BOOL THPPlayerSetVolume(int vol, int duration);
 
-int THPPlayerDrawCurrentFrame(GXRenderModeObj* rmode, int, int, int, int); // TODO, parameter names from dwarf info if it exists
+int THPPlayerDrawCurrentFrame(GXRenderModeObj* obj, int x, int y, int polyWidth,
+                              int polyHeight); // TODO, parameter names from dwarf info if it exists
 u32 THPPlayerGetTotalFrame();
 u8 THPPlayerGetState();
 
