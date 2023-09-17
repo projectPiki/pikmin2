@@ -247,7 +247,7 @@ void Navi::onKeyEvent(const SysShape::KeyEvent& event)
  */
 Vector3f Navi::getPosition()
 {
-	if (moviePlayer && moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+	if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
 		Matrixf* mat = mModel->mJoints->getWorldMatrix();
 		Vector3f position;
 		mat->getTranslation(position);
@@ -1441,7 +1441,7 @@ void Navi::doEntry()
 	mArrowMatAnim->animate(0.0f);
 
 	if (!isControlFlag(NAVICTRL_InMovie)) {
-		if (moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+		if (moviePlayer->isFlag(MVP_IsActive)) {
 			mMarkerModel->hide();
 		} else {
 			mMarkerModel->show();
@@ -1469,7 +1469,7 @@ void Navi::doEntry()
 	}
 
 	if (!isControlFlag(NAVICTRL_InMovie)) {
-		if (moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+		if (moviePlayer->isFlag(MVP_IsActive)) {
 			mCursorModel->hide();
 		} else {
 			mCursorModel->show();
@@ -1858,7 +1858,7 @@ void Navi::updateCursor()
  */
 void Navi::doSimulation(f32 timeStep)
 {
-	if (moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+	if (moviePlayer->isFlag(MVP_IsActive)) {
 		mSimVelocity  = Vector3f(0.0f);
 		mVelocity     = Vector3f(0.0f);
 		mAcceleration = Vector3f(0.0f);
@@ -2221,7 +2221,7 @@ void Navi::outWaterCallback()
  */
 bool Navi::ignoreAtari(Creature* other)
 {
-	if (moviePlayer->mFlags & MoviePlayer::IS_ACTIVE && other->isNavi()) {
+	if (moviePlayer->isFlag(MVP_IsActive) && other->isNavi()) {
 		return true;
 	}
 
@@ -2275,7 +2275,7 @@ void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 	switch (command) {
 	case 100: {
 		enterAllPikis();
-		if (player->mFlags & MoviePlayer::IS_FINISHED) {
+		if (player->isFlag(MVP_IsFinished)) {
 			pikiMgr->forceEnterPikmins(0);
 		}
 		break;
@@ -3964,7 +3964,7 @@ void Navi::disableController() { mController1 = nullptr; }
  */
 void Navi::control()
 {
-	if ((moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) == FALSE) {
+	if ((moviePlayer->isFlag(MVP_IsActive) == FALSE) {
 		makeVelocity();
 	}
 

@@ -99,7 +99,7 @@ void ObjectGameActor::stop()
 void ObjectGameActor::update()
 {
 	if (mGameObject->mModel) {
-		if (mGameObject->isNavi() && moviePlayer->mFlags & MoviePlayer::IS_FINISHED) {
+		if (mGameObject->isNavi() && moviePlayer->isFlag(MVP_IsFinished)) {
 			Piki* piki = static_cast<Piki*>(mGameObject);
 			piki->mAnimator.mSelfAnimator.animate(10.0f);
 			piki->mAnimator.mBoundAnimator.animate(10.0f);
@@ -129,7 +129,7 @@ void ObjectGameActor::update()
 					anim->attach(mGameObject->mModel->mJ3dModel->mModelData, file);
 					mGameObject->movieStartDemoAnimation(anim);
 					mGameObject->setMovieMotion(true);
-					if (mMoviePlayer && mMoviePlayer->mFlags & MoviePlayer::IS_FINISHED) {
+					if (mMoviePlayer && mMoviePlayer->isFlag(MVP_IsFinished)) {
 						mGameObject->movieSetAnimationLastFrame();
 					}
 					sys->endChangeCurrentHeap();
@@ -154,7 +154,7 @@ void ObjectGameActor::update()
 		if (mapMgr) {
 			mTranslation.y = mapMgr->getMinY(mTranslation);
 		}
-		if (mMoviePlayer && mMoviePlayer->mFlags & MoviePlayer::IS_FINISHED) {
+		if (mMoviePlayer && mMoviePlayer->isFlag(MVP_IsFinished)) {
 			mGameObject->movieSetTranslation(mTranslation, 0.0f);
 			moviePlayer->unsuspend(1, false);
 			mSRTCommand = 0;
@@ -166,7 +166,7 @@ void ObjectGameActor::update()
 		}
 		break;
 	case 3:
-		mGameObject->movieSetTranslation(mTranslation, moviePlayer->_0A0 * f32(1 / 180) * PI);
+		mGameObject->movieSetTranslation(mTranslation, moviePlayer->mFadeTimer * f32(1 / 180) * PI);
 		break;
 	case 1:
 		mGameObject->movieSetTranslation(mTranslation, moviePlayer->mTransformAngle);

@@ -142,7 +142,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 
 	case 101: // 0x65
 		if (mOnyonType <= ONYON_TYPE_YELLOW) {
-			if (moviePlayer->mFlags.typeView & MoviePlayer::IS_FINISHED) {
+			if (moviePlayer->isFlag(MVP_IsFinished)) {
 				setSpotState(SPOTSTATE_Opened);
 			} else {
 				setSpotState(SPOTSTATE_Closing);
@@ -154,7 +154,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 
 	case 102: // 0x66
 		if (mOnyonType <= ONYON_TYPE_YELLOW) {
-			if (moviePlayer->mFlags.typeView & MoviePlayer::IS_FINISHED) {
+			if (moviePlayer->isFlag(MVP_IsFinished)) {
 				setSpotState(SPOTSTATE_Closed);
 			} else {
 				setSpotState(SPOTSTATE_Opening);

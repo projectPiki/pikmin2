@@ -991,7 +991,7 @@ void GameState::update_GameChallenge(VsGameSection* section)
 	}
 
 	if (gameSystem->isVersusMode()) {
-		if (Screen::gGame2DMgr->check_VsStatus() == 2 && _16 == 1 && !(moviePlayer->mFlags.typeView & MoviePlayer::IS_ACTIVE)) {
+		if (Screen::gGame2DMgr->check_VsStatus() == 2 && _16 == 1 && !(moviePlayer->isFlag(MVP_IsActive))) {
 			_16 = 2;
 		} else if (_16 == 1) {
 			Screen::gGame2DMgr->check_VsStatus(); // probably in a leftover && check
@@ -1025,18 +1025,18 @@ void GameState::update_GameChallenge(VsGameSection* section)
 		int marbleCountP1 = section->mMarbleCountP1;
 		int marbleCountP2 = section->mMarbleCountP2;
 
-		if (section->mMarbleCountP1 == 4 && moviePlayer->mFlags.typeView & MoviePlayer::IS_ACTIVE) {
+		if (section->mMarbleCountP1 == 4 && moviePlayer->isFlag(MVP_IsActive)) {
 			marbleCountP1 = section->mMarbleCountP1 - 1;
 		}
 
-		if (section->mMarbleCountP2 == 4 && moviePlayer->mFlags.typeView & MoviePlayer::IS_ACTIVE) {
+		if (section->mMarbleCountP2 == 4 && moviePlayer->isFlag(MVP_IsActive)) {
 			marbleCountP2 = section->mMarbleCountP2 - 1;
 		}
 
 		disp.mMarbleCountP1 = marbleCountP1;
 		disp.mMarbleCountP2 = marbleCountP2;
 
-		bool moviePlayerActive = moviePlayer->mFlags.typeView & MoviePlayer::IS_ACTIVE;
+		bool moviePlayerActive = moviePlayer->isFlag(MVP_IsActive);
 
 		bool blueMarble, redMarble;
 		getMarbleLoss(redMarble, blueMarble);

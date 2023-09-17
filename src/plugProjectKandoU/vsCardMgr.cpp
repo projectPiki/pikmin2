@@ -218,7 +218,7 @@ inline Vector2f VsGame::CardMgr::getLampPos(int user, int cherries)
  */
 void VsGame::CardMgr::draw(Graphics& gfx)
 {
-	if (!moviePlayer->isActive()) {
+	if (!moviePlayer->isFlag(MVP_IsActive)) {
 		Vector3f olimarSlotPos = getSlotOrigin(0);
 		Vector3f louieSlotPos  = getSlotOrigin(1);
 		if (mSlotMachines[0].mSpinState) {

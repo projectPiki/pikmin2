@@ -13,7 +13,7 @@ namespace P2JST {
  * Address:	80437400
  * Size:	000058
  */
-ObjectSpecialActor::ObjectSpecialActor(char const* name, MoviePlayer* movie)
+ObjectSpecialActor::ObjectSpecialActor(const char* name, MoviePlayer* movie)
     : ObjectActor(name, movie)
 {
 	reset();
@@ -30,8 +30,8 @@ void ObjectSpecialActor::reset()
 	for (int i = 0; i < 16; i++) {
 		mCommands[i] = -1;
 	}
-	_B4    = 0;
-	mTimer = 0.0f;
+	mIsFinished = false;
+	mTimer      = 0.0f;
 }
 
 /*
@@ -51,44 +51,61 @@ void ObjectSpecialActor::update()
 	if (mTimer > 0.0f) {
 		mTimer -= sys->mDeltaTime;
 		if (mTimer <= 0.0f) {
-			_B4 = true;
+			mIsFinished = true;
 		}
 	}
-	if (_B4) {
+
+	if (mIsFinished) {
 		gameSystem->startFadeblack();
 	}
+
 	for (int i = 0; i < mCurrCommandCount; i++) {
-		switch (mCommands[i]) {
-		case 100:
+		if (mCommands[i] <= 100) {
 			gameSystem->getSection()->onMovieCommand(mCommands[i]);
-			break;
-		case 101:
-			cameraMgr->startDemoCamera(2, 0);
-			break;
-		case 102:
-			cameraMgr->finishDemoCamera(2);
-			break;
-		case 201:
-			if (!(moviePlayer->mFlags & MoviePlayer::IS_FINISHED)) {
-				gameSystem->getSection()->startKantei2D();
+
+		} else if (mCommands[i] <= 200) {
+			switch (mCommands[i]) {
+			case 101:
+				cameraMgr->startDemoCamera(2, 0);
+				break;
+
+			case 102:
+				cameraMgr->finishDemoCamera(2);
+				break;
 			}
-			break;
-		case 203:
-			if (!(moviePlayer->mFlags & MoviePlayer::IS_FINISHED)) {
-				gameSystem->getSection()->startKantei2D();
+
+		} else if (mCommands[i] <= 300) {
+			switch (mCommands[i]) {
+			case 201:
+				if (!moviePlayer->isFlag(MVP_IsFinished)) {
+					gameSystem->getSection()->startKantei2D();
+				}
+				break;
+
+			case 203:
+				if (!moviePlayer->isFlag(MVP_IsFinished)) {
+					gameSystem->getSection()->startKantei2D();
+				}
+				break;
+
+			case 204:
+				break;
 			}
-			break;
-		case 301:
-			mTimer = 1.0f;
-			gameSystem->startFadeout(mTimer);
-			break;
-		case 302:
-			gameSystem->startFadein(1.0f);
-			_B4 = 0;
-			break;
-		default:
+
+		} else if (mCommands[i] <= 400) {
+			switch (mCommands[i]) {
+			case 301:
+				mTimer = 1.0f;
+				gameSystem->startFadeout(mTimer);
+				break;
+
+			case 302:
+				gameSystem->startFadein(1.0f);
+				mIsFinished = false;
+				break;
+			}
+		} else {
 			JUT_PANICLINE(166, "comand %d not implemented !\n", mCommands[i]);
-			break;
 		}
 	}
 
@@ -103,11 +120,11 @@ void ObjectSpecialActor::update()
  * Address:	8043770C
  * Size:	000084
  */
-void ObjectSpecialActor::JSGSetAnimation(u32 id)
+void ObjectSpecialActor::JSGSetAnimation(u32 commandID)
 {
 	JSGGetName();
 	JUT_ASSERTLINE(187, mCurrCommandCount < 16, "too many commands !\n");
-	mCommands[mCurrCommandCount++] = id;
+	mCommands[mCurrCommandCount++] = commandID;
 }
 
 /*
@@ -115,7 +132,7 @@ void ObjectSpecialActor::JSGSetAnimation(u32 id)
  * Address:	80437790
  * Size:	000004
  */
-void ObjectSpecialActor::parseUserData_(u32, void const*) { }
+void ObjectSpecialActor::parseUserData_(u32, const void*) { }
 
 } // namespace P2JST
 } // namespace Game

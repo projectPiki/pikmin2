@@ -148,7 +148,7 @@ struct ObjectSpecialActor : public ObjectActor {
 	ObjectSpecialActor(const char*, MoviePlayer*);
 
 	virtual ~ObjectSpecialActor() { }              // _08 (weak)
-	virtual void JSGSetAnimation(u32);             // _60
+	virtual void JSGSetAnimation(u32 commandID);   // _60
 	virtual void reset();                          // _A8 (weak)
 	virtual void update();                         // _AC (weak)
 	virtual void stop();                           // _B8 (weak)
@@ -159,7 +159,7 @@ struct ObjectSpecialActor : public ObjectActor {
 	// _00-_70 = ObjectActor
 	int mCurrCommandCount; // _70
 	int mCommands[16];     // _74
-	bool _B4;              // _B4
+	bool mIsFinished;      // _B4, triggers fade to black when timer hits 0
 	f32 mTimer;            // _B8
 };
 } // namespace P2JST

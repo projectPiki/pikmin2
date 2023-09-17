@@ -66,7 +66,7 @@ MoviePlayer::MoviePlayer()
  */
 void MoviePlayer::reset()
 {
-	if (isActive()) {
+	if (isFlag(MVP_IsActive)) {
 		stop();
 	}
 }
@@ -153,7 +153,7 @@ u8 MoviePlayer::play(MoviePlayArg& arg)
  */
 u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 {
-	if (isActive()) {
+	if (isFlag(MVP_IsActive)) {
 		// if a movie is already playing, put the new cutscene in the queue instead
 		MovieContext* context = getNewContext();
 		if (!context) {
@@ -203,9 +203,9 @@ u8 MoviePlayer::play(MovieConfig* config, MoviePlayArg& arg, bool flag)
 			}
 		}
 
-		mFlags.typeView &= ~IS_FINISHED;
-		mFlags.typeView |= IS_ACTIVE;
-		mFlags.typeView &= ~0x80000000;
+		resetFlag(MVP_IsFinished);
+		setFlag(MVP_IsActive);
+		resetFlag(MVP_Unk32);
 		mDelegate1  = arg.mDelegateEnd;
 		mDelegate2  = arg.mDelegateStart;
 		mCameraName = arg.mPelletName;
@@ -568,7 +568,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 		}
 		mFadeTimer -= sys->mDeltaTime;
 		if (mFadeTimer > 1.1f && !mCanFinish) {
-			if (mFlags.typeView & IS_FINISHED) {
+			if (isFlag(MVP_IsFinished)) {
 				resetFrame();
 				while (mStudioControl->forward(1)) {
 					mObjectSystem->update();
@@ -627,7 +627,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 		}
 		break;
 	}
-	if (isActive()) {
+	if (isFlag(MVP_IsActive)) {
 		if (!(input1->getButtonDown() & 0xf70) && (!input2 || !(input2->getButtonDown() & 0xf70))) {
 			mFlags.typeView |= 0x80000000;
 		}
@@ -669,7 +669,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
 			}
 		}
 	}
-	return isActive();
+	return isFlag(MVP_IsActive);
 }
 
 /*
@@ -679,7 +679,7 @@ bool MoviePlayer::update(Controller* input1, Controller* input2)
  */
 void MoviePlayer::draw(Graphics& gfx)
 {
-	if (isActive() && mTextControl) {
+	if (isFlag(MVP_IsActive) && mTextControl) {
 		gfx.mOrthoGraph.setPort();
 		mTextControl->draw(gfx);
 	}
@@ -701,7 +701,7 @@ bool MoviePlayer::start(Camera* cam)
 		mStudioControl->mObject_control._20 = 0;
 		mObjectSystem->start();
 	}
-	return isActive();
+	return isFlag(MVP_IsActive);
 }
 
 /*
@@ -711,10 +711,10 @@ bool MoviePlayer::start(Camera* cam)
  */
 bool MoviePlayer::stop()
 {
-	if (isActive()) {
+	if (isFlag(MVP_IsActive)) {
 		clearPauseAndDraw();
-		mFlags.typeView &= ~IS_FINISHED;
-		mFlags.typeView &= ~0x80000000;
+		resetFlag(MVP_IsFinished);
+		resetFlag(MVP_Unk32);
 		if (mObjectSystem) {
 			mObjectSystem->stop();
 			mObjectSystem->destroyObjectAll();
@@ -738,7 +738,7 @@ bool MoviePlayer::stop()
 	mTargetObject = nullptr;
 	mAltNavi      = nullptr;
 	mAltCamera    = nullptr;
-	return isActive();
+	return isFlag(MVP_IsActive);
 }
 
 /*
@@ -1236,7 +1236,7 @@ lbl_8042E718:
  */
 void MoviePlayer::skip()
 {
-	mFlags.typeView |= IS_FINISHED;
+	setFlag(MVP_IsFinished);
 	mDemoState = 6;
 	mFadeTimer = 2.0f;
 	mCanFinish = false;

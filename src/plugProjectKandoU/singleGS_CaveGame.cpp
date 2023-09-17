@@ -381,7 +381,7 @@ void SingleGame::CaveState::exec(SingleGameSection* game)
 		game->updateCaveScreen();
 
 		// check pikmin extinction cutscene
-		if (!(moviePlayer->mFlags & MoviePlayer::IS_ACTIVE)) {
+		if (!(moviePlayer->isFlag(MVP_IsActive))) {
 			if (GameStat::getMapPikmins(-1) == 0) {
 				gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 				MoviePlayArg moviearg("s05_pikminzero", nullptr, game->mMovieFinishCallback, 0);

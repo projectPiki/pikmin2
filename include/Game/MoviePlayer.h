@@ -56,6 +56,12 @@ namespace P2JST {
 struct ObjectSystem;
 }
 
+enum MoviePlayerFlags {
+	MVP_IsActive   = 0x1,
+	MVP_IsFinished = 0x2,
+	MVP_Unk32      = 0x80000000,
+};
+
 struct MovieConfig : public CNode {
 	struct TParms : public TagParameters {
 		inline TParms()
@@ -237,12 +243,15 @@ struct MoviePlayer : public JKRDisposer {
 	void isLoadingBlack();
 	void draw2d();
 
+	inline void setFlag(u32 flag) { mFlags.typeView |= flag; }
+	inline void resetFlag(u32 flag) { mFlags.typeView &= ~flag; }
+	inline bool isFlag(u32 flag) const { return mFlags.typeView & flag; }
+
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	int mDemoState;                  // _18
-	DvdThreadCommand mThreadCommand; // _1C
-	u8 mIsPaused;                    // _88
-	// TODO: Is this a quat?
+	int mDemoState;                                                // _18
+	DvdThreadCommand mThreadCommand;                               // _1C
+	u8 mIsPaused;                                                  // _88
 	Vector3f mCameraPosition;                                      // _8C
 	f32 mCameraAngle;                                              // _98
 	u8 _09C[4];                                                    // _9C
@@ -283,14 +292,8 @@ struct MoviePlayer : public JKRDisposer {
 	P2JME::Movie::TControl* mTextControl;                          // _1E4
 	u32 mCounter;                                                  // _1E8
 	const void* mStbFile;                                          // _1EC
-	enum { IS_ACTIVE = 1, IS_FINISHED = 2, _FORCE_INT = 0xFFFFFFFF };
-	BitFlag<u32> mFlags;             // _1F0
-	JPAResourceManager* mEfxManager; // _1F4
-
-	inline bool isActive()
-	{
-		return mFlags.typeView & IS_ACTIVE; // got tired of typing it out tbh
-	}
+	BitFlag<u32> mFlags;                                           // _1F0, see MoviePlayerFlags enum
+	JPAResourceManager* mEfxManager;                               // _1F4
 
 	static JKRArchive* mArchive;
 };

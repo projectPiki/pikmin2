@@ -1127,7 +1127,7 @@ namespace Game {
  */
 void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
-	JUT_ASSERTLINE(1523, mFbTexture == nullptr, "２回は無理ｗ\n");
+	JUT_ASSERTLINE(1523, mFbTexture == nullptr, "?��回は無�??��\n");
 	mFbTexture                    = mXfbImage;
 	mXfbImage                     = texture;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -1140,7 +1140,7 @@ void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
  */
 void BaseGameSection::restoreFBTexture()
 {
-	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture してないｗ\n");
+	JUT_ASSERTLINE(1533, mFbTexture, "useSpecificFBTexture してな�??��\n");
 	mXfbImage                     = mFbTexture;
 	mFbTexture                    = nullptr;
 	Game::gameSystem->mXfbTexture = mXfbImage;
@@ -2514,7 +2514,7 @@ void BaseGameSection::prepareFountainOn(Vector3f& suroundPos)
  */
 void BaseGameSection::initLights()
 {
-	mLightMgr           = new GameLightMgr("ゲームライトマネージャ"); // game light manager
+	mLightMgr           = new GameLightMgr("ゲー�?ライト�?�ネージャ"); // game light manager
 	mLightMgr->mTimeMgr = gameSystem->mTimeMgr;
 	addGenNode(mLightMgr);
 	particleMgr->mLightMgr = mLightMgr;
@@ -2544,14 +2544,14 @@ void BaseGameSection::drawParticle(Graphics& gfx, int viewport)
 				particleMgr->draw(port, 0);
 				mLightMgr->mFogMgr->set(gfx);
 			}
-			if (moviePlayer && moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+			if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
 				for (int i = 3; i < 6; i++) {
 					particleMgr->draw(port, i);
 				}
 			}
 			particleMgr->draw(port, 1);
 			mLightMgr->mFogMgr->off(gfx);
-			if (moviePlayer && moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) {
+			if (moviePlayer && moviePlayer->isFlag(MVP_IsActive)) {
 				for (int i = 6; i < 9; i++) {
 					particleMgr->draw(port, i);
 				}

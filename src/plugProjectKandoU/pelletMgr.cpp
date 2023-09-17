@@ -2373,7 +2373,7 @@ void Pellet::update()
 
 	if (mSoundMgr != nullptr) {
 		mSoundMgr->exec();
-		if ((gameSystem->mMode == GSM_STORY_MODE) && !(moviePlayer->mFlags & MoviePlayer::IS_ACTIVE) && (!isPicked())
+		if ((gameSystem->mMode == GSM_STORY_MODE) && !(moviePlayer->isFlag(MVP_IsActive)) && (!isPicked())
 		    && (getKind() == PELTYPE_TREASURE || getKind() == PELTYPE_UPGRADE)) {
 			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 			PSSystem::checkSceneMgr(mgr);
@@ -6201,13 +6201,13 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 			int unk = arg->_10;
 			if (arg->mPelletType == PelletList::OTAKARA) {
-				u8* result = playData->_B0->mOtakara(unk);
+				u8* result = playData->mZukanStat->mOtakara(unk);
 				if (*result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return nullptr;
 				}
 			} else if (arg->mPelletType == PelletList::ITEM) {
-				u8* result = playData->_B0->mItem(unk);
+				u8* result = playData->mZukanStat->mItem(unk);
 				if (*result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return nullptr;
@@ -6260,13 +6260,13 @@ bool PelletMgr::setUse(PelletInitArg* arg)
 		if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 			int unk = arg->_10;
 			if (arg->mPelletType == PelletList::OTAKARA) {
-				u8* result = playData->_B0->mOtakara(unk);
+				u8* result = playData->mZukanStat->mOtakara(unk);
 				if (*result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return false;
 				}
 			} else if (arg->mPelletType == PelletList::ITEM) {
-				u8* result = playData->_B0->mItem(unk);
+				u8* result = playData->mZukanStat->mItem(unk);
 				if (*result & 2) {
 					mgr->mConfigList->getPelletConfig(arg->mTextIdentifier);
 					return false;
@@ -6325,12 +6325,12 @@ bool PelletMgr::OtakaraItemCode::isNull()
 	if (strcmp("yes", config->mParams.mUnique.mData) == 0) {
 		u8 code = mValue;
 		if ((u8)(mValue >> 8) == 3) {
-			u8* result = playData->_B0->mOtakara(code);
+			u8* result = playData->mZukanStat->mOtakara(code);
 			if (*result & 2) {
 				return true;
 			}
 		} else {
-			u8* result = playData->_B0->mItem(code);
+			u8* result = playData->mZukanStat->mItem(code);
 			if (*result & 2) {
 				return true;
 			}

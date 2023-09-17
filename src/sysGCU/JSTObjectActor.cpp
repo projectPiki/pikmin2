@@ -426,7 +426,7 @@ void ObjectActor::entry()
  */
 bool ObjectActor::setShape()
 {
-	if (!(moviePlayer->mFlags.typeView & MoviePlayer::IS_FINISHED)) {
+	if (!(moviePlayer->isFlag(MVP_IsFinished))) {
 		sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
 		int id = mShape;
 		if (id == gu32NAN_.a) {
@@ -472,7 +472,7 @@ bool ObjectActor::setShape()
  */
 bool ObjectActor::setAnim()
 {
-	if (!(moviePlayer->mFlags.typeView & MoviePlayer::IS_FINISHED)) {
+	if (!(moviePlayer->isFlag(MVP_IsFinished))) {
 		sys->startChangeCurrentHeap(moviePlayer->mMovieHeap);
 		int id = mAnimation;
 		if (id == gu32NAN_.a) {
