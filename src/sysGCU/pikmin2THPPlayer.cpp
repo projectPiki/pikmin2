@@ -11,6 +11,23 @@
 namespace Game {
 
 namespace {
+#if VERNUM == 1 // demo
+static const THPPlayer::THPPlayerFileSettingTable sTHPPlayerFileSettingTable[12] = {
+	{ "/thp/opening1.thp", "/thp/opening1.ini", 0, THPPlayer::OPENING_GameStart },
+	{ "/thp/opening2.thp", "/thp/opening2.ini", 0, THPPlayer::OPENING_PostDebtStart },
+	{ "/thp/ending1.thp", "/thp/ending1.ini", 0, THPPlayer::ENDING_PayDebt },
+	{ "/thp/ending2.thp", "", 0, THPPlayer::ENDING_AllTreasures },
+	{ "/thp/staffroll.thp", "", 0, THPPlayer::STAFF_ROLL },
+	{ "/thp/play1.thp", "/thp/play1.ini", 0, THPPlayer::PLAY_1 },
+	{ "/thp/play2.thp", "/thp/play2.ini", 0, THPPlayer::PLAY_2 },
+	{ "/thp/play3.thp", "/thp/play3.ini", 0, THPPlayer::PLAY_3 },
+	{ "/thp/play4.thp", "/thp/play4.ini", 0, THPPlayer::PLAY_4 },
+	{ "/thp/play5.thp", "/thp/play5.ini", 0, THPPlayer::PLAY_5 },
+	{ "/thp/play6.thp", "/thp/play6.ini", 0, THPPlayer::PLAY_6 },
+	{ "/thp/crime.thp", "/thp/crime.ini", 0, THPPlayer::CRIME },
+
+};
+#else // usa
 static const THPPlayer::THPPlayerFileSettingTable sTHPPlayerFileSettingTable[12] = {
 	{ "/thp/opening1.thp", "/thp/opening1.ini", 0, THPPlayer::OPENING_GameStart },
 	{ "/thp/opening2.thp", "/thp/opening2.ini", 0, THPPlayer::OPENING_PostDebtStart },
@@ -26,6 +43,7 @@ static const THPPlayer::THPPlayerFileSettingTable sTHPPlayerFileSettingTable[12]
 	{ "/thp/crime.thp", "/thp/crime.ini", 0, THPPlayer::CRIME },
 
 };
+#endif
 } // namespace
 
 /*
@@ -71,7 +89,11 @@ void THPPlayer::load(EMovieIndex movieIdx)
 		idCheck = true;
 	}
 
+#if VERNUM == 1 // demo
+	P2ASSERTLINE(233, idCheck);
+#elif VERNUM == 2 // usa
 	P2ASSERTLINE(227, idCheck);
+#endif
 
 	const THPPlayerFileSettingTable* data = &sTHPPlayerFileSettingTable[movieIdx];
 	mLoadResArg.mThpFileName              = data->mThpFilePath;
@@ -80,7 +102,11 @@ void THPPlayer::load(EMovieIndex movieIdx)
 
 	load();
 
+#if VERNUM == 1 // demo
+	P2ASSERTLINE(241, data->mThpID < 12);
+#elif VERNUM == 2 // usa
 	P2ASSERTLINE(235, data->mThpID < 12);
+#endif
 
 	PSM::sTHPDinamicsProc.setSetting((PSM::THP_ID)data->mThpID);
 }
@@ -94,7 +120,13 @@ void THPPlayer::load()
 {
 	mState = STATE_Load;
 	if (!THPPlayerInit(0)) {
+
+#if VERNUM == 1 // demo
+		JUT_PANICLINE(253, "THPPlayerInit failure.");
+#elif VERNUM == 2 // usa
 		JUT_PANICLINE(247, "THPPlayerInit failure.");
+#endif
+
 	}
 
 	sys->dvdLoadUseCallBack(&mThreadCommand, &_C8);
@@ -136,7 +168,11 @@ void THPPlayer::loadResource(const THPPlayerLoadResourceArg& loadArg)
 		sys->heapStatusStart("THPPlayr_caption", nullptr);
 		void* handle = JKRDvdRipper::loadToMainRAM(loadArg.mCaptionFileName, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0,
 		                                           nullptr, nullptr);
+#if VERNUM == 1 // demo
+		JUT_ASSERTLINE(317, handle, "fail to open the caption file\n[%s]\n", loadArg.mCaptionFileName);
+#elif VERNUM == 2 // usa
 		JUT_ASSERTLINE(311, handle, "fail to open the caption file\n[%s]\n", loadArg.mCaptionFileName);
+#endif
 
 		RamStream stream(handle, -1);
 		stream.resetPosition(true, 1);
@@ -148,7 +184,11 @@ void THPPlayer::loadResource(const THPPlayerLoadResourceArg& loadArg)
 	if (loadArg.mThpFileName != nullptr) {
 		sys->heapStatusStart("THPPlayerOpen", nullptr);
 		if (!THPPlayerOpen(loadArg.mThpFileName, FALSE)) {
+#if VERNUM == 1 // demo
+			JUT_PANICLINE(331, "Fail to open the thp file\n[%s]\n", loadArg.mThpFileName);
+#elif VERNUM == 2 // usa
 			JUT_PANICLINE(325, "Fail to open the thp file\n[%s]\n", loadArg.mThpFileName);
+#endif
 		}
 
 		sys->heapStatusEnd("THPPlayerOpen");
@@ -183,7 +223,11 @@ void THPPlayer::prepare()
 
 	data = new (0x20) u8[THPPlayerCalcNeedMemory()];
 	if (!data) {
+#if VERNUM == 1 // demo
+		OSPanic("pikmin2THPPlayer.cpp", 373, "Can\'t allocate the memory");
+#elif VERNUM == 2 // usa
 		OSPanic("pikmin2THPPlayer.cpp", 367, "Can\'t allocate the memory");
+#endif
 	}
 	THPPlayerSetBuffer(data);
 
@@ -194,7 +238,11 @@ void THPPlayer::prepare()
 	}
 
 	if (!THPPlayerPrepare(0, 0, audioTrack)) {
+#if VERNUM == 1 // demo
+		JUT_PANICLINE(403, "Fail to prepare\n");
+#elif VERNUM == 2 // usa
 		JUT_PANICLINE(397, "Fail to prepare\n");
+#endif
 	}
 }
 
@@ -205,13 +253,22 @@ void THPPlayer::prepare()
  */
 void THPPlayer::init(JKRHeap* heap)
 {
+#if VERNUM == 1 // demo
+	P2ASSERTLINE(413, !mHeap);
+#elif VERNUM == 2 // usa
 	P2ASSERTLINE(407, !mHeap);
+#endif
+	
 	JKRHeap* currHeap = JKRGetCurrentHeap();
 	heap              = (!heap) ? currHeap : heap;
 	heap->becomeCurrentHeap();
 	mHeap = JKRSolidHeap::create(0x300000, heap, true);
 
+#if VERNUM == 1 // demo
+	P2ASSERTLINE(424, mHeap);
+#elif VERNUM == 2 // usa
 	P2ASSERTLINE(418, mHeap);
+#endif
 	currHeap->becomeCurrentHeap();
 }
 
@@ -284,7 +341,11 @@ void THPPlayer::update()
 		mCaptionMgr->update(_34);
 		break;
 	default:
+#if VERNUM == 1 // demo
+		JUT_PANICLINE(510, "Unknown State : %d \n", mState);
+#elif VERNUM == 2 // usa
 		JUT_PANICLINE(504, "Unknown State : %d \n", mState);
+#endif
 	}
 }
 
