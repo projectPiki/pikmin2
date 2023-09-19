@@ -1,32 +1,43 @@
+#include "Dolphin/ai.h"
+#include "Dolphin/hw_regs.h"
+#include "Dolphin/os.h"
 
+char* __AIVersion = "<< Dolphin SDK - AI\trelease build: Apr 17 2003 12:33:54 (0x2301) >>";
+
+static AISCallback __AIS_Callback = NULL;
+static AIDCallback __AID_Callback = NULL;
+static u8* __CallbackStack;
+static u8* __OldStack;
+static volatile s32 __AI_init_flag = FALSE;
+static volatile s32 __AID_Active   = FALSE;
+
+static OSTime bound_32KHz;
+static OSTime bound_48KHz;
+static OSTime min_wait;
+static OSTime max_wait;
+static OSTime buffer;
+
+static void __AI_set_stream_sample_rate(u32 rate);
+static void __AISHandler(s16 interrupt, OSContext* context);
+static void __AIDHandler(s16 interrupt, OSContext* context);
+static void __AICallbackStackSwitch(register AIDCallback cb);
+static void __AI_SRC_INIT(void);
 
 /*
  * --INFO--
  * Address:	800F6864
  * Size:	000044
  */
-void AIRegisterDMACallback(void)
+AIDCallback AIRegisterDMACallback(AIDCallback callback)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  lwz       r31, -0x6FC4(r13)
-	  bl        -0x7C48
-	  stw       r30, -0x6FC4(r13)
-	  bl        -0x7C28
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	s32 oldInts;
+	AIDCallback ret;
+
+	ret            = __AID_Callback;
+	oldInts        = OSDisableInterrupts();
+	__AID_Callback = callback;
+	OSRestoreInterrupts(oldInts);
+	return ret;
 }
 
 /*
@@ -34,45 +45,14 @@ void AIRegisterDMACallback(void)
  * Address:	800F68A8
  * Size:	000088
  */
-void AIInitDMA(void)
+void AIInitDMA(u32 addr, u32 length)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  addi      r31, r4, 0
-	  stw       r30, 0x10(r1)
-	  addi      r30, r3, 0
-	  bl        -0x7C8C
-	  lis       r4, 0xCC00
-	  lhz       r0, 0x5030(r4)
-	  addi      r5, r4, 0x5000
-	  addi      r6, r4, 0x5000
-	  addi      r7, r4, 0x5000
-	  rlwinm    r4,r0,0,0,21
-	  rlwinm    r0,r30,16,16,31
-	  or        r0, r4, r0
-	  sth       r0, 0x30(r5)
-	  rlwinm    r0,r30,0,16,31
-	  lhz       r4, 0x32(r6)
-	  rlwinm    r4,r4,0,27,15
-	  or        r0, r4, r0
-	  sth       r0, 0x32(r6)
-	  rlwinm    r0,r31,27,16,31
-	  lhz       r4, 0x36(r7)
-	  rlwinm    r4,r4,0,0,16
-	  or        r0, r4, r0
-	  sth       r0, 0x36(r7)
-	  bl        -0x7CB4
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	s32 oldInts;
+	oldInts       = OSDisableInterrupts();
+	__DSPRegs[24] = (u16)((__DSPRegs[24] & ~0x3FF) | (addr >> 16));
+	__DSPRegs[25] = (u16)((__DSPRegs[25] & ~0xFFE0) | (0xffff & addr));
+	__DSPRegs[27] = (u16)((__DSPRegs[27] & ~0x7FFF) | (u16)((length >> 5) & 0xFFFF));
+	OSRestoreInterrupts(oldInts);
 }
 
 /*
@@ -80,7 +60,7 @@ void AIInitDMA(void)
  * Address:	........
  * Size:	000010
  */
-void AIGetDMAEnableFlag(void)
+BOOL AIGetDMAEnableFlag(void)
 {
 	// UNUSED FUNCTION
 }
@@ -90,43 +70,21 @@ void AIGetDMAEnableFlag(void)
  * Address:	800F6930
  * Size:	000018
  */
-void AIStartDMA(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  addi      r3, r3, 0x5000
-	  lhz       r0, 0x36(r3)
-	  ori       r0, r0, 0x8000
-	  sth       r0, 0x36(r3)
-	  blr
-	*/
-}
+void AIStartDMA(void) { __DSPRegs[27] |= 0x8000; }
 
 /*
  * --INFO--
  * Address:	800F6948
  * Size:	000018
  */
-void AIStopDMA(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  addi      r3, r3, 0x5000
-	  lhz       r0, 0x36(r3)
-	  rlwinm    r0,r0,0,17,15
-	  sth       r0, 0x36(r3)
-	  blr
-	*/
-}
+void AIStopDMA(void) { __DSPRegs[27] &= ~0x8000; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void AIGetDMABytesLeft(void)
+u32 AIGetDMABytesLeft(void)
 {
 	// UNUSED FUNCTION
 }
@@ -136,17 +94,14 @@ void AIGetDMABytesLeft(void)
  * Address:	........
  * Size:	00001C
  */
-void AIGetDMAStartAddr(void)
-{
-	// UNUSED FUNCTION
-}
+u32 AIGetDMAStartAddr(void) { return (u32)((__DSPRegs[24] & 0x03ff) << 16) | (__DSPRegs[25] & 0xffe0); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void AIGetDMALength(void)
+u32 AIGetDMALength(void)
 {
 	// UNUSED FUNCTION
 }
@@ -156,7 +111,7 @@ void AIGetDMALength(void)
  * Address:	........
  * Size:	000008
  */
-void AICheckInit(void)
+BOOL AICheckInit(void)
 {
 	// UNUSED FUNCTION
 }
@@ -166,9 +121,16 @@ void AICheckInit(void)
  * Address:	........
  * Size:	000044
  */
-void AIRegisterStreamCallback(void)
+AISCallback AIRegisterStreamCallback(AISCallback callback)
 {
-	// UNUSED FUNCTION
+	AISCallback ret;
+	s32 oldInts;
+
+	ret            = __AIS_Callback;
+	oldInts        = OSDisableInterrupts();
+	__AIS_Callback = callback;
+	OSRestoreInterrupts(oldInts);
+	return ret;
 }
 
 /*
@@ -176,7 +138,7 @@ void AIRegisterStreamCallback(void)
  * Address:	........
  * Size:	000010
  */
-void AIGetStreamSampleCount(void)
+u32 AIGetStreamSampleCount(void)
 {
 	// UNUSED FUNCTION
 }
@@ -186,27 +148,22 @@ void AIGetStreamSampleCount(void)
  * Address:	........
  * Size:	000018
  */
-void AIResetStreamSampleCount(void)
-{
-	// UNUSED FUNCTION
-}
+void AIResetStreamSampleCount(void) { __AIRegs[0] = (__AIRegs[0] & ~0x20) | 0x20; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void AISetStreamTrigger(void)
-{
-	// UNUSED FUNCTION
-}
+
+void AISetStreamTrigger(u32 trigger) { __AIRegs[AI_INTRPT_TIMING] = trigger; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void AIGetStreamTrigger(void)
+u32 AIGetStreamTrigger(void)
 {
 	// UNUSED FUNCTION
 }
@@ -216,71 +173,30 @@ void AIGetStreamTrigger(void)
  * Address:	800F6960
  * Size:	0000D8
  */
-void AISetStreamPlayState(void)
+void AISetStreamPlayState(u32 state)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        .loc_0xD8
-	  cmplw     r29, r3
-	  beq-      .loc_0xBC
-	  bl        0x288
-	  cmplwi    r3, 0
-	  bne-      .loc_0xA8
-	  cmplwi    r29, 0x1
-	  bne-      .loc_0xA8
-	  bl        0x2CC
-	  mr        r30, r3
-	  bl        0x298
-	  addi      r29, r3, 0
-	  li        r3, 0
-	  bl        0x29C
-	  li        r3, 0
-	  bl        0x268
-	  bl        -0x7D84
-	  mr        r31, r3
-	  bl        0x5A0
-	  lis       r4, 0xCC00
-	  lwz       r0, 0x6C00(r4)
-	  addi      r3, r31, 0
-	  rlwinm    r0,r0,0,27,25
-	  ori       r0, r0, 0x20
-	  stw       r0, 0x6C00(r4)
-	  lwz       r0, 0x6C00(r4)
-	  rlwinm    r0,r0,0,0,30
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x6C00(r4)
-	  bl        -0x7D90
-	  mr        r3, r30
-	  bl        0x228
-	  mr        r3, r29
-	  bl        0x24C
-	  b         .loc_0xBC
+	s32 oldInts;
+	u8 volRight;
+	u8 volLeft;
 
-	.loc_0xA8:
-	  lis       r3, 0xCC00
-	  lwz       r0, 0x6C00(r3)
-	  rlwinm    r0,r0,0,0,30
-	  or        r0, r0, r29
-	  stw       r0, 0x6C00(r3)
-
-	.loc_0xBC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-
-	.loc_0xD8:
-	*/
+	if (state == AIGetStreamPlayState()) {
+		return;
+	}
+	if ((AIGetStreamSampleRate() == 0U) && (state == 1)) {
+		volRight = AIGetStreamVolRight();
+		volLeft  = AIGetStreamVolLeft();
+		AISetStreamVolRight(0);
+		AISetStreamVolLeft(0);
+		oldInts = OSDisableInterrupts();
+		__AI_SRC_INIT();
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~0x20) | 0x20;
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~1) | 1;
+		OSRestoreInterrupts(oldInts);
+		AISetStreamVolLeft(volRight);
+		AISetStreamVolRight(volLeft);
+	} else {
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~1) | state;
+	}
 }
 
 /*
@@ -288,87 +204,43 @@ void AISetStreamPlayState(void)
  * Address:	800F6A38
  * Size:	000010
  */
-void AIGetStreamPlayState(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  lwz       r0, 0x6C00(r3)
-	  rlwinm    r3,r0,0,31,31
-	  blr
-	*/
-}
+u32 AIGetStreamPlayState(void) { return __AIRegs[AI_CONTROL] & 1; }
 
 /*
  * --INFO--
  * Address:	800F6A48
  * Size:	0000E0
  */
-void AISetDSPSampleRate(void)
+void AISetDSPSampleRate(u32 rate)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stmw      r26, 0x10(r1)
-	  mr        r26, r3
-	  bl        .loc_0xE0
-	  cmplw     r26, r3
-	  beq-      .loc_0xCC
-	  lis       r31, 0xCC00
-	  lwz       r0, 0x6C00(r31)
-	  cmplwi    r26, 0
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x6C00(r31)
-	  bne-      .loc_0xCC
-	  bl        0x1BC
-	  mr        r30, r3
-	  bl        0x1E0
-	  lwz       r0, 0x6C00(r31)
-	  addi      r29, r3, 0
-	  rlwinm    r27,r0,0,31,31
-	  bl        0x178
-	  addi      r28, r3, 0
-	  li        r3, 0
-	  bl        0x17C
-	  li        r3, 0
-	  bl        0x1A0
-	  bl        -0x7E78
-	  mr        r26, r3
-	  bl        0x4AC
-	  lwz       r4, 0x6C00(r31)
-	  rlwinm    r0,r28,1,0,30
-	  addi      r3, r26, 0
-	  rlwinm    r4,r4,0,27,25
-	  ori       r4, r4, 0x20
-	  stw       r4, 0x6C00(r31)
-	  lwz       r4, 0x6C00(r31)
-	  rlwinm    r4,r4,0,31,29
-	  or        r0, r4, r0
-	  stw       r0, 0x6C00(r31)
-	  lwz       r0, 0x6C00(r31)
-	  rlwinm    r0,r0,0,0,30
-	  or        r0, r0, r27
-	  stw       r0, 0x6C00(r31)
-	  lwz       r0, 0x6C00(r31)
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x6C00(r31)
-	  bl        -0x7EA0
-	  mr        r3, r30
-	  bl        0x118
-	  mr        r3, r29
-	  bl        0x13C
+	u32 state;
+	s32 oldInts;
+	u8 left;
+	u8 right;
+	u32 sampleRate;
 
-	.loc_0xCC:
-	  lmw       r26, 0x10(r1)
-	  lwz       r0, 0x2C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
+	if (rate == AIGetDSPSampleRate()) {
+		return;
+	}
 
-	.loc_0xE0:
-	*/
+	__AIRegs[AI_CONTROL] &= ~0x40;
+	if (rate == 0) {
+		left       = AIGetStreamVolLeft();
+		right      = AIGetStreamVolRight();
+		state      = AIGetStreamPlayState();
+		sampleRate = AIGetStreamSampleRate();
+		AISetStreamVolLeft(0);
+		AISetStreamVolRight(0);
+		oldInts = OSDisableInterrupts();
+		__AI_SRC_INIT();
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~0x20) | 0x20;
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~2) | (sampleRate * 2);
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~1) | state;
+		__AIRegs[AI_CONTROL] |= 0x40;
+		OSRestoreInterrupts(oldInts);
+		AISetStreamVolLeft(left);
+		AISetStreamVolRight(right);
+	}
 }
 
 /*
@@ -376,24 +248,14 @@ void AISetDSPSampleRate(void)
  * Address:	800F6B28
  * Size:	000014
  */
-void AIGetDSPSampleRate(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  lwz       r0, 0x6C00(r3)
-	  rlwinm    r0,r0,26,31,31
-	  xori      r3, r0, 0x1
-	  blr
-	*/
-}
+u32 AIGetDSPSampleRate(void) { return ((__AIRegs[AI_CONTROL] >> 6) & 1) ^ 1; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000028
  */
-void AISetStreamSampleRate(void)
+void AISetStreamSampleRate(u32 rate)
 {
 	// UNUSED FUNCTION
 }
@@ -413,68 +275,33 @@ void __AI_DEBUG_set_stream_sample_rate(void)
  * Address:	800F6B3C
  * Size:	0000D4
  */
-void __AI_set_stream_sample_rate(void)
+static void __AI_set_stream_sample_rate(u32 rate)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x30(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r25, r3
-	  bl        .loc_0xD4
-	  cmplw     r25, r3
-	  beq-      .loc_0xC0
-	  lis       r31, 0xCC00
-	  lwz       r0, 0x6C00(r31)
-	  rlwinm    r0,r0,0,31,31
-	  mr        r29, r0
-	  bl        0xD0
-	  mr        r28, r3
-	  bl        0xF4
-	  addi      r27, r3, 0
-	  li        r3, 0
-	  bl        0xCC
-	  li        r3, 0
-	  bl        0x98
-	  lwz       r3, 0x6C00(r31)
-	  lwz       r0, 0x6C00(r31)
-	  rlwinm    r26,r3,0,25,25
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x6C00(r31)
-	  bl        -0x7F68
-	  mr        r30, r3
-	  bl        0x3BC
-	  lwz       r4, 0x6C00(r31)
-	  rlwinm    r0,r25,1,0,30
-	  addi      r3, r30, 0
-	  or        r4, r4, r26
-	  stw       r4, 0x6C00(r31)
-	  lwz       r4, 0x6C00(r31)
-	  rlwinm    r4,r4,0,27,25
-	  ori       r4, r4, 0x20
-	  stw       r4, 0x6C00(r31)
-	  lwz       r4, 0x6C00(r31)
-	  rlwinm    r4,r4,0,31,29
-	  or        r0, r4, r0
-	  stw       r0, 0x6C00(r31)
-	  bl        -0x7F80
-	  mr        r3, r29
-	  bl        -0x288
-	  mr        r3, r28
-	  bl        0x30
-	  mr        r3, r27
-	  bl        0x54
+	s32 oldInts;
+	s32 state;
+	u8 left;
+	u8 right;
+	s32 temp_r26;
 
-	.loc_0xC0:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  addi      r1, r1, 0x30
-	  mtlr      r0
-	  blr
-
-	.loc_0xD4:
-	*/
+	if (rate == AIGetStreamSampleRate()) {
+		return;
+	}
+	state = AIGetStreamPlayState();
+	left  = AIGetStreamVolLeft();
+	right = AIGetStreamVolRight();
+	AISetStreamVolRight(0);
+	AISetStreamVolLeft(0);
+	temp_r26 = __AIRegs[AI_CONTROL] & 0x40;
+	__AIRegs[AI_CONTROL] &= ~0x40;
+	oldInts = OSDisableInterrupts();
+	__AI_SRC_INIT();
+	__AIRegs[AI_CONTROL] |= temp_r26;
+	__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~0x20) | 0x20;
+	__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~2) | (rate * 2);
+	OSRestoreInterrupts(oldInts);
+	AISetStreamPlayState(state);
+	AISetStreamVolLeft(left);
+	AISetStreamVolRight(right);
 }
 
 /*
@@ -482,190 +309,68 @@ void __AI_set_stream_sample_rate(void)
  * Address:	800F6C10
  * Size:	000010
  */
-void AIGetStreamSampleRate(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  lwz       r0, 0x6C00(r3)
-	  rlwinm    r3,r0,31,31,31
-	  blr
-	*/
-}
+u32 AIGetStreamSampleRate(void) { return (__AIRegs[AI_CONTROL] >> 1) & 1; }
 
 /*
  * --INFO--
  * Address:	800F6C20
  * Size:	00001C
  */
-void AISetStreamVolLeft(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r4, 0xCC00
-	  addi      r4, r4, 0x6C00
-	  lwz       r0, 0x4(r4)
-	  rlwinm    r0,r0,0,0,23
-	  rlwimi    r0,r3,0,24,31
-	  stw       r0, 0x4(r4)
-	  blr
-	*/
-}
+void AISetStreamVolLeft(u8 volume) { __AIRegs[AI_VOLUME] = (__AIRegs[AI_VOLUME] & ~0xFF) | (volume & 0xFF); }
 
 /*
  * --INFO--
  * Address:	800F6C3C
  * Size:	000010
  */
-void AIGetStreamVolLeft(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  lwz       r0, 0x6C04(r3)
-	  rlwinm    r3,r0,0,24,31
-	  blr
-	*/
-}
+u8 AIGetStreamVolLeft(void) { return __AIRegs[AI_VOLUME]; }
 
 /*
  * --INFO--
  * Address:	800F6C4C
  * Size:	00001C
  */
-void AISetStreamVolRight(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r4, 0xCC00
-	  addi      r4, r4, 0x6C00
-	  lwz       r0, 0x4(r4)
-	  rlwinm    r0,r0,0,24,15
-	  rlwimi    r0,r3,8,16,23
-	  stw       r0, 0x4(r4)
-	  blr
-	*/
-}
+void AISetStreamVolRight(u8 volume) { __AIRegs[AI_VOLUME] = (__AIRegs[AI_VOLUME] & ~0xFF00) | ((volume & 0xFF) << 8); }
 
 /*
  * --INFO--
  * Address:	800F6C68
  * Size:	000010
  */
-void AIGetStreamVolRight(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  lwz       r0, 0x6C04(r3)
-	  rlwinm    r3,r0,24,24,31
-	  blr
-	*/
-}
+u8 AIGetStreamVolRight(void) { return __AIRegs[AI_VOLUME] >> 8; }
 
 /*
  * --INFO--
  * Address:	800F6C78
  * Size:	00016C
  */
-void AIInit(void)
+void AIInit(u8* stack)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  addi      r30, r3, 0
-	  lwz       r0, -0x6FB8(r13)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x154
-	  lwz       r3, -0x7C58(r13)
-	  bl        -0xB218
-	  lis       r3, 0x8000
-	  lwz       r0, 0xF8(r3)
-	  lis       r3, 0x431C
-	  lis       r4, 0x1
-	  rlwinm    r0,r0,30,2,31
-	  subi      r3, r3, 0x217D
-	  mulhwu    r0, r3, r0
-	  rlwinm    r9,r0,17,15,31
-	  subi      r5, r4, 0x5BD8
-	  subi      r3, r4, 0x5BF0
-	  subi      r0, r4, 0x9E8
-	  lis       r4, 0x1062
-	  mullw     r7, r9, r5
-	  addi      r10, r4, 0x4DD3
-	  mullw     r5, r9, r3
-	  mullw     r4, r9, r0
-	  mulli     r8, r9, 0x7B24
-	  mulli     r3, r9, 0xBB8
-	  mulhwu    r8, r10, r8
-	  mulhwu    r7, r10, r7
-	  mulhwu    r5, r10, r5
-	  mulhwu    r4, r10, r4
-	  mulhwu    r3, r10, r3
-	  rlwinm    r8,r8,23,9,31
-	  rlwinm    r7,r7,23,9,31
-	  stw       r8, -0x6FAC(r13)
-	  rlwinm    r5,r5,23,9,31
-	  rlwinm    r4,r4,23,9,31
-	  stw       r7, -0x6FA4(r13)
-	  li        r31, 0
-	  rlwinm    r3,r3,23,9,31
-	  stw       r5, -0x6F9C(r13)
-	  lis       r6, 0xCC00
-	  stw       r3, -0x6F8C(r13)
-	  li        r3, 0x1
-	  lwz       r0, 0x6C00(r6)
-	  stw       r4, -0x6F94(r13)
-	  rlwinm    r0,r0,0,27,25
-	  ori       r0, r0, 0x20
-	  stw       r31, -0x6FB0(r13)
-	  stw       r31, -0x6FA8(r13)
-	  stw       r31, -0x6FA0(r13)
-	  stw       r31, -0x6F98(r13)
-	  stw       r31, -0x6F90(r13)
-	  lwz       r5, 0x6C04(r6)
-	  stw       r0, 0x6C00(r6)
-	  rlwinm    r0,r5,0,24,15
-	  nop
-	  stw       r0, 0x6C04(r6)
-	  lwz       r0, 0x6C04(r6)
-	  rlwinm    r0,r0,0,0,23
-	  nop
-	  stw       r0, 0x6C04(r6)
-	  stw       r31, 0x6C0C(r6)
-	  bl        -0x240
-	  li        r3, 0
-	  bl        -0x33C
-	  lis       r3, 0x800F
-	  stw       r31, -0x6FC8(r13)
-	  addi      r4, r3, 0x6E60
-	  stw       r31, -0x6FC4(r13)
-	  li        r3, 0x5
-	  stw       r30, -0x6FC0(r13)
-	  bl        -0x811C
-	  lis       r3, 0x400
-	  bl        -0x7D20
-	  lis       r3, 0x800F
-	  addi      r4, r3, 0x6DE4
-	  li        r3, 0x8
-	  bl        -0x8134
-	  lis       r3, 0x80
-	  bl        -0x7D38
-	  li        r0, 0x1
-	  stw       r0, -0x6FB8(r13)
+	if (__AI_init_flag == TRUE) {
+		return;
+	}
 
-	.loc_0x154:
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	OSRegisterVersion(__AIVersion);
+	bound_32KHz = OSNanosecondsToTicks(31524);
+	bound_48KHz = OSNanosecondsToTicks(42024);
+	min_wait    = OSNanosecondsToTicks(42000);
+	max_wait    = OSNanosecondsToTicks(63000);
+	buffer      = OSNanosecondsToTicks(3000);
+
+	AISetStreamVolRight(0);
+	AISetStreamVolLeft(0);
+	AISetStreamTrigger(0);
+	AIResetStreamSampleCount();
+	__AI_set_stream_sample_rate(1);
+	AISetDSPSampleRate(0);
+	__AIS_Callback  = 0;
+	__AID_Callback  = 0;
+	__CallbackStack = stack;
+	__OSSetInterruptHandler(5, __AIDHandler);
+	__OSUnmaskInterrupts(0x04000000);
+	__OSSetInterruptHandler(8, __AISHandler);
+	__OSUnmaskInterrupts(0x800000);
+	__AI_init_flag = TRUE;
 }
 
 /*
@@ -683,44 +388,17 @@ void AIReset(void)
  * Address:	800F6DE4
  * Size:	00007C
  */
-void __AISHandler(void)
+static void __AISHandler(s16 interrupt, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x2E0(r1)
-	  stw       r31, 0x2DC(r1)
-	  lis       r31, 0xCC00
-	  lwz       r0, 0x6C00(r31)
-	  addi      r3, r1, 0x10
-	  stw       r30, 0x2D8(r1)
-	  ori       r0, r0, 0x8
-	  stw       r0, 0x6C00(r31)
-	  addi      r30, r4, 0
-	  bl        -0x9CA4
-	  addi      r3, r1, 0x10
-	  bl        -0x9E74
-	  lwz       r12, -0x6FC8(r13)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x54
-	  addi      r3, r31, 0x6C00
-	  mtlr      r12
-	  lwz       r3, 0x8(r3)
-	  blrl
-
-	.loc_0x54:
-	  addi      r3, r1, 0x10
-	  bl        -0x9CD0
-	  mr        r3, r30
-	  bl        -0x9EA0
-	  lwz       r0, 0x2E4(r1)
-	  lwz       r31, 0x2DC(r1)
-	  lwz       r30, 0x2D8(r1)
-	  addi      r1, r1, 0x2E0
-	  mtlr      r0
-	  blr
-	*/
+	OSContext tmpContext;
+	__AIRegs[AI_CONTROL] |= 8;
+	OSClearContext(&tmpContext);
+	OSSetCurrentContext(&tmpContext);
+	if (__AIS_Callback != NULL) {
+		__AIS_Callback(__AIRegs[AI_SAMPLE_COUNTER]);
+	}
+	OSClearContext(&tmpContext);
+	OSSetCurrentContext(context);
 }
 
 /*
@@ -728,62 +406,26 @@ void __AISHandler(void)
  * Address:	800F6E60
  * Size:	0000AC
  */
-void __AIDHandler(void)
+static void __AIDHandler(s16 interrupt, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0xCC00
-	  stw       r0, 0x4(r1)
-	  addi      r3, r3, 0x5000
-	  li        r0, -0xA1
-	  stwu      r1, -0x2E0(r1)
-	  stw       r31, 0x2DC(r1)
-	  addi      r31, r4, 0
-	  lhz       r5, 0xA(r3)
-	  and       r0, r5, r0
-	  ori       r0, r0, 0x8
-	  sth       r0, 0xA(r3)
-	  addi      r3, r1, 0x10
-	  bl        -0x9D28
-	  addi      r3, r1, 0x10
-	  bl        -0x9EF8
-	  lwz       r3, -0x6FC4(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x88
-	  lwz       r0, -0x6FB4(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x88
-	  lwz       r0, -0x6FC0(r13)
-	  li        r4, 0x1
-	  stw       r4, -0x6FB4(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x74
-	  bl        .loc_0xAC
-	  b         .loc_0x80
+	OSContext tempContext;
+	u32 temp     = __DSPRegs[5];
+	__DSPRegs[5] = (temp & ~0xA0) | 8;
+	OSClearContext(&tempContext);
+	OSSetCurrentContext(&tempContext);
+	if (__AID_Callback && !__AID_Active) {
+		__AID_Active = TRUE;
+		if (__CallbackStack) {
+			__AICallbackStackSwitch(__AID_Callback);
+		} else {
+			__AID_Callback();
+		}
 
-	.loc_0x74:
-	  addi      r12, r3, 0
-	  mtlr      r12
-	  blrl
+		__AID_Active = FALSE;
+	}
 
-	.loc_0x80:
-	  li        r0, 0
-	  stw       r0, -0x6FB4(r13)
-
-	.loc_0x88:
-	  addi      r3, r1, 0x10
-	  bl        -0x9D80
-	  mr        r3, r31
-	  bl        -0x9F50
-	  lwz       r0, 0x2E4(r1)
-	  lwz       r31, 0x2DC(r1)
-	  addi      r1, r1, 0x2E0
-	  mtlr      r0
-	  blr
-
-	.loc_0xAC:
-	*/
+	OSClearContext(&tempContext);
+	OSSetCurrentContext(context);
 }
 
 /*
@@ -791,190 +433,103 @@ void __AIDHandler(void)
  * Address:	800F6F0C
  * Size:	000058
  */
-void __AICallbackStackSwitch(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  mr        r31, r3
-	  lis       r5, 0x8051
-	  addi      r5, r5, 0x56C4
-	  stw       r1, 0x0(r5)
-	  lis       r5, 0x8051
-	  addi      r5, r5, 0x56C0
-	  lwz       r1, 0x0(r5)
-	  subi      r1, r1, 0x8
-	  mtlr      r31
-	  blrl
-	  lis       r5, 0x8051
-	  addi      r5, r5, 0x56C4
-	  lwz       r1, 0x0(r5)
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+// clang-format off
+asm static void __AICallbackStackSwitch(register AIDCallback cb) {
+  // Allocate stack frame
+  fralloc
+
+  // Store current stack
+  lis r5, __OldStack@ha
+  addi r5, r5, __OldStack@l
+  stw r1, 0(r5)
+
+  // Load stack for callback
+  lis r5, __CallbackStack@ha 
+  addi r5, r5, __CallbackStack@l 
+  lwz r1,0(r5)
+
+  // Move stack down 8 bytes
+  subi r1, r1, 8
+  // Call callback
+  mtlr cb 
+  blrl
+
+  // Restore old stack
+  lis r5, __OldStack @ha 
+  addi r5, r5, __OldStack@l 
+  lwz r1,0(r5)
+
+  // Free stack frame
+  frfree
+
+  blr
 }
+// clang-format on
 
 /*
  * --INFO--
  * Address:	800F6F64
  * Size:	0001E4
  */
-void __AI_SRC_INIT(void)
+static void __AI_SRC_INIT(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x30(r1)
-	  stmw      r26, 0x18(r1)
-	  li        r4, 0
-	  li        r3, 0
-	  li        r0, 0
-	  li        r28, 0
-	  li        r29, 0
-	  b         .loc_0x28
+	OSTime rising_32khz = 0;
+	OSTime rising_48khz = 0;
+	OSTime diff         = 0;
+	OSTime t1           = 0;
+	OSTime temp         = 0;
+	u32 temp0           = 0;
+	u32 temp1           = 0;
+	u32 done            = 0;
+	u32 volume          = 0;
+	u32 Init_Cnt        = 0;
+	u32 walking         = 0;
 
-	.loc_0x28:
-	  lis       r31, 0xCC00
-	  b         .loc_0x30
+	walking  = 0;
+	Init_Cnt = 0;
+	temp     = 0;
 
-	.loc_0x30:
-	  b         .loc_0x194
+	while (!done) {
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~0x20) | 0x20;
+		__AIRegs[AI_CONTROL] &= ~2;
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~1) | 1;
 
-	.loc_0x34:
-	  lwz       r0, 0x6C00(r31)
-	  addi      r30, r31, 0x6C00
-	  addi      r30, r30, 0x8
-	  rlwinm    r0,r0,0,27,25
-	  ori       r0, r0, 0x20
-	  stw       r0, 0x6C00(r31)
-	  lwz       r0, 0x6C00(r31)
-	  rlwinm    r0,r0,0,31,29
-	  stw       r0, 0x6C00(r31)
-	  lwz       r0, 0x6C00(r31)
-	  rlwinm    r0,r0,0,0,30
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x6C00(r31)
-	  lwz       r3, 0x0(r30)
-	  b         .loc_0x70
+		temp0 = __AIRegs[AI_SAMPLE_COUNTER];
 
-	.loc_0x70:
-	  b         .loc_0x74
+		while (temp0 == __AIRegs[AI_SAMPLE_COUNTER])
+			;
+		rising_32khz = OSGetTime();
 
-	.loc_0x74:
-	  lwz       r0, 0x0(r30)
-	  cmplw     r3, r0
-	  beq+      .loc_0x74
-	  bl        -0x4454
-	  lwz       r0, 0x6C00(r31)
-	  mr        r26, r4
-	  mr        r27, r3
-	  rlwinm    r0,r0,0,31,29
-	  ori       r0, r0, 0x2
-	  stw       r0, 0x6C00(r31)
-	  lwz       r0, 0x6C00(r31)
-	  rlwinm    r0,r0,0,0,30
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x6C00(r31)
-	  lwz       r3, 0x0(r30)
-	  b         .loc_0xB4
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~2) | 2;
+		__AIRegs[AI_CONTROL] = (__AIRegs[AI_CONTROL] & ~1) | 1;
 
-	.loc_0xB4:
-	  b         .loc_0xB8
+		temp1 = __AIRegs[AI_SAMPLE_COUNTER];
+		while (temp1 == __AIRegs[AI_SAMPLE_COUNTER])
+			;
 
-	.loc_0xB8:
-	  lwz       r0, 0x0(r30)
-	  cmplw     r3, r0
-	  beq+      .loc_0xB8
-	  bl        -0x4498
-	  subc      r8, r4, r26
-	  lwz       r12, -0x6FAC(r13)
-	  lwz       r5, 0x6C00(r31)
-	  subfe     r7, r27, r3
-	  lwz       r10, -0x6F8C(r13)
-	  xoris     r7, r7, 0x8000
-	  rlwinm    r5,r5,0,31,29
-	  lwz       r11, -0x6FB0(r13)
-	  subc      r6, r12, r10
-	  lwz       r9, -0x6F90(r13)
-	  stw       r5, 0x6C00(r31)
-	  subfe     r0, r9, r11
-	  xoris     r5, r0, 0x8000
-	  subc      r0, r8, r6
-	  lwz       r0, 0x6C00(r31)
-	  subfe     r5, r5, r7
-	  subfe     r5, r7, r7
-	  neg       r5, r5
-	  rlwinm    r0,r0,0,0,30
-	  cmpwi     r5, 0
-	  stw       r0, 0x6C00(r31)
-	  beq-      .loc_0x130
-	  lwz       r29, -0x6FA0(r13)
-	  li        r0, 0x1
-	  lwz       r28, -0x6F9C(r13)
-	  b         .loc_0x194
+		rising_48khz = OSGetTime();
 
-	.loc_0x130:
-	  addc      r6, r12, r10
-	  adde      r0, r11, r9
-	  xoris     r5, r0, 0x8000
-	  subc      r0, r8, r6
-	  subfe     r5, r5, r7
-	  subfe     r5, r7, r7
-	  neg       r5, r5
-	  cmpwi     r5, 0
-	  bne-      .loc_0x190
-	  lwz       r5, -0x6FA4(r13)
-	  lwz       r0, -0x6FA8(r13)
-	  subc      r6, r5, r10
-	  subfe     r0, r9, r0
-	  xoris     r5, r0, 0x8000
-	  subc      r0, r8, r6
-	  subfe     r5, r5, r7
-	  subfe     r5, r7, r7
-	  neg       r5, r5
-	  cmpwi     r5, 0
-	  beq-      .loc_0x190
-	  lwz       r29, -0x6F98(r13)
-	  li        r0, 0x1
-	  lwz       r28, -0x6F94(r13)
-	  b         .loc_0x194
+		diff = rising_48khz - rising_32khz;
+		__AIRegs[AI_CONTROL] &= ~2;
+		__AIRegs[AI_CONTROL] &= ~1;
 
-	.loc_0x190:
-	  li        r0, 0
+		if (diff < (bound_32KHz - buffer)) {
+			temp = min_wait;
+			done = 1;
+			++Init_Cnt;
+		} else if (diff >= (bound_32KHz + buffer) && diff < (bound_48KHz - buffer)) {
+			temp = max_wait;
+			done = 1;
+			++Init_Cnt;
+		} else {
+			done    = 0;
+			walking = 1;
+			++Init_Cnt;
+		}
+	}
 
-	.loc_0x194:
-	  cmplwi    r0, 0
-	  beq+      .loc_0x34
-	  addc      r27, r4, r28
-	  adde      r26, r3, r29
-	  b         .loc_0x1A8
-
-	.loc_0x1A8:
-	  b         .loc_0x1AC
-
-	.loc_0x1AC:
-	  bl        -0x4580
-	  xoris     r5, r3, 0x8000
-	  xoris     r3, r26, 0x8000
-	  subc      r0, r4, r27
-	  subfe     r3, r3, r5
-	  subfe     r3, r5, r5
-	  neg       r3, r3
-	  cmpwi     r3, 0
-	  bne+      .loc_0x1AC
-	  lmw       r26, 0x18(r1)
-	  lwz       r0, 0x34(r1)
-	  addi      r1, r1, 0x30
-	  mtlr      r0
-	  blr
-	*/
+	while ((rising_48khz + temp) > OSGetTime())
+		;
 }
 
 /*

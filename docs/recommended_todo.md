@@ -26,9 +26,9 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c">TRK_MINNOW_DOLPHIN/mpc_7xx_603e.c</a> | 5554 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/mtx/mtx44.c">mtx/mtx44.c</a> | 5987 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/os/OSReboot.c">os/OSReboot.c</a> | 6397 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXGeometry.c">gx/GXGeometry.c</a> | 6983 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c">TRK_MINNOW_DOLPHIN/dolphin_trk_glue.c</a> | 10320 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/exi/EXIUart.c">exi/EXIUart.c</a> | 10329 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 11230 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 12046 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTransform.c">gx/GXTransform.c</a> | 12379 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXLight.c">gx/GXLight.c</a> | 14151 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTev.c">gx/GXTev.c</a> | 14624 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXPixel.c">gx/GXPixel.c</a> | 15806 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/ai/ai.c">ai/ai.c</a> | 11124 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/dolphin_trk.c">TRK_MINNOW_DOLPHIN/dolphin_trk.c</a> | 11230 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/support.c">TRK_MINNOW_DOLPHIN/support.c</a> | 12046 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTransform.c">gx/GXTransform.c</a> | 12379 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXLight.c">gx/GXLight.c</a> | 14151 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXTev.c">gx/GXTev.c</a> | 14624 |
 
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |

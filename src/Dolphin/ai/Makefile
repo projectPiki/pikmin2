@@ -1,7 +1,7 @@
 AI_FILES:=\
-	$(BUILD_DIR)/asm/Dolphin/ai/ai.o\
+	$(BUILD_DIR)/src/Dolphin/ai/ai.o\
 
-$(AI_FILES): CFLAGS += -common off
+$(AI_FILES): CFLAGS += -common off -str noreadonly
 
 DEPENDS += $(AI_FILES:.o=.d)
 
