@@ -4,10 +4,9 @@
 #include "PSSystem/PSSystemIF.h"
 #include "og/newScreen/ogUtil.h"
 
-static const char name[] = "ebiOmakeMgr.cpp";
+static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 namespace ebi {
-
 namespace Omake {
 
 /*
@@ -33,6 +32,7 @@ void FSMStateMachine::init(TMgr* mgr)
 void FSMState_OmakeScreen::do_init(TMgr* mgr, Game::StateArg*)
 {
 	if (!mgr->mStateMachine.mCurrentID) {
+
 		Screen::ArgOpenOmake arg(sys->getPlayCommonData()->_00 & 1, sys->getPlayCommonData()->_00 >> 1 & 1,
 		                         sys->getPlayCommonData()->isPerfectChallenge());
 		arg._08 = -1;
@@ -290,7 +290,7 @@ void TMgr::update()
 			mOmakeGame.update();
 			gCardEMgr->update();
 			if (!close && mOmake.isCloseScreen()) {
-				_890 = true;
+				mIsFinished = true;
 			}
 		}
 	}

@@ -1,423 +1,47 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80496AE8
-    lbl_80496AE8:
-        .4byte 0x65626953
-        .4byte 0x63726565
-        .4byte 0x6E46696C
-        .4byte 0x6553656C
-        .4byte 0x65637400
-        .4byte 0x54536372
-        .4byte 0x65656E44
-        .4byte 0x61746157
-        .4byte 0x696E646F
-        .4byte 0x773A3A73
-        .4byte 0x65744172
-        .4byte 0x63686976
-        .4byte 0x652D2D73
-        .4byte 0x65745F5F
-        .4byte 0x626C6F00
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563745F
-        .4byte 0x64775F6E
-        .4byte 0x65772E62
-        .4byte 0x6C6F0000
-        .4byte 0x54536372
-        .4byte 0x65656E5F
-        .4byte 0x46535F73
-        .4byte 0x63656E65
-        .4byte 0x5F6F7065
-        .4byte 0x6E3A3A73
-        .4byte 0x65744172
-        .4byte 0x63686976
-        .4byte 0x652D2D63
-        .4byte 0x616C6C62
-        .4byte 0x61636B5F
-        .4byte 0x6D657373
-        .4byte 0x61676500
-    .global lbl_80496B70
-    lbl_80496B70:
-        .4byte 0x65626953
-        .4byte 0x63726565
-        .4byte 0x6E46696C
-        .4byte 0x6553656C
-        .4byte 0x6563742E
-        .4byte 0x63707000
-    .global lbl_80496B88
-    lbl_80496B88:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563745F
-        .4byte 0x64775F64
-        .4byte 0x6174612E
-        .4byte 0x626C6F00
-        .4byte 0x54536372
-        .4byte 0x65656E46
-        .4byte 0x696C6553
-        .4byte 0x656C6563
-        .4byte 0x743A3A6C
-        .4byte 0x6F616452
-        .4byte 0x65736F75
-        .4byte 0x72636500
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563742E
-        .4byte 0x737A7300
-        .4byte 0x54536372
-        .4byte 0x65656E46
-        .4byte 0x696C6553
-        .4byte 0x656C6563
-        .4byte 0x743A3A73
-        .4byte 0x65744172
-        .4byte 0x63686976
-        .4byte 0x65000000
-        .4byte 0x54536372
-        .4byte 0x65656E46
-        .4byte 0x696C6553
-        .4byte 0x656C6563
-        .4byte 0x743A3A73
-        .4byte 0x65744172
-        .4byte 0x63686976
-        .4byte 0x652D2D73
-        .4byte 0x65745F5F
-        .4byte 0x626C6F00
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563742E
-        .4byte 0x626C6F00
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563742E
-        .4byte 0x62636B00
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563742E
-        .4byte 0x62706B00
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563745F
-        .4byte 0x30332E62
-        .4byte 0x746B0000
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563745F
-        .4byte 0x30322E62
-        .4byte 0x746B0000
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563742E
-        .4byte 0x62746B00
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563745F
-        .4byte 0x30342E62
-        .4byte 0x746B0000
-        .4byte 0x66696C65
-        .4byte 0x5F73656C
-        .4byte 0x6563742E
-        .4byte 0x62726B00
-        .4byte 0x75736572
-        .4byte 0x2F456269
-        .4byte 0x73617761
-        .4byte 0x2F656666
-        .4byte 0x6563742F
-        .4byte 0x65666632
-        .4byte 0x645F6669
-        .4byte 0x6C655F73
-        .4byte 0x656C6563
-        .4byte 0x742E6A70
-        .4byte 0x63000000
-        .4byte 0x62726561
-        .4byte 0x6B5F6E65
-        .4byte 0x775F6963
-        .4byte 0x6F6E2E62
-        .4byte 0x74690000
-        .4byte 0x6E65775F
-        .4byte 0x69636F6E
-        .4byte 0x2E627469
-        .4byte 0x00000000
-        .4byte 0x6469636F
-        .4byte 0x6E5F6963
-        .4byte 0x6F6E2E62
-        .4byte 0x74690000
-    .global lbl_80496D10
-    lbl_80496D10:
-        .4byte 0x41726743
-        .4byte 0x6F6C6F72
-        .4byte 0x00000000
-    .global lbl_80496D1C
-    lbl_80496D1C:
-        .4byte 0x41726746
-        .4byte 0x696C6563
-        .4byte 0x6F707900
-    .global lbl_80496D28
-    lbl_80496D28:
-        .4byte 0x5446696C
-        .4byte 0x6553656C
-        .4byte 0x65637400
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E8D30
-    lbl_804E8D30:
-        .4byte lbl_803D828C
-        .4byte lbl_803D82B8
-        .4byte lbl_803D82F4
-        .4byte lbl_803D8320
-        .4byte lbl_803D835C
-        .4byte lbl_803D838C
-        .4byte lbl_803D83BC
-        .4byte lbl_803D83EC
-        .4byte lbl_803D8428
-        .4byte lbl_803D8458
-        .4byte lbl_803D8488
-    .global __vt__Q25efx2d8ArgColor
-    __vt__Q25efx2d8ArgColor:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q25efx2d8ArgColorFv
-    .global __vt__Q35efx2d10FileSelect11ArgFilecopy
-    __vt__Q35efx2d10FileSelect11ArgFilecopy:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q35efx2d10FileSelect11ArgFilecopyFv
-    .global __vt__Q35efx2d10FileSelect13T2DFiledecide
-    __vt__Q35efx2d10FileSelect13T2DFiledecide:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q25efx2d8TSimple2FPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TSimple2Fv
-        .4byte fade__Q25efx2d8TSimple2Fv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-    .global __vt__Q43ebi6Screen10FileSelect11TMainScreen
-    __vt__Q43ebi6Screen10FileSelect11TMainScreen:
-        .4byte 0
-        .4byte 0
-        .4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
-        .4byte openScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen
-        .4byte closeScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose
-        .4byte killScreen__Q33ebi6Screen11TScreenBaseFv
-        .4byte update__Q33ebi6Screen11TScreenBaseFv
-        .4byte draw__Q33ebi6Screen11TScreenBaseFv
-        .4byte isFinishScreen__Q33ebi6Screen11TScreenBaseFv
-        .4byte
-   doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive .4byte
-   doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen
-        .4byte
-   doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClose
-        .4byte doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv
-        .4byte doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv
-        .4byte doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv
-        .4byte doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv
-        .4byte doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv
-        .4byte doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv
-        .4byte getName__Q43ebi6Screen10FileSelect11TMainScreenFv
-    .global __vt__Q35efx2d10FileSelect11T2DFileselM
-    __vt__Q35efx2d10FileSelect11T2DFileselM:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TForeverFv
-        .4byte fade__Q25efx2d8TForeverFv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q35efx2d10FileSelect11T2DFileselMFv"
-        .4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
-        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte __dt__Q35efx2d10FileSelect11T2DFileselMFv
-        .4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
-    .global __vt__Q35efx2d10FileSelect10T2DFilesel
-    __vt__Q35efx2d10FileSelect10T2DFilesel:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TForeverFv
-        .4byte fade__Q25efx2d8TForeverFv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q35efx2d10FileSelect10T2DFileselFv"
-        .4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
-        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte __dt__Q35efx2d10FileSelect10T2DFileselFv
-        .4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
-    .global __vt__Q35efx2d10FileSelect16T2DFiledeletingM
-    __vt__Q35efx2d10FileSelect16T2DFiledeletingM:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TForeverFv
-        .4byte fade__Q25efx2d8TForeverFv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q35efx2d10FileSelect16T2DFiledeletingMFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv
-    .global __vt__Q35efx2d10FileSelect15T2DFiledeleting
-    __vt__Q35efx2d10FileSelect15T2DFiledeleting:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TForeverFv
-        .4byte fade__Q25efx2d8TForeverFv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q35efx2d10FileSelect15T2DFiledeletingFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte __dt__Q35efx2d10FileSelect15T2DFiledeletingFv
-    .global __vt__Q35efx2d10FileSelect12T2DFilecopyM
-    __vt__Q35efx2d10FileSelect12T2DFilecopyM:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TForeverFv
-        .4byte fade__Q25efx2d8TForeverFv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q35efx2d10FileSelect12T2DFilecopyMFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte __dt__Q35efx2d10FileSelect12T2DFilecopyMFv
-    .global __vt__Q35efx2d10FileSelect11T2DFilecopy
-    __vt__Q35efx2d10FileSelect11T2DFilecopy:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg
-        .4byte kill__Q25efx2d8TForeverFv
-        .4byte fade__Q25efx2d8TForeverFv
-        .4byte setGroup__Q25efx2d5TBaseFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q35efx2d10FileSelect11T2DFilecopyFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte __dt__Q35efx2d10FileSelect11T2DFilecopyFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FB18
-    lbl_8051FB18:
-        .4byte 0x42480000
-    .global lbl_8051FB1C
-    lbl_8051FB1C:
-        .4byte 0x00000000
-    .global lbl_8051FB20
-    lbl_8051FB20:
-        .4byte 0x3D08850A
-    .global lbl_8051FB24
-    lbl_8051FB24:
-        .float 1.0
-    .global lbl_8051FB28
-    lbl_8051FB28:
-        .4byte 0x40A00000
-    .global lbl_8051FB2C
-    lbl_8051FB2C:
-        .4byte 0x42700000
-    .global lbl_8051FB30
-    lbl_8051FB30:
-        .float 0.5
-    .global lbl_8051FB34
-    lbl_8051FB34:
-        .float 0.25
-    .global lbl_8051FB38
-    lbl_8051FB38:
-        .4byte 0x3ECCCCCD
-    .global lbl_8051FB3C
-    lbl_8051FB3C:
-        .4byte 0x437F0000
-    .global lbl_8051FB40
-    lbl_8051FB40:
-        .4byte 0x3F99999A
-        .4byte 0x00000000
-    .global lbl_8051FB48
-    lbl_8051FB48:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051FB50
-    lbl_8051FB50:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051FB54
-    lbl_8051FB54:
-        .4byte 0x40555555
-    .global lbl_8051FB58
-    lbl_8051FB58:
-        .4byte 0x41F00000
-    .global lbl_8051FB5C
-    lbl_8051FB5C:
-        .4byte 0x3F19999A
-    .global lbl_8051FB60
-    lbl_8051FB60:
-        .4byte 0x447FC000
-    .global lbl_8051FB64
-    lbl_8051FB64:
-        .4byte 0x433E0000
-*/
+#include "ebi/Screen/TMainScreen.h"
+#include "ebi/Screen/TScreenDataWindow.h"
+#include "ebi/Screen/TFileData.h"
+#include "efx2d/FileSelect.h"
 
 namespace ebi {
-
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B8
- */
-void FileSelect::TScreenDataWindow_new::setArchive(JKRArchive*)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0000B8
+//  */
+// void FileSelect::TScreenDataWindow_new::setArchive(JKRArchive*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000130
- */
-void FileSelect::TScreenDataWindow_new::setData(long, unsigned long long)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000130
+//  */
+// void FileSelect::TScreenDataWindow_new::setData(s32, u64)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002E4
- */
-void FileSelect::TScreenDataWindow_data::setArchive(JKRArchive*)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0002E4
+//  */
+// void FileSelect::TScreenDataWindow_data::setArchive(JKRArchive*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	803D4244
  * Size:	000254
  */
-void FileSelect::TScreenDataWindow_data::setData((long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long,
-                                                  unsigned long))
+void FileSelect::TScreenDataWindow_data::setData(s32, u32, u32, u32, u32, u32, u32)
 {
 	/*
 	.loc_0x0:
@@ -591,957 +215,56 @@ void FileSelect::TScreenDataWindow_data::setData((long, unsigned long, unsigned 
  * Size:	000EB0
  */
 FileSelect::TMainScreen::TMainScreen()
+    : _AFC(0, 0, 0, 0)
+    , _BA0(nullptr)
+    , _BA4(0)
+    , _BD4(0, 0, 0, 255)
+    , _BD8(255)
+    , _BDC(0)
+    , _BE0(0)
+    , _BE4(0)
+    , _BE8(0)
+    , _BEC(0)
+    , _BF0(0)
+    , _BF4(0)
 {
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-lis      r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
-li       r5, 0
-stw      r0, 0x54(r1)
-addi     r0, r4, __vt__Q33ebi6Screen20TScreenBaseInterface@l
-stmw     r17, 0x14(r1)
-mr       r31, r3
-addi     r24, r31, 0xe0
-lis      r3, __vt__Q33ebi6Screen11TScreenBase@ha
-mr       r17, r24
-stw      r0, 0(r31)
-addi     r0, r3, __vt__Q33ebi6Screen11TScreenBase@l
-lis      r3, __vt__Q43ebi6Screen10FileSelect11TMainScreen@ha
-stw      r0, 0(r31)
-addi     r4, r3, __vt__Q43ebi6Screen10FileSelect11TMainScreen@l
-li       r0, -1
-mr       r3, r24
-stw      r5, 4(r31)
-stw      r5, 8(r31)
-stw      r4, 0(r31)
-stw      r0, 0xc0(r31)
-stw      r0, 0xc4(r31)
-stw      r0, 0xc8(r31)
-stw      r0, 0xcc(r31)
-stw      r0, 0xd0(r31)
-stw      r0, 0xd4(r31)
-stw      r0, 0xd8(r31)
-stw      r0, 0xdc(r31)
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r24)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r24)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r24, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r24)
-stw      r0, 0x20(r24)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x11c
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-lis      r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@ha
-lis      r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
-addi     r4, r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r6, 0x3c
-addi     r3, r31, 0x158
-addi     r5, r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r7, 3
-bl       __construct_array
-lis      r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@ha
-lis      r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
-addi     r4, r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r6, 0x3c
-addi     r3, r31, 0x20c
-addi     r5, r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r7, 3
-bl       __construct_array
-addi     r17, r31, 0x2c0
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x2fc
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x338
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x374
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-lis      r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@ha
-lis      r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
-addi     r4, r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r6, 0x3c
-addi     r3, r31, 0x3b0
-addi     r5, r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r7, 3
-bl       __construct_array
-lis      r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@ha
-lis      r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
-addi     r4, r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r6, 0x3c
-addi     r3, r31, 0x464
-addi     r5, r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r7, 3
-bl       __construct_array
-lis      r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@ha
-lis      r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
-addi     r4, r3, __ct__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r6, 0x3c
-addi     r3, r31, 0x518
-addi     r5, r5, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
-li       r7, 3
-bl       __construct_array
-addi     r17, r31, 0x5cc
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x608
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x644
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x680
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x6bc
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x6f8
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x734
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x770
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x7ac
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x7e8
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x824
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x860
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r17)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r17)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r17, 0x20
-stw      r7, 0(r17)
-li       r4, 0
-stb      r6, 0x1c(r17)
-stw      r5, 0(r17)
-stw      r0, 0x20(r17)
-bl       init__12J3DFrameCtrlFs
-addi     r17, r31, 0x89c
-mr       r3, r17
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-addi     r24, r31, 0x8bc
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q29P2DScreen12CallBackNode@ha
-stw      r0, 0(r17)
-li       r0, 0
-lis      r4, __vt__Q23ebi16E2DCallBack_Base@ha
-lis      r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
-stw      r0, 0x18(r17)
-addi     r0, r5, __vt__Q29P2DScreen12CallBackNode@l
-addi     r5, r4, __vt__Q23ebi16E2DCallBack_Base@l
-li       r4, 1
-stw      r0, 0(r17)
-addi     r0, r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
-mr       r18, r24
-mr       r3, r24
-stw      r5, 0(r17)
-stb      r4, 0x1c(r17)
-stw      r0, 0(r17)
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r6, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r24)
-li       r0, 0
-lis      r3, __ct__Q23ebi16E2DFullFontColorFv@ha
-li       r7, 1
-stw      r0, 0x18(r24)
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-addi     r4, r3, __ct__Q23ebi16E2DFullFontColorFv@l
-addi     r3, r6, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r18)
-lis      r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@ha
-addi     r0, r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@l
-li       r6, 0x10
-stw      r3, 0(r18)
-addi     r3, r24, 0x20
-li       r5, 0
-stb      r7, 0x1c(r18)
-li       r7, 2
-stw      r0, 0(r24)
-bl       __construct_array
-lfs      f1, lbl_8051FB1C@sda21(r2)
-addi     r25, r31, 0x908
-lfs      f0, lbl_8051FB20@sda21(r2)
-li       r4, 1
-stfs     f1, 0x40(r24)
-li       r0, 0
-mr       r17, r25
-mr       r3, r25
-stfs     f0, 0x44(r24)
-stb      r4, 0x48(r24)
-stb      r0, 0x49(r24)
-stb      r0, 0x1c(r24)
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r6, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r25)
-li       r0, 0
-lis      r3, __ct__Q23ebi16E2DFullFontColorFv@ha
-li       r7, 1
-stw      r0, 0x18(r25)
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-addi     r4, r3, __ct__Q23ebi16E2DFullFontColorFv@l
-addi     r3, r6, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r17)
-lis      r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@ha
-addi     r0, r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@l
-li       r6, 0x10
-stw      r3, 0(r17)
-addi     r3, r25, 0x20
-li       r5, 0
-stb      r7, 0x1c(r17)
-li       r7, 2
-stw      r0, 0(r25)
-bl       __construct_array
-lfs      f1, lbl_8051FB1C@sda21(r2)
-lis      r3, __dt__Q23ebi20E2DCallBack_PurupuruFv@ha
-addi     r5, r3, __dt__Q23ebi20E2DCallBack_PurupuruFv@l
-lis      r4, __ct__Q23ebi20E2DCallBack_PurupuruFv@ha
-lfs      f0, lbl_8051FB20@sda21(r2)
-li       r3, 1
-stfs     f1, 0x40(r25)
-li       r0, 0
-addi     r4, r4, __ct__Q23ebi20E2DCallBack_PurupuruFv@l
-li       r6, 0x40
-stfs     f0, 0x44(r25)
-li       r7, 2
-stb      r3, 0x48(r25)
-addi     r3, r31, 0x954
-stb      r0, 0x49(r25)
-stb      r0, 0x1c(r25)
-bl       __construct_array
-lis      r4, __vt__Q25efx2d7TBaseIF@ha
-lis      r3, __vt__Q25efx2d5TBase@ha
-addi     r28, r4, __vt__Q25efx2d7TBaseIF@l
-lis      r7, __vt__18JPAEmitterCallBack@ha
-stw      r28, 0x9ec(r31)
-addi     r12, r3, __vt__Q25efx2d5TBase@l
-lis      r4, __vt__Q25efx2d8TForever@ha
-lis      r3, __vt__Q25efx2d9TChasePos@ha
-stw      r12, 0x9ec(r31)
-li       r11, 0
-addi     r10, r4, __vt__Q25efx2d8TForever@l
-addi     r6, r3, __vt__Q25efx2d9TChasePos@l
-stb      r11, 0x9f0(r31)
-lis      r3, __vt__Q25efx2d9T2DCursor@ha
-addi     r5, r3, __vt__Q25efx2d9T2DCursor@l
-addi     r0, r7, __vt__18JPAEmitterCallBack@l
-stb      r11, 0x9f1(r31)
-addi     r30, r10, 0x18
-addi     r29, r6, 0x18
-addi     r4, r31, 0xa08
-stw      r0, 0x9f4(r31)
-addi     r7, r5, 0x18
-lfs      f3, lbl_8051FB24@sda21(r2)
-addi     r3, r31, 0xa40
-stw      r10, 0x9ec(r31)
-lfs      f2, lbl_8051FB28@sda21(r2)
-stw      r30, 0x9f4(r31)
-lfs      f1, lbl_8051FB1C@sda21(r2)
-sth      r11, 0x9f8(r31)
-stw      r11, 0x9fc(r31)
-stw      r6, 0x9ec(r31)
-stw      r29, 0x9f4(r31)
-stw      r4, 0xa00(r31)
-stw      r5, 0x9ec(r31)
-stw      r7, 0x9f4(r31)
-stfs     f3, 0xa04(r31)
-lwz      r4, sys@sda21(r13)
-lfs      f0, 0x54(r4)
-fmuls    f0, f2, f0
-stfs     f0, 0xa10(r31)
-stfs     f1, 0xa14(r31)
-stw      r11, 0xa1c(r31)
-stw      r11, 0xa20(r31)
-stw      r28, 0xa24(r31)
-stw      r12, 0xa24(r31)
-stb      r11, 0xa28(r31)
-stb      r11, 0xa29(r31)
-stw      r0, 0xa2c(r31)
-stw      r10, 0xa24(r31)
-stw      r30, 0xa2c(r31)
-sth      r11, 0xa30(r31)
-stw      r11, 0xa34(r31)
-stw      r6, 0xa24(r31)
-stw      r29, 0xa2c(r31)
-stw      r3, 0xa38(r31)
-stw      r5, 0xa24(r31)
-stw      r7, 0xa2c(r31)
-stfs     f3, 0xa3c(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f0, 0x54(r3)
-fmuls    f0, f2, f0
-stfs     f0, 0xa48(r31)
-stfs     f1, 0xa4c(r31)
-lis      r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@ha
-addi     r9, r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@l
-lis      r4, __vt__Q35efx2d10FileSelect12T2DFilecopyM@ha
-stw      r11, 0xa54(r31)
-lis      r3, __vt__Q35efx2d10FileSelect11T2DFilecopy@ha
-addi     r8, r3, __vt__Q35efx2d10FileSelect11T2DFilecopy@l
-addi     r20, r4, __vt__Q35efx2d10FileSelect12T2DFilecopyM@l
-stw      r11, 0xa58(r31)
-lis      r3, __vt__Q35efx2d10FileSelect15T2DFiledeleting@ha
-addi     r23, r3, __vt__Q35efx2d10FileSelect15T2DFiledeleting@l
-addi     r17, r9, 0x18
-stw      r28, 0xa5c(r31)
-lis      r3, __vt__Q35efx2d10FileSelect16T2DFiledeletingM@ha
-addi     r25, r3, __vt__Q35efx2d10FileSelect16T2DFiledeletingM@l
-li       r18, 1
-stw      r12, 0xa5c(r31)
-lis      r3, "__ct__10Vector2<f>Fv"@ha
-addi     r4, r3, "__ct__10Vector2<f>Fv"@l
-addi     r19, r8, 0x18
-stb      r11, 0xa60(r31)
-addi     r21, r20, 0x18
-li       r22, 0xa
-addi     r27, r23, 0x18
-stb      r11, 0xa61(r31)
-li       r26, 0xb
-addi     r24, r25, 0x18
-addi     r3, r31, 0xac4
-stw      r0, 0xa64(r31)
-li       r5, 0
-li       r6, 8
-li       r7, 3
-stw      r10, 0xa5c(r31)
-stw      r30, 0xa64(r31)
-sth      r11, 0xa68(r31)
-stw      r11, 0xa6c(r31)
-stw      r9, 0xa5c(r31)
-stw      r17, 0xa64(r31)
-stb      r18, 0xa60(r31)
-stw      r8, 0xa5c(r31)
-stw      r19, 0xa64(r31)
-stb      r18, 0xa60(r31)
-stw      r28, 0xa70(r31)
-stw      r12, 0xa70(r31)
-stb      r11, 0xa74(r31)
-stb      r11, 0xa75(r31)
-stw      r0, 0xa78(r31)
-stw      r10, 0xa70(r31)
-stw      r30, 0xa78(r31)
-sth      r18, 0xa7c(r31)
-stw      r11, 0xa80(r31)
-stw      r9, 0xa70(r31)
-stw      r17, 0xa78(r31)
-stb      r18, 0xa74(r31)
-stw      r20, 0xa70(r31)
-stw      r21, 0xa78(r31)
-stb      r18, 0xa74(r31)
-stw      r28, 0xa9c(r31)
-stw      r12, 0xa9c(r31)
-stb      r11, 0xaa0(r31)
-stb      r11, 0xaa1(r31)
-stw      r0, 0xaa4(r31)
-stw      r10, 0xa9c(r31)
-stw      r30, 0xaa4(r31)
-sth      r22, 0xaa8(r31)
-stw      r11, 0xaac(r31)
-stw      r23, 0xa9c(r31)
-stw      r27, 0xaa4(r31)
-stb      r18, 0xaa0(r31)
-stw      r28, 0xab0(r31)
-stw      r12, 0xab0(r31)
-stb      r11, 0xab4(r31)
-stb      r11, 0xab5(r31)
-stw      r0, 0xab8(r31)
-stw      r10, 0xab0(r31)
-stw      r30, 0xab8(r31)
-sth      r26, 0xabc(r31)
-stw      r11, 0xac0(r31)
-stw      r25, 0xab0(r31)
-stw      r24, 0xab8(r31)
-stb      r18, 0xab4(r31)
-bl       __construct_array
-lis      r4, "__ct__10Vector2<f>Fv"@ha
-addi     r3, r31, 0xadc
-addi     r4, r4, "__ct__10Vector2<f>Fv"@l
-li       r5, 0
-li       r6, 8
-li       r7, 3
-bl       __construct_array
-li       r0, 0
-lis      r3, __ct__Q43ebi6Screen10FileSelect9TFileDataFv@ha
-stb      r0, 0xafc(r31)
-addi     r4, r3, __ct__Q43ebi6Screen10FileSelect9TFileDataFv@l
-addi     r3, r31, 0xb00
-li       r5, 0
-stb      r0, 0xafd(r31)
-li       r6, 0x34
-li       r7, 3
-stb      r0, 0xafe(r31)
-stb      r0, 0xaff(r31)
-bl       __construct_array
-li       r8, 0
-li       r3, 0xff
-stw      r8, 0xba0(r31)
-li       r0, 3
-stb      r8, 0xba4(r31)
-stw      r8, 0xba8(r31)
-stb      r8, 0xbb4(r31)
-stw      r8, 0xbb8(r31)
-stw      r8, 0xbbc(r31)
-stw      r8, 0xbc0(r31)
-stw      r8, 0xbcc(r31)
-stw      r8, 0xbd0(r31)
-stb      r8, 0xbd4(r31)
-stb      r8, 0xbd5(r31)
-stb      r8, 0xbd6(r31)
-stb      r3, 0xbd7(r31)
-stb      r3, 0xbd8(r31)
-stw      r8, 0xbdc(r31)
-stw      r8, 0xbe0(r31)
-stw      r8, 0xbe4(r31)
-stw      r8, 0xbe8(r31)
-stw      r8, 0xbec(r31)
-stw      r8, 0xbf0(r31)
-stw      r8, 0xbf4(r31)
-stw      r8, 0xc(r31)
-stw      r8, 0x10(r31)
-stw      r8, 0x14(r31)
-stw      r8, 0x18(r31)
-stw      r8, 0x1c(r31)
-mtctr    r0
-mr       r28, r8
+	_0C = nullptr;
+	for (int i = 0; i < 3; i++) {
+		_10[i] = nullptr;
+	}
 
-lbl_803D5140:
-addi     r3, r8, 0x38
-addi     r0, r8, 0x44
-stwx     r28, r31, r3
-addi     r7, r8, 0x50
-addi     r6, r8, 0x5c
-addi     r5, r8, 0x68
-stwx     r28, r31, r0
-addi     r4, r8, 0x74
-addi     r3, r8, 0x80
-addi     r0, r8, 0x8c
-stwx     r28, r31, r7
-addi     r8, r8, 4
-stwx     r28, r31, r6
-stwx     r28, r31, r5
-stwx     r28, r31, r4
-stwx     r28, r31, r3
-stwx     r28, r31, r0
-bdnz     lbl_803D5140
-stw      r28, 0x98(r31)
-lis      r4, __vt__Q35efx2d10FileSelect10T2DFilesel@ha
-lis      r3, __vt__Q35efx2d10FileSelect11T2DFileselM@ha
-mr       r27, r28
-stw      r28, 0x9c(r31)
-addi     r4, r4, __vt__Q35efx2d10FileSelect10T2DFilesel@l
-addi     r3, r3, __vt__Q35efx2d10FileSelect11T2DFileselM@l
-li       r24, 0
-stw      r28, 0xa0(r31)
-addi     r26, r4, 0x18
-addi     r25, r3, 0x18
-stw      r28, 0xa4(r31)
-stw      r28, 0xa8(r31)
-stw      r28, 0xac(r31)
-stw      r28, 0xb0(r31)
-stw      r28, 0xb4(r31)
-stw      r28, 0xb8(r31)
-stw      r28, 0xbc(r31)
-stb      r28, 0xafc(r31)
-stb      r28, 0xafd(r31)
-stb      r28, 0xafe(r31)
-stb      r28, 0xaff(r31)
-stw      r28, 0xb9c(r31)
+	_1C = nullptr;
 
-lbl_803D51E4:
-li       r3, 0x18
-bl       __nw__FUl
-cmplwi   r3, 0
-beq      lbl_803D5274
-lis      r5, __vt__Q25efx2d7TBaseIF@ha
-lis      r4, __vt__Q25efx2d5TBase@ha
-addi     r0, r5, __vt__Q25efx2d7TBaseIF@l
-lis      r7, __vt__18JPAEmitterCallBack@ha
-stw      r0, 0(r3)
-addi     r0, r4, __vt__Q25efx2d5TBase@l
-lis      r6, __vt__Q25efx2d8TForever@ha
-lis      r5, __vt__Q25efx2d9TChasePos@ha
-stw      r0, 0(r3)
-li       r10, 0
-addi     r0, r28, 0xac4
-lis      r4, __vt__Q35efx2d10FileSelect10T2DFilesel@ha
-stb      r10, 4(r3)
-addi     r9, r7, __vt__18JPAEmitterCallBack@l
-addi     r8, r6, __vt__Q25efx2d8TForever@l
-li       r7, 6
-stb      r10, 5(r3)
-addi     r6, r5, __vt__Q25efx2d9TChasePos@l
-add      r5, r31, r0
-addi     r4, r4, __vt__Q35efx2d10FileSelect10T2DFilesel@l
-stw      r9, 8(r3)
-li       r0, 1
-stw      r8, 0(r3)
-stw      r30, 8(r3)
-sth      r7, 0xc(r3)
-stw      r10, 0x10(r3)
-stw      r6, 0(r3)
-stw      r29, 8(r3)
-stw      r5, 0x14(r3)
-stw      r4, 0(r3)
-stw      r26, 8(r3)
-stb      r0, 4(r3)
+	for (int i = 0; i < 3; i++) {
+		_38[i] = nullptr;
+		_44[i] = nullptr;
+		_50[i] = nullptr;
+		_5C[i] = nullptr;
+		_68[i] = nullptr;
+		_74[i] = nullptr;
+		_80[i] = nullptr;
+		_8C[i] = nullptr;
+	}
 
-lbl_803D5274:
-addi     r0, r27, 0xa84
-stwx     r3, r31, r0
-li       r3, 0x18
-bl       __nw__FUl
-cmplwi   r3, 0
-beq      lbl_803D530C
-lis      r5, __vt__Q25efx2d7TBaseIF@ha
-lis      r4, __vt__Q25efx2d5TBase@ha
-addi     r0, r5, __vt__Q25efx2d7TBaseIF@l
-lis      r7, __vt__18JPAEmitterCallBack@ha
-stw      r0, 0(r3)
-addi     r0, r4, __vt__Q25efx2d5TBase@l
-lis      r6, __vt__Q25efx2d8TForever@ha
-lis      r5, __vt__Q25efx2d9TChasePos@ha
-stw      r0, 0(r3)
-li       r10, 0
-addi     r0, r28, 0xadc
-lis      r4, __vt__Q35efx2d10FileSelect11T2DFileselM@ha
-stb      r10, 4(r3)
-addi     r9, r7, __vt__18JPAEmitterCallBack@l
-addi     r8, r6, __vt__Q25efx2d8TForever@l
-li       r7, 7
-stb      r10, 5(r3)
-addi     r6, r5, __vt__Q25efx2d9TChasePos@l
-add      r5, r31, r0
-addi     r4, r4, __vt__Q35efx2d10FileSelect11T2DFileselM@l
-stw      r9, 8(r3)
-li       r0, 1
-stw      r8, 0(r3)
-stw      r30, 8(r3)
-sth      r7, 0xc(r3)
-stw      r10, 0x10(r3)
-stw      r6, 0(r3)
-stw      r29, 8(r3)
-stw      r5, 0x14(r3)
-stw      r4, 0(r3)
-stw      r25, 8(r3)
-stb      r0, 4(r3)
+	_98 = nullptr;
+	_9C = nullptr;
+	_A0 = nullptr;
+	_A4 = nullptr;
+	_A8 = nullptr;
+	_AC = nullptr;
+	_B0 = nullptr;
+	_B4 = nullptr;
+	_B8 = nullptr;
+	_BC = nullptr;
+	_AFC.set(0, 0, 0, 0);
+	_B9C = 0;
 
-lbl_803D530C:
-addi     r24, r24, 1
-addi     r0, r27, 0xa90
-cmpwi    r24, 3
-stwx     r3, r31, r0
-addi     r28, r28, 8
-addi     r27, r27, 4
-blt      lbl_803D51E4
-li       r0, 0
-mr       r3, r31
-stw      r0, 0xaf4(r31)
-lmw      r17, 0x14(r1)
-lwz      r0, 0x54(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		_A84[i] = new efx2d::FileSelect::T2DFilesel(&_AC4[i]);
+		_A90[i] = new efx2d::FileSelect::T2DFileselM(&_ADC[i]);
+	}
+
+	_AF4 = nullptr;
 }
 
 /*
@@ -3293,7 +2016,7 @@ blr
  * Address:	803D6CA8
  * Size:	000088
  */
-void FileSelect::TMainScreen::doUpdateStateOpen()
+bool FileSelect::TMainScreen::doUpdateStateOpen()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -3344,7 +2067,7 @@ blr
  * Address:	803D6D30
  * Size:	00031C
  */
-void FileSelect::TMainScreen::doUpdateStateWait()
+bool FileSelect::TMainScreen::doUpdateStateWait()
 {
 	/*
 stwu     r1, -0x70(r1)
@@ -3578,7 +2301,7 @@ blr
  * Address:	803D704C
  * Size:	0000CC
  */
-void FileSelect::TMainScreen::doUpdateStateClose()
+bool FileSelect::TMainScreen::doUpdateStateClose()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -3905,7 +2628,7 @@ blr
  * Address:	803D748C
  * Size:	0001B0
  */
-void FileSelect::TMainScreen::inDataBall(long)
+void FileSelect::TMainScreen::inDataBall(s32)
 {
 	/*
 stwu     r1, -0x50(r1)
@@ -4036,7 +2759,7 @@ blr
  * Address:	803D763C
  * Size:	0000A4
  */
-void FileSelect::TMainScreen::outDataBall(long)
+void FileSelect::TMainScreen::outDataBall(s32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4092,7 +2815,7 @@ blr
  * Address:	803D76E0
  * Size:	0000A4
  */
-void FileSelect::TMainScreen::decideDataBall(long)
+void FileSelect::TMainScreen::decideDataBall(s32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4148,7 +2871,7 @@ blr
  * Address:	803D7784
  * Size:	000124
  */
-void FileSelect::TMainScreen::createFiledecide(long)
+void FileSelect::TMainScreen::createFiledecide(s32)
 {
 	/*
 stwu     r1, -0x50(r1)
@@ -4234,7 +2957,7 @@ blr
  * Address:	803D78A8
  * Size:	000030
  */
-void FileSelect::TMainScreen::isFinishOutDataBall(long)
+void FileSelect::TMainScreen::isFinishOutDataBall(s32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4257,7 +2980,7 @@ blr
  * Address:	803D78D8
  * Size:	000030
  */
-void FileSelect::TMainScreen::isFinishDecideDataBall(long)
+void FileSelect::TMainScreen::isFinishDecideDataBall(s32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4280,7 +3003,7 @@ blr
  * Address:	803D7908
  * Size:	0000F4
  */
-void FileSelect::TMainScreen::createCopyCursor(long)
+void FileSelect::TMainScreen::createCopyCursor(s32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4388,15 +3111,15 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void FileSelect::TMainScreen::killCopyCursor()
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000050
+//  */
+// void FileSelect::TMainScreen::killCopyCursor()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -4433,7 +3156,7 @@ blr
  * Address:	803D7A6C
  * Size:	0001E0
  */
-void FileSelect::TMainScreen::createFilecopyEffect(long, long)
+void FileSelect::TMainScreen::createFilecopyEffect(s32, s32)
 {
 	/*
 stwu     r1, -0xc0(r1)
@@ -4597,7 +3320,7 @@ blr
  * Address:	803D7CA4
  * Size:	000118
  */
-void FileSelect::TMainScreen::createFiledeletingEffect(long)
+void FileSelect::TMainScreen::createFiledeletingEffect(s32)
 {
 	/*
 stwu     r1, -0x60(r1)
@@ -4706,22 +3429,22 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000F0
- */
-void FileSelect::TMainScreen::killAllEffect()
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0000F0
+//  */
+// void FileSelect::TMainScreen::killAllEffect()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	803D7E14
  * Size:	000318
  */
-void FileSelect::TMainScreen::openDataWindow(long)
+void FileSelect::TMainScreen::openDataWindow(s32)
 {
 	/*
 stwu     r1, -0x30(r1)
@@ -5050,7 +3773,7 @@ blr
  * Address:	803D8228
  * Size:	0002A0
  */
-void FileSelect::TMainScreen::openMSG(long)
+void FileSelect::TMainScreen::openMSG(s32)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5494,7 +4217,7 @@ blr
  * Address:	803D8758
  * Size:	00004C
  */
-void FileSelect::TMainScreen::setMsgID_(unsigned long long, unsigned long long, unsigned long long)
+void FileSelect::TMainScreen::setMsgID_(u64, u64, u64)
 {
 	/*
 	.loc_0x0:
@@ -5520,15 +4243,15 @@ void FileSelect::TMainScreen::setMsgID_(unsigned long long, unsigned long long, 
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void FileSelect::TMainScreen::isFinishOutCopyErase()
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00005C
+//  */
+// void FileSelect::TMainScreen::isFinishOutCopyErase()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -5722,22 +4445,22 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void FileSelect::TMainScreen::isFinishOutYesNo_()
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00005C
+//  */
+// void FileSelect::TMainScreen::isFinishOutYesNo_()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	803D89D4
  * Size:	0001C0
  */
-void FileSelect::TMainScreen::setDataBallCopyResult(long, long)
+void FileSelect::TMainScreen::setDataBallCopyResult(s32, s32)
 {
 	/*
 stwu     r1, -0x50(r1)
@@ -5860,7 +4583,7 @@ blr
  * Address:	803D8B94
  * Size:	000250
  */
-void FileSelect::TMainScreen::setDataBallNew(long)
+void FileSelect::TMainScreen::setDataBallNew(s32)
 {
 	/*
 stwu     r1, -0xa0(r1)
@@ -6019,7 +4742,7 @@ blr
  * Address:	803D8DE4
  * Size:	000098
  */
-void FileSelect::TMainScreen::setDataBallBroken(long)
+void FileSelect::TMainScreen::setDataBallBroken(s32)
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -6100,7 +4823,7 @@ blr
  * Address:	803D8EC8
  * Size:	000550
  */
-void FileSelect::TMainScreen::setColorTimgDataBall_(long)
+void FileSelect::TMainScreen::setColorTimgDataBall_(s32)
 {
 	/*
 stwu     r1, -0x80(r1)
@@ -6477,7 +5200,7 @@ blr
  * Address:	803D9418
  * Size:	0000CC
  */
-void FileSelect::TMainScreen::getDataBallColor_(long)
+void FileSelect::TMainScreen::getDataBallColor_(s32)
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -6542,7 +5265,7 @@ r0, 0x24(r1) lwz      r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29,
  * Address:	803D94E4
  * Size:	0001C0
  */
-void FileSelect::TMainScreen::calcDataBallColor_((unsigned long, unsigned long, unsigned long, unsigned long, unsigned long))
+void FileSelect::TMainScreen::calcDataBallColor_(u32, u32, u32, u32, u32)
 {
 	/*
 	.loc_0x0:
@@ -6762,7 +5485,7 @@ blr
  * Address:	803D977C
  * Size:	00000C
  */
-void FileSelect::TMainScreen::getName()
+char* FileSelect::TMainScreen::getName()
 {
 	/*
 lis      r3, lbl_80496D28@ha
@@ -7029,53 +5752,53 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803D9A64
- * Size:	000094
- */
-E2DCallBack_AnmBase::E2DCallBack_AnmBase()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-stw      r30, 8(r1)
-mr       r30, r3
-mr       r31, r30
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
-stw      r0, 0(r31)
-li       r0, 0
-lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-lis      r3, __vt__12J3DFrameCtrl@ha
-stw      r0, 0x18(r31)
-addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
-addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
-li       r6, 1
-stw      r0, 0(r31)
-addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-addi     r3, r30, 0x20
-stw      r7, 0(r31)
-li       r4, 0
-stb      r6, 0x1c(r31)
-stw      r5, 0(r30)
-stw      r0, 0x20(r30)
-bl       init__12J3DFrameCtrlFs
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803D9A64
+//  * Size:	000094
+//  */
+// E2DCallBack_AnmBase::E2DCallBack_AnmBase()
+// {
+// 	/*
+// stwu     r1, -0x10(r1)
+// mflr     r0
+// stw      r0, 0x14(r1)
+// stw      r31, 0xc(r1)
+// stw      r30, 8(r1)
+// mr       r30, r3
+// mr       r31, r30
+// bl       __ct__5CNodeFv
+// lis      r3, __vt__Q29P2DScreen4Node@ha
+// lis      r6, __vt__Q29P2DScreen12CallBackNode@ha
+// addi     r0, r3, __vt__Q29P2DScreen4Node@l
+// lis      r5, __vt__Q23ebi16E2DCallBack_Base@ha
+// stw      r0, 0(r31)
+// li       r0, 0
+// lis      r4, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+// lis      r3, __vt__12J3DFrameCtrl@ha
+// stw      r0, 0x18(r31)
+// addi     r0, r6, __vt__Q29P2DScreen12CallBackNode@l
+// addi     r7, r5, __vt__Q23ebi16E2DCallBack_Base@l
+// li       r6, 1
+// stw      r0, 0(r31)
+// addi     r5, r4, __vt__Q23ebi19E2DCallBack_AnmBase@l
+// addi     r0, r3, __vt__12J3DFrameCtrl@l
+// addi     r3, r30, 0x20
+// stw      r7, 0(r31)
+// li       r4, 0
+// stb      r6, 0x1c(r31)
+// stw      r5, 0(r30)
+// stw      r0, 0x20(r30)
+// bl       init__12J3DFrameCtrlFs
+// lwz      r0, 0x14(r1)
+// mr       r3, r30
+// lwz      r31, 0xc(r1)
+// lwz      r30, 8(r1)
+// mtlr     r0
+// addi     r1, r1, 0x10
+// blr
+// 	*/
+// }
 
 } // namespace Screen
 
@@ -7160,24 +5883,10 @@ void E2DCallBack_BlinkFontColor::set(ebi::E2DFullFontColor&, ebi::E2DFullFontCol
 
 /*
  * --INFO--
- * Address:	803D9BFC
- * Size:	00000C
- */
-void efx2d::ArgColor::getName()
-{
-	/*
-	lis      r3, lbl_80496D10@ha
-	addi     r3, r3, lbl_80496D10@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	803D9C08
  * Size:	00000C
  */
-void efx2d::FileSelect::ArgFilecopy::getName()
+const char* efx2d::FileSelect::ArgFilecopy::getName()
 {
 	/*
 	lis      r3, lbl_80496D1C@ha
@@ -7237,83 +5946,5 @@ lbl_803D9C94:
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D9CB0
- * Size:	000008
- */
-@8 @efx2d::FileSelect::T2DFilecopy::~T2DFilecopy()
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d10FileSelect11T2DFilecopyFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D9CB8
- * Size:	000008
- */
-@8 @efx2d::FileSelect::T2DFilecopyM::~T2DFilecopyM()
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d10FileSelect12T2DFilecopyMFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D9CC0
- * Size:	000008
- */
-@8 @efx2d::FileSelect::T2DFiledeleting::~T2DFiledeleting()
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d10FileSelect15T2DFiledeletingFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D9CC8
- * Size:	000008
- */
-@8 @efx2d::FileSelect::T2DFiledeletingM::~T2DFiledeletingM()
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d10FileSelect16T2DFiledeletingMFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D9CD0
- * Size:	000008
- */
-@8 @efx2d::FileSelect::T2DFilesel::~T2DFilesel()
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d10FileSelect10T2DFileselFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D9CD8
- * Size:	000008
- */
-@8 @efx2d::FileSelect::T2DFileselM::~T2DFileselM()
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d10FileSelect11T2DFileselMFv
 	*/
 }

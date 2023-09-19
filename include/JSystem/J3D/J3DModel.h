@@ -97,6 +97,12 @@ struct J3DModelData {
 		mat->mTevBlock->setTevColor(0, J3DGXColorS10(r, g, b, a));
 	}
 
+	inline void doMakeShared()
+	{
+		newSharedDisplayList(0x40000);
+		makeSharedDL();
+	}
+
 	J3DVertexData* getVertexData() { return &mVertexData; }
 	J3DJoint* getJointNodePointer(u16 idx) const { return mJointTree.getJointNodePointer(idx); }
 	J3DMaterialTable& getMaterialTable() { return mMaterialTable; }

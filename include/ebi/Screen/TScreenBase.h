@@ -65,7 +65,7 @@ struct ArgOpen {
 struct ArgOpenOmake : public ArgOpen {
 	virtual char* getName() { return "ArgOpenOmake"; } // _08 (weak)
 
-	ArgOpenOmake(u8 a1, u8 a2, u8 a3)
+	ArgOpenOmake(u8 a1, u8 a2, bool a3)
 	{
 		mFlag1 = a1;
 		mFlag2 = a2;
@@ -75,7 +75,7 @@ struct ArgOpenOmake : public ArgOpen {
 	// _00 = VTBL
 	u8 mFlag1;
 	u8 mFlag2;
-	u8 mFlag3;
+	bool mFlag3;
 	int _08;
 };
 

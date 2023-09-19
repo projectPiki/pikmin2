@@ -7,6 +7,8 @@ namespace ebi {
 
 namespace Save {
 
+TMgr* TMgr::msInstance;
+
 /*
  * --INFO--
  * Address:	803DB190
@@ -578,7 +580,16 @@ TMgr::~TMgr()
 { // fake inheritence happening perchance?
 	msInstance = nullptr;
 }
+} // namespace Save
 
+/*
+ * --INFO--
+ * Address:	803DC6D0
+ * Size:	00014C
+ */
+CardError::TMgr::~TMgr() { }
+
+namespace Save {
 /*
  * --INFO--
  * Address:	803DC870

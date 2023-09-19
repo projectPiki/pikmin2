@@ -14,7 +14,7 @@ struct EGEBox2f : JGeometry::TBox2f {
 	bool isIn(Vector2f&, f32);
 	bool isOut(Vector2f&);
 	bool isOut(Vector2f&, f32);
-	bool in(Vector2f*, f32);
+	void in(Vector2f*, f32);
 
 	// Unused/inlined:
 	bool isIn(Vector2f&);

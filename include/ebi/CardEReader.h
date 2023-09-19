@@ -55,7 +55,7 @@ struct TMgr : public JKRDisposer {
 	OSCond mCond;
 };
 } // namespace CardEReader
-CardEReader::TMgr* gCardEMgr;
+extern CardEReader::TMgr* gCardEMgr;
 } // namespace ebi
 
 #endif

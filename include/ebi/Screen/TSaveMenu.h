@@ -14,7 +14,26 @@ struct TSaveMenu : public TScreenBase {
 	enum enumMsgState { MSG_Kill, MSG_Open, MSG_Idle, MSG_Close };
 	enum MsgType { MESSAGE_SaveOption, MESSAGE_Saving, MESSAGE_SaveSuccess, MESSAGE_NoSaveOption };
 
-	TSaveMenu();
+	TSaveMenu()
+	    : _14(0, 0, 0, 255)
+	    , mAlpha(255)
+	    , mDrawState(0)
+	    , mOpenCloseCounter(0)
+	    , mOpenCloseCounterMax(0)
+	    , mStateID(0)
+	    , mTextCounter(0)
+	    , mTextCounterMax(0)
+	    , mCursor1()
+	    , mCursor2()
+	{
+		for (int i = 0; i < 4; i++) {
+			mCursorEfxPane[i] = nullptr;
+		}
+
+		mPaneYesText      = nullptr;
+		mPaneNoText       = nullptr;
+		mPaneQuestionText = nullptr;
+	}
 
 	virtual void doSetArchive(JKRArchive*);         // _24
 	virtual void doOpenScreen(ArgOpen*);            // _28
@@ -36,9 +55,9 @@ struct TSaveMenu : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
-	Controller* mController; // _0C
-	int _10;
-	int _14;
+	Controller* mController;                     // _0C
+	int _10;                                     // _10
+	JUtility::TColor _14;                        // _14
 	u8 mAlpha;                                   // _18
 	int mDrawState;                              // _1C
 	u32 mOpenCloseCounter;                       // _20

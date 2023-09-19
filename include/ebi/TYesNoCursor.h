@@ -2,13 +2,16 @@
 #define _EBI_TYESNOCURSOR_H
 
 #include "efx2d/T2DCursor.h"
+#include "System.h"
 
 struct J2DPane;
 
 namespace ebi {
-struct TYesNoCursor : public efx2d::T2DCursor {
+struct TYesNoCursor {
 	TYesNoCursor()
-	    : T2DCursor(&mPos)
+	    : mCursor(&mPos)
+	    , mSpeed(5.0f * sys->mDeltaTime)
+	    , mTimer(0.0f)
 	{
 		mPane1 = nullptr;
 		mPane2 = nullptr;
@@ -22,14 +25,13 @@ struct TYesNoCursor : public efx2d::T2DCursor {
 		mPane2 = pane2;
 	}
 
-	// _00     = VTBL
-	// _00-_1C = T2DCursor
-	Vector2f mPos;   // _1C
-	f32 mSpeed;      // _24
-	f32 mTimer;      // _28
-	bool mSelected;  // _2C
-	J2DPane* mPane1; // _30
-	J2DPane* mPane2; // _34
+	efx2d::T2DCursor mCursor; // _00
+	Vector2f mPos;            // _1C
+	f32 mSpeed;               // _24
+	f32 mTimer;               // _28
+	bool mSelected;           // _2C
+	J2DPane* mPane1;          // _30
+	J2DPane* mPane2;          // _34
 };
 } // namespace ebi
 

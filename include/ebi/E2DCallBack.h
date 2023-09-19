@@ -16,6 +16,7 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 	    : mIsEnabled(true)
 	{
 	}
+
 	virtual ~E2DCallBack_Base() { }                   // _08 (weak)
 	virtual void update();                            // _10 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&);    // _14 (weak)
@@ -74,7 +75,14 @@ struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {
 
 // Size: 0x4C
 struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
-	E2DCallBack_BlinkFontColor();
+	E2DCallBack_BlinkFontColor()
+	    : mColor1Weight(0.0f)
+	    , mSpeed(0.03333f)
+	    , mIsTowardColor1(true)
+	    , _49(0)
+	{
+		mIsEnabled = false;
+	}
 
 	virtual ~E2DCallBack_BlinkFontColor() { } // _08 (weak)
 	virtual void do_update();                 // _1C

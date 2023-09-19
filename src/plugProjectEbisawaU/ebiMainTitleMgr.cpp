@@ -11,16 +11,15 @@ static const char name[] = "ebiMainTitleMgr";
 
 namespace ebi {
 
+const f32 TMainTitleMgr::kFadeOutTime = 1.0f;
+
 /*
  * --INFO--
  * Address:	803EA170
  * Size:	0003B4
  */
 TMainTitleMgr::TMainTitleMgr()
-    : _1634(0)
-    , _1635(0)
-    , _1636(0)
-    , _1637(-1)
+    : _1634(0, 0, 0, -1)
     , mAlpha(-1)
     , mDrawState(0)
     , mOpenMenuCounter(0)
@@ -327,357 +326,6 @@ void TMainTitleMgr::update()
 	if (mDrawState && mOpenMenuCounter) {
 		mOpenMenuCounter--;
 	}
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	stb      r0, 0x1654(r3)
-	lwz      r0, 0x1650(r3)
-	cmpwi    r0, 3
-	beq      lbl_803EAC48
-	bge      lbl_803EAA10
-	cmpwi    r0, 1
-	beq      lbl_803EAA1C
-	bge      lbl_803EAA50
-	b        lbl_803EADF0
-
-lbl_803EAA10:
-	cmpwi    r0, 5
-	bge      lbl_803EADF0
-	b        lbl_803EADC8
-
-lbl_803EAA1C:
-	lwz      r3, titleMgr__Q23ebi5title@sda21(r13)
-	bl       isPressStart__Q33ebi5title9TTitleMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803EADF0
-	addi     r3, r31, 0x137c
-	li       r4, 0
-	lwz      r12, 0x137c(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 2
-	stw      r0, 0x1650(r31)
-	b        lbl_803EADF0
-
-lbl_803EAA50:
-	lwz      r3, titleMgr__Q23ebi5title@sda21(r13)
-	bl       isControllerOK__Q33ebi5title9TTitleMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803EAA6C
-	li       r0, 1
-	stb      r0, 0x138c(r31)
-	b        lbl_803EAA74
-
-lbl_803EAA6C:
-	li       r0, 0
-	stb      r0, 0x138c(r31)
-
-lbl_803EAA74:
-	lis      r3, gGameConfig__4Game@ha
-	addi     r30, r3, gGameConfig__4Game@l
-	lwz      r0, 0x238(r30)
-	cmpwi    r0, 0
-	beq      lbl_803EAAA4
-	lwz      r3, 0x1648(r31)
-	lwz      r0, 0x1c(r3)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_803EAAA4
-	lwz      r3, sys@sda21(r13)
-	li       r4, 0
-	bl       resetOn__6SystemFb
-
-lbl_803EAAA4:
-	addi     r3, r31, 0x137c
-	lwz      r12, 0x137c(r31)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803EADF0
-	lis      r3, gGameConfig__4Game@ha
-	addi     r3, r3, gGameConfig__4Game@l
-	lwz      r0, 0x228(r3)
-	cmpwi    r0, 0
-	beq      lbl_803EAB2C
-	li       r0, 1
-	lfs      f1, lbl_8051FE1C@sda21(r2)
-	stw      r0, 0x1658(r31)
-	stb      r0, 0x1654(r31)
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fdivs    f1, f1, f0
-	bl       __cvt_fp2unsigned
-	stw      r3, 0x165c(r31)
-	lfs      f1, lbl_8051FE1C@sda21(r2)
-	stw      r3, 0x1660(r31)
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fdivs    f1, f1, f0
-	bl       __cvt_fp2unsigned
-	stw      r3, 0x1640(r31)
-	li       r4, 2
-	li       r0, 4
-	stw      r3, 0x1644(r31)
-	stw      r4, 0x163c(r31)
-	stw      r0, 0x1650(r31)
-	b        lbl_803EADF0
-
-lbl_803EAB2C:
-	lwz      r0, 0x238(r30)
-	cmpwi    r0, 0
-	beq      lbl_803EAB90
-	li       r0, 1
-	lfs      f1, lbl_8051FE1C@sda21(r2)
-	stw      r0, 0x1658(r31)
-	stb      r0, 0x1654(r31)
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fdivs    f1, f1, f0
-	bl       __cvt_fp2unsigned
-	stw      r3, 0x165c(r31)
-	lfs      f1, lbl_8051FE1C@sda21(r2)
-	stw      r3, 0x1660(r31)
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fdivs    f1, f1, f0
-	bl       __cvt_fp2unsigned
-	stw      r3, 0x1640(r31)
-	li       r4, 2
-	li       r0, 4
-	stw      r3, 0x1644(r31)
-	stw      r4, 0x163c(r31)
-	stw      r0, 0x1650(r31)
-	b        lbl_803EADF0
-
-lbl_803EAB90:
-	lwz      r0, 0x1c8(r3)
-	cmpwi    r0, 0
-	beq      lbl_803EABE4
-	lis      r3, __vt__Q33ebi6Screen7ArgOpen@ha
-	li       r0, 1
-	addi     r4, r3, __vt__Q33ebi6Screen7ArgOpen@l
-	lis      r3, __vt__Q33ebi6Screen16ArgOpenTitleMenu@ha
-	stw      r4, 0x1c(r1)
-	addi     r5, r3, __vt__Q33ebi6Screen16ArgOpenTitleMenu@l
-	mr       r3, r31
-	addi     r4, r1, 0x1c
-	stw      r5, 0x1c(r1)
-	stw      r0, 0x20(r1)
-	stw      r0, 0x24(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 3
-	stw      r0, 0x1650(r31)
-	b        lbl_803EADF0
-
-lbl_803EABE4:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	bl       isChallengeGamePlayable__Q24Game14PlayCommonDataFv
-	clrlwi   r6, r3, 0x18
-	lis      r4, __vt__Q33ebi6Screen7ArgOpen@ha
-	neg      r5, r6
-	lis      r3, __vt__Q33ebi6Screen16ArgOpenTitleMenu@ha
-	addi     r4, r4, __vt__Q33ebi6Screen7ArgOpen@l
-	li       r0, 0
-	or       r5, r5, r6
-	stw      r4, 0x10(r1)
-	srwi     r5, r5, 0x1f
-	addi     r3, r3, __vt__Q33ebi6Screen16ArgOpenTitleMenu@l
-	stw      r3, 0x10(r1)
-	mr       r3, r31
-	addi     r4, r1, 0x10
-	stw      r5, 0x14(r1)
-	stw      r0, 0x18(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 3
-	stw      r0, 0x1650(r31)
-	b        lbl_803EADF0
-
-lbl_803EAC48:
-	bl       isDecide__Q33ebi6Screen10TTitleMenuFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803EAD5C
-	lbz      r0, 0x1655(r31)
-	cmplwi   r0, 0
-	bne      lbl_803EAD5C
-	li       r3, 1
-	stb      r3, 0x1655(r31)
-	lwz      r0, 0x3c(r31)
-	cmpwi    r0, 3
-	beq      lbl_803EACC0
-	bge      lbl_803EAC90
-	cmpwi    r0, 1
-	beq      lbl_803EACAC
-	bge      lbl_803EACB8
-	cmpwi    r0, 0
-	bge      lbl_803EACA0
-	b        lbl_803EACE0
-
-lbl_803EAC90:
-	cmpwi    r0, 5
-	beq      lbl_803EACD8
-	bge      lbl_803EACE0
-	b        lbl_803EACCC
-
-lbl_803EACA0:
-	li       r0, 0
-	stw      r0, 0x1658(r31)
-	b        lbl_803EACE0
-
-lbl_803EACAC:
-	li       r0, 2
-	stw      r0, 0x1658(r31)
-	b        lbl_803EACE0
-
-lbl_803EACB8:
-	stw      r3, 0x1658(r31)
-	b        lbl_803EACE0
-
-lbl_803EACC0:
-	li       r0, 3
-	stw      r0, 0x1658(r31)
-	b        lbl_803EACE0
-
-lbl_803EACCC:
-	li       r0, 4
-	stw      r0, 0x1658(r31)
-	b        lbl_803EACE0
-
-lbl_803EACD8:
-	li       r0, 5
-	stw      r0, 0x1658(r31)
-
-lbl_803EACE0:
-	lwz      r3, titleMgr__Q23ebi5title@sda21(r13)
-	bl       breakup__Q33ebi5title9TTitleMgrFv
-	lis      r3, __vt__Q33ebi6Screen8ArgClose@ha
-	lfs      f0, lbl_8051FE1C@sda21(r2)
-	addi     r0, r3, __vt__Q33ebi6Screen8ArgClose@l
-	lis      r3, __vt__Q33ebi6Screen14ArgCloseTMBack@ha
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q33ebi6Screen14ArgCloseTMBack@l
-	addi     r3, r31, 0x160c
-	addi     r4, r1, 8
-	stw      r0, 8(r1)
-	stfs     f0, 0xc(r1)
-	lwz      r12, 0x160c(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       isCancel__Q33ebi6Screen10TTitleMenuFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803EAD5C
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, lbl_8051FE1C@sda21(r2)
-	lfs      f0, 0x54(r3)
-	fdivs    f1, f1, f0
-	bl       __cvt_fp2unsigned
-	stw      r3, 0x1640(r31)
-	li       r4, 2
-	li       r0, 1
-	stw      r3, 0x1644(r31)
-	stw      r4, 0x163c(r31)
-	stb      r0, 0x1654(r31)
-
-lbl_803EAD5C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-	mr       r3, r31
-	bl       isCancel__Q33ebi6Screen10TTitleMenuFv
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_803EADF0
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803EADB0
-	addi     r3, r31, 0x137c
-	li       r4, 0
-	lwz      r12, 0x137c(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 2
-	stw      r0, 0x1650(r31)
-	b        lbl_803EADF0
-
-lbl_803EADB0:
-	lwz      r0, 0x1640(r31)
-	cmplwi   r0, 0
-	bne      lbl_803EADF0
-	li       r0, 0
-	stw      r0, 0x1650(r31)
-	b        lbl_803EADF0
-
-lbl_803EADC8:
-	lwz      r3, 0x165c(r31)
-	cmplwi   r3, 0
-	beq      lbl_803EADDC
-	addi     r0, r3, -1
-	stw      r0, 0x165c(r31)
-
-lbl_803EADDC:
-	lwz      r0, 0x165c(r31)
-	cmplwi   r0, 0
-	bne      lbl_803EADF0
-	li       r0, 0
-	stw      r0, 0x1650(r31)
-
-lbl_803EADF0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x137c
-	lwz      r12, 0x137c(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x160c
-	lwz      r12, 0x160c(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x1624
-	lwz      r12, 0x1624(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, titleMgr__Q23ebi5title@sda21(r13)
-	bl       update__Q33ebi5title9TTitleMgrFv
-	lwz      r0, 0x163c(r31)
-	cmpwi    r0, 0
-	beq      lbl_803EAE68
-	lwz      r3, 0x1640(r31)
-	cmplwi   r3, 0
-	beq      lbl_803EAE68
-	addi     r0, r3, -1
-	stw      r0, 0x1640(r31)
-
-lbl_803EAE68:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -697,33 +345,39 @@ void TMainTitleMgr::draw()
 		if (mDrawState != 0) {
 			J2DPerspGraph* graf = &sys->mGfx->mPerspGraph;
 			graf->setPort();
-			JUtility::TColor color(-1);
+			JUtility::TColor color(_1634);
 			switch (mDrawState) {
-				f32 calc;
-			case 1:
-				u32 count = mOpenMenuCounterMax;
-				if (count) {
-					calc = (f32)mOpenMenuCounter / count;
+			case 1: {
+				u32 count1 = mOpenMenuCounterMax;
+				f32 calc1;
+				if (count1) {
+					calc1 = (f32)mOpenMenuCounter / count1;
 				} else {
-					calc = 0.0f;
+					calc1 = 0.0f;
 				}
-				color.a = mAlpha * calc;
-				break;
-			case 2:
-				count = mOpenMenuCounterMax;
-				if (count) {
-					calc = (f32)mOpenMenuCounter / count;
-				} else {
-					calc = 0.0f;
-				}
-				color.a = mAlpha * (1.0f - calc);
+				color.a = calcAlpha(calc1);
 				break;
 			}
+			case 2: {
+				u32 count2 = mOpenMenuCounterMax;
+				f32 calc2;
+				if (count2) {
+					calc2 = (f32)mOpenMenuCounter / count2;
+				} else {
+					calc2 = 0.0f;
+				}
+				f32 factor = 1.0f;
+				factor -= calc2;
+				color.a = calcAlpha(factor);
+				break;
+			}
+			}
+
 			graf->setColor(color);
 			u32 y    = System::getRenderModeObj()->efbHeight;
 			u32 x    = System::getRenderModeObj()->fbWidth;
 			f32 zero = 0.0f;
-			JGeometry::TBox2f box(0.0f, zero + x, 0.0f, zero + y);
+			JGeometry::TBox2f box(0.0f, 0.0f, zero + x, zero + y);
 			graf->fillBox(box);
 		}
 	}

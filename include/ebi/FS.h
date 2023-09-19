@@ -9,6 +9,12 @@
 
 struct Controller;
 
+namespace Game {
+namespace MemoryCard {
+struct PlayerFileInfo;
+}
+} // namespace Game
+
 namespace ebi {
 namespace FS {
 struct TMgr;
@@ -223,6 +229,8 @@ struct FSMState10_FinishCopy : public FSMState_Warning {
 };
 
 struct TMgr {
+	enum enumEnd {};
+
 	TMgr();
 
 	~TMgr() { }
@@ -233,6 +241,9 @@ struct TMgr {
 	void update();
 	void draw();
 	void setController(Controller*);
+	void goEnd_(enumEnd);
+	void checkAndTransitNoCard_();
+	int getStateID();
 
 	Screen::FileSelect::TMainScreen mMainScreen; // _00
 	u32 _BF8;                                    // _BF8

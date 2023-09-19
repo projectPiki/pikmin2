@@ -1,5 +1,6 @@
 #include "PowerPC_EABI_Support/Runtime/runtime.h"
 #include "ebi/Option.h"
+#include "ebi/Save.h"
 #include "ebi/E2DCallBack.h"
 #include "Graphics.h"
 #include "JSystem/JUtility/JUTException.h"
@@ -7,276 +8,6 @@
 #include "Screen/Game2DMgr.h"
 #include "SoundID.h"
 #include "System.h"
-#include "types.h"
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804965A0
-    lbl_804965A0:
-        .4byte 0x6562694F
-        .4byte 0x7074696F
-        .4byte 0x6E4D6772
-        .4byte 0x00000000
-        .4byte 0x4C6F6164
-        .4byte 0x4F707469
-        .4byte 0x6F6E0000
-        .4byte 0x53637265
-        .4byte 0x656E4F70
-        .4byte 0x656E0000
-        .4byte 0x53637265
-        .4byte 0x656E5761
-        .4byte 0x69740000
-        .4byte 0x53637265
-        .4byte 0x656E436C
-        .4byte 0x6F736500
-        .4byte 0x57616974
-        .4byte 0x436C6F73
-        .4byte 0x65466F72
-        .4byte 0x4E6F4361
-        .4byte 0x72640000
-        .4byte 0x576F726C
-        .4byte 0x644D6170
-        .4byte 0x496E666F
-        .4byte 0x57696E64
-        .4byte 0x6F770000
-    .global lbl_80496608
-    lbl_80496608:
-        .4byte 0x6562694F
-        .4byte 0x7074696F
-        .4byte 0x6E4D6772
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_8049661C
-    lbl_8049661C:
-        .4byte 0x6661696C
-        .4byte 0x20746F20
-        .4byte 0x6D656D6F
-        .4byte 0x72792063
-        .4byte 0x61726420
-        .4byte 0x52657175
-        .4byte 0x65737420
-        .4byte 0x6576656E
-        .4byte 0x20696620
-        .4byte 0x66696E69
-        .4byte 0x73682074
-        .4byte 0x61736B0A
-        .4byte 0x00000000
-    .global lbl_80496650
-    lbl_80496650:
-        .4byte 0x4F707469
-        .4byte 0x6F6E3A3A
-        .4byte 0x544D6772
-        .4byte 0x3A3A6C6F
-        .4byte 0x61645265
-        .4byte 0x736F7572
-        .4byte 0x63650000
-    .global lbl_8049666C
-    lbl_8049666C:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q33ebi6Screen20TScreenBaseInterface
-    __vt__Q33ebi6Screen20TScreenBaseInterface:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q23ebi25E2DCallBack_CalcAnimation
-    __vt__Q23ebi25E2DCallBack_CalcAnimation:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23ebi25E2DCallBack_CalcAnimationFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q23ebi16E2DCallBack_BaseFv
-        .4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte do_update__Q23ebi25E2DCallBack_CalcAnimationFv
-        .4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-    .global __vt__Q23ebi16E2DCallBack_Base
-    __vt__Q23ebi16E2DCallBack_Base:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23ebi16E2DCallBack_BaseFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q23ebi16E2DCallBack_BaseFv
-        .4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte do_update__Q23ebi16E2DCallBack_BaseFv
-        .4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-    .global "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>"
-    "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-    .global __vt__Q33ebi6Option16FSMState_SaveMgr
-    __vt__Q33ebi6Option16FSMState_SaveMgr:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-        .4byte
-   "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte do_exec__Q33ebi6Option16FSMState_SaveMgrFPQ33ebi6Option4TMgr
-    .global __vt__Q33ebi6Option19FSMState_LoadOption
-    __vt__Q33ebi6Option19FSMState_LoadOption:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-        .4byte
-   "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte do_exec__Q33ebi6Option19FSMState_LoadOptionFPQ33ebi6Option4TMgr
-    .global __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow
-    __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-        .4byte
-   "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte
-   do_exec__Q33ebi6Option27FSMState_WorldMapInfoWindowFPQ33ebi6Option4TMgr
-    .global __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard
-    __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-        .4byte
-   "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte
-   do_exec__Q33ebi6Option27FSMState_WaitCloseForNoCardFPQ33ebi6Option4TMgr
-    .global __vt__Q33ebi6Option20FSMState_ScreenClose
-    __vt__Q33ebi6Option20FSMState_ScreenClose:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-        .4byte
-   "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte do_exec__Q33ebi6Option20FSMState_ScreenCloseFPQ33ebi6Option4TMgr
-    .global __vt__Q33ebi6Option19FSMState_ScreenWait
-    __vt__Q33ebi6Option19FSMState_ScreenWait:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-        .4byte
-   "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte do_exec__Q33ebi6Option19FSMState_ScreenWaitFPQ33ebi6Option4TMgr
-    .global __vt__Q33ebi6Option19FSMState_ScreenOpen
-    __vt__Q33ebi6Option19FSMState_ScreenOpen:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-        .4byte
-   "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte do_exec__Q33ebi6Option19FSMState_ScreenOpenFPQ33ebi6Option4TMgr
-    .global __vt__Q33ebi6Option8FSMState
-    __vt__Q33ebi6Option8FSMState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr
-        .4byte
-   "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgrPQ24Game8StateArg .4byte
-   do_exec__Q33ebi6Option8FSMStateFPQ33ebi6Option4TMgr .global
-   "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"
-    "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgrPQ24Game8StateArg"
-        .4byte "exec__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
-        .4byte
-   "cleanup__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "resume__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "restart__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game28FSMState<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-    .global __vt__Q33ebi6Option15FSMStateMachine
-    __vt__Q33ebi6Option15FSMStateMachine:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr
-        .4byte
-   "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr" .4byte
-   "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FA78
-    lbl_8051FA78:
-        .4byte 0x5374616E
-        .4byte 0x64627900
-    .global lbl_8051FA80
-    lbl_8051FA80:
-        .4byte 0x53617665
-        .4byte 0x4D677200
-    .global lbl_8051FA88
-    lbl_8051FA88:
-        .float 1.0
-    .global lbl_8051FA8C
-    lbl_8051FA8C:
-        .4byte 0x00000000
-    .global lbl_8051FA90
-    lbl_8051FA90:
-        .4byte 0x3D08850A
-*/
 
 /*
  * --INFO--
@@ -303,214 +34,6 @@ void Option::FSMStateMachine::init(ebi::Option::TMgr*)
 	registerState(new FSMState_SaveMgr(SaveMgr, "SaveMgr"));
 	registerState(new FSMState_WaitCloseForNoCard(WaitCloseForNoCard, "WaitCloseForNoCard"));
 	registerState(new FSMState_WorldMapInfoWindow(WorldMapInfoWindow, "WorldMapInfoWindow"));
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_804965A0@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_804965A0@l
-	li       r4, 8
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       "create__Q24Game32StateMachine<Q33ebi6Option4TMgr>Fi"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803CE95C
-	lis      r5, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
-	lis      r3, __vt__Q33ebi6Option8FSMState@ha
-	addi     r0, r5, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
-	li       r5, 0
-	stw      r0, 0(r4)
-	addi     r3, r3, __vt__Q33ebi6Option8FSMState@l
-	addi     r0, r2, lbl_8051FA78@sda21
-	stw      r5, 4(r4)
-	stw      r5, 8(r4)
-	stw      r3, 0(r4)
-	stw      r0, 0xc(r4)
-
-lbl_803CE95C:
-	mr       r3, r30
-	bl
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803CE9B0
-	lis      r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
-	lis      r5, __vt__Q33ebi6Option8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
-	lis      r3, __vt__Q33ebi6Option19FSMState_LoadOption@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi6Option8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r31, 0x10
-	addi     r0, r3, __vt__Q33ebi6Option19FSMState_LoadOption@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_803CE9B0:
-	mr       r3, r30
-	bl
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803CEA04
-	lis      r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
-	lis      r5, __vt__Q33ebi6Option8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
-	lis      r3, __vt__Q33ebi6Option19FSMState_ScreenOpen@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi6Option8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r31, 0x1c
-	addi     r0, r3, __vt__Q33ebi6Option19FSMState_ScreenOpen@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_803CEA04:
-	mr       r3, r30
-	bl
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803CEA58
-	lis      r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
-	lis      r5, __vt__Q33ebi6Option8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
-	lis      r3, __vt__Q33ebi6Option19FSMState_ScreenWait@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi6Option8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r31, 0x28
-	addi     r0, r3, __vt__Q33ebi6Option19FSMState_ScreenWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_803CEA58:
-	mr       r3, r30
-	bl
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803CEAAC
-	lis      r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
-	lis      r5, __vt__Q33ebi6Option8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
-	lis      r3, __vt__Q33ebi6Option20FSMState_ScreenClose@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi6Option8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r31, 0x34
-	addi     r0, r3, __vt__Q33ebi6Option20FSMState_ScreenClose@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_803CEAAC:
-	mr       r3, r30
-	bl
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803CEB00
-	lis      r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
-	lis      r5, __vt__Q33ebi6Option8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
-	lis      r3, __vt__Q33ebi6Option16FSMState_SaveMgr@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi6Option8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051FA80@sda21
-	addi     r0, r3, __vt__Q33ebi6Option16FSMState_SaveMgr@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_803CEB00:
-	mr       r3, r30
-	bl
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803CEB5C
-	lis      r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
-	lis      r5, __vt__Q33ebi6Option8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
-	lis      r3, __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi6Option8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r31, 0x40
-	addi     r0, r3, __vt__Q33ebi6Option27FSMState_WaitCloseForNoCard@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-	stw      r7, 0x10(r4)
-	stw      r7, 0x14(r4)
-
-lbl_803CEB5C:
-	mr       r3, r30
-	bl
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803CEBB0
-	lis      r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@ha
-	lis      r5, __vt__Q33ebi6Option8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game28FSMState<Q33ebi6Option4TMgr>"@l
-	lis      r3, __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi6Option8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r31, 0x54
-	addi     r0, r3, __vt__Q33ebi6Option27FSMState_WorldMapInfoWindow@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_803CEBB0:
-	mr       r3, r30
-	bl
-"registerState__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ24Game28FSMState<Q33ebi6Option4TMgr>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -518,23 +41,7 @@ lbl_803CEBB0:
  * Address:	803CEBD0
  * Size:	00002C
  */
-void Option::FSMState::init(ebi::Option::TMgr* obj, Game::StateArg* arg)
-{
-	do_init(obj, arg);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Option::FSMState::init(ebi::Option::TMgr* obj, Game::StateArg* arg) { do_init(obj, arg); }
 
 /*
  * --INFO--
@@ -548,23 +55,7 @@ void Option::FSMState::do_init(ebi::Option::TMgr*, Game::StateArg* arg) { }
  * Address:	803CEC00
  * Size:	00002C
  */
-void Option::FSMState::exec(ebi::Option::TMgr* obj)
-{
-	do_exec(obj);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Option::FSMState::exec(ebi::Option::TMgr* obj) { do_exec(obj); }
 
 /*
  * --INFO--
@@ -583,28 +74,6 @@ void Option::FSMState_ScreenOpen::do_init(ebi::Option::TMgr* obj, Game::StateArg
 	obj->mOptionScreen._0C8.loadRam();
 	obj->mOptionScreen._0DC.loadRam();
 	obj->mOptionScreen.openScreen(nullptr);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r3, r31, 0xc8
-	bl       loadRam__Q33ebi6Screen16TOptionParameterFv
-	addi     r3, r31, 0xdc
-	bl       loadRam__Q33ebi6Screen16TOptionParameterFv
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -614,85 +83,17 @@ void Option::FSMState_ScreenOpen::do_init(ebi::Option::TMgr* obj, Game::StateArg
  */
 void Option::FSMState_ScreenOpen::do_exec(ebi::Option::TMgr* obj)
 {
-	if (!obj->mOptionScreen.isWaitScreen()) {
+	if (obj->mOptionScreen.isWaitScreen()) {
 		transit(obj, ScreenWait, nullptr);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       isWaitScreen__Q33ebi6Screen11TScreenBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803CECCC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803CECCC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
-} // namespace ebi
 
-/*
- * Should be auto-generated.
- *
- * --INFO--
- * Address:	803CECE4
- * Size:	000030
- */
-// void transit__Q24Game28FSMState<ebi::Option::TMgr>
-// FPQ33ebi6Option4TMgriPQ24Game8StateArg()
-// template<> void Game::FSMState<ebi::Option::TMgr>::transit(ebi::Option::TMgr
-// *, int, StateArg *)
-// {
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, 0x8(r3)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
-// }
-
-namespace ebi {
 /*
  * --INFO--
  * Address:	803CED14
  * Size:	00000C
  */
-void Option::FSMState_ScreenWait::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
-{
-	obj->mOptionScreen._010 = 1;
-	/*
-	li       r0, 1
-	stb      r0, 0x10(r4)
-	blr
-	*/
-}
+void Option::FSMState_ScreenWait::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg) { obj->mOptionScreen._010 = 1; }
 
 /*
  * --INFO--
@@ -811,25 +212,8 @@ lbl_803CEE48:
  */
 void Option::FSMState_ScreenClose::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
-	obj->_F20 = 1;
+	obj->mIsFinished = true;
 	obj->mOptionScreen.closeScreen(nullptr);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stb      r0, 0xf20(r4)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -842,29 +226,6 @@ void Option::FSMState_ScreenClose::do_exec(ebi::Option::TMgr* obj)
 	if (obj->mOptionScreen.isFinishScreen()) {
 		obj->goEnd_();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803CEED8
-	mr       r3, r31
-	bl       goEnd___Q33ebi6Option4TMgrFv
-
-lbl_803CEED8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -874,29 +235,9 @@ lbl_803CEED8:
  */
 void Option::FSMState_WaitCloseForNoCard::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
-	u32 v1 = __cvt_fp2unsigned(1.0f / sys->mSecondsPerFrame);
+	u32 v1 = 1.0f / sys->mDeltaTime;
 	_10    = v1;
 	_14    = v1;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, 0x1728(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r4, -0x6514(r13)
-	  lfs       f0, 0x54(r4)
-	  fdivs     f1, f1, f0
-	  bl        -0x30D3C4
-	  stw       r3, 0x10(r31)
-	  stw       r3, 0x14(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -913,45 +254,6 @@ void Option::FSMState_WaitCloseForNoCard::do_exec(ebi::Option::TMgr* obj)
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
 		transit(obj, ScreenClose, nullptr);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x10(r3)
-	cmplwi   r3, 0
-	beq      lbl_803CEF60
-	addi     r0, r3, -1
-	stw      r0, 0x10(r30)
-
-lbl_803CEF60:
-	lwz      r0, 0x10(r30)
-	cmplwi   r0, 0
-	bne      lbl_803CEF9C
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x180c
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803CEF9C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -963,6 +265,7 @@ void Option::FSMState_WorldMapInfoWindow::do_init(ebi::Option::TMgr* obj, Game::
 {
 	::Screen::gGame2DMgr->mScreenMgr->reset();
 	og::Screen::DispMemberWorldMapInfoWin0 disp;
+	disp.mStartSelection = 1;
 	::Screen::gGame2DMgr->open_WorldMapInfoWin0(disp);
 	/*
 	.loc_0x0:
@@ -1022,7 +325,7 @@ void Option::FSMState_WorldMapInfoWindow::do_init(ebi::Option::TMgr* obj, Game::
  */
 void Option::FSMState_WorldMapInfoWindow::do_exec(ebi::Option::TMgr* obj)
 {
-	switch (Screen::gGame2DMgr->check_WorldMapInfoWin0()) {
+	switch (::Screen::gGame2DMgr->check_WorldMapInfoWin0()) {
 	case 0:
 		transit(obj, ScreenWait, nullptr);
 		break;
@@ -1033,55 +336,6 @@ void Option::FSMState_WorldMapInfoWindow::do_exec(ebi::Option::TMgr* obj)
 	default:
 		break;
 	}
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       check_WorldMapInfoWin0__Q26Screen9Game2DMgrCFv
-	cmpwi    r3, 1
-	beq      lbl_803CF0CC
-	bge      lbl_803CF0F4
-	cmpwi    r3, 0
-	bge      lbl_803CF0A8
-	b        lbl_803CF0F4
-
-lbl_803CF0A8:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CF0F4
-
-lbl_803CF0CC:
-	addi     r3, r31, 0xdc
-	bl       saveRam__Q33ebi6Screen16TOptionParameterFv
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803CF0F4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1089,11 +343,7 @@ lbl_803CF0F4:
  * Address:	803CF10C
  * Size:	00000C
  */
-void Option::FSMState_LoadOption::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
-{
-	// Generated from stw r0, 0x10(r3)
-	_10 = 0;
-}
+void Option::FSMState_LoadOption::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg) { _10 = 0; }
 
 /*
  * --INFO--
@@ -1239,19 +489,6 @@ void Option::FSMState_SaveMgr::do_init(ebi::Option::TMgr* obj, Game::StateArg* a
 {
 	obj->mOptionScreen._010 = 0;
 	obj->mSaveMgr->start();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stb      r0, 0x10(r4)
-	lwz      r3, 0xf18(r4)
-	bl       start__Q33ebi4Save4TMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1262,7 +499,7 @@ void Option::FSMState_SaveMgr::do_init(ebi::Option::TMgr* obj, Game::StateArg* a
 void Option::FSMState_SaveMgr::do_exec(ebi::Option::TMgr* obj)
 {
 	if (obj->mSaveMgr->isFinish()) {
-		switch (obj->mSaveMgr->_474) {
+		switch (obj->mSaveMgr->mCurrStateID) {
 		case 0:
 			transit(obj, ScreenClose, nullptr);
 			break;
@@ -1277,84 +514,6 @@ void Option::FSMState_SaveMgr::do_exec(ebi::Option::TMgr* obj)
 			break;
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0xf18(r4)
-	bl       isFinish__Q33ebi4Save4TMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803CF3CC
-	lwz      r3, 0xf18(r31)
-	lwz      r0, 0x474(r3)
-	cmpwi    r0, 2
-	beq      lbl_803CF388
-	bge      lbl_803CF334
-	cmpwi    r0, 0
-	beq      lbl_803CF340
-	bge      lbl_803CF364
-	b        lbl_803CF3CC
-
-lbl_803CF334:
-	cmpwi    r0, 4
-	beq      lbl_803CF3AC
-	b        lbl_803CF3CC
-
-lbl_803CF340:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CF3CC
-
-lbl_803CF364:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CF3CC
-
-lbl_803CF388:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803CF3CC
-
-lbl_803CF3AC:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803CF3CC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1364,66 +523,16 @@ lbl_803CF3CC:
  */
 Option::TMgr::TMgr()
     : mOptionScreen()
-    , _F20(0)
+    , mIsFinished(false)
     , mStateMachine()
 {
 	mStateMachine.init(this);
 	mStateMachine.start(this, Standby, nullptr);
-	mSaveMgr                = ebi::Save::TMgr::createInstance();
-	mSaveMgr->_470          = 1;
-	mSaveMgr->_478          = 1;
-	mSaveMgr->mIsAutosaveOn = true;
-	mSaveMgr->_47A          = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q33ebi6Screen7TOptionFv
-	li       r0, 0
-	lis      r3, "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>"@ha
-	stb      r0, 0xf20(r31)
-	addi     r0, r3, "__vt__Q24Game32StateMachine<Q33ebi6Option4TMgr>"@l
-	lis      r3, __vt__Q33ebi6Option15FSMStateMachine@ha
-	li       r5, -1
-	stw      r0, 0xf24(r31)
-	addi     r0, r3, __vt__Q33ebi6Option15FSMStateMachine@l
-	addi     r3, r31, 0xf24
-	mr       r4, r31
-	stw      r5, 0xf3c(r31)
-	stw      r0, 0xf24(r31)
-	lwz      r12, 0xf24(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0xf24
-	mr       r4, r31
-	lwz      r12, 0xf24(r31)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	bl       createInstance__Q33ebi4Save4TMgrFv
-	stw      r3, 0xf18(r31)
-	li       r5, 1
-	li       r0, 0
-	mr       r3, r31
-	lwz      r4, 0xf18(r31)
-	stw      r5, 0x470(r4)
-	lwz      r4, 0xf18(r31)
-	stb      r5, 0x478(r4)
-	lwz      r4, 0xf18(r31)
-	stb      r5, 0x479(r4)
-	lwz      r4, 0xf18(r31)
-	stb      r0, 0x47a(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mSaveMgr                   = ebi::Save::TMgr::createInstance();
+	mSaveMgr->mIsStoryGameSave = true;
+	mSaveMgr->mSaveType        = 1;
+	mSaveMgr->mIsAutosaveOn    = true;
+	mSaveMgr->_47A             = 0;
 }
 } // namespace ebi
 
@@ -1437,7 +546,7 @@ Option::TMgr::TMgr()
 template <>
 void Game::StateMachine<ebi::Option::TMgr>::start(ebi::Option::TMgr* obj, int id, StateArg* arg)
 {
-	obj->_F28 = 0;
+	obj->mStateMachine.mStates = nullptr;
 	transit(obj, id, arg);
 	/*
 	.loc_0x0:
@@ -1682,57 +791,6 @@ blr
 	*/
 }
 } // namespace Screen
-
-/*
- * --INFO--
- * Address:	803CF7E4
- * Size:	000090
- */
-E2DCallBack_Purupuru::~E2DCallBack_Purupuru()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803CF858
-lis      r4, __vt__Q23ebi20E2DCallBack_Purupuru@ha
-addi     r0, r4, __vt__Q23ebi20E2DCallBack_Purupuru@l
-stw      r0, 0(r30)
-beq      lbl_803CF848
-lis      r4, __vt__Q23ebi16E2DCallBack_Base@ha
-addi     r0, r4, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r30)
-beq      lbl_803CF848
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803CF848
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803CF848:
-extsh.   r0, r31
-ble      lbl_803CF858
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803CF858:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
 
 /*
  * --INFO--
@@ -2034,62 +1092,11 @@ blr
 
 /*
  * --INFO--
- * Address:	803CFCB0
- * Size:	000090
- */
-E2DCallBack_WindowCursor::~E2DCallBack_WindowCursor()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803CFD24
-lis      r4, __vt__Q23ebi24E2DCallBack_WindowCursor@ha
-addi     r0, r4, __vt__Q23ebi24E2DCallBack_WindowCursor@l
-stw      r0, 0(r30)
-beq      lbl_803CFD14
-lis      r4, __vt__Q23ebi16E2DCallBack_Base@ha
-addi     r0, r4, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r30)
-beq      lbl_803CFD14
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803CFD14
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803CFD14:
-extsh.   r0, r31
-ble      lbl_803CFD24
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803CFD24:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	803CFD40
  * Size:	00008C
  */
 E2DCallBack_Purupuru::E2DCallBack_Purupuru()
-    : _3C(1.0f)
+    : mScale(1.0f)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2130,286 +1137,26 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803CFDCC
- * Size:	000090
- */
-E2DCallBack_BlinkAlpha::~E2DCallBack_BlinkAlpha()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803CFE40
-lis      r4, __vt__Q23ebi22E2DCallBack_BlinkAlpha@ha
-addi     r0, r4, __vt__Q23ebi22E2DCallBack_BlinkAlpha@l
-stw      r0, 0(r30)
-beq      lbl_803CFE30
-lis      r4, __vt__Q23ebi16E2DCallBack_Base@ha
-addi     r0, r4, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r30)
-beq      lbl_803CFE30
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803CFE30
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803CFE30:
-extsh.   r0, r31
-ble      lbl_803CFE40
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803CFE40:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803CFE5C
- * Size:	000090
- */
-E2DCallBack_BlinkFontColor::~E2DCallBack_BlinkFontColor()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803CFED0
-lis      r4, __vt__Q23ebi26E2DCallBack_BlinkFontColor@ha
-addi     r0, r4, __vt__Q23ebi26E2DCallBack_BlinkFontColor@l
-stw      r0, 0(r30)
-beq      lbl_803CFEC0
-lis      r4, __vt__Q23ebi16E2DCallBack_Base@ha
-addi     r0, r4, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r30)
-beq      lbl_803CFEC0
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803CFEC0
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803CFEC0:
-extsh.   r0, r31
-ble      lbl_803CFED0
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803CFED0:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803CFEEC
- * Size:	000018
- */
-E2DFullFontColor::E2DFullFontColor()
-    : _00(0xFFFFFFFF)
-    , _04(0xFFFFFFFF)
-    , mWhite(0xFFFFFFFF)
-    , mBlack(0xFFFFFFFF)
-{
-	/*
-li       r0, -1
-stw      r0, 0(r3)
-stw      r0, 4(r3)
-stw      r0, 8(r3)
-stw      r0, 0xc(r3)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803CFF04
- * Size:	000090
- */
-E2DCallBack_CalcAnimation::~E2DCallBack_CalcAnimation()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803CFF78
-lis      r4, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
-addi     r0, r4, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
-stw      r0, 0(r30)
-beq      lbl_803CFF68
-lis      r4, __vt__Q23ebi16E2DCallBack_Base@ha
-addi     r0, r4, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r30)
-beq      lbl_803CFF68
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803CFF68
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803CFF68:
-extsh.   r0, r31
-ble      lbl_803CFF78
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803CFF78:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803CFF94
- * Size:	0000AC
- */
-E2DCallBack_AnmBase::~E2DCallBack_AnmBase()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803D0024
-lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-addic.   r0, r30, 0x20
-addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-stw      r0, 0(r30)
-beq      lbl_803CFFD4
-lis      r3, __vt__12J3DFrameCtrl@ha
-addi     r0, r3, __vt__12J3DFrameCtrl@l
-stw      r0, 0x20(r30)
-
-lbl_803CFFD4:
-cmplwi   r30, 0
-beq      lbl_803D0014
-lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r30)
-beq      lbl_803D0014
-lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803D0014
-lis      r4, __vt__Q29P2DScreen4Node@ha
-mr       r3, r30
-addi     r0, r4, __vt__Q29P2DScreen4Node@l
-li       r4, 0
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803D0014:
-extsh.   r0, r31
-ble      lbl_803D0024
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803D0024:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803D0040
- * Size:	000080
- */
-E2DCallBack_Base::~E2DCallBack_Base()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803D00A4
-lis      r4, __vt__Q23ebi16E2DCallBack_Base@ha
-addi     r0, r4, __vt__Q23ebi16E2DCallBack_Base@l
-stw      r0, 0(r30)
-beq      lbl_803D0094
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_803D0094
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_803D0094:
-extsh.   r0, r31
-ble      lbl_803D00A4
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803D00A4:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803CFEEC
+//  * Size:	000018
+//  */
+// E2DFullFontColor::E2DFullFontColor()
+//     : mCol1(0xFFFFFFFF)
+//     , mCol2(0xFFFFFFFF)
+//     , mWhite(0xFFFFFFFF)
+//     , mBlack(0xFFFFFFFF)
+// {
+// 	/*
+// li       r0, -1
+// stw      r0, 0(r3)
+// stw      r0, 4(r3)
+// stw      r0, 8(r3)
+// stw      r0, 0xc(r3)
+// blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -2421,8 +1168,8 @@ void Option::TMgr::loadResource()
 	sys->heapStatusStart("Option::TMgr::loadResource", nullptr);
 	mOptionScreen.loadResource();
 	sys->heapStatusEnd("Option::TMgr::loadResource");
-	mSaveMgr->mSaveMenu->loadResource();
-	mSaveMgr->mMemoryCard->loadResource(JKRHeap::sCurrentHeap);
+	mSaveMgr->mSaveMenu.loadResource();
+	mSaveMgr->mMemCardErrorMgr.loadResource(JKRHeap::sCurrentHeap);
 	sys->mCardMgr->loadResource(JKRHeap::sCurrentHeap);
 	/*
 	stwu     r1, -0x10(r1)
@@ -2472,9 +1219,9 @@ void Option::TMgr::setController(Controller* controller)
 	mController = controller;
 	mOptionScreen.setController(controller);
 	// TODO: Did Save::TMgr have an inlined setController?
-	mSaveMgr->mController              = controller;
-	mSaveMgr->mSaveMenu->mController   = controller;
-	mSaveMgr->mMemoryCard->mController = controller;
+	mSaveMgr->mController                  = controller;
+	mSaveMgr->mSaveMenu.mController        = controller;
+	mSaveMgr->mMemCardErrorMgr.mController = controller;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2610,7 +1357,7 @@ void Option::TMgr::goEnd_()
  */
 void Option::TMgr::update()
 {
-	_F20 = 0;
+	mIsFinished = false;
 	mStateMachine.exec(this);
 	if (getStateID()) {
 		sys->mCardMgr->update();
@@ -2734,8 +1481,8 @@ void Option::TMgr::showInfo()
  */
 int Option::TMgr::getStateID()
 {
-	P2ASSERTLINE(430, _F28 != 0);
-	return _F28;
+	P2ASSERTLINE(430, mStateMachine.mStates != 0);
+	// return _F28;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2771,8 +1518,8 @@ lbl_803D03D4:
  */
 void E2DCallBack_CalcAnimation::do_update()
 {
-	if (_18->getTypeID() == 8) {
-		static_cast<J2DScreen*>(_18)->animation();
+	if (mPane->getTypeID() == 8) {
+		static_cast<J2DScreen*>(mPane)->animation();
 	}
 	/*
 	stwu     r1, -0x10(r1)

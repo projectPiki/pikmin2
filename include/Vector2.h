@@ -4,6 +4,7 @@
 #include "types.h"
 #include "sqrt.h"
 #include "JSystem/JGeometry.h"
+#include "Dolphin/math.h"
 
 template <typename T>
 struct Vector2 {
@@ -42,8 +43,11 @@ struct Vector2 {
 
 	operator JGeometry::TVec2f() { return JGeometry::TVec2f(x, y); }
 
+	inline f32 sqrMagnitude() const { return x * x + y * y; }
+
 	inline f32 length() const;
 	inline f32 normalise();
+	inline f32 distance(Vector2&);
 
 	T x, y;
 };
@@ -71,12 +75,9 @@ inline f32 _lenVec2D(Vector2f& vec)
 template <>
 inline f32 Vector2f::length() const
 {
-	Vector2f vec(x, y);
-	f32 x2 = x * x;
-	f32 y2 = y * y;
-
-	if (x2 + y2 > 0.0f) {
-		f32 sqrLen = vec.x * vec.x + y * y;
+	if (sqrMagnitude() > 0.0f) {
+		Vector2f vec = Vector2f(x, y);
+		f32 sqrLen   = SQUARE(vec.x) + SQUARE(y);
 		return sqrtf(sqrLen);
 	} else {
 		return 0.0f;
@@ -95,6 +96,15 @@ inline f32 Vector2f::normalise()
 		return len;
 	}
 	return 0.0f;
+}
+
+template <>
+inline f32 Vector2f::distance(Vector2f& them)
+{
+	f32 diffX = this->x - them.x;
+	f32 diffY = this->y - them.y;
+
+	return Vector2f(diffX, diffY).length();
 }
 
 #endif

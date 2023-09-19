@@ -10,8 +10,10 @@ static const char idk[]  = "\0\0\0\0\0\0\0\0\0";
 static const char name[] = "ebiP2Title";
 
 namespace ebi {
-
 namespace title {
+
+TTitleMgr* titleMgr;
+TTitleMgr* TTitleMgr::_instance;
 
 /*
  * --INFO--
@@ -28,6 +30,7 @@ TTitleMgr::TTitleMgr()
     , mCounterControlMax(0)
     , mCounterPressStart(0)
     , mCounterPressStartMax(0)
+    , mLightMgr()
 {
 	_F54          = true;
 	mState        = 0;
@@ -132,7 +135,7 @@ void TTitleMgr::init()
 	mCameraMgr.mLookAtPosition = mCameraMgr.mPosition;
 	mCameraMgr.mLookAtPosition.y -= 1.0f;
 	mCameraMgr.mViewAngle = mCameraMgr.mParms.mFOVY.mValue;
-	mCameraMgr.updateMatrix();
+	mCameraMgr.LookAtCamera::updateMatrix();
 
 	Graphics* gfx = sys->mGfx;
 	gfx->allocateViewports(1);
@@ -398,7 +401,7 @@ bool TTitleMgr::inViewField(TObjBase* obj)
 	if (obj->isCalc()) {
 		EGEBox2f bounds(mTitleParms.mBoundsMinX.mValue, mTitleParms.mBoundsMinY.mValue, mTitleParms.mBoundsMaxX.mValue,
 		                mTitleParms.mBoundsMaxY.mValue);
-		return bounds.in(&obj->mPos, obj->mParms[4]);
+		bounds.in(&obj->mPos, obj->mParms[4]);
 	}
 }
 

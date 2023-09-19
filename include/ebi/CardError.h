@@ -53,50 +53,25 @@ struct FSMStateMachine : public Game::StateMachine<TMgr> {
 ////////////////////////////////////////////////////////////
 // BASE STATES
 struct FSMState : public Game::FSMState<TMgr> {
-	inline FSMState(int stateID)
+	inline FSMState(int stateID, char* name)
 	    : Game::FSMState<TMgr>(stateID)
 	{
+		mName = name;
 	}
 
-	virtual void init(TMgr*, Game::StateArg*);    // _08 (weak)
-	virtual void exec(TMgr*);                     // _0C (weak)
-	virtual void do_init(TMgr*, Game::StateArg*); // _20 (weak)
-	virtual void do_exec(TMgr*);                  // _24 (weak)
+	virtual void init(TMgr* mgr, Game::StateArg* arg); // _08
+	virtual void exec(TMgr* mgr);                      // _0C
+	virtual void do_init(TMgr*, Game::StateArg*) { }   // _20 (weak)
+	virtual void do_exec(TMgr*) { }                    // _24 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = Game::FSMState
 	char* mName;
 };
 
-struct FSMState_Standby : public FSMState {
-	FSMState_Standby()
-	    : FSMState(CARDERROR_Standby)
-	{
-		mName = "Standby";
-	}
-
-	// doesnt have its own vtable?
-
-	// _00     = VTBL
-	// _00-_10 = FSMState
-};
-
-struct FSMState_EmptyScreen : public FSMState {
-	FSMState_EmptyScreen()
-	    : FSMState(CARDERROR_EmptyScreen)
-	{
-		mName = "EmptyScreen";
-	}
-
-	// doesnt have its own vtable?
-
-	// _00     = VTBL
-	// _00-_10 = FSMState
-};
-
 struct FSMState_NoCard : public FSMState {
-	FSMState_NoCard(int id)
-	    : FSMState(id)
+	FSMState_NoCard(int id, char* name)
+	    : FSMState(id, name)
 	{
 	}
 
@@ -112,8 +87,8 @@ struct FSMState_NoCard : public FSMState {
 };
 
 struct FSMState_CardRequest : public FSMState {
-	FSMState_CardRequest(int id)
-	    : FSMState(id)
+	FSMState_CardRequest(int id, char* name)
+	    : FSMState(id, name)
 	{
 	}
 
@@ -140,8 +115,8 @@ struct FSMState_CardRequest : public FSMState {
 };
 
 struct FSMState_Question : public FSMState {
-	inline FSMState_Question(int id)
-	    : FSMState(id)
+	inline FSMState_Question(int id, char* name)
+	    : FSMState(id, name)
 	{
 	}
 
@@ -157,8 +132,8 @@ struct FSMState_Question : public FSMState {
 };
 
 struct FSMState_Warning : public FSMState {
-	inline FSMState_Warning(int id)
-	    : FSMState(id)
+	inline FSMState_Warning(int id, char* name)
+	    : FSMState(id, name)
 	{
 	}
 
@@ -179,9 +154,8 @@ struct FSMState_Warning : public FSMState {
 // QUESTION STATES
 struct FSMState_Q00_DataBrokenAndDoYouFormat : public FSMState_Question {
 	inline FSMState_Q00_DataBrokenAndDoYouFormat()
-	    : FSMState_Question(CARDERROR_DataBrokenAndDoYouFormat)
+	    : FSMState_Question(CARDERROR_DataBrokenAndDoYouFormat, "Q00_DataBrokenAndDoYouFormat")
 	{
-		mName = "Q00_DataBrokenAndDoYouFormat";
 	}
 
 	virtual void do_open(TMgr*);       // _28
@@ -194,9 +168,8 @@ struct FSMState_Q00_DataBrokenAndDoYouFormat : public FSMState_Question {
 
 struct FSMState_Q01_DoYouOpenIPL : public FSMState_Question {
 	inline FSMState_Q01_DoYouOpenIPL()
-	    : FSMState_Question(CARDERROR_DoYouOpenIPL)
+	    : FSMState_Question(CARDERROR_DoYouOpenIPL, "FSMState_Q01_DoYouOpenIPL")
 	{
-		mName = "Q01_DoYouOpenIPL";
 	}
 
 	virtual void do_open(TMgr*);       // _28
@@ -209,9 +182,8 @@ struct FSMState_Q01_DoYouOpenIPL : public FSMState_Question {
 
 struct FSMState_Q02_DoYouFormat : public FSMState_Question {
 	inline FSMState_Q02_DoYouFormat()
-	    : FSMState_Question(CARDERROR_DoYouFormat)
+	    : FSMState_Question(CARDERROR_DoYouFormat, "Q02_DoYouFormat")
 	{
-		mName = "Q02_DoYouFormat";
 	}
 
 	virtual void do_open(TMgr*);       // _28
@@ -224,9 +196,8 @@ struct FSMState_Q02_DoYouFormat : public FSMState_Question {
 
 struct FSMState_Q03_DoYouCreateNewFile : public FSMState_Question {
 	inline FSMState_Q03_DoYouCreateNewFile()
-	    : FSMState_Question(CARDERROR_DoYouCreateNewFile)
+	    : FSMState_Question(CARDERROR_DoYouCreateNewFile, "Q03_DoYouCreateNewFile")
 	{
-		mName = "Q03_DoYouCreateNewFile";
 	}
 
 	virtual void do_open(TMgr*);       // _28
@@ -239,9 +210,8 @@ struct FSMState_Q03_DoYouCreateNewFile : public FSMState_Question {
 
 struct FSMState_Q04_DoYouStartGameWithoutSave : public FSMState_Question {
 	inline FSMState_Q04_DoYouStartGameWithoutSave()
-	    : FSMState_Question(CARDERROR_DoYouStartGameWithoutSave)
+	    : FSMState_Question(CARDERROR_DoYouStartGameWithoutSave, "Q04_DoYouStartGameWithoutSave")
 	{
-		mName = "Q04_DoYouStartGameWithoutSave";
 	}
 
 	virtual void do_open(TMgr*);       // _28
@@ -254,9 +224,8 @@ struct FSMState_Q04_DoYouStartGameWithoutSave : public FSMState_Question {
 
 struct FSMState_Q05_GameCantSave : public FSMState_Question {
 	inline FSMState_Q05_GameCantSave()
-	    : FSMState_Question(CARDERROR_GameCantSave)
+	    : FSMState_Question(CARDERROR_GameCantSave, "Q05_GameCantSave")
 	{
-		mName = "Q05_GameCantSave";
 	}
 
 	virtual void do_open(TMgr*);       // _28
@@ -272,9 +241,8 @@ struct FSMState_Q05_GameCantSave : public FSMState_Question {
 // WARNING STATES
 struct FSMState_W00_NoCard : public FSMState_NoCard {
 	inline FSMState_W00_NoCard()
-	    : FSMState_NoCard(CARDERROR_NoCard)
+	    : FSMState_NoCard(CARDERROR_NoCard, "W00_NoCard")
 	{
-		mName = "W00_NoCard";
 	}
 
 	virtual void do_open(TMgr*);          // _28
@@ -287,9 +255,8 @@ struct FSMState_W00_NoCard : public FSMState_NoCard {
 
 struct FSMState_W01_IOError : public FSMState_Warning {
 	inline FSMState_W01_IOError()
-	    : FSMState_Warning(CARDERROR_IOError)
+	    : FSMState_Warning(CARDERROR_IOError, "W01_IOError")
 	{
-		mName = "W01_IOError";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -301,9 +268,8 @@ struct FSMState_W01_IOError : public FSMState_Warning {
 
 struct FSMState_W02_WrongDevice : public FSMState_Warning {
 	inline FSMState_W02_WrongDevice()
-	    : FSMState_Warning(CARDERROR_WrongDevice)
+	    : FSMState_Warning(CARDERROR_WrongDevice, "W02_WrongDevice")
 	{
-		mName = "W02_WrongDevice";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -315,9 +281,8 @@ struct FSMState_W02_WrongDevice : public FSMState_Warning {
 
 struct FSMState_W03_WrongSector : public FSMState_Warning {
 	inline FSMState_W03_WrongSector()
-	    : FSMState_Warning(CARDERROR_WrongSector)
+	    : FSMState_Warning(CARDERROR_WrongSector, "W03_WrongSector")
 	{
-		mName = "W03_WrongSector";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -329,9 +294,8 @@ struct FSMState_W03_WrongSector : public FSMState_Warning {
 
 struct FSMState_W04_OverCapacity : public FSMState_Warning {
 	inline FSMState_W04_OverCapacity()
-	    : FSMState_Warning(CARDERROR_OverCapacity)
+	    : FSMState_Warning(CARDERROR_OverCapacity, "W04_OverCapacity")
 	{
-		mName = "W04_OverCapacity";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -343,9 +307,8 @@ struct FSMState_W04_OverCapacity : public FSMState_Warning {
 
 struct FSMState_W05_InitCardOnIPL : public FSMState_Warning {
 	inline FSMState_W05_InitCardOnIPL()
-	    : FSMState_Warning(CARDERROR_InitCardOnIPL)
+	    : FSMState_Warning(CARDERROR_InitCardOnIPL, "W05_InitCardOnIPL")
 	{
-		mName = "W05_InitCardOnIPL";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -357,9 +320,8 @@ struct FSMState_W05_InitCardOnIPL : public FSMState_Warning {
 
 struct FSMState_W06_CardNotUsable : public FSMState_Warning {
 	inline FSMState_W06_CardNotUsable()
-	    : FSMState_Warning(CARDERROR_CardNotUsable)
+	    : FSMState_Warning(CARDERROR_CardNotUsable, "W06_CardNotUsable")
 	{
-		mName = "W06_CardNotUsable";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -371,9 +333,8 @@ struct FSMState_W06_CardNotUsable : public FSMState_Warning {
 
 struct FSMState_W07_NoFileForSave : public FSMState_Warning {
 	inline FSMState_W07_NoFileForSave()
-	    : FSMState_Warning(CARDERROR_NoFileForSave)
+	    : FSMState_Warning(CARDERROR_NoFileForSave, "W07_NoFileForSave")
 	{
-		mName = "W07_NoFileForSave";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -385,9 +346,8 @@ struct FSMState_W07_NoFileForSave : public FSMState_Warning {
 
 struct FSMState_W08_FinishFormat : public FSMState_Warning {
 	inline FSMState_W08_FinishFormat()
-	    : FSMState_Warning(CARDERROR_FinishFormat)
+	    : FSMState_Warning(CARDERROR_FinishFormat, "W08_FinishFormat")
 	{
-		mName = "W08_FinishFormat";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -399,9 +359,8 @@ struct FSMState_W08_FinishFormat : public FSMState_Warning {
 
 struct FSMState_W09_FinishCreateNewFile : public FSMState_Warning {
 	inline FSMState_W09_FinishCreateNewFile()
-	    : FSMState_Warning(CARDERROR_FinishCreateNewFile)
+	    : FSMState_Warning(CARDERROR_FinishCreateNewFile, "W09_FinishCreateNewFile")
 	{
-		mName = "W09_FinishCreateNewFile";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -413,9 +372,8 @@ struct FSMState_W09_FinishCreateNewFile : public FSMState_Warning {
 
 struct FSMState_W10_SerialNoError : public FSMState_Warning {
 	inline FSMState_W10_SerialNoError()
-	    : FSMState_Warning(CARDERROR_SerialNoError)
+	    : FSMState_Warning(CARDERROR_SerialNoError, "W10_SerialNoError")
 	{
-		mName = "W10_SerialNoError";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -430,9 +388,8 @@ struct FSMState_W10_SerialNoError : public FSMState_Warning {
 // WARNING FAIL STATES
 struct FSMState_WF0_FailToFormat_NoCard : public FSMState_Warning {
 	inline FSMState_WF0_FailToFormat_NoCard()
-	    : FSMState_Warning(CARDERROR_FailToFormat_NoCard)
+	    : FSMState_Warning(CARDERROR_FailToFormat_NoCard, "WF0_FailToFormat_NoCard")
 	{
-		mName = "WF0_FailToFormat_NoCard";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -444,9 +401,8 @@ struct FSMState_WF0_FailToFormat_NoCard : public FSMState_Warning {
 
 struct FSMState_WF1_FailToFormat_IOError : public FSMState_Warning {
 	inline FSMState_WF1_FailToFormat_IOError()
-	    : FSMState_Warning(CARDERROR_FailToFormat_IOError)
+	    : FSMState_Warning(CARDERROR_FailToFormat_IOError, "WF1_FailToFormat_IOError")
 	{
-		mName = "WF1_FailToFormat_IOError";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -458,9 +414,8 @@ struct FSMState_WF1_FailToFormat_IOError : public FSMState_Warning {
 
 struct FSMState_WF2_FailToCreateNewFile_NoCard : public FSMState_Warning {
 	inline FSMState_WF2_FailToCreateNewFile_NoCard()
-	    : FSMState_Warning(CARDERROR_FailToCreateNewFile_NoCard)
+	    : FSMState_Warning(CARDERROR_FailToCreateNewFile_NoCard, "WF2_FailToCreateNewFile_NoCard")
 	{
-		mName = "WF2_FailToCreateNewFile_NoCard";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -472,9 +427,8 @@ struct FSMState_WF2_FailToCreateNewFile_NoCard : public FSMState_Warning {
 
 struct FSMState_WF3_FailToCreateNewFile_IOError : public FSMState_Warning {
 	inline FSMState_WF3_FailToCreateNewFile_IOError()
-	    : FSMState_Warning(CARDERROR_FailToCreateNewFile_IOError)
+	    : FSMState_Warning(CARDERROR_FailToCreateNewFile_IOError, "WF3_FailToCreateNewFile_IOError")
 	{
-		mName = "WF3_FailToCreateNewFile_IOError";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -486,9 +440,8 @@ struct FSMState_WF3_FailToCreateNewFile_IOError : public FSMState_Warning {
 
 struct FSMState_WF4_FailToSave_NoCard : public FSMState_Warning {
 	inline FSMState_WF4_FailToSave_NoCard()
-	    : FSMState_Warning(CARDERROR_FailToSave_NoCard)
+	    : FSMState_Warning(CARDERROR_FailToSave_NoCard, "WF4_FailToSave_NoCard")
 	{
-		mName = "WF4_FailToSave_NoCard";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -500,9 +453,8 @@ struct FSMState_WF4_FailToSave_NoCard : public FSMState_Warning {
 
 struct FSMState_WF5_FailToSave_IOError : public FSMState_Warning {
 	inline FSMState_WF5_FailToSave_IOError()
-	    : FSMState_Warning(CARDERROR_FailToSave_IOError)
+	    : FSMState_Warning(CARDERROR_FailToSave_IOError, "WF5_FailToSave_IOError")
 	{
-		mName = "WF5_FailToSave_IOError";
 	}
 
 	virtual void do_open(TMgr*);    // _28
@@ -517,9 +469,8 @@ struct FSMState_WF5_FailToSave_IOError : public FSMState_Warning {
 // CARD REQUEST STATES
 struct FSMState_WN0_NowFormat : public FSMState_CardRequest {
 	inline FSMState_WN0_NowFormat()
-	    : FSMState_CardRequest(CARDERROR_NowFormat)
+	    : FSMState_CardRequest(CARDERROR_NowFormat, "WN0_NowFormat")
 	{
-		mName = "WN0_NowFormat";
 	}
 
 	virtual void do_open(TMgr*);               // _28
@@ -534,9 +485,8 @@ struct FSMState_WN0_NowFormat : public FSMState_CardRequest {
 
 struct FSMState_WN1_NowCreateNewFile : public FSMState_CardRequest {
 	inline FSMState_WN1_NowCreateNewFile()
-	    : FSMState_CardRequest(CARDERROR_NowCreateNewFile)
+	    : FSMState_CardRequest(CARDERROR_NowCreateNewFile, "WN1_NowCreateNewFile")
 	{
-		mName = "WN1_NowCreateNewFile";
 	}
 
 	virtual void do_open(TMgr*);               // _28
@@ -585,7 +535,7 @@ struct TMgr : Screen::TMemoryCard {
 	int getStateID();
 
 	TMgr();
-	~TMgr() { }
+	~TMgr();
 
 	// _00-_298 = TMemoryCard
 	u32 mCounter;                  // _298

@@ -87,8 +87,8 @@ struct TMemoryCard {
 	inline void doSetSelect(f32 p1, bool check)
 	{
 		// needs tweaking
-		mBlinkFont[0].setPaneColors();
-		mBlinkFont[1].setPaneColors();
+		mBlinkFont1.setPaneColors();
+		mBlinkFont2.setPaneColors();
 
 		mCursor1.mTimer    = p1;
 		mCursor1.mSelected = check;
@@ -96,29 +96,34 @@ struct TMemoryCard {
 		mCursor2.mSelected = check;
 	}
 
-	int mState;                               // _00, unknown
-	Controller* mController;                  // _04
-	uint mInputDelay;                         // _08
-	uint _0C;                                 // _0C
-	u32 mMsgAlpha;                            // _10
-	int mAlphaMod;                            // _14
-	u8 mCurrSel;                              // _18
-	u8 mCanExit;                              // _19
-	P2DScreen::Mgr_tuning* mScreenMain;       // _1C
-	J2DTextBox* mPaneMsg1;                    // _20
-	J2DTextBox* mPaneMsg2;                    // _24
-	J2DTextBox* mPaneMsg3;                    // _28
-	J2DTextBox* mPaneMsg4;                    // _2C
-	J2DPane* mPane_il00;                      // _30
-	J2DPane* mPane_il01;                      // _34
-	J2DPane* mPane_ir00;                      // _38
-	J2DPane* mPane_ir01;                      // _3C
-	E2DCallBack_BlinkFontColor mBlinkFont[2]; // _40
-	E2DCallBack_AnmBase mAnims[5];            // _D8
-	E2DCallBack_CalcAnimation mCalcAnim;      // _204
-	TYesNoCursor mCursor1;                    // _224
-	TYesNoCursor mCursor2;                    // _25C
-	bool mIsPlaySavingSE;                     // _294
+	int mState;                             // _00, unknown
+	Controller* mController;                // _04
+	uint mInputDelay;                       // _08
+	uint _0C;                               // _0C
+	u32 mMsgAlpha;                          // _10
+	int mAlphaMod;                          // _14
+	u8 mCurrSel;                            // _18
+	u8 mCanExit;                            // _19
+	P2DScreen::Mgr_tuning* mScreenMain;     // _1C
+	J2DTextBox* mPaneMsg1;                  // _20
+	J2DTextBox* mPaneMsg2;                  // _24
+	J2DTextBox* mPaneMsg3;                  // _28
+	J2DTextBox* mPaneMsg4;                  // _2C
+	J2DPane* mPane_il00;                    // _30
+	J2DPane* mPane_il01;                    // _34
+	J2DPane* mPane_ir00;                    // _38
+	J2DPane* mPane_ir01;                    // _3C
+	E2DCallBack_BlinkFontColor mBlinkFont1; // _40
+	E2DCallBack_BlinkFontColor mBlinkFont2; // _8C
+	E2DCallBack_AnmBase mAnim1;             // _D8
+	E2DCallBack_AnmBase mAnim2;             // _D8
+	E2DCallBack_AnmBase mAnim3;             // _D8
+	E2DCallBack_AnmBase mAnim4;             // _D8
+	E2DCallBack_AnmBase mAnim5;             // _D8
+	E2DCallBack_CalcAnimation mCalcAnim;    // _204
+	TYesNoCursor mCursor1;                  // _224
+	TYesNoCursor mCursor2;                  // _25C
+	bool mIsPlaySavingSE;                   // _294
 };
 } // namespace Screen
 } // namespace ebi

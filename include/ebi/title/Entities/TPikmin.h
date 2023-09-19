@@ -120,7 +120,7 @@ struct TBoidParam : public Parameters {
 	    : Parameters(nullptr, "TTitleStateParameters")
 	    , mTurnMag(this, 'tsp0', "向き変えベクトルの大きさ", 0.2f, 0.0f, 10.0f)
 	    , mMaxTurnVec(this, 'tsp1', "向き変えベクトル最大", 0.4f, 0.0f, 10.0f)
-	    , mMaxWalkSpeed(this, 'tsp2', "向き変えベクトル最大", 2.0f, 0.0f, 10.0f)
+	    , mMaxWalkSpeed(this, 'tsp2', "最大歩く速度", 2.0f, 0.0f, 10.0f)
 	    , mBoidColl(this, 'tsp5', "BOID衝突回避係数", 800.0f, 0.0f, 10000.0f)
 	    , mBoidSpeedMatch(this, 'tsp6', "BOID速度合わせ係数", 4.5f, 0.0f, 100.0f)
 	    , mBoidCenter(this, 'tsp7', "BOID中心集合係数", 0.005f, 0.0f, 100.0f)
@@ -154,8 +154,7 @@ Size = 1712   Actual Alignment = 1
 
 struct TBoidParamMgr : public CNode {
 	// TBoidParamMgr();
-	inline TBoidParamMgr()
-	    : CNode("TBoidParamMgr") {};
+	TBoidParamMgr();
 	virtual ~TBoidParamMgr() { } // _08 (weak)
 
 	// _00     = VTBL

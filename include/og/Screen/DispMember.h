@@ -711,12 +711,17 @@ struct DispMemberVs : public DispMemberBase {
 // size 0x28
 struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 	inline DispMemberWorldMapInfoWin0()
+	    : mResult(0)
+	    , mMsgIDYes('4710_00')
+	    , mMsgIDNo('4711_00')
+	    , _20(180)
+	    , mStartSelection(0)
 	{
-		mResult         = 0;
-		mMsgIDYes       = '4710_00'; // "Continue"
-		mMsgIDNo        = '4711_00'; // "Return to Title Screen"
-		_20             = 180;
-		mStartSelection = 0;
+		// mResult         = 0;
+		// mMsgIDYes       = '4710_00'; // "Continue"
+		// mMsgIDNo        = '4711_00'; // "Return to Title Screen"
+		// _20             = 180;
+		// mStartSelection = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberWorldMapInfoWin0); } // _08 (weak)

@@ -16,17 +16,18 @@ namespace title {
  */
 void E3DModel_set2DCoordToBaseTRMatrix_(J3DModel* model, Vector2f& pos, Vector2f& angle, f32 scale)
 {
+	Mtx& mtx = model->mPosMtx;
 	f32 y    = -angle.y;
 	f32 x    = angle.x;
 	f32 zero = 0.0f;
 	f32 one  = 1.0f;
 
-	model->mPosMtx[0][0] = y * one - zero;
+	model->mPosMtx[0][0] = one * y - zero;
 	model->mPosMtx[0][1] = 0.0f;
 	model->mPosMtx[0][2] = x;
 	model->mPosMtx[0][3] = pos.x;
 
-	model->mPosMtx[1][0] = (zero * x) - (y * zero);
+	model->mPosMtx[1][0] = (zero * x) - (zero * y);
 	model->mPosMtx[1][1] = 1.0f;
 	model->mPosMtx[1][2] = 0.0f;
 	model->mPosMtx[1][3] = 0.0f;
@@ -38,7 +39,7 @@ void E3DModel_set2DCoordToBaseTRMatrix_(J3DModel* model, Vector2f& pos, Vector2f
 
 	Mtx temp;
 	PSMTXScale(temp, scale, scale, scale);
-	PSMTXConcat(model->mPosMtx, temp, model->mPosMtx);
+	PSMTXConcat(mtx, temp, mtx);
 }
 
 /*
@@ -114,7 +115,7 @@ void TMapBase::setArchive(JKRArchive* arc)
 
 	mAnimMtxCalcWait = J3DNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnimWait);
 	mAnimMtxCalcWind = static_cast<J3DMtxCalcAnmBase*>(
-	    J3DUNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnimWait, mAnimWind, nullptr, nullptr, 0));
+	    J3DUNewMtxCalcAnm(mMainModelData->mJointTree.mFlags & 15, mAnimWait, mAnimWind, nullptr, nullptr, (J3DMtxCalcFlag)0));
 
 	mParms[0] = 0.0f;
 
@@ -176,13 +177,9 @@ void TMapBase::update()
 		} else {
 			calc = 0.0f;
 		}
-		f32 calc2 = 1.0f;
+
 		calc      = 1.0f - calc;
-		if (calc <= 0.2f) {
-			calc2 = calc / 0.2f;
-		} else if (calc <= 0.8f) {
-			calc2 = calc * -(5.0f) + 5.0f;
-		}
+		f32 calc2 = (calc <= 0.2f) ? calc / 0.2f : (calc <= 0.8f) ? 1.0f : calc * -5.0f + 5.0f;
 		anm->setWeight(0, 1.0f - calc2);
 		anm->setWeight(1, calc2);
 		mModel->mModelData->mJointTree.mJoints[0]->mMtxCalc = anm;
@@ -276,10 +273,10 @@ void TBlackPlane::setArchive(JKRArchive* arc)
 
 	mAnimColor->searchUpdateMaterialID(mModel->mModelData);
 
-	for (u16 i = 0; i < (u32)mModel->mModelData->mMaterialTable.mMaterialNum; i++) {
+	for (u16 i = 0; i < (u16)(int)mModel->mModelData->getMaterialNum(); i++) {
 		J3DMaterialAnm* anm = new J3DMaterialAnm;
-		mModel->mModelData->mMaterialTable.mMaterials[i]->change();
-		mModel->mModelData->mMaterialTable.mMaterials[i]->mAnm = anm;
+		mModel->mModelData->getMaterialNodePointer(i)->change();
+		mModel->mModelData->getMaterialNodePointer(i)->mAnm = anm;
 	}
 
 	j3dSys.ErrorReport(mModel->mModelData->mMaterialTable.entryTevRegAnimator(mAnimColor));
@@ -536,8 +533,8 @@ void TBlackPlane::updateAfterCamera()
  */
 void TBlackPlane::setLogo()
 {
-	mFrameCtrl.mCurrTime      = mFrameCtrl._08;
-	mFrameCtrlColor.mCurrTime = mFrameCtrlColor._08;
+	mFrameCtrl.mCurrTime      = mFrameCtrl.mEndFrame;
+	mFrameCtrlColor.mCurrTime = mFrameCtrlColor.mEndFrame;
 }
 
 /*
@@ -547,9 +544,10 @@ void TBlackPlane::setLogo()
  */
 Vector3f TBlackPlane::getCameraPos()
 {
-	int id   = mModel->mModelData->mJointTree.mNametab->getIndex("black_plane");
-	Mtx* mtx = &mModel->mMtxBuffer->mWorldMatrices[id];
-	return Vector3f((*mtx)[0][3], (*mtx)[1][3], (*mtx)[2][3]);
+	int id          = mModel->mModelData->mJointTree.mNametab->getIndex("black_plane");
+	Mtx* mtx        = &mModel->mMtxBuffer->mWorldMatrices[id];
+	Vector3f result = Vector3f((*mtx)[0][3], (*mtx)[1][3], (*mtx)[2][3]);
+	return result;
 }
 
 } // namespace title

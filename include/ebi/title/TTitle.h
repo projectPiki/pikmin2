@@ -67,12 +67,12 @@ struct TTitleCameraMgr : public LookAtCamera {
 		Parms()
 		    : Parameters(nullptr, "TTitleCameraParameters")
 		    , mYOffset(this, 'cam1', "カメラ距離ロゴ", 15.0f, -1000.0f, 10000.0f) // "camera distance logo"
-		    , mFOVY(this, 'cam2', "Fovy", 35.0f, 1.0f, 180.0f)
+		    , mFOVY(this, 'cam4', "Fovy", 35.0f, 1.0f, 180.0f)
 		{
 		}
 
-		Parm<f32> mYOffset; // _1A4
-		Parm<f32> mFOVY;    // _1CC
+		Parm<f32> mYOffset; // _1A4, cam1
+		Parm<f32> mFOVY;    // _1CC, cam4
 	};
 
 	virtual ~TTitleCameraMgr() { } // _08 (weak)
@@ -124,7 +124,7 @@ struct TTitleFogMgr : public FogMgr {
 };
 
 struct TTitleLightSetting {
-	TTitleLightSetting();
+	TTitleLightSetting() { }
 
 	struct TAmbParms : public Parameters {
 		inline TAmbParms()
@@ -210,6 +210,7 @@ struct TTitleLightMgr : public LightMgr {
 	    : LightMgr("LightMgr")
 	    , mLightObjMain("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(255, 255, 255, 255))
 	    , mLightObjSpec("スペキュラライト", GX_LIGHT7, TYPE_4, JUtility::TColor(255, 255, 255, 255))
+	    , mSetting()
 	{
 		registLightObj(&mLightObjMain);
 		registLightObj(&mLightObjSpec);

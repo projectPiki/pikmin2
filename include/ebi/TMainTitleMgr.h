@@ -33,14 +33,15 @@ struct TMainTitleMgr {
 	void draw();
 	void showInfo();
 
+	inline f32 getAlpha() const { return mAlpha; }
+
+	inline u8 calcAlpha(f32 factor) { return getAlpha() * factor; }
+
 	Screen::TTitleMenu mTitleMenu;   // _0000
 	Screen::TPressStart mPressStart; // _137C
 	Screen::TTMBack mTMBack;         // _160C
 	Screen::TNintendoLogo mLogo;     // _1624
-	u8 _1634;                        // _1634
-	u8 _1635;                        // _1634
-	u8 _1636;                        // _1634
-	u8 _1637;                        // _1634
+	JUtility::TColor _1634;          // _1634
 	u8 mAlpha;                       // _1638
 	int mDrawState;                  // _163C
 	u32 mOpenMenuCounter;            // _1640
@@ -54,8 +55,8 @@ struct TMainTitleMgr {
 	u32 mExitMenuCounter;            // _165C
 	u32 mExitMenuCounterMax;         // _1660
 
-	static f32 kFadeoutTime; // 1.0f
-	static f32 kFadeTime;    // 0.5f
+	static const f32 kFadeOutTime; // 1.0f
+	static f32 kFadeTime;          // 0.5f
 };
 } // namespace ebi
 

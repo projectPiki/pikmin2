@@ -1,4 +1,5 @@
-#include "types.h"
+#include "ebi/FS.h"
+#include "Game/MemoryCard/PlayerFileInfo.h"
 
 /*
     Generated from dpostproc
@@ -3107,7 +3108,7 @@ void FS::TMgr::setController(Controller*)
  * Address:	803E0078
  * Size:	0000FC
  */
-void FS::TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo&)
+void FS::TMgr::perseInfo(::Game::MemoryCard::PlayerFileInfo&)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -3326,7 +3327,7 @@ void FS::TMgr::forceQuitSeq()
  * Address:	803E02F0
  * Size:	000028
  */
-void FS::TMgr::isFinish()
+bool FS::TMgr::isFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3453,7 +3454,7 @@ lbl_803E0430:
  * Address:	803E0448
  * Size:	000058
  */
-void FS::TMgr::getStateID()
+int FS::TMgr::getStateID()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3523,7 +3524,7 @@ void FS::FSMState_CardTask::do_close(ebi::FS::TMgr*) { }
  * Address:	803E04B4
  * Size:	000030
  */
-void transit__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg()
+void Game::FSMState<ebi::FS::TMgr>::transit(ebi::FS::TMgr*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3531,31 +3532,6 @@ void transit__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateAr
 	  mflr      r0
 	  stw       r0, 0x14(r1)
 	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803E04E4
- * Size:	000034
- */
-void start__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0xC5C(r4)
 	  lwz       r12, 0x0(r3)
 	  lwz       r12, 0x14(r12)
 	  mtctr     r12
@@ -4442,7 +4418,7 @@ blr
  * Address:	803E110C
  * Size:	000004
  */
-void init__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgrPQ24Game8StateArg() { }
+void Game::FSMState<ebi::FS::TMgr>::init(ebi::FS::TMgr*, Game::StateArg*) { }
 
 } // namespace Screen
 
@@ -4453,42 +4429,42 @@ void init__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgrPQ24Game8StateArg() 
  * Address:	803E1110
  * Size:	000004
  */
-void exec__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
+void Game::FSMState<ebi::FS::TMgr>::exec(ebi::FS::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E1114
  * Size:	000004
  */
-void cleanup__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
+void Game::FSMState<ebi::FS::TMgr>::cleanup(ebi::FS::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E1118
  * Size:	000004
  */
-void resume__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
+void Game::FSMState<ebi::FS::TMgr>::resume(ebi::FS::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E111C
  * Size:	000004
  */
-void restart__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
+void Game::FSMState<ebi::FS::TMgr>::restart(ebi::FS::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E1120
  * Size:	000004
  */
-void init__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
+void Game::StateMachine<ebi::FS::TMgr>::init(ebi::FS::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E1124
  * Size:	000038
  */
-void exec__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgr()
+void Game::StateMachine<ebi::FS::TMgr>::exec(ebi::FS::TMgr*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4515,7 +4491,7 @@ lbl_803E114C:
  * Address:	803E115C
  * Size:	000064
  */
-void create__Q24Game28StateMachine<ebi::FS::TMgr> Fi()
+void Game::StateMachine<ebi::FS::TMgr>::create(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4551,7 +4527,7 @@ void create__Q24Game28StateMachine<ebi::FS::TMgr> Fi()
  * Address:	803E11C0
  * Size:	00009C
  */
-void transit__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg()
+void Game::StateMachine<ebi::FS::TMgr>::transit(ebi::FS::TMgr*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -4608,7 +4584,7 @@ void transit__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8Sta
  * Address:	803E125C
  * Size:	000084
  */
-void registerState__Q24Game28StateMachine<ebi::FS::TMgr> FPQ24Game24FSMState<ebi::FS::TMgr>()
+void Game::StateMachine<ebi::FS::TMgr>::registerState(Game::FSMState<ebi::FS::TMgr>*)
 {
 	/*
 	.loc_0x0:

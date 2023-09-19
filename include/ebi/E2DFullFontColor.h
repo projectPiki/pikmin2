@@ -6,7 +6,13 @@
 namespace ebi {
 // @size{0x10}
 struct E2DFullFontColor {
-	E2DFullFontColor();
+	E2DFullFontColor()
+	    : mCol1(0xFFFFFFFF)
+	    , mCol2(0xFFFFFFFF)
+	    , mWhite(0xFFFFFFFF)
+	    , mBlack(0xFFFFFFFF)
+	{
+	}
 
 	JUtility::TColor mCol1;  // _00
 	JUtility::TColor mCol2;  // _04
