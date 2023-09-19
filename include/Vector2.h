@@ -78,7 +78,7 @@ inline f32 Vector2f::length() const
 	if (sqrMagnitude() > 0.0f) {
 		Vector2f vec = Vector2f(x, y);
 		f32 sqrLen   = SQUARE(vec.x) + SQUARE(y);
-		return sqrtf(sqrLen);
+		return sqrtf2(sqrLen);
 	} else {
 		return 0.0f;
 	}
@@ -90,9 +90,7 @@ inline f32 Vector2f::normalise()
 	f32 len = length();
 
 	if (len != 0.0f) {
-		f32 norm = 1.0f / len;
-		x *= norm;
-		y *= norm;
+		*this *= 1.0f / len;
 		return len;
 	}
 	return 0.0f;

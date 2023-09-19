@@ -16,7 +16,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxTPkEffectMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/efxEnemyGeneral.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebi3DGraph.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiGeometry.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiGeometry.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DGraph.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOption.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenProgre.o\

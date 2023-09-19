@@ -1466,7 +1466,7 @@ LIBS = [
             "plugProjectEbisawaU/efxTPkEffectMgr",
             ["plugProjectEbisawaU/efxEnemyGeneral", True],
             ["plugProjectEbisawaU/ebi3DGraph", True],
-            "plugProjectEbisawaU/ebiGeometry",
+            ["plugProjectEbisawaU/ebiGeometry", True],
             ["plugProjectEbisawaU/ebi2DGraph", False, {"cflags" : "$cflags_pikmin"}], 
             "plugProjectEbisawaU/ebiScreenOption",
             "plugProjectEbisawaU/ebiScreenProgre",

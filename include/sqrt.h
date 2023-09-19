@@ -20,6 +20,17 @@ inline f32 sqrtf(f32& __sqrtf_g)
 	return __sqrtf_g;
 }
 
+inline f32 sqrtf2(f32& __sqrtf_g)
+{
+	if ((__sqrtf_g > 0.0f)) {
+		f32 __sqrtf_h;
+		FRSQRTE(__sqrtf_g, &__sqrtf_h);
+		__sqrtf_g = __sqrtf_h * __sqrtf_g;
+		return __sqrtf_g;
+	}
+	return __sqrtf_g;
+}
+
 inline f32 _sqrtf(f32 x) { return (x > 0.0f) ? sqrtf(x) : 0.0f; }
 
 // used in pelplant's Obj::getShadowParam(ShadowParam&)
