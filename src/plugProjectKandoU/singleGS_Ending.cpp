@@ -208,7 +208,7 @@ void EndingState::exec(SingleGameSection* game)
 						playData->openCourse(3);
 					}
 					playData->mStoryFlags |= STORY_DebtPaid;
-					playData->setSaveFlag(4);
+					playData->setSaveFlag(4, nullptr);
 				}
 			}
 			break;
@@ -274,7 +274,7 @@ void EndingState::exec(SingleGameSection* game)
 					sys->getPlayCommonData()->_00 |= 2;
 					playData->mStoryFlags |= STORY_AllTreasuresCollected;
 					mStatus = EndingStatus_ShowFinalResultsComplete;
-					playData->setSaveFlag(1);
+					playData->setSaveFlag(1, nullptr);
 				}
 			}
 			break;
@@ -301,7 +301,7 @@ void EndingState::exec(SingleGameSection* game)
 					sys->getPlayCommonData()->_00 |= 2;
 					playData->mStoryFlags |= STORY_AllTreasuresCollected;
 					mStatus = EndingStatus_ShowFinalResultsComplete;
-					playData->setSaveFlag(1);
+					playData->setSaveFlag(1, nullptr);
 				}
 			}
 			break;

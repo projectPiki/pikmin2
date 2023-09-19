@@ -1,260 +1,35 @@
-#include "types.h"
-#include "nans.h"
 #include "Game/SingleGame.h"
+#include "Game/Navi.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/itemMgr.h"
+#include "Game/Farm.h"
+#include "Game/Entities/PelletItem.h"
+#include "Game/Entities/PelletOtakara.h"
+#include "Game/MoviePlayer.h"
+#include "Game/Entities/ItemOnyon.h"
+#include "Game/GameLight.h"
+#include "Game/CameraMgr.h"
+#include "Screen/Game2DMgr.h"
+#include "TParticle2dMgr.h"
+#include "utilityU.h"
+#include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_singleGS_MainResult_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80482598
-    lbl_80482598:
-        .4byte 0x7330325F
-        .4byte 0x64617965
-        .4byte 0x6E645F72
-        .4byte 0x6573756C
-        .4byte 0x74000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C0648
-    lbl_804C0648:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804C0654
-    lbl_804C0654:
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte loadResource__Q34Game10SingleGame15MainResultStateFv
-    .global lbl_804C0660
-    lbl_804C0660:
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte beforeSave__Q34Game10SingleGame15MainResultStateFv
-    .global __vt__Q32kh6Screen20DispDayEndResultTitl
-    __vt__Q32kh6Screen20DispDayEndResultTitl:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32kh6Screen20DispDayEndResultTitlFv
-        .4byte getOwnerID__Q32kh6Screen20DispDayEndResultTitlFv
-        .4byte getMemberID__Q32kh6Screen20DispDayEndResultTitlFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32kh6Screen16DispDayEndResult
-    __vt__Q32kh6Screen16DispDayEndResult:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32kh6Screen16DispDayEndResultFv
-        .4byte getOwnerID__Q32kh6Screen16DispDayEndResultFv
-        .4byte getMemberID__Q32kh6Screen16DispDayEndResultFv
-        .4byte doSetSubMemberAll__Q32kh6Screen16DispDayEndResultFv
-    .global __vt__Q34Game10SingleGame15MainResultState
-    __vt__Q34Game10SingleGame15MainResultState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-        .4byte
-   exec__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection .4byte
-   cleanup__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSection
-        .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionR8Graphics
-        .4byte
-   onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game10SingleGame15MainResultStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-        .4byte
-   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-        .4byte
-   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-        .4byte
-   on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
-        .4byte
-   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-    .global __vt__Q34Game6Result5TNode
-    __vt__Q34Game6Result5TNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game6Result5TNodeFv
-        .4byte getChildCount__Q24Game5DNodeFv
-    .global "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"
-    "__vt__46Delegate<Q34Game10SingleGame15MainResultState>":
-        .4byte 0
-        .4byte 0
-        .4byte "invoke__46Delegate<Q34Game10SingleGame15MainResultState>Fv"
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515BF8
-    lbl_80515BF8:
-        .skip 0x4
-    .global lbl_80515BFC
-    lbl_80515BFC:
-        .skip 0x4
-    .global theTekiHeap
-    theTekiHeap:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A038
-    lbl_8051A038:
-        .4byte 0x00000000
-    .global lbl_8051A03C
-    lbl_8051A03C:
-        .4byte 0x6D725F6C
-        .4byte 0x6F616400
-        .4byte 0x00000000
-*/
+static JKRHeap* theTekiHeap;
 
 namespace Game {
+namespace SingleGame {
 
 /*
  * --INFO--
  * Address:	80219F48
  * Size:	000150
  */
-SingleGame::MainResultState::MainResultState()
+MainResultState::MainResultState()
+    : State(SGS_MainResult)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
-	li       r5, 0
-	stw      r0, 0x34(r1)
-	addi     r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
-	lis      r4, __vt__Q34Game10SingleGame5State@ha
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	addi     r4, r4, __vt__Q34Game10SingleGame5State@l
-	stw      r0, 0(r3)
-	li       r0, 7
-	lis      r3, __vt__Q34Game10SingleGame15MainResultState@ha
-	stw      r0, 4(r31)
-	addi     r0, r3, __vt__Q34Game10SingleGame15MainResultState@l
-	addi     r3, r31, 0x24
-	stw      r5, 8(r31)
-	stw      r4, 0(r31)
-	stw      r0, 0(r31)
-	bl       __ct__Q34Game12ResultTexMgr3MgrFv
-	addi     r3, r31, 0x68
-	bl       __ct__Q34Game6Result5TNodeFv
-	addi     r3, r31, 0xcc
-	bl       __ct__16DvdThreadCommandFv
-	li       r3, 0xb0
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80219FC4
-	li       r4, 0
-	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
-	mr       r0, r3
-
-lbl_80219FC4:
-	stw      r0, 0x18(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8021A020
-	lis      r4, lbl_804C0654@ha
-	lis      r5, __vt__9IDelegate@ha
-	addi     r8, r4, lbl_804C0654@l
-	lis      r4, "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"@ha
-	lwz      r7, 0(r8)
-	addi     r5, r5, __vt__9IDelegate@l
-	lwz      r6, 4(r8)
-	addi     r0, r4, "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"@l
-	lwz      r4, 8(r8)
-	stw      r7, 0x14(r1)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stw      r31, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0x18(r1)
-	stw      r4, 0x1c(r1)
-	stw      r4, 0x10(r3)
-
-lbl_8021A020:
-	stw      r3, 0xc8(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8021A07C
-	lis      r4, lbl_804C0660@ha
-	lis      r5, __vt__9IDelegate@ha
-	addi     r8, r4, lbl_804C0660@l
-	lis      r4, "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"@ha
-	lwz      r7, 0(r8)
-	addi     r5, r5, __vt__9IDelegate@l
-	lwz      r6, 4(r8)
-	addi     r0, r4, "__vt__46Delegate<Q34Game10SingleGame15MainResultState>"@l
-	lwz      r4, 8(r8)
-	stw      r7, 8(r1)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stw      r31, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0xc(r1)
-	stw      r4, 0x10(r1)
-	stw      r4, 0x10(r3)
-
-lbl_8021A07C:
-	stw      r3, 0x13c(r31)
-	mr       r3, r31
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8021A098
- * Size:	000060
- */
-Result::TNode::~TNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8021A0DC
-	lis      r5, __vt__Q34Game6Result5TNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game6Result5TNode@l
-	stw      r0, 0(r30)
-	bl       __dt__Q24Game5DNodeFv
-	extsh.   r0, r31
-	ble      lbl_8021A0DC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8021A0DC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mControl            = new Controller(Controller::PORT_0);
+	mLoadDelegate       = new Delegate<MainResultState>(this, loadResource);
+	mBeforeSaveDelegate = new Delegate<MainResultState>(this, beforeSave);
 }
 
 /*
@@ -262,80 +37,27 @@ lbl_8021A0DC:
  * Address:	8021A0F8
  * Size:	000104
  */
-void SingleGame::MainResultState::init(Game::SingleGameSection*, Game::StateArg*)
+void MainResultState::init(SingleGameSection* game, StateArg* arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r5, -0x6C18(r13)
-	  lbz       r0, 0x3C(r5)
-	  ori       r0, r0, 0x4
-	  stb       r0, 0x3C(r5)
-	  stw       r31, 0x138(r30)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xC8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, -0x6B70(r13)
-	  mr        r3, r30
-	  mr        r4, r31
-	  li        r6, 0
-	  lwz       r31, 0xE8(r5)
-	  lwz       r5, 0xB4(r5)
-	  bl        -0xC7BCC
-	  lwz       r3, -0x6B70(r13)
-	  addi      r4, r30, 0xCC
-	  stw       r31, 0xE8(r3)
-	  lwz       r3, -0x6514(r13)
-	  lwz       r5, 0xC8(r30)
-	  bl        0x208DCC
-	  li        r0, 0
-	  sth       r0, 0x10(r30)
-	  stw       r0, 0xC0(r30)
-	  lwz       r3, -0x6B70(r13)
-	  stb       r0, 0x20(r3)
-	  lwz       r3, -0x6D20(r13)
-	  bl        -0xBEF98
-	  lwz       r3, -0x6E20(r13)
-	  bl        -0x10C5A0
-	  lwz       r0, -0x6E28(r13)
-	  stw       r3, -0x6A80(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB4
-	  mr        r3, r0
-	  bl        -0xF5B24
+	gameSystem->mFlags |= GAMESYS_Unk3;
+	mGameSect = game;
+	game->startFadeblack();
 
-	.loc_0xB4:
-	  lwz       r3, -0x6D20(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x98(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  bl        -0x34F80
-	  lwz       r4, -0x6CE0(r13)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xE0
-	  addi      r4, r4, 0x1C
-
-	.loc_0xE0:
-	  lwz       r3, -0x6C18(r13)
-	  bl        -0x641E4
-	  stw       r3, 0xC4(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	int money = playData->mPokoCount;
+	accountEarnings(game, playData->mMainCropMemory, false);
+	playData->mPokoCount = money;
+	sys->dvdLoadUseCallBack(&mDvdThread, mLoadDelegate);
+	mStatus               = 0;
+	mMainHeap             = nullptr;
+	playData->mDeadNaviID = 0;
+	naviMgr->clearDeadCount();
+	theTekiHeap = generalEnemyMgr->useHeap();
+	if (Farm::farmMgr) {
+		Farm::farmMgr->initAllFarmObjectNodes();
+	}
+	naviMgr->killAll();
+	itemMgr->killAllExceptOnyonMgr();
+	mPelletMgr = gameSystem->detachObjectMgr_reuse(pelletMgr);
 }
 
 /*
@@ -343,64 +65,25 @@ void SingleGame::MainResultState::init(Game::SingleGameSection*, Game::StateArg*
  * Address:	8021A1FC
  * Size:	000024
  */
-void SingleGame::MainResultState::beforeSave()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       setPikminCounts_Yesterday__Q24Game8PlayDataFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void MainResultState::beforeSave() { playData->setPikminCounts_Yesterday(); }
 
 /*
  * --INFO--
  * Address:	8021A220
  * Size:	000088
  */
-void SingleGame::MainResultState::loadResource()
+void MainResultState::loadResource()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	li       r0, -1
-	addi     r4, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x24
-	stw      r5, 0x10(r1)
-	lwz      r7, theTekiHeap@sda21(r13)
-	stw      r5, 0xc(r1)
-	lwz      r6, mgr__Q24Game13PelletOtakara@sda21(r13)
-	stw      r5, 8(r1)
-	lwz      r5, mgr__Q24Game10PelletItem@sda21(r13)
-	stb      r0, 0x14(r1)
-	stw      r7, 0x10(r1)
-	lwz      r0, 8(r6)
-	stw      r0, 8(r1)
-	lwz      r0, 8(r5)
-	stw      r0, 0xc(r1)
-	stw      r7, 0xc0(r31)
-	bl       create__Q34Game12ResultTexMgr3MgrFRQ34Game12ResultTexMgr3Arg
-	mr       r3, r31
-	bl       createResultNodes__Q34Game10SingleGame15MainResultStateFv
-	lwz      r3, particleMgr@sda21(r13)
-	bl       killAll__11ParticleMgrFv
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	bl       killAll__Q24Game9ShadowMgrFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	ResultTexMgr::Arg arg;
+	arg.mHeap              = theTekiHeap;
+	arg.mOtakaraConfigList = PelletOtakara::mgr->mConfigList;
+	arg.mItemConfigList    = PelletItem::mgr->mConfigList;
+
+	mMainHeap = theTekiHeap;
+	mResultTex.create(arg);
+	createResultNodes();
+	particleMgr->killAll();
+	shadowMgr->killAll();
 }
 
 /*
@@ -408,7 +91,7 @@ void SingleGame::MainResultState::loadResource()
  * Address:	........
  * Size:	000148
  */
-unknown SingleGame::MainResultState::open2D(Game::SingleGameSection*)
+unknown MainResultState::open2D(SingleGameSection* game)
 {
 	// UNUSED FUNCTION
 }
@@ -418,8 +101,93 @@ unknown SingleGame::MainResultState::open2D(Game::SingleGameSection*)
  * Address:	8021A2A8
  * Size:	0003E8
  */
-void SingleGame::MainResultState::exec(Game::SingleGameSection*)
+void MainResultState::exec(SingleGameSection* game)
 {
+	switch (mStatus) {
+	case 0:
+		if (mDvdThread.mMode == 2) {
+			mStatus = 2;
+			MoviePlayArg arg("s02_dayend_result", nullptr, game->mMovieFinishCallback, 0);
+			moviePlayer->play(arg);
+			gameSystem->setPause(false, "mr_load", 3);
+			mCounter = 0;
+		}
+		game->BaseHIOSection::doUpdate();
+		break;
+	case 1:
+		mStartTimer -= sys->mDeltaTime;
+		if (mStartTimer < 0.0f)
+			mStatus = 3;
+		break;
+	case 2:
+		if (mCounter++ >= 199 || mControl->getButtonDown() & Controller::PRESS_A) {
+			mStatus = 3;
+			playData->clearCurrentCave();
+			playData->setSaveFlag(1, mBeforeSaveDelegate);
+			int pokos = playData->mPokoCount;
+			kh::Screen::MailCategory mailtype;
+			if (pokos < 3000) {
+				mailtype = kh::Screen::PokoUnder3000;
+			} else if (pokos < 5000) {
+				mailtype = kh::Screen::PokoUnder5000;
+			} else if (pokos < 8000) {
+				mailtype = kh::Screen::PokoUnder8000;
+			} else if (pokos < 10000) {
+				mailtype = kh::Screen::PokoUnder10000;
+			} else if (playData->mStoryFlags & STORY_AllTreasuresCollected) {
+				mailtype = kh::Screen::AllTreasures;
+			} else if (playData->mStoryFlags & STORY_LouieRescued) {
+				mailtype = kh::Screen::SavedLouie;
+			} else {
+				mailtype = kh::Screen::PayDebt;
+			}
+
+			kh::Screen::DispDayEndResult disp(&mResultNode, playData->mTreasureCount, pokos, playData->mStoryFlags & STORY_DebtPaid, mIncP,
+			                                  theTekiHeap, mailtype);
+			Screen::gGame2DMgr->open_DayEndResult(disp);
+		}
+		break;
+	case 3:
+		switch (Screen::gGame2DMgr->check_DayEndResult()) {
+		case 1:
+			moviePlayer->unsuspend(1, false);
+			break;
+		case 2:
+			moviePlayer->stop();
+			game->clearHeap();
+			transit(game, SGS_File, nullptr);
+			return;
+			break;
+		}
+		break;
+	case 4:
+		mStartTimer -= sys->mDeltaTime;
+		if (mStartTimer < 0.0f) {
+			game->clearHeap();
+			FOREACH_NODE(Result::TNode, mResultNode.mChild, node) { }
+			transit(game, SGS_Select, nullptr);
+			return;
+		}
+		return;
+	}
+	ItemOnyon::mgr->doAnimation();
+	ItemOnyon::mgr->doEntry();
+	ItemOnyon::mgr->doSimulation(sys->mDeltaTime);
+
+	Viewport* vp = sys->mGfx->mCurrentViewport;
+	SysShape::Model::setViewCalcModeInd();
+	game->j3dSetView(vp, false);
+	moviePlayer->update(game->mControllerP1, nullptr);
+	if (particle2dMgr) {
+		particle2dMgr->update();
+	}
+	if (particleMgr) {
+		particleMgr->update();
+	}
+	Screen::gGame2DMgr->update();
+	game->mLightMgr->update();
+	game->BaseHIOSection::doUpdate();
+
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -725,23 +493,11 @@ lbl_8021A67C:
  * Address:	8021A690
  * Size:	000030
  */
-void SingleGame::MainResultState::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
+void MainResultState::onMovieDone(SingleGameSection*, MovieConfig*, u32, u32)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x4328(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x4
-	  sth       r0, 0x10(r3)
-	  stfs      f0, 0x14(r3)
-	  bl        0x24CD8C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	mStatus     = 4;
+	mStartTimer = 0.0f;
+	PSMCancelToPauseOffMainBgm();
 }
 
 /*
@@ -749,8 +505,60 @@ void SingleGame::MainResultState::onMovieDone(Game::SingleGameSection*, Game::Mo
  * Address:	8021A6C0
  * Size:	00035C
  */
-void SingleGame::MainResultState::createResultNodes()
+void MainResultState::createResultNodes()
 {
+	JKRHeap* backup = JKRGetCurrentHeap();
+	mMainHeap->becomeCurrentHeap();
+
+	KindCounter* counter = &playData->mMainCropMemory->mItem;
+	for (int i = 0; i < counter->mNumKinds; i++) {
+		if (*counter->operator()(i)) {
+			PelletConfig* config = PelletItem::mgr->getPelletConfig(i);
+			int id               = PelletList::Mgr::getOffsetFromDictionaryNo(config->mParams.mDictionary.mData - 1);
+			u64 tag              = Result::TNode::convertByMorimun(id);
+			Result::TNode* node  = new Result::TNode;
+			node->setTNode(tag, mResultTex.getItemTexture(i), *counter->operator()(i),
+			               config->mParams.mMoney.mData * *counter->operator()(i), config->mParams.mMoney.mData);
+			mResultNode.add(node);
+			playData->mTreasureCount += *counter->operator()(i);
+		}
+	}
+
+	counter = &playData->mMainCropMemory->mOtakara;
+	for (int i = 0; i < counter->mNumKinds; i++) {
+		if (*counter->operator()(i)) {
+			PelletConfig* config = PelletOtakara::mgr->getPelletConfig(i);
+			int id               = PelletList::Mgr::getOffsetFromDictionaryNo(config->mParams.mDictionary.mData - 1);
+			u64 tag              = Result::TNode::convertByMorimun(id);
+			Result::TNode* node  = new Result::TNode;
+			node->setTNode(tag, mResultTex.getItemTexture(i), *counter->operator()(i),
+			               config->mParams.mMoney.mData * *counter->operator()(i), config->mParams.mMoney.mData);
+			mResultNode.add(node);
+			playData->mTreasureCount += *counter->operator()(i);
+		}
+	}
+
+	int num   = 0;
+	int money = 0;
+	counter   = &playData->mMainCropMemory->mCarcass;
+	for (int i = 0; i < counter->mNumKinds; i++) {
+		if (*counter->operator()(i)) {
+			PelletConfig* config = PelletOtakara::mgr->getPelletConfig(i);
+			num += *counter->operator()(i);
+			money += *counter->operator()(i) * config->mParams.mMoney.mData;
+		}
+	}
+	if (num > 0) {
+		playData->mTreasureCount += num;
+		Result::TNode* node = new Result::TNode;
+		node->setTNode(0, mResultTex.getCarcassTexture(), num, money, -1);
+		mResultNode.add(node);
+	}
+	playData->mMainCropMemory->clear();
+	mIncP = new kh::Screen::IncP;
+	_1C   = 0;
+	Screen::gGame2DMgr->setGamePad(mControl);
+	backup->becomeCurrentHeap();
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1003,51 +811,14 @@ lbl_8021A9E8:
  * Address:	8021AA1C
  * Size:	000094
  */
-void SingleGame::MainResultState::draw(Game::SingleGameSection*, Graphics&)
+void MainResultState::draw(SingleGameSection* game, Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lhz      r0, 0x10(r3)
-	cmplwi   r0, 2
-	beq      lbl_8021AA54
-	cmplwi   r0, 3
-	beq      lbl_8021AA54
-	cmplwi   r0, 4
-	bne      lbl_8021AA98
-
-lbl_8021AA54:
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	bl       update__Q24Game9CameraMgrFv
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	mr       r4, r31
-	bl       drawLoading__Q24Game11MoviePlayerFR8Graphics
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x110(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8021AA98:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mStatus == 2 || mStatus == 3 || mStatus == 4) {
+		cameraMgr->update();
+		game->draw3D(gfx);
+		moviePlayer->drawLoading(gfx);
+		game->draw2D(gfx);
+	}
 }
 
 /*
@@ -1055,186 +826,16 @@ lbl_8021AA98:
  * Address:	8021AAB0
  * Size:	00007C
  */
-void SingleGame::MainResultState::cleanup(Game::SingleGameSection*)
+void MainResultState::cleanup(SingleGameSection* game)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r3, 0x18(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r3, 0xb4(r3)
-	bl       clear__Q24Game16PelletCropMemoryFv
-	lwz      r4, 0xc4(r31)
-	cmplwi   r4, 0
-	beq      lbl_8021AAFC
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl
-"addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<16GenericObjectMgr>"
-
-lbl_8021AAFC:
-	lwz      r3, 0x138(r31)
-	li       r0, 0
-	stw      r0, 0x168(r3)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stb      r0, 0x3c(r3)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Screen::gGame2DMgr->mScreenMgr->reset();
+	playData->mMainCropMemory->clear();
+	if (mPelletMgr) {
+		gameSystem->addObjectMgr_reuse(mPelletMgr);
+	}
+	mGameSect->_168 = nullptr;
+	gameSystem->resetFlag(GAMESYS_Unk3);
 }
 
+} // namespace SingleGame
 } // namespace Game
-
-namespace kh {
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	8021AB2C
- * Size:	000008
- */
-u32 DispDayEndResultTitl::getSize() { return 0x8; }
-
-/*
- * --INFO--
- * Address:	8021AB34
- * Size:	000008
- */
-u32 DispDayEndResultTitl::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8021AB3C
- * Size:	000014
- */
-void DispDayEndResultTitl::getMemberID()
-{
-	/*
-lis      r4, 0x5449544C@ha
-lis      r3, 0x4445525F@ha
-addi     r4, r4, 0x5449544C@l
-addi     r3, r3, 0x4445525F@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8021AB50
- * Size:	000008
- */
-u32 DispDayEndResult::getSize() { return 0x68; }
-
-/*
- * --INFO--
- * Address:	8021AB58
- * Size:	000008
- */
-u32 DispDayEndResult::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8021AB60
- * Size:	000014
- */
-void DispDayEndResult::getMemberID()
-{
-	/*
-lis      r4, 0x52534C54@ha
-lis      r3, 0x0044455F@ha
-addi     r4, r4, 0x52534C54@l
-addi     r3, r3, 0x0044455F@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8021AB74
- * Size:	000054
- */
-void DispDayEndResult::doSetSubMemberAll()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-addi     r4, r31, 8
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-mr       r3, r31
-addi     r4, r31, 0x10
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-mr       r3, r31
-addi     r4, r31, 0x34
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-mr       r3, r31
-addi     r4, r31, 0x44
-bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-} // namespace Screen
-} // namespace kh
-
-/*
- * --INFO--
- * Address:	8021ABC8
- * Size:	000030
- */
-void Delegate<Game::SingleGame::MainResultState>::invoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r4, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8021ABF8
- * Size:	000028
- */
-void __sinit_singleGS_MainResult_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C0648@ha
-	stw      r0, lbl_80515BF8@sda21(r13)
-	stfsu    f0, lbl_804C0648@l(r3)
-	stfs     f0, lbl_80515BFC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

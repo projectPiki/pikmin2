@@ -3,20 +3,27 @@
 #include "Game/MoviePlayer.h"
 #include "Game/NaviState.h"
 #include "Game/PikiMgr.h"
+#include "Game/PikiState.h"
 #include "Game/cellPyramid.h"
-#include "Iterator.h"
-#include "JSystem/JUtility/JUTException.h"
-#include "efx/TNaviEffect.h"
-#include "types.h"
-#include "nans.h"
 #include "Game/SingleGame.h"
 #include "Game/gameStat.h"
-#include "utilityU.h"
+#include "Game/generalEnemyMgr.h"
 #include "Game/Entities/PelletCarcass.h"
 #include "Game/Entities/PelletFruit.h"
 #include "Game/Entities/PelletItem.h"
 #include "Game/Entities/PelletOtakara.h"
 #include "Game/Navi.h"
+#include "Game/MapMgr.h"
+#include "efx/TNaviEffect.h"
+#include "Screen/Game2DMgr.h"
+#include "Dolphin/rand.h"
+#include "PikiAI.h"
+#include "Iterator.h"
+#include "utilityU.h"
+#include "nans.h"
+
+static const u32 padding[]    = { 0, 0, 0 };
+static const char className[] = "singleGS_DayEnd";
 
 namespace Game {
 namespace SingleGame {
@@ -26,7 +33,7 @@ namespace SingleGame {
  * Address:	8023A250
  * Size:	0004A0
  */
-void DayEndState::init(SingleGameSection* section, StateArg* arg)
+void DayEndState::init(SingleGameSection* game, StateArg* arg)
 {
 	gameSystem->mFlags &= ~GAMESYS_IsGameWorldActive;
 	gameSystem->mFlags |= GAMESYS_Unk5;
@@ -34,12 +41,12 @@ void DayEndState::init(SingleGameSection* section, StateArg* arg)
 	moviePlayer->clearSuspendedDemo();
 	DayEndArg* castedArg = static_cast<DayEndArg*>(arg);
 	P2ASSERTLINE(67, castedArg != nullptr);
-	_10 = castedArg->_00;
-	_14 = 0.0f;
+	mDayEndType = castedArg->mEndType;
+	mTimer      = 0.0f;
 	gameSystem->setPause(true, "dayend", 3);
-	_12 = 0;
-	_18.clear();
-	if (section->mTheExpHeap != nullptr) {
+	mStatus = 0;
+	mLeftBehindPikis.clear();
+	if (game->mTheExpHeap != nullptr) {
 		PSMCancelToPauseOffMainBgm();
 	}
 	Iterator<Onyon> iOnyon(ItemOnyon::mgr);
@@ -49,7 +56,7 @@ void DayEndState::init(SingleGameSection* section, StateArg* arg)
 		(*iOnyon)->mSuckTimer = 4.0f;
 		(*iOnyon)->forceClose();
 	}
-	section->saveToGeneratorCache(section->mCurrentCourseInfo);
+	game->saveToGeneratorCache(game->mCurrentCourseInfo);
 	PelletIterator iPellet;
 	CI_LOOP(iPellet)
 	{
@@ -78,338 +85,6 @@ void DayEndState::init(SingleGameSection* section, StateArg* arg)
 		effectsObj->killHamonA_();
 		effectsObj->killHamonB_();
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	lwz      r6, gameSystem__4Game@sda21(r13)
-	mr       r29, r3
-	mr       r31, r4
-	mr       r30, r5
-	lbz      r0, 0x3c(r6)
-	rlwinm   r0, r0, 0, 0x1b, 0x19
-	stb      r0, 0x3c(r6)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	ori      r0, r0, 0x10
-	stb      r0, 0x3c(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       reset__Q24Game11MoviePlayerFv
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       clearSuspendedDemo__Q24Game11MoviePlayerFv
-	cmplwi   r30, 0
-	bne      lbl_8023A2D0
-	lis      r3, lbl_80483D8C@ha
-	lis      r5, lbl_80483DA0@ha
-	addi     r3, r3, lbl_80483D8C@l
-	li       r4, 0x43
-	addi     r5, r5, lbl_80483DA0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8023A2D0:
-	lhz      r0, 0(r30)
-	li       r4, 1
-	lfs      f0, lbl_8051A538@sda21(r2)
-	addi     r5, r2, lbl_8051A53C@sda21
-	sth      r0, 0x10(r29)
-	li       r6, 3
-	stfs     f0, 0x14(r29)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       setPause__Q24Game10GameSystemFbPci
-	li       r0, 0
-	addi     r3, r29, 0x18
-	sth      r0, 0x12(r29)
-	bl       clear__Q24Game13PikiContainerFv
-	lwz      r0, 0xfc(r31)
-	cmplwi   r0, 0
-	beq      lbl_8023A314
-	bl       PSMCancelToPauseOffMainBgm__Fv
-
-lbl_8023A314:
-	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8023A324
-	addi     r3, r3, 0x30
-
-lbl_8023A324:
-	li       r0, 0
-	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
-	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
-	stw      r0, 0x24(r1)
-	cmplwi   r0, 0
-	stw      r4, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	stw      r3, 0x20(r1)
-	bne      lbl_8023A360
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x1c(r1)
-	b        lbl_8023A3E8
-
-lbl_8023A360:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x1c(r1)
-	b        lbl_8023A3CC
-
-lbl_8023A378:
-	lwz      r3, 0x20(r1)
-	lwz      r4, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8023A3E8
-	lwz      r3, 0x20(r1)
-	lwz      r4, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x1c(r1)
-
-lbl_8023A3CC:
-	lwz      r12, 0x18(r1)
-	addi     r3, r1, 0x18
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8023A378
-
-lbl_8023A3E8:
-	lfs      f31, lbl_8051A544@sda21(r2)
-	b        lbl_8023A500
-
-lbl_8023A3F0:
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	li       r4, 0
-	bl       setSpotEffectActive__Q24Game5OnyonFb
-	lwz      r3, 0x20(r1)
-	lwz      r4, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	stfs     f31, 0x244(r3)
-	lwz      r3, 0x20(r1)
-	lwz      r4, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	bl       forceClose__Q24Game5OnyonFv
-	lwz      r0, 0x24(r1)
-	cmplwi   r0, 0
-	bne      lbl_8023A470
-	lwz      r3, 0x20(r1)
-	lwz      r4, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x1c(r1)
-	b        lbl_8023A500
-
-lbl_8023A470:
-	lwz      r3, 0x20(r1)
-	lwz      r4, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x1c(r1)
-	b        lbl_8023A4E4
-
-lbl_8023A490:
-	lwz      r3, 0x20(r1)
-	lwz      r4, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8023A500
-	lwz      r3, 0x20(r1)
-	lwz      r4, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x1c(r1)
-
-lbl_8023A4E4:
-	lwz      r12, 0x18(r1)
-	addi     r3, r1, 0x18
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8023A490
-
-lbl_8023A500:
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x1c(r1)
-	cmplw    r4, r3
-	bne      lbl_8023A3F0
-	lwz      r4, 0x22c(r31)
-	mr       r3, r31
-	bl       saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
-	addi     r3, r1, 8
-	bl       __ct__Q24Game14PelletIteratorFv
-	addi     r3, r1, 8
-	bl       first__Q24Game14PelletIteratorFv
-	b        lbl_8023A584
-
-lbl_8023A540:
-	addi     r3, r1, 8
-	bl       __ml__Q24Game14PelletIteratorFv
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8023A57C
-	lwz      r0, 0xb8(r31)
-	cmplwi   r0, 0
-	bne      lbl_8023A57C
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_8023A57C:
-	addi     r3, r1, 8
-	bl       next__Q24Game14PelletIteratorFv
-
-lbl_8023A584:
-	addi     r3, r1, 8
-	bl       isDone__Q24Game14PelletIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8023A540
-	lwz      r3, mgr__Q24Game13PelletCarcass@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game11PelletFruit@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game10PelletItem@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game13PelletOtakara@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8023A658
-	lwz      r3, 0x270(r31)
-	mr       r4, r31
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 0x2d0(r31)
-	lwz      r0, 0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0(r31)
-	bl       killHamonA___Q23efx11TNaviEffectFv
-	mr       r3, r31
-	bl       killHamonB___Q23efx11TNaviEffectFv
-
-lbl_8023A658:
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	li       r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8023A6CC
-	lwz      r3, 0x270(r31)
-	mr       r4, r31
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 0x2d0(r31)
-	lwz      r0, 0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0(r31)
-	bl       killHamonA___Q23efx11TNaviEffectFv
-	mr       r3, r31
-	bl       killHamonB___Q23efx11TNaviEffectFv
-
-lbl_8023A6CC:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -417,8 +92,80 @@ lbl_8023A6CC:
  * Address:	8023A6F0
  * Size:	00040C
  */
-void DayEndState::exec(SingleGameSection* gs)
+void DayEndState::exec(SingleGameSection* game)
 {
+	switch (mStatus) {
+	case 0:
+		mTimer -= sys->mDeltaTime;
+		if (mTimer <= 0.0f) {
+			mLeftBehindPikis.clear();
+			// dont leave behind pikis on day 1
+			if (gameSystem->mTimeMgr->mDayCount != 0) {
+				pikiMgr->killDayEndPikmins(mLeftBehindPikis);
+			}
+			switch (mDayEndType) {
+			case 0:
+				MoviePlayArg arg("s01_dayend", const_cast<char*>(game->mCurrentCourseInfo->mName), game->mMovieFinishCallback, 0);
+				int treasures = 0;
+				// treasures += playData->mMainCropMemory->mItem.calcCollectedNum();
+				// treasures += playData->mMainCropMemory->mOtakara.calcCollectedNum();
+				if (treasures == 0) {
+					arg.mStreamID = 0xc0011004;
+				} else if (treasures <= 14) {
+					arg.mStreamID = 0xc0011002;
+				} else {
+					arg.mStreamID = 0xc0011003;
+				}
+				JUT_ASSERTLINE(222, naviMgr->getAliveOrima(0), "no alive:s01_dayend");
+				Navi* navi      = naviMgr->getActiveNavi();
+				arg.mPelletName = nullptr;
+				if (navi) {
+					arg.mPelletName = (char*)navi->mNaviIndex;
+					if ((int)arg.mPelletName == 1 && playData->mStoryFlags & STORY_DebtPaid) {
+						arg.mPelletName = (char*)2;
+					}
+				}
+				arg.mDelegateStart = game->mMovieStartCallback;
+				moviePlayer->play(arg);
+				gameSystem->setPause(true, "s01_dayend", 3);
+				mStatus = 1;
+				break;
+			case 1: {
+				MoviePlayArg arg("s06_dayend_pikminzero", const_cast<char*>(game->mCurrentCourseInfo->mName), game->mMovieFinishCallback,
+				                 0);
+				arg.mDelegateStart = game->mMovieStartCallback;
+				moviePlayer->play(arg);
+				gameSystem->setPause(1, "s06_dayend", 3);
+				mStatus = 1;
+				break;
+			}
+			case 2: {
+				MoviePlayArg arg("s04_dayend_orimadown", const_cast<char*>(game->mCurrentCourseInfo->mName), game->mMovieFinishCallback, 0);
+				arg.mDelegateStart = game->mMovieStartCallback;
+				moviePlayer->play(arg);
+				gameSystem->setPause(0, "s04_dayend", 3);
+				mStatus = 1;
+				break;
+			}
+			}
+		}
+		break;
+	case 1:
+		if (moviePlayer && !moviePlayer->isFlag(MVP_IsActive)) {
+			pikiMgr->forceEnterPikmins(false);
+			gameSystem->setPause(true, "dayend-cache", 3);
+			game->advanceDayCount();
+			gameSystem->mTimeMgr->setStartTime();
+			gameSystem->detachObjectMgr(generalEnemyMgr);
+			gameSystem->detachObjectMgr(mapMgr);
+			gameSystem->mFlags |= 4;
+			transit(game, SGS_MainResult, nullptr);
+			return;
+		}
+		break;
+	}
+	game->BaseGameSection::doUpdate();
+	game->updateMainMapScreen();
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -725,8 +472,58 @@ lbl_8023AAE8:
  * Address:	8023AAFC
  * Size:	0005B8
  */
-void DayEndState::onMovieStart(SingleGameSection* gs, MovieConfig* cfg, u32, u32)
+void DayEndState::onMovieStart(SingleGameSection* game, MovieConfig* config, u32, u32)
 {
+	Screen::gGame2DMgr->startFadeBG_CourseName();
+	Screen::gGame2DMgr->startCount_CourseName();
+	gameSystem->mTimeMgr->setEndTime();
+	if (config->is("s01_dayend")) {
+		P2ASSERTLINE(335, Screen::gGame2DMgr->mScreenMgr->reset() == true);
+		Vec origin;
+		origin.x = 156.0f;
+		origin.y = 0.0f;
+		origin.z = 166.0f;
+		if (mapMgr->getDemoMatrix()) {
+			Matrixf* mtx = mapMgr->getDemoMatrix();
+			Vec out;
+			PSMTXMultVec(mtx->mMatrix.mtxView, &origin, &out);
+			origin = out;
+
+			Piki* pikiBuffer[103];
+			int i = 0;
+			Iterator<Piki> iterator(pikiMgr);
+			CI_LOOP(iterator)
+			{
+				Piki* piki = *iterator;
+				if (piki->isZikatu()) {
+					pikiBuffer[i++] = piki;
+				}
+			}
+			for (int j = 0; j < i; j++) {
+				PikiKillArg arg(1);
+				pikiBuffer[j]->kill(&arg);
+			}
+			pikiMgr->moveAllPikmins(*(Vector3f*)&origin, 50.0f, nullptr);
+
+			Iterator<Piki> iterator2(pikiMgr);
+			CI_LOOP(iterator2)
+			{
+				Piki* piki = *iterator2;
+				Navi* navi = naviMgr->getAliveOrima(0);
+				JUT_ASSERTLINE(376, navi, "no alive navi");
+				PikiAI::ActFormationInitArg arg(navi);
+				piki->mNavi = navi;
+				piki->mBrain->start(PikiAI::ACT_Formation, &arg);
+				piki->movie_begin(false);
+			}
+		}
+	} else {
+		if (config->is("s21_dayend_takeoff")) {
+			cellMgr->clear();
+			generalEnemyMgr->prepareDayendEnemies();
+		}
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x210(r1)
@@ -1242,8 +1039,42 @@ void DayEndState::onMovieDone(SingleGameSection* section, MovieConfig* cfg, u32 
  * Address:	8023B1A8
  * Size:	0002C0
  */
-void DayEndState::onMovieCommand(SingleGameSection* gs, int)
+void DayEndState::onMovieCommand(SingleGameSection* game, int id)
 {
+	switch (id) {
+	case 1:
+		Vector3f origin(0.0f);
+		if (mapMgr->getDemoMatrix()) {
+			Matrixf* mtx = mapMgr->getDemoMatrix();
+			Vector3f out;
+			PSMTXMultVec(mtx->mMatrix.mtxView, (Vec*)&origin, (Vec*)&out);
+			origin   = out;
+			origin.y = mapMgr->getMinY(origin);
+		}
+		Sys::Sphere bounds(origin, 180.0f);
+		generalEnemyMgr->createDayendEnemies(bounds);
+		for (int i = 0; i <= 4; i++) {
+			for (int j = 0; j <= 2; j++) {
+				for (int k = 0; k < mLeftBehindPikis.getCount(i, j); k++) {
+					Piki* piki = pikiMgr->birth();
+					if (piki) {
+						PikiInitArg arg(PIKISTATE_Escape);
+						piki->init(&arg);
+						f32 angle = randFloat() * TAU;
+						f32 zero  = 0.0f;
+						Vector3f pos(pikmin2_cosf(angle) * 30.0f, origin.y + zero, pikmin2_sinf(angle) * 30.0f);
+						if (mapMgr) {
+							pos.y = mapMgr->getMinY(pos);
+						}
+						piki->setPosition(pos, false);
+						piki->changeShape(i);
+						piki->changeHappa(j);
+						piki->movie_begin(false);
+					}
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1453,14 +1284,14 @@ lbl_8023B454:
  * Address:	8023B468
  * Size:	000028
  */
-void DayEndState::draw(SingleGameSection* gs, Graphics& gfx) { static_cast<BaseGameSection*>(gs)->doDraw(gfx); }
+void DayEndState::draw(SingleGameSection* game, Graphics& gfx) { game->BaseGameSection::doDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	8023B490
  * Size:	00007C
  */
-void DayEndState::cleanup(SingleGameSection* gs)
+void DayEndState::cleanup(SingleGameSection* game)
 {
 	playData->setPikminCounts_Today();
 	GameStat::getMapPikmins(-1);
@@ -1468,39 +1299,6 @@ void DayEndState::cleanup(SingleGameSection* gs)
 	int mePikis    = GameStat::mePikis;
 	gameSystem->setPause(false, "dayend;cln", 3);
 	gameSystem->mFlags &= ~GAMESYS_Unk5;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       setPikminCounts_Today__Q24Game8PlayDataFv
-	li       r3, -1
-	bl       getMapPikmins__Q24Game8GameStatFi
-	lis      r3, alivePikis__Q24Game8GameStat@ha
-	lwzu     r12, alivePikis__Q24Game8GameStat@l(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	lwzu     r12, mePikis__Q24Game8GameStat@l(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, lbl_80483E48@ha
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r5, r4, lbl_80483E48@l
-	li       r6, 3
-	li       r4, 0
-	bl       setPause__Q24Game10GameSystemFbPci
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm   r0, r0, 0, 0x1c, 0x1a
-	stb      r0, 0x3c(r3)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 } // namespace SingleGame

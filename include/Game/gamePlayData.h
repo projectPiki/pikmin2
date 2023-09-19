@@ -131,6 +131,15 @@ struct KindCounter {
 	void copyFrom(KindCounter&);
 	inline void addTo(KindCounter&);
 
+	inline int calcCollectedNum()
+	{
+		int ret = 0;
+		for (int i = 0; i < mNumKinds; i++) {
+			ret += *operator()(i);
+		}
+		return ret;
+	}
+
 	u16 mNumKinds; // _00
 	u8* mKinds;    // _04
 };
@@ -410,15 +419,15 @@ struct PlayData : public CNode {
 		return stream.getStreamDistance(streamStartPos) + generatorCache->getHeapUsedSize();
 	}
 
-	inline void setSaveFlag(int a)
+	inline void setSaveFlag(int a, void* delegate)
 	{
-		mLoadType = a;
-		_1C       = 0;
+		mLoadType           = a;
+		mBeforeSaveDelegate = delegate;
 	}
 
 	bool _18;                               // _18
 	u8 mLoadType;                           // _19, see SaveFlags enum
-	u32 _1C;                                // _1C
+	void* mBeforeSaveDelegate;              // _1C
 	u8 mDeadNaviID;                         // _20
 	f32 mNaviLifeMax[2];                    // _24
 	u8 mHasContainerFlags;                  // _2C

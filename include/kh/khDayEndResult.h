@@ -21,8 +21,16 @@ namespace Screen {
 
 ////////////////////////////////////////////
 // DATA STRUCTS
-enum MailCategory {
 
+enum MailCategory {
+	// Acutal checking for these conditions are done in singlleGS_MainResult
+	PokoUnder3000  = 0x31,
+	PokoUnder5000  = 0x32,
+	PokoUnder8000  = 0x33,
+	PokoUnder10000 = 0x34,
+	PayDebt        = 0x35,
+	SavedLouie     = 0x36,
+	AllTreasures   = 0x37,
 };
 
 struct MailSaveData {
@@ -121,6 +129,13 @@ struct DispDayEndResultTitl : public og::Screen::DispMemberBase {
 };
 
 struct DispDayEndResult : public og::Screen::DispMemberBase {
+	DispDayEndResult(Game::Result::TNode* node, int treasures, int pokos, bool paydebt, IncP* incp, JKRHeap* mailheap,
+	                 MailCategory mailtype)
+	    : mItem(node, treasures, pokos, paydebt)
+	    , mIncP(incp)
+	    , mMail(mailheap, mailtype)
+	{
+	}
 
 	virtual u32 getSize() { return sizeof(DispDayEndResult); }  // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_KH; }               // _0C (weak)

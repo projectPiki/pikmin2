@@ -14,13 +14,13 @@ struct Arg {
 		mHeap              = nullptr;
 		mItemConfigList    = nullptr;
 		mOtakaraConfigList = nullptr;
-		_0C                = -1;
+		mRegionMode        = -1;
 	}
 
 	PelletConfigList* mOtakaraConfigList; // _00
 	PelletConfigList* mItemConfigList;    // _04
 	JKRHeap* mHeap;                       // _08
-	s8 _0C;                               // _0C
+	s8 mRegionMode;                       // _0C
 };
 
 struct Mgr : public JKRDisposer {

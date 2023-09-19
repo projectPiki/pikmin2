@@ -181,11 +181,11 @@ struct CaveState : public State {
 
 struct DayEndArg : public StateArg {
 	DayEndArg(u16 p1)
-	    : _00(p1)
+	    : mEndType(p1)
 	{
 	}
 
-	u16 _00;
+	u16 mEndType;
 };
 
 /**
@@ -207,10 +207,10 @@ struct DayEndState : public State {
 
 	// _00     = VTBL
 	// _00-_10 = State
-	u16 _10;           // _10
-	s16 _12;           // _12
-	f32 _14;           // _14
-	PikiContainer _18; // _18
+	u16 mDayEndType;                // _10
+	u16 mStatus;                    // _12
+	f32 mTimer;                     // _14
+	PikiContainer mLeftBehindPikis; // _18
 };
 
 struct EndingArg : public StateArg {
@@ -411,38 +411,37 @@ struct LoadState : public State {
 struct MainResultState : public State {
 	MainResultState();
 
-	virtual void init(SingleGameSection*, StateArg*);                     // _08
-	virtual void exec(SingleGameSection*);                                // _0C
-	virtual void cleanup(SingleGameSection*);                             // _10
-	virtual void draw(SingleGameSection*, Graphics&);                     // _20
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32); // _2C
+	virtual void init(SingleGameSection* game, StateArg* arg);                        // _08
+	virtual void exec(SingleGameSection* game);                                       // _0C
+	virtual void cleanup(SingleGameSection* game);                                    // _10
+	virtual void draw(SingleGameSection* game, Graphics& gfx);                        // _20
+	virtual void onMovieDone(SingleGameSection* game, MovieConfig* config, u32, u32); // _2C
 
 	void beforeSave();
 	void createResultNodes();
 	void loadResource();
 
 	// Unused/inlined:
-	unknown open2D(SingleGameSection*);
+	unknown open2D(SingleGameSection* game);
 
 	// _00     = VTBL
 	// _00-_10 = State
-	s16 _10;                            // _10
-	f32 _14;                            // _14
-	Controller* _18;                    // _18
-	u8 _1C;                             // _1C
-	u8 _1D[0x3];                        // _1D, unknown/probably padding
-	u8 _20[4];                          // _20
-	ResultTexMgr::Mgr _24;              // _24
-	u8 _64[4];                          // _64
-	Result::TNode _68;                  // _68
-	kh::Screen::IncP* _B8;              // _B8
-	u8 _BC[4];                          // _BC
-	JKRHeap* _C0;                       // _C0
-	TObjectNode<GenericObjectMgr>* _C4; // _C4
-	Delegate<MainResultState>* _C8;     // _C8
-	DvdThreadCommand _CC;               // _CC
-	SingleGameSection* _138;            // _138
-	Delegate<MainResultState>* _13C;    // _13C
+	u16 mStatus;                                    // _10
+	f32 mStartTimer;                                // _14
+	Controller* mControl;                           // _18
+	u8 _1C;                                         // _1C
+	int mCounter;                                   // _20
+	ResultTexMgr::Mgr mResultTex;                   // _24
+	u8 _64[4];                                      // _64
+	Result::TNode mResultNode;                      // _68
+	kh::Screen::IncP* mIncP;                        // _B8
+	u8 _BC[4];                                      // _BC
+	JKRHeap* mMainHeap;                             // _C0
+	TObjectNode<GenericObjectMgr>* mPelletMgr;      // _C4
+	Delegate<MainResultState>* mLoadDelegate;       // _C8
+	DvdThreadCommand mDvdThread;                    // _CC
+	SingleGameSection* mGameSect;                   // _138
+	Delegate<MainResultState>* mBeforeSaveDelegate; // _13C
 };
 
 struct MovieArg : public StateArg {

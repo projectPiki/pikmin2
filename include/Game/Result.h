@@ -16,7 +16,7 @@ namespace Result {
 struct TNode : public DNode {
 	TNode();
 
-	virtual ~TNode(); // _08 (weak)
+	virtual ~TNode() { } // _08 (weak)
 
 	void setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int totalPokos, int pokoValue);
 	void setTNode(u64 mesgTag, JUTTexture* texture, int quantity, int totalPokos, int pokoValue, int lostNum);
