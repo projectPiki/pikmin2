@@ -3110,7 +3110,7 @@
 /* 800F9D08 000F6C48  4E 80 00 20 */	blr 
 .endfn __THPDecompressiMCURow512x448
 
-.fn __THPDecompressiMCURow640x480
+.fn __THPDecompressiMCURow640x480, local
 /* 800F9D0C 000F6C4C  7C 08 02 A6 */	mflr r0
 /* 800F9D10 000F6C50  3C 60 80 4F */	lis r3, __THPIDCTWorkspace@ha
 /* 800F9D14 000F6C54  90 01 00 04 */	stw r0, 4(r1)

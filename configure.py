@@ -800,7 +800,7 @@ LIBS = [
     {
         "lib": "thp",
         "mw_version": "1.2.5n",
-        "cflags": "$cflags_base",
+        "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
             "Dolphin/thp/THPDec",
