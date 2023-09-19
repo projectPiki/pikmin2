@@ -34,6 +34,12 @@ struct Vector2 {
 		return *this;
 	}
 
+	inline void operator*=(const f32 other)
+	{
+		this->x *= other;
+		this->y *= other;
+	}
+
 	operator JGeometry::TVec2f() { return JGeometry::TVec2f(x, y); }
 
 	inline f32 length() const;

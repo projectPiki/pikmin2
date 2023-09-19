@@ -4,108 +4,8 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "ebi/E2DCallBack.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80496678
-    lbl_80496678:
-        .4byte 0x65626932
-        .4byte 0x4443616C
-        .4byte 0x6C426163
-        .4byte 0x6B2E6370
-        .4byte 0x70000000
-    .global lbl_8049668C
-    lbl_8049668C:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23ebi24E2DCallBack_WindowCursor
-    __vt__Q23ebi24E2DCallBack_WindowCursor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23ebi24E2DCallBack_WindowCursorFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q23ebi16E2DCallBack_BaseFv
-        .4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte do_update__Q23ebi24E2DCallBack_WindowCursorFv
-        .4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-    .global __vt__Q23ebi19E2DCallBack_AnmBase
-    __vt__Q23ebi19E2DCallBack_AnmBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23ebi19E2DCallBack_AnmBaseFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q23ebi16E2DCallBack_BaseFv
-        .4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte do_update__Q23ebi19E2DCallBack_AnmBaseFv
-        .4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-    .global __vt__Q23ebi22E2DCallBack_BlinkAlpha
-    __vt__Q23ebi22E2DCallBack_BlinkAlpha:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23ebi22E2DCallBack_BlinkAlphaFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q23ebi16E2DCallBack_BaseFv
-        .4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte do_update__Q23ebi22E2DCallBack_BlinkAlphaFv
-        .4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-    .global __vt__Q23ebi26E2DCallBack_BlinkFontColor
-    __vt__Q23ebi26E2DCallBack_BlinkFontColor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23ebi26E2DCallBack_BlinkFontColorFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q23ebi16E2DCallBack_BaseFv
-        .4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte do_update__Q23ebi26E2DCallBack_BlinkFontColorFv
-        .4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-    .global __vt__Q23ebi20E2DCallBack_Purupuru
-    __vt__Q23ebi20E2DCallBack_Purupuru:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23ebi20E2DCallBack_PurupuruFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q23ebi16E2DCallBack_BaseFv
-        .4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte do_update__Q23ebi20E2DCallBack_PurupuruFv
-        .4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FA98
-    lbl_8051FA98:
-        .4byte 0x3A83126F
-    .global lbl_8051FA9C
-    lbl_8051FA9C:
-        .float 1.0
-    .global lbl_8051FAA0
-    lbl_8051FAA0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_8051FAA8
-    lbl_8051FAA8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051FAB0
-    lbl_8051FAB0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051FAB8
-    lbl_8051FAB8:
-        .4byte 0x46FFFE00
-    .global lbl_8051FABC
-    lbl_8051FABC:
-        .4byte 0x3F8CCCCD
-*/
+#include "ebi/Utility.h"
+#include "Dolphin/rand.h"
 
 namespace ebi {
 
@@ -117,12 +17,8 @@ namespace ebi {
 void E2DCallBack_Purupuru::do_update()
 {
 	if (mPane) {
-		_3C            = mScaleMgr.calc();
-		J2DPane* pane  = mPane;
-		f32 scale      = _3C;
-		pane->mScale.x = scale;
-		pane->mScale.y = scale;
-		pane->calcMtx();
+		mScale = mScaleMgr.calc();
+		mPane->updateScale(mScale);
 	}
 }
 
@@ -133,6 +29,41 @@ void E2DCallBack_Purupuru::do_update()
  */
 void E2DCallBack_BlinkFontColor::do_update()
 {
+	if (!_49 || !(mColor1Weight < 0.001f)) {
+		if (mIsTowardColor1) {
+			mColor1Weight += mSpeed;
+			if (mColor1Weight >= 1.0f) {
+				mColor1Weight   = 1.0f;
+				mIsTowardColor1 = false;
+			}
+		} else {
+			mColor1Weight -= mSpeed;
+			if (mColor1Weight <= 0.0f) {
+				mColor1Weight   = 0.0f;
+				mIsTowardColor1 = true;
+			}
+		}
+	}
+
+	if (mPane && mPane->getTypeID() == PANETYPE_TextBox) {
+		JUtility::TColor color1;
+		JUtility::TColor color2;
+		JUtility::TColor white;
+		JUtility::TColor black;
+
+		f32 weight1 = mColor1Weight;
+		f32 weight0 = 1.0f - weight1;
+		EUTColor_complement(mFonts[0].mCol1, mFonts[1].mCol1, weight0, weight1, &color1);
+		EUTColor_complement(mFonts[0].mCol2, mFonts[1].mCol2, weight0, weight1, &color2);
+		EUTColor_complement(mFonts[0].mWhite, mFonts[1].mWhite, weight0, weight1, &white);
+		EUTColor_complement(mFonts[0].mBlack, mFonts[1].mBlack, weight0, weight1, &black);
+
+		// will need inlines for these color setting things but not sure how to tweak yet
+		static_cast<J2DTextBox*>(mPane)->setCharColor(color1);
+		static_cast<J2DTextBox*>(mPane)->setGradientColor(color2);
+		static_cast<J2DTextBox*>(mPane)->setWhite(white);
+		static_cast<J2DTextBox*>(mPane)->setBlack(black);
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -335,86 +266,25 @@ lbl_803D0994:
  */
 void E2DCallBack_BlinkAlpha::do_update()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r6, r3
-	stw      r0, 0x24(r1)
-	lbz      r0, 0x29(r3)
-	cmplwi   r0, 0
-	beq      lbl_803D09E4
-	lfs      f1, 0x20(r6)
-	lfs      f0, lbl_8051FA98@sda21(r2)
-	fcmpo    cr0, f1, f0
-	blt      lbl_803D0A54
+	if (!_29 || !(mWeight < 0.001f)) {
+		if (mIsTowardAlpha0) {
+			mWeight += mSpeed;
+			if (mWeight >= 1.0f) {
+				mWeight         = 1.0f;
+				mIsTowardAlpha0 = false;
+			}
+		} else {
+			mWeight -= mSpeed;
+			if (mWeight <= 0.0f) {
+				mWeight         = 0.0f;
+				mIsTowardAlpha0 = true;
+			}
+		}
+	}
 
-lbl_803D09E4:
-	lbz      r0, 0x28(r6)
-	cmplwi   r0, 0
-	beq      lbl_803D0A24
-	lfs      f2, 0x20(r6)
-	lfs      f1, 0x24(r6)
-	lfs      f0, lbl_8051FA9C@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x20(r6)
-	lfs      f1, 0x20(r6)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_803D0A54
-	stfs     f0, 0x20(r6)
-	li       r0, 0
-	stb      r0, 0x28(r6)
-	b        lbl_803D0A54
-
-lbl_803D0A24:
-	lfs      f2, 0x20(r6)
-	lfs      f1, 0x24(r6)
-	lfs      f0, lbl_8051FAA0@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x20(r6)
-	lfs      f1, 0x20(r6)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_803D0A54
-	stfs     f0, 0x20(r6)
-	li       r0, 1
-	stb      r0, 0x28(r6)
-
-lbl_803D0A54:
-	lwz      r3, 0x18(r6)
-	cmplwi   r3, 0
-	beq      lbl_803D0AC0
-	lbz      r5, 0x2d(r6)
-	lis      r0, 0x4330
-	lbz      r4, 0x2c(r6)
-	lwz      r12, 0(r3)
-	subf     r4, r5, r4
-	stw      r0, 8(r1)
-	xoris    r4, r4, 0x8000
-	lfd      f2, lbl_8051FAA8@sda21(r2)
-	stw      r4, 0xc(r1)
-	lfd      f1, lbl_8051FAB0@sda21(r2)
-	lfd      f0, 8(r1)
-	stw      r5, 0x14(r1)
-	fsubs    f3, f0, f2
-	lfs      f2, 0x20(r6)
-	stw      r0, 0x10(r1)
-	lwz      r12, 0x24(r12)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f1
-	fmadds   f0, f3, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r4, 0x1c(r1)
-	mtctr    r12
-	bctrl
-
-lbl_803D0AC0:
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mPane) {
+		mPane->setAlpha((u8)((mAlpha0 - mAlpha1) * getAlphaWeight() + mAlpha1));
+	}
 }
 
 /*
@@ -422,72 +292,19 @@ lbl_803D0AC0:
  * Address:	803D0AD0
  * Size:	0000C8
  */
-void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, long p3, long p4)
+void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, s32 frame, s32 maxFrame)
 {
 	void* resource = JKRFileLoader::getGlbResource(path, archive);
-	P2ASSERTLINE(74, (resource != nullptr));
-	mAnim                = J2DAnmLoaderDataBase::load(resource);
-	mFrameCtrl._06       = p3;
-	mFrameCtrl.mCurrTime = p3;
-	mFrameCtrl._0A       = p3;
-	mFrameCtrl._08       = ((mAnim->mFrameLength < p4) ? mAnim->mFrameLength : p4);
+	P2ASSERTLINE(74, resource);
+	mAnim                  = J2DAnmLoaderDataBase::load(resource);
+	mFrameCtrl.mStartFrame = (s16)frame;
+	mFrameCtrl.mCurrTime   = (s16)frame;
+	mFrameCtrl._0A         = (s16)frame;
 
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r7
-	stw      r29, 0x14(r1)
-	mr       r29, r6
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r4
-	mr       r4, r5
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	or.      r31, r3, r3
-	bne      lbl_803D0B28
-	lis      r3, lbl_80496678@ha
-	lis      r5, lbl_8049668C@ha
-	addi     r3, r3, lbl_80496678@l
-	li       r4, 0x4a
-	addi     r5, r5, lbl_8049668C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D0B28:
-	mr       r3, r31
-	bl       load__20J2DAnmLoaderDataBaseFPCv
-	extsh    r4, r29
-	lis      r0, 0x4330
-	xoris    r4, r4, 0x8000
-	stw      r3, 0x34(r28)
-	lfd      f1, lbl_8051FAA8@sda21(r2)
-	stw      r4, 0xc(r1)
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	sth      r29, 0x26(r28)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x30(r28)
-	sth      r29, 0x2a(r28)
-	lwz      r3, 0x34(r28)
-	lha      r0, 6(r3)
-	cmpw     r0, r30
-	bge      lbl_803D0B74
-	mr       r30, r0
-
-lbl_803D0B74:
-	sth      r30, 0x28(r28)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mAnim->mFrameLength < maxFrame) {
+		maxFrame = mAnim->mFrameLength;
+	}
+	mFrameCtrl.mEndFrame = maxFrame;
 }
 
 /*
@@ -495,83 +312,21 @@ lbl_803D0B74:
  * Address:	803D0B98
  * Size:	00010C
  */
-void E2DCallBack_AnmBase::play(f32, J3DAnmAttr, bool)
+void E2DCallBack_AnmBase::play(f32 speed, J3DAnmAttr attr, bool doPlayFromStart)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r31, r3
-	fmr      f31, f1
-	lwz      r0, 0x18(r3)
-	mr       r29, r4
-	mr       r30, r5
-	cmplwi   r0, 0
-	bne      lbl_803D0BF0
-	lis      r3, lbl_80496678@ha
-	lis      r5, lbl_8049668C@ha
-	addi     r3, r3, lbl_80496678@l
-	li       r4, 0x5a
-	addi     r5, r5, lbl_8049668C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(90, mPane);
+	P2ASSERTLINE(91, mAnim);
+	mIsEnabled = true;
+	mPane->setAnimation(mAnim);
+	mFrameCtrl.mAttr      = attr;
+	mFrameCtrl.mAnimSpeed = speed;
 
-lbl_803D0BF0:
-	lwz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	bne      lbl_803D0C18
-	lis      r3, lbl_80496678@ha
-	lis      r5, lbl_8049668C@ha
-	addi     r3, r3, lbl_80496678@l
-	li       r4, 0x5b
-	addi     r5, r5, lbl_8049668C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (doPlayFromStart) {
+		mFrameCtrl.mCurrTime = mFrameCtrl.mStartFrame;
+	}
 
-lbl_803D0C18:
-	li       r0, 1
-	stb      r0, 0x1c(r31)
-	lwz      r3, 0x18(r31)
-	lwz      r4, 0x34(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	stb      r29, 0x24(r31)
-	clrlwi.  r0, r30, 0x18
-	stfs     f31, 0x2c(r31)
-	beq      lbl_803D0C6C
-	lha      r3, 0x26(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f1, lbl_8051FAA8@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x30(r31)
-
-lbl_803D0C6C:
-	lfs      f0, 0x30(r31)
-	li       r0, 0
-	lwz      r3, 0x34(r31)
-	stfs     f0, 8(r3)
-	stb      r0, 0x38(r31)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mAnim->mCurrentFrame = mFrameCtrl.mCurrTime;
+	mIsFinished          = false;
 }
 
 /*
@@ -579,84 +334,20 @@ lbl_803D0C6C:
  * Address:	803D0CA4
  * Size:	000110
  */
-void E2DCallBack_AnmBase::playBack(f32, bool)
+void E2DCallBack_AnmBase::playBack(f32 speed, bool doPlayFromEnd)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r31, r3
-	fmr      f31, f1
-	lwz      r0, 0x18(r3)
-	mr       r30, r4
-	cmplwi   r0, 0
-	bne      lbl_803D0CF4
-	lis      r3, lbl_80496678@ha
-	lis      r5, lbl_8049668C@ha
-	addi     r3, r3, lbl_80496678@l
-	li       r4, 0x6b
-	addi     r5, r5, lbl_8049668C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(107, mPane);
+	P2ASSERTLINE(108, mAnim);
+	mIsEnabled = true;
+	mPane->setAnimation(mAnim);
+	mFrameCtrl.mAttr      = J3DAA_UNKNOWN_3;
+	mFrameCtrl.mAnimSpeed = -FABS(speed);
+	if (doPlayFromEnd) {
+		mFrameCtrl.mCurrTime = mFrameCtrl.mEndFrame;
+	}
 
-lbl_803D0CF4:
-	lwz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	bne      lbl_803D0D1C
-	lis      r3, lbl_80496678@ha
-	lis      r5, lbl_8049668C@ha
-	addi     r3, r3, lbl_80496678@l
-	li       r4, 0x6c
-	addi     r5, r5, lbl_8049668C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D0D1C:
-	li       r0, 1
-	stb      r0, 0x1c(r31)
-	lwz      r3, 0x18(r31)
-	lwz      r4, 0x34(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	fabs     f0, f31
-	li       r3, 3
-	stb      r3, 0x24(r31)
-	clrlwi.  r0, r30, 0x18
-	frsp     f0, f0
-	fneg     f0, f0
-	stfs     f0, 0x2c(r31)
-	beq      lbl_803D0D80
-	lha      r3, 0x28(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f1, lbl_8051FAA8@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x30(r31)
-
-lbl_803D0D80:
-	lfs      f0, 0x30(r31)
-	li       r0, 0
-	lwz      r3, 0x34(r31)
-	stfs     f0, 8(r3)
-	stb      r0, 0x38(r31)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	mAnim->mCurrentFrame = mFrameCtrl.mCurrTime;
+	mIsFinished          = false;
 }
 
 /*
@@ -666,7 +357,7 @@ lbl_803D0D80:
  */
 void E2DCallBack_AnmBase::stop()
 {
-	mIsEnabled  = 0;
+	mIsEnabled  = false;
 	mIsFinished = true;
 }
 
@@ -687,7 +378,7 @@ void E2DCallBack_AnmBase::disconnect()
  */
 void E2DCallBack_AnmBase::setStartFrame()
 {
-	mFrameCtrl.mCurrTime = mFrameCtrl._06;
+	mFrameCtrl.mCurrTime = mFrameCtrl.mStartFrame;
 	mAnim->mCurrentFrame = mFrameCtrl.mCurrTime;
 }
 
@@ -698,7 +389,7 @@ void E2DCallBack_AnmBase::setStartFrame()
  */
 void E2DCallBack_AnmBase::setEndFrame()
 {
-	mFrameCtrl.mCurrTime = mFrameCtrl._08;
+	mFrameCtrl.mCurrTime = mFrameCtrl.mEndFrame;
 	mAnim->mCurrentFrame = mFrameCtrl.mCurrTime;
 }
 
@@ -709,56 +400,10 @@ void E2DCallBack_AnmBase::setEndFrame()
  */
 void E2DCallBack_AnmBase::setRandFrame()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lis      r3, 0x4330
-	lha      r4, 0x26(r31)
-	lha      r0, 0x28(r31)
-	xoris    r4, r4, 0x8000
-	stw      r3, 8(r1)
-	xoris    r0, r0, 0x8000
-	lfd      f1, lbl_8051FAA8@sda21(r2)
-	stw      r4, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r0, 0x14(r1)
-	fsubs    f31, f0, f1
-	stw      r3, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f30, f0, f1
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	fsubs    f0, f30, f31
-	lfd      f3, lbl_8051FAA8@sda21(r2)
-	stw      r0, 0x18(r1)
-	lfs      f1, lbl_8051FAB8@sda21(r2)
-	lfd      f2, 0x18(r1)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmadds   f0, f0, f1, f31
-	stfs     f0, 0x30(r31)
-	lfs      f0, 0x30(r31)
-	lwz      r3, 0x34(r31)
-	stfs     f0, 8(r3)
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	f32 startFrame       = mFrameCtrl.mStartFrame;
+	f32 endFrame         = mFrameCtrl.mEndFrame;
+	mFrameCtrl.mCurrTime = randEbisawaFloat() * (endFrame - startFrame) + startFrame;
+	mAnim->mCurrentFrame = mFrameCtrl.mCurrTime;
 }
 
 /*
@@ -768,30 +413,9 @@ void E2DCallBack_AnmBase::setRandFrame()
  */
 f32 E2DCallBack_AnmBase::getPlayFinRate()
 {
-	return (mFrameCtrl.mCurrTime - mFrameCtrl._06) / mFrameCtrl._08;
-	/*
-	stwu     r1, -0x20(r1)
-	lis      r4, 0x4330
-	lfd      f2, lbl_8051FAA8@sda21(r2)
-	lha      r5, 0x26(r3)
-	lha      r0, 0x28(r3)
-	xoris    r5, r5, 0x8000
-	stw      r4, 8(r1)
-	xoris    r0, r0, 0x8000
-	lfs      f1, 0x30(r3)
-	stw      r5, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r0, 0x14(r1)
-	fsubs    f3, f0, f2
-	stw      r4, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f1, f1, f3
-	fsubs    f0, f0, f2
-	fsubs    f0, f0, f3
-	fdivs    f1, f1, f0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	f32 startFrame = mFrameCtrl.mStartFrame;
+	f32 endFrame   = mFrameCtrl.mEndFrame;
+	return (mFrameCtrl.mCurrTime - startFrame) / (endFrame - startFrame);
 }
 
 /*
@@ -805,38 +429,9 @@ void E2DCallBack_AnmBase::do_update()
 		mFrameCtrl.update();
 		mAnim->mCurrentFrame = mFrameCtrl.mCurrTime;
 	}
-	if (mFrameCtrl.mAttr & 1) {
+	if (mFrameCtrl._05 & 1) {
 		mIsFinished = true;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_803D0F88
-	addi     r3, r31, 0x20
-	bl       update__12J3DFrameCtrlFv
-	lfs      f0, 0x30(r31)
-	lwz      r3, 0x34(r31)
-	stfs     f0, 8(r3)
-
-lbl_803D0F88:
-	lbz      r0, 0x25(r31)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_803D0F9C
-	li       r0, 1
-	stb      r0, 0x38(r31)
-
-lbl_803D0F9C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -844,14 +439,7 @@ lbl_803D0F9C:
  * Address:	803D0FB0
  * Size:	000008
  */
-bool E2DCallBack_AnmBase::isFinish()
-{
-	return mIsFinished;
-	/*
-	lbz      r3, 0x38(r3)
-	blr
-	*/
-}
+bool E2DCallBack_AnmBase::isFinish() { return mIsFinished; }
 
 /*
  * --INFO--
@@ -860,98 +448,25 @@ bool E2DCallBack_AnmBase::isFinish()
  */
 void E2DCallBack_WindowCursor::do_update()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_803D10F0
-	lwz      r3, 0x40(r31)
-	cmplwi   r3, 0
-	beq      lbl_803D0FEC
-	addi     r0, r3, -1
-	stw      r0, 0x40(r31)
+	if (mPane) {
+		if (_40) {
+			_40--;
+		}
 
-lbl_803D0FEC:
-	lwz      r4, 0x44(r31)
-	cmplwi   r4, 0
-	beq      lbl_803D102C
-	lwz      r3, 0x40(r31)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	lfd      f2, lbl_8051FAB0@sda21(r2)
-	stw      r3, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	stw      r4, 0x24(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x20(r1)
-	lfd      f0, 0x20(r1)
-	fsubs    f0, f0, f2
-	fdivs    f2, f1, f0
-	b        lbl_803D1030
+		f32 val = (_44) ? (f32)_40 / (f32)_44 : 0.0f;
 
-lbl_803D102C:
-	lfs      f2, lbl_8051FAA0@sda21(r2)
+		JGeometry::TBox2f box;
+		box.i.x = (1.0f - val) * (mBounds2.i.x - mBounds1.i.x) + mBounds1.i.x;
+		box.i.y = (1.0f - val) * (mBounds2.i.y - mBounds1.i.y) + mBounds1.i.y;
+		box.f.x = (1.0f - val) * (mBounds2.f.x - mBounds1.f.x) + mBounds1.f.x;
+		box.f.y = (1.0f - val) * (mBounds2.f.y - mBounds1.f.y) + mBounds1.f.y;
+		mPane->place(box);
+		mScale = mScaleMgr.calc();
+		mPane->updateScale(mScale);
 
-lbl_803D1030:
-	lfs      f1, lbl_8051FA9C@sda21(r2)
-	addi     r4, r1, 8
-	lfs      f3, 0x20(r31)
-	lfs      f0, 0x30(r31)
-	fsubs    f1, f1, f2
-	fsubs    f0, f0, f3
-	fmadds   f0, f1, f0, f3
-	stfs     f0, 8(r1)
-	lfs      f2, 0x24(r31)
-	lfs      f0, 0x34(r31)
-	fsubs    f0, f0, f2
-	fmadds   f0, f1, f0, f2
-	stfs     f0, 0xc(r1)
-	lfs      f2, 0x28(r31)
-	lfs      f0, 0x38(r31)
-	fsubs    f0, f0, f2
-	fmadds   f0, f1, f0, f2
-	stfs     f0, 0x10(r1)
-	lfs      f2, 0x2c(r31)
-	lfs      f0, 0x3c(r31)
-	fsubs    f0, f0, f2
-	fmadds   f0, f1, f0, f2
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x18(r31)
-	bl       "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-	addi     r3, r31, 0x48
-	bl       calc__Q32og6Screen8ScaleMgrFv
-	stfs     f1, 0x64(r31)
-	lwz      r3, 0x18(r31)
-	lfs      f0, 0x64(r31)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x68(r31)
-	cmplwi   r3, 0
-	beq      lbl_803D10F0
-	lfs      f1, lbl_8051FABC@sda21(r2)
-	lfs      f0, 0x64(r31)
-	fmuls    f0, f1, f0
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803D10F0:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		if (_68) {
+			_68->updateScale(mScale * 1.1f);
+		}
+	}
 }
 } // namespace ebi

@@ -790,6 +790,10 @@ struct J2DTextBox : public J2DPane {
 
 	inline J2DTextBoxHBinding getHBinding() const { return (J2DTextBoxHBinding)((mFlags >> 2) & 3); }
 
+	// not quite right
+	inline void setCharColor(JUtility::TColor color) { mCharColor.set(color); }
+	inline void setGradientColor(JUtility::TColor color) { mGradientColor.set(color); }
+
 	// _000      = VTBL
 	// _000-_100 = J2DPane
 	JUTResFont* mFont;               // _100

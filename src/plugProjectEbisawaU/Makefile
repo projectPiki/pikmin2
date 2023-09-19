@@ -49,6 +49,9 @@ EBISAWA_FILES:=\
 
 $(EBISAWA_FILES): CFLAGS += -sym on
 
+# for when ebi2DGraph is linked:
+# $(BUILD_DIR)/src/plugProjectEbisawaU/ebi2DGraph.o: CFLAGS
+
 DEPENDS += $(EBISAWA_FILES:.o=.d)
 
 $(BUILD_DIR)/src/plugProjectEbisawaU/plugProjectEbisawaU.a: $(EBISAWA_FILES)

@@ -10,10 +10,8 @@
 namespace ebi {
 
 void gCardEMgr_ThreadFunc(void*);
+
 namespace CardEReader {
-
-const char cInitialCode[4] = { 'P', 'S', 'A', 'J' };
-
 void changeEndian(u32);
 void roundup4b(u32);
 void CardE_probeAGB();

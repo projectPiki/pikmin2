@@ -22,6 +22,8 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 	virtual void do_update();                         // _1C (weak)
 	virtual void do_draw(Graphics&, J2DGrafContext&); // _20 (weak)
 
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
 	bool mIsEnabled; // _1C
 };
 
@@ -32,9 +34,9 @@ struct E2DCallBack_AnmBase : public E2DCallBack_Base {
 	virtual ~E2DCallBack_AnmBase() { } // _08 (weak)
 	virtual void do_update();          // _1C
 
-	void loadAnm(char*, JKRArchive*, long, long);
-	void play(f32, J3DAnmAttr, bool);
-	void playBack(f32, bool);
+	void loadAnm(char* path, JKRArchive* archive, s32 frame, s32 maxFrame);
+	void play(f32 speed, J3DAnmAttr attr, bool doPlayFromStart);
+	void playBack(f32 speed, bool doPlayFromEnd);
 	void stop();
 	void setStartFrame();
 	void setEndFrame();
@@ -45,6 +47,8 @@ struct E2DCallBack_AnmBase : public E2DCallBack_Base {
 	// unused/inlined:
 	void disconnect();
 
+	// _00     = VTBL
+	// _00-_20 = E2DCallBack_Base
 	J3DFrameCtrl mFrameCtrl; // _20
 	J2DAnmBase* mAnim;       // _34
 	bool mIsFinished;        // _38
@@ -54,15 +58,18 @@ struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {
 	virtual ~E2DCallBack_BlinkAlpha() { } // _08 (weak)
 	virtual void do_update();             // _1C
 
-	// TODO: _20 through _29 and BlinkFontColor's _40 through _49 are
-	// suspiciously similar in usage....
-	f32 _20; // _20
-	f32 _24; // _24
-	u8 _28;  // _28
-	u8 _29;  // _29
-	u32 : 0; // set alignment to next 4-byte boundary
-	u8 _2C;  // _2C
-	u8 _2D;  // _2D
+	inline f32 getAlphaWeight() { return mWeight; }
+
+	// _00     = VTBL
+	// _00-_20 = E2DCallBack_Base
+	f32 mWeight;          // _20, weight to give alpha0 when calcing blend
+	f32 mSpeed;           // _24, speed at which alpha blends between alpha0 and alpha1
+	bool mIsTowardAlpha0; // _28, is amount of alpha0 increasing in blend?
+	u8 _29;               // _29
+	u8 _2A;               // _2A, unknown
+	u8 _2B;               // _2B, unknown
+	u8 mAlpha0;           // _2C, blends between alpha0 and alpha1
+	u8 mAlpha1;           // _2D
 };
 
 // Size: 0x4C
@@ -85,11 +92,11 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 
 	inline void enable()
 	{
-		mIsEnabled = true;
-		mSpeed     = sys->mDeltaTime * 3.333333f;
-		_40        = 0.0f;
-		_48        = 1;
-		_49        = 0;
+		mIsEnabled      = true;
+		mSpeed          = sys->mDeltaTime * 3.333333f;
+		mColor1Weight   = 0.0f;
+		mIsTowardColor1 = true;
+		_49             = 0;
 	}
 
 	// needs tweaking
@@ -107,10 +114,12 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 		}
 	}
 
+	// _00     = VTBL
+	// _00-_20 = E2DCallBack_Base
 	E2DFullFontColor mFonts[2]; // _20
-	f32 _40;                    // _40
+	f32 mColor1Weight;          // _40, weight to give 'second' color in blend calc
 	f32 mSpeed;                 // _44
-	u8 _48;                     // _48
+	bool mIsTowardColor1;       // _48, is amount of color1 increasing in blend?
 	u8 _49;                     // _49
 };
 
@@ -119,6 +128,9 @@ struct E2DCallBack_CalcAnimation : public E2DCallBack_Base {
 
 	virtual ~E2DCallBack_CalcAnimation() { } // _08 (weak)
 	virtual void do_update();                // _1C (weak)
+
+	// _00     = VTBL
+	// _00-_20 = E2DCallBack_Base
 };
 
 // Size: 0x40
@@ -128,9 +140,10 @@ struct E2DCallBack_Purupuru : public E2DCallBack_Base {
 	virtual ~E2DCallBack_Purupuru() { } // _08 (weak)
 	virtual void do_update();           // _1C
 
+	// _00     = VTBL
+	// _00-_20 = E2DCallBack_Base
 	og::Screen::ScaleMgr mScaleMgr; // _20
-	// TODO: Rename to `mScale`
-	f32 _3C; // _3C
+	f32 mScale;                     // _3C
 };
 
 struct E2DCallBack_WindowCursor : public E2DCallBack_Base {
@@ -139,20 +152,22 @@ struct E2DCallBack_WindowCursor : public E2DCallBack_Base {
 	    : _40(0)
 	    , _44(0)
 	{
-		_64   = 1.0f;
-		mPane = nullptr;
+		mScale = 1.0f;
+		_68    = nullptr;
 	}
 
 	virtual ~E2DCallBack_WindowCursor() { } // _08 (weak)
 	virtual void do_update();               // _1C
 
+	// _00     = VTBL
+	// _00-_20 = E2DCallBack_Base
 	JGeometry::TBox2f mBounds1;     // _20
 	JGeometry::TBox2f mBounds2;     // _30
 	u32 _40;                        // _40
 	u32 _44;                        // _44
 	og::Screen::ScaleMgr mScaleMgr; // _48
-	f32 _64;                        // _64
-	J2DPane* mPane;                 // _68
+	f32 mScale;                     // _64
+	J2DPane* _68;                   // _68
 };
 } // namespace ebi
 

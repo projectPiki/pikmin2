@@ -4,85 +4,12 @@
 #include "JSystem/JKernel/JKRFile.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 
-int SIProbe(int);
-
 static const char name[] = "ebiCardEReader";
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80497978
-    lbl_80497978:
-        .4byte 0x65626943
-        .4byte 0x61726445
-        .4byte 0x52656164
-        .4byte 0x65720000
-    .global lbl_80497988
-    lbl_80497988:
-        .4byte 0x65626943
-        .4byte 0x61726445
-        .4byte 0x52656164
-        .4byte 0x65722E63
-        .4byte 0x70700000
-    .global lbl_8049799C
-    lbl_8049799C:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x75736572
-        .4byte 0x2F456269
-        .4byte 0x73617761
-        .4byte 0x2F636172
-        .4byte 0x645F655F
-        .4byte 0x72656164
-        .4byte 0x65722F70
-        .4byte 0x70312E64
-        .4byte 0x776E0000
-        .4byte 0x75736572
-        .4byte 0x2F456269
-        .4byte 0x73617761
-        .4byte 0x2F636172
-        .4byte 0x645F655F
-        .4byte 0x72656164
-        .4byte 0x65722F70
-        .4byte 0x70322E64
-        .4byte 0x776E0000
-        .4byte 0x75736572
-        .4byte 0x2F456269
-        .4byte 0x73617761
-        .4byte 0x2F636172
-        .4byte 0x645F655F
-        .4byte 0x72656164
-        .4byte 0x65722F70
-        .4byte 0x70332E64
-        .4byte 0x776E0000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q33ebi11CardEReader4TMgr
-    __vt__Q33ebi11CardEReader4TMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q33ebi11CardEReader4TMgrFv
-        .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global cInitialCode__Q23ebi11CardEReader
-    cInitialCode__Q23ebi11CardEReader:
-        .ascii "PSAJ"
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global gCardEMgr__3ebi
-    gCardEMgr__3ebi:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FE58
-    lbl_8051FE58:
-        .4byte 0x00000000
-*/
-
 namespace ebi {
+namespace CardEReader {
+static char cInitialCode[4] = { 'P', 'S', 'A', 'J' };
+} // namespace CardEReader
 
 /*
  * --INFO--
@@ -132,41 +59,61 @@ void CardEReader::CardE_probeAGB()
  */
 bool CardEReader::CardE_uploadToGBA(long portIndex, u8* data, u32 size)
 {
-	u8 flags1[4];
+	// u8 flags1[4];
 	u8 flags2[4];
 	u8 flags3[4];
+	u32 sizeStore;
+	u32 val2;
+	u32 val1;
 
-	if (GBAReset(portIndex, flags1)) {
+	if (GBAReset(portIndex, (u8*)&val1)) {
 		return false;
-	} else if (GBAGetStatus(portIndex, flags1)) {
+	}
+	if (GBAGetStatus(portIndex, (u8*)&val1)) {
 		return false;
-	} else if (flags1[0] != 0x28) {
+	}
+	if (val1 != 0x28) {
 		return false;
-	} else if (GBARead(portIndex, flags2, flags1)) {
+	}
+	if (GBARead(portIndex, flags2, (u8*)&val1)) {
 		return false;
-	} else if (flags2[0] != cInitialCode[0]) {
+	}
+	if (flags2[0] != cInitialCode[0]) {
 		return false;
-	} else if (flags2[1] != cInitialCode[1]) {
+	}
+	if (flags2[1] != cInitialCode[1]) {
 		return false;
-	} else if (flags2[2] != cInitialCode[2]) {
+	}
+	if (flags2[2] != cInitialCode[2]) {
 		return false;
-	} else if (flags2[3] != cInitialCode[3]) {
+	}
+	if (flags2[3] != cInitialCode[3]) {
 		return false;
-	} else if (GBAGetStatus(portIndex, flags1)) {
+	}
+	if (GBAGetStatus(portIndex, (u8*)&val1)) {
 		return false;
-	} else if (flags1[0] != 0x20) {
+	}
+	if (val1 != 0x20) {
 		return false;
-	} else if (GBAWrite(portIndex, flags2, flags1)) {
+	}
+	if (GBAWrite(portIndex, flags2, (u8*)&val1)) {
 		return false;
-	} else if (GBAGetStatus(portIndex, flags1)) {
+	}
+	if (GBAGetStatus(portIndex, (u8*)&val1)) {
 		return false;
-	} else if (flags1[0] != 0x30) {
+	}
+	if (val1 != 0x30) {
 		return false;
-	} else if (GBAWrite(portIndex, (u8*)&size, flags1)) {
+	}
+
+	sizeStore = size;
+	if (GBAWrite(portIndex, (u8*)&sizeStore, (u8*)&val1)) {
 		return false;
-	} else if (GBARead(portIndex, flags3, flags1)) {
+	}
+	if (GBARead(portIndex, flags3, (u8*)&val1)) {
 		return false;
-	} else if (size != flags3[0]) {
+	}
+	if (size != flags3[0]) {
 		return false;
 	}
 
@@ -492,6 +439,8 @@ void CardEReader::TMgr::probeAGB()
 void CardEReader::TMgr::update()
 {
 	switch (mState) {
+	case 0:
+		break;
 	case 1: {
 		int stat;
 		if (SIProbe(1) == 0x40000) {
@@ -506,11 +455,13 @@ void CardEReader::TMgr::update()
 		mGbaPort = stat;
 		mCounter++;
 		if (mGbaPort != -1) {
-			goEnd_(Error_0);
-		} else if (_38 == 0) {
-			mCounter = 0;
-			mState   = 2;
-		} else {
+			if (_38 == 0) {
+				goEnd_(Error_0);
+			} else {
+				mCounter = 0;
+				mState   = 2;
+			}
+		} else if (mCounter >= 2) {
 			goEnd_(Error_1);
 		}
 		break;
@@ -527,113 +478,9 @@ void CardEReader::TMgr::update()
 			}
 		}
 		break;
+	case 3:
+		break;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x34(r3)
-	cmpwi    r0, 2
-	beq      lbl_803ED168
-	bge      lbl_803ED1AC
-	cmpwi    r0, 0
-	beq      lbl_803ED1AC
-	bge      lbl_803ED0A8
-	b        lbl_803ED1AC
-	b        lbl_803ED1AC
-
-lbl_803ED0A8:
-	li       r3, 1
-	bl       SIProbe
-	addis    r0, r3, 0xfffc
-	cmplwi   r0, 0
-	bne      lbl_803ED0C4
-	li       r0, 1
-	b        lbl_803ED100
-
-lbl_803ED0C4:
-	li       r3, 2
-	bl       SIProbe
-	addis    r0, r3, 0xfffc
-	cmplwi   r0, 0
-	bne      lbl_803ED0E0
-	li       r0, 2
-	b        lbl_803ED100
-
-lbl_803ED0E0:
-	li       r3, 3
-	bl       SIProbe
-	addis    r0, r3, 0xfffc
-	cmplwi   r0, 0
-	bne      lbl_803ED0FC
-	li       r0, 3
-	b        lbl_803ED100
-
-lbl_803ED0FC:
-	li       r0, -1
-
-lbl_803ED100:
-	stw      r0, 0x40(r31)
-	lwz      r3, 0x44(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x44(r31)
-	lwz      r0, 0x40(r31)
-	cmpwi    r0, -1
-	beq      lbl_803ED14C
-	lwz      r0, 0x38(r31)
-	cmpwi    r0, 0
-	bne      lbl_803ED138
-	mr       r3, r31
-	li       r4, 0
-	bl       goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr
-	b        lbl_803ED1AC
-
-lbl_803ED138:
-	li       r3, 0
-	li       r0, 2
-	stw      r3, 0x44(r31)
-	stw      r0, 0x34(r31)
-	b        lbl_803ED1AC
-
-lbl_803ED14C:
-	lwz      r0, 0x44(r31)
-	cmpwi    r0, 2
-	blt      lbl_803ED1AC
-	mr       r3, r31
-	li       r4, 1
-	bl       goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr
-	b        lbl_803ED1AC
-
-lbl_803ED168:
-	bl       tryUploadToGBA___Q33ebi11CardEReader4TMgrFv
-	lwz      r4, 0x44(r31)
-	clrlwi.  r0, r3, 0x18
-	addi     r0, r4, 1
-	stw      r0, 0x44(r31)
-	beq      lbl_803ED194
-	li       r3, 0
-	li       r0, 3
-	stw      r3, 0x44(r31)
-	stw      r0, 0x34(r31)
-	b        lbl_803ED1AC
-
-lbl_803ED194:
-	lwz      r0, 0x44(r31)
-	cmpwi    r0, 1
-	blt      lbl_803ED1AC
-	mr       r3, r31
-	li       r4, 2
-	bl       goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr
-
-lbl_803ED1AC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -641,17 +488,7 @@ lbl_803ED1AC:
  * Address:	803ED1C0
  * Size:	000010
  */
-bool CardEReader::TMgr::isFinish()
-{
-	u8 test = mState;
-	return test;
-	/*
-	lwz      r0, 0x34(r3)
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	blr
-	*/
-}
+bool CardEReader::TMgr::isFinish() { return (u8)(mState == 0); }
 
 /*
  * --INFO--
