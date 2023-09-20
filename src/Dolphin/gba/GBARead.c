@@ -5,12 +5,12 @@
  * Address:	800FED70
  * Size:	000060
  */
-void ReadProc(int portIndex)
+void ReadProc(int chan)
 {
-	GBA* gba = &__GBA[portIndex];
-	if (gba->_20 == 0) {
-		memcpy(gba->_18, &gba->_05, 4);
-		*gba->_14 = gba->_08[1] & 0x3A;
+	GBAControl* gba = &__GBA[chan];
+	if (gba->ret == 0) {
+		memcpy(gba->ptr, &gba->input, 4);
+		*gba->status = gba->input[4] & 0x3A;
 	}
 }
 
@@ -19,18 +19,17 @@ void ReadProc(int portIndex)
  * Address:	........
  * Size:	00006C
  */
-int GBAReadAsync(int portIndex, u8* p2, u8* p3)
+int GBAReadAsync(int chan, u8* ptr, u8* statusPtr)
 {
-	// UNUSED FUNCTION
-	GBA* gba = &__GBA[portIndex];
-	if (gba->mSyncCallback) {
+	GBAControl* gba = &__GBA[chan];
+	if (gba->callback) {
 		return 2;
 	}
-	gba->_00[0]        = 0x14;
-	gba->_18           = p2;
-	gba->_14           = p3;
-	gba->mSyncCallback = __GBASyncCallback;
-	return __GBATransfer(portIndex, 1, 5, ReadProc);
+	gba->output[0] = 0x14;
+	gba->ptr       = ptr;
+	gba->status    = statusPtr;
+	gba->callback  = __GBASyncCallback;
+	return __GBATransfer(chan, 1, 5, ReadProc);
 }
 
 /*
@@ -38,9 +37,9 @@ int GBAReadAsync(int portIndex, u8* p2, u8* p3)
  * Address:	800FEDD0
  * Size:	000094
  */
-int GBARead(int portIndex, u8* p2, u8* p3)
+int GBARead(int chan, u8* ptr, u8* statusPtr)
 {
-	int _unused;
-	int status = GBAReadAsync(portIndex, p2, p3);
-	return (status != 0) ? status : __GBASync(portIndex);
+	int _unused; // for stack size, probably commented out code
+	int status = GBAReadAsync(chan, ptr, statusPtr);
+	return (status != 0) ? status : __GBASync(chan);
 }

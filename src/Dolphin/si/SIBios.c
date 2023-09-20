@@ -1,25 +1,38 @@
+#include "Dolphin/si.h"
 
+char *__SIVersion = "<< Dolphin SDK - SI\trelease build: Apr 17 2003 12:33:19 (0x2301) >>";
+
+static SIControl Si = { -1, 0, 0, nullptr, nullptr };
+
+static SIPacket Packet[SI_MAX_CHAN];
+static OSAlarm Alarm[SI_MAX_CHAN];
+static u32 Type[SI_MAX_CHAN] = {
+    SI_ERROR_NO_RESPONSE,
+    SI_ERROR_NO_RESPONSE,
+    SI_ERROR_NO_RESPONSE,
+    SI_ERROR_NO_RESPONSE,
+};
+
+static OSTime TypeTime[SI_MAX_CHAN];
+static OSTime XferTime[SI_MAX_CHAN];
+
+static SITypeAndStatusCallback TypeCallback[SI_MAX_CHAN][4];
+static __OSInterruptHandler RDSTHandler[4];
+
+static BOOL InputBufferValid[SI_MAX_CHAN];
+static u32 InputBuffer[SI_MAX_CHAN][2];
+static vu32 InputBufferVcount[SI_MAX_CHAN];
+
+u32 __PADFixBits;
 
 /*
  * --INFO--
  * Address:	800F4EFC
  * Size:	000020
  */
-void SIBusy(void)
+BOOL SIBusy()
 {
-	/*
-	.loc_0x0:
-	  lis       r3, 0x804B
-	  lwz       r0, -0x6104(r3)
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x18
-	  li        r3, 0x1
-	  blr
-
-	.loc_0x18:
-	  li        r3, 0
-	  blr
-	*/
+	return Si.chan != -1 ? TRUE : FALSE;
 }
 
 /*
@@ -27,7 +40,7 @@ void SIBusy(void)
  * Address:	800F4F1C
  * Size:	00003C
  */
-void SIIsChanBusy(void)
+BOOL SIIsChanBusy(int chan)
 {
 	/*
 	.loc_0x0:
@@ -66,7 +79,7 @@ void SIClearTCInterrupt(void)
  * Address:	800F4F58
  * Size:	0002FC
  */
-void CompleteTransfer(void)
+static void CompleteTransfer(void)
 {
 	/*
 	.loc_0x0:
@@ -307,7 +320,7 @@ void SITransferNext(void)
  * Address:	800F5254
  * Size:	000344
  */
-void SIInterruptHandler(void)
+static void SIInterruptHandler(void)
 {
 	/*
 	.loc_0x0:
@@ -558,7 +571,7 @@ void SIInterruptHandler(void)
  * Address:	800F5598
  * Size:	000098
  */
-void SIEnablePollingInterrupt(void)
+static void SIEnablePollingInterrupt(void)
 {
 	/*
 	.loc_0x0:
@@ -616,7 +629,7 @@ void SIEnablePollingInterrupt(void)
  * Address:	800F5630
  * Size:	0000CC
  */
-void SIRegisterPollingHandler(void)
+BOOL SIRegisterPollingHandler(__OSInterruptHandler handler)
 {
 	/*
 	.loc_0x0:
@@ -689,7 +702,7 @@ void SIRegisterPollingHandler(void)
  * Address:	800F56FC
  * Size:	0000F4
  */
-void SIUnregisterPollingHandler(void)
+BOOL SIUnregisterPollingHandler(__OSInterruptHandler handler)
 {
 	/*
 	.loc_0x0:
@@ -831,7 +844,7 @@ void SIInit(void)
  * Address:	800F58A4
  * Size:	00020C
  */
-void __SITransfer(void)
+static void __SITransfer(void)
 {
 	/*
 	.loc_0x0:
@@ -1010,7 +1023,7 @@ void SISync(void)
  * Address:	800F5AB0
  * Size:	00007C
  */
-void SIGetStatus(void)
+u32 SIGetStatus(int chan)
 {
 	/*
 	.loc_0x0:
@@ -1055,7 +1068,7 @@ void SIGetStatus(void)
  * Address:	800F5B2C
  * Size:	000014
  */
-void SISetCommand(void)
+void SISetCommand(int chan, u32 command)
 {
 	/*
 	.loc_0x0:
@@ -1098,7 +1111,7 @@ void SITransferCommands(void)
  * Address:	800F5B50
  * Size:	00006C
  */
-void SISetXY(void)
+u32 SISetXY(u32 x, u32 y)
 {
 	/*
 	.loc_0x0:
@@ -1137,7 +1150,7 @@ void SISetXY(void)
  * Address:	800F5BBC
  * Size:	00009C
  */
-void SIEnablePolling(void)
+u32 SIEnablePolling(u32 poll)
 {
 	/*
 	.loc_0x0:
@@ -1192,7 +1205,7 @@ void SIEnablePolling(void)
  * Address:	800F5C58
  * Size:	00006C
  */
-void SIDisablePolling(void)
+u32 SIDisablePolling(u32 poll)
 {
 	/*
 	.loc_0x0:
@@ -1235,7 +1248,7 @@ void SIDisablePolling(void)
  * Address:	800F5CC4
  * Size:	0000D4
  */
-void SIGetResponseRaw(void)
+static void SIGetResponseRaw(void)
 {
 	/*
 	.loc_0x0:
@@ -1306,7 +1319,7 @@ void SIGetResponseRaw(void)
  * Address:	800F5D98
  * Size:	0000C4
  */
-void SIGetResponse(void)
+BOOL SIGetResponse(int chan, void* data)
 {
 	/*
 	.loc_0x0:
@@ -1371,7 +1384,7 @@ void SIGetResponse(void)
  * Address:	800F5E5C
  * Size:	00008C
  */
-void AlarmHandler(void)
+static void AlarmHandler(void)
 {
 	/*
 	.loc_0x0:
@@ -1420,7 +1433,7 @@ void AlarmHandler(void)
  * Address:	800F5EE8
  * Size:	00016C
  */
-void SITransfer(void)
+BOOL SITransfer(int chan, void* output, u32 outputBytes, void* input, u32 inputBytes, SICallback callback, OSTime delay)
 {
 	/*
 	.loc_0x0:
@@ -1547,7 +1560,7 @@ void CallTypeAndStatusCallback(void)
  * Address:	800F6054
  * Size:	000298
  */
-void GetTypeCallback(void)
+static void GetTypeCallback(void)
 {
 	/*
 	.loc_0x0:
@@ -1749,7 +1762,7 @@ void GetTypeCallback(void)
  * Address:	800F62EC
  * Size:	0001C4
  */
-void SIGetType(void)
+u32 SIGetType(int chan)
 {
 	/*
 	.loc_0x0:
@@ -1886,7 +1899,7 @@ void SIGetType(void)
  * Address:	800F64B0
  * Size:	00013C
  */
-void SIGetTypeAsync(void)
+u32 SIGetTypeAsync(int chan, SITypeAndStatusCallback callback)
 {
 	/*
 	.loc_0x0:
@@ -1987,7 +2000,7 @@ void SIGetTypeAsync(void)
  * Address:	800F65EC
  * Size:	00014C
  */
-void SIDecodeType(void)
+u32 SIDecodeType(u32 type)
 {
 	/*
 	.loc_0x0:
@@ -2106,7 +2119,7 @@ void SIDecodeType(void)
  * Address:	800F6738
  * Size:	000024
  */
-void SIProbe(void)
+u32 SIProbe(int chan)
 {
 	/*
 	.loc_0x0:

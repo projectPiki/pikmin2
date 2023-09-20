@@ -5,11 +5,11 @@
  * Address:	800FEE64
  * Size:	000030
  */
-void WriteProc(int portIndex)
+void WriteProc(int chan)
 {
-	GBA* gba = &__GBA[portIndex];
-	if (gba->_20 == 0) {
-		*gba->_14 = gba->_05 & 0x3A;
+	GBAControl* gba = &__GBA[chan];
+	if (gba->ret == 0) {
+		*gba->status = gba->input[0] & 0x3A;
 	}
 }
 
@@ -18,19 +18,18 @@ void WriteProc(int portIndex)
  * Address:	........
  * Size:	000094
  */
-int GBWriteAsync(int portIndex, u8* p2, u8* p3)
+int GBWriteAsync(int chan, u8* ptr, u8* statusPtr)
 {
-	// UNUSED FUNCTION
-	GBA* gba = &__GBA[portIndex];
-	if (gba->mSyncCallback) {
+	GBAControl* gba = &__GBA[chan];
+	if (gba->callback) {
 		return 2;
 	}
-	gba->_00[0] = 0x15;
-	memcpy(&gba->_00[1], p2, 4);
-	gba->_18           = p2;
-	gba->_14           = p3;
-	gba->mSyncCallback = __GBASyncCallback;
-	return __GBATransfer(portIndex, 5, 1, WriteProc);
+	gba->output[0] = 0x15;
+	memcpy(&gba->output[1], ptr, 4);
+	gba->ptr      = ptr;
+	gba->status   = statusPtr;
+	gba->callback = __GBASyncCallback;
+	return __GBATransfer(chan, 5, 1, WriteProc);
 }
 
 /*
@@ -38,9 +37,9 @@ int GBWriteAsync(int portIndex, u8* p2, u8* p3)
  * Address:	800FEE94
  * Size:	0000C4
  */
-int GBAWrite(int portIndex, u8* p2, u8* p3)
+int GBAWrite(int chan, u8* ptr, u8* statusPtr)
 {
-	int status = GBWriteAsync(portIndex, p2, p3);
-	int _unused;
-	return (status != 0) ? status : __GBASync(portIndex);
+	int _unused; // for stack size, probably commented out code
+	int status = GBWriteAsync(chan, ptr, statusPtr);
+	return (status != 0) ? status : __GBASync(chan);
 }

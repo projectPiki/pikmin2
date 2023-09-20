@@ -2,53 +2,75 @@
 #define _DOLPHIN_GBA_H
 
 #include "Dolphin/os.h"
-#include "types.h"
 #include "Dolphin/db.h"
+#include "Dolphin/dsp.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
 
-typedef void (*GBASyncCallback)(int portIndex, int);
-typedef void (*GBAProcHandler)(int portIndex);
+/////////// GBA TYPES ////////////
 
-/**
- * @size{0x40}
- */
-typedef struct SecParam {
-	u8 _00[0x40];
-} SecParam;
+typedef void (*GBASyncCallback)(int chan, int ret);
+typedef void (*GBAProcHandler)(int chan);
 
-/**
- * @size{0x100}
- */
-typedef struct GBA {
-	u8 _00[4];
-	u8 _04;
-	u8 _05;
-	u8 _06;
-	u8 _07;
-	u8 _08[4];
-	unknown _0C;
-	unknown _10;
-	u8* _14;
-	u8* _18;
-	GBASyncCallback mSyncCallback; // _1C
-	int _20;
-	OSThreadQueue _24;
-	u8 _2C[4];
-	unknown _30;
-	u32 _34;
-	GBAProcHandler _38;
-	u8 _3C[0xBC];
-	SecParam* mSecParam; // _F8
-	u8 _FC[4];
-} GBA;
+// Struct for SecParam (size 0x40).
+typedef struct GBASecParam {
+	u8 readbuf[4];    // _00
+	int paletteColor; // _04
+	int paletteSpeed; // _08
+	int length;       // _0C
+	u32* output;      // _10
+	u8 _pad0[0xC];    // _14
+	u32 keyA;         // _20
+	int keyB;         // _24
+	u8 _pad1[0x18];   // _28
+} GBASecParam;
 
-extern SecParam SecParams[4];
-extern GBA __GBA[4];
-extern BOOL __GBAReset;
+// Struct for GBA boot information (size 0x68).
+typedef struct GBABootInfo {
+	int paletteColor;         // _00
+	int paletteSpeed;         // _04
+	u8* program;              // _08
+	int length;               // _0C
+	u8* status;               // _10
+	GBASyncCallback callback; // _14
+	u8 readbuf[4];            // _18
+	u8 writebuf[4];           // _1C
+	int i;                    // _20
+	OSTick start;             // _24
+	OSTime begin;             // _28
+	int firstXfer;            // _30
+	int curOffset;            // _34
+	u32 crc;                  // _38
+	u32 dummyWord[7];         // _3C
+	u32 keyA;                 // _58
+	int keyB;                 // _5C
+	u32 initialCode;          // _60
+	int realLength;           // _64
+} GBABootInfo;
 
+// Struct for main GBA information (size 0x100).
+typedef struct GBAControl {
+	u8 output[5];              // _00
+	u8 input[5];               // _05
+	int outputBytes;           // _0C
+	int inputBytes;            // _10
+	u8* status;                // _14
+	u8* ptr;                   // _18
+	GBASyncCallback callback;  // _1C
+	int ret;                   // _20
+	OSThreadQueue threadQueue; // _24
+	OSTime delay;              // _30
+	GBAProcHandler proc;       // _38
+	GBABootInfo bootInfo;      // _40
+	DSPTaskInfo task;          // _A8
+	GBASecParam* param;        // _F8
+} GBAControl;
+
+//////////////////////////////////
+
+///////// GBA FUNCTIONS //////////
 void GBAInit();
 BOOL __GBATransfer(int portIndex, u32, u32, GBAProcHandler);
 int __GBASync(int portIndex);
@@ -61,7 +83,16 @@ int GBAGetStatus(int portIndex, u8* p2);
 int GBARead(int portIndex, u8* p2, u8* p3);
 int GBAWrite(int portIndex, u8* p2, u8* p3);
 
-static inline GBAProcHandler getGBAHandler(GBA* gba) { return gba->_38; }
+static inline GBAProcHandler getGBAHandler(GBAControl* gba) { return gba->proc; }
+
+//////////////////////////////////
+
+//////// GBA DECLARATIONS ////////
+
+extern GBAControl __GBA[4];
+extern BOOL __GBAReset;
+
+//////////////////////////////////
 
 #ifdef __cplusplus
 }
