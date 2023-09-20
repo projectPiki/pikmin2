@@ -803,7 +803,7 @@ LIBS = [
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
-            "Dolphin/thp/THPDec",
+            ["Dolphin/thp/THPDec", True],
             ["Dolphin/thp/THPAudio", True],
         ],
     },

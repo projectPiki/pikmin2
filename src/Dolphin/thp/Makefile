@@ -1,5 +1,5 @@
 THP_FILES:=\
-	$(BUILD_DIR)/asm/Dolphin/thp/THPDec.o\
+	$(BUILD_DIR)/src/Dolphin/thp/THPDec.o\
 	$(BUILD_DIR)/src/Dolphin/thp/THPAudio.o\
 
 $(THP_FILES): CFLAGS += -common off -str noreadonly

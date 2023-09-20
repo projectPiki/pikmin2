@@ -1,204 +1,187 @@
+#include "THP/THPVideoDecode.h"
+#include "THP/THP.h"
 
+char* __THPVersion = "<< Dolphin SDK - THP\trelease build: Jan  9 2004 13:06:55 (0x2301) >>";
+
+static THPHuffmanTab* Ydchuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Udchuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Vdchuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Yachuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Uachuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Vachuff ATTRIBUTE_ALIGN(32);
+static f32 __THPIDCTWorkspace[64] ATTRIBUTE_ALIGN(32);
+static u8* __THPHuffmanBits;
+static u8* __THPHuffmanSizeTab;
+static u16* __THPHuffmanCodeTab;
+static THPSample* Gbase ATTRIBUTE_ALIGN(32);
+static u32 Gwid ATTRIBUTE_ALIGN(32);
+static f32* Gq ATTRIBUTE_ALIGN(32);
+static u8* __THPLCWork512[3];
+static u8* __THPLCWork672[3];
+static u32 __THPOldGQR5;
+static u32 __THPOldGQR6;
+static u8* __THPWorkArea;
+static THPCoeff* __THPMCUBuffer[6];
+static THPFileInfo* __THPInfo;
+static BOOL __THPInitFlag = FALSE;
+
+#define THPROUNDUP(a, b) ((((s32)(a)) + ((s32)(b)-1L)) / ((s32)(b)))
 
 /*
  * --INFO--
  * Address:	800F7148
  * Size:	000244
  */
-void THPVideoDecode(void)
+s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, void* work)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x38(r1)
-	  stmw      r27, 0x24(r1)
-	  mr.       r27, r3
-	  addi      r28, r4, 0
-	  addi      r29, r5, 0
-	  addi      r30, r6, 0
-	  addi      r31, r7, 0
-	  beq-      .loc_0x1F4
-	  cmplwi    r28, 0
-	  beq-      .loc_0x1FC
-	  cmplwi    r29, 0
-	  beq-      .loc_0x1FC
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1FC
-	  cmplwi    r31, 0
-	  beq-      .loc_0x204
-	  bl        -0x22B6C
-	  rlwinm.   r0,r3,0,3,3
-	  beq-      .loc_0x224
-	  lwz       r0, -0x6E6C(r13)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x22C
-	  stw       r31, -0x6E74(r13)
-	  li        r4, 0x6BC
-	  lwz       r3, -0x6E74(r13)
-	  addi      r0, r3, 0x1F
-	  rlwinm    r3,r0,0,0,26
-	  stw       r3, -0x6E70(r13)
-	  addi      r0, r3, 0x6BC
-	  stw       r0, -0x6E74(r13)
-	  lwz       r3, -0x6E70(r13)
-	  bl        -0xA9FC
-	  lwz       r3, -0x6E70(r13)
-	  li        r4, 0x21
-	  li        r0, 0
-	  stw       r4, 0x6A4(r3)
-	  li        r31, 0
-	  lwz       r3, -0x6E70(r13)
-	  sth       r0, 0x698(r3)
-	  lwz       r3, -0x6E70(r13)
-	  stw       r27, 0x69C(r3)
+	u8 all_done, status;
+	s32 errorCode;
 
-	.loc_0xAC:
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x69C(r4)
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0xFF
-	  bne-      .loc_0x214
-	  b         .loc_0xD8
+	if (!file) {
+		goto _err_no_input;
+	}
 
-	.loc_0xCC:
-	  lwz       r3, 0x0(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r4)
+	if (tileY == NULL || tileU == NULL || tileV == NULL) {
+		goto _err_no_output;
+	}
 
-	.loc_0xD8:
-	  lwz       r3, -0x6E70(r13)
-	  addi      r4, r3, 0x69C
-	  lwz       r3, 0x69C(r3)
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0xFF
-	  beq+      .loc_0xCC
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r4)
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0xD7
-	  bgt-      .loc_0x134
-	  cmplwi    r0, 0xC4
-	  bne-      .loc_0x11C
-	  bl        0x790
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x21C
-	  b         .loc_0x1D0
+	if (!work) {
+		goto _err_no_work;
+	}
 
-	.loc_0x11C:
-	  cmplwi    r0, 0xC0
-	  bne-      .loc_0x20C
-	  bl        0x164
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x21C
-	  b         .loc_0x1D0
+	if (!(PPCMfhid2() & 0x10000000)) {
+		goto _err_lc_not_enabled;
+	}
 
-	.loc_0x134:
-	  cmplwi    r0, 0xD8
-	  blt-      .loc_0x194
-	  cmplwi    r0, 0xDF
-	  bgt-      .loc_0x194
-	  cmplwi    r0, 0xDD
-	  bne-      .loc_0x154
-	  bl        0xC44
-	  b         .loc_0x1D0
+	if (__THPInitFlag == FALSE) {
+		goto _err_not_initialized;
+	}
 
-	.loc_0x154:
-	  cmplwi    r0, 0xDB
-	  bne-      .loc_0x16C
-	  bl        0x384
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x21C
-	  b         .loc_0x1D0
+	__THPWorkArea = (u8*)work;
+	__THPInfo     = (THPFileInfo*)OSRoundUp32B(__THPWorkArea);
+	__THPWorkArea = (u8*)OSRoundUp32B(__THPWorkArea) + sizeof(THPFileInfo);
+	DCZeroRange(__THPInfo, sizeof(THPFileInfo));
+	__THPInfo->cnt           = 33;
+	__THPInfo->decompressedY = 0;
+	__THPInfo->c             = (u8*)file;
+	all_done                 = FALSE;
 
-	.loc_0x16C:
-	  cmplwi    r0, 0xDA
-	  bne-      .loc_0x188
-	  bl        0x250
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x21C
-	  li        r31, 0x1
-	  b         .loc_0x1D0
+	for (;;) {
+		if ((*(__THPInfo->c)++) != 255) {
+			goto _err_bad_syntax;
+		}
 
-	.loc_0x188:
-	  cmplwi    r0, 0xD8
-	  beq-      .loc_0x1D0
-	  b         .loc_0x20C
+		while (*__THPInfo->c == 255) {
+			((__THPInfo->c)++);
+		}
 
-	.loc_0x194:
-	  cmplwi    r0, 0xE0
-	  blt-      .loc_0x1D0
-	  blt-      .loc_0x1A8
-	  cmplwi    r0, 0xEF
-	  ble-      .loc_0x1B0
+		status = (*(__THPInfo->c)++);
 
-	.loc_0x1A8:
-	  cmplwi    r0, 0xFE
-	  bne-      .loc_0x20C
+		if (status <= 0xD7) {
+			if (status == 196) {
+				status = __THPReadHuffmanTableSpecification();
+				if (status != 0) {
+					goto _err_bad_status;
+				}
+			}
 
-	.loc_0x1B0:
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x69C(r3)
-	  addi      r5, r3, 0x69C
-	  lbz       r3, 0x0(r4)
-	  lbz       r0, 0x1(r4)
-	  rlwimi    r0,r3,8,16,23
-	  add       r0, r4, r0
-	  stw       r0, 0x0(r5)
+			else if (status == 192) {
+				status = __THPReadFrameHeader();
+				if (status != 0) {
+					goto _err_bad_status;
+				}
+			}
 
-	.loc_0x1D0:
-	  rlwinm.   r0,r31,0,24,31
-	  beq+      .loc_0xAC
-	  bl        .loc_0x244
-	  addi      r3, r28, 0
-	  addi      r4, r29, 0
-	  addi      r5, r30, 0
-	  bl        0xE48
-	  li        r3, 0
-	  b         .loc_0x230
+			else {
+				goto _err_unsupported_marker;
+			}
+		}
 
-	.loc_0x1F4:
-	  li        r3, 0x19
-	  b         .loc_0x230
+		else if (0xD8 <= status && status <= 0xDF) {
+			if (status == 221) {
+				__THPRestartDefinition();
+			}
 
-	.loc_0x1FC:
-	  li        r3, 0x1B
-	  b         .loc_0x230
+			else if (status == 219) {
+				status = __THPReadQuantizationTable();
+				if (status != 0) {
+					goto _err_bad_status;
+				}
+			}
 
-	.loc_0x204:
-	  li        r3, 0x1A
-	  b         .loc_0x230
+			else if (status == 218) {
+				status = __THPReadScaneHeader();
+				if (status != 0) {
+					goto _err_bad_status;
+				}
 
-	.loc_0x20C:
-	  li        r3, 0xB
-	  b         .loc_0x230
+				all_done = TRUE;
+			} else if (status == 216) {
+				// empty but required for match
+			} else {
+				goto _err_unsupported_marker;
+			}
+		}
 
-	.loc_0x214:
-	  li        r3, 0x3
-	  b         .loc_0x230
+		else if (0xE0 <= status) {
+			if ((224 <= status && status <= 239) || status == 254) {
+				__THPInfo->c += (__THPInfo->c)[0] << 8 | (__THPInfo->c)[1];
+			} else {
+				goto _err_unsupported_marker;
+			}
+		}
 
-	.loc_0x21C:
-	  rlwinm    r3,r3,0,24,31
-	  b         .loc_0x230
+		if (all_done) {
+			break;
+		}
+	}
 
-	.loc_0x224:
-	  li        r3, 0x1C
-	  b         .loc_0x230
+	__THPSetupBuffers();
+	__THPDecompressYUV(tileY, tileU, tileV);
+	return 0;
 
-	.loc_0x22C:
-	  li        r3, 0x1D
+_err_no_input:
+	errorCode = 25;
+	goto _err_exit;
 
-	.loc_0x230:
-	  lmw       r27, 0x24(r1)
-	  lwz       r0, 0x3C(r1)
-	  addi      r1, r1, 0x38
-	  mtlr      r0
-	  blr
+_err_no_output:
+	errorCode = 27;
+	goto _err_exit;
 
-	.loc_0x244:
-	*/
+_err_no_work:
+	errorCode = 26;
+	goto _err_exit;
+
+_err_unsupported_marker:
+	errorCode = 11;
+	goto _err_exit;
+
+_err_bad_resource:
+	errorCode = 1;
+	goto _err_exit;
+
+_err_no_mem:
+	errorCode = 6;
+	goto _err_exit;
+
+_err_bad_syntax:
+	errorCode = 3;
+	goto _err_exit;
+
+_err_bad_status:
+	errorCode = status;
+	goto _err_exit;
+
+_err_lc_not_enabled:
+	errorCode = 28;
+	goto _err_exit;
+
+_err_not_initialized:
+	errorCode = 29;
+	goto _err_exit;
+
+_err_exit:
+	return errorCode;
 }
 
 /*
@@ -206,28 +189,16 @@ void THPVideoDecode(void)
  * Address:	800F738C
  * Size:	000044
  */
-void __THPSetupBuffers(void)
+static void __THPSetupBuffers(void)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6E74(r13)
-	  lis       r3, 0x804F
-	  addi      r5, r3, 0x7498
-	  addi      r0, r4, 0x1F
-	  rlwinm    r6,r0,0,0,26
-	  stw       r6, 0x0(r5)
-	  addi      r3, r6, 0x80
-	  addi      r0, r6, 0x100
-	  stw       r3, 0x4(r5)
-	  addi      r4, r6, 0x180
-	  addi      r3, r6, 0x200
-	  stw       r0, 0x8(r5)
-	  addi      r0, r6, 0x280
-	  stw       r4, 0xC(r5)
-	  stw       r3, 0x10(r5)
-	  stw       r0, 0x14(r5)
-	  blr
-	*/
+	u8 i;
+	THPCoeff* buffer;
+
+	buffer = (THPCoeff*)OSRoundUp32B(__THPWorkArea);
+
+	for (i = 0; i < 6; i++) {
+		__THPMCUBuffer[i] = &buffer[i * 64];
+	}
 }
 
 /*
@@ -235,104 +206,39 @@ void __THPSetupBuffers(void)
  * Address:	800F73D0
  * Size:	00013C
  */
-void __THPReadFrameHeader(void)
+static u8 __THPReadFrameHeader(void)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x2
-	  stw       r0, 0x69C(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x69C(r4)
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0x8
-	  beq-      .loc_0x34
-	  li        r3, 0xA
-	  blr
+	u8 i, utmp8;
 
-	.loc_0x34:
-	  lwz       r5, -0x6E70(r13)
-	  lwz       r4, 0x69C(r5)
-	  lbz       r3, 0x0(r4)
-	  lbz       r0, 0x1(r4)
-	  rlwimi    r0,r3,8,16,23
-	  sth       r0, 0x694(r5)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x2
-	  stw       r0, 0x69C(r4)
-	  lwz       r5, -0x6E70(r13)
-	  lwz       r4, 0x69C(r5)
-	  lbz       r3, 0x0(r4)
-	  lbz       r0, 0x1(r4)
-	  rlwimi    r0,r3,8,16,23
-	  sth       r0, 0x692(r5)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x2
-	  stw       r0, 0x69C(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x69C(r4)
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0x3
-	  beq-      .loc_0xA8
-	  li        r3, 0xC
-	  blr
+	__THPInfo->c += 2;
 
-	.loc_0xA8:
-	  li        r7, 0
-	  li        r6, 0
-	  b         .loc_0x128
+	utmp8 = (*(__THPInfo->c)++);
 
-	.loc_0xB4:
-	  lwz       r4, -0x6E70(r13)
-	  rlwinm.   r0,r7,0,24,31
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x69C(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x69C(r4)
-	  lbz       r3, 0x0(r3)
-	  bne-      .loc_0xE8
-	  cmplwi    r3, 0x22
-	  bne-      .loc_0xF8
+	if (utmp8 != 8) {
+		return 10;
+	}
 
-	.loc_0xE8:
-	  rlwinm.   r0,r7,0,24,31
-	  beq-      .loc_0x100
-	  cmplwi    r3, 0x11
-	  beq-      .loc_0x100
+	__THPInfo->yPixelSize = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
+	__THPInfo->c += 2;
+	__THPInfo->xPixelSize = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
+	__THPInfo->c += 2;
 
-	.loc_0xF8:
-	  li        r3, 0x13
-	  blr
+	utmp8 = (*(__THPInfo->c)++);
+	if (utmp8 != 3) {
+		return 12;
+	}
 
-	.loc_0x100:
-	  lwz       r5, -0x6E70(r13)
-	  addi      r0, r6, 0x680
-	  addi      r6, r6, 0x6
-	  lwz       r4, 0x69C(r5)
-	  addi      r7, r7, 0x1
-	  addi      r3, r4, 0x1
-	  stw       r3, 0x69C(r5)
-	  lbz       r4, 0x0(r4)
-	  lwz       r3, -0x6E70(r13)
-	  stbx      r4, r3, r0
+	for (i = 0; i < 3; i++) {
+		utmp8 = (*(__THPInfo->c)++);
+		utmp8 = (*(__THPInfo->c)++);
+		if ((i == 0 && utmp8 != 0x22) || (i > 0 && utmp8 != 0x11)) {
+			return 19;
+		}
 
-	.loc_0x128:
-	  rlwinm    r0,r7,0,24,31
-	  cmplwi    r0, 0x3
-	  blt+      .loc_0xB4
-	  li        r3, 0
-	  blr
-	*/
+		__THPInfo->components[i].quantizationTableSelector = (*(__THPInfo->c)++);
+	}
+
+	return 0;
 }
 
 /*
@@ -340,92 +246,39 @@ void __THPReadFrameHeader(void)
  * Address:	800F750C
  * Size:	00011C
  */
-void __THPReadScaneHeader(void)
+static u8 __THPReadScaneHeader(void)
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x2
-	  stw       r0, 0x69C(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x69C(r4)
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0x3
-	  beq-      .loc_0x34
-	  li        r3, 0xC
-	  blr
+	u8 i, utmp8;
+	__THPInfo->c += 2;
 
-	.loc_0x34:
-	  li        r9, 0
-	  li        r8, 0
-	  b         .loc_0xC4
+	utmp8 = (*(__THPInfo->c)++);
 
-	.loc_0x40:
-	  lwz       r6, -0x6E70(r13)
-	  addi      r0, r8, 0x681
-	  addi      r4, r8, 0x682
-	  lwz       r5, 0x69C(r6)
-	  li        r3, 0x1
-	  addi      r5, r5, 0x1
-	  stw       r5, 0x69C(r6)
-	  lwz       r7, -0x6E70(r13)
-	  lwz       r6, 0x69C(r7)
-	  addi      r5, r6, 0x1
-	  stw       r5, 0x69C(r7)
-	  lbz       r7, 0x0(r6)
-	  lwz       r5, -0x6E70(r13)
-	  srawi     r6, r7, 0x4
-	  stbx      r6, r5, r0
-	  rlwinm    r7,r7,0,28,31
-	  slw       r0, r3, r6
-	  lwz       r5, -0x6E70(r13)
-	  stbx      r7, r5, r4
-	  lwz       r4, -0x6E70(r13)
-	  lbz       r4, 0x6A8(r4)
-	  and.      r0, r4, r0
-	  bne-      .loc_0xA4
-	  li        r3, 0xF
-	  blr
+	if (utmp8 != 3) {
+		return 12;
+	}
 
-	.loc_0xA4:
-	  addi      r0, r7, 0x1
-	  slw       r0, r3, r0
-	  and.      r0, r4, r0
-	  bne-      .loc_0xBC
-	  li        r3, 0xF
-	  blr
+	for (i = 0; i < 3; i++) {
+		utmp8 = (*(__THPInfo->c)++);
 
-	.loc_0xBC:
-	  addi      r8, r8, 0x6
-	  addi      r9, r9, 0x1
+		utmp8                                    = (*(__THPInfo->c)++);
+		__THPInfo->components[i].DCTableSelector = (u8)(utmp8 >> 4);
+		__THPInfo->components[i].ACTableSelector = (u8)(utmp8 & 15);
 
-	.loc_0xC4:
-	  rlwinm    r0,r9,0,24,31
-	  cmplwi    r0, 0x3
-	  blt+      .loc_0x40
-	  lwz       r5, -0x6E70(r13)
-	  li        r0, 0
-	  li        r3, 0
-	  lwz       r4, 0x69C(r5)
-	  addi      r4, r4, 0x3
-	  stw       r4, 0x69C(r5)
-	  lwz       r5, -0x6E70(r13)
-	  lhz       r4, 0x692(r5)
-	  addi      r4, r4, 0xF
-	  srawi     r4, r4, 0x4
-	  addze     r4, r4
-	  sth       r4, 0x696(r5)
-	  lwz       r4, -0x6E70(r13)
-	  sth       r0, 0x684(r4)
-	  lwz       r4, -0x6E70(r13)
-	  sth       r0, 0x68A(r4)
-	  lwz       r4, -0x6E70(r13)
-	  sth       r0, 0x690(r4)
-	  blr
-	*/
+		if ((__THPInfo->validHuffmanTabs & (1 << ((utmp8 >> 4)))) == 0) {
+			return 15;
+		}
+
+		if ((__THPInfo->validHuffmanTabs & (1 << ((utmp8 & 15) + 1))) == 0) {
+			return 15;
+		}
+	}
+
+	__THPInfo->c += 3;
+	__THPInfo->MCUsPerRow           = (u16)THPROUNDUP(__THPInfo->xPixelSize, 16);
+	__THPInfo->components[0].predDC = 0;
+	__THPInfo->components[1].predDC = 0;
+	__THPInfo->components[2].predDC = 0;
+	return 0;
 }
 
 /*
@@ -433,260 +286,37 @@ void __THPReadScaneHeader(void)
  * Address:	800F7628
  * Size:	0003BC
  */
-void __THPReadQuantizationTable(void)
+static u8 __THPReadQuantizationTable(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x188(r1)
-	  lis       r4, 0x8048
-	  subi      r4, r4, 0x5B70
-	  stmw      r21, 0x15C(r1)
-	  addi      r6, r4, 0x50
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r5, 0x69C(r3)
-	  addi      r8, r3, 0x69C
-	  addi      r3, r1, 0x14
-	  lbz       r7, 0x0(r5)
-	  addi      r0, r5, 0x2
-	  lbz       r5, 0x1(r5)
-	  rlwimi    r5,r7,8,16,23
-	  stw       r0, 0x0(r8)
-	  rlwinm    r7,r5,0,16,31
-	  lis       r0, 0x4330
-	  lfd       f0, -0x6BE8(r2)
-	  subi      r7, r7, 0x2
+	u16 length, id, i, row, col;
+	f32 q_temp[64];
 
-	.loc_0x48:
-	  lwz       r11, -0x6E70(r13)
-	  addi      r5, r4, 0
-	  li        r9, 0
-	  lwz       r10, 0x69C(r11)
-	  addi      r8, r10, 0x1
-	  stw       r8, 0x69C(r11)
-	  lbz       r8, 0x0(r10)
-	  b         .loc_0x228
+	length = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
+	__THPInfo->c += 2;
+	length -= 2;
 
-	.loc_0x68:
-	  lwz       r30, -0x6E70(r13)
-	  addi      r28, r9, 0x1
-	  addi      r29, r9, 0x2
-	  lwz       r27, 0x69C(r30)
-	  addi      r12, r9, 0x3
-	  addi      r11, r9, 0x4
-	  addi      r10, r27, 0x1
-	  stw       r10, 0x69C(r30)
-	  addi      r10, r9, 0x5
-	  rlwinm    r28,r28,0,16,31
-	  lbz       r30, 0x0(r27)
-	  rlwinm    r29,r29,0,16,31
-	  lbz       r27, 0x0(r5)
-	  rlwinm    r12,r12,0,16,31
-	  stw       r30, 0x154(r1)
-	  rlwinm    r27,r27,2,0,29
-	  stw       r0, 0x150(r1)
-	  rlwinm    r11,r11,0,16,31
-	  rlwinm    r10,r10,0,16,31
-	  lfd       f1, 0x150(r1)
-	  fsubs     f1, f1, f0
-	  stfsx     f1, r3, r27
-	  lwz       r27, -0x6E70(r13)
-	  lwz       r31, 0x69C(r27)
-	  addi      r30, r31, 0x1
-	  stw       r30, 0x69C(r27)
-	  lbz       r30, 0x0(r31)
-	  lbzx      r28, r4, r28
-	  stw       r30, 0x14C(r1)
-	  rlwinm    r28,r28,2,0,29
-	  stw       r0, 0x148(r1)
-	  lfd       f1, 0x148(r1)
-	  fsubs     f1, f1, f0
-	  stfsx     f1, r3, r28
-	  lwz       r28, -0x6E70(r13)
-	  lwz       r31, 0x69C(r28)
-	  addi      r30, r31, 0x1
-	  stw       r30, 0x69C(r28)
-	  lbz       r30, 0x0(r31)
-	  lbzx      r29, r4, r29
-	  stw       r30, 0x144(r1)
-	  rlwinm    r29,r29,2,0,29
-	  stw       r0, 0x140(r1)
-	  lfd       f1, 0x140(r1)
-	  fsubs     f1, f1, f0
-	  stfsx     f1, r3, r29
-	  lwz       r31, -0x6E70(r13)
-	  lwz       r30, 0x69C(r31)
-	  addi      r29, r30, 0x1
-	  stw       r29, 0x69C(r31)
-	  lbz       r29, 0x0(r30)
-	  lbzx      r12, r4, r12
-	  stw       r29, 0x13C(r1)
-	  rlwinm    r12,r12,2,0,29
-	  stw       r0, 0x138(r1)
-	  lfd       f1, 0x138(r1)
-	  fsubs     f1, f1, f0
-	  stfsx     f1, r3, r12
-	  lwz       r30, -0x6E70(r13)
-	  lwz       r29, 0x69C(r30)
-	  addi      r12, r29, 0x1
-	  stw       r12, 0x69C(r30)
-	  lbz       r12, 0x0(r29)
-	  lbzx      r11, r4, r11
-	  stw       r12, 0x134(r1)
-	  rlwinm    r11,r11,2,0,29
-	  stw       r0, 0x130(r1)
-	  lfd       f1, 0x130(r1)
-	  fsubs     f1, f1, f0
-	  stfsx     f1, r3, r11
-	  lwz       r29, -0x6E70(r13)
-	  lwz       r12, 0x69C(r29)
-	  addi      r11, r12, 0x1
-	  stw       r11, 0x69C(r29)
-	  lbz       r11, 0x0(r12)
-	  lbzx      r10, r4, r10
-	  stw       r11, 0x12C(r1)
-	  rlwinm    r10,r10,2,0,29
-	  stw       r0, 0x128(r1)
-	  lfd       f1, 0x128(r1)
-	  fsubs     f1, f1, f0
-	  stfsx     f1, r3, r10
-	  lwz       r30, -0x6E70(r13)
-	  addi      r11, r9, 0x6
-	  addi      r10, r9, 0x7
-	  lwz       r29, 0x69C(r30)
-	  rlwinm    r11,r11,0,16,31
-	  rlwinm    r10,r10,0,16,31
-	  addi      r12, r29, 0x1
-	  stw       r12, 0x69C(r30)
-	  addi      r5, r5, 0x8
-	  addi      r9, r9, 0x8
-	  lbz       r12, 0x0(r29)
-	  lbzx      r11, r4, r11
-	  stw       r12, 0x124(r1)
-	  rlwinm    r11,r11,2,0,29
-	  stw       r0, 0x120(r1)
-	  lfd       f1, 0x120(r1)
-	  fsubs     f1, f1, f0
-	  stfsx     f1, r3, r11
-	  lwz       r29, -0x6E70(r13)
-	  lwz       r12, 0x69C(r29)
-	  addi      r11, r12, 0x1
-	  stw       r11, 0x69C(r29)
-	  lbz       r11, 0x0(r12)
-	  lbzx      r10, r4, r10
-	  stw       r11, 0x11C(r1)
-	  rlwinm    r10,r10,2,0,29
-	  stw       r0, 0x118(r1)
-	  lfd       f1, 0x118(r1)
-	  fsubs     f1, f1, f0
-	  stfsx     f1, r3, r10
+	for (;;) {
+		id = (*(__THPInfo->c)++);
 
-	.loc_0x228:
-	  rlwinm    r10,r9,0,16,31
-	  cmplwi    r10, 0x40
-	  blt+      .loc_0x68
-	  lwz       r29, -0x6E70(r13)
-	  addi      r27, r6, 0
-	  rlwinm    r28,r8,8,0,23
-	  li        r5, 0
-	  li        r8, 0
-	  b         .loc_0x394
+		for (i = 0; i < 64; i++) {
+			q_temp[__THPJpegNaturalOrder[i]] = (f32)(*(__THPInfo->c)++);
+		}
 
-	.loc_0x24C:
-	  rlwinm    r11,r5,2,14,29
-	  lfd       f1, 0x0(r27)
-	  lfsx      f2, r3, r11
-	  addi      r9, r5, 0x1
-	  rlwinm    r12,r9,2,14,29
-	  lfd       f3, 0x0(r6)
-	  fmul      f1, f2, f1
-	  addi      r9, r5, 0x2
-	  rlwinm    r26,r9,2,14,29
-	  addi      r9, r5, 0x3
-	  fmul      f1, f3, f1
-	  rlwinm    r25,r9,2,14,29
-	  addi      r10, r5, 0x4
-	  rlwinm    r24,r10,2,14,29
-	  frsp      f1, f1
-	  add       r9, r29, r11
-	  addi      r10, r5, 0x7
-	  stfsx     f1, r28, r9
-	  addi      r9, r5, 0x5
-	  rlwinm    r23,r9,2,14,29
-	  lfsx      f2, r3, r12
-	  addi      r9, r5, 0x6
-	  lfd       f1, 0x0(r27)
-	  rlwinm    r22,r9,2,14,29
-	  add       r9, r29, r12
-	  fmul      f1, f2, f1
-	  lfd       f3, 0x8(r6)
-	  rlwinm    r21,r10,2,14,29
-	  add       r30, r29, r26
-	  add       r31, r29, r25
-	  fmul      f1, f3, f1
-	  add       r12, r29, r24
-	  add       r11, r29, r23
-	  add       r10, r29, r22
-	  addi      r5, r5, 0x8
-	  frsp      f1, f1
-	  addi      r8, r8, 0x1
-	  stfsx     f1, r28, r9
-	  add       r9, r29, r21
-	  lfsx      f2, r3, r26
-	  lfd       f1, 0x0(r27)
-	  lfd       f3, 0x10(r6)
-	  fmul      f1, f2, f1
-	  fmul      f1, f3, f1
-	  frsp      f1, f1
-	  stfsx     f1, r28, r30
-	  lfsx      f2, r3, r25
-	  lfd       f1, 0x0(r27)
-	  lfd       f3, 0x18(r6)
-	  fmul      f1, f2, f1
-	  fmul      f1, f3, f1
-	  frsp      f1, f1
-	  stfsx     f1, r28, r31
-	  lfsx      f2, r3, r24
-	  lfd       f1, 0x0(r27)
-	  lfd       f3, 0x20(r6)
-	  fmul      f1, f2, f1
-	  fmul      f1, f3, f1
-	  frsp      f1, f1
-	  stfsx     f1, r28, r12
-	  lfsx      f2, r3, r23
-	  lfd       f1, 0x0(r27)
-	  lfd       f3, 0x28(r6)
-	  fmul      f1, f2, f1
-	  fmul      f1, f3, f1
-	  frsp      f1, f1
-	  stfsx     f1, r28, r11
-	  lfsx      f2, r3, r22
-	  lfd       f1, 0x0(r27)
-	  lfd       f3, 0x30(r6)
-	  fmul      f1, f2, f1
-	  fmul      f1, f3, f1
-	  frsp      f1, f1
-	  stfsx     f1, r28, r10
-	  lfd       f1, 0x0(r27)
-	  addi      r27, r27, 0x8
-	  lfsx      f2, r3, r21
-	  lfd       f3, 0x38(r6)
-	  fmul      f1, f2, f1
-	  fmul      f1, f3, f1
-	  frsp      f1, f1
-	  stfsx     f1, r28, r9
+		i = 0;
+		for (row = 0; row < 8; row++) {
+			for (col = 0; col < 8; col++) {
+				__THPInfo->quantTabs[id][i] = (f32)((f64)q_temp[i] * __THPAANScaleFactor[row] * __THPAANScaleFactor[col]);
+				i++;
+			}
+		}
 
-	.loc_0x394:
-	  rlwinm    r9,r8,0,16,31
-	  cmplwi    r9, 0x8
-	  blt+      .loc_0x24C
-	  subi      r7, r7, 0x41
-	  rlwinm.   r5,r7,0,16,31
-	  bne+      .loc_0x48
-	  li        r3, 0
-	  lmw       r21, 0x15C(r1)
-	  addi      r1, r1, 0x188
-	  blr
-	*/
+		length -= 65;
+		if (!length) {
+			break;
+		}
+	}
+
+	return 0;
 }
 
 /*
@@ -694,139 +324,43 @@ void __THPReadQuantizationTable(void)
  * Address:	800F79E4
  * Size:	0001E0
  */
-void __THPReadHuffmanTableSpecification(void)
+static u8 __THPReadHuffmanTableSpecification(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  lwz       r4, -0x6E74(r13)
-	  lwz       r3, -0x6E70(r13)
-	  addi      r0, r4, 0x101
-	  stw       r4, -0x6ED8(r13)
-	  addi      r5, r3, 0x69C
-	  stw       r0, -0x6ED4(r13)
-	  lwz       r3, 0x69C(r3)
-	  lbz       r4, 0x0(r3)
-	  addi      r0, r3, 0x2
-	  lbz       r3, 0x1(r3)
-	  rlwimi    r3,r4,8,16,23
-	  rlwinm    r30,r3,0,16,31
-	  stw       r0, 0x0(r5)
-	  subi      r30, r30, 0x2
+	u8 t_class, id, i, tab_index;
+	u16 length, num_Vij;
 
-	.loc_0x50:
-	  lwz       r5, -0x6E70(r13)
-	  li        r29, 0
-	  li        r3, 0
-	  lwz       r4, 0x69C(r5)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x69C(r5)
-	  lbz       r6, 0x0(r4)
-	  lwz       r4, -0x6E70(r13)
-	  srawi     r0, r6, 0x4
-	  lwz       r5, 0x69C(r4)
-	  rlwinm    r4,r6,1,27,30
-	  rlwinm    r0,r0,0,24,31
-	  add       r0, r4, r0
-	  stw       r5, -0x6EDC(r13)
-	  rlwinm    r31,r0,0,24,31
-	  b         .loc_0x154
+	__THPHuffmanSizeTab = __THPWorkArea;
+	__THPHuffmanCodeTab = (u16*)((u32)__THPWorkArea + 256 + 1);
+	length              = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
+	__THPInfo->c += 2;
+	length -= 2;
 
-	.loc_0x90:
-	  lwz       r5, -0x6E70(r13)
-	  addi      r3, r3, 0x8
-	  lwz       r4, 0x69C(r5)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x69C(r5)
-	  lwz       r5, -0x6E70(r13)
-	  lbz       r0, 0x0(r4)
-	  lwz       r4, 0x69C(r5)
-	  add       r29, r29, r0
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x69C(r5)
-	  lwz       r5, -0x6E70(r13)
-	  lbz       r0, 0x0(r4)
-	  lwz       r4, 0x69C(r5)
-	  add       r29, r29, r0
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x69C(r5)
-	  lwz       r5, -0x6E70(r13)
-	  lbz       r0, 0x0(r4)
-	  lwz       r4, 0x69C(r5)
-	  add       r29, r29, r0
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x69C(r5)
-	  lwz       r5, -0x6E70(r13)
-	  lbz       r0, 0x0(r4)
-	  lwz       r4, 0x69C(r5)
-	  add       r29, r29, r0
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x69C(r5)
-	  lwz       r5, -0x6E70(r13)
-	  lbz       r0, 0x0(r4)
-	  lwz       r4, 0x69C(r5)
-	  add       r29, r29, r0
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x69C(r5)
-	  lwz       r5, -0x6E70(r13)
-	  lbz       r0, 0x0(r4)
-	  lwz       r4, 0x69C(r5)
-	  add       r29, r29, r0
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x69C(r5)
-	  lwz       r5, -0x6E70(r13)
-	  lbz       r0, 0x0(r4)
-	  lwz       r4, 0x69C(r5)
-	  add       r29, r29, r0
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x69C(r5)
-	  lbz       r0, 0x0(r4)
-	  add       r29, r29, r0
+	for (;;) {
+		i                = (*(__THPInfo->c)++);
+		id               = (u8)(i & 15);
+		t_class          = (u8)(i >> 4);
+		__THPHuffmanBits = __THPInfo->c;
+		tab_index        = (u8)((id << 1) + t_class);
+		num_Vij          = 0;
 
-	.loc_0x154:
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x90
-	  mulli     r3, r31, 0xE0
-	  lwz       r5, -0x6E70(r13)
-	  lwz       r4, 0x69C(r5)
-	  addi      r0, r3, 0x340
-	  stwx      r4, r5, r0
-	  rlwinm    r0,r29,0,16,31
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  add       r0, r3, r0
-	  stw       r0, 0x69C(r4)
-	  bl        .loc_0x1E0
-	  bl        0x144
-	  mr        r3, r31
-	  bl        0x1A4
-	  lwz       r5, -0x6E70(r13)
-	  addi      r0, r29, 0x11
-	  sub       r30, r30, r0
-	  li        r0, 0x1
-	  lbz       r4, 0x6A8(r5)
-	  slw       r3, r0, r31
-	  or        r3, r4, r3
-	  rlwinm.   r0,r30,0,16,31
-	  stb       r3, 0x6A8(r5)
-	  bne+      .loc_0x50
-	  lwz       r0, 0x24(r1)
-	  li        r3, 0
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
+		for (i = 0; i < 16; i++) {
+			num_Vij += (*(__THPInfo->c)++);
+		}
 
-	.loc_0x1E0:
-	*/
+		__THPInfo->huffmanTabs[tab_index].Vij = __THPInfo->c;
+		__THPInfo->c += num_Vij;
+		__THPHuffGenerateSizeTable();
+		__THPHuffGenerateCodeTable();
+		__THPHuffGenerateDecoderTables(tab_index);
+		__THPInfo->validHuffmanTabs |= 1 << tab_index;
+		length -= 17 + num_Vij;
+
+		if (length == 0) {
+			break;
+		}
+	}
+
+	return 0;
 }
 
 /*
@@ -834,81 +368,19 @@ void __THPReadHuffmanTableSpecification(void)
  * Address:	800F7BC4
  * Size:	0000F0
  */
-void __THPHuffGenerateSizeTable(void)
+static void __THPHuffGenerateSizeTable(void)
 {
-	/*
-	.loc_0x0:
-	  li        r6, 0
-	  li        r7, 0x1
+	s32 p, l, i;
+	p = 0;
 
-	.loc_0x8:
-	  lwz       r3, -0x6EDC(r13)
-	  subi      r0, r7, 0x1
-	  rlwinm    r5,r7,0,24,31
-	  lbzx      r8, r3, r0
-	  cmpwi     r8, 0
-	  addi      r3, r8, 0
-	  beq-      .loc_0xD4
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0xBC
+	for (l = 1; l <= 16; l++) {
+		i = (s32)__THPHuffmanBits[l - 1];
+		while (i--) {
+			__THPHuffmanSizeTab[p++] = (u8)l;
+		}
+	}
 
-	.loc_0x30:
-	  lwz       r4, -0x6ED8(r13)
-	  mr        r0, r6
-	  addi      r6, r6, 0x1
-	  stbx      r5, r4, r0
-	  addi      r0, r6, 0
-	  addi      r6, r6, 0x1
-	  lwz       r4, -0x6ED8(r13)
-	  stbx      r5, r4, r0
-	  addi      r0, r6, 0
-	  addi      r6, r6, 0x1
-	  lwz       r4, -0x6ED8(r13)
-	  stbx      r5, r4, r0
-	  addi      r0, r6, 0
-	  addi      r6, r6, 0x1
-	  lwz       r4, -0x6ED8(r13)
-	  stbx      r5, r4, r0
-	  addi      r0, r6, 0
-	  addi      r6, r6, 0x1
-	  lwz       r4, -0x6ED8(r13)
-	  stbx      r5, r4, r0
-	  addi      r0, r6, 0
-	  addi      r6, r6, 0x1
-	  lwz       r4, -0x6ED8(r13)
-	  stbx      r5, r4, r0
-	  addi      r0, r6, 0
-	  addi      r6, r6, 0x1
-	  lwz       r4, -0x6ED8(r13)
-	  stbx      r5, r4, r0
-	  addi      r0, r6, 0
-	  addi      r6, r6, 0x1
-	  lwz       r4, -0x6ED8(r13)
-	  stbx      r5, r4, r0
-	  bdnz+     .loc_0x30
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0xD4
-
-	.loc_0xBC:
-	  mtctr     r3
-
-	.loc_0xC0:
-	  lwz       r4, -0x6ED8(r13)
-	  mr        r0, r6
-	  addi      r6, r6, 0x1
-	  stbx      r5, r4, r0
-	  bdnz+     .loc_0xC0
-
-	.loc_0xD4:
-	  addi      r7, r7, 0x1
-	  cmpwi     r7, 0x10
-	  ble+      .loc_0x8
-	  lwz       r3, -0x6ED8(r13)
-	  li        r0, 0
-	  stbx      r0, r3, r6
-	  blr
-	*/
+	__THPHuffmanSizeTab[p] = 0;
 }
 
 /*
@@ -916,45 +388,24 @@ void __THPHuffGenerateSizeTable(void)
  * Address:	800F7CB4
  * Size:	000068
  */
-void __THPHuffGenerateCodeTable(void)
+static void __THPHuffGenerateCodeTable(void)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, -0x6ED8(r13)
-	  li        r8, 0
-	  lwz       r5, -0x6ED4(r13)
-	  li        r9, 0
-	  lbz       r7, 0x0(r6)
-	  li        r3, 0x1
-	  b         .loc_0x54
+	u8 si;
+	u16 p, code;
 
-	.loc_0x1C:
-	  rlwinm    r4,r7,0,24,31
-	  b         .loc_0x34
+	p    = 0;
+	code = 0;
+	si   = __THPHuffmanSizeTab[0];
 
-	.loc_0x24:
-	  rlwinm    r0,r8,1,15,30
-	  sthx      r9, r5, r0
-	  addi      r8, r8, 0x1
-	  addi      r9, r9, 0x1
+	while (__THPHuffmanSizeTab[p]) {
+		while (__THPHuffmanSizeTab[p] == si) {
+			__THPHuffmanCodeTab[p++] = code;
+			code++;
+		}
 
-	.loc_0x34:
-	  rlwinm    r0,r8,0,16,31
-	  lbzx      r0, r6, r0
-	  cmplw     r4, r0
-	  beq+      .loc_0x24
-	  rlwinm    r0,r9,0,16,31
-	  slw       r0, r0, r3
-	  rlwinm    r9,r0,0,16,31
-	  addi      r7, r7, 0x1
-
-	.loc_0x54:
-	  rlwinm    r0,r8,0,16,31
-	  lbzx      r0, r6, r0
-	  cmplwi    r0, 0
-	  bne+      .loc_0x1C
-	  blr
-	*/
+		code <<= 1;
+		si++;
+	}
 }
 
 /*
@@ -962,140 +413,25 @@ void __THPHuffGenerateCodeTable(void)
  * Address:	800F7D1C
  * Size:	0001BC
  */
-void __THPHuffGenerateDecoderTables(void)
+static void __THPHuffGenerateDecoderTables(u8 tabIndex)
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r0,r3,0,24,31
-	  lwz       r4, -0x6E70(r13)
-	  mulli     r3, r0, 0xE0
-	  addi      r7, r3, 0x300
-	  li        r0, 0x4
-	  add       r7, r4, r7
-	  mtctr     r0
-	  addi      r6, r7, 0x4
-	  li        r8, 0
-	  li        r9, 0x1
+	s32 p, l;
+	THPHuffmanTab* h;
 
-	.loc_0x28:
-	  lwz       r3, -0x6EDC(r13)
-	  subi      r5, r9, 0x1
-	  lbzx      r0, r3, r5
-	  cmplwi    r0, 0
-	  beq-      .loc_0x74
-	  lwz       r3, -0x6ED4(r13)
-	  rlwinm    r0,r8,1,0,30
-	  lhzx      r0, r3, r0
-	  sub       r0, r8, r0
-	  stw       r0, 0x8C(r6)
-	  lwz       r3, -0x6EDC(r13)
-	  lwz       r4, -0x6ED4(r13)
-	  lbzx      r0, r3, r5
-	  add       r8, r8, r0
-	  rlwinm    r3,r8,1,0,30
-	  subi      r0, r3, 0x2
-	  lhzx      r0, r4, r0
-	  stw       r0, 0x44(r6)
-	  b         .loc_0x80
+	p = 0;
+	h = &__THPInfo->huffmanTabs[tabIndex];
+	for (l = 1; l <= 16; l++) {
+		if (__THPHuffmanBits[l - 1]) {
+			h->valPtr[l] = p - __THPHuffmanCodeTab[p];
+			p += __THPHuffmanBits[l - 1];
+			h->maxCode[l] = __THPHuffmanCodeTab[p - 1];
+		} else {
+			h->maxCode[l] = -1;
+			h->valPtr[l]  = -1;
+		}
+	}
 
-	.loc_0x74:
-	  li        r0, -0x1
-	  stw       r0, 0x44(r6)
-	  stw       r0, 0x8C(r6)
-
-	.loc_0x80:
-	  lwz       r3, -0x6EDC(r13)
-	  addi      r5, r9, 0
-	  addi      r9, r9, 0x1
-	  lbzx      r0, r3, r5
-	  addi      r6, r6, 0x4
-	  cmplwi    r0, 0
-	  beq-      .loc_0xD4
-	  lwz       r3, -0x6ED4(r13)
-	  rlwinm    r0,r8,1,0,30
-	  lhzx      r0, r3, r0
-	  sub       r0, r8, r0
-	  stw       r0, 0x8C(r6)
-	  lwz       r3, -0x6EDC(r13)
-	  lwz       r4, -0x6ED4(r13)
-	  lbzx      r0, r3, r5
-	  add       r8, r8, r0
-	  rlwinm    r3,r8,1,0,30
-	  subi      r0, r3, 0x2
-	  lhzx      r0, r4, r0
-	  stw       r0, 0x44(r6)
-	  b         .loc_0xE0
-
-	.loc_0xD4:
-	  li        r0, -0x1
-	  stw       r0, 0x44(r6)
-	  stw       r0, 0x8C(r6)
-
-	.loc_0xE0:
-	  lwz       r3, -0x6EDC(r13)
-	  addi      r5, r9, 0
-	  addi      r9, r9, 0x1
-	  lbzx      r0, r3, r5
-	  addi      r6, r6, 0x4
-	  cmplwi    r0, 0
-	  beq-      .loc_0x134
-	  lwz       r3, -0x6ED4(r13)
-	  rlwinm    r0,r8,1,0,30
-	  lhzx      r0, r3, r0
-	  sub       r0, r8, r0
-	  stw       r0, 0x8C(r6)
-	  lwz       r3, -0x6EDC(r13)
-	  lwz       r4, -0x6ED4(r13)
-	  lbzx      r0, r3, r5
-	  add       r8, r8, r0
-	  rlwinm    r3,r8,1,0,30
-	  subi      r0, r3, 0x2
-	  lhzx      r0, r4, r0
-	  stw       r0, 0x44(r6)
-	  b         .loc_0x140
-
-	.loc_0x134:
-	  li        r0, -0x1
-	  stw       r0, 0x44(r6)
-	  stw       r0, 0x8C(r6)
-
-	.loc_0x140:
-	  lwz       r3, -0x6EDC(r13)
-	  addi      r5, r9, 0
-	  addi      r9, r9, 0x1
-	  lbzx      r0, r3, r5
-	  addi      r6, r6, 0x4
-	  cmplwi    r0, 0
-	  beq-      .loc_0x194
-	  lwz       r3, -0x6ED4(r13)
-	  rlwinm    r0,r8,1,0,30
-	  lhzx      r0, r3, r0
-	  sub       r0, r8, r0
-	  stw       r0, 0x8C(r6)
-	  lwz       r3, -0x6EDC(r13)
-	  lwz       r4, -0x6ED4(r13)
-	  lbzx      r0, r3, r5
-	  add       r8, r8, r0
-	  rlwinm    r3,r8,1,0,30
-	  subi      r0, r3, 0x2
-	  lhzx      r0, r4, r0
-	  stw       r0, 0x44(r6)
-	  b         .loc_0x1A0
-
-	.loc_0x194:
-	  li        r0, -0x1
-	  stw       r0, 0x44(r6)
-	  stw       r0, 0x8C(r6)
-
-	.loc_0x1A0:
-	  addi      r6, r6, 0x4
-	  addi      r9, r9, 0x1
-	  bdnz+     .loc_0x28
-	  lis       r3, 0x10
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x88(r7)
-	  blr
-	*/
+	h->maxCode[17] = 0xfffffL;
 }
 
 /*
@@ -1103,32 +439,53 @@ void __THPHuffGenerateDecoderTables(void)
  * Address:	800F7ED8
  * Size:	000054
  */
-void __THPRestartDefinition(void)
+static void __THPRestartDefinition(void)
 {
-	/*
-	.loc_0x0:
-	  lwz       r3, -0x6E70(r13)
-	  li        r0, 0x1
-	  stb       r0, 0x6A9(r3)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x2
-	  stw       r0, 0x69C(r4)
-	  lwz       r5, -0x6E70(r13)
-	  lwz       r4, 0x69C(r5)
-	  lbz       r3, 0x0(r4)
-	  lbz       r0, 0x1(r4)
-	  rlwimi    r0,r3,8,16,23
-	  sth       r0, 0x6AA(r5)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x69C(r4)
-	  addi      r0, r3, 0x2
-	  stw       r0, 0x69C(r4)
-	  lwz       r3, -0x6E70(r13)
-	  lhz       r0, 0x6AA(r3)
-	  sth       r0, 0x6AC(r3)
-	  blr
-	*/
+	__THPInfo->RST = TRUE;
+	__THPInfo->c += 2;
+	__THPInfo->nMCU = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
+	__THPInfo->c += 2;
+	__THPInfo->currMCU = __THPInfo->nMCU;
+}
+
+static inline void __THPGQRSetup(void)
+{
+	register u32 tmp1, tmp2;
+
+	// clang-format off
+    asm {
+        mfspr   tmp1, GQR5;
+        mfspr   tmp2, GQR6;
+    }
+	// clang-format on
+
+	__THPOldGQR5 = tmp1;
+	__THPOldGQR6 = tmp2;
+
+	// clang-format off
+	asm {
+        li      r3, 0x0007
+        oris    r3, r3, 0x0007
+        mtspr   GQR5, r3
+        li      r3, 0x3D04
+        oris    r3, r3, 0x3D04
+        mtspr   GQR6, r3
+    }
+	// clang-format on
+}
+
+static inline void __THPGQRRestore(void)
+{
+	register u32 tmp1, tmp2;
+	tmp1 = __THPOldGQR5;
+	tmp2 = __THPOldGQR6;
+
+	// clang-format off
+	asm {
+        mtspr   GQR5, tmp1;
+        mtspr   GQR6, tmp2;
+    }
+	// clang-format on
 }
 
 /*
@@ -1138,178 +495,60 @@ void __THPRestartDefinition(void)
  */
 void __THPPrepBitStream(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r0, 0x69C(r3)
-	  addi      r4, r3, 0x6A4
-	  lwz       r3, 0x6A4(r3)
-	  rlwinm    r5,r0,0,0,29
-	  cmplwi    r3, 0x21
-	  rlwinm    r0,r0,0,30,31
-	  beq-      .loc_0x3C
-	  subfic    r0, r0, 0x3
-	  rlwinm    r0,r0,3,0,28
-	  sub       r0, r3, r0
-	  stw       r0, 0x0(r4)
-	  b         .loc_0x48
+	u32* ptr;
+	u32 offset, i, j, k;
 
-	.loc_0x3C:
-	  rlwinm    r3,r0,3,0,28
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r4)
+	ptr    = (u32*)((u32)__THPInfo->c & 0xFFFFFFFC);
+	offset = (u32)__THPInfo->c & 3;
 
-	.loc_0x48:
-	  lwz       r4, -0x6E70(r13)
-	  li        r3, 0
-	  li        r8, 0
-	  stw       r5, 0x69C(r4)
-	  lwz       r0, 0x0(r5)
-	  lwz       r4, -0x6E70(r13)
-	  stw       r0, 0x6A0(r4)
+	if (__THPInfo->cnt != 33) {
+		__THPInfo->cnt -= (3 - offset) * 8;
+	} else {
+		__THPInfo->cnt = (offset * 8) + 1;
+	}
 
-	.loc_0x64:
-	  lwz       r4, -0x6E70(r13)
-	  li        r0, 0x1
-	  slw       r0, r0, r3
-	  lbz       r4, 0x6A8(r4)
-	  and.      r0, r4, r0
-	  beq-      .loc_0x190
-	  li        r0, 0x10
-	  mtctr     r0
-	  addi      r7, r8, 0
-	  li        r12, 0
+	__THPInfo->c        = (u8*)ptr;
+	__THPInfo->currByte = *ptr;
 
-	.loc_0x8C:
-	  lwz       r0, -0x6E70(r13)
-	  li        r5, 0xFF
-	  li        r31, 0
-	  add       r4, r0, r12
-	  addi      r0, r4, 0x300
-	  stbx      r5, r8, r0
-	  b         .loc_0xFC
+	for (i = 0; i < 4; i++) {
+		if (__THPInfo->validHuffmanTabs & (1 << i)) {
+			for (j = 0; j < 32; j++) {
+				__THPInfo->huffmanTabs[i].quick[j] = 0xFF;
 
-	.loc_0xA8:
-	  lwz       r11, -0x6E70(r13)
-	  subfic    r4, r31, 0x4
-	  rlwinm    r0,r31,2,0,29
-	  add       r5, r8, r11
-	  add       r10, r5, r0
-	  lwz       r0, 0x348(r10)
-	  srw       r9, r12, r4
-	  cmpw      r9, r0
-	  bgt-      .loc_0xF8
-	  lwz       r6, 0x340(r5)
-	  addi      r5, r31, 0x1
-	  lwz       r4, 0x390(r10)
-	  addi      r0, r11, 0x300
-	  li        r31, 0x63
-	  add       r4, r4, r6
-	  lbzx      r4, r9, r4
-	  stbx      r4, r7, r0
-	  lwz       r4, -0x6E70(r13)
-	  addi      r0, r4, 0x320
-	  stbx      r5, r7, r0
+				for (k = 0; k < 5; k++) {
+					s32 code = (s32)(j >> (5 - k - 1));
 
-	.loc_0xF8:
-	  addi      r31, r31, 0x1
+					if (code <= __THPInfo->huffmanTabs[i].maxCode[k + 1]) {
+						__THPInfo->huffmanTabs[i].quick[j]
+						    = __THPInfo->huffmanTabs[i].Vij[(s32)(code + __THPInfo->huffmanTabs[i].valPtr[k + 1])];
+						__THPInfo->huffmanTabs[i].increment[j] = (u8)(k + 1);
+						k                                      = 99;
+					} else {
+					}
+				}
+			}
+		}
+	}
 
-	.loc_0xFC:
-	  cmplwi    r31, 0x5
-	  blt+      .loc_0xA8
-	  lwz       r0, -0x6E70(r13)
-	  addi      r12, r12, 0x1
-	  li        r5, 0xFF
-	  add       r4, r0, r12
-	  addi      r0, r4, 0x300
-	  stbx      r5, r8, r0
-	  li        r31, 0
-	  addi      r7, r7, 0x1
-	  b         .loc_0x17C
+	{
+		s32 YdcTab, UdcTab, VdcTab, YacTab, UacTab, VacTab;
 
-	.loc_0x128:
-	  lwz       r11, -0x6E70(r13)
-	  subfic    r4, r31, 0x4
-	  rlwinm    r0,r31,2,0,29
-	  add       r5, r8, r11
-	  add       r10, r5, r0
-	  lwz       r0, 0x348(r10)
-	  srw       r9, r12, r4
-	  cmpw      r9, r0
-	  bgt-      .loc_0x178
-	  lwz       r6, 0x340(r5)
-	  addi      r5, r31, 0x1
-	  lwz       r4, 0x390(r10)
-	  addi      r0, r11, 0x300
-	  li        r31, 0x63
-	  add       r4, r4, r6
-	  lbzx      r4, r9, r4
-	  stbx      r4, r7, r0
-	  lwz       r4, -0x6E70(r13)
-	  addi      r0, r4, 0x320
-	  stbx      r5, r7, r0
+		YdcTab = (__THPInfo->components[0].DCTableSelector << 1);
+		UdcTab = (__THPInfo->components[1].DCTableSelector << 1);
+		VdcTab = (__THPInfo->components[2].DCTableSelector << 1);
 
-	.loc_0x178:
-	  addi      r31, r31, 0x1
+		YacTab = (__THPInfo->components[0].ACTableSelector << 1) + 1;
+		UacTab = (__THPInfo->components[1].ACTableSelector << 1) + 1;
+		VacTab = (__THPInfo->components[2].ACTableSelector << 1) + 1;
 
-	.loc_0x17C:
-	  cmplwi    r31, 0x5
-	  blt+      .loc_0x128
-	  addi      r7, r7, 0x1
-	  addi      r12, r12, 0x1
-	  bdnz+     .loc_0x8C
+		Ydchuff = &__THPInfo->huffmanTabs[YdcTab];
+		Udchuff = &__THPInfo->huffmanTabs[UdcTab];
+		Vdchuff = &__THPInfo->huffmanTabs[VdcTab];
 
-	.loc_0x190:
-	  addi      r3, r3, 0x1
-	  cmplwi    r3, 0x4
-	  addi      r8, r8, 0xE0
-	  blt+      .loc_0x64
-	  lwz       r9, -0x6E70(r13)
-	  lbz       r4, 0x682(r9)
-	  lbz       r0, 0x688(r9)
-	  lbz       r3, 0x68E(r9)
-	  rlwinm    r5,r4,1,0,30
-	  lbz       r7, 0x687(r9)
-	  rlwinm    r4,r0,1,0,30
-	  lbz       r6, 0x68D(r9)
-	  lbz       r0, 0x681(r9)
-	  rlwinm    r3,r3,1,0,30
-	  rlwinm    r7,r7,1,0,30
-	  rlwinm    r6,r6,1,0,30
-	  addi      r5, r5, 0x1
-	  addi      r4, r4, 0x1
-	  addi      r3, r3, 0x1
-	  rlwinm    r0,r0,1,0,30
-	  mulli     r8, r0, 0xE0
-	  mulli     r7, r7, 0xE0
-	  mulli     r6, r6, 0xE0
-	  mulli     r5, r5, 0xE0
-	  mulli     r4, r4, 0xE0
-	  mulli     r3, r3, 0xE0
-	  addi      r8, r8, 0x300
-	  addi      r7, r7, 0x300
-	  addi      r6, r6, 0x300
-	  addi      r5, r5, 0x300
-	  addi      r4, r4, 0x300
-	  addi      r0, r3, 0x300
-	  add       r8, r9, r8
-	  add       r3, r9, r7
-	  stw       r8, -0x6F80(r13)
-	  add       r6, r9, r6
-	  add       r5, r9, r5
-	  stw       r3, -0x6F60(r13)
-	  add       r3, r9, r4
-	  add       r0, r9, r0
-	  stw       r6, -0x6F40(r13)
-	  stw       r5, -0x6F20(r13)
-	  stw       r3, -0x6F00(r13)
-	  stw       r0, -0x6EE0(r13)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  blr
-	*/
+		Yachuff = &__THPInfo->huffmanTabs[YacTab];
+		Uachuff = &__THPInfo->huffmanTabs[UacTab];
+		Vachuff = &__THPInfo->huffmanTabs[VacTab];
+	}
 }
 
 /*
@@ -1317,96 +556,654 @@ void __THPPrepBitStream(void)
  * Address:	800F8178
  * Size:	00010C
  */
-void __THPDecompressYUV(void)
+static void __THPDecompressYUV(void* tileY, void* tileU, void* tileV)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  lwz       r6, -0x6E70(r13)
-	  stw       r3, 0x6B0(r6)
-	  lwz       r6, -0x6E70(r13)
-	  stw       r4, 0x6B4(r6)
-	  lwz       r4, -0x6E70(r13)
-	  stw       r5, 0x6B8(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lhz       r31, 0x698(r4)
-	  lhz       r30, 0x694(r4)
-	  mfspr     r4, 0x395
-	  mfspr     r0, 0x396
-	  stw       r4, -0x6E7C(r13)
-	  stw       r0, -0x6E78(r13)
-	  li        r3, 0x7
-	  oris      r3, r3, 0x7
-	  mtspr     917, r3
-	  li        r3, 0x3D04
-	  oris      r3, r3, 0x3D04
-	  mtspr     918, r3
-	  bl        -0x2AC
-	  lwz       r4, -0x6E70(r13)
-	  lhz       r0, 0x692(r4)
-	  cmplwi    r0, 0x200
-	  bne-      .loc_0x98
-	  cmplwi    r30, 0x1C0
-	  bne-      .loc_0x98
-	  b         .loc_0x88
+	u16 currentY, targetY;
+	__THPInfo->dLC[0] = tileY;
+	__THPInfo->dLC[1] = tileU;
+	__THPInfo->dLC[2] = tileV;
 
-	.loc_0x80:
-	  bl        .loc_0x10C
-	  addi      r31, r31, 0x10
+	currentY = __THPInfo->decompressedY;
+	targetY  = __THPInfo->yPixelSize;
 
-	.loc_0x88:
-	  rlwinm    r0,r31,0,16,31
-	  cmplw     r0, r30
-	  blt+      .loc_0x80
-	  b         .loc_0xE4
+	__THPGQRSetup();
+	__THPPrepBitStream();
 
-	.loc_0x98:
-	  lwz       r4, -0x6E70(r13)
-	  lhz       r0, 0x692(r4)
-	  cmplwi    r0, 0x280
-	  bne-      .loc_0xD8
-	  cmplwi    r30, 0x1E0
-	  bne-      .loc_0xD8
-	  b         .loc_0xBC
+	if (__THPInfo->xPixelSize == 512 && targetY == 448) {
+		while (currentY < targetY) {
+			__THPDecompressiMCURow512x448();
+			currentY += 16;
+		}
+	} else if (__THPInfo->xPixelSize == 640 && targetY == 480) {
+		while (currentY < targetY) {
+			__THPDecompressiMCURow640x480();
+			currentY += 16;
+		}
+	} else {
+		while (currentY < targetY) {
+			__THPDecompressiMCURowNxN();
+			currentY += 16;
+		}
+	}
 
-	.loc_0xB4:
-	  bl        0x1AE0
-	  addi      r31, r31, 0x10
+	__THPGQRRestore();
+}
 
-	.loc_0xBC:
-	  rlwinm    r0,r31,0,16,31
-	  cmplw     r0, r30
-	  blt+      .loc_0xB4
-	  b         .loc_0xE4
-	  b         .loc_0xD8
+inline void __THPInverseDCTNoYPos(register THPCoeff* in, register u32 xPos)
+{
+	register f32 *q, *ws;
+	register f32 tmp0, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9;
+	register f32 tmp10, tmp11, tmp12, tmp13;
+	register f32 tmp20, tmp21, tmp22, tmp23;
+	register f32 cc4    = 1.414213562F;
+	register f32 cc2    = 1.847759065F;
+	register f32 cc2c6s = 1.082392200F;
+	register f32 cc2c6a = -2.613125930F;
+	register f32 bias   = 1024.0F;
+	q                   = Gq;
+	ws                  = &__THPIDCTWorkspace[0] - 2;
 
-	.loc_0xD0:
-	  bl        0x3550
-	  addi      r31, r31, 0x10
+	{
+		register u32 itmp0, itmp1, itmp2, itmp3;
+		// clang-format off
+        asm {
+            li          itmp2, 8
+            mtctr       itmp2
 
-	.loc_0xD8:
-	  rlwinm    r0,r31,0,16,31
-	  cmplw     r0, r30
-	  blt+      .loc_0xD0
+        _loopHead0:
+            psq_l       tmp10, 0(in), 0, 5
+            psq_l       tmp11, 0(q), 0, 0
+            lwz         itmp0, 12(in)
+            lwz         itmp3, 8(in)
+            ps_mul      tmp10, tmp10, tmp11
+            lwz         itmp1, 4(in)
+            lhz         itmp2, 2(in)
+            or.         itmp0, itmp0, itmp3
 
-	.loc_0xE4:
-	  lwz       r4, -0x6E7C(r13)
-	  lwz       r0, -0x6E78(r13)
-	  mtspr     917, r4
-	  mtspr     918, r0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
+        _loopHead1:
+            cmpwi       itmp0, 0
+            bne         _regularIDCT
+            ps_merge00  tmp0, tmp10, tmp10
+            cmpwi       itmp1, 0
+            psq_st      tmp0, 8(ws), 0, 0
+            bne         _halfIDCT
+            psq_st      tmp0, 16(ws), 0, 0
+            cmpwi       itmp2, 0
+            psq_st      tmp0, 24(ws), 0, 0
+            bne         _quarterIDCT
+            addi        q, q, 8*sizeof(f32)
+            psq_stu     tmp0, 32(ws), 0, 0
+            addi        in, in, 8*sizeof(THPCoeff)
+            bdnz        _loopHead0
+            b           _loopEnd
 
-	.loc_0x10C:
-	*/
+        _quarterIDCT:
+            addi        in, in, 8*sizeof(THPCoeff)
+            ps_msub     tmp2, tmp10, cc2, tmp10
+            addi        q, q, 8*sizeof(f32)
+            ps_merge00  tmp9, tmp10, tmp10
+            lwz         itmp1, 4(in)
+            ps_sub      tmp1, cc2, cc2c6s
+            ps_msub     tmp3, tmp10, cc4, tmp2
+            lhz         itmp2, 2(in)
+            ps_merge11  tmp5, tmp10, tmp2
+            psq_l       tmp11, 0(q), 0, 0
+            ps_nmsub    tmp4, tmp10, tmp1, tmp3
+            ps_add      tmp7, tmp9, tmp5
+            psq_l       tmp10, 0(in), 0, 5
+            ps_merge11  tmp6, tmp3, tmp4
+            ps_sub      tmp5, tmp9, tmp5
+            lwz         itmp0, 12(in)
+            ps_add      tmp8, tmp9, tmp6
+            lwz         itmp3, 8(in)
+            ps_sub      tmp6, tmp9, tmp6
+            psq_stu     tmp7, 8(ws), 0, 0
+            ps_merge10  tmp6, tmp6, tmp6
+            psq_stu     tmp8, 8(ws), 0, 0
+            ps_merge10  tmp5, tmp5, tmp5
+            or          itmp0, itmp0, itmp3
+            psq_stu     tmp6, 8(ws), 0, 0
+            ps_mul      tmp10, tmp10, tmp11
+            psq_stu     tmp5, 8(ws), 0, 0
+            bdnz        _loopHead1
+            b           _loopEnd
+
+        _halfIDCT:
+            psq_l       tmp1, 4(in), 0, 5
+            psq_l       tmp9, 8(q), 0, 0
+            addi        in, in, 8*sizeof(THPCoeff)
+            ps_mul      tmp1, tmp1, tmp9
+            addi        q, q, 8*sizeof(f32)
+            ps_sub      tmp3, tmp10, tmp1
+            ps_add      tmp2, tmp10, tmp1
+            lwz         itmp0, 12(in)
+            ps_madd     tmp4, tmp1, cc4, tmp3
+            ps_nmsub    tmp5, tmp1, cc4, tmp2
+            ps_mul      tmp8, tmp3, cc2
+            ps_merge00  tmp4, tmp2, tmp4
+            lwz         itmp3, 8(in)
+            ps_nmsub    tmp6, tmp1, cc2c6a, tmp8
+            ps_merge00  tmp5, tmp5, tmp3
+            lwz         itmp1, 4(in)
+            ps_sub      tmp6, tmp6, tmp2
+            ps_nmsub    tmp7, tmp10, cc2c6s, tmp8
+            lhz         itmp2, 2(in)
+            ps_merge11  tmp2, tmp2, tmp6
+            ps_msub     tmp8, tmp3, cc4, tmp6
+            psq_l       tmp10, 0(in), 0, 5
+            ps_add      tmp9, tmp4, tmp2
+            ps_sub      tmp7, tmp7, tmp8
+            psq_l       tmp11, 0(q), 0, 0
+            ps_merge11  tmp3, tmp8, tmp7
+            ps_sub      tmp4, tmp4, tmp2
+            psq_stu     tmp9, 8(ws), 0, 0
+            ps_add      tmp0, tmp5, tmp3
+            ps_sub      tmp1, tmp5, tmp3
+            or          itmp0, itmp0, itmp3
+            psq_stu     tmp0, 8(ws), 0, 0
+            ps_merge10  tmp1, tmp1, tmp1
+            ps_merge10  tmp4, tmp4, tmp4
+            psq_stu     tmp1, 8(ws), 0, 0
+            ps_mul      tmp10, tmp10, tmp11
+            psq_stu     tmp4, 8(ws), 0, 0
+            bdnz        _loopHead1
+            b           _loopEnd
+
+        _regularIDCT:
+            psq_l       tmp9, 4(in), 0, 5
+            psq_l       tmp5, 8(q), 0, 0
+            ps_mul      tmp9, tmp9, tmp5
+            psq_l       tmp2, 8(in), 0, 5
+            psq_l       tmp6, 16(q), 0, 0
+            ps_merge01  tmp0, tmp10, tmp9
+            psq_l       tmp3, 12(in), 0, 5
+            ps_merge01  tmp1, tmp9, tmp10
+            psq_l       tmp7, 24(q), 0, 0
+            addi        in, in, 8*sizeof(THPCoeff)
+            ps_madd     tmp4, tmp2, tmp6, tmp0
+            ps_nmsub    tmp5, tmp2, tmp6, tmp0
+            ps_madd     tmp6, tmp3, tmp7, tmp1
+            ps_nmsub    tmp7, tmp3, tmp7, tmp1
+            addi        q, q, 8*sizeof(f32)
+            ps_add      tmp0, tmp4, tmp6
+            ps_sub      tmp3, tmp4, tmp6
+            ps_msub     tmp2, tmp7, cc4, tmp6
+            lwz         itmp0, 12(in)
+            ps_sub      tmp8, tmp7, tmp5
+            ps_add      tmp1, tmp5, tmp2
+            ps_sub      tmp2, tmp5, tmp2
+            ps_mul      tmp8, tmp8, cc2
+            lwz         itmp3, 8(in)
+            ps_merge00  tmp1, tmp0, tmp1
+            ps_nmsub    tmp6, tmp5, cc2c6a, tmp8
+            ps_msub     tmp4, tmp7, cc2c6s, tmp8
+            lwz         itmp1, 4(in)
+            ps_sub      tmp6, tmp6, tmp0
+            ps_merge00  tmp2, tmp2, tmp3
+            lhz         itmp2, 2(in)
+            ps_madd     tmp5, tmp3, cc4, tmp6
+            ps_merge11  tmp7, tmp0, tmp6
+            psq_l       tmp10, 0(in), 0, 5
+            ps_sub      tmp4, tmp4, tmp5
+            ps_add      tmp3, tmp1, tmp7
+            psq_l       tmp11, 0(q), 0, 0
+            ps_merge11  tmp4, tmp5, tmp4
+            ps_sub      tmp0, tmp1, tmp7
+            ps_mul      tmp10, tmp10, tmp11
+            ps_add      tmp5, tmp2, tmp4
+            ps_sub      tmp6, tmp2, tmp4
+            ps_merge10  tmp5, tmp5, tmp5
+            psq_stu     tmp3, 8(ws), 0, 0
+            ps_merge10  tmp0, tmp0, tmp0
+            psq_stu     tmp6, 8(ws), 0, 0
+            psq_stu     tmp5, 8(ws), 0, 0
+            or          itmp0, itmp0, itmp3
+            psq_stu     tmp0, 8(ws), 0, 0
+            bdnz        _loopHead1
+
+        _loopEnd:
+
+        }
+		// clang-format on
+	}
+
+	ws = &__THPIDCTWorkspace[0];
+
+	{
+		register THPSample* obase = Gbase;
+		register u32 wid          = Gwid;
+
+		register u32 itmp0, off0, off1;
+		register THPSample *out0, *out1;
+
+		// clang-format off
+		asm {
+            psq_l       tmp10, 8*0*sizeof(f32)(ws), 0, 0
+            slwi        xPos, xPos, 2
+            psq_l       tmp11, 8*4*sizeof(f32)(ws), 0, 0
+            slwi        off1, wid, 2
+            psq_l       tmp12, 8*2*sizeof(f32)(ws), 0, 0
+            mr         off0, xPos
+            ps_add      tmp6, tmp10, tmp11
+            psq_l       tmp13, 8*6*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp8, tmp10, tmp11
+            add         off1, off0, off1
+            ps_add      tmp6, tmp6, bias
+            li      itmp0, 3
+            ps_add      tmp7, tmp12, tmp13
+            add         out0, obase, off0
+            ps_sub      tmp9, tmp12, tmp13
+            ps_add      tmp0, tmp6, tmp7
+            add         out1, obase, off1
+            ps_add      tmp8, tmp8, bias
+            mtctr   itmp0
+
+        _loopHead10:
+            psq_l       tmp4, 8*1*sizeof(f32)(ws), 0, 0
+            ps_msub     tmp9, tmp9, cc4, tmp7
+            psq_l       tmp5, 8*3*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp3, tmp6, tmp7
+            ps_add      tmp1, tmp8, tmp9
+            psq_l       tmp6, 8*5*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp2, tmp8, tmp9
+            psq_l       tmp7, 8*7*sizeof(f32)(ws), 0, 0
+            ps_add      tmp8, tmp6, tmp5
+            ps_sub      tmp6, tmp6, tmp5
+            addi        ws, ws, 2*sizeof(f32)
+            ps_add      tmp9, tmp4, tmp7
+            ps_sub      tmp4, tmp4, tmp7
+            psq_l       tmp10, 8*0*sizeof(f32)(ws), 0, 0
+            ps_add      tmp7, tmp9, tmp8
+            ps_sub      tmp5, tmp9, tmp8
+            ps_add      tmp8, tmp6, tmp4
+            psq_l       tmp11, 8*4*sizeof(f32)(ws), 0, 0
+            ps_add      tmp9, tmp0, tmp7
+            ps_mul      tmp8, tmp8, cc2
+            psq_l       tmp12, 8*2*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp23, tmp0, tmp7
+            ps_madd     tmp6, tmp6, cc2c6a, tmp8
+            psq_l       tmp13, 8*6*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp6, tmp6, tmp7
+            addi        off0, off0, 2*sizeof(THPSample)
+            psq_st      tmp9, 0(out0), 0, 6
+            ps_msub     tmp4, tmp4, cc2c6s, tmp8
+            ps_add      tmp9, tmp1, tmp6
+            ps_msub     tmp5, tmp5, cc4, tmp6
+            ps_sub      tmp22, tmp1, tmp6
+            psq_st      tmp9, 8(out0), 0, 6
+            ps_add      tmp8, tmp2, tmp5
+            ps_add      tmp4, tmp4, tmp5
+            psq_st      tmp8, 16(out0), 0, 6
+            addi        off1, off1, 2*sizeof(THPSample)
+            ps_sub      tmp9, tmp3, tmp4
+            ps_add      tmp20, tmp3, tmp4
+            psq_st      tmp9, 24(out0), 0, 6
+            ps_sub      tmp21, tmp2, tmp5
+            ps_add      tmp6, tmp10, tmp11
+            psq_st      tmp20, 0(out1), 0, 6
+            ps_sub      tmp8, tmp10, tmp11
+            ps_add      tmp6, tmp6, bias
+            psq_st      tmp21, 8(out1), 0, 6
+            ps_add      tmp7, tmp12, tmp13
+            ps_sub      tmp9, tmp12, tmp13
+            psq_st      tmp22, 16(out1), 0, 6
+            add         out0, obase, off0
+            ps_add      tmp0, tmp6, tmp7
+            psq_st      tmp23, 24(out1), 0, 6
+            ps_add      tmp8, tmp8, bias
+            add         out1, obase, off1
+            bdnz        _loopHead10
+            psq_l       tmp4, 8*1*sizeof(f32)(ws), 0, 0
+            ps_msub     tmp9, tmp9, cc4, tmp7
+            psq_l       tmp5, 8*3*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp3, tmp6, tmp7
+            ps_add      tmp1, tmp8, tmp9
+            psq_l       tmp6, 8*5*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp2, tmp8, tmp9
+            psq_l       tmp7, 8*7*sizeof(f32)(ws), 0, 0
+            ps_add      tmp8, tmp6, tmp5
+            ps_sub      tmp6, tmp6, tmp5
+            ps_add      tmp9, tmp4, tmp7
+            ps_sub      tmp4, tmp4, tmp7
+            ps_add      tmp7, tmp9, tmp8
+            ps_sub      tmp5, tmp9, tmp8
+            ps_add      tmp8, tmp6, tmp4
+            ps_add      tmp9, tmp0, tmp7
+            ps_mul      tmp8, tmp8, cc2
+            ps_sub      tmp23, tmp0, tmp7
+            ps_madd     tmp6, tmp6, cc2c6a, tmp8
+            psq_st      tmp9, 0(out0), 0, 6
+            ps_sub      tmp6, tmp6, tmp7
+            ps_msub     tmp4, tmp4, cc2c6s, tmp8
+            psq_st      tmp23, 24(out1), 0, 6
+            ps_add      tmp9, tmp1, tmp6
+            ps_msub     tmp5, tmp5, cc4, tmp6
+            ps_sub      tmp22, tmp1, tmp6
+            psq_st      tmp9, 8(out0), 0, 6
+            ps_add      tmp8, tmp2, tmp5
+            ps_add      tmp4, tmp4, tmp5
+            psq_st      tmp22, 16(out1), 0, 6
+            psq_st      tmp8, 16(out0), 0, 6
+            ps_sub      tmp9, tmp3, tmp4
+            ps_add      tmp20, tmp3, tmp4
+            psq_st      tmp9, 24(out0), 0, 6
+            ps_sub      tmp21, tmp2, tmp5
+            psq_st      tmp20, 0(out1), 0, 6
+            psq_st      tmp21, 8(out1), 0, 6
+        }
+		// clang-format on
+	}
+}
+
+inline void __THPInverseDCTY8(register THPCoeff* in, register u32 xPos)
+{
+	register f32 *q, *ws;
+	register f32 tmp0, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9;
+	register f32 tmp10, tmp11, tmp12, tmp13;
+	register f32 tmp20, tmp21, tmp22, tmp23;
+	register f32 cc4    = 1.414213562F;
+	register f32 cc2    = 1.847759065F;
+	register f32 cc2c6s = 1.082392200F;
+	register f32 cc2c6a = -2.613125930F;
+	register f32 bias   = 1024.0F;
+
+	q  = Gq;
+	ws = &__THPIDCTWorkspace[0] - 2;
+
+	{
+		register u32 itmp0, itmp1, itmp2, itmp3;
+
+		// clang-format off
+		asm {
+            li          itmp2, 8
+            mtctr       itmp2
+
+        _loopHead0:
+            psq_l       tmp10, 0(in), 0, 5
+            psq_l       tmp11, 0(q), 0, 0
+            lwz         itmp0, 12(in)
+            lwz         itmp3, 8(in)
+            ps_mul      tmp10, tmp10, tmp11
+            lwz         itmp1, 4(in)
+            lhz         itmp2, 2(in)
+            or          itmp0, itmp0, itmp3
+
+        _loopHead1:
+            cmpwi       itmp0, 0
+            bne         _regularIDCT
+            ps_merge00  tmp0, tmp10, tmp10
+            cmpwi       itmp1, 0
+            psq_st      tmp0, 8(ws), 0, 0
+            bne         _halfIDCT
+            psq_st      tmp0, 16(ws), 0, 0
+            cmpwi       itmp2, 0
+            psq_st      tmp0, 24(ws), 0, 0
+            bne         _quarterIDCT
+            addi        q, q, 8*sizeof(f32)
+            psq_stu     tmp0, 32(ws), 0, 0
+            addi        in, in, 8*sizeof(THPCoeff)
+            bdnz        _loopHead0
+            b           _loopEnd
+
+        _quarterIDCT:
+            ps_msub     tmp2, tmp10, cc2, tmp10
+            addi        in, in, 8*sizeof(THPCoeff)
+            ps_merge00  tmp9, tmp10, tmp10
+            addi        q, q, 8*sizeof(f32)
+            ps_sub      tmp1, cc2, cc2c6s
+            lwz         itmp1, 4(in)
+            ps_msub     tmp3, tmp10, cc4, tmp2
+            lhz         itmp2, 2(in)
+            ps_merge11  tmp5, tmp10, tmp2
+            psq_l       tmp11, 0(q), 0, 0
+            ps_nmsub    tmp4, tmp10, tmp1, tmp3
+            ps_add      tmp7, tmp9, tmp5
+            psq_l       tmp10, 0(in), 0, 5
+            ps_merge11  tmp6, tmp3, tmp4
+            ps_sub      tmp5, tmp9, tmp5
+            lwz         itmp0, 12(in)
+            ps_add      tmp8, tmp9, tmp6
+            lwz         itmp3, 8(in)
+            ps_sub      tmp6, tmp9, tmp6
+            psq_stu     tmp7, 8(ws), 0, 0
+            ps_merge10  tmp6, tmp6, tmp6
+            psq_stu     tmp8, 8(ws), 0, 0
+            ps_merge10  tmp5, tmp5, tmp5
+            or          itmp0, itmp0, itmp3
+            psq_stu     tmp6, 8(ws), 0, 0
+            ps_mul      tmp10, tmp10, tmp11
+            psq_stu     tmp5, 8(ws), 0, 0
+            bdnz        _loopHead1
+            b           _loopEnd
+
+        _halfIDCT:
+            psq_l       tmp1, 4(in), 0, 5
+            psq_l       tmp9, 8(q), 0, 0
+            addi        in, in, 8*sizeof(THPCoeff)
+            ps_mul      tmp1, tmp1, tmp9
+            addi        q, q, 8*sizeof(f32)
+            ps_sub      tmp3, tmp10, tmp1
+            ps_add      tmp2, tmp10, tmp1
+            lwz         itmp0, 12(in)
+            ps_madd     tmp4, tmp1, cc4, tmp3
+            ps_nmsub    tmp5, tmp1, cc4, tmp2
+            ps_mul      tmp8, tmp3, cc2
+            ps_merge00  tmp4, tmp2, tmp4
+            lwz         itmp3, 8(in)
+            ps_nmsub    tmp6, tmp1, cc2c6a, tmp8
+            ps_merge00  tmp5, tmp5, tmp3
+            lwz         itmp1, 4(in)
+            ps_sub      tmp6, tmp6, tmp2
+            ps_nmsub    tmp7, tmp10, cc2c6s, tmp8
+            lhz         itmp2, 2(in)
+            ps_merge11  tmp2, tmp2, tmp6
+            ps_msub     tmp8, tmp3, cc4, tmp6
+            psq_l       tmp10, 0(in), 0, 5
+            ps_add      tmp9, tmp4, tmp2
+            ps_sub      tmp7, tmp7, tmp8
+            psq_l       tmp11, 0(q), 0, 0
+            ps_merge11  tmp3, tmp8, tmp7
+            ps_sub      tmp4, tmp4, tmp2
+            psq_stu     tmp9, 8(ws), 0, 0
+            ps_add      tmp0, tmp5, tmp3
+            ps_sub      tmp1, tmp5, tmp3
+            or          itmp0, itmp0, itmp3
+            psq_stu     tmp0, 8(ws), 0, 0
+            ps_merge10  tmp1, tmp1, tmp1
+            ps_merge10  tmp4, tmp4, tmp4
+            psq_stu     tmp1, 8(ws), 0, 0
+            ps_mul      tmp10, tmp10, tmp11
+            psq_stu     tmp4, 8(ws), 0, 0
+            bdnz        _loopHead1
+            b           _loopEnd
+
+        _regularIDCT:
+            psq_l       tmp9, 4(in), 0, 5
+            psq_l       tmp5, 8(q), 0, 0
+            ps_mul      tmp9, tmp9, tmp5
+            psq_l       tmp2, 8(in), 0, 5
+            psq_l       tmp6, 16(q), 0, 0
+            ps_merge01  tmp0, tmp10, tmp9
+            psq_l       tmp3, 12(in), 0, 5
+            ps_merge01  tmp1, tmp9, tmp10
+            psq_l       tmp7, 24(q), 0, 0
+            addi        in, in, 8*sizeof(THPCoeff)
+            ps_madd     tmp4, tmp2, tmp6, tmp0
+            ps_nmsub    tmp5, tmp2, tmp6, tmp0
+            ps_madd     tmp6, tmp3, tmp7, tmp1
+            ps_nmsub    tmp7, tmp3, tmp7, tmp1
+            addi        q, q, 8*sizeof(f32)
+            ps_add      tmp0, tmp4, tmp6
+            ps_sub      tmp3, tmp4, tmp6
+            ps_msub     tmp2, tmp7, cc4, tmp6
+            lwz         itmp0, 12(in)
+            ps_sub      tmp8, tmp7, tmp5
+            ps_add      tmp1, tmp5, tmp2
+            ps_sub      tmp2, tmp5, tmp2
+            ps_mul      tmp8, tmp8, cc2
+            lwz         itmp3, 8(in)
+            ps_merge00  tmp1, tmp0, tmp1
+            ps_nmsub    tmp6, tmp5, cc2c6a, tmp8
+            ps_msub     tmp4, tmp7, cc2c6s, tmp8
+            lwz         itmp1, 4(in)
+            ps_sub      tmp6, tmp6, tmp0
+            ps_merge00  tmp2, tmp2, tmp3
+            lhz         itmp2, 2(in)
+            ps_madd     tmp5, tmp3, cc4, tmp6
+            ps_merge11  tmp7, tmp0, tmp6
+            psq_l       tmp10, 0(in), 0, 5
+            ps_sub      tmp4, tmp4, tmp5
+            ps_add      tmp3, tmp1, tmp7
+            psq_l       tmp11, 0(q), 0, 0
+            ps_merge11  tmp4, tmp5, tmp4
+            ps_sub      tmp0, tmp1, tmp7
+            ps_mul      tmp10, tmp10, tmp11
+            ps_add      tmp5, tmp2, tmp4
+            ps_sub      tmp6, tmp2, tmp4
+            ps_merge10  tmp5, tmp5, tmp5
+            psq_stu     tmp3, 8(ws), 0, 0
+            ps_merge10  tmp0, tmp0, tmp0
+            psq_stu     tmp6, 8(ws), 0, 0
+            psq_stu     tmp5, 8(ws), 0, 0
+            or          itmp0, itmp0, itmp3
+            psq_stu     tmp0, 8(ws), 0, 0
+            bdnz        _loopHead1
+
+        _loopEnd:
+
+        }
+		// clang-format on
+	}
+
+	ws = &__THPIDCTWorkspace[0];
+
+	{
+		register THPSample* obase = Gbase;
+		register u32 wid          = Gwid;
+
+		register u32 itmp0, off0, off1;
+		register THPSample *out0, *out1;
+
+		// clang-format off
+		asm {
+            psq_l       tmp10, 8*0*sizeof(f32)(ws), 0, 0
+            slwi off0, wid, 3;
+            psq_l       tmp11, 8*4*sizeof(f32)(ws), 0, 0
+            slwi        xPos, xPos, 2
+            psq_l       tmp12, 8*2*sizeof(f32)(ws), 0, 0
+            slwi        off1, wid, 2
+            ps_add      tmp6, tmp10, tmp11
+            add         off0, off0, xPos
+            psq_l       tmp13, 8*6*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp8, tmp10, tmp11
+            add         off1, off0, off1
+            ps_add      tmp6, tmp6, bias
+            li          itmp0, 3
+            ps_add      tmp7, tmp12, tmp13
+            add         out0, obase, off0
+            ps_sub      tmp9, tmp12, tmp13
+            ps_add      tmp0, tmp6, tmp7
+            add         out1, obase, off1
+            ps_add      tmp8, tmp8, bias
+            mtctr       itmp0
+
+        _loopHead10:
+            psq_l       tmp4, 8*1*sizeof(f32)(ws), 0, 0
+            ps_msub     tmp9, tmp9, cc4, tmp7
+            psq_l       tmp5, 8*3*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp3, tmp6, tmp7
+            ps_add      tmp1, tmp8, tmp9
+            psq_l       tmp6, 8*5*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp2, tmp8, tmp9
+            psq_l       tmp7, 8*7*sizeof(f32)(ws), 0, 0
+            ps_add      tmp8, tmp6, tmp5
+            ps_sub      tmp6, tmp6, tmp5
+            addi        ws, ws, 2*sizeof(f32)
+            ps_add      tmp9, tmp4, tmp7
+            ps_sub      tmp4, tmp4, tmp7
+            psq_l       tmp10, 8*0*sizeof(f32)(ws), 0, 0
+            ps_add      tmp7, tmp9, tmp8
+            ps_sub      tmp5, tmp9, tmp8
+            ps_add      tmp8, tmp6, tmp4
+            psq_l       tmp11, 8*4*sizeof(f32)(ws), 0, 0
+            ps_add      tmp9, tmp0, tmp7
+            ps_mul      tmp8, tmp8, cc2
+            psq_l       tmp12, 8*2*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp23, tmp0, tmp7
+            ps_madd     tmp6, tmp6, cc2c6a, tmp8
+            psq_l       tmp13, 8*6*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp6, tmp6, tmp7
+            addi        off0, off0, 2*sizeof(THPSample)
+            psq_st      tmp9, 0(out0), 0, 6
+            ps_msub     tmp4, tmp4, cc2c6s, tmp8
+            ps_add      tmp9, tmp1, tmp6
+            ps_msub     tmp5, tmp5, cc4, tmp6
+            ps_sub      tmp22, tmp1, tmp6
+            psq_st      tmp9, 8(out0), 0, 6
+            ps_add      tmp8, tmp2, tmp5
+            ps_add      tmp4, tmp4, tmp5
+            psq_st      tmp8, 16(out0), 0, 6
+            addi        off1, off1, 2*sizeof(THPSample)
+            ps_sub      tmp9, tmp3, tmp4
+            ps_add      tmp20, tmp3, tmp4
+            psq_st      tmp9, 24(out0), 0, 6
+            ps_sub      tmp21, tmp2, tmp5
+            ps_add      tmp6, tmp10, tmp11
+            psq_st      tmp20, 0(out1), 0, 6
+            ps_sub      tmp8, tmp10, tmp11
+            ps_add      tmp6, tmp6, bias
+            psq_st      tmp21, 8(out1), 0, 6
+            ps_add      tmp7, tmp12, tmp13
+            ps_sub      tmp9, tmp12, tmp13
+            psq_st      tmp22, 16(out1), 0, 6
+            add         out0, obase, off0
+            ps_add      tmp0, tmp6, tmp7
+            psq_st      tmp23, 24(out1), 0, 6
+            ps_add      tmp8, tmp8, bias
+            add         out1, obase, off1
+
+            bdnz        _loopHead10
+            psq_l       tmp4, 8*1*sizeof(f32)(ws), 0, 0
+            ps_msub     tmp9, tmp9, cc4, tmp7
+            psq_l       tmp5, 8*3*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp3, tmp6, tmp7
+            ps_add      tmp1, tmp8, tmp9
+            psq_l       tmp6, 8*5*sizeof(f32)(ws), 0, 0
+            ps_sub      tmp2, tmp8, tmp9
+            psq_l       tmp7, 8*7*sizeof(f32)(ws), 0, 0
+            ps_add      tmp8, tmp6, tmp5
+            ps_sub      tmp6, tmp6, tmp5
+            ps_add      tmp9, tmp4, tmp7
+            ps_sub      tmp4, tmp4, tmp7
+            ps_add      tmp7, tmp9, tmp8
+            ps_sub      tmp5, tmp9, tmp8
+            ps_add      tmp8, tmp6, tmp4
+            ps_add      tmp9, tmp0, tmp7
+            ps_mul      tmp8, tmp8, cc2
+            ps_sub      tmp23, tmp0, tmp7
+            ps_madd     tmp6, tmp6, cc2c6a, tmp8
+            psq_st      tmp9, 0(out0), 0, 6
+            ps_sub      tmp6, tmp6, tmp7
+            ps_msub     tmp4, tmp4, cc2c6s, tmp8
+            psq_st      tmp23, 24(out1), 0, 6
+            ps_add      tmp9, tmp1, tmp6
+            ps_msub     tmp5, tmp5, cc4, tmp6
+            ps_sub      tmp22, tmp1, tmp6
+            psq_st      tmp9, 8(out0), 0, 6
+            ps_add      tmp8, tmp2, tmp5
+            ps_add      tmp4, tmp4, tmp5
+            psq_st      tmp8, 16(out0), 0, 6
+            ps_sub      tmp9, tmp3, tmp4
+            psq_st      tmp22, 16(out1), 0, 6
+            ps_add      tmp20, tmp3, tmp4
+            psq_st      tmp9, 24(out0), 0, 6
+            ps_sub      tmp21, tmp2, tmp5
+            psq_st      tmp20, 0(out1), 0, 6
+            psq_st      tmp21, 8(out1), 0, 6
+
+        }
+		// clang-format on
+	}
 }
 
 /*
@@ -1414,1801 +1211,315 @@ void __THPDecompressYUV(void)
  * Address:	800F8284
  * Size:	001A88
  */
-void __THPDecompressiMCURow512x448(void)
+static void __THPDecompressiMCURow512x448(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x38(r1)
-	  stfd      f31, 0x30(r1)
-	  stfd      f30, 0x28(r1)
-	  stfd      f29, 0x20(r1)
-	  stfd      f28, 0x18(r1)
-	  stfd      f27, 0x10(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r3, 0x7380
-	  li        r3, 0x3
-	  stw       r30, 0x8(r1)
-	  bl        -0xB868
-	  lfs       f27, -0x6BE0(r2)
-	  li        r30, 0
-	  lfs       f28, -0x6BDC(r2)
-	  lfs       f29, -0x6BD8(r2)
-	  lfs       f30, -0x6BD4(r2)
-	  lfs       f31, -0x6BD0(r2)
-	  b         .loc_0x19E0
+	u8 cl_num;
+	u32 x_pos;
+	THPComponent* comp;
 
-	.loc_0x54:
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x118(r31)
-	  bl        0x4F64
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x11C(r31)
-	  bl        0x4F58
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x120(r31)
-	  bl        0x4F4C
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x124(r31)
-	  bl        0x4F40
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x128(r31)
-	  bl        0x55B0
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x12C(r31)
-	  bl        0x5C4C
-	  lwz       r3, 0x100(r31)
-	  li        r0, 0x200
-	  lwz       r4, -0x6E70(r13)
-	  subi      r9, r31, 0x8
-	  stw       r3, -0x6EC0(r13)
-	  rlwinm    r3,r30,4,20,27
-	  stw       r0, -0x6EA0(r13)
-	  lbz       r0, 0x680(r4)
-	  rlwinm    r0,r0,8,0,23
-	  add       r0, r4, r0
-	  stw       r0, -0x6E80(r13)
-	  lwz       r8, 0x118(r31)
-	  lwz       r7, -0x6E80(r13)
-	  li        r4, 0x8
-	  mtctr     r4
+	LCQueueWait(3);
 
-	.loc_0xD8:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or.       r6, r6, r0
+	for (cl_num = 0; cl_num < __THPInfo->MCUsPerRow; cl_num++) {
+		__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[0]);
+		__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[1]);
+		__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[2]);
+		__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[3]);
+		__THPHuffDecodeDCTCompU(__THPInfo, __THPMCUBuffer[4]);
+		__THPHuffDecodeDCTCompV(__THPInfo, __THPMCUBuffer[5]);
 
-	.loc_0xF8:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x244
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x1A8
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x134
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0xD8
-	  b         .loc_0x30C
+		comp  = &__THPInfo->components[0];
+		Gbase = __THPLCWork512[0];
+		Gwid  = 512;
+		Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+		x_pos = (u32)(cl_num * 16);
+		__THPInverseDCTNoYPos(__THPMCUBuffer[0], x_pos);
+		__THPInverseDCTNoYPos(__THPMCUBuffer[1], x_pos + 8);
+		__THPInverseDCTY8(__THPMCUBuffer[2], x_pos);
+		__THPInverseDCTY8(__THPMCUBuffer[3], x_pos + 8);
 
-	.loc_0x134:
-	  addi      r8, r8, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0xF8
-	  b         .loc_0x30C
+		comp  = &__THPInfo->components[1];
+		Gbase = __THPLCWork512[1];
+		Gwid  = 256;
+		Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+		x_pos /= 2;
+		__THPInverseDCTNoYPos(__THPMCUBuffer[4], x_pos);
+		comp  = &__THPInfo->components[2];
+		Gbase = __THPLCWork512[2];
+		Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+		__THPInverseDCTNoYPos(__THPMCUBuffer[5], x_pos);
 
-	.loc_0x1A8:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0xF8
-	  b         .loc_0x30C
+		if (__THPInfo->RST != 0) {
+			if ((--__THPInfo->currMCU) == 0) {
+				__THPInfo->currMCU = __THPInfo->nMCU;
+				__THPInfo->cnt     = 1 + ((__THPInfo->cnt + 6) & 0xFFFFFFF8);
 
-	.loc_0x244:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0xF8
+				if (__THPInfo->cnt > 33) {
+					__THPInfo->cnt = 33;
+				}
 
-	.loc_0x30C:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r4,r3,2,0,29
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  mr        r7, r4
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
+				__THPInfo->components[0].predDC = 0;
+				__THPInfo->components[1].predDC = 0;
+				__THPInfo->components[2].predDC = 0;
+			}
+		}
+	}
 
-	.loc_0x364:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0x364
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r4),0x6,6
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r8, 0x11C(r31)
-	  lwz       r7, -0x6E80(r13)
-	  addi      r10, r3, 0x8
-	  subi      r9, r31, 0x8
-	  li        r4, 0x8
-	  mtctr     r4
+	LCStoreData(__THPInfo->dLC[0], __THPLCWork512[0], 0x2000);
+	LCStoreData(__THPInfo->dLC[1], __THPLCWork512[1], 0x800);
+	LCStoreData(__THPInfo->dLC[2], __THPLCWork512[2], 0x800);
 
-	.loc_0x4E8:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or.       r6, r6, r0
+	__THPInfo->dLC[0] += 0x2000;
+	__THPInfo->dLC[1] += 0x800;
+	__THPInfo->dLC[2] += 0x800;
+}
 
-	.loc_0x508:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x654
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x5B8
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x544
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0x4E8
-	  b         .loc_0x71C
+inline s32 __THPHuffDecodeTab(register THPFileInfo* info, register THPHuffmanTab* h)
+{
+	register s32 code;
+	register u32 cnt;
+	register s32 cb;
+	register u32 increment;
+	register s32 tmp;
 
-	.loc_0x544:
-	  addi      r8, r8, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0x508
-	  b         .loc_0x71C
+	// clang-format off
+	asm
+    {
+        lwz     cnt, info->cnt;
+        addi    increment, h, 32;
+        lwz     cb, info->currByte;
+        addi    code, cnt, 4;
+        cmpwi   cnt, 28;
+        rlwnm   tmp, cb, code, 27, 31;
+        bgt     _notEnoughBits;
+        lbzx    code, h, tmp;
+        lbzx    increment, increment, tmp;
+        cmpwi   code, 0xFF;
+        beq     _FailedCheckEnoughBits;
+        add     cnt, cnt, increment;
+        stw     cnt, info->cnt;
+    }
+	// clang-format on
+_done:
+	return code;
 
-	.loc_0x5B8:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0x508
-	  b         .loc_0x71C
+	{
+		register u32 maxcodebase;
+		register u32 tmp2;
 
-	.loc_0x654:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0x508
+	_FailedCheckEnoughBits:
+		maxcodebase = (u32) & (h->maxCode);
+		cnt += 5;
 
-	.loc_0x71C:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r10,r10,2,0,29
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  mr        r7, r10
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
+		// clang-format off
+		asm {
+            li          tmp2, sizeof(s32)*(5);
+            li          code, 5;
+            add         maxcodebase, maxcodebase, tmp2;
+          __WHILE_START:
+            cmpwi       cnt, 33;
+            slwi        tmp, tmp, 1
 
-	.loc_0x774:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0x774
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r4),0x6,6
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r8, 0x120(r31)
-	  lwz       r7, -0x6E80(r13)
-	  subi      r9, r31, 0x8
-	  li        r4, 0x8
-	  mtctr     r4
+            beq         _FCEB_faster;
+            rlwnm       increment, cb, cnt, 31, 31;
+            lwzu        tmp2, 4(maxcodebase);
+            or          tmp, tmp, increment
+            addi        cnt, cnt, 1;
+            b __WHILE_CHECK;
 
-	.loc_0x8F4:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or        r6, r6, r0
+          _FCEB_faster:
+            lwz     increment, info->c;
+            li      cnt, 1;
+            lwzu    cb, 4(increment);
+            lwzu    tmp2, 4(maxcodebase);
 
-	.loc_0x914:
-	  cmpwi     r6, 0
-	  bne-      .loc_0xA60
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x9C4
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x950
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0x8F4
-	  b         .loc_0xB28
+            stw     increment, info->c;
+            rlwimi  tmp, cb, 1,31,31;
+            stw     cb, info->currByte;
+            b __FL_WHILE_CHECK;
 
-	.loc_0x950:
-	  ps_msub   f13, f7, f28, f7
-	  addi      r8, r8, 0x10
-	  ps_merge00f2, f7, f7
-	  addi      r7, r7, 0x20
-	  ps_sub    f1, f28, f29
-	  lwz       r5, 0x4(r8)
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0x914
-	  b         .loc_0xB28
+          __FL_WHILE_START:
+            slwi    tmp, tmp, 1;
+            rlwnm   increment, cb, cnt, 31, 31;
+            lwzu    tmp2, 4(maxcodebase);
+            or      tmp, tmp, increment;
 
-	.loc_0x9C4:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0x914
-	  b         .loc_0xB28
+          __FL_WHILE_CHECK:
+            cmpw    tmp,tmp2
+            addi    cnt, cnt, 1;
+            addi        code, code, 1
+            bgt     __FL_WHILE_START;
+            b _FCEB_Done;
 
-	.loc_0xA60:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0x914
+          __WHILE_CHECK:
+            cmpw    tmp,tmp2
+            addi        code, code, 1
+            bgt     __WHILE_START;
+        }
+		// clang-format on
+	}
+_FCEB_Done:
+	info->cnt = cnt;
+	return (h->Vij[(s32)(tmp + h->valPtr[code])]);
 
-	.loc_0xB28:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r7,r0,3,0,28
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r4,r3,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  ps_add    f9, f7, f6
-	  add       r7, r7, r4
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
+	// clang-format off
+	asm
+    {
+      _notEnoughBits:
+        cmpwi   cnt, 33;
+        lwz     tmp, info->c;
+        beq     _getfullword; 
 
-	.loc_0xB84:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0xB84
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  psq_st    f1,0x10(r4),0x6,6
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r8, 0x124(r31)
-	  lwz       r7, -0x6E80(r13)
-	  addi      r9, r3, 0x8
-	  subi      r10, r31, 0x8
-	  li        r4, 0x8
-	  mtctr     r4
+        cmpwi   cnt, 32;
+        rlwnm   code, cb, code, 27, 31
+        beq     _1bitleft;
 
-	.loc_0xD08:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or        r6, r6, r0
+        lbzx    tmp, h, code;
+        lbzx    increment, increment, code;
+        cmpwi   tmp, 0xFF;
+        add     code, cnt, increment;
+        beq _FailedCheckNoBits0;
 
-	.loc_0xD28:
-	  cmpwi     r6, 0
-	  bne-      .loc_0xE74
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r10),0,0
-	  bne-      .loc_0xDD8
-	  psq_st    f4,0x10(r10),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r10),0,0
-	  bne-      .loc_0xD64
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r10),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0xD08
-	  b         .loc_0xF3C
+        cmpwi   code, 33;
+        stw     code, info->cnt;
+        bgt     _FailedCheckNoBits1;
+    }
+	// clang-format on
+	return tmp;
 
-	.loc_0xD64:
-	  ps_msub   f13, f7, f28, f7
-	  addi      r8, r8, 0x10
-	  ps_merge00f2, f7, f7
-	  addi      r7, r7, 0x20
-	  ps_sub    f1, f28, f29
-	  lwz       r5, 0x4(r8)
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r10),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r10),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r10),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r10),0,0
-	  bdnz+     .loc_0xD28
-	  b         .loc_0xF3C
+	// clang-format off
+	asm
+    {
+      _1bitleft:
+        lwzu    cb, 4(tmp);
 
-	.loc_0xDD8:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r10),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r10),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r10),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r10),0,0
-	  bdnz+     .loc_0xD28
-	  b         .loc_0xF3C
+        stw     tmp, info->c;
+        rlwimi  code, cb, 4, 28, 31;
+        lbzx    tmp, h, code;
+        lbzx    increment, increment, code
+        stw     cb, info->currByte;
+        cmpwi   tmp, 0xFF
+        stw     increment, info->cnt;
+        beq     _Read4;
 
-	.loc_0xE74:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r10),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r10),0,0
-	  psq_stu   f10,0x8(r10),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r10),0,0
-	  bdnz+     .loc_0xD28
+    }
+	// clang-format on
+	return tmp;
 
-	.loc_0xF3C:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r10, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r10),0,0
-	  rlwinm    r7,r0,3,0,28
-	  psq_l     f6,0x80(r10),0,0
-	  rlwinm    r9,r9,2,0,29
-	  psq_l     f5,0x40(r10),0,0
-	  rlwinm    r6,r0,2,0,29
-	  ps_add    f9, f7, f6
-	  add       r7, r7, r9
-	  psq_l     f4,0xC0(r10),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
+_Read4 : {
+	register u32 maxcodebase = (u32) & (h->maxCode);
+	register u32 tmp2;
 
-	.loc_0xF98:
-	  psq_l     f11,0x20(r10),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r10),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r10),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r10),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r10, r10, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r10),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r10),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r10),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r10),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0xF98
-	  psq_l     f11,0x20(r10),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r10),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r10),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r10),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  psq_st    f1,0x10(r4),0x6,6
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r4, 0x104(r31)
-	  li        r0, 0x100
-	  lwz       r5, -0x6E70(r13)
-	  stw       r4, -0x6EC0(r13)
-	  rlwinm    r3,r3,31,1,31
-	  subi      r9, r31, 0x8
-	  stw       r0, -0x6EA0(r13)
-	  lbz       r0, 0x686(r5)
-	  rlwinm    r0,r0,8,0,23
-	  add       r0, r5, r0
-	  stw       r0, -0x6E80(r13)
-	  lwz       r8, 0x128(r31)
-	  lwz       r7, -0x6E80(r13)
-	  li        r4, 0x8
-	  mtctr     r4
+	// clang-format off
+	asm
+    {
+            li      cnt, sizeof(s32)*5;
+            add     maxcodebase, maxcodebase, cnt;
 
-	.loc_0x1140:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or.       r6, r6, r0
+            slwi    tmp, code, 32-5;
+            li      cnt,5;
+            rlwimi  tmp, cb, 32-1, 1,31;
 
-	.loc_0x1160:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x12AC
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x1210
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x119C
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0x1140
-	  b         .loc_0x1374
+          __DR4_WHILE_START:
 
-	.loc_0x119C:
-	  addi      r8, r8, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0x1160
-	  b         .loc_0x1374
+            subfic  cb, cnt, 31;
+            lwzu    tmp2, 4(maxcodebase);
+            srw     code, tmp, cb;
+          __DR4_WHILE_CHECK:
+            cmpw    code, tmp2
+            addi    cnt, cnt, 1
+            bgt     __DR4_WHILE_START;
 
-	.loc_0x1210:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0x1160
-	  b         .loc_0x1374
+    }
+	// clang-format on
+}
 
-	.loc_0x12AC:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0x1160
+	info->cnt = cnt;
+__CODE_PLUS_VP_CNT:
+	return (h->Vij[(s32)(code + h->valPtr[cnt])]);
 
-	.loc_0x1374:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r4,r3,2,0,29
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  mr        r7, r4
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
+_getfullword:
+	// clang-format off
+	asm
+    {
+        lwzu    cb, 4(tmp);
 
-	.loc_0x13CC:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0x13CC
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r4),0x6,6
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r0, 0x108(r31)
-	  lwz       r4, -0x6E70(r13)
-	  subi      r8, r31, 0x8
-	  stw       r0, -0x6EC0(r13)
-	  lbz       r0, 0x68C(r4)
-	  rlwinm    r0,r0,8,0,23
-	  add       r0, r4, r0
-	  stw       r0, -0x6E80(r13)
-	  lwz       r9, 0x12C(r31)
-	  lwz       r7, -0x6E80(r13)
-	  li        r4, 0x8
-	  mtctr     r4
+        rlwinm  code, cb, 5, 27, 31
+        stw     tmp, info->c;
+        lbzx    cnt, h, code;
+        lbzx    increment, increment, code;
+        cmpwi   cnt, 0xFF
+        stw     cb, info->currByte;
+        addi    increment, increment, 1
+        beq     _FailedCheckEnoughbits_Updated;
 
-	.loc_0x1568:
-	  psq_l     f7,0x0(r9),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r9)
-	  lwz       r0, 0x8(r9)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r9)
-	  lhz       r4, 0x2(r9)
-	  or.       r6, r6, r0
+        stw     increment, info->cnt;
+    }
+	// clang-format on
+	return (s32)cnt;
 
-	.loc_0x1588:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x16D4
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r8),0,0
-	  bne-      .loc_0x1638
-	  psq_st    f4,0x10(r8),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r8),0,0
-	  bne-      .loc_0x15C4
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r8),0,0
-	  addi      r9, r9, 0x10
-	  bdnz+     .loc_0x1568
-	  b         .loc_0x179C
+_FailedCheckEnoughbits_Updated:
 
-	.loc_0x15C4:
-	  addi      r9, r9, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r9)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r9)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r9)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r9)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r8),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r8),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r8),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r8),0,0
-	  bdnz+     .loc_0x1588
-	  b         .loc_0x179C
+	cnt = 5;
+	do {
+		// clang-format off
+        asm
+        {
+            subfic  tmp, cnt, 31;
+            addi    cnt, cnt, 1;
+            srw     code, cb, tmp;
+        }
+		// clang-format on
+	} while (code > h->maxCode[cnt]);
 
-	.loc_0x1638:
-	  psq_l     f1,0x4(r9),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r9, r9, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r9)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r9)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r9)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r9)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r8),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r8),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r8),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r8),0,0
-	  bdnz+     .loc_0x1588
-	  b         .loc_0x179C
+	info->cnt = cnt + 1;
+	goto __CODE_PLUS_VP_CNT;
 
-	.loc_0x16D4:
-	  psq_l     f2,0x4(r9),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r9),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r9),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r9, r9, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r9)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r9)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r9)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r9)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r8),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r8),0,0
-	  psq_stu   f10,0x8(r8),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r8),0,0
-	  bdnz+     .loc_0x1588
+_FailedCheckNoBits0:
+_FailedCheckNoBits1 :
 
-	.loc_0x179C:
-	  lwz       r7, -0x6EC0(r13)
-	  mr        r8, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r8),0,0
-	  rlwinm    r3,r3,2,0,29
-	  psq_l     f6,0x80(r8),0,0
-	  rlwinm    r5,r0,2,0,29
-	  psq_l     f5,0x40(r8),0,0
-	  mr        r6, r3
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r8),0,0
-	  ps_sub    f3, f7, f6
-	  add       r5, r6, r5
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r4, r7, r6
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r3, r7, r5
-	  ps_add    f3, f3, f31
-	  mtctr     r0
+{
+	register u32 mask = 0xFFFFFFFF << (33 - cnt);
+	register u32 tmp2;
 
-	.loc_0x17F4:
-	  psq_l     f11,0x20(r8),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r8),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r8),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r8),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r8, r8, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r8),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r8),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r8),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r8),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r6, r6, 0x2
-	  psq_st    f2,0x0(r4),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r4),0x6,6
-	  addi      r5, r5, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r4),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r3),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r3),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r3),0x6,6
-	  add       r4, r7, r6
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r3, r7, r5
-	  bdnz+     .loc_0x17F4
-	  psq_l     f11,0x20(r8),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r8),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r8),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r8),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r4),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r3),0x6,6
-	  psq_st    f3,0x10(r4),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r4),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r3),0x6,6
-	  psq_st    f2,0x8(r3),0x6,6
-	  lwz       r4, -0x6E70(r13)
-	  lbz       r0, 0x6A9(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x19DC
-	  lhz       r3, 0x6AC(r4)
-	  subi      r3, r3, 0x1
-	  rlwinm.   r0,r3,0,16,31
-	  sth       r3, 0x6AC(r4)
-	  bne-      .loc_0x19DC
-	  lwz       r3, -0x6E70(r13)
-	  lhz       r0, 0x6AA(r3)
-	  sth       r0, 0x6AC(r3)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x6A4(r4)
-	  addi      r0, r3, 0x6
-	  rlwinm    r3,r0,0,0,28
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x6A4(r4)
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r0, 0x6A4(r3)
-	  cmplwi    r0, 0x21
-	  ble-      .loc_0x19C0
-	  li        r0, 0x21
-	  stw       r0, 0x6A4(r3)
+	code = (s32)(cb & (~mask));
+	mask = (u32) & (h->maxCode);
 
-	.loc_0x19C0:
-	  lwz       r3, -0x6E70(r13)
-	  li        r0, 0
-	  sth       r0, 0x684(r3)
-	  lwz       r3, -0x6E70(r13)
-	  sth       r0, 0x68A(r3)
-	  lwz       r3, -0x6E70(r13)
-	  sth       r0, 0x690(r3)
+	// clang-format off
+	asm
+    {
+            lwz     tmp, info->c;
+            subfic  tmp2, cnt, 33;
+            addi    cnt, tmp2, 1;
+            slwi    tmp2, tmp2, 2;
+            lwzu    cb, 4(tmp);
+            add     mask,mask, tmp2;
+            stw     tmp, info->c;
+            slwi    code, code, 1;
+            stw     cb, info->currByte;
+            rlwimi  code, cb, 1, 31, 31;
+            lwzu    tmp2, 4(mask);
+            li      tmp, 2;
+            b       __FCNB1_WHILE_CHECK;
 
-	.loc_0x19DC:
-	  addi      r30, r30, 0x1
+          __FCNB1_WHILE_START:
+            slwi    code, code, 1;
 
-	.loc_0x19E0:
-	  lwz       r3, -0x6E70(r13)
-	  rlwinm    r4,r30,0,24,31
-	  lhz       r0, 0x696(r3)
-	  cmpw      r4, r0
-	  blt+      .loc_0x54
-	  lwz       r3, 0x6B0(r3)
-	  li        r5, 0x2000
-	  lwz       r4, 0x100(r31)
-	  bl        -0xD2E0
-	  lwz       r3, -0x6E70(r13)
-	  li        r5, 0x800
-	  lwz       r4, 0x104(r31)
-	  lwz       r3, 0x6B4(r3)
-	  bl        -0xD2F4
-	  lwz       r3, -0x6E70(r13)
-	  li        r5, 0x800
-	  lwz       r4, 0x108(r31)
-	  lwz       r3, 0x6B8(r3)
-	  bl        -0xD308
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x6B0(r4)
-	  addi      r0, r3, 0x2000
-	  stw       r0, 0x6B0(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x6B4(r4)
-	  addi      r0, r3, 0x800
-	  stw       r0, 0x6B4(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x6B8(r4)
-	  addi      r0, r3, 0x800
-	  stw       r0, 0x6B8(r4)
-	  lwz       r0, 0x3C(r1)
-	  lfd       f31, 0x30(r1)
-	  lfd       f30, 0x28(r1)
-	  lfd       f29, 0x20(r1)
-	  lfd       f28, 0x18(r1)
-	  lfd       f27, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  addi      r1, r1, 0x38
-	  mtlr      r0
-	  blr
-	*/
+            addi    cnt, cnt, 1;
+            lwzu    tmp2, 4(mask);
+            add     code, code, increment;
+            addi    tmp, tmp, 1;
+
+          __FCNB1_WHILE_CHECK:
+            cmpw    code, tmp2;
+            rlwnm   increment, cb, tmp, 31, 31;
+            bgt     __FCNB1_WHILE_START;
+
+    }
+	// clang-format on
+}
+
+	info->cnt = (u32)tmp;
+	return (h->Vij[(s32)(code + h->valPtr[cnt])]);
 }
 
 /*
@@ -3216,1802 +1527,72 @@ void __THPDecompressiMCURow512x448(void)
  * Address:	800F9D0C
  * Size:	001A8C
  */
-void __THPDecompressiMCURow640x480(void)
+static void __THPDecompressiMCURow640x480(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x38(r1)
-	  stfd      f31, 0x30(r1)
-	  stfd      f30, 0x28(r1)
-	  stfd      f29, 0x20(r1)
-	  stfd      f28, 0x18(r1)
-	  stfd      f27, 0x10(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r3, 0x7380
-	  li        r3, 0x3
-	  stw       r30, 0x8(r1)
-	  bl        -0xD2F0
-	  lfs       f27, -0x6BE0(r2)
-	  li        r30, 0
-	  lfs       f28, -0x6BDC(r2)
-	  lfs       f29, -0x6BD8(r2)
-	  lfs       f30, -0x6BD4(r2)
-	  lfs       f31, -0x6BD0(r2)
-	  b         .loc_0x19E4
+	u8 cl_num;
+	u32 x_pos;
+	THPComponent* comp;
 
-	.loc_0x54:
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x118(r31)
-	  bl        0x34DC
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x11C(r31)
-	  bl        0x34D0
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x120(r31)
-	  bl        0x34C4
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x124(r31)
-	  bl        0x34B8
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x128(r31)
-	  bl        0x3B28
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x12C(r31)
-	  bl        0x41C4
-	  lwz       r3, 0x10C(r31)
-	  li        r0, 0x280
-	  lwz       r4, -0x6E70(r13)
-	  subi      r9, r31, 0x8
-	  stw       r3, -0x6EC0(r13)
-	  rlwinm    r3,r30,4,20,27
-	  stw       r0, -0x6EA0(r13)
-	  lbz       r0, 0x680(r4)
-	  rlwinm    r0,r0,8,0,23
-	  add       r0, r4, r0
-	  stw       r0, -0x6E80(r13)
-	  lwz       r8, 0x118(r31)
-	  lwz       r7, -0x6E80(r13)
-	  li        r4, 0x8
-	  mtctr     r4
+	LCQueueWait(3);
 
-	.loc_0xD8:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or.       r6, r6, r0
+	{
+		for (cl_num = 0; cl_num < __THPInfo->MCUsPerRow; cl_num++) {
+			THPFileInfo* um = __THPInfo;
+			__THPHuffDecodeDCTCompY(um, __THPMCUBuffer[0]);
+			__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[1]);
+			__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[2]);
+			__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[3]);
+			__THPHuffDecodeDCTCompU(__THPInfo, __THPMCUBuffer[4]);
+			__THPHuffDecodeDCTCompV(__THPInfo, __THPMCUBuffer[5]);
 
-	.loc_0xF8:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x244
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x1A8
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x134
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0xD8
-	  b         .loc_0x30C
+			comp  = &__THPInfo->components[0];
+			Gbase = __THPLCWork672[0];
+			Gwid  = 640;
+			Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+			x_pos = (u32)(cl_num * 16);
+			__THPInverseDCTNoYPos(__THPMCUBuffer[0], x_pos);
+			__THPInverseDCTNoYPos(__THPMCUBuffer[1], x_pos + 8);
+			__THPInverseDCTY8(__THPMCUBuffer[2], x_pos);
+			__THPInverseDCTY8(__THPMCUBuffer[3], x_pos + 8);
 
-	.loc_0x134:
-	  addi      r8, r8, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0xF8
-	  b         .loc_0x30C
+			comp  = &__THPInfo->components[1];
+			Gbase = __THPLCWork672[1];
+			Gwid  = 320;
+			Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+			x_pos /= 2;
+			__THPInverseDCTNoYPos(__THPMCUBuffer[4], x_pos);
 
-	.loc_0x1A8:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0xF8
-	  b         .loc_0x30C
+			comp  = &__THPInfo->components[2];
+			Gbase = __THPLCWork672[2];
+			Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+			__THPInverseDCTNoYPos(__THPMCUBuffer[5], x_pos);
 
-	.loc_0x244:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0xF8
+			if (__THPInfo->RST != 0) {
+				__THPInfo->currMCU--;
+				if (__THPInfo->currMCU == 0) {
+					__THPInfo->currMCU = __THPInfo->nMCU;
 
-	.loc_0x30C:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r4,r3,2,0,29
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  mr        r7, r4
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
+					__THPInfo->cnt = 1 + ((__THPInfo->cnt + 6) & 0xFFFFFFF8);
 
-	.loc_0x364:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0x364
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r4),0x6,6
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r8, 0x11C(r31)
-	  lwz       r7, -0x6E80(r13)
-	  addi      r10, r3, 0x8
-	  subi      r9, r31, 0x8
-	  li        r4, 0x8
-	  mtctr     r4
+					if (__THPInfo->cnt > 32) {
+						__THPInfo->cnt = 33;
+					}
 
-	.loc_0x4E8:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or.       r6, r6, r0
+					__THPInfo->components[0].predDC = 0;
+					__THPInfo->components[1].predDC = 0;
+					__THPInfo->components[2].predDC = 0;
+				}
+			}
+		}
+	}
 
-	.loc_0x508:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x654
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x5B8
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x544
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0x4E8
-	  b         .loc_0x71C
+	LCStoreData(__THPInfo->dLC[0], __THPLCWork672[0], 0x2800);
+	LCStoreData(__THPInfo->dLC[1], __THPLCWork672[1], 0xA00);
+	LCStoreData(__THPInfo->dLC[2], __THPLCWork672[2], 0xA00);
 
-	.loc_0x544:
-	  addi      r8, r8, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0x508
-	  b         .loc_0x71C
-
-	.loc_0x5B8:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0x508
-	  b         .loc_0x71C
-
-	.loc_0x654:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0x508
-
-	.loc_0x71C:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r10,r10,2,0,29
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  mr        r7, r10
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0x774:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0x774
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r4),0x6,6
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r8, 0x120(r31)
-	  lwz       r7, -0x6E80(r13)
-	  subi      r9, r31, 0x8
-	  li        r4, 0x8
-	  mtctr     r4
-
-	.loc_0x8F4:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or        r6, r6, r0
-
-	.loc_0x914:
-	  cmpwi     r6, 0
-	  bne-      .loc_0xA60
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x9C4
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x950
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0x8F4
-	  b         .loc_0xB28
-
-	.loc_0x950:
-	  ps_msub   f13, f7, f28, f7
-	  addi      r8, r8, 0x10
-	  ps_merge00f2, f7, f7
-	  addi      r7, r7, 0x20
-	  ps_sub    f1, f28, f29
-	  lwz       r5, 0x4(r8)
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0x914
-	  b         .loc_0xB28
-
-	.loc_0x9C4:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0x914
-	  b         .loc_0xB28
-
-	.loc_0xA60:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0x914
-
-	.loc_0xB28:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r7,r0,3,0,28
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r4,r3,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  ps_add    f9, f7, f6
-	  add       r7, r7, r4
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0xB84:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0xB84
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  psq_st    f1,0x10(r4),0x6,6
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r8, 0x124(r31)
-	  lwz       r7, -0x6E80(r13)
-	  addi      r9, r3, 0x8
-	  subi      r10, r31, 0x8
-	  li        r4, 0x8
-	  mtctr     r4
-
-	.loc_0xD08:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or        r6, r6, r0
-
-	.loc_0xD28:
-	  cmpwi     r6, 0
-	  bne-      .loc_0xE74
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r10),0,0
-	  bne-      .loc_0xDD8
-	  psq_st    f4,0x10(r10),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r10),0,0
-	  bne-      .loc_0xD64
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r10),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0xD08
-	  b         .loc_0xF3C
-
-	.loc_0xD64:
-	  ps_msub   f13, f7, f28, f7
-	  addi      r8, r8, 0x10
-	  ps_merge00f2, f7, f7
-	  addi      r7, r7, 0x20
-	  ps_sub    f1, f28, f29
-	  lwz       r5, 0x4(r8)
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r10),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r10),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r10),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r10),0,0
-	  bdnz+     .loc_0xD28
-	  b         .loc_0xF3C
-
-	.loc_0xDD8:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r10),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r10),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r10),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r10),0,0
-	  bdnz+     .loc_0xD28
-	  b         .loc_0xF3C
-
-	.loc_0xE74:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r10),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r10),0,0
-	  psq_stu   f10,0x8(r10),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r10),0,0
-	  bdnz+     .loc_0xD28
-
-	.loc_0xF3C:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r10, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r10),0,0
-	  rlwinm    r7,r0,3,0,28
-	  psq_l     f6,0x80(r10),0,0
-	  rlwinm    r9,r9,2,0,29
-	  psq_l     f5,0x40(r10),0,0
-	  rlwinm    r6,r0,2,0,29
-	  ps_add    f9, f7, f6
-	  add       r7, r7, r9
-	  psq_l     f4,0xC0(r10),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0xF98:
-	  psq_l     f11,0x20(r10),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r10),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r10),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r10),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r10, r10, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r10),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r10),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r10),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r10),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0xF98
-	  psq_l     f11,0x20(r10),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r10),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r10),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r10),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  psq_st    f1,0x10(r4),0x6,6
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r4, 0x110(r31)
-	  li        r0, 0x140
-	  lwz       r5, -0x6E70(r13)
-	  stw       r4, -0x6EC0(r13)
-	  rlwinm    r3,r3,31,1,31
-	  subi      r9, r31, 0x8
-	  stw       r0, -0x6EA0(r13)
-	  lbz       r0, 0x686(r5)
-	  rlwinm    r0,r0,8,0,23
-	  add       r0, r5, r0
-	  stw       r0, -0x6E80(r13)
-	  lwz       r8, 0x128(r31)
-	  lwz       r7, -0x6E80(r13)
-	  li        r4, 0x8
-	  mtctr     r4
-
-	.loc_0x1140:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r4, 0x2(r8)
-	  or.       r6, r6, r0
-
-	.loc_0x1160:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x12AC
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x1210
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x119C
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0x1140
-	  b         .loc_0x1374
-
-	.loc_0x119C:
-	  addi      r8, r8, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0x1160
-	  b         .loc_0x1374
-
-	.loc_0x1210:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0x1160
-	  b         .loc_0x1374
-
-	.loc_0x12AC:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0x1160
-
-	.loc_0x1374:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r4,r3,2,0,29
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  mr        r7, r4
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r4, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0x13CC:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r4),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r4),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r4, r8, r6
-	  bdnz+     .loc_0x13CC
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r4),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r4),0x6,6
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r4),0x6,6
-	  psq_st    f2,0x8(r4),0x6,6
-	  lwz       r0, 0x114(r31)
-	  lwz       r4, -0x6E70(r13)
-	  subi      r8, r31, 0x8
-	  stw       r0, -0x6EC0(r13)
-	  lbz       r0, 0x68C(r4)
-	  rlwinm    r0,r0,8,0,23
-	  add       r0, r4, r0
-	  stw       r0, -0x6E80(r13)
-	  lwz       r9, 0x12C(r31)
-	  lwz       r7, -0x6E80(r13)
-	  li        r4, 0x8
-	  mtctr     r4
-
-	.loc_0x1568:
-	  psq_l     f7,0x0(r9),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r9)
-	  lwz       r0, 0x8(r9)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r9)
-	  lhz       r4, 0x2(r9)
-	  or.       r6, r6, r0
-
-	.loc_0x1588:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x16D4
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r8),0,0
-	  bne-      .loc_0x1638
-	  psq_st    f4,0x10(r8),0,0
-	  cmpwi     r4, 0
-	  psq_st    f4,0x18(r8),0,0
-	  bne-      .loc_0x15C4
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r8),0,0
-	  addi      r9, r9, 0x10
-	  bdnz+     .loc_0x1568
-	  b         .loc_0x179C
-
-	.loc_0x15C4:
-	  addi      r9, r9, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r9)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r4, 0x2(r9)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r9)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r9)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r8),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r8),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r8),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r8),0,0
-	  bdnz+     .loc_0x1588
-	  b         .loc_0x179C
-
-	.loc_0x1638:
-	  psq_l     f1,0x4(r9),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r9, r9, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r9)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r9)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r9)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r4, 0x2(r9)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r8),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r8),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r8),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r8),0,0
-	  bdnz+     .loc_0x1588
-	  b         .loc_0x179C
-
-	.loc_0x16D4:
-	  psq_l     f2,0x4(r9),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r9),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r9),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r9, r9, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r9)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r9)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r9)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r4, 0x2(r9)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r8),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r8),0,0
-	  psq_stu   f10,0x8(r8),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r8),0,0
-	  bdnz+     .loc_0x1588
-
-	.loc_0x179C:
-	  lwz       r7, -0x6EC0(r13)
-	  mr        r8, r31
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r8),0,0
-	  rlwinm    r3,r3,2,0,29
-	  psq_l     f6,0x80(r8),0,0
-	  rlwinm    r5,r0,2,0,29
-	  psq_l     f5,0x40(r8),0,0
-	  mr        r6, r3
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r8),0,0
-	  ps_sub    f3, f7, f6
-	  add       r5, r6, r5
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r4, r7, r6
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r3, r7, r5
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0x17F4:
-	  psq_l     f11,0x20(r8),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r8),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r8),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r8),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r8, r8, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r8),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r8),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r8),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r8),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r6, r6, 0x2
-	  psq_st    f2,0x0(r4),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r4),0x6,6
-	  addi      r5, r5, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r4),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r3),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r3),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r3),0x6,6
-	  add       r4, r7, r6
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r3, r7, r5
-	  bdnz+     .loc_0x17F4
-	  psq_l     f11,0x20(r8),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r8),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r8),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r8),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r4),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r3),0x6,6
-	  psq_st    f3,0x10(r4),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r4),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r3),0x6,6
-	  psq_st    f2,0x8(r3),0x6,6
-	  lwz       r4, -0x6E70(r13)
-	  lbz       r0, 0x6A9(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x19E0
-	  lhz       r3, 0x6AC(r4)
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x6AC(r4)
-	  lwz       r3, -0x6E70(r13)
-	  lhz       r0, 0x6AC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x19E0
-	  lhz       r0, 0x6AA(r3)
-	  sth       r0, 0x6AC(r3)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x6A4(r4)
-	  addi      r0, r3, 0x6
-	  rlwinm    r3,r0,0,0,28
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x6A4(r4)
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r0, 0x6A4(r3)
-	  cmplwi    r0, 0x20
-	  ble-      .loc_0x19C4
-	  li        r0, 0x21
-	  stw       r0, 0x6A4(r3)
-
-	.loc_0x19C4:
-	  lwz       r3, -0x6E70(r13)
-	  li        r0, 0
-	  sth       r0, 0x684(r3)
-	  lwz       r3, -0x6E70(r13)
-	  sth       r0, 0x68A(r3)
-	  lwz       r3, -0x6E70(r13)
-	  sth       r0, 0x690(r3)
-
-	.loc_0x19E0:
-	  addi      r30, r30, 0x1
-
-	.loc_0x19E4:
-	  lwz       r3, -0x6E70(r13)
-	  rlwinm    r4,r30,0,24,31
-	  lhz       r0, 0x696(r3)
-	  cmpw      r4, r0
-	  blt+      .loc_0x54
-	  lwz       r3, 0x6B0(r3)
-	  li        r5, 0x2800
-	  lwz       r4, 0x10C(r31)
-	  bl        -0xED6C
-	  lwz       r3, -0x6E70(r13)
-	  li        r5, 0xA00
-	  lwz       r4, 0x110(r31)
-	  lwz       r3, 0x6B4(r3)
-	  bl        -0xED80
-	  lwz       r3, -0x6E70(r13)
-	  li        r5, 0xA00
-	  lwz       r4, 0x114(r31)
-	  lwz       r3, 0x6B8(r3)
-	  bl        -0xED94
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x6B0(r4)
-	  addi      r0, r3, 0x2800
-	  stw       r0, 0x6B0(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x6B4(r4)
-	  addi      r0, r3, 0xA00
-	  stw       r0, 0x6B4(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x6B8(r4)
-	  addi      r0, r3, 0xA00
-	  stw       r0, 0x6B8(r4)
-	  lwz       r0, 0x3C(r1)
-	  lfd       f31, 0x30(r1)
-	  lfd       f30, 0x28(r1)
-	  lfd       f29, 0x20(r1)
-	  lfd       f28, 0x18(r1)
-	  lfd       f27, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  addi      r1, r1, 0x38
-	  mtlr      r0
-	  blr
-	*/
+	__THPInfo->dLC[0] += 0x2800;
+	__THPInfo->dLC[1] += 0xA00;
+	__THPInfo->dLC[2] += 0xA00;
 }
 
 /*
@@ -5019,1812 +1600,69 @@ void __THPDecompressiMCURow640x480(void)
  * Address:	800FB798
  * Size:	001AAC
  */
-void __THPDecompressiMCURowNxN(void)
+static void __THPDecompressiMCURowNxN(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x40(r1)
-	  stfd      f31, 0x38(r1)
-	  stfd      f30, 0x30(r1)
-	  stfd      f29, 0x28(r1)
-	  stfd      f28, 0x20(r1)
-	  stfd      f27, 0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  addi      r30, r4, 0x7380
-	  stw       r29, 0xC(r1)
-	  stw       r28, 0x8(r1)
-	  lwz       r3, -0x6E70(r13)
-	  lhz       r28, 0x692(r3)
-	  li        r3, 0x3
-	  bl        -0xED8C
-	  lfs       f27, -0x6BE0(r2)
-	  rlwinm    r31,r28,31,1,31
-	  lfs       f28, -0x6BDC(r2)
-	  li        r29, 0
-	  lfs       f29, -0x6BD8(r2)
-	  lfs       f30, -0x6BD4(r2)
-	  lfs       f31, -0x6BD0(r2)
-	  b         .loc_0x19F0
+	u8 cl_num;
+	u32 x_pos, x;
+	THPComponent* comp;
 
-	.loc_0x68:
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x118(r30)
-	  bl        .loc_0x1AAC
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x11C(r30)
-	  bl        .loc_0x1AAC
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x120(r30)
-	  bl        .loc_0x1AAC
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x124(r30)
-	  bl        .loc_0x1AAC
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x128(r30)
-	  bl        0x2088
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r4, 0x12C(r30)
-	  bl        0x2724
-	  lwz       r0, 0x10C(r30)
-	  rlwinm    r4,r29,4,20,27
-	  lwz       r5, -0x6E70(r13)
-	  subi      r3, r30, 0x8
-	  stw       r0, -0x6EC0(r13)
-	  stw       r28, -0x6EA0(r13)
-	  lbz       r0, 0x680(r5)
-	  rlwinm    r0,r0,8,0,23
-	  add       r0, r5, r0
-	  stw       r0, -0x6E80(r13)
-	  lwz       r9, 0x118(r30)
-	  lwz       r8, -0x6E80(r13)
-	  li        r5, 0x8
-	  mtctr     r5
+	x = __THPInfo->xPixelSize;
 
-	.loc_0xE8:
-	  psq_l     f7,0x0(r9),0x5,5
-	  psq_l     f6,0x0(r8),0,0
-	  lwz       r7, 0xC(r9)
-	  lwz       r0, 0x8(r9)
-	  ps_mul    f7, f7, f6
-	  lwz       r6, 0x4(r9)
-	  lhz       r5, 0x2(r9)
-	  or.       r7, r7, r0
+	LCQueueWait(3);
 
-	.loc_0x108:
-	  cmpwi     r7, 0
-	  bne-      .loc_0x254
-	  ps_merge00f4, f7, f7
-	  cmpwi     r6, 0
-	  psq_st    f4,0x8(r3),0,0
-	  bne-      .loc_0x1B8
-	  psq_st    f4,0x10(r3),0,0
-	  cmpwi     r5, 0
-	  psq_st    f4,0x18(r3),0,0
-	  bne-      .loc_0x144
-	  addi      r8, r8, 0x20
-	  psq_stu   f4,0x20(r3),0,0
-	  addi      r9, r9, 0x10
-	  bdnz+     .loc_0xE8
-	  b         .loc_0x31C
+	for (cl_num = 0; cl_num < __THPInfo->MCUsPerRow; cl_num++) {
+		__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[0]);
+		__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[1]);
+		__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[2]);
+		__THPHuffDecodeDCTCompY(__THPInfo, __THPMCUBuffer[3]);
+		__THPHuffDecodeDCTCompU(__THPInfo, __THPMCUBuffer[4]);
+		__THPHuffDecodeDCTCompV(__THPInfo, __THPMCUBuffer[5]);
 
-	.loc_0x144:
-	  addi      r9, r9, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r8, r8, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r6, 0x4(r9)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r5, 0x2(r9)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r8),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r7, 0xC(r9)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r9)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r3),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r3),0,0
-	  ps_merge10f10, f10, f10
-	  or        r7, r7, r0
-	  psq_stu   f9,0x8(r3),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r3),0,0
-	  bdnz+     .loc_0x108
-	  b         .loc_0x31C
+		comp  = &__THPInfo->components[0];
+		Gbase = __THPLCWork672[0];
+		Gwid  = x;
+		Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+		x_pos = (u32)(cl_num * 16);
+		__THPInverseDCTNoYPos(__THPMCUBuffer[0], x_pos);
+		__THPInverseDCTNoYPos(__THPMCUBuffer[1], x_pos + 8);
+		__THPInverseDCTY8(__THPMCUBuffer[2], x_pos);
+		__THPInverseDCTY8(__THPMCUBuffer[3], x_pos + 8);
 
-	.loc_0x1B8:
-	  psq_l     f1,0x4(r9),0x5,5
-	  psq_l     f2,0x8(r8),0,0
-	  addi      r9, r9, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r8, r8, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r7, 0xC(r9)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r9)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r6, 0x4(r9)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r5, 0x2(r9)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r8),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r3),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r7, r7, r0
-	  psq_stu   f4,0x8(r3),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r3),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r3),0,0
-	  bdnz+     .loc_0x108
-	  b         .loc_0x31C
+		comp  = &__THPInfo->components[1];
+		Gbase = __THPLCWork672[1];
+		Gwid  = x / 2;
+		Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+		x_pos /= 2;
+		__THPInverseDCTNoYPos(__THPMCUBuffer[4], x_pos);
 
-	.loc_0x254:
-	  psq_l     f2,0x4(r9),0x5,5
-	  psq_l     f10,0x8(r8),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r9),0x5,5
-	  psq_l     f9,0x10(r8),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r9),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r8),0,0
-	  addi      r9, r9, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r8, r8, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r7, 0xC(r9)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r9)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r6, 0x4(r9)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r5, 0x2(r9)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r8),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r3),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r3),0,0
-	  psq_stu   f10,0x8(r3),0,0
-	  or        r7, r7, r0
-	  psq_stu   f4,0x8(r3),0,0
-	  bdnz+     .loc_0x108
+		comp  = &__THPInfo->components[2];
+		Gbase = __THPLCWork672[2];
+		Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+		__THPInverseDCTNoYPos(__THPMCUBuffer[5], x_pos);
 
-	.loc_0x31C:
-	  lwz       r9, -0x6EC0(r13)
-	  mr        r3, r30
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r3),0,0
-	  rlwinm    r5,r4,2,0,29
-	  psq_l     f6,0x80(r3),0,0
-	  rlwinm    r7,r0,2,0,29
-	  psq_l     f5,0x40(r3),0,0
-	  mr        r8, r5
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r3),0,0
-	  ps_sub    f3, f7, f6
-	  add       r7, r8, r7
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r6, r9, r8
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r5, r9, r7
-	  ps_add    f3, f3, f31
-	  mtctr     r0
+		if (__THPInfo->RST != 0) {
+			__THPInfo->currMCU--;
+			if (__THPInfo->currMCU == 0) {
+				__THPInfo->currMCU = __THPInfo->nMCU;
+				__THPInfo->cnt     = 1 + ((__THPInfo->cnt + 6) & 0xFFFFFFF8);
 
-	.loc_0x374:
-	  psq_l     f11,0x20(r3),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r3),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r3),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r3),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r3, r3, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r3),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r3),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r3),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r3),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r8, r8, 0x2
-	  psq_st    f2,0x0(r6),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r6),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r6),0x6,6
-	  addi      r7, r7, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r6),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r5),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r5),0x6,6
-	  add       r6, r9, r8
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r5),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r5, r9, r7
-	  bdnz+     .loc_0x374
-	  psq_l     f11,0x20(r3),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r3),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r3),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r3),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r6),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r5),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r6),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r5),0x6,6
-	  psq_st    f3,0x10(r6),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r6),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r5),0x6,6
-	  psq_st    f2,0x8(r5),0x6,6
-	  lwz       r8, 0x11C(r30)
-	  lwz       r7, -0x6E80(r13)
-	  addi      r10, r4, 0x8
-	  subi      r9, r30, 0x8
-	  li        r3, 0x8
-	  mtctr     r3
+				if (__THPInfo->cnt > 32) {
+					__THPInfo->cnt = 33;
+				}
 
-	.loc_0x4F8:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r3, 0x2(r8)
-	  or.       r6, r6, r0
+				__THPInfo->components[0].predDC = 0;
+				__THPInfo->components[1].predDC = 0;
+				__THPInfo->components[2].predDC = 0;
+			}
+		}
+	}
 
-	.loc_0x518:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x664
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x5C8
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r3, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x554
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0x4F8
-	  b         .loc_0x72C
-
-	.loc_0x554:
-	  addi      r8, r8, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r3, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0x518
-	  b         .loc_0x72C
-
-	.loc_0x5C8:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r3, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0x518
-	  b         .loc_0x72C
-
-	.loc_0x664:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r3, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0x518
-
-	.loc_0x72C:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r30
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r10,r10,2,0,29
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  mr        r7, r10
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r3, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0x784:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r3),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r3),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r3),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r3, r8, r6
-	  bdnz+     .loc_0x784
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r3),0x6,6
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r3),0x6,6
-	  psq_st    f2,0x8(r3),0x6,6
-	  lwz       r8, 0x120(r30)
-	  lwz       r7, -0x6E80(r13)
-	  subi      r9, r30, 0x8
-	  li        r3, 0x8
-	  mtctr     r3
-
-	.loc_0x904:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r3, 0x2(r8)
-	  or        r6, r6, r0
-
-	.loc_0x924:
-	  cmpwi     r6, 0
-	  bne-      .loc_0xA70
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x9D4
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r3, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x960
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0x904
-	  b         .loc_0xB38
-
-	.loc_0x960:
-	  ps_msub   f13, f7, f28, f7
-	  addi      r8, r8, 0x10
-	  ps_merge00f2, f7, f7
-	  addi      r7, r7, 0x20
-	  ps_sub    f1, f28, f29
-	  lwz       r5, 0x4(r8)
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r3, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0x924
-	  b         .loc_0xB38
-
-	.loc_0x9D4:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r3, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0x924
-	  b         .loc_0xB38
-
-	.loc_0xA70:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r3, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0x924
-
-	.loc_0xB38:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r30
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r7,r0,3,0,28
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r3,r4,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  ps_add    f9, f7, f6
-	  add       r7, r7, r3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r3, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0xB94:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r3),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r3),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r3),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r3, r8, r6
-	  bdnz+     .loc_0xB94
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  psq_st    f1,0x10(r3),0x6,6
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r3),0x6,6
-	  psq_st    f2,0x8(r3),0x6,6
-	  lwz       r8, 0x124(r30)
-	  lwz       r7, -0x6E80(r13)
-	  addi      r9, r4, 0x8
-	  subi      r10, r30, 0x8
-	  li        r3, 0x8
-	  mtctr     r3
-
-	.loc_0xD18:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r3, 0x2(r8)
-	  or        r6, r6, r0
-
-	.loc_0xD38:
-	  cmpwi     r6, 0
-	  bne-      .loc_0xE84
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r10),0,0
-	  bne-      .loc_0xDE8
-	  psq_st    f4,0x10(r10),0,0
-	  cmpwi     r3, 0
-	  psq_st    f4,0x18(r10),0,0
-	  bne-      .loc_0xD74
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r10),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0xD18
-	  b         .loc_0xF4C
-
-	.loc_0xD74:
-	  ps_msub   f13, f7, f28, f7
-	  addi      r8, r8, 0x10
-	  ps_merge00f2, f7, f7
-	  addi      r7, r7, 0x20
-	  ps_sub    f1, f28, f29
-	  lwz       r5, 0x4(r8)
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r3, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r10),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r10),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r10),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r10),0,0
-	  bdnz+     .loc_0xD38
-	  b         .loc_0xF4C
-
-	.loc_0xDE8:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r3, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r10),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r10),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r10),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r10),0,0
-	  bdnz+     .loc_0xD38
-	  b         .loc_0xF4C
-
-	.loc_0xE84:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r3, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r10),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r10),0,0
-	  psq_stu   f10,0x8(r10),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r10),0,0
-	  bdnz+     .loc_0xD38
-
-	.loc_0xF4C:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r10, r30
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r10),0,0
-	  rlwinm    r7,r0,3,0,28
-	  psq_l     f6,0x80(r10),0,0
-	  rlwinm    r9,r9,2,0,29
-	  psq_l     f5,0x40(r10),0,0
-	  rlwinm    r6,r0,2,0,29
-	  ps_add    f9, f7, f6
-	  add       r7, r7, r9
-	  psq_l     f4,0xC0(r10),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r3, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0xFA8:
-	  psq_l     f11,0x20(r10),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r10),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r10),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r10),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r10, r10, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r10),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r10),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r10),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r10),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r3),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r3),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r3),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r3, r8, r6
-	  bdnz+     .loc_0xFA8
-	  psq_l     f11,0x20(r10),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r10),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r10),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r10),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  psq_st    f1,0x10(r3),0x6,6
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r3),0x6,6
-	  psq_st    f2,0x8(r3),0x6,6
-	  lwz       r0, 0x110(r30)
-	  lwz       r3, -0x6E70(r13)
-	  rlwinm    r4,r4,31,1,31
-	  stw       r0, -0x6EC0(r13)
-	  subi      r9, r30, 0x8
-	  stw       r31, -0x6EA0(r13)
-	  lbz       r0, 0x686(r3)
-	  rlwinm    r0,r0,8,0,23
-	  add       r0, r3, r0
-	  stw       r0, -0x6E80(r13)
-	  lwz       r8, 0x128(r30)
-	  lwz       r7, -0x6E80(r13)
-	  li        r3, 0x8
-	  mtctr     r3
-
-	.loc_0x114C:
-	  psq_l     f7,0x0(r8),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r8)
-	  lwz       r0, 0x8(r8)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r8)
-	  lhz       r3, 0x2(r8)
-	  or.       r6, r6, r0
-
-	.loc_0x116C:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x12B8
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r9),0,0
-	  bne-      .loc_0x121C
-	  psq_st    f4,0x10(r9),0,0
-	  cmpwi     r3, 0
-	  psq_st    f4,0x18(r9),0,0
-	  bne-      .loc_0x11A8
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r9),0,0
-	  addi      r8, r8, 0x10
-	  bdnz+     .loc_0x114C
-	  b         .loc_0x1380
-
-	.loc_0x11A8:
-	  addi      r8, r8, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r3, 0x2(r8)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r8)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r8)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r9),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r9),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r9),0,0
-	  bdnz+     .loc_0x116C
-	  b         .loc_0x1380
-
-	.loc_0x121C:
-	  psq_l     f1,0x4(r8),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r8)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r8)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r3, 0x2(r8)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r9),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r9),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r9),0,0
-	  bdnz+     .loc_0x116C
-	  b         .loc_0x1380
-
-	.loc_0x12B8:
-	  psq_l     f2,0x4(r8),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r8),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r8),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r8, r8, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r8)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r8)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r8)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r3, 0x2(r8)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r8),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r9),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r9),0,0
-	  psq_stu   f10,0x8(r9),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r9),0,0
-	  bdnz+     .loc_0x116C
-
-	.loc_0x1380:
-	  lwz       r8, -0x6EC0(r13)
-	  mr        r9, r30
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r9),0,0
-	  rlwinm    r3,r4,2,0,29
-	  psq_l     f6,0x80(r9),0,0
-	  rlwinm    r6,r0,2,0,29
-	  psq_l     f5,0x40(r9),0,0
-	  mr        r7, r3
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f3, f7, f6
-	  add       r6, r7, r6
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r5, r8, r7
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r3, r8, r6
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0x13D8:
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r9, r9, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r9),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r9),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r9),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r9),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r7, r7, 0x2
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r5),0x6,6
-	  addi      r6, r6, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r3),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r3),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r3),0x6,6
-	  add       r5, r8, r7
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r3, r8, r6
-	  bdnz+     .loc_0x13D8
-	  psq_l     f11,0x20(r9),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r9),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r9),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r9),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r5),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r5),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r3),0x6,6
-	  psq_st    f3,0x10(r5),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r5),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r3),0x6,6
-	  psq_st    f2,0x8(r3),0x6,6
-	  lwz       r0, 0x114(r30)
-	  lwz       r3, -0x6E70(r13)
-	  subi      r8, r30, 0x8
-	  stw       r0, -0x6EC0(r13)
-	  lbz       r0, 0x68C(r3)
-	  rlwinm    r0,r0,8,0,23
-	  add       r0, r3, r0
-	  stw       r0, -0x6E80(r13)
-	  lwz       r9, 0x12C(r30)
-	  lwz       r7, -0x6E80(r13)
-	  li        r3, 0x8
-	  mtctr     r3
-
-	.loc_0x1574:
-	  psq_l     f7,0x0(r9),0x5,5
-	  psq_l     f6,0x0(r7),0,0
-	  lwz       r6, 0xC(r9)
-	  lwz       r0, 0x8(r9)
-	  ps_mul    f7, f7, f6
-	  lwz       r5, 0x4(r9)
-	  lhz       r3, 0x2(r9)
-	  or.       r6, r6, r0
-
-	.loc_0x1594:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x16E0
-	  ps_merge00f4, f7, f7
-	  cmpwi     r5, 0
-	  psq_st    f4,0x8(r8),0,0
-	  bne-      .loc_0x1644
-	  psq_st    f4,0x10(r8),0,0
-	  cmpwi     r3, 0
-	  psq_st    f4,0x18(r8),0,0
-	  bne-      .loc_0x15D0
-	  addi      r7, r7, 0x20
-	  psq_stu   f4,0x20(r8),0,0
-	  addi      r9, r9, 0x10
-	  bdnz+     .loc_0x1574
-	  b         .loc_0x17A8
-
-	.loc_0x15D0:
-	  addi      r9, r9, 0x10
-	  ps_msub   f13, f7, f28, f7
-	  addi      r7, r7, 0x20
-	  ps_merge00f2, f7, f7
-	  lwz       r5, 0x4(r9)
-	  ps_sub    f1, f28, f29
-	  ps_msub   f12, f7, f27, f13
-	  lhz       r3, 0x2(r9)
-	  ps_merge11f10, f7, f13
-	  psq_l     f6,0x0(r7),0,0
-	  ps_nmadd  f11, f7, f1, f12
-	  ps_add    f8, f2, f10
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_merge11f9, f12, f11
-	  ps_sub    f10, f2, f10
-	  lwz       r6, 0xC(r9)
-	  ps_add    f3, f2, f9
-	  lwz       r0, 0x8(r9)
-	  ps_sub    f9, f2, f9
-	  psq_stu   f8,0x8(r8),0,0
-	  ps_merge10f9, f9, f9
-	  psq_stu   f3,0x8(r8),0,0
-	  ps_merge10f10, f10, f10
-	  or        r6, r6, r0
-	  psq_stu   f9,0x8(r8),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f10,0x8(r8),0,0
-	  bdnz+     .loc_0x1594
-	  b         .loc_0x17A8
-
-	.loc_0x1644:
-	  psq_l     f1,0x4(r9),0x5,5
-	  psq_l     f2,0x8(r7),0,0
-	  addi      r9, r9, 0x10
-	  ps_mul    f1, f1, f2
-	  addi      r7, r7, 0x20
-	  ps_sub    f12, f7, f1
-	  ps_add    f13, f7, f1
-	  lwz       r6, 0xC(r9)
-	  ps_madd   f11, f1, f27, f12
-	  ps_nmadd  f10, f1, f27, f13
-	  ps_mul    f3, f12, f28
-	  ps_merge00f11, f13, f11
-	  lwz       r0, 0x8(r9)
-	  ps_nmadd  f9, f1, f30, f3
-	  ps_merge00f10, f10, f12
-	  lwz       r5, 0x4(r9)
-	  ps_sub    f9, f9, f13
-	  ps_nmadd  f8, f7, f29, f3
-	  lhz       r3, 0x2(r9)
-	  ps_merge11f13, f13, f9
-	  ps_msub   f3, f12, f27, f9
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_add    f2, f11, f13
-	  ps_sub    f8, f8, f3
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f12, f3, f8
-	  ps_sub    f11, f11, f13
-	  psq_stu   f2,0x8(r8),0,0
-	  ps_add    f4, f10, f12
-	  ps_sub    f1, f10, f12
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r8),0,0
-	  ps_merge10f1, f1, f1
-	  ps_merge10f11, f11, f11
-	  psq_stu   f1,0x8(r8),0,0
-	  ps_mul    f7, f7, f6
-	  psq_stu   f11,0x8(r8),0,0
-	  bdnz+     .loc_0x1594
-	  b         .loc_0x17A8
-
-	.loc_0x16E0:
-	  psq_l     f2,0x4(r9),0x5,5
-	  psq_l     f10,0x8(r7),0,0
-	  ps_mul    f2, f2, f10
-	  psq_l     f13,0x8(r9),0x5,5
-	  psq_l     f9,0x10(r7),0,0
-	  ps_merge01f4, f7, f2
-	  psq_l     f12,0xC(r9),0,0x5
-	  ps_merge01f1, f2, f7
-	  psq_l     f8,0x18(r7),0,0
-	  addi      r9, r9, 0x10
-	  ps_madd   f11, f13, f9, f4
-	  ps_nmadd  f10, f13, f9, f4
-	  ps_madd   f9, f12, f8, f1
-	  ps_nmadd  f8, f12, f8, f1
-	  addi      r7, r7, 0x20
-	  ps_add    f4, f11, f9
-	  ps_sub    f12, f11, f9
-	  ps_msub   f13, f8, f27, f9
-	  lwz       r6, 0xC(r9)
-	  ps_sub    f3, f8, f10
-	  ps_add    f1, f10, f13
-	  ps_sub    f13, f10, f13
-	  ps_mul    f3, f3, f28
-	  lwz       r0, 0x8(r9)
-	  ps_merge00f1, f4, f1
-	  ps_nmadd  f9, f10, f30, f3
-	  ps_msub   f11, f8, f29, f3
-	  lwz       r5, 0x4(r9)
-	  ps_sub    f9, f9, f4
-	  ps_merge00f13, f13, f12
-	  lhz       r3, 0x2(r9)
-	  ps_madd   f10, f12, f27, f9
-	  ps_merge11f8, f4, f9
-	  psq_l     f7,0x0(r9),0x5,5
-	  ps_sub    f11, f11, f10
-	  ps_add    f12, f1, f8
-	  psq_l     f6,0x0(r7),0,0
-	  ps_merge11f11, f10, f11
-	  ps_sub    f4, f1, f8
-	  ps_mul    f7, f7, f6
-	  ps_add    f10, f13, f11
-	  ps_sub    f9, f13, f11
-	  ps_merge10f10, f10, f10
-	  psq_stu   f12,0x8(r8),0,0
-	  ps_merge10f4, f4, f4
-	  psq_stu   f9,0x8(r8),0,0
-	  psq_stu   f10,0x8(r8),0,0
-	  or        r6, r6, r0
-	  psq_stu   f4,0x8(r8),0,0
-	  bdnz+     .loc_0x1594
-
-	.loc_0x17A8:
-	  lwz       r7, -0x6EC0(r13)
-	  mr        r8, r30
-	  lwz       r0, -0x6EA0(r13)
-	  psq_l     f7,0x0(r8),0,0
-	  rlwinm    r3,r4,2,0,29
-	  psq_l     f6,0x80(r8),0,0
-	  rlwinm    r5,r0,2,0,29
-	  psq_l     f5,0x40(r8),0,0
-	  mr        r6, r3
-	  ps_add    f9, f7, f6
-	  psq_l     f4,0xC0(r8),0,0
-	  ps_sub    f3, f7, f6
-	  add       r5, r6, r5
-	  ps_add    f9, f9, f31
-	  li        r0, 0x3
-	  ps_add    f8, f5, f4
-	  add       r4, r7, r6
-	  ps_sub    f2, f5, f4
-	  ps_add    f4, f9, f8
-	  add       r3, r7, r5
-	  ps_add    f3, f3, f31
-	  mtctr     r0
-
-	.loc_0x1800:
-	  psq_l     f11,0x20(r8),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r8),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r8),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r8),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  addi      r8, r8, 0x8
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  psq_l     f7,0x0(r8),0,0
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  psq_l     f6,0x80(r8),0,0
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  psq_l     f5,0x40(r8),0,0
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_l     f4,0xC0(r8),0,0
-	  ps_sub    f9, f9, f8
-	  addi      r6, r6, 0x2
-	  psq_st    f2,0x0(r4),0x6,6
-	  ps_msub   f11, f11, f29, f3
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f3,0x10(r4),0x6,6
-	  addi      r5, r5, 0x2
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r4),0x6,6
-	  ps_sub    f2, f13, f10
-	  ps_add    f9, f7, f6
-	  psq_st    f3,0x0(r3),0x6,6
-	  ps_sub    f3, f7, f6
-	  ps_add    f9, f9, f31
-	  psq_st    f2,0x8(r3),0x6,6
-	  ps_add    f8, f5, f4
-	  ps_sub    f2, f5, f4
-	  psq_st    f1,0x10(r3),0x6,6
-	  add       r4, r7, r6
-	  ps_add    f4, f9, f8
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f3, f3, f31
-	  add       r3, r7, r5
-	  bdnz+     .loc_0x1800
-	  psq_l     f11,0x20(r8),0,0
-	  ps_msub   f2, f2, f27, f8
-	  psq_l     f10,0x60(r8),0,0
-	  ps_sub    f12, f9, f8
-	  ps_add    f1, f3, f2
-	  psq_l     f9,0xA0(r8),0,0
-	  ps_sub    f13, f3, f2
-	  psq_l     f8,0xE0(r8),0,0
-	  ps_add    f3, f9, f10
-	  ps_sub    f9, f9, f10
-	  ps_add    f2, f11, f8
-	  ps_sub    f11, f11, f8
-	  ps_add    f8, f2, f3
-	  ps_sub    f10, f2, f3
-	  ps_add    f3, f9, f11
-	  ps_add    f2, f4, f8
-	  ps_mul    f3, f3, f28
-	  ps_sub    f0, f4, f8
-	  ps_madd   f9, f9, f30, f3
-	  psq_st    f2,0x0(r4),0x6,6
-	  ps_sub    f9, f9, f8
-	  ps_msub   f11, f11, f29, f3
-	  psq_st    f0,0x18(r3),0x6,6
-	  ps_add    f2, f1, f9
-	  ps_msub   f10, f10, f27, f9
-	  ps_sub    f1, f1, f9
-	  psq_st    f2,0x8(r4),0x6,6
-	  ps_add    f3, f13, f10
-	  ps_add    f11, f11, f10
-	  psq_st    f1,0x10(r3),0x6,6
-	  psq_st    f3,0x10(r4),0x6,6
-	  ps_sub    f2, f12, f11
-	  ps_add    f3, f12, f11
-	  psq_st    f2,0x18(r4),0x6,6
-	  ps_sub    f2, f13, f10
-	  psq_st    f3,0x0(r3),0x6,6
-	  psq_st    f2,0x8(r3),0x6,6
-	  lwz       r5, -0x6E70(r13)
-	  lbz       r0, 0x6A9(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x19EC
-	  lhz       r4, 0x6AC(r5)
-	  subi      r0, r4, 0x1
-	  sth       r0, 0x6AC(r5)
-	  lwz       r4, -0x6E70(r13)
-	  lhz       r0, 0x6AC(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x19EC
-	  lhz       r0, 0x6AA(r4)
-	  sth       r0, 0x6AC(r4)
-	  lwz       r4, -0x6E70(r13)
-	  lwz       r3, 0x6A4(r4)
-	  addi      r0, r3, 0x6
-	  rlwinm    r3,r0,0,0,28
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x6A4(r4)
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r0, 0x6A4(r3)
-	  cmplwi    r0, 0x20
-	  ble-      .loc_0x19D0
-	  li        r0, 0x21
-	  stw       r0, 0x6A4(r3)
-
-	.loc_0x19D0:
-	  lwz       r3, -0x6E70(r13)
-	  li        r0, 0
-	  sth       r0, 0x684(r3)
-	  lwz       r3, -0x6E70(r13)
-	  sth       r0, 0x68A(r3)
-	  lwz       r3, -0x6E70(r13)
-	  sth       r0, 0x690(r3)
-
-	.loc_0x19EC:
-	  addi      r29, r29, 0x1
-
-	.loc_0x19F0:
-	  lwz       r3, -0x6E70(r13)
-	  rlwinm    r4,r29,0,24,31
-	  lhz       r0, 0x696(r3)
-	  cmpw      r4, r0
-	  blt+      .loc_0x68
-	  rlwinm    r29,r28,28,4,31
-	  lwz       r3, 0x6B0(r3)
-	  lwz       r4, 0x10C(r30)
-	  rlwinm    r5,r28,4,0,23
-	  bl        -0x10808
-	  lwz       r3, -0x6E70(r13)
-	  rlwinm    r5,r29,6,0,25
-	  lwz       r4, 0x110(r30)
-	  lwz       r3, 0x6B4(r3)
-	  bl        -0x1081C
-	  lwz       r3, -0x6E70(r13)
-	  rlwinm    r5,r29,6,0,25
-	  lwz       r4, 0x114(r30)
-	  lwz       r3, 0x6B8(r3)
-	  bl        -0x10830
-	  lwz       r5, -0x6E70(r13)
-	  rlwinm    r0,r29,8,0,23
-	  rlwinm    r4,r29,6,0,25
-	  lwz       r3, 0x6B0(r5)
-	  add       r0, r3, r0
-	  stw       r0, 0x6B0(r5)
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r0, 0x6B4(r3)
-	  add       r0, r0, r4
-	  stw       r0, 0x6B4(r3)
-	  lwz       r3, -0x6E70(r13)
-	  lwz       r0, 0x6B8(r3)
-	  add       r0, r0, r4
-	  stw       r0, 0x6B8(r3)
-	  lwz       r0, 0x44(r1)
-	  lfd       f31, 0x38(r1)
-	  lfd       f30, 0x30(r1)
-	  lfd       f29, 0x28(r1)
-	  lfd       f28, 0x20(r1)
-	  lfd       f27, 0x18(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  lwz       r29, 0xC(r1)
-	  lwz       r28, 0x8(r1)
-	  addi      r1, r1, 0x40
-	  mtlr      r0
-	  blr
-
-	.loc_0x1AAC:
-	*/
+	LCStoreData(__THPInfo->dLC[0], __THPLCWork672[0], ((4 * sizeof(u8) * 64) * (x / 16)));
+	LCStoreData(__THPInfo->dLC[1], __THPLCWork672[1], ((sizeof(u8) * 64) * (x / 16)));
+	LCStoreData(__THPInfo->dLC[2], __THPLCWork672[2], ((sizeof(u8) * 64) * (x / 16)));
+	__THPInfo->dLC[0] += ((4 * sizeof(u8) * 64) * (x / 16));
+	__THPInfo->dLC[1] += ((sizeof(u8) * 64) * (x / 16));
+	__THPInfo->dLC[2] += ((sizeof(u8) * 64) * (x / 16));
 }
 
 /*
@@ -6832,522 +1670,402 @@ void __THPDecompressiMCURowNxN(void)
  * Address:	800FD244
  * Size:	00067C
  */
-void __THPHuffDecodeDCTCompY(void)
+static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  dcbz      r0, r4
-	  lwz       r12, -0x6F80(r13)
-	  lwz       r11, 0x6A4(r3)
-	  addi      r9, r12, 0x20
-	  lwz       r10, 0x6A0(r3)
-	  addi      r5, r11, 0x4
-	  cmpwi     r11, 0x1C
-	  rlwnm     r8,r10,r5,27,31
-	  bgt-      .loc_0xF4
-	  lbzx      r5, r12, r8
-	  lbzx      r9, r9, r8
-	  cmpwi     r5, 0xFF
-	  beq-      .loc_0x50
-	  add       r11, r11, r9
-	  stw       r11, 0x6A4(r3)
-	  b         .loc_0x298
+	{
+		register s32 t;
+		THPCoeff dc;
+		register THPCoeff diff;
 
-	.loc_0x50:
-	  addi      r6, r12, 0x44
-	  addi      r11, r11, 0x5
-	  li        r0, 0x14
-	  li        r5, 0x5
-	  addi      r6, r6, 0x14
+		__dcbz((void*)block, 0);
+		t = __THPHuffDecodeTab(info, Ydchuff);
+		__dcbz((void*)block, 32);
+		diff = 0;
+		__dcbz((void*)block, 64);
 
-	.loc_0x64:
-	  cmpwi     r11, 0x21
-	  rlwinm    r8,r8,1,0,30
-	  beq-      .loc_0x84
-	  rlwnm     r9,r10,r11,31,31
-	  lwzu      r0, 0x4(r6)
-	  or        r8, r8, r9
-	  addi      r11, r11, 0x1
-	  b         .loc_0xC8
+		if (t) {
+			{
+				register s32 v;
+				register u32 cb;
+				register u32 cnt;
+				register u32 code;
+				register u32 tmp;
+				register u32 cnt1;
+				register u32 tmp1;
+				// clang-format off
+                asm {
+                        lwz      cnt,info->cnt;
+                        subfic   code,cnt,33;
+                        lwz      cb,info->currByte;
 
-	.loc_0x84:
-	  lwz       r9, 0x69C(r3)
-	  li        r11, 0x1
-	  lwzu      r10, 0x4(r9)
-	  lwzu      r0, 0x4(r6)
-	  stw       r9, 0x69C(r3)
-	  rlwimi    r8,r10,1,31,31
-	  stw       r10, 0x6A0(r3)
-	  b         .loc_0xB4
+                        subfc. tmp, code, t;
+                        subi     cnt1,cnt,1;
 
-	.loc_0xA4:
-	  rlwinm    r8,r8,1,0,30
-	  rlwnm     r9,r10,r11,31,31
-	  lwzu      r0, 0x4(r6)
-	  or        r8, r8, r9
+                        bgt      _notEnoughBitsDIFF;
+                        add      v,cnt,t;
 
-	.loc_0xB4:
-	  cmpw      r8, r0
-	  addi      r11, r11, 0x1
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0xA4
-	  b         .loc_0xD4
+                        slw      cnt,cb,cnt1;
+                        stw      v,info->cnt;
+                        subfic   v,t,32;
+                        srw      diff,cnt,v;
+                }
+				// clang-format on
 
-	.loc_0xC8:
-	  cmpw      r8, r0
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0x64
+				// clang-format off
+				asm
+                {
+                    b _DoneDIFF;
+                _notEnoughBitsDIFF:
+                    lwz tmp1, info->c;
+                    slw v, cb, cnt1;
+                    lwzu cb, 4(tmp1);
+                    addi tmp, tmp, 1;
+                    stw cb, info->currByte;
+                    srw cb, cb, code;
+                    stw tmp1, info->c;
+                    add v, cb, v;
+                    stw tmp, info->cnt;
+                    subfic tmp, t, 32;
+                    srw diff, v, tmp;
+                _DoneDIFF:
+                }
+				// clang-format on
+			}
 
-	.loc_0xD4:
-	  stw       r11, 0x6A4(r3)
-	  rlwinm    r0,r5,2,0,29
-	  add       r5, r12, r0
-	  lwz       r6, 0x40(r12)
-	  lwz       r0, 0x8C(r5)
-	  add       r0, r0, r6
-	  lbzx      r5, r8, r0
-	  b         .loc_0x298
+			if (__cntlzw((u32)diff) > 32 - t) {
+				diff += ((0xFFFFFFFF << t) + 1);
+			}
+		};
 
-	.loc_0xF4:
-	  cmpwi     r11, 0x21
-	  lwz       r8, 0x69C(r3)
-	  beq-      .loc_0x1B0
-	  cmpwi     r11, 0x20
-	  rlwnm     r5,r10,r5,27,31
-	  beq-      .loc_0x134
-	  lbzx      r8, r12, r5
-	  lbzx      r9, r9, r5
-	  cmpwi     r8, 0xFF
-	  add       r5, r11, r9
-	  beq-      .loc_0x214
-	  cmpwi     r5, 0x21
-	  stw       r5, 0x6A4(r3)
-	  bgt-      .loc_0x214
-	  mr        r5, r8
-	  b         .loc_0x298
+		__dcbz((void*)block, 96);
+		dc       = (s16)(info->components[0].predDC + diff);
+		block[0] = info->components[0].predDC = dc;
+	}
 
-	.loc_0x134:
-	  lwzu      r10, 0x4(r8)
-	  stw       r8, 0x69C(r3)
-	  rlwimi    r5,r10,4,28,31
-	  lbzx      r8, r12, r5
-	  lbzx      r9, r9, r5
-	  stw       r10, 0x6A0(r3)
-	  cmpwi     r8, 0xFF
-	  stw       r9, 0x6A4(r3)
-	  beq-      .loc_0x160
-	  mr        r5, r8
-	  b         .loc_0x298
+	{
+		register s32 k;
+		register s32 code;
+		register u32 cnt;
+		register u32 cb;
+		register u32 increment;
+		register s32 tmp;
+		register THPHuffmanTab* h = Yachuff;
 
-	.loc_0x160:
-	  addi      r6, r12, 0x44
-	  li        r11, 0x14
-	  addi      r6, r6, 0x14
-	  rlwinm    r8,r5,27,0,4
-	  li        r11, 0x5
-	  rlwimi    r8,r10,31,1,31
+		// clang-format off
+		asm
+        {
+            lwz     cnt, info->cnt;
+            addi    increment, h, 32;
+            lwz     cb, info->currByte;
+        }
+		// clang-format on
 
-	.loc_0x178:
-	  subfic    r10, r11, 0x1F
-	  lwzu      r0, 0x4(r6)
-	  srw       r5, r8, r10
-	  cmpw      r5, r0
-	  addi      r11, r11, 0x1
-	  bgt+      .loc_0x178
-	  stw       r11, 0x6A4(r3)
+		for (k = 1; k < 64; k++)
+		{
+			register s32 ssss;
+			register s32 rrrr;
 
-	.loc_0x194:
-	  rlwinm    r0,r11,2,0,29
-	  lwz       r7, 0x40(r12)
-	  add       r6, r12, r0
-	  lwz       r0, 0x8C(r6)
-	  add       r0, r0, r7
-	  lbzx      r5, r5, r0
-	  b         .loc_0x298
+			// clang-format off
+			asm {
+                addi    code, cnt, 4;
+                cmpwi   cnt, 28;
+                rlwnm   tmp, cb, code, 27, 31;
+                bgt     _notEnoughBits;
 
-	.loc_0x1B0:
-	  lwzu      r10, 0x4(r8)
-	  rlwinm    r5,r10,5,27,31
-	  stw       r8, 0x69C(r3)
-	  lbzx      r11, r12, r5
-	  lbzx      r9, r9, r5
-	  cmpwi     r11, 0xFF
-	  stw       r10, 0x6A0(r3)
-	  addi      r9, r9, 0x1
-	  beq-      .loc_0x1E0
-	  stw       r9, 0x6A4(r3)
-	  mr        r5, r11
-	  b         .loc_0x298
+                lbzx    ssss, h, tmp;
+                lbzx    code, increment, tmp;
+                cmpwi   ssss, 0xFF;
 
-	.loc_0x1E0:
-	  li        r11, 0x5
-	  li        r6, 0x14
+                beq     _FailedCheckEnoughBits;
+                add     cnt, cnt, code;
+                b       _DoneDecodeTab;
+            }
+			// clang-format on
 
-	.loc_0x1E8:
-	  subfic    r8, r11, 0x1F
-	  addi      r11, r11, 0x1
-	  addi      r6, r6, 0x4
-	  srw       r5, r10, r8
-	  add       r7, r12, r6
-	  lwz       r0, 0x44(r7)
-	  cmpw      r5, r0
-	  bgt+      .loc_0x1E8
-	  addi      r0, r11, 0x1
-	  stw       r0, 0x6A4(r3)
-	  b         .loc_0x194
+			{
+				register u32 maxcodebase;
+				register u32 tmp2;
 
-	.loc_0x214:
-	  subfic    r0, r11, 0x21
-	  li        r5, -0x1
-	  slw       r7, r5, r0
-	  andc      r5, r10, r7
-	  addi      r7, r12, 0x44
-	  lwz       r8, 0x69C(r3)
-	  subfic    r6, r11, 0x21
-	  addi      r11, r6, 0x1
-	  rlwinm    r6,r6,2,0,29
-	  lwzu      r10, 0x4(r8)
-	  add       r7, r7, r6
-	  stw       r8, 0x69C(r3)
-	  rlwinm    r5,r5,1,0,30
-	  stw       r10, 0x6A0(r3)
-	  rlwimi    r5,r10,1,31,31
-	  lwzu      r6, 0x4(r7)
-	  li        r8, 0x2
-	  b         .loc_0x270
+			_FailedCheckEnoughBits:
+				cnt += 5;
+				maxcodebase = (u32) & (h->maxCode);
+				// clang-format off
+				asm {
+                    li          tmp2, sizeof(s32)*(5);
+                    li          code, 5;
+                    add         maxcodebase, maxcodebase, tmp2;
+                  __WHILE_START:
+                    cmpwi       cnt, 33;
+                    slwi        tmp, tmp, 1
 
-	.loc_0x25C:
-	  rlwinm    r5,r5,1,0,30
-	  addi      r11, r11, 0x1
-	  lwzu      r6, 0x4(r7)
-	  add       r5, r5, r9
-	  addi      r8, r8, 0x1
+                    beq         _FCEB_faster;
+                    rlwnm       ssss, cb, cnt, 31, 31;
+                    lwzu        tmp2, 4(maxcodebase);
+                    or          tmp, tmp, ssss
+                    addi        cnt, cnt, 1;
+                    b __WHILE_CHECK;
 
-	.loc_0x270:
-	  cmpw      r5, r6
-	  rlwnm     r9,r10,r8,31,31
-	  bgt+      .loc_0x25C
-	  stw       r8, 0x6A4(r3)
-	  rlwinm    r0,r11,2,0,29
-	  add       r6, r12, r0
-	  lwz       r7, 0x40(r12)
-	  lwz       r0, 0x8C(r6)
-	  add       r0, r0, r7
-	  lbzx      r5, r5, r0
+                  _FCEB_faster:
+                    lwz     ssss, info->c;
+                    li      cnt, 1;
+                    lwzu    cb, 4(ssss);
 
-	.loc_0x298:
-	  li        r0, 0x20
-	  dcbz      r4, r0
-	  li        r7, 0
-	  li        r0, 0x40
-	  dcbz      r4, r0
-	  cmpwi     r5, 0
-	  beq-      .loc_0x334
-	  lwz       r7, 0x6A4(r3)
-	  subfic    r8, r7, 0x21
-	  lwz       r6, 0x6A0(r3)
-	  subc.     r9, r5, r8
-	  subi      r10, r7, 0x1
-	  bgt-      .loc_0x2E4
-	  add       r0, r7, r5
-	  slw       r7, r6, r10
-	  stw       r0, 0x6A4(r3)
-	  subfic    r0, r5, 0x20
-	  srw       r7, r7, r0
-	  b         .loc_0x310
+                    lwzu    tmp2, 4(maxcodebase);
 
-	.loc_0x2E4:
-	  lwz       r7, 0x69C(r3)
-	  slw       r0, r6, r10
-	  lwzu      r6, 0x4(r7)
-	  addi      r9, r9, 0x1
-	  stw       r6, 0x6A0(r3)
-	  srw       r6, r6, r8
-	  stw       r7, 0x69C(r3)
-	  add       r0, r6, r0
-	  stw       r9, 0x6A4(r3)
-	  subfic    r9, r5, 0x20
-	  srw       r7, r0, r9
+                    stw     ssss, info->c;
+                    rlwimi  tmp, cb, 1,31,31;
+                    b __FL_WHILE_CHECK;
 
-	.loc_0x310:
-	  extsh     r0, r7
-	  cntlzw    r6, r0
-	  subfic    r0, r5, 0x20
-	  cmpw      r6, r0
-	  ble-      .loc_0x334
-	  li        r0, -0x1
-	  slw       r0, r0, r5
-	  add       r7, r0, r7
-	  addi      r7, r7, 0x1
+                  __FL_WHILE_START:
+                    slwi    tmp, tmp, 1;
 
-	.loc_0x334:
-	  li        r0, 0x60
-	  dcbz      r4, r0
-	  lha       r0, 0x684(r3)
-	  add       r0, r0, r7
-	  sth       r0, 0x684(r3)
-	  sth       r0, 0x0(r4)
-	  lwz       r8, -0x6F20(r13)
-	  lwz       r6, 0x6A4(r3)
-	  addi      r7, r8, 0x20
-	  lwz       r0, 0x6A0(r3)
-	  li        r5, 0x1
-	  lis       r9, 0x8048
-	  subi      r10, r9, 0x5B70
-	  b         .loc_0x658
+                    rlwnm   ssss, cb, cnt, 31, 31;
+                    lwzu    tmp2, 4(maxcodebase);
+                    or      tmp, tmp, ssss;
 
-	.loc_0x36C:
-	  addi      r31, r6, 0x4
-	  cmpwi     r6, 0x1C
-	  rlwnm     r12,r0,r31,27,31
-	  bgt-      .loc_0x430
-	  lbzx      r30, r8, r12
-	  lbzx      r31, r7, r12
-	  cmpwi     r30, 0xFF
-	  beq-      .loc_0x394
-	  add       r6, r6, r31
-	  b         .loc_0x5B8
+                  __FL_WHILE_CHECK:
+                    cmpw    tmp,tmp2
+                    addi    cnt, cnt, 1;
+                    addi    code, code, 1
+                    bgt     __FL_WHILE_START;
+                    b _FCEB_Done;
 
-	.loc_0x394:
-	  addi      r6, r6, 0x5
-	  addi      r9, r8, 0x44
-	  li        r11, 0x14
-	  li        r31, 0x5
-	  addi      r9, r9, 0x14
+                  __WHILE_CHECK:
+                    cmpw    tmp,tmp2
+                    addi    code, code, 1
+                    bgt     __WHILE_START;
+                }
+				// clang-format on
+			}
+		_FCEB_Done:
+			ssss = (h->Vij[(s32)(tmp + h->valPtr[code])]);
+			goto _DoneDecodeTab;
 
-	.loc_0x3A8:
-	  cmpwi     r6, 0x21
-	  rlwinm    r12,r12,1,0,30
-	  beq-      .loc_0x3C8
-	  rlwnm     r30,r0,r6,31,31
-	  lwzu      r11, 0x4(r9)
-	  or        r12, r12, r30
-	  addi      r6, r6, 0x1
-	  b         .loc_0x408
+		_notEnoughBits:
+			// clang-format off
+			asm
+            {
+                cmpwi   cnt, 33;
+                lwz     tmp, info->c;
+                beq     _getfullword;
 
-	.loc_0x3C8:
-	  lwz       r30, 0x69C(r3)
-	  li        r6, 0x1
-	  lwzu      r0, 0x4(r30)
-	  lwzu      r11, 0x4(r9)
-	  stw       r30, 0x69C(r3)
-	  rlwimi    r12,r0,1,31,31
-	  b         .loc_0x3F4
+                cmpwi   cnt, 32;
+                rlwnm   code, cb, code, 27, 31
+                beq     _1bitleft;
 
-	.loc_0x3E4:
-	  rlwinm    r12,r12,1,0,30
-	  rlwnm     r30,r0,r6,31,31
-	  lwzu      r11, 0x4(r9)
-	  or        r12, r12, r30
+                lbzx    ssss, h, code;
+                lbzx    rrrr, increment, code;
+                cmpwi   ssss, 0xFF;
+                add     code, cnt, rrrr;
+                beq _FailedCheckNoBits0;
 
-	.loc_0x3F4:
-	  cmpw      r12, r11
-	  addi      r6, r6, 0x1
-	  addi      r31, r31, 0x1
-	  bgt+      .loc_0x3E4
-	  b         .loc_0x414
+                cmpwi   code, 33;
+                bgt     _FailedCheckNoBits1;
+            }
+			// clang-format on
+			cnt = (u32)code;
+			goto _DoneDecodeTab;
 
-	.loc_0x408:
-	  cmpw      r12, r11
-	  addi      r31, r31, 0x1
-	  bgt+      .loc_0x3A8
+		_getfullword : {
+			// clang-format off
+			asm
+            {
+                    lwzu    cb, 4(tmp);
+                    rlwinm  code, cb, 5, 27, 31
+                    stw     tmp, info->c;
+                    lbzx    ssss, h, code;
+                    lbzx    tmp, increment, code;
+                    cmpwi   ssss, 0xFF
+                    addi    cnt, tmp, 1
+                    beq     _FailedCheckEnoughbits_Updated;
+            }
+			// clang-format on
+		}
+			goto _DoneDecodeTab;
 
-	.loc_0x414:
-	  rlwinm    r9,r31,2,0,29
-	  lwz       r11, 0x40(r8)
-	  add       r9, r8, r9
-	  lwz       r9, 0x8C(r9)
-	  add       r9, r9, r11
-	  lbzx      r30, r12, r9
-	  b         .loc_0x5B8
+		_FailedCheckEnoughbits_Updated:
+			ssss = 5;
+			do {
+				// clang-format off
+				asm
+                {
+                    subfic  tmp, ssss, 31;
+                    addi    ssss, ssss, 1;
+                    srw     code, cb, tmp;
+                }
+				// clang-format on
+			} while (code > h->maxCode[ssss]);
 
-	.loc_0x430:
-	  cmpwi     r6, 0x21
-	  lwz       r12, 0x69C(r3)
-	  beq-      .loc_0x46C
-	  cmpwi     r6, 0x20
-	  rlwnm     r31,r0,r31,27,31
-	  beq-      .loc_0x4D0
-	  lbzx      r30, r8, r31
-	  lbzx      r29, r7, r31
-	  cmpwi     r30, 0xFF
-	  add       r31, r6, r29
-	  beq-      .loc_0x53C
-	  cmpwi     r31, 0x21
-	  bgt-      .loc_0x53C
-	  mr        r6, r31
-	  b         .loc_0x5B8
+			cnt  = (u32)(ssss + 1);
+			ssss = (h->Vij[(s32)(code + h->valPtr[ssss])]);
 
-	.loc_0x46C:
-	  lwzu      r0, 0x4(r12)
-	  rlwinm    r31,r0,5,27,31
-	  stw       r12, 0x69C(r3)
-	  lbzx      r30, r8, r31
-	  lbzx      r12, r7, r31
-	  cmpwi     r30, 0xFF
-	  addi      r6, r12, 0x1
-	  beq-      .loc_0x490
-	  b         .loc_0x5B8
+			goto _DoneDecodeTab;
 
-	.loc_0x490:
-	  li        r30, 0x5
-	  li        r6, 0x14
+		_1bitleft:
+			// clang-format off
+			asm {
+                lwzu    cb, 4(tmp);
 
-	.loc_0x498:
-	  subfic    r12, r30, 0x1F
-	  addi      r30, r30, 0x1
-	  addi      r6, r6, 0x4
-	  srw       r31, r0, r12
-	  add       r12, r8, r6
-	  lwz       r9, 0x44(r12)
-	  cmpw      r31, r9
-	  bgt+      .loc_0x498
-	  lwz       r11, 0x40(r8)
-	  addi      r6, r30, 0x1
-	  lwz       r9, 0x8C(r12)
-	  add       r9, r9, r11
-	  lbzx      r30, r31, r9
-	  b         .loc_0x5B8
+                stw     tmp, info->c;
+                rlwimi  code, cb, 4, 28, 31;
+                lbzx    ssss, h, code;
+                lbzx    cnt, increment, code
+                cmpwi   ssss, 0xFF
+                beq     _Read4;
 
-	.loc_0x4D0:
-	  lwzu      r0, 0x4(r12)
-	  stw       r12, 0x69C(r3)
-	  rlwimi    r31,r0,4,28,31
-	  lbzx      r30, r8, r31
-	  lbzx      r6, r7, r31
-	  cmpwi     r30, 0xFF
-	  beq-      .loc_0x4F0
-	  b         .loc_0x5B8
+            }
+			// clang-format on
 
-	.loc_0x4F0:
-	  addi      r9, r8, 0x44
-	  li        r6, 0x14
-	  addi      r9, r9, 0x14
-	  rlwinm    r12,r31,27,0,4
-	  li        r6, 0x5
-	  rlwimi    r12,r0,31,1,31
+			goto _DoneDecodeTab;
 
-	.loc_0x508:
-	  subfic    r30, r6, 0x1F
-	  lwzu      r11, 0x4(r9)
-	  srw       r31, r12, r30
-	  cmpw      r31, r11
-	  addi      r6, r6, 0x1
-	  bgt+      .loc_0x508
-	  rlwinm    r9,r6,2,0,29
-	  lwz       r11, 0x40(r8)
-	  add       r9, r8, r9
-	  lwz       r9, 0x8C(r9)
-	  add       r9, r9, r11
-	  lbzx      r30, r31, r9
-	  b         .loc_0x5B8
+		_Read4 : {
+			register u32 maxcodebase = (u32) & (h->maxCode);
+			register u32 tmp2;
 
-	.loc_0x53C:
-	  subfic    r9, r6, 0x21
-	  li        r11, -0x1
-	  slw       r9, r11, r9
-	  andc      r31, r0, r9
-	  addi      r9, r8, 0x44
-	  lwz       r12, 0x69C(r3)
-	  subfic    r11, r6, 0x21
-	  addi      r30, r11, 0x1
-	  rlwinm    r11,r11,2,0,29
-	  lwzu      r0, 0x4(r12)
-	  add       r9, r9, r11
-	  stw       r12, 0x69C(r3)
-	  rlwinm    r31,r31,1,0,30
-	  rlwimi    r31,r0,1,31,31
-	  lwzu      r11, 0x4(r9)
-	  li        r6, 0x2
-	  b         .loc_0x594
+			// clang-format off
+			asm {
+                    li  cnt, sizeof(s32)*5;
+                    add     maxcodebase, maxcodebase, cnt;
 
-	.loc_0x580:
-	  rlwinm    r31,r31,1,0,30
-	  addi      r30, r30, 0x1
-	  lwzu      r11, 0x4(r9)
-	  add       r31, r31, r29
-	  addi      r6, r6, 0x1
+                    slwi    tmp, code, 32-5;
+                    li      cnt,5;
+                    rlwimi  tmp, cb, 32-1, 1,31;
 
-	.loc_0x594:
-	  cmpw      r31, r11
-	  rlwnm     r29,r0,r6,31,31
-	  bgt+      .loc_0x580
-	  rlwinm    r9,r30,2,0,29
-	  lwz       r11, 0x40(r8)
-	  add       r9, r8, r9
-	  lwz       r9, 0x8C(r9)
-	  add       r9, r9, r11
-	  lbzx      r30, r31, r9
+                  __DR4_WHILE_START:
 
-	.loc_0x5B8:
-	  andi.     r29, r30, 0xF
-	  srawi     r30, r30, 0x4
-	  beq-      .loc_0x648
-	  add       r5, r5, r30
-	  subfic    r31, r6, 0x21
-	  subc.     r12, r29, r31
-	  subi      r9, r6, 0x1
-	  bgt-      .loc_0x5EC
-	  add       r6, r6, r29
-	  slw       r11, r0, r9
-	  subfic    r9, r29, 0x20
-	  srw       r30, r11, r9
-	  b         .loc_0x610
+                    subfic  ssss, cnt, 31;
+                    lwzu    tmp2, 4(maxcodebase);
+                    srw     code, tmp, ssss;
+                  __DR4_WHILE_CHECK:
+                    cmpw    code, tmp2
+                    addi    cnt, cnt, 1
+                    bgt     __DR4_WHILE_START;
 
-	.loc_0x5EC:
-	  lwz       r11, 0x69C(r3)
-	  slw       r9, r0, r9
-	  lwzu      r0, 0x4(r11)
-	  addi      r6, r12, 0x1
-	  stw       r11, 0x69C(r3)
-	  srw       r11, r0, r31
-	  add       r9, r11, r9
-	  subfic    r12, r29, 0x20
-	  srw       r30, r9, r12
+            }
+			// clang-format on
+		}
+			ssss = (h->Vij[(s32)(code + h->valPtr[cnt])]);
+			goto _DoneDecodeTab;
 
-	.loc_0x610:
-	  cntlzw    r11, r30
-	  subfic    r9, r29, 0x20
-	  cmpw      r11, r9
-	  ble-      .loc_0x630
-	  li        r9, -0x1
-	  slw       r9, r9, r29
-	  add       r30, r9, r30
-	  addi      r30, r30, 0x1
+		_FailedCheckNoBits0:
+		_FailedCheckNoBits1:
+		_REALFAILEDCHECKNOBITS : {
+			register u32 mask = 0xFFFFFFFF << (33 - cnt);
+			register u32 tmp2;
+			register u32 tmp3;
+			code = (s32)(cb & (~mask));
+			mask = (u32) & (h->maxCode);
 
-	.loc_0x630:
-	  add       r9, r10, r5
-	  lbz       r9, 0x0(r9)
-	  extsh     r11, r30
-	  rlwinm    r9,r9,1,0,30
-	  sthx      r11, r4, r9
-	  b         .loc_0x654
+			// clang-format off
+			asm {
+                    lwz     tmp, info->c;
+                    subfic  tmp2, cnt, 33;
+                    addi    tmp3, tmp2, 1;
+                    slwi    tmp2, tmp2, 2;
+                    lwzu    cb, 4(tmp);
+                    add     mask,mask, tmp2;
+                    stw     tmp, info->c;
+                    slwi    code, code, 1;
+                    rlwimi  code, cb, 1, 31, 31;
+                    lwzu    tmp2, 4(mask);
+                    li      cnt, 2;
+                    b       __FCNB1_WHILE_CHECK;
 
-	.loc_0x648:
-	  cmpwi     r30, 0xF
-	  bne-      .loc_0x660
-	  addi      r5, r5, 0xF
+                  __FCNB1_WHILE_START:
+                    slwi    code, code, 1;
 
-	.loc_0x654:
-	  addi      r5, r5, 0x1
+                    addi    tmp3, tmp3, 1;
+                    lwzu    tmp2, 4(mask);
+                    add     code, code, rrrr;
+                    addi    cnt, cnt, 1;
 
-	.loc_0x658:
-	  cmpwi     r5, 0x40
-	  blt+      .loc_0x36C
+                  __FCNB1_WHILE_CHECK:
+                    cmpw    code, tmp2;
+                    rlwnm   rrrr, cb, cnt, 31, 31;
+                    bgt     __FCNB1_WHILE_START;
 
-	.loc_0x660:
-	  stw       r6, 0x6A4(r3)
-	  stw       r0, 0x6A0(r3)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+            }
+			// clang-format on
+			ssss = (h->Vij[(s32)(code + h->valPtr[tmp3])]);
+		}
+
+			goto _DoneDecodeTab;
+
+		_DoneDecodeTab:
+			// clang-format off
+			asm {
+                andi.   rrrr, ssss, 15;
+                srawi   ssss, ssss, 4;
+                beq     _RECV_SSSS_ZERO;
+            }
+			// clang-format on
+
+			{
+				k += ssss;
+				{
+					register s32 v;
+					register u32 cnt1;
+					register u32 tmp1;
+					// clang-format off
+					asm
+                    {
+                        subfic   code,cnt,33;
+                        subfc. tmp, code, rrrr;
+                        subi     cnt1,cnt,1;
+                        bgt      _RECVnotEnoughBits;
+                        add      cnt,cnt,rrrr;
+                        slw      tmp1,cb,cnt1;
+                        subfic   v,rrrr,32;
+                        srw      ssss,tmp1,v;
+                    }
+					// clang-format on
+					// clang-format off
+					asm
+                    {
+                        b _RECVDone;
+                    _RECVnotEnoughBits:
+                        lwz tmp1, info->c;
+                        slw v, cb, cnt1;
+                        lwzu cb, 4(tmp1);
+                        addi cnt, tmp, 1;
+                        stw tmp1, info->c;
+                        srw tmp1, cb, code;
+
+                        add v, tmp1, v;
+                        subfic tmp, rrrr, 32;
+                        srw ssss, v, tmp;
+                    _RECVDone:
+                    }
+					// clang-format on
+				}
+
+				if (__cntlzw((u32)ssss) > 32 - rrrr) {
+					ssss += ((0xFFFFFFFF << rrrr) + 1);
+				}
+
+				block[__THPJpegNaturalOrder[k]] = (s16)ssss;
+				goto _RECV_END;
+			}
+
+			{
+			_RECV_SSSS_ZERO:
+				if (ssss != 15) {
+					break;
+				}
+
+				k += 15;
+			};
+
+			// clang-format off
+			asm
+            {
+              _RECV_END:
+            }
+			// clang-format on
+		}
+		info->cnt      = cnt;
+		info->currByte = cb;
+	}
 }
 
 /*
@@ -7355,535 +2073,132 @@ void __THPHuffDecodeDCTCompY(void)
  * Address:	800FD8C0
  * Size:	0006A8
  */
-void __THPHuffDecodeDCTCompU(void)
+static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  dcbz      r0, r4
-	  lwz       r12, -0x6F60(r13)
-	  lwz       r11, 0x6A4(r3)
-	  addi      r9, r12, 0x20
-	  lwz       r10, 0x6A0(r3)
-	  addi      r5, r11, 0x4
-	  cmpwi     r11, 0x1C
-	  rlwnm     r8,r10,r5,27,31
-	  bgt-      .loc_0xF0
-	  lbzx      r5, r12, r8
-	  lbzx      r9, r9, r8
-	  cmpwi     r5, 0xFF
-	  beq-      .loc_0x4C
-	  add       r11, r11, r9
-	  stw       r11, 0x6A4(r3)
-	  b         .loc_0x294
+	register s32 t;
+	register THPCoeff diff;
+	THPCoeff dc;
+	register s32 v;
+	register u32 cb;
+	register u32 cnt;
+	register u32 cnt33;
+	register u32 tmp;
+	register u32 cnt1;
+	register u32 tmp1;
+	register s32 k;
+	register s32 ssss;
+	register s32 rrrr;
 
-	.loc_0x4C:
-	  addi      r6, r12, 0x44
-	  addi      r11, r11, 0x5
-	  li        r0, 0x14
-	  li        r5, 0x5
-	  addi      r6, r6, 0x14
+	__dcbz((void*)block, 0);
+	t = __THPHuffDecodeTab(info, Udchuff);
+	__dcbz((void*)block, 32);
+	diff = 0;
+	__dcbz((void*)block, 64);
 
-	.loc_0x60:
-	  cmpwi     r11, 0x21
-	  rlwinm    r8,r8,1,0,30
-	  beq-      .loc_0x80
-	  rlwnm     r9,r10,r11,31,31
-	  lwzu      r0, 0x4(r6)
-	  or        r8, r8, r9
-	  addi      r11, r11, 0x1
-	  b         .loc_0xC4
+	if (t) {
+		// clang-format off
+		asm
+        {
+            lwz      cnt,info->cnt;
+            subfic   cnt33,cnt,33;
+            lwz      cb,info->currByte;
+            subfc. tmp, cnt33, t;
+            subi     cnt1,cnt,1;
+            bgt      _notEnoughBitsDIFF;
+            add      v,cnt,t;
+            slw      cnt,cb,cnt1;
+            stw      v,info->cnt;
+            subfic   v,t,32;
+            srw      diff,cnt,v;
+        }
+		// clang-format on
 
-	.loc_0x80:
-	  lwz       r9, 0x69C(r3)
-	  li        r11, 0x1
-	  lwzu      r10, 0x4(r9)
-	  lwzu      r0, 0x4(r6)
-	  stw       r9, 0x69C(r3)
-	  rlwimi    r8,r10,1,31,31
-	  stw       r10, 0x6A0(r3)
-	  b         .loc_0xB0
+		// clang-format off
+		asm
+        {
+            b _DoneDIFF;
+        _notEnoughBitsDIFF:
+            lwz tmp1, info->c;
+            slw v, cb, cnt1;
+            lwzu cb, 4(tmp1);
+            addi tmp, tmp, 1;
+            stw cb, info->currByte;
+            srw cb, cb, cnt33;
+            stw tmp1, info->c;
+            add v, cb, v;
+            stw tmp, info->cnt;
+            subfic tmp, t, 32;
+            srw diff, v, tmp;
+        _DoneDIFF:
+        }
+		// clang-format on
 
-	.loc_0xA0:
-	  rlwinm    r8,r8,1,0,30
-	  rlwnm     r9,r10,r11,31,31
-	  lwzu      r0, 0x4(r6)
-	  or        r8, r8, r9
+		if (__cntlzw((u32)diff) > 32 - t) {
+			diff += ((0xFFFFFFFF << t) + 1);
+		}
+	}
 
-	.loc_0xB0:
-	  cmpw      r8, r0
-	  addi      r11, r11, 0x1
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0xA0
-	  b         .loc_0xD0
+	__dcbz((void*)block, 96);
+	dc       = (s16)(info->components[1].predDC + diff);
+	block[0] = info->components[1].predDC = dc;
 
-	.loc_0xC4:
-	  cmpw      r8, r0
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0x60
+	for (k = 1; k < 64; k++) {
+		ssss = __THPHuffDecodeTab(info, Uachuff);
+		rrrr = ssss >> 4;
+		ssss &= 15;
 
-	.loc_0xD0:
-	  stw       r11, 0x6A4(r3)
-	  rlwinm    r0,r5,2,0,29
-	  add       r5, r12, r0
-	  lwz       r6, 0x40(r12)
-	  lwz       r0, 0x8C(r5)
-	  add       r0, r0, r6
-	  lbzx      r5, r8, r0
-	  b         .loc_0x294
+		if (ssss) {
+			k += rrrr;
+			// clang-format off
+			asm
+            {
+                lwz      cnt,info->cnt;
+                subfic   cnt33,cnt,33;
+                lwz      cb,info->currByte;
+                subf. tmp, cnt33, ssss;
+                subi     cnt1,cnt,1;
+                bgt      _notEnoughBits;
+                add      v,cnt,ssss;
+                slw      cnt,cb,cnt1;
+                stw      v,info->cnt;
+                subfic   v,ssss,32;
+                srw      rrrr,cnt,v;
+            }
+			// clang-format on
 
-	.loc_0xF0:
-	  cmpwi     r11, 0x21
-	  lwz       r8, 0x69C(r3)
-	  beq-      .loc_0x1AC
-	  cmpwi     r11, 0x20
-	  rlwnm     r5,r10,r5,27,31
-	  beq-      .loc_0x130
-	  lbzx      r8, r12, r5
-	  lbzx      r9, r9, r5
-	  cmpwi     r8, 0xFF
-	  add       r5, r11, r9
-	  beq-      .loc_0x210
-	  cmpwi     r5, 0x21
-	  stw       r5, 0x6A4(r3)
-	  bgt-      .loc_0x210
-	  mr        r5, r8
-	  b         .loc_0x294
+			// clang-format off
+			asm
+            {
+                b _Done;
+            _notEnoughBits:
+                lwz tmp1, info->c;
+                slw v, cb, cnt1;
+                lwzu cb, 4(tmp1);
+                addi tmp, tmp, 1;
+                stw cb, info->currByte;
+                srw cb, cb, cnt33;
+                stw tmp1, info->c;
+                add v, cb, v;
+                stw tmp, info->cnt;
+                subfic tmp, ssss, 32;
+                srw rrrr, v, tmp;
+            _Done:
+            }
+			// clang-format on
 
-	.loc_0x130:
-	  lwzu      r10, 0x4(r8)
-	  stw       r8, 0x69C(r3)
-	  rlwimi    r5,r10,4,28,31
-	  lbzx      r8, r12, r5
-	  lbzx      r9, r9, r5
-	  stw       r10, 0x6A0(r3)
-	  cmpwi     r8, 0xFF
-	  stw       r9, 0x6A4(r3)
-	  beq-      .loc_0x15C
-	  mr        r5, r8
-	  b         .loc_0x294
+			if (__cntlzw((u32)rrrr) > 32 - ssss) {
+				rrrr += ((0xFFFFFFFF << ssss) + 1);
+			}
 
-	.loc_0x15C:
-	  addi      r6, r12, 0x44
-	  li        r11, 0x14
-	  addi      r6, r6, 0x14
-	  rlwinm    r8,r5,27,0,4
-	  li        r11, 0x5
-	  rlwimi    r8,r10,31,1,31
+			block[__THPJpegNaturalOrder[k]] = (s16)rrrr;
+		}
 
-	.loc_0x174:
-	  subfic    r10, r11, 0x1F
-	  lwzu      r0, 0x4(r6)
-	  srw       r5, r8, r10
-	  cmpw      r5, r0
-	  addi      r11, r11, 0x1
-	  bgt+      .loc_0x174
-	  stw       r11, 0x6A4(r3)
-
-	.loc_0x190:
-	  rlwinm    r0,r11,2,0,29
-	  lwz       r7, 0x40(r12)
-	  add       r6, r12, r0
-	  lwz       r0, 0x8C(r6)
-	  add       r0, r0, r7
-	  lbzx      r5, r5, r0
-	  b         .loc_0x294
-
-	.loc_0x1AC:
-	  lwzu      r10, 0x4(r8)
-	  rlwinm    r5,r10,5,27,31
-	  stw       r8, 0x69C(r3)
-	  lbzx      r11, r12, r5
-	  lbzx      r9, r9, r5
-	  cmpwi     r11, 0xFF
-	  stw       r10, 0x6A0(r3)
-	  addi      r9, r9, 0x1
-	  beq-      .loc_0x1DC
-	  stw       r9, 0x6A4(r3)
-	  mr        r5, r11
-	  b         .loc_0x294
-
-	.loc_0x1DC:
-	  li        r11, 0x5
-	  li        r6, 0x14
-
-	.loc_0x1E4:
-	  subfic    r8, r11, 0x1F
-	  addi      r11, r11, 0x1
-	  addi      r6, r6, 0x4
-	  srw       r5, r10, r8
-	  add       r7, r12, r6
-	  lwz       r0, 0x44(r7)
-	  cmpw      r5, r0
-	  bgt+      .loc_0x1E4
-	  addi      r0, r11, 0x1
-	  stw       r0, 0x6A4(r3)
-	  b         .loc_0x190
-
-	.loc_0x210:
-	  subfic    r0, r11, 0x21
-	  li        r5, -0x1
-	  slw       r7, r5, r0
-	  andc      r5, r10, r7
-	  addi      r7, r12, 0x44
-	  lwz       r8, 0x69C(r3)
-	  subfic    r6, r11, 0x21
-	  addi      r11, r6, 0x1
-	  rlwinm    r6,r6,2,0,29
-	  lwzu      r10, 0x4(r8)
-	  add       r7, r7, r6
-	  stw       r8, 0x69C(r3)
-	  rlwinm    r5,r5,1,0,30
-	  stw       r10, 0x6A0(r3)
-	  rlwimi    r5,r10,1,31,31
-	  lwzu      r6, 0x4(r7)
-	  li        r8, 0x2
-	  b         .loc_0x26C
-
-	.loc_0x258:
-	  rlwinm    r5,r5,1,0,30
-	  addi      r11, r11, 0x1
-	  lwzu      r6, 0x4(r7)
-	  add       r5, r5, r9
-	  addi      r8, r8, 0x1
-
-	.loc_0x26C:
-	  cmpw      r5, r6
-	  rlwnm     r9,r10,r8,31,31
-	  bgt+      .loc_0x258
-	  stw       r8, 0x6A4(r3)
-	  rlwinm    r0,r11,2,0,29
-	  add       r6, r12, r0
-	  lwz       r7, 0x40(r12)
-	  lwz       r0, 0x8C(r6)
-	  add       r0, r0, r7
-	  lbzx      r5, r5, r0
-
-	.loc_0x294:
-	  li        r0, 0x20
-	  dcbz      r4, r0
-	  li        r7, 0
-	  li        r0, 0x40
-	  dcbz      r4, r0
-	  cmpwi     r5, 0
-	  beq-      .loc_0x330
-	  lwz       r9, 0x6A4(r3)
-	  subfic    r10, r9, 0x21
-	  lwz       r7, 0x6A0(r3)
-	  subc.     r11, r5, r10
-	  subi      r12, r9, 0x1
-	  bgt-      .loc_0x2E0
-	  add       r0, r9, r5
-	  slw       r9, r7, r12
-	  stw       r0, 0x6A4(r3)
-	  subfic    r0, r5, 0x20
-	  srw       r7, r9, r0
-	  b         .loc_0x30C
-
-	.loc_0x2E0:
-	  lwz       r9, 0x69C(r3)
-	  slw       r0, r7, r12
-	  lwzu      r7, 0x4(r9)
-	  addi      r11, r11, 0x1
-	  stw       r7, 0x6A0(r3)
-	  srw       r7, r7, r10
-	  stw       r9, 0x69C(r3)
-	  add       r0, r7, r0
-	  stw       r11, 0x6A4(r3)
-	  subfic    r11, r5, 0x20
-	  srw       r7, r0, r11
-
-	.loc_0x30C:
-	  extsh     r0, r7
-	  cntlzw    r6, r0
-	  subfic    r0, r5, 0x20
-	  cmpw      r6, r0
-	  ble-      .loc_0x330
-	  li        r0, -0x1
-	  slw       r0, r0, r5
-	  add       r7, r0, r7
-	  addi      r7, r7, 0x1
-
-	.loc_0x330:
-	  li        r0, 0x60
-	  dcbz      r4, r0
-	  lha       r0, 0x68A(r3)
-	  lis       r5, 0x8048
-	  subi      r8, r5, 0x5B70
-	  add       r0, r0, r7
-	  sth       r0, 0x68A(r3)
-	  li        r6, 0x1
-	  sth       r0, 0x0(r4)
-	  b         .loc_0x690
-
-	.loc_0x358:
-	  lwz       r30, -0x6F00(r13)
-	  lwz       r31, 0x6A4(r3)
-	  addi      r11, r30, 0x20
-	  lwz       r12, 0x6A0(r3)
-	  addi      r5, r31, 0x4
-	  cmpwi     r31, 0x1C
-	  rlwnm     r10,r12,r5,27,31
-	  bgt-      .loc_0x438
-	  lbzx      r5, r30, r10
-	  lbzx      r11, r11, r10
-	  cmpwi     r5, 0xFF
-	  beq-      .loc_0x394
-	  add       r31, r31, r11
-	  stw       r31, 0x6A4(r3)
-	  b         .loc_0x5DC
-
-	.loc_0x394:
-	  addi      r7, r30, 0x44
-	  addi      r31, r31, 0x5
-	  li        r0, 0x14
-	  li        r5, 0x5
-	  addi      r7, r7, 0x14
-
-	.loc_0x3A8:
-	  cmpwi     r31, 0x21
-	  rlwinm    r10,r10,1,0,30
-	  beq-      .loc_0x3C8
-	  rlwnm     r11,r12,r31,31,31
-	  lwzu      r0, 0x4(r7)
-	  or        r10, r10, r11
-	  addi      r31, r31, 0x1
-	  b         .loc_0x40C
-
-	.loc_0x3C8:
-	  lwz       r11, 0x69C(r3)
-	  li        r31, 0x1
-	  lwzu      r12, 0x4(r11)
-	  lwzu      r0, 0x4(r7)
-	  stw       r11, 0x69C(r3)
-	  rlwimi    r10,r12,1,31,31
-	  stw       r12, 0x6A0(r3)
-	  b         .loc_0x3F8
-
-	.loc_0x3E8:
-	  rlwinm    r10,r10,1,0,30
-	  rlwnm     r11,r12,r31,31,31
-	  lwzu      r0, 0x4(r7)
-	  or        r10, r10, r11
-
-	.loc_0x3F8:
-	  cmpw      r10, r0
-	  addi      r31, r31, 0x1
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0x3E8
-	  b         .loc_0x418
-
-	.loc_0x40C:
-	  cmpw      r10, r0
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0x3A8
-
-	.loc_0x418:
-	  stw       r31, 0x6A4(r3)
-	  rlwinm    r0,r5,2,0,29
-	  add       r5, r30, r0
-	  lwz       r7, 0x40(r30)
-	  lwz       r0, 0x8C(r5)
-	  add       r0, r0, r7
-	  lbzx      r5, r10, r0
-	  b         .loc_0x5DC
-
-	.loc_0x438:
-	  cmpwi     r31, 0x21
-	  lwz       r10, 0x69C(r3)
-	  beq-      .loc_0x4F4
-	  cmpwi     r31, 0x20
-	  rlwnm     r5,r12,r5,27,31
-	  beq-      .loc_0x478
-	  lbzx      r10, r30, r5
-	  lbzx      r11, r11, r5
-	  cmpwi     r10, 0xFF
-	  add       r5, r31, r11
-	  beq-      .loc_0x558
-	  cmpwi     r5, 0x21
-	  stw       r5, 0x6A4(r3)
-	  bgt-      .loc_0x558
-	  mr        r5, r10
-	  b         .loc_0x5DC
-
-	.loc_0x478:
-	  lwzu      r12, 0x4(r10)
-	  stw       r10, 0x69C(r3)
-	  rlwimi    r5,r12,4,28,31
-	  lbzx      r10, r30, r5
-	  lbzx      r11, r11, r5
-	  stw       r12, 0x6A0(r3)
-	  cmpwi     r10, 0xFF
-	  stw       r11, 0x6A4(r3)
-	  beq-      .loc_0x4A4
-	  mr        r5, r10
-	  b         .loc_0x5DC
-
-	.loc_0x4A4:
-	  addi      r7, r30, 0x44
-	  li        r31, 0x14
-	  addi      r7, r7, 0x14
-	  rlwinm    r10,r5,27,0,4
-	  li        r31, 0x5
-	  rlwimi    r10,r12,31,1,31
-
-	.loc_0x4BC:
-	  subfic    r12, r31, 0x1F
-	  lwzu      r0, 0x4(r7)
-	  srw       r5, r10, r12
-	  cmpw      r5, r0
-	  addi      r31, r31, 0x1
-	  bgt+      .loc_0x4BC
-	  stw       r31, 0x6A4(r3)
-
-	.loc_0x4D8:
-	  rlwinm    r0,r31,2,0,29
-	  lwz       r9, 0x40(r30)
-	  add       r7, r30, r0
-	  lwz       r0, 0x8C(r7)
-	  add       r0, r0, r9
-	  lbzx      r5, r5, r0
-	  b         .loc_0x5DC
-
-	.loc_0x4F4:
-	  lwzu      r12, 0x4(r10)
-	  rlwinm    r5,r12,5,27,31
-	  stw       r10, 0x69C(r3)
-	  lbzx      r31, r30, r5
-	  lbzx      r11, r11, r5
-	  cmpwi     r31, 0xFF
-	  stw       r12, 0x6A0(r3)
-	  addi      r11, r11, 0x1
-	  beq-      .loc_0x524
-	  stw       r11, 0x6A4(r3)
-	  mr        r5, r31
-	  b         .loc_0x5DC
-
-	.loc_0x524:
-	  li        r31, 0x5
-	  li        r7, 0x14
-
-	.loc_0x52C:
-	  subfic    r10, r31, 0x1F
-	  addi      r31, r31, 0x1
-	  addi      r7, r7, 0x4
-	  srw       r5, r12, r10
-	  add       r9, r30, r7
-	  lwz       r0, 0x44(r9)
-	  cmpw      r5, r0
-	  bgt+      .loc_0x52C
-	  addi      r0, r31, 0x1
-	  stw       r0, 0x6A4(r3)
-	  b         .loc_0x4D8
-
-	.loc_0x558:
-	  subfic    r0, r31, 0x21
-	  li        r5, -0x1
-	  slw       r9, r5, r0
-	  andc      r5, r12, r9
-	  addi      r9, r30, 0x44
-	  lwz       r10, 0x69C(r3)
-	  subfic    r7, r31, 0x21
-	  addi      r31, r7, 0x1
-	  rlwinm    r7,r7,2,0,29
-	  lwzu      r12, 0x4(r10)
-	  add       r9, r9, r7
-	  stw       r10, 0x69C(r3)
-	  rlwinm    r5,r5,1,0,30
-	  stw       r12, 0x6A0(r3)
-	  rlwimi    r5,r12,1,31,31
-	  lwzu      r7, 0x4(r9)
-	  li        r10, 0x2
-	  b         .loc_0x5B4
-
-	.loc_0x5A0:
-	  rlwinm    r5,r5,1,0,30
-	  addi      r31, r31, 0x1
-	  lwzu      r7, 0x4(r9)
-	  add       r5, r5, r11
-	  addi      r10, r10, 0x1
-
-	.loc_0x5B4:
-	  cmpw      r5, r7
-	  rlwnm     r11,r12,r10,31,31
-	  bgt+      .loc_0x5A0
-	  stw       r10, 0x6A4(r3)
-	  rlwinm    r0,r31,2,0,29
-	  add       r7, r30, r0
-	  lwz       r9, 0x40(r30)
-	  lwz       r0, 0x8C(r7)
-	  add       r0, r0, r9
-	  lbzx      r5, r5, r0
-
-	.loc_0x5DC:
-	  rlwinm.   r30,r5,0,28,31
-	  srawi     r7, r5, 0x4
-	  beq-      .loc_0x680
-	  add       r6, r6, r7
-	  lwz       r9, 0x6A4(r3)
-	  subfic    r10, r9, 0x21
-	  lwz       r7, 0x6A0(r3)
-	  sub.      r11, r30, r10
-	  subi      r12, r9, 0x1
-	  bgt-      .loc_0x61C
-	  add       r0, r9, r30
-	  slw       r9, r7, r12
-	  stw       r0, 0x6A4(r3)
-	  subfic    r0, r30, 0x20
-	  srw       r7, r9, r0
-	  b         .loc_0x648
-
-	.loc_0x61C:
-	  lwz       r9, 0x69C(r3)
-	  slw       r0, r7, r12
-	  lwzu      r7, 0x4(r9)
-	  addi      r11, r11, 0x1
-	  stw       r7, 0x6A0(r3)
-	  srw       r7, r7, r10
-	  stw       r9, 0x69C(r3)
-	  add       r0, r7, r0
-	  stw       r11, 0x6A4(r3)
-	  subfic    r11, r30, 0x20
-	  srw       r7, r0, r11
-
-	.loc_0x648:
-	  cntlzw    r5, r7
-	  subfic    r0, r30, 0x20
-	  cmpw      r5, r0
-	  ble-      .loc_0x668
-	  li        r0, -0x1
-	  slw       r0, r0, r30
-	  add       r7, r0, r7
-	  addi      r7, r7, 0x1
-
-	.loc_0x668:
-	  add       r5, r8, r6
-	  lbz       r0, 0x0(r5)
-	  extsh     r5, r7
-	  rlwinm    r0,r0,1,0,30
-	  sthx      r5, r4, r0
-	  b         .loc_0x68C
-
-	.loc_0x680:
-	  cmpwi     r7, 0xF
-	  bne-      .loc_0x698
-	  addi      r6, r6, 0xF
-
-	.loc_0x68C:
-	  addi      r6, r6, 0x1
-
-	.loc_0x690:
-	  cmpwi     r6, 0x40
-	  blt+      .loc_0x358
-
-	.loc_0x698:
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  blr
-	*/
+		else {
+			if (rrrr != 15)
+				break;
+			k += 15;
+		}
+	}
 }
 
 /*
@@ -7891,535 +2206,135 @@ void __THPHuffDecodeDCTCompU(void)
  * Address:	800FDF68
  * Size:	0006A8
  */
-void __THPHuffDecodeDCTCompV(void)
+static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  dcbz      r0, r4
-	  lwz       r12, -0x6F40(r13)
-	  lwz       r11, 0x6A4(r3)
-	  addi      r9, r12, 0x20
-	  lwz       r10, 0x6A0(r3)
-	  addi      r5, r11, 0x4
-	  cmpwi     r11, 0x1C
-	  rlwnm     r8,r10,r5,27,31
-	  bgt-      .loc_0xF0
-	  lbzx      r5, r12, r8
-	  lbzx      r9, r9, r8
-	  cmpwi     r5, 0xFF
-	  beq-      .loc_0x4C
-	  add       r11, r11, r9
-	  stw       r11, 0x6A4(r3)
-	  b         .loc_0x294
+	register s32 t;
+	register THPCoeff diff;
+	THPCoeff dc;
+	register s32 v;
+	register u32 cb;
+	register u32 cnt;
+	register u32 cnt33;
+	register u32 tmp;
+	register u32 cnt1;
+	register u32 tmp1;
+	register s32 k;
+	register s32 ssss;
+	register s32 rrrr;
 
-	.loc_0x4C:
-	  addi      r6, r12, 0x44
-	  addi      r11, r11, 0x5
-	  li        r0, 0x14
-	  li        r5, 0x5
-	  addi      r6, r6, 0x14
+	__dcbz((void*)block, 0);
+	t = __THPHuffDecodeTab(info, Vdchuff);
+	__dcbz((void*)block, 32);
+	diff = 0;
+	__dcbz((void*)block, 64);
 
-	.loc_0x60:
-	  cmpwi     r11, 0x21
-	  rlwinm    r8,r8,1,0,30
-	  beq-      .loc_0x80
-	  rlwnm     r9,r10,r11,31,31
-	  lwzu      r0, 0x4(r6)
-	  or        r8, r8, r9
-	  addi      r11, r11, 0x1
-	  b         .loc_0xC4
+	if (t) {
+		// clang-format off
+		asm
+        {
+            lwz      cnt,info->cnt;
+            subfic   cnt33,cnt,33;
+            lwz      cb,info->currByte;
+            subf. tmp, cnt33, t;
+            subi     cnt1,cnt,1;
+            bgt      _notEnoughBitsDIFF;
+            add      v,cnt,t;
+            slw      cnt,cb,cnt1;
+            stw      v,info->cnt;
+            subfic   v,t,32;
+            srw      diff,cnt,v;
+        }
+		// clang-format on
 
-	.loc_0x80:
-	  lwz       r9, 0x69C(r3)
-	  li        r11, 0x1
-	  lwzu      r10, 0x4(r9)
-	  lwzu      r0, 0x4(r6)
-	  stw       r9, 0x69C(r3)
-	  rlwimi    r8,r10,1,31,31
-	  stw       r10, 0x6A0(r3)
-	  b         .loc_0xB0
+		// clang-format off
+		asm
+        {
+            b _DoneDIFF;
+        _notEnoughBitsDIFF:
+            lwz tmp1, info->c;
+            slw v, cb, cnt1;
+            lwzu cb, 4(tmp1);
+            addi tmp, tmp, 1;
+            stw cb, info->currByte;
+            srw cb, cb, cnt33;
+            stw tmp1, info->c;
+            add v, cb, v;
+            stw tmp, info->cnt;
+            subfic tmp, t, 32;
+            srw diff, v, tmp;
+        _DoneDIFF:
+        }
+		// clang-format on
 
-	.loc_0xA0:
-	  rlwinm    r8,r8,1,0,30
-	  rlwnm     r9,r10,r11,31,31
-	  lwzu      r0, 0x4(r6)
-	  or        r8, r8, r9
+		if (__cntlzw((u32)diff) > 32 - t) {
+			diff += ((0xFFFFFFFF << t) + 1);
+		}
+	}
 
-	.loc_0xB0:
-	  cmpw      r8, r0
-	  addi      r11, r11, 0x1
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0xA0
-	  b         .loc_0xD0
+	__dcbz((void*)block, 96);
 
-	.loc_0xC4:
-	  cmpw      r8, r0
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0x60
+	dc       = (s16)(info->components[2].predDC + diff);
+	block[0] = info->components[2].predDC = dc;
 
-	.loc_0xD0:
-	  stw       r11, 0x6A4(r3)
-	  rlwinm    r0,r5,2,0,29
-	  add       r5, r12, r0
-	  lwz       r6, 0x40(r12)
-	  lwz       r0, 0x8C(r5)
-	  add       r0, r0, r6
-	  lbzx      r5, r8, r0
-	  b         .loc_0x294
+	for (k = 1; k < 64; k++) {
+		ssss = __THPHuffDecodeTab(info, Vachuff);
+		rrrr = ssss >> 4;
+		ssss &= 15;
 
-	.loc_0xF0:
-	  cmpwi     r11, 0x21
-	  lwz       r8, 0x69C(r3)
-	  beq-      .loc_0x1AC
-	  cmpwi     r11, 0x20
-	  rlwnm     r5,r10,r5,27,31
-	  beq-      .loc_0x130
-	  lbzx      r8, r12, r5
-	  lbzx      r9, r9, r5
-	  cmpwi     r8, 0xFF
-	  add       r5, r11, r9
-	  beq-      .loc_0x210
-	  cmpwi     r5, 0x21
-	  stw       r5, 0x6A4(r3)
-	  bgt-      .loc_0x210
-	  mr        r5, r8
-	  b         .loc_0x294
+		if (ssss) {
+			k += rrrr;
 
-	.loc_0x130:
-	  lwzu      r10, 0x4(r8)
-	  stw       r8, 0x69C(r3)
-	  rlwimi    r5,r10,4,28,31
-	  lbzx      r8, r12, r5
-	  lbzx      r9, r9, r5
-	  stw       r10, 0x6A0(r3)
-	  cmpwi     r8, 0xFF
-	  stw       r9, 0x6A4(r3)
-	  beq-      .loc_0x15C
-	  mr        r5, r8
-	  b         .loc_0x294
+			// clang-format off
+			asm
+            {
+                lwz      cnt,info->cnt;
+                subfic   cnt33,cnt,33;
+                lwz      cb,info->currByte;
 
-	.loc_0x15C:
-	  addi      r6, r12, 0x44
-	  li        r11, 0x14
-	  addi      r6, r6, 0x14
-	  rlwinm    r8,r5,27,0,4
-	  li        r11, 0x5
-	  rlwimi    r8,r10,31,1,31
+                subf. tmp, cnt33, ssss;
+                subi     cnt1,cnt,1;
 
-	.loc_0x174:
-	  subfic    r10, r11, 0x1F
-	  lwzu      r0, 0x4(r6)
-	  srw       r5, r8, r10
-	  cmpw      r5, r0
-	  addi      r11, r11, 0x1
-	  bgt+      .loc_0x174
-	  stw       r11, 0x6A4(r3)
+                bgt      _notEnoughBits;
+                add      v,cnt,ssss;
 
-	.loc_0x190:
-	  rlwinm    r0,r11,2,0,29
-	  lwz       r7, 0x40(r12)
-	  add       r6, r12, r0
-	  lwz       r0, 0x8C(r6)
-	  add       r0, r0, r7
-	  lbzx      r5, r5, r0
-	  b         .loc_0x294
+                slw      cnt,cb,cnt1;
+                stw      v,info->cnt;
+                subfic   v,ssss,32;
+                srw      rrrr,cnt,v;
+            }
+			// clang-format on
 
-	.loc_0x1AC:
-	  lwzu      r10, 0x4(r8)
-	  rlwinm    r5,r10,5,27,31
-	  stw       r8, 0x69C(r3)
-	  lbzx      r11, r12, r5
-	  lbzx      r9, r9, r5
-	  cmpwi     r11, 0xFF
-	  stw       r10, 0x6A0(r3)
-	  addi      r9, r9, 0x1
-	  beq-      .loc_0x1DC
-	  stw       r9, 0x6A4(r3)
-	  mr        r5, r11
-	  b         .loc_0x294
+			// clang-format off
+			asm
+            {
+                b _Done;
+            _notEnoughBits:
+                lwz tmp1, info->c;
+                slw v, cb, cnt1;
+                lwzu cb, 4(tmp1);
+                addi tmp, tmp, 1;
+                stw cb, info->currByte;
+                srw cb, cb, cnt33;
+                stw tmp1, info->c;
+                add v, cb, v;
+                stw tmp, info->cnt;
+                subfic tmp, ssss, 32;
+                srw rrrr, v, tmp;
+            _Done:
+            }
+			// clang-format on
 
-	.loc_0x1DC:
-	  li        r11, 0x5
-	  li        r6, 0x14
+			if (__cntlzw((u32)rrrr) > 32 - ssss) {
+				rrrr += ((0xFFFFFFFF << ssss) + 1);
+			}
 
-	.loc_0x1E4:
-	  subfic    r8, r11, 0x1F
-	  addi      r11, r11, 0x1
-	  addi      r6, r6, 0x4
-	  srw       r5, r10, r8
-	  add       r7, r12, r6
-	  lwz       r0, 0x44(r7)
-	  cmpw      r5, r0
-	  bgt+      .loc_0x1E4
-	  addi      r0, r11, 0x1
-	  stw       r0, 0x6A4(r3)
-	  b         .loc_0x190
-
-	.loc_0x210:
-	  subfic    r0, r11, 0x21
-	  li        r5, -0x1
-	  slw       r7, r5, r0
-	  andc      r5, r10, r7
-	  addi      r7, r12, 0x44
-	  lwz       r8, 0x69C(r3)
-	  subfic    r6, r11, 0x21
-	  addi      r11, r6, 0x1
-	  rlwinm    r6,r6,2,0,29
-	  lwzu      r10, 0x4(r8)
-	  add       r7, r7, r6
-	  stw       r8, 0x69C(r3)
-	  rlwinm    r5,r5,1,0,30
-	  stw       r10, 0x6A0(r3)
-	  rlwimi    r5,r10,1,31,31
-	  lwzu      r6, 0x4(r7)
-	  li        r8, 0x2
-	  b         .loc_0x26C
-
-	.loc_0x258:
-	  rlwinm    r5,r5,1,0,30
-	  addi      r11, r11, 0x1
-	  lwzu      r6, 0x4(r7)
-	  add       r5, r5, r9
-	  addi      r8, r8, 0x1
-
-	.loc_0x26C:
-	  cmpw      r5, r6
-	  rlwnm     r9,r10,r8,31,31
-	  bgt+      .loc_0x258
-	  stw       r8, 0x6A4(r3)
-	  rlwinm    r0,r11,2,0,29
-	  add       r6, r12, r0
-	  lwz       r7, 0x40(r12)
-	  lwz       r0, 0x8C(r6)
-	  add       r0, r0, r7
-	  lbzx      r5, r5, r0
-
-	.loc_0x294:
-	  li        r0, 0x20
-	  dcbz      r4, r0
-	  li        r7, 0
-	  li        r0, 0x40
-	  dcbz      r4, r0
-	  cmpwi     r5, 0
-	  beq-      .loc_0x330
-	  lwz       r9, 0x6A4(r3)
-	  subfic    r10, r9, 0x21
-	  lwz       r7, 0x6A0(r3)
-	  sub.      r11, r5, r10
-	  subi      r12, r9, 0x1
-	  bgt-      .loc_0x2E0
-	  add       r0, r9, r5
-	  slw       r9, r7, r12
-	  stw       r0, 0x6A4(r3)
-	  subfic    r0, r5, 0x20
-	  srw       r7, r9, r0
-	  b         .loc_0x30C
-
-	.loc_0x2E0:
-	  lwz       r9, 0x69C(r3)
-	  slw       r0, r7, r12
-	  lwzu      r7, 0x4(r9)
-	  addi      r11, r11, 0x1
-	  stw       r7, 0x6A0(r3)
-	  srw       r7, r7, r10
-	  stw       r9, 0x69C(r3)
-	  add       r0, r7, r0
-	  stw       r11, 0x6A4(r3)
-	  subfic    r11, r5, 0x20
-	  srw       r7, r0, r11
-
-	.loc_0x30C:
-	  extsh     r0, r7
-	  cntlzw    r6, r0
-	  subfic    r0, r5, 0x20
-	  cmpw      r6, r0
-	  ble-      .loc_0x330
-	  li        r0, -0x1
-	  slw       r0, r0, r5
-	  add       r7, r0, r7
-	  addi      r7, r7, 0x1
-
-	.loc_0x330:
-	  li        r0, 0x60
-	  dcbz      r4, r0
-	  lha       r0, 0x690(r3)
-	  lis       r5, 0x8048
-	  subi      r8, r5, 0x5B70
-	  add       r0, r0, r7
-	  sth       r0, 0x690(r3)
-	  li        r6, 0x1
-	  sth       r0, 0x0(r4)
-	  b         .loc_0x690
-
-	.loc_0x358:
-	  lwz       r30, -0x6EE0(r13)
-	  lwz       r31, 0x6A4(r3)
-	  addi      r11, r30, 0x20
-	  lwz       r12, 0x6A0(r3)
-	  addi      r5, r31, 0x4
-	  cmpwi     r31, 0x1C
-	  rlwnm     r10,r12,r5,27,31
-	  bgt-      .loc_0x438
-	  lbzx      r5, r30, r10
-	  lbzx      r11, r11, r10
-	  cmpwi     r5, 0xFF
-	  beq-      .loc_0x394
-	  add       r31, r31, r11
-	  stw       r31, 0x6A4(r3)
-	  b         .loc_0x5DC
-
-	.loc_0x394:
-	  addi      r7, r30, 0x44
-	  addi      r31, r31, 0x5
-	  li        r0, 0x14
-	  li        r5, 0x5
-	  addi      r7, r7, 0x14
-
-	.loc_0x3A8:
-	  cmpwi     r31, 0x21
-	  rlwinm    r10,r10,1,0,30
-	  beq-      .loc_0x3C8
-	  rlwnm     r11,r12,r31,31,31
-	  lwzu      r0, 0x4(r7)
-	  or        r10, r10, r11
-	  addi      r31, r31, 0x1
-	  b         .loc_0x40C
-
-	.loc_0x3C8:
-	  lwz       r11, 0x69C(r3)
-	  li        r31, 0x1
-	  lwzu      r12, 0x4(r11)
-	  lwzu      r0, 0x4(r7)
-	  stw       r11, 0x69C(r3)
-	  rlwimi    r10,r12,1,31,31
-	  stw       r12, 0x6A0(r3)
-	  b         .loc_0x3F8
-
-	.loc_0x3E8:
-	  rlwinm    r10,r10,1,0,30
-	  rlwnm     r11,r12,r31,31,31
-	  lwzu      r0, 0x4(r7)
-	  or        r10, r10, r11
-
-	.loc_0x3F8:
-	  cmpw      r10, r0
-	  addi      r31, r31, 0x1
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0x3E8
-	  b         .loc_0x418
-
-	.loc_0x40C:
-	  cmpw      r10, r0
-	  addi      r5, r5, 0x1
-	  bgt+      .loc_0x3A8
-
-	.loc_0x418:
-	  stw       r31, 0x6A4(r3)
-	  rlwinm    r0,r5,2,0,29
-	  add       r5, r30, r0
-	  lwz       r7, 0x40(r30)
-	  lwz       r0, 0x8C(r5)
-	  add       r0, r0, r7
-	  lbzx      r5, r10, r0
-	  b         .loc_0x5DC
-
-	.loc_0x438:
-	  cmpwi     r31, 0x21
-	  lwz       r10, 0x69C(r3)
-	  beq-      .loc_0x4F4
-	  cmpwi     r31, 0x20
-	  rlwnm     r5,r12,r5,27,31
-	  beq-      .loc_0x478
-	  lbzx      r10, r30, r5
-	  lbzx      r11, r11, r5
-	  cmpwi     r10, 0xFF
-	  add       r5, r31, r11
-	  beq-      .loc_0x558
-	  cmpwi     r5, 0x21
-	  stw       r5, 0x6A4(r3)
-	  bgt-      .loc_0x558
-	  mr        r5, r10
-	  b         .loc_0x5DC
-
-	.loc_0x478:
-	  lwzu      r12, 0x4(r10)
-	  stw       r10, 0x69C(r3)
-	  rlwimi    r5,r12,4,28,31
-	  lbzx      r10, r30, r5
-	  lbzx      r11, r11, r5
-	  stw       r12, 0x6A0(r3)
-	  cmpwi     r10, 0xFF
-	  stw       r11, 0x6A4(r3)
-	  beq-      .loc_0x4A4
-	  mr        r5, r10
-	  b         .loc_0x5DC
-
-	.loc_0x4A4:
-	  addi      r7, r30, 0x44
-	  li        r31, 0x14
-	  addi      r7, r7, 0x14
-	  rlwinm    r10,r5,27,0,4
-	  li        r31, 0x5
-	  rlwimi    r10,r12,31,1,31
-
-	.loc_0x4BC:
-	  subfic    r12, r31, 0x1F
-	  lwzu      r0, 0x4(r7)
-	  srw       r5, r10, r12
-	  cmpw      r5, r0
-	  addi      r31, r31, 0x1
-	  bgt+      .loc_0x4BC
-	  stw       r31, 0x6A4(r3)
-
-	.loc_0x4D8:
-	  rlwinm    r0,r31,2,0,29
-	  lwz       r9, 0x40(r30)
-	  add       r7, r30, r0
-	  lwz       r0, 0x8C(r7)
-	  add       r0, r0, r9
-	  lbzx      r5, r5, r0
-	  b         .loc_0x5DC
-
-	.loc_0x4F4:
-	  lwzu      r12, 0x4(r10)
-	  rlwinm    r5,r12,5,27,31
-	  stw       r10, 0x69C(r3)
-	  lbzx      r31, r30, r5
-	  lbzx      r11, r11, r5
-	  cmpwi     r31, 0xFF
-	  stw       r12, 0x6A0(r3)
-	  addi      r11, r11, 0x1
-	  beq-      .loc_0x524
-	  stw       r11, 0x6A4(r3)
-	  mr        r5, r31
-	  b         .loc_0x5DC
-
-	.loc_0x524:
-	  li        r31, 0x5
-	  li        r7, 0x14
-
-	.loc_0x52C:
-	  subfic    r10, r31, 0x1F
-	  addi      r31, r31, 0x1
-	  addi      r7, r7, 0x4
-	  srw       r5, r12, r10
-	  add       r9, r30, r7
-	  lwz       r0, 0x44(r9)
-	  cmpw      r5, r0
-	  bgt+      .loc_0x52C
-	  addi      r0, r31, 0x1
-	  stw       r0, 0x6A4(r3)
-	  b         .loc_0x4D8
-
-	.loc_0x558:
-	  subfic    r0, r31, 0x21
-	  li        r5, -0x1
-	  slw       r9, r5, r0
-	  andc      r5, r12, r9
-	  addi      r9, r30, 0x44
-	  lwz       r10, 0x69C(r3)
-	  subfic    r7, r31, 0x21
-	  addi      r31, r7, 0x1
-	  rlwinm    r7,r7,2,0,29
-	  lwzu      r12, 0x4(r10)
-	  add       r9, r9, r7
-	  stw       r10, 0x69C(r3)
-	  rlwinm    r5,r5,1,0,30
-	  stw       r12, 0x6A0(r3)
-	  rlwimi    r5,r12,1,31,31
-	  lwzu      r7, 0x4(r9)
-	  li        r10, 0x2
-	  b         .loc_0x5B4
-
-	.loc_0x5A0:
-	  rlwinm    r5,r5,1,0,30
-	  addi      r31, r31, 0x1
-	  lwzu      r7, 0x4(r9)
-	  add       r5, r5, r11
-	  addi      r10, r10, 0x1
-
-	.loc_0x5B4:
-	  cmpw      r5, r7
-	  rlwnm     r11,r12,r10,31,31
-	  bgt+      .loc_0x5A0
-	  stw       r10, 0x6A4(r3)
-	  rlwinm    r0,r31,2,0,29
-	  add       r7, r30, r0
-	  lwz       r9, 0x40(r30)
-	  lwz       r0, 0x8C(r7)
-	  add       r0, r0, r9
-	  lbzx      r5, r5, r0
-
-	.loc_0x5DC:
-	  rlwinm.   r30,r5,0,28,31
-	  srawi     r7, r5, 0x4
-	  beq-      .loc_0x680
-	  add       r6, r6, r7
-	  lwz       r9, 0x6A4(r3)
-	  subfic    r10, r9, 0x21
-	  lwz       r7, 0x6A0(r3)
-	  sub.      r11, r30, r10
-	  subi      r12, r9, 0x1
-	  bgt-      .loc_0x61C
-	  add       r0, r9, r30
-	  slw       r9, r7, r12
-	  stw       r0, 0x6A4(r3)
-	  subfic    r0, r30, 0x20
-	  srw       r7, r9, r0
-	  b         .loc_0x648
-
-	.loc_0x61C:
-	  lwz       r9, 0x69C(r3)
-	  slw       r0, r7, r12
-	  lwzu      r7, 0x4(r9)
-	  addi      r11, r11, 0x1
-	  stw       r7, 0x6A0(r3)
-	  srw       r7, r7, r10
-	  stw       r9, 0x69C(r3)
-	  add       r0, r7, r0
-	  stw       r11, 0x6A4(r3)
-	  subfic    r11, r30, 0x20
-	  srw       r7, r0, r11
-
-	.loc_0x648:
-	  cntlzw    r5, r7
-	  subfic    r0, r30, 0x20
-	  cmpw      r5, r0
-	  ble-      .loc_0x668
-	  li        r0, -0x1
-	  slw       r0, r0, r30
-	  add       r7, r0, r7
-	  addi      r7, r7, 0x1
-
-	.loc_0x668:
-	  add       r5, r8, r6
-	  lbz       r0, 0x0(r5)
-	  extsh     r5, r7
-	  rlwinm    r0,r0,1,0,30
-	  sthx      r5, r4, r0
-	  b         .loc_0x68C
-
-	.loc_0x680:
-	  cmpwi     r7, 0xF
-	  bne-      .loc_0x698
-	  addi      r6, r6, 0xF
-
-	.loc_0x68C:
-	  addi      r6, r6, 0x1
-
-	.loc_0x690:
-	  cmpwi     r6, 0x40
-	  blt+      .loc_0x358
-
-	.loc_0x698:
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  blr
-	*/
+			block[__THPJpegNaturalOrder[k]] = (s16)rrrr;
+		} else {
+			if (rrrr != 15)
+				break;
+			k += 15;
+		}
+	}
 }
 
 /*
@@ -8427,49 +2342,30 @@ void __THPHuffDecodeDCTCompV(void)
  * Address:	800FE610
  * Size:	0000A0
  */
-void THPInit(void)
+
+BOOL THPInit(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r4, 0x7380
-	  lwz       r3, -0x7C50(r13)
-	  bl        -0x12BA4
-	  lis       r4, 0xE000
-	  stw       r4, 0x100(r31)
-	  addi      r4, r4, 0x2000
-	  stw       r4, 0x104(r31)
-	  addi      r4, r4, 0x800
-	  stw       r4, 0x108(r31)
-	  lis       r4, 0xE000
-	  stw       r4, 0x10C(r31)
-	  addi      r4, r4, 0x2A00
-	  stw       r4, 0x110(r31)
-	  addi      r4, r4, 0xA80
-	  stw       r4, 0x114(r31)
-	  li        r3, 0x4
-	  oris      r3, r3, 0x4
-	  mtspr     914, r3
-	  li        r3, 0x5
-	  oris      r3, r3, 0x5
-	  mtspr     915, r3
-	  li        r3, 0x6
-	  oris      r3, r3, 0x6
-	  mtspr     916, r3
-	  li        r3, 0x7
-	  oris      r3, r3, 0x7
-	  mtspr     917, r3
-	  li        r0, 0x1
-	  stw       r0, -0x6E6C(r13)
-	  li        r3, 0x1
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
+	u8* base;
+	OSRegisterVersion(__THPVersion);
+	base = (u8*)(0xE000 << 16);
+
+	__THPLCWork512[0] = base;
+	base += 0x2000;
+	__THPLCWork512[1] = base;
+	base += 0x800;
+	__THPLCWork512[2] = base;
+	base += 0x200;
+
+	base              = (u8*)(0xE000 << 16);
+	__THPLCWork672[0] = base;
+	base += 0x2A00;
+	__THPLCWork672[1] = base;
+	base += 0xA80;
+	__THPLCWork672[2] = base;
+	base += 0xA80;
+
+	OSInitFastCast();
+
+	__THPInitFlag = TRUE;
+	return TRUE;
 }
