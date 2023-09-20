@@ -24,14 +24,13 @@ typedef struct SIPacket {
 	OSTime fire;         // _18
 } SIPacket;
 
-
 // Struct for 'Si' object in SIBios.c (size 0x14).
 typedef struct SIControl {
-    int chan; // _00
-    u32 poll; // _04
-    u32 inputBytes; // _08
-    void* input;    // _0C
-    SICallback callback; // _10
+	int chan;            // _00
+	u32 poll;            // _04
+	u32 inputBytes;      // _08
+	void* input;         // _0C
+	SICallback callback; // _10
 } SIControl;
 
 ////////////////////////////////////////////

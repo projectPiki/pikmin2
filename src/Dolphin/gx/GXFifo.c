@@ -58,7 +58,7 @@ void GXBreakPointHandler(OSContext* context)
 	// if (IS_FLAG_SET(data->controlRegister, 5) && IS_FLAG_SET(data->_00C, 4)) {
 	// if ((data->controlRegister & BP_ENABLE) && IS_FLAG_SET(data->_00C, 4)) {
 	__GXData->controlRegister.bits.bpEnable = FALSE;
-	// __cpReg->controlRegister = HW_REG(&__GXData->controlRegister, u16);
+	// __cpReg->controlRegister = GXWGFifo.u16(&__GXData->controlRegister);
 	__cpReg->controlRegister = __GXData->controlRegister.value;
 	// __GXData->controlRegister &= ~BP_ENABLE;
 	// __cpReg->controlRegister = __GXData->controlRegister;
@@ -671,7 +671,7 @@ void __GXFifoInit(void)
 void __GXFifoReadEnable(void)
 {
 	// __GXData->controlRegister.gpFifoReadEnable = TRUE;
-	// __cpReg->controlRegister = HW_REG(&__GXData->controlRegister, u16);
+	// __cpReg->controlRegister = GXWGFifo.u16(&__GXData->controlRegister);
 	// __GXData->controlRegister |= GP_FIFO_READ_ENABLE;
 	// __GXData->controlRegister = __GXData->controlRegister & ~GP_FIFO_READ_ENABLE | GP_FIFO_READ_ENABLE;
 	// __cpReg->controlRegister = __GXData->controlRegister;

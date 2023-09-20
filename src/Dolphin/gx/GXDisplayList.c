@@ -1,5 +1,4 @@
 #include "Dolphin/gx.h"
-#include "Dolphin/os.h"
 
 /*
  * --INFO--
@@ -34,7 +33,7 @@ void GXCallDisplayList(void* dl, u32 byteCnt)
 	if (__GXData->_000[0] == 0) {
 		__GXSendFlushPrim();
 	}
-	HW_REG(0xCC008000, u8)    = 0x40;
-	HW_REG(0xCC008000, void*) = dl;
-	HW_REG(0xCC008000, u32)   = byteCnt;
+	GXWGFifo.u8  = 0x40;
+	GXWGFifo.u32 = dl;
+	GXWGFifo.u32 = byteCnt;
 }

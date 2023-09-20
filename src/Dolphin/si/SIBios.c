@@ -1,16 +1,16 @@
 #include "Dolphin/si.h"
 
-char *__SIVersion = "<< Dolphin SDK - SI\trelease build: Apr 17 2003 12:33:19 (0x2301) >>";
+char* __SIVersion = "<< Dolphin SDK - SI\trelease build: Apr 17 2003 12:33:19 (0x2301) >>";
 
 static SIControl Si = { -1, 0, 0, nullptr, nullptr };
 
 static SIPacket Packet[SI_MAX_CHAN];
 static OSAlarm Alarm[SI_MAX_CHAN];
 static u32 Type[SI_MAX_CHAN] = {
-    SI_ERROR_NO_RESPONSE,
-    SI_ERROR_NO_RESPONSE,
-    SI_ERROR_NO_RESPONSE,
-    SI_ERROR_NO_RESPONSE,
+	SI_ERROR_NO_RESPONSE,
+	SI_ERROR_NO_RESPONSE,
+	SI_ERROR_NO_RESPONSE,
+	SI_ERROR_NO_RESPONSE,
 };
 
 static OSTime TypeTime[SI_MAX_CHAN];
@@ -30,10 +30,7 @@ u32 __PADFixBits;
  * Address:	800F4EFC
  * Size:	000020
  */
-BOOL SIBusy()
-{
-	return Si.chan != -1 ? TRUE : FALSE;
-}
+BOOL SIBusy() { return Si.chan != -1 ? TRUE : FALSE; }
 
 /*
  * --INFO--
