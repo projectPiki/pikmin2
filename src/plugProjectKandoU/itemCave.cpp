@@ -1,4 +1,4 @@
-#include "types.h"
+#include "Game/Entities/ItemCave.h"
 
 /*
     Generated from dpostproc
@@ -843,6 +843,7 @@ void ItemCave::OpenState::cleanup(Game::ItemCave::Item*) { }
  * Size:	0000E4
  */
 ItemCave::Item::Item()
+    : FSMItem<Item, FSM, State>(OBJTYPE_Cave)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -915,6 +916,18 @@ lbl_801EA120:
  * Size:	0002B4
  */
 ItemCave::FogParm::FogParm()
+    : Parameters(nullptr, "FogParm")
+    , mStartZ(this, 'fg00', "startZ", 32.0f, 1.0f, 12800.0f)
+    , mEndZ(this, 'fg01', "endZ", 1200.0f, 1.0f, 12800.0f)
+    , mStartTime(this, 'fg02', "startTime", 2.0f, 0.0f, 30.0f)
+    , mEndTime(this, 'fg03', "endTime", 2.0f, 0.0f, 30.0f)
+    , mRed(this, 'fg04', "Red", 10, 0, 255)
+    , mGreen(this, 'fg05', "Green", 110, 0, 255)
+    , mBlue(this, 'fg06', "Blue", 118, 0, 255)
+    , mDistance(this, 'fg07', "Distance", 2000.0f, 0.0f, 12800.0f)
+    , mEnterDistance(this, 'fg08', "Enter Dist", 190.0f, 0.0f, 12800.0f)
+    , mExitDistance(this, 'fg09', "Exit  Dist", 240.0f, 0.0f, 12800.0f)
+
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1141,25 +1154,25 @@ void ItemCave::Item::onInit(Game::CreatureInitArg*)
  * Address:	801EA4B8
  * Size:	000034
  */
-void StateMachine<Game::ItemCave::Item>::start(Game::ItemCave::Item*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x1DC(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void StateMachine<Game::ItemCave::Item>::start(Game::ItemCave::Item*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  li        r0, 0
+// 	  stw       r0, 0x1DC(r4)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1604,7 +1617,7 @@ lbl_801EAA90:
  * Address:	801EAAA8
  * Size:	00008C
  */
-void ItemCave::Item::sound_culling()
+bool ItemCave::Item::sound_culling()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2397,7 +2410,7 @@ lbl_801EB41C:
  * Address:	801EB43C
  * Size:	000038
  */
-void ItemCave::Mgr::generatorNewItemParm()
+GenItemParm* ItemCave::Mgr::generatorNewItemParm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2419,89 +2432,85 @@ lbl_801EB460:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	801EB474
  * Size:	00010C
  */
-GenCaveParm::GenCaveParm()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__Q24Game11GenItemParm@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q24Game11GenItemParm@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__11GenCaveParm@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__11GenCaveParm@l
-	addi     r3, r31, 0x44
-	stw      r0, 0(r31)
-	bl       __ct__4ID32Fv
-	addi     r3, r31, 0x50
-	li       r4, 1
-	bl       __ct__Q34Game8ItemCave7FogParmFv
-	li       r0, 2
-	li       r4, 0
-	mtctr    r0
+// GenCaveParm::GenCaveParm()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	lis      r4, __vt__Q24Game11GenItemParm@ha
+// 	stw      r0, 0x14(r1)
+// 	addi     r0, r4, __vt__Q24Game11GenItemParm@l
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lis      r3, __vt__11GenCaveParm@ha
+// 	stw      r0, 0(r31)
+// 	addi     r0, r3, __vt__11GenCaveParm@l
+// 	addi     r3, r31, 0x44
+// 	stw      r0, 0(r31)
+// 	bl       __ct__4ID32Fv
+// 	addi     r3, r31, 0x50
+// 	li       r4, 1
+// 	bl       __ct__Q34Game8ItemCave7FogParmFv
+// 	li       r0, 2
+// 	li       r4, 0
+// 	mtctr    r0
 
-lbl_801EB4C0:
-	add      r3, r31, r4
-	li       r0, 0
-	stb      r0, 0x24(r3)
-	addi     r4, r4, 8
-	stb      r0, 4(r3)
-	stb      r0, 0x25(r3)
-	stb      r0, 5(r3)
-	stb      r0, 0x26(r3)
-	stb      r0, 6(r3)
-	stb      r0, 0x27(r3)
-	stb      r0, 7(r3)
-	stb      r0, 0x28(r3)
-	stb      r0, 8(r3)
-	stb      r0, 0x29(r3)
-	stb      r0, 9(r3)
-	stb      r0, 0x2a(r3)
-	stb      r0, 0xa(r3)
-	stb      r0, 0x2b(r3)
-	stb      r0, 0xb(r3)
-	add      r3, r31, r4
-	addi     r4, r4, 8
-	stb      r0, 0x24(r3)
-	stb      r0, 4(r3)
-	stb      r0, 0x25(r3)
-	stb      r0, 5(r3)
-	stb      r0, 0x26(r3)
-	stb      r0, 6(r3)
-	stb      r0, 0x27(r3)
-	stb      r0, 7(r3)
-	stb      r0, 0x28(r3)
-	stb      r0, 8(r3)
-	stb      r0, 0x29(r3)
-	stb      r0, 9(r3)
-	stb      r0, 0x2a(r3)
-	stb      r0, 0xa(r3)
-	stb      r0, 0x2b(r3)
-	stb      r0, 0xb(r3)
-	bdnz     lbl_801EB4C0
-	lis      r4, 0x6E6F6E65@ha
-	addi     r3, r31, 0x44
-	addi     r4, r4, 0x6E6F6E65@l
-	bl       setID__4ID32FUl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// lbl_801EB4C0:
+// 	add      r3, r31, r4
+// 	li       r0, 0
+// 	stb      r0, 0x24(r3)
+// 	addi     r4, r4, 8
+// 	stb      r0, 4(r3)
+// 	stb      r0, 0x25(r3)
+// 	stb      r0, 5(r3)
+// 	stb      r0, 0x26(r3)
+// 	stb      r0, 6(r3)
+// 	stb      r0, 0x27(r3)
+// 	stb      r0, 7(r3)
+// 	stb      r0, 0x28(r3)
+// 	stb      r0, 8(r3)
+// 	stb      r0, 0x29(r3)
+// 	stb      r0, 9(r3)
+// 	stb      r0, 0x2a(r3)
+// 	stb      r0, 0xa(r3)
+// 	stb      r0, 0x2b(r3)
+// 	stb      r0, 0xb(r3)
+// 	add      r3, r31, r4
+// 	addi     r4, r4, 8
+// 	stb      r0, 0x24(r3)
+// 	stb      r0, 4(r3)
+// 	stb      r0, 0x25(r3)
+// 	stb      r0, 5(r3)
+// 	stb      r0, 0x26(r3)
+// 	stb      r0, 6(r3)
+// 	stb      r0, 0x27(r3)
+// 	stb      r0, 7(r3)
+// 	stb      r0, 0x28(r3)
+// 	stb      r0, 8(r3)
+// 	stb      r0, 0x29(r3)
+// 	stb      r0, 9(r3)
+// 	stb      r0, 0x2a(r3)
+// 	stb      r0, 0xa(r3)
+// 	stb      r0, 0x2b(r3)
+// 	stb      r0, 0xb(r3)
+// 	bdnz     lbl_801EB4C0
+// 	lis      r4, 0x6E6F6E65@ha
+// 	addi     r3, r31, 0x44
+// 	addi     r4, r4, 0x6E6F6E65@l
+// 	bl       setID__4ID32FUl
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -2732,7 +2741,7 @@ lbl_801EB85C:
  * Address:	801EB878
  * Size:	0000FC
  */
-void ItemCave::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
+BaseItem* ItemCave::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3100,7 +3109,7 @@ lbl_801EBD70:
  * Address:	801EBD8C
  * Size:	000038
  */
-void ItemCave::Mgr::doNew()
+BaseItem* ItemCave::Mgr::doNew()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3127,7 +3136,7 @@ lbl_801EBDB0:
  * Address:	801EBDC4
  * Size:	00000C
  */
-void ItemCave::Mgr::generatorGetID()
+u32 ItemCave::Mgr::generatorGetID()
 {
 	/*
 	lis      r3, 0x63617665@ha
@@ -3141,7 +3150,7 @@ void ItemCave::Mgr::generatorGetID()
  * Address:	801EBDD0
  * Size:	00000C
  */
-void ItemCave::Mgr::generatorLocalVersion()
+u32 ItemCave::Mgr::generatorLocalVersion()
 {
 	/*
 	lis      r3, 0x30303032@ha
@@ -3155,7 +3164,7 @@ void ItemCave::Mgr::generatorLocalVersion()
  * Address:	801EBDDC
  * Size:	000008
  */
-void ItemCave::Item::getCreatureName()
+char* ItemCave::Item::getCreatureName()
 {
 	/*
 	addi     r3, r2, lbl_80519A80@sda21
@@ -3168,8 +3177,9 @@ void ItemCave::Item::getCreatureName()
  * Address:	801EBDE4
  * Size:	000008
  */
-void ItemCave::Item::getFaceDir()
+f32 ItemCave::Item::getFaceDir()
 {
+	return mFaceDir;
 	/*
 	lfs      f1, 0x1fc(r3)
 	blr
@@ -3181,482 +3191,475 @@ void ItemCave::Item::getFaceDir()
  * Address:	801EBDEC
  * Size:	000034
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::doAI()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1D8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::doAI()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r4, r3
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1D8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EBE20
  * Size:	000004
  */
-void ItemState<Game::ItemCave::Item>::onDamage(Game::ItemCave::Item*, float) { }
+// void ItemState<Game::ItemCave::Item>::onDamage(Game::ItemCave::Item*, float) { }
 
 /*
  * --INFO--
  * Address:	801EBE24
  * Size:	000004
  */
-void ItemState<Game::ItemCave::Item>::onKeyEvent(Game::ItemCave::Item*, const SysShape::KeyEvent&) { }
+// void ItemState<Game::ItemCave::Item>::onKeyEvent(Game::ItemCave::Item*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
  * Address:	801EBE28
  * Size:	000004
  */
-void ItemState<Game::ItemCave::Item>::onBounce(Game::ItemCave::Item*, Sys::Triangle*) { }
+// void ItemState<Game::ItemCave::Item>::onBounce(Game::ItemCave::Item*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	801EBE2C
  * Size:	000004
  */
-void ItemState<Game::ItemCave::Item>::onPlatCollision(Game::ItemCave::Item*, Game::PlatEvent&) { }
+// void ItemState<Game::ItemCave::Item>::onPlatCollision(Game::ItemCave::Item*, Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	801EBE30
  * Size:	000004
  */
-void ItemState<Game::ItemCave::Item>::onCollision(Game::ItemCave::Item*, Game::CollEvent&) { }
+// void ItemState<Game::ItemCave::Item>::onCollision(Game::ItemCave::Item*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801EBE34
  * Size:	000004
  */
-void FSMState<Game::ItemCave::Item>::init(Game::ItemCave::Item*, Game::StateArg*) { }
+// void FSMState<Game::ItemCave::Item>::init(Game::ItemCave::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801EBE38
  * Size:	000004
  */
-void FSMState<Game::ItemCave::Item>::exec(Game::ItemCave::Item*) { }
+// void FSMState<Game::ItemCave::Item>::exec(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE3C
  * Size:	000004
  */
-void FSMState<Game::ItemCave::Item>::cleanup(Game::ItemCave::Item*) { }
+// void FSMState<Game::ItemCave::Item>::cleanup(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE40
  * Size:	000004
  */
-void FSMState<Game::ItemCave::Item>::resume(Game::ItemCave::Item*) { }
+// void FSMState<Game::ItemCave::Item>::resume(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE44
  * Size:	000004
  */
-void FSMState<Game::ItemCave::Item>::restart(Game::ItemCave::Item*) { }
+// void FSMState<Game::ItemCave::Item>::restart(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE48
  * Size:	000030
  */
-void FSMState<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void FSMState<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EBE78
  * Size:	000004
  */
-void StateMachine<Game::ItemCave::Item>::init(Game::ItemCave::Item*) { }
+// void StateMachine<Game::ItemCave::Item>::init(Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
  * Address:	801EBE7C
  * Size:	000064
  */
-void StateMachine<Game::ItemCave::Item>::create(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Game
+// void StateMachine<Game::ItemCave::Item>::create(int)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	li       r0, 0
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	stw      r4, 0xc(r3)
+// 	stw      r0, 8(r3)
+// 	lwz      r0, 0xc(r3)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 4(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x10(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x14(r31)
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EBEE0
  * Size:	000008
  */
-u32 Parm<unsigned char>::size() { return 0x1; }
-
-namespace Game {
+// u32 Parm<unsigned char>::size() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801EBEE8
  * Size:	00009C
  */
-void StateMachine<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x1DC(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
+// void StateMachine<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  rlwinm    r0,r5,2,0,29
+// 	  stmw      r27, 0xC(r1)
+// 	  mr        r27, r3
+// 	  mr        r28, r4
+// 	  mr        r29, r6
+// 	  lwz       r30, 0x1DC(r4)
+// 	  lwz       r3, 0x14(r3)
+// 	  cmplwi    r30, 0
+// 	  lwzx      r31, r3, r0
+// 	  beq-      .loc_0x50
+// 	  mr        r3, r30
+// 	  lwz       r12, 0x0(r30)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x4(r30)
+// 	  stw       r0, 0x18(r27)
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
+// 	.loc_0x50:
+// 	  lwz       r0, 0xC(r27)
+// 	  cmpw      r31, r0
+// 	  blt-      .loc_0x60
 
-	.loc_0x5C:
-	  b         .loc_0x5C
+// 	.loc_0x5C:
+// 	  b         .loc_0x5C
 
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x1DC(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x60:
+// 	  lwz       r3, 0x4(r27)
+// 	  rlwinm    r0,r31,2,0,29
+// 	  mr        r4, r28
+// 	  mr        r5, r29
+// 	  lwzx      r3, r3, r0
+// 	  stw       r3, 0x1DC(r28)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lmw       r27, 0xC(r1)
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EBF84
  * Size:	000084
  */
-void StateMachine<Game::ItemCave::Item>::registerState(Game::FSMState<Game::ItemCave::Item>*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+// void StateMachine<Game::ItemCave::Item>::registerState(Game::FSMState<Game::ItemCave::Item>*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r6, 0x8(r3)
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r6, r0
+// 	  bgelr-
+// 	  lwz       r5, 0x4(r3)
+// 	  rlwinm    r0,r6,2,0,29
+// 	  stwx      r4, r5, r0
+// 	  lwz       r5, 0x4(r4)
+// 	  cmpwi     r5, 0
+// 	  blt-      .loc_0x34
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r5, r0
+// 	  blt-      .loc_0x3C
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
+// 	.loc_0x34:
+// 	  li        r0, 0
+// 	  b         .loc_0x40
 
-	.loc_0x3C:
-	  li        r0, 0x1
+// 	.loc_0x3C:
+// 	  li        r0, 0x1
 
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
-}
+// 	.loc_0x40:
+// 	  rlwinm.   r0,r0,0,24,31
+// 	  beqlr-
+// 	  stw       r3, 0x8(r4)
+// 	  lwz       r0, 0x8(r3)
+// 	  lwz       r6, 0x4(r4)
+// 	  lwz       r5, 0x10(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r6, r5, r0
+// 	  lwz       r0, 0x4(r4)
+// 	  lwz       r5, 0x8(r3)
+// 	  lwz       r4, 0x14(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r5, r4, r0
+// 	  lwz       r4, 0x8(r3)
+// 	  addi      r0, r4, 0x1
+// 	  stw       r0, 0x8(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EC008
  * Size:	000038
  */
-void StateMachine<Game::ItemCave::Item>::exec(Game::ItemCave::Item*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1dc(r4)
-	cmplwi   r3, 0
-	beq      lbl_801EC030
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+// void StateMachine<Game::ItemCave::Item>::exec(Game::ItemCave::Item*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 0x1dc(r4)
+// 	cmplwi   r3, 0
+// 	beq      lbl_801EC030
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
 
-lbl_801EC030:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801EC030:
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EC040
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::onKeyEvent(const SysShape::KeyEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x24(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EC084
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::platCallback(Game::PlatEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::platCallback(Game::PlatEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x2C(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EC0C8
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::collisionCallback(Game::CollEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::collisionCallback(Game::CollEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x30(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EC10C
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::bounceCallback(Sys::Triangle*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::bounceCallback(Sys::Triangle*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x28(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-} // namespace Game
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EC150
  * Size:	000028
  */
-void __sinit_itemCave_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804BA3A0@ha
-	stw      r0, lbl_80515B18@sda21(r13)
-	stfsu    f0, lbl_804BA3A0@l(r3)
-	stfs     f0, lbl_80515B1C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_itemCave_cpp()
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804BA3A0@ha
+// 	stw      r0, lbl_80515B18@sda21(r13)
+// 	stfsu    f0, lbl_804BA3A0@l(r3)
+// 	stfs     f0, lbl_80515B1C@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EC178
  * Size:	000008
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, Game::ItemCave::State>::@376 @onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x178
-	  b         -0x13C
-	*/
-}
-
-namespace Game {
+// void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, Game::ItemCave::State>::@376 @onKeyEvent(const SysShape::KeyEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x178
+// 	  b         -0x13C
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801EC180
  * Size:	000008
  */
-ItemCave::Mgr::@48 @~Mgr()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q34Game8ItemCave3MgrFv
-	*/
-}
+// ItemCave::Mgr::@48 @~Mgr()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q34Game8ItemCave3MgrFv
+// 	*/
+// }
+
 } // namespace Game

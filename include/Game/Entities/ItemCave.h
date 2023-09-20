@@ -133,7 +133,7 @@ extern Mgr* mgr;
 } // namespace Game
 
 struct GenCaveParm : public Game::GenItemParm {
-	GenCaveParm();
+	GenCaveParm() { }
 
 	// _00     = VTBL
 	char mCaveFilename[0x20];         // _04

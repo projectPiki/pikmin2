@@ -191,6 +191,8 @@ struct PelletKillArg : public CreatureKillArg {
  * @size = 0x458
  */
 struct Pellet : public DynCreature, public SysShape::MotionListener, public CarryInfoOwner {
+	typedef PelletState StateType;
+
 	Pellet();
 
 	enum PelletFlag {
@@ -452,7 +454,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	bool _3C4;                     // _3C4
 	u8 _3C5[0x3];                  // _3C5 - unknown
 	PelletFSM* mPelletSM;          // _3C8
-	PelletState* mPelletState;     // _3CC
+	PelletState* mCurrentState;    // _3CC
 	u8 _3D0;                       // _3D0
 	int mCarryColor;               // _3D4
 	int mMinCarriers;              // _3D8, to do with pikmin number

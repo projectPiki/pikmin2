@@ -1,6 +1,4 @@
-#include "Dolphin/math.h"
-#include "types.h"
-#include "Vector3.h"
+#include "Game/Entities/ItemUjamushi.h"
 
 /*
     Generated from dpostproc
@@ -1219,7 +1217,6 @@
         .skip 0x8
 */
 
-#if NOPE
 namespace Game {
 
 /*
@@ -1228,6 +1225,22 @@ namespace Game {
  * Size:	0003D4
  */
 ItemUjamushi::BoidParms::BoidParms()
+    : Parameters(nullptr, "BoidParms")
+    , mCohesion(this, 'p000', "Cohension", 0.27f, 0.0f, 10.0f)
+    , mAlignment(this, 'p001', "Alignment", 0.15f, 0.0f, 10.0f)
+    , mSeparation(this, 'p002', "Separation", 1.0f, 0.0f, 10.0f)
+    , mBounds(this, 'p003', "Bounds", 1.0f, 0.0f, 10.0f)
+    , mTarget(this, 'p004', "Target", 0.0f, 0.0f, 10.0f)
+    , mRandom(this, 'p005', "Random", 1.5f, 0.0f, 10.0f)
+    , mGoHome(this, 'p006', "Gohome", 0.0f, 0.0f, 10.0f)
+    , mPiki(this, 'p008', "Piki", 0.2f, 0.0f, 10.0f)
+    , mNavi(this, 'p009', "Navi", 0.1f, 0.0f, 10.0f)
+    , mCollision(this, 'p010', "Collision", 10.0f, 0.0f, 10.0f)
+    , mMaxSpeed(this, 'p011', "MaxSpeed", 30.0f, 1.0f, 200.0f)
+    , mFov(this, 'p012', "Fov", 30.0f, 0.0f, 180.0f)
+    , mDistance(this, 'p013', "Distance", 50.0f, 0.0f, 1000.0f)
+    , mRotationPerSecond(this, 'p014', "Rotation/s", 180.0f, 0.0f, 1080.0f)
+    , mRandomAngle(this, 'p007', "RandomAngle", 16.0f, 0.0f, 180.0f)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1576,28 +1589,10 @@ void ItemUjamushi::BoidParms::blendTo(Game::ItemUjamushi::BoidParms&, Game::Item
  * Size:	00004C
  */
 ItemUjamushi::BoidParameter::BoidParameter()
+    : CNode()
+    , mNode()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q34Game12ItemUjamushi13BoidParameter@ha
-	addi     r3, r31, 0x18
-	addi     r0, r4, __vt__Q34Game12ItemUjamushi13BoidParameter@l
-	stw      r0, 0(r31)
-	bl       __ct__Q44Game12ItemUjamushi13BoidParameter5TNodeFv
-	mr       r3, r31
-	bl       newParms__Q34Game12ItemUjamushi13BoidParameterFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	newParms();
 }
 
 /*
@@ -1605,66 +1600,14 @@ ItemUjamushi::BoidParameter::BoidParameter()
  * Address:	80205F80
  * Size:	000060
  */
-ItemUjamushi::BoidParameter::TNode::~TNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80205FC4
-	lis      r5, __vt__Q44Game12ItemUjamushi13BoidParameter5TNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q44Game12ItemUjamushi13BoidParameter5TNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80205FC4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80205FC4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ItemUjamushi::BoidParameter::TNode::~TNode() { }
 
 /*
  * --INFO--
  * Address:	80205FE0
  * Size:	000048
  */
-ItemUjamushi::BoidParameter::TNode::TNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q44Game12ItemUjamushi13BoidParameter5TNode@ha
-	addi     r3, r31, 0x18
-	addi     r0, r4, __vt__Q44Game12ItemUjamushi13BoidParameter5TNode@l
-	li       r4, 1
-	stw      r0, 0(r31)
-	bl       __ct__Q34Game12ItemUjamushi9BoidParmsFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ItemUjamushi::BoidParameter::TNode::TNode() { }
 
 /*
  * --INFO--
@@ -1737,28 +1680,8 @@ void ItemUjamushi::BoidParameter::getParms(int, int, float, Game::ItemUjamushi::
  */
 void ItemUjamushi::BoidParameter::newParms()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x280
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80206114
-	bl       __ct__Q44Game12ItemUjamushi13BoidParameter5TNodeFv
-	mr       r4, r3
-
-lbl_80206114:
-	addi     r3, r31, 0x18
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	TNode* node = new TNode();
+	mNode.add(node);
 }
 
 /*
@@ -1766,7 +1689,7 @@ lbl_80206114:
  * Address:	........
  * Size:	0000A8
  */
-void ItemUjamushi::BoidParameter::write(Stream&)
+void ItemUjamushi::BoidParameter::write(Stream& output)
 {
 	// UNUSED FUNCTION
 }
@@ -1776,7 +1699,7 @@ void ItemUjamushi::BoidParameter::write(Stream&)
  * Address:	80206130
  * Size:	0000A8
  */
-void ItemUjamushi::BoidParameter::read(Stream&)
+void ItemUjamushi::BoidParameter::read(Stream& input)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1848,51 +1771,18 @@ ItemUjamushi::UjaParms::UjaParms()
  * Size:	0000A8
  */
 ItemUjamushi::Uja::Uja()
+    : TFlock()
+    , mUpdateContext()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__Q24Game6TFlock@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q24Game6TFlock@l
-	li       r4, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__Q34Game12ItemUjamushi3Uja@ha
-	stw      r0, 0xc(r31)
-	addi     r0, r3, __vt__Q34Game12ItemUjamushi3Uja@l
-	addi     r3, r31, 0x78
-	stb      r4, 0x40(r31)
-	stw      r0, 0xc(r31)
-	bl       __ct__Q24Game13UpdateContextFv
-	lfs      f0, lbl_80519D94@sda21(r2)
-	li       r3, 0
-	li       r0, 4
-	stfs     f0, 0(r31)
-	stfs     f0, 4(r31)
-	stfs     f0, 8(r31)
-	stfs     f0, 0x50(r31)
-	stfs     f0, 0x54(r31)
-	stfs     f0, 0x58(r31)
-	stw      r3, 0x74(r31)
-	stw      r0, 0xbc(r31)
-	lwz      r0, 0xbc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0xc0(r31)
-	lwz      r0, 0xbc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0xc4(r31)
-	mr       r3, r31
-	bl       clearBuffer__Q34Game12ItemUjamushi3UjaFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	x                = 0.0f;
+	y                = 0.0f;
+	z                = 0.0f;
+	_50              = 0.0f;
+	mFlockMgr        = nullptr;
+	mBufferSlotCount = 4;
+	mPikiBuffer      = new Piki*[mBufferSlotCount];
+	mFloatBuffer     = new f32[mBufferSlotCount];
+	clearBuffer();
 }
 
 /*
@@ -1900,7 +1790,7 @@ ItemUjamushi::Uja::Uja()
  * Address:	........
  * Size:	000160
  */
-void init__Q34Game12ItemUjamushi3UjaFPQ34Game12ItemUjamushi6UjaMgrR10Vector3<float>()
+void ItemUjamushi::Uja::init(Mgr*, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1910,35 +1800,21 @@ void init__Q34Game12ItemUjamushi3UjaFPQ34Game12ItemUjamushi6UjaMgrR10Vector3<flo
  * Address:	80206280
  * Size:	000028
  */
-void ItemUjamushi::Uja::damaged(float)
+bool ItemUjamushi::Uja::damaged(f32 p1)
 {
-	/*
-	lfs      f2, 0xa8(r3)
-	lfs      f0, lbl_80519D94@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0xa8(r3)
-	lfs      f1, 0xa8(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	mfcr     r0
-	rlwinm   r3, r0, 3, 0x1f, 0x1f
-	blr
-	*/
+	_A8 -= p1;
+	return _A8 <= 0.0f;
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A4
  */
-void setPosition__Q34Game12ItemUjamushi3UjaFR10Vector3f()
+void ItemUjamushi::Uja::setPosition(Vector3f& pos)
 {
 	// UNUSED FUNCTION
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -1947,6 +1823,10 @@ namespace Game {
  */
 void ItemUjamushi::Uja::clearBuffer()
 {
+	for (int i = 0; i < mBufferSlotCount; i++) {
+		mPikiBuffer[i]  = nullptr;
+		mFloatBuffer[i] = 12800.0f;
+	}
 	/*
 	li       r6, 0
 	lfs      f0, lbl_80519E28@sda21(r2)
@@ -3711,298 +3591,304 @@ lbl_80207AA0:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80207B50
  * Size:	000050
  */
-void Vector3f::length() const
-{
-	/*
-	lfs      f3, 0(r3)
-	lfs      f1, 4(r3)
-	fmuls    f0, f3, f3
-	lfs      f4, 8(r3)
-	fmuls    f1, f1, f1
-	lfs      f2, lbl_80519D94@sda21(r2)
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f1
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f2
-	ble      lbl_80207B98
-	fmadds   f0, f3, f3, f1
-	fadds    f1, f4, f0
-	fcmpo    cr0, f1, f2
-	blelr
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	blr
+// void Vector3f::length() const
+// {
+// 	/*
+// 	lfs      f3, 0(r3)
+// 	lfs      f1, 4(r3)
+// 	fmuls    f0, f3, f3
+// 	lfs      f4, 8(r3)
+// 	fmuls    f1, f1, f1
+// 	lfs      f2, lbl_80519D94@sda21(r2)
+// 	fmuls    f4, f4, f4
+// 	fadds    f0, f0, f1
+// 	fadds    f0, f4, f0
+// 	fcmpo    cr0, f0, f2
+// 	ble      lbl_80207B98
+// 	fmadds   f0, f3, f3, f1
+// 	fadds    f1, f4, f0
+// 	fcmpo    cr0, f1, f2
+// 	blelr
+// 	frsqrte  f0, f1
+// 	fmuls    f1, f0, f1
+// 	blr
 
-lbl_80207B98:
-	fmr      f1, f2
-	blr
-	*/
-}
+// lbl_80207B98:
+// 	fmr      f1, f2
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80207BA0
  * Size:	000034
  */
-Vector3f operator+(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z); }
+// Vector3f operator+(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z); }
 
 /*
  * --INFO--
  * Address:	80207BD4
  * Size:	0000E4
  */
-void Iterator<Game::ItemUjamushi::Uja>::next()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80207C14
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80207CA4
+// void Iterator<Game::ItemUjamushi::Uja>::next()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r0, 0xc(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80207C14
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_80207CA4
 
-lbl_80207C14:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80207C88
+// lbl_80207C14:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_80207C88
 
-lbl_80207C34:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80207CA4
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+// lbl_80207C34:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0xc(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80207CA4
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
 
-lbl_80207C88:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80207C34
+// lbl_80207C88:
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80207C34
 
-lbl_80207CA4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80207CA4:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80207CB8
  * Size:	00004C
  */
-void Iterator<Game::ItemUjamushi::Uja>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Iterator<Game::ItemUjamushi::Uja>::isDone()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r3, 8(r3)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 4(r31)
+// 	subf     r0, r0, r3
+// 	cntlzw   r0, r0
+// 	srwi     r3, r0, 5
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80207D04
  * Size:	0000DC
  */
-void Iterator<Game::ItemUjamushi::Uja>::first()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80207D40
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80207DCC
+// void Iterator<Game::ItemUjamushi::Uja>::first()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r0, 0xc(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80207D40
+// 	lwz      r3, 8(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_80207DCC
 
-lbl_80207D40:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80207DB0
+// lbl_80207D40:
+// 	lwz      r3, 8(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_80207DB0
 
-lbl_80207D5C:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80207DCC
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+// lbl_80207D5C:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0xc(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80207DCC
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
 
-lbl_80207DB0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80207D5C
+// lbl_80207DB0:
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80207D5C
 
-lbl_80207DCC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80207DCC:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80207DE0
  * Size:	000090
  */
-template <>
-inline void Vector3f::normalise()
-{
-	/*
-	lfs      f3, 0(r3)
-	lfs      f1, 4(r3)
-	fmuls    f0, f3, f3
-	lfs      f4, 8(r3)
-	fmuls    f1, f1, f1
-	lfs      f2, lbl_80519D94@sda21(r2)
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f1
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f2
-	ble      lbl_80207E28
-	fmadds   f0, f3, f3, f1
-	fadds    f1, f4, f0
-	fcmpo    cr0, f1, f2
-	ble      lbl_80207E2C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_80207E2C
+// template <>
+// inline void Vector3f::normalise()
+// {
+// 	/*
+// 	lfs      f3, 0(r3)
+// 	lfs      f1, 4(r3)
+// 	fmuls    f0, f3, f3
+// 	lfs      f4, 8(r3)
+// 	fmuls    f1, f1, f1
+// 	lfs      f2, lbl_80519D94@sda21(r2)
+// 	fmuls    f4, f4, f4
+// 	fadds    f0, f0, f1
+// 	fadds    f0, f4, f0
+// 	fcmpo    cr0, f0, f2
+// 	ble      lbl_80207E28
+// 	fmadds   f0, f3, f3, f1
+// 	fadds    f1, f4, f0
+// 	fcmpo    cr0, f1, f2
+// 	ble      lbl_80207E2C
+// 	frsqrte  f0, f1
+// 	fmuls    f1, f0, f1
+// 	b        lbl_80207E2C
 
-lbl_80207E28:
-	fmr      f1, f2
+// lbl_80207E28:
+// 	fmr      f1, f2
 
-lbl_80207E2C:
-	lfs      f0, lbl_80519D94@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80207E68
-	lfs      f2, lbl_80519DA0@sda21(r2)
-	lfs      f0, 0(r3)
-	fdivs    f2, f2, f1
-	fmuls    f0, f0, f2
-	stfs     f0, 0(r3)
-	lfs      f0, 4(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 4(r3)
-	lfs      f0, 8(r3)
-	fmuls    f0, f0, f2
-	stfs     f0, 8(r3)
-	blr
+// lbl_80207E2C:
+// 	lfs      f0, lbl_80519D94@sda21(r2)
+// 	fcmpo    cr0, f1, f0
+// 	ble      lbl_80207E68
+// 	lfs      f2, lbl_80519DA0@sda21(r2)
+// 	lfs      f0, 0(r3)
+// 	fdivs    f2, f2, f1
+// 	fmuls    f0, f0, f2
+// 	stfs     f0, 0(r3)
+// 	lfs      f0, 4(r3)
+// 	fmuls    f0, f0, f2
+// 	stfs     f0, 4(r3)
+// 	lfs      f0, 8(r3)
+// 	fmuls    f0, f0, f2
+// 	stfs     f0, 8(r3)
+// 	blr
 
-lbl_80207E68:
-	fmr      f1, f0
-	blr
-	*/
-}
+// lbl_80207E68:
+// 	fmr      f1, f0
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80207E70
  * Size:	000034
  */
-Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z); }
-
-namespace Game {
+// Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z); }
 
 /*
  * --INFO--
  * Address:	80207EA4
  * Size:	000130
  */
-ItemUjamushi::UjaMgr::UjaMgr(int)
+ItemUjamushi::UjaMgr::UjaMgr(int count)
+    : TFlockMgr<Uja>()
+    , mBoidParms()
 {
+	mMonoObjectMgr.alloc(count);
+	mUpdateMgr = new UpdateMgr();
+	mUpdateMgr->create(30);
+	_9C            = 0;
+	_98            = 0;
+	_A0            = 0.0f;
+	mBoidParameter = nullptr;
+	_310           = nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -4085,188 +3971,104 @@ lbl_80207F84:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80207FD4
  * Size:	000100
  */
-void __dt__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802080B8
-	lis      r3, "__vt__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>"@ha
-	addic.   r0, r30, 0x3c
-	addi     r3, r3, "__vt__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x30
-	stw      r0, 0x20(r30)
-	beq      lbl_80208074
-	lis      r3, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
-	addic.   r0, r30, 0x3c
-	addi     r3, r3, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r3, 0x3c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x58(r30)
-	beq      lbl_80208074
-	lis      r3, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
-	addic.   r0, r30, 0x3c
-	addi     r3, r3, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r3, 0x3c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x58(r30)
-	beq      lbl_80208074
-	lis      r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
-	addic.   r0, r30, 0x3c
-	addi     r0, r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r0, 0x3c(r30)
-	beq      lbl_80208074
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x3c
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x3c(r30)
-	bl       __dt__5CNodeFv
+// void __dt__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_802080B8
+// 	lis      r3, "__vt__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>"@ha
+// 	addic.   r0, r30, 0x3c
+// 	addi     r3, r3, "__vt__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>"@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x30
+// 	stw      r0, 0x20(r30)
+// 	beq      lbl_80208074
+// 	lis      r3, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
+// 	addic.   r0, r30, 0x3c
+// 	addi     r3, r3, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
+// 	stw      r3, 0x3c(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x58(r30)
+// 	beq      lbl_80208074
+// 	lis      r3, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
+// 	addic.   r0, r30, 0x3c
+// 	addi     r3, r3, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
+// 	stw      r3, 0x3c(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x58(r30)
+// 	beq      lbl_80208074
+// 	lis      r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
+// 	addic.   r0, r30, 0x3c
+// 	addi     r0, r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
+// 	stw      r0, 0x3c(r30)
+// 	beq      lbl_80208074
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	addi     r3, r30, 0x3c
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0x3c(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_80208074:
-	addic.   r0, r30, 0x20
-	beq      lbl_802080A8
-	lis      r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
-	addic.   r0, r30, 0x20
-	addi     r0, r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r0, 0x20(r30)
-	beq      lbl_802080A8
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x20
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x20(r30)
-	bl       __dt__5CNodeFv
+// lbl_80208074:
+// 	addic.   r0, r30, 0x20
+// 	beq      lbl_802080A8
+// 	lis      r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
+// 	addic.   r0, r30, 0x20
+// 	addi     r0, r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
+// 	stw      r0, 0x20(r30)
+// 	beq      lbl_802080A8
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	addi     r3, r30, 0x20
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0x20(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_802080A8:
-	extsh.   r0, r31
-	ble      lbl_802080B8
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_802080A8:
+// 	extsh.   r0, r31
+// 	ble      lbl_802080B8
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_802080B8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_802080B8:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	802080D4
  * Size:	0000A0
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::~MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80208158
-	lis      r4, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
-	addi     r4, r4, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_80208148
-	lis      r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
-	addi     r4, r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_80208148
-	lis      r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
-	addi     r0, r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80208148
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80208148:
-	extsh.   r0, r31
-	ble      lbl_80208158
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80208158:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::~MonoObjectMgr()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	80208174
  * Size:	000070
  */
-void Container<Game::ItemUjamushi::Uja>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802081C8
-	lis      r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
-	addi     r0, r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r0, 0(r30)
-	beq      lbl_802081B8
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_802081B8:
-	extsh.   r0, r31
-	ble      lbl_802081C8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802081C8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// void Container<Game::ItemUjamushi::Uja>::~Container()
+// {
+// }
 
 /*
  * --INFO--
@@ -4319,59 +4121,55 @@ void ItemUjamushi::UjaMgr::appear()
 	// UNUSED FUNCTION
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80208234
  * Size:	000008
  */
-void getMaxObjects__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
-{
-	/*
-	lwz      r3, 0x60(r3)
-	blr
-	*/
-}
+// void getMaxObjects__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
+// {
+// 	/*
+// 	lwz      r3, 0x60(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020823C
  * Size:	00002C
  */
-void getFlock__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fi()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getFlock__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fi()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x24(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80208268
  * Size:	000010
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::getAt(int)
-{
-	/*
-	mulli    r0, r4, 0xc8
-	lwz      r3, 0x28(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
-
-namespace Game {
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::getAt(int)
+// {
+// 	/*
+// 	mulli    r0, r4, 0xc8
+// 	lwz      r3, 0x28(r3)
+// 	add      r3, r3, r0
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -4691,20 +4489,7 @@ lbl_8020866C:
  * Address:	80208690
  * Size:	000024
  */
-void ItemUjamushi::UjaMgr::do_update_boundSphere()
-{
-	/*
-	lfs      f0, 0x6c(r3)
-	stfs     f0, 0xc(r3)
-	lfs      f0, 0x70(r3)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x74(r3)
-	stfs     f0, 0x14(r3)
-	lfs      f0, 0x78(r3)
-	stfs     f0, 0x18(r3)
-	blr
-	*/
-}
+void ItemUjamushi::UjaMgr::do_update_boundSphere() { _0C = mBoundSphere; }
 
 /*
  * --INFO--
@@ -4905,25 +4690,21 @@ lbl_80208930:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80208950
  * Size:	000014
  */
-void isFlagAlive__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fi()
-{
-	/*
-	lwz      r3, 0x68(r3)
-	lbzx     r0, r3, r4
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
-
-namespace Game {
+// void isFlagAlive__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fi()
+// {
+// 	/*
+// 	lwz      r3, 0x68(r3)
+// 	lbzx     r0, r3, r4
+// 	cntlzw   r0, r0
+// 	srwi     r3, r0, 5
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -5150,6 +4931,10 @@ lbl_80208BFC:
  */
 void ItemUjamushi::FSM::init(Game::ItemUjamushi::Item*)
 {
+	create(UJAMUSHISTATE_COUNT);
+	registerState(new WaitState());
+	registerState(new ActiveState());
+	registerState(new DigState());
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5246,6 +5031,7 @@ lbl_80208D60:
  * Size:	000134
  */
 ItemUjamushi::Item::Item()
+    : FSMItem<Item, FSM, State>(OBJTYPE_Ujamushi)
 {
 	// UNUSED FUNCTION
 }
@@ -5255,7 +5041,7 @@ ItemUjamushi::Item::Item()
  * Address:	80208D7C
  * Size:	0000C8
  */
-void ItemUjamushi::Item::onInit(Game::CreatureInitArg*)
+void ItemUjamushi::Item::onInit(Game::CreatureInitArg* initArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5320,25 +5106,25 @@ lbl_80208DD8:
  * Address:	80208E44
  * Size:	000034
  */
-void start__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x1DC(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void start__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  li        r0, 0
+// 	  stw       r0, 0x1DC(r4)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -5450,7 +5236,7 @@ void ItemUjamushi::Item::setBoidTimer()
  * Address:	80208F9C
  * Size:	00003C
  */
-void ItemUjamushi::Item::ignoreAtari(Game::Creature*)
+bool ItemUjamushi::Item::ignoreAtari(Game::Creature*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5519,14 +5305,14 @@ lbl_80209040:
  * Address:	80209050
  * Size:	000008
  */
-u32 ItemUjamushi::Item::isCollisionFlick() { return 0x0; }
+bool ItemUjamushi::Item::isCollisionFlick() { return false; }
 
 /*
  * --INFO--
  * Address:	80209058
  * Size:	000374
  */
-void ItemUjamushi::Item::interactFlockAttack(Game::InteractFlockAttack&)
+bool ItemUjamushi::Item::interactFlockAttack(Game::InteractFlockAttack& interaction)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -5963,22 +5749,18 @@ lbl_80209650:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80209678
  * Size:	000008
  */
-void getNumObjects__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
-{
-	/*
-	lwz      r3, 0x5c(r3)
-	blr
-	*/
-}
-
-namespace Game {
+// void getNumObjects__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
+// {
+// 	/*
+// 	lwz      r3, 0x5c(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -6282,99 +6064,95 @@ lbl_80209A70:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80209A8C
  * Size:	00011C
  */
-void __dt__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80209B8C
-	lis      r3, "__vt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, "__vt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x74
-	stw      r0, 0x30(r30)
-	beq      lbl_80209B48
-	lis      r4, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
-	addic.   r3, r30, 0x6c
-	addi     r4, r4, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@l
-	stw      r4, 0x4c(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_80209AF8
-	lis      r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r0, r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@l
-	stw      r0, 0x6c(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
+// void __dt__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80209B8C
+// 	lis      r3, "__vt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>"@ha
+// 	addic.   r0, r30, 0x4c
+// 	addi     r3, r3, "__vt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x74
+// 	stw      r0, 0x30(r30)
+// 	beq      lbl_80209B48
+// 	lis      r4, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
+// 	addic.   r3, r30, 0x6c
+// 	addi     r4, r4, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r4, 0x4c(r30)
+// 	addi     r0, r4, 0x2c
+// 	stw      r0, 0x68(r30)
+// 	beq      lbl_80209AF8
+// 	lis      r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r0, r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r0, 0x6c(r30)
+// 	li       r4, 0
+// 	bl       __dt__5CNodeFv
 
-lbl_80209AF8:
-	addic.   r0, r30, 0x4c
-	beq      lbl_80209B48
-	lis      r3, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@l
-	stw      r3, 0x4c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_80209B48
-	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
-	stw      r0, 0x4c(r30)
-	beq      lbl_80209B48
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x4c
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x4c(r30)
-	bl       __dt__5CNodeFv
+// lbl_80209AF8:
+// 	addic.   r0, r30, 0x4c
+// 	beq      lbl_80209B48
+// 	lis      r3, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
+// 	addic.   r0, r30, 0x4c
+// 	addi     r3, r3, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r3, 0x4c(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x68(r30)
+// 	beq      lbl_80209B48
+// 	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
+// 	addic.   r0, r30, 0x4c
+// 	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r0, 0x4c(r30)
+// 	beq      lbl_80209B48
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	addi     r3, r30, 0x4c
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0x4c(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_80209B48:
-	addic.   r0, r30, 0x30
-	beq      lbl_80209B7C
-	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
-	addic.   r0, r30, 0x30
-	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
-	stw      r0, 0x30(r30)
-	beq      lbl_80209B7C
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x30(r30)
-	bl       __dt__5CNodeFv
+// lbl_80209B48:
+// 	addic.   r0, r30, 0x30
+// 	beq      lbl_80209B7C
+// 	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
+// 	addic.   r0, r30, 0x30
+// 	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r0, 0x30(r30)
+// 	beq      lbl_80209B7C
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	addi     r3, r30, 0x30
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0x30(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_80209B7C:
-	extsh.   r0, r31
-	ble      lbl_80209B8C
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_80209B7C:
+// 	extsh.   r0, r31
+// 	ble      lbl_80209B8C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80209B8C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// lbl_80209B8C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -6533,39 +6311,35 @@ lbl_80209D74:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80209DA8
  * Size:	00004C
  */
-void Iterator<Game::ItemUjamushi::Item>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// void Iterator<Game::ItemUjamushi::Item>::isDone()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r3, 8(r3)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 4(r31)
+// 	subf     r0, r0, r3
+// 	cntlzw   r0, r0
+// 	srwi     r3, r0, 5
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -6579,7 +6353,7 @@ void ItemUjamushi::Mgr::onLoadResources() { }
  * Address:	........
  * Size:	000158
  */
-void ItemUjamushi::Mgr::birth()
+ItemUjamushi::Item* ItemUjamushi::Mgr::birth()
 {
 	// UNUSED FUNCTION
 }
@@ -6589,7 +6363,7 @@ void ItemUjamushi::Mgr::birth()
  * Address:	80209DF8
  * Size:	00000C
  */
-void ItemUjamushi::Mgr::getCaveName(int)
+char* ItemUjamushi::Mgr::getCaveName(int)
 {
 	/*
 	lis      r3, lbl_80481EB0@ha
@@ -6603,7 +6377,7 @@ void ItemUjamushi::Mgr::getCaveName(int)
  * Address:	80209E04
  * Size:	000054
  */
-void ItemUjamushi::Mgr::getCaveID(char*)
+int ItemUjamushi::Mgr::getCaveID(char*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6722,24 +6496,24 @@ lbl_80209F34:
  * Address:	80209F44
  * Size:	000030
  */
-void transit__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void transit__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -6929,7 +6703,7 @@ void ItemUjamushi::DigState::cleanup(Game::ItemUjamushi::Item*) { }
  * Address:	8020A134
  * Size:	00004C
  */
-void ItemUjamushi::Mgr::generatorNewItemParm()
+GenItemParm* ItemUjamushi::Mgr::generatorNewItemParm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7047,7 +6821,7 @@ void ItemUjamushi::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long
  * Address:	8020A26C
  * Size:	0001CC
  */
-void generatorBirth__Q34Game12ItemUjamushi3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm()
+BaseItem* ItemUjamushi::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
 {
 	/*
 	.loc_0x0:
@@ -7182,7 +6956,7 @@ void generatorBirth__Q34Game12ItemUjamushi3MgrFR10Vector3f R10Vector3f PQ24Game1
  * Address:	8020A438
  * Size:	00000C
  */
-void ItemUjamushi::InitArg::getName()
+const char* ItemUjamushi::InitArg::getName()
 {
 	/*
 	lis      r3, lbl_80481ECC@ha
@@ -7312,7 +7086,7 @@ lbl_8020A59C:
  * Address:	8020A5B8
  * Size:	00000C
  */
-void ItemUjamushi::Mgr::generatorGetID()
+u32 ItemUjamushi::Mgr::generatorGetID()
 {
 	/*
 	lis      r3, 0x756A6D73@ha
@@ -7326,7 +7100,7 @@ void ItemUjamushi::Mgr::generatorGetID()
  * Address:	8020A5C4
  * Size:	00000C
  */
-void ItemUjamushi::Mgr::generatorLocalVersion()
+u32 ItemUjamushi::Mgr::generatorLocalVersion()
 {
 	/*
 	lis      r3, 0x30303030@ha
@@ -7335,387 +7109,383 @@ void ItemUjamushi::Mgr::generatorLocalVersion()
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8020A5D0
  * Size:	000038
  */
-void Iterator<Game::ItemUjamushi::Item>::operator*()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Iterator<Game::ItemUjamushi::Item>::operator*()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r4, r3
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 8(r3)
+// 	lwz      r4, 4(r4)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020A608
  * Size:	0000E4
  */
-void Iterator<Game::ItemUjamushi::Item>::next()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8020A648
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8020A6D8
+// void Iterator<Game::ItemUjamushi::Item>::next()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r0, 0xc(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020A648
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_8020A6D8
 
-lbl_8020A648:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8020A6BC
+// lbl_8020A648:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_8020A6BC
 
-lbl_8020A668:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020A6D8
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+// lbl_8020A668:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0xc(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020A6D8
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
 
-lbl_8020A6BC:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020A668
+// lbl_8020A6BC:
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020A668
 
-lbl_8020A6D8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8020A6D8:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020A6EC
  * Size:	0000DC
  */
-void Iterator<Game::ItemUjamushi::Item>::first()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8020A728
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8020A7B4
+// void Iterator<Game::ItemUjamushi::Item>::first()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r0, 0xc(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020A728
+// 	lwz      r3, 8(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_8020A7B4
 
-lbl_8020A728:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8020A798
+// lbl_8020A728:
+// 	lwz      r3, 8(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_8020A798
 
-lbl_8020A744:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020A7B4
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+// lbl_8020A744:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0xc(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020A7B4
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
 
-lbl_8020A798:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020A744
+// lbl_8020A798:
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020A744
 
-lbl_8020A7B4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8020A7B4:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020A7C8
  * Size:	000070
  */
-void Container<Game::ItemUjamushi::Item>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8020A81C
-	lis      r4, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r0, r4, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8020A80C
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// void Container<Game::ItemUjamushi::Item>::~Container()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8020A81C
+// 	lis      r4, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r0, r4, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_8020A80C
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_8020A80C:
-	extsh.   r0, r31
-	ble      lbl_8020A81C
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8020A80C:
+// 	extsh.   r0, r31
+// 	ble      lbl_8020A81C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8020A81C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8020A81C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020A838
  * Size:	000088
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::~ObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8020A8A4
-	lis      r4, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r4, r4, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8020A894
-	lis      r4, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r0, r4, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8020A894
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// void ObjectMgr<Game::ItemUjamushi::Item>::~ObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8020A8A4
+// 	lis      r4, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r4, r4, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r4, 0(r30)
+// 	addi     r0, r4, 0x2c
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_8020A894
+// 	lis      r4, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r0, r4, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_8020A894
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_8020A894:
-	extsh.   r0, r31
-	ble      lbl_8020A8A4
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8020A894:
+// 	extsh.   r0, r31
+// 	ble      lbl_8020A8A4
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8020A8A4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8020A8A4:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020A8C0
  * Size:	000060
  */
-void TObjectNode<Game::ItemUjamushi::Item>::~TObjectNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8020A904
-	lis      r5, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@ha
-	li       r4, 0
-	addi     r0, r5, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8020A904
-	mr       r3, r30
-	bl       __dl__FPv
+// void TObjectNode<Game::ItemUjamushi::Item>::~TObjectNode()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8020A904
+// 	lis      r5, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@ha
+// 	li       r4, 0
+// 	addi     r0, r5, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
+// 	extsh.   r0, r31
+// 	ble      lbl_8020A904
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8020A904:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8020A904:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020A920
  * Size:	0000C8
  */
-void NodeObjectMgr<Game::ItemUjamushi::Item>::~NodeObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8020A9CC
-	lis      r3, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
-	addic.   r0, r30, 0x20
-	addi     r3, r3, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8020A974
-	lis      r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r3, r30, 0x20
-	addi     r0, r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@l
-	li       r4, 0
-	stw      r0, 0x20(r30)
-	bl       __dt__5CNodeFv
+// void NodeObjectMgr<Game::ItemUjamushi::Item>::~NodeObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8020A9CC
+// 	lis      r3, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
+// 	addic.   r0, r30, 0x20
+// 	addi     r3, r3, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_8020A974
+// 	lis      r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r3, r30, 0x20
+// 	addi     r0, r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@l
+// 	li       r4, 0
+// 	stw      r0, 0x20(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_8020A974:
-	cmplwi   r30, 0
-	beq      lbl_8020A9BC
-	lis      r3, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r3, r3, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8020A9BC
-	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8020A9BC
-	lis      r4, __vt__16GenericContainer@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// lbl_8020A974:
+// 	cmplwi   r30, 0
+// 	beq      lbl_8020A9BC
+// 	lis      r3, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r3, r3, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_8020A9BC
+// 	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_8020A9BC
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	mr       r3, r30
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_8020A9BC:
-	extsh.   r0, r31
-	ble      lbl_8020A9CC
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8020A9BC:
+// 	extsh.   r0, r31
+// 	ble      lbl_8020A9CC
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8020A9CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// lbl_8020A9CC:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020A9E8
  * Size:	000008
  */
-void ItemUjamushi::Item::getFlockMgr()
+BaseFlockMgr* ItemUjamushi::Item::getFlockMgr()
 {
 	/*
 	lwz      r3, 0x200(r3)
@@ -7735,7 +7505,7 @@ void ItemUjamushi::Item::makeTrMatrix() { }
  * Address:	8020A9F4
  * Size:	000008
  */
-void ItemUjamushi::Item::DummyShape::getMatrix(int)
+Matrixf* ItemUjamushi::Item::DummyShape::getMatrix(int)
 {
 	/*
 	lwz      r3, 4(r3)
@@ -7748,25 +7518,25 @@ void ItemUjamushi::Item::DummyShape::getMatrix(int)
  * Address:	8020A9FC
  * Size:	000034
  */
-void doAI__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> Fv()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1D8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void doAI__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> Fv()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r4, r3
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1D8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -7860,7 +7630,7 @@ lbl_8020AB2C:
  * Address:	8020AB48
  * Size:	0000AC
  */
-void BaseFlockMgr::isWeed(int)
+bool BaseFlockMgr::isWeed(int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7918,14 +7688,14 @@ lbl_8020ABB0:
  * Address:	8020ABF4
  * Size:	000008
  */
-u32 TFlock::isWeed() { return 0x0; }
+bool TFlock::isWeed() { return false; }
 
 /*
  * --INFO--
  * Address:	8020ABFC
  * Size:	0000AC
  */
-void BaseFlockMgr::fear(int)
+bool BaseFlockMgr::fear(int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7983,60 +7753,56 @@ lbl_8020AC64:
  * Address:	8020ACA8
  * Size:	000008
  */
-u32 TFlock::fear() { return 0x0; }
-
-} // namespace Game
+bool TFlock::fear() { return false; }
 
 /*
  * --INFO--
  * Address:	8020ACB0
  * Size:	000088
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::~ObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8020AD1C
-	lis      r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
-	addi     r4, r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8020AD0C
-	lis      r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
-	addi     r0, r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8020AD0C
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// void ObjectMgr<Game::ItemUjamushi::Uja>::~ObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8020AD1C
+// 	lis      r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
+// 	addi     r4, r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
+// 	stw      r4, 0(r30)
+// 	addi     r0, r4, 0x2c
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_8020AD0C
+// 	lis      r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
+// 	addi     r0, r4, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_8020AD0C
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_8020AD0C:
-	extsh.   r0, r31
-	ble      lbl_8020AD1C
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8020AD0C:
+// 	extsh.   r0, r31
+// 	ble      lbl_8020AD1C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8020AD1C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// lbl_8020AD1C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -8045,41 +7811,37 @@ namespace Game {
  */
 void BaseFlockMgr::do_update() { }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8020AD3C
  * Size:	000038
  */
-void Iterator<Game::ItemUjamushi::Uja>::operator*()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// void Iterator<Game::ItemUjamushi::Uja>::operator*()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r4, r3
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 8(r3)
+// 	lwz      r4, 4(r4)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020AD74
  * Size:	000018
  */
-void ItemUjamushi::Uja::isVisible()
+bool ItemUjamushi::Uja::isVisible()
 {
 	/*
 	lbz      r4, 0xac(r3)
@@ -8096,7 +7858,7 @@ void ItemUjamushi::Uja::isVisible()
  * Address:	8020AD8C
  * Size:	000008
  */
-void TFlock::getRadius()
+f32 TFlock::getRadius()
 {
 	/*
 	lfs      f1, lbl_80519D94@sda21(r2)
@@ -8116,4229 +7878,4228 @@ void TFlock::constructor() { }
  * Address:	8020AD98
  * Size:	000008
  */
-u32 TFlock::isVisible() { return 0x1; }
+bool TFlock::isVisible() { return true; }
 
 /*
  * --INFO--
  * Address:	8020ADA0
  * Size:	000008
  */
-u32 TFlock::damaged(float) { return 0x1; }
-
-} // namespace Game
+bool TFlock::damaged(float) { return true; }
 
 /*
  * --INFO--
  * Address:	8020ADA8
  * Size:	00002C
  */
-void getNext__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getNext__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020ADD4
  * Size:	00002C
  */
-void getStart__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getStart__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020AE00
  * Size:	000024
  */
-void killFlock__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPQ24Game6TFlock()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x3C
-	  stw       r0, 0x14(r1)
-	  bl        0x494
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void killFlock__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPQ24Game6TFlock()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  addi      r3, r3, 0x3C
+// 	  stw       r0, 0x14(r1)
+// 	  bl        0x494
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020AE24
  * Size:	0001E8
  */
-void initDependency__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r3, r3, 0x4c
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020AE70
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020AFDC
+// void initDependency__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r3, r3, 0x4c
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
+// 	cmplwi   r0, 0
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0x14(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020AE70
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020AFDC
 
-lbl_8020AE70:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020AEDC
+// lbl_8020AE70:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020AEDC
 
-lbl_8020AE88:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020AFDC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020AE88:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020AFDC
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020AEDC:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020AE88
-	b        lbl_8020AFDC
+// lbl_8020AEDC:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020AE88
+// 	b        lbl_8020AFDC
 
-lbl_8020AEFC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1bc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020AF4C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020AFDC
+// lbl_8020AEFC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1bc(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020AF4C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020AFDC
 
-lbl_8020AF4C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020AFC0
+// lbl_8020AF4C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020AFC0
 
-lbl_8020AF6C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020AFDC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020AF6C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020AFDC
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020AFC0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020AF6C
+// lbl_8020AFC0:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020AF6C
 
-lbl_8020AFDC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020AEFC
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020AFDC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020AEFC
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B00C
  * Size:	000024
  */
-void kill__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x4C
-	  stw       r0, 0x14(r1)
-	  bl        0x1CC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void kill__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  addi      r3, r3, 0x4C
+// 	  stw       r0, 0x14(r1)
+// 	  bl        0x1CC
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B030
  * Size:	00002C
  */
-void doAnimation__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void doAnimation__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x64(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B05C
  * Size:	00002C
  */
-void doEntry__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void doEntry__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x68(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B088
  * Size:	00002C
  */
-void doSetView__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fi()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void doSetView__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fi()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x6c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B0B4
  * Size:	00002C
  */
-void doViewCalc__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void doViewCalc__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x70(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B0E0
  * Size:	00002C
  */
-void doSimulation__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Ff()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void doSimulation__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Ff()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x74(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B10C
  * Size:	00002C
  */
-void doDirectDraw__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FR8Graphics()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x78(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void doDirectDraw__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FR8Graphics()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwzu      r12, 0x4C(r3)
+// 	  lwz       r12, 0x78(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B138
  * Size:	000004
  */
-void onDamage__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Itemf() { }
+// void onDamage__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Itemf() { }
 
 /*
  * --INFO--
  * Address:	8020B13C
  * Size:	000004
  */
-void onKeyEvent__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemRCQ28SysShape8KeyEvent() { }
+// void onKeyEvent__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemRCQ28SysShape8KeyEvent() { }
 
 /*
  * --INFO--
  * Address:	8020B140
  * Size:	000004
  */
-void onBounce__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemPQ23Sys8Triangle() { }
+// void onBounce__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemPQ23Sys8Triangle() { }
 
 /*
  * --INFO--
  * Address:	8020B144
  * Size:	000004
  */
-void onPlatCollision__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemRQ24Game9PlatEvent() { }
+// void onPlatCollision__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemRQ24Game9PlatEvent() { }
 
 /*
  * --INFO--
  * Address:	8020B148
  * Size:	000004
  */
-void onCollision__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemRQ24Game9CollEvent() { }
+// void onCollision__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemRQ24Game9CollEvent() { }
 
 /*
  * --INFO--
  * Address:	8020B14C
  * Size:	000004
  */
-void init__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg() { }
+// void init__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg() { }
 
 /*
  * --INFO--
  * Address:	8020B150
  * Size:	000004
  */
-void exec__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
+// void exec__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
 
 /*
  * --INFO--
  * Address:	8020B154
  * Size:	000004
  */
-void cleanup__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
+// void cleanup__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
 
 /*
  * --INFO--
  * Address:	8020B158
  * Size:	000004
  */
-void resume__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
+// void resume__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
 
 /*
  * --INFO--
  * Address:	8020B15C
  * Size:	000004
  */
-void restart__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
+// void restart__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
 
 /*
  * --INFO--
  * Address:	8020B160
  * Size:	000004
  */
-void init__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
+// void init__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item() { }
 
 /*
  * --INFO--
  * Address:	8020B164
  * Size:	000064
  */
-void create__Q24Game40StateMachine<Game::ItemUjamushi::Item> Fi()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void create__Q24Game40StateMachine<Game::ItemUjamushi::Item> Fi()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	li       r0, 0
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	stw      r4, 0xc(r3)
+// 	stw      r0, 8(r3)
+// 	lwz      r0, 0xc(r3)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 4(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x10(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x14(r31)
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B1C8
  * Size:	000008
  */
-void NodeObjectMgr<Game::ItemUjamushi::Item>::get(void*)
-{
-	/*
-	lwz      r3, 0x18(r4)
-	blr
-	*/
-}
+// void NodeObjectMgr<Game::ItemUjamushi::Item>::get(void*)
+// {
+// 	/*
+// 	lwz      r3, 0x18(r4)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B1D0
  * Size:	000008
  */
-void NodeObjectMgr<Game::ItemUjamushi::Item>::getNext(void*)
-{
-	/*
-	lwz      r3, 4(r4)
-	blr
-	*/
-}
+// void NodeObjectMgr<Game::ItemUjamushi::Item>::getNext(void*)
+// {
+// 	/*
+// 	lwz      r3, 4(r4)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B1D8
  * Size:	000008
  */
-void NodeObjectMgr<Game::ItemUjamushi::Item>::getStart()
-{
-	/*
-	lwz      r3, 0x30(r3)
-	blr
-	*/
-}
+// void NodeObjectMgr<Game::ItemUjamushi::Item>::getStart()
+// {
+// 	/*
+// 	lwz      r3, 0x30(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B1E0
  * Size:	000008
  */
-u32 NodeObjectMgr<Game::ItemUjamushi::Item>::getEnd() { return 0x0; }
+// u32 NodeObjectMgr<Game::ItemUjamushi::Item>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8020B1E8
  * Size:	000044
  */
-void NodeObjectMgr<Game::ItemUjamushi::Item>::delNode(Game::ItemUjamushi::Item*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x30(r3)
-	b        lbl_8020B214
+// void NodeObjectMgr<Game::ItemUjamushi::Item>::delNode(Game::ItemUjamushi::Item*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 0x30(r3)
+// 	b        lbl_8020B214
 
-lbl_8020B1FC:
-	lwz      r0, 0x18(r3)
-	cmplw    r0, r4
-	bne      lbl_8020B210
-	bl       del__5CNodeFv
-	b        lbl_8020B21C
+// lbl_8020B1FC:
+// 	lwz      r0, 0x18(r3)
+// 	cmplw    r0, r4
+// 	bne      lbl_8020B210
+// 	bl       del__5CNodeFv
+// 	b        lbl_8020B21C
 
-lbl_8020B210:
-	lwz      r3, 4(r3)
+// lbl_8020B210:
+// 	lwz      r3, 4(r3)
 
-lbl_8020B214:
-	cmplwi   r3, 0
-	bne      lbl_8020B1FC
+// lbl_8020B214:
+// 	cmplwi   r3, 0
+// 	bne      lbl_8020B1FC
 
-lbl_8020B21C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8020B21C:
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B22C
  * Size:	000018
  */
-void NodeObjectMgr<Game::ItemUjamushi::Item>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x30(r3)
-	stw      r0, 0x2c(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	blr
-	*/
-}
+// void NodeObjectMgr<Game::ItemUjamushi::Item>::resetMgr()
+// {
+// 	/*
+// 	li       r0, 0
+// 	stw      r0, 0x30(r3)
+// 	stw      r0, 0x2c(r3)
+// 	stw      r0, 0x28(r3)
+// 	stw      r0, 0x24(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B244
  * Size:	000060
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::birth()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "getEmptyIndex__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	cmpwi    r3, -1
-	beq      lbl_8020B28C
-	lwz      r6, 0x28(r31)
-	li       r0, 0
-	lwz      r4, 0x2c(r31)
-	mulli    r5, r3, 0xc8
-	stbx     r0, r4, r3
-	add      r3, r6, r5
-	lwz      r4, 0x20(r31)
-	addi     r0, r4, 1
-	stw      r0, 0x20(r31)
-	b        lbl_8020B290
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::birth()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       "getEmptyIndex__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	cmpwi    r3, -1
+// 	beq      lbl_8020B28C
+// 	lwz      r6, 0x28(r31)
+// 	li       r0, 0
+// 	lwz      r4, 0x2c(r31)
+// 	mulli    r5, r3, 0xc8
+// 	stbx     r0, r4, r3
+// 	add      r3, r6, r5
+// 	lwz      r4, 0x20(r31)
+// 	addi     r0, r4, 1
+// 	stw      r0, 0x20(r31)
+// 	b        lbl_8020B290
 
-lbl_8020B28C:
-	li       r3, 0
+// lbl_8020B28C:
+// 	li       r3, 0
 
-lbl_8020B290:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8020B290:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B2A4
  * Size:	000054
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::kill(Game::ItemUjamushi::Uja*)
-{
-	/*
-	lwz      r0, 0x24(r3)
-	li       r6, 0
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	blelr
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::kill(Game::ItemUjamushi::Uja*)
+// {
+// 	/*
+// 	lwz      r0, 0x24(r3)
+// 	li       r6, 0
+// 	li       r5, 0
+// 	mtctr    r0
+// 	cmpwi    r0, 0
+// 	blelr
 
-lbl_8020B2BC:
-	lwz      r0, 0x28(r3)
-	add      r0, r0, r5
-	cmplw    r0, r4
-	bne      lbl_8020B2E8
-	lwz      r4, 0x2c(r3)
-	li       r0, 1
-	stbx     r0, r4, r6
-	lwz      r4, 0x20(r3)
-	addi     r0, r4, -1
-	stw      r0, 0x20(r3)
-	blr
+// lbl_8020B2BC:
+// 	lwz      r0, 0x28(r3)
+// 	add      r0, r0, r5
+// 	cmplw    r0, r4
+// 	bne      lbl_8020B2E8
+// 	lwz      r4, 0x2c(r3)
+// 	li       r0, 1
+// 	stbx     r0, r4, r6
+// 	lwz      r4, 0x20(r3)
+// 	addi     r0, r4, -1
+// 	stw      r0, 0x20(r3)
+// 	blr
 
-lbl_8020B2E8:
-	addi     r5, r5, 0xc8
-	addi     r6, r6, 1
-	bdnz     lbl_8020B2BC
-	blr
-	*/
-}
+// lbl_8020B2E8:
+// 	addi     r5, r5, 0xc8
+// 	addi     r6, r6, 1
+// 	bdnz     lbl_8020B2BC
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B2F8
  * Size:	000040
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::getNext(void*)
-{
-	/*
-	lwz      r5, 0x24(r3)
-	addi     r6, r4, 1
-	subf     r0, r6, r5
-	mtctr    r0
-	cmpw     r6, r5
-	bge      lbl_8020B330
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::getNext(void*)
+// {
+// 	/*
+// 	lwz      r5, 0x24(r3)
+// 	addi     r6, r4, 1
+// 	subf     r0, r6, r5
+// 	mtctr    r0
+// 	cmpw     r6, r5
+// 	bge      lbl_8020B330
 
-lbl_8020B310:
-	lwz      r4, 0x2c(r3)
-	lbzx     r0, r4, r6
-	cmplwi   r0, 0
-	bne      lbl_8020B328
-	mr       r3, r6
-	blr
+// lbl_8020B310:
+// 	lwz      r4, 0x2c(r3)
+// 	lbzx     r0, r4, r6
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020B328
+// 	mr       r3, r6
+// 	blr
 
-lbl_8020B328:
-	addi     r6, r6, 1
-	bdnz     lbl_8020B310
+// lbl_8020B328:
+// 	addi     r6, r6, 1
+// 	bdnz     lbl_8020B310
 
-lbl_8020B330:
-	mr       r3, r5
-	blr
-	*/
-}
+// lbl_8020B330:
+// 	mr       r3, r5
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B338
  * Size:	000030
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::getStart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, -1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::getStart()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	li       r4, -1
+// 	stw      r0, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B368
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::getEnd()
-{
-	/*
-	lwz      r3, 0x24(r3)
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::getEnd()
+// {
+// 	/*
+// 	lwz      r3, 0x24(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B370
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::getTo()
-{
-	/*
-	lwz      r3, 0x24(r3)
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::getTo()
+// {
+// 	/*
+// 	lwz      r3, 0x24(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B378
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::doAnimation()
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_8020B3B0
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_8020B3B0
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::doAnimation()
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_8020B3B0
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_8020B3B0
 
-lbl_8020B3A8:
-	addi     r5, r5, 8
-	bdnz     lbl_8020B3A8
+// lbl_8020B3A8:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_8020B3A8
 
-lbl_8020B3B0:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_8020B3B0:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_8020B3C0:
-	bdnz     lbl_8020B3C0
-	blr
-	*/
-}
+// lbl_8020B3C0:
+// 	bdnz     lbl_8020B3C0
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B3C8
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::doEntry()
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_8020B400
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_8020B400
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::doEntry()
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_8020B400
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_8020B400
 
-lbl_8020B3F8:
-	addi     r5, r5, 8
-	bdnz     lbl_8020B3F8
+// lbl_8020B3F8:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_8020B3F8
 
-lbl_8020B400:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_8020B400:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_8020B410:
-	bdnz     lbl_8020B410
-	blr
-	*/
-}
+// lbl_8020B410:
+// 	bdnz     lbl_8020B410
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B418
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::doSetView(int)
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_8020B450
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_8020B450
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::doSetView(int)
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_8020B450
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_8020B450
 
-lbl_8020B448:
-	addi     r5, r5, 8
-	bdnz     lbl_8020B448
+// lbl_8020B448:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_8020B448
 
-lbl_8020B450:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_8020B450:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_8020B460:
-	bdnz     lbl_8020B460
-	blr
-	*/
-}
+// lbl_8020B460:
+// 	bdnz     lbl_8020B460
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B468
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::doViewCalc()
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_8020B4A0
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_8020B4A0
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::doViewCalc()
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_8020B4A0
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_8020B4A0
 
-lbl_8020B498:
-	addi     r5, r5, 8
-	bdnz     lbl_8020B498
+// lbl_8020B498:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_8020B498
 
-lbl_8020B4A0:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_8020B4A0:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_8020B4B0:
-	bdnz     lbl_8020B4B0
-	blr
-	*/
-}
+// lbl_8020B4B0:
+// 	bdnz     lbl_8020B4B0
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B4B8
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::doSimulation(float)
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_8020B4F0
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_8020B4F0
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::doSimulation(float)
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_8020B4F0
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_8020B4F0
 
-lbl_8020B4E8:
-	addi     r5, r5, 8
-	bdnz     lbl_8020B4E8
+// lbl_8020B4E8:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_8020B4E8
 
-lbl_8020B4F0:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_8020B4F0:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_8020B500:
-	bdnz     lbl_8020B500
-	blr
-	*/
-}
+// lbl_8020B500:
+// 	bdnz     lbl_8020B500
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B508
  * Size:	000050
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::doDirectDraw(Graphics&)
-{
-	/*
-	lwz      r4, 0x24(r3)
-	li       r5, 0
-	cmpwi    r4, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r3, r4, -8
-	ble      lbl_8020B540
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_8020B540
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	lwz      r4, 0x24(r3)
+// 	li       r5, 0
+// 	cmpwi    r4, 0
+// 	blelr
+// 	cmpwi    r4, 8
+// 	addi     r3, r4, -8
+// 	ble      lbl_8020B540
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_8020B540
 
-lbl_8020B538:
-	addi     r5, r5, 8
-	bdnz     lbl_8020B538
+// lbl_8020B538:
+// 	addi     r5, r5, 8
+// 	bdnz     lbl_8020B538
 
-lbl_8020B540:
-	subf     r0, r5, r4
-	mtctr    r0
-	cmpw     r5, r4
-	bgelr
+// lbl_8020B540:
+// 	subf     r0, r5, r4
+// 	mtctr    r0
+// 	cmpw     r5, r4
+// 	bgelr
 
-lbl_8020B550:
-	bdnz     lbl_8020B550
-	blr
-	*/
-}
+// lbl_8020B550:
+// 	bdnz     lbl_8020B550
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B558
  * Size:	000018
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x2c(r3)
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::resetMgr()
+// {
+// 	/*
+// 	li       r0, 0
+// 	stw      r0, 0x28(r3)
+// 	stw      r0, 0x24(r3)
+// 	stw      r0, 0x20(r3)
+// 	stw      r0, 0x2c(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B570
  * Size:	000030
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::clearMgr()
-{
-	/*
-	li       r0, 0
-	li       r6, 0
-	stw      r0, 0x20(r3)
-	li       r5, 1
-	b        lbl_8020B590
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::clearMgr()
+// {
+// 	/*
+// 	li       r0, 0
+// 	li       r6, 0
+// 	stw      r0, 0x20(r3)
+// 	li       r5, 1
+// 	b        lbl_8020B590
 
-lbl_8020B584:
-	lwz      r4, 0x2c(r3)
-	stbx     r5, r4, r6
-	addi     r6, r6, 1
+// lbl_8020B584:
+// 	lwz      r4, 0x2c(r3)
+// 	stbx     r5, r4, r6
+// 	addi     r6, r6, 1
 
-lbl_8020B590:
-	lwz      r0, 0x24(r3)
-	cmpw     r6, r0
-	blt      lbl_8020B584
-	blr
-	*/
-}
+// lbl_8020B590:
+// 	lwz      r0, 0x24(r3)
+// 	cmpw     r6, r0
+// 	blt      lbl_8020B584
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B5A0
  * Size:	000004
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::onAlloc() { }
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::onAlloc() { }
 
 /*
  * --INFO--
  * Address:	8020B5A4
  * Size:	00003C
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::getEmptyIndex()
-{
-	/*
-	lwz      r0, 0x24(r3)
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_8020B5D8
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::getEmptyIndex()
+// {
+// 	/*
+// 	lwz      r0, 0x24(r3)
+// 	li       r5, 0
+// 	mtctr    r0
+// 	cmpwi    r0, 0
+// 	ble      lbl_8020B5D8
 
-lbl_8020B5B8:
-	lwz      r4, 0x2c(r3)
-	lbzx     r0, r4, r5
-	cmplwi   r0, 1
-	bne      lbl_8020B5D0
-	mr       r3, r5
-	blr
+// lbl_8020B5B8:
+// 	lwz      r4, 0x2c(r3)
+// 	lbzx     r0, r4, r5
+// 	cmplwi   r0, 1
+// 	bne      lbl_8020B5D0
+// 	mr       r3, r5
+// 	blr
 
-lbl_8020B5D0:
-	addi     r5, r5, 1
-	bdnz     lbl_8020B5B8
+// lbl_8020B5D0:
+// 	addi     r5, r5, 1
+// 	bdnz     lbl_8020B5B8
 
-lbl_8020B5D8:
-	li       r3, -1
-	blr
-	*/
-}
+// lbl_8020B5D8:
+// 	li       r3, -1
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B5E0
  * Size:	000010
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::get(void*)
-{
-	/*
-	mulli    r0, r4, 0xc8
-	lwz      r3, 0x28(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::get(void*)
+// {
+// 	/*
+// 	mulli    r0, r4, 0xc8
+// 	lwz      r3, 0x28(r3)
+// 	add      r3, r3, r0
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B5F0
  * Size:	0001E4
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::doAnimation()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020B638
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020B7A4
+// void ObjectMgr<Game::ItemUjamushi::Item>::doAnimation()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020B638
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020B7A4
 
-lbl_8020B638:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020B6A4
+// lbl_8020B638:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020B6A4
 
-lbl_8020B650:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020B7A4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020B650:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020B7A4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020B6A4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020B650
-	b        lbl_8020B7A4
+// lbl_8020B6A4:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020B650
+// 	b        lbl_8020B7A4
 
-lbl_8020B6C4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020B714
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020B7A4
+// lbl_8020B6C4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x3c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020B714
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020B7A4
 
-lbl_8020B714:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020B788
+// lbl_8020B714:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020B788
 
-lbl_8020B734:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020B7A4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020B734:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020B7A4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020B788:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020B734
+// lbl_8020B788:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020B734
 
-lbl_8020B7A4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020B6C4
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020B7A4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020B6C4
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B7D4
  * Size:	0001E4
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::doEntry()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020B81C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020B988
+// void ObjectMgr<Game::ItemUjamushi::Item>::doEntry()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020B81C
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020B988
 
-lbl_8020B81C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020B888
+// lbl_8020B81C:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020B888
 
-lbl_8020B834:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020B988
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020B834:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020B988
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020B888:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020B834
-	b        lbl_8020B988
+// lbl_8020B888:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020B834
+// 	b        lbl_8020B988
 
-lbl_8020B8A8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020B8F8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020B988
+// lbl_8020B8A8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x40(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020B8F8
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020B988
 
-lbl_8020B8F8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020B96C
+// lbl_8020B8F8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020B96C
 
-lbl_8020B918:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020B988
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020B918:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020B988
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020B96C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020B918
+// lbl_8020B96C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020B918
 
-lbl_8020B988:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020B8A8
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020B988:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020B8A8
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020B9B8
  * Size:	0001F4
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::doSetView(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020BA08
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BB78
+// void ObjectMgr<Game::ItemUjamushi::Item>::doSetView(int)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r5, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r5, r5, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r31, 0x1c(r1)
+// 	cmplwi   r0, 0
+// 	mr       r31, r4
+// 	stw      r0, 0x14(r1)
+// 	stw      r5, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020BA08
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BB78
 
-lbl_8020BA08:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BA74
+// lbl_8020BA08:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BA74
 
-lbl_8020BA20:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020BB78
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020BA20:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020BB78
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020BA74:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020BA20
-	b        lbl_8020BB78
+// lbl_8020BA74:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020BA20
+// 	b        lbl_8020BB78
 
-lbl_8020BA94:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020BAE8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BB78
+// lbl_8020BA94:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	mr       r4, r31
+// 	lwz      r12, 0x44(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020BAE8
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BB78
 
-lbl_8020BAE8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BB5C
+// lbl_8020BAE8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BB5C
 
-lbl_8020BB08:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020BB78
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020BB08:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020BB78
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020BB5C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020BB08
+// lbl_8020BB5C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020BB08
 
-lbl_8020BB78:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020BA94
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020BB78:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020BA94
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020BBAC
  * Size:	0001E4
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::doViewCalc()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020BBF4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BD60
+// void ObjectMgr<Game::ItemUjamushi::Item>::doViewCalc()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020BBF4
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BD60
 
-lbl_8020BBF4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BC60
+// lbl_8020BBF4:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BC60
 
-lbl_8020BC0C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020BD60
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020BC0C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020BD60
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020BC60:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020BC0C
-	b        lbl_8020BD60
+// lbl_8020BC60:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020BC0C
+// 	b        lbl_8020BD60
 
-lbl_8020BC80:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020BCD0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BD60
+// lbl_8020BC80:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x48(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020BCD0
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BD60
 
-lbl_8020BCD0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BD44
+// lbl_8020BCD0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BD44
 
-lbl_8020BCF0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020BD60
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020BCF0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020BD60
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020BD44:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020BCF0
+// lbl_8020BD44:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020BCF0
 
-lbl_8020BD60:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020BC80
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020BD60:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020BC80
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020BD90
  * Size:	0001F4
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020BDE0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BF50
+// void ObjectMgr<Game::ItemUjamushi::Item>::doSimulation(float)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
+// 	stfd     f31, 0x18(r1)
+// 	fmr      f31, f1
+// 	cmplwi   r0, 0
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0x14(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020BDE0
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BF50
 
-lbl_8020BDE0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BE4C
+// lbl_8020BDE0:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BE4C
 
-lbl_8020BDF8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020BF50
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020BDF8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020BF50
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020BE4C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020BDF8
-	b        lbl_8020BF50
+// lbl_8020BE4C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020BDF8
+// 	b        lbl_8020BF50
 
-lbl_8020BE6C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	fmr      f1, f31
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020BEC0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BF50
+// lbl_8020BE6C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	fmr      f1, f31
+// 	lwz      r12, 0x4c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020BEC0
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BF50
 
-lbl_8020BEC0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020BF34
+// lbl_8020BEC0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020BF34
 
-lbl_8020BEE0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020BF50
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020BEE0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020BF50
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020BF34:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020BEE0
+// lbl_8020BF34:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020BEE0
 
-lbl_8020BF50:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020BE6C
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020BF50:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020BE6C
+// 	lwz      r0, 0x24(r1)
+// 	lfd      f31, 0x18(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020BF84
  * Size:	0001F4
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020BFD4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C144
+// void ObjectMgr<Game::ItemUjamushi::Item>::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r5, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r5, r5, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r31, 0x1c(r1)
+// 	cmplwi   r0, 0
+// 	mr       r31, r4
+// 	stw      r0, 0x14(r1)
+// 	stw      r5, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020BFD4
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C144
 
-lbl_8020BFD4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C040
+// lbl_8020BFD4:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C040
 
-lbl_8020BFEC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C144
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020BFEC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C144
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C040:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020BFEC
-	b        lbl_8020C144
+// lbl_8020C040:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020BFEC
+// 	b        lbl_8020C144
 
-lbl_8020C060:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020C0B4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C144
+// lbl_8020C060:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	mr       r4, r31
+// 	lwz      r12, 0x50(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020C0B4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C144
 
-lbl_8020C0B4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C128
+// lbl_8020C0B4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C128
 
-lbl_8020C0D4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C144
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C0D4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C144
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C128:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C0D4
+// lbl_8020C128:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C0D4
 
-lbl_8020C144:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020C060
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020C144:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020C060
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020C178
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::doAnimation()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020C1C0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C31C
+// void ObjectMgr<Game::ItemUjamushi::Uja>::doAnimation()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020C1C0
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C31C
 
-lbl_8020C1C0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C22C
+// lbl_8020C1C0:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C22C
 
-lbl_8020C1D8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C31C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C1D8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C31C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C22C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C1D8
-	b        lbl_8020C31C
+// lbl_8020C22C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C1D8
+// 	b        lbl_8020C31C
 
-lbl_8020C24C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020C28C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C31C
+// lbl_8020C24C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020C28C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C31C
 
-lbl_8020C28C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C300
+// lbl_8020C28C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C300
 
-lbl_8020C2AC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C31C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C2AC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C31C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C300:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C2AC
+// lbl_8020C300:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C2AC
 
-lbl_8020C31C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020C24C
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020C31C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020C24C
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020C34C
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::doEntry()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020C394
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C4F0
+// void ObjectMgr<Game::ItemUjamushi::Uja>::doEntry()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020C394
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C4F0
 
-lbl_8020C394:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C400
+// lbl_8020C394:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C400
 
-lbl_8020C3AC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C4F0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C3AC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C4F0
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C400:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C3AC
-	b        lbl_8020C4F0
+// lbl_8020C400:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C3AC
+// 	b        lbl_8020C4F0
 
-lbl_8020C420:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020C460
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C4F0
+// lbl_8020C420:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020C460
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C4F0
 
-lbl_8020C460:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C4D4
+// lbl_8020C460:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C4D4
 
-lbl_8020C480:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C4F0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C480:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C4F0
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C4D4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C480
+// lbl_8020C4D4:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C480
 
-lbl_8020C4F0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020C420
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020C4F0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020C420
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020C520
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::doSetView(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020C568
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C6C4
+// void ObjectMgr<Game::ItemUjamushi::Uja>::doSetView(int)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020C568
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C6C4
 
-lbl_8020C568:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C5D4
+// lbl_8020C568:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C5D4
 
-lbl_8020C580:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C6C4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C580:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C6C4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C5D4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C580
-	b        lbl_8020C6C4
+// lbl_8020C5D4:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C580
+// 	b        lbl_8020C6C4
 
-lbl_8020C5F4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020C634
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C6C4
+// lbl_8020C5F4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020C634
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C6C4
 
-lbl_8020C634:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C6A8
+// lbl_8020C634:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C6A8
 
-lbl_8020C654:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C6C4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C654:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C6C4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C6A8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C654
+// lbl_8020C6A8:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C654
 
-lbl_8020C6C4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020C5F4
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020C6C4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020C5F4
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020C6F4
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::doViewCalc()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020C73C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C898
+// void ObjectMgr<Game::ItemUjamushi::Uja>::doViewCalc()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020C73C
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C898
 
-lbl_8020C73C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C7A8
+// lbl_8020C73C:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C7A8
 
-lbl_8020C754:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C898
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C754:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C898
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C7A8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C754
-	b        lbl_8020C898
+// lbl_8020C7A8:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C754
+// 	b        lbl_8020C898
 
-lbl_8020C7C8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020C808
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C898
+// lbl_8020C7C8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020C808
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C898
 
-lbl_8020C808:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C87C
+// lbl_8020C808:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C87C
 
-lbl_8020C828:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020C898
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C828:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020C898
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C87C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C828
+// lbl_8020C87C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C828
 
-lbl_8020C898:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020C7C8
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020C898:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020C7C8
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020C8C8
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020C910
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020CA6C
+// void ObjectMgr<Game::ItemUjamushi::Uja>::doSimulation(float)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020C910
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020CA6C
 
-lbl_8020C910:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020C97C
+// lbl_8020C910:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020C97C
 
-lbl_8020C928:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020CA6C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C928:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020CA6C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020C97C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C928
-	b        lbl_8020CA6C
+// lbl_8020C97C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C928
+// 	b        lbl_8020CA6C
 
-lbl_8020C99C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020C9DC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020CA6C
+// lbl_8020C99C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020C9DC
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020CA6C
 
-lbl_8020C9DC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020CA50
+// lbl_8020C9DC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020CA50
 
-lbl_8020C9FC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020CA6C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020C9FC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020CA6C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020CA50:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020C9FC
+// lbl_8020CA50:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020C9FC
 
-lbl_8020CA6C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020C99C
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020CA6C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020C99C
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020CA9C
  * Size:	0001D4
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8020CAE4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020CC40
+// void ObjectMgr<Game::ItemUjamushi::Uja>::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__35Iterator<Q34Game12ItemUjamushi3Uja>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_8020CAE4
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020CC40
 
-lbl_8020CAE4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020CB50
+// lbl_8020CAE4:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020CB50
 
-lbl_8020CAFC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020CC40
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020CAFC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020CC40
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020CB50:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020CAFC
-	b        lbl_8020CC40
+// lbl_8020CB50:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020CAFC
+// 	b        lbl_8020CC40
 
-lbl_8020CB70:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020CBB0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020CC40
+// lbl_8020CB70:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020CBB0
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020CC40
 
-lbl_8020CBB0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8020CC24
+// lbl_8020CBB0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_8020CC24
 
-lbl_8020CBD0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020CC40
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_8020CBD0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020CC40
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_8020CC24:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020CBD0
+// lbl_8020CC24:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020CBD0
 
-lbl_8020CC40:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8020CB70
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020CC40:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020CB70
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020CC70
  * Size:	00002C
  */
-void Container<Game::ItemUjamushi::Item>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Container<Game::ItemUjamushi::Item>::getObject(void*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020CC9C
  * Size:	000008
  */
-u32 Container<Game::ItemUjamushi::Item>::getAt(int) { return 0x0; }
+// u32 Container<Game::ItemUjamushi::Item>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8020CCA4
  * Size:	000008
  */
-u32 Container<Game::ItemUjamushi::Item>::getTo() { return 0x0; }
+// u32 Container<Game::ItemUjamushi::Item>::getTo() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8020CCAC
  * Size:	00002C
  */
-void Container<Game::ItemUjamushi::Uja>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Container<Game::ItemUjamushi::Uja>::getObject(void*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020CCD8
  * Size:	000008
  */
-u32 Container<Game::ItemUjamushi::Uja>::getAt(int) { return 0x0; }
+// u32 Container<Game::ItemUjamushi::Uja>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8020CCE0
  * Size:	000008
  */
-u32 Container<Game::ItemUjamushi::Uja>::getTo() { return 0x0; }
+// u32 Container<Game::ItemUjamushi::Uja>::getTo() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8020CCE8
  * Size:	000188
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::alloc(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r31
-	mulli    r3, r29, 0xc8
-	stw      r28, 0x10(r1)
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q34Game12ItemUjamushi3UjaFv@ha
-	mr       r7, r29
-	addi     r4, r4, __ct__Q34Game12ItemUjamushi3UjaFv@l
-	li       r5, 0
-	li       r6, 0xc8
-	bl       __construct_new_array
-	stw      r3, 0x28(r30)
-	li       r0, 0
-	mr       r3, r29
-	stw      r31, 0x24(r30)
-	stw      r0, 0x20(r30)
-	bl       __nwa__FUl
-	cmpwi    r31, 0
-	stw      r3, 0x2c(r30)
-	li       r11, 0
-	ble      lbl_8020CE08
-	cmpwi    r31, 8
-	addi     r3, r31, -8
-	ble      lbl_8020CDE4
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_8020CDE4
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::alloc(int)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stw      r31, 0x1c(r1)
+// 	mr       r31, r4
+// 	stw      r30, 0x18(r1)
+// 	mr       r30, r3
+// 	stw      r29, 0x14(r1)
+// 	mr       r29, r31
+// 	mulli    r3, r29, 0xc8
+// 	stw      r28, 0x10(r1)
+// 	addi     r3, r3, 0x10
+// 	bl       __nwa__FUl
+// 	lis      r4, __ct__Q34Game12ItemUjamushi3UjaFv@ha
+// 	mr       r7, r29
+// 	addi     r4, r4, __ct__Q34Game12ItemUjamushi3UjaFv@l
+// 	li       r5, 0
+// 	li       r6, 0xc8
+// 	bl       __construct_new_array
+// 	stw      r3, 0x28(r30)
+// 	li       r0, 0
+// 	mr       r3, r29
+// 	stw      r31, 0x24(r30)
+// 	stw      r0, 0x20(r30)
+// 	bl       __nwa__FUl
+// 	cmpwi    r31, 0
+// 	stw      r3, 0x2c(r30)
+// 	li       r11, 0
+// 	ble      lbl_8020CE08
+// 	cmpwi    r31, 8
+// 	addi     r3, r31, -8
+// 	ble      lbl_8020CDE4
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_8020CDE4
 
-lbl_8020CD7C:
-	lwz      r3, 0x2c(r30)
-	li       r10, 1
-	addi     r8, r11, 1
-	addi     r7, r11, 2
-	stbx     r10, r3, r11
-	addi     r6, r11, 3
-	addi     r5, r11, 4
-	addi     r4, r11, 5
-	lwz      r9, 0x2c(r30)
-	addi     r3, r11, 6
-	addi     r0, r11, 7
-	addi     r11, r11, 8
-	stbx     r10, r9, r8
-	lwz      r8, 0x2c(r30)
-	stbx     r10, r8, r7
-	lwz      r7, 0x2c(r30)
-	stbx     r10, r7, r6
-	lwz      r6, 0x2c(r30)
-	stbx     r10, r6, r5
-	lwz      r5, 0x2c(r30)
-	stbx     r10, r5, r4
-	lwz      r4, 0x2c(r30)
-	stbx     r10, r4, r3
-	lwz      r3, 0x2c(r30)
-	stbx     r10, r3, r0
-	bdnz     lbl_8020CD7C
+// lbl_8020CD7C:
+// 	lwz      r3, 0x2c(r30)
+// 	li       r10, 1
+// 	addi     r8, r11, 1
+// 	addi     r7, r11, 2
+// 	stbx     r10, r3, r11
+// 	addi     r6, r11, 3
+// 	addi     r5, r11, 4
+// 	addi     r4, r11, 5
+// 	lwz      r9, 0x2c(r30)
+// 	addi     r3, r11, 6
+// 	addi     r0, r11, 7
+// 	addi     r11, r11, 8
+// 	stbx     r10, r9, r8
+// 	lwz      r8, 0x2c(r30)
+// 	stbx     r10, r8, r7
+// 	lwz      r7, 0x2c(r30)
+// 	stbx     r10, r7, r6
+// 	lwz      r6, 0x2c(r30)
+// 	stbx     r10, r6, r5
+// 	lwz      r5, 0x2c(r30)
+// 	stbx     r10, r5, r4
+// 	lwz      r4, 0x2c(r30)
+// 	stbx     r10, r4, r3
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r10, r3, r0
+// 	bdnz     lbl_8020CD7C
 
-lbl_8020CDE4:
-	subf     r0, r11, r31
-	li       r4, 1
-	mtctr    r0
-	cmpw     r11, r31
-	bge      lbl_8020CE08
+// lbl_8020CDE4:
+// 	subf     r0, r11, r31
+// 	li       r4, 1
+// 	mtctr    r0
+// 	cmpw     r11, r31
+// 	bge      lbl_8020CE08
 
-lbl_8020CDF8:
-	lwz      r3, 0x2c(r30)
-	stbx     r4, r3, r11
-	addi     r11, r11, 1
-	bdnz     lbl_8020CDF8
+// lbl_8020CDF8:
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r4, r3, r11
+// 	addi     r11, r11, 1
+// 	bdnz     lbl_8020CDF8
 
-lbl_8020CE08:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	li       r28, 0
-	li       r29, 0
-	b        lbl_8020CE48
+// lbl_8020CE08:
+// 	mr       r3, r30
+// 	lwz      r12, 0(r30)
+// 	lwz      r12, 0x88(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	li       r28, 0
+// 	li       r29, 0
+// 	b        lbl_8020CE48
 
-lbl_8020CE28:
-	lwz      r0, 0x28(r30)
-	add      r3, r0, r29
-	lwz      r12, 0xc(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 0xc8
-	addi     r28, r28, 1
+// lbl_8020CE28:
+// 	lwz      r0, 0x28(r30)
+// 	add      r3, r0, r29
+// 	lwz      r12, 0xc(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r29, r29, 0xc8
+// 	addi     r28, r28, 1
 
-lbl_8020CE48:
-	cmpw     r28, r31
-	blt      lbl_8020CE28
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020CE48:
+// 	cmpw     r28, r31
+// 	blt      lbl_8020CE28
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	lwz      r30, 0x18(r1)
+// 	lwz      r29, 0x14(r1)
+// 	lwz      r28, 0x10(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020CE70
  * Size:	00009C
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r6, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
-	lis      r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
-	lis      r3, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
-	stw      r0, 0(r31)
-	li       r8, 0
-	addi     r7, r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
-	addi     r5, r3, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
-	stb      r8, 0x18(r31)
-	addi     r0, r6, __vt__16GenericObjectMgr@l
-	addi     r6, r7, 0x2c
-	addi     r4, r5, 0x2c
-	stw      r0, 0x1c(r31)
-	li       r0, 1
-	mr       r3, r31
-	stw      r7, 0(r31)
-	stw      r6, 0x1c(r31)
-	stw      r5, 0(r31)
-	stw      r4, 0x1c(r31)
-	stb      r0, 0x18(r31)
-	stw      r8, 0x24(r31)
-	stw      r8, 0x20(r31)
-	stw      r8, 0x28(r31)
-	stw      r8, 0x2c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::MonoObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       __ct__5CNodeFv
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	lis      r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@ha
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	lis      r6, __vt__16GenericObjectMgr@ha
+// 	stw      r0, 0(r31)
+// 	addi     r0, r3, "__vt__36Container<Q34Game12ItemUjamushi3Uja>"@l
+// 	lis      r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
+// 	lis      r3, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@ha
+// 	stw      r0, 0(r31)
+// 	li       r8, 0
+// 	addi     r7, r4, "__vt__36ObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
+// 	addi     r5, r3, "__vt__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>"@l
+// 	stb      r8, 0x18(r31)
+// 	addi     r0, r6, __vt__16GenericObjectMgr@l
+// 	addi     r6, r7, 0x2c
+// 	addi     r4, r5, 0x2c
+// 	stw      r0, 0x1c(r31)
+// 	li       r0, 1
+// 	mr       r3, r31
+// 	stw      r7, 0(r31)
+// 	stw      r6, 0x1c(r31)
+// 	stw      r5, 0(r31)
+// 	stw      r4, 0x1c(r31)
+// 	stb      r0, 0x18(r31)
+// 	stw      r8, 0x24(r31)
+// 	stw      r8, 0x20(r31)
+// 	stw      r8, 0x28(r31)
+// 	stw      r8, 0x2c(r31)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020CF0C
  * Size:	00009C
  */
-void transit__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x1DC(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
+// void transit__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  rlwinm    r0,r5,2,0,29
+// 	  stmw      r27, 0xC(r1)
+// 	  mr        r27, r3
+// 	  mr        r28, r4
+// 	  mr        r29, r6
+// 	  lwz       r30, 0x1DC(r4)
+// 	  lwz       r3, 0x14(r3)
+// 	  cmplwi    r30, 0
+// 	  lwzx      r31, r3, r0
+// 	  beq-      .loc_0x50
+// 	  mr        r3, r30
+// 	  lwz       r12, 0x0(r30)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x4(r30)
+// 	  stw       r0, 0x18(r27)
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
+// 	.loc_0x50:
+// 	  lwz       r0, 0xC(r27)
+// 	  cmpw      r31, r0
+// 	  blt-      .loc_0x60
 
-	.loc_0x5C:
-	  b         .loc_0x5C
+// 	.loc_0x5C:
+// 	  b         .loc_0x5C
 
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x1DC(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x60:
+// 	  lwz       r3, 0x4(r27)
+// 	  rlwinm    r0,r31,2,0,29
+// 	  mr        r4, r28
+// 	  mr        r5, r29
+// 	  lwzx      r3, r3, r0
+// 	  stw       r3, 0x1DC(r28)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lmw       r27, 0xC(r1)
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020CFA8
  * Size:	000084
  */
-void registerState__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ24Game36FSMState<Game::ItemUjamushi::Item>()
-{
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+// void registerState__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ24Game36FSMState<Game::ItemUjamushi::Item>()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r6, 0x8(r3)
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r6, r0
+// 	  bgelr-
+// 	  lwz       r5, 0x4(r3)
+// 	  rlwinm    r0,r6,2,0,29
+// 	  stwx      r4, r5, r0
+// 	  lwz       r5, 0x4(r4)
+// 	  cmpwi     r5, 0
+// 	  blt-      .loc_0x34
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r5, r0
+// 	  blt-      .loc_0x3C
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
+// 	.loc_0x34:
+// 	  li        r0, 0
+// 	  b         .loc_0x40
 
-	.loc_0x3C:
-	  li        r0, 0x1
+// 	.loc_0x3C:
+// 	  li        r0, 0x1
 
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
-}
+// 	.loc_0x40:
+// 	  rlwinm.   r0,r0,0,24,31
+// 	  beqlr-
+// 	  stw       r3, 0x8(r4)
+// 	  lwz       r0, 0x8(r3)
+// 	  lwz       r6, 0x4(r4)
+// 	  lwz       r5, 0x10(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r6, r5, r0
+// 	  lwz       r0, 0x4(r4)
+// 	  lwz       r5, 0x8(r3)
+// 	  lwz       r4, 0x14(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r5, r4, r0
+// 	  lwz       r4, 0x8(r3)
+// 	  addi      r0, r4, 0x1
+// 	  stw       r0, 0x8(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D02C
  * Size:	000038
  */
-void exec__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+// void exec__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r4)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x28
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0xC(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x28:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D064
  * Size:	000044
  */
-void onKeyEvent__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> FRCQ28SysShape8KeyEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
+// void onKeyEvent__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> FRCQ28SysShape8KeyEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x24(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D0A8
  * Size:	000044
  */
-void platCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> FRQ24Game9PlatEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+// void platCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> FRQ24Game9PlatEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x2C(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D0EC
  * Size:	000044
  */
-void collisionCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> FRQ24Game9CollEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+// void collisionCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State>
+// FRQ24Game9CollEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x30(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D130
  * Size:	000044
  */
-void bounceCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> FPQ23Sys8Triangle()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
+// void bounceCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> FPQ23Sys8Triangle()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x28(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D174
  * Size:	00002C
  */
-void getEnd__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getEnd__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D1A0
  * Size:	00002C
  */
-void getStart__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getStart__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D1CC
  * Size:	00002C
  */
-void getNext__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getNext__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D1F8
  * Size:	00002C
  */
-void get__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void get__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D224
  * Size:	000240
  */
-void killAll__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r3, r3, 0x4c
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
-	stw      r31, 0x2c(r1)
-	cmplwi   r0, 0
-	stw      r30, 0x28(r1)
-	stw      r4, 0x10(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x14(r1)
-	stw      r3, 0x18(r1)
-	bne      lbl_8020D278
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_8020D300
+// void killAll__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x30(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r3, r3, 0x4c
+// 	stw      r0, 0x34(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r31, 0x2c(r1)
+// 	cmplwi   r0, 0
+// 	stw      r30, 0x28(r1)
+// 	stw      r4, 0x10(r1)
+// 	stw      r0, 0x1c(r1)
+// 	stw      r0, 0x14(r1)
+// 	stw      r3, 0x18(r1)
+// 	bne      lbl_8020D278
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x14(r1)
+// 	b        lbl_8020D300
 
-lbl_8020D278:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_8020D2E4
+// lbl_8020D278:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x14(r1)
+// 	b        lbl_8020D2E4
 
-lbl_8020D290:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020D300
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
+// lbl_8020D290:
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r4, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x1c(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020D300
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r4, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x14(r1)
 
-lbl_8020D2E4:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020D290
+// lbl_8020D2E4:
+// 	lwz      r12, 0x10(r1)
+// 	addi     r3, r1, 0x10
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020D290
 
-lbl_8020D300:
-	lis      r3, __vt__Q24Game15CreatureKillArg@ha
-	addi     r31, r3, __vt__Q24Game15CreatureKillArg@l
-	b        lbl_8020D42C
+// lbl_8020D300:
+// 	lis      r3, __vt__Q24Game15CreatureKillArg@ha
+// 	addi     r31, r3, __vt__Q24Game15CreatureKillArg@l
+// 	b        lbl_8020D42C
 
-lbl_8020D30C:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stw      r31, 8(r1)
-	mr       r30, r3
-	stw      r0, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020D354
-	mr       r3, r30
-	addi     r4, r1, 8
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+// lbl_8020D30C:
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	li       r0, 1
+// 	stw      r31, 8(r1)
+// 	mr       r30, r3
+// 	stw      r0, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xa8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020D354
+// 	mr       r3, r30
+// 	addi     r4, r1, 8
+// 	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-lbl_8020D354:
-	lwz      r4, 0x17c(r30)
-	cmplwi   r4, 0
-	beq      lbl_8020D370
-	lwz      r3,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r3, 0
-	beq      lbl_8020D370
-	bl       remove__10JSUPtrListFP10JSUPtrLink
+// lbl_8020D354:
+// 	lwz      r4, 0x17c(r30)
+// 	cmplwi   r4, 0
+// 	beq      lbl_8020D370
+// 	lwz      r3,
+// "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r3, 0
+// 	beq      lbl_8020D370
+// 	bl       remove__10JSUPtrListFP10JSUPtrLink
 
-lbl_8020D370:
-	lwz      r0, 0x1c(r1)
-	cmplwi   r0, 0
-	bne      lbl_8020D39C
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_8020D42C
+// lbl_8020D370:
+// 	lwz      r0, 0x1c(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8020D39C
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r4, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x14(r1)
+// 	b        lbl_8020D42C
 
-lbl_8020D39C:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
-	b        lbl_8020D410
+// lbl_8020D39C:
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r4, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x14(r1)
+// 	b        lbl_8020D410
 
-lbl_8020D3BC:
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8020D42C
-	lwz      r3, 0x18(r1)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r1)
+// lbl_8020D3BC:
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r4, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x1c(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8020D42C
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r4, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x14(r1)
 
-lbl_8020D410:
-	lwz      r12, 0x10(r1)
-	addi     r3, r1, 0x10
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8020D3BC
+// lbl_8020D410:
+// 	lwz      r12, 0x10(r1)
+// 	addi     r3, r1, 0x10
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8020D3BC
 
-lbl_8020D42C:
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x14(r1)
-	cmplw    r4, r3
-	bne      lbl_8020D30C
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+// lbl_8020D42C:
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0x14(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8020D30C
+// 	lwz      r0, 0x34(r1)
+// 	lwz      r31, 0x2c(r1)
+// 	lwz      r30, 0x28(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x30
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D464
  * Size:	000084
  */
-void entry__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0x1C
-	  stw       r29, 0x180(r4)
-	  bl        -0x1E95E8
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  bl        0x203EF8
-	  lis       r3, 0x804C
-	  subi      r0, r3, 0xE60
-	  stw       r0, 0x0(r31)
+// void entry__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  stw       r31, 0x1C(r1)
+// 	  stw       r30, 0x18(r1)
+// 	  mr        r30, r4
+// 	  stw       r29, 0x14(r1)
+// 	  mr        r29, r3
+// 	  li        r3, 0x1C
+// 	  stw       r29, 0x180(r4)
+// 	  bl        -0x1E95E8
+// 	  mr.       r31, r3
+// 	  beq-      .loc_0x44
+// 	  bl        0x203EF8
+// 	  lis       r3, 0x804C
+// 	  subi      r0, r3, 0xE60
+// 	  stw       r0, 0x0(r31)
 
-	.loc_0x44:
-	  stw       r30, 0x18(r31)
-	  mr        r4, r31
-	  addi      r3, r29, 0x6C
-	  bl        0x203F54
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x44:
+// 	  stw       r30, 0x18(r31)
+// 	  mr        r4, r31
+// 	  addi      r3, r29, 0x6C
+// 	  bl        0x203F54
+// 	  lwz       r3, 0x18(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x2C(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x24(r1)
+// 	  lwz       r31, 0x1C(r1)
+// 	  lwz       r30, 0x18(r1)
+// 	  lwz       r29, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D4E8
  * Size:	000114
  */
-void __ct__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	extsh.   r0, r4
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	beq      lbl_8020D514
-	addi     r0, r31, 0x88
-	stw      r0, 4(r31)
+// void __ct__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	extsh.   r0, r4
+// 	stw      r31, 0x1c(r1)
+// 	mr       r31, r3
+// 	stw      r30, 0x18(r1)
+// 	stw      r29, 0x14(r1)
+// 	beq      lbl_8020D514
+// 	addi     r0, r31, 0x88
+// 	stw      r0, 4(r31)
 
-lbl_8020D514:
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 1
-	bl       __ct__Q24Game11BaseItemMgrFi
-	addi     r29, r31, 0x30
-	mr       r3, r29
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__16GenericContainer@ha
-	li       r5, 0
-	addi     r0, r3, __vt__16GenericContainer@l
-	addi     r30, r31, 0x4c
-	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
-	stw      r0, 0(r29)
-	lis      r3, "__vt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r4, r3, "__vt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>"@l
-	stb      r5, 0x18(r29)
-	addi     r0, r4, 0x74
-	mr       r3, r30
-	stw      r4, 0(r31)
-	stw      r0, 0x30(r31)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r5, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
-	lis      r4, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
-	lis      r3, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
-	stw      r0, 0(r30)
-	li       r0, 0
-	addi     r6, r4, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@l
-	addi     r4, r3, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@l
-	stb      r0, 0x18(r30)
-	addi     r0, r5, __vt__16GenericObjectMgr@l
-	addi     r29, r30, 0x20
-	addi     r5, r6, 0x2c
-	stw      r0, 0x1c(r30)
-	addi     r0, r4, 0x2c
-	mr       r3, r29
-	stw      r6, 0(r30)
-	stw      r5, 0x1c(r30)
-	stw      r4, 0(r30)
-	stw      r0, 0x1c(r30)
-	bl       __ct__5CNodeFv
-	lis      r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@ha
-	mr       r3, r31
-	addi     r0, r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@l
-	stw      r0, 0(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_8020D514:
+// 	mr       r3, r31
+// 	li       r4, 0
+// 	li       r5, 1
+// 	bl       __ct__Q24Game11BaseItemMgrFi
+// 	addi     r29, r31, 0x30
+// 	mr       r3, r29
+// 	bl       __ct__5CNodeFv
+// 	lis      r3, __vt__16GenericContainer@ha
+// 	li       r5, 0
+// 	addi     r0, r3, __vt__16GenericContainer@l
+// 	addi     r30, r31, 0x4c
+// 	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
+// 	stw      r0, 0(r29)
+// 	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r0, 0(r29)
+// 	lis      r3, "__vt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r4, r3, "__vt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>"@l
+// 	stb      r5, 0x18(r29)
+// 	addi     r0, r4, 0x74
+// 	mr       r3, r30
+// 	stw      r4, 0(r31)
+// 	stw      r0, 0x30(r31)
+// 	bl       __ct__5CNodeFv
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	lis      r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@ha
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	lis      r5, __vt__16GenericObjectMgr@ha
+// 	stw      r0, 0(r30)
+// 	addi     r0, r3, "__vt__37Container<Q34Game12ItemUjamushi4Item>"@l
+// 	lis      r4, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
+// 	lis      r3, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@ha
+// 	stw      r0, 0(r30)
+// 	li       r0, 0
+// 	addi     r6, r4, "__vt__37ObjectMgr<Q34Game12ItemUjamushi4Item>"@l
+// 	addi     r4, r3, "__vt__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>"@l
+// 	stb      r0, 0x18(r30)
+// 	addi     r0, r5, __vt__16GenericObjectMgr@l
+// 	addi     r29, r30, 0x20
+// 	addi     r5, r6, 0x2c
+// 	stw      r0, 0x1c(r30)
+// 	addi     r0, r4, 0x2c
+// 	mr       r3, r29
+// 	stw      r6, 0(r30)
+// 	stw      r5, 0x1c(r30)
+// 	stw      r4, 0(r30)
+// 	stw      r0, 0x1c(r30)
+// 	bl       __ct__5CNodeFv
+// 	lis      r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@ha
+// 	mr       r3, r31
+// 	addi     r0, r4, "__vt__39TObjectNode<Q34Game12ItemUjamushi4Item>"@l
+// 	stw      r0, 0(r29)
+// 	lwz      r31, 0x1c(r1)
+// 	lwz      r30, 0x18(r1)
+// 	lwz      r29, 0x14(r1)
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D5FC
  * Size:	00002C
  */
-void getEnd__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void getEnd__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D628
  * Size:	00002C
  */
-void get__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPv()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x3c(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void get__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPv()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x3c(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D654
  * Size:	000028
  */
-void __sinit_itemUjamushi_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804BEF60@ha
-	stw      r0, lbl_80515BB8@sda21(r13)
-	stfsu    f0, lbl_804BEF60@l(r3)
-	stfs     f0, lbl_80515BBC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_itemUjamushi_cpp()
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804BEF60@ha
+// 	stw      r0, lbl_80515BB8@sda21(r13)
+// 	stfsu    f0, lbl_804BEF60@l(r3)
+// 	stfs     f0, lbl_80515BBC@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D67C
  * Size:	000008
  */
-void @32 @__dt__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "__dt__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void @32 @__dt__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "__dt__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D684
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @resetMgr()
-{
-	/*
-	addi     r3, r3, -28
-	b        "resetMgr__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @resetMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "resetMgr__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D68C
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b "doDirectDraw__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>FR8Graphics"
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b "doDirectDraw__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>FR8Graphics"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D694
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Ff"
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doSimulation(float)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSimulation__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Ff"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D69C
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doViewCalc()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doViewCalc__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6A4
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fi"
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doSetView(int)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSetView__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fi"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6AC
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doEntry()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doEntry__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6B4
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::ItemUjamushi::Uja>::@28 @doAnimation()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doAnimation__40MonoObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6BC
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doDirectDraw__36ObjectMgr<Q34Game12ItemUjamushi3Uja>FR8Graphics"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doDirectDraw__36ObjectMgr<Q34Game12ItemUjamushi3Uja>FR8Graphics"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6C4
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Ff"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doSimulation(float)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSimulation__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Ff"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6CC
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doViewCalc()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doViewCalc__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6D4
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Fi"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doSetView(int)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSetView__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Fi"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6DC
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doEntry()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doEntry__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6E4
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Uja>::@28 @doAnimation()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doAnimation__36ObjectMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6EC
  * Size:	000008
  */
-void @32 @getEnd__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "getEnd__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void @32 @getEnd__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "getEnd__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6F4
  * Size:	000008
  */
-void @32 @getStart__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "getStart__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
-	*/
-}
+// void @32 @getStart__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "getStart__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D6FC
  * Size:	000008
  */
-void @32 @getNext__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "getNext__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>FPv"
-	*/
-}
+// void @32 @getNext__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "getNext__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>FPv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D704
  * Size:	000008
  */
-void @32 @get__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPv()
-{
-	/*
-	addi     r3, r3, -32
-	b        "get__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>FPv"
-	*/
-}
+// void @32 @get__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPv()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        "get__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>FPv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D70C
  * Size:	000008
  */
-@32 @Game::ItemUjamushi::UjaMgr::~UjaMgr()
-{
-	/*
-	addi     r3, r3, -32
-	b        __dt__Q34Game12ItemUjamushi6UjaMgrFv
-	*/
-}
+// @32 @Game::ItemUjamushi::UjaMgr::~UjaMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -32
+// 	b        __dt__Q34Game12ItemUjamushi6UjaMgrFv
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D714
  * Size:	000008
  */
-void @376 @onKeyEvent__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State>
-FRCQ28SysShape8KeyEvent()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x178
-	  b         -0x6B4
-	*/
-}
+// void @376 @onKeyEvent__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State>
+// FRCQ28SysShape8KeyEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x178
+// 	  b         -0x6B4
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D71C
  * Size:	000008
  */
-void @48 @__dt__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	addi     r3, r3, -48
-	b        "__dt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>Fv"
-	*/
-}
+// void @48 @__dt__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        "__dt__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D724
  * Size:	000008
  */
-void NodeObjectMgr<Game::ItemUjamushi::Item>::@28 @resetMgr()
-{
-	/*
-	addi     r3, r3, -28
-	b        "resetMgr__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>Fv"
-	*/
-}
+// void NodeObjectMgr<Game::ItemUjamushi::Item>::@28 @resetMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "resetMgr__41NodeObjectMgr<Q34Game12ItemUjamushi4Item>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D72C
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doDirectDraw__37ObjectMgr<Q34Game12ItemUjamushi4Item>FR8Graphics"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doDirectDraw__37ObjectMgr<Q34Game12ItemUjamushi4Item>FR8Graphics"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D734
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__37ObjectMgr<Q34Game12ItemUjamushi4Item>Ff"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doSimulation(float)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSimulation__37ObjectMgr<Q34Game12ItemUjamushi4Item>Ff"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D73C
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__37ObjectMgr<Q34Game12ItemUjamushi4Item>Fv"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doViewCalc()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doViewCalc__37ObjectMgr<Q34Game12ItemUjamushi4Item>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D744
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__37ObjectMgr<Q34Game12ItemUjamushi4Item>Fi"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doSetView(int)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSetView__37ObjectMgr<Q34Game12ItemUjamushi4Item>Fi"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D74C
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__37ObjectMgr<Q34Game12ItemUjamushi4Item>Fv"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doEntry()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doEntry__37ObjectMgr<Q34Game12ItemUjamushi4Item>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D754
  * Size:	000008
  */
-void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__37ObjectMgr<Q34Game12ItemUjamushi4Item>Fv"
-	*/
-}
+// void ObjectMgr<Game::ItemUjamushi::Item>::@28 @doAnimation()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doAnimation__37ObjectMgr<Q34Game12ItemUjamushi4Item>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D75C
  * Size:	000008
  */
-void @48 @getEnd__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	addi     r3, r3, -48
-	b        "getEnd__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>Fv"
-	*/
-}
+// void @48 @getEnd__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        "getEnd__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D764
  * Size:	000008
  */
-void @48 @getStart__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
-{
-	/*
-	addi     r3, r3, -48
-	b        "getStart__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>Fv"
-	*/
-}
+// void @48 @getStart__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Fv()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        "getStart__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D76C
  * Size:	000008
  */
-void @48 @getNext__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPv()
-{
-	/*
-	addi     r3, r3, -48
-	b        "getNext__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>FPv"
-	*/
-}
+// void @48 @getNext__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPv()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        "getNext__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>FPv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D774
  * Size:	000008
  */
-void @48 @get__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPv()
-{
-	/*
-	addi     r3, r3, -48
-	b        "get__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>FPv"
-	*/
-}
+// void @48 @get__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPv()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        "get__Q24Game39NodeItemMgr<Q34Game12ItemUjamushi4Item>FPv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8020D77C
  * Size:	000008
  */
-@48 @Game::ItemUjamushi::Mgr::~Mgr()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q34Game12ItemUjamushi3MgrFv
-	*/
-}
+// @48 @Game::ItemUjamushi::Mgr::~Mgr()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q34Game12ItemUjamushi3MgrFv
+// 	*/
+// }
 
-#endif
+} // namespace Game

@@ -387,7 +387,7 @@ void FSMState_CardError::do_exec(TMgr* mgr)
 			mgr->start();
 			break;
 		default:
-			JUT_PANICLINE(342, "¦ mgr->mCardErrorMgr->getEnd=%d ‚Á‚Ä‚ ‚è‚¦‚È‚¢I\n", mgr->mCardErrorMgr.mEndStat);
+			JUT_PANICLINE(342, "¦@mgr->mCardErrorMgr->getEnd=%d ‚Á‚Ä‚ ‚è‚¦‚È‚¢I\n", mgr->mCardErrorMgr.mEndStat);
 			JUT_PANICLINE(343, "P2Assert");
 		}
 	}
@@ -405,17 +405,6 @@ TMgr::TMgr()
 	mFsm.init(this);
 	mFsm.start(this, FSSTATE_Standby, 0);
 	mInError = false;
-}
-
-/*
- * --INFO--
- * Address:	803E1E50
- * Size:	000034
- */
-void Game::StateMachine<ebi::FileSelect::TMgr>::start(ebi::FileSelect::TMgr* mgr, int stateID, Game::StateArg* stateArg)
-{
-	mgr->mCurrentState = nullptr;
-	transit(mgr, stateID, stateArg);
 }
 
 #pragma dont_inline on
@@ -582,122 +571,6 @@ int TMgr::getStateID()
 {
 	P2ASSERTLINE(534, mCurrentState);
 	return mCurrentState->mId;
-}
-
-/*
- * --INFO--
- * Address:	803E234C
- * Size:	000004
- */
-void Game::FSMState<ebi::FileSelect::TMgr>::init(ebi::FileSelect::TMgr*, Game::StateArg*) { }
-
-/*
- * --INFO--
- * Address:	803E2350
- * Size:	000004
- */
-void Game::FSMState<ebi::FileSelect::TMgr>::exec(ebi::FileSelect::TMgr*) { }
-
-/*
- * --INFO--
- * Address:	803E2354
- * Size:	000004
- */
-void Game::FSMState<ebi::FileSelect::TMgr>::cleanup(ebi::FileSelect::TMgr*) { }
-
-/*
- * --INFO--
- * Address:	803E2358
- * Size:	000004
- */
-void Game::FSMState<ebi::FileSelect::TMgr>::resume(ebi::FileSelect::TMgr*) { }
-
-/*
- * --INFO--
- * Address:	803E235C
- * Size:	000004
- */
-void Game::FSMState<ebi::FileSelect::TMgr>::restart(ebi::FileSelect::TMgr*) { }
-
-/*
- * --INFO--
- * Address:	803E2360
- * Size:	000004
- */
-void Game::StateMachine<ebi::FileSelect::TMgr>::init(ebi::FileSelect::TMgr*) { }
-
-/*
- * --INFO--
- * Address:	803E2364
- * Size:	000038
- */
-void Game::StateMachine<ebi::FileSelect::TMgr>::exec(ebi::FileSelect::TMgr* mgr)
-{
-	if (mgr->mCurrentState) {
-		mgr->mCurrentState->exec(mgr);
-	}
-}
-
-/*
- * --INFO--
- * Address:	803E239C
- * Size:	000064
- */
-void Game::StateMachine<ebi::FileSelect::TMgr>::create(int count)
-{
-	mLimit          = count;
-	mCount          = 0;
-	mStates         = new FSMState<ebi::FileSelect::TMgr>*[mLimit];
-	mIndexToIDArray = new int[mLimit];
-	mIdToIndexArray = new int[mLimit];
-}
-
-/*
- * --INFO--
- * Address:	803E2400
- * Size:	00009C
- */
-void Game::StateMachine<ebi::FileSelect::TMgr>::transit(ebi::FileSelect::TMgr* mgr, int stateID, Game::StateArg* stateArg)
-{
-	int index                        = mIdToIndexArray[stateID];
-	ebi::FileSelect::FSMState* state = mgr->mCurrentState;
-	if (state) {
-		state->cleanup(mgr);
-		mCurrentID = state->mId;
-	}
-
-	ASSERT_HANG(index < mLimit);
-
-	state              = static_cast<ebi::FileSelect::FSMState*>(mStates[index]);
-	mgr->mCurrentState = state;
-	state->init(mgr, stateArg);
-}
-
-/*
- * --INFO--
- * Address:	803E249C
- * Size:	000084
- */
-void Game::StateMachine<ebi::FileSelect::TMgr>::registerState(Game::FSMState<ebi::FileSelect::TMgr>* newState)
-{
-	bool check;
-	if (mCount >= mLimit) {
-		return;
-	}
-	mStates[mCount] = newState;
-
-	if (!(0 <= newState->mId && newState->mId < mLimit)) {
-		check = false;
-	} else {
-		check = true;
-	}
-	if (check == false) {
-		return;
-	}
-	newState->mStateMachine        = this;
-	mIndexToIDArray[mCount]        = newState->mId;
-	mIdToIndexArray[newState->mId] = mCount;
-	mCount++;
 }
 
 } // namespace FileSelect

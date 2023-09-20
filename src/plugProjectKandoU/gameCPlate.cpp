@@ -746,7 +746,7 @@ void CPlate::setPosNeutral(Vector3f& p1, float p2, Vector3f& p3, float p4)
  * Address:	80195708
  * Size:	0000A8
  */
-void CPlate::getSlot(Game::Creature* p1, Game::SlotChangeListener* p2, bool p3)
+int CPlate::getSlot(Game::Creature* p1, Game::SlotChangeListener* p2, bool p3)
 {
 	/*
 	stwu     r1, -0x20(r1)

@@ -1,4 +1,4 @@
-#include "types.h"
+#include "Game/Entities/ItemPlant.h"
 
 /*
     Generated from dpostproc
@@ -1308,24 +1308,24 @@ void ItemPlant::Item::bearFruits() { }
  * Address:	801DD118
  * Size:	000030
  */
-void FSMState<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void FSMState<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -2136,7 +2136,7 @@ void ItemPlant::Item::doAI()
  * Address:	801DD8B0
  * Size:	000044
  */
-void ItemPlant::Item::interactAttack(Game::InteractAttack&)
+bool ItemPlant::Item::interactAttack(Game::InteractAttack&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2164,14 +2164,14 @@ void ItemPlant::Item::interactAttack(Game::InteractAttack&)
  * Address:	801DD8F4
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onDamage(Game::ItemPlant::Item*, float) { }
+// void ItemState<Game::ItemPlant::Item>::onDamage(Game::ItemPlant::Item*, float) { }
 
 /*
  * --INFO--
  * Address:	801DD8F8
  * Size:	000038
  */
-void ItemPlant::Item::interactFarmKarero(Game::InteractFarmKarero&)
+bool ItemPlant::Item::interactFarmKarero(Game::InteractFarmKarero&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2203,7 +2203,7 @@ void ItemPlant::State::eventKarero(Game::ItemPlant::Item*) { }
  * Address:	801DD934
  * Size:	000038
  */
-void ItemPlant::Item::interactFarmHaero(Game::InteractFarmHaero&)
+bool ItemPlant::Item::interactFarmHaero(Game::InteractFarmHaero&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2771,7 +2771,7 @@ lbl_801DDFD8:
  * Address:	801DE040
  * Size:	0004E4
  */
-void ItemPlant::ProcAnimator::update(float, float)
+void ItemPlant::ProcAnimator::update(f32, f32)
 {
 	/*
 	stwu     r1, -0x180(r1)
@@ -3157,7 +3157,7 @@ void ItemPlant::Plant::onKill(Game::CreatureKillArg*)
  * Address:	801DE558
  * Size:	000038
  */
-void ItemPlant::Plant::getNearestFruit(Vector3f&)
+Pellet* ItemPlant::Plant::getNearestFruit(Vector3f&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3872,25 +3872,25 @@ lbl_801DEE98:
  * Address:	801DEF0C
  * Size:	000034
  */
-void StateMachine<Game::ItemPlant::Item>::start(Game::ItemPlant::Item*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x1DC(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void StateMachine<Game::ItemPlant::Item>::start(Game::ItemPlant::Item*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  li        r0, 0
+// 	  stw       r0, 0x1DC(r4)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -4530,7 +4530,7 @@ lbl_801DF6C8:
  * Address:	801DF6E8
  * Size:	000024
  */
-void ItemPlant::Plant::hasFruits()
+bool ItemPlant::Plant::hasFruits()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4550,7 +4550,7 @@ void ItemPlant::Plant::hasFruits()
  * Address:	801DF70C
  * Size:	000024
  */
-void ItemPlant::Plant::getFruitsNum()
+int ItemPlant::Plant::getFruitsNum()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4570,7 +4570,7 @@ void ItemPlant::Plant::getFruitsNum()
  * Address:	801DF730
  * Size:	0001D0
  */
-void ItemPlant::Plant::interactEat(Game::InteractEat&)
+bool ItemPlant::Plant::interactEat(Game::InteractEat&)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -5030,7 +5030,7 @@ ItemPlant::PlantParms::PlantParms()
  * Address:	801DFD5C
  * Size:	000130
  */
-void ItemPlant::Mgr::birth()
+BaseItem* ItemPlant::Mgr::birth()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5181,7 +5181,7 @@ lbl_801DFF08:
  * Address:	801DFF40
  * Size:	00004C
  */
-void ItemPlant::Mgr::generatorNewItemParm()
+GenItemParm* ItemPlant::Mgr::generatorNewItemParm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5311,7 +5311,7 @@ lbl_801E0080:
  * Address:	801E009C
  * Size:	0000B4
  */
-void ItemPlant::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
+BaseItem* ItemPlant::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5690,7 +5690,7 @@ lbl_801E0520:
  * Address:	801E053C
  * Size:	000040
  */
-void ItemPlant::Fruits::hasFruits()
+bool ItemPlant::Fruits::hasFruits()
 {
 	/*
 	lwz      r0, 4(r3)
@@ -5723,7 +5723,7 @@ lbl_801E0574:
  * Address:	801E057C
  * Size:	000040
  */
-void ItemPlant::Fruits::countFruits()
+int ItemPlant::Fruits::countFruits()
 {
 	/*
 	lwz      r0, 4(r3)
@@ -5796,7 +5796,7 @@ lbl_801E05F8:
  * Address:	801E0620
  * Size:	00010C
  */
-void ItemPlant::Fruits::getFruit(Vector3f&)
+ItemPlant::FruitSlot* ItemPlant::Fruits::getFruit(Vector3f&)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -6130,7 +6130,7 @@ lbl_801E0998:
  * Address:	801E09B4
  * Size:	000118
  */
-void ItemPlant::Mgr::doNew()
+BaseItem* ItemPlant::Mgr::doNew()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6217,7 +6217,7 @@ lbl_801E0AB4:
  * Address:	801E0ACC
  * Size:	00000C
  */
-void ItemPlant::Mgr::generatorGetID()
+u32 ItemPlant::Mgr::generatorGetID()
 {
 	/*
 	lis      r3, 0x706C6E74@ha
@@ -6231,7 +6231,7 @@ void ItemPlant::Mgr::generatorGetID()
  * Address:	801E0AD8
  * Size:	00000C
  */
-void ItemPlant::Mgr::generatorLocalVersion()
+u32 ItemPlant::Mgr::generatorLocalVersion()
 {
 	/*
 	lis      r3, 0x30303031@ha
@@ -6275,457 +6275,457 @@ void ItemPlant::Item::setColor(float) { }
  * Address:	801E0B18
  * Size:	000008
  */
-u32 ItemPlant::Item::hasFruits() { return 0x0; }
+bool ItemPlant::Item::hasFruits() { return false; }
 
 /*
  * --INFO--
  * Address:	801E0B20
  * Size:	000008
  */
-u32 ItemPlant::Item::getFruitsNum() { return 0x0; }
+int ItemPlant::Item::getFruitsNum() { return 0; }
 
 /*
  * --INFO--
  * Address:	801E0B28
  * Size:	000008
  */
-u32 ItemPlant::Item::getNearestFruit(Vector3f&) { return 0x0; }
+Pellet* ItemPlant::Item::getNearestFruit(Vector3f&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801E0B30
  * Size:	000034
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::doAI()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1D8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::doAI()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r4, r3
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1D8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0B64
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onKeyEvent(Game::ItemPlant::Item*, const SysShape::KeyEvent&) { }
+// void ItemState<Game::ItemPlant::Item>::onKeyEvent(Game::ItemPlant::Item*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
  * Address:	801E0B68
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onBounce(Game::ItemPlant::Item*, Sys::Triangle*) { }
+// void ItemState<Game::ItemPlant::Item>::onBounce(Game::ItemPlant::Item*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	801E0B6C
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onPlatCollision(Game::ItemPlant::Item*, Game::PlatEvent&) { }
+// void ItemState<Game::ItemPlant::Item>::onPlatCollision(Game::ItemPlant::Item*, Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	801E0B70
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onCollision(Game::ItemPlant::Item*, Game::CollEvent&) { }
+// void ItemState<Game::ItemPlant::Item>::onCollision(Game::ItemPlant::Item*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801E0B74
  * Size:	000004
  */
-void FSMState<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*, Game::StateArg*) { }
+// void FSMState<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801E0B78
  * Size:	000004
  */
-void FSMState<Game::ItemPlant::Item>::exec(Game::ItemPlant::Item*) { }
+// void FSMState<Game::ItemPlant::Item>::exec(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E0B7C
  * Size:	000004
  */
-void FSMState<Game::ItemPlant::Item>::cleanup(Game::ItemPlant::Item*) { }
+// void FSMState<Game::ItemPlant::Item>::cleanup(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E0B80
  * Size:	000004
  */
-void FSMState<Game::ItemPlant::Item>::resume(Game::ItemPlant::Item*) { }
+// void FSMState<Game::ItemPlant::Item>::resume(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E0B84
  * Size:	000004
  */
-void FSMState<Game::ItemPlant::Item>::restart(Game::ItemPlant::Item*) { }
+// void FSMState<Game::ItemPlant::Item>::restart(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E0B88
  * Size:	000004
  */
-void StateMachine<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*) { }
+// void StateMachine<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*) { }
 
 /*
  * --INFO--
  * Address:	801E0B8C
  * Size:	000038
  */
-void StateMachine<Game::ItemPlant::Item>::exec(Game::ItemPlant::Item*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1dc(r4)
-	cmplwi   r3, 0
-	beq      lbl_801E0BB4
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+// void StateMachine<Game::ItemPlant::Item>::exec(Game::ItemPlant::Item*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 0x1dc(r4)
+// 	cmplwi   r3, 0
+// 	beq      lbl_801E0BB4
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
 
-lbl_801E0BB4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801E0BB4:
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0BC4
  * Size:	000064
  */
-void StateMachine<Game::ItemPlant::Item>::create(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void StateMachine<Game::ItemPlant::Item>::create(int)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	li       r0, 0
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	stw      r4, 0xc(r3)
+// 	stw      r0, 8(r3)
+// 	lwz      r0, 0xc(r3)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 4(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x10(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x14(r31)
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0C28
  * Size:	00009C
  */
-void StateMachine<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x1DC(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
+// void StateMachine<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  rlwinm    r0,r5,2,0,29
+// 	  stmw      r27, 0xC(r1)
+// 	  mr        r27, r3
+// 	  mr        r28, r4
+// 	  mr        r29, r6
+// 	  lwz       r30, 0x1DC(r4)
+// 	  lwz       r3, 0x14(r3)
+// 	  cmplwi    r30, 0
+// 	  lwzx      r31, r3, r0
+// 	  beq-      .loc_0x50
+// 	  mr        r3, r30
+// 	  lwz       r12, 0x0(r30)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x4(r30)
+// 	  stw       r0, 0x18(r27)
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
+// 	.loc_0x50:
+// 	  lwz       r0, 0xC(r27)
+// 	  cmpw      r31, r0
+// 	  blt-      .loc_0x60
 
-	.loc_0x5C:
-	  b         .loc_0x5C
+// 	.loc_0x5C:
+// 	  b         .loc_0x5C
 
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x1DC(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x60:
+// 	  lwz       r3, 0x4(r27)
+// 	  rlwinm    r0,r31,2,0,29
+// 	  mr        r4, r28
+// 	  mr        r5, r29
+// 	  lwzx      r3, r3, r0
+// 	  stw       r3, 0x1DC(r28)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lmw       r27, 0xC(r1)
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0CC4
  * Size:	000084
  */
-void StateMachine<Game::ItemPlant::Item>::registerState(Game::FSMState<Game::ItemPlant::Item>*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+// void StateMachine<Game::ItemPlant::Item>::registerState(Game::FSMState<Game::ItemPlant::Item>*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r6, 0x8(r3)
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r6, r0
+// 	  bgelr-
+// 	  lwz       r5, 0x4(r3)
+// 	  rlwinm    r0,r6,2,0,29
+// 	  stwx      r4, r5, r0
+// 	  lwz       r5, 0x4(r4)
+// 	  cmpwi     r5, 0
+// 	  blt-      .loc_0x34
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r5, r0
+// 	  blt-      .loc_0x3C
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
+// 	.loc_0x34:
+// 	  li        r0, 0
+// 	  b         .loc_0x40
 
-	.loc_0x3C:
-	  li        r0, 0x1
+// 	.loc_0x3C:
+// 	  li        r0, 0x1
 
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
-}
+// 	.loc_0x40:
+// 	  rlwinm.   r0,r0,0,24,31
+// 	  beqlr-
+// 	  stw       r3, 0x8(r4)
+// 	  lwz       r0, 0x8(r3)
+// 	  lwz       r6, 0x4(r4)
+// 	  lwz       r5, 0x10(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r6, r5, r0
+// 	  lwz       r0, 0x4(r4)
+// 	  lwz       r5, 0x8(r3)
+// 	  lwz       r4, 0x14(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r5, r4, r0
+// 	  lwz       r4, 0x8(r3)
+// 	  addi      r0, r4, 0x1
+// 	  stw       r0, 0x8(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0D48
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::onKeyEvent(const SysShape::KeyEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x24(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0D8C
  * Size:	00001C
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::getStateID()
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x14
-	  lwz       r3, 0x4(r3)
-	  blr
+// void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::getStateID()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x14
+// 	  lwz       r3, 0x4(r3)
+// 	  blr
 
-	.loc_0x14:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+// 	.loc_0x14:
+// 	  li        r3, -0x1
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0DA8
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::platCallback(Game::PlatEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::platCallback(Game::PlatEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x2C(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0DEC
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::collisionCallback(Game::CollEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::collisionCallback(Game::CollEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x30(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0E30
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::bounceCallback(Sys::Triangle*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::bounceCallback(Sys::Triangle*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x28(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0E74
  * Size:	000008
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, Game::ItemPlant::State>::@376 @onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x178
-	  b         -0x130
-	*/
-}
+// void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, Game::ItemPlant::State>::@376 @onKeyEvent(const SysShape::KeyEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x178
+// 	  b         -0x130
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801E0E7C
  * Size:	000008
  */
-ItemPlant::Mgr::@48 @~Mgr()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q34Game9ItemPlant3MgrFv
-	*/
-}
+// ItemPlant::Mgr::@48 @~Mgr()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q34Game9ItemPlant3MgrFv
+// 	*/
+// }
 } // namespace Game

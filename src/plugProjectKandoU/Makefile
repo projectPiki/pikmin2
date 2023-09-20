@@ -47,7 +47,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiConstants.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameMapParts.o\
-	$(BUILD_DIR)/src/plugProjectKandoU/vsGameSection.o\
+	$(BUILD_DIR)/asm/plugProjectKandoU/vsGameSection.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlatMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemGate.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemMgr.o\

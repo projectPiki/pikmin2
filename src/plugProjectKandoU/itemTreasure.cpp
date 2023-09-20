@@ -192,11 +192,11 @@ void ItemTreasure::Item::onInit(CreatureInitArg*)
  * Address:	801F392C
  * Size:	000034
  */
-void StateMachine<Game::ItemTreasure::Item>::start(ItemTreasure::Item* item, int id, StateArg* arg)
-{
-	item->mCurrentState = nullptr;
-	transit(item, id, arg);
-}
+// void StateMachine<Game::ItemTreasure::Item>::start(ItemTreasure::Item* item, int id, StateArg* arg)
+// {
+// 	item->mCurrentState = nullptr;
+// 	transit(item, id, arg);
+// }
 
 /*
  * --INFO--
@@ -495,82 +495,82 @@ void ItemTreasure::Mgr::onLoadResources() { }
  * Address:	801F49D4
  * Size:	000004
  */
-void StateMachine<ItemTreasure::Item>::init(ItemTreasure::Item*) { }
+// void StateMachine<ItemTreasure::Item>::init(ItemTreasure::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F49D8
  * Size:	000038
  */
-void StateMachine<ItemTreasure::Item>::exec(ItemTreasure::Item* item)
-{
-	if (item->mCurrentState) {
-		item->mCurrentState->exec(item);
-	}
-}
+// void StateMachine<ItemTreasure::Item>::exec(ItemTreasure::Item* item)
+// {
+// 	if (item->mCurrentState) {
+// 		item->mCurrentState->exec(item);
+// 	}
+// }
 
 /*
  * --INFO--
  * Address:	801F4A10
  * Size:	000064
  */
-void StateMachine<ItemTreasure::Item>::create(int count)
-{
-	mLimit          = count;
-	mCount          = 0;
-	mStates         = new FSMState<ItemTreasure::Item>*[mLimit];
-	mIndexToIDArray = new int[mLimit];
-	mIdToIndexArray = new int[mLimit];
-}
+// void StateMachine<ItemTreasure::Item>::create(int count)
+// {
+// 	mLimit          = count;
+// 	mCount          = 0;
+// 	mStates         = new FSMState<ItemTreasure::Item>*[mLimit];
+// 	mIndexToIDArray = new int[mLimit];
+// 	mIdToIndexArray = new int[mLimit];
+// }
 
 /*
  * --INFO--
  * Address:	801F4A74
  * Size:	00009C
  */
-void StateMachine<ItemTreasure::Item>::transit(ItemTreasure::Item* obj, int id, StateArg* arg)
-{
-	int index                  = mIdToIndexArray[id];
-	ItemTreasure::State* state = obj->mCurrentState;
-	if (state) {
-		state->cleanup(obj);
-		mCurrentID = state->mId;
-	}
+// void StateMachine<ItemTreasure::Item>::transit(ItemTreasure::Item* obj, int id, StateArg* arg)
+// {
+// 	int index                  = mIdToIndexArray[id];
+// 	ItemTreasure::State* state = obj->mCurrentState;
+// 	if (state) {
+// 		state->cleanup(obj);
+// 		mCurrentID = state->mId;
+// 	}
 
-	ASSERT_HANG(index < mLimit);
+// 	ASSERT_HANG(index < mLimit);
 
-	state              = static_cast<ItemTreasure::State*>(mStates[index]);
-	obj->mCurrentState = state;
-	state->init(obj, arg);
-}
+// 	state              = static_cast<ItemTreasure::State*>(mStates[index]);
+// 	obj->mCurrentState = state;
+// 	state->init(obj, arg);
+// }
 
 /*
  * --INFO--
  * Address:	801F4B10
  * Size:	000084
  */
-void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure::Item>* newState)
-{
-	// copied all this from enemyFSM.cpp, do we actually need it here? no idea
-	bool check;
-	if (mCount >= mLimit) {
-		return;
-	}
-	mStates[mCount] = newState;
-	// TODO: This looks weird. How would they really have written it?
-	if (!(0 <= newState->mId && newState->mId < mLimit)) {
-		check = false;
-	} else {
-		check = true;
-	}
-	if (check == false) {
-		return;
-	}
-	newState->mStateMachine        = this;
-	mIndexToIDArray[mCount]        = newState->mId;
-	mIdToIndexArray[newState->mId] = mCount;
-	mCount++;
-}
+// void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure::Item>* newState)
+// {
+// 	// copied all this from enemyFSM.cpp, do we actually need it here? no idea
+// 	bool check;
+// 	if (mCount >= mLimit) {
+// 		return;
+// 	}
+// 	mStates[mCount] = newState;
+// 	// TODO: This looks weird. How would they really have written it?
+// 	if (!(0 <= newState->mId && newState->mId < mLimit)) {
+// 		check = false;
+// 	} else {
+// 		check = true;
+// 	}
+// 	if (check == false) {
+// 		return;
+// 	}
+// 	newState->mStateMachine        = this;
+// 	mIndexToIDArray[mCount]        = newState->mId;
+// 	mIdToIndexArray[newState->mId] = mCount;
+// 	mCount++;
+// }
 
 // /*
 //  * --INFO--

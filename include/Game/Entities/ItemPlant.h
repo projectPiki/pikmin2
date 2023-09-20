@@ -55,6 +55,8 @@ struct DamagedState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C; // _0C
+	u8 _10;  // _10
 };
 
 struct GrowUpState : public State {
@@ -69,6 +71,8 @@ struct GrowUpState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C; // _0C
+	u8 _10;  // _10
 };
 
 struct KareruState : public State {
@@ -107,6 +111,9 @@ struct PlantParms : public CreatureParms {
 };
 
 struct ProcAnimator {
+	void calcAngles();
+	void update(f32, f32);
+
 	Vector3f _00; // _00
 	Matrixf* _04; // _04, might be array of pointers?
 	Matrixf* _08; // _08, might be array of pointers?
@@ -134,7 +141,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 	virtual void onSetPosition();                         // _21C
 	virtual bool hasFruits();                             // _224 (weak)
 	virtual int getFruitsNum();                           // _228 (weak)
-	virtual void getNearestFruit(Vector3f&);              // _22C (weak)
+	virtual Pellet* getNearestFruit(Vector3f&);           // _22C (weak)
 	virtual void bearFruits();                            // _230 (weak)
 	virtual void killFruits();                            // _234 (weak)
 	virtual void dropFruit(int);                          // _238 (weak)
@@ -199,6 +206,14 @@ struct FruitSlot : public CNode {
 };
 
 struct Fruits {
+	void init(int, Matrixf*);
+	void update();
+	void bearAll(u16);
+	bool hasFruits();
+	int countFruits();
+	void killAll();
+	FruitSlot* getFruit(Vector3f&);
+
 	FruitSlot* mSlots; // _00, array of slots
 	int mSlotCount;    // _04
 	Matrixf* mMatrix;  // _08
@@ -208,22 +223,22 @@ struct Fruits {
 struct Plant : public Item {
 	inline Plant(); // probably
 
-	virtual void onInit(CreatureInitArg*);   // _30
-	virtual void onKill(CreatureKillArg*);   // _34
-	virtual void doAnimation();              // _3C
-	virtual void doDirectDraw(Graphics&);    // _50
-	virtual void doAI();                     // _1C8
-	virtual void do_updateLOD();             // _1D4
-	virtual bool interactEat(InteractEat&);  // _1E8
-	virtual void updateBoundSphere();        // _210
-	virtual bool hasFruits();                // _224
-	virtual int getFruitsNum();              // _228
-	virtual void getNearestFruit(Vector3f&); // _22C
-	virtual void bearFruits();               // _230
-	virtual void killFruits();               // _234
-	virtual void dropFruit(int);             // _238
-	virtual void setColor(f32);              // _23C
-	virtual void startMotion(int);           // _248
+	virtual void onInit(CreatureInitArg*);      // _30
+	virtual void onKill(CreatureKillArg*);      // _34
+	virtual void doAnimation();                 // _3C
+	virtual void doDirectDraw(Graphics&);       // _50
+	virtual void doAI();                        // _1C8
+	virtual void do_updateLOD();                // _1D4
+	virtual bool interactEat(InteractEat&);     // _1E8
+	virtual void updateBoundSphere();           // _210
+	virtual bool hasFruits();                   // _224
+	virtual int getFruitsNum();                 // _228
+	virtual Pellet* getNearestFruit(Vector3f&); // _22C
+	virtual void bearFruits();                  // _230
+	virtual void killFruits();                  // _234
+	virtual void dropFruit(int);                // _238
+	virtual void setColor(f32);                 // _23C
+	virtual void startMotion(int);              // _248
 
 	// _00      = VTBL
 	// _00-_288 = Item

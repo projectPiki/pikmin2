@@ -22,7 +22,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenProgre.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOptionMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DCallBack.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardMgr.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenFramework.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenPushStart.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect.o\
@@ -49,8 +49,7 @@ EBISAWA_FILES:=\
 
 $(EBISAWA_FILES): CFLAGS += -sym on
 
-# for when ebi2DGraph is linked:
-# $(BUILD_DIR)/src/plugProjectEbisawaU/ebi2DGraph.o: CFLAGS
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr.o: CFLAGS += -sym off
 
 DEPENDS += $(EBISAWA_FILES:.o=.d)
 

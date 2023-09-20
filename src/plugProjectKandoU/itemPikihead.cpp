@@ -1,4 +1,12 @@
-#include "types.h"
+#include "Dolphin/rand.h"
+#include "Game/AIConstants.h"
+#include "Game/Entities/ItemPikihead.h"
+#include "Game/gameStat.h"
+#include "Game/Piki.h"
+#include "Game/PikiMgr.h"
+#include "nans.h"
+#include "Radar.h"
+#include "SoundID.h"
 
 /*
     Generated from dpostproc
@@ -949,14 +957,23 @@
 */
 
 namespace Game {
+namespace ItemPikihead {
 
 /*
  * --INFO--
  * Address:	801D8ABC
  * Size:	000294
  */
-void ItemPikihead::FSM::init(Game::ItemPikihead::Item*)
+void FSM::init(Item*)
 {
+	create(PIKIHEADSTATE_COUNT);
+	registerState(new FallState());
+	registerState(new BuryState());
+	registerState(new WaitState());
+	registerState(new TaneState());
+	registerState(new HatugaState());
+	registerState(new GrowState());
+	registerState(new SioreState());
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1152,8 +1169,12 @@ lbl_801D8D34:
  * Address:	801D8D50
  * Size:	000098
  */
-void ItemPikihead::FallState::init(Game::ItemPikihead::Item*, Game::StateArg*)
+void FallState::init(Item* item, Game::StateArg* arg)
 {
+	_14 = randFloat() * 0.5f - 10.0f;
+	_10 = _14 * 0.2f;
+	item->mEfxTane->createTanekira_(item->mEfxTane->mPos);
+	item->mAnimator.startAnim(4, nullptr);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1201,74 +1222,28 @@ void ItemPikihead::FallState::init(Game::ItemPikihead::Item*, Game::StateArg*)
  * Address:	801D8DE8
  * Size:	000038
  */
-void ItemPikihead::FallState::exec(Game::ItemPikihead::Item*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	stw      r0, 0x14(r1)
-	lwz      r5, sys@sda21(r13)
-	lfs      f2, 0x10(r3)
-	mr       r3, r4
-	lfs      f1, 0x54(r5)
-	lfs      f3, 0x14(r6)
-	bl       applyAirDrag__Q24Game8CreatureFfff
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void FallState::exec(Item* item) { item->applyAirDrag(sys->getFrameLength(), _10, _14); }
 
 /*
  * --INFO--
  * Address:	801D8E20
  * Size:	000024
  */
-void ItemPikihead::FallState::cleanup(Game::ItemPikihead::Item*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1e0(r4)
-	bl       killTanekira___Q23efx13TPkEffectTaneFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void FallState::cleanup(Item* item) { item->mEfxTane->killTanekira_(); }
 
 /*
  * --INFO--
  * Address:	801D8E44
  * Size:	000028
  */
-void ItemPikihead::FallState::onPlatCollision(Game::ItemPikihead::Item*, Game::PlatEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  bl        -0x9DD68
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FallState::onPlatCollision(Item* item, Game::PlatEvent& event) { item->kill(nullptr); }
 
 /*
  * --INFO--
  * Address:	801D8E6C
  * Size:	0002F0
  */
-void ItemPikihead::FallState::onBounce(Game::ItemPikihead::Item*, Sys::Triangle*)
+void FallState::onBounce(Item*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -1488,32 +1463,35 @@ void ItemPikihead::FallState::onBounce(Game::ItemPikihead::Item*, Sys::Triangle*
  * Address:	801D915C
  * Size:	000030
  */
-void FSMState<Game::ItemPikihead::Item>::transit(Game::ItemPikihead::Item*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void FSMState<Item>::transit(Item*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801D918C
  * Size:	00008C
  */
-void ItemPikihead::BuryState::init(Game::ItemPikihead::Item*, Game::StateArg*)
+void BuryState::init(Item* item, StateArg* arg)
 {
+	item->mAnimator.startAnim(3, item);
+	mAnimDone = false;
+	mTimer    = randFloat() * 2.0f + pikiMgr->mParms->mPikiParms.mBuriedSeedWaitTime.mValue;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1560,38 +1538,14 @@ lbl_801D91B0:
  * Address:	801D9218
  * Size:	000068
  */
-void ItemPikihead::BuryState::exec(Game::ItemPikihead::Item*)
+void BuryState::exec(Item* item)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_801D9270
-	lwz      r5, sys@sda21(r13)
-	lfs      f2, 0x14(r3)
-	lfs      f1, 0x54(r5)
-	lfs      f0, lbl_805197CC@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x14(r3)
-	lfs      f1, 0x14(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_801D9270
-	lwz      r12, 0(r3)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801D9270:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mAnimDone) {
+		mTimer -= sys->getFrameLength();
+		if (mTimer <= 0.0f) {
+			transit(item, PIKIHEADSTATE_Hatuga, nullptr);
+		}
+	}
 }
 
 /*
@@ -1599,30 +1553,26 @@ lbl_801D9270:
  * Address:	801D9280
  * Size:	000004
  */
-void ItemPikihead::BuryState::cleanup(Game::ItemPikihead::Item*) { }
+void BuryState::cleanup(Item* item) { }
 
 /*
  * --INFO--
  * Address:	801D9284
  * Size:	00000C
  */
-void ItemPikihead::BuryState::onKeyEvent(Game::ItemPikihead::Item*, const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x10(r3)
-	  blr
-	*/
-}
+void BuryState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { mAnimDone = true; }
 
 /*
  * --INFO--
  * Address:	801D9290
  * Size:	00008C
  */
-void ItemPikihead::TaneState::init(Game::ItemPikihead::Item*, Game::StateArg*)
+void TaneState::init(Item* item, StateArg* arg)
 {
+	item->mAnimator.startAnim(5, item);
+	mAnimDone = false;
+	mTimer    = randFloat() * 2.0f + pikiMgr->mParms->mPikiParms.mUnpluckableTime.mValue;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1669,38 +1619,14 @@ lbl_801D92B4:
  * Address:	801D931C
  * Size:	000068
  */
-void ItemPikihead::TaneState::exec(Game::ItemPikihead::Item*)
+void TaneState::exec(Item* item)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_801D9374
-	lwz      r5, sys@sda21(r13)
-	lfs      f2, 0x14(r3)
-	lfs      f1, 0x54(r5)
-	lfs      f0, lbl_805197CC@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x14(r3)
-	lfs      f1, 0x14(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_801D9374
-	lwz      r12, 0(r3)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801D9374:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mAnimDone) {
+		mTimer -= sys->getFrameLength();
+		if (mTimer <= 0.0f) {
+			transit(item, PIKIHEADSTATE_Hatuga, nullptr);
+		}
+	}
 }
 
 /*
@@ -1708,56 +1634,24 @@ lbl_801D9374:
  * Address:	801D9384
  * Size:	000004
  */
-void ItemPikihead::TaneState::cleanup(Game::ItemPikihead::Item*) { }
+void TaneState::cleanup(Item* item) { }
 
 /*
  * --INFO--
  * Address:	801D9388
  * Size:	00000C
  */
-void ItemPikihead::TaneState::onKeyEvent(Game::ItemPikihead::Item*, const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, 0x10(r3)
-	  blr
-	*/
-}
+void TaneState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { mAnimDone = true; }
 
 /*
  * --INFO--
  * Address:	801D9394
  * Size:	000058
  */
-void ItemPikihead::HatugaState::init(Game::ItemPikihead::Item*, Game::StateArg*)
+void HatugaState::init(Item* item, StateArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	mr       r5, r31
-	beq      lbl_801D93B4
-	addi     r5, r5, 0x178
-
-lbl_801D93B4:
-	addi     r3, r31, 0x1a8
-	li       r4, 1
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	li       r4, 0x2818
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	item->mAnimator.startAnim(1, item);
+	item->startSound(PSSE_PK_SE_ONY_HATSUGA);
 }
 
 /*
@@ -1765,46 +1659,28 @@ lbl_801D93B4:
  * Address:	801D93EC
  * Size:	000004
  */
-void ItemPikihead::HatugaState::exec(Game::ItemPikihead::Item*) { }
+void HatugaState::exec(Item* item) { }
 
 /*
  * --INFO--
  * Address:	801D93F0
  * Size:	000004
  */
-void ItemPikihead::HatugaState::cleanup(Game::ItemPikihead::Item*) { }
+void HatugaState::cleanup(Item* item) { }
 
 /*
  * --INFO--
  * Address:	801D93F4
  * Size:	000034
  */
-void ItemPikihead::HatugaState::onKeyEvent(Game::ItemPikihead::Item*, const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x2
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void HatugaState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { transit(item, PIKIHEADSTATE_Wait, nullptr); }
 
 /*
  * --INFO--
  * Address:	801D9428
  * Size:	0000EC
  */
-void ItemPikihead::WaitState::init(Game::ItemPikihead::Item*, Game::StateArg*)
+void WaitState::init(Item* item, StateArg* arg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1880,7 +1756,7 @@ lbl_801D94FC:
  * Address:	801D9514
  * Size:	00009C
  */
-void ItemPikihead::WaitState::exec(Game::ItemPikihead::Item*)
+void WaitState::exec(Item* item)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1938,7 +1814,7 @@ lbl_801D95A0:
  * Address:	801D95B0
  * Size:	000024
  */
-void ItemPikihead::WaitState::cleanup(Game::ItemPikihead::Item*)
+void WaitState::cleanup(Item* item)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1958,7 +1834,7 @@ void ItemPikihead::WaitState::cleanup(Game::ItemPikihead::Item*)
  * Address:	801D95D4
  * Size:	000038
  */
-void ItemPikihead::WaitState::onKeyEvent(Game::ItemPikihead::Item*, const SysShape::KeyEvent&)
+void WaitState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 {
 	/*
 	.loc_0x0:
@@ -1986,31 +1862,10 @@ void ItemPikihead::WaitState::onKeyEvent(Game::ItemPikihead::Item*, const SysSha
  * Address:	801D960C
  * Size:	00004C
  */
-void ItemPikihead::GrowState::init(Game::ItemPikihead::Item*, Game::StateArg*)
+void GrowState::init(Item* item, StateArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	mr       r5, r31
-	beq      lbl_801D962C
-	addi     r5, r5, 0x178
-
-lbl_801D962C:
-	addi     r3, r31, 0x1a8
-	li       r4, 6
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lwz      r3, 0x1e0(r31)
-	lwz      r4, 4(r3)
-	bl       "createGlow1___Q23efx13TPkEffectTaneFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	item->mAnimator.startAnim(6, item);
+	item->mEfxTane->createGlow1_(item->mEfxTane->mPos);
 }
 
 /*
@@ -2018,22 +1873,33 @@ lbl_801D962C:
  * Address:	801D9658
  * Size:	000004
  */
-void ItemPikihead::GrowState::exec(Game::ItemPikihead::Item*) { }
+void GrowState::exec(Item* item) { }
 
 /*
  * --INFO--
  * Address:	801D965C
  * Size:	000004
  */
-void ItemPikihead::GrowState::cleanup(Game::ItemPikihead::Item*) { }
+void GrowState::cleanup(Item* item) { }
 
 /*
  * --INFO--
  * Address:	801D9660
  * Size:	0000CC
  */
-void ItemPikihead::GrowState::onKeyEvent(Game::ItemPikihead::Item*, const SysShape::KeyEvent&)
+void GrowState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 {
+	if (keyEvent.mType == 2) {
+		item->mHeadType = (item->mHeadType + 1) % 3;
+		// efx::createSimpleGlow2(item->mEfxTane->mPos); // TODO: not declared yet
+		if (item->mHeadType == Bud) {
+			item->startSound(PSSE_PK_SE_ONY_TSUBOMI);
+		} else if (item->mHeadType == Flower) {
+			item->startSound(PSSE_PK_SE_ONY_SAKU);
+		}
+	} else {
+		transit(item, PIKIHEADSTATE_Wait, nullptr);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -2101,8 +1967,12 @@ void ItemPikihead::GrowState::onKeyEvent(Game::ItemPikihead::Item*, const SysSha
  * Address:	801D972C
  * Size:	0000AC
  */
-void ItemPikihead::SioreState::init(Game::ItemPikihead::Item*, Game::StateArg*)
+void SioreState::init(Item* item, StateArg* arg)
 {
+	item->mAnimator.startAnim(2, item);
+	mAnimDone = false;
+	mTimer    = randFloat() * 2.0f + pikiMgr->mParms->mPikiParms.mWitheredHideTime.mValue;
+	item->startSound(PSSE_PK_SE_ONY_KARERU);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2157,38 +2027,14 @@ lbl_801D9754:
  * Address:	801D97D8
  * Size:	000068
  */
-void ItemPikihead::SioreState::exec(Game::ItemPikihead::Item*)
+void SioreState::exec(Item* item)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	beq      lbl_801D9830
-	lwz      r5, sys@sda21(r13)
-	lfs      f2, 0x10(r3)
-	lfs      f1, 0x54(r5)
-	lfs      f0, lbl_805197CC@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x10(r3)
-	lfs      f1, 0x10(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_801D9830
-	lwz      r12, 0(r3)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801D9830:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mAnimDone) {
+		mTimer -= sys->getFrameLength();
+		if (mTimer <= 0.0f) {
+			transit(item, PIKIHEADSTATE_Bury, nullptr);
+		}
+	}
 }
 
 /*
@@ -2196,23 +2042,17 @@ lbl_801D9830:
  * Address:	801D9840
  * Size:	000004
  */
-void ItemPikihead::SioreState::cleanup(Game::ItemPikihead::Item*) { }
+void SioreState::cleanup(Item* item) { }
 
 /*
  * --INFO--
  * Address:	801D9844
  * Size:	000014
  */
-void ItemPikihead::SioreState::onKeyEvent(Game::ItemPikihead::Item*, const SysShape::KeyEvent&)
+void SioreState::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent)
 {
-	/*
-	.loc_0x0:
-	  li        r5, 0
-	  li        r0, 0x1
-	  sth       r5, 0x1F6(r4)
-	  stb       r0, 0x14(r3)
-	  blr
-	*/
+	item->mHeadType = Leaf;
+	mAnimDone       = true;
 }
 
 /*
@@ -2220,8 +2060,12 @@ void ItemPikihead::SioreState::onKeyEvent(Game::ItemPikihead::Item*, const SysSh
  * Address:	801D9858
  * Size:	0001D0
  */
-ItemPikihead::Item::Item()
+Item::Item()
+    : FSMItem<Item, FSM, State>(OBJTYPE_Pikihead)
+    , mEfxTane(new efx::TPkEffectTane())
 {
+	mAnimSpeed = 30.0f;
+	mCollTree->createSingleSphere(mModel, 0, mBoundingSphere, nullptr);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2349,75 +2193,102 @@ createSingleSphere__8CollTreeFPQ28SysShape9MtxObjectiRQ23Sys6SphereP11CollPartMg
 	*/
 }
 
-} // namespace Game
-
-namespace efx {
-
 /*
  * --INFO--
  * Address:	801D9A28
  * Size:	00009C
  */
-TPkGlow1::~TPkGlow1()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801D9AA8
-	lis      r3, __vt__Q23efx8TPkGlow1@ha
-	addi     r3, r3, __vt__Q23efx8TPkGlow1@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_801D9A98
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_801D9A98
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// TPkGlow1::~TPkGlow1()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_801D9AA8
+// 	lis      r3, __vt__Q23efx8TPkGlow1@ha
+// 	addi     r3, r3, __vt__Q23efx8TPkGlow1@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_801D9A98
+// 	lis      r3, __vt__Q23efx9TChasePos@ha
+// 	addi     r3, r3, __vt__Q23efx9TChasePos@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_801D9A98
+// 	lis      r4, __vt__Q23efx5TSync@ha
+// 	addi     r3, r30, 4
+// 	addi     r5, r4, __vt__Q23efx5TSync@l
+// 	li       r4, 0
+// 	stw      r5, 0(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 4(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_801D9A98:
-	extsh.   r0, r31
-	ble      lbl_801D9AA8
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_801D9A98:
+// 	extsh.   r0, r31
+// 	ble      lbl_801D9AA8
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_801D9AA8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
+// lbl_801D9AA8:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801D9AC4
  * Size:	00021C
  */
-void ItemPikihead::Item::onInit(Game::CreatureInitArg*)
+void Item::onInit(Game::CreatureInitArg* settings)
 {
+	mModel             = mgr->createModel(this);
+	mAnimator.mAnimMgr = mgr->mAnimMgr;
+	mAnimator.startAnim(0, nullptr);
+	mCollTree->attachModel(mModel);
+	setAtari(false);
+	InitArg* itemInitArg = static_cast<InitArg*>(settings);
+	if (itemInitArg != nullptr) {
+		mColor = itemInitArg->mPikminType;
+		if (itemInitArg->mPikminType == -1) {
+			mColor = Blue;
+		}
+		mVelocity = itemInitArg->_08;
+		mHeadType = itemInitArg->_18;
+		_1E4      = itemInitArg->_1C;
+	} else {
+		mColor    = randFloat() * 5.0f;
+		mHeadType = Leaf;
+		_1E4      = -1.0f;
+	}
+	mEfxTane->init();
+	mEfxTane->mPikiColor = mColor;
+	mEfxTane->_08        = &mPosition;
+	mEfxTane->mPos       = &_1E8;
+	mEfxTane->_10        = &mObjMatrix;
+	mEfxTane->_0C        = mModel->getJoint("happajnt3")->getWorldMatrix();
+	if (itemInitArg != nullptr && itemInitArg->_14 != 0) {
+		mFsm->start(this, PIKIHEADSTATE_Hatuga, nullptr);
+	} else {
+		mFsm->start(this, PIKIHEADSTATE_Fall, nullptr);
+	}
+	setAlive(true);
+	if (itemInitArg != nullptr && itemInitArg->mPikminType != -1) {
+		GameStat::mePikis.inc(mColor);
+	}
+	Radar::Mgr::entry(this, Radar::MAP_BURIED_PIKMIN, 0);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2575,33 +2446,41 @@ lbl_801D9CB8:
  * Address:	801D9CE0
  * Size:	000034
  */
-void StateMachine<Game::ItemPikihead::Item>::start(Game::ItemPikihead::Item*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x1DC(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void StateMachine<Item>::start(Item*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  li        r0, 0
+// 	  stw       r0, 0x1DC(r4)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801D9D14
  * Size:	000094
  */
-void ItemPikihead::Item::onKill(Game::CreatureKillArg*)
+void Item::onKill(Game::CreatureKillArg* settings)
 {
+	Radar::Mgr::exit(this);
+	if (mCurrentState != nullptr) {
+		mCurrentState->cleanup(this);
+	}
+	mgr->kill(this);
+	if (settings == nullptr || !settings->isFlag(CKILL_Unk1)) {
+		GameStat::mePikis.dec(mColor);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2654,36 +2533,37 @@ lbl_801D9D90:
  * Address:	801D9DA8
  * Size:	000024
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::kill(Game::ItemPikihead::Item*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x4c
-	stw      r0, 0x14(r1)
-	bl
-	"kill__41MonoObjectMgr<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::kill(Item*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	addi     r3, r3, 0x4c
+// 	stw      r0, 0x14(r1)
+// 	bl
+// 	"kill__41MonoObjectMgr<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801D9DCC
  * Size:	000004
  */
-void FSMState<Game::ItemPikihead::Item>::cleanup(Game::ItemPikihead::Item*) { }
+// void FSMState<Item>::cleanup(Item* item) { }
 
 /*
  * --INFO--
  * Address:	801D9DD0
  * Size:	00002C
  */
-void ItemPikihead::Item::needSave()
+bool Item::needSave()
 {
+	return getStateID() != PIKIHEADSTATE_Fall;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2705,33 +2585,10 @@ void ItemPikihead::Item::needSave()
  * Address:	801D9DFC
  * Size:	00005C
  */
-void ItemPikihead::Item::cacheSave(Stream&)
+void Item::cacheSave(Stream& output)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lhz      r4, 0x1f6(r3)
-	mr       r3, r31
-	lhz      r0, 0x1f4(r30)
-	slwi     r4, r4, 4
-	add      r0, r4, r0
-	clrlwi   r4, r0, 0x18
-	bl       writeByte__6StreamFUc
-	mr       r4, r31
-	addi     r3, r30, 0x19c
-	bl       "write__10Vector3<f>FR6Stream"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	output.writeByte((mHeadType << 4) + mColor);
+	mPosition.write(output);
 }
 
 /*
@@ -2739,51 +2596,16 @@ void ItemPikihead::Item::cacheSave(Stream&)
  * Address:	801D9E58
  * Size:	0000A4
  */
-void ItemPikihead::Item::cacheLoad(Stream&)
+void Item::cacheLoad(Stream& input)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       readByte__6StreamFv
-	clrlwi   r4, r3, 0x1c
-	rlwinm   r0, r3, 0x1c, 0x1c, 0x1f
-	sth      r4, 0x1f4(r30)
-	mr       r4, r30
-	li       r5, 2
-	li       r6, 0
-	sth      r0, 0x1f6(r30)
-	lhz      r0, 0x1f4(r30)
-	lwz      r3, 0x1e0(r30)
-	stw      r0, 0(r3)
-	lwz      r3, 0x1d8(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r30, 0x19c
-	bl       "read__10Vector3<f>FR6Stream"
-	mr       r3, r30
-	addi     r4, r30, 0x19c
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	lhz      r4, 0x1f4(r30)
-	addi     r3, r3, mePikis__Q24Game8GameStat@l
-	bl       inc__Q34Game8GameStat11PikiCounterFi
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	u8 status            = input.readByte();
+	mColor               = status & 0xF;
+	mHeadType            = status >> 4;
+	mEfxTane->mPikiColor = mColor;
+	mFsm->start(this, PIKIHEADSTATE_Wait, nullptr);
+	mPosition.read(input);
+	setPosition(mPosition, false);
+	GameStat::mePikis.inc(mColor);
 }
 
 /*
@@ -2791,7 +2613,7 @@ void ItemPikihead::Item::cacheLoad(Stream&)
  * Address:	801D9EFC
  * Size:	000200
  */
-void ItemPikihead::Item::makeTrMatrix()
+void Item::makeTrMatrix()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2957,7 +2779,7 @@ lbl_801DA0E8:
  * Address:	801DA0FC
  * Size:	000140
  */
-void ItemPikihead::Item::doAI()
+void Item::doAI()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3052,7 +2874,7 @@ lbl_801DA224:
  * Address:	801DA23C
  * Size:	00014C
  */
-void ItemPikihead::Item::changeMaterial()
+void Item::changeMaterial()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3154,29 +2976,11 @@ lbl_801DA34C:
  * Address:	801DA388
  * Size:	000044
  */
-void ItemPikihead::Item::onKeyEvent(const SysShape::KeyEvent&)
+void Item::onKeyEvent(const SysShape::KeyEvent& keyEvent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1dc(r3)
-	cmplwi   r3, 0
-	beq      lbl_801DA3BC
-	lwz      r12, 0(r3)
-	mr       r4, r6
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DA3BC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mCurrentState != nullptr) {
+		mCurrentState->onKeyEvent(this, keyEvent);
+	}
 }
 
 /*
@@ -3184,15 +2988,17 @@ lbl_801DA3BC:
  * Address:	801DA3CC
  * Size:	000004
  */
-void ItemPikihead::State::onKeyEvent(Game::ItemPikihead::Item*, const SysShape::KeyEvent&) { }
+void State::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { }
 
 /*
  * --INFO--
  * Address:	801DA3D0
  * Size:	000024
  */
-void ItemPikihead::Item::updateBoundSphere()
+void Item::updateBoundSphere()
 {
+	mBoundingSphere.mPosition = mPosition;
+	mBoundingSphere.mRadius   = 4.0f;
 	/*
 	lfs      f1, 0x19c(r3)
 	lfs      f0, lbl_805197E8@sda21(r2)
@@ -3211,8 +3017,10 @@ void ItemPikihead::Item::updateBoundSphere()
  * Address:	801DA3F4
  * Size:	000024
  */
-void ItemPikihead::Item::getLODSphere(Sys::Sphere&)
+void Item::getLODSphere(Sys::Sphere& lodSphere)
 {
+	lodSphere.mPosition = mPosition;
+	lodSphere.mRadius   = 20.0f;
 	/*
 	lfs      f1, 0x19c(r3)
 	lfs      f0, lbl_805197EC@sda21(r2)
@@ -3231,15 +3039,19 @@ void ItemPikihead::Item::getLODSphere(Sys::Sphere&)
  * Address:	801DA418
  * Size:	000004
  */
-void ItemPikihead::Item::onSetPosition() { }
+void Item::onSetPosition() { }
 
 /*
  * --INFO--
  * Address:	801DA41C
  * Size:	000074
  */
-void ItemPikihead::Item::doSimulation(float)
+void Item::doSimulation(float p1)
 {
+	if (getStateID() == PIKIHEADSTATE_Fall) {
+		mVelocity.y -= (p1 * _aiConstants->mGravity.mData);
+		move(p1);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3281,7 +3093,7 @@ lbl_801DA474:
  * Address:	801DA490
  * Size:	00002C
  */
-void ItemPikihead::Item::canPullout()
+bool Item::canPullout()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3304,7 +3116,7 @@ void ItemPikihead::Item::canPullout()
  * Address:	801DA4BC
  * Size:	0001AC
  */
-void ItemPikihead::Item::interactFue(Game::InteractFue&)
+bool Item::interactFue(Game::InteractFue&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3433,8 +3245,12 @@ lbl_801DA648:
  * Address:	801DA668
  * Size:	0000D4
  */
-ItemPikihead::Mgr::Mgr()
+Mgr::Mgr()
+    : FixedSizeItemMgr<Item>()
 {
+	mItemName = "PikiHead";
+	setModelSize(1);
+	mObjectPathComponent = "user/Kando/objects/pikihead";
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3498,185 +3314,42 @@ r4, r3, "__vt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>"@l li r5, 0
  * Address:	801DA73C
  * Size:	000100
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::~FixedSizeItemMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801DA820
-	lis      r3,
-"__vt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>"@ha addic.   r0,
-r30, 0x4c addi     r3, r3,
-"__vt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>"@l stw      r3,
-0(r30) addi     r0, r3, 0x74 stw      r0, 0x30(r30) beq      lbl_801DA7DC lis
-r3, "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>"@ha addic.   r0, r30,
-0x4c addi     r3, r3, "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>"@l stw
-r3, 0x4c(r30) addi     r0, r3, 0x2c stw      r0, 0x68(r30) beq      lbl_801DA7DC
-	lis      r3, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@l
-	stw      r3, 0x4c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_801DA7DC
-	lis      r3, "__vt__37Container<Q34Game12ItemPikihead4Item>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r0, r3, "__vt__37Container<Q34Game12ItemPikihead4Item>"@l
-	stw      r0, 0x4c(r30)
-	beq      lbl_801DA7DC
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x4c
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x4c(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801DA7DC:
-	addic.   r0, r30, 0x30
-	beq      lbl_801DA810
-	lis      r3, "__vt__37Container<Q34Game12ItemPikihead4Item>"@ha
-	addic.   r0, r30, 0x30
-	addi     r0, r3, "__vt__37Container<Q34Game12ItemPikihead4Item>"@l
-	stw      r0, 0x30(r30)
-	beq      lbl_801DA810
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x30(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801DA810:
-	extsh.   r0, r31
-	ble      lbl_801DA820
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801DA820:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+// void FixedSizeItemMgr<Item>::~FixedSizeItemMgr()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DA83C
  * Size:	0000A0
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::~MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801DA8C0
-	lis      r4, "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>"@ha
-	addi     r4, r4, "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801DA8B0
-	lis      r4, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@ha
-	addi     r4, r4, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801DA8B0
-	lis      r4, "__vt__37Container<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r4, "__vt__37Container<Q34Game12ItemPikihead4Item>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801DA8B0
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801DA8B0:
-	extsh.   r0, r31
-	ble      lbl_801DA8C0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801DA8C0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::~MonoObjectMgr()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DA8DC
  * Size:	000070
  */
-void Container<Game::ItemPikihead::Item>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801DA930
-	lis      r4, "__vt__37Container<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r4, "__vt__37Container<Q34Game12ItemPikihead4Item>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801DA920
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801DA920:
-	extsh.   r0, r31
-	ble      lbl_801DA930
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801DA930:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// void Container<Item>::~Container()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DA94C
  * Size:	0000AC
  */
-void ItemPikihead::Mgr::onLoadResources()
+void Mgr::onLoadResources()
 {
+	loadArchive("arc.szs");
+	loadBmd("pikihead.bmd", 0, 0x20000);
+	(*mModelData)->newSharedDisplayList(0x40000);
+	JKRArchive* arc = openTextArc("texts.szs");
+	loadAnimMgr(arc, "pikiheadAnimMgr.txt");
+	closeTextArc(arc);
+	createMgr(100, 0x80000);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3729,7 +3402,7 @@ void ItemPikihead::Mgr::onLoadResources()
  * Address:	801DA9F8
  * Size:	000378
  */
-void ItemPikihead::Mgr::doSimpleDraw(Viewport*)
+void Mgr::doSimpleDraw(Viewport*)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -3994,37 +3667,13 @@ lbl_801DAD44:
  * Address:	801DAD70
  * Size:	00006C
  */
-void ItemPikihead::Mgr::onCreateModel(SysShape::Model*)
+void Mgr::onCreateModel(SysShape::Model* model)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lis      r4, 0x100
-	lwz      r3, 8(r31)
-	bl       newDifferedDisplayList__8J3DModelFUl
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r31)
-	bl       makeDL__8J3DModelFv
-	lwz      r3, 8(r31)
-	bl       lock__8J3DModelFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	model->getJ3DModel()->newDifferedDisplayList(0x1000000);
+	model->getJ3DModel()->calc();
+	model->getJ3DModel()->calcMaterial();
+	model->getJ3DModel()->makeDL();
+	model->getJ3DModel()->lock();
 }
 
 /*
@@ -4032,7 +3681,7 @@ void ItemPikihead::Mgr::onCreateModel(SysShape::Model*)
  * Address:	801DADDC
  * Size:	0000A0
  */
-void ItemPikihead::Mgr::birth()
+Item* Mgr::birth()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4093,34 +3742,12 @@ lbl_801DAE68:
  * Address:	801DAE7C
  * Size:	000060
  */
-void ItemPikihead::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
+Item* Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, Game::GenItemParm* genParm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	li       r4, 0
-	mr       r31, r3
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	mr       r3, r31
-	mr       r4, r30
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Item* item = birth();
+	item->init(nullptr);
+	item->setPosition(pos, false);
+	return item;
 }
 
 /*
@@ -4128,7 +3755,7 @@ void ItemPikihead::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
  * Address:	801DAEDC
  * Size:	000118
  */
-ItemPikihead::Mgr::~Mgr()
+Mgr::~Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4209,97 +3836,47 @@ lbl_801DAFD8:
  * Address:	801DAFF4
  * Size:	00000C
  */
-void ItemPikihead::Mgr::generatorGetID()
-{
-	/*
-	lis      r3, 0x706B6864@ha
-	addi     r3, r3, 0x706B6864@l
-	blr
-	*/
-}
-
-} // namespace Game
+u32 Mgr::generatorGetID() { return 'pkhd'; }
 
 /*
  * --INFO--
  * Address:	801DB000
  * Size:	000088
  */
-void ObjectMgr<Game::ItemPikihead::Item>::~ObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801DB06C
-	lis      r4, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@ha
-	addi     r4, r4, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801DB05C
-	lis      r4, "__vt__37Container<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r4, "__vt__37Container<Q34Game12ItemPikihead4Item>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801DB05C
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801DB05C:
-	extsh.   r0, r31
-	ble      lbl_801DB06C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801DB06C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// void ObjectMgr<Item>::~ObjectMgr()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DB088
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::birth()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::birth()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x7c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB0B4
  * Size:	00000C
  */
-void ItemPikihead::Item::getCreatureName()
+char* Item::getCreatureName()
 {
+	return "Pikihead";
 	/*
 	lis      r3, lbl_804808C4@ha
 	addi     r3, r3, lbl_804808C4@l
@@ -4312,3051 +3889,2651 @@ void ItemPikihead::Item::getCreatureName()
  * Address:	801DB0C0
  * Size:	000034
  */
-void Game::FSMItem<Game::ItemPikihead::Item, Game::ItemPikihead::FSM, ItemPikihead::State>::doAI()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1D8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void Game::FSMItem<Item, FSM, State>::doAI()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r4, r3
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1D8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB0F4
  * Size:	000004
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::onCreateModel(SysShape::Model*) { }
+// void FixedSizeItemMgr<Item>::onCreateModel(SysShape::Model*) { }
 
 /*
  * --INFO--
  * Address:	801DB0F8
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::doAnimation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::doAnimation()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x64(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB124
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::doEntry()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::doEntry()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x68(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB150
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::doSetView(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::doSetView(int)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x6c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB17C
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::doViewCalc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::doViewCalc()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x70(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB1A8
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::doSimulation(float)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x74(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB1D4
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x78(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB200
  * Size:	0001E8
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::initDependency()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
-	addi     r3, r3, 0x4c
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801DB24C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DB3B8
+// void FixedSizeItemMgr<Item>::initDependency()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+// 	addi     r3, r3, 0x4c
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
+// 	cmplwi   r0, 0
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0x14(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_801DB24C
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DB3B8
 
-lbl_801DB24C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DB2B8
+// lbl_801DB24C:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DB2B8
 
-lbl_801DB264:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DB3B8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DB264:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DB3B8
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DB2B8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DB264
-	b        lbl_801DB3B8
+// lbl_801DB2B8:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DB264
+// 	b        lbl_801DB3B8
 
-lbl_801DB2D8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1bc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801DB328
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DB3B8
+// lbl_801DB2D8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1bc(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801DB328
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DB3B8
 
-lbl_801DB328:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DB39C
+// lbl_801DB328:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DB39C
 
-lbl_801DB348:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DB3B8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DB348:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DB3B8
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DB39C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DB348
+// lbl_801DB39C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DB348
 
-lbl_801DB3B8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801DB2D8
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801DB3B8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801DB2D8
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB3E8
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::getNext(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::getNext(void*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB414
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::getStart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::getStart()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB440
  * Size:	000030
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::createModel(Game::ItemPikihead::Item*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x7C(r3)
-	  lwz       r4, 0x188(r4)
-	  lwz       r5, 0x184(r5)
-	  bl        0x24F9A0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::createModel(Item*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x7C(r3)
+// 	  lwz       r4, 0x188(r4)
+// 	  lwz       r5, 0x184(r5)
+// 	  bl        0x24F9A0
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB470
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPikihead::Item, Game::ItemPikihead::FSM, ItemPikihead::State>::onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Item, FSM, State>::onKeyEvent(const SysShape::KeyEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x24(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB4B4
  * Size:	000004
  */
-void ItemState<Game::ItemPikihead::Item>::onDamage(Game::ItemPikihead::Item*, float) { }
+// void ItemState<Item>::onDamage(Item*, float) { }
 
 /*
  * --INFO--
  * Address:	801DB4B8
  * Size:	000004
  */
-void ItemState<Game::ItemPikihead::Item>::onKeyEvent(Game::ItemPikihead::Item*, const SysShape::KeyEvent&) { }
+// void ItemState<Item>::onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent) { }
 
 /*
  * --INFO--
  * Address:	801DB4BC
  * Size:	000004
  */
-void ItemState<Game::ItemPikihead::Item>::onBounce(Game::ItemPikihead::Item*, Sys::Triangle*) { }
+// void ItemState<Item>::onBounce(Item*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	801DB4C0
  * Size:	000004
  */
-void ItemState<Game::ItemPikihead::Item>::onPlatCollision(Game::ItemPikihead::Item*, Game::PlatEvent&) { }
+// void ItemState<Item>::onPlatCollision(Item*, Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	801DB4C4
  * Size:	000004
  */
-void ItemState<Game::ItemPikihead::Item>::onCollision(Game::ItemPikihead::Item*, Game::CollEvent&) { }
+// void ItemState<Item>::onCollision(Item*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801DB4C8
  * Size:	000004
  */
-void FSMState<Game::ItemPikihead::Item>::init(Game::ItemPikihead::Item*, Game::StateArg*) { }
+// void FSMState<Item>::init(Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801DB4CC
  * Size:	000004
  */
-void FSMState<Game::ItemPikihead::Item>::exec(Game::ItemPikihead::Item*) { }
+// void FSMState<Item>::exec(Item*) { }
 
 /*
  * --INFO--
  * Address:	801DB4D0
  * Size:	000004
  */
-void FSMState<Game::ItemPikihead::Item>::resume(Game::ItemPikihead::Item*) { }
+// void FSMState<Item>::resume(Item*) { }
 
 /*
  * --INFO--
  * Address:	801DB4D4
  * Size:	000004
  */
-void FSMState<Game::ItemPikihead::Item>::restart(Game::ItemPikihead::Item*) { }
+// void FSMState<Item>::restart(Item*) { }
 
 /*
  * --INFO--
  * Address:	801DB4D8
  * Size:	000004
  */
-void StateMachine<Game::ItemPikihead::Item>::init(Game::ItemPikihead::Item*) { }
+// void StateMachine<Item>::init(Item*) { }
 
 /*
  * --INFO--
  * Address:	801DB4DC
  * Size:	000038
  */
-void StateMachine<Game::ItemPikihead::Item>::exec(Game::ItemPikihead::Item*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1dc(r4)
-	cmplwi   r3, 0
-	beq      lbl_801DB504
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+// void StateMachine<Item>::exec(Item*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 0x1dc(r4)
+// 	cmplwi   r3, 0
+// 	beq      lbl_801DB504
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
 
-lbl_801DB504:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801DB504:
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB514
  * Size:	000064
  */
-void StateMachine<Game::ItemPikihead::Item>::create(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Game
+// void StateMachine<Item>::create(int)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	li       r0, 0
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	stw      r4, 0xc(r3)
+// 	stw      r0, 8(r3)
+// 	lwz      r0, 0xc(r3)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 4(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x10(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x14(r31)
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB578
  * Size:	000060
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::birth()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "getEmptyIndex__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-	cmpwi    r3, -1
-	beq      lbl_801DB5C0
-	lwz      r6, 0x28(r31)
-	li       r0, 0
-	lwz      r4, 0x2c(r31)
-	mulli    r5, r3, 0x1f8
-	stbx     r0, r4, r3
-	add      r3, r6, r5
-	lwz      r4, 0x20(r31)
-	addi     r0, r4, 1
-	stw      r0, 0x20(r31)
-	b        lbl_801DB5C4
+// void MonoObjectMgr<Item>::birth()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       "getEmptyIndex__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
+// 	cmpwi    r3, -1
+// 	beq      lbl_801DB5C0
+// 	lwz      r6, 0x28(r31)
+// 	li       r0, 0
+// 	lwz      r4, 0x2c(r31)
+// 	mulli    r5, r3, 0x1f8
+// 	stbx     r0, r4, r3
+// 	add      r3, r6, r5
+// 	lwz      r4, 0x20(r31)
+// 	addi     r0, r4, 1
+// 	stw      r0, 0x20(r31)
+// 	b        lbl_801DB5C4
 
-lbl_801DB5C0:
-	li       r3, 0
+// lbl_801DB5C0:
+// 	li       r3, 0
 
-lbl_801DB5C4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801DB5C4:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB5D8
  * Size:	000054
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::kill(Game::ItemPikihead::Item*)
-{
-	/*
-	lwz      r0, 0x24(r3)
-	li       r6, 0
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	blelr
+// void MonoObjectMgr<Item>::kill(Item*)
+// {
+// 	/*
+// 	lwz      r0, 0x24(r3)
+// 	li       r6, 0
+// 	li       r5, 0
+// 	mtctr    r0
+// 	cmpwi    r0, 0
+// 	blelr
 
-lbl_801DB5F0:
-	lwz      r0, 0x28(r3)
-	add      r0, r0, r5
-	cmplw    r0, r4
-	bne      lbl_801DB61C
-	lwz      r4, 0x2c(r3)
-	li       r0, 1
-	stbx     r0, r4, r6
-	lwz      r4, 0x20(r3)
-	addi     r0, r4, -1
-	stw      r0, 0x20(r3)
-	blr
+// lbl_801DB5F0:
+// 	lwz      r0, 0x28(r3)
+// 	add      r0, r0, r5
+// 	cmplw    r0, r4
+// 	bne      lbl_801DB61C
+// 	lwz      r4, 0x2c(r3)
+// 	li       r0, 1
+// 	stbx     r0, r4, r6
+// 	lwz      r4, 0x20(r3)
+// 	addi     r0, r4, -1
+// 	stw      r0, 0x20(r3)
+// 	blr
 
-lbl_801DB61C:
-	addi     r5, r5, 0x1f8
-	addi     r6, r6, 1
-	bdnz     lbl_801DB5F0
-	blr
-	*/
-}
+// lbl_801DB61C:
+// 	addi     r5, r5, 0x1f8
+// 	addi     r6, r6, 1
+// 	bdnz     lbl_801DB5F0
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB62C
  * Size:	000040
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::getNext(void*)
-{
-	/*
-	lwz      r5, 0x24(r3)
-	addi     r6, r4, 1
-	subf     r0, r6, r5
-	mtctr    r0
-	cmpw     r6, r5
-	bge      lbl_801DB664
+// void MonoObjectMgr<Item>::getNext(void*)
+// {
+// 	/*
+// 	lwz      r5, 0x24(r3)
+// 	addi     r6, r4, 1
+// 	subf     r0, r6, r5
+// 	mtctr    r0
+// 	cmpw     r6, r5
+// 	bge      lbl_801DB664
 
-lbl_801DB644:
-	lwz      r4, 0x2c(r3)
-	lbzx     r0, r4, r6
-	cmplwi   r0, 0
-	bne      lbl_801DB65C
-	mr       r3, r6
-	blr
+// lbl_801DB644:
+// 	lwz      r4, 0x2c(r3)
+// 	lbzx     r0, r4, r6
+// 	cmplwi   r0, 0
+// 	bne      lbl_801DB65C
+// 	mr       r3, r6
+// 	blr
 
-lbl_801DB65C:
-	addi     r6, r6, 1
-	bdnz     lbl_801DB644
+// lbl_801DB65C:
+// 	addi     r6, r6, 1
+// 	bdnz     lbl_801DB644
 
-lbl_801DB664:
-	mr       r3, r5
-	blr
-	*/
-}
+// lbl_801DB664:
+// 	mr       r3, r5
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB66C
  * Size:	000030
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::getStart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, -1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::getStart()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	li       r4, -1
+// 	stw      r0, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB69C
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::getEnd()
-{
-	/*
-	lwz      r3, 0x24(r3)
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::getEnd()
+// {
+// 	/*
+// 	lwz      r3, 0x24(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB6A4
  * Size:	000010
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::getAt(int)
-{
-	/*
-	mulli    r0, r4, 0x1f8
-	lwz      r3, 0x28(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::getAt(int)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DB6B4
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::getTo()
-{
-	/*
-	lwz      r3, 0x24(r3)
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::getTo()
+// {
+// 	/*
+// 	lwz      r3, 0x24(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DB6BC
  * Size:	000080
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::doAnimation()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_801DB714
-
-lbl_801DB6E4:
-	lwz      r3, 0x2c(r29)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801DB70C
-	lwz      r0, 0x28(r29)
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DB70C:
-	addi     r31, r31, 0x1f8
-	addi     r30, r30, 1
-
-lbl_801DB714:
-	lwz      r0, 0x24(r29)
-	cmpw     r30, r0
-	blt      lbl_801DB6E4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::doAnimation()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DB73C
  * Size:	000080
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::doEntry()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_801DB794
-
-lbl_801DB764:
-	lwz      r3, 0x2c(r29)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801DB78C
-	lwz      r0, 0x28(r29)
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DB78C:
-	addi     r31, r31, 0x1f8
-	addi     r30, r30, 1
-
-lbl_801DB794:
-	lwz      r0, 0x24(r29)
-	cmpw     r30, r0
-	blt      lbl_801DB764
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::doEntry()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DB7BC
  * Size:	000090
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::doSetView(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_801DB820
-
-lbl_801DB7EC:
-	lwz      r3, 0x2c(r28)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801DB818
-	lwz      r0, 0x28(r28)
-	mr       r4, r29
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DB818:
-	addi     r31, r31, 0x1f8
-	addi     r30, r30, 1
-
-lbl_801DB820:
-	lwz      r0, 0x24(r28)
-	cmpw     r30, r0
-	blt      lbl_801DB7EC
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::doSetView(int)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DB84C
  * Size:	000080
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::doViewCalc()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_801DB8A4
-
-lbl_801DB874:
-	lwz      r3, 0x2c(r29)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801DB89C
-	lwz      r0, 0x28(r29)
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DB89C:
-	addi     r31, r31, 0x1f8
-	addi     r30, r30, 1
-
-lbl_801DB8A4:
-	lwz      r0, 0x24(r29)
-	cmpw     r30, r0
-	blt      lbl_801DB874
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::doViewCalc()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DB8CC
  * Size:	000090
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	li       r31, 0
-	stw      r30, 0x10(r1)
-	li       r30, 0
-	stw      r29, 0xc(r1)
-	mr       r29, r3
-	b        lbl_801DB930
-
-lbl_801DB8FC:
-	lwz      r3, 0x2c(r29)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801DB928
-	lwz      r0, 0x28(r29)
-	fmr      f1, f31
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DB928:
-	addi     r31, r31, 0x1f8
-	addi     r30, r30, 1
-
-lbl_801DB930:
-	lwz      r0, 0x24(r29)
-	cmpw     r30, r0
-	blt      lbl_801DB8FC
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	lwz      r30, 0x10(r1)
-	lwz      r29, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::doSimulation(float)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DB95C
  * Size:	000090
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_801DB9C0
-
-lbl_801DB98C:
-	lwz      r3, 0x2c(r28)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801DB9B8
-	lwz      r0, 0x28(r28)
-	mr       r4, r29
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801DB9B8:
-	addi     r31, r31, 0x1f8
-	addi     r30, r30, 1
-
-lbl_801DB9C0:
-	lwz      r0, 0x24(r28)
-	cmpw     r30, r0
-	blt      lbl_801DB98C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::doDirectDraw(Graphics&)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DB9EC
  * Size:	000018
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x2c(r3)
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::resetMgr()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DBA04
  * Size:	000030
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::clearMgr()
-{
-	/*
-	li       r0, 0
-	li       r6, 0
-	stw      r0, 0x20(r3)
-	li       r5, 1
-	b        lbl_801DBA24
-
-lbl_801DBA18:
-	lwz      r4, 0x2c(r3)
-	stbx     r5, r4, r6
-	addi     r6, r6, 1
-
-lbl_801DBA24:
-	lwz      r0, 0x24(r3)
-	cmpw     r6, r0
-	blt      lbl_801DBA18
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::clearMgr()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DBA34
  * Size:	000004
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::onAlloc() { }
+// void MonoObjectMgr<Item>::onAlloc() { }
 
 /*
  * --INFO--
  * Address:	801DBA38
  * Size:	00003C
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::getEmptyIndex()
-{
-	/*
-	lwz      r0, 0x24(r3)
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_801DBA6C
+// void MonoObjectMgr<Item>::getEmptyIndex()
+// {
+// 	/*
+// 	lwz      r0, 0x24(r3)
+// 	li       r5, 0
+// 	mtctr    r0
+// 	cmpwi    r0, 0
+// 	ble      lbl_801DBA6C
 
-lbl_801DBA4C:
-	lwz      r4, 0x2c(r3)
-	lbzx     r0, r4, r5
-	cmplwi   r0, 1
-	bne      lbl_801DBA64
-	mr       r3, r5
-	blr
+// lbl_801DBA4C:
+// 	lwz      r4, 0x2c(r3)
+// 	lbzx     r0, r4, r5
+// 	cmplwi   r0, 1
+// 	bne      lbl_801DBA64
+// 	mr       r3, r5
+// 	blr
 
-lbl_801DBA64:
-	addi     r5, r5, 1
-	bdnz     lbl_801DBA4C
+// lbl_801DBA64:
+// 	addi     r5, r5, 1
+// 	bdnz     lbl_801DBA4C
 
-lbl_801DBA6C:
-	li       r3, -1
-	blr
-	*/
-}
+// lbl_801DBA6C:
+// 	li       r3, -1
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DBA74
  * Size:	000010
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::get(void*)
-{
-	/*
-	mulli    r0, r4, 0x1f8
-	lwz      r3, 0x28(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+// void MonoObjectMgr<Item>::get(void*)
+// {
+// 	/*
+// 	mulli    r0, r4, 0x1f8
+// 	lwz      r3, 0x28(r3)
+// 	add      r3, r3, r0
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DBA84
  * Size:	0001E4
  */
-void ObjectMgr<Game::ItemPikihead::Item>::doAnimation()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801DBACC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBC38
+// void ObjectMgr<Item>::doAnimation()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_801DBACC
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBC38
 
-lbl_801DBACC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBB38
+// lbl_801DBACC:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBB38
 
-lbl_801DBAE4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DBC38
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DBAE4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DBC38
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DBB38:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DBAE4
-	b        lbl_801DBC38
+// lbl_801DBB38:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DBAE4
+// 	b        lbl_801DBC38
 
-lbl_801DBB58:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801DBBA8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBC38
+// lbl_801DBB58:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x3c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801DBBA8
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBC38
 
-lbl_801DBBA8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBC1C
+// lbl_801DBBA8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBC1C
 
-lbl_801DBBC8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DBC38
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DBBC8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DBC38
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DBC1C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DBBC8
+// lbl_801DBC1C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DBBC8
 
-lbl_801DBC38:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801DBB58
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801DBC38:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801DBB58
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DBC68
  * Size:	0001E4
  */
-void ObjectMgr<Game::ItemPikihead::Item>::doEntry()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801DBCB0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBE1C
+// void ObjectMgr<Item>::doEntry()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_801DBCB0
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBE1C
 
-lbl_801DBCB0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBD1C
+// lbl_801DBCB0:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBD1C
 
-lbl_801DBCC8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DBE1C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DBCC8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DBE1C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DBD1C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DBCC8
-	b        lbl_801DBE1C
+// lbl_801DBD1C:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DBCC8
+// 	b        lbl_801DBE1C
 
-lbl_801DBD3C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801DBD8C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBE1C
+// lbl_801DBD3C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x40(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801DBD8C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBE1C
 
-lbl_801DBD8C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBE00
+// lbl_801DBD8C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBE00
 
-lbl_801DBDAC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DBE1C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DBDAC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DBE1C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DBE00:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DBDAC
+// lbl_801DBE00:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DBDAC
 
-lbl_801DBE1C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801DBD3C
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801DBE1C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801DBD3C
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DBE4C
  * Size:	0001F4
  */
-void ObjectMgr<Game::ItemPikihead::Item>::doSetView(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801DBE9C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC00C
+// void ObjectMgr<Item>::doSetView(int)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r5, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r5, r5, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
+// 	stw      r31, 0x1c(r1)
+// 	cmplwi   r0, 0
+// 	mr       r31, r4
+// 	stw      r0, 0x14(r1)
+// 	stw      r5, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_801DBE9C
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC00C
 
-lbl_801DBE9C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBF08
+// lbl_801DBE9C:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBF08
 
-lbl_801DBEB4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DC00C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DBEB4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DC00C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DBF08:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DBEB4
-	b        lbl_801DC00C
+// lbl_801DBF08:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DBEB4
+// 	b        lbl_801DC00C
 
-lbl_801DBF28:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801DBF7C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC00C
+// lbl_801DBF28:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	mr       r4, r31
+// 	lwz      r12, 0x44(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801DBF7C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC00C
 
-lbl_801DBF7C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DBFF0
+// lbl_801DBF7C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DBFF0
 
-lbl_801DBF9C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DC00C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DBF9C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DC00C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DBFF0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DBF9C
+// lbl_801DBFF0:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DBF9C
 
-lbl_801DC00C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801DBF28
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801DC00C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801DBF28
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC040
  * Size:	0001E4
  */
-void ObjectMgr<Game::ItemPikihead::Item>::doViewCalc()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801DC088
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC1F4
+// void ObjectMgr<Item>::doViewCalc()
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
+// 	cmplwi   r0, 0
+// 	stw      r0, 0x14(r1)
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_801DC088
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC1F4
 
-lbl_801DC088:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC0F4
+// lbl_801DC088:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC0F4
 
-lbl_801DC0A0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DC1F4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DC0A0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DC1F4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DC0F4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DC0A0
-	b        lbl_801DC1F4
+// lbl_801DC0F4:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DC0A0
+// 	b        lbl_801DC1F4
 
-lbl_801DC114:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801DC164
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC1F4
+// lbl_801DC114:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x48(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801DC164
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC1F4
 
-lbl_801DC164:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC1D8
+// lbl_801DC164:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC1D8
 
-lbl_801DC184:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DC1F4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DC184:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DC1F4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DC1D8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DC184
+// lbl_801DC1D8:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DC184
 
-lbl_801DC1F4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801DC114
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801DC1F4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801DC114
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC224
  * Size:	0001F4
  */
-void ObjectMgr<Game::ItemPikihead::Item>::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801DC274
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC3E4
+// void ObjectMgr<Item>::doSimulation(float)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
+// 	stfd     f31, 0x18(r1)
+// 	fmr      f31, f1
+// 	cmplwi   r0, 0
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0x14(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_801DC274
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC3E4
 
-lbl_801DC274:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC2E0
+// lbl_801DC274:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC2E0
 
-lbl_801DC28C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DC3E4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DC28C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DC3E4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DC2E0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DC28C
-	b        lbl_801DC3E4
+// lbl_801DC2E0:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DC28C
+// 	b        lbl_801DC3E4
 
-lbl_801DC300:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	fmr      f1, f31
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801DC354
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC3E4
+// lbl_801DC300:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	fmr      f1, f31
+// 	lwz      r12, 0x4c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801DC354
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC3E4
 
-lbl_801DC354:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC3C8
+// lbl_801DC354:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC3C8
 
-lbl_801DC374:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DC3E4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DC374:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DC3E4
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DC3C8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DC374
+// lbl_801DC3C8:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DC374
 
-lbl_801DC3E4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801DC300
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801DC3E4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801DC300
+// 	lwz      r0, 0x24(r1)
+// 	lfd      f31, 0x18(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC418
  * Size:	0001F4
  */
-void ObjectMgr<Game::ItemPikihead::Item>::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801DC468
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC5D8
+// void ObjectMgr<Item>::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r5, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r5, r5, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
+// 	stw      r31, 0x1c(r1)
+// 	cmplwi   r0, 0
+// 	mr       r31, r4
+// 	stw      r0, 0x14(r1)
+// 	stw      r5, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_801DC468
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC5D8
 
-lbl_801DC468:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC4D4
+// lbl_801DC468:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC4D4
 
-lbl_801DC480:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DC5D8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DC480:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DC5D8
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DC4D4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DC480
-	b        lbl_801DC5D8
+// lbl_801DC4D4:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DC480
+// 	b        lbl_801DC5D8
 
-lbl_801DC4F4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801DC548
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC5D8
+// lbl_801DC4F4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	mr       r4, r31
+// 	lwz      r12, 0x50(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801DC548
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC5D8
 
-lbl_801DC548:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801DC5BC
+// lbl_801DC548:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801DC5BC
 
-lbl_801DC568:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801DC5D8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801DC568:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801DC5D8
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801DC5BC:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DC568
+// lbl_801DC5BC:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DC568
 
-lbl_801DC5D8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801DC4F4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801DC5D8:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801DC4F4
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC60C
  * Size:	00002C
  */
-void Container<Game::ItemPikihead::Item>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Container<Item>::getObject(void*)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DC638
  * Size:	000008
  */
-u32 Container<Game::ItemPikihead::Item>::getAt(int) { return 0x0; }
+// u32 Container<Item>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801DC640
  * Size:	000008
  */
-u32 Container<Game::ItemPikihead::Item>::getTo() { return 0x0; }
+// u32 Container<Item>::getTo() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801DC648
  * Size:	00009C
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__37Container<Q34Game12ItemPikihead4Item>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r6, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, "__vt__37Container<Q34Game12ItemPikihead4Item>"@l
-	lis      r4, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@ha
-	lis      r3, "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>"@ha
-	stw      r0, 0(r31)
-	li       r8, 0
-	addi     r7, r4, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@l
-	addi     r5, r3, "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>"@l
-	stb      r8, 0x18(r31)
-	addi     r0, r6, __vt__16GenericObjectMgr@l
-	addi     r6, r7, 0x2c
-	addi     r4, r5, 0x2c
-	stw      r0, 0x1c(r31)
-	li       r0, 1
-	mr       r3, r31
-	stw      r7, 0(r31)
-	stw      r6, 0x1c(r31)
-	stw      r5, 0(r31)
-	stw      r4, 0x1c(r31)
-	stb      r0, 0x18(r31)
-	stw      r8, 0x24(r31)
-	stw      r8, 0x20(r31)
-	stw      r8, 0x28(r31)
-	stw      r8, 0x2c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// void MonoObjectMgr<Item>::MonoObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       __ct__5CNodeFv
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	lis      r3, "__vt__37Container<Q34Game12ItemPikihead4Item>"@ha
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	lis      r6, __vt__16GenericObjectMgr@ha
+// 	stw      r0, 0(r31)
+// 	addi     r0, r3, "__vt__37Container<Q34Game12ItemPikihead4Item>"@l
+// 	lis      r4, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@ha
+// 	lis      r3, "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>"@ha
+// 	stw      r0, 0(r31)
+// 	li       r8, 0
+// 	addi     r7, r4, "__vt__37ObjectMgr<Q34Game12ItemPikihead4Item>"@l
+// 	addi     r5, r3, "__vt__41MonoObjectMgr<Q34Game12ItemPikihead4Item>"@l
+// 	stb      r8, 0x18(r31)
+// 	addi     r0, r6, __vt__16GenericObjectMgr@l
+// 	addi     r6, r7, 0x2c
+// 	addi     r4, r5, 0x2c
+// 	stw      r0, 0x1c(r31)
+// 	li       r0, 1
+// 	mr       r3, r31
+// 	stw      r7, 0(r31)
+// 	stw      r6, 0x1c(r31)
+// 	stw      r5, 0(r31)
+// 	stw      r4, 0x1c(r31)
+// 	stb      r0, 0x18(r31)
+// 	stw      r8, 0x24(r31)
+// 	stw      r8, 0x20(r31)
+// 	stw      r8, 0x28(r31)
+// 	stw      r8, 0x2c(r31)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC6E4
  * Size:	00009C
  */
-void StateMachine<Game::ItemPikihead::Item>::transit(Game::ItemPikihead::Item*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x1DC(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
+// void StateMachine<Item>::transit(Item*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  rlwinm    r0,r5,2,0,29
+// 	  stmw      r27, 0xC(r1)
+// 	  mr        r27, r3
+// 	  mr        r28, r4
+// 	  mr        r29, r6
+// 	  lwz       r30, 0x1DC(r4)
+// 	  lwz       r3, 0x14(r3)
+// 	  cmplwi    r30, 0
+// 	  lwzx      r31, r3, r0
+// 	  beq-      .loc_0x50
+// 	  mr        r3, r30
+// 	  lwz       r12, 0x0(r30)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x4(r30)
+// 	  stw       r0, 0x18(r27)
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
+// 	.loc_0x50:
+// 	  lwz       r0, 0xC(r27)
+// 	  cmpw      r31, r0
+// 	  blt-      .loc_0x60
 
-	.loc_0x5C:
-	  b         .loc_0x5C
+// 	.loc_0x5C:
+// 	  b         .loc_0x5C
 
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x1DC(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x60:
+// 	  lwz       r3, 0x4(r27)
+// 	  rlwinm    r0,r31,2,0,29
+// 	  mr        r4, r28
+// 	  mr        r5, r29
+// 	  lwzx      r3, r3, r0
+// 	  stw       r3, 0x1DC(r28)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lmw       r27, 0xC(r1)
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC780
  * Size:	000084
  */
-void StateMachine<Game::ItemPikihead::Item>::registerState(Game::FSMState<Game::ItemPikihead::Item>*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+// void StateMachine<Game::ItemPikihead::Item>::registerState(Game::FSMState<Game::ItemPikihead::Item>*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r6, 0x8(r3)
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r6, r0
+// 	  bgelr-
+// 	  lwz       r5, 0x4(r3)
+// 	  rlwinm    r0,r6,2,0,29
+// 	  stwx      r4, r5, r0
+// 	  lwz       r5, 0x4(r4)
+// 	  cmpwi     r5, 0
+// 	  blt-      .loc_0x34
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r5, r0
+// 	  blt-      .loc_0x3C
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
+// 	.loc_0x34:
+// 	  li        r0, 0
+// 	  b         .loc_0x40
 
-	.loc_0x3C:
-	  li        r0, 0x1
+// 	.loc_0x3C:
+// 	  li        r0, 0x1
 
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
-}
+// 	.loc_0x40:
+// 	  rlwinm.   r0,r0,0,24,31
+// 	  beqlr-
+// 	  stw       r3, 0x8(r4)
+// 	  lwz       r0, 0x8(r3)
+// 	  lwz       r6, 0x4(r4)
+// 	  lwz       r5, 0x10(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r6, r5, r0
+// 	  lwz       r0, 0x4(r4)
+// 	  lwz       r5, 0x8(r3)
+// 	  lwz       r4, 0x14(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r5, r4, r0
+// 	  lwz       r4, 0x8(r3)
+// 	  addi      r0, r4, 0x1
+// 	  stw       r0, 0x8(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC804
  * Size:	00001C
  */
-void Game::FSMItem<Game::ItemPikihead::Item, Game::ItemPikihead::FSM, ItemPikihead::State>::getStateID()
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x14
-	  lwz       r3, 0x4(r3)
-	  blr
+// void Game::FSMItem<Item, FSM, State>::getStateID()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x14
+// 	  lwz       r3, 0x4(r3)
+// 	  blr
 
-	.loc_0x14:
-	  li        r3, -0x1
-	  blr
-	*/
-}
+// 	.loc_0x14:
+// 	  li        r3, -0x1
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC820
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPikihead::Item, Game::ItemPikihead::FSM, ItemPikihead::State>::platCallback(Game::PlatEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Item, FSM, State>::platCallback(Game::PlatEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x2C(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC864
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPikihead::Item, Game::ItemPikihead::FSM, ItemPikihead::State>::collisionCallback(Game::CollEvent&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Item, FSM, State>::collisionCallback(Game::CollEvent&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x30(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC8A8
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPikihead::Item, Game::ItemPikihead::FSM, ItemPikihead::State>::bounceCallback(Sys::Triangle*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
+// void Game::FSMItem<Item, FSM, State>::bounceCallback(Sys::Triangle*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x28(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC8EC
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::getEnd()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::getEnd()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC918
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::get(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::get(void*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwzu     r12, 0x4c(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DC944
  * Size:	0000E0
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::killAll()
-{
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, __vt__Q24Game15CreatureKillArg@ha
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	addi     r31, r4, __vt__Q24Game15CreatureKillArg@l
-	li       r29, 0
-	b        lbl_801DCA04
+// void FixedSizeItemMgr<Item>::killAll()
+// {
+// 	/*
+// 	stwu     r1, -0x30(r1)
+// 	mflr     r0
+// 	lis      r4, __vt__Q24Game15CreatureKillArg@ha
+// 	stw      r0, 0x34(r1)
+// 	stmw     r27, 0x1c(r1)
+// 	mr       r27, r3
+// 	addi     r31, r4, __vt__Q24Game15CreatureKillArg@l
+// 	li       r29, 0
+// 	b        lbl_801DCA04
 
-lbl_801DC968:
-	addi     r3, r27, 0x4c
-	mr       r4, r29
-	lwz      r12, 0x4c(r27)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stw      r31, 8(r1)
-	mr       r28, r3
-	stw      r0, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801DC9B4
-	mr       r3, r28
-	addi     r4, r1, 8
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+// lbl_801DC968:
+// 	addi     r3, r27, 0x4c
+// 	mr       r4, r29
+// 	lwz      r12, 0x4c(r27)
+// 	lwz      r12, 0x24(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	li       r0, 1
+// 	stw      r31, 8(r1)
+// 	mr       r28, r3
+// 	stw      r0, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xa8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801DC9B4
+// 	mr       r3, r28
+// 	addi     r4, r1, 8
+// 	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-lbl_801DC9B4:
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r12, 0xf8(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_801DCA00
-	lwz      r30,
-"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r30,
-0 beq      lbl_801DCA00 mr       r3, r28 lwz      r12, 0(r28) lwz      r12,
-0xf8(r12) mtctr    r12 bctrl mr       r0, r3 mr       r3, r30 mr       r4, r0 bl
-remove__10JSUPtrListFP10JSUPtrLink
+// lbl_801DC9B4:
+// 	mr       r3, r28
+// 	lwz      r12, 0(r28)
+// 	lwz      r12, 0xf8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	cmplwi   r3, 0
+// 	beq      lbl_801DCA00
+// 	lwz      r30,
+// "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r30,
+// 0 beq      lbl_801DCA00 mr       r3, r28 lwz      r12, 0(r28) lwz      r12,
+// 0xf8(r12) mtctr    r12 bctrl mr       r0, r3 mr       r3, r30 mr       r4, r0 bl
+// remove__10JSUPtrListFP10JSUPtrLink
 
-lbl_801DCA00:
-	addi     r29, r29, 1
+// lbl_801DCA00:
+// 	addi     r29, r29, 1
 
-lbl_801DCA04:
-	lwz      r0, 0x70(r27)
-	cmpw     r29, r0
-	blt      lbl_801DC968
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+// lbl_801DCA04:
+// 	lwz      r0, 0x70(r27)
+// 	cmpw     r29, r0
+// 	blt      lbl_801DC968
+// 	lmw      r27, 0x1c(r1)
+// 	lwz      r0, 0x34(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x30
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DCA24
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::createModelCallback(SysShape::Model*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void FixedSizeItemMgr<Item>::createModelCallback(SysShape::Model*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0xA0(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DCA50
  * Size:	0000E4
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::createMgr(int, unsigned long)
-{
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	stw      r28, 0x20(r1)
-	mr       r28, r3
-	addi     r3, r28, 0x4c
-	bl       "alloc__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fi"
-	mr       r3, r28
-	bl       "onAlloc__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_801DCB10
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r9, r3, r3
-	beq      lbl_801DCAF0
-	lis      r3, lbl_804B8FF8@ha
-	lis      r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@ha
-	addi     r7, r3, lbl_804B8FF8@l
-	lis      r3,
-"__vt__83Delegate1<Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>,PQ28SysShape5Model>"@ha
-	lwz      r6, 0(r7)
-	addi     r4, r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@l
-	lwz      r5, 4(r7)
-	addi     r0, r3,
-"__vt__83Delegate1<Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>,PQ28SysShape5Model>"@l
-	lwz      r3, 8(r7)
-	stw      r6, 8(r1)
-	stw      r4, 0(r9)
-	stw      r0, 0(r9)
-	stw      r28, 4(r9)
-	stw      r6, 8(r9)
-	stw      r5, 0xc(r9)
-	stw      r5, 0xc(r1)
-	stw      r3, 0x10(r1)
-	stw      r3, 0x10(r9)
+// void FixedSizeItemMgr<Item>::createMgr(int, unsigned long)
+// {
+// 	/*
+// 	stwu     r1, -0x30(r1)
+// 	mflr     r0
+// 	stw      r0, 0x34(r1)
+// 	stw      r31, 0x2c(r1)
+// 	stw      r30, 0x28(r1)
+// 	mr       r30, r5
+// 	stw      r29, 0x24(r1)
+// 	mr       r29, r4
+// 	stw      r28, 0x20(r1)
+// 	mr       r28, r3
+// 	addi     r3, r28, 0x4c
+// 	bl       "alloc__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fi"
+// 	mr       r3, r28
+// 	bl       "onAlloc__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
+// 	li       r3, 0x1c
+// 	bl       __nw__FUl
+// 	or.      r31, r3, r3
+// 	beq      lbl_801DCB10
+// 	li       r3, 0x14
+// 	bl       __nw__FUl
+// 	or.      r9, r3, r3
+// 	beq      lbl_801DCAF0
+// 	lis      r3, lbl_804B8FF8@ha
+// 	lis      r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@ha
+// 	addi     r7, r3, lbl_804B8FF8@l
+// 	lis      r3,
+// "__vt__83Delegate1<Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>,PQ28SysShape5Model>"@ha
+// 	lwz      r6, 0(r7)
+// 	addi     r4, r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@l
+// 	lwz      r5, 4(r7)
+// 	addi     r0, r3,
+// "__vt__83Delegate1<Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>,PQ28SysShape5Model>"@l
+// 	lwz      r3, 8(r7)
+// 	stw      r6, 8(r1)
+// 	stw      r4, 0(r9)
+// 	stw      r0, 0(r9)
+// 	stw      r28, 4(r9)
+// 	stw      r6, 8(r9)
+// 	stw      r5, 0xc(r9)
+// 	stw      r5, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	stw      r3, 0x10(r9)
 
-lbl_801DCAF0:
-	lwz      r4, 0x18(r28)
-	mr       r3, r31
-	lwz      r5, 0x1c(r28)
-	mr       r6, r29
-	mr       r7, r30
-	li       r8, 2
-	bl
-"__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>"
-	mr       r31, r3
+// lbl_801DCAF0:
+// 	lwz      r4, 0x18(r28)
+// 	mr       r3, r31
+// 	lwz      r5, 0x1c(r28)
+// 	mr       r6, r29
+// 	mr       r7, r30
+// 	li       r8, 2
+// 	bl
+// "__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>"
+// 	mr       r31, r3
 
-lbl_801DCB10:
-	stw      r31, 0x7c(r28)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+// lbl_801DCB10:
+// 	stw      r31, 0x7c(r28)
+// 	lwz      r0, 0x34(r1)
+// 	lwz      r31, 0x2c(r1)
+// 	lwz      r30, 0x28(r1)
+// 	lwz      r29, 0x24(r1)
+// 	lwz      r28, 0x20(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x30
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DCB34
  * Size:	000064
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::onAlloc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	b        lbl_801DCB74
+// void FixedSizeItemMgr<Item>::onAlloc()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	li       r31, 0
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	b        lbl_801DCB74
 
-lbl_801DCB54:
-	addi     r3, r30, 0x4c
-	mr       r4, r31
-	lwz      r12, 0x4c(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	stw      r31, 0x184(r3)
-	addi     r31, r31, 1
+// lbl_801DCB54:
+// 	addi     r3, r30, 0x4c
+// 	mr       r4, r31
+// 	lwz      r12, 0x4c(r30)
+// 	lwz      r12, 0x24(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r31, 0x184(r3)
+// 	addi     r31, r31, 1
 
-lbl_801DCB74:
-	lwz      r0, 0x70(r30)
-	cmpw     r31, r0
-	blt      lbl_801DCB54
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Game
+// lbl_801DCB74:
+// 	lwz      r0, 0x70(r30)
+// 	cmpw     r31, r0
+// 	blt      lbl_801DCB54
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DCB98
  * Size:	000188
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::alloc(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r31
-	mulli    r3, r29, 0x1f8
-	stw      r28, 0x10(r1)
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q34Game12ItemPikihead4ItemFv@ha
-	mr       r7, r29
-	addi     r4, r4, __ct__Q34Game12ItemPikihead4ItemFv@l
-	li       r5, 0
-	li       r6, 0x1f8
-	bl       __construct_new_array
-	stw      r3, 0x28(r30)
-	li       r0, 0
-	mr       r3, r29
-	stw      r31, 0x24(r30)
-	stw      r0, 0x20(r30)
-	bl       __nwa__FUl
-	cmpwi    r31, 0
-	stw      r3, 0x2c(r30)
-	li       r11, 0
-	ble      lbl_801DCCB8
-	cmpwi    r31, 8
-	addi     r3, r31, -8
-	ble      lbl_801DCC94
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_801DCC94
+// void MonoObjectMgr<Item>::alloc(int)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stw      r31, 0x1c(r1)
+// 	mr       r31, r4
+// 	stw      r30, 0x18(r1)
+// 	mr       r30, r3
+// 	stw      r29, 0x14(r1)
+// 	mr       r29, r31
+// 	mulli    r3, r29, 0x1f8
+// 	stw      r28, 0x10(r1)
+// 	addi     r3, r3, 0x10
+// 	bl       __nwa__FUl
+// 	lis      r4, __ct__Q34Game12ItemPikihead4ItemFv@ha
+// 	mr       r7, r29
+// 	addi     r4, r4, __ct__Q34Game12ItemPikihead4ItemFv@l
+// 	li       r5, 0
+// 	li       r6, 0x1f8
+// 	bl       __construct_new_array
+// 	stw      r3, 0x28(r30)
+// 	li       r0, 0
+// 	mr       r3, r29
+// 	stw      r31, 0x24(r30)
+// 	stw      r0, 0x20(r30)
+// 	bl       __nwa__FUl
+// 	cmpwi    r31, 0
+// 	stw      r3, 0x2c(r30)
+// 	li       r11, 0
+// 	ble      lbl_801DCCB8
+// 	cmpwi    r31, 8
+// 	addi     r3, r31, -8
+// 	ble      lbl_801DCC94
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_801DCC94
 
-lbl_801DCC2C:
-	lwz      r3, 0x2c(r30)
-	li       r10, 1
-	addi     r8, r11, 1
-	addi     r7, r11, 2
-	stbx     r10, r3, r11
-	addi     r6, r11, 3
-	addi     r5, r11, 4
-	addi     r4, r11, 5
-	lwz      r9, 0x2c(r30)
-	addi     r3, r11, 6
-	addi     r0, r11, 7
-	addi     r11, r11, 8
-	stbx     r10, r9, r8
-	lwz      r8, 0x2c(r30)
-	stbx     r10, r8, r7
-	lwz      r7, 0x2c(r30)
-	stbx     r10, r7, r6
-	lwz      r6, 0x2c(r30)
-	stbx     r10, r6, r5
-	lwz      r5, 0x2c(r30)
-	stbx     r10, r5, r4
-	lwz      r4, 0x2c(r30)
-	stbx     r10, r4, r3
-	lwz      r3, 0x2c(r30)
-	stbx     r10, r3, r0
-	bdnz     lbl_801DCC2C
+// lbl_801DCC2C:
+// 	lwz      r3, 0x2c(r30)
+// 	li       r10, 1
+// 	addi     r8, r11, 1
+// 	addi     r7, r11, 2
+// 	stbx     r10, r3, r11
+// 	addi     r6, r11, 3
+// 	addi     r5, r11, 4
+// 	addi     r4, r11, 5
+// 	lwz      r9, 0x2c(r30)
+// 	addi     r3, r11, 6
+// 	addi     r0, r11, 7
+// 	addi     r11, r11, 8
+// 	stbx     r10, r9, r8
+// 	lwz      r8, 0x2c(r30)
+// 	stbx     r10, r8, r7
+// 	lwz      r7, 0x2c(r30)
+// 	stbx     r10, r7, r6
+// 	lwz      r6, 0x2c(r30)
+// 	stbx     r10, r6, r5
+// 	lwz      r5, 0x2c(r30)
+// 	stbx     r10, r5, r4
+// 	lwz      r4, 0x2c(r30)
+// 	stbx     r10, r4, r3
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r10, r3, r0
+// 	bdnz     lbl_801DCC2C
 
-lbl_801DCC94:
-	subf     r0, r11, r31
-	li       r4, 1
-	mtctr    r0
-	cmpw     r11, r31
-	bge      lbl_801DCCB8
+// lbl_801DCC94:
+// 	subf     r0, r11, r31
+// 	li       r4, 1
+// 	mtctr    r0
+// 	cmpw     r11, r31
+// 	bge      lbl_801DCCB8
 
-lbl_801DCCA8:
-	lwz      r3, 0x2c(r30)
-	stbx     r4, r3, r11
-	addi     r11, r11, 1
-	bdnz     lbl_801DCCA8
+// lbl_801DCCA8:
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r4, r3, r11
+// 	addi     r11, r11, 1
+// 	bdnz     lbl_801DCCA8
 
-lbl_801DCCB8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	li       r28, 0
-	li       r29, 0
-	b        lbl_801DCCF8
+// lbl_801DCCB8:
+// 	mr       r3, r30
+// 	lwz      r12, 0(r30)
+// 	lwz      r12, 0x88(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	li       r28, 0
+// 	li       r29, 0
+// 	b        lbl_801DCCF8
 
-lbl_801DCCD8:
-	lwz      r0, 0x28(r30)
-	add      r3, r0, r29
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 0x1f8
-	addi     r28, r28, 1
+// lbl_801DCCD8:
+// 	lwz      r0, 0x28(r30)
+// 	add      r3, r0, r29
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x2c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r29, r29, 0x1f8
+// 	addi     r28, r28, 1
 
-lbl_801DCCF8:
-	cmpw     r28, r31
-	blt      lbl_801DCCD8
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801DCCF8:
+// 	cmpw     r28, r31
+// 	blt      lbl_801DCCD8
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	lwz      r30, 0x18(r1)
+// 	lwz      r29, 0x14(r1)
+// 	lwz      r28, 0x10(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
 /*
-namespace SysShape {
-
  * --INFO--
  * Address:	801DCD20
  * Size:	000030
  */
-void Delegate1<Game::FixedSizeItemMgr<Game::ItemPikihead::Item>, Model*>::invoke(SysShape::Model*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  stw       r0, 0x14(r1)
-	  addi      r12, r5, 0x8
-	  lwz       r3, 0x4(r3)
-	  bl        -0x11B214
-	  nop
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-} // SysShape
+// void Delegate1<Game::FixedSizeItemMgr<Item>, Model*>::invoke(SysShape::Model*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r5, r3
+// 	  stw       r0, 0x14(r1)
+// 	  addi      r12, r5, 0x8
+// 	  lwz       r3, 0x4(r3)
+// 	  bl        -0x11B214
+// 	  nop
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DCD50
  * Size:	000028
  */
-void __sinit_itemPikihead_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B8668@ha
-	stw      r0, lbl_80515AE8@sda21(r13)
-	stfsu    f0, lbl_804B8668@l(r3)
-	stfs     f0, lbl_80515AEC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_itemPikihead_cpp()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCD78
  * Size:	000008
  */
-void Game::FSMItem<Game::ItemPikihead::Item, Game::ItemPikihead::FSM, Game::ItemPikihead::State>::@376
-    @onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x178
-	  b         -0x190C
-	*/
-}
-
-namespace efx {
+// void Game::FSMItem<Item, FSM, State>::@376
+//     @onKeyEvent(const SysShape::KeyEvent&)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCD80
  * Size:	000008
  */
-TPkGlow1::@4 @~TPkGlow1()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx8TPkGlow1Fv
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
+// TPkGlow1::@4 @~TPkGlow1()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCD88
  * Size:	000008
  */
-void ItemPikihead::Item::@376 @onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	addi     r3, r3, -376
-	b        onKeyEvent__Q34Game12ItemPikihead4ItemFRCQ28SysShape8KeyEvent
-	*/
-}
+// void Item::@376 @onKeyEvent(const SysShape::KeyEvent&)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCD90
  * Size:	000008
  */
-FixedSizeItemMgr<Game::ItemPikihead::Item>::@48 @~Item > ()
-{
-	/*
-	addi     r3, r3, -48
-	b        "__dt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
-
-} // namespace efx
+// FixedSizeItemMgr<Item>::@48 @~Item > ()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCD98
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::@28 @resetMgr()
-{
-	/*
-	addi     r3, r3, -28
-	b        "resetMgr__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
+// void MonoObjectMgr<Item>::@28 @resetMgr()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDA0
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b "doDirectDraw__41MonoObjectMgr<Q34Game12ItemPikihead4Item>FR8Graphics"
-	*/
-}
+// void MonoObjectMgr<Item>::@28 @doDirectDraw(Graphics&)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDA8
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Ff"
-	*/
-}
+// void MonoObjectMgr<Item>::@28 @doSimulation(float)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDB0
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
+// void MonoObjectMgr<Item>::@28 @doViewCalc()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDB8
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fi"
-	*/
-}
+// void MonoObjectMgr<Item>::@28 @doSetView(int)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDC0
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
+// void MonoObjectMgr<Item>::@28 @doEntry()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDC8
  * Size:	000008
  */
-void MonoObjectMgr<Game::ItemPikihead::Item>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__41MonoObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
+// void MonoObjectMgr<Item>::@28 @doAnimation()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDD0
  * Size:	000008
  */
-void ObjectMgr<Game::ItemPikihead::Item>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doDirectDraw__37ObjectMgr<Q34Game12ItemPikihead4Item>FR8Graphics"
-	*/
-}
+// void ObjectMgr<Item>::@28 @doDirectDraw(Graphics&)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDD8
  * Size:	000008
  */
-void ObjectMgr<Game::ItemPikihead::Item>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__37ObjectMgr<Q34Game12ItemPikihead4Item>Ff"
-	*/
-}
+// void ObjectMgr<Item>::@28 @doSimulation(float)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDE0
  * Size:	000008
  */
-void ObjectMgr<Game::ItemPikihead::Item>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
+// void ObjectMgr<Item>::@28 @doViewCalc()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDE8
  * Size:	000008
  */
-void ObjectMgr<Game::ItemPikihead::Item>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__37ObjectMgr<Q34Game12ItemPikihead4Item>Fi"
-	*/
-}
+// void ObjectMgr<Item>::@28 @doSetView(int)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDF0
  * Size:	000008
  */
-void ObjectMgr<Game::ItemPikihead::Item>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
+// void ObjectMgr<Item>::@28 @doEntry()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCDF8
  * Size:	000008
  */
-void ObjectMgr<Game::ItemPikihead::Item>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__37ObjectMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
-
-namespace Game {
+// void ObjectMgr<Item>::@28 @doAnimation()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	801DCE00
  * Size:	000008
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::@48 @getEnd()
-{
-	/*
-	addi     r3, r3, -48
-	b        "getEnd__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
+// void FixedSizeItemMgr<Item>::@48 @getEnd()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        "getEnd__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DCE08
  * Size:	000008
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::@48 @getStart()
-{
-	/*
-	addi     r3, r3, -48
-	b        "getStart__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
-	*/
-}
+// void FixedSizeItemMgr<Item>::@48 @getStart()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        "getStart__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DCE10
  * Size:	000008
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::@48 @getNext(void*)
-{
-	/*
-	addi     r3, r3, -48
-	b        "getNext__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv"
-	*/
-}
+// void FixedSizeItemMgr<Item>::@48 @getNext(void*)
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        "getNext__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DCE18
  * Size:	000008
  */
-void FixedSizeItemMgr<Game::ItemPikihead::Item>::@48 @get(void*)
-{
-	/*
-	addi     r3, r3, -48
-	b        "get__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv"
-	*/
-}
+// void FixedSizeItemMgr<Item>::@48 @get(void*)
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        "get__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801DCE20
  * Size:	000008
  */
-ItemPikihead::Mgr::@48 @~Mgr()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q34Game12ItemPikihead3MgrFv
-	*/
-}
+// Mgr::@48 @~Mgr()
+// {
+// }
+
+} // namespace ItemPikihead
 } // namespace Game

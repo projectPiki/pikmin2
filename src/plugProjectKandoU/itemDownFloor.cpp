@@ -1,3 +1,5 @@
+#include "Game/Entities/ItemDownFloor.h"
+#include "PSM/WorkItem.h"
 #include "types.h"
 
 /*
@@ -1036,8 +1038,20 @@ lbl_801F4EA4:
  * Size:	000134
  */
 ItemDownFloor::Item::Item()
+    : FSMItem<Item, FSM, State>(OBJTYPE_Downfloor)
+    , CarryInfoOwner()
+    , mSoundEvent()
+    , _21C()
 {
 	// UNUSED FUNCTION
+	mCollTree               = new CollTree();
+	mBoundingSphere.mRadius = 170.0f;
+	mIsPressed              = false;
+	mIsSeesawBlock          = false;
+	mOtherSeesaw            = nullptr;
+	_21C.setID('none');
+	mWayPoint   = nullptr;
+	mIsPaperBag = false;
 }
 
 /*
@@ -1045,39 +1059,22 @@ ItemDownFloor::Item::Item()
  * Address:	801F4EC0
  * Size:	000048
  */
-void ItemDownFloor::Item::constructor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x84
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801F4EF0
-	mr       r4, r31
-	bl       __ct__Q23PSM8WorkItemFPQ24Game8BaseItem
-	mr       r0, r3
-
-lbl_801F4EF0:
-	stw      r0, 0x17c(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ItemDownFloor::Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 
 /*
  * --INFO--
  * Address:	801F4F08
  * Size:	0000FC
  */
-void ItemDownFloor::Item::onInit(Game::CreatureInitArg*)
+void ItemDownFloor::Item::onInit(Game::CreatureInitArg* initArg)
 {
+	mCarryInfoMgr = nullptr;
+	mgr->setupDownFloor(this);
+	JUT_ASSERTLINE(219, mModel != nullptr, "no shape !\n");
+	mFsm->start(this, DOWNFLOORSTATE_Wait, nullptr);
+	setAlive(true);
+	// TODO: Needs init arg
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1156,25 +1153,25 @@ lbl_801F4FE0:
  * Address:	801F5004
  * Size:	000034
  */
-void start__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x1DC(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void start__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  li        r0, 0
+// 	  stw       r0, 0x1DC(r4)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1490,47 +1487,18 @@ lbl_801F5410:
  * Address:	801F5424
  * Size:	00001C
  */
-void ItemDownFloor::Item::updateBoundSphere()
-{
-	/*
-	lfs      f0, 0x19c(r3)
-	stfs     f0, 0x1c4(r3)
-	lfs      f0, 0x1a0(r3)
-	stfs     f0, 0x1c8(r3)
-	lfs      f0, 0x1a4(r3)
-	stfs     f0, 0x1cc(r3)
-	blr
-	*/
-}
+void ItemDownFloor::Item::updateBoundSphere() { mBoundingSphere.mPosition = mPosition; }
 
 /*
  * --INFO--
  * Address:	801F5440
  * Size:	000044
  */
-void ItemDownFloor::Item::onKeyEvent(SysShape::KeyEvent const&)
+void ItemDownFloor::Item::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1dc(r3)
-	cmplwi   r3, 0
-	beq      lbl_801F5474
-	lwz      r12, 0(r3)
-	mr       r4, r6
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801F5474:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mCurrentState != nullptr) {
+		mCurrentState->onKeyEvent(this, keyEvent);
+	}
 }
 
 /*
@@ -1538,7 +1506,7 @@ lbl_801F5474:
  * Address:	801F5484
  * Size:	000004
  */
-void ItemDownFloor::State::onKeyEvent(Game::ItemDownFloor::Item*, SysShape::KeyEvent const&) { }
+void ItemDownFloor::State::onKeyEvent(Game::ItemDownFloor::Item* item, SysShape::KeyEvent const& keyEvent) { }
 
 /*
  * --INFO--
@@ -2267,26 +2235,11 @@ void ItemDownFloor::Item::changeMaterial() { }
  * Address:	801F5DE4
  * Size:	000038
  */
-void ItemDownFloor::Item::doSave(Stream&)
+void ItemDownFloor::Item::doSave(Stream& output)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x228(r3)
-	cmplwi   r0, 0
-	bne      lbl_801F5E0C
-	lbz      r0, 0x1fc(r3)
-	mr       r3, r4
-	mr       r4, r0
-	bl       writeByte__6StreamFUc
-
-lbl_801F5E0C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mIsSeesawBlock == false) {
+		output.writeByte(mIsPressed);
+	}
 }
 
 /*
@@ -2294,7 +2247,7 @@ lbl_801F5E0C:
  * Address:	801F5E1C
  * Size:	0000F8
  */
-void ItemDownFloor::Item::doLoad(Stream&)
+void ItemDownFloor::Item::doLoad(Stream& input)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2967,7 +2920,7 @@ void ItemDownFloor::Mgr::onLoadResources() { }
  * Address:	801F6684
  * Size:	00017C
  */
-void ItemDownFloor::Mgr::birth()
+BaseItem* ItemDownFloor::Mgr::birth()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3078,7 +3031,7 @@ lbl_801F67C8:
  * Address:	801F6800
  * Size:	00003C
  */
-void ItemDownFloor::Mgr::getCaveName(int)
+char* ItemDownFloor::Mgr::getCaveName(int)
 {
 	/*
 	cmpwi    r4, 0
@@ -3108,7 +3061,7 @@ lbl_801F6828:
  * Address:	801F683C
  * Size:	0000B0
  */
-void ItemDownFloor::Mgr::getCaveID(char*)
+int ItemDownFloor::Mgr::getCaveID(char*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3247,24 +3200,24 @@ lbl_801F69A4:
  * Address:	801F69B4
  * Size:	000030
  */
-void transit__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void transit__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -3740,7 +3693,7 @@ void ItemDownFloor::UpState::onPlat(Game::ItemDownFloor::Item*) { }
  * Address:	801F6E70
  * Size:	00007C
  */
-void ItemDownFloor::Mgr::generatorNewItemParm()
+GenItemParm* ItemDownFloor::Mgr::generatorNewItemParm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3935,7 +3888,7 @@ void ItemDownFloor::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned lon
  * Address:	801F70BC
  * Size:	0001E4
  */
-void generatorBirth__Q34Game13ItemDownFloor3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm()
+BaseItem* ItemDownFloor::Mgr::generatorBirth(Vector3f&, Vector3f&, GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -4172,7 +4125,7 @@ lbl_801F73B8:
  * Address:	801F73D4
  * Size:	000140
  */
-void ItemDownFloor::Mgr::doNew()
+BaseItem* ItemDownFloor::Mgr::doNew()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4268,7 +4221,7 @@ lbl_801F74FC:
  * Address:	801F7514
  * Size:	00000C
  */
-void ItemDownFloor::Mgr::generatorGetID()
+u32 ItemDownFloor::Mgr::generatorGetID()
 {
 	/*
 	lis      r3, 0x6477666C@ha
@@ -4282,7 +4235,7 @@ void ItemDownFloor::Mgr::generatorGetID()
  * Address:	801F7520
  * Size:	00000C
  */
-void ItemDownFloor::Mgr::generatorLocalVersion()
+u32 ItemDownFloor::Mgr::generatorLocalVersion()
 {
 	/*
 	lis      r3, 0x30303032@ha
@@ -4303,7 +4256,7 @@ void ItemDownFloor::Item::makeTrMatrix() { }
  * Address:	801F7530
  * Size:	000008
  */
-void ItemDownFloor::Item::getFaceDir()
+f32 ItemDownFloor::Item::getFaceDir()
 {
 	/*
 	lfs      f1, 0x200(r3)
@@ -4316,7 +4269,7 @@ void ItemDownFloor::Item::getFaceDir()
  * Address:	801F7538
  * Size:	00000C
  */
-void ItemDownFloor::Item::getCreatureName()
+char* ItemDownFloor::Item::getCreatureName()
 {
 	/*
 	lis      r3, lbl_804819B8@ha
@@ -4330,25 +4283,25 @@ void ItemDownFloor::Item::getCreatureName()
  * Address:	801F7544
  * Size:	000034
  */
-void doAI__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State> Fv()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1D8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void doAI__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State> Fv()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r4, r3
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1D8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -4383,448 +4336,451 @@ void ItemDownFloor::DeadState::onPlat(Game::ItemDownFloor::Item*) { }
  * Address:	801F7588
  * Size:	000044
  */
-void onKeyEvent__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State> FRCQ28SysShape8KeyEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
+// void onKeyEvent__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State>
+// FRCQ28SysShape8KeyEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x24(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F75CC
  * Size:	000004
  */
-void onDamage__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Itemf() { }
+// void onDamage__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Itemf() { }
 
 /*
  * --INFO--
  * Address:	801F75D0
  * Size:	000004
  */
-void onKeyEvent__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent() { }
+// void onKeyEvent__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemRCQ28SysShape8KeyEvent() { }
 
 /*
  * --INFO--
  * Address:	801F75D4
  * Size:	000004
  */
-void onBounce__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemPQ23Sys8Triangle() { }
+// void onBounce__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemPQ23Sys8Triangle() { }
 
 /*
  * --INFO--
  * Address:	801F75D8
  * Size:	000004
  */
-void onPlatCollision__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemRQ24Game9PlatEvent() { }
+// void onPlatCollision__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemRQ24Game9PlatEvent() { }
 
 /*
  * --INFO--
  * Address:	801F75DC
  * Size:	000004
  */
-void onCollision__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemRQ24Game9CollEvent() { }
+// void onCollision__Q24Game38ItemState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemRQ24Game9CollEvent() { }
 
 /*
  * --INFO--
  * Address:	801F75E0
  * Size:	000004
  */
-void init__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg() { }
+// void init__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemPQ24Game8StateArg() { }
 
 /*
  * --INFO--
  * Address:	801F75E4
  * Size:	000004
  */
-void exec__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
+// void exec__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
 
 /*
  * --INFO--
  * Address:	801F75E8
  * Size:	000004
  */
-void cleanup__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
+// void cleanup__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
 
 /*
  * --INFO--
  * Address:	801F75EC
  * Size:	000004
  */
-void resume__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
+// void resume__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
 
 /*
  * --INFO--
  * Address:	801F75F0
  * Size:	000004
  */
-void restart__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
+// void restart__Q24Game37FSMState<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
 
 /*
  * --INFO--
  * Address:	801F75F4
  * Size:	000004
  */
-void init__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
+// void init__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item() { }
 
 /*
  * --INFO--
  * Address:	801F75F8
  * Size:	000038
  */
-void exec__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+// void exec__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4Item()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r4)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x28
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0xC(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-} // namespace Game
+// 	.loc_0x28:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F7630
  * Size:	000064
  */
-void create__Q24Game41StateMachine<Game::ItemDownFloor::Item> Fi()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void create__Q24Game41StateMachine<Game::ItemDownFloor::Item> Fi()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	li       r0, 0
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	stw      r4, 0xc(r3)
+// 	stw      r0, 8(r3)
+// 	lwz      r0, 0xc(r3)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 4(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x10(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x14(r31)
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F7694
  * Size:	00009C
  */
-void transit__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x1DC(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
+// void transit__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  rlwinm    r0,r5,2,0,29
+// 	  stmw      r27, 0xC(r1)
+// 	  mr        r27, r3
+// 	  mr        r28, r4
+// 	  mr        r29, r6
+// 	  lwz       r30, 0x1DC(r4)
+// 	  lwz       r3, 0x14(r3)
+// 	  cmplwi    r30, 0
+// 	  lwzx      r31, r3, r0
+// 	  beq-      .loc_0x50
+// 	  mr        r3, r30
+// 	  lwz       r12, 0x0(r30)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x4(r30)
+// 	  stw       r0, 0x18(r27)
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
+// 	.loc_0x50:
+// 	  lwz       r0, 0xC(r27)
+// 	  cmpw      r31, r0
+// 	  blt-      .loc_0x60
 
-	.loc_0x5C:
-	  b         .loc_0x5C
+// 	.loc_0x5C:
+// 	  b         .loc_0x5C
 
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x1DC(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x60:
+// 	  lwz       r3, 0x4(r27)
+// 	  rlwinm    r0,r31,2,0,29
+// 	  mr        r4, r28
+// 	  mr        r5, r29
+// 	  lwzx      r3, r3, r0
+// 	  stw       r3, 0x1DC(r28)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lmw       r27, 0xC(r1)
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F7730
  * Size:	000084
  */
-void registerState__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ24Game37FSMState<Game::ItemDownFloor::Item>()
-{
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+// void registerState__Q24Game41StateMachine<Game::ItemDownFloor::Item> FPQ24Game37FSMState<Game::ItemDownFloor::Item>()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r6, 0x8(r3)
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r6, r0
+// 	  bgelr-
+// 	  lwz       r5, 0x4(r3)
+// 	  rlwinm    r0,r6,2,0,29
+// 	  stwx      r4, r5, r0
+// 	  lwz       r5, 0x4(r4)
+// 	  cmpwi     r5, 0
+// 	  blt-      .loc_0x34
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r5, r0
+// 	  blt-      .loc_0x3C
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
+// 	.loc_0x34:
+// 	  li        r0, 0
+// 	  b         .loc_0x40
 
-	.loc_0x3C:
-	  li        r0, 0x1
+// 	.loc_0x3C:
+// 	  li        r0, 0x1
 
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
-}
+// 	.loc_0x40:
+// 	  rlwinm.   r0,r0,0,24,31
+// 	  beqlr-
+// 	  stw       r3, 0x8(r4)
+// 	  lwz       r0, 0x8(r3)
+// 	  lwz       r6, 0x4(r4)
+// 	  lwz       r5, 0x10(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r6, r5, r0
+// 	  lwz       r0, 0x4(r4)
+// 	  lwz       r5, 0x8(r3)
+// 	  lwz       r4, 0x14(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r5, r4, r0
+// 	  lwz       r4, 0x8(r3)
+// 	  addi      r0, r4, 0x1
+// 	  stw       r0, 0x8(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F77B4
  * Size:	000044
  */
-void platCallback__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State> FRQ24Game9PlatEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+// void platCallback__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State>
+// FRQ24Game9PlatEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x2C(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F77F8
  * Size:	000044
  */
-void collisionCallback__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State>
-FRQ24Game9CollEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+// void collisionCallback__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State>
+// FRQ24Game9CollEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x30(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F783C
  * Size:	000044
  */
-void bounceCallback__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State> FPQ23Sys8Triangle()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
+// void bounceCallback__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State>
+// FPQ23Sys8Triangle()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r6, r3
+// 	  mr        r5, r4
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x1DC(r3)
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x34
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r6
+// 	  lwz       r12, 0x28(r12)
+// 	  mtctr     r12
+// 	  bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F7880
  * Size:	000028
  */
-void __sinit_itemDownFloor_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804BC480@ha
-	stw      r0, lbl_80515B58@sda21(r13)
-	stfsu    f0, lbl_804BC480@l(r3)
-	stfs     f0, lbl_80515B5C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_itemDownFloor_cpp()
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804BC480@ha
+// 	stw      r0, lbl_80515B58@sda21(r13)
+// 	stfsu    f0, lbl_804BC480@l(r3)
+// 	stfs     f0, lbl_80515B5C@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F78A8
  * Size:	000008
  */
-void @376 @onKeyEvent__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State>
-FRCQ28SysShape8KeyEvent()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x178
-	  b         -0x324
-	*/
-}
+// void @376 @onKeyEvent__Q24Game92FSMItem<Game::ItemDownFloor::Item, Game::ItemDownFloor::FSM, Game::ItemDownFloor::State>
+// FRCQ28SysShape8KeyEvent()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x178
+// 	  b         -0x324
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F78B0
  * Size:	000008
  */
-void @376 @Game::ItemDownFloor::Item::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	addi     r3, r3, -376
-	b        onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent
-	*/
-}
+// void @376 @Game::ItemDownFloor::Item::onKeyEvent(SysShape::KeyEvent const&)
+// {
+// 	/*
+// 	addi     r3, r3, -376
+// 	b        onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F78B8
  * Size:	000008
  */
-void @480 @Game::ItemDownFloor::Item::getCarryInfoParam(CarryInfoParam&)
-{
-	/*
-	addi     r3, r3, -480
-	b        getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam
-	*/
-}
+// void @480 @Game::ItemDownFloor::Item::getCarryInfoParam(CarryInfoParam&)
+// {
+// 	/*
+// 	addi     r3, r3, -480
+// 	b        getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801F78C0
  * Size:	000008
  */
-@48 @Game::ItemDownFloor::Mgr::~Mgr()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q34Game13ItemDownFloor3MgrFv
-	*/
-}
+// @48 @Game::ItemDownFloor::Mgr::~Mgr()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q34Game13ItemDownFloor3MgrFv
+// 	*/
+// }
+
+} // namespace Game

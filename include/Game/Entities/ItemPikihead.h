@@ -10,6 +10,17 @@ namespace Game {
 namespace ItemPikihead {
 struct Item;
 
+enum cState {
+	PIKIHEADSTATE_Fall = 0,
+	PIKIHEADSTATE_Bury,
+	PIKIHEADSTATE_Wait,
+	PIKIHEADSTATE_Tane,
+	PIKIHEADSTATE_Hatuga,
+	PIKIHEADSTATE_Grow,
+	PIKIHEADSTATE_Siore,
+	PIKIHEADSTATE_COUNT
+};
+
 struct InitArg : public ItemInitArg {
 	inline InitArg(EPikiKind pikiKind, Vector3f& vec)
 	{
@@ -52,123 +63,159 @@ struct State : public ItemState<Item> {
 	{
 	}
 
-	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24 (weak)
+	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
 };
 
 struct BuryState : public State {
-	// needs an inline ctor probably
+	inline BuryState()
+	    : State(PIKIHEADSTATE_Bury)
+	{
+	}
 
-	virtual void init(Item*, StateArg*);                       // _08
-	virtual void exec(Item*);                                  // _0C
-	virtual void cleanup(Item*);                               // _10
-	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
+	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void exec(Item* item);                                           // _0C
+	virtual void cleanup(Item* item);                                        // _10
+	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C;        // _0C
+	bool mAnimDone; // _10
+	f32 mTimer;     // _14
 };
 
 struct FallState : public State {
-	// needs an inline ctor probably
+	inline FallState()
+	    : State(PIKIHEADSTATE_Fall)
+	{
+	}
 
-	virtual void init(Item*, StateArg*);             // _08
-	virtual void exec(Item*);                        // _0C
-	virtual void cleanup(Item*);                     // _10
-	virtual void onBounce(Item*, Sys::Triangle*);    // _28
-	virtual void onPlatCollision(Item*, PlatEvent&); // _2C
+	virtual void init(Item* item, StateArg* arg);                   // _08
+	virtual void exec(Item* item);                                  // _0C
+	virtual void cleanup(Item* item);                               // _10
+	virtual void onBounce(Item*, Sys::Triangle*);                   // _28
+	virtual void onPlatCollision(Item* item, PlatEvent& platEvent); // _2C
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C; // _0C
+	f32 _10; // _10
+	f32 _14; // _14
 };
 
 struct GrowState : public State {
-	// needs an inline ctor probably
+	inline GrowState()
+	    : State(PIKIHEADSTATE_Grow)
+	{
+	}
 
-	virtual void init(Item*, StateArg*);                       // _08
-	virtual void exec(Item*);                                  // _0C
-	virtual void cleanup(Item*);                               // _10
-	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
+	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void exec(Item* item);                                           // _0C
+	virtual void cleanup(Item* item);                                        // _10
+	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C; // _0C
 };
 
 struct HatugaState : public State {
-	// needs an inline ctor probably
+	inline HatugaState()
+	    : State(PIKIHEADSTATE_Hatuga)
+	{
+	}
 
-	virtual void init(Item*, StateArg*);                       // _08
-	virtual void exec(Item*);                                  // _0C
-	virtual void cleanup(Item*);                               // _10
-	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
+	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void exec(Item* item);                                           // _0C
+	virtual void cleanup(Item* item);                                        // _10
+	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C; // _0C
 };
 
 struct SioreState : public State {
-	// needs an inline ctor probably
+	inline SioreState()
+	    : State(PIKIHEADSTATE_Siore)
+	{
+	}
 
-	virtual void init(Item*, StateArg*);                       // _08
-	virtual void exec(Item*);                                  // _0C
-	virtual void cleanup(Item*);                               // _10
-	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
+	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void exec(Item* item);                                           // _0C
+	virtual void cleanup(Item* item);                                        // _10
+	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C;        // _0C
+	f32 mTimer;     // _10
+	bool mAnimDone; // _14
 };
 
 struct TaneState : public State {
-	// needs an inline ctor probably
+	inline TaneState()
+	    : State(PIKIHEADSTATE_Tane)
+	{
+	}
 
-	virtual void init(Item*, StateArg*);                       // _08
-	virtual void exec(Item*);                                  // _0C
-	virtual void cleanup(Item*);                               // _10
-	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
+	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void exec(Item* item);                                           // _0C
+	virtual void cleanup(Item* item);                                        // _10
+	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C;        // _0C
+	bool mAnimDone; // _10
+	f32 mTimer;     // _14
 };
 
 struct WaitState : public State {
-	// needs an inline ctor probably
+	inline WaitState()
+	    : State(PIKIHEADSTATE_Wait)
+	{
+	}
 
-	virtual void init(Item*, StateArg*);                       // _08
-	virtual void exec(Item*);                                  // _0C
-	virtual void cleanup(Item*);                               // _10
-	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
+	virtual void init(Item* item, StateArg* arg);                            // _08
+	virtual void exec(Item* item);                                           // _0C
+	virtual void cleanup(Item* item);                                        // _10
+	virtual void onKeyEvent(Item* item, const SysShape::KeyEvent& keyEvent); // _24
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C[2]; // _0C
 };
 
 struct Item : public FSMItem<Item, FSM, State> {
 	Item();
 
-	virtual void onInit(CreatureInitArg*);                    // _30
-	virtual void onKill(CreatureKillArg*);                    // _34
-	virtual void doSimulation(f32);                           // _4C
-	virtual void getLODSphere(Sys::Sphere& lodSphere);        // _140
-	virtual char* getCreatureName();                          // _1A8 (weak)
-	virtual void makeTrMatrix();                              // _1C4
-	virtual void doAI();                                      // _1C8
-	virtual void changeMaterial();                            // _1D0
-	virtual bool interactFue(InteractFue&);                   // _1F4
-	virtual void updateBoundSphere();                         // _210
-	virtual void onSetPosition();                             // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _220 (weak)
+	virtual void onInit(CreatureInitArg* settings);              // _30
+	virtual void onKill(CreatureKillArg* settings);              // _34
+	virtual void doSimulation(f32);                              // _4C
+	virtual void getLODSphere(Sys::Sphere& lodSphere);           // _140
+	virtual char* getCreatureName();                             // _1A8 (weak)
+	virtual void makeTrMatrix();                                 // _1C4
+	virtual void doAI();                                         // _1C8
+	virtual void changeMaterial();                               // _1D0
+	virtual bool interactFue(InteractFue&);                      // _1F4
+	virtual void updateBoundSphere();                            // _210
+	virtual void onSetPosition();                                // _21C
+	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent); // _220 (weak)
 
-	void needSave();
-	void cacheSave(Stream&);
-	void cacheLoad(Stream&);
+	bool needSave();
+	void cacheSave(Stream& output);
+	void cacheLoad(Stream& input);
 	bool canPullout();
 
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
 	efx::TPkEffectTane* mEfxTane; // _1E0
 	f32 _1E4;                     // _1E4
-	u8 _1E8[0xC];                 // _1E8, unknown
+	Vector3f _1E8;                // _1E8
 	u16 mColor;                   // _1F4
 	u16 mHeadType;                // _1F6
 };
@@ -176,17 +223,17 @@ struct Item : public FSMItem<Item, FSM, State> {
 struct Mgr : public FixedSizeItemMgr<Item> {
 	Mgr();
 
-	virtual void doSimpleDraw(Viewport*);                                 // _20
-	virtual void onLoadResources();                                       // _48
-	virtual u32 generatorGetID();                                         // _58 (weak)
-	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
-	virtual void onCreateModel(SysShape::Model*);                         // _A0
-	virtual BaseItem* birth();                                            // _A4
-	virtual Item* get(void*);                                             // _AC (weak, thunk at _94)
-	virtual void* getNext(void*);                                         // _B0 (weak, thunk at _88)
-	virtual void* getStart();                                             // _B4 (weak, thunk at _8C)
-	virtual void* getEnd();                                               // _B8 (weak, thunk at _90)
-	virtual ~Mgr();                                                       // _BC (weak)
+	virtual void doSimpleDraw(Viewport*);                                             // _20
+	virtual void onLoadResources();                                                   // _48
+	virtual u32 generatorGetID();                                                     // _58 (weak)
+	virtual Item* generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm); // _5C
+	virtual void onCreateModel(SysShape::Model* model);                               // _A0
+	virtual Item* birth();                                                            // _A4
+	virtual Item* get(void*);                                                         // _AC (weak, thunk at _94)
+	virtual void* getNext(void*);                                                     // _B0 (weak, thunk at _88)
+	virtual void* getStart();                                                         // _B4 (weak, thunk at _8C)
+	virtual void* getEnd();                                                           // _B8 (weak, thunk at _90)
+	virtual ~Mgr();                                                                   // _BC (weak)
 
 	// _00     = VTBL
 	// _00-_7C = FixedSizeItemMgr

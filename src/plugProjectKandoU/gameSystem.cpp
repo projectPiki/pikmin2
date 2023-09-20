@@ -305,7 +305,7 @@ void GameSystem::setFrozen(bool flag, char*) { mIsFrozen = flag; }
  * Address:	801B4F94
  * Size:	00002C
  */
-void GameSystem::setPause(bool toggle, char* str, int id) { startPause(toggle, id, str); }
+u32 GameSystem::setPause(bool toggle, char* str, int id) { startPause(toggle, id, str); }
 
 /*
  * --INFO--

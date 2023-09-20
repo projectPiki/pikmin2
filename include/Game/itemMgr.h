@@ -182,26 +182,33 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 
 template <typename T>
 struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
-	virtual void doAnimation();                                               // _08 (weak)
-	virtual void doEntry();                                                   // _0C (weak)
-	virtual void doSetView(int viewportNumber);                               // _10 (weak)
-	virtual void doViewCalc();                                                // _14 (weak)
-	virtual void doSimulation(f32 rate);                                      // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx);                                 // _1C (weak)
-	virtual void initDependency();                                            // _38 (weak)
-	virtual void killAll();                                                   // _3C (weak)
-	virtual u32 generatorGetID()                                         = 0; // _58
-	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _5C
-	virtual void onCreateModel(SysShape::Model*);                             // _A0
-	virtual BaseItem* birth();                                                // _A4
-	virtual void kill(T*);                                                    // _A8 (weak)
-	virtual BaseItem* get(void*);                                             // _AC (weak, thunk at _94)
-	virtual void* getNext(void*);                                             // _B0 (weak, thunk at _88)
-	virtual void* getStart();                                                 // _B4 (weak, thunk at _8C)
-	virtual void* getEnd();                                                   // _B8 (weak, thunk at _90)
-	virtual ~FixedSizeItemMgr<T>();                                           // _BC (weak, thunk at _7C)
+	inline FixedSizeItemMgr()
+	    : BaseItemMgr(1)
+	    , Container<T>()
+	    , mMonoObjectMgr()
+	{
+	}
 
-	void createModel(T*);
+	virtual void doAnimation();                                        // _08 (weak)
+	virtual void doEntry();                                            // _0C (weak)
+	virtual void doSetView(int viewportNumber);                        // _10 (weak)
+	virtual void doViewCalc();                                         // _14 (weak)
+	virtual void doSimulation(f32 rate);                               // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx);                          // _1C (weak)
+	virtual void initDependency();                                     // _38 (weak)
+	virtual void killAll();                                            // _3C (weak)
+	virtual u32 generatorGetID()                                  = 0; // _58
+	virtual T* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _5C
+	virtual void onCreateModel(SysShape::Model*);                      // _A0
+	virtual T* birth();                                                // _A4
+	virtual void kill(T*);                                             // _A8 (weak)
+	virtual T* get(void*);                                             // _AC (weak, thunk at _94)
+	virtual void* getNext(void*);                                      // _B0 (weak, thunk at _88)
+	virtual void* getStart();                                          // _B4 (weak, thunk at _8C)
+	virtual void* getEnd();                                            // _B8 (weak, thunk at _90)
+	virtual ~FixedSizeItemMgr<T>() { }                                 // _BC (weak, thunk at _7C)
+
+	SysShape::Model* createModel(T*);
 	void createModelCallback(SysShape::Model*);
 	void createMgr(int, u32);
 	void onAlloc();

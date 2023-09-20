@@ -18,6 +18,8 @@ namespace ItemUjamushi {
 struct Item;
 struct UjaMgr;
 
+enum cState { UJAMUSHISTATE_Wait = 0, UJAMUSHISTATE_Active, UJAMUSHISTATE_Dig, UJAMUSHISTATE_COUNT };
+
 struct InitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
 
@@ -43,36 +45,51 @@ struct State : public ItemState<Item> {
 };
 
 struct ActiveState : public State {
-	// probably needs an inline ctor
+	inline ActiveState()
+	    : State(UJAMUSHISTATE_Active)
+	{
+	}
 
-	virtual void init(Item*, StateArg*); // _08
-	virtual void exec(Item*);            // _0C
-	virtual void cleanup(Item*);         // _10
+	virtual void init(Item* item, StateArg* arg); // _08
+	virtual void exec(Item* item);                // _0C
+	virtual void cleanup(Item* item);             // _10
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C; // _0C
+	u32 _10; // _10
 };
 
 struct DigState : public State {
-	// probably needs an inline ctor
+	inline DigState()
+	    : State(UJAMUSHISTATE_Dig)
+	{
+	}
 
-	virtual void init(Item*, StateArg*); // _08
-	virtual void exec(Item*);            // _0C
-	virtual void cleanup(Item*);         // _10
+	virtual void init(Item* item, StateArg* arg); // _08
+	virtual void exec(Item* item);                // _0C
+	virtual void cleanup(Item* item);             // _10
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C; // _0C
+	u32 _10; // _10
 };
 
 struct WaitState : public State {
-	// probably needs an inline ctor
+	inline WaitState()
+	    : State(UJAMUSHISTATE_Wait)
+	{
+	}
 
-	virtual void init(Item*, StateArg*); // _08
-	virtual void exec(Item*);            // _0C
-	virtual void cleanup(Item*);         // _10
+	virtual void init(Item* item, StateArg* arg); // _08
+	virtual void exec(Item* item);                // _0C
+	virtual void cleanup(Item* item);             // _10
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _0C; // _0C
+	u32 _10; // _10
 };
 
 struct BoidParms : public Parameters {
@@ -115,7 +132,10 @@ struct BoidParameter : public CNode {
 
 	void getParms(int, int, f32, BoidParms&);
 	void newParms();
-	void read(Stream&);
+	void read(Stream& input);
+
+	// unused/inlined:
+	void write(Stream& output);
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -130,23 +150,28 @@ struct Item : public FSMItem<Item, FSM, State> {
 		Matrixf* mMatrix; // _04
 	};
 
-	inline Item(int objTypeID) // probably
-	    : FSMItem(objTypeID)
-	{
-	}
+	Item();
 
-	virtual void onInit(CreatureInitArg*);                  // _30
-	virtual BaseFlockMgr* getFlockMgr();                    // _90 (weak)
-	virtual bool isCollisionFlick();                        // _B0 (weak)
-	virtual bool ignoreAtari(Creature* toIgnore);           // _190
-	virtual void makeTrMatrix();                            // _1C4 (weak)
-	virtual void doAI();                                    // _1C8
-	virtual bool interactFlockAttack(InteractFlockAttack&); // _1EC
-	virtual void updateBoundSphere();                       // _210
-	virtual void onSetPosition();                           // _21C
-	virtual void doSimpleDraw(Viewport*);                   // _224
+	// inline Item(int objTypeID) // probably
+	//     : FSMItem(objTypeID)
+	// {
+	// }
+
+	virtual void onInit(CreatureInitArg* initArg);                      // _30
+	virtual BaseFlockMgr* getFlockMgr();                                // _90 (weak)
+	virtual bool isCollisionFlick();                                    // _B0 (weak)
+	virtual bool ignoreAtari(Creature* toIgnore);                       // _190
+	virtual void makeTrMatrix();                                        // _1C4 (weak)
+	virtual void doAI();                                                // _1C8
+	virtual bool interactFlockAttack(InteractFlockAttack& interaction); // _1EC
+	virtual void updateBoundSphere();                                   // _210
+	virtual void onSetPosition();                                       // _21C
+	virtual void doSimpleDraw(Viewport* viewport);                      // _224
 
 	void setBoidTimer();
+
+	// unused/inlined:
+	void changeBoid();
 
 	// _00      = VTABLE
 	// _00-_1E0 = FSMItem
@@ -172,17 +197,20 @@ struct Mgr : public NodeItemMgr<Item> {
 
 	Mgr();
 
-	virtual void doSimpleDraw(Viewport*);                                 // _20
-	virtual void onLoadResources();                                       // _48
-	virtual u32 generatorGetID();                                         // _58 (weak)
-	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
-	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
-	virtual u32 generatorLocalVersion();                                  // _68 (weak)
-	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual ~Mgr();                                                       // _B4 (weak)
-	virtual char* getCaveName(int);                                       // _B8
-	virtual int getCaveID(char*);                                         // _BC
+	virtual void doSimpleDraw(Viewport* viewport);                                        // _20
+	virtual void onLoadResources();                                                       // _48
+	virtual u32 generatorGetID();                                                         // _58 (weak)
+	virtual BaseItem* generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm); // _5C
+	virtual void generatorWrite(Stream& output, GenItemParm* genParm);                    // _60
+	virtual void generatorRead(Stream&, GenItemParm*, u32);                               // _64
+	virtual u32 generatorLocalVersion();                                                  // _68 (weak)
+	virtual GenItemParm* generatorNewItemParm();                                          // _70
+	virtual ~Mgr();                                                                       // _B4 (weak)
+	virtual char* getCaveName(int);                                                       // _B8
+	virtual int getCaveID(char*);                                                         // _BC
+
+	// unused/inlined:
+	Item* birth();
 
 	// _00      = VTBL
 	// _00-_88  = NodeItemMgr
@@ -194,6 +222,10 @@ struct Mgr : public NodeItemMgr<Item> {
 	f32 _30C;                     // _30C
 	BoidParameter mBoidParameter; // _310
 	MgrParms mMgrParms;           // _5A8
+};
+
+struct UjaParms {
+	UjaParms(); // unused/inlined
 };
 
 struct Uja : public TFlock {
@@ -208,10 +240,18 @@ struct Uja : public TFlock {
 	void updateScale(f32);
 	void update(BoidParms&);
 
-	// _00-_10 = TFlock
-	// _0C     = VTBL
-	Matrixf _10;                  // _10
-	u8 _40;                       // _40
+	inline void doAnimation() { }
+	inline void doDirectDraw(Graphics& gfx) { }
+	inline void doEntry() { }
+	inline void doSetView(int viewportNumber) { }
+	inline void doSimulation(float) { }
+	inline void doViewCalc() { }
+
+	// unused/inlined:
+	void init(Mgr*, Vector3f&);
+	void setPosition(Vector3f& pos);
+
+	// _00-_44 = TFlock
 	Vector3f _44;                 // _44
 	Vector3f _50;                 // _50
 	f32 _5C;                      // _5C
@@ -245,7 +285,7 @@ struct UjaMgrInitArg {
 };
 
 struct UjaMgr : public TFlockMgr<Uja> {
-	UjaMgr(int);
+	UjaMgr(int count);
 
 	virtual void do_update();             // _1C
 	virtual void do_update_boundSphere(); // _20
@@ -254,6 +294,12 @@ struct UjaMgr : public TFlockMgr<Uja> {
 	void init(UjaMgrInitArg&);
 	void test_createUjas();
 	void astonishPikmins();
+
+	// unused/inlined:
+	void updateBlend(int, int, float);
+	void appear();
+	void disappear();
+	void mogure();
 
 	// _00     = VTBL
 	// _00-_6C = TFlockMgr
@@ -266,6 +312,7 @@ struct UjaMgr : public TFlockMgr<Uja> {
 	f32 _A0;                       // _A0
 	BoidParameter* mBoidParameter; // _A4
 	BoidParms mBoidParms;          // _A8
+	void* _310;                    // _310
 };
 
 extern Mgr* mgr;

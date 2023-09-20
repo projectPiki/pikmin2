@@ -14,6 +14,15 @@ struct Item;
 namespace ItemDownFloor {
 struct Item;
 
+enum cState {
+	DOWNFLOORSTATE_Wait = 0,
+	DOWNFLOORSTATE_Damaged,
+	DOWNFLOORSTATE_Down,
+	DOWNFLOORSTATE_Up,
+	DOWNFLOORSTATE_Dead,
+	DOWNFLOORSTATE_COUNT
+};
+
 struct FSM : public ItemFSM<Item> {
 	virtual void init(Item*); // _08
 
@@ -98,7 +107,9 @@ struct WaitState : public State {
 	// _00-_0C = State
 };
 
-struct Item : public FSMItem<Item, FSM, State> {
+struct Item : public FSMItem<Item, FSM, State>, CarryInfoOwner {
+	Item(); // unused/inlined
+
 	virtual void constructor();                               // _2C
 	virtual void onInit(CreatureInitArg*);                    // _30
 	virtual f32 getFaceDir();                                 // _64 (weak)
@@ -119,24 +130,27 @@ struct Item : public FSMItem<Item, FSM, State> {
 	void startDownMotion();
 	void startUpMotion();
 
+	// unused/inlined:
+	void initMotion();
+
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
-	CarryInfoOwner* mCarryInfoOwner; // _1E0
-	PlatInstance* mPlatInstance;     // _1E4
-	int _1E8;                        // _1E8
-	int _1EC;                        // _1EC
-	int _1F0;                        // _1F0
-	BaseItem* _1F4;                  // _1F4
-	CarryInfoMgr* mCarryInfoMgr;     // _1F8
-	bool mIsPressed;                 // _1FC
-	f32 mFaceDir;                    // _200
-	u16 _204;                        // _204, maybe down floor type?
-	TSoundEvent mSoundEvent;         // _208
-	WayPoint* mWayPoint;             // _214
-	Item* mOtherSeesaw;              // _218
-	ID32 _21C;                       // _21C
-	bool mIsSeesawBlock;             // _228
-	bool mIsPaperBag;                // _229
+	// _1E0-_1E4 = CarryInfoOwner
+	PlatInstance* mPlatInstance; // _1E4
+	int _1E8;                    // _1E8
+	int _1EC;                    // _1EC
+	int _1F0;                    // _1F0
+	BaseItem* _1F4;              // _1F4
+	CarryInfoMgr* mCarryInfoMgr; // _1F8
+	bool mIsPressed;             // _1FC
+	f32 mFaceDir;                // _200
+	u16 _204;                    // _204, maybe down floor type?
+	TSoundEvent mSoundEvent;     // _208
+	WayPoint* mWayPoint;         // _214
+	Item* mOtherSeesaw;          // _218
+	ID32 _21C;                   // _21C
+	bool mIsSeesawBlock;         // _228
+	bool mIsPaperBag;            // _229
 };
 
 struct Mgr : public TNodeItemMgr {

@@ -1,11 +1,16 @@
 #include "CollInfo.h"
 #include "Dolphin/mtx.h"
+#include "Game/AILOD.h"
 #include "Game/BaseItem.h"
 #include "Game/Creature.h"
 #include "Game/Interaction.h"
+#include "Game/MapMgr.h"
+#include "Game/MoveInfo.h"
+#include "Game/PlatInstance.h"
 #include "Game/itemMgr.h"
 #include "Game/StateMachine.h"
 #include "Iterator.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 #include "JSystem/JAudio/JAI/JAInter/Object.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/J3D/J3DModel.h"
@@ -767,69 +772,21 @@ void BaseItem::updateTrMatrix() { makeTrMatrix(); }
  */
 void BaseItem::entryShape()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x174(r3)
-	cmplwi   r3, 0
-	beq      lbl_801CC3C0
-	lbz      r0, 0xd8(r31)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_801CC350
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801CC394
-
-lbl_801CC350:
-	lbz      r0, sEntryOpt__Q24Game12BaseHIOParms@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_801CC384
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	beq      lbl_801CC378
-	cmpwi    r0, 3
-	bne      lbl_801CC37C
-
-lbl_801CC378:
-	li       r4, 1
-
-lbl_801CC37C:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_801CC3C0
-
-lbl_801CC384:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801CC394:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1d0(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801CC3C0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mModel == nullptr) {
+		return;
+	}
+	if ((mLod.mFlags & AILOD_FLAG_NEED_SHADOW) != 0) {
+		mModel->show();
+	} else {
+		if (BaseHIOParms::sEntryOpt) {
+			if (!gameSystem->isMultiplayerMode()) {
+				return;
+			}
+		}
+		mModel->hide();
+	}
+	changeMaterial();
+	mModel->getJ3DModel()->entry();
 }
 
 /*
@@ -849,45 +806,7 @@ void BaseItem::doEntry()
  * Address:	801CC40C
  * Size:	000074
  */
-bool BaseItem::stimulate(Game::Interaction& interaction)
-{
-	return (interaction.actCommon(this) ? false : interaction.actItem(this));
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801CC464
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801CC468
-
-lbl_801CC464:
-	li       r3, 0
-
-lbl_801CC468:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool BaseItem::stimulate(Game::Interaction& interaction) { return (interaction.actCommon(this) ? interaction.actItem(this) : false); }
 
 /*
  * --INFO--
@@ -938,48 +857,12 @@ void BaseItem::doAI() { }
  */
 void BaseItem::do_updateLOD()
 {
-	// AILODParm parm;
-	// do_setLODParm(parm);
-	// updateLOD(parm);
-	// if (isMovieActor()) {
-	// 	mLod.mFlags |= AILOD::VisibleOnViewport0 | AILOD::VisibleOnViewport1 | AILOD::FLAG_NEED_SHADOW;
-	// }
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	bl       __ct__Q24Game9AILODParmFv
-	mr       r3, r31
-	addi     r4, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1d8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	addi     r4, r1, 8
-	bl       updateLOD__Q24Game8CreatureFRQ24Game9AILODParm
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801CC5F8
-	lbz      r0, 0xd8(r31)
-	ori      r0, r0, 0x34
-	stb      r0, 0xd8(r31)
-
-lbl_801CC5F8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	AILODParm parm;
+	do_setLODParm(parm);
+	updateLOD(parm);
+	if (isMovieActor()) {
+		mLod.mFlags |= AILOD_FLAG_VISIBLE_VP0 | AILOD_FLAG_VISIBLE_VP1 | AILOD_FLAG_NEED_SHADOW;
+	}
 }
 
 /*
@@ -998,8 +881,15 @@ void BaseItem::updateCollTree()
  * Address:	801CC648
  * Size:	0001C4
  */
-void BaseItem::move(f32)
+void BaseItem::move(f32 p1)
 {
+	Sys::Sphere moveSphere(mPosition, getMapCollisionRadius());
+	MoveInfo info(&moveSphere, &mVelocity, 1.0f);
+	info.mInfoOrigin = this;
+	mapMgr->traceMove(info, p1);
+	platMgr->traceMove(info, p1);
+	// TODO: looks like an inline involving info._44?
+
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -1395,14 +1285,14 @@ bool InteractFarmHaero::actItem(Game::BaseItem* item) { return item->interactFar
  * Address:	801CCD70
  * Size:	00005C
  */
-BaseItemMgr::BaseItemMgr()
+BaseItemMgr::BaseItemMgr(int p1)
 {
 	mAnimMgr             = nullptr;
 	mCollPartFactory     = nullptr;
 	mObjectPathComponent = nullptr;
 	mArchive             = nullptr;
 	mModelData           = nullptr;
-	mName                = "BaseItem";
+	mItemName            = "BaseItem";
 	mResourceNode        = nullptr;
 	_10                  = 0;
 	_14                  = 0;
@@ -1606,68 +1496,14 @@ PlatAttacher* BaseItemMgr::loadPlatAttacher(JKRFileLoader* loader, char* path)
 	// It clearly doesn't, given the assertion was written in this file....
 	void* data = JKRFileLoader::getGlbResource(path, loader);
 	// Line 0x404: platAttacher not found. :-)
-	JUT_ASSERTLINE(1028, data != nullptr, "platAttacher %s not found !\n", path);
-	RamStream stream(data, -1);
-	stream.mMode = STREAM_MODE_BINARY;
-	attacher->read(stream);
-	return attacher;
-	/*
-	stwu     r1, -0x440(r1)
-	mflr     r0
-	li       r3, 0xc
-	stw      r0, 0x444(r1)
-	stw      r31, 0x43c(r1)
-	stw      r30, 0x438(r1)
-	mr       r30, r5
-	stw      r29, 0x434(r1)
-	mr       r29, r4
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_801CD340
-	bl       __ct__12PlatAttacherFv
-	mr       r31, r3
-
-lbl_801CD340:
-	mr       r3, r30
-	mr       r4, r29
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	cmplwi   r3, 0
-	bne      lbl_801CD378
-	lis      r3, lbl_80480390@ha
-	lis      r4, lbl_80480418@ha
-	addi     r5, r4, lbl_80480418@l
-	mr       r6, r30
-	addi     r3, r3, lbl_80480390@l
-	li       r4, 0x404
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_801CD3A8
-
-lbl_801CD378:
-	mr       r4, r3
-	addi     r3, r1, 8
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 0
-	stw      r0, 0x14(r1)
-	b        lbl_801CD398
-	stw      r0, 0x41c(r1)
-
-lbl_801CD398:
-	mr       r3, r31
-	addi     r4, r1, 8
-	bl       read__12PlatAttacherFR6Stream
-	mr       r3, r31
-
-lbl_801CD3A8:
-	lwz      r0, 0x444(r1)
-	lwz      r31, 0x43c(r1)
-	lwz      r30, 0x438(r1)
-	lwz      r29, 0x434(r1)
-	mtlr     r0
-	addi     r1, r1, 0x440
-	blr
-	*/
+	if (data == nullptr) {
+		JUT_PANICLINE(1028, "platAttacher %s not found !\n", path);
+	} else {
+		RamStream stream(data, -1);
+		stream.resetPosition(false, -1);
+		attacher->read(stream);
+		return attacher;
+	}
 }
 
 /*
@@ -1697,7 +1533,7 @@ void BaseItemMgr::setupSoundViewerAndBas() { }
  * Size:	00014C
  */
 TNodeItemMgr::TNodeItemMgr()
-    : BaseItemMgr()
+    : BaseItemMgr(0)
     , Container<BaseItem>()
     , mNodeObjectMgr()
 {
@@ -2581,90 +2417,90 @@ BaseItemMgr* ItemMgr::getMgrByID(ID32& id)
  * Address:	801CF4B4
  * Size:	00011C
  */
-TNodeItemMgr::~TNodeItemMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801CF5B4
-	lis      r3, __vt__Q24Game12TNodeItemMgr@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, __vt__Q24Game12TNodeItemMgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x74
-	stw      r0, 0x30(r30)
-	beq      lbl_801CF570
-	lis      r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
-	addic.   r3, r30, 0x6c
-	addi     r4, r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
-	stw      r4, 0x4c(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_801CF520
-	lis      r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
-	addi     r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
-	stw      r0, 0x6c(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
+// TNodeItemMgr::~TNodeItemMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_801CF5B4
+// 	lis      r3, __vt__Q24Game12TNodeItemMgr@ha
+// 	addic.   r0, r30, 0x4c
+// 	addi     r3, r3, __vt__Q24Game12TNodeItemMgr@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x74
+// 	stw      r0, 0x30(r30)
+// 	beq      lbl_801CF570
+// 	lis      r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
+// 	addic.   r3, r30, 0x6c
+// 	addi     r4, r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
+// 	stw      r4, 0x4c(r30)
+// 	addi     r0, r4, 0x2c
+// 	stw      r0, 0x68(r30)
+// 	beq      lbl_801CF520
+// 	lis      r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
+// 	addi     r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
+// 	stw      r0, 0x6c(r30)
+// 	li       r4, 0
+// 	bl       __dt__5CNodeFv
 
-lbl_801CF520:
-	addic.   r0, r30, 0x4c
-	beq      lbl_801CF570
-	lis      r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
-	stw      r3, 0x4c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_801CF570
-	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-	stw      r0, 0x4c(r30)
-	beq      lbl_801CF570
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x4c
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x4c(r30)
-	bl       __dt__5CNodeFv
+// lbl_801CF520:
+// 	addic.   r0, r30, 0x4c
+// 	beq      lbl_801CF570
+// 	lis      r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
+// 	addic.   r0, r30, 0x4c
+// 	addi     r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
+// 	stw      r3, 0x4c(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x68(r30)
+// 	beq      lbl_801CF570
+// 	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
+// 	addic.   r0, r30, 0x4c
+// 	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
+// 	stw      r0, 0x4c(r30)
+// 	beq      lbl_801CF570
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	addi     r3, r30, 0x4c
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0x4c(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_801CF570:
-	addic.   r0, r30, 0x30
-	beq      lbl_801CF5A4
-	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-	addic.   r0, r30, 0x30
-	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-	stw      r0, 0x30(r30)
-	beq      lbl_801CF5A4
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x30(r30)
-	bl       __dt__5CNodeFv
+// lbl_801CF570:
+// 	addic.   r0, r30, 0x30
+// 	beq      lbl_801CF5A4
+// 	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
+// 	addic.   r0, r30, 0x30
+// 	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
+// 	stw      r0, 0x30(r30)
+// 	beq      lbl_801CF5A4
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	addi     r3, r30, 0x30
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0x30(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_801CF5A4:
-	extsh.   r0, r31
-	ble      lbl_801CF5B4
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_801CF5A4:
+// 	extsh.   r0, r31
+// 	ble      lbl_801CF5B4
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_801CF5B4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801CF5B4:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * kill__Q24Game12TNodeItemMgrFPQ24Game8BaseItem

@@ -185,6 +185,8 @@ struct ItemState : public FSMState<T> {
 
 template <typename ItemClass, typename FSMClass, typename StateClass>
 struct FSMItem : public BaseItem {
+	typedef StateClass StateType;
+
 	inline FSMItem(int objTypeID)
 	    : BaseItem(objTypeID)
 	    , mFsm(nullptr)
@@ -229,6 +231,8 @@ struct FSMItem : public BaseItem {
 		}
 	}
 
+	int getStateID();
+
 	FSMClass* mFsm;            // _1D8
 	StateClass* mCurrentState; // _1DC
 };
@@ -237,6 +241,7 @@ template <typename ItemClass, typename FSMClass, typename StateClass>
 struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
 	inline WorkItem(int objTypeID)
 	    : FSMItem<ItemClass, FSMClass, StateClass>(objTypeID)
+	    , mSoundEvent()
 	{
 	}
 

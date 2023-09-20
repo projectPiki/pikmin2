@@ -142,7 +142,7 @@ namespace Game {
  * Address:	801C1110
  * Size:	000034
  */
-void VsGameSection::section_fadeout() { mState->on_section_fadeout(this); }
+void VsGameSection::section_fadeout() { mCurrentState->on_section_fadeout(this); }
 
 /*
  * --INFO--
@@ -225,11 +225,11 @@ void VsGameSection::onInit()
  * Address:	801C13E4
  * Size:	000034
  */
-void StateMachine<VsGameSection>::start(VsGameSection* section, int stateID, StateArg* arg)
-{
-	section->mState = nullptr;
-	transit(section, stateID, arg);
-}
+// void StateMachine<VsGameSection>::start(VsGameSection* section, int stateID, StateArg* arg)
+// {
+// 	section->mCurrentState = nullptr;
+// 	transit(section, stateID, arg);
+// }
 
 /*
  * --INFO--
@@ -293,8 +293,8 @@ bool VsGameSection::doUpdate()
  */
 void VsGameSection::pre2dDraw(Graphics& gfx)
 {
-	if (mState) {
-		mState->pre2dDraw(gfx, this);
+	if (mCurrentState) {
+		mCurrentState->pre2dDraw(gfx, this);
 	}
 }
 
@@ -305,8 +305,8 @@ void VsGameSection::pre2dDraw(Graphics& gfx)
  */
 void VsGameSection::doDraw(Graphics& gfx)
 {
-	if (!mIsMenuRunning && mState) {
-		mState->draw(this, gfx);
+	if (!mIsMenuRunning && mCurrentState) {
+		mCurrentState->draw(this, gfx);
 	}
 }
 
@@ -475,8 +475,8 @@ void VsGameSection::loadVsStageList()
  */
 void VsGameSection::gmOrimaDown(int arg)
 {
-	if (mState) {
-		mState->onOrimaDown(this, arg);
+	if (mCurrentState) {
+		mCurrentState->onOrimaDown(this, arg);
 	}
 }
 
@@ -492,7 +492,7 @@ void VsGameSection::gmPikminZero() { }
  * Address:	801C1C5C
  * Size:	00003C
  */
-void VsGameSection::goNextFloor(ItemHole::Item* hole) { mState->onNextFloor(this, hole); }
+void VsGameSection::goNextFloor(ItemHole::Item* hole) { mCurrentState->onNextFloor(this, hole); }
 
 /*
  * --INFO--
@@ -501,7 +501,7 @@ void VsGameSection::goNextFloor(ItemHole::Item* hole) { mState->onNextFloor(this
  */
 void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controller)
 {
-	if (mState->goingToCave(this)) {
+	if (mCurrentState->goingToCave(this)) {
 		return;
 	}
 
@@ -666,8 +666,8 @@ void VsGameSection::onMovieStart(MovieConfig* movie, u32 param_2, u32 playerMode
 	}
 
 	BaseGameSection::setCamController();
-	if (mState) {
-		mState->onMovieStart(this, movie, param_2, playerMode);
+	if (mCurrentState) {
+		mCurrentState->onMovieStart(this, movie, param_2, playerMode);
 	}
 }
 
@@ -678,8 +678,8 @@ void VsGameSection::onMovieStart(MovieConfig* movie, u32 param_2, u32 playerMode
  */
 void VsGameSection::onMovieDone(MovieConfig* movie, u32 param_2, u32 param_3)
 {
-	if (mState) {
-		mState->onMovieDone(this, movie, param_2, param_3);
+	if (mCurrentState) {
+		mCurrentState->onMovieDone(this, movie, param_2, param_3);
 	}
 }
 
@@ -838,8 +838,8 @@ bool GameMessageVsGetDoping::actVs(VsGameSection* section)
  */
 bool GameMessageVsBattleFinished::actVs(VsGameSection* section)
 {
-	if (section->mState) {
-		section->mState->onBattleFinished(section, mWinningSide, false);
+	if (section->mCurrentState) {
+		section->mCurrentState->onBattleFinished(section, mWinningSide, false);
 	}
 	return true;
 }
@@ -851,8 +851,8 @@ bool GameMessageVsBattleFinished::actVs(VsGameSection* section)
  */
 bool GameMessageVsRedOrSuckStart::actVs(VsGameSection* section)
 {
-	if (section->mState) {
-		section->mState->onRedOrBlueSuckStart(section, mColor, mIsYellow);
+	if (section->mCurrentState) {
+		section->mCurrentState->onRedOrBlueSuckStart(section, mColor, mIsYellow);
 	}
 	return true;
 }
@@ -864,11 +864,11 @@ bool GameMessageVsRedOrSuckStart::actVs(VsGameSection* section)
  */
 bool GameMessageVsGetOtakara::actVs(VsGameSection* section)
 {
-	if (section->mState) {
+	if (section->mCurrentState) {
 		section->mYellowMarbleCounts[_04 - 2]++;
 		PSSetLastBeedamaDirection(_04 == 0, section->mYellowMarbleCounts[_04 - 2] == 3);
 		if (section->mYellowMarbleCounts[_04 - 2] >= 4) {
-			section->mState->onBattleFinished(section, _04, true);
+			section->mCurrentState->onBattleFinished(section, _04, true);
 		}
 	}
 
@@ -1028,8 +1028,8 @@ bool GameMessageVsGotCard::actVs(VsGameSection* section)
  */
 bool GameMessageVsUseCard::actVs(VsGameSection* section)
 {
-	if (section->mState) {
-		if (!section->mState->isCardUsable(section)) {
+	if (section->mCurrentState) {
+		if (!section->mCurrentState->isCardUsable(section)) {
 			return false;
 		}
 	}
@@ -1542,121 +1542,86 @@ void VsGameSection::clearGetCherryCount()
 
 /*
  * --INFO--
- * Address:	801C49B8
- * Size:	000008
- */
-bool VsGameSection::challengeDisablePelplant() { return false; }
-
-/*
- * --INFO--
- * Address:	801C49C0
- * Size:	000008
- */
-bool VsGameSection::player2enabled() { return true; }
-
-/*
- * --INFO--
- * Address:	801C49C8
- * Size:	000008
- */
-char* VsGameSection::getCaveFilename() { return mCaveInfoFilename; }
-
-/*
- * --INFO--
- * Address:	801C49D0
- * Size:	000008
- */
-char* VsGameSection::getEditorFilename() { return mEditFilename; }
-
-/*
- * --INFO--
- * Address:	801C49D8
- * Size:	000008
- */
-int VsGameSection::getVsEditNumber() { return mEditNumber; }
-
-/*
- * --INFO--
  * Address:	801C49E0
  * Size:	000004
  */
-void StateMachine<VsGameSection>::init(VsGameSection*) { }
+// void StateMachine<VsGameSection>::init(VsGameSection*) { }
 
 /*
  * --INFO--
  * Address:	801C49E4
  * Size:	000064
  */
-void StateMachine<VsGameSection>::create(int states)
-{
-	mLimit          = states;
-	mCount          = 0;
-	mStates         = new FSMState<VsGameSection>*[mLimit];
-	mIndexToIDArray = new int[mLimit];
-	mIdToIndexArray = new int[mLimit];
-}
+// void StateMachine<VsGameSection>::create(int states)
+// {
+// 	mLimit          = states;
+// 	mCount          = 0;
+// 	mStates         = new FSMState<VsGameSection>*[mLimit];
+// 	mIndexToIDArray = new int[mLimit];
+// 	mIdToIndexArray = new int[mLimit];
+// }
 
 /*
  * --INFO--
  * Address:	801C4A48
  * Size:	00009C
  */
-void StateMachine<VsGameSection>::transit(VsGameSection* section, int stateID, StateArg* arg)
-{
+// void StateMachine<VsGameSection>::transit(VsGameSection* section, int stateID, StateArg* arg)
+// {
 
-	int stateIndex              = mIdToIndexArray[stateID];
-	VsGame::State* currentState = section->mState;
-	if (currentState) {
-		currentState->cleanup(section);
-		mCurrentID = currentState->mId;
-	}
-	if (stateIndex >= mLimit) {
-		while (true)
-			;
-	}
-	VsGame::State* state = static_cast<VsGame::State*>(mStates[stateIndex]);
-	section->mState      = state;
-	state->init(section, arg);
-}
+// 	int stateIndex              = mIdToIndexArray[stateID];
+// 	VsGame::State* currentState = section->mCurrentState;
+// 	if (currentState) {
+// 		currentState->cleanup(section);
+// 		mCurrentID = currentState->mId;
+// 	}
+// 	if (stateIndex >= mLimit) {
+// 		while (true)
+// 			;
+// 	}
+// 	VsGame::State* state   = static_cast<VsGame::State*>(mStates[stateIndex]);
+// 	section->mCurrentState = state;
+// 	state->init(section, arg);
+// }
 
 /*
  * --INFO--
  * Address:	801C4AEC
  * Size:	000084
  */
-void StateMachine<VsGameSection>::registerState(FSMState<VsGameSection>* state)
-{
-	if (mCount >= mLimit) {
-		return;
-	}
-	mStates[mCount] = state;
-	bool inBounds;
-	if (state->mId < 0 || state->mId >= mLimit) {
-		inBounds = false;
-	} else {
-		inBounds = true;
-	}
+// void StateMachine<VsGameSection>::registerState(FSMState<VsGameSection>* state)
+// {
+// 	if (mCount >= mLimit) {
+// 		return;
+// 	}
+// 	mStates[mCount] = state;
+// 	bool inBounds;
+// 	if (state->mId < 0 || state->mId >= mLimit) {
+// 		inBounds = false;
+// 	} else {
+// 		inBounds = true;
+// 	}
 
-	if (!inBounds) {
-		return;
-	}
+// 	if (!inBounds) {
+// 		return;
+// 	}
 
-	state->mStateMachine        = this;
-	mIndexToIDArray[mCount]     = state->mId;
-	mIdToIndexArray[state->mId] = mCount;
-	mCount++;
-}
+// 	state->mStateMachine        = this;
+// 	mIndexToIDArray[mCount]     = state->mId;
+// 	mIdToIndexArray[state->mId] = mCount;
+// 	mCount++;
+// }
 
 /*
  * --INFO--
  * Address:	801C4B70
  * Size:	000038
  */
-void StateMachine<VsGameSection>::exec(VsGameSection* section)
-{
-	if (section->mState) {
-		section->mState->exec(section);
-	}
-}
+// void StateMachine<VsGameSection>::exec(VsGameSection* section)
+// {
+// 	if (section->mCurrentState) {
+// 		section->mCurrentState->exec(section);
+// 	}
+// }
 
 } // namespace Game

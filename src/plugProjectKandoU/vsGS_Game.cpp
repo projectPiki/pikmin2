@@ -166,7 +166,7 @@ void GameState::exec(VsGameSection* section)
 
 	section->BaseGameSection::doUpdate();
 
-	if (section->mState->mId != VGS_Game) {
+	if (section->mCurrentState->mId != VGS_Game) {
 		return;
 	}
 

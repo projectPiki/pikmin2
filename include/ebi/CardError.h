@@ -501,6 +501,8 @@ struct FSMState_WN1_NowCreateNewFile : public FSMState_CardRequest {
 ////////////////////////////////////////////////////////////
 
 struct TMgr : Screen::TMemoryCard {
+	typedef FSMState StateType;
+
 	enum enumStart {
 		Start_NoCard,
 		Start_IOError,

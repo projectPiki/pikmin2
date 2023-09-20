@@ -1082,8 +1082,8 @@ PelletNumberInitArg::PelletNumberInitArg(int p1, int p2)
  */
 bool Pellet::isPickable()
 {
-	if (mPelletState) {
-		return mPelletState->isPickable();
+	if (mCurrentState) {
+		return mCurrentState->isPickable();
 	}
 	return false;
 }
@@ -1163,7 +1163,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 // should be weak, but also not generalisable to a template? who knows
 void StateMachine<Pellet>::start(Pellet* pellet, int stateID, StateArg* arg)
 {
-	pellet->mPelletState = 0;
+	pellet->mCurrentState = nullptr;
 	transit(pellet, stateID, arg);
 }
 

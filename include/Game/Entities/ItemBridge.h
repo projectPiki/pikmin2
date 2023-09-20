@@ -29,7 +29,7 @@ struct BridgeInfo {
 	u32 mStageCount; // _00, unknown
 	u32 _04;         // _04, unknown
 	u32 _08;         // _08, unknown
-	u32 _0C;         // _0C, unknown
+	s32 _0C;         // _0C, unknown
 };
 
 struct FSM : public ItemFSM<Item> {
@@ -66,7 +66,11 @@ struct NormalState : public State {
 
 struct BridgeParms : public CreatureParms {
 	struct Parms : public Parameters {
-		inline Parms(); // probably
+		inline Parms()
+		    : Parameters(nullptr, "Bridge::Parms")
+		    , mP000(this, 'p000', "ƒ‰ƒCƒt", 100.0f, 0.0f, 40000.0f)
+		{
+		}
 
 		Parm<f32> mP000; // _E8
 	};
@@ -81,9 +85,12 @@ struct BridgeParms : public CreatureParms {
 };
 
 struct Item : public WorkItem<Item, FSM, State> {
-	inline Item(int objType)
-	    : WorkItem(objType)
-	{ // probably needs things in here, just an initial guess
+	inline Item()
+	    : WorkItem(OBJTYPE_Bridge)
+	    , mPlatInstanceAttacher()
+	{
+		mMass            = 0.0f;
+		mStagesRemaining = 0;
 	}
 
 	virtual void constructor();                             // _2C
@@ -110,12 +117,16 @@ struct Item : public WorkItem<Item, FSM, State> {
 	void createWayPoints();
 	Vector3f getStagePos(int);
 	Vector3f getStartPos();
-	void getStageZ(int);
+	f32 getStageZ(int);
 	f32 getStageWidth();
 	Vector3f getBridgeZVec();
 	Vector3f getBridgeXVec();
 	void getBridgePos(Vector3f&, f32&, f32&);
 	void workable(Vector3f&);
+
+	// unused/inlined:
+	f32 getStageDepth();
+	f32 getWorkRadius();
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
@@ -164,9 +175,14 @@ extern Mgr* mgr;
 } // namespace Game
 
 struct GenBridgeParm : public Game::GenItemParm {
+	inline GenBridgeParm()
+	    : GenItemParm()
+	    , _04(0)
+	{
+	}
 
 	// _00     = VTBL
-	s16 _04; // _04
+	u16 _04; // _04
 };
 
 #endif

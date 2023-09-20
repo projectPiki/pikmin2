@@ -102,8 +102,8 @@ struct FSMState_CardRequest : public FSMState {
 
 	virtual void do_init(TMgr*, Game::StateArg*);       // _20
 	virtual void do_exec(TMgr*);                        // _24
-	virtual bool do_cardRequest(TMgr*);                 // _28
-	virtual void do_transitCardReady(TMgr*);            // _2C
+	virtual bool do_cardRequest(TMgr*)      = 0;        // _28
+	virtual void do_transitCardReady(TMgr*) = 0;        // _2C
 	virtual void do_transitCardNoCard(TMgr*);           // _30
 	virtual void do_transitCardIOError(TMgr*);          // _34
 	virtual void do_transitCardWrongDevice(TMgr*);      // _38
@@ -150,6 +150,7 @@ struct FSMState_MountCheck : public FSMState_CardRequest {
 };
 
 struct TMgr : public JKRDisposer {
+	typedef FSMState StateType;
 	enum enumEnd { End_0, End_1, End_2, End_3 };
 
 	TMgr();

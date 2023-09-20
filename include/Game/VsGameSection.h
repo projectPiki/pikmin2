@@ -33,6 +33,7 @@ struct State;
 } // namespace VsGame
 
 struct VsGameSection : public BaseGameSection {
+	typedef VsGame::State StateType;
 	struct DropCardArg {
 		f32 _00; // _00
 		f32 _04; // _04
@@ -50,11 +51,11 @@ struct VsGameSection : public BaseGameSection {
 	virtual void startMainBgm();                                       // _64
 	virtual void section_fadeout();                                    // _68
 	virtual void goNextFloor(ItemHole::Item*);                         // _6C
-	virtual bool challengeDisablePelplant(); /*{ return false; }*/     // _80 (weak)
-	virtual bool player2enabled(); /*{ return true; }*/                // _134 (weak)
-	virtual char* getCaveFilename(); /*{ return mCaveInfoFilename; }*/ // _84 (weak)
-	virtual char* getEditorFilename(); /*{ return mEditFilename; }*/   // _88 (weak)
-	virtual int getVsEditNumber(); /*{ return mEditNumber; }*/         // _8C (weak)
+	virtual bool challengeDisablePelplant() { return false; }          // _80 (weak)
+	virtual bool player2enabled() { return true; }                     // _134 (weak)
+	virtual char* getCaveFilename() { return mCaveInfoFilename; }      // _84 (weak)
+	virtual char* getEditorFilename() { return mEditFilename; }        // _88 (weak)
+	virtual int getVsEditNumber() { return mEditNumber; }              // _8C (weak)
 	virtual void onMovieStart(MovieConfig*, u32, u32);                 // _B0
 	virtual void onMovieDone(MovieConfig*, u32, u32);                  // _B4
 	virtual void gmOrimaDown(int);                                     // _D0
@@ -96,7 +97,7 @@ struct VsGameSection : public BaseGameSection {
 	bool mIsVersusMode;                            // _174
 	VSFifo* mVsFifo;                               // _178
 	StateMachine<Game::VsGameSection>* mFsm;       // _17C
-	VsGame::State* mState;                         // _180
+	VsGame::State* mCurrentState;                  // _180
 	DvdThreadCommand mDvdThreadCommand;            // _184
 	f32 mGhostIconTimers[2];                       // _1F0
 	u8 mMenuFlags;                                 // _1F8

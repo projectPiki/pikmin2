@@ -1,3 +1,6 @@
+#include "Game/routeMgr.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "PSM/WorkItem.h"
 #include "types.h"
 #include "Game/Entities/ItemBridge.h"
 #include "Game/StateMachine.h"
@@ -1001,11 +1004,11 @@ void Item::onInit(Game::CreatureInitArg* settings)
  * Address:	801EE184
  * Size:	000034
  */
-void StateMachine<Game::ItemBridge::Item>::start(Game::ItemBridge::Item* item, int stateID, StateArg* arg)
-{
-	item->mCurrentState = nullptr;
-	transit(item, stateID, arg);
-}
+// void StateMachine<Game::ItemBridge::Item>::start(Game::ItemBridge::Item* item, int stateID, StateArg* arg)
+// {
+// 	item->mCurrentState = nullptr;
+// 	transit(item, stateID, arg);
+// }
 
 /*
  * --INFO--
@@ -1042,1145 +1045,1079 @@ void Item::update()
 	changeMaterial();
 }
 } // namespace ItemBridge
-} // namespace Game
-
-// /*
-//  * --INFO--
-//  * Address:	801EE2C8
-//  * Size:	0001B4
-//  */
-// void ItemBridge::Item::getLODCylinder(Sys::Cylinder&)
-// {
-// 	/*
-// 	stwu     r1, -0xa0(r1)
-// 	mflr     r0
-// 	stw      r0, 0xa4(r1)
-// 	stw      r31, 0x9c(r1)
-// 	mr       r31, r4
-// 	stw      r30, 0x98(r1)
-// 	mr       r30, r3
-// 	mr       r4, r30
-// 	addi     r3, r1, 0x20
-// 	lwz      r12, 0(r30)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lfs      f2, 0x20(r1)
-// 	lfs      f1, 0x24(r1)
-// 	lfs      f0, 0x28(r1)
-// 	stfs     f2, 0x50(r1)
-// 	stfs     f1, 0x54(r1)
-// 	stfs     f0, 0x58(r1)
-// 	lhz      r0, 0x214(r30)
-// 	cmpwi    r0, 1
-// 	beq      lbl_801EE354
-// 	bge      lbl_801EE330
-// 	cmpwi    r0, 0
-// 	bge      lbl_801EE33C
-// 	b        lbl_801EE384
-
-// lbl_801EE330:
-// 	cmpwi    r0, 3
-// 	bge      lbl_801EE384
-// 	b        lbl_801EE370
-
-// lbl_801EE33C:
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	lfs      f0, lbl_80519B14@sda21(r2)
-// 	stfs     f1, 0x44(r1)
-// 	stfs     f1, 0x48(r1)
-// 	stfs     f0, 0x4c(r1)
-// 	b        lbl_801EE384
-
-// lbl_801EE354:
-// 	lfs      f2, lbl_80519B10@sda21(r2)
-// 	lfs      f1, lbl_80519B18@sda21(r2)
-// 	lfs      f0, lbl_80519B1C@sda21(r2)
-// 	stfs     f2, 0x44(r1)
-// 	stfs     f1, 0x48(r1)
-// 	stfs     f0, 0x4c(r1)
-// 	b        lbl_801EE384
-
-// lbl_801EE370:
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	lfs      f0, lbl_80519B20@sda21(r2)
-// 	stfs     f1, 0x44(r1)
-// 	stfs     f1, 0x48(r1)
-// 	stfs     f0, 0x4c(r1)
-
-// lbl_801EE384:
-// 	lfs      f1, lbl_80519B24@sda21(r2)
-// 	addi     r3, r1, 0x5c
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	addi     r4, r1, 0x38
-// 	stfs     f1, 0x38(r1)
-// 	addi     r5, r1, 0x2c
-// 	stfs     f1, 0x3c(r1)
-// 	stfs     f1, 0x40(r1)
-// 	lfs      f1, 0x1f4(r30)
-// 	stfs     f0, 0x2c(r1)
-// 	stfs     f1, 0x30(r1)
-// 	stfs     f0, 0x34(r1)
-// 	bl       "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-// 	addi     r3, r1, 0x5c
-// 	addi     r4, r1, 0x44
-// 	addi     r5, r1, 8
-// 	bl       PSMTXMultVec
-// 	lfs      f5, 8(r1)
-// 	mr       r4, r30
-// 	lfs      f4, 0xc(r1)
-// 	addi     r3, r1, 0x14
-// 	lfs      f3, 0x10(r1)
-// 	lfs      f2, 0x58(r1)
-// 	lfs      f1, 0x54(r1)
-// 	lfs      f0, 0x50(r1)
-// 	fadds    f2, f3, f2
-// 	stfs     f3, 0x4c(r1)
-// 	fadds    f1, f4, f1
-// 	fadds    f0, f5, f0
-// 	stfs     f5, 0x44(r1)
-// 	stfs     f4, 0x48(r1)
-// 	stfs     f0, 0x44(r1)
-// 	stfs     f1, 0x48(r1)
-// 	stfs     f2, 0x4c(r1)
-// 	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-// 	lfs      f3, 0x1c(r1)
-// 	mr       r3, r31
-// 	lfs      f2, lbl_80519B28@sda21(r2)
-// 	addi     r4, r1, 0x50
-// 	lfs      f1, 0x18(r1)
-// 	addi     r5, r1, 0x44
-// 	lfs      f0, 0x14(r1)
-// 	fmuls    f5, f3, f2
-// 	lfs      f6, 0x58(r1)
-// 	fmuls    f3, f1, f2
-// 	lfs      f4, 0x54(r1)
-// 	fmuls    f0, f0, f2
-// 	lfs      f2, 0x50(r1)
-// 	fsubs    f5, f6, f5
-// 	lfs      f1, lbl_80519B2C@sda21(r2)
-// 	fsubs    f3, f4, f3
-// 	fsubs    f0, f2, f0
-// 	stfs     f5, 0x58(r1)
-// 	stfs     f0, 0x50(r1)
-// 	stfs     f3, 0x54(r1)
-// 	bl       "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
-// 	lwz      r0, 0xa4(r1)
-// 	lwz      r31, 0x9c(r1)
-// 	lwz      r30, 0x98(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0xa0
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE47C
-//  * Size:	000044
-//  */
-// void ItemBridge::Item::do_updateLOD()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	stw      r0, 0x24(r1)
-// 	stw      r31, 0x1c(r1)
-// 	mr       r31, r3
-// 	addi     r3, r1, 8
-// 	bl       __ct__Q24Game9AILODParmFv
-// 	li       r0, 1
-// 	mr       r3, r31
-// 	stb      r0, 0x10(r1)
-// 	addi     r4, r1, 8
-// 	bl       updateLOD__Q24Game8CreatureFRQ24Game9AILODParm
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE4C0
-//  * Size:	000004
-//  */
-// void ItemBridge::Item::doDirectDraw(Graphics&) { }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE4C4
-//  * Size:	000048
-//  */
-// void ItemBridge::Item::constructor()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	li       r3, 0x84
-// 	bl       __nw__FUl
-// 	or.      r0, r3, r3
-// 	beq      lbl_801EE4F4
-// 	mr       r4, r31
-// 	bl       __ct__Q23PSM8WorkItemFPQ24Game8BaseItem
-// 	mr       r0, r3
-
-// lbl_801EE4F4:
-// 	stw      r0, 0x17c(r31)
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE50C
-//  * Size:	0000FC
-//  */
-// void ItemBridge::Item::doLoad(Stream&)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	mr       r30, r3
-// 	mr       r3, r31
-// 	bl       readInt__6StreamFv
-// 	stw      r3, 0x218(r30)
-// 	li       r5, 0
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	li       r4, 0
-// 	b        lbl_801EE554
-
-// lbl_801EE544:
-// 	lwz      r3, 0x220(r30)
-// 	addi     r5, r5, 1
-// 	stfsx    f0, r3, r4
-// 	addi     r4, r4, 4
-
-// lbl_801EE554:
-// 	lwz      r0, 0x21c(r30)
-// 	cmpw     r5, r0
-// 	blt      lbl_801EE544
-// 	mr       r3, r31
-// 	bl       readFloat__6StreamFv
-// 	lwz      r4, 0x218(r30)
-// 	lwz      r0, 0x21c(r30)
-// 	cmpw     r4, r0
-// 	blt      lbl_801EE5D8
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	lwz      r12, 0(r30)
-// 	lwz      r12, 0xac(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r3, 0x1fc(r30)
-// 	cmplwi   r3, 0
-// 	beq      lbl_801EE5E4
-// 	lwz      r0, 0x200(r30)
-// 	cmplwi   r0, 0
-// 	beq      lbl_801EE5E4
-// 	li       r4, 1
-// 	bl       setOpen__Q24Game8WayPointFb
-// 	lwz      r3, 0x200(r30)
-// 	li       r4, 1
-// 	bl       setOpen__Q24Game8WayPointFb
-// 	lwz      r3, 0x1fc(r30)
-// 	li       r4, 0
-// 	bl       setWater__Q24Game8WayPointFb
-// 	lwz      r3, 0x200(r30)
-// 	li       r4, 0
-// 	bl       setWater__Q24Game8WayPointFb
-// 	b        lbl_801EE5E4
-
-// lbl_801EE5D8:
-// 	lwz      r3, 0x220(r30)
-// 	slwi     r0, r4, 2
-// 	stfsx    f1, r3, r0
-
-// lbl_801EE5E4:
-// 	lwz      r4, 0x218(r30)
-// 	mr       r3, r30
-// 	bl       setCurrStage__Q34Game10ItemBridge4ItemFi
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE608
-//  * Size:	000074
-//  */
-// void ItemBridge::Item::doSave(Stream&)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	mr       r30, r3
-// 	lwz      r4, 0x218(r3)
-// 	mr       r3, r31
-// 	bl       writeInt__6StreamFi
-// 	lwz      r3, 0x218(r30)
-// 	lwz      r0, 0x21c(r30)
-// 	cmpw     r3, r0
-// 	blt      lbl_801EE650
-// 	lfs      f1, lbl_80519B30@sda21(r2)
-// 	mr       r3, r31
-// 	bl       writeFloat__6StreamFf
-// 	b        lbl_801EE664
-
-// lbl_801EE650:
-// 	lwz      r4, 0x220(r30)
-// 	slwi     r0, r3, 2
-// 	mr       r3, r31
-// 	lfsx     f1, r4, r0
-// 	bl       writeFloat__6StreamFf
-
-// lbl_801EE664:
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE67C
-//  * Size:	000090
-//  */
-// void ItemBridge::Item::onSetPosition()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	stw      r0, 0x24(r1)
-// 	addi     r5, r1, 8
-// 	stw      r31, 0x1c(r1)
-// 	mr       r31, r3
-// 	addi     r4, r31, 0x19c
-// 	lfs      f1, 0x1f4(r3)
-// 	addi     r3, r31, 0x138
-// 	stfs     f0, 8(r1)
-// 	stfs     f1, 0xc(r1)
-// 	stfs     f0, 0x10(r1)
-// 	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-// 	mr       r3, r31
-// 	lwz      r12, 0(r31)
-// 	lwz      r12, 0x3c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r3, mgr__Q24Game10ItemBridge@sda21(r13)
-// 	mr       r4, r31
-// 	addi     r5, r31, 0x204
-// 	bl
-// 	setupPlatInstanceAttacher__Q34Game10ItemBridge3MgrFPQ34Game10ItemBridge4ItemRQ24Game20PlatInstanceAttacher
-// 	addi     r3, r31, 0x204
-// 	li       r4, 1
-// 	bl       fixCollision__Q24Game20PlatInstanceAttacherFb
-// 	mr       r3, r31
-// 	bl       createWayPoints__Q34Game10ItemBridge4ItemFv
-// 	mr       r3, r31
-// 	li       r4, 0
-// 	bl       setCurrStage__Q34Game10ItemBridge4ItemFi
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE70C
-//  * Size:	000024
-//  */
-// void ItemBridge::Item::updateBoundSphere()
-// {
-// 	/*
-// 	lfs      f1, 0x19c(r3)
-// 	lfs      f0, lbl_80519B28@sda21(r2)
-// 	stfs     f1, 0x1c4(r3)
-// 	lfs      f1, 0x1a0(r3)
-// 	stfs     f1, 0x1c8(r3)
-// 	lfs      f1, 0x1a4(r3)
-// 	stfs     f1, 0x1cc(r3)
-// 	stfs     f0, 0x1d0(r3)
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE730
-//  * Size:	000124
-//  */
-// void ItemBridge::Item::changeMaterial()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	stw      r0, 0x24(r1)
-// 	stw      r31, 0x1c(r1)
-// 	stw      r30, 0x18(r1)
-// 	stw      r29, 0x14(r1)
-// 	stw      r28, 0x10(r1)
-// 	mr       r28, r3
-// 	addi     r3, r28, 0x204
-// 	bl       setShapeVisibility__Q24Game20PlatInstanceAttacherFv
-// 	lwz      r3, mgr__Q24Game10ItemBridge@sda21(r13)
-// 	lhz      r4, 0x214(r28)
-// 	bl       getBridgeInfo__Q34Game10ItemBridge3MgrFi
-// 	mr       r31, r3
-// 	lwz      r5, 0xc(r3)
-// 	cmpwi    r5, -1
-// 	beq      lbl_801EE834
-// 	lwz      r3, 0x218(r28)
-// 	lwz      r0, 0x21c(r28)
-// 	cmpw     r3, r0
-// 	bne      lbl_801EE81C
-// 	li       r29, 0
-// 	li       r30, 0
-// 	b        lbl_801EE7F0
-
-// lbl_801EE790:
-// 	srwi     r3, r29, 0x1f
-// 	clrlwi   r0, r29, 0x1f
-// 	xor      r0, r0, r3
-// 	subf.    r0, r3, r0
-// 	bne      lbl_801EE7C8
-// 	lwz      r3, 0x174(r28)
-// 	li       r4, 0
-// 	lwz      r5, 8(r31)
-// 	lwz      r12, 0(r3)
-// 	lhzx     r5, r5, r30
-// 	lwz      r12, 0x28(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	b        lbl_801EE7E8
-
-// lbl_801EE7C8:
-// 	lwz      r3, 0x174(r28)
-// 	li       r4, 1
-// 	lwz      r5, 8(r31)
-// 	lwz      r12, 0(r3)
-// 	lhzx     r5, r5, r30
-// 	lwz      r12, 0x28(r12)
-// 	mtctr    r12
-// 	bctrl
-
-// lbl_801EE7E8:
-// 	addi     r30, r30, 2
-// 	addi     r29, r29, 1
-
-// lbl_801EE7F0:
-// 	lwz      r0, 4(r31)
-// 	cmpw     r29, r0
-// 	blt      lbl_801EE790
-// 	lwz      r3, 0x174(r28)
-// 	li       r4, 1
-// 	lwz      r5, 0xc(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x28(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	b        lbl_801EE834
-
-// lbl_801EE81C:
-// 	lwz      r3, 0x174(r28)
-// 	li       r4, 0
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x28(r12)
-// 	mtctr    r12
-// 	bctrl
-
-// lbl_801EE834:
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	lwz      r30, 0x18(r1)
-// 	lwz      r29, 0x14(r1)
-// 	lwz      r28, 0x10(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE854
-//  * Size:	0001A0
-//  */
-// void ItemBridge::Item::doAI()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	mr       r4, r31
-// 	lwz      r3, 0x1d8(r3)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x10(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	addi     r3, r31, 0x1e0
-// 	bl       update__Q24Game11TSoundEventFv
-// 	cmpwi    r3, 2
-// 	beq      lbl_801EE894
-// 	b        lbl_801EE8E0
-
-// lbl_801EE894:
-// 	lwz      r3, 0x17c(r31)
-// 	lwz      r12, 0x28(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	cmpwi    r3, 0xa
-// 	beq      lbl_801EE8CC
-// 	lis      r3, lbl_80481234@ha
-// 	lis      r5, lbl_80481260@ha
-// 	addi     r3, r3, lbl_80481234@l
-// 	li       r4, 0x1be
-// 	addi     r5, r5, lbl_80481260@l
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801EE8CC:
-// 	lwz      r3, 0x17c(r31)
-// 	lwz      r12, 0x28(r3)
-// 	lwz      r12, 0x90(r12)
-// 	mtctr    r12
-// 	bctrl
-
-// lbl_801EE8E0:
-// 	lbz      r3, 0x1f8(r31)
-// 	cmplwi   r3, 0
-// 	beq      lbl_801EE9E0
-// 	addi     r0, r3, -1
-// 	stb      r0, 0x1f8(r31)
-// 	lbz      r0, 0x1f8(r31)
-// 	cmplwi   r0, 0
-// 	bne      lbl_801EE9E0
-// 	lwz      r4, 0x218(r31)
-// 	mr       r3, r31
-// 	addi     r4, r4, 1
-// 	bl       setCurrStage__Q34Game10ItemBridge4ItemFi
-// 	lwz      r3, 0x218(r31)
-// 	lwz      r0, 0x21c(r31)
-// 	cmpw     r3, r0
-// 	bne      lbl_801EE9E0
-// 	mr       r3, r31
-// 	li       r4, 0
-// 	lwz      r12, 0(r31)
-// 	lwz      r12, 0xac(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-// 	li       r4, 0x181c
-// 	li       r5, 0
-// 	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-// 	lwz      r3, 0x1fc(r31)
-// 	cmplwi   r3, 0
-// 	beq      lbl_801EE98C
-// 	lwz      r0, 0x200(r31)
-// 	cmplwi   r0, 0
-// 	beq      lbl_801EE98C
-// 	li       r4, 1
-// 	bl       setOpen__Q24Game8WayPointFb
-// 	lwz      r3, 0x200(r31)
-// 	li       r4, 1
-// 	bl       setOpen__Q24Game8WayPointFb
-// 	lwz      r3, 0x1fc(r31)
-// 	li       r4, 0
-// 	bl       setWater__Q24Game8WayPointFb
-// 	lwz      r3, 0x200(r31)
-// 	li       r4, 0
-// 	bl       setWater__Q24Game8WayPointFb
-
-// lbl_801EE98C:
-// 	addi     r3, r31, 0x1e0
-// 	bl       finish__Q24Game11TSoundEventFv
-// 	lwz      r3, 0x17c(r31)
-// 	lwz      r12, 0x28(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	cmpwi    r3, 0xa
-// 	beq      lbl_801EE9CC
-// 	lis      r3, lbl_80481234@ha
-// 	lis      r5, lbl_80481260@ha
-// 	addi     r3, r3, lbl_80481234@l
-// 	li       r4, 0x1d7
-// 	addi     r5, r5, lbl_80481260@l
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801EE9CC:
-// 	lwz      r3, 0x17c(r31)
-// 	lwz      r12, 0x28(r3)
-// 	lwz      r12, 0x94(r12)
-// 	mtctr    r12
-// 	bctrl
-
-// lbl_801EE9E0:
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EE9F4
-//  * Size:	00028C
-//  */
-// void ItemBridge::Item::setCurrStage(int)
-// {
-// 	/*
-// 	stwu     r1, -0x70(r1)
-// 	mflr     r0
-// 	stw      r0, 0x74(r1)
-// 	stfd     f31, 0x60(r1)
-// 	psq_st   f31, 104(r1), 0, qr0
-// 	stfd     f30, 0x50(r1)
-// 	psq_st   f30, 88(r1), 0, qr0
-// 	stfd     f29, 0x40(r1)
-// 	psq_st   f29, 72(r1), 0, qr0
-// 	stmw     r27, 0x2c(r1)
-// 	mr       r29, r3
-// 	mr       r30, r4
-// 	lwz      r3, mgr__Q24Game10ItemBridge@sda21(r13)
-// 	lhz      r4, 0x214(r29)
-// 	bl       getBridgeInfo__Q34Game10ItemBridge3MgrFi
-// 	mr       r31, r3
-// 	lwz      r4, 0xc(r3)
-// 	cmpwi    r4, -1
-// 	beq      lbl_801EEB44
-// 	lwz      r0, 0x21c(r29)
-// 	cmpw     r30, r0
-// 	bne      lbl_801EEA98
-// 	li       r28, 0
-// 	b        lbl_801EEA70
-
-// lbl_801EEA54:
-// 	lwz      r4, 8(r31)
-// 	rlwinm   r0, r28, 1, 0xf, 0x1e
-// 	addi     r3, r29, 0x204
-// 	lhzx     r5, r4, r0
-// 	li       r4, 0
-// 	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
-// 	addi     r28, r28, 1
-
-// lbl_801EEA70:
-// 	lwz      r0, 4(r31)
-// 	clrlwi   r3, r28, 0x10
-// 	cmpw     r3, r0
-// 	blt      lbl_801EEA54
-// 	lwz      r0, 0xc(r31)
-// 	addi     r3, r29, 0x204
-// 	li       r4, 1
-// 	clrlwi   r5, r0, 0x10
-// 	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
-// 	b        lbl_801EEBDC
-
-// lbl_801EEA98:
-// 	addi     r3, r29, 0x204
-// 	clrlwi   r5, r4, 0x10
-// 	li       r4, 0
-// 	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
-// 	slwi     r28, r30, 1
-// 	li       r27, 0
-// 	b        lbl_801EEB30
-
-// lbl_801EEAB4:
-// 	cmpw     r4, r28
-// 	bgt      lbl_801EEB14
-// 	srwi     r3, r4, 0x1f
-// 	clrlwi   r0, r4, 0x1f
-// 	xor      r0, r0, r3
-// 	subf     r0, r3, r0
-// 	cmpwi    r0, 1
-// 	beq      lbl_801EEADC
-// 	cmpw     r4, r28
-// 	bne      lbl_801EEAF8
-
-// lbl_801EEADC:
-// 	lwz      r4, 8(r31)
-// 	rlwinm   r0, r27, 1, 0xf, 0x1e
-// 	addi     r3, r29, 0x204
-// 	lhzx     r5, r4, r0
-// 	li       r4, 1
-// 	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
-// 	b        lbl_801EEB2C
-
-// lbl_801EEAF8:
-// 	lwz      r4, 8(r31)
-// 	rlwinm   r0, r27, 1, 0xf, 0x1e
-// 	addi     r3, r29, 0x204
-// 	lhzx     r5, r4, r0
-// 	li       r4, 0
-// 	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
-// 	b        lbl_801EEB2C
-
-// lbl_801EEB14:
-// 	lwz      r4, 8(r31)
-// 	rlwinm   r0, r27, 1, 0xf, 0x1e
-// 	addi     r3, r29, 0x204
-// 	lhzx     r5, r4, r0
-// 	li       r4, 0
-// 	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
-
-// lbl_801EEB2C:
-// 	addi     r27, r27, 1
-
-// lbl_801EEB30:
-// 	lwz      r0, 4(r31)
-// 	clrlwi   r4, r27, 0x10
-// 	cmpw     r4, r0
-// 	blt      lbl_801EEAB4
-// 	b        lbl_801EEBDC
-
-// lbl_801EEB44:
-// 	slwi     r28, r30, 1
-// 	li       r27, 0
-// 	b        lbl_801EEBCC
-
-// lbl_801EEB50:
-// 	cmpw     r4, r28
-// 	bgt      lbl_801EEBB0
-// 	srwi     r3, r4, 0x1f
-// 	clrlwi   r0, r4, 0x1f
-// 	xor      r0, r0, r3
-// 	subf     r0, r3, r0
-// 	cmpwi    r0, 1
-// 	beq      lbl_801EEB78
-// 	cmpw     r4, r28
-// 	bne      lbl_801EEB94
-
-// lbl_801EEB78:
-// 	lwz      r4, 8(r31)
-// 	rlwinm   r0, r27, 1, 0xf, 0x1e
-// 	addi     r3, r29, 0x204
-// 	lhzx     r5, r4, r0
-// 	li       r4, 1
-// 	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
-// 	b        lbl_801EEBC8
-
-// lbl_801EEB94:
-// 	lwz      r4, 8(r31)
-// 	rlwinm   r0, r27, 1, 0xf, 0x1e
-// 	addi     r3, r29, 0x204
-// 	lhzx     r5, r4, r0
-// 	li       r4, 0
-// 	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
-// 	b        lbl_801EEBC8
-
-// lbl_801EEBB0:
-// 	lwz      r4, 8(r31)
-// 	rlwinm   r0, r27, 1, 0xf, 0x1e
-// 	addi     r3, r29, 0x204
-// 	lhzx     r5, r4, r0
-// 	li       r4, 0
-// 	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
-
-// lbl_801EEBC8:
-// 	addi     r27, r27, 1
-
-// lbl_801EEBCC:
-// 	lwz      r0, 4(r31)
-// 	clrlwi   r4, r27, 0x10
-// 	cmpw     r4, r0
-// 	blt      lbl_801EEB50
-
-// lbl_801EEBDC:
-// 	stw      r30, 0x218(r29)
-// 	lwz      r0, 0x218(r29)
-// 	cmpwi    r0, -1
-// 	beq      lbl_801EEC54
-// 	mr       r4, r29
-// 	addi     r3, r1, 8
-// 	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-// 	lfs      f3, 0x10(r1)
-// 	mr       r4, r29
-// 	lfs      f2, lbl_80519B34@sda21(r2)
-// 	addi     r3, r1, 0x14
-// 	lfs      f1, 0xc(r1)
-// 	lfs      f0, 8(r1)
-// 	fmuls    f30, f3, f2
-// 	fmuls    f31, f1, f2
-// 	lwz      r5, 0x218(r29)
-// 	fmuls    f29, f0, f2
-// 	bl       getStagePos__Q34Game10ItemBridge4ItemFi
-// 	lfs      f2, 0x1c(r1)
-// 	lfs      f1, 0x18(r1)
-// 	lfs      f0, 0x14(r1)
-// 	fsubs    f2, f2, f30
-// 	lwz      r3, 0x1fc(r29)
-// 	fsubs    f1, f1, f31
-// 	fsubs    f0, f0, f29
-// 	cmplwi   r3, 0
-// 	beq      lbl_801EEC54
-// 	stfs     f0, 0x4c(r3)
-// 	stfs     f1, 0x50(r3)
-// 	stfs     f2, 0x54(r3)
-
-// lbl_801EEC54:
-// 	psq_l    f31, 104(r1), 0, qr0
-// 	lfd      f31, 0x60(r1)
-// 	psq_l    f30, 88(r1), 0, qr0
-// 	lfd      f30, 0x50(r1)
-// 	psq_l    f29, 72(r1), 0, qr0
-// 	lfd      f29, 0x40(r1)
-// 	lmw      r27, 0x2c(r1)
-// 	lwz      r0, 0x74(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x70
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EEC80
-//  * Size:	0001CC
-//  */
-// void ItemBridge::Item::createWayPoints()
-// {
-// 	/*
-// 	stwu     r1, -0xa0(r1)
-// 	mflr     r0
-// 	stw      r0, 0xa4(r1)
-// 	stfd     f31, 0x90(r1)
-// 	psq_st   f31, 152(r1), 0, qr0
-// 	stfd     f30, 0x80(r1)
-// 	psq_st   f30, 136(r1), 0, qr0
-// 	stfd     f29, 0x70(r1)
-// 	psq_st   f29, 120(r1), 0, qr0
-// 	stw      r31, 0x6c(r1)
-// 	mr       r31, r3
-// 	addi     r3, r1, 0x20
-// 	mr       r4, r31
-// 	bl       getStartPos__Q34Game10ItemBridge4ItemFv
-// 	lwz      r3, mapMgr__4Game@sda21(r13)
-// 	li       r0, 0
-// 	lfs      f29, 0x20(r1)
-// 	lfs      f31, 0x24(r1)
-// 	cmplwi   r3, 0
-// 	lfs      f30, 0x28(r1)
-// 	lfs      f0, lbl_80519B38@sda21(r2)
-// 	stfs     f29, 0x44(r1)
-// 	stfs     f31, 0x48(r1)
-// 	stfs     f30, 0x4c(r1)
-// 	stw      r0, 0x50(r1)
-// 	stb      r0, 0x54(r1)
-// 	stfs     f0, 0x58(r1)
-// 	beq      lbl_801EED34
-// 	lwz      r3, 8(r3)
-// 	cmplwi   r3, 0
-// 	beq      lbl_801EED34
-// 	addi     r4, r1, 0x44
-// 	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
-// 	stw      r3, 0x1fc(r31)
-// 	li       r4, 1
-// 	lwz      r3, 0x1fc(r31)
-// 	stfs     f29, 0x4c(r3)
-// 	stfs     f31, 0x50(r3)
-// 	stfs     f30, 0x54(r3)
-// 	lwz      r3, 0x1fc(r31)
-// 	bl       setBridge__Q24Game8WayPointFb
-// 	lwz      r3, 0x1fc(r31)
-// 	li       r4, 0
-// 	bl       setOpen__Q24Game8WayPointFb
-// 	b        lbl_801EED3C
-
-// lbl_801EED34:
-// 	li       r0, 0
-// 	stw      r0, 0x1fc(r31)
-
-// lbl_801EED3C:
-// 	lwz      r5, 0x21c(r31)
-// 	mr       r4, r31
-// 	addi     r3, r1, 0x14
-// 	addi     r5, r5, -1
-// 	bl       getStagePos__Q34Game10ItemBridge4ItemFi
-// 	lfs      f30, 0x14(r1)
-// 	mr       r4, r31
-// 	lfs      f31, 0x18(r1)
-// 	addi     r3, r1, 8
-// 	lfs      f29, 0x1c(r1)
-// 	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-// 	lfs      f2, 8(r1)
-// 	li       r0, 0
-// 	lfs      f4, lbl_80519B18@sda21(r2)
-// 	lfs      f1, 0xc(r1)
-// 	lfs      f0, 0x10(r1)
-// 	fmuls    f3, f2, f4
-// 	fmuls    f2, f1, f4
-// 	lwz      r3, mapMgr__4Game@sda21(r13)
-// 	fmuls    f1, f0, f4
-// 	lfs      f0, lbl_80519B38@sda21(r2)
-// 	fadds    f30, f30, f3
-// 	fadds    f31, f31, f2
-// 	fadds    f29, f29, f1
-// 	cmplwi   r3, 0
-// 	stfs     f30, 0x2c(r1)
-// 	stfs     f31, 0x30(r1)
-// 	stfs     f29, 0x34(r1)
-// 	stw      r0, 0x38(r1)
-// 	stb      r0, 0x3c(r1)
-// 	stfs     f0, 0x40(r1)
-// 	beq      lbl_801EEE18
-// 	lwz      r3, 8(r3)
-// 	cmplwi   r3, 0
-// 	beq      lbl_801EEE18
-// 	addi     r4, r1, 0x2c
-// 	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
-// 	stw      r3, 0x200(r31)
-// 	li       r4, 1
-// 	lwz      r3, 0x200(r31)
-// 	stfs     f30, 0x4c(r3)
-// 	stfs     f31, 0x50(r3)
-// 	stfs     f29, 0x54(r3)
-// 	lwz      r3, 0x200(r31)
-// 	bl       setBridge__Q24Game8WayPointFb
-// 	lwz      r3, 0x200(r31)
-// 	li       r4, 0
-// 	bl       setOpen__Q24Game8WayPointFb
-// 	lwz      r3, 0x1fc(r31)
-// 	li       r4, 0
-// 	bl       setWater__Q24Game8WayPointFb
-// 	lwz      r3, 0x200(r31)
-// 	li       r4, 0
-// 	bl       setWater__Q24Game8WayPointFb
-// 	b        lbl_801EEE20
-
-// lbl_801EEE18:
-// 	li       r0, 0
-// 	stw      r0, 0x200(r31)
-
-// lbl_801EEE20:
-// 	psq_l    f31, 152(r1), 0, qr0
-// 	lfd      f31, 0x90(r1)
-// 	psq_l    f30, 136(r1), 0, qr0
-// 	lfd      f30, 0x80(r1)
-// 	psq_l    f29, 120(r1), 0, qr0
-// 	lfd      f29, 0x70(r1)
-// 	lwz      r0, 0xa4(r1)
-// 	lwz      r31, 0x6c(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0xa0
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EEE4C
-//  * Size:	0000E8
-//  */
-// void ItemBridge::Item::getStagePos(int)
-// {
-// 	/*
-// 	stwu     r1, -0x40(r1)
-// 	mflr     r0
-// 	stw      r0, 0x44(r1)
-// 	stfd     f31, 0x30(r1)
-// 	psq_st   f31, 56(r1), 0, qr0
-// 	stw      r31, 0x2c(r1)
-// 	stw      r30, 0x28(r1)
-// 	stw      r29, 0x24(r1)
-// 	mr       r30, r4
-// 	mr       r31, r5
-// 	mr       r29, r3
-// 	mr       r3, r30
-// 	mr       r4, r31
-// 	bl       getStageZ__Q34Game10ItemBridge4ItemFi
-// 	fmr      f31, f1
-// 	mr       r4, r30
-// 	addi     r3, r1, 8
-// 	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-// 	lfs      f2, 8(r1)
-// 	cmpwi    r31, 1
-// 	lfs      f1, 0xc(r1)
-// 	lfs      f0, 0x10(r1)
-// 	fmuls    f4, f2, f31
-// 	lfs      f5, 0x19c(r30)
-// 	fmuls    f2, f1, f31
-// 	lfs      f3, 0x1a0(r30)
-// 	fmuls    f0, f0, f31
-// 	lfs      f1, 0x1a4(r30)
-// 	fadds    f4, f5, f4
-// 	fadds    f3, f3, f2
-// 	fadds    f5, f1, f0
-// 	blt      lbl_801EEF04
-// 	addi     r0, r31, -1
-// 	lis      r4, 0x4330019C@ha
-// 	xoris    r3, r0, 0x8000
-// 	lhz      r0, 0x214(r30)
-// 	stw      r3, 0x1c(r1)
-// 	lis      r3, bridgeGrad@ha
-// 	lfd      f2, lbl_80519B40@sda21(r2)
-// 	slwi     r0, r0, 2
-// 	stw      r4, 0x18(r1)
-// 	addi     r3, r3, bridgeGrad@l
-// 	lfsx     f0, r3, r0
-// 	lfd      f1, 0x18(r1)
-// 	fsubs    f1, f1, f2
-// 	fmadds   f3, f1, f0, f3
-
-// lbl_801EEF04:
-// 	stfs     f4, 0(r29)
-// 	stfs     f3, 4(r29)
-// 	stfs     f5, 8(r29)
-// 	psq_l    f31, 56(r1), 0, qr0
-// 	lwz      r0, 0x44(r1)
-// 	lfd      f31, 0x30(r1)
-// 	lwz      r31, 0x2c(r1)
-// 	lwz      r30, 0x28(r1)
-// 	lwz      r29, 0x24(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x40
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EEF34
-//  * Size:	0000A0
-//  */
-// void ItemBridge::Item::getStartPos()
-// {
-// 	/*
-// 	stwu     r1, -0x50(r1)
-// 	mflr     r0
-// 	stw      r0, 0x54(r1)
-// 	stfd     f31, 0x40(r1)
-// 	psq_st   f31, 72(r1), 0, qr0
-// 	stfd     f30, 0x30(r1)
-// 	psq_st   f30, 56(r1), 0, qr0
-// 	stfd     f29, 0x20(r1)
-// 	psq_st   f29, 40(r1), 0, qr0
-// 	stw      r31, 0x1c(r1)
-// 	lfs      f31, 0x4330019C@l(r4)
-// 	mr       r31, r3
-// 	lfs      f30, 0x1a0(r4)
-// 	addi     r3, r1, 8
-// 	lfs      f29, 0x1a4(r4)
-// 	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-// 	lfs      f2, lbl_80519B48@sda21(r2)
-// 	lfs      f0, 8(r1)
-// 	lfs      f1, 0xc(r1)
-// 	fmuls    f0, f0, f2
-// 	lfs      f3, 0x10(r1)
-// 	fmuls    f1, f1, f2
-// 	fmuls    f2, f3, f2
-// 	fsubs    f0, f31, f0
-// 	fsubs    f1, f30, f1
-// 	fsubs    f2, f29, f2
-// 	stfs     f0, 0(r31)
-// 	stfs     f1, 4(r31)
-// 	stfs     f2, 8(r31)
-// 	psq_l    f31, 72(r1), 0, qr0
-// 	lfd      f31, 0x40(r1)
-// 	psq_l    f30, 56(r1), 0, qr0
-// 	lfd      f30, 0x30(r1)
-// 	psq_l    f29, 40(r1), 0, qr0
-// 	lfd      f29, 0x20(r1)
-// 	lwz      r0, 0x54(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x50
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EEFD4
-//  * Size:	00005C
-//  */
-// void ItemBridge::Item::getStageZ(int)
-// {
-// 	/*
-// 	cmpwi    r4, 0
-// 	stwu     r1, -0x10(r1)
-// 	lfs      f1, lbl_80519B4C@sda21(r2)
-// 	ble      lbl_801EF020
-// 	addi     r0, r4, -1
-// 	lis      r4, 0x433001F4@ha
-// 	xoris    r5, r0, 0x8000
-// 	lhz      r0, 0x214(r3)
-// 	stw      r5, 0xc(r1)
-// 	lis      r3, bridgeFirstPos@ha
-// 	lfd      f2, lbl_80519B40@sda21(r2)
-// 	slwi     r0, r0, 2
-// 	stw      r4, 8(r1)
-// 	addi     r3, r3, bridgeFirstPos@l
-// 	lfs      f3, lbl_80519B48@sda21(r2)
-// 	lfd      f1, 8(r1)
-// 	lfsx     f0, r3, r0
-// 	fsubs    f1, f1, f2
-// 	fmadds   f1, f3, f1, f0
-
-// lbl_801EF020:
-// 	lfs      f0, lbl_80519B38@sda21(r2)
-// 	fsubs    f1, f1, f0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000008
-//  */
-// void ItemBridge::Item::getStageDepth()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EF030
-//  * Size:	000008
-//  */
-// void ItemBridge::Item::getStageWidth()
-// {
-// 	/*
-// 	lfs      f1, lbl_80519B50@sda21(r2)
-// 	blr
-// 	*/
-// }
+
+/*
+ * --INFO--
+ * Address:	801EE2C8
+ * Size:	0001B4
+ */
+void ItemBridge::Item::getLODCylinder(Sys::Cylinder&)
+{
+	/*
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stw      r31, 0x9c(r1)
+	mr       r31, r4
+	stw      r30, 0x98(r1)
+	mr       r30, r3
+	mr       r4, r30
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x20(r1)
+	lfs      f1, 0x24(r1)
+	lfs      f0, 0x28(r1)
+	stfs     f2, 0x50(r1)
+	stfs     f1, 0x54(r1)
+	stfs     f0, 0x58(r1)
+	lhz      r0, 0x214(r30)
+	cmpwi    r0, 1
+	beq      lbl_801EE354
+	bge      lbl_801EE330
+	cmpwi    r0, 0
+	bge      lbl_801EE33C
+	b        lbl_801EE384
+
+lbl_801EE330:
+	cmpwi    r0, 3
+	bge      lbl_801EE384
+	b        lbl_801EE370
+
+lbl_801EE33C:
+	lfs      f1, lbl_80519B10@sda21(r2)
+	lfs      f0, lbl_80519B14@sda21(r2)
+	stfs     f1, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	b        lbl_801EE384
+
+lbl_801EE354:
+	lfs      f2, lbl_80519B10@sda21(r2)
+	lfs      f1, lbl_80519B18@sda21(r2)
+	lfs      f0, lbl_80519B1C@sda21(r2)
+	stfs     f2, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	b        lbl_801EE384
+
+lbl_801EE370:
+	lfs      f1, lbl_80519B10@sda21(r2)
+	lfs      f0, lbl_80519B20@sda21(r2)
+	stfs     f1, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+
+lbl_801EE384:
+	lfs      f1, lbl_80519B24@sda21(r2)
+	addi     r3, r1, 0x5c
+	lfs      f0, lbl_80519B10@sda21(r2)
+	addi     r4, r1, 0x38
+	stfs     f1, 0x38(r1)
+	addi     r5, r1, 0x2c
+	stfs     f1, 0x3c(r1)
+	stfs     f1, 0x40(r1)
+	lfs      f1, 0x1f4(r30)
+	stfs     f0, 0x2c(r1)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "makeSR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+	addi     r3, r1, 0x5c
+	addi     r4, r1, 0x44
+	addi     r5, r1, 8
+	bl       PSMTXMultVec
+	lfs      f5, 8(r1)
+	mr       r4, r30
+	lfs      f4, 0xc(r1)
+	addi     r3, r1, 0x14
+	lfs      f3, 0x10(r1)
+	lfs      f2, 0x58(r1)
+	lfs      f1, 0x54(r1)
+	lfs      f0, 0x50(r1)
+	fadds    f2, f3, f2
+	stfs     f3, 0x4c(r1)
+	fadds    f1, f4, f1
+	fadds    f0, f5, f0
+	stfs     f5, 0x44(r1)
+	stfs     f4, 0x48(r1)
+	stfs     f0, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stfs     f2, 0x4c(r1)
+	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
+	lfs      f3, 0x1c(r1)
+	mr       r3, r31
+	lfs      f2, lbl_80519B28@sda21(r2)
+	addi     r4, r1, 0x50
+	lfs      f1, 0x18(r1)
+	addi     r5, r1, 0x44
+	lfs      f0, 0x14(r1)
+	fmuls    f5, f3, f2
+	lfs      f6, 0x58(r1)
+	fmuls    f3, f1, f2
+	lfs      f4, 0x54(r1)
+	fmuls    f0, f0, f2
+	lfs      f2, 0x50(r1)
+	fsubs    f5, f6, f5
+	lfs      f1, lbl_80519B2C@sda21(r2)
+	fsubs    f3, f4, f3
+	fsubs    f0, f2, f0
+	stfs     f5, 0x58(r1)
+	stfs     f0, 0x50(r1)
+	stfs     f3, 0x54(r1)
+	bl       "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+	lwz      r0, 0xa4(r1)
+	lwz      r31, 0x9c(r1)
+	lwz      r30, 0x98(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EE47C
+ * Size:	000044
+ */
+void ItemBridge::Item::do_updateLOD()
+{
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	addi     r3, r1, 8
+	bl       __ct__Q24Game9AILODParmFv
+	li       r0, 1
+	mr       r3, r31
+	stb      r0, 0x10(r1)
+	addi     r4, r1, 8
+	bl       updateLOD__Q24Game8CreatureFRQ24Game9AILODParm
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EE4C0
+ * Size:	000004
+ */
+void ItemBridge::Item::doDirectDraw(Graphics&) { }
+
+/*
+ * --INFO--
+ * Address:	801EE4C4
+ * Size:	000048
+ */
+void ItemBridge::Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
+
+/*
+ * --INFO--
+ * Address:	801EE50C
+ * Size:	0000FC
+ */
+void ItemBridge::Item::doLoad(Stream& input)
+{
+	mStagesRemaining = input.readInt();
+	for (int i = 0; i < mStageCount; i++) {
+		mStageLengthsArray[i] = 0.0f;
+	}
+	f32 currentStageLength = input.readFloat();
+	if (mStagesRemaining >= mStageCount) {
+		setAlive(false);
+		if (_1FC != nullptr && _200 != nullptr) {
+			_1FC->setOpen(true);
+			_200->setOpen(true);
+			_1FC->setWater(false);
+			_200->setWater(false);
+		}
+	} else {
+		mStageLengthsArray[mStagesRemaining] = currentStageLength;
+	}
+	setCurrStage(mStagesRemaining);
+}
+
+/*
+ * --INFO--
+ * Address:	801EE608
+ * Size:	000074
+ */
+void ItemBridge::Item::doSave(Stream& output)
+{
+	output.writeInt(mStagesRemaining);
+	if (mStagesRemaining >= mStageCount) {
+		output.writeFloat(999.0f);
+	} else {
+		output.writeFloat(mStageLengthsArray[mStagesRemaining]);
+	}
+	/*
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r4, 0x218(r3)
+	mr       r3, r31
+	bl       writeInt__6StreamFi
+	lwz      r3, 0x218(r30)
+	lwz      r0, 0x21c(r30)
+	cmpw     r3, r0
+	blt      lbl_801EE650
+	lfs      f1, lbl_80519B30@sda21(r2)
+	mr       r3, r31
+	bl       writeFloat__6StreamFf
+	b        lbl_801EE664
+
+lbl_801EE650:
+	lwz      r4, 0x220(r30)
+	slwi     r0, r3, 2
+	mr       r3, r31
+	lfsx     f1, r4, r0
+	bl       writeFloat__6StreamFf
+
+lbl_801EE664:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EE67C
+ * Size:	000090
+ */
+void ItemBridge::Item::onSetPosition()
+{
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lfs      f0, lbl_80519B10@sda21(r2)
+	stw      r0, 0x24(r1)
+	addi     r5, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	addi     r4, r31, 0x19c
+	lfs      f1, 0x1f4(r3)
+	addi     r3, r31, 0x138
+	stfs     f0, 8(r1)
+	stfs     f1, 0xc(r1)
+	stfs     f0, 0x10(r1)
+	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, mgr__Q24Game10ItemBridge@sda21(r13)
+	mr       r4, r31
+	addi     r5, r31, 0x204
+	bl
+	setupPlatInstanceAttacher__Q34Game10ItemBridge3MgrFPQ34Game10ItemBridge4ItemRQ24Game20PlatInstanceAttacher
+	addi     r3, r31, 0x204
+	li       r4, 1
+	bl       fixCollision__Q24Game20PlatInstanceAttacherFb
+	mr       r3, r31
+	bl       createWayPoints__Q34Game10ItemBridge4ItemFv
+	mr       r3, r31
+	li       r4, 0
+	bl       setCurrStage__Q34Game10ItemBridge4ItemFi
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EE70C
+ * Size:	000024
+ */
+void ItemBridge::Item::updateBoundSphere()
+{
+	mBoundingSphere.mPosition = mPosition;
+	mBoundingSphere.mRadius   = 100.0f;
+	/*
+	lfs      f1, 0x19c(r3)
+	lfs      f0, lbl_80519B28@sda21(r2)
+	stfs     f1, 0x1c4(r3)
+	lfs      f1, 0x1a0(r3)
+	stfs     f1, 0x1c8(r3)
+	lfs      f1, 0x1a4(r3)
+	stfs     f1, 0x1cc(r3)
+	stfs     f0, 0x1d0(r3)
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EE730
+ * Size:	000124
+ */
+void ItemBridge::Item::changeMaterial()
+{
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	addi     r3, r28, 0x204
+	bl       setShapeVisibility__Q24Game20PlatInstanceAttacherFv
+	lwz      r3, mgr__Q24Game10ItemBridge@sda21(r13)
+	lhz      r4, 0x214(r28)
+	bl       getBridgeInfo__Q34Game10ItemBridge3MgrFi
+	mr       r31, r3
+	lwz      r5, 0xc(r3)
+	cmpwi    r5, -1
+	beq      lbl_801EE834
+	lwz      r3, 0x218(r28)
+	lwz      r0, 0x21c(r28)
+	cmpw     r3, r0
+	bne      lbl_801EE81C
+	li       r29, 0
+	li       r30, 0
+	b        lbl_801EE7F0
+
+lbl_801EE790:
+	srwi     r3, r29, 0x1f
+	clrlwi   r0, r29, 0x1f
+	xor      r0, r0, r3
+	subf.    r0, r3, r0
+	bne      lbl_801EE7C8
+	lwz      r3, 0x174(r28)
+	li       r4, 0
+	lwz      r5, 8(r31)
+	lwz      r12, 0(r3)
+	lhzx     r5, r5, r30
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_801EE7E8
+
+lbl_801EE7C8:
+	lwz      r3, 0x174(r28)
+	li       r4, 1
+	lwz      r5, 8(r31)
+	lwz      r12, 0(r3)
+	lhzx     r5, r5, r30
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+
+lbl_801EE7E8:
+	addi     r30, r30, 2
+	addi     r29, r29, 1
+
+lbl_801EE7F0:
+	lwz      r0, 4(r31)
+	cmpw     r29, r0
+	blt      lbl_801EE790
+	lwz      r3, 0x174(r28)
+	li       r4, 1
+	lwz      r5, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_801EE834
+
+lbl_801EE81C:
+	lwz      r3, 0x174(r28)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+
+lbl_801EE834:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EE854
+ * Size:	0001A0
+ */
+void ItemBridge::Item::doAI()
+{
+	/*
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	mr       r4, r31
+	lwz      r3, 0x1d8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	addi     r3, r31, 0x1e0
+	bl       update__Q24Game11TSoundEventFv
+	cmpwi    r3, 2
+	beq      lbl_801EE894
+	b        lbl_801EE8E0
+
+lbl_801EE894:
+	lwz      r3, 0x17c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xa
+	beq      lbl_801EE8CC
+	lis      r3, lbl_80481234@ha
+	lis      r5, lbl_80481260@ha
+	addi     r3, r3, lbl_80481234@l
+	li       r4, 0x1be
+	addi     r5, r5, lbl_80481260@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801EE8CC:
+	lwz      r3, 0x17c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x90(r12)
+	mtctr    r12
+	bctrl
+
+lbl_801EE8E0:
+	lbz      r3, 0x1f8(r31)
+	cmplwi   r3, 0
+	beq      lbl_801EE9E0
+	addi     r0, r3, -1
+	stb      r0, 0x1f8(r31)
+	lbz      r0, 0x1f8(r31)
+	cmplwi   r0, 0
+	bne      lbl_801EE9E0
+	lwz      r4, 0x218(r31)
+	mr       r3, r31
+	addi     r4, r4, 1
+	bl       setCurrStage__Q34Game10ItemBridge4ItemFi
+	lwz      r3, 0x218(r31)
+	lwz      r0, 0x21c(r31)
+	cmpw     r3, r0
+	bne      lbl_801EE9E0
+	mr       r3, r31
+	li       r4, 0
+	lwz      r12, 0(r31)
+	lwz      r12, 0xac(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r4, 0x181c
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	lwz      r3, 0x1fc(r31)
+	cmplwi   r3, 0
+	beq      lbl_801EE98C
+	lwz      r0, 0x200(r31)
+	cmplwi   r0, 0
+	beq      lbl_801EE98C
+	li       r4, 1
+	bl       setOpen__Q24Game8WayPointFb
+	lwz      r3, 0x200(r31)
+	li       r4, 1
+	bl       setOpen__Q24Game8WayPointFb
+	lwz      r3, 0x1fc(r31)
+	li       r4, 0
+	bl       setWater__Q24Game8WayPointFb
+	lwz      r3, 0x200(r31)
+	li       r4, 0
+	bl       setWater__Q24Game8WayPointFb
+
+lbl_801EE98C:
+	addi     r3, r31, 0x1e0
+	bl       finish__Q24Game11TSoundEventFv
+	lwz      r3, 0x17c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xa
+	beq      lbl_801EE9CC
+	lis      r3, lbl_80481234@ha
+	lis      r5, lbl_80481260@ha
+	addi     r3, r3, lbl_80481234@l
+	li       r4, 0x1d7
+	addi     r5, r5, lbl_80481260@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801EE9CC:
+	lwz      r3, 0x17c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x94(r12)
+	mtctr    r12
+	bctrl
+
+lbl_801EE9E0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EE9F4
+ * Size:	00028C
+ */
+void ItemBridge::Item::setCurrStage(int)
+{
+	/*
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stfd     f31, 0x60(r1)
+	psq_st   f31, 104(r1), 0, qr0
+	stfd     f30, 0x50(r1)
+	psq_st   f30, 88(r1), 0, qr0
+	stfd     f29, 0x40(r1)
+	psq_st   f29, 72(r1), 0, qr0
+	stmw     r27, 0x2c(r1)
+	mr       r29, r3
+	mr       r30, r4
+	lwz      r3, mgr__Q24Game10ItemBridge@sda21(r13)
+	lhz      r4, 0x214(r29)
+	bl       getBridgeInfo__Q34Game10ItemBridge3MgrFi
+	mr       r31, r3
+	lwz      r4, 0xc(r3)
+	cmpwi    r4, -1
+	beq      lbl_801EEB44
+	lwz      r0, 0x21c(r29)
+	cmpw     r30, r0
+	bne      lbl_801EEA98
+	li       r28, 0
+	b        lbl_801EEA70
+
+lbl_801EEA54:
+	lwz      r4, 8(r31)
+	rlwinm   r0, r28, 1, 0xf, 0x1e
+	addi     r3, r29, 0x204
+	lhzx     r5, r4, r0
+	li       r4, 0
+	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
+	addi     r28, r28, 1
+
+lbl_801EEA70:
+	lwz      r0, 4(r31)
+	clrlwi   r3, r28, 0x10
+	cmpw     r3, r0
+	blt      lbl_801EEA54
+	lwz      r0, 0xc(r31)
+	addi     r3, r29, 0x204
+	li       r4, 1
+	clrlwi   r5, r0, 0x10
+	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
+	b        lbl_801EEBDC
+
+lbl_801EEA98:
+	addi     r3, r29, 0x204
+	clrlwi   r5, r4, 0x10
+	li       r4, 0
+	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
+	slwi     r28, r30, 1
+	li       r27, 0
+	b        lbl_801EEB30
+
+lbl_801EEAB4:
+	cmpw     r4, r28
+	bgt      lbl_801EEB14
+	srwi     r3, r4, 0x1f
+	clrlwi   r0, r4, 0x1f
+	xor      r0, r0, r3
+	subf     r0, r3, r0
+	cmpwi    r0, 1
+	beq      lbl_801EEADC
+	cmpw     r4, r28
+	bne      lbl_801EEAF8
+
+lbl_801EEADC:
+	lwz      r4, 8(r31)
+	rlwinm   r0, r27, 1, 0xf, 0x1e
+	addi     r3, r29, 0x204
+	lhzx     r5, r4, r0
+	li       r4, 1
+	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
+	b        lbl_801EEB2C
+
+lbl_801EEAF8:
+	lwz      r4, 8(r31)
+	rlwinm   r0, r27, 1, 0xf, 0x1e
+	addi     r3, r29, 0x204
+	lhzx     r5, r4, r0
+	li       r4, 0
+	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
+	b        lbl_801EEB2C
+
+lbl_801EEB14:
+	lwz      r4, 8(r31)
+	rlwinm   r0, r27, 1, 0xf, 0x1e
+	addi     r3, r29, 0x204
+	lhzx     r5, r4, r0
+	li       r4, 0
+	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
+
+lbl_801EEB2C:
+	addi     r27, r27, 1
+
+lbl_801EEB30:
+	lwz      r0, 4(r31)
+	clrlwi   r4, r27, 0x10
+	cmpw     r4, r0
+	blt      lbl_801EEAB4
+	b        lbl_801EEBDC
+
+lbl_801EEB44:
+	slwi     r28, r30, 1
+	li       r27, 0
+	b        lbl_801EEBCC
+
+lbl_801EEB50:
+	cmpw     r4, r28
+	bgt      lbl_801EEBB0
+	srwi     r3, r4, 0x1f
+	clrlwi   r0, r4, 0x1f
+	xor      r0, r0, r3
+	subf     r0, r3, r0
+	cmpwi    r0, 1
+	beq      lbl_801EEB78
+	cmpw     r4, r28
+	bne      lbl_801EEB94
+
+lbl_801EEB78:
+	lwz      r4, 8(r31)
+	rlwinm   r0, r27, 1, 0xf, 0x1e
+	addi     r3, r29, 0x204
+	lhzx     r5, r4, r0
+	li       r4, 1
+	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
+	b        lbl_801EEBC8
+
+lbl_801EEB94:
+	lwz      r4, 8(r31)
+	rlwinm   r0, r27, 1, 0xf, 0x1e
+	addi     r3, r29, 0x204
+	lhzx     r5, r4, r0
+	li       r4, 0
+	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
+	b        lbl_801EEBC8
+
+lbl_801EEBB0:
+	lwz      r4, 8(r31)
+	rlwinm   r0, r27, 1, 0xf, 0x1e
+	addi     r3, r29, 0x204
+	lhzx     r5, r4, r0
+	li       r4, 0
+	bl       setCollision__Q24Game20PlatInstanceAttacherFbUs
+
+lbl_801EEBC8:
+	addi     r27, r27, 1
+
+lbl_801EEBCC:
+	lwz      r0, 4(r31)
+	clrlwi   r4, r27, 0x10
+	cmpw     r4, r0
+	blt      lbl_801EEB50
+
+lbl_801EEBDC:
+	stw      r30, 0x218(r29)
+	lwz      r0, 0x218(r29)
+	cmpwi    r0, -1
+	beq      lbl_801EEC54
+	mr       r4, r29
+	addi     r3, r1, 8
+	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
+	lfs      f3, 0x10(r1)
+	mr       r4, r29
+	lfs      f2, lbl_80519B34@sda21(r2)
+	addi     r3, r1, 0x14
+	lfs      f1, 0xc(r1)
+	lfs      f0, 8(r1)
+	fmuls    f30, f3, f2
+	fmuls    f31, f1, f2
+	lwz      r5, 0x218(r29)
+	fmuls    f29, f0, f2
+	bl       getStagePos__Q34Game10ItemBridge4ItemFi
+	lfs      f2, 0x1c(r1)
+	lfs      f1, 0x18(r1)
+	lfs      f0, 0x14(r1)
+	fsubs    f2, f2, f30
+	lwz      r3, 0x1fc(r29)
+	fsubs    f1, f1, f31
+	fsubs    f0, f0, f29
+	cmplwi   r3, 0
+	beq      lbl_801EEC54
+	stfs     f0, 0x4c(r3)
+	stfs     f1, 0x50(r3)
+	stfs     f2, 0x54(r3)
+
+lbl_801EEC54:
+	psq_l    f31, 104(r1), 0, qr0
+	lfd      f31, 0x60(r1)
+	psq_l    f30, 88(r1), 0, qr0
+	lfd      f30, 0x50(r1)
+	psq_l    f29, 72(r1), 0, qr0
+	lfd      f29, 0x40(r1)
+	lmw      r27, 0x2c(r1)
+	lwz      r0, 0x74(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EEC80
+ * Size:	0001CC
+ */
+void ItemBridge::Item::createWayPoints()
+{
+	/*
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stfd     f31, 0x90(r1)
+	psq_st   f31, 152(r1), 0, qr0
+	stfd     f30, 0x80(r1)
+	psq_st   f30, 136(r1), 0, qr0
+	stfd     f29, 0x70(r1)
+	psq_st   f29, 120(r1), 0, qr0
+	stw      r31, 0x6c(r1)
+	mr       r31, r3
+	addi     r3, r1, 0x20
+	mr       r4, r31
+	bl       getStartPos__Q34Game10ItemBridge4ItemFv
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	li       r0, 0
+	lfs      f29, 0x20(r1)
+	lfs      f31, 0x24(r1)
+	cmplwi   r3, 0
+	lfs      f30, 0x28(r1)
+	lfs      f0, lbl_80519B38@sda21(r2)
+	stfs     f29, 0x44(r1)
+	stfs     f31, 0x48(r1)
+	stfs     f30, 0x4c(r1)
+	stw      r0, 0x50(r1)
+	stb      r0, 0x54(r1)
+	stfs     f0, 0x58(r1)
+	beq      lbl_801EED34
+	lwz      r3, 8(r3)
+	cmplwi   r3, 0
+	beq      lbl_801EED34
+	addi     r4, r1, 0x44
+	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
+	stw      r3, 0x1fc(r31)
+	li       r4, 1
+	lwz      r3, 0x1fc(r31)
+	stfs     f29, 0x4c(r3)
+	stfs     f31, 0x50(r3)
+	stfs     f30, 0x54(r3)
+	lwz      r3, 0x1fc(r31)
+	bl       setBridge__Q24Game8WayPointFb
+	lwz      r3, 0x1fc(r31)
+	li       r4, 0
+	bl       setOpen__Q24Game8WayPointFb
+	b        lbl_801EED3C
+
+lbl_801EED34:
+	li       r0, 0
+	stw      r0, 0x1fc(r31)
+
+lbl_801EED3C:
+	lwz      r5, 0x21c(r31)
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	addi     r5, r5, -1
+	bl       getStagePos__Q34Game10ItemBridge4ItemFi
+	lfs      f30, 0x14(r1)
+	mr       r4, r31
+	lfs      f31, 0x18(r1)
+	addi     r3, r1, 8
+	lfs      f29, 0x1c(r1)
+	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
+	lfs      f2, 8(r1)
+	li       r0, 0
+	lfs      f4, lbl_80519B18@sda21(r2)
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	fmuls    f3, f2, f4
+	fmuls    f2, f1, f4
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	fmuls    f1, f0, f4
+	lfs      f0, lbl_80519B38@sda21(r2)
+	fadds    f30, f30, f3
+	fadds    f31, f31, f2
+	fadds    f29, f29, f1
+	cmplwi   r3, 0
+	stfs     f30, 0x2c(r1)
+	stfs     f31, 0x30(r1)
+	stfs     f29, 0x34(r1)
+	stw      r0, 0x38(r1)
+	stb      r0, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	beq      lbl_801EEE18
+	lwz      r3, 8(r3)
+	cmplwi   r3, 0
+	beq      lbl_801EEE18
+	addi     r4, r1, 0x2c
+	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
+	stw      r3, 0x200(r31)
+	li       r4, 1
+	lwz      r3, 0x200(r31)
+	stfs     f30, 0x4c(r3)
+	stfs     f31, 0x50(r3)
+	stfs     f29, 0x54(r3)
+	lwz      r3, 0x200(r31)
+	bl       setBridge__Q24Game8WayPointFb
+	lwz      r3, 0x200(r31)
+	li       r4, 0
+	bl       setOpen__Q24Game8WayPointFb
+	lwz      r3, 0x1fc(r31)
+	li       r4, 0
+	bl       setWater__Q24Game8WayPointFb
+	lwz      r3, 0x200(r31)
+	li       r4, 0
+	bl       setWater__Q24Game8WayPointFb
+	b        lbl_801EEE20
+
+lbl_801EEE18:
+	li       r0, 0
+	stw      r0, 0x200(r31)
+
+lbl_801EEE20:
+	psq_l    f31, 152(r1), 0, qr0
+	lfd      f31, 0x90(r1)
+	psq_l    f30, 136(r1), 0, qr0
+	lfd      f30, 0x80(r1)
+	psq_l    f29, 120(r1), 0, qr0
+	lfd      f29, 0x70(r1)
+	lwz      r0, 0xa4(r1)
+	lwz      r31, 0x6c(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EEE4C
+ * Size:	0000E8
+ */
+Vector3f ItemBridge::Item::getStagePos(int)
+{
+	/*
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	stw      r29, 0x24(r1)
+	mr       r30, r4
+	mr       r31, r5
+	mr       r29, r3
+	mr       r3, r30
+	mr       r4, r31
+	bl       getStageZ__Q34Game10ItemBridge4ItemFi
+	fmr      f31, f1
+	mr       r4, r30
+	addi     r3, r1, 8
+	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
+	lfs      f2, 8(r1)
+	cmpwi    r31, 1
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	fmuls    f4, f2, f31
+	lfs      f5, 0x19c(r30)
+	fmuls    f2, f1, f31
+	lfs      f3, 0x1a0(r30)
+	fmuls    f0, f0, f31
+	lfs      f1, 0x1a4(r30)
+	fadds    f4, f5, f4
+	fadds    f3, f3, f2
+	fadds    f5, f1, f0
+	blt      lbl_801EEF04
+	addi     r0, r31, -1
+	lis      r4, 0x4330019C@ha
+	xoris    r3, r0, 0x8000
+	lhz      r0, 0x214(r30)
+	stw      r3, 0x1c(r1)
+	lis      r3, bridgeGrad@ha
+	lfd      f2, lbl_80519B40@sda21(r2)
+	slwi     r0, r0, 2
+	stw      r4, 0x18(r1)
+	addi     r3, r3, bridgeGrad@l
+	lfsx     f0, r3, r0
+	lfd      f1, 0x18(r1)
+	fsubs    f1, f1, f2
+	fmadds   f3, f1, f0, f3
+
+lbl_801EEF04:
+	stfs     f4, 0(r29)
+	stfs     f3, 4(r29)
+	stfs     f5, 8(r29)
+	psq_l    f31, 56(r1), 0, qr0
+	lwz      r0, 0x44(r1)
+	lfd      f31, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EEF34
+ * Size:	0000A0
+ */
+Vector3f ItemBridge::Item::getStartPos()
+{
+	/*
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stfd     f30, 0x30(r1)
+	psq_st   f30, 56(r1), 0, qr0
+	stfd     f29, 0x20(r1)
+	psq_st   f29, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	lfs      f31, 0x4330019C@l(r4)
+	mr       r31, r3
+	lfs      f30, 0x1a0(r4)
+	addi     r3, r1, 8
+	lfs      f29, 0x1a4(r4)
+	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
+	lfs      f2, lbl_80519B48@sda21(r2)
+	lfs      f0, 8(r1)
+	lfs      f1, 0xc(r1)
+	fmuls    f0, f0, f2
+	lfs      f3, 0x10(r1)
+	fmuls    f1, f1, f2
+	fmuls    f2, f3, f2
+	fsubs    f0, f31, f0
+	fsubs    f1, f30, f1
+	fsubs    f2, f29, f2
+	stfs     f0, 0(r31)
+	stfs     f1, 4(r31)
+	stfs     f2, 8(r31)
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	psq_l    f30, 56(r1), 0, qr0
+	lfd      f30, 0x30(r1)
+	psq_l    f29, 40(r1), 0, qr0
+	lfd      f29, 0x20(r1)
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EEFD4
+ * Size:	00005C
+ */
+f32 ItemBridge::Item::getStageZ(int p1)
+{
+	f32 v1 = -20.0f;
+	if (0 < p1) {
+		// TODO: Uncomment after declaring bridgeFirstPos.
+		// v1 = p1 * 20.0f; + bridgeFirstPos[mBridgeType];
+	}
+	return v1 - 10.0f;
+	/*
+	cmpwi    r4, 0
+	stwu     r1, -0x10(r1)
+	lfs      f1, lbl_80519B4C@sda21(r2)
+	ble      lbl_801EF020
+	addi     r0, r4, -1
+	lis      r4, 0x433001F4@ha
+	xoris    r5, r0, 0x8000
+	lhz      r0, 0x214(r3)
+	stw      r5, 0xc(r1)
+	lis      r3, bridgeFirstPos@ha
+	lfd      f2, lbl_80519B40@sda21(r2)
+	slwi     r0, r0, 2
+	stw      r4, 8(r1)
+	addi     r3, r3, bridgeFirstPos@l
+	lfs      f3, lbl_80519B48@sda21(r2)
+	lfd      f1, 8(r1)
+	lfsx     f0, r3, r0
+	fsubs    f1, f1, f2
+	fmadds   f1, f3, f1, f0
+
+lbl_801EF020:
+	lfs      f0, lbl_80519B38@sda21(r2)
+	fsubs    f1, f1, f0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+f32 ItemBridge::Item::getStageDepth()
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	801EF030
+ * Size:	000008
+ */
+f32 ItemBridge::Item::getStageWidth()
+{
+	return 150.0f;
+	/*
+	lfs      f1, lbl_80519B50@sda21(r2)
+	blr
+	*/
+}
 
 /*
  * --INFO--
@@ -2196,2410 +2133,2108 @@ Vector3f Game::ItemBridge::Item::getBridgeZVec() { return Vector3f(pikmin2_sinf(
  */
 Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(_1F4), 0.0f, -pikmin2_sinf(_1F4)); }
 
-// /*
-//  * --INFO--
-//  * Address:	801EF194
-//  * Size:	0001F0
-//  */
-// void getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3f RfRf()
-// {
-// 	/*
-// 	stwu     r1, -0x80(r1)
-// 	mflr     r0
-// 	stw      r0, 0x84(r1)
-// 	stfd     f31, 0x70(r1)
-// 	psq_st   f31, 120(r1), 0, qr0
-// 	stfd     f30, 0x60(r1)
-// 	psq_st   f30, 104(r1), 0, qr0
-// 	stw      r31, 0x5c(r1)
-// 	stw      r30, 0x58(r1)
-// 	stw      r29, 0x54(r1)
-// 	stw      r28, 0x50(r1)
-// 	mr       r28, r3
-// 	mr       r29, r4
-// 	lfs      f31, 0x19c(r3)
-// 	mr       r30, r5
-// 	lfs      f30, 0x1a4(r3)
-// 	mr       r31, r6
-// 	mr       r4, r28
-// 	addi     r3, r1, 8
-// 	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-// 	lfs      f0, 8(r1)
-// 	lfs      f2, lbl_80519B48@sda21(r2)
-// 	lfs      f1, 0x10(r1)
-// 	fmuls    f4, f0, f2
-// 	lfs      f0, 0x1f4(r28)
-// 	fmuls    f2, f1, f2
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	lfs      f3, 8(r29)
-// 	fsubs    f4, f31, f4
-// 	fsubs    f5, f30, f2
-// 	lfs      f2, 0(r29)
-// 	fcmpo    cr0, f0, f1
-// 	fsubs    f4, f2, f4
-// 	fsubs    f5, f3, f5
-// 	bge      lbl_801EF24C
-// 	lfs      f1, lbl_80519B58@sda21(r2)
-// 	lis      r3, sincosTable___5JMath@ha
-// 	addi     r3, r3, sincosTable___5JMath@l
-// 	fmuls    f1, f0, f1
-// 	fctiwz   f1, f1
-// 	stfd     f1, 0x18(r1)
-// 	lwz      r0, 0x1c(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f1, r3, r0
-// 	fneg     f2, f1
-// 	b        lbl_801EF270
-
-// lbl_801EF24C:
-// 	lfs      f1, lbl_80519B54@sda21(r2)
-// 	lis      r3, sincosTable___5JMath@ha
-// 	addi     r3, r3, sincosTable___5JMath@l
-// 	fmuls    f1, f0, f1
-// 	fctiwz   f1, f1
-// 	stfd     f1, 0x20(r1)
-// 	lwz      r0, 0x24(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f2, r3, r0
-
-// lbl_801EF270:
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	fmr      f3, f0
-// 	fneg     f6, f2
-// 	fcmpo    cr0, f0, f1
-// 	bge      lbl_801EF288
-// 	fneg     f3, f0
-
-// lbl_801EF288:
-// 	lfs      f2, lbl_80519B54@sda21(r2)
-// 	lis      r3, sincosTable___5JMath@ha
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	addi     r3, r3, sincosTable___5JMath@l
-// 	fmuls    f2, f3, f2
-// 	addi     r3, r3, 4
-// 	fcmpo    cr0, f0, f1
-// 	fmr      f8, f0
-// 	fctiwz   f1, f2
-// 	stfd     f1, 0x28(r1)
-// 	lwz      r0, 0x2c(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f7, r3, r0
-// 	bge      lbl_801EF2C4
-// 	fneg     f8, f0
-
-// lbl_801EF2C4:
-// 	lfs      f3, lbl_80519B54@sda21(r2)
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	fmuls    f2, f8, f3
-// 	fcmpo    cr0, f0, f1
-// 	fctiwz   f1, f2
-// 	stfd     f1, 0x30(r1)
-// 	lwz      r0, 0x34(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f2, r3, r0
-// 	bge      lbl_801EF318
-// 	lfs      f1, lbl_80519B58@sda21(r2)
-// 	lis      r3, sincosTable___5JMath@ha
-// 	addi     r3, r3, sincosTable___5JMath@l
-// 	fmuls    f0, f0, f1
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x38(r1)
-// 	lwz      r0, 0x3c(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f0, r3, r0
-// 	fneg     f3, f0
-// 	b        lbl_801EF338
-
-// lbl_801EF318:
-// 	fmuls    f0, f0, f3
-// 	lis      r3, sincosTable___5JMath@ha
-// 	addi     r3, r3, sincosTable___5JMath@l
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x40(r1)
-// 	lwz      r0, 0x44(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f3, r3, r0
-
-// lbl_801EF338:
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fmadds   f1, f4, f7, f0
-// 	fmadds   f0, f4, f3, f0
-// 	fmadds   f1, f5, f6, f1
-// 	fmadds   f0, f5, f2, f0
-// 	stfs     f1, 0(r30)
-// 	stfs     f0, 0(r31)
-// 	psq_l    f31, 120(r1), 0, qr0
-// 	lfd      f31, 0x70(r1)
-// 	psq_l    f30, 104(r1), 0, qr0
-// 	lfd      f30, 0x60(r1)
-// 	lwz      r31, 0x5c(r1)
-// 	lwz      r30, 0x58(r1)
-// 	lwz      r29, 0x54(r1)
-// 	lwz      r0, 0x84(r1)
-// 	lwz      r28, 0x50(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x80
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EF384
-//  * Size:	000138
-//  */
-// void workable__Q34Game10ItemBridge4ItemFR10Vector3f()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	stw      r0, 0x24(r1)
-// 	addi     r5, r1, 0xc
-// 	addi     r6, r1, 8
-// 	stw      r31, 0x1c(r1)
-// 	mr       r31, r3
-// 	bl       "getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3<f>RfRf"
-// 	lwz      r3, 0x218(r31)
-// 	lwz      r0, 0x21c(r31)
-// 	cmpw     r3, r0
-// 	bne      lbl_801EF3BC
-// 	li       r3, 0
-// 	b        lbl_801EF4A8
-
-// lbl_801EF3BC:
-// 	cmpwi    r3, 0
-// 	lfs      f3, lbl_80519B4C@sda21(r2)
-// 	ble      lbl_801EF404
-// 	addi     r0, r3, -1
-// 	lis      r4, 0x4330
-// 	xoris    r3, r0, 0x8000
-// 	lhz      r0, 0x214(r31)
-// 	stw      r3, 0x14(r1)
-// 	lis      r3, bridgeFirstPos@ha
-// 	lfd      f2, lbl_80519B40@sda21(r2)
-// 	slwi     r0, r0, 2
-// 	stw      r4, 0x10(r1)
-// 	addi     r3, r3, bridgeFirstPos@l
-// 	lfs      f3, lbl_80519B48@sda21(r2)
-// 	lfd      f1, 0x10(r1)
-// 	lfsx     f0, r3, r0
-// 	fsubs    f1, f1, f2
-// 	fmadds   f3, f3, f1, f0
-
-// lbl_801EF404:
-// 	lfs      f2, lbl_80519B38@sda21(r2)
-// 	lfs      f0, 8(r1)
-// 	fsubs    f3, f3, f2
-// 	fsubs    f1, f0, f2
-// 	fadds    f0, f2, f3
-// 	stfs     f1, 8(r1)
-// 	fcmpo    cr0, f1, f0
-// 	ble      lbl_801EF42C
-// 	li       r3, 0
-// 	b        lbl_801EF4A8
-
-// lbl_801EF42C:
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_801EF46C
-// 	fcmpo    cr0, f1, f3
-// 	cror     2, 0, 2
-// 	bne      lbl_801EF46C
-// 	lfs      f1, 0xc(r1)
-// 	lfs      f0, lbl_80519B5C@sda21(r2)
-// 	fabs     f1, f1
-// 	frsp     f1, f1
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_801EF480
-// 	li       r3, 0
-// 	b        lbl_801EF4A8
-
-// lbl_801EF46C:
-// 	lfs      f0, lbl_80519B60@sda21(r2)
-// 	fcmpo    cr0, f1, f0
-// 	bge      lbl_801EF480
-// 	li       r3, 0
-// 	b        lbl_801EF4A8
-
-// lbl_801EF480:
-// 	lfs      f1, 0xc(r1)
-// 	lfs      f0, lbl_80519B64@sda21(r2)
-// 	fabs     f1, f1
-// 	frsp     f1, f1
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_801EF4A4
-// 	li       r3, 0
-// 	b        lbl_801EF4A8
-
-// lbl_801EF4A4:
-// 	li       r3, 1
-
-// lbl_801EF4A8:
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EF4BC
-//  * Size:	000430
-//  */
-// void getVectorField__Q34Game10ItemBridge4ItemFRQ23Sys6SphereR10Vector3f()
-// {
-// 	/*
-// 	stwu     r1, -0x80(r1)
-// 	mflr     r0
-// 	stw      r0, 0x84(r1)
-// 	stfd     f31, 0x70(r1)
-// 	psq_st   f31, 120(r1), 0, qr0
-// 	stfd     f30, 0x60(r1)
-// 	psq_st   f30, 104(r1), 0, qr0
-// 	stfd     f29, 0x50(r1)
-// 	psq_st   f29, 88(r1), 0, qr0
-// 	stw      r31, 0x4c(r1)
-// 	stw      r30, 0x48(r1)
-// 	stw      r29, 0x44(r1)
-// 	mr       r29, r3
-// 	mr       r30, r4
-// 	lwz      r3, 0x218(r3)
-// 	mr       r31, r5
-// 	lwz      r0, 0x21c(r29)
-// 	cmpw     r3, r0
-// 	bne      lbl_801EF510
-// 	li       r3, 0
-// 	b        lbl_801EF8B8
-
-// lbl_801EF510:
-// 	lfs      f31, 0x19c(r29)
-// 	mr       r4, r29
-// 	lfs      f30, 0x1a0(r29)
-// 	addi     r3, r1, 0x10
-// 	lfs      f29, 0x1a4(r29)
-// 	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-// 	lfs      f3, lbl_80519B48@sda21(r2)
-// 	lfs      f0, 0x14(r1)
-// 	lfs      f2, 0x10(r1)
-// 	fmuls    f1, f0, f3
-// 	lfs      f0, 0x18(r1)
-// 	fmuls    f5, f2, f3
-// 	lfs      f2, 4(r30)
-// 	fmuls    f4, f0, f3
-// 	lfs      f3, 8(r30)
-// 	fsubs    f6, f30, f1
-// 	lfs      f1, 0(r30)
-// 	fsubs    f7, f29, f4
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fsubs    f5, f31, f5
-// 	fsubs    f4, f6, f2
-// 	fsubs    f3, f7, f3
-// 	fsubs    f2, f5, f1
-// 	fmuls    f1, f4, f4
-// 	fmuls    f5, f3, f3
-// 	fmadds   f1, f2, f2, f1
-// 	fadds    f1, f5, f1
-// 	fcmpo    cr0, f1, f0
-// 	ble      lbl_801EF594
-// 	ble      lbl_801EF598
-// 	frsqrte  f0, f1
-// 	fmuls    f1, f0, f1
-// 	b        lbl_801EF598
-
-// lbl_801EF594:
-// 	fmr      f1, f0
-
-// lbl_801EF598:
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fcmpo    cr0, f1, f0
-// 	ble      lbl_801EF5BC
-// 	lfs      f0, lbl_80519B24@sda21(r2)
-// 	fdivs    f0, f0, f1
-// 	fmuls    f2, f2, f0
-// 	fmuls    f4, f4, f0
-// 	fmuls    f3, f3, f0
-// 	b        lbl_801EF5C0
-
-// lbl_801EF5BC:
-// 	fmr      f1, f0
-
-// lbl_801EF5C0:
-// 	lfs      f0, lbl_80519B68@sda21(r2)
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_801EF5E0
-// 	stfs     f2, 0(r31)
-// 	stfs     f4, 4(r31)
-// 	stfs     f3, 8(r31)
-// 	b        lbl_801EF8B4
-
-// lbl_801EF5E0:
-// 	mr       r3, r29
-// 	mr       r4, r30
-// 	addi     r5, r1, 0xc
-// 	addi     r6, r1, 8
-// 	bl       "getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3<f>RfRf"
-// 	lwz      r3, 0x218(r29)
-// 	lfs      f2, lbl_80519B4C@sda21(r2)
-// 	cmpwi    r3, 0
-// 	ble      lbl_801EF640
-// 	addi     r0, r3, -1
-// 	lis      r4, 0x4330
-// 	xoris    r3, r0, 0x8000
-// 	lhz      r0, 0x214(r29)
-// 	stw      r3, 0x24(r1)
-// 	lis      r3, bridgeFirstPos@ha
-// 	lfd      f2, lbl_80519B40@sda21(r2)
-// 	slwi     r0, r0, 2
-// 	stw      r4, 0x20(r1)
-// 	addi     r3, r3, bridgeFirstPos@l
-// 	lfs      f3, lbl_80519B48@sda21(r2)
-// 	lfd      f1, 0x20(r1)
-// 	lfsx     f0, r3, r0
-// 	fsubs    f1, f1, f2
-// 	fmadds   f2, f3, f1, f0
-
-// lbl_801EF640:
-// 	lfs      f1, lbl_80519B38@sda21(r2)
-// 	lfs      f0, 0xc(r1)
-// 	fsubs    f2, f2, f1
-// 	lfs      f1, lbl_80519B48@sda21(r2)
-// 	fabs     f4, f0
-// 	lfs      f3, 8(r1)
-// 	lfs      f0, lbl_80519B6C@sda21(r2)
-// 	fadds    f2, f1, f2
-// 	frsp     f1, f4
-// 	fsubs    f2, f3, f2
-// 	fcmpo    cr0, f1, f0
-// 	stfs     f2, 8(r1)
-// 	bge      lbl_801EF740
-// 	lfs      f0, lbl_80519B70@sda21(r2)
-// 	fcmpo    cr0, f2, f0
-// 	cror     2, 0, 2
-// 	bne      lbl_801EF720
-// 	lfs      f3, 0x1f4(r29)
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fmr      f1, f3
-// 	fcmpo    cr0, f3, f0
-// 	bge      lbl_801EF69C
-// 	fneg     f1, f3
-
-// lbl_801EF69C:
-// 	lfs      f2, lbl_80519B54@sda21(r2)
-// 	lis      r3, sincosTable___5JMath@ha
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	addi     r4, r3, sincosTable___5JMath@l
-// 	fmuls    f1, f1, f2
-// 	fcmpo    cr0, f3, f0
-// 	fctiwz   f0, f1
-// 	stfd     f0, 0x20(r1)
-// 	lwz      r0, 0x24(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	add      r3, r4, r0
-// 	lfs      f1, 4(r3)
-// 	bge      lbl_801EF6F4
-// 	lfs      f0, lbl_80519B58@sda21(r2)
-// 	fmuls    f0, f3, f0
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x28(r1)
-// 	lwz      r0, 0x2c(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f0, r4, r0
-// 	fneg     f0, f0
-// 	b        lbl_801EF70C
-
-// lbl_801EF6F4:
-// 	fmuls    f0, f3, f2
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x30(r1)
-// 	lwz      r0, 0x34(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f0, r4, r0
-
-// lbl_801EF70C:
-// 	stfs     f0, 0(r31)
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	stfs     f0, 4(r31)
-// 	stfs     f1, 8(r31)
-// 	b        lbl_801EF8B4
-
-// lbl_801EF720:
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fcmpo    cr0, f2, f0
-// 	cror     2, 0, 2
-// 	bne      lbl_801EF738
-// 	li       r3, 0
-// 	b        lbl_801EF8B8
-
-// lbl_801EF738:
-// 	li       r3, 0
-// 	b        lbl_801EF8B8
-
-// lbl_801EF740:
-// 	lfs      f0, lbl_80519B70@sda21(r2)
-// 	fcmpo    cr0, f2, f0
-// 	ble      lbl_801EF7EC
-// 	lfs      f3, 0x1f4(r29)
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fmr      f1, f3
-// 	fcmpo    cr0, f3, f0
-// 	bge      lbl_801EF764
-// 	fneg     f1, f3
-
-// lbl_801EF764:
-// 	lfs      f2, lbl_80519B54@sda21(r2)
-// 	lis      r3, sincosTable___5JMath@ha
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	addi     r4, r3, sincosTable___5JMath@l
-// 	fmuls    f1, f1, f2
-// 	fcmpo    cr0, f3, f0
-// 	fctiwz   f0, f1
-// 	stfd     f0, 0x30(r1)
-// 	lwz      r0, 0x34(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	add      r3, r4, r0
-// 	lfs      f1, 4(r3)
-// 	bge      lbl_801EF7BC
-// 	lfs      f0, lbl_80519B58@sda21(r2)
-// 	fmuls    f0, f3, f0
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x28(r1)
-// 	lwz      r0, 0x2c(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f0, r4, r0
-// 	fneg     f2, f0
-// 	b        lbl_801EF7D4
-
-// lbl_801EF7BC:
-// 	fmuls    f0, f3, f2
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x20(r1)
-// 	lwz      r0, 0x24(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f2, r4, r0
-
-// lbl_801EF7D4:
-// 	lfs      f0, lbl_80519B74@sda21(r2)
-// 	lfs      f3, lbl_80519B10@sda21(r2)
-// 	fmuls    f2, f2, f0
-// 	fmuls    f3, f3, f0
-// 	fmuls    f4, f1, f0
-// 	b        lbl_801EF8A8
-
-// lbl_801EF7EC:
-// 	lfs      f2, 0x1f4(r29)
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fcmpo    cr0, f2, f0
-// 	bge      lbl_801EF828
-// 	lfs      f0, lbl_80519B58@sda21(r2)
-// 	lis      r3, sincosTable___5JMath@ha
-// 	addi     r3, r3, sincosTable___5JMath@l
-// 	fmuls    f0, f2, f0
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x30(r1)
-// 	lwz      r0, 0x34(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f0, r3, r0
-// 	fneg     f1, f0
-// 	b        lbl_801EF84C
-
-// lbl_801EF828:
-// 	lfs      f0, lbl_80519B54@sda21(r2)
-// 	lis      r3, sincosTable___5JMath@ha
-// 	addi     r3, r3, sincosTable___5JMath@l
-// 	fmuls    f0, f2, f0
-// 	fctiwz   f0, f0
-// 	stfd     f0, 0x28(r1)
-// 	lwz      r0, 0x2c(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	lfsx     f1, r3, r0
-
-// lbl_801EF84C:
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fneg     f4, f1
-// 	fcmpo    cr0, f2, f0
-// 	bge      lbl_801EF860
-// 	fneg     f2, f2
-
-// lbl_801EF860:
-// 	lfs      f0, lbl_80519B54@sda21(r2)
-// 	lis      r3, sincosTable___5JMath@ha
-// 	lfs      f3, lbl_80519B10@sda21(r2)
-// 	addi     r3, r3, sincosTable___5JMath@l
-// 	fmuls    f1, f2, f0
-// 	lfs      f0, 0xc(r1)
-// 	fcmpo    cr0, f0, f3
-// 	fctiwz   f0, f1
-// 	stfd     f0, 0x20(r1)
-// 	lwz      r0, 0x24(r1)
-// 	rlwinm   r0, r0, 3, 0x12, 0x1c
-// 	add      r3, r3, r0
-// 	lfs      f2, 4(r3)
-// 	ble      lbl_801EF8A8
-// 	lfs      f0, lbl_80519B74@sda21(r2)
-// 	fmuls    f2, f2, f0
-// 	fmuls    f3, f3, f0
-// 	fmuls    f4, f4, f0
-
-// lbl_801EF8A8:
-// 	stfs     f2, 0(r31)
-// 	stfs     f3, 4(r31)
-// 	stfs     f4, 8(r31)
-
-// lbl_801EF8B4:
-// 	li       r3, 1
-
-// lbl_801EF8B8:
-// 	psq_l    f31, 120(r1), 0, qr0
-// 	lfd      f31, 0x70(r1)
-// 	psq_l    f30, 104(r1), 0, qr0
-// 	lfd      f30, 0x60(r1)
-// 	psq_l    f29, 88(r1), 0, qr0
-// 	lfd      f29, 0x50(r1)
-// 	lwz      r31, 0x4c(r1)
-// 	lwz      r30, 0x48(r1)
-// 	lwz      r0, 0x84(r1)
-// 	lwz      r29, 0x44(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x80
-// 	blr
-// 	*/
-// }
-
-// namespace Game {
-
-// /*
-//  * --INFO--
-//  * Address:	801EF8EC
-//  * Size:	000148
-//  */
-// void ItemBridge::Item::getWorkDistance(Sys::Sphere&)
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	stw      r0, 0x24(r1)
-// 	addi     r5, r1, 0xc
-// 	addi     r6, r1, 8
-// 	stw      r31, 0x1c(r1)
-// 	mr       r31, r3
-// 	bl       "getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3<f>RfRf"
-// 	lwz      r3, 0x218(r31)
-// 	lwz      r0, 0x21c(r31)
-// 	cmpw     r3, r0
-// 	bne      lbl_801EF924
-// 	lfs      f1, lbl_80519B78@sda21(r2)
-// 	b        lbl_801EFA20
-
-// lbl_801EF924:
-// 	cmpwi    r3, 0
-// 	lfs      f3, lbl_80519B4C@sda21(r2)
-// 	ble      lbl_801EF96C
-// 	addi     r0, r3, -1
-// 	lis      r4, 0x4330
-// 	xoris    r3, r0, 0x8000
-// 	lhz      r0, 0x214(r31)
-// 	stw      r3, 0x14(r1)
-// 	lis      r3, bridgeFirstPos@ha
-// 	lfd      f2, lbl_80519B40@sda21(r2)
-// 	slwi     r0, r0, 2
-// 	stw      r4, 0x10(r1)
-// 	addi     r3, r3, bridgeFirstPos@l
-// 	lfs      f3, lbl_80519B48@sda21(r2)
-// 	lfd      f1, 0x10(r1)
-// 	lfsx     f0, r3, r0
-// 	fsubs    f1, f1, f2
-// 	fmadds   f3, f3, f1, f0
-
-// lbl_801EF96C:
-// 	lfs      f1, lbl_80519B38@sda21(r2)
-// 	lfs      f0, 8(r1)
-// 	fsubs    f3, f3, f1
-// 	fsubs    f2, f0, f1
-// 	fadds    f0, f1, f3
-// 	stfs     f2, 8(r1)
-// 	fcmpo    cr0, f2, f0
-// 	ble      lbl_801EF994
-// 	lfs      f1, lbl_80519B78@sda21(r2)
-// 	b        lbl_801EFA20
-
-// lbl_801EF994:
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	fcmpo    cr0, f2, f1
-// 	cror     2, 1, 2
-// 	bne      lbl_801EF9D8
-// 	fcmpo    cr0, f2, f3
-// 	cror     2, 0, 2
-// 	bne      lbl_801EF9D8
-// 	lfs      f2, 0xc(r1)
-// 	lfs      f0, lbl_80519B5C@sda21(r2)
-// 	fabs     f2, f2
-// 	frsp     f2, f2
-// 	fcmpo    cr0, f2, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_801EFA20
-// 	fsubs    f1, f2, f0
-// 	b        lbl_801EFA20
-// 	b        lbl_801EFA20
-
-// lbl_801EF9D8:
-// 	lfs      f0, lbl_80519B60@sda21(r2)
-// 	fcmpo    cr0, f2, f0
-// 	bge      lbl_801EF9EC
-// 	lfs      f1, lbl_80519B78@sda21(r2)
-// 	b        lbl_801EFA20
-
-// lbl_801EF9EC:
-// 	lfs      f1, 0xc(r1)
-// 	lfs      f0, lbl_80519B64@sda21(r2)
-// 	fabs     f1, f1
-// 	frsp     f1, f1
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_801EFA10
-// 	lfs      f1, lbl_80519B78@sda21(r2)
-// 	b        lbl_801EFA20
-
-// lbl_801EFA10:
-// 	lfs      f0, 8(r1)
-// 	fsubs    f0, f0, f3
-// 	fabs     f0, f0
-// 	frsp     f1, f0
-
-// lbl_801EFA20:
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EFA34
-//  * Size:	000448
-//  */
-// void ItemBridge::Item::interactAttack(Game::InteractAttack&)
-// {
-// 	/*
-// 	stwu     r1, -0x110(r1)
-// 	mflr     r0
-// 	stw      r0, 0x114(r1)
-// 	stfd     f31, 0x100(r1)
-// 	psq_st   f31, 264(r1), 0, qr0
-// 	stw      r31, 0xfc(r1)
-// 	stw      r30, 0xf8(r1)
-// 	mr       r31, r3
-// 	mr       r30, r4
-// 	addi     r3, r31, 0x1e0
-// 	bl       event__Q24Game11TSoundEventFv
-// 	cmpwi    r3, 2
-// 	beq      lbl_801EFB20
-// 	bge      lbl_801EFA78
-// 	cmpwi    r3, 1
-// 	bge      lbl_801EFA84
-// 	b        lbl_801EFB20
-
-// lbl_801EFA78:
-// 	cmpwi    r3, 4
-// 	bge      lbl_801EFB20
-// 	b        lbl_801EFAD4
-
-// lbl_801EFA84:
-// 	lwz      r3, 0x17c(r31)
-// 	lwz      r12, 0x28(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	cmpwi    r3, 0xa
-// 	beq      lbl_801EFABC
-// 	lis      r3, lbl_80481234@ha
-// 	lis      r5, lbl_80481260@ha
-// 	addi     r3, r3, lbl_80481234@l
-// 	li       r4, 0x339
-// 	addi     r5, r5, lbl_80481260@l
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801EFABC:
-// 	lwz      r3, 0x17c(r31)
-// 	lwz      r12, 0x28(r3)
-// 	lwz      r12, 0x88(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	b        lbl_801EFB20
-
-// lbl_801EFAD4:
-// 	lwz      r3, 0x17c(r31)
-// 	lwz      r12, 0x28(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	cmpwi    r3, 0xa
-// 	beq      lbl_801EFB0C
-// 	lis      r3, lbl_80481234@ha
-// 	lis      r5, lbl_80481260@ha
-// 	addi     r3, r3, lbl_80481234@l
-// 	li       r4, 0x340
-// 	addi     r5, r5, lbl_80481260@l
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801EFB0C:
-// 	lwz      r3, 0x17c(r31)
-// 	lwz      r12, 0x28(r3)
-// 	lwz      r12, 0x8c(r12)
-// 	mtctr    r12
-// 	bctrl
-
-// lbl_801EFB20:
-// 	lbz      r0, 0x1f8(r31)
-// 	cmplwi   r0, 0
-// 	beq      lbl_801EFB34
-// 	li       r3, 1
-// 	b        lbl_801EFE5C
-
-// lbl_801EFB34:
-// 	lwz      r4, 0x218(r31)
-// 	lwz      r0, 0x21c(r31)
-// 	cmpw     r4, r0
-// 	bne      lbl_801EFB4C
-// 	li       r3, 0
-// 	b        lbl_801EFE5C
-
-// lbl_801EFB4C:
-// 	lwz      r3, 0x220(r31)
-// 	slwi     r0, r4, 2
-// 	lfs      f1, 8(r30)
-// 	lfsx     f2, r3, r0
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	fsubs    f1, f2, f1
-// 	stfsx    f1, r3, r0
-// 	lfsx     f1, r3, r0
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 0, 2
-// 	bne      lbl_801EFE58
-// 	lwz      r30, 0x218(r31)
-// 	lfs      f31, lbl_80519B4C@sda21(r2)
-// 	cmpwi    r30, 0
-// 	ble      lbl_801EFBC4
-// 	addi     r0, r30, -1
-// 	lis      r4, 0x4330
-// 	xoris    r3, r0, 0x8000
-// 	lhz      r0, 0x214(r31)
-// 	stw      r3, 0xd4(r1)
-// 	lis      r3, bridgeFirstPos@ha
-// 	lfd      f2, lbl_80519B40@sda21(r2)
-// 	slwi     r0, r0, 2
-// 	stw      r4, 0xd0(r1)
-// 	addi     r3, r3, bridgeFirstPos@l
-// 	lfs      f3, lbl_80519B48@sda21(r2)
-// 	lfd      f1, 0xd0(r1)
-// 	lfsx     f0, r3, r0
-// 	fsubs    f1, f1, f2
-// 	fmadds   f31, f3, f1, f0
-
-// lbl_801EFBC4:
-// 	lfs      f0, lbl_80519B38@sda21(r2)
-// 	mr       r4, r31
-// 	addi     r3, r1, 0x14
-// 	fsubs    f31, f31, f0
-// 	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-// 	lfs      f2, 0x14(r1)
-// 	cmpwi    r30, 1
-// 	lfs      f1, 0x18(r1)
-// 	lfs      f0, 0x1c(r1)
-// 	fmuls    f4, f2, f31
-// 	lfs      f5, 0x19c(r31)
-// 	fmuls    f2, f1, f31
-// 	lfs      f3, 0x1a0(r31)
-// 	fmuls    f0, f0, f31
-// 	lfs      f1, 0x1a4(r31)
-// 	fadds    f4, f5, f4
-// 	fadds    f3, f3, f2
-// 	fadds    f5, f1, f0
-// 	blt      lbl_801EFC48
-// 	addi     r0, r30, -1
-// 	lis      r4, 0x4330
-// 	xoris    r3, r0, 0x8000
-// 	lhz      r0, 0x214(r31)
-// 	stw      r3, 0xdc(r1)
-// 	lis      r3, bridgeGrad@ha
-// 	lfd      f2, lbl_80519B40@sda21(r2)
-// 	slwi     r0, r0, 2
-// 	stw      r4, 0xd8(r1)
-// 	addi     r3, r3, bridgeGrad@l
-// 	lfsx     f0, r3, r0
-// 	lfd      f1, 0xd8(r1)
-// 	fsubs    f1, f1, f2
-// 	fmadds   f3, f1, f0, f3
-
-// lbl_801EFC48:
-// 	stfs     f4, 0x64(r1)
-// 	addi     r3, r1, 0xa0
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	addi     r4, r1, 0x64
-// 	stfs     f3, 0x68(r1)
-// 	addi     r5, r1, 0x58
-// 	stfs     f5, 0x6c(r1)
-// 	lfs      f1, 0x1f4(r31)
-// 	stfs     f0, 0x58(r1)
-// 	stfs     f1, 0x5c(r1)
-// 	stfs     f0, 0x60(r1)
-// 	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-// 	lis      r4, __vt__Q23efx5TBase@ha
-// 	lis      r3, __vt__Q23efx8TSimple1@ha
-// 	addi     r0, r4, __vt__Q23efx5TBase@l
-// 	lis      r4, __vt__Q23efx11TSimpleMtx1@ha
-// 	stw      r0, 0x48(r1)
-// 	addi     r0, r3, __vt__Q23efx8TSimple1@l
-// 	lis      r3, __vt__Q23efx10TBridgeSet@ha
-// 	addi     r5, r1, 0xa0
-// 	stw      r0, 0x48(r1)
-// 	addi     r0, r4, __vt__Q23efx11TSimpleMtx1@l
-// 	li       r7, 0x11
-// 	li       r6, 0
-// 	stw      r0, 0x48(r1)
-// 	addi     r0, r3, __vt__Q23efx10TBridgeSet@l
-// 	addi     r3, r1, 0x48
-// 	li       r4, 0
-// 	sth      r7, 0x4c(r1)
-// 	stw      r6, 0x50(r1)
-// 	stw      r5, 0x54(r1)
-// 	stw      r0, 0x48(r1)
-// 	bl       create__Q23efx11TSimpleMtx1FPQ23efx3Arg
-// 	lwz      r3, 0x1f0(r31)
-// 	lfs      f31, lbl_80519B4C@sda21(r2)
-// 	addi     r0, r3, 0x8c
-// 	stw      r0, 0x1f0(r31)
-// 	lwz      r3, 0x218(r31)
-// 	addic.   r30, r3, 1
-// 	ble      lbl_801EFD24
-// 	addi     r0, r30, -1
-// 	lis      r4, 0x4330
-// 	xoris    r3, r0, 0x8000
-// 	lhz      r0, 0x214(r31)
-// 	stw      r3, 0xe4(r1)
-// 	lis      r3, bridgeFirstPos@ha
-// 	lfd      f2, lbl_80519B40@sda21(r2)
-// 	slwi     r0, r0, 2
-// 	stw      r4, 0xe0(r1)
-// 	addi     r3, r3, bridgeFirstPos@l
-// 	lfs      f3, lbl_80519B48@sda21(r2)
-// 	lfd      f1, 0xe0(r1)
-// 	lfsx     f0, r3, r0
-// 	fsubs    f1, f1, f2
-// 	fmadds   f31, f3, f1, f0
-
-// lbl_801EFD24:
-// 	lfs      f0, lbl_80519B38@sda21(r2)
-// 	mr       r4, r31
-// 	addi     r3, r1, 8
-// 	fsubs    f31, f31, f0
-// 	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
-// 	lfs      f2, 8(r1)
-// 	cmpwi    r30, 1
-// 	lfs      f1, 0xc(r1)
-// 	lfs      f0, 0x10(r1)
-// 	fmuls    f4, f2, f31
-// 	lfs      f5, 0x19c(r31)
-// 	fmuls    f2, f1, f31
-// 	lfs      f3, 0x1a0(r31)
-// 	fmuls    f0, f0, f31
-// 	lfs      f1, 0x1a4(r31)
-// 	fadds    f4, f5, f4
-// 	fadds    f3, f3, f2
-// 	fadds    f5, f1, f0
-// 	blt      lbl_801EFDA8
-// 	addi     r0, r30, -1
-// 	lis      r4, 0x4330
-// 	xoris    r3, r0, 0x8000
-// 	lhz      r0, 0x214(r31)
-// 	stw      r3, 0xec(r1)
-// 	lis      r3, bridgeGrad@ha
-// 	lfd      f2, lbl_80519B40@sda21(r2)
-// 	slwi     r0, r0, 2
-// 	stw      r4, 0xe8(r1)
-// 	addi     r3, r3, bridgeGrad@l
-// 	lfsx     f0, r3, r0
-// 	lfd      f1, 0xe8(r1)
-// 	fsubs    f1, f1, f2
-// 	fmadds   f3, f1, f0, f3
-
-// lbl_801EFDA8:
-// 	stfs     f4, 0x3c(r1)
-// 	addi     r3, r1, 0x70
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	addi     r4, r1, 0x3c
-// 	stfs     f3, 0x40(r1)
-// 	addi     r5, r1, 0x30
-// 	stfs     f5, 0x44(r1)
-// 	lfs      f1, 0x1f4(r31)
-// 	stfs     f0, 0x30(r1)
-// 	stfs     f1, 0x34(r1)
-// 	stfs     f0, 0x38(r1)
-// 	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-// 	lis      r4, __vt__Q23efx5TBase@ha
-// 	lis      r3, __vt__Q23efx8TSimple1@ha
-// 	addi     r0, r4, __vt__Q23efx5TBase@l
-// 	lis      r4, __vt__Q23efx11TSimpleMtx1@ha
-// 	stw      r0, 0x20(r1)
-// 	addi     r0, r3, __vt__Q23efx8TSimple1@l
-// 	lis      r3, __vt__Q23efx10TBridgeSet@ha
-// 	addi     r5, r1, 0x70
-// 	stw      r0, 0x20(r1)
-// 	addi     r0, r4, __vt__Q23efx11TSimpleMtx1@l
-// 	li       r7, 0x11
-// 	li       r6, 0
-// 	stw      r0, 0x20(r1)
-// 	addi     r0, r3, __vt__Q23efx10TBridgeSet@l
-// 	addi     r3, r1, 0x20
-// 	li       r4, 0
-// 	sth      r7, 0x24(r1)
-// 	stw      r6, 0x28(r1)
-// 	stw      r5, 0x2c(r1)
-// 	stw      r0, 0x20(r1)
-// 	bl       create__Q23efx11TSimpleMtx1FPQ23efx3Arg
-// 	lwz      r5, 0x1f0(r31)
-// 	li       r0, 0x28
-// 	mr       r3, r31
-// 	li       r4, 0x3801
-// 	addi     r5, r5, 0x3c
-// 	stw      r5, 0x1f0(r31)
-// 	stb      r0, 0x1f8(r31)
-// 	lwz      r12, 0(r31)
-// 	lwz      r12, 0x1c0(r12)
-// 	mtctr    r12
-// 	bctrl
-
-// lbl_801EFE58:
-// 	li       r3, 1
-
-// lbl_801EFE5C:
-// 	psq_l    f31, 264(r1), 0, qr0
-// 	lwz      r0, 0x114(r1)
-// 	lfd      f31, 0x100(r1)
-// 	lwz      r31, 0xfc(r1)
-// 	lwz      r30, 0xf8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x110
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EFE7C
-//  * Size:	0000F0
-//  */
-// void ItemBridge::Item::interactBreakBridge(Game::InteractBreakBridge&)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	lbz      r0, 0x1f8(r3)
-// 	cmplwi   r0, 0
-// 	bne      lbl_801EFEA8
-// 	lwz      r5, 0x218(r31)
-// 	cmpwi    r5, 0
-// 	bne      lbl_801EFEB0
-
-// lbl_801EFEA8:
-// 	li       r3, 0
-// 	b        lbl_801EFF58
-
-// lbl_801EFEB0:
-// 	addi     r0, r5, -1
-// 	lwz      r5, 0x220(r31)
-// 	slwi     r0, r0, 2
-// 	lfs      f0, 8(r4)
-// 	lfsx     f1, r5, r0
-// 	fadds    f0, f1, f0
-// 	stfsx    f0, r5, r0
-// 	lwz      r4, mgr__Q24Game10ItemBridge@sda21(r13)
-// 	lfsx     f1, r5, r0
-// 	lwz      r4, 0x90(r4)
-// 	lfs      f0, 0x100(r4)
-// 	fcmpo    cr0, f1, f0
-// 	cror     2, 1, 2
-// 	bne      lbl_801EFF54
-// 	stfsx    f0, r5, r0
-// 	lwz      r4, 0x218(r31)
-// 	addi     r4, r4, -1
-// 	bl       setCurrStage__Q34Game10ItemBridge4ItemFi
-// 	mr       r3, r31
-// 	li       r4, 1
-// 	lwz      r12, 0(r31)
-// 	lwz      r12, 0xac(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r3, 0x1fc(r31)
-// 	cmplwi   r3, 0
-// 	beq      lbl_801EFF54
-// 	lwz      r0, 0x200(r31)
-// 	cmplwi   r0, 0
-// 	beq      lbl_801EFF54
-// 	li       r4, 0
-// 	bl       setOpen__Q24Game8WayPointFb
-// 	lwz      r3, 0x200(r31)
-// 	li       r4, 0
-// 	bl       setOpen__Q24Game8WayPointFb
-// 	lwz      r3, 0x1fc(r31)
-// 	li       r4, 0
-// 	bl       setWater__Q24Game8WayPointFb
-// 	lwz      r3, 0x200(r31)
-// 	li       r4, 0
-// 	bl       setWater__Q24Game8WayPointFb
-
-// lbl_801EFF54:
-// 	li       r3, 0
-
-// lbl_801EFF58:
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000008
-//  */
-// void ItemBridge::Item::getWorkRadius()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EFF6C
-//  * Size:	00004C
-//  */
-// void ItemBridge::Mgr::generatorNewItemParm()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	li       r3, 8
-// 	stw      r0, 0x14(r1)
-// 	bl       __nw__FUl
-// 	cmplwi   r3, 0
-// 	beq      lbl_801EFFA8
-// 	lis      r5, __vt__Q24Game11GenItemParm@ha
-// 	lis      r4, __vt__13GenBridgeParm@ha
-// 	addi     r5, r5, __vt__Q24Game11GenItemParm@l
-// 	li       r0, 0
-// 	stw      r5, 0(r3)
-// 	addi     r4, r4, __vt__13GenBridgeParm@l
-// 	stw      r4, 0(r3)
-// 	sth      r0, 4(r3)
-
-// lbl_801EFFA8:
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801EFFB8
-//  * Size:	000088
-//  */
-// void ItemBridge::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	lis      r3, lbl_80481228@ha
-// 	stw      r0, 0x24(r1)
-// 	stw      r31, 0x1c(r1)
-// 	addi     r31, r3, lbl_80481228@l
-// 	stw      r30, 0x18(r1)
-// 	or.      r30, r5, r5
-// 	stw      r29, 0x14(r1)
-// 	mr       r29, r4
-// 	bne      lbl_801EFFF8
-// 	addi     r3, r31, 0xc
-// 	addi     r5, r31, 0x38
-// 	li       r4, 0x3ac
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801EFFF8:
-// 	lwz      r4, 0x414(r29)
-// 	mr       r3, r29
-// 	bl       textWriteTab__6StreamFi
-// 	lhz      r0, 4(r30)
-// 	mr       r3, r29
-// 	extsh    r4, r0
-// 	bl       writeShort__6StreamFs
-// 	mr       r3, r29
-// 	addi     r4, r31, 0x44
-// 	crclr    6
-// 	bl       textWriteText__6StreamFPce
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	lwz      r30, 0x18(r1)
-// 	lwz      r29, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0040
-//  * Size:	000088
-//  */
-// void ItemBridge::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	stw      r0, 0x24(r1)
-// 	stw      r31, 0x1c(r1)
-// 	mr       r31, r6
-// 	stw      r30, 0x18(r1)
-// 	or.      r30, r5, r5
-// 	stw      r29, 0x14(r1)
-// 	mr       r29, r4
-// 	bne      lbl_801F0084
-// 	lis      r3, lbl_80481234@ha
-// 	lis      r5, lbl_80481260@ha
-// 	addi     r3, r3, lbl_80481234@l
-// 	li       r4, 0x3b6
-// 	addi     r5, r5, lbl_80481260@l
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801F0084:
-// 	lis      r3, 0x30303031@ha
-// 	addi     r0, r3, 0x30303031@l
-// 	cmplw    r31, r0
-// 	blt      lbl_801F00A4
-// 	mr       r3, r29
-// 	bl       readShort__6StreamFv
-// 	sth      r3, 4(r30)
-// 	b        lbl_801F00AC
-
-// lbl_801F00A4:
-// 	li       r0, 0
-// 	sth      r0, 4(r30)
-
-// lbl_801F00AC:
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	lwz      r30, 0x18(r1)
-// 	lwz      r29, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F00C8
-//  * Size:	000130
-//  */
-// ItemBridge::Mgr::Mgr()
-// {
-// 	/*
-// 	stwu     r1, -0x440(r1)
-// 	mflr     r0
-// 	stw      r0, 0x444(r1)
-// 	extsh.   r0, r4
-// 	lis      r4, lbl_80481228@ha
-// 	stw      r31, 0x43c(r1)
-// 	addi     r31, r4, lbl_80481228@l
-// 	stw      r30, 0x438(r1)
-// 	mr       r30, r3
-// 	beq      lbl_801F00F8
-// 	addi     r0, r30, 0x94
-// 	stw      r0, 4(r30)
-
-// lbl_801F00F8:
-// 	mr       r3, r30
-// 	li       r4, 0
-// 	bl       __ct__Q24Game12TNodeItemMgrFv
-// 	lis      r3, __vt__Q34Game10ItemBridge3Mgr@ha
-// 	addi     r0, r2, lbl_80519B7C@sda21
-// 	addi     r4, r3, __vt__Q34Game10ItemBridge3Mgr@l
-// 	mr       r3, r30
-// 	stw      r4, 0(r30)
-// 	addi     r5, r4, 0x74
-// 	li       r4, 3
-// 	stw      r5, 0x30(r30)
-// 	stw      r0, 8(r30)
-// 	bl       setModelSize__Q24Game11BaseItemMgrFi
-// 	addi     r0, r31, 0x54
-// 	li       r3, 0x114
-// 	stw      r0, 0x28(r30)
-// 	bl       __nw__FUl
-// 	or.      r0, r3, r3
-// 	beq      lbl_801F014C
-// 	bl       __ct__Q34Game10ItemBridge11BridgeParmsFv
-// 	mr       r0, r3
-
-// lbl_801F014C:
-// 	stw      r0, 0x90(r30)
-// 	addi     r3, r31, 0x70
-// 	bl       DVDConvertPathToEntrynum
-// 	addi     r3, r31, 0x90
-// 	bl       DVDConvertPathToEntrynum
-// 	li       r0, 0
-// 	addi     r3, r31, 0x70
-// 	stw      r0, 8(r1)
-// 	li       r4, 0
-// 	li       r5, 0
-// 	li       r6, 0
-// 	li       r7, 0
-// 	li       r8, 2
-// 	li       r9, 0
-// 	li       r10, 0
-// 	bl
-// loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-// 	or.      r31, r3, r3
-// 	beq      lbl_801F01DC
-// 	mr       r4, r31
-// 	addi     r3, r1, 0x10
-// 	li       r5, -1
-// 	bl       __ct__9RamStreamFPvi
-// 	li       r0, 1
-// 	cmpwi    r0, 1
-// 	stw      r0, 0x1c(r1)
-// 	bne      lbl_801F01BC
-// 	li       r0, 0
-// 	stw      r0, 0x424(r1)
-
-// lbl_801F01BC:
-// 	lwz      r3, 0x90(r30)
-// 	addi     r4, r1, 0x10
-// 	lwz      r12, 0xd8(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	mr       r3, r31
-// 	bl       __dla__FPv
-
-// lbl_801F01DC:
-// 	lwz      r0, 0x444(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0x43c(r1)
-// 	lwz      r30, 0x438(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x440
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F01F8
-//  * Size:	000024
-//  */
-// void ItemBridge::BridgeParms::read(Stream&)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	addi     r3, r3, 0xdc
-// 	stw      r0, 0x14(r1)
-// 	bl       read__10ParametersFR6Stream
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F021C
-//  * Size:	0001EC
-//  */
-// ItemBridge::BridgeParms::BridgeParms()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	lis      r5, 0x73303030@ha
-// 	lis      r4, __vt__Q24Game13CreatureParms@ha
-// 	stw      r0, 0x14(r1)
-// 	addi     r0, r4, __vt__Q24Game13CreatureParms@l
-// 	addi     r5, r5, 0x73303030@l
-// 	stw      r31, 0xc(r1)
-// 	stw      r30, 8(r1)
-// 	mr       r30, r3
-// 	lis      r3, lbl_80481228@ha
-// 	stw      r0, 0xd8(r30)
-// 	addi     r31, r3, lbl_80481228@l
-// 	addi     r0, r30, 0xd4
-// 	li       r3, 0
-// 	stw      r0, 0(r30)
-// 	addi     r0, r31, 0xb0
-// 	mr       r4, r30
-// 	addi     r6, r31, 0xc4
-// 	stw      r3, 4(r30)
-// 	addi     r3, r30, 0xc
-// 	stw      r0, 8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x73303031@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80519B84@sda21(r2)
-// 	stw      r0, 0xc(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	addi     r3, r30, 0x34
-// 	stfs     f0, 0x24(r30)
-// 	addi     r5, r5, 0x73303031@l
-// 	lfs      f0, lbl_80519B24@sda21(r2)
-// 	addi     r6, r31, 0xd8
-// 	stfs     f1, 0x2c(r30)
-// 	stfs     f0, 0x30(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x73303032@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80519B84@sda21(r2)
-// 	stw      r0, 0x34(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	addi     r3, r30, 0x5c
-// 	stfs     f0, 0x4c(r30)
-// 	addi     r5, r5, 0x73303032@l
-// 	lfs      f0, lbl_80519B24@sda21(r2)
-// 	addi     r6, r31, 0xe8
-// 	stfs     f1, 0x54(r30)
-// 	stfs     f0, 0x58(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x73303033@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80519B88@sda21(r2)
-// 	stw      r0, 0x5c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	addi     r3, r30, 0x84
-// 	stfs     f0, 0x74(r30)
-// 	addi     r5, r5, 0x73303033@l
-// 	lfs      f0, lbl_80519B24@sda21(r2)
-// 	addi     r6, r2, lbl_80519B8C@sda21
-// 	stfs     f1, 0x7c(r30)
-// 	stfs     f0, 0x80(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x73303034@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80519B94@sda21(r2)
-// 	stw      r0, 0x84(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80519B98@sda21(r2)
-// 	addi     r3, r30, 0xac
-// 	stfs     f0, 0x9c(r30)
-// 	addi     r5, r5, 0x73303034@l
-// 	lfs      f0, lbl_80519B9C@sda21(r2)
-// 	addi     r6, r31, 0xf8
-// 	stfs     f1, 0xa4(r30)
-// 	stfs     f0, 0xa8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r4, "__vt__7Parm<f>"@ha
-// 	lis      r3, __vt__Q34Game10ItemBridge11BridgeParms@ha
-// 	addi     r0, r4, "__vt__7Parm<f>"@l
-// 	lis      r5, 0x70303030@ha
-// 	stw      r0, 0xac(r30)
-// 	addi     r9, r3, __vt__Q34Game10ItemBridge11BridgeParms@l
-// 	lfs      f0, lbl_80519BA0@sda21(r2)
-// 	addi     r8, r30, 0x110
-// 	lfs      f1, lbl_80519B98@sda21(r2)
-// 	li       r7, 0
-// 	stfs     f0, 0xc4(r30)
-// 	addi     r0, r31, 0x108
-// 	lfs      f0, lbl_80519B9C@sda21(r2)
-// 	addi     r3, r30, 0xe8
-// 	stfs     f1, 0xcc(r30)
-// 	addi     r4, r30, 0xdc
-// 	addi     r5, r5, 0x70303030@l
-// 	addi     r6, r2, lbl_80519BA4@sda21
-// 	stfs     f0, 0xd0(r30)
-// 	stw      r9, 0xd8(r30)
-// 	stw      r8, 0xdc(r30)
-// 	stw      r7, 0xe0(r30)
-// 	stw      r0, 0xe4(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lfs      f2, lbl_80519B28@sda21(r2)
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f1, lbl_80519B10@sda21(r2)
-// 	stw      r0, 0xe8(r30)
-// 	mr       r3, r30
-// 	lfs      f0, lbl_80519BAC@sda21(r2)
-// 	stfs     f2, 0x100(r30)
-// 	stfs     f1, 0x108(r30)
-// 	stfs     f0, 0x10c(r30)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0408
-//  * Size:	000118
-//  */
-// void ItemBridge::Mgr::birth()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	stw      r30, 8(r1)
-// 	mr       r30, r3
-// 	li       r3, 0x224
-// 	bl       __nw__FUl
-// 	or.      r31, r3, r3
-// 	beq      lbl_801F04F8
-// 	li       r4, 0x40d
-// 	bl       __ct__Q24Game8BaseItemFi
-// 	lis      r3,
-// "__vt__Q24Game83FSMItem<Q34Game10ItemBridge4Item,Q34Game10ItemBridge3FSM,Q34Game10ItemBridge5State>"@ha
-// 	li       r0, 0
-// 	addi     r4, r3,
-// "__vt__Q24Game83FSMItem<Q34Game10ItemBridge4Item,Q34Game10ItemBridge3FSM,Q34Game10ItemBridge5State>"@l
-// 	li       r3, 0x1c
-// 	stw      r4, 0(r31)
-// 	addi     r4, r4, 0x1b0
-// 	stw      r4, 0x178(r31)
-// 	stw      r0, 0x1d8(r31)
-// 	stw      r0, 0x1dc(r31)
-// 	bl       __nw__FUl
-// 	cmplwi   r3, 0
-// 	beq      lbl_801F0494
-// 	lis      r4, "__vt__Q24Game38StateMachine<Q34Game10ItemBridge4Item>"@ha
-// 	lis      r5, "__vt__Q24Game33ItemFSM<Q34Game10ItemBridge4Item>"@ha
-// 	addi     r0, r4, "__vt__Q24Game38StateMachine<Q34Game10ItemBridge4Item>"@l
-// 	lis      r4, __vt__Q34Game10ItemBridge3FSM@ha
-// 	stw      r0, 0(r3)
-// 	li       r6, -1
-// 	addi     r5, r5, "__vt__Q24Game33ItemFSM<Q34Game10ItemBridge4Item>"@l
-// 	addi     r0, r4, __vt__Q34Game10ItemBridge3FSM@l
-// 	stw      r6, 0x18(r3)
-// 	stw      r5, 0(r3)
-// 	stw      r0, 0(r3)
-
-// lbl_801F0494:
-// 	stw      r3, 0x1d8(r31)
-// 	mr       r4, r31
-// 	lwz      r3, 0x1d8(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lis      r4,
-// "__vt__Q24Game84WorkItem<Q34Game10ItemBridge4Item,Q34Game10ItemBridge3FSM,Q34Game10ItemBridge5State>"@ha
-// 	addi     r3, r31, 0x1e0
-// 	addi     r4, r4,
-// "__vt__Q24Game84WorkItem<Q34Game10ItemBridge4Item,Q34Game10ItemBridge3FSM,Q34Game10ItemBridge5State>"@l
-// 	stw      r4, 0(r31)
-// 	addi     r0, r4, 0x1b0
-// 	stw      r0, 0x178(r31)
-// 	bl       __ct__Q24Game11TSoundEventFv
-// 	lis      r4, __vt__Q34Game10ItemBridge4Item@ha
-// 	addi     r3, r31, 0x204
-// 	addi     r4, r4, __vt__Q34Game10ItemBridge4Item@l
-// 	stw      r4, 0(r31)
-// 	addi     r0, r4, 0x1b0
-// 	stw      r0, 0x178(r31)
-// 	bl       __ct__Q24Game20PlatInstanceAttacherFv
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	li       r0, 0
-// 	stfs     f0, 0x118(r31)
-// 	stw      r0, 0x218(r31)
-
-// lbl_801F04F8:
-// 	mr       r3, r30
-// 	mr       r4, r31
-// 	bl       entry__Q24Game12TNodeItemMgrFPQ24Game8BaseItem
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r31
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0520
-//  * Size:	0000A8
-//  */
-// void generatorBirth__Q34Game10ItemBridge3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x20(r1)
-// 	  mflr      r0
-// 	  lis       r8, 0x804B
-// 	  lis       r7, 0x804C
-// 	  stw       r0, 0x24(r1)
-// 	  subi      r8, r8, 0x5D0C
-// 	  li        r0, 0
-// 	  subi      r7, r7, 0x4C70
-// 	  stw       r31, 0x1C(r1)
-// 	  cmplwi    r6, 0
-// 	  stw       r30, 0x18(r1)
-// 	  mr        r30, r5
-// 	  stw       r29, 0x14(r1)
-// 	  mr        r29, r4
-// 	  stw       r8, 0x8(r1)
-// 	  stw       r7, 0x8(r1)
-// 	  sth       r0, 0xC(r1)
-// 	  beq-      .loc_0x50
-// 	  lhz       r0, 0x4(r6)
-// 	  sth       r0, 0xC(r1)
-
-// 	.loc_0x50:
-// 	  lwz       r12, 0x0(r3)
-// 	  lwz       r12, 0xBC(r12)
-// 	  mtctr     r12
-// 	  bctrl
-// 	  addi      r4, r1, 0x8
-// 	  mr        r31, r3
-// 	  bl        -0xB55C0
-// 	  lfs       f1, 0x4(r30)
-// 	  bl        0x221640
-// 	  stfs      f1, 0x1F4(r31)
-// 	  mr        r3, r31
-// 	  mr        r4, r29
-// 	  li        r5, 0
-// 	  bl        -0xB53FC
-// 	  lwz       r0, 0x24(r1)
-// 	  mr        r3, r31
-// 	  lwz       r31, 0x1C(r1)
-// 	  lwz       r30, 0x18(r1)
-// 	  lwz       r29, 0x14(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x20
-// 	  blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F05C8
-//  * Size:	000260
-//  */
-// void ItemBridge::Mgr::onLoadResources()
-// {
-// 	/*
-// 	stwu     r1, -0x20(r1)
-// 	mflr     r0
-// 	lis      r4, lbl_80481228@ha
-// 	stw      r0, 0x24(r1)
-// 	stw      r31, 0x1c(r1)
-// 	addi     r31, r4, lbl_80481228@l
-// 	stw      r30, 0x18(r1)
-// 	mr       r30, r3
-// 	li       r3, 0xc
-// 	stw      r29, 0x14(r1)
-// 	stw      r28, 0x10(r1)
-// 	bl       __nwa__FUl
-// 	stw      r3, 0x88(r30)
-// 	li       r6, 0
-// 	addi     r0, r31, 0x118
-// 	mr       r3, r30
-// 	lwz      r5, 0x88(r30)
-// 	addi     r4, r2, lbl_80519BB0@sda21
-// 	stw      r6, 0(r5)
-// 	lwz      r5, 0x88(r30)
-// 	stw      r6, 4(r5)
-// 	lwz      r5, 0x88(r30)
-// 	stw      r6, 8(r5)
-// 	stw      r0, 0x28(r30)
-// 	bl       loadArchive__Q24Game11BaseItemMgrFPc
-// 	mr       r3, r30
-// 	addi     r4, r31, 0x134
-// 	li       r5, 0
-// 	lis      r6, 2
-// 	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-// 	addi     r0, r31, 0x144
-// 	mr       r3, r30
-// 	stw      r0, 0x28(r30)
-// 	addi     r4, r2, lbl_80519BB0@sda21
-// 	bl       loadArchive__Q24Game11BaseItemMgrFPc
-// 	mr       r3, r30
-// 	addi     r4, r31, 0x160
-// 	li       r5, 1
-// 	lis      r6, 2
-// 	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-// 	addi     r0, r31, 0x16c
-// 	mr       r3, r30
-// 	stw      r0, 0x28(r30)
-// 	addi     r4, r2, lbl_80519BB0@sda21
-// 	bl       loadArchive__Q24Game11BaseItemMgrFPc
-// 	mr       r3, r30
-// 	addi     r4, r31, 0x188
-// 	li       r5, 2
-// 	lis      r6, 2
-// 	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
-// 	li       r28, 0
-// 	li       r29, 0
-
-// lbl_801F0698:
-// 	lwz      r3, 0x1c(r30)
-// 	lis      r4, 4
-// 	lwzx     r3, r3, r29
-// 	bl       newSharedDisplayList__12J3DModelDataFUl
-// 	lwz      r3, 0x1c(r30)
-// 	lwzx     r3, r3, r29
-// 	bl       makeSharedDL__12J3DModelDataFv
-// 	addi     r28, r28, 1
-// 	addi     r29, r29, 4
-// 	cmpwi    r28, 3
-// 	blt      lbl_801F0698
-// 	addi     r3, r1, 8
-// 	li       r4, 3
-// 	li       r5, 0
-// 	li       r6, 1
-// 	bl       setCode__Q27MapCode4CodeFiib
-// 	addi     r0, r31, 0x118
-// 	mr       r3, r30
-// 	stw      r0, 0x28(r30)
-// 	addi     r4, r31, 0x198
-// 	bl       openTextArc__Q24Game11BaseItemMgrFPc
-// 	mr       r0, r3
-// 	mr       r3, r30
-// 	mr       r28, r0
-// 	addi     r5, r31, 0x1a4
-// 	mr       r4, r28
-// 	bl       loadPlatAttacher__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-// 	lwz      r5, 0x88(r30)
-// 	addi     r4, r1, 8
-// 	stw      r3, 0(r5)
-// 	lwz      r3, 0x88(r30)
-// 	lwz      r3, 0(r3)
-// 	bl       setMapCodeAll__12PlatAttacherFRQ27MapCode4Code
-// 	mr       r3, r30
-// 	mr       r4, r28
-// 	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-// 	addi     r0, r31, 0x144
-// 	mr       r3, r30
-// 	stw      r0, 0x28(r30)
-// 	addi     r4, r31, 0x198
-// 	bl       openTextArc__Q24Game11BaseItemMgrFPc
-// 	mr       r0, r3
-// 	mr       r3, r30
-// 	mr       r28, r0
-// 	addi     r5, r31, 0x1a4
-// 	mr       r4, r28
-// 	bl       loadPlatAttacher__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-// 	lwz      r5, 0x88(r30)
-// 	addi     r4, r1, 8
-// 	stw      r3, 4(r5)
-// 	lwz      r3, 0x88(r30)
-// 	lwz      r3, 4(r3)
-// 	bl       setMapCodeAll__12PlatAttacherFRQ27MapCode4Code
-// 	mr       r3, r30
-// 	mr       r4, r28
-// 	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-// 	addi     r0, r31, 0x16c
-// 	mr       r3, r30
-// 	stw      r0, 0x28(r30)
-// 	addi     r4, r31, 0x198
-// 	bl       openTextArc__Q24Game11BaseItemMgrFPc
-// 	mr       r0, r3
-// 	mr       r3, r30
-// 	mr       r28, r0
-// 	addi     r5, r31, 0x1a4
-// 	mr       r4, r28
-// 	bl       loadPlatAttacher__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-// 	lwz      r5, 0x88(r30)
-// 	addi     r4, r1, 8
-// 	stw      r3, 8(r5)
-// 	lwz      r3, 0x88(r30)
-// 	lwz      r3, 8(r3)
-// 	bl       setMapCodeAll__12PlatAttacherFRQ27MapCode4Code
-// 	mr       r3, r30
-// 	mr       r4, r28
-// 	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-// 	li       r3, 0x40
-// 	bl       __nwa__FUl
-// 	lis      r4, __ct__Q34Game10ItemBridge10BridgeInfoFv@ha
-// 	li       r5, 0
-// 	addi     r4, r4, __ct__Q34Game10ItemBridge10BridgeInfoFv@l
-// 	li       r6, 0x10
-// 	li       r7, 3
-// 	bl       __construct_new_array
-// 	stw      r3, 0x8c(r30)
-// 	li       r28, 0
-
-// lbl_801F07F0:
-// 	mr       r3, r30
-// 	mr       r4, r28
-// 	bl       createBridgeInfo__Q34Game10ItemBridge3MgrFi
-// 	addi     r28, r28, 1
-// 	cmpwi    r28, 3
-// 	blt      lbl_801F07F0
-// 	lwz      r0, 0x24(r1)
-// 	lwz      r31, 0x1c(r1)
-// 	lwz      r30, 0x18(r1)
-// 	lwz      r29, 0x14(r1)
-// 	lwz      r28, 0x10(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x20
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0828
-//  * Size:	00001C
-//  */
-// ItemBridge::BridgeInfo::BridgeInfo()
-// {
-// 	/*
-// 	li       r4, 0
-// 	li       r0, -1
-// 	stw      r4, 0(r3)
-// 	stw      r4, 4(r3)
-// 	stw      r4, 8(r3)
-// 	stw      r0, 0xc(r3)
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0844
-//  * Size:	000078
-//  */
-// void ItemBridge::Mgr::getBridgeInfo(int)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	li       r0, 0
-// 	stw      r31, 0xc(r1)
-// 	or.      r31, r4, r4
-// 	stw      r30, 8(r1)
-// 	mr       r30, r3
-// 	blt      lbl_801F0874
-// 	cmpwi    r31, 3
-// 	bge      lbl_801F0874
-// 	li       r0, 1
-
-// lbl_801F0874:
-// 	clrlwi.  r0, r0, 0x18
-// 	bne      lbl_801F0898
-// 	lis      r3, lbl_80481234@ha
-// 	lis      r5, lbl_80481260@ha
-// 	addi     r3, r3, lbl_80481234@l
-// 	li       r4, 0x467
-// 	addi     r5, r5, lbl_80481260@l
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801F0898:
-// 	lwz      r3, 0x8c(r30)
-// 	slwi     r0, r31, 4
-// 	add      r3, r3, r0
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F08BC
-//  * Size:	00020C
-//  */
-// void ItemBridge::Mgr::createBridgeInfo(int)
-// {
-// 	/*
-// 	stwu     r1, -0x230(r1)
-// 	mflr     r0
-// 	stw      r0, 0x234(r1)
-// 	li       r0, 0
-// 	stmw     r25, 0x214(r1)
-// 	or.      r25, r4, r4
-// 	lis      r4, lbl_80481228@ha
-// 	mr       r26, r3
-// 	addi     r31, r4, lbl_80481228@l
-// 	blt      lbl_801F08F0
-// 	cmpwi    r25, 3
-// 	bge      lbl_801F08F0
-// 	li       r0, 1
-
-// lbl_801F08F0:
-// 	clrlwi.  r0, r0, 0x18
-// 	bne      lbl_801F090C
-// 	addi     r3, r31, 0xc
-// 	addi     r5, r31, 0x38
-// 	li       r4, 0x46d
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801F090C:
-// 	lwz      r3, 0x1c(r26)
-// 	slwi     r0, r25, 2
-// 	lwzx     r29, r3, r0
-// 	cmplwi   r29, 0
-// 	bne      lbl_801F0934
-// 	addi     r3, r31, 0xc
-// 	addi     r5, r31, 0x38
-// 	li       r4, 0x46f
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801F0934:
-// 	li       r28, 0
-// 	li       r30, 0
-
-// lbl_801F093C:
-// 	mr       r5, r30
-// 	addi     r3, r1, 8
-// 	addi     r4, r31, 0x1b4
-// 	crclr    6
-// 	bl       sprintf
-// 	lwz      r3, 0x54(r29)
-// 	addi     r4, r1, 8
-// 	bl       getIndex__10JUTNameTabCFPCc
-// 	clrlwi   r0, r3, 0x10
-// 	cmplwi   r0, 0xffff
-// 	beq      lbl_801F096C
-// 	addi     r28, r28, 1
-
-// lbl_801F096C:
-// 	addi     r30, r30, 1
-// 	cmpwi    r30, 0x20
-// 	blt      lbl_801F093C
-// 	srwi     r3, r28, 0x1f
-// 	clrlwi   r0, r28, 0x1f
-// 	xor      r0, r0, r3
-// 	subf.    r0, r3, r0
-// 	beq      lbl_801F09A0
-// 	addi     r3, r31, 0xc
-// 	addi     r5, r31, 0x38
-// 	li       r4, 0x47a
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801F09A0:
-// 	srwi     r0, r28, 0x1f
-// 	lwz      r5, 0x8c(r26)
-// 	slwi     r4, r25, 4
-// 	slwi     r3, r28, 1
-// 	add      r0, r0, r28
-// 	add      r27, r5, r4
-// 	srawi    r0, r0, 1
-// 	stw      r0, 0(r27)
-// 	stw      r28, 4(r27)
-// 	bl       __nwa__FUl
-// 	stw      r3, 8(r27)
-// 	li       r26, 0
-// 	li       r30, 0
-// 	b        lbl_801F0A4C
-
-// lbl_801F09D8:
-// 	mr       r5, r26
-// 	addi     r3, r1, 8
-// 	addi     r4, r31, 0x1b4
-// 	crclr    6
-// 	bl       sprintf
-// 	lwz      r3, 0x54(r29)
-// 	addi     r4, r1, 8
-// 	bl       getIndex__10JUTNameTabCFPCc
-// 	extsh    r0, r3
-// 	lwz      r4, 8(r27)
-// 	cmpwi    r0, -1
-// 	sthx     r3, r4, r30
-// 	bne      lbl_801F0A44
-// 	li       r25, 0
-// 	b        lbl_801F0A24
-
-// lbl_801F0A14:
-// 	lwz      r3, 0x54(r29)
-// 	clrlwi   r4, r25, 0x10
-// 	bl       getName__10JUTNameTabCFUs
-// 	addi     r25, r25, 1
-
-// lbl_801F0A24:
-// 	lhz      r0, 0x2c(r29)
-// 	cmpw     r25, r0
-// 	blt      lbl_801F0A14
-// 	addi     r3, r31, 0xc
-// 	addi     r5, r31, 0x1c0
-// 	li       r4, 0x48b
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801F0A44:
-// 	addi     r30, r30, 2
-// 	addi     r26, r26, 1
-
-// lbl_801F0A4C:
-// 	cmpw     r26, r28
-// 	blt      lbl_801F09D8
-// 	lwz      r3, 0x54(r29)
-// 	addi     r4, r2, lbl_80519BB8@sda21
-// 	bl       getIndex__10JUTNameTabCFPCc
-// 	extsh    r0, r3
-// 	cmpwi    r0, -1
-// 	beq      lbl_801F0A74
-// 	stw      r0, 0xc(r27)
-// 	b        lbl_801F0AB4
-
-// lbl_801F0A74:
-// 	li       r0, -1
-// 	li       r25, 0
-// 	stw      r0, 0xc(r27)
-// 	b        lbl_801F0A94
-
-// lbl_801F0A84:
-// 	lwz      r3, 0x54(r29)
-// 	clrlwi   r4, r25, 0x10
-// 	bl       getName__10JUTNameTabCFUs
-// 	addi     r25, r25, 1
-
-// lbl_801F0A94:
-// 	lhz      r0, 0x2c(r29)
-// 	cmpw     r25, r0
-// 	blt      lbl_801F0A84
-// 	addi     r3, r31, 0xc
-// 	addi     r5, r31, 0x1e0
-// 	li       r4, 0x49c
-// 	crclr    6
-// 	bl       panic_f__12JUTExceptionFPCciPCce
-
-// lbl_801F0AB4:
-// 	lmw      r25, 0x214(r1)
-// 	lwz      r0, 0x234(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x230
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0AC8
-//  * Size:	0001A0
-//  */
-// void ItemBridge::Mgr::setupPlatInstanceAttacher(Game::ItemBridge::Item*, Game::PlatInstanceAttacher&)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x50(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x54(r1)
-// 	  stw       r31, 0x4C(r1)
-// 	  stw       r30, 0x48(r1)
-// 	  mr        r30, r5
-// 	  stw       r29, 0x44(r1)
-// 	  mr        r29, r4
-// 	  stw       r28, 0x40(r1)
-// 	  mr        r28, r3
-// 	  lhz       r0, 0x214(r4)
-// 	  cmplwi    r0, 0x3
-// 	  blt-      .loc_0x50
-// 	  lis       r3, 0x8048
-// 	  lis       r5, 0x8048
-// 	  addi      r3, r3, 0x1234
-// 	  li        r4, 0x4A2
-// 	  addi      r5, r5, 0x1260
-// 	  crclr     6, 0x6
-// 	  bl        -0x1C64D4
-
-// 	.loc_0x50:
-// 	  lhz       r31, 0x214(r29)
-// 	  li        r0, 0
-// 	  cmpwi     r31, 0
-// 	  blt-      .loc_0x6C
-// 	  cmpwi     r31, 0x3
-// 	  bge-      .loc_0x6C
-// 	  li        r0, 0x1
-
-// 	.loc_0x6C:
-// 	  rlwinm.   r0,r0,0,24,31
-// 	  bne-      .loc_0x90
-// 	  lis       r3, 0x8048
-// 	  lis       r5, 0x8048
-// 	  addi      r3, r3, 0x1234
-// 	  li        r4, 0x467
-// 	  addi      r5, r5, 0x1260
-// 	  crclr     6, 0x6
-// 	  bl        -0x1C6514
-
-// 	.loc_0x90:
-// 	  lwz       r5, 0x8C(r28)
-// 	  rlwinm    r0,r31,4,0,27
-// 	  lis       r4, 0x6E6F
-// 	  addi      r3, r1, 0x2C
-// 	  add       r31, r5, r0
-// 	  addi      r4, r4, 0x6E65
-// 	  bl        0x222738
-// 	  lhz       r0, 0x214(r29)
-// 	  mr        r3, r30
-// 	  lwz       r6, 0x88(r28)
-// 	  mr        r4, r29
-// 	  rlwinm    r0,r0,2,0,29
-// 	  addi      r5, r1, 0x2C
-// 	  lwzx      r6, r6, r0
-// 	  li        r7, 0
-// 	  bl        -0x2B9D8
-// 	  li        r29, 0
-// 	  li        r28, 0
-// 	  b         .loc_0x144
-
-// 	.loc_0xDC:
-// 	  rlwinm    r3,r29,1,31,31
-// 	  rlwinm    r0,r29,0,31,31
-// 	  xor       r0, r0, r3
-// 	  sub.      r0, r0, r3
-// 	  bne-      .loc_0x118
-// 	  lis       r4, 0x6272
-// 	  addi      r3, r1, 0x20
-// 	  addi      r4, r4, 0x626B
-// 	  bl        0x2226E4
-// 	  lwz       r5, 0x8(r31)
-// 	  mr        r3, r30
-// 	  addi      r4, r1, 0x20
-// 	  lhzx      r5, r5, r28
-// 	  bl        -0x2B73C
-// 	  b         .loc_0x13C
-
-// 	.loc_0x118:
-// 	  lis       r4, 0x6272
-// 	  addi      r3, r1, 0x14
-// 	  addi      r4, r4, 0x5F5F
-// 	  bl        0x2226BC
-// 	  lwz       r5, 0x8(r31)
-// 	  mr        r3, r30
-// 	  addi      r4, r1, 0x14
-// 	  lhzx      r5, r5, r28
-// 	  bl        -0x2B764
-
-// 	.loc_0x13C:
-// 	  addi      r28, r28, 0x2
-// 	  addi      r29, r29, 0x1
-
-// 	.loc_0x144:
-// 	  lwz       r0, 0x4(r31)
-// 	  cmpw      r29, r0
-// 	  blt+      .loc_0xDC
-// 	  lwz       r0, 0xC(r31)
-// 	  cmpwi     r0, -0x1
-// 	  beq-      .loc_0x180
-// 	  lis       r4, 0x6669
-// 	  addi      r3, r1, 0x8
-// 	  addi      r4, r4, 0x6E6C
-// 	  bl        0x222678
-// 	  lwz       r0, 0xC(r31)
-// 	  mr        r3, r30
-// 	  addi      r4, r1, 0x8
-// 	  rlwinm    r5,r0,0,16,31
-// 	  bl        -0x2B7A8
-
-// 	.loc_0x180:
-// 	  lwz       r0, 0x54(r1)
-// 	  lwz       r31, 0x4C(r1)
-// 	  lwz       r30, 0x48(r1)
-// 	  lwz       r29, 0x44(r1)
-// 	  lwz       r28, 0x40(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x50
-// 	  blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0C68
-//  * Size:	00000C
-//  */
-// void ItemBridge::BridgeInitArg::getName()
-// {
-// 	/*
-// 	lis      r3, lbl_80481418@ha
-// 	addi     r3, r3, lbl_80481418@l
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0C74
-//  * Size:	000134
-//  */
-// ItemBridge::Mgr::~Mgr()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_801F0D8C
-// 	lis      r3, __vt__Q34Game10ItemBridge3Mgr@ha
-// 	addi     r3, r3, __vt__Q34Game10ItemBridge3Mgr@l
-// 	stw      r3, 0(r30)
-// 	addi     r0, r3, 0x74
-// 	stw      r0, 0x30(r30)
-// 	beq      lbl_801F0D7C
-// 	lis      r3, __vt__Q24Game12TNodeItemMgr@ha
-// 	addic.   r0, r30, 0x4c
-// 	addi     r3, r3, __vt__Q24Game12TNodeItemMgr@l
-// 	stw      r3, 0(r30)
-// 	addi     r0, r3, 0x74
-// 	stw      r0, 0x30(r30)
-// 	beq      lbl_801F0D48
-// 	lis      r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@ha
-// 	addic.   r3, r30, 0x6c
-// 	addi     r4, r4, "__vt__31NodeObjectMgr<Q24Game8BaseItem>"@l
-// 	stw      r4, 0x4c(r30)
-// 	addi     r0, r4, 0x2c
-// 	stw      r0, 0x68(r30)
-// 	beq      lbl_801F0CF8
-// 	lis      r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@ha
-// 	addi     r0, r4, "__vt__29TObjectNode<Q24Game8BaseItem>"@l
-// 	stw      r0, 0x6c(r30)
-// 	li       r4, 0
-// 	bl       __dt__5CNodeFv
-
-// lbl_801F0CF8:
-// 	addic.   r0, r30, 0x4c
-// 	beq      lbl_801F0D48
-// 	lis      r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@ha
-// 	addic.   r0, r30, 0x4c
-// 	addi     r3, r3, "__vt__27ObjectMgr<Q24Game8BaseItem>"@l
-// 	stw      r3, 0x4c(r30)
-// 	addi     r0, r3, 0x2c
-// 	stw      r0, 0x68(r30)
-// 	beq      lbl_801F0D48
-// 	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-// 	addic.   r0, r30, 0x4c
-// 	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-// 	stw      r0, 0x4c(r30)
-// 	beq      lbl_801F0D48
-// 	lis      r4, __vt__16GenericContainer@ha
-// 	addi     r3, r30, 0x4c
-// 	addi     r0, r4, __vt__16GenericContainer@l
-// 	li       r4, 0
-// 	stw      r0, 0x4c(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_801F0D48:
-// 	addic.   r0, r30, 0x30
-// 	beq      lbl_801F0D7C
-// 	lis      r3, "__vt__27Container<Q24Game8BaseItem>"@ha
-// 	addic.   r0, r30, 0x30
-// 	addi     r0, r3, "__vt__27Container<Q24Game8BaseItem>"@l
-// 	stw      r0, 0x30(r30)
-// 	beq      lbl_801F0D7C
-// 	lis      r4, __vt__16GenericContainer@ha
-// 	addi     r3, r30, 0x30
-// 	addi     r0, r4, __vt__16GenericContainer@l
-// 	li       r4, 0
-// 	stw      r0, 0x30(r30)
-// 	bl       __dt__5CNodeFv
-
-// lbl_801F0D7C:
-// 	extsh.   r0, r31
-// 	ble      lbl_801F0D8C
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_801F0D8C:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0DA8
-//  * Size:	000100
-//  */
-// void ItemBridge::Mgr::doNew()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	li       r3, 0x224
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	bl       __nw__FUl
-// 	or.      r31, r3, r3
-// 	beq      lbl_801F0E90
-// 	li       r4, 0x40d
-// 	bl       __ct__Q24Game8BaseItemFi
-// 	lis      r3,
-// "__vt__Q24Game83FSMItem<Q34Game10ItemBridge4Item,Q34Game10ItemBridge3FSM,Q34Game10ItemBridge5State>"@ha
-// 	li       r0, 0
-// 	addi     r4, r3,
-// "__vt__Q24Game83FSMItem<Q34Game10ItemBridge4Item,Q34Game10ItemBridge3FSM,Q34Game10ItemBridge5State>"@l
-// 	li       r3, 0x1c
-// 	stw      r4, 0(r31)
-// 	addi     r4, r4, 0x1b0
-// 	stw      r4, 0x178(r31)
-// 	stw      r0, 0x1d8(r31)
-// 	stw      r0, 0x1dc(r31)
-// 	bl       __nw__FUl
-// 	cmplwi   r3, 0
-// 	beq      lbl_801F0E2C
-// 	lis      r4, "__vt__Q24Game38StateMachine<Q34Game10ItemBridge4Item>"@ha
-// 	lis      r5, "__vt__Q24Game33ItemFSM<Q34Game10ItemBridge4Item>"@ha
-// 	addi     r0, r4, "__vt__Q24Game38StateMachine<Q34Game10ItemBridge4Item>"@l
-// 	lis      r4, __vt__Q34Game10ItemBridge3FSM@ha
-// 	stw      r0, 0(r3)
-// 	li       r6, -1
-// 	addi     r5, r5, "__vt__Q24Game33ItemFSM<Q34Game10ItemBridge4Item>"@l
-// 	addi     r0, r4, __vt__Q34Game10ItemBridge3FSM@l
-// 	stw      r6, 0x18(r3)
-// 	stw      r5, 0(r3)
-// 	stw      r0, 0(r3)
-
-// lbl_801F0E2C:
-// 	stw      r3, 0x1d8(r31)
-// 	mr       r4, r31
-// 	lwz      r3, 0x1d8(r31)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 8(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lis      r4,
-// "__vt__Q24Game84WorkItem<Q34Game10ItemBridge4Item,Q34Game10ItemBridge3FSM,Q34Game10ItemBridge5State>"@ha
-// 	addi     r3, r31, 0x1e0
-// 	addi     r4, r4,
-// "__vt__Q24Game84WorkItem<Q34Game10ItemBridge4Item,Q34Game10ItemBridge3FSM,Q34Game10ItemBridge5State>"@l
-// 	stw      r4, 0(r31)
-// 	addi     r0, r4, 0x1b0
-// 	stw      r0, 0x178(r31)
-// 	bl       __ct__Q24Game11TSoundEventFv
-// 	lis      r4, __vt__Q34Game10ItemBridge4Item@ha
-// 	addi     r3, r31, 0x204
-// 	addi     r4, r4, __vt__Q34Game10ItemBridge4Item@l
-// 	stw      r4, 0(r31)
-// 	addi     r0, r4, 0x1b0
-// 	stw      r0, 0x178(r31)
-// 	bl       __ct__Q24Game20PlatInstanceAttacherFv
-// 	lfs      f0, lbl_80519B10@sda21(r2)
-// 	li       r0, 0
-// 	stfs     f0, 0x118(r31)
-// 	stw      r0, 0x218(r31)
-
-// lbl_801F0E90:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r31
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0EA8
-//  * Size:	00000C
-//  */
-// void ItemBridge::Mgr::generatorGetID()
-// {
-// 	/*
-// 	lis      r3, 0x62726467@ha
-// 	addi     r3, r3, 0x62726467@l
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0EB4
-//  * Size:	00000C
-//  */
-// void ItemBridge::Mgr::generatorLocalVersion()
-// {
-// 	/*
-// 	lis      r3, 0x30303031@ha
-// 	addi     r3, r3, 0x30303031@l
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0EC0
-//  * Size:	000004
-//  */
-// void ItemBridge::Item::makeTrMatrix() { }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0EC4
-//  * Size:	000008
-//  */
-// void ItemBridge::Item::getCreatureName()
-// {
-// 	/*
-// 	addi     r3, r2, lbl_80519B7C@sda21
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0ECC
-//  * Size:	000008
-//  */
-// void ItemBridge::Item::getMabiki()
-// {
-// 	/*
-// 	addi     r3, r3, 0x1ec
-// 	blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F0ED4
-//  * Size:	000034
-//  */
+/*
+ * --INFO--
+ * Address:	801EF194
+ * Size:	0001F0
+ */
+void ItemBridge::Item::getBridgePos(Vector3f&, f32&, f32&)
+{
+	/*
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stfd     f30, 0x60(r1)
+	psq_st   f30, 104(r1), 0, qr0
+	stw      r31, 0x5c(r1)
+	stw      r30, 0x58(r1)
+	stw      r29, 0x54(r1)
+	stw      r28, 0x50(r1)
+	mr       r28, r3
+	mr       r29, r4
+	lfs      f31, 0x19c(r3)
+	mr       r30, r5
+	lfs      f30, 0x1a4(r3)
+	mr       r31, r6
+	mr       r4, r28
+	addi     r3, r1, 8
+	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
+	lfs      f0, 8(r1)
+	lfs      f2, lbl_80519B48@sda21(r2)
+	lfs      f1, 0x10(r1)
+	fmuls    f4, f0, f2
+	lfs      f0, 0x1f4(r28)
+	fmuls    f2, f1, f2
+	lfs      f1, lbl_80519B10@sda21(r2)
+	lfs      f3, 8(r29)
+	fsubs    f4, f31, f4
+	fsubs    f5, f30, f2
+	lfs      f2, 0(r29)
+	fcmpo    cr0, f0, f1
+	fsubs    f4, f2, f4
+	fsubs    f5, f3, f5
+	bge      lbl_801EF24C
+	lfs      f1, lbl_80519B58@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f1, f0, f1
+	fctiwz   f1, f1
+	stfd     f1, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f1, r3, r0
+	fneg     f2, f1
+	b        lbl_801EF270
+
+lbl_801EF24C:
+	lfs      f1, lbl_80519B54@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f1, f0, f1
+	fctiwz   f1, f1
+	stfd     f1, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f2, r3, r0
+
+lbl_801EF270:
+	lfs      f1, lbl_80519B10@sda21(r2)
+	fmr      f3, f0
+	fneg     f6, f2
+	fcmpo    cr0, f0, f1
+	bge      lbl_801EF288
+	fneg     f3, f0
+
+lbl_801EF288:
+	lfs      f2, lbl_80519B54@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f1, lbl_80519B10@sda21(r2)
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f2, f3, f2
+	addi     r3, r3, 4
+	fcmpo    cr0, f0, f1
+	fmr      f8, f0
+	fctiwz   f1, f2
+	stfd     f1, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f7, r3, r0
+	bge      lbl_801EF2C4
+	fneg     f8, f0
+
+lbl_801EF2C4:
+	lfs      f3, lbl_80519B54@sda21(r2)
+	lfs      f1, lbl_80519B10@sda21(r2)
+	fmuls    f2, f8, f3
+	fcmpo    cr0, f0, f1
+	fctiwz   f1, f2
+	stfd     f1, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f2, r3, r0
+	bge      lbl_801EF318
+	lfs      f1, lbl_80519B58@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f0, f1
+	fctiwz   f0, f0
+	stfd     f0, 0x38(r1)
+	lwz      r0, 0x3c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f3, f0
+	b        lbl_801EF338
+
+lbl_801EF318:
+	fmuls    f0, f0, f3
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fctiwz   f0, f0
+	stfd     f0, 0x40(r1)
+	lwz      r0, 0x44(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f3, r3, r0
+
+lbl_801EF338:
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fmadds   f1, f4, f7, f0
+	fmadds   f0, f4, f3, f0
+	fmadds   f1, f5, f6, f1
+	fmadds   f0, f5, f2, f0
+	stfs     f1, 0(r30)
+	stfs     f0, 0(r31)
+	psq_l    f31, 120(r1), 0, qr0
+	lfd      f31, 0x70(r1)
+	psq_l    f30, 104(r1), 0, qr0
+	lfd      f30, 0x60(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	lwz      r29, 0x54(r1)
+	lwz      r0, 0x84(r1)
+	lwz      r28, 0x50(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EF384
+ * Size:	000138
+ */
+void ItemBridge::Item::workable(Vector3f&)
+{
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	addi     r5, r1, 0xc
+	addi     r6, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bl       "getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3<f>RfRf"
+	lwz      r3, 0x218(r31)
+	lwz      r0, 0x21c(r31)
+	cmpw     r3, r0
+	bne      lbl_801EF3BC
+	li       r3, 0
+	b        lbl_801EF4A8
+
+lbl_801EF3BC:
+	cmpwi    r3, 0
+	lfs      f3, lbl_80519B4C@sda21(r2)
+	ble      lbl_801EF404
+	addi     r0, r3, -1
+	lis      r4, 0x4330
+	xoris    r3, r0, 0x8000
+	lhz      r0, 0x214(r31)
+	stw      r3, 0x14(r1)
+	lis      r3, bridgeFirstPos@ha
+	lfd      f2, lbl_80519B40@sda21(r2)
+	slwi     r0, r0, 2
+	stw      r4, 0x10(r1)
+	addi     r3, r3, bridgeFirstPos@l
+	lfs      f3, lbl_80519B48@sda21(r2)
+	lfd      f1, 0x10(r1)
+	lfsx     f0, r3, r0
+	fsubs    f1, f1, f2
+	fmadds   f3, f3, f1, f0
+
+lbl_801EF404:
+	lfs      f2, lbl_80519B38@sda21(r2)
+	lfs      f0, 8(r1)
+	fsubs    f3, f3, f2
+	fsubs    f1, f0, f2
+	fadds    f0, f2, f3
+	stfs     f1, 8(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_801EF42C
+	li       r3, 0
+	b        lbl_801EF4A8
+
+lbl_801EF42C:
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_801EF46C
+	fcmpo    cr0, f1, f3
+	cror     2, 0, 2
+	bne      lbl_801EF46C
+	lfs      f1, 0xc(r1)
+	lfs      f0, lbl_80519B5C@sda21(r2)
+	fabs     f1, f1
+	frsp     f1, f1
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_801EF480
+	li       r3, 0
+	b        lbl_801EF4A8
+
+lbl_801EF46C:
+	lfs      f0, lbl_80519B60@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_801EF480
+	li       r3, 0
+	b        lbl_801EF4A8
+
+lbl_801EF480:
+	lfs      f1, 0xc(r1)
+	lfs      f0, lbl_80519B64@sda21(r2)
+	fabs     f1, f1
+	frsp     f1, f1
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_801EF4A4
+	li       r3, 0
+	b        lbl_801EF4A8
+
+lbl_801EF4A4:
+	li       r3, 1
+
+lbl_801EF4A8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EF4BC
+ * Size:	000430
+ */
+bool ItemBridge::Item::getVectorField(Sys::Sphere&, Vector3f&)
+{
+	/*
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stfd     f30, 0x60(r1)
+	psq_st   f30, 104(r1), 0, qr0
+	stfd     f29, 0x50(r1)
+	psq_st   f29, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	stw      r29, 0x44(r1)
+	mr       r29, r3
+	mr       r30, r4
+	lwz      r3, 0x218(r3)
+	mr       r31, r5
+	lwz      r0, 0x21c(r29)
+	cmpw     r3, r0
+	bne      lbl_801EF510
+	li       r3, 0
+	b        lbl_801EF8B8
+
+lbl_801EF510:
+	lfs      f31, 0x19c(r29)
+	mr       r4, r29
+	lfs      f30, 0x1a0(r29)
+	addi     r3, r1, 0x10
+	lfs      f29, 0x1a4(r29)
+	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
+	lfs      f3, lbl_80519B48@sda21(r2)
+	lfs      f0, 0x14(r1)
+	lfs      f2, 0x10(r1)
+	fmuls    f1, f0, f3
+	lfs      f0, 0x18(r1)
+	fmuls    f5, f2, f3
+	lfs      f2, 4(r30)
+	fmuls    f4, f0, f3
+	lfs      f3, 8(r30)
+	fsubs    f6, f30, f1
+	lfs      f1, 0(r30)
+	fsubs    f7, f29, f4
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fsubs    f5, f31, f5
+	fsubs    f4, f6, f2
+	fsubs    f3, f7, f3
+	fsubs    f2, f5, f1
+	fmuls    f1, f4, f4
+	fmuls    f5, f3, f3
+	fmadds   f1, f2, f2, f1
+	fadds    f1, f5, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_801EF594
+	ble      lbl_801EF598
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_801EF598
+
+lbl_801EF594:
+	fmr      f1, f0
+
+lbl_801EF598:
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_801EF5BC
+	lfs      f0, lbl_80519B24@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f2, f2, f0
+	fmuls    f4, f4, f0
+	fmuls    f3, f3, f0
+	b        lbl_801EF5C0
+
+lbl_801EF5BC:
+	fmr      f1, f0
+
+lbl_801EF5C0:
+	lfs      f0, lbl_80519B68@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_801EF5E0
+	stfs     f2, 0(r31)
+	stfs     f4, 4(r31)
+	stfs     f3, 8(r31)
+	b        lbl_801EF8B4
+
+lbl_801EF5E0:
+	mr       r3, r29
+	mr       r4, r30
+	addi     r5, r1, 0xc
+	addi     r6, r1, 8
+	bl       "getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3<f>RfRf"
+	lwz      r3, 0x218(r29)
+	lfs      f2, lbl_80519B4C@sda21(r2)
+	cmpwi    r3, 0
+	ble      lbl_801EF640
+	addi     r0, r3, -1
+	lis      r4, 0x4330
+	xoris    r3, r0, 0x8000
+	lhz      r0, 0x214(r29)
+	stw      r3, 0x24(r1)
+	lis      r3, bridgeFirstPos@ha
+	lfd      f2, lbl_80519B40@sda21(r2)
+	slwi     r0, r0, 2
+	stw      r4, 0x20(r1)
+	addi     r3, r3, bridgeFirstPos@l
+	lfs      f3, lbl_80519B48@sda21(r2)
+	lfd      f1, 0x20(r1)
+	lfsx     f0, r3, r0
+	fsubs    f1, f1, f2
+	fmadds   f2, f3, f1, f0
+
+lbl_801EF640:
+	lfs      f1, lbl_80519B38@sda21(r2)
+	lfs      f0, 0xc(r1)
+	fsubs    f2, f2, f1
+	lfs      f1, lbl_80519B48@sda21(r2)
+	fabs     f4, f0
+	lfs      f3, 8(r1)
+	lfs      f0, lbl_80519B6C@sda21(r2)
+	fadds    f2, f1, f2
+	frsp     f1, f4
+	fsubs    f2, f3, f2
+	fcmpo    cr0, f1, f0
+	stfs     f2, 8(r1)
+	bge      lbl_801EF740
+	lfs      f0, lbl_80519B70@sda21(r2)
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_801EF720
+	lfs      f3, 0x1f4(r29)
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fmr      f1, f3
+	fcmpo    cr0, f3, f0
+	bge      lbl_801EF69C
+	fneg     f1, f3
+
+lbl_801EF69C:
+	lfs      f2, lbl_80519B54@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f0, lbl_80519B10@sda21(r2)
+	addi     r4, r3, sincosTable___5JMath@l
+	fmuls    f1, f1, f2
+	fcmpo    cr0, f3, f0
+	fctiwz   f0, f1
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r4, r0
+	lfs      f1, 4(r3)
+	bge      lbl_801EF6F4
+	lfs      f0, lbl_80519B58@sda21(r2)
+	fmuls    f0, f3, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f0, f0
+	b        lbl_801EF70C
+
+lbl_801EF6F4:
+	fmuls    f0, f3, f2
+	fctiwz   f0, f0
+	stfd     f0, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+
+lbl_801EF70C:
+	stfs     f0, 0(r31)
+	lfs      f0, lbl_80519B10@sda21(r2)
+	stfs     f0, 4(r31)
+	stfs     f1, 8(r31)
+	b        lbl_801EF8B4
+
+lbl_801EF720:
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_801EF738
+	li       r3, 0
+	b        lbl_801EF8B8
+
+lbl_801EF738:
+	li       r3, 0
+	b        lbl_801EF8B8
+
+lbl_801EF740:
+	lfs      f0, lbl_80519B70@sda21(r2)
+	fcmpo    cr0, f2, f0
+	ble      lbl_801EF7EC
+	lfs      f3, 0x1f4(r29)
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fmr      f1, f3
+	fcmpo    cr0, f3, f0
+	bge      lbl_801EF764
+	fneg     f1, f3
+
+lbl_801EF764:
+	lfs      f2, lbl_80519B54@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f0, lbl_80519B10@sda21(r2)
+	addi     r4, r3, sincosTable___5JMath@l
+	fmuls    f1, f1, f2
+	fcmpo    cr0, f3, f0
+	fctiwz   f0, f1
+	stfd     f0, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r4, r0
+	lfs      f1, 4(r3)
+	bge      lbl_801EF7BC
+	lfs      f0, lbl_80519B58@sda21(r2)
+	fmuls    f0, f3, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f2, f0
+	b        lbl_801EF7D4
+
+lbl_801EF7BC:
+	fmuls    f0, f3, f2
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f2, r4, r0
+
+lbl_801EF7D4:
+	lfs      f0, lbl_80519B74@sda21(r2)
+	lfs      f3, lbl_80519B10@sda21(r2)
+	fmuls    f2, f2, f0
+	fmuls    f3, f3, f0
+	fmuls    f4, f1, f0
+	b        lbl_801EF8A8
+
+lbl_801EF7EC:
+	lfs      f2, 0x1f4(r29)
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fcmpo    cr0, f2, f0
+	bge      lbl_801EF828
+	lfs      f0, lbl_80519B58@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f2, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f1, f0
+	b        lbl_801EF84C
+
+lbl_801EF828:
+	lfs      f0, lbl_80519B54@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f2, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f1, r3, r0
+
+lbl_801EF84C:
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fneg     f4, f1
+	fcmpo    cr0, f2, f0
+	bge      lbl_801EF860
+	fneg     f2, f2
+
+lbl_801EF860:
+	lfs      f0, lbl_80519B54@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f3, lbl_80519B10@sda21(r2)
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f1, f2, f0
+	lfs      f0, 0xc(r1)
+	fcmpo    cr0, f0, f3
+	fctiwz   f0, f1
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r3, r0
+	lfs      f2, 4(r3)
+	ble      lbl_801EF8A8
+	lfs      f0, lbl_80519B74@sda21(r2)
+	fmuls    f2, f2, f0
+	fmuls    f3, f3, f0
+	fmuls    f4, f4, f0
+
+lbl_801EF8A8:
+	stfs     f2, 0(r31)
+	stfs     f3, 4(r31)
+	stfs     f4, 8(r31)
+
+lbl_801EF8B4:
+	li       r3, 1
+
+lbl_801EF8B8:
+	psq_l    f31, 120(r1), 0, qr0
+	lfd      f31, 0x70(r1)
+	psq_l    f30, 104(r1), 0, qr0
+	lfd      f30, 0x60(r1)
+	psq_l    f29, 88(r1), 0, qr0
+	lfd      f29, 0x50(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	lwz      r0, 0x84(r1)
+	lwz      r29, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EF8EC
+ * Size:	000148
+ */
+f32 ItemBridge::Item::getWorkDistance(Sys::Sphere&)
+{
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	addi     r5, r1, 0xc
+	addi     r6, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bl       "getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3<f>RfRf"
+	lwz      r3, 0x218(r31)
+	lwz      r0, 0x21c(r31)
+	cmpw     r3, r0
+	bne      lbl_801EF924
+	lfs      f1, lbl_80519B78@sda21(r2)
+	b        lbl_801EFA20
+
+lbl_801EF924:
+	cmpwi    r3, 0
+	lfs      f3, lbl_80519B4C@sda21(r2)
+	ble      lbl_801EF96C
+	addi     r0, r3, -1
+	lis      r4, 0x4330
+	xoris    r3, r0, 0x8000
+	lhz      r0, 0x214(r31)
+	stw      r3, 0x14(r1)
+	lis      r3, bridgeFirstPos@ha
+	lfd      f2, lbl_80519B40@sda21(r2)
+	slwi     r0, r0, 2
+	stw      r4, 0x10(r1)
+	addi     r3, r3, bridgeFirstPos@l
+	lfs      f3, lbl_80519B48@sda21(r2)
+	lfd      f1, 0x10(r1)
+	lfsx     f0, r3, r0
+	fsubs    f1, f1, f2
+	fmadds   f3, f3, f1, f0
+
+lbl_801EF96C:
+	lfs      f1, lbl_80519B38@sda21(r2)
+	lfs      f0, 8(r1)
+	fsubs    f3, f3, f1
+	fsubs    f2, f0, f1
+	fadds    f0, f1, f3
+	stfs     f2, 8(r1)
+	fcmpo    cr0, f2, f0
+	ble      lbl_801EF994
+	lfs      f1, lbl_80519B78@sda21(r2)
+	b        lbl_801EFA20
+
+lbl_801EF994:
+	lfs      f1, lbl_80519B10@sda21(r2)
+	fcmpo    cr0, f2, f1
+	cror     2, 1, 2
+	bne      lbl_801EF9D8
+	fcmpo    cr0, f2, f3
+	cror     2, 0, 2
+	bne      lbl_801EF9D8
+	lfs      f2, 0xc(r1)
+	lfs      f0, lbl_80519B5C@sda21(r2)
+	fabs     f2, f2
+	frsp     f2, f2
+	fcmpo    cr0, f2, f0
+	cror     2, 1, 2
+	bne      lbl_801EFA20
+	fsubs    f1, f2, f0
+	b        lbl_801EFA20
+	b        lbl_801EFA20
+
+lbl_801EF9D8:
+	lfs      f0, lbl_80519B60@sda21(r2)
+	fcmpo    cr0, f2, f0
+	bge      lbl_801EF9EC
+	lfs      f1, lbl_80519B78@sda21(r2)
+	b        lbl_801EFA20
+
+lbl_801EF9EC:
+	lfs      f1, 0xc(r1)
+	lfs      f0, lbl_80519B64@sda21(r2)
+	fabs     f1, f1
+	frsp     f1, f1
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_801EFA10
+	lfs      f1, lbl_80519B78@sda21(r2)
+	b        lbl_801EFA20
+
+lbl_801EFA10:
+	lfs      f0, 8(r1)
+	fsubs    f0, f0, f3
+	fabs     f0, f0
+	frsp     f1, f0
+
+lbl_801EFA20:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EFA34
+ * Size:	000448
+ */
+bool ItemBridge::Item::interactAttack(Game::InteractAttack& interaction)
+{
+	/*
+	stwu     r1, -0x110(r1)
+	mflr     r0
+	stw      r0, 0x114(r1)
+	stfd     f31, 0x100(r1)
+	psq_st   f31, 264(r1), 0, qr0
+	stw      r31, 0xfc(r1)
+	stw      r30, 0xf8(r1)
+	mr       r31, r3
+	mr       r30, r4
+	addi     r3, r31, 0x1e0
+	bl       event__Q24Game11TSoundEventFv
+	cmpwi    r3, 2
+	beq      lbl_801EFB20
+	bge      lbl_801EFA78
+	cmpwi    r3, 1
+	bge      lbl_801EFA84
+	b        lbl_801EFB20
+
+lbl_801EFA78:
+	cmpwi    r3, 4
+	bge      lbl_801EFB20
+	b        lbl_801EFAD4
+
+lbl_801EFA84:
+	lwz      r3, 0x17c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xa
+	beq      lbl_801EFABC
+	lis      r3, lbl_80481234@ha
+	lis      r5, lbl_80481260@ha
+	addi     r3, r3, lbl_80481234@l
+	li       r4, 0x339
+	addi     r5, r5, lbl_80481260@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801EFABC:
+	lwz      r3, 0x17c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x88(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_801EFB20
+
+lbl_801EFAD4:
+	lwz      r3, 0x17c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xa
+	beq      lbl_801EFB0C
+	lis      r3, lbl_80481234@ha
+	lis      r5, lbl_80481260@ha
+	addi     r3, r3, lbl_80481234@l
+	li       r4, 0x340
+	addi     r5, r5, lbl_80481260@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801EFB0C:
+	lwz      r3, 0x17c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x8c(r12)
+	mtctr    r12
+	bctrl
+
+lbl_801EFB20:
+	lbz      r0, 0x1f8(r31)
+	cmplwi   r0, 0
+	beq      lbl_801EFB34
+	li       r3, 1
+	b        lbl_801EFE5C
+
+lbl_801EFB34:
+	lwz      r4, 0x218(r31)
+	lwz      r0, 0x21c(r31)
+	cmpw     r4, r0
+	bne      lbl_801EFB4C
+	li       r3, 0
+	b        lbl_801EFE5C
+
+lbl_801EFB4C:
+	lwz      r3, 0x220(r31)
+	slwi     r0, r4, 2
+	lfs      f1, 8(r30)
+	lfsx     f2, r3, r0
+	lfs      f0, lbl_80519B10@sda21(r2)
+	fsubs    f1, f2, f1
+	stfsx    f1, r3, r0
+	lfsx     f1, r3, r0
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_801EFE58
+	lwz      r30, 0x218(r31)
+	lfs      f31, lbl_80519B4C@sda21(r2)
+	cmpwi    r30, 0
+	ble      lbl_801EFBC4
+	addi     r0, r30, -1
+	lis      r4, 0x4330
+	xoris    r3, r0, 0x8000
+	lhz      r0, 0x214(r31)
+	stw      r3, 0xd4(r1)
+	lis      r3, bridgeFirstPos@ha
+	lfd      f2, lbl_80519B40@sda21(r2)
+	slwi     r0, r0, 2
+	stw      r4, 0xd0(r1)
+	addi     r3, r3, bridgeFirstPos@l
+	lfs      f3, lbl_80519B48@sda21(r2)
+	lfd      f1, 0xd0(r1)
+	lfsx     f0, r3, r0
+	fsubs    f1, f1, f2
+	fmadds   f31, f3, f1, f0
+
+lbl_801EFBC4:
+	lfs      f0, lbl_80519B38@sda21(r2)
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	fsubs    f31, f31, f0
+	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
+	lfs      f2, 0x14(r1)
+	cmpwi    r30, 1
+	lfs      f1, 0x18(r1)
+	lfs      f0, 0x1c(r1)
+	fmuls    f4, f2, f31
+	lfs      f5, 0x19c(r31)
+	fmuls    f2, f1, f31
+	lfs      f3, 0x1a0(r31)
+	fmuls    f0, f0, f31
+	lfs      f1, 0x1a4(r31)
+	fadds    f4, f5, f4
+	fadds    f3, f3, f2
+	fadds    f5, f1, f0
+	blt      lbl_801EFC48
+	addi     r0, r30, -1
+	lis      r4, 0x4330
+	xoris    r3, r0, 0x8000
+	lhz      r0, 0x214(r31)
+	stw      r3, 0xdc(r1)
+	lis      r3, bridgeGrad@ha
+	lfd      f2, lbl_80519B40@sda21(r2)
+	slwi     r0, r0, 2
+	stw      r4, 0xd8(r1)
+	addi     r3, r3, bridgeGrad@l
+	lfsx     f0, r3, r0
+	lfd      f1, 0xd8(r1)
+	fsubs    f1, f1, f2
+	fmadds   f3, f1, f0, f3
+
+lbl_801EFC48:
+	stfs     f4, 0x64(r1)
+	addi     r3, r1, 0xa0
+	lfs      f0, lbl_80519B10@sda21(r2)
+	addi     r4, r1, 0x64
+	stfs     f3, 0x68(r1)
+	addi     r5, r1, 0x58
+	stfs     f5, 0x6c(r1)
+	lfs      f1, 0x1f4(r31)
+	stfs     f0, 0x58(r1)
+	stfs     f1, 0x5c(r1)
+	stfs     f0, 0x60(r1)
+	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r3, __vt__Q23efx8TSimple1@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx11TSimpleMtx1@ha
+	stw      r0, 0x48(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple1@l
+	lis      r3, __vt__Q23efx10TBridgeSet@ha
+	addi     r5, r1, 0xa0
+	stw      r0, 0x48(r1)
+	addi     r0, r4, __vt__Q23efx11TSimpleMtx1@l
+	li       r7, 0x11
+	li       r6, 0
+	stw      r0, 0x48(r1)
+	addi     r0, r3, __vt__Q23efx10TBridgeSet@l
+	addi     r3, r1, 0x48
+	li       r4, 0
+	sth      r7, 0x4c(r1)
+	stw      r6, 0x50(r1)
+	stw      r5, 0x54(r1)
+	stw      r0, 0x48(r1)
+	bl       create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+	lwz      r3, 0x1f0(r31)
+	lfs      f31, lbl_80519B4C@sda21(r2)
+	addi     r0, r3, 0x8c
+	stw      r0, 0x1f0(r31)
+	lwz      r3, 0x218(r31)
+	addic.   r30, r3, 1
+	ble      lbl_801EFD24
+	addi     r0, r30, -1
+	lis      r4, 0x4330
+	xoris    r3, r0, 0x8000
+	lhz      r0, 0x214(r31)
+	stw      r3, 0xe4(r1)
+	lis      r3, bridgeFirstPos@ha
+	lfd      f2, lbl_80519B40@sda21(r2)
+	slwi     r0, r0, 2
+	stw      r4, 0xe0(r1)
+	addi     r3, r3, bridgeFirstPos@l
+	lfs      f3, lbl_80519B48@sda21(r2)
+	lfd      f1, 0xe0(r1)
+	lfsx     f0, r3, r0
+	fsubs    f1, f1, f2
+	fmadds   f31, f3, f1, f0
+
+lbl_801EFD24:
+	lfs      f0, lbl_80519B38@sda21(r2)
+	mr       r4, r31
+	addi     r3, r1, 8
+	fsubs    f31, f31, f0
+	bl       getBridgeZVec__Q34Game10ItemBridge4ItemFv
+	lfs      f2, 8(r1)
+	cmpwi    r30, 1
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	fmuls    f4, f2, f31
+	lfs      f5, 0x19c(r31)
+	fmuls    f2, f1, f31
+	lfs      f3, 0x1a0(r31)
+	fmuls    f0, f0, f31
+	lfs      f1, 0x1a4(r31)
+	fadds    f4, f5, f4
+	fadds    f3, f3, f2
+	fadds    f5, f1, f0
+	blt      lbl_801EFDA8
+	addi     r0, r30, -1
+	lis      r4, 0x4330
+	xoris    r3, r0, 0x8000
+	lhz      r0, 0x214(r31)
+	stw      r3, 0xec(r1)
+	lis      r3, bridgeGrad@ha
+	lfd      f2, lbl_80519B40@sda21(r2)
+	slwi     r0, r0, 2
+	stw      r4, 0xe8(r1)
+	addi     r3, r3, bridgeGrad@l
+	lfsx     f0, r3, r0
+	lfd      f1, 0xe8(r1)
+	fsubs    f1, f1, f2
+	fmadds   f3, f1, f0, f3
+
+lbl_801EFDA8:
+	stfs     f4, 0x3c(r1)
+	addi     r3, r1, 0x70
+	lfs      f0, lbl_80519B10@sda21(r2)
+	addi     r4, r1, 0x3c
+	stfs     f3, 0x40(r1)
+	addi     r5, r1, 0x30
+	stfs     f5, 0x44(r1)
+	lfs      f1, 0x1f4(r31)
+	stfs     f0, 0x30(r1)
+	stfs     f1, 0x34(r1)
+	stfs     f0, 0x38(r1)
+	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r3, __vt__Q23efx8TSimple1@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx11TSimpleMtx1@ha
+	stw      r0, 0x20(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple1@l
+	lis      r3, __vt__Q23efx10TBridgeSet@ha
+	addi     r5, r1, 0x70
+	stw      r0, 0x20(r1)
+	addi     r0, r4, __vt__Q23efx11TSimpleMtx1@l
+	li       r7, 0x11
+	li       r6, 0
+	stw      r0, 0x20(r1)
+	addi     r0, r3, __vt__Q23efx10TBridgeSet@l
+	addi     r3, r1, 0x20
+	li       r4, 0
+	sth      r7, 0x24(r1)
+	stw      r6, 0x28(r1)
+	stw      r5, 0x2c(r1)
+	stw      r0, 0x20(r1)
+	bl       create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+	lwz      r5, 0x1f0(r31)
+	li       r0, 0x28
+	mr       r3, r31
+	li       r4, 0x3801
+	addi     r5, r5, 0x3c
+	stw      r5, 0x1f0(r31)
+	stb      r0, 0x1f8(r31)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+
+lbl_801EFE58:
+	li       r3, 1
+
+lbl_801EFE5C:
+	psq_l    f31, 264(r1), 0, qr0
+	lwz      r0, 0x114(r1)
+	lfd      f31, 0x100(r1)
+	lwz      r31, 0xfc(r1)
+	lwz      r30, 0xf8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x110
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801EFE7C
+ * Size:	0000F0
+ */
+bool ItemBridge::Item::interactBreakBridge(Game::InteractBreakBridge& interaction)
+{
+	/*
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0x1f8(r3)
+	cmplwi   r0, 0
+	bne      lbl_801EFEA8
+	lwz      r5, 0x218(r31)
+	cmpwi    r5, 0
+	bne      lbl_801EFEB0
+
+lbl_801EFEA8:
+	li       r3, 0
+	b        lbl_801EFF58
+
+lbl_801EFEB0:
+	addi     r0, r5, -1
+	lwz      r5, 0x220(r31)
+	slwi     r0, r0, 2
+	lfs      f0, 8(r4)
+	lfsx     f1, r5, r0
+	fadds    f0, f1, f0
+	stfsx    f0, r5, r0
+	lwz      r4, mgr__Q24Game10ItemBridge@sda21(r13)
+	lfsx     f1, r5, r0
+	lwz      r4, 0x90(r4)
+	lfs      f0, 0x100(r4)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_801EFF54
+	stfsx    f0, r5, r0
+	lwz      r4, 0x218(r31)
+	addi     r4, r4, -1
+	bl       setCurrStage__Q34Game10ItemBridge4ItemFi
+	mr       r3, r31
+	li       r4, 1
+	lwz      r12, 0(r31)
+	lwz      r12, 0xac(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x1fc(r31)
+	cmplwi   r3, 0
+	beq      lbl_801EFF54
+	lwz      r0, 0x200(r31)
+	cmplwi   r0, 0
+	beq      lbl_801EFF54
+	li       r4, 0
+	bl       setOpen__Q24Game8WayPointFb
+	lwz      r3, 0x200(r31)
+	li       r4, 0
+	bl       setOpen__Q24Game8WayPointFb
+	lwz      r3, 0x1fc(r31)
+	li       r4, 0
+	bl       setWater__Q24Game8WayPointFb
+	lwz      r3, 0x200(r31)
+	li       r4, 0
+	bl       setWater__Q24Game8WayPointFb
+
+lbl_801EFF54:
+	li       r3, 0
+
+lbl_801EFF58:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+f32 ItemBridge::Item::getWorkRadius()
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	801EFF6C
+ * Size:	00004C
+ */
+GenItemParm* ItemBridge::Mgr::generatorNewItemParm() { return new GenBridgeParm(); }
+
+/*
+ * --INFO--
+ * Address:	801EFFB8
+ * Size:	000088
+ */
+void ItemBridge::Mgr::generatorWrite(Stream& output, Game::GenItemParm* genParm)
+{
+	GenBridgeParm* genBridgeParm = static_cast<GenBridgeParm*>(genParm);
+	P2ASSERTLINE(940, genBridgeParm != nullptr);
+	output.textWriteTab(output.mTabCount);
+	output.writeShort(genBridgeParm->_04);
+	output.textWriteText("\t#ã¥É^ÉCÉv\r\n");
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r3, lbl_80481228@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r3, lbl_80481228@l
+	stw      r30, 0x18(r1)
+	or.      r30, r5, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	bne      lbl_801EFFF8
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x38
+	li       r4, 0x3ac
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801EFFF8:
+	lwz      r4, 0x414(r29)
+	mr       r3, r29
+	bl       textWriteTab__6StreamFi
+	lhz      r0, 4(r30)
+	mr       r3, r29
+	extsh    r4, r0
+	bl       writeShort__6StreamFs
+	mr       r3, r29
+	addi     r4, r31, 0x44
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F0040
+ * Size:	000088
+ */
+void ItemBridge::Mgr::generatorRead(Stream& input, Game::GenItemParm* genParm, unsigned long version)
+{
+	GenBridgeParm* genBridgeParm = static_cast<GenBridgeParm*>(genParm);
+	P2ASSERTLINE(950, genBridgeParm != nullptr);
+	if (version >= '0001') {
+		genBridgeParm->_04 = input.readShort();
+	} else {
+		genBridgeParm->_04 = 0;
+	}
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	or.      r30, r5, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	bne      lbl_801F0084
+	lis      r3, lbl_80481234@ha
+	lis      r5, lbl_80481260@ha
+	addi     r3, r3, lbl_80481234@l
+	li       r4, 0x3b6
+	addi     r5, r5, lbl_80481260@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801F0084:
+	lis      r3, 0x30303031@ha
+	addi     r0, r3, 0x30303031@l
+	cmplw    r31, r0
+	blt      lbl_801F00A4
+	mr       r3, r29
+	bl       readShort__6StreamFv
+	sth      r3, 4(r30)
+	b        lbl_801F00AC
+
+lbl_801F00A4:
+	li       r0, 0
+	sth      r0, 4(r30)
+
+lbl_801F00AC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F00C8
+ * Size:	000130
+ */
+ItemBridge::Mgr::Mgr()
+    : TNodeItemMgr()
+{
+	mItemName = "Bridge";
+	setModelSize(3);
+	mObjectPathComponent = "user/Kando/objects/bridge";
+	mParms               = new BridgeParms();
+	DVDConvertPathToEntrynum("/user/Abe/item/bridgeParms.txt");
+	DVDConvertPathToEntrynum("user/Abe/item/bridgeParms.txt");
+	void* data = JKRDvdRipper::loadToMainRAM("/user/Abe/item/bridgeParms.txt", nullptr, Switch_0, 0, nullptr,
+	                                         JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+	if (data != nullptr) {
+		RamStream input(data, -1);
+		input.resetPosition(true, 1);
+		mParms->read(input);
+		delete[] data;
+	}
+
+	/*
+	stwu     r1, -0x440(r1)
+	mflr     r0
+	stw      r0, 0x444(r1)
+	extsh.   r0, r4
+	lis      r4, lbl_80481228@ha
+	stw      r31, 0x43c(r1)
+	addi     r31, r4, lbl_80481228@l
+	stw      r30, 0x438(r1)
+	mr       r30, r3
+	beq      lbl_801F00F8
+	addi     r0, r30, 0x94
+	stw      r0, 4(r30)
+
+lbl_801F00F8:
+	mr       r3, r30
+	li       r4, 0
+	bl       __ct__Q24Game12TNodeItemMgrFv
+	lis      r3, __vt__Q34Game10ItemBridge3Mgr@ha
+	addi     r0, r2, lbl_80519B7C@sda21
+	addi     r4, r3, __vt__Q34Game10ItemBridge3Mgr@l
+	mr       r3, r30
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x74
+	li       r4, 3
+	stw      r5, 0x30(r30)
+	stw      r0, 8(r30)
+	bl       setModelSize__Q24Game11BaseItemMgrFi
+	addi     r0, r31, 0x54
+	li       r3, 0x114
+	stw      r0, 0x28(r30)
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801F014C
+	bl       __ct__Q34Game10ItemBridge11BridgeParmsFv
+	mr       r0, r3
+
+lbl_801F014C:
+	stw      r0, 0x90(r30)
+	addi     r3, r31, 0x70
+	bl       DVDConvertPathToEntrynum
+	addi     r3, r31, 0x90
+	bl       DVDConvertPathToEntrynum
+	li       r0, 0
+	addi     r3, r31, 0x70
+	stw      r0, 8(r1)
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	li       r8, 2
+	li       r9, 0
+	li       r10, 0
+	bl
+loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	or.      r31, r3, r3
+	beq      lbl_801F01DC
+	mr       r4, r31
+	addi     r3, r1, 0x10
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	li       r0, 1
+	cmpwi    r0, 1
+	stw      r0, 0x1c(r1)
+	bne      lbl_801F01BC
+	li       r0, 0
+	stw      r0, 0x424(r1)
+
+lbl_801F01BC:
+	lwz      r3, 0x90(r30)
+	addi     r4, r1, 0x10
+	lwz      r12, 0xd8(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       __dla__FPv
+
+lbl_801F01DC:
+	lwz      r0, 0x444(r1)
+	mr       r3, r30
+	lwz      r31, 0x43c(r1)
+	lwz      r30, 0x438(r1)
+	mtlr     r0
+	addi     r1, r1, 0x440
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F01F8
+ * Size:	000024
+ */
+void ItemBridge::BridgeParms::read(Stream& input) { mBridgeParms.read(input); }
+
+/*
+ * --INFO--
+ * Address:	801F021C
+ * Size:	0001EC
+ */
+ItemBridge::BridgeParms::BridgeParms()
+    : CreatureParms()
+    , mBridgeParms()
+{
+	/*
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, 0x73303030@ha
+	lis      r4, __vt__Q24Game13CreatureParms@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, __vt__Q24Game13CreatureParms@l
+	addi     r5, r5, 0x73303030@l
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lis      r3, lbl_80481228@ha
+	stw      r0, 0xd8(r30)
+	addi     r31, r3, lbl_80481228@l
+	addi     r0, r30, 0xd4
+	li       r3, 0
+	stw      r0, 0(r30)
+	addi     r0, r31, 0xb0
+	mr       r4, r30
+	addi     r6, r31, 0xc4
+	stw      r3, 4(r30)
+	addi     r3, r30, 0xc
+	stw      r0, 8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x73303031@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_80519B84@sda21(r2)
+	stw      r0, 0xc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_80519B10@sda21(r2)
+	addi     r3, r30, 0x34
+	stfs     f0, 0x24(r30)
+	addi     r5, r5, 0x73303031@l
+	lfs      f0, lbl_80519B24@sda21(r2)
+	addi     r6, r31, 0xd8
+	stfs     f1, 0x2c(r30)
+	stfs     f0, 0x30(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x73303032@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_80519B84@sda21(r2)
+	stw      r0, 0x34(r30)
+	mr       r4, r30
+	lfs      f1, lbl_80519B10@sda21(r2)
+	addi     r3, r30, 0x5c
+	stfs     f0, 0x4c(r30)
+	addi     r5, r5, 0x73303032@l
+	lfs      f0, lbl_80519B24@sda21(r2)
+	addi     r6, r31, 0xe8
+	stfs     f1, 0x54(r30)
+	stfs     f0, 0x58(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x73303033@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_80519B88@sda21(r2)
+	stw      r0, 0x5c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_80519B10@sda21(r2)
+	addi     r3, r30, 0x84
+	stfs     f0, 0x74(r30)
+	addi     r5, r5, 0x73303033@l
+	lfs      f0, lbl_80519B24@sda21(r2)
+	addi     r6, r2, lbl_80519B8C@sda21
+	stfs     f1, 0x7c(r30)
+	stfs     f0, 0x80(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x73303034@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_80519B94@sda21(r2)
+	stw      r0, 0x84(r30)
+	mr       r4, r30
+	lfs      f1, lbl_80519B98@sda21(r2)
+	addi     r3, r30, 0xac
+	stfs     f0, 0x9c(r30)
+	addi     r5, r5, 0x73303034@l
+	lfs      f0, lbl_80519B9C@sda21(r2)
+	addi     r6, r31, 0xf8
+	stfs     f1, 0xa4(r30)
+	stfs     f0, 0xa8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r4, "__vt__7Parm<f>"@ha
+	lis      r3, __vt__Q34Game10ItemBridge11BridgeParms@ha
+	addi     r0, r4, "__vt__7Parm<f>"@l
+	lis      r5, 0x70303030@ha
+	stw      r0, 0xac(r30)
+	addi     r9, r3, __vt__Q34Game10ItemBridge11BridgeParms@l
+	lfs      f0, lbl_80519BA0@sda21(r2)
+	addi     r8, r30, 0x110
+	lfs      f1, lbl_80519B98@sda21(r2)
+	li       r7, 0
+	stfs     f0, 0xc4(r30)
+	addi     r0, r31, 0x108
+	lfs      f0, lbl_80519B9C@sda21(r2)
+	addi     r3, r30, 0xe8
+	stfs     f1, 0xcc(r30)
+	addi     r4, r30, 0xdc
+	addi     r5, r5, 0x70303030@l
+	addi     r6, r2, lbl_80519BA4@sda21
+	stfs     f0, 0xd0(r30)
+	stw      r9, 0xd8(r30)
+	stw      r8, 0xdc(r30)
+	stw      r7, 0xe0(r30)
+	stw      r0, 0xe4(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lfs      f2, lbl_80519B28@sda21(r2)
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_80519B10@sda21(r2)
+	stw      r0, 0xe8(r30)
+	mr       r3, r30
+	lfs      f0, lbl_80519BAC@sda21(r2)
+	stfs     f2, 0x100(r30)
+	stfs     f1, 0x108(r30)
+	stfs     f0, 0x10c(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F0408
+ * Size:	000118
+ */
+BaseItem* ItemBridge::Mgr::birth()
+{
+	Item* item = new Item();
+	entry(item);
+	return item;
+}
+
+/*
+ * --INFO--
+ * Address:	801F0520
+ * Size:	0000A8
+ */
+BaseItem* ItemBridge::Mgr::generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm)
+{
+	BridgeInitArg initArg;
+	initArg.mBridgeType          = 0;
+	GenBridgeParm* genBridgeParm = static_cast<GenBridgeParm*>(genParm);
+	if (genBridgeParm != nullptr) {
+		initArg.mBridgeType = genBridgeParm->_04;
+	}
+	Item* item = static_cast<Item*>(birth());
+	item->init(&initArg);
+	item->_1F4 = roundAng(rot.y);
+	item->setPosition(pos, false);
+	return item;
+}
+
+/*
+ * --INFO--
+ * Address:	801F05C8
+ * Size:	000260
+ */
+void ItemBridge::Mgr::onLoadResources()
+{
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_80481228@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r4, lbl_80481228@l
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	li       r3, 0xc
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	bl       __nwa__FUl
+	stw      r3, 0x88(r30)
+	li       r6, 0
+	addi     r0, r31, 0x118
+	mr       r3, r30
+	lwz      r5, 0x88(r30)
+	addi     r4, r2, lbl_80519BB0@sda21
+	stw      r6, 0(r5)
+	lwz      r5, 0x88(r30)
+	stw      r6, 4(r5)
+	lwz      r5, 0x88(r30)
+	stw      r6, 8(r5)
+	stw      r0, 0x28(r30)
+	bl       loadArchive__Q24Game11BaseItemMgrFPc
+	mr       r3, r30
+	addi     r4, r31, 0x134
+	li       r5, 0
+	lis      r6, 2
+	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
+	addi     r0, r31, 0x144
+	mr       r3, r30
+	stw      r0, 0x28(r30)
+	addi     r4, r2, lbl_80519BB0@sda21
+	bl       loadArchive__Q24Game11BaseItemMgrFPc
+	mr       r3, r30
+	addi     r4, r31, 0x160
+	li       r5, 1
+	lis      r6, 2
+	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
+	addi     r0, r31, 0x16c
+	mr       r3, r30
+	stw      r0, 0x28(r30)
+	addi     r4, r2, lbl_80519BB0@sda21
+	bl       loadArchive__Q24Game11BaseItemMgrFPc
+	mr       r3, r30
+	addi     r4, r31, 0x188
+	li       r5, 2
+	lis      r6, 2
+	bl       loadBmd__Q24Game11BaseItemMgrFPciUl
+	li       r28, 0
+	li       r29, 0
+
+lbl_801F0698:
+	lwz      r3, 0x1c(r30)
+	lis      r4, 4
+	lwzx     r3, r3, r29
+	bl       newSharedDisplayList__12J3DModelDataFUl
+	lwz      r3, 0x1c(r30)
+	lwzx     r3, r3, r29
+	bl       makeSharedDL__12J3DModelDataFv
+	addi     r28, r28, 1
+	addi     r29, r29, 4
+	cmpwi    r28, 3
+	blt      lbl_801F0698
+	addi     r3, r1, 8
+	li       r4, 3
+	li       r5, 0
+	li       r6, 1
+	bl       setCode__Q27MapCode4CodeFiib
+	addi     r0, r31, 0x118
+	mr       r3, r30
+	stw      r0, 0x28(r30)
+	addi     r4, r31, 0x198
+	bl       openTextArc__Q24Game11BaseItemMgrFPc
+	mr       r0, r3
+	mr       r3, r30
+	mr       r28, r0
+	addi     r5, r31, 0x1a4
+	mr       r4, r28
+	bl       loadPlatAttacher__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
+	lwz      r5, 0x88(r30)
+	addi     r4, r1, 8
+	stw      r3, 0(r5)
+	lwz      r3, 0x88(r30)
+	lwz      r3, 0(r3)
+	bl       setMapCodeAll__12PlatAttacherFRQ27MapCode4Code
+	mr       r3, r30
+	mr       r4, r28
+	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
+	addi     r0, r31, 0x144
+	mr       r3, r30
+	stw      r0, 0x28(r30)
+	addi     r4, r31, 0x198
+	bl       openTextArc__Q24Game11BaseItemMgrFPc
+	mr       r0, r3
+	mr       r3, r30
+	mr       r28, r0
+	addi     r5, r31, 0x1a4
+	mr       r4, r28
+	bl       loadPlatAttacher__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
+	lwz      r5, 0x88(r30)
+	addi     r4, r1, 8
+	stw      r3, 4(r5)
+	lwz      r3, 0x88(r30)
+	lwz      r3, 4(r3)
+	bl       setMapCodeAll__12PlatAttacherFRQ27MapCode4Code
+	mr       r3, r30
+	mr       r4, r28
+	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
+	addi     r0, r31, 0x16c
+	mr       r3, r30
+	stw      r0, 0x28(r30)
+	addi     r4, r31, 0x198
+	bl       openTextArc__Q24Game11BaseItemMgrFPc
+	mr       r0, r3
+	mr       r3, r30
+	mr       r28, r0
+	addi     r5, r31, 0x1a4
+	mr       r4, r28
+	bl       loadPlatAttacher__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
+	lwz      r5, 0x88(r30)
+	addi     r4, r1, 8
+	stw      r3, 8(r5)
+	lwz      r3, 0x88(r30)
+	lwz      r3, 8(r3)
+	bl       setMapCodeAll__12PlatAttacherFRQ27MapCode4Code
+	mr       r3, r30
+	mr       r4, r28
+	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
+	li       r3, 0x40
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game10ItemBridge10BridgeInfoFv@ha
+	li       r5, 0
+	addi     r4, r4, __ct__Q34Game10ItemBridge10BridgeInfoFv@l
+	li       r6, 0x10
+	li       r7, 3
+	bl       __construct_new_array
+	stw      r3, 0x8c(r30)
+	li       r28, 0
+
+lbl_801F07F0:
+	mr       r3, r30
+	mr       r4, r28
+	bl       createBridgeInfo__Q34Game10ItemBridge3MgrFi
+	addi     r28, r28, 1
+	cmpwi    r28, 3
+	blt      lbl_801F07F0
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F0828
+ * Size:	00001C
+ */
+ItemBridge::BridgeInfo::BridgeInfo()
+    : mStageCount(0)
+    , _04(0)
+    , _08(0)
+    , _0C(-1)
+{
+}
+
+/*
+ * --INFO--
+ * Address:	801F0844
+ * Size:	000078
+ */
+ItemBridge::BridgeInfo* ItemBridge::Mgr::getBridgeInfo(int p1)
+{
+	P2ASSERTBOUNDSLINE(1127, 0, p1, 3);
+	return mBridgeInfos + p1;
+	/*
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	blt      lbl_801F0874
+	cmpwi    r31, 3
+	bge      lbl_801F0874
+	li       r0, 1
+
+lbl_801F0874:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_801F0898
+	lis      r3, lbl_80481234@ha
+	lis      r5, lbl_80481260@ha
+	addi     r3, r3, lbl_80481234@l
+	li       r4, 0x467
+	addi     r5, r5, lbl_80481260@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801F0898:
+	lwz      r3, 0x8c(r30)
+	slwi     r0, r31, 4
+	add      r3, r3, r0
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F08BC
+ * Size:	00020C
+ */
+void ItemBridge::Mgr::createBridgeInfo(int)
+{
+	/*
+	stwu     r1, -0x230(r1)
+	mflr     r0
+	stw      r0, 0x234(r1)
+	li       r0, 0
+	stmw     r25, 0x214(r1)
+	or.      r25, r4, r4
+	lis      r4, lbl_80481228@ha
+	mr       r26, r3
+	addi     r31, r4, lbl_80481228@l
+	blt      lbl_801F08F0
+	cmpwi    r25, 3
+	bge      lbl_801F08F0
+	li       r0, 1
+
+lbl_801F08F0:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_801F090C
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x38
+	li       r4, 0x46d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801F090C:
+	lwz      r3, 0x1c(r26)
+	slwi     r0, r25, 2
+	lwzx     r29, r3, r0
+	cmplwi   r29, 0
+	bne      lbl_801F0934
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x38
+	li       r4, 0x46f
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801F0934:
+	li       r28, 0
+	li       r30, 0
+
+lbl_801F093C:
+	mr       r5, r30
+	addi     r3, r1, 8
+	addi     r4, r31, 0x1b4
+	crclr    6
+	bl       sprintf
+	lwz      r3, 0x54(r29)
+	addi     r4, r1, 8
+	bl       getIndex__10JUTNameTabCFPCc
+	clrlwi   r0, r3, 0x10
+	cmplwi   r0, 0xffff
+	beq      lbl_801F096C
+	addi     r28, r28, 1
+
+lbl_801F096C:
+	addi     r30, r30, 1
+	cmpwi    r30, 0x20
+	blt      lbl_801F093C
+	srwi     r3, r28, 0x1f
+	clrlwi   r0, r28, 0x1f
+	xor      r0, r0, r3
+	subf.    r0, r3, r0
+	beq      lbl_801F09A0
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x38
+	li       r4, 0x47a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801F09A0:
+	srwi     r0, r28, 0x1f
+	lwz      r5, 0x8c(r26)
+	slwi     r4, r25, 4
+	slwi     r3, r28, 1
+	add      r0, r0, r28
+	add      r27, r5, r4
+	srawi    r0, r0, 1
+	stw      r0, 0(r27)
+	stw      r28, 4(r27)
+	bl       __nwa__FUl
+	stw      r3, 8(r27)
+	li       r26, 0
+	li       r30, 0
+	b        lbl_801F0A4C
+
+lbl_801F09D8:
+	mr       r5, r26
+	addi     r3, r1, 8
+	addi     r4, r31, 0x1b4
+	crclr    6
+	bl       sprintf
+	lwz      r3, 0x54(r29)
+	addi     r4, r1, 8
+	bl       getIndex__10JUTNameTabCFPCc
+	extsh    r0, r3
+	lwz      r4, 8(r27)
+	cmpwi    r0, -1
+	sthx     r3, r4, r30
+	bne      lbl_801F0A44
+	li       r25, 0
+	b        lbl_801F0A24
+
+lbl_801F0A14:
+	lwz      r3, 0x54(r29)
+	clrlwi   r4, r25, 0x10
+	bl       getName__10JUTNameTabCFUs
+	addi     r25, r25, 1
+
+lbl_801F0A24:
+	lhz      r0, 0x2c(r29)
+	cmpw     r25, r0
+	blt      lbl_801F0A14
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x1c0
+	li       r4, 0x48b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801F0A44:
+	addi     r30, r30, 2
+	addi     r26, r26, 1
+
+lbl_801F0A4C:
+	cmpw     r26, r28
+	blt      lbl_801F09D8
+	lwz      r3, 0x54(r29)
+	addi     r4, r2, lbl_80519BB8@sda21
+	bl       getIndex__10JUTNameTabCFPCc
+	extsh    r0, r3
+	cmpwi    r0, -1
+	beq      lbl_801F0A74
+	stw      r0, 0xc(r27)
+	b        lbl_801F0AB4
+
+lbl_801F0A74:
+	li       r0, -1
+	li       r25, 0
+	stw      r0, 0xc(r27)
+	b        lbl_801F0A94
+
+lbl_801F0A84:
+	lwz      r3, 0x54(r29)
+	clrlwi   r4, r25, 0x10
+	bl       getName__10JUTNameTabCFUs
+	addi     r25, r25, 1
+
+lbl_801F0A94:
+	lhz      r0, 0x2c(r29)
+	cmpw     r25, r0
+	blt      lbl_801F0A84
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x1e0
+	li       r4, 0x49c
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_801F0AB4:
+	lmw      r25, 0x214(r1)
+	lwz      r0, 0x234(r1)
+	mtlr     r0
+	addi     r1, r1, 0x230
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F0AC8
+ * Size:	0001A0
+ */
+void ItemBridge::Mgr::setupPlatInstanceAttacher(Game::ItemBridge::Item*, Game::PlatInstanceAttacher&)
+{
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x50(r1)
+	  mflr      r0
+	  stw       r0, 0x54(r1)
+	  stw       r31, 0x4C(r1)
+	  stw       r30, 0x48(r1)
+	  mr        r30, r5
+	  stw       r29, 0x44(r1)
+	  mr        r29, r4
+	  stw       r28, 0x40(r1)
+	  mr        r28, r3
+	  lhz       r0, 0x214(r4)
+	  cmplwi    r0, 0x3
+	  blt-      .loc_0x50
+	  lis       r3, 0x8048
+	  lis       r5, 0x8048
+	  addi      r3, r3, 0x1234
+	  li        r4, 0x4A2
+	  addi      r5, r5, 0x1260
+	  crclr     6, 0x6
+	  bl        -0x1C64D4
+
+	.loc_0x50:
+	  lhz       r31, 0x214(r29)
+	  li        r0, 0
+	  cmpwi     r31, 0
+	  blt-      .loc_0x6C
+	  cmpwi     r31, 0x3
+	  bge-      .loc_0x6C
+	  li        r0, 0x1
+
+	.loc_0x6C:
+	  rlwinm.   r0,r0,0,24,31
+	  bne-      .loc_0x90
+	  lis       r3, 0x8048
+	  lis       r5, 0x8048
+	  addi      r3, r3, 0x1234
+	  li        r4, 0x467
+	  addi      r5, r5, 0x1260
+	  crclr     6, 0x6
+	  bl        -0x1C6514
+
+	.loc_0x90:
+	  lwz       r5, 0x8C(r28)
+	  rlwinm    r0,r31,4,0,27
+	  lis       r4, 0x6E6F
+	  addi      r3, r1, 0x2C
+	  add       r31, r5, r0
+	  addi      r4, r4, 0x6E65
+	  bl        0x222738
+	  lhz       r0, 0x214(r29)
+	  mr        r3, r30
+	  lwz       r6, 0x88(r28)
+	  mr        r4, r29
+	  rlwinm    r0,r0,2,0,29
+	  addi      r5, r1, 0x2C
+	  lwzx      r6, r6, r0
+	  li        r7, 0
+	  bl        -0x2B9D8
+	  li        r29, 0
+	  li        r28, 0
+	  b         .loc_0x144
+
+	.loc_0xDC:
+	  rlwinm    r3,r29,1,31,31
+	  rlwinm    r0,r29,0,31,31
+	  xor       r0, r0, r3
+	  sub.      r0, r0, r3
+	  bne-      .loc_0x118
+	  lis       r4, 0x6272
+	  addi      r3, r1, 0x20
+	  addi      r4, r4, 0x626B
+	  bl        0x2226E4
+	  lwz       r5, 0x8(r31)
+	  mr        r3, r30
+	  addi      r4, r1, 0x20
+	  lhzx      r5, r5, r28
+	  bl        -0x2B73C
+	  b         .loc_0x13C
+
+	.loc_0x118:
+	  lis       r4, 0x6272
+	  addi      r3, r1, 0x14
+	  addi      r4, r4, 0x5F5F
+	  bl        0x2226BC
+	  lwz       r5, 0x8(r31)
+	  mr        r3, r30
+	  addi      r4, r1, 0x14
+	  lhzx      r5, r5, r28
+	  bl        -0x2B764
+
+	.loc_0x13C:
+	  addi      r28, r28, 0x2
+	  addi      r29, r29, 0x1
+
+	.loc_0x144:
+	  lwz       r0, 0x4(r31)
+	  cmpw      r29, r0
+	  blt+      .loc_0xDC
+	  lwz       r0, 0xC(r31)
+	  cmpwi     r0, -0x1
+	  beq-      .loc_0x180
+	  lis       r4, 0x6669
+	  addi      r3, r1, 0x8
+	  addi      r4, r4, 0x6E6C
+	  bl        0x222678
+	  lwz       r0, 0xC(r31)
+	  mr        r3, r30
+	  addi      r4, r1, 0x8
+	  rlwinm    r5,r0,0,16,31
+	  bl        -0x2B7A8
+
+	.loc_0x180:
+	  lwz       r0, 0x54(r1)
+	  lwz       r31, 0x4C(r1)
+	  lwz       r30, 0x48(r1)
+	  lwz       r29, 0x44(r1)
+	  lwz       r28, 0x40(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x50
+	  blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F0C68
+ * Size:	00000C
+ */
+const char* ItemBridge::BridgeInitArg::getName()
+{
+	return "BridgeInitArg";
+	/*
+	lis      r3, lbl_80481418@ha
+	addi     r3, r3, lbl_80481418@l
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F0C74
+ * Size:	000134
+ */
+ItemBridge::Mgr::~Mgr() { }
+
+/*
+ * --INFO--
+ * Address:	801F0DA8
+ * Size:	000100
+ */
+BaseItem* ItemBridge::Mgr::doNew() { return new Item(); }
+
+/*
+ * --INFO--
+ * Address:	801F0EA8
+ * Size:	00000C
+ */
+u32 ItemBridge::Mgr::generatorGetID() { return 'brdg'; }
+
+/*
+ * --INFO--
+ * Address:	801F0EB4
+ * Size:	00000C
+ */
+u32 ItemBridge::Mgr::generatorLocalVersion() { return '0001'; }
+
+/*
+ * --INFO--
+ * Address:	801F0EC0
+ * Size:	000004
+ */
+void ItemBridge::Item::makeTrMatrix() { }
+
+/*
+ * --INFO--
+ * Address:	801F0EC4
+ * Size:	000008
+ */
+char* ItemBridge::Item::getCreatureName()
+{
+	return "Bridge";
+	/*
+	addi     r3, r2, lbl_80519B7C@sda21
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F0ECC
+ * Size:	000008
+ */
+int* ItemBridge::Item::getMabiki()
+{
+	// return _1EC;
+	/*
+	addi     r3, r3, 0x1ec
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801F0ED4
+ * Size:	000034
+ */
 // void doAI__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State> Fv()
 // {
 // 	/*
@@ -4620,83 +4255,81 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F08
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F08
+ * Size:	000004
+ */
 // void onDamage__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Itemf() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F0C
-//  * Size:	000004
-//  */
-// void onKeyEvent__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRCQ28SysShape8KeyEvent() {
-// }
+/*
+ * --INFO--
+ * Address:	801F0F0C
+ * Size:	000004
+ */
+// void onKeyEvent__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRCQ28SysShape8KeyEvent() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F10
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F10
+ * Size:	000004
+ */
 // void onBounce__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemPQ23Sys8Triangle() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F14
-//  * Size:	000004
-//  */
-// void onPlatCollision__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRQ24Game9PlatEvent() {
-// }
+/*
+ * --INFO--
+ * Address:	801F0F14
+ * Size:	000004
+ */
+// void onPlatCollision__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRQ24Game9PlatEvent() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F18
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F18
+ * Size:	000004
+ */
 // void onCollision__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRQ24Game9CollEvent() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F1C
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F1C
+ * Size:	000004
+ */
 // void init__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemPQ24Game8StateArg() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F20
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F20
+ * Size:	000004
+ */
 // void exec__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F24
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F24
+ * Size:	000004
+ */
 // void cleanup__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F28
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F28
+ * Size:	000004
+ */
 // void resume__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F2C
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F2C
+ * Size:	000004
+ */
 // void restart__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F30
-//  * Size:	000030
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F30
+ * Size:	000030
+ */
 // void transit__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg()
 // {
 // 	/*
@@ -4716,20 +4349,18 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0F60
-//  * Size:	000004
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F60
+ * Size:	000004
+ */
 // void init__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
-// } // namespace Game
-
-// /*
-//  * --INFO--
-//  * Address:	801F0F64
-//  * Size:	000064
-//  */
+/*
+ * --INFO--
+ * Address:	801F0F64
+ * Size:	000064
+ */
 // void create__Q24Game38StateMachine<Game::ItemBridge::Item> Fi()
 // {
 // 	/*
@@ -4761,11 +4392,11 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F0FC8
-//  * Size:	00009C
-//  */
+/*
+ * --INFO--
+ * Address:	801F0FC8
+ * Size:	00009C
+ */
 // void transit__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg()
 // {
 // 	/*
@@ -4818,11 +4449,11 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F1064
-//  * Size:	000084
-//  */
+/*
+ * --INFO--
+ * Address:	801F1064
+ * Size:	000084
+ */
 // void registerState__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ24Game34FSMState<Game::ItemBridge::Item>()
 // {
 // 	/*
@@ -4869,11 +4500,11 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F10E8
-//  * Size:	000038
-//  */
+/*
+ * --INFO--
+ * Address:	801F10E8
+ * Size:	000038
+ */
 // void exec__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item()
 // {
 // 	/*
@@ -4897,11 +4528,11 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F1120
-//  * Size:	000044
-//  */
+/*
+ * --INFO--
+ * Address:	801F1120
+ * Size:	000044
+ */
 // void onKeyEvent__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
 // FRCQ28SysShape8KeyEvent()
 // {
@@ -4929,11 +4560,11 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F1164
-//  * Size:	000044
-//  */
+/*
+ * --INFO--
+ * Address:	801F1164
+ * Size:	000044
+ */
 // void platCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
 // FRQ24Game9PlatEvent()
 // {
@@ -4961,11 +4592,11 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F11A8
-//  * Size:	000044
-//  */
+/*
+ * --INFO--
+ * Address:	801F11A8
+ * Size:	000044
+ */
 // void collisionCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
 // FRQ24Game9CollEvent()
 // {
@@ -4993,11 +4624,11 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F11EC
-//  * Size:	000044
-//  */
+/*
+ * --INFO--
+ * Address:	801F11EC
+ * Size:	000044
+ */
 // void bounceCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
 // FPQ23Sys8Triangle()
 // {
@@ -5025,11 +4656,11 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F1230
-//  * Size:	000008
-//  */
+/*
+ * --INFO--
+ * Address:	801F1230
+ * Size:	000008
+ */
 // void @376 @onKeyEvent__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
 // FRCQ28SysShape8KeyEvent()
 // {
@@ -5040,11 +4671,11 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801F1238
-//  * Size:	000008
-//  */
+/*
+ * --INFO--
+ * Address:	801F1238
+ * Size:	000008
+ */
 // @48 @Game::ItemBridge::Mgr::~Mgr()
 // {
 // 	/*
@@ -5052,3 +4683,4 @@ Vector3f Game::ItemBridge::Item::getBridgeXVec() { return Vector3f(pikmin2_cosf(
 // 	b        __dt__Q34Game10ItemBridge3MgrFv
 // 	*/
 // }
+} // namespace Game

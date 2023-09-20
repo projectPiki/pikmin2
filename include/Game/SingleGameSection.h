@@ -25,6 +25,8 @@ struct State;
  * @Size{0x278}
  */
 struct SingleGameSection : public BaseGameSection {
+	typedef Game::SingleGame::GameState StateType;
+
 	SingleGameSection(JKRHeap*);
 
 	virtual ~SingleGameSection();                                      // _08

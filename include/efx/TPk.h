@@ -198,9 +198,9 @@ struct TPkEffectTane {
 
 	int mPikiColor;      // _00
 	Vector3f* mPos;      // _04, unknown
-	u32 _08;             // _08, unknown
-	Vector3f* mPos2;     // _0C, unknown
-	u32 _10;             // _10, unknown
+	Vector3f* _08;       // _08
+	Matrixf* _0C;        // _0C
+	Matrixf* _10;        // _10
 	TPkGlow1 mGlow;      // _14
 	ToeTanekira mOeKira; // _28
 	ToeKourin mOeKourin; // _44
