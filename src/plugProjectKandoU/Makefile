@@ -70,7 +70,7 @@ KANDO_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemBridge.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pikiContainer.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameGeneratorCache.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/itemTreasure.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/itemTreasure.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemDownFloor.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/kandoLib.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemBarrel.o\

@@ -956,7 +956,7 @@ LIBS = [
             "plugProjectKandoU/itemBridge",
             ["plugProjectKandoU/pikiContainer", True],
             "plugProjectKandoU/gameGeneratorCache",
-            "plugProjectKandoU/itemTreasure",
+            ["plugProjectKandoU/itemTreasure", True],
             "plugProjectKandoU/itemDownFloor",
             ["plugProjectKandoU/kandoLib", True],
             "plugProjectKandoU/itemBarrel",

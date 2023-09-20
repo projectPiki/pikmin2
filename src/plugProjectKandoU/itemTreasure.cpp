@@ -19,15 +19,16 @@ static const char UNUSED_1[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 static const char name[]     = "itemTreasure";
 
 namespace Game {
+namespace ItemTreasure {
 
-ItemTreasure::Mgr* ItemTreasure::mgr;
+Mgr* mgr;
 
 /*
  * --INFO--
  * Address:	801F316C
  * Size:	000084
  */
-void ItemTreasure::FSM::init(ItemTreasure::Item* item)
+void FSM::init(Item* item)
 {
 	create(1);
 	registerState(new NormalState);
@@ -38,28 +39,28 @@ void ItemTreasure::FSM::init(ItemTreasure::Item* item)
  * Address:	801F31F0
  * Size:	00000C
  */
-void ItemTreasure::NormalState::init(ItemTreasure::Item* item, Game::StateArg*) { item->mAnimSpeed = 0.0f; }
+void NormalState::init(Item* item, StateArg*) { item->mAnimSpeed = 0.0f; }
 
 /*
  * --INFO--
  * Address:	801F31FC
  * Size:	000004
  */
-void ItemTreasure::NormalState::exec(ItemTreasure::Item*) { }
+void NormalState::exec(Item*) { }
 
 /*
  * --INFO--
  * Address:	801F3200
  * Size:	000004
  */
-void ItemTreasure::NormalState::cleanup(ItemTreasure::Item*) { }
+void NormalState::cleanup(Item*) { }
 
 /*
  * --INFO--
  * Address:	801F3204
  * Size:	0003C8
  */
-void ItemTreasure::NormalState::onDamage(ItemTreasure::Item* item, f32 damage)
+void NormalState::onDamage(Item* item, f32 damage)
 {
 	if (gameSystem->mFlags & GAMESYS_IsGameWorldActive && gameSystem->mMode == GSM_STORY_MODE
 	    && !playData->isDemoFlag(DEMO_Whites_Digging)) {
@@ -111,7 +112,7 @@ void ItemTreasure::NormalState::onDamage(ItemTreasure::Item* item, f32 damage)
  * Address:	801F35CC
  * Size:	000298
  */
-void ItemTreasure::Item::releasePellet()
+void Item::releasePellet()
 {
 	if (mPellet) {
 		mPellet->endCapture();
@@ -131,7 +132,7 @@ void ItemTreasure::Item::releasePellet()
 		Vector3f velocity;
 		velocity.x = 10.0f * (randFloat() - 0.5f);
 		velocity.z = 10.0f * (randFloat() - 0.5f);
-		velocity.y = 15.0f;
+		velocity.y = 150.0f;
 
 		mPellet->setVelocity(velocity);
 
@@ -159,7 +160,7 @@ void ItemTreasure::Item::releasePellet()
  * Address:	........
  * Size:	00010C
  */
-ItemTreasure::Item::Item()
+Item::Item()
     : WorkItem(OBJTYPE_Treasure)
 {
 	mMass               = 0.0f;
@@ -172,14 +173,14 @@ ItemTreasure::Item::Item()
  * Address:	801F3864
  * Size:	000048
  */
-void ItemTreasure::Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
+void Item::constructor() { mSoundObj = new PSM::WorkItem(this); }
 
 /*
  * --INFO--
  * Address:	801F38AC
  * Size:	000080
  */
-void ItemTreasure::Item::onInit(CreatureInitArg*)
+void Item::onInit(CreatureInitArg*)
 {
 	mModel = nullptr;
 	mFsm->start(this, 0, nullptr);
@@ -189,21 +190,10 @@ void ItemTreasure::Item::onInit(CreatureInitArg*)
 
 /*
  * --INFO--
- * Address:	801F392C
- * Size:	000034
- */
-// void StateMachine<Game::ItemTreasure::Item>::start(ItemTreasure::Item* item, int id, StateArg* arg)
-// {
-// 	item->mCurrentState = nullptr;
-// 	transit(item, id, arg);
-// }
-
-/*
- * --INFO--
  * Address:	801F3960
  * Size:	000044
  */
-void ItemTreasure::Item::onSetPosition()
+void Item::onSetPosition()
 {
 	updateBoundSphere();
 	mObjMatrix.makeT(mPosition);
@@ -214,7 +204,7 @@ void ItemTreasure::Item::onSetPosition()
  * Address:	801F39A4
  * Size:	000048
  */
-void ItemTreasure::Item::updateBoundSphere()
+void Item::updateBoundSphere()
 {
 	f32 rad                   = getWorkRadius();
 	mBoundingSphere.mPosition = mPosition;
@@ -226,7 +216,7 @@ void ItemTreasure::Item::updateBoundSphere()
  * Address:	801F39EC
  * Size:	000180
  */
-void ItemTreasure::Item::doAI()
+void Item::doAI()
 {
 	mFsm->exec(this);
 	mBoundingSphere.mRadius = getWorkRadius();
@@ -267,7 +257,7 @@ void ItemTreasure::Item::doAI()
  * Address:	801F3B6C
  * Size:	000050
  */
-void ItemTreasure::Item::doDirectDraw(Graphics& gfx)
+void Item::doDirectDraw(Graphics& gfx)
 {
 	gfx.initPrimDraw(nullptr);
 	gfx.drawSphere(mBoundingSphere.mPosition, mBoundingSphere.mRadius);
@@ -278,7 +268,7 @@ void ItemTreasure::Item::doDirectDraw(Graphics& gfx)
  * Address:	801F3BBC
  * Size:	00011C
  */
-bool ItemTreasure::Item::getVectorField(Sys::Sphere& bounds, Vector3f& pos)
+bool Item::getVectorField(Sys::Sphere& bounds, Vector3f& pos)
 {
 	Vector3f diff = mPosition - bounds.mPosition;
 	f32 dist      = _normalise2(diff); // needs tweaking
@@ -296,7 +286,7 @@ bool ItemTreasure::Item::getVectorField(Sys::Sphere& bounds, Vector3f& pos)
  * Address:	801F3CD8
  * Size:	000088
  */
-f32 ItemTreasure::Item::getWorkDistance(Sys::Sphere& bounds)
+f32 Item::getWorkDistance(Sys::Sphere& bounds)
 {
 	f32 dist = _distanceBetween(mPosition, bounds.mPosition);
 	return dist - getWorkRadius();
@@ -307,7 +297,7 @@ f32 ItemTreasure::Item::getWorkDistance(Sys::Sphere& bounds)
  * Address:	801F3D60
  * Size:	0000B8
  */
-void ItemTreasure::Item::setTreasure(Game::Pellet* pelt)
+void Item::setTreasure(Pellet* pelt)
 {
 	Vector3f pos = mPosition;
 	mMatrix.makeT(pos);
@@ -328,14 +318,14 @@ void ItemTreasure::Item::setTreasure(Game::Pellet* pelt)
  * Address:	801F3E18
  * Size:	000030
  */
-void ItemTreasure::Item::setLife() { mCurrStageLife = getCurrMaxLife(); }
+void Item::setLife() { mCurrStageLife = getCurrMaxLife(); }
 
 /*
  * --INFO--
  * Address:	801F3E48
  * Size:	000098
  */
-f32 ItemTreasure::Item::getCurrMaxLife()
+f32 Item::getCurrMaxLife()
 {
 	f32 depth = mPellet->getBuryDepthMax();
 	f32 test  = mTotalLife / depth;
@@ -356,9 +346,11 @@ f32 ItemTreasure::Item::getCurrMaxLife()
  * Address:	........
  * Size:	000144
  */
-void ItemTreasure::Item::createTreasure()
+void Item::createTreasure()
 {
-	// UNUSED FUNCTION
+	// obvs more to it than this, but this is required to generate PelletInitArg text
+	PelletInitArg initArg;
+	pelletMgr->makePelletInitArg(initArg, 0);
 }
 
 /*
@@ -366,7 +358,7 @@ void ItemTreasure::Item::createTreasure()
  * Address:	801F3EE0
  * Size:	00011C
  */
-bool ItemTreasure::Item::interactAttack(Game::InteractAttack& act)
+bool Item::interactAttack(InteractAttack& act)
 {
 	State* cState = mCurrentState;
 	if (cState) {
@@ -392,7 +384,7 @@ bool ItemTreasure::Item::interactAttack(Game::InteractAttack& act)
  * Address:	801F4000
  * Size:	000058
  */
-f32 ItemTreasure::Item::getWorkRadius()
+f32 Item::getWorkRadius()
 {
 	if (!mPellet) {
 		return 10.0f;
@@ -406,14 +398,14 @@ f32 ItemTreasure::Item::getWorkRadius()
  * Address:	801F4058
  * Size:	000060
  */
-bool ItemTreasure::Item::isVisible() { return (!mPellet) ? false : !(mTotalLife / mPellet->getBuryDepthMax() > 0.85f); }
+bool Item::isVisible() { return (!mPellet) ? false : !(mTotalLife / mPellet->getBuryDepthMax() > 0.85f); }
 
 /*
  * --INFO--
  * Address:	801F40B8
  * Size:	0000B0
  */
-bool ItemTreasure::Item::ignoreAtari(Game::Creature* obj)
+bool Item::ignoreAtari(Creature* obj)
 {
 	bool check;
 	if (!mPellet) {
@@ -442,10 +434,10 @@ bool ItemTreasure::Item::ignoreAtari(Game::Creature* obj)
  * Address:	801F4168
  * Size:	000114
  */
-ItemTreasure::Mgr::Mgr()
+Mgr::Mgr()
 {
 	mItemName            = "Treasure";
-	mObjectPathComponent = "user/kando/objects/treasure";
+	mObjectPathComponent = "user/Kando/objects/treasure";
 	mParameters          = new TreasureParms;
 
 	void* file = JKRDvdRipper::loadToMainRAM("user/Abe/item/treasureParms.txt", nullptr, (JKRExpandSwitch)0, 0, nullptr,
@@ -463,7 +455,7 @@ ItemTreasure::Mgr::Mgr()
  * Address:	801F4540
  * Size:	000130
  */
-BaseItem* ItemTreasure::Mgr::birth()
+BaseItem* Mgr::birth()
 {
 	Item* item = new Item;
 	entry(item);
@@ -475,7 +467,7 @@ BaseItem* ItemTreasure::Mgr::birth()
  * Address:	801F4670
  * Size:	000060
  */
-BaseItem* ItemTreasure::Mgr::generatorBirth(Vector3f& pos, Vector3f&, GenItemParm*)
+BaseItem* Mgr::generatorBirth(Vector3f& pos, Vector3f&, GenItemParm*)
 {
 	BaseItem* item = birth();
 	item->init(nullptr);
@@ -488,140 +480,6 @@ BaseItem* ItemTreasure::Mgr::generatorBirth(Vector3f& pos, Vector3f&, GenItemPar
  * Address:	801F46D0
  * Size:	000004
  */
-void ItemTreasure::Mgr::onLoadResources() { }
-
-/*
- * --INFO--
- * Address:	801F49D4
- * Size:	000004
- */
-// void StateMachine<ItemTreasure::Item>::init(ItemTreasure::Item*) { }
-
-/*
- * --INFO--
- * Address:	801F49D8
- * Size:	000038
- */
-// void StateMachine<ItemTreasure::Item>::exec(ItemTreasure::Item* item)
-// {
-// 	if (item->mCurrentState) {
-// 		item->mCurrentState->exec(item);
-// 	}
-// }
-
-/*
- * --INFO--
- * Address:	801F4A10
- * Size:	000064
- */
-// void StateMachine<ItemTreasure::Item>::create(int count)
-// {
-// 	mLimit          = count;
-// 	mCount          = 0;
-// 	mStates         = new FSMState<ItemTreasure::Item>*[mLimit];
-// 	mIndexToIDArray = new int[mLimit];
-// 	mIdToIndexArray = new int[mLimit];
-// }
-
-/*
- * --INFO--
- * Address:	801F4A74
- * Size:	00009C
- */
-// void StateMachine<ItemTreasure::Item>::transit(ItemTreasure::Item* obj, int id, StateArg* arg)
-// {
-// 	int index                  = mIdToIndexArray[id];
-// 	ItemTreasure::State* state = obj->mCurrentState;
-// 	if (state) {
-// 		state->cleanup(obj);
-// 		mCurrentID = state->mId;
-// 	}
-
-// 	ASSERT_HANG(index < mLimit);
-
-// 	state              = static_cast<ItemTreasure::State*>(mStates[index]);
-// 	obj->mCurrentState = state;
-// 	state->init(obj, arg);
-// }
-
-/*
- * --INFO--
- * Address:	801F4B10
- * Size:	000084
- */
-// void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure::Item>* newState)
-// {
-// 	// copied all this from enemyFSM.cpp, do we actually need it here? no idea
-// 	bool check;
-// 	if (mCount >= mLimit) {
-// 		return;
-// 	}
-// 	mStates[mCount] = newState;
-// 	// TODO: This looks weird. How would they really have written it?
-// 	if (!(0 <= newState->mId && newState->mId < mLimit)) {
-// 		check = false;
-// 	} else {
-// 		check = true;
-// 	}
-// 	if (check == false) {
-// 		return;
-// 	}
-// 	newState->mStateMachine        = this;
-// 	mIndexToIDArray[mCount]        = newState->mId;
-// 	mIdToIndexArray[newState->mId] = mCount;
-// 	mCount++;
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F4B94
-//  * Size:	000044
-//  */
-// void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::onKeyEvent(const SysShape::KeyEvent& event)
-// {
-// 	ItemState<ItemTreasure::Item>* state = mCurrentState;
-// 	if (state) {
-// 		state->onKeyEvent((ItemTreasure::Item*)this, event);
-// 	}
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F4BD8
-//  * Size:	000044
-//  */
-// void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::platCallback(PlatEvent& event)
-// {
-// 	ItemState<ItemTreasure::Item>* state = mCurrentState;
-// 	if (state) {
-// 		state->onPlatCollision((ItemTreasure::Item*)this, event);
-// 	}
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F4C1C
-//  * Size:	000044
-//  */
-// void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::collisionCallback(CollEvent& event)
-// {
-// 	ItemState<ItemTreasure::Item>* state = mCurrentState;
-// 	if (state) {
-// 		state->onCollision((ItemTreasure::Item*)this, event);
-// 	}
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801F4C60
-//  * Size:	000044
-//  */
-// void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::bounceCallback(Sys::Triangle* tri)
-// {
-// 	ItemState<ItemTreasure::Item>* state = mCurrentState;
-// 	if (state) {
-// 		state->onBounce((ItemTreasure::Item*)this, tri);
-// 	}
-// }
-
+void Mgr::onLoadResources() { }
+} // namespace ItemTreasure
 } // namespace Game

@@ -102,8 +102,9 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 
 	void updateCollTree();
 
-	// Creature: _000 - _178
-	// MotionListener: _178 - _17C
+	// _000      = VTBL
+	// _000-_178 = Creature
+	// _178-_17C = MotionListener ptr
 	PSM::CreatureObj* mSoundObj;  // _17C
 	BaseItemMgr* mNodeItemMgr;    // _180
 	u32 _184;                     // _184
@@ -140,6 +141,8 @@ struct CFSMItem : public BaseItem {
 	FSMState<CFSMItem>* getCurrState();
 	int getStateID();
 
+	// _000      = VTBL
+	// _000-_1D8 = BaseItem
 	CItemFSM* mStateMachine;        // _1D8
 	FSMState<CFSMItem>* mCurrState; // _1DC
 };
@@ -233,6 +236,8 @@ struct FSMItem : public BaseItem {
 
 	int getStateID();
 
+	// _000      = VTBL
+	// _000-_1D8 = BaseItem
 	FSMClass* mFsm;            // _1D8
 	StateClass* mCurrentState; // _1DC
 };
@@ -245,6 +250,13 @@ struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
 	{
 	}
 
+	// I have no idea why these are suddenly pure virtual here but they're required. - HP
+	virtual void constructor()                           = 0; // _2C
+	virtual bool getVectorField(Sys::Sphere&, Vector3f&) = 0; // _204
+	virtual f32 getWorkDistance(Sys::Sphere&)            = 0; // _208
+
+	// _000      = VTBL
+	// _000-_1E0 = FSMItem
 	TSoundEvent mSoundEvent; // _1E0
 };
 

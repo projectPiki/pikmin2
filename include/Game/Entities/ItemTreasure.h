@@ -67,12 +67,6 @@ struct Item : public WorkItem<Item, FSM, State> {
 		Matrixf* mMatrix; // _04
 	};
 
-	// will probably need this
-	// inline Item(int objTypeID)
-	//     : WorkItem(objTypeID)
-	// {
-	// }
-
 	virtual void constructor();                            // _2C
 	virtual void onInit(CreatureInitArg* settings);        // _30
 	virtual void doDirectDraw(Graphics& gfx);              // _50
@@ -108,11 +102,11 @@ struct Item : public WorkItem<Item, FSM, State> {
 struct TreasureParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
-		    : Parameters(nullptr, "Plant::Property")
-		    , mP000(this, 'p000', "ライフ(0)", 250.0f, 1.0f, 60000.0f)
-		    , mP001(this, 'p001', "ライフ(1)", 750.0f, 1.0f, 60000.0f)
-		    , mP002(this, 'p002', "ライフ(2)", 1200.0f, 1.0f, 60000.0f)
-		    , mP003(this, 'p003', "ライフ(3)", 1500.0f, 1.0f, 60000.0f)
+		    : Parameters(nullptr, "Plant::Parms")
+		    , mP000(this, 'p000', "ライフ(0)", 250.0f, 1.0f, 60000.0f)  // 'life (0)'
+		    , mP001(this, 'p001', "ライフ(1)", 750.0f, 1.0f, 60000.0f)  // 'life (1)'
+		    , mP002(this, 'p002', "ライフ(2)", 1200.0f, 1.0f, 60000.0f) // 'life (2)'
+		    , mP003(this, 'p003', "ライフ(3)", 1500.0f, 1.0f, 60000.0f) // 'life (3)'
 		{
 		}
 
