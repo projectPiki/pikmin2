@@ -30,7 +30,7 @@ EBISAWA_FILES:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiSaveMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenSaveMenu.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenFileSelect_Mgr.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiFileSelectMgr.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiFileSelectMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr_Load.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleCoordMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitlePikmin.o\
@@ -50,6 +50,7 @@ EBISAWA_FILES:=\
 $(EBISAWA_FILES): CFLAGS += -sym on
 
 $(BUILD_DIR)/src/plugProjectEbisawaU/ebiCardMgr.o: CFLAGS += -sym off
+$(BUILD_DIR)/src/plugProjectEbisawaU/ebiFileSelectMgr.o: CFLAGS += -sym off
 
 DEPENDS += $(EBISAWA_FILES:.o=.d)
 

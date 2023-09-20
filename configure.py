@@ -1480,7 +1480,7 @@ LIBS = [
             ["plugProjectEbisawaU/ebiSaveMgr", False, {"cflags" : "$cflags_pikmin"}],
             "plugProjectEbisawaU/ebiScreenSaveMenu",
             "plugProjectEbisawaU/ebiScreenFileSelect_Mgr",
-            ["plugProjectEbisawaU/ebiFileSelectMgr", False, {"cflags" : "$cflags_pikmin"}],
+            ["plugProjectEbisawaU/ebiFileSelectMgr", True, {"cflags" : "$cflags_pikmin"}],
             ["plugProjectEbisawaU/ebiCardMgr_Load", True],
             ["plugProjectEbisawaU/ebiP2TitleCoordMgr", True],
             "plugProjectEbisawaU/ebiP2TitlePikmin",
