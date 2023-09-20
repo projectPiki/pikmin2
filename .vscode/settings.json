@@ -28,6 +28,8 @@
     "thpplayer.h": "c",
     "thpvideodecode.h": "c",
     "thpaudio.h": "c",
-    "ai.h": "c"
+    "ai.h": "c",
+    "gx.h": "c",
+    "gxenum.h": "c"
   }
 }

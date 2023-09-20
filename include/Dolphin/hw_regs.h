@@ -8,6 +8,8 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+#define HW_REG(reg, type) *(volatile type*)(u32)(reg) // generic HW_REG macro (please do not use this)
+
 /////// HARDWARE REGISTERS ///////
 // Video Interface registers.
 vu16 __VIRegs[59] AT_ADDRESS(0xCC002000);
