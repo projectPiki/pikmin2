@@ -33,6 +33,28 @@ typedef struct SIControl {
 	SICallback callback; // _10
 } SIControl;
 
+// Struct to set and store flags (size 0x4).
+typedef struct SICommFlags {
+	u32 tcint : 1;
+	u32 tcintmsk : 1;
+	u32 comerr : 1;
+	u32 rdstint : 1;
+	u32 rdstintmsk : 1;
+	u32 pad0 : 4;
+	u32 outlngth : 7;
+	u32 pad1 : 1;
+	u32 inlngth : 7;
+	u32 pad2 : 5;
+	u32 channel : 2;
+	u32 tstart : 1;
+} SICommFlags;
+
+// Union to control setting flags or overall word value (size 0x4).
+typedef union SIComm {
+	u32 val;
+	SICommFlags flags;
+} SIComm;
+
 ////////////////////////////////////////////
 
 /////////////// SI FUNCTIONS ///////////////

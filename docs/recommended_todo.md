@@ -19,7 +19,7 @@
 ### <section id="Dolphin">Dolphin</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/targsupp.c">TRK_MINNOW_DOLPHIN/targsupp.c</a> | 326 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXDisplayList.c">gx/GXDisplayList.c</a> | 582 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/targsupp.c">TRK_MINNOW_DOLPHIN/targsupp.c</a> | 326 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/gx/GXDisplayList.c">gx/GXDisplayList.c</a> | 583 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/Runtime/__init_cpp_exceptions.cpp">Runtime/__init_cpp_exceptions.cpp</a> | 684 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/Runtime/global_destructor_chain.c">Runtime/global_destructor_chain.c</a> | 965 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/mtx/mtxvec.c">mtx/mtxvec.c</a> | 3122 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/mslsupp.c">TRK_MINNOW_DOLPHIN/mslsupp.c</a> | 4555 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/CircleBuffer.c">TRK_MINNOW_DOLPHIN/CircleBuffer.c</a> | 4715 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/TRK_MINNOW_DOLPHIN/serpoll.c">TRK_MINNOW_DOLPHIN/serpoll.c</a> | 4793 |

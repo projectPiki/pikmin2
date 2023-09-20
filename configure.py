@@ -784,7 +784,7 @@ LIBS = [
         "cflags": "$cflags_base -str noreadonly",
         "host": False,
         "objects": [
-            "Dolphin/si/SIBios",
+            ["Dolphin/si/SIBios", True],
             ["Dolphin/si/SISamplingRate", True],
         ],
     },

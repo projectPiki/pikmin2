@@ -1,5 +1,5 @@
 SI_FILES:=\
-	$(BUILD_DIR)/asm/Dolphin/si/SIBios.o\
+	$(BUILD_DIR)/src/Dolphin/si/SIBios.o\
 	$(BUILD_DIR)/src/Dolphin/si/SISamplingRate.o\
 
 $(SI_FILES): CFLAGS += -common off -str noreadonly
