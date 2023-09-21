@@ -244,7 +244,7 @@ struct Uja : public TFlock {
 	inline void doDirectDraw(Graphics& gfx) { }
 	inline void doEntry() { }
 	inline void doSetView(int viewportNumber) { }
-	inline void doSimulation(float) { }
+	inline void doSimulation(f32) { }
 	inline void doViewCalc() { }
 
 	// unused/inlined:
@@ -296,7 +296,7 @@ struct UjaMgr : public TFlockMgr<Uja> {
 	void astonishPikmins();
 
 	// unused/inlined:
-	void updateBlend(int, int, float);
+	void updateBlend(int, int, f32);
 	void appear();
 	void disappear();
 	void mogure();

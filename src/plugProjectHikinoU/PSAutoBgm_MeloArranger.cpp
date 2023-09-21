@@ -12,8 +12,8 @@ namespace PSAutoBgm {
  */
 bool MeloArr_RandomAvoid::avoidChk(MeloArrArg& meloArg)
 {
-	float randDec = JALCalc::getRandom_0_1();
-	u8 out        = (randDec < _1C);
+	f32 randDec = JALCalc::getRandom_0_1();
+	u8 out      = (randDec < _1C);
 	return out;
 }
 
