@@ -18,14 +18,19 @@ namespace Game {
 namespace ItemBigFountain {
 struct Item;
 
-enum cState { BIGFOUNTAINSTATE_Wait = 0, BIGFOUNTAINSTATE_Out, BIGFOUNTAINSTATE_Appear, BIGFOUNTAINSTATE_Close, BIGFOUNTAINSTATE_COUNT };
+enum StateID {
+	BIGFOUNTAIN_Wait   = 0,
+	BIGFOUNTAIN_Out    = 1,
+	BIGFOUNTAIN_Appear = 2,
+	BIGFOUNTAIN_Close  = 3,
+	BIGFOUNTAIN_StateCount, // 4
+};
 
 struct InitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
 
-	int mInitState;
-
-	// _00     = VTBL
+	// _00 = VTBL
+	int mInitState; // _04
 };
 
 struct FSM : public ItemFSM<Item> {
@@ -41,8 +46,8 @@ struct State : public ItemState<Item> {
 	{
 	}
 
-	virtual void onDamage(Item*, f32); // _20 (weak)
-	virtual bool canRide();            // _34 (weak)
+	virtual void onDamage(Item*, f32) { }    // _20 (weak)
+	virtual bool canRide() { return false; } // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
@@ -50,7 +55,7 @@ struct State : public ItemState<Item> {
 
 struct AppearState : public State {
 	inline AppearState()
-	    : State(BIGFOUNTAINSTATE_Appear)
+	    : State(BIGFOUNTAIN_Appear)
 	{
 	}
 
@@ -66,7 +71,7 @@ struct AppearState : public State {
 
 struct CloseState : public State {
 	inline CloseState()
-	    : State(BIGFOUNTAINSTATE_Close)
+	    : State(BIGFOUNTAIN_Close)
 	{
 	}
 
@@ -81,14 +86,14 @@ struct CloseState : public State {
 
 struct OutState : public State {
 	inline OutState()
-	    : State(BIGFOUNTAINSTATE_Out)
+	    : State(BIGFOUNTAIN_Out)
 	{
 	}
 
 	virtual void init(Item* item, StateArg* arg); // _08
 	virtual void exec(Item* item);                // _0C
 	virtual void cleanup(Item* item);             // _10
-	virtual bool canRide();                       // _34
+	virtual bool canRide() { return true; }       // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = State
@@ -97,7 +102,7 @@ struct OutState : public State {
 
 struct WaitState : public State {
 	inline WaitState()
-	    : State(BIGFOUNTAINSTATE_Wait)
+	    : State(BIGFOUNTAIN_Wait)
 	{
 	}
 
@@ -116,32 +121,31 @@ struct FountainParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms() // probably
 		    : Parameters(nullptr, "Fountain::Parms")
-		    , mP000(this, 'p000', "ライフ", 1000.0f, 1.0f, 60000.0f)
+		    , mHealth(this, 'p000', "ライフ", 1000.0f, 1.0f, 60000.0f) // 'life'
 		{
 		}
 
-		Parm<f32> mP000; // _E8
+		Parm<f32> mHealth; // _E8, p000
 	};
 
-	FountainParms();
-
-	virtual void read(Stream& input); // _08 (weak)
-
-	// _00-_D8 = CreatureParms
-	// _D8		 = VTBL
-	Parms mFountainParms;
-};
-
-struct Item : public WorkItem<Item, FSM, State> {
-	Item()
-	    : WorkItem(OBJTYPE_BigFountain)
+	FountainParms()
+	    : CreatureParms()
+	    , mFountainParms()
 	{
 	}
 
-	// inline Item(int objType)
-	//     : WorkItem(objType)
-	// { // probably needs things in here, just an initial guess
-	// }
+	virtual void read(Stream& input) // _08 (weak)
+	{
+		mFountainParms.read(input);
+	}
+
+	// _00-_D8 = CreatureParms
+	// _D8		 = VTBL
+	Parms mFountainParms; // _DC
+};
+
+struct Item : public WorkItem<Item, FSM, State> {
+	Item();
 
 	virtual void constructor();               // _2C
 	virtual void onInit(CreatureInitArg*);    // _30
@@ -151,9 +155,9 @@ struct Item : public WorkItem<Item, FSM, State> {
 	{
 		return mFaceDir;
 	}
-	virtual bool sound_culling();                                       // _104 (weak)
+	virtual bool sound_culling() { return false; }                      // _104 (weak)
 	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
-	virtual char* getCreatureName();                                    // _1A8 (weak)
+	virtual char* getCreatureName() { return "BigFountain"; }           // _1A8 (weak)
 	virtual void initDependency();                                      // _1BC
 	virtual void makeTrMatrix();                                        // _1C4
 	virtual void doAI();                                                // _1C8
@@ -169,24 +173,29 @@ struct Item : public WorkItem<Item, FSM, State> {
 	void killAllEffect();
 	bool canRide();
 
+	inline void resetModelMass()
+	{
+		mModel->mJ3dModel->mModelScale = 1.0f;
+		mMass                          = 0.0f;
+	}
+
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
 	f32 mFaceDir;                   // _1EC
-	f32 _1F0;                       // _1F0
+	f32 mBuryDepth;                 // _1F0, amount currently underground
 	efx::TGeyserAct* mEfxGeyserAct; // _1F4
 	efx::TGeyserSet* mEfxGeyserSet; // _1F8
-	u8 _1FC[4];                     // _1FC, unknown
-	f32 _200;                       // _200
+	PlatInstance* mPlatInstance;    // _1FC, unknown
+	f32 mHealth;                    // _200, 'health' to dig up in Challenge Mode
 };
 
 struct Mgr : public TNodeItemMgr {
 	Mgr();
 
 	virtual void onLoadResources();                                                       // _48
-	virtual u32 generatorGetID();                                                         // _58 (weak)
+	virtual BaseItem* doNew() { return new Item(); }                                      // _A0 (weak)
+	virtual u32 generatorGetID() { return 'warp'; }                                       // _58 (weak)
 	virtual BaseItem* generatorBirth(Vector3f& pos, Vector3f& rot, GenItemParm* genParm); // _5C
-	virtual BaseItem* doNew();                                                            // _A0 (weak)
-	virtual ~Mgr();                                                                       // _B8 (weak)
 
 	BaseItem* birth();
 

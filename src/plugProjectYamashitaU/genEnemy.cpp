@@ -637,10 +637,7 @@ void GenObjectEnemy::render(Graphics& gfx, Game::Generator* gen)
 		gfx.initPrimDraw(nullptr);
 		GXSetLineWidth(18, GX_TO_ZERO);
 
-		gfx._084 = 115;
-		gfx._085 = 16;
-		gfx._086 = 16;
-		gfx._087 = -1;
+		gfx._084 = Color4(115, 16, 16, 255);
 
 		float dirRadians = mDirection * DEG2RAD * PI;
 		Vector3f rotation(0.0f, dirRadians, 0.0f);
@@ -671,10 +668,7 @@ void GenObjectEnemy::render(Graphics& gfx, Game::Generator* gen)
 		rotationMtx.makeT(position);
 
 		if (mSpawnType == 2) { // Circle spawn type
-			gfx._084 = -1;
-			gfx._085 = -1;
-			gfx._086 = -1;
-			gfx._087 = -101;
+			gfx._084 = Color4(255, 255, 255, 155);
 			gfx.drawSphere(mAppearRadius, &rotationMtx);
 		}
 

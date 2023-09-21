@@ -238,10 +238,7 @@ void ActTeki::test_0()
 void ActTeki::doDirectDraw(Graphics& gfx)
 {
 	if (mFollowMark) {
-		gfx._084 = -1;
-		gfx._085 = 100;
-		gfx._086 = 10;
-		gfx._087 = -1;
+		gfx._084 = Color4(255, 100, 10, 255);
 		gfx.drawSphere(mFollowMark->mPosition, 10.0f);
 	}
 }

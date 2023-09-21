@@ -17,10 +17,10 @@ struct Item;
  * @fabricated
  */
 enum StateID {
-	Barrel_Normal  = 0,
-	Barrel_Damaged = 1,
-	Barrel_Dead    = 2,
-	BARREL_STATE_COUNT, // 3
+	BARREL_Normal  = 0,
+	BARREL_Damaged = 1,
+	BARREL_Dead    = 2,
+	BARREL_StateCount, // 3
 };
 
 /**
@@ -51,7 +51,7 @@ struct State : public ItemState<Item> {
  */
 struct NormalState : public State {
 	inline NormalState()
-	    : State(Barrel_Normal)
+	    : State(BARREL_Normal)
 	{
 	}
 
@@ -70,7 +70,7 @@ struct NormalState : public State {
  */
 struct DamagedState : public State {
 	inline DamagedState()
-	    : State(Barrel_Damaged)
+	    : State(BARREL_Damaged)
 	{
 	}
 
@@ -90,7 +90,7 @@ struct DamagedState : public State {
  */
 struct DeadState : public State {
 	inline DeadState()
-	    : State(Barrel_Dead)
+	    : State(BARREL_Dead)
 	{
 	}
 

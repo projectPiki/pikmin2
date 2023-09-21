@@ -201,31 +201,10 @@ struct FSMItem : public BaseItem {
 
 	// vtable 1
 	// vtable 2
-	virtual void doAI() // _10
-	{
-		static_cast<ItemFSM<ItemClass>*>(mFsm)->exec((ItemClass*)this);
-	}
-	virtual void bounceCallback(Sys::Triangle* tri) // _E0
-	{
-		StateClass* state = mCurrentState;
-		if (state) {
-			static_cast<ItemState<ItemClass>*>(state)->onBounce((ItemClass*)this, tri);
-		}
-	}
-	virtual void collisionCallback(CollEvent& event) // _E4
-	{
-		StateClass* state = mCurrentState;
-		if (state) {
-			static_cast<ItemState<ItemClass>*>(state)->onCollision((ItemClass*)this, event);
-		}
-	}
-	virtual void platCallback(PlatEvent& event) // _E8
-	{
-		StateClass* state = mCurrentState;
-		if (state) {
-			static_cast<ItemState<ItemClass>*>(state)->onPlatCollision((ItemClass*)this, event);
-		}
-	}
+	virtual void doAI();                                     // _10
+	virtual void bounceCallback(Sys::Triangle* tri);         // _E0
+	virtual void collisionCallback(CollEvent& event);        // _E4
+	virtual void platCallback(PlatEvent& event);             // _E8
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) // _68 (thunked at _00)
 	{
 		StateClass* state = mCurrentState;
@@ -233,7 +212,6 @@ struct FSMItem : public BaseItem {
 			static_cast<ItemState<ItemClass>*>(state)->onKeyEvent((ItemClass*)this, event);
 		}
 	}
-
 	int getStateID();
 
 	// _000      = VTBL
@@ -259,6 +237,46 @@ struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
 	// _000-_1E0 = FSMItem
 	TSoundEvent mSoundEvent; // _1E0
 };
+
+template <typename ItemClass, typename FSMClass, typename StateClass>
+int FSMItem<ItemClass, FSMClass, StateClass>::getStateID()
+{
+	StateClass* state = mCurrentState;
+	if (state) {
+		return (static_cast<ItemState<ItemClass>*>(state)->mId);
+	}
+	return -1;
+}
+template <typename ItemClass, typename FSMClass, typename StateClass>
+void FSMItem<ItemClass, FSMClass, StateClass>::doAI()
+{
+	static_cast<ItemFSM<ItemClass>*>(mFsm)->exec((ItemClass*)this);
+}
+
+template <typename ItemClass, typename FSMClass, typename StateClass>
+void FSMItem<ItemClass, FSMClass, StateClass>::bounceCallback(Sys::Triangle* tri)
+{
+	StateClass* state = mCurrentState;
+	if (state) {
+		static_cast<ItemState<ItemClass>*>(state)->onBounce((ItemClass*)this, tri);
+	}
+}
+template <typename ItemClass, typename FSMClass, typename StateClass>
+void FSMItem<ItemClass, FSMClass, StateClass>::collisionCallback(CollEvent& event)
+{
+	StateClass* state = mCurrentState;
+	if (state) {
+		static_cast<ItemState<ItemClass>*>(state)->onCollision((ItemClass*)this, event);
+	}
+}
+template <typename ItemClass, typename FSMClass, typename StateClass>
+void FSMItem<ItemClass, FSMClass, StateClass>::platCallback(PlatEvent& event)
+{
+	StateClass* state = mCurrentState;
+	if (state) {
+		static_cast<ItemState<ItemClass>*>(state)->onPlatCollision((ItemClass*)this, event);
+	}
+}
 
 } // namespace Game
 

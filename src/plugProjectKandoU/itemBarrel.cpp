@@ -32,7 +32,7 @@ Mgr* mgr;
  */
 void FSM::init(Item*)
 {
-	create(BARREL_STATE_COUNT);
+	create(BARREL_StateCount);
 	registerState(new NormalState());
 	registerState(new DamagedState());
 	registerState(new DeadState());
@@ -70,7 +70,7 @@ void NormalState::onDamage(Item* item, f32 damage)
 	item->mHealth -= item->mStoredDamage;
 	item->mStoredDamage = 0.0f;
 	if (item->mHealth < 0.0f) {
-		transit(item, Barrel_Dead, nullptr);
+		transit(item, BARREL_Dead, nullptr);
 	}
 }
 
@@ -237,7 +237,7 @@ void Item::onInit(CreatureInitArg*)
 	mModel->mJ3dModel->calcMaterial();
 	mModel->mJ3dModel->makeDL();
 	mModel->mJ3dModel->lock();
-	mFsm->start(this, Barrel_Normal, nullptr);
+	mFsm->start(this, BARREL_Normal, nullptr);
 	setAlive(true);
 	createBarrel();
 	mAnimSpeed         = 0.0f;
@@ -296,7 +296,7 @@ void Item::doAI()
 bool Item::getVectorField(Sys::Sphere& sphere, Vector3f& vec)
 {
 	Vector3f sep = mPosition - sphere.mPosition;
-	f32 dist     = _normalise2(sep);
+	f32 dist     = sep.normalise();
 
 	if (dist > getWorkRadius()) {
 		vec = sep;
@@ -331,7 +331,7 @@ f32 Item::getWorkRadius()
 f32 Item::getWorkDistance(Sys::Sphere& sphere)
 {
 	Vector3f sep = mPosition - sphere.mPosition;
-	f32 dist     = _length(sep);
+	f32 dist     = sep.length();
 	return dist - getWorkRadius();
 }
 

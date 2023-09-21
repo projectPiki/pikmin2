@@ -48,10 +48,7 @@ struct PerspPrintfInfo {
 struct _GraphicsParent {
 	u16 mPrimitiveDrawCount;    // _000
 	char* mTokens[0x20];        // _004
-	u8 _084;                    // _084
-	u8 _085;                    // _085
-	u8 _086;                    // _086
-	u8 _087;                    // _087
+	Color4 _084;                // _084
 	u8 _088[4];                 // _088
 	Matrixf _08C;               // _08C
 	J2DOrthoGraph mOrthoGraph;  // _0BC

@@ -2036,10 +2036,7 @@ void MapMgr::draw2d(Graphics&)
 void ShapeMapMgr::drawCollision(Graphics& gfx, ::Sys::Sphere& boundingSphere)
 {
 	gfx.initPrimDraw(nullptr);
-	gfx._084 = 0x32;
-	gfx._085 = 0xFF;
-	gfx._086 = 0x0A;
-	gfx._087 = 0xFF;
+	gfx._084 = Color4(50, 255, 10, 255);
 	GXSetLineWidth(' ', GX_TO_ZERO);
 	Sys::TriIndexList* triLists = _38.mDivider->findTriLists(boundingSphere);
 	Sys::GridDivider* divider   = _38.mDivider;
