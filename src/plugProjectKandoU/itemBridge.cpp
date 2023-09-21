@@ -1069,14 +1069,13 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 	}
 
 	if (z >= 0.0f && z <= rad) {
-		f32 newX = absF(x);
-		if (newX >= 75.0f) {
-			return newX - 75.0f;
-		} else {
-			return 0.0f;
+		if (absF(x) >= 75.0f) {
+			return absF(x) - 75.0f;
 		}
 		return 0.0f;
-	} else if (z < -100.0f) {
+	}
+
+	if (z < -100.0f) {
 		return 128000.0f;
 	}
 
@@ -1085,104 +1084,6 @@ f32 Item::getWorkDistance(Sys::Sphere& sphere)
 	}
 
 	return absF(z - rad);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	addi     r5, r1, 0xc
-	addi     r6, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       "getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3<f>RfRf"
-	lwz      r3, 0x218(r31)
-	lwz      r0, 0x21c(r31)
-	cmpw     r3, r0
-	bne      lbl_801EF924
-	lfs      f1, lbl_80519B78@sda21(r2)
-	b        lbl_801EFA20
-
-lbl_801EF924:
-	cmpwi    r3, 0
-	lfs      f3, lbl_80519B4C@sda21(r2)
-	ble      lbl_801EF96C
-	addi     r0, r3, -1
-	lis      r4, 0x4330
-	xoris    r3, r0, 0x8000
-	lhz      r0, 0x214(r31)
-	stw      r3, 0x14(r1)
-	lis      r3, bridgeFirstPos@ha
-	lfd      f2, lbl_80519B40@sda21(r2)
-	slwi     r0, r0, 2
-	stw      r4, 0x10(r1)
-	addi     r3, r3, bridgeFirstPos@l
-	lfs      f3, lbl_80519B48@sda21(r2)
-	lfd      f1, 0x10(r1)
-	lfsx     f0, r3, r0
-	fsubs    f1, f1, f2
-	fmadds   f3, f3, f1, f0
-
-lbl_801EF96C:
-	lfs      f1, lbl_80519B38@sda21(r2)
-	lfs      f0, 8(r1)
-	fsubs    f3, f3, f1
-	fsubs    f2, f0, f1
-	fadds    f0, f1, f3
-	stfs     f2, 8(r1)
-	fcmpo    cr0, f2, f0
-	ble      lbl_801EF994
-	lfs      f1, lbl_80519B78@sda21(r2)
-	b        lbl_801EFA20
-
-lbl_801EF994:
-	lfs      f1, lbl_80519B10@sda21(r2)
-	fcmpo    cr0, f2, f1
-	cror     2, 1, 2
-	bne      lbl_801EF9D8
-	fcmpo    cr0, f2, f3
-	cror     2, 0, 2
-	bne      lbl_801EF9D8
-	lfs      f2, 0xc(r1)
-	lfs      f0, lbl_80519B5C@sda21(r2)
-	fabs     f2, f2
-	frsp     f2, f2
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	bne      lbl_801EFA20
-	fsubs    f1, f2, f0
-	b        lbl_801EFA20
-	b        lbl_801EFA20
-
-lbl_801EF9D8:
-	lfs      f0, lbl_80519B60@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_801EF9EC
-	lfs      f1, lbl_80519B78@sda21(r2)
-	b        lbl_801EFA20
-
-lbl_801EF9EC:
-	lfs      f1, 0xc(r1)
-	lfs      f0, lbl_80519B64@sda21(r2)
-	fabs     f1, f1
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_801EFA10
-	lfs      f1, lbl_80519B78@sda21(r2)
-	b        lbl_801EFA20
-
-lbl_801EFA10:
-	lfs      f0, 8(r1)
-	fsubs    f0, f0, f3
-	fabs     f0, f0
-	frsp     f1, f0
-
-lbl_801EFA20:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
