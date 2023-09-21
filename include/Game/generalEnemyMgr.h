@@ -41,7 +41,7 @@ struct EnemyNumInfo {
 			mEnemyNumList[i].mCount = 0;
 		}
 	}
-	inline void addEnemyNum(int enemyID, unsigned char num)
+	inline void addEnemyNum(int enemyID, u8 num)
 	{
 		EnemyTypeID* enemyNumList = mEnemyNumList;
 		if (enemyNumList) {
@@ -97,8 +97,8 @@ struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	}
 
 	// vtable 1 (CNode, _00, _08-_0C)
-	virtual ~EnemyMgrNode() { } // _08 (weak)
 	// vtable2 (GenericObjectMgr + self, _18, _18-_80)
+	virtual ~EnemyMgrNode() { } // _08 (weak)
 	// _18-_34 = thunks
 	// _34-_44 = GenericObjectMgr
 	// _44 = thunk
@@ -179,7 +179,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	virtual void doSimpleDraw(Viewport*);       // _20
 	// vtable 2 (CNode, _04, _40-_4C)
 	// _40 = dtor thunk, _44 = getChildCount
-	virtual ~GeneralEnemyMgr() { } // _48 (weak)
+	virtual ~GeneralEnemyMgr() { } // _48 (weak) // needs to generate after EnemyMgrNode's setDebugParm and resetDebugParm
 
 	void createEnemyMgr(u8, int, int);
 	void killAll();
@@ -235,11 +235,58 @@ struct GeneralMgrIterator {
 		mIndex     = nullptr;
 	}
 
-	void next();
+	void next()
+	{
+		if (mCondition == nullptr) {
+			mIndex = mContainer->getNext(mIndex);
+		} else {
+			mIndex = mContainer->getStart();
 
-	void first();
+			while (mIndex != mContainer->getEnd()) {
+				T* enemy = getObject();
+				if (mCondition->satisfy(enemy)) {
+					return;
+				}
+				mContainer->getNext(mIndex);
+			}
+		}
 
-	void setFirst();
+		if (mIndex == mContainer->getEnd()) {
+			mContainer = static_cast<Container<T>*>(mContainer->mNext);
+			setFirst();
+		}
+	}
+
+	void first()
+	{
+		mContainer = static_cast<Container<T>*>(mNode->mChild);
+		this->setFirst();
+	}
+
+	void setFirst()
+	{
+		if (mContainer) {
+			if (!mCondition) {
+				mIndex = mContainer->getStart();
+			} else {
+				mIndex = mContainer->getStart();
+				while (mIndex != mContainer->getEnd()) {
+					if (mCondition->satisfy(static_cast<T*>(mContainer->getObject(mIndex)))) {
+						return;
+					} else {
+						mContainer->getNext(mIndex);
+					}
+				}
+			}
+
+			if (mIndex != mContainer->getEnd()) {
+				return;
+			}
+
+			mContainer = static_cast<Container<T>*>(mContainer->mNext);
+			setFirst();
+		}
+	}
 
 	inline T* getObject() { return static_cast<T*>(mContainer->getObject(mIndex)); }
 

@@ -738,6 +738,26 @@ u8 GeneralEnemyMgr::getEnemyNum(int enemyID, bool check)
 {
 	return mEnemyNumInfo.getEnemyNum(enemyID, check);
 	/*
+	{
+	    if (check) {
+	        u8 num = 0;
+	        if (mEnemyNumInfo.mEnemyNumList) {
+	            int mgrID = getEnemyMgrID(enemyID);
+
+	            for (int i = 0; i < gEnemyInfoNum; i++) {
+	                EnemyTypeID* typeID = &mEnemyNumInfo.mEnemyNumList[i];
+	                int id              = ((u8)(enemyID == mgrID) != 0) ? getEnemyMgrID(typeID->mEnemyID) : typeID->mEnemyID;
+	                if (id == enemyID) {
+	                    num += typeID->mCount;
+	                }
+	            }
+	        }
+	        return num;
+	    }
+	    return mEnemyNumInfo.getEnemyNumData(enemyID)->mCount;
+	}
+	*/
+	/*
 	stwu     r1, -0x10(r1)
 	clrlwi.  r0, r5, 0x18
 	li       r7, 0
@@ -951,79 +971,6 @@ void GeneralEnemyMgr::prepareDayendEnemies()
 		iterator.next();
 	}
 }
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8010DEF0
- * Size:	000110
- */
-// WEAK but seems to live here? unsure. might be template shenanigans
-void GeneralMgrIterator<Game::EnemyBase>::next()
-{
-	if (mCondition == nullptr) {
-		mIndex = mContainer->getNext(mIndex);
-	} else {
-		mIndex = mContainer->getStart();
-
-		while (mIndex != mContainer->getEnd()) {
-			Game::EnemyBase* enemy = getObject();
-			if (mCondition->satisfy(enemy)) {
-				return;
-			}
-			mContainer->getNext(mIndex);
-		}
-	}
-
-	if (mIndex == mContainer->getEnd()) {
-		mContainer = static_cast<Container<Game::EnemyBase>*>(mContainer->mNext);
-		setFirst();
-	}
-}
-
-/*
- * --INFO--
- * Address:	8010E000
- * Size:	000490
- */
-void GeneralMgrIterator<Game::EnemyBase>::setFirst()
-{
-	if (mContainer) {
-		if (!mCondition) {
-			mIndex = mContainer->getStart();
-		} else {
-			mIndex = mContainer->getStart();
-			while (mIndex != mContainer->getEnd()) {
-				if (mCondition->satisfy(static_cast<Game::EnemyBase*>(mContainer->getObject(mIndex)))) {
-					return;
-				} else {
-					mContainer->getNext(mIndex);
-				}
-			}
-		}
-
-		if (mIndex != mContainer->getEnd()) {
-			return;
-		}
-
-		mContainer = static_cast<Container<Game::EnemyBase>*>(mContainer->mNext);
-		setFirst();
-	}
-}
-
-/*
- * --INFO--
- * Address:	8010E490
- * Size:	00002C
- */
-void GeneralMgrIterator<Game::EnemyBase>::first()
-{
-	mContainer = static_cast<Container<Game::EnemyBase>*>(mNode->mChild);
-	this->setFirst();
-}
-
-namespace Game {
 
 /*
  * --INFO--
