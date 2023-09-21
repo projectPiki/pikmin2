@@ -67,7 +67,7 @@ struct EnemyNumInfo {
 		}
 		return getEnemyNumData(enemyID)->mCount;
 	}
-	EnemyTypeID* getEnemyNumData(int enemyID)
+	inline EnemyTypeID* getEnemyNumData(int enemyID)
 	{
 		for (int i = 0; i < gEnemyInfoNum; i++) {
 			if (enemyID == mEnemyNumList[i].mEnemyID) {

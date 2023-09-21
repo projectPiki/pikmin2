@@ -685,6 +685,7 @@ void GeneralEnemyMgr::resetEnemyNum() { mEnemyNumInfo.resetEnemyNum(); }
  * Address:	8010D854
  * Size:	00022C
  */
+#pragma dont_inline on
 void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 {
 	if (enemyID != -1) {
@@ -728,7 +729,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 		}
 	}
 }
-
+#pragma dont_inline reset
 /*
  * --INFO--
  * Address:	8010DA80
