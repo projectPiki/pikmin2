@@ -249,17 +249,6 @@ void Item::onInit(CreatureInitArg*)
 
 /*
  * --INFO--
- * Address:	801F80BC
- * Size:	000034
- */
-// void StateMachine<ItemBarrel::Item>::start(ItemBarrel::Item* item, int stateID, StateArg* stateArg)
-// {
-// 	item->mCurrentState = nullptr;
-// 	transit(item, stateID, stateArg);
-// }
-
-/*
- * --INFO--
  * Address:	801F80F0
  * Size:	00004C
  */
@@ -453,88 +442,5 @@ void Mgr::onLoadResources()
 	closeTextArc(arc);
 }
 
-/*
- * --INFO--
- * Address:	801F8DCC
- * Size:	000004
- */
-// void StateMachine<ItemBarrel::Item>::init(ItemBarrel::Item*) { }
-
-/*
- * --INFO--
- * Address:	801F8DD0
- * Size:	000038
- */
-// void StateMachine<ItemBarrel::Item>::exec(ItemBarrel::Item* item)
-// {
-// 	if (item->mCurrentState) {
-// 		item->mCurrentState->exec(item);
-// 	}
-// }
-
-/*
- * --INFO--
- * Address:	801F8E08
- * Size:	000064
- */
-// void StateMachine<ItemBarrel::Item>::create(int limit)
-// {
-// 	mLimit          = limit;
-// 	mCount          = 0;
-// 	mStates         = new FSMState<ItemBarrel::Item>*[mLimit];
-// 	mIndexToIDArray = new int[mLimit];
-// 	mIdToIndexArray = new int[mLimit];
-// }
-
-/*
- * --INFO--
- * Address:	801F8E6C
- * Size:	00009C
- */
-// void StateMachine<ItemBarrel::Item>::transit(ItemBarrel::Item* item, int stateID, StateArg* stateArg)
-// {
-// 	int stateIndex                  = mIdToIndexArray[stateID];
-// 	ItemBarrel::State* currentState = item->mCurrentState;
-// 	if (currentState) {
-// 		currentState->cleanup(item);
-// 		mCurrentID = currentState->mId;
-// 	}
-// 	if (stateIndex >= mLimit) {
-// 		while (true)
-// 			;
-// 	}
-// 	ItemBarrel::State* state = static_cast<ItemBarrel::State*>(mStates[stateIndex]);
-// 	item->mCurrentState      = state;
-// 	state->init(item, stateArg);
-// }
-
-/*
- * --INFO--
- * Address:	801F8F08
- * Size:	000084
- */
-// void StateMachine<ItemBarrel::Item>::registerState(FSMState<ItemBarrel::Item>* state)
-// {
-// 	if (mCount >= mLimit) {
-// 		return;
-// 	}
-// 	mStates[mCount] = state;
-
-// 	bool check;
-// 	if (0 > state->mId || !(state->mId < mLimit)) {
-// 		check = false;
-// 	} else {
-// 		check = true;
-// 	}
-
-// 	if (!check) {
-// 		return;
-// 	}
-
-// 	state->mStateMachine        = this;
-// 	mIndexToIDArray[mCount]     = state->mId;
-// 	mIdToIndexArray[state->mId] = mCount;
-// 	mCount++;
-// }
 } // namespace ItemBarrel
 } // namespace Game

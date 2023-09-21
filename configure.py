@@ -959,7 +959,7 @@ LIBS = [
             ["plugProjectKandoU/itemTreasure", True],
             "plugProjectKandoU/itemDownFloor",
             ["plugProjectKandoU/kandoLib", True],
-            "plugProjectKandoU/itemBarrel",
+            ["plugProjectKandoU/itemBarrel", True],
             "plugProjectKandoU/pelletNumber",
             "plugProjectKandoU/pelletCarcass",
             "plugProjectKandoU/pelletFruit",
