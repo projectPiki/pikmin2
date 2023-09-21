@@ -10,26 +10,38 @@ namespace Game {
 struct WayPoint;
 
 namespace ItemBridge {
-
-#define ITEM_BRIDGE_STATE_NORMAL (0)
-#define ITEM_BRIDGE_STATE_COUNT  (1)
-
 struct Item;
 
+#define BRIDGETYPE_Short  (0)
+#define BRIDGETYPE_Sloped (1)
+#define BRIDGETYPE_Long   (2)
+#define BRIDGETYPE_COUNT  (3)
+
+enum StateID {
+	BRIDGE_Normal = 0,
+	BRIDGE_StateCount, // 1
+};
+
 struct BridgeInitArg : public CreatureInitArg {
-	virtual const char* getName(); // _08 (weak)
+	virtual const char* getName() { return "BridgeInitArg"; } // _08 (weak)
 
 	// _00     = VTBL
 	u16 mBridgeType; // _04
 };
 
 struct BridgeInfo {
-	BridgeInfo();
+	BridgeInfo()
+	    : mStageCount(0)
+	    , mJointCount(0)
+	    , mJointIndices(nullptr)
+	    , mFinalJointIdx(-1)
+	{
+	}
 
-	u32 mStageCount; // _00, unknown
-	u32 _04;         // _04, unknown
-	u32 _08;         // _08, unknown
-	s32 _0C;         // _0C, unknown
+	int mStageCount;    // _00
+	int mJointCount;    // _04
+	u16* mJointIndices; // _08
+	int mFinalJointIdx; // _0C
 };
 
 struct FSM : public ItemFSM<Item> {
@@ -68,30 +80,28 @@ struct BridgeParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Bridge::Parms")
-		    , mP000(this, 'p000', "ライフ", 100.0f, 0.0f, 40000.0f)
+		    , mHealth(this, 'p000', "ライフ", 100.0f, 0.0f, 40000.0f) // 'life'
 		{
 		}
 
-		Parm<f32> mP000; // _E8
+		Parm<f32> mHealth; // _E8, p000
 	};
 
-	BridgeParms();
+	BridgeParms()
+	    : CreatureParms()
+	    , mBridgeParms()
+	{
+	}
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& input) { mBridgeParms.read(input); } // _08 (weak)
 
 	// _00-_D8 = CreatureParms
 	// _D8		 = VTBL
-	Parms mBridgeParms;
+	Parms mBridgeParms; // _DC
 };
 
 struct Item : public WorkItem<Item, FSM, State> {
-	inline Item()
-	    : WorkItem(OBJTYPE_Bridge)
-	    , mPlatInstanceAttacher()
-	{
-		mMass            = 0.0f;
-		mStagesRemaining = 0;
-	}
+	Item();
 
 	virtual void constructor();                             // _2C
 	virtual void onInit(CreatureInitArg*);                  // _30
@@ -99,9 +109,6 @@ struct Item : public WorkItem<Item, FSM, State> {
 	virtual void doSave(Stream& stream);                    // _E0
 	virtual void doLoad(Stream& stream);                    // _E4
 	virtual void getLODCylinder(Sys::Cylinder&);            // _144
-	virtual int* getMabiki();                               // _150 (weak)
-	virtual char* getCreatureName();                        // _1A8 (weak)
-	virtual void makeTrMatrix();                            // _1C4 (weak)
 	virtual void doAI();                                    // _1C8
 	virtual void changeMaterial();                          // _1D0
 	virtual void do_updateLOD();                            // _1D4
@@ -112,6 +119,9 @@ struct Item : public WorkItem<Item, FSM, State> {
 	virtual void updateBoundSphere();                       // _210
 	virtual void update();                                  // _214
 	virtual void onSetPosition();                           // _21C
+	virtual void makeTrMatrix() { }                         // _1C4 (weak)
+	virtual char* getCreatureName() { return "Bridge"; }    // _1A8 (weak)
+	virtual Mabiki* getMabiki() { return &mMabiki; }        // _150 (weak)
 
 	void setCurrStage(int);
 	void createWayPoints();
@@ -122,7 +132,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	Vector3f getBridgeZVec();
 	Vector3f getBridgeXVec();
 	void getBridgePos(Vector3f&, f32&, f32&);
-	void workable(Vector3f&);
+	bool workable(Vector3f&);
 
 	// unused/inlined:
 	f32 getStageDepth();
@@ -130,32 +140,29 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	int _1EC; // _1EC, mabiki? might be size 0x8?
-	int _1F0; // _1F0, unknown
-	f32 _1F4; // _1F4, might be a vertical rotation angle, used in getBridgeZVec. Name proposition: mRotationY (if Y is the vertical axis in
-	          // Pikmin 2)
-	u8 _1F8;  // _1F8
-	WayPoint* _1FC;                             // _1FC
-	WayPoint* _200;                             // _200
+	Mabiki mMabiki;                             // _1EC
+	f32 mFaceDir;                               // _1F4
+	u8 _1F8;                                    // _1F8
+	WayPoint* mBridgeWP;                        // _1FC, follows bridge as it unfurls
+	WayPoint* mEndWP;                           // _200, waypoint on other side of bridge
 	PlatInstanceAttacher mPlatInstanceAttacher; // _204
-	u16 mBridgeType;                            // _214, might be define list?
-	int mStagesRemaining;                       // _218
+	u16 mBridgeType;                            // _214, see BRIDGETYPE defines
+	int mCurrStageIdx;                          // _218
 	int mStageCount;                            // _21C
-	f32* mStageLengthsArray;                    // _220
+	f32* mStageHealths;                         // _220
 };
 
 struct Mgr : public TNodeItemMgr {
 	Mgr();
 
 	virtual void onLoadResources();                                       // _48
-	virtual u32 generatorGetID();                                         // _58 (weak)
+	virtual BaseItem* doNew() { return new Item(); }                      // _A0 (weak)
+	virtual u32 generatorGetID() { return 'brdg'; }                       // _58 (weak)
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
 	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
 	virtual void generatorRead(Stream&, GenItemParm*, unsigned long);     // _64
-	virtual u32 generatorLocalVersion();                                  // _68 (weak)
+	virtual u32 generatorLocalVersion() { return '0001'; }                // _68 (weak)
 	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual BaseItem* doNew();                                            // _A0 (weak)
-	virtual ~Mgr();                                                       // _B8 (weak)
 	virtual BaseItem* birth();                                            // _BC
 
 	BridgeInfo* getBridgeInfo(int);
@@ -164,9 +171,9 @@ struct Mgr : public TNodeItemMgr {
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr
-	PlatAttacher* mPlatAttachers; // _88, array of 3? might be array of pointers?
-	BridgeInfo* mBridgeInfos;     // _8C, array of 3? might be array of pointers?
-	BridgeParms* mParms;          // _90
+	PlatAttacher** mPlatAttachers; // _88, array of 3? might be array of pointers?
+	BridgeInfo* mBridgeInfos;      // _8C, array of 3? might be array of pointers?
+	BridgeParms* mParms;           // _90
 };
 
 extern Mgr* mgr;
@@ -177,12 +184,12 @@ extern Mgr* mgr;
 struct GenBridgeParm : public Game::GenItemParm {
 	inline GenBridgeParm()
 	    : GenItemParm()
-	    , _04(0)
+	    , mBridgeType(BRIDGETYPE_Short)
 	{
 	}
 
 	// _00     = VTBL
-	u16 _04; // _04
+	u16 mBridgeType; // _04
 };
 
 #endif

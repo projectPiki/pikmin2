@@ -209,17 +209,7 @@ void ItemGate::update()
  */
 void ItemGate::doAI()
 {
-	if (_1F0 > 0) {
-		_1EC += _1F0;
-	} else {
-
-		if (_1EC > 0) {
-			_1EC -= 4;
-			if (_1EC < 0)
-				_1EC = 0;
-		}
-	}
-	_1F0 = 0;
+	mMabiki.update(4);
 	mFsm->exec(this);
 	switch (mSoundEvent.update()) {
 	case 2:
@@ -1440,7 +1430,7 @@ void GateDownState::init(Game::ItemGate* gate, Game::StateArg* arg)
 		efx::TGate2Down gateDown(&gate->mObjMatrix);
 		gateDown.create(nullptr);
 	}
-	gate->_1F0 += 200;
+	gate->mMabiki.mBuffer += 200;
 	gate->startSound(PSSE_EV_WORK_WALLDOWN);
 	if (gate->mSegmentsDown + 1 == gate->mMaxSegments) {
 		if (gameSystem->mFlags & 0x20 && !playData->isDemoFlag(DEMO_First_Gate_Down)) {
@@ -1997,7 +1987,7 @@ char* ItemGate::getCreatureName() { return "Gate"; }
  * Address:	801CA6E4
  * Size:	000008
  */
-int* ItemGate::getMabiki() { return &_1EC; }
+Mabiki* ItemGate::getMabiki() { return &mMabiki; }
 
 /*
  * --INFO--

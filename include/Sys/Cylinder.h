@@ -16,7 +16,7 @@ struct Cylinder {
 	void draw(Graphics&);
 	bool intersect(const Triangle&, f32&);
 	bool intersect(const Plane&);
-	void set(const Vector3f&, const Vector3f&, f32);
+	void set(const Vector3f& start, const Vector3f& end, f32 radius);
 
 	Vector3f mCenter; // _00 - coords of center of cylinder
 	Vector3f mAxis;   // _0C - unit vector pointing along cylinder axis

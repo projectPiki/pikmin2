@@ -286,7 +286,7 @@ void Obj::updateLivingThing()
 {
 	if (!isLivingThing()) {
 		if (mBridge) {
-			if (mBridge->mStagesRemaining != 0) {
+			if (mBridge->mCurrStageIdx != 0) {
 				mIsAlive = true;
 			}
 

@@ -111,7 +111,7 @@ struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 	virtual void doSave(Stream& stream);                      // _E0
 	virtual void doLoad(Stream& stream);                      // _E4
 	virtual void getLifeGaugeParam(LifeGaugeParam&);          // _13C
-	virtual int* getMabiki();                                 // _150 (weak)
+	virtual Mabiki* getMabiki();                              // _150 (weak)
 	virtual char* getCreatureName();                          // _1A8 (weak)
 	virtual void makeTrMatrix();                              // _1C4 (weak)
 	virtual void doAI();                                      // _1C8
@@ -131,8 +131,7 @@ struct ItemGate : public WorkItem<ItemGate, GateFSM, GateState> {
 
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem
-	int _1EC;                           // _1EC, mabiki? might be size 0x8?
-	int _1F0;                           // _1F0
+	Mabiki mMabiki;                     // _1EC
 	PlatInstance* mCentrePlatInstance;  // _1F4
 	PlatInstance* mSidePlatInstance;    // _1F8
 	WayPoint* mWayPoint;                // _1FC

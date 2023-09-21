@@ -20,6 +20,7 @@ struct Code {
 	};
 
 	enum SlipCode {
+		SlipCode0     = 0x0,
 		SlipCode1     = 0x1,
 		SlipCode2     = 0x2,
 		SlipCode3     = 0x3,

@@ -408,7 +408,7 @@ int Obj::checkBreakOrMove()
  */
 bool Obj::isBreakBridge()
 {
-	if (mBridge && mBridge->mStagesRemaining) {
+	if (mBridge && mBridge->mCurrStageIdx) {
 		return true;
 	}
 
@@ -861,7 +861,7 @@ lbl_8027ED80:
  */
 bool Obj::moveBridgeTop()
 {
-	int stageID       = mBridge->mStagesRemaining - 1;
+	int stageID       = mBridge->mCurrStageIdx - 1;
 	Vector3f stagePos = mBridge->getStagePos(stageID);
 	Vector3f xVec     = mBridge->getBridgeXVec();
 

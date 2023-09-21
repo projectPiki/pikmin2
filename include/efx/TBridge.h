@@ -15,6 +15,11 @@ struct TBridgeAttack : public TSimple1 {
 };
 
 struct TBridgeSet : public TSimpleMtx1 {
+	TBridgeSet(Matrixf* mtx)
+	    : TSimpleMtx1(mtx, PID_BridgeSet)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_10  = TSimpleMtx1
 };

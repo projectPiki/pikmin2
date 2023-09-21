@@ -77,6 +77,34 @@ enum CreatureFlags {
 	CF_IS_DEBUG_COLLISION = 0x80000000
 };
 
+// Manages dust clouds on stage change - only used by ItemGate and ItemBridge
+struct Mabiki {
+	inline void reset()
+	{
+		mBuffer  = 0;
+		mCounter = 0;
+	}
+
+	inline void update(int dec)
+	{
+		if (mBuffer > 0) {
+			mCounter += mBuffer;
+		} else {
+			if (mCounter > 0) {
+				mCounter -= dec;
+				if (mCounter < 0) {
+					mCounter = 0;
+				}
+			}
+		}
+
+		mBuffer = 0;
+	}
+
+	int mCounter; // _00, decreases by 4 (gate) or 5 (bridge) each frame
+	int mBuffer;  // _04, will get added to mCounter next frame
+};
+
 struct CreatureInitArg {
 	virtual const char* getName() = 0; // _08
 
@@ -261,7 +289,7 @@ struct Creature : public CellObject {
 	virtual void getLODCylinder(Sys::Cylinder&) { }            // _144 (weak)
 	virtual void startPick() { }                               // _148 (weak)
 	virtual void endPick(bool) { }                             // _14C (weak)
-	virtual int* getMabiki() { return nullptr; }               // _150 (weak) - maybe shouldn't be u32*
+	virtual Mabiki* getMabiki() { return nullptr; }            // _150 (weak)
 	virtual Footmarks* getFootmarks() { return nullptr; }      // _154 (weak)
 	virtual void onStickStart(Creature*) { }                   // _158 (weak)
 	virtual void onStickEnd(Creature*) { }                     // _15C (weak)
